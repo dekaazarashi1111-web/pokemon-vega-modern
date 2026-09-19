@@ -1,0 +1,22 @@
+In file included from .local/pr16-circus-native-f9hb8l7j/controller.c:3:
+.local/pr16-circus-native-f9hb8l7j/pr16_streak_policy.c: In function ‘rd_emit’:
+.local/pr16-circus-native-f9hb8l7j/pr16_streak_policy.c:941:35: error: ‘sc_events’ undeclared (first use in this function); did you mean ‘sigevent’?
+  941 |         label,rd_elapsed,b_frames,sc_events,keys,read16(c,0x0203DB20U),read8(c,0x0203DB24U),
+      |                                   ^~~~~~~~~
+      |                                   sigevent
+.local/pr16-circus-native-f9hb8l7j/pr16_streak_policy.c:941:35: note: each undeclared identifier is reported only once for each function it appears in
+.local/pr16-circus-native-f9hb8l7j/pr16_streak_policy.c: In function ‘rd_exact_entry’:
+.local/pr16-circus-native-f9hb8l7j/pr16_streak_policy.c:949:12: error: ‘sc_events’ undeclared (first use in this function); did you mean ‘sigevent’?
+  949 |     return sc_events==100U && read16(c,0x0203DB20U)==21U && read8(c,0x0203DB24U)==1U
+      |            ^~~~~~~~~
+      |            sigevent
+.local/pr16-circus-native-f9hb8l7j/pr16_streak_policy.c: In function ‘rd_frame’:
+.local/pr16-circus-native-f9hb8l7j/pr16_streak_policy.c:965:12: error: ‘sc_events’ undeclared (first use in this function); did you mean ‘sigevent’?
+  965 |         if(sc_events>100U){rd_started=1U;rd_elapsed=1U;rd_emit(c,"event-crossed-direct",keys);rd_done=1U;}
+      |            ^~~~~~~~~
+      |            sigevent
+.local/pr16-circus-native-f9hb8l7j/pr16_streak_policy.c: In function ‘rd_exact_entry’:
+.local/pr16-circus-native-f9hb8l7j/pr16_streak_policy.c:954:1: error: control reaches end of non-void function [-Werror=return-type]
+  954 | }
+      | ^
+cc1: all warnings being treated as errors

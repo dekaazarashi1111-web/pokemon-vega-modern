@@ -1,0 +1,52 @@
+name: pr16-bp-party-retention-record
+run-name: 次戦個体保持のBLOCKED WIPを固定引継ぎ・ログに記録（解析/nativeなし）
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-bp-party-retention-record.yml
+      - scripts/pr16_bp_party_retention_record.py
+      - tests/test_pr16_bp_party_retention_record.py
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: pr16-bp-party-retention-record
+  cancel-in-progress: false
+jobs:
+  record:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: 成功済みhost/owner証拠のみ照合してBLOCKEDを記録
+        run: |
+          set -euo pipefail
+          python3 scripts/pr16_bp_party_retention_record.py record
+      - name: 記録回帰・固定引継ぎ・source-only検査
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-party-retention-record
+          python3 -m unittest discover -s tests -p test_pr16_bp_party_retention_record.py -v 2>&1 | tee "$out/record-tests.txt"
+          python3 -m unittest discover -s tests -p test_pr16_resume.py -v 2>&1 | tee "$out/resume-tests.txt"
+          python3 scripts/pr16_bp_party_retention_record.py check
+          python3 scripts/pr16_resume.py check | tee "$out/resume-check.json"
+          python3 scripts/validate_task_graph.py | tee "$out/task-graph.txt"
+          git diff --check
+      - name: append-only・限定index・guard差分確認後に記録だけ非force push
+        run: python3 scripts/pr16_bp_party_retention_record.py publish
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-bp-party-retention-record
+          path: .local/pr16-bp-party-retention-record/
+          include-hidden-files: true
+          retention-days: 90
+          if-no-files-found: error

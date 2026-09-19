@@ -1,0 +1,94 @@
+name: pr16-ring-common-tail-abi
+run-name: 保存共通末尾6命令の限定ABI・pointer計算と未読帰還境界
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-ring-common-tail-abi.yml
+      - scripts/pr16_ring_common_tail_abi.py
+      - tests/test_pr16_ring_common_tail_abi.py
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-ring-common-tail-abi
+  cancel-in-progress: false
+jobs:
+  verify-record:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: Exact HEAD・正本・最新Actions・保存6命令の限定tests
+        run: python3 scripts/pr16_ring_common_tail_abi.py preflight
+      - name: ROM復元なしで限定ABI・固定引継ぎ・両ログ・index guard
+        run: python3 scripts/pr16_ring_common_tail_abi.py record
+      - name: 最新HEAD再確認・完了commit・同branchへ非force push
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import sys
+          sys.path.insert(0,'scripts')
+          import pr16_ring_common_tail_abi as a
+          a.head_check()
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'PR-P08-7: 共通末尾6命令の限定ABIを検証し未読帰還境界を記録'
+          branch=codex/modernization-followup-20260908
+          git push origin "HEAD:refs/heads/$branch"
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$(git rev-parse HEAD)"
+          python3 - <<'PY'
+          import json,os,subprocess,sys
+          sys.path.insert(0,'scripts');import pr16_ring_common_tail_abi as a
+          commit=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
+          for p in a.OUTPUTS:
+              assert subprocess.check_output(['git','show','HEAD:'+p])==(a.ROOT/p).read_bytes()
+          assert subprocess.check_output(['git','status','--porcelain','--untracked-files=no'])==b''
+          result={'status':'PASS_COMMON_TAIL_ABI_RECORDED_NONFORCE_PUSHED',
+              'commit':commit,'source_head':os.environ['GITHUB_SHA'],
+              'run_id':int(os.environ['GITHUB_RUN_ID']),
+              'tests':json.loads((a.OUT/'tests.json').read_bytes()),
+              'resume_tests':json.loads((a.OUT/'resume-tests.json').read_bytes()),
+              'guard':json.loads((a.OUT/'guard.json').read_bytes()),
+              'committed_outputs_byte_verified':list(a.OUTPUTS),
+              'rom_changes':0,'new_emulator_processes':0,'candidate_reconstructions':0,
+              'accepted_native_cases_replayed':0,'callee_return_proven':False,
+              'ring_acquisition_accepted':False,'release_ready':False}
+          (a.OUT/'recorded-result.json').write_bytes(a.stable(result))
+          print('RESULT=DONE TASK='+a.TASK+' VERIFY=PASS COMMIT='+commit)
+          print(json.dumps(result))
+          PY
+      - name: 限定UTF-8結果だけexport検査
+        if: always()
+        id: export
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import pathlib,re
+          root=pathlib.Path('.local/pr16-ring-common-tail-abi')
+          root.mkdir(parents=True,exist_ok=True)
+          for p in root.iterdir():
+              assert p.is_file() and not p.is_symlink() and p.suffix in {'.json','.txt'}
+              data=p.read_bytes();data.decode('utf-8')
+              assert b'\0' not in data and len(data)<4000000
+              assert not re.search(rb'gh[pousr]_[A-Za-z0-9]{36,}|github_pat_[A-Za-z0-9_]{60,}|-----BEGIN [A-Z ]*PRIVATE KEY-----',data)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.export.outcome == 'success'
+        with:
+          name: pr16-ring-common-tail-abi
+          path: .local/pr16-ring-common-tail-abi/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90

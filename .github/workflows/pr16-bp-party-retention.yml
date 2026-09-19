@@ -1,0 +1,124 @@
+name: pr16-bp-party-retention
+run-name: 交換個体保持修復のowner照合・限定検証
+on:
+  workflow_dispatch:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-bp-party-retention.yml
+      - scripts/pr16_bp_party_retention_owner.py
+      - overlays/facility_party_retention/**
+      - tests/test_pr16_bp_party_retention.py
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: pr16-bp-party-retention
+  cancel-in-progress: false
+jobs:
+  audit:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: 現在HEADと既存証拠の照合・新規host回帰
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-party-retention-run
+          mkdir -p "$out"
+          python3 -m unittest discover -s tests -p test_pr16_bp_party_retention.py -v > "$out/unit.stdout" 2> "$out/unit.stderr"
+          python3 scripts/pr16_resume.py check > "$out/resume-before.json"
+          python3 - <<'PYCODE'
+          import json,os,pathlib,subprocess
+          repo=os.environ['GITHUB_REPOSITORY'];head=os.environ['GITHUB_SHA'];branch='codex/modernization-followup-20260908'
+          def api(path):return json.loads(subprocess.check_output(['gh','api','repos/'+repo+'/'+path]))
+          def small(r):return {k:r[k] for k in ('id','name','head_sha','path','status','conclusion','event')}
+          assert api('git/ref/heads/'+branch)['object']['sha']==head,'branch advanced'
+          pr=api('pulls/16');assert pr['state']=='open' and pr['draft'] and not pr['merged'] and pr['head']['sha']==head
+          identity=api('actions/workflows/pr16-bp-exchange-identity.yml/runs?branch=codex%2Fmodernization-followup-20260908&per_page=1')['workflow_runs'][0]
+          assert identity['id']==34774194505 and identity['conclusion']=='success','new identity result must be reconciled'
+          rows=api('actions/runs?head_sha=c0dc2ccee1e0253a0c8d8604c6a7312f04a133a3&per_page=100')
+          assert rows['total_count']==len(rows['workflow_runs'])
+          active=[]
+          for status in ('in_progress','queued'):
+              r=api('actions/runs?branch=codex%2Fmodernization-followup-20260908&status='+status+'&per_page=100')
+              assert r['total_count']==len(r['workflow_runs']);active.extend(small(v) for v in r['workflow_runs'])
+          pathlib.Path('.local/pr16-bp-party-retention-run/actions-before.json').write_text(json.dumps(dict(tested_head=head,pr_open_draft=True,latest_identity=small(identity),entry_head_runs=[small(r) for r in rows['workflow_runs']],active_runs=active),sort_keys=True,indent=2)+'\n')
+          PYCODE
+      - name: Restore pinned compiler and unchanged Stage84 input
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-party-retention-run
+          bash infra/setup_github_actions.sh --install > "$out/toolchain.log" 2>&1
+          python3 scripts/modernization_final_integration.py prepare > "$out/stage84.json" 2> "$out/stage84.stderr"
+      - name: Restore pinned inputs and character map
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-party-retention-run
+          assets=.local/pr16-bp-trial-native-inputs
+          mkdir -p "$assets"
+          tag=$(python3 -c 'import json; print(json.load(open("config/github_private_environment.json"))["release"]["tag"])')
+          gh release download "$tag" --pattern pokemon-vega-private-env-v1-inputs.zip --pattern pokemon-vega-private-env-v1-modernization-inputs.zip --pattern pokemon-vega-private-env-v1-state.zip --dir "$assets"
+          python3 scripts/github_private_environment.py restore --archive-dir "$assets" --archive pokemon-vega-private-env-v1-inputs.zip --archive pokemon-vega-private-env-v1-modernization-inputs.zip > "$out/private-restore.json"
+          python3 - <<'PY'
+          import hashlib,json,pathlib,zipfile
+          root=pathlib.Path('.');cfg=json.loads((root/'config/github_private_environment.json').read_bytes())
+          name='pokemon-vega-private-env-v1-state.zip';bound=next(a for a in cfg['archives'] if a['name']==name)
+          archive=root/'.local/pr16-bp-trial-native-inputs'/name;raw=archive.read_bytes()
+          assert len(raw)==bound['size'] and hashlib.sha256(raw).hexdigest()==bound['sha256']
+          member='vendor/upstream/CFRU-JP/charmap.tbl'
+          with zipfile.ZipFile(archive) as z:data=z.read(member)
+          path=root/member;assert not any(p.is_symlink() for p in (path,*path.parents))
+          if path.exists():assert path.read_bytes()==data
+          else:path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes(data);path.chmod(0o444)
+          (root/'.local/pr16-bp-party-retention-run/charmap-binding.json').write_text(json.dumps({'archive_sha256':bound['sha256'],'member':member,'size':len(data),'sha256':hashlib.sha256(data).hexdigest()},sort_keys=True)+'\n')
+          PY
+      - name: Rebuild exact candidate parents without historical native case replay
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-party-retention-run
+          python3 scripts/pr16_p07_preserved_layer.py > "$out/p07.stdout" 2> "$out/p07.stderr"
+          python3 scripts/pr16_evolution_learning_repair.py > "$out/repair.stdout" 2> "$out/repair.stderr"
+      - name: 固定source・ABI・candidateの次戦owner照合（native再実行0）
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/pr16_bp_party_retention_owner.py > .local/pr16-bp-party-retention-run/owner.stdout
+          git diff --exit-code
+      - name: text証拠だけを限定収録
+        id: guard
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PYCODE'
+          import hashlib,json,pathlib,re
+          out=pathlib.Path('.local/pr16-bp-party-retention-run');bound={}
+          for p in out.iterdir():
+              assert p.is_file() and not p.is_symlink() and p.suffix in {'.json','.txt','.stdout','.stderr','.log'}
+              raw=p.read_bytes();raw.decode('utf-8');assert b'\0' not in raw and len(raw)<5000000
+              assert not re.search(rb'gh[pousr]_[A-Za-z0-9]{36,}|github_pat_[A-Za-z0-9_]{60,}',raw)
+              bound[p.name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+          (out/'members.json').write_text(json.dumps(bound,sort_keys=True,indent=2)+'\n')
+          PYCODE
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.guard.outcome == 'success'
+        with:
+          name: pr16-bp-party-retention
+          path: .local/pr16-bp-party-retention-run/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90

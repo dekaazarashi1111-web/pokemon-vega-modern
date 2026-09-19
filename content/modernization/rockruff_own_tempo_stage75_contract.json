@@ -1,0 +1,245 @@
+{
+  "acquisition": {
+    "additional_rng_calls": 0,
+    "delegate_thumb": "0x094141BD",
+    "mix": "x=pid^(pid>>16);x*=0x9E3779B1;x^=x>>16",
+    "normal_rockruff_retained": true,
+    "policy": "POST_GENERATION_PERSONALITY_MIXED_LOW_3_BITS_ZERO",
+    "probability_denominator": 8,
+    "probability_numerator": 1,
+    "source_species": 1142,
+    "target_species": 1670
+  },
+  "breeding": {
+    "all_other_species": "EXACT_PARENT_TRAMPOLINE",
+    "get_egg_moves_1670": [
+      37,
+      283,
+      745,
+      541
+    ],
+    "get_egg_species_intercepts": [
+      1263,
+      1670
+    ],
+    "get_egg_species_result": 1670,
+    "rockruff_family_results": {
+      "1142": null,
+      "1143": null,
+      "1227": null,
+      "1263": 1670,
+      "1670": 1670
+    }
+  },
+  "evolution_correction": {
+    "added_slot": 0,
+    "normal_species": 1142,
+    "own_tempo_species": 1670,
+    "removed_slot": 2,
+    "row_hex": "1c001900ef041411"
+  },
+  "exclusions": {
+    "browt_pombon_gecqua_materialized": 0,
+    "full_p03_done": false,
+    "prohibited_coercions_materialized": 0,
+    "side_change_materialized": 0,
+    "side_change_project_move_id": 1063
+  },
+  "identity": {
+    "ability_id": 20,
+    "ability_slots": [
+      20,
+      20,
+      20
+    ],
+    "classification": "INTERNAL_CONDITIONAL_FORM",
+    "collection_class": 4,
+    "collection_weight": 0,
+    "dusk_species_id": 1263,
+    "form_key": "FORM_KEY_ROCKRUFF_OWN_TEMPO",
+    "national_dex": 744,
+    "normal_species_id": 1142,
+    "reference_id": "scarletviolet:0744.01",
+    "save_layout_changed": false,
+    "species_id": 1670,
+    "species_key": "SPECIES_KEY_ROCKRUFF_OWN_TEMPO"
+  },
+  "p03": {
+    "accounting": {
+      "materialized_routes_after": 83162,
+      "materialized_routes_before": 83162,
+      "owner_identity_support_routes": 60,
+      "reason": "38 carry routes were already accounted on target 1263; Stage75 resolves their owner identity without duplicating routes",
+      "route_accounting_delta": 0,
+      "selected_routes_after": 118369,
+      "selected_routes_before": 118369
+    },
+    "exclusions": {
+      "browt_pombon_gecqua_materialized": 0,
+      "full_p03_done": false,
+      "prohibited_coercions_materialized": 0,
+      "side_change_materialized": 0,
+      "side_change_project_move_id": 1063
+    },
+    "identity_mapping": {
+      "reference_id": "scarletviolet:0744.01",
+      "species_id": 1670
+    },
+    "owner_clone": {
+      "donor_species": 1142,
+      "egg_moves": [
+        37,
+        283,
+        745,
+        541
+      ],
+      "route_counts": {
+        "egg": 4,
+        "level_up": 14,
+        "machine": 38,
+        "shared_egg": 4,
+        "total": 60
+      },
+      "shared_egg_moves": [
+        37,
+        283,
+        745,
+        541
+      ],
+      "stage74_archive_moves": [
+        34,
+        36,
+        38,
+        46,
+        91,
+        184,
+        189,
+        204,
+        242,
+        263,
+        283,
+        304,
+        317,
+        384,
+        422,
+        424,
+        395
+      ],
+      "tutor_moves": []
+    },
+    "pre_evolution_carry": {
+      "direct_conversion": "FORBIDDEN",
+      "existing_slot_moves": [
+        14,
+        156,
+        157,
+        164,
+        182,
+        201,
+        203,
+        214,
+        269,
+        270,
+        334,
+        405,
+        407,
+        495,
+        520,
+        545,
+        550,
+        675,
+        688,
+        1037,
+        1040
+      ],
+      "missing_owner_path_count": 0,
+      "move_set_sha256": "d96bd6fbbec38b94cce0fb37928eeb0d3aaeeff4753b6ab27a0d7cbc20a972d4",
+      "path_count": 38,
+      "reference_owner": 1670,
+      "resolution_counts": {
+        "reference_existing_slot": 21,
+        "reference_stage74_archive": 17
+      },
+      "stage74_archive_moves": [
+        34,
+        36,
+        38,
+        46,
+        91,
+        184,
+        189,
+        204,
+        242,
+        263,
+        283,
+        304,
+        317,
+        384,
+        395,
+        422,
+        424
+      ],
+      "target_species": 1263
+    },
+    "schema_version": 1,
+    "source_route_clone": {
+      "policy": "EXACT_LEARNSET_CLONE_WITH_DISTINCT_INTERNAL_SPECIES_OWNER",
+      "route_count": 60,
+      "route_id_set_sha256": "791ce4be04329952b52bb4b9d16e8ba12ab0cfd079b236e66976ad8a375cd0d8",
+      "source_reference_id": "scarletviolet:0744.00",
+      "target_reference_id": "scarletviolet:0744.01"
+    },
+    "stage": 75,
+    "status": "PASS_OWN_TEMPO_OWNER_RESOLVED",
+    "task": "USER-MODERNIZATION-ROCKRUFF-OWN-TEMPO-STAGE75"
+  },
+  "save": {
+    "existing_1142_preserved": true,
+    "existing_1263_preserved": true,
+    "layout_changed": false,
+    "migration_required": false,
+    "new_species_field_width": "existing_u16"
+  },
+  "schema_version": 1,
+  "stage": 75,
+  "status": "STAGE75_OWN_TEMPO_INTERNAL_FORM_CONTRACT",
+  "table_contract": {
+    "ability_slots": [
+      20,
+      20,
+      20
+    ],
+    "count_consumers": 19,
+    "national_dex": 744,
+    "new_species_count": 1671,
+    "old_species_count": 1670,
+    "pointer_consumers": 310,
+    "relocated_species_tables": [
+      "species_front",
+      "species_back",
+      "species_palette",
+      "species_shiny_palette",
+      "species_icon",
+      "species_icon_palette",
+      "species_front_coords",
+      "species_back_coords",
+      "species_elevation",
+      "species_footprint",
+      "species_cry",
+      "species_cry2",
+      "species_dex_entries",
+      "species_national_dex",
+      "species_national_dex_runtime",
+      "species_base_stats",
+      "species_species_names",
+      "species_species_names_legacy",
+      "species_level_up_pointers",
+      "species_tmhm",
+      "species_tutor",
+      "species_wild_table",
+      "acquisition_collection_defs",
+      "evolution"
+    ]
+  },
+  "task": "USER-MODERNIZATION-ROCKRUFF-OWN-TEMPO-STAGE75"
+}

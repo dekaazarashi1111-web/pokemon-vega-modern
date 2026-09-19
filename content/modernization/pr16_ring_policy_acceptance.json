@@ -1,0 +1,3629 @@
+{
+  "schema_version": 1,
+  "task": "USER-20260918-RING-POLICY-CLOSEOUT",
+  "classification": "SCOPED_RING_ORDINARY_POLICY_ACCEPTANCE",
+  "tested_head": "a54fe471c666c280f116b5cbfc3b1a6c821e5395",
+  "run_id": 35347587112,
+  "job_id": 105607699274,
+  "artifact_id": 10547413771,
+  "artifact_identity": {
+    "size": 656588,
+    "sha256": "113b5972602453eafdab47f57272f1d9fd0ab22d1efcd4d956651b2f84ad0f65"
+  },
+  "candidate": {
+    "size": 33554432,
+    "sha256": "4ea33fb8224b0b84493ccca6e90161da245705eb1eb0a3874691ab39cc3806cc",
+    "crc32": "9EFB0E56"
+  },
+  "builder": {
+    "accepted_native_cases_replayed": 0,
+    "allocation": {
+      "allocations": [
+        {
+          "alignment": 4,
+          "content_sha256": "16ab88fb53956eccba0cb99a9621c14e9f04282535f8c7cc74ee4b5dd010e350",
+          "end_exclusive": 18874402,
+          "gba_end_exclusive": 153092130,
+          "gba_start": 153092096,
+          "name": "vega_adapter_module",
+          "owner": "vega_adapter",
+          "placement": "EXPLICIT",
+          "purpose": "T03 deterministic no-op harness module",
+          "region": "integration_modules",
+          "sequence": 0,
+          "size": 34,
+          "start": 18874368
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "3714b6df11dab92069829afbf201bdad25d976980969aa0cac58fc042496a30b",
+          "end_exclusive": 18918436,
+          "gba_end_exclusive": 153136164,
+          "gba_start": 153092132,
+          "name": "move_table_bridge",
+          "owner": "T04",
+          "placement": "EXPLICIT",
+          "purpose": "Vega move tables with V3 adjustments and canonical repoints",
+          "region": "integration_modules",
+          "sequence": 1,
+          "size": 44032,
+          "start": 18874404
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "58d8e581d625eed139e35f589282d5581bd3c48d632b194fe7497750910ab895",
+          "end_exclusive": 32846504,
+          "gba_end_exclusive": 167064232,
+          "gba_start": 167051264,
+          "name": "species_surface_front",
+          "owner": "T09",
+          "placement": "EXPLICIT",
+          "purpose": "T09 front",
+          "region": "future_tail",
+          "sequence": 2,
+          "size": 12968,
+          "start": 32833536
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "59d6131c1a0eb7a8f43af824d2bc97a2bbbe0c532baf69a491cf62774289c691",
+          "end_exclusive": 32859472,
+          "gba_end_exclusive": 167077200,
+          "gba_start": 167064232,
+          "name": "species_surface_back",
+          "owner": "T09",
+          "placement": "EXPLICIT",
+          "purpose": "T09 back",
+          "region": "future_tail",
+          "sequence": 3,
+          "size": 12968,
+          "start": 32846504
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "942cba43f8e932580f2ea252d778a335ca17505ca3e8ddc87ea1224796dbb4d3",
+          "end_exclusive": 32872440,
+          "gba_end_exclusive": 167090168,
+          "gba_start": 167077200,
+          "name": "species_surface_palette",
+          "owner": "T09",
+          "placement": "EXPLICIT",
+          "purpose": "T09 palette",
+          "region": "future_tail",
+          "sequence": 4,
+          "size": 12968,
+          "start": 32859472
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "e8c9320e74dc87ee0bed31bb00966a81fd80a99f63696090625f9df2ee75dea0",
+          "end_exclusive": 32885408,
+          "gba_end_exclusive": 167103136,
+          "gba_start": 167090168,
+          "name": "species_surface_shiny_palette",
+          "owner": "T09",
+          "placement": "EXPLICIT",
+          "purpose": "T09 shiny_palette",
+          "region": "future_tail",
+          "sequence": 5,
+          "size": 12968,
+          "start": 32872440
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "dfd234e85e6fa02fe5f3f4f7ac34080137cfcd627c77e3986cf624290a3d06ca",
+          "end_exclusive": 32891892,
+          "gba_end_exclusive": 167109620,
+          "gba_start": 167103136,
+          "name": "species_surface_icon",
+          "owner": "T09",
+          "placement": "EXPLICIT",
+          "purpose": "T09 icon",
+          "region": "future_tail",
+          "sequence": 6,
+          "size": 6484,
+          "start": 32885408
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "1a1d28cc365f5ca478d964d4e521976d42889128735222cd85ae7ba690a04d89",
+          "end_exclusive": 32893513,
+          "gba_end_exclusive": 167111241,
+          "gba_start": 167109620,
+          "name": "species_surface_icon_palette",
+          "owner": "T09",
+          "placement": "EXPLICIT",
+          "purpose": "T09 icon_palette",
+          "region": "future_tail",
+          "sequence": 7,
+          "size": 1621,
+          "start": 32891892
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "f60fac43883f17304bdb3f69f4a8d96f3f3f2f9001aea8efcebbc2561d4d8382",
+          "end_exclusive": 32900000,
+          "gba_end_exclusive": 167117728,
+          "gba_start": 167111244,
+          "name": "species_surface_front_coords",
+          "owner": "T09",
+          "placement": "EXPLICIT",
+          "purpose": "T09 front_coords",
+          "region": "future_tail",
+          "sequence": 8,
+          "size": 6484,
+          "start": 32893516
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "3cbe584de6ae1f0d94b5cf198e43a038e060477e3b30da00bad7beb2fb496379",
+          "end_exclusive": 32906484,
+          "gba_end_exclusive": 167124212,
+          "gba_start": 167117728,
+          "name": "species_surface_back_coords",
+          "owner": "T09",
+          "placement": "EXPLICIT",
+          "purpose": "T09 back_coords",
+          "region": "future_tail",
+          "sequence": 9,
+          "size": 6484,
+          "start": 32900000
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "dcfc617f0708dd218e36dedb14b97f60a17b1fb71479e344d21e7a0774bca607",
+          "end_exclusive": 32908105,
+          "gba_end_exclusive": 167125833,
+          "gba_start": 167124212,
+          "name": "species_surface_elevation",
+          "owner": "T09",
+          "placement": "EXPLICIT",
+          "purpose": "T09 elevation",
+          "region": "future_tail",
+          "sequence": 10,
+          "size": 1621,
+          "start": 32906484
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "aa4f048339199ebc8b63fe45e2de4630316701158c180d72ab7d749ce79518ef",
+          "end_exclusive": 32914592,
+          "gba_end_exclusive": 167132320,
+          "gba_start": 167125836,
+          "name": "species_surface_footprint",
+          "owner": "T09",
+          "placement": "EXPLICIT",
+          "purpose": "T09 footprint",
+          "region": "future_tail",
+          "sequence": 11,
+          "size": 6484,
+          "start": 32908108
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "d1a4e5a1e566391dc8bc923b086f992fd238c16faedfe3933aec7dd299c7a504",
+          "end_exclusive": 32934044,
+          "gba_end_exclusive": 167151772,
+          "gba_start": 167132320,
+          "name": "species_surface_cry",
+          "owner": "T09",
+          "placement": "EXPLICIT",
+          "purpose": "T09 cry",
+          "region": "future_tail",
+          "sequence": 12,
+          "size": 19452,
+          "start": 32914592
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "3dddbc0be651cc63bd726aea30c31cfb58c79e6957b1dd6181f9df997455e138",
+          "end_exclusive": 32953496,
+          "gba_end_exclusive": 167171224,
+          "gba_start": 167151772,
+          "name": "species_surface_cry2",
+          "owner": "T09",
+          "placement": "EXPLICIT",
+          "purpose": "T09 cry2",
+          "region": "future_tail",
+          "sequence": 13,
+          "size": 19452,
+          "start": 32934044
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "399fc94c3cf1f8f5f28b80d990c52bc48bc28037881390c026abe8d0db0d46b2",
+          "end_exclusive": 32998884,
+          "gba_end_exclusive": 167216612,
+          "gba_start": 167171224,
+          "name": "species_surface_dex_entries",
+          "owner": "T09",
+          "placement": "EXPLICIT",
+          "purpose": "T09 dex_entries",
+          "region": "future_tail",
+          "sequence": 14,
+          "size": 45388,
+          "start": 32953496
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "4eb1fc7ea17d7af1df1ce0d965bfbf8936d066538e870196d486cf25b624f4f3",
+          "end_exclusive": 33002126,
+          "gba_end_exclusive": 167219854,
+          "gba_start": 167216612,
+          "name": "species_surface_national_dex",
+          "owner": "T09",
+          "placement": "EXPLICIT",
+          "purpose": "T09 national_dex",
+          "region": "future_tail",
+          "sequence": 15,
+          "size": 3242,
+          "start": 32998884
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "5b700e46500eddd8ac59a91c366beee9e4210057cab231007ae1262dffab7170",
+          "end_exclusive": 33005368,
+          "gba_end_exclusive": 167223096,
+          "gba_start": 167219856,
+          "name": "species_surface_national_dex_runtime",
+          "owner": "T09",
+          "placement": "EXPLICIT",
+          "purpose": "T09 national_dex_runtime",
+          "region": "future_tail",
+          "sequence": 16,
+          "size": 3240,
+          "start": 33002128
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "3fc4c8cd5d21c5b7f1fa2972223288ec1040f115321298a19e168694ee45e002",
+          "end_exclusive": 33212856,
+          "gba_end_exclusive": 167430584,
+          "gba_start": 167223096,
+          "name": "species_surface_evolutions",
+          "owner": "T09",
+          "placement": "EXPLICIT",
+          "purpose": "T09 evolutions",
+          "region": "future_tail",
+          "sequence": 17,
+          "size": 207488,
+          "start": 33005368
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "4544753386775f0330073d879222e4bf9527a49183c3a06d83559a32d73440c3",
+          "end_exclusive": 33294741,
+          "gba_end_exclusive": 167512469,
+          "gba_start": 167430584,
+          "name": "species_surface_level_up_data",
+          "owner": "T09",
+          "placement": "EXPLICIT",
+          "purpose": "T09 level_up_data",
+          "region": "future_tail",
+          "sequence": 18,
+          "size": 81885,
+          "start": 33212856
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "a3559c327f61a0f9ced3f676b6f646cc2250e37577c62334fd8dc1bdacf1a70f",
+          "end_exclusive": 33301228,
+          "gba_end_exclusive": 167518956,
+          "gba_start": 167512472,
+          "name": "species_surface_level_up_pointers",
+          "owner": "T09",
+          "placement": "EXPLICIT",
+          "purpose": "T09 level_up_pointers",
+          "region": "future_tail",
+          "sequence": 19,
+          "size": 6484,
+          "start": 33294744
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "715c6676fece3846db21a0779cdf77128cb825f80d49d5d6071ca27b53d5d2fa",
+          "end_exclusive": 33315982,
+          "gba_end_exclusive": 167533710,
+          "gba_start": 167518956,
+          "name": "species_surface_egg_moves",
+          "owner": "T09",
+          "placement": "EXPLICIT",
+          "purpose": "T09 egg_moves",
+          "region": "future_tail",
+          "sequence": 20,
+          "size": 14754,
+          "start": 33301228
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "a24cebced039ef5bb36da6104a678a26fe3ea3adba538622b5f3402f09b49768",
+          "end_exclusive": 33341920,
+          "gba_end_exclusive": 167559648,
+          "gba_start": 167533712,
+          "name": "species_surface_tmhm",
+          "owner": "T09",
+          "placement": "EXPLICIT",
+          "purpose": "T09 tmhm",
+          "region": "future_tail",
+          "sequence": 21,
+          "size": 25936,
+          "start": 33315984
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "a44431aea3f197a030bd496482aa91b747f260d19822d8ab4eedc0a8363b441f",
+          "end_exclusive": 33367856,
+          "gba_end_exclusive": 167585584,
+          "gba_start": 167559648,
+          "name": "species_surface_tutor",
+          "owner": "T09",
+          "placement": "EXPLICIT",
+          "purpose": "T09 tutor",
+          "region": "future_tail",
+          "sequence": 22,
+          "size": 25936,
+          "start": 33341920
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "2f0a184e6b566a3196a1d064c8c40c451de758f75e14b1a584a1891d14e889da",
+          "end_exclusive": 33385687,
+          "gba_end_exclusive": 167603415,
+          "gba_start": 167585584,
+          "name": "species_surface_species_names",
+          "owner": "T09",
+          "placement": "EXPLICIT",
+          "purpose": "T09 species_names",
+          "region": "future_tail",
+          "sequence": 23,
+          "size": 17831,
+          "start": 33367856
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "fd479f125007841683556ffc2a4478a5df1d941d65d83b4bfa922566d4f4a237",
+          "end_exclusive": 33398656,
+          "gba_end_exclusive": 167616384,
+          "gba_start": 167603416,
+          "name": "species_surface_species_names_legacy",
+          "owner": "T09",
+          "placement": "EXPLICIT",
+          "purpose": "T09 species_names_legacy",
+          "region": "future_tail",
+          "sequence": 24,
+          "size": 12968,
+          "start": 33385688
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "1a462029beef54897525230a1d57403ba059c9038e790bd8467634b548af42b6",
+          "end_exclusive": 33399356,
+          "gba_end_exclusive": 167617084,
+          "gba_start": 167616384,
+          "name": "species_surface_species_runtime",
+          "owner": "T09",
+          "placement": "EXPLICIT",
+          "purpose": "T09 species_runtime",
+          "region": "future_tail",
+          "sequence": 25,
+          "size": 700,
+          "start": 33398656
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "6058a8b222ae3cbdc50269fd5fc0f089075ad5896d91f99c061d8c4ef4f9c4a2",
+          "end_exclusive": 18995530,
+          "gba_end_exclusive": 153213258,
+          "gba_start": 153136164,
+          "name": "content_population_payload",
+          "owner": "T16",
+          "placement": "EXPLICIT",
+          "purpose": "dual-region manifests and runtime lookup payload",
+          "region": "integration_modules",
+          "sequence": 26,
+          "size": 77094,
+          "start": 18918436
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "4272ce6d22e977dbbbcf3da4886b65213c0c5b833baafa97cca9f45b3db413ae",
+          "end_exclusive": 19710932,
+          "gba_end_exclusive": 153928660,
+          "gba_start": 153213260,
+          "name": "regression_runtime_payload",
+          "owner": "T17",
+          "placement": "EXPLICIT",
+          "purpose": "Kanto map roots/assets/wild tables, portal, and QOL-B runtime",
+          "region": "integration_modules",
+          "sequence": 27,
+          "size": 715400,
+          "start": 18995532
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "b03de7b7c2dd310852ae864ef5fdc8ebccbb03217a66e26bff7cffbb85b7ac35",
+          "end_exclusive": 19719108,
+          "gba_end_exclusive": 153936836,
+          "gba_start": 153928660,
+          "name": "trainer_rebalance_v4_parties",
+          "owner": "USER-20260814-TRAINER-V4",
+          "placement": "EXPLICIT",
+          "purpose": "V4 main-story trainer party rows",
+          "region": "integration_modules",
+          "sequence": 28,
+          "size": 8176,
+          "start": 19710932
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "03d7b3ca8025954bf111f7a876d4937bf932f0b3330b0dfa86e4e30915ab9b10",
+          "end_exclusive": 19724318,
+          "gba_end_exclusive": 153942046,
+          "gba_start": 153936836,
+          "name": "facility_runtime_payload",
+          "owner": "USER-20260814-FACILITY-RUNTIME",
+          "placement": "EXPLICIT",
+          "purpose": "実ROM Factory受付、6候補/3選択、交換、3連戦、保存復元",
+          "region": "integration_modules",
+          "sequence": 29,
+          "size": 5210,
+          "start": 19719108
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "e24bf0a1c4cd0ff96981d8a434c2155fc747248f0e2abc051421798a01944832",
+          "end_exclusive": 19724512,
+          "gba_end_exclusive": 153942240,
+          "gba_start": 153942048,
+          "name": "first_battle_priority_guard",
+          "owner": "USER-20260814-FIRST-BATTLE-LOOP",
+          "placement": "EXPLICIT",
+          "purpose": "Quick Draw indicatorと実特性を照合するturn scheduler wrapper",
+          "region": "integration_modules",
+          "sequence": 30,
+          "size": 192,
+          "start": 19724320
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "002a4f140852bcca8d7f3552132ad9f42a50f3e8aa11883c47db26fbab3684d5",
+          "end_exclusive": 19724920,
+          "gba_end_exclusive": 153942648,
+          "gba_start": 153942240,
+          "name": "hm_field_access_runtime",
+          "owner": "USER-20260814-HM-FIELD-ACCESS",
+          "placement": "EXPLICIT",
+          "purpose": "Vega HM01..08所持を正本とするfield能力とparty callback guard",
+          "region": "integration_modules",
+          "sequence": 31,
+          "size": 408,
+          "start": 19724512
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "67100cbdfd05eca9f4534888efadebab9804c12035d52aaa802d769a3091f55f",
+          "end_exclusive": 19726120,
+          "gba_end_exclusive": 153943848,
+          "gba_start": 153942648,
+          "name": "battle_ui_runtime",
+          "owner": "USER-20260814-BATTLE-UI",
+          "placement": "EXPLICIT",
+          "purpose": "固定CFRU move type/effectiveness/STAB表示adapter",
+          "region": "integration_modules",
+          "sequence": 32,
+          "size": 1200,
+          "start": 19724920
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "6152439799fe625ffbfedfa14e88a87fc187e6d6cc159403740446ca2eca9e97",
+          "end_exclusive": 19729096,
+          "gba_end_exclusive": 153946824,
+          "gba_start": 153943856,
+          "name": "move_memory_runtime",
+          "owner": "USER-20260814-MOVE-MEMORY",
+          "placement": "EXPLICIT",
+          "purpose": "item/NPC共通の技思い出し・技忘れ・タマゴ技管理core",
+          "region": "integration_modules",
+          "sequence": 33,
+          "size": 2968,
+          "start": 19726128
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "b49996fd455a46dd8d4d195f84a589c063ef9136fd6893a4e601cc7b6e6f464b",
+          "end_exclusive": 19774165,
+          "gba_end_exclusive": 153991893,
+          "gba_start": 153946832,
+          "name": "acquisition_runtime",
+          "owner": "USER-20260816-ACQUISITION-EVENTS",
+          "placement": "EXPLICIT",
+          "purpose": "201取得event transaction/menu/save runtime",
+          "region": "integration_modules",
+          "sequence": 34,
+          "size": 45061,
+          "start": 19729104
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "b0801e6682455a6294e61cfe49c6828ef015346b3774473c74a11bea2f8f4301",
+          "end_exclusive": 19776036,
+          "gba_end_exclusive": 153993764,
+          "gba_start": 153991896,
+          "name": "acquisition_map_scripts",
+          "owner": "USER-20260816-ACQUISITION-EVENTS",
+          "placement": "EXPLICIT",
+          "purpose": "24取得host scripts/restored objects/event headers",
+          "region": "integration_modules",
+          "sequence": 35,
+          "size": 1868,
+          "start": 19774168
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "b8ca4ba9d62f19c2b49cda603ad386800e2cdeb77587719296af6b5287a48cc5",
+          "end_exclusive": 19780472,
+          "gba_end_exclusive": 153998200,
+          "gba_start": 153993776,
+          "name": "bp_shop_runtime_payload",
+          "owner": "USER-20260817-BP-SHOP-RUNTIME",
+          "placement": "EXPLICIT",
+          "purpose": "Factory BP catalog/menu/purchase/save runtime and physical shop NPC",
+          "region": "integration_modules",
+          "sequence": 36,
+          "size": 4424,
+          "start": 19776048
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "8094ce3dd299752c6ec99a74efd3f2cc8d3bb6db162c417f3b96c7d649a95d88",
+          "end_exclusive": 19782152,
+          "gba_end_exclusive": 153999880,
+          "gba_start": 153998208,
+          "name": "factory_reward_runtime_payload",
+          "owner": "USER-20260818-FACTORY-REWARD-RUNTIME",
+          "placement": "EXPLICIT",
+          "purpose": "Factory Trial first-clear item/BP and streak encounter-credit wrapper",
+          "region": "integration_modules",
+          "sequence": 37,
+          "size": 1672,
+          "start": 19780480
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "6ce2ff15aa77f10b86ac61e4fe0c3f08b4bccc0b5b887f8f9036a2e04ee32fec",
+          "end_exclusive": 19782732,
+          "gba_end_exclusive": 154000460,
+          "gba_start": 153999888,
+          "name": "factory_repeat_reward_runtime_payload",
+          "owner": "USER-20260818-FACTORY-REPEAT-REWARD-RUNTIME",
+          "placement": "EXPLICIT",
+          "purpose": "Factory Trial repeat item/BP reward wrapper",
+          "region": "integration_modules",
+          "sequence": 38,
+          "size": 572,
+          "start": 19782160
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "6c97dd30b6fc6885f4085c61abb32402dcb337185fa0d6125283a1cc2757a30e",
+          "end_exclusive": 19783160,
+          "gba_end_exclusive": 154000888,
+          "gba_start": 154000464,
+          "name": "factory_special_event_runtime_payload",
+          "owner": "USER-20260818-FACTORY-SPECIAL-EVENT-RUNTIME",
+          "placement": "EXPLICIT",
+          "purpose": "Factory Trial 49-streak special-event claim wrapper",
+          "region": "integration_modules",
+          "sequence": 39,
+          "size": 424,
+          "start": 19782736
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "985d450165c7bdc4fe6a3447bc10ba8e088b44111a4bc00673fe51148717f5f4",
+          "end_exclusive": 19786490,
+          "gba_end_exclusive": 154004218,
+          "gba_start": 154000896,
+          "name": "factory_shiny_memorial_runtime_payload",
+          "owner": "USER-20260818-FACTORY-SHINY-MEMORIAL-RUNTIME",
+          "placement": "EXPLICIT",
+          "purpose": "Factory Trial 100-streak shiny memorial transaction runtime",
+          "region": "integration_modules",
+          "sequence": 40,
+          "size": 3322,
+          "start": 19783168
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "23d922c55eaadadd95e572096c2f1e36ac397e756de1ff968ee6141247bdf562",
+          "end_exclusive": 19833744,
+          "gba_end_exclusive": 154051472,
+          "gba_start": 154004224,
+          "name": "trainer_v5_stage31_foundation_payload",
+          "owner": "USER-TRAINER-V5-STAGE31-INTEGRATION-FOUNDATION",
+          "placement": "EXPLICIT",
+          "purpose": "Trainer V5 25 encounters, expanded trainer table, sidecar runtime, save-compatible hooks",
+          "region": "integration_modules",
+          "sequence": 41,
+          "size": 47248,
+          "start": 19786496
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "f1374c489749c1906122a97c5116e9541c356693a3953bd1ff0170649693bb4e",
+          "end_exclusive": 19882720,
+          "gba_end_exclusive": 154100448,
+          "gba_start": 154051472,
+          "name": "trainer_v5_stage32_tohoku_batch02_payload",
+          "owner": "USER-TRAINER-V5-STAGE32-TOHOKU-BATCH02",
+          "placement": "EXPLICIT",
+          "purpose": "Trainer V5 cumulative 39 encounters, exact command rebind table, sidecar runtime, save-compatible hooks",
+          "region": "integration_modules",
+          "sequence": 42,
+          "size": 48976,
+          "start": 19833744
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "ff4c0096241cf99ad163a57f2bc0022e4280d46896a7adb8f249899f3992c7ea",
+          "end_exclusive": 19934032,
+          "gba_end_exclusive": 154151760,
+          "gba_start": 154100448,
+          "name": "trainer_v5_stage33_tohoku_batch03_payload",
+          "owner": "USER-TRAINER-V5-STAGE33-TOHOKU-BATCH03",
+          "placement": "EXPLICIT",
+          "purpose": "Trainer V5 cumulative 54 encounters, RematchMap V2, exact command rebind table, sidecar runtime, save-compatible hooks",
+          "region": "integration_modules",
+          "sequence": 43,
+          "size": 51312,
+          "start": 19882720
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "1c6fdddbc4415d67cb6ba1fcf9e60db53ebb93e5e16a83eb4a3f17a461cbd945",
+          "end_exclusive": 20409646,
+          "gba_end_exclusive": 154627374,
+          "gba_start": 154151760,
+          "name": "trainer_changekit_final_stage35_payload",
+          "owner": "USER-20260819-TRAINER-CHANGEKIT-FINAL-INTEGRATION",
+          "placement": "EXPLICIT",
+          "purpose": "Trainer ChangeKit 1302 physical battles, 4284 trainer table, 6490-member sidecars, Kanto/Archive events, dialogue and four-mechanic policy runtime",
+          "region": "integration_modules",
+          "sequence": 44,
+          "size": 475614,
+          "start": 19934032
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "053f7aaa79e87dfc29caf26512ae4652d2b14240f180a1b2165fee7897854c23",
+          "end_exclusive": 20479088,
+          "gba_end_exclusive": 154696816,
+          "gba_start": 154627376,
+          "name": "qol_production_stage36_payload",
+          "owner": "T19",
+          "placement": "EXPLICIT",
+          "purpose": "QOL 35 production UI/PC/daycare/battle/save runtime and authored research table",
+          "region": "integration_modules",
+          "sequence": 45,
+          "size": 69440,
+          "start": 20409648
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "48daa966ac390f72f1edb0a4f7526428c0d6ec87f65a00d34df1a5cbecccaa81",
+          "end_exclusive": 20513648,
+          "gba_end_exclusive": 154731376,
+          "gba_start": 154696816,
+          "name": "event_design_stage37_payload",
+          "owner": "T20",
+          "placement": "EXPLICIT",
+          "purpose": "76 authored events, 326 dialogue strings, 63 rooted physical bindings, dispatcher scripts, and monotonic state runtime",
+          "region": "integration_modules",
+          "sequence": 46,
+          "size": 34560,
+          "start": 20479088
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "712e70c0a0f7096444b176171e29e822161d7c012198b14c9cc6317c04697c03",
+          "end_exclusive": 20522144,
+          "gba_end_exclusive": 154739872,
+          "gba_start": 154731376,
+          "name": "mirage_production_stage38_payload",
+          "owner": "T21",
+          "placement": "EXPLICIT",
+          "purpose": "Mirage carried-party 4-round/28-battle field scripts, isolated save transaction, virtual-item adapter, badge-exact cleanup and load chain",
+          "region": "integration_modules",
+          "sequence": 47,
+          "size": 8496,
+          "start": 20513648
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "83022ea095984a60bd6c1223cd7bcb1642709767f92810d04149201e0b10d524",
+          "end_exclusive": 20699248,
+          "gba_end_exclusive": 154916976,
+          "gba_start": 154739872,
+          "name": "move_distribution_v4_stage39_payload",
+          "owner": "T22",
+          "placement": "EXPLICIT",
+          "purpose": "Move Distribution V4 canonical learnsets, form policy, wild-only adapter",
+          "region": "integration_modules",
+          "sequence": 48,
+          "size": 177104,
+          "start": 20522144
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "0f8186357d36cc363edfc9a970246de441765c1b337437e6150dfc62074bbc3f",
+          "end_exclusive": 20711816,
+          "gba_end_exclusive": 154929544,
+          "gba_start": 154916976,
+          "name": "research_economy_v1_stage40_payload",
+          "owner": "T23",
+          "placement": "EXPLICIT",
+          "purpose": "Research Economy V1 runtime, six activities, seven ranks, 23-row shop, 35 dialogues and nine Stage39-rooted field bindings",
+          "region": "integration_modules",
+          "sequence": 49,
+          "size": 12568,
+          "start": 20699248
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "17adb88a0df2e5bd336aa104c85113e116c4ac900a01f5a235576a21b2fbe1ea",
+          "end_exclusive": 20722596,
+          "gba_end_exclusive": 154940324,
+          "gba_start": 154929552,
+          "name": "reward_encounters_v2_stage41_payload",
+          "owner": "T24",
+          "placement": "EXPLICIT",
+          "purpose": "Reward Encounters V2 runtime, four services, 24-entry pool, 56 dialogues and Vermilion Scientist field root",
+          "region": "integration_modules",
+          "sequence": 50,
+          "size": 10772,
+          "start": 20711824
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "e05f53be976a9f9223108221edc08610643bd1d3d9e2994ed781ac2ee78553c3",
+          "end_exclusive": 20747563,
+          "gba_end_exclusive": 154965291,
+          "gba_start": 154940336,
+          "name": "factory_high_modes_v2_stage42_payload",
+          "owner": "T25",
+          "placement": "EXPLICIT",
+          "purpose": "Factory High Modes V2 runtime, 24 modes, 248 rentals, 55 profiles, 16 rewards, 28 dialogues and receptionist field graph",
+          "region": "integration_modules",
+          "sequence": 51,
+          "size": 24955,
+          "start": 20722608
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "f07c92eb55aa7258599b7c482cbcddb7c496f9ee43d35d14119023fff58784a3",
+          "end_exclusive": 20749136,
+          "gba_end_exclusive": 154966864,
+          "gba_start": 154965296,
+          "name": "codex_battle_bridge_stage43_payload",
+          "owner": "T26",
+          "placement": "EXPLICIT",
+          "purpose": "Stage43 gameplay-neutral versioned Codex Battle mailbox, ReadKeys delegate wrapper and PING/PONG validator",
+          "region": "integration_modules",
+          "sequence": 52,
+          "size": 1568,
+          "start": 20747568
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "177727daa40511477c80724939846f51a96a8e1c7450bf0f80c44c4acfca87e7",
+          "end_exclusive": 20765488,
+          "gba_end_exclusive": 154983216,
+          "gba_start": 154966864,
+          "name": "codex_battle_runtime_stage44_payload",
+          "owner": "T27",
+          "placement": "EXPLICIT",
+          "purpose": "Stage44 Codex 6-to-3 runtime, private action seal, controller interposer, UPSTREAM_OPEN adapters and production reception",
+          "region": "integration_modules",
+          "sequence": 53,
+          "size": 16352,
+          "start": 20749136
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "441017c04cd89f9af320aa3c10e34e107430a3c8f8d0c2d307c7062d44b1fc5c",
+          "end_exclusive": 20773712,
+          "gba_end_exclusive": 154991440,
+          "gba_start": 154983216,
+          "name": "codex_battle_rewards_stage45_payload",
+          "owner": "T28",
+          "placement": "EXPLICIT",
+          "purpose": "Stage45 match-bound optional reward journal, normal bag/party/PC delivery, replay recovery and field completion adapters",
+          "region": "integration_modules",
+          "sequence": 54,
+          "size": 8224,
+          "start": 20765488
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "4a73f05d101fc7b6fb8e6e8af4648d8b9cf30659872a6111cb4e22c47e4172cb",
+          "end_exclusive": 20782336,
+          "gba_end_exclusive": 155000064,
+          "gba_start": 154991440,
+          "name": "windows_battle_catalog_stage46_payload",
+          "owner": "T29",
+          "placement": "EXPLICIT",
+          "purpose": "Stage46 reusable Windows catalog context over the T28 normal bag/party/PC exactly-once transaction owner",
+          "region": "integration_modules",
+          "sequence": 55,
+          "size": 8624,
+          "start": 20773712
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "a44ba25dc01dc8d141589261de48793a19e57d00274aa76f4db94c6b4731325a",
+          "end_exclusive": 20792096,
+          "gba_end_exclusive": 155009824,
+          "gba_start": 155000064,
+          "name": "windows_box14_vault_stage47_payload",
+          "owner": "T30",
+          "placement": "EXPLICIT",
+          "purpose": "Stage47 Box14 exact 80-byte export/remove/import protocol over the Stage46 normal field runtime",
+          "region": "integration_modules",
+          "sequence": 56,
+          "size": 9760,
+          "start": 20782336
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "3446004594ea4d6cb6f2b63347e147afdd975aae79e3f9ce1c3ba4057b924d00",
+          "end_exclusive": 20827652,
+          "gba_end_exclusive": 155045380,
+          "gba_start": 155009824,
+          "name": "world_item_recovery_stage49_payload",
+          "owner": "USER-20260824-STAGE48-WORLD-ITEM-RECOVERY",
+          "placement": "EXPLICIT",
+          "purpose": "Stage48 world event復旧、低レベルRaid host、会話・店・回復script",
+          "region": "integration_modules",
+          "sequence": 57,
+          "size": 35556,
+          "start": 20792096
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "586d17d7d0dde699b63f8daf97a793411370bbb2d6922518a3897e1da8e4cc06",
+          "end_exclusive": 20899384,
+          "gba_end_exclusive": 155117112,
+          "gba_start": 155045392,
+          "name": "interaction_ownership_repair_stage50_payload",
+          "owner": "USER-20260824-STAGE49-INTERACTION-OWNERSHIP-REPAIR",
+          "placement": "EXPLICIT",
+          "purpose": "Stage49 interaction owner撤回、field object・遭遇・視線補正",
+          "region": "integration_modules",
+          "sequence": 58,
+          "size": 71720,
+          "start": 20827664
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "fb6a1e05bd07f3a560d79ad648cfbc05098da8a60955f5ed91f4fc4347490116",
+          "end_exclusive": 20994536,
+          "gba_end_exclusive": 155212264,
+          "gba_start": 155117120,
+          "name": "world_runtime_e2e_repair_stage55_payload",
+          "owner": "USER-20260824-STAGE51-WORLD-RUNTIME-E2E-REPAIR",
+          "placement": "EXPLICIT",
+          "purpose": "678 mapのtrainer/item/dialogue/field/wild owner根本修復",
+          "region": "integration_modules",
+          "sequence": 59,
+          "size": 95144,
+          "start": 20899392
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "3322be52ab63ab96aa0cb4640519ec1fed3db0801c7cf1e60e9753242ee0c43c",
+          "end_exclusive": 21053344,
+          "gba_end_exclusive": 155271072,
+          "gba_start": 155212272,
+          "name": "collection_supply_v1_stage56_payload",
+          "owner": "USER-20260827-COLLECTION-SUPPLY-V1-IMPLEMENTATION",
+          "placement": "EXPLICIT",
+          "purpose": "388 form・34 G-Max・999 Item・14 Raid hostのStage56 production runtime",
+          "region": "integration_modules",
+          "sequence": 60,
+          "size": 58800,
+          "start": 20994544
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "e82e3fb6781acef0b0c867924125f40783335150b192f769deed447f6b6b547d",
+          "end_exclusive": 21054064,
+          "gba_end_exclusive": 155271792,
+          "gba_start": 155271072,
+          "name": "comprehensive_debug_repair_stage57_payload",
+          "owner": "USER-20260827-STAGE56-COMPREHENSIVE-DEBUG-REPAIR",
+          "placement": "EXPLICIT",
+          "purpose": "NPC/menu/wild identity横断修復とBG安全script",
+          "region": "integration_modules",
+          "sequence": 61,
+          "size": 720,
+          "start": 21053344
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "12fdf78b4c9831ac84560b6e5af0645db923c41906ea1ddeb2cb523f9c42e4d4",
+          "end_exclusive": 21067312,
+          "gba_end_exclusive": 155285040,
+          "gba_start": 155271792,
+          "name": "qol_world_convenience_stage58_payload",
+          "owner": "USER-20260828-STAGE57-QOL-WORLD-CONVENIENCE-DEBUG",
+          "placement": "EXPLICIT",
+          "purpose": "Codex拠点PC・全回復・money mart、Kanto野生方式/確率、薄い場所イベント",
+          "region": "integration_modules",
+          "sequence": 62,
+          "size": 13248,
+          "start": 21054064
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "b06f000e393091bd4a0b69ddf7a03844b12ddcfe06004b28eab00e002c5f9777",
+          "end_exclusive": 21067348,
+          "gba_end_exclusive": 155285076,
+          "gba_start": 155285040,
+          "name": "root_cause_repair_stage59_payload",
+          "owner": "USER-20260829-STAGE58-ROOT-CAUSE-REPAIR",
+          "placement": "EXPLICIT",
+          "purpose": "kind9 trainerbattleの既存敗北継続flagsをstock callback用RAMへ橋渡し",
+          "region": "integration_modules",
+          "sequence": 63,
+          "size": 36,
+          "start": 21067312
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "6ad66a1b3be584c5a7b83b865a3e1e2577e68de26ee2624443a02dd941867168",
+          "end_exclusive": 21067952,
+          "gba_end_exclusive": 155285680,
+          "gba_start": 155285088,
+          "name": "wild_species_root_repair_stage60_payload",
+          "owner": "USER-20260829-STAGE59-WILD-SPECIES-ROOT-REPAIR",
+          "placement": "EXPLICIT",
+          "purpose": "global BuildTrainerParty ChangeKit ownership gate",
+          "region": "integration_modules",
+          "sequence": 64,
+          "size": 592,
+          "start": 21067360
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "6b2702fa54cf93848e021a2478c310ecb7ac0893fd19663875ef7d4b8cc91856",
+          "end_exclusive": 21281408,
+          "gba_end_exclusive": 155499136,
+          "gba_start": 155285680,
+          "name": "display_npc_event_audit_stage61_payload",
+          "owner": "USER-20260830-STAGE60-DISPLAY-NPC-PLACEMENT-AUDIT",
+          "placement": "EXPLICIT",
+          "purpose": "表示名名前空間、全SOURCE_DIRECT event、最終NPC配置、カビゴン固定遭遇の統合修復",
+          "region": "integration_modules",
+          "sequence": 65,
+          "size": 213456,
+          "start": 21067952
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "ef6d1b9ea5d5954fbf02d88dcff622f481ae3fc1c4aacf80400c8087b3e0535a",
+          "end_exclusive": 21307984,
+          "gba_end_exclusive": 155525712,
+          "gba_start": 155499136,
+          "name": "stage61_runtime_hotfix_payload",
+          "owner": "USER-20260903-STAGE61-RUNTIME-HOTFIX",
+          "placement": "EXPLICIT",
+          "purpose": "TM120+HM8・教え技64の実行時tableと互換bitset",
+          "region": "integration_modules",
+          "sequence": 66,
+          "size": 26576,
+          "start": 21281408
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "bfc502059916a7b645801191ef9625396942167b1566536c63bf8abe95fc00bb",
+          "end_exclusive": 33399368,
+          "gba_end_exclusive": 167617096,
+          "gba_start": 167617084,
+          "name": "modernization_p03_stage65_caterpie_level_up",
+          "owner": "USER-MODERNIZATION-P03-STAGE65-CATERPIE-SLICE",
+          "placement": "EXPLICIT",
+          "purpose": "P03 representative Caterpie replacement level-up rows",
+          "region": "future_tail",
+          "sequence": 67,
+          "size": 12,
+          "start": 33399356
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "0bde103cdbc375ec7842a72b79ba9cd85a9ea54e2d489848f5e098696281a09b",
+          "end_exclusive": 33459484,
+          "gba_end_exclusive": 167677212,
+          "gba_start": 167617096,
+          "name": "modernization_p03_stage66_bulk_level_up",
+          "owner": "USER-MODERNIZATION-P03-STAGE66-BULK-LEARNSET-CHECKPOINT",
+          "placement": "EXPLICIT",
+          "purpose": "P03 corrected targetsのruntime-ready level-up replacement rows",
+          "region": "future_tail",
+          "sequence": 68,
+          "size": 60116,
+          "start": 33399368
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "bc2546ffb6cc68c0e678da572a24df1ac0be7793a60d92d6673719c4e41e11ee",
+          "end_exclusive": 33476803,
+          "gba_end_exclusive": 167694531,
+          "gba_start": 167677212,
+          "name": "modernization_p03_stage67_evolution_level_rows",
+          "owner": "USER-MODERNIZATION-P03-STAGE67-CONSUMER-CHECKPOINT",
+          "placement": "EXPLICIT",
+          "purpose": "進化時level0 rowsとStage66通常level rowsの結合表",
+          "region": "future_tail",
+          "sequence": 69,
+          "size": 17319,
+          "start": 33459484
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "d9feba3494b83578dab53ab260705fada1f6ca64a18b5b5e52e37c3abab1f3a8",
+          "end_exclusive": 33491922,
+          "gba_end_exclusive": 167709650,
+          "gba_start": 167694532,
+          "name": "modernization_p03_stage67_normal_egg_rows",
+          "owner": "USER-MODERNIZATION-P03-STAGE67-CONSUMER-CHECKPOINT",
+          "placement": "EXPLICIT",
+          "purpose": "安全450 targetの通常egg replacementと未採用Vega record保存表",
+          "region": "future_tail",
+          "sequence": 70,
+          "size": 15118,
+          "start": 33476804
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "3ed9991c2f8f56cbd1ad1c1d304fae0e5d7c5cc2f23f887f997009ce35c01882",
+          "end_exclusive": 21375408,
+          "gba_end_exclusive": 155593136,
+          "gba_start": 155525712,
+          "name": "modernization_mega_shop_stage68_payload",
+          "owner": "USER-MODERNIZATION-MEGA-STONE-BP-SHOP",
+          "placement": "EXPLICIT",
+          "purpose": "45 Mega Stone item tables/assets, BP shop runtime, and Factory NPC",
+          "region": "integration_modules",
+          "sequence": 71,
+          "size": 67424,
+          "start": 21307984
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "c11517d3a05514970cbee20e2d07501ecab3383cc08d0fbc845271299036941b",
+          "end_exclusive": 21377380,
+          "gba_end_exclusive": 155595108,
+          "gba_start": 155593136,
+          "name": "modernization_floette_gift_stage69_payload",
+          "owner": "USER-MODERNIZATION-FLOETTE-ETERNAL-GIFT",
+          "placement": "EXPLICIT",
+          "purpose": "Floette Eternal one-time gift runtime, scripts, and Factory NPC",
+          "region": "integration_modules",
+          "sequence": 72,
+          "size": 1972,
+          "start": 21375408
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "642fa4f37ace84c2f735a6449b9cb33b90f7401db6a0c5165973d59e508ab695",
+          "end_exclusive": 22227936,
+          "gba_end_exclusive": 156445664,
+          "gba_start": 155595120,
+          "name": "modernization_p04_species_runtime_stage70_payload",
+          "owner": "USER-MODERNIZATION-P04-SPECIES-RUNTIME-STAGE70",
+          "placement": "EXPLICIT",
+          "purpose": "P04 Mega 49 species fixed tables/assets and Ability 312..317 UI-safe rows",
+          "region": "integration_modules",
+          "sequence": 73,
+          "size": 850544,
+          "start": 21377392
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "0d2e7fb9e238ba339c9494e8159bf1eed31f3525bc95a8c13854a64a747f2190",
+          "end_exclusive": 22235076,
+          "gba_end_exclusive": 156452804,
+          "gba_start": 156445664,
+          "name": "modernization_p05_ability_rom_runtime_stage72_payload",
+          "owner": "USER-MODERNIZATION-P05-ABILITY-ROM-RUNTIME-STAGE72",
+          "placement": "EXPLICIT",
+          "purpose": "Ability 312..317 thin CFRU-JP battle adapters and final descriptions",
+          "region": "integration_modules",
+          "sequence": 74,
+          "size": 7140,
+          "start": 22227936
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "aff0b17e3b1c243d084c3a412ccac9a74d2fa599600d6efe70b3f652f66e0f45",
+          "end_exclusive": 22256766,
+          "gba_end_exclusive": 156474494,
+          "gba_start": 156452816,
+          "name": "modernization_p03_stage73_consumer_runtime_payload",
+          "owner": "USER-MODERNIZATION-P03-STAGE73-CONSUMER-RUNTIME",
+          "placement": "EXPLICIT",
+          "purpose": "conditional/shared/reminder consumer hooks and Rotom form-move transaction adapter",
+          "region": "integration_modules",
+          "sequence": 75,
+          "size": 21678,
+          "start": 22235088
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "0aeb5095cbfe717dc360bd50433bb0475ea334254d85d0d326731383e6f19778",
+          "end_exclusive": 33506942,
+          "gba_end_exclusive": 167724670,
+          "gba_start": 167709652,
+          "name": "modernization_p03_stage73_exact_egg_rows",
+          "owner": "USER-MODERNIZATION-P03-STAGE73-CONSUMER-RUNTIME",
+          "placement": "EXPLICIT",
+          "purpose": "Stage67 egg table with seven audited alias/incense conflict species replaced exactly",
+          "region": "future_tail",
+          "sequence": 76,
+          "size": 15018,
+          "start": 33491924
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "e4922f42818efa4fb8d7369bcab254688a021f8950a82fc64c95bdf0714463a1",
+          "end_exclusive": 22327340,
+          "gba_end_exclusive": 156545068,
+          "gba_start": 156474496,
+          "name": "modernization_p03_stage74_supply_runtime_payload",
+          "owner": "USER-MODERNIZATION-P03-STAGE74-SUPPLY-RUNTIME",
+          "placement": "EXPLICIT",
+          "purpose": "family-separated direct machine/tutor archive tables, BuildLearnable-only preservation table, paged dispatcher, and bag UI scripts",
+          "region": "integration_modules",
+          "sequence": 77,
+          "size": 70572,
+          "start": 22256768
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "cc40c531609c1443502f722d239e14f20c3fd9ae26cba0db1acf505553f7009e",
+          "end_exclusive": 22892624,
+          "gba_end_exclusive": 157110352,
+          "gba_start": 156545072,
+          "name": "modernization_rockruff_own_tempo_stage75_payload",
+          "owner": "USER-MODERNIZATION-ROCKRUFF-OWN-TEMPO-STAGE75",
+          "placement": "EXPLICIT",
+          "purpose": "Own Tempo Rockruff internal form species tables, evolution, breeding, acquisition, and P03 owner runtime",
+          "region": "integration_modules",
+          "sequence": 78,
+          "size": 565280,
+          "start": 22327344
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "c9c34af10900cb6cedbaaeef9dacd2d95a2fc0df0be39cb3aa29f8226ffbc92e",
+          "end_exclusive": 22894690,
+          "gba_end_exclusive": 157112418,
+          "gba_start": 157110352,
+          "name": "modernization_p05_stage76_edges_payload",
+          "owner": "USER-MODERNIZATION-P05-STAGE76-EDGES",
+          "placement": "EXPLICIT",
+          "purpose": "Mega Sol production Solar Beam popup plus Piercing Drill and Spicy Spray AI edge adapters",
+          "region": "integration_modules",
+          "sequence": 79,
+          "size": 2066,
+          "start": 22892624
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "933c8d7fdf731eaae0aa87c74974803de356dda8e64c055ef09beee4d229c672",
+          "end_exclusive": 22895924,
+          "gba_end_exclusive": 157113652,
+          "gba_start": 157112432,
+          "name": "modernization_p05_stage77_circus_suppression_payload",
+          "owner": "USER-MODERNIZATION-P05-STAGE77-CIRCUS-SUPPRESSION",
+          "placement": "EXPLICIT",
+          "purpose": "Battle Circus global ability-suppression dispatch for all 29 Stage72 ability hooks",
+          "region": "integration_modules",
+          "sequence": 80,
+          "size": 1220,
+          "start": 22894704
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "a6b5fb28cca365af8e08862e673ce5040bbcf4deb0683566b79a552853d1f905",
+          "end_exclusive": 22896624,
+          "gba_end_exclusive": 157114352,
+          "gba_start": 157113664,
+          "name": "modernization_p05_stage78_eelevate_switch_ai_payload",
+          "owner": "USER-MODERNIZATION-P05-STAGE78-EELEVATE-SWITCH-AI",
+          "placement": "EXPLICIT",
+          "purpose": "Eelevate-aware FindMonThatAbsorbsOpponentsMove adapters and stable runtime probe",
+          "region": "integration_modules",
+          "sequence": 81,
+          "size": 688,
+          "start": 22895936
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "a53aa7ced55de4a1333245678ee3060b230cea898b8246483960659bac19dd12",
+          "end_exclusive": 22912761,
+          "gba_end_exclusive": 157130489,
+          "gba_start": 157114352,
+          "name": "modernization-p07-preserved-level",
+          "owner": "P07",
+          "placement": "EXPLICIT",
+          "purpose": "exact adopted V4 preservation level",
+          "region": "integration_modules",
+          "sequence": 82,
+          "size": 16137,
+          "start": 22896624
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "348d7903446a01b8e7bdf25e78458c382aac8d5d85da08b9713503a2b6f6fe7b",
+          "end_exclusive": 22928160,
+          "gba_end_exclusive": 157145888,
+          "gba_start": 157130492,
+          "name": "modernization-p07-preserved-egg",
+          "owner": "P07",
+          "placement": "EXPLICIT",
+          "purpose": "exact adopted V4 preservation egg",
+          "region": "integration_modules",
+          "sequence": 83,
+          "size": 15396,
+          "start": 22912764
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "bc96478be1386d04e04feb42c2be778863f41bcb293c568542ed2a2676ba6c57",
+          "end_exclusive": 22928558,
+          "gba_end_exclusive": 157146286,
+          "gba_start": 157145888,
+          "name": "modernization-p07-preserved-runtime",
+          "owner": "P07",
+          "placement": "EXPLICIT",
+          "purpose": "exact adopted V4 preservation runtime",
+          "region": "integration_modules",
+          "sequence": 84,
+          "size": 398,
+          "start": 22928160
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "17e7b93648efc04e1f0cd538a11612061681d78264e1d749322a1bfaf53a2ccb",
+          "end_exclusive": 22928600,
+          "gba_end_exclusive": 157146328,
+          "gba_start": 157146288,
+          "name": "modernization-p03-native-evolution-dispatch",
+          "owner": "P03",
+          "placement": "EXPLICIT",
+          "purpose": "two real evolution callers use accepted level-0 learning",
+          "region": "integration_modules",
+          "sequence": 85,
+          "size": 40,
+          "start": 22928560
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "4b9e8a45a541218d51346c9bd5e0e454e8bc4779750dbb61d3c51795f8b61876",
+          "end_exclusive": 22933116,
+          "gba_end_exclusive": 157150844,
+          "gba_start": 157146328,
+          "name": "pr16-shop-display-safe-content",
+          "owner": "P05",
+          "placement": "FIRST_FIT",
+          "purpose": "safe field-shop renderer: bounded tiles 1..336 and top border 1",
+          "region": "integration_modules",
+          "sequence": 86,
+          "size": 4516,
+          "start": 22928600
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "1c989258f2d1f8ce1e487bf3be817065f0eb106b1a48aff90a842c5dcf72fb30",
+          "end_exclusive": 33507124,
+          "gba_end_exclusive": 167724852,
+          "gba_start": 167724672,
+          "name": "pr16_factory_loss_return",
+          "owner": "USER-20260913-BP-LOSS-RETURN",
+          "placement": "EXPLICIT",
+          "purpose": "Bounded Trial loss script continuation; ordinary WhiteOut preserved",
+          "region": "future_tail",
+          "sequence": 87,
+          "size": 180,
+          "start": 33506944
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "e64924d07b46ddafdd68c295819e9ed0c27b07c653a9940acf7172f702440c50",
+          "end_exclusive": 19726128,
+          "gba_end_exclusive": 153943856,
+          "gba_start": 153943848,
+          "name": "pr16_factory_party_retention_trampoline",
+          "owner": "USER-20260914-BP-PARTY-RETENTION",
+          "placement": "EXPLICIT",
+          "purpose": "Near Thumb tail jump for the verified player predicate callsite",
+          "region": "integration_modules",
+          "sequence": 88,
+          "size": 8,
+          "start": 19726120
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "54292e541bf58e0572825f6b18aa86aa1e2cf3e38c7c213167238f1a2bf0eda5",
+          "end_exclusive": 33507312,
+          "gba_end_exclusive": 167725040,
+          "gba_start": 167724852,
+          "name": "pr16_factory_party_retention_runtime",
+          "owner": "USER-20260914-BP-PARTY-RETENTION",
+          "placement": "EXPLICIT",
+          "purpose": "Read-only exchange-party retention predicate wrapper",
+          "region": "future_tail",
+          "sequence": 89,
+          "size": 188,
+          "start": 33507124
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "8d9af0fe66a9b00b7240b687b85c9c03aec8335deafdc8945f783f201897d06b",
+          "end_exclusive": 33507864,
+          "gba_end_exclusive": 167725592,
+          "gba_start": 167725040,
+          "name": "pr16_ring_npc_runtime",
+          "owner": "USER-20260918-RING-NPC",
+          "placement": "EXPLICIT",
+          "purpose": "Safe Ring NPC; regular Bag grant; no policy or save-layout write",
+          "region": "future_tail",
+          "sequence": 90,
+          "size": 552,
+          "start": 33507312
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "a3a0f2ce19462c697e1d0fb7b01e93db7dd51f5a715a671624d3ab32d9c9907e",
+          "end_exclusive": 33508036,
+          "gba_end_exclusive": 167725764,
+          "gba_start": 167725592,
+          "name": "pr16_ring_ordinary_policy_runtime",
+          "owner": "USER-20260918-RING-POLICY",
+          "placement": "EXPLICIT",
+          "purpose": "Ring ordinary begin bridge; no NPC/save/UI replacement",
+          "region": "future_tail",
+          "sequence": 91,
+          "size": 172,
+          "start": 33507864
+        }
+      ],
+      "regions": [
+        {
+          "alignment": 4,
+          "end_exclusive": 16777216,
+          "gba_end_exclusive": 150994944,
+          "gba_start": 134217728,
+          "kind": "reserved",
+          "name": "vega_base",
+          "owner": "Vega",
+          "purpose": "Vega IPS output and original data",
+          "size": 16777216,
+          "start": 0
+        },
+        {
+          "alignment": 4,
+          "end_exclusive": 18874368,
+          "gba_end_exclusive": 153092096,
+          "gba_start": 150994944,
+          "kind": "reserved",
+          "name": "cfru_payload",
+          "owner": "CFRU-JP",
+          "purpose": "T01 CFRU linked payload envelope",
+          "size": 2097152,
+          "start": 16777216
+        },
+        {
+          "alignment": 4,
+          "end_exclusive": 23068672,
+          "gba_end_exclusive": 157286400,
+          "gba_start": 153092096,
+          "kind": "allocatable",
+          "name": "integration_modules",
+          "owner": "project",
+          "purpose": "relocated adapters and integration modules",
+          "size": 4194304,
+          "start": 18874368
+        },
+        {
+          "alignment": 4,
+          "end_exclusive": 32833536,
+          "gba_end_exclusive": 167051264,
+          "gba_start": 157286400,
+          "kind": "reserved",
+          "name": "dpe_payload",
+          "owner": "DPE-JP",
+          "purpose": "T01 DPE linked payload envelope",
+          "size": 9764864,
+          "start": 23068672
+        },
+        {
+          "alignment": 4,
+          "end_exclusive": 33554432,
+          "gba_end_exclusive": 167772160,
+          "gba_start": 167051264,
+          "kind": "allocatable",
+          "name": "future_tail",
+          "owner": "project",
+          "purpose": "future small generated tables and metadata",
+          "size": 720896,
+          "start": 32833536
+        }
+      ],
+      "schema_version": 1,
+      "summaries": {
+        "allocatable_bytes": 4915200,
+        "allocatable_region_count": 2,
+        "allocated_bytes": 4733038,
+        "allocation_count": 92,
+        "gba_rom_base": 134217728,
+        "overlap_count": 0,
+        "region_bytes": 33554432,
+        "region_count": 5,
+        "region_usage": [
+          {
+            "allocated_bytes": 0,
+            "allocation_count": 0,
+            "kind": "reserved",
+            "region": "vega_base",
+            "remaining_bytes": 0,
+            "size": 16777216
+          },
+          {
+            "allocated_bytes": 0,
+            "allocation_count": 0,
+            "kind": "reserved",
+            "region": "cfru_payload",
+            "remaining_bytes": 0,
+            "size": 2097152
+          },
+          {
+            "allocated_bytes": 4058557,
+            "allocation_count": 59,
+            "kind": "allocatable",
+            "region": "integration_modules",
+            "remaining_bytes": 135747,
+            "size": 4194304
+          },
+          {
+            "allocated_bytes": 0,
+            "allocation_count": 0,
+            "kind": "reserved",
+            "region": "dpe_payload",
+            "remaining_bytes": 0,
+            "size": 9764864
+          },
+          {
+            "allocated_bytes": 674481,
+            "allocation_count": 33,
+            "kind": "allocatable",
+            "region": "future_tail",
+            "remaining_bytes": 46415,
+            "size": 720896
+          }
+        ],
+        "remaining_allocatable_bytes": 182162,
+        "reserved_bytes": 28639232,
+        "reserved_region_count": 3,
+        "rom_size": 33554432
+      }
+    },
+    "candidate": {
+      "sha256": "4ea33fb8224b0b84493ccca6e90161da245705eb1eb0a3874691ab39cc3806cc",
+      "size": 33554432
+    },
+    "crc32": "9EFB0E56",
+    "displaced_prologue_hex": "f0b545464e46de46",
+    "entry": 167725641,
+    "existing_allocations_rehashed": [],
+    "independent_policy_compiles": 2,
+    "new_emulator_processes": 0,
+    "npc_payload_changed": false,
+    "ordinary_battle_accepted": false,
+    "original_begin": 152200948,
+    "original_begin_identity": {
+      "sha256": "7c823c35f5273a25ba97b51752b6216671f1a074f64e4384a88acf08d7f234b7",
+      "size": 620
+    },
+    "original_entry_changed_bytes": 8,
+    "original_owner_run": 35341496620,
+    "original_resume": 152200957,
+    "owners": {
+      "VEGA_RING_END_BATTLE": 152105837,
+      "VEGA_RING_SELECT_MECHANIC": 152104869,
+      "VEGA_RING_STATE_GETTER": 152103313
+    },
+    "parent": {
+      "sha256": "72fbca91cd6ee1082198678ccaed76bcb76dfd19ce9f6f3c26309745b2f09ac0",
+      "size": 33554432
+    },
+    "payload": {
+      "sha256": "a3a0f2ce19462c697e1d0fb7b01e93db7dd51f5a715a671624d3ab32d9c9907e",
+      "size": 172
+    },
+    "payload_offset": 33507864,
+    "release_ready": false,
+    "reserved_entry_owner": {
+      "kind": "reserved",
+      "owner": "CFRU-JP",
+      "patch_size": 8,
+      "patch_start": 17983220,
+      "region": "cfru_payload"
+    },
+    "ring_full_acceptance": false,
+    "run_id": 35347587112,
+    "save_layout_changes": 0,
+    "schema_version": 2,
+    "source_head": "a54fe471c666c280f116b5cbfc3b1a6c821e5395",
+    "sources": {
+      "overlays/cfru/integration.c": {
+        "sha256": "b1ee5d94bd6601f7b4cc01eea45c9ccbe4f80fb04ca4074044201c7d550f4498",
+        "size": 31508
+      },
+      "overlays/cfru/integration.h": {
+        "sha256": "8323050dac61b161d89393815ce63837cedee4369235a5f2277dc32fdd523f5a",
+        "size": 8981
+      },
+      "overlays/cfru/rom_bridge.c": {
+        "sha256": "e7ca33758235005d66b3a73f864ed97d18f876f56935d1d86e42c99c78cd28c0",
+        "size": 20530
+      },
+      "overlays/cfru/runtime.h": {
+        "sha256": "9f608381273cd49af4df91af5ec9598420dfe6c4b8ec30150945c655fa64c476",
+        "size": 8156
+      },
+      "overlays/ring_policy/ring_policy.c": {
+        "sha256": "a9d523ad733b71af9cbfcd081555de0cd6361b14bb339463cb3e9e50b85de845",
+        "size": 3207
+      },
+      "overlays/ring_policy/ring_policy.h": {
+        "sha256": "631d923b90c8f397a9a7672ce19f96ca9f4f4d6dc6c0131cac53269086c15583",
+        "size": 398
+      },
+      "scripts/build_battle_core.py": {
+        "sha256": "e83f659b912e4f61f790ef648f30dd7e669f737da84f326c234dc491a6d135c0",
+        "size": 239192
+      },
+      "scripts/pr16_ring_policy_successor.py": {
+        "sha256": "13b4907245beaf484ee9bd32a44faeae7a0cdf5c047c51530a0c7b91ad72bf33",
+        "size": 11995
+      }
+    },
+    "status": "BUILT_RING_POLICY_NOT_NATIVE_ACCEPTED",
+    "task": "USER-20260918-RING-POLICY",
+    "trampoline": 167725625,
+    "undeclared_changed_bytes": 0
+  },
+  "native": {
+    "accepted_native_cases_replayed": 0,
+    "actual_new_processes": 5,
+    "candidate": {
+      "sha256": "4ea33fb8224b0b84493ccca6e90161da245705eb1eb0a3874691ab39cc3806cc",
+      "size": 33554432
+    },
+    "failures": [],
+    "generated": {
+      "p03_learning_embedded.c": {
+        "sha256": "8a772d3ef7b937ba475228a98782d25d49405a6faaed690810db80ebb4bd3543",
+        "size": 8005
+      },
+      "p03_p02_embedded.c": {
+        "sha256": "49a15c51cee2471bd0e911f6a8b804bb860bbecc54be2ef5f2474e9dfb31015b",
+        "size": 39687
+      },
+      "p03a_fullslots_embedded.c": {
+        "sha256": "c76199eb2186d979dd5130597987a6f45d6434fb3fe11b983935ad55a1e7c0a6",
+        "size": 12886
+      },
+      "p03b_archive_embedded.c": {
+        "sha256": "e675b1086391f1f4c57080e6d3a53d2eeeda68bd02dd92de3830256238e2a997",
+        "size": 20172
+      },
+      "pr16_capture_shop_helpers.c": {
+        "sha256": "e6ac82cf3157365bf669340d199dc649aaf7d6159a0c4fda80357b8ee2aa1b3f",
+        "size": 10012
+      },
+      "pr16_gear_capture_helpers.c": {
+        "sha256": "f13abfb70d53f8334d944ca596fd2c7d0d421d52f4ed6db6224c6241f02ac5a5",
+        "size": 9645
+      },
+      "pr16_gear_route.h": {
+        "sha256": "1a6934a98bc4e68cd0189c38bb9b851a2248bfa9c83996b6d7c4b959c984f09d",
+        "size": 528
+      },
+      "pr16_ring_gear_helpers.c": {
+        "sha256": "fb3d861669894d24ca75a0ba881e0e48acc989551abe282f178a2991943ce606",
+        "size": 16319
+      },
+      "pr16_ring_policy_generated.h": {
+        "sha256": "54231b1bd94e1c3e5079c3cd4a440906f4450b10918df8f2dddd3dc698ff973b",
+        "size": 286
+      },
+      "pr16_shop_breeding_helpers.c": {
+        "sha256": "29875c0c2fe7e45f12fbd0409ea52614e954a056e9a07c8487e790be3d21a3be",
+        "size": 19630
+      }
+    },
+    "guard_checks": [
+      "bus8",
+      "bus16",
+      "bus32",
+      "raw8",
+      "raw16",
+      "raw32",
+      "register"
+    ],
+    "oracle": {
+      "candidate": {
+        "sha256": "4ea33fb8224b0b84493ccca6e90161da245705eb1eb0a3874691ab39cc3806cc",
+        "size": 33554432
+      },
+      "flag_contract": {
+        "archive": {
+          "name": "pokemon-vega-private-env-v1-state.zip",
+          "sha256": "b878134dc4a00b7de1e028f178c329db638b0304096b96c84c6776ddfb0983af",
+          "size": 218929898
+        },
+        "definitions": {
+          "BATTLE_TYPE_IS_MASTER": "#define BATTLE_TYPE_IS_MASTER       \t0x0004 // In not-link battles, it's always set.",
+          "BATTLE_TYPE_LINK": "#define BATTLE_TYPE_LINK            \t0x0002"
+        },
+        "headers": {
+          "vendor/upstream/CFRU-JP/include/battle.h": {
+            "sha256": "8c6b332ef73bc545297b4f6c5bedc1ad11fa4470901f39cf386c1be53f4abdc9",
+            "size": 52228
+          },
+          "vendor/upstream/CFRU-JP/include/constants/battle.h": {
+            "sha256": "88681a4d9e3f34b8608417adf44f828b8c1a19669bba30e00fe22540e2936fb0",
+            "size": 16608
+          }
+        },
+        "link": 2,
+        "master": 4,
+        "stage_ja": "自然遭遇の既存action controller入力待ち。開始時flagsとは別にmaster bitが立つ。"
+      },
+      "geometry": {
+        "17": {
+          "sha256": "41abb2b15ca226ce08d190c5c0e8d2b0e2a817a975836563ea5fa41feeb44af1",
+          "size": 126335
+        },
+        "5": {
+          "sha256": "a1493155a70c11207edad0ec80d8d5f769e9beace4b9666cc51758bfa95829f2",
+          "size": 307290
+        }
+      },
+      "grass_header": 148,
+      "new_emulator_processes": 0,
+      "ordinary_battle_accepted": false,
+      "paths": {
+        "grass": [
+          [
+            11,
+            39
+          ],
+          [
+            11,
+            38
+          ],
+          [
+            11,
+            37
+          ],
+          [
+            11,
+            36
+          ],
+          [
+            11,
+            35
+          ],
+          [
+            11,
+            34
+          ],
+          [
+            11,
+            33
+          ],
+          [
+            11,
+            32
+          ],
+          [
+            11,
+            31
+          ],
+          [
+            11,
+            30
+          ],
+          [
+            12,
+            30
+          ],
+          [
+            13,
+            30
+          ],
+          [
+            14,
+            30
+          ]
+        ],
+        "town": [
+          [
+            25,
+            20
+          ],
+          [
+            26,
+            20
+          ],
+          [
+            26,
+            19
+          ],
+          [
+            26,
+            18
+          ],
+          [
+            26,
+            17
+          ],
+          [
+            26,
+            16
+          ],
+          [
+            26,
+            15
+          ],
+          [
+            26,
+            14
+          ],
+          [
+            26,
+            13
+          ],
+          [
+            26,
+            12
+          ],
+          [
+            26,
+            11
+          ],
+          [
+            26,
+            10
+          ],
+          [
+            26,
+            9
+          ],
+          [
+            26,
+            8
+          ],
+          [
+            25,
+            8
+          ],
+          [
+            24,
+            8
+          ],
+          [
+            24,
+            7
+          ],
+          [
+            24,
+            6
+          ],
+          [
+            24,
+            5
+          ],
+          [
+            24,
+            4
+          ],
+          [
+            24,
+            3
+          ],
+          [
+            24,
+            2
+          ],
+          [
+            24,
+            1
+          ],
+          [
+            24,
+            0
+          ],
+          [
+            23,
+            0
+          ]
+        ]
+      },
+      "policy_is_fixture": false,
+      "ring_is_fixture": false,
+      "table": {
+        "rate": 7,
+        "slots": [
+          {
+            "max": 80,
+            "min": 75,
+            "species": 627
+          },
+          {
+            "max": 80,
+            "min": 75,
+            "species": 730
+          },
+          {
+            "max": 80,
+            "min": 75,
+            "species": 627
+          },
+          {
+            "max": 80,
+            "min": 75,
+            "species": 730
+          },
+          {
+            "max": 80,
+            "min": 75,
+            "species": 838
+          },
+          {
+            "max": 80,
+            "min": 75,
+            "species": 838
+          },
+          {
+            "max": 80,
+            "min": 75,
+            "species": 838
+          },
+          {
+            "max": 80,
+            "min": 75,
+            "species": 838
+          },
+          {
+            "max": 80,
+            "min": 75,
+            "species": 627
+          },
+          {
+            "max": 80,
+            "min": 75,
+            "species": 730
+          },
+          {
+            "max": 80,
+            "min": 75,
+            "species": 838
+          },
+          {
+            "max": 80,
+            "min": 75,
+            "species": 838
+          }
+        ]
+      },
+      "unused_embedded_town_route": true
+    },
+    "ordinary_battle_accepted": false,
+    "parent": {
+      "sha256": "72fbca91cd6ee1082198678ccaed76bcb76dfd19ce9f6f3c26309745b2f09ac0",
+      "size": 33554432
+    },
+    "physical_host": [
+      96,
+      17,
+      4,
+      12,
+      38
+    ],
+    "release_ready": false,
+    "requested_cases": [
+      "ring-active",
+      "ring-unowned",
+      "ring-wrong-stone",
+      "ring-no-toggle",
+      "ring-cancel-toggle"
+    ],
+    "results": [
+      {
+        "case": "ring-active",
+        "native_result": {
+          "ability": 313,
+          "automatic_saves": 0,
+          "bp_after": 0,
+          "bp_before": 0,
+          "case": "ring-active",
+          "cold_reload_before_encounter": true,
+          "enemy_level": 80,
+          "enemy_species": 838,
+          "fresh_cores": 3,
+          "held_stone_not_consumed": true,
+          "host_write_barriers": 7,
+          "initial_map_progress_party_stone_are_fixtures": true,
+          "item": 1012,
+          "manual_saves": 2,
+          "mega_species": 1634,
+          "move": 558,
+          "ordinary_battle_accepted": false,
+          "outcome": 4,
+          "party_inventory_bp_persisted": true,
+          "personality": 2809775901,
+          "physical_give": true,
+          "policy_is_fixture": false,
+          "policy_mode": 1,
+          "pp_after": 9,
+          "pp_before": 10,
+          "release_ready": false,
+          "ring_after": 1,
+          "ring_after_continue": 1,
+          "ring_before": 0,
+          "ring_is_fixture": false,
+          "rom_sha256": "4ea33fb8224b0b84493ccca6e90161da245705eb1eb0a3874691ab39cc3806cc",
+          "save_after": 4,
+          "save_before": 2,
+          "schema_version": 1,
+          "scope": "PR16_RING_GIFT_COLD_ORDINARY_MEGA",
+          "species": 411,
+          "status": "PASS",
+          "toggles": 1,
+          "total_frames": 11783,
+          "usage_observed": 1,
+          "walking_steps": 29,
+          "warnings_errors": 0,
+          "witness": {
+            "bag": 537,
+            "encounter": 6709,
+            "equipped": 1055,
+            "field": 7899,
+            "interaction": 32,
+            "mega": 6810,
+            "move_menu": 6771,
+            "received": 169,
+            "reloaded": 5301,
+            "reloaded_again": 11783,
+            "saved": 2879,
+            "saved_again": 9361,
+            "spent": 7508,
+            "toggle": 6772,
+            "walking": 5302
+          }
+        },
+        "process": {
+          "returncode": 0,
+          "schema_version": 1,
+          "spawn_error": null,
+          "timed_out": false
+        }
+      },
+      {
+        "case": "ring-unowned",
+        "native_result": {
+          "ability": 26,
+          "automatic_saves": 0,
+          "bp_after": 0,
+          "bp_before": 0,
+          "case": "ring-unowned",
+          "cold_reload_before_encounter": true,
+          "enemy_level": 80,
+          "enemy_species": 838,
+          "fresh_cores": 3,
+          "held_stone_not_consumed": true,
+          "host_write_barriers": 7,
+          "initial_map_progress_party_stone_are_fixtures": true,
+          "item": 1012,
+          "manual_saves": 2,
+          "mega_species": 411,
+          "move": 558,
+          "ordinary_battle_accepted": false,
+          "outcome": 4,
+          "party_inventory_bp_persisted": true,
+          "personality": 2809775901,
+          "physical_give": true,
+          "policy_is_fixture": false,
+          "policy_mode": 0,
+          "pp_after": 9,
+          "pp_before": 10,
+          "release_ready": false,
+          "ring_after": 0,
+          "ring_after_continue": 0,
+          "ring_before": 0,
+          "ring_is_fixture": false,
+          "rom_sha256": "4ea33fb8224b0b84493ccca6e90161da245705eb1eb0a3874691ab39cc3806cc",
+          "save_after": 4,
+          "save_before": 2,
+          "schema_version": 1,
+          "scope": "PR16_RING_GIFT_COLD_ORDINARY_MEGA",
+          "species": 411,
+          "status": "PASS",
+          "toggles": 1,
+          "total_frames": 11592,
+          "usage_observed": 0,
+          "walking_steps": 29,
+          "warnings_errors": 0,
+          "witness": {
+            "bag": 537,
+            "encounter": 6708,
+            "equipped": 1055,
+            "field": 7708,
+            "interaction": 32,
+            "mega": 0,
+            "move_menu": 6770,
+            "received": 169,
+            "reloaded": 5301,
+            "reloaded_again": 11592,
+            "saved": 2879,
+            "saved_again": 9170,
+            "spent": 6820,
+            "toggle": 6771,
+            "walking": 5302
+          }
+        },
+        "process": {
+          "returncode": 0,
+          "schema_version": 1,
+          "spawn_error": null,
+          "timed_out": false
+        }
+      },
+      {
+        "case": "ring-wrong-stone",
+        "native_result": {
+          "ability": 26,
+          "automatic_saves": 0,
+          "bp_after": 0,
+          "bp_before": 0,
+          "case": "ring-wrong-stone",
+          "cold_reload_before_encounter": true,
+          "enemy_level": 80,
+          "enemy_species": 838,
+          "fresh_cores": 3,
+          "held_stone_not_consumed": true,
+          "host_write_barriers": 7,
+          "initial_map_progress_party_stone_are_fixtures": true,
+          "item": 1014,
+          "manual_saves": 2,
+          "mega_species": 411,
+          "move": 558,
+          "ordinary_battle_accepted": false,
+          "outcome": 4,
+          "party_inventory_bp_persisted": true,
+          "personality": 2809775901,
+          "physical_give": true,
+          "policy_is_fixture": false,
+          "policy_mode": 1,
+          "pp_after": 9,
+          "pp_before": 10,
+          "release_ready": false,
+          "ring_after": 1,
+          "ring_after_continue": 1,
+          "ring_before": 0,
+          "ring_is_fixture": false,
+          "rom_sha256": "4ea33fb8224b0b84493ccca6e90161da245705eb1eb0a3874691ab39cc3806cc",
+          "save_after": 4,
+          "save_before": 2,
+          "schema_version": 1,
+          "scope": "PR16_RING_GIFT_COLD_ORDINARY_MEGA",
+          "species": 411,
+          "status": "PASS",
+          "toggles": 1,
+          "total_frames": 11593,
+          "usage_observed": 0,
+          "walking_steps": 29,
+          "warnings_errors": 0,
+          "witness": {
+            "bag": 537,
+            "encounter": 6708,
+            "equipped": 1055,
+            "field": 7709,
+            "interaction": 32,
+            "mega": 0,
+            "move_menu": 6770,
+            "received": 169,
+            "reloaded": 5301,
+            "reloaded_again": 11593,
+            "saved": 2879,
+            "saved_again": 9171,
+            "spent": 6820,
+            "toggle": 6771,
+            "walking": 5302
+          }
+        },
+        "process": {
+          "returncode": 0,
+          "schema_version": 1,
+          "spawn_error": null,
+          "timed_out": false
+        }
+      },
+      {
+        "case": "ring-no-toggle",
+        "native_result": {
+          "ability": 26,
+          "automatic_saves": 0,
+          "bp_after": 0,
+          "bp_before": 0,
+          "case": "ring-no-toggle",
+          "cold_reload_before_encounter": true,
+          "enemy_level": 80,
+          "enemy_species": 838,
+          "fresh_cores": 3,
+          "held_stone_not_consumed": true,
+          "host_write_barriers": 7,
+          "initial_map_progress_party_stone_are_fixtures": true,
+          "item": 1012,
+          "manual_saves": 2,
+          "mega_species": 411,
+          "move": 558,
+          "ordinary_battle_accepted": false,
+          "outcome": 4,
+          "party_inventory_bp_persisted": true,
+          "personality": 2809775901,
+          "physical_give": true,
+          "policy_is_fixture": false,
+          "policy_mode": 1,
+          "pp_after": 9,
+          "pp_before": 10,
+          "release_ready": false,
+          "ring_after": 1,
+          "ring_after_continue": 1,
+          "ring_before": 0,
+          "ring_is_fixture": false,
+          "rom_sha256": "4ea33fb8224b0b84493ccca6e90161da245705eb1eb0a3874691ab39cc3806cc",
+          "save_after": 4,
+          "save_before": 2,
+          "schema_version": 1,
+          "scope": "PR16_RING_GIFT_COLD_ORDINARY_MEGA",
+          "species": 411,
+          "status": "PASS",
+          "toggles": 0,
+          "total_frames": 11277,
+          "usage_observed": 0,
+          "walking_steps": 29,
+          "warnings_errors": 0,
+          "witness": {
+            "bag": 537,
+            "encounter": 6709,
+            "equipped": 1055,
+            "field": 7393,
+            "interaction": 32,
+            "mega": 0,
+            "move_menu": 6771,
+            "received": 169,
+            "reloaded": 5301,
+            "reloaded_again": 11277,
+            "saved": 2879,
+            "saved_again": 8855,
+            "spent": 7004,
+            "toggle": 0,
+            "walking": 5302
+          }
+        },
+        "process": {
+          "returncode": 0,
+          "schema_version": 1,
+          "spawn_error": null,
+          "timed_out": false
+        }
+      },
+      {
+        "case": "ring-cancel-toggle",
+        "native_result": {
+          "ability": 26,
+          "automatic_saves": 0,
+          "bp_after": 0,
+          "bp_before": 0,
+          "case": "ring-cancel-toggle",
+          "cold_reload_before_encounter": true,
+          "enemy_level": 80,
+          "enemy_species": 838,
+          "fresh_cores": 3,
+          "held_stone_not_consumed": true,
+          "host_write_barriers": 7,
+          "initial_map_progress_party_stone_are_fixtures": true,
+          "item": 1012,
+          "manual_saves": 2,
+          "mega_species": 411,
+          "move": 558,
+          "ordinary_battle_accepted": false,
+          "outcome": 4,
+          "party_inventory_bp_persisted": true,
+          "personality": 2809775901,
+          "physical_give": true,
+          "policy_is_fixture": false,
+          "policy_mode": 1,
+          "pp_after": 9,
+          "pp_before": 10,
+          "release_ready": false,
+          "ring_after": 1,
+          "ring_after_continue": 1,
+          "ring_before": 0,
+          "ring_is_fixture": false,
+          "rom_sha256": "4ea33fb8224b0b84493ccca6e90161da245705eb1eb0a3874691ab39cc3806cc",
+          "save_after": 4,
+          "save_before": 2,
+          "schema_version": 1,
+          "scope": "PR16_RING_GIFT_COLD_ORDINARY_MEGA",
+          "species": 411,
+          "status": "PASS",
+          "toggles": 2,
+          "total_frames": 11341,
+          "usage_observed": 0,
+          "walking_steps": 29,
+          "warnings_errors": 0,
+          "witness": {
+            "bag": 537,
+            "encounter": 6709,
+            "equipped": 1055,
+            "field": 7457,
+            "interaction": 32,
+            "mega": 0,
+            "move_menu": 6771,
+            "received": 169,
+            "reloaded": 5301,
+            "reloaded_again": 11341,
+            "saved": 2879,
+            "saved_again": 8919,
+            "spent": 7068,
+            "toggle": 6772,
+            "walking": 5302
+          }
+        },
+        "process": {
+          "returncode": 0,
+          "schema_version": 1,
+          "spawn_error": null,
+          "timed_out": false
+        }
+      }
+    ],
+    "ring_full_acceptance": false,
+    "schema_version": 1,
+    "sources": {
+      "config/github_private_environment.json": {
+        "sha256": "33ff93eb2a1183ccdc3fea5c08b986271d75e9a8e349627072b36dd4c6abb56a",
+        "size": 5007
+      },
+      "overlays/cfru/integration.h": {
+        "sha256": "8323050dac61b161d89393815ce63837cedee4369235a5f2277dc32fdd523f5a",
+        "size": 8981
+      },
+      "overlays/cfru/runtime.h": {
+        "sha256": "9f608381273cd49af4df91af5ec9598420dfe6c4b8ec30150945c655fa64c476",
+        "size": 8156
+      },
+      "overlays/ring_npc/ring_npc.c": {
+        "sha256": "e14d28dd4f891b4d3ef5d27d036de669013ed1f8bb8e9916111aab71a3b4bc5d",
+        "size": 1817
+      },
+      "overlays/ring_npc/ring_npc.h": {
+        "sha256": "32e9d0112e70555bfc4a93871a2cb9a3e3be2162527e67abf4d8518990d06386",
+        "size": 489
+      },
+      "overlays/ring_policy/ring_policy.c": {
+        "sha256": "a9d523ad733b71af9cbfcd081555de0cd6361b14bb339463cb3e9e50b85de845",
+        "size": 3207
+      },
+      "overlays/ring_policy/ring_policy.h": {
+        "sha256": "631d923b90c8f397a9a7672ce19f96ca9f4f4d6dc6c0131cac53269086c15583",
+        "size": 398
+      },
+      "scripts/pr16_capture_geometry.py": {
+        "sha256": "c4e1bd692944020fee552077705e7d86884530d525fbafba095e746bd00b157c",
+        "size": 3346
+      },
+      "scripts/pr16_natural_capture.py": {
+        "sha256": "99371140f7424806b25205f2b86e922bbbbfe50bd91c967cb478c804d91c26ef",
+        "size": 9937
+      },
+      "scripts/pr16_p05_root_diagnostics.py": {
+        "sha256": "1aece44ba87988435c5316d56cd8aa143ea5739ef7bda35103578b93a8c50018",
+        "size": 8880
+      },
+      "scripts/pr16_purchased_gear.py": {
+        "sha256": "da0878109e346e1454ac3f47b8e6d75247deb9a9c4f4b5fd2881a86458007a6d",
+        "size": 13172
+      },
+      "scripts/pr16_ring_npc_successor.py": {
+        "sha256": "4832d39eed10928f9ebb292fb1746546a8a3206c6ad0f86ed7241d1b5f8e73c2",
+        "size": 16901
+      },
+      "scripts/pr16_ring_policy_native.py": {
+        "sha256": "d008aae0dee1b1735ca14931850e4964c8ef70bf730d3d22608981f9dd2a9f74",
+        "size": 15416
+      },
+      "scripts/pr16_ring_policy_successor.py": {
+        "sha256": "13b4907245beaf484ee9bd32a44faeae7a0cdf5c047c51530a0c7b91ad72bf33",
+        "size": 11995
+      },
+      "scripts/pr16_shop_routes.py": {
+        "sha256": "29ef07ef51bd2564f443844cdd859fffb5fa182c02b4260d16f1abbae302b338",
+        "size": 9771
+      },
+      "scripts/run_modernization_p03_breeding_e2e.py": {
+        "sha256": "c293ceec2e3a72094300bbf0d6764c5a4017f6db4a1cf138d8ccf647cbbc9e75",
+        "size": 14073
+      },
+      "tools/mgba_modernization_p02_stage71_acceptance_smoke.c": {
+        "sha256": "4e543fa815ca030e74522b5d0f1455fd5074035d10f044aab3bdfd41d7319c3b",
+        "size": 39669
+      },
+      "tools/mgba_modernization_p03_archive_ui_e2e.c": {
+        "sha256": "ccaeed858b70ea0af53a999dbaae121a8b85c88c08522755dc800e24e159b467",
+        "size": 20154
+      },
+      "tools/mgba_modernization_p03_breeding_e2e.c": {
+        "sha256": "a99cafd942f958c932709bed6099695f067dc292401b3bfb91e60afe4d6823de",
+        "size": 19614
+      },
+      "tools/mgba_modernization_p03_fullslots_e2e.c": {
+        "sha256": "f419ff2fffaf175061012dfb5dfc25d18c70a86d15c9ca89f5d5e6c886965ffa",
+        "size": 12868
+      },
+      "tools/mgba_modernization_p03_learning_e2e.c": {
+        "sha256": "154e277ef3f37b0037a7082b154805b658742f476eaf52abeb8c0ffb27a2742d",
+        "size": 7987
+      },
+      "tools/mgba_pr16_natural_capture.c": {
+        "sha256": "cd09b0ad480403b0e76239196415656c36b26abe18f12bcc946c4f9f9c9d2e6e",
+        "size": 9630
+      },
+      "tools/mgba_pr16_purchased_gear.c": {
+        "sha256": "ba8a7994d25bf7d5d95fdf9fb35bace671f4b1625f5cee96df235a92bbdac9aa",
+        "size": 16307
+      },
+      "tools/mgba_pr16_ring_policy.c": {
+        "sha256": "ba8d25d7b8d95856777327d13f2fca8eadb663fe9fba1cc8915cf916748a2415",
+        "size": 12153
+      },
+      "tools/mgba_pr16_shop_routes.c": {
+        "sha256": "16eda36fade0e8ef0ec3dc0b45b22c9776969f557aedc6ac25f1b65ffc09848c",
+        "size": 10000
+      }
+    },
+    "status": "PASS_RING_ORDINARY_SUFFIX_ONLY",
+    "successful_fresh_cores": 15
+  },
+  "originals": {
+    "ring-active": {
+      "stdout": {
+        "identity": {
+          "size": 1176,
+          "sha256": "aa4b3f38cbea74e39c6d7dfeae2603bc000ac9db3abaceddd451f52a6f8110b7"
+        },
+        "utf8": "{\"schema_version\":1,\"status\":\"PASS\",\"scope\":\"PR16_RING_GIFT_COLD_ORDINARY_MEGA\",\"case\":\"ring-active\",\"rom_sha256\":\"4ea33fb8224b0b84493ccca6e90161da245705eb1eb0a3874691ab39cc3806cc\",\"species\":411,\"item\":1012,\"mega_species\":1634,\"ability\":313,\"toggles\":1,\"ring_before\":0,\"ring_after\":1,\"ring_after_continue\":1,\"policy_mode\":1,\"usage_observed\":1,\"personality\":2809775901,\"enemy_species\":838,\"enemy_level\":80,\"move\":558,\"pp_before\":10,\"pp_after\":9,\"outcome\":4,\"walking_steps\":29,\"save_before\":2,\"save_after\":4,\"bp_before\":0,\"bp_after\":0,\"manual_saves\":2,\"automatic_saves\":0,\"fresh_cores\":3,\"host_write_barriers\":7,\"ring_is_fixture\":false,\"policy_is_fixture\":false,\"initial_map_progress_party_stone_are_fixtures\":true,\"cold_reload_before_encounter\":true,\"physical_give\":true,\"held_stone_not_consumed\":true,\"party_inventory_bp_persisted\":true,\"ordinary_battle_accepted\":false,\"release_ready\":false,\"warnings_errors\":0,\"total_frames\":11783,\"witness\":{\"interaction\":32,\"received\":169,\"bag\":537,\"equipped\":1055,\"saved\":2879,\"reloaded\":5301,\"walking\":5302,\"encounter\":6709,\"move_menu\":6771,\"toggle\":6772,\"mega\":6810,\"spent\":7508,\"field\":7899,\"saved_again\":9361,\"reloaded_again\":11783}}\n"
+      },
+      "stderr": {
+        "identity": {
+          "size": 2357,
+          "sha256": "4d907e9656261c75b238731ead5b94588e5b638f3e0cc1ed55df2f3023cec63f"
+        },
+        "utf8": "BREED item-actions map=96/17 xy=12,39 party=1 queue=0 clock=10 steps=0 frame=659 cb=081089e5\nSHOP result=0 selected=0 eligible=0 page=0 window=0 cursor=0 bp=0 save=2\nCAPTURE encounters=0 steps=0 target_level=0 newbs=00000000 main=00000000 ctrl=00000000 exec=0 command=0 cursor=0 outcome=0 enemy=0\nGEAR item=1012 held=0 bagpocket=0 growth=32 attack=44\nGEAR_FIELD lock=1 quest=0 playback=0 avatar=0 running=0 transition=0 start=0806ec71\nTASK 0 fn=0810a6e1 data=1,0,1,0,0,0\nTASK 1 fn=081079d1 data=16516,512,37025,2064,37201,2064\nBREED give-party map=96/17 xy=12,39 party=1 queue=0 clock=10 steps=0 frame=873 cb=0811f3a9\nSHOP result=0 selected=0 eligible=0 page=0 window=0 cursor=1 bp=0 save=2\nCAPTURE encounters=0 steps=0 target_level=0 newbs=00000000 main=00000000 ctrl=00000000 exec=0 command=0 cursor=0 outcome=0 enemy=0\nGEAR item=1012 held=0 bagpocket=0 growth=32 attack=44\nGEAR_FIELD lock=1 quest=0 playback=0 avatar=0 running=0 transition=0 start=0806ec71\nTASK 0 fn=08120319 data=0,0,0,0,0,0\nBREED give-confirmed map=96/17 xy=12,39 party=1 queue=0 clock=10 steps=0 frame=1237 cb=081089e5\nSHOP result=0 selected=0 eligible=0 page=0 window=0 cursor=1 bp=0 save=2\nCAPTURE encounters=0 steps=0 target_level=0 newbs=00000000 main=00000000 ctrl=00000000 exec=0 command=0 cursor=0 outcome=0 enemy=0\nGEAR item=0 held=1012 bagpocket=0 growth=32 attack=44\nGEAR_FIELD lock=1 quest=1 playback=2 avatar=0 running=0 transition=0 start=0806ec71\nTASK 0 fn=08109a05 data=1,0,0,0,0,0\nTASK 1 fn=081079d1 data=16516,512,37025,2064,37201,2064\nTASK 2 fn=08134391 data=0,0,44162,515,0,0\nTASK 3 fn=08134391 data=0,0,44154,515,0,2\nBREED equip-menus-closed map=96/17 xy=12,39 party=1 queue=0 clock=10 steps=0 frame=1481 cb=08055e75\nSHOP result=0 selected=0 eligible=0 page=0 window=0 cursor=2 bp=0 save=2\nCAPTURE encounters=0 steps=0 target_level=0 newbs=00000000 main=00000000 ctrl=00000000 exec=0 command=0 cursor=0 outcome=0 enemy=0\nGEAR item=0 held=1012 bagpocket=0 growth=32 attack=44\nGEAR_FIELD lock=0 quest=1 playback=2 avatar=0 running=0 transition=0 start=0806ea75\nTASK 0 fn=0807956d data=0,0,0,0,0,0\nTASK 1 fn=0806e005 data=0,0,0,0,0,0\nTASK 2 fn=0806e031 data=0,3,3315,0,0,0\noriginal core destroyed; new core boot and normal Continue\nRING_ENCOUNTER species=838 level=80 flags=00000004 mode=1 used=0 frame=6709\noriginal core destroyed; new core boot and normal Continue\n"
+      },
+      "process.json": {
+        "identity": {
+          "size": 90,
+          "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+        },
+        "utf8": "{\n  \"schema_version\": 1,\n  \"returncode\": 0,\n  \"timed_out\": false,\n  \"spawn_error\": null\n}\n"
+      }
+    },
+    "ring-unowned": {
+      "stdout": {
+        "identity": {
+          "size": 1172,
+          "sha256": "bf9786bf842e63d58de7e0f9ff7c33a511045018a8ff63e11f43f9c948f2c1eb"
+        },
+        "utf8": "{\"schema_version\":1,\"status\":\"PASS\",\"scope\":\"PR16_RING_GIFT_COLD_ORDINARY_MEGA\",\"case\":\"ring-unowned\",\"rom_sha256\":\"4ea33fb8224b0b84493ccca6e90161da245705eb1eb0a3874691ab39cc3806cc\",\"species\":411,\"item\":1012,\"mega_species\":411,\"ability\":26,\"toggles\":1,\"ring_before\":0,\"ring_after\":0,\"ring_after_continue\":0,\"policy_mode\":0,\"usage_observed\":0,\"personality\":2809775901,\"enemy_species\":838,\"enemy_level\":80,\"move\":558,\"pp_before\":10,\"pp_after\":9,\"outcome\":4,\"walking_steps\":29,\"save_before\":2,\"save_after\":4,\"bp_before\":0,\"bp_after\":0,\"manual_saves\":2,\"automatic_saves\":0,\"fresh_cores\":3,\"host_write_barriers\":7,\"ring_is_fixture\":false,\"policy_is_fixture\":false,\"initial_map_progress_party_stone_are_fixtures\":true,\"cold_reload_before_encounter\":true,\"physical_give\":true,\"held_stone_not_consumed\":true,\"party_inventory_bp_persisted\":true,\"ordinary_battle_accepted\":false,\"release_ready\":false,\"warnings_errors\":0,\"total_frames\":11592,\"witness\":{\"interaction\":32,\"received\":169,\"bag\":537,\"equipped\":1055,\"saved\":2879,\"reloaded\":5301,\"walking\":5302,\"encounter\":6708,\"move_menu\":6770,\"toggle\":6771,\"mega\":0,\"spent\":6820,\"field\":7708,\"saved_again\":9170,\"reloaded_again\":11592}}\n"
+      },
+      "stderr": {
+        "identity": {
+          "size": 2357,
+          "sha256": "b7091d5b6141d53bed41d435b192a465c8440415f29a4b10f097cac1eab75d00"
+        },
+        "utf8": "BREED item-actions map=96/17 xy=12,39 party=1 queue=0 clock=10 steps=0 frame=659 cb=081089e5\nSHOP result=0 selected=0 eligible=0 page=0 window=0 cursor=0 bp=0 save=2\nCAPTURE encounters=0 steps=0 target_level=0 newbs=00000000 main=00000000 ctrl=00000000 exec=0 command=0 cursor=0 outcome=0 enemy=0\nGEAR item=1012 held=0 bagpocket=0 growth=32 attack=44\nGEAR_FIELD lock=1 quest=0 playback=0 avatar=0 running=0 transition=0 start=0806ec71\nTASK 0 fn=0810a6e1 data=1,0,1,0,0,0\nTASK 1 fn=081079d1 data=16516,512,37025,2064,37201,2064\nBREED give-party map=96/17 xy=12,39 party=1 queue=0 clock=10 steps=0 frame=873 cb=0811f3a9\nSHOP result=0 selected=0 eligible=0 page=0 window=0 cursor=1 bp=0 save=2\nCAPTURE encounters=0 steps=0 target_level=0 newbs=00000000 main=00000000 ctrl=00000000 exec=0 command=0 cursor=0 outcome=0 enemy=0\nGEAR item=1012 held=0 bagpocket=0 growth=32 attack=44\nGEAR_FIELD lock=1 quest=0 playback=0 avatar=0 running=0 transition=0 start=0806ec71\nTASK 0 fn=08120319 data=0,0,0,0,0,0\nBREED give-confirmed map=96/17 xy=12,39 party=1 queue=0 clock=10 steps=0 frame=1237 cb=081089e5\nSHOP result=0 selected=0 eligible=0 page=0 window=0 cursor=1 bp=0 save=2\nCAPTURE encounters=0 steps=0 target_level=0 newbs=00000000 main=00000000 ctrl=00000000 exec=0 command=0 cursor=0 outcome=0 enemy=0\nGEAR item=0 held=1012 bagpocket=0 growth=32 attack=44\nGEAR_FIELD lock=1 quest=1 playback=2 avatar=0 running=0 transition=0 start=0806ec71\nTASK 0 fn=08109a05 data=1,0,0,0,0,0\nTASK 1 fn=081079d1 data=16516,512,37025,2064,37201,2064\nTASK 2 fn=08134391 data=0,0,44162,515,0,0\nTASK 3 fn=08134391 data=0,0,44154,515,0,2\nBREED equip-menus-closed map=96/17 xy=12,39 party=1 queue=0 clock=10 steps=0 frame=1481 cb=08055e75\nSHOP result=0 selected=0 eligible=0 page=0 window=0 cursor=2 bp=0 save=2\nCAPTURE encounters=0 steps=0 target_level=0 newbs=00000000 main=00000000 ctrl=00000000 exec=0 command=0 cursor=0 outcome=0 enemy=0\nGEAR item=0 held=1012 bagpocket=0 growth=32 attack=44\nGEAR_FIELD lock=0 quest=1 playback=2 avatar=0 running=0 transition=0 start=0806ea75\nTASK 0 fn=0807956d data=0,0,0,0,0,0\nTASK 1 fn=0806e005 data=0,0,0,0,0,0\nTASK 2 fn=0806e031 data=0,3,3315,0,0,0\noriginal core destroyed; new core boot and normal Continue\nRING_ENCOUNTER species=838 level=80 flags=00000004 mode=0 used=0 frame=6708\noriginal core destroyed; new core boot and normal Continue\n"
+      },
+      "process.json": {
+        "identity": {
+          "size": 90,
+          "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+        },
+        "utf8": "{\n  \"schema_version\": 1,\n  \"returncode\": 0,\n  \"timed_out\": false,\n  \"spawn_error\": null\n}\n"
+      }
+    },
+    "ring-wrong-stone": {
+      "stdout": {
+        "identity": {
+          "size": 1176,
+          "sha256": "e4a6b0eb8d9e786dd010a37de5461e834bbea6908fa850642d9ef3c58d5b786a"
+        },
+        "utf8": "{\"schema_version\":1,\"status\":\"PASS\",\"scope\":\"PR16_RING_GIFT_COLD_ORDINARY_MEGA\",\"case\":\"ring-wrong-stone\",\"rom_sha256\":\"4ea33fb8224b0b84493ccca6e90161da245705eb1eb0a3874691ab39cc3806cc\",\"species\":411,\"item\":1014,\"mega_species\":411,\"ability\":26,\"toggles\":1,\"ring_before\":0,\"ring_after\":1,\"ring_after_continue\":1,\"policy_mode\":1,\"usage_observed\":0,\"personality\":2809775901,\"enemy_species\":838,\"enemy_level\":80,\"move\":558,\"pp_before\":10,\"pp_after\":9,\"outcome\":4,\"walking_steps\":29,\"save_before\":2,\"save_after\":4,\"bp_before\":0,\"bp_after\":0,\"manual_saves\":2,\"automatic_saves\":0,\"fresh_cores\":3,\"host_write_barriers\":7,\"ring_is_fixture\":false,\"policy_is_fixture\":false,\"initial_map_progress_party_stone_are_fixtures\":true,\"cold_reload_before_encounter\":true,\"physical_give\":true,\"held_stone_not_consumed\":true,\"party_inventory_bp_persisted\":true,\"ordinary_battle_accepted\":false,\"release_ready\":false,\"warnings_errors\":0,\"total_frames\":11593,\"witness\":{\"interaction\":32,\"received\":169,\"bag\":537,\"equipped\":1055,\"saved\":2879,\"reloaded\":5301,\"walking\":5302,\"encounter\":6708,\"move_menu\":6770,\"toggle\":6771,\"mega\":0,\"spent\":6820,\"field\":7709,\"saved_again\":9171,\"reloaded_again\":11593}}\n"
+      },
+      "stderr": {
+        "identity": {
+          "size": 2357,
+          "sha256": "0684111b47e9d1b62f0d7974a819cfe82d6075803671f0bd8fbbd90500c0af45"
+        },
+        "utf8": "BREED item-actions map=96/17 xy=12,39 party=1 queue=0 clock=10 steps=0 frame=659 cb=081089e5\nSHOP result=0 selected=0 eligible=0 page=0 window=0 cursor=0 bp=0 save=2\nCAPTURE encounters=0 steps=0 target_level=0 newbs=00000000 main=00000000 ctrl=00000000 exec=0 command=0 cursor=0 outcome=0 enemy=0\nGEAR item=1014 held=0 bagpocket=0 growth=32 attack=44\nGEAR_FIELD lock=1 quest=0 playback=0 avatar=0 running=0 transition=0 start=0806ec71\nTASK 0 fn=0810a6e1 data=1,0,1,0,0,0\nTASK 1 fn=081079d1 data=16516,512,37025,2064,37201,2064\nBREED give-party map=96/17 xy=12,39 party=1 queue=0 clock=10 steps=0 frame=873 cb=0811f3a9\nSHOP result=0 selected=0 eligible=0 page=0 window=0 cursor=1 bp=0 save=2\nCAPTURE encounters=0 steps=0 target_level=0 newbs=00000000 main=00000000 ctrl=00000000 exec=0 command=0 cursor=0 outcome=0 enemy=0\nGEAR item=1014 held=0 bagpocket=0 growth=32 attack=44\nGEAR_FIELD lock=1 quest=0 playback=0 avatar=0 running=0 transition=0 start=0806ec71\nTASK 0 fn=08120319 data=0,0,0,0,0,0\nBREED give-confirmed map=96/17 xy=12,39 party=1 queue=0 clock=10 steps=0 frame=1237 cb=081089e5\nSHOP result=0 selected=0 eligible=0 page=0 window=0 cursor=1 bp=0 save=2\nCAPTURE encounters=0 steps=0 target_level=0 newbs=00000000 main=00000000 ctrl=00000000 exec=0 command=0 cursor=0 outcome=0 enemy=0\nGEAR item=0 held=1014 bagpocket=0 growth=32 attack=44\nGEAR_FIELD lock=1 quest=1 playback=2 avatar=0 running=0 transition=0 start=0806ec71\nTASK 0 fn=08109a05 data=1,0,0,0,0,0\nTASK 1 fn=081079d1 data=16516,512,37025,2064,37201,2064\nTASK 2 fn=08134391 data=0,0,44162,515,0,0\nTASK 3 fn=08134391 data=0,0,44154,515,0,2\nBREED equip-menus-closed map=96/17 xy=12,39 party=1 queue=0 clock=10 steps=0 frame=1481 cb=08055e75\nSHOP result=0 selected=0 eligible=0 page=0 window=0 cursor=2 bp=0 save=2\nCAPTURE encounters=0 steps=0 target_level=0 newbs=00000000 main=00000000 ctrl=00000000 exec=0 command=0 cursor=0 outcome=0 enemy=0\nGEAR item=0 held=1014 bagpocket=0 growth=32 attack=44\nGEAR_FIELD lock=0 quest=1 playback=2 avatar=0 running=0 transition=0 start=0806ea75\nTASK 0 fn=0807956d data=0,0,0,0,0,0\nTASK 1 fn=0806e005 data=0,0,0,0,0,0\nTASK 2 fn=0806e031 data=0,3,3315,0,0,0\noriginal core destroyed; new core boot and normal Continue\nRING_ENCOUNTER species=838 level=80 flags=00000004 mode=1 used=0 frame=6708\noriginal core destroyed; new core boot and normal Continue\n"
+      },
+      "process.json": {
+        "identity": {
+          "size": 90,
+          "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+        },
+        "utf8": "{\n  \"schema_version\": 1,\n  \"returncode\": 0,\n  \"timed_out\": false,\n  \"spawn_error\": null\n}\n"
+      }
+    },
+    "ring-no-toggle": {
+      "stdout": {
+        "identity": {
+          "size": 1171,
+          "sha256": "3868384a486efd27aba3027176839686fae7bb302a0384090f672dce8ed58815"
+        },
+        "utf8": "{\"schema_version\":1,\"status\":\"PASS\",\"scope\":\"PR16_RING_GIFT_COLD_ORDINARY_MEGA\",\"case\":\"ring-no-toggle\",\"rom_sha256\":\"4ea33fb8224b0b84493ccca6e90161da245705eb1eb0a3874691ab39cc3806cc\",\"species\":411,\"item\":1012,\"mega_species\":411,\"ability\":26,\"toggles\":0,\"ring_before\":0,\"ring_after\":1,\"ring_after_continue\":1,\"policy_mode\":1,\"usage_observed\":0,\"personality\":2809775901,\"enemy_species\":838,\"enemy_level\":80,\"move\":558,\"pp_before\":10,\"pp_after\":9,\"outcome\":4,\"walking_steps\":29,\"save_before\":2,\"save_after\":4,\"bp_before\":0,\"bp_after\":0,\"manual_saves\":2,\"automatic_saves\":0,\"fresh_cores\":3,\"host_write_barriers\":7,\"ring_is_fixture\":false,\"policy_is_fixture\":false,\"initial_map_progress_party_stone_are_fixtures\":true,\"cold_reload_before_encounter\":true,\"physical_give\":true,\"held_stone_not_consumed\":true,\"party_inventory_bp_persisted\":true,\"ordinary_battle_accepted\":false,\"release_ready\":false,\"warnings_errors\":0,\"total_frames\":11277,\"witness\":{\"interaction\":32,\"received\":169,\"bag\":537,\"equipped\":1055,\"saved\":2879,\"reloaded\":5301,\"walking\":5302,\"encounter\":6709,\"move_menu\":6771,\"toggle\":0,\"mega\":0,\"spent\":7004,\"field\":7393,\"saved_again\":8855,\"reloaded_again\":11277}}\n"
+      },
+      "stderr": {
+        "identity": {
+          "size": 2357,
+          "sha256": "4d907e9656261c75b238731ead5b94588e5b638f3e0cc1ed55df2f3023cec63f"
+        },
+        "utf8": "BREED item-actions map=96/17 xy=12,39 party=1 queue=0 clock=10 steps=0 frame=659 cb=081089e5\nSHOP result=0 selected=0 eligible=0 page=0 window=0 cursor=0 bp=0 save=2\nCAPTURE encounters=0 steps=0 target_level=0 newbs=00000000 main=00000000 ctrl=00000000 exec=0 command=0 cursor=0 outcome=0 enemy=0\nGEAR item=1012 held=0 bagpocket=0 growth=32 attack=44\nGEAR_FIELD lock=1 quest=0 playback=0 avatar=0 running=0 transition=0 start=0806ec71\nTASK 0 fn=0810a6e1 data=1,0,1,0,0,0\nTASK 1 fn=081079d1 data=16516,512,37025,2064,37201,2064\nBREED give-party map=96/17 xy=12,39 party=1 queue=0 clock=10 steps=0 frame=873 cb=0811f3a9\nSHOP result=0 selected=0 eligible=0 page=0 window=0 cursor=1 bp=0 save=2\nCAPTURE encounters=0 steps=0 target_level=0 newbs=00000000 main=00000000 ctrl=00000000 exec=0 command=0 cursor=0 outcome=0 enemy=0\nGEAR item=1012 held=0 bagpocket=0 growth=32 attack=44\nGEAR_FIELD lock=1 quest=0 playback=0 avatar=0 running=0 transition=0 start=0806ec71\nTASK 0 fn=08120319 data=0,0,0,0,0,0\nBREED give-confirmed map=96/17 xy=12,39 party=1 queue=0 clock=10 steps=0 frame=1237 cb=081089e5\nSHOP result=0 selected=0 eligible=0 page=0 window=0 cursor=1 bp=0 save=2\nCAPTURE encounters=0 steps=0 target_level=0 newbs=00000000 main=00000000 ctrl=00000000 exec=0 command=0 cursor=0 outcome=0 enemy=0\nGEAR item=0 held=1012 bagpocket=0 growth=32 attack=44\nGEAR_FIELD lock=1 quest=1 playback=2 avatar=0 running=0 transition=0 start=0806ec71\nTASK 0 fn=08109a05 data=1,0,0,0,0,0\nTASK 1 fn=081079d1 data=16516,512,37025,2064,37201,2064\nTASK 2 fn=08134391 data=0,0,44162,515,0,0\nTASK 3 fn=08134391 data=0,0,44154,515,0,2\nBREED equip-menus-closed map=96/17 xy=12,39 party=1 queue=0 clock=10 steps=0 frame=1481 cb=08055e75\nSHOP result=0 selected=0 eligible=0 page=0 window=0 cursor=2 bp=0 save=2\nCAPTURE encounters=0 steps=0 target_level=0 newbs=00000000 main=00000000 ctrl=00000000 exec=0 command=0 cursor=0 outcome=0 enemy=0\nGEAR item=0 held=1012 bagpocket=0 growth=32 attack=44\nGEAR_FIELD lock=0 quest=1 playback=2 avatar=0 running=0 transition=0 start=0806ea75\nTASK 0 fn=0807956d data=0,0,0,0,0,0\nTASK 1 fn=0806e005 data=0,0,0,0,0,0\nTASK 2 fn=0806e031 data=0,3,3315,0,0,0\noriginal core destroyed; new core boot and normal Continue\nRING_ENCOUNTER species=838 level=80 flags=00000004 mode=1 used=0 frame=6709\noriginal core destroyed; new core boot and normal Continue\n"
+      },
+      "process.json": {
+        "identity": {
+          "size": 90,
+          "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+        },
+        "utf8": "{\n  \"schema_version\": 1,\n  \"returncode\": 0,\n  \"timed_out\": false,\n  \"spawn_error\": null\n}\n"
+      }
+    },
+    "ring-cancel-toggle": {
+      "stdout": {
+        "identity": {
+          "size": 1178,
+          "sha256": "ac1959570f38564140b5906697fb6b320cad941335ed29b2bb3aaaccce11e47d"
+        },
+        "utf8": "{\"schema_version\":1,\"status\":\"PASS\",\"scope\":\"PR16_RING_GIFT_COLD_ORDINARY_MEGA\",\"case\":\"ring-cancel-toggle\",\"rom_sha256\":\"4ea33fb8224b0b84493ccca6e90161da245705eb1eb0a3874691ab39cc3806cc\",\"species\":411,\"item\":1012,\"mega_species\":411,\"ability\":26,\"toggles\":2,\"ring_before\":0,\"ring_after\":1,\"ring_after_continue\":1,\"policy_mode\":1,\"usage_observed\":0,\"personality\":2809775901,\"enemy_species\":838,\"enemy_level\":80,\"move\":558,\"pp_before\":10,\"pp_after\":9,\"outcome\":4,\"walking_steps\":29,\"save_before\":2,\"save_after\":4,\"bp_before\":0,\"bp_after\":0,\"manual_saves\":2,\"automatic_saves\":0,\"fresh_cores\":3,\"host_write_barriers\":7,\"ring_is_fixture\":false,\"policy_is_fixture\":false,\"initial_map_progress_party_stone_are_fixtures\":true,\"cold_reload_before_encounter\":true,\"physical_give\":true,\"held_stone_not_consumed\":true,\"party_inventory_bp_persisted\":true,\"ordinary_battle_accepted\":false,\"release_ready\":false,\"warnings_errors\":0,\"total_frames\":11341,\"witness\":{\"interaction\":32,\"received\":169,\"bag\":537,\"equipped\":1055,\"saved\":2879,\"reloaded\":5301,\"walking\":5302,\"encounter\":6709,\"move_menu\":6771,\"toggle\":6772,\"mega\":0,\"spent\":7068,\"field\":7457,\"saved_again\":8919,\"reloaded_again\":11341}}\n"
+      },
+      "stderr": {
+        "identity": {
+          "size": 2357,
+          "sha256": "4d907e9656261c75b238731ead5b94588e5b638f3e0cc1ed55df2f3023cec63f"
+        },
+        "utf8": "BREED item-actions map=96/17 xy=12,39 party=1 queue=0 clock=10 steps=0 frame=659 cb=081089e5\nSHOP result=0 selected=0 eligible=0 page=0 window=0 cursor=0 bp=0 save=2\nCAPTURE encounters=0 steps=0 target_level=0 newbs=00000000 main=00000000 ctrl=00000000 exec=0 command=0 cursor=0 outcome=0 enemy=0\nGEAR item=1012 held=0 bagpocket=0 growth=32 attack=44\nGEAR_FIELD lock=1 quest=0 playback=0 avatar=0 running=0 transition=0 start=0806ec71\nTASK 0 fn=0810a6e1 data=1,0,1,0,0,0\nTASK 1 fn=081079d1 data=16516,512,37025,2064,37201,2064\nBREED give-party map=96/17 xy=12,39 party=1 queue=0 clock=10 steps=0 frame=873 cb=0811f3a9\nSHOP result=0 selected=0 eligible=0 page=0 window=0 cursor=1 bp=0 save=2\nCAPTURE encounters=0 steps=0 target_level=0 newbs=00000000 main=00000000 ctrl=00000000 exec=0 command=0 cursor=0 outcome=0 enemy=0\nGEAR item=1012 held=0 bagpocket=0 growth=32 attack=44\nGEAR_FIELD lock=1 quest=0 playback=0 avatar=0 running=0 transition=0 start=0806ec71\nTASK 0 fn=08120319 data=0,0,0,0,0,0\nBREED give-confirmed map=96/17 xy=12,39 party=1 queue=0 clock=10 steps=0 frame=1237 cb=081089e5\nSHOP result=0 selected=0 eligible=0 page=0 window=0 cursor=1 bp=0 save=2\nCAPTURE encounters=0 steps=0 target_level=0 newbs=00000000 main=00000000 ctrl=00000000 exec=0 command=0 cursor=0 outcome=0 enemy=0\nGEAR item=0 held=1012 bagpocket=0 growth=32 attack=44\nGEAR_FIELD lock=1 quest=1 playback=2 avatar=0 running=0 transition=0 start=0806ec71\nTASK 0 fn=08109a05 data=1,0,0,0,0,0\nTASK 1 fn=081079d1 data=16516,512,37025,2064,37201,2064\nTASK 2 fn=08134391 data=0,0,44162,515,0,0\nTASK 3 fn=08134391 data=0,0,44154,515,0,2\nBREED equip-menus-closed map=96/17 xy=12,39 party=1 queue=0 clock=10 steps=0 frame=1481 cb=08055e75\nSHOP result=0 selected=0 eligible=0 page=0 window=0 cursor=2 bp=0 save=2\nCAPTURE encounters=0 steps=0 target_level=0 newbs=00000000 main=00000000 ctrl=00000000 exec=0 command=0 cursor=0 outcome=0 enemy=0\nGEAR item=0 held=1012 bagpocket=0 growth=32 attack=44\nGEAR_FIELD lock=0 quest=1 playback=2 avatar=0 running=0 transition=0 start=0806ea75\nTASK 0 fn=0807956d data=0,0,0,0,0,0\nTASK 1 fn=0806e005 data=0,0,0,0,0,0\nTASK 2 fn=0806e031 data=0,3,3315,0,0,0\noriginal core destroyed; new core boot and normal Continue\nRING_ENCOUNTER species=838 level=80 flags=00000004 mode=1 used=0 frame=6709\noriginal core destroyed; new core boot and normal Continue\n"
+      },
+      "process.json": {
+        "identity": {
+          "size": 90,
+          "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+        },
+        "utf8": "{\n  \"schema_version\": 1,\n  \"returncode\": 0,\n  \"timed_out\": false,\n  \"spawn_error\": null\n}\n"
+      }
+    }
+  },
+  "source_tests": {
+    "host": {
+      "count": 11,
+      "identity": {
+        "size": 1624,
+        "sha256": "3f47d22f2c6059afede7065663037f166aceb0cdef28aee15cb8955db626722f"
+      },
+      "raw": "test_each_unknown_battle_bit_fails_closed (test_pr16_ring_policy.PolicyContracts.test_each_unknown_battle_bit_fails_closed) ... ok\ntest_explicit_standard_or_other_pending_not_overridden (test_pr16_ring_policy.PolicyContracts.test_explicit_standard_or_other_pending_not_overridden) ... ok\ntest_facility_raid_link_safari_never_gain_fallback (test_pr16_ring_policy.PolicyContracts.test_facility_raid_link_safari_never_gain_fallback) ... ok\ntest_new_battle_rechecks_bag_not_previous_session_latch (test_pr16_ring_policy.PolicyContracts.test_new_battle_rechecks_bag_not_previous_session_latch) ... ok\ntest_no_ring_keeps_standard (test_pr16_ring_policy.PolicyContracts.test_no_ring_keeps_standard) ... ok\ntest_normal_trainer_and_double_layouts (test_pr16_ring_policy.PolicyContracts.test_normal_trainer_and_double_layouts) ... ok\ntest_normal_wild_ring_enables_existing_mega_owner (test_pr16_ring_policy.PolicyContracts.test_normal_wild_ring_enables_existing_mega_owner) ... ok\ntest_original_failure_does_not_select (test_pr16_ring_policy.PolicyContracts.test_original_failure_does_not_select) ... ok\ntest_pending_observed_before_original_consumes_it (test_pr16_ring_policy.PolicyContracts.test_pending_observed_before_original_consumes_it) ... ok\ntest_pure_eligibility_allows_no_other_mechanic (test_pr16_ring_policy.PolicyContracts.test_pure_eligibility_allows_no_other_mechanic) ... ok\ntest_selection_failure_clears_battle_with_error (test_pr16_ring_policy.PolicyContracts.test_selection_failure_clears_battle_with_error) ... ok\n\n----------------------------------------------------------------------\nRan 11 tests in 0.162s\n\nOK\n"
+    },
+    "builder": {
+      "count": 12,
+      "identity": {
+        "size": 1913,
+        "sha256": "dfed8ad8cef834de2d1b36a0955cb36185f9b7b551d3eb86cd43c4d1f18f045d"
+      },
+      "raw": "test_invalid_bl_is_not_guessed (test_pr16_ring_policy_build.PolicyBuildContracts.test_invalid_bl_is_not_guessed) ... ok\ntest_no_gift_or_save_write_in_production_fallback (test_pr16_ring_policy_build.PolicyBuildContracts.test_no_gift_or_save_write_in_production_fallback) ... ok\ntest_only_entry_and_allocated_payload_change (test_pr16_ring_policy_build.PolicyBuildContracts.test_only_entry_and_allocated_payload_change) ... ok\ntest_parent_identity_fails_before_owner_guessing (test_pr16_ring_policy_build.PolicyBuildContracts.test_parent_identity_fails_before_owner_guessing) ... ok\ntest_saved_owner_bl_targets_match_original_evidence (test_pr16_ring_policy_build.PolicyBuildContracts.test_saved_owner_bl_targets_match_original_evidence) ... ok\ntest_second_patch_and_nonempty_allocation_rejected (test_pr16_ring_policy_build.PolicyBuildContracts.test_second_patch_and_nonempty_allocation_rejected) ... ok\ntest_thumb_jump_rejects_even_outside_or_noninteger (test_pr16_ring_policy_build.PolicyBuildContracts.test_thumb_jump_rejects_even_outside_or_noninteger) ... ok\ntest_trampoline_preserves_exact_displaced_instructions (test_pr16_ring_policy_build.PolicyBuildContracts.test_trampoline_preserves_exact_displaced_instructions) ... ok\ntest_trampoline_rejects_instruction_drift (test_pr16_ring_policy_build.PolicyBuildContracts.test_trampoline_rejects_instruction_drift) ... ok\ntest_allocator_cannot_claim_original_function (test_pr16_ring_policy_build.ReservedOwnerContracts.test_allocator_cannot_claim_original_function) ... ok\ntest_reserved_core_is_not_an_added_allocation (test_pr16_ring_policy_build.ReservedOwnerContracts.test_reserved_core_is_not_an_added_allocation) ... ok\ntest_wrong_owner_or_kind_fails_closed (test_pr16_ring_policy_build.ReservedOwnerContracts.test_wrong_owner_or_kind_fails_closed) ... ok\n\n----------------------------------------------------------------------\nRan 12 tests in 0.153s\n\nOK\n"
+    },
+    "oracle": {
+      "count": 17,
+      "identity": {
+        "size": 2799,
+        "sha256": "77b0b9c2d0799a3ff087e74c14e709b11d35d5fee2f1d119354305bdcc7ded98"
+      },
+      "raw": "test_active_master_is_not_link_and_supports_pinned_integer_macros (test_pr16_ring_policy_native.BattleFlagContracts.test_active_master_is_not_link_and_supports_pinned_integer_macros) ... ok\ntest_unknown_link_bit_conflicts_and_macro_calls_fail_closed (test_pr16_ring_policy_native.BattleFlagContracts.test_unknown_link_bit_conflicts_and_macro_calls_fail_closed) ... ok\ntest_new_candidate_binding_precedes_generic_decoder (test_pr16_ring_policy_native.CurrentRouteContracts.test_new_candidate_binding_precedes_generic_decoder) ... ok\ntest_old_probe_and_fixture_claims_not_relabelled (test_pr16_ring_policy_native.CurrentRouteContracts.test_old_probe_and_fixture_claims_not_relabelled) ... ok\ntest_unique_current_coordinate_owner (test_pr16_ring_policy_native.CurrentRouteContracts.test_unique_current_coordinate_owner) ... ok\ntest_wrong_map_rate_and_slot_fail_closed (test_pr16_ring_policy_native.CurrentRouteContracts.test_wrong_map_rate_and_slot_fail_closed) ... ok\ntest_actual_grass_table_and_frame_match (test_pr16_ring_policy_native.NativeOracleContracts.test_actual_grass_table_and_frame_match) ... ok\ntest_bad_abi_bool_counters_and_unknown_fields_rejected (test_pr16_ring_policy_native.NativeOracleContracts.test_bad_abi_bool_counters_and_unknown_fields_rejected) ... ok\ntest_case_selection_is_explicit_nonempty_unique (test_pr16_ring_policy_native.NativeOracleContracts.test_case_selection_is_explicit_nonempty_unique) ... ok\ntest_five_disjoint_cases_have_typed_oracles (test_pr16_ring_policy_native.NativeOracleContracts.test_five_disjoint_cases_have_typed_oracles) ... ok\ntest_missing_cold_continue_or_auto_save_rejected (test_pr16_ring_policy_native.NativeOracleContracts.test_missing_cold_continue_or_auto_save_rejected) ... ok\ntest_negative_case_must_not_transform_or_consume_usage (test_pr16_ring_policy_native.NativeOracleContracts.test_negative_case_must_not_transform_or_consume_usage) ... ok\ntest_new_controller_has_no_postbarrier_host_mutations (test_pr16_ring_policy_native.NativeOracleContracts.test_new_controller_has_no_postbarrier_host_mutations) ... ok\ntest_original_event_must_be_unique_normal_and_warning_free (test_pr16_ring_policy_native.NativeOracleContracts.test_original_event_must_be_unique_normal_and_warning_free) ... ok\ntest_pp_bp_and_inventory_contracts (test_pr16_ring_policy_native.NativeOracleContracts.test_pp_bp_and_inventory_contracts) ... ok\ntest_precontinue_battle_and_missing_toggle_rejected (test_pr16_ring_policy_native.NativeOracleContracts.test_precontinue_battle_and_missing_toggle_rejected) ... ok\ntest_ring_and_policy_injection_never_accepted (test_pr16_ring_policy_native.NativeOracleContracts.test_ring_and_policy_injection_never_accepted) ... ok\n\n----------------------------------------------------------------------\nRan 17 tests in 0.003s\n\nOK\n"
+    }
+  },
+  "member_manifest": {
+    "pr16-ring-policy-run/build.stderr": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "pr16-ring-policy-run/build.stdout": {
+      "size": 2806,
+      "sha256": "54a3237c7a505f1513e79ac85b2ddca141291e134a07448a1da45a3ec2f7dd54"
+    },
+    "pr16-ring-policy-run/native.stderr": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "pr16-ring-policy-run/native.stdout": {
+      "size": 7864,
+      "sha256": "26d497f0ebc7357371dd0c45d1a0ff2368da744c6aa3dec98ac169c179f3e064"
+    },
+    "pr16-ring-policy-run/oracle.stderr": {
+      "size": 2799,
+      "sha256": "77b0b9c2d0799a3ff087e74c14e709b11d35d5fee2f1d119354305bdcc7ded98"
+    },
+    "pr16-ring-policy-run/oracle.stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "pr16-ring-policy-run/p07.stderr": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "pr16-ring-policy-run/p07.stdout": {
+      "size": 591,
+      "sha256": "61b1327cce12789ee9f06f5944f5dacbbf097ca1d72b1abea0725c2835cf3293"
+    },
+    "pr16-ring-policy-run/policy.stderr": {
+      "size": 1624,
+      "sha256": "3f47d22f2c6059afede7065663037f166aceb0cdef28aee15cb8955db626722f"
+    },
+    "pr16-ring-policy-run/policy.stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "pr16-ring-policy-run/private-restore.json": {
+      "size": 228,
+      "sha256": "02ad0f577bd29a770c67979bc976b4f918b7a73592525330b03c3fe6bc0965a0"
+    },
+    "pr16-ring-policy-run/repair.stderr": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "pr16-ring-policy-run/repair.stdout": {
+      "size": 42856,
+      "sha256": "f191856fe4da91b0e7b716a1daf703173597a6af95f8fde1ec8a14afe71ef72c"
+    },
+    "pr16-ring-policy-run/resume-before.json": {
+      "size": 83,
+      "sha256": "df9f69096ae2c7d1841176d015e32cd18e15be6a2c1d00d9445f594fdb652d37"
+    },
+    "pr16-ring-policy-run/stage84.json": {
+      "size": 412,
+      "sha256": "4a79800bf5314f031ea22489e38091d9e0d6b3bf0e0ac500d027530753e47251"
+    },
+    "pr16-ring-policy-run/stage84.stderr": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "pr16-ring-policy-run/toolchain.log": {
+      "size": 41478,
+      "sha256": "ffe2a147fde96b71f13e782a33c31b68646d190a464225ad2fc76b417ead2aca"
+    },
+    "pr16-ring-policy-successor/builder-tests.stderr": {
+      "size": 1913,
+      "sha256": "dfed8ad8cef834de2d1b36a0955cb36185f9b7b551d3eb86cd43c4d1f18f045d"
+    },
+    "pr16-ring-policy-successor/builder-tests.stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "pr16-ring-policy-successor/candidate.json": {
+      "size": 58072,
+      "sha256": "55afd9d7dc0059f750e2c1306eda52e360a1a276ddc3057ec1aaa4ddd5f3d6ff"
+    },
+    "pr16-ring-policy-successor/compile-1/compiler.stderr": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "pr16-ring-policy-successor/compile-1/compiler.stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "pr16-ring-policy-successor/compile-1/disassembly.txt": {
+      "size": 2447,
+      "sha256": "5f6271a350f46ae67d5cbbde9f2b77746bd3524d4e27ada92c9c45453b061fc5"
+    },
+    "pr16-ring-policy-successor/compile-1/symbols.txt": {
+      "size": 31,
+      "sha256": "be4648afc7a3dd185efc2ef670892dcbd947c9fd1304c46bdc6961cb444f7354"
+    },
+    "pr16-ring-policy-successor/compile-2/compiler.stderr": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "pr16-ring-policy-successor/compile-2/compiler.stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "pr16-ring-policy-successor/compile-2/disassembly.txt": {
+      "size": 2447,
+      "sha256": "5f6271a350f46ae67d5cbbde9f2b77746bd3524d4e27ada92c9c45453b061fc5"
+    },
+    "pr16-ring-policy-successor/compile-2/symbols.txt": {
+      "size": 31,
+      "sha256": "be4648afc7a3dd185efc2ef670892dcbd947c9fd1304c46bdc6961cb444f7354"
+    },
+    "pr16-ring-policy-successor/source/overlays/cfru/integration.c": {
+      "size": 31508,
+      "sha256": "b1ee5d94bd6601f7b4cc01eea45c9ccbe4f80fb04ca4074044201c7d550f4498"
+    },
+    "pr16-ring-policy-successor/source/overlays/cfru/integration.h": {
+      "size": 8981,
+      "sha256": "8323050dac61b161d89393815ce63837cedee4369235a5f2277dc32fdd523f5a"
+    },
+    "pr16-ring-policy-successor/source/overlays/cfru/rom_bridge.c": {
+      "size": 20530,
+      "sha256": "e7ca33758235005d66b3a73f864ed97d18f876f56935d1d86e42c99c78cd28c0"
+    },
+    "pr16-ring-policy-successor/source/overlays/cfru/runtime.h": {
+      "size": 8156,
+      "sha256": "9f608381273cd49af4df91af5ec9598420dfe6c4b8ec30150945c655fa64c476"
+    },
+    "pr16-ring-policy-successor/source/overlays/ring_policy/ring_policy.c": {
+      "size": 3207,
+      "sha256": "a9d523ad733b71af9cbfcd081555de0cd6361b14bb339463cb3e9e50b85de845"
+    },
+    "pr16-ring-policy-successor/source/overlays/ring_policy/ring_policy.h": {
+      "size": 398,
+      "sha256": "631d923b90c8f397a9a7672ce19f96ca9f4f4d6dc6c0131cac53269086c15583"
+    },
+    "pr16-ring-policy-successor/source/scripts/build_battle_core.py": {
+      "size": 239192,
+      "sha256": "e83f659b912e4f61f790ef648f30dd7e669f737da84f326c234dc491a6d135c0"
+    },
+    "pr16-ring-policy-successor/source/scripts/pr16_resume.py": {
+      "size": 26649,
+      "sha256": "b0ec73bf933e46f7b254057559b0c637a2d1a9b625b08f348aa8308ea00dee5a"
+    },
+    "pr16-ring-policy-successor/source/scripts/pr16_ring_compiled_record.py": {
+      "size": 13116,
+      "sha256": "768c94e59983d27bbf0ed46d6ba60008352a3a67e11612b18936e38b271e73ef"
+    },
+    "pr16-ring-policy-successor/source/scripts/pr16_ring_followup_v2.py": {
+      "size": 11453,
+      "sha256": "71e33dbe40cd8988e185256821e33e6a1e06e4eddeb8ee6a3eb9047a4d3c49f7"
+    },
+    "pr16-ring-policy-successor/source/scripts/pr16_ring_npc_workbench.py": {
+      "size": 4710,
+      "sha256": "eec9d147a26be3aa38472baef72a4cd671537419f9d98a2bc98d0aa32a1dc53e"
+    },
+    "pr16-ring-policy-successor/source/scripts/pr16_ring_policy_successor.py": {
+      "size": 11995,
+      "sha256": "13b4907245beaf484ee9bd32a44faeae7a0cdf5c047c51530a0c7b91ad72bf33"
+    },
+    "pr16-ring-policy-successor/source/tools/mgba_pr16_natural_capture.c": {
+      "size": 9630,
+      "sha256": "cd09b0ad480403b0e76239196415656c36b26abe18f12bcc946c4f9f9c9d2e6e"
+    },
+    "pr16-ring-policy-successor/source/tools/mgba_pr16_purchased_gear.c": {
+      "size": 16307,
+      "sha256": "ba8a7994d25bf7d5d95fdf9fb35bace671f4b1625f5cee96df235a92bbdac9aa"
+    },
+    "pr16-ring-npc-workbench/source/content/modernization/pr16_native_supply_resume_20260913.json": {
+      "size": 206292,
+      "sha256": "3dc2a6e9097dceff683335ea1c810faa95c35475d8cfe2f609004d44af7c7eb2"
+    },
+    "pr16-ring-npc-workbench/source/content/modernization/pr16_ring_npc_gift_checkpoint_20260918.json": {
+      "size": 105995,
+      "sha256": "786e5e10a23e5008669b3ec76d8646ee523819d91740dbb8a361e5150598bae9"
+    },
+    "pr16-ring-npc-workbench/source/overlays/ring_policy/ring_policy.c": {
+      "size": 3207,
+      "sha256": "a9d523ad733b71af9cbfcd081555de0cd6361b14bb339463cb3e9e50b85de845"
+    },
+    "pr16-ring-npc-workbench/source/overlays/ring_policy/ring_policy.h": {
+      "size": 398,
+      "sha256": "631d923b90c8f397a9a7672ce19f96ca9f4f4d6dc6c0131cac53269086c15583"
+    },
+    "pr16-ring-npc-workbench/source/scripts/pr16_ring_policy_native.py": {
+      "size": 15416,
+      "sha256": "d008aae0dee1b1735ca14931850e4964c8ef70bf730d3d22608981f9dd2a9f74"
+    },
+    "pr16-ring-npc-workbench/source/scripts/pr16_ring_policy_successor.py": {
+      "size": 11995,
+      "sha256": "13b4907245beaf484ee9bd32a44faeae7a0cdf5c047c51530a0c7b91ad72bf33"
+    },
+    "pr16-ring-npc-workbench/source/tests/ring_policy_host.c": {
+      "size": 1683,
+      "sha256": "45f7075d57e91c68edc76b7fab5f52d82949f147d27fdfa9f2a07a87c1428a6f"
+    },
+    "pr16-ring-npc-workbench/source/tests/test_pr16_ring_policy.py": {
+      "size": 4074,
+      "sha256": "fe0ba089b93cf2abeef3db617b7c752252ed2d7be9cb560fd671ad96bfbc0448"
+    },
+    "pr16-ring-npc-workbench/source/tests/test_pr16_ring_policy_build.py": {
+      "size": 4969,
+      "sha256": "f7f4009a566b645c5833e39144e2e790b3ab5e3212c63ed05afdff898aa49bce"
+    },
+    "pr16-ring-npc-workbench/source/tests/test_pr16_ring_policy_native.py": {
+      "size": 6885,
+      "sha256": "d644a35f1e253dfa032a6d8b33069cceeb8eb9339fbb649cffa63955f05c14e8"
+    },
+    "pr16-ring-npc-workbench/source/tools/mgba_pr16_ring_policy.c": {
+      "size": 12153,
+      "sha256": "ba8d25d7b8d95856777327d13f2fca8eadb663fe9fba1cc8915cf916748a2415"
+    },
+    "pr16-ring-npc-workbench/source-manifest.json": {
+      "size": 3126,
+      "sha256": "9137ee712eefb35417121fb2f03008c9d5c9285bd0428282f13a88479af0de38"
+    },
+    "pr16-ring-npc-workbench/tracked-paths.json": {
+      "size": 79209,
+      "sha256": "acd90a06864ad5535ba267f0bed8d59f7454a6f8f2b24a42da164e6cbe3a3af8"
+    },
+    "pr16-ring-policy-native/compile.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "pr16-ring-policy-native/compile.stderr": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "pr16-ring-policy-native/compile.stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "pr16-ring-policy-native/generated/p03_learning_embedded.c": {
+      "size": 8005,
+      "sha256": "8a772d3ef7b937ba475228a98782d25d49405a6faaed690810db80ebb4bd3543"
+    },
+    "pr16-ring-policy-native/generated/p03_p02_embedded.c": {
+      "size": 39687,
+      "sha256": "49a15c51cee2471bd0e911f6a8b804bb860bbecc54be2ef5f2474e9dfb31015b"
+    },
+    "pr16-ring-policy-native/generated/p03a_fullslots_embedded.c": {
+      "size": 12886,
+      "sha256": "c76199eb2186d979dd5130597987a6f45d6434fb3fe11b983935ad55a1e7c0a6"
+    },
+    "pr16-ring-policy-native/generated/p03b_archive_embedded.c": {
+      "size": 20172,
+      "sha256": "e675b1086391f1f4c57080e6d3a53d2eeeda68bd02dd92de3830256238e2a997"
+    },
+    "pr16-ring-policy-native/generated/pr16_capture_shop_helpers.c": {
+      "size": 10012,
+      "sha256": "e6ac82cf3157365bf669340d199dc649aaf7d6159a0c4fda80357b8ee2aa1b3f"
+    },
+    "pr16-ring-policy-native/generated/pr16_gear_capture_helpers.c": {
+      "size": 9645,
+      "sha256": "f13abfb70d53f8334d944ca596fd2c7d0d421d52f4ed6db6224c6241f02ac5a5"
+    },
+    "pr16-ring-policy-native/generated/pr16_gear_route.h": {
+      "size": 528,
+      "sha256": "1a6934a98bc4e68cd0189c38bb9b851a2248bfa9c83996b6d7c4b959c984f09d"
+    },
+    "pr16-ring-policy-native/generated/pr16_ring_gear_helpers.c": {
+      "size": 16319,
+      "sha256": "fb3d861669894d24ca75a0ba881e0e48acc989551abe282f178a2991943ce606"
+    },
+    "pr16-ring-policy-native/generated/pr16_ring_policy_generated.h": {
+      "size": 286,
+      "sha256": "54231b1bd94e1c3e5079c3cd4a440906f4450b10918df8f2dddd3dc698ff973b"
+    },
+    "pr16-ring-policy-native/generated/pr16_shop_breeding_helpers.c": {
+      "size": 19630,
+      "sha256": "29875c0c2fe7e45f12fbd0409ea52614e954a056e9a07c8487e790be3d21a3be"
+    },
+    "pr16-ring-policy-native/guard-bus16.process.json": {
+      "size": 90,
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457"
+    },
+    "pr16-ring-policy-native/guard-bus16.stderr": {
+      "size": 50,
+      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934"
+    },
+    "pr16-ring-policy-native/guard-bus16.stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "pr16-ring-policy-native/guard-bus32.process.json": {
+      "size": 90,
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457"
+    },
+    "pr16-ring-policy-native/guard-bus32.stderr": {
+      "size": 50,
+      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934"
+    },
+    "pr16-ring-policy-native/guard-bus32.stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "pr16-ring-policy-native/guard-bus8.process.json": {
+      "size": 90,
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457"
+    },
+    "pr16-ring-policy-native/guard-bus8.stderr": {
+      "size": 50,
+      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934"
+    },
+    "pr16-ring-policy-native/guard-bus8.stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "pr16-ring-policy-native/guard-raw16.process.json": {
+      "size": 90,
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457"
+    },
+    "pr16-ring-policy-native/guard-raw16.stderr": {
+      "size": 50,
+      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934"
+    },
+    "pr16-ring-policy-native/guard-raw16.stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "pr16-ring-policy-native/guard-raw32.process.json": {
+      "size": 90,
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457"
+    },
+    "pr16-ring-policy-native/guard-raw32.stderr": {
+      "size": 50,
+      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934"
+    },
+    "pr16-ring-policy-native/guard-raw32.stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "pr16-ring-policy-native/guard-raw8.process.json": {
+      "size": 90,
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457"
+    },
+    "pr16-ring-policy-native/guard-raw8.stderr": {
+      "size": 50,
+      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934"
+    },
+    "pr16-ring-policy-native/guard-raw8.stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "pr16-ring-policy-native/guard-register.process.json": {
+      "size": 90,
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457"
+    },
+    "pr16-ring-policy-native/guard-register.stderr": {
+      "size": 50,
+      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934"
+    },
+    "pr16-ring-policy-native/guard-register.stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "pr16-ring-policy-native/result.json": {
+      "size": 20911,
+      "sha256": "f721698f2e86c0fd157725e736d67b9b78a9daebc0d643357b2fa8bf84930d3e"
+    },
+    "pr16-ring-policy-native/ring-active-bag-stone.png": {
+      "size": 3263,
+      "sha256": "35491c2977be1af04d107ee108107174dae1bb6b323c08417058af78aac3c25f",
+      "ppm_sha256": "485d108acf7ef9d7c8e26ed819a6475327087f36c13569a0e76bdd8cf7d82387"
+    },
+    "pr16-ring-policy-native/ring-active-battle-reloaded.png": {
+      "size": 4821,
+      "sha256": "10f51a3c98d3b89105dbf25ea9b9e5ac99472f477b2e6b85a319642cd30e07a3",
+      "ppm_sha256": "3d27d5697797b7163efafeeedbad8f6197e1fa7dbbd0e1f4f0185d885dce8e54"
+    },
+    "pr16-ring-policy-native/ring-active-equip-menus-closed.png": {
+      "size": 5707,
+      "sha256": "aa1546fb65a96dfb4b390034619c94fd51518f73993f1c48a6c364541db8d9c7",
+      "ppm_sha256": "4127a181929cbacb0ce807a91f06bc6d70fcac83226d506cec20e0c79e7c8e13"
+    },
+    "pr16-ring-policy-native/ring-active-equipped-reloaded.png": {
+      "size": 5707,
+      "sha256": "aa1546fb65a96dfb4b390034619c94fd51518f73993f1c48a6c364541db8d9c7",
+      "ppm_sha256": "4127a181929cbacb0ce807a91f06bc6d70fcac83226d506cec20e0c79e7c8e13"
+    },
+    "pr16-ring-policy-native/ring-active-equipped.png": {
+      "size": 2745,
+      "sha256": "d5655014b2993516c3ed7606c6aaa3f89b7b6e35b77e3c51a57b79f79285ddf3",
+      "ppm_sha256": "27d878a864beaa728a776a57d1cce58dadf367c2cdab4d93f5e78582489121a8"
+    },
+    "pr16-ring-policy-native/ring-active-fixture.png": {
+      "size": 5750,
+      "sha256": "fed53323d1c4dff7aae6a746dde2937ad87f0dd514f499e7a41d4dcefc5c639e",
+      "ppm_sha256": "0caa3a8e27f53247e692869fd915a6a4ab2b374e44899906f8a3ece16759052c"
+    },
+    "pr16-ring-policy-native/ring-active-give-menu.png": {
+      "size": 3798,
+      "sha256": "3b1026ac9af718866d3c28ded62d7156590bef9dc88cfaf655c6d0a7ad773b6e",
+      "ppm_sha256": "a0839ba700ded618645b2f3f3ed3f153d56676a589640691bd6f67391b9ade0a"
+    },
+    "pr16-ring-policy-native/ring-active-give-party.png": {
+      "size": 2881,
+      "sha256": "421f7c57054248c7319d96671337f931bf67a34f40d0435563feac943ccceb3c",
+      "ppm_sha256": "ef5461d6789f709747253f5a45bc9977a80cc54d859c7d85edc33c3e3312f3a0"
+    },
+    "pr16-ring-policy-native/ring-active-mega-active.png": {
+      "size": 4859,
+      "sha256": "20062bd138f25e9ec540cfb52f8e906b7c795f6fa48f1c89d2dad05cff30f52d",
+      "ppm_sha256": "b419fba53424a0b71936940ab01e714bf76d4634eff29c90e646278c29605132"
+    },
+    "pr16-ring-policy-native/ring-active-mega-selection.png": {
+      "size": 4871,
+      "sha256": "7ad8f6aa10fbc7165f32cd2f1a83186759fd49ee49d67a95f6db6951a7dccf36",
+      "ppm_sha256": "b2948c089050cd81d486b804a5d4e2c7f4822e77e1a7fefe778c4150b255e8b0"
+    },
+    "pr16-ring-policy-native/ring-active-native-turn.png": {
+      "size": 4818,
+      "sha256": "f08f7712f674fb1e6961c159ff48cc18b897b5e4095f3df9002a20db7b3596e8",
+      "ppm_sha256": "ad7488074bee4e405a5495cad81154dd584075a4684b166e25c6964cdab3f241"
+    },
+    "pr16-ring-policy-native/ring-active-natural-equipped-battle.png": {
+      "size": 3862,
+      "sha256": "f8052851c869dca1a7ebee5d9f04012abc518e8d6607b7654f330a2c0ad343fa",
+      "ppm_sha256": "06fb2ee8f3c1758b9e398fe67fbb6fa117025f932911dfde0589c6abb79693d1"
+    },
+    "pr16-ring-policy-native/ring-active-npc-dialogue.png": {
+      "size": 5978,
+      "sha256": "eeba86af22b55d341dcfd2a5329346a765b610bf9427e944ad2e87167025dfdb",
+      "ppm_sha256": "992c4c3345bd9f982ef2915884839a9836546a71c70e1e18a9a50db1d0a5dcec"
+    },
+    "pr16-ring-policy-native/ring-active-reverted-field.png": {
+      "size": 4821,
+      "sha256": "10f51a3c98d3b89105dbf25ea9b9e5ac99472f477b2e6b85a319642cd30e07a3",
+      "ppm_sha256": "3d27d5697797b7163efafeeedbad8f6197e1fa7dbbd0e1f4f0185d885dce8e54"
+    },
+    "pr16-ring-policy-native/ring-active.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "pr16-ring-policy-native/ring-active.stderr": {
+      "size": 2357,
+      "sha256": "4d907e9656261c75b238731ead5b94588e5b638f3e0cc1ed55df2f3023cec63f"
+    },
+    "pr16-ring-policy-native/ring-active.stdout": {
+      "size": 1176,
+      "sha256": "aa4b3f38cbea74e39c6d7dfeae2603bc000ac9db3abaceddd451f52a6f8110b7"
+    },
+    "pr16-ring-policy-native/ring-cancel-toggle-bag-stone.png": {
+      "size": 3263,
+      "sha256": "35491c2977be1af04d107ee108107174dae1bb6b323c08417058af78aac3c25f",
+      "ppm_sha256": "485d108acf7ef9d7c8e26ed819a6475327087f36c13569a0e76bdd8cf7d82387"
+    },
+    "pr16-ring-policy-native/ring-cancel-toggle-battle-reloaded.png": {
+      "size": 4821,
+      "sha256": "10f51a3c98d3b89105dbf25ea9b9e5ac99472f477b2e6b85a319642cd30e07a3",
+      "ppm_sha256": "3d27d5697797b7163efafeeedbad8f6197e1fa7dbbd0e1f4f0185d885dce8e54"
+    },
+    "pr16-ring-policy-native/ring-cancel-toggle-equip-menus-closed.png": {
+      "size": 5707,
+      "sha256": "aa1546fb65a96dfb4b390034619c94fd51518f73993f1c48a6c364541db8d9c7",
+      "ppm_sha256": "4127a181929cbacb0ce807a91f06bc6d70fcac83226d506cec20e0c79e7c8e13"
+    },
+    "pr16-ring-policy-native/ring-cancel-toggle-equipped-reloaded.png": {
+      "size": 5707,
+      "sha256": "aa1546fb65a96dfb4b390034619c94fd51518f73993f1c48a6c364541db8d9c7",
+      "ppm_sha256": "4127a181929cbacb0ce807a91f06bc6d70fcac83226d506cec20e0c79e7c8e13"
+    },
+    "pr16-ring-policy-native/ring-cancel-toggle-equipped.png": {
+      "size": 2745,
+      "sha256": "d5655014b2993516c3ed7606c6aaa3f89b7b6e35b77e3c51a57b79f79285ddf3",
+      "ppm_sha256": "27d878a864beaa728a776a57d1cce58dadf367c2cdab4d93f5e78582489121a8"
+    },
+    "pr16-ring-policy-native/ring-cancel-toggle-fixture.png": {
+      "size": 5750,
+      "sha256": "fed53323d1c4dff7aae6a746dde2937ad87f0dd514f499e7a41d4dcefc5c639e",
+      "ppm_sha256": "0caa3a8e27f53247e692869fd915a6a4ab2b374e44899906f8a3ece16759052c"
+    },
+    "pr16-ring-policy-native/ring-cancel-toggle-give-menu.png": {
+      "size": 3798,
+      "sha256": "3b1026ac9af718866d3c28ded62d7156590bef9dc88cfaf655c6d0a7ad773b6e",
+      "ppm_sha256": "a0839ba700ded618645b2f3f3ed3f153d56676a589640691bd6f67391b9ade0a"
+    },
+    "pr16-ring-policy-native/ring-cancel-toggle-give-party.png": {
+      "size": 2881,
+      "sha256": "421f7c57054248c7319d96671337f931bf67a34f40d0435563feac943ccceb3c",
+      "ppm_sha256": "ef5461d6789f709747253f5a45bc9977a80cc54d859c7d85edc33c3e3312f3a0"
+    },
+    "pr16-ring-policy-native/ring-cancel-toggle-mega-selection.png": {
+      "size": 4880,
+      "sha256": "8ed3ecf2c4d6686ed2ae83a30f8c680586a37c7a46d5d85fe6921b4b8542bfbc",
+      "ppm_sha256": "0b6e1d318d714409f6378ae2612e5025c4fd5cb355bf4bfde2a826b87bb81d39"
+    },
+    "pr16-ring-policy-native/ring-cancel-toggle-native-turn.png": {
+      "size": 4543,
+      "sha256": "57b3baa88e2fc4c74b913a31a407639d636fc3db53ffe8c5cab6b808fd5000f8",
+      "ppm_sha256": "967a4cdea27054d17066e5d9a267297425b25def0f16d13b5d62d76bacbbb19a"
+    },
+    "pr16-ring-policy-native/ring-cancel-toggle-natural-equipped-battle.png": {
+      "size": 3862,
+      "sha256": "f8052851c869dca1a7ebee5d9f04012abc518e8d6607b7654f330a2c0ad343fa",
+      "ppm_sha256": "06fb2ee8f3c1758b9e398fe67fbb6fa117025f932911dfde0589c6abb79693d1"
+    },
+    "pr16-ring-policy-native/ring-cancel-toggle-npc-dialogue.png": {
+      "size": 5978,
+      "sha256": "eeba86af22b55d341dcfd2a5329346a765b610bf9427e944ad2e87167025dfdb",
+      "ppm_sha256": "992c4c3345bd9f982ef2915884839a9836546a71c70e1e18a9a50db1d0a5dcec"
+    },
+    "pr16-ring-policy-native/ring-cancel-toggle-reverted-field.png": {
+      "size": 4821,
+      "sha256": "10f51a3c98d3b89105dbf25ea9b9e5ac99472f477b2e6b85a319642cd30e07a3",
+      "ppm_sha256": "3d27d5697797b7163efafeeedbad8f6197e1fa7dbbd0e1f4f0185d885dce8e54"
+    },
+    "pr16-ring-policy-native/ring-cancel-toggle.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "pr16-ring-policy-native/ring-cancel-toggle.stderr": {
+      "size": 2357,
+      "sha256": "4d907e9656261c75b238731ead5b94588e5b638f3e0cc1ed55df2f3023cec63f"
+    },
+    "pr16-ring-policy-native/ring-cancel-toggle.stdout": {
+      "size": 1178,
+      "sha256": "ac1959570f38564140b5906697fb6b320cad941335ed29b2bb3aaaccce11e47d"
+    },
+    "pr16-ring-policy-native/ring-no-toggle-bag-stone.png": {
+      "size": 3263,
+      "sha256": "35491c2977be1af04d107ee108107174dae1bb6b323c08417058af78aac3c25f",
+      "ppm_sha256": "485d108acf7ef9d7c8e26ed819a6475327087f36c13569a0e76bdd8cf7d82387"
+    },
+    "pr16-ring-policy-native/ring-no-toggle-battle-reloaded.png": {
+      "size": 4821,
+      "sha256": "10f51a3c98d3b89105dbf25ea9b9e5ac99472f477b2e6b85a319642cd30e07a3",
+      "ppm_sha256": "3d27d5697797b7163efafeeedbad8f6197e1fa7dbbd0e1f4f0185d885dce8e54"
+    },
+    "pr16-ring-policy-native/ring-no-toggle-equip-menus-closed.png": {
+      "size": 5707,
+      "sha256": "aa1546fb65a96dfb4b390034619c94fd51518f73993f1c48a6c364541db8d9c7",
+      "ppm_sha256": "4127a181929cbacb0ce807a91f06bc6d70fcac83226d506cec20e0c79e7c8e13"
+    },
+    "pr16-ring-policy-native/ring-no-toggle-equipped-reloaded.png": {
+      "size": 5707,
+      "sha256": "aa1546fb65a96dfb4b390034619c94fd51518f73993f1c48a6c364541db8d9c7",
+      "ppm_sha256": "4127a181929cbacb0ce807a91f06bc6d70fcac83226d506cec20e0c79e7c8e13"
+    },
+    "pr16-ring-policy-native/ring-no-toggle-equipped.png": {
+      "size": 2745,
+      "sha256": "d5655014b2993516c3ed7606c6aaa3f89b7b6e35b77e3c51a57b79f79285ddf3",
+      "ppm_sha256": "27d878a864beaa728a776a57d1cce58dadf367c2cdab4d93f5e78582489121a8"
+    },
+    "pr16-ring-policy-native/ring-no-toggle-fixture.png": {
+      "size": 5750,
+      "sha256": "fed53323d1c4dff7aae6a746dde2937ad87f0dd514f499e7a41d4dcefc5c639e",
+      "ppm_sha256": "0caa3a8e27f53247e692869fd915a6a4ab2b374e44899906f8a3ece16759052c"
+    },
+    "pr16-ring-policy-native/ring-no-toggle-give-menu.png": {
+      "size": 3798,
+      "sha256": "3b1026ac9af718866d3c28ded62d7156590bef9dc88cfaf655c6d0a7ad773b6e",
+      "ppm_sha256": "a0839ba700ded618645b2f3f3ed3f153d56676a589640691bd6f67391b9ade0a"
+    },
+    "pr16-ring-policy-native/ring-no-toggle-give-party.png": {
+      "size": 2881,
+      "sha256": "421f7c57054248c7319d96671337f931bf67a34f40d0435563feac943ccceb3c",
+      "ppm_sha256": "ef5461d6789f709747253f5a45bc9977a80cc54d859c7d85edc33c3e3312f3a0"
+    },
+    "pr16-ring-policy-native/ring-no-toggle-mega-selection.png": {
+      "size": 4869,
+      "sha256": "e819c0653478286d38672f8171694cb6f264043238733c379f9655ecc0f5bd96",
+      "ppm_sha256": "5b364ece7bedd23982189cda538450ad800c7dea2c6cb639574e265e525ce9d5"
+    },
+    "pr16-ring-policy-native/ring-no-toggle-native-turn.png": {
+      "size": 4543,
+      "sha256": "57b3baa88e2fc4c74b913a31a407639d636fc3db53ffe8c5cab6b808fd5000f8",
+      "ppm_sha256": "967a4cdea27054d17066e5d9a267297425b25def0f16d13b5d62d76bacbbb19a"
+    },
+    "pr16-ring-policy-native/ring-no-toggle-natural-equipped-battle.png": {
+      "size": 3862,
+      "sha256": "f8052851c869dca1a7ebee5d9f04012abc518e8d6607b7654f330a2c0ad343fa",
+      "ppm_sha256": "06fb2ee8f3c1758b9e398fe67fbb6fa117025f932911dfde0589c6abb79693d1"
+    },
+    "pr16-ring-policy-native/ring-no-toggle-npc-dialogue.png": {
+      "size": 5978,
+      "sha256": "eeba86af22b55d341dcfd2a5329346a765b610bf9427e944ad2e87167025dfdb",
+      "ppm_sha256": "992c4c3345bd9f982ef2915884839a9836546a71c70e1e18a9a50db1d0a5dcec"
+    },
+    "pr16-ring-policy-native/ring-no-toggle-reverted-field.png": {
+      "size": 4821,
+      "sha256": "10f51a3c98d3b89105dbf25ea9b9e5ac99472f477b2e6b85a319642cd30e07a3",
+      "ppm_sha256": "3d27d5697797b7163efafeeedbad8f6197e1fa7dbbd0e1f4f0185d885dce8e54"
+    },
+    "pr16-ring-policy-native/ring-no-toggle.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "pr16-ring-policy-native/ring-no-toggle.stderr": {
+      "size": 2357,
+      "sha256": "4d907e9656261c75b238731ead5b94588e5b638f3e0cc1ed55df2f3023cec63f"
+    },
+    "pr16-ring-policy-native/ring-no-toggle.stdout": {
+      "size": 1171,
+      "sha256": "3868384a486efd27aba3027176839686fae7bb302a0384090f672dce8ed58815"
+    },
+    "pr16-ring-policy-native/ring-unowned-bag-stone.png": {
+      "size": 3263,
+      "sha256": "35491c2977be1af04d107ee108107174dae1bb6b323c08417058af78aac3c25f",
+      "ppm_sha256": "485d108acf7ef9d7c8e26ed819a6475327087f36c13569a0e76bdd8cf7d82387"
+    },
+    "pr16-ring-policy-native/ring-unowned-battle-reloaded.png": {
+      "size": 4821,
+      "sha256": "10f51a3c98d3b89105dbf25ea9b9e5ac99472f477b2e6b85a319642cd30e07a3",
+      "ppm_sha256": "3d27d5697797b7163efafeeedbad8f6197e1fa7dbbd0e1f4f0185d885dce8e54"
+    },
+    "pr16-ring-policy-native/ring-unowned-equip-menus-closed.png": {
+      "size": 5707,
+      "sha256": "aa1546fb65a96dfb4b390034619c94fd51518f73993f1c48a6c364541db8d9c7",
+      "ppm_sha256": "4127a181929cbacb0ce807a91f06bc6d70fcac83226d506cec20e0c79e7c8e13"
+    },
+    "pr16-ring-policy-native/ring-unowned-equipped-reloaded.png": {
+      "size": 5707,
+      "sha256": "aa1546fb65a96dfb4b390034619c94fd51518f73993f1c48a6c364541db8d9c7",
+      "ppm_sha256": "4127a181929cbacb0ce807a91f06bc6d70fcac83226d506cec20e0c79e7c8e13"
+    },
+    "pr16-ring-policy-native/ring-unowned-equipped.png": {
+      "size": 2745,
+      "sha256": "d5655014b2993516c3ed7606c6aaa3f89b7b6e35b77e3c51a57b79f79285ddf3",
+      "ppm_sha256": "27d878a864beaa728a776a57d1cce58dadf367c2cdab4d93f5e78582489121a8"
+    },
+    "pr16-ring-policy-native/ring-unowned-fixture.png": {
+      "size": 5750,
+      "sha256": "fed53323d1c4dff7aae6a746dde2937ad87f0dd514f499e7a41d4dcefc5c639e",
+      "ppm_sha256": "0caa3a8e27f53247e692869fd915a6a4ab2b374e44899906f8a3ece16759052c"
+    },
+    "pr16-ring-policy-native/ring-unowned-give-menu.png": {
+      "size": 3798,
+      "sha256": "3b1026ac9af718866d3c28ded62d7156590bef9dc88cfaf655c6d0a7ad773b6e",
+      "ppm_sha256": "a0839ba700ded618645b2f3f3ed3f153d56676a589640691bd6f67391b9ade0a"
+    },
+    "pr16-ring-policy-native/ring-unowned-give-party.png": {
+      "size": 2881,
+      "sha256": "421f7c57054248c7319d96671337f931bf67a34f40d0435563feac943ccceb3c",
+      "ppm_sha256": "ef5461d6789f709747253f5a45bc9977a80cc54d859c7d85edc33c3e3312f3a0"
+    },
+    "pr16-ring-policy-native/ring-unowned-mega-selection.png": {
+      "size": 4806,
+      "sha256": "d2765bc43dd6e829d3febe585bf4e792fc1b26182bd16db7753b9b55033fb695",
+      "ppm_sha256": "c2133b53ad948dc8ecaf0869e014f010fd5913d2d957f98b6492d10190ecd19d"
+    },
+    "pr16-ring-policy-native/ring-unowned-native-turn.png": {
+      "size": 4447,
+      "sha256": "243bb02cc41f6e7b71965b5e995e7170381df48ea2b53b23cb8968e8d99d9d39",
+      "ppm_sha256": "e2b3278396d3207bd0029f693400d221a7aa212aa23656794a47df58dccb4cab"
+    },
+    "pr16-ring-policy-native/ring-unowned-natural-equipped-battle.png": {
+      "size": 3862,
+      "sha256": "f8052851c869dca1a7ebee5d9f04012abc518e8d6607b7654f330a2c0ad343fa",
+      "ppm_sha256": "06fb2ee8f3c1758b9e398fe67fbb6fa117025f932911dfde0589c6abb79693d1"
+    },
+    "pr16-ring-policy-native/ring-unowned-npc-dialogue.png": {
+      "size": 5812,
+      "sha256": "5d1ed24198e9fbf7ce6381d4a5939f3ee63884038b302d36f57b7a40b6ca0877",
+      "ppm_sha256": "08f4c381d6307ed4be222f1f5c3954f326a62b15266577ee19b665b9c7a7a88d"
+    },
+    "pr16-ring-policy-native/ring-unowned-reverted-field.png": {
+      "size": 4821,
+      "sha256": "10f51a3c98d3b89105dbf25ea9b9e5ac99472f477b2e6b85a319642cd30e07a3",
+      "ppm_sha256": "3d27d5697797b7163efafeeedbad8f6197e1fa7dbbd0e1f4f0185d885dce8e54"
+    },
+    "pr16-ring-policy-native/ring-unowned.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "pr16-ring-policy-native/ring-unowned.stderr": {
+      "size": 2357,
+      "sha256": "b7091d5b6141d53bed41d435b192a465c8440415f29a4b10f097cac1eab75d00"
+    },
+    "pr16-ring-policy-native/ring-unowned.stdout": {
+      "size": 1172,
+      "sha256": "bf9786bf842e63d58de7e0f9ff7c33a511045018a8ff63e11f43f9c948f2c1eb"
+    },
+    "pr16-ring-policy-native/ring-wrong-stone-bag-stone.png": {
+      "size": 3247,
+      "sha256": "99d023db30e01bb80a09bb625ab27e1434c119325dc733d43270092ec6a5bc2a",
+      "ppm_sha256": "5849185b7353dbfcc4884a40aa72f8b1ed283c48044cfb70c855f4f639bb3525"
+    },
+    "pr16-ring-policy-native/ring-wrong-stone-battle-reloaded.png": {
+      "size": 4821,
+      "sha256": "10f51a3c98d3b89105dbf25ea9b9e5ac99472f477b2e6b85a319642cd30e07a3",
+      "ppm_sha256": "3d27d5697797b7163efafeeedbad8f6197e1fa7dbbd0e1f4f0185d885dce8e54"
+    },
+    "pr16-ring-policy-native/ring-wrong-stone-equip-menus-closed.png": {
+      "size": 5707,
+      "sha256": "aa1546fb65a96dfb4b390034619c94fd51518f73993f1c48a6c364541db8d9c7",
+      "ppm_sha256": "4127a181929cbacb0ce807a91f06bc6d70fcac83226d506cec20e0c79e7c8e13"
+    },
+    "pr16-ring-policy-native/ring-wrong-stone-equipped-reloaded.png": {
+      "size": 5707,
+      "sha256": "aa1546fb65a96dfb4b390034619c94fd51518f73993f1c48a6c364541db8d9c7",
+      "ppm_sha256": "4127a181929cbacb0ce807a91f06bc6d70fcac83226d506cec20e0c79e7c8e13"
+    },
+    "pr16-ring-policy-native/ring-wrong-stone-equipped.png": {
+      "size": 2748,
+      "sha256": "c3ee9708c1bbd57819158ef1efe128b598373faa434d84af5bdc6f11fcc6c926",
+      "ppm_sha256": "a035c632b7a087637042c076b1f87b7ad91dedf958406ddccd46cc970a76f4e0"
+    },
+    "pr16-ring-policy-native/ring-wrong-stone-fixture.png": {
+      "size": 5750,
+      "sha256": "fed53323d1c4dff7aae6a746dde2937ad87f0dd514f499e7a41d4dcefc5c639e",
+      "ppm_sha256": "0caa3a8e27f53247e692869fd915a6a4ab2b374e44899906f8a3ece16759052c"
+    },
+    "pr16-ring-policy-native/ring-wrong-stone-give-menu.png": {
+      "size": 3773,
+      "sha256": "9e4efc03a089b8cb160c078c3468803221e51365b293dacd7f6265478acbf193",
+      "ppm_sha256": "b000151d45f4ec1dac436d72a4e3cf4464faf47bd7904b3747267d5ecc038cde"
+    },
+    "pr16-ring-policy-native/ring-wrong-stone-give-party.png": {
+      "size": 2881,
+      "sha256": "421f7c57054248c7319d96671337f931bf67a34f40d0435563feac943ccceb3c",
+      "ppm_sha256": "ef5461d6789f709747253f5a45bc9977a80cc54d859c7d85edc33c3e3312f3a0"
+    },
+    "pr16-ring-policy-native/ring-wrong-stone-mega-selection.png": {
+      "size": 4806,
+      "sha256": "d2765bc43dd6e829d3febe585bf4e792fc1b26182bd16db7753b9b55033fb695",
+      "ppm_sha256": "c2133b53ad948dc8ecaf0869e014f010fd5913d2d957f98b6492d10190ecd19d"
+    },
+    "pr16-ring-policy-native/ring-wrong-stone-native-turn.png": {
+      "size": 4447,
+      "sha256": "243bb02cc41f6e7b71965b5e995e7170381df48ea2b53b23cb8968e8d99d9d39",
+      "ppm_sha256": "e2b3278396d3207bd0029f693400d221a7aa212aa23656794a47df58dccb4cab"
+    },
+    "pr16-ring-policy-native/ring-wrong-stone-natural-equipped-battle.png": {
+      "size": 3862,
+      "sha256": "f8052851c869dca1a7ebee5d9f04012abc518e8d6607b7654f330a2c0ad343fa",
+      "ppm_sha256": "06fb2ee8f3c1758b9e398fe67fbb6fa117025f932911dfde0589c6abb79693d1"
+    },
+    "pr16-ring-policy-native/ring-wrong-stone-npc-dialogue.png": {
+      "size": 5978,
+      "sha256": "eeba86af22b55d341dcfd2a5329346a765b610bf9427e944ad2e87167025dfdb",
+      "ppm_sha256": "992c4c3345bd9f982ef2915884839a9836546a71c70e1e18a9a50db1d0a5dcec"
+    },
+    "pr16-ring-policy-native/ring-wrong-stone-reverted-field.png": {
+      "size": 4821,
+      "sha256": "10f51a3c98d3b89105dbf25ea9b9e5ac99472f477b2e6b85a319642cd30e07a3",
+      "ppm_sha256": "3d27d5697797b7163efafeeedbad8f6197e1fa7dbbd0e1f4f0185d885dce8e54"
+    },
+    "pr16-ring-policy-native/ring-wrong-stone.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "pr16-ring-policy-native/ring-wrong-stone.stderr": {
+      "size": 2357,
+      "sha256": "0684111b47e9d1b62f0d7974a819cfe82d6075803671f0bd8fbbd90500c0af45"
+    },
+    "pr16-ring-policy-native/ring-wrong-stone.stdout": {
+      "size": 1176,
+      "sha256": "e4a6b0eb8d9e786dd010a37de5461e834bbea6908fa850642d9ef3c58d5b786a"
+    }
+  },
+  "visual_review": {
+    "completed": true,
+    "reviewed_sha256": {
+      "pr16-ring-policy-native/ring-active-npc-dialogue.png": "eeba86af22b55d341dcfd2a5329346a765b610bf9427e944ad2e87167025dfdb",
+      "pr16-ring-policy-native/ring-active-bag-stone.png": "35491c2977be1af04d107ee108107174dae1bb6b323c08417058af78aac3c25f",
+      "pr16-ring-policy-native/ring-active-give-menu.png": "3b1026ac9af718866d3c28ded62d7156590bef9dc88cfaf655c6d0a7ad773b6e",
+      "pr16-ring-policy-native/ring-active-give-party.png": "421f7c57054248c7319d96671337f931bf67a34f40d0435563feac943ccceb3c",
+      "pr16-ring-policy-native/ring-active-equipped.png": "d5655014b2993516c3ed7606c6aaa3f89b7b6e35b77e3c51a57b79f79285ddf3",
+      "pr16-ring-policy-native/ring-active-natural-equipped-battle.png": "f8052851c869dca1a7ebee5d9f04012abc518e8d6607b7654f330a2c0ad343fa",
+      "pr16-ring-policy-native/ring-active-mega-selection.png": "7ad8f6aa10fbc7165f32cd2f1a83186759fd49ee49d67a95f6db6951a7dccf36",
+      "pr16-ring-policy-native/ring-active-mega-active.png": "20062bd138f25e9ec540cfb52f8e906b7c795f6fa48f1c89d2dad05cff30f52d",
+      "pr16-ring-policy-native/ring-active-native-turn.png": "f08f7712f674fb1e6961c159ff48cc18b897b5e4095f3df9002a20db7b3596e8",
+      "pr16-ring-policy-native/ring-active-reverted-field.png": "10f51a3c98d3b89105dbf25ea9b9e5ac99472f477b2e6b85a319642cd30e07a3",
+      "pr16-ring-policy-native/ring-active-equipped-reloaded.png": "aa1546fb65a96dfb4b390034619c94fd51518f73993f1c48a6c364541db8d9c7",
+      "pr16-ring-policy-native/ring-active-battle-reloaded.png": "10f51a3c98d3b89105dbf25ea9b9e5ac99472f477b2e6b85a319642cd30e07a3",
+      "pr16-ring-policy-native/ring-unowned-npc-dialogue.png": "5d1ed24198e9fbf7ce6381d4a5939f3ee63884038b302d36f57b7a40b6ca0877",
+      "pr16-ring-policy-native/ring-unowned-mega-selection.png": "d2765bc43dd6e829d3febe585bf4e792fc1b26182bd16db7753b9b55033fb695",
+      "pr16-ring-policy-native/ring-unowned-native-turn.png": "243bb02cc41f6e7b71965b5e995e7170381df48ea2b53b23cb8968e8d99d9d39",
+      "pr16-ring-policy-native/ring-wrong-stone-npc-dialogue.png": "eeba86af22b55d341dcfd2a5329346a765b610bf9427e944ad2e87167025dfdb",
+      "pr16-ring-policy-native/ring-wrong-stone-mega-selection.png": "d2765bc43dd6e829d3febe585bf4e792fc1b26182bd16db7753b9b55033fb695",
+      "pr16-ring-policy-native/ring-wrong-stone-native-turn.png": "243bb02cc41f6e7b71965b5e995e7170381df48ea2b53b23cb8968e8d99d9d39",
+      "pr16-ring-policy-native/ring-no-toggle-npc-dialogue.png": "eeba86af22b55d341dcfd2a5329346a765b610bf9427e944ad2e87167025dfdb",
+      "pr16-ring-policy-native/ring-no-toggle-mega-selection.png": "e819c0653478286d38672f8171694cb6f264043238733c379f9655ecc0f5bd96",
+      "pr16-ring-policy-native/ring-no-toggle-native-turn.png": "57b3baa88e2fc4c74b913a31a407639d636fc3db53ffe8c5cab6b808fd5000f8",
+      "pr16-ring-policy-native/ring-cancel-toggle-npc-dialogue.png": "eeba86af22b55d341dcfd2a5329346a765b610bf9427e944ad2e87167025dfdb",
+      "pr16-ring-policy-native/ring-cancel-toggle-mega-selection.png": "8ed3ecf2c4d6686ed2ae83a30f8c680586a37c7a46d5d85fe6921b4b8542bfbc",
+      "pr16-ring-policy-native/ring-cancel-toggle-native-turn.png": "57b3baa88e2fc4c74b913a31a407639d636fc3db53ffe8c5cab6b808fd5000f8"
+    },
+    "method_ja": "ChatGPTが原PNGのうち24画面を2倍nearest-neighbor一覧で目視確認。受取・Give・既存技UI・対照・復帰・保存再開。mega-activeは種族変更直後でsprite更新前、native-turnでメガspriteを確認。OCR不使用。全66画面の目視とは主張しない。"
+  },
+  "accepted_gift": {
+    "path": "content/modernization/pr16_ring_npc_gift_checkpoint_20260918.json",
+    "identity": {
+      "size": 105995,
+      "sha256": "786e5e10a23e5008669b3ec76d8646ee523819d91740dbb8a361e5150598bae9"
+    },
+    "run_id": 35339382576,
+    "original_native_processes": 3,
+    "original_fresh_cores": 6,
+    "new_replays": 0
+  },
+  "ring_acquisition_accepted": true,
+  "ordinary_battle_accepted": true,
+  "closed_physical_ids": [
+    "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
+    "P05_ORDINARY_POLICY_SELECTION_PHYSICAL"
+  ],
+  "new_emulator_processes": 0,
+  "recorded_native_processes": 5,
+  "recorded_fresh_cores": 15,
+  "accepted_native_cases_replayed": 0,
+  "full_p05_acceptance": false,
+  "final_candidate_transfer_complete": false,
+  "release_ready": false,
+  "verification": {
+    "run": {
+      "id": 35347587112,
+      "head_sha": "a54fe471c666c280f116b5cbfc3b1a6c821e5395",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    "job": {
+      "id": 105607699274,
+      "head_sha": "a54fe471c666c280f116b5cbfc3b1a6c821e5395",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  },
+  "attempt_history": [
+    {
+      "run_id": 35343718071,
+      "job_id": 105595282211,
+      "artifact_id": 10546057625,
+      "tested_head": "a5a60d29da009ba11ae9305bd42857cf2d78fb24",
+      "conclusion": "failure",
+      "artifact_identity": {
+        "size": 138114,
+        "sha256": "7fe125eeda308f7f5b5e39e8fa64647df446af77669ee28254d03d05ba01692c"
+      },
+      "new_emulator_processes": 0,
+      "original_stderr": {
+        "pr16-ring-policy-run/build.stderr": {
+          "identity": {
+            "size": 709,
+            "sha256": "44da565bcd3d0d67204fc30baa9e509f5670aab2638a03480476049431feb147"
+          },
+          "last_line": "ValueError: begin must be owned by exactly one existing allocation",
+          "original_available_in_fixed_artifact": true
+        }
+      },
+      "reason_ja": "予約済みCFRU入口と追加payload割当台帳の区別を誤り停止。native0。",
+      "verification": {
+        "run": {
+          "id": 35343718071,
+          "head_sha": "a5a60d29da009ba11ae9305bd42857cf2d78fb24",
+          "status": "completed",
+          "conclusion": "failure"
+        },
+        "job": {
+          "id": 105595282211,
+          "head_sha": "a5a60d29da009ba11ae9305bd42857cf2d78fb24",
+          "status": "completed",
+          "conclusion": "failure"
+        }
+      },
+      "accepted": false
+    },
+    {
+      "run_id": 35344225752,
+      "job_id": 105596934606,
+      "artifact_id": 10546267960,
+      "tested_head": "93843a87f541992f1b89bb81fe31cc08bf8e11ec",
+      "conclusion": "success",
+      "artifact_identity": {
+        "size": 263103,
+        "sha256": "5b742efa868b5756880db98725feae7e05e79b7afad684d213e5fff56e21b3c6"
+      },
+      "new_emulator_processes": 0,
+      "original_stderr": {},
+      "reason_ja": "限定候補のARM二重生成と全差分照合に成功。native導入前のbuildだけ。",
+      "verification": {
+        "run": {
+          "id": 35344225752,
+          "head_sha": "93843a87f541992f1b89bb81fe31cc08bf8e11ec",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        "job": {
+          "id": 105596934606,
+          "head_sha": "93843a87f541992f1b89bb81fe31cc08bf8e11ec",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      },
+      "accepted": false
+    },
+    {
+      "run_id": 35345312163,
+      "job_id": 105600379561,
+      "artifact_id": 10546469586,
+      "tested_head": "0a119a8758501e253488c97d44c07e121e4d1899",
+      "conclusion": "failure",
+      "artifact_identity": {
+        "size": 278179,
+        "sha256": "23283f5cb3140e7c693e4d164146120a2b98b8e4ed21d76c54003f771ad9b01a"
+      },
+      "new_emulator_processes": 0,
+      "original_stderr": {
+        "pr16-ring-policy-run/native.stderr": {
+          "identity": {
+            "size": 928,
+            "sha256": "b57e9f4e9f367333e5becb2d503a90770f75fe7d6b9b7ea41964ccf6fca620dc"
+          },
+          "last_line": "ValueError: purchased-gear candidate identity differs",
+          "original_available_in_fixed_artifact": true
+        }
+      },
+      "reason_ja": "旧候補固定SHAのgear probeが新候補を拒否。新候補自身の地形/出現表を照合する専用経路へ分離。native0。",
+      "verification": {
+        "run": {
+          "id": 35345312163,
+          "head_sha": "0a119a8758501e253488c97d44c07e121e4d1899",
+          "status": "completed",
+          "conclusion": "failure"
+        },
+        "job": {
+          "id": 105600379561,
+          "head_sha": "0a119a8758501e253488c97d44c07e121e4d1899",
+          "status": "completed",
+          "conclusion": "failure"
+        }
+      },
+      "accepted": false
+    },
+    {
+      "run_id": 35346267897,
+      "job_id": 105603458712,
+      "artifact_id": 10547266385,
+      "tested_head": "3f8514bb2edc503e636d46da448e176aa7903a95",
+      "conclusion": "failure",
+      "artifact_identity": {
+        "size": 371226,
+        "sha256": "9004d2e34ea3d23db530b45ff1405b461de2a6bd4f375345e6a9a939e88e5b32"
+      },
+      "new_emulator_processes": 1,
+      "original_stderr": {
+        "pr16-ring-policy-native/ring-active.stderr": {
+          "identity": {
+            "size": 2367,
+            "sha256": "be4250df4214fa9ddf2145b50cd891cc4150ed487bbb6467275f799183489aef"
+          },
+          "last_line": "P03 archive: Ring cold-load ordinary policy or initial usage differs",
+          "original_available_in_fixed_artifact": true
+        }
+      },
+      "reason_ja": "NPC正規受取/Give/Save/cold Continue/自然遭遇mode1まで到達したが入力待ちflags0の誤仮定で停止。MASTER4とLINK2を固定定義で区別。成功に数えない。",
+      "verification": {
+        "run": {
+          "id": 35346267897,
+          "head_sha": "3f8514bb2edc503e636d46da448e176aa7903a95",
+          "status": "completed",
+          "conclusion": "failure"
+        },
+        "job": {
+          "id": 105603458712,
+          "head_sha": "3f8514bb2edc503e636d46da448e176aa7903a95",
+          "status": "completed",
+          "conclusion": "failure"
+        }
+      },
+      "accepted": false
+    },
+    {
+      "run_id": 35347204176,
+      "job_id": 105606476228,
+      "artifact_id": 10547846369,
+      "tested_head": "89be0b272cc8f1596ab27f7ce72eefbb13e00ce3",
+      "conclusion": "failure",
+      "artifact_identity": {
+        "size": 280421,
+        "sha256": "79dae4a1b6839318bacdf07686d11e2a2747066050dac7d78e6747cf8ee83d92"
+      },
+      "new_emulator_processes": 0,
+      "original_stderr": {
+        "pr16-ring-policy-run/native.stderr": {
+          "identity": {
+            "size": 885,
+            "sha256": "065daebc13ae28a523bf4579d2b0da292a06a82a420acc3e0860340d2b8634a5"
+          },
+          "last_line": "ValueError: pinned battle header missing",
+          "original_available_in_fixed_artifact": true
+        }
+      },
+      "reason_ja": "最小復元にはbattle headerが未展開のためpreflightで停止。固定state ZIPのSHA/sizeを照合して必要2headerだけ読む。native0。",
+      "verification": {
+        "run": {
+          "id": 35347204176,
+          "head_sha": "89be0b272cc8f1596ab27f7ce72eefbb13e00ce3",
+          "status": "completed",
+          "conclusion": "failure"
+        },
+        "job": {
+          "id": 105606476228,
+          "head_sha": "89be0b272cc8f1596ab27f7ce72eefbb13e00ce3",
+          "status": "completed",
+          "conclusion": "failure"
+        }
+      },
+      "accepted": false
+    }
+  ],
+  "session_native_processes_including_rejected": 6,
+  "record_source_head": "77d45a429bf410a783fbb2c7738d9561048366c4",
+  "record_run_id": 35349174693,
+  "record_new_emulator_processes": 0,
+  "acceptance_conditions": [
+    "対象NPCのmap/local ID/座標/会話ownerと、進行イベント/共有スクリプト非破壊を確認",
+    "FINAL_LEAGUE_CLEARED未達では付与/解禁されず、達成後は実会話でitem580を1個受取",
+    "未取得対照、二重受取防止、付与失敗では取得済みにしないことを確認。取消経路がある場合は取消も確認",
+    "リング所持を正本に通常戦闘を解禁。追加の永続フラグは必要性がある場合だけ既存save枠へ整合的に接続",
+    "対応石を持つポケモンで既存技選択UIからメガ進化・技使用。未所持/不適合石/選択取消の不成立を確認",
+    "施設禁止/他ギミック排他/使用回数を維持し、戦闘後に漏洩しない",
+    "通常Save→fresh Continue後もリングを保持し、受取時だけの揮発RAM設定に依存せず次戦で利用可能",
+    "変更影響台帳と受入条件の対応を記録。実観測前はRing/policy/Circus/P08未受入を維持"
+  ],
+  "impact_ledger": [
+    {
+      "area": "CFRU ordinary begin",
+      "changed_bytes": 8,
+      "new_reserved_tail_bytes": 172,
+      "proof": "builder: full parent SHA/620-byte owner/BL callees/prologue/FF allocation; ARM two-build identity",
+      "evidence": "builder"
+    },
+    {
+      "area": "Ring gift/map/save",
+      "runtime_changed": false,
+      "accepted_checkpoint": "content/modernization/pr16_ring_npc_gift_checkpoint_20260918.json",
+      "proof": "same source bindings; no existing allocator payload/object/map/save-layout changes",
+      "new_standalone_replays": 0
+    },
+    {
+      "area": "cold Ring + existing UI",
+      "new_cases": [
+        "ring-active",
+        "ring-unowned",
+        "ring-wrong-stone",
+        "ring-no-toggle",
+        "ring-cancel-toggle"
+      ],
+      "proof": "real NPC receipt, Give, two normal Saves and two fresh Continues; no Ring/NEXT injection"
+    },
+    {
+      "area": "explicit pending/facility/raid/link/exclusivity",
+      "proof": "11 production host contracts; unchanged original begin/select/usage owners; active usage=1 and negative usage=0",
+      "new_facility_native_replays": 0,
+      "all_facility_native_regression_claimed": false
+    },
+    {
+      "area": "BP/P03/P06/P07 and Circus",
+      "native_replayed": false,
+      "proof": "unaffected accepted evidence preserved; Circus physical ID and P08 transfer/release remain open"
+    },
+    {
+      "area": "legacy cold-policy-reset",
+      "old_result_relabelled": false,
+      "proof": "previous candidate intentionally did not retain a volatile NEXT; new owned Ring case proves new per-battle behavior"
+    }
+  ],
+  "bp_checkpoint_change": {
+    "only_field": "physical_gap_count",
+    "before": 3,
+    "after": 1,
+    "native_result_fields_unchanged": true,
+    "before_identity": {
+      "size": 9442,
+      "sha256": "853ed41b6abcfb63651aab136951a53c8c89ec635f769e8466327ba3a0c0ae41"
+    }
+  }
+}

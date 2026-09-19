@@ -1,0 +1,101 @@
+name: pr16-route-oracles
+run-name: Exact remaining-route inputs, not native acceptance
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-route-oracles.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  route-oracles:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Exact candidate prerequisites and read-only fixed source archives
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-route-oracles .local/pr16-inputs
+          git rev-parse HEAD > .local/pr16-route-oracles/tested-head.txt
+          bash infra/setup_github_actions.sh --install > .local/pr16-route-oracles/toolchain.log 2>&1
+          python3 scripts/modernization_final_integration.py prepare > .local/pr16-route-oracles/stage84.json
+          gh release download private-environment-v1 --pattern pokemon-vega-private-env-v1-inputs.zip --pattern pokemon-vega-private-env-v1-state.zip --dir .local/pr16-inputs
+          python3 - <<'PY'
+          import hashlib,json,pathlib,re,zipfile
+          root=pathlib.Path('.');out=root/'.local/pr16-route-oracles'
+          cfg=json.loads((root/'config/github_private_environment.json').read_bytes());bindings={}
+          for name in ('pokemon-vega-private-env-v1-inputs.zip','pokemon-vega-private-env-v1-state.zip'):
+              model=next(a for a in cfg['archives'] if a['name']==name)
+              archive=root/'.local/pr16-inputs'/name;raw=archive.read_bytes()
+              assert len(raw)==model['size'] and hashlib.sha256(raw).hexdigest()==model['sha256']
+              bindings[name]={'size':len(raw),'sha256':model['sha256']}
+          with zipfile.ZipFile(root/'.local/pr16-inputs/pokemon-vega-private-env-v1-inputs.zip') as z:
+              name='userfile/imports/Pokemon-Vega_MOVE-DISTRIBUTION-V4_IMPLEMENTATION-READY.zip';data=z.read(name)
+              assert hashlib.sha256(data).hexdigest()=='4022cd6e1358f58dffc5ebc38b756166f0a1072f948af6934298f65bd82678b2'
+              p=root/name;assert not any(q.is_symlink() for q in (p,*p.parents))
+              if p.exists():assert p.read_bytes()==data
+              else:p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(data);p.chmod(0o444)
+          sources={}
+          with zipfile.ZipFile(root/'.local/pr16-inputs/pokemon-vega-private-env-v1-state.zip') as z,zipfile.ZipFile(out/'fixed-native-sources.zip','w',zipfile.ZIP_DEFLATED) as dest:
+              for name in z.namelist():
+                  p=pathlib.PurePosixPath(name)
+                  if not name.startswith('vendor/upstream/CFRU-JP/') or p.suffix not in ('.c','.h','.s','.S'):continue
+                  assert '..' not in p.parts and not p.is_absolute()
+                  data=z.read(name)
+                  try:text=data.decode('utf8')
+                  except UnicodeDecodeError:continue
+                  if not re.search(r'incense|happiny|GetEggSpecies|circus|struct BaseStats',text,re.I):continue
+                  assert b'\0' not in data and len(data)<2000000
+                  dest.writestr(name,data);sources[name]={'size':len(data),'sha256':hashlib.sha256(data).hexdigest()}
+          (out/'fixed-source-bindings.json').write_text(json.dumps({'archives':bindings,'members':sources},sort_keys=True,indent=2)+'\n')
+          PY
+      - name: Compose unchanged candidate and collect independent physical data
+        run: |
+          set -euo pipefail
+          out=.local/pr16-route-oracles
+          python3 scripts/pr16_p07_preserved_layer.py > "$out/p07.stdout" 2> "$out/p07.stderr"
+          python3 scripts/pr16_evolution_learning_repair.py > "$out/repair.stdout" 2> "$out/repair.stderr"
+          python3 - <<'PY'
+          import csv,hashlib,json,pathlib,struct,subprocess,sys,zipfile
+          sys.path.insert(0,'scripts');import pr16_repaired_acceptance as a
+          root=pathlib.Path('.');out=root/'.local/pr16-route-oracles';s=a.layer.source
+          raw=s.checked(root/a.ROM,a.ROM_SHA);parent=s.checked(root/'.local/final-integration-candidate/candidate.gba',s.ROM_SHA)
+          selected,_=s.recover(s.checked(root/'userfile/imports/Pokemon-Vega_MOVE-DISTRIBUTION-V4_IMPLEMENTATION-READY.zip',s.V4_SHA),s.checked(root/'manifests/species_ids.csv',s.SPECIES_SHA),s.checked(root/'manifests/move_ids.csv',s.MOVES_SHA))
+          ids={183,364,365,742,894,895,896,897,898};tables=s.RomTables(raw,a.layer.COUNT,selected_species=ids)
+          stats=struct.unpack_from('<I',raw,0x1bc)[0]-a.layer.BASE;pp=struct.unpack_from('<I',raw,0x1cc)[0]-a.layer.BASE
+          assert 0<=stats and stats+1671*32<=len(raw)
+          symbols=json.loads((root/'generated/runtime/modernization_p03_stage73_consumer_runtime_symbols.json').read_bytes())['symbols']
+          exact_index=int(symbols['Stage73_ExactEggIndex']['address'],16)-a.layer.BASE
+          exact_moves=int(symbols['Stage73_ExactEggMoves']['address'],16)-a.layer.BASE
+          species={}
+          for sid in sorted(ids):
+              at=stats+32*sid
+              species[sid]={'level_one':[m for m,l in tables.level[sid] if l<=1],'level':tables.level[sid],'legacy_egg':tables.egg.get(sid,[]),'exact_egg':a.layer.indexed(raw,exact_index,exact_moves,sid),'shared':a.layer.indexed(raw,a.layer.SHARED_INDEX,a.layer.SHARED_MOVES,sid),'gender_ratio':raw[at+16],'egg_cycles':raw[at+17],'egg_groups':[raw[at+20],raw[at+21]]}
+          report={'status':'INDEPENDENT_INPUT_AUDIT_NOT_NATIVE_ACCEPTANCE','candidate':a.identity(raw),'base_stats_root':stats+a.layer.BASE,'species':species,'retained_happiny_rows':[r for r in selected[a.layer.LAYER] if r['species_id']==364 and r['route']=='egg'],'pp':{m:raw[pp+m*12+4] for m in [1,33,45,52,69,81,107,111,215,217,357,461,464,716,315,56,59,373,401]},'new_emulator_runs':0,'release_ready':False}
+          (out/'physical-oracle.json').write_bytes(a.stable(report))
+          names=subprocess.check_output(['git','ls-files','-z']).decode().split('\0');bindings={}
+          with zipfile.ZipFile(out/'route-metadata.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for name in sorted(filter(None,names)):
+                  p=root/name
+                  wanted=name.startswith(('manifests/','generated/runtime/','content/collection_supply_v1/')) or name in ('config/collection_supply_v1.json','config/modernization_stage79_cumulative_mgba.json','design/active_play_baseline.md')
+                  if not wanted or p.suffix not in ('.json','.csv','.h','.md'):continue
+                  assert not p.is_symlink();data=p.read_bytes();data.decode('utf8');assert b'\0' not in data
+                  z.writestr(name,data);bindings[name]={'size':len(data),'sha256':hashlib.sha256(data).hexdigest()}
+          (out/'metadata-bindings.json').write_bytes(a.stable(bindings))
+          PY
+          git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-route-oracles
+          path: .local/pr16-route-oracles/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

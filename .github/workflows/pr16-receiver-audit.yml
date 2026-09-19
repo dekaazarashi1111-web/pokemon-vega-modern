@@ -1,0 +1,84 @@
+name: pr16-receiver-audit
+run-name: Exact candidate remaining receivers and acquisition sources (not native acceptance)
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-receiver-audit.yml
+      - scripts/pr16_receiver_audit.py
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Prepare hash-fixed Stage84 parent
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-receiver-audit
+          git rev-parse HEAD > .local/pr16-receiver-audit/tested-head.txt
+          bash infra/setup_github_actions.sh --install > .local/pr16-receiver-audit/toolchain.log 2>&1
+          python3 scripts/modernization_final_integration.py prepare > .local/pr16-receiver-audit/stage84.json
+      - name: Restore exact adopted V4 and read fixed native source, never save or ROM export
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-inputs
+          gh release download private-environment-v1 --pattern pokemon-vega-private-env-v1-inputs.zip --pattern pokemon-vega-private-env-v1-state.zip --dir .local/pr16-inputs
+          python3 - <<'PY'
+          import hashlib,json,pathlib,subprocess,zipfile
+          root=pathlib.Path('.');out=root/'.local/pr16-receiver-audit'
+          cfg=json.loads((root/'config/github_private_environment.json').read_text());bindings={}
+          for name in ('pokemon-vega-private-env-v1-inputs.zip','pokemon-vega-private-env-v1-state.zip'):
+              expected=next(a for a in cfg['archives'] if a['name']==name)
+              raw=(root/'.local/pr16-inputs'/name).read_bytes()
+              assert len(raw)==expected['size'] and hashlib.sha256(raw).hexdigest()==expected['sha256']
+              bindings[name]={'size':len(raw),'sha256':expected['sha256']}
+          with zipfile.ZipFile(root/'.local/pr16-inputs/pokemon-vega-private-env-v1-inputs.zip') as z:
+              name='userfile/imports/Pokemon-Vega_MOVE-DISTRIBUTION-V4_IMPLEMENTATION-READY.zip';raw=z.read(name)
+              assert hashlib.sha256(raw).hexdigest()=='4022cd6e1358f58dffc5ebc38b756166f0a1072f948af6934298f65bd82678b2'
+              target=root/name;assert not any(p.is_symlink() for p in (target,*target.parents))
+              if target.exists():assert target.read_bytes()==raw
+              else:target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(raw);target.chmod(0o444)
+          selected=('src/learn_move.c','src/daycare.c','src/frontier.c','src/overworld.c','src/defines.h','src/build_pokemon.c','include/new/frontier.h','include/constants/vars.h','include/constants/flags.h','include/constants/battle.h','include/constants/species.h')
+          sources={}
+          with zipfile.ZipFile(out/'source-members.zip','w',zipfile.ZIP_DEFLATED) as dst:
+              with zipfile.ZipFile(root/'.local/pr16-inputs/pokemon-vega-private-env-v1-state.zip') as src:
+                  for name in src.namelist():
+                      if not name.startswith('vendor/upstream/CFRU-JP/') or name.removeprefix('vendor/upstream/CFRU-JP/') not in selected:continue
+                      raw=src.read(name);raw.decode('utf8');assert b'\0' not in raw
+                      dst.writestr(name,raw);sources[name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+              for name in subprocess.check_output(['git','ls-files','-z'],text=True).split('\0'):
+                  p=root/name
+                  if not name.startswith('overlays/') or p.suffix not in ('.c','.h','.S','.s','.json','.inc','.md'):continue
+                  raw=p.read_bytes()
+                  try:raw.decode('utf8')
+                  except UnicodeDecodeError:continue
+                  assert not p.is_symlink() and b'\0' not in raw
+                  dst.writestr(name,raw);sources[name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+          (out/'source-bindings.json').write_text(json.dumps({'archives':bindings,'sources':sources},sort_keys=True,indent=2)+'\n')
+          PY
+      - name: Read actual candidate tables and rooted receiver references
+        run: |
+          set -euo pipefail
+          out=.local/pr16-receiver-audit
+          python3 scripts/pr16_p07_preserved_layer.py > "$out/p07.stdout" 2> "$out/p07.stderr"
+          python3 scripts/pr16_evolution_learning_repair.py > "$out/repair.stdout" 2> "$out/repair.stderr"
+          python3 scripts/pr16_receiver_audit.py > "$out/audit.stdout" 2> "$out/audit.stderr"
+          git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-receiver-audit
+          path: .local/pr16-receiver-audit/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

@@ -1,0 +1,200 @@
+{
+  "accepted_native_cases_replayed": 0,
+  "active_baseline_changed": false,
+  "actual_changed_bytes": 2,
+  "artifact": {
+    "sha256": "c112b208909cd5fa24c576acf81922d2de10a5b3a1541d4be6217048b37ded2c",
+    "size": 67845
+  },
+  "artifact_id": 10319501767,
+  "candidate": {
+    "crc32": "0D5D9178",
+    "sha256": "7f32ba99ad34cd0320559a8dc6990876084f371c8bfae769c7482090c7be90cd",
+    "size": 33554432
+  },
+  "candidate_rom_changed": true,
+  "changes": [
+    {
+      "address": 153941801,
+      "after": "2900",
+      "before": "2f00",
+      "changed_bytes": 1,
+      "offset": 19724073,
+      "size": 2
+    },
+    {
+      "address": 153941877,
+      "after": "2900",
+      "before": "2f00",
+      "changed_bytes": 1,
+      "offset": 19724149,
+      "size": 2
+    }
+  ],
+  "classification": "SOURCE_AND_HOST_CONTRACT_ONLY",
+  "clean_rom_dual_build_verified": false,
+  "decision_ja": "交換2経路の旧null special→待機停止を0x29へ限定修正。T06 accessor経由の人数1、one-based配列、実runtime consumerを照合。static/host/候補生成まで完了。native勝利・交換・3勝報酬・獲得BP消費は未受入。",
+  "entry_head": "a0f03b1bf0d8cbb7d89c6bba137faa9982b5a8f0",
+  "evidence_files": {
+    "content/modernization/pr16_bp_exchange_abi_evidence/actions-before.json": {
+      "sha256": "f7cc69ef1df16609c2d273e9dc1711f5b1d0284cd24db20e21bed83ca287d21f",
+      "size": 11040
+    },
+    "content/modernization/pr16_bp_exchange_abi_evidence/candidate.json": {
+      "sha256": "06f9b4f1e292544325c83b89dfe3245c2a184fa840968dba896005c939a2d918",
+      "size": 55905
+    },
+    "content/modernization/pr16_bp_exchange_abi_evidence/unit-results.txt": {
+      "sha256": "af946d3056804187352f5c2bdf0409b903cbcc9496301f2cbd1407155986befd",
+      "size": 1062
+    },
+    "content/modernization/pr16_bp_exchange_abi_evidence/upstream-abi.json": {
+      "sha256": "b5df94ba9b9e2fbb2ec3544c7a2050613d128f140043d0748d488da4e57d9fa5",
+      "size": 5086
+    }
+  },
+  "global_special_table_changes": 0,
+  "host_runtime_vectors": 14,
+  "impact_ja": "変更は勝利後の交換menu2か所のみ。初期chooser、通常敗北callback/shim、AfterBattle、元party復元、Save layout、global special表はbyte不変。取消/Save/Continueと敗北帰還を再実行しない。",
+  "independent_bounded_builds": 2,
+  "initial_failed_run": {
+    "artifact_id": 10319865501,
+    "artifact_sha256": "b56ceeaf5caf819cc246acbfaeb8ea2fc545a4e85bb3d4d21fccf232ab6c9c4d",
+    "candidate_build_executed": false,
+    "conclusion": "failure",
+    "head_sha": "d62d9160bbbdc3ff7e2cab897611e8f4bf121334",
+    "job_id": 103736466912,
+    "reason_ja": "linker内にRAM配列宣言があるという誤前提で停止。initializerはBPRJ.ld、配列はram_locs.hへ分離して修正。",
+    "run_id": 34762042215,
+    "source_tests_passed": 9
+  },
+  "job_id": 103737252115,
+  "native_bp_earning_accepted": false,
+  "native_exchange_accepted": false,
+  "new_emulator_processes": 0,
+  "p05_native_bp_gap_closed": false,
+  "parent": {
+    "sha256": "fcda15075a586d59f4f9da5f7f55a294765f826ab1453a576e74192df822d879",
+    "size": 33554432
+  },
+  "previous_record_attempt": {
+    "commit_created": false,
+    "conclusion": "failure",
+    "head_sha": "6e6d04b003d88e0c2315a727035c7452cf2db099",
+    "job_id": 103738897487,
+    "new_evidence_tests_passed": 8,
+    "reason_ja": "*.log ignoreにより追跡対象一覧が不足しcommit前に停止。原本unit.logのbytesをunit-results.txt名で保存する。ignore規則とallowlist/guardは緩和しない。",
+    "resume_tests_passed": 18,
+    "run_id": 34762968465
+  },
+  "recorded_at": "2026-09-13T14:41:55Z",
+  "recording_source_head": "a5e1cbcdcba8e8503f91542a5d38c554cb6436f2",
+  "release_ready": false,
+  "run_id": 34762342982,
+  "runtime_code_changes": 0,
+  "save_layout_changes": 0,
+  "schema_version": 1,
+  "source_head_runs": [
+    {
+      "conclusion": "success",
+      "event": "pull_request",
+      "head_sha": "7454bd9f4950aa29cbbcee5031f9ee33b7e6ed8d",
+      "id": 34762344603,
+      "name": "p03-forgetting-ci",
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "event": "pull_request",
+      "head_sha": "7454bd9f4950aa29cbbcee5031f9ee33b7e6ed8d",
+      "id": 34762344601,
+      "name": "source-validation",
+      "path": ".github/workflows/ci.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "event": "push",
+      "head_sha": "7454bd9f4950aa29cbbcee5031f9ee33b7e6ed8d",
+      "id": 34762342969,
+      "name": "p03-forgetting-ci",
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "event": "push",
+      "head_sha": "7454bd9f4950aa29cbbcee5031f9ee33b7e6ed8d",
+      "id": 34762342973,
+      "name": "Stage79 runtime boundary audit",
+      "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "event": "push",
+      "head_sha": "7454bd9f4950aa29cbbcee5031f9ee33b7e6ed8d",
+      "id": 34762342971,
+      "name": "source-validation",
+      "path": ".github/workflows/ci.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "event": "push",
+      "head_sha": "7454bd9f4950aa29cbbcee5031f9ee33b7e6ed8d",
+      "id": 34762342982,
+      "name": "Factory交換2operandの限定修正・source検証（native再実行なし）",
+      "path": ".github/workflows/pr16-bp-exchange-abi.yml",
+      "status": "completed"
+    }
+  ],
+  "source_tests": 9,
+  "sources": {
+    ".github/workflows/pr16-bp-exchange-abi.yml": {
+      "sha256": "96ca8ff19f32bef4467e57d0bb6c33261f8160b5c8fec013f4be8e08e4010a46",
+      "size": 9415
+    },
+    ".github/workflows/pr16-bp-exchange-record.yml": {
+      "sha256": "3b692ae2bc27662c9cbd00a0da22d6555851386a14f82561859ac587dab70a4a",
+      "size": 7121
+    },
+    "overlays/facility_runtime/facility_runtime.c": {
+      "sha256": "28603b55a0573dd376e1acdc4310591c017d158c69ade92393020781271e7cb0",
+      "size": 18139
+    },
+    "scripts/build_battle_core.py": {
+      "sha256": "e83f659b912e4f61f790ef648f30dd7e669f737da84f326c234dc491a6d135c0",
+      "size": 239192
+    },
+    "scripts/build_facility_runtime.py": {
+      "sha256": "c5fcdc5e20f760637a233a90c5165a6c9726bbfdba56f763287b163333d11204",
+      "size": 34113
+    },
+    "scripts/pr16_bp_exchange_record.py": {
+      "sha256": "bf6e6523eee45231e9751511bc17ac863e00e60383fe2f16fd2574d0f68dff30",
+      "size": 21271
+    },
+    "scripts/pr16_bp_exchange_successor.py": {
+      "sha256": "f67c5a4ed1a8625d1ad01d15828b512ea4979233f42ae88001d24874a4a7d95c",
+      "size": 7279
+    },
+    "scripts/pr16_bp_loss_return_successor.py": {
+      "sha256": "dc40605928ff25c70f0a66bd9fb947de238b0444c78108488d65722aa4d97af8",
+      "size": 9156
+    },
+    "tests/test_pr16_bp_exchange_record.py": {
+      "sha256": "fd206e9dc81af12e35c16609f744f9aa6ad40bf787b8d890a61143aeab8fd835",
+      "size": 4167
+    },
+    "tests/test_pr16_bp_exchange_successor.py": {
+      "sha256": "b0a52b477b986c5ac17d74e812341644a5c84421034b3a9b0810e60a76fe618f",
+      "size": 6364
+    }
+  },
+  "status": "PASS_EXCHANGE_ABI_REPAIR_NOT_NATIVE_ACCEPTANCE",
+  "task": "USER-20260913-BP-EXCHANGE-ABI",
+  "tested_head": "7454bd9f4950aa29cbbcee5031f9ee33b7e6ed8d",
+  "undeclared_changed_bytes": 0
+}

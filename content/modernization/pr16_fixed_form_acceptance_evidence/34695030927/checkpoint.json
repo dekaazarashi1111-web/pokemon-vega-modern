@@ -1,0 +1,1202 @@
+{
+  "inner_receipt": null,
+  "kind": "static",
+  "p03_fixed_form_gap_closed": false,
+  "release_ready": false,
+  "result": {
+    "archive": {
+      "sha256": "b878134dc4a00b7de1e028f178c329db638b0304096b96c84c6776ddfb0983af",
+      "size": 218929898
+    },
+    "new_emulator_runs": 0,
+    "p03_fixed_form_gap_closed": false,
+    "release_ready": false,
+    "rom_changes": 0,
+    "schema_version": 1,
+    "source_zip": {
+      "sha256": "83149c21b77d64f6f6864a6e5dafb461c37694e63f6011527f1bf670fcd8957c",
+      "size": 521845
+    },
+    "sources": [
+      {
+        "matches": [
+          {
+            "line": 624,
+            "text": "#define MOVE_SUNSTEELSTRIKE 0x26b"
+          },
+          {
+            "line": 667,
+            "text": "#define MOVE_PHOTONGEYSER 0x296"
+          }
+        ],
+        "origin": "PINNED_STATE_SOURCE_MEMBER",
+        "path": "vendor/upstream/CFRU-JP/include/constants/moves.h",
+        "sha256": "bc2ae17e444625fa2e1727d42c50a24f6758da26e44229a6f12a3afa3a275d79",
+        "size": 30601
+      },
+      {
+        "matches": [
+          {
+            "line": 819,
+            "text": "#define NATIONAL_DEX_NECROZMA 800"
+          },
+          {
+            "line": 911,
+            "text": "#define NATIONAL_DEX_ZACIAN 888"
+          },
+          {
+            "line": 912,
+            "text": "#define NATIONAL_DEX_ZAMAZENTA 889"
+          }
+        ],
+        "origin": "PINNED_STATE_SOURCE_MEMBER",
+        "path": "vendor/upstream/CFRU-JP/include/constants/pokedex.h",
+        "sha256": "d11b2c7cc435a61c0728631738f96ad6d8c4458d8ef5406dd39fc76ca8bf857e",
+        "size": 34671
+      },
+      {
+        "matches": [
+          {
+            "line": 207,
+            "text": "#define BGM_BATTLE_NECROZMA 0x1FE"
+          }
+        ],
+        "origin": "PINNED_STATE_SOURCE_MEMBER",
+        "path": "vendor/upstream/CFRU-JP/include/constants/songs.h",
+        "sha256": "55cf54688769cc34f16d60a68c4046853944e220525862463195bf58ef4f97f6",
+        "size": 8732
+      },
+      {
+        "matches": [
+          {
+            "line": 1004,
+            "text": "#define SPECIES_NECROZMA 0x3F9"
+          },
+          {
+            "line": 1066,
+            "text": "#define SPECIES_NECROZMA_DUSK_MANE 0x437"
+          },
+          {
+            "line": 1067,
+            "text": "#define SPECIES_NECROZMA_DAWN_WINGS 0x438"
+          },
+          {
+            "line": 1068,
+            "text": "#define SPECIES_NECROZMA_ULTRA 0x439"
+          },
+          {
+            "line": 1172,
+            "text": "#define SPECIES_ZACIAN 0x49C"
+          },
+          {
+            "line": 1173,
+            "text": "#define SPECIES_ZAMAZENTA 0x49D"
+          },
+          {
+            "line": 1198,
+            "text": "#define SPECIES_ZACIAN_CROWNED 0x4B5"
+          },
+          {
+            "line": 1199,
+            "text": "#define SPECIES_ZAMAZENTA_CROWNED 0x4B6"
+          }
+        ],
+        "origin": "PINNED_STATE_SOURCE_MEMBER",
+        "path": "vendor/upstream/CFRU-JP/include/constants/species.h",
+        "sha256": "0ef484c65caba88aece78e5987d55518da041e97f58960ea7ddfd5df5d514ca8",
+        "size": 45361
+      },
+      {
+        "matches": [
+          {
+            "line": 36,
+            "text": "void SpriteCB_SunsteelStrikeRings(struct Sprite* sprite);"
+          }
+        ],
+        "origin": "PINNED_STATE_SOURCE_MEMBER",
+        "path": "vendor/upstream/CFRU-JP/include/new/battle_anims.h",
+        "sha256": "9f0735bf065e836158131fed5a91205487ec39ac58e6f583d531e31d79787d8c",
+        "size": 3112
+      },
+      {
+        "matches": [
+          {
+            "line": 28,
+            "text": "bool8 IsUltraNecrozma(u8 bank);"
+          },
+          {
+            "line": 29,
+            "text": "bool8 IsUltraNecrozmaSpecies(u16 species);"
+          },
+          {
+            "line": 45,
+            "text": "\tMEGA_VARIANT_ULTRA_BURST, //Necrozma"
+          }
+        ],
+        "origin": "PINNED_STATE_SOURCE_MEMBER",
+        "path": "vendor/upstream/CFRU-JP/include/new/mega.h",
+        "sha256": "91380358d5b16be6c57a5982ff8c0de567c9755db0c5826f21363713f3b2af57",
+        "size": 1328
+      },
+      {
+        "matches": [
+          {
+            "line": 162,
+            "text": "\t{SPECIES_NECROZMA, AI_SCRIPT_CHECK_BAD_MOVE},"
+          },
+          {
+            "line": 163,
+            "text": "\t{SPECIES_NECROZMA_DUSK_MANE, AI_SCRIPT_CHECK_BAD_MOVE},"
+          },
+          {
+            "line": 164,
+            "text": "\t{SPECIES_NECROZMA_DAWN_WINGS, AI_SCRIPT_CHECK_BAD_MOVE},"
+          },
+          {
+            "line": 168,
+            "text": "\t{SPECIES_ZACIAN, AI_SCRIPT_CHECK_BAD_MOVE},"
+          },
+          {
+            "line": 169,
+            "text": "\t{SPECIES_ZACIAN_CROWNED, AI_SCRIPT_CHECK_BAD_MOVE},"
+          },
+          {
+            "line": 170,
+            "text": "\t{SPECIES_ZAMAZENTA, AI_SCRIPT_CHECK_BAD_MOVE},"
+          },
+          {
+            "line": 171,
+            "text": "\t{SPECIES_ZAMAZENTA_CROWNED, AI_SCRIPT_CHECK_BAD_MOVE},"
+          },
+          {
+            "line": 2421,
+            "text": "\t\t|| IsUltraNecrozmaSpecies(species))"
+          }
+        ],
+        "origin": "PINNED_STATE_SOURCE_MEMBER",
+        "path": "vendor/upstream/CFRU-JP/src/Battle_AI/ai_master.c",
+        "sha256": "e790e1cc1271ffdec28a2c5d9c843fe7032fa3b0b962dea2bcb1852808557fd9",
+        "size": 95687
+      },
+      {
+        "matches": [
+          {
+            "line": 10029,
+            "text": "\t[MOVE_SUNSTEELSTRIKE] ="
+          },
+          {
+            "line": 10717,
+            "text": "\t[MOVE_PHOTONGEYSER] ="
+          },
+          {
+            "line": 16509,
+            "text": "\t[MOVE_SUNSTEELSTRIKE] = 130,"
+          },
+          {
+            "line": 16516,
+            "text": "\t[MOVE_PHOTONGEYSER] = 130,"
+          }
+        ],
+        "origin": "PINNED_STATE_SOURCE_MEMBER",
+        "path": "vendor/upstream/CFRU-JP/src/Tables/battle_moves.c",
+        "sha256": "7c13282701ce28e47370a7be82cd1d8f489e7cbf4b5030ab677ab6b70c79470d",
+        "size": 356184
+      },
+      {
+        "matches": [
+          {
+            "line": 46684,
+            "text": "\t\t\tMOVE_SUNSTEELSTRIKE,"
+          },
+          {
+            "line": 46710,
+            "text": "\t\t\tMOVE_SUNSTEELSTRIKE,"
+          },
+          {
+            "line": 46851,
+            "text": "\t\t.species = SPECIES_NECROZMA,"
+          },
+          {
+            "line": 46866,
+            "text": "\t\t\tMOVE_PHOTONGEYSER,"
+          },
+          {
+            "line": 46877,
+            "text": "\t\t.species = SPECIES_NECROZMA,"
+          },
+          {
+            "line": 46904,
+            "text": "\t\t.species = SPECIES_NECROZMA,"
+          },
+          {
+            "line": 46919,
+            "text": "\t\t\tMOVE_PHOTONGEYSER,"
+          },
+          {
+            "line": 46930,
+            "text": "\t\t.species = SPECIES_NECROZMA_DUSK_MANE,"
+          },
+          {
+            "line": 46945,
+            "text": "\t\t\tMOVE_PHOTONGEYSER,"
+          },
+          {
+            "line": 46946,
+            "text": "\t\t\tMOVE_SUNSTEELSTRIKE,"
+          },
+          {
+            "line": 46956,
+            "text": "\t\t.species = SPECIES_NECROZMA_DUSK_MANE,"
+          },
+          {
+            "line": 46971,
+            "text": "\t\t\tMOVE_PHOTONGEYSER,"
+          },
+          {
+            "line": 46972,
+            "text": "\t\t\tMOVE_SUNSTEELSTRIKE,"
+          },
+          {
+            "line": 46982,
+            "text": "\t\t.species = SPECIES_NECROZMA_DUSK_MANE,"
+          },
+          {
+            "line": 46999,
+            "text": "\t\t\tMOVE_PHOTONGEYSER,"
+          },
+          {
+            "line": 47010,
+            "text": "\t\t.species = SPECIES_NECROZMA_DAWN_WINGS,"
+          },
+          {
+            "line": 47025,
+            "text": "\t\t\tMOVE_PHOTONGEYSER,"
+          },
+          {
+            "line": 47036,
+            "text": "\t\t.species = SPECIES_NECROZMA_DAWN_WINGS,"
+          },
+          {
+            "line": 47051,
+            "text": "\t\t\tMOVE_PHOTONGEYSER,"
+          },
+          {
+            "line": 47062,
+            "text": "\t\t.species = SPECIES_NECROZMA_DAWN_WINGS,"
+          },
+          {
+            "line": 47079,
+            "text": "\t\t\tMOVE_PHOTONGEYSER,"
+          }
+        ],
+        "origin": "PINNED_STATE_SOURCE_MEMBER",
+        "path": "vendor/upstream/CFRU-JP/src/Tables/battle_tower_spreads.h",
+        "sha256": "c52eced597a03b3fc9afd794e95832467ba6a7df79ed98dea445ee28b35f0824",
+        "size": 1151570
+      },
+      {
+        "matches": [
+          {
+            "line": 224,
+            "text": "\t\t.species = SPECIES_NECROZMA_DUSK_MANE,"
+          },
+          {
+            "line": 241,
+            "text": "\t\t\tMOVE_PHOTONGEYSER,"
+          },
+          {
+            "line": 242,
+            "text": "\t\t\tMOVE_SUNSTEELSTRIKE,"
+          },
+          {
+            "line": 710,
+            "text": "\t\t.species = SPECIES_NECROZMA_DAWN_WINGS,"
+          },
+          {
+            "line": 725,
+            "text": "\t\t\tMOVE_PHOTONGEYSER,"
+          }
+        ],
+        "origin": "PINNED_STATE_SOURCE_MEMBER",
+        "path": "vendor/upstream/CFRU-JP/src/Tables/frontier_multi_spreads.h",
+        "sha256": "7e7ab7d4e4f0dac90fe8e999be4fc180fa83575a8c25e5a8bfde037b31fdfe54",
+        "size": 37487
+      },
+      {
+        "matches": [
+          {
+            "line": 2669,
+            "text": "\t\t.species = SPECIES_NECROZMA_DUSK_MANE,"
+          },
+          {
+            "line": 2684,
+            "text": "\t\t\tMOVE_SUNSTEELSTRIKE,"
+          },
+          {
+            "line": 4827,
+            "text": "\t\t\tMOVE_SUNSTEELSTRIKE,"
+          },
+          {
+            "line": 4853,
+            "text": "\t\t\tMOVE_SUNSTEELSTRIKE,"
+          },
+          {
+            "line": 5152,
+            "text": "\t\t\tMOVE_SUNSTEELSTRIKE,"
+          },
+          {
+            "line": 5175,
+            "text": "\t\t\tMOVE_SUNSTEELSTRIKE,"
+          }
+        ],
+        "origin": "PINNED_STATE_SOURCE_MEMBER",
+        "path": "vendor/upstream/CFRU-JP/src/Tables/frontier_special_trainer_spreads.h",
+        "sha256": "f3833a28eff836566a68ae74ad03daf294458e44560c9068ca3e7ff893515e1c",
+        "size": 406565
+      },
+      {
+        "matches": [
+          {
+            "line": 16204,
+            "text": "\tLEVEL_UP_MOVE( 0, MOVE_SUNSTEELSTRIKE),"
+          },
+          {
+            "line": 16205,
+            "text": "\tLEVEL_UP_MOVE( 1, MOVE_SUNSTEELSTRIKE),"
+          },
+          {
+            "line": 16408,
+            "text": "static const struct LevelUpMove sNecrozmaLevelUpLearnset[] = {"
+          },
+          {
+            "line": 16423,
+            "text": "\tLEVEL_UP_MOVE(50, MOVE_PHOTONGEYSER),"
+          },
+          {
+            "line": 19965,
+            "text": "\t[SPECIES_NECROZMA] = sNecrozmaLevelUpLearnset,"
+          },
+          {
+            "line": 20027,
+            "text": "\t[SPECIES_NECROZMA_DUSK_MANE] = sNecrozmaLevelUpLearnset,"
+          },
+          {
+            "line": 20028,
+            "text": "\t[SPECIES_NECROZMA_DAWN_WINGS] = sNecrozmaLevelUpLearnset,"
+          },
+          {
+            "line": 20029,
+            "text": "\t[SPECIES_NECROZMA_ULTRA] = sNecrozmaLevelUpLearnset,"
+          },
+          {
+            "line": 20128,
+            "text": "\t[SPECIES_ZACIAN] = sZacianLevelUpLearnset,"
+          },
+          {
+            "line": 20129,
+            "text": "\t[SPECIES_ZAMAZENTA] = sZamazentaLevelUpLearnset,"
+          },
+          {
+            "line": 20152,
+            "text": "\t[SPECIES_ZACIAN_CROWNED] = sZacianLevelUpLearnset,"
+          },
+          {
+            "line": 20153,
+            "text": "\t[SPECIES_ZAMAZENTA_CROWNED] = sZamazentaLevelUpLearnset,"
+          }
+        ],
+        "origin": "PINNED_STATE_SOURCE_MEMBER",
+        "path": "vendor/upstream/CFRU-JP/src/Tables/level_up_learnsets.c",
+        "sha256": "f95badc88671694b75e21c8570df1fb02e3bc27846e5942688ac61b8e7e4ec43",
+        "size": 671772
+      },
+      {
+        "matches": [
+          {
+            "line": 324,
+            "text": "\t[SPECIES_NECROZMA] = BGM_BATTLE_NECROZMA,"
+          },
+          {
+            "line": 325,
+            "text": "\t[SPECIES_NECROZMA_DAWN_WINGS] = BGM_BATTLE_NECROZMA,"
+          },
+          {
+            "line": 326,
+            "text": "\t[SPECIES_NECROZMA_DUSK_MANE] = BGM_BATTLE_NECROZMA,"
+          },
+          {
+            "line": 327,
+            "text": "\t[SPECIES_NECROZMA_ULTRA] = BGM_BATTLE_NECROZMA,"
+          },
+          {
+            "line": 398,
+            "text": "\tBGM_BATTLE_NECROZMA,"
+          }
+        ],
+        "origin": "PINNED_STATE_SOURCE_MEMBER",
+        "path": "vendor/upstream/CFRU-JP/src/Tables/music_tables.c",
+        "sha256": "ca7231fef8d56eaa8ebc5fd488e7233889de35eeaf6c14d66a51719756645b18",
+        "size": 14438
+      },
+      {
+        "matches": [
+          {
+            "line": 157,
+            "text": "\tALTERNATE_SIZE(SPECIES_NECROZMA_DAWN_WINGS, 4.2, 350.0),"
+          },
+          {
+            "line": 158,
+            "text": "\tALTERNATE_SIZE(SPECIES_NECROZMA_DUSK_MANE, 3.8, 460.0),"
+          },
+          {
+            "line": 159,
+            "text": "\tALTERNATE_SIZE(SPECIES_NECROZMA_ULTRA, 7.5, 230.0),"
+          },
+          {
+            "line": 160,
+            "text": "\tALTERNATE_SIZE(SPECIES_ZACIAN_CROWNED, 2.8, 355.0),"
+          },
+          {
+            "line": 161,
+            "text": "\tALTERNATE_SIZE(SPECIES_ZAMAZENTA_CROWNED, 2.9, 785.0),"
+          },
+          {
+            "line": 474,
+            "text": "\tSPECIES_NECROZMA,"
+          },
+          {
+            "line": 475,
+            "text": "\tSPECIES_NECROZMA_DUSK_MANE,"
+          },
+          {
+            "line": 476,
+            "text": "\tSPECIES_NECROZMA_DAWN_WINGS,"
+          },
+          {
+            "line": 480,
+            "text": "\tSPECIES_ZACIAN,"
+          },
+          {
+            "line": 481,
+            "text": "\tSPECIES_ZACIAN_CROWNED,"
+          },
+          {
+            "line": 482,
+            "text": "\tSPECIES_ZAMAZENTA,"
+          },
+          {
+            "line": 483,
+            "text": "\tSPECIES_ZAMAZENTA_CROWNED,"
+          },
+          {
+            "line": 519,
+            "text": "\tSPECIES_NECROZMA,"
+          },
+          {
+            "line": 520,
+            "text": "\tSPECIES_NECROZMA_DUSK_MANE,"
+          },
+          {
+            "line": 521,
+            "text": "\tSPECIES_NECROZMA_DAWN_WINGS,"
+          },
+          {
+            "line": 522,
+            "text": "\tSPECIES_ZACIAN,"
+          },
+          {
+            "line": 523,
+            "text": "\tSPECIES_ZACIAN_CROWNED,"
+          },
+          {
+            "line": 524,
+            "text": "\tSPECIES_ZAMAZENTA,"
+          },
+          {
+            "line": 525,
+            "text": "\tSPECIES_ZAMAZENTA_CROWNED,"
+          },
+          {
+            "line": 575,
+            "text": "\tSPECIES_NECROZMA_DUSK_MANE,"
+          },
+          {
+            "line": 576,
+            "text": "\tSPECIES_NECROZMA_DAWN_WINGS,"
+          },
+          {
+            "line": 587,
+            "text": "\tSPECIES_ZACIAN,"
+          },
+          {
+            "line": 588,
+            "text": "\tSPECIES_ZACIAN_CROWNED,"
+          },
+          {
+            "line": 589,
+            "text": "\tSPECIES_ZAMAZENTA,"
+          },
+          {
+            "line": 590,
+            "text": "\tSPECIES_ZAMAZENTA_CROWNED,"
+          },
+          {
+            "line": 639,
+            "text": "\tSPECIES_NECROZMA_DUSK_MANE,"
+          },
+          {
+            "line": 640,
+            "text": "\tSPECIES_NECROZMA_DAWN_WINGS,"
+          },
+          {
+            "line": 651,
+            "text": "\tSPECIES_ZACIAN,"
+          },
+          {
+            "line": 652,
+            "text": "\tSPECIES_ZACIAN_CROWNED,"
+          },
+          {
+            "line": 653,
+            "text": "\tSPECIES_ZAMAZENTA,"
+          },
+          {
+            "line": 654,
+            "text": "\tSPECIES_ZAMAZENTA_CROWNED,"
+          },
+          {
+            "line": 700,
+            "text": "\tSPECIES_ZACIAN,"
+          },
+          {
+            "line": 701,
+            "text": "\tSPECIES_ZACIAN_CROWNED,"
+          },
+          {
+            "line": 702,
+            "text": "\tSPECIES_ZAMAZENTA,"
+          },
+          {
+            "line": 703,
+            "text": "\tSPECIES_ZAMAZENTA_CROWNED,"
+          },
+          {
+            "line": 1269,
+            "text": "\tSPECIES_NECROZMA_DAWN_WINGS,"
+          },
+          {
+            "line": 1270,
+            "text": "\tSPECIES_NECROZMA_DUSK_MANE,"
+          },
+          {
+            "line": 1534,
+            "text": "\tSPECIES_NECROZMA,"
+          },
+          {
+            "line": 1535,
+            "text": "\tSPECIES_NECROZMA_DUSK_MANE,"
+          },
+          {
+            "line": 1536,
+            "text": "\tSPECIES_NECROZMA_DAWN_WINGS,"
+          },
+          {
+            "line": 1540,
+            "text": "\tSPECIES_ZACIAN,"
+          },
+          {
+            "line": 1541,
+            "text": "\tSPECIES_ZACIAN_CROWNED,"
+          },
+          {
+            "line": 1542,
+            "text": "\tSPECIES_ZAMAZENTA,"
+          },
+          {
+            "line": 1543,
+            "text": "\tSPECIES_ZAMAZENTA_CROWNED,"
+          },
+          {
+            "line": 1746,
+            "text": "\tSPECIES_NECROZMA_DUSK_MANE,"
+          },
+          {
+            "line": 1747,
+            "text": "\tSPECIES_NECROZMA_DAWN_WINGS,"
+          },
+          {
+            "line": 1748,
+            "text": "\tSPECIES_NECROZMA_ULTRA,"
+          }
+        ],
+        "origin": "PINNED_STATE_SOURCE_MEMBER",
+        "path": "vendor/upstream/CFRU-JP/src/Tables/pokemon_tables.c",
+        "sha256": "3e574f4a7345aedad000e2f537a60d9125cba03f790ca45d8fecea2368c2de62",
+        "size": 39163
+      },
+      {
+        "matches": [
+          {
+            "line": 2288,
+            "text": "const struct OamData sSunsteelStrikeBlastOAM ="
+          },
+          {
+            "line": 2297,
+            "text": "static const union AffineAnimCmd sSpriteAffineAnim_SunsteelStrikeBlastEnemySide[] ="
+          },
+          {
+            "line": 2305,
+            "text": "static const union AffineAnimCmd sSpriteAffineAnim_SunsteelStrikeBlastPlayerSide[] ="
+          },
+          {
+            "line": 2313,
+            "text": "const union AffineAnimCmd* const gSpriteAffineAnimTable_SunsteelStrikeBlast[] ="
+          },
+          {
+            "line": 2315,
+            "text": "\tsSpriteAffineAnim_SunsteelStrikeBlastEnemySide,"
+          },
+          {
+            "line": 2316,
+            "text": "\tsSpriteAffineAnim_SunsteelStrikeBlastPlayerSide,"
+          },
+          {
+            "line": 2319,
+            "text": "void SpriteCB_SunsteelStrikeRings(struct Sprite* sprite)"
+          },
+          {
+            "line": 4883,
+            "text": "static const union AnimCmd sAnimCmdPhotonGeyserBeam[] ="
+          },
+          {
+            "line": 4899,
+            "text": "\tsAnimCmdPhotonGeyserBeam,"
+          }
+        ],
+        "origin": "PINNED_STATE_SOURCE_MEMBER",
+        "path": "vendor/upstream/CFRU-JP/src/battle_anims.c",
+        "sha256": "4893fda793e75356672e8b1be3bca4bd54fe562774fd8b07ed9f8f9ba501aff3",
+        "size": 192535
+      },
+      {
+        "matches": [
+          {
+            "line": 911,
+            "text": "\t\t\tif (!IsUltraNecrozma(INDICATOR_BANK))"
+          },
+          {
+            "line": 1314,
+            "text": "\t\t\telse if (IsUltraNecrozma(bank))"
+          }
+        ],
+        "origin": "PINNED_STATE_SOURCE_MEMBER",
+        "path": "vendor/upstream/CFRU-JP/src/battle_indicators.c",
+        "sha256": "4fb3612b22709ee51170835dfc5e67fa84046532813b5afeb164d4f3c5bfb92c",
+        "size": 62959
+      },
+      {
+        "matches": [
+          {
+            "line": 1242,
+            "text": "\t\t#ifdef NATIONAL_DEX_ZACIAN"
+          },
+          {
+            "line": 1244,
+            "text": "\t\t\tif (dexNum == NATIONAL_DEX_ZACIAN)"
+          },
+          {
+            "line": 1249,
+            "text": "\t\t#ifdef NATIONAL_DEX_ZAMAZENTA"
+          },
+          {
+            "line": 1251,
+            "text": "\t\t\tif (dexNum == NATIONAL_DEX_ZAMAZENTA)"
+          }
+        ],
+        "origin": "PINNED_STATE_SOURCE_MEMBER",
+        "path": "vendor/upstream/CFRU-JP/src/battle_util.c",
+        "sha256": "558c9a85d067e984c96bf83fb0c652a58df3b0b5fbf63620e4ea694195458ed3",
+        "size": 67724
+      },
+      {
+        "matches": [
+          {
+            "line": 259,
+            "text": "\t\t#ifdef SPECIES_ZACIAN"
+          },
+          {
+            "line": 260,
+            "text": "\t\tcase SPECIES_ZACIAN:"
+          },
+          {
+            "line": 262,
+            "text": "\t\t#ifdef SPECIES_ZAMAZENTA"
+          },
+          {
+            "line": 263,
+            "text": "\t\tcase SPECIES_ZAMAZENTA:"
+          },
+          {
+            "line": 265,
+            "text": "\t\t#ifdef SPECIES_ZACIAN_CROWNED"
+          },
+          {
+            "line": 266,
+            "text": "\t\tcase SPECIES_ZACIAN_CROWNED:"
+          },
+          {
+            "line": 268,
+            "text": "\t\t#ifdef SPECIES_ZAMAZENTA_CROWNED"
+          },
+          {
+            "line": 269,
+            "text": "\t\tcase SPECIES_ZAMAZENTA_CROWNED:"
+          },
+          {
+            "line": 289,
+            "text": "\t||  IsUltraNecrozmaSpecies(species))"
+          }
+        ],
+        "origin": "PINNED_STATE_SOURCE_MEMBER",
+        "path": "vendor/upstream/CFRU-JP/src/dynamax.c",
+        "sha256": "ef0eb85047ec0a7d74b5df38bce8481367828508e2104aa7615de62ddecc2c0a",
+        "size": 66919
+      },
+      {
+        "matches": [
+          {
+            "line": 54,
+            "text": "\tSPECIES_ZACIAN_CROWNED,"
+          },
+          {
+            "line": 55,
+            "text": "\tSPECIES_ZAMAZENTA_CROWNED,"
+          },
+          {
+            "line": 246,
+            "text": "\t\t#ifdef SPECIES_ZACIAN"
+          },
+          {
+            "line": 247,
+            "text": "\t\tif (mon->species == SPECIES_ZACIAN)"
+          },
+          {
+            "line": 257,
+            "text": "\t\t#ifdef SPECIES_ZAMAZENTA"
+          },
+          {
+            "line": 258,
+            "text": "\t\tif (mon->species == SPECIES_ZAMAZENTA)"
+          },
+          {
+            "line": 334,
+            "text": "\t#if (defined SPECIES_ZACIAN && defined SPECIES_ZACIAN_CROWNED)"
+          },
+          {
+            "line": 335,
+            "text": "\telse if (mon->species == SPECIES_ZACIAN_CROWNED) //If it was hacked in"
+          },
+          {
+            "line": 337,
+            "text": "\t\tmon->species = SPECIES_ZACIAN;"
+          },
+          {
+            "line": 346,
+            "text": "\t#if (defined SPECIES_ZAMAZENTA && defined SPECIES_ZAMAZENTA_CROWNED)"
+          },
+          {
+            "line": 347,
+            "text": "\telse if (mon->species == SPECIES_ZAMAZENTA_CROWNED) //If it was hacked in"
+          },
+          {
+            "line": 349,
+            "text": "\t\tmon->species = SPECIES_ZAMAZENTA;"
+          },
+          {
+            "line": 474,
+            "text": "\t#if (defined SPECIES_ZACIAN && defined SPECIES_ZAMAZENTA)"
+          },
+          {
+            "line": 484,
+            "text": "\t\tif (species == SPECIES_ZACIAN && itemEffect == ITEM_EFFECT_RUSTED_SWORD)"
+          },
+          {
+            "line": 486,
+            "text": "\t\t\tnewSpecies = SPECIES_ZACIAN_CROWNED;"
+          },
+          {
+            "line": 490,
+            "text": "\t\telse if (species == SPECIES_ZAMAZENTA && itemEffect == ITEM_EFFECT_RUSTED_SHIELD)"
+          },
+          {
+            "line": 492,
+            "text": "\t\t\tnewSpecies = SPECIES_ZAMAZENTA_CROWNED;"
+          }
+        ],
+        "origin": "PINNED_STATE_SOURCE_MEMBER",
+        "path": "vendor/upstream/CFRU-JP/src/form_change.c",
+        "sha256": "e990dab7a70c6c250d4479461e8a30b5159cf883504d18e8385d405cdb91bc8b",
+        "size": 22934
+      },
+      {
+        "matches": [
+          {
+            "line": 106,
+            "text": "\tSPECIES_ZACIAN_CROWNED,"
+          },
+          {
+            "line": 107,
+            "text": "\tSPECIES_ZAMAZENTA_CROWNED,"
+          }
+        ],
+        "origin": "PINNED_STATE_SOURCE_MEMBER",
+        "path": "vendor/upstream/CFRU-JP/src/general_bs_commands.c",
+        "sha256": "ee23f75ab32b0f453128a9e5f9c7e77aba4a0de646e762a5fe821b61c1b20643",
+        "size": 170849
+      },
+      {
+        "matches": [
+          {
+            "line": 509,
+            "text": "\t\t\t#ifdef NATIONAL_DEX_ZACIAN"
+          },
+          {
+            "line": 510,
+            "text": "\t\t\t\t|| dexNum == NATIONAL_DEX_ZACIAN"
+          },
+          {
+            "line": 512,
+            "text": "\t\t\t#ifdef NATIONAL_DEX_ZAMAZENTA"
+          },
+          {
+            "line": 513,
+            "text": "\t\t\t\t|| dexNum == NATIONAL_DEX_ZAMAZENTA"
+          }
+        ],
+        "origin": "PINNED_STATE_SOURCE_MEMBER",
+        "path": "vendor/upstream/CFRU-JP/src/item.c",
+        "sha256": "885c2ae9fa78d145eec1eca4333104b6fdd90a1d5afbbe191e0bc3398e740922",
+        "size": 55431
+      },
+      {
+        "matches": [
+          {
+            "line": 104,
+            "text": "\t\t#if (defined SPECIES_ZACIAN_CROWNED && defined SPECIES_ZAMAZENTA_CROWNED)"
+          },
+          {
+            "line": 106,
+            "text": "\t\t&& ((species == SPECIES_ZACIAN_CROWNED && MoveInMonMoveset(MOVE_BEHEMOTHBLADE, mon))"
+          },
+          {
+            "line": 107,
+            "text": "\t\t || (species == SPECIES_ZAMAZENTA_CROWNED && MoveInMonMoveset(MOVE_BEHEMOTHBASH, mon))))"
+          }
+        ],
+        "origin": "PINNED_STATE_SOURCE_MEMBER",
+        "path": "vendor/upstream/CFRU-JP/src/learn_move.c",
+        "sha256": "eb5fd374acedd481924e34e0ddfd0af901d8df2ce7faf36840a5fd1455daaec2",
+        "size": 14361
+      },
+      {
+        "matches": [
+          {
+            "line": 156,
+            "text": "\t\t\t\tability = GetAbility1(evos->targetSpecies); //Ultra Necrozma only has 1 ability"
+          },
+          {
+            "line": 445,
+            "text": "bool8 IsUltraNecrozma(u8 bank)"
+          },
+          {
+            "line": 447,
+            "text": "\treturn IsUltraNecrozmaSpecies(GetBankPartyData(bank)->species);"
+          },
+          {
+            "line": 450,
+            "text": "bool8 IsUltraNecrozmaSpecies(u16 species)"
+          },
+          {
+            "line": 467,
+            "text": "\treturn IsMega(bank) || IsBluePrimal(bank) || IsRedPrimal(bank) || IsUltraNecrozma(bank) || IsTerastal(bank);"
+          }
+        ],
+        "origin": "PINNED_STATE_SOURCE_MEMBER",
+        "path": "vendor/upstream/CFRU-JP/src/mega.c",
+        "sha256": "2b1113d8645f44cd7139ab1bd936d5467eb84342d07cbbb2967edbc650436efd",
+        "size": 15262
+      },
+      {
+        "matches": [
+          {
+            "line": 1939,
+            "text": "            case SPECIES_NECROZMA:"
+          },
+          {
+            "line": 1942,
+            "text": "            case SPECIES_NECROZMA_DUSK_MANE:"
+          },
+          {
+            "line": 1945,
+            "text": "            case SPECIES_NECROZMA_DAWN_WINGS:"
+          },
+          {
+            "line": 2096,
+            "text": "\t\t\t#if (defined SPECIES_KYUREM && defined SPECIES_NECROZMA && defined SPECIES_CALYREX)"
+          },
+          {
+            "line": 2097,
+            "text": "\t\t\tif (species == SPECIES_KYUREM || species == SPECIES_NECROZMA || species == SPECIES_CALYREX)"
+          },
+          {
+            "line": 2108,
+            "text": "\t\t\t#if (defined SPECIES_KYUREM_BLACK && defined SPECIES_KYUREM_WHITE && defined SPECIES_NECROZMA_DUSK_MANE && defined SPECIES_NECROZMA_DAWN_WINGS && defined SPECIES_CALYREX_ICE_RIDER && defined SPECIES_CALYREX_SHADOW_RIDER)"
+          },
+          {
+            "line": 2109,
+            "text": "\t\t\t\tif (species == SPECIES_KYUREM_BLACK || species == SPECIES_KYUREM_WHITE || species == SPECIES_NECROZMA_DUSK_MANE || species == SPECIES_NECROZMA_DAWN_WINGS || species == SPECIES_CALYREX_ICE_RIDER || species == SPECIES_CALYREX_SHADOW_RIDER)"
+          },
+          {
+            "line": 2139,
+            "text": "\t\t\t\t\t\tspecies = SPECIES_NECROZMA;"
+          },
+          {
+            "line": 2164,
+            "text": "\t\tcase SPECIES_NECROZMA_DUSK_MANE:"
+          },
+          {
+            "line": 2166,
+            "text": "\t\tcase SPECIES_NECROZMA_DAWN_WINGS:"
+          },
+          {
+            "line": 2194,
+            "text": "\t\tcase SPECIES_NECROZMA:"
+          },
+          {
+            "line": 2243,
+            "text": "\t\tcase SPECIES_NECROZMA:"
+          },
+          {
+            "line": 2303,
+            "text": "\t\t\t\t\t\tbaseSpecies = SPECIES_NECROZMA_DUSK_MANE;"
+          },
+          {
+            "line": 2306,
+            "text": "\t\t\t\t\t\tbaseSpecies = SPECIES_NECROZMA_DAWN_WINGS;"
+          },
+          {
+            "line": 2376,
+            "text": "\t\t\tcase SPECIES_NECROZMA:"
+          },
+          {
+            "line": 2377,
+            "text": "\t\t\t\treplaceMove = MOVE_SUNSTEELSTRIKE;"
+          },
+          {
+            "line": 2380,
+            "text": "\t\t\tcase SPECIES_NECROZMA_DUSK_MANE:"
+          },
+          {
+            "line": 2381,
+            "text": "\t\t\t\tgMoveToLearn = MOVE_SUNSTEELSTRIKE;"
+          },
+          {
+            "line": 2383,
+            "text": "\t\t\tcase SPECIES_NECROZMA_DAWN_WINGS:"
+          }
+        ],
+        "origin": "PINNED_STATE_SOURCE_MEMBER",
+        "path": "vendor/upstream/CFRU-JP/src/party_menu.c",
+        "sha256": "6b72ebe4b136af6d573c5e7079fe183497a7883ff2daceb4c519cd8dd8e66e59",
+        "size": 83459
+      },
+      {
+        "matches": [
+          {
+            "line": 40,
+            "text": "\t{SPECIES_NECROZMA_DAWN_WINGS,\tITEM_LUNALIUM_Z,\t\t\tMOVE_MOONGEISTBEAM,\t\tMOVE_MENACING_MOONRAZE_MAELSTROM},"
+          },
+          {
+            "line": 58,
+            "text": "\t{SPECIES_SOLGALEO,\t\t\t\tITEM_SOLGANIUM_Z, \t\t\tMOVE_SUNSTEELSTRIKE,\tMOVE_SEARING_SUNRAZE_SMASH},"
+          },
+          {
+            "line": 59,
+            "text": "\t{SPECIES_NECROZMA_DUSK_MANE,\tITEM_SOLGANIUM_Z, \t\t\tMOVE_SUNSTEELSTRIKE,\tMOVE_SEARING_SUNRAZE_SMASH},"
+          },
+          {
+            "line": 64,
+            "text": "\t{SPECIES_NECROZMA_ULTRA,\t\tITEM_ULTRANECROZIUM_Z, \t\tMOVE_PHOTONGEYSER, \t\tMOVE_LIGHT_THAT_BURNS_THE_SKY},"
+          }
+        ],
+        "origin": "PINNED_STATE_SOURCE_MEMBER",
+        "path": "vendor/upstream/CFRU-JP/src/set_z_effect.c",
+        "sha256": "578ff365e1b8695303ee62fdc27745d537f1c3d5682053c0b6376a989d0c67b3",
+        "size": 11278
+      },
+      {
+        "matches": [
+          {
+            "line": 230,
+            "text": "\t||  IsUltraNecrozmaSpecies(species))"
+          }
+        ],
+        "origin": "PINNED_STATE_SOURCE_MEMBER",
+        "path": "vendor/upstream/CFRU-JP/src/terastal.c",
+        "sha256": "b6a73ddc8800c96690bf2604c617bd6bd4d4b02b9db3c633514975b516ef7ffc",
+        "size": 9717
+      },
+      {
+        "matches": [],
+        "origin": "TRACKED_CHECKOUT",
+        "path": "config/collection_supply_v1.json",
+        "sha256": "ee253ce8d42411fdf8c01dd3cb07afc8f20e42585319334fa5dd390f1c04db94",
+        "size": 9379
+      },
+      {
+        "matches": [],
+        "origin": "TRACKED_CHECKOUT",
+        "path": "config/modernization_p03_stage73_runtime.json",
+        "sha256": "7e3110936c10421086d883b411c10283be5ca98f926bd41f61d149d91a50b4f7",
+        "size": 6839
+      },
+      {
+        "matches": [],
+        "origin": "TRACKED_CHECKOUT",
+        "path": "content/modernization/p03_stage73_consumer_runtime_checkpoint.json",
+        "sha256": "ea930a0df1d48aba9da9e6ea1bb808b117d3c03d2cdb297752c557b28f0bf82d",
+        "size": 2857
+      },
+      {
+        "matches": [
+          {
+            "line": 142,
+            "text": "  \"next_action\": \"修正済みcontrollerで失敗経路だけを追跡する。Necrozmaは専用技解決、Crownedは技実行後の戦闘終了境界。generic FORM、P07、成功済み取消を無条件に再実行しない。\","
+          }
+        ],
+        "origin": "TRACKED_CHECKOUT",
+        "path": "content/modernization/pr16_fixed_form_acceptance.json",
+        "sha256": "37d41ad6c53c0b30adcc24734d81870ac2c12235d348dc71a23b9e9684d4c81c",
+        "size": 4833
+      },
+      {
+        "matches": [
+          {
+            "line": 101,
+            "text": "      \"base_species_key\": \"SPECIES_KEY_NECROZMA\","
+          },
+          {
+            "line": 111,
+            "text": "      \"target_species_key\": \"SPECIES_KEY_NECROZMA_DUSK_MANE\""
+          },
+          {
+            "line": 115,
+            "text": "      \"base_species_key\": \"SPECIES_KEY_NECROZMA\","
+          },
+          {
+            "line": 125,
+            "text": "      \"target_species_key\": \"SPECIES_KEY_NECROZMA_DAWN_WINGS\""
+          },
+          {
+            "line": 129,
+            "text": "      \"base_species_key\": \"SPECIES_KEY_ZACIAN\","
+          },
+          {
+            "line": 139,
+            "text": "      \"target_species_key\": \"SPECIES_KEY_ZACIAN_CROWNED\""
+          },
+          {
+            "line": 143,
+            "text": "      \"base_species_key\": \"SPECIES_KEY_ZAMAZENTA\","
+          },
+          {
+            "line": 153,
+            "text": "      \"target_species_key\": \"SPECIES_KEY_ZAMAZENTA_CROWNED\""
+          }
+        ],
+        "origin": "TRACKED_CHECKOUT",
+        "path": "content/modernization/pr16_fixed_form_contract.json",
+        "sha256": "42e229c61fab1b9f34319edbf1a7e8ce7945f488f981c6fa4c55e8ca124f80e7",
+        "size": 4713
+      },
+      {
+        "matches": [],
+        "origin": "TRACKED_CHECKOUT",
+        "path": "overlays/collection_supply_v1/collection_supply_v1.c",
+        "sha256": "14c27f895b9ae8d1b3d9d077ce49999fc17a1422a83e8ddb87657c66ebab06d3",
+        "size": 65077
+      },
+      {
+        "matches": [],
+        "origin": "TRACKED_CHECKOUT",
+        "path": "overlays/collection_supply_v1/collection_supply_v1.h",
+        "sha256": "f99bcebb0cc05d0418c4663090458b0bf5843573cdf2e298c78fbda27ca51b74",
+        "size": 5530
+      },
+      {
+        "matches": [],
+        "origin": "TRACKED_CHECKOUT",
+        "path": "overlays/collection_supply_v1/collection_supply_v1_libc.c",
+        "sha256": "c7c502bf568ebf9829d224e2f8f69d691e67c3a0f374fc4527f5d7130ab2d679",
+        "size": 625
+      },
+      {
+        "matches": [],
+        "origin": "TRACKED_CHECKOUT",
+        "path": "overlays/modernization_p03_stage73_consumer_runtime/modernization_p03_stage73_consumer_runtime.c",
+        "sha256": "4dff171c4998dcb8fee113674cc99d7b80f2666e0ded6de21aa56108d3a3e0d5",
+        "size": 15217
+      },
+      {
+        "matches": [],
+        "origin": "TRACKED_CHECKOUT",
+        "path": "overlays/modernization_p03_stage73_consumer_runtime/modernization_p03_stage73_consumer_runtime.h",
+        "sha256": "fb58f643f716669d4e52313c3de923e9e186bd8ac55c786881020a46b94bfb42",
+        "size": 684
+      },
+      {
+        "matches": [],
+        "origin": "TRACKED_CHECKOUT",
+        "path": "overlays/modernization_p03_stage73_consumer_runtime/modernization_p03_stage73_consumer_runtime.ld",
+        "sha256": "4196eeefc08b08f37bfb92534557e83d0074a3a9274ae5d36014e1a3615fb7bb",
+        "size": 347
+      },
+      {
+        "matches": [],
+        "origin": "TRACKED_CHECKOUT",
+        "path": "overlays/modernization_p03_stage73_consumer_runtime/modernization_p03_stage73_consumer_runtime_hooks.S",
+        "sha256": "4152e9d1694e007e0a460631b42453c66ed09307c2e0692c13f02819728b6a54",
+        "size": 863
+      },
+      {
+        "matches": [],
+        "origin": "TRACKED_CHECKOUT",
+        "path": "scripts/build_collection_supply_v1.py",
+        "sha256": "b25a000ef37a9115b1ccb17958ded1c605b859143df677c154e13dd79fa85f37",
+        "size": 85174
+      },
+      {
+        "matches": [
+          {
+            "line": 19,
+            "text": "TOKENS = ('NECROZMA', 'Necrozma', 'SUNSTEELSTRIKE', 'SunsteelStrike', 'PHOTONGEYSER', 'PhotonGeyser', 'ZACIAN', 'ZAMAZENTA')"
+          }
+        ],
+        "origin": "TRACKED_CHECKOUT",
+        "path": "scripts/pr16_fixed_form_owner_static.py",
+        "sha256": "571a86427d29cdbf14ae50e06f659b8f8ddc2c2c62a49ffd36bf588cc73e3962",
+        "size": 5499
+      },
+      {
+        "matches": [],
+        "origin": "TRACKED_CHECKOUT",
+        "path": "tools/modernization_p03_stage73_runtime.py",
+        "sha256": "3505e912c00faf1b60cf79d3c3932d9ca0dc8779ff7d6ebc5088452dafa49785",
+        "size": 65661
+      }
+    ],
+    "status": "STATIC_OWNER_SOURCES_NOT_NATIVE_ACCEPTANCE",
+    "tested_head": "2bb937f7c2c1bedf29531f70b88d59163f349c65"
+  },
+  "schema_version": 1
+}

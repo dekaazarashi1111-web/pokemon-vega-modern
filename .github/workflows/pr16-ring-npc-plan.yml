@@ -1,0 +1,37 @@
+name: PR16 次作業をNPC配布と既存メガUI接続へ変更
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-ring-npc-plan.yml
+      - scripts/pr16_ring_npc_plan.py
+      - tests/test_pr16_ring_npc_plan.py
+permissions:
+  contents: write
+  pull-requests: read
+  actions: read
+concurrency:
+  group: pr16-ring-npc-plan
+  cancel-in-progress: false
+jobs:
+  plan:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: 方針と正本を検証し同branchへ非force記録
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/pr16_ring_npc_plan.py run
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-ring-npc-plan
+          path: .local/pr16-ring-npc-plan/
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 30

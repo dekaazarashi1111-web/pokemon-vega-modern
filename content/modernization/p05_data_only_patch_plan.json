@@ -1,0 +1,270 @@
+{
+  "plan": {
+    "confirmed_patch_count": 0,
+    "confirmed_patches": [],
+    "preserve_without_patch_move_ids": [
+      762,
+      779,
+      837,
+      1058
+    ],
+    "reason": "受領監査の4差分はいずれも表現/世代/専用計算差で自動変更不要。採用済み性能変更は別提出されていない。"
+  },
+  "preserved_reference_differences": [
+    {
+      "after": {
+        "accuracy": 0,
+        "effect": 207,
+        "flags": 8,
+        "power": 0,
+        "pp": 5,
+        "priority": 0,
+        "secondary": 0,
+        "split": 2,
+        "target": 16,
+        "type": 16,
+        "z_move_effect": 1,
+        "z_move_power": 0
+      },
+      "animation": {
+        "mapping_kind": "SOURCE_SYMBOL",
+        "symbol": "ANIM_CLANGOROUS_SOUL",
+        "vega_pointer": 0
+      },
+      "before": {
+        "accuracy": 0,
+        "effect": 207,
+        "flags": 8,
+        "power": 0,
+        "pp": 5,
+        "priority": 0,
+        "secondary": 0,
+        "split": 2,
+        "target": 16,
+        "type": 16,
+        "z_move_effect": 1,
+        "z_move_power": 0
+      },
+      "canonical_id": 762,
+      "data_only_patch_eligible": false,
+      "decision": "PRESERVE_CURRENT_NO_PATCH",
+      "description": {
+        "mapping_kind": "SOURCE_SYMBOL",
+        "raw_hex": "3d482e1900c2ca2dfe0d0a0c00093e5013fe0d4913190019032836082dfe013a29adff",
+        "symbol": "DESC_CLANGOROUS_SOUL",
+        "text": "じぶんの HPを\\nすこし けずって\\nすべての のうりょくを\\nあげる。"
+      },
+      "display_name_ja": "ソウルビート",
+      "effect_binding": {
+        "id": 207,
+        "mapping_kind": "SOURCE_SYMBOL",
+        "script_symbol": "BS_207_ExtremeEvoBoost",
+        "symbol": "EFFECT_EXTREME_EVOBOOST",
+        "vega_pointer": 0
+      },
+      "move_key": "MOVE_KEY_CLANGOROUSSOUL",
+      "reason_code": "SELF_TARGET_ACCURACY_SENTINEL",
+      "reference_delta": {
+        "accuracy": [
+          0,
+          100
+        ]
+      },
+      "source_decision_ja": "自分対象技の命中0/100表現差。必中処理の表現を確認。自動変更不要。",
+      "source_reference_id_not_project_id": 775,
+      "source_url": "https://raw.githubusercontent.com/PokeAPI/pokeapi/d4f9a4af58ade123fbc0558f68b1c69daa97d9e4/data/v2/csv/moves.csv"
+    },
+    {
+      "after": {
+        "accuracy": 0,
+        "effect": 111,
+        "flags": 0,
+        "power": 0,
+        "pp": 10,
+        "priority": 4,
+        "secondary": 0,
+        "split": 2,
+        "target": 16,
+        "type": 17,
+        "z_move_effect": 8,
+        "z_move_power": 0
+      },
+      "animation": {
+        "mapping_kind": "SOURCE_SYMBOL",
+        "symbol": "ANIM_OBSTRUCT",
+        "vega_pointer": 0
+      },
+      "before": {
+        "accuracy": 0,
+        "effect": 111,
+        "flags": 0,
+        "power": 0,
+        "pp": 10,
+        "priority": 4,
+        "secondary": 0,
+        "split": 2,
+        "target": 16,
+        "type": 17,
+        "z_move_effect": 8,
+        "z_move_power": 0
+      },
+      "canonical_id": 779,
+      "data_only_patch_eligible": false,
+      "decision": "PRESERVE_CURRENT_NO_PATCH",
+      "description": {
+        "mapping_kind": "SOURCE_SYMBOL",
+        "raw_hex": "01021319000a033a072dfe1f5010080003091502adfe1c2a2914004a03383637fe37085014000b3729adff",
+        "symbol": "DESC_OBSTRUCT",
+        "text": "あいての こうげきを\\nまったく うけない。\\nふれると ぼうぎょが\\nがくっと さがる。"
+      },
+      "display_name_ja": "ブロッキング",
+      "effect_binding": {
+        "id": 111,
+        "mapping_kind": "SOURCE_SYMBOL",
+        "script_symbol": "BS_111_Protect",
+        "symbol": "EFFECT_PROTECT",
+        "vega_pointer": 0
+      },
+      "move_key": "MOVE_KEY_OBSTRUCT",
+      "reason_code": "SELF_TARGET_ACCURACY_SENTINEL",
+      "reference_delta": {
+        "accuracy": [
+          0,
+          100
+        ]
+      },
+      "source_decision_ja": "自分対象技の命中0/100表現差。自動変更不要。",
+      "source_reference_id_not_project_id": 792,
+      "source_url": "https://raw.githubusercontent.com/PokeAPI/pokeapi/d4f9a4af58ade123fbc0558f68b1c69daa97d9e4/data/v2/csv/moves.csv"
+    },
+    {
+      "after": {
+        "accuracy": 0,
+        "effect": 211,
+        "flags": 8,
+        "power": 0,
+        "pp": 15,
+        "priority": 0,
+        "secondary": 0,
+        "split": 2,
+        "target": 16,
+        "type": 14,
+        "z_move_effect": 6,
+        "z_move_power": 0
+      },
+      "animation": {
+        "mapping_kind": "SOURCE_SYMBOL",
+        "symbol": "ANIM_TAKE_HEART",
+        "vega_pointer": 0
+      },
+      "before": {
+        "accuracy": 0,
+        "effect": 211,
+        "flags": 8,
+        "power": 0,
+        "pp": 15,
+        "priority": 0,
+        "secondary": 0,
+        "split": 2,
+        "target": 16,
+        "type": 14,
+        "z_move_effect": 6,
+        "z_move_power": 0
+      },
+      "canonical_id": 837,
+      "data_only_patch_eligible": false,
+      "decision": "PRESERVE_CURRENT_NO_PATCH",
+      "description": {
+        "mapping_kind": "SOURCE_SYMBOL",
+        "raw_hex": "0a0a2b2d001c292c0e13fe3d482e19003d36031002fe023d36032d0015050cfe0b27161a0014080a0314fe14084a032d00013a29adff",
+        "symbol": "DESC_TAKE_HEART",
+        "text": "こころを ふるわせて\\nじぶんの じょうたい\\nいじょうを なおし\\nさらには とくこうと\\nとくぼうを あげる。"
+      },
+      "display_name_ja": "ブレイブチャージ",
+      "effect_binding": {
+        "id": 211,
+        "mapping_kind": "SOURCE_SYMBOL",
+        "script_symbol": "BS_211_CalmMind",
+        "symbol": "EFFECT_CALM_MIND",
+        "vega_pointer": 0
+      },
+      "move_key": "MOVE_KEY_TAKEHEART",
+      "reason_code": "FROZEN_SHOWDOWN_REFERENCE_SUPPORTS_CURRENT_PP",
+      "reference_delta": {
+        "pp": [
+          15,
+          10
+        ]
+      },
+      "source_decision_ja": "PokeAPI固定CSVはPP10だが、同梱参照コミットのShowdown moves.tsはPP15。SV系基準では現行15を維持する。",
+      "source_reference_id_not_project_id": 850,
+      "source_url": "https://raw.githubusercontent.com/smogon/pokemon-showdown/2f5b273925862ac242b419086c1e7a8868b51da1/data/moves.ts"
+    },
+    {
+      "after": {
+        "accuracy": 100,
+        "effect": 0,
+        "flags": 19,
+        "power": 1,
+        "pp": 10,
+        "priority": 0,
+        "secondary": 0,
+        "split": 0,
+        "target": 0,
+        "type": 8,
+        "z_move_effect": 0,
+        "z_move_power": 160
+      },
+      "animation": {
+        "mapping_kind": "SOURCE_SYMBOL",
+        "symbol": "ANIM_HARDPRESS",
+        "vega_pointer": 0
+      },
+      "before": {
+        "accuracy": 100,
+        "effect": 0,
+        "flags": 19,
+        "power": 1,
+        "pp": 10,
+        "priority": 0,
+        "secondary": 0,
+        "split": 0,
+        "target": 0,
+        "type": 8,
+        "z_move_effect": 0,
+        "z_move_power": 160
+      },
+      "canonical_id": 1058,
+      "data_only_patch_eligible": false,
+      "decision": "PRESERVE_CURRENT_NO_PATCH",
+      "description": {
+        "mapping_kind": "SOURCE_SYMBOL",
+        "raw_hex": "034424006a5b7044fe01504b080d29adfe0102131900c2ca37fe190a501302291e45fe022836083700013729adff",
+        "symbol": "DESC_HARDPRESS",
+        "text": "うでや ハサミで\\nあっぱくする。\\nあいての HPが\\nのこっているほど\\nいりょくが あがる。"
+      },
+      "display_name_ja": "ハードプレス",
+      "effect_binding": {
+        "id": 0,
+        "mapping_kind": "EXTERNAL_ROM_POINTER",
+        "script_symbol": "0x81BA8E2",
+        "symbol": "EFFECT_HIT",
+        "vega_pointer": 0
+      },
+      "move_key": "MOVE_KEY_HARDPRESS",
+      "reason_code": "VARIABLE_POWER_SENTINEL_REQUIRES_EFFECT_AUDIT",
+      "reference_delta": {
+        "power": [
+          1,
+          0
+        ]
+      },
+      "source_decision_ja": "可変威力の0/1センチネル差。通常威力0へ一律書換しない。専用効果・威力計算を確認。",
+      "source_reference_id_not_project_id": 912,
+      "source_url": "https://raw.githubusercontent.com/PokeAPI/pokeapi/d4f9a4af58ade123fbc0558f68b1c69daa97d9e4/data/v2/csv/moves.csv"
+    }
+  ],
+  "schema_version": 1,
+  "status": "NO_CONFIRMED_DATA_ONLY_PATCH",
+  "task": "USER-MODERNIZATION-P05"
+}

@@ -1,0 +1,826 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "scope": "P03_NATIVE_PP_FULLSLOTS_SAVE_RELOAD_REPRESENTATIVE",
+  "candidate_build": {
+    "schema_version": 1,
+    "stage": 81,
+    "status": "CANDIDATE_BUILT",
+    "parent": {
+      "path": "build/stages/80_modernization_runtime_boundary_repair.gba",
+      "size": 33554432,
+      "sha256": "6ff621edb1c1f99c6b1feb665ddce576eff939519776a2135002ab4fa90603a3"
+    },
+    "candidate": {
+      "size": 33554432,
+      "sha256": "521624a5e6065bd969b7c3143044f1d96491b8af05a0231827ba2e709d04d579"
+    },
+    "canonical_move_table": "0x090421F4",
+    "canonical_pp": "0x090421F8",
+    "bug_bite_pp": 20,
+    "patches": [
+      {
+        "rom_offset": "0x00010DC4",
+        "consumer": "trainer_custom_moves",
+        "before": "0x08E0CBB4",
+        "after": "0x090421F8",
+        "instruction_offset": "0x00010D9E",
+        "instruction_hex": "311c1131208842001218920006481218281c2ef05efe02340136"
+      },
+      {
+        "rom_offset": "0x00010F68",
+        "consumer": "trainer_custom_moves_with_item",
+        "before": "0x08E0CBB4",
+        "after": "0x090421F8",
+        "instruction_offset": "0x00010F0C",
+        "instruction_hex": "2ef0b0fd311c1131208842001218920012481218281c2ef0a5fd02340136"
+      },
+      {
+        "rom_offset": "0x0003E064",
+        "consumer": "give_move_to_box_mon_empty_slot",
+        "before": "0x08E0CBB4",
+        "after": "0x090421F8",
+        "instruction_offset": "0x0003E04C",
+        "instruction_hex": "1131308842001218920003481218381c01f0b2fd"
+      },
+      {
+        "rom_offset": "0x0003E10C",
+        "consumer": "set_mon_move_slot_replacement",
+        "before": "0x08E0CBB4",
+        "after": "0x090421F8",
+        "instruction_offset": "0x0003E0EE",
+        "instruction_hex": "6846008842001218920004481218281c211c01f0"
+      },
+      {
+        "rom_offset": "0x000405D4",
+        "consumer": "native_party_move_pp_initialization",
+        "before": "0x08E0CBB4",
+        "after": "0x090421F8",
+        "instruction_offset": "0x00040580",
+        "instruction_hex": "00684c300019008842001218920011481218381cfff76cfa023602340135"
+      }
+    ],
+    "modified_bytes": 20,
+    "active_baseline_changed": false,
+    "current_stage79_candidate_changed": false,
+    "full_p03_acceptance": false,
+    "release_ready": false
+  },
+  "source_bindings": {
+    "tools/mgba_modernization_p02_stage71_acceptance_smoke.c": {
+      "size": 39669,
+      "sha256": "4e543fa815ca030e74522b5d0f1455fd5074035d10f044aab3bdfd41d7319c3b"
+    },
+    "tools/mgba_qol_production_smoke.c": {
+      "size": 149046,
+      "sha256": "2c4b9f065f4dce84e48f2be9afe2e2f9f666865088770ee8b068a908a0527b85"
+    },
+    "tools/mgba_battle_core_smoke.c": {
+      "size": 94688,
+      "sha256": "ed9875695ca60c61960685ac2f8e810a183c8eedd703e56545d67bde3df5cf24"
+    },
+    "tools/mgba_ai_fixture_runner.c": {
+      "size": 36272,
+      "sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f"
+    },
+    "tools/mgba_modernization_p03_fullslots_e2e.c": {
+      "size": 12868,
+      "sha256": "f419ff2fffaf175061012dfb5dfc25d18c70a86d15c9ca89f5d5e6c886965ffa"
+    },
+    "scripts/run_modernization_p03_fullslots_e2e.py": {
+      "size": 13940,
+      "sha256": "439db2906617448e7e46ce76bbcdc44fad6c2dbb4b4aede436bd7385a2b282ea"
+    },
+    "tools/modernization_p03_native_pp_repair.py": {
+      "size": 5164,
+      "sha256": "bfa4a1f2c8d470bafdb705d57fdd73a55a7885cfacb1dca6c392576a38f51e17"
+    },
+    ".github/workflows/p03-fullslots-e2e.yml": {
+      "size": 1558,
+      "sha256": "dcaf1b657a4908914c31e831ec7f18af21a3bf8f150f5b06d537ac921ae3d606"
+    },
+    "tests/test_modernization_p03_fullslots_e2e.py": {
+      "size": 14368,
+      "sha256": "0c6c9d046ed2b285ac976aac0fb7d5ed29ecfa94eeb703b99f609cb3078b371b"
+    },
+    "tools/mgba_modernization_p03_learning_e2e.c": {
+      "size": 7987,
+      "sha256": "154e277ef3f37b0037a7082b154805b658742f476eaf52abeb8c0ffb27a2742d"
+    },
+    "config/modernization_stage79_cumulative_mgba.json": {
+      "size": 28627,
+      "sha256": "ee6c6326e0c96445b113e9cd0d73f5b3b7a1d5c907789e58d88ea3878abca5d6"
+    },
+    "config/modernization_p03_stage65.json": {
+      "size": 6733,
+      "sha256": "1846992a47218e8f6e65606e69d692bc611d974ede8177e137786aa0d405ec00"
+    },
+    "config/active_play_baseline.json": {
+      "size": 394,
+      "sha256": "4800257add049ea99cdedda91413a70a255dcff9a85823463596edefa8785053"
+    },
+    "infra/toolchain_manifest.json": {
+      "size": 33230,
+      "sha256": "abf9f2fe3589323702aa8f934209d17b5165983773ad44207c6301f53afe1bff"
+    },
+    "infra/setup_github_actions.sh": {
+      "size": 2571,
+      "sha256": "8b081dd37ae761325e80ed4f689b1d790f76a6acb311ba810820221828c79cc2"
+    }
+  },
+  "seed": {
+    "size": 131072,
+    "sha256": "f6bfdb107196ca22b012c1d12ee4bcdc8f5add309bbd3538447cd6e39c449bcb"
+  },
+  "fresh_process_runs": 10,
+  "accepted_candidate_runs": 8,
+  "negative_control_runs": 2,
+  "cached_results_reused": 0,
+  "cases": [
+    {
+      "mode": "replace-0",
+      "process": {
+        "schema_version": 1,
+        "returncode": 0,
+        "timed_out": false,
+        "spawn_error": null
+      },
+      "stdout": {
+        "size": 862,
+        "sha256": "8ccf2119d7f45e55d483bb6752c5f277d8946578d87ce1759e70f440eff20680"
+      },
+      "stderr": {
+        "size": 1075,
+        "sha256": "d3047181c7660b8066e60b5d516f5ef7bb20c2f0d075390865385774d5f483d5"
+      },
+      "private_save_after": {
+        "size": 131088,
+        "sha256": "1b19e8b165503a54e44fedf1ecba035af531b05651dbbd47b76763d0e2c8ac92"
+      },
+      "runner_result": {
+        "schema_version": 1,
+        "status": "PASS",
+        "scope": "P03_NATIVE_PP_FULLSLOTS_SAVE_RELOAD_REPRESENTATIVE",
+        "mode": "replace-0",
+        "rom_sha256": "521624a5e6065bd969b7c3143044f1d96491b8af05a0231827ba2e709d04d579",
+        "species": 649,
+        "initial_level": 8,
+        "final_level": 9,
+        "learned_slot": 0,
+        "canonical_bug_bite_pp": 20,
+        "moves_before": [
+          33,
+          81,
+          45,
+          52
+        ],
+        "pp_before": [
+          7,
+          8,
+          9,
+          10
+        ],
+        "moves_after": [
+          535,
+          81,
+          45,
+          52
+        ],
+        "pp_after": [
+          20,
+          8,
+          9,
+          10
+        ],
+        "witness": {
+          "dialog": 630,
+          "summary": 784,
+          "selection": 810,
+          "stop": 0,
+          "evolution_begin": 1321,
+          "evolution_update": 1345,
+          "field": 2171,
+          "down_presses": 0
+        },
+        "normal_bag_party_input": true,
+        "scene_keys_frames_only": true,
+        "evolution_cancel_input": true,
+        "normal_save_menu": true,
+        "fresh_core_normal_continue": true,
+        "all_slots_pp_persisted": true,
+        "private_rtc_trailer_reserved": true,
+        "save_counter_delta": 1,
+        "breeding_e2e": false,
+        "full_p03_acceptance": false,
+        "release_ready": false,
+        "warnings_errors": 0
+      }
+    },
+    {
+      "mode": "replace-1",
+      "process": {
+        "schema_version": 1,
+        "returncode": 0,
+        "timed_out": false,
+        "spawn_error": null
+      },
+      "stdout": {
+        "size": 862,
+        "sha256": "ea975360f92e911f4913299b249afe3fe5d3bdf70a0b651a443d46cb1df6a2fb"
+      },
+      "stderr": {
+        "size": 1075,
+        "sha256": "4f6ccb0c7043952bfe9627c24b5b1530e876de6b93e19b14bf055f0ff4f0231d"
+      },
+      "private_save_after": {
+        "size": 131088,
+        "sha256": "4866981bfcda9f2dc92dbcd2df1afb9c7d08d3758fff728417b9545c36d6da01"
+      },
+      "runner_result": {
+        "schema_version": 1,
+        "status": "PASS",
+        "scope": "P03_NATIVE_PP_FULLSLOTS_SAVE_RELOAD_REPRESENTATIVE",
+        "mode": "replace-1",
+        "rom_sha256": "521624a5e6065bd969b7c3143044f1d96491b8af05a0231827ba2e709d04d579",
+        "species": 649,
+        "initial_level": 8,
+        "final_level": 9,
+        "learned_slot": 1,
+        "canonical_bug_bite_pp": 20,
+        "moves_before": [
+          33,
+          81,
+          45,
+          52
+        ],
+        "pp_before": [
+          7,
+          8,
+          9,
+          10
+        ],
+        "moves_after": [
+          33,
+          535,
+          45,
+          52
+        ],
+        "pp_after": [
+          7,
+          20,
+          9,
+          10
+        ],
+        "witness": {
+          "dialog": 630,
+          "summary": 784,
+          "selection": 840,
+          "stop": 0,
+          "evolution_begin": 1441,
+          "evolution_update": 1466,
+          "field": 2291,
+          "down_presses": 1
+        },
+        "normal_bag_party_input": true,
+        "scene_keys_frames_only": true,
+        "evolution_cancel_input": true,
+        "normal_save_menu": true,
+        "fresh_core_normal_continue": true,
+        "all_slots_pp_persisted": true,
+        "private_rtc_trailer_reserved": true,
+        "save_counter_delta": 1,
+        "breeding_e2e": false,
+        "full_p03_acceptance": false,
+        "release_ready": false,
+        "warnings_errors": 0
+      }
+    },
+    {
+      "mode": "replace-2",
+      "process": {
+        "schema_version": 1,
+        "returncode": 0,
+        "timed_out": false,
+        "spawn_error": null
+      },
+      "stdout": {
+        "size": 862,
+        "sha256": "4060fc7a569e6d2b16ddb174a0311eacfb52607f67de1ad0184a5032d3b2580f"
+      },
+      "stderr": {
+        "size": 1075,
+        "sha256": "790c0d8053840cf0a60d8ec5294c051c3f0761d4bc6b5e76467d1406b668e45b"
+      },
+      "private_save_after": {
+        "size": 131088,
+        "sha256": "5eb3a1ec4b2f64606950536ee4e50b015e79d3c97700387532de2298c63ae452"
+      },
+      "runner_result": {
+        "schema_version": 1,
+        "status": "PASS",
+        "scope": "P03_NATIVE_PP_FULLSLOTS_SAVE_RELOAD_REPRESENTATIVE",
+        "mode": "replace-2",
+        "rom_sha256": "521624a5e6065bd969b7c3143044f1d96491b8af05a0231827ba2e709d04d579",
+        "species": 649,
+        "initial_level": 8,
+        "final_level": 9,
+        "learned_slot": 2,
+        "canonical_bug_bite_pp": 20,
+        "moves_before": [
+          33,
+          81,
+          45,
+          52
+        ],
+        "pp_before": [
+          7,
+          8,
+          9,
+          10
+        ],
+        "moves_after": [
+          33,
+          81,
+          535,
+          52
+        ],
+        "pp_after": [
+          7,
+          8,
+          20,
+          10
+        ],
+        "witness": {
+          "dialog": 630,
+          "summary": 784,
+          "selection": 870,
+          "stop": 0,
+          "evolution_begin": 1441,
+          "evolution_update": 1466,
+          "field": 2291,
+          "down_presses": 2
+        },
+        "normal_bag_party_input": true,
+        "scene_keys_frames_only": true,
+        "evolution_cancel_input": true,
+        "normal_save_menu": true,
+        "fresh_core_normal_continue": true,
+        "all_slots_pp_persisted": true,
+        "private_rtc_trailer_reserved": true,
+        "save_counter_delta": 1,
+        "breeding_e2e": false,
+        "full_p03_acceptance": false,
+        "release_ready": false,
+        "warnings_errors": 0
+      }
+    },
+    {
+      "mode": "replace-3",
+      "process": {
+        "schema_version": 1,
+        "returncode": 0,
+        "timed_out": false,
+        "spawn_error": null
+      },
+      "stdout": {
+        "size": 861,
+        "sha256": "deefbcbcf99cc1289224ac8706284f6b7d6b96f0d2662489b343d8902b0b7899"
+      },
+      "stderr": {
+        "size": 1071,
+        "sha256": "4d84ff88fd5d31dba358d7dc6316fc4209e6d83458a919f8bad42ac41d143f76"
+      },
+      "private_save_after": {
+        "size": 131088,
+        "sha256": "841c8b9cc0c516bf1e6c4c8ce49d51bd358c822f027780f3a7a87e3d68a34172"
+      },
+      "runner_result": {
+        "schema_version": 1,
+        "status": "PASS",
+        "scope": "P03_NATIVE_PP_FULLSLOTS_SAVE_RELOAD_REPRESENTATIVE",
+        "mode": "replace-3",
+        "rom_sha256": "521624a5e6065bd969b7c3143044f1d96491b8af05a0231827ba2e709d04d579",
+        "species": 649,
+        "initial_level": 8,
+        "final_level": 9,
+        "learned_slot": 3,
+        "canonical_bug_bite_pp": 20,
+        "moves_before": [
+          33,
+          81,
+          45,
+          52
+        ],
+        "pp_before": [
+          7,
+          8,
+          9,
+          10
+        ],
+        "moves_after": [
+          33,
+          81,
+          45,
+          535
+        ],
+        "pp_after": [
+          7,
+          8,
+          9,
+          20
+        ],
+        "witness": {
+          "dialog": 630,
+          "summary": 784,
+          "selection": 900,
+          "stop": 0,
+          "evolution_begin": 1441,
+          "evolution_update": 1466,
+          "field": 2291,
+          "down_presses": 3
+        },
+        "normal_bag_party_input": true,
+        "scene_keys_frames_only": true,
+        "evolution_cancel_input": true,
+        "normal_save_menu": true,
+        "fresh_core_normal_continue": true,
+        "all_slots_pp_persisted": true,
+        "private_rtc_trailer_reserved": true,
+        "save_counter_delta": 1,
+        "breeding_e2e": false,
+        "full_p03_acceptance": false,
+        "release_ready": false,
+        "warnings_errors": 0
+      }
+    },
+    {
+      "mode": "reject",
+      "process": {
+        "schema_version": 1,
+        "returncode": 0,
+        "timed_out": false,
+        "spawn_error": null
+      },
+      "stdout": {
+        "size": 854,
+        "sha256": "35f07675d485088ecb9c065adb6f7ec25e75d4125a1d7a0748131289578c82ec"
+      },
+      "stderr": {
+        "size": 864,
+        "sha256": "b54713eeda692d7169134697548701985069afa67b3798cd71739d3690212067"
+      },
+      "private_save_after": {
+        "size": 131088,
+        "sha256": "1b3dec8c216cdaaf9c2655cae6007e118b713e785d032835d7752136d6835645"
+      },
+      "runner_result": {
+        "schema_version": 1,
+        "status": "PASS",
+        "scope": "P03_NATIVE_PP_FULLSLOTS_SAVE_RELOAD_REPRESENTATIVE",
+        "mode": "reject",
+        "rom_sha256": "521624a5e6065bd969b7c3143044f1d96491b8af05a0231827ba2e709d04d579",
+        "species": 649,
+        "initial_level": 8,
+        "final_level": 9,
+        "learned_slot": -1,
+        "canonical_bug_bite_pp": 20,
+        "moves_before": [
+          33,
+          81,
+          45,
+          52
+        ],
+        "pp_before": [
+          7,
+          8,
+          9,
+          10
+        ],
+        "moves_after": [
+          33,
+          81,
+          45,
+          52
+        ],
+        "pp_after": [
+          7,
+          8,
+          9,
+          10
+        ],
+        "witness": {
+          "dialog": 630,
+          "summary": 0,
+          "selection": 0,
+          "stop": 660,
+          "evolution_begin": 723,
+          "evolution_update": 748,
+          "field": 1571,
+          "down_presses": 0
+        },
+        "normal_bag_party_input": true,
+        "scene_keys_frames_only": true,
+        "evolution_cancel_input": true,
+        "normal_save_menu": true,
+        "fresh_core_normal_continue": true,
+        "all_slots_pp_persisted": true,
+        "private_rtc_trailer_reserved": true,
+        "save_counter_delta": 1,
+        "breeding_e2e": false,
+        "full_p03_acceptance": false,
+        "release_ready": false,
+        "warnings_errors": 0
+      }
+    },
+    {
+      "mode": "cancel-summary",
+      "process": {
+        "schema_version": 1,
+        "returncode": 0,
+        "timed_out": false,
+        "spawn_error": null
+      },
+      "stdout": {
+        "size": 866,
+        "sha256": "bc5cb77b57d3fde7767c735b155b8f670fd12dceaf31ae9bddfb1ad166579393"
+      },
+      "stderr": {
+        "size": 1070,
+        "sha256": "7f7eebe5c62edf6da99b50e0bfc43ce17ae39cb9fcc1a7f8fa80c73b38f42664"
+      },
+      "private_save_after": {
+        "size": 131088,
+        "sha256": "dd829c5a0062d3c5f932966b7de8fb3f636451b7b54f5b01786f501d3a914c1f"
+      },
+      "runner_result": {
+        "schema_version": 1,
+        "status": "PASS",
+        "scope": "P03_NATIVE_PP_FULLSLOTS_SAVE_RELOAD_REPRESENTATIVE",
+        "mode": "cancel-summary",
+        "rom_sha256": "521624a5e6065bd969b7c3143044f1d96491b8af05a0231827ba2e709d04d579",
+        "species": 649,
+        "initial_level": 8,
+        "final_level": 9,
+        "learned_slot": -1,
+        "canonical_bug_bite_pp": 20,
+        "moves_before": [
+          33,
+          81,
+          45,
+          52
+        ],
+        "pp_before": [
+          7,
+          8,
+          9,
+          10
+        ],
+        "moves_after": [
+          33,
+          81,
+          45,
+          52
+        ],
+        "pp_after": [
+          7,
+          8,
+          9,
+          10
+        ],
+        "witness": {
+          "dialog": 630,
+          "summary": 784,
+          "selection": 810,
+          "stop": 900,
+          "evolution_begin": 963,
+          "evolution_update": 988,
+          "field": 1811,
+          "down_presses": 0
+        },
+        "normal_bag_party_input": true,
+        "scene_keys_frames_only": true,
+        "evolution_cancel_input": true,
+        "normal_save_menu": true,
+        "fresh_core_normal_continue": true,
+        "all_slots_pp_persisted": true,
+        "private_rtc_trailer_reserved": true,
+        "save_counter_delta": 1,
+        "breeding_e2e": false,
+        "full_p03_acceptance": false,
+        "release_ready": false,
+        "warnings_errors": 0
+      }
+    },
+    {
+      "mode": "empty",
+      "process": {
+        "schema_version": 1,
+        "returncode": 0,
+        "timed_out": false,
+        "spawn_error": null
+      },
+      "stdout": {
+        "size": 845,
+        "sha256": "2c1c9ec3621b10a42cbb39675bd921053b70548d12cfe638cbb87729462848da"
+      },
+      "stderr": {
+        "size": 855,
+        "sha256": "3affdf3e607e0e849e37e064ac4ccb6eccc048b84e3b65c19afef381ad3ff627"
+      },
+      "private_save_after": {
+        "size": 131088,
+        "sha256": "a77cc4c6c3ca6177598fc37371645fd5a7f0e8d23ce7243cc70c0a85d4974080"
+      },
+      "runner_result": {
+        "schema_version": 1,
+        "status": "PASS",
+        "scope": "P03_NATIVE_PP_FULLSLOTS_SAVE_RELOAD_REPRESENTATIVE",
+        "mode": "empty",
+        "rom_sha256": "521624a5e6065bd969b7c3143044f1d96491b8af05a0231827ba2e709d04d579",
+        "species": 649,
+        "initial_level": 8,
+        "final_level": 9,
+        "learned_slot": 2,
+        "canonical_bug_bite_pp": 20,
+        "moves_before": [
+          33,
+          81,
+          0,
+          0
+        ],
+        "pp_before": [
+          7,
+          8,
+          0,
+          0
+        ],
+        "moves_after": [
+          33,
+          81,
+          535,
+          0
+        ],
+        "pp_after": [
+          7,
+          8,
+          20,
+          0
+        ],
+        "witness": {
+          "dialog": 0,
+          "summary": 0,
+          "selection": 0,
+          "stop": 0,
+          "evolution_begin": 481,
+          "evolution_update": 506,
+          "field": 1331,
+          "down_presses": 0
+        },
+        "normal_bag_party_input": true,
+        "scene_keys_frames_only": true,
+        "evolution_cancel_input": true,
+        "normal_save_menu": true,
+        "fresh_core_normal_continue": true,
+        "all_slots_pp_persisted": true,
+        "private_rtc_trailer_reserved": true,
+        "save_counter_delta": 1,
+        "breeding_e2e": false,
+        "full_p03_acceptance": false,
+        "release_ready": false,
+        "warnings_errors": 0
+      }
+    },
+    {
+      "mode": "below-level",
+      "process": {
+        "schema_version": 1,
+        "returncode": 0,
+        "timed_out": false,
+        "spawn_error": null
+      },
+      "stdout": {
+        "size": 849,
+        "sha256": "04dd2c17518b4c28d38eec3e393494508f4f7bea162554ec291f29dc2d37e8ee"
+      },
+      "stderr": {
+        "size": 842,
+        "sha256": "d265c2ccb8adbcaa0f788b43f2806480c3812ca229404467cdf874e708947f49"
+      },
+      "private_save_after": {
+        "size": 131088,
+        "sha256": "7a8bd00f9924390916b1a6804e82b97bedb4936e53163cba5f5432afc6715651"
+      },
+      "runner_result": {
+        "schema_version": 1,
+        "status": "PASS",
+        "scope": "P03_NATIVE_PP_FULLSLOTS_SAVE_RELOAD_REPRESENTATIVE",
+        "mode": "below-level",
+        "rom_sha256": "521624a5e6065bd969b7c3143044f1d96491b8af05a0231827ba2e709d04d579",
+        "species": 649,
+        "initial_level": 7,
+        "final_level": 8,
+        "learned_slot": -1,
+        "canonical_bug_bite_pp": 20,
+        "moves_before": [
+          33,
+          81,
+          0,
+          0
+        ],
+        "pp_before": [
+          7,
+          8,
+          0,
+          0
+        ],
+        "moves_after": [
+          33,
+          81,
+          0,
+          0
+        ],
+        "pp_after": [
+          7,
+          8,
+          0,
+          0
+        ],
+        "witness": {
+          "dialog": 0,
+          "summary": 0,
+          "selection": 0,
+          "stop": 0,
+          "evolution_begin": 361,
+          "evolution_update": 386,
+          "field": 1211,
+          "down_presses": 0
+        },
+        "normal_bag_party_input": true,
+        "scene_keys_frames_only": true,
+        "evolution_cancel_input": true,
+        "normal_save_menu": true,
+        "fresh_core_normal_continue": true,
+        "all_slots_pp_persisted": true,
+        "private_rtc_trailer_reserved": true,
+        "save_counter_delta": 1,
+        "breeding_e2e": false,
+        "full_p03_acceptance": false,
+        "release_ready": false,
+        "warnings_errors": 0
+      }
+    }
+  ],
+  "pre_repair_controls": [
+    {
+      "mode": "empty",
+      "process": {
+        "schema_version": 1,
+        "returncode": 1,
+        "timed_out": false,
+        "spawn_error": null
+      },
+      "stdout": {
+        "size": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "size": 728,
+        "sha256": "f5fd99495a1af083fed2e075f9030d2db8d0b3efd15608ea1e8455b87892632d"
+      },
+      "private_save_after": {
+        "size": 131088,
+        "sha256": "a7371100188c803962d09ecc0fd6470b5f670672f9cb254c3f53bb181d2e71c9"
+      },
+      "expected_failure": "canonical PP 20, observed 45",
+      "rom_sha256": "6ff621edb1c1f99c6b1feb665ddce576eff939519776a2135002ab4fa90603a3"
+    },
+    {
+      "mode": "replace-0",
+      "process": {
+        "schema_version": 1,
+        "returncode": 1,
+        "timed_out": false,
+        "spawn_error": null
+      },
+      "stdout": {
+        "size": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "size": 880,
+        "sha256": "7e49b21492009f08587aa252af81ff1de7cf09b22f07e1ebe8710455f08e3a04"
+      },
+      "private_save_after": {
+        "size": 131088,
+        "sha256": "a7371100188c803962d09ecc0fd6470b5f670672f9cb254c3f53bb181d2e71c9"
+      },
+      "expected_failure": "canonical PP 20, observed 45",
+      "rom_sha256": "6ff621edb1c1f99c6b1feb665ddce576eff939519776a2135002ab4fa90603a3"
+    }
+  ],
+  "full_p03_acceptance": false,
+  "breeding_e2e": false,
+  "release_ready": false,
+  "active_baseline_changed": false,
+  "current_stage79_candidate_changed": false
+}

@@ -1,0 +1,112 @@
+name: pr16-bp-battle-return-closeout
+run-name: Preserve failed native loss return and fixed handoff; zero emulator replay
+on:
+  workflow_dispatch:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-bp-battle-return-closeout.yml
+      - scripts/pr16_bp_battle_return_closeout.py
+      - scripts/pr16_bp_battle_return_checkpoint.py
+      - tests/test_pr16_bp_battle_return_checkpoint.py
+      - tests/test_pr16_resume.py
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: pr16-bp-battle-return-closeout
+  cancel-in-progress: false
+jobs:
+  retain:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: Verify original failure and update same handoff and both logs without native execution
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-battle-return-closeout
+          mkdir -p "$out"
+          python3 scripts/pr16_bp_chooser_checkpoint.py > "$out/accepted-cancel-before.json"
+          python3 scripts/pr16_fixed_form_closeout.py --check > "$out/fixed-form-retained.json"
+          python3 scripts/pr16_bp_battle_return_closeout.py retain > "$out/retention.json" 2> "$out/retention.stderr"
+          python3 -m unittest tests.test_pr16_bp_battle_return tests.test_pr16_resume tests.test_pr16_bp_battle_return_checkpoint -v > "$out/unit.stdout" 2> "$out/unit.stderr"
+          python3 scripts/pr16_resume.py check > "$out/resume-check.txt"
+          python3 scripts/validate_task_graph.py > "$out/task-graph.txt"
+          python3 scripts/pr16_bp_battle_return_closeout.py logs > "$out/logs.stdout" 2> "$out/logs.stderr"
+          python3 - <<'PY'
+          import subprocess,sys
+          sys.path.insert(0,'scripts')
+          import pr16_bp_battle_return_closeout as close
+          close.need(not close.git(close.ROOT,'diff','--cached','--name-only').strip(),'pre-existing staged work')
+          normal=[name for name in close.PATHS if not name.endswith('.zip')]
+          archives=[name for name in close.PATHS if name.endswith('.zip')]
+          subprocess.run(['git','add','--',*normal],cwd=close.ROOT,check=True)
+          subprocess.run(['git','add','-f','--',*archives],cwd=close.ROOT,check=True)
+          PY
+          python3 scripts/pr16_bp_battle_return_checkpoint.py --index > "$out/index-verification.json"
+          python3 scripts/pr16_bp_chooser_checkpoint.py --index > "$out/accepted-cancel-retained.json"
+          python3 scripts/pr16_bp_battle_return_closeout.py guard > "$out/guard.stdout" 2> "$out/guard.stderr"
+          git diff --cached --check
+          python3 scripts/pr16_resume.py check > "$out/final-resume-check.txt"
+      - name: Commit and fast-forward only after branch and exact originals agree
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-battle-return-closeout
+          branch=codex/modernization-followup-20260908
+          remote=$(git ls-remote origin "refs/heads/$branch" | cut -f1)
+          test "$remote" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20260913-BP-FIRST-BATTLE: retain native loss WhiteOut failure; sync same handoff and both logs; BP pending'
+          python3 - <<'PY'
+          import sys
+          sys.path.insert(0,'scripts')
+          import pr16_bp_battle_return_closeout as close
+          for name in close.PATHS:assert close.git(close.ROOT,'show','HEAD:'+name)==(close.ROOT/name).read_bytes(),name
+          print('COMMITTED_ORIGINALS_AND_HANDOFF_BYTE_EQUAL')
+          PY
+          git push origin "HEAD:refs/heads/$branch"
+          git rev-parse HEAD > "$out/final-head.txt"
+          python3 - <<'PY'
+          import pathlib,sys
+          sys.path.insert(0,'scripts')
+          import pr16_bp_battle_return_closeout as close
+          out=pathlib.Path('.local/pr16-bp-battle-return-closeout')
+          for name in (close.resume.STATE,close.resume.DOC,close.c.REPORT):
+              (out/pathlib.Path(name).name).write_bytes(pathlib.Path(name).read_bytes())
+          for name in close.LOGS:
+              (out/(pathlib.Path(name).stem+'-tail.txt')).write_text('\n'.join(pathlib.Path(name).read_text().splitlines()[-25:])+'\n')
+          PY
+      - name: Reject executable or private closeout output
+        id: artifact_guard
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib,json,pathlib,re
+          out=pathlib.Path('.local/pr16-bp-battle-return-closeout');members={}
+          for p in out.iterdir():
+              assert p.is_file() and not p.is_symlink() and p.suffix in {'.json','.txt','.md','.stdout','.stderr'}
+              raw=p.read_bytes();raw.decode('utf-8');assert b'\0' not in raw and len(raw)<16000000
+              assert not re.search(rb'gh[pousr]_[A-Za-z0-9]{36,}|github_pat_[A-Za-z0-9_]{60,}',raw)
+              members[p.name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+          (out/'members.json').write_text(json.dumps(members,sort_keys=True,indent=2)+'\n')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.artifact_guard.outcome == 'success'
+        with:
+          name: pr16-bp-battle-return-closeout
+          path: .local/pr16-bp-battle-return-closeout/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90

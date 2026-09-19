@@ -1,0 +1,64 @@
+{
+  "command_argument_count": 15,
+  "compilation": {
+    "compiler": "/usr/bin/cc",
+    "executable_sha256": "ffc6725657faa219e5d1867a0eecfe127c3258911038dc27fa53f2bf187b5f91",
+    "executable_size": 51512,
+    "flags": [
+      "-std=c11",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Itools"
+    ],
+    "link_flags": [
+      "-lmgba"
+    ]
+  },
+  "id": "floette",
+  "input_rom": {
+    "path": "build/stages/80_modernization_runtime_boundary_repair.gba",
+    "sha256": "6ff621edb1c1f99c6b1feb665ddce576eff939519776a2135002ab4fa90603a3",
+    "size": 33554432
+  },
+  "plan_fingerprint": "b3e047b37f2c129c74f934a23a4188369a660c244d76e5da87599c9186936358",
+  "runner": {
+    "path": "overlays/modernization_floette_gift/mgba_modernization_floette_gift_smoke.c",
+    "sha256": "256e84f60a672374359e501cbbe689b081c0f2770e22a5b1edef334fcb60afd2",
+    "size": 28131
+  },
+  "runner_result": {
+    "checks": {
+      "claim_flag_14cd": true,
+      "fresh_core_once_rejected": true,
+      "full_party_pc_delivery_species1029_level50": true,
+      "mega_ring_580_gate": true,
+      "national670_collection_bit850": true,
+      "party_and_pc_full_unclaimed": true,
+      "party_delivery_species1029_level50": true,
+      "pc_level50_create_mon_experience_identity": true,
+      "physical_npc_script_graph_to_entrypoint": true,
+      "standard_save_fresh_core_reload": true
+    },
+    "core_instances": 2,
+    "framebuffer_transitions": 6729,
+    "pc_destination": {
+      "box": 0,
+      "position": 0
+    },
+    "process_runs": 1,
+    "retained_artifacts": [],
+    "schema_version": 1,
+    "stage": 69,
+    "state_fixture": "PRODUCTION_ROM_FUNCTIONS_ONLY",
+    "status": "PASS",
+    "task": "USER-MODERNIZATION-FLOETTE-ETERNAL-GIFT",
+    "warnings_errors": 0
+  },
+  "schema_version": 1,
+  "stage": 79,
+  "status": "PASS",
+  "stderr_sha256": "06987483ad91738bb1edd2481d7b564c8b7e9610f33a998a99f67e43506eb184",
+  "task": "USER-MODERNIZATION-STAGE79-CUMULATIVE-MGBA"
+}

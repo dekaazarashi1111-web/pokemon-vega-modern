@@ -1,0 +1,219 @@
+{
+  "acceptance": {
+    "all_nine_consumer_input_validation_gate": "PASS",
+    "allocation_gate": "PASS",
+    "clean_bps_round_trip": "PASS",
+    "deferred_route_accounting_gate": "PASS",
+    "full_p03_materialization_gate": "PARTIAL_NOT_COMPLETE",
+    "immutable_source_zip_gate": "PASS",
+    "incremental_bps_round_trip": "PASS",
+    "independent_mgba_processes": 2,
+    "level_up_runtime_ready_bulk_gate": "PASS",
+    "machine_existing_slot_bulk_gate": "PASS",
+    "parent_preimage_gate": "PASS",
+    "real_consumer_mgba_gate": "PASS",
+    "scheduler_e2e": "NOT_RUN",
+    "static_contract_gate": "PASS",
+    "task_completion": "CHECKPOINT_NOT_P03_DONE"
+  },
+  "allocation": {
+    "added_allocations": 1,
+    "added_bytes": 60116,
+    "path": "build/stages/66_modernization_p03_allocation.json",
+    "remaining_allocatable_bytes": 1855788,
+    "sha256": "d454fdde5fbece67e5411895b929980a43d64bcfa99f8b947093f5db37b706cc",
+    "size": 39372
+  },
+  "bps": {
+    "clean": {
+      "path": "build/patches/firered-jpn-rev0-to-stage66-modernization-p03-bulk-learnsets.bps",
+      "round_trip": true,
+      "sha256": "9a84725f6c52e200a2275507d1fe6655736cfe4e2fe277ab4ddcb05778baed19",
+      "size": 16785814
+    },
+    "incremental": {
+      "path": "build/patches/stage65-to-stage66-modernization-p03-bulk-learnsets.bps",
+      "round_trip": true,
+      "sha256": "6d3bd8f75b8603f00d0f729ae0fe8bbcedce515ecaaaeecc423d13e0f0e14ed0",
+      "size": 86322
+    }
+  },
+  "change_audit": {
+    "changed_bytes": 81693,
+    "changed_spans": 3520,
+    "outside_declared_range_count": 0,
+    "path": "content/modernization/p03_stage66_change_audit.json",
+    "sha256": "9a02a00b14b63a7677ebcbc85204cb0bb521fdd78ac84d319cb66137e45b2d5e",
+    "size": 317023
+  },
+  "checkpoint_marker": "CHECKPOINT_NOT_P03_DONE",
+  "done": false,
+  "input": {
+    "clean_rom": {
+      "path": "inputs/private/FireRed_JPN_Rev0_clean.gba",
+      "sha256": "1e4af44b0c75cc8649bfb8649dc4ae5850bf5358bd6b9cd0bf779c99f9db1486",
+      "size": 16777216
+    },
+    "identity_contract": {
+      "path": "content/modernization/identity_contract.json",
+      "sha256": "be4e08a27986b7e384eab8239f5608732b5c6575b060fdae50efd0c90a810443",
+      "size": 1461322
+    },
+    "learnsets_zip": {
+      "path": "userfile/imports/modernization_p01/Pokemon_Vega_Stage61_技習得品質改善版_v1.3.0_20260905.zip",
+      "sha256": "80b678320c08203e7b39236e5c123f5c2f2f0c729e7f4e5101bed88c84158adb",
+      "size": 82683251
+    },
+    "mgba_runtime_gate": {
+      "classification": "REAL_CONSUMER_DIRECT_CALL_BOUNDED_NOT_SCHEDULER_E2E",
+      "path": "content/modernization/p03_stage66_mgba_runtime_gate.json",
+      "process_runs": 2,
+      "representative_samples": 4,
+      "sha256": "9201a22bfb341c997867c76050e9383c135823cfecb6488bb7d112ad6b1da13a",
+      "size": 10456,
+      "status": "PASS"
+    },
+    "move_manifest": {
+      "path": "manifests/move_ids.csv",
+      "sha256": "dba3c65af59ee2dcfa9eecdeeeb1cc189a990b52e27b1878bad6eaec8e104f20",
+      "size": 128694
+    },
+    "p03_compiled_index": {
+      "path": "content/modernization/p03_compiled_index.json",
+      "sha256": "fe2285fa8865a557d4607e7c72be5eb68874920951dcebdbef45db6016cb6180",
+      "size": 1380994
+    },
+    "p03_contract": {
+      "path": "content/modernization/p03_learnset_contract.json",
+      "sha256": "4c2a97f4c5e3b2a0056313bc0ab25240b95b9c38cb1ae4c47a67ec78796e6b58",
+      "size": 9095
+    },
+    "p03_runtime_handoff": {
+      "path": "content/modernization/p03_runtime_handoff.json",
+      "sha256": "32ea838df56988082253fccbcec8e9cd570ace8fadc5658b15cfb8bf7128594e",
+      "size": 8980
+    },
+    "parent_allocation": {
+      "path": "build/stages/65_modernization_p03_allocation.json",
+      "sha256": "7393007cfb6ed0f5d6f9264b60f8b73c1fdd5454ce767b1cdfb7cf268c867e18",
+      "size": 38800
+    },
+    "parent_checkpoint": {
+      "path": "content/modernization/p03_stage65_checkpoint.json",
+      "sha256": "3956ebc238c0acc9e715e87a8587051221a824d31a81bd24ba4dea4e04c7823d",
+      "size": 9522
+    },
+    "parent_metadata": {
+      "path": "build/stages/65_modernization_p03_caterpie_slice.json",
+      "sha256": "ad5210529a62cc42571fcc255f98f53d183b8c8419bf0effbb9e1ecaa262aa2c",
+      "size": 8362
+    },
+    "parent_rom": {
+      "path": "build/stages/65_modernization_p03_caterpie_slice.gba",
+      "sha256": "116781c8be7cbd327ba7783ebdad9d9dda77554c33839eebed15ae6b065bb680",
+      "size": 33554432
+    },
+    "species_manifest": {
+      "path": "manifests/species_ids.csv",
+      "sha256": "4e7cd7ef13761214f506e8ad58611c3dc36a0843b8b6647368677a73613f9366",
+      "size": 207095
+    }
+  },
+  "output": {
+    "crc32": "808D5140",
+    "path": "build/stages/66_modernization_p03_bulk_learnsets.gba",
+    "sha256": "0d92f5377b4ad1a2fa5cbf905f81b5b6162e16cdd09a12c65c4a342e73c5c97e",
+    "size": 33554432
+  },
+  "producer_boundary": {
+    "builder": "scripts/build_modernization_p03_stage66.py",
+    "clean_rom_cumulative_generation": true,
+    "corrected_target_compatibility_rows_replaced": 1300,
+    "corrected_target_pointer_entries_repointed": 1300,
+    "generator": "tools/modernization_p03_stage66.py",
+    "incremental_parent_generation": true,
+    "level_consumer_root_repointed": false,
+    "machine_catalog_changed": false,
+    "non_adopted_species_rows_preserved": 321,
+    "parent_stage": 65
+  },
+  "remaining_work": {
+    "consumer_routes_not_in_stage66_scope": {
+      "egg": 2572,
+      "evolution": 341,
+      "form_change": 70,
+      "pre_evolution_carry": 35183,
+      "reminder": 298,
+      "shared_egg": 5041,
+      "tutor": 1113
+    },
+    "full_scheduler_and_save_reload": "NOT_RUN",
+    "level_up_move_1063": {
+      "routes": 15,
+      "status": "BLOCKING_RUNTIME_DEPENDENCY_NOT_IMPLEMENTED"
+    },
+    "machine_supply_required": {
+      "routes": 26347,
+      "status": "REQUIRES_CATALOG_OR_ALTERNATE_SUPPLY_IMPLEMENTATION"
+    },
+    "move_1063_all_consumers": {
+      "routes": 159,
+      "status": "BLOCKING_RUNTIME_DEPENDENCY_NOT_IMPLEMENTED"
+    },
+    "note_ja": "このStage66は全level-up入力を監査しruntime-ready 18,515経路と、既存slotへ解決できるmachine 29,033経路を接続したbulk checkpoint。供給不足・別consumer・Move 1063を残すためP03完了ではない。",
+    "routes_not_materialized_by_this_checkpoint": 70980,
+    "status": "REQUIRED_BEFORE_P03_DONE"
+  },
+  "route_audit": {
+    "corrected_targets": 1300,
+    "path": "content/modernization/p03_stage66_bulk_route_audit.json",
+    "routes_materialized": 47548,
+    "sha256": "fbd211961c03bbd7df02247c4251edd94685f2a89084134ad90bee35a38e7df6",
+    "size": 15348,
+    "source_routes_validated": 118528
+  },
+  "runtime_gate": {
+    "classification": "REAL_CONSUMER_DIRECT_CALL_BOUNDED_NOT_SCHEDULER_E2E",
+    "path": "content/modernization/p03_stage66_mgba_runtime_gate.json",
+    "process_runs": 2,
+    "representative_samples": 4,
+    "sha256": "9201a22bfb341c997867c76050e9383c135823cfecb6488bb7d112ad6b1da13a",
+    "size": 10456,
+    "status": "PASS"
+  },
+  "schema_version": 1,
+  "scope": {
+    "active_play_baseline_changed": false,
+    "all_p03_routes_implemented": false,
+    "consumers_exercised_in_mgba": [
+      "level_up",
+      "machine"
+    ],
+    "contract_routes_total": 118528,
+    "corrected_targets": 1300,
+    "existing_party_box_save_rewritten": false,
+    "historical_outputs_overwritten": false,
+    "level_up_move_1063_routes_deferred": 15,
+    "level_up_routes_accounted": 18530,
+    "level_up_routes_materialized": 18515,
+    "machine_existing_slot_routes_materialized": 29033,
+    "machine_routes_accounted": 55380,
+    "machine_supply_required_routes_deferred": 26347,
+    "move_1063_implemented": false,
+    "move_ids_changed": false,
+    "representative_runtime_species": [
+      10,
+      858,
+      1620,
+      649
+    ],
+    "review_only_branches_applied": false,
+    "routes_materialized_by_this_checkpoint": 47548,
+    "routes_not_materialized_by_this_checkpoint": 70980,
+    "save_layout_changed": false,
+    "species_ids_changed": false
+  },
+  "stage": 66,
+  "status": "CHECKPOINT",
+  "task": "USER-MODERNIZATION-P03-STAGE66-BULK-LEARNSET-CHECKPOINT"
+}

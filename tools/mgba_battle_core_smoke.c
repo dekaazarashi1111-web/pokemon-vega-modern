@@ -376,7 +376,9 @@ static void restore_cpu_state(struct mCore *core, const struct CpuState *state) 
         write_register(core, CPU_REGISTER_NAMES[index],
                        (uint32_t)state->registers[index]);
     }
-    write_register(core, "pc", (uint32_t)state->registers[15]);
+    /* writeRegister(pc) refills the pipeline and adds one instruction. */
+    uint32_t width = ((uint32_t)state->registers[16] & 0x20U) ? 2U : 4U;
+    write_register(core, "pc", (uint32_t)state->registers[15] - width);
 }
 
 #if defined(BATTLE_CORE_ISOLATE_HOST_CALL_STACK)

@@ -1,0 +1,289 @@
+{
+  "acceptance": {
+    "allocation_gate": "PASS",
+    "clean_bps_round_trip": "PASS",
+    "full_p03_materialization_gate": "NOT_RUN",
+    "incremental_bps_round_trip": "PASS",
+    "independent_mgba_processes": 2,
+    "manifest_identity_gate": "PASS",
+    "parent_preimage_gate": "PASS",
+    "real_consumer_mgba_gate": "PASS",
+    "scheduler_e2e": "NOT_RUN",
+    "static_contract_gate": "PASS",
+    "task_completion": "CHECKPOINT_NOT_P03_DONE"
+  },
+  "allocation": {
+    "added_allocations": 1,
+    "added_bytes": 12,
+    "path": "build/stages/65_modernization_p03_allocation.json",
+    "remaining_allocatable_bytes": 1915904,
+    "sha256": "7393007cfb6ed0f5d6f9264b60f8b73c1fdd5454ce767b1cdfb7cf268c867e18",
+    "size": 38800
+  },
+  "bps": {
+    "clean": {
+      "path": "build/patches/firered-jpn-rev0-to-stage65-modernization-p03-caterpie-slice.bps",
+      "round_trip": true,
+      "sha256": "5efba3ca37e3bbf3dbd3a128b2444eb8bc8f278e4ea14e0a8d0df09526f40211",
+      "size": 16726260
+    },
+    "incremental": {
+      "path": "build/patches/stage64-to-stage65-modernization-p03-caterpie-slice.bps",
+      "round_trip": true,
+      "sha256": "0959b62a6ef48bc2be05ed50c63ac742310a51d3295871f097098674140d76b6",
+      "size": 63
+    }
+  },
+  "change_audit": {
+    "adoption_policy": "REPLACE_NORMAL_TARGET_WITH_FIXED_REFERENCE_NOT_UNION",
+    "allocation": {
+      "alignment": 4,
+      "content_sha256": "bfc502059916a7b645801191ef9625396942167b1566536c63bf8abe95fc00bb",
+      "end_exclusive": 33399368,
+      "gba_end_exclusive": 167617096,
+      "gba_start": 167617084,
+      "name": "modernization_p03_stage65_caterpie_level_up",
+      "owner": "USER-MODERNIZATION-P03-STAGE65-CATERPIE-SLICE",
+      "placement": "FIRST_FIT",
+      "purpose": "P03 representative Caterpie replacement level-up rows",
+      "region": "future_tail",
+      "sequence": 67,
+      "size": 12,
+      "start": 33399356
+    },
+    "changed_byte_count": 17,
+    "changed_span_count": 5,
+    "changed_spans": [
+      {
+        "end_exclusive": 20600531,
+        "size": 3,
+        "start": 20600528
+      },
+      {
+        "end_exclusive": 21292438,
+        "size": 1,
+        "start": 21292437
+      },
+      {
+        "end_exclusive": 21292440,
+        "size": 1,
+        "start": 21292439
+      },
+      {
+        "end_exclusive": 21292447,
+        "size": 1,
+        "start": 21292446
+      },
+      {
+        "end_exclusive": 33399367,
+        "size": 11,
+        "start": 33399356
+      }
+    ],
+    "level_up": {
+      "parent_rows": [
+        {
+          "level": 1,
+          "project_move_id": 33
+        },
+        {
+          "level": 1,
+          "project_move_id": 81
+        },
+        {
+          "level": 9,
+          "project_move_id": 535
+        },
+        {
+          "level": 26,
+          "project_move_id": 562
+        }
+      ],
+      "parent_species_pointer": "0x0939B81E",
+      "payload_rom_offset": 33399356,
+      "replacement_not_union": true,
+      "root_pointer_site_rom_offset": 275564,
+      "root_runtime_address": "0x093A4CAC",
+      "runtime_literal_site_rom_offset": 33399288,
+      "species_pointer_entry_rom_offset": 20600528,
+      "stage65_rows": [
+        {
+          "level": 1,
+          "project_move_id": 33
+        },
+        {
+          "level": 1,
+          "project_move_id": 81
+        },
+        {
+          "level": 9,
+          "project_move_id": 535
+        }
+      ],
+      "stage65_species_pointer": "0x09FDA23C",
+      "terminator_hex": "0000ff"
+    },
+    "machine": {
+      "catalog_project_move_id": 489,
+      "catalog_root_runtime_address": "0x0944BB80",
+      "catalog_root_site_rom_offset": 1205208,
+      "compatibility_root_runtime_address": "0x0944BD00",
+      "compatibility_root_site_rom_offset": 275124,
+      "compatibility_row_rom_offset": 21292432,
+      "parent_set_slots": [
+        44,
+        63
+      ],
+      "replacement_not_union": true,
+      "runtime_slot_zero_based": 116,
+      "source_machine_item": "TM82",
+      "stage65_set_slots": [
+        116
+      ]
+    },
+    "outside_declared_range_count": 0,
+    "reference_id": "swordshield:0010.00",
+    "rom_size_changed": false,
+    "species_id": 649,
+    "species_key": "SPECIES_KEY_CATERPIE"
+  },
+  "checkpoint_marker": "CHECKPOINT_NOT_P03_DONE",
+  "contract_gate": {
+    "adoption_policy": "REPLACE_NORMAL_TARGET_WITH_FIXED_REFERENCE_NOT_UNION",
+    "caterpie_reference_content_sha256": "af76db5dc3ba8ea36dd72de8271f9318261471ea1d2ad746c28acc3f35694e79",
+    "caterpie_routes_selected": 4,
+    "corrected_records": 1300,
+    "corrected_routes": 118528,
+    "move_1063_status": "BLOCKING_RUNTIME_DEPENDENCY_NOT_IMPLEMENTED",
+    "status": "PASS"
+  },
+  "done": false,
+  "input": {
+    "clean_rom": {
+      "path": "inputs/private/FireRed_JPN_Rev0_clean.gba",
+      "sha256": "1e4af44b0c75cc8649bfb8649dc4ae5850bf5358bd6b9cd0bf779c99f9db1486",
+      "size": 16777216
+    },
+    "mgba_runtime_gate": {
+      "classification": "REAL_CONSUMER_DIRECT_CALL_BOUNDED_NOT_SCHEDULER_E2E",
+      "path": "content/modernization/p03_stage65_mgba_runtime_gate.json",
+      "process_runs": 2,
+      "sha256": "d2acc9d2051e3043bbcd59666dc96f0dfd333771272a7d8201aaa2827a022816",
+      "size": 6744,
+      "status": "PASS"
+    },
+    "move_manifest": {
+      "path": "manifests/move_ids.csv",
+      "sha256": "dba3c65af59ee2dcfa9eecdeeeb1cc189a990b52e27b1878bad6eaec8e104f20",
+      "size": 128694
+    },
+    "p03_compiled_index": {
+      "path": "content/modernization/p03_compiled_index.json",
+      "sha256": "fe2285fa8865a557d4607e7c72be5eb68874920951dcebdbef45db6016cb6180",
+      "size": 1380994
+    },
+    "p03_contract": {
+      "path": "content/modernization/p03_learnset_contract.json",
+      "sha256": "4c2a97f4c5e3b2a0056313bc0ab25240b95b9c38cb1ae4c47a67ec78796e6b58",
+      "size": 9095
+    },
+    "p03_runtime_handoff": {
+      "path": "content/modernization/p03_runtime_handoff.json",
+      "sha256": "32ea838df56988082253fccbcec8e9cd570ace8fadc5658b15cfb8bf7128594e",
+      "size": 8980
+    },
+    "parent_allocation": {
+      "path": "build/stages/61_critical_release_allocation.json",
+      "sha256": "c816b0479dd0d8dbffc3ef76d381c6fc83740ca34a66a4a9fdd4a582a3f85ab2",
+      "size": 38246
+    },
+    "parent_checkpoint": {
+      "path": "content/modernization/p02_stage64_checkpoint.json",
+      "sha256": "36730cfc31c4beebe74137db29dae28c931e927ae2436192b8bdd5a9a71c2276",
+      "size": 5462
+    },
+    "parent_metadata": {
+      "path": "build/stages/64_modernization_p02_rayquaza_parameter_repair.json",
+      "sha256": "0f9948fc9484361fd8b38bec06592845a97e7a4cefd43f16f59a3b228666ed1e",
+      "size": 3741
+    },
+    "parent_rom": {
+      "path": "build/stages/64_modernization_p02_rayquaza_parameter_repair.gba",
+      "sha256": "ddb9bf76d7f35c375d44941cd276f07e64501ed5cee34b8d448e76f0454095c3",
+      "size": 33554432
+    },
+    "species_manifest": {
+      "path": "manifests/species_ids.csv",
+      "sha256": "4e7cd7ef13761214f506e8ad58611c3dc36a0843b8b6647368677a73613f9366",
+      "size": 207095
+    }
+  },
+  "output": {
+    "crc32": "7FB7F282",
+    "path": "build/stages/65_modernization_p03_caterpie_slice.gba",
+    "sha256": "116781c8be7cbd327ba7783ebdad9d9dda77554c33839eebed15ae6b065bb680",
+    "size": 33554432
+  },
+  "producer_boundary": {
+    "builder": "scripts/build_modernization_p03_stage65.py",
+    "clean_rom_cumulative_generation": true,
+    "generator": "tools/modernization_p03_stage65.py",
+    "incremental_parent_generation": true,
+    "level_consumer_root_repointed": false,
+    "only_caterpie_compatibility_row_changed": true,
+    "only_caterpie_pointer_entry_repointed": true,
+    "parent_stage": 64,
+    "tm_catalog_changed": false
+  },
+  "remaining_work": {
+    "consumer_families_not_exercised": [
+      "egg",
+      "evolution",
+      "form_change",
+      "pre_evolution_carry",
+      "reminder",
+      "shared_egg",
+      "tutor"
+    ],
+    "full_scheduler_and_save_reload": "NOT_RUN",
+    "level_and_machine_scope": "CATERPIE_ONLY_OTHER_TARGETS_REMAIN",
+    "move_1063": "BLOCKING_RUNTIME_DEPENDENCY_NOT_IMPLEMENTED",
+    "note_ja": "このStage65はCaterpie 4経路だけの実consumer縦切りであり、P03全118,528経路の実装完了を示さない。",
+    "routes_not_materialized_by_this_checkpoint": 118524,
+    "runtime_supply_required_rows": 26720,
+    "status": "REQUIRED_BEFORE_P03_DONE"
+  },
+  "runtime_gate": {
+    "classification": "REAL_CONSUMER_DIRECT_CALL_BOUNDED_NOT_SCHEDULER_E2E",
+    "path": "content/modernization/p03_stage65_mgba_runtime_gate.json",
+    "process_runs": 2,
+    "sha256": "d2acc9d2051e3043bbcd59666dc96f0dfd333771272a7d8201aaa2827a022816",
+    "size": 6744,
+    "status": "PASS"
+  },
+  "schema_version": 1,
+  "scope": {
+    "active_play_baseline_changed": false,
+    "all_p03_routes_implemented": false,
+    "consumers_exercised": [
+      "level_up",
+      "machine"
+    ],
+    "contract_routes_total": 118528,
+    "existing_party_box_save_rewritten": false,
+    "historical_outputs_overwritten": false,
+    "move_1063_implemented": false,
+    "move_ids_changed": false,
+    "representative_species": 1,
+    "representative_species_id": 649,
+    "representative_species_key": "SPECIES_KEY_CATERPIE",
+    "review_only_branches_applied": false,
+    "routes_materialized_by_this_checkpoint": 4,
+    "routes_not_materialized_by_this_checkpoint": 118524,
+    "save_layout_changed": false,
+    "species_ids_changed": false
+  },
+  "stage": 65,
+  "status": "CHECKPOINT",
+  "task": "USER-MODERNIZATION-P03-STAGE65-CATERPIE-SLICE"
+}

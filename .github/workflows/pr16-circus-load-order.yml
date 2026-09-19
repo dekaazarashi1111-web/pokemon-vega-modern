@@ -1,0 +1,35 @@
+name: PR16 Circus load-order source contract
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-circus-load-order.yml
+      - scripts/pr16_circus_load_order.py
+      - tests/test_pr16_circus_load_order.py
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: pr16-circus-three-win
+  cancel-in-progress: false
+jobs:
+  circus-load-order:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: Cold boot消失とload連鎖の固定sourceを照合
+        run: python3 scripts/pr16_circus_load_order.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr16-circus-load-order-source
+          path: .local/pr16-circus-load-order/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

@@ -1,0 +1,51 @@
+name: pr16-route-workbench
+run-name: PR16 remaining route source checkpoint
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-route-workbench.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-checkpoint:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Export tracked UTF-8 implementation sources, never ROM or save
+        run: |
+          python3 - <<'PY'
+          import hashlib,json,pathlib,subprocess,zipfile
+          root=pathlib.Path('.');out=root/'.local/pr16-route-workbench';out.mkdir(parents=True,exist_ok=True)
+          prefixes=('scripts/','tools/','tests/','overlays/','content/modernization/','infra/','.github/workflows/')
+          exact={'AGENTS.md','README.md','design/current_state.md','design/agent_context_map.md','design/tasks_next.md','design/run_log.md','design/version_log.md','config/github_private_environment.json','config/active_play_baseline.json'}
+          suffixes={'.py','.c','.h','.s','.S','.ld','.json','.md','.yml','.yaml','.sh','.txt','.csv'}
+          names=subprocess.check_output(['git','ls-files','-z']).decode().split('\0');bindings={}
+          with zipfile.ZipFile(out/'sources.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for name in sorted(filter(None,names)):
+                  if name not in exact and not name.startswith(prefixes):continue
+                  p=root/name
+                  if p.suffix not in suffixes or p.is_symlink() or not p.is_file():continue
+                  raw=p.read_bytes()
+                  if b'\0' in raw:continue
+                  try:raw.decode('utf8')
+                  except UnicodeDecodeError:continue
+                  if len(raw)>12000000:raise ValueError('oversized tracked source: '+name)
+                  z.writestr(name,raw);bindings[name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+          (out/'source-bindings.json').write_text(json.dumps(bindings,sort_keys=True,indent=2)+'\n')
+          (out/'tested-head.txt').write_text(subprocess.check_output(['git','rev-parse','HEAD'],text=True))
+          print('Source files:',len(bindings),'No new emulator acceptance claimed.')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr16-route-workbench-sources
+          path: .local/pr16-route-workbench/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 7

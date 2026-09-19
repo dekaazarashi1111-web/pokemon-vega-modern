@@ -1,0 +1,50 @@
+{
+  "artifact_digest": "sha256:1024340a3d3a9d1c1502594b2c4cf94d8903e5a4ae8b4c6aa0c7c79c8b4dac63",
+  "artifact_head_sha": "faeca48f4e29f2c61083d79dbd19f87053914db3",
+  "artifact_id": 10105374554,
+  "artifact_name": "p05-controller-witness",
+  "artifact_run_id": 34354997505,
+  "conclusion": "success",
+  "head_branch": "codex/modernization-followup-20260908",
+  "head_sha": "faeca48f4e29f2c61083d79dbd19f87053914db3",
+  "job_conclusion": "success",
+  "job_id": 102477295025,
+  "job_name": "dragonize-controller-turn",
+  "job_status": "completed",
+  "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+  "required_steps": [
+    {
+      "conclusion": "success",
+      "name": "固定mGBA toolchain",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "受動observer・結果契約・失敗時保存の回帰検証",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "同一Stage80で新規4 processを実行",
+      "status": "completed"
+    }
+  ],
+  "run_attempt": 1,
+  "run_id": 34354997505,
+  "status": "completed",
+  "verified_execution_sources": {
+    ".github/workflows/p05-controller-witness.yml": {
+      "sha256": "7ffbf5992feda954932952adb159c1cf76f5149bb0942dcc0410b71a5cb49105",
+      "size": 1816
+    },
+    "infra/setup_github_actions.sh": {
+      "sha256": "8b081dd37ae761325e80ed4f689b1d790f76a6acb311ba810820221828c79cc2",
+      "size": 2571
+    },
+    "infra/toolchain_manifest.json": {
+      "sha256": "abf9f2fe3589323702aa8f934209d17b5165983773ad44207c6301f53afe1bff",
+      "size": 33230
+    }
+  },
+  "workflow_path": ".github/workflows/p05-controller-witness.yml"
+}

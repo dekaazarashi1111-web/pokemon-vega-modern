@@ -1,0 +1,142 @@
+{
+  "active_baseline_changed": false,
+  "candidate": {
+    "sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
+    "size": 33554432
+  },
+  "candidate_name": "Stage84 + exact P07 preservation + native evolution dispatch repair",
+  "clean_rom_regeneration_verified": false,
+  "crc32": "5B8BFB51",
+  "emulator_runs_by_this_verifier": 0,
+  "full_p03_acceptance": false,
+  "full_p05_acceptance": false,
+  "full_p07_acceptance": false,
+  "originals": {
+    "breeding": {
+      "artifact_id": 10181812146,
+      "path": "content/modernization/pr16_completion_evidence/34553503441/original.zip",
+      "run_id": 34553503441,
+      "sha256": "cd46b3273cb1519044100847ea38f65d1a81bea632909d984107781cab657011",
+      "size": 104337,
+      "tested_head": "64bf90f83cb928b989fea45ff52696f0d3f775e9"
+    },
+    "evolution": {
+      "artifact_id": 10181460518,
+      "path": "content/modernization/pr16_completion_evidence/34552826501/original.zip",
+      "run_id": 34552826501,
+      "sha256": "7216ccd85b33f16570c18828fea9d7055835c24d8129e6f77cb2b5da5d97a8d4",
+      "size": 88421,
+      "tested_head": "37ec0121e8170673542adb1e1213d51954bad576"
+    },
+    "repaired": {
+      "artifact_id": 10166560990,
+      "path": "content/modernization/pr16_completion_evidence/34512326368/original.zip",
+      "run_id": 34512326368,
+      "sha256": "33cbb261552483e67d2ade7bdc9846b463170b515a2d22acbe0412a97f8640f9",
+      "size": 346718,
+      "tested_head": "d49c3d721f3eac994a48d190e980dc34346f0942"
+    }
+  },
+  "originals_relabelled": 0,
+  "p03": {
+    "all_egg_supply_routes_accepted": false,
+    "form_service_accepted": false,
+    "level_and_evolution_cases": [
+      "taillow-level-empty",
+      "taillow-level-full",
+      "taillow-level-cancel",
+      "lucario-evolution-empty",
+      "lucario-evolution-full",
+      "lucario-evolution-cancel"
+    ]
+  },
+  "p06": {
+    "acceptance_boundary": "fixture before observation; ordinary Summary/battle/input/save thereafter; not natural acquisition",
+    "adopted_fields": 3,
+    "adopted_phase_complete": true,
+    "adopted_species": 2,
+    "evidence_run": 34512326368,
+    "phase_candidate_processes": 9,
+    "reviewed_summary_pixels": {
+      "summary-220-0-skills.ppm": "673ac688398319aa7376851e443c7fabba9b76cac611b2c3207bb1472f2211e8",
+      "summary-220-1-skills.ppm": "e2a809a96987af17a01d7cb606acd51334154cd6f64f53b114435f926f70db6d",
+      "summary-373-0-skills.ppm": "1abb75d08d7f99f1d0de4719cf06a9ac4392b5037d41ad12ff9debc8f882ec28"
+    },
+    "slot_cores": 24,
+    "slot_processes": 8,
+    "stage82_attack_control_processes": 1
+  },
+  "p07": {
+    "named_alias_legacy_rows": 27,
+    "new_adoption_decision_required": false,
+    "new_beyond_v4_rows": 0,
+    "physical_breeding_cases": [
+      "vega-father",
+      "vega-mother",
+      "vega-both",
+      "vega-lightball-full",
+      "no-eligible-control"
+    ],
+    "physical_memory_cases": [
+      "taillow-memory-empty",
+      "taillow-memory-full",
+      "taillow-memory-cancel",
+      "taillow-egg-full",
+      "happiny-egg-first",
+      "happiny-egg-middle",
+      "happiny-egg-last",
+      "happiny-egg-cancel",
+      "egg-203-first",
+      "egg-203-last"
+    ],
+    "prefix_legacy_rows": 472,
+    "source_reconciliation": {
+      "official_to_vega_explicit_v4_additions": {
+        "missing": 0,
+        "present": 0,
+        "route_counts": {},
+        "rows": 0
+      },
+      "official_to_vega_legacy_preservation": {
+        "missing": 0,
+        "present": 499,
+        "route_counts": {
+          "egg": 189,
+          "level_up": 310
+        },
+        "rows": 499
+      },
+      "vega_to_official_historical_adoption": {
+        "missing": 0,
+        "present": 1073,
+        "route_counts": {
+          "egg": 254,
+          "level_up": 450,
+          "machine": 179,
+          "tutor": 190
+        },
+        "rows": 1073
+      }
+    }
+  },
+  "prior_candidate_sha256": "55cf145e7dd1c8e2568fe9c733b597f8c4bc3d31b7d6fa233a7b4821d1b62c3b",
+  "regression": {
+    "candidate_sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
+    "domains": [
+      "p02",
+      "mega_shop",
+      "floette",
+      "p03",
+      "p04_mega_runtime",
+      "battle_policy",
+      "p05"
+    ],
+    "evidence_run": 34512326368,
+    "status": "PASS_WITH_DECLARED_LIMITS"
+  },
+  "release_ready": false,
+  "schema_version": 1,
+  "session_new_cores": 19,
+  "session_new_native_processes": 7,
+  "status": "SCOPED_COMPLETION_PROGRESS_NOT_RELEASE"
+}

@@ -1,0 +1,50 @@
+name: p03-relearner-e2e
+run-name: Stage82 normal and egg Move Memory input and cold-save validation
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/p03-relearner-e2e.yml
+      - tools/mgba_modernization_p03_relearner_e2e.c
+      - scripts/run_modernization_p03_relearner_e2e.py
+      - tests/test_modernization_p03_relearner_e2e.py
+      - tests/fixtures/p03_relearner_cases.json
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: p03-relearner-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  relearner:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Fixed toolchain
+        run: |
+          set -euo pipefail
+          mkdir -p .local/p03-relearner-e2e
+          bash infra/setup_github_actions.sh --install > .local/p03-relearner-e2e/toolchain.log 2>&1
+      - name: Fail-closed regressions
+        run: |
+          set -euo pipefail
+          /usr/bin/python3 -m unittest discover -s tests -p test_modernization_p03_relearner_e2e.py -v 2>&1 | tee .local/p03-relearner-e2e/regression.log
+      - name: Fresh UI, PP Ups, gate and cold-save executions
+        run: |
+          set -euo pipefail
+          /usr/bin/python3 scripts/run_modernization_stage82_github_domain.py prepare > .local/p03-relearner-e2e/prepare.log
+          /usr/bin/python3 scripts/run_modernization_p03_relearner_e2e.py --require-fixed-toolchain --jobs 2 \
+            > .local/p03-relearner-e2e/job.stdout.log 2> .local/p03-relearner-e2e/job.stderr.log
+          git rev-parse HEAD > .local/p03-relearner-e2e/tested-head.txt
+          git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: p03-relearner-e2e
+          path: .local/p03-relearner-e2e/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

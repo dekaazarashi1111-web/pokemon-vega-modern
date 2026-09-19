@@ -1,0 +1,83 @@
+name: PR16 Circus streak owner contracts
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - overlays/circus_streak/circus_streak.c
+      - overlays/circus_streak/circus_streak.h
+      - tests/fixtures/circus_streak_fixture.c
+      - tests/test_pr16_circus_streak.py
+      - .github/workflows/pr16-circus-streak-core.yml
+permissions:
+  contents: read
+jobs:
+  contracts:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: 独立owner7契約（新しいhost検証のみ）
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-circus-streak-core
+          python3 -m unittest discover -s tests -p test_pr16_circus_streak.py -v > .local/pr16-circus-streak-core/tests.stdout 2> .local/pr16-circus-streak-core/tests.stderr
+          python3 scripts/validate_task_graph.py
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends gcc-arm-none-eabi binutils-arm-none-eabi
+          arm-none-eabi-gcc -std=c11 -Os -mthumb -mcpu=arm7tdmi -ffreestanding -fno-builtin -Wall -Wextra -Werror -c overlays/circus_streak/circus_streak.c -o .local/pr16-circus-streak-core/core.o
+          test -z "$(arm-none-eabi-nm -u .local/pr16-circus-streak-core/core.o)"
+          arm-none-eabi-objdump -d .local/pr16-circus-streak-core/core.o > .local/pr16-circus-streak-core/core.disassembly.txt
+          git diff --exit-code
+      - name: 検証証跡と次の保存接続に必要な限定source（私有物なし）
+        if: always()
+        run: |
+          python3 - <<'PY'
+          import ast,hashlib,json,os,pathlib,re,subprocess
+          root=pathlib.Path('.');out=root/'.local/pr16-circus-streak-core'
+          out.mkdir(parents=True,exist_ok=True)
+          tracked=set(subprocess.check_output(['git','ls-files'],text=True).splitlines())
+          names=['config/ram_layout.csv','config/save_layout.csv',
+            'overlays/collection_supply_v1/collection_supply_v1.c',
+            'overlays/collection_supply_v1/collection_supply_v1.h',
+            'overlays/codex_battle_rewards/codex_battle_rewards.c',
+            'overlays/codex_battle_rewards/codex_battle_rewards.h',
+            'tools/stage61_state_namespace_collision_audit.py',
+            'scripts/pr16_circus_streak_context.py',
+            '.github/workflows/pr16-circus-streak-core.yml',
+            'tests/fixtures/circus_streak_fixture.c','tests/test_pr16_circus_streak.py',
+            'overlays/circus_streak/circus_streak.c','overlays/circus_streak/circus_streak.h']
+          source=(root/'tools/stage61_state_namespace_collision_audit.py').read_text()
+          match=re.search(r'STAGE61_RUNTIME_SOURCE_RELATIVE\s*=\s*Path\((.*?)\)',source,re.S)
+          assert match
+          names.append(ast.literal_eval(match.group(1).strip()))
+          bindings={}
+          for name in sorted(set(names)):
+              assert name in tracked
+              p=root/name;assert p.is_file() and not p.is_symlink()
+              raw=p.read_bytes();raw.decode('utf-8')
+              assert len(raw)<2000000 and b'\0' not in raw
+              assert not re.search(rb'gh[pousr]_[A-Za-z0-9]{36,}|github_pat_[A-Za-z0-9_]{60,}|-----BEGIN (?:RSA |OPENSSH |EC )?PRIVATE KEY-----',raw)
+              target=out/'source'/name;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(raw)
+              bindings[name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+          report=dict(schema_version=1,status='HOST_ARM_CORE_ONLY_NATIVE_OPEN',run_id=int(os.environ['GITHUB_RUN_ID']),
+              tested_head=os.environ['GITHUB_SHA'],source_bindings=bindings,native_processes=0,
+              accepted_native_cases_replayed=0,physical_admission_accepted=False,release_ready=False)
+          (out/'report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
+          print(json.dumps({k:v for k,v in report.items() if k!='source_bindings'}))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-circus-streak-core
+          path: |
+            .local/pr16-circus-streak-core/source/
+            .local/pr16-circus-streak-core/*.json
+            .local/pr16-circus-streak-core/*.stdout
+            .local/pr16-circus-streak-core/*.stderr
+            .local/pr16-circus-streak-core/*.txt
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

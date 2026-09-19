@@ -1,0 +1,47 @@
+name: PR16 Circus interruption recovery
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-circus-interruption.yml
+      - scripts/pr16_circus_interruption.py
+      - scripts/pr16_circus_interruption_probe.py
+      - tools/mgba_pr16_circus_interruption.c
+      - tests/test_pr16_circus_interruption.py
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: pr16-circus-three-win
+  cancel-in-progress: false
+jobs:
+  circus-interruption:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: 実勝利原本を照合し中断検証契約を保存
+        id: prepare
+        run: python3 scripts/pr16_circus_interruption.py prepare
+      - name: 実1勝後の第2戦を中断して3core検証
+        run: python3 scripts/pr16_circus_interruption.py pipeline
+      - name: 成否原本と固定引継ぎを非force保存
+        if: always() && steps.prepare.outcome == 'success'
+        run: python3 scripts/pr16_circus_interruption.py finish
+      - name: ROMとsaveを除いた証拠を保存
+        if: always() && steps.prepare.outcome == 'success'
+        run: python3 scripts/pr16_circus_interruption.py pack
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.prepare.outcome == 'success'
+        with:
+          name: pr16-circus-interruption
+          path: .local/pr16-three-win-evidence/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

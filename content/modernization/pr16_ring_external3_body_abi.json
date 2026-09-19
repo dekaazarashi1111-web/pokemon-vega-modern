@@ -1,0 +1,446 @@
+{
+  "schema_version": 1,
+  "task": "PR-P08-7-RING-EXTERNAL3-BODY-ABI",
+  "source_head": "4bea1aa74bd14e18f4bcb4d58375e88a52711750",
+  "run_id": 35053018627,
+  "run_status_at_record": "in_progress",
+  "analysis": {
+    "classification": "EXTERNAL3_ORDERED_RECORD_WRITES_AND_COUNTER_BASE_RELOAD_ABI",
+    "candidate": {
+      "size": 33554432,
+      "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b",
+      "crc32": "3EB17B36"
+    },
+    "instructions_verified": 20,
+    "instruction_bytes_verified": 40,
+    "local_sp_delta": 0,
+    "inherited_frame_bytes_live": 20,
+    "next_unread_return_target": 135346529,
+    "inherited_contract": {
+      "target": 135346489,
+      "r0": "loaded_record_halfword & 0x8000",
+      "r1": "input_r1 & 0x7fff",
+      "r2": "(loaded_base_word + 4 * loaded_u16_index) mod 2^32",
+      "r3": "loaded_record_halfword",
+      "r4": "loaded_base_word",
+      "r5": 50339884,
+      "r6": 33795990,
+      "r7": "input_r0 & 0xff",
+      "r12": "input_r2 & 0xffff",
+      "frame_bytes_live": 20
+    },
+    "saved_prefix_reused_not_executed": true,
+    "diagnostic_cases": {
+      "independent_local_boundary_cases": 65536,
+      "all_u16_key_value_index_values_covered": true,
+      "all_u8_modes_covered": true,
+      "prefix_reachability_not_claimed_for_every_case": true,
+      "non_alias_record_address": 33619968
+    },
+    "ordered_store_widths": [
+      2,
+      1,
+      2,
+      2
+    ],
+    "ordered_store_sites": [
+      135346490,
+      135346508,
+      135346520,
+      135346526
+    ],
+    "non_alias_formula": {
+      "record_address": "E = (inherited_base + 4 * inherited_index) mod 2^32",
+      "record_header": "(inherited_key & 0x7fff) | ((inherited_mode & 1) << 15)",
+      "record_value": "inherited_value & 0xffff at E + 2",
+      "counter": "(inherited_index + 1) mod 2^16",
+      "tail_r0": "inherited_index + 1 (u32; may be 65536 for an independent local input)",
+      "valid_without_alias_preconditions": false
+    },
+    "reload_order": [
+      "STRH inherited_E",
+      "LDRH counter",
+      "STRB inherited_base+4*reloaded_index+1",
+      "LDRH counter",
+      "LDR base_pointer",
+      "STRH reloaded_base+4*reloaded_index+2",
+      "LDRH counter",
+      "STRH counter+1"
+    ],
+    "alias_diagnostics": {
+      "record_aliases_counter": {
+        "writes": [
+          {
+            "site": 135346490,
+            "address": 33795990,
+            "size": 2,
+            "value": 1
+          },
+          {
+            "site": 135346508,
+            "address": 33795995,
+            "size": 1,
+            "value": 18
+          },
+          {
+            "site": 135346520,
+            "address": 33795996,
+            "size": 2,
+            "value": 48879
+          },
+          {
+            "site": 135346526,
+            "address": 33795990,
+            "size": 2,
+            "value": 2
+          }
+        ],
+        "observed": false,
+        "single_record_address_formula_valid": false
+      },
+      "record_aliases_base_pointer": {
+        "writes": [
+          {
+            "site": 135346490,
+            "address": 50339884,
+            "size": 2,
+            "value": 8192
+          },
+          {
+            "site": 135346508,
+            "address": 50339885,
+            "size": 1,
+            "value": 32
+          },
+          {
+            "site": 135346520,
+            "address": 50339842,
+            "size": 2,
+            "value": 48879
+          },
+          {
+            "site": 135346526,
+            "address": 33795990,
+            "size": 2,
+            "value": 1
+          }
+        ],
+        "observed": false,
+        "base_reloaded_after_prior_stores": true
+      },
+      "value_aliases_counter": {
+        "writes": [
+          {
+            "site": 135346490,
+            "address": 33795988,
+            "size": 2,
+            "value": 44005
+          },
+          {
+            "site": 135346508,
+            "address": 33795989,
+            "size": 1,
+            "value": 171
+          },
+          {
+            "site": 135346520,
+            "address": 33795990,
+            "size": 2,
+            "value": 21530
+          },
+          {
+            "site": 135346526,
+            "address": 33795990,
+            "size": 2,
+            "value": 21531
+          }
+        ],
+        "observed": false,
+        "increment_uses_written_value_not_entry_index": true
+      },
+      "native_observation": false
+    },
+    "proof_assumptions_ja": [
+      "各読書きアドレスが有効/整列済みの通常memoryである。",
+      "単一Eの要約式にはrecord書込がcounter/base_pointerを変更せずframeを破壊しない条件が必要。",
+      "順序付きモデルは書込を反映して再読取する。native観測や未読末尾の帰還を証明しない。"
+    ],
+    "old_unread_targets": [
+      134647037,
+      134647989,
+      134648233,
+      134648273,
+      135346165,
+      151613701,
+      154152717,
+      154155097,
+      154635157,
+      154635821,
+      154635823,
+      154635825,
+      154639241,
+      154639243,
+      154917233,
+      154917289,
+      154922465,
+      154922573
+    ],
+    "remaining_unread_targets": [
+      134647037,
+      134647989,
+      134648233,
+      134648273,
+      135346165,
+      135346529,
+      151613701,
+      154152717,
+      154155097,
+      154635157,
+      154635821,
+      154635823,
+      154635825,
+      154639241,
+      154639243,
+      154917233,
+      154917289,
+      154922465,
+      154922573
+    ],
+    "priority_unread_targets": [
+      135346529
+    ],
+    "unresolved_indirect_edges": [],
+    "prior_external_indirect_edges_preserved": [
+      {
+        "site": 135346420,
+        "kind": "indirect",
+        "register": 1,
+        "target": null
+      },
+      {
+        "site": 134667610,
+        "kind": "indirect",
+        "register": 1,
+        "target": null
+      }
+    ],
+    "callee_return_proven": false,
+    "callee_return_observed": false,
+    "saved_slot_preservation_proven": false,
+    "return_pointer_non_alias_proven": false,
+    "all_runtime_owners_excluded": false,
+    "ring_acquisition_accepted": false,
+    "release_ready": false,
+    "rom_changes": 0,
+    "new_emulator_processes": 0,
+    "candidate_reconstructions": 0,
+    "new_graph_decodes": 0,
+    "accepted_native_cases_replayed": 0,
+    "prior_abi_classifications_replayed": 0
+  },
+  "source_bindings": {
+    "scripts/pr16_ring_followup_v2.py": {
+      "size": 11453,
+      "sha256": "71e33dbe40cd8988e185256821e33e6a1e06e4eddeb8ee6a3eb9047a4d3c49f7"
+    },
+    "scripts/pr16_ring_external3_body_abi.py": {
+      "size": 12170,
+      "sha256": "317116354e5a00734db3b84cc7a39a0f08a70d3e528cec9c414ee5a59860455c"
+    },
+    "tests/test_pr16_ring_external3_body_abi.py": {
+      "size": 5585,
+      "sha256": "42c3c7e120577fa128809f899662e197423bc87bde0f29ef92f5cc4d5986fd53"
+    },
+    ".github/workflows/pr16-ring-external3-body-abi.yml": {
+      "size": 1451,
+      "sha256": "4203b61d0cee9d7077156283f0520c13b5dbea55836b396f36055e2414c18c01"
+    },
+    "content/modernization/pr16_ring_external3_body_bytes.json": {
+      "size": 21757,
+      "sha256": "628d3e733f8811563e35b90227877742325b86346f62ef3e6ccbc9750d9b1d66"
+    },
+    "content/modernization/pr16_bp_chooser_checkpoint.json": {
+      "size": 9442,
+      "sha256": "853ed41b6abcfb63651aab136951a53c8c89ec635f769e8466327ba3a0c0ae41"
+    },
+    "scripts/pr16_resume.py": {
+      "size": 26649,
+      "sha256": "b0ec73bf933e46f7b254057559b0c637a2d1a9b625b08f348aa8308ea00dee5a"
+    },
+    "scripts/pr16_ring_compiled_record.py": {
+      "size": 13116,
+      "sha256": "768c94e59983d27bbf0ed46d6ba60008352a3a67e11612b18936e38b271e73ef"
+    },
+    "scripts/guard_private_files.py": {
+      "size": 5443,
+      "sha256": "143426a7403abf47396791f6ece3a3a374fa97fbf8bedc88169f636cddbcc905"
+    },
+    "content/modernization/pr16_ring_external3_abi.json": {
+      "size": 9866,
+      "sha256": "abb56976a0d74faeabbf3b80b63b58ec58b697ce932193c4593e5c7eb9943acc"
+    }
+  },
+  "focused_tests": {
+    "tests_run": 22,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "successful": true
+  },
+  "prior_actions_verified_without_replay": [
+    {
+      "id": 35052317109,
+      "head_sha": "1c70e5ea3f3595f858cbaf389b5c047db7e55bd9",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34946969126,
+      "head_sha": "0b7497b575a3180a045f2be377386490f192a012",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "actions_observed_before_record": [
+    {
+      "id": 35053021269,
+      "name": "source-validation",
+      "head_sha": "4bea1aa74bd14e18f4bcb4d58375e88a52711750",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35053021267,
+      "name": "p03-forgetting-ci",
+      "head_sha": "4bea1aa74bd14e18f4bcb4d58375e88a52711750",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35053018627,
+      "name": "保存external3継続の4書込・ABI検証記録・非force push",
+      "head_sha": "4bea1aa74bd14e18f4bcb4d58375e88a52711750",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35053018618,
+      "name": "source-validation",
+      "head_sha": "4bea1aa74bd14e18f4bcb4d58375e88a52711750",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35053018526,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "4bea1aa74bd14e18f4bcb4d58375e88a52711750",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35053018523,
+      "name": "p03-forgetting-ci",
+      "head_sha": "4bea1aa74bd14e18f4bcb4d58375e88a52711750",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35053018549,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "4bea1aa74bd14e18f4bcb4d58375e88a52711750",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35052434977,
+      "name": "p03-forgetting-ci",
+      "head_sha": "cd3070a49b33707b1c15fa42c903a9c669b9967b",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35052435002,
+      "name": "source-validation",
+      "head_sha": "cd3070a49b33707b1c15fa42c903a9c669b9967b",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35052320050,
+      "name": "source-validation",
+      "head_sha": "1c70e5ea3f3595f858cbaf389b5c047db7e55bd9",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35052320040,
+      "name": "p03-forgetting-ci",
+      "head_sha": "1c70e5ea3f3595f858cbaf389b5c047db7e55bd9",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "id": 35052317044,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "1c70e5ea3f3595f858cbaf389b5c047db7e55bd9",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35052317113,
+      "name": "source-validation",
+      "head_sha": "1c70e5ea3f3595f858cbaf389b5c047db7e55bd9",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35052317111,
+      "name": "p03-forgetting-ci",
+      "head_sha": "1c70e5ea3f3595f858cbaf389b5c047db7e55bd9",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "id": 35052317055,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "1c70e5ea3f3595f858cbaf389b5c047db7e55bd9",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35052317109,
+      "name": "未読external3継続の1根採取・検証記録・非force push",
+      "head_sha": "1c70e5ea3f3595f858cbaf389b5c047db7e55bd9",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35052176579,
+      "name": "source-validation",
+      "head_sha": "5f0cc940fe767ffc72728bf9c5570697aa9467e1",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35052176572,
+      "name": "p03-forgetting-ci",
+      "head_sha": "5f0cc940fe767ffc72728bf9c5570697aa9467e1",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35052122654,
+      "name": "p03-forgetting-ci",
+      "head_sha": "cf5c6acd3744bcaae90f21829178704b5c5926d7",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "id": 35052122613,
+      "name": "source-validation",
+      "head_sha": "cf5c6acd3744bcaae90f21829178704b5c5926d7",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ]
+}

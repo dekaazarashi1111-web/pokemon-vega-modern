@@ -1,0 +1,157 @@
+{
+  "entrypoints": {
+    "FloetteGift_Claim": 155593493,
+    "FloetteGift_IsFormObtained": 155593417,
+    "FloetteGift_IsNationalDexCaught": 155593481,
+    "FloetteGift_IsNationalDexSeen": 155593457,
+    "FloetteGift_Probe": 155593393
+  },
+  "linked_acquisition_abi": {
+    "GetBoxMonDataAt": {
+      "address": 152189924,
+      "stage68_first_16_hex": "10b5140094b0182819d81d2917d83a23",
+      "stage68_first_16_sha256": "9fc3c31edd9c2248d45444492d51aae3d33e957820ec15d137bd5b5dd4751557",
+      "thumb_entrypoint": 152189925
+    },
+    "GetBoxedMonPtr": {
+      "address": 152189664,
+      "stage68_first_16_hex": "10b518280cd81d290ad83a234b43054a",
+      "stage68_first_16_sha256": "df8bd289d1d0838d24d3cafcb96fe072eb4c00b003cf022a7afd16204bf708eb",
+      "thumb_entrypoint": 152189665
+    },
+    "GiveMonToPlayer": {
+      "address": 151905848,
+      "stage68_first_16_hex": "70b5050022f0aef9280036f097fc2800",
+      "stage68_first_16_sha256": "9a2ff540d71d626dd6a16b721c6f0045473efee35fc03db2b9710a03d2bab150",
+      "thumb_entrypoint": 151905849
+    },
+    "VegaAcqEngine_FinalizeInMemory": {
+      "address": 153953568,
+      "stage68_first_16_hex": "10b5fff7b7f8002805d00448fef70afe",
+      "stage68_first_16_sha256": "958833e18b978e439ef62af7da5cbd54f2ad42154e4557a6368675cba70f0287",
+      "thumb_entrypoint": 153953569
+    },
+    "VegaAcqEngine_GetPending": {
+      "address": 153951456,
+      "stage68_first_16_hex": "10b5fff749ff43425841044b40421840",
+      "stage68_first_16_sha256": "44733c315fa365e16635b95dae4ece6743a5393d1f2cdda2373c8b9ca6d5491a",
+      "thumb_entrypoint": 153951457
+    },
+    "ZeroBoxMonAt": {
+      "address": 152189384,
+      "stage68_first_16_hex": "10b5182801d81d2900d910bd3a234b43",
+      "stage68_first_16_sha256": "6d94a51b93685fb3e8823181cb6362f35911d961d347bb726dd83717c2d432b8",
+      "thumb_entrypoint": 152189385
+    }
+  },
+  "map": {
+    "cell_audit": {
+      "blockmap_address": 153853128,
+      "collision": 0,
+      "elevation": 3,
+      "height": 40,
+      "layout_address": 153856976,
+      "metatile_entry": 12304,
+      "metatile_entry_hex": "0x3010",
+      "metatile_id": 16,
+      "walkable_collision_zero": true,
+      "width": 48,
+      "x": 25,
+      "y": 19
+    },
+    "events_after_address": 155595088,
+    "existing_14_objects_preserved": true,
+    "gift_object": {
+      "graphics_id": 62,
+      "local_id": 15,
+      "movement_type": 0,
+      "source_clone_local_id": 14,
+      "x": 25,
+      "y": 19
+    },
+    "gift_script_address": 155594516,
+    "group_id": 96,
+    "header_address": 153877972,
+    "header_offset": 19660244,
+    "map_id": 5,
+    "map_scripts_preserved": true,
+    "object_count_after": 15,
+    "object_count_before": 14,
+    "objects_after_address": 155594728,
+    "old_event_counts": [
+      14,
+      10,
+      0,
+      7
+    ],
+    "old_events_pointer": 155531192,
+    "old_objects_pointer": 155530856,
+    "old_objects_sha256": "2ab06726b926d0ec889780702fb7886162956ddc470d95730fb5645ea1aaba6e",
+    "old_scripts_pointer": 154724552,
+    "stage68_shop_local14_preserved": true
+  },
+  "payload": {
+    "address": 155593136,
+    "code_address": 155593392,
+    "code_offset": 21375664,
+    "code_sha256": "647b9ce00e695845acd9ac9a4ad61e2d3d1cd678cb148c95efb00c8cf65eac82",
+    "code_size": 1012,
+    "magic": "VEGAFG69",
+    "offset": 21375408,
+    "sha256": "c11517d3a05514970cbee20e2d07501ecab3383cc08d0fbc845271299036941b",
+    "size": 1972
+  },
+  "schema_version": 1,
+  "scripts": {
+    "npc_address": 155594516,
+    "result_routes": {
+      "0": "SUCCESS",
+      "1": "ALREADY_CLAIMED",
+      "3": "LOCKED",
+      "4": "PARTY_AND_PC_FULL",
+      "5": "PERSIST_FAILED",
+      "6": "ACQUISITION_BUSY",
+      "7": "ENGINE_REJECTED",
+      "8": "ROLLBACK_PERSIST_FAILED"
+    },
+    "synchronous": true,
+    "texts": {
+      "text_floette_gift_already": {
+        "sha256": "f2ba401e6d871ea52d3c1b5771f250bcfcf484aee50862f4c4e401238dd6379e",
+        "size": 12,
+        "text": "もう あずかっています"
+      },
+      "text_floette_gift_busy": {
+        "sha256": "839a9be2a2a3b34f5e6ffbd5c3144bcedb353a3363ffeac747da1f30af939293",
+        "size": 19,
+        "text": "ほかの うけとりを かんりちゅうです"
+      },
+      "text_floette_gift_error": {
+        "sha256": "572e921bfa062bf9fbbc1e8ca11581e23494653e31521d1f013ac1c9c8be8679",
+        "size": 18,
+        "text": "フラエッテを あずかれませんでした"
+      },
+      "text_floette_gift_full": {
+        "sha256": "9da8527d42ae9905205755188f83d31219da1c4dfb1be5658b7c3abfeb9a6b62",
+        "size": 18,
+        "text": "てもちも パソコンも いっぱいです"
+      },
+      "text_floette_gift_locked": {
+        "sha256": "9b61480cf7c7517ce49544f564f370bd2341f61f7e7fe0ac901c1b5405ee970a",
+        "size": 14,
+        "text": "メガリングが ひつようです"
+      },
+      "text_floette_gift_persist": {
+        "sha256": "8f87c4108f07ea61865791b612d0394441d9ba61db07f75ebec3a1f385c5e10e",
+        "size": 14,
+        "text": "セーブに しっぱいしました"
+      },
+      "text_floette_gift_success": {
+        "sha256": "2dc30bd5ea290f4ccf45618c5be9af167a7e2a9736546ff041b408ed5abb2641",
+        "size": 16,
+        "text": "フラエッテを あずかりました！"
+      }
+    }
+  },
+  "task": "USER-MODERNIZATION-FLOETTE-ETERNAL-GIFT"
+}

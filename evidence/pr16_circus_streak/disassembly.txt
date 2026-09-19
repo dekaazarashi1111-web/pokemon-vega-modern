@@ -1,0 +1,2904 @@
+
+circus-streak.elf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+09ff4fe0 <CircusRuntime_Probe>:
+ 9ff4fe0:	4b02      	ldr	r3, [pc, #8]	@ (9ff4fec <CircusRuntime_Probe+0xc>)
+ 9ff4fe2:	4a03      	ldr	r2, [pc, #12]	@ (9ff4ff0 <CircusRuntime_Probe+0x10>)
+ 9ff4fe4:	4803      	ldr	r0, [pc, #12]	@ (9ff4ff4 <CircusRuntime_Probe+0x14>)
+ 9ff4fe6:	801a      	strh	r2, [r3, #0]
+ 9ff4fe8:	4770      	bx	lr
+ 9ff4fea:	46c0      	nop			@ (mov r8, r8)
+ 9ff4fec:	02037004 	.word	0x02037004
+ 9ff4ff0:	fffffa20 	.word	0xfffffa20
+ 9ff4ff4:	0000fa20 	.word	0x0000fa20
+
+09ff4ff8 <CircusRuntime_Recover>:
+ 9ff4ff8:	b510      	push	{r4, lr}
+ 9ff4ffa:	f000 fb2b 	bl	9ff5654 <CircusStreakRuntimeRecover>
+ 9ff4ffe:	4c0b      	ldr	r4, [pc, #44]	@ (9ff502c <CircusRuntime_Recover+0x34>)
+ 9ff5000:	2800      	cmp	r0, #0
+ 9ff5002:	d103      	bne.n	9ff500c <CircusRuntime_Recover+0x14>
+ 9ff5004:	8020      	strh	r0, [r4, #0]
+ 9ff5006:	bc10      	pop	{r4}
+ 9ff5008:	bc01      	pop	{r0}
+ 9ff500a:	4700      	bx	r0
+ 9ff500c:	f000 fd76 	bl	9ff5afc <ledger_valid>
+ 9ff5010:	2800      	cmp	r0, #0
+ 9ff5012:	d008      	beq.n	9ff5026 <CircusRuntime_Recover+0x2e>
+ 9ff5014:	4a06      	ldr	r2, [pc, #24]	@ (9ff5030 <CircusRuntime_Recover+0x38>)
+ 9ff5016:	4b07      	ldr	r3, [pc, #28]	@ (9ff5034 <CircusRuntime_Recover+0x3c>)
+ 9ff5018:	5cd3      	ldrb	r3, [r2, r3]
+ 9ff501a:	2b00      	cmp	r3, #0
+ 9ff501c:	d003      	beq.n	9ff5026 <CircusRuntime_Recover+0x2e>
+ 9ff501e:	2001      	movs	r0, #1
+ 9ff5020:	f000 fd7a 	bl	9ff5b18 <restore_original>
+ 9ff5024:	e7ee      	b.n	9ff5004 <CircusRuntime_Recover+0xc>
+ 9ff5026:	2301      	movs	r3, #1
+ 9ff5028:	8023      	strh	r3, [r4, #0]
+ 9ff502a:	e7ec      	b.n	9ff5006 <CircusRuntime_Recover+0xe>
+ 9ff502c:	02037004 	.word	0x02037004
+ 9ff5030:	0203d000 	.word	0x0203d000
+ 9ff5034:	00000401 	.word	0x00000401
+
+09ff5038 <CircusRuntime_Enter>:
+ 9ff5038:	b5f0      	push	{r4, r5, r6, r7, lr}
+ 9ff503a:	b087      	sub	sp, #28
+ 9ff503c:	f000 fd5e 	bl	9ff5afc <ledger_valid>
+ 9ff5040:	2800      	cmp	r0, #0
+ 9ff5042:	d105      	bne.n	9ff5050 <CircusRuntime_Enter+0x18>
+ 9ff5044:	4b4a      	ldr	r3, [pc, #296]	@ (9ff5170 <CircusRuntime_Enter+0x138>)
+ 9ff5046:	8018      	strh	r0, [r3, #0]
+ 9ff5048:	b007      	add	sp, #28
+ 9ff504a:	bcf0      	pop	{r4, r5, r6, r7}
+ 9ff504c:	bc01      	pop	{r0}
+ 9ff504e:	4700      	bx	r0
+ 9ff5050:	4b48      	ldr	r3, [pc, #288]	@ (9ff5174 <CircusRuntime_Enter+0x13c>)
+ 9ff5052:	4a49      	ldr	r2, [pc, #292]	@ (9ff5178 <CircusRuntime_Enter+0x140>)
+ 9ff5054:	5cd3      	ldrb	r3, [r2, r3]
+ 9ff5056:	2b00      	cmp	r3, #0
+ 9ff5058:	d002      	beq.n	9ff5060 <CircusRuntime_Enter+0x28>
+ 9ff505a:	2001      	movs	r0, #1
+ 9ff505c:	f000 fd5c 	bl	9ff5b18 <restore_original>
+ 9ff5060:	f000 fb14 	bl	9ff568c <CircusStreakRuntimeBegin>
+ 9ff5064:	2800      	cmp	r0, #0
+ 9ff5066:	d0ed      	beq.n	9ff5044 <CircusRuntime_Enter+0xc>
+ 9ff5068:	4e44      	ldr	r6, [pc, #272]	@ (9ff517c <CircusRuntime_Enter+0x144>)
+ 9ff506a:	f000 f8a8 	bl	9ff51be <CircusRuntime_Enter+0x186>
+ 9ff506e:	2700      	movs	r7, #0
+ 9ff5070:	0002      	movs	r2, r0
+ 9ff5072:	4b43      	ldr	r3, [pc, #268]	@ (9ff5180 <CircusRuntime_Enter+0x148>)
+ 9ff5074:	9700      	str	r7, [sp, #0]
+ 9ff5076:	4943      	ldr	r1, [pc, #268]	@ (9ff5184 <CircusRuntime_Enter+0x14c>)
+ 9ff5078:	483f      	ldr	r0, [pc, #252]	@ (9ff5178 <CircusRuntime_Enter+0x140>)
+ 9ff507a:	f001 f859 	bl	9ff6130 <VegaFactoryEnter>
+ 9ff507e:	0004      	movs	r4, r0
+ 9ff5080:	0005      	movs	r5, r0
+ 9ff5082:	42b8      	cmp	r0, r7
+ 9ff5084:	d002      	beq.n	9ff508c <CircusRuntime_Enter+0x54>
+ 9ff5086:	4b3a      	ldr	r3, [pc, #232]	@ (9ff5170 <CircusRuntime_Enter+0x138>)
+ 9ff5088:	801f      	strh	r7, [r3, #0]
+ 9ff508a:	e7dd      	b.n	9ff5048 <CircusRuntime_Enter+0x10>
+ 9ff508c:	2093      	movs	r0, #147	@ 0x93
+ 9ff508e:	4b3e      	ldr	r3, [pc, #248]	@ (9ff5188 <CircusRuntime_Enter+0x150>)
+ 9ff5090:	0100      	lsls	r0, r0, #4
+ 9ff5092:	f000 f893 	bl	9ff51bc <CircusRuntime_Enter+0x184>
+ 9ff5096:	2003      	movs	r0, #3
+ 9ff5098:	f000 fc98 	bl	9ff59cc <configure_trial_vars>
+ 9ff509c:	4b3b      	ldr	r3, [pc, #236]	@ (9ff518c <CircusRuntime_Enter+0x154>)
+ 9ff509e:	801c      	strh	r4, [r3, #0]
+ 9ff50a0:	4b3b      	ldr	r3, [pc, #236]	@ (9ff5190 <CircusRuntime_Enter+0x158>)
+ 9ff50a2:	0022      	movs	r2, r4
+ 9ff50a4:	801c      	strh	r4, [r3, #0]
+ 9ff50a6:	0021      	movs	r1, r4
+ 9ff50a8:	0020      	movs	r0, r4
+ 9ff50aa:	4b3a      	ldr	r3, [pc, #232]	@ (9ff5194 <CircusRuntime_Enter+0x15c>)
+ 9ff50ac:	f000 f886 	bl	9ff51bc <CircusRuntime_Enter+0x184>
+ 9ff50b0:	1e04      	subs	r4, r0, #0
+ 9ff50b2:	d105      	bne.n	9ff50c0 <CircusRuntime_Enter+0x88>
+ 9ff50b4:	2001      	movs	r0, #1
+ 9ff50b6:	f000 fd2f 	bl	9ff5b18 <restore_original>
+ 9ff50ba:	4b2d      	ldr	r3, [pc, #180]	@ (9ff5170 <CircusRuntime_Enter+0x138>)
+ 9ff50bc:	801c      	strh	r4, [r3, #0]
+ 9ff50be:	e7c3      	b.n	9ff5048 <CircusRuntime_Enter+0x10>
+ 9ff50c0:	4b35      	ldr	r3, [pc, #212]	@ (9ff5198 <CircusRuntime_Enter+0x160>)
+ 9ff50c2:	f000 f87b 	bl	9ff51bc <CircusRuntime_Enter+0x184>
+ 9ff50c6:	f000 f87a 	bl	9ff51be <CircusRuntime_Enter+0x186>
+ 9ff50ca:	4b34      	ldr	r3, [pc, #208]	@ (9ff519c <CircusRuntime_Enter+0x164>)
+ 9ff50cc:	781b      	ldrb	r3, [r3, #0]
+ 9ff50ce:	2b06      	cmp	r3, #6
+ 9ff50d0:	d142      	bne.n	9ff5158 <CircusRuntime_Enter+0x120>
+ 9ff50d2:	2400      	movs	r4, #0
+ 9ff50d4:	2064      	movs	r0, #100	@ 0x64
+ 9ff50d6:	4360      	muls	r0, r4
+ 9ff50d8:	4b2a      	ldr	r3, [pc, #168]	@ (9ff5184 <CircusRuntime_Enter+0x14c>)
+ 9ff50da:	18c0      	adds	r0, r0, r3
+ 9ff50dc:	f000 fc4c 	bl	9ff5978 <species>
+ 9ff50e0:	0063      	lsls	r3, r4, #1
+ 9ff50e2:	aa03      	add	r2, sp, #12
+ 9ff50e4:	5298      	strh	r0, [r3, r2]
+ 9ff50e6:	2800      	cmp	r0, #0
+ 9ff50e8:	d036      	beq.n	9ff5158 <CircusRuntime_Enter+0x120>
+ 9ff50ea:	210a      	movs	r1, #10
+ 9ff50ec:	4469      	add	r1, sp
+ 9ff50ee:	2300      	movs	r3, #0
+ 9ff50f0:	468c      	mov	ip, r1
+ 9ff50f2:	0622      	lsls	r2, r4, #24
+ 9ff50f4:	0e12      	lsrs	r2, r2, #24
+ 9ff50f6:	0619      	lsls	r1, r3, #24
+ 9ff50f8:	0e09      	lsrs	r1, r1, #24
+ 9ff50fa:	4291      	cmp	r1, r2
+ 9ff50fc:	d326      	bcc.n	9ff514c <CircusRuntime_Enter+0x114>
+ 9ff50fe:	3401      	adds	r4, #1
+ 9ff5100:	2c06      	cmp	r4, #6
+ 9ff5102:	d1e7      	bne.n	9ff50d4 <CircusRuntime_Enter+0x9c>
+ 9ff5104:	481f      	ldr	r0, [pc, #124]	@ (9ff5184 <CircusRuntime_Enter+0x14c>)
+ 9ff5106:	f000 fcb9 	bl	9ff5a7c <mark_seen>
+ 9ff510a:	4825      	ldr	r0, [pc, #148]	@ (9ff51a0 <CircusRuntime_Enter+0x168>)
+ 9ff510c:	f000 fcb6 	bl	9ff5a7c <mark_seen>
+ 9ff5110:	4824      	ldr	r0, [pc, #144]	@ (9ff51a4 <CircusRuntime_Enter+0x16c>)
+ 9ff5112:	f000 fcb3 	bl	9ff5a7c <mark_seen>
+ 9ff5116:	4824      	ldr	r0, [pc, #144]	@ (9ff51a8 <CircusRuntime_Enter+0x170>)
+ 9ff5118:	f000 fcb0 	bl	9ff5a7c <mark_seen>
+ 9ff511c:	4823      	ldr	r0, [pc, #140]	@ (9ff51ac <CircusRuntime_Enter+0x174>)
+ 9ff511e:	f000 fcad 	bl	9ff5a7c <mark_seen>
+ 9ff5122:	4823      	ldr	r0, [pc, #140]	@ (9ff51b0 <CircusRuntime_Enter+0x178>)
+ 9ff5124:	f000 fcaa 	bl	9ff5a7c <mark_seen>
+ 9ff5128:	2000      	movs	r0, #0
+ 9ff512a:	f000 fc35 	bl	9ff5998 <normalize_selected_order>
+ 9ff512e:	2300      	movs	r3, #0
+ 9ff5130:	4911      	ldr	r1, [pc, #68]	@ (9ff5178 <CircusRuntime_Enter+0x140>)
+ 9ff5132:	4a20      	ldr	r2, [pc, #128]	@ (9ff51b4 <CircusRuntime_Enter+0x17c>)
+ 9ff5134:	548b      	strb	r3, [r1, r2]
+ 9ff5136:	4a20      	ldr	r2, [pc, #128]	@ (9ff51b8 <CircusRuntime_Enter+0x180>)
+ 9ff5138:	0008      	movs	r0, r1
+ 9ff513a:	6013      	str	r3, [r2, #0]
+ 9ff513c:	f000 fe30 	bl	9ff5da0 <VegaSaveFinalize>
+ 9ff5140:	f000 fc6c 	bl	9ff5a1c <save_ledger_sector>
+ 9ff5144:	2201      	movs	r2, #1
+ 9ff5146:	4b0a      	ldr	r3, [pc, #40]	@ (9ff5170 <CircusRuntime_Enter+0x138>)
+ 9ff5148:	801a      	strh	r2, [r3, #0]
+ 9ff514a:	e77d      	b.n	9ff5048 <CircusRuntime_Enter+0x10>
+ 9ff514c:	4667      	mov	r7, ip
+ 9ff514e:	3301      	adds	r3, #1
+ 9ff5150:	0059      	lsls	r1, r3, #1
+ 9ff5152:	5a79      	ldrh	r1, [r7, r1]
+ 9ff5154:	4281      	cmp	r1, r0
+ 9ff5156:	d1ce      	bne.n	9ff50f6 <CircusRuntime_Enter+0xbe>
+ 9ff5158:	3501      	adds	r5, #1
+ 9ff515a:	062d      	lsls	r5, r5, #24
+ 9ff515c:	0e2d      	lsrs	r5, r5, #24
+ 9ff515e:	2d04      	cmp	r5, #4
+ 9ff5160:	d1ae      	bne.n	9ff50c0 <CircusRuntime_Enter+0x88>
+ 9ff5162:	2001      	movs	r0, #1
+ 9ff5164:	f000 fcd8 	bl	9ff5b18 <restore_original>
+ 9ff5168:	2200      	movs	r2, #0
+ 9ff516a:	4b01      	ldr	r3, [pc, #4]	@ (9ff5170 <CircusRuntime_Enter+0x138>)
+ 9ff516c:	e7ec      	b.n	9ff5148 <CircusRuntime_Enter+0x110>
+ 9ff516e:	46c0      	nop			@ (mov r8, r8)
+ 9ff5170:	02037004 	.word	0x02037004
+ 9ff5174:	00000401 	.word	0x00000401
+ 9ff5178:	0203d000 	.word	0x0203d000
+ 9ff517c:	08040331 	.word	0x08040331
+ 9ff5180:	09ff5a6d 	.word	0x09ff5a6d
+ 9ff5184:	020241e4 	.word	0x020241e4
+ 9ff5188:	0806de75 	.word	0x0806de75
+ 9ff518c:	02036fec 	.word	0x02036fec
+ 9ff5190:	02036fee 	.word	0x02036fee
+ 9ff5194:	091262a9 	.word	0x091262a9
+ 9ff5198:	090dcebd 	.word	0x090dcebd
+ 9ff519c:	02023f89 	.word	0x02023f89
+ 9ff51a0:	02024248 	.word	0x02024248
+ 9ff51a4:	020242ac 	.word	0x020242ac
+ 9ff51a8:	02024310 	.word	0x02024310
+ 9ff51ac:	02024374 	.word	0x02024374
+ 9ff51b0:	020243d8 	.word	0x020243d8
+ 9ff51b4:	00000403 	.word	0x00000403
+ 9ff51b8:	0203e300 	.word	0x0203e300
+ 9ff51bc:	4718      	bx	r3
+ 9ff51be:	4730      	bx	r6
+
+09ff51c0 <CircusRuntime_CommitSelection>:
+ 9ff51c0:	b5f0      	push	{r4, r5, r6, r7, lr}
+ 9ff51c2:	b0cf      	sub	sp, #316	@ 0x13c
+ 9ff51c4:	f000 fc9a 	bl	9ff5afc <ledger_valid>
+ 9ff51c8:	2800      	cmp	r0, #0
+ 9ff51ca:	d009      	beq.n	9ff51e0 <CircusRuntime_CommitSelection+0x20>
+ 9ff51cc:	2280      	movs	r2, #128	@ 0x80
+ 9ff51ce:	4b33      	ldr	r3, [pc, #204]	@ (9ff529c <CircusRuntime_CommitSelection+0xdc>)
+ 9ff51d0:	00d2      	lsls	r2, r2, #3
+ 9ff51d2:	5c9f      	ldrb	r7, [r3, r2]
+ 9ff51d4:	2f01      	cmp	r7, #1
+ 9ff51d6:	d103      	bne.n	9ff51e0 <CircusRuntime_CommitSelection+0x20>
+ 9ff51d8:	4a31      	ldr	r2, [pc, #196]	@ (9ff52a0 <CircusRuntime_CommitSelection+0xe0>)
+ 9ff51da:	5c9b      	ldrb	r3, [r3, r2]
+ 9ff51dc:	2b00      	cmp	r3, #0
+ 9ff51de:	d106      	bne.n	9ff51ee <CircusRuntime_CommitSelection+0x2e>
+ 9ff51e0:	2200      	movs	r2, #0
+ 9ff51e2:	4b30      	ldr	r3, [pc, #192]	@ (9ff52a4 <CircusRuntime_CommitSelection+0xe4>)
+ 9ff51e4:	801a      	strh	r2, [r3, #0]
+ 9ff51e6:	b04f      	add	sp, #316	@ 0x13c
+ 9ff51e8:	bcf0      	pop	{r4, r5, r6, r7}
+ 9ff51ea:	bc01      	pop	{r0}
+ 9ff51ec:	4700      	bx	r0
+ 9ff51ee:	2600      	movs	r6, #0
+ 9ff51f0:	4c2d      	ldr	r4, [pc, #180]	@ (9ff52a8 <CircusRuntime_CommitSelection+0xe8>)
+ 9ff51f2:	ad03      	add	r5, sp, #12
+ 9ff51f4:	7821      	ldrb	r1, [r4, #0]
+ 9ff51f6:	1e4a      	subs	r2, r1, #1
+ 9ff51f8:	0613      	lsls	r3, r2, #24
+ 9ff51fa:	0e1b      	lsrs	r3, r3, #24
+ 9ff51fc:	2b05      	cmp	r3, #5
+ 9ff51fe:	d903      	bls.n	9ff5208 <CircusRuntime_CommitSelection+0x48>
+ 9ff5200:	2001      	movs	r0, #1
+ 9ff5202:	f000 fc89 	bl	9ff5b18 <restore_original>
+ 9ff5206:	e7eb      	b.n	9ff51e0 <CircusRuntime_CommitSelection+0x20>
+ 9ff5208:	003b      	movs	r3, r7
+ 9ff520a:	4093      	lsls	r3, r2
+ 9ff520c:	001a      	movs	r2, r3
+ 9ff520e:	0010      	movs	r0, r2
+ 9ff5210:	061b      	lsls	r3, r3, #24
+ 9ff5212:	4030      	ands	r0, r6
+ 9ff5214:	9001      	str	r0, [sp, #4]
+ 9ff5216:	0e1b      	lsrs	r3, r3, #24
+ 9ff5218:	4232      	tst	r2, r6
+ 9ff521a:	d1f1      	bne.n	9ff5200 <CircusRuntime_CommitSelection+0x40>
+ 9ff521c:	431e      	orrs	r6, r3
+ 9ff521e:	2364      	movs	r3, #100	@ 0x64
+ 9ff5220:	434b      	muls	r3, r1
+ 9ff5222:	0019      	movs	r1, r3
+ 9ff5224:	4b21      	ldr	r3, [pc, #132]	@ (9ff52ac <CircusRuntime_CommitSelection+0xec>)
+ 9ff5226:	0028      	movs	r0, r5
+ 9ff5228:	18c9      	adds	r1, r1, r3
+ 9ff522a:	2264      	movs	r2, #100	@ 0x64
+ 9ff522c:	f000 fb9a 	bl	9ff5964 <copy_bytes>
+ 9ff5230:	4b1f      	ldr	r3, [pc, #124]	@ (9ff52b0 <CircusRuntime_CommitSelection+0xf0>)
+ 9ff5232:	3401      	adds	r4, #1
+ 9ff5234:	3564      	adds	r5, #100	@ 0x64
+ 9ff5236:	429c      	cmp	r4, r3
+ 9ff5238:	d1dc      	bne.n	9ff51f4 <CircusRuntime_CommitSelection+0x34>
+ 9ff523a:	4b1e      	ldr	r3, [pc, #120]	@ (9ff52b4 <CircusRuntime_CommitSelection+0xf4>)
+ 9ff523c:	4a1e      	ldr	r2, [pc, #120]	@ (9ff52b8 <CircusRuntime_CommitSelection+0xf8>)
+ 9ff523e:	9901      	ldr	r1, [sp, #4]
+ 9ff5240:	7019      	strb	r1, [r3, #0]
+ 9ff5242:	3301      	adds	r3, #1
+ 9ff5244:	4293      	cmp	r3, r2
+ 9ff5246:	d1fa      	bne.n	9ff523e <CircusRuntime_CommitSelection+0x7e>
+ 9ff5248:	2403      	movs	r4, #3
+ 9ff524a:	2264      	movs	r2, #100	@ 0x64
+ 9ff524c:	4819      	ldr	r0, [pc, #100]	@ (9ff52b4 <CircusRuntime_CommitSelection+0xf4>)
+ 9ff524e:	a903      	add	r1, sp, #12
+ 9ff5250:	f000 fb88 	bl	9ff5964 <copy_bytes>
+ 9ff5254:	2264      	movs	r2, #100	@ 0x64
+ 9ff5256:	4819      	ldr	r0, [pc, #100]	@ (9ff52bc <CircusRuntime_CommitSelection+0xfc>)
+ 9ff5258:	a91c      	add	r1, sp, #112	@ 0x70
+ 9ff525a:	f000 fb83 	bl	9ff5964 <copy_bytes>
+ 9ff525e:	2264      	movs	r2, #100	@ 0x64
+ 9ff5260:	a935      	add	r1, sp, #212	@ 0xd4
+ 9ff5262:	4817      	ldr	r0, [pc, #92]	@ (9ff52c0 <CircusRuntime_CommitSelection+0x100>)
+ 9ff5264:	f000 fb7e 	bl	9ff5964 <copy_bytes>
+ 9ff5268:	4b16      	ldr	r3, [pc, #88]	@ (9ff52c4 <CircusRuntime_CommitSelection+0x104>)
+ 9ff526a:	0020      	movs	r0, r4
+ 9ff526c:	701c      	strb	r4, [r3, #0]
+ 9ff526e:	f000 fb93 	bl	9ff5998 <normalize_selected_order>
+ 9ff5272:	f000 fc1f 	bl	9ff5ab4 <heal_rental_party>
+ 9ff5276:	0020      	movs	r0, r4
+ 9ff5278:	f000 fba8 	bl	9ff59cc <configure_trial_vars>
+ 9ff527c:	2200      	movs	r2, #0
+ 9ff527e:	4912      	ldr	r1, [pc, #72]	@ (9ff52c8 <CircusRuntime_CommitSelection+0x108>)
+ 9ff5280:	4806      	ldr	r0, [pc, #24]	@ (9ff529c <CircusRuntime_CommitSelection+0xdc>)
+ 9ff5282:	f000 ffad 	bl	9ff61e0 <VegaFactorySetBattleActive>
+ 9ff5286:	4c07      	ldr	r4, [pc, #28]	@ (9ff52a4 <CircusRuntime_CommitSelection+0xe4>)
+ 9ff5288:	2301      	movs	r3, #1
+ 9ff528a:	2800      	cmp	r0, #0
+ 9ff528c:	d003      	beq.n	9ff5296 <CircusRuntime_CommitSelection+0xd6>
+ 9ff528e:	2001      	movs	r0, #1
+ 9ff5290:	f000 fc42 	bl	9ff5b18 <restore_original>
+ 9ff5294:	9b01      	ldr	r3, [sp, #4]
+ 9ff5296:	8023      	strh	r3, [r4, #0]
+ 9ff5298:	e7a5      	b.n	9ff51e6 <CircusRuntime_CommitSelection+0x26>
+ 9ff529a:	46c0      	nop			@ (mov r8, r8)
+ 9ff529c:	0203d000 	.word	0x0203d000
+ 9ff52a0:	00000401 	.word	0x00000401
+ 9ff52a4:	02037004 	.word	0x02037004
+ 9ff52a8:	0203c6c8 	.word	0x0203c6c8
+ 9ff52ac:	02024180 	.word	0x02024180
+ 9ff52b0:	0203c6cb 	.word	0x0203c6cb
+ 9ff52b4:	020241e4 	.word	0x020241e4
+ 9ff52b8:	0202443c 	.word	0x0202443c
+ 9ff52bc:	02024248 	.word	0x02024248
+ 9ff52c0:	020242ac 	.word	0x020242ac
+ 9ff52c4:	02023f89 	.word	0x02023f89
+ 9ff52c8:	09ff5a6d 	.word	0x09ff5a6d
+
+09ff52cc <CircusRuntime_PrepareBattle>:
+ 9ff52cc:	b570      	push	{r4, r5, r6, lr}
+ 9ff52ce:	f000 fc15 	bl	9ff5afc <ledger_valid>
+ 9ff52d2:	4d1e      	ldr	r5, [pc, #120]	@ (9ff534c <CircusRuntime_PrepareBattle+0x80>)
+ 9ff52d4:	2800      	cmp	r0, #0
+ 9ff52d6:	d009      	beq.n	9ff52ec <CircusRuntime_PrepareBattle+0x20>
+ 9ff52d8:	2280      	movs	r2, #128	@ 0x80
+ 9ff52da:	4b1d      	ldr	r3, [pc, #116]	@ (9ff5350 <CircusRuntime_PrepareBattle+0x84>)
+ 9ff52dc:	00d2      	lsls	r2, r2, #3
+ 9ff52de:	5c9a      	ldrb	r2, [r3, r2]
+ 9ff52e0:	2a02      	cmp	r2, #2
+ 9ff52e2:	d103      	bne.n	9ff52ec <CircusRuntime_PrepareBattle+0x20>
+ 9ff52e4:	4a1b      	ldr	r2, [pc, #108]	@ (9ff5354 <CircusRuntime_PrepareBattle+0x88>)
+ 9ff52e6:	5c9b      	ldrb	r3, [r3, r2]
+ 9ff52e8:	2b00      	cmp	r3, #0
+ 9ff52ea:	d102      	bne.n	9ff52f2 <CircusRuntime_PrepareBattle+0x26>
+ 9ff52ec:	2300      	movs	r3, #0
+ 9ff52ee:	802b      	strh	r3, [r5, #0]
+ 9ff52f0:	e022      	b.n	9ff5338 <CircusRuntime_PrepareBattle+0x6c>
+ 9ff52f2:	2093      	movs	r0, #147	@ 0x93
+ 9ff52f4:	2400      	movs	r4, #0
+ 9ff52f6:	4b18      	ldr	r3, [pc, #96]	@ (9ff5358 <CircusRuntime_PrepareBattle+0x8c>)
+ 9ff52f8:	0100      	lsls	r0, r0, #4
+ 9ff52fa:	f000 f839 	bl	9ff5370 <CircusRuntime_PrepareBattle+0xa4>
+ 9ff52fe:	2003      	movs	r0, #3
+ 9ff5300:	f000 fb64 	bl	9ff59cc <configure_trial_vars>
+ 9ff5304:	2003      	movs	r0, #3
+ 9ff5306:	f000 fb47 	bl	9ff5998 <normalize_selected_order>
+ 9ff530a:	f000 fbd3 	bl	9ff5ab4 <heal_rental_party>
+ 9ff530e:	4b13      	ldr	r3, [pc, #76]	@ (9ff535c <CircusRuntime_PrepareBattle+0x90>)
+ 9ff5310:	801c      	strh	r4, [r3, #0]
+ 9ff5312:	4b13      	ldr	r3, [pc, #76]	@ (9ff5360 <CircusRuntime_PrepareBattle+0x94>)
+ 9ff5314:	801c      	strh	r4, [r3, #0]
+ 9ff5316:	4b13      	ldr	r3, [pc, #76]	@ (9ff5364 <CircusRuntime_PrepareBattle+0x98>)
+ 9ff5318:	f000 f82a 	bl	9ff5370 <CircusRuntime_PrepareBattle+0xa4>
+ 9ff531c:	4b12      	ldr	r3, [pc, #72]	@ (9ff5368 <CircusRuntime_PrepareBattle+0x9c>)
+ 9ff531e:	0022      	movs	r2, r4
+ 9ff5320:	701c      	strb	r4, [r3, #0]
+ 9ff5322:	0021      	movs	r1, r4
+ 9ff5324:	0020      	movs	r0, r4
+ 9ff5326:	4b11      	ldr	r3, [pc, #68]	@ (9ff536c <CircusRuntime_PrepareBattle+0xa0>)
+ 9ff5328:	f000 f822 	bl	9ff5370 <CircusRuntime_PrepareBattle+0xa4>
+ 9ff532c:	1e04      	subs	r4, r0, #0
+ 9ff532e:	d106      	bne.n	9ff533e <CircusRuntime_PrepareBattle+0x72>
+ 9ff5330:	2001      	movs	r0, #1
+ 9ff5332:	f000 fbf1 	bl	9ff5b18 <restore_original>
+ 9ff5336:	802c      	strh	r4, [r5, #0]
+ 9ff5338:	bc70      	pop	{r4, r5, r6}
+ 9ff533a:	bc01      	pop	{r0}
+ 9ff533c:	4700      	bx	r0
+ 9ff533e:	f000 f9bd 	bl	9ff56bc <CircusStreakRuntimeArm>
+ 9ff5342:	2301      	movs	r3, #1
+ 9ff5344:	2800      	cmp	r0, #0
+ 9ff5346:	d1d2      	bne.n	9ff52ee <CircusRuntime_PrepareBattle+0x22>
+ 9ff5348:	8028      	strh	r0, [r5, #0]
+ 9ff534a:	e7f5      	b.n	9ff5338 <CircusRuntime_PrepareBattle+0x6c>
+ 9ff534c:	02037004 	.word	0x02037004
+ 9ff5350:	0203d000 	.word	0x0203d000
+ 9ff5354:	00000401 	.word	0x00000401
+ 9ff5358:	0806de75 	.word	0x0806de75
+ 9ff535c:	02036fec 	.word	0x02036fec
+ 9ff5360:	02036fee 	.word	0x02036fee
+ 9ff5364:	091023d1 	.word	0x091023d1
+ 9ff5368:	02023dea 	.word	0x02023dea
+ 9ff536c:	091262a9 	.word	0x091262a9
+ 9ff5370:	4718      	bx	r3
+ 9ff5372:	46c0      	nop			@ (mov r8, r8)
+
+09ff5374 <CircusRuntime_AfterBattle>:
+ 9ff5374:	b5f7      	push	{r0, r1, r2, r4, r5, r6, r7, lr}
+ 9ff5376:	4b3e      	ldr	r3, [pc, #248]	@ (9ff5470 <CircusRuntime_AfterBattle+0xfc>)
+ 9ff5378:	781d      	ldrb	r5, [r3, #0]
+ 9ff537a:	f000 fbbf 	bl	9ff5afc <ledger_valid>
+ 9ff537e:	2800      	cmp	r0, #0
+ 9ff5380:	d105      	bne.n	9ff538e <CircusRuntime_AfterBattle+0x1a>
+ 9ff5382:	2200      	movs	r2, #0
+ 9ff5384:	4b3b      	ldr	r3, [pc, #236]	@ (9ff5474 <CircusRuntime_AfterBattle+0x100>)
+ 9ff5386:	801a      	strh	r2, [r3, #0]
+ 9ff5388:	bcf7      	pop	{r0, r1, r2, r4, r5, r6, r7}
+ 9ff538a:	bc01      	pop	{r0}
+ 9ff538c:	4700      	bx	r0
+ 9ff538e:	4c3a      	ldr	r4, [pc, #232]	@ (9ff5478 <CircusRuntime_AfterBattle+0x104>)
+ 9ff5390:	4b3a      	ldr	r3, [pc, #232]	@ (9ff547c <CircusRuntime_AfterBattle+0x108>)
+ 9ff5392:	5ce3      	ldrb	r3, [r4, r3]
+ 9ff5394:	2b00      	cmp	r3, #0
+ 9ff5396:	d0f4      	beq.n	9ff5382 <CircusRuntime_AfterBattle+0xe>
+ 9ff5398:	f000 f9a4 	bl	9ff56e4 <CircusStreakRuntimeArmed>
+ 9ff539c:	2800      	cmp	r0, #0
+ 9ff539e:	d0f0      	beq.n	9ff5382 <CircusRuntime_AfterBattle+0xe>
+ 9ff53a0:	207f      	movs	r0, #127	@ 0x7f
+ 9ff53a2:	4028      	ands	r0, r5
+ 9ff53a4:	2801      	cmp	r0, #1
+ 9ff53a6:	d00c      	beq.n	9ff53c2 <CircusRuntime_AfterBattle+0x4e>
+ 9ff53a8:	f000 f9ac 	bl	9ff5704 <CircusStreakRuntimeRecord>
+ 9ff53ac:	4c31      	ldr	r4, [pc, #196]	@ (9ff5474 <CircusRuntime_AfterBattle+0x100>)
+ 9ff53ae:	2800      	cmp	r0, #0
+ 9ff53b0:	d101      	bne.n	9ff53b6 <CircusRuntime_AfterBattle+0x42>
+ 9ff53b2:	8020      	strh	r0, [r4, #0]
+ 9ff53b4:	e7e8      	b.n	9ff5388 <CircusRuntime_AfterBattle+0x14>
+ 9ff53b6:	2001      	movs	r0, #1
+ 9ff53b8:	f000 fbae 	bl	9ff5b18 <restore_original>
+ 9ff53bc:	2300      	movs	r3, #0
+ 9ff53be:	8023      	strh	r3, [r4, #0]
+ 9ff53c0:	e7e2      	b.n	9ff5388 <CircusRuntime_AfterBattle+0x14>
+ 9ff53c2:	2600      	movs	r6, #0
+ 9ff53c4:	f000 fb76 	bl	9ff5ab4 <heal_rental_party>
+ 9ff53c8:	0035      	movs	r5, r6
+ 9ff53ca:	2764      	movs	r7, #100	@ 0x64
+ 9ff53cc:	0038      	movs	r0, r7
+ 9ff53ce:	4370      	muls	r0, r6
+ 9ff53d0:	4b2b      	ldr	r3, [pc, #172]	@ (9ff5480 <CircusRuntime_AfterBattle+0x10c>)
+ 9ff53d2:	18c0      	adds	r0, r0, r3
+ 9ff53d4:	f000 fad0 	bl	9ff5978 <species>
+ 9ff53d8:	2800      	cmp	r0, #0
+ 9ff53da:	d004      	beq.n	9ff53e6 <CircusRuntime_AfterBattle+0x72>
+ 9ff53dc:	466a      	mov	r2, sp
+ 9ff53de:	1c6b      	adds	r3, r5, #1
+ 9ff53e0:	5556      	strb	r6, [r2, r5]
+ 9ff53e2:	061d      	lsls	r5, r3, #24
+ 9ff53e4:	0e2d      	lsrs	r5, r5, #24
+ 9ff53e6:	3601      	adds	r6, #1
+ 9ff53e8:	2e06      	cmp	r6, #6
+ 9ff53ea:	d1ef      	bne.n	9ff53cc <CircusRuntime_AfterBattle+0x58>
+ 9ff53ec:	1e2b      	subs	r3, r5, #0
+ 9ff53ee:	d01b      	beq.n	9ff5428 <CircusRuntime_AfterBattle+0xb4>
+ 9ff53f0:	4b24      	ldr	r3, [pc, #144]	@ (9ff5484 <CircusRuntime_AfterBattle+0x110>)
+ 9ff53f2:	f000 f851 	bl	9ff5498 <CircusRuntime_AfterBattle+0x124>
+ 9ff53f6:	2300      	movs	r3, #0
+ 9ff53f8:	2d01      	cmp	r5, #1
+ 9ff53fa:	d008      	beq.n	9ff540e <CircusRuntime_AfterBattle+0x9a>
+ 9ff53fc:	0603      	lsls	r3, r0, #24
+ 9ff53fe:	2201      	movs	r2, #1
+ 9ff5400:	0e1b      	lsrs	r3, r3, #24
+ 9ff5402:	2d02      	cmp	r5, #2
+ 9ff5404:	d002      	beq.n	9ff540c <CircusRuntime_AfterBattle+0x98>
+ 9ff5406:	2d04      	cmp	r5, #4
+ 9ff5408:	d125      	bne.n	9ff5456 <CircusRuntime_AfterBattle+0xe2>
+ 9ff540a:	2203      	movs	r2, #3
+ 9ff540c:	4013      	ands	r3, r2
+ 9ff540e:	466a      	mov	r2, sp
+ 9ff5410:	5cd1      	ldrb	r1, [r2, r3]
+ 9ff5412:	2264      	movs	r2, #100	@ 0x64
+ 9ff5414:	4351      	muls	r1, r2
+ 9ff5416:	4b1a      	ldr	r3, [pc, #104]	@ (9ff5480 <CircusRuntime_AfterBattle+0x10c>)
+ 9ff5418:	481b      	ldr	r0, [pc, #108]	@ (9ff5488 <CircusRuntime_AfterBattle+0x114>)
+ 9ff541a:	18c9      	adds	r1, r1, r3
+ 9ff541c:	f000 faa2 	bl	9ff5964 <copy_bytes>
+ 9ff5420:	4819      	ldr	r0, [pc, #100]	@ (9ff5488 <CircusRuntime_AfterBattle+0x114>)
+ 9ff5422:	f000 fb2b 	bl	9ff5a7c <mark_seen>
+ 9ff5426:	4b19      	ldr	r3, [pc, #100]	@ (9ff548c <CircusRuntime_AfterBattle+0x118>)
+ 9ff5428:	4a19      	ldr	r2, [pc, #100]	@ (9ff5490 <CircusRuntime_AfterBattle+0x11c>)
+ 9ff542a:	4d1a      	ldr	r5, [pc, #104]	@ (9ff5494 <CircusRuntime_AfterBattle+0x120>)
+ 9ff542c:	6013      	str	r3, [r2, #0]
+ 9ff542e:	5d67      	ldrb	r7, [r4, r5]
+ 9ff5430:	2f02      	cmp	r7, #2
+ 9ff5432:	d801      	bhi.n	9ff5438 <CircusRuntime_AfterBattle+0xc4>
+ 9ff5434:	1c7b      	adds	r3, r7, #1
+ 9ff5436:	5563      	strb	r3, [r4, r5]
+ 9ff5438:	2001      	movs	r0, #1
+ 9ff543a:	f000 f963 	bl	9ff5704 <CircusStreakRuntimeRecord>
+ 9ff543e:	1e06      	subs	r6, r0, #0
+ 9ff5440:	d10c      	bne.n	9ff545c <CircusRuntime_AfterBattle+0xe8>
+ 9ff5442:	5567      	strb	r7, [r4, r5]
+ 9ff5444:	480c      	ldr	r0, [pc, #48]	@ (9ff5478 <CircusRuntime_AfterBattle+0x104>)
+ 9ff5446:	f000 fcab 	bl	9ff5da0 <VegaSaveFinalize>
+ 9ff544a:	4b0a      	ldr	r3, [pc, #40]	@ (9ff5474 <CircusRuntime_AfterBattle+0x100>)
+ 9ff544c:	801e      	strh	r6, [r3, #0]
+ 9ff544e:	e79b      	b.n	9ff5388 <CircusRuntime_AfterBattle+0x14>
+ 9ff5450:	1b5b      	subs	r3, r3, r5
+ 9ff5452:	061b      	lsls	r3, r3, #24
+ 9ff5454:	0e1b      	lsrs	r3, r3, #24
+ 9ff5456:	429d      	cmp	r5, r3
+ 9ff5458:	d9fa      	bls.n	9ff5450 <CircusRuntime_AfterBattle+0xdc>
+ 9ff545a:	e7d8      	b.n	9ff540e <CircusRuntime_AfterBattle+0x9a>
+ 9ff545c:	2302      	movs	r3, #2
+ 9ff545e:	5d62      	ldrb	r2, [r4, r5]
+ 9ff5460:	4293      	cmp	r3, r2
+ 9ff5462:	419b      	sbcs	r3, r3
+ 9ff5464:	4a03      	ldr	r2, [pc, #12]	@ (9ff5474 <CircusRuntime_AfterBattle+0x100>)
+ 9ff5466:	425b      	negs	r3, r3
+ 9ff5468:	3301      	adds	r3, #1
+ 9ff546a:	8013      	strh	r3, [r2, #0]
+ 9ff546c:	e78c      	b.n	9ff5388 <CircusRuntime_AfterBattle+0x14>
+ 9ff546e:	46c0      	nop			@ (mov r8, r8)
+ 9ff5470:	02023dea 	.word	0x02023dea
+ 9ff5474:	02037004 	.word	0x02037004
+ 9ff5478:	0203d000 	.word	0x0203d000
+ 9ff547c:	00000401 	.word	0x00000401
+ 9ff5480:	02023f8c 	.word	0x02023f8c
+ 9ff5484:	0804448d 	.word	0x0804448d
+ 9ff5488:	0203e304 	.word	0x0203e304
+ 9ff548c:	58434846 	.word	0x58434846
+ 9ff5490:	0203e300 	.word	0x0203e300
+ 9ff5494:	00000403 	.word	0x00000403
+ 9ff5498:	4718      	bx	r3
+ 9ff549a:	46c0      	nop			@ (mov r8, r8)
+
+09ff549c <CircusRuntime_SkipExchange>:
+ 9ff549c:	2200      	movs	r2, #0
+ 9ff549e:	4b0f      	ldr	r3, [pc, #60]	@ (9ff54dc <CircusRuntime_SkipExchange+0x40>)
+ 9ff54a0:	b510      	push	{r4, lr}
+ 9ff54a2:	2003      	movs	r0, #3
+ 9ff54a4:	601a      	str	r2, [r3, #0]
+ 9ff54a6:	f000 fa91 	bl	9ff59cc <configure_trial_vars>
+ 9ff54aa:	2003      	movs	r0, #3
+ 9ff54ac:	f000 fa74 	bl	9ff5998 <normalize_selected_order>
+ 9ff54b0:	f000 fb00 	bl	9ff5ab4 <heal_rental_party>
+ 9ff54b4:	f000 fb22 	bl	9ff5afc <ledger_valid>
+ 9ff54b8:	2800      	cmp	r0, #0
+ 9ff54ba:	d008      	beq.n	9ff54ce <CircusRuntime_SkipExchange+0x32>
+ 9ff54bc:	4808      	ldr	r0, [pc, #32]	@ (9ff54e0 <CircusRuntime_SkipExchange+0x44>)
+ 9ff54be:	4b09      	ldr	r3, [pc, #36]	@ (9ff54e4 <CircusRuntime_SkipExchange+0x48>)
+ 9ff54c0:	5cc3      	ldrb	r3, [r0, r3]
+ 9ff54c2:	2b00      	cmp	r3, #0
+ 9ff54c4:	d003      	beq.n	9ff54ce <CircusRuntime_SkipExchange+0x32>
+ 9ff54c6:	f000 fc6b 	bl	9ff5da0 <VegaSaveFinalize>
+ 9ff54ca:	f000 faa7 	bl	9ff5a1c <save_ledger_sector>
+ 9ff54ce:	2201      	movs	r2, #1
+ 9ff54d0:	4b05      	ldr	r3, [pc, #20]	@ (9ff54e8 <CircusRuntime_SkipExchange+0x4c>)
+ 9ff54d2:	801a      	strh	r2, [r3, #0]
+ 9ff54d4:	bc10      	pop	{r4}
+ 9ff54d6:	bc01      	pop	{r0}
+ 9ff54d8:	4700      	bx	r0
+ 9ff54da:	46c0      	nop			@ (mov r8, r8)
+ 9ff54dc:	0203e300 	.word	0x0203e300
+ 9ff54e0:	0203d000 	.word	0x0203d000
+ 9ff54e4:	00000401 	.word	0x00000401
+ 9ff54e8:	02037004 	.word	0x02037004
+
+09ff54ec <CircusRuntime_BeginExchange>:
+ 9ff54ec:	b510      	push	{r4, lr}
+ 9ff54ee:	f000 fb05 	bl	9ff5afc <ledger_valid>
+ 9ff54f2:	4c0e      	ldr	r4, [pc, #56]	@ (9ff552c <CircusRuntime_BeginExchange+0x40>)
+ 9ff54f4:	2800      	cmp	r0, #0
+ 9ff54f6:	d009      	beq.n	9ff550c <CircusRuntime_BeginExchange+0x20>
+ 9ff54f8:	4a0d      	ldr	r2, [pc, #52]	@ (9ff5530 <CircusRuntime_BeginExchange+0x44>)
+ 9ff54fa:	4b0e      	ldr	r3, [pc, #56]	@ (9ff5534 <CircusRuntime_BeginExchange+0x48>)
+ 9ff54fc:	5cd3      	ldrb	r3, [r2, r3]
+ 9ff54fe:	2b00      	cmp	r3, #0
+ 9ff5500:	d004      	beq.n	9ff550c <CircusRuntime_BeginExchange+0x20>
+ 9ff5502:	4a0d      	ldr	r2, [pc, #52]	@ (9ff5538 <CircusRuntime_BeginExchange+0x4c>)
+ 9ff5504:	4b0d      	ldr	r3, [pc, #52]	@ (9ff553c <CircusRuntime_BeginExchange+0x50>)
+ 9ff5506:	6812      	ldr	r2, [r2, #0]
+ 9ff5508:	429a      	cmp	r2, r3
+ 9ff550a:	d006      	beq.n	9ff551a <CircusRuntime_BeginExchange+0x2e>
+ 9ff550c:	f7ff ffc6 	bl	9ff549c <CircusRuntime_SkipExchange>
+ 9ff5510:	2300      	movs	r3, #0
+ 9ff5512:	8023      	strh	r3, [r4, #0]
+ 9ff5514:	bc10      	pop	{r4}
+ 9ff5516:	bc01      	pop	{r0}
+ 9ff5518:	4700      	bx	r0
+ 9ff551a:	2001      	movs	r0, #1
+ 9ff551c:	f000 fa56 	bl	9ff59cc <configure_trial_vars>
+ 9ff5520:	2000      	movs	r0, #0
+ 9ff5522:	f000 fa39 	bl	9ff5998 <normalize_selected_order>
+ 9ff5526:	2301      	movs	r3, #1
+ 9ff5528:	e7f3      	b.n	9ff5512 <CircusRuntime_BeginExchange+0x26>
+ 9ff552a:	46c0      	nop			@ (mov r8, r8)
+ 9ff552c:	02037004 	.word	0x02037004
+ 9ff5530:	0203d000 	.word	0x0203d000
+ 9ff5534:	00000401 	.word	0x00000401
+ 9ff5538:	0203e300 	.word	0x0203e300
+ 9ff553c:	58434846 	.word	0x58434846
+
+09ff5540 <CircusRuntime_CommitExchange>:
+ 9ff5540:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 9ff5542:	4b1b      	ldr	r3, [pc, #108]	@ (9ff55b0 <CircusRuntime_CommitExchange+0x70>)
+ 9ff5544:	781c      	ldrb	r4, [r3, #0]
+ 9ff5546:	f000 fad9 	bl	9ff5afc <ledger_valid>
+ 9ff554a:	4d1a      	ldr	r5, [pc, #104]	@ (9ff55b4 <CircusRuntime_CommitExchange+0x74>)
+ 9ff554c:	2800      	cmp	r0, #0
+ 9ff554e:	d00c      	beq.n	9ff556a <CircusRuntime_CommitExchange+0x2a>
+ 9ff5550:	4e19      	ldr	r6, [pc, #100]	@ (9ff55b8 <CircusRuntime_CommitExchange+0x78>)
+ 9ff5552:	4b1a      	ldr	r3, [pc, #104]	@ (9ff55bc <CircusRuntime_CommitExchange+0x7c>)
+ 9ff5554:	5cf3      	ldrb	r3, [r6, r3]
+ 9ff5556:	2b00      	cmp	r3, #0
+ 9ff5558:	d007      	beq.n	9ff556a <CircusRuntime_CommitExchange+0x2a>
+ 9ff555a:	4f19      	ldr	r7, [pc, #100]	@ (9ff55c0 <CircusRuntime_CommitExchange+0x80>)
+ 9ff555c:	4b19      	ldr	r3, [pc, #100]	@ (9ff55c4 <CircusRuntime_CommitExchange+0x84>)
+ 9ff555e:	683a      	ldr	r2, [r7, #0]
+ 9ff5560:	429a      	cmp	r2, r3
+ 9ff5562:	d102      	bne.n	9ff556a <CircusRuntime_CommitExchange+0x2a>
+ 9ff5564:	1e63      	subs	r3, r4, #1
+ 9ff5566:	2b02      	cmp	r3, #2
+ 9ff5568:	d906      	bls.n	9ff5578 <CircusRuntime_CommitExchange+0x38>
+ 9ff556a:	f7ff ff97 	bl	9ff549c <CircusRuntime_SkipExchange>
+ 9ff556e:	2300      	movs	r3, #0
+ 9ff5570:	802b      	strh	r3, [r5, #0]
+ 9ff5572:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 9ff5574:	bc01      	pop	{r0}
+ 9ff5576:	4700      	bx	r0
+ 9ff5578:	2264      	movs	r2, #100	@ 0x64
+ 9ff557a:	4354      	muls	r4, r2
+ 9ff557c:	4b12      	ldr	r3, [pc, #72]	@ (9ff55c8 <CircusRuntime_CommitExchange+0x88>)
+ 9ff557e:	18e4      	adds	r4, r4, r3
+ 9ff5580:	4912      	ldr	r1, [pc, #72]	@ (9ff55cc <CircusRuntime_CommitExchange+0x8c>)
+ 9ff5582:	0020      	movs	r0, r4
+ 9ff5584:	f000 f9ee 	bl	9ff5964 <copy_bytes>
+ 9ff5588:	0020      	movs	r0, r4
+ 9ff558a:	f000 fa77 	bl	9ff5a7c <mark_seen>
+ 9ff558e:	2300      	movs	r3, #0
+ 9ff5590:	2003      	movs	r0, #3
+ 9ff5592:	603b      	str	r3, [r7, #0]
+ 9ff5594:	f000 fa1a 	bl	9ff59cc <configure_trial_vars>
+ 9ff5598:	2003      	movs	r0, #3
+ 9ff559a:	f000 f9fd 	bl	9ff5998 <normalize_selected_order>
+ 9ff559e:	f000 fa89 	bl	9ff5ab4 <heal_rental_party>
+ 9ff55a2:	0030      	movs	r0, r6
+ 9ff55a4:	f000 fbfc 	bl	9ff5da0 <VegaSaveFinalize>
+ 9ff55a8:	f000 fa38 	bl	9ff5a1c <save_ledger_sector>
+ 9ff55ac:	2301      	movs	r3, #1
+ 9ff55ae:	e7df      	b.n	9ff5570 <CircusRuntime_CommitExchange+0x30>
+ 9ff55b0:	0203c6c8 	.word	0x0203c6c8
+ 9ff55b4:	02037004 	.word	0x02037004
+ 9ff55b8:	0203d000 	.word	0x0203d000
+ 9ff55bc:	00000401 	.word	0x00000401
+ 9ff55c0:	0203e300 	.word	0x0203e300
+ 9ff55c4:	58434846 	.word	0x58434846
+ 9ff55c8:	02024180 	.word	0x02024180
+ 9ff55cc:	0203e304 	.word	0x0203e304
+
+09ff55d0 <CircusRuntime_Complete>:
+ 9ff55d0:	b5f7      	push	{r0, r1, r2, r4, r5, r6, r7, lr}
+ 9ff55d2:	f000 fa93 	bl	9ff5afc <ledger_valid>
+ 9ff55d6:	4d14      	ldr	r5, [pc, #80]	@ (9ff5628 <CircusRuntime_Complete+0x58>)
+ 9ff55d8:	2800      	cmp	r0, #0
+ 9ff55da:	d008      	beq.n	9ff55ee <CircusRuntime_Complete+0x1e>
+ 9ff55dc:	4c13      	ldr	r4, [pc, #76]	@ (9ff562c <CircusRuntime_Complete+0x5c>)
+ 9ff55de:	4b14      	ldr	r3, [pc, #80]	@ (9ff5630 <CircusRuntime_Complete+0x60>)
+ 9ff55e0:	5ce3      	ldrb	r3, [r4, r3]
+ 9ff55e2:	2b00      	cmp	r3, #0
+ 9ff55e4:	d003      	beq.n	9ff55ee <CircusRuntime_Complete+0x1e>
+ 9ff55e6:	4b13      	ldr	r3, [pc, #76]	@ (9ff5634 <CircusRuntime_Complete+0x64>)
+ 9ff55e8:	5ce3      	ldrb	r3, [r4, r3]
+ 9ff55ea:	2b03      	cmp	r3, #3
+ 9ff55ec:	d005      	beq.n	9ff55fa <CircusRuntime_Complete+0x2a>
+ 9ff55ee:	2001      	movs	r0, #1
+ 9ff55f0:	f000 fa92 	bl	9ff5b18 <restore_original>
+ 9ff55f4:	2300      	movs	r3, #0
+ 9ff55f6:	802b      	strh	r3, [r5, #0]
+ 9ff55f8:	e013      	b.n	9ff5622 <CircusRuntime_Complete+0x52>
+ 9ff55fa:	4f0f      	ldr	r7, [pc, #60]	@ (9ff5638 <CircusRuntime_Complete+0x68>)
+ 9ff55fc:	5be3      	ldrh	r3, [r4, r7]
+ 9ff55fe:	2109      	movs	r1, #9
+ 9ff5600:	0020      	movs	r0, r4
+ 9ff5602:	9301      	str	r3, [sp, #4]
+ 9ff5604:	f000 fd70 	bl	9ff60e8 <VegaFactoryAddBattlePoints>
+ 9ff5608:	2800      	cmp	r0, #0
+ 9ff560a:	d1f3      	bne.n	9ff55f4 <CircusRuntime_Complete+0x24>
+ 9ff560c:	f000 fa84 	bl	9ff5b18 <restore_original>
+ 9ff5610:	2309      	movs	r3, #9
+ 9ff5612:	1e06      	subs	r6, r0, #0
+ 9ff5614:	d1ef      	bne.n	9ff55f6 <CircusRuntime_Complete+0x26>
+ 9ff5616:	9b01      	ldr	r3, [sp, #4]
+ 9ff5618:	0020      	movs	r0, r4
+ 9ff561a:	53e3      	strh	r3, [r4, r7]
+ 9ff561c:	f000 fbc0 	bl	9ff5da0 <VegaSaveFinalize>
+ 9ff5620:	802e      	strh	r6, [r5, #0]
+ 9ff5622:	bcf7      	pop	{r0, r1, r2, r4, r5, r6, r7}
+ 9ff5624:	bc01      	pop	{r0}
+ 9ff5626:	4700      	bx	r0
+ 9ff5628:	02037004 	.word	0x02037004
+ 9ff562c:	0203d000 	.word	0x0203d000
+ 9ff5630:	00000401 	.word	0x00000401
+ 9ff5634:	00000403 	.word	0x00000403
+ 9ff5638:	00000392 	.word	0x00000392
+
+09ff563c <CircusRuntime_Abort>:
+ 9ff563c:	b510      	push	{r4, lr}
+ 9ff563e:	2001      	movs	r0, #1
+ 9ff5640:	f000 fa6a 	bl	9ff5b18 <restore_original>
+ 9ff5644:	4b02      	ldr	r3, [pc, #8]	@ (9ff5650 <CircusRuntime_Abort+0x14>)
+ 9ff5646:	8018      	strh	r0, [r3, #0]
+ 9ff5648:	bc10      	pop	{r4}
+ 9ff564a:	bc01      	pop	{r0}
+ 9ff564c:	4700      	bx	r0
+ 9ff564e:	46c0      	nop			@ (mov r8, r8)
+ 9ff5650:	02037004 	.word	0x02037004
+
+09ff5654 <CircusStreakRuntimeRecover>:
+ 9ff5654:	b510      	push	{r4, lr}
+ 9ff5656:	f001 f8a5 	bl	9ff67a4 <valid>
+ 9ff565a:	2800      	cmp	r0, #0
+ 9ff565c:	d00c      	beq.n	9ff5678 <CircusStreakRuntimeRecover+0x24>
+ 9ff565e:	2200      	movs	r2, #0
+ 9ff5660:	4908      	ldr	r1, [pc, #32]	@ (9ff5684 <CircusStreakRuntimeRecover+0x30>)
+ 9ff5662:	4809      	ldr	r0, [pc, #36]	@ (9ff5688 <CircusStreakRuntimeRecover+0x34>)
+ 9ff5664:	f001 f809 	bl	9ff667a <CircusStreakRecover>
+ 9ff5668:	2201      	movs	r2, #1
+ 9ff566a:	0003      	movs	r3, r0
+ 9ff566c:	2000      	movs	r0, #0
+ 9ff566e:	429a      	cmp	r2, r3
+ 9ff5670:	4140      	adcs	r0, r0
+ 9ff5672:	bc10      	pop	{r4}
+ 9ff5674:	bc02      	pop	{r1}
+ 9ff5676:	4708      	bx	r1
+ 9ff5678:	f001 f8a6 	bl	9ff67c8 <load>
+ 9ff567c:	2800      	cmp	r0, #0
+ 9ff567e:	d1ee      	bne.n	9ff565e <CircusStreakRuntimeRecover+0xa>
+ 9ff5680:	e7f7      	b.n	9ff5672 <CircusStreakRuntimeRecover+0x1e>
+ 9ff5682:	46c0      	nop			@ (mov r8, r8)
+ 9ff5684:	09ff6805 	.word	0x09ff6805
+ 9ff5688:	0203db00 	.word	0x0203db00
+
+09ff568c <CircusStreakRuntimeBegin>:
+ 9ff568c:	b510      	push	{r4, lr}
+ 9ff568e:	f001 f889 	bl	9ff67a4 <valid>
+ 9ff5692:	2800      	cmp	r0, #0
+ 9ff5694:	d009      	beq.n	9ff56aa <CircusStreakRuntimeBegin+0x1e>
+ 9ff5696:	2200      	movs	r2, #0
+ 9ff5698:	4906      	ldr	r1, [pc, #24]	@ (9ff56b4 <CircusStreakRuntimeBegin+0x28>)
+ 9ff569a:	4807      	ldr	r0, [pc, #28]	@ (9ff56b8 <CircusStreakRuntimeBegin+0x2c>)
+ 9ff569c:	f000 ff16 	bl	9ff64cc <CircusStreakBegin>
+ 9ff56a0:	4243      	negs	r3, r0
+ 9ff56a2:	4158      	adcs	r0, r3
+ 9ff56a4:	bc10      	pop	{r4}
+ 9ff56a6:	bc02      	pop	{r1}
+ 9ff56a8:	4708      	bx	r1
+ 9ff56aa:	f001 f88d 	bl	9ff67c8 <load>
+ 9ff56ae:	2800      	cmp	r0, #0
+ 9ff56b0:	d1f1      	bne.n	9ff5696 <CircusStreakRuntimeBegin+0xa>
+ 9ff56b2:	e7f7      	b.n	9ff56a4 <CircusStreakRuntimeBegin+0x18>
+ 9ff56b4:	09ff6805 	.word	0x09ff6805
+ 9ff56b8:	0203db00 	.word	0x0203db00
+
+09ff56bc <CircusStreakRuntimeArm>:
+ 9ff56bc:	b510      	push	{r4, lr}
+ 9ff56be:	f001 f871 	bl	9ff67a4 <valid>
+ 9ff56c2:	2800      	cmp	r0, #0
+ 9ff56c4:	d006      	beq.n	9ff56d4 <CircusStreakRuntimeArm+0x18>
+ 9ff56c6:	2200      	movs	r2, #0
+ 9ff56c8:	4904      	ldr	r1, [pc, #16]	@ (9ff56dc <CircusStreakRuntimeArm+0x20>)
+ 9ff56ca:	4805      	ldr	r0, [pc, #20]	@ (9ff56e0 <CircusStreakRuntimeArm+0x24>)
+ 9ff56cc:	f000 ff27 	bl	9ff651e <CircusStreakArm>
+ 9ff56d0:	4243      	negs	r3, r0
+ 9ff56d2:	4158      	adcs	r0, r3
+ 9ff56d4:	bc10      	pop	{r4}
+ 9ff56d6:	bc02      	pop	{r1}
+ 9ff56d8:	4708      	bx	r1
+ 9ff56da:	46c0      	nop			@ (mov r8, r8)
+ 9ff56dc:	09ff6805 	.word	0x09ff6805
+ 9ff56e0:	0203db00 	.word	0x0203db00
+
+09ff56e4 <CircusStreakRuntimeArmed>:
+ 9ff56e4:	b510      	push	{r4, lr}
+ 9ff56e6:	f001 f85d 	bl	9ff67a4 <valid>
+ 9ff56ea:	2800      	cmp	r0, #0
+ 9ff56ec:	d004      	beq.n	9ff56f8 <CircusStreakRuntimeArmed+0x14>
+ 9ff56ee:	4b04      	ldr	r3, [pc, #16]	@ (9ff5700 <CircusStreakRuntimeArmed+0x1c>)
+ 9ff56f0:	7fd8      	ldrb	r0, [r3, #31]
+ 9ff56f2:	3802      	subs	r0, #2
+ 9ff56f4:	4243      	negs	r3, r0
+ 9ff56f6:	4158      	adcs	r0, r3
+ 9ff56f8:	bc10      	pop	{r4}
+ 9ff56fa:	bc02      	pop	{r1}
+ 9ff56fc:	4708      	bx	r1
+ 9ff56fe:	46c0      	nop			@ (mov r8, r8)
+ 9ff5700:	0203db05 	.word	0x0203db05
+
+09ff5704 <CircusStreakRuntimeRecord>:
+ 9ff5704:	b513      	push	{r0, r1, r4, lr}
+ 9ff5706:	0004      	movs	r4, r0
+ 9ff5708:	f001 f84c 	bl	9ff67a4 <valid>
+ 9ff570c:	2800      	cmp	r0, #0
+ 9ff570e:	d00d      	beq.n	9ff572c <CircusStreakRuntimeRecord+0x28>
+ 9ff5710:	4b08      	ldr	r3, [pc, #32]	@ (9ff5734 <CircusStreakRuntimeRecord+0x30>)
+ 9ff5712:	6999      	ldr	r1, [r3, #24]
+ 9ff5714:	2c01      	cmp	r4, #1
+ 9ff5716:	d000      	beq.n	9ff571a <CircusStreakRuntimeRecord+0x16>
+ 9ff5718:	2402      	movs	r4, #2
+ 9ff571a:	2200      	movs	r2, #0
+ 9ff571c:	4b06      	ldr	r3, [pc, #24]	@ (9ff5738 <CircusStreakRuntimeRecord+0x34>)
+ 9ff571e:	9200      	str	r2, [sp, #0]
+ 9ff5720:	4804      	ldr	r0, [pc, #16]	@ (9ff5734 <CircusStreakRuntimeRecord+0x30>)
+ 9ff5722:	0022      	movs	r2, r4
+ 9ff5724:	f000 ff24 	bl	9ff6570 <CircusStreakSettle>
+ 9ff5728:	4243      	negs	r3, r0
+ 9ff572a:	4158      	adcs	r0, r3
+ 9ff572c:	bc16      	pop	{r1, r2, r4}
+ 9ff572e:	bc02      	pop	{r1}
+ 9ff5730:	4708      	bx	r1
+ 9ff5732:	46c0      	nop			@ (mov r8, r8)
+ 9ff5734:	0203db00 	.word	0x0203db00
+ 9ff5738:	09ff6805 	.word	0x09ff6805
+
+09ff573c <CircusStreakRuntimeEnd>:
+ 9ff573c:	b510      	push	{r4, lr}
+ 9ff573e:	0004      	movs	r4, r0
+ 9ff5740:	f001 f830 	bl	9ff67a4 <valid>
+ 9ff5744:	2800      	cmp	r0, #0
+ 9ff5746:	d00b      	beq.n	9ff5760 <CircusStreakRuntimeEnd+0x24>
+ 9ff5748:	2300      	movs	r3, #0
+ 9ff574a:	0021      	movs	r1, r4
+ 9ff574c:	4a07      	ldr	r2, [pc, #28]	@ (9ff576c <CircusStreakRuntimeEnd+0x30>)
+ 9ff574e:	4808      	ldr	r0, [pc, #32]	@ (9ff5770 <CircusStreakRuntimeEnd+0x34>)
+ 9ff5750:	f000 ff62 	bl	9ff6618 <CircusStreakEnd>
+ 9ff5754:	2801      	cmp	r0, #1
+ 9ff5756:	d106      	bne.n	9ff5766 <CircusStreakRuntimeEnd+0x2a>
+ 9ff5758:	2100      	movs	r1, #0
+ 9ff575a:	4805      	ldr	r0, [pc, #20]	@ (9ff5770 <CircusStreakRuntimeEnd+0x34>)
+ 9ff575c:	f001 f852 	bl	9ff6804 <persist>
+ 9ff5760:	bc10      	pop	{r4}
+ 9ff5762:	bc02      	pop	{r1}
+ 9ff5764:	4708      	bx	r1
+ 9ff5766:	4243      	negs	r3, r0
+ 9ff5768:	4158      	adcs	r0, r3
+ 9ff576a:	e7f9      	b.n	9ff5760 <CircusStreakRuntimeEnd+0x24>
+ 9ff576c:	09ff6805 	.word	0x09ff6805
+ 9ff5770:	0203db00 	.word	0x0203db00
+
+09ff5774 <CircusStreakRuntimeReadKeys>:
+ 9ff5774:	b510      	push	{r4, lr}
+ 9ff5776:	f001 f879 	bl	9ff686c <restore_cache_if_field>
+ 9ff577a:	4b04      	ldr	r3, [pc, #16]	@ (9ff578c <CircusStreakRuntimeReadKeys+0x18>)
+ 9ff577c:	f000 f808 	bl	9ff5790 <CircusStreakRuntimeReadKeys+0x1c>
+ 9ff5780:	f001 f874 	bl	9ff686c <restore_cache_if_field>
+ 9ff5784:	bc10      	pop	{r4}
+ 9ff5786:	bc01      	pop	{r0}
+ 9ff5788:	4700      	bx	r0
+ 9ff578a:	46c0      	nop			@ (mov r8, r8)
+ 9ff578c:	09448ab1 	.word	0x09448ab1
+ 9ff5790:	4718      	bx	r3
+ 9ff5792:	46c0      	nop			@ (mov r8, r8)
+
+09ff5794 <CircusStreakRuntimeSaveLoad>:
+ 9ff5794:	4b06      	ldr	r3, [pc, #24]	@ (9ff57b0 <CircusStreakRuntimeSaveLoad+0x1c>)
+ 9ff5796:	b510      	push	{r4, lr}
+ 9ff5798:	f000 f810 	bl	9ff57bc <CircusStreakRuntimeSaveLoad+0x28>
+ 9ff579c:	2100      	movs	r1, #0
+ 9ff579e:	4b05      	ldr	r3, [pc, #20]	@ (9ff57b4 <CircusStreakRuntimeSaveLoad+0x20>)
+ 9ff57a0:	4a05      	ldr	r2, [pc, #20]	@ (9ff57b8 <CircusStreakRuntimeSaveLoad+0x24>)
+ 9ff57a2:	7019      	strb	r1, [r3, #0]
+ 9ff57a4:	3301      	adds	r3, #1
+ 9ff57a6:	4293      	cmp	r3, r2
+ 9ff57a8:	d1fb      	bne.n	9ff57a2 <CircusStreakRuntimeSaveLoad+0xe>
+ 9ff57aa:	bc10      	pop	{r4}
+ 9ff57ac:	bc02      	pop	{r1}
+ 9ff57ae:	4708      	bx	r1
+ 9ff57b0:	09405d81 	.word	0x09405d81
+ 9ff57b4:	0203db00 	.word	0x0203db00
+ 9ff57b8:	0203db40 	.word	0x0203db40
+ 9ff57bc:	4718      	bx	r3
+ 9ff57be:	46c0      	nop			@ (mov r8, r8)
+
+09ff57c0 <CircusStreakRuntimeSelect>:
+ 9ff57c0:	b510      	push	{r4, lr}
+ 9ff57c2:	f7ff ff8f 	bl	9ff56e4 <CircusStreakRuntimeArmed>
+ 9ff57c6:	2800      	cmp	r0, #0
+ 9ff57c8:	d104      	bne.n	9ff57d4 <CircusStreakRuntimeSelect+0x14>
+ 9ff57ca:	4b04      	ldr	r3, [pc, #16]	@ (9ff57dc <CircusStreakRuntimeSelect+0x1c>)
+ 9ff57cc:	8018      	strh	r0, [r3, #0]
+ 9ff57ce:	bc10      	pop	{r4}
+ 9ff57d0:	bc01      	pop	{r0}
+ 9ff57d2:	4700      	bx	r0
+ 9ff57d4:	4b02      	ldr	r3, [pc, #8]	@ (9ff57e0 <CircusStreakRuntimeSelect+0x20>)
+ 9ff57d6:	f000 f805 	bl	9ff57e4 <CircusStreakRuntimeSelect+0x24>
+ 9ff57da:	e7f8      	b.n	9ff57ce <CircusStreakRuntimeSelect+0xe>
+ 9ff57dc:	02037004 	.word	0x02037004
+ 9ff57e0:	09ff4b11 	.word	0x09ff4b11
+ 9ff57e4:	4718      	bx	r3
+ 9ff57e6:	46c0      	nop			@ (mov r8, r8)
+
+09ff57e8 <CircusStreakRuntimeGet>:
+ 9ff57e8:	b5f0      	push	{r4, r5, r6, r7, lr}
+ 9ff57ea:	b087      	sub	sp, #28
+ 9ff57ec:	0004      	movs	r4, r0
+ 9ff57ee:	9305      	str	r3, [sp, #20]
+ 9ff57f0:	9103      	str	r1, [sp, #12]
+ 9ff57f2:	ab0c      	add	r3, sp, #48	@ 0x30
+ 9ff57f4:	9204      	str	r2, [sp, #16]
+ 9ff57f6:	4d2a      	ldr	r5, [pc, #168]	@ (9ff58a0 <CircusStreakRuntimeGet+0xb8>)
+ 9ff57f8:	482a      	ldr	r0, [pc, #168]	@ (9ff58a4 <CircusStreakRuntimeGet+0xbc>)
+ 9ff57fa:	781e      	ldrb	r6, [r3, #0]
+ 9ff57fc:	f000 f863 	bl	9ff58c6 <CircusStreakRuntimeGet+0xde>
+ 9ff5800:	2803      	cmp	r0, #3
+ 9ff5802:	d111      	bne.n	9ff5828 <CircusStreakRuntimeGet+0x40>
+ 9ff5804:	f7ff ff6e 	bl	9ff56e4 <CircusStreakRuntimeArmed>
+ 9ff5808:	2800      	cmp	r0, #0
+ 9ff580a:	d00d      	beq.n	9ff5828 <CircusStreakRuntimeGet+0x40>
+ 9ff580c:	2c01      	cmp	r4, #1
+ 9ff580e:	d80b      	bhi.n	9ff5828 <CircusStreakRuntimeGet+0x40>
+ 9ff5810:	4f25      	ldr	r7, [pc, #148]	@ (9ff58a8 <CircusStreakRuntimeGet+0xc0>)
+ 9ff5812:	9b03      	ldr	r3, [sp, #12]
+ 9ff5814:	42bb      	cmp	r3, r7
+ 9ff5816:	d110      	bne.n	9ff583a <CircusStreakRuntimeGet+0x52>
+ 9ff5818:	4824      	ldr	r0, [pc, #144]	@ (9ff58ac <CircusStreakRuntimeGet+0xc4>)
+ 9ff581a:	f000 f854 	bl	9ff58c6 <CircusStreakRuntimeGet+0xde>
+ 9ff581e:	3804      	subs	r0, #4
+ 9ff5820:	4243      	negs	r3, r0
+ 9ff5822:	4158      	adcs	r0, r3
+ 9ff5824:	2800      	cmp	r0, #0
+ 9ff5826:	d10b      	bne.n	9ff5840 <CircusStreakRuntimeGet+0x58>
+ 9ff5828:	0020      	movs	r0, r4
+ 9ff582a:	9600      	str	r6, [sp, #0]
+ 9ff582c:	9b05      	ldr	r3, [sp, #20]
+ 9ff582e:	9a04      	ldr	r2, [sp, #16]
+ 9ff5830:	9903      	ldr	r1, [sp, #12]
+ 9ff5832:	4c1f      	ldr	r4, [pc, #124]	@ (9ff58b0 <CircusStreakRuntimeGet+0xc8>)
+ 9ff5834:	f000 f846 	bl	9ff58c4 <CircusStreakRuntimeGet+0xdc>
+ 9ff5838:	e025      	b.n	9ff5886 <CircusStreakRuntimeGet+0x9e>
+ 9ff583a:	9b03      	ldr	r3, [sp, #12]
+ 9ff583c:	1f18      	subs	r0, r3, #4
+ 9ff583e:	e7ef      	b.n	9ff5820 <CircusStreakRuntimeGet+0x38>
+ 9ff5840:	9b04      	ldr	r3, [sp, #16]
+ 9ff5842:	42bb      	cmp	r3, r7
+ 9ff5844:	d123      	bne.n	9ff588e <CircusStreakRuntimeGet+0xa6>
+ 9ff5846:	481b      	ldr	r0, [pc, #108]	@ (9ff58b4 <CircusStreakRuntimeGet+0xcc>)
+ 9ff5848:	f000 f83d 	bl	9ff58c6 <CircusStreakRuntimeGet+0xde>
+ 9ff584c:	4243      	negs	r3, r0
+ 9ff584e:	4158      	adcs	r0, r3
+ 9ff5850:	2800      	cmp	r0, #0
+ 9ff5852:	d0e9      	beq.n	9ff5828 <CircusStreakRuntimeGet+0x40>
+ 9ff5854:	9b05      	ldr	r3, [sp, #20]
+ 9ff5856:	42bb      	cmp	r3, r7
+ 9ff5858:	d11d      	bne.n	9ff5896 <CircusStreakRuntimeGet+0xae>
+ 9ff585a:	4817      	ldr	r0, [pc, #92]	@ (9ff58b8 <CircusStreakRuntimeGet+0xd0>)
+ 9ff585c:	f000 f833 	bl	9ff58c6 <CircusStreakRuntimeGet+0xde>
+ 9ff5860:	3803      	subs	r0, #3
+ 9ff5862:	4243      	negs	r3, r0
+ 9ff5864:	4158      	adcs	r0, r3
+ 9ff5866:	2800      	cmp	r0, #0
+ 9ff5868:	d0de      	beq.n	9ff5828 <CircusStreakRuntimeGet+0x40>
+ 9ff586a:	1e30      	subs	r0, r6, #0
+ 9ff586c:	d102      	bne.n	9ff5874 <CircusStreakRuntimeGet+0x8c>
+ 9ff586e:	4813      	ldr	r0, [pc, #76]	@ (9ff58bc <CircusStreakRuntimeGet+0xd4>)
+ 9ff5870:	f000 f829 	bl	9ff58c6 <CircusStreakRuntimeGet+0xde>
+ 9ff5874:	3832      	subs	r0, #50	@ 0x32
+ 9ff5876:	4243      	negs	r3, r0
+ 9ff5878:	4158      	adcs	r0, r3
+ 9ff587a:	2800      	cmp	r0, #0
+ 9ff587c:	d0d4      	beq.n	9ff5828 <CircusStreakRuntimeGet+0x40>
+ 9ff587e:	4b10      	ldr	r3, [pc, #64]	@ (9ff58c0 <CircusStreakRuntimeGet+0xd8>)
+ 9ff5880:	2c00      	cmp	r4, #0
+ 9ff5882:	d10b      	bne.n	9ff589c <CircusStreakRuntimeGet+0xb4>
+ 9ff5884:	8c18      	ldrh	r0, [r3, #32]
+ 9ff5886:	b007      	add	sp, #28
+ 9ff5888:	bcf0      	pop	{r4, r5, r6, r7}
+ 9ff588a:	bc02      	pop	{r1}
+ 9ff588c:	4708      	bx	r1
+ 9ff588e:	9b04      	ldr	r3, [sp, #16]
+ 9ff5890:	4258      	negs	r0, r3
+ 9ff5892:	4158      	adcs	r0, r3
+ 9ff5894:	e7dc      	b.n	9ff5850 <CircusStreakRuntimeGet+0x68>
+ 9ff5896:	9b05      	ldr	r3, [sp, #20]
+ 9ff5898:	1ed8      	subs	r0, r3, #3
+ 9ff589a:	e7e2      	b.n	9ff5862 <CircusStreakRuntimeGet+0x7a>
+ 9ff589c:	8c58      	ldrh	r0, [r3, #34]	@ 0x22
+ 9ff589e:	e7f2      	b.n	9ff5886 <CircusStreakRuntimeGet+0x9e>
+ 9ff58a0:	091269b9 	.word	0x091269b9
+ 9ff58a4:	0000403a 	.word	0x0000403a
+ 9ff58a8:	0000ffff 	.word	0x0000ffff
+ 9ff58ac:	00005017 	.word	0x00005017
+ 9ff58b0:	091025ed 	.word	0x091025ed
+ 9ff58b4:	00005018 	.word	0x00005018
+ 9ff58b8:	00005015 	.word	0x00005015
+ 9ff58bc:	00005016 	.word	0x00005016
+ 9ff58c0:	0203db00 	.word	0x0203db00
+ 9ff58c4:	4720      	bx	r4
+ 9ff58c6:	4728      	bx	r5
+
+09ff58c8 <CircusStreakRuntimeLossReturn>:
+ 9ff58c8:	b570      	push	{r4, r5, r6, lr}
+ 9ff58ca:	4b1a      	ldr	r3, [pc, #104]	@ (9ff5934 <CircusStreakRuntimeLossReturn+0x6c>)
+ 9ff58cc:	781c      	ldrb	r4, [r3, #0]
+ 9ff58ce:	4b1a      	ldr	r3, [pc, #104]	@ (9ff5938 <CircusStreakRuntimeLossReturn+0x70>)
+ 9ff58d0:	681d      	ldr	r5, [r3, #0]
+ 9ff58d2:	f7ff ff07 	bl	9ff56e4 <CircusStreakRuntimeArmed>
+ 9ff58d6:	4b19      	ldr	r3, [pc, #100]	@ (9ff593c <CircusStreakRuntimeLossReturn+0x74>)
+ 9ff58d8:	7819      	ldrb	r1, [r3, #0]
+ 9ff58da:	4b19      	ldr	r3, [pc, #100]	@ (9ff5940 <CircusStreakRuntimeLossReturn+0x78>)
+ 9ff58dc:	781a      	ldrb	r2, [r3, #0]
+ 9ff58de:	4b19      	ldr	r3, [pc, #100]	@ (9ff5944 <CircusStreakRuntimeLossReturn+0x7c>)
+ 9ff58e0:	0600      	lsls	r0, r0, #24
+ 9ff58e2:	781b      	ldrb	r3, [r3, #0]
+ 9ff58e4:	0e00      	lsrs	r0, r0, #24
+ 9ff58e6:	2801      	cmp	r0, #1
+ 9ff58e8:	d117      	bne.n	9ff591a <CircusStreakRuntimeLossReturn+0x52>
+ 9ff58ea:	2901      	cmp	r1, #1
+ 9ff58ec:	d115      	bne.n	9ff591a <CircusStreakRuntimeLossReturn+0x52>
+ 9ff58ee:	2a01      	cmp	r2, #1
+ 9ff58f0:	d113      	bne.n	9ff591a <CircusStreakRuntimeLossReturn+0x52>
+ 9ff58f2:	3b01      	subs	r3, #1
+ 9ff58f4:	2b05      	cmp	r3, #5
+ 9ff58f6:	d810      	bhi.n	9ff591a <CircusStreakRuntimeLossReturn+0x52>
+ 9ff58f8:	237f      	movs	r3, #127	@ 0x7f
+ 9ff58fa:	401c      	ands	r4, r3
+ 9ff58fc:	2c02      	cmp	r4, #2
+ 9ff58fe:	d10c      	bne.n	9ff591a <CircusStreakRuntimeLossReturn+0x52>
+ 9ff5900:	4b11      	ldr	r3, [pc, #68]	@ (9ff5948 <CircusStreakRuntimeLossReturn+0x80>)
+ 9ff5902:	429d      	cmp	r5, r3
+ 9ff5904:	d002      	beq.n	9ff590c <CircusStreakRuntimeLossReturn+0x44>
+ 9ff5906:	4b11      	ldr	r3, [pc, #68]	@ (9ff594c <CircusStreakRuntimeLossReturn+0x84>)
+ 9ff5908:	429d      	cmp	r5, r3
+ 9ff590a:	d108      	bne.n	9ff591e <CircusStreakRuntimeLossReturn+0x56>
+ 9ff590c:	2180      	movs	r1, #128	@ 0x80
+ 9ff590e:	4810      	ldr	r0, [pc, #64]	@ (9ff5950 <CircusStreakRuntimeLossReturn+0x88>)
+ 9ff5910:	0109      	lsls	r1, r1, #4
+ 9ff5912:	f000 facb 	bl	9ff5eac <VegaSaveValidate>
+ 9ff5916:	2800      	cmp	r0, #0
+ 9ff5918:	d005      	beq.n	9ff5926 <CircusStreakRuntimeLossReturn+0x5e>
+ 9ff591a:	4b0e      	ldr	r3, [pc, #56]	@ (9ff5954 <CircusStreakRuntimeLossReturn+0x8c>)
+ 9ff591c:	e004      	b.n	9ff5928 <CircusStreakRuntimeLossReturn+0x60>
+ 9ff591e:	4b0e      	ldr	r3, [pc, #56]	@ (9ff5958 <CircusStreakRuntimeLossReturn+0x90>)
+ 9ff5920:	429d      	cmp	r5, r3
+ 9ff5922:	d1fa      	bne.n	9ff591a <CircusStreakRuntimeLossReturn+0x52>
+ 9ff5924:	e7f2      	b.n	9ff590c <CircusStreakRuntimeLossReturn+0x44>
+ 9ff5926:	4b0d      	ldr	r3, [pc, #52]	@ (9ff595c <CircusStreakRuntimeLossReturn+0x94>)
+ 9ff5928:	f000 f81a 	bl	9ff5960 <CircusStreakRuntimeLossReturn+0x98>
+ 9ff592c:	bc70      	pop	{r4, r5, r6}
+ 9ff592e:	bc01      	pop	{r0}
+ 9ff5930:	4700      	bx	r0
+ 9ff5932:	46c0      	nop			@ (mov r8, r8)
+ 9ff5934:	02023dea 	.word	0x02023dea
+ 9ff5938:	03000eb8 	.word	0x03000eb8
+ 9ff593c:	0203d400 	.word	0x0203d400
+ 9ff5940:	0203d401 	.word	0x0203d401
+ 9ff5944:	0203d402 	.word	0x0203d402
+ 9ff5948:	09ff4d16 	.word	0x09ff4d16
+ 9ff594c:	09ff4d77 	.word	0x09ff4d77
+ 9ff5950:	0203d000 	.word	0x0203d000
+ 9ff5954:	09ff4681 	.word	0x09ff4681
+ 9ff5958:	09ff4dd8 	.word	0x09ff4dd8
+ 9ff595c:	080561a1 	.word	0x080561a1
+ 9ff5960:	4718      	bx	r3
+ 9ff5962:	46c0      	nop			@ (mov r8, r8)
+
+09ff5964 <copy_bytes>:
+ 9ff5964:	2300      	movs	r3, #0
+ 9ff5966:	b510      	push	{r4, lr}
+ 9ff5968:	5ccc      	ldrb	r4, [r1, r3]
+ 9ff596a:	54c4      	strb	r4, [r0, r3]
+ 9ff596c:	3301      	adds	r3, #1
+ 9ff596e:	429a      	cmp	r2, r3
+ 9ff5970:	d1fa      	bne.n	9ff5968 <copy_bytes+0x4>
+ 9ff5972:	bc10      	pop	{r4}
+ 9ff5974:	bc01      	pop	{r0}
+ 9ff5976:	4700      	bx	r0
+
+09ff5978 <species>:
+ 9ff5978:	b510      	push	{r4, lr}
+ 9ff597a:	2200      	movs	r2, #0
+ 9ff597c:	210b      	movs	r1, #11
+ 9ff597e:	4b04      	ldr	r3, [pc, #16]	@ (9ff5990 <species+0x18>)
+ 9ff5980:	f000 f808 	bl	9ff5994 <species+0x1c>
+ 9ff5984:	0400      	lsls	r0, r0, #16
+ 9ff5986:	0c00      	lsrs	r0, r0, #16
+ 9ff5988:	bc10      	pop	{r4}
+ 9ff598a:	bc02      	pop	{r1}
+ 9ff598c:	4708      	bx	r1
+ 9ff598e:	46c0      	nop			@ (mov r8, r8)
+ 9ff5990:	0803f355 	.word	0x0803f355
+ 9ff5994:	4718      	bx	r3
+ 9ff5996:	46c0      	nop			@ (mov r8, r8)
+
+09ff5998 <normalize_selected_order>:
+ 9ff5998:	b530      	push	{r4, r5, lr}
+ 9ff599a:	4a0a      	ldr	r2, [pc, #40]	@ (9ff59c4 <normalize_selected_order+0x2c>)
+ 9ff599c:	4d0a      	ldr	r5, [pc, #40]	@ (9ff59c8 <normalize_selected_order+0x30>)
+ 9ff599e:	0613      	lsls	r3, r2, #24
+ 9ff59a0:	0e1b      	lsrs	r3, r3, #24
+ 9ff59a2:	0019      	movs	r1, r3
+ 9ff59a4:	3138      	adds	r1, #56	@ 0x38
+ 9ff59a6:	0609      	lsls	r1, r1, #24
+ 9ff59a8:	2400      	movs	r4, #0
+ 9ff59aa:	0e09      	lsrs	r1, r1, #24
+ 9ff59ac:	4288      	cmp	r0, r1
+ 9ff59ae:	d902      	bls.n	9ff59b6 <normalize_selected_order+0x1e>
+ 9ff59b0:	3339      	adds	r3, #57	@ 0x39
+ 9ff59b2:	061c      	lsls	r4, r3, #24
+ 9ff59b4:	0e24      	lsrs	r4, r4, #24
+ 9ff59b6:	7014      	strb	r4, [r2, #0]
+ 9ff59b8:	3201      	adds	r2, #1
+ 9ff59ba:	42aa      	cmp	r2, r5
+ 9ff59bc:	d1ef      	bne.n	9ff599e <normalize_selected_order+0x6>
+ 9ff59be:	bc30      	pop	{r4, r5}
+ 9ff59c0:	bc01      	pop	{r0}
+ 9ff59c2:	4700      	bx	r0
+ 9ff59c4:	0203c6c8 	.word	0x0203c6c8
+ 9ff59c8:	0203c6ce 	.word	0x0203c6ce
+
+09ff59cc <configure_trial_vars>:
+ 9ff59cc:	b570      	push	{r4, r5, r6, lr}
+ 9ff59ce:	0005      	movs	r5, r0
+ 9ff59d0:	4c0b      	ldr	r4, [pc, #44]	@ (9ff5a00 <configure_trial_vars+0x34>)
+ 9ff59d2:	2100      	movs	r1, #0
+ 9ff59d4:	480b      	ldr	r0, [pc, #44]	@ (9ff5a04 <configure_trial_vars+0x38>)
+ 9ff59d6:	f000 f81f 	bl	9ff5a18 <configure_trial_vars+0x4c>
+ 9ff59da:	0029      	movs	r1, r5
+ 9ff59dc:	480a      	ldr	r0, [pc, #40]	@ (9ff5a08 <configure_trial_vars+0x3c>)
+ 9ff59de:	f000 f81b 	bl	9ff5a18 <configure_trial_vars+0x4c>
+ 9ff59e2:	2132      	movs	r1, #50	@ 0x32
+ 9ff59e4:	4809      	ldr	r0, [pc, #36]	@ (9ff5a0c <configure_trial_vars+0x40>)
+ 9ff59e6:	f000 f817 	bl	9ff5a18 <configure_trial_vars+0x4c>
+ 9ff59ea:	2104      	movs	r1, #4
+ 9ff59ec:	4808      	ldr	r0, [pc, #32]	@ (9ff5a10 <configure_trial_vars+0x44>)
+ 9ff59ee:	f000 f813 	bl	9ff5a18 <configure_trial_vars+0x4c>
+ 9ff59f2:	2100      	movs	r1, #0
+ 9ff59f4:	4807      	ldr	r0, [pc, #28]	@ (9ff5a14 <configure_trial_vars+0x48>)
+ 9ff59f6:	f000 f80f 	bl	9ff5a18 <configure_trial_vars+0x4c>
+ 9ff59fa:	bc70      	pop	{r4, r5, r6}
+ 9ff59fc:	bc01      	pop	{r0}
+ 9ff59fe:	4700      	bx	r0
+ 9ff5a00:	0806dd79 	.word	0x0806dd79
+ 9ff5a04:	0000403a 	.word	0x0000403a
+ 9ff5a08:	00005015 	.word	0x00005015
+ 9ff5a0c:	00005016 	.word	0x00005016
+ 9ff5a10:	00005017 	.word	0x00005017
+ 9ff5a14:	00005018 	.word	0x00005018
+ 9ff5a18:	4720      	bx	r4
+ 9ff5a1a:	46c0      	nop			@ (mov r8, r8)
+
+09ff5a1c <save_ledger_sector>:
+ 9ff5a1c:	2280      	movs	r2, #128	@ 0x80
+ 9ff5a1e:	b510      	push	{r4, lr}
+ 9ff5a20:	4c0c      	ldr	r4, [pc, #48]	@ (9ff5a54 <save_ledger_sector+0x38>)
+ 9ff5a22:	2100      	movs	r1, #0
+ 9ff5a24:	0020      	movs	r0, r4
+ 9ff5a26:	4b0c      	ldr	r3, [pc, #48]	@ (9ff5a58 <save_ledger_sector+0x3c>)
+ 9ff5a28:	0152      	lsls	r2, r2, #5
+ 9ff5a2a:	f000 f81d 	bl	9ff5a68 <save_ledger_sector+0x4c>
+ 9ff5a2e:	22ff      	movs	r2, #255	@ 0xff
+ 9ff5a30:	0020      	movs	r0, r4
+ 9ff5a32:	0112      	lsls	r2, r2, #4
+ 9ff5a34:	4909      	ldr	r1, [pc, #36]	@ (9ff5a5c <save_ledger_sector+0x40>)
+ 9ff5a36:	4b0a      	ldr	r3, [pc, #40]	@ (9ff5a60 <save_ledger_sector+0x44>)
+ 9ff5a38:	f000 f816 	bl	9ff5a68 <save_ledger_sector+0x4c>
+ 9ff5a3c:	4b09      	ldr	r3, [pc, #36]	@ (9ff5a64 <save_ledger_sector+0x48>)
+ 9ff5a3e:	0021      	movs	r1, r4
+ 9ff5a40:	201f      	movs	r0, #31
+ 9ff5a42:	f000 f811 	bl	9ff5a68 <save_ledger_sector+0x4c>
+ 9ff5a46:	3801      	subs	r0, #1
+ 9ff5a48:	4243      	negs	r3, r0
+ 9ff5a4a:	4158      	adcs	r0, r3
+ 9ff5a4c:	bc10      	pop	{r4}
+ 9ff5a4e:	bc02      	pop	{r1}
+ 9ff5a50:	4708      	bx	r1
+ 9ff5a52:	46c0      	nop			@ (mov r8, r8)
+ 9ff5a54:	020399b0 	.word	0x020399b0
+ 9ff5a58:	081c9df9 	.word	0x081c9df9
+ 9ff5a5c:	0203cf9c 	.word	0x0203cf9c
+ 9ff5a60:	081c9d99 	.word	0x081c9d99
+ 9ff5a64:	080da9c1 	.word	0x080da9c1
+ 9ff5a68:	4718      	bx	r3
+ 9ff5a6a:	46c0      	nop			@ (mov r8, r8)
+
+09ff5a6c <persist_callback>:
+ 9ff5a6c:	b510      	push	{r4, lr}
+ 9ff5a6e:	f7ff ffd5 	bl	9ff5a1c <save_ledger_sector>
+ 9ff5a72:	bc10      	pop	{r4}
+ 9ff5a74:	bc02      	pop	{r1}
+ 9ff5a76:	4708      	bx	r1
+
+09ff5a78 <accept_callback>:
+ 9ff5a78:	2001      	movs	r0, #1
+ 9ff5a7a:	4770      	bx	lr
+
+09ff5a7c <mark_seen>:
+ 9ff5a7c:	b510      	push	{r4, lr}
+ 9ff5a7e:	f7ff ff7b 	bl	9ff5978 <species>
+ 9ff5a82:	2800      	cmp	r0, #0
+ 9ff5a84:	d00d      	beq.n	9ff5aa2 <mark_seen+0x26>
+ 9ff5a86:	4b08      	ldr	r3, [pc, #32]	@ (9ff5aa8 <mark_seen+0x2c>)
+ 9ff5a88:	f000 f812 	bl	9ff5ab0 <mark_seen+0x34>
+ 9ff5a8c:	2280      	movs	r2, #128	@ 0x80
+ 9ff5a8e:	1e43      	subs	r3, r0, #1
+ 9ff5a90:	041b      	lsls	r3, r3, #16
+ 9ff5a92:	0c1b      	lsrs	r3, r3, #16
+ 9ff5a94:	00d2      	lsls	r2, r2, #3
+ 9ff5a96:	4293      	cmp	r3, r2
+ 9ff5a98:	d803      	bhi.n	9ff5aa2 <mark_seen+0x26>
+ 9ff5a9a:	2102      	movs	r1, #2
+ 9ff5a9c:	4b03      	ldr	r3, [pc, #12]	@ (9ff5aac <mark_seen+0x30>)
+ 9ff5a9e:	f000 f807 	bl	9ff5ab0 <mark_seen+0x34>
+ 9ff5aa2:	bc10      	pop	{r4}
+ 9ff5aa4:	bc01      	pop	{r0}
+ 9ff5aa6:	4700      	bx	r0
+ 9ff5aa8:	08042989 	.word	0x08042989
+ 9ff5aac:	08088a51 	.word	0x08088a51
+ 9ff5ab0:	4718      	bx	r3
+ 9ff5ab2:	46c0      	nop			@ (mov r8, r8)
+
+09ff5ab4 <heal_rental_party>:
+ 9ff5ab4:	b510      	push	{r4, lr}
+ 9ff5ab6:	4b03      	ldr	r3, [pc, #12]	@ (9ff5ac4 <heal_rental_party+0x10>)
+ 9ff5ab8:	f000 f806 	bl	9ff5ac8 <heal_rental_party+0x14>
+ 9ff5abc:	bc10      	pop	{r4}
+ 9ff5abe:	bc01      	pop	{r0}
+ 9ff5ac0:	4700      	bx	r0
+ 9ff5ac2:	46c0      	nop			@ (mov r8, r8)
+ 9ff5ac4:	080a1331 	.word	0x080a1331
+ 9ff5ac8:	4718      	bx	r3
+ 9ff5aca:	46c0      	nop			@ (mov r8, r8)
+
+09ff5acc <clear_session_runtime>:
+ 9ff5acc:	b510      	push	{r4, lr}
+ 9ff5ace:	2000      	movs	r0, #0
+ 9ff5ad0:	f7ff ff62 	bl	9ff5998 <normalize_selected_order>
+ 9ff5ad4:	2200      	movs	r2, #0
+ 9ff5ad6:	2093      	movs	r0, #147	@ 0x93
+ 9ff5ad8:	4b05      	ldr	r3, [pc, #20]	@ (9ff5af0 <clear_session_runtime+0x24>)
+ 9ff5ada:	0100      	lsls	r0, r0, #4
+ 9ff5adc:	601a      	str	r2, [r3, #0]
+ 9ff5ade:	4b05      	ldr	r3, [pc, #20]	@ (9ff5af4 <clear_session_runtime+0x28>)
+ 9ff5ae0:	f000 f80a 	bl	9ff5af8 <clear_session_runtime+0x2c>
+ 9ff5ae4:	2003      	movs	r0, #3
+ 9ff5ae6:	f7ff ff71 	bl	9ff59cc <configure_trial_vars>
+ 9ff5aea:	bc10      	pop	{r4}
+ 9ff5aec:	bc01      	pop	{r0}
+ 9ff5aee:	4700      	bx	r0
+ 9ff5af0:	0203e300 	.word	0x0203e300
+ 9ff5af4:	0806de9d 	.word	0x0806de9d
+ 9ff5af8:	4718      	bx	r3
+ 9ff5afa:	46c0      	nop			@ (mov r8, r8)
+
+09ff5afc <ledger_valid>:
+ 9ff5afc:	2180      	movs	r1, #128	@ 0x80
+ 9ff5afe:	b510      	push	{r4, lr}
+ 9ff5b00:	4804      	ldr	r0, [pc, #16]	@ (9ff5b14 <ledger_valid+0x18>)
+ 9ff5b02:	0109      	lsls	r1, r1, #4
+ 9ff5b04:	f000 f9d2 	bl	9ff5eac <VegaSaveValidate>
+ 9ff5b08:	4243      	negs	r3, r0
+ 9ff5b0a:	4158      	adcs	r0, r3
+ 9ff5b0c:	bc10      	pop	{r4}
+ 9ff5b0e:	bc02      	pop	{r1}
+ 9ff5b10:	4708      	bx	r1
+ 9ff5b12:	46c0      	nop			@ (mov r8, r8)
+ 9ff5b14:	0203d000 	.word	0x0203d000
+
+09ff5b18 <restore_original>:
+ 9ff5b18:	b5f0      	push	{r4, r5, r6, r7, lr}
+ 9ff5b1a:	4c2d      	ldr	r4, [pc, #180]	@ (9ff5bd0 <restore_original+0xb8>)
+ 9ff5b1c:	44a5      	add	sp, r4
+ 9ff5b1e:	2400      	movs	r4, #0
+ 9ff5b20:	4f2c      	ldr	r7, [pc, #176]	@ (9ff5bd4 <restore_original+0xbc>)
+ 9ff5b22:	783b      	ldrb	r3, [r7, #0]
+ 9ff5b24:	9302      	str	r3, [sp, #8]
+ 9ff5b26:	ab02      	add	r3, sp, #8
+ 9ff5b28:	0006      	movs	r6, r0
+ 9ff5b2a:	72dc      	strb	r4, [r3, #11]
+ 9ff5b2c:	f7ff ffe6 	bl	9ff5afc <ledger_valid>
+ 9ff5b30:	42a0      	cmp	r0, r4
+ 9ff5b32:	d004      	beq.n	9ff5b3e <restore_original+0x26>
+ 9ff5b34:	4d28      	ldr	r5, [pc, #160]	@ (9ff5bd8 <restore_original+0xc0>)
+ 9ff5b36:	4b29      	ldr	r3, [pc, #164]	@ (9ff5bdc <restore_original+0xc4>)
+ 9ff5b38:	5ceb      	ldrb	r3, [r5, r3]
+ 9ff5b3a:	42a3      	cmp	r3, r4
+ 9ff5b3c:	d10d      	bne.n	9ff5b5a <restore_original+0x42>
+ 9ff5b3e:	f7ff ffc5 	bl	9ff5acc <clear_session_runtime>
+ 9ff5b42:	2001      	movs	r0, #1
+ 9ff5b44:	4070      	eors	r0, r6
+ 9ff5b46:	f7ff fdf9 	bl	9ff573c <CircusStreakRuntimeEnd>
+ 9ff5b4a:	0604      	lsls	r4, r0, #24
+ 9ff5b4c:	0e24      	lsrs	r4, r4, #24
+ 9ff5b4e:	0020      	movs	r0, r4
+ 9ff5b50:	4b23      	ldr	r3, [pc, #140]	@ (9ff5be0 <restore_original+0xc8>)
+ 9ff5b52:	449d      	add	sp, r3
+ 9ff5b54:	bcf0      	pop	{r4, r5, r6, r7}
+ 9ff5b56:	bc02      	pop	{r1}
+ 9ff5b58:	4708      	bx	r1
+ 9ff5b5a:	4a22      	ldr	r2, [pc, #136]	@ (9ff5be4 <restore_original+0xcc>)
+ 9ff5b5c:	4922      	ldr	r1, [pc, #136]	@ (9ff5be8 <restore_original+0xd0>)
+ 9ff5b5e:	a89b      	add	r0, sp, #620	@ 0x26c
+ 9ff5b60:	f7ff ff00 	bl	9ff5964 <copy_bytes>
+ 9ff5b64:	2296      	movs	r2, #150	@ 0x96
+ 9ff5b66:	4921      	ldr	r1, [pc, #132]	@ (9ff5bec <restore_original+0xd4>)
+ 9ff5b68:	0092      	lsls	r2, r2, #2
+ 9ff5b6a:	a805      	add	r0, sp, #20
+ 9ff5b6c:	f7ff fefa 	bl	9ff5964 <copy_bytes>
+ 9ff5b70:	220b      	movs	r2, #11
+ 9ff5b72:	68eb      	ldr	r3, [r5, #12]
+ 9ff5b74:	9303      	str	r3, [sp, #12]
+ 9ff5b76:	4b1e      	ldr	r3, [pc, #120]	@ (9ff5bf0 <restore_original+0xd8>)
+ 9ff5b78:	a902      	add	r1, sp, #8
+ 9ff5b7a:	54ec      	strb	r4, [r5, r3]
+ 9ff5b7c:	1852      	adds	r2, r2, r1
+ 9ff5b7e:	0028      	movs	r0, r5
+ 9ff5b80:	4b1c      	ldr	r3, [pc, #112]	@ (9ff5bf4 <restore_original+0xdc>)
+ 9ff5b82:	9400      	str	r4, [sp, #0]
+ 9ff5b84:	4919      	ldr	r1, [pc, #100]	@ (9ff5bec <restore_original+0xd4>)
+ 9ff5b86:	f000 fb4f 	bl	9ff6228 <VegaFactoryRestore>
+ 9ff5b8a:	2800      	cmp	r0, #0
+ 9ff5b8c:	d11d      	bne.n	9ff5bca <restore_original+0xb2>
+ 9ff5b8e:	ab02      	add	r3, sp, #8
+ 9ff5b90:	7adb      	ldrb	r3, [r3, #11]
+ 9ff5b92:	703b      	strb	r3, [r7, #0]
+ 9ff5b94:	f7ff ff9a 	bl	9ff5acc <clear_session_runtime>
+ 9ff5b98:	2401      	movs	r4, #1
+ 9ff5b9a:	0030      	movs	r0, r6
+ 9ff5b9c:	4060      	eors	r0, r4
+ 9ff5b9e:	f7ff fdcd 	bl	9ff573c <CircusStreakRuntimeEnd>
+ 9ff5ba2:	2800      	cmp	r0, #0
+ 9ff5ba4:	d1d3      	bne.n	9ff5b4e <restore_original+0x36>
+ 9ff5ba6:	4a0f      	ldr	r2, [pc, #60]	@ (9ff5be4 <restore_original+0xcc>)
+ 9ff5ba8:	480f      	ldr	r0, [pc, #60]	@ (9ff5be8 <restore_original+0xd0>)
+ 9ff5baa:	a99b      	add	r1, sp, #620	@ 0x26c
+ 9ff5bac:	f7ff feda 	bl	9ff5964 <copy_bytes>
+ 9ff5bb0:	2296      	movs	r2, #150	@ 0x96
+ 9ff5bb2:	480e      	ldr	r0, [pc, #56]	@ (9ff5bec <restore_original+0xd4>)
+ 9ff5bb4:	0092      	lsls	r2, r2, #2
+ 9ff5bb6:	a905      	add	r1, sp, #20
+ 9ff5bb8:	f7ff fed4 	bl	9ff5964 <copy_bytes>
+ 9ff5bbc:	9b02      	ldr	r3, [sp, #8]
+ 9ff5bbe:	703b      	strb	r3, [r7, #0]
+ 9ff5bc0:	9b03      	ldr	r3, [sp, #12]
+ 9ff5bc2:	0028      	movs	r0, r5
+ 9ff5bc4:	60eb      	str	r3, [r5, #12]
+ 9ff5bc6:	f000 f8eb 	bl	9ff5da0 <VegaSaveFinalize>
+ 9ff5bca:	2400      	movs	r4, #0
+ 9ff5bcc:	e7bf      	b.n	9ff5b4e <restore_original+0x36>
+ 9ff5bce:	46c0      	nop			@ (mov r8, r8)
+ 9ff5bd0:	fffffac4 	.word	0xfffffac4
+ 9ff5bd4:	02023f89 	.word	0x02023f89
+ 9ff5bd8:	0203d000 	.word	0x0203d000
+ 9ff5bdc:	00000401 	.word	0x00000401
+ 9ff5be0:	0000053c 	.word	0x0000053c
+ 9ff5be4:	000002ca 	.word	0x000002ca
+ 9ff5be8:	0203d392 	.word	0x0203d392
+ 9ff5bec:	020241e4 	.word	0x020241e4
+ 9ff5bf0:	00000403 	.word	0x00000403
+ 9ff5bf4:	09ff5a79 	.word	0x09ff5a79
+
+09ff5bf8 <memcpy>:
+ 9ff5bf8:	b510      	push	{r4, lr}
+ 9ff5bfa:	4b03      	ldr	r3, [pc, #12]	@ (9ff5c08 <memcpy+0x10>)
+ 9ff5bfc:	f000 f806 	bl	9ff5c0c <memcpy+0x14>
+ 9ff5c00:	bc10      	pop	{r4}
+ 9ff5c02:	bc02      	pop	{r1}
+ 9ff5c04:	4708      	bx	r1
+ 9ff5c06:	46c0      	nop			@ (mov r8, r8)
+ 9ff5c08:	081c9d99 	.word	0x081c9d99
+ 9ff5c0c:	4718      	bx	r3
+ 9ff5c0e:	46c0      	nop			@ (mov r8, r8)
+
+09ff5c10 <memset>:
+ 9ff5c10:	b510      	push	{r4, lr}
+ 9ff5c12:	4b03      	ldr	r3, [pc, #12]	@ (9ff5c20 <memset+0x10>)
+ 9ff5c14:	f000 f806 	bl	9ff5c24 <memset+0x14>
+ 9ff5c18:	bc10      	pop	{r4}
+ 9ff5c1a:	bc02      	pop	{r1}
+ 9ff5c1c:	4708      	bx	r1
+ 9ff5c1e:	46c0      	nop			@ (mov r8, r8)
+ 9ff5c20:	081c9df9 	.word	0x081c9df9
+ 9ff5c24:	4718      	bx	r3
+ 9ff5c26:	46c0      	nop			@ (mov r8, r8)
+
+09ff5c28 <BytesAreZero>:
+ 9ff5c28:	1841      	adds	r1, r0, r1
+ 9ff5c2a:	7803      	ldrb	r3, [r0, #0]
+ 9ff5c2c:	2b00      	cmp	r3, #0
+ 9ff5c2e:	d104      	bne.n	9ff5c3a <BytesAreZero+0x12>
+ 9ff5c30:	3001      	adds	r0, #1
+ 9ff5c32:	4288      	cmp	r0, r1
+ 9ff5c34:	d1f9      	bne.n	9ff5c2a <BytesAreZero+0x2>
+ 9ff5c36:	2001      	movs	r0, #1
+ 9ff5c38:	4770      	bx	lr
+ 9ff5c3a:	2000      	movs	r0, #0
+ 9ff5c3c:	e7fc      	b.n	9ff5c38 <BytesAreZero+0x10>
+	...
+
+09ff5c40 <InitializeResearchEconomyOwner>:
+ 9ff5c40:	4b0c      	ldr	r3, [pc, #48]	@ (9ff5c74 <InitializeResearchEconomyOwner+0x34>)
+ 9ff5c42:	b510      	push	{r4, lr}
+ 9ff5c44:	2240      	movs	r2, #64	@ 0x40
+ 9ff5c46:	0004      	movs	r4, r0
+ 9ff5c48:	2100      	movs	r1, #0
+ 9ff5c4a:	18c0      	adds	r0, r0, r3
+ 9ff5c4c:	f7ff ffe0 	bl	9ff5c10 <memset>
+ 9ff5c50:	2201      	movs	r2, #1
+ 9ff5c52:	2140      	movs	r1, #64	@ 0x40
+ 9ff5c54:	4b07      	ldr	r3, [pc, #28]	@ (9ff5c74 <InitializeResearchEconomyOwner+0x34>)
+ 9ff5c56:	54e2      	strb	r2, [r4, r3]
+ 9ff5c58:	189b      	adds	r3, r3, r2
+ 9ff5c5a:	54e1      	strb	r1, [r4, r3]
+ 9ff5c5c:	4b06      	ldr	r3, [pc, #24]	@ (9ff5c78 <InitializeResearchEconomyOwner+0x38>)
+ 9ff5c5e:	54e2      	strb	r2, [r4, r3]
+ 9ff5c60:	2300      	movs	r3, #0
+ 9ff5c62:	4906      	ldr	r1, [pc, #24]	@ (9ff5c7c <InitializeResearchEconomyOwner+0x3c>)
+ 9ff5c64:	5462      	strb	r2, [r4, r1]
+ 9ff5c66:	1864      	adds	r4, r4, r1
+ 9ff5c68:	7063      	strb	r3, [r4, #1]
+ 9ff5c6a:	70a3      	strb	r3, [r4, #2]
+ 9ff5c6c:	70e3      	strb	r3, [r4, #3]
+ 9ff5c6e:	bc10      	pop	{r4}
+ 9ff5c70:	bc01      	pop	{r0}
+ 9ff5c72:	4700      	bx	r0
+ 9ff5c74:	0000073f 	.word	0x0000073f
+ 9ff5c78:	00000745 	.word	0x00000745
+ 9ff5c7c:	00000763 	.word	0x00000763
+
+09ff5c80 <Normalize>:
+ 9ff5c80:	b570      	push	{r4, r5, r6, lr}
+ 9ff5c82:	7dc3      	ldrb	r3, [r0, #23]
+ 9ff5c84:	0004      	movs	r4, r0
+ 9ff5c86:	2b01      	cmp	r3, #1
+ 9ff5c88:	d901      	bls.n	9ff5c8e <Normalize+0xe>
+ 9ff5c8a:	2300      	movs	r3, #0
+ 9ff5c8c:	75c3      	strb	r3, [r0, #23]
+ 9ff5c8e:	7f23      	ldrb	r3, [r4, #28]
+ 9ff5c90:	2b02      	cmp	r3, #2
+ 9ff5c92:	d901      	bls.n	9ff5c98 <Normalize+0x18>
+ 9ff5c94:	2300      	movs	r3, #0
+ 9ff5c96:	7723      	strb	r3, [r4, #28]
+ 9ff5c98:	7f63      	ldrb	r3, [r4, #29]
+ 9ff5c9a:	2b02      	cmp	r3, #2
+ 9ff5c9c:	d901      	bls.n	9ff5ca2 <Normalize+0x22>
+ 9ff5c9e:	2301      	movs	r3, #1
+ 9ff5ca0:	7763      	strb	r3, [r4, #29]
+ 9ff5ca2:	7fa3      	ldrb	r3, [r4, #30]
+ 9ff5ca4:	1e5a      	subs	r2, r3, #1
+ 9ff5ca6:	4193      	sbcs	r3, r2
+ 9ff5ca8:	77a3      	strb	r3, [r4, #30]
+ 9ff5caa:	7c23      	ldrb	r3, [r4, #16]
+ 9ff5cac:	1e5a      	subs	r2, r3, #1
+ 9ff5cae:	4193      	sbcs	r3, r2
+ 9ff5cb0:	7423      	strb	r3, [r4, #16]
+ 9ff5cb2:	7c63      	ldrb	r3, [r4, #17]
+ 9ff5cb4:	1e5a      	subs	r2, r3, #1
+ 9ff5cb6:	4193      	sbcs	r3, r2
+ 9ff5cb8:	7463      	strb	r3, [r4, #17]
+ 9ff5cba:	7ca3      	ldrb	r3, [r4, #18]
+ 9ff5cbc:	1e5a      	subs	r2, r3, #1
+ 9ff5cbe:	4193      	sbcs	r3, r2
+ 9ff5cc0:	74a3      	strb	r3, [r4, #18]
+ 9ff5cc2:	7fe3      	ldrb	r3, [r4, #31]
+ 9ff5cc4:	2b01      	cmp	r3, #1
+ 9ff5cc6:	d901      	bls.n	9ff5ccc <Normalize+0x4c>
+ 9ff5cc8:	2300      	movs	r3, #0
+ 9ff5cca:	77e3      	strb	r3, [r4, #31]
+ 9ff5ccc:	1c63      	adds	r3, r4, #1
+ 9ff5cce:	7fda      	ldrb	r2, [r3, #31]
+ 9ff5cd0:	2a01      	cmp	r2, #1
+ 9ff5cd2:	d901      	bls.n	9ff5cd8 <Normalize+0x58>
+ 9ff5cd4:	2200      	movs	r2, #0
+ 9ff5cd6:	77da      	strb	r2, [r3, #31]
+ 9ff5cd8:	7d23      	ldrb	r3, [r4, #20]
+ 9ff5cda:	2b00      	cmp	r3, #0
+ 9ff5cdc:	d100      	bne.n	9ff5ce0 <Normalize+0x60>
+ 9ff5cde:	7563      	strb	r3, [r4, #21]
+ 9ff5ce0:	2380      	movs	r3, #128	@ 0x80
+ 9ff5ce2:	009b      	lsls	r3, r3, #2
+ 9ff5ce4:	5ce2      	ldrb	r2, [r4, r3]
+ 9ff5ce6:	4d19      	ldr	r5, [pc, #100]	@ (9ff5d4c <Normalize+0xcc>)
+ 9ff5ce8:	2a05      	cmp	r2, #5
+ 9ff5cea:	d908      	bls.n	9ff5cfe <Normalize+0x7e>
+ 9ff5cec:	2100      	movs	r1, #0
+ 9ff5cee:	22c8      	movs	r2, #200	@ 0xc8
+ 9ff5cf0:	54e1      	strb	r1, [r4, r3]
+ 9ff5cf2:	4b17      	ldr	r3, [pc, #92]	@ (9ff5d50 <Normalize+0xd0>)
+ 9ff5cf4:	5561      	strb	r1, [r4, r5]
+ 9ff5cf6:	0052      	lsls	r2, r2, #1
+ 9ff5cf8:	18e0      	adds	r0, r4, r3
+ 9ff5cfa:	f7ff ff89 	bl	9ff5c10 <memset>
+ 9ff5cfe:	5d63      	ldrb	r3, [r4, r5]
+ 9ff5d00:	2b04      	cmp	r3, #4
+ 9ff5d02:	d901      	bls.n	9ff5d08 <Normalize+0x88>
+ 9ff5d04:	2300      	movs	r3, #0
+ 9ff5d06:	5563      	strb	r3, [r4, r5]
+ 9ff5d08:	4b12      	ldr	r3, [pc, #72]	@ (9ff5d54 <Normalize+0xd4>)
+ 9ff5d0a:	4a13      	ldr	r2, [pc, #76]	@ (9ff5d58 <Normalize+0xd8>)
+ 9ff5d0c:	5ce3      	ldrb	r3, [r4, r3]
+ 9ff5d0e:	5ca0      	ldrb	r0, [r4, r2]
+ 9ff5d10:	4912      	ldr	r1, [pc, #72]	@ (9ff5d5c <Normalize+0xdc>)
+ 9ff5d12:	021b      	lsls	r3, r3, #8
+ 9ff5d14:	4303      	orrs	r3, r0
+ 9ff5d16:	428b      	cmp	r3, r1
+ 9ff5d18:	d905      	bls.n	9ff5d26 <Normalize+0xa6>
+ 9ff5d1a:	230f      	movs	r3, #15
+ 9ff5d1c:	54a3      	strb	r3, [r4, r2]
+ 9ff5d1e:	2227      	movs	r2, #39	@ 0x27
+ 9ff5d20:	4b0d      	ldr	r3, [pc, #52]	@ (9ff5d58 <Normalize+0xd8>)
+ 9ff5d22:	18e3      	adds	r3, r4, r3
+ 9ff5d24:	705a      	strb	r2, [r3, #1]
+ 9ff5d26:	4b0e      	ldr	r3, [pc, #56]	@ (9ff5d60 <Normalize+0xe0>)
+ 9ff5d28:	5ce2      	ldrb	r2, [r4, r3]
+ 9ff5d2a:	2a06      	cmp	r2, #6
+ 9ff5d2c:	d901      	bls.n	9ff5d32 <Normalize+0xb2>
+ 9ff5d2e:	2206      	movs	r2, #6
+ 9ff5d30:	54e2      	strb	r2, [r4, r3]
+ 9ff5d32:	2280      	movs	r2, #128	@ 0x80
+ 9ff5d34:	00d2      	lsls	r2, r2, #3
+ 9ff5d36:	5ca3      	ldrb	r3, [r4, r2]
+ 9ff5d38:	2b04      	cmp	r3, #4
+ 9ff5d3a:	d903      	bls.n	9ff5d44 <Normalize+0xc4>
+ 9ff5d3c:	2300      	movs	r3, #0
+ 9ff5d3e:	54a3      	strb	r3, [r4, r2]
+ 9ff5d40:	4a08      	ldr	r2, [pc, #32]	@ (9ff5d64 <Normalize+0xe4>)
+ 9ff5d42:	54a3      	strb	r3, [r4, r2]
+ 9ff5d44:	bc70      	pop	{r4, r5, r6}
+ 9ff5d46:	bc01      	pop	{r0}
+ 9ff5d48:	4700      	bx	r0
+ 9ff5d4a:	46c0      	nop			@ (mov r8, r8)
+ 9ff5d4c:	00000201 	.word	0x00000201
+ 9ff5d50:	00000202 	.word	0x00000202
+ 9ff5d54:	00000393 	.word	0x00000393
+ 9ff5d58:	00000392 	.word	0x00000392
+ 9ff5d5c:	0000270f 	.word	0x0000270f
+ 9ff5d60:	00000402 	.word	0x00000402
+ 9ff5d64:	00000401 	.word	0x00000401
+
+09ff5d68 <VegaSaveChecksum>:
+ 9ff5d68:	0002      	movs	r2, r0
+ 9ff5d6a:	b570      	push	{r4, r5, r6, lr}
+ 9ff5d6c:	2800      	cmp	r0, #0
+ 9ff5d6e:	d00f      	beq.n	9ff5d90 <VegaSaveChecksum+0x28>
+ 9ff5d70:	2580      	movs	r5, #128	@ 0x80
+ 9ff5d72:	2300      	movs	r3, #0
+ 9ff5d74:	4808      	ldr	r0, [pc, #32]	@ (9ff5d98 <VegaSaveChecksum+0x30>)
+ 9ff5d76:	4e09      	ldr	r6, [pc, #36]	@ (9ff5d9c <VegaSaveChecksum+0x34>)
+ 9ff5d78:	012d      	lsls	r5, r5, #4
+ 9ff5d7a:	0019      	movs	r1, r3
+ 9ff5d7c:	3908      	subs	r1, #8
+ 9ff5d7e:	2400      	movs	r4, #0
+ 9ff5d80:	2903      	cmp	r1, #3
+ 9ff5d82:	d900      	bls.n	9ff5d86 <VegaSaveChecksum+0x1e>
+ 9ff5d84:	5cd4      	ldrb	r4, [r2, r3]
+ 9ff5d86:	4060      	eors	r0, r4
+ 9ff5d88:	3301      	adds	r3, #1
+ 9ff5d8a:	4370      	muls	r0, r6
+ 9ff5d8c:	42ab      	cmp	r3, r5
+ 9ff5d8e:	d1f4      	bne.n	9ff5d7a <VegaSaveChecksum+0x12>
+ 9ff5d90:	bc70      	pop	{r4, r5, r6}
+ 9ff5d92:	bc02      	pop	{r1}
+ 9ff5d94:	4708      	bx	r1
+ 9ff5d96:	46c0      	nop			@ (mov r8, r8)
+ 9ff5d98:	811c9dc5 	.word	0x811c9dc5
+ 9ff5d9c:	01000193 	.word	0x01000193
+
+09ff5da0 <VegaSaveFinalize>:
+ 9ff5da0:	b510      	push	{r4, lr}
+ 9ff5da2:	1e04      	subs	r4, r0, #0
+ 9ff5da4:	d041      	beq.n	9ff5e2a <VegaSaveFinalize+0x8a>
+ 9ff5da6:	7943      	ldrb	r3, [r0, #5]
+ 9ff5da8:	7902      	ldrb	r2, [r0, #4]
+ 9ff5daa:	021b      	lsls	r3, r3, #8
+ 9ff5dac:	4313      	orrs	r3, r2
+ 9ff5dae:	2b01      	cmp	r3, #1
+ 9ff5db0:	d12e      	bne.n	9ff5e10 <VegaSaveFinalize+0x70>
+ 9ff5db2:	4b21      	ldr	r3, [pc, #132]	@ (9ff5e38 <VegaSaveFinalize+0x98>)
+ 9ff5db4:	2140      	movs	r1, #64	@ 0x40
+ 9ff5db6:	18c0      	adds	r0, r0, r3
+ 9ff5db8:	f7ff ff36 	bl	9ff5c28 <BytesAreZero>
+ 9ff5dbc:	2800      	cmp	r0, #0
+ 9ff5dbe:	d034      	beq.n	9ff5e2a <VegaSaveFinalize+0x8a>
+ 9ff5dc0:	4b1e      	ldr	r3, [pc, #120]	@ (9ff5e3c <VegaSaveFinalize+0x9c>)
+ 9ff5dc2:	2181      	movs	r1, #129	@ 0x81
+ 9ff5dc4:	18e0      	adds	r0, r4, r3
+ 9ff5dc6:	f7ff ff2f 	bl	9ff5c28 <BytesAreZero>
+ 9ff5dca:	2800      	cmp	r0, #0
+ 9ff5dcc:	d02d      	beq.n	9ff5e2a <VegaSaveFinalize+0x8a>
+ 9ff5dce:	0020      	movs	r0, r4
+ 9ff5dd0:	f7ff ff36 	bl	9ff5c40 <InitializeResearchEconomyOwner>
+ 9ff5dd4:	2256      	movs	r2, #86	@ 0x56
+ 9ff5dd6:	2300      	movs	r3, #0
+ 9ff5dd8:	7022      	strb	r2, [r4, #0]
+ 9ff5dda:	3a0f      	subs	r2, #15
+ 9ff5ddc:	7062      	strb	r2, [r4, #1]
+ 9ff5dde:	320c      	adds	r2, #12
+ 9ff5de0:	70a2      	strb	r2, [r4, #2]
+ 9ff5de2:	3a22      	subs	r2, #34	@ 0x22
+ 9ff5de4:	70e2      	strb	r2, [r4, #3]
+ 9ff5de6:	3a2f      	subs	r2, #47	@ 0x2f
+ 9ff5de8:	7122      	strb	r2, [r4, #4]
+ 9ff5dea:	3206      	adds	r2, #6
+ 9ff5dec:	7163      	strb	r3, [r4, #5]
+ 9ff5dee:	71a3      	strb	r3, [r4, #6]
+ 9ff5df0:	7223      	strb	r3, [r4, #8]
+ 9ff5df2:	7263      	strb	r3, [r4, #9]
+ 9ff5df4:	72a3      	strb	r3, [r4, #10]
+ 9ff5df6:	72e3      	strb	r3, [r4, #11]
+ 9ff5df8:	0020      	movs	r0, r4
+ 9ff5dfa:	71e2      	strb	r2, [r4, #7]
+ 9ff5dfc:	f7ff ffb4 	bl	9ff5d68 <VegaSaveChecksum>
+ 9ff5e00:	0a03      	lsrs	r3, r0, #8
+ 9ff5e02:	7220      	strb	r0, [r4, #8]
+ 9ff5e04:	7263      	strb	r3, [r4, #9]
+ 9ff5e06:	0c03      	lsrs	r3, r0, #16
+ 9ff5e08:	0e00      	lsrs	r0, r0, #24
+ 9ff5e0a:	72a3      	strb	r3, [r4, #10]
+ 9ff5e0c:	72e0      	strb	r0, [r4, #11]
+ 9ff5e0e:	e00c      	b.n	9ff5e2a <VegaSaveFinalize+0x8a>
+ 9ff5e10:	2b00      	cmp	r3, #0
+ 9ff5e12:	d10d      	bne.n	9ff5e30 <VegaSaveFinalize+0x90>
+ 9ff5e14:	7843      	ldrb	r3, [r0, #1]
+ 9ff5e16:	7802      	ldrb	r2, [r0, #0]
+ 9ff5e18:	021b      	lsls	r3, r3, #8
+ 9ff5e1a:	4313      	orrs	r3, r2
+ 9ff5e1c:	7882      	ldrb	r2, [r0, #2]
+ 9ff5e1e:	0412      	lsls	r2, r2, #16
+ 9ff5e20:	431a      	orrs	r2, r3
+ 9ff5e22:	78c3      	ldrb	r3, [r0, #3]
+ 9ff5e24:	061b      	lsls	r3, r3, #24
+ 9ff5e26:	4313      	orrs	r3, r2
+ 9ff5e28:	d0d1      	beq.n	9ff5dce <VegaSaveFinalize+0x2e>
+ 9ff5e2a:	bc10      	pop	{r4}
+ 9ff5e2c:	bc01      	pop	{r0}
+ 9ff5e2e:	4700      	bx	r0
+ 9ff5e30:	2b02      	cmp	r3, #2
+ 9ff5e32:	d0cf      	beq.n	9ff5dd4 <VegaSaveFinalize+0x34>
+ 9ff5e34:	e7f9      	b.n	9ff5e2a <VegaSaveFinalize+0x8a>
+ 9ff5e36:	46c0      	nop			@ (mov r8, r8)
+ 9ff5e38:	0000073f 	.word	0x0000073f
+ 9ff5e3c:	0000077f 	.word	0x0000077f
+
+09ff5e40 <Commit.constprop.0>:
+ 9ff5e40:	b570      	push	{r4, r5, r6, lr}
+ 9ff5e42:	0004      	movs	r4, r0
+ 9ff5e44:	7b43      	ldrb	r3, [r0, #13]
+ 9ff5e46:	0016      	movs	r6, r2
+ 9ff5e48:	7b02      	ldrb	r2, [r0, #12]
+ 9ff5e4a:	021b      	lsls	r3, r3, #8
+ 9ff5e4c:	4313      	orrs	r3, r2
+ 9ff5e4e:	7b82      	ldrb	r2, [r0, #14]
+ 9ff5e50:	0412      	lsls	r2, r2, #16
+ 9ff5e52:	431a      	orrs	r2, r3
+ 9ff5e54:	7bc3      	ldrb	r3, [r0, #15]
+ 9ff5e56:	061b      	lsls	r3, r3, #24
+ 9ff5e58:	4313      	orrs	r3, r2
+ 9ff5e5a:	3301      	adds	r3, #1
+ 9ff5e5c:	0a1a      	lsrs	r2, r3, #8
+ 9ff5e5e:	7303      	strb	r3, [r0, #12]
+ 9ff5e60:	7342      	strb	r2, [r0, #13]
+ 9ff5e62:	0c1a      	lsrs	r2, r3, #16
+ 9ff5e64:	0e1b      	lsrs	r3, r3, #24
+ 9ff5e66:	7382      	strb	r2, [r0, #14]
+ 9ff5e68:	73c3      	strb	r3, [r0, #15]
+ 9ff5e6a:	000d      	movs	r5, r1
+ 9ff5e6c:	f7ff ff08 	bl	9ff5c80 <Normalize>
+ 9ff5e70:	0020      	movs	r0, r4
+ 9ff5e72:	f7ff ff95 	bl	9ff5da0 <VegaSaveFinalize>
+ 9ff5e76:	2d00      	cmp	r5, #0
+ 9ff5e78:	d109      	bne.n	9ff5e8e <Commit.constprop.0+0x4e>
+ 9ff5e7a:	2280      	movs	r2, #128	@ 0x80
+ 9ff5e7c:	0020      	movs	r0, r4
+ 9ff5e7e:	4909      	ldr	r1, [pc, #36]	@ (9ff5ea4 <Commit.constprop.0+0x64>)
+ 9ff5e80:	0112      	lsls	r2, r2, #4
+ 9ff5e82:	f7ff feb9 	bl	9ff5bf8 <memcpy>
+ 9ff5e86:	2009      	movs	r0, #9
+ 9ff5e88:	bc70      	pop	{r4, r5, r6}
+ 9ff5e8a:	bc02      	pop	{r1}
+ 9ff5e8c:	4708      	bx	r1
+ 9ff5e8e:	2180      	movs	r1, #128	@ 0x80
+ 9ff5e90:	0032      	movs	r2, r6
+ 9ff5e92:	0020      	movs	r0, r4
+ 9ff5e94:	0109      	lsls	r1, r1, #4
+ 9ff5e96:	f000 f807 	bl	9ff5ea8 <Commit.constprop.0+0x68>
+ 9ff5e9a:	2800      	cmp	r0, #0
+ 9ff5e9c:	d0ed      	beq.n	9ff5e7a <Commit.constprop.0+0x3a>
+ 9ff5e9e:	2000      	movs	r0, #0
+ 9ff5ea0:	e7f2      	b.n	9ff5e88 <Commit.constprop.0+0x48>
+ 9ff5ea2:	46c0      	nop			@ (mov r8, r8)
+ 9ff5ea4:	0203e400 	.word	0x0203e400
+ 9ff5ea8:	4728      	bx	r5
+ 9ff5eaa:	46c0      	nop			@ (mov r8, r8)
+
+09ff5eac <VegaSaveValidate>:
+ 9ff5eac:	b5f7      	push	{r0, r1, r2, r4, r5, r6, r7, lr}
+ 9ff5eae:	0004      	movs	r4, r0
+ 9ff5eb0:	2506      	movs	r5, #6
+ 9ff5eb2:	2800      	cmp	r0, #0
+ 9ff5eb4:	d100      	bne.n	9ff5eb8 <VegaSaveValidate+0xc>
+ 9ff5eb6:	e0f5      	b.n	9ff60a4 <VegaSaveValidate+0x1f8>
+ 9ff5eb8:	2380      	movs	r3, #128	@ 0x80
+ 9ff5eba:	3d02      	subs	r5, #2
+ 9ff5ebc:	011b      	lsls	r3, r3, #4
+ 9ff5ebe:	4299      	cmp	r1, r3
+ 9ff5ec0:	d200      	bcs.n	9ff5ec4 <VegaSaveValidate+0x18>
+ 9ff5ec2:	e0ef      	b.n	9ff60a4 <VegaSaveValidate+0x1f8>
+ 9ff5ec4:	2201      	movs	r2, #1
+ 9ff5ec6:	0015      	movs	r5, r2
+ 9ff5ec8:	0001      	movs	r1, r0
+ 9ff5eca:	18c0      	adds	r0, r0, r3
+ 9ff5ecc:	2300      	movs	r3, #0
+ 9ff5ece:	429d      	cmp	r5, r3
+ 9ff5ed0:	d002      	beq.n	9ff5ed8 <VegaSaveValidate+0x2c>
+ 9ff5ed2:	780b      	ldrb	r3, [r1, #0]
+ 9ff5ed4:	425d      	negs	r5, r3
+ 9ff5ed6:	416b      	adcs	r3, r5
+ 9ff5ed8:	001d      	movs	r5, r3
+ 9ff5eda:	2300      	movs	r3, #0
+ 9ff5edc:	429a      	cmp	r2, r3
+ 9ff5ede:	d003      	beq.n	9ff5ee8 <VegaSaveValidate+0x3c>
+ 9ff5ee0:	780b      	ldrb	r3, [r1, #0]
+ 9ff5ee2:	3bff      	subs	r3, #255	@ 0xff
+ 9ff5ee4:	425a      	negs	r2, r3
+ 9ff5ee6:	4153      	adcs	r3, r2
+ 9ff5ee8:	3101      	adds	r1, #1
+ 9ff5eea:	001a      	movs	r2, r3
+ 9ff5eec:	4281      	cmp	r1, r0
+ 9ff5eee:	d1ed      	bne.n	9ff5ecc <VegaSaveValidate+0x20>
+ 9ff5ef0:	431d      	orrs	r5, r3
+ 9ff5ef2:	d000      	beq.n	9ff5ef6 <VegaSaveValidate+0x4a>
+ 9ff5ef4:	e0d6      	b.n	9ff60a4 <VegaSaveValidate+0x1f8>
+ 9ff5ef6:	7863      	ldrb	r3, [r4, #1]
+ 9ff5ef8:	7822      	ldrb	r2, [r4, #0]
+ 9ff5efa:	021b      	lsls	r3, r3, #8
+ 9ff5efc:	4313      	orrs	r3, r2
+ 9ff5efe:	78a2      	ldrb	r2, [r4, #2]
+ 9ff5f00:	0412      	lsls	r2, r2, #16
+ 9ff5f02:	431a      	orrs	r2, r3
+ 9ff5f04:	78e3      	ldrb	r3, [r4, #3]
+ 9ff5f06:	061b      	lsls	r3, r3, #24
+ 9ff5f08:	4313      	orrs	r3, r2
+ 9ff5f0a:	4a6b      	ldr	r2, [pc, #428]	@ (9ff60b8 <VegaSaveValidate+0x20c>)
+ 9ff5f0c:	4293      	cmp	r3, r2
+ 9ff5f0e:	d000      	beq.n	9ff5f12 <VegaSaveValidate+0x66>
+ 9ff5f10:	e0c7      	b.n	9ff60a2 <VegaSaveValidate+0x1f6>
+ 9ff5f12:	7966      	ldrb	r6, [r4, #5]
+ 9ff5f14:	7923      	ldrb	r3, [r4, #4]
+ 9ff5f16:	0236      	lsls	r6, r6, #8
+ 9ff5f18:	431e      	orrs	r6, r3
+ 9ff5f1a:	1e73      	subs	r3, r6, #1
+ 9ff5f1c:	2b01      	cmp	r3, #1
+ 9ff5f1e:	d900      	bls.n	9ff5f22 <VegaSaveValidate+0x76>
+ 9ff5f20:	e0c4      	b.n	9ff60ac <VegaSaveValidate+0x200>
+ 9ff5f22:	79e3      	ldrb	r3, [r4, #7]
+ 9ff5f24:	79a2      	ldrb	r2, [r4, #6]
+ 9ff5f26:	021b      	lsls	r3, r3, #8
+ 9ff5f28:	4313      	orrs	r3, r2
+ 9ff5f2a:	2280      	movs	r2, #128	@ 0x80
+ 9ff5f2c:	0112      	lsls	r2, r2, #4
+ 9ff5f2e:	4293      	cmp	r3, r2
+ 9ff5f30:	d000      	beq.n	9ff5f34 <VegaSaveValidate+0x88>
+ 9ff5f32:	e0bd      	b.n	9ff60b0 <VegaSaveValidate+0x204>
+ 9ff5f34:	7a62      	ldrb	r2, [r4, #9]
+ 9ff5f36:	7a23      	ldrb	r3, [r4, #8]
+ 9ff5f38:	0212      	lsls	r2, r2, #8
+ 9ff5f3a:	431a      	orrs	r2, r3
+ 9ff5f3c:	7aa3      	ldrb	r3, [r4, #10]
+ 9ff5f3e:	7ae7      	ldrb	r7, [r4, #11]
+ 9ff5f40:	041b      	lsls	r3, r3, #16
+ 9ff5f42:	4313      	orrs	r3, r2
+ 9ff5f44:	063f      	lsls	r7, r7, #24
+ 9ff5f46:	0020      	movs	r0, r4
+ 9ff5f48:	431f      	orrs	r7, r3
+ 9ff5f4a:	f7ff ff0d 	bl	9ff5d68 <VegaSaveChecksum>
+ 9ff5f4e:	4287      	cmp	r7, r0
+ 9ff5f50:	d000      	beq.n	9ff5f54 <VegaSaveValidate+0xa8>
+ 9ff5f52:	e0af      	b.n	9ff60b4 <VegaSaveValidate+0x208>
+ 9ff5f54:	0020      	movs	r0, r4
+ 9ff5f56:	2103      	movs	r1, #3
+ 9ff5f58:	3041      	adds	r0, #65	@ 0x41
+ 9ff5f5a:	f7ff fe65 	bl	9ff5c28 <BytesAreZero>
+ 9ff5f5e:	2800      	cmp	r0, #0
+ 9ff5f60:	d076      	beq.n	9ff6050 <VegaSaveValidate+0x1a4>
+ 9ff5f62:	0027      	movs	r7, r4
+ 9ff5f64:	3744      	adds	r7, #68	@ 0x44
+ 9ff5f66:	21f0      	movs	r1, #240	@ 0xf0
+ 9ff5f68:	0038      	movs	r0, r7
+ 9ff5f6a:	f7ff fe5d 	bl	9ff5c28 <BytesAreZero>
+ 9ff5f6e:	2800      	cmp	r0, #0
+ 9ff5f70:	d156      	bne.n	9ff6020 <VegaSaveValidate+0x174>
+ 9ff5f72:	0023      	movs	r3, r4
+ 9ff5f74:	3345      	adds	r3, #69	@ 0x45
+ 9ff5f76:	781b      	ldrb	r3, [r3, #0]
+ 9ff5f78:	783a      	ldrb	r2, [r7, #0]
+ 9ff5f7a:	021b      	lsls	r3, r3, #8
+ 9ff5f7c:	4313      	orrs	r3, r2
+ 9ff5f7e:	0022      	movs	r2, r4
+ 9ff5f80:	3246      	adds	r2, #70	@ 0x46
+ 9ff5f82:	7812      	ldrb	r2, [r2, #0]
+ 9ff5f84:	0412      	lsls	r2, r2, #16
+ 9ff5f86:	431a      	orrs	r2, r3
+ 9ff5f88:	0023      	movs	r3, r4
+ 9ff5f8a:	3347      	adds	r3, #71	@ 0x47
+ 9ff5f8c:	781b      	ldrb	r3, [r3, #0]
+ 9ff5f8e:	061b      	lsls	r3, r3, #24
+ 9ff5f90:	4313      	orrs	r3, r2
+ 9ff5f92:	4a4a      	ldr	r2, [pc, #296]	@ (9ff60bc <VegaSaveValidate+0x210>)
+ 9ff5f94:	4293      	cmp	r3, r2
+ 9ff5f96:	d15b      	bne.n	9ff6050 <VegaSaveValidate+0x1a4>
+ 9ff5f98:	0023      	movs	r3, r4
+ 9ff5f9a:	3348      	adds	r3, #72	@ 0x48
+ 9ff5f9c:	781a      	ldrb	r2, [r3, #0]
+ 9ff5f9e:	785b      	ldrb	r3, [r3, #1]
+ 9ff5fa0:	021b      	lsls	r3, r3, #8
+ 9ff5fa2:	4313      	orrs	r3, r2
+ 9ff5fa4:	2b01      	cmp	r3, #1
+ 9ff5fa6:	d153      	bne.n	9ff6050 <VegaSaveValidate+0x1a4>
+ 9ff5fa8:	0023      	movs	r3, r4
+ 9ff5faa:	334a      	adds	r3, #74	@ 0x4a
+ 9ff5fac:	781a      	ldrb	r2, [r3, #0]
+ 9ff5fae:	785b      	ldrb	r3, [r3, #1]
+ 9ff5fb0:	021b      	lsls	r3, r3, #8
+ 9ff5fb2:	4313      	orrs	r3, r2
+ 9ff5fb4:	2bf0      	cmp	r3, #240	@ 0xf0
+ 9ff5fb6:	d14b      	bne.n	9ff6050 <VegaSaveValidate+0x1a4>
+ 9ff5fb8:	0022      	movs	r2, r4
+ 9ff5fba:	0023      	movs	r3, r4
+ 9ff5fbc:	324d      	adds	r2, #77	@ 0x4d
+ 9ff5fbe:	7812      	ldrb	r2, [r2, #0]
+ 9ff5fc0:	334c      	adds	r3, #76	@ 0x4c
+ 9ff5fc2:	781b      	ldrb	r3, [r3, #0]
+ 9ff5fc4:	0212      	lsls	r2, r2, #8
+ 9ff5fc6:	431a      	orrs	r2, r3
+ 9ff5fc8:	0023      	movs	r3, r4
+ 9ff5fca:	334e      	adds	r3, #78	@ 0x4e
+ 9ff5fcc:	781b      	ldrb	r3, [r3, #0]
+ 9ff5fce:	041b      	lsls	r3, r3, #16
+ 9ff5fd0:	4313      	orrs	r3, r2
+ 9ff5fd2:	0022      	movs	r2, r4
+ 9ff5fd4:	324f      	adds	r2, #79	@ 0x4f
+ 9ff5fd6:	7812      	ldrb	r2, [r2, #0]
+ 9ff5fd8:	0612      	lsls	r2, r2, #24
+ 9ff5fda:	431a      	orrs	r2, r3
+ 9ff5fdc:	2108      	movs	r1, #8
+ 9ff5fde:	2301      	movs	r3, #1
+ 9ff5fe0:	2708      	movs	r7, #8
+ 9ff5fe2:	9201      	str	r2, [sp, #4]
+ 9ff5fe4:	4249      	negs	r1, r1
+ 9ff5fe6:	425b      	negs	r3, r3
+ 9ff5fe8:	2200      	movs	r2, #0
+ 9ff5fea:	2903      	cmp	r1, #3
+ 9ff5fec:	d902      	bls.n	9ff5ff4 <VegaSaveValidate+0x148>
+ 9ff5fee:	0022      	movs	r2, r4
+ 9ff5ff0:	324c      	adds	r2, #76	@ 0x4c
+ 9ff5ff2:	5c52      	ldrb	r2, [r2, r1]
+ 9ff5ff4:	4053      	eors	r3, r2
+ 9ff5ff6:	003a      	movs	r2, r7
+ 9ff5ff8:	0858      	lsrs	r0, r3, #1
+ 9ff5ffa:	4684      	mov	ip, r0
+ 9ff5ffc:	2001      	movs	r0, #1
+ 9ff5ffe:	4003      	ands	r3, r0
+ 9ff6000:	482f      	ldr	r0, [pc, #188]	@ (9ff60c0 <VegaSaveValidate+0x214>)
+ 9ff6002:	425b      	negs	r3, r3
+ 9ff6004:	4003      	ands	r3, r0
+ 9ff6006:	4660      	mov	r0, ip
+ 9ff6008:	3a01      	subs	r2, #1
+ 9ff600a:	0612      	lsls	r2, r2, #24
+ 9ff600c:	4043      	eors	r3, r0
+ 9ff600e:	0e12      	lsrs	r2, r2, #24
+ 9ff6010:	d1f2      	bne.n	9ff5ff8 <VegaSaveValidate+0x14c>
+ 9ff6012:	3101      	adds	r1, #1
+ 9ff6014:	29e8      	cmp	r1, #232	@ 0xe8
+ 9ff6016:	d1e7      	bne.n	9ff5fe8 <VegaSaveValidate+0x13c>
+ 9ff6018:	43db      	mvns	r3, r3
+ 9ff601a:	9a01      	ldr	r2, [sp, #4]
+ 9ff601c:	4293      	cmp	r3, r2
+ 9ff601e:	d117      	bne.n	9ff6050 <VegaSaveValidate+0x1a4>
+ 9ff6020:	0020      	movs	r0, r4
+ 9ff6022:	3035      	adds	r0, #53	@ 0x35
+ 9ff6024:	210f      	movs	r1, #15
+ 9ff6026:	30ff      	adds	r0, #255	@ 0xff
+ 9ff6028:	f7ff fdfe 	bl	9ff5c28 <BytesAreZero>
+ 9ff602c:	2800      	cmp	r0, #0
+ 9ff602e:	d00f      	beq.n	9ff6050 <VegaSaveValidate+0x1a4>
+ 9ff6030:	2e01      	cmp	r6, #1
+ 9ff6032:	d10f      	bne.n	9ff6054 <VegaSaveValidate+0x1a8>
+ 9ff6034:	2140      	movs	r1, #64	@ 0x40
+ 9ff6036:	4b23      	ldr	r3, [pc, #140]	@ (9ff60c4 <VegaSaveValidate+0x218>)
+ 9ff6038:	18e0      	adds	r0, r4, r3
+ 9ff603a:	f7ff fdf5 	bl	9ff5c28 <BytesAreZero>
+ 9ff603e:	2800      	cmp	r0, #0
+ 9ff6040:	d006      	beq.n	9ff6050 <VegaSaveValidate+0x1a4>
+ 9ff6042:	4b21      	ldr	r3, [pc, #132]	@ (9ff60c8 <VegaSaveValidate+0x21c>)
+ 9ff6044:	2181      	movs	r1, #129	@ 0x81
+ 9ff6046:	18e0      	adds	r0, r4, r3
+ 9ff6048:	f7ff fdee 	bl	9ff5c28 <BytesAreZero>
+ 9ff604c:	2800      	cmp	r0, #0
+ 9ff604e:	d129      	bne.n	9ff60a4 <VegaSaveValidate+0x1f8>
+ 9ff6050:	250f      	movs	r5, #15
+ 9ff6052:	e027      	b.n	9ff60a4 <VegaSaveValidate+0x1f8>
+ 9ff6054:	4b1b      	ldr	r3, [pc, #108]	@ (9ff60c4 <VegaSaveValidate+0x218>)
+ 9ff6056:	5ce3      	ldrb	r3, [r4, r3]
+ 9ff6058:	2b01      	cmp	r3, #1
+ 9ff605a:	d1f9      	bne.n	9ff6050 <VegaSaveValidate+0x1a4>
+ 9ff605c:	23e8      	movs	r3, #232	@ 0xe8
+ 9ff605e:	00db      	lsls	r3, r3, #3
+ 9ff6060:	5ce3      	ldrb	r3, [r4, r3]
+ 9ff6062:	2b40      	cmp	r3, #64	@ 0x40
+ 9ff6064:	d1f4      	bne.n	9ff6050 <VegaSaveValidate+0x1a4>
+ 9ff6066:	4b19      	ldr	r3, [pc, #100]	@ (9ff60cc <VegaSaveValidate+0x220>)
+ 9ff6068:	5ce1      	ldrb	r1, [r4, r3]
+ 9ff606a:	4b19      	ldr	r3, [pc, #100]	@ (9ff60d0 <VegaSaveValidate+0x224>)
+ 9ff606c:	5ce3      	ldrb	r3, [r4, r3]
+ 9ff606e:	4a19      	ldr	r2, [pc, #100]	@ (9ff60d4 <VegaSaveValidate+0x228>)
+ 9ff6070:	021b      	lsls	r3, r3, #8
+ 9ff6072:	430b      	orrs	r3, r1
+ 9ff6074:	4293      	cmp	r3, r2
+ 9ff6076:	d8eb      	bhi.n	9ff6050 <VegaSaveValidate+0x1a4>
+ 9ff6078:	4b17      	ldr	r3, [pc, #92]	@ (9ff60d8 <VegaSaveValidate+0x22c>)
+ 9ff607a:	5ce3      	ldrb	r3, [r4, r3]
+ 9ff607c:	3b01      	subs	r3, #1
+ 9ff607e:	2b06      	cmp	r3, #6
+ 9ff6080:	d8e6      	bhi.n	9ff6050 <VegaSaveValidate+0x1a4>
+ 9ff6082:	4b16      	ldr	r3, [pc, #88]	@ (9ff60dc <VegaSaveValidate+0x230>)
+ 9ff6084:	5ce3      	ldrb	r3, [r4, r3]
+ 9ff6086:	2b3b      	cmp	r3, #59	@ 0x3b
+ 9ff6088:	d8e2      	bhi.n	9ff6050 <VegaSaveValidate+0x1a4>
+ 9ff608a:	4b15      	ldr	r3, [pc, #84]	@ (9ff60e0 <VegaSaveValidate+0x234>)
+ 9ff608c:	5ce3      	ldrb	r3, [r4, r3]
+ 9ff608e:	2b04      	cmp	r3, #4
+ 9ff6090:	d8de      	bhi.n	9ff6050 <VegaSaveValidate+0x1a4>
+ 9ff6092:	23ee      	movs	r3, #238	@ 0xee
+ 9ff6094:	00db      	lsls	r3, r3, #3
+ 9ff6096:	5ce3      	ldrb	r3, [r4, r3]
+ 9ff6098:	2b01      	cmp	r3, #1
+ 9ff609a:	d8d9      	bhi.n	9ff6050 <VegaSaveValidate+0x1a4>
+ 9ff609c:	2104      	movs	r1, #4
+ 9ff609e:	4b11      	ldr	r3, [pc, #68]	@ (9ff60e4 <VegaSaveValidate+0x238>)
+ 9ff60a0:	e7ca      	b.n	9ff6038 <VegaSaveValidate+0x18c>
+ 9ff60a2:	2502      	movs	r5, #2
+ 9ff60a4:	0028      	movs	r0, r5
+ 9ff60a6:	bcfe      	pop	{r1, r2, r3, r4, r5, r6, r7}
+ 9ff60a8:	bc02      	pop	{r1}
+ 9ff60aa:	4708      	bx	r1
+ 9ff60ac:	2503      	movs	r5, #3
+ 9ff60ae:	e7f9      	b.n	9ff60a4 <VegaSaveValidate+0x1f8>
+ 9ff60b0:	2504      	movs	r5, #4
+ 9ff60b2:	e7f7      	b.n	9ff60a4 <VegaSaveValidate+0x1f8>
+ 9ff60b4:	2505      	movs	r5, #5
+ 9ff60b6:	e7f5      	b.n	9ff60a4 <VegaSaveValidate+0x1f8>
+ 9ff60b8:	31534756 	.word	0x31534756
+ 9ff60bc:	51434156 	.word	0x51434156
+ 9ff60c0:	edb88320 	.word	0xedb88320
+ 9ff60c4:	0000073f 	.word	0x0000073f
+ 9ff60c8:	0000077f 	.word	0x0000077f
+ 9ff60cc:	00000743 	.word	0x00000743
+ 9ff60d0:	00000744 	.word	0x00000744
+ 9ff60d4:	0000270f 	.word	0x0000270f
+ 9ff60d8:	00000745 	.word	0x00000745
+ 9ff60dc:	00000746 	.word	0x00000746
+ 9ff60e0:	0000076f 	.word	0x0000076f
+ 9ff60e4:	0000077b 	.word	0x0000077b
+
+09ff60e8 <VegaFactoryAddBattlePoints>:
+ 9ff60e8:	2306      	movs	r3, #6
+ 9ff60ea:	b510      	push	{r4, lr}
+ 9ff60ec:	2800      	cmp	r0, #0
+ 9ff60ee:	d014      	beq.n	9ff611a <VegaFactoryAddBattlePoints+0x32>
+ 9ff60f0:	4b0c      	ldr	r3, [pc, #48]	@ (9ff6124 <VegaFactoryAddBattlePoints+0x3c>)
+ 9ff60f2:	4a0d      	ldr	r2, [pc, #52]	@ (9ff6128 <VegaFactoryAddBattlePoints+0x40>)
+ 9ff60f4:	5cc3      	ldrb	r3, [r0, r3]
+ 9ff60f6:	5c84      	ldrb	r4, [r0, r2]
+ 9ff60f8:	021b      	lsls	r3, r3, #8
+ 9ff60fa:	4323      	orrs	r3, r4
+ 9ff60fc:	4c0b      	ldr	r4, [pc, #44]	@ (9ff612c <VegaFactoryAddBattlePoints+0x44>)
+ 9ff60fe:	1859      	adds	r1, r3, r1
+ 9ff6100:	0023      	movs	r3, r4
+ 9ff6102:	42a1      	cmp	r1, r4
+ 9ff6104:	d801      	bhi.n	9ff610a <VegaFactoryAddBattlePoints+0x22>
+ 9ff6106:	040b      	lsls	r3, r1, #16
+ 9ff6108:	0c1b      	lsrs	r3, r3, #16
+ 9ff610a:	5483      	strb	r3, [r0, r2]
+ 9ff610c:	4a06      	ldr	r2, [pc, #24]	@ (9ff6128 <VegaFactoryAddBattlePoints+0x40>)
+ 9ff610e:	0a1b      	lsrs	r3, r3, #8
+ 9ff6110:	1882      	adds	r2, r0, r2
+ 9ff6112:	7053      	strb	r3, [r2, #1]
+ 9ff6114:	f7ff fe44 	bl	9ff5da0 <VegaSaveFinalize>
+ 9ff6118:	2300      	movs	r3, #0
+ 9ff611a:	0018      	movs	r0, r3
+ 9ff611c:	bc10      	pop	{r4}
+ 9ff611e:	bc02      	pop	{r1}
+ 9ff6120:	4708      	bx	r1
+ 9ff6122:	46c0      	nop			@ (mov r8, r8)
+ 9ff6124:	00000393 	.word	0x00000393
+ 9ff6128:	00000392 	.word	0x00000392
+ 9ff612c:	0000270f 	.word	0x0000270f
+
+09ff6130 <VegaFactoryEnter>:
+ 9ff6130:	b5f7      	push	{r0, r1, r2, r4, r5, r6, r7, lr}
+ 9ff6132:	0004      	movs	r4, r0
+ 9ff6134:	0015      	movs	r5, r2
+ 9ff6136:	2006      	movs	r0, #6
+ 9ff6138:	9100      	str	r1, [sp, #0]
+ 9ff613a:	9301      	str	r3, [sp, #4]
+ 9ff613c:	2c00      	cmp	r4, #0
+ 9ff613e:	d03e      	beq.n	9ff61be <VegaFactoryEnter+0x8e>
+ 9ff6140:	2900      	cmp	r1, #0
+ 9ff6142:	d03c      	beq.n	9ff61be <VegaFactoryEnter+0x8e>
+ 9ff6144:	4282      	cmp	r2, r0
+ 9ff6146:	d83a      	bhi.n	9ff61be <VegaFactoryEnter+0x8e>
+ 9ff6148:	2680      	movs	r6, #128	@ 0x80
+ 9ff614a:	00f6      	lsls	r6, r6, #3
+ 9ff614c:	5da3      	ldrb	r3, [r4, r6]
+ 9ff614e:	3002      	adds	r0, #2
+ 9ff6150:	2b00      	cmp	r3, #0
+ 9ff6152:	d134      	bne.n	9ff61be <VegaFactoryEnter+0x8e>
+ 9ff6154:	4f1b      	ldr	r7, [pc, #108]	@ (9ff61c4 <VegaFactoryEnter+0x94>)
+ 9ff6156:	5de3      	ldrb	r3, [r4, r7]
+ 9ff6158:	2b00      	cmp	r3, #0
+ 9ff615a:	d130      	bne.n	9ff61be <VegaFactoryEnter+0x8e>
+ 9ff615c:	2280      	movs	r2, #128	@ 0x80
+ 9ff615e:	0021      	movs	r1, r4
+ 9ff6160:	0112      	lsls	r2, r2, #4
+ 9ff6162:	4819      	ldr	r0, [pc, #100]	@ (9ff61c8 <VegaFactoryEnter+0x98>)
+ 9ff6164:	f7ff fd48 	bl	9ff5bf8 <memcpy>
+ 9ff6168:	2296      	movs	r2, #150	@ 0x96
+ 9ff616a:	4b18      	ldr	r3, [pc, #96]	@ (9ff61cc <VegaFactoryEnter+0x9c>)
+ 9ff616c:	9900      	ldr	r1, [sp, #0]
+ 9ff616e:	18e0      	adds	r0, r4, r3
+ 9ff6170:	0092      	lsls	r2, r2, #2
+ 9ff6172:	f7ff fd41 	bl	9ff5bf8 <memcpy>
+ 9ff6176:	4b16      	ldr	r3, [pc, #88]	@ (9ff61d0 <VegaFactoryEnter+0xa0>)
+ 9ff6178:	54e5      	strb	r5, [r4, r3]
+ 9ff617a:	2301      	movs	r3, #1
+ 9ff617c:	21ff      	movs	r1, #255	@ 0xff
+ 9ff617e:	55e3      	strb	r3, [r4, r7]
+ 9ff6180:	55a3      	strb	r3, [r4, r6]
+ 9ff6182:	4b14      	ldr	r3, [pc, #80]	@ (9ff61d4 <VegaFactoryEnter+0xa4>)
+ 9ff6184:	0089      	lsls	r1, r1, #2
+ 9ff6186:	5ce3      	ldrb	r3, [r4, r3]
+ 9ff6188:	5c62      	ldrb	r2, [r4, r1]
+ 9ff618a:	021b      	lsls	r3, r3, #8
+ 9ff618c:	4313      	orrs	r3, r2
+ 9ff618e:	4a12      	ldr	r2, [pc, #72]	@ (9ff61d8 <VegaFactoryEnter+0xa8>)
+ 9ff6190:	5ca2      	ldrb	r2, [r4, r2]
+ 9ff6192:	0412      	lsls	r2, r2, #16
+ 9ff6194:	431a      	orrs	r2, r3
+ 9ff6196:	4b11      	ldr	r3, [pc, #68]	@ (9ff61dc <VegaFactoryEnter+0xac>)
+ 9ff6198:	5ce3      	ldrb	r3, [r4, r3]
+ 9ff619a:	061b      	lsls	r3, r3, #24
+ 9ff619c:	4313      	orrs	r3, r2
+ 9ff619e:	22ff      	movs	r2, #255	@ 0xff
+ 9ff61a0:	3301      	adds	r3, #1
+ 9ff61a2:	0092      	lsls	r2, r2, #2
+ 9ff61a4:	5463      	strb	r3, [r4, r1]
+ 9ff61a6:	18a2      	adds	r2, r4, r2
+ 9ff61a8:	0a19      	lsrs	r1, r3, #8
+ 9ff61aa:	7051      	strb	r1, [r2, #1]
+ 9ff61ac:	0c19      	lsrs	r1, r3, #16
+ 9ff61ae:	0e1b      	lsrs	r3, r3, #24
+ 9ff61b0:	7091      	strb	r1, [r2, #2]
+ 9ff61b2:	70d3      	strb	r3, [r2, #3]
+ 9ff61b4:	0020      	movs	r0, r4
+ 9ff61b6:	9a08      	ldr	r2, [sp, #32]
+ 9ff61b8:	9901      	ldr	r1, [sp, #4]
+ 9ff61ba:	f7ff fe41 	bl	9ff5e40 <Commit.constprop.0>
+ 9ff61be:	bcfe      	pop	{r1, r2, r3, r4, r5, r6, r7}
+ 9ff61c0:	bc02      	pop	{r1}
+ 9ff61c2:	4708      	bx	r1
+ 9ff61c4:	00000401 	.word	0x00000401
+ 9ff61c8:	0203e400 	.word	0x0203e400
+ 9ff61cc:	00000404 	.word	0x00000404
+ 9ff61d0:	00000402 	.word	0x00000402
+ 9ff61d4:	000003fd 	.word	0x000003fd
+ 9ff61d8:	000003fe 	.word	0x000003fe
+ 9ff61dc:	000003ff 	.word	0x000003ff
+
+09ff61e0 <VegaFactorySetBattleActive>:
+ 9ff61e0:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 9ff61e2:	0004      	movs	r4, r0
+ 9ff61e4:	000d      	movs	r5, r1
+ 9ff61e6:	0016      	movs	r6, r2
+ 9ff61e8:	2008      	movs	r0, #8
+ 9ff61ea:	2c00      	cmp	r4, #0
+ 9ff61ec:	d015      	beq.n	9ff621a <VegaFactorySetBattleActive+0x3a>
+ 9ff61ee:	2780      	movs	r7, #128	@ 0x80
+ 9ff61f0:	00ff      	lsls	r7, r7, #3
+ 9ff61f2:	5de3      	ldrb	r3, [r4, r7]
+ 9ff61f4:	2b01      	cmp	r3, #1
+ 9ff61f6:	d110      	bne.n	9ff621a <VegaFactorySetBattleActive+0x3a>
+ 9ff61f8:	4b09      	ldr	r3, [pc, #36]	@ (9ff6220 <VegaFactorySetBattleActive+0x40>)
+ 9ff61fa:	5ce3      	ldrb	r3, [r4, r3]
+ 9ff61fc:	2b00      	cmp	r3, #0
+ 9ff61fe:	d00c      	beq.n	9ff621a <VegaFactorySetBattleActive+0x3a>
+ 9ff6200:	2280      	movs	r2, #128	@ 0x80
+ 9ff6202:	0021      	movs	r1, r4
+ 9ff6204:	0112      	lsls	r2, r2, #4
+ 9ff6206:	4807      	ldr	r0, [pc, #28]	@ (9ff6224 <VegaFactorySetBattleActive+0x44>)
+ 9ff6208:	f7ff fcf6 	bl	9ff5bf8 <memcpy>
+ 9ff620c:	2302      	movs	r3, #2
+ 9ff620e:	0032      	movs	r2, r6
+ 9ff6210:	0029      	movs	r1, r5
+ 9ff6212:	0020      	movs	r0, r4
+ 9ff6214:	55e3      	strb	r3, [r4, r7]
+ 9ff6216:	f7ff fe13 	bl	9ff5e40 <Commit.constprop.0>
+ 9ff621a:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 9ff621c:	bc02      	pop	{r1}
+ 9ff621e:	4708      	bx	r1
+ 9ff6220:	00000401 	.word	0x00000401
+ 9ff6224:	0203e400 	.word	0x0203e400
+
+09ff6228 <VegaFactoryRestore>:
+ 9ff6228:	b5f7      	push	{r0, r1, r2, r4, r5, r6, r7, lr}
+ 9ff622a:	0004      	movs	r4, r0
+ 9ff622c:	000e      	movs	r6, r1
+ 9ff622e:	0015      	movs	r5, r2
+ 9ff6230:	2006      	movs	r0, #6
+ 9ff6232:	9301      	str	r3, [sp, #4]
+ 9ff6234:	2c00      	cmp	r4, #0
+ 9ff6236:	d047      	beq.n	9ff62c8 <VegaFactoryRestore+0xa0>
+ 9ff6238:	2900      	cmp	r1, #0
+ 9ff623a:	d045      	beq.n	9ff62c8 <VegaFactoryRestore+0xa0>
+ 9ff623c:	2a00      	cmp	r2, #0
+ 9ff623e:	d043      	beq.n	9ff62c8 <VegaFactoryRestore+0xa0>
+ 9ff6240:	4b23      	ldr	r3, [pc, #140]	@ (9ff62d0 <VegaFactoryRestore+0xa8>)
+ 9ff6242:	5ce3      	ldrb	r3, [r4, r3]
+ 9ff6244:	3002      	adds	r0, #2
+ 9ff6246:	2b00      	cmp	r3, #0
+ 9ff6248:	d03e      	beq.n	9ff62c8 <VegaFactoryRestore+0xa0>
+ 9ff624a:	2280      	movs	r2, #128	@ 0x80
+ 9ff624c:	0021      	movs	r1, r4
+ 9ff624e:	0112      	lsls	r2, r2, #4
+ 9ff6250:	2780      	movs	r7, #128	@ 0x80
+ 9ff6252:	4820      	ldr	r0, [pc, #128]	@ (9ff62d4 <VegaFactoryRestore+0xac>)
+ 9ff6254:	f7ff fcd0 	bl	9ff5bf8 <memcpy>
+ 9ff6258:	2304      	movs	r3, #4
+ 9ff625a:	2296      	movs	r2, #150	@ 0x96
+ 9ff625c:	491e      	ldr	r1, [pc, #120]	@ (9ff62d8 <VegaFactoryRestore+0xb0>)
+ 9ff625e:	00ff      	lsls	r7, r7, #3
+ 9ff6260:	1861      	adds	r1, r4, r1
+ 9ff6262:	0030      	movs	r0, r6
+ 9ff6264:	55e3      	strb	r3, [r4, r7]
+ 9ff6266:	0092      	lsls	r2, r2, #2
+ 9ff6268:	9100      	str	r1, [sp, #0]
+ 9ff626a:	f7ff fcc5 	bl	9ff5bf8 <memcpy>
+ 9ff626e:	2296      	movs	r2, #150	@ 0x96
+ 9ff6270:	4e1a      	ldr	r6, [pc, #104]	@ (9ff62dc <VegaFactoryRestore+0xb4>)
+ 9ff6272:	5da3      	ldrb	r3, [r4, r6]
+ 9ff6274:	2100      	movs	r1, #0
+ 9ff6276:	702b      	strb	r3, [r5, #0]
+ 9ff6278:	0092      	lsls	r2, r2, #2
+ 9ff627a:	9800      	ldr	r0, [sp, #0]
+ 9ff627c:	f7ff fcc8 	bl	9ff5c10 <memset>
+ 9ff6280:	2300      	movs	r3, #0
+ 9ff6282:	21ff      	movs	r1, #255	@ 0xff
+ 9ff6284:	4a12      	ldr	r2, [pc, #72]	@ (9ff62d0 <VegaFactoryRestore+0xa8>)
+ 9ff6286:	55a3      	strb	r3, [r4, r6]
+ 9ff6288:	54a3      	strb	r3, [r4, r2]
+ 9ff628a:	55e3      	strb	r3, [r4, r7]
+ 9ff628c:	4b14      	ldr	r3, [pc, #80]	@ (9ff62e0 <VegaFactoryRestore+0xb8>)
+ 9ff628e:	0089      	lsls	r1, r1, #2
+ 9ff6290:	5ce3      	ldrb	r3, [r4, r3]
+ 9ff6292:	5c62      	ldrb	r2, [r4, r1]
+ 9ff6294:	021b      	lsls	r3, r3, #8
+ 9ff6296:	4313      	orrs	r3, r2
+ 9ff6298:	4a12      	ldr	r2, [pc, #72]	@ (9ff62e4 <VegaFactoryRestore+0xbc>)
+ 9ff629a:	5ca2      	ldrb	r2, [r4, r2]
+ 9ff629c:	0412      	lsls	r2, r2, #16
+ 9ff629e:	431a      	orrs	r2, r3
+ 9ff62a0:	4b11      	ldr	r3, [pc, #68]	@ (9ff62e8 <VegaFactoryRestore+0xc0>)
+ 9ff62a2:	5ce3      	ldrb	r3, [r4, r3]
+ 9ff62a4:	061b      	lsls	r3, r3, #24
+ 9ff62a6:	4313      	orrs	r3, r2
+ 9ff62a8:	22ff      	movs	r2, #255	@ 0xff
+ 9ff62aa:	3301      	adds	r3, #1
+ 9ff62ac:	0092      	lsls	r2, r2, #2
+ 9ff62ae:	5463      	strb	r3, [r4, r1]
+ 9ff62b0:	18a2      	adds	r2, r4, r2
+ 9ff62b2:	0a19      	lsrs	r1, r3, #8
+ 9ff62b4:	7051      	strb	r1, [r2, #1]
+ 9ff62b6:	0c19      	lsrs	r1, r3, #16
+ 9ff62b8:	0e1b      	lsrs	r3, r3, #24
+ 9ff62ba:	7091      	strb	r1, [r2, #2]
+ 9ff62bc:	70d3      	strb	r3, [r2, #3]
+ 9ff62be:	0020      	movs	r0, r4
+ 9ff62c0:	9a08      	ldr	r2, [sp, #32]
+ 9ff62c2:	9901      	ldr	r1, [sp, #4]
+ 9ff62c4:	f7ff fdbc 	bl	9ff5e40 <Commit.constprop.0>
+ 9ff62c8:	bcfe      	pop	{r1, r2, r3, r4, r5, r6, r7}
+ 9ff62ca:	bc02      	pop	{r1}
+ 9ff62cc:	4708      	bx	r1
+ 9ff62ce:	46c0      	nop			@ (mov r8, r8)
+ 9ff62d0:	00000401 	.word	0x00000401
+ 9ff62d4:	0203e400 	.word	0x0203e400
+ 9ff62d8:	00000404 	.word	0x00000404
+ 9ff62dc:	00000402 	.word	0x00000402
+ 9ff62e0:	000003fd 	.word	0x000003fd
+ 9ff62e4:	000003fe 	.word	0x000003fe
+ 9ff62e8:	000003ff 	.word	0x000003ff
+
+09ff62ec <copy_owner>:
+ 9ff62ec:	2300      	movs	r3, #0
+ 9ff62ee:	5cca      	ldrb	r2, [r1, r3]
+ 9ff62f0:	54c2      	strb	r2, [r0, r3]
+ 9ff62f2:	3301      	adds	r3, #1
+ 9ff62f4:	2b40      	cmp	r3, #64	@ 0x40
+ 9ff62f6:	d1fa      	bne.n	9ff62ee <copy_owner+0x2>
+ 9ff62f8:	4770      	bx	lr
+	...
+
+09ff62fc <CircusStreakCrc>:
+ 9ff62fc:	2301      	movs	r3, #1
+ 9ff62fe:	b5f0      	push	{r4, r5, r6, r7, lr}
+ 9ff6300:	0001      	movs	r1, r0
+ 9ff6302:	2200      	movs	r2, #0
+ 9ff6304:	2501      	movs	r5, #1
+ 9ff6306:	4e0c      	ldr	r6, [pc, #48]	@ (9ff6338 <CircusStreakCrc+0x3c>)
+ 9ff6308:	425b      	negs	r3, r3
+ 9ff630a:	0010      	movs	r0, r2
+ 9ff630c:	380c      	subs	r0, #12
+ 9ff630e:	2400      	movs	r4, #0
+ 9ff6310:	2803      	cmp	r0, #3
+ 9ff6312:	d900      	bls.n	9ff6316 <CircusStreakCrc+0x1a>
+ 9ff6314:	5c8c      	ldrb	r4, [r1, r2]
+ 9ff6316:	4063      	eors	r3, r4
+ 9ff6318:	2408      	movs	r4, #8
+ 9ff631a:	085f      	lsrs	r7, r3, #1
+ 9ff631c:	402b      	ands	r3, r5
+ 9ff631e:	425b      	negs	r3, r3
+ 9ff6320:	4033      	ands	r3, r6
+ 9ff6322:	3c01      	subs	r4, #1
+ 9ff6324:	407b      	eors	r3, r7
+ 9ff6326:	2c00      	cmp	r4, #0
+ 9ff6328:	d1f7      	bne.n	9ff631a <CircusStreakCrc+0x1e>
+ 9ff632a:	3201      	adds	r2, #1
+ 9ff632c:	2a40      	cmp	r2, #64	@ 0x40
+ 9ff632e:	d1ec      	bne.n	9ff630a <CircusStreakCrc+0xe>
+ 9ff6330:	43d8      	mvns	r0, r3
+ 9ff6332:	bcf0      	pop	{r4, r5, r6, r7}
+ 9ff6334:	bc02      	pop	{r1}
+ 9ff6336:	4708      	bx	r1
+ 9ff6338:	edb88320 	.word	0xedb88320
+
+09ff633c <CircusStreakValid>:
+ 9ff633c:	b5f7      	push	{r0, r1, r2, r4, r5, r6, r7, lr}
+ 9ff633e:	0004      	movs	r4, r0
+ 9ff6340:	1e05      	subs	r5, r0, #0
+ 9ff6342:	d03d      	beq.n	9ff63c0 <CircusStreakValid+0x84>
+ 9ff6344:	4b2b      	ldr	r3, [pc, #172]	@ (9ff63f4 <CircusStreakValid+0xb8>)
+ 9ff6346:	6802      	ldr	r2, [r0, #0]
+ 9ff6348:	2500      	movs	r5, #0
+ 9ff634a:	429a      	cmp	r2, r3
+ 9ff634c:	d138      	bne.n	9ff63c0 <CircusStreakValid+0x84>
+ 9ff634e:	4b2a      	ldr	r3, [pc, #168]	@ (9ff63f8 <CircusStreakValid+0xbc>)
+ 9ff6350:	6842      	ldr	r2, [r0, #4]
+ 9ff6352:	429a      	cmp	r2, r3
+ 9ff6354:	d134      	bne.n	9ff63c0 <CircusStreakValid+0x84>
+ 9ff6356:	4b29      	ldr	r3, [pc, #164]	@ (9ff63fc <CircusStreakValid+0xc0>)
+ 9ff6358:	6882      	ldr	r2, [r0, #8]
+ 9ff635a:	429a      	cmp	r2, r3
+ 9ff635c:	d130      	bne.n	9ff63c0 <CircusStreakValid+0x84>
+ 9ff635e:	6903      	ldr	r3, [r0, #16]
+ 9ff6360:	42ab      	cmp	r3, r5
+ 9ff6362:	d02d      	beq.n	9ff63c0 <CircusStreakValid+0x84>
+ 9ff6364:	6a42      	ldr	r2, [r0, #36]	@ 0x24
+ 9ff6366:	4b26      	ldr	r3, [pc, #152]	@ (9ff6400 <CircusStreakValid+0xc4>)
+ 9ff6368:	421a      	tst	r2, r3
+ 9ff636a:	d129      	bne.n	9ff63c0 <CircusStreakValid+0x84>
+ 9ff636c:	1d43      	adds	r3, r0, #5
+ 9ff636e:	7fde      	ldrb	r6, [r3, #31]
+ 9ff6370:	2e02      	cmp	r6, #2
+ 9ff6372:	d825      	bhi.n	9ff63c0 <CircusStreakValid+0x84>
+ 9ff6374:	1dc3      	adds	r3, r0, #7
+ 9ff6376:	7fdf      	ldrb	r7, [r3, #31]
+ 9ff6378:	2f03      	cmp	r7, #3
+ 9ff637a:	d821      	bhi.n	9ff63c0 <CircusStreakValid+0x84>
+ 9ff637c:	8c02      	ldrh	r2, [r0, #32]
+ 9ff637e:	8c43      	ldrh	r3, [r0, #34]	@ 0x22
+ 9ff6380:	429a      	cmp	r2, r3
+ 9ff6382:	d81d      	bhi.n	9ff63c0 <CircusStreakValid+0x84>
+ 9ff6384:	68c3      	ldr	r3, [r0, #12]
+ 9ff6386:	9301      	str	r3, [sp, #4]
+ 9ff6388:	f7ff ffb8 	bl	9ff62fc <CircusStreakCrc>
+ 9ff638c:	9b01      	ldr	r3, [sp, #4]
+ 9ff638e:	4283      	cmp	r3, r0
+ 9ff6390:	d116      	bne.n	9ff63c0 <CircusStreakValid+0x84>
+ 9ff6392:	0023      	movs	r3, r4
+ 9ff6394:	0021      	movs	r1, r4
+ 9ff6396:	332c      	adds	r3, #44	@ 0x2c
+ 9ff6398:	3140      	adds	r1, #64	@ 0x40
+ 9ff639a:	781a      	ldrb	r2, [r3, #0]
+ 9ff639c:	2a00      	cmp	r2, #0
+ 9ff639e:	d124      	bne.n	9ff63ea <CircusStreakValid+0xae>
+ 9ff63a0:	3301      	adds	r3, #1
+ 9ff63a2:	428b      	cmp	r3, r1
+ 9ff63a4:	d1f9      	bne.n	9ff639a <CircusStreakValid+0x5e>
+ 9ff63a6:	69e3      	ldr	r3, [r4, #28]
+ 9ff63a8:	2e02      	cmp	r6, #2
+ 9ff63aa:	d10d      	bne.n	9ff63c8 <CircusStreakValid+0x8c>
+ 9ff63ac:	0015      	movs	r5, r2
+ 9ff63ae:	1c59      	adds	r1, r3, #1
+ 9ff63b0:	d006      	beq.n	9ff63c0 <CircusStreakValid+0x84>
+ 9ff63b2:	69a1      	ldr	r1, [r4, #24]
+ 9ff63b4:	3301      	adds	r3, #1
+ 9ff63b6:	4299      	cmp	r1, r3
+ 9ff63b8:	d102      	bne.n	9ff63c0 <CircusStreakValid+0x84>
+ 9ff63ba:	6965      	ldr	r5, [r4, #20]
+ 9ff63bc:	1e6b      	subs	r3, r5, #1
+ 9ff63be:	419d      	sbcs	r5, r3
+ 9ff63c0:	0028      	movs	r0, r5
+ 9ff63c2:	bcfe      	pop	{r1, r2, r3, r4, r5, r6, r7}
+ 9ff63c4:	bc02      	pop	{r1}
+ 9ff63c6:	4708      	bx	r1
+ 9ff63c8:	69a1      	ldr	r1, [r4, #24]
+ 9ff63ca:	0015      	movs	r5, r2
+ 9ff63cc:	4299      	cmp	r1, r3
+ 9ff63ce:	d1f7      	bne.n	9ff63c0 <CircusStreakValid+0x84>
+ 9ff63d0:	2e00      	cmp	r6, #0
+ 9ff63d2:	d1f2      	bne.n	9ff63ba <CircusStreakValid+0x7e>
+ 9ff63d4:	6963      	ldr	r3, [r4, #20]
+ 9ff63d6:	2b00      	cmp	r3, #0
+ 9ff63d8:	d109      	bne.n	9ff63ee <CircusStreakValid+0xb2>
+ 9ff63da:	2900      	cmp	r1, #0
+ 9ff63dc:	d1f0      	bne.n	9ff63c0 <CircusStreakValid+0x84>
+ 9ff63de:	6a23      	ldr	r3, [r4, #32]
+ 9ff63e0:	2b00      	cmp	r3, #0
+ 9ff63e2:	d1ed      	bne.n	9ff63c0 <CircusStreakValid+0x84>
+ 9ff63e4:	427d      	negs	r5, r7
+ 9ff63e6:	417d      	adcs	r5, r7
+ 9ff63e8:	e7ea      	b.n	9ff63c0 <CircusStreakValid+0x84>
+ 9ff63ea:	2500      	movs	r5, #0
+ 9ff63ec:	e7e8      	b.n	9ff63c0 <CircusStreakValid+0x84>
+ 9ff63ee:	2501      	movs	r5, #1
+ 9ff63f0:	e7e6      	b.n	9ff63c0 <CircusStreakValid+0x84>
+ 9ff63f2:	46c0      	nop			@ (mov r8, r8)
+ 9ff63f4:	31534356 	.word	0x31534356
+ 9ff63f8:	ceacbca9 	.word	0xceacbca9
+ 9ff63fc:	00400001 	.word	0x00400001
+ 9ff6400:	ff00ff00 	.word	0xff00ff00
+
+09ff6404 <commit>:
+ 9ff6404:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 9ff6406:	0006      	movs	r6, r0
+ 9ff6408:	000c      	movs	r4, r1
+ 9ff640a:	0015      	movs	r5, r2
+ 9ff640c:	001f      	movs	r7, r3
+ 9ff640e:	2a00      	cmp	r2, #0
+ 9ff6410:	d104      	bne.n	9ff641c <commit+0x18>
+ 9ff6412:	2302      	movs	r3, #2
+ 9ff6414:	0018      	movs	r0, r3
+ 9ff6416:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 9ff6418:	bc02      	pop	{r1}
+ 9ff641a:	4708      	bx	r1
+ 9ff641c:	690a      	ldr	r2, [r1, #16]
+ 9ff641e:	2306      	movs	r3, #6
+ 9ff6420:	1c51      	adds	r1, r2, #1
+ 9ff6422:	d0f7      	beq.n	9ff6414 <commit+0x10>
+ 9ff6424:	3201      	adds	r2, #1
+ 9ff6426:	0020      	movs	r0, r4
+ 9ff6428:	6122      	str	r2, [r4, #16]
+ 9ff642a:	f7ff ff67 	bl	9ff62fc <CircusStreakCrc>
+ 9ff642e:	60e0      	str	r0, [r4, #12]
+ 9ff6430:	0020      	movs	r0, r4
+ 9ff6432:	f7ff ff83 	bl	9ff633c <CircusStreakValid>
+ 9ff6436:	2800      	cmp	r0, #0
+ 9ff6438:	d0eb      	beq.n	9ff6412 <commit+0xe>
+ 9ff643a:	0039      	movs	r1, r7
+ 9ff643c:	0020      	movs	r0, r4
+ 9ff643e:	f000 f809 	bl	9ff6454 <commit+0x50>
+ 9ff6442:	2305      	movs	r3, #5
+ 9ff6444:	2801      	cmp	r0, #1
+ 9ff6446:	d1e5      	bne.n	9ff6414 <commit+0x10>
+ 9ff6448:	0021      	movs	r1, r4
+ 9ff644a:	0030      	movs	r0, r6
+ 9ff644c:	f7ff ff4e 	bl	9ff62ec <copy_owner>
+ 9ff6450:	2300      	movs	r3, #0
+ 9ff6452:	e7df      	b.n	9ff6414 <commit+0x10>
+ 9ff6454:	4728      	bx	r5
+	...
+
+09ff6458 <CircusStreakInitializeFor>:
+ 9ff6458:	b5f0      	push	{r4, r5, r6, r7, lr}
+ 9ff645a:	b093      	sub	sp, #76	@ 0x4c
+ 9ff645c:	0004      	movs	r4, r0
+ 9ff645e:	000d      	movs	r5, r1
+ 9ff6460:	9200      	str	r2, [sp, #0]
+ 9ff6462:	9301      	str	r3, [sp, #4]
+ 9ff6464:	2800      	cmp	r0, #0
+ 9ff6466:	d104      	bne.n	9ff6472 <CircusStreakInitializeFor+0x1a>
+ 9ff6468:	2002      	movs	r0, #2
+ 9ff646a:	b013      	add	sp, #76	@ 0x4c
+ 9ff646c:	bcf0      	pop	{r4, r5, r6, r7}
+ 9ff646e:	bc02      	pop	{r1}
+ 9ff6470:	4708      	bx	r1
+ 9ff6472:	f7ff ff63 	bl	9ff633c <CircusStreakValid>
+ 9ff6476:	0003      	movs	r3, r0
+ 9ff6478:	2001      	movs	r0, #1
+ 9ff647a:	2b00      	cmp	r3, #0
+ 9ff647c:	d1f5      	bne.n	9ff646a <CircusStreakInitializeFor+0x12>
+ 9ff647e:	0006      	movs	r6, r0
+ 9ff6480:	0001      	movs	r1, r0
+ 9ff6482:	0018      	movs	r0, r3
+ 9ff6484:	5ce2      	ldrb	r2, [r4, r3]
+ 9ff6486:	4257      	negs	r7, r2
+ 9ff6488:	4157      	adcs	r7, r2
+ 9ff648a:	3aff      	subs	r2, #255	@ 0xff
+ 9ff648c:	4039      	ands	r1, r7
+ 9ff648e:	4257      	negs	r7, r2
+ 9ff6490:	417a      	adcs	r2, r7
+ 9ff6492:	4016      	ands	r6, r2
+ 9ff6494:	aa02      	add	r2, sp, #8
+ 9ff6496:	5498      	strb	r0, [r3, r2]
+ 9ff6498:	3301      	adds	r3, #1
+ 9ff649a:	2b40      	cmp	r3, #64	@ 0x40
+ 9ff649c:	d1f2      	bne.n	9ff6484 <CircusStreakInitializeFor+0x2c>
+ 9ff649e:	4331      	orrs	r1, r6
+ 9ff64a0:	d0e2      	beq.n	9ff6468 <CircusStreakInitializeFor+0x10>
+ 9ff64a2:	4b07      	ldr	r3, [pc, #28]	@ (9ff64c0 <CircusStreakInitializeFor+0x68>)
+ 9ff64a4:	9302      	str	r3, [sp, #8]
+ 9ff64a6:	4b07      	ldr	r3, [pc, #28]	@ (9ff64c4 <CircusStreakInitializeFor+0x6c>)
+ 9ff64a8:	9303      	str	r3, [sp, #12]
+ 9ff64aa:	4b07      	ldr	r3, [pc, #28]	@ (9ff64c8 <CircusStreakInitializeFor+0x70>)
+ 9ff64ac:	0020      	movs	r0, r4
+ 9ff64ae:	9304      	str	r3, [sp, #16]
+ 9ff64b0:	9a00      	ldr	r2, [sp, #0]
+ 9ff64b2:	9b01      	ldr	r3, [sp, #4]
+ 9ff64b4:	a902      	add	r1, sp, #8
+ 9ff64b6:	950c      	str	r5, [sp, #48]	@ 0x30
+ 9ff64b8:	f7ff ffa4 	bl	9ff6404 <commit>
+ 9ff64bc:	e7d5      	b.n	9ff646a <CircusStreakInitializeFor+0x12>
+ 9ff64be:	46c0      	nop			@ (mov r8, r8)
+ 9ff64c0:	31534356 	.word	0x31534356
+ 9ff64c4:	ceacbca9 	.word	0xceacbca9
+ 9ff64c8:	00400001 	.word	0x00400001
+
+09ff64cc <CircusStreakBegin>:
+ 9ff64cc:	b570      	push	{r4, r5, r6, lr}
+ 9ff64ce:	b090      	sub	sp, #64	@ 0x40
+ 9ff64d0:	0004      	movs	r4, r0
+ 9ff64d2:	000d      	movs	r5, r1
+ 9ff64d4:	0016      	movs	r6, r2
+ 9ff64d6:	f7ff ff31 	bl	9ff633c <CircusStreakValid>
+ 9ff64da:	0003      	movs	r3, r0
+ 9ff64dc:	2002      	movs	r0, #2
+ 9ff64de:	2b00      	cmp	r3, #0
+ 9ff64e0:	d019      	beq.n	9ff6516 <CircusStreakBegin+0x4a>
+ 9ff64e2:	1d63      	adds	r3, r4, #5
+ 9ff64e4:	7fdb      	ldrb	r3, [r3, #31]
+ 9ff64e6:	3001      	adds	r0, #1
+ 9ff64e8:	2b00      	cmp	r3, #0
+ 9ff64ea:	d114      	bne.n	9ff6516 <CircusStreakBegin+0x4a>
+ 9ff64ec:	6963      	ldr	r3, [r4, #20]
+ 9ff64ee:	3003      	adds	r0, #3
+ 9ff64f0:	3301      	adds	r3, #1
+ 9ff64f2:	d010      	beq.n	9ff6516 <CircusStreakBegin+0x4a>
+ 9ff64f4:	0021      	movs	r1, r4
+ 9ff64f6:	4668      	mov	r0, sp
+ 9ff64f8:	f7ff fef8 	bl	9ff62ec <copy_owner>
+ 9ff64fc:	9b05      	ldr	r3, [sp, #20]
+ 9ff64fe:	3301      	adds	r3, #1
+ 9ff6500:	9305      	str	r3, [sp, #20]
+ 9ff6502:	466b      	mov	r3, sp
+ 9ff6504:	2201      	movs	r2, #1
+ 9ff6506:	3305      	adds	r3, #5
+ 9ff6508:	77da      	strb	r2, [r3, #31]
+ 9ff650a:	4669      	mov	r1, sp
+ 9ff650c:	0033      	movs	r3, r6
+ 9ff650e:	002a      	movs	r2, r5
+ 9ff6510:	0020      	movs	r0, r4
+ 9ff6512:	f7ff ff77 	bl	9ff6404 <commit>
+ 9ff6516:	b010      	add	sp, #64	@ 0x40
+ 9ff6518:	bc70      	pop	{r4, r5, r6}
+ 9ff651a:	bc02      	pop	{r1}
+ 9ff651c:	4708      	bx	r1
+
+09ff651e <CircusStreakArm>:
+ 9ff651e:	b570      	push	{r4, r5, r6, lr}
+ 9ff6520:	b090      	sub	sp, #64	@ 0x40
+ 9ff6522:	0004      	movs	r4, r0
+ 9ff6524:	000d      	movs	r5, r1
+ 9ff6526:	0016      	movs	r6, r2
+ 9ff6528:	f7ff ff08 	bl	9ff633c <CircusStreakValid>
+ 9ff652c:	0003      	movs	r3, r0
+ 9ff652e:	2002      	movs	r0, #2
+ 9ff6530:	2b00      	cmp	r3, #0
+ 9ff6532:	d019      	beq.n	9ff6568 <CircusStreakArm+0x4a>
+ 9ff6534:	1d63      	adds	r3, r4, #5
+ 9ff6536:	7fdb      	ldrb	r3, [r3, #31]
+ 9ff6538:	3001      	adds	r0, #1
+ 9ff653a:	2b01      	cmp	r3, #1
+ 9ff653c:	d114      	bne.n	9ff6568 <CircusStreakArm+0x4a>
+ 9ff653e:	69e3      	ldr	r3, [r4, #28]
+ 9ff6540:	3003      	adds	r0, #3
+ 9ff6542:	3301      	adds	r3, #1
+ 9ff6544:	d010      	beq.n	9ff6568 <CircusStreakArm+0x4a>
+ 9ff6546:	0021      	movs	r1, r4
+ 9ff6548:	4668      	mov	r0, sp
+ 9ff654a:	f7ff fecf 	bl	9ff62ec <copy_owner>
+ 9ff654e:	9b06      	ldr	r3, [sp, #24]
+ 9ff6550:	3301      	adds	r3, #1
+ 9ff6552:	9306      	str	r3, [sp, #24]
+ 9ff6554:	466b      	mov	r3, sp
+ 9ff6556:	2202      	movs	r2, #2
+ 9ff6558:	3305      	adds	r3, #5
+ 9ff655a:	77da      	strb	r2, [r3, #31]
+ 9ff655c:	4669      	mov	r1, sp
+ 9ff655e:	0033      	movs	r3, r6
+ 9ff6560:	002a      	movs	r2, r5
+ 9ff6562:	0020      	movs	r0, r4
+ 9ff6564:	f7ff ff4e 	bl	9ff6404 <commit>
+ 9ff6568:	b010      	add	sp, #64	@ 0x40
+ 9ff656a:	bc70      	pop	{r4, r5, r6}
+ 9ff656c:	bc02      	pop	{r1}
+ 9ff656e:	4708      	bx	r1
+
+09ff6570 <CircusStreakSettle>:
+ 9ff6570:	b5f0      	push	{r4, r5, r6, r7, lr}
+ 9ff6572:	b093      	sub	sp, #76	@ 0x4c
+ 9ff6574:	9301      	str	r3, [sp, #4]
+ 9ff6576:	0004      	movs	r4, r0
+ 9ff6578:	000e      	movs	r6, r1
+ 9ff657a:	0015      	movs	r5, r2
+ 9ff657c:	f7ff fede 	bl	9ff633c <CircusStreakValid>
+ 9ff6580:	0003      	movs	r3, r0
+ 9ff6582:	2002      	movs	r0, #2
+ 9ff6584:	2b00      	cmp	r3, #0
+ 9ff6586:	d03d      	beq.n	9ff6604 <CircusStreakSettle+0x94>
+ 9ff6588:	1e6b      	subs	r3, r5, #1
+ 9ff658a:	2b01      	cmp	r3, #1
+ 9ff658c:	d83a      	bhi.n	9ff6604 <CircusStreakSettle+0x94>
+ 9ff658e:	1d63      	adds	r3, r4, #5
+ 9ff6590:	7fdb      	ldrb	r3, [r3, #31]
+ 9ff6592:	2b01      	cmp	r3, #1
+ 9ff6594:	d10b      	bne.n	9ff65ae <CircusStreakSettle+0x3e>
+ 9ff6596:	3001      	adds	r0, #1
+ 9ff6598:	2e00      	cmp	r6, #0
+ 9ff659a:	d033      	beq.n	9ff6604 <CircusStreakSettle+0x94>
+ 9ff659c:	69e2      	ldr	r2, [r4, #28]
+ 9ff659e:	42b2      	cmp	r2, r6
+ 9ff65a0:	d130      	bne.n	9ff6604 <CircusStreakSettle+0x94>
+ 9ff65a2:	3407      	adds	r4, #7
+ 9ff65a4:	7fe2      	ldrb	r2, [r4, #31]
+ 9ff65a6:	42aa      	cmp	r2, r5
+ 9ff65a8:	d12c      	bne.n	9ff6604 <CircusStreakSettle+0x94>
+ 9ff65aa:	0018      	movs	r0, r3
+ 9ff65ac:	e02a      	b.n	9ff6604 <CircusStreakSettle+0x94>
+ 9ff65ae:	2003      	movs	r0, #3
+ 9ff65b0:	2b02      	cmp	r3, #2
+ 9ff65b2:	d127      	bne.n	9ff6604 <CircusStreakSettle+0x94>
+ 9ff65b4:	69a7      	ldr	r7, [r4, #24]
+ 9ff65b6:	3001      	adds	r0, #1
+ 9ff65b8:	42b7      	cmp	r7, r6
+ 9ff65ba:	d123      	bne.n	9ff6604 <CircusStreakSettle+0x94>
+ 9ff65bc:	0021      	movs	r1, r4
+ 9ff65be:	a802      	add	r0, sp, #8
+ 9ff65c0:	f7ff fe94 	bl	9ff62ec <copy_owner>
+ 9ff65c4:	2201      	movs	r2, #1
+ 9ff65c6:	ab02      	add	r3, sp, #8
+ 9ff65c8:	3307      	adds	r3, #7
+ 9ff65ca:	77dd      	strb	r5, [r3, #31]
+ 9ff65cc:	ab02      	add	r3, sp, #8
+ 9ff65ce:	3305      	adds	r3, #5
+ 9ff65d0:	9709      	str	r7, [sp, #36]	@ 0x24
+ 9ff65d2:	77da      	strb	r2, [r3, #31]
+ 9ff65d4:	4295      	cmp	r5, r2
+ 9ff65d6:	d119      	bne.n	9ff660c <CircusStreakSettle+0x9c>
+ 9ff65d8:	ab02      	add	r3, sp, #8
+ 9ff65da:	8c1b      	ldrh	r3, [r3, #32]
+ 9ff65dc:	4a0d      	ldr	r2, [pc, #52]	@ (9ff6614 <CircusStreakSettle+0xa4>)
+ 9ff65de:	4293      	cmp	r3, r2
+ 9ff65e0:	d002      	beq.n	9ff65e8 <CircusStreakSettle+0x78>
+ 9ff65e2:	3301      	adds	r3, #1
+ 9ff65e4:	aa02      	add	r2, sp, #8
+ 9ff65e6:	8413      	strh	r3, [r2, #32]
+ 9ff65e8:	ab02      	add	r3, sp, #8
+ 9ff65ea:	aa02      	add	r2, sp, #8
+ 9ff65ec:	8c1b      	ldrh	r3, [r3, #32]
+ 9ff65ee:	8c52      	ldrh	r2, [r2, #34]	@ 0x22
+ 9ff65f0:	429a      	cmp	r2, r3
+ 9ff65f2:	d201      	bcs.n	9ff65f8 <CircusStreakSettle+0x88>
+ 9ff65f4:	aa02      	add	r2, sp, #8
+ 9ff65f6:	8453      	strh	r3, [r2, #34]	@ 0x22
+ 9ff65f8:	0020      	movs	r0, r4
+ 9ff65fa:	9b18      	ldr	r3, [sp, #96]	@ 0x60
+ 9ff65fc:	9a01      	ldr	r2, [sp, #4]
+ 9ff65fe:	a902      	add	r1, sp, #8
+ 9ff6600:	f7ff ff00 	bl	9ff6404 <commit>
+ 9ff6604:	b013      	add	sp, #76	@ 0x4c
+ 9ff6606:	bcf0      	pop	{r4, r5, r6, r7}
+ 9ff6608:	bc02      	pop	{r1}
+ 9ff660a:	4708      	bx	r1
+ 9ff660c:	2300      	movs	r3, #0
+ 9ff660e:	aa02      	add	r2, sp, #8
+ 9ff6610:	8413      	strh	r3, [r2, #32]
+ 9ff6612:	e7f1      	b.n	9ff65f8 <CircusStreakSettle+0x88>
+ 9ff6614:	0000ffff 	.word	0x0000ffff
+
+09ff6618 <CircusStreakEnd>:
+ 9ff6618:	b5f0      	push	{r4, r5, r6, r7, lr}
+ 9ff661a:	b091      	sub	sp, #68	@ 0x44
+ 9ff661c:	001f      	movs	r7, r3
+ 9ff661e:	0004      	movs	r4, r0
+ 9ff6620:	000d      	movs	r5, r1
+ 9ff6622:	0016      	movs	r6, r2
+ 9ff6624:	f7ff fe8a 	bl	9ff633c <CircusStreakValid>
+ 9ff6628:	0003      	movs	r3, r0
+ 9ff662a:	2002      	movs	r0, #2
+ 9ff662c:	2b00      	cmp	r3, #0
+ 9ff662e:	d020      	beq.n	9ff6672 <CircusStreakEnd+0x5a>
+ 9ff6630:	1d63      	adds	r3, r4, #5
+ 9ff6632:	7fdb      	ldrb	r3, [r3, #31]
+ 9ff6634:	3801      	subs	r0, #1
+ 9ff6636:	2b00      	cmp	r3, #0
+ 9ff6638:	d01b      	beq.n	9ff6672 <CircusStreakEnd+0x5a>
+ 9ff663a:	2d00      	cmp	r5, #0
+ 9ff663c:	d002      	beq.n	9ff6644 <CircusStreakEnd+0x2c>
+ 9ff663e:	3002      	adds	r0, #2
+ 9ff6640:	2b01      	cmp	r3, #1
+ 9ff6642:	d116      	bne.n	9ff6672 <CircusStreakEnd+0x5a>
+ 9ff6644:	0021      	movs	r1, r4
+ 9ff6646:	4668      	mov	r0, sp
+ 9ff6648:	f7ff fe50 	bl	9ff62ec <copy_owner>
+ 9ff664c:	2d00      	cmp	r5, #0
+ 9ff664e:	d106      	bne.n	9ff665e <CircusStreakEnd+0x46>
+ 9ff6650:	466b      	mov	r3, sp
+ 9ff6652:	2203      	movs	r2, #3
+ 9ff6654:	841d      	strh	r5, [r3, #32]
+ 9ff6656:	3307      	adds	r3, #7
+ 9ff6658:	77da      	strb	r2, [r3, #31]
+ 9ff665a:	9b06      	ldr	r3, [sp, #24]
+ 9ff665c:	9307      	str	r3, [sp, #28]
+ 9ff665e:	466b      	mov	r3, sp
+ 9ff6660:	2200      	movs	r2, #0
+ 9ff6662:	3305      	adds	r3, #5
+ 9ff6664:	77da      	strb	r2, [r3, #31]
+ 9ff6666:	4669      	mov	r1, sp
+ 9ff6668:	003b      	movs	r3, r7
+ 9ff666a:	0032      	movs	r2, r6
+ 9ff666c:	0020      	movs	r0, r4
+ 9ff666e:	f7ff fec9 	bl	9ff6404 <commit>
+ 9ff6672:	b011      	add	sp, #68	@ 0x44
+ 9ff6674:	bcf0      	pop	{r4, r5, r6, r7}
+ 9ff6676:	bc02      	pop	{r1}
+ 9ff6678:	4708      	bx	r1
+
+09ff667a <CircusStreakRecover>:
+ 9ff667a:	b510      	push	{r4, lr}
+ 9ff667c:	0013      	movs	r3, r2
+ 9ff667e:	000a      	movs	r2, r1
+ 9ff6680:	2100      	movs	r1, #0
+ 9ff6682:	f7ff ffc9 	bl	9ff6618 <CircusStreakEnd>
+ 9ff6686:	bc10      	pop	{r4}
+ 9ff6688:	bc02      	pop	{r1}
+ 9ff668a:	4708      	bx	r1
+
+09ff668c <accept_load>:
+ 9ff668c:	b510      	push	{r4, lr}
+ 9ff668e:	f7ff fe55 	bl	9ff633c <CircusStreakValid>
+ 9ff6692:	bc10      	pop	{r4}
+ 9ff6694:	bc02      	pop	{r1}
+ 9ff6696:	4708      	bx	r1
+
+09ff6698 <CircusStreakLoadBytes>:
+ 9ff6698:	b570      	push	{r4, r5, r6, lr}
+ 9ff669a:	0004      	movs	r4, r0
+ 9ff669c:	0015      	movs	r5, r2
+ 9ff669e:	2002      	movs	r0, #2
+ 9ff66a0:	2c00      	cmp	r4, #0
+ 9ff66a2:	d01e      	beq.n	9ff66e2 <CircusStreakLoadBytes+0x4a>
+ 9ff66a4:	2900      	cmp	r1, #0
+ 9ff66a6:	d01c      	beq.n	9ff66e2 <CircusStreakLoadBytes+0x4a>
+ 9ff66a8:	2300      	movs	r3, #0
+ 9ff66aa:	5cca      	ldrb	r2, [r1, r3]
+ 9ff66ac:	54e2      	strb	r2, [r4, r3]
+ 9ff66ae:	3301      	adds	r3, #1
+ 9ff66b0:	2b40      	cmp	r3, #64	@ 0x40
+ 9ff66b2:	d1fa      	bne.n	9ff66aa <CircusStreakLoadBytes+0x12>
+ 9ff66b4:	0020      	movs	r0, r4
+ 9ff66b6:	f7ff fe41 	bl	9ff633c <CircusStreakValid>
+ 9ff66ba:	2800      	cmp	r0, #0
+ 9ff66bc:	d00b      	beq.n	9ff66d6 <CircusStreakLoadBytes+0x3e>
+ 9ff66be:	6aa3      	ldr	r3, [r4, #40]	@ 0x28
+ 9ff66c0:	2000      	movs	r0, #0
+ 9ff66c2:	42ab      	cmp	r3, r5
+ 9ff66c4:	d00d      	beq.n	9ff66e2 <CircusStreakLoadBytes+0x4a>
+ 9ff66c6:	0022      	movs	r2, r4
+ 9ff66c8:	0023      	movs	r3, r4
+ 9ff66ca:	0001      	movs	r1, r0
+ 9ff66cc:	3240      	adds	r2, #64	@ 0x40
+ 9ff66ce:	7019      	strb	r1, [r3, #0]
+ 9ff66d0:	3301      	adds	r3, #1
+ 9ff66d2:	4293      	cmp	r3, r2
+ 9ff66d4:	d1fb      	bne.n	9ff66ce <CircusStreakLoadBytes+0x36>
+ 9ff66d6:	2300      	movs	r3, #0
+ 9ff66d8:	0029      	movs	r1, r5
+ 9ff66da:	0020      	movs	r0, r4
+ 9ff66dc:	4a02      	ldr	r2, [pc, #8]	@ (9ff66e8 <CircusStreakLoadBytes+0x50>)
+ 9ff66de:	f7ff febb 	bl	9ff6458 <CircusStreakInitializeFor>
+ 9ff66e2:	bc70      	pop	{r4, r5, r6}
+ 9ff66e4:	bc02      	pop	{r1}
+ 9ff66e6:	4708      	bx	r1
+ 9ff66e8:	09ff668d 	.word	0x09ff668d
+
+09ff66ec <CircusStreakMergeSector>:
+ 9ff66ec:	b570      	push	{r4, r5, r6, lr}
+ 9ff66ee:	0004      	movs	r4, r0
+ 9ff66f0:	000e      	movs	r6, r1
+ 9ff66f2:	0015      	movs	r5, r2
+ 9ff66f4:	2800      	cmp	r0, #0
+ 9ff66f6:	d01f      	beq.n	9ff6738 <CircusStreakMergeSector+0x4c>
+ 9ff66f8:	2900      	cmp	r1, #0
+ 9ff66fa:	d01d      	beq.n	9ff6738 <CircusStreakMergeSector+0x4c>
+ 9ff66fc:	0010      	movs	r0, r2
+ 9ff66fe:	f7ff fe1d 	bl	9ff633c <CircusStreakValid>
+ 9ff6702:	2800      	cmp	r0, #0
+ 9ff6704:	d018      	beq.n	9ff6738 <CircusStreakMergeSector+0x4c>
+ 9ff6706:	20ff      	movs	r0, #255	@ 0xff
+ 9ff6708:	2180      	movs	r1, #128	@ 0x80
+ 9ff670a:	2300      	movs	r3, #0
+ 9ff670c:	0100      	lsls	r0, r0, #4
+ 9ff670e:	0149      	lsls	r1, r1, #5
+ 9ff6710:	2200      	movs	r2, #0
+ 9ff6712:	4283      	cmp	r3, r0
+ 9ff6714:	d200      	bcs.n	9ff6718 <CircusStreakMergeSector+0x2c>
+ 9ff6716:	5cf2      	ldrb	r2, [r6, r3]
+ 9ff6718:	54e2      	strb	r2, [r4, r3]
+ 9ff671a:	3301      	adds	r3, #1
+ 9ff671c:	428b      	cmp	r3, r1
+ 9ff671e:	d1f7      	bne.n	9ff6710 <CircusStreakMergeSector+0x24>
+ 9ff6720:	2300      	movs	r3, #0
+ 9ff6722:	4a06      	ldr	r2, [pc, #24]	@ (9ff673c <CircusStreakMergeSector+0x50>)
+ 9ff6724:	18a4      	adds	r4, r4, r2
+ 9ff6726:	5cea      	ldrb	r2, [r5, r3]
+ 9ff6728:	54e2      	strb	r2, [r4, r3]
+ 9ff672a:	3301      	adds	r3, #1
+ 9ff672c:	2b40      	cmp	r3, #64	@ 0x40
+ 9ff672e:	d1fa      	bne.n	9ff6726 <CircusStreakMergeSector+0x3a>
+ 9ff6730:	2000      	movs	r0, #0
+ 9ff6732:	bc70      	pop	{r4, r5, r6}
+ 9ff6734:	bc02      	pop	{r1}
+ 9ff6736:	4708      	bx	r1
+ 9ff6738:	2002      	movs	r0, #2
+ 9ff673a:	e7fa      	b.n	9ff6732 <CircusStreakMergeSector+0x46>
+ 9ff673c:	00000b64 	.word	0x00000b64
+
+09ff6740 <CircusStreakPersistedEqual>:
+ 9ff6740:	b570      	push	{r4, r5, r6, lr}
+ 9ff6742:	0004      	movs	r4, r0
+ 9ff6744:	000d      	movs	r5, r1
+ 9ff6746:	f7ff fdf9 	bl	9ff633c <CircusStreakValid>
+ 9ff674a:	2800      	cmp	r0, #0
+ 9ff674c:	d010      	beq.n	9ff6770 <CircusStreakPersistedEqual+0x30>
+ 9ff674e:	0028      	movs	r0, r5
+ 9ff6750:	f7ff fdf4 	bl	9ff633c <CircusStreakValid>
+ 9ff6754:	2800      	cmp	r0, #0
+ 9ff6756:	d00b      	beq.n	9ff6770 <CircusStreakPersistedEqual+0x30>
+ 9ff6758:	2300      	movs	r3, #0
+ 9ff675a:	5ce1      	ldrb	r1, [r4, r3]
+ 9ff675c:	5cea      	ldrb	r2, [r5, r3]
+ 9ff675e:	4291      	cmp	r1, r2
+ 9ff6760:	d106      	bne.n	9ff6770 <CircusStreakPersistedEqual+0x30>
+ 9ff6762:	3301      	adds	r3, #1
+ 9ff6764:	2b40      	cmp	r3, #64	@ 0x40
+ 9ff6766:	d1f8      	bne.n	9ff675a <CircusStreakPersistedEqual+0x1a>
+ 9ff6768:	2001      	movs	r0, #1
+ 9ff676a:	bc70      	pop	{r4, r5, r6}
+ 9ff676c:	bc02      	pop	{r1}
+ 9ff676e:	4708      	bx	r1
+ 9ff6770:	2000      	movs	r0, #0
+ 9ff6772:	e7fa      	b.n	9ff676a <CircusStreakPersistedEqual+0x2a>
+
+09ff6774 <save_identity>:
+ 9ff6774:	22fe      	movs	r2, #254	@ 0xfe
+ 9ff6776:	4b0a      	ldr	r3, [pc, #40]	@ (9ff67a0 <save_identity+0x2c>)
+ 9ff6778:	681b      	ldr	r3, [r3, #0]
+ 9ff677a:	0612      	lsls	r2, r2, #24
+ 9ff677c:	1899      	adds	r1, r3, r2
+ 9ff677e:	22fc      	movs	r2, #252	@ 0xfc
+ 9ff6780:	2000      	movs	r0, #0
+ 9ff6782:	0292      	lsls	r2, r2, #10
+ 9ff6784:	4291      	cmp	r1, r2
+ 9ff6786:	d809      	bhi.n	9ff679c <save_identity+0x28>
+ 9ff6788:	7a99      	ldrb	r1, [r3, #10]
+ 9ff678a:	7ad8      	ldrb	r0, [r3, #11]
+ 9ff678c:	7b1a      	ldrb	r2, [r3, #12]
+ 9ff678e:	0200      	lsls	r0, r0, #8
+ 9ff6790:	7b5b      	ldrb	r3, [r3, #13]
+ 9ff6792:	0412      	lsls	r2, r2, #16
+ 9ff6794:	4310      	orrs	r0, r2
+ 9ff6796:	4308      	orrs	r0, r1
+ 9ff6798:	061b      	lsls	r3, r3, #24
+ 9ff679a:	4318      	orrs	r0, r3
+ 9ff679c:	4770      	bx	lr
+ 9ff679e:	46c0      	nop			@ (mov r8, r8)
+ 9ff67a0:	0300504c 	.word	0x0300504c
+
+09ff67a4 <valid>:
+ 9ff67a4:	b510      	push	{r4, lr}
+ 9ff67a6:	4c07      	ldr	r4, [pc, #28]	@ (9ff67c4 <valid+0x20>)
+ 9ff67a8:	0020      	movs	r0, r4
+ 9ff67aa:	f7ff fdc7 	bl	9ff633c <CircusStreakValid>
+ 9ff67ae:	2800      	cmp	r0, #0
+ 9ff67b0:	d005      	beq.n	9ff67be <valid+0x1a>
+ 9ff67b2:	6aa4      	ldr	r4, [r4, #40]	@ 0x28
+ 9ff67b4:	f7ff ffde 	bl	9ff6774 <save_identity>
+ 9ff67b8:	1a20      	subs	r0, r4, r0
+ 9ff67ba:	4243      	negs	r3, r0
+ 9ff67bc:	4158      	adcs	r0, r3
+ 9ff67be:	bc10      	pop	{r4}
+ 9ff67c0:	bc02      	pop	{r1}
+ 9ff67c2:	4708      	bx	r1
+ 9ff67c4:	0203db00 	.word	0x0203db00
+
+09ff67c8 <load>:
+ 9ff67c8:	b510      	push	{r4, lr}
+ 9ff67ca:	b090      	sub	sp, #64	@ 0x40
+ 9ff67cc:	2340      	movs	r3, #64	@ 0x40
+ 9ff67ce:	466a      	mov	r2, sp
+ 9ff67d0:	4908      	ldr	r1, [pc, #32]	@ (9ff67f4 <load+0x2c>)
+ 9ff67d2:	201f      	movs	r0, #31
+ 9ff67d4:	4c08      	ldr	r4, [pc, #32]	@ (9ff67f8 <load+0x30>)
+ 9ff67d6:	f000 f813 	bl	9ff6800 <load+0x38>
+ 9ff67da:	f7ff ffcb 	bl	9ff6774 <save_identity>
+ 9ff67de:	4669      	mov	r1, sp
+ 9ff67e0:	0002      	movs	r2, r0
+ 9ff67e2:	4806      	ldr	r0, [pc, #24]	@ (9ff67fc <load+0x34>)
+ 9ff67e4:	f7ff ff58 	bl	9ff6698 <CircusStreakLoadBytes>
+ 9ff67e8:	4243      	negs	r3, r0
+ 9ff67ea:	4158      	adcs	r0, r3
+ 9ff67ec:	b010      	add	sp, #64	@ 0x40
+ 9ff67ee:	bc10      	pop	{r4}
+ 9ff67f0:	bc02      	pop	{r1}
+ 9ff67f2:	4708      	bx	r1
+ 9ff67f4:	00000b64 	.word	0x00000b64
+ 9ff67f8:	081c2a55 	.word	0x081c2a55
+ 9ff67fc:	0203db00 	.word	0x0203db00
+ 9ff6800:	4720      	bx	r4
+ 9ff6802:	46c0      	nop			@ (mov r8, r8)
+
+09ff6804 <persist>:
+ 9ff6804:	b530      	push	{r4, r5, lr}
+ 9ff6806:	0004      	movs	r4, r0
+ 9ff6808:	b091      	sub	sp, #68	@ 0x44
+ 9ff680a:	4811      	ldr	r0, [pc, #68]	@ (9ff6850 <persist+0x4c>)
+ 9ff680c:	f7ff fac8 	bl	9ff5da0 <VegaSaveFinalize>
+ 9ff6810:	0022      	movs	r2, r4
+ 9ff6812:	4910      	ldr	r1, [pc, #64]	@ (9ff6854 <persist+0x50>)
+ 9ff6814:	4810      	ldr	r0, [pc, #64]	@ (9ff6858 <persist+0x54>)
+ 9ff6816:	f7ff ff69 	bl	9ff66ec <CircusStreakMergeSector>
+ 9ff681a:	2800      	cmp	r0, #0
+ 9ff681c:	d004      	beq.n	9ff6828 <persist+0x24>
+ 9ff681e:	2000      	movs	r0, #0
+ 9ff6820:	b011      	add	sp, #68	@ 0x44
+ 9ff6822:	bc30      	pop	{r4, r5}
+ 9ff6824:	bc02      	pop	{r1}
+ 9ff6826:	4708      	bx	r1
+ 9ff6828:	201f      	movs	r0, #31
+ 9ff682a:	490b      	ldr	r1, [pc, #44]	@ (9ff6858 <persist+0x54>)
+ 9ff682c:	4b0b      	ldr	r3, [pc, #44]	@ (9ff685c <persist+0x58>)
+ 9ff682e:	f000 f81b 	bl	9ff6868 <persist+0x64>
+ 9ff6832:	2801      	cmp	r0, #1
+ 9ff6834:	d1f3      	bne.n	9ff681e <persist+0x1a>
+ 9ff6836:	2340      	movs	r3, #64	@ 0x40
+ 9ff6838:	466a      	mov	r2, sp
+ 9ff683a:	4909      	ldr	r1, [pc, #36]	@ (9ff6860 <persist+0x5c>)
+ 9ff683c:	4d09      	ldr	r5, [pc, #36]	@ (9ff6864 <persist+0x60>)
+ 9ff683e:	301e      	adds	r0, #30
+ 9ff6840:	f000 f813 	bl	9ff686a <persist+0x66>
+ 9ff6844:	4669      	mov	r1, sp
+ 9ff6846:	0020      	movs	r0, r4
+ 9ff6848:	f7ff ff7a 	bl	9ff6740 <CircusStreakPersistedEqual>
+ 9ff684c:	e7e8      	b.n	9ff6820 <persist+0x1c>
+ 9ff684e:	46c0      	nop			@ (mov r8, r8)
+ 9ff6850:	0203d000 	.word	0x0203d000
+ 9ff6854:	0203cf9c 	.word	0x0203cf9c
+ 9ff6858:	020399b0 	.word	0x020399b0
+ 9ff685c:	080da9c1 	.word	0x080da9c1
+ 9ff6860:	00000b64 	.word	0x00000b64
+ 9ff6864:	081c2a55 	.word	0x081c2a55
+ 9ff6868:	4718      	bx	r3
+ 9ff686a:	4728      	bx	r5
+
+09ff686c <restore_cache_if_field>:
+ 9ff686c:	4b13      	ldr	r3, [pc, #76]	@ (9ff68bc <restore_cache_if_field+0x50>)
+ 9ff686e:	681a      	ldr	r2, [r3, #0]
+ 9ff6870:	4b13      	ldr	r3, [pc, #76]	@ (9ff68c0 <restore_cache_if_field+0x54>)
+ 9ff6872:	b510      	push	{r4, lr}
+ 9ff6874:	429a      	cmp	r2, r3
+ 9ff6876:	d10d      	bne.n	9ff6894 <restore_cache_if_field+0x28>
+ 9ff6878:	4b12      	ldr	r3, [pc, #72]	@ (9ff68c4 <restore_cache_if_field+0x58>)
+ 9ff687a:	f000 f82d 	bl	9ff68d8 <restore_cache_if_field+0x6c>
+ 9ff687e:	2800      	cmp	r0, #0
+ 9ff6880:	d108      	bne.n	9ff6894 <restore_cache_if_field+0x28>
+ 9ff6882:	4b11      	ldr	r3, [pc, #68]	@ (9ff68c8 <restore_cache_if_field+0x5c>)
+ 9ff6884:	4a11      	ldr	r2, [pc, #68]	@ (9ff68cc <restore_cache_if_field+0x60>)
+ 9ff6886:	6819      	ldr	r1, [r3, #0]
+ 9ff6888:	4291      	cmp	r1, r2
+ 9ff688a:	d006      	beq.n	9ff689a <restore_cache_if_field+0x2e>
+ 9ff688c:	f7ff ff9c 	bl	9ff67c8 <load>
+ 9ff6890:	2800      	cmp	r0, #0
+ 9ff6892:	d10c      	bne.n	9ff68ae <restore_cache_if_field+0x42>
+ 9ff6894:	bc10      	pop	{r4}
+ 9ff6896:	bc01      	pop	{r0}
+ 9ff6898:	4700      	bx	r0
+ 9ff689a:	4a0d      	ldr	r2, [pc, #52]	@ (9ff68d0 <restore_cache_if_field+0x64>)
+ 9ff689c:	6859      	ldr	r1, [r3, #4]
+ 9ff689e:	4291      	cmp	r1, r2
+ 9ff68a0:	d1f4      	bne.n	9ff688c <restore_cache_if_field+0x20>
+ 9ff68a2:	6a9c      	ldr	r4, [r3, #40]	@ 0x28
+ 9ff68a4:	f7ff ff66 	bl	9ff6774 <save_identity>
+ 9ff68a8:	4284      	cmp	r4, r0
+ 9ff68aa:	d1ef      	bne.n	9ff688c <restore_cache_if_field+0x20>
+ 9ff68ac:	e7f2      	b.n	9ff6894 <restore_cache_if_field+0x28>
+ 9ff68ae:	4b09      	ldr	r3, [pc, #36]	@ (9ff68d4 <restore_cache_if_field+0x68>)
+ 9ff68b0:	7fdb      	ldrb	r3, [r3, #31]
+ 9ff68b2:	2b00      	cmp	r3, #0
+ 9ff68b4:	d0ee      	beq.n	9ff6894 <restore_cache_if_field+0x28>
+ 9ff68b6:	f7fe fb9f 	bl	9ff4ff8 <CircusRuntime_Recover>
+ 9ff68ba:	e7eb      	b.n	9ff6894 <restore_cache_if_field+0x28>
+ 9ff68bc:	03003134 	.word	0x03003134
+ 9ff68c0:	08055e75 	.word	0x08055e75
+ 9ff68c4:	08069219 	.word	0x08069219
+ 9ff68c8:	0203db00 	.word	0x0203db00
+ 9ff68cc:	31534356 	.word	0x31534356
+ 9ff68d0:	ceacbca9 	.word	0xceacbca9
+ 9ff68d4:	0203db05 	.word	0x0203db05
+ 9ff68d8:	4718      	bx	r3
+ 9ff68da:	46c0      	nop			@ (mov r8, r8)

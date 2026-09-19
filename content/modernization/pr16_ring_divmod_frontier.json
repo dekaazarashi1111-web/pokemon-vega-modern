@@ -1,0 +1,303 @@
+{
+  "schema_version": 1,
+  "task": "PR-P08-7-RING-DIVMOD-FRONTIER",
+  "source_head": "d51cfce034a86a14c151fbe6ef0135bc75ea635b",
+  "run_id": 35097533760,
+  "run_status_at_record": "in_progress",
+  "analysis": {
+    "classification": "UNREAD_SINGLE_THUNK_TARGET_BYTES_NOT_RETURN_OR_LEAP_CONTRACT",
+    "candidate": {
+      "size": 33554432,
+      "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b",
+      "crc32": "3EB17B36"
+    },
+    "target": 136086949,
+    "window": 512,
+    "new_windows": [
+      {
+        "start": 136086948,
+        "end": 136087460,
+        "hex": "002958d00123884200d2f74610b401242407a14204d2814202d209011b01f8e7e400a14204d2814202d249005b00f8e70022884200d3401a4c08a04205d3001b9c460124e3411a4363468c08a04205d3001b9c460224e3411a436346cc08a04205d3001b9c460324e3411a4363469c46002803d01b0901d00909d9e70e242407224001d110bcf74663460324e3411a4201d0cc08001963460224e3411a4201d08c08001963460124e3411a4201d04c08001910bcf74600b5fff7b6fc002000bdf0b582b0011ccc680d694f68002600220868012800d80122002a0dd0034e044a044b201c291c194362e00000ff07000000000000000008000022042800d10122002a23d10022022800d10122002a02d0002400254ee0281c204300284ad08a68044882420fda821a382a05dd0024002539e0000002fcffff291c201c01f034fb0d1c041c2fe00348824207dd024e002400252fe0ff030000ff07000009481618ff20211c0140002280290dd1002a0bd10130211c0140101c0843002808d08020002103e0ff0300007f20002124184d411848854207d9eb076208181c104369080d1c041c01362b06220a181c1043290a0d1c041c0094104a2a4001980f490840104301906a460e49081c064031010d48d38818400843d080f9017f20d37918400843d07100990198009001910098019902b0f0bdffffff1fffff0f000000f0ff",
+        "identity": {
+          "size": 512,
+          "sha256": "1a51541a60a2ce2868dc3c5521c0c72c54b1ee56ac58c9a4cc782384bddac268"
+        }
+      }
+    ],
+    "new_window_bytes": 512,
+    "saved_bytes_reused": 0,
+    "old_unread_targets": [
+      134647037,
+      134647989,
+      134648233,
+      134648273,
+      135346165,
+      151613701,
+      154152717,
+      154155097,
+      154635157,
+      154635821,
+      154635823,
+      154635825,
+      154639241,
+      154639243,
+      154917233,
+      154917289,
+      154922465,
+      154922573
+    ],
+    "old_frontier_removed": false,
+    "all_callers_resolved": false,
+    "all_runtime_owners_excluded": false,
+    "external_return_or_abi_proven": false,
+    "remainder_semantics_proven": false,
+    "leap_year_suffix_proven": false,
+    "caller_pointer_size_limit_proven": false,
+    "physical_hardware_behavior_proven": false,
+    "ring_acquisition_accepted": false,
+    "release_ready": false,
+    "rom_changes": 0,
+    "new_emulator_processes": 0,
+    "accepted_native_cases_replayed": 0,
+    "prior_abi_classifications_replayed": 0,
+    "candidate_reconstructions": 1,
+    "full_rom_scans": 0
+  },
+  "source_bindings": {
+    "scripts/pr16_ring_followup_v2.py": {
+      "size": 11453,
+      "sha256": "71e33dbe40cd8988e185256821e33e6a1e06e4eddeb8ee6a3eb9047a4d3c49f7"
+    },
+    "scripts/pr16_ring_divmod_frontier.py": {
+      "size": 6322,
+      "sha256": "2ef5f981c63f087a1793fb1826188b875e591025e0a08042450dac58d93a24d5"
+    },
+    "tests/test_pr16_ring_divmod_frontier.py": {
+      "size": 2919,
+      "sha256": "ca2d350722f7b8b993c80e5367dcd22e635742cdeb2574b27a44d2ae0bcc9bcd"
+    },
+    ".github/workflows/pr16-ring-divmod-frontier.yml": {
+      "size": 1914,
+      "sha256": "6bc5d69bb2c169c7bd9623f2399684cc6d636646a656aef136b89b5e64d60613"
+    },
+    "content/modernization/pr16_ring_clock_contracts.json": {
+      "size": 20155,
+      "sha256": "937753132d8a1546f8ffb7b2e815b773ce58dcd67079d46cab4e335f4b1089be"
+    },
+    "content/modernization/pr16_bp_chooser_checkpoint.json": {
+      "size": 9442,
+      "sha256": "853ed41b6abcfb63651aab136951a53c8c89ec635f769e8466327ba3a0c0ae41"
+    },
+    "scripts/pr16_resume.py": {
+      "size": 26649,
+      "sha256": "b0ec73bf933e46f7b254057559b0c637a2d1a9b625b08f348aa8308ea00dee5a"
+    },
+    "scripts/pr16_ring_compiled_record.py": {
+      "size": 13116,
+      "sha256": "768c94e59983d27bbf0ed46d6ba60008352a3a67e11612b18936e38b271e73ef"
+    },
+    "scripts/guard_private_files.py": {
+      "size": 5443,
+      "sha256": "143426a7403abf47396791f6ece3a3a374fa97fbf8bedc88169f636cddbcc905"
+    },
+    "content/modernization/pr16_ring_branch_frontier.json": {
+      "size": 18753,
+      "sha256": "3c1ea4c589af430f115a0a6ed02c330e41e609fb14fdc6f60e9c01090a80861b"
+    },
+    "content/modernization/pr16_ring_unread_frontier.json": {
+      "size": 13830,
+      "sha256": "1b7e08195d8c2d3f7d326e79102d760d6801eb9274ebf3e3131cc963b041a7df"
+    },
+    "content/modernization/pr16_ring_selector_owners.json": {
+      "size": 1704471,
+      "sha256": "64e746c4b085f85afb180bbf03299c84ae7efebd1e72964f5f0195e97d553727"
+    },
+    "content/modernization/pr16_ring_record_callers.json": {
+      "size": 102561,
+      "sha256": "622b9d69ef96fc0d975fc4e1bec5e08c4d07e85ee0ddea5a4f8fe538fa65d77a"
+    },
+    ".github/workflows/pr16-ring-callee-bytes.yml": {
+      "size": 6742,
+      "sha256": "f8bab211f28662062bff281c538487d4bc2f06ff1c71e2d078da9bbe52977d3d"
+    },
+    "scripts/pr16_ring_zero_bytes.py": {
+      "size": 16741,
+      "sha256": "ef6255772fdc3153ec4518888af94df1c27f15d028283d81f901e1b5b2e87998"
+    },
+    "scripts/pr16_ring_record_callers.py": {
+      "size": 9264,
+      "sha256": "d30434a3ea9abdcd48c73c5265feafb268069dac8c7abf0e5117ad43e215bbfd"
+    },
+    "scripts/pr16_ring_branch_frontier.py": {
+      "size": 10233,
+      "sha256": "9fe8b6d2697127d0dcefa4afecd1b0365bdc51f3a3638b03acc63ea0987c3aff"
+    },
+    "scripts/pr16_ring_flagset_continuation.py": {
+      "size": 19471,
+      "sha256": "10f6aa42d04f81385e42ff1987ca325c6a1bab52264c6591c9de7e8841f10e33"
+    }
+  },
+  "focused_tests": {
+    "tests_run": 14,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "successful": true
+  },
+  "prior_actions_verified_without_replay": [
+    {
+      "id": 35091501711,
+      "head_sha": "f5a25d8284eea63dce42c73f4adbb35f9f0ea5e0",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34946969126,
+      "head_sha": "0b7497b575a3180a045f2be377386490f192a012",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "actions_observed_before_record": [
+    {
+      "id": 35097536480,
+      "name": "source-validation",
+      "head_sha": "d51cfce034a86a14c151fbe6ef0135bc75ea635b",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35097536535,
+      "name": "p03-forgetting-ci",
+      "head_sha": "d51cfce034a86a14c151fbe6ef0135bc75ea635b",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35097533760,
+      "name": "未読081C85A5だけを保存",
+      "head_sha": "d51cfce034a86a14c151fbe6ef0135bc75ea635b",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35097533673,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "d51cfce034a86a14c151fbe6ef0135bc75ea635b",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35097533448,
+      "name": "p03-forgetting-ci",
+      "head_sha": "d51cfce034a86a14c151fbe6ef0135bc75ea635b",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35097533473,
+      "name": "source-validation",
+      "head_sha": "d51cfce034a86a14c151fbe6ef0135bc75ea635b",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35097533418,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "d51cfce034a86a14c151fbe6ef0135bc75ea635b",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35091570788,
+      "name": "p03-forgetting-ci",
+      "head_sha": "f8fa61a0ec62cd4bfa3a32fffc9e0a93b4db30ca",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35091571045,
+      "name": "source-validation",
+      "head_sha": "f8fa61a0ec62cd4bfa3a32fffc9e0a93b4db30ca",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35091504833,
+      "name": "p03-forgetting-ci",
+      "head_sha": "f5a25d8284eea63dce42c73f4adbb35f9f0ea5e0",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35091504807,
+      "name": "source-validation",
+      "head_sha": "f5a25d8284eea63dce42c73f4adbb35f9f0ea5e0",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35091501635,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "f5a25d8284eea63dce42c73f4adbb35f9f0ea5e0",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35091501711,
+      "name": "保存GPIO2delegate・月表境界・中継契約",
+      "head_sha": "f5a25d8284eea63dce42c73f4adbb35f9f0ea5e0",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35091501692,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "f5a25d8284eea63dce42c73f4adbb35f9f0ea5e0",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35091501646,
+      "name": "p03-forgetting-ci",
+      "head_sha": "f5a25d8284eea63dce42c73f4adbb35f9f0ea5e0",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35091501705,
+      "name": "source-validation",
+      "head_sha": "f5a25d8284eea63dce42c73f4adbb35f9f0ea5e0",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35090375597,
+      "name": "source-validation",
+      "head_sha": "e0ecbcda36b6cbd27af9ae04dd4a20162ba44285",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35090375744,
+      "name": "p03-forgetting-ci",
+      "head_sha": "e0ecbcda36b6cbd27af9ae04dd4a20162ba44285",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35090185281,
+      "name": "p03-forgetting-ci",
+      "head_sha": "d202443b94604ebffa1396104eec495611480e46",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35090185334,
+      "name": "source-validation",
+      "head_sha": "d202443b94604ebffa1396104eec495611480e46",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ]
+}

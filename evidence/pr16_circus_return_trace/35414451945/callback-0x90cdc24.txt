@@ -1,0 +1,70 @@
+
+.local/pr16-streak-input/candidate.gba:     file format binary
+
+
+Disassembly of section .data:
+
+090cdc24 <.data+0x10cdc24>:
+ 90cdc24:	4b28      	ldr	r3, [pc, #160]	@ (0x90cdcc8)
+ 90cdc26:	681b      	ldr	r3, [r3, #0]
+ 90cdc28:	b510      	push	{r4, lr}
+ 90cdc2a:	019b      	lsls	r3, r3, #6
+ 90cdc2c:	d548      	bpl.n	0x90cdcc0
+ 90cdc2e:	4b27      	ldr	r3, [pc, #156]	@ (0x90cdccc)
+ 90cdc30:	4c27      	ldr	r4, [pc, #156]	@ (0x90cdcd0)
+ 90cdc32:	8819      	ldrh	r1, [r3, #0]
+ 90cdc34:	2010      	movs	r0, #16
+ 90cdc36:	f003 fbf8 	bl	0x90d142a
+ 90cdc3a:	4b26      	ldr	r3, [pc, #152]	@ (0x90cdcd4)
+ 90cdc3c:	2012      	movs	r0, #18
+ 90cdc3e:	8819      	ldrh	r1, [r3, #0]
+ 90cdc40:	f003 fbf3 	bl	0x90d142a
+ 90cdc44:	4b24      	ldr	r3, [pc, #144]	@ (0x90cdcd8)
+ 90cdc46:	2014      	movs	r0, #20
+ 90cdc48:	8819      	ldrh	r1, [r3, #0]
+ 90cdc4a:	f003 fbee 	bl	0x90d142a
+ 90cdc4e:	4b23      	ldr	r3, [pc, #140]	@ (0x90cdcdc)
+ 90cdc50:	2016      	movs	r0, #22
+ 90cdc52:	8819      	ldrh	r1, [r3, #0]
+ 90cdc54:	f003 fbe9 	bl	0x90d142a
+ 90cdc58:	4b21      	ldr	r3, [pc, #132]	@ (0x90cdce0)
+ 90cdc5a:	2018      	movs	r0, #24
+ 90cdc5c:	8819      	ldrh	r1, [r3, #0]
+ 90cdc5e:	f003 fbe4 	bl	0x90d142a
+ 90cdc62:	4b20      	ldr	r3, [pc, #128]	@ (0x90cdce4)
+ 90cdc64:	201a      	movs	r0, #26
+ 90cdc66:	8819      	ldrh	r1, [r3, #0]
+ 90cdc68:	f003 fbdf 	bl	0x90d142a
+ 90cdc6c:	4b1e      	ldr	r3, [pc, #120]	@ (0x90cdce8)
+ 90cdc6e:	201c      	movs	r0, #28
+ 90cdc70:	8819      	ldrh	r1, [r3, #0]
+ 90cdc72:	f003 fbda 	bl	0x90d142a
+ 90cdc76:	4b1d      	ldr	r3, [pc, #116]	@ (0x90cdcec)
+ 90cdc78:	201e      	movs	r0, #30
+ 90cdc7a:	8819      	ldrh	r1, [r3, #0]
+ 90cdc7c:	f003 fbd5 	bl	0x90d142a
+ 90cdc80:	4b1b      	ldr	r3, [pc, #108]	@ (0x90cdcf0)
+ 90cdc82:	2040      	movs	r0, #64	@ 0x40
+ 90cdc84:	8819      	ldrh	r1, [r3, #0]
+ 90cdc86:	f003 fbd0 	bl	0x90d142a
+ 90cdc8a:	4b1a      	ldr	r3, [pc, #104]	@ (0x90cdcf4)
+ 90cdc8c:	2044      	movs	r0, #68	@ 0x44
+ 90cdc8e:	8819      	ldrh	r1, [r3, #0]
+ 90cdc90:	f003 fbcb 	bl	0x90d142a
+ 90cdc94:	4b18      	ldr	r3, [pc, #96]	@ (0x90cdcf8)
+ 90cdc96:	2042      	movs	r0, #66	@ 0x42
+ 90cdc98:	8819      	ldrh	r1, [r3, #0]
+ 90cdc9a:	f003 fbc6 	bl	0x90d142a
+ 90cdc9e:	4b17      	ldr	r3, [pc, #92]	@ (0x90cdcfc)
+ 90cdca0:	2046      	movs	r0, #70	@ 0x46
+ 90cdca2:	8819      	ldrh	r1, [r3, #0]
+ 90cdca4:	f003 fbc1 	bl	0x90d142a
+ 90cdca8:	4b15      	ldr	r3, [pc, #84]	@ (0x90cdd00)
+ 90cdcaa:	f003 fbbd 	bl	0x90d1428
+ 90cdcae:	4b15      	ldr	r3, [pc, #84]	@ (0x90cdd04)
+ 90cdcb0:	f003 fbba 	bl	0x90d1428
+ 90cdcb4:	f022 ff3e 	bl	0x90f0b34
+ 90cdcb8:	4b13      	ldr	r3, [pc, #76]	@ (0x90cdd08)
+ 90cdcba:	f003 fbb5 	bl	0x90d1428
+ 90cdcbe:	bd10      	pop	{r4, pc}
+ 90cdcc0:	f7e1 ff6e 	bl	0x90afba0

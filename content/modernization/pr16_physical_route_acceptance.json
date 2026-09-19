@@ -1,0 +1,215 @@
+{
+  "accepted_new_native_cores": 40,
+  "accepted_new_native_processes": 15,
+  "candidate": {
+    "sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
+    "size": 33554432
+  },
+  "clean_rom_full_regeneration_verified": false,
+  "forms": {
+    "cases": [
+      {
+        "automatic_saves": 2,
+        "case": "heat-roundtrip",
+        "fresh_cores": 3,
+        "manual_saves": 2,
+        "operations": 2
+      },
+      {
+        "automatic_saves": 2,
+        "case": "wash-roundtrip",
+        "fresh_cores": 3,
+        "manual_saves": 2,
+        "operations": 2
+      },
+      {
+        "automatic_saves": 2,
+        "case": "frost-roundtrip",
+        "fresh_cores": 3,
+        "manual_saves": 2,
+        "operations": 2
+      },
+      {
+        "automatic_saves": 2,
+        "case": "fan-roundtrip",
+        "fresh_cores": 3,
+        "manual_saves": 2,
+        "operations": 2
+      },
+      {
+        "automatic_saves": 2,
+        "case": "mow-roundtrip",
+        "fresh_cores": 3,
+        "manual_saves": 2,
+        "operations": 2
+      },
+      {
+        "automatic_saves": 1,
+        "case": "compact-removal",
+        "fresh_cores": 2,
+        "manual_saves": 1,
+        "operations": 1
+      },
+      {
+        "automatic_saves": 0,
+        "case": "full-denied",
+        "fresh_cores": 2,
+        "manual_saves": 1,
+        "operations": 1
+      },
+      {
+        "automatic_saves": 0,
+        "case": "root-cancel",
+        "fresh_cores": 2,
+        "manual_saves": 1,
+        "operations": 1
+      },
+      {
+        "automatic_saves": 0,
+        "case": "forms-cancel",
+        "fresh_cores": 2,
+        "manual_saves": 1,
+        "operations": 1
+      },
+      {
+        "automatic_saves": 0,
+        "case": "party-cancel",
+        "fresh_cores": 2,
+        "manual_saves": 1,
+        "operations": 1
+      }
+    ],
+    "fresh_cores": 25,
+    "full_p03_acceptance": false,
+    "new_native_processes": 10,
+    "other_form_and_egg_supply_accepted": false,
+    "physical_rotom_service_accepted": true,
+    "physical_service_interactions": 15,
+    "release_ready": false,
+    "starting_progress_individual_map_are_fixtures": true,
+    "successful_form_changes": 11
+  },
+  "full_p03_acceptance": false,
+  "full_p05_acceptance": false,
+  "full_p07_acceptance": false,
+  "happiny": {
+    "all_breeding_paths_accepted": false,
+    "cases": [
+      {
+        "case": "mother-incense-first",
+        "child_species": 364,
+        "fresh_cores": 3,
+        "hatch_steps": 10473,
+        "moves": [
+          1,
+          539,
+          461,
+          0
+        ]
+      },
+      {
+        "case": "father-incense-middle",
+        "child_species": 364,
+        "fresh_cores": 3,
+        "hatch_steps": 10473,
+        "moves": [
+          1,
+          539,
+          464,
+          0
+        ]
+      },
+      {
+        "case": "three-retained-full",
+        "child_species": 364,
+        "fresh_cores": 3,
+        "hatch_steps": 10473,
+        "moves": [
+          539,
+          461,
+          464,
+          357
+        ]
+      },
+      {
+        "case": "incense-no-eligible",
+        "child_species": 364,
+        "fresh_cores": 3,
+        "hatch_steps": 10473,
+        "moves": [
+          1,
+          539,
+          0,
+          0
+        ]
+      },
+      {
+        "case": "no-incense-chansey",
+        "child_species": 365,
+        "fresh_cores": 3,
+        "hatch_steps": 10473,
+        "moves": [
+          204,
+          343,
+          539,
+          549
+        ]
+      }
+    ],
+    "fresh_cores": 15,
+    "full_p03_acceptance": false,
+    "full_p07_acceptance": false,
+    "happiny_retained_incense_routes_accepted": true,
+    "historical_preserved_moves": [
+      461,
+      464,
+      357
+    ],
+    "new_native_processes": 5,
+    "parent_individuals_and_starting_map_are_fixtures": true,
+    "release_ready": false
+  },
+  "old_completion_receipt": "content/modernization/pr16_completion_acceptance.json",
+  "old_native_runs_relabelled": 0,
+  "origins": {
+    "forms": {
+      "artifact_id": 10183811918,
+      "path": "content/modernization/pr16_physical_route_evidence/34559437267/original.zip",
+      "run_id": 34559437267,
+      "sha256": "7468c5f2004da2272616b0c9871fc0f5b4ca5a5d66c75d87e873666f4a141615",
+      "size": 378861,
+      "tested_head": "228cce1ce94aa26990c1c977f018785bfe00d391"
+    },
+    "happiny": {
+      "artifact_id": 10183885718,
+      "path": "content/modernization/pr16_physical_route_evidence/34558529636/original.zip",
+      "run_id": 34558529636,
+      "sha256": "3754678bd00a095d33cde20201b9b2206d35a076cf127d07cfa9ce2318af556a",
+      "size": 97240,
+      "tested_head": "25925166a26f50edc5668cd5727b29498963f44e"
+    },
+    "p06_current": {
+      "artifact_id": 10182862548,
+      "path": "content/modernization/pr16_physical_route_evidence/34556825622/original.zip",
+      "run_id": 34556825622,
+      "sha256": "3078ef8a535ca5036518ab3bfc1b0fc930b14284acf467ca3113d22a862d5401",
+      "size": 13564,
+      "tested_head": "7ebc44f83ef2c4e4e49bb6151adc2e144acaff15"
+    }
+  },
+  "p03_remaining": "Reconcile other adopted form/egg supply consumers; Rotom physical menu is now accepted",
+  "p05_remaining": [
+    "natural capture/item acquisition into battle",
+    "actual Circus reception/admission into suppression"
+  ],
+  "p06": {
+    "new_emulator_runs": 0,
+    "p06_nested_phase_consistent": true,
+    "rom_changed": false,
+    "unit_tests": 34
+  },
+  "p07_remaining": "Reconcile remaining changed-consumer coverage; preserved Happiny incense routes are now accepted",
+  "release_ready": false,
+  "schema_version": 1,
+  "status": "PASS_SCOPED_NOT_PRODUCT"
+}

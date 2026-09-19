@@ -1,0 +1,225 @@
+name: modernization-final-integration
+run-name: Single Stage84 candidate - originals, regression and engineering handoff
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/modernization-final-integration.yml
+      - scripts/modernization_final_integration.py
+      - scripts/run_modernization_p06_decided_e2e.py
+      - tests/test_modernization_final_integration.py
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: modernization-final-integration-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  candidate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Fixed build and emulator toolchain
+        run: |
+          set -euo pipefail
+          mkdir -p .local/final-result/evidence .local/final-result/handoff
+          git rev-parse HEAD > .local/final-result/tested-head.txt
+          bash infra/setup_github_actions.sh --install > .local/final-result/toolchain.log 2>&1
+      - name: Preserve exact successful P06 original and API provenance
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          base=repos/dekaazarashi1111-web/pokemon-vega-modern/actions
+          out=.local/final-result/evidence
+          gh api "$base/runs/34444010444" > "$out/actions-run.json"
+          gh api "$base/runs/34444010444/jobs" > "$out/actions-jobs.json"
+          gh api "$base/artifacts/10138991421" > "$out/actions-artifact.json"
+          gh api "$base/artifacts/10138991421/zip" > "$out/original.zip"
+          python3 - <<'PY'
+          import json,pathlib
+          p=pathlib.Path('.local/final-result/evidence')
+          r=json.loads((p/'actions-run.json').read_bytes());a=json.loads((p/'actions-artifact.json').read_bytes());j=json.loads((p/'actions-jobs.json').read_bytes())
+          assert r['id']==34444010444 and r['head_sha']=='cc650b28fcb8e83668eb4e52fb2446124f4fbcbd'
+          assert r['status']=='completed' and r['conclusion']=='success' and r['run_attempt']==1
+          assert a['id']==10138991421 and a['workflow_run']['id']==r['id'] and a['workflow_run']['head_sha']==r['head_sha']
+          assert a['digest']=='sha256:2a9c4fcc3663c92a7ba0a0be0bf6da1f570bd0200ce9afcdfef3598875a97d08'
+          assert a['name']=='p06-decided-adjustments' and a['size_in_bytes']==213876
+          assert j['total_count']==len(j['jobs'])==1
+          job=j['jobs'][0];assert job['id']==102764761168 and job['conclusion']=='success'
+          assert all(s['conclusion']=='success' for s in job['steps'])
+          PY
+          python3 scripts/modernization_final_integration.py evidence "$out/original.zip" > "$out/acceptance.json"
+      - name: Existing P06 regressions and original/candidate mutation tests
+        env:
+          P06_ORIGINAL_ZIP: .local/final-result/evidence/original.zip
+        run: |
+          set -euo pipefail
+          python3 -m unittest discover -s tests -p test_modernization_p06_decided_e2e.py -v > .local/final-result/p06-tests.log 2>&1
+          python3 -m unittest discover -s tests -p test_modernization_final_integration.py -v > .local/final-result/final-tests.log 2>&1
+          python3 scripts/record_modernization_p03_forgetting.py > .local/final-result/retained-forgetting.json
+          python3 scripts/record_modernization_p03_relearner.py > .local/final-result/retained-relearner.json
+      - name: Independent generation processes and exact single-candidate plan
+        run: |
+          set -euo pipefail
+          python3 scripts/modernization_final_integration.py prepare > .local/final-result/build-first.json
+          cp .local/final-integration-candidate/candidate.json .local/final-result/recipe-first.json
+          python3 scripts/modernization_final_integration.py prepare > .local/final-result/build-second.json
+          cmp .local/final-result/build-first.json .local/final-result/build-second.json
+          cmp .local/final-result/recipe-first.json .local/final-integration-candidate/candidate.json
+          python3 scripts/modernization_final_integration.py plan > .local/final-result/plan.json
+          python3 scripts/modernization_final_integration.py package .local/final-result/handoff > .local/final-result/patch-validation.json
+      - name: P06 native observations on Stage84, not relabelled Stage83 success
+        run: |
+          set -euo pipefail
+          python3 scripts/run_modernization_stage82_github_domain.py prepare > .local/final-result/p06-parent.json
+          python3 scripts/run_modernization_p06_decided_e2e.py --candidate-stage 84 --output-directory .local/final-result/p06 --jobs 4 > .local/final-result/p06-job.json 2> .local/final-result/p06-job.stderr
+          git diff --exit-code
+      - name: Bounded current source context and tracked-original protection report
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh api repos/dekaazarashi1111-web/pokemon-vega-modern --jq '{private,visibility,default_branch}' > .local/final-result/visibility.json
+          python3 - <<'PY'
+          import hashlib,json,pathlib,subprocess,zipfile
+          root=pathlib.Path('.');out=root/'.local/final-result'
+          names=['scripts/modernization_final_integration.py','scripts/run_modernization_p06_decided_e2e.py','scripts/run_modernization_stage82_github_domain.py','scripts/run_modernization_stage83_github_domain.py','tools/modernization_p03_native_pp_repair.py','tools/modernization_p03_archive_ui_repair.py','overlays/modernization_p03_archive_ui_repair/relearner_list.S','tests/test_modernization_final_integration.py','.github/workflows/modernization-final-integration.yml','content/modernization/p08_remaining_work.json','content/modernization/p07_layered_learnset_contract.json','content/modernization/p07_runtime_handoff.json']
+          bindings={}
+          with zipfile.ZipFile(out/'current-source.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for name in names:
+                  p=root/name;assert p.is_file() and not p.is_symlink()
+                  raw=p.read_bytes();raw.decode('utf8');assert b'\0' not in raw
+                  z.writestr(name,raw);bindings[name]={'sha256':hashlib.sha256(raw).hexdigest(),'size':len(raw)}
+          (out/'current-source-bindings.json').write_text(json.dumps(bindings,indent=2)+'\n')
+          tracked=subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
+          binaries=[p for p in tracked if pathlib.Path(p).suffix.lower() in ('.gba','.srm','.sav')]
+          status={p:{'sha256':hashlib.sha256((root/p).read_bytes()).hexdigest(),'size':(root/p).stat().st_size} for p in binaries}
+          guard=subprocess.run(['python3','scripts/guard_private_files.py'],capture_output=True)
+          report={'tracked_rom_save':status,'full_index_guard_exit':guard.returncode,'full_index_guard_stdout_sha256':hashlib.sha256(guard.stdout).hexdigest(),'full_index_guard_stderr_sha256':hashlib.sha256(guard.stderr).hexdigest(),'full_index_guard_pass':guard.returncode==0,'guard_disabled':False,'originals_deleted':False,'visibility_changed':False,'baseline_changed':False}
+          (out/'protection.json').write_text(json.dumps(report,sort_keys=True,indent=2)+'\n')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: final-integration-candidate
+          path: .local/final-result/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
+  domain:
+    needs: candidate
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    strategy:
+      fail-fast: false
+      matrix:
+        domain: [p02, mega_shop, floette, p03, p04_mega_runtime, battle_policy, p05]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Exact Stage84 preparation
+        run: |
+          set -euo pipefail
+          mkdir -p .local/final-domain
+          bash infra/setup_github_actions.sh --install > .local/final-domain/toolchain.log 2>&1
+          git rev-parse HEAD > .local/final-domain/tested-head.txt
+          python3 scripts/modernization_final_integration.py prepare > .local/final-domain/prepare.json
+          python3 scripts/modernization_final_integration.py plan > .local/final-domain/plan.json
+      - name: Inherited domain execution and unchanged validators
+        env:
+          DOMAIN: ${{ matrix.domain }}
+        run: |
+          set -euo pipefail
+          python3 scripts/modernization_final_integration.py run-domain --domain "$DOMAIN" --output-directory .local/final-domain > .local/final-domain/job-summary.json 2> .local/final-domain/job.stderr.log
+          python3 scripts/modernization_final_integration.py validate-domain --domain "$DOMAIN" --record .local/final-domain/result.json > .local/final-domain/validation.json
+          git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: final-integration-domain-${{ matrix.domain }}
+          path: .local/final-domain/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
+  merge:
+    needs: [candidate, domain]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - run: bash infra/setup_github_actions.sh --install
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: final-integration-domain-*
+          path: .local/final-domain-input
+      - name: Bind all seven domain records to the actual final candidate
+        run: |
+          set -euo pipefail
+          mkdir -p .local/final-merged
+          python3 scripts/modernization_final_integration.py prepare > .local/final-merged/prepare.json
+          python3 scripts/modernization_final_integration.py merge --input-directory .local/final-domain-input --output-directory .local/final-merged > .local/final-merged/merge-summary.json
+          git rev-parse HEAD > .local/final-merged/tested-head.txt
+          git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: final-integration-merged
+          path: .local/final-merged/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
+  preserve-p06-original:
+    needs: candidate
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      actions: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 1
+      - uses: actions/download-artifact@v4
+        with:
+          name: final-integration-candidate
+          path: .local/received-final-candidate
+      - name: Preserve verified originals on the same PR, never overwrite a conflicting HEAD
+        env:
+          SOURCE_HEAD: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$SOURCE_HEAD"
+          target=content/modernization/p08_p06_evidence/34444010444
+          mkdir -p "$target"
+          for name in original.zip actions-run.json actions-jobs.json actions-artifact.json acceptance.json; do
+            source=.local/received-final-candidate/evidence/$name
+            if test -e "$target/$name"; then
+              cmp "$source" "$target/$name"
+            else
+              cp "$source" "$target/$name"
+            fi
+          done
+          python3 scripts/modernization_final_integration.py evidence "$target/original.zip" > .local/rechecked-p06.json
+          cmp .local/rechecked-p06.json "$target/acceptance.json"
+          python3 -m unittest discover -s tests -p test_modernization_final_integration.py -v
+          git add -- "$target"
+          index=$(mktemp -u "$RUNNER_TEMP/new-evidence-index.XXXXXX")
+          GIT_INDEX_FILE="$index" git read-tree --empty
+          git ls-files --stage -- "$target" | GIT_INDEX_FILE="$index" git update-index --index-info
+          GIT_INDEX_FILE="$index" python3 scripts/guard_private_files.py
+          if ! git diff --cached --quiet; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m 'test(p06): retain verified original observations and phase requirement evidence'
+            git push origin HEAD:codex/modernization-followup-20260908
+          fi

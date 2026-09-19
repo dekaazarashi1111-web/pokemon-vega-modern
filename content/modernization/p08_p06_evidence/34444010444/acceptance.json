@@ -1,0 +1,136 @@
+{
+  "accepted_requirements": [
+    "exact_adopted_fields_only",
+    "existing_slot_identity_after_reload",
+    "normal_stat_recalculation",
+    "existing_and_new_individual_cold_save"
+  ],
+  "active_baseline_changed": false,
+  "adopted_fields": 3,
+  "adopted_species": 2,
+  "artifact_id": 10138991421,
+  "candidate": {
+    "sha256": "09e9d8cf085d175299b58e93347e3beb2467c3c09016130f7d35ce033fa50096",
+    "size": 33554432
+  },
+  "core_instances": 24,
+  "full_p06_acceptance": false,
+  "new_mgba_executions_for_evidence_check": 0,
+  "not_proven_by_this_original": [
+    "final_Stage84_execution",
+    "battle_effects_and_item_acquisition",
+    "phase_wide_UI_acceptance"
+  ],
+  "observations": 8,
+  "original_zip": {
+    "sha256": "2a9c4fcc3663c92a7ba0a0be0bf6da1f570bd0200ce9afcdfef3598875a97d08",
+    "size": 213876
+  },
+  "release_ready": false,
+  "run_id": 34444010444,
+  "schema_version": 1,
+  "source_bindings": {
+    ".github/workflows/p06-decided-e2e.yml": {
+      "sha256": "7f4b401d19ed5c65dfe4aedd2dd087b01d7490dbeaf51e9acfb18f897cc1782d",
+      "size": 3234
+    },
+    "config/active_play_baseline.json": {
+      "sha256": "4800257add049ea99cdedda91413a70a255dcff9a85823463596edefa8785053",
+      "size": 394
+    },
+    "config/modernization_stage79_cumulative_mgba.json": {
+      "sha256": "ee6c6326e0c96445b113e9cd0d73f5b3b7a1d5c907789e58d88ea3878abca5d6",
+      "size": 28627
+    },
+    "content/modernization/p06_decided_adjustments.json": {
+      "sha256": "1934a98f5d60f33a5c65ae294defc03e092a3c9826462e327f41c7ce8d4a24e3",
+      "size": 3462
+    },
+    "content/modernization/p06_species_adjustment_contract.json": {
+      "sha256": "1e26b64de260e30c266a0b7af02621bbd602d865436db793443b7428ae996405",
+      "size": 6648
+    },
+    "design/imported/p06_decided_20260904/Pokemon_Vega_Stage61_Balance_Audit_20260904.md": {
+      "sha256": "597b8a1ce34f185721b003ca1ffe089befb202cadb15bb8d1714830c7389453b",
+      "size": 11697
+    },
+    "design/imported/p06_decided_20260904/vega_stage61_learnset_audit.md": {
+      "sha256": "6b151b9c59c876cbd91fcf320552f4a9bdb993901e5d6f44e35b6be4409fcbe3",
+      "size": 10998
+    },
+    "infra/setup_github_actions.sh": {
+      "sha256": "8b081dd37ae761325e80ed4f689b1d790f76a6acb311ba810820221828c79cc2",
+      "size": 2571
+    },
+    "infra/toolchain_manifest.json": {
+      "sha256": "abf9f2fe3589323702aa8f934209d17b5165983773ad44207c6301f53afe1bff",
+      "size": 33230
+    },
+    "manifests/ability_ids.csv": {
+      "sha256": "8ae721ef01feeddb50cb0ef1ce2f59193a87a871133561ae2557ac8a5c9bfbcf",
+      "size": 70348
+    },
+    "manifests/species_ids.csv": {
+      "sha256": "4e7cd7ef13761214f506e8ad58611c3dc36a0843b8b6647368677a73613f9366",
+      "size": 207095
+    },
+    "scripts/run_modernization_p03_fullslots_e2e.py": {
+      "sha256": "439db2906617448e7e46ce76bbcdc44fad6c2dbb4b4aede436bd7385a2b282ea",
+      "size": 13940
+    },
+    "scripts/run_modernization_p06_decided_e2e.py": {
+      "sha256": "f3b130f657a492205043ff094b18b2298dac90cba6d2545b97e340c3107261ed",
+      "size": 12663
+    },
+    "scripts/run_modernization_stage82_github_domain.py": {
+      "sha256": "beb315a986f5ed5acdd6d973a5d44ad5c306f5f260d5e5553b1faccb5e41287d",
+      "size": 5918
+    },
+    "tests/fixtures/p06_decided_native_template.json": {
+      "sha256": "18b3d9cb89feb635af405a351314a32ed7506a369388b1016fb869f63e22f9ce",
+      "size": 1400
+    },
+    "tests/test_modernization_p06_decided_e2e.py": {
+      "sha256": "0c031d819296233167f25c3a9d92c4b1fe7a30a13698e850138384bef0c3e27e",
+      "size": 9327
+    },
+    "tools/mgba_ai_fixture_runner.c": {
+      "sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f",
+      "size": 36272
+    },
+    "tools/mgba_battle_core_smoke.c": {
+      "sha256": "ed9875695ca60c61960685ac2f8e810a183c8eedd703e56545d67bde3df5cf24",
+      "size": 94688
+    },
+    "tools/mgba_modernization_p02_stage71_acceptance_smoke.c": {
+      "sha256": "4e543fa815ca030e74522b5d0f1455fd5074035d10f044aab3bdfd41d7319c3b",
+      "size": 39669
+    },
+    "tools/mgba_modernization_p03_archive_ui_e2e.c": {
+      "sha256": "ccaeed858b70ea0af53a999dbaae121a8b85c88c08522755dc800e24e159b467",
+      "size": 20154
+    },
+    "tools/mgba_modernization_p03_fullslots_e2e.c": {
+      "sha256": "f419ff2fffaf175061012dfb5dfc25d18c70a86d15c9ca89f5d5e6c886965ffa",
+      "size": 12868
+    },
+    "tools/mgba_modernization_p03_learning_e2e.c": {
+      "sha256": "154e277ef3f37b0037a7082b154805b658742f476eaf52abeb8c0ffb27a2742d",
+      "size": 7987
+    },
+    "tools/mgba_modernization_p06_decided_e2e.c": {
+      "sha256": "b920035e54ba9f64b73133bba01d75032b90bfeb5bd7f43993a06a8cb8ce0d38",
+      "size": 7465
+    },
+    "tools/mgba_qol_production_smoke.c": {
+      "sha256": "2c4b9f065f4dce84e48f2be9afe2e2f9f666865088770ee8b068a908a0527b85",
+      "size": 149046
+    },
+    "tools/modernization_p06_decided_adjustments.py": {
+      "sha256": "7c8f4bdec31d93c138f2e3a9664a6945490fbeeb3eba893bfec51b7c78c67a05",
+      "size": 7739
+    }
+  },
+  "source_head": "cc650b28fcb8e83668eb4e52fb2446124f4fbcbd",
+  "status": "ACCEPTED_SCOPED_P06_ORIGINAL"
+}

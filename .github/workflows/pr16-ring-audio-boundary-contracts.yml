@@ -1,0 +1,53 @@
+name: pr16-ring-audio-boundary-contracts
+run-name: 音声とtext callerの明示RAM・BIOS境界
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-ring-audio-boundary-contracts.yml
+      - scripts/pr16_ring_audio_boundary_contracts.py
+      - tests/test_pr16_ring_audio_boundary_contracts.py
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-ring-audio-boundary-contracts
+  cancel-in-progress: false
+jobs:
+  focused:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: 音声限定testsと非force記録
+        run: python3 scripts/pr16_ring_audio_boundary_contracts.py run
+      - name: 診断text export境界
+        if: always()
+        id: export
+        run: |
+          python3 - <<'PY'
+          import pathlib,re
+          root=pathlib.Path('.local/pr16-ring-audio-boundary-contracts')
+          assert root.is_dir()
+          for p in root.iterdir():
+              assert p.is_file() and not p.is_symlink() and p.suffix in {'.json','.txt'}
+              raw=p.read_bytes();raw.decode('utf-8')
+              assert b'\0' not in raw and len(raw)<=2000000
+              assert not re.search(rb'gh[pousr]_[A-Za-z0-9]{36,}|github_pat_[A-Za-z0-9_]{60,}|-----BEGIN [A-Z ]*PRIVATE KEY-----',raw)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.export.outcome == 'success'
+        with:
+          name: pr16-ring-audio-boundary-contracts
+          path: .local/pr16-ring-audio-boundary-contracts/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90
