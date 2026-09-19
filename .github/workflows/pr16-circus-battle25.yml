@@ -27,42 +27,28 @@ jobs:
         with:
           ref: ${{ github.sha }}
           fetch-depth: 0
-      - name: テストfixtureの意図した台帳置換だけをhash同期し失敗履歴も保存
+      - name: 可変台帳を新規固定しない既存記録規約へ合わせる
         run: |
           python3 - <<'PY'
           import hashlib,pathlib,subprocess,sys
           sys.path.insert(0,'scripts')
           import pr16_circus_battle25 as b
           head=b.scope();state=b.resume.validate(b.ROOT)
-          prior=b.api('actions/runs/35467845356')
-          assert prior['status']=='completed' and prior['conclusion']=='failure' and prior['head_sha']=='0ff65b356c70182b7835bfa50b526bb1894a572d'
-          assert not pathlib.Path(b.REPORT).exists()
-          paths=['scripts/pr16_circus_battle25.py','tests/test_pr16_resume.py']
-          p=pathlib.Path(paths[0]);raw=p.read_bytes()
-          assert hashlib.sha256(raw).hexdigest()=='5fc2500106af951aebedec8c4534aa0a3be02fb86312457b75e529aed899741c'
-          text=b.policy.replace_once(raw.decode(),"FILES=(SELF,HEADER,TEST,WORKFLOW,'scripts/pr16_circus_battle25_policy.py')","FILES=(SELF,HEADER,TEST,WORKFLOW,'scripts/pr16_circus_battle25_policy.py','tests/test_pr16_resume.py')")
-          text=b.policy.replace_once(text,"checkpoint(value,'START')", "value['prior_setup_failures'].append(dict(run_id=35467845356,job_id=105963334813,source_head='0ff65b356c70182b7835bfa50b526bb1894a572d',original_conclusion='failure',native_processes=0,artifact_id=10592060796,archive=dict(size=141478,sha256='5f768a4cd77395979a9282250c874be993925fc35a2de373b5de9cc45538c904'),reason_ja='本物の投影validateはPASS。resumeテストの合成台帳が元台帳のhashを継承して5件失敗。setUpの意図したfixture生成直後だけbinding更新し、後続の改作拒否を維持。'))\n    checkpoint(value,'START')")
-          compile(text,str(p),'exec');p.write_text(text)
-          p=pathlib.Path(paths[1]);assert b.command('git','hash-object',str(p))=='c938eac6b69fb84fbc3fb03fdf0aaff17751ae89'
-          text=b.policy.replace_once(p.read_text(),'        self.put(m.BACKLOG, backlog)\n',
-              "        self.put(m.BACKLOG, backlog)\n        # setUpで意図的に合成した台帳だけを再bindingする。実検査中の改作は同期しない。\n        if m.BACKLOG in self.s['source_bindings']:\n            raw=(self.root/m.BACKLOG).read_bytes()\n            self.s['source_bindings'][m.BACKLOG]=dict(size=len(raw),sha256=hashlib.sha256(raw).hexdigest())\n")
-          compile(text,str(p),'exec');p.write_text(text)
-          # 既存受入のbindingがある場合のみ、検証済みpreimageからのこのテスト変更を同期。
-          changed_binding=False
-          for name in paths:
-              if name in state['source_bindings']:
-                  state['source_bindings'][name]=b.identity(pathlib.Path(name).read_bytes());changed_binding=True
-          if changed_binding:
-              b.write(b.resume.STATE,b.stable(state));b.write(b.resume.DOC,b.resume.render(state).encode())
-              paths += [b.resume.STATE,b.resume.DOC]
-          b.resume.validate(b.ROOT)
-          subprocess.run(['git','add','--',*paths],check=True)
+          prior=b.api('actions/runs/35468065354')
+          assert prior['status']=='completed' and prior['conclusion']=='failure' and prior['head_sha']=='fcb8ac8ffa73c1523d93187f48f90453a7d39cdd'
+          assert not pathlib.Path(b.REPORT).exists() and b.resume.BACKLOG not in state['source_bindings']
+          name='scripts/pr16_circus_battle25.py';p=pathlib.Path(name);raw=p.read_bytes()
+          assert hashlib.sha256(raw).hexdigest()=='814e4496dc2944bcbc879d6c1db366e1d54a980fbdece8da1ad05507124c7a91'
+          text=b.policy.replace_once(raw.decode(),"for name in (*FILES,REPORT,resume.BACKLOG,*evidence):state['source_bindings'][name]=identity((ROOT/name).read_bytes())", "for name in (*FILES,REPORT,*evidence):state['source_bindings'][name]=identity((ROOT/name).read_bytes())\n    # 台帳は次段の再開routingも更新する可変状態。既存bindingだけを同期し、新規固定しない。\n    if resume.BACKLOG in state['source_bindings']:\n        state['source_bindings'][resume.BACKLOG]=identity((ROOT/resume.BACKLOG).read_bytes())")
+          text=b.policy.replace_once(text,"checkpoint(value,'START')", "value['prior_setup_failures'].append(dict(run_id=35468065354,job_id=105963925331,source_head='fcb8ac8ffa73c1523d93187f48f90453a7d39cdd',original_conclusion='failure',native_processes=0,artifact_id=10591801735,archive=dict(size=141358,sha256='b5730cc0cfb1f9b466aa5da77ea27594670fd02bf216ca0a54cc99ad5b95dbc6'),reason_ja='可変P08台帳を新規source固定したため旧install_routingの意図した更新でhash不一致。既存記録器と同じ条件付きbindingへ修正。台帳の意味検査は維持。'))\n    checkpoint(value,'START')")
+          compile(text,name,'exec');p.write_text(text)
+          subprocess.run(['git','add','--',name],check=True)
           subprocess.run(['git','diff','--cached','--check'],check=True)
-          assert set(b.command('git','diff','--cached','--name-only',head).splitlines())==set(paths)
+          assert b.command('git','diff','--cached','--name-only',head)==name
           b.scope()
           subprocess.run(['git','config','user.name','github-actions[bot]'],check=True)
           subprocess.run(['git','config','user.email','41898282+github-actions[bot]@users.noreply.github.com'],check=True)
-          subprocess.run(['git','commit','-m',b.TASK+': WIP resume合成台帳fixtureの限定bindingを修復'],check=True)
+          subprocess.run(['git','commit','-m',b.TASK+': WIP 可変台帳のbindingを既存規約へ復元'],check=True)
           subprocess.run(['git','push','origin','HEAD:refs/heads/'+b.BRANCH],check=True)
           b.scope()
           PY
