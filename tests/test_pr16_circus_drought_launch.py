@@ -41,7 +41,7 @@ class DroughtLaunchTests(unittest.TestCase):
         self.assertNotRegex(header,r'c->(?:outcome|script|armed)\s*=(?!=)')
     def test_runtime_uses_real_wrappers_and_launch_initializer(self):
         source=(ROOT/'overlays/circus_streak/circus_drought.c').read_text()
-        self.assertIn('CircusDroughtInitializeLaunch(&c, w, DroughtOriginal, DroughtInitVars, DroughtStep);',source)
+        self.assertIn('CircusDroughtInitializeSelection(&c, READ8(0x02023F89u), w, DroughtOriginal, DroughtInitVars, DroughtStep);',source)
         self.assertIn('VegaSaveValidate(',source);self.assertIn('CIRCUS_DROUGHT_ARMED',source)
         self.assertNotIn('NATIVE(0x0807AD09u),',source)
 if __name__=='__main__':unittest.main()

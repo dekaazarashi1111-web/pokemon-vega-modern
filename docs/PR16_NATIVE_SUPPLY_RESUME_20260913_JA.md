@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-元人数/選出数分離の新候補と原本を保存。18戦目launchと通常Save/fresh Continue=False、真正30勝=False。画像・抑制・最終P08/releaseは未完。
+18戦目修復と実21勝/63BP/元party600復帰は限定受入。22戦目の新境界診断=False。通常Save/fresh Continue/真正30勝は未達。
 
-**次: 新候補の18戦目以降の実勝敗/元party600と人数/owner64/通常Save/fresh Continueを原本と画像で確認。真正30勝が未達なら最初の新停止のみ修復し、達成後に正規特性抑制へ進む。旧境界/旧CPU/旧ARM2link/既受入単体は再実行しない。**
+**次: 18戦目起動・実21勝/63BP/元party600復元の受入範囲は維持し、22戦目の初回6体選出→field境界の新readonly原本から最初の停止だけ修復する。Save/fresh Continue/真正30勝/正規抑制は未受入。旧ARM link・旧境界・受入単体を再実行しない。**
 
 次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `db3a14598b87494eb109814f02f7f88a5e8ab0d2`。
+証拠のsource HEAD: `9f663a0bde45deb01958ecbf8c0bfc1541508857`。
 Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。
 
 ## 最短の再開手順
@@ -26,10 +26,10 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
 - `content/modernization/pr16_circus_loss_followup.json`
-- `scripts/pr16_circus_selection.py`
+- `scripts/pr16_circus_rental_boundary.py`
 - `scripts/pr16_streak_native.py`
 - `scripts/pr16_streak_probe.py`
-- `overlays/circus_streak/circus_drought_selection.h`
+- `tools/mgba_pr16_circus_rental_boundary.h`
 - `tools/mgba_pr16_streak_native.c`
 - `content/modernization/p08_remaining_work.json`
 
@@ -67,6 +67,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- run35451609631/job105919631301: 新候補7a5676f9の18戦目起動と実21勝/63BP/7回原party600復元を確認。22戦目6体選出後に停止、通常Save/fresh Continueなし。元人数1/現在3の読取実測も一致。成功prefixを独立再実行せず、新停止のreadonlyだけを進める。
 - run35450725433/job105917285879は保存candidate a2c612a2不変/旧ARM再link0の1process。81eventsと境界9行を採取したがscript0 endpoint前提が誤りnative未完。元party1/選出3の混同を修復し、同じ境界診断は再実行しない。
 - run35450224019/job105915967201: binding保存c96d14fは成功、旧タグ再利用のprepareは失敗/native0。既存ログ削除・成功binding単独再実行・旧ARM再linkをせず、run固有タグで未採取境界のみ進める。
 - run35439014239/job105886489666は前処理失敗/native0。source binding/生成MDは整合したが、親loss JSONに参照を結び付けず不変だったためcheckpoint必須差分検査で停止。commit/push/native/artifactなし。 同一失敗は再実行しない。

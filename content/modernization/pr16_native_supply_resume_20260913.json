@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "元人数/選出数分離の新候補と原本を保存。18戦目launchと通常Save/fresh Continue=False、真正30勝=False。画像・抑制・最終P08/releaseは未完。",
+    "current_stop": "18戦目修復と実21勝/63BP/元party600復帰は限定受入。22戦目の新境界診断=False。通常Save/fresh Continue/真正30勝は未達。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "新候補の18戦目以降の実勝敗/元party600と人数/owner64/通常Save/fresh Continueを原本と画像で確認。真正30勝が未達なら最初の新停止のみ修復し、達成後に正規特性抑制へ進む。旧境界/旧CPU/旧ARM2link/既受入単体は再実行しない。",
+    "next_step": "18戦目起動・実21勝/63BP/元party600復元の受入範囲は維持し、22戦目の初回6体選出→field境界の新readonly原本から最初の停止だけ修復する。Save/fresh Continue/真正30勝/正規抑制は未受入。旧ARM link・旧境界・受入単体を再実行しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -88,9 +88,9 @@
     "tested_head": "8df683fb7bbb6cea490ea8a97616b5171fe5383a"
   },
   "circus_continuous_followup": {
-    "classification": "CIRCUS_SELECTION_NATIVE_OPEN",
-    "path": "content/modernization/pr16_circus_selection.json",
-    "run_id": 35451609631,
+    "classification": "CIRCUS_RENTAL_BOUNDARY_PREPARED",
+    "path": "content/modernization/pr16_circus_rental_boundary.json",
+    "run_id": 35452739116,
     "target_wins": 30
   },
   "circus_coverage_followup": {
@@ -163,8 +163,8 @@
   "circus_loss_followup": {
     "path": "content/modernization/pr16_circus_loss_followup.json",
     "physical_admission_accepted": false,
-    "run_id": 35451609631,
-    "source_head": "db3a14598b87494eb109814f02f7f88a5e8ab0d2",
+    "run_id": 35452739116,
+    "source_head": "9f663a0bde45deb01958ecbf8c0bfc1541508857",
     "status": "CIRCUS_LOSS_MARKER_REPAIRED_NATIVE_DIAGNOSTIC_OPEN"
   },
   "circus_reentry_followup": {
@@ -182,6 +182,11 @@
     "previous_native_run": 35427693324,
     "previous_observed_wins": 8,
     "target_wins": 30
+  },
+  "circus_rental_boundary": {
+    "classification": "CIRCUS_RENTAL_BOUNDARY_PREPARED",
+    "path": "content/modernization/pr16_circus_rental_boundary.json",
+    "run_id": 35452739116
   },
   "circus_rental_identity": {
     "diagnostic_complete": true,
@@ -213,6 +218,13 @@
     "classification": "CIRCUS_SELECTION_NATIVE_OPEN",
     "path": "content/modernization/pr16_circus_selection.json",
     "run_id": 35451609631
+  },
+  "circus_selection_scoped_acceptance": {
+    "bp": 63,
+    "path": "content/modernization/pr16_circus_rental_boundary.json",
+    "run_id": 35451609631,
+    "save_continue_verified": false,
+    "wins": 21
   },
   "circus_streak_build": {
     "engineering_candidate": {
@@ -516,6 +528,7 @@
   },
   "current_resume_doc": "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
   "do_not_repeat": [
+    "run35451609631/job105919631301: 新候補7a5676f9の18戦目起動と実21勝/63BP/7回原party600復元を確認。22戦目6体選出後に停止、通常Save/fresh Continueなし。元人数1/現在3の読取実測も一致。成功prefixを独立再実行せず、新停止のreadonlyだけを進める。",
     "run35450725433/job105917285879は保存candidate a2c612a2不変/旧ARM再link0の1process。81eventsと境界9行を採取したがscript0 endpoint前提が誤りnative未完。元party1/選出3の混同を修復し、同じ境界診断は再実行しない。",
     "run35450224019/job105915967201: binding保存c96d14fは成功、旧タグ再利用のprepareは失敗/native0。既存ログ削除・成功binding単独再実行・旧ARM再linkをせず、run固有タグで未採取境界のみ進める。",
     "run35439014239/job105886489666は前処理失敗/native0。source binding/生成MDは整合したが、親loss JSONに参照を結び付けず不変だったためcheckpoint必須差分検査で停止。commit/push/native/artifactなし。 同一失敗は再実行しない。",
@@ -783,15 +796,15 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "新候補の18戦目以降の実勝敗/元party600と人数/owner64/通常Save/fresh Continueを原本と画像で確認。真正30勝が未達なら最初の新停止のみ修復し、達成後に正規特性抑制へ進む。旧境界/旧CPU/旧ARM2link/既受入単体は再実行しない。",
+    "goal_ja": "18戦目起動・実21勝/63BP/元party600復元の受入範囲は維持し、22戦目の初回6体選出→field境界の新readonly原本から最初の停止だけ修復する。Save/fresh Continue/真正30勝/正規抑制は未受入。旧ARM link・旧境界・受入単体を再実行しない。",
     "host_write_policy_ja": "新しい実受付のguard開始後は入力/frames/readのみ。施設番号/効果/連勝/party/PC/LRのhost注入は禁止。初期配置fixtureと実入場/正規連勝を区別する。",
     "id": "CIRCUS_LOSS_REPAIR_AND_NATIVE_CONTINUATIONS",
     "read_paths": [
       "content/modernization/pr16_circus_loss_followup.json",
-      "scripts/pr16_circus_selection.py",
+      "scripts/pr16_circus_rental_boundary.py",
       "scripts/pr16_streak_native.py",
       "scripts/pr16_streak_probe.py",
-      "overlays/circus_streak/circus_drought_selection.h",
+      "tools/mgba_pr16_circus_rental_boundary.h",
       "tools/mgba_pr16_streak_native.c",
       "content/modernization/p08_remaining_work.json"
     ],
@@ -803,10 +816,10 @@
     ]
   },
   "observed_date_jst": "2026-09-19",
-  "observed_head": "db3a14598b87494eb109814f02f7f88a5e8ab0d2",
+  "observed_head": "9f663a0bde45deb01958ecbf8c0bfc1541508857",
   "observed_head_checks": {
     "reason_ja": "旧run35391760500はfailure。今回runは記録時実行中であり全CI green/全体受入を主張しない。",
-    "scope_head": "db3a14598b87494eb109814f02f7f88a5e8ab0d2"
+    "scope_head": "9f663a0bde45deb01958ecbf8c0bfc1541508857"
   },
   "observed_head_semantics": "Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。",
   "p08_resume_synchronized": true,
@@ -875,9 +888,9 @@
   },
   "pending_runs": [
     {
-      "run_id": 35451609631,
+      "run_id": 35452739116,
       "status": "in_progress",
-      "tested_head": "ce19f6c05dab61f35bd82332d158b913985f837a"
+      "tested_head": "9f663a0bde45deb01958ecbf8c0bfc1541508857"
     }
   ],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
@@ -905,8 +918,8 @@
   "prior_actions_reconciled": [
     {
       "conclusion": "failure",
-      "head_sha": "7797170adc2224afc18a46bacad1c5e4dc4ca643",
-      "id": 35450725433,
+      "head_sha": "ce19f6c05dab61f35bd82332d158b913985f837a",
+      "id": 35451609631,
       "status": "completed"
     }
   ],
@@ -1687,6 +1700,10 @@
     ".github/workflows/pr16-circus-reliability.yml": {
       "sha256": "b24846c93f2437a19ed6ec716e142a21705dca5bfc50ab823c05cd848e6b52dc",
       "size": 1796
+    },
+    ".github/workflows/pr16-circus-rental-boundary.yml": {
+      "sha256": "f7b05711d80d62c3771d87cfeaeb6f97703d1aba71d82eff66c225cb1c24738b",
+      "size": 4525
     },
     ".github/workflows/pr16-circus-retention-record.yml": {
       "sha256": "cd7b5af8eb82d09f81184d6ab000d0dd7be663645820ded27e1d2db9aef89767",
@@ -2529,8 +2546,8 @@
       "size": 29196
     },
     "content/modernization/pr16_circus_loss_followup.json": {
-      "sha256": "960de20d5a46f5da427f855f528a4acfa13d54cedcaffad259ea85524bab2bae",
-      "size": 134698
+      "sha256": "505a17cb063ff56039c4d27f33e3ee473c1c523f0e492a742c358a84c7a77979",
+      "size": 134879
     },
     "content/modernization/pr16_circus_loss_weather.json": {
       "sha256": "ec6774ad522b8253bafa40d1404d360a543259b1dcc010c5b079b2d945929a66",
@@ -2555,6 +2572,10 @@
     "content/modernization/pr16_circus_reliability.json": {
       "sha256": "2247dd00c340be1d86795fe42150d219af5cbf4c6ed434aadba13391c094879a",
       "size": 131372
+    },
+    "content/modernization/pr16_circus_rental_boundary.json": {
+      "sha256": "9313acdb1eeed2e65772de02a5dfc1e7db62a9f515ee7bad5912eb8929c05ba4",
+      "size": 3560
     },
     "content/modernization/pr16_circus_retention_checkpoint.json": {
       "sha256": "170dbeb812c57d650625e48758b3e3c296424f3c1029da3369882fc6fa4a54ea",
@@ -5312,6 +5333,10 @@
       "sha256": "d852dbba375e25ba1525a019456b391fe00e0f3adddd03895817f77eb7943aff",
       "size": 9995
     },
+    "scripts/pr16_circus_rental_boundary.py": {
+      "sha256": "120ff63f8627577125daac73eba180b8dfe045b241c33403f80732addafab8e2",
+      "size": 16138
+    },
     "scripts/pr16_circus_retention.py": {
       "sha256": "a53bce1090845a2c669c34f41e21179270a5551c58984bf00459b8cc896ed3b6",
       "size": 9674
@@ -6000,6 +6025,10 @@
       "sha256": "ae33cbd3246654c4af5c7af5b1ce07bad79e7b5694eb8aa111d33eb645028e22",
       "size": 3300
     },
+    "tests/fixtures/circus_drought_snapshot_fixture.c": {
+      "sha256": "a35c161c714177f25516240cd1a5b26ac0dffe90447dcdf8d5f1b2dd1c8bc25a",
+      "size": 1857
+    },
     "tests/fixtures/circus_effective_policy_fixture.c": {
       "sha256": "1a6a8e53caab212d74a9345dc211ca592fe3b1566d1ba2634bf243e0e1216c03",
       "size": 1095
@@ -6177,8 +6206,8 @@
       "size": 7667
     },
     "tests/test_pr16_circus_drought_launch.py": {
-      "sha256": "a6b96f2aa3c7a65d1a58496ed46c1cc1122825eb35d1073643111aa052a08233",
-      "size": 3066
+      "sha256": "b73c8d05ceeb031efdc19e991c850b1f4743d70d002f89afe56a649d09f94acd",
+      "size": 3089
     },
     "tests/test_pr16_circus_drought_launch_boundary.py": {
       "sha256": "5042d339fee13a2c283cd55c13f22a8fdb4036aa32066e26a1256d8441d6826f",
@@ -6271,6 +6300,10 @@
     "tests/test_pr16_circus_reliability.py": {
       "sha256": "fa0ac2ad4768fa5d3682b7c211034084059b0ccb75a018711fdbf72007310e12",
       "size": 4983
+    },
+    "tests/test_pr16_circus_rental_boundary.py": {
+      "sha256": "8ff9160e46b5f0c752bc05a2a4edea1a036bcf77c220f0fde9a0e19dfb8a5a58",
+      "size": 3187
     },
     "tests/test_pr16_circus_retention.py": {
       "sha256": "7b61368ed4f28a28cc8ab02e0525ac5e9f4676a8e25375e77f75e5e799923906",
@@ -7016,6 +7049,10 @@
       "sha256": "dd4b1520740598a221bf8ede4755b9c70182adaea81c21ae301d66ec0d12e5df",
       "size": 848
     },
+    "tools/mgba_pr16_circus_rental_boundary.h": {
+      "sha256": "30eb915bfff9e8c1155d7fc481cb7c78067ae1feba39fad0e00f55a0ee444e80",
+      "size": 1582
+    },
     "tools/mgba_pr16_circus_return_trace.h": {
       "sha256": "e7fe2ac27bb1ff4d2fe4faa0f434843ff76d3451a5d835dc6f64ef6e46ebc3e0",
       "size": 1387
@@ -7058,7 +7095,7 @@
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "元人数/選出数分離の新候補と原本を保存。18戦目launchと通常Save/fresh Continue=False、真正30勝=False。画像・抑制・最終P08/releaseは未完。",
+  "source_change_review_ja": "18戦目修復と実21勝/63BP/元party600復帰は限定受入。22戦目の新境界診断=False。通常Save/fresh Continue/真正30勝は未達。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
