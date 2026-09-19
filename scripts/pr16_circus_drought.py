@@ -71,6 +71,8 @@ def checkpoint(value,phase,stop):
     state['prior_actions_reconciled']=value['actions_reconciled']
     note='run35433308048/job105871614193はCPU21点/600frameの読取診断SUCCESS。native受入ではない。weather12のinitAll0807ad09/state2/空loader0807a350に停止を特定。同候補の17戦診断は再実行せず、後継ROMの新検証だけを行う。'
     if note not in state['do_not_repeat']:state['do_not_repeat'].insert(0,note)
+    failure_note='run35434401185/job105874514732はCPU JSON arrayをobject専用readerへ渡してprepare停止。ARM link0/native0。array reader修復後の未実行build/nativeだけを進め、旧failureは保持。'
+    if failure_note not in state['do_not_repeat']:state['do_not_repeat'].insert(0,failure_note)
     r.SELF=SELF;r.TEST=TEST;r.WORKFLOW=WORKFLOW;r.HEADER=HEADER
     r.checkpoint(state,loss,stop,NEXT,[REPORT,*FILES,*value.get('text_evidence',{})],phase,
         value['classification']+'。変更はweather12 initAll table4byteと新規tail payloadだけ。旧全allocation不変/rollback/独立2linkを確認し、旧LOSS/BP/Ring/Save ownerは変更しない。新候補の未完continuationだけ実行。')
@@ -86,8 +88,12 @@ def prepare():
     for p in resume.load(ROOT,resume.STATE)['pending_runs']:
         if p['run_id']!=run['id']:
             a=r.api('actions/runs/'+str(p['run_id']));actions.append({k:a[k] for k in ('id','head_sha','status','conclusion')})
+    failed=r.api('actions/runs/35434401185')
+    need(failed['status']=='completed' and failed['conclusion']=='failure' and failed['head_sha']=='c7c28f4cd20d16dfe3ec90b492798a0e34b35323','array-reader failure differs')
+    actions.append({k:failed[k] for k in ('id','head_sha','status','conclusion')})
     value=dict(schema_version=1,classification='CIRCUS_DROUGHT_NATIVE_REPAIR_PREPARED',parent=PARENT,
-        diagnosis=diagnosis(resume.load(ROOT,ROWS)),actions_reconciled=actions,host_tests=r.tests([Path(TEST).name]),
+        preparation_failures=[dict(run_id=35434401185,job_id=105874514732,original_conclusion='failure',native_processes=0,arm_links=0,reason_ja='CPU原本はarrayだがobject専用resume.loadを呼びprepare停止。listのままJSON decodeし、prepare経路を回帰検査。')],
+        diagnosis=diagnosis(json.loads((ROOT/ROWS).read_bytes())),actions_reconciled=actions,host_tests=r.tests([Path(TEST).name]),
         accepted_native_cases_replayed=0,independent_old_arm_links_replayed=0,unavoidable_prefix_battles=17,
         genuine_30_wins_verified=False,win_return_native_verified=False,visual_review_completed=False,
         physical_admission_accepted=False,suppression_accepted=False,release_ready=False)

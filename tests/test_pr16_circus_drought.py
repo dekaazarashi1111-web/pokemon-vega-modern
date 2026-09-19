@@ -7,7 +7,8 @@ import subprocess
 import sys
 import tempfile
 import unittest
-from unittest.mock import patch
+from unittest.mock import patch, Mock
+from types import SimpleNamespace
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'scripts'))
 import pr16_circus_drought as t
 class DroughtTests(unittest.TestCase):
@@ -79,6 +80,23 @@ int main(void){struct mCore c={0};wr_frame(&c,0);return b_frames!=1 || dw_seen!=
             p=Path(d);(p/'test.c').write_text(source)
             subprocess.run(['cc','-std=c11','-Wall','-Wextra','-Werror',str(p/'test.c'),'-o',str(p/'test')],check=True,capture_output=True)
             subprocess.run([str(p/'test')],check=True,capture_output=True)
+    def test_prepare_decodes_cpu_array_without_object_only_resume_reader(self):
+        rows=(ROOT/t.ROWS).read_bytes()
+        def load(root,path):
+            if path==t.CPU:return dict(classification='CIRCUS_WIN_CPU_READONLY_COMPLETE',text_evidence={})
+            if path=='state':return dict(pending_runs=[])
+            raise AssertionError('object-only resume reader called for '+path)
+        def api(path):
+            failed=path.endswith('35434401185')
+            return dict(id=35434401185 if failed else 35433308048,status='completed',conclusion='failure' if failed else 'success',head_sha='c7c28f4cd20d16dfe3ec90b492798a0e34b35323' if failed else 'cpu')
+        resume=SimpleNamespace(validate=Mock(),load=load,STATE='state')
+        runner=SimpleNamespace(scope=Mock(),api=api,tests=Mock(return_value=[]))
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);p=root/t.ROWS;p.parent.mkdir(parents=True);p.write_bytes(rows)
+            with patch.dict(sys.modules,{'pr16_resume':resume}),patch.object(t,'ROOT',root),patch.object(t,'configure',return_value=SimpleNamespace(rec=runner)),patch.object(t,'checkpoint') as record:
+                t.prepare()
+                self.assertEqual(record.call_args.args[0]['diagnosis']['state'],2)
+                self.assertEqual(record.call_args.args[0]['preparation_failures'][0]['native_processes'],0)
     def test_unchanged_seventeen_outcomes_required(self):
         old=(ROOT/t.RAW).read_bytes();events=t.probe.parse(old)
         with patch.object(t.previous,'verify_prefix'):
