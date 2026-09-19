@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "通常交代2回の実個体照合と15勝/45BP/保存復元を照合。第16戦は最後の敵HP7で敗北。正規選出3体は維持してTaunt持ちを先発へ移し、未使用状態技の最大2回入力を追加。",
+    "current_stop": "Taunt先発・対状態技入力後の連続入場を記録: 実勝数未確定。勝敗/報酬/保存の実測と真正30勝ゲートを分離。最初の未解決停止から続ける。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -88,7 +88,7 @@
     "tested_head": "8df683fb7bbb6cea490ea8a97616b5171fe5383a"
   },
   "circus_continuous_followup": {
-    "classification": "CIRCUS_TAUNT_PREPARED",
+    "classification": "CIRCUS_TAUNT_DIAGNOSTIC_OPEN",
     "path": "content/modernization/pr16_circus_taunt.json",
     "target_wins": 30
   },
@@ -138,7 +138,7 @@
     "path": "content/modernization/pr16_circus_loss_followup.json",
     "physical_admission_accepted": false,
     "run_id": 35430246002,
-    "source_head": "9f0e5078ee54ff9d2df3f18682f0457b95296eff",
+    "source_head": "02f9626a47604c28fcc0158a0fb0faafe4a4e1af",
     "status": "CIRCUS_LOSS_MARKER_REPAIRED_NATIVE_DIAGNOSTIC_OPEN"
   },
   "circus_reentry_followup": {
@@ -204,7 +204,7 @@
     "target_wins": 30
   },
   "circus_taunt_followup": {
-    "classification": "CIRCUS_TAUNT_PREPARED",
+    "classification": "CIRCUS_TAUNT_DIAGNOSTIC_OPEN",
     "path": "content/modernization/pr16_circus_taunt.json",
     "previous_native_conclusion": "failure",
     "previous_native_run": 35429677248,
@@ -694,10 +694,10 @@
     ]
   },
   "observed_date_jst": "2026-09-19",
-  "observed_head": "9f0e5078ee54ff9d2df3f18682f0457b95296eff",
+  "observed_head": "02f9626a47604c28fcc0158a0fb0faafe4a4e1af",
   "observed_head_checks": {
     "reason_ja": "旧run35391760500はfailure。今回runは記録時実行中であり全CI green/全体受入を主張しない。",
-    "scope_head": "9f0e5078ee54ff9d2df3f18682f0457b95296eff"
+    "scope_head": "02f9626a47604c28fcc0158a0fb0faafe4a4e1af"
   },
   "observed_head_semantics": "Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。",
   "p08_resume_synchronized": true,
@@ -2348,8 +2348,8 @@
       "size": 29196
     },
     "content/modernization/pr16_circus_loss_followup.json": {
-      "sha256": "79617fe606765b2f9769abba7733d7ef817e660335d87067bfc92e4a06f2ef13",
-      "size": 132773
+      "sha256": "4244adfba02a8dce9f84593254c04272f4226795eddf4c56aef9d73188cac0f2",
+      "size": 132780
     },
     "content/modernization/pr16_circus_loss_weather.json": {
       "sha256": "ec6774ad522b8253bafa40d1404d360a543259b1dcc010c5b079b2d945929a66",
@@ -2392,8 +2392,8 @@
       "size": 132909
     },
     "content/modernization/pr16_circus_taunt.json": {
-      "sha256": "065e16aef09a7f7bd7207e534049d5af27f4c170140618d4a3b07baeceb8c956",
-      "size": 1919
+      "sha256": "f038d1aadd3573e2f13c164f08d9bd7847fd7b2c19f35e084cbfd52f0e5f5a9f",
+      "size": 113076
     },
     "content/modernization/pr16_circus_three_win.json": {
       "sha256": "7cebe95b554709f2e88f949301d6601712cd6097d4531bb4d266bb5c8a40b9c4",
@@ -3428,6 +3428,26 @@
       "size": 1051
     },
     "evidence/pr16_circus_tactical/35429677248/reconstruction.json": {
+      "sha256": "144dcf042dec77ed86063be33f8f07adb1f0ef0b1eacda1ce9846c783edd81bd",
+      "size": 249
+    },
+    "evidence/pr16_circus_taunt/35430246002/native/circus-continuous-30-save.process.json": {
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457",
+      "size": 90
+    },
+    "evidence/pr16_circus_taunt/35430246002/native/circus-continuous-30-save.stderr": {
+      "sha256": "1f76e8928e22dd6b8a4a550d55704678d740ccab2a526e368a92a5c7cf5db4f6",
+      "size": 562978
+    },
+    "evidence/pr16_circus_taunt/35430246002/native/circus-continuous-30-save.stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_taunt/35430246002/native/report.json": {
+      "sha256": "0d3f583203318fcd291408d3ad31484f11654fefe4eecdb9750127527fab84ad",
+      "size": 104685
+    },
+    "evidence/pr16_circus_taunt/35430246002/reconstruction.json": {
       "sha256": "144dcf042dec77ed86063be33f8f07adb1f0ef0b1eacda1ce9846c783edd81bd",
       "size": 249
     },
@@ -5601,7 +5621,7 @@
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "通常交代2回の実個体照合と15勝/45BP/保存復元を照合。第16戦は最後の敵HP7で敗北。正規選出3体は維持してTaunt持ちを先発へ移し、未使用状態技の最大2回入力を追加。",
+  "source_change_review_ja": "Taunt先発・対状態技入力後の連続入場を記録: 実勝数未確定。勝敗/報酬/保存の実測と真正30勝ゲートを分離。最初の未解決停止から続ける。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
