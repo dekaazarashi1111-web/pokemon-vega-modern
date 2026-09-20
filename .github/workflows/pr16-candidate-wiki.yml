@@ -6,8 +6,9 @@ on:
       - .github/workflows/pr16-candidate-wiki.yml
       - scripts/build_pr16_candidate_wiki.py
       - scripts/pr16_candidate_wiki_*.py
-      - tests/test_pr16_candidate_wiki*.py
+      - scripts/pr16_wiki_checkpoint.py
       - scripts/pr16_wiki_followup*.py
+      - tests/test_pr16_candidate_wiki*.py
       - tests/test_pr16_wiki_followup*.py
   workflow_dispatch:
 permissions:
@@ -26,128 +27,34 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
-      - name: 保護対象とMakefileの限定入口を固定
-        run: |
-          set -euo pipefail
-          mkdir -p .local/pr16-wiki
-          python3 -B - <<'PY'
-          import hashlib,json,pathlib
-          root=pathlib.Path('.')
-          names=[str(p) for p in (root/'docs/wiki/stage61').rglob('*') if p.is_file()]
-          names+=['config/active_play_baseline.json','CHATGPT_RESUME.md']
-          protected={p:hashlib.sha256((root/p).read_bytes()).hexdigest() for p in sorted(names)}
-          (root/'.local/pr16-wiki/protected.json').write_text(json.dumps(protected,sort_keys=True)+'\n')
-          wiki=root/'docs/wiki/p08-candidate-46487d98'
-          original={str(p.relative_to(wiki)):hashlib.sha256(p.read_bytes()).hexdigest() for p in wiki.rglob('*') if p.is_file()}
-          (root/'.local/pr16-wiki/original-files.json').write_text(json.dumps(original,sort_keys=True)+'\n')
-          path=root/'Makefile';text=path.read_text()
-          block='\n# USER-20260921-P08-CANDIDATE-WIKI: native・ARM・ROM書込を呼ばない限定入口\n.PHONY: pr16-candidate-wiki pr16-candidate-wiki-check\npr16-candidate-wiki:\n\t$(PYTHON) -B scripts/build_pr16_candidate_wiki.py build\n\npr16-candidate-wiki-check:\n\t$(PYTHON) -B scripts/build_pr16_candidate_wiki.py check\n'
-          if '\npr16-candidate-wiki:' not in text:
-              path.write_text(text+block)
-          else:
-              assert text.count('\npr16-candidate-wiki:')==1 and text.count('\npr16-candidate-wiki-check:')==1
-              assert '\t$(PYTHON) -B scripts/build_pr16_candidate_wiki.py build\n' in text
-              assert '\t$(PYTHON) -B scripts/build_pr16_candidate_wiki.py check\n' in text
-          PY
-      - name: 追加CLIの差分試験（受入済みnativeと旧39試験は再実行しない）
+      - name: Stage61・active baseline保護とMakefile限定入口
+        run: python3 -B scripts/pr16_wiki_checkpoint.py prepare
+      - name: 今回追加の差分試験（受入nativeは実行しない）
         run: |
           set -euo pipefail
           python3 -B -m unittest discover -s tests -p 'test_pr16_wiki_followup*.py' -v 2>&1 | tee .local/pr16-wiki/followup-unit.txt
           make -n pr16-candidate-wiki | tee .local/pr16-wiki/make-build.txt
           make -n pr16-candidate-wiki-check | tee .local/pr16-wiki/make-check.txt
-      - name: 専用buildの2プロセス照合と実checkの純読取検査
+      - name: 決定的buildと実checkの純読取検証
         run: |
           set -euo pipefail
           PYTHONHASHSEED=11 python3 -B scripts/build_pr16_candidate_wiki.py build | tee .local/pr16-wiki/build-11.json
           PYTHONHASHSEED=29 python3 -B scripts/build_pr16_candidate_wiki.py build | tee .local/pr16-wiki/build-29.json
-          python3 -B - <<'PY'
-          import hashlib,json,pathlib,subprocess,sys
-          root=pathlib.Path('.');out=root/'.local/pr16-wiki'
-          a=json.loads((out/'build-11.json').read_bytes());b=json.loads((out/'build-29.json').read_bytes());assert a==b
-          wiki=root/a['output']
-          def fingerprint():
-              return {str(p.relative_to(wiki)):(hashlib.sha256(p.read_bytes()).hexdigest(),p.stat().st_mtime_ns) for p in wiki.rglob('*') if p.is_file()}
-          before=fingerprint()
-          p=subprocess.run([sys.executable,'-B','scripts/build_pr16_candidate_wiki.py','check'],capture_output=True,text=True)
-          (out/'check.stdout.json').write_text(p.stdout);(out/'check.stderr.txt').write_text(p.stderr)
-          assert p.returncode==0,p.stderr
-          c=json.loads(p.stdout);assert c['tree_sha256']==a['tree_sha256'] and c['command']=='check'
-          assert before==fingerprint(),'check mutated Wiki'
-          for name,sha in json.loads((out/'protected.json').read_bytes()).items():assert hashlib.sha256((root/name).read_bytes()).hexdigest()==sha,name
-          old=json.loads((out/'original-files.json').read_bytes())
-          changed=[name for name,value in before.items() if old.get(name)!=value[0]]
-          report={'status':'PASS_CLI_BUILD_CHECK','source_files_changed':changed,'unchanged_snapshot_files':sum(name not in changed for name in old),
-            'two_process_builds_identical':True,'actual_check_unchanged_bytes_and_mtimes':True,'stage61_unchanged':True,
-            'active_baseline_changed':False,'new_native_runs':0,'accepted_native_reruns':0,'accepted_39_tests_rerun':False,
-            'arm_builds':0,'rom_changes':0,'issue18_complete':False}
-          (out/'cli-check.json').write_text(json.dumps(report,ensure_ascii=False,sort_keys=True,indent=2)+'\n')
-          print(json.dumps(report,ensure_ascii=False,sort_keys=True))
-          PY
-      - name: 検証済みWiki・固定引継ぎ・両ログを同期して非force push
-        env:
-          GH_TOKEN: ${{ github.token }}
+          python3 -B scripts/pr16_wiki_checkpoint.py verify
+      - name: 固定引継ぎ・両ログ・Wikiを検証して同branchへ非force push
         run: |
           set -euo pipefail
-          python3 -B - <<'PY'
-          import datetime,json,os,pathlib,sys
-          sys.path.insert(0,'scripts')
-          from pr16_candidate_wiki_inputs import STATE,stable
-          from pr16_resume import DOC,render
-          root=pathlib.Path('.');out=root/'.local/pr16-wiki';result=json.loads((out/'build-11.json').read_bytes());verified=json.loads((out/'cli-check.json').read_bytes())
-          name='content/modernization/pr16_candidate_wiki_acceptance.json';receipt=json.loads((root/name).read_bytes())
-          previous={k:receipt[k] for k in ('source_head','verification_run','tree_sha256','files','bytes')}
-          receipt.update({k:result[k] for k in ('candidate','output','files','bytes','tree_sha256','internal_links','counts','record_counts')})
-          receipt.update(status='PASS_CANDIDATE_WIKI_CLI_CHECKPOINT',scope='ALL_ID_SNAPSHOT_PLUS_DEDICATED_READONLY_CLI',
-            source_head=os.environ['GITHUB_SHA'],verification_run=int(os.environ['GITHUB_RUN_ID']),
-            verification_run_status_at_recording='in_progress: build/check/protected/11追加試験がPASS。push/upload完了は次のGETで照合。',
-            previous_snapshot=previous,cli_complete=True,issue18_complete=False,
-            dedicated_cli={'path':'scripts/build_pr16_candidate_wiki.py','make_build':'pr16-candidate-wiki','make_check':'pr16-candidate-wiki-check','added_tests':11,'check_writes':0},
-            current_verification=verified)
-          receipt['remaining_work_ja']=[s for s in receipt['remaining_work_ja'] if not s.startswith('専用build/check')]
-          (root/name).write_bytes(stable(receipt));(out/'acceptance.json').write_bytes(stable(receipt))
-          follow='content/modernization/pr16_candidate_wiki_followup.json';record=json.loads((root/follow).read_bytes())
-          record['cli_checkpoint']={'source_head':os.environ['GITHUB_SHA'],'verification_run':int(os.environ['GITHUB_RUN_ID']),'result':verified,'new_tests':11}
-          record['source_input_runs']=[{'run':35533926004,'conclusion':'success'},{'run':35534340606,'conclusion':'success'},{'run':35534758684,'conclusion':'success'}]
-          record['input_failures'].append({'run':35534169956,'reason':'consumer入力globに非対象assemblerを含めたため停止。C/H限定で35534340606 success。native/ROM実行なし。'})
-          (root/follow).write_bytes(stable(record))
-          state=json.loads((root/STATE).read_bytes());state['candidate_wiki'].update(
-            source_head=os.environ['GITHUB_SHA'],verification_run=int(os.environ['GITHUB_RUN_ID']),verification_run_status='in_progress_at_recording',
-            cli_complete=True,remaining_work_ja=receipt['remaining_work_ja'])
-          state['next_action']['goal_ja']='Issue #18の未監査moveset・汎用Z・夢特性供給・handlerを継続。CLI/Makefileは実装・差分試験済みなので再実装しない。native・性能調整・releaseへ先行しない。'
-          state['next_action']['stop_rule_ja']='専用CLIは通常のGitHub編集で追加され、build×2同一byte、実checkのbyte/mtime不変、追加11試験を検証。残件に限定して継続し、受入済みnativeと旧39試験は再実行しない。'
-          state['logs_synchronized']=True
-          (root/STATE).write_text(json.dumps(state,ensure_ascii=False,indent=2)+'\n');(root/DOC).write_text(render(state))
-          now=datetime.datetime.now(datetime.timezone.utc).isoformat(timespec='seconds')
-          for file in ('design/run_log.md','design/version_log.md'):
-              with (root/file).open('a',encoding='utf-8') as f:
-                  f.write(f'\n\n## {now} — USER-20260921-P08-CANDIDATE-WIKI / 専用CLI受入checkpoint\n- Task: USER-20260921-P08-CANDIDATE-WIKI\n- Status: DONE（CLI/Makefile限定。Issue18全体は継続）\n- Summary: 専用build/checkを通常GitHub編集で追加。checkの書込・削除・子processを拒否。Makefile入口を接続し、Wikiの旧CLI未反映表示を解消。保存snapshotの同一byteファイルは再書込しない。\n- Files changed: CLI、追加試験、workflow、Makefile、候補Wiki差分、receipt/followup JSON、固定引継ぎMD/JSON、両ログ。\n- Verify: 追加11試験、seed11/29のbuild一致、実checkの全byte/mtime不変、全内部リンク、Stage61/active baseline/入口保護、resume check、task graph、diff check、changed-final-index guard。受入済み39試験とnativeは再実行0。\n- Commit: 本記録を含むcommit。検証source HEAD={os.environ["GITHUB_SHA"]}。\n- Network: GitHub connector/Actions run{os.environ["GITHUB_RUN_ID"]}。push/upload完了前なのでrun全体はin_progressとして記録。\n- Boundary: ROM変更0、ARM0、native0。Issue18・merge・release・active baseline切替なし。残件は野生/配布実技、汎用Z、HA供給、handler根拠。\n')
-          PY
+          python3 -B scripts/pr16_wiki_checkpoint.py record
           python3 -B scripts/pr16_resume.py check
           python3 -B scripts/validate_task_graph.py
           git diff --check
           git add -- Makefile docs/wiki/p08-candidate-46487d98 content/modernization/pr16_candidate_wiki_acceptance.json content/modernization/pr16_candidate_wiki_followup.json content/modernization/pr16_native_supply_resume_20260913.json docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md design/run_log.md design/version_log.md
-          python3 -B - <<'PY'
-          import collections,pathlib,subprocess,sys
-          sys.path.insert(0,'scripts')
-          from guard_private_files import BLOCKED_PARTS,BLOCKED_SUFFIXES,index_blob,document_user_path_lines
-          root=pathlib.Path('.')
-          allowed={'Makefile','content/modernization/pr16_candidate_wiki_acceptance.json','content/modernization/pr16_candidate_wiki_followup.json','content/modernization/pr16_native_supply_resume_20260913.json','docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md','design/run_log.md','design/version_log.md'}
-          names=list(filter(None,subprocess.check_output(['git','diff','--cached','--name-only','-z']).decode().split('\0')))
-          for n in names:
-              p=root/n;assert n in allowed or n.startswith('docs/wiki/p08-candidate-46487d98/'),n
-              assert not p.is_symlink() and p.suffix not in BLOCKED_SUFFIXES and not any(x in n for x in BLOCKED_PARTS),n
-              raw=index_blob(root,n);raw.decode('utf-8');assert b'\0' not in raw
-              old=subprocess.run(['git','show','HEAD:'+n],capture_output=True).stdout
-              def hits(b):
-                  lines=b.decode().splitlines();return collections.Counter(lines[i-1] for i in document_user_path_lines(b))
-              assert not hits(raw)-hits(old),n
-          print('PASS_CHANGED_FINAL_INDEX_ONLY',len(names))
-          PY
+          python3 -B scripts/pr16_wiki_checkpoint.py guard
           git diff --cached --check
           test "$(git ls-remote origin refs/heads/codex/modernization-followup-20260908 | cut -f1)" = "$GITHUB_SHA"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'USER-20260921-P08-CANDIDATE-WIKI: CLI/Makefile受入とWiki・固定引継ぎを同期'
+          git commit -m 'USER-20260921-P08-CANDIDATE-WIKI: CLI受入とWiki・固定引継ぎ・両ログを同期'
           git push origin HEAD:refs/heads/codex/modernization-followup-20260908
           git rev-parse HEAD > .local/pr16-wiki/reflected-head.txt
       - uses: actions/upload-artifact@v4
