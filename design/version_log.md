@@ -5817,3 +5817,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 同branch非force。自己SHAはremote/receipt。
 - Network: GitHub前run/job/artifactと旧24勝原本の固定照合。host mGBA依存のみ。旧builder/ARM/Ring hostなし。
 - Next: content/modernization/pr16_circus_battle29.jsonの新たな最初の実敗北を修復する。受入単体・旧ARM・Ring hostを再実行しない。
+
+
+## 2026-09-19T23:59:49Z — USER-20260920-CIRCUS-BATTLE29-RECHECK-START
+- Timestamp: 2026-09-19T23:59:49Z
+- Task: USER-20260920-CIRCUS-BATTLE29-RECHECK / 29戦目HP閾値再評価
+- Status: STOPPED（全体受入は未完）
+- Version: pr16-circus-battle29-recheck-v1
+- Summary: 28勝81BPと通常Save/fresh Continue、29戦目初手維持を保持。健康な水先発を維持した相手を処理済みにせず、HP半分まで毎turn再評価して既存の通常交代へ戻す修正と新規9契約を検証。新nativeは未実行。
+- Files changed: scripts/pr16_circus_battle29_recheck.py, scripts/pr16_circus_battle29_recheck_policy.py, tests/test_pr16_circus_battle29_recheck.py, .github/workflows/pr16-circus-battle29-recheck.yml, content/modernization/pr16_circus_battle29_recheck.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, evidence/pr16_circus_battle29_recheck/35477541574/execution/recheck-tests.process.json, evidence/pr16_circus_battle29_recheck/35477541574/execution/recheck-tests.stderr, evidence/pr16_circus_battle29_recheck/35477541574/execution/recheck-tests.stdout, design/run_log.md, design/version_log.md
+- Verify: 新規9契約、固定resume整合性/影響tests、task graph、index差分private guard/diff check。native成否/実process数はreport。既受入契約・受入単体は再実行しない。
+- Commit: 同branch非force。自己SHAはremote/receipt。
+- Network: GitHub前run/job/artifactと29戦目原本を固定照合。host mGBA依存のみ。旧builder/ARM/Ring hostなし。
+- Next: 進行中の29戦目再評価Actionsだけを照合する。重複起動せず、完了後に原本・固定引継ぎ・両ログを記録する。

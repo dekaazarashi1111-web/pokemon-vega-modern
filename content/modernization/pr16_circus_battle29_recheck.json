@@ -1,0 +1,349 @@
+{
+  "schema_version": 1,
+  "task": "USER-20260920-CIRCUS-BATTLE29-RECHECK",
+  "classification": "CIRCUS_BATTLE29_RECHECK_IMPLEMENTED_NATIVE_PENDING",
+  "source_head": "35fcac915e6f40150abc06c299f68c19823f0264",
+  "workflow_source_head": "35fcac915e6f40150abc06c299f68c19823f0264",
+  "candidate": {
+    "size": 33554432,
+    "sha256": "2b107e7ef897844eff810ff0b40f82543640488696e8295194ceb3b66fb2c183"
+  },
+  "previous_attempt": {
+    "run_id": 35473090294,
+    "job_id": 105977531675,
+    "artifact_id": 10593187955,
+    "archive": {
+      "size": 1051212,
+      "sha256": "2ec5a7475dbf7cae02f4638942c502acad3ffeaaf724de9e633da45ac741d016"
+    },
+    "workflow_source_head": "e125a2d4b3c0cf7e012eba9fb14b079530acaa18",
+    "report_path": "content/modernization/pr16_circus_battle29.json",
+    "report_identity": {
+      "size": 58446,
+      "sha256": "550ef3d53b6dccdbc692c24a01e15b6f0709da5dbd1d748779e9582f76fb6f9a"
+    },
+    "original_conclusion": "failure",
+    "diagnostic": {
+      "events": 139,
+      "settled_wins": 28,
+      "settled_losses": 1,
+      "last_event": {
+        "label": "reloaded",
+        "frame": 484453,
+        "battle": 29,
+        "bp": 81,
+        "save_counter": 3
+      },
+      "returned_batches": 10,
+      "normal_save_observed": true,
+      "fresh_continue_observed": true,
+      "trace": {
+        "size": 963283,
+        "sha256": "9a815ec8bb108881b09b79f0ff055deee9a65a10be1681f78a083f9694884453"
+      },
+      "lifecycle_accepted": false
+    },
+    "scoped_28_win_save_continue_accepted": true,
+    "reason_ja": "29戦目初手の水先発維持と134eventsを保持し、同じ相手を処理済みにせずHP半分まで再評価する。"
+  },
+  "original": {
+    "run_id": 35457636604,
+    "job_id": 105935643398,
+    "artifact_id": 10588831175,
+    "source_head": "69075ada3e54a3218a916b5b532f8883428c6bfa",
+    "archive": {
+      "size": 2102798,
+      "sha256": "2efd504a7fcd97934a781444352f0b9474da3679a3a184e8143381cefe9bd75f"
+    },
+    "original_conclusion": "failure",
+    "host_dependencies": {
+      "overlays/circus_streak/circus_drought.c": {
+        "size": 2578,
+        "sha256": "545890f227f54f3c650afa5477fa0b52cefd1d6924ef7d5c3d345b69c5efabf5"
+      },
+      "overlays/circus_streak/circus_drought.h": {
+        "size": 1998,
+        "sha256": "9370dddbc53921a80e5e50dcbb30135525b288e01dc6d0ad99eab9f946920bfe"
+      },
+      "overlays/circus_streak/circus_drought_launch.h": {
+        "size": 1243,
+        "sha256": "70ddc919acc2a9325249f04617c183a107c438c4c543d91484ef2c5fb199677e"
+      },
+      "overlays/circus_streak/circus_drought_rental.h": {
+        "size": 1439,
+        "sha256": "550c19430317bf4594d3a55335e297b6ec0d7f115778f6712a96c6283dae82e7"
+      },
+      "overlays/circus_streak/circus_drought_selection.h": {
+        "size": 1366,
+        "sha256": "2ffa16c6542fac3f95a1c2ba28aa2d6aaa73c312de556d233fa64a73ef315a00"
+      },
+      "overlays/factory_high_modes_v2/factory_high_modes_v2.h": {
+        "size": 6051,
+        "sha256": "290c4f9ea7f274121273f5b43f736b5c598a6b50d412e0a85c320d0e1765622b"
+      },
+      "overlays/save_migration/save_migration.h": {
+        "size": 12497,
+        "sha256": "e266c4ec10a3244654837c0f3009b449ccf0e203fe0bfc1c11b319132baadf67"
+      },
+      "scripts/pr16_circus_continuous_probe.py": {
+        "size": 10004,
+        "sha256": "a900e3d8182a6075569a0f5a3bdaffcb8f22547a00f52f14d6247b092839f746"
+      },
+      "scripts/pr16_circus_reentry_probe.py": {
+        "size": 8403,
+        "sha256": "d0e39d3297f68ae8be3f433279b012a9cc66093d1868694a71b577e6261a1fc8"
+      },
+      "tests/fixtures/circus_drought_fixture.c": {
+        "size": 3108,
+        "sha256": "6173d1bdfe125f281dc37da79e93064edeabf77306b92f1f4fec72bc5c240f60"
+      },
+      "tests/fixtures/circus_drought_launch_fixture.c": {
+        "size": 2949,
+        "sha256": "0deaad258e659c3531619a39cf297307e9b3bb6839bef05ec963ec4a0faefd5a"
+      },
+      "tests/fixtures/circus_drought_rental_fixture.c": {
+        "size": 3992,
+        "sha256": "ff32da560b4e7f0c5045dd33ccce5d8b77536f15298203b4c9ad794a1d75fd0e"
+      },
+      "tests/fixtures/circus_drought_selection_fixture.c": {
+        "size": 3300,
+        "sha256": "ae33cbd3246654c4af5c7af5b1ce07bad79e7b5694eb8aa111d33eb645028e22"
+      },
+      "tools/mgba_ai_fixture_runner.c": {
+        "size": 36272,
+        "sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f"
+      },
+      "tools/mgba_battle_core_smoke.c": {
+        "size": 94688,
+        "sha256": "ed9875695ca60c61960685ac2f8e810a183c8eedd703e56545d67bde3df5cf24"
+      },
+      "tools/mgba_modernization_p02_stage71_acceptance_smoke.c": {
+        "size": 39669,
+        "sha256": "4e543fa815ca030e74522b5d0f1455fd5074035d10f044aab3bdfd41d7319c3b"
+      },
+      "tools/mgba_modernization_p03_archive_ui_e2e.c": {
+        "size": 20154,
+        "sha256": "ccaeed858b70ea0af53a999dbaae121a8b85c88c08522755dc800e24e159b467"
+      },
+      "tools/mgba_modernization_p03_breeding_e2e.c": {
+        "size": 19614,
+        "sha256": "a99cafd942f958c932709bed6099695f067dc292401b3bfb91e60afe4d6823de"
+      },
+      "tools/mgba_modernization_p03_fullslots_e2e.c": {
+        "size": 12868,
+        "sha256": "f419ff2fffaf175061012dfb5dfc25d18c70a86d15c9ca89f5d5e6c886965ffa"
+      },
+      "tools/mgba_modernization_p03_learning_e2e.c": {
+        "size": 7987,
+        "sha256": "154e277ef3f37b0037a7082b154805b658742f476eaf52abeb8c0ffb27a2742d"
+      },
+      "tools/mgba_pr16_bp_battle_progress.c": {
+        "size": 3939,
+        "sha256": "37b6581d714cf47e605b0516215456415e1787f03a9af830cc7ce441657a173b"
+      },
+      "tools/mgba_pr16_bp_battle_return.c": {
+        "size": 8320,
+        "sha256": "286e2cccc1b5dcf5fffc2063664a45194f9902452d7d805229582cc7e9050a17"
+      },
+      "tools/mgba_pr16_bp_native_controls.c": {
+        "size": 10327,
+        "sha256": "44e28abe05a7dcad0d430b8c48b5046cbf89c246f7235158a2e5451b29bb0f56"
+      },
+      "tools/mgba_pr16_bp_selection_native.c": {
+        "size": 10488,
+        "sha256": "7815a29617038dfcd3fd57d9a5a7e61eed0a88c9d4ba7c9b45ec2d1fbc3de690"
+      },
+      "tools/mgba_pr16_bp_win_exchange.c": {
+        "size": 15394,
+        "sha256": "95f1e9e3044df165190dc879c47b98251ecbbcc48de0b8f588ff6ec5af94480c"
+      },
+      "tools/mgba_pr16_circus_accuracy.h": {
+        "size": 3853,
+        "sha256": "e7ec806604a6b8cb8840a37a3cf07f1e63a13c2a9d3d43dc6ec271f4c613b511"
+      },
+      "tools/mgba_pr16_circus_continuous.c": {
+        "size": 12838,
+        "sha256": "649bfe64db299aa1d9b6aab58c8a0f51e38d6b12a6e12d298c1f3b55ed9691a5"
+      },
+      "tools/mgba_pr16_circus_coverage.h": {
+        "size": 372,
+        "sha256": "df410935b8476ae4293d4a44960db7c3325a139f3c7c401ed09b138852d90bda"
+      },
+      "tools/mgba_pr16_circus_drain.h": {
+        "size": 1553,
+        "sha256": "07db7c5fd35a2b94b7ee7ea01ac7a4148790ea50f8e9b971182cf42a4c358aec"
+      },
+      "tools/mgba_pr16_circus_drought_watch.h": {
+        "size": 880,
+        "sha256": "b7dda5609fb269f52d42c33b2be1e44f448c6ef96c0452a0f63d414353d56203"
+      },
+      "tools/mgba_pr16_circus_effective.h": {
+        "size": 1776,
+        "sha256": "2d1988eab00bf22e3856312219efbea2c527fdcd551675a24a55b2e0fd73d7db"
+      },
+      "tools/mgba_pr16_circus_loss_weather.h": {
+        "size": 832,
+        "sha256": "855c195f470faee9daa2965e93b76e939ed9c17b848d74dcf12ac103fe462b18"
+      },
+      "tools/mgba_pr16_circus_matchup.h": {
+        "size": 7044,
+        "sha256": "dcbc29c562f6e1c98b3eb71c35a00f62a48180e15e915fb2d6d83282c4095e07"
+      },
+      "tools/mgba_pr16_circus_menu_identity.h": {
+        "size": 687,
+        "sha256": "acc57bdbaa5a77e825a63f29f3c9c22ea73063eaf142437c7458f1847cdacc88"
+      },
+      "tools/mgba_pr16_circus_native.c": {
+        "size": 11730,
+        "sha256": "6267e2bbd682198d79998ac250b52aef63e337db7eb96bb8f3921bc96a39e885"
+      },
+      "tools/mgba_pr16_circus_pivot.h": {
+        "size": 3115,
+        "sha256": "18da4e5418e46a3e997683ba93626cf971837cb8f1099fbea05438940664fa63"
+      },
+      "tools/mgba_pr16_circus_reentry.h": {
+        "size": 4038,
+        "sha256": "2cf09a3021604a2afd39f52de0b8e9077a95a7f633d5b24476657ceb1e73231a"
+      },
+      "tools/mgba_pr16_circus_reliability.h": {
+        "size": 848,
+        "sha256": "dd4b1520740598a221bf8ede4755b9c70182adaea81c21ae301d66ec0d12e5df"
+      },
+      "tools/mgba_pr16_circus_rental_drought.h": {
+        "size": 2636,
+        "sha256": "6f7a7dc8c0df76f981e6be1e272c9799002e408ad65eb7224aa03677f3f3f5d3"
+      },
+      "tools/mgba_pr16_circus_selection_context.h": {
+        "size": 951,
+        "sha256": "ba8364eb8552cde4c21b30a19683be1e4964462709a7ae38c2ae997cde119dfb"
+      },
+      "tools/mgba_pr16_circus_sustain.h": {
+        "size": 5921,
+        "sha256": "4eafd6b52fd841f974ea96987c0a42ebcd29ba31e376a9dfc1abd66097763dbf"
+      },
+      "tools/mgba_pr16_circus_tactical.h": {
+        "size": 5387,
+        "sha256": "eaf6cf5e1ecc4e540b9b2f258e16364e334b045ec2e50e52398576b0c0700856"
+      },
+      "tools/mgba_pr16_circus_taunt.h": {
+        "size": 2994,
+        "sha256": "c857270e9b449fc0b42d89e8fd4abec7d0cee52c6807ca1ea91e7c76b4cfefac"
+      },
+      "tools/mgba_pr16_natural_capture.c": {
+        "size": 9630,
+        "sha256": "cd09b0ad480403b0e76239196415656c36b26abe18f12bcc946c4f9f9c9d2e6e"
+      },
+      "tools/mgba_pr16_purchased_gear.c": {
+        "size": 16307,
+        "sha256": "ba8a7994d25bf7d5d95fdf9fb35bace671f4b1625f5cee96df235a92bbdac9aa"
+      },
+      "tools/mgba_pr16_shop_routes.c": {
+        "size": 10000,
+        "sha256": "16eda36fade0e8ef0ec3dc0b45b22c9776969f557aedc6ac25f1b65ffc09848c"
+      },
+      "tools/mgba_qol_production_smoke.c": {
+        "size": 149046,
+        "sha256": "2c4b9f065f4dce84e48f2be9afe2e2f9f666865088770ee8b068a908a0527b85"
+      }
+    },
+    "generated": {
+      "p03b_archive_embedded.c": {
+        "size": 20163,
+        "sha256": "d1aef42d46e770aa7784477965902e5f26297ca8f0b5da80b8f78b0e7c706a80"
+      },
+      "p03a_fullslots_embedded.c": {
+        "size": 12877,
+        "sha256": "d5230de78b19ab9990281d884b0f5242b76f0c4b427b574da25daddb0abc60a8"
+      },
+      "p03_learning_embedded.c": {
+        "size": 7996,
+        "sha256": "81a488ced101990d3b22af65542e1f68d24e628291c1dd7e90751f2a6b18f336"
+      },
+      "p03_p02_embedded.c": {
+        "size": 39678,
+        "sha256": "04ba837b8aad5625708751f7902ca794c74b0993e13307c6c7e390ae62af1cdf"
+      },
+      "pr16_shop_breeding_helpers.c": {
+        "size": 19625,
+        "sha256": "fa420d273a80b8423d001b123e7eaeebd1a29717c52b8d24b7d5f32efc1095b3"
+      },
+      "pr16_capture_shop_helpers.c": {
+        "size": 10007,
+        "sha256": "0854289c5a7895ad7de2ee82b4ac578db0b96fcf6e1b570d6adb5205dabab881"
+      },
+      "pr16_gear_capture_helpers.c": {
+        "size": 9640,
+        "sha256": "4c057989f1638e14d6814c269291f952ad2cb8e96be5a36274ff8707fc63bee8"
+      },
+      "pr16_bp_native_helpers.c": {
+        "size": 16314,
+        "sha256": "29fd3a5f30d5e6e7ea229fd59d2fd8d2b072d07244ddef762ec01d59a03e4c9f"
+      },
+      "pr16_bp_control_embedded.c": {
+        "size": 11463,
+        "sha256": "06dd81f90dde1c8d57d156acf92b1bf2db30431341c1fc3ada3aa654cc396ee7"
+      },
+      "pr16_circus_selection_helpers.c": {
+        "size": 10511,
+        "sha256": "db81848dbd188a74b4afd0aab1e27aa796229964541dc392805801bcccc51da5"
+      },
+      "pr16_circus_turn_helpers.c": {
+        "size": 3939,
+        "sha256": "37b6581d714cf47e605b0516215456415e1787f03a9af830cc7ce441657a173b"
+      },
+      "pr16_gear_route.h": {
+        "size": 518,
+        "sha256": "bd60ed3f71b01b821c7722e3d80edeb2b3d9049b9dd876e6ffb4e49dac65cf1c"
+      },
+      "pr16_circus_addresses.h": {
+        "size": 87,
+        "sha256": "1b7247f0cd8ef1d75eaad6e7811ed584b32cfc638d4e5c458c2a4d515536287f"
+      },
+      "pr16_streak_legacy.c": {
+        "size": 11746,
+        "sha256": "de1618b95f09d8ce02c2a1ce8b833fa893f35c4da08b64dd69f9927cfe0c89c2"
+      },
+      "pr16_streak_policy.c": {
+        "size": 54344,
+        "sha256": "a740eaba10cfb7f8bfc97585ef9fe84c40181cb9c616e113a7ce72d108d47515"
+      },
+      "controller.c": {
+        "size": 12838,
+        "sha256": "649bfe64db299aa1d9b6aab58c8a0f51e38d6b12a6e12d298c1f3b55ed9691a5"
+      }
+    }
+  },
+  "host_tests": {
+    "tests_run": 9,
+    "success": true,
+    "skipped": 0
+  },
+  "new_emulator_processes": 0,
+  "arm_compiles": 0,
+  "arm_links": 0,
+  "accepted_standalone_replays": 0,
+  "rom_changes": 0,
+  "genuine_30_wins_verified": false,
+  "lifecycle_verified": false,
+  "physical_admission_accepted": false,
+  "suppression_accepted": false,
+  "release_ready": false,
+  "failures": [],
+  "visual_review_completed": false,
+  "recording_run": 35477541574,
+  "recording_source_head": "35fcac915e6f40150abc06c299f68c19823f0264",
+  "text_evidence": {
+    "evidence/pr16_circus_battle29_recheck/35477541574/execution/recheck-tests.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "evidence/pr16_circus_battle29_recheck/35477541574/execution/recheck-tests.stderr": {
+      "size": 1510,
+      "sha256": "cf8fa344bfe427ab73e2cf0baa28261c6aff88aae638b35fad88476bbdb7bc37"
+    },
+    "evidence/pr16_circus_battle29_recheck/35477541574/execution/recheck-tests.stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  }
+}
