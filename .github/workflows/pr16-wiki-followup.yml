@@ -75,7 +75,9 @@ jobs:
                   path=inp.path(name); need(path.is_file() and path.suffix in ('.py','.md','.json','.jsonl','.csv','.yml',''),'非text source')
                   raw=path.read_bytes(); raw.decode('utf-8-sig'); need(b'\0' not in raw,'NUL source')
                   need(not any(p in path.parts for p in ('userfile','inputs','.git','credentials')),'禁止入力')
-                  need(len(raw)<=16*1024*1024,'source単体上限'); total+=len(raw);need(total<=256*1024*1024,'source全体上限')
+                  snapshot_name=name[len(wiki)+1:] if name.startswith(wiki+'/') else None
+                  limit=len(files[snapshot_name]) if snapshot_name in files else 16*1024*1024
+                  need(len(raw)<=limit,'source単体上限: '+name); total+=len(raw);need(total<=256*1024*1024,'source全体上限')
                   manifest[name]={'size':len(raw),'sha256':digest(raw)}
                   entry=zipfile.ZipInfo(name,(2026,9,21,0,0,0));entry.compress_type=zipfile.ZIP_DEFLATED;archive.writestr(entry,raw)
               metadata={'source_head':os.environ['GITHUB_SHA'],'candidate':candidate,'files':manifest}
@@ -86,6 +88,7 @@ jobs:
           report={'status':'PASS_SAVED_SNAPSHOT_INPUTS','candidate':candidate,'source_head':os.environ['GITHUB_SHA'],
             'verification_run':int(os.environ['GITHUB_RUN_ID']),'prior_verification':old,'snapshot_tree_sha256':receipt['tree_sha256'],
             'snapshot_files':len(files),'source_files':len(manifest),'source_bytes':total,
+            'input_failures':[{'run':35533773387,'reason':'受入済みlearnsets JSONLが汎用16MiB制限を超えた。既知Wikiは受入済みサイズ/hashで拘束し、その他sourceの上限は維持。','new_native_runs':0}],
             'new_native_runs':0,'arm_builds':0,'rom_changes':0,'snapshot_rebuilds':0,'issue18_complete':False}
           (out/'input-check.json').write_bytes(stable(report));print(json.dumps(report,sort_keys=True))
           PY
