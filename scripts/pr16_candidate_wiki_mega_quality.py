@@ -46,6 +46,13 @@ def normalize(model: dict) -> dict:
     return model
 
 
+def normalize_markdown(files: dict[str,bytes]) -> None:
+    """原文JSONを保持し、表示Markdownの行末空白だけを除去する。"""
+    for name,data in list(files.items()):
+        if name.endswith('.md'):
+            files[name]='\n'.join(line.rstrip(' \t') for line in data.decode().split('\n')).encode()
+
+
 def append_audit(files: dict[str,bytes], model: dict) -> None:
     """manifestの再計算前に、件数・個別ページ・索引へ監査結果を追加する。"""
     anomalies=model['mega_mapping_anomalies'];summary=model['mega_mapping_summary']
@@ -68,3 +75,4 @@ def append_audit(files: dict[str,bytes], model: dict) -> None:
     for row in model['species']:
         if row['mega_mapping_anomalies']:
             files[f"pokemon/{row['id']}.md"]+=('\n## メガとは区別する未確認登録\n\n[メガ登録行監査](../MEGA_MAPPING_AUDIT.md)\n\n'+jsonblock(row['mega_mapping_anomalies'])).encode()
+    normalize_markdown(files)

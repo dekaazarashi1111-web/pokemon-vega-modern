@@ -4,7 +4,7 @@ import sys
 import unittest
 sys.dont_write_bytecode=True
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'scripts'))
-from pr16_candidate_wiki_mega_quality import partition,normalize
+from pr16_candidate_wiki_mega_quality import partition,normalize,normalize_markdown
 
 
 class MegaQualityTest(unittest.TestCase):
@@ -32,6 +32,14 @@ class MegaQualityTest(unittest.TestCase):
         self.assertEqual(result['mega_mapping_summary']['raw_rows'],1)
         self.assertEqual(result['mega_mapping_summary']['forward_reverse_verified'],0)
         self.assertEqual(len(species['mega_mapping_anomalies']),1)
+
+    def test_markdown_space_cleanup_preserves_exact_json(self):
+        files={'a.md':b'name \nbody\t\n','raw.jsonl':b'{"description":"exact trailing space "}\n'}
+        before=files['raw.jsonl']
+        normalize_markdown(files)
+        self.assertEqual(files['a.md'],b'name\nbody\n')
+        self.assertEqual(files['raw.jsonl'],before)
+        first=dict(files);normalize_markdown(files);self.assertEqual(files,first)
 
 
 if __name__=='__main__':unittest.main()
