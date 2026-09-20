@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-同一46487d98のBP代表で正規レンタル1敗→共有敗北callback→party600byte復元→通常Save/fresh Continueを検証。原本保存済み、画面と完了Actionsの別照合前。
+P08 BP代表をrun35511250297成功・29画面・raw native原本で正式受入。元party600/Factory106/在庫復元と通常Save/fresh Continue、旧入力76058byte一致を保持。受入回収native0。
 
-**次: このrunの完了Actions・原本・終端画面を照合してP08_BP_RETURN_PARTYだけ受入。次はP03共有Save/load代表へ。**
+**次: P08共有Save/load（わざメモリー満杯置換1件）→Circus退出後通常戦闘へ。BP/Ring/旧3勝/30勝は再実行しない。**
 
-このrunの完了Actions・原本・終端画面を照合してP08_BP_RETURN_PARTYだけ受入。次はP03共有Save/load代表へ。
+P08共有Save/load（わざメモリー満杯置換1件）→Circus退出後通常戦闘へ。BP/Ring/旧3勝/30勝は再実行しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `3a4d16be56de9f91b9a5a8d7c1715f583ded361a`。
+証拠のsource HEAD: `33bb7bce407e839fbf1931ee8968ca55fce82077`。
 本checkpoint直前のremote。native実測・記録job完了・正式受入を別々に保持する。
 
 ## 最短の再開手順
@@ -25,16 +25,8 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_p08_bp_acceptance.json`
 - `content/modernization/pr16_p08_bp_loss_policy.json`
-- `scripts/pr16_p08_bp_loss_policy.py`
-- `tools/mgba_pr16_p08_bp_loss_policy.h`
-- `tests/test_pr16_p08_bp_loss_policy.py`
-- `.github/workflows/pr16-p08-bp-loss.yml`
-- `scripts/pr16_p08_bp_representative.py`
-- `tools/mgba_pr16_p08_bp_lifecycle.h`
-- `tests/test_pr16_p08_bp_representative.py`
-- `.github/workflows/pr16-p08-bp.yml`
-- `scripts/pr16_p08_checkpoint.py`
 - `content/modernization/pr16_p08_candidate_impact.json`
 - `content/modernization/p08_remaining_work.json`
 

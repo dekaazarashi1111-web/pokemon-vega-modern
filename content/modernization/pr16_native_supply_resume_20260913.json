@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "同一46487d98のBP代表で正規レンタル1敗→共有敗北callback→party600byte復元→通常Save/fresh Continueを検証。原本保存済み、画面と完了Actionsの別照合前。",
+    "current_stop": "P08 BP代表をrun35511250297成功・29画面・raw native原本で正式受入。元party600/Factory106/在庫復元と通常Save/fresh Continue、旧入力76058byte一致を保持。受入回収native0。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "このrunの完了Actions・原本・終端画面を照合してP08_BP_RETURN_PARTYだけ受入。次はP03共有Save/load代表へ。",
+    "next_step": "P08共有Save/load（わざメモリー満杯置換1件）→Circus退出後通常戦闘へ。BP/Ring/旧3勝/30勝は再実行しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -832,24 +832,16 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "このrunの完了Actions・原本・終端画面を照合してP08_BP_RETURN_PARTYだけ受入。次はP03共有Save/load代表へ。",
+    "goal_ja": "P08共有Save/load（わざメモリー満杯置換1件）→Circus退出後通常戦闘へ。BP/Ring/旧3勝/30勝は再実行しない。",
     "host_write_policy_ja": "新しい実受付のguard開始後は入力/frames/readのみ。施設番号/効果/連勝/party/PC/LRのhost注入は禁止。初期配置fixtureと実入場/正規連勝を区別する。",
-    "id": "P08_BP_REVIEW",
+    "id": "P08_SHARED_SAVE_LOAD",
     "read_paths": [
+      "content/modernization/pr16_p08_bp_acceptance.json",
       "content/modernization/pr16_p08_bp_loss_policy.json",
-      "scripts/pr16_p08_bp_loss_policy.py",
-      "tools/mgba_pr16_p08_bp_loss_policy.h",
-      "tests/test_pr16_p08_bp_loss_policy.py",
-      ".github/workflows/pr16-p08-bp-loss.yml",
-      "scripts/pr16_p08_bp_representative.py",
-      "tools/mgba_pr16_p08_bp_lifecycle.h",
-      "tests/test_pr16_p08_bp_representative.py",
-      ".github/workflows/pr16-p08-bp.yml",
-      "scripts/pr16_p08_checkpoint.py",
       "content/modernization/pr16_p08_candidate_impact.json",
       "content/modernization/p08_remaining_work.json"
     ],
-    "stop_rule_ja": "このrunの完了Actions・原本・終端画面を照合してP08_BP_RETURN_PARTYだけ受入。次はP03共有Save/load代表へ。",
+    "stop_rule_ja": "P08共有Save/load（わざメモリー満杯置換1件）→Circus退出後通常戦闘へ。BP/Ring/旧3勝/30勝は再実行しない。",
     "success_observations": [
       "実受付/入場ownerと必要進行条件を確定。データ上のmap名だけでCircusと断定しない",
       "flag直接注入を入場の証拠にせず、受付から対象ルール/特性抑制まで通常入力で確認",
@@ -857,11 +849,11 @@
     ]
   },
   "observed_date_jst": "2026-09-20",
-  "observed_head": "3a4d16be56de9f91b9a5a8d7c1715f583ded361a",
+  "observed_head": "33bb7bce407e839fbf1931ee8968ca55fce82077",
   "observed_head_checks": {
-    "scope_head": "3a4d16be56de9f91b9a5a8d7c1715f583ded361a",
-    "run_id": 35511250297,
-    "phase": "FINISH",
+    "scope_head": "33bb7bce407e839fbf1931ee8968ca55fce82077",
+    "run_id": 35511721939,
+    "phase": "ACCEPT",
     "native_verified": true,
     "reason_ja": "本run完了は次にActionsで別照合する。"
   },
@@ -932,8 +924,8 @@
   },
   "pending_runs": [
     {
-      "run_id": 35511250297,
-      "tested_head": "2b3fba89ee99e4d1360687f22d4cfb562fd0ec77",
+      "run_id": 35511721939,
+      "tested_head": "33bb7bce407e839fbf1931ee8968ca55fce82077",
       "status": "in_progress"
     }
   ],
@@ -1596,8 +1588,8 @@
   },
   "schema_version": 2,
   "session_execution_summary": {
-    "new_emulator_processes": 1,
-    "fresh_cores": 2,
+    "new_emulator_processes": 0,
+    "fresh_cores": 0,
     "arm_compiles": 0,
     "arm_links": 0,
     "accepted_standalone_replays": 0,
@@ -9178,8 +9170,8 @@
       "sha256": "2de1aab581307e5593860cac0964023ad000b2bc22a4535ea0d85b25f4efb517"
     },
     "content/modernization/p08_remaining_work.json": {
-      "size": 37873,
-      "sha256": "34cc74c6b066f30250a2178697ee390c8cad44e878744ad0dbb8b5ad471705e2"
+      "size": 37877,
+      "sha256": "3b8133ade246bc675f71c737382b9921fb7963b0cc3692ffc3acf4397736316c"
     },
     "content/modernization/pr16_bp_chooser_checkpoint.json": {
       "size": 9442,
@@ -9344,10 +9336,42 @@
     "evidence/pr16_p08/user-20260920-p08-bploss/35511250297/finish/result.json": {
       "size": 30068,
       "sha256": "2805cd8f09dddde5c71e59762b0e5387ee2871b2c3a43ce43d96a2c5f076f5ca"
+    },
+    "scripts/pr16_p08_memory_representative.py": {
+      "size": 15139,
+      "sha256": "7a15bbb94e894106ecf56d2b5f2e92428172f1b6475b2bf68a1c1da5fd0d1c76"
+    },
+    "tools/mgba_pr16_p08_memory_observer.h": {
+      "size": 1666,
+      "sha256": "4a9b1b03a150fbbce4ce85bfc09f244b26d71ab6c9d0092b8488c17c61b02965"
+    },
+    "tests/test_pr16_p08_memory_representative.py": {
+      "size": 5155,
+      "sha256": "e9f9b2f88a551dfed60d23bfa56201973305c51193e59dbdd3f03eb837bebe0c"
+    },
+    ".github/workflows/pr16-p08-memory.yml": {
+      "size": 2070,
+      "sha256": "7d073e2ec3859319bb7d910847a9088815a46e9e29392998441dce6d7ea1486a"
+    },
+    "content/modernization/pr16_p08_memory_case.json": {
+      "size": 540,
+      "sha256": "ac917b29ff5614c3892f47c9f56b18da08fba598b656cbb929f5cdd1ecf1f9e9"
+    },
+    "scripts/pr16_p08_bp_acceptance.py": {
+      "size": 5648,
+      "sha256": "5e5657497298966b418044e07a7d5f46ae0f5fbe4cd657ea1541b4f5bbf14ce9"
+    },
+    "content/modernization/pr16_p08_bp_acceptance.json": {
+      "size": 37231,
+      "sha256": "53fb3c843c1f7ff3468365abea5c22570f6339401c4cf5dff7428f95e6b38352"
+    },
+    "evidence/pr16_p08/user-20260920-p08-bp-accept/35511721939/accept/result.json": {
+      "size": 37231,
+      "sha256": "53fb3c843c1f7ff3468365abea5c22570f6339401c4cf5dff7428f95e6b38352"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "同一46487d98のBP代表で正規レンタル1敗→共有敗北callback→party600byte復元→通常Save/fresh Continueを検証。原本保存済み、画面と完了Actionsの別照合前。",
+  "source_change_review_ja": "P08 BP代表をrun35511250297成功・29画面・raw native原本で正式受入。元party600/Factory106/在庫復元と通常Save/fresh Continue、旧入力76058byte一致を保持。受入回収native0。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -9500,11 +9524,11 @@
   },
   "p08_representatives": {
     "P08_BP_RETURN_PARTY": {
-      "path": "content/modernization/pr16_p08_bp_loss_policy.json",
-      "run_id": 35511250297,
-      "phase": "FINISH",
+      "path": "content/modernization/pr16_p08_bp_acceptance.json",
+      "run_id": 35511721939,
+      "phase": "ACCEPT",
       "native_verified": true,
-      "representative_accepted": false
+      "representative_accepted": true
     }
   }
 }

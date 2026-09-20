@@ -6150,3 +6150,17 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: このcommitを同branchへ非force pushしremote読戻し。
 - Network: GitHub固定run/job/artifactとremote照合。
 - Next: このrunの完了Actions・原本・終端画面を照合してP08_BP_RETURN_PARTYだけ受入。次はP03共有Save/load代表へ。
+
+
+## 2026-09-20T12:49:42Z — USER-20260920-P08-BP-ACCEPT-ACCEPT
+- Timestamp: 2026-09-20T12:49:42Z
+- Task: USER-20260920-P08-BP-ACCEPT-ACCEPT
+- Status: DONE
+- Version: pr16-p08-representative-v1
+- Summary: P08 BP代表をrun35511250297成功・29画面・raw native原本で正式受入。元party600/Factory106/在庫復元と通常Save/fresh Continue、旧入力76058byte一致を保持。受入回収native0。
+- Files changed: scripts/pr16_p08_memory_representative.py, tools/mgba_pr16_p08_memory_observer.h, tests/test_pr16_p08_memory_representative.py, .github/workflows/pr16-p08-memory.yml, content/modernization/pr16_p08_memory_case.json, scripts/pr16_p08_bp_acceptance.py, content/modernization/pr16_p08_bp_acceptance.json, evidence/pr16_p08/user-20260920-p08-bp-accept/35511721939/accept/result.json, content/modernization/p08_remaining_work.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, design/run_log.md, design/version_log.md
+- Verify: 限定契約/resume/生成MD/hash/task graph、原本byte包絡とindex/HEAD読戻し。native件数・成否はcontent/modernization/pr16_p08_bp_acceptance.json。
+- Boundary: ARM0、旧受入の独立再実行0、ROM変更0。全体private guard既存違反は差分照合し全体PASSと主張しない。
+- Commit: このcommitを同branchへ非force pushしremote読戻し。
+- Network: GitHub固定run/job/artifactとremote照合。
+- Next: P08共有Save/load（わざメモリー満杯置換1件）→Circus退出後通常戦闘へ。BP/Ring/旧3勝/30勝は再実行しない。

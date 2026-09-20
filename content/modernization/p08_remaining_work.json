@@ -538,7 +538,7 @@
       "pass_condition": "Finish required BP/Ring/policy/Circus ROM changes, fix one final full SHA/size/CRC, and transfer parent accepted evidence using a changed-ROM-range/owner/runner/fixture/contract impact ledger with only justified reruns. bffd is not yet final.",
       "phase": "P08",
       "reason_ja": "BP/Ring/policy/Circusのscoped受入とbyte影響監査は保持。Ring代表境界を閉鎖し、最終候補移送は残る3代表境界で判定する。",
-      "resume": "このrunの完了Actions・原本・終端画面を照合してP08_BP_RETURN_PARTYだけ受入。次はP03共有Save/load代表へ。",
+      "resume": "P08共有Save/load（わざメモリー満杯置換1件）→Circus退出後通常戦闘へ。BP/Ring/旧3勝/30勝は再実行しない。",
       "shop_display_successor": "content/modernization/pr16_shop_display_acceptance.json",
       "success_evidence": "content/modernization/pr16_completion_acceptance.json",
       "target_function": "native final-candidate coverage beyond inherited seven-domain regression",
@@ -554,16 +554,16 @@
       "status": "REPRESENTATIVE_BOUNDARIES_PROGRESS_RECORDED",
       "ring_representative_evidence": "content/modernization/pr16_p08_ring_representative.json",
       "completed_representative_regression_ids": [
+        "P08_BP_RETURN_PARTY",
         "P08_RING_ORDINARY"
       ],
       "remaining_representative_regression_ids": [
         "P08_SHARED_SAVE_LOAD",
-        "P08_BP_RETURN_PARTY",
         "P08_CIRCUS_POST_EXIT_ORDINARY"
       ],
       "ring_representative_acceptance": "content/modernization/pr16_p08_ring_acceptance.json",
       "representative_evidence": {
-        "P08_BP_RETURN_PARTY": "content/modernization/pr16_p08_bp_loss_policy.json"
+        "P08_BP_RETURN_PARTY": "content/modernization/pr16_p08_bp_acceptance.json"
       }
     },
     {
