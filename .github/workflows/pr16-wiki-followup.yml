@@ -2,8 +2,7 @@ name: PR16 wiki followup
 on:
   push:
     branches: [codex/modernization-followup-20260908]
-    paths:
-      - .github/workflows/pr16-wiki-followup.yml
+    paths: [.github/workflows/pr16-wiki-followup.yml]
   workflow_dispatch:
 permissions:
   contents: read
@@ -21,71 +20,60 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
-      - name: 未監査consumerの固定textだけを取得（生成・native・pushなし）
-        env:
-          GH_TOKEN: ${{ github.token }}
+      - uses: actions/checkout@v4
+        with:
+          repository: kapibarasan000/CFRU-JP
+          ref: e24a16fe39e27ae162faf5b78596d1f3df18489d
+          path: .local/pr16-cfru-source
+          persist-credentials: false
+          sparse-checkout: |
+            src
+            include
+            assembly/battle_scripts
+      - name: 追加の読取専用sourceだけをexport（ビルド・nativeなし）
         run: |
           set -euo pipefail
-          mkdir -p .local/pr16-wiki-followup
           python3 -B - <<'PY'
-          import base64,fnmatch,hashlib,json,os,pathlib,subprocess,zipfile
-          root=pathlib.Path('.');out=root/'.local/pr16-wiki-followup'
-          def api(path):return json.loads(subprocess.check_output(['gh','api',path]))
-          lock=json.loads((root/'state/source-lock.json').read_bytes())
-          src=next(s for s in lock['sources'] if s['name']=='cfru')
-          repo='kapibarasan000/CFRU-JP';commit=src['resolved_commit']
-          assert src['repository']=='https://github.com/'+repo+'.git' and commit=='e24a16fe39e27ae162faf5b78596d1f3df18489d'
-          tree=api('repos/'+repo+'/git/trees/'+commit+'?recursive=1');assert not tree.get('truncated')
-          patterns=['src/set_z_effect.c','src/pokemon*.c','src/wild*.c','src/daycare*.c','src/item*.c','src/dexnav*.c',
-            'src/catching*.c','src/raid*.c','src/mega.c','src/battle_start_turn_start.c','src/battle_util.c',
-            'include/new/z_move_effects.h','include/new/set_z_effect.h','include/constants/moves.h',
-            'include/constants/pokemon.h','include/constants/items.h','include/constants/abilities.h',
-            'include/constants/battle_move_effects.h','assembly/data/battle_scripts.s','assembly/data/battle_scripts_tables.s',
-            'assembly/data/battle_effects.s','src/Tables/battle_moves.c','src/Tables/ability_tables.c',
-            'src/defines.h','src/defines_battle.h','include/new/pokemon.h','include/new/dexnav.h']
-          paths=sorted(r['path'] for r in tree['tree'] if r['type']=='blob' and any(fnmatch.fnmatchcase(r['path'],p) for p in patterns))
-          assert 'src/set_z_effect.c' in paths and len(paths)<80
-          payload={};bindings={};total=0
-          existing=json.loads((root/'content/modernization/pr16_candidate_wiki_source_model.json').read_bytes())['source_bindings']
-          for name in paths:
-              obj=api('repos/'+repo+'/contents/'+name+'?ref='+commit)
-              assert obj['encoding']=='base64' and obj['size']<=1024*1024,name
-              raw=base64.b64decode(obj['content'],validate=False);raw.decode('utf-8-sig');assert b'\0' not in raw and len(raw)==obj['size'],name
-              sha=hashlib.sha256(raw).hexdigest()
-              if name in existing:assert existing[name]['sha256']==sha and existing[name]['size']==len(raw),name
-              key='upstream/CFRU-JP/'+name;payload[key]=raw
-              bindings[key]={'repository':repo,'commit':commit,'path':name,'size':len(raw),'sha256':sha,'git_blob':obj['sha']}
-              total+=len(raw);assert total<=16*1024*1024
-          tracked=subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
-          local_patterns=['overlays/collection_supply_v1/*.c','overlays/collection_supply_v1/*.h',
-            'overlays/modernization_p03_stage74_supply_runtime/*.c','overlays/modernization_p03_stage74_supply_runtime/*.h',
-            'overlays/wild_overlay/*.c','overlays/wild_overlay/*.h',
-            'overlays/modernization_p05_ability_rom_runtime/*.c','overlays/modernization_p05_ability_rom_runtime/*.h',
-            'overlays/stage60_wild_species_root_repair/*.c','overlays/stage59_wild_identity_npc_regression_repair/*.c',
-            'config/stage61_wild_overlay_rate_policy.json','scripts/build_stage61_wild_overlay_rate_policy.py',
-            'scripts/build_modernization_floette_gift.py','scripts/pr16_resume.py',
-            'content/modernization/pr16_candidate_wiki_followup.json','content/modernization/pr16_candidate_wiki_acceptance.json',
+          import fnmatch,hashlib,json,os,pathlib,subprocess,zipfile
+          root=pathlib.Path('.');out=root/'.local/pr16-wiki-followup';out.mkdir(parents=True,exist_ok=True)
+          upstream=root/'.local/pr16-cfru-source';locked='e24a16fe39e27ae162faf5b78596d1f3df18489d'
+          assert subprocess.check_output(['git','-C',str(upstream),'rev-parse','HEAD']).decode().strip()==locked
+          source=next(s for s in json.loads((root/'state/source-lock.json').read_bytes())['sources'] if s['name']=='cfru')
+          assert source['resolved_commit']==locked
+          lists=lambda p:subprocess.check_output(['git','-C',str(p),'ls-files','-z']).decode().split('\0')
+          up_patterns=['src/build_pokemon.c','src/config.h','src/Tables/raid_encounters.h','src/dynamax.c',
+            'src/battle_script_util.c','src/damage_calc.c','include/constants/hold_effects.h','include/config*.h',
+            'assembly/battle_scripts/*.s','include/new/build_pokemon.h','include/new/mega.h']
+          local_patterns=['overlays/cfru/*.c','overlays/cfru/*.h','tools/modernization_floette_gift.py',
+            'scripts/*wiki*.py','scripts/build_*wild*.py','scripts/pr16_p08_impact.py','scripts/pr16_saved_recipe.py',
+            'config/*wild*.json','config/battle_core*.json','content/battle_core/*.json','content/moves/*.json',
+            'content/vega_moves/*.json','content/collection_supply_v1/canonical_model.json',
+            'overlays/modernization_rockruff_own_tempo/*.c','overlays/modernization_rockruff_own_tempo/*.h',
+            'scripts/build_modernization_rockruff_own_tempo.py','tools/*wiki*.py','Makefile',
             'content/modernization/pr16_native_supply_resume_20260913.json','docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md',
-            '.github/workflows/pr16-wiki-followup.yml']
-          for name in sorted(n for n in tracked if n and any(fnmatch.fnmatchcase(n,p) for p in local_patterns)):
-              p=root/name;assert not p.is_symlink() and p.suffix in ('.c','.h','.py','.json','.md','.yml'),name
-              raw=p.read_bytes();raw.decode('utf-8');assert b'\0' not in raw and len(raw)<=1024*1024,name
-              key='local/'+name;payload[key]=raw;bindings[key]={'path':name,'commit':os.environ['GITHUB_SHA'],'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
-          issue=api('repos/'+os.environ['GITHUB_REPOSITORY']+'/issues/18')
-          payload['issue18.md']=issue['body'].encode()
-          manifest={'source_head':os.environ['GITHUB_SHA'],'run_id':int(os.environ['GITHUB_RUN_ID']),
-             'source_bindings':bindings,'upstream_tree_paths':[r['path'] for r in tree['tree'] if r['type']=='blob'],
-             'input_failure':{'run':35534169956,'reason':'local globが非対象assemblerを含めた。C/Hのみ選択へ修正。ROM/native未実行。'},
-             'snapshot_rebuilds':0,'new_native_runs':0,'arm_builds':0,'rom_changes':0}
-          payload['consumer-source-manifest.json']=(json.dumps(manifest,ensure_ascii=False,sort_keys=True,indent=2)+'\n').encode()
-          with zipfile.ZipFile(out/'consumer-sources.zip','w',compression=zipfile.ZIP_DEFLATED) as z:
-              for name,raw in sorted(payload.items()):z.writestr(name,raw)
-          print(json.dumps({'status':'PASS_PINNED_CONSUMER_SOURCE_INPUTS','upstream_files':len(paths),'local_files':len(bindings)-len(paths),'source_head':os.environ['GITHUB_SHA'],'new_native_runs':0,'snapshot_rebuilds':0},sort_keys=True))
+            'content/modernization/pr16_candidate_wiki_acceptance.json','content/modernization/pr16_candidate_wiki_followup.json',
+            'tests/test_pr16_wiki_followup*.py','.github/workflows/pr16-wiki-followup.yml']
+          manifest={};total=0;payload={}
+          for prefix,base,patterns,commit in [('upstream/CFRU-JP/',upstream,up_patterns,locked),('local/',root,local_patterns,os.environ['GITHUB_SHA'])]:
+              names=lists(base)
+              for name in sorted(n for n in names if n and any(fnmatch.fnmatchcase(n,p) for p in patterns)):
+                  p=base/name;assert p.is_file() and not p.is_symlink(),name
+                  assert p.suffix in ('.c','.h','.s','.py','.json','.md','.yml',''),name
+                  data=p.read_bytes();data.decode('utf-8-sig');assert b'\0' not in data and len(data)<4*1024*1024,name
+                  total+=len(data);assert total<32*1024*1024
+                  key=prefix+name;payload[key]=data
+                  manifest[key]={'path':name,'commit':commit,'size':len(data),'sha256':hashlib.sha256(data).hexdigest()}
+          payload['additional-source-manifest.json']=(json.dumps({'source_head':os.environ['GITHUB_SHA'],'run_id':int(os.environ['GITHUB_RUN_ID']),
+              'source_bindings':manifest,'new_native_runs':0,'arm_builds':0,'rom_changes':0,
+              'local_source_paths':[n for n in lists(root) if n.endswith(('.py','.c','.h','.json')) and any(k in n for k in ('battle','move','wild','wiki','floette'))]},ensure_ascii=False,sort_keys=True,indent=2)+'\n').encode()
+          with zipfile.ZipFile(out/'additional-sources.zip','w',compression=zipfile.ZIP_DEFLATED) as z:
+              for name,data in sorted(payload.items()):z.writestr(name,data)
+          print(json.dumps({'status':'PASS_ADDITIONAL_SOURCE_INPUTS','files':len(manifest),'bytes':total,'new_native_runs':0,'rom_changes':0},sort_keys=True))
           PY
           git diff --exit-code
       - uses: actions/upload-artifact@v4
         with:
-          name: pr16-wiki-consumer-sources
-          path: .local/pr16-wiki-followup/consumer-sources.zip
+          name: pr16-wiki-additional-sources
+          path: .local/pr16-wiki-followup/additional-sources.zip
           retention-days: 3
           if-no-files-found: error
