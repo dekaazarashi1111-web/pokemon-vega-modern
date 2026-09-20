@@ -1,0 +1,43 @@
+name: PR16 P08 exact byte impact
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - scripts/pr16_p08_impact.py
+      - scripts/pr16_p08_record.py
+      - tests/test_pr16_p08_impact.py
+      - .github/workflows/pr16-p08-impact.yml
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-circus-suppression
+  cancel-in-progress: false
+jobs:
+  impact:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: 21層の全ROM検証・owner影響・引継ぎと両ログを非force保存
+        run: |
+          mkdir -p .local/pr16-p08-impact
+          python3 scripts/pr16_p08_record.py execute > .local/pr16-p08-impact/execute.stdout 2> .local/pr16-p08-impact/execute.stderr
+      - name: ROMを除外し検査証拠だけ保存
+        if: always()
+        run: python3 scripts/pr16_p08_record.py pack
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-p08-impact
+          path: .local/pr16-p08-impact/artifact/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
