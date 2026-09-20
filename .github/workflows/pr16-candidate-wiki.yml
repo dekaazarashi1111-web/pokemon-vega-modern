@@ -9,8 +9,11 @@ on:
       - tests/test_pr16_candidate_wiki.py
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
   actions: read
+defaults:
+  run:
+    shell: bash
 concurrency:
   group: pr16-candidate-wiki
   cancel-in-progress: false
@@ -21,45 +24,87 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
-        with:
-          persist-credentials: false
-      - name: Wiki限定unit tests（native/ROM変更なし）
-        run: python3 -B -m unittest discover -s tests -p test_pr16_candidate_wiki.py -v
-      - name: 固定sourceの読取と必要metadataだけ保持
+      - name: 限定reader修正（MOVE_NONE paddingと終了コード）
         run: |
+          set -euo pipefail
           mkdir -p .local/pr16-wiki
           python3 -B - <<'PY'
-          import hashlib,json,pathlib,subprocess,urllib.request,zipfile
-          root=pathlib.Path('.')
-          source=next(s for s in json.loads((root/'state/source-lock.json').read_text())['sources'] if s['name']=='cfru')
-          commit=source['resolved_commit']
-          assert commit==source['actual_commit']==source['configured_commit']
-          paths=subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
-          out=root/'.local/pr16-wiki'
-          inventory=[p for p in paths if p and ((p.startswith('build/') and p.endswith(('.json','.ini'))) or ('p07' in p.lower() and p.endswith(('.json','.zip'))) or 'v4' in p.lower())]
-          (out/'input-inventory.json').write_text(json.dumps(inventory,indent=2)+'\n')
-          bindings={}
-          with zipfile.ZipFile(out/'metadata.zip','w',zipfile.ZIP_DEFLATED) as z:
-              for name in paths:
-                  p=root/name
-                  if not name or not p.is_file() or p.is_symlink():continue
-                  selected=(name.startswith('build/stages/70_') or name.startswith('build/stages/75_')) and name.endswith('.json')
-                  selected=selected or (name.endswith('offsets.ini') and 'battle-core' in name)
-                  selected=selected or name.endswith('p07-recovered-source.json')
-                  if selected:
-                      data=p.read_bytes();data.decode('utf-8');assert b'\0' not in data
-                      z.writestr(name,data);bindings[name]={'size':len(data),'sha256':hashlib.sha256(data).hexdigest()}
-              for name in ['charmap.tbl','src/set_z_effect.c','src/Tables/battle_moves.c','src/Tables/pokemon_tables.c']:
-                  url='https://raw.githubusercontent.com/kapibarasan000/CFRU-JP/'+commit+'/'+name
-                  data=urllib.request.urlopen(url,timeout=60).read(2000000)
-                  data.decode('utf-8-sig');assert b'\0' not in data
-                  target='pinned-cfru/'+name
-                  z.writestr(target,data);bindings[target]={'size':len(data),'sha256':hashlib.sha256(data).hexdigest(),'source_commit':commit}
-          (out/'metadata-manifest.json').write_text(json.dumps(bindings,sort_keys=True,indent=2)+'\n')
-          print('metadata text files',len(bindings))
+          from pathlib import Path
+          p=Path('scripts/pr16_candidate_wiki_inputs.py');s=p.read_text()
+          old="            need(0 < move < move_count and 0 <= level <= 100, 'level row不正: '+str(species))"
+          new="            if move == 0:\n                continue  # Native table padding; not a learnable MOVE_NONE row.\n            need(0 < move < move_count and 0 <= level <= 100, f'level row不正: species={species} move={move} level={level}')"
+          if old in s:
+              assert s.count(old)==1;p.write_text(s.replace(old,new))
+          else:assert new in s
+          p=Path('tests/test_pr16_candidate_wiki.py');s=p.read_text()
+          if 'test_level_padding_zeros' not in s:
+              anchor='    def test_pointer_bounds(self):'
+              assert s.count(anchor)==1
+              test="    def test_level_padding_zeros(self):\n        raw=struct.pack('<I',w.BASE+4)+struct.pack('<HBHB',0,0,0,255)\n        self.assertEqual(w.Rom(raw).level(w.BASE,0,2),[])\n\n"
+              p.write_text(s.replace(anchor,test+anchor))
           PY
-      - name: 単一P08候補のread-only抽出（saved byte適用のみ）
-        run: python3 -B scripts/pr16_candidate_wiki_extract.py --output .local/pr16-wiki/projection.json | tee .local/pr16-wiki/extract.stdout.txt
+          python3 -B -m unittest discover -s tests -p test_pr16_candidate_wiki.py -v 2>&1 | tee .local/pr16-wiki/unit.log
+      - name: 固定された上流・V4のtext正本だけを準備（生成や受入の再実行なし）
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          if test -f content/modernization/pr16_candidate_wiki_source_model.json && test -f content/modernization/pr16_candidate_wiki_p07_source_rows.json; then
+            echo 'Existing hash-bound semantic source models reused.'
+          else
+            mkdir -p .local/pr16-wiki-private .local/pr16-wiki/pinned-cfru
+            gh release download private-environment-v1 --pattern pokemon-vega-private-env-v1-inputs.zip --dir .local/pr16-wiki-private
+            python3 -B - <<'PY'
+          import hashlib,json,pathlib,urllib.request,zipfile
+          root=pathlib.Path('.')
+          cfg=json.loads((root/'config/github_private_environment.json').read_text())
+          expected=next(a for a in cfg['archives'] if a['name']=='pokemon-vega-private-env-v1-inputs.zip')
+          archive=root/'.local/pr16-wiki-private'/expected['name']
+          raw=archive.read_bytes()
+          assert len(raw)==expected['size'] and hashlib.sha256(raw).hexdigest()==expected['sha256']
+          with zipfile.ZipFile(archive) as z:
+              value=z.read('userfile/imports/Pokemon-Vega_MOVE-DISTRIBUTION-V4_IMPLEMENTATION-READY.zip')
+          assert hashlib.sha256(value).hexdigest()=='4022cd6e1358f58dffc5ebc38b756166f0a1072f948af6934298f65bd82678b2'
+          (root/'.local/pr16-wiki-private/v4.zip').write_bytes(value)
+          source=next(s for s in json.loads((root/'state/source-lock.json').read_text())['sources'] if s['name']=='cfru')
+          ref=source['resolved_commit'];assert ref==source['actual_commit']==source['configured_commit']
+          paths=['charmap.tbl','src/set_z_effect.c','src/Tables/battle_moves.c','assembly/data/move_tables.s','include/constants/battle_move_effects.h','src/dynamax.c','include/constants/pokemon.h','src/defines_battle.h']
+          for name in paths:
+              url='https://raw.githubusercontent.com/kapibarasan000/CFRU-JP/'+ref+'/'+name
+              data=urllib.request.urlopen(url,timeout=60).read(2000000)
+              data.decode('utf-8-sig');assert b'\0' not in data
+              p=root/'.local/pr16-wiki/pinned-cfru'/name;p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(data)
+          PY
+            python3 -B scripts/pr16_candidate_wiki_prepare.py --source-directory .local/pr16-wiki/pinned-cfru --v4-archive .local/pr16-wiki-private/v4.zip | tee .local/pr16-wiki/source-preparation.json
+          fi
+          cp content/modernization/pr16_candidate_wiki_source_model.json .local/pr16-wiki/
+          cp content/modernization/pr16_candidate_wiki_p07_source_rows.json .local/pr16-wiki/
+      - name: 現候補の読取専用projection（失敗時は必ずFAIL）
+        run: |
+          set -euo pipefail
+          python3 -B scripts/pr16_candidate_wiki_extract.py --output .local/pr16-wiki/projection.json 2> >(tee .local/pr16-wiki/extract.stderr.txt >&2) | tee .local/pr16-wiki/extract.stdout.txt
+          test -s .local/pr16-wiki/projection.json
+      - name: 検証済みreader修正・意味sourceを同branchへ通常push
+        run: |
+          set -euo pipefail
+          git diff --check
+          test "$(git ls-remote origin refs/heads/codex/modernization-followup-20260908 | cut -f1)" = "$GITHUB_SHA"
+          python3 -B - <<'PY'
+          import pathlib,subprocess
+          allowed={'scripts/pr16_candidate_wiki_inputs.py','tests/test_pr16_candidate_wiki.py','content/modernization/pr16_candidate_wiki_source_model.json','content/modernization/pr16_candidate_wiki_p07_source_rows.json'}
+          changed=set(subprocess.check_output(['git','diff','--name-only']).decode().splitlines())
+          assert changed<=allowed
+          for name in allowed:
+              p=pathlib.Path(name);data=p.read_bytes();data.decode('utf-8');assert not p.is_symlink() and b'\0' not in data
+          subprocess.run(['git','add','--',*sorted(allowed)],check=True)
+          PY
+          if ! git diff --cached --quiet; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m 'USER-20260921-P08-CANDIDATE-WIKI: WIP 現候補projection・P07全1572原本行・Z/flag意味sourceを検証'
+            git push origin HEAD:refs/heads/codex/modernization-followup-20260908
+          fi
+          git rev-parse HEAD > .local/pr16-wiki/reflected-head.txt
       - uses: actions/upload-artifact@v4
         if: always()
         with:
