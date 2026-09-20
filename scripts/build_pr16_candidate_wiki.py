@@ -50,16 +50,19 @@ def generate(inputs: Inputs) -> tuple[dict[str, bytes], dict]:
     from pr16_candidate_wiki_catalog import assemble
     from pr16_candidate_wiki_render import render
     from pr16_candidate_wiki_mega_quality import normalize, append_audit
+    from pr16_candidate_wiki_consumers import enrich, append_pages
     candidate = selected_candidate(inputs)
     for name in ('scripts/build_pr16_candidate_wiki.py', 'scripts/pr16_candidate_wiki_catalog.py',
-                 'scripts/pr16_candidate_wiki_render.py', 'scripts/pr16_candidate_wiki_mega_quality.py'):
+                 'scripts/pr16_candidate_wiki_render.py', 'scripts/pr16_candidate_wiki_mega_quality.py',
+                 'scripts/pr16_candidate_wiki_consumers.py', 'scripts/pr16_wiki_source_snapshot.py'):
         inputs.raw(name)
-    model = normalize(assemble(details(inputs, candidate_bytes(inputs)), inputs))
+    model = enrich(normalize(assemble(details(inputs, candidate_bytes(inputs)), inputs)), inputs)
     need(model['candidate'] == candidate, 'Wiki選択候補不一致')
     files = render(model)
     append_audit(files, model)
+    append_pages(files, model)
     index = __import__('json').loads(files.pop('data/index.json'))
-    index.update(mega_mapping_summary=model['mega_mapping_summary'], issue18_complete=False,
+    index.update(mega_mapping_summary=model['mega_mapping_summary'], consumer_audit_summary=model['followup_audit']['summary'], issue18_complete=False,
                  snapshot_scope='ALL_ID_DOCUMENTATION_WITH_EXPLICIT_AUDIT_GAPS',
                  files={name: {'size': len(raw), 'sha256': digest(raw)} for name, raw in sorted(files.items())},
                  payload_tree_sha256=tree_hash(files))

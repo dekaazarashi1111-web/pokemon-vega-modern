@@ -7,6 +7,7 @@ on:
       - scripts/build_pr16_candidate_wiki.py
       - scripts/pr16_candidate_wiki_*.py
       - scripts/pr16_wiki_checkpoint.py
+      - scripts/pr16_wiki_source_snapshot.py
       - scripts/pr16_wiki_followup*.py
       - tests/test_pr16_candidate_wiki*.py
       - tests/test_pr16_wiki_followup*.py
@@ -29,6 +30,10 @@ jobs:
       - uses: actions/checkout@v4
       - name: Stage61・active baseline保護とMakefile限定入口
         run: python3 -B scripts/pr16_wiki_checkpoint.py prepare
+      - name: 固定source artifact再利用（初回だけ・nativeなし）
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 -B scripts/pr16_wiki_followup_sources.py
       - name: 今回追加の差分試験（受入nativeは実行しない）
         run: |
           set -euo pipefail
@@ -48,13 +53,13 @@ jobs:
           python3 -B scripts/pr16_resume.py check
           python3 -B scripts/validate_task_graph.py
           git diff --check
-          git add -- Makefile docs/wiki/p08-candidate-46487d98 content/modernization/pr16_candidate_wiki_acceptance.json content/modernization/pr16_candidate_wiki_followup.json content/modernization/pr16_native_supply_resume_20260913.json docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md design/run_log.md design/version_log.md
+          git add -- content/modernization/pr16_candidate_wiki_consumer_sources.json Makefile docs/wiki/p08-candidate-46487d98 content/modernization/pr16_candidate_wiki_acceptance.json content/modernization/pr16_candidate_wiki_followup.json content/modernization/pr16_native_supply_resume_20260913.json docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md design/run_log.md design/version_log.md
           python3 -B scripts/pr16_wiki_checkpoint.py guard
           git diff --cached --check
           test "$(git ls-remote origin refs/heads/codex/modernization-followup-20260908 | cut -f1)" = "$GITHUB_SHA"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'USER-20260921-P08-CANDIDATE-WIKI: CLI受入とWiki・固定引継ぎ・両ログを同期'
+          git commit -m 'USER-20260921-P08-CANDIDATE-WIKI: 固定consumer監査とWiki・固定引継ぎ・両ログを同期'
           git push origin HEAD:refs/heads/codex/modernization-followup-20260908
           git rev-parse HEAD > .local/pr16-wiki/reflected-head.txt
       - uses: actions/upload-artifact@v4
