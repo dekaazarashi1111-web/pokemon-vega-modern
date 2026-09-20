@@ -492,7 +492,7 @@
       "phase": "P05",
       "reason_ja": "実際の受付・入場からBattle Circus特性抑制までの通し受入。既存のフラグ設定試験で代替しない",
       "reconstruction_checkpoint": "content/modernization/pr16_saved_reconstruction.json",
-      "resume": "進行中の同branch suppression runのみ確認。通常入力の抽選と自然callee観測を完了し、原本・引継ぎ・両ログを記録する。",
+      "resume": "pr16_circus_suppression.jsonの最初の未達段階だけ修復する。normal_save30が検証済みなら指定cacheを再利用し、30戦prefixを再実行しない。",
       "success_evidence": null,
       "supply_owner_evidence": "content/modernization/pr16_p05_supply_owner_findings.json",
       "target_function": "actual reception/admission to suppression",

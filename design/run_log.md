@@ -8649,3 +8649,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: この記録を含む同branch非force commit。自己SHAはremote/receipt。
 - Network: GitHub原本API照合・host mGBA依存。ROM/save/private入力はGit/artifactへ追加せず、真正Save30のみActions cache。旧ARM/旧builder/受入単体0。
 - Next: 進行中の同branch suppression runのみ確認。通常入力の抽選と自然callee観測を完了し、原本・引継ぎ・両ログを記録する。
+
+
+## 2026-09-20T06:38:34Z — USER-20260920-CIRCUS-SUPPRESSION-FINISH
+- Timestamp: 2026-09-20T06:38:34Z
+- Task: USER-20260920-CIRCUS-SUPPRESSION
+- Status: STOPPED（正式physical受入・P08は未完）
+- Version: pr16-circus-suppression-v1
+- Summary: 抑制継続の原本と実停止を記録。真正30勝/90BPの受入は不変。未観測を成功へ昇格しない。[{'stage': 'native-or-setup', 'type': 'ValueError', 'error': 'native process or logger failed'}]
+- Files changed: scripts/pr16_circus_suppression.py, scripts/pr16_circus_suppression_contract.py, tools/mgba_pr16_circus_suppression.h, tests/test_pr16_circus_suppression.py, .github/workflows/pr16-circus-suppression.yml, content/modernization/pr16_circus_suppression.json, evidence/pr16_circus_suppression/35494023398/finish.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, evidence/pr16_circus_suppression/35494023398/execution/circus-suppression-save.process.json, evidence/pr16_circus_suppression/35494023398/execution/circus-suppression-save.stderr, evidence/pr16_circus_suppression/35494023398/execution/circus-suppression-save.stdout, evidence/pr16_circus_suppression/35494023398/execution/compile.process.json, evidence/pr16_circus_suppression/35494023398/execution/compile.stderr, evidence/pr16_circus_suppression/35494023398/execution/compile.stdout, evidence/pr16_circus_suppression/35494023398/execution/contracts.process.json, evidence/pr16_circus_suppression/35494023398/execution/contracts.stderr, evidence/pr16_circus_suppression/35494023398/execution/contracts.stdout, evidence/pr16_circus_suppression/35494023398/execution/generated/controller.c, evidence/pr16_circus_suppression/35494023398/execution/generated/pr16_shop_breeding_helpers.c, evidence/pr16_circus_suppression/35494023398/execution/generated/ss_routes.h, evidence/pr16_circus_suppression/35494023398/execution/reconstruct.process.json, evidence/pr16_circus_suppression/35494023398/execution/reconstruct.stderr, evidence/pr16_circus_suppression/35494023398/execution/reconstruct.stdout, evidence/pr16_circus_suppression/35494023398/execution/resume-START.process.json, evidence/pr16_circus_suppression/35494023398/execution/resume-START.stderr, evidence/pr16_circus_suppression/35494023398/execution/resume-START.stdout, evidence/pr16_circus_suppression/35494023398/execution/task-graph-START.process.json, evidence/pr16_circus_suppression/35494023398/execution/task-graph-START.stderr, evidence/pr16_circus_suppression/35494023398/execution/task-graph-START.stdout, design/run_log.md, design/version_log.md
+- Verify: 新規20契約・固定resume/影響tests・task graph・index差分private guard・diff check。実native/trace成否は原本report。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote/receipt。
+- Network: GitHub原本API照合・host mGBA依存。ROM/save/private入力はGit/artifactへ追加せず、真正Save30のみActions cache。旧ARM/旧builder/受入単体0。
+- Next: pr16_circus_suppression.jsonの最初の未達段階だけ修復する。normal_save30が検証済みなら指定cacheを再利用し、30戦prefixを再実行しない。

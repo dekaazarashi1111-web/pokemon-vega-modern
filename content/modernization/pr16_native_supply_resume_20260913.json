@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "抑制観測driver/異常系20契約を実装。旧30勝原本と生成Cを照合し、SRAM未保持を確認。未完経路へ必要な真正Save30を一度だけ確保し、以後はhash付きcacheから再開する。",
+    "current_stop": "抑制継続の原本と実停止を記録。真正30勝/90BPの受入は不変。未観測を成功へ昇格しない。[{'stage': 'native-or-setup', 'type': 'ValueError', 'error': 'native process or logger failed'}]",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "進行中の同branch suppression runのみ確認。通常入力の抽選と自然callee観測を完了し、原本・引継ぎ・両ログを記録する。",
+    "next_step": "pr16_circus_suppression.jsonの最初の未達段階だけ修復する。normal_save30が検証済みなら指定cacheを再利用し、30戦prefixを再実行しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -827,7 +827,7 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "進行中の同branch suppression runのみ確認。通常入力の抽選と自然callee観測を完了し、原本・引継ぎ・両ログを記録する。",
+    "goal_ja": "pr16_circus_suppression.jsonの最初の未達段階だけ修復する。normal_save30が検証済みなら指定cacheを再利用し、30戦prefixを再実行しない。",
     "host_write_policy_ja": "新しい実受付のguard開始後は入力/frames/readのみ。施設番号/効果/連勝/party/PC/LRのhost注入は禁止。初期配置fixtureと実入場/正規連勝を区別する。",
     "id": "CIRCUS_SUPPRESSION_NATIVE",
     "read_paths": [
@@ -848,9 +848,9 @@
     ]
   },
   "observed_date_jst": "2026-09-20",
-  "observed_head": "bacc3089488b2f67d6bc848140c6e8239de86d60",
+  "observed_head": "7ae147d9e06591f8029b098629b6ba3361e15598",
   "observed_head_checks": {
-    "scope_head": "bacc3089488b2f67d6bc848140c6e8239de86d60",
+    "scope_head": "7ae147d9e06591f8029b098629b6ba3361e15598",
     "runs": [
       {
         "id": 35479503528,
@@ -1595,7 +1595,7 @@
   },
   "schema_version": 2,
   "session_execution_summary": {
-    "new_emulator_processes": 0,
+    "new_emulator_processes": 1,
     "arm_compiles": 0,
     "arm_links": 0,
     "accepted_standalone_replays": 0,
@@ -8455,8 +8455,8 @@
       "sha256": "c49054381c8682b685e6537eee08e5b71dca22c90afafc9c84a969aecc19c587"
     },
     "content/modernization/pr16_circus_suppression.json": {
-      "size": 12945,
-      "sha256": "c15c580ea901b99faf89152c5748eb3d0c84c7c69031d4689bb7c78fc2935aad"
+      "size": 59812,
+      "sha256": "9cc2ba861616724ddd7745f6d9c6c8ab07670b07f50f2f4f129294c0c97f4633"
     },
     "evidence/pr16_circus_suppression/35494023398/start.json": {
       "size": 12945,
@@ -8473,10 +8473,86 @@
     "evidence/pr16_circus_suppression/35494023398/execution/contracts.stdout": {
       "size": 0,
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/pr16_circus_suppression/35494023398/finish.json": {
+      "size": 59812,
+      "sha256": "9cc2ba861616724ddd7745f6d9c6c8ab07670b07f50f2f4f129294c0c97f4633"
+    },
+    "evidence/pr16_circus_suppression/35494023398/execution/circus-suppression-save.process.json": {
+      "size": 90,
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457"
+    },
+    "evidence/pr16_circus_suppression/35494023398/execution/circus-suppression-save.stderr": {
+      "size": 3270402,
+      "sha256": "1061b7822316ed4d25b60e119f140c0ffbe45f63a932b37a15736cd60e38d8c1"
+    },
+    "evidence/pr16_circus_suppression/35494023398/execution/circus-suppression-save.stdout": {
+      "size": 674,
+      "sha256": "9814ff31cc9da7c7217b7687cc446cddf6fa216a550e8591938a46ffd4d41902"
+    },
+    "evidence/pr16_circus_suppression/35494023398/execution/compile.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "evidence/pr16_circus_suppression/35494023398/execution/compile.stderr": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/pr16_circus_suppression/35494023398/execution/compile.stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/pr16_circus_suppression/35494023398/execution/generated/controller.c": {
+      "size": 12891,
+      "sha256": "69a18f53191dc230e88571e9b577c8c969bac8a1338aff00666b902f715f8d64"
+    },
+    "evidence/pr16_circus_suppression/35494023398/execution/generated/pr16_shop_breeding_helpers.c": {
+      "size": 19626,
+      "sha256": "1a97210389443f72586fdb1fa6c6523b296f56ee116065e71040a14f465a14c0"
+    },
+    "evidence/pr16_circus_suppression/35494023398/execution/generated/ss_routes.h": {
+      "size": 2248,
+      "sha256": "537c00aaa9986c2de7a4328f03c737cf03c196cf43a1176a749bb4e05b21494b"
+    },
+    "evidence/pr16_circus_suppression/35494023398/execution/reconstruct.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "evidence/pr16_circus_suppression/35494023398/execution/reconstruct.stderr": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/pr16_circus_suppression/35494023398/execution/reconstruct.stdout": {
+      "size": 6294,
+      "sha256": "3ac2c4ea6b4c0d27e1873c2a0155fdbfe8828bf254d10e3d52fa40a1b8c42747"
+    },
+    "evidence/pr16_circus_suppression/35494023398/execution/resume-START.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "evidence/pr16_circus_suppression/35494023398/execution/resume-START.stderr": {
+      "size": 2449,
+      "sha256": "737b96adea612dc0192f6b7a87462d0bd96bf280b7e9e73aae614522bed9dd20"
+    },
+    "evidence/pr16_circus_suppression/35494023398/execution/resume-START.stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/pr16_circus_suppression/35494023398/execution/task-graph-START.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "evidence/pr16_circus_suppression/35494023398/execution/task-graph-START.stderr": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/pr16_circus_suppression/35494023398/execution/task-graph-START.stdout": {
+      "size": 77,
+      "sha256": "62088248f3d245c3853d2eaa0e2fdcffe8609be8f608995613c19a76e994466a"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "抑制観測driver/異常系20契約を実装。旧30勝原本と生成Cを照合し、SRAM未保持を確認。未完経路へ必要な真正Save30を一度だけ確保し、以後はhash付きcacheから再開する。",
+  "source_change_review_ja": "抑制継続の原本と実停止を記録。真正30勝/90BPの受入は不変。未観測を成功へ昇格しない。[{'stage': 'native-or-setup', 'type': 'ValueError', 'error': 'native process or logger failed'}]",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -8561,7 +8637,7 @@
   "circus_suppression": {
     "path": "content/modernization/pr16_circus_suppression.json",
     "run_id": 35494023398,
-    "classification": "CIRCUS_SUPPRESSION_IMPLEMENTED_NATIVE_PENDING",
+    "classification": "CIRCUS_SUPPRESSION_DIAGNOSTIC_OPEN",
     "candidate": {
       "size": 33554432,
       "sha256": "2b107e7ef897844eff810ff0b40f82543640488696e8295194ceb3b66fb2c183"

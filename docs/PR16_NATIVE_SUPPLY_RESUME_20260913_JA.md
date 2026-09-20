@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-抑制観測driver/異常系20契約を実装。旧30勝原本と生成Cを照合し、SRAM未保持を確認。未完経路へ必要な真正Save30を一度だけ確保し、以後はhash付きcacheから再開する。
+抑制継続の原本と実停止を記録。真正30勝/90BPの受入は不変。未観測を成功へ昇格しない。[{'stage': 'native-or-setup', 'type': 'ValueError', 'error': 'native process or logger failed'}]
 
-**次: 進行中の同branch suppression runのみ確認。通常入力の抽選と自然callee観測を完了し、原本・引継ぎ・両ログを記録する。**
+**次: pr16_circus_suppression.jsonの最初の未達段階だけ修復する。normal_save30が検証済みなら指定cacheを再利用し、30戦prefixを再実行しない。**
 
 次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `bacc3089488b2f67d6bc848140c6e8239de86d60`。
+証拠のsource HEAD: `7ae147d9e06591f8029b098629b6ba3361e15598`。
 この記録前のremote HEAD。native source/実起動数/継続prefix/cacheは抑制report。正式BPと30勝受入は不変。
 
 ## 最短の再開手順
