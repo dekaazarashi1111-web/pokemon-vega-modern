@@ -9040,3 +9040,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 本記録を含むcommit。検証入力HEAD=0752a644febd70b7e07510c74e78ed75a85cc0ad。
 - Network: GitHub connector/Actions。run=35533926004。source-validation run35531661125はaction_requiredであり成功へ読み替えない。
 - Boundary: Stage61/active baseline不変、merge/releaseなし。元snapshotと受入nativeは再実行しない。CLI拒否の別経路迂回は行わない。
+
+
+## 2026-09-20T20:25:31+00:00 — USER-20260921-P08-CANDIDATE-WIKI / Wiki followup checkpoint
+- Task: USER-20260921-P08-CANDIDATE-WIKI
+- Status: DONE（今回の限定範囲。Issue18全体は継続）
+- Summary: 専用build/check・Makefile接続、純読取拒否、既存Wiki差分反映。
+- Files changed: Wiki生成器/CLI/差分試験、workflow、Makefile、候補Wiki、receipt/followup JSON、固定引継ぎMD/JSON、両ログ。
+- Verify: 追加11試験、seed11/29 build一致、実check byte/mtime不変、内部リンク、Stage61/active baseline保護、resume/task graph/diff/changed-final-index guard。受入native再実行0。
+- Commit: 本記録を含むcommit。検証source HEAD=1376d0ed77890a28b283d19abda05dcd624a962a。
+- Network: GitHub connector/Actions run35535460491。run全体はpush/upload前のin_progressとして記録。
+- Boundary: ROM変更0、ARM0、native0。既存受入試験は影響なしに再実行しない。Issue18・merge・release・active baseline切替なし。失敗run35535019570は検証成功/記録失敗を区別してfollowup JSONに保存。

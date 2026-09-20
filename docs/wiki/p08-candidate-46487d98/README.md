@@ -8,10 +8,10 @@
 
 | 分類 | 件数 |
 | --- | --- |
+| species | 1671 |
+| move | 1063 |
 | ability | 318 |
 | item | 1044 |
-| move | 1063 |
-| species | 1671 |
 | メガ | 76 |
 | 専用Z対応 | 31 |
 | P07原本行 | 1572 |
@@ -31,11 +31,14 @@
 
 数値は現候補の読取結果、意味・供給は正本、native証拠は限定scopeとして分離します。Stage61履歴は変更しません。性能調整・夢特性追加・追加メガ・追加専用Zの採否は所有者の別指示で決めます。
 
-## 生成・検証と残件
+## 再生成と検査
 
-このスナップショットは .github/workflows/pr16-candidate-wiki.yml が詳細読取→結合→描画を実行して作成します。同じ入力で2プロセスの生成byteを比較し、全ファイル・source hash・内部リンクを照合します。
+```bash
+python3 -B scripts/build_pr16_candidate_wiki.py build
+python3 -B scripts/build_pr16_candidate_wiki.py check
+```
 
-Issue #18全体は未完です。専用build/check CLIとMakefile入口は未反映（追加要求がツールの安全確認でブロックされたため、別経路で同じファイルを作成していません）。野生初期技・固定配布の全実moveset、汎用Z変換先、種族別の夢特性初回供給は明示的な監査残件です。既存native受入の再実行やゲーム性能変更はしていません。
+checkは候補・正本・全生成byte・リンク・stale fileを再照合し、一切書き込みません。新しいROM生成・ARM build・mGBA・受入再実行は行いません。
 
 
 ## メガ登録行の監査

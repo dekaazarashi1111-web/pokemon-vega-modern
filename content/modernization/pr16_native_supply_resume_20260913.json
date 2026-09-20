@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "Issue #18の候補Wiki残件を継続。検証済み全IDスナップショットを再作成せず、receiptの未監査moveset/汎用Z/夢特性供給/handler根拠を順に埋める。CLI追加はツール安全確認で未反映。既存native再実行・性能調整・releaseへ先行しない。",
+    "next_step": "Issue #18の残件だけを継続。専用CLI/Makefile・今回受入済みsource監査を重複実装せず、remaining_work_jaを参照。native・性能調整・releaseへ先行しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -832,7 +832,7 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "Issue #18の候補Wiki残件を継続。検証済み全IDスナップショットを再作成せず、receiptの未監査moveset/汎用Z/夢特性供給/handler根拠を順に埋める。CLI追加はツール安全確認で未反映。既存native再実行・性能調整・releaseへ先行しない。",
+    "goal_ja": "Issue #18の残件だけを継続。専用CLI/Makefile・今回受入済みsource監査を重複実装せず、remaining_work_jaを参照。native・性能調整・releaseへ先行しない。",
     "host_write_policy_ja": "新しい実受付のguard開始後は入力/frames/readのみ。施設番号/効果/連勝/party/PC/LRのhost注入は禁止。初期配置fixtureと実入場/正規連勝を区別する。",
     "id": "P08_CANDIDATE_WIKI_REMAINING",
     "read_paths": [
@@ -844,7 +844,7 @@
       "scripts/pr16_candidate_wiki_details.py",
       "scripts/pr16_candidate_wiki_mega_quality.py"
     ],
-    "stop_rule_ja": "Wiki snapshot run35531601943はpush/uploadまでsuccess照合済み。保存snapshotを再生成せず未監査moveset/汎用Z/夢特性供給/handlerを継続。Issue18・releaseの未完を維持。",
+    "stop_rule_ja": "2プロセスbuild同一、実checkのbyte/mtime不変、変更影響に限定した試験を検証。push/uploadは完了GET後に受入。Issue18全体未完・受入native再実行なし。",
     "success_observations": [
       "監査残件に限定した差分",
       "Stage61・現候補byte不変",
@@ -10552,10 +10552,9 @@
     },
     "snapshot_complete": true,
     "issue18_complete": false,
-    "source_head": "0514c4b17ab2109cfb11021767928255dd0a110c",
-    "verification_run": 35531601943,
+    "source_head": "1376d0ed77890a28b283d19abda05dcd624a962a",
+    "verification_run": 35535460491,
     "remaining_work_ja": [
-      "専用build/check CLIとMakefile入口はツール安全確認で未反映。拒否されたファイルを別経路では作らない。",
       "野生初期技と固定配布の実movesetを全経路抽出し、推測と区別する。",
       "汎用Z変換先・追加効果・consumerを固定正本と候補から対応付ける。",
       "夢特性slotと種族別の初回供給/確率/継承を区別して監査する。",
@@ -10563,6 +10562,7 @@
     ],
     "new_native_runs": 0,
     "followup": "content/modernization/pr16_candidate_wiki_followup.json",
-    "verification_run_status": "completed/success"
+    "verification_run_status": "in_progress_at_recording",
+    "cli_complete": true
   }
 }

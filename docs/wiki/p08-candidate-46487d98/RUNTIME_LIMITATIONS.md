@@ -1336,7 +1336,3 @@
 ```
 
 source bindingとtable hashは [data/index.json](data/index.json) / [data/provenance.json](data/provenance.json) に保存します。
-
-## Issue #18の完了境界
-
-全ID文書スナップショットと意味差分の検証まで。専用CLI/Makefile入口、野生初期・固定配布moveset、汎用Z変換先、夢特性初回供給の詳細監査は残件です。Issueを完了・closeにせず、所有者の性能調整やreleaseへ先行しません。

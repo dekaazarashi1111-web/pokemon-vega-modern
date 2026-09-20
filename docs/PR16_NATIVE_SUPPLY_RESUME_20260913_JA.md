@@ -8,9 +8,9 @@
 
 P08候補46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38の全ID Wiki 4126ファイルを二重生成一致・全リンク・全Wiki試験で検証。P07全1572行を保持。Issue #18全体は未完。詳細と残件はcontent/modernization/pr16_candidate_wiki_acceptance.json。
 
-**次: Issue #18の候補Wiki残件を継続。検証済み全IDスナップショットを再作成せず、receiptの未監査moveset/汎用Z/夢特性供給/handler根拠を順に埋める。CLI追加はツール安全確認で未反映。既存native再実行・性能調整・releaseへ先行しない。**
+**次: Issue #18の残件だけを継続。専用CLI/Makefile・今回受入済みsource監査を重複実装せず、remaining_work_jaを参照。native・性能調整・releaseへ先行しない。**
 
-Wiki snapshot run35531601943はpush/uploadまでsuccess照合済み。保存snapshotを再生成せず未監査moveset/汎用Z/夢特性供給/handlerを継続。Issue18・releaseの未完を維持。
+2プロセスbuild同一、実checkのbyte/mtime不変、変更影響に限定した試験を検証。push/uploadは完了GET後に受入。Issue18全体未完・受入native再実行なし。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 

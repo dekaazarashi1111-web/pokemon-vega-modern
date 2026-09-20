@@ -675,3 +675,11 @@ clean-build:
 		test ! -L "$$dir" || { echo "Refusing symlinked generated directory: $$dir"; exit 1; }; \
 		if test -d "$$dir"; then find "$$dir" -mindepth 1 -maxdepth 1 ! -name .gitkeep -exec rm -rf -- {} +; fi; \
 	done
+
+# USER-20260921-P08-CANDIDATE-WIKI: native・ARM・ROM書込を呼ばない限定入口
+.PHONY: pr16-candidate-wiki pr16-candidate-wiki-check
+pr16-candidate-wiki:
+	$(PYTHON) -B scripts/build_pr16_candidate_wiki.py build
+
+pr16-candidate-wiki-check:
+	$(PYTHON) -B scripts/build_pr16_candidate_wiki.py check

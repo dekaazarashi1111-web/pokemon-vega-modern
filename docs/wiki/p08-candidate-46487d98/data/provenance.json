@@ -299,10 +299,6 @@
     "state_path": "content/modernization/pr16_native_supply_resume_20260913.json"
   },
   "source_bindings": {
-    ".github/workflows/pr16-candidate-wiki.yml": {
-      "sha256": "27fc6b96e5d8af14e20bf79918c050302748b79d7b16362685ed7b02126c198a",
-      "size": 20144
-    },
     "config/modernization_p05_ability_runtime.json": {
       "sha256": "52c14a10faeefe6bee002fc0c1ea40b077ce8ea7ecbab9ffd88fa5226bb85eb4",
       "size": 10863
@@ -439,6 +435,10 @@
       "sha256": "374dcfc9e40d36f9fd3019c0191d52e278e495760fad666f445fb57d99d30817",
       "size": 54175
     },
+    "scripts/build_pr16_candidate_wiki.py": {
+      "sha256": "98cdfd6b65cb63819b658cdd6347f2faefb6dfebb6fef8b31b76318e02c63ba8",
+      "size": 5266
+    },
     "scripts/pr16_candidate_wiki_catalog.py": {
       "sha256": "9b05f0641ebf92ad51ca1444a734c792f7e46f69db4beaddd34b5a6f65a68f08",
       "size": 23196
@@ -459,10 +459,6 @@
       "sha256": "143cac152d19e58b37dac84303a814b0cb123903c8c0ada474dd8508a07a6ef0",
       "size": 5172
     },
-    "scripts/pr16_candidate_wiki_prepare.py": {
-      "sha256": "231031b9f03792825b29ea7fc2b4f6a44219910d03a67dc3586e191986535cab",
-      "size": 5512
-    },
     "scripts/pr16_candidate_wiki_render.py": {
       "sha256": "e01c87aa52d4a5962bf812683ac0489ba402b2db986f7a6c04cc9c652bb020c3",
       "size": 24953
@@ -478,22 +474,6 @@
     "state/source-lock.json": {
       "sha256": "0e230bf9fad2766d05ccb2410b22274c32085fed7544a78e37e0b5f451bda3c4",
       "size": 3166
-    },
-    "tests/test_pr16_candidate_wiki.py": {
-      "sha256": "30fb39a5fa4b12616f4d955d9770d07fa716270c82eaff3fce7967b7a459dbca",
-      "size": 3314
-    },
-    "tests/test_pr16_candidate_wiki_catalog.py": {
-      "sha256": "44dbdccc59db914e53f465a238904f20448268a03861b02b7e5adc5a949c4087",
-      "size": 8496
-    },
-    "tests/test_pr16_candidate_wiki_details.py": {
-      "sha256": "67ba2089c465aa7a7e6b068d833e157593118d4c60032187f541df1c151c3899",
-      "size": 1543
-    },
-    "tests/test_pr16_candidate_wiki_mega_quality.py": {
-      "sha256": "2ed8fcf8aa3ef66f56c06f95c8510666da0b93548a74cbb713a2fe639b02fda3",
-      "size": 2354
     },
     "vendor/vega_acquisition/content/acquisition_events.csv": {
       "sha256": "0fed4821b4c25130c161b2503be13e5ea223da801e726aee528b42b48de9bbb0",
