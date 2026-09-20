@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "getter field修復の実停止を保存。未観測を成功にしない。[{'stage': 'getter-native-or-build', 'type': 'ValueError', 'error': 'native process or logger failed'}]",
+    "current_stop": "同一ROMの自然getter30/正規抑制calleeはrun35503514936で確認済み。Fairy Lock中の任意交代だけを回避し、通常技・強制交代・自然勝敗を維持。新規契約PASS。delay51の一回だけから未完lifecycleを継続する。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "pr16_circus_getter_followup.jsonの最初の未達のみ修復。真正Save30 cacheから継続し、受入済み30勝/ABI/他施設を重複実行しない。",
+    "next_step": "Fairy Lock followupの現在run/停止原本から最初の未達のみ修復。30勝/旧3抽選/getter・抑制CPU trace/ARMを繰り返さない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -542,6 +542,7 @@
   },
   "current_resume_doc": "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
   "do_not_repeat": [
+    "run35503514936のgetter30/正規抑制は再観測不要。Fairy Lockは0x4000、任意交代を控える。次はlifecycle reportのみ。",
     "getter field repair runを最優先確認。APIは0..10 index、旧Var IDではない。真正Save30限定、30勝prefix/旧ARM/64抽選反復禁止。",
     "getter followupの先行runを先に照合。真正Save30 cache以外から再開しない。30勝prefix/旧builder/ARM再compile/旧64抽選の反復禁止。",
     "USER-20260920-CIRCUS-SUPPRESSION run35494023398の完了状況と原本を先に読む。真正Save30 cacheが検証済みなら30戦を再実行しない。抑制flag/乱数/特性/owner/PCへのhost書込みは禁止。",
@@ -829,17 +830,16 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "pr16_circus_getter_followup.jsonの最初の未達のみ修復。真正Save30 cacheから継続し、受入済み30勝/ABI/他施設を重複実行しない。",
+    "goal_ja": "Fairy Lock followupの現在run/停止原本から最初の未達のみ修復。30勝/旧3抽選/getter・抑制CPU trace/ARMを繰り返さない。",
     "host_write_policy_ja": "新しい実受付のguard開始後は入力/frames/readのみ。施設番号/効果/連勝/party/PC/LRのhost注入は禁止。初期配置fixtureと実入場/正規連勝を区別する。",
-    "id": "CIRCUS_GETTER_FIELDS_NATIVE",
+    "id": "CIRCUS_FAIRY_LOCK_LIFECYCLE",
     "read_paths": [
+      "content/modernization/pr16_circus_suppression_lifecycle.json",
       "content/modernization/pr16_circus_getter_followup.json",
-      "scripts/pr16_circus_getter_fields.py",
-      "tests/test_pr16_circus_getter_fields.py",
-      "tests/fixtures/pr16_circus_getter_fields.json",
-      ".github/workflows/pr16-circus-getter-fields.yml",
-      "overlays/circus_streak/circus_streak_runtime.c",
-      "tools/mgba_pr16_circus_getter_trace.h",
+      "scripts/pr16_circus_fairy_lock.py",
+      "tests/test_pr16_circus_fairy_lock.py",
+      "tools/mgba_pr16_circus_fairy_lock.h",
+      ".github/workflows/pr16-circus-fairy-lock.yml",
       "content/modernization/p08_remaining_work.json"
     ],
     "stop_rule_ja": "次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。",
@@ -850,38 +850,20 @@
     ]
   },
   "observed_date_jst": "2026-09-20",
-  "observed_head": "c20ec417864c9c9f437b7a53839b415806b2831b",
+  "observed_head": "cc5d6822266a9663b0e368c9cff2c94d2ede3435",
   "observed_head_checks": {
-    "scope_head": "c20ec417864c9c9f437b7a53839b415806b2831b",
+    "scope_head": "cc5d6822266a9663b0e368c9cff2c94d2ede3435",
     "runs": [
       {
-        "id": 35500143124,
-        "head_sha": "5b600c1362bb3db1d4af4a532395b3589b8c6b38",
-        "status": "completed",
-        "conclusion": "failure"
-      },
-      {
-        "id": 35502970203,
-        "head_sha": "39fef638dd532a79a234f91509713f3890437d6b",
-        "status": "completed",
-        "conclusion": "failure"
-      },
-      {
-        "id": 35503126098,
-        "head_sha": "27c1556ddeabb06b652e64ab937d68c3f0105540",
-        "status": "completed",
-        "conclusion": "success"
-      },
-      {
-        "id": 35503435444,
-        "head_sha": "7b38bf550266d63cd2e11d51b57726a08ec915b9",
+        "id": 35503514936,
+        "head_sha": "5618a38f6854aa4551e5c518509f5f97cf2a79b0",
         "status": "completed",
         "conclusion": "failure"
       }
     ],
-    "reason_ja": "先行Actions完了を実API照合。この記録中runの最終状態はreceiptで確認する。"
+    "reason_ja": "先行runの完了failure/原本とscoped getter・抑制成功を区別して照合。"
   },
-  "observed_head_semantics": "記録直前のremote HEAD。新candidate/実行数はgetter report、旧30勝受入は旧candidateのまま。",
+  "observed_head_semantics": "記録直前remote。scoped nativeは同一46487d98、正式BP/旧30勝candidateは変更しない。",
   "p08_resume_synchronized": true,
   "party_retention_latest_attempt": {
     "accepted_native_cases_replayed": 0,
@@ -948,10 +930,10 @@
   },
   "pending_runs": [
     {
-      "run_id": 35503514936,
-      "tested_head": "5618a38f6854aa4551e5c518509f5f97cf2a79b0",
+      "run_id": 35504302893,
+      "tested_head": "cc5d6822266a9663b0e368c9cff2c94d2ede3435",
       "status": "in_progress",
-      "scope": "circus-getter-fields"
+      "scope": "circus-fairy-lock"
     }
   ],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
@@ -1615,12 +1597,12 @@
   },
   "schema_version": 2,
   "session_execution_summary": {
-    "new_emulator_processes": 1,
+    "new_emulator_processes": 0,
     "arm_compiles": 0,
     "arm_links": 0,
     "accepted_standalone_replays": 0,
     "prefix_wins_reexecuted": 0,
-    "scope_ja": "旧ABI20契約/30勝原本を継承。新field契約のみ追加。既存中継8byte/新tail12byte/５literal20byteだけ。"
+    "scope_ja": "同一ROM・Save30。未完lifecycleの必要prefixだけ。既観測3抽選/CPU traceは省略。新ROM変更0。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -8986,10 +8968,46 @@
     "evidence/pr16_circus_getter/35503514936/execution/task-graph-START.stdout": {
       "size": 77,
       "sha256": "62088248f3d245c3853d2eaa0e2fdcffe8609be8f608995613c19a76e994466a"
+    },
+    "scripts/pr16_circus_fairy_lock.py": {
+      "size": 21942,
+      "sha256": "d94d17d30b99d3bbdb56a15774ac13c7f703123ac1db337bd8126fd4df7850b7"
+    },
+    "tests/test_pr16_circus_fairy_lock.py": {
+      "size": 4832,
+      "sha256": "f9a91975dede8457c68645c352f665d87e371ffd1676c913852a5fdecb18abb5"
+    },
+    "tools/mgba_pr16_circus_fairy_lock.h": {
+      "size": 1290,
+      "sha256": "4755599d85b87a16b2b90d711d4b37eace9645643299c0c8e3c998332d3b4388"
+    },
+    ".github/workflows/pr16-circus-fairy-lock.yml": {
+      "size": 2575,
+      "sha256": "d305a2b2c3f8a11b5c52da7c30476c3bbc6724db34d0022ce67d4631f6692dbc"
+    },
+    "content/modernization/pr16_circus_suppression_lifecycle.json": {
+      "size": 17118,
+      "sha256": "3be2682b9b38f2cc802f67f45a5f476a5c8013251413cd989915210caca27cee"
+    },
+    "evidence/pr16_circus_fairy_lock/35504302893/start.json": {
+      "size": 17118,
+      "sha256": "3be2682b9b38f2cc802f67f45a5f476a5c8013251413cd989915210caca27cee"
+    },
+    "evidence/pr16_circus_fairy_lock/35504302893/execution/fairy-contracts.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "evidence/pr16_circus_fairy_lock/35504302893/execution/fairy-contracts.stderr": {
+      "size": 2417,
+      "sha256": "25e7d4aee3182485672662b2919260b0f61a12b8979fc49b60f0c47d9b2d247d"
+    },
+    "evidence/pr16_circus_fairy_lock/35504302893/execution/fairy-contracts.stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "getter field修復の実停止を保存。未観測を成功にしない。[{'stage': 'getter-native-or-build', 'type': 'ValueError', 'error': 'native process or logger failed'}]",
+  "source_change_review_ja": "同一ROMの自然getter30/正規抑制calleeはrun35503514936で確認済み。Fairy Lock中の任意交代だけを回避し、通常技・強制交代・自然勝敗を維持。新規契約PASS。delay51の一回だけから未完lifecycleを継続する。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -9088,5 +9106,14 @@
       "size": 33554432,
       "sha256": "46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38"
     }
+  },
+  "circus_suppression_lifecycle": {
+    "path": "content/modernization/pr16_circus_suppression_lifecycle.json",
+    "run_id": 35504302893,
+    "candidate": {
+      "size": 33554432,
+      "sha256": "46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38"
+    },
+    "native_verified": false
   }
 }

@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-getter field修復の実停止を保存。未観測を成功にしない。[{'stage': 'getter-native-or-build', 'type': 'ValueError', 'error': 'native process or logger failed'}]
+同一ROMの自然getter30/正規抑制calleeはrun35503514936で確認済み。Fairy Lock中の任意交代だけを回避し、通常技・強制交代・自然勝敗を維持。新規契約PASS。delay51の一回だけから未完lifecycleを継続する。
 
-**次: pr16_circus_getter_followup.jsonの最初の未達のみ修復。真正Save30 cacheから継続し、受入済み30勝/ABI/他施設を重複実行しない。**
+**次: Fairy Lock followupの現在run/停止原本から最初の未達のみ修復。30勝/旧3抽選/getter・抑制CPU trace/ARMを繰り返さない。**
 
 次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `c20ec417864c9c9f437b7a53839b415806b2831b`。
-記録直前のremote HEAD。新candidate/実行数はgetter report、旧30勝受入は旧candidateのまま。
+証拠のsource HEAD: `cc5d6822266a9663b0e368c9cff2c94d2ede3435`。
+記録直前remote。scoped nativeは同一46487d98、正式BP/旧30勝candidateは変更しない。
 
 ## 最短の再開手順
 
@@ -25,13 +25,12 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_circus_suppression_lifecycle.json`
 - `content/modernization/pr16_circus_getter_followup.json`
-- `scripts/pr16_circus_getter_fields.py`
-- `tests/test_pr16_circus_getter_fields.py`
-- `tests/fixtures/pr16_circus_getter_fields.json`
-- `.github/workflows/pr16-circus-getter-fields.yml`
-- `overlays/circus_streak/circus_streak_runtime.c`
-- `tools/mgba_pr16_circus_getter_trace.h`
+- `scripts/pr16_circus_fairy_lock.py`
+- `tests/test_pr16_circus_fairy_lock.py`
+- `tools/mgba_pr16_circus_fairy_lock.h`
+- `.github/workflows/pr16-circus-fairy-lock.yml`
 - `content/modernization/p08_remaining_work.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
@@ -68,6 +67,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- run35503514936のgetter30/正規抑制は再観測不要。Fairy Lockは0x4000、任意交代を控える。次はlifecycle reportのみ。
 - getter field repair runを最優先確認。APIは0..10 index、旧Var IDではない。真正Save30限定、30勝prefix/旧ARM/64抽選反復禁止。
 - getter followupの先行runを先に照合。真正Save30 cache以外から再開しない。30勝prefix/旧builder/ARM再compile/旧64抽選の反復禁止。
 - USER-20260920-CIRCUS-SUPPRESSION run35494023398の完了状況と原本を先に読む。真正Save30 cacheが検証済みなら30戦を再実行しない。抑制flag/乱数/特性/owner/PCへのhost書込みは禁止。
@@ -298,6 +298,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-先行Actions完了を実API照合。この記録中runの最終状態はreceiptで確認する。
+先行runの完了failure/原本とscoped getter・抑制成功を区別して照合。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

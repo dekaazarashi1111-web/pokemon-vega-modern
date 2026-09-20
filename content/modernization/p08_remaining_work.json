@@ -492,7 +492,7 @@
       "phase": "P05",
       "reason_ja": "実際の受付・入場からBattle Circus特性抑制までの通し受入。既存のフラグ設定試験で代替しない",
       "reconstruction_checkpoint": "content/modernization/pr16_saved_reconstruction.json",
-      "resume": "pr16_circus_getter_followup.jsonの最初の未達のみ修復。真正Save30 cacheから継続し、受入済み30勝/ABI/他施設を重複実行しない。",
+      "resume": "Fairy Lock followupの現在run/停止原本から最初の未達のみ修復。30勝/旧3抽選/getter・抑制CPU trace/ARMを繰り返さない。",
       "success_evidence": null,
       "supply_owner_evidence": "content/modernization/pr16_p05_supply_owner_findings.json",
       "target_function": "actual reception/admission to suppression",
@@ -505,7 +505,8 @@
       "battle30_pp_checkpoint": "content/modernization/pr16_circus_battle30_pp.json",
       "battle30_receipt": "content/modernization/pr16_circus_battle30_receipt.json",
       "suppression_checkpoint": "content/modernization/pr16_circus_suppression.json",
-      "getter_checkpoint": "content/modernization/pr16_circus_getter_followup.json"
+      "getter_checkpoint": "content/modernization/pr16_circus_getter_followup.json",
+      "lifecycle_checkpoint": "content/modernization/pr16_circus_suppression_lifecycle.json"
     },
     {
       "accepted_candidate_sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",

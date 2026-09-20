@@ -6012,3 +6012,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: この記録を含む同branch非force commit。自己SHAはreceipt/remoteで照合。
 - Network: GitHub先行run35500143124 failure/35502970203採取failure/35503126098採取successを照合。検索語VegaFacilityStateGet/CircusStreakRuntimeGet。固定build_battle_core.pyとrom_bridge.cが根拠。新規外部source導入なし、host libmgba依存のみ。ROM/save/cacheはGit/artifactへ追加しない。
 - Next: pr16_circus_getter_followup.jsonの最初の未達のみ修復。真正Save30 cacheから継続し、受入済み30勝/ABI/他施設を重複実行しない。
+
+
+## 2026-09-20T10:10:32Z — USER-20260920-CIRCUS-FAIRY-LOCK-START
+- Timestamp: 2026-09-20T10:10:32Z
+- Task: USER-20260920-CIRCUS-FAIRY-LOCK
+- Status: STOPPED（正式Circus/P08は別）
+- Version: pr16-circus-fairy-lock-v1
+- Summary: 同一ROMの自然getter30/正規抑制calleeはrun35503514936で確認済み。Fairy Lock中の任意交代だけを回避し、通常技・強制交代・自然勝敗を維持。新規契約PASS。delay51の一回だけから未完lifecycleを継続する。
+- Files changed: scripts/pr16_circus_fairy_lock.py, tests/test_pr16_circus_fairy_lock.py, tools/mgba_pr16_circus_fairy_lock.h, .github/workflows/pr16-circus-fairy-lock.yml, content/modernization/pr16_circus_suppression_lifecycle.json, evidence/pr16_circus_fairy_lock/35504302893/start.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, evidence/pr16_circus_fairy_lock/35504302893/execution/fairy-contracts.process.json, evidence/pr16_circus_fairy_lock/35504302893/execution/fairy-contracts.stderr, evidence/pr16_circus_fairy_lock/35504302893/execution/fairy-contracts.stdout, design/run_log.md, design/version_log.md
+- Verify: 新規host契約22件、resume/task graph/index差分private guard/diff check。旧20 ABI/20field/30勝再実行0。
+- Commit: 同branch非force commit、remote/receipt一致。
+- Network: 固定CFRU e24a16fe39e27ae162faf5b78596d1f3df18489d include/constants/battle.h、src/battle_util.c IsFairyLockActive、src/switching.cをGitHubで照合。検索語BATTLE_CIRCUS_FAIRY_LOCK / IsFairyLockActive。host mGBA依存のみ。秘密/ROM/Saveの追加なし。
+- Next: Fairy Lock followupの現在run/停止原本から最初の未達のみ修復。30勝/旧3抽選/getter・抑制CPU trace/ARMを繰り返さない。
