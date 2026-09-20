@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-真正Save30から通常歩行/自然calleeだけの最終代表を記録。cache欠落時は30勝bootstrapせず停止。未達は原本failuresを読む。
+P08 Circus退出後の通常戦闘で自然predicate=falseと通常dispatcherを検証。真正Save30から1process、施設戦/30勝再実行0。完了Actionsと画面の受入前。
 
-**次: 最新Actionsとnative-resultの最初の未達だけを修復。cache以外のSave注入/旧30勝/受入済み施設/Ring/BP/memory再実行は禁止。**
+**次: 完了Actions・原本・画面を照合してP08_CIRCUS_POST_EXIT_ORDINARYを受入。四境界の候補移送と古い所有範囲CIテストを整合し配布ゲートを整理。**
 
-最新Actionsとnative-resultの最初の未達だけを修復。cache以外のSave注入/旧30勝/受入済み施設/Ring/BP/memory再実行は禁止。
+完了Actions・原本・画面を照合してP08_CIRCUS_POST_EXIT_ORDINARYを受入。四境界の候補移送と古い所有範囲CIテストを整合し配布ゲートを整理。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `63ec984e57524d747ef2a2b9816a7c979f2e1b37`。
+証拠のsource HEAD: `b9d6389609807a9743b92a2b2365482b6b986950`。
 本checkpoint直前のremote。native実測・記録job完了・正式受入を別々に保持する。
 
 ## 最短の再開手順

@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "真正Save30から通常歩行/自然calleeだけの最終代表を記録。cache欠落時は30勝bootstrapせず停止。未達は原本failuresを読む。",
+    "current_stop": "P08 Circus退出後の通常戦闘で自然predicate=falseと通常dispatcherを検証。真正Save30から1process、施設戦/30勝再実行0。完了Actionsと画面の受入前。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "最新Actionsとnative-resultの最初の未達だけを修復。cache以外のSave注入/旧30勝/受入済み施設/Ring/BP/memory再実行は禁止。",
+    "next_step": "完了Actions・原本・画面を照合してP08_CIRCUS_POST_EXIT_ORDINARYを受入。四境界の候補移送と古い所有範囲CIテストを整合し配布ゲートを整理。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -832,9 +832,9 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "最新Actionsとnative-resultの最初の未達だけを修復。cache以外のSave注入/旧30勝/受入済み施設/Ring/BP/memory再実行は禁止。",
+    "goal_ja": "完了Actions・原本・画面を照合してP08_CIRCUS_POST_EXIT_ORDINARYを受入。四境界の候補移送と古い所有範囲CIテストを整合し配布ゲートを整理。",
     "host_write_policy_ja": "新しい実受付のguard開始後は入力/frames/readのみ。施設番号/効果/連勝/party/PC/LRのhost注入は禁止。初期配置fixtureと実入場/正規連勝を区別する。",
-    "id": "P08_CIRCUS_POST_EXIT_ORDINARY",
+    "id": "P08_ORDINARY_REVIEW",
     "read_paths": [
       "content/modernization/pr16_p08_ordinary_abi.json",
       "scripts/pr16_p08_ordinary_abi.py",
@@ -851,7 +851,7 @@
       "content/modernization/pr16_circus_acceptance.json",
       "content/modernization/p08_remaining_work.json"
     ],
-    "stop_rule_ja": "最新Actionsとnative-resultの最初の未達だけを修復。cache以外のSave注入/旧30勝/受入済み施設/Ring/BP/memory再実行は禁止。",
+    "stop_rule_ja": "完了Actions・原本・画面を照合してP08_CIRCUS_POST_EXIT_ORDINARYを受入。四境界の候補移送と古い所有範囲CIテストを整合し配布ゲートを整理。",
     "success_observations": [
       "実受付/入場ownerと必要進行条件を確定。データ上のmap名だけでCircusと断定しない",
       "flag直接注入を入場の証拠にせず、受付から対象ルール/特性抑制まで通常入力で確認",
@@ -859,12 +859,12 @@
     ]
   },
   "observed_date_jst": "2026-09-20",
-  "observed_head": "63ec984e57524d747ef2a2b9816a7c979f2e1b37",
+  "observed_head": "b9d6389609807a9743b92a2b2365482b6b986950",
   "observed_head_checks": {
-    "scope_head": "63ec984e57524d747ef2a2b9816a7c979f2e1b37",
+    "scope_head": "b9d6389609807a9743b92a2b2365482b6b986950",
     "run_id": 35512907219,
-    "phase": "START",
-    "native_verified": false,
+    "phase": "FINISH",
+    "native_verified": true,
     "reason_ja": "本run完了は次にActionsで別照合する。"
   },
   "observed_head_semantics": "本checkpoint直前のremote。native実測・記録job完了・正式受入を別々に保持する。",
@@ -1598,8 +1598,8 @@
   },
   "schema_version": 2,
   "session_execution_summary": {
-    "new_emulator_processes": 0,
-    "fresh_cores": 0,
+    "new_emulator_processes": 1,
+    "fresh_cores": 1,
     "arm_compiles": 0,
     "arm_links": 0,
     "accepted_standalone_replays": 0,
@@ -9180,8 +9180,8 @@
       "sha256": "2de1aab581307e5593860cac0964023ad000b2bc22a4535ea0d85b25f4efb517"
     },
     "content/modernization/p08_remaining_work.json": {
-      "size": 38073,
-      "sha256": "ab9ec1189c14156b205f831cf32a8da736c08c3810457ff5015ea53194e5c2ae"
+      "size": 38102,
+      "sha256": "65f06f631104b8b1e03c51cb156f5ad2e2ebedbc9fe16b3215bea9ba639d5d7c"
     },
     "content/modernization/pr16_bp_chooser_checkpoint.json": {
       "size": 9442,
@@ -9468,8 +9468,8 @@
       "sha256": "7fbff4de822c0c7d0f24b376555e443befd9949d770d4dde9f5dbf81d342b4c8"
     },
     "content/modernization/pr16_p08_ordinary_abi.json": {
-      "size": 10191,
-      "sha256": "b5cebc87440e1be426ae20478c8efb14324ea80bf5d4a09b47f1bc15fad4b8d8"
+      "size": 44078,
+      "sha256": "43f5dba9d69cf91384625dc1c5adad0e7a6a6f34ad933088a56f603406015654"
     },
     "evidence/pr16_p08/user-20260920-p08-ordinary-abi/35512907219/start/execution.json": {
       "size": 3781,
@@ -9478,10 +9478,18 @@
     "evidence/pr16_p08/user-20260920-p08-ordinary-abi/35512907219/start/result.json": {
       "size": 10191,
       "sha256": "b5cebc87440e1be426ae20478c8efb14324ea80bf5d4a09b47f1bc15fad4b8d8"
+    },
+    "evidence/pr16_p08/user-20260920-p08-ordinary-abi/35512907219/finish/execution.json": {
+      "size": 27380,
+      "sha256": "549ca5033494719a707682ee0d18f55842f0b4984ac1a786a2e8521bce81666e"
+    },
+    "evidence/pr16_p08/user-20260920-p08-ordinary-abi/35512907219/finish/result.json": {
+      "size": 44078,
+      "sha256": "43f5dba9d69cf91384625dc1c5adad0e7a6a6f34ad933088a56f603406015654"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "真正Save30から通常歩行/自然calleeだけの最終代表を記録。cache欠落時は30勝bootstrapせず停止。未達は原本failuresを読む。",
+  "source_change_review_ja": "P08 Circus退出後の通常戦闘で自然predicate=falseと通常dispatcherを検証。真正Save30から1process、施設戦/30勝再実行0。完了Actionsと画面の受入前。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -9650,8 +9658,8 @@
     "P08_CIRCUS_POST_EXIT_ORDINARY": {
       "path": "content/modernization/pr16_p08_ordinary_abi.json",
       "run_id": 35512907219,
-      "phase": "START",
-      "native_verified": false,
+      "phase": "FINISH",
+      "native_verified": true,
       "representative_accepted": false
     }
   }
