@@ -13,6 +13,14 @@ GitHubでbranchの**現在HEAD**とPR状態を取得し、そのrefで読む。d
 正式受入はcheckpoint、完了条件はP08台帳が引き続き正本。詳細を読むタイミングは再開メモに従う。
 PR本文・古いresume・一般タスクキューを、このPRの最新停止点の代わりにしない。
 
+## 所有者予約済みの次タスク
+
+現在の再開メモと状態JSONが指すP08作業を先に区切りよく閉じた後、clean-ROM独立2生成・配布用BPS固定・release判定へ入る前に、GitHub Issue [#18](https://github.com/dekaazarashi1111-web/pokemon-vega-modern/issues/18) `USER-20260921-P08-CANDIDATE-WIKI` を実行する。
+
+Issue #18は、既存 `docs/wiki/stage61/**` を固定履歴として変更せず、実行時点の最新P08候補から、ベガ性能、全Species/Form、種族値、タイプ、通常特性・夢特性、全習得経路、技性能、全メガ、専用Zワザ、Stage61との差分を、決定的generator・Markdown・JSON/JSONL・検査レポートとして詳細生成するタスクである。
+
+この予約は現在のP08受入を完了扱いにせず、Wiki生成中の性能変更・追加メガ・追加専用Z・merge・release・active baseline切替も許可しない。Wikiを調整前スナップショットとして生成・検証・記録した後、所有者が内容を見て別途調整仕様を決める。
+
 ## 次回そのまま渡す指示
 
 ```text
