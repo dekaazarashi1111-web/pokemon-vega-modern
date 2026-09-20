@@ -5882,3 +5882,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 同branch非force。自己SHAはremote/receipt。
 - Network: GitHub前run/job/artifact原本照合、host mGBA依存のみ。旧builder/ARM/Ring hostなし。
 - Next: 進行中のbattle30-pp Actionsだけを照合。重複起動せず、完了後に新原本・固定引継ぎ・両ログを記録する。
+
+
+## 2026-09-20T00:55:15Z — USER-20260920-CIRCUS-BATTLE30-PP-FINISH
+- Timestamp: 2026-09-20T00:55:15Z
+- Task: USER-20260920-CIRCUS-BATTLE30-PP / 30戦目同点評価のPP温存
+- Status: DONE（Circus/P08全体は未完）
+- Version: pr16-circus-battle30-pp-v1
+- Summary: 同一2b107e7eで真正30勝90BP・元party600/owner64・通常Save/fresh Continueを検証。29勝＋30戦目action138eventsまで原本byte一致。同点時だけ残PPの多い技を通常入力で選択。ROM変更/ARM0。
+- Files changed: scripts/pr16_circus_battle30_pp.py, scripts/pr16_circus_battle30_pp_policy.py, tests/test_pr16_circus_battle30_pp.py, .github/workflows/pr16-circus-battle30-pp.yml, content/modernization/pr16_circus_battle30_pp.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, evidence/pr16_circus_battle30_pp/35479503528/execution/analysis.json, evidence/pr16_circus_battle30_pp/35479503528/execution/circus-continuous-30-save.process.json, evidence/pr16_circus_battle30_pp/35479503528/execution/circus-continuous-30-save.stderr, evidence/pr16_circus_battle30_pp/35479503528/execution/circus-continuous-30-save.stdout, evidence/pr16_circus_battle30_pp/35479503528/execution/compile.process.json, evidence/pr16_circus_battle30_pp/35479503528/execution/compile.stderr, evidence/pr16_circus_battle30_pp/35479503528/execution/compile.stdout, evidence/pr16_circus_battle30_pp/35479503528/execution/events.json, evidence/pr16_circus_battle30_pp/35479503528/execution/matchup-prefix.json, evidence/pr16_circus_battle30_pp/35479503528/execution/policy.c, evidence/pr16_circus_battle30_pp/35479503528/execution/pp-tests.process.json, evidence/pr16_circus_battle30_pp/35479503528/execution/pp-tests.stderr, evidence/pr16_circus_battle30_pp/35479503528/execution/pp-tests.stdout, evidence/pr16_circus_battle30_pp/35479503528/execution/prefix.json, evidence/pr16_circus_battle30_pp/35479503528/execution/reconstruct.process.json, evidence/pr16_circus_battle30_pp/35479503528/execution/reconstruct.stderr, evidence/pr16_circus_battle30_pp/35479503528/execution/reconstruct.stdout, evidence/pr16_circus_battle30_pp/35479503528/execution/resume-START.process.json, evidence/pr16_circus_battle30_pp/35479503528/execution/resume-START.stderr, evidence/pr16_circus_battle30_pp/35479503528/execution/resume-START.stdout, evidence/pr16_circus_battle30_pp/35479503528/execution/task-graph-START.process.json, evidence/pr16_circus_battle30_pp/35479503528/execution/task-graph-START.stderr, evidence/pr16_circus_battle30_pp/35479503528/execution/task-graph-START.stdout, design/run_log.md, design/version_log.md
+- Verify: 新規10契約、固定resume整合性/影響tests、task graph、index差分private guard/diff check。native成否/実process数はreport。
+- Commit: 同branch非force。自己SHAはremote/receipt。
+- Network: GitHub前run/job/artifact原本照合、host mGBA依存のみ。旧builder/ARM/Ring hostなし。
+- Next: このrunの原本と終端画面を照合し、正規実受付から特性抑制へ進む。30勝単独再実行は禁止。P08移送・releaseは未完。

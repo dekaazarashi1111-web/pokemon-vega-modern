@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-run35478473681の実29勝/30戦目敗北・Saveを照合し、元のfailure結論を保持。30戦目初手の同点評価458737/命中100で残PP16対32を選び分ける新規10契約を検証。新nativeは未実行。
+同一2b107e7eで真正30勝90BP・元party600/owner64・通常Save/fresh Continueを検証。29勝＋30戦目action138eventsまで原本byte一致。同点時だけ残PPの多い技を通常入力で選択。ROM変更/ARM0。
 
-**次: 進行中のbattle30-pp Actionsだけを照合。重複起動せず、完了後に新原本・固定引継ぎ・両ログを記録する。**
+**次: このrunの原本と終端画面を照合し、正規実受付から特性抑制へ進む。30勝単独再実行は禁止。P08移送・releaseは未完。**
 
 次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `7ac90a66df9a31212fb09cedbd430d59d62649bf`。
+証拠のsource HEAD: `06a22ef6ced5fa090d7a060b13733073e3ab0b96`。
 当checkpoint前のremote HEAD。native sourceはreport。正式BP受入は変更なし。
 
 ## 最短の再開手順
@@ -63,7 +63,7 @@ P08ゲート:
 
 2026-09-15: run34946969126/job104308573084で、同一candidateの3勝基礎9 BPに既存反復報酬3 BPが加算され12 BPへ確定。通常QOL供給ショップでかわらずのいしを4 BP購入し、残高12→8、所持0→1、Save counter5→6→7→7、通常Save/fresh Continue後の保持をscoped受入。ROM変更0、成功1process/2fresh cores。次はRing。 2026-09-18追記: Ring/policyは別scoped候補で完了。BP数値・原本の意味は変更しない。
 
-同一候補で真正30勝と保存 → 正規実受付から特性抑制 → 変更影響範囲P08（公開操作は別指示）
+正規実受付から特性抑制 → 変更影響範囲P08（公開操作は別指示）
 
 ## 再実行・過大主張の禁止
 

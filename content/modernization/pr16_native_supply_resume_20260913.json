@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "run35478473681の実29勝/30戦目敗北・Saveを照合し、元のfailure結論を保持。30戦目初手の同点評価458737/命中100で残PP16対32を選び分ける新規10契約を検証。新nativeは未実行。",
+    "current_stop": "同一2b107e7eで真正30勝90BP・元party600/owner64・通常Save/fresh Continueを検証。29勝＋30戦目action138eventsまで原本byte一致。同点時だけ残PPの多い技を通常入力で選択。ROM変更/ARM0。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "進行中のbattle30-pp Actionsだけを照合。重複起動せず、完了後に新原本・固定引継ぎ・両ログを記録する。",
+    "next_step": "このrunの原本と終端画面を照合し、正規実受付から特性抑制へ進む。30勝単独再実行は禁止。P08移送・releaseは未完。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -826,9 +826,9 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "進行中のbattle30-pp Actionsだけを照合。重複起動せず、完了後に新原本・固定引継ぎ・両ログを記録する。",
+    "goal_ja": "このrunの原本と終端画面を照合し、正規実受付から特性抑制へ進む。30勝単独再実行は禁止。P08移送・releaseは未完。",
     "host_write_policy_ja": "新しい実受付のguard開始後は入力/frames/readのみ。施設番号/効果/連勝/party/PC/LRのhost注入は禁止。初期配置fixtureと実入場/正規連勝を区別する。",
-    "id": "CIRCUS_BATTLE30_PP",
+    "id": "CIRCUS_SUPPRESSION_NATIVE",
     "read_paths": [
       "content/modernization/pr16_circus_battle30_pp.json",
       "scripts/pr16_circus_battle30_pp.py",
@@ -846,9 +846,9 @@
     ]
   },
   "observed_date_jst": "2026-09-20",
-  "observed_head": "7ac90a66df9a31212fb09cedbd430d59d62649bf",
+  "observed_head": "06a22ef6ced5fa090d7a060b13733073e3ab0b96",
   "observed_head_checks": {
-    "scope_head": "7ac90a66df9a31212fb09cedbd430d59d62649bf",
+    "scope_head": "06a22ef6ced5fa090d7a060b13733073e3ab0b96",
     "runs": [
       {
         "id": 35478473681,
@@ -1045,7 +1045,7 @@
   "remaining_physical_gap_ids": [
     "PHYSICAL_CIRCUS_ADMISSION"
   ],
-  "remaining_sequence_ja": "同一候補で真正30勝と保存 → 正規実受付から特性抑制 → 変更影響範囲P08（公開操作は別指示）",
+  "remaining_sequence_ja": "正規実受付から特性抑制 → 変更影響範囲P08（公開操作は別指示）",
   "retained_fixed_form_accepted_case_count": 5,
   "reward_route_audit": {
     "artifact_id": 10311359991,
@@ -1593,7 +1593,7 @@
   },
   "schema_version": 2,
   "session_execution_summary": {
-    "new_emulator_processes": 0,
+    "new_emulator_processes": 1,
     "arm_compiles": 0,
     "arm_links": 0,
     "accepted_standalone_replays": 0,
@@ -8321,8 +8321,8 @@
       "sha256": "9e339cb8afb8129fcdbb597ed3100cee9f2a5cce5776c68849c97ce3f823a2a3"
     },
     "content/modernization/pr16_circus_battle30_pp.json": {
-      "size": 13141,
-      "sha256": "80c297d40fbe3406b62e54fe5bbcbe556c1fe5b810633ce180893d65ddf78e0d"
+      "size": 58510,
+      "sha256": "0fa576914c4afde5da74fa9ef0460a4ebb81c0e5151c79e3d4930e8a6118b862"
     },
     "evidence/pr16_circus_battle30_pp/35479503528/execution/pp-tests.process.json": {
       "size": 90,
@@ -8335,10 +8335,90 @@
     "evidence/pr16_circus_battle30_pp/35479503528/execution/pp-tests.stdout": {
       "size": 0,
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/pr16_circus_battle30_pp/35479503528/execution/analysis.json": {
+      "size": 515,
+      "sha256": "3fe2b266d4b37b1c6fab478a11d4dc2af805c8b2cb22ee2e4382aae01c48f030"
+    },
+    "evidence/pr16_circus_battle30_pp/35479503528/execution/circus-continuous-30-save.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "evidence/pr16_circus_battle30_pp/35479503528/execution/circus-continuous-30-save.stderr": {
+      "size": 986769,
+      "sha256": "ee9ff8ff8ab0c53ea9bddc8cf722f6a3309b794fc37c913b5fa2587b62fd2055"
+    },
+    "evidence/pr16_circus_battle30_pp/35479503528/execution/circus-continuous-30-save.stdout": {
+      "size": 674,
+      "sha256": "9814ff31cc9da7c7217b7687cc446cddf6fa216a550e8591938a46ffd4d41902"
+    },
+    "evidence/pr16_circus_battle30_pp/35479503528/execution/compile.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "evidence/pr16_circus_battle30_pp/35479503528/execution/compile.stderr": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/pr16_circus_battle30_pp/35479503528/execution/compile.stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/pr16_circus_battle30_pp/35479503528/execution/events.json": {
+      "size": 278172,
+      "sha256": "9af08c20f12c22cac1493bfc990c2123fe0f4d948789c07599478e34160a757e"
+    },
+    "evidence/pr16_circus_battle30_pp/35479503528/execution/matchup-prefix.json": {
+      "size": 459,
+      "sha256": "02e740122ae3c2613825a9e456bb8a91a1917f937588f4b16474ce5f00704ab1"
+    },
+    "evidence/pr16_circus_battle30_pp/35479503528/execution/policy.c": {
+      "size": 64843,
+      "sha256": "f08a41accc2a789a4eaccbc947865b90aa625489a761b6316a74fa28057954ab"
+    },
+    "evidence/pr16_circus_battle30_pp/35479503528/execution/prefix.json": {
+      "size": 374,
+      "sha256": "a36c3603465a00ac835fddda18a6d52702412fabc29e867272f69701cd551485"
+    },
+    "evidence/pr16_circus_battle30_pp/35479503528/execution/reconstruct.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "evidence/pr16_circus_battle30_pp/35479503528/execution/reconstruct.stderr": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/pr16_circus_battle30_pp/35479503528/execution/reconstruct.stdout": {
+      "size": 6294,
+      "sha256": "3ac2c4ea6b4c0d27e1873c2a0155fdbfe8828bf254d10e3d52fa40a1b8c42747"
+    },
+    "evidence/pr16_circus_battle30_pp/35479503528/execution/resume-START.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "evidence/pr16_circus_battle30_pp/35479503528/execution/resume-START.stderr": {
+      "size": 2449,
+      "sha256": "53bc133afbaab154cd2eb3fa56d0056b31fec8d5ba09d189cd7abaf942823f85"
+    },
+    "evidence/pr16_circus_battle30_pp/35479503528/execution/resume-START.stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/pr16_circus_battle30_pp/35479503528/execution/task-graph-START.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "evidence/pr16_circus_battle30_pp/35479503528/execution/task-graph-START.stderr": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/pr16_circus_battle30_pp/35479503528/execution/task-graph-START.stdout": {
+      "size": 77,
+      "sha256": "62088248f3d245c3853d2eaa0e2fdcffe8609be8f608995613c19a76e994466a"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "run35478473681の実29勝/30戦目敗北・Saveを照合し、元のfailure結論を保持。30戦目初手の同点評価458737/命中100で残PP16対32を選び分ける新規10契約を検証。新nativeは未実行。",
+  "source_change_review_ja": "同一2b107e7eで真正30勝90BP・元party600/owner64・通常Save/fresh Continueを検証。29勝＋30戦目action138eventsまで原本byte一致。同点時だけ残PPの多い技を通常入力で選択。ROM変更/ARM0。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -8409,7 +8489,7 @@
   "circus_battle30_pp": {
     "path": "content/modernization/pr16_circus_battle30_pp.json",
     "run_id": 35479503528,
-    "classification": "CIRCUS_BATTLE30_PP_IMPLEMENTED_NATIVE_PENDING",
+    "classification": "CIRCUS_GENUINE_30_WINS_90BP_SAVE_CONTINUE",
     "candidate": {
       "size": 33554432,
       "sha256": "2b107e7ef897844eff810ff0b40f82543640488696e8295194ceb3b66fb2c183"
