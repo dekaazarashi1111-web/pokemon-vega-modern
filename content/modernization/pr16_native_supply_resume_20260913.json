@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "P08共有Save/loadの代表1件だけを実装。原本と3書込防止区間を維持し、既存10/46ケースを独立再実行しない。",
+    "current_stop": "P08共有Save/load代表1件がnative成功。通常わざメモリー満杯置換→通常Save→fresh Continueと100byte party/PPを原本照合。別画面/Actions受入前。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "最新Actionsとnative-resultの停止点を先に読む。原本に基づき未完区間だけ修復し、受入済みRing/BP/30勝は再実行しない。",
+    "next_step": "完了Actionsと原本・画面を照合しP08_SHARED_SAVE_LOADだけ受入。残るCircus退出後通常戦闘へ。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -832,9 +832,9 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "最新Actionsとnative-resultの停止点を先に読む。原本に基づき未完区間だけ修復し、受入済みRing/BP/30勝は再実行しない。",
+    "goal_ja": "完了Actionsと原本・画面を照合しP08_SHARED_SAVE_LOADだけ受入。残るCircus退出後通常戦闘へ。",
     "host_write_policy_ja": "新しい実受付のguard開始後は入力/frames/readのみ。施設番号/効果/連勝/party/PC/LRのhost注入は禁止。初期配置fixtureと実入場/正規連勝を区別する。",
-    "id": "P08_SHARED_SAVE_LOAD",
+    "id": "P08_MEMORY_REVIEW",
     "read_paths": [
       "content/modernization/pr16_p08_memory_representative.json",
       "scripts/pr16_p08_memory_representative.py",
@@ -846,7 +846,7 @@
       "content/modernization/pr16_p08_candidate_impact.json",
       "content/modernization/p08_remaining_work.json"
     ],
-    "stop_rule_ja": "最新Actionsとnative-resultの停止点を先に読む。原本に基づき未完区間だけ修復し、受入済みRing/BP/30勝は再実行しない。",
+    "stop_rule_ja": "完了Actionsと原本・画面を照合しP08_SHARED_SAVE_LOADだけ受入。残るCircus退出後通常戦闘へ。",
     "success_observations": [
       "実受付/入場ownerと必要進行条件を確定。データ上のmap名だけでCircusと断定しない",
       "flag直接注入を入場の証拠にせず、受付から対象ルール/特性抑制まで通常入力で確認",
@@ -854,12 +854,12 @@
     ]
   },
   "observed_date_jst": "2026-09-20",
-  "observed_head": "f9593a3c693fb3749d364af5df5facd58d6d8193",
+  "observed_head": "57f87aa8d220baeb6a1d20098b80f28aa2f3657d",
   "observed_head_checks": {
-    "scope_head": "f9593a3c693fb3749d364af5df5facd58d6d8193",
+    "scope_head": "57f87aa8d220baeb6a1d20098b80f28aa2f3657d",
     "run_id": 35511721939,
-    "phase": "START",
-    "native_verified": false,
+    "phase": "FINISH",
+    "native_verified": true,
     "reason_ja": "本run完了は次にActionsで別照合する。"
   },
   "observed_head_semantics": "本checkpoint直前のremote。native実測・記録job完了・正式受入を別々に保持する。",
@@ -1593,8 +1593,8 @@
   },
   "schema_version": 2,
   "session_execution_summary": {
-    "new_emulator_processes": 0,
-    "fresh_cores": 0,
+    "new_emulator_processes": 1,
+    "fresh_cores": 2,
     "arm_compiles": 0,
     "arm_links": 0,
     "accepted_standalone_replays": 0,
@@ -9175,8 +9175,8 @@
       "sha256": "2de1aab581307e5593860cac0964023ad000b2bc22a4535ea0d85b25f4efb517"
     },
     "content/modernization/p08_remaining_work.json": {
-      "size": 37987,
-      "sha256": "a3a8b952b7e37a1c2afb8d0d4fb6da04401eae7ae6d2fe82c60ee7a884712a33"
+      "size": 37948,
+      "sha256": "ffacee8dcf5f3d0d621a672d7d669de71b417801607fea56b170ad3df96c6c94"
     },
     "content/modernization/pr16_bp_chooser_checkpoint.json": {
       "size": 9442,
@@ -9375,8 +9375,8 @@
       "sha256": "53fb3c843c1f7ff3468365abea5c22570f6339401c4cf5dff7428f95e6b38352"
     },
     "content/modernization/pr16_p08_memory_representative.json": {
-      "size": 11708,
-      "sha256": "f3d6d2fe3aa0786525ac440126b40723dd7f66afc856ddc7237ddfbb0d932c80"
+      "size": 16623,
+      "sha256": "d808922af2d3d1534d187ed30744cfd5f6fcc301d34cf3ef5e1b1d88c851cfe6"
     },
     "evidence/pr16_p08/user-20260920-p08-memory/35511721939/start/execution.json": {
       "size": 3539,
@@ -9385,10 +9385,18 @@
     "evidence/pr16_p08/user-20260920-p08-memory/35511721939/start/result.json": {
       "size": 11708,
       "sha256": "f3d6d2fe3aa0786525ac440126b40723dd7f66afc856ddc7237ddfbb0d932c80"
+    },
+    "evidence/pr16_p08/user-20260920-p08-memory/35511721939/finish/execution.json": {
+      "size": 11553,
+      "sha256": "f69488d6c16fb0bb633269eeea836f0b8bc8f3d64a3e9f96d523ae500ce45e0c"
+    },
+    "evidence/pr16_p08/user-20260920-p08-memory/35511721939/finish/result.json": {
+      "size": 16623,
+      "sha256": "d808922af2d3d1534d187ed30744cfd5f6fcc301d34cf3ef5e1b1d88c851cfe6"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "P08共有Save/loadの代表1件だけを実装。原本と3書込防止区間を維持し、既存10/46ケースを独立再実行しない。",
+  "source_change_review_ja": "P08共有Save/load代表1件がnative成功。通常わざメモリー満杯置換→通常Save→fresh Continueと100byte party/PPを原本照合。別画面/Actions受入前。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -9550,8 +9558,8 @@
     "P08_SHARED_SAVE_LOAD": {
       "path": "content/modernization/pr16_p08_memory_representative.json",
       "run_id": 35511721939,
-      "phase": "START",
-      "native_verified": false,
+      "phase": "FINISH",
+      "native_verified": true,
       "representative_accepted": false
     }
   }

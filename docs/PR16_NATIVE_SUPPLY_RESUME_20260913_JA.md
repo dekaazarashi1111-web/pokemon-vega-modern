@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-P08共有Save/loadの代表1件だけを実装。原本と3書込防止区間を維持し、既存10/46ケースを独立再実行しない。
+P08共有Save/load代表1件がnative成功。通常わざメモリー満杯置換→通常Save→fresh Continueと100byte party/PPを原本照合。別画面/Actions受入前。
 
-**次: 最新Actionsとnative-resultの停止点を先に読む。原本に基づき未完区間だけ修復し、受入済みRing/BP/30勝は再実行しない。**
+**次: 完了Actionsと原本・画面を照合しP08_SHARED_SAVE_LOADだけ受入。残るCircus退出後通常戦闘へ。**
 
-最新Actionsとnative-resultの停止点を先に読む。原本に基づき未完区間だけ修復し、受入済みRing/BP/30勝は再実行しない。
+完了Actionsと原本・画面を照合しP08_SHARED_SAVE_LOADだけ受入。残るCircus退出後通常戦闘へ。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `f9593a3c693fb3749d364af5df5facd58d6d8193`。
+証拠のsource HEAD: `57f87aa8d220baeb6a1d20098b80f28aa2f3657d`。
 本checkpoint直前のremote。native実測・記録job完了・正式受入を別々に保持する。
 
 ## 最短の再開手順
