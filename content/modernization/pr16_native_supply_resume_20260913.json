@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "旧64抽選は全件単一global effectで打切り。getter中継が第４引数r3を破壊する不具合を５引数保持veneerで修復し、16契約を検証。真正Save30 cacheからだけ継続する。",
+    "current_stop": "getter限定修復の実証と停止原本を記録。受入済み30勝/BPは不変。未観測を成功へ昇格しない。[{'stage': 'getter-native-or-build', 'type': 'ValueError', 'error': 'BL range'}]",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "進行中のgetter followup runを確認。cache欠落時も30勝bootstrapへfallbackせず、最初の未達だけ修復する。",
+    "next_step": "pr16_circus_getter_followup.jsonの最初の未達のみ修復する。真正Save30は固定cacheを使用し、30戦prefix/旧builder/ARM再compileを禁止。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -828,7 +828,7 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "進行中のgetter followup runを確認。cache欠落時も30勝bootstrapへfallbackせず、最初の未達だけ修復する。",
+    "goal_ja": "pr16_circus_getter_followup.jsonの最初の未達のみ修復する。真正Save30は固定cacheを使用し、30戦prefix/旧builder/ARM再compileを禁止。",
     "host_write_policy_ja": "新しい実受付のguard開始後は入力/frames/readのみ。施設番号/効果/連勝/party/PC/LRのhost注入は禁止。初期配置fixtureと実入場/正規連勝を区別する。",
     "id": "CIRCUS_GETTER_ABI_NATIVE",
     "read_paths": [
@@ -850,9 +850,9 @@
     ]
   },
   "observed_date_jst": "2026-09-20",
-  "observed_head": "c82c455ac67225dfcc4fb798d03f783a70d93903",
+  "observed_head": "5c112d62e1be8f884f9bb7402d7d605fdfa20cec",
   "observed_head_checks": {
-    "scope_head": "c82c455ac67225dfcc4fb798d03f783a70d93903",
+    "scope_head": "5c112d62e1be8f884f9bb7402d7d605fdfa20cec",
     "runs": [
       {
         "id": 35494023398,
@@ -8574,8 +8574,8 @@
       "sha256": "9d93c31e2a14dd3ac312dd8c4ac38f2d7b2c1cbc12f2a2d4d292bf2c7e4b40e8"
     },
     "content/modernization/pr16_circus_getter_followup.json": {
-      "size": 14637,
-      "sha256": "f7755054056a9b33ab7254047a8ede6f1fcda0e91fc52e444d3b66c9d49fd336"
+      "size": 25545,
+      "sha256": "80374916f35a56af1f490e51c8350f621ef2b7b42b212aa50def62ca6bd62567"
     },
     "evidence/pr16_circus_getter/35499729510/start.json": {
       "size": 14637,
@@ -8592,10 +8592,50 @@
     "evidence/pr16_circus_getter/35499729510/execution/abi-contracts.stdout": {
       "size": 0,
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/pr16_circus_getter/35499729510/finish.json": {
+      "size": 25545,
+      "sha256": "80374916f35a56af1f490e51c8350f621ef2b7b42b212aa50def62ca6bd62567"
+    },
+    "evidence/pr16_circus_getter/35499729510/execution/reconstruct.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "evidence/pr16_circus_getter/35499729510/execution/reconstruct.stderr": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/pr16_circus_getter/35499729510/execution/reconstruct.stdout": {
+      "size": 6294,
+      "sha256": "3ac2c4ea6b4c0d27e1873c2a0155fdbfe8828bf254d10e3d52fa40a1b8c42747"
+    },
+    "evidence/pr16_circus_getter/35499729510/execution/resume-START.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "evidence/pr16_circus_getter/35499729510/execution/resume-START.stderr": {
+      "size": 2449,
+      "sha256": "426d38c93b752467192fc9651fac28647aad3b84acfb4f357bf9ff19140b6310"
+    },
+    "evidence/pr16_circus_getter/35499729510/execution/resume-START.stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/pr16_circus_getter/35499729510/execution/task-graph-START.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "evidence/pr16_circus_getter/35499729510/execution/task-graph-START.stderr": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/pr16_circus_getter/35499729510/execution/task-graph-START.stdout": {
+      "size": 77,
+      "sha256": "62088248f3d245c3853d2eaa0e2fdcffe8609be8f608995613c19a76e994466a"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "旧64抽選は全件単一global effectで打切り。getter中継が第４引数r3を破壊する不具合を５引数保持veneerで修復し、16契約を検証。真正Save30 cacheからだけ継続する。",
+  "source_change_review_ja": "getter限定修復の実証と停止原本を記録。受入済み30勝/BPは不変。未観測を成功へ昇格しない。[{'stage': 'getter-native-or-build', 'type': 'ValueError', 'error': 'BL range'}]",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -8689,7 +8729,7 @@
   "circus_getter_followup": {
     "path": "content/modernization/pr16_circus_getter_followup.json",
     "run_id": 35499729510,
-    "classification": "CIRCUS_GETTER_ABI_IMPLEMENTED_NATIVE_OPEN",
+    "classification": "CIRCUS_GETTER_ABI_DIAGNOSTIC_OPEN",
     "candidate": {
       "size": 33554432,
       "sha256": "2b107e7ef897844eff810ff0b40f82543640488696e8295194ceb3b66fb2c183"
