@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-APIへ旧Var IDを渡すgetterの原因を固定ROM/型定義で確定。命令/分岐/Save ABIを変えず５literalを修復する契約を検証。新nativeは真正Save30 cacheからだけ起動する。
+getter field修復の実停止を保存。未観測を成功にしない。[{'stage': 'getter-native-or-build', 'type': 'ValueError', 'error': 'native process or logger failed'}]
 
-**次: 進行中のgetter fields runのみ確認。最初の未達だけ修復し、30勝prefix/旧builder/ARM再compileを行わない。**
+**次: pr16_circus_getter_followup.jsonの最初の未達のみ修復。真正Save30 cacheから継続し、受入済み30勝/ABI/他施設を重複実行しない。**
 
 次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `5618a38f6854aa4551e5c518509f5f97cf2a79b0`。
+証拠のsource HEAD: `c20ec417864c9c9f437b7a53839b415806b2831b`。
 記録直前のremote HEAD。新candidate/実行数はgetter report、旧30勝受入は旧candidateのまま。
 
 ## 最短の再開手順

@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "APIへ旧Var IDを渡すgetterの原因を固定ROM/型定義で確定。命令/分岐/Save ABIを変えず５literalを修復する契約を検証。新nativeは真正Save30 cacheからだけ起動する。",
+    "current_stop": "getter field修復の実停止を保存。未観測を成功にしない。[{'stage': 'getter-native-or-build', 'type': 'ValueError', 'error': 'native process or logger failed'}]",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "進行中のgetter fields runのみ確認。最初の未達だけ修復し、30勝prefix/旧builder/ARM再compileを行わない。",
+    "next_step": "pr16_circus_getter_followup.jsonの最初の未達のみ修復。真正Save30 cacheから継続し、受入済み30勝/ABI/他施設を重複実行しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -829,7 +829,7 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "進行中のgetter fields runのみ確認。最初の未達だけ修復し、30勝prefix/旧builder/ARM再compileを行わない。",
+    "goal_ja": "pr16_circus_getter_followup.jsonの最初の未達のみ修復。真正Save30 cacheから継続し、受入済み30勝/ABI/他施設を重複実行しない。",
     "host_write_policy_ja": "新しい実受付のguard開始後は入力/frames/readのみ。施設番号/効果/連勝/party/PC/LRのhost注入は禁止。初期配置fixtureと実入場/正規連勝を区別する。",
     "id": "CIRCUS_GETTER_FIELDS_NATIVE",
     "read_paths": [
@@ -850,9 +850,9 @@
     ]
   },
   "observed_date_jst": "2026-09-20",
-  "observed_head": "5618a38f6854aa4551e5c518509f5f97cf2a79b0",
+  "observed_head": "c20ec417864c9c9f437b7a53839b415806b2831b",
   "observed_head_checks": {
-    "scope_head": "5618a38f6854aa4551e5c518509f5f97cf2a79b0",
+    "scope_head": "c20ec417864c9c9f437b7a53839b415806b2831b",
     "runs": [
       {
         "id": 35500143124,
@@ -1615,7 +1615,7 @@
   },
   "schema_version": 2,
   "session_execution_summary": {
-    "new_emulator_processes": 0,
+    "new_emulator_processes": 1,
     "arm_compiles": 0,
     "arm_links": 0,
     "accepted_standalone_replays": 0,
@@ -8592,8 +8592,8 @@
       "sha256": "9d93c31e2a14dd3ac312dd8c4ac38f2d7b2c1cbc12f2a2d4d292bf2c7e4b40e8"
     },
     "content/modernization/pr16_circus_getter_followup.json": {
-      "size": 16271,
-      "sha256": "6b69a671346b75c7b2e5e6ffe5a872e702da7e2d66bb8b16c62e819c135cdb98"
+      "size": 117299,
+      "sha256": "856881aa9b0156f391736de4748733395f493fe3de48ac23596e828c5745ba27"
     },
     "evidence/pr16_circus_getter/35499729510/start.json": {
       "size": 14637,
@@ -8842,10 +8842,154 @@
     "evidence/pr16_circus_getter/35503514936/execution/field-contracts.stdout": {
       "size": 0,
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/pr16_circus_getter/35503514936/finish.json": {
+      "size": 117299,
+      "sha256": "856881aa9b0156f391736de4748733395f493fe3de48ac23596e828c5745ba27"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/build.json": {
+      "size": 63844,
+      "sha256": "ca4796ea77fbe57eb72ea174382aaddc902066e07b719019d757949fe02f7604"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/circus-suppression-save.process.json": {
+      "size": 90,
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/circus-suppression-save.stderr": {
+      "size": 192209,
+      "sha256": "7b59c9ffce521efc88d21becd00051b595576c2aa56c7dd88435d095cd23af33"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/circus-suppression-save.stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/compile.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/compile.stderr": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/compile.stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/generated/cg_addresses.h": {
+      "size": 60,
+      "sha256": "21868ddb440be1b5cf8b04e44599e5428873746f324d48d3b220b1009e914c9d"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/generated/controller.c": {
+      "size": 13022,
+      "sha256": "86121ea4bf945584900f2ee3a62b617e523032ef5d6e45ca3a17c89d90a4184f"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/generated/getter_suppression.h": {
+      "size": 10265,
+      "sha256": "c6918db369792a3de2846a7a5407faaa1157b328ddf6946fca08ede94c7f922e"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/generated/p03_learning_embedded.c": {
+      "size": 7996,
+      "sha256": "81a488ced101990d3b22af65542e1f68d24e628291c1dd7e90751f2a6b18f336"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/generated/p03_p02_embedded.c": {
+      "size": 39678,
+      "sha256": "04ba837b8aad5625708751f7902ca794c74b0993e13307c6c7e390ae62af1cdf"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/generated/p03a_fullslots_embedded.c": {
+      "size": 12877,
+      "sha256": "d5230de78b19ab9990281d884b0f5242b76f0c4b427b574da25daddb0abc60a8"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/generated/p03b_archive_embedded.c": {
+      "size": 20163,
+      "sha256": "d1aef42d46e770aa7784477965902e5f26297ca8f0b5da80b8f78b0e7c706a80"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/generated/pr16_bp_control_embedded.c": {
+      "size": 11463,
+      "sha256": "06dd81f90dde1c8d57d156acf92b1bf2db30431341c1fc3ada3aa654cc396ee7"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/generated/pr16_bp_native_helpers.c": {
+      "size": 16314,
+      "sha256": "29fd3a5f30d5e6e7ea229fd59d2fd8d2b072d07244ddef762ec01d59a03e4c9f"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/generated/pr16_capture_shop_helpers.c": {
+      "size": 10007,
+      "sha256": "0854289c5a7895ad7de2ee82b4ac578db0b96fcf6e1b570d6adb5205dabab881"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/generated/pr16_circus_addresses.h": {
+      "size": 87,
+      "sha256": "1b7247f0cd8ef1d75eaad6e7811ed584b32cfc638d4e5c458c2a4d515536287f"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/generated/pr16_circus_selection_helpers.c": {
+      "size": 10511,
+      "sha256": "db81848dbd188a74b4afd0aab1e27aa796229964541dc392805801bcccc51da5"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/generated/pr16_circus_turn_helpers.c": {
+      "size": 3939,
+      "sha256": "37b6581d714cf47e605b0516215456415e1787f03a9af830cc7ce441657a173b"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/generated/pr16_gear_capture_helpers.c": {
+      "size": 9640,
+      "sha256": "4c057989f1638e14d6814c269291f952ad2cb8e96be5a36274ff8707fc63bee8"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/generated/pr16_gear_route.h": {
+      "size": 518,
+      "sha256": "bd60ed3f71b01b821c7722e3d80edeb2b3d9049b9dd876e6ffb4e49dac65cf1c"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/generated/pr16_shop_breeding_helpers.c": {
+      "size": 19626,
+      "sha256": "1a97210389443f72586fdb1fa6c6523b296f56ee116065e71040a14f465a14c0"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/generated/pr16_streak_legacy.c": {
+      "size": 11746,
+      "sha256": "de1618b95f09d8ce02c2a1ce8b833fa893f35c4da08b64dd69f9927cfe0c89c2"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/generated/pr16_streak_policy.c": {
+      "size": 64843,
+      "sha256": "f08a41accc2a789a4eaccbc947865b90aa625489a761b6316a74fa28057954ab"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/generated/ss_routes.h": {
+      "size": 2248,
+      "sha256": "537c00aaa9986c2de7a4328f03c737cf03c196cf43a1176a749bb4e05b21494b"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/reconstruct.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/reconstruct.stderr": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/reconstruct.stdout": {
+      "size": 6294,
+      "sha256": "3ac2c4ea6b4c0d27e1873c2a0155fdbfe8828bf254d10e3d52fa40a1b8c42747"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/resume-START.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/resume-START.stderr": {
+      "size": 2449,
+      "sha256": "cb15d60df6d6098f0095e7a040e61ab0b667c3d4af3a71192abbe3c0f5a9845c"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/resume-START.stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/task-graph-START.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/task-graph-START.stderr": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/task-graph-START.stdout": {
+      "size": 77,
+      "sha256": "62088248f3d245c3853d2eaa0e2fdcffe8609be8f608995613c19a76e994466a"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "APIへ旧Var IDを渡すgetterの原因を固定ROM/型定義で確定。命令/分岐/Save ABIを変えず５literalを修復する契約を検証。新nativeは真正Save30 cacheからだけ起動する。",
+  "source_change_review_ja": "getter field修復の実停止を保存。未観測を成功にしない。[{'stage': 'getter-native-or-build', 'type': 'ValueError', 'error': 'native process or logger failed'}]",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -8939,10 +9083,10 @@
   "circus_getter_followup": {
     "path": "content/modernization/pr16_circus_getter_followup.json",
     "run_id": 35503514936,
-    "classification": "CIRCUS_GETTER_FIELDS_IMPLEMENTED_NATIVE_OPEN",
+    "classification": "CIRCUS_GETTER_ABI_DIAGNOSTIC_OPEN",
     "candidate": {
       "size": 33554432,
-      "sha256": "2b107e7ef897844eff810ff0b40f82543640488696e8295194ceb3b66fb2c183"
+      "sha256": "46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38"
     }
   }
 }
