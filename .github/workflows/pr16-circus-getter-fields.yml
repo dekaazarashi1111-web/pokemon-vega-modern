@@ -18,10 +18,29 @@ jobs:
         with:
           ref: ${{ github.sha }}
           fetch-depth: 0
-      - name: 固定保存byteと型付きstate APIを読取（native・ARM・旧builderなし）
+      - name: 必要なtracked textだけを先に採取
         run: |
           python3 - <<'PY'
-          import hashlib,json,subprocess,sys
+          import hashlib,json,subprocess
+          from pathlib import Path
+          out=Path('.local/pr16-circus-getter-fields/artifact');out.mkdir(parents=True)
+          names=['AGENTS.md','scripts/pr16_circus_getter_abi.py','scripts/pr16_circus_getter_followup.py','scripts/pr16_circus_suppression.py','scripts/pr16_circus_suppression_contracts.py','scripts/pr16_resume.py','scripts/build_battle_core.py','tools/mgba_pr16_circus_getter_trace.h','tools/mgba_pr16_circus_suppression.h','tests/test_pr16_circus_getter_abi.py','overlays/circus_streak/circus_streak_runtime.c','overlays/circus_streak/circus_streak_runtime.h','overlays/cfru/rom_bridge.c','overlays/cfru/rom_bridge.h','content/modernization/pr16_circus_getter_followup.json','content/modernization/pr16_native_supply_resume_20260913.json','content/modernization/p08_remaining_work.json','content/modernization/pr16_bp_chooser_checkpoint.json','content/modernization/pr16_circus_battle30_receipt.json','.github/workflows/pr16-circus-getter.yml']
+          tracked=subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
+          names+= [n for n in tracked if n.endswith('/AGENTS.md')]
+          manifest={}
+          for name in names:
+              path=Path(name)
+              if not path.is_file():continue
+              assert name in tracked and not path.is_symlink()
+              raw=path.read_bytes();raw.decode('utf-8')
+              target=out/'source'/name;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(raw)
+              manifest[name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+          (out/'source-manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
+          PY
+      - name: 固定保存byteのみ再構成（ネット・子process・旧builder禁止を維持）
+        run: |
+          python3 - <<'PY'
+          import hashlib,json,os,sys
           from pathlib import Path
           sys.path.insert(0,'scripts')
           import pr16_saved_reconstruction as r
@@ -30,31 +49,21 @@ jobs:
               if event.startswith('socket.') or event in ('urllib.Request','http.client.connect'):
                   raise RuntimeError('offline reconstruction required')
           sys.addaudithook(offline)
-          root=Path('.local/pr16-circus-getter-fields'); out=root/'artifact'; out.mkdir(parents=True)
-          runtime=root/'runtime'; r.reconstruct(runtime.resolve())
-          rom=(runtime/'candidate.gba').read_bytes()
-          assert g.identity(rom)==g.PARENT
+          root=Path('.local/pr16-circus-getter-fields');out=root/'artifact'
+          runtime=root/'runtime';r.reconstruct(runtime.resolve())
+          rom=(runtime/'candidate.gba').read_bytes();assert g.identity(rom)==g.PARENT
           report=json.loads(Path('content/modernization/pr16_circus_getter_followup.json').read_text())
           assert report['recording_run']==35500143124 and report['getter_calls'][0]['result']==0
           spans={}
           for label,address,size in [('getter',report['build']['old_veneer']['target']&~1,512),('state_get',0x091269B8,256)]:
               raw=rom[address-g.BASE:address-g.BASE+size]
               spans[label]={'address':address,'size':size,'sha256':hashlib.sha256(raw).hexdigest(),'hex':raw.hex()}
-          (out/'rom-contract.json').write_text(json.dumps({'source_head':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'parent':g.PARENT,'spans':spans,'native_processes':0,'arm_compiles':0,'arm_links':0,'prefix_replays':0},indent=2)+'\n')
-          names=['AGENTS.md','scripts/pr16_circus_getter_abi.py','scripts/pr16_circus_getter_followup.py','scripts/pr16_circus_suppression.py','scripts/pr16_circus_suppression_contracts.py','scripts/pr16_resume.py','scripts/build_battle_core.py','tools/mgba_pr16_circus_getter_trace.h','tools/mgba_pr16_circus_suppression.h','tests/test_pr16_circus_getter_abi.py','overlays/circus_streak/circus_streak_runtime.c','overlays/circus_streak/circus_streak_runtime.h','overlays/cfru/rom_bridge.c','overlays/cfru/rom_bridge.h','content/modernization/pr16_circus_getter_followup.json','content/modernization/pr16_native_supply_resume_20260913.json','content/modernization/p08_remaining_work.json','content/modernization/pr16_bp_chooser_checkpoint.json','content/modernization/pr16_circus_battle30_receipt.json','.github/workflows/pr16-circus-getter.yml']
-          manifest={}
-          for name in names:
-              path=Path(name)
-              if not path.is_file():continue
-              subprocess.run(['git','ls-files','--error-unmatch',name],check=True,stdout=subprocess.DEVNULL)
-              raw=path.read_bytes();raw.decode('utf-8')
-              target=out/'source'/name;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(raw)
-              manifest[name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
-          (out/'source-manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
-          assert not subprocess.check_output(['git','status','--porcelain','--untracked-files=no'])
+          (out/'rom-contract.json').write_text(json.dumps({'source_head':os.environ['GITHUB_SHA'],'parent':g.PARENT,'spans':spans,'native_processes':0,'arm_compiles':0,'arm_links':0,'prefix_replays':0},indent=2)+'\n')
           print('RESULT=DONE TASK=USER-20260920-CIRCUS-GETTER-FIELDS-INSPECT VERIFY=PASS native=0 ARM=0 prefix=0')
           PY
+          test -z "$(git status --porcelain --untracked-files=no)"
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: pr16-circus-getter-fields
           path: .local/pr16-circus-getter-fields/artifact/
