@@ -8962,3 +8962,17 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: このcommitを同branchへ非force pushしremote読戻し。
 - Network: GitHub固定run/job/artifactとremote照合。
 - Next: 最新Actionsとnative-resultの最初の未達だけを修復。cache以外のSave注入/旧30勝/受入済み施設/Ring/BP/memory再実行は禁止。
+
+
+## 2026-09-20T13:14:35Z — USER-20260920-P08-ORDINARY-ABI-START
+- Timestamp: 2026-09-20T13:14:35Z
+- Task: USER-20260920-P08-ORDINARY-ABI-START
+- Status: IN_PROGRESS
+- Version: pr16-p08-representative-v1
+- Summary: 真正Save30から通常歩行/自然calleeだけの最終代表を記録。cache欠落時は30勝bootstrapせず停止。未達は原本failuresを読む。
+- Files changed: scripts/pr16_p08_ordinary_abi.py, tools/mgba_pr16_p08_ordinary_abi.h, tests/test_pr16_p08_ordinary_abi.py, .github/workflows/pr16-p08-ordinary-abi.yml, scripts/pr16_p08_ordinary_representative.py, tools/mgba_pr16_p08_ordinary_main.h, tools/mgba_pr16_p08_ordinary_observer.h, tests/test_pr16_p08_ordinary_representative.py, .github/workflows/pr16-p08-ordinary.yml, scripts/pr16_p08_memory_acceptance.py, content/modernization/pr16_p08_ordinary_abi.json, evidence/pr16_p08/user-20260920-p08-ordinary-abi/35512907219/start/execution.json, evidence/pr16_p08/user-20260920-p08-ordinary-abi/35512907219/start/result.json, content/modernization/p08_remaining_work.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, design/run_log.md, design/version_log.md
+- Verify: 限定契約/resume/生成MD/hash/task graph、原本byte包絡とindex/HEAD読戻し。native件数・成否はcontent/modernization/pr16_p08_ordinary_abi.json。
+- Boundary: ARM0、旧受入の独立再実行0、ROM変更0。全体private guard既存違反は差分照合し全体PASSと主張しない。
+- Commit: このcommitを同branchへ非force pushしremote読戻し。
+- Network: GitHub固定run/job/artifactとremote照合。
+- Next: 最新Actionsとnative-resultの最初の未達だけを修復。cache以外のSave注入/旧30勝/受入済み施設/Ring/BP/memory再実行は禁止。

@@ -836,7 +836,11 @@
     "host_write_policy_ja": "新しい実受付のguard開始後は入力/frames/readのみ。施設番号/効果/連勝/party/PC/LRのhost注入は禁止。初期配置fixtureと実入場/正規連勝を区別する。",
     "id": "P08_CIRCUS_POST_EXIT_ORDINARY",
     "read_paths": [
-      "content/modernization/pr16_p08_ordinary_representative.json",
+      "content/modernization/pr16_p08_ordinary_abi.json",
+      "scripts/pr16_p08_ordinary_abi.py",
+      "tools/mgba_pr16_p08_ordinary_abi.h",
+      "tests/test_pr16_p08_ordinary_abi.py",
+      ".github/workflows/pr16-p08-ordinary-abi.yml",
       "scripts/pr16_p08_ordinary_representative.py",
       "tools/mgba_pr16_p08_ordinary_main.h",
       "tools/mgba_pr16_p08_ordinary_observer.h",
@@ -855,11 +859,11 @@
     ]
   },
   "observed_date_jst": "2026-09-20",
-  "observed_head": "81fd0de02faed52a7bfd95a7b6f2cd722cb51076",
+  "observed_head": "63ec984e57524d747ef2a2b9816a7c979f2e1b37",
   "observed_head_checks": {
-    "scope_head": "81fd0de02faed52a7bfd95a7b6f2cd722cb51076",
-    "run_id": 35512429611,
-    "phase": "FINISH",
+    "scope_head": "63ec984e57524d747ef2a2b9816a7c979f2e1b37",
+    "run_id": 35512907219,
+    "phase": "START",
     "native_verified": false,
     "reason_ja": "本run完了は次にActionsで別照合する。"
   },
@@ -930,8 +934,8 @@
   },
   "pending_runs": [
     {
-      "run_id": 35512429611,
-      "tested_head": "304eb25919601ccd7534dfd6e1da1dd5be091019",
+      "run_id": 35512907219,
+      "tested_head": "63ec984e57524d747ef2a2b9816a7c979f2e1b37",
       "status": "in_progress"
     }
   ],
@@ -1594,7 +1598,7 @@
   },
   "schema_version": 2,
   "session_execution_summary": {
-    "new_emulator_processes": 1,
+    "new_emulator_processes": 0,
     "fresh_cores": 0,
     "arm_compiles": 0,
     "arm_links": 0,
@@ -9176,8 +9180,8 @@
       "sha256": "2de1aab581307e5593860cac0964023ad000b2bc22a4535ea0d85b25f4efb517"
     },
     "content/modernization/p08_remaining_work.json": {
-      "size": 38084,
-      "sha256": "bb098e628ec9a6b3199231b117107c44b84abed7131183ef85f696c884ec8ce3"
+      "size": 38073,
+      "sha256": "ab9ec1189c14156b205f831cf32a8da736c08c3810457ff5015ea53194e5c2ae"
     },
     "content/modernization/pr16_bp_chooser_checkpoint.json": {
       "size": 9442,
@@ -9446,6 +9450,34 @@
     "evidence/pr16_p08/user-20260920-p08-ordinary/35512429611/finish/result.json": {
       "size": 30539,
       "sha256": "0db2e0369841c4d6e8de7bd049fffdfce705cf08220173fa7c04413d9ce7ad49"
+    },
+    "scripts/pr16_p08_ordinary_abi.py": {
+      "size": 11486,
+      "sha256": "d1f95373560356f658b2e9e06b717c2e5ccea09fa4b695814dd16b35e31f5ae9"
+    },
+    "tools/mgba_pr16_p08_ordinary_abi.h": {
+      "size": 4579,
+      "sha256": "2e82265f5605ce455ee4d00e50c22a6edfd0a7a072e7f5b5047e4ec2cef979f8"
+    },
+    "tests/test_pr16_p08_ordinary_abi.py": {
+      "size": 5415,
+      "sha256": "f76256f9e723319d367975e1590d1acb6cae15c0bd132c43830a598525c1a66e"
+    },
+    ".github/workflows/pr16-p08-ordinary-abi.yml": {
+      "size": 2226,
+      "sha256": "7fbff4de822c0c7d0f24b376555e443befd9949d770d4dde9f5dbf81d342b4c8"
+    },
+    "content/modernization/pr16_p08_ordinary_abi.json": {
+      "size": 10191,
+      "sha256": "b5cebc87440e1be426ae20478c8efb14324ea80bf5d4a09b47f1bc15fad4b8d8"
+    },
+    "evidence/pr16_p08/user-20260920-p08-ordinary-abi/35512907219/start/execution.json": {
+      "size": 3781,
+      "sha256": "f3015a30c607325008c478ea284486110efa6ded3685e9a13943ef3c141522fc"
+    },
+    "evidence/pr16_p08/user-20260920-p08-ordinary-abi/35512907219/start/result.json": {
+      "size": 10191,
+      "sha256": "b5cebc87440e1be426ae20478c8efb14324ea80bf5d4a09b47f1bc15fad4b8d8"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
@@ -9616,9 +9648,9 @@
       "representative_accepted": true
     },
     "P08_CIRCUS_POST_EXIT_ORDINARY": {
-      "path": "content/modernization/pr16_p08_ordinary_representative.json",
-      "run_id": 35512429611,
-      "phase": "FINISH",
+      "path": "content/modernization/pr16_p08_ordinary_abi.json",
+      "run_id": 35512907219,
+      "phase": "START",
       "native_verified": false,
       "representative_accepted": false
     }

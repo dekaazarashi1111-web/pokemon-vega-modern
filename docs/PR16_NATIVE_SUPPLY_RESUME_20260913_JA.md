@@ -14,7 +14,7 @@
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `81fd0de02faed52a7bfd95a7b6f2cd722cb51076`。
+証拠のsource HEAD: `63ec984e57524d747ef2a2b9816a7c979f2e1b37`。
 本checkpoint直前のremote。native実測・記録job完了・正式受入を別々に保持する。
 
 ## 最短の再開手順
@@ -25,7 +25,11 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `content/modernization/pr16_p08_ordinary_representative.json`
+- `content/modernization/pr16_p08_ordinary_abi.json`
+- `scripts/pr16_p08_ordinary_abi.py`
+- `tools/mgba_pr16_p08_ordinary_abi.h`
+- `tests/test_pr16_p08_ordinary_abi.py`
+- `.github/workflows/pr16-p08-ordinary-abi.yml`
 - `scripts/pr16_p08_ordinary_representative.py`
 - `tools/mgba_pr16_p08_ordinary_main.h`
 - `tools/mgba_pr16_p08_ordinary_observer.h`
