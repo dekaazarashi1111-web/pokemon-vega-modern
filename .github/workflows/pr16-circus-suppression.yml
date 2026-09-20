@@ -1,0 +1,61 @@
+name: PR16 Circus suppression
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-circus-suppression.yml
+      - scripts/pr16_circus_suppression*.py
+      - tools/mgba_pr16_circus_suppression*.h
+      - tests/test_pr16_circus_suppression*.py
+permissions:
+  contents: read
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-circus-suppression
+  cancel-in-progress: false
+jobs:
+  suppression:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 1
+      - name: exact HEADの限定sourceと最新Actionsを保存（ROM・save・nativeなし）
+        run: |
+          python3 - <<'PY'
+          import fnmatch, hashlib, json, os, pathlib, subprocess, zipfile
+          root=pathlib.Path.cwd(); out=root/'.local/pr16-circus-suppression';out.mkdir(parents=True,exist_ok=True)
+          head=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
+          assert head==os.environ['GITHUB_SHA']
+          patterns=['AGENTS.md','**/AGENTS.md','CHATGPT_RESUME.md','scripts/pr16_*.py','scripts/validate_task_graph.py','scripts/private_file_guard.py','tools/mgba_pr16*.c','tools/mgba_pr16*.h','tools/mgba_modernization*.c','tools/build*facility*.py','tools/build*modernization*.py','tools/build_battle_core.py','tests/test_pr16*.py','config/*circus*.json','config/modernization_p05*.json','config/active_play_baseline.json','config/github_private_environment.json','config/factory_high_modes_v2.json','content/modernization/pr16*.json','content/modernization/p08_remaining_work.json','overlays/*circus*/*','overlays/modernization_p05*/*','docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md','docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md','.github/workflows/pr16-circus*.yml']
+          names=subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
+          manifest={}
+          with zipfile.ZipFile(out/'source.zip','w',zipfile.ZIP_DEFLATED) as archive:
+              for name in sorted(n for n in names if n and any(fnmatch.fnmatchcase(n,p) for p in patterns)):
+                  path=root/name
+                  if path.is_symlink() or not path.is_file() or path.stat().st_size>5000000:continue
+                  raw=path.read_bytes();raw.decode('utf-8')
+                  assert b'\0' not in raw
+                  archive.writestr(name,raw);manifest[name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+          repo='repos/'+os.environ['GITHUB_REPOSITORY']
+          pr=json.loads(subprocess.check_output(['gh','api',repo+'/pulls/16']))
+          runs=json.loads(subprocess.check_output(['gh','api',repo+'/actions/runs?branch=codex%2Fmodernization-followup-20260908&per_page=20']))
+          live=json.loads(subprocess.check_output(['gh','api',repo+'/git/ref/heads/codex/modernization-followup-20260908']))
+          report={'schema_version':1,'source_head':head,'live_head':live['object']['sha'],'pr':{k:pr[k] for k in ('number','state','draft','merged')},'runs':[{k:r[k] for k in ('id','name','head_sha','status','conclusion','path')} for r in runs['workflow_runs']],'manifest':manifest,'new_emulator_processes':0,'arm_compiles':0,'arm_links':0,'accepted_standalone_replays':0,'physical_admission_accepted':False,'suppression_accepted':False,'release_ready':False}
+          (out/'source-manifest.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
+          print(json.dumps({k:v for k,v in report.items() if k!='manifest'},ensure_ascii=False));print('tracked source files:',len(manifest))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-circus-suppression-source
+          path: .local/pr16-circus-suppression/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 7
