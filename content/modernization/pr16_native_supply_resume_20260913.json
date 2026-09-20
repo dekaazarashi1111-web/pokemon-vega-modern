@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "同一ROMの自然getter30/正規抑制calleeはrun35503514936で確認済み。Fairy Lock中の任意交代だけを回避し、通常技・強制交代・自然勝敗を維持。真正Save30から通常帰還・party600/owner64・Save/fresh Continueまで検証完了。画面/完了Actionsの正式受入照合は未完。",
+    "current_stop": "Circus実受付・正規抑制・通常帰還/保存再開を完了Actions・原本・29画面から正式scoped受入。physical残件0。新native0/ROM変更0。P08最終候補の変更影響移送とrelease判断は未完。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "このrunの完了Actions・原本・画面を照合しCircus正式受入を接続する。新native再実行なし。",
+    "next_step": "P08の変更ROM範囲/owner/runner/fixture/契約を保存レシピから照合し、46487d98候補への既受入移送と必要な最小代表回帰を確定する。旧ARM/30勝/受入単体は再実行しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -64,7 +64,7 @@
     "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b",
     "size": 33554432
   },
-  "candidate_scope_ja": "この欄は正式BP親候補ceddbe91のidentityを維持。Ring/policyは別checkpointの新scoped候補4ea33fb8で受入済み。CircusとP08最終候補への移送/回帰・製品SHA固定は未完。",
+  "candidate_scope_ja": "この欄は正式BP親候補ceddbe91のidentityを維持。Ring/policyは4ea33fb8、Circusは46487d98でscoped受入済み。P08最終候補への移送/回帰・製品SHA固定は未完。",
   "checkpoint_index_order_failures": [
     {
       "job_id": 103675775748,
@@ -542,6 +542,7 @@
   },
   "current_resume_doc": "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
   "do_not_repeat": [
+    "Circus正式scoped受入はpr16_circus_acceptance.json。35504302893の29画面/3勝/Save、35503514936の自然getter/抑制を再実行しない。旧failureの意味は維持。",
     "run35503514936のgetter30/正規抑制は再観測不要。Fairy Lockは0x4000、任意交代を控える。次はlifecycle reportのみ。",
     "getter field repair runを最優先確認。APIは0..10 index、旧Var IDではない。真正Save30限定、30勝prefix/旧ARM/64抽選反復禁止。",
     "getter followupの先行runを先に照合。真正Save30 cache以外から再開しない。30勝prefix/旧builder/ARM再compile/旧64抽選の反復禁止。",
@@ -830,19 +831,17 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "このrunの完了Actions・原本・画面を照合しCircus正式受入を接続する。新native再実行なし。",
+    "goal_ja": "P08の変更ROM範囲/owner/runner/fixture/契約を保存レシピから照合し、46487d98候補への既受入移送と必要な最小代表回帰を確定する。旧ARM/30勝/受入単体は再実行しない。",
     "host_write_policy_ja": "新しい実受付のguard開始後は入力/frames/readのみ。施設番号/効果/連勝/party/PC/LRのhost注入は禁止。初期配置fixtureと実入場/正規連勝を区別する。",
-    "id": "CIRCUS_SUPPRESSION_RECEIPT",
+    "id": "P08_CHANGE_IMPACT_TRANSFER",
     "read_paths": [
-      "content/modernization/pr16_circus_suppression_lifecycle.json",
+      "content/modernization/pr16_circus_acceptance.json",
+      "content/modernization/pr16_saved_reconstruction.json",
+      "scripts/pr16_saved_reconstruction.py",
       "content/modernization/pr16_circus_getter_followup.json",
-      "scripts/pr16_circus_fairy_lock.py",
-      "tests/test_pr16_circus_fairy_lock.py",
-      "tools/mgba_pr16_circus_fairy_lock.h",
-      ".github/workflows/pr16-circus-fairy-lock.yml",
       "content/modernization/p08_remaining_work.json"
     ],
-    "stop_rule_ja": "次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。",
+    "stop_rule_ja": "影響台帳と必要最小回帰を区切りごとに保存する。merge/release/active baseline変更は別途明示指示が必要。",
     "success_observations": [
       "実受付/入場ownerと必要進行条件を確定。データ上のmap名だけでCircusと断定しない",
       "flag直接注入を入場の証拠にせず、受付から対象ルール/特性抑制まで通常入力で確認",
@@ -850,20 +849,224 @@
     ]
   },
   "observed_date_jst": "2026-09-20",
-  "observed_head": "d526bea14f450bca717011ede1bd0241d7a8abb2",
+  "observed_head": "5a3ea6bfddbee41b745046c634bdf41d50946839",
   "observed_head_checks": {
-    "scope_head": "d526bea14f450bca717011ede1bd0241d7a8abb2",
+    "scope_head": "5a3ea6bfddbee41b745046c634bdf41d50946839",
     "runs": [
       {
-        "id": 35503514936,
-        "head_sha": "5618a38f6854aa4551e5c518509f5f97cf2a79b0",
+        "id": 35506657999,
+        "head_sha": "5a1b35ad66c0a9a157274835987d9d7d20ba1f12",
+        "path": ".github/workflows/ci.yml",
+        "status": "in_progress",
+        "conclusion": null
+      },
+      {
+        "id": 35506657990,
+        "head_sha": "5a1b35ad66c0a9a157274835987d9d7d20ba1f12",
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 35506654695,
+        "head_sha": "5a1b35ad66c0a9a157274835987d9d7d20ba1f12",
+        "path": ".github/workflows/pr16-circus-acceptance.yml",
+        "status": "in_progress",
+        "conclusion": null
+      },
+      {
+        "id": 35506654699,
+        "head_sha": "5a1b35ad66c0a9a157274835987d9d7d20ba1f12",
+        "path": ".github/workflows/ci.yml",
+        "status": "in_progress",
+        "conclusion": null
+      },
+      {
+        "id": 35506654692,
+        "head_sha": "5a1b35ad66c0a9a157274835987d9d7d20ba1f12",
+        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 35506654685,
+        "head_sha": "5a1b35ad66c0a9a157274835987d9d7d20ba1f12",
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 35506579413,
+        "head_sha": "fe21af7a39017ce70c987790926fc11d38c1137c",
+        "path": ".github/workflows/ci.yml",
+        "status": "completed",
+        "conclusion": "action_required"
+      },
+      {
+        "id": 35506579428,
+        "head_sha": "fe21af7a39017ce70c987790926fc11d38c1137c",
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed",
+        "conclusion": "action_required"
+      },
+      {
+        "id": 35506546739,
+        "head_sha": "b0410d154f799b89732737a0e003d3502252ea71",
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 35506546741,
+        "head_sha": "b0410d154f799b89732737a0e003d3502252ea71",
+        "path": ".github/workflows/ci.yml",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 35506544420,
+        "head_sha": "b0410d154f799b89732737a0e003d3502252ea71",
+        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 35506544427,
+        "head_sha": "b0410d154f799b89732737a0e003d3502252ea71",
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 35506544430,
+        "head_sha": "b0410d154f799b89732737a0e003d3502252ea71",
+        "path": ".github/workflows/pr16-circus-acceptance.yml",
         "status": "completed",
         "conclusion": "failure"
+      },
+      {
+        "id": 35506544467,
+        "head_sha": "b0410d154f799b89732737a0e003d3502252ea71",
+        "path": ".github/workflows/ci.yml",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 35506193445,
+        "head_sha": "4a5de6198200589dc5a9685b3e8e598ecf534b93",
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 35506193406,
+        "head_sha": "4a5de6198200589dc5a9685b3e8e598ecf534b93",
+        "path": ".github/workflows/ci.yml",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 35506191387,
+        "head_sha": "4a5de6198200589dc5a9685b3e8e598ecf534b93",
+        "path": ".github/workflows/pr16-resume-maintenance.yml",
+        "status": "completed",
+        "conclusion": "failure"
+      },
+      {
+        "id": 35506191461,
+        "head_sha": "4a5de6198200589dc5a9685b3e8e598ecf534b93",
+        "path": ".github/workflows/pr16-bp-battle-return-closeout.yml",
+        "status": "completed",
+        "conclusion": "failure"
+      },
+      {
+        "id": 35506191437,
+        "head_sha": "4a5de6198200589dc5a9685b3e8e598ecf534b93",
+        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 35506191442,
+        "head_sha": "4a5de6198200589dc5a9685b3e8e598ecf534b93",
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 35506191441,
+        "head_sha": "4a5de6198200589dc5a9685b3e8e598ecf534b93",
+        "path": ".github/workflows/pr16-circus-acceptance.yml",
+        "status": "completed",
+        "conclusion": "failure"
+      },
+      {
+        "id": 35506191420,
+        "head_sha": "4a5de6198200589dc5a9685b3e8e598ecf534b93",
+        "path": ".github/workflows/ci.yml",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 35506191410,
+        "head_sha": "4a5de6198200589dc5a9685b3e8e598ecf534b93",
+        "path": ".github/workflows/modernization-stage79-mgba.yml",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 35505908027,
+        "head_sha": "82b9f723fa9ed4a6dc8ba0e1eaf64e55b1a825f6",
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 35505908025,
+        "head_sha": "82b9f723fa9ed4a6dc8ba0e1eaf64e55b1a825f6",
+        "path": ".github/workflows/ci.yml",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 35505906216,
+        "head_sha": "82b9f723fa9ed4a6dc8ba0e1eaf64e55b1a825f6",
+        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 35505906196,
+        "head_sha": "82b9f723fa9ed4a6dc8ba0e1eaf64e55b1a825f6",
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 35505906219,
+        "head_sha": "82b9f723fa9ed4a6dc8ba0e1eaf64e55b1a825f6",
+        "path": ".github/workflows/pr16-circus-acceptance.yml",
+        "status": "completed",
+        "conclusion": "failure"
+      },
+      {
+        "id": 35505906254,
+        "head_sha": "82b9f723fa9ed4a6dc8ba0e1eaf64e55b1a825f6",
+        "path": ".github/workflows/ci.yml",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 35505899892,
+        "head_sha": "94f65072cf68ddf415e4ec92b88d71d024ba10a8",
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed",
+        "conclusion": "cancelled"
       }
     ],
-    "reason_ja": "先行runの完了failure/原本とscoped getter・抑制成功を区別して照合。"
+    "reason_ja": "完了native run35504302893はsuccess、getter run35503514936はfailureのまま。最新source CIのaction_required等をnative成功と混同しない。詳細はevidence/pr16_circus_acceptance/35506654695/actions.json"
   },
-  "observed_head_semantics": "記録直前remote。scoped nativeは同一46487d98、正式BP/旧30勝candidateは変更しない。",
+  "observed_head_semantics": "受入集約直前remote。BP旧原本とCircus旧failureを変更せず新receiptで意味を接続。",
   "p08_resume_synchronized": true,
   "party_retention_latest_attempt": {
     "accepted_native_cases_replayed": 0,
@@ -930,10 +1133,14 @@
   },
   "pending_runs": [
     {
-      "run_id": 35504302893,
-      "tested_head": "cc5d6822266a9663b0e368c9cff2c94d2ede3435",
-      "status": "in_progress",
-      "scope": "circus-fairy-lock"
+      "run_id": 35506657999,
+      "tested_head": "5a1b35ad66c0a9a157274835987d9d7d20ba1f12",
+      "status": "in_progress"
+    },
+    {
+      "run_id": 35506654699,
+      "tested_head": "5a1b35ad66c0a9a157274835987d9d7d20ba1f12",
+      "status": "in_progress"
     }
   ],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
@@ -1046,10 +1253,8 @@
     "FINAL_NATIVE_ACCEPTANCE",
     "RELEASE_DECISION"
   ],
-  "remaining_physical_gap_ids": [
-    "PHYSICAL_CIRCUS_ADMISSION"
-  ],
-  "remaining_sequence_ja": "正規実受付から特性抑制 → 変更影響範囲P08（公開操作は別指示）",
+  "remaining_physical_gap_ids": [],
+  "remaining_sequence_ja": "Circus scoped受入完了 → P08変更影響移送/必要最小回帰 → 配布準備判定（公開操作は別指示）",
   "retained_fixed_form_accepted_case_count": 5,
   "reward_route_audit": {
     "artifact_id": 10311359991,
@@ -1597,12 +1802,12 @@
   },
   "schema_version": 2,
   "session_execution_summary": {
-    "new_emulator_processes": 1,
+    "new_emulator_processes": 0,
     "arm_compiles": 0,
     "arm_links": 0,
     "accepted_standalone_replays": 0,
     "prefix_wins_reexecuted": 0,
-    "scope_ja": "同一ROM・Save30。未完lifecycleの必要prefixだけ。既観測3抽選/CPU traceは省略。新ROM変更0。"
+    "scope_ja": "完了原本・画面・Actionsの照合のみ。nativeの再実行なし。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -7706,8 +7911,8 @@
       "sha256": "455d7c2fc10b456d948a8ff042c84dcf1ecf60e14baed9c793e7a910b5d7d969"
     },
     "tests/test_pr16_resume.py": {
-      "size": 9322,
-      "sha256": "938a8345ec704c0e64f6fbcb4741c0ccdddc0da557c12b2f7e102a701c996ea2"
+      "size": 12258,
+      "sha256": "7f31a83f3d92805ba547827f862f376b485db991758ed0763963b7ecc5e1fadf"
     },
     "content/modernization/pr16_circus_battle25.json": {
       "size": 32767,
@@ -9144,10 +9349,50 @@
     "evidence/pr16_circus_fairy_lock/35504302893/execution/task-graph-START.stdout": {
       "size": 77,
       "sha256": "62088248f3d245c3853d2eaa0e2fdcffe8609be8f608995613c19a76e994466a"
+    },
+    "scripts/pr16_resume.py": {
+      "size": 27351,
+      "sha256": "385822716e7bbe1e3430ad778768a9ae0e1d2176d8bd3e3bdb09f1faf2b45252"
+    },
+    "scripts/pr16_circus_acceptance.py": {
+      "size": 22328,
+      "sha256": "9cf16632efe68a68b1e6c1ec655f86ac5cee01e6cd64e79851196a6a0a85f241"
+    },
+    "tests/test_pr16_circus_acceptance.py": {
+      "size": 5302,
+      "sha256": "911a5e6009e6183a16dfdb3a1eeee71d49b9f3dcb3fd241cca65749c4f9b6eb3"
+    },
+    "content/modernization/pr16_circus_visual_review.json": {
+      "size": 11208,
+      "sha256": "ed378d2cdf677fd1be931b666f79aa0f00c85f65424344d7c7478223c7f70427"
+    },
+    ".github/workflows/pr16-circus-acceptance.yml": {
+      "size": 4617,
+      "sha256": "941a124395166d3ce17f74711125d1b5086dd534e8169b480281273fd9e79b6b"
+    },
+    "content/modernization/pr16_circus_acceptance.json": {
+      "size": 5476,
+      "sha256": "265f903d57d1205ef87877b4f29a73bc16ef6ed208ffade8cd62b1c39f5ca2ab"
+    },
+    "evidence/pr16_circus_acceptance/35506654695/acceptance.json": {
+      "size": 5476,
+      "sha256": "265f903d57d1205ef87877b4f29a73bc16ef6ed208ffade8cd62b1c39f5ca2ab"
+    },
+    "evidence/pr16_circus_acceptance/35506654695/actions.json": {
+      "size": 6037,
+      "sha256": "2de1aab581307e5593860cac0964023ad000b2bc22a4535ea0d85b25f4efb517"
+    },
+    "content/modernization/p08_remaining_work.json": {
+      "size": 37030,
+      "sha256": "d8fc45de6ecaa8b03d140148b3a3979fd80c5e9df85818c2e5b1127fe5d7c491"
+    },
+    "content/modernization/pr16_bp_chooser_checkpoint.json": {
+      "size": 9442,
+      "sha256": "4deb7c27771c63740ab94b9cf8c7b3c386f7193b989f35ede9d131c4f4bf15bf"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "同一ROMの自然getter30/正規抑制calleeはrun35503514936で確認済み。Fairy Lock中の任意交代だけを回避し、通常技・強制交代・自然勝敗を維持。真正Save30から通常帰還・party600/owner64・Save/fresh Continueまで検証完了。画面/完了Actionsの正式受入照合は未完。",
+  "source_change_review_ja": "Circus実受付・正規抑制・通常帰還/保存再開を完了Actions・原本・29画面から正式scoped受入。physical残件0。新native0/ROM変更0。P08最終候補の変更影響移送とrelease判断は未完。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -9255,5 +9500,17 @@
       "sha256": "46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38"
     },
     "native_verified": true
+  },
+  "circus_physical_acceptance": {
+    "path": "content/modernization/pr16_circus_acceptance.json",
+    "candidate": {
+      "size": 33554432,
+      "sha256": "46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38"
+    },
+    "source_runs": [
+      35503514936,
+      35504302893
+    ],
+    "complete": true
   }
 }

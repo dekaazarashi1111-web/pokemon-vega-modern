@@ -8766,3 +8766,17 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 同branch非force commit、remote/receipt一致。
 - Network: 固定CFRU e24a16fe39e27ae162faf5b78596d1f3df18489d include/constants/battle.h、src/battle_util.c IsFairyLockActive、src/switching.cをGitHubで照合。検索語BATTLE_CIRCUS_FAIRY_LOCK / IsFairyLockActive。host mGBA依存のみ。秘密/ROM/Saveの追加なし。
 - Next: このrunの完了Actions・原本・画面を照合しCircus正式受入を接続する。新native再実行なし。
+
+
+## 2026-09-20T11:02:03Z — USER-20260920-CIRCUS-ACCEPTANCE
+- Timestamp: 2026-09-20T11:02:03Z
+- Task: USER-20260920-CIRCUS-ACCEPTANCE / Circus正式scoped受入
+- Status: DONE（P08最終移送・releaseは未完）
+- Version: pr16-circus-acceptance-v1
+- Summary: Circus実受付・正規抑制・通常帰還/保存再開を完了Actions・原本・29画面から正式scoped受入。physical残件0。新native0/ROM変更0。P08最終候補の変更影響移送とrelease判断は未完。
+- Files changed: scripts/pr16_circus_acceptance.py, tests/test_pr16_circus_acceptance.py, content/modernization/pr16_circus_visual_review.json, .github/workflows/pr16-circus-acceptance.yml, tests/test_pr16_resume.py, scripts/pr16_resume.py, content/modernization/pr16_circus_acceptance.json, evidence/pr16_circus_acceptance/35506654695/acceptance.json, evidence/pr16_circus_acceptance/35506654695/actions.json, content/modernization/p08_remaining_work.json, content/modernization/pr16_bp_chooser_checkpoint.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, design/run_log.md, design/version_log.md
+- Verify: 新規receipt契約・resume・task graph PASS。旧原本のgetter/predicate/delegate、lifecycle原本、29画面hash/目視と完了Actions再照合。新native/ARM/旧30勝再実行0。
+- Prior failure: run35505906219はresume合成fixtureのCircus未完固定でfailure。原本成功を変更せず検査を修復。run35506191441はinstallのP08 hash同期漏れ2検査でfailure。変更前照合/限定同期を修復、新native0。
+- Commit: 同branch非force commit/push、remote/HEADを読戻し。
+- Network: GitHub RESTの固定native2run/2artifact、記録失敗2runと最新30Actionsの照合のみ。
+- Next: P08の変更ROM範囲/owner/runner/fixture/契約を保存レシピから照合し、46487d98候補への既受入移送と必要な最小代表回帰を確定する。旧ARM/30勝/受入単体は再実行しない。

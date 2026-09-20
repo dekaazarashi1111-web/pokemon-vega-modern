@@ -490,10 +490,10 @@
       "original_request": "P05 suppression requirement and current P08 boundary",
       "pass_condition": "reach battle from the actual facility entrance; do not substitute writing the Circus flag",
       "phase": "P05",
-      "reason_ja": "実際の受付・入場からBattle Circus特性抑制までの通し受入。既存のフラグ設定試験で代替しない",
+      "reason_ja": "実受付→自然getter30→正規抑制predicate8/delegate12を旧failure内の成功範囲として保持。別完了runの追加3勝、party600/owner64復元、通常Save/fresh Continueと29画面を原本再照合してscoped受入。旧30勝は旧候補のまま。",
       "reconstruction_checkpoint": "content/modernization/pr16_saved_reconstruction.json",
-      "resume": "このrunの完了Actions・原本・画面を照合しCircus正式受入を接続する。新native再実行なし。",
-      "success_evidence": null,
+      "resume": "Circusを再実行せずP08変更影響台帳へ。退出後通常戦闘を新規受入したとは主張しない。",
+      "success_evidence": "content/modernization/pr16_circus_acceptance.json",
       "supply_owner_evidence": "content/modernization/pr16_p05_supply_owner_findings.json",
       "target_function": "actual reception/admission to suppression",
       "battle25_checkpoint": "content/modernization/pr16_circus_battle25.json",
@@ -506,7 +506,12 @@
       "battle30_receipt": "content/modernization/pr16_circus_battle30_receipt.json",
       "suppression_checkpoint": "content/modernization/pr16_circus_suppression.json",
       "getter_checkpoint": "content/modernization/pr16_circus_getter_followup.json",
-      "lifecycle_checkpoint": "content/modernization/pr16_circus_suppression_lifecycle.json"
+      "lifecycle_checkpoint": "content/modernization/pr16_circus_suppression_lifecycle.json",
+      "complete": true,
+      "physical_acceptance_complete": true,
+      "status": "PASS_SCOPED_CANDIDATE_PENDING_P08_TRANSFER",
+      "accepted_candidate_sha256": "46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38",
+      "successor_transfer_condition_id": "FINAL_NATIVE_ACCEPTANCE"
     },
     {
       "accepted_candidate_sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
@@ -533,10 +538,11 @@
       "pass_condition": "Finish required BP/Ring/policy/Circus ROM changes, fix one final full SHA/size/CRC, and transfer parent accepted evidence using a changed-ROM-range/owner/runner/fixture/contract impact ledger with only justified reruns. bffd is not yet final.",
       "phase": "P08",
       "reason_ja": "既受入は保持。2026-09-15: run34946969126/job104308573084で、同一candidateの3勝基礎9 BPに既存反復報酬3 BPが加算され12 BPへ確定。通常QOL供給ショップでかわらずのいしを4 BP購入し、残高12→8、所持0→1、Save counter5→6→7→7、通常Save/fresh Continue後の保持をscoped受入。ROM変更0、成功1process/2fresh cores。次はRing。 Ring/policy/CircusとP08最終判定は未完。",
-      "resume": "先にNPCによるリング正規取得と既存メガUI/通常戦闘の許可接続、必要なpolicy条件、Circusを完了する。その後最終SHAを固定し変更ROM範囲/owner/runner/fixture/契約の台帳で既受入を移送する。影響のないBP/P03/P06/P07を再実行せず、方針変更だけで受入やreleaseへ昇格しない。",
+      "resume": "P08の変更ROM範囲/owner/runner/fixture/契約を保存レシピから照合し、46487d98候補への既受入移送と必要な最小代表回帰を確定する。旧ARM/30勝/受入単体は再実行しない。",
       "shop_display_successor": "content/modernization/pr16_shop_display_acceptance.json",
       "success_evidence": "content/modernization/pr16_completion_acceptance.json",
-      "target_function": "native final-candidate coverage beyond inherited seven-domain regression"
+      "target_function": "native final-candidate coverage beyond inherited seven-domain regression",
+      "circus_success_evidence": "content/modernization/pr16_circus_acceptance.json"
     },
     {
       "id": "RELEASE_DECISION",

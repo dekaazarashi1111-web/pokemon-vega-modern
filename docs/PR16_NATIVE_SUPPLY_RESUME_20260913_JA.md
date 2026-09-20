@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-同一ROMの自然getter30/正規抑制calleeはrun35503514936で確認済み。Fairy Lock中の任意交代だけを回避し、通常技・強制交代・自然勝敗を維持。真正Save30から通常帰還・party600/owner64・Save/fresh Continueまで検証完了。画面/完了Actionsの正式受入照合は未完。
+Circus実受付・正規抑制・通常帰還/保存再開を完了Actions・原本・29画面から正式scoped受入。physical残件0。新native0/ROM変更0。P08最終候補の変更影響移送とrelease判断は未完。
 
-**次: このrunの完了Actions・原本・画面を照合しCircus正式受入を接続する。新native再実行なし。**
+**次: P08の変更ROM範囲/owner/runner/fixture/契約を保存レシピから照合し、46487d98候補への既受入移送と必要な最小代表回帰を確定する。旧ARM/30勝/受入単体は再実行しない。**
 
-次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。
+影響台帳と必要最小回帰を区切りごとに保存する。merge/release/active baseline変更は別途明示指示が必要。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `d526bea14f450bca717011ede1bd0241d7a8abb2`。
-記録直前remote。scoped nativeは同一46487d98、正式BP/旧30勝candidateは変更しない。
+証拠のsource HEAD: `5a3ea6bfddbee41b745046c634bdf41d50946839`。
+受入集約直前remote。BP旧原本とCircus旧failureを変更せず新receiptで意味を接続。
 
 ## 最短の再開手順
 
@@ -25,12 +25,10 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `content/modernization/pr16_circus_suppression_lifecycle.json`
+- `content/modernization/pr16_circus_acceptance.json`
+- `content/modernization/pr16_saved_reconstruction.json`
+- `scripts/pr16_saved_reconstruction.py`
 - `content/modernization/pr16_circus_getter_followup.json`
-- `scripts/pr16_circus_fairy_lock.py`
-- `tests/test_pr16_circus_fairy_lock.py`
-- `tools/mgba_pr16_circus_fairy_lock.h`
-- `.github/workflows/pr16-circus-fairy-lock.yml`
 - `content/modernization/p08_remaining_work.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
@@ -50,11 +48,10 @@ checkは限定source hashと正本間整合性を検査するだけで、GitHub�
 
 ## 候補identityと残件
 
-SHA-256 `ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b` / 33554432 bytes / CRC32 `3EB17B36`。この欄は正式BP親候補ceddbe91のidentityを維持。Ring/policyは別checkpointの新scoped候補4ea33fb8で受入済み。CircusとP08最終候補への移送/回帰・製品SHA固定は未完。
+SHA-256 `ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b` / 33554432 bytes / CRC32 `3EB17B36`。この欄は正式BP親候補ceddbe91のidentityを維持。Ring/policyは4ea33fb8、Circusは46487d98でscoped受入済み。P08最終候補への移送/回帰・製品SHA固定は未完。
 
 正式physical残件（台帳から照合）:
 
-- `PHYSICAL_CIRCUS_ADMISSION`
 
 P08ゲート:
 
@@ -63,10 +60,11 @@ P08ゲート:
 
 2026-09-15: run34946969126/job104308573084で、同一candidateの3勝基礎9 BPに既存反復報酬3 BPが加算され12 BPへ確定。通常QOL供給ショップでかわらずのいしを4 BP購入し、残高12→8、所持0→1、Save counter5→6→7→7、通常Save/fresh Continue後の保持をscoped受入。ROM変更0、成功1process/2fresh cores。次はRing。 2026-09-18追記: Ring/policyは別scoped候補で完了。BP数値・原本の意味は変更しない。
 
-正規実受付から特性抑制 → 変更影響範囲P08（公開操作は別指示）
+Circus scoped受入完了 → P08変更影響移送/必要最小回帰 → 配布準備判定（公開操作は別指示）
 
 ## 再実行・過大主張の禁止
 
+- Circus正式scoped受入はpr16_circus_acceptance.json。35504302893の29画面/3勝/Save、35503514936の自然getter/抑制を再実行しない。旧failureの意味は維持。
 - run35503514936のgetter30/正規抑制は再観測不要。Fairy Lockは0x4000、任意交代を控える。次はlifecycle reportのみ。
 - getter field repair runを最優先確認。APIは0..10 index、旧Var IDではない。真正Save30限定、30勝prefix/旧ARM/64抽選反復禁止。
 - getter followupの先行runを先に照合。真正Save30 cache以外から再開しない。30勝prefix/旧builder/ARM再compile/旧64抽選の反復禁止。
@@ -298,6 +296,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-先行runの完了failure/原本とscoped getter・抑制成功を区別して照合。
+完了native run35504302893はsuccess、getter run35503514936はfailureのまま。最新source CIのaction_required等をnative成功と混同しない。詳細はevidence/pr16_circus_acceptance/35506654695/actions.json
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
