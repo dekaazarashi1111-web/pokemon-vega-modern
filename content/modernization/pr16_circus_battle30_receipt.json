@@ -1,0 +1,2355 @@
+{
+  "schema_version": 1,
+  "task": "USER-20260920-CIRCUS-BATTLE30-RECEIPT",
+  "classification": "CIRCUS_30_WINS_VISUAL_RECONCILED_SUPPRESSION_OPEN",
+  "run_id": 35479503528,
+  "job_id": 105994620734,
+  "artifact_id": 10596015821,
+  "tested_head": "7ac90a66df9a31212fb09cedbd430d59d62649bf",
+  "original_conclusion": "success",
+  "archive": {
+    "size": 1074450,
+    "sha256": "ac762db37f9402ea03db1d8f6a8f763e4ad48cde228297b9117ea23509246ecf"
+  },
+  "candidate": {
+    "size": 33554432,
+    "sha256": "2b107e7ef897844eff810ff0b40f82543640488696e8295194ceb3b66fb2c183"
+  },
+  "report_path": "content/modernization/pr16_circus_battle30_pp.json",
+  "native_source_head": "06a22ef6ced5fa090d7a060b13733073e3ab0b96",
+  "report_identity": {
+    "size": 58510,
+    "sha256": "0fa576914c4afde5da74fa9ef0460a4ebb81c0e5151c79e3d4930e8a6118b862"
+  },
+  "native_result": {
+    "schema_version": 1,
+    "status": "PASS_CIRCUS_CONTINUOUS_LIFECYCLE",
+    "case": "circus-continuous-30-save",
+    "candidate_sha256": "2b107e7ef897844eff810ff0b40f82543640488696e8295194ceb3b66fb2c183",
+    "wins": 30,
+    "losses": 0,
+    "battles": 30,
+    "turns": 339,
+    "switches": 33,
+    "forced_identity_checks": 33,
+    "admissions": 10,
+    "completed_batches": 10,
+    "bp_earned": 90,
+    "target_wins": 30,
+    "save_counter_before": 2,
+    "save_counter_after": 3,
+    "manual_saves": 1,
+    "fresh_cores": 2,
+    "owner_bytes_verified": 64,
+    "party_bytes_verified": 600,
+    "host_write_barriers": 7,
+    "total_frames": 506884,
+    "events": 143,
+    "input_only_after_guard": true,
+    "physical_admission_accepted": false,
+    "suppression_accepted": false,
+    "release_ready": false,
+    "warnings_errors": 0
+  },
+  "matchup_prefix": {
+    "exact_event_count": 138,
+    "byte_prefix": {
+      "size": 959862,
+      "sha256": "5d3f82105353a0d1f0139f53f1bb35fdfe72548afbc44a45897a223d57801c80"
+    },
+    "first_tie": {
+      "frame": 482072,
+      "streak": 29,
+      "selected": 1,
+      "actual": 2,
+      "blocked": 0,
+      "score": 458737,
+      "accuracy": 100,
+      "old_pp": 16,
+      "new_pp": 32,
+      "old_move": 58,
+      "new_move": 352
+    },
+    "accepted_standalone_replays": 0,
+    "continuation_prefix_wins": 29
+  },
+  "genuine_30_wins_verified": true,
+  "lifecycle_verified": true,
+  "visual_review": {
+    "completed": true,
+    "screens": {
+      "circus-continuous-30-save-streak-136-settled.ppm": {
+        "identity": {
+          "size": 115215,
+          "sha256": "e5d71187dff190cde3c9ff8b5e8429be31736e0d2cdb286906b11ad21fa989ee"
+        },
+        "observation_ja": "29戦目の勝利後、通常の交換確認（はい/いいえ）と日本語本文が表示されている。"
+      },
+      "circus-continuous-30-save-streak-138-action.ppm": {
+        "identity": {
+          "size": 115215,
+          "sha256": "862be8e72d169d2aea0acc4231cd98913c8909308d75922b25a7e45ae0fc4ec0"
+        },
+        "observation_ja": "30戦目の先発対面。自軍HP182/182と相手・自軍の表示を確認。"
+      },
+      "circus-continuous-30-save-streak-139-outcome.ppm": {
+        "identity": {
+          "size": 115215,
+          "sha256": "fc3dc6dc181d1a6702386921b915b65e9f4fdb067a5925093ebf337a81736066"
+        },
+        "observation_ja": "30戦目の終端で相手の場が空き、自軍HP93/163が表示されている。勝利判定は原本outcome=1と照合する。"
+      },
+      "circus-continuous-30-save-streak-140-settled.ppm": {
+        "identity": {
+          "size": 115215,
+          "sha256": "169d0b9a3f50c1052829a533bd15268de7ad590788f3c4329ff2e48bcf7d8678"
+        },
+        "observation_ja": "10組目の3連勝報酬9BPの日本語表示。累計30勝/90BPは30件の原本と管理領域で照合し、この画面単体から推測しない。"
+      },
+      "circus-continuous-30-save-streak-142-saved.ppm": {
+        "identity": {
+          "size": 115215,
+          "sha256": "36c5b17ffdf6b6afebe229a3427d5096bc31a52bbaf3943241c9676c9b54dadc"
+        },
+        "observation_ja": "通常Save後の元の受付前フィールド。黒画面や文字化けを認めない。"
+      },
+      "circus-continuous-30-save-streak-143-reloaded.ppm": {
+        "identity": {
+          "size": 115215,
+          "sha256": "3f01c0f82a78952075ada73edb8881d7a215cfc804f6a101ada7c15946aef68b"
+        },
+        "observation_ja": "fresh Continue後、保存時と同じ受付前フィールドを表示。保存値の一致は原本で別途検証する。"
+      }
+    }
+  },
+  "new_emulator_processes": 0,
+  "arm_compiles": 0,
+  "arm_links": 0,
+  "accepted_standalone_replays": 0,
+  "rom_changes": 0,
+  "physical_admission_accepted": false,
+  "suppression_accepted": false,
+  "release_ready": false,
+  "previous_failure_preserved": {
+    "run_id": 35478473681,
+    "job_id": 105991800023,
+    "artifact_id": 10595097202,
+    "workflow_source_head": "eeaa86e0200a3660f481b6789e6ed492504d6f53",
+    "archive": {
+      "size": 1073992,
+      "sha256": "534755202df7b649903a2cf48b710acfbe906b3fc421dfd613a18cb86ce11f19"
+    },
+    "report_path": "content/modernization/pr16_circus_reserve_fallback.json",
+    "report_identity": {
+      "size": 60135,
+      "sha256": "3b5bd5402ebd0262eba664a4ca181258cd048edc926bbf10591a0e1dae60d999"
+    },
+    "original_conclusion": "failure",
+    "review": {
+      "events": 143,
+      "wins": 29,
+      "losses": 1,
+      "uncompleted_battle": 30,
+      "first_action_frame": 482072,
+      "original_conclusion": "failure",
+      "previous_lifecycle_preserved": true,
+      "reason_ja": "29戦目を通常交代で突破。30戦目初手は実評価458737で技58(PP16)と352(PP32)が同点。前29勝を保ち、この同点選択から未完を継続。"
+    }
+  },
+  "final_battle_trace": {
+    "scope": "OBSERVED_FINAL_BATTLE_ONLY_NOT_NEW_NATIVE_ACCEPTANCE",
+    "raw_identity": {
+      "size": 986769,
+      "sha256": "ee9ff8ff8ab0c53ea9bddc8cf722f6a3309b794fc37c913b5fa2587b62fd2055"
+    },
+    "battle_number": 30,
+    "first_action_frame": 482072,
+    "circus_flags_hex": "00002000",
+    "row_count": 12,
+    "truncated": false,
+    "rows": [
+      {
+        "frame": 482072,
+        "streak": 29,
+        "selected": 1,
+        "actual": 2,
+        "blocked": 0,
+        "accuracy": 100,
+        "score": 458737,
+        "own": {
+          "species_id": 8,
+          "types": [
+            11,
+            11
+          ],
+          "hp": 182,
+          "max_hp": 182,
+          "status1_hex": "00000000",
+          "status2_hex": "00000000",
+          "moves": [
+            55,
+            58,
+            352,
+            182
+          ],
+          "pp": [
+            40,
+            16,
+            32,
+            16
+          ],
+          "personality": 1084285770,
+          "ot_id": 1086207445
+        },
+        "foe": {
+          "species_id": 7,
+          "types": [
+            11,
+            11
+          ],
+          "hp": 167,
+          "max_hp": 167,
+          "status1_hex": "00000000",
+          "status2_hex": "00000000",
+          "moves": [
+            55,
+            58,
+            352,
+            182
+          ],
+          "pp": [
+            40,
+            16,
+            32,
+            16
+          ],
+          "personality": 3393027595,
+          "ot_id": 1415038836
+        }
+      },
+      {
+        "frame": 483586,
+        "streak": 29,
+        "selected": 1,
+        "actual": 2,
+        "blocked": 0,
+        "accuracy": 100,
+        "score": 458737,
+        "own": {
+          "species_id": 8,
+          "types": [
+            11,
+            11
+          ],
+          "hp": 158,
+          "max_hp": 182,
+          "status1_hex": "00000020",
+          "status2_hex": "00000000",
+          "moves": [
+            55,
+            58,
+            352,
+            182
+          ],
+          "pp": [
+            40,
+            16,
+            31,
+            16
+          ],
+          "personality": 1084285770,
+          "ot_id": 1086207445
+        },
+        "foe": {
+          "species_id": 7,
+          "types": [
+            11,
+            11
+          ],
+          "hp": 138,
+          "max_hp": 167,
+          "status1_hex": "00000000",
+          "status2_hex": "00000000",
+          "moves": [
+            55,
+            58,
+            352,
+            182
+          ],
+          "pp": [
+            40,
+            15,
+            32,
+            16
+          ],
+          "personality": 3393027595,
+          "ot_id": 1415038836
+        }
+      },
+      {
+        "frame": 484979,
+        "streak": 29,
+        "selected": 1,
+        "actual": 2,
+        "blocked": 0,
+        "accuracy": 100,
+        "score": 458737,
+        "own": {
+          "species_id": 8,
+          "types": [
+            11,
+            11
+          ],
+          "hp": 134,
+          "max_hp": 182,
+          "status1_hex": "00000000",
+          "status2_hex": "00000000",
+          "moves": [
+            55,
+            58,
+            352,
+            182
+          ],
+          "pp": [
+            40,
+            16,
+            30,
+            16
+          ],
+          "personality": 1084285770,
+          "ot_id": 1086207445
+        },
+        "foe": {
+          "species_id": 7,
+          "types": [
+            11,
+            11
+          ],
+          "hp": 108,
+          "max_hp": 167,
+          "status1_hex": "00000000",
+          "status2_hex": "00000000",
+          "moves": [
+            55,
+            58,
+            352,
+            182
+          ],
+          "pp": [
+            40,
+            14,
+            32,
+            16
+          ],
+          "personality": 3393027595,
+          "ot_id": 1415038836
+        }
+      },
+      {
+        "frame": 486285,
+        "streak": 29,
+        "selected": 1,
+        "actual": 2,
+        "blocked": 0,
+        "accuracy": 100,
+        "score": 458737,
+        "own": {
+          "species_id": 8,
+          "types": [
+            11,
+            11
+          ],
+          "hp": 110,
+          "max_hp": 182,
+          "status1_hex": "00000000",
+          "status2_hex": "00000000",
+          "moves": [
+            55,
+            58,
+            352,
+            182
+          ],
+          "pp": [
+            40,
+            16,
+            29,
+            16
+          ],
+          "personality": 1084285770,
+          "ot_id": 1086207445
+        },
+        "foe": {
+          "species_id": 7,
+          "types": [
+            11,
+            11
+          ],
+          "hp": 80,
+          "max_hp": 167,
+          "status1_hex": "00000000",
+          "status2_hex": "00000000",
+          "moves": [
+            55,
+            58,
+            352,
+            182
+          ],
+          "pp": [
+            40,
+            13,
+            32,
+            16
+          ],
+          "personality": 3393027595,
+          "ot_id": 1415038836
+        }
+      },
+      {
+        "frame": 489601,
+        "streak": 29,
+        "selected": 0,
+        "actual": 0,
+        "blocked": 0,
+        "accuracy": 100,
+        "score": 2512134,
+        "own": {
+          "species_id": 2,
+          "types": [
+            12,
+            12
+          ],
+          "hp": 117,
+          "max_hp": 163,
+          "status1_hex": "00000000",
+          "status2_hex": "00000000",
+          "moves": [
+            202,
+            188,
+            73,
+            182
+          ],
+          "pp": [
+            16,
+            16,
+            16,
+            16
+          ],
+          "personality": 2268076955,
+          "ot_id": 1086207445
+        },
+        "foe": {
+          "species_id": 7,
+          "types": [
+            11,
+            11
+          ],
+          "hp": 30,
+          "max_hp": 167,
+          "status1_hex": "00000000",
+          "status2_hex": "00000001",
+          "moves": [
+            55,
+            58,
+            352,
+            182
+          ],
+          "pp": [
+            40,
+            12,
+            31,
+            16
+          ],
+          "personality": 3393027595,
+          "ot_id": 1415038836
+        }
+      },
+      {
+        "frame": 490671,
+        "streak": 29,
+        "selected": 0,
+        "actual": 0,
+        "blocked": 0,
+        "accuracy": 100,
+        "score": 2512134,
+        "own": {
+          "species_id": 2,
+          "types": [
+            12,
+            12
+          ],
+          "hp": 107,
+          "max_hp": 163,
+          "status1_hex": "00000000",
+          "status2_hex": "00000000",
+          "moves": [
+            202,
+            188,
+            73,
+            182
+          ],
+          "pp": [
+            15,
+            16,
+            16,
+            16
+          ],
+          "personality": 2268076955,
+          "ot_id": 1086207445
+        },
+        "foe": {
+          "species_id": 7,
+          "types": [
+            11,
+            11
+          ],
+          "hp": 20,
+          "max_hp": 167,
+          "status1_hex": "00000000",
+          "status2_hex": "00000000",
+          "moves": [
+            55,
+            58,
+            352,
+            182
+          ],
+          "pp": [
+            40,
+            12,
+            31,
+            15
+          ],
+          "personality": 3393027595,
+          "ot_id": 1415038836
+        }
+      },
+      {
+        "frame": 492013,
+        "streak": 29,
+        "selected": 1,
+        "actual": 1,
+        "blocked": 0,
+        "accuracy": 100,
+        "score": 3450000,
+        "own": {
+          "species_id": 2,
+          "types": [
+            12,
+            12
+          ],
+          "hp": 107,
+          "max_hp": 163,
+          "status1_hex": "00000000",
+          "status2_hex": "00000000",
+          "moves": [
+            202,
+            188,
+            73,
+            182
+          ],
+          "pp": [
+            14,
+            16,
+            16,
+            16
+          ],
+          "personality": 2268076955,
+          "ot_id": 1086207445
+        },
+        "foe": {
+          "species_id": 1,
+          "types": [
+            12,
+            12
+          ],
+          "hp": 149,
+          "max_hp": 149,
+          "status1_hex": "00000000",
+          "status2_hex": "00000000",
+          "moves": [
+            202,
+            188,
+            73,
+            182
+          ],
+          "pp": [
+            16,
+            16,
+            16,
+            16
+          ],
+          "personality": 709130555,
+          "ot_id": 2276318726
+        }
+      },
+      {
+        "frame": 493021,
+        "streak": 29,
+        "selected": 1,
+        "actual": 1,
+        "blocked": 0,
+        "accuracy": 100,
+        "score": 3450000,
+        "own": {
+          "species_id": 2,
+          "types": [
+            12,
+            12
+          ],
+          "hp": 97,
+          "max_hp": 163,
+          "status1_hex": "00000000",
+          "status2_hex": "00000000",
+          "moves": [
+            202,
+            188,
+            73,
+            182
+          ],
+          "pp": [
+            14,
+            15,
+            16,
+            16
+          ],
+          "personality": 2268076955,
+          "ot_id": 1086207445
+        },
+        "foe": {
+          "species_id": 1,
+          "types": [
+            12,
+            12
+          ],
+          "hp": 140,
+          "max_hp": 149,
+          "status1_hex": "00000000",
+          "status2_hex": "00000000",
+          "moves": [
+            202,
+            188,
+            73,
+            182
+          ],
+          "pp": [
+            16,
+            16,
+            16,
+            15
+          ],
+          "personality": 709130555,
+          "ot_id": 2276318726
+        }
+      },
+      {
+        "frame": 496047,
+        "streak": 29,
+        "selected": 0,
+        "actual": 0,
+        "blocked": 0,
+        "accuracy": 100,
+        "score": 1212000,
+        "own": {
+          "species_id": 66,
+          "types": [
+            12,
+            14
+          ],
+          "hp": 112,
+          "max_hp": 136,
+          "status1_hex": "00000180",
+          "status2_hex": "00000000",
+          "moves": [
+            280,
+            339,
+            89,
+            182
+          ],
+          "pp": [
+            24,
+            32,
+            16,
+            16
+          ],
+          "personality": 912031078,
+          "ot_id": 1086207445
+        },
+        "foe": {
+          "species_id": 92,
+          "types": [
+            0,
+            0
+          ],
+          "hp": 161,
+          "max_hp": 171,
+          "status1_hex": "00000000",
+          "status2_hex": "00000000",
+          "moves": [
+            247,
+            92,
+            109,
+            182
+          ],
+          "pp": [
+            24,
+            15,
+            16,
+            16
+          ],
+          "personality": 1441412310,
+          "ot_id": 1988326781
+        }
+      },
+      {
+        "frame": 497734,
+        "streak": 29,
+        "selected": 0,
+        "actual": 0,
+        "blocked": 0,
+        "accuracy": 100,
+        "score": 1212000,
+        "own": {
+          "species_id": 66,
+          "types": [
+            12,
+            14
+          ],
+          "hp": 80,
+          "max_hp": 136,
+          "status1_hex": "00000280",
+          "status2_hex": "00000002",
+          "moves": [
+            280,
+            339,
+            89,
+            182
+          ],
+          "pp": [
+            23,
+            32,
+            16,
+            16
+          ],
+          "personality": 912031078,
+          "ot_id": 1086207445
+        },
+        "foe": {
+          "species_id": 92,
+          "types": [
+            0,
+            0
+          ],
+          "hp": 103,
+          "max_hp": 171,
+          "status1_hex": "00000000",
+          "status2_hex": "00000000",
+          "moves": [
+            247,
+            92,
+            109,
+            182
+          ],
+          "pp": [
+            24,
+            15,
+            15,
+            16
+          ],
+          "personality": 1441412310,
+          "ot_id": 1988326781
+        }
+      },
+      {
+        "frame": 499237,
+        "streak": 29,
+        "selected": 0,
+        "actual": 0,
+        "blocked": 0,
+        "accuracy": 100,
+        "score": 1437499,
+        "own": {
+          "species_id": 2,
+          "types": [
+            12,
+            12
+          ],
+          "hp": 87,
+          "max_hp": 163,
+          "status1_hex": "00000000",
+          "status2_hex": "00000000",
+          "moves": [
+            202,
+            188,
+            73,
+            182
+          ],
+          "pp": [
+            14,
+            14,
+            16,
+            16
+          ],
+          "personality": 2268076955,
+          "ot_id": 1086207445
+        },
+        "foe": {
+          "species_id": 92,
+          "types": [
+            0,
+            0
+          ],
+          "hp": 93,
+          "max_hp": 171,
+          "status1_hex": "00000000",
+          "status2_hex": "00000000",
+          "moves": [
+            247,
+            92,
+            109,
+            182
+          ],
+          "pp": [
+            23,
+            15,
+            15,
+            16
+          ],
+          "personality": 1441412310,
+          "ot_id": 1988326781
+        }
+      },
+      {
+        "frame": 500879,
+        "streak": 29,
+        "selected": 0,
+        "actual": 0,
+        "blocked": 0,
+        "accuracy": 100,
+        "score": 1437499,
+        "own": {
+          "species_id": 2,
+          "types": [
+            12,
+            12
+          ],
+          "hp": 87,
+          "max_hp": 163,
+          "status1_hex": "00000180",
+          "status2_hex": "00000000",
+          "moves": [
+            202,
+            188,
+            73,
+            182
+          ],
+          "pp": [
+            13,
+            14,
+            16,
+            16
+          ],
+          "personality": 2268076955,
+          "ot_id": 1086207445
+        },
+        "foe": {
+          "species_id": 92,
+          "types": [
+            0,
+            0
+          ],
+          "hp": 23,
+          "max_hp": 171,
+          "status1_hex": "00000000",
+          "status2_hex": "00000000",
+          "moves": [
+            247,
+            92,
+            109,
+            182
+          ],
+          "pp": [
+            23,
+            14,
+            15,
+            16
+          ],
+          "personality": 1441412310,
+          "ot_id": 1988326781
+        }
+      }
+    ],
+    "terminal": [
+      {
+        "label": "outcome",
+        "frame": 502199,
+        "battle": 29,
+        "outcome": 1,
+        "bp": 81,
+        "save_counter": 2
+      },
+      {
+        "label": "settled",
+        "frame": 502458,
+        "battle": 29,
+        "outcome": 1,
+        "bp": 90,
+        "save_counter": 2
+      },
+      {
+        "label": "saved",
+        "frame": 504102,
+        "battle": 30,
+        "outcome": 1,
+        "bp": 90,
+        "save_counter": 3
+      },
+      {
+        "label": "reloaded",
+        "frame": 506884,
+        "battle": 30,
+        "outcome": 0,
+        "bp": 90,
+        "save_counter": 3
+      }
+    ],
+    "interpretation_ja": "実snapshotのID・状態bit・PPを保存。表示名、乱数、freeze等の原因や未観測対面を推測しない。"
+  },
+  "next_contract_inventory": {
+    "scope": "READ_ONLY_TRACKED_SOURCE_NOT_NATIVE_ACCEPTANCE",
+    "sources": [
+      {
+        "path": "tools/mgba_modernization_p05_controller_witness.c",
+        "identity": {
+          "size": 11700,
+          "sha256": "8dd2e35ff8ede6ae6287af393b383f7550f3fdb41b07c9e330c423dd21a5d2e7"
+        },
+        "excerpts": [
+          {
+            "line": 43,
+            "text": "    {\"no_ability_ghost\", 0, P05_TYPE_GHOST, false},"
+          },
+          {
+            "line": 44,
+            "text": "    {\"no_ability_normal\", 0, 0, true},"
+          },
+          {
+            "line": 73,
+            "text": "        s.abilities[b] = read16(core, mon + P05_ABILITY_OFFSET);"
+          },
+          {
+            "line": 172,
+            "text": "           \"\\\"abilities\\\":[%u,%u],\\\"types\\\":[[%u,%u],[%u,%u]]}\","
+          },
+          {
+            "line": 174,
+            "text": "           s->abilities[0], s->abilities[1],"
+          }
+        ]
+      },
+      {
+        "path": "tools/mgba_modernization_p05_mega_lifecycle_e2e.c",
+        "identity": {
+          "size": 14468,
+          "sha256": "5f2b6eb369af84247b1236b1c5448553865db4c62b756495f00141bb2c538981"
+        },
+        "excerpts": [
+          {
+            "line": 19,
+            "text": "static const unsigned m5_base_abilities[]={67,26,128,65,160,15};"
+          },
+          {
+            "line": 136,
+            "text": "    m5_need(initial_ability==m5_base_abilities[c] && read16(core,P05_MON(0))==m5_bases[c],\"native base form/ability differs\");"
+          },
+          {
+            "line": 169,
+            "text": "    m5_need(final_sp==(mode==0?m5_megas[c]:m5_bases[c]) && final_ab==(mode==0?p05_abilities[c]:initial_ability),\"native Mega form/ability differs\");"
+          }
+        ]
+      },
+      {
+        "path": "tools/mgba_modernization_p05_scheduler_e2e.c",
+        "identity": {
+          "size": 11642,
+          "sha256": "53a5982cf247d5d577cd52c1561ea8da6a3fddb927f1d71c65ec953856090cfa"
+        },
+        "excerpts": [
+          {
+            "line": 16,
+            "text": "#define P05_SCOPE \"P05_PREINPUT_FIXTURE_REAL_FIRST_TURN_6_ABILITIES\""
+          },
+          {
+            "line": 24,
+            "text": "static const unsigned p05_abilities[] = {312, 313, 314, 315, 316, 317, 313, 313};"
+          },
+          {
+            "line": 121,
+            "text": "    write16(core,P05_MON(0)+0x38,mode?p05_abilities[c]:0);"
+          },
+          {
+            "line": 205,
+            "text": "        P05_SCOPE,P05_ROM_SHA,p05_cases[c],p05_modes[mode],p05_abilities[c],o.ability,"
+          }
+        ]
+      },
+      {
+        "path": "tools/mgba_modernization_stage79_p05_runtime_smoke.c",
+        "identity": {
+          "size": 63261,
+          "sha256": "682c9c63384f555d6c72e25d0a7f9b7c2a3a789c6e2b856974d355e86f6f3091"
+        },
+        "excerpts": [
+          {
+            "line": 15,
+            "text": " * real IsAbilitySuppressed routine.  It also executes Stage78's exact 32-case"
+          },
+          {
+            "line": 30,
+            "text": "#define P05X_CIRCUS_ABILITY_SUPPRESSION UINT32_C(0x80000000)"
+          },
+          {
+            "line": 106,
+            "text": "    bool suppressed;"
+          },
+          {
+            "line": 125,
+            "text": "    uint8_t circusSuppressed;"
+          },
+          {
+            "line": 126,
+            "text": "    uint8_t abilitySuppressed;"
+          },
+          {
+            "line": 183,
+            "text": "    uint8_t ability_suppressed;"
+          },
+          {
+            "line": 259,
+            "text": "    {0U, P05X_CIRCUS_ABILITY_SUPPRESSION, false},"
+          },
+          {
+            "line": 261,
+            "text": "     P05X_CIRCUS_ABILITY_SUPPRESSION, false},"
+          },
+          {
+            "line": 264,
+            "text": "     P05X_CIRCUS_ABILITY_SUPPRESSION, true},"
+          },
+          {
+            "line": 273,
+            "text": "    \"IsAbilitySuppressed\","
+          }
+        ]
+      },
+      {
+        "path": "tools/mgba_pr16_circus_coldboot.c",
+        "identity": {
+          "size": 7627,
+          "sha256": "e56212287227e7e97a3c7b7e2ba5029b4885dc20e4ae404917e6c489e969c988"
+        },
+        "excerpts": [
+          {
+            "line": 102,
+            "text": "    printf(\"\\\"save_counter_before\\\":%u,\\\"save_counter_after\\\":%u,\\\"manual_saves\\\":1,\\\"automatic_recovery_saves\\\":2,\\\"fresh_cores\\\":3,\\\"owner_bytes_verified\\\":64,\\\"party_bytes_verified\\\":600,\\\"host_write_barriers\\\":7,\\\"total_frames\\\":%u,\\\"events\\\":%u,\\\"input_only_after_guard\\\":true,\\\"physical_admission_accepted\\\":false,\\\"suppression_accepted\\\":false,\\\"release_ready\\\":false,\\\"warnings_errors\\\":0}\\n\",sc_counter,final_counter,b_frames,sc_events);"
+          }
+        ]
+      },
+      {
+        "path": "tools/mgba_pr16_circus_continuous.c",
+        "identity": {
+          "size": 12838,
+          "sha256": "649bfe64db299aa1d9b6aab58c8a0f51e38d6b12a6e12d298c1f3b55ed9691a5"
+        },
+        "excerpts": [
+          {
+            "line": 161,
+            "text": "    printf(\"\\\"admissions\\\":%u,\\\"completed_batches\\\":%u,\\\"bp_earned\\\":%u,\\\"target_wins\\\":30,\",sc_admissions,sc_wins/3U,9U*(sc_wins/3U));"
+          },
+          {
+            "line": 162,
+            "text": "    printf(\"\\\"save_counter_before\\\":%u,\\\"save_counter_after\\\":%u,\\\"manual_saves\\\":1,\\\"fresh_cores\\\":2,\\\"owner_bytes_verified\\\":64,\\\"party_bytes_verified\\\":600,\\\"host_write_barriers\\\":7,\\\"total_frames\\\":%u,\\\"events\\\":%u,\\\"input_only_after_guard\\\":true,\\\"physical_admission_accepted\\\":false,\\\"suppression_accepted\\\":false,\\\"release_ready\\\":false,\\\"warnings_errors\\\":0}\\n\",sc_counter,final_counter,b_frames,sc_events);"
+          }
+        ]
+      },
+      {
+        "path": "tools/mgba_pr16_circus_interruption.c",
+        "identity": {
+          "size": 5544,
+          "sha256": "4e6e6b1cf9e5b505c5b5a4fbb59cdab77dcbab869d1a0719c2343f50585da5fa"
+        },
+        "excerpts": [
+          {
+            "line": 62,
+            "text": "    printf(\"\\\"save_counter_before\\\":%u,\\\"save_counter_after\\\":%u,\\\"manual_saves\\\":1,\\\"fresh_cores\\\":3,\\\"owner_bytes_verified\\\":64,\\\"party_bytes_verified\\\":600,\\\"host_write_barriers\\\":7,\\\"total_frames\\\":%u,\\\"events\\\":%u,\\\"input_only_after_guard\\\":true,\\\"physical_admission_accepted\\\":false,\\\"suppression_accepted\\\":false,\\\"release_ready\\\":false,\\\"warnings_errors\\\":0}\\n\",sc_counter,final_counter,b_frames,sc_events);"
+          }
+        ]
+      },
+      {
+        "path": "tools/mgba_pr16_circus_native.c",
+        "identity": {
+          "size": 11730,
+          "sha256": "6267e2bbd682198d79998ac250b52aef63e337db7eb96bb8f3921bc96a39e885"
+        },
+        "excerpts": [
+          {
+            "line": 157,
+            "text": "    printf(\"\\\"host_write_barriers\\\":7,\\\"input_only_after_guard\\\":true,\\\"initial_fixture_is_not_admission\\\":true,\\\"bp_earned\\\":0,\\\"physical_admission_accepted\\\":false,\\\"suppression_accepted\\\":false,\\\"release_ready\\\":false,\\\"warnings_errors\\\":0}\\n\");"
+          }
+        ]
+      },
+      {
+        "path": "tools/mgba_pr16_circus_recovery_trace.c",
+        "identity": {
+          "size": 7583,
+          "sha256": "78e60705e5e1a3f14526c1f665586aecc7d603e27c2ca6555392dcbf7bc82988"
+        },
+        "excerpts": [
+          {
+            "line": 102,
+            "text": "    printf(\"\\\"save_counter_before\\\":%u,\\\"save_counter_after\\\":%u,\\\"manual_saves\\\":1,\\\"fresh_cores\\\":3,\\\"owner_bytes_verified\\\":64,\\\"party_bytes_verified\\\":600,\\\"host_write_barriers\\\":7,\\\"total_frames\\\":%u,\\\"events\\\":%u,\\\"input_only_after_guard\\\":true,\\\"physical_admission_accepted\\\":false,\\\"suppression_accepted\\\":false,\\\"release_ready\\\":false,\\\"warnings_errors\\\":0}\\n\",sc_counter,final_counter,b_frames,sc_events);"
+          }
+        ]
+      },
+      {
+        "path": "tools/modernization_p04_mega_runtime.py",
+        "identity": {
+          "size": 66068,
+          "sha256": "c2790f58ef67631114bdf974866d143a5c7fe8c76e0ff40bc11862d1b2326897"
+        },
+        "excerpts": [
+          {
+            "line": 709,
+            "text": "    new_abilities = [row for row in mappings if int(row[\"ability_id\"]) >= 312]"
+          },
+          {
+            "line": 724,
+            "text": "            \"new_ability_effects_pending_stage72\": len(new_abilities),"
+          }
+        ]
+      },
+      {
+        "path": "tools/modernization_p05_ability_rom_runtime.py",
+        "identity": {
+          "size": 22585,
+          "sha256": "f49852c0bd9f07f013d0566396fe553449919f4ca1240aa45b8208e156cac5cd"
+        },
+        "excerpts": [
+          {
+            "line": 94,
+            "text": "    abilities = value.get(\"abilities\")"
+          },
+          {
+            "line": 95,
+            "text": "    if not isinstance(abilities, list) or [row.get(\"id\") for row in abilities if isinstance(row, dict)] != list(range(312, 318)):"
+          },
+          {
+            "line": 196,
+            "text": "def _description_blob(root: Path, abilities: Sequence[Mapping[str, Any]]) -> tuple[bytes, list[int]]:"
+          },
+          {
+            "line": 200,
+            "text": "    for row in abilities:"
+          },
+          {
+            "line": 249,
+            "text": "    abilities = config[\"abilities\"]"
+          },
+          {
+            "line": 250,
+            "text": "    descriptions, description_offsets = _description_blob(root, abilities)"
+          },
+          {
+            "line": 304,
+            "text": "    patch(ratings_start, bytes(int(row[\"rating\"]) & 0xFF for row in abilities), \"ability_ratings_312_317\", bytes.fromhex(tables[\"ratings\"][\"new_rows_parent_hex\"]))"
+          },
+          {
+            "line": 306,
+            "text": "    patch(mold_start, bytes(int(row[\"mold_breaker_ignored\"]) for row in abilities), \"ability_mold_breaker_ignored_312_317\", bytes.fromhex(tables[\"mold_breaker_ignored\"][\"new_rows_parent_hex\"]))"
+          },
+          {
+            "line": 311,
+            "text": "    for row in abilities:"
+          },
+          {
+            "line": 345,
+            "text": "        \"abilities\": ["
+          }
+        ]
+      },
+      {
+        "path": "tools/modernization_p05_ability_runtime.py",
+        "identity": {
+          "size": 29095,
+          "sha256": "af47a23b7584636a21136b74eb6c2298a5f3662ed9186160ea466063d25f7e6d"
+        },
+        "excerpts": [
+          {
+            "line": 24,
+            "text": "EXPECTED_ABILITIES = {"
+          },
+          {
+            "line": 33,
+            "text": "    \"trigger\", \"no_trigger\", \"suppressed\", \"multi_target\", \"ai\", \"save\""
+          },
+          {
+            "line": 130,
+            "text": "    if not isinstance(rows, list) or len(rows) != len(EXPECTED_ABILITIES):"
+          },
+          {
+            "line": 137,
+            "text": "        if not isinstance(key, str) or key not in EXPECTED_ABILITIES:"
+          },
+          {
+            "line": 139,
+            "text": "        expected_id, source_id, source_symbol = EXPECTED_ABILITIES[key]"
+          },
+          {
+            "line": 152,
+            "text": "    if actual_keys != sorted(EXPECTED_ABILITIES):"
+          },
+          {
+            "line": 184,
+            "text": "        if not ability_keys or not set(ability_keys).issubset(EXPECTED_ABILITIES):"
+          },
+          {
+            "line": 201,
+            "text": "    abilities = profile.get(\"abilities\")"
+          },
+          {
+            "line": 202,
+            "text": "    if not isinstance(abilities, dict) or set(abilities) != set(EXPECTED_ABILITIES):"
+          },
+          {
+            "line": 251,
+            "text": "    expected = {key: values[0] for key, values in EXPECTED_ABILITIES.items()}"
+          }
+        ]
+      },
+      {
+        "path": "tools/modernization_p05_contract.py",
+        "identity": {
+          "size": 54757,
+          "sha256": "5feac22a746a6ee996f6f1fb221f7dca39cdfd1bf8e2a7b33c47922637aa93c4"
+        },
+        "excerpts": [
+          {
+            "line": 91,
+            "text": "TECHNICAL_ID_PATH = \"include/constants/abilities.h\""
+          },
+          {
+            "line": 92,
+            "text": "TECHNICAL_TEXT_PATH = \"src/data/abilities.h\""
+          },
+          {
+            "line": 573,
+            "text": "    abilities_manifest: Any,"
+          },
+          {
+            "line": 621,
+            "text": "            manifest = abilities_manifest.by_key.get(ability_key)"
+          },
+          {
+            "line": 626,
+            "text": "            if replacement in seen_replacement or replacement in abilities_manifest.by_key:"
+          },
+          {
+            "line": 643,
+            "text": "        manifest = abilities_manifest.by_key.get(ability_key)"
+          },
+          {
+            "line": 651,
+            "text": "            if replacement in abilities_manifest.by_key:"
+          },
+          {
+            "line": 844,
+            "text": "        \"abilities\": {"
+          },
+          {
+            "line": 964,
+            "text": "    p04_abilities = _build_p04_ability_contract("
+          },
+          {
+            "line": 965,
+            "text": "        p04_records, manifests[\"abilities\"], technical_refs"
+          }
+        ]
+      },
+      {
+        "path": "tools/modernization_p05_stage76_edges.py",
+        "identity": {
+          "size": 53321,
+          "sha256": "648c1d2cda379fabd86a0971ea2f3bf3856d0dfb0d91d8c24c62443454406741"
+        },
+        "excerpts": [
+          {
+            "line": 120,
+            "text": "        \"requires_effective_unsuppressed_partner_ability\": True,"
+          },
+          {
+            "line": 150,
+            "text": "    \"IsAbilitySuppressed\": \"0x090D7BB0\","
+          },
+          {
+            "line": 179,
+            "text": "        \"name\": \"IsAbilitySuppressed\", \"address\": \"0x090D7BB0\","
+          },
+          {
+            "line": 268,
+            "text": "        \"path\": \"overlays/modernization_p05_abilities/modernization_p05_abilities.h\","
+          },
+          {
+            "line": 272,
+            "text": "        \"path\": \"overlays/modernization_p05_abilities/modernization_p05_abilities.c\","
+          }
+        ]
+      },
+      {
+        "path": "tools/modernization_p05_stage77_suppression.py",
+        "identity": {
+          "size": 56088,
+          "sha256": "570d28a62f5d5f7d7f6add8bae51d56969771fe53a184d158b0ffdc272528918"
+        },
+        "excerpts": [
+          {
+            "line": 30,
+            "text": "TASK = \"USER-MODERNIZATION-P05-STAGE77-CIRCUS-SUPPRESSION\""
+          },
+          {
+            "line": 33,
+            "text": "DEFAULT_CONFIG = Path(\"config/modernization_p05_stage77_suppression.json\")"
+          },
+          {
+            "line": 131,
+            "text": "EXPECTED_SUPPRESSION_CONTRACT = {"
+          },
+          {
+            "line": 132,
+            "text": "    \"ordinary_suppression\": {"
+          },
+          {
+            "line": 133,
+            "text": "        \"gastro_acid\": \"ALREADY_SAFE_ACTIVE_ABILITY_MOVED_TO_SUPPRESSED_ABILITIES_AND_RAW_SET_NONE\","
+          },
+          {
+            "line": 143,
+            "text": "        \"ability_suppression_mask\": \"0x80000000\","
+          },
+          {
+            "line": 145,
+            "text": "        \"suppressed_path\": \"TAIL_DELEGATE_STAGE72_ORIGINAL_TRAMPOLINE\","
+          },
+          {
+            "line": 167,
+            "text": "    \"name\": \"modernization_p05_stage77_circus_suppression_payload\","
+          },
+          {
+            "line": 170,
+            "text": "    \"purpose\": \"Battle Circus global ability-suppression dispatch for all 29 Stage72 ability hooks\","
+          },
+          {
+            "line": 174,
+            "text": "    \"rom\": \"build/stages/77_modernization_p05_circus_suppression.gba\","
+          }
+        ]
+      },
+      {
+        "path": "tools/modernization_p05_stage78_eelevate_switch_ai.py",
+        "identity": {
+          "size": 35671,
+          "sha256": "e6082c01c6f374c6a335e57d6d142e1da0f03524a9f540a8b9a0e44d23227327"
+        },
+        "excerpts": [
+          {
+            "line": 103,
+            "text": "    if any(bool(query.get(key)) for key in (\"circusSuppressed\", \"abilitySuppressed\", \"grounded\")):"
+          },
+          {
+            "line": 373,
+            "text": "    base = {\"originalAbility\": 313, \"move\": 89, \"moveType\": 4, \"moveSplit\": 0, \"grounded\": 0, \"targetAbilityIgnored\": 0, \"abilityShield\": 0, \"circusSuppressed\": 0, \"abilitySuppressed\": 0, \"neutralizingGasPresent\": 0}"
+          },
+          {
+            "line": 398,
+            "text": "        (\"circus\", {\"circusSuppressed\": 1}, 313),"
+          },
+          {
+            "line": 399,
+            "text": "        (\"circus_shield\", {\"circusSuppressed\": 1, \"abilityShield\": 1}, 313),"
+          },
+          {
+            "line": 400,
+            "text": "        (\"gastro_acid\", {\"abilitySuppressed\": 1}, 313),"
+          },
+          {
+            "line": 401,
+            "text": "        (\"gastro_acid_shield\", {\"abilitySuppressed\": 1, \"abilityShield\": 1}, 313),"
+          }
+        ]
+      },
+      {
+        "path": "tools/modernization_p05_turn_observer.h",
+        "identity": {
+          "size": 6587,
+          "sha256": "abb17308dee87b481c577627e76382b8089c78fd1888fe73d251b9d212a95a4b"
+        },
+        "excerpts": [
+          {
+            "line": 17,
+            "text": "    uint16_t abilities[2];"
+          },
+          {
+            "line": 106,
+            "text": "            || s->abilities[b] != o->initial.abilities[b]"
+          }
+        ]
+      },
+      {
+        "path": "overlays/modernization_p05_abilities/modernization_p05_abilities.c",
+        "identity": {
+          "size": 11551,
+          "sha256": "7448cf6cc3b0bcca94f13b94cc3fb754d667882d38e45c90e6e2f6dc1b3df27e"
+        },
+        "excerpts": [
+          {
+            "line": 1,
+            "text": "#include \"modernization_p05_abilities.h\""
+          },
+          {
+            "line": 58,
+            "text": "        && p05_bool_is_valid(query->ability_suppressed)"
+          },
+          {
+            "line": 97,
+            "text": "p05_u16 p05_effective_ability(p05_u16 ability, p05_u8 suppressed)"
+          },
+          {
+            "line": 99,
+            "text": "    if (!p05_bool_is_valid(suppressed) || suppressed)"
+          },
+          {
+            "line": 106,
+            "text": "    p05_u8 suppressed,"
+          },
+          {
+            "line": 110,
+            "text": "    if (p05_effective_ability(ability, suppressed) == P05_ABILITY_MEGA_SOL)"
+          },
+          {
+            "line": 117,
+            "text": "    p05_u8 suppressed,"
+          },
+          {
+            "line": 122,
+            "text": "    p05_u8 weather = p05_weather_for_user(ability, suppressed, field_weather);"
+          },
+          {
+            "line": 137,
+            "text": "    p05_u8 suppressed,"
+          },
+          {
+            "line": 142,
+            "text": "    p05_u8 weather = p05_weather_for_user(ability, suppressed, field_weather);"
+          }
+        ]
+      },
+      {
+        "path": "overlays/modernization_p05_abilities/modernization_p05_abilities.h",
+        "identity": {
+          "size": 7781,
+          "sha256": "4fceaed3e9000111ab3ab66b82559ca2198a167eec904f51bb0a5eeffe1c552b"
+        },
+        "excerpts": [
+          {
+            "line": 1,
+            "text": "#ifndef POKEMON_VEGA_MODERNIZATION_P05_ABILITIES_H"
+          },
+          {
+            "line": 2,
+            "text": "#define POKEMON_VEGA_MODERNIZATION_P05_ABILITIES_H"
+          },
+          {
+            "line": 117,
+            "text": "p05_u16 p05_effective_ability(p05_u16 ability, p05_u8 suppressed);"
+          },
+          {
+            "line": 122,
+            "text": "    p05_u8 ability_suppressed;"
+          },
+          {
+            "line": 159,
+            "text": "    p05_u8 suppressed,"
+          },
+          {
+            "line": 164,
+            "text": "    p05_u8 suppressed,"
+          },
+          {
+            "line": 170,
+            "text": "    p05_u8 suppressed,"
+          },
+          {
+            "line": 174,
+            "text": "p05_u8 p05_solar_move_skips_charge(p05_u16 ability, p05_u8 suppressed);"
+          },
+          {
+            "line": 178,
+            "text": "    p05_u8 ability_suppressed;"
+          },
+          {
+            "line": 201,
+            "text": "    p05_u8 ability_suppressed;"
+          }
+        ]
+      },
+      {
+        "path": "overlays/modernization_p05_abilities/modernization_p05_abilities_fixture.c",
+        "identity": {
+          "size": 18450,
+          "sha256": "f8df4c824ae313bb83f730565e878868fc6a8f918e0341d08345cd22890110d4"
+        },
+        "excerpts": [
+          {
+            "line": 3,
+            "text": "#include \"modernization_p05_abilities.h\""
+          },
+          {
+            "line": 132,
+            "text": "    query.ability_suppressed = P05_TRUE;"
+          },
+          {
+            "line": 136,
+            "text": "        \"suppressed\","
+          },
+          {
+            "line": 137,
+            "text": "        \"suppressed_ability_cannot_pierce\","
+          },
+          {
+            "line": 142,
+            "text": "    query.ability_suppressed = P05_FALSE;"
+          },
+          {
+            "line": 211,
+            "text": "    query.ability_suppressed = P05_TRUE;"
+          },
+          {
+            "line": 215,
+            "text": "        \"suppressed\","
+          },
+          {
+            "line": 216,
+            "text": "        \"suppression_preserves_normal_type_and_power\","
+          },
+          {
+            "line": 222,
+            "text": "    query.ability_suppressed = P05_FALSE;"
+          },
+          {
+            "line": 299,
+            "text": "        \"suppressed\","
+          }
+        ]
+      },
+      {
+        "path": "overlays/modernization_p05_ability_rom_runtime/modernization_p05_ability_rom_runtime.c",
+        "identity": {
+          "size": 52635,
+          "sha256": "a00e37540d968ecda3c26ab4e7606a7c5efe249621067449921be120ed03a60b"
+        },
+        "excerpts": [
+          {
+            "line": 38,
+            "text": "    STAGE72_ATK49_KNOCKOUT_ABILITIES = 30,"
+          },
+          {
+            "line": 250,
+            "text": "    /* Exact pinned WeatherHasEffect semantics: only a living suppressor counts. */"
+          },
+          {
+            "line": 375,
+            "text": "static void Stage72_MapAllAbilities("
+          },
+          {
+            "line": 514,
+            "text": "    Stage72_MapAllAbilities("
+          },
+          {
+            "line": 519,
+            "text": "    Stage72_MapAllAbilities("
+          },
+          {
+            "line": 538,
+            "text": "    Stage72_MapAllAbilities("
+          },
+          {
+            "line": 543,
+            "text": "    Stage72_MapAllAbilities("
+          },
+          {
+            "line": 780,
+            "text": "        Stage72_MapAllAbilities("
+          },
+          {
+            "line": 849,
+            "text": "        Stage72_MapAllAbilities("
+          },
+          {
+            "line": 854,
+            "text": "        Stage72_MapAllAbilities("
+          }
+        ]
+      },
+      {
+        "path": "overlays/modernization_p05_stage76_edges/modernization_p05_stage76_edges.c",
+        "identity": {
+          "size": 25657,
+          "sha256": "95dafaf26e9c1909126d963ea8416e15c9a8b114a0e9b8eeef3a434b7739817b"
+        },
+        "excerpts": [
+          {
+            "line": 6,
+            "text": " * Stage75.  Ability values are u16 (the new project abilities exceed 255)."
+          },
+          {
+            "line": 116,
+            "text": "    STAGE76_IS_ABILITY_SUPPRESSED = 0x090D7BB0u,"
+          },
+          {
+            "line": 174,
+            "text": "static Stage76U8 Stage76_IsAbilitySuppressed(Stage76U8 bank)"
+          },
+          {
+            "line": 178,
+            "text": "        STAGE76_IS_ABILITY_SUPPRESSED"
+          },
+          {
+            "line": 184,
+            "text": "    if (Stage76_IsAbilitySuppressed(bank))"
+          },
+          {
+            "line": 453,
+            "text": "    if (Stage76_IsAbilitySuppressed(bankAtkPartner))"
+          },
+          {
+            "line": 455,
+            "text": "    if (Stage76_IsAbilitySuppressed(bankAtk))"
+          },
+          {
+            "line": 587,
+            "text": "    Stage76U8 activeAbilitySuppressed,"
+          },
+          {
+            "line": 592,
+            "text": "    if (activeAbilitySuppressed)"
+          },
+          {
+            "line": 668,
+            "text": "        Stage76_IsAbilitySuppressed(bankAtk),"
+          }
+        ]
+      },
+      {
+        "path": "overlays/modernization_p05_stage76_edges/modernization_p05_stage76_edges.h",
+        "identity": {
+          "size": 2475,
+          "sha256": "acd37b5f7074ea9ec3f55969c2b10cb8fdedbe5a8f4ffdcdd4236152c1b503a6"
+        },
+        "excerpts": [
+          {
+            "line": 60,
+            "text": "    Stage76U8 activeAbilitySuppressed,"
+          }
+        ]
+      },
+      {
+        "path": "overlays/modernization_p05_stage78_eelevate_switch_ai/modernization_p05_stage78_eelevate_switch_ai.c",
+        "identity": {
+          "size": 7975,
+          "sha256": "c07fb04d657474aa23c4382ad6d835a506c50c989a5f38a3b9dbcde61d8ad80f"
+        },
+        "excerpts": [
+          {
+            "line": 31,
+            "text": "    if (query->circusSuppressed"
+          },
+          {
+            "line": 32,
+            "text": "        || query->abilitySuppressed"
+          },
+          {
+            "line": 59,
+            "text": "    STAGE78_CIRCUS_ABILITY_SUPPRESSION = 0x80000000u"
+          },
+          {
+            "line": 89,
+            "text": "static Stage78U8 Stage78_CircusSuppressed(void)"
+          },
+          {
+            "line": 94,
+            "text": "            & STAGE78_CIRCUS_ABILITY_SUPPRESSION) != 0"
+          },
+          {
+            "line": 181,
+            "text": "    query.circusSuppressed = 0;"
+          },
+          {
+            "line": 182,
+            "text": "    query.abilitySuppressed = 0;"
+          },
+          {
+            "line": 192,
+            "text": "    query.circusSuppressed = Stage78_CircusSuppressed();"
+          },
+          {
+            "line": 203,
+            "text": "        query.abilitySuppressed = STAGE78_FN("
+          }
+        ]
+      },
+      {
+        "path": "overlays/modernization_p05_stage78_eelevate_switch_ai/modernization_p05_stage78_eelevate_switch_ai.h",
+        "identity": {
+          "size": 1455,
+          "sha256": "b1f949e4193ebe16deb84a195d5d50feb08da5c64a29255c5bb95e74b7fcdf87"
+        },
+        "excerpts": [
+          {
+            "line": 21,
+            "text": "    Stage78U8 circusSuppressed;       /* +9 */"
+          },
+          {
+            "line": 22,
+            "text": "    Stage78U8 abilitySuppressed;      /* +10 */"
+          }
+        ]
+      },
+      {
+        "path": "scripts/pr16_circus_accuracy.py",
+        "identity": {
+          "size": 8794,
+          "sha256": "23081ce91cf0e508777d1f9e6df6ebfeb811b157891e3a95cb40d16444ce8621"
+        },
+        "excerpts": [
+          {
+            "line": 76,
+            "text": "        host_tests=r.tests([Path(TEST).name]),physical_admission_accepted=False,suppression_accepted=False,release_ready=False)"
+          }
+        ]
+      },
+      {
+        "path": "scripts/pr16_circus_battle25.py",
+        "identity": {
+          "size": 24409,
+          "sha256": "530011006e51bfdc47678a26f7690e3a75053b0d7bf01f485f7eaa4c1ea3e28e"
+        },
+        "excerpts": [
+          {
+            "line": 150,
+            "text": "    state['next_action']['id']='CIRCUS_SUPPRESSION_NATIVE' if passed else 'CIRCUS_BATTLE25_ORDINARY_POLICY'"
+          },
+          {
+            "line": 220,
+            "text": "        physical_admission_accepted=False,suppression_accepted=False,release_ready=False,failures=[],visual_review_completed=False,workflow_source_head=os.environ['GITHUB_SHA'],prior_setup_failures=[dict(run_id=35467548807,job_id=105962556068,source_head='f8d84b1ec0944921928cbb19b7d5f16837218da6',original_conclusion='failure',native_processes=0,artifact_id=10592095504,archive=dict(size=138612,sha256='c7fbd2f2c7aae3f69425813df1ca794d1d2f03cad52f55ea5fb6f0b36aee3cb1'),reason_ja='旧continuous probeはEnd/ABORT世代を扱えず、原本照合で停止。既存reentry probeへ接続し実原本全体を回帰検査。')])"
+          },
+          {
+            "line": 278,
+            "text": "        value['lifecycle_verified']=True;value['genuine_30_wins_verified']=result['wins']==30"
+          },
+          {
+            "line": 279,
+            "text": "        value['classification']='CIRCUS_GENUINE_30_WINS_90BP_SAVE_CONTINUE' if result['wins']==30 else 'CIRCUS_BATTLE25_FIRST_LOSS_SCOPED_30_OPEN'"
+          },
+          {
+            "line": 321,
+            "text": "        value=load(REPORT);need(value['genuine_30_wins_verified'] and not value['failures'],'genuine 30-win target remains open')"
+          }
+        ]
+      },
+      {
+        "path": "scripts/pr16_circus_battle28.py",
+        "identity": {
+          "size": 13909,
+          "sha256": "6200ddedc143cc0b8e1d48b432606ecd4ff4afa1bc859d7dfbf38f0f394a7b08"
+        },
+        "excerpts": [
+          {
+            "line": 72,
+            "text": "    need(row['success_evidence'] is None and not row.get('complete'),'Circus suppression still open')"
+          },
+          {
+            "line": 78,
+            "text": "    state['next_action']['id']='CIRCUS_SUPPRESSION_NATIVE' if value.get('genuine_30_wins_verified') else 'CIRCUS_BATTLE28_HANDOFF'"
+          },
+          {
+            "line": 148,
+            "text": "        physical_admission_accepted=False,suppression_accepted=False,release_ready=False,failures=[],visual_review_completed=False)"
+          },
+          {
+            "line": 180,
+            "text": "        value=b.load(REPORT);need(value['genuine_30_wins_verified'] and not value['failures'],'genuine 30-win target remains open')"
+          }
+        ]
+      },
+      {
+        "path": "scripts/pr16_circus_battle28_receipt.py",
+        "identity": {
+          "size": 12932,
+          "sha256": "8361793a3f38283c79131a8cbce7fbcedd9994b9a96d4ed2894c100fceab9801"
+        },
+        "excerpts": [
+          {
+            "line": 71,
+            "text": "        need(value['genuine_30_wins_verified']==(value.get('result',{}).get('wins')==30 and value['lifecycle_verified']),'30-win accounting')"
+          },
+          {
+            "line": 102,
+            "text": "                 physical_admission_accepted=False,suppression_accepted=False,release_ready=False,source_head=head)"
+          },
+          {
+            "line": 114,
+            "text": "    need(row['success_evidence'] is None and not row.get('complete'),'suppression gap must remain open')"
+          }
+        ]
+      },
+      {
+        "path": "scripts/pr16_circus_battle29.py",
+        "identity": {
+          "size": 14424,
+          "sha256": "e8501108f80609c182398021c250a805283130ae3de57a8a3268e56bfc0c3980"
+        },
+        "excerpts": [
+          {
+            "line": 76,
+            "text": "    need(row['success_evidence'] is None and not row.get('complete'),'Circus suppression still open')"
+          },
+          {
+            "line": 82,
+            "text": "    state['next_action']['id']='CIRCUS_SUPPRESSION_NATIVE' if value.get('genuine_30_wins_verified') else 'CIRCUS_BATTLE29_RISK'"
+          },
+          {
+            "line": 153,
+            "text": "        physical_admission_accepted=False,suppression_accepted=False,release_ready=False,failures=[],visual_review_completed=False)"
+          },
+          {
+            "line": 185,
+            "text": "        value=b.load(REPORT);need(value['genuine_30_wins_verified'] and not value['failures'],'genuine 30-win target remains open')"
+          }
+        ]
+      },
+      {
+        "path": "scripts/pr16_circus_battle29_recheck.py",
+        "identity": {
+          "size": 14543,
+          "sha256": "ae201710f1b2037b4544ec3cb5d6d4fc2976721a1dcd9e753261b06e4baa91dd"
+        },
+        "excerpts": [
+          {
+            "line": 79,
+            "text": "    need(row['success_evidence'] is None and not row.get('complete'),'Circus suppression still open')"
+          },
+          {
+            "line": 85,
+            "text": "    state['next_action']['id']='CIRCUS_SUPPRESSION_NATIVE' if value.get('genuine_30_wins_verified') else 'CIRCUS_BATTLE29_RECHECK'"
+          },
+          {
+            "line": 155,
+            "text": "        physical_admission_accepted=False,suppression_accepted=False,release_ready=False,failures=[],visual_review_completed=False)"
+          },
+          {
+            "line": 187,
+            "text": "        value=b.load(REPORT);need(value['genuine_30_wins_verified'] and not value['failures'],'genuine 30-win target remains open')"
+          }
+        ]
+      },
+      {
+        "path": "scripts/pr16_circus_battle30_pp.py",
+        "identity": {
+          "size": 13650,
+          "sha256": "f73f573fbe2e81aa8fbbed8eb963657fd9880c50e445de879a0ffe8a567c732e"
+        },
+        "excerpts": [
+          {
+            "line": 73,
+            "text": "    need(row['success_evidence'] is None and not row.get('complete'),'suppression still open')"
+          },
+          {
+            "line": 79,
+            "text": "    state['next_action']['id']='CIRCUS_SUPPRESSION_NATIVE' if value.get('genuine_30_wins_verified') else 'CIRCUS_BATTLE30_PP'"
+          },
+          {
+            "line": 148,
+            "text": "        physical_admission_accepted=False,suppression_accepted=False,release_ready=False,failures=[],visual_review_completed=False)"
+          },
+          {
+            "line": 176,
+            "text": "        value=b.load(REPORT);need(value['genuine_30_wins_verified'] and not value['failures'],'genuine 30-win target remains open')"
+          }
+        ]
+      },
+      {
+        "path": "scripts/pr16_circus_battle30_pp_policy.py",
+        "identity": {
+          "size": 5061,
+          "sha256": "cc3fe7f6bac6dba4576aa696deb43e7d4b55dfdcdbfb7b118101879714499e56"
+        },
+        "excerpts": [
+          {
+            "line": 68,
+            "text": "    return dict(events=143,wins=29,losses=1,uncompleted_battle=30,first_action_frame=482072,"
+          }
+        ]
+      },
+      {
+        "path": "scripts/pr16_circus_battle30_receipt.py",
+        "identity": {
+          "size": 21219,
+          "sha256": "e7c726364d2e991cfaf2dc25a7e3b8f79c533639dd13fa47fc94d91b754c51de"
+        },
+        "excerpts": [
+          {
+            "line": 82,
+            "text": "    need(type(genuine) is bool and genuine==(result['wins']==30 and result['losses']==0"
+          },
+          {
+            "line": 86,
+            "text": "    for flag in ('physical_admission_accepted','suppression_accepted','release_ready'):"
+          },
+          {
+            "line": 98,
+            "text": "    return dict(schema_version=1,task=TASK,classification='CIRCUS_30_WINS_VISUAL_RECONCILED_SUPPRESSION_OPEN' if genuine else"
+          },
+          {
+            "line": 105,
+            "text": "                physical_admission_accepted=False,suppression_accepted=False,release_ready=False,"
+          },
+          {
+            "line": 151,
+            "text": "    pattern=re.compile(r'suppres|abilities|no.?abil|GetBattlerAbility|(?:streak|wins).{0,80}\\b30[uU]?\\b|LoadBattleCircus',re.I)"
+          },
+          {
+            "line": 184,
+            "text": "    config_path='config/modernization_p05_stage77_suppression.json'"
+          },
+          {
+            "line": 185,
+            "text": "    cfg=b.load(config_path)['suppression_contract']['battle_circus_global']"
+          },
+          {
+            "line": 187,
+            "text": "         and cfg['circus_flags_address']=='0x0203DFBC' and cfg['ability_suppression_mask']=='0x80000000','suppression contract drift')"
+          },
+          {
+            "line": 191,
+            "text": "    need(len(actions)==30 and observed==0,'new suppression observation needs separate review')"
+          },
+          {
+            "line": 192,
+            "text": "    value['next_suppression_contract']=dict(path=config_path,identity=identity((ROOT/config_path).read_bytes()),"
+          }
+        ]
+      },
+      {
+        "path": "scripts/pr16_circus_boundary_continue.py",
+        "identity": {
+          "size": 8277,
+          "sha256": "414765afdd06df288b031e7d9ab608bce6bc31f38b05b8600fa3689d4e75bfdc"
+        },
+        "excerpts": [
+          {
+            "line": 72,
+            "text": "    state['circus_continuous_followup']=dict(ref,target_wins=30)"
+          }
+        ]
+      },
+      {
+        "path": "scripts/pr16_circus_coldboot.py",
+        "identity": {
+          "size": 15858,
+          "sha256": "e899f6d0cf25943bf265f03f8ae6addade3b875d6e399dc0710ff6567a182be8"
+        },
+        "excerpts": [
+          {
+            "line": 97,
+            "text": "        physical_admission_accepted=False,suppression_accepted=False,release_ready=False)"
+          }
+        ]
+      },
+      {
+        "path": "scripts/pr16_circus_coldboot_probe.py",
+        "identity": {
+          "size": 8068,
+          "sha256": "7b2f08b100c2709aa3c90031a12525abd98c87af5f2a5a14afc32074d88e625e"
+        },
+        "excerpts": [
+          {
+            "line": 104,
+            "text": "        suppression_accepted=False,release_ready=False)"
+          },
+          {
+            "line": 114,
+            "text": "        input_only_after_guard=True,physical_admission_accepted=False,suppression_accepted=False,"
+          }
+        ]
+      },
+      {
+        "path": "scripts/pr16_circus_continuous.py",
+        "identity": {
+          "size": 11563,
+          "sha256": "b71a89ad61b4fd90944d1358529f6a47740ea3f1daa24230274634998fad9806"
+        },
+        "excerpts": [
+          {
+            "line": 75,
+            "text": "    state['circus_continuous_followup']=dict(path=REPORT,classification=value['classification'],target_wins=30)"
+          },
+          {
+            "line": 102,
+            "text": "    value=dict(schema_version=1,classification='CIRCUS_CONTINUOUS_THIRTY_TARGET_PREPARED',candidate=old['candidate'],target_wins=30,"
+          },
+          {
+            "line": 107,
+            "text": "        host_tests=r.tests([Path(TEST).name,Path(REENTRY_TEST).name]),genuine_30_wins_verified=False,physical_admission_accepted=False,suppression_accepted=False,release_ready=False,"
+          }
+        ]
+      },
+      {
+        "path": "scripts/pr16_circus_continuous_probe.py",
+        "identity": {
+          "size": 10004,
+          "sha256": "a900e3d8182a6075569a0f5a3bdaffcb8f22547a00f52f14d6247b092839f746"
+        },
+        "excerpts": [
+          {
+            "line": 50,
+            "text": "    need(0<=wins<=30 and losses in (0,1) and 1<=battles<=30 and battles==wins+losses,'real battle accounting')"
+          },
+          {
+            "line": 51,
+            "text": "    need(wins==30 if not losses else wins<30,'terminal outcome is neither target nor first loss')"
+          },
+          {
+            "line": 108,
+            "text": "    return dict(classification='CIRCUS_GENUINE_30_WINS_90BP_SAVE_CONTINUE' if wins==30 else 'CIRCUS_CONTINUOUS_FIRST_LOSS_DIAGNOSTIC',"
+          },
+          {
+            "line": 110,
+            "text": "        genuine_30_wins_verified=wins==30,later_battle_launches_verified=battles-r['admissions'],"
+          },
+          {
+            "line": 112,
+            "text": "        accepted_prefix_battles_reexecuted_for_continuation=min(3,battles),physical_admission_accepted=False,suppression_accepted=False,release_ready=False)"
+          },
+          {
+            "line": 115,
+            "text": "    need(result['wins']==30 and result['losses']==0 and result['battles']==30 and result['admissions']==10"
+          },
+          {
+            "line": 122,
+            "text": "    fixed=dict(schema_version=1,status='PASS_CIRCUS_CONTINUOUS_LIFECYCLE',case=CASE,candidate_sha256=SHA,target_wins=30,"
+          },
+          {
+            "line": 124,
+            "text": "        host_write_barriers=7,input_only_after_guard=True,physical_admission_accepted=False,suppression_accepted=False,release_ready=False,warnings_errors=0)"
+          }
+        ]
+      },
+      {
+        "path": "scripts/pr16_circus_coverage.py",
+        "identity": {
+          "size": 9297,
+          "sha256": "eee244b4209f6d8ab0c04a7f55a56a0c4a8e6ad85e62cbfb82e3cee6531148b8"
+        },
+        "excerpts": [
+          {
+            "line": 67,
+            "text": "    state['circus_coverage_followup']=dict(path=REPORT,classification=value['classification'],target_wins=30,"
+          },
+          {
+            "line": 69,
+            "text": "    state['circus_continuous_followup']=dict(path=REPORT,classification=value['classification'],target_wins=30)"
+          },
+          {
+            "line": 88,
+            "text": "    value=dict(schema_version=1,classification='CIRCUS_COVERAGE_GENERAL_REENTRY_PREPARED',candidate=old['candidate'],target_wins=30,"
+          },
+          {
+            "line": 92,
+            "text": "        independent_arm_links_replayed=0,genuine_30_wins_verified=False,physical_admission_accepted=False,suppression_accepted=False,release_ready=False,"
+          }
+        ]
+      },
+      {
+        "path": "scripts/pr16_circus_drought.py",
+        "identity": {
+          "size": 19041,
+          "sha256": "1ab34a1e39fed51fe1d44c323902861a7c9542518cdd237d501ff88b67d9b53e"
+        },
+        "excerpts": [
+          {
+            "line": 70,
+            "text": "    state['circus_continuous_followup']=dict(path=REPORT,classification=value['classification'],target_wins=30)"
+          },
+          {
+            "line": 99,
+            "text": "        physical_admission_accepted=False,suppression_accepted=False,release_ready=False)"
+          }
+        ]
+      },
+      {
+        "path": "scripts/pr16_circus_drought_calls.py",
+        "identity": {
+          "size": 13222,
+          "sha256": "c6da7369fb43ad459e3f6b62813752cdb641c08b420d45161721c0c5475c689d"
+        },
+        "excerpts": [
+          {
+            "line": 126,
+            "text": "    state['circus_continuous_followup'] = dict(ref, target_wins=30)"
+          },
+          {
+            "line": 174,
+            "text": "                 physical_admission_accepted=False, suppression_accepted=False, release_ready=False,"
+          }
+        ]
+      },
+      {
+        "path": "scripts/pr16_circus_drought_launch.py",
+        "identity": {
+          "size": 11694,
+          "sha256": "cf7150443602311c3d287658760ec104a542666716c495de30f6f2a6e19726b7"
+        },
+        "excerpts": [
+          {
+            "line": 70,
+            "text": "    state['circus_continuous_followup']=dict(ref,target_wins=30);state['prior_actions_reconciled']=value['actions_reconciled']"
+          },
+          {
+            "line": 102,
+            "text": "        accepted_native_cases_replayed=0,independent_old_arm_links_replayed=0,physical_admission_accepted=False,suppression_accepted=False,release_ready=False)"
+          }
+        ]
+      },
+      {
+        "path": "scripts/pr16_circus_drought_launch_boundary.py",
+        "identity": {
+          "size": 17466,
+          "sha256": "f2a7255e61e96501c1dfa43e3adf9bb9de79d55d410f2cc945624b73de581081"
+        },
+        "excerpts": [
+          {
+            "line": 128,
+            "text": "        physical_admission_accepted=False,suppression_accepted=False,release_ready=False)"
+          },
+          {
+            "line": 146,
+            "text": "    state['circus_continuous_followup']=dict(ref,target_wins=30)"
+          },
+          {
+            "line": 182,
+            "text": "        standard_save_fresh_continue=False,genuine_30_wins_verified=False,physical_admission_accepted=False,suppression_accepted=False,release_ready=False,"
+          }
+        ]
+      },
+      {
+        "path": "scripts/pr16_circus_drought_launch_boundary_resume.py",
+        "identity": {
+          "size": 11288,
+          "sha256": "3366787af3904a8a2f97850511ee0af54796c49ddd187b73dcdcc590b8a3f9b5"
+        },
+        "excerpts": [
+          {
+            "line": 172,
+            "text": "        'suppression_accepted':False,'release_ready':False}"
+          }
+        ]
+      },
+      {
+        "path": "scripts/pr16_circus_entry.py",
+        "identity": {
+          "size": 15402,
+          "sha256": "a026633b218686fa8c440f6b9d8954f8eb29f1cae39ae17ee9f65be19105a79f"
+        },
+        "excerpts": [
+          {
+            "line": 257,
+            "text": "        physical_admission_accepted=False,suppression_accepted=False,release_ready=False,"
+          }
+        ]
+      },
+      {
+        "path": "scripts/pr16_circus_entry_record.py",
+        "identity": {
+          "size": 15695,
+          "sha256": "a836a1036bf9d7ea3a6413c8163bf187105d1500403ce7ec22613a81ad2cb3e3"
+        },
+        "excerpts": [
+          {
+            "line": 44,
+            "text": "    for key in ('physical_admission_accepted','suppression_accepted','release_ready'):evidence.exact(report[key],False,'unproved acceptance')"
+          },
+          {
+            "line": 114,
+            "text": "        failed_attempts=failures,physical_admission_accepted=False,suppression_accepted=False,release_ready=False,"
+          }
+        ]
+      }
+    ],
+    "owner_sections": {
+      "circus": {
+        "actual_owner_chain": [
+          "VegaFacilityStateGet(VEGA_FACILITY_STATE_NUMBER)",
+          "IN_BATTLE_CIRCUS=3",
+          "BattleSetup_StartTrainerBattle",
+          "sp072_LoadBattleCircusEffects"
+        ],
+        "invalid_root_count": 6,
+        "malformed_map_events": {
+          "address": 137890240,
+          "bytes": "0303746c57093808a80938080000000800000008",
+          "counts": [
+            3,
+            3,
+            116,
+            108
+          ],
+          "pointers": [
+            137890135,
+            137890216,
+            134217728,
+            134217728
+          ]
+        },
+        "map_12_7_is_not_established_as_circus": true,
+        "next_action": "Determine original/reference map12/7 header provenance independently; trace actual battle-local facility-number3 admission owner. Do not decode a new F0 opcode or keep searching raw403A as the compiled selector.",
+        "physical_admission_accepted": false,
+        "raw_var_403a_is_not_compiled_facility_state": true,
+        "suppression": {
+          "battle_type_flags_address": 33696428,
+          "battle_type_required": 67108864,
+          "circus_flags_address": 33808316,
+          "circus_required": 2147483648,
+          "source": "config/modernization_p05_stage77_suppression.json"
+        },
+        "unknown_f0": {
+          "actual_value_owner": "low byte of sprite record3 pointer0x086C97F0",
+          "back_sprite_table": 156560580,
+          "classification": "NON_SCRIPT_BACK_SPRITE_TABLE_DATA",
+          "coordinate_table": 134217728,
+          "decoded_six_sprite_records": [
+            {
+              "pointer": 146803080,
+              "size": 2048,
+              "tag": 0
+            },
+            {
+              "pointer": 141329572,
+              "size": 2048,
+              "tag": 1
+            },
+            {
+              "pointer": 141330588,
+              "size": 2048,
+              "tag": 2
+            },
+            {
+              "pointer": 141334512,
+              "size": 2048,
+              "tag": 3
+            },
+            {
+              "pointer": 141335764,
+              "size": 2048,
+              "tag": 4
+            },
+            {
+              "pointer": 141338428,
+              "size": 2048,
+              "tag": 5
+            }
+          ],
+          "diagnostic_address": 156560604,
+          "native_opcode_length_required": false,
+          "root": "map:12:7:coord:18",
+          "script_pointer_read_at": 134218028,
+          "shared_decoder_patch_applied": false
+        },
+        "upstream_source_is_not_itself_native_entrance_proof": true
+      }
+    }
+  },
+  "next_suppression_contract": {
+    "path": "config/modernization_p05_stage77_suppression.json",
+    "identity": {
+      "size": 25769,
+      "sha256": "c2f2612191ab35b8c9ca12ef8a3ac683d47d5ff3b4f42aa29f882d3693aebd12"
+    },
+    "predicate": "(battle_type_flags & 0x04000000) != 0 && (circus_flags & 0x80000000) != 0",
+    "observed_action_count": 30,
+    "observed_suppressed_actions": 0,
+    "status": "NOT_YET_NATIVE_ACCEPTED",
+    "reason_ja": "真正30勝は特性抑制の通し受入ではない。実受付/入場ownerから実際の抑制条件と戦闘挙動までを検証し、flag/streak/party/CPU直接注入で代用しない。"
+  },
+  "receipt_tests": {
+    "tests_run": 20,
+    "success": true,
+    "skipped": 0
+  },
+  "recording_run": 35480385455,
+  "recording_source_head": "d5efa04ecc2bbdc279b567f3b2475897b8c81c4e",
+  "observed_head_runs": [
+    {
+      "id": 35480387338,
+      "name": "source-validation",
+      "head_sha": "d5efa04ecc2bbdc279b567f3b2475897b8c81c4e",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35480387340,
+      "name": "p03-forgetting-ci",
+      "head_sha": "d5efa04ecc2bbdc279b567f3b2475897b8c81c4e",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35480385433,
+      "name": "source-validation",
+      "head_sha": "d5efa04ecc2bbdc279b567f3b2475897b8c81c4e",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35480385455,
+      "name": "PR16 Circus battle30 completed receipt",
+      "head_sha": "d5efa04ecc2bbdc279b567f3b2475897b8c81c4e",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35480385398,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "d5efa04ecc2bbdc279b567f3b2475897b8c81c4e",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35480385435,
+      "name": "p03-forgetting-ci",
+      "head_sha": "d5efa04ecc2bbdc279b567f3b2475897b8c81c4e",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "session_new_execution_totals": {
+    "native_processes": 2,
+    "fresh_cores": 4,
+    "arm_compiles": 0,
+    "arm_links": 0,
+    "accepted_standalone_replays": 0,
+    "rom_changes": 0,
+    "run_ids": [
+      35478473681,
+      35479503528
+    ],
+    "scope_ja": "この会話で新規実行した29戦目控え補完と30戦目PP同点方策。会話開始時に既に進行中だった35477541574は含めない。"
+  },
+  "scope_note_ja": "native受入候補と正式BP親候補を区別。原本結論・旧失敗を保持。表示照合と完了状態の記録のみ、native/ARM再実行0。"
+}

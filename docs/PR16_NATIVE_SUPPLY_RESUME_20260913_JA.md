@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-同一2b107e7eで真正30勝90BP・元party600/owner64・通常Save/fresh Continueを検証。29勝＋30戦目action138eventsまで原本byte一致。同点時だけ残PPの多い技を通常入力で選択。ROM変更/ARM0。
+run35479503528の原本・29勝/30戦目同点選択prefix・終端画面を照合。実30勝/90BP、元party600/owner64、通常Save/fresh Continueをscoped確定。旧runの予測不一致failureは保持。完了runのpendingを解消し、記録でnative/ARM再実行なし。
 
-**次: このrunの原本と終端画面を照合し、正規実受付から特性抑制へ進む。30勝単独再実行は禁止。P08移送・releaseは未完。**
+**次: 真正30勝の保存原本を保持し、正規実受付から特性抑制の未完経路を検証する。30勝単独・受入済みBP/Ring/P03/P06/P07・旧ARMは再実行しない。**
 
 次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `06a22ef6ced5fa090d7a060b13733073e3ab0b96`。
-当checkpoint前のremote HEAD。native sourceはreport。正式BP受入は変更なし。
+証拠のsource HEAD: `d5efa04ecc2bbdc279b567f3b2475897b8c81c4e`。
+この照合前remote HEAD。native sourceはreceipt.tested_head/native_source_head。正式BP受入HEADは不変。
 
 ## 最短の再開手順
 
@@ -25,11 +25,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_circus_battle30_receipt.json`
 - `content/modernization/pr16_circus_battle30_pp.json`
-- `scripts/pr16_circus_battle30_pp.py`
-- `scripts/pr16_circus_battle30_pp_policy.py`
-- `tests/test_pr16_circus_battle30_pp.py`
-- `.github/workflows/pr16-circus-battle30-pp.yml`
+- `config/modernization_p05_stage77_suppression.json`
 - `content/modernization/pr16_saved_reconstruction.json`
 - `content/modernization/p08_remaining_work.json`
 
@@ -294,6 +292,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-前runの29勝/30戦目敗北/Save実測とfailureを保持。今回runは記録中。全CI greenは主張しない。
+run35479503528/job105994620734 completed/successをAPIと原本で確定。現在HEADの各CI結果はreceiptに分離。全CI greenとは主張しない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

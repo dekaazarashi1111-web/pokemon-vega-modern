@@ -8623,3 +8623,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 同branch非force。自己SHAはremote/receipt。
 - Network: GitHub前run/job/artifact原本照合、host mGBA依存のみ。旧builder/ARM/Ring hostなし。
 - Next: このrunの原本と終端画面を照合し、正規実受付から特性抑制へ進む。30勝単独再実行は禁止。P08移送・releaseは未完。
+
+
+## 2026-09-20T01:04:17Z — USER-20260920-CIRCUS-BATTLE30-RECEIPT
+- Timestamp: 2026-09-20T01:04:17Z
+- Task: USER-20260920-CIRCUS-BATTLE30-RECEIPT
+- Status: DONE（原本照合・scoped受入のみ。特性抑制/P08は未完）
+- Version: pr16-circus-battle30-receipt-v1
+- Summary: run35479503528の原本・29勝/30戦目同点選択prefix・終端画面を照合。実30勝/90BP、元party600/owner64、通常Save/fresh Continueをscoped確定。旧runの予測不一致failureは保持。完了runのpendingを解消し、記録でnative/ARM再実行なし。
+- Files changed: scripts/pr16_circus_battle30_receipt.py, tests/test_pr16_circus_battle30_receipt.py, .github/workflows/pr16-circus-battle30-receipt.yml, content/modernization/pr16_circus_battle30_receipt.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md
+- Verify: 新規receipt契約・native原本validator（emulatorなし）・byte/event prefix・画面identity・固定引継ぎ・task graph・差分private guard/diff check PASS。
+- Commit: 同branch非force。検証入力HEAD=d5efa04ecc2bbdc279b567f3b2475897b8c81c4e。自己SHAはremote/receipt。
+- Network: GitHub完了run/job/artifact取得のみ。private Release/旧builder/ARM/nativeなし。
+- Next: 真正30勝の保存原本を保持し、正規実受付から特性抑制の未完経路を検証する。30勝単独・受入済みBP/Ring/P03/P06/P07・旧ARMは再実行しない。
