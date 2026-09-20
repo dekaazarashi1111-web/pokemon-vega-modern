@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "P08 Circus退出後の通常戦闘で自然predicate=falseと通常dispatcherを検証。真正Save30から1process、施設戦/30勝再実行0。完了Actionsと画面の受入前。",
+    "current_stop": "P08最後の通常戦闘代表を完了Actions・原本・5画面で受入。4代表の実測は完了、候補移送の最終照合は次。新native/ARM/ROM変更0。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "完了Actions・原本・画面を照合してP08_CIRCUS_POST_EXIT_ORDINARYを受入。四境界の候補移送と古い所有範囲CIテストを整合し配布ゲートを整理。",
+    "next_step": "四代表と候補影響台帳を照合して移送・古い所有範囲CIを整合。その後Issue #18の候補Wikiを生成し、clean-ROM独立2生成/BPS固定/release判定はWiki後まで開始しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -832,26 +832,19 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "完了Actions・原本・画面を照合してP08_CIRCUS_POST_EXIT_ORDINARYを受入。四境界の候補移送と古い所有範囲CIテストを整合し配布ゲートを整理。",
+    "goal_ja": "四代表と候補影響台帳を照合して移送・古い所有範囲CIを整合。その後Issue #18の候補Wikiを生成し、clean-ROM独立2生成/BPS固定/release判定はWiki後まで開始しない。",
     "host_write_policy_ja": "新しい実受付のguard開始後は入力/frames/readのみ。施設番号/効果/連勝/party/PC/LRのhost注入は禁止。初期配置fixtureと実入場/正規連勝を区別する。",
-    "id": "P08_ORDINARY_REVIEW",
+    "id": "P08_TRANSFER_RECONCILIATION",
     "read_paths": [
+      "content/modernization/pr16_p08_ordinary_acceptance.json",
       "content/modernization/pr16_p08_ordinary_abi.json",
-      "scripts/pr16_p08_ordinary_abi.py",
-      "tools/mgba_pr16_p08_ordinary_abi.h",
-      "tests/test_pr16_p08_ordinary_abi.py",
-      ".github/workflows/pr16-p08-ordinary-abi.yml",
-      "scripts/pr16_p08_ordinary_representative.py",
-      "tools/mgba_pr16_p08_ordinary_main.h",
-      "tools/mgba_pr16_p08_ordinary_observer.h",
-      "tests/test_pr16_p08_ordinary_representative.py",
-      ".github/workflows/pr16-p08-ordinary.yml",
-      "scripts/pr16_p08_memory_acceptance.py",
       "content/modernization/pr16_p08_candidate_impact.json",
+      "content/modernization/pr16_p08_memory_acceptance.json",
+      "content/modernization/pr16_p08_ring_acceptance.json",
       "content/modernization/pr16_circus_acceptance.json",
       "content/modernization/p08_remaining_work.json"
     ],
-    "stop_rule_ja": "完了Actions・原本・画面を照合してP08_CIRCUS_POST_EXIT_ORDINARYを受入。四境界の候補移送と古い所有範囲CIテストを整合し配布ゲートを整理。",
+    "stop_rule_ja": "四代表と候補影響台帳を照合して移送・古い所有範囲CIを整合。その後Issue #18の候補Wikiを生成し、clean-ROM独立2生成/BPS固定/release判定はWiki後まで開始しない。",
     "success_observations": [
       "実受付/入場ownerと必要進行条件を確定。データ上のmap名だけでCircusと断定しない",
       "flag直接注入を入場の証拠にせず、受付から対象ルール/特性抑制まで通常入力で確認",
@@ -859,11 +852,11 @@
     ]
   },
   "observed_date_jst": "2026-09-20",
-  "observed_head": "b9d6389609807a9743b92a2b2365482b6b986950",
+  "observed_head": "e800b909c1182f07bb4f4b0075f4ba1d7c8637c8",
   "observed_head_checks": {
-    "scope_head": "b9d6389609807a9743b92a2b2365482b6b986950",
-    "run_id": 35512907219,
-    "phase": "FINISH",
+    "scope_head": "e800b909c1182f07bb4f4b0075f4ba1d7c8637c8",
+    "run_id": 35523960389,
+    "phase": "ACCEPT",
     "native_verified": true,
     "reason_ja": "本run完了は次にActionsで別照合する。"
   },
@@ -934,8 +927,8 @@
   },
   "pending_runs": [
     {
-      "run_id": 35512907219,
-      "tested_head": "63ec984e57524d747ef2a2b9816a7c979f2e1b37",
+      "run_id": 35523960389,
+      "tested_head": "e800b909c1182f07bb4f4b0075f4ba1d7c8637c8",
       "status": "in_progress"
     }
   ],
@@ -1598,8 +1591,8 @@
   },
   "schema_version": 2,
   "session_execution_summary": {
-    "new_emulator_processes": 1,
-    "fresh_cores": 1,
+    "new_emulator_processes": 0,
+    "fresh_cores": 0,
     "arm_compiles": 0,
     "arm_links": 0,
     "accepted_standalone_replays": 0,
@@ -9180,8 +9173,8 @@
       "sha256": "2de1aab581307e5593860cac0964023ad000b2bc22a4535ea0d85b25f4efb517"
     },
     "content/modernization/p08_remaining_work.json": {
-      "size": 38102,
-      "sha256": "65f06f631104b8b1e03c51cb156f5ad2e2ebedbc9fe16b3215bea9ba639d5d7c"
+      "size": 38133,
+      "sha256": "fbcfa40395318b82edfc05ebfed3fd9fc0ec4fa4620204e607a1d9817ce68e77"
     },
     "content/modernization/pr16_bp_chooser_checkpoint.json": {
       "size": 9442,
@@ -9486,10 +9479,34 @@
     "evidence/pr16_p08/user-20260920-p08-ordinary-abi/35512907219/finish/result.json": {
       "size": 44078,
       "sha256": "43f5dba9d69cf91384625dc1c5adad0e7a6a6f34ad933088a56f603406015654"
+    },
+    "scripts/pr16_p08_ordinary_acceptance.py": {
+      "size": 13047,
+      "sha256": "2da630c99a65ac195e1fdfc247fd0bd4bd6cef734faa73ef1a4ece235378b48f"
+    },
+    "tests/test_pr16_p08_ordinary_acceptance.py": {
+      "size": 5139,
+      "sha256": "1155d88843e09bbbf6dd6f7f1696df31be1231e6f2d2faa6dc02e7dcd30ebed6"
+    },
+    ".github/workflows/pr16-p08-ordinary-accept.yml": {
+      "size": 1450,
+      "sha256": "1b7e85407c98bee2bffc461ea8d689ebbb723957e68686f7fae150fee0534187"
+    },
+    "content/modernization/pr16_p08_ordinary_acceptance.json": {
+      "size": 46852,
+      "sha256": "fdd97ef33a02c6b966ab8241dfa447b67c65233f355f46d0e97234633f08b4f0"
+    },
+    "evidence/pr16_p08/user-20260921-p08-ordinary-accept/35523960389/accept/execution.json": {
+      "size": 86566,
+      "sha256": "10b09caf33ee69e12d71fed7a0d281e8b824f02554ff54765f32a3b50b83f197"
+    },
+    "evidence/pr16_p08/user-20260921-p08-ordinary-accept/35523960389/accept/result.json": {
+      "size": 46852,
+      "sha256": "fdd97ef33a02c6b966ab8241dfa447b67c65233f355f46d0e97234633f08b4f0"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "P08 Circus退出後の通常戦闘で自然predicate=falseと通常dispatcherを検証。真正Save30から1process、施設戦/30勝再実行0。完了Actionsと画面の受入前。",
+  "source_change_review_ja": "P08最後の通常戦闘代表を完了Actions・原本・5画面で受入。4代表の実測は完了、候補移送の最終照合は次。新native/ARM/ROM変更0。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -9656,11 +9673,11 @@
       "representative_accepted": true
     },
     "P08_CIRCUS_POST_EXIT_ORDINARY": {
-      "path": "content/modernization/pr16_p08_ordinary_abi.json",
-      "run_id": 35512907219,
-      "phase": "FINISH",
+      "path": "content/modernization/pr16_p08_ordinary_acceptance.json",
+      "run_id": 35523960389,
+      "phase": "ACCEPT",
       "native_verified": true,
-      "representative_accepted": false
+      "representative_accepted": true
     }
   }
 }

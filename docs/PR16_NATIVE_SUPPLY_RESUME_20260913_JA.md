@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-P08 Circus退出後の通常戦闘で自然predicate=falseと通常dispatcherを検証。真正Save30から1process、施設戦/30勝再実行0。完了Actionsと画面の受入前。
+P08最後の通常戦闘代表を完了Actions・原本・5画面で受入。4代表の実測は完了、候補移送の最終照合は次。新native/ARM/ROM変更0。
 
-**次: 完了Actions・原本・画面を照合してP08_CIRCUS_POST_EXIT_ORDINARYを受入。四境界の候補移送と古い所有範囲CIテストを整合し配布ゲートを整理。**
+**次: 四代表と候補影響台帳を照合して移送・古い所有範囲CIを整合。その後Issue #18の候補Wikiを生成し、clean-ROM独立2生成/BPS固定/release判定はWiki後まで開始しない。**
 
-完了Actions・原本・画面を照合してP08_CIRCUS_POST_EXIT_ORDINARYを受入。四境界の候補移送と古い所有範囲CIテストを整合し配布ゲートを整理。
+四代表と候補影響台帳を照合して移送・古い所有範囲CIを整合。その後Issue #18の候補Wikiを生成し、clean-ROM独立2生成/BPS固定/release判定はWiki後まで開始しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `b9d6389609807a9743b92a2b2365482b6b986950`。
+証拠のsource HEAD: `e800b909c1182f07bb4f4b0075f4ba1d7c8637c8`。
 本checkpoint直前のremote。native実測・記録job完了・正式受入を別々に保持する。
 
 ## 最短の再開手順
@@ -25,18 +25,11 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_p08_ordinary_acceptance.json`
 - `content/modernization/pr16_p08_ordinary_abi.json`
-- `scripts/pr16_p08_ordinary_abi.py`
-- `tools/mgba_pr16_p08_ordinary_abi.h`
-- `tests/test_pr16_p08_ordinary_abi.py`
-- `.github/workflows/pr16-p08-ordinary-abi.yml`
-- `scripts/pr16_p08_ordinary_representative.py`
-- `tools/mgba_pr16_p08_ordinary_main.h`
-- `tools/mgba_pr16_p08_ordinary_observer.h`
-- `tests/test_pr16_p08_ordinary_representative.py`
-- `.github/workflows/pr16-p08-ordinary.yml`
-- `scripts/pr16_p08_memory_acceptance.py`
 - `content/modernization/pr16_p08_candidate_impact.json`
+- `content/modernization/pr16_p08_memory_acceptance.json`
+- `content/modernization/pr16_p08_ring_acceptance.json`
 - `content/modernization/pr16_circus_acceptance.json`
 - `content/modernization/p08_remaining_work.json`
 

@@ -8990,3 +8990,17 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: このcommitを同branchへ非force pushしremote読戻し。
 - Network: GitHub固定run/job/artifactとremote照合。
 - Next: 完了Actions・原本・画面を照合してP08_CIRCUS_POST_EXIT_ORDINARYを受入。四境界の候補移送と古い所有範囲CIテストを整合し配布ゲートを整理。
+
+
+## 2026-09-20T16:50:29Z — USER-20260921-P08-ORDINARY-ACCEPT-ACCEPT
+- Timestamp: 2026-09-20T16:50:29Z
+- Task: USER-20260921-P08-ORDINARY-ACCEPT-ACCEPT
+- Status: DONE
+- Version: pr16-p08-representative-v1
+- Summary: P08最後の通常戦闘代表を完了Actions・原本・5画面で受入。4代表の実測は完了、候補移送の最終照合は次。新native/ARM/ROM変更0。
+- Files changed: scripts/pr16_p08_ordinary_acceptance.py, tests/test_pr16_p08_ordinary_acceptance.py, .github/workflows/pr16-p08-ordinary-accept.yml, content/modernization/pr16_p08_ordinary_acceptance.json, evidence/pr16_p08/user-20260921-p08-ordinary-accept/35523960389/accept/execution.json, evidence/pr16_p08/user-20260921-p08-ordinary-accept/35523960389/accept/result.json, content/modernization/p08_remaining_work.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, design/run_log.md, design/version_log.md
+- Verify: 限定契約/resume/生成MD/hash/task graph、原本byte包絡とindex/HEAD読戻し。native件数・成否はcontent/modernization/pr16_p08_ordinary_acceptance.json。
+- Boundary: ARM0、旧受入の独立再実行0、ROM変更0。全体private guard既存違反は差分照合し全体PASSと主張しない。
+- Commit: このcommitを同branchへ非force pushしremote読戻し。
+- Network: GitHub固定run/job/artifactとremote照合。
+- Next: 四代表と候補影響台帳を照合して移送・古い所有範囲CIを整合。その後Issue #18の候補Wikiを生成し、clean-ROM独立2生成/BPS固定/release判定はWiki後まで開始しない。
