@@ -1,0 +1,187 @@
+{
+  "run_id": 35507654812,
+  "job_id": 106070069903,
+  "source_head": "870e65e58fa34289daa6216ae41ed201e54b5e29",
+  "original_conclusion": "failure",
+  "native_step_conclusion": "success",
+  "recording_step_conclusion": "failure",
+  "failure_reason": "git diff --cached --check: materialize.stdout new blank line at EOF",
+  "artifact_id": 10604711829,
+  "archive": {
+    "size": 94066,
+    "sha256": "a1a2b2ce1966b14ce895367a426c5d9f4db33b6adb94fc63176243de435e6795"
+  },
+  "member_identities": {
+    "apt-install.txt": {
+      "size": 32905,
+      "sha256": "f250c4d6859e25e84060d869507cf657692fdb65227c751264bd14ff73a96d24"
+    },
+    "execution/compile.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "apt-update.txt": {
+      "size": 3195,
+      "sha256": "0c47646678e38f4548a8666efd6a6d1484935fb2c6b93d41aa9489ecd58e1701"
+    },
+    "execution/compile.stderr": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "execution/compile.stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "execution/materialize.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "execution/materialize.stderr": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "execution/materialize.stdout": {
+      "size": 104,
+      "sha256": "e86fbc409728bd2884cc9b651ffeacaded813c3b36ae21c2b0a2f03194208cb0"
+    },
+    "execution/new-context-tests.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "execution/new-context-tests.stderr": {
+      "size": 2705,
+      "sha256": "abb44438034494ea6fa410abac5ec26d047ef0dbb38466597a76f0a6414676d7"
+    },
+    "execution/new-context-tests.stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "execution/ring-active.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "execution/ring-active.stderr": {
+      "size": 2357,
+      "sha256": "10d03059af89f7377f8eb9f59bcd8720a4d3195fe79484ca8a5cf85f0ec51f06"
+    },
+    "execution/ring-active.stdout": {
+      "size": 1176,
+      "sha256": "793b47e2ef0df8ee284cf23ce12d517a4da4513c77b5d4dcfed2ed264ad371a5"
+    },
+    "execution/task-graph-FINISH.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "execution/task-graph-FINISH.stderr": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "execution/task-graph-START.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "execution/task-graph-FINISH.stdout": {
+      "size": 77,
+      "sha256": "62088248f3d245c3853d2eaa0e2fdcffe8609be8f608995613c19a76e994466a"
+    },
+    "execution/task-graph-START.stderr": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "execution/task-graph-START.stdout": {
+      "size": 77,
+      "sha256": "62088248f3d245c3853d2eaa0e2fdcffe8609be8f608995613c19a76e994466a"
+    },
+    "guard.json": {
+      "size": 1796,
+      "sha256": "bd250cff5d4fb9c1d007c3b5463434fe21eea11bd9bbf16c57866f1f5b7b580c"
+    },
+    "native-result.json": {
+      "size": 22829,
+      "sha256": "25ada8978c58575552300471844514a83dcddcfad9ed8d47c0c76ba91dba1cae"
+    },
+    "prepare.stderr": {
+      "size": 132,
+      "sha256": "1fe709bf2d9fa16d211709c6824b4a6d0a9691c340c830b9201a232e82498e7d"
+    },
+    "prepare.stdout": {
+      "size": 943,
+      "sha256": "722c49de9e974fbfee2ae729b0cb269722087d57bd93f745cab36fbeabf4612c"
+    },
+    "receipt-START.json": {
+      "size": 166,
+      "sha256": "1c8196c222a01d16ea14001fbe59bec1a8f708526ef24708c807354c94270dd5"
+    },
+    "screens/ring-active-bag-stone.ppm": {
+      "size": 115215,
+      "sha256": "485d108acf7ef9d7c8e26ed819a6475327087f36c13569a0e76bdd8cf7d82387"
+    },
+    "screens/ring-active-battle-reloaded.ppm": {
+      "size": 115215,
+      "sha256": "3d27d5697797b7163efafeeedbad8f6197e1fa7dbbd0e1f4f0185d885dce8e54"
+    },
+    "screens/ring-active-equip-menus-closed.ppm": {
+      "size": 115215,
+      "sha256": "4127a181929cbacb0ce807a91f06bc6d70fcac83226d506cec20e0c79e7c8e13"
+    },
+    "screens/ring-active-equipped-reloaded.ppm": {
+      "size": 115215,
+      "sha256": "4127a181929cbacb0ce807a91f06bc6d70fcac83226d506cec20e0c79e7c8e13"
+    },
+    "screens/ring-active-equipped.ppm": {
+      "size": 115215,
+      "sha256": "27d878a864beaa728a776a57d1cce58dadf367c2cdab4d93f5e78582489121a8"
+    },
+    "screens/ring-active-fixture.ppm": {
+      "size": 115215,
+      "sha256": "0caa3a8e27f53247e692869fd915a6a4ab2b374e44899906f8a3ece16759052c"
+    },
+    "screens/ring-active-give-menu.ppm": {
+      "size": 115215,
+      "sha256": "a0839ba700ded618645b2f3f3ed3f153d56676a589640691bd6f67391b9ade0a"
+    },
+    "screens/ring-active-give-party.ppm": {
+      "size": 115215,
+      "sha256": "ef5461d6789f709747253f5a45bc9977a80cc54d859c7d85edc33c3e3312f3a0"
+    },
+    "screens/ring-active-mega-active.ppm": {
+      "size": 115215,
+      "sha256": "cc590cb082411761042e0f9f8f83fbf1d5db03287e3e7649fc0f188a24649a5b"
+    },
+    "screens/ring-active-mega-selection.ppm": {
+      "size": 115215,
+      "sha256": "d5a1fe5bd0280184d8f6b76f7322f431a899eada8e49c0892fdeff57f4951c4e"
+    },
+    "screens/ring-active-natural-equipped-battle.ppm": {
+      "size": 115215,
+      "sha256": "c5bea3921297137ebd3c4d4157febcc9a0b3406ed1b5e96af9791c16bb98619b"
+    },
+    "screens/ring-active-native-turn.ppm": {
+      "size": 115215,
+      "sha256": "f2b215b72897b350917c96b63c1d4799a8737079a43f3ee20dbfd860d3d5e4db"
+    },
+    "screens/ring-active-npc-dialogue.ppm": {
+      "size": 115215,
+      "sha256": "992c4c3345bd9f982ef2915884839a9836546a71c70e1e18a9a50db1d0a5dcec"
+    },
+    "screens/ring-active-reverted-field.ppm": {
+      "size": 115215,
+      "sha256": "3d27d5697797b7163efafeeedbad8f6197e1fa7dbbd0e1f4f0185d885dce8e54"
+    },
+    "source/.github/workflows/pr16-p08-ring.yml": {
+      "size": 2196,
+      "sha256": "bb8247eee634f2ce910613e739d631e49c8f299e4503e27dac8040e6313c46de"
+    },
+    "source/scripts/pr16_p08_ring_representative.py": {
+      "size": 19613,
+      "sha256": "2127d51a3618b9ffeeff696bc9505205b2b4e206acf83aa41e6f431f65494d4e"
+    },
+    "source/tests/test_pr16_p08_ring_representative.py": {
+      "size": 4383,
+      "sha256": "8ac6c6bf6135d44b1e73911fb761990119afdecc4e5c2bca6265dd2f6a48e8fd"
+    }
+  },
+  "failure_relabelled": false,
+  "new_emulator_processes": 0,
+  "normalization_of_original_bytes": false
+}

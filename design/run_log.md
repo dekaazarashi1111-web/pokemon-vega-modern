@@ -8808,3 +8808,17 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 同branch非force commit/pushとremote読戻し。
 - Network: GitHub完了Actions/固定Ring artifactとhead照合、host mGBA依存のみ。旧ARM/全case buildは実行しない。
 - Next: このP08 Ring runの完了原本を先に読む。native未実行なら同じ記録runのnative/finishへ。失敗なら停止点だけを修正し、受入済みの旧5case/30勝は再実行しない。
+
+
+## 2026-09-20T12:15:38Z — USER-20260920-P08-RING-RECOVERY
+- Timestamp: 2026-09-20T12:15:38Z
+- Task: USER-20260920-P08-RING-RECOVERY
+- Status: DONE
+- Version: pr16-p08-ring-recovery-v1
+- Summary: run35507654812のRing代表native成功1process/3fresh cores・14画面を原本照合しP08_RING_ORDINARYだけ受入。run全体の記録失敗は保持。末尾空行もJSON包絡でbyte保存、回収native0。
+- Files changed: scripts/pr16_p08_ring_recovery.py, tests/test_pr16_p08_ring_recovery.py, .github/workflows/pr16-p08-ring-recovery.yml, content/modernization/pr16_p08_ring_acceptance.json, content/modernization/pr16_p08_ring_representative.json, content/modernization/p08_remaining_work.json, evidence/pr16_p08_ring/35507654812/recovered/original-text.json, evidence/pr16_p08_ring/35507654812/recovered/native-result.json, evidence/pr16_p08_ring/35507654812/recovered/visual-review.json, evidence/pr16_p08_ring/35507654812/recovered/workflow-boundary.json, evidence/pr16_p08_ring/35507654812/recovered/recovery-tests.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, design/run_log.md, design/version_log.md
+- Verify: recovery unit tests PASS; 原本SHA/42member/25source・推移include/14画面/native validator/JSON byte往復/resume/task graph PASS。
+- Boundary: 原run failure不変、今回native0/ARM0/旧受入再実行0。全体guard既存違反はbaseline差分照合し過大なPASSを主張しない。
+- Commit: 同branchの本commit、非force push後remoteを照合。
+- Network: GitHub固定run/job/artifactを照合・取得。
+- Next: 同一46487d98のP08_BP_RETURN_PARTY（通常Factory復帰と元party）を次に実装。残るP03共有保存/読み込み・Circus退出後通常戦闘も影響境界だけ検証。Ring/旧5case/30勝は再実行しない。

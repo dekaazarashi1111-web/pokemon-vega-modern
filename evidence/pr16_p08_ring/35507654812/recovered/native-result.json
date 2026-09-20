@@ -327,8 +327,8 @@
     }
   },
   "native_verified": true,
-  "representative_accepted": true,
-  "visual_review_completed": true,
+  "representative_accepted": false,
+  "visual_review_completed": false,
   "new_emulator_processes": 1,
   "host_compiles": 1,
   "fresh_cores": 3,
@@ -340,7 +340,7 @@
   "release_ready": false,
   "failures": [],
   "recording_run": 35507654812,
-  "phase": "FINISH_RECOVERED",
+  "phase": "START",
   "oracle": {
     "candidate": {
       "size": 33554432,
@@ -806,8 +806,5 @@
       "size": 115215,
       "sha256": "3d27d5697797b7163efafeeedbad8f6197e1fa7dbbd0e1f4f0185d885dce8e54"
     }
-  },
-  "acceptance_path": "content/modernization/pr16_p08_ring_acceptance.json",
-  "recovered_by_run": 35510095146,
-  "original_run_conclusion": "failure"
+  }
 }

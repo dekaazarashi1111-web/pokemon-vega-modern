@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "P08 Ring代表1件の新候補限定検証。開始/実停止を記録し、未観測・失敗を受入済みとしない。",
+    "current_stop": "run35507654812のRing代表native成功1process/3fresh cores・14画面を原本照合しP08_RING_ORDINARYだけ受入。run全体の記録失敗は保持。末尾空行もJSON包絡でbyte保存、回収native0。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "このP08 Ring runの完了原本を先に読む。native未実行なら同じ記録runのnative/finishへ。失敗なら停止点だけを修正し、受入済みの旧5case/30勝は再実行しない。",
+    "next_step": "同一46487d98のP08_BP_RETURN_PARTY（通常Factory復帰と元party）を次に実装。残るP03共有保存/読み込み・Circus退出後通常戦闘も影響境界だけ検証。Ring/旧5case/30勝は再実行しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -832,17 +832,17 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "このP08 Ring runの完了原本を先に読む。native未実行なら同じ記録runのnative/finishへ。失敗なら停止点だけを修正し、受入済みの旧5case/30勝は再実行しない。",
+    "goal_ja": "同一46487d98のP08_BP_RETURN_PARTY（通常Factory復帰と元party）を次に実装。残るP03共有保存/読み込み・Circus退出後通常戦闘も影響境界だけ検証。Ring/旧5case/30勝は再実行しない。",
     "host_write_policy_ja": "新しい実受付のguard開始後は入力/frames/readのみ。施設番号/効果/連勝/party/PC/LRのhost注入は禁止。初期配置fixtureと実入場/正規連勝を区別する。",
-    "id": "P08_RING_REPRESENTATIVE_NATIVE",
+    "id": "P08_BP_REPRESENTATIVE",
     "read_paths": [
-      "content/modernization/pr16_p08_ring_representative.json",
-      "scripts/pr16_p08_ring_representative.py",
+      "content/modernization/pr16_p08_ring_acceptance.json",
       "content/modernization/pr16_p08_candidate_impact.json",
-      "content/modernization/pr16_ring_policy_acceptance.json",
+      "content/modernization/pr16_bp_chooser_checkpoint.json",
+      "content/modernization/pr16_bp_spending_verified.json",
       "content/modernization/p08_remaining_work.json"
     ],
-    "stop_rule_ja": "このP08 Ring runの完了原本を先に読む。native未実行なら同じ記録runのnative/finishへ。失敗なら停止点だけを修正し、受入済みの旧5case/30勝は再実行しない。",
+    "stop_rule_ja": "同一46487d98のP08_BP_RETURN_PARTY（通常Factory復帰と元party）を次に実装。残るP03共有保存/読み込み・Circus退出後通常戦闘も影響境界だけ検証。Ring/旧5case/30勝は再実行しない。",
     "success_observations": [
       "実受付/入場ownerと必要進行条件を確定。データ上のmap名だけでCircusと断定しない",
       "flag直接注入を入場の証拠にせず、受付から対象ルール/特性抑制まで通常入力で確認",
@@ -850,15 +850,17 @@
     ]
   },
   "observed_date_jst": "2026-09-20",
-  "observed_head": "870e65e58fa34289daa6216ae41ed201e54b5e29",
+  "observed_head": "3a08d5dbed832a869161a7e5c842d96eebd58659",
   "observed_head_checks": {
-    "scope_head": "870e65e58fa34289daa6216ae41ed201e54b5e29",
-    "run_id": 35507654812,
-    "verified_prior_run": 35507102023,
-    "prior_conclusion": "success",
-    "reason_ja": "P08全ROM監査は完了success。本runは完了後に別途照合。"
+    "scope_head": "3a08d5dbed832a869161a7e5c842d96eebd58659",
+    "run_id": 35510095146,
+    "verified_prior_run": 35507654812,
+    "prior_conclusion": "failure",
+    "native_step_conclusion": "success",
+    "recording_step_conclusion": "failure",
+    "reason_ja": "前runのnative成功と記録失敗を区別。今回回収jobの完了は次に別照合。"
   },
-  "observed_head_semantics": "P08 RingのSTART記録直前remote。native原本と正式受入は別境界。",
+  "observed_head_semantics": "Ring原本回収の記録直前remote。完了済みnativeの証拠と記録jobの完了は別。",
   "p08_resume_synchronized": true,
   "party_retention_latest_attempt": {
     "accepted_native_cases_replayed": 0,
@@ -925,9 +927,10 @@
   },
   "pending_runs": [
     {
-      "run_id": 35507654812,
-      "tested_head": "870e65e58fa34289daa6216ae41ed201e54b5e29",
-      "status": "in_progress"
+      "run_id": 35510095146,
+      "tested_head": "3a08d5dbed832a869161a7e5c842d96eebd58659",
+      "status": "in_progress",
+      "native_execution": false
     }
   ],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
@@ -1041,7 +1044,7 @@
     "RELEASE_DECISION"
   ],
   "remaining_physical_gap_ids": [],
-  "remaining_sequence_ja": "Circus正式受入完了 → P08 byte/owner影響監査完了 → 共有runtime代表回帰4境界 → 配布準備判断",
+  "remaining_sequence_ja": "P08の残3代表境界（BP元party/共有保存/Circus退出後通常戦闘）→最終候補identity・配布準備判断",
   "retained_fixed_form_accepted_case_count": 5,
   "reward_route_audit": {
     "artifact_id": 10311359991,
@@ -1594,7 +1597,7 @@
     "arm_links": 0,
     "accepted_standalone_replays": 0,
     "prefix_wins_reexecuted": 0,
-    "scope_ja": "保存byte候補の変更影響があるRing代表1件だけ。未影響caseの再実行0。"
+    "scope_ja": "保存済みRing原本の回収・14画面照合のみ。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -9170,8 +9173,8 @@
       "sha256": "2de1aab581307e5593860cac0964023ad000b2bc22a4535ea0d85b25f4efb517"
     },
     "content/modernization/p08_remaining_work.json": {
-      "size": 37771,
-      "sha256": "d1880ec7ee7d0901c2031031bf18cf2d751d7782a694146226f3db34482cfc22"
+      "size": 37848,
+      "sha256": "ea1a1c7c659679050726c05af1efe9d35c1ad33521a4bc6f78da93ae3fe12057"
     },
     "content/modernization/pr16_bp_chooser_checkpoint.json": {
       "size": 9442,
@@ -9218,16 +9221,52 @@
       "sha256": "bb8247eee634f2ce910613e739d631e49c8f299e4503e27dac8040e6313c46de"
     },
     "content/modernization/pr16_p08_ring_representative.json": {
-      "size": 11838,
-      "sha256": "ef4ba3bb7d4d62bf025e48a24da36086f557bb61c6238b102ed3f88c2a77f8ac"
+      "size": 22989,
+      "sha256": "05f6691ac66ebca2175b214792f02625cd16f01df288af511ba59250f990fa7d"
     },
     "evidence/pr16_p08_ring/35507654812/start/result.json": {
       "size": 11838,
       "sha256": "ef4ba3bb7d4d62bf025e48a24da36086f557bb61c6238b102ed3f88c2a77f8ac"
+    },
+    "scripts/pr16_p08_ring_recovery.py": {
+      "size": 18022,
+      "sha256": "91be1867648baf5e1d027567cc0284c8ea7053b7d3f2fee1925e3c8164beee92"
+    },
+    "tests/test_pr16_p08_ring_recovery.py": {
+      "size": 4296,
+      "sha256": "dd8f57618beaa7019c3c3063b3ceafe615a148bb9b9b114a0f8bd5ba32fd0ce4"
+    },
+    ".github/workflows/pr16-p08-ring-recovery.yml": {
+      "size": 1116,
+      "sha256": "95f9b42856a2b7646372d2f0d73e38ed51147e642420acb8ebd2179cdf06989e"
+    },
+    "content/modernization/pr16_p08_ring_acceptance.json": {
+      "size": 3292,
+      "sha256": "ca5b7ed5260273c6cbe18b895f502fe4d33e4c77d6a3fc9c262dc2a81f5e7193"
+    },
+    "evidence/pr16_p08_ring/35507654812/recovered/original-text.json": {
+      "size": 46863,
+      "sha256": "7ab3a5879490e058861b8b698fe25256ee31d0758f2e4d7639a13a159c4e0a54"
+    },
+    "evidence/pr16_p08_ring/35507654812/recovered/native-result.json": {
+      "size": 22829,
+      "sha256": "25ada8978c58575552300471844514a83dcddcfad9ed8d47c0c76ba91dba1cae"
+    },
+    "evidence/pr16_p08_ring/35507654812/recovered/visual-review.json": {
+      "size": 2864,
+      "sha256": "153d8abbb0f3b2f570529a3689e72e27054b22ad7da309ac15f55b8bb49032a0"
+    },
+    "evidence/pr16_p08_ring/35507654812/recovered/workflow-boundary.json": {
+      "size": 6974,
+      "sha256": "8003ae326b5fb434c0a3ebad07046c3830bb0cac378f295e408c068a7af50589"
+    },
+    "evidence/pr16_p08_ring/35507654812/recovered/recovery-tests.json": {
+      "size": 2878,
+      "sha256": "d94f5ecac74b8912b45120da80d478c3978ef66ccfdb0bad6e912ff0787f4ea1"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "P08 Ring代表1件の新候補限定検証。開始/実停止を記録し、未観測・失敗を受入済みとしない。",
+  "source_change_review_ja": "run35507654812のRing代表native成功1process/3fresh cores・14画面を原本照合しP08_RING_ORDINARYだけ受入。run全体の記録失敗は保持。末尾空行もJSON包絡でbyte保存、回収native0。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -9362,13 +9401,20 @@
   },
   "p08_ring_representative": {
     "path": "content/modernization/pr16_p08_ring_representative.json",
-    "phase": "START",
+    "phase": "FINISH_RECOVERED",
     "run_id": 35507654812,
     "candidate": {
       "size": 33554432,
       "sha256": "46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38"
     },
-    "native_verified": false,
-    "representative_accepted": false
+    "native_verified": true,
+    "representative_accepted": true,
+    "acceptance": "content/modernization/pr16_p08_ring_acceptance.json"
+  },
+  "p08_ring_recovery": {
+    "path": "content/modernization/pr16_p08_ring_acceptance.json",
+    "run_id": 35510095146,
+    "original_run": 35507654812,
+    "original_conclusion": "failure"
   }
 }
