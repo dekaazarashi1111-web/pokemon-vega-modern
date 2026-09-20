@@ -4,11 +4,9 @@ on:
     branches: [codex/modernization-followup-20260908]
     paths:
       - .github/workflows/pr16-wiki-followup.yml
-      - scripts/pr16_wiki_followup*.py
-      - tests/test_pr16_wiki_followup*.py
   workflow_dispatch:
 permissions:
-  contents: write
+  contents: read
   actions: read
 defaults:
   run:
@@ -20,136 +18,71 @@ jobs:
   audit:
     if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
     runs-on: ubuntu-24.04
-    timeout-minutes: 15
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
-      - name: 保存Wikiの固定入力確認と限定source bundle（ROM生成・nativeなし）
+      - name: 未監査consumerの固定textだけを取得（生成・native・pushなし）
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
           mkdir -p .local/pr16-wiki-followup
-          gh api repos/${{ github.repository }}/actions/runs/35531601943 --jq '{id,status,conclusion,head_sha}' > .local/pr16-wiki-followup/prior-run.json
           python3 -B - <<'PY'
-          import fnmatch,hashlib,json,os,pathlib,subprocess,sys,zipfile
-          sys.path.insert(0,'scripts')
-          from pr16_candidate_wiki_inputs import Inputs,selected_candidate,stable,digest,need
-          from pr16_candidate_wiki_render import tree_hash
-          root=pathlib.Path('.'); out=root/'.local/pr16-wiki-followup'; inp=Inputs()
-          candidate=selected_candidate(inp)
-          receipt=inp.json('content/modernization/pr16_candidate_wiki_acceptance.json')
-          old=json.loads((out/'prior-run.json').read_bytes())
-          need(old['id']==receipt['verification_run'] and old['head_sha']==receipt['source_head'] and old['status']=='completed' and old['conclusion']=='success','先行Wiki検証run不一致')
-          wiki=receipt['output']; index=inp.json(wiki+'/data/index.json')
-          files={p.relative_to(root/wiki).as_posix():p.read_bytes() for p in (root/wiki).rglob('*') if p.is_file() and not p.is_symlink()}
-          need(set(files)==set(index['files'])|{'data/index.json'},'保存Wikiファイル集合不一致')
-          for name,meta in index['files'].items():
-              need(meta=={'size':len(files[name]),'sha256':digest(files[name])},'保存Wikiのhash不一致: '+name)
-          need(tree_hash(files)==receipt['tree_sha256'],'保存snapshot tree不一致')
-          need(candidate==receipt['candidate'],'候補identity不一致')
-          # 既存tracked textだけを検証環境へ渡す。ROM/save/ZIP/私有入力/鍵は含めない。
+          import base64,fnmatch,hashlib,json,os,pathlib,subprocess,zipfile
+          root=pathlib.Path('.');out=root/'.local/pr16-wiki-followup'
+          def api(path):return json.loads(subprocess.check_output(['gh','api',path]))
+          lock=json.loads((root/'state/source-lock.json').read_bytes())
+          src=next(s for s in lock['sources'] if s['name']=='cfru')
+          repo='kapibarasan000/CFRU-JP';commit=src['resolved_commit']
+          assert src['repository']=='https://github.com/'+repo+'.git' and commit=='e24a16fe39e27ae162faf5b78596d1f3df18489d'
+          tree=api('repos/'+repo+'/git/trees/'+commit+'?recursive=1');assert not tree.get('truncated')
+          patterns=['src/set_z_effect.c','src/pokemon*.c','src/wild*.c','src/daycare*.c','src/item*.c','src/dexnav*.c',
+            'src/catching*.c','src/raid*.c','src/mega.c','src/battle_start_turn_start.c','src/battle_util.c',
+            'include/new/z_move_effects.h','include/new/set_z_effect.h','include/constants/moves.h',
+            'include/constants/pokemon.h','include/constants/items.h','include/constants/abilities.h',
+            'include/constants/battle_move_effects.h','assembly/data/battle_scripts.s','assembly/data/battle_scripts_tables.s',
+            'assembly/data/battle_effects.s','src/Tables/battle_moves.c','src/Tables/ability_tables.c',
+            'src/defines.h','src/defines_battle.h','include/new/pokemon.h','include/new/dexnav.h']
+          paths=sorted(r['path'] for r in tree['tree'] if r['type']=='blob' and any(fnmatch.fnmatchcase(r['path'],p) for p in patterns))
+          assert 'src/set_z_effect.c' in paths and len(paths)<80
+          payload={};bindings={};total=0
+          existing=json.loads((root/'content/modernization/pr16_candidate_wiki_source_model.json').read_bytes())['source_bindings']
+          for name in paths:
+              obj=api('repos/'+repo+'/contents/'+name+'?ref='+commit)
+              assert obj['encoding']=='base64' and obj['size']<=1024*1024
+              raw=base64.b64decode(obj['content'],validate=False);raw.decode('utf-8-sig');assert b'\0' not in raw and len(raw)==obj['size']
+              sha=hashlib.sha256(raw).hexdigest()
+              if name in existing:assert existing[name]['sha256']==sha and existing[name]['size']==len(raw)
+              key='upstream/CFRU-JP/'+name;payload[key]=raw
+              bindings[key]={'repository':repo,'commit':commit,'path':name,'size':len(raw),'sha256':sha,'git_blob':obj['sha']}
+              total+=len(raw);assert total<=16*1024*1024
           tracked=subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
-          exact={'AGENTS.md','CHATGPT_RESUME.md','Makefile','state/source-lock.json','scripts/pr16_resume.py',
-            'scripts/guard_private_files.py','scripts/validate_task_graph.py','docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md',
-            'docs/wiki/README.md','content/modernization/pr16_native_supply_resume_20260913.json',
-            'content/modernization/pr16_candidate_wiki_acceptance.json','content/modernization/pr16_p08_candidate_transfer.json',
-            'content/modernization/pr16_p08_candidate_impact.json','content/modernization/p08_remaining_work.json',
-            'content/modernization/pr16_bp_chooser_checkpoint.json','.github/workflows/pr16-candidate-wiki.yml',
-            '.github/workflows/pr16-wiki-followup.yml'}
-          patterns=['scripts/pr16_candidate_wiki*.py','tests/test_pr16_candidate_wiki*.py',
-            'scripts/*battle_core*.py','scripts/*collection_supply*.py','scripts/*breeding*.py','scripts/*hidden_ability*.py',
-            'scripts/*wild*.py','scripts/*learnset*.py','scripts/*move_memory*.py','scripts/*ability*.py',
-            'scripts/*p05*.py','scripts/*stage7*.py','tools/*battle_core*.py','tools/*hidden_ability*.py',
-            'content/collection_supply_v1/*.json','content/modernization/pr16_candidate_wiki*.json',
-            'content/modernization/p04_*.json','content/modernization/p05_*.json',
-            'content/modernization/p08_native_mega_acceptance.json','content/modernization/pr16_completion_acceptance.json',
-            'content/modernization/pr16_generic_form_acceptance.json','content/modernization/pr16_fixed_form_acceptance.json',
-            'content/modernization/pr16_p05_route_acceptance.json','content/modernization/mega_shop_catalog.json',
-            'vendor/vega_acquisition/content/*.csv','manifests/*.csv','config/*supply*.json','config/*breeding*.json',
-            'config/*hidden*.json','config/modernization*.json','config/active_play_baseline.json',
-            'docs/wiki/stage61/*.md','docs/wiki/stage61/data/*.json','docs/wiki/stage61/data/*.jsonl',wiki+'/*.md',wiki+'/data/*.json',wiki+'/data/*.jsonl']
-          selected=sorted(n for n in tracked if n and (n in exact or any(fnmatch.fnmatchcase(n,p) for p in patterns)))
-          manifest={}; total=0
-          with zipfile.ZipFile(out/'audit-inputs.zip','w',compression=zipfile.ZIP_DEFLATED,compresslevel=6) as archive:
-              for name in selected:
-                  path=inp.path(name); need(path.is_file() and path.suffix in ('.py','.md','.json','.jsonl','.csv','.yml',''),'非text source')
-                  raw=path.read_bytes(); raw.decode('utf-8-sig'); need(b'\0' not in raw,'NUL source')
-                  need(not any(p in path.parts for p in ('userfile','inputs','.git','credentials')),'禁止入力')
-                  snapshot_name=name[len(wiki)+1:] if name.startswith(wiki+'/') else None
-                  limit=len(files[snapshot_name]) if snapshot_name in files else 16*1024*1024
-                  need(len(raw)<=limit,'source単体上限: '+name); total+=len(raw);need(total<=256*1024*1024,'source全体上限')
-                  manifest[name]={'size':len(raw),'sha256':digest(raw)}
-                  entry=zipfile.ZipInfo(name,(2026,9,21,0,0,0));entry.compress_type=zipfile.ZIP_DEFLATED;archive.writestr(entry,raw)
-              metadata={'source_head':os.environ['GITHUB_SHA'],'candidate':candidate,'files':manifest}
-              archive.writestr('audit-input-manifest.json',stable(metadata))
-              # 名前だけの索引は未読sourceの内容・実装証拠ではない。
-              names=[n for n in tracked if n.endswith(('.py','.c','.h','.json','.csv')) and any(k in n.lower() for k in ('wild','ability','z_move','zmove','breed','supply','pokemon','battle_core'))]
-              archive.writestr('audit-source-paths.json',stable(names))
-          report={'status':'PASS_SAVED_SNAPSHOT_INPUTS','candidate':candidate,'source_head':os.environ['GITHUB_SHA'],
-            'verification_run':int(os.environ['GITHUB_RUN_ID']),'prior_verification':old,'snapshot_tree_sha256':receipt['tree_sha256'],
-            'snapshot_files':len(files),'source_files':len(manifest),'source_bytes':total,
-            'input_failures':[{'run':35533773387,'reason':'受入済みlearnsets JSONLが汎用16MiB制限を超えた。既知Wikiは受入済みサイズ/hashで拘束し、その他sourceの上限は維持。','new_native_runs':0}],
-            'new_native_runs':0,'arm_builds':0,'rom_changes':0,'snapshot_rebuilds':0,'issue18_complete':False}
-          (out/'input-check.json').write_bytes(stable(report));print(json.dumps(report,sort_keys=True))
+          local_patterns=['overlays/collection_supply_v1/*.c','overlays/collection_supply_v1/*.h',
+            'overlays/modernization_p03_stage74_supply_runtime/*','overlays/wild_overlay/*',
+            'overlays/modernization_p05_ability_rom_runtime/*','overlays/stage60_wild_species_root_repair/*.c',
+            'overlays/stage59_wild_identity_npc_regression_repair/*.c','config/stage61_wild_overlay_rate_policy.json',
+            'scripts/build_stage61_wild_overlay_rate_policy.py','scripts/build_modernization_floette_gift.py',
+            'scripts/pr16_resume.py','content/modernization/pr16_candidate_wiki_followup.json',
+            'content/modernization/pr16_candidate_wiki_acceptance.json','content/modernization/pr16_native_supply_resume_20260913.json',
+            'docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md','.github/workflows/pr16-wiki-followup.yml']
+          for name in sorted(n for n in tracked if n and any(fnmatch.fnmatchcase(n,p) for p in local_patterns)):
+              p=root/name;assert not p.is_symlink() and p.suffix in ('.c','.h','.py','.json','.md','.yml')
+              raw=p.read_bytes();raw.decode('utf-8');assert b'\0' not in raw and len(raw)<=1024*1024
+              key='local/'+name;payload[key]=raw;bindings[key]={'path':name,'commit':os.environ['GITHUB_SHA'],'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+          issue=api('repos/'+os.environ['GITHUB_REPOSITORY']+'/issues/18')
+          payload['issue18.md']=issue['body'].encode()
+          manifest={'source_head':os.environ['GITHUB_SHA'],'run_id':int(os.environ['GITHUB_RUN_ID']),
+             'source_bindings':bindings,'upstream_tree_paths':[r['path'] for r in tree['tree'] if r['type']=='blob'],
+             'snapshot_rebuilds':0,'new_native_runs':0,'arm_builds':0,'rom_changes':0}
+          payload['consumer-source-manifest.json']=(json.dumps(manifest,ensure_ascii=False,sort_keys=True,indent=2)+'\n').encode()
+          with zipfile.ZipFile(out/'consumer-sources.zip','w',compression=zipfile.ZIP_DEFLATED) as z:
+              for name,raw in sorted(payload.items()):z.writestr(name,raw)
+          print(json.dumps({'status':'PASS_PINNED_CONSUMER_SOURCE_INPUTS','upstream_files':len(paths),'local_files':len(bindings)-len(paths),'source_head':os.environ['GITHUB_SHA'],'new_native_runs':0,'snapshot_rebuilds':0},sort_keys=True))
           PY
           git diff --exit-code
-      - name: 完了Actionsの照合を固定引継ぎと両ログへ記録
-        run: |
-          set -euo pipefail
-          python3 -B - <<'PY'
-          import datetime,json,pathlib,sys
-          sys.path.insert(0,'scripts')
-          from pr16_candidate_wiki_inputs import STATE,stable
-          from pr16_resume import DOC,render
-          root=pathlib.Path('.'); report=json.loads((root/'.local/pr16-wiki-followup/input-check.json').read_bytes())
-          receipt_path=root/'content/modernization/pr16_candidate_wiki_acceptance.json'
-          receipt=json.loads(receipt_path.read_bytes())
-          receipt['verification_run_status_at_recording']='completed/success: run35531601943のpush・artifact uploadまで照合済み'
-          receipt['verification_run_reconciled']=report['prior_verification']
-          receipt_path.write_bytes(stable(receipt))
-          target='content/modernization/pr16_candidate_wiki_followup.json';(root/target).write_bytes(stable(report))
-          state=json.loads((root/STATE).read_bytes())
-          state['candidate_wiki']['followup']=target
-          state['candidate_wiki']['verification_run_status']='completed/success'
-          state['next_action']['stop_rule_ja']='Wiki snapshot run35531601943はpush/uploadまでsuccess照合済み。保存snapshotを再生成せず未監査moveset/汎用Z/夢特性供給/handlerを継続。Issue18・releaseの未完を維持。'
-          state['logs_synchronized']=True
-          (root/STATE).write_text(json.dumps(state,ensure_ascii=False,indent=2)+'\n');(root/DOC).write_text(render(state))
-          now=datetime.datetime.now(datetime.timezone.utc).isoformat(timespec='seconds')
-          for path in ['design/run_log.md','design/version_log.md']:
-              with (root/path).open('a',encoding='utf-8') as f:
-                  f.write(f'\n\n## {now} — USER-20260921-P08-CANDIDATE-WIKI / followup入力checkpoint\n- Task: USER-20260921-P08-CANDIDATE-WIKI / 未監査Wikiの継続\n- Status: STOPPED（入力checkpoint。Issue18は継続）\n- Summary: 先行run35531601943のsuccess・push/uploadを照合。保存4126ファイルのbyte/hashを確認し、未監査source用のtracked textだけを確保。新規snapshot生成0、native0、ARM0、ROM変更0。\n- Files changed: followup workflow、Wiki receipt、固定引継ぎMD/JSON、followup JSON、両ログ。\n- Verify: 保存Wikiファイル集合/hash/tree、候補正本照合、UTF-8/NUL/path/size検査、resume check、task graph、diff check、changed-index guard。\n- Commit: 本記録を含むcommit。検証入力HEAD={report["source_head"]}。\n- Network: GitHub connector/Actions。run={report["verification_run"]}。source-validation run35531661125はaction_requiredであり成功へ読み替えない。\n- Boundary: Stage61/active baseline不変、merge/releaseなし。元snapshotと受入nativeは再実行しない。CLI拒否の別経路迂回は行わない。\n')
-          PY
-          python3 -B scripts/pr16_resume.py check
-          python3 -B scripts/validate_task_graph.py
-          git diff --check
-          git add -- content/modernization/pr16_candidate_wiki_acceptance.json content/modernization/pr16_candidate_wiki_followup.json content/modernization/pr16_native_supply_resume_20260913.json docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md design/run_log.md design/version_log.md
-          python3 -B - <<'PY'
-          import collections,pathlib,subprocess,sys
-          sys.path.insert(0,'scripts')
-          from guard_private_files import BLOCKED_PARTS,BLOCKED_SUFFIXES,index_blob,document_user_path_lines
-          root=pathlib.Path('.')
-          allowed={'content/modernization/pr16_candidate_wiki_acceptance.json','content/modernization/pr16_candidate_wiki_followup.json',
-            'content/modernization/pr16_native_supply_resume_20260913.json','docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md','design/run_log.md','design/version_log.md'}
-          for n in filter(None,subprocess.check_output(['git','diff','--cached','--name-only','-z']).decode().split('\0')):
-              p=root/n;assert n in allowed and not p.is_symlink() and p.suffix not in BLOCKED_SUFFIXES and not any(x in n for x in BLOCKED_PARTS)
-              raw=index_blob(root,n);raw.decode('utf-8');assert b'\0' not in raw
-              old=subprocess.run(['git','show','HEAD:'+n],capture_output=True).stdout
-              def hits(b):
-                  lines=b.decode().splitlines();return collections.Counter(lines[i-1] for i in document_user_path_lines(b))
-              assert not hits(raw)-hits(old),n
-          print('PASS_CHANGED_FINAL_INDEX_ONLY')
-          PY
-          git diff --cached --check
-          test "$(git ls-remote origin refs/heads/codex/modernization-followup-20260908 | cut -f1)" = "$GITHUB_SHA"
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'USER-20260921-P08-CANDIDATE-WIKI: 保存snapshotと先行Actions完了を照合し未監査入力を固定'
-          git push origin HEAD:refs/heads/codex/modernization-followup-20260908
-          git rev-parse HEAD > .local/pr16-wiki-followup/reflected-head.txt
       - uses: actions/upload-artifact@v4
-        if: always()
         with:
-          name: pr16-wiki-followup-inputs
-          path: .local/pr16-wiki-followup/
+          name: pr16-wiki-consumer-sources
+          path: .local/pr16-wiki-followup/consumer-sources.zip
           retention-days: 3
           if-no-files-found: error
