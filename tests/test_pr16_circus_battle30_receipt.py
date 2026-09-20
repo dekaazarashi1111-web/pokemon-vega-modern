@@ -162,5 +162,3 @@ class CompactTraceTests(unittest.TestCase):
         self.assertEqual(len(value['rows']),1)
 
 if __name__=='__main__':unittest.main()
-
-
