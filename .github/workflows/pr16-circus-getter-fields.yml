@@ -2,71 +2,61 @@ name: PR16 Circus getter field contract
 on:
   push:
     branches: [codex/modernization-followup-20260908]
-    paths: [.github/workflows/pr16-circus-getter-fields.yml]
+    paths:
+      - .github/workflows/pr16-circus-getter-fields.yml
+      - scripts/pr16_circus_getter_fields.py
+      - tests/test_pr16_circus_getter_fields.py
+      - tests/fixtures/pr16_circus_getter_fields.json
 permissions:
-  contents: read
+  contents: write
+  actions: read
+  pull-requests: read
 concurrency:
   group: pr16-circus-suppression
   cancel-in-progress: false
 jobs:
-  inspect:
+  getter:
     if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 45
+    env:
+      GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.sha }}
           fetch-depth: 0
-      - name: 必要なtracked textだけを先に採取
+      - name: getter-zero原本・新field20契約・source mirrorを開始checkpointへ非force記録
+        id: prepare
         run: |
-          python3 - <<'PY'
-          import hashlib,json,subprocess
-          from pathlib import Path
-          out=Path('.local/pr16-circus-getter-fields/artifact');out.mkdir(parents=True)
-          names=['AGENTS.md','scripts/pr16_circus_getter_abi.py','scripts/pr16_circus_getter_followup.py','scripts/pr16_circus_suppression.py','scripts/pr16_circus_suppression_contracts.py','scripts/pr16_resume.py','scripts/build_battle_core.py','tools/mgba_pr16_circus_getter_trace.h','tools/mgba_pr16_circus_suppression.h','tests/test_pr16_circus_getter_abi.py','overlays/circus_streak/circus_streak_runtime.c','overlays/circus_streak/circus_streak_runtime.h','overlays/cfru/rom_bridge.c','overlays/cfru/rom_bridge.h','content/modernization/pr16_circus_getter_followup.json','content/modernization/pr16_native_supply_resume_20260913.json','content/modernization/p08_remaining_work.json','content/modernization/pr16_bp_chooser_checkpoint.json','content/modernization/pr16_circus_battle30_receipt.json','.github/workflows/pr16-circus-getter.yml']
-          tracked=subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
-          names+= [n for n in tracked if n.endswith('/AGENTS.md')]
-          manifest={}
-          for name in names:
-              path=Path(name)
-              if not path.is_file():continue
-              assert name in tracked and not path.is_symlink()
-              raw=path.read_bytes();raw.decode('utf-8')
-              target=out/'source'/name;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(raw)
-              manifest[name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
-          (out/'source-manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
-          PY
-      - name: 固定保存byteのみ再構成（ネット・子process・旧builder禁止を維持）
+          mkdir -p .local/pr16-circus-getter
+          python3 scripts/pr16_circus_getter_fields.py prepare > .local/pr16-circus-getter/prepare.stdout 2> .local/pr16-circus-getter/prepare.stderr
+      - name: 検証済み真正Save30のexact cacheのみ復元（bootstrap禁止）
+        uses: actions/cache/restore@v4
+        with:
+          path: .local/pr16-circus-suppression/resume/
+          key: pr16-circus-save30-2b107e7ef897844eff810ff0b40f82543640488696e8295194ceb3b66fb2c183-35494023398
+          fail-on-cache-miss: true
+      - name: host mGBA依存のみ導入（ARM compiler不要）
         run: |
-          python3 - <<'PY'
-          import hashlib,json,os,sys
-          from pathlib import Path
-          sys.path.insert(0,'scripts')
-          import pr16_saved_reconstruction as r
-          import pr16_circus_getter_abi as g
-          def offline(event,args):
-              if event.startswith('socket.') or event in ('urllib.Request','http.client.connect'):
-                  raise RuntimeError('offline reconstruction required')
-          sys.addaudithook(offline)
-          root=Path('.local/pr16-circus-getter-fields');out=root/'artifact'
-          runtime=root/'runtime';r.reconstruct(runtime.resolve())
-          rom=(runtime/'candidate.gba').read_bytes();assert g.identity(rom)==g.PARENT
-          report=json.loads(Path('content/modernization/pr16_circus_getter_followup.json').read_text())
-          assert report['recording_run']==35500143124 and report['getter_calls'][0]['result']==0
-          spans={}
-          for label,address,size in [('getter',report['build']['old_veneer']['target']&~1,512),('state_get',0x091269B8,256)]:
-              raw=rom[address-g.BASE:address-g.BASE+size]
-              spans[label]={'address':address,'size':size,'sha256':hashlib.sha256(raw).hexdigest(),'hex':raw.hex()}
-          (out/'rom-contract.json').write_text(json.dumps({'source_head':os.environ['GITHUB_SHA'],'parent':g.PARENT,'spans':spans,'native_processes':0,'arm_compiles':0,'arm_links':0,'prefix_replays':0},indent=2)+'\n')
-          print('RESULT=DONE TASK=USER-20260920-CIRCUS-GETTER-FIELDS-INSPECT VERIFY=PASS native=0 ARM=0 prefix=0')
-          PY
-          test -z "$(git status --porcelain --untracked-files=no)"
+          sudo apt-get update > .local/pr16-circus-getter/apt-update.log 2>&1
+          sudo apt-get install -y libmgba-dev > .local/pr16-circus-getter/apt-install.log 2>&1
+      - name: ５field literal修復・自然getter30・正規抑制・通常Save継続
+        run: python3 scripts/pr16_circus_getter_fields.py native
+      - name: 成功と未達を分離し原本・引継ぎ・両ログを非force記録
+        if: always() && steps.prepare.outcome == 'success'
+        run: python3 scripts/pr16_circus_getter_fields.py finish
+      - name: ROM・save・cacheを除外して原本を保存
+        if: always()
+        run: python3 scripts/pr16_circus_getter_fields.py pack
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: pr16-circus-getter-fields
-          path: .local/pr16-circus-getter-fields/artifact/
+          name: pr16-circus-getter
+          path: .local/pr16-circus-getter/artifact/
           include-hidden-files: true
-          retention-days: 7
           if-no-files-found: error
+          retention-days: 30
+      - name: 未達をActions成功へ読み替えない
+        if: always() && steps.prepare.outcome == 'success'
+        run: python3 scripts/pr16_circus_getter_fields.py result
