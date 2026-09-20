@@ -8688,3 +8688,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: この記録を含む同branch非force commit。自己SHAはremote/receipt。
 - Network: GitHub固定Actions原本。固定CFRU e24a16feのsrc/frontier.c（GetCurrentBattleTowerStreak/LoadBattleCircusEffects）とsource-lockを照合。検索語sp072_LoadBattleCircusEffects。host mGBA依存のみ導入。ROM/save/private入力はGit/artifactへ追加しない。
 - Next: pr16_circus_getter_followup.jsonの最初の未達のみ修復する。真正Save30は固定cacheを使用し、30戦prefix/旧builder/ARM再compileを禁止。
+
+
+## 2026-09-20T08:39:37Z — USER-20260920-CIRCUS-GETTER-REACH-START
+- Timestamp: 2026-09-20T08:39:37Z
+- Task: USER-20260920-CIRCUS-GETTER-REACH
+- Status: STOPPED（正式Circus受入/P08は未完）
+- Version: pr16-circus-getter-abi-v1
+- Summary: 旧64抽選は全件単一global effectで打切り。getter中継が第４引数r3を破壊する不具合を５引数保持veneerで修復し、20契約を検証。真正Save30 cacheからだけ継続する。
+- Files changed: scripts/pr16_circus_getter_abi.py, scripts/pr16_circus_getter_followup.py, tools/mgba_pr16_circus_getter_trace.h, tests/test_pr16_circus_getter_abi.py, .github/workflows/pr16-circus-getter.yml, content/modernization/pr16_circus_getter_followup.json, evidence/pr16_circus_getter/35500143124/start.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, evidence/pr16_circus_getter/35500143124/execution/abi-contracts.process.json, evidence/pr16_circus_getter/35500143124/execution/abi-contracts.stderr, evidence/pr16_circus_getter/35500143124/execution/abi-contracts.stdout, design/run_log.md, design/version_log.md
+- Verify: 新規ABI20契約、固定resume、task graph、index差分private guard、diff check。実native/ROM/trace結果はreport原本に分離。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote/receipt。
+- Network: GitHub固定Actions原本。固定CFRU e24a16feのsrc/frontier.c（GetCurrentBattleTowerStreak/LoadBattleCircusEffects）とsource-lockを照合。検索語sp072_LoadBattleCircusEffects。host mGBA依存のみ導入。ROM/save/private入力はGit/artifactへ追加しない。
+- Next: 進行中のgetter followup runを確認。cache欠落時も30勝bootstrapへfallbackせず、最初の未達だけ修復する。

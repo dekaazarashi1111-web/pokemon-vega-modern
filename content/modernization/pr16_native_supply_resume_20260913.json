@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "getter限定修復の実証と停止原本を記録。受入済み30勝/BPは不変。未観測を成功へ昇格しない。[{'stage': 'getter-native-or-build', 'type': 'ValueError', 'error': 'BL range'}]",
+    "current_stop": "旧64抽選は全件単一global effectで打切り。getter中継が第４引数r3を破壊する不具合を５引数保持veneerで修復し、20契約を検証。真正Save30 cacheからだけ継続する。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "pr16_circus_getter_followup.jsonの最初の未達のみ修復する。真正Save30は固定cacheを使用し、30戦prefix/旧builder/ARM再compileを禁止。",
+    "next_step": "進行中のgetter followup runを確認。cache欠落時も30勝bootstrapへfallbackせず、最初の未達だけ修復する。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -828,7 +828,7 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "pr16_circus_getter_followup.jsonの最初の未達のみ修復する。真正Save30は固定cacheを使用し、30戦prefix/旧builder/ARM再compileを禁止。",
+    "goal_ja": "進行中のgetter followup runを確認。cache欠落時も30勝bootstrapへfallbackせず、最初の未達だけ修復する。",
     "host_write_policy_ja": "新しい実受付のguard開始後は入力/frames/readのみ。施設番号/効果/連勝/party/PC/LRのhost注入は禁止。初期配置fixtureと実入場/正規連勝を区別する。",
     "id": "CIRCUS_GETTER_ABI_NATIVE",
     "read_paths": [
@@ -850,9 +850,9 @@
     ]
   },
   "observed_date_jst": "2026-09-20",
-  "observed_head": "5c112d62e1be8f884f9bb7402d7d605fdfa20cec",
+  "observed_head": "5b600c1362bb3db1d4af4a532395b3589b8c6b38",
   "observed_head_checks": {
-    "scope_head": "5c112d62e1be8f884f9bb7402d7d605fdfa20cec",
+    "scope_head": "5b600c1362bb3db1d4af4a532395b3589b8c6b38",
     "runs": [
       {
         "id": 35494023398,
@@ -930,8 +930,8 @@
   },
   "pending_runs": [
     {
-      "run_id": 35499729510,
-      "tested_head": "c82c455ac67225dfcc4fb798d03f783a70d93903",
+      "run_id": 35500143124,
+      "tested_head": "5b600c1362bb3db1d4af4a532395b3589b8c6b38",
       "status": "in_progress",
       "scope": "circus-getter-abi"
     }
@@ -1602,7 +1602,7 @@
     "arm_links": 0,
     "accepted_standalone_replays": 0,
     "prefix_wins_reexecuted": 0,
-    "scope_ja": "真正Save30 cache限定。旧受入native/旧ARM再compile0。限定Thumb中継とBLのみ新候補へ適用。"
+    "scope_ja": "真正Save30 cache限定。旧受入native/旧ARM再compile0。既存８byte中継と新規ARM tail12byteのみ新候補へ適用。BL本体は不変。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -8554,28 +8554,28 @@
       "sha256": "62088248f3d245c3853d2eaa0e2fdcffe8609be8f608995613c19a76e994466a"
     },
     "scripts/pr16_circus_getter_abi.py": {
-      "size": 6259,
-      "sha256": "15e00b8363382371d10c108df02f440965e734fdd90ba74f92e298da7f1f0de6"
+      "size": 8128,
+      "sha256": "5268f5e18f8a33fb9573843a39bf8a7babf328af0dd86b0d7b76ae7dc6cdfc7e"
     },
     "scripts/pr16_circus_getter_followup.py": {
-      "size": 22168,
-      "sha256": "646f1dc7b657b80331e65d3855c484e25bf585c6854404a39da26ca50b19048a"
+      "size": 23650,
+      "sha256": "475c788aac9dde4b02e9127e7dc182ee857d8ed501f7b0578120fb464aa174d7"
     },
     "tools/mgba_pr16_circus_getter_trace.h": {
-      "size": 2670,
-      "sha256": "c4dd8ee7d0f5952aa5371469e0f84ca6d4b67f3242face0457c3ae5111956f70"
+      "size": 2695,
+      "sha256": "2fc5b8dabd8c530a40da1d8ba29915aa9eb965c30d0f2f45046b847cfe471de8"
     },
     "tests/test_pr16_circus_getter_abi.py": {
-      "size": 3844,
-      "sha256": "d18adc05564f55af18b78314dcce043f28fcbf7210656a51b942c2e343c7299e"
+      "size": 5265,
+      "sha256": "b98fd6abd8872758340cc5721a6808e68546fefcb683be921d2bbf7fadc423bb"
     },
     ".github/workflows/pr16-circus-getter.yml": {
       "size": 2659,
       "sha256": "9d93c31e2a14dd3ac312dd8c4ac38f2d7b2c1cbc12f2a2d4d292bf2c7e4b40e8"
     },
     "content/modernization/pr16_circus_getter_followup.json": {
-      "size": 25545,
-      "sha256": "80374916f35a56af1f490e51c8350f621ef2b7b42b212aa50def62ca6bd62567"
+      "size": 15071,
+      "sha256": "e487c0e3135564c4244658f64e9903ae085972062a340b7a6c750b38171780dc"
     },
     "evidence/pr16_circus_getter/35499729510/start.json": {
       "size": 14637,
@@ -8632,10 +8632,26 @@
     "evidence/pr16_circus_getter/35499729510/execution/task-graph-START.stdout": {
       "size": 77,
       "sha256": "62088248f3d245c3853d2eaa0e2fdcffe8609be8f608995613c19a76e994466a"
+    },
+    "evidence/pr16_circus_getter/35500143124/start.json": {
+      "size": 15071,
+      "sha256": "e487c0e3135564c4244658f64e9903ae085972062a340b7a6c750b38171780dc"
+    },
+    "evidence/pr16_circus_getter/35500143124/execution/abi-contracts.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "evidence/pr16_circus_getter/35500143124/execution/abi-contracts.stderr": {
+      "size": 2613,
+      "sha256": "b693251ddd266b9bd6daa9c2cf7b501ac51abd2606d6d632d023fd1225eb2471"
+    },
+    "evidence/pr16_circus_getter/35500143124/execution/abi-contracts.stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "getter限定修復の実証と停止原本を記録。受入済み30勝/BPは不変。未観測を成功へ昇格しない。[{'stage': 'getter-native-or-build', 'type': 'ValueError', 'error': 'BL range'}]",
+  "source_change_review_ja": "旧64抽選は全件単一global effectで打切り。getter中継が第４引数r3を破壊する不具合を５引数保持veneerで修復し、20契約を検証。真正Save30 cacheからだけ継続する。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -8728,8 +8744,8 @@
   },
   "circus_getter_followup": {
     "path": "content/modernization/pr16_circus_getter_followup.json",
-    "run_id": 35499729510,
-    "classification": "CIRCUS_GETTER_ABI_DIAGNOSTIC_OPEN",
+    "run_id": 35500143124,
+    "classification": "CIRCUS_GETTER_INTERWORKING_IMPLEMENTED_NATIVE_OPEN",
     "candidate": {
       "size": 33554432,
       "sha256": "2b107e7ef897844eff810ff0b40f82543640488696e8295194ceb3b66fb2c183"
