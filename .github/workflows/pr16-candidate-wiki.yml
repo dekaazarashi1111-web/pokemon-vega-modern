@@ -11,7 +11,6 @@ on:
 permissions:
   contents: read
   actions: read
-  issues: read
 concurrency:
   group: pr16-candidate-wiki
   cancel-in-progress: false
@@ -24,39 +23,47 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
-      - name: ID・供給CSV・runtime metadataだけを補足（旧取得source/native再実行なし）
+      - name: Wiki限定unit tests（native/ROM変更なし）
+        run: python3 -B -m unittest discover -s tests -p test_pr16_candidate_wiki.py -v
+      - name: 固定sourceの読取と必要metadataだけ保持
         run: |
-          mkdir -p /tmp/pr16-wiki-context
-          python3 - <<'PY'
-          import hashlib, json, pathlib, subprocess, zipfile
-          allowed = {'manifests', 'overlays', 'vendor', 'generated'}
-          suffixes = {'.py', '.json', '.jsonl', '.md', '.yml', '.yaml', '.h', '.c', '.s', '.S', '.sh', '.toml', '.txt', '.tbl', '.csv', '.inc', '.ld'}
-          paths = subprocess.check_output(['git', 'ls-files', '-z']).decode().split('\0')
-          manifest = {}
-          pathlib.Path('/tmp/pr16-wiki-context/workspace.json').write_text(json.dumps({'root': sorted(p.name for p in pathlib.Path('.').iterdir()), 'anchor_present': pathlib.Path('build/stages/80_modernization_runtime_boundary_repair.gba').is_file(), 'generated_files': sorted(str(p) for p in pathlib.Path('generated').rglob('*') if p.is_file()), 'report_files': sorted(str(p) for p in pathlib.Path('reports/generated').glob('*.json') if p.is_file())}, indent=2))
-          with zipfile.ZipFile('/tmp/pr16-wiki-context/tracked-text.zip', 'w', zipfile.ZIP_DEFLATED) as archive:
+          mkdir -p .local/pr16-wiki
+          python3 -B - <<'PY'
+          import hashlib,json,pathlib,subprocess,urllib.request,zipfile
+          root=pathlib.Path('.')
+          source=next(s for s in json.loads((root/'state/source-lock.json').read_text())['sources'] if s['name']=='cfru')
+          commit=source['resolved_commit']
+          assert commit==source['actual_commit']==source['configured_commit']
+          paths=subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
+          out=root/'.local/pr16-wiki'
+          inventory=[p for p in paths if p and ((p.startswith('build/') and p.endswith(('.json','.ini'))) or ('p07' in p.lower() and p.endswith(('.json','.zip'))) or 'v4' in p.lower())]
+          (out/'input-inventory.json').write_text(json.dumps(inventory,indent=2)+'\n')
+          bindings={}
+          with zipfile.ZipFile(out/'metadata.zip','w',zipfile.ZIP_DEFLATED) as z:
               for name in paths:
-                  p = pathlib.Path(name)
-                  if not name or not p.is_file() or p.is_symlink():
-                      continue
-                  selected = (p.parts[0] in allowed and p.suffix in suffixes) or (p.parts[0] in {'content','config'} and p.suffix == '.csv') or name.endswith('AGENTS.md')
-                  if not selected:
-                      continue
-                  data = p.read_bytes()
-                  try:
-                      data.decode('utf-8')
-                  except UnicodeDecodeError:
-                      continue
-                  if b'\0' in data:
-                      continue
-                  archive.writestr(name, data)
-                  manifest[name] = {'size': len(data), 'sha256': hashlib.sha256(data).hexdigest()}
-          pathlib.Path('/tmp/pr16-wiki-context/manifest.json').write_text(json.dumps({'head': subprocess.check_output(['git','rev-parse','HEAD']).decode().strip(), 'files': manifest}, sort_keys=True, indent=2)+'\n')
-          print('supplemental tracked text files:', len(manifest))
+                  p=root/name
+                  if not name or not p.is_file() or p.is_symlink():continue
+                  selected=(name.startswith('build/stages/70_') or name.startswith('build/stages/75_')) and name.endswith('.json')
+                  selected=selected or (name.endswith('offsets.ini') and 'battle-core' in name)
+                  selected=selected or name.endswith('p07-recovered-source.json')
+                  if selected:
+                      data=p.read_bytes();data.decode('utf-8');assert b'\0' not in data
+                      z.writestr(name,data);bindings[name]={'size':len(data),'sha256':hashlib.sha256(data).hexdigest()}
+              for name in ['charmap.tbl','src/set_z_effect.c','src/Tables/battle_moves.c','src/Tables/pokemon_tables.c']:
+                  url='https://raw.githubusercontent.com/kapibarasan000/CFRU-JP/'+commit+'/'+name
+                  data=urllib.request.urlopen(url,timeout=60).read(2000000)
+                  data.decode('utf-8-sig');assert b'\0' not in data
+                  target='pinned-cfru/'+name
+                  z.writestr(target,data);bindings[target]={'size':len(data),'sha256':hashlib.sha256(data).hexdigest(),'source_commit':commit}
+          (out/'metadata-manifest.json').write_text(json.dumps(bindings,sort_keys=True,indent=2)+'\n')
+          print('metadata text files',len(bindings))
           PY
+      - name: 単一P08候補のread-only抽出（saved byte適用のみ）
+        run: python3 -B scripts/pr16_candidate_wiki_extract.py --output .local/pr16-wiki/projection.json | tee .local/pr16-wiki/extract.stdout.txt
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
-          name: pr16-wiki-source-supplement
-          path: /tmp/pr16-wiki-context/
+          name: pr16-wiki-extraction
+          path: .local/pr16-wiki/
           retention-days: 3
           if-no-files-found: error
