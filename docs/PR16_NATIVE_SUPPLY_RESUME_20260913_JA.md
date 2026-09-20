@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-同一ROMの自然getter30/正規抑制calleeはrun35503514936で確認済み。Fairy Lock中の任意交代だけを回避し、通常技・強制交代・自然勝敗を維持。新規契約PASS。delay51の一回だけから未完lifecycleを継続する。
+同一ROMの自然getter30/正規抑制calleeはrun35503514936で確認済み。Fairy Lock中の任意交代だけを回避し、通常技・強制交代・自然勝敗を維持。真正Save30から通常帰還・party600/owner64・Save/fresh Continueまで検証完了。画面/完了Actionsの正式受入照合は未完。
 
-**次: Fairy Lock followupの現在run/停止原本から最初の未達のみ修復。30勝/旧3抽選/getter・抑制CPU trace/ARMを繰り返さない。**
+**次: このrunの完了Actions・原本・画面を照合しCircus正式受入を接続する。新native再実行なし。**
 
 次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `cc5d6822266a9663b0e368c9cff2c94d2ede3435`。
+証拠のsource HEAD: `d526bea14f450bca717011ede1bd0241d7a8abb2`。
 記録直前remote。scoped nativeは同一46487d98、正式BP/旧30勝candidateは変更しない。
 
 ## 最短の再開手順
