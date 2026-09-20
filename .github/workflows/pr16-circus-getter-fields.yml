@@ -26,6 +26,20 @@ jobs:
         with:
           ref: ${{ github.sha }}
           fetch-depth: 0
+      - name: 未起動の記録境界だけをexact修復（START commitに含める）
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('scripts/pr16_circus_getter_fields.py');s=p.read_text()
+          before='    for name in (*FILES,p.REPORT,immutable,*evidence,b.resume.BACKLOG):\n        state[\'source_bindings\'][name]=b.identity((ROOT/name).read_bytes())'
+          after='    for name in (*FILES,p.REPORT,immutable,*evidence):\n        state[\'source_bindings\'][name]=b.identity((ROOT/name).read_bytes())\n    if b.resume.BACKLOG in state[\'source_bindings\']:\n        state[\'source_bindings\'][b.resume.BACKLOG]=b.identity((ROOT/b.resume.BACKLOG).read_bytes())'
+          assert s.count(before)==1 and after not in s
+          s=s.replace(before,after)
+          marker="(35503126098,BASE_HEAD,'success')):"
+          assert s.count(marker)==1
+          s=s.replace(marker,"(35503126098,BASE_HEAD,'success'),\n                              (35503435444,'7b38bf550266d63cd2e11d51b57726a08ec915b9','failure')):")
+          p.write_text(s)
+          PY
       - name: getter-zero原本・新field20契約・source mirrorを開始checkpointへ非force記録
         id: prepare
         run: |
