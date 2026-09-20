@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "控え代替選択後の実29勝/81BPと通常Save/fresh Continueをscoped検証。真正30勝は未達。",
+    "current_stop": "run35478473681の実29勝/30戦目敗北・Saveを照合し、元のfailure結論を保持。30戦目初手の同点評価458737/命中100で残PP16対32を選び分ける新規10契約を検証。新nativeは未実行。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "content/modernization/pr16_circus_reserve_fallback.jsonの新たな最初の実敗北だけを修復。受入単体・旧ARM・Ring hostは再実行しない。",
+    "next_step": "進行中のbattle30-pp Actionsだけを照合。重複起動せず、完了後に新原本・固定引継ぎ・両ログを記録する。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -542,6 +542,7 @@
   },
   "current_resume_doc": "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
   "do_not_repeat": [
+    "USER-20260920-CIRCUS-BATTLE30-PP run35479503528の新原本を先に読む。run35478473681のfailureを改作しない。30戦目PP同点/通常入力のみ。旧ARM/受入単体/Ring host再実行は禁止。",
     "USER-20260920-CIRCUS-RESERVE run35478473681の新原本を先に読む。run35477541574のfailureを改作しない。控え方策/通常入力のみ。旧ARM/受入単体/Ring host再実行は禁止。",
     "USER-20260920-CIRCUS-BATTLE29-RECHECK run35477541574の新原本を先に読む。旧run35473090294の28勝/29戦目実敗北を30勝へ改作しない。受入単体/旧ARM/Ring host再実行は禁止。",
     "USER-20260920-CIRCUS-BATTLE29 run35473090294の新原本を先に読む。旧run35471833294の28勝/29戦目実敗北を30勝へ改作しない。受入単体/旧ARM/Ring host再実行は禁止。",
@@ -825,15 +826,15 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "content/modernization/pr16_circus_reserve_fallback.jsonの新たな最初の実敗北だけを修復。受入単体・旧ARM・Ring hostは再実行しない。",
+    "goal_ja": "進行中のbattle30-pp Actionsだけを照合。重複起動せず、完了後に新原本・固定引継ぎ・両ログを記録する。",
     "host_write_policy_ja": "新しい実受付のguard開始後は入力/frames/readのみ。施設番号/効果/連勝/party/PC/LRのhost注入は禁止。初期配置fixtureと実入場/正規連勝を区別する。",
-    "id": "CIRCUS_RESERVE_FALLBACK",
+    "id": "CIRCUS_BATTLE30_PP",
     "read_paths": [
-      "content/modernization/pr16_circus_reserve_fallback.json",
-      "scripts/pr16_circus_reserve_fallback.py",
-      "scripts/pr16_circus_reserve_fallback_policy.py",
-      "tests/test_pr16_circus_reserve_fallback.py",
-      ".github/workflows/pr16-circus-reserve-fallback.yml",
+      "content/modernization/pr16_circus_battle30_pp.json",
+      "scripts/pr16_circus_battle30_pp.py",
+      "scripts/pr16_circus_battle30_pp_policy.py",
+      "tests/test_pr16_circus_battle30_pp.py",
+      ".github/workflows/pr16-circus-battle30-pp.yml",
       "content/modernization/pr16_saved_reconstruction.json",
       "content/modernization/p08_remaining_work.json"
     ],
@@ -845,18 +846,18 @@
     ]
   },
   "observed_date_jst": "2026-09-20",
-  "observed_head": "3c57c403efa36679a48219b119a01ed2f56f3a8f",
+  "observed_head": "7ac90a66df9a31212fb09cedbd430d59d62649bf",
   "observed_head_checks": {
-    "scope_head": "3c57c403efa36679a48219b119a01ed2f56f3a8f",
+    "scope_head": "7ac90a66df9a31212fb09cedbd430d59d62649bf",
     "runs": [
       {
-        "id": 35477541574,
-        "head_sha": "35fcac915e6f40150abc06c299f68c19823f0264",
+        "id": 35478473681,
+        "head_sha": "eeaa86e0200a3660f481b6789e6ed492504d6f53",
         "status": "completed",
         "conclusion": "failure"
       }
     ],
-    "reason_ja": "前runの6回再評価/28勝/Save実測と検証器failureを保持。今回runは記録中。全CI greenは主張しない。"
+    "reason_ja": "前runの29勝/30戦目敗北/Save実測とfailureを保持。今回runは記録中。全CI greenは主張しない。"
   },
   "observed_head_semantics": "当checkpoint前のremote HEAD。native sourceはreport。正式BP受入は変更なし。",
   "p08_resume_synchronized": true,
@@ -925,10 +926,10 @@
   },
   "pending_runs": [
     {
-      "run_id": 35478473681,
-      "tested_head": "eeaa86e0200a3660f481b6789e6ed492504d6f53",
+      "run_id": 35479503528,
+      "tested_head": "7ac90a66df9a31212fb09cedbd430d59d62649bf",
       "status": "in_progress",
-      "scope": "reserve-fallback"
+      "scope": "battle30-pp"
     }
   ],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
@@ -1592,11 +1593,11 @@
   },
   "schema_version": 2,
   "session_execution_summary": {
-    "new_emulator_processes": 1,
+    "new_emulator_processes": 0,
     "arm_compiles": 0,
     "arm_links": 0,
     "accepted_standalone_replays": 0,
-    "scope_ja": "当runの実起動数。保存byte/固定生成C再利用。28勝は未完部分への連続prefixで受入単体0。履歴ARM総数unknownは維持。"
+    "scope_ja": "当runの実起動数。保存byte/固定生成C再利用。29勝は未完部分への連続prefixで受入単体0。履歴ARM総数unknownは維持。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -8302,10 +8303,42 @@
     "evidence/pr16_circus_reserve_fallback/35478473681/execution/task-graph-START.stdout": {
       "size": 77,
       "sha256": "62088248f3d245c3853d2eaa0e2fdcffe8609be8f608995613c19a76e994466a"
+    },
+    "scripts/pr16_circus_battle30_pp.py": {
+      "size": 13650,
+      "sha256": "f73f573fbe2e81aa8fbbed8eb963657fd9880c50e445de879a0ffe8a567c732e"
+    },
+    "scripts/pr16_circus_battle30_pp_policy.py": {
+      "size": 5061,
+      "sha256": "cc3fe7f6bac6dba4576aa696deb43e7d4b55dfdcdbfb7b118101879714499e56"
+    },
+    "tests/test_pr16_circus_battle30_pp.py": {
+      "size": 4216,
+      "sha256": "a0dffd62ecd9721fd772ef3afad79c53caee1ab8c3707cfe4bf6ff9b66b94736"
+    },
+    ".github/workflows/pr16-circus-battle30-pp.yml": {
+      "size": 2269,
+      "sha256": "9e339cb8afb8129fcdbb597ed3100cee9f2a5cce5776c68849c97ce3f823a2a3"
+    },
+    "content/modernization/pr16_circus_battle30_pp.json": {
+      "size": 13141,
+      "sha256": "80c297d40fbe3406b62e54fe5bbcbe556c1fe5b810633ce180893d65ddf78e0d"
+    },
+    "evidence/pr16_circus_battle30_pp/35479503528/execution/pp-tests.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "evidence/pr16_circus_battle30_pp/35479503528/execution/pp-tests.stderr": {
+      "size": 1317,
+      "sha256": "b10859aa63a624e3cd31951eb0b0f736dcff14a9e11a7af2e4db4d0650fb6775"
+    },
+    "evidence/pr16_circus_battle30_pp/35479503528/execution/pp-tests.stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "控え代替選択後の実29勝/81BPと通常Save/fresh Continueをscoped検証。真正30勝は未達。",
+  "source_change_review_ja": "run35478473681の実29勝/30戦目敗北・Saveを照合し、元のfailure結論を保持。30戦目初手の同点評価458737/命中100で残PP16対32を選び分ける新規10契約を検証。新nativeは未実行。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -8368,6 +8401,15 @@
     "path": "content/modernization/pr16_circus_reserve_fallback.json",
     "run_id": 35478473681,
     "classification": "CIRCUS_RESERVE_LOSS_SAVE_SCOPED_30_OPEN",
+    "candidate": {
+      "size": 33554432,
+      "sha256": "2b107e7ef897844eff810ff0b40f82543640488696e8295194ceb3b66fb2c183"
+    }
+  },
+  "circus_battle30_pp": {
+    "path": "content/modernization/pr16_circus_battle30_pp.json",
+    "run_id": 35479503528,
+    "classification": "CIRCUS_BATTLE30_PP_IMPLEMENTED_NATIVE_PENDING",
     "candidate": {
       "size": 33554432,
       "sha256": "2b107e7ef897844eff810ff0b40f82543640488696e8295194ceb3b66fb2c183"

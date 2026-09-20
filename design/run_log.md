@@ -8597,3 +8597,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 同branch非force。自己SHAはremote/receipt。
 - Network: GitHub前run/job/artifact原本照合、host mGBA依存のみ。旧builder/ARM/Ring hostなし。
 - Next: content/modernization/pr16_circus_reserve_fallback.jsonの新たな最初の実敗北だけを修復。受入単体・旧ARM・Ring hostは再実行しない。
+
+
+## 2026-09-20T00:44:15Z — USER-20260920-CIRCUS-BATTLE30-PP-START
+- Timestamp: 2026-09-20T00:44:15Z
+- Task: USER-20260920-CIRCUS-BATTLE30-PP / 30戦目同点評価のPP温存
+- Status: STOPPED（Circus/P08全体は未完）
+- Version: pr16-circus-battle30-pp-v1
+- Summary: run35478473681の実29勝/30戦目敗北・Saveを照合し、元のfailure結論を保持。30戦目初手の同点評価458737/命中100で残PP16対32を選び分ける新規10契約を検証。新nativeは未実行。
+- Files changed: scripts/pr16_circus_battle30_pp.py, scripts/pr16_circus_battle30_pp_policy.py, tests/test_pr16_circus_battle30_pp.py, .github/workflows/pr16-circus-battle30-pp.yml, content/modernization/pr16_circus_battle30_pp.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, evidence/pr16_circus_battle30_pp/35479503528/execution/pp-tests.process.json, evidence/pr16_circus_battle30_pp/35479503528/execution/pp-tests.stderr, evidence/pr16_circus_battle30_pp/35479503528/execution/pp-tests.stdout, design/run_log.md, design/version_log.md
+- Verify: 新規10契約、固定resume整合性/影響tests、task graph、index差分private guard/diff check。native成否/実process数はreport。
+- Commit: 同branch非force。自己SHAはremote/receipt。
+- Network: GitHub前run/job/artifact原本照合、host mGBA依存のみ。旧builder/ARM/Ring hostなし。
+- Next: 進行中のbattle30-pp Actionsだけを照合。重複起動せず、完了後に新原本・固定引継ぎ・両ログを記録する。

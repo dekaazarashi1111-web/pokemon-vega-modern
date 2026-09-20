@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-控え代替選択後の実29勝/81BPと通常Save/fresh Continueをscoped検証。真正30勝は未達。
+run35478473681の実29勝/30戦目敗北・Saveを照合し、元のfailure結論を保持。30戦目初手の同点評価458737/命中100で残PP16対32を選び分ける新規10契約を検証。新nativeは未実行。
 
-**次: content/modernization/pr16_circus_reserve_fallback.jsonの新たな最初の実敗北だけを修復。受入単体・旧ARM・Ring hostは再実行しない。**
+**次: 進行中のbattle30-pp Actionsだけを照合。重複起動せず、完了後に新原本・固定引継ぎ・両ログを記録する。**
 
 次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `3c57c403efa36679a48219b119a01ed2f56f3a8f`。
+証拠のsource HEAD: `7ac90a66df9a31212fb09cedbd430d59d62649bf`。
 当checkpoint前のremote HEAD。native sourceはreport。正式BP受入は変更なし。
 
 ## 最短の再開手順
@@ -25,11 +25,11 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `content/modernization/pr16_circus_reserve_fallback.json`
-- `scripts/pr16_circus_reserve_fallback.py`
-- `scripts/pr16_circus_reserve_fallback_policy.py`
-- `tests/test_pr16_circus_reserve_fallback.py`
-- `.github/workflows/pr16-circus-reserve-fallback.yml`
+- `content/modernization/pr16_circus_battle30_pp.json`
+- `scripts/pr16_circus_battle30_pp.py`
+- `scripts/pr16_circus_battle30_pp_policy.py`
+- `tests/test_pr16_circus_battle30_pp.py`
+- `.github/workflows/pr16-circus-battle30-pp.yml`
 - `content/modernization/pr16_saved_reconstruction.json`
 - `content/modernization/p08_remaining_work.json`
 
@@ -67,6 +67,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- USER-20260920-CIRCUS-BATTLE30-PP run35479503528の新原本を先に読む。run35478473681のfailureを改作しない。30戦目PP同点/通常入力のみ。旧ARM/受入単体/Ring host再実行は禁止。
 - USER-20260920-CIRCUS-RESERVE run35478473681の新原本を先に読む。run35477541574のfailureを改作しない。控え方策/通常入力のみ。旧ARM/受入単体/Ring host再実行は禁止。
 - USER-20260920-CIRCUS-BATTLE29-RECHECK run35477541574の新原本を先に読む。旧run35473090294の28勝/29戦目実敗北を30勝へ改作しない。受入単体/旧ARM/Ring host再実行は禁止。
 - USER-20260920-CIRCUS-BATTLE29 run35473090294の新原本を先に読む。旧run35471833294の28勝/29戦目実敗北を30勝へ改作しない。受入単体/旧ARM/Ring host再実行は禁止。
@@ -293,6 +294,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-前runの6回再評価/28勝/Save実測と検証器failureを保持。今回runは記録中。全CI greenは主張しない。
+前runの29勝/30戦目敗北/Save実測とfailureを保持。今回runは記録中。全CI greenは主張しない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
