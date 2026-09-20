@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-P08候補46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38 / CRCCC068B4Aについて6親受入・4代表境界の移送を完了。新native/ARM/ROM変更0。旧BP親や失敗Actionsは原本のまま保持。配布判定前にIssue #18の候補Wikiへ進む。
+P08候補46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38の全ID Wiki 4126ファイルを二重生成一致・全リンク・全Wiki試験で検証。P07全1572行を保持。Issue #18全体は未完。詳細と残件はcontent/modernization/pr16_candidate_wiki_acceptance.json。
 
-**次: Issue #18: scripts/build_pr16_candidate_wiki.pyで現P08候補の詳細Wikiを新規生成。Stage61は固定履歴として保護し、Species/Move/Ability/Item・夢特性供給・全習得技・全メガ・専用Z・意味差分を原本から抽出。Wiki確認後の所有者指示まで性能調整/clean-ROM二重生成/BPS固定/release判定を開始しない。**
+**次: Issue #18の候補Wiki残件を継続。検証済み全IDスナップショットを再作成せず、receiptの未監査moveset/汎用Z/夢特性供給/handler根拠を順に埋める。CLI追加はツール安全確認で未反映。既存native再実行・性能調整・releaseへ先行しない。**
 
-この移送runの完了Actionsを照合。Issue #18を読み、Wiki生成で受入済みnativeを再実行しない。
+先にこのWiki verification runの完了結果を照合。全体Issueを完了扱いにせず、受入済みnativeと完成済み抽出を変更影響なしで再実行しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `9834398c8430ded96a8d25ea96d02edd8a78212d`。
-P08候補移送の固定入力HEAD。元Actionsの失敗と各成功stepを保存。自身の完了は次回照合。
+証拠のsource HEAD: `0514c4b17ab2109cfb11021767928255dd0a110c`。
+Wiki snapshotの検証入力HEAD。自己commit SHA追記による無限更新を避ける。native受入HEADではない。
 
 ## 最短の再開手順
 
@@ -25,12 +25,13 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `content/modernization/pr16_p08_candidate_transfer.json`
-- `content/modernization/pr16_p08_candidate_impact.json`
-- `scripts/pr16_p08_transfer.py`
-- `scripts/build_stage61_wiki.py`
-- `content/modernization/p04_mega_runtime_mapping.json`
-- `content/modernization/p07_layered_learnset_contract.json`
+- `content/modernization/pr16_candidate_wiki_acceptance.json`
+- `docs/wiki/p08-candidate-46487d98/README.md`
+- `docs/wiki/p08-candidate-46487d98/RUNTIME_LIMITATIONS.md`
+- `scripts/pr16_candidate_wiki_catalog.py`
+- `scripts/pr16_candidate_wiki_render.py`
+- `scripts/pr16_candidate_wiki_details.py`
+- `scripts/pr16_candidate_wiki_mega_quality.py`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -60,7 +61,7 @@ P08ゲート:
 
 2026-09-15: run34946969126/job104308573084で、同一candidateの3勝基礎9 BPに既存反復報酬3 BPが加算され12 BPへ確定。通常QOL供給ショップでかわらずのいしを4 BP購入し、残高12→8、所持0→1、Save counter5→6→7→7、通常Save/fresh Continue後の保持をscoped受入。ROM変更0、成功1process/2fresh cores。次はRing。 2026-09-18追記: Ring/policyは別scoped候補で完了。BP数値・原本の意味は変更しない。
 
-P08 native移送完了 → Issue #18調整前Wiki → 所有者の調整指示 → 将来のclean-ROM二重生成/配布判定。merge/baseline変更は別指示。
+P08移送済み → 候補Wikiスナップショット検証済み → Issue #18の明示残件 → 所有者の調整仕様 → 別承認後のclean-ROM二重生成/BPS/release。
 
 ## 再実行・過大主張の禁止
 
@@ -297,6 +298,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-完了済み原本と通常戦闘受入run35523960389を照合。旧Circus未完固定CIは修正し限定再検証。全ブランチCIの成功とは同義でない。
+旧P08移送run35524571950のsuccessを確認。Wiki限定検証の結果はcandidate_wiki.acceptanceとverification_runを参照。Issue #18未完・PR draft維持。全nativeやrelease検証は追加していない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

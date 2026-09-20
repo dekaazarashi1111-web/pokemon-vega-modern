@@ -1,0 +1,95 @@
+{
+  "active_baseline_changed": false,
+  "arm_builds": 0,
+  "bytes": 94251101,
+  "candidate": {
+    "crc32": "CC068B4A",
+    "sha256": "46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38",
+    "size": 33554432
+  },
+  "check_writes": 0,
+  "corrected_details_run": 35529899896,
+  "counts": {
+    "ability": 318,
+    "item": 1044,
+    "move": 1063,
+    "species": 1671
+  },
+  "earlier_failures": [
+    {
+      "cause": "道具description offsetを英語ABIと誤認",
+      "run": 35529488690
+    },
+    {
+      "cause": "同問題の限定診断",
+      "run": 35529640583
+    },
+    {
+      "cause": "旧method254自己参照1行を全メガとして扱った検査失敗。正逆76行と監査1行に分離。",
+      "run": 35531068177
+    }
+  ],
+  "files": 4126,
+  "internal_links": 274580,
+  "issue18_complete": false,
+  "issue_number": 18,
+  "mega_mapping_summary": {
+    "forward_reverse_verified": 76,
+    "game_data_changed": false,
+    "raw_rows": 77,
+    "unverified_legacy_rows": 1
+  },
+  "native_reruns": 0,
+  "negative_output_fixtures": [
+    "missing",
+    "stale",
+    "changed",
+    "symlink"
+  ],
+  "new_native_runs": 0,
+  "output": "docs/wiki/p08-candidate-46487d98",
+  "prior_transfer_run": {
+    "conclusion": "success",
+    "head_sha": "9834398c8430ded96a8d25ea96d02edd8a78212d",
+    "id": 35524571950,
+    "status": "completed"
+  },
+  "private_guard_scope": "CHANGED_FINAL_INDEX_ONLY",
+  "record_counts": {
+    "abilities": 318,
+    "hidden_abilities": 1671,
+    "items": 1044,
+    "learnsets": 1671,
+    "megas": 76,
+    "moves": 1063,
+    "p07_history": 1572,
+    "species": 1671,
+    "vega_balance": 206,
+    "z_moves": 31
+  },
+  "release_approved": false,
+  "remaining_work_ja": [
+    "専用build/check CLIとMakefile入口はツール安全確認で未反映。拒否されたファイルを別経路では作らない。",
+    "野生初期技と固定配布の実movesetを全経路抽出し、推測と区別する。",
+    "汎用Z変換先・追加効果・consumerを固定正本と候補から対応付ける。",
+    "夢特性slotと種族別の初回供給/確率/継承を区別して監査する。",
+    "既存effect流用と新規handlerをsource履歴で区分する。native未受入を無断で再実行しない。"
+  ],
+  "rom_changes": 0,
+  "schema_version": 1,
+  "scope": "VERIFIED_DOCUMENTATION_SNAPSHOT",
+  "source_head": "0514c4b17ab2109cfb11021767928255dd0a110c",
+  "stage61_unchanged": true,
+  "status": "PASS_SNAPSHOT",
+  "task": "USER-20260921-P08-CANDIDATE-WIKI",
+  "tree_sha256": "6bb5e03cbf2b06050c426eb1d31b1307bb711a5324ab5fe9005fd0c60b315a87",
+  "two_process_builds_identical": true,
+  "unit": {
+    "errors": 0,
+    "failures": 0,
+    "skips": 0,
+    "tests": 39
+  },
+  "verification_run": 35531601943,
+  "verification_run_status_at_recording": "in_progress; 最終pushとupload結果はActionsの完了状態で確認"
+}

@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "P08候補46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38 / CRCCC068B4Aについて6親受入・4代表境界の移送を完了。新native/ARM/ROM変更0。旧BP親や失敗Actionsは原本のまま保持。配布判定前にIssue #18の候補Wikiへ進む。",
+    "current_stop": "P08候補46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38の全ID Wiki 4126ファイルを二重生成一致・全リンク・全Wiki試験で検証。P07全1572行を保持。Issue #18全体は未完。詳細と残件はcontent/modernization/pr16_candidate_wiki_acceptance.json。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "Issue #18: scripts/build_pr16_candidate_wiki.pyで現P08候補の詳細Wikiを新規生成。Stage61は固定履歴として保護し、Species/Move/Ability/Item・夢特性供給・全習得技・全メガ・専用Z・意味差分を原本から抽出。Wiki確認後の所有者指示まで性能調整/clean-ROM二重生成/BPS固定/release判定を開始しない。",
+    "next_step": "Issue #18の候補Wiki残件を継続。検証済み全IDスナップショットを再作成せず、receiptの未監査moveset/汎用Z/夢特性供給/handler根拠を順に埋める。CLI追加はツール安全確認で未反映。既存native再実行・性能調整・releaseへ先行しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -832,27 +832,28 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "Issue #18: scripts/build_pr16_candidate_wiki.pyで現P08候補の詳細Wikiを新規生成。Stage61は固定履歴として保護し、Species/Move/Ability/Item・夢特性供給・全習得技・全メガ・専用Z・意味差分を原本から抽出。Wiki確認後の所有者指示まで性能調整/clean-ROM二重生成/BPS固定/release判定を開始しない。",
+    "goal_ja": "Issue #18の候補Wiki残件を継続。検証済み全IDスナップショットを再作成せず、receiptの未監査moveset/汎用Z/夢特性供給/handler根拠を順に埋める。CLI追加はツール安全確認で未反映。既存native再実行・性能調整・releaseへ先行しない。",
     "host_write_policy_ja": "新しい実受付のguard開始後は入力/frames/readのみ。施設番号/効果/連勝/party/PC/LRのhost注入は禁止。初期配置fixtureと実入場/正規連勝を区別する。",
-    "id": "P08_CANDIDATE_WIKI",
+    "id": "P08_CANDIDATE_WIKI_REMAINING",
     "read_paths": [
-      "content/modernization/pr16_p08_candidate_transfer.json",
-      "content/modernization/pr16_p08_candidate_impact.json",
-      "scripts/pr16_p08_transfer.py",
-      "scripts/build_stage61_wiki.py",
-      "content/modernization/p04_mega_runtime_mapping.json",
-      "content/modernization/p07_layered_learnset_contract.json"
+      "content/modernization/pr16_candidate_wiki_acceptance.json",
+      "docs/wiki/p08-candidate-46487d98/README.md",
+      "docs/wiki/p08-candidate-46487d98/RUNTIME_LIMITATIONS.md",
+      "scripts/pr16_candidate_wiki_catalog.py",
+      "scripts/pr16_candidate_wiki_render.py",
+      "scripts/pr16_candidate_wiki_details.py",
+      "scripts/pr16_candidate_wiki_mega_quality.py"
     ],
-    "stop_rule_ja": "この移送runの完了Actionsを照合。Issue #18を読み、Wiki生成で受入済みnativeを再実行しない。",
+    "stop_rule_ja": "先にこのWiki verification runの完了結果を照合。全体Issueを完了扱いにせず、受入済みnativeと完成済み抽出を変更影響なしで再実行しない。",
     "success_observations": [
-      "Stage61 byte不変",
-      "現在候補を選択",
-      "2回build同一・check read-only",
-      "Wiki後に所有者の調整指示を待つ"
+      "監査残件に限定した差分",
+      "Stage61・現候補byte不変",
+      "証拠区分を維持",
+      "引継ぎ・両ログを更新"
     ]
   },
   "observed_date_jst": "2026-09-21",
-  "observed_head": "9834398c8430ded96a8d25ea96d02edd8a78212d",
+  "observed_head": "0514c4b17ab2109cfb11021767928255dd0a110c",
   "observed_head_checks": {
     "scope_head": "9834398c8430ded96a8d25ea96d02edd8a78212d",
     "runs": [
@@ -1689,9 +1690,9 @@
         ]
       }
     ],
-    "reason_ja": "完了済み原本と通常戦闘受入run35523960389を照合。旧Circus未完固定CIは修正し限定再検証。全ブランチCIの成功とは同義でない。"
+    "reason_ja": "旧P08移送run35524571950のsuccessを確認。Wiki限定検証の結果はcandidate_wiki.acceptanceとverification_runを参照。Issue #18未完・PR draft維持。全nativeやrelease検証は追加していない。"
   },
-  "observed_head_semantics": "P08候補移送の固定入力HEAD。元Actionsの失敗と各成功stepを保存。自身の完了は次回照合。",
+  "observed_head_semantics": "Wiki snapshotの検証入力HEAD。自己commit SHA追記による無限更新を避ける。native受入HEADではない。",
   "p08_resume_synchronized": true,
   "party_retention_latest_attempt": {
     "accepted_native_cases_replayed": 0,
@@ -1756,13 +1757,7 @@
     "status": "NATIVE_PARTY_RETENTION_ACCEPTED_BP_PENDING",
     "tested_head": "10e535a046441dd3b797918106259b5c57b69716"
   },
-  "pending_runs": [
-    {
-      "run_id": 35524571950,
-      "tested_head": "9834398c8430ded96a8d25ea96d02edd8a78212d",
-      "status": "in_progress"
-    }
-  ],
+  "pending_runs": [],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
   "pr_draft": true,
   "pr_merged": false,
@@ -1873,7 +1868,7 @@
     "RELEASE_DECISION"
   ],
   "remaining_physical_gap_ids": [],
-  "remaining_sequence_ja": "P08 native移送完了 → Issue #18調整前Wiki → 所有者の調整指示 → 将来のclean-ROM二重生成/配布判定。merge/baseline変更は別指示。",
+  "remaining_sequence_ja": "P08移送済み → 候補Wikiスナップショット検証済み → Issue #18の明示残件 → 所有者の調整仕様 → 別承認後のclean-ROM二重生成/BPS/release。",
   "retained_fixed_form_accepted_case_count": 5,
   "reward_route_audit": {
     "artifact_id": 10311359991,
@@ -10546,5 +10541,26 @@
       "sha256": "46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38",
       "size": 33554432
     }
+  },
+  "candidate_wiki": {
+    "acceptance": "content/modernization/pr16_candidate_wiki_acceptance.json",
+    "output": "docs/wiki/p08-candidate-46487d98",
+    "candidate": {
+      "crc32": "CC068B4A",
+      "sha256": "46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38",
+      "size": 33554432
+    },
+    "snapshot_complete": true,
+    "issue18_complete": false,
+    "source_head": "0514c4b17ab2109cfb11021767928255dd0a110c",
+    "verification_run": 35531601943,
+    "remaining_work_ja": [
+      "専用build/check CLIとMakefile入口はツール安全確認で未反映。拒否されたファイルを別経路では作らない。",
+      "野生初期技と固定配布の実movesetを全経路抽出し、推測と区別する。",
+      "汎用Z変換先・追加効果・consumerを固定正本と候補から対応付ける。",
+      "夢特性slotと種族別の初回供給/確率/継承を区別して監査する。",
+      "既存effect流用と新規handlerをsource履歴で区分する。native未受入を無断で再実行しない。"
+    ],
+    "new_native_runs": 0
   }
 }

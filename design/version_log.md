@@ -6290,3 +6290,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 同branchへの非force commit/pushとremote読戻し。標準guardの既存違反は保持し追加違反0を照合。
 - Network: GitHub完了Actions/PR/refを読取。固定原本restore以外のprivate入力取得・nativeなし。
 - Next: Issue #18: scripts/build_pr16_candidate_wiki.pyで現P08候補の詳細Wikiを新規生成。Stage61は固定履歴として保護し、Species/Move/Ability/Item・夢特性供給・全習得技・全メガ・専用Z・意味差分を原本から抽出。Wiki確認後の所有者指示まで性能調整/clean-ROM二重生成/BPS固定/release判定を開始しない。
+
+
+## 2026-09-20T19:14:06+00:00 — USER-20260921-P08-CANDIDATE-WIKI / snapshot
+- Task: USER-20260921-P08-CANDIDATE-WIKI / 全ID Wikiスナップショット
+- Status: DONE（snapshot限定。Issue #18全体はIN_PROGRESS）
+- Summary: 全ID Wiki 4126ファイル/274580内部リンク。2プロセス同一tree=6bb5e03cbf2b06050c426eb1d31b1307bb711a5324ab5fe9005fd0c60b315a87、39試験PASS。Issue18残件を明示し、専用CLIは未反映。
+- Files: scripts/pr16_candidate_wiki_*.py、tests/test_pr16_candidate_wiki*.py、候補Wiki、receipt、固定引継ぎMD/JSON、両ログ。
+- Verify: Wiki二重生成、純読取比較、missing/stale/changed/symlink拒否、全Wiki試験、Stage61保護、task graph、resume check、diff check、changed final-index guardを全て成功時のみcommit。全repository guardの既存違反をPASSに読み替えない。
+- Commit: この記録を含むcommit。検証入力HEAD=0514c4b17ab2109cfb11021767928255dd0a110c。
+- Network: GitHub connector/Actions。検証run=35531601943。旧移送run35524571950と詳細読取run35529899896を照合。private入力の追加取得なし。
+- Boundary: native/ARM/ROM変更0、Stage61/active baseline不変、merge/releaseなし。
