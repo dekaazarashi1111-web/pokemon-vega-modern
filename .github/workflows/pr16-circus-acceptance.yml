@@ -1,0 +1,43 @@
+name: PR16 Circus scoped acceptance receipt
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - scripts/pr16_circus_acceptance.py
+      - tests/test_pr16_circus_acceptance.py
+      - content/modernization/pr16_circus_visual_review.json
+      - .github/workflows/pr16-circus-acceptance.yml
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-circus-suppression
+  cancel-in-progress: false
+jobs:
+  receipt:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: 完了原本と目視29画面を照合し正式受入・引継ぎ・両ログを非force保存
+        run: |
+          mkdir -p .local/pr16-circus-acceptance
+          python3 scripts/pr16_circus_acceptance.py execute > .local/pr16-circus-acceptance/execute.stdout 2> .local/pr16-circus-acceptance/execute.stderr
+      - name: P08限定読取用tracked textを保存（ROMとsaveは除外）
+        if: always()
+        run: python3 scripts/pr16_circus_acceptance.py pack
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-circus-acceptance
+          path: .local/pr16-circus-acceptance/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
