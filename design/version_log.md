@@ -6094,3 +6094,17 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 同branchの本commit、非force push後remoteを照合。
 - Network: GitHub固定run/job/artifactを照合・取得。
 - Next: 同一46487d98のP08_BP_RETURN_PARTY（通常Factory復帰と元party）を次に実装。残るP03共有保存/読み込み・Circus退出後通常戦闘も影響境界だけ検証。Ring/旧5case/30勝は再実行しない。
+
+
+## 2026-09-20T12:30:29Z — USER-20260920-P08-BP-START
+- Timestamp: 2026-09-20T12:30:29Z
+- Task: USER-20260920-P08-BP-START
+- Status: IN_PROGRESS
+- Version: pr16-p08-representative-v1
+- Summary: P08 BP代表の限定runner/保存再開契約を記録。native未完段階は原本のfailuresと実process数から再開し、旧3勝/購入/Ring/30勝は再実行しない。
+- Files changed: scripts/pr16_p08_bp_representative.py, tools/mgba_pr16_p08_bp_lifecycle.h, tests/test_pr16_p08_bp_representative.py, .github/workflows/pr16-p08-bp.yml, scripts/pr16_p08_checkpoint.py, content/modernization/pr16_p08_bp_representative.json, evidence/pr16_p08/user-20260920-p08-bp/35510798943/start/execution.json, evidence/pr16_p08/user-20260920-p08-bp/35510798943/start/result.json, content/modernization/p08_remaining_work.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, design/run_log.md, design/version_log.md
+- Verify: 限定契約/resume/生成MD/hash/task graph、原本byte包絡とindex/HEAD読戻し。native件数・成否はcontent/modernization/pr16_p08_bp_representative.json。
+- Boundary: ARM0、旧受入の独立再実行0、ROM変更0。全体private guard既存違反は差分照合し全体PASSと主張しない。
+- Commit: このcommitを同branchへ非force pushしremote読戻し。
+- Network: GitHub固定run/job/artifactとremote照合。
+- Next: このrunの最新Actionsを先に読む。未実行なら同じrunのnativeへ、失敗なら原本で停止段階だけ修復。旧BP3勝/支出とRing/30勝の独立再実行は禁止。

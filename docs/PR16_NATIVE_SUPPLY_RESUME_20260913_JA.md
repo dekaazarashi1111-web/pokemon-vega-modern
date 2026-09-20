@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-run35507654812のRing代表native成功1process/3fresh cores・14画面を原本照合しP08_RING_ORDINARYだけ受入。run全体の記録失敗は保持。末尾空行もJSON包絡でbyte保存、回収native0。
+P08 BP代表の限定runner/保存再開契約を記録。native未完段階は原本のfailuresと実process数から再開し、旧3勝/購入/Ring/30勝は再実行しない。
 
-**次: 同一46487d98のP08_BP_RETURN_PARTY（通常Factory復帰と元party）を次に実装。残るP03共有保存/読み込み・Circus退出後通常戦闘も影響境界だけ検証。Ring/旧5case/30勝は再実行しない。**
+**次: このrunの最新Actionsを先に読む。未実行なら同じrunのnativeへ、失敗なら原本で停止段階だけ修復。旧BP3勝/支出とRing/30勝の独立再実行は禁止。**
 
-同一46487d98のP08_BP_RETURN_PARTY（通常Factory復帰と元party）を次に実装。残るP03共有保存/読み込み・Circus退出後通常戦闘も影響境界だけ検証。Ring/旧5case/30勝は再実行しない。
+このrunの最新Actionsを先に読む。未実行なら同じrunのnativeへ、失敗なら原本で停止段階だけ修復。旧BP3勝/支出とRing/30勝の独立再実行は禁止。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `3a08d5dbed832a869161a7e5c842d96eebd58659`。
-Ring原本回収の記録直前remote。完了済みnativeの証拠と記録jobの完了は別。
+証拠のsource HEAD: `99d93a2f4c33fb265aee5b0dc4c1ecdb697cfea1`。
+本checkpoint直前のremote。native実測・記録job完了・正式受入を別々に保持する。
 
 ## 最短の再開手順
 
@@ -25,10 +25,13 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `content/modernization/pr16_p08_ring_acceptance.json`
+- `content/modernization/pr16_p08_bp_representative.json`
+- `scripts/pr16_p08_bp_representative.py`
+- `tools/mgba_pr16_p08_bp_lifecycle.h`
+- `tests/test_pr16_p08_bp_representative.py`
+- `.github/workflows/pr16-p08-bp.yml`
+- `scripts/pr16_p08_checkpoint.py`
 - `content/modernization/pr16_p08_candidate_impact.json`
-- `content/modernization/pr16_bp_chooser_checkpoint.json`
-- `content/modernization/pr16_bp_spending_verified.json`
 - `content/modernization/p08_remaining_work.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
@@ -60,7 +63,7 @@ P08ゲート:
 
 2026-09-15: run34946969126/job104308573084で、同一candidateの3勝基礎9 BPに既存反復報酬3 BPが加算され12 BPへ確定。通常QOL供給ショップでかわらずのいしを4 BP購入し、残高12→8、所持0→1、Save counter5→6→7→7、通常Save/fresh Continue後の保持をscoped受入。ROM変更0、成功1process/2fresh cores。次はRing。 2026-09-18追記: Ring/policyは別scoped候補で完了。BP数値・原本の意味は変更しない。
 
-P08の残3代表境界（BP元party/共有保存/Circus退出後通常戦闘）→最終候補identity・配布準備判断
+P08未完代表境界 → 最終候補移送 → clean-ROM独立生成/配布準備判断。公開・merge・baseline切替は別指示。
 
 ## 再実行・過大主張の禁止
 
@@ -297,6 +300,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-前runのnative成功と記録失敗を区別。今回回収jobの完了は次に別照合。
+本run完了は次にActionsで別照合する。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
