@@ -6276,3 +6276,17 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: このcommitを同branchへ非force pushしremote読戻し。
 - Network: GitHub固定run/job/artifactとremote照合。
 - Next: 四代表と候補影響台帳を照合して移送・古い所有範囲CIを整合。その後Issue #18の候補Wikiを生成し、clean-ROM独立2生成/BPS固定/release判定はWiki後まで開始しない。
+
+
+## 2026-09-20T17:02:34Z — USER-20260921-P08-TRANSFER
+- Timestamp: 2026-09-20T17:02:34Z
+- Task: USER-20260921-P08-TRANSFER
+- Status: DONE（P08 native移送。配布判定・Wikiは別境界）
+- Version: pr16-p08-transfer-v1
+- Summary: P08候補46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38 / CRCCC068B4Aについて6親受入・4代表境界の移送を完了。新native/ARM/ROM変更0。旧BP親や失敗Actionsは原本のまま保持。配布判定前にIssue #18の候補Wikiへ進む。
+- Files changed: scripts/pr16_p08_transfer.py, tests/test_pr16_p08_transfer.py, .github/workflows/pr16-p08-transfer.yml, tests/test_modernization_p08_forgetting_evidence.py, content/modernization/pr16_p08_candidate_transfer.json, evidence/pr16_p08_transfer/35524571950/result.json, content/modernization/p08_remaining_work.json, evidence/pr16_p08_transfer/35524571950/verification.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, design/run_log.md, design/version_log.md
+- Verify: source/原本hash不変、完了Actionsと失敗run内の成功stepを分離、6domain/4代表/全変更hook対応、専用拒否系・所有範囲20tests・forgetting read-only・resume/task graph PASS。
+- Preserved: 旧21層432patch監査は不変。旧4代表の4process/8coreは履歴、今回native/ARM/ROM変更0。旧run35522692225のCI失敗を改作せず所有範囲テストだけ修復。
+- Commit: 同branchへの非force commit/pushとremote読戻し。標準guardの既存違反は保持し追加違反0を照合。
+- Network: GitHub完了Actions/PR/refを読取。固定原本restore以外のprivate入力取得・nativeなし。
+- Next: Issue #18: scripts/build_pr16_candidate_wiki.pyで現P08候補の詳細Wikiを新規生成。Stage61は固定履歴として保護し、Species/Move/Ability/Item・夢特性供給・全習得技・全メガ・専用Z・意味差分を原本から抽出。Wiki確認後の所有者指示まで性能調整/clean-ROM二重生成/BPS固定/release判定を開始しない。

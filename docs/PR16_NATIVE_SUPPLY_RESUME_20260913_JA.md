@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-P08最後の通常戦闘代表を完了Actions・原本・5画面で受入。4代表の実測は完了、候補移送の最終照合は次。新native/ARM/ROM変更0。
+P08候補46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38 / CRCCC068B4Aについて6親受入・4代表境界の移送を完了。新native/ARM/ROM変更0。旧BP親や失敗Actionsは原本のまま保持。配布判定前にIssue #18の候補Wikiへ進む。
 
-**次: 四代表と候補影響台帳を照合して移送・古い所有範囲CIを整合。その後Issue #18の候補Wikiを生成し、clean-ROM独立2生成/BPS固定/release判定はWiki後まで開始しない。**
+**次: Issue #18: scripts/build_pr16_candidate_wiki.pyで現P08候補の詳細Wikiを新規生成。Stage61は固定履歴として保護し、Species/Move/Ability/Item・夢特性供給・全習得技・全メガ・専用Z・意味差分を原本から抽出。Wiki確認後の所有者指示まで性能調整/clean-ROM二重生成/BPS固定/release判定を開始しない。**
 
-四代表と候補影響台帳を照合して移送・古い所有範囲CIを整合。その後Issue #18の候補Wikiを生成し、clean-ROM独立2生成/BPS固定/release判定はWiki後まで開始しない。
+この移送runの完了Actionsを照合。Issue #18を読み、Wiki生成で受入済みnativeを再実行しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `e800b909c1182f07bb4f4b0075f4ba1d7c8637c8`。
-本checkpoint直前のremote。native実測・記録job完了・正式受入を別々に保持する。
+証拠のsource HEAD: `9834398c8430ded96a8d25ea96d02edd8a78212d`。
+P08候補移送の固定入力HEAD。元Actionsの失敗と各成功stepを保存。自身の完了は次回照合。
 
 ## 最短の再開手順
 
@@ -25,13 +25,12 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `content/modernization/pr16_p08_ordinary_acceptance.json`
-- `content/modernization/pr16_p08_ordinary_abi.json`
+- `content/modernization/pr16_p08_candidate_transfer.json`
 - `content/modernization/pr16_p08_candidate_impact.json`
-- `content/modernization/pr16_p08_memory_acceptance.json`
-- `content/modernization/pr16_p08_ring_acceptance.json`
-- `content/modernization/pr16_circus_acceptance.json`
-- `content/modernization/p08_remaining_work.json`
+- `scripts/pr16_p08_transfer.py`
+- `scripts/build_stage61_wiki.py`
+- `content/modernization/p04_mega_runtime_mapping.json`
+- `content/modernization/p07_layered_learnset_contract.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -50,19 +49,18 @@ checkは限定source hashと正本間整合性を検査するだけで、GitHub�
 
 ## 候補identityと残件
 
-SHA-256 `ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b` / 33554432 bytes / CRC32 `3EB17B36`。この欄は正式BP親候補ceddbe91のidentityを維持。Ring/policyは4ea33fb8、Circusは46487d98でscoped受入済み。P08最終候補への移送/回帰・製品SHA固定は未完。
+SHA-256 `ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b` / 33554432 bytes / CRC32 `3EB17B36`。この欄は正式BP親候補の歴史的identity。現在のP08移送候補は46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38 / CRCCC068B4A。current_p08_candidateとcontent/modernization/pr16_p08_candidate_transfer.jsonをWiki入力の正とする。製品SHA固定・配布判定ではない。
 
 正式physical残件（台帳から照合）:
 
 
 P08ゲート:
 
-- `FINAL_NATIVE_ACCEPTANCE`
 - `RELEASE_DECISION`
 
 2026-09-15: run34946969126/job104308573084で、同一candidateの3勝基礎9 BPに既存反復報酬3 BPが加算され12 BPへ確定。通常QOL供給ショップでかわらずのいしを4 BP購入し、残高12→8、所持0→1、Save counter5→6→7→7、通常Save/fresh Continue後の保持をscoped受入。ROM変更0、成功1process/2fresh cores。次はRing。 2026-09-18追記: Ring/policyは別scoped候補で完了。BP数値・原本の意味は変更しない。
 
-P08未完代表境界 → 最終候補移送 → clean-ROM独立生成/配布準備判断。公開・merge・baseline切替は別指示。
+P08 native移送完了 → Issue #18調整前Wiki → 所有者の調整指示 → 将来のclean-ROM二重生成/配布判定。merge/baseline変更は別指示。
 
 ## 再実行・過大主張の禁止
 
@@ -299,6 +297,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-本run完了は次にActionsで別照合する。
+完了済み原本と通常戦闘受入run35523960389を照合。旧Circus未完固定CIは修正し限定再検証。全ブランチCIの成功とは同義でない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

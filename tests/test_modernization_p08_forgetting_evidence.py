@@ -144,7 +144,7 @@ class CurrentRemainingWorkOwnershipTests(unittest.TestCase):
         # rather than requiring the historical fixed-form-pending snapshot.
         p03 = conditions['EVOLUTION_FORM_OTHER_EGG']
         self.assertEqual(
-            p03['status'], 'PASS_SCOPED_CANDIDATE_PENDING_P08_TRANSFER')
+            p03.get('parent_scope_status', p03['status']), 'PASS_SCOPED_CANDIDATE_PENDING_P08_TRANSFER')
         self.assertEqual(p03['remaining_physical_gap_ids'], [])
         self.assertIs(p03['complete'], True)
         self.assertIs(p03['physical_acceptance_complete'], True)
@@ -160,7 +160,6 @@ class CurrentRemainingWorkOwnershipTests(unittest.TestCase):
         self.assertIs(fixed['p03_fixed_form_gap_closed'], True)
         self.assertEqual(p03['accepted_candidate_sha256'],
                          fixed['candidate']['sha256'])
-        self.assertIs(current['full_p03_acceptance'], False)
         self.assertEqual(
             p03['coverage_manifest'],
             'content/modernization/pr16_p03_p07_route_coverage.json')
@@ -170,7 +169,7 @@ class CurrentRemainingWorkOwnershipTests(unittest.TestCase):
         # 現在のscoped受入原本と結び、P08移送・Circusは閉じない。
         ring_path = 'content/modernization/pr16_ring_policy_acceptance.json'
         ring = record.load((ROOT/ring_path).read_bytes())
-        self.assertEqual(p05['status'],
+        self.assertEqual(p05.get('parent_scope_status', p05['status']),
                          'PASS_SCOPED_RING_POLICY_PENDING_P08_TRANSFER')
         self.assertEqual(p05['remaining_supply_gap_ids'], [])
         self.assertIs(p05['complete'], True)
@@ -189,8 +188,24 @@ class CurrentRemainingWorkOwnershipTests(unittest.TestCase):
         self.assertEqual(p05['successor_transfer_condition_id'],
                          'FINAL_NATIVE_ACCEPTANCE')
         circus = conditions['PHYSICAL_CIRCUS_ADMISSION']
-        self.assertIsNot(circus.get('complete'), True)
-        self.assertIsNone(circus['success_evidence'])
+        self.assertIs(circus.get('complete'), True)
+        circus_source = record.load((ROOT/circus['success_evidence']).read_bytes())
+        self.assertIs(circus_source['physical_admission_accepted'], True)
+        self.assertIs(circus_source['suppression_accepted'], True)
+        self.assertIs(circus_source['release_ready'], False)
+        self.assertEqual(circus['accepted_candidate_sha256'], circus_source['candidate']['sha256'])
+        # 親原本の未移送フラグは歴史。後続ownerの完了を巻き戻さない。
+        final = conditions['FINAL_NATIVE_ACCEPTANCE']
+        if final.get('complete') is True:
+            transfer = record.load((ROOT/final['success_evidence']).read_bytes())
+            self.assertIs(transfer['final_native_acceptance_complete'], True)
+            self.assertEqual(final['remaining_representative_regression_ids'], [])
+            self.assertEqual(current['final_candidate']['sha256'], transfer['candidate']['sha256'])
+            for name in ('full_p03_acceptance', 'full_p05_acceptance', 'full_p06_acceptance', 'full_p07_acceptance'):
+                self.assertIs(current[name], True)
+        else:
+            self.assertIs(current['full_p03_acceptance'], False)
+            self.assertIs(current['full_p05_acceptance'], False)
         bp_ref = current['bp_chooser_checkpoint']
         self.assertEqual(bp_ref['path'],
                          'content/modernization/pr16_bp_chooser_checkpoint.json')
@@ -205,7 +220,6 @@ class CurrentRemainingWorkOwnershipTests(unittest.TestCase):
         ])
         self.assertEqual(bp['candidate']['sha256'],
                          'ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b')
-        self.assertIs(current['full_p05_acceptance'], False)
         self.assertEqual(
             p05['supply_coverage_manifest'],
             'content/modernization/pr16_p05_native_supply_reconciliation.json')
@@ -217,7 +231,7 @@ class CurrentRemainingWorkOwnershipTests(unittest.TestCase):
         self.assertTrue(p07['complete'])
         self.assertEqual(p07['remaining_physical_gap_ids'], [])
         self.assertEqual(
-            p07['status'], 'PASS_PARENT_CANDIDATE_PENDING_P08_TRANSFER')
+            p07.get('parent_scope_status', p07['status']), 'PASS_PARENT_CANDIDATE_PENDING_P08_TRANSFER')
 
     def test_unknown_future_fields_survive_unchanged(self):
         future = copy.deepcopy(self.tracked)

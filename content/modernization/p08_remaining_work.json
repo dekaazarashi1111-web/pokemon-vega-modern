@@ -143,35 +143,35 @@
   },
   "current_resume_doc": "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
   "final_candidate": {
-    "crc32": "5B8BFB51",
-    "name": "Stage84 + exact P07 preservation + native evolution dispatch repair",
+    "sha256": "46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38",
+    "size": 33554432,
+    "crc32": "CC068B4A",
+    "name": "P08 changed-owner transfer candidate",
+    "native_transfer_complete": true,
     "release_approved": false,
-    "sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
-    "size": 33554432
+    "final_product_sha_fixed": false
   },
   "final_integration": {
-    "additional_verified_native": "content/modernization/pr16_physical_route_acceptance.json",
-    "candidate_sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
-    "new_native_cores_in_this_session": 19,
-    "new_native_processes_in_this_session": 7,
+    "source_path": "content/modernization/pr16_p08_candidate_transfer.json",
+    "candidate_sha256": "46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38",
+    "inherited_domains": [
+      "BP",
+      "CIRCUS",
+      "FIXED_FORM",
+      "GENERIC_FORM",
+      "P03_P06_P07",
+      "RING"
+    ],
+    "representative_ids": [
+      "P08_SHARED_SAVE_LOAD",
+      "P08_BP_RETURN_PARTY",
+      "P08_RING_ORDINARY",
+      "P08_CIRCUS_POST_EXIT_ORDINARY"
+    ],
+    "new_native_processes_in_this_session": 0,
+    "new_native_cores_in_this_session": 0,
     "old_native_acceptance_preserved_not_relabelled": true,
-    "release_ready": false,
-    "shared_egg_verified_native": "content/modernization/pr16_shared_egg_acceptance.json",
-    "source_path": "content/modernization/pr16_completion_acceptance.json",
-    "source_runs": {
-      "breeding": {
-        "run_id": 34553503441,
-        "tested_head": "64bf90f83cb928b989fea45ff52696f0d3f775e9"
-      },
-      "evolution": {
-        "run_id": 34552826501,
-        "tested_head": "37ec0121e8170673542adb1e1213d51954bad576"
-      },
-      "repaired": {
-        "run_id": 34512326368,
-        "tested_head": "d49c3d721f3eac994a48d190e980dc34346f0942"
-      }
-    }
+    "release_ready": false
   },
   "fixed_form_checkpoint": {
     "acceptance": "content/modernization/pr16_fixed_form_acceptance.json",
@@ -185,10 +185,10 @@
     "physical_gap_closed": true,
     "receipt": "content/modernization/pr16_fixed_form_acceptance_receipt.json"
   },
-  "full_p03_acceptance": false,
-  "full_p05_acceptance": false,
+  "full_p03_acceptance": true,
+  "full_p05_acceptance": true,
   "full_p06_acceptance": true,
-  "full_p07_acceptance": false,
+  "full_p07_acceptance": true,
   "historical_snapshot": "content/modernization/p08_current_acceptance.json",
   "historical_snapshot_is_current_backlog": false,
   "historical_stage84_integration": {
@@ -374,10 +374,17 @@
       "remaining_physical_gap_ids": [],
       "resume": "Keep all five original cases and their distinct native entry owners. Re-run only if P08 change-impact review requires it; do not invent Photon Geyser auto-restoration.",
       "shared_egg_success_evidence": "content/modernization/pr16_shared_egg_acceptance.json",
-      "status": "PASS_SCOPED_CANDIDATE_PENDING_P08_TRANSFER",
+      "status": "PASS_TRANSFERRED_TO_P08_CANDIDATE",
       "success_evidence": "content/modernization/pr16_completion_acceptance.json",
       "successor_transfer_condition_id": "FINAL_NATIVE_ACCEPTANCE",
-      "target_function": "fixed_transition_service for Necrozma Dusk Mane/Dawn Wings and Zacian/Zamazenta Crowned"
+      "target_function": "fixed_transition_service for Necrozma Dusk Mane/Dawn Wings and Zacian/Zamazenta Crowned",
+      "parent_scope_status": "PASS_SCOPED_CANDIDATE_PENDING_P08_TRANSFER",
+      "successor_transfer_complete": true,
+      "successor_candidate": {
+        "sha256": "46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38",
+        "size": 33554432
+      },
+      "successor_transfer_evidence": "content/modernization/pr16_p08_candidate_transfer.json"
     },
     {
       "accepted_candidate_sha256": "4ea33fb8224b0b84493ccca6e90161da245705eb1eb0a3874691ab39cc3806cc",
@@ -472,7 +479,7 @@
           "scope": "VegaRingPolicyBegin"
         }
       },
-      "status": "PASS_SCOPED_RING_POLICY_PENDING_P08_TRANSFER",
+      "status": "PASS_TRANSFERRED_TO_P08_CANDIDATE",
       "success_evidence": "content/modernization/pr16_ring_policy_acceptance.json",
       "successor_transfer_condition_id": "FINAL_NATIVE_ACCEPTANCE",
       "supply_coverage_inventory_complete": true,
@@ -480,7 +487,14 @@
       "supply_evidence_map": "content/modernization/pr16_p05_native_supply_evidence_map.json",
       "supply_physical_acceptance_complete": true,
       "supply_source_evidence_binding_complete": true,
-      "target_function": "natural capture/item acquisition to battle"
+      "target_function": "natural capture/item acquisition to battle",
+      "parent_scope_status": "PASS_SCOPED_RING_POLICY_PENDING_P08_TRANSFER",
+      "successor_transfer_complete": true,
+      "successor_candidate": {
+        "sha256": "46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38",
+        "size": 33554432
+      },
+      "successor_transfer_evidence": "content/modernization/pr16_p08_candidate_transfer.json"
     },
     {
       "diagnostic_evidence": "content/modernization/pr16_p05_route_acceptance.json",
@@ -509,9 +523,16 @@
       "lifecycle_checkpoint": "content/modernization/pr16_circus_suppression_lifecycle.json",
       "complete": true,
       "physical_acceptance_complete": true,
-      "status": "PASS_SCOPED_CANDIDATE_PENDING_P08_TRANSFER",
+      "status": "PASS_TRANSFERRED_TO_P08_CANDIDATE",
       "accepted_candidate_sha256": "46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38",
-      "successor_transfer_condition_id": "FINAL_NATIVE_ACCEPTANCE"
+      "successor_transfer_condition_id": "FINAL_NATIVE_ACCEPTANCE",
+      "parent_scope_status": "PASS_SCOPED_CANDIDATE_PENDING_P08_TRANSFER",
+      "successor_transfer_complete": true,
+      "successor_candidate": {
+        "sha256": "46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38",
+        "size": 33554432
+      },
+      "successor_transfer_evidence": "content/modernization/pr16_p08_candidate_transfer.json"
     },
     {
       "accepted_candidate_sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
@@ -527,20 +548,27 @@
       "reason_ja": "ピンプクのおこう条件・復元3技・満杯・対照・孵化・保存は5件受入済み。残る変更対象の消費経路と既存原本の対応を照合する",
       "remaining_physical_gap_ids": [],
       "resume": "scripts/pr16_physical_route_checkpoint.py verifies Happiny incense routes; inventory remaining changed consumers, do not repeat Pichu/Happiny or recollect V4",
-      "status": "PASS_PARENT_CANDIDATE_PENDING_P08_TRANSFER",
+      "status": "PASS_TRANSFERRED_TO_P08_CANDIDATE",
       "success_evidence": "content/modernization/pr16_completion_acceptance.json",
       "successor_transfer_condition_id": "FINAL_NATIVE_ACCEPTANCE",
-      "target_function": "remaining P07 changed-consumer coverage beyond accepted memory/evolution/breeding"
+      "target_function": "remaining P07 changed-consumer coverage beyond accepted memory/evolution/breeding",
+      "parent_scope_status": "PASS_PARENT_CANDIDATE_PENDING_P08_TRANSFER",
+      "successor_transfer_complete": true,
+      "successor_candidate": {
+        "sha256": "46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38",
+        "size": 33554432
+      },
+      "successor_transfer_evidence": "content/modernization/pr16_p08_candidate_transfer.json"
     },
     {
       "id": "FINAL_NATIVE_ACCEPTANCE",
       "original_request": "P08 final-candidate acceptance",
       "pass_condition": "Finish required BP/Ring/policy/Circus ROM changes, fix one final full SHA/size/CRC, and transfer parent accepted evidence using a changed-ROM-range/owner/runner/fixture/contract impact ledger with only justified reruns. bffd is not yet final.",
       "phase": "P08",
-      "reason_ja": "BP/Ring/policy/Circusのscoped受入とbyte影響監査は保持。Ring代表境界を閉鎖し、最終候補移送は残る3代表境界で判定する。",
-      "resume": "四代表と候補影響台帳を照合して移送・古い所有範囲CIを整合。その後Issue #18の候補Wikiを生成し、clean-ROM独立2生成/BPS固定/release判定はWiki後まで開始しない。",
+      "reason_ja": "6親受入のROM/owner影響と4代表境界を単一P08候補へ移送。元候補と元Actions結論は変更しない。",
+      "resume": "Issue #18の調整前候補Wikiを生成。性能調整はWiki確認後の所有者指示を待つ。",
       "shop_display_successor": "content/modernization/pr16_shop_display_acceptance.json",
-      "success_evidence": "content/modernization/pr16_completion_acceptance.json",
+      "success_evidence": "content/modernization/pr16_p08_candidate_transfer.json",
       "target_function": "native final-candidate coverage beyond inherited seven-domain regression",
       "circus_success_evidence": "content/modernization/pr16_circus_acceptance.json",
       "change_impact_evidence": "content/modernization/pr16_p08_candidate_impact.json",
@@ -551,7 +579,7 @@
         "P08_RING_ORDINARY",
         "P08_CIRCUS_POST_EXIT_ORDINARY"
       ],
-      "status": "REPRESENTATIVE_BOUNDARIES_PROGRESS_RECORDED",
+      "status": "PASS_CHANGED_OWNER_TRANSFER",
       "ring_representative_evidence": "content/modernization/pr16_p08_ring_representative.json",
       "completed_representative_regression_ids": [
         "P08_SHARED_SAVE_LOAD",
@@ -565,7 +593,10 @@
         "P08_BP_RETURN_PARTY": "content/modernization/pr16_p08_bp_acceptance.json",
         "P08_SHARED_SAVE_LOAD": "content/modernization/pr16_p08_memory_acceptance.json",
         "P08_CIRCUS_POST_EXIT_ORDINARY": "content/modernization/pr16_p08_ordinary_acceptance.json"
-      }
+      },
+      "previous_success_evidence": "content/modernization/pr16_completion_acceptance.json",
+      "complete": true,
+      "transfer_evidence": "content/modernization/pr16_p08_candidate_transfer.json"
     },
     {
       "id": "RELEASE_DECISION",
@@ -573,9 +604,11 @@
       "pass_condition": "clean-ROM two-build reproducibility, required acceptance and safe package; merge/baseline switch are NOT implied",
       "phase": "P08",
       "reason_ja": "配布用成果物・リリース判定・PRマージ・プレイ基準の扱いを全受入後に決定する",
-      "resume": "four tested engineering BPS patches exist; clean-ROM patch and full acceptance are not complete",
+      "resume": "Issue #18候補Wiki生成・所有者の調整指示を先行。clean-ROM二重生成/BPS固定/release判定は開始しない。",
       "success_evidence": null,
-      "target_function": "clean-input regeneration and releasable package"
+      "target_function": "clean-input regeneration and releasable package",
+      "queued_prior_task": "USER-20260921-P08-CANDIDATE-WIKI",
+      "queued_prior_issue": 18
     }
   ],
   "repository_policy": {
@@ -697,12 +730,52 @@
       "size": 10998
     }
   },
-  "status": "SCOPED_COMPLETION_PROGRESS_NOT_RELEASE",
+  "status": "P08_NATIVE_TRANSFER_COMPLETE_WIKI_BEFORE_RELEASE",
   "task": "USER-MODERNIZATION-FINAL-INTEGRATION",
   "p08_candidate_impact": {
     "path": "content/modernization/pr16_p08_candidate_impact.json",
     "byte_chain_verified": true,
-    "final_native_acceptance_complete": false,
-    "release_ready": false
+    "final_native_acceptance_complete": true,
+    "release_ready": false,
+    "successor_transfer_evidence": "content/modernization/pr16_p08_candidate_transfer.json"
+  },
+  "pre_transfer_final_candidate": {
+    "crc32": "5B8BFB51",
+    "name": "Stage84 + exact P07 preservation + native evolution dispatch repair",
+    "release_approved": false,
+    "sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
+    "size": 33554432
+  },
+  "pre_transfer_final_integration": {
+    "additional_verified_native": "content/modernization/pr16_physical_route_acceptance.json",
+    "candidate_sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
+    "new_native_cores_in_this_session": 19,
+    "new_native_processes_in_this_session": 7,
+    "old_native_acceptance_preserved_not_relabelled": true,
+    "release_ready": false,
+    "shared_egg_verified_native": "content/modernization/pr16_shared_egg_acceptance.json",
+    "source_path": "content/modernization/pr16_completion_acceptance.json",
+    "source_runs": {
+      "breeding": {
+        "run_id": 34553503441,
+        "tested_head": "64bf90f83cb928b989fea45ff52696f0d3f775e9"
+      },
+      "evolution": {
+        "run_id": 34552826501,
+        "tested_head": "37ec0121e8170673542adb1e1213d51954bad576"
+      },
+      "repaired": {
+        "run_id": 34512326368,
+        "tested_head": "d49c3d721f3eac994a48d190e980dc34346f0942"
+      }
+    }
+  },
+  "p08_candidate_transfer": {
+    "path": "content/modernization/pr16_p08_candidate_transfer.json",
+    "complete": true,
+    "candidate": {
+      "sha256": "46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38",
+      "size": 33554432
+    }
   }
 }
