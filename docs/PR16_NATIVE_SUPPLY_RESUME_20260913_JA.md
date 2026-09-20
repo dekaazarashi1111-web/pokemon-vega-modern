@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-28勝81BPと通常Save/fresh Continue、29戦目初手維持を保持。健康な水先発を維持した相手を処理済みにせず、HP半分まで毎turn再評価して既存の通常交代へ戻す修正と新規9契約を検証。新nativeは未実行。
+29戦目HP閾値再評価の原本を保存。観測勝数28。Save/Continue受入とは区別。[{'stage': 'prefix29-recheck', 'type': 'ValueError', 'error': 'healthy hold was not repeatedly reevaluated'}]
 
-**次: 進行中の29戦目再評価Actionsだけを照合する。重複起動せず、完了後に原本・固定引継ぎ・両ログを記録する。**
+**次: content/modernization/pr16_circus_battle29_recheck.jsonの失敗段階と134event/再評価prefix証拠を読んで未完段階のみ修復。同じ失敗/旧builder/ARM/Ring host/受入単体を再実行しない。**
 
 次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `35fcac915e6f40150abc06c299f68c19823f0264`。
+証拠のsource HEAD: `9b998f5adbf35dca514b6ea7035d2262d10e6cc1`。
 当checkpoint前のremote HEAD。実native sourceはreport。正式BP受入HEADは不変。
 
 ## 最短の再開手順
