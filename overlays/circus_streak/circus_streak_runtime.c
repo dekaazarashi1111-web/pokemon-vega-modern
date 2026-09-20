@@ -171,14 +171,20 @@ EXPORT void CircusStreakRuntimeSelect(void)
     ((void (*)(void))(uintptr_t)CIRCUS_PREVIOUS_SELECTOR)();
 }
 
+/* VegaFacilityStateGetはVarGetではなく、T06の0..10 field ABI。 */
+enum CircusFacilityStateField {
+    CIRCUS_FIELD_NUMBER = 0, CIRCUS_FIELD_PARTY_SIZE = 1,
+    CIRCUS_FIELD_LEVEL = 2, CIRCUS_FIELD_BATTLE_TYPE = 3, CIRCUS_FIELD_TIER = 4
+};
+
 EXPORT uint16_t CircusStreakRuntimeGet(uint8_t current_or_max, uint16_t style,
                                       uint16_t tier, uint16_t size, uint8_t level)
 {
-    if (STATE_GET(0x403Au) == 3u && CircusStreakRuntimeArmed() && current_or_max <= 1u
-        && (style == 0xFFFFu ? STATE_GET(0x5017u) : style) == 4u
-        && (tier == 0xFFFFu ? STATE_GET(0x5018u) : tier) == 0u
-        && (size == 0xFFFFu ? STATE_GET(0x5015u) : size) == 3u
-        && (level == 0u ? STATE_GET(0x5016u) : level) == 50u)
+    if (STATE_GET(CIRCUS_FIELD_NUMBER) == 3u && CircusStreakRuntimeArmed() && current_or_max <= 1u
+        && (style == 0xFFFFu ? STATE_GET(CIRCUS_FIELD_BATTLE_TYPE) : style) == 4u
+        && (tier == 0xFFFFu ? STATE_GET(CIRCUS_FIELD_TIER) : tier) == 0u
+        && (size == 0xFFFFu ? STATE_GET(CIRCUS_FIELD_PARTY_SIZE) : size) == 3u
+        && (level == 0u ? STATE_GET(CIRCUS_FIELD_LEVEL) : level) == 50u)
         return current_or_max == 0u ? OWNER->current : OWNER->best;
     return ((uint16_t (*)(uint8_t, uint16_t, uint16_t, uint16_t, uint8_t))
         (uintptr_t)0x091025EDu)(current_or_max, style, tier, size, level);

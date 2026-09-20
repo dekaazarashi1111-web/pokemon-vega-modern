@@ -155,8 +155,10 @@ def checkpoint(value, phase):
         raw=path.read_bytes();b.write(name,raw);evidence[name]=b.identity(raw)
     value['text_evidence']=evidence;immutable=prefix+phase.lower()+'.json'
     b.write(p.REPORT,b.stable(value));b.write(immutable,b.stable(value));b.write(b.resume.BACKLOG,b.stable(backlog))
-    for name in (*FILES,p.REPORT,immutable,*evidence,b.resume.BACKLOG):
+    for name in (*FILES,p.REPORT,immutable,*evidence):
         state['source_bindings'][name]=b.identity((ROOT/name).read_bytes())
+    if b.resume.BACKLOG in state['source_bindings']:
+        state['source_bindings'][b.resume.BACKLOG]=b.identity((ROOT/b.resume.BACKLOG).read_bytes())
     state['logs_synchronized']=state['p08_resume_synchronized']=True
     b.write(b.resume.STATE,b.stable(state));b.write(b.resume.DOC,b.resume.render(state).encode());b.resume.validate(ROOT)
     for label,args in [('resume',[__import__('sys').executable,'-m','unittest','discover','-s','tests','-p','test_pr16_resume.py','-v']),('task-graph',[__import__('sys').executable,'scripts/validate_task_graph.py'])]:
@@ -199,7 +201,8 @@ def prepare():
     checks=[]
     for rid,sha,conclusion in ((35500143124,'5b600c1362bb3db1d4af4a532395b3589b8c6b38','failure'),
                               (35502970203,'39fef638dd532a79a234f91509713f3890437d6b','failure'),
-                              (35503126098,BASE_HEAD,'success')):
+                              (35503126098,BASE_HEAD,'success'),
+                              (35503435444,'7b38bf550266d63cd2e11d51b57726a08ec915b9','failure')):
         run=b.api('actions/runs/'+str(rid))
         need(run['head_sha']==sha and run['status']=='completed' and run['conclusion']==conclusion,'predecessor still active or changed')
         checks.append(dict(id=rid,head_sha=sha,status='completed',conclusion=conclusion))

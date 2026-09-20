@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-getter限定修復の実証と停止原本を記録。受入済み30勝/BPは不変。未観測を成功へ昇格しない。[{'stage': 'getter-native-or-build', 'type': 'ValueError', 'error': 'natural five-argument getter proof'}]
+APIへ旧Var IDを渡すgetterの原因を固定ROM/型定義で確定。命令/分岐/Save ABIを変えず５literalを修復する契約を検証。新nativeは真正Save30 cacheからだけ起動する。
 
-**次: pr16_circus_getter_followup.jsonの最初の未達のみ修復する。真正Save30は固定cacheを使用し、30戦prefix/旧builder/ARM再compileを禁止。**
+**次: 進行中のgetter fields runのみ確認。最初の未達だけ修復し、30勝prefix/旧builder/ARM再compileを行わない。**
 
 次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `67f5e38f819bf70257ae27397097efab201a7ae8`。
-この記録直前のremote HEAD。実native source/candidateはgetter report。旧候補の30勝を新候補の30勝へ読み替えない。
+証拠のsource HEAD: `5618a38f6854aa4551e5c518509f5f97cf2a79b0`。
+記録直前のremote HEAD。新candidate/実行数はgetter report、旧30勝受入は旧candidateのまま。
 
 ## 最短の再開手順
 
@@ -26,13 +26,12 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
 - `content/modernization/pr16_circus_getter_followup.json`
-- `scripts/pr16_circus_getter_abi.py`
-- `scripts/pr16_circus_getter_followup.py`
+- `scripts/pr16_circus_getter_fields.py`
+- `tests/test_pr16_circus_getter_fields.py`
+- `tests/fixtures/pr16_circus_getter_fields.json`
+- `.github/workflows/pr16-circus-getter-fields.yml`
+- `overlays/circus_streak/circus_streak_runtime.c`
 - `tools/mgba_pr16_circus_getter_trace.h`
-- `tests/test_pr16_circus_getter_abi.py`
-- `.github/workflows/pr16-circus-getter.yml`
-- `content/modernization/pr16_circus_suppression.json`
-- `content/modernization/pr16_circus_battle30_receipt.json`
 - `content/modernization/p08_remaining_work.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
@@ -69,6 +68,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- getter field repair runを最優先確認。APIは0..10 index、旧Var IDではない。真正Save30限定、30勝prefix/旧ARM/64抽選反復禁止。
 - getter followupの先行runを先に照合。真正Save30 cache以外から再開しない。30勝prefix/旧builder/ARM再compile/旧64抽選の反復禁止。
 - USER-20260920-CIRCUS-SUPPRESSION run35494023398の完了状況と原本を先に読む。真正Save30 cacheが検証済みなら30戦を再実行しない。抑制flag/乱数/特性/owner/PCへのhost書込みは禁止。
 - USER-20260920-CIRCUS-BATTLE30-PP run35479503528の新原本を先に読む。run35478473681のfailureを改作しない。30戦目PP同点/通常入力のみ。旧ARM/受入単体/Ring host再実行は禁止。
@@ -298,6 +298,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-旧suppressionの失敗をAPI/原本照合。今回Actionsの完了/全CI greenはこの記録時点では未主張。
+先行Actions完了を実API照合。この記録中runの最終状態はreceiptで確認する。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

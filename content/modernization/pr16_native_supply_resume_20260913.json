@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "getter限定修復の実証と停止原本を記録。受入済み30勝/BPは不変。未観測を成功へ昇格しない。[{'stage': 'getter-native-or-build', 'type': 'ValueError', 'error': 'natural five-argument getter proof'}]",
+    "current_stop": "APIへ旧Var IDを渡すgetterの原因を固定ROM/型定義で確定。命令/分岐/Save ABIを変えず５literalを修復する契約を検証。新nativeは真正Save30 cacheからだけ起動する。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "pr16_circus_getter_followup.jsonの最初の未達のみ修復する。真正Save30は固定cacheを使用し、30戦prefix/旧builder/ARM再compileを禁止。",
+    "next_step": "進行中のgetter fields runのみ確認。最初の未達だけ修復し、30勝prefix/旧builder/ARM再compileを行わない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -542,6 +542,7 @@
   },
   "current_resume_doc": "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
   "do_not_repeat": [
+    "getter field repair runを最優先確認。APIは0..10 index、旧Var IDではない。真正Save30限定、30勝prefix/旧ARM/64抽選反復禁止。",
     "getter followupの先行runを先に照合。真正Save30 cache以外から再開しない。30勝prefix/旧builder/ARM再compile/旧64抽選の反復禁止。",
     "USER-20260920-CIRCUS-SUPPRESSION run35494023398の完了状況と原本を先に読む。真正Save30 cacheが検証済みなら30戦を再実行しない。抑制flag/乱数/特性/owner/PCへのhost書込みは禁止。",
     "USER-20260920-CIRCUS-BATTLE30-PP run35479503528の新原本を先に読む。run35478473681のfailureを改作しない。30戦目PP同点/通常入力のみ。旧ARM/受入単体/Ring host再実行は禁止。",
@@ -828,18 +829,17 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "pr16_circus_getter_followup.jsonの最初の未達のみ修復する。真正Save30は固定cacheを使用し、30戦prefix/旧builder/ARM再compileを禁止。",
+    "goal_ja": "進行中のgetter fields runのみ確認。最初の未達だけ修復し、30勝prefix/旧builder/ARM再compileを行わない。",
     "host_write_policy_ja": "新しい実受付のguard開始後は入力/frames/readのみ。施設番号/効果/連勝/party/PC/LRのhost注入は禁止。初期配置fixtureと実入場/正規連勝を区別する。",
-    "id": "CIRCUS_GETTER_ABI_NATIVE",
+    "id": "CIRCUS_GETTER_FIELDS_NATIVE",
     "read_paths": [
       "content/modernization/pr16_circus_getter_followup.json",
-      "scripts/pr16_circus_getter_abi.py",
-      "scripts/pr16_circus_getter_followup.py",
+      "scripts/pr16_circus_getter_fields.py",
+      "tests/test_pr16_circus_getter_fields.py",
+      "tests/fixtures/pr16_circus_getter_fields.json",
+      ".github/workflows/pr16-circus-getter-fields.yml",
+      "overlays/circus_streak/circus_streak_runtime.c",
       "tools/mgba_pr16_circus_getter_trace.h",
-      "tests/test_pr16_circus_getter_abi.py",
-      ".github/workflows/pr16-circus-getter.yml",
-      "content/modernization/pr16_circus_suppression.json",
-      "content/modernization/pr16_circus_battle30_receipt.json",
       "content/modernization/p08_remaining_work.json"
     ],
     "stop_rule_ja": "次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。",
@@ -850,20 +850,38 @@
     ]
   },
   "observed_date_jst": "2026-09-20",
-  "observed_head": "67f5e38f819bf70257ae27397097efab201a7ae8",
+  "observed_head": "5618a38f6854aa4551e5c518509f5f97cf2a79b0",
   "observed_head_checks": {
-    "scope_head": "67f5e38f819bf70257ae27397097efab201a7ae8",
+    "scope_head": "5618a38f6854aa4551e5c518509f5f97cf2a79b0",
     "runs": [
       {
-        "id": 35494023398,
-        "head_sha": "bacc3089488b2f67d6bc848140c6e8239de86d60",
+        "id": 35500143124,
+        "head_sha": "5b600c1362bb3db1d4af4a532395b3589b8c6b38",
+        "status": "completed",
+        "conclusion": "failure"
+      },
+      {
+        "id": 35502970203,
+        "head_sha": "39fef638dd532a79a234f91509713f3890437d6b",
+        "status": "completed",
+        "conclusion": "failure"
+      },
+      {
+        "id": 35503126098,
+        "head_sha": "27c1556ddeabb06b652e64ab937d68c3f0105540",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 35503435444,
+        "head_sha": "7b38bf550266d63cd2e11d51b57726a08ec915b9",
         "status": "completed",
         "conclusion": "failure"
       }
     ],
-    "reason_ja": "旧suppressionの失敗をAPI/原本照合。今回Actionsの完了/全CI greenはこの記録時点では未主張。"
+    "reason_ja": "先行Actions完了を実API照合。この記録中runの最終状態はreceiptで確認する。"
   },
-  "observed_head_semantics": "この記録直前のremote HEAD。実native source/candidateはgetter report。旧候補の30勝を新候補の30勝へ読み替えない。",
+  "observed_head_semantics": "記録直前のremote HEAD。新candidate/実行数はgetter report、旧30勝受入は旧candidateのまま。",
   "p08_resume_synchronized": true,
   "party_retention_latest_attempt": {
     "accepted_native_cases_replayed": 0,
@@ -930,10 +948,10 @@
   },
   "pending_runs": [
     {
-      "run_id": 35500143124,
-      "tested_head": "5b600c1362bb3db1d4af4a532395b3589b8c6b38",
+      "run_id": 35503514936,
+      "tested_head": "5618a38f6854aa4551e5c518509f5f97cf2a79b0",
       "status": "in_progress",
-      "scope": "circus-getter-abi"
+      "scope": "circus-getter-fields"
     }
   ],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
@@ -1597,12 +1615,12 @@
   },
   "schema_version": 2,
   "session_execution_summary": {
-    "new_emulator_processes": 1,
+    "new_emulator_processes": 0,
     "arm_compiles": 0,
     "arm_links": 0,
     "accepted_standalone_replays": 0,
     "prefix_wins_reexecuted": 0,
-    "scope_ja": "真正Save30 cache限定。旧受入native/旧ARM再compile0。既存８byte中継と新規ARM tail12byteのみ新候補へ適用。BL本体は不変。"
+    "scope_ja": "旧ABI20契約/30勝原本を継承。新field契約のみ追加。既存中継8byte/新tail12byte/５literal20byteだけ。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -5522,8 +5540,8 @@
       "size": 679
     },
     "overlays/circus_streak/circus_streak_runtime.c": {
-      "sha256": "eec635efce1f9892c1744cabbd6d85ebd2536420640e813d276c9611feda225b",
-      "size": 7747
+      "size": 8062,
+      "sha256": "7255243751f1896b56b43cdbb4db206a33f101b2ed8aa4e2aae03c9c1ab72ec6"
     },
     "overlays/circus_streak/circus_streak_runtime.h": {
       "sha256": "9060134cc464eda522d4be877b1de66cf2b20df750b005cc08a7ab4d14486000",
@@ -8574,8 +8592,8 @@
       "sha256": "9d93c31e2a14dd3ac312dd8c4ac38f2d7b2c1cbc12f2a2d4d292bf2c7e4b40e8"
     },
     "content/modernization/pr16_circus_getter_followup.json": {
-      "size": 99665,
-      "sha256": "20edcb85764961dc0b2922b10acd45fc7b9cde07f1bc67710aaf4c4a612e6d4b"
+      "size": 16271,
+      "sha256": "6b69a671346b75c7b2e5e6ffe5a872e702da7e2d66bb8b16c62e819c135cdb98"
     },
     "evidence/pr16_circus_getter/35499729510/start.json": {
       "size": 14637,
@@ -8792,10 +8810,42 @@
     "evidence/pr16_circus_getter/35500143124/execution/task-graph-START.stdout": {
       "size": 77,
       "sha256": "62088248f3d245c3853d2eaa0e2fdcffe8609be8f608995613c19a76e994466a"
+    },
+    "scripts/pr16_circus_getter_fields.py": {
+      "size": 17959,
+      "sha256": "0046884228141f1353e8b3d49acf26473899cf00c25b3c733873abf4137a60b3"
+    },
+    "tests/test_pr16_circus_getter_fields.py": {
+      "size": 6767,
+      "sha256": "e42921db3710d19ef8b71a42f2ba44ba983ef3f6d9483ec6f417bb658a7e5682"
+    },
+    "tests/fixtures/pr16_circus_getter_fields.json": {
+      "size": 1550,
+      "sha256": "b9c2cc4ea7c0831d59bbe257fb65b2b91d5112c5c313ed3797c6a50da2ff9806"
+    },
+    ".github/workflows/pr16-circus-getter-fields.yml": {
+      "size": 3757,
+      "sha256": "4031971440633f781dec10c16ad70c347de2a60d149474ec179d5c2f5eee98e9"
+    },
+    "evidence/pr16_circus_getter/35503514936/start.json": {
+      "size": 16271,
+      "sha256": "6b69a671346b75c7b2e5e6ffe5a872e702da7e2d66bb8b16c62e819c135cdb98"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/field-contracts.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/field-contracts.stderr": {
+      "size": 2217,
+      "sha256": "9112101194e79fd7577883b1b2e2164a60ed314506650e780dc9ba87ecc00a1d"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/field-contracts.stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "getter限定修復の実証と停止原本を記録。受入済み30勝/BPは不変。未観測を成功へ昇格しない。[{'stage': 'getter-native-or-build', 'type': 'ValueError', 'error': 'natural five-argument getter proof'}]",
+  "source_change_review_ja": "APIへ旧Var IDを渡すgetterの原因を固定ROM/型定義で確定。命令/分岐/Save ABIを変えず５literalを修復する契約を検証。新nativeは真正Save30 cacheからだけ起動する。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -8888,11 +8938,11 @@
   },
   "circus_getter_followup": {
     "path": "content/modernization/pr16_circus_getter_followup.json",
-    "run_id": 35500143124,
-    "classification": "CIRCUS_GETTER_ABI_DIAGNOSTIC_OPEN",
+    "run_id": 35503514936,
+    "classification": "CIRCUS_GETTER_FIELDS_IMPLEMENTED_NATIVE_OPEN",
     "candidate": {
       "size": 33554432,
-      "sha256": "5f0086466311670b4fe954c15eafcda2307911ecc9b15deb2dd02360a6c05b69"
+      "sha256": "2b107e7ef897844eff810ff0b40f82543640488696e8295194ceb3b66fb2c183"
     }
   }
 }

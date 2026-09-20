@@ -8714,3 +8714,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: この記録を含む同branch非force commit。自己SHAはremote/receipt。
 - Network: GitHub固定Actions原本。固定CFRU e24a16feのsrc/frontier.c（GetCurrentBattleTowerStreak/LoadBattleCircusEffects）とsource-lockを照合。検索語sp072_LoadBattleCircusEffects。host mGBA依存のみ導入。ROM/save/private入力はGit/artifactへ追加しない。
 - Next: pr16_circus_getter_followup.jsonの最初の未達のみ修復する。真正Save30は固定cacheを使用し、30戦prefix/旧builder/ARM再compileを禁止。
+
+
+## 2026-09-20T09:53:11Z — USER-20260920-CIRCUS-GETTER-FIELDS-START
+- Timestamp: 2026-09-20T09:53:11Z
+- Task: USER-20260920-CIRCUS-GETTER-FIELDS / getter field ABI修復
+- Status: STOPPED（正式Circus/P08受入は別）
+- Version: pr16-circus-getter-fields-v1
+- Summary: APIへ旧Var IDを渡すgetterの原因を固定ROM/型定義で確定。命令/分岐/Save ABIを変えず５literalを修復する契約を検証。新nativeは真正Save30 cacheからだけ起動する。
+- Files changed: scripts/pr16_circus_getter_fields.py, tests/test_pr16_circus_getter_fields.py, tests/fixtures/pr16_circus_getter_fields.json, .github/workflows/pr16-circus-getter-fields.yml, overlays/circus_streak/circus_streak_runtime.c, content/modernization/pr16_circus_getter_followup.json, evidence/pr16_circus_getter/35503514936/start.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, evidence/pr16_circus_getter/35503514936/execution/field-contracts.process.json, evidence/pr16_circus_getter/35503514936/execution/field-contracts.stderr, evidence/pr16_circus_getter/35503514936/execution/field-contracts.stdout, design/run_log.md, design/version_log.md
+- Verify: 新field契約20件PASS、resume/task graph、index差分private guard、diff check。旧20 ABI契約再実行0。native結果はreport。
+- Commit: この記録を含む同branch非force commit。自己SHAはreceipt/remoteで照合。
+- Network: GitHub先行run35500143124 failure/35502970203採取failure/35503126098採取successを照合。検索語VegaFacilityStateGet/CircusStreakRuntimeGet。固定build_battle_core.pyとrom_bridge.cが根拠。新規外部source導入なし、host libmgba依存のみ。ROM/save/cacheはGit/artifactへ追加しない。
+- Next: 進行中のgetter fields runのみ確認。最初の未達だけ修復し、30勝prefix/旧builder/ARM再compileを行わない。
