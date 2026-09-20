@@ -492,7 +492,7 @@
       "phase": "P05",
       "reason_ja": "実際の受付・入場からBattle Circus特性抑制までの通し受入。既存のフラグ設定試験で代替しない",
       "reconstruction_checkpoint": "content/modernization/pr16_saved_reconstruction.json",
-      "resume": "content/modernization/pr16_circus_battle29_recheck.jsonの失敗段階と134event/再評価prefix証拠を読んで未完段階のみ修復。同じ失敗/旧builder/ARM/Ring host/受入単体を再実行しない。",
+      "resume": "進行中のreserve-fallback Actionsだけを照合。重複起動せず、完了後に新原本・固定引継ぎ・両ログを記録する。",
       "success_evidence": null,
       "supply_owner_evidence": "content/modernization/pr16_p05_supply_owner_findings.json",
       "target_function": "actual reception/admission to suppression",
@@ -500,7 +500,8 @@
       "battle28_checkpoint": "content/modernization/pr16_circus_battle28.json",
       "battle28_receipt": "content/modernization/pr16_circus_battle28_receipt.json",
       "battle29_checkpoint": "content/modernization/pr16_circus_battle29.json",
-      "battle29_recheck_checkpoint": "content/modernization/pr16_circus_battle29_recheck.json"
+      "battle29_recheck_checkpoint": "content/modernization/pr16_circus_battle29_recheck.json",
+      "reserve_fallback_checkpoint": "content/modernization/pr16_circus_reserve_fallback.json"
     },
     {
       "accepted_candidate_sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",

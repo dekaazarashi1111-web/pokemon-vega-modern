@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-29戦目HP閾値再評価の原本を保存。観測勝数28。Save/Continue受入とは区別。[{'stage': 'prefix29-recheck', 'type': 'ValueError', 'error': 'healthy hold was not repeatedly reevaluated'}]
+run35477541574の原本を照合。水対面は6turnで終了し468129は別個体type0/0。旧検証器の予測誤りとfailureを保持。要求技のない控え選択を実HP/PP/相性で補完する新規10契約を検証。新nativeは未実行。
 
-**次: content/modernization/pr16_circus_battle29_recheck.jsonの失敗段階と134event/再評価prefix証拠を読んで未完段階のみ修復。同じ失敗/旧builder/ARM/Ring host/受入単体を再実行しない。**
+**次: 進行中のreserve-fallback Actionsだけを照合。重複起動せず、完了後に新原本・固定引継ぎ・両ログを記録する。**
 
 次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `9b998f5adbf35dca514b6ea7035d2262d10e6cc1`。
-当checkpoint前のremote HEAD。実native sourceはreport。正式BP受入HEADは不変。
+証拠のsource HEAD: `eeaa86e0200a3660f481b6789e6ed492504d6f53`。
+当checkpoint前のremote HEAD。native sourceはreport。正式BP受入は変更なし。
 
 ## 最短の再開手順
 
@@ -25,11 +25,11 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `content/modernization/pr16_circus_battle29_recheck.json`
-- `scripts/pr16_circus_battle29_recheck.py`
-- `scripts/pr16_circus_battle29_recheck_policy.py`
-- `tests/test_pr16_circus_battle29_recheck.py`
-- `.github/workflows/pr16-circus-battle29-recheck.yml`
+- `content/modernization/pr16_circus_reserve_fallback.json`
+- `scripts/pr16_circus_reserve_fallback.py`
+- `scripts/pr16_circus_reserve_fallback_policy.py`
+- `tests/test_pr16_circus_reserve_fallback.py`
+- `.github/workflows/pr16-circus-reserve-fallback.yml`
 - `content/modernization/pr16_saved_reconstruction.json`
 - `content/modernization/p08_remaining_work.json`
 
@@ -67,6 +67,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- USER-20260920-CIRCUS-RESERVE run35478473681の新原本を先に読む。run35477541574のfailureを改作しない。控え方策/通常入力のみ。旧ARM/受入単体/Ring host再実行は禁止。
 - USER-20260920-CIRCUS-BATTLE29-RECHECK run35477541574の新原本を先に読む。旧run35473090294の28勝/29戦目実敗北を30勝へ改作しない。受入単体/旧ARM/Ring host再実行は禁止。
 - USER-20260920-CIRCUS-BATTLE29 run35473090294の新原本を先に読む。旧run35471833294の28勝/29戦目実敗北を30勝へ改作しない。受入単体/旧ARM/Ring host再実行は禁止。
 - USER-20260920-CIRCUS-BATTLE28 run35471833294の新原本を先に読む。旧run35468164696の27勝/28戦目瀕死停止を成功へ改作しない。受入単体/旧ARM/Ring host再実行は禁止。
@@ -292,6 +293,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-前runの28勝/Save成功/29戦目実敗北を保持。今回runは記録時in_progress。全CI greenは主張しない。
+前runの6回再評価/28勝/Save実測と検証器failureを保持。今回runは記録中。全CI greenは主張しない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

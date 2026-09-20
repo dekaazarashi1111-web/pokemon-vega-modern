@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "29戦目HP閾値再評価の原本を保存。観測勝数28。Save/Continue受入とは区別。[{'stage': 'prefix29-recheck', 'type': 'ValueError', 'error': 'healthy hold was not repeatedly reevaluated'}]",
+    "current_stop": "run35477541574の原本を照合。水対面は6turnで終了し468129は別個体type0/0。旧検証器の予測誤りとfailureを保持。要求技のない控え選択を実HP/PP/相性で補完する新規10契約を検証。新nativeは未実行。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "content/modernization/pr16_circus_battle29_recheck.jsonの失敗段階と134event/再評価prefix証拠を読んで未完段階のみ修復。同じ失敗/旧builder/ARM/Ring host/受入単体を再実行しない。",
+    "next_step": "進行中のreserve-fallback Actionsだけを照合。重複起動せず、完了後に新原本・固定引継ぎ・両ログを記録する。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -542,6 +542,7 @@
   },
   "current_resume_doc": "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
   "do_not_repeat": [
+    "USER-20260920-CIRCUS-RESERVE run35478473681の新原本を先に読む。run35477541574のfailureを改作しない。控え方策/通常入力のみ。旧ARM/受入単体/Ring host再実行は禁止。",
     "USER-20260920-CIRCUS-BATTLE29-RECHECK run35477541574の新原本を先に読む。旧run35473090294の28勝/29戦目実敗北を30勝へ改作しない。受入単体/旧ARM/Ring host再実行は禁止。",
     "USER-20260920-CIRCUS-BATTLE29 run35473090294の新原本を先に読む。旧run35471833294の28勝/29戦目実敗北を30勝へ改作しない。受入単体/旧ARM/Ring host再実行は禁止。",
     "USER-20260920-CIRCUS-BATTLE28 run35471833294の新原本を先に読む。旧run35468164696の27勝/28戦目瀕死停止を成功へ改作しない。受入単体/旧ARM/Ring host再実行は禁止。",
@@ -824,15 +825,15 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "content/modernization/pr16_circus_battle29_recheck.jsonの失敗段階と134event/再評価prefix証拠を読んで未完段階のみ修復。同じ失敗/旧builder/ARM/Ring host/受入単体を再実行しない。",
+    "goal_ja": "進行中のreserve-fallback Actionsだけを照合。重複起動せず、完了後に新原本・固定引継ぎ・両ログを記録する。",
     "host_write_policy_ja": "新しい実受付のguard開始後は入力/frames/readのみ。施設番号/効果/連勝/party/PC/LRのhost注入は禁止。初期配置fixtureと実入場/正規連勝を区別する。",
-    "id": "CIRCUS_BATTLE29_RECHECK",
+    "id": "CIRCUS_RESERVE_FALLBACK",
     "read_paths": [
-      "content/modernization/pr16_circus_battle29_recheck.json",
-      "scripts/pr16_circus_battle29_recheck.py",
-      "scripts/pr16_circus_battle29_recheck_policy.py",
-      "tests/test_pr16_circus_battle29_recheck.py",
-      ".github/workflows/pr16-circus-battle29-recheck.yml",
+      "content/modernization/pr16_circus_reserve_fallback.json",
+      "scripts/pr16_circus_reserve_fallback.py",
+      "scripts/pr16_circus_reserve_fallback_policy.py",
+      "tests/test_pr16_circus_reserve_fallback.py",
+      ".github/workflows/pr16-circus-reserve-fallback.yml",
       "content/modernization/pr16_saved_reconstruction.json",
       "content/modernization/p08_remaining_work.json"
     ],
@@ -844,20 +845,20 @@
     ]
   },
   "observed_date_jst": "2026-09-20",
-  "observed_head": "9b998f5adbf35dca514b6ea7035d2262d10e6cc1",
+  "observed_head": "eeaa86e0200a3660f481b6789e6ed492504d6f53",
   "observed_head_checks": {
-    "scope_head": "9b998f5adbf35dca514b6ea7035d2262d10e6cc1",
+    "scope_head": "eeaa86e0200a3660f481b6789e6ed492504d6f53",
     "runs": [
       {
-        "id": 35473090294,
-        "head_sha": "e125a2d4b3c0cf7e012eba9fb14b079530acaa18",
+        "id": 35477541574,
+        "head_sha": "35fcac915e6f40150abc06c299f68c19823f0264",
         "status": "completed",
         "conclusion": "failure"
       }
     ],
-    "reason_ja": "前runの28勝/Save成功/29戦目実敗北を保持。今回runは記録時in_progress。全CI greenは主張しない。"
+    "reason_ja": "前runの6回再評価/28勝/Save実測と検証器failureを保持。今回runは記録中。全CI greenは主張しない。"
   },
-  "observed_head_semantics": "当checkpoint前のremote HEAD。実native sourceはreport。正式BP受入HEADは不変。",
+  "observed_head_semantics": "当checkpoint前のremote HEAD。native sourceはreport。正式BP受入は変更なし。",
   "p08_resume_synchronized": true,
   "party_retention_latest_attempt": {
     "accepted_native_cases_replayed": 0,
@@ -924,10 +925,10 @@
   },
   "pending_runs": [
     {
-      "run_id": 35477541574,
-      "tested_head": "35fcac915e6f40150abc06c299f68c19823f0264",
+      "run_id": 35478473681,
+      "tested_head": "eeaa86e0200a3660f481b6789e6ed492504d6f53",
       "status": "in_progress",
-      "scope": "battle29-hp-recheck"
+      "scope": "reserve-fallback"
     }
   ],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
@@ -1591,11 +1592,11 @@
   },
   "schema_version": 2,
   "session_execution_summary": {
-    "new_emulator_processes": 1,
+    "new_emulator_processes": 0,
     "arm_compiles": 0,
     "arm_links": 0,
     "accepted_standalone_replays": 0,
-    "scope_ja": "当runの実起動数のみ。保存byte/固定生成Cを再利用。28勝は次の未完部分への連続prefixで、受入単体は再実行しない。歴史的ARM総数unknownは維持。"
+    "scope_ja": "当runの実起動数。保存byte/固定生成C再利用。28勝は未完部分への連続prefixで受入単体0。履歴ARM総数unknownは維持。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -8189,10 +8190,42 @@
     "evidence/pr16_circus_battle29_recheck/35477541574/execution/task-graph-START.stdout": {
       "size": 77,
       "sha256": "62088248f3d245c3853d2eaa0e2fdcffe8609be8f608995613c19a76e994466a"
+    },
+    "scripts/pr16_circus_reserve_fallback.py": {
+      "size": 13764,
+      "sha256": "2d5203f94af62afed64c8f8bbb9f9c833e57cb131dfcf93ea51516630925ed5d"
+    },
+    "scripts/pr16_circus_reserve_fallback_policy.py": {
+      "size": 7480,
+      "sha256": "28c17dcbf6f74c5db15880fa72d03fc9fc855685358037d565f8247d1decc5af"
+    },
+    "tests/test_pr16_circus_reserve_fallback.py": {
+      "size": 4604,
+      "sha256": "7b7a16012adf6b65f9214c36c34e5b35aaa36604aea613e9bc165d9c209df657"
+    },
+    ".github/workflows/pr16-circus-reserve-fallback.yml": {
+      "size": 2347,
+      "sha256": "cf95c119381cf3f0c1336f843bee691ee84c5deea97ccf2f27b530d097151a34"
+    },
+    "content/modernization/pr16_circus_reserve_fallback.json": {
+      "size": 14549,
+      "sha256": "277d07f3afbdd80bb6b7fac10f253571437c72ae2a148034867c0108c69bcf4a"
+    },
+    "evidence/pr16_circus_reserve_fallback/35478473681/execution/reserve-tests.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "evidence/pr16_circus_reserve_fallback/35478473681/execution/reserve-tests.stderr": {
+      "size": 1481,
+      "sha256": "7474ca3c9cdfb30846d9cf2992a147ef065d1cde9e4f63cc3cd07f911f0551a3"
+    },
+    "evidence/pr16_circus_reserve_fallback/35478473681/execution/reserve-tests.stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "29戦目HP閾値再評価の原本を保存。観測勝数28。Save/Continue受入とは区別。[{'stage': 'prefix29-recheck', 'type': 'ValueError', 'error': 'healthy hold was not repeatedly reevaluated'}]",
+  "source_change_review_ja": "run35477541574の原本を照合。水対面は6turnで終了し468129は別個体type0/0。旧検証器の予測誤りとfailureを保持。要求技のない控え選択を実HP/PP/相性で補完する新規10契約を検証。新nativeは未実行。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -8246,6 +8279,15 @@
     "path": "content/modernization/pr16_circus_battle29_recheck.json",
     "run_id": 35477541574,
     "classification": "CIRCUS_BATTLE29_RECHECK_DIAGNOSTIC_OPEN",
+    "candidate": {
+      "size": 33554432,
+      "sha256": "2b107e7ef897844eff810ff0b40f82543640488696e8295194ceb3b66fb2c183"
+    }
+  },
+  "circus_reserve_fallback": {
+    "path": "content/modernization/pr16_circus_reserve_fallback.json",
+    "run_id": 35478473681,
+    "classification": "CIRCUS_RESERVE_IMPLEMENTED_NATIVE_PENDING",
     "candidate": {
       "size": 33554432,
       "sha256": "2b107e7ef897844eff810ff0b40f82543640488696e8295194ceb3b66fb2c183"

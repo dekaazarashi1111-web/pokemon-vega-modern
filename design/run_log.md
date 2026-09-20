@@ -8571,3 +8571,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 同branch非force。自己SHAはremote/receipt。
 - Network: GitHub前run/job/artifactと29戦目原本を固定照合。host mGBA依存のみ。旧builder/ARM/Ring hostなし。
 - Next: content/modernization/pr16_circus_battle29_recheck.jsonの失敗段階と134event/再評価prefix証拠を読んで未完段階のみ修復。同じ失敗/旧builder/ARM/Ring host/受入単体を再実行しない。
+
+
+## 2026-09-20T00:20:34Z — USER-20260920-CIRCUS-RESERVE-START
+- Timestamp: 2026-09-20T00:20:34Z
+- Task: USER-20260920-CIRCUS-RESERVE / 実対面変更後の控え選択
+- Status: STOPPED（Circus/P08全体は未完）
+- Version: pr16-circus-reserve-v1
+- Summary: run35477541574の原本を照合。水対面は6turnで終了し468129は別個体type0/0。旧検証器の予測誤りとfailureを保持。要求技のない控え選択を実HP/PP/相性で補完する新規10契約を検証。新nativeは未実行。
+- Files changed: scripts/pr16_circus_reserve_fallback.py, scripts/pr16_circus_reserve_fallback_policy.py, tests/test_pr16_circus_reserve_fallback.py, .github/workflows/pr16-circus-reserve-fallback.yml, content/modernization/pr16_circus_reserve_fallback.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, evidence/pr16_circus_reserve_fallback/35478473681/execution/reserve-tests.process.json, evidence/pr16_circus_reserve_fallback/35478473681/execution/reserve-tests.stderr, evidence/pr16_circus_reserve_fallback/35478473681/execution/reserve-tests.stdout, design/run_log.md, design/version_log.md
+- Verify: 新規10契約、固定resume整合性/影響tests、task graph、index差分private guard/diff check。native成否/実process数はreport。
+- Commit: 同branch非force。自己SHAはremote/receipt。
+- Network: GitHub前run/job/artifact原本照合、host mGBA依存のみ。旧builder/ARM/Ring hostなし。
+- Next: 進行中のreserve-fallback Actionsだけを照合。重複起動せず、完了後に新原本・固定引継ぎ・両ログを記録する。
