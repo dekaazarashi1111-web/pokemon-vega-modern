@@ -24,27 +24,23 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
-      - name: Wiki実装用のtracked textのみ収集（ROM・native実行なし）
-        env:
-          GH_TOKEN: ${{ github.token }}
+      - name: ID・供給CSV・runtime metadataだけを補足（旧取得source/native再実行なし）
         run: |
           mkdir -p /tmp/pr16-wiki-context
-          gh api repos/${{ github.repository }}/issues/18 --jq .body > /tmp/pr16-wiki-context/issue-18.md
-          gh api 'repos/${{ github.repository }}/actions/runs?branch=codex%2Fmodernization-followup-20260908&per_page=30' --jq '[.workflow_runs[] | {id,name,head_sha,status,conclusion,path,event}]' > /tmp/pr16-wiki-context/actions.json
           python3 - <<'PY'
           import hashlib, json, pathlib, subprocess, zipfile
-          allowed = {'scripts', 'tools', 'content', 'config', 'src', 'include', 'tests', 'tasks', 'infra'}
-          suffixes = {'.py', '.json', '.jsonl', '.md', '.yml', '.yaml', '.h', '.c', '.s', '.S', '.sh', '.toml', '.txt', '.tbl'}
-          exact = {'AGENTS.md', 'CHATGPT_RESUME.md', 'README.md', 'Makefile', '.gitignore', 'state/source-lock.json', 'design/active_play_baseline.md', 'design/agent_context_map.md', 'design/current_state.md', 'design/run_log.md', 'design/version_log.md', 'design/tasks_next.md', 'docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md', 'docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md'}
+          allowed = {'manifests', 'overlays', 'vendor', 'generated'}
+          suffixes = {'.py', '.json', '.jsonl', '.md', '.yml', '.yaml', '.h', '.c', '.s', '.S', '.sh', '.toml', '.txt', '.tbl', '.csv', '.inc', '.ld'}
           paths = subprocess.check_output(['git', 'ls-files', '-z']).decode().split('\0')
           manifest = {}
+          pathlib.Path('/tmp/pr16-wiki-context/workspace.json').write_text(json.dumps({'root': sorted(p.name for p in pathlib.Path('.').iterdir()), 'anchor_present': pathlib.Path('build/stages/80_modernization_runtime_boundary_repair.gba').is_file(), 'generated_files': sorted(str(p) for p in pathlib.Path('generated').rglob('*') if p.is_file()), 'report_files': sorted(str(p) for p in pathlib.Path('reports/generated').glob('*.json') if p.is_file())}, indent=2))
           with zipfile.ZipFile('/tmp/pr16-wiki-context/tracked-text.zip', 'w', zipfile.ZIP_DEFLATED) as archive:
               for name in paths:
                   p = pathlib.Path(name)
                   if not name or not p.is_file() or p.is_symlink():
                       continue
-                  selected = name in exact or name.startswith('docs/wiki/') or name.startswith('.github/workflows/') or (p.parts[0] in allowed and p.suffix in suffixes)
-                  if not selected or p.suffix.lower() in {'.gba','.srm','.sav','.ips','.ups','.bps','.zip','.png','.pem','.key'}:
+                  selected = (p.parts[0] in allowed and p.suffix in suffixes) or (p.parts[0] in {'content','config'} and p.suffix == '.csv') or name.endswith('AGENTS.md')
+                  if not selected:
                       continue
                   data = p.read_bytes()
                   try:
@@ -56,11 +52,11 @@ jobs:
                   archive.writestr(name, data)
                   manifest[name] = {'size': len(data), 'sha256': hashlib.sha256(data).hexdigest()}
           pathlib.Path('/tmp/pr16-wiki-context/manifest.json').write_text(json.dumps({'head': subprocess.check_output(['git','rev-parse','HEAD']).decode().strip(), 'files': manifest}, sort_keys=True, indent=2)+'\n')
-          print('tracked text files:', len(manifest))
+          print('supplemental tracked text files:', len(manifest))
           PY
       - uses: actions/upload-artifact@v4
         with:
-          name: pr16-wiki-source-context
+          name: pr16-wiki-source-supplement
           path: /tmp/pr16-wiki-context/
           retention-days: 3
           if-no-files-found: error
