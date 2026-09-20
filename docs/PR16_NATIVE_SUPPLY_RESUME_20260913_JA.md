@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-Circus実受付・正規抑制・通常帰還/保存再開を完了Actions・原本・29画面から正式scoped受入。physical残件0。新native0/ROM変更0。P08最終候補の変更影響移送とrelease判断は未完。
+P08保存byte21層432patchの全ROM前進/逆適用、6受入候補からの正味差分、100allocator owner、source/runner/fixture binding照合を保存。P07の3content ownerは不変。Circus同一候補受入は保持。共有save/load/party/battle hookに影響があるためP08最終native/releaseは未完。
 
-**次: P08の変更ROM範囲/owner/runner/fixture/契約を保存レシピから照合し、46487d98候補への既受入移送と必要な最小代表回帰を確定する。旧ARM/30勝/受入単体は再実行しない。**
+**次: P08影響台帳の4代表境界を対象に、まずBP帰還party/保存とRing通常戦闘を同じ46487d98候補で限定検証する。P03保存再開とCircus退出後通常戦闘も共有hook影響・未観測境界として残す。P07表・旧30勝・受入全件を再実行しない。**
 
-影響台帳と必要最小回帰を区切りごとに保存する。merge/release/active baseline変更は別途明示指示が必要。
+このP08監査runの完了Actionsを先に照合。新nativeは共有hook影響の代表境界だけ。未影響の旧30勝/P07全表/受入単体群を再実行しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `5a3ea6bfddbee41b745046c634bdf41d50946839`。
-受入集約直前remote。BP旧原本とCircus旧failureを変更せず新receiptで意味を接続。
+証拠のsource HEAD: `29202a863b14da9956c1e3b0b306b56ba3f77dc4`。
+P08監査を実行した固定source HEAD。記録run自身の完了結論は次回Actions照合で確定する。
 
 ## 最短の再開手順
 
@@ -25,10 +25,11 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `content/modernization/pr16_circus_acceptance.json`
-- `content/modernization/pr16_saved_reconstruction.json`
-- `scripts/pr16_saved_reconstruction.py`
-- `content/modernization/pr16_circus_getter_followup.json`
+- `content/modernization/pr16_p08_candidate_impact.json`
+- `scripts/pr16_p08_impact.py`
+- `scripts/pr16_p08_record.py`
+- `scripts/pr16_ring_policy_native.py`
+- `scripts/pr16_bp_chooser_native.py`
 - `content/modernization/p08_remaining_work.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
@@ -60,10 +61,11 @@ P08ゲート:
 
 2026-09-15: run34946969126/job104308573084で、同一candidateの3勝基礎9 BPに既存反復報酬3 BPが加算され12 BPへ確定。通常QOL供給ショップでかわらずのいしを4 BP購入し、残高12→8、所持0→1、Save counter5→6→7→7、通常Save/fresh Continue後の保持をscoped受入。ROM変更0、成功1process/2fresh cores。次はRing。 2026-09-18追記: Ring/policyは別scoped候補で完了。BP数値・原本の意味は変更しない。
 
-Circus scoped受入完了 → P08変更影響移送/必要最小回帰 → 配布準備判定（公開操作は別指示）
+Circus正式受入完了 → P08 byte/owner影響監査完了 → 共有runtime代表回帰4境界 → 配布準備判断
 
 ## 再実行・過大主張の禁止
 
+- P08の21層432patch全ROM監査はpr16_p08_candidate_impact.jsonに保存。同じ入力のARM/旧builder/旧nativeは再実行せず、未完4代表境界へ。
 - Circus正式scoped受入はpr16_circus_acceptance.json。35504302893の29画面/3勝/Save、35503514936の自然getter/抑制を再実行しない。旧failureの意味は維持。
 - run35503514936のgetter30/正規抑制は再観測不要。Fairy Lockは0x4000、任意交代を控える。次はlifecycle reportのみ。
 - getter field repair runを最優先確認。APIは0..10 index、旧Var IDではない。真正Save30限定、30勝prefix/旧ARM/64抽選反復禁止。
@@ -296,6 +298,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-完了native run35504302893はsuccess、getter run35503514936はfailureのまま。最新source CIのaction_required等をnative成功と混同しない。詳細はevidence/pr16_circus_acceptance/35506654695/actions.json
+Circus記録35506654695は完了success。P08記録run自身はこの時点でin_progress。source CIをnative成功に読み替えない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

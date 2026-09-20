@@ -8780,3 +8780,17 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 同branch非force commit/push、remote/HEADを読戻し。
 - Network: GitHub RESTの固定native2run/2artifact、記録失敗2runと最新30Actionsの照合のみ。
 - Next: P08の変更ROM範囲/owner/runner/fixture/契約を保存レシピから照合し、46487d98候補への既受入移送と必要な最小代表回帰を確定する。旧ARM/30勝/受入単体は再実行しない。
+
+
+## 2026-09-20T11:10:59Z — USER-20260920-P08-IMPACT
+- Timestamp: 2026-09-20T11:10:59Z
+- Task: USER-20260920-P08-IMPACT
+- Status: DONE（差分監査完了。P08最終native/releaseは未完）
+- Version: pr16-p08-impact-v1
+- Summary: P08保存byte21層432patchの全ROM前進/逆適用、6受入候補からの正味差分、100allocator owner、source/runner/fixture binding照合を保存。P07の3content ownerは不変。Circus同一候補受入は保持。共有save/load/party/battle hookに影響があるためP08最終native/releaseは未完。
+- Files changed: scripts/pr16_p08_record.py, scripts/pr16_p08_impact.py, tests/test_pr16_p08_impact.py, .github/workflows/pr16-p08-impact.yml, content/modernization/pr16_p08_candidate_impact.json, evidence/pr16_p08_impact/35507102023/impact.json, evidence/pr16_p08_impact/35507102023/contracts.stderr, content/modernization/p08_remaining_work.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, design/run_log.md, design/version_log.md
+- Verify: 新規22契約PASS、21層432patch/全ROM逆適用/疎差分一致、100allocation、resume正本/MD/hash整合、task graph PASS。
+- Boundary: 新native0、ARM0、旧30勝再実行0、製品SHA固定なし、active baseline変更なし。clean ROM二重build未実施。
+- Commit: 同branch非force commit/push、remote読戻し。
+- Network: 完了Circus記録Actions/固定artifact metadataと最新30Actionsの読取のみ。byte再構成中はprocess/network遮断。
+- Next: P08影響台帳の4代表境界を対象に、まずBP帰還party/保存とRing通常戦闘を同じ46487d98候補で限定検証する。P03保存再開とCircus退出後通常戦闘も共有hook影響・未観測境界として残す。P07表・旧30勝・受入全件を再実行しない。
