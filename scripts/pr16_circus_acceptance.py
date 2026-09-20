@@ -132,7 +132,7 @@ def execute():
     # 検査fixtureの修復だけ。前回bindingをBASE原本と照合してから限定更新する。
     for path in (RESUME_TEST, RESUME_IMPL):
         prior = subprocess.check_output(['git','show',BASE+':'+path],cwd=ROOT)
-        need(state['source_bindings'][path] == identity(prior), 'unexpected prior resume binding')
+        need(state['source_bindings'].get(path, identity(prior)) == identity(prior), 'unexpected prior resume binding')
         state['source_bindings'][path] = identity((ROOT/path).read_bytes())
     b.write(b.resume.STATE,b.stable(state));b.write(b.resume.DOC,b.resume.render(state).encode())
     b.resume.validate(ROOT)
@@ -175,6 +175,10 @@ def execute():
     value['prior_routing_failure'] = dict(run_id=failed2['id'],conclusion='failure',artifact_id=10604040930,
         archive_sha256='81e5934d96a8faa8fd685f9c2fcde86828cac59faafd3df4fd7afe99b4c91802',
         cause_ja='26検査中24成功、installがP08を更新してもbindingを同期しない既存不具合で2失敗。事前照合と変更対象限定同期を修復。',
+        new_emulator_processes=0)
+    value['prior_unbound_source_failure'] = dict(run_id=35506544430,conclusion='failure',
+        artifact_id=10603743757,archive_sha256='26d0eb3e4c9009df148c31fe3e79db3e92ff4b05e8290fdb5ee951eb43dca33b',
+        cause_ja='新たにbindingへ追加するresume実装を既登録と仮定したKeyError。既登録はBASE照合、未登録は固定BASEの親を保持して新規登録に修復。',
         new_emulator_processes=0)
     value['visual_review'] = verify_screens(zips[1], b.load(REVIEW))
     need(c.validate_calls(old['natural_calls']) == new['analysis']['inherited_suppression'], 'suppression trace differs')
