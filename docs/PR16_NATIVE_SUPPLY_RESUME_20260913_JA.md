@@ -10,7 +10,7 @@ P08候補46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38の全I
 
 **次: Issue #18の候補Wiki残件を継続。検証済み全IDスナップショットを再作成せず、receiptの未監査moveset/汎用Z/夢特性供給/handler根拠を順に埋める。CLI追加はツール安全確認で未反映。既存native再実行・性能調整・releaseへ先行しない。**
 
-先にこのWiki verification runの完了結果を照合。全体Issueを完了扱いにせず、受入済みnativeと完成済み抽出を変更影響なしで再実行しない。
+Wiki snapshot run35531601943はpush/uploadまでsuccess照合済み。保存snapshotを再生成せず未監査moveset/汎用Z/夢特性供給/handlerを継続。Issue18・releaseの未完を維持。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 

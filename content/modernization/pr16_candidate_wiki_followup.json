@@ -1,0 +1,32 @@
+{
+  "arm_builds": 0,
+  "candidate": {
+    "crc32": "CC068B4A",
+    "sha256": "46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38",
+    "size": 33554432
+  },
+  "input_failures": [
+    {
+      "new_native_runs": 0,
+      "reason": "受入済みlearnsets JSONLが汎用16MiB制限を超えた。既知Wikiは受入済みサイズ/hashで拘束し、その他sourceの上限は維持。",
+      "run": 35533773387
+    }
+  ],
+  "issue18_complete": false,
+  "new_native_runs": 0,
+  "prior_verification": {
+    "conclusion": "success",
+    "head_sha": "0514c4b17ab2109cfb11021767928255dd0a110c",
+    "id": 35531601943,
+    "status": "completed"
+  },
+  "rom_changes": 0,
+  "snapshot_files": 4126,
+  "snapshot_rebuilds": 0,
+  "snapshot_tree_sha256": "6bb5e03cbf2b06050c426eb1d31b1307bb711a5324ab5fe9005fd0c60b315a87",
+  "source_bytes": 123506344,
+  "source_files": 5945,
+  "source_head": "0752a644febd70b7e07510c74e78ed75a85cc0ad",
+  "status": "PASS_SAVED_SNAPSHOT_INPUTS",
+  "verification_run": 35533926004
+}

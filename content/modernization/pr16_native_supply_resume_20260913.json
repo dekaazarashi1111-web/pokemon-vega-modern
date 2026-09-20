@@ -844,7 +844,7 @@
       "scripts/pr16_candidate_wiki_details.py",
       "scripts/pr16_candidate_wiki_mega_quality.py"
     ],
-    "stop_rule_ja": "先にこのWiki verification runの完了結果を照合。全体Issueを完了扱いにせず、受入済みnativeと完成済み抽出を変更影響なしで再実行しない。",
+    "stop_rule_ja": "Wiki snapshot run35531601943はpush/uploadまでsuccess照合済み。保存snapshotを再生成せず未監査moveset/汎用Z/夢特性供給/handlerを継続。Issue18・releaseの未完を維持。",
     "success_observations": [
       "監査残件に限定した差分",
       "Stage61・現候補byte不変",
@@ -10561,6 +10561,8 @@
       "夢特性slotと種族別の初回供給/確率/継承を区別して監査する。",
       "既存effect流用と新規handlerをsource履歴で区分する。native未受入を無断で再実行しない。"
     ],
-    "new_native_runs": 0
+    "new_native_runs": 0,
+    "followup": "content/modernization/pr16_candidate_wiki_followup.json",
+    "verification_run_status": "completed/success"
   }
 }

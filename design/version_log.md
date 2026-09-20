@@ -6301,3 +6301,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: この記録を含むcommit。検証入力HEAD=0514c4b17ab2109cfb11021767928255dd0a110c。
 - Network: GitHub connector/Actions。検証run=35531601943。旧移送run35524571950と詳細読取run35529899896を照合。private入力の追加取得なし。
 - Boundary: native/ARM/ROM変更0、Stage61/active baseline不変、merge/releaseなし。
+
+
+## 2026-09-20T19:56:49+00:00 — USER-20260921-P08-CANDIDATE-WIKI / followup入力checkpoint
+- Task: USER-20260921-P08-CANDIDATE-WIKI / 未監査Wikiの継続
+- Status: STOPPED（入力checkpoint。Issue18は継続）
+- Summary: 先行run35531601943のsuccess・push/uploadを照合。保存4126ファイルのbyte/hashを確認し、未監査source用のtracked textだけを確保。新規snapshot生成0、native0、ARM0、ROM変更0。
+- Files changed: followup workflow、Wiki receipt、固定引継ぎMD/JSON、followup JSON、両ログ。
+- Verify: 保存Wikiファイル集合/hash/tree、候補正本照合、UTF-8/NUL/path/size検査、resume check、task graph、diff check、changed-index guard。
+- Commit: 本記録を含むcommit。検証入力HEAD=0752a644febd70b7e07510c74e78ed75a85cc0ad。
+- Network: GitHub connector/Actions。run=35533926004。source-validation run35531661125はaction_requiredであり成功へ読み替えない。
+- Boundary: Stage61/active baseline不変、merge/releaseなし。元snapshotと受入nativeは再実行しない。CLI拒否の別経路迂回は行わない。
