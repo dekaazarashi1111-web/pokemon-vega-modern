@@ -275,6 +275,15 @@ def validate(root: Path, *, check_doc: bool = True) -> dict:
 
 def install_routing(root: Path) -> None:
     """明示install時だけ案内を追加。既存本文・受入台帳の条件は保存する。"""
+    s = load(root, STATE)
+    touched = ROUTE_PATHS + HISTORY_PATHS + (BACKLOG,)
+    # 既存の不一致を更新処理で隠さない。全対象を変更前に照合する。
+    for name in touched:
+        if name in s['source_bindings']:
+            raw = safe_path(root, name).read_bytes()
+            expected = s['source_bindings'][name]
+            require(len(raw) == expected['size'] and hashlib.sha256(raw).hexdigest() == expected['sha256'],
+                    'stale routing input: '+name)
     for name in ROUTE_PATHS + HISTORY_PATHS:
         p = safe_path(root, name)
         text = p.read_text(encoding='utf-8')
@@ -284,12 +293,16 @@ def install_routing(root: Path) -> None:
         block = '\n'+MARKER+'\n'+note+'\n> repository rootの `CHATGPT_RESUME.md` を読み、そこから指定された固定MD/JSONを使う。\n> 日付の新旧やこの下の過去checkpointから現在地を推測しない。`AGENTS.md` の安全・検証規約は引き続き適用する。\n<!-- /pr16-stable-resume-route -->\n'
         title, sep, rest = text.partition('\n')
         p.write_text(title+sep+block+rest, encoding='utf-8')
-    s, backlog = load(root, STATE), load(root, BACKLOG)
+    backlog = load(root, BACKLOG)
     for row in backlog['remaining_conditions']:
         if row['id'] in ('NATURAL_CAPTURE_GEAR', 'FINAL_NATIVE_ACCEPTANCE'):
             row['resume'] = 'Current resume: '+DOC+'. '+s['bp']['current_stop']+' Next: '+s['bp']['next_step']
     backlog['current_resume_doc'] = DOC
     safe_path(root, BACKLOG).write_text(json.dumps(backlog, ensure_ascii=False, sort_keys=True, indent=2) + '\n', encoding='utf-8')
+    for name in touched:
+        if name in s['source_bindings']:
+            raw = safe_path(root, name).read_bytes()
+            s['source_bindings'][name] = dict(size=len(raw),sha256=hashlib.sha256(raw).hexdigest())
     s['p08_resume_synchronized'] = True
     dump(safe_path(root, STATE), s)
     safe_path(root, DOC).write_text(render(s), encoding='utf-8')

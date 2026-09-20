@@ -218,6 +218,24 @@ class ResumeTests(unittest.TestCase):
             self.assertIn(raw.split(b'\n',1)[1],once[name])
         m.validate(self.root)
 
+    def test_install_rejects_stale_bound_input_before_writes(self):
+        with (self.root/m.BACKLOG).open('a') as stream:stream.write(' ')
+        before={p.relative_to(self.root):p.read_bytes() for p in self.root.rglob('*') if p.is_file()}
+        with self.assertRaisesRegex(ValueError,'stale routing input'):
+            m.install_routing(self.root)
+        self.assertEqual(before,{p.relative_to(self.root):p.read_bytes() for p in self.root.rglob('*') if p.is_file()})
+
+    def test_install_updates_bound_routing_only(self):
+        before=copy.deepcopy(self.s['source_bindings'])
+        m.install_routing(self.root)
+        after=m.validate(self.root)['source_bindings']
+        for name,expected in before.items():
+            if name not in m.ROUTE_PATHS+m.HISTORY_PATHS+(m.BACKLOG,):
+                self.assertEqual(after[name],expected)
+        snapshot={name:(self.root/name).read_bytes() for name in (m.STATE,m.DOC,m.BACKLOG)}
+        m.install_routing(self.root)
+        self.assertEqual(snapshot,{name:(self.root/name).read_bytes() for name in snapshot})
+
     def test_logs_append_once(self):
         m.install_routing(self.root)
         for _ in range(2):m.record_logs(self.root,'a'*40,'2026-09-13T04:06:34Z')

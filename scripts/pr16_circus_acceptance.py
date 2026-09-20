@@ -19,7 +19,8 @@ SELF = 'scripts/pr16_circus_acceptance.py'
 TEST = 'tests/test_pr16_circus_acceptance.py'
 WORKFLOW = '.github/workflows/pr16-circus-acceptance.yml'
 RESUME_TEST = 'tests/test_pr16_resume.py'
-FILES = (SELF, TEST, REVIEW, WORKFLOW, RESUME_TEST)
+RESUME_IMPL = 'scripts/pr16_resume.py'
+FILES = (SELF, TEST, REVIEW, WORKFLOW, RESUME_TEST, RESUME_IMPL)
 OUT = ROOT / '.local/pr16-circus-acceptance'
 SOURCES = (
     dict(run=35503514936, artifact=10602823295, head='5618a38f6854aa4551e5c518509f5f97cf2a79b0',
@@ -129,9 +130,10 @@ def execute():
     need(set(b.command('git', 'diff', '--name-only', BASE, head).splitlines()) == set(FILES), 'unreviewed source delta')
     state = b.load(b.resume.STATE)
     # 検査fixtureの修復だけ。前回bindingをBASE原本と照合してから限定更新する。
-    prior_test = subprocess.check_output(['git','show',BASE+':'+RESUME_TEST],cwd=ROOT)
-    need(state['source_bindings'][RESUME_TEST] == identity(prior_test), 'unexpected prior test binding')
-    state['source_bindings'][RESUME_TEST] = identity((ROOT/RESUME_TEST).read_bytes())
+    for path in (RESUME_TEST, RESUME_IMPL):
+        prior = subprocess.check_output(['git','show',BASE+':'+path],cwd=ROOT)
+        need(state['source_bindings'][path] == identity(prior), 'unexpected prior resume binding')
+        state['source_bindings'][path] = identity((ROOT/path).read_bytes())
     b.write(b.resume.STATE,b.stable(state));b.write(b.resume.DOC,b.resume.render(state).encode())
     b.resume.validate(ROOT)
     backlog = b.load(b.resume.BACKLOG)
@@ -166,6 +168,13 @@ def execute():
     value['prior_receipt_failure'] = dict(run_id=failed['id'],head_sha=failed['head_sha'],conclusion='failure',
         artifact_id=10604105487,archive_sha256='11b1846a8419dfac44b7f5c691a1cead39245ddab85562090a1c33a6d2594ba2',
         cause_ja='原本照合後、合成resume fixtureがCircus未完を固定し0件を拒否。checkpoint/backlogの合成bindingと独立した未完/閉鎖fixtureへ修復。',
+        new_emulator_processes=0)
+    failed2 = b.api('actions/runs/35506191441')
+    need(failed2['status']=='completed' and failed2['conclusion']=='failure'
+         and failed2['head_sha']=='4a5de6198200589dc5a9685b3e8e598ecf534b93','second receipt failure changed')
+    value['prior_routing_failure'] = dict(run_id=failed2['id'],conclusion='failure',artifact_id=10604040930,
+        archive_sha256='81e5934d96a8faa8fd685f9c2fcde86828cac59faafd3df4fd7afe99b4c91802',
+        cause_ja='26検査中24成功、installがP08を更新してもbindingを同期しない既存不具合で2失敗。事前照合と変更対象限定同期を修復。',
         new_emulator_processes=0)
     value['visual_review'] = verify_screens(zips[1], b.load(REVIEW))
     need(c.validate_calls(old['natural_calls']) == new['analysis']['inherited_suppression'], 'suppression trace differs')
@@ -245,9 +254,9 @@ def execute():
              '- Status: DONE（P08最終移送・releaseは未完）\n- Version: pr16-circus-acceptance-v1\n'
              '- Summary: '+stop+'\n- Files changed: '+', '.join(paths)+'\n'
              '- Verify: 新規receipt契約・resume・task graph PASS。旧原本のgetter/predicate/delegate、lifecycle原本、29画面hash/目視と完了Actions再照合。新native/ARM/旧30勝再実行0。\n'
-             '- Prior failure: run35505906219はresume合成fixtureのCircus未完固定でfailure。原本成功を変更せず検査のみ修復。新native0。\n'
+             '- Prior failure: run35505906219はresume合成fixtureのCircus未完固定でfailure。原本成功を変更せず検査を修復。run35506191441はinstallのP08 hash同期漏れ2検査でfailure。変更前照合/限定同期を修復、新native0。\n'
              '- Commit: 同branch非force commit/push、remote/HEADを読戻し。\n'
-             '- Network: GitHub RESTの固定2run/2artifactと最新30Actionsの照合のみ。\n- Next: '+nxt+'\n')
+             '- Network: GitHub RESTの固定native2run/2artifact、記録失敗2runと最新30Actionsの照合のみ。\n- Next: '+nxt+'\n')
     for name in b.LOGS:
         need(TASK+'\n' not in (ROOT/name).read_text(), 'duplicate receipt log')
         with (ROOT/name).open('a') as stream: stream.write(entry)
