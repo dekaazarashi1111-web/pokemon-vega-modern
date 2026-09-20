@@ -30,10 +30,33 @@ jobs:
           mkdir -p .local/pr16-wiki
           git rev-parse HEAD > .local/pr16-wiki/source-head.txt
           python3 -B -m unittest discover -s tests -p 'test_pr16_candidate_wiki*.py' -v 2>&1 | tee .local/pr16-wiki/unit.log
-      - name: 保存済み候補byteから詳細projectionを読取（旧builder・ARM・nativeなし）
+      - name: 保存済み候補byteと正本の読取（旧builder・ARM・nativeなし）
         run: |
           set -euo pipefail
-          python3 -B scripts/pr16_candidate_wiki_details.py --output .local/pr16-wiki/details.json 2> >(tee .local/pr16-wiki/details.stderr.txt >&2) | tee .local/pr16-wiki/details.stdout.txt
+          python3 -B - <<'PY' 2> >(tee .local/pr16-wiki/details.stderr.txt >&2) | tee .local/pr16-wiki/details.stdout.txt
+          import sys,json
+          from pathlib import Path
+          sys.path.insert(0,'scripts')
+          from pr16_candidate_wiki_inputs import Inputs,Rom,BASE,candidate_bytes,registries,roots,stable
+          from pr16_candidate_wiki_details import CANONICAL,CSV_INPUTS,details
+          inp=Inputs(); output=Path('.local/pr16-wiki')
+          canonical={p:inp.json(p) for p in CANONICAL}
+          canonical.update({p:inp.csv(p) for p in CSV_INPUTS})
+          (output/'canonical.json').write_bytes(stable(canonical))
+          raw=candidate_bytes(inp); rom=Rom(raw); ids=registries(inp); rt=roots(inp,rom,ids)
+          diagnostic={}
+          for key,domain,stride,offset in [('ability_descriptions','ability',4,0),('item_data','item',40,20),('move_descriptions','move',4,0)]:
+              bad=[]
+              for i in range(len(ids[domain])):
+                  ptr=rom.u32(rt[key]+i*stride+offset)
+                  if not BASE<=ptr<BASE+len(raw):bad.append({'id':i,'key':ids[domain][i]['key'],'pointer':hex(ptr)})
+              diagnostic[key]={'root':hex(rt[key]),'invalid_pointer_count':len(bad),'first_invalid':bad[:12]}
+          print(json.dumps(diagnostic,ensure_ascii=False))
+          (output/'pointer-diagnostic.json').write_bytes(stable(diagnostic))
+          value=details(inp,raw)
+          (output/'details.json').write_bytes(stable(value))
+          print(json.dumps({'status':'PASS_DETAILS','candidate':value['candidate'],'counts':value['counts'],'special_z_rows':len(value['special_z_moves']['rows']),'new_native_runs':0,'rom_changes':0}))
+          PY
           git diff --exit-code
       - uses: actions/upload-artifact@v4
         if: always()
