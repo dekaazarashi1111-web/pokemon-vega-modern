@@ -853,11 +853,11 @@
     ]
   },
   "observed_date_jst": "2026-09-20",
-  "observed_head": "99d93a2f4c33fb265aee5b0dc4c1ecdb697cfea1",
+  "observed_head": "633fa939b7a9c3500f615705c325871f445d4e68",
   "observed_head_checks": {
-    "scope_head": "99d93a2f4c33fb265aee5b0dc4c1ecdb697cfea1",
+    "scope_head": "633fa939b7a9c3500f615705c325871f445d4e68",
     "run_id": 35510798943,
-    "phase": "START",
+    "phase": "FINISH",
     "native_verified": false,
     "reason_ja": "本run完了は次にActionsで別照合する。"
   },
@@ -1592,7 +1592,7 @@
   },
   "schema_version": 2,
   "session_execution_summary": {
-    "new_emulator_processes": 0,
+    "new_emulator_processes": 1,
     "fresh_cores": 0,
     "arm_compiles": 0,
     "arm_links": 0,
@@ -9286,8 +9286,8 @@
       "sha256": "efb1730abe602087de7d33abeb467cdc669cd3ad3e378574e510c99595bbe533"
     },
     "content/modernization/pr16_p08_bp_representative.json": {
-      "size": 18183,
-      "sha256": "1e3e378d14cea4ac0192e484f82ec68f1243090d0e383db1a0d354f4f507583c"
+      "size": 25341,
+      "sha256": "751df20fe5cc0f59268ff8f8aba7531d633ce14d2216663aac926468987e88b5"
     },
     "evidence/pr16_p08/user-20260920-p08-bp/35510798943/start/execution.json": {
       "size": 3983,
@@ -9296,6 +9296,14 @@
     "evidence/pr16_p08/user-20260920-p08-bp/35510798943/start/result.json": {
       "size": 18183,
       "sha256": "1e3e378d14cea4ac0192e484f82ec68f1243090d0e383db1a0d354f4f507583c"
+    },
+    "evidence/pr16_p08/user-20260920-p08-bp/35510798943/finish/execution.json": {
+      "size": 129829,
+      "sha256": "075267450739d15bc03b2de8b0b3aa0e1386701beabf9649006fbf9c0c525492"
+    },
+    "evidence/pr16_p08/user-20260920-p08-bp/35510798943/finish/result.json": {
+      "size": 25341,
+      "sha256": "751df20fe5cc0f59268ff8f8aba7531d633ce14d2216663aac926468987e88b5"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
@@ -9454,7 +9462,7 @@
     "P08_BP_RETURN_PARTY": {
       "path": "content/modernization/pr16_p08_bp_representative.json",
       "run_id": 35510798943,
-      "phase": "START",
+      "phase": "FINISH",
       "native_verified": false,
       "representative_accepted": false
     }

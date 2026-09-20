@@ -14,7 +14,7 @@ P08 BP代表の限定runner/保存再開契約を記録。native未完段階は�
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `99d93a2f4c33fb265aee5b0dc4c1ecdb697cfea1`。
+証拠のsource HEAD: `633fa939b7a9c3500f615705c325871f445d4e68`。
 本checkpoint直前のremote。native実測・記録job完了・正式受入を別々に保持する。
 
 ## 最短の再開手順
