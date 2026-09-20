@@ -3,6 +3,7 @@
 from __future__ import annotations
 import argparse
 import json
+import re
 from pathlib import Path
 import struct
 import sys
@@ -17,6 +18,13 @@ def learnsets(inputs: Inputs, rom: Rom, rt: dict, ids: dict) -> list[dict]:
     symbols73 = inputs.json('generated/runtime/modernization_p03_stage73_consumer_runtime_symbols.json')['symbols']
     symbols74 = inputs.json('generated/runtime/modernization_p03_stage74_supply_runtime_symbols.json')['symbols']
     rock = inputs.json(ROCKRUFF)
+    limits = {}
+    for stage, group in ((73, 'consumer'), (74, 'supply')):
+        name = f'overlays/modernization_p03_stage{stage}_{group}_runtime/modernization_p03_stage{stage}_{group}_runtime.c'
+        text = inputs.raw(name).decode('utf-8')
+        matches = re.findall(rf'STAGE{stage}_SPECIES_COUNT\s*=\s*([0-9]+)', text)
+        need(len(matches) == 1, 'indexed runtime species bound missing')
+        limits[f'Stage{stage}'] = int(matches[0])
     result = []
     for sid in range(count):
         item = {'species_id': sid, 'species_key': ids['species'][sid]['key'], 'routes': []}
@@ -45,6 +53,8 @@ def learnsets(inputs: Inputs, rom: Rom, rt: dict, ids: dict) -> list[dict]:
             ('machine_archive','Stage74','MachineIndex','MachineMoves',symbols74),
             ('tutor_archive','Stage74','TutorIndex','TutorMoves',symbols74),
             ('build_learnable_preservation','Stage74','PreservationIndex','PreservationMoves',symbols74)]:
+            if owner >= limits[prefix]:
+                continue  # Runtime rejects battle-only extension IDs before indexing.
             a = int(symbols[prefix+'_'+index]['address'],16)
             b = int(symbols[prefix+'_'+data]['address'],16)
             for order, mid in enumerate(rom.indexed(a,b,owner,moves)):

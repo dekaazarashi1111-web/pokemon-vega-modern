@@ -204,7 +204,9 @@ class Rom:
             move, level = struct.unpack('<HB', self.read(cursor+order*3, 3))
             if (move, level) == (0, 255):
                 return result
-            need(0 < move < move_count and 0 <= level <= 100, 'level row不正: '+str(species))
+            if move == 0:
+                continue  # Native table padding; not a learnable MOVE_NONE row.
+            need(0 < move < move_count and 0 <= level <= 100, f'level row不正: species={species} move={move} level={level}')
             result.append({'move_id': move, 'level': level, 'order': order})
         raise ValueError('level table終端なし')
 

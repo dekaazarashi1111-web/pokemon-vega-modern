@@ -39,6 +39,10 @@ class CandidateWikiInputsTest(unittest.TestCase):
             (Path(tmp)/'link').symlink_to('/tmp')
             with self.assertRaises(ValueError):inp.path('link/file')
 
+    def test_level_padding_zeros(self):
+        raw=struct.pack('<I',w.BASE+4)+struct.pack('<HBHB',0,0,0,255)
+        self.assertEqual(w.Rom(raw).level(w.BASE,0,2),[])
+
     def test_pointer_bounds(self):
         r=w.Rom(struct.pack('<I',w.BASE+8)+bytes(4))
         with self.assertRaises(ValueError):r.pointer(0)
