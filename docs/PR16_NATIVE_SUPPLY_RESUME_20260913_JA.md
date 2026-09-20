@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-P08保存byte21層432patchの全ROM前進/逆適用、6受入候補からの正味差分、100allocator owner、source/runner/fixture binding照合を保存。P07の3content ownerは不変。Circus同一候補受入は保持。共有save/load/party/battle hookに影響があるためP08最終native/releaseは未完。
+P08 Ring代表1件の新候補限定検証。開始/実停止を記録し、未観測・失敗を受入済みとしない。
 
-**次: P08影響台帳の4代表境界を対象に、まずBP帰還party/保存とRing通常戦闘を同じ46487d98候補で限定検証する。P03保存再開とCircus退出後通常戦闘も共有hook影響・未観測境界として残す。P07表・旧30勝・受入全件を再実行しない。**
+**次: このP08 Ring runの完了原本を先に読む。native未実行なら同じ記録runのnative/finishへ。失敗なら停止点だけを修正し、受入済みの旧5case/30勝は再実行しない。**
 
-このP08監査runの完了Actionsを先に照合。新nativeは共有hook影響の代表境界だけ。未影響の旧30勝/P07全表/受入単体群を再実行しない。
+このP08 Ring runの完了原本を先に読む。native未実行なら同じ記録runのnative/finishへ。失敗なら停止点だけを修正し、受入済みの旧5case/30勝は再実行しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `29202a863b14da9956c1e3b0b306b56ba3f77dc4`。
-P08監査を実行した固定source HEAD。記録run自身の完了結論は次回Actions照合で確定する。
+証拠のsource HEAD: `870e65e58fa34289daa6216ae41ed201e54b5e29`。
+P08 RingのSTART記録直前remote。native原本と正式受入は別境界。
 
 ## 最短の再開手順
 
@@ -25,11 +25,10 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_p08_ring_representative.json`
+- `scripts/pr16_p08_ring_representative.py`
 - `content/modernization/pr16_p08_candidate_impact.json`
-- `scripts/pr16_p08_impact.py`
-- `scripts/pr16_p08_record.py`
-- `scripts/pr16_ring_policy_native.py`
-- `scripts/pr16_bp_chooser_native.py`
+- `content/modernization/pr16_ring_policy_acceptance.json`
 - `content/modernization/p08_remaining_work.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
@@ -298,6 +297,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-Circus記録35506654695は完了success。P08記録run自身はこの時点でin_progress。source CIをnative成功に読み替えない。
+P08全ROM監査は完了success。本runは完了後に別途照合。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

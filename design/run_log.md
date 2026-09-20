@@ -8794,3 +8794,17 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 同branch非force commit/push、remote読戻し。
 - Network: 完了Circus記録Actions/固定artifact metadataと最新30Actionsの読取のみ。byte再構成中はprocess/network遮断。
 - Next: P08影響台帳の4代表境界を対象に、まずBP帰還party/保存とRing通常戦闘を同じ46487d98候補で限定検証する。P03保存再開とCircus退出後通常戦闘も共有hook影響・未観測境界として残す。P07表・旧30勝・受入全件を再実行しない。
+
+
+## 2026-09-20T11:22:47Z — USER-20260920-P08-RING-START
+- Timestamp: 2026-09-20T11:22:47Z
+- Task: USER-20260920-P08-RING-START
+- Status: IN_PROGRESS（未観測/実停止を保存）
+- Version: pr16-p08-ring-v1
+- Summary: P08 Ring代表1件の新候補限定検証。開始/実停止を記録し、未観測・失敗を受入済みとしない。
+- Files changed: scripts/pr16_p08_ring_representative.py, tests/test_pr16_p08_ring_representative.py, .github/workflows/pr16-p08-ring.yml, content/modernization/pr16_p08_ring_representative.json, evidence/pr16_p08_ring/35507654812/start/result.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md
+- Verify: 新規context契約・resume/MD/hash・task graph。保存byte候補identity、元25source/10generated/7guard継承。実行結果はcontent/modernization/pr16_p08_ring_representative.json。
+- Boundary: 新native=0、ARM0、旧30勝0。旧受入原本・P08影響台帳・active baseline不変。
+- Commit: 同branch非force commit/pushとremote読戻し。
+- Network: GitHub完了Actions/固定Ring artifactとhead照合、host mGBA依存のみ。旧ARM/全case buildは実行しない。
+- Next: このP08 Ring runの完了原本を先に読む。native未実行なら同じ記録runのnative/finishへ。失敗なら停止点だけを修正し、受入済みの旧5case/30勝は再実行しない。

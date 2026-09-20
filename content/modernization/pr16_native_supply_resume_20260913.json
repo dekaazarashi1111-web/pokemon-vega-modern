@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "P08保存byte21層432patchの全ROM前進/逆適用、6受入候補からの正味差分、100allocator owner、source/runner/fixture binding照合を保存。P07の3content ownerは不変。Circus同一候補受入は保持。共有save/load/party/battle hookに影響があるためP08最終native/releaseは未完。",
+    "current_stop": "P08 Ring代表1件の新候補限定検証。開始/実停止を記録し、未観測・失敗を受入済みとしない。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "P08影響台帳の4代表境界を対象に、まずBP帰還party/保存とRing通常戦闘を同じ46487d98候補で限定検証する。P03保存再開とCircus退出後通常戦闘も共有hook影響・未観測境界として残す。P07表・旧30勝・受入全件を再実行しない。",
+    "next_step": "このP08 Ring runの完了原本を先に読む。native未実行なら同じ記録runのnative/finishへ。失敗なら停止点だけを修正し、受入済みの旧5case/30勝は再実行しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -832,18 +832,17 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "P08影響台帳の4代表境界を対象に、まずBP帰還party/保存とRing通常戦闘を同じ46487d98候補で限定検証する。P03保存再開とCircus退出後通常戦闘も共有hook影響・未観測境界として残す。P07表・旧30勝・受入全件を再実行しない。",
+    "goal_ja": "このP08 Ring runの完了原本を先に読む。native未実行なら同じ記録runのnative/finishへ。失敗なら停止点だけを修正し、受入済みの旧5case/30勝は再実行しない。",
     "host_write_policy_ja": "新しい実受付のguard開始後は入力/frames/readのみ。施設番号/効果/連勝/party/PC/LRのhost注入は禁止。初期配置fixtureと実入場/正規連勝を区別する。",
-    "id": "P08_SHARED_RUNTIME_REPRESENTATIVE_NATIVE",
+    "id": "P08_RING_REPRESENTATIVE_NATIVE",
     "read_paths": [
+      "content/modernization/pr16_p08_ring_representative.json",
+      "scripts/pr16_p08_ring_representative.py",
       "content/modernization/pr16_p08_candidate_impact.json",
-      "scripts/pr16_p08_impact.py",
-      "scripts/pr16_p08_record.py",
-      "scripts/pr16_ring_policy_native.py",
-      "scripts/pr16_bp_chooser_native.py",
+      "content/modernization/pr16_ring_policy_acceptance.json",
       "content/modernization/p08_remaining_work.json"
     ],
-    "stop_rule_ja": "このP08監査runの完了Actionsを先に照合。新nativeは共有hook影響の代表境界だけ。未影響の旧30勝/P07全表/受入単体群を再実行しない。",
+    "stop_rule_ja": "このP08 Ring runの完了原本を先に読む。native未実行なら同じ記録runのnative/finishへ。失敗なら停止点だけを修正し、受入済みの旧5case/30勝は再実行しない。",
     "success_observations": [
       "実受付/入場ownerと必要進行条件を確定。データ上のmap名だけでCircusと断定しない",
       "flag直接注入を入場の証拠にせず、受付から対象ルール/特性抑制まで通常入力で確認",
@@ -851,224 +850,15 @@
     ]
   },
   "observed_date_jst": "2026-09-20",
-  "observed_head": "29202a863b14da9956c1e3b0b306b56ba3f77dc4",
+  "observed_head": "870e65e58fa34289daa6216ae41ed201e54b5e29",
   "observed_head_checks": {
-    "scope_head": "29202a863b14da9956c1e3b0b306b56ba3f77dc4",
-    "runs": [
-      {
-        "id": 35507104080,
-        "head_sha": "29202a863b14da9956c1e3b0b306b56ba3f77dc4",
-        "path": ".github/workflows/ci.yml",
-        "status": "in_progress",
-        "conclusion": null
-      },
-      {
-        "id": 35507104075,
-        "head_sha": "29202a863b14da9956c1e3b0b306b56ba3f77dc4",
-        "path": ".github/workflows/p03-forgetting-ci.yml",
-        "status": "in_progress",
-        "conclusion": null
-      },
-      {
-        "id": 35507101989,
-        "head_sha": "29202a863b14da9956c1e3b0b306b56ba3f77dc4",
-        "path": ".github/workflows/modernization-stage79-mgba.yml",
-        "status": "in_progress",
-        "conclusion": null
-      },
-      {
-        "id": 35507102023,
-        "head_sha": "29202a863b14da9956c1e3b0b306b56ba3f77dc4",
-        "path": ".github/workflows/pr16-p08-impact.yml",
-        "status": "in_progress",
-        "conclusion": null
-      },
-      {
-        "id": 35507101998,
-        "head_sha": "29202a863b14da9956c1e3b0b306b56ba3f77dc4",
-        "path": ".github/workflows/ci.yml",
-        "status": "in_progress",
-        "conclusion": null
-      },
-      {
-        "id": 35507101968,
-        "head_sha": "29202a863b14da9956c1e3b0b306b56ba3f77dc4",
-        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
-        "status": "completed",
-        "conclusion": "success"
-      },
-      {
-        "id": 35507102004,
-        "head_sha": "29202a863b14da9956c1e3b0b306b56ba3f77dc4",
-        "path": ".github/workflows/p03-forgetting-ci.yml",
-        "status": "completed",
-        "conclusion": "failure"
-      },
-      {
-        "id": 35506727890,
-        "head_sha": "8359309e868213d2ffc86a1c56a11f41ed7dda0d",
-        "path": ".github/workflows/p03-forgetting-ci.yml",
-        "status": "completed",
-        "conclusion": "action_required"
-      },
-      {
-        "id": 35506727917,
-        "head_sha": "8359309e868213d2ffc86a1c56a11f41ed7dda0d",
-        "path": ".github/workflows/ci.yml",
-        "status": "completed",
-        "conclusion": "action_required"
-      },
-      {
-        "id": 35506690726,
-        "head_sha": "5a3ea6bfddbee41b745046c634bdf41d50946839",
-        "path": ".github/workflows/p03-forgetting-ci.yml",
-        "status": "completed",
-        "conclusion": "action_required"
-      },
-      {
-        "id": 35506690733,
-        "head_sha": "5a3ea6bfddbee41b745046c634bdf41d50946839",
-        "path": ".github/workflows/ci.yml",
-        "status": "completed",
-        "conclusion": "action_required"
-      },
-      {
-        "id": 35506657990,
-        "head_sha": "5a1b35ad66c0a9a157274835987d9d7d20ba1f12",
-        "path": ".github/workflows/p03-forgetting-ci.yml",
-        "status": "completed",
-        "conclusion": "success"
-      },
-      {
-        "id": 35506657999,
-        "head_sha": "5a1b35ad66c0a9a157274835987d9d7d20ba1f12",
-        "path": ".github/workflows/ci.yml",
-        "status": "completed",
-        "conclusion": "success"
-      },
-      {
-        "id": 35506654692,
-        "head_sha": "5a1b35ad66c0a9a157274835987d9d7d20ba1f12",
-        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
-        "status": "completed",
-        "conclusion": "success"
-      },
-      {
-        "id": 35506654685,
-        "head_sha": "5a1b35ad66c0a9a157274835987d9d7d20ba1f12",
-        "path": ".github/workflows/p03-forgetting-ci.yml",
-        "status": "completed",
-        "conclusion": "success"
-      },
-      {
-        "id": 35506654699,
-        "head_sha": "5a1b35ad66c0a9a157274835987d9d7d20ba1f12",
-        "path": ".github/workflows/ci.yml",
-        "status": "completed",
-        "conclusion": "success"
-      },
-      {
-        "id": 35506654695,
-        "head_sha": "5a1b35ad66c0a9a157274835987d9d7d20ba1f12",
-        "path": ".github/workflows/pr16-circus-acceptance.yml",
-        "status": "completed",
-        "conclusion": "success"
-      },
-      {
-        "id": 35506579413,
-        "head_sha": "fe21af7a39017ce70c987790926fc11d38c1137c",
-        "path": ".github/workflows/ci.yml",
-        "status": "completed",
-        "conclusion": "action_required"
-      },
-      {
-        "id": 35506579428,
-        "head_sha": "fe21af7a39017ce70c987790926fc11d38c1137c",
-        "path": ".github/workflows/p03-forgetting-ci.yml",
-        "status": "completed",
-        "conclusion": "action_required"
-      },
-      {
-        "id": 35506546739,
-        "head_sha": "b0410d154f799b89732737a0e003d3502252ea71",
-        "path": ".github/workflows/p03-forgetting-ci.yml",
-        "status": "completed",
-        "conclusion": "success"
-      },
-      {
-        "id": 35506546741,
-        "head_sha": "b0410d154f799b89732737a0e003d3502252ea71",
-        "path": ".github/workflows/ci.yml",
-        "status": "completed",
-        "conclusion": "success"
-      },
-      {
-        "id": 35506544420,
-        "head_sha": "b0410d154f799b89732737a0e003d3502252ea71",
-        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
-        "status": "completed",
-        "conclusion": "success"
-      },
-      {
-        "id": 35506544427,
-        "head_sha": "b0410d154f799b89732737a0e003d3502252ea71",
-        "path": ".github/workflows/p03-forgetting-ci.yml",
-        "status": "completed",
-        "conclusion": "success"
-      },
-      {
-        "id": 35506544430,
-        "head_sha": "b0410d154f799b89732737a0e003d3502252ea71",
-        "path": ".github/workflows/pr16-circus-acceptance.yml",
-        "status": "completed",
-        "conclusion": "failure"
-      },
-      {
-        "id": 35506544467,
-        "head_sha": "b0410d154f799b89732737a0e003d3502252ea71",
-        "path": ".github/workflows/ci.yml",
-        "status": "completed",
-        "conclusion": "success"
-      },
-      {
-        "id": 35506193445,
-        "head_sha": "4a5de6198200589dc5a9685b3e8e598ecf534b93",
-        "path": ".github/workflows/p03-forgetting-ci.yml",
-        "status": "completed",
-        "conclusion": "success"
-      },
-      {
-        "id": 35506193406,
-        "head_sha": "4a5de6198200589dc5a9685b3e8e598ecf534b93",
-        "path": ".github/workflows/ci.yml",
-        "status": "completed",
-        "conclusion": "success"
-      },
-      {
-        "id": 35506191387,
-        "head_sha": "4a5de6198200589dc5a9685b3e8e598ecf534b93",
-        "path": ".github/workflows/pr16-resume-maintenance.yml",
-        "status": "completed",
-        "conclusion": "failure"
-      },
-      {
-        "id": 35506191461,
-        "head_sha": "4a5de6198200589dc5a9685b3e8e598ecf534b93",
-        "path": ".github/workflows/pr16-bp-battle-return-closeout.yml",
-        "status": "completed",
-        "conclusion": "failure"
-      },
-      {
-        "id": 35506191437,
-        "head_sha": "4a5de6198200589dc5a9685b3e8e598ecf534b93",
-        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
-        "status": "completed",
-        "conclusion": "success"
-      }
-    ],
-    "reason_ja": "Circus記録35506654695は完了success。P08記録run自身はこの時点でin_progress。source CIをnative成功に読み替えない。"
+    "scope_head": "870e65e58fa34289daa6216ae41ed201e54b5e29",
+    "run_id": 35507654812,
+    "verified_prior_run": 35507102023,
+    "prior_conclusion": "success",
+    "reason_ja": "P08全ROM監査は完了success。本runは完了後に別途照合。"
   },
-  "observed_head_semantics": "P08監査を実行した固定source HEAD。記録run自身の完了結論は次回Actions照合で確定する。",
+  "observed_head_semantics": "P08 RingのSTART記録直前remote。native原本と正式受入は別境界。",
   "p08_resume_synchronized": true,
   "party_retention_latest_attempt": {
     "accepted_native_cases_replayed": 0,
@@ -1135,10 +925,9 @@
   },
   "pending_runs": [
     {
-      "run_id": 35507102023,
-      "tested_head": "29202a863b14da9956c1e3b0b306b56ba3f77dc4",
-      "status": "in_progress",
-      "reason_ja": "この記録commitの後にartifact upload/Actions完了を確認する。"
+      "run_id": 35507654812,
+      "tested_head": "870e65e58fa34289daa6216ae41ed201e54b5e29",
+      "status": "in_progress"
     }
   ],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
@@ -1803,9 +1592,9 @@
     "new_emulator_processes": 0,
     "arm_compiles": 0,
     "arm_links": 0,
-    "prefix_wins_reexecuted": 0,
     "accepted_standalone_replays": 0,
-    "scope_ja": "P08 exact-byte影響監査と新規22契約だけ。保存byte再構成はclean ROM二重buildとは別。"
+    "prefix_wins_reexecuted": 0,
+    "scope_ja": "保存byte候補の変更影響があるRing代表1件だけ。未影響caseの再実行0。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -9381,8 +9170,8 @@
       "sha256": "2de1aab581307e5593860cac0964023ad000b2bc22a4535ea0d85b25f4efb517"
     },
     "content/modernization/p08_remaining_work.json": {
-      "size": 37764,
-      "sha256": "f89ca4eb789c7663456ac40a3f29a2e5731c33c1cf9aa1757c5690ac847e09eb"
+      "size": 37771,
+      "sha256": "d1880ec7ee7d0901c2031031bf18cf2d751d7782a694146226f3db34482cfc22"
     },
     "content/modernization/pr16_bp_chooser_checkpoint.json": {
       "size": 9442,
@@ -9415,10 +9204,30 @@
     "evidence/pr16_p08_impact/35507102023/contracts.stderr": {
       "size": 2569,
       "sha256": "94fd400604d981e5071c350df3025a181c0572df547d7312515c786d60a72d0d"
+    },
+    "scripts/pr16_p08_ring_representative.py": {
+      "size": 19613,
+      "sha256": "2127d51a3618b9ffeeff696bc9505205b2b4e206acf83aa41e6f431f65494d4e"
+    },
+    "tests/test_pr16_p08_ring_representative.py": {
+      "size": 4383,
+      "sha256": "8ac6c6bf6135d44b1e73911fb761990119afdecc4e5c2bca6265dd2f6a48e8fd"
+    },
+    ".github/workflows/pr16-p08-ring.yml": {
+      "size": 2196,
+      "sha256": "bb8247eee634f2ce910613e739d631e49c8f299e4503e27dac8040e6313c46de"
+    },
+    "content/modernization/pr16_p08_ring_representative.json": {
+      "size": 11838,
+      "sha256": "ef4ba3bb7d4d62bf025e48a24da36086f557bb61c6238b102ed3f88c2a77f8ac"
+    },
+    "evidence/pr16_p08_ring/35507654812/start/result.json": {
+      "size": 11838,
+      "sha256": "ef4ba3bb7d4d62bf025e48a24da36086f557bb61c6238b102ed3f88c2a77f8ac"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "P08保存byte21層432patchの全ROM前進/逆適用、6受入候補からの正味差分、100allocator owner、source/runner/fixture binding照合を保存。P07の3content ownerは不変。Circus同一候補受入は保持。共有save/load/party/battle hookに影響があるためP08最終native/releaseは未完。",
+  "source_change_review_ja": "P08 Ring代表1件の新候補限定検証。開始/実停止を記録し、未観測・失敗を受入済みとしない。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -9550,5 +9359,16 @@
     "run_id": 35507102023,
     "exact_byte_chain_verified": true,
     "final_native_acceptance_complete": false
+  },
+  "p08_ring_representative": {
+    "path": "content/modernization/pr16_p08_ring_representative.json",
+    "phase": "START",
+    "run_id": 35507654812,
+    "candidate": {
+      "size": 33554432,
+      "sha256": "46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38"
+    },
+    "native_verified": false,
+    "representative_accepted": false
   }
 }
