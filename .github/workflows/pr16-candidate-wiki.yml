@@ -1,0 +1,66 @@
+name: PR16 candidate wiki
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-candidate-wiki.yml
+      - scripts/build_pr16_candidate_wiki.py
+      - scripts/pr16_candidate_wiki_*.py
+      - tests/test_pr16_candidate_wiki.py
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+  issues: read
+concurrency:
+  group: pr16-candidate-wiki
+  cancel-in-progress: false
+jobs:
+  wiki:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Wiki実装用のtracked textのみ収集（ROM・native実行なし）
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p /tmp/pr16-wiki-context
+          gh api repos/${{ github.repository }}/issues/18 --jq .body > /tmp/pr16-wiki-context/issue-18.md
+          gh api 'repos/${{ github.repository }}/actions/runs?branch=codex%2Fmodernization-followup-20260908&per_page=30' --jq '[.workflow_runs[] | {id,name,head_sha,status,conclusion,path,event}]' > /tmp/pr16-wiki-context/actions.json
+          python3 - <<'PY'
+          import hashlib, json, pathlib, subprocess, zipfile
+          allowed = {'scripts', 'tools', 'content', 'config', 'src', 'include', 'tests', 'tasks', 'infra'}
+          suffixes = {'.py', '.json', '.jsonl', '.md', '.yml', '.yaml', '.h', '.c', '.s', '.S', '.sh', '.toml', '.txt', '.tbl'}
+          exact = {'AGENTS.md', 'CHATGPT_RESUME.md', 'README.md', 'Makefile', '.gitignore', 'state/source-lock.json', 'design/active_play_baseline.md', 'design/agent_context_map.md', 'design/current_state.md', 'design/run_log.md', 'design/version_log.md', 'design/tasks_next.md', 'docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md', 'docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md'}
+          paths = subprocess.check_output(['git', 'ls-files', '-z']).decode().split('\0')
+          manifest = {}
+          with zipfile.ZipFile('/tmp/pr16-wiki-context/tracked-text.zip', 'w', zipfile.ZIP_DEFLATED) as archive:
+              for name in paths:
+                  p = pathlib.Path(name)
+                  if not name or not p.is_file() or p.is_symlink():
+                      continue
+                  selected = name in exact or name.startswith('docs/wiki/') or name.startswith('.github/workflows/') or (p.parts[0] in allowed and p.suffix in suffixes)
+                  if not selected or p.suffix.lower() in {'.gba','.srm','.sav','.ips','.ups','.bps','.zip','.png','.pem','.key'}:
+                      continue
+                  data = p.read_bytes()
+                  try:
+                      data.decode('utf-8')
+                  except UnicodeDecodeError:
+                      continue
+                  if b'\0' in data:
+                      continue
+                  archive.writestr(name, data)
+                  manifest[name] = {'size': len(data), 'sha256': hashlib.sha256(data).hexdigest()}
+          pathlib.Path('/tmp/pr16-wiki-context/manifest.json').write_text(json.dumps({'head': subprocess.check_output(['git','rev-parse','HEAD']).decode().strip(), 'files': manifest}, sort_keys=True, indent=2)+'\n')
+          print('tracked text files:', len(manifest))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr16-wiki-source-context
+          path: /tmp/pr16-wiki-context/
+          retention-days: 3
+          if-no-files-found: error
