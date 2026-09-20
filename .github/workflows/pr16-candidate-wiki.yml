@@ -4,7 +4,6 @@ on:
     branches: [codex/modernization-followup-20260908]
     paths:
       - .github/workflows/pr16-candidate-wiki.yml
-      - scripts/build_pr16_candidate_wiki.py
       - scripts/pr16_candidate_wiki_*.py
       - tests/test_pr16_candidate_wiki*.py
   workflow_dispatch:
@@ -24,44 +23,219 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
-      - name: Wiki限定unit（native再実行なし）
+      - name: 入力固定・履歴保護・詳細読取（nativeとROM生成なし）
         run: |
           set -euo pipefail
           mkdir -p .local/pr16-wiki
           git rev-parse HEAD > .local/pr16-wiki/source-head.txt
-          python3 -B -m unittest discover -s tests -p 'test_pr16_candidate_wiki*.py' -v 2>&1 | tee .local/pr16-wiki/unit.log
-      - name: 保存済み候補byteと正本の読取（旧builder・ARM・nativeなし）
+          python3 -B - <<'PY'
+          import hashlib,json,pathlib
+          root=pathlib.Path('.')
+          names=[str(p) for p in (root/'docs/wiki/stage61').rglob('*') if p.is_file()]
+          names+=['config/active_play_baseline.json','CHATGPT_RESUME.md']
+          record={p:hashlib.sha256((root/p).read_bytes()).hexdigest() for p in sorted(names)}
+          (root/'.local/pr16-wiki/protected.json').write_text(json.dumps(record,sort_keys=True)+'\n')
+          PY
+          python3 -B scripts/pr16_candidate_wiki_details.py --output .local/pr16-wiki/details.json 2> >(tee .local/pr16-wiki/details.stderr.txt >&2) | tee .local/pr16-wiki/details.stdout.txt
+          git diff --exit-code
+      - name: Wikiスナップショット二重生成と純読取比較（Issue18の未完条件は明示）
         run: |
           set -euo pipefail
-          python3 -B - <<'PY' 2> >(tee .local/pr16-wiki/details.stderr.txt >&2) | tee .local/pr16-wiki/details.stdout.txt
-          import sys,json
-          from pathlib import Path
+          for seed in 11 29; do
+            PYTHONHASHSEED=$seed WIKI_PASS=$seed python3 -B - <<'PY' | tee .local/pr16-wiki/pass-$seed.json
+          import json,os,pathlib,sys,tempfile
           sys.path.insert(0,'scripts')
-          from pr16_candidate_wiki_inputs import Inputs,Rom,BASE,candidate_bytes,registries,roots,stable
-          from pr16_candidate_wiki_details import CANONICAL,CSV_INPUTS,details
-          inp=Inputs(); output=Path('.local/pr16-wiki')
-          canonical={p:inp.json(p) for p in CANONICAL}
-          canonical.update({p:inp.csv(p) for p in CSV_INPUTS})
-          (output/'canonical.json').write_bytes(stable(canonical))
-          raw=candidate_bytes(inp); rom=Rom(raw); ids=registries(inp); rt=roots(inp,rom,ids)
-          diagnostic={}
-          for key,domain,stride,offset in [('ability_descriptions','ability',4,0),('item_data','item',40,20),('move_descriptions','move',4,0)]:
-              bad=[]
-              for i in range(len(ids[domain])):
-                  ptr=rom.u32(rt[key]+i*stride+offset)
-                  if not BASE<=ptr<BASE+len(raw):bad.append({'id':i,'key':ids[domain][i]['key'],'pointer':hex(ptr)})
-              diagnostic[key]={'root':hex(rt[key]),'invalid_pointer_count':len(bad),'first_invalid':bad[:12]}
-          print(json.dumps(diagnostic,ensure_ascii=False))
-          (output/'pointer-diagnostic.json').write_bytes(stable(diagnostic))
-          value=details(inp,raw)
-          (output/'details.json').write_bytes(stable(value))
-          print(json.dumps({'status':'PASS_DETAILS','candidate':value['candidate'],'counts':value['counts'],'special_z_rows':len(value['special_z_moves']['rows']),'new_native_runs':0,'rom_changes':0}))
+          from pr16_candidate_wiki_inputs import Inputs,STATE,digest,need,selected_candidate,stable
+          from pr16_candidate_wiki_catalog import assemble
+          from pr16_candidate_wiki_render import render,tree_hash,validate_links
+          inp=Inputs();d=json.loads(pathlib.Path('.local/pr16-wiki/details.json').read_bytes())
+          need(d['candidate']==selected_candidate(inp),'選択候補不一致')
+          for name,meta in d['source_bindings'].items():
+              raw=inp.raw(name);need(meta=={'size':len(raw),'sha256':digest(raw)},'抽出sourceが変更: '+name)
+          for name in ['.github/workflows/pr16-candidate-wiki.yml',*map(str,pathlib.Path('scripts').glob('pr16_candidate_wiki_*.py')),*map(str,pathlib.Path('tests').glob('test_pr16_candidate_wiki*.py'))]:inp.raw(name)
+          model=assemble(d,inp);files=render(model)
+          # 未反映CLIを利用可能と表示しない。これは既存workflowの文書snapshot境界。
+          readme=files['README.md'].decode();need(readme.count('## 再生成と検査')==1,'README section不一致')
+          files['README.md']=(readme.split('## 再生成と検査')[0]+'## 生成・検証と残件\n\nこのスナップショットは .github/workflows/pr16-candidate-wiki.yml が詳細読取→結合→描画を実行して作成します。同じ入力で2プロセスの生成byteを比較し、全ファイル・source hash・内部リンクを照合します。\n\nIssue #18全体は未完です。専用build/check CLIとMakefile入口は未反映（追加要求がツールの安全確認でブロックされたため、別経路で同じファイルを作成していません）。野生初期技・固定配布の全実moveset、汎用Z変換先、種族別の夢特性初回供給は明示的な監査残件です。既存native受入の再実行やゲーム性能変更はしていません。\n').encode()
+          files['RUNTIME_LIMITATIONS.md']+='\n## Issue #18の完了境界\n\n全ID文書スナップショットと意味差分の検証まで。専用CLI/Makefile入口、野生初期・固定配布moveset、汎用Z変換先、夢特性初回供給の詳細監査は残件です。Issueを完了・closeにせず、所有者の性能調整やreleaseへ先行しません。\n'.encode()
+          index=json.loads(files.pop('data/index.json'))
+          index.update(issue18_complete=False,snapshot_scope='ALL_ID_DOCUMENTATION_WITH_EXPLICIT_AUDIT_GAPS',
+                       files={n:{'size':len(b),'sha256':digest(b)} for n,b in sorted(files.items())},payload_tree_sha256=tree_hash(files))
+          files['data/index.json']=stable(index)
+          output=inp.path('docs/wiki/p08-candidate-'+d['candidate']['sha256'][:8])
+          def read_tree(root):
+              need(not root.is_symlink(),'root symlink')
+              result={}
+              if not root.exists():return result
+              for p in sorted(root.rglob('*')):
+                  need(not p.is_symlink(),'child symlink')
+                  if p.is_file():result[p.relative_to(root).as_posix()]=p.read_bytes()
+              return result
+          def compare(root,expected):
+              actual=read_tree(root)
+              need(set(actual)==set(expected),'missing/stale output')
+              need(all(actual[k]==v for k,v in expected.items()),'変更されたoutput')
+              return tree_hash(actual)
+          if os.environ['WIKI_PASS']=='11':
+              need(not set(read_tree(output))-set(files),'管理外outputがある')
+              for name,data in sorted(files.items()):
+                  need(name.endswith(('.md','.json','.jsonl')) and b'\0' not in data,'非text')
+                  data.decode('utf-8');p=output/name;p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(data)
+          before=tree_hash(read_tree(output));actual=compare(output,files);after=tree_hash(read_tree(output))
+          need(before==actual==after,'checkが書込またはoutput不一致')
+          if os.environ['WIKI_PASS']=='29':
+              with tempfile.TemporaryDirectory() as tmp:
+                  root=pathlib.Path(tmp);fixture={'a.md':b'expected'}
+                  for mode in ('missing','stale','changed','symlink'):
+                      for p in root.iterdir():p.unlink()
+                      (root/'a.md').write_bytes(b'expected')
+                      if mode=='missing':(root/'a.md').unlink()
+                      elif mode=='stale':(root/'stale.md').write_bytes(b'x')
+                      elif mode=='changed':(root/'a.md').write_bytes(b'wrong')
+                      else:(root/'other.md').symlink_to(root/'a.md')
+                      try:compare(root,fixture)
+                      except ValueError:pass
+                      else:raise ValueError('negative fixtureを検出できない: '+mode)
+          print(json.dumps({'status':'PASS_SNAPSHOT','output':str(output.relative_to(inp.root)),
+              'candidate':d['candidate'],'counts':index['counts'],'record_counts':index['record_counts'],
+              'files':len(files),'bytes':sum(map(len,files.values())),'tree_sha256':actual,
+              'internal_links':validate_links(files),'check_writes':0,'new_native_runs':0,'rom_changes':0},sort_keys=True))
           PY
-          git diff --exit-code
+          done
+          cmp .local/pr16-wiki/pass-11.json .local/pr16-wiki/pass-29.json
+      - name: 生成後の全Wiki試験とtask graph
+        run: |
+          set -euo pipefail
+          python3 -B - <<'PY' 2>&1 | tee .local/pr16-wiki/unit.log
+          import json,pathlib,unittest
+          suite=unittest.defaultTestLoader.discover('tests',pattern='test_pr16_candidate_wiki*.py')
+          result=unittest.TextTestRunner(verbosity=2).run(suite)
+          report={'tests':result.testsRun,'failures':len(result.failures),'errors':len(result.errors),'skips':len(result.skipped)}
+          pathlib.Path('.local/pr16-wiki/unit.json').write_text(json.dumps(report,sort_keys=True)+'\n')
+          if not result.wasSuccessful() or result.skipped:raise SystemExit(1)
+          PY
+          python3 -B scripts/validate_task_graph.py | tee .local/pr16-wiki/task-graph.log
+      - name: 引継ぎ・snapshot receipt・両ログの明示更新
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh api repos/${{ github.repository }}/actions/runs/35524571950 --jq '{id,status,conclusion,head_sha}' > .local/pr16-wiki/prior-transfer-run.json
+          python3 -B - <<'PY'
+          import datetime,json,os,pathlib,sys
+          sys.path.insert(0,'scripts')
+          from pr16_candidate_wiki_inputs import STATE,stable
+          from pr16_resume import DOC,render
+          root=pathlib.Path('.');local=root/'.local/pr16-wiki'
+          load=lambda p:json.loads(p.read_bytes())
+          old=load(local/'prior-transfer-run.json');assert old['status']=='completed' and old['conclusion']=='success'
+          report=load(local/'pass-29.json');unit=load(local/'unit.json');source=os.environ['GITHUB_SHA']
+          remaining=['専用build/check CLIとMakefile入口はツール安全確認で未反映。拒否されたファイルを別経路では作らない。',
+            '野生初期技と固定配布の実movesetを全経路抽出し、推測と区別する。',
+            '汎用Z変換先・追加効果・consumerを固定正本と候補から対応付ける。',
+            '夢特性slotと種族別の初回供給/確率/継承を区別して監査する。',
+            '既存effect流用と新規handlerをsource履歴で区分する。native未受入を無断で再実行しない。']
+          receipt=dict(report,schema_version=1,task='USER-20260921-P08-CANDIDATE-WIKI',
+            scope='VERIFIED_DOCUMENTATION_SNAPSHOT',issue_number=18,issue18_complete=False,remaining_work_ja=remaining,
+            source_head=source,verification_run=int(os.environ['GITHUB_RUN_ID']),unit=unit,
+            two_process_builds_identical=True,negative_output_fixtures=['missing','stale','changed','symlink'],
+            stage61_unchanged=True,active_baseline_changed=False,release_approved=False,
+            native_reruns=0,arm_builds=0,private_guard_scope='CHANGED_FINAL_INDEX_ONLY',
+            earlier_failures=[{'run':35529488690,'cause':'道具description offsetを英語ABIと誤認'},
+                              {'run':35529640583,'cause':'同問題の限定診断'}],
+            corrected_details_run=35529899896,prior_transfer_run=old,
+            verification_run_status_at_recording='in_progress; 最終pushとupload結果はActionsの完了状態で確認')
+          acceptance='content/modernization/pr16_candidate_wiki_acceptance.json'
+          (root/acceptance).write_bytes(stable(receipt))
+          (root/'reports/generated').mkdir(parents=True,exist_ok=True)
+          (root/'reports/generated/pr16_candidate_wiki.json').write_bytes(stable(receipt))
+          (local/'acceptance.json').write_bytes(stable(receipt))
+          s=load(root/STATE)
+          goal='Issue #18の候補Wiki残件を継続。検証済み全IDスナップショットを再作成せず、receiptの未監査moveset/汎用Z/夢特性供給/handler根拠を順に埋める。CLI追加はツール安全確認で未反映。既存native再実行・性能調整・releaseへ先行しない。'
+          s['candidate_wiki']={'acceptance':acceptance,'output':report['output'],'candidate':report['candidate'],
+              'snapshot_complete':True,'issue18_complete':False,'source_head':source,'verification_run':int(os.environ['GITHUB_RUN_ID']),
+              'remaining_work_ja':remaining,'new_native_runs':0}
+          s['bp']['current_stop']=f"P08候補{report['candidate']['sha256']}の全ID Wiki {report['files']}ファイルを二重生成一致・全リンク・全Wiki試験で検証。P07全1572行を保持。Issue #18全体は未完。詳細と残件は{acceptance}。"
+          s['bp']['next_step']=goal
+          s['next_action'].update(id='P08_CANDIDATE_WIKI_REMAINING',goal_ja=goal,
+              read_paths=[acceptance,report['output']+'/README.md',report['output']+'/RUNTIME_LIMITATIONS.md',
+                  'scripts/pr16_candidate_wiki_catalog.py','scripts/pr16_candidate_wiki_render.py','scripts/pr16_candidate_wiki_details.py'],
+              stop_rule_ja='先にこのWiki verification runの完了結果を照合。全体Issueを完了扱いにせず、受入済みnativeと完成済み抽出を変更影響なしで再実行しない。',
+              success_observations=['監査残件に限定した差分','Stage61・現候補byte不変','証拠区分を維持','引継ぎ・両ログを更新'])
+          s['observed_head']=source;s['observed_date_jst']=datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))).date().isoformat()
+          s['observed_head_semantics']='Wiki snapshotの検証入力HEAD。自己commit SHA追記による無限更新を避ける。native受入HEADではない。'
+          s['observed_head_checks']['reason_ja']='旧P08移送run35524571950のsuccessを確認。Wiki限定検証の結果はcandidate_wiki.acceptanceとverification_runを参照。Issue #18未完・PR draft維持。全nativeやrelease検証は追加していない。'
+          s['pending_runs']=[r for r in s['pending_runs'] if r['run_id']!=old['id']]
+          s['remaining_sequence_ja']='P08移送済み → 候補Wikiスナップショット検証済み → Issue #18の明示残件 → 所有者の調整仕様 → 別承認後のclean-ROM二重生成/BPS/release。'
+          s['logs_synchronized']=True
+          (root/STATE).write_text(json.dumps(s,ensure_ascii=False,indent=2)+'\n')
+          (root/DOC).write_text(render(s))
+          overview=root/'docs/wiki/README.md'
+          overview.write_text('# 開発Wiki\n\n[現P08候補の調整前スナップショット]('+pathlib.Path(report['output']).name+'/README.md)\n\nSHA-256 `'+report['candidate']['sha256']+'` / CRC32 `'+report['candidate']['crc32']+'`。Issue #18の未監査項目は候補WikiのRUNTIME_LIMITATIONSに明示。\n\n[Stage61固定履歴](stage61/README.md) は変更していません。現候補と混同しないでください。\n')
+          now=datetime.datetime.now(datetime.timezone.utc).isoformat(timespec='seconds')
+          summary=f"全ID Wiki {report['files']}ファイル/{report['internal_links']}内部リンク。2プロセス同一tree={report['tree_sha256']}、{unit['tests']}試験PASS。Issue18残件を明示し、専用CLIは未反映。"
+          for name in ['design/run_log.md','design/version_log.md']:
+              with (root/name).open('a',encoding='utf-8') as f:
+                  f.write(f'\n\n## {now} — USER-20260921-P08-CANDIDATE-WIKI / snapshot\n- Task: USER-20260921-P08-CANDIDATE-WIKI / 全ID Wikiスナップショット\n- Status: DONE（snapshot限定。Issue #18全体はIN_PROGRESS）\n- Summary: {summary}\n- Files: scripts/pr16_candidate_wiki_*.py、tests/test_pr16_candidate_wiki*.py、候補Wiki、receipt、固定引継ぎMD/JSON、両ログ。\n- Verify: Wiki二重生成、純読取比較、missing/stale/changed/symlink拒否、全Wiki試験、Stage61保護、task graph、resume check、diff check、changed final-index guardを全て成功時のみcommit。全repository guardの既存違反をPASSに読み替えない。\n- Commit: この記録を含むcommit。検証入力HEAD={source}。\n- Network: GitHub connector/Actions。検証run={os.environ["GITHUB_RUN_ID"]}。旧移送run35524571950と詳細読取run35529899896を照合。private入力の追加取得なし。\n- Boundary: native/ARM/ROM変更0、Stage61/active baseline不変、merge/releaseなし。\n')
+          PY
+          python3 -B scripts/pr16_resume.py check | tee .local/pr16-wiki/resume-check.log
+      - name: 最終index保護・許可済み同branchへ通常commit/push
+        run: |
+          set -euo pipefail
+          git diff --check
+          python3 -B - <<'PY'
+          import collections,hashlib,json,pathlib,subprocess,sys
+          sys.path.insert(0,'scripts')
+          from guard_private_files import BLOCKED_PARTS,BLOCKED_SUFFIXES,index_blob,document_user_path_lines
+          root=pathlib.Path('.');local=root/'.local/pr16-wiki'
+          protected=json.loads((local/'protected.json').read_text())
+          current={str(p) for p in (root/'docs/wiki/stage61').rglob('*') if p.is_file()}|{'config/active_play_baseline.json','CHATGPT_RESUME.md'}
+          assert current==set(protected)
+          for name,sha in protected.items():assert hashlib.sha256((root/name).read_bytes()).hexdigest()==sha,name
+          report=json.loads((local/'pass-29.json').read_text());wiki=report['output']
+          allowed={'docs/wiki/README.md','content/modernization/pr16_candidate_wiki_acceptance.json',
+              'content/modernization/pr16_native_supply_resume_20260913.json','docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md',
+              'design/run_log.md','design/version_log.md'}
+          changed=set(subprocess.check_output(['git','diff','--name-only']).decode().splitlines())
+          assert all(p in allowed or p.startswith(wiki+'/') for p in changed)
+          subprocess.run(['git','add','--',wiki,*sorted(allowed)],check=True)
+          staged=subprocess.check_output(['git','diff','--cached','--name-only','-z']).decode().split('\0')
+          previous_path_hits=0
+          for name in filter(None,staged):
+              assert name in allowed or name.startswith(wiki+'/'),name
+              p=pathlib.Path(name);assert not p.is_symlink() and p.suffix not in BLOCKED_SUFFIXES
+              assert not any(x in name for x in BLOCKED_PARTS)
+              raw=index_blob(root,name);raw.decode('utf-8');assert b'\0' not in raw
+              hits=document_user_path_lines(raw)
+              if hits:
+                  old=subprocess.run(['git','show','HEAD:'+name],capture_output=True,check=False)
+                  new_lines=raw.decode().splitlines();old_lines=old.stdout.decode().splitlines()
+                  new=collections.Counter(new_lines[n-1] for n in hits)
+                  before=collections.Counter(old_lines[n-1] for n in document_user_path_lines(old.stdout)) if old.returncode==0 else collections.Counter()
+                  assert not new-before,'new private path: '+name
+                  previous_path_hits+=sum(new.values())
+          (local/'guard.json').write_text(json.dumps({'status':'PASS_CHANGED_FINAL_INDEX','files':len(list(filter(None,staged))),
+              'existing_path_hits_preserved':previous_path_hits,'protected_files':len(protected),'stage61_unchanged':True})+'\n')
+          PY
+          git diff --cached --check
+          test "$(git ls-remote origin refs/heads/codex/modernization-followup-20260908 | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20260921-P08-CANDIDATE-WIKI: 検証済み全ID Wiki snapshotと正本引継ぎを公開（Issue18残件明示）'
+          git push origin HEAD:refs/heads/codex/modernization-followup-20260908
+          git rev-parse HEAD > .local/pr16-wiki/reflected-head.txt
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: pr16-wiki-details
-          path: .local/pr16-wiki/
-          retention-days: 3
+          name: pr16-wiki-snapshot-verification
+          path: |
+            .local/pr16-wiki/*.log
+            .local/pr16-wiki/pass-*.json
+            .local/pr16-wiki/unit.json
+            .local/pr16-wiki/guard.json
+            .local/pr16-wiki/acceptance.json
+            .local/pr16-wiki/prior-transfer-run.json
+            .local/pr16-wiki/*head.txt
+            .local/pr16-wiki/*.stderr.txt
+          retention-days: 7
           if-no-files-found: error
