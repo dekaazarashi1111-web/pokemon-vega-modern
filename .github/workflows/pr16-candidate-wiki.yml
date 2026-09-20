@@ -48,17 +48,20 @@ jobs:
           from pr16_candidate_wiki_inputs import Inputs,STATE,digest,need,selected_candidate,stable
           from pr16_candidate_wiki_catalog import assemble
           from pr16_candidate_wiki_render import render,tree_hash,validate_links
+          from pr16_candidate_wiki_mega_quality import normalize,append_audit
           inp=Inputs();d=json.loads(pathlib.Path('.local/pr16-wiki/details.json').read_bytes())
           need(d['candidate']==selected_candidate(inp),'選択候補不一致')
           for name,meta in d['source_bindings'].items():
               raw=inp.raw(name);need(meta=={'size':len(raw),'sha256':digest(raw)},'抽出sourceが変更: '+name)
           for name in ['.github/workflows/pr16-candidate-wiki.yml',*map(str,pathlib.Path('scripts').glob('pr16_candidate_wiki_*.py')),*map(str,pathlib.Path('tests').glob('test_pr16_candidate_wiki*.py'))]:inp.raw(name)
-          model=assemble(d,inp);files=render(model)
+          model=normalize(assemble(d,inp));files=render(model)
           # 未反映CLIを利用可能と表示しない。これは既存workflowの文書snapshot境界。
           readme=files['README.md'].decode();need(readme.count('## 再生成と検査')==1,'README section不一致')
           files['README.md']=(readme.split('## 再生成と検査')[0]+'## 生成・検証と残件\n\nこのスナップショットは .github/workflows/pr16-candidate-wiki.yml が詳細読取→結合→描画を実行して作成します。同じ入力で2プロセスの生成byteを比較し、全ファイル・source hash・内部リンクを照合します。\n\nIssue #18全体は未完です。専用build/check CLIとMakefile入口は未反映（追加要求がツールの安全確認でブロックされたため、別経路で同じファイルを作成していません）。野生初期技・固定配布の全実moveset、汎用Z変換先、種族別の夢特性初回供給は明示的な監査残件です。既存native受入の再実行やゲーム性能変更はしていません。\n').encode()
           files['RUNTIME_LIMITATIONS.md']+='\n## Issue #18の完了境界\n\n全ID文書スナップショットと意味差分の検証まで。専用CLI/Makefile入口、野生初期・固定配布moveset、汎用Z変換先、夢特性初回供給の詳細監査は残件です。Issueを完了・closeにせず、所有者の性能調整やreleaseへ先行しません。\n'.encode()
+          append_audit(files,model)
           index=json.loads(files.pop('data/index.json'))
+          index['mega_mapping_summary']=model['mega_mapping_summary']
           index.update(issue18_complete=False,snapshot_scope='ALL_ID_DOCUMENTATION_WITH_EXPLICIT_AUDIT_GAPS',
                        files={n:{'size':len(b),'sha256':digest(b)} for n,b in sorted(files.items())},payload_tree_sha256=tree_hash(files))
           files['data/index.json']=stable(index)
@@ -97,7 +100,7 @@ jobs:
                       except ValueError:pass
                       else:raise ValueError('negative fixtureを検出できない: '+mode)
           print(json.dumps({'status':'PASS_SNAPSHOT','output':str(output.relative_to(inp.root)),
-              'candidate':d['candidate'],'counts':index['counts'],'record_counts':index['record_counts'],
+              'candidate':d['candidate'],'counts':index['counts'],'record_counts':index['record_counts'],'mega_mapping_summary':model['mega_mapping_summary'],
               'files':len(files),'bytes':sum(map(len,files.values())),'tree_sha256':actual,
               'internal_links':validate_links(files),'check_writes':0,'new_native_runs':0,'rom_changes':0},sort_keys=True))
           PY
@@ -142,7 +145,8 @@ jobs:
             stage61_unchanged=True,active_baseline_changed=False,release_approved=False,
             native_reruns=0,arm_builds=0,private_guard_scope='CHANGED_FINAL_INDEX_ONLY',
             earlier_failures=[{'run':35529488690,'cause':'道具description offsetを英語ABIと誤認'},
-                              {'run':35529640583,'cause':'同問題の限定診断'}],
+                              {'run':35529640583,'cause':'同問題の限定診断'},
+                              {'run':35531068177,'cause':'旧method254自己参照1行を全メガとして扱った検査失敗。正逆76行と監査1行に分離。'}],
             corrected_details_run=35529899896,prior_transfer_run=old,
             verification_run_status_at_recording='in_progress; 最終pushとupload結果はActionsの完了状態で確認')
           acceptance='content/modernization/pr16_candidate_wiki_acceptance.json'
@@ -159,7 +163,7 @@ jobs:
           s['bp']['next_step']=goal
           s['next_action'].update(id='P08_CANDIDATE_WIKI_REMAINING',goal_ja=goal,
               read_paths=[acceptance,report['output']+'/README.md',report['output']+'/RUNTIME_LIMITATIONS.md',
-                  'scripts/pr16_candidate_wiki_catalog.py','scripts/pr16_candidate_wiki_render.py','scripts/pr16_candidate_wiki_details.py'],
+                  'scripts/pr16_candidate_wiki_catalog.py','scripts/pr16_candidate_wiki_render.py','scripts/pr16_candidate_wiki_details.py','scripts/pr16_candidate_wiki_mega_quality.py'],
               stop_rule_ja='先にこのWiki verification runの完了結果を照合。全体Issueを完了扱いにせず、受入済みnativeと完成済み抽出を変更影響なしで再実行しない。',
               success_observations=['監査残件に限定した差分','Stage61・現候補byte不変','証拠区分を維持','引継ぎ・両ログを更新'])
           s['observed_head']=source;s['observed_date_jst']=datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))).date().isoformat()
