@@ -60,6 +60,16 @@ def locate(raw: bytes, pattern: bytes, label: str) -> dict:
             'consumer_proof': 'DEFERRED_AUDIT', 'byte_match_only': True}
 
 
+def item_fields(rom: Rom, address: int, chart: dict) -> dict:
+    """日本語版の40byte道具ABI。build_move_memory._build_item_rowと一致。"""
+    name = text_at(rom,address,chart,10)
+    description = text_at(rom,rom.u32(address+16),chart)
+    return {'name':name['text'],'description':description['text'],
+            'price':rom.u16(address+12),'hold_effect_id':rom.read(address+14,1)[0],
+            'hold_effect_parameter':rom.read(address+15,1)[0],
+            'text_sources':{'name':name,'description':description},'evidence':'EXACT_CANDIDATE_ROM'}
+
+
 def details(inputs: Inputs, raw: bytes) -> dict:
     model = extract(inputs, raw); rom = Rom(raw)
     rt = {k: int(v,16) for k,v in model['roots'].items()}
@@ -74,15 +84,8 @@ def details(inputs: Inputs, raw: bytes) -> dict:
         description = text_at(rom,rom.u32(rt['ability_descriptions']+aid*4),chart)
         model['abilities'].append(dict(row, name=name['text'], description=description['text'],
             text_sources={'name':name,'description':description}, evidence='EXACT_CANDIDATE_ROM'))
-    model['items'] = []
-    for row in model['registries']['item']:
-        iid = row['id']; address = rt['item_data']+iid*40
-        name = text_at(rom,address,chart,14)
-        description = text_at(rom,rom.u32(address+20),chart)
-        model['items'].append(dict(row, name=name['text'], description=description['text'],
-            price=rom.u16(address+16), hold_effect_id=rom.read(address+18,1)[0],
-            hold_effect_parameter=rom.read(address+19,1)[0],
-            text_sources={'name':name,'description':description}, evidence='EXACT_CANDIDATE_ROM'))
+    model['items'] = [dict(row,**item_fields(rom,rt['item_data']+row['id']*40,chart))
+                      for row in model['registries']['item']]
     for move in model['moves']:
         mid = move['id']
         name = text_at(rom,rt['move_names']+mid*16,chart,16)
@@ -106,7 +109,7 @@ def details(inputs: Inputs, raw: bytes) -> dict:
     model['p07_source_rows'] = inputs.json('content/modernization/pr16_candidate_wiki_p07_source_rows.json')
     # 可変引継ぎの全文hashはWiki完了receiptとの自己参照になる。候補選択そのものは毎回検査する。
     for name in ('scripts/pr16_candidate_wiki_inputs.py','scripts/pr16_candidate_wiki_extract.py',
-                 'scripts/pr16_candidate_wiki_details.py'):
+                 'scripts/pr16_candidate_wiki_details.py','scripts/build_move_memory.py'):
         inputs.raw(name)
     model['source_bindings'] = {k:v for k,v in inputs.bindings.items() if k != STATE}
     model['selection_check'] = {'candidate':model['candidate'],'native_transfer_complete':True,
