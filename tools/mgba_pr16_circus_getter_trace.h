@@ -42,6 +42,6 @@ static void cg_begin(struct mCore *c){
     if(!cg_returns){bp_require(c,!cg_fast,"duplicate getter trace");cg_fast=c->runFrame;c->runFrame=cg_frame;}
 }
 static void cg_end(struct mCore *c){
-    if(cg_fast)c->runFrame=cg_fast;
+    if(cg_fast && c->runFrame==cg_frame)c->runFrame=cg_fast;
     bp_require(c,cg_returns==1U,"natural getter return not observed");
 }

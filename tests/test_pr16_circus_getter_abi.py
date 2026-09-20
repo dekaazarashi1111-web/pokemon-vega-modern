@@ -69,5 +69,27 @@ class GetterAbiTests(unittest.TestCase):
     def test_missing_draw_is_rejected(self):
         with self.assertRaises(ValueError):g.diagnose_draws([])
 
+    def test_interworking_preserves_five_argument_abi(self):
+        at,landing,target=0x092d0000,0x09590000,0x09ff1235
+        entry,tail=g.interworking_veneer(at,landing,target)
+        for fourth in (0,3,0xffff,0xdeadbeef):
+            r=list(range(16));r[3]=fourth;r[13]=0x02010000;r[14]=g.CALL+5
+            after=g.execute_interworking(entry,tail,at,landing,r)
+            self.assertEqual(after[:12],r[:12]);self.assertEqual(after[13:15],r[13:15])
+            self.assertEqual(after[15],target&~1)
+    def test_far_landing_unreachable_by_thumb_is_reached_in_arm(self):
+        at,landing=0x092d0000,0x09590000
+        with self.assertRaises(ValueError):g.encode_bl(g.CALL,landing)
+        entry,tail=g.interworking_veneer(at,landing,0x09ff1235)
+        self.assertEqual(g.decode_arm_branch(at+4,struct.unpack_from('<I',entry,4)[0]),landing)
+        self.assertEqual(len(entry),8);self.assertEqual(len(tail),12)
+    def test_interworking_negative_branch(self):
+        at,landing=0x09590000,0x092d0000
+        entry,tail=g.interworking_veneer(at,landing,0x09ff1235)
+        self.assertEqual(g.decode_arm_branch(at+4,struct.unpack_from('<I',entry,4)[0]),landing)
+    def test_interworking_rejects_link_branch_and_alignment(self):
+        with self.assertRaises(ValueError):g.decode_arm_branch(0x092d0004,0xeb000000)
+        with self.assertRaises(ValueError):g.interworking_veneer(0x092d0002,0x09590000,0x09ff1235)
+
 
 if __name__ == '__main__':unittest.main()

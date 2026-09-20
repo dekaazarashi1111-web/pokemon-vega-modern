@@ -20,7 +20,7 @@ b,c=previous.b,previous.c
 ROOT=b.ROOT
 OUT=ROOT/'.local/pr16-circus-getter'
 CACHE=ROOT/'.local/pr16-circus-suppression/resume'
-TASK='USER-20260920-CIRCUS-GETTER-ABI'
+TASK='USER-20260920-CIRCUS-GETTER-REACH'
 REPORT='content/modernization/pr16_circus_getter_followup.json'
 PRIOR='content/modernization/pr16_circus_suppression.json'
 FILES=('scripts/pr16_circus_getter_abi.py','scripts/pr16_circus_getter_followup.py',
@@ -29,15 +29,15 @@ FILES=('scripts/pr16_circus_getter_abi.py','scripts/pr16_circus_getter_followup.
 RUN,JOB,ARTIFACT=35494023398,106033721719,10600576182
 ARCHIVE=dict(size=2635482,sha256='b6eac53c9e54381fcdc66773cda12f60a522b67b65e9273332f94ba106ce2e03')
 SOURCE='bacc3089488b2f67d6bc848140c6e8239de86d60'
-START_HEAD='8628153d6a9463ef43eab41fc0e6309c8dba88be'
+START_HEAD='cdd76a738d2f86a2a3c7aa7d8d5efe2664fd7a5e'
 b.OUT=OUT;previous.OUT=OUT
 need=g.need
 
 
 def tests():
     raw,err,p=b.capture([sys.executable,'-m','unittest','discover','-s','tests','-p','test_pr16_circus_getter_abi.py','-v'],'abi-contracts')
-    need(b.exited(p)==0 and b'Ran 16 tests' in err and b'\nOK\n' in err,'new ABI contracts')
-    return dict(tests_run=16,failures=0,errors=0,skips=0,successful=True)
+    need(b.exited(p)==0 and b'Ran 20 tests' in err and b'\nOK\n' in err,'new ABI contracts')
+    return dict(tests_run=20,failures=0,errors=0,skips=0,successful=True)
 
 
 def original_failure():
@@ -74,7 +74,7 @@ def checkpoint(value,phase):
         stop='５引数保持中継の新scoped候補で、真正Save30 cacheから自然getter30・正規抑制抽選/自然callee・勝敗帰還・通常Save/fresh Continueを検証。旧30勝原本は旧候補のまま。完了Actionsと画面の受入照合は未完。'
         nxt='getter followupの完了Actions/原本/画面を照合しCircus正式physical受入を整理する。新native/旧30勝/ARMの重複実行をしない。'
     elif phase=='START':
-        stop='旧64抽選は全件単一global effectで打切り。getter中継が第４引数r3を破壊する不具合を５引数保持veneerで修復し、16契約を検証。真正Save30 cacheからだけ継続する。'
+        stop='旧64抽選は全件単一global effectで打切り。getter中継が第４引数r3を破壊する不具合を５引数保持veneerで修復し、20契約を検証。真正Save30 cacheからだけ継続する。'
         nxt='進行中のgetter followup runを確認。cache欠落時も30勝bootstrapへfallbackせず、最初の未達だけ修復する。'
     else:
         stop='getter限定修復の実証と停止原本を記録。受入済み30勝/BPは不変。未観測を成功へ昇格しない。'+str(value.get('failures',[]))
@@ -89,7 +89,7 @@ def checkpoint(value,phase):
     state['observed_head_checks']=dict(scope_head=head,runs=[dict(id=RUN,head_sha=SOURCE,status='completed',conclusion='failure')],reason_ja='旧suppressionの失敗をAPI/原本照合。今回Actionsの完了/全CI greenはこの記録時点では未主張。')
     state['pending_runs']=[dict(run_id=rid,tested_head=value['source_head'],status='in_progress',scope='circus-getter-abi')]
     state['session_execution_summary']={k:value.get(k,0) for k in ('new_emulator_processes','arm_compiles','arm_links','accepted_standalone_replays','prefix_wins_reexecuted')}
-    state['session_execution_summary']['scope_ja']='真正Save30 cache限定。旧受入native/旧ARM再compile0。限定Thumb中継とBLのみ新候補へ適用。'
+    state['session_execution_summary']['scope_ja']='真正Save30 cache限定。旧受入native/旧ARM再compile0。既存８byte中継と新規ARM tail12byteのみ新候補へ適用。BL本体は不変。'
     note='getter followupの先行runを先に照合。真正Save30 cache以外から再開しない。30勝prefix/旧builder/ARM再compile/旧64抽選の反復禁止。'
     if note not in state['do_not_repeat']:state['do_not_repeat'].insert(0,note)
     row['getter_checkpoint']=REPORT;row['resume']=nxt
@@ -112,7 +112,7 @@ def checkpoint(value,phase):
     entry=(f'\n\n## {stamp} — {TASK}-{phase}\n- Timestamp: {stamp}\n- Task: {TASK}\n'
         f'- Status: {"DONE" if good else "STOPPED"}（正式Circus受入/P08は未完）\n- Version: pr16-circus-getter-abi-v1\n'
         '- Summary: '+stop+'\n- Files changed: '+', '.join((*FILES,*paths))+'\n'
-        '- Verify: 新規ABI16契約、固定resume、task graph、index差分private guard、diff check。実native/ROM/trace結果はreport原本に分離。\n'
+        '- Verify: 新規ABI20契約、固定resume、task graph、index差分private guard、diff check。実native/ROM/trace結果はreport原本に分離。\n'
         '- Commit: この記録を含む同branch非force commit。自己SHAはremote/receipt。\n'
         '- Network: GitHub固定Actions原本。固定CFRU e24a16feのsrc/frontier.c（GetCurrentBattleTowerStreak/LoadBattleCircusEffects）とsource-lockを照合。検索語sp072_LoadBattleCircusEffects。host mGBA依存のみ導入。ROM/save/private入力はGit/artifactへ追加しない。\n'
         '- Next: '+nxt+'\n')
@@ -134,11 +134,28 @@ def checkpoint(value,phase):
 
 
 def prepare():
-    head=b.scope();b.resume.validate(ROOT);OUT.mkdir(parents=True,exist_ok=True)
-    need(not (ROOT/REPORT).exists(),'existing getter attempt: inspect first, never replay')
-    subprocess.run(['git','merge-base','--is-ancestor',START_HEAD,head],cwd=ROOT,check=True)
-    value=dict(schema_version=1,task=TASK,classification='CIRCUS_GETTER_ABI_IMPLEMENTED_NATIVE_OPEN',
-        source_head=head,original_failure=original_failure(),original=previous.original(),host_tests=tests(),
+    head=b.scope();OUT.mkdir(parents=True,exist_ok=True)
+    stopped=b.load(REPORT)
+    need(stopped['recording_run']==35499729510 and stopped['new_emulator_processes']==0
+         and stopped['failures']==[dict(stage='getter-native-or-build',type='ValueError',error='BL range')],
+         'only the observed zero-native reachability stop may resume')
+    run=b.api('actions/runs/35499729510')
+    need(run['status']=='completed' and run['conclusion']=='failure' and run['head_sha']=='c82c455ac67225dfcc4fb798d03f783a70d93903',
+         'prior getter run still active or changed')
+    modified=set(FILES)-{'.github/workflows/pr16-circus-getter.yml'}
+    need(set(b.command('git','diff','--name-only',START_HEAD,head).splitlines())==modified,'unexpected repair scope')
+    state=b.load(b.resume.STATE)
+    need((ROOT/b.resume.DOC).read_text()==b.resume.render(state),'preexisting resume MD drift')
+    for name in modified:
+        before=subprocess.check_output(['git','show',START_HEAD+':'+name],cwd=ROOT)
+        need(b.identity(before)==state['source_bindings'][name],'unreviewed previous source: '+name)
+        state['source_bindings'][name]=b.identity((ROOT/name).read_bytes())
+    b.write(b.resume.STATE,b.stable(state));b.write(b.resume.DOC,b.resume.render(state).encode());b.resume.validate(ROOT)
+    value=dict(schema_version=1,task=TASK,classification='CIRCUS_GETTER_INTERWORKING_IMPLEMENTED_NATIVE_OPEN',
+        source_head=head,original_failure=stopped['original_failure'],original=previous.original(),host_tests=tests(),
+        previous_attempt=dict(run_id=35499729510,source_head=run['head_sha'],conclusion='failure',
+            immutable='evidence/pr16_circus_getter/35499729510/finish.json',new_emulator_processes=0,
+            failure='BL range',accepted_tests_reused=stopped['host_tests']),
         sources={p:b.identity((ROOT/p).read_bytes()) for p in FILES},candidate=g.PARENT,
         new_emulator_processes=0,arm_compiles=0,arm_links=0,accepted_standalone_replays=0,prefix_wins_reexecuted=0,
         rom_changes=0,native_verified=False,physical_admission_accepted=False,suppression_accepted=False,
@@ -154,27 +171,27 @@ def build(parent,meta):
     requests=existing_requests(allocation)
     for row in allocation['allocations']:
         need(b.identity(parent[row['start']:row['end_exclusive']])['sha256']==row['content_sha256'],'parent owner hash')
-    request=dict(name='pr16_circus_getter_preserve_r3',region='integration_modules',size=16,alignment=4,
-                 owner=TASK,purpose='Circus getter five-argument preserving Thumb tail call',content_sha256='0'*64)
+    request=dict(name='pr16_circus_getter_preserve_r3',region='integration_modules',size=12,alignment=4,
+                 owner=TASK,purpose='Circus getter five-argument preserving ARM interworking tail',content_sha256='0'*64)
     preview=build_allocation_report_from_csv(ROOT/'config/rom_regions.csv',requests+[request])
     at=next(r['start'] for r in preview['allocations'] if r['name']==request['name'])
     new,changes=g.patch(parent,old,g.BASE+at)
     need(new==g.patch(parent,old,g.BASE+at)[0],'independent byte assembly')
-    request.update(start=at,content_sha256=b.identity(new[at:at+16])['sha256'])
-    # The BL belongs to the CFRU allocation; update only the owner actually containing it.
+    request.update(start=at,content_sha256=b.identity(new[at:at+12])['sha256'])
+    # 元の８byte中継ownerだけを更新。sp072 BLとcallee本体は一切変更しない。
     touched=[]
     for row,req in zip(allocation['allocations'],requests):
         left,right=row['start'],row['end_exclusive']
         if new[left:right]!=parent[left:right]:
-            need(left<=g.CALL-g.BASE<right,'unrelated prior allocation changed')
+            need(row['name']=='pr16_circus_streak_get_veneer','unrelated prior allocation changed')
             req['content_sha256']=b.identity(new[left:right])['sha256'];touched.append(row['name'])
     final=build_allocation_report_from_csv(ROOT/'config/rom_regions.csv',requests+[request])
     need(final['summaries']['overlap_count']==0,'allocation overlap')
     for row in final['allocations']:
         need(b.identity(new[row['start']:row['end_exclusive']])['sha256']==row['content_sha256'],'final allocation hash')
-    return new,dict(parent=g.PARENT,candidate=b.identity(new),old_veneer=old,new_veneer=dict(address=g.BASE+at,bytes=new[at:at+16].hex()),
+    return new,dict(parent=g.PARENT,candidate=b.identity(new),old_veneer=old,new_veneer=dict(address=g.BASE+at,bytes=new[at:at+12].hex()),
         patches=changes,allocation=final,changed_prior_allocations=touched,whole_rom_rollback_matches_parent=True,
-        save_layout_changed=False,old_getter_runtime_unchanged=True,old_veneer_unchanged=True,
+        save_layout_changed=False,old_getter_runtime_unchanged=True,old_veneer_unchanged=False,getter_callsite_unchanged=True,interworking_entry=changes[0]['after'],
         arm_compiles=0,arm_links=0,accepted_30_relabelled=False)
 
 

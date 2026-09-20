@@ -83,26 +83,26 @@ def old_veneer(rom, allocation):
 
 
 def patch(rom, old, address):
-    """新規16byte中継と既存BL４byteだけ。旧中継/runtime/Save ABIは不変。"""
+    """既存中継８byteと新規ARM tail12byteだけ。getter BL/runtime/Save ABIは不変。"""
     need(identity(rom) == PARENT and old['callsite'] == CALL, 'patch parent')
-    at = address - BASE
-    code = veneer(address, old['target'])
-    need(rom[at:at+16] == b'\xff'*16, 'allocation must be erased')
-    before = rom[CALL-BASE:CALL-BASE+4]
-    need(decode_bl(CALL, before) == old['address'], 'call preimage changed')
-    changes = [dict(offset=CALL-BASE, before=before.hex(), after=encode_bl(CALL,address).hex()),
-               dict(offset=at, before=(b'\xff'*16).hex(), after=code.hex())]
-    out = bytearray(rom); last = 0
-    for row in sorted(changes, key=lambda r:r['offset']):
-        pos, left, right = row['offset'], bytes.fromhex(row['before']), bytes.fromhex(row['after'])
-        need(last <= pos and len(left) == len(right) and rom[pos:pos+len(left)] == left, 'overlap/preimage')
-        out[pos:pos+len(right)] = right; last = pos + len(right)
-    rollback = bytearray(out)
+    at,near=address-BASE,old['address']-BASE
+    entry,tail=interworking_veneer(old['address'],address,old['target'])
+    need(rom[at:at+12] == b'\xff'*12, 'allocation must be erased')
+    need(rom[near:near+8].hex()==old['bytes'] and decode_bl(CALL,rom[CALL-BASE:CALL-BASE+4])==old['address'],
+         'historical entry/call preimage')
+    changes=[dict(offset=near,before=old['bytes'],after=entry.hex()),
+             dict(offset=at,before=(b'\xff'*12).hex(),after=tail.hex())]
+    out=bytearray(rom);last=0
+    for row in sorted(changes,key=lambda r:r['offset']):
+        pos,left,right=row['offset'],bytes.fromhex(row['before']),bytes.fromhex(row['after'])
+        need(last<=pos and len(left)==len(right) and rom[pos:pos+len(left)]==left,'overlap/preimage')
+        out[pos:pos+len(right)]=right;last=pos+len(right)
+    rollback=bytearray(out)
     for row in changes:
-        pos, before = row['offset'], bytes.fromhex(row['before'])
-        rollback[pos:pos+len(before)] = before
-    need(bytes(rollback) == rom, 'whole-ROM rollback')
-    return bytes(out), changes
+        pos,before=row['offset'],bytes.fromhex(row['before']);rollback[pos:pos+len(before)]=before
+    need(bytes(rollback)==rom,'whole-ROM rollback')
+    need(out[CALL-BASE:CALL-BASE+4]==rom[CALL-BASE:CALL-BASE+4],'getter BL changed')
+    return bytes(out),changes
 
 
 def validate_cache(provenance, save, expected):
@@ -129,3 +129,36 @@ def diagnose_draws(rows):
     return dict(draws=64, target_draws=0, observed_owner_current=30,
                 only_one_global_effect=True, original_conclusion='failure',
                 note_ja='抽選回数を増やさず、getterの第４引数破壊を修復する。')
+
+
+def interworking_veneer(address, landing, target):
+    """既存８byte枠でThumb→ARM B、遠方12byte枠でThumbへ戻る。５引数不変。"""
+    need(type(address) is type(landing) is type(target) is int, 'integer addresses required')
+    need(not (address | landing) & 3 and target & 1, 'interworking alignment/Thumb target')
+    need(BASE <= address <= BASE+SIZE-8 and BASE <= landing <= BASE+SIZE-12
+         and BASE < target < BASE+SIZE, 'interworking ROM bounds')
+    # BX pc at address enters ARM at address+4. ARM B reads PC=address+12.
+    displacement=landing-(address+12)
+    need(-0x2000000 <= displacement <= 0x1fffffc, 'ARM B range')
+    branch=0xea000000 | ((displacement//4)&0xffffff)
+    entry=struct.pack('<HHI',0x4778,0x46c0,branch)
+    # ldr ip,[pc,#0]; bx ip; .word Thumb getter. Only ip and execution state change.
+    tail=struct.pack('<III',0xe59fc000,0xe12fff1c,target)
+    return entry,tail
+
+
+def decode_arm_branch(address, instruction):
+    need(address%4==0 and instruction&0xff000000==0xea000000,'unconditional non-link ARM B')
+    displacement=(instruction&0xffffff)<<2
+    if displacement&0x2000000:displacement-=0x4000000
+    return address+8+displacement
+
+
+def execute_interworking(entry,tail,address,landing,registers):
+    """限定BX-pc/B/LDR-ip/BX-ipモデル。SP/r0-r3/LR/flagsを使う命令はない。"""
+    need(len(entry)==8 and len(tail)==12 and entry[:4]==bytes.fromhex('7847c046'),'interworking entry')
+    need(decode_arm_branch(address+4,struct.unpack_from('<I',entry,4)[0])==landing,'ARM landing')
+    load,jump,target=struct.unpack('<III',tail)
+    need(load==0xe59fc000 and jump==0xe12fff1c and target&1 and len(registers)==16,'ARM tail')
+    r=list(registers);r[12]=target;r[15]=target&~1
+    return r
