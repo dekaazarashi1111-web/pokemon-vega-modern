@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "run35479503528の原本・29勝/30戦目同点選択prefix・終端画面を照合。実30勝/90BP、元party600/owner64、通常Save/fresh Continueをscoped確定。旧runの予測不一致failureは保持。完了runのpendingを解消し、記録でnative/ARM再実行なし。",
+    "current_stop": "抑制観測driver/異常系20契約を実装。旧30勝原本と生成Cを照合し、SRAM未保持を確認。未完経路へ必要な真正Save30を一度だけ確保し、以後はhash付きcacheから再開する。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "真正30勝の保存原本を保持し、正規実受付から特性抑制の未完経路を検証する。30勝単独・受入済みBP/Ring/P03/P06/P07・旧ARMは再実行しない。",
+    "next_step": "進行中の同branch suppression runのみ確認。通常入力の抽選と自然callee観測を完了し、原本・引継ぎ・両ログを記録する。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -542,6 +542,7 @@
   },
   "current_resume_doc": "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
   "do_not_repeat": [
+    "USER-20260920-CIRCUS-SUPPRESSION run35494023398の完了状況と原本を先に読む。真正Save30 cacheが検証済みなら30戦を再実行しない。抑制flag/乱数/特性/owner/PCへのhost書込みは禁止。",
     "USER-20260920-CIRCUS-BATTLE30-PP run35479503528の新原本を先に読む。run35478473681のfailureを改作しない。30戦目PP同点/通常入力のみ。旧ARM/受入単体/Ring host再実行は禁止。",
     "USER-20260920-CIRCUS-RESERVE run35478473681の新原本を先に読む。run35477541574のfailureを改作しない。控え方策/通常入力のみ。旧ARM/受入単体/Ring host再実行は禁止。",
     "USER-20260920-CIRCUS-BATTLE29-RECHECK run35477541574の新原本を先に読む。旧run35473090294の28勝/29戦目実敗北を30勝へ改作しない。受入単体/旧ARM/Ring host再実行は禁止。",
@@ -826,14 +827,17 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "真正30勝の保存原本を保持し、正規実受付から特性抑制の未完経路を検証する。30勝単独・受入済みBP/Ring/P03/P06/P07・旧ARMは再実行しない。",
+    "goal_ja": "進行中の同branch suppression runのみ確認。通常入力の抽選と自然callee観測を完了し、原本・引継ぎ・両ログを記録する。",
     "host_write_policy_ja": "新しい実受付のguard開始後は入力/frames/readのみ。施設番号/効果/連勝/party/PC/LRのhost注入は禁止。初期配置fixtureと実入場/正規連勝を区別する。",
     "id": "CIRCUS_SUPPRESSION_NATIVE",
     "read_paths": [
+      "content/modernization/pr16_circus_suppression.json",
+      "scripts/pr16_circus_suppression.py",
+      "scripts/pr16_circus_suppression_contract.py",
+      "tools/mgba_pr16_circus_suppression.h",
+      "tests/test_pr16_circus_suppression.py",
+      ".github/workflows/pr16-circus-suppression.yml",
       "content/modernization/pr16_circus_battle30_receipt.json",
-      "content/modernization/pr16_circus_battle30_pp.json",
-      "config/modernization_p05_stage77_suppression.json",
-      "content/modernization/pr16_saved_reconstruction.json",
       "content/modernization/p08_remaining_work.json"
     ],
     "stop_rule_ja": "次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。",
@@ -844,56 +848,20 @@
     ]
   },
   "observed_date_jst": "2026-09-20",
-  "observed_head": "d5efa04ecc2bbdc279b567f3b2475897b8c81c4e",
+  "observed_head": "bacc3089488b2f67d6bc848140c6e8239de86d60",
   "observed_head_checks": {
-    "scope_head": "d5efa04ecc2bbdc279b567f3b2475897b8c81c4e",
+    "scope_head": "bacc3089488b2f67d6bc848140c6e8239de86d60",
     "runs": [
       {
-        "id": 35480387338,
-        "name": "source-validation",
-        "head_sha": "d5efa04ecc2bbdc279b567f3b2475897b8c81c4e",
-        "status": "in_progress",
-        "conclusion": null
-      },
-      {
-        "id": 35480387340,
-        "name": "p03-forgetting-ci",
-        "head_sha": "d5efa04ecc2bbdc279b567f3b2475897b8c81c4e",
-        "status": "completed",
-        "conclusion": "success"
-      },
-      {
-        "id": 35480385433,
-        "name": "source-validation",
-        "head_sha": "d5efa04ecc2bbdc279b567f3b2475897b8c81c4e",
-        "status": "in_progress",
-        "conclusion": null
-      },
-      {
-        "id": 35480385455,
-        "name": "PR16 Circus battle30 completed receipt",
-        "head_sha": "d5efa04ecc2bbdc279b567f3b2475897b8c81c4e",
-        "status": "in_progress",
-        "conclusion": null
-      },
-      {
-        "id": 35480385398,
-        "name": "Stage79 runtime boundary audit",
-        "head_sha": "d5efa04ecc2bbdc279b567f3b2475897b8c81c4e",
-        "status": "completed",
-        "conclusion": "success"
-      },
-      {
-        "id": 35480385435,
-        "name": "p03-forgetting-ci",
-        "head_sha": "d5efa04ecc2bbdc279b567f3b2475897b8c81c4e",
+        "id": 35479503528,
+        "head_sha": "7ac90a66df9a31212fb09cedbd430d59d62649bf",
         "status": "completed",
         "conclusion": "success"
       }
     ],
-    "reason_ja": "run35479503528/job105994620734 completed/successをAPIと原本で確定。現在HEADの各CI結果はreceiptに分離。全CI greenとは主張しない。"
+    "reason_ja": "既存30勝runのsuccessを実API照合。今回runは記録中で全CI green・正式抑制受入は未主張。"
   },
-  "observed_head_semantics": "この照合前remote HEAD。native sourceはreceipt.tested_head/native_source_head。正式BP受入HEADは不変。",
+  "observed_head_semantics": "この記録前のremote HEAD。native source/実起動数/継続prefix/cacheは抑制report。正式BPと30勝受入は不変。",
   "p08_resume_synchronized": true,
   "party_retention_latest_attempt": {
     "accepted_native_cases_replayed": 0,
@@ -958,7 +926,14 @@
     "status": "NATIVE_PARTY_RETENTION_ACCEPTED_BP_PENDING",
     "tested_head": "10e535a046441dd3b797918106259b5c57b69716"
   },
-  "pending_runs": [],
+  "pending_runs": [
+    {
+      "run_id": 35494023398,
+      "tested_head": "bacc3089488b2f67d6bc848140c6e8239de86d60",
+      "status": "in_progress",
+      "scope": "circus-suppression"
+    }
+  ],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
   "pr_draft": true,
   "pr_merged": false,
@@ -1624,7 +1599,7 @@
     "arm_compiles": 0,
     "arm_links": 0,
     "accepted_standalone_replays": 0,
-    "scope_ja": "当照合runは実行0。前run35479503528の1native/2fresh coresと歴史的ARM総数unknownを維持。"
+    "scope_ja": "旧SRAM未保持時のみ30勝を未完抑制への連続prefixとして一度確保。以後は真正Save30のhash付き非tracked cache。抽選不一致も全件記録。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -8458,10 +8433,50 @@
     "content/modernization/pr16_circus_battle30_receipt.json": {
       "size": 72637,
       "sha256": "8bf18c26399bdaf304665b739b5e822ecaef2688b944c361eb23704fa7b9c0e6"
+    },
+    "scripts/pr16_circus_suppression.py": {
+      "size": 20007,
+      "sha256": "daf610ed4c21c7f80d7fc40039469a4a30b674f64e892cbc1d7392b3dce8bfcd"
+    },
+    "scripts/pr16_circus_suppression_contract.py": {
+      "size": 9792,
+      "sha256": "a39d4a6bf684759ec9ad5facd788aeb50b64098723bf8142a47f27773222c14e"
+    },
+    "tools/mgba_pr16_circus_suppression.h": {
+      "size": 10407,
+      "sha256": "e14ed1c10db6e25ab3468a80e50831948e7e31db91e2fe15c06590504af87497"
+    },
+    "tests/test_pr16_circus_suppression.py": {
+      "size": 4754,
+      "sha256": "0ddb33b23fb701324a245b5d8738b1b7838e4af816d42a63b17dee7722950d0d"
+    },
+    ".github/workflows/pr16-circus-suppression.yml": {
+      "size": 2777,
+      "sha256": "c49054381c8682b685e6537eee08e5b71dca22c90afafc9c84a969aecc19c587"
+    },
+    "content/modernization/pr16_circus_suppression.json": {
+      "size": 12945,
+      "sha256": "c15c580ea901b99faf89152c5748eb3d0c84c7c69031d4689bb7c78fc2935aad"
+    },
+    "evidence/pr16_circus_suppression/35494023398/start.json": {
+      "size": 12945,
+      "sha256": "c15c580ea901b99faf89152c5748eb3d0c84c7c69031d4689bb7c78fc2935aad"
+    },
+    "evidence/pr16_circus_suppression/35494023398/execution/contracts.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "evidence/pr16_circus_suppression/35494023398/execution/contracts.stderr": {
+      "size": 2733,
+      "sha256": "0bef3b66805152eecf89de41916db88961303e4e07b9b89020953aa19f9212b4"
+    },
+    "evidence/pr16_circus_suppression/35494023398/execution/contracts.stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "run35479503528の原本・29勝/30戦目同点選択prefix・終端画面を照合。実30勝/90BP、元party600/owner64、通常Save/fresh Continueをscoped確定。旧runの予測不一致failureは保持。完了runのpendingを解消し、記録でnative/ARM再実行なし。",
+  "source_change_review_ja": "抑制観測driver/異常系20契約を実装。旧30勝原本と生成Cを照合し、SRAM未保持を確認。未完経路へ必要な真正Save30を一度だけ確保し、以後はhash付きcacheから再開する。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -8542,5 +8557,14 @@
     "path": "content/modernization/pr16_circus_battle30_receipt.json",
     "run_id": 35479503528,
     "classification": "CIRCUS_30_WINS_VISUAL_RECONCILED_SUPPRESSION_OPEN"
+  },
+  "circus_suppression": {
+    "path": "content/modernization/pr16_circus_suppression.json",
+    "run_id": 35494023398,
+    "classification": "CIRCUS_SUPPRESSION_IMPLEMENTED_NATIVE_PENDING",
+    "candidate": {
+      "size": 33554432,
+      "sha256": "2b107e7ef897844eff810ff0b40f82543640488696e8295194ceb3b66fb2c183"
+    }
   }
 }

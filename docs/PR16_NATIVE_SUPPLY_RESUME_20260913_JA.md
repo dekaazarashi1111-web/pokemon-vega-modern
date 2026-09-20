@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-run35479503528の原本・29勝/30戦目同点選択prefix・終端画面を照合。実30勝/90BP、元party600/owner64、通常Save/fresh Continueをscoped確定。旧runの予測不一致failureは保持。完了runのpendingを解消し、記録でnative/ARM再実行なし。
+抑制観測driver/異常系20契約を実装。旧30勝原本と生成Cを照合し、SRAM未保持を確認。未完経路へ必要な真正Save30を一度だけ確保し、以後はhash付きcacheから再開する。
 
-**次: 真正30勝の保存原本を保持し、正規実受付から特性抑制の未完経路を検証する。30勝単独・受入済みBP/Ring/P03/P06/P07・旧ARMは再実行しない。**
+**次: 進行中の同branch suppression runのみ確認。通常入力の抽選と自然callee観測を完了し、原本・引継ぎ・両ログを記録する。**
 
 次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `d5efa04ecc2bbdc279b567f3b2475897b8c81c4e`。
-この照合前remote HEAD。native sourceはreceipt.tested_head/native_source_head。正式BP受入HEADは不変。
+証拠のsource HEAD: `bacc3089488b2f67d6bc848140c6e8239de86d60`。
+この記録前のremote HEAD。native source/実起動数/継続prefix/cacheは抑制report。正式BPと30勝受入は不変。
 
 ## 最短の再開手順
 
@@ -25,10 +25,13 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_circus_suppression.json`
+- `scripts/pr16_circus_suppression.py`
+- `scripts/pr16_circus_suppression_contract.py`
+- `tools/mgba_pr16_circus_suppression.h`
+- `tests/test_pr16_circus_suppression.py`
+- `.github/workflows/pr16-circus-suppression.yml`
 - `content/modernization/pr16_circus_battle30_receipt.json`
-- `content/modernization/pr16_circus_battle30_pp.json`
-- `config/modernization_p05_stage77_suppression.json`
-- `content/modernization/pr16_saved_reconstruction.json`
 - `content/modernization/p08_remaining_work.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
@@ -65,6 +68,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- USER-20260920-CIRCUS-SUPPRESSION run35494023398の完了状況と原本を先に読む。真正Save30 cacheが検証済みなら30戦を再実行しない。抑制flag/乱数/特性/owner/PCへのhost書込みは禁止。
 - USER-20260920-CIRCUS-BATTLE30-PP run35479503528の新原本を先に読む。run35478473681のfailureを改作しない。30戦目PP同点/通常入力のみ。旧ARM/受入単体/Ring host再実行は禁止。
 - USER-20260920-CIRCUS-RESERVE run35478473681の新原本を先に読む。run35477541574のfailureを改作しない。控え方策/通常入力のみ。旧ARM/受入単体/Ring host再実行は禁止。
 - USER-20260920-CIRCUS-BATTLE29-RECHECK run35477541574の新原本を先に読む。旧run35473090294の28勝/29戦目実敗北を30勝へ改作しない。受入単体/旧ARM/Ring host再実行は禁止。
@@ -292,6 +296,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-run35479503528/job105994620734 completed/successをAPIと原本で確定。現在HEADの各CI結果はreceiptに分離。全CI greenとは主張しない。
+既存30勝runのsuccessを実API照合。今回runは記録中で全CI green・正式抑制受入は未主張。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

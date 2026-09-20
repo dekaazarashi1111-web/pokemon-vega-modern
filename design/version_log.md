@@ -5908,3 +5908,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 同branch非force。検証入力HEAD=d5efa04ecc2bbdc279b567f3b2475897b8c81c4e。自己SHAはremote/receipt。
 - Network: GitHub完了run/job/artifact取得のみ。private Release/旧builder/ARM/nativeなし。
 - Next: 真正30勝の保存原本を保持し、正規実受付から特性抑制の未完経路を検証する。30勝単独・受入済みBP/Ring/P03/P06/P07・旧ARMは再実行しない。
+
+
+## 2026-09-20T06:22:26Z — USER-20260920-CIRCUS-SUPPRESSION-START
+- Timestamp: 2026-09-20T06:22:26Z
+- Task: USER-20260920-CIRCUS-SUPPRESSION
+- Status: STOPPED（正式physical受入・P08は未完）
+- Version: pr16-circus-suppression-v1
+- Summary: 抑制観測driver/異常系20契約を実装。旧30勝原本と生成Cを照合し、SRAM未保持を確認。未完経路へ必要な真正Save30を一度だけ確保し、以後はhash付きcacheから再開する。
+- Files changed: scripts/pr16_circus_suppression.py, scripts/pr16_circus_suppression_contract.py, tools/mgba_pr16_circus_suppression.h, tests/test_pr16_circus_suppression.py, .github/workflows/pr16-circus-suppression.yml, content/modernization/pr16_circus_suppression.json, evidence/pr16_circus_suppression/35494023398/start.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, evidence/pr16_circus_suppression/35494023398/execution/contracts.process.json, evidence/pr16_circus_suppression/35494023398/execution/contracts.stderr, evidence/pr16_circus_suppression/35494023398/execution/contracts.stdout, design/run_log.md, design/version_log.md
+- Verify: 新規20契約・固定resume/影響tests・task graph・index差分private guard・diff check。実native/trace成否は原本report。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote/receipt。
+- Network: GitHub原本API照合・host mGBA依存。ROM/save/private入力はGit/artifactへ追加せず、真正Save30のみActions cache。旧ARM/旧builder/受入単体0。
+- Next: 進行中の同branch suppression runのみ確認。通常入力の抽選と自然callee観測を完了し、原本・引継ぎ・両ログを記録する。
