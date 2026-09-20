@@ -6,7 +6,7 @@ on:
       - .github/workflows/pr16-candidate-wiki.yml
       - scripts/build_pr16_candidate_wiki.py
       - scripts/pr16_candidate_wiki_*.py
-      - tests/test_pr16_candidate_wiki.py
+      - tests/test_pr16_candidate_wiki*.py
   workflow_dispatch:
 permissions:
   contents: write
@@ -24,92 +24,21 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
-      - name: 読取器のpadding・consumer上限を一致させる
+      - name: Wiki限定unit（native再実行なし）
         run: |
           set -euo pipefail
           mkdir -p .local/pr16-wiki
           git rev-parse HEAD > .local/pr16-wiki/source-head.txt
-          python3 -B - <<'PY'
-          from pathlib import Path
-          p=Path('scripts/pr16_candidate_wiki_inputs.py');s=p.read_text()
-          old="            need(0 < move < move_count and 0 <= level <= 100, 'level row不正: '+str(species))"
-          new="            if move == 0:\n                continue  # Native table padding; not a learnable MOVE_NONE row.\n            need(0 < move < move_count and 0 <= level <= 100, f'level row不正: species={species} move={move} level={level}')"
-          if old in s:
-              assert s.count(old)==1;p.write_text(s.replace(old,new))
-          else:assert new in s
-          p=Path('scripts/pr16_candidate_wiki_extract.py');s=p.read_text()
-          if 'limits = {}' not in s:
-              assert s.count('import json\n')==1
-              s=s.replace('import json\n','import json\nimport re\n',1)
-              old='    rock = inputs.json(ROCKRUFF)\n'
-              new="    rock = inputs.json(ROCKRUFF)\n    limits = {}\n    for stage, group in ((73, 'consumer'), (74, 'supply')):\n        name = f'overlays/modernization_p03_stage{stage}_{group}_runtime/modernization_p03_stage{stage}_{group}_runtime.c'\n        text = inputs.raw(name).decode('utf-8')\n        matches = re.findall(rf'STAGE{stage}_SPECIES_COUNT\\s*=\\s*([0-9]+)', text)\n        need(len(matches) == 1, 'indexed runtime species bound missing')\n        limits[f'Stage{stage}'] = int(matches[0])\n"
-              assert s.count(old)==1;s=s.replace(old,new)
-              old="            a = int(symbols[prefix+'_'+index]['address'],16)\n"
-              new="            if owner >= limits[prefix]:\n                continue  # Runtime rejects battle-only extension IDs before indexing.\n"+old
-              assert s.count(old)==1;s=s.replace(old,new);p.write_text(s)
-          p=Path('tests/test_pr16_candidate_wiki.py');s=p.read_text()
-          if 'test_level_padding_zeros' not in s:
-              anchor='    def test_pointer_bounds(self):'
-              assert s.count(anchor)==1
-              test="    def test_level_padding_zeros(self):\n        raw=struct.pack('<I',w.BASE+4)+struct.pack('<HBHB',0,0,0,255)\n        self.assertEqual(w.Rom(raw).level(w.BASE,0,2),[])\n\n"
-              p.write_text(s.replace(anchor,test+anchor))
-          PY
-          python3 -B -m unittest discover -s tests -p test_pr16_candidate_wiki.py -v 2>&1 | tee .local/pr16-wiki/unit.log
-      - name: 成功済みsource抽出だけをhash一致で再利用（private入力再取得なし）
-        env:
-          GH_TOKEN: ${{ github.token }}
+          python3 -B -m unittest discover -s tests -p 'test_pr16_candidate_wiki*.py' -v 2>&1 | tee .local/pr16-wiki/unit.log
+      - name: 保存済み候補byteから詳細projectionを読取（旧builder・ARM・nativeなし）
         run: |
           set -euo pipefail
-          if ! test -f content/modernization/pr16_candidate_wiki_source_model.json || ! test -f content/modernization/pr16_candidate_wiki_p07_source_rows.json; then
-            mkdir -p .local/pr16-wiki-cache
-            gh api repos/${{ github.repository }}/actions/artifacts/10609504551/zip > .local/pr16-wiki-cache/source-artifact.zip
-          fi
-          python3 -B - <<'PY'
-          import hashlib,pathlib,zipfile
-          root=pathlib.Path('.')
-          expected={'pr16_candidate_wiki_source_model.json':(525145,'ba3f0609c346ccc8f1c0acad7960ef508d32dc7babbf59a0400d80427c748150'),'pr16_candidate_wiki_p07_source_rows.json':(675110,'f1c1e361f99d5da9fd29077874856b4c5e92fd1ed87cce6d8cc80a70356d5766')}
-          archive=root/'.local/pr16-wiki-cache/source-artifact.zip'
-          if archive.exists():
-              assert hashlib.sha256(archive.read_bytes()).hexdigest()=='909ec73f204bfc2ac1062e20b01cc7858455f36a72f570d157a58fd6375b3629'
-          for name,(size,sha) in expected.items():
-              p=root/'content/modernization'/name
-              if not p.exists():
-                  with zipfile.ZipFile(archive) as z:data=z.read(name)
-                  assert len(data)==size and hashlib.sha256(data).hexdigest()==sha
-                  data.decode('utf-8');assert b'\0' not in data;p.write_bytes(data)
-              data=p.read_bytes();assert len(data)==size and hashlib.sha256(data).hexdigest()==sha
-              (root/'.local/pr16-wiki'/name).write_bytes(data)
-          PY
-      - name: 現候補の読取専用projection（失敗時は必ずFAIL）
-        run: |
-          set -euo pipefail
-          python3 -B scripts/pr16_candidate_wiki_extract.py --output .local/pr16-wiki/projection.json 2> >(tee .local/pr16-wiki/extract.stderr.txt >&2) | tee .local/pr16-wiki/extract.stdout.txt
-          test -s .local/pr16-wiki/projection.json
-      - name: 検証済みreader修正・意味sourceを同branchへ通常push
-        run: |
-          set -euo pipefail
-          git diff --check
-          test "$(git ls-remote origin refs/heads/codex/modernization-followup-20260908 | cut -f1)" = "$GITHUB_SHA"
-          python3 -B - <<'PY'
-          import pathlib,subprocess
-          allowed={'scripts/pr16_candidate_wiki_inputs.py','scripts/pr16_candidate_wiki_extract.py','tests/test_pr16_candidate_wiki.py','content/modernization/pr16_candidate_wiki_source_model.json','content/modernization/pr16_candidate_wiki_p07_source_rows.json'}
-          changed=set(subprocess.check_output(['git','diff','--name-only']).decode().splitlines())
-          assert changed<=allowed
-          for name in allowed:
-              p=pathlib.Path(name);data=p.read_bytes();data.decode('utf-8');assert not p.is_symlink() and b'\0' not in data
-          subprocess.run(['git','add','--',*sorted(allowed)],check=True)
-          PY
-          if ! git diff --cached --quiet; then
-            git config user.name 'github-actions[bot]'
-            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-            git commit -m 'USER-20260921-P08-CANDIDATE-WIKI: WIP 現候補projection・P07全1572原本行・Z/flag意味sourceを検証'
-            git push origin HEAD:refs/heads/codex/modernization-followup-20260908
-          fi
-          git rev-parse HEAD > .local/pr16-wiki/reflected-head.txt
+          python3 -B scripts/pr16_candidate_wiki_details.py --output .local/pr16-wiki/details.json 2> >(tee .local/pr16-wiki/details.stderr.txt >&2) | tee .local/pr16-wiki/details.stdout.txt
+          git diff --exit-code
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: pr16-wiki-extraction
+          name: pr16-wiki-details
           path: .local/pr16-wiki/
           retention-days: 3
           if-no-files-found: error
