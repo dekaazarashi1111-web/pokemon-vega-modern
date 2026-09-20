@@ -492,7 +492,7 @@
       "phase": "P05",
       "reason_ja": "実際の受付・入場からBattle Circus特性抑制までの通し受入。既存のフラグ設定試験で代替しない",
       "reconstruction_checkpoint": "content/modernization/pr16_saved_reconstruction.json",
-      "resume": "pr16_circus_suppression.jsonの最初の未達段階だけ修復する。normal_save30が検証済みなら指定cacheを再利用し、30戦prefixを再実行しない。",
+      "resume": "進行中のgetter followup runを確認。cache欠落時も30勝bootstrapへfallbackせず、最初の未達だけ修復する。",
       "success_evidence": null,
       "supply_owner_evidence": "content/modernization/pr16_p05_supply_owner_findings.json",
       "target_function": "actual reception/admission to suppression",
@@ -504,7 +504,8 @@
       "reserve_fallback_checkpoint": "content/modernization/pr16_circus_reserve_fallback.json",
       "battle30_pp_checkpoint": "content/modernization/pr16_circus_battle30_pp.json",
       "battle30_receipt": "content/modernization/pr16_circus_battle30_receipt.json",
-      "suppression_checkpoint": "content/modernization/pr16_circus_suppression.json"
+      "suppression_checkpoint": "content/modernization/pr16_circus_suppression.json",
+      "getter_checkpoint": "content/modernization/pr16_circus_getter_followup.json"
     },
     {
       "accepted_candidate_sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",

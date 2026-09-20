@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-抑制継続の原本と実停止を記録。真正30勝/90BPの受入は不変。未観測を成功へ昇格しない。[{'stage': 'native-or-setup', 'type': 'ValueError', 'error': 'native process or logger failed'}]
+旧64抽選は全件単一global effectで打切り。getter中継が第４引数r3を破壊する不具合を５引数保持veneerで修復し、16契約を検証。真正Save30 cacheからだけ継続する。
 
-**次: pr16_circus_suppression.jsonの最初の未達段階だけ修復する。normal_save30が検証済みなら指定cacheを再利用し、30戦prefixを再実行しない。**
+**次: 進行中のgetter followup runを確認。cache欠落時も30勝bootstrapへfallbackせず、最初の未達だけ修復する。**
 
 次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `7ae147d9e06591f8029b098629b6ba3361e15598`。
-この記録前のremote HEAD。native source/実起動数/継続prefix/cacheは抑制report。正式BPと30勝受入は不変。
+証拠のsource HEAD: `c82c455ac67225dfcc4fb798d03f783a70d93903`。
+この記録直前のremote HEAD。実native source/candidateはgetter report。旧候補の30勝を新候補の30勝へ読み替えない。
 
 ## 最短の再開手順
 
@@ -25,12 +25,13 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_circus_getter_followup.json`
+- `scripts/pr16_circus_getter_abi.py`
+- `scripts/pr16_circus_getter_followup.py`
+- `tools/mgba_pr16_circus_getter_trace.h`
+- `tests/test_pr16_circus_getter_abi.py`
+- `.github/workflows/pr16-circus-getter.yml`
 - `content/modernization/pr16_circus_suppression.json`
-- `scripts/pr16_circus_suppression.py`
-- `scripts/pr16_circus_suppression_contract.py`
-- `tools/mgba_pr16_circus_suppression.h`
-- `tests/test_pr16_circus_suppression.py`
-- `.github/workflows/pr16-circus-suppression.yml`
 - `content/modernization/pr16_circus_battle30_receipt.json`
 - `content/modernization/p08_remaining_work.json`
 
@@ -68,6 +69,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- getter followupの先行runを先に照合。真正Save30 cache以外から再開しない。30勝prefix/旧builder/ARM再compile/旧64抽選の反復禁止。
 - USER-20260920-CIRCUS-SUPPRESSION run35494023398の完了状況と原本を先に読む。真正Save30 cacheが検証済みなら30戦を再実行しない。抑制flag/乱数/特性/owner/PCへのhost書込みは禁止。
 - USER-20260920-CIRCUS-BATTLE30-PP run35479503528の新原本を先に読む。run35478473681のfailureを改作しない。30戦目PP同点/通常入力のみ。旧ARM/受入単体/Ring host再実行は禁止。
 - USER-20260920-CIRCUS-RESERVE run35478473681の新原本を先に読む。run35477541574のfailureを改作しない。控え方策/通常入力のみ。旧ARM/受入単体/Ring host再実行は禁止。
@@ -296,6 +298,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-既存30勝runのsuccessを実API照合。今回runは記録中で全CI green・正式抑制受入は未主張。
+旧suppressionの失敗をAPI/原本照合。今回Actionsの完了/全CI greenはこの記録時点では未主張。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "抑制継続の原本と実停止を記録。真正30勝/90BPの受入は不変。未観測を成功へ昇格しない。[{'stage': 'native-or-setup', 'type': 'ValueError', 'error': 'native process or logger failed'}]",
+    "current_stop": "旧64抽選は全件単一global effectで打切り。getter中継が第４引数r3を破壊する不具合を５引数保持veneerで修復し、16契約を検証。真正Save30 cacheからだけ継続する。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "pr16_circus_suppression.jsonの最初の未達段階だけ修復する。normal_save30が検証済みなら指定cacheを再利用し、30戦prefixを再実行しない。",
+    "next_step": "進行中のgetter followup runを確認。cache欠落時も30勝bootstrapへfallbackせず、最初の未達だけ修復する。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -542,6 +542,7 @@
   },
   "current_resume_doc": "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
   "do_not_repeat": [
+    "getter followupの先行runを先に照合。真正Save30 cache以外から再開しない。30勝prefix/旧builder/ARM再compile/旧64抽選の反復禁止。",
     "USER-20260920-CIRCUS-SUPPRESSION run35494023398の完了状況と原本を先に読む。真正Save30 cacheが検証済みなら30戦を再実行しない。抑制flag/乱数/特性/owner/PCへのhost書込みは禁止。",
     "USER-20260920-CIRCUS-BATTLE30-PP run35479503528の新原本を先に読む。run35478473681のfailureを改作しない。30戦目PP同点/通常入力のみ。旧ARM/受入単体/Ring host再実行は禁止。",
     "USER-20260920-CIRCUS-RESERVE run35478473681の新原本を先に読む。run35477541574のfailureを改作しない。控え方策/通常入力のみ。旧ARM/受入単体/Ring host再実行は禁止。",
@@ -827,16 +828,17 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "pr16_circus_suppression.jsonの最初の未達段階だけ修復する。normal_save30が検証済みなら指定cacheを再利用し、30戦prefixを再実行しない。",
+    "goal_ja": "進行中のgetter followup runを確認。cache欠落時も30勝bootstrapへfallbackせず、最初の未達だけ修復する。",
     "host_write_policy_ja": "新しい実受付のguard開始後は入力/frames/readのみ。施設番号/効果/連勝/party/PC/LRのhost注入は禁止。初期配置fixtureと実入場/正規連勝を区別する。",
-    "id": "CIRCUS_SUPPRESSION_NATIVE",
+    "id": "CIRCUS_GETTER_ABI_NATIVE",
     "read_paths": [
+      "content/modernization/pr16_circus_getter_followup.json",
+      "scripts/pr16_circus_getter_abi.py",
+      "scripts/pr16_circus_getter_followup.py",
+      "tools/mgba_pr16_circus_getter_trace.h",
+      "tests/test_pr16_circus_getter_abi.py",
+      ".github/workflows/pr16-circus-getter.yml",
       "content/modernization/pr16_circus_suppression.json",
-      "scripts/pr16_circus_suppression.py",
-      "scripts/pr16_circus_suppression_contract.py",
-      "tools/mgba_pr16_circus_suppression.h",
-      "tests/test_pr16_circus_suppression.py",
-      ".github/workflows/pr16-circus-suppression.yml",
       "content/modernization/pr16_circus_battle30_receipt.json",
       "content/modernization/p08_remaining_work.json"
     ],
@@ -848,20 +850,20 @@
     ]
   },
   "observed_date_jst": "2026-09-20",
-  "observed_head": "7ae147d9e06591f8029b098629b6ba3361e15598",
+  "observed_head": "c82c455ac67225dfcc4fb798d03f783a70d93903",
   "observed_head_checks": {
-    "scope_head": "7ae147d9e06591f8029b098629b6ba3361e15598",
+    "scope_head": "c82c455ac67225dfcc4fb798d03f783a70d93903",
     "runs": [
       {
-        "id": 35479503528,
-        "head_sha": "7ac90a66df9a31212fb09cedbd430d59d62649bf",
+        "id": 35494023398,
+        "head_sha": "bacc3089488b2f67d6bc848140c6e8239de86d60",
         "status": "completed",
-        "conclusion": "success"
+        "conclusion": "failure"
       }
     ],
-    "reason_ja": "既存30勝runのsuccessを実API照合。今回runは記録中で全CI green・正式抑制受入は未主張。"
+    "reason_ja": "旧suppressionの失敗をAPI/原本照合。今回Actionsの完了/全CI greenはこの記録時点では未主張。"
   },
-  "observed_head_semantics": "この記録前のremote HEAD。native source/実起動数/継続prefix/cacheは抑制report。正式BPと30勝受入は不変。",
+  "observed_head_semantics": "この記録直前のremote HEAD。実native source/candidateはgetter report。旧候補の30勝を新候補の30勝へ読み替えない。",
   "p08_resume_synchronized": true,
   "party_retention_latest_attempt": {
     "accepted_native_cases_replayed": 0,
@@ -928,10 +930,10 @@
   },
   "pending_runs": [
     {
-      "run_id": 35494023398,
-      "tested_head": "bacc3089488b2f67d6bc848140c6e8239de86d60",
+      "run_id": 35499729510,
+      "tested_head": "c82c455ac67225dfcc4fb798d03f783a70d93903",
       "status": "in_progress",
-      "scope": "circus-suppression"
+      "scope": "circus-getter-abi"
     }
   ],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
@@ -1595,11 +1597,12 @@
   },
   "schema_version": 2,
   "session_execution_summary": {
-    "new_emulator_processes": 1,
+    "new_emulator_processes": 0,
     "arm_compiles": 0,
     "arm_links": 0,
     "accepted_standalone_replays": 0,
-    "scope_ja": "旧SRAM未保持時のみ30勝を未完抑制への連続prefixとして一度確保。以後は真正Save30のhash付き非tracked cache。抽選不一致も全件記録。"
+    "prefix_wins_reexecuted": 0,
+    "scope_ja": "真正Save30 cache限定。旧受入native/旧ARM再compile0。限定Thumb中継とBLのみ新候補へ適用。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -8549,10 +8552,50 @@
     "evidence/pr16_circus_suppression/35494023398/execution/task-graph-START.stdout": {
       "size": 77,
       "sha256": "62088248f3d245c3853d2eaa0e2fdcffe8609be8f608995613c19a76e994466a"
+    },
+    "scripts/pr16_circus_getter_abi.py": {
+      "size": 6259,
+      "sha256": "15e00b8363382371d10c108df02f440965e734fdd90ba74f92e298da7f1f0de6"
+    },
+    "scripts/pr16_circus_getter_followup.py": {
+      "size": 22168,
+      "sha256": "646f1dc7b657b80331e65d3855c484e25bf585c6854404a39da26ca50b19048a"
+    },
+    "tools/mgba_pr16_circus_getter_trace.h": {
+      "size": 2670,
+      "sha256": "c4dd8ee7d0f5952aa5371469e0f84ca6d4b67f3242face0457c3ae5111956f70"
+    },
+    "tests/test_pr16_circus_getter_abi.py": {
+      "size": 3844,
+      "sha256": "d18adc05564f55af18b78314dcce043f28fcbf7210656a51b942c2e343c7299e"
+    },
+    ".github/workflows/pr16-circus-getter.yml": {
+      "size": 2659,
+      "sha256": "9d93c31e2a14dd3ac312dd8c4ac38f2d7b2c1cbc12f2a2d4d292bf2c7e4b40e8"
+    },
+    "content/modernization/pr16_circus_getter_followup.json": {
+      "size": 14637,
+      "sha256": "f7755054056a9b33ab7254047a8ede6f1fcda0e91fc52e444d3b66c9d49fd336"
+    },
+    "evidence/pr16_circus_getter/35499729510/start.json": {
+      "size": 14637,
+      "sha256": "f7755054056a9b33ab7254047a8ede6f1fcda0e91fc52e444d3b66c9d49fd336"
+    },
+    "evidence/pr16_circus_getter/35499729510/execution/abi-contracts.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "evidence/pr16_circus_getter/35499729510/execution/abi-contracts.stderr": {
+      "size": 2029,
+      "sha256": "a1e5048893eff8c325c892b99ef053e90dbe5f4cf3560b0e79165df795861b38"
+    },
+    "evidence/pr16_circus_getter/35499729510/execution/abi-contracts.stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "抑制継続の原本と実停止を記録。真正30勝/90BPの受入は不変。未観測を成功へ昇格しない。[{'stage': 'native-or-setup', 'type': 'ValueError', 'error': 'native process or logger failed'}]",
+  "source_change_review_ja": "旧64抽選は全件単一global effectで打切り。getter中継が第４引数r3を破壊する不具合を５引数保持veneerで修復し、16契約を検証。真正Save30 cacheからだけ継続する。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -8638,6 +8681,15 @@
     "path": "content/modernization/pr16_circus_suppression.json",
     "run_id": 35494023398,
     "classification": "CIRCUS_SUPPRESSION_DIAGNOSTIC_OPEN",
+    "candidate": {
+      "size": 33554432,
+      "sha256": "2b107e7ef897844eff810ff0b40f82543640488696e8295194ceb3b66fb2c183"
+    }
+  },
+  "circus_getter_followup": {
+    "path": "content/modernization/pr16_circus_getter_followup.json",
+    "run_id": 35499729510,
+    "classification": "CIRCUS_GETTER_ABI_IMPLEMENTED_NATIVE_OPEN",
     "candidate": {
       "size": 33554432,
       "sha256": "2b107e7ef897844eff810ff0b40f82543640488696e8295194ceb3b66fb2c183"
