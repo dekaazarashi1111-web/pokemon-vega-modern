@@ -49,30 +49,33 @@ jobs:
           existing=json.loads((root/'content/modernization/pr16_candidate_wiki_source_model.json').read_bytes())['source_bindings']
           for name in paths:
               obj=api('repos/'+repo+'/contents/'+name+'?ref='+commit)
-              assert obj['encoding']=='base64' and obj['size']<=1024*1024
-              raw=base64.b64decode(obj['content'],validate=False);raw.decode('utf-8-sig');assert b'\0' not in raw and len(raw)==obj['size']
+              assert obj['encoding']=='base64' and obj['size']<=1024*1024,name
+              raw=base64.b64decode(obj['content'],validate=False);raw.decode('utf-8-sig');assert b'\0' not in raw and len(raw)==obj['size'],name
               sha=hashlib.sha256(raw).hexdigest()
-              if name in existing:assert existing[name]['sha256']==sha and existing[name]['size']==len(raw)
+              if name in existing:assert existing[name]['sha256']==sha and existing[name]['size']==len(raw),name
               key='upstream/CFRU-JP/'+name;payload[key]=raw
               bindings[key]={'repository':repo,'commit':commit,'path':name,'size':len(raw),'sha256':sha,'git_blob':obj['sha']}
               total+=len(raw);assert total<=16*1024*1024
           tracked=subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
           local_patterns=['overlays/collection_supply_v1/*.c','overlays/collection_supply_v1/*.h',
-            'overlays/modernization_p03_stage74_supply_runtime/*','overlays/wild_overlay/*',
-            'overlays/modernization_p05_ability_rom_runtime/*','overlays/stage60_wild_species_root_repair/*.c',
-            'overlays/stage59_wild_identity_npc_regression_repair/*.c','config/stage61_wild_overlay_rate_policy.json',
-            'scripts/build_stage61_wild_overlay_rate_policy.py','scripts/build_modernization_floette_gift.py',
-            'scripts/pr16_resume.py','content/modernization/pr16_candidate_wiki_followup.json',
-            'content/modernization/pr16_candidate_wiki_acceptance.json','content/modernization/pr16_native_supply_resume_20260913.json',
-            'docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md','.github/workflows/pr16-wiki-followup.yml']
+            'overlays/modernization_p03_stage74_supply_runtime/*.c','overlays/modernization_p03_stage74_supply_runtime/*.h',
+            'overlays/wild_overlay/*.c','overlays/wild_overlay/*.h',
+            'overlays/modernization_p05_ability_rom_runtime/*.c','overlays/modernization_p05_ability_rom_runtime/*.h',
+            'overlays/stage60_wild_species_root_repair/*.c','overlays/stage59_wild_identity_npc_regression_repair/*.c',
+            'config/stage61_wild_overlay_rate_policy.json','scripts/build_stage61_wild_overlay_rate_policy.py',
+            'scripts/build_modernization_floette_gift.py','scripts/pr16_resume.py',
+            'content/modernization/pr16_candidate_wiki_followup.json','content/modernization/pr16_candidate_wiki_acceptance.json',
+            'content/modernization/pr16_native_supply_resume_20260913.json','docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md',
+            '.github/workflows/pr16-wiki-followup.yml']
           for name in sorted(n for n in tracked if n and any(fnmatch.fnmatchcase(n,p) for p in local_patterns)):
-              p=root/name;assert not p.is_symlink() and p.suffix in ('.c','.h','.py','.json','.md','.yml')
-              raw=p.read_bytes();raw.decode('utf-8');assert b'\0' not in raw and len(raw)<=1024*1024
+              p=root/name;assert not p.is_symlink() and p.suffix in ('.c','.h','.py','.json','.md','.yml'),name
+              raw=p.read_bytes();raw.decode('utf-8');assert b'\0' not in raw and len(raw)<=1024*1024,name
               key='local/'+name;payload[key]=raw;bindings[key]={'path':name,'commit':os.environ['GITHUB_SHA'],'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
           issue=api('repos/'+os.environ['GITHUB_REPOSITORY']+'/issues/18')
           payload['issue18.md']=issue['body'].encode()
           manifest={'source_head':os.environ['GITHUB_SHA'],'run_id':int(os.environ['GITHUB_RUN_ID']),
              'source_bindings':bindings,'upstream_tree_paths':[r['path'] for r in tree['tree'] if r['type']=='blob'],
+             'input_failure':{'run':35534169956,'reason':'local globが非対象assemblerを含めた。C/Hのみ選択へ修正。ROM/native未実行。'},
              'snapshot_rebuilds':0,'new_native_runs':0,'arm_builds':0,'rom_changes':0}
           payload['consumer-source-manifest.json']=(json.dumps(manifest,ensure_ascii=False,sort_keys=True,indent=2)+'\n').encode()
           with zipfile.ZipFile(out/'consumer-sources.zip','w',compression=zipfile.ZIP_DEFLATED) as z:
