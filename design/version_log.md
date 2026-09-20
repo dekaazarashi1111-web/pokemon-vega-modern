@@ -6136,3 +6136,17 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: このcommitを同branchへ非force pushしremote読戻し。
 - Network: GitHub固定run/job/artifactとremote照合。
 - Next: このrunの最新Actionsを先に読む。未実行なら同じrunのnativeへ、失敗なら原本で停止段階だけ修復。旧BP3勝/支出とRing/30勝の独立再実行は禁止。
+
+
+## 2026-09-20T12:41:09Z — USER-20260920-P08-BPLOSS-FINISH
+- Timestamp: 2026-09-20T12:41:09Z
+- Task: USER-20260920-P08-BPLOSS-FINISH
+- Status: DONE
+- Version: pr16-p08-representative-v1
+- Summary: 同一46487d98のBP代表で正規レンタル1敗→共有敗北callback→party600byte復元→通常Save/fresh Continueを検証。原本保存済み、画面と完了Actionsの別照合前。
+- Files changed: scripts/pr16_p08_bp_loss_policy.py, tools/mgba_pr16_p08_bp_loss_policy.h, tests/test_pr16_p08_bp_loss_policy.py, .github/workflows/pr16-p08-bp-loss.yml, scripts/pr16_p08_bp_representative.py, tools/mgba_pr16_p08_bp_lifecycle.h, tests/test_pr16_p08_bp_representative.py, .github/workflows/pr16-p08-bp.yml, scripts/pr16_p08_checkpoint.py, content/modernization/pr16_p08_bp_loss_policy.json, evidence/pr16_p08/user-20260920-p08-bploss/35511250297/finish/execution.json, evidence/pr16_p08/user-20260920-p08-bploss/35511250297/finish/result.json, content/modernization/p08_remaining_work.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, design/run_log.md, design/version_log.md
+- Verify: 限定契約/resume/生成MD/hash/task graph、原本byte包絡とindex/HEAD読戻し。native件数・成否はcontent/modernization/pr16_p08_bp_loss_policy.json。
+- Boundary: ARM0、旧受入の独立再実行0、ROM変更0。全体private guard既存違反は差分照合し全体PASSと主張しない。
+- Commit: このcommitを同branchへ非force pushしremote読戻し。
+- Network: GitHub固定run/job/artifactとremote照合。
+- Next: このrunの完了Actions・原本・終端画面を照合してP08_BP_RETURN_PARTYだけ受入。次はP03共有Save/load代表へ。

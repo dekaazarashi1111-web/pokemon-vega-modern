@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "P08 BP代表の限定runner/保存再開契約を記録。native未完段階は原本のfailuresと実process数から再開し、旧3勝/購入/Ring/30勝は再実行しない。",
+    "current_stop": "同一46487d98のBP代表で正規レンタル1敗→共有敗北callback→party600byte復元→通常Save/fresh Continueを検証。原本保存済み、画面と完了Actionsの別照合前。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "このrunの最新Actionsを先に読む。未実行なら同じrunのnativeへ、失敗なら原本で停止段階だけ修復。旧BP3勝/支出とRing/30勝の独立再実行は禁止。",
+    "next_step": "このrunの完了Actions・原本・終端画面を照合してP08_BP_RETURN_PARTYだけ受入。次はP03共有Save/load代表へ。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -832,9 +832,9 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "このrunの最新Actionsを先に読む。未実行なら同じrunのnativeへ、失敗なら原本で停止段階だけ修復。旧BP3勝/支出とRing/30勝の独立再実行は禁止。",
+    "goal_ja": "このrunの完了Actions・原本・終端画面を照合してP08_BP_RETURN_PARTYだけ受入。次はP03共有Save/load代表へ。",
     "host_write_policy_ja": "新しい実受付のguard開始後は入力/frames/readのみ。施設番号/効果/連勝/party/PC/LRのhost注入は禁止。初期配置fixtureと実入場/正規連勝を区別する。",
-    "id": "P08_BP_REPRESENTATIVE",
+    "id": "P08_BP_REVIEW",
     "read_paths": [
       "content/modernization/pr16_p08_bp_loss_policy.json",
       "scripts/pr16_p08_bp_loss_policy.py",
@@ -849,7 +849,7 @@
       "content/modernization/pr16_p08_candidate_impact.json",
       "content/modernization/p08_remaining_work.json"
     ],
-    "stop_rule_ja": "このrunの最新Actionsを先に読む。未実行なら同じrunのnativeへ、失敗なら原本で停止段階だけ修復。旧BP3勝/支出とRing/30勝の独立再実行は禁止。",
+    "stop_rule_ja": "このrunの完了Actions・原本・終端画面を照合してP08_BP_RETURN_PARTYだけ受入。次はP03共有Save/load代表へ。",
     "success_observations": [
       "実受付/入場ownerと必要進行条件を確定。データ上のmap名だけでCircusと断定しない",
       "flag直接注入を入場の証拠にせず、受付から対象ルール/特性抑制まで通常入力で確認",
@@ -857,12 +857,12 @@
     ]
   },
   "observed_date_jst": "2026-09-20",
-  "observed_head": "2b3fba89ee99e4d1360687f22d4cfb562fd0ec77",
+  "observed_head": "3a4d16be56de9f91b9a5a8d7c1715f583ded361a",
   "observed_head_checks": {
-    "scope_head": "2b3fba89ee99e4d1360687f22d4cfb562fd0ec77",
+    "scope_head": "3a4d16be56de9f91b9a5a8d7c1715f583ded361a",
     "run_id": 35511250297,
-    "phase": "START",
-    "native_verified": false,
+    "phase": "FINISH",
+    "native_verified": true,
     "reason_ja": "本run完了は次にActionsで別照合する。"
   },
   "observed_head_semantics": "本checkpoint直前のremote。native実測・記録job完了・正式受入を別々に保持する。",
@@ -1596,8 +1596,8 @@
   },
   "schema_version": 2,
   "session_execution_summary": {
-    "new_emulator_processes": 0,
-    "fresh_cores": 0,
+    "new_emulator_processes": 1,
+    "fresh_cores": 2,
     "arm_compiles": 0,
     "arm_links": 0,
     "accepted_standalone_replays": 0,
@@ -9178,8 +9178,8 @@
       "sha256": "2de1aab581307e5593860cac0964023ad000b2bc22a4535ea0d85b25f4efb517"
     },
     "content/modernization/p08_remaining_work.json": {
-      "size": 37928,
-      "sha256": "67a8090985397434437cd760c7be1bb276d1bf275cfa70be43aaeefdaac89c97"
+      "size": 37873,
+      "sha256": "34cc74c6b066f30250a2178697ee390c8cad44e878744ad0dbb8b5ad471705e2"
     },
     "content/modernization/pr16_bp_chooser_checkpoint.json": {
       "size": 9442,
@@ -9326,8 +9326,8 @@
       "sha256": "e3f9b4d79ebb64b8c3be0028686a409a8c6630732263babe4438ea0a3921597b"
     },
     "content/modernization/pr16_p08_bp_loss_policy.json": {
-      "size": 19550,
-      "sha256": "6c01c946af47421ca596eb9617d54f9b8c9f12bb5d38a97f32813721e8903221"
+      "size": 30068,
+      "sha256": "2805cd8f09dddde5c71e59762b0e5387ee2871b2c3a43ce43d96a2c5f076f5ca"
     },
     "evidence/pr16_p08/user-20260920-p08-bploss/35511250297/start/execution.json": {
       "size": 2615,
@@ -9336,10 +9336,18 @@
     "evidence/pr16_p08/user-20260920-p08-bploss/35511250297/start/result.json": {
       "size": 19550,
       "sha256": "6c01c946af47421ca596eb9617d54f9b8c9f12bb5d38a97f32813721e8903221"
+    },
+    "evidence/pr16_p08/user-20260920-p08-bploss/35511250297/finish/execution.json": {
+      "size": 134064,
+      "sha256": "df979c082e725bbe118d6989754cd195e3f43a024e7f8ed939d95aa1d99909f5"
+    },
+    "evidence/pr16_p08/user-20260920-p08-bploss/35511250297/finish/result.json": {
+      "size": 30068,
+      "sha256": "2805cd8f09dddde5c71e59762b0e5387ee2871b2c3a43ce43d96a2c5f076f5ca"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "P08 BP代表の限定runner/保存再開契約を記録。native未完段階は原本のfailuresと実process数から再開し、旧3勝/購入/Ring/30勝は再実行しない。",
+  "source_change_review_ja": "同一46487d98のBP代表で正規レンタル1敗→共有敗北callback→party600byte復元→通常Save/fresh Continueを検証。原本保存済み、画面と完了Actionsの別照合前。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -9494,8 +9502,8 @@
     "P08_BP_RETURN_PARTY": {
       "path": "content/modernization/pr16_p08_bp_loss_policy.json",
       "run_id": 35511250297,
-      "phase": "START",
-      "native_verified": false,
+      "phase": "FINISH",
+      "native_verified": true,
       "representative_accepted": false
     }
   }

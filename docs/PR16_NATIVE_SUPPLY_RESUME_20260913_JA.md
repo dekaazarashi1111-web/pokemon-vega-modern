@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-P08 BP代表の限定runner/保存再開契約を記録。native未完段階は原本のfailuresと実process数から再開し、旧3勝/購入/Ring/30勝は再実行しない。
+同一46487d98のBP代表で正規レンタル1敗→共有敗北callback→party600byte復元→通常Save/fresh Continueを検証。原本保存済み、画面と完了Actionsの別照合前。
 
-**次: このrunの最新Actionsを先に読む。未実行なら同じrunのnativeへ、失敗なら原本で停止段階だけ修復。旧BP3勝/支出とRing/30勝の独立再実行は禁止。**
+**次: このrunの完了Actions・原本・終端画面を照合してP08_BP_RETURN_PARTYだけ受入。次はP03共有Save/load代表へ。**
 
-このrunの最新Actionsを先に読む。未実行なら同じrunのnativeへ、失敗なら原本で停止段階だけ修復。旧BP3勝/支出とRing/30勝の独立再実行は禁止。
+このrunの完了Actions・原本・終端画面を照合してP08_BP_RETURN_PARTYだけ受入。次はP03共有Save/load代表へ。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `2b3fba89ee99e4d1360687f22d4cfb562fd0ec77`。
+証拠のsource HEAD: `3a4d16be56de9f91b9a5a8d7c1715f583ded361a`。
 本checkpoint直前のremote。native実測・記録job完了・正式受入を別々に保持する。
 
 ## 最短の再開手順
