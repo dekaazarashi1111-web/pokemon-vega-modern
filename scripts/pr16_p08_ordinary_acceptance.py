@@ -66,6 +66,20 @@ def verify_images(members, expected):
              and actual == expected[name] and actual['sha256'] == digest, 'reviewed image bytes: '+name)
 
 
+def text_originals(members):
+    """ZIP自体をtext包絡へ渡さず、固定された原本文字列だけを取り出す。"""
+    names = ['native-result.json', 'previous.stderr',
+             *('execution/'+CASE+suffix for suffix in ('.stdout', '.stderr', '.process.json'))]
+    result = {}
+    for name in names:
+        raw = members[name]
+        raw.decode('utf-8')
+        need(b'\0' not in raw, 'text evidence required')
+        result[Path(name).name] = raw
+    need(len(result) == len(names), 'original basename collision')
+    return result
+
+
 def accept():
     sys.path[:0] = [str(ROOT/'scripts'), str(ROOT)]
     import pr16_p08_checkpoint as cp
@@ -105,10 +119,14 @@ def accept():
     proof['previous_prefix'] = m.prefix_proof(members['previous.stderr'], stderr)
     need(row == value['native_result'] and proof == value['native_proof'], 'raw native projection')
     verify_images(members, value['screens'])
-    # 原本のZIPはROM/saveを含まない固定artifact。Gitにはbyte包絡textとして保存する。
+    # バイナリZIP/画面をtext専用包絡へ渡さない。既存guardは変更しない。
     execution = OUT/'execution'
     execution.mkdir(exist_ok=True)
-    (execution/'original-artifact.json').write_bytes(e.stable(dict(artifact_id=ARTIFACT, archive=ARCHIVE, payload=e.envelope(raw))))
+    for name, original in text_originals(members).items():
+        (execution/name).write_bytes(original)
+    (OUT/'screens').mkdir(exist_ok=True)
+    for name in SCREENS:
+        (OUT/'screens'/name).write_bytes(members['screens/'+name])
     result = copy.deepcopy(value)
     result.update(task='USER-20260921-P08-ORDINARY-ACCEPT', source_report=SOURCE,
                   source_report_identity=e.identity((ROOT/SOURCE).read_bytes()), original_run_id=RUN,
@@ -117,6 +135,10 @@ def accept():
                   visual_review_completed=True, original_native_processes=1, original_fresh_cores=1,
                   new_emulator_processes=0, fresh_cores=0, host_compiles=0,
                   workflow_source_head=os.environ['GITHUB_SHA'])
+    result['previous_recording_failure'] = dict(
+        run_id=35523631516, job_id=106111896904, head_sha='f6a863a6bdd7b1757b360500de9f3940050a5099',
+        conclusion='failure', accepted=False, new_emulator_processes=0,
+        reason='UTF8_TEXT_ENVELOPE_REJECTED_BINARY_ZIP', correction='ARCHIVE_ORIGINAL_TEXT_MEMBERS_ONLY')
     result['visual_review'] = dict(
         reviewer='ChatGPT', reviewed_at_utc='2026-09-20', reviewed_screen_count=5,
         artifact_id=ARTIFACT, archive=ARCHIVE, screen_identities=value['screens'], visual_review_completed=True,
@@ -151,6 +173,13 @@ def context():
                   ('pr16_p08' in p or 'wiki' in p or 'p03_forgetting' in p)))
     wanted.update(p for p in tracked if p.startswith('content/modernization/pr16_p08') and p.endswith('.json'))
     wanted.update(p for p in tracked if p.startswith(('config/', 'content/')) and 'wiki' in p and p.endswith('.json'))
+    wanted.update(p for p in tracked if p.startswith(('scripts/', 'config/', 'manifests/', 'overlays/', 'generated/'))
+                  and Path(p).suffix in ('.py', '.json', '.csv', '.h', '.c')
+                  and not any(word in p.lower() for word in ('credential', 'secret', 'private_environment')))
+    wanted.update(p for p in tracked if p.startswith(('content/modernization/', 'vendor/vega_acquisition/', 'docs/wiki/stage61/data/'))
+                  and Path(p).suffix in ('.json', '.csv', '.jsonl', '.c', '.h')
+                  and '/evidence/' not in p and '_evidence/' not in p)
+    wanted.update(('Makefile', 'tests/test_modernization_p08_forgetting_evidence.py'))
     out = OUT/'artifact'/'context'
     out.mkdir(parents=True, exist_ok=True)
     index = {}
@@ -159,11 +188,13 @@ def context():
         need(path.is_file() and not path.is_symlink(), 'context regular text')
         raw = path.read_bytes()
         raw.decode('utf-8')
-        need(b'\0' not in raw and len(raw) < 4_000_000, 'context bounded text')
+        need(b'\0' not in raw and len(raw) < 16_000_000, 'context bounded text')
         dest = out/name
         dest.parent.mkdir(parents=True, exist_ok=True)
         dest.write_bytes(raw)
         index[name] = dict(size=len(raw), sha256=hashlib.sha256(raw).hexdigest())
+    issue = json.loads(subprocess.check_output(['gh', 'api', 'repos/dekaazarashi1111-web/pokemon-vega-modern/issues/18'], cwd=ROOT))
+    (out/'issue-18.md').write_text(issue['body'], encoding='utf-8')
     (out/'source-index.json').write_text(json.dumps(dict(head=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT).decode().strip(), files=index), ensure_ascii=False, indent=2)+'\n')
     # 索引はファイル名とサイズのみ。private/binaryの内容は取得しない。
     (out/'tracked-paths.json').write_text(json.dumps({p:(ROOT/p).stat().st_size for p in tracked if (ROOT/p).is_file() and not (ROOT/p).is_symlink()}, ensure_ascii=False, indent=2)+'\n')

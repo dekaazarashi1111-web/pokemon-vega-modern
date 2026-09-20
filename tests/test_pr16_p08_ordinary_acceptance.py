@@ -81,6 +81,24 @@ class OrdinaryAcceptanceTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             m.verify_images(members, expected)
 
+    def test_text_originals_preserve_trailing_bytes(self):
+        names = ['native-result.json', 'previous.stderr',
+                 *('execution/'+m.CASE+suffix for suffix in ('.stdout', '.stderr', '.process.json'))]
+        members = {name:b'text\n\n' for name in names}
+        members['screens/image.ppm'] = b'\x80\0'
+        originals = m.text_originals(members)
+        self.assertEqual(len(originals), 5)
+        self.assertTrue(all(raw == b'text\n\n' for raw in originals.values()))
+        self.assertNotIn('image.ppm', originals)
+
+    def test_binary_cannot_enter_text_evidence(self):
+        names = ['native-result.json', 'previous.stderr',
+                 *('execution/'+m.CASE+suffix for suffix in ('.stdout', '.stderr', '.process.json'))]
+        members = {name:b'text' for name in names}
+        for raw in (b'PK\0zip', b'\xed'):
+            with self.subTest(raw=raw), self.assertRaises((ValueError, UnicodeDecodeError)):
+                m.text_originals(members | {'native-result.json':raw})
+
 
 if __name__ == '__main__':
     unittest.main()
