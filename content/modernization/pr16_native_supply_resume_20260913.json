@@ -855,11 +855,11 @@
     ]
   },
   "observed_date_jst": "2026-09-20",
-  "observed_head": "2ad35cf6a60f5bdbe8627be87b9b1cbad444452b",
+  "observed_head": "81fd0de02faed52a7bfd95a7b6f2cd722cb51076",
   "observed_head_checks": {
-    "scope_head": "2ad35cf6a60f5bdbe8627be87b9b1cbad444452b",
+    "scope_head": "81fd0de02faed52a7bfd95a7b6f2cd722cb51076",
     "run_id": 35512429611,
-    "phase": "START",
+    "phase": "FINISH",
     "native_verified": false,
     "reason_ja": "本run完了は次にActionsで別照合する。"
   },
@@ -1594,7 +1594,7 @@
   },
   "schema_version": 2,
   "session_execution_summary": {
-    "new_emulator_processes": 0,
+    "new_emulator_processes": 1,
     "fresh_cores": 0,
     "arm_compiles": 0,
     "arm_links": 0,
@@ -9428,8 +9428,8 @@
       "sha256": "c2d3c0e70e687b3a692d5b606ae196ba5595b90f6b8fda8d74d21113e6cf6653"
     },
     "content/modernization/pr16_p08_ordinary_representative.json": {
-      "size": 8814,
-      "sha256": "7553377e7904a499db48680a6dd1d6f8dd78e81a4476a617c7981c85f9c66eed"
+      "size": 30539,
+      "sha256": "0db2e0369841c4d6e8de7bd049fffdfce705cf08220173fa7c04413d9ce7ad49"
     },
     "evidence/pr16_p08/user-20260920-p08-ordinary/35512429611/start/execution.json": {
       "size": 3709,
@@ -9438,6 +9438,14 @@
     "evidence/pr16_p08/user-20260920-p08-ordinary/35512429611/start/result.json": {
       "size": 8814,
       "sha256": "7553377e7904a499db48680a6dd1d6f8dd78e81a4476a617c7981c85f9c66eed"
+    },
+    "evidence/pr16_p08/user-20260920-p08-ordinary/35512429611/finish/execution.json": {
+      "size": 12781,
+      "sha256": "e9115024899ebd8364367786c6aa0fa8a5aeac7c5123f17c192f06a9e8ffcc24"
+    },
+    "evidence/pr16_p08/user-20260920-p08-ordinary/35512429611/finish/result.json": {
+      "size": 30539,
+      "sha256": "0db2e0369841c4d6e8de7bd049fffdfce705cf08220173fa7c04413d9ce7ad49"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
@@ -9610,7 +9618,7 @@
     "P08_CIRCUS_POST_EXIT_ORDINARY": {
       "path": "content/modernization/pr16_p08_ordinary_representative.json",
       "run_id": 35512429611,
-      "phase": "START",
+      "phase": "FINISH",
       "native_verified": false,
       "representative_accepted": false
     }

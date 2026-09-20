@@ -14,7 +14,7 @@
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `2ad35cf6a60f5bdbe8627be87b9b1cbad444452b`。
+証拠のsource HEAD: `81fd0de02faed52a7bfd95a7b6f2cd722cb51076`。
 本checkpoint直前のremote。native実測・記録job完了・正式受入を別々に保持する。
 
 ## 最短の再開手順
