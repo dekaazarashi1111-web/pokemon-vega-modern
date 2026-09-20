@@ -54,7 +54,8 @@ def prepare(directory: Path, v4: Path) -> dict:
     for name,body in re.findall(r'^(\w+):\s*\n(.*?)(?=^\w+:|\Z)',asm,re.M|re.S):
         if name in wanted:
             symbols=re.findall(r'^\s*\.hword\s+(MOVE_\w+)',body,re.M)
-            categories[name]=[mid(s) for s in symbols]
+            need(symbols and symbols[-1]=='MOVE_TABLES_TERMIN','category terminator missing: '+name)
+            categories[name]=[mid(s) for s in symbols[:-1]]
     need({'gPunchingMoves','gSlicingMoves','gBallBombMoves','gSoundMoves'}<=categories.keys(),'move category tables missing')
     model={'schema_version':1,'source_repository':'kapibarasan000/CFRU-JP','source_commit':ref,
            'source_bindings':bindings,'local_bindings':inp.bindings,'charmap':chart,'special_z_moves':special,
