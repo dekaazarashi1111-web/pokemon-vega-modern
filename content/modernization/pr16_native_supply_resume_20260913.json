@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "run35477541574の原本を照合。水対面は6turnで終了し468129は別個体type0/0。旧検証器の予測誤りとfailureを保持。要求技のない控え選択を実HP/PP/相性で補完する新規10契約を検証。新nativeは未実行。",
+    "current_stop": "控え代替選択後の実29勝/81BPと通常Save/fresh Continueをscoped検証。真正30勝は未達。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "進行中のreserve-fallback Actionsだけを照合。重複起動せず、完了後に新原本・固定引継ぎ・両ログを記録する。",
+    "next_step": "content/modernization/pr16_circus_reserve_fallback.jsonの新たな最初の実敗北だけを修復。受入単体・旧ARM・Ring hostは再実行しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -825,7 +825,7 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "進行中のreserve-fallback Actionsだけを照合。重複起動せず、完了後に新原本・固定引継ぎ・両ログを記録する。",
+    "goal_ja": "content/modernization/pr16_circus_reserve_fallback.jsonの新たな最初の実敗北だけを修復。受入単体・旧ARM・Ring hostは再実行しない。",
     "host_write_policy_ja": "新しい実受付のguard開始後は入力/frames/readのみ。施設番号/効果/連勝/party/PC/LRのhost注入は禁止。初期配置fixtureと実入場/正規連勝を区別する。",
     "id": "CIRCUS_RESERVE_FALLBACK",
     "read_paths": [
@@ -845,9 +845,9 @@
     ]
   },
   "observed_date_jst": "2026-09-20",
-  "observed_head": "eeaa86e0200a3660f481b6789e6ed492504d6f53",
+  "observed_head": "3c57c403efa36679a48219b119a01ed2f56f3a8f",
   "observed_head_checks": {
-    "scope_head": "eeaa86e0200a3660f481b6789e6ed492504d6f53",
+    "scope_head": "3c57c403efa36679a48219b119a01ed2f56f3a8f",
     "runs": [
       {
         "id": 35477541574,
@@ -1592,7 +1592,7 @@
   },
   "schema_version": 2,
   "session_execution_summary": {
-    "new_emulator_processes": 0,
+    "new_emulator_processes": 1,
     "arm_compiles": 0,
     "arm_links": 0,
     "accepted_standalone_replays": 0,
@@ -8208,8 +8208,8 @@
       "sha256": "cf95c119381cf3f0c1336f843bee691ee84c5deea97ccf2f27b530d097151a34"
     },
     "content/modernization/pr16_circus_reserve_fallback.json": {
-      "size": 14549,
-      "sha256": "277d07f3afbdd80bb6b7fac10f253571437c72ae2a148034867c0108c69bcf4a"
+      "size": 60135,
+      "sha256": "3b5bd5402ebd0262eba664a4ca181258cd048edc926bbf10591a0e1dae60d999"
     },
     "evidence/pr16_circus_reserve_fallback/35478473681/execution/reserve-tests.process.json": {
       "size": 90,
@@ -8222,10 +8222,90 @@
     "evidence/pr16_circus_reserve_fallback/35478473681/execution/reserve-tests.stdout": {
       "size": 0,
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/pr16_circus_reserve_fallback/35478473681/execution/analysis.json": {
+      "size": 513,
+      "sha256": "39e11d8022383be3cc79fba99c30dd44d51aeb60792435db23aa52ed41cf39e5"
+    },
+    "evidence/pr16_circus_reserve_fallback/35478473681/execution/circus-continuous-30-save.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "evidence/pr16_circus_reserve_fallback/35478473681/execution/circus-continuous-30-save.stderr": {
+      "size": 987167,
+      "sha256": "b735ac2ffc95aab7de1168ecb8b8a3ab992925e4bf4f3f125917b84c907d0982"
+    },
+    "evidence/pr16_circus_reserve_fallback/35478473681/execution/circus-continuous-30-save.stdout": {
+      "size": 673,
+      "sha256": "a33efc3f2f62bec3bf00c20b2aba7af6a25467590bbbcb333ba67a374729e3f3"
+    },
+    "evidence/pr16_circus_reserve_fallback/35478473681/execution/compile.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "evidence/pr16_circus_reserve_fallback/35478473681/execution/compile.stderr": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/pr16_circus_reserve_fallback/35478473681/execution/compile.stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/pr16_circus_reserve_fallback/35478473681/execution/events.json": {
+      "size": 278172,
+      "sha256": "bf2e791ff06589b7f5c1ecaefd6b725c7e9d1c3578c7a2b434aeed1f3f242fe7"
+    },
+    "evidence/pr16_circus_reserve_fallback/35478473681/execution/matchup-prefix.json": {
+      "size": 556,
+      "sha256": "77f7741a4a644fba38a7cb06977dde4033f877a434e458b2a2198e29a718c290"
+    },
+    "evidence/pr16_circus_reserve_fallback/35478473681/execution/policy.c": {
+      "size": 63337,
+      "sha256": "08cfc991436262e2298582703969ed39828479b5547322df042d3b4f9da6d26a"
+    },
+    "evidence/pr16_circus_reserve_fallback/35478473681/execution/prefix.json": {
+      "size": 374,
+      "sha256": "a36c3603465a00ac835fddda18a6d52702412fabc29e867272f69701cd551485"
+    },
+    "evidence/pr16_circus_reserve_fallback/35478473681/execution/reconstruct.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "evidence/pr16_circus_reserve_fallback/35478473681/execution/reconstruct.stderr": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/pr16_circus_reserve_fallback/35478473681/execution/reconstruct.stdout": {
+      "size": 6294,
+      "sha256": "3ac2c4ea6b4c0d27e1873c2a0155fdbfe8828bf254d10e3d52fa40a1b8c42747"
+    },
+    "evidence/pr16_circus_reserve_fallback/35478473681/execution/resume-START.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "evidence/pr16_circus_reserve_fallback/35478473681/execution/resume-START.stderr": {
+      "size": 2449,
+      "sha256": "459663500ed1d30046f2877f8d1425ac86f1975203ffcfb2ddd87f7538cd7183"
+    },
+    "evidence/pr16_circus_reserve_fallback/35478473681/execution/resume-START.stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/pr16_circus_reserve_fallback/35478473681/execution/task-graph-START.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "evidence/pr16_circus_reserve_fallback/35478473681/execution/task-graph-START.stderr": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/pr16_circus_reserve_fallback/35478473681/execution/task-graph-START.stdout": {
+      "size": 77,
+      "sha256": "62088248f3d245c3853d2eaa0e2fdcffe8609be8f608995613c19a76e994466a"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "run35477541574の原本を照合。水対面は6turnで終了し468129は別個体type0/0。旧検証器の予測誤りとfailureを保持。要求技のない控え選択を実HP/PP/相性で補完する新規10契約を検証。新nativeは未実行。",
+  "source_change_review_ja": "控え代替選択後の実29勝/81BPと通常Save/fresh Continueをscoped検証。真正30勝は未達。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -8287,7 +8367,7 @@
   "circus_reserve_fallback": {
     "path": "content/modernization/pr16_circus_reserve_fallback.json",
     "run_id": 35478473681,
-    "classification": "CIRCUS_RESERVE_IMPLEMENTED_NATIVE_PENDING",
+    "classification": "CIRCUS_RESERVE_LOSS_SAVE_SCOPED_30_OPEN",
     "candidate": {
       "size": 33554432,
       "sha256": "2b107e7ef897844eff810ff0b40f82543640488696e8295194ceb3b66fb2c183"

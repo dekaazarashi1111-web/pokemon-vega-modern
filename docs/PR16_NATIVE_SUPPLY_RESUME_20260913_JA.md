@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-run35477541574の原本を照合。水対面は6turnで終了し468129は別個体type0/0。旧検証器の予測誤りとfailureを保持。要求技のない控え選択を実HP/PP/相性で補完する新規10契約を検証。新nativeは未実行。
+控え代替選択後の実29勝/81BPと通常Save/fresh Continueをscoped検証。真正30勝は未達。
 
-**次: 進行中のreserve-fallback Actionsだけを照合。重複起動せず、完了後に新原本・固定引継ぎ・両ログを記録する。**
+**次: content/modernization/pr16_circus_reserve_fallback.jsonの新たな最初の実敗北だけを修復。受入単体・旧ARM・Ring hostは再実行しない。**
 
 次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `eeaa86e0200a3660f481b6789e6ed492504d6f53`。
+証拠のsource HEAD: `3c57c403efa36679a48219b119a01ed2f56f3a8f`。
 当checkpoint前のremote HEAD。native sourceはreport。正式BP受入は変更なし。
 
 ## 最短の再開手順

@@ -8584,3 +8584,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 同branch非force。自己SHAはremote/receipt。
 - Network: GitHub前run/job/artifact原本照合、host mGBA依存のみ。旧builder/ARM/Ring hostなし。
 - Next: 進行中のreserve-fallback Actionsだけを照合。重複起動せず、完了後に新原本・固定引継ぎ・両ログを記録する。
+
+
+## 2026-09-20T00:31:23Z — USER-20260920-CIRCUS-RESERVE-FINISH
+- Timestamp: 2026-09-20T00:31:23Z
+- Task: USER-20260920-CIRCUS-RESERVE / 実対面変更後の控え選択
+- Status: DONE（Circus/P08全体は未完）
+- Version: pr16-circus-reserve-v1
+- Summary: 控え代替選択後の実29勝/81BPと通常Save/fresh Continueをscoped検証。真正30勝は未達。
+- Files changed: scripts/pr16_circus_reserve_fallback.py, scripts/pr16_circus_reserve_fallback_policy.py, tests/test_pr16_circus_reserve_fallback.py, .github/workflows/pr16-circus-reserve-fallback.yml, content/modernization/pr16_circus_reserve_fallback.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, evidence/pr16_circus_reserve_fallback/35478473681/execution/analysis.json, evidence/pr16_circus_reserve_fallback/35478473681/execution/circus-continuous-30-save.process.json, evidence/pr16_circus_reserve_fallback/35478473681/execution/circus-continuous-30-save.stderr, evidence/pr16_circus_reserve_fallback/35478473681/execution/circus-continuous-30-save.stdout, evidence/pr16_circus_reserve_fallback/35478473681/execution/compile.process.json, evidence/pr16_circus_reserve_fallback/35478473681/execution/compile.stderr, evidence/pr16_circus_reserve_fallback/35478473681/execution/compile.stdout, evidence/pr16_circus_reserve_fallback/35478473681/execution/events.json, evidence/pr16_circus_reserve_fallback/35478473681/execution/matchup-prefix.json, evidence/pr16_circus_reserve_fallback/35478473681/execution/policy.c, evidence/pr16_circus_reserve_fallback/35478473681/execution/prefix.json, evidence/pr16_circus_reserve_fallback/35478473681/execution/reconstruct.process.json, evidence/pr16_circus_reserve_fallback/35478473681/execution/reconstruct.stderr, evidence/pr16_circus_reserve_fallback/35478473681/execution/reconstruct.stdout, evidence/pr16_circus_reserve_fallback/35478473681/execution/reserve-tests.process.json, evidence/pr16_circus_reserve_fallback/35478473681/execution/reserve-tests.stderr, evidence/pr16_circus_reserve_fallback/35478473681/execution/reserve-tests.stdout, evidence/pr16_circus_reserve_fallback/35478473681/execution/resume-START.process.json, evidence/pr16_circus_reserve_fallback/35478473681/execution/resume-START.stderr, evidence/pr16_circus_reserve_fallback/35478473681/execution/resume-START.stdout, evidence/pr16_circus_reserve_fallback/35478473681/execution/task-graph-START.process.json, evidence/pr16_circus_reserve_fallback/35478473681/execution/task-graph-START.stderr, evidence/pr16_circus_reserve_fallback/35478473681/execution/task-graph-START.stdout, design/run_log.md, design/version_log.md
+- Verify: 新規10契約、固定resume整合性/影響tests、task graph、index差分private guard/diff check。native成否/実process数はreport。
+- Commit: 同branch非force。自己SHAはremote/receipt。
+- Network: GitHub前run/job/artifact原本照合、host mGBA依存のみ。旧builder/ARM/Ring hostなし。
+- Next: content/modernization/pr16_circus_reserve_fallback.jsonの新たな最初の実敗北だけを修復。受入単体・旧ARM・Ring hostは再実行しない。
