@@ -14,7 +14,7 @@ P08 BP代表の限定runner/保存再開契約を記録。native未完段階は�
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `633fa939b7a9c3500f615705c325871f445d4e68`。
+証拠のsource HEAD: `2b3fba89ee99e4d1360687f22d4cfb562fd0ec77`。
 本checkpoint直前のremote。native実測・記録job完了・正式受入を別々に保持する。
 
 ## 最短の再開手順
@@ -25,7 +25,11 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `content/modernization/pr16_p08_bp_representative.json`
+- `content/modernization/pr16_p08_bp_loss_policy.json`
+- `scripts/pr16_p08_bp_loss_policy.py`
+- `tools/mgba_pr16_p08_bp_loss_policy.h`
+- `tests/test_pr16_p08_bp_loss_policy.py`
+- `.github/workflows/pr16-p08-bp-loss.yml`
 - `scripts/pr16_p08_bp_representative.py`
 - `tools/mgba_pr16_p08_bp_lifecycle.h`
 - `tests/test_pr16_p08_bp_representative.py`

@@ -836,7 +836,11 @@
     "host_write_policy_ja": "新しい実受付のguard開始後は入力/frames/readのみ。施設番号/効果/連勝/party/PC/LRのhost注入は禁止。初期配置fixtureと実入場/正規連勝を区別する。",
     "id": "P08_BP_REPRESENTATIVE",
     "read_paths": [
-      "content/modernization/pr16_p08_bp_representative.json",
+      "content/modernization/pr16_p08_bp_loss_policy.json",
+      "scripts/pr16_p08_bp_loss_policy.py",
+      "tools/mgba_pr16_p08_bp_loss_policy.h",
+      "tests/test_pr16_p08_bp_loss_policy.py",
+      ".github/workflows/pr16-p08-bp-loss.yml",
       "scripts/pr16_p08_bp_representative.py",
       "tools/mgba_pr16_p08_bp_lifecycle.h",
       "tests/test_pr16_p08_bp_representative.py",
@@ -853,11 +857,11 @@
     ]
   },
   "observed_date_jst": "2026-09-20",
-  "observed_head": "633fa939b7a9c3500f615705c325871f445d4e68",
+  "observed_head": "2b3fba89ee99e4d1360687f22d4cfb562fd0ec77",
   "observed_head_checks": {
-    "scope_head": "633fa939b7a9c3500f615705c325871f445d4e68",
-    "run_id": 35510798943,
-    "phase": "FINISH",
+    "scope_head": "2b3fba89ee99e4d1360687f22d4cfb562fd0ec77",
+    "run_id": 35511250297,
+    "phase": "START",
     "native_verified": false,
     "reason_ja": "本run完了は次にActionsで別照合する。"
   },
@@ -928,8 +932,8 @@
   },
   "pending_runs": [
     {
-      "run_id": 35510798943,
-      "tested_head": "99d93a2f4c33fb265aee5b0dc4c1ecdb697cfea1",
+      "run_id": 35511250297,
+      "tested_head": "2b3fba89ee99e4d1360687f22d4cfb562fd0ec77",
       "status": "in_progress"
     }
   ],
@@ -1592,7 +1596,7 @@
   },
   "schema_version": 2,
   "session_execution_summary": {
-    "new_emulator_processes": 1,
+    "new_emulator_processes": 0,
     "fresh_cores": 0,
     "arm_compiles": 0,
     "arm_links": 0,
@@ -9174,8 +9178,8 @@
       "sha256": "2de1aab581307e5593860cac0964023ad000b2bc22a4535ea0d85b25f4efb517"
     },
     "content/modernization/p08_remaining_work.json": {
-      "size": 37931,
-      "sha256": "027110f1b06204823dd99540ae6eea90d4419003605a035538f48c38aae65996"
+      "size": 37928,
+      "sha256": "67a8090985397434437cd760c7be1bb276d1bf275cfa70be43aaeefdaac89c97"
     },
     "content/modernization/pr16_bp_chooser_checkpoint.json": {
       "size": 9442,
@@ -9304,6 +9308,34 @@
     "evidence/pr16_p08/user-20260920-p08-bp/35510798943/finish/result.json": {
       "size": 25341,
       "sha256": "751df20fe5cc0f59268ff8f8aba7531d633ce14d2216663aac926468987e88b5"
+    },
+    "scripts/pr16_p08_bp_loss_policy.py": {
+      "size": 7071,
+      "sha256": "8c3978f8fa05d3ad4cd3546df5f7b6abc98d5f9345ec1b13381dc5e83a99e814"
+    },
+    "tools/mgba_pr16_p08_bp_loss_policy.h": {
+      "size": 1901,
+      "sha256": "ff949bddbc59e3d9d6aeb30a3ab2c012b456f5ab4211c4f23ea4cfdbebacd6fc"
+    },
+    "tests/test_pr16_p08_bp_loss_policy.py": {
+      "size": 3162,
+      "sha256": "d84aa08d790faf5701ce641fb46dcd5ef9620b70f54fb57d3b09d6506be6a924"
+    },
+    ".github/workflows/pr16-p08-bp-loss.yml": {
+      "size": 1883,
+      "sha256": "e3f9b4d79ebb64b8c3be0028686a409a8c6630732263babe4438ea0a3921597b"
+    },
+    "content/modernization/pr16_p08_bp_loss_policy.json": {
+      "size": 19550,
+      "sha256": "6c01c946af47421ca596eb9617d54f9b8c9f12bb5d38a97f32813721e8903221"
+    },
+    "evidence/pr16_p08/user-20260920-p08-bploss/35511250297/start/execution.json": {
+      "size": 2615,
+      "sha256": "446a53b8ddc9497bdb6793ef5044e2046c00ae8690266689b8a397c1172ddad5"
+    },
+    "evidence/pr16_p08/user-20260920-p08-bploss/35511250297/start/result.json": {
+      "size": 19550,
+      "sha256": "6c01c946af47421ca596eb9617d54f9b8c9f12bb5d38a97f32813721e8903221"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
@@ -9460,9 +9492,9 @@
   },
   "p08_representatives": {
     "P08_BP_RETURN_PARTY": {
-      "path": "content/modernization/pr16_p08_bp_representative.json",
-      "run_id": 35510798943,
-      "phase": "FINISH",
+      "path": "content/modernization/pr16_p08_bp_loss_policy.json",
+      "run_id": 35511250297,
+      "phase": "START",
       "native_verified": false,
       "representative_accepted": false
     }
