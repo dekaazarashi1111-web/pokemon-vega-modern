@@ -45,17 +45,37 @@ class ResumeTests(unittest.TestCase):
                 'physical_bp_spending_accepted':self.s['bp']['spending_accepted'],
                 'spending_success_evidence':self.s['latest_native_evidence']},
             remaining_conditions=[{'id':'NATURAL_CAPTURE_GEAR','remaining_supply_gap_ids':[x for x in physical if x!='PHYSICAL_CIRCUS_ADMISSION']},
-                {'id':'PHYSICAL_CIRCUS_ADMISSION','phase':'P05'},
+                {'id':'PHYSICAL_CIRCUS_ADMISSION','phase':'P05',
+                 'complete':'PHYSICAL_CIRCUS_ADMISSION' not in physical},
                 *[{'id':x,'phase':'P08'} for x in self.s['remaining_p08_gate_ids']],
                 {'id':'P03','complete':True,'remaining_physical_gap_ids':['MUST_NOT_REOPEN']}])
         self.put(m.BACKLOG, backlog)
         # setUpで意図的に合成した台帳だけを再bindingする。実検査中の改作は同期しない。
-        if m.BACKLOG in self.s['source_bindings']:
-            raw=(self.root/m.BACKLOG).read_bytes()
-            self.s['source_bindings'][m.BACKLOG]=dict(size=len(raw),sha256=hashlib.sha256(raw).hexdigest())
+        self.bind_synthetic_ledgers()
         for name in m.ROUTE_PATHS+m.HISTORY_PATHS+('design/run_log.md','design/version_log.md'):
             p=self.root/name;p.parent.mkdir(parents=True,exist_ok=True);p.write_text('# original\nKEEP ORIGINAL\n',encoding='utf-8')
         self.sync()
+
+    def bind_synthetic_ledgers(self):
+        for name in (m.BACKLOG, m.CHECKPOINT):
+            if name in self.s['source_bindings']:
+                raw=(self.root/name).read_bytes()
+                self.s['source_bindings'][name]=dict(size=len(raw),sha256=hashlib.sha256(raw).hexdigest())
+
+    def set_physical_fixture(self, physical):
+        # 実台帳が0件になっても未完/閉鎖/重複を独立して試験する。
+        self.s['remaining_physical_gap_ids']=list(physical)
+        backlog=m.load(self.root,m.BACKLOG)
+        for row in backlog['remaining_conditions']:
+            if row['id']=='NATURAL_CAPTURE_GEAR':
+                row['remaining_supply_gap_ids']=[x for x in physical if x!='PHYSICAL_CIRCUS_ADMISSION']
+            if row['id']=='PHYSICAL_CIRCUS_ADMISSION':
+                row['complete']='PHYSICAL_CIRCUS_ADMISSION' not in physical
+        checkpoint=m.load(self.root,m.CHECKPOINT)
+        checkpoint['physical_gap_count']=len(physical)
+        self.put(m.BACKLOG,backlog);self.put(m.CHECKPOINT,checkpoint)
+        self.bind_synthetic_ledgers();self.sync()
+        m.validate(self.root)
 
     def put(self, name, value):
         p=self.root/name;p.parent.mkdir(parents=True,exist_ok=True)
@@ -118,10 +138,26 @@ class ResumeTests(unittest.TestCase):
         self.s['release_ready']=True;self.sync();self.assert_invalid()
 
     def test_gap_cannot_disappear(self):
+        self.set_physical_fixture(['PHYSICAL_CIRCUS_ADMISSION'])
         self.s['remaining_physical_gap_ids'].pop();self.sync();self.assert_invalid()
 
     def test_duplicate_gap_rejected(self):
+        self.set_physical_fixture(['PHYSICAL_CIRCUS_ADMISSION'])
         self.s['remaining_physical_gap_ids'].append(self.s['remaining_physical_gap_ids'][0]);self.sync();self.assert_invalid()
+
+    def test_closed_physical_keeps_p08_gates(self):
+        self.set_physical_fixture([])
+        result=m.validate(self.root)
+        self.assertEqual(result['remaining_physical_gap_ids'],[])
+        self.assertEqual(result['remaining_p08_gate_ids'],['FINAL_NATIVE_ACCEPTANCE','RELEASE_DECISION'])
+        self.assertFalse(result['release_ready'])
+
+    def test_closed_circus_cannot_reopen_without_state(self):
+        self.set_physical_fixture([])
+        backlog=m.load(self.root,m.BACKLOG)
+        next(x for x in backlog['remaining_conditions'] if x['id']=='PHYSICAL_CIRCUS_ADMISSION')['complete']=False
+        self.put(m.BACKLOG,backlog)
+        self.assert_invalid('remaining_physical_gap_ids')
 
     def test_candidate_must_match_ledger(self):
         self.s['candidate']['crc32']='00000000';self.sync();self.assert_invalid()
