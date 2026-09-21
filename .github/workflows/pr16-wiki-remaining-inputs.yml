@@ -1,0 +1,73 @@
+name: PR16 Wiki remaining inputs
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-wiki-remaining-inputs.yml]
+permissions:
+  contents: read
+  actions: read
+jobs:
+  source:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: 野生・初期技・effect正本の未取得textだけを固定取得
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B - <<'PY'
+          import base64, hashlib, json, os, pathlib, subprocess, urllib.request, zipfile
+          lock = next(r for r in json.loads(pathlib.Path('state/source-lock.json').read_bytes())['sources'] if r['name']=='cfru')
+          assert lock['configured_commit_verified'] and lock['configured_commit']==lock['actual_commit']
+          commit = lock['configured_commit']
+          files = {}; bindings = {}
+          upstream = ['assembly/data/move_effect_table.s', 'assembly/data/move_tables.s', 'include/new/dexnav_config.h', 'src/learn_move.c', 'src/party_menu.c']
+          for path in upstream:
+              url = 'https://api.github.com/repos/kapibarasan000/CFRU-JP/contents/'+path+'?ref='+commit
+              request = urllib.request.Request(url, headers={'Accept':'application/vnd.github+json','Authorization':'Bearer '+os.environ['GITHUB_TOKEN']})
+              with urllib.request.urlopen(request, timeout=45) as response:
+                  result=json.load(response)
+              assert result['encoding']=='base64'
+              raw=base64.b64decode(result['content'], validate=False); raw.decode('utf-8'); assert b'\0' not in raw
+              assert len(raw)==result['size'] and hashlib.sha1(b'blob '+str(len(raw)).encode()+b'\0'+raw).hexdigest()==result['sha']
+              name='upstream/CFRU-JP/'+path; files[name]=raw
+              bindings[name]={'path':path,'commit':commit,'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest(),'git_blob_sha':result['sha']}
+          patterns=[
+            'tools/engine/cfru_move_effect_lowering.py',
+            'overlays/move_distribution_v4/*', 'overlays/species_surface/*',
+            'config/move_distribution_v4.json', 'config/stage59_wild_*json', 'config/stage60_wild_*json', 'config/stage61_wild_*json',
+            'generated/runtime/move_distribution_v4*.json', 'generated/runtime/move_distribution_v4*.h',
+            'build/stages/39*.json', 'reports/generated/move_distribution_v4*.json',
+            'generated/runtime/battle_core*.json', 'generated/runtime/cfru*.json',
+            'overlays/*daycare*/*', 'overlays/*breed*/*', 'config/*daycare*json',
+            'overlays/wild_overlay/*', 'overlays/stage59_wild_battle_end_repair/*', 'overlays/stage60_wild_species_root_repair/*',
+            'tools/modernization_floette_gift.py', 'config/modernization_floette_gift.json',
+            'docs/wiki/p08-candidate-46487d98/data/provenance.json',
+          ]
+          names=sorted(set(filter(None,subprocess.check_output(['git','ls-files','-z','--',*patterns]).decode().split('\0'))))
+          for path in names:
+              p=pathlib.Path(path)
+              if p.suffix.lower() not in {'.c','.h','.s','.py','.json','.md'}: continue
+              assert p.is_file() and not p.is_symlink()
+              raw=p.read_bytes();raw.decode('utf-8');assert b'\0' not in raw
+              name='local/'+path;files[name]=raw
+              bindings[name]={'path':path,'head':os.environ['GITHUB_SHA'],'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+          manifest={'schema_version':1,'source_head':os.environ['GITHUB_SHA'],'run_id':int(os.environ['GITHUB_RUN_ID']),'source_commit':commit,'source_bindings':bindings,'requested_local_patterns':patterns,'native_runs':0,'rom_changes':0}
+          files['remaining-source-manifest.json']=(json.dumps(manifest,ensure_ascii=False,sort_keys=True,indent=2)+'\n').encode()
+          out=pathlib.Path('.local/pr16-wiki-remaining-inputs');out.mkdir(parents=True)
+          with zipfile.ZipFile(out/'remaining-sources.zip','w',compression=zipfile.ZIP_DEFLATED) as archive:
+              for name,raw in sorted(files.items()):
+                  info=zipfile.ZipInfo(name,date_time=(2020,1,1,0,0,0));info.compress_type=zipfile.ZIP_DEFLATED;archive.writestr(info,raw)
+          print(json.dumps({'head':os.environ['GITHUB_SHA'],'files':len(bindings),'bytes':sum(len(v) for v in files.values()),'native_runs':0,'rom_changes':0}))
+          PY
+          git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr16-wiki-remaining-inputs
+          path: .local/pr16-wiki-remaining-inputs/remaining-sources.zip
+          retention-days: 3
+          if-no-files-found: error

@@ -36,7 +36,7 @@ def unpack(raw: bytes, root: Path) -> None:
             need(not stat.S_ISLNK(item.external_attr >> 16), 'source artifact symlink')
             if item.is_dir():
                 continue
-            need(path.suffix in {'.c', '.h', '.s', '.py', '.json', '.md', '.yml'}, 'source artifact非text')
+            need(path.suffix in {'.c', '.h', '.s', '.py', '.json', '.md', '.yml'} or item.filename == 'local/Makefile', 'source artifact非text')
             value = archive.read(item); value.decode('utf-8'); need(b'\0' not in value, 'source artifact NUL')
             target = root / path
             target.parent.mkdir(parents=True, exist_ok=True)
