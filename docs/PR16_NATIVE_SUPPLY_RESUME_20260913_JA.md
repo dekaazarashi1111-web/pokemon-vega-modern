@@ -14,8 +14,8 @@
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `0514c4b17ab2109cfb11021767928255dd0a110c`。
-Wiki snapshotの検証入力HEAD。自己commit SHA追記による無限更新を避ける。native受入HEADではない。
+証拠のsource HEAD: `6ea91ae2da54398fdc01bb3d0cf4f89427855ba4`。
+最新候補Wikiの検証入力HEAD。branchのリモートHEADではなく、native受入HEADでもない。反映commitはcandidate_wiki.reflected_head、完了Actions照合はcandidate_wiki.completion_reconciliationを参照。自己commit SHAの追記は行わない。
 
 ## 最短の再開手順
 
@@ -299,6 +299,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-旧P08移送run35524571950のsuccessを確認。Wiki限定検証の結果はcandidate_wiki.acceptanceとverification_runを参照。Issue #18未完・PR draft維持。全nativeやrelease検証は追加していない。
+この欄の既存runs/scope_headは過去scopeの履歴として保持。今回の候補Wikiは4回の限定Actionsと完了照合run35564710398がsuccess。全PR checksの成功やnative全回帰を意味しない。最新検証HEADと完了結果はcandidate_wikiを参照。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

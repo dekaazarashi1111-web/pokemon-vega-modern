@@ -9151,3 +9151,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 本記録を含むcommit。記録source HEAD=2bb1d9c544bc36891d04797c7cca469aeee768d5。最新Wiki反映=24cc366c71df6a7e982635a33f4374cf965e75e1。
 - Network: GitHub API run35561743057/35562396044/35563498591/35564248203とそのjob/artifact/commitのGETのみ。署名download URL/credentialは記録しない。
 - Boundary: この記録段階でWiki再build0・ROM変更0・ARM0・native0・受入native再実行0。Stage61/active baseline/原本/過去失敗記録は保持。named Z callee・通常野生/旧配布・夢特性初回供給/daycare・技511/全handler履歴は未完のまま。
+
+
+## 2026-09-21T05:33:26+00:00 — Wiki検証HEAD表示の最終同期
+- Task: USER-20260921-P08-CANDIDATE-WIKI / 再開メモのHEAD表示
+- Version: wiki-audit-20260921
+- Status: DONE
+- Summary: observed_headの旧Wiki入力0514c4b17ab2109cfb11021767928255dd0a110cを最新検証入力6ea91ae2da54398fdc01bb3d0cf4f89427855ba4へ同期。リモートHEAD/native受入HEADとは別であることを明記。完了照合run35564710398 successをGET確認。
+- Files changed: 限定workflow、固定引継ぎMD/JSON、両ログ。
+- Verify: receipt/completed-runs/candidate_wikiのrun・source HEAD・反映先・tree hash一致、生成MD表示一致、その他stateと過去checks不変、resume/task graph、diff/private最終index。受入110+34試験の反復なし。
+- Commit: 本記録を含むcommit。検証source HEAD=a7c7a476c21d60f755a1d0e411d6ae7c0810f264。
+- Network: GitHub API run35564710398の完了GETのみ。
+- Boundary: Wiki本文/receipt/既存原本/native受入/Stage61/active baseline変更0。build0・ARM0・native0・ROM変更0。Issue18全体は未完のまま。
