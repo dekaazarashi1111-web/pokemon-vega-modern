@@ -6,7 +6,7 @@ on:
       - .github/workflows/pr16-wiki-saved-link.yml
       - scripts/pr16_wiki_saved_link_capture.py
       - scripts/pr16_wiki_elf_symbols.py
-      - tests/test_pr16_wiki_saved_symbols.py
+      - tests/test_pr16_wiki_saved_symbols*.py
 permissions:
   contents: read
   actions: read
@@ -20,11 +20,11 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
-      - name: 新規ELF読取38境界のみ（既存受入suiteなし）
+      - name: ELF読取変更影響38境界と新規2境界のみ
         run: |
           set -euo pipefail
           mkdir -p .local/pr16-wiki-saved-link
-          python3 -B -m unittest discover -s tests -p test_pr16_wiki_saved_symbols.py -v 2>&1 | tee .local/pr16-wiki-saved-link/unit.txt
+          python3 -B -m unittest discover -s tests -p 'test_pr16_wiki_saved_symbols*.py' -v 2>&1 | tee .local/pr16-wiki-saved-link/unit.txt
       - name: 固定保存cacheと技正本を取得（compiler導入・build・nativeなし）
         env:
           GH_TOKEN: ${{ github.token }}

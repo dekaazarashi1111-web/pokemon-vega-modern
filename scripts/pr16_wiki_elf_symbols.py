@@ -2,7 +2,6 @@
 """保存ARM ELF32のsymbolと有界sectionを読む。link・実行・名前の推測はしない。"""
 from __future__ import annotations
 from collections import defaultdict
-import re
 import struct
 from pr16_candidate_wiki_inputs import BASE, digest, need
 
@@ -31,7 +30,8 @@ class Elf:
             if table['kind'] != 2:
                 continue
             need(table['stride'] == 16 and table['size'] % 16 == 0, 'ELF symbol stride不正')
-            need(table['size'] <= 16 * 100000 and 0 < table['link'] < count, 'ELF symbol table上限/strtab不正')
+            need(table['size'] <= 16 * 1000000 and 0 < table['link'] < count,
+                 f"ELF symbol table上限/strtab不正: size={table['size']} link={table['link']} sections={count}")
             strings = self.sections[table['link']]
             need(strings['kind'] == 3, 'ELF symbol名がstrtabを参照しない')
             names = raw[strings['offset']:strings['offset'] + strings['size']]
