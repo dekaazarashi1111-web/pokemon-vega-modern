@@ -15,6 +15,8 @@ on:
       - tests/test_pr16_wiki_effect_origin.py
       - tests/test_pr16_wiki_hidden_patch.py
       - tests/test_pr16_wiki_creation.py
+      - tests/test_pr16_wiki_link_graph.py
+      - content/modernization/pr16_candidate_wiki_link_sources.json
       - content/modernization/pr16_candidate_wiki_creation_sources.json
       - content/modernization/pr16_candidate_wiki_hidden_patch_sources.json
       - tools/engine/cfru_move_effect_lowering.py
@@ -41,10 +43,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: python3 -B scripts/pr16_wiki_followup_sources.py
-      - name: 今回追加の初期技差分32試験（受入native/旧CLI単体試験は再実行しない）
+      - name: 今回追加のlink graph差分26試験（受入native/旧CLI単体試験は再実行しない）
         run: |
           set -euo pipefail
-          python3 -B -m unittest discover -s tests -p 'test_pr16_wiki_creation.py' -v 2>&1 | tee .local/pr16-wiki/followup-unit.txt
+          python3 -B -m unittest discover -s tests -p 'test_pr16_wiki_link_graph.py' -v 2>&1 | tee .local/pr16-wiki/followup-unit.txt
           make -n pr16-candidate-wiki | tee .local/pr16-wiki/make-build.txt
           make -n pr16-candidate-wiki-check | tee .local/pr16-wiki/make-check.txt
       - name: 決定的buildと実checkの純読取検証
@@ -66,7 +68,7 @@ jobs:
           test "$(git ls-remote origin refs/heads/codex/modernization-followup-20260908 | cut -f1)" = "$GITHUB_SHA"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'USER-20260921-P08-CANDIDATE-WIKI: 初期技311経路と野生95行をWiki・固定引継ぎ・両ログへ同期'
+          git commit -m 'USER-20260921-P08-CANDIDATE-WIKI: Z関連入口のcompiled構造graphをWiki・固定引継ぎ・両ログへ同期'
           git push origin HEAD:refs/heads/codex/modernization-followup-20260908
           git rev-parse HEAD > .local/pr16-wiki/reflected-head.txt
       - uses: actions/upload-artifact@v4
