@@ -6446,3 +6446,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 本記録を含むcommit。検証source HEAD=12f9591049a54bb8b06868ae9ce743e7cce1689c。
 - Network: GitHub connector/Actions run35568404816。run全体はpush/upload前のin_progressとして記録。
 - Boundary: ROM変更0、ARM0、native0。既存受入試験は影響なしに再実行しない。Issue18・merge・release・active baseline切替なし。失敗run35535019570は検証成功/記録失敗を区別してfollowup JSONに保存。
+
+
+## 2026-09-21T06:33:42+00:00 — 保存ELF・技511 Wikiの完了原本照合
+- Task: USER-20260921-P08-CANDIDATE-WIKI
+- Version: wiki-saved-link-20260921
+- Status: DONE（保存body・callee・技511の限定範囲。Issue18全体は継続）
+- Summary: 4148 files / 112667138 bytes / 277795内部リンク。31対象中17全body一致・9差分・5未結合。17有界graph/94直接BLのうち21 siteを一致calleeへ結合。511はMOVE_POUND=1へ統合せず、flags/Z威力差と候補12byteを記録。
+- Files changed: ELF読取・保存text固定・Wiki結合・検証files/workflow、候補Wiki、receipt/followup/completed JSON、固定引継ぎMD/JSON、両ログ。完了照合段階ではWiki本文を再生成しない。
+- Verify: 保存ELF40試験（初回38に上限/切詰め2を追加）、Wiki新規48試験、seed11/29同一、実checkのbyte/mtime不変、全内部リンク・Stage61/baseline保護。記録18試験、resume/task graph/final-index guard。前4受入110試験の再実行なし。
+- Commit: 本記録を含むcommit。記録source=595c35551c2a8936d21ca4ba7b4d1c72b8afdd9d、Wiki反映=7da681a41ab694d31022c47a691af33172cc42f7、検証source=12f9591049a54bb8b06868ae9ce743e7cce1689c。
+- Network: capture35566920479はsymbol表上限で停止、35567438143で修復成功（artifact10624750708）。Wiki35568404816/ artifact10625291699のcompleted/success・全step・ZIP SHA・原本・親commitを照合。失敗記録は削除しない。
+- Boundary: ROM変更0・ARM0・native0・受入native再実行0、記録段階のWiki再build0。自動Stage79の7domainは既存PASS cacheを再利用し実行skip。source/byte一致を実入手/使用・間接辺・全handler履歴の受入としない。merge/release/baseline切替なし。

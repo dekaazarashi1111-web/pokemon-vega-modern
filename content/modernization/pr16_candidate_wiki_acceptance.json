@@ -14,11 +14,14 @@
       35561743057,
       35562396044,
       35563498591,
-      35564248203
+      35564248203,
+      35568404816
     ],
-    "new_scoped_tests_total": 110,
+    "latest_wiki_tests": 48,
+    "new_scoped_tests_total": 158,
     "path": "content/modernization/pr16_candidate_wiki_completed_runs_20260921.json",
-    "source_head": "2bb1d9c544bc36891d04797c7cca469aeee768d5"
+    "saved_elf_capture_tests": 40,
+    "source_head": "595c35551c2a8936d21ca4ba7b4d1c72b8afdd9d"
   },
   "corrected_details_run": 35529899896,
   "counts": {
@@ -575,5 +578,83 @@
     "tests": 48
   },
   "verification_run": 35568404816,
-  "verification_run_status_at_recording": "in_progress: 差分試験・build/check成功。push/upload完了は次のGETで照合。"
+  "verification_run_reconciled": {
+    "artifact": {
+      "digest": "sha256:aad9b521256473e1982ba994b4cf43be0631fa88bceb80ec15d5e63276b07fef",
+      "expired": false,
+      "id": 10625291699,
+      "name": "pr16-candidate-wiki-cli",
+      "size_in_bytes": 243446
+    },
+    "bytes": 112667138,
+    "candidate": {
+      "crc32": "CC068B4A",
+      "sha256": "46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38",
+      "size": 33554432
+    },
+    "conclusion": "success",
+    "files": 4148,
+    "head_sha": "12f9591049a54bb8b06868ae9ce743e7cce1689c",
+    "id": 35568404816,
+    "internal_links": 277795,
+    "job": {
+      "completed_at": "2026-09-21T06:26:08Z",
+      "conclusion": "success",
+      "id": 106234714975,
+      "name": "wiki",
+      "status": "completed"
+    },
+    "proof_bindings": {
+      "acceptance.json": {
+        "sha256": "cb1ac2a09577dc05b91571eb176c61174d1abb6f1adaedc2b40fd5f797fc22e2",
+        "size": 20543
+      },
+      "build-11.json": {
+        "sha256": "ed882451adfcf96219635080810b019107a37c4ab6035717f52219e0eed9e191",
+        "size": 829
+      },
+      "build-29.json": {
+        "sha256": "ed882451adfcf96219635080810b019107a37c4ab6035717f52219e0eed9e191",
+        "size": 829
+      },
+      "check.stderr.txt": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "check.stdout.json": {
+        "sha256": "f795d951acc0594f9147ad41efd4b70f42e7cc708ea77265e8d97fef373a5c5b",
+        "size": 829
+      },
+      "cli-check.json": {
+        "sha256": "5d2bfbd8c8c36cb18fe73f8be77714f28a7e05576b12a2ee5a96c0ec055d4ed0",
+        "size": 1102
+      },
+      "followup-unit.txt": {
+        "sha256": "cbe715f867e7b1937c9963917e48c916e227241f97b06e40f106d1b16172bcab",
+        "size": 5652
+      },
+      "reflected-head.txt": {
+        "sha256": "7e3a5df1fb915403567f568d972dd32dfbb3d9020577fc3778639872b717e591",
+        "size": 41
+      }
+    },
+    "reflected_head": "7da681a41ab694d31022c47a691af33172cc42f7",
+    "run_url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/35568404816",
+    "scope": "SAVED_ELF_AND_FROZEN_MOVE_511",
+    "status": "completed",
+    "tests": 48,
+    "tree_sha256": "8ca5fbf3d1c245922cf22178f352b39d2669a32c3b27f32969da448c85fadefa",
+    "verification": {
+      "accepted_native_reruns": 0,
+      "active_baseline_changed": false,
+      "actual_check_unchanged_bytes_and_mtimes": true,
+      "arm_builds": 0,
+      "issue18_complete": false,
+      "new_native_runs": 0,
+      "rom_changes": 0,
+      "stage61_unchanged": true,
+      "two_process_builds_identical": true
+    }
+  },
+  "verification_run_status_at_recording": "completed: success（今回runの全step・artifact SHA・検証原本・非force反映親を照合。前4受入は保存記録を再利用）"
 }

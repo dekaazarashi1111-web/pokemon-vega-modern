@@ -6,11 +6,11 @@
 
 ## いまの停止点と次の1手
 
-候補Wiki 4148 files、今回差分48試験と2build/純読取checkを検証。Issue18の残りはcandidate_wiki.remaining_work_ja。受入済み監査・nativeの重複実行なし。
+候補Wiki 4148 files。保存ELF40境界試験とWiki結合48試験を受入。17関数全body一致・21名前付きBL・技511の凍結互換由来/候補12byteを追加。最新Wiki 7da681a41ab694d31022c47a691af33172cc42f7 / run35568404816 はpush/upload完了原本を照合済み。前4差分110試験とnative受入を保持。Issue18全体は未完。
 
-**次: Issue #18の残件だけを継続。専用CLI/Makefile・今回受入済みsource監査を重複実装せず、remaining_work_jaを参照。native・性能調整・releaseへ先行しない。**
+**次: Issue18のremaining_work_jaだけを継続。保存ELF17関数・技511・既存110/今回40+48試験を影響なしに再実行しない。差分body9関数と間接辺、全通常野生/旧配布、通常初回供給/daycare、local patch/全handler履歴を証拠に応じて結合する。**
 
-2プロセスbuild同一、実checkのbyte/mtime不変、変更影響に限定した試験を検証。push/uploadは完了GET後に受入。Issue18全体未完・受入native再実行なし。
+今回Wikiは全step・原本・同branch反映まで完了照合済み。byte一致をsource/macros・実到達/native受入へ昇格しない。merge・release・性能調整・active baseline変更へ先行しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
@@ -28,11 +28,11 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 - `content/modernization/pr16_candidate_wiki_acceptance.json`
 - `content/modernization/pr16_candidate_wiki_completed_runs_20260921.json`
 - `docs/wiki/p08-candidate-46487d98/RUNTIME_LIMITATIONS.md`
+- `docs/wiki/p08-candidate-46487d98/SAVED_LINK_AUDIT.md`
+- `docs/wiki/p08-candidate-46487d98/MOVE_511_LINEAGE.md`
+- `content/modernization/pr16_candidate_wiki_saved_link_sources.json`
+- `scripts/pr16_candidate_wiki_saved_link.py`
 - `scripts/build_pr16_candidate_wiki.py`
-- `scripts/pr16_candidate_wiki_effect_origin.py`
-- `scripts/pr16_candidate_wiki_hidden_patch.py`
-- `scripts/pr16_candidate_wiki_creation.py`
-- `scripts/pr16_candidate_wiki_link_graph.py`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
