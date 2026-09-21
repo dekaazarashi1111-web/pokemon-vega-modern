@@ -6334,3 +6334,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 本記録を含むcommit。検証source HEAD=479f02fb059215e4f9f4da86895b85e8a373b5ee。
 - Network: GitHub connector/Actions run35546455254。run全体はpush/upload前のin_progressとして記録。
 - Boundary: ROM変更0、ARM0、native0。既存受入試験は影響なしに再実行しない。Issue18・merge・release・active baseline切替なし。失敗run35535019570は検証成功/記録失敗を区別してfollowup JSONに保存。
+
+
+## 2026-09-21T03:37:54+00:00 — Issue18残件source checkpoint
+- Task: USER-20260921-P08-CANDIDATE-WIKI / 限定source inventory
+- Status: STOPPED（source固定完了、残件実装へ継続）
+- Summary: 前回Wiki run35546455254をsuccessとして照合。既存consumer原文を再利用し、固定上流physicality tableのGit blob SHAと候補選択を照合。
+- Files changed: 専用capture/試験/workflow、残件source inventory、受入JSON、固定引継ぎMD/JSON、両ログ。
+- Verify: capture試験、候補正本間identity、上流Git blob SHA、task graph、resume、diff、changed-final-index private guard。native0/ARM0/ROM変更0。
+- Commit: この記録を含むcommit。source HEAD=ae92584b07317530ba585772be6fb9879102a94f
+- Network: GitHub API run35546455254、kapibarasan000/CFRU-JP@e24a16fe39e27ae162faf5b78596d1f3df18489d/assembly/data/move_tables.s。固定sourceのみ。
+- Boundary: Issue18全体・release未完。Stage61/active baseline変更0。現HEADの無関係CI action_requiredをWiki失敗と混同しない。

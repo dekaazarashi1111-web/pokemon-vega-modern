@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "P08候補46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38の全ID Wiki 4126ファイルを二重生成一致・全リンク・全Wiki試験で検証。P07全1572行を保持。Issue #18全体は未完。詳細と残件はcontent/modernization/pr16_candidate_wiki_acceptance.json。",
+    "current_stop": "前回Wiki run35546455254のpush/upload成功をGET照合。Issue18残件の固定source inventoryをcontent/modernization/pr16_wiki_remaining_source_inventory.jsonへ保存。Wiki本体の残件は未完。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "Issue #18の残件だけを継続。専用CLI/Makefile・今回受入済みsource監査を重複実装せず、remaining_work_jaを参照。native・性能調整・releaseへ先行しない。",
+    "next_step": "Issue18の固定source inventoryから残件監査を実装し、既存generatorへ接続。完了済みCLI/静的Z対応/nativeを再実装・再実行しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -832,7 +832,7 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "Issue #18の残件だけを継続。専用CLI/Makefile・今回受入済みsource監査を重複実装せず、remaining_work_jaを参照。native・性能調整・releaseへ先行しない。",
+    "goal_ja": "Issue18の固定source inventoryから残件監査を実装し、既存generatorへ接続。完了済みCLI/静的Z対応/nativeを再実装・再実行しない。",
     "host_write_policy_ja": "新しい実受付のguard開始後は入力/frames/readのみ。施設番号/効果/連勝/party/PC/LRのhost注入は禁止。初期配置fixtureと実入場/正規連勝を区別する。",
     "id": "P08_CANDIDATE_WIKI_REMAINING",
     "read_paths": [
@@ -10562,7 +10562,13 @@
     ],
     "new_native_runs": 0,
     "followup": "content/modernization/pr16_candidate_wiki_followup.json",
-    "verification_run_status": "in_progress_at_recording",
-    "cli_complete": true
+    "verification_run_status": "completed_success",
+    "cli_complete": true,
+    "remaining_source_inventory": {
+      "path": "content/modernization/pr16_wiki_remaining_source_inventory.json",
+      "source_head": "ae92584b07317530ba585772be6fb9879102a94f",
+      "run_id": 35558161437,
+      "scope": "LOCKED_SOURCE_INVENTORY_NOT_RUNTIME_ACCEPTANCE"
+    }
   }
 }
