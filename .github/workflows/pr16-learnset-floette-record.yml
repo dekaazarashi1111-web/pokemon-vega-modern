@@ -29,6 +29,27 @@ jobs:
           set -euo pipefail
           mkdir -p .local/pr16-learnset-floette/record-proof
           python3 -B scripts/pr16_learnset_floette_record.py record | tee .local/pr16-learnset-floette/record-proof/record.json
+          python3 -B - <<'PYBIND'
+          import sys
+          from pathlib import Path
+          sys.path.insert(0, 'scripts')
+          from pr16_resume import STATE, DOC, load, dump, render
+          from pr16_learnset_floette_record import REQUEST
+          from tools.pr16_learnset_successor import bound
+          root = Path.cwd()
+          repair = load(root, REQUEST)['resume_fixture_repair']
+          state = load(root, STATE)
+          assert repair['path'] == 'tests/test_pr16_resume.py'
+          assert state['source_bindings'][repair['path']] == repair['before']
+          bound(root / repair['path'], repair['after'])
+          state['source_bindings'][repair['path']] = repair['after']
+          dump(root / STATE, state)
+          (root / DOC).write_text(render(state), encoding='utf-8')
+          note = '- Binding recovery: run35663855295は修正試験の固定hash未同期で停止。旧hash/新hashを明示照合して当該1件だけ同期し、全source検査を再実施。受入実装/44試験は再実行なし。\n'
+          for name in ('design/run_log.md', 'design/version_log.md'):
+              with (root/name).open('a', encoding='utf-8') as stream:
+                  stream.write(note)
+          PYBIND
           python3 -B scripts/pr16_resume.py check | tee .local/pr16-learnset-floette/record-proof/resume.json
           python3 -B -m unittest tests.test_pr16_resume.ResumeTests.test_closed_physical_keeps_p08_gates -v 2>&1 | tee .local/pr16-learnset-floette/record-proof/resume-tests.txt
           python3 -B scripts/validate_task_graph.py | tee .local/pr16-learnset-floette/record-proof/task-graph.txt
