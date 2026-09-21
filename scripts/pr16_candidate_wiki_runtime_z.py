@@ -11,6 +11,8 @@ from pr16_candidate_wiki_consumers import load, key_for
 
 INVENTORY = 'content/modernization/pr16_wiki_remaining_source_inventory.json'
 PROFILE = 'config/cfru_vega_minimal.h'
+# CFRU-JP@e24a16fe assembly/data/move_tables.s:11 (blob efadafd029731238469d204dbb0705a53a46efcd).
+MOVE_TABLES_TERMIN = 0xFEFE
 
 
 def physicality_symbols(text: str) -> list[str]:
@@ -41,15 +43,16 @@ def aligned_matches(raw: bytes, pattern: bytes, alignment: int, limit: int = 64)
 
 
 def table_binding(raw: bytes, ids: list[int]) -> dict:
-    need(ids and len(ids) == len(set(ids)) and all(type(x) is int and 0 < x < 65535 for x in ids), 'physicality move ID不正')
-    signature = struct.pack('<'+'H'*(len(ids)+1), *ids, 65535)
+    need(ids and len(ids) == len(set(ids)) and all(type(x) is int and 0 < x < MOVE_TABLES_TERMIN for x in ids), 'physicality move ID不正')
+    signature = struct.pack('<'+'H'*(len(ids)+1), *ids, MOVE_TABLES_TERMIN)
     matches = []
     for pos in aligned_matches(raw, signature, 2):
         address = BASE+pos
         references = aligned_matches(raw, struct.pack('<I', address), 4)
         matches.append({'address': f'0x{address:08X}',
                         'aligned_pointer_value_sites': [f'0x{BASE+p:08X}' for p in references]})
-    return {'candidate_move_ids':ids, 'signature_sha256':digest(signature), 'signature_size':len(signature),
+    return {'candidate_move_ids':ids, 'signature_sha256':digest(signature), 'signature_size':len(signature), 'terminator':MOVE_TABLES_TERMIN,
+            'terminator_source':{'path':'assembly/data/move_tables.s','line':11,'definition':'.equ MOVE_TABLES_TERMIN, 0xFEFE'},
             'matches':matches, 'status':'BYTE_TABLE_FOUND' if matches else 'NO_CANDIDATE_BYTE_MATCH',
             'evidence':'EXACT_CANDIDATE_ROM', 'pointer_values_are_not_callgraph_proof':True,
             'compiled_consumer_entry_binding':'DEFERRED_AUDIT', 'candidate_native_acceptance':'DEFERRED_AUDIT'}

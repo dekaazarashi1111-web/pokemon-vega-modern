@@ -27,10 +27,16 @@ class RuntimeZTests(unittest.TestCase):
         with self.assertRaises(ValueError):physicality_symbols(TABLE.replace('.hword MOVE_PHOTONGEYSER','.byte 1'))
     def test_table_rejects_middle_terminator(self):
         with self.assertRaises(ValueError):physicality_symbols(TABLE.replace('.hword MOVE_PHOTONGEYSER','.hword MOVE_TABLES_TERMIN'))
+    def test_wrong_ffff_terminator_is_not_a_match(self):
+        self.assertEqual(table_binding(struct.pack('<HHH',3,4,65535),[3,4])['matches'],[])
+    def test_terminator_provenance_is_explicit(self):
+        row=table_binding(struct.pack('<HHH',3,4,0xFEFE),[3,4])
+        self.assertEqual(row['terminator'],0xFEFE)
+        self.assertEqual(row['terminator_source']['line'],11)
     def test_missing_signature_not_promoted(self):
         self.assertEqual(table_binding(bytes(32),[3,4])['status'],'NO_CANDIDATE_BYTE_MATCH')
     def test_six_byte_table_and_pointer(self):
-        raw=bytearray(64);raw[8:14]=struct.pack('<HHH',3,4,65535);struct.pack_into('<I',raw,20,BASE+8)
+        raw=bytearray(64);raw[8:14]=struct.pack('<HHH',3,4,0xFEFE);struct.pack_into('<I',raw,20,BASE+8)
         result=table_binding(bytes(raw),[3,4])
         self.assertEqual(result['matches'],[{'address':'0x08000008','aligned_pointer_value_sites':['0x08000014']}])
         self.assertEqual(result['signature_size'],6)
@@ -40,7 +46,7 @@ class RuntimeZTests(unittest.TestCase):
     def test_match_limit(self):
         with self.assertRaises(ValueError):aligned_matches(b'AB'*4,b'AB',2,3)
     def test_bad_id_rejected(self):
-        for ids in ([0],[65535],[1,1],[True]):
+        for ids in ([0],[65535],[0xFEFE],[1,1],[True]):
             with self.subTest(ids=ids), self.assertRaises(ValueError):table_binding(bytes(32),ids)
     def test_physical_remains_physical(self):
         self.assertEqual(split_rule('MOVE_KEY_POUND',0,set())['possible_categories'],[0])
@@ -70,7 +76,7 @@ class LockedSourceIntegrationTests(unittest.TestCase):
         cls.source=Source(json.loads((ROOT/'content/modernization/pr16_candidate_wiki_consumer_sources.json').read_bytes()))
         cls.inventory=json.loads((ROOT/'content/modernization/pr16_wiki_remaining_source_inventory.json').read_bytes())
     def example(self):
-        raw=bytearray(64);raw[8:14]=struct.pack('<HHH',1,2,65535)
+        raw=bytearray(64);raw[8:14]=struct.pack('<HHH',1,2,0xFEFE)
         moves=[]
         for mid,key in enumerate(['MOVE_KEY_PHOTONGEYSER','MOVE_KEY_LIGHT_THAT_BURNS_THE_SKY','MOVE_KEY_POUND','MOVE_KEY_SHELLSIDEARM'],1):
             category=0 if key=='MOVE_KEY_POUND' else 1
