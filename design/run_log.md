@@ -9283,3 +9283,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Prior attempt: run35659288132は1262の監査参照先誤りで停止。元表とpayloadは不変のまま監査だけを訂正。
 - Commit: 本記録を含む同branch非force commit。自己SHAは記載せずgit logで照合。
 - Network: GitHub Actions受入artifact再利用、原本/旧Wiki再生成0、native0、ROM変更0。
+
+## 2026-09-21T22:44:54.847498+00:00
+- Timestamp: 2026-09-21T22:44:54.847498+00:00
+- Task: USER-20260921-LEARNSET-BASELINE-RESET / Eternal明示採用とhost owner gate
+- Version: learnset-floette-owner-v1
+- Status: DONE（Eternal差分/host gate限定。game callsite・ROM/native未接続）
+- Summary: 37経路を採用し親128352経路を保全。1029の9枠のみ更新、188枠を空表/fallbackにしないC gateを実装。
+- Files changed: 専用抽出器、明示裁定、差分compiler、C gate、44新試験、限定Actions/固定入力、checkpoint/証拠/guide、固定入口/MD/JSON、両ログ。
+- Verify: 44試験PASS、独立2プロセス/ローカルActions全hash一致、全差分byte/実owner C15039 query、親15030 index行/入力byte/mtime不変。run=35663067820 source=7a8405d0e7b9085078f335a7dd95f4c8fb614141。原本抽出run35661456139は37行CSV一致。
+- Record recovery: 先行記録run35663195482は既存引継ぎfixtureの古いP08 gate仮定1件で停止。実台帳を変更せず合成fixtureを明示し、その1試験だけ再検証。先行27試験・新44試験は再実行なし。
+- Commit: 本記録を含む同branch非force commit。自己SHAはgit logで照合。
+- Network: GitHub受入artifact再利用。既受入原本/payload再生成0、native0、ROM変更0。新TM23中12技の実供給と条件consumerは未接続。
+- Binding recovery: run35663855295は修正試験の固定hash未同期で停止。旧hash/新hashを明示照合して当該1件だけ同期し、全source検査を再実施。受入実装/44試験は再実行なし。

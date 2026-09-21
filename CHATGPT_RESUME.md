@@ -42,7 +42,7 @@ Issue #19は、技習得を次のフラットな基準へ復元するタスク�
 - 現在の3群5行は、リーテイルのLv32「リーフブレード」・Lv46「こうごうせい」、ゴートンの「かみつく」Lv18、ディザソルのTutor「ギガスパーク」「バグノイズ」を固定ROMどおり採用する。
 - `content/modernization/pr16_vega_original_evidence/source_conflicts.json` は採取時点の原本として改作せず、`content/modernization/pr16_vega_original_source_decision.json` を後継adjudication/crosswalkから参照する。
 - 固定ROMの同定、table offset、stride、終端、move crosswalk、抽出器の完全性に疑義がある場合だけfail-closedで停止する。出典差だけでは停止しない。
-- 次はこの決定を3群5行へ適用した台帳を生成し、92種2394行の非直接eggを原作Vegaの進化・孵化consumerと照合する。原本182ページや公式1299件を取り直さない。
+- この節は所有者決定の固定履歴であり、未完工程の一覧ではない。台帳適用・非直接egg照合を含む最新受入/次工程は固定再開MD/JSONで確認し、原本182ページや公式1299件を取り直さない。
 
 所有者提供ZIPは `userfile/imports/**` 等のGit管理外・読み取り専用入力として扱い、ZIP本体をcommitしない。入力が未提供またはhash不一致なら、似た名前の別資料や現行ROMを暗黙代用せずfail-closedにする。
 
@@ -67,4 +67,4 @@ merge・release・baseline切替は別途明示指示なしに行わないでく
 
 ## Vega181種の原本採取・隔離監査checkpoint
 
-`docs/PR16_VEGA_ORIGINAL_AUDIT_JA.md` と `content/modernization/pr16_vega_original_checkpoint.json` を参照。原本9923行/全182ページ/43試験は完了。3群5行は `content/modernization/pr16_vega_original_source_decision.json` により固定ROM優先で所有者決定済み。次工程はその決定の台帳適用と92種2394行の非直接egg裁定。baseline採用/Issue19全体は未完。保存原本から再開し、公式隔離やWiki全件採取を繰り返さない。
+`docs/PR16_VEGA_ORIGINAL_AUDIT_JA.md` と `content/modernization/pr16_vega_original_checkpoint.json` を参照。原本9923行/全182ページ/43試験は完了。3群5行は `content/modernization/pr16_vega_original_source_decision.json` により固定ROM優先で所有者決定済み。この記述は採取時点の履歴。以降の台帳適用・採用・consumer工程の完了範囲と次工程は固定再開MD/JSONを参照する。保存原本から再開し、公式隔離やWiki全件採取を繰り返さない。

@@ -12,3 +12,6 @@ level/egg/進化時/reminder/shared egg/互換bit/不足技archiveの配置前bi
 
 ## 次の未完
 1029はStage69で入手可能だがP01の習得元はapply=false。旧候補の技表や通常Floetteへのfallbackを避け、固定reference legendsza:0670.05の明示採用裁定を行う。その後、非学習/戦闘姿owner、条件付きconsumer、配置とpointer/容量、実供給を接続し、後継ROM・別Wiki・影響nativeを検証する。今回のartifactはインストール不可の配置前成果物であり、ROM受入/Issue19全体完了/merge/releaseではない。
+
+## 後続工程への参照
+この文書の1029採用待ちは親payload受入時点の履歴。Eternal採用差分とhost owner gateは `docs/PR16_LEARNSET_FLOETTE_JA.md` / `content/modernization/pr16_learnset_floette_checkpoint.json` を参照する。最新未完は固定再開MD/JSONを優先し、旧工程を再実行しない。

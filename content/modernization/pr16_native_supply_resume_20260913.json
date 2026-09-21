@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "191枠を188保全/2明示owner/1採用待ちへ分類。64追加経路、元128288経路を配置前payloadと全行台帳へ変換。Wikiの1始まりslotを33321経路で補正し54新試験/独立全byte照合PASS。ROM/native未変更。",
+    "current_stop": "Eternal1029の固定参考37経路を明示採用し、13 level/1進化時/23 machineを親不変の差分payloadへ変換。188保全枠を含むhost C owner gateと全15039 query、44新試験、独立2プロセス/全差分byteを受入。親128352経路を保全し計128389。game callsite/ROM/nativeは未接続。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "Issue19: Floette Eternal(1029)のgift入手契約とP01 learnset apply=falseを明示裁定し、既存贈呈先を消さず固定referenceを採用する。受入payloadを再利用し、188非学習/戦闘姿のruntime owner処理、条件付きconsumer、後継ROMの配置・別Wiki・影響nativeを接続する。",
+    "next_step": "Issue19: 受入済み親payloadとEternal差分を再利用し、game callsiteへ明示owner/C gateと条件付きconsumerを接続する。配置・pointer/容量を検証し、後継ROMと別Wikiを生成して変更影響だけnative受入する。Eternal採用裁定・原本再採取は繰り返さない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -750,7 +750,8 @@
     "Vega181種: 原本9923行/182ページ/43試験、衝突5行/5試験、非直接egg2394行/13試験は保存証拠を再利用。原本採取・公式1299件の再生成・入力不変の単独再検証をしない。3群/92種を未裁定へ戻さず、次はruntime全consumer。",
     "後継9consumer表v1: 128288採用/159明示除外、39新試験、独立2生成・純読取・原本128447行独立監査は保存済み。入力/生成器が同じなら再生成/単独再試験しない。未完は191枠binding/孵化531差分/binary接続と後継ROM・Wiki・影響native。",
     "learnset binding: 受入9consumer表はartifact10653200020を再利用。531孵化差分は非付与として全行照合済み。旧原本/39受入試験/nativeを再実行せず、未選択191枠の明示bindingから続行。",
-    "learnset payload: 191 binding、531孵化差分、64明示経路、33321 slot補正は証拠固定済み。配置前payload artifactを再利用。受入54/24試験・原本生成は影響変更がない限り再実行せず、1029採用裁定とruntime接続から続行。"
+    "learnset payload: 191 binding、531孵化差分、64明示経路、33321 slot補正は証拠固定済み。配置前payload artifactを再利用。受入54/24試験・原本生成は影響変更がない限り再実行せず、1029採用裁定とruntime接続から続行。",
+    "Eternal採用/host owner gate: run 35663067820 の44試験・15039実owner C query・37原本経路/差分全byte・独立2プロセスは受入済み。親artifactとEternal差分を再利用。原本1299件/182ページ/531孵化差分/54旧payload試験は影響なしに再実行しない。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -837,34 +838,36 @@
   },
   "merge_performed": false,
   "next_action": {
-    "id": "LEARNSET_FLOETTE_ADOPTION_AND_RUNTIME_LINK",
-    "goal_ja": "Issue19: Floette Eternal(1029)のgift入手契約とP01 learnset apply=falseを明示裁定し、既存贈呈先を消さず固定referenceを採用する。受入payloadを再利用し、188非学習/戦闘姿のruntime owner処理、条件付きconsumer、後継ROMの配置・別Wiki・影響nativeを接続する。",
+    "id": "LEARNSET_GAME_CONSUMER_AND_ROM_LINK",
+    "goal_ja": "Issue19: 受入済み親payloadとEternal差分を再利用し、game callsiteへ明示owner/C gateと条件付きconsumerを接続する。配置・pointer/容量を検証し、後継ROMと別Wikiを生成して変更影響だけnative受入する。Eternal採用裁定・原本再採取は繰り返さない。",
     "read_paths": [
-      "docs/PR16_LEARNSET_PAYLOADS_JA.md",
-      "content/modernization/pr16_learnset_payload_checkpoint.json",
-      "content/modernization/pr16_learnset_payload_evidence/species-bindings.jsonl",
-      "tools/pr16_learnset_payloads.py",
-      "config/modernization_floette_gift.json",
-      "content/modernization/identity_contract.json"
+      "docs/PR16_LEARNSET_FLOETTE_JA.md",
+      "content/modernization/pr16_learnset_floette_checkpoint.json",
+      "content/modernization/pr16_floette_learnset_adoption.json",
+      "content/modernization/pr16_learnset_floette_evidence/receipt.json",
+      "tools/pr16_learnset_floette.py",
+      "src/modernization/pr16_learnset_owner.h",
+      "src/modernization/pr16_learnset_owner.c",
+      "docs/PR16_LEARNSET_PAYLOADS_JA.md"
     ],
-    "stop_rule_ja": "旧表fallback/191枠一括削除は禁止。配置前payloadはROM受入ではない。531孵化差分・原本裁定を再実行しない。Issue19/18全体、merge/releaseは未完。",
+    "stop_rule_ja": "source採用待ちは解消したがROM未配置。188枠を空表/旧表fallbackへしない。条件付き経路・12件のarchive実供給を未検証で付与しない。旧Wiki/保存4技を変更せず、merge/release/baseline切替は行わない。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。"
   },
   "observed_date_jst": "2026-09-22",
-  "observed_head": "a7e2d99f44354b6e3e5b9a9993f15cae2f179b67",
+  "observed_head": "7a8405d0e7b9085078f335a7dd95f4c8fb614141",
   "observed_head_checks": {
-    "scope_head": "a7e2d99f44354b6e3e5b9a9993f15cae2f179b67",
+    "scope_head": "7a8405d0e7b9085078f335a7dd95f4c8fb614141",
     "runs": [
       {
-        "id": 35659593954,
-        "head_sha": "a7e2d99f44354b6e3e5b9a9993f15cae2f179b67",
+        "id": 35663067820,
+        "head_sha": "7a8405d0e7b9085078f335a7dd95f4c8fb614141",
         "status": "completed",
         "conclusion": "success",
-        "path": ".github/workflows/pr16-learnset-payload.yml",
+        "path": ".github/workflows/pr16-learnset-floette.yml",
         "jobs": [
           {
-            "id": 106531416710,
-            "name": "payload-verify",
+            "id": 106542567466,
+            "name": "floette-verify",
             "status": "completed",
             "conclusion": "success",
             "steps": [
@@ -884,7 +887,7 @@
                 "conclusion": "success"
               },
               {
-                "name": "新規54試験と後継payloadだけを独立2プロセスで検証",
+                "name": "原本/親を再生成せず新44試験と実owner C全数を検証",
                 "status": "completed",
                 "conclusion": "success"
               },
@@ -918,9 +921,9 @@
         ]
       }
     ],
-    "reason_ja": "今回の新54試験・独立2プロセス・全128352経路と全byte監査は完了Actionsで照合済み。静的binding/配置前payloadだけの受入で、全PR checksやROM/native全回帰の成功ではない。"
+    "reason_ja": "新44試験、独立2プロセス、差分全byte、実owner Cの15039 queryを完了Actionsで確認。一般PR checksは別記でaction_required等を成功へ読み替えない。ROM/game callsite/nativeは未接続。"
   },
-  "observed_head_semantics": "191枠binding/配置前payloadの完了検証入力HEAD。branch最新HEAD/native受入HEADではない。現在HEADはremoteから取得する。",
+  "observed_head_semantics": "Eternal採用差分/host C owner gateの完了検証入力HEAD。記録commit/remote最新HEADやROM/native受入HEADではない。",
   "p08_resume_synchronized": true,
   "party_retention_latest_attempt": {
     "accepted_native_cases_replayed": 0,
@@ -7754,8 +7757,8 @@
       "sha256": "455d7c2fc10b456d948a8ff042c84dcf1ecf60e14baed9c793e7a910b5d7d969"
     },
     "tests/test_pr16_resume.py": {
-      "size": 12258,
-      "sha256": "7f31a83f3d92805ba547827f862f376b485db991758ed0763963b7ecc5e1fadf"
+      "size": 12856,
+      "sha256": "cda46a7c39c0626d08b4f6ca84d3cc8917e5beb0487b12309c0fda2ac1adf8ff"
     },
     "content/modernization/pr16_circus_battle25.json": {
       "size": 32767,
@@ -9606,8 +9609,8 @@
       "sha256": "4924be1b5cfa324fe72cff599758ebb467eae8d25911a085c2d444f3b1f3ab6a"
     },
     "CHATGPT_RESUME.md": {
-      "size": 7485,
-      "sha256": "dedd8ac7713cd742582d52be81e2e12ec311028e071639cc905f90a41be0b230"
+      "sha256": "963f3d4b12d184aaa9be7decbdd98cfe7b89317bfa8396008c8e1ab3581359f6",
+      "size": 7562
     },
     "scripts/pr16_learnset_baseline_record.py": {
       "size": 18915,
@@ -11131,6 +11134,79 @@
         ]
       },
       "reason_ja": "191枠明示bindingと配置前payloadの完了Actionsへ表示を更新。旧受入範囲は保全。"
+    },
+    {
+      "head": "a7e2d99f44354b6e3e5b9a9993f15cae2f179b67",
+      "semantics": "191枠binding/配置前payloadの完了検証入力HEAD。branch最新HEAD/native受入HEADではない。現在HEADはremoteから取得する。",
+      "checks": {
+        "scope_head": "a7e2d99f44354b6e3e5b9a9993f15cae2f179b67",
+        "runs": [
+          {
+            "id": 35659593954,
+            "head_sha": "a7e2d99f44354b6e3e5b9a9993f15cae2f179b67",
+            "status": "completed",
+            "conclusion": "success",
+            "path": ".github/workflows/pr16-learnset-payload.yml",
+            "jobs": [
+              {
+                "id": 106531416710,
+                "name": "payload-verify",
+                "status": "completed",
+                "conclusion": "success",
+                "steps": [
+                  {
+                    "name": "Set up job",
+                    "status": "completed",
+                    "conclusion": "success"
+                  },
+                  {
+                    "name": "Run actions/checkout@v4",
+                    "status": "completed",
+                    "conclusion": "success"
+                  },
+                  {
+                    "name": "Run actions/setup-python@v5",
+                    "status": "completed",
+                    "conclusion": "success"
+                  },
+                  {
+                    "name": "新規54試験と後継payloadだけを独立2プロセスで検証",
+                    "status": "completed",
+                    "conclusion": "success"
+                  },
+                  {
+                    "name": "Run actions/upload-artifact@v4",
+                    "status": "completed",
+                    "conclusion": "success"
+                  },
+                  {
+                    "name": "Run actions/upload-artifact@v4",
+                    "status": "completed",
+                    "conclusion": "success"
+                  },
+                  {
+                    "name": "Post Run actions/setup-python@v5",
+                    "status": "completed",
+                    "conclusion": "success"
+                  },
+                  {
+                    "name": "Post Run actions/checkout@v4",
+                    "status": "completed",
+                    "conclusion": "success"
+                  },
+                  {
+                    "name": "Complete job",
+                    "status": "completed",
+                    "conclusion": "success"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "reason_ja": "今回の新54試験・独立2プロセス・全128352経路と全byte監査は完了Actionsで照合済み。静的binding/配置前payloadだけの受入で、全PR checksやROM/native全回帰の成功ではない。"
+      },
+      "reason_ja": "Eternal37経路とhost C owner gateの完了Actionsへ更新。旧payload/正式native受入は履歴として保全。"
     }
   ],
   "learnset_baseline": {
@@ -12852,5 +12928,450 @@
       "reason": "resume observed_head_checks.reason_ja missing; no remote record was committed",
       "accepted_tests_rerun_for_record_fix": 0
     }
+  },
+  "learnset_floette": {
+    "task": "USER-20260921-LEARNSET-BASELINE-RESET",
+    "status": "ACCEPTED_FLOETTE_ADOPTION_AND_HOST_OWNER_GATE_ROM_PENDING",
+    "source_head": "7a8405d0e7b9085078f335a7dd95f4c8fb614141",
+    "run_id": 35663067820,
+    "actions_completion_confirmed": true,
+    "completed_actions": {
+      "id": 35663067820,
+      "head_sha": "7a8405d0e7b9085078f335a7dd95f4c8fb614141",
+      "status": "completed",
+      "conclusion": "success",
+      "path": ".github/workflows/pr16-learnset-floette.yml",
+      "jobs": [
+        {
+          "id": 106542567466,
+          "name": "floette-verify",
+          "status": "completed",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/setup-python@v5",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "原本/親を再生成せず新44試験と実owner C全数を検証",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/upload-artifact@v4",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/upload-artifact@v4",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/setup-python@v5",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success"
+            }
+          ]
+        }
+      ]
+    },
+    "source_actions": {
+      "id": 35661456139,
+      "head_sha": "eefecda80d08ee7df8b9c59dbb1bf1caa5d21577",
+      "status": "completed",
+      "conclusion": "success",
+      "path": ".github/workflows/pr16-learnset-floette-source.yml",
+      "jobs": [
+        {
+          "id": 106537412089,
+          "name": "fixed-reference",
+          "status": "completed",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/setup-python@v5",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "固定原本の読み取り専用復元",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "未採用のEternal参考1件をCSVと照合",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/upload-artifact@v4",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/setup-python@v5",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success"
+            }
+          ]
+        }
+      ]
+    },
+    "focused_tests": 44,
+    "actual_c_queries": 15039,
+    "proof_artifact": {
+      "id": 10667986809,
+      "node_id": "MDg6QXJ0aWZhY3QxMDY2Nzk4NjgwOQ==",
+      "name": "pr16-learnset-floette-proof",
+      "size_in_bytes": 11342,
+      "url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/artifacts/10667986809",
+      "archive_download_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/artifacts/10667986809/zip",
+      "expired": false,
+      "digest": "sha256:111bf5fdaf1d66f9bed6f4ebac5161e382a26d526ce1413fe953d8b2afb81ec6",
+      "created_at": "2026-09-21T22:31:23Z",
+      "updated_at": "2026-09-21T22:31:23Z",
+      "expires_at": "2026-10-21T22:31:22Z",
+      "workflow_run": {
+        "id": 35663067820,
+        "repository_id": 1358127462,
+        "head_repository_id": 1358127462,
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "7a8405d0e7b9085078f335a7dd95f4c8fb614141"
+      }
+    },
+    "payload_artifact": {
+      "id": 10668111661,
+      "node_id": "MDg6QXJ0aWZhY3QxMDY2ODExMTY2MQ==",
+      "name": "pr16-learnset-floette-data",
+      "size_in_bytes": 220551,
+      "url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/artifacts/10668111661",
+      "archive_download_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/artifacts/10668111661/zip",
+      "expired": false,
+      "digest": "sha256:0ed479422bac03db40b887963bd7cba7199b6d5295b7ac650d236f75b4be671c",
+      "created_at": "2026-09-21T22:31:24Z",
+      "updated_at": "2026-09-21T22:31:24Z",
+      "expires_at": "2026-10-21T22:31:23Z",
+      "workflow_run": {
+        "id": 35663067820,
+        "repository_id": 1358127462,
+        "head_repository_id": 1358127462,
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "7a8405d0e7b9085078f335a7dd95f4c8fb614141"
+      }
+    },
+    "summary": {
+      "automatic_fallback": false,
+      "conditional_runtime_connected": false,
+      "consumer_counts": {
+        "evolution": 1,
+        "level_up": 13,
+        "machine": 23
+      },
+      "decision": {
+        "sha256": "568bf6bce3b7dbdbbe2d6f200352dbe96943523ec4550b994c12268b5ace2c0e",
+        "size": 4180
+      },
+      "files": {
+        "consumer-index.jsonl": {
+          "sha256": "43c53fd448b76543ce6c304b0cd66ab1530f6363994f55621179634012d53249",
+          "size": 3183781
+        },
+        "floette-index.jsonl": {
+          "sha256": "a60e1a32bdf3e82b95267e58af881524b983a2498d220e637bb2b87f1f12c87a",
+          "size": 1880
+        },
+        "floette-routes.jsonl": {
+          "sha256": "85e4c3172d4558abc6f84bf77f978b19126a91b6a777c5aad0fcd7dc1fbf97d2",
+          "size": 94393
+        },
+        "floette.egg.bin": {
+          "sha256": "ea25218023713cade4c158c5bf026ef084425a7df30fd46d3c7caa2dde204929",
+          "size": 4
+        },
+        "floette.evolution.bin": {
+          "sha256": "2c3aac95a0e76ad8a471a1023fffecd091db3dc991c7e032e886fd8535d6da64",
+          "size": 2
+        },
+        "floette.level_up.bin": {
+          "sha256": "0c90b74a05d0eec5dd149b306e08f19da5c0c5fb83c4cab4ae9517e0efc931b8",
+          "size": 42
+        },
+        "floette.machine.bin": {
+          "sha256": "2c07c85359a13b1a9170a346e9a03a818c47c6c5df7f5a6a8d32277ba24f4b99",
+          "size": 16
+        },
+        "floette.machine_archive.bin": {
+          "sha256": "d118402ac5e1b40500c76479a28f769d2b64caee8b377fdacbbafc5dbe44a6d2",
+          "size": 24
+        },
+        "floette.reminder.bin": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size": 0
+        },
+        "floette.shared_egg.bin": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size": 0
+        },
+        "floette.tutor.bin": {
+          "sha256": "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb",
+          "size": 16
+        },
+        "floette.tutor_archive.bin": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size": 0
+        },
+        "owner-policies.bin": {
+          "sha256": "489dd31462cdf363013337e09cd7a271b10f80ae37adee15946b60454a7d8549",
+          "size": 1671
+        },
+        "owner_approved_overlay.json": {
+          "sha256": "6c45288a5e9d1444ab024fac905b02495e73426d74e22544bbf867e5f4811680",
+          "size": 12
+        }
+      },
+      "gift_contract_preserved": true,
+      "identity_only_species_preserved": 188,
+      "index_entries_changed": 9,
+      "install_ready": false,
+      "issue19_complete": false,
+      "native_runs": 0,
+      "owner_dispatch_counts": {
+        "BATTLE_COPY_CARRY_ONLY": 54,
+        "BATTLE_FORM_CARRY_ONLY": 918,
+        "CONDITIONAL_CONSUMER_NOT_CONNECTED": 2966,
+        "EXCLUDED_REMAKE_FORM_IDENTITY_ONLY": 63,
+        "EXPLICIT_OWNER_PAYLOAD_NOT_INSTALLED": 10381,
+        "INTERNAL_IDENTITY_ONLY": 189,
+        "NON_BATTLING_FORM_IDENTITY_ONLY": 27,
+        "P04_MEGA_CARRY_ONLY": 441
+      },
+      "owner_overlay_routes": 0,
+      "owner_policy_records": 1671,
+      "parent_payloads_modified": 0,
+      "parent_payloads_regenerated": 0,
+      "parent_receipt": {
+        "sha256": "4c3332e9bb871a1398b4ea6b68264a8a248669ebd7567b45c44ca52e7f45725f",
+        "size": 4715
+      },
+      "parent_routes_preserved": 128352,
+      "parent_run_id": 35659593954,
+      "phase": "FLOETTE_EXPLICIT_REFERENCE_DELTA_V1",
+      "physical_supply_verified": false,
+      "release_ready": false,
+      "rom_changes": 0,
+      "runtime_applied": false,
+      "saved_four_moves_rewritten": false,
+      "side_change_routes": 0,
+      "source_official_records_regenerated": 0,
+      "source_receipt": {
+        "sha256": "262c8ed4667b064fa8f8009f3ebd067e9f31988225934ba52a9ab4491e38956a",
+        "size": 2174
+      },
+      "source_reference_routes": 37,
+      "source_vega_records_regenerated": 0,
+      "status": "FLOETTE_ADOPTED_PAYLOAD_PREPARED_RUNTIME_OPEN",
+      "storage_arenas": {
+        "ACCEPTED_PARENT": 10667620466,
+        "FLOETTE_DELTA": "this artifact"
+      },
+      "temporary_placeholders": 0,
+      "total_accounted_routes": 128389,
+      "unresolved_source_adoption_species": []
+    },
+    "audit": {
+      "actual_c_queries": 15039,
+      "battle_carry_species": 157,
+      "changed_index_rows": 9,
+      "conditional_game_callsite_connected": false,
+      "identity_only_species": 188,
+      "machine_routes_bound_to_catalog": 11,
+      "machine_routes_requiring_archive_supply": 12,
+      "native_runs": 0,
+      "non_battle_identity_species": 31,
+      "rom_changes": 0,
+      "source_routes": 37,
+      "status": "PASS_INDEPENDENT_DELTA_BYTES_AND_ACTUAL_C_OWNERS",
+      "unchanged_parent_index_rows": 15030
+    },
+    "other_actions_observed_at_record": [
+      {
+        "id": 35663072801,
+        "name": "p03-forgetting-ci",
+        "head_sha": "7a8405d0e7b9085078f335a7dd95f4c8fb614141",
+        "event": "pull_request",
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 35663072812,
+        "name": "source-validation",
+        "head_sha": "7a8405d0e7b9085078f335a7dd95f4c8fb614141",
+        "event": "pull_request",
+        "path": ".github/workflows/ci.yml",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 35663067820,
+        "name": "pr16-learnset-floette",
+        "head_sha": "7a8405d0e7b9085078f335a7dd95f4c8fb614141",
+        "event": "push",
+        "path": ".github/workflows/pr16-learnset-floette.yml",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 35663067888,
+        "name": "Stage79 runtime boundary audit",
+        "head_sha": "7a8405d0e7b9085078f335a7dd95f4c8fb614141",
+        "event": "push",
+        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 35663067776,
+        "name": "p03-forgetting-ci",
+        "head_sha": "7a8405d0e7b9085078f335a7dd95f4c8fb614141",
+        "event": "push",
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 35663067839,
+        "name": "source-validation",
+        "head_sha": "7a8405d0e7b9085078f335a7dd95f4c8fb614141",
+        "event": "push",
+        "path": ".github/workflows/ci.yml",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 35663067805,
+        "name": "Stage79 mGBA (all)",
+        "head_sha": "7a8405d0e7b9085078f335a7dd95f4c8fb614141",
+        "event": "push",
+        "path": ".github/workflows/modernization-stage79-mgba.yml",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    ],
+    "record_only_amendments": {
+      "scripts/pr16_learnset_floette_record.py": {
+        "before": {
+          "sha256": "f0dd0d4f077ba0bf41386cf7f86d885d06509991bee4ea9ebf54675fa6caa441",
+          "size": 17883
+        },
+        "after": {
+          "size": 20603,
+          "sha256": "a40eea090f0b25f0baa8ec67a35607e1fd03998a953dcc7c671dc9c8dbf54cf5"
+        }
+      },
+      ".github/workflows/pr16-learnset-floette-record.yml": {
+        "before": {
+          "sha256": "af9cf9a1ace6d9dfad3c989d71e563e58a28ef9da01d6f112360a788239a9da3",
+          "size": 2774
+        },
+        "after": {
+          "size": 4067,
+          "sha256": "6af7fa88822febfb25fe7a719e0beac0268e59e6bfd453d4dac8dea7af1b744f"
+        }
+      }
+    },
+    "resume_fixture_repair": {
+      "path": "tests/test_pr16_resume.py",
+      "before": {
+        "size": 12258,
+        "sha256": "7f31a83f3d92805ba547827f862f376b485db991758ed0763963b7ecc5e1fadf"
+      },
+      "after": {
+        "size": 12856,
+        "sha256": "cda46a7c39c0626d08b4f6ca84d3cc8917e5beb0487b12309c0fda2ac1adf8ff"
+      },
+      "failed_run_id": 35663195482,
+      "failed_job_id": 106542967515,
+      "accepted_other_tests": 27,
+      "rerun_only": "tests.test_pr16_resume.ResumeTests.test_closed_physical_keeps_p08_gates",
+      "reason_ja": "実台帳でnative受入済みでも、物理gap閉鎖時の未完P08 gate保全を独立fixtureで検証。受入条件/実台帳は変更しない。",
+      "binding_recovery_run_id": 35663855295
+    },
+    "proof_bindings": {
+      "audit.json": {
+        "size": 411,
+        "sha256": "eac23374de95913f1c48f388fcb7ef4602985c11b53ca1bf7c8a1186e3e624c7"
+      },
+      "floette-index.jsonl": {
+        "size": 1880,
+        "sha256": "a60e1a32bdf3e82b95267e58af881524b983a2498d220e637bb2b87f1f12c87a"
+      },
+      "floette-routes.jsonl": {
+        "size": 94393,
+        "sha256": "85e4c3172d4558abc6f84bf77f978b19126a91b6a777c5aad0fcd7dc1fbf97d2"
+      },
+      "owner_approved_overlay.json": {
+        "size": 12,
+        "sha256": "6c45288a5e9d1444ab024fac905b02495e73426d74e22544bbf867e5f4811680"
+      },
+      "receipt.json": {
+        "size": 3200,
+        "sha256": "7ec125005c81c0cb4861f0c2685083b60946c3b47c2521b666bd040bf408576e"
+      },
+      "unit.txt": {
+        "size": 5407,
+        "sha256": "2a8441239f138f919e24dd6c8d702cad3f0ce7b3c8510406171b610a8f1eb84c"
+      },
+      "verification.json": {
+        "size": 5667,
+        "sha256": "5472c8ce70cb5fb7c5c9242e24db1ee6980f2b4f61f888284f88210211a0b755"
+      }
+    },
+    "runtime_applied": false,
+    "issue19_complete": false,
+    "release_ready": false,
+    "next_boundary": "game callsites, conditional consumers, ROM placement/pointers/capacity, separate Wiki, impact-only native acceptance"
   }
 }
