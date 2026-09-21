@@ -1,15 +1,28 @@
 {
   "schema_version": 1,
   "task": "USER-20260921-LEARNSET-BASELINE-RESET",
-  "mode": "source-bootstrap",
-  "request_id": "20260921-input-verified-01",
+  "mode": "verify-official",
+  "request_id": "20260921-official-isolation-02",
   "observed_start_head": "15340ce5cfad6a980c34af593655d371f3643cfc",
+  "implementation_head": "1fb4c8a185afdeae588df882c361b25c93faeb3b",
+  "expected_blobs": {
+    "tools/pr16_learnset_baseline.py": "89d81733924ce7248182be7baa27d52c8f29d9d3",
+    "scripts/pr16_learnset_baseline.py": "e199260ea628a9636f2017644d73b3dabd412002",
+    "tests/test_pr16_learnset_baseline.py": "0f9016e942492493a9a003ee3870d5b063861845",
+    "config/pr16_learnset_baseline_source_lock.json": "798177dea7a52f4c6c0658934775087429e16fd1"
+  },
   "owner_zip": {
     "size": 82683251,
     "sha256": "80b678320c08203e7b39236e5c123f5c2f2f0c729e7f4e5101bed88c84158adb",
     "local_verification": "PASS",
     "duplicate_filename_suffix_ignored_after_hash_match": true
   },
-  "rom_change_authorized_by_this_step": false,
-  "note_ja": "Issue19の限定実装環境を準備するWIP。ZIP原本は読み取り専用・Git管理外。旧Wiki、候補、受入原本は変更しない。"
+  "local_verification": {
+    "focused_tests": 39,
+    "two_process_outputs_identical": true,
+    "readonly_check_byte_mtime_unchanged": true,
+    "official_baseline_sha256": "d91d6d0b30bd7b48465b6fabbf2043fbea2486abbd47b02d4db98c30a3cec423",
+    "official_baseline_size": 243987993
+  },
+  "rom_change_authorized_by_this_step": false
 }
