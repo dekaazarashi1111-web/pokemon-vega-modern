@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "Issue19の公式原本隔離を完了。1299件/118524経路、39境界試験、Actions独立2生成/純読取checkを原本照合済み。Vega元来181種とruntime切替は未完。候補ROM・旧Wiki・native受入は変更なし。",
+    "current_stop": "Vega181種の原本採取・方法別隔離監査を完了。182ページ/直接9923行、43試験、Actions独立2生成/純読取一致。3群5行の原本衝突と92種2394行の非直接eggを別台帳へ保持し、runtime採用は停止。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "Issue #19: Vega元来181種の凍結ROM/atwiki原本とdexNo・SpeciesID・keyを結合し、方法別習得表を確定する。公式1299件の受入済み隔離生成は影響なしに再実行しない。",
+    "next_step": "Issue19: 保存済みVega原本の3群5行の衝突（リーテイル/ゴートン/ディザソル）を根拠付きで裁定し、92種2394行の進化前等経由eggを原作進化/孵化consumerと照合する。原本の再採取・公式1299件の再生成はしない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -746,7 +746,8 @@
     "heap/save・BG・画面初期化12入口と保存caller指定template2表の限定byteを再利用。未読依存を成功stubにせず、次は保存命令の実write/return/不足条件。旧540/1037/786条件、採取済byte、BP/nativeは単独再実行しない。default callbackとfield2 ownerは別未完。",
     "memcpy/heap/GPU供給とBG定数・属性7slotは本原本を再利用し、次はその保存命令によるreset→template→window連続RAMを検証。候補復元・旧870命令・旧540/1037/786条件・受入済BP/native単独再実行禁止。通常story/IO効果/未読save暗号化ownerは未証明。",
     "保存実BG定数・templateからheap初期化→BG reset/config→属性→通常window→fonts setterの連続明示RAMを本原本から再利用。save3block退避後のRandom停止・callocのCpuSet未読を成功stubにしない。今回条件/旧採取/受入済BP/nativeは単独再実行禁止。次は未読save relocation/暗号化・CpuSet/画面転送・InitFieldMessageBoxの実caller供給。",
-    "Issue19公式隔離: source/code hash不変なら39試験・CSV全件照合・二重生成は完了artifactを再利用。旧P07履歴1572件を新baseline/空overlayへ再投入しない。"
+    "Issue19公式隔離: source/code hash不変なら39試験・CSV全件照合・二重生成は完了artifactを再利用。旧P07履歴1572件を新baseline/空overlayへ再投入しない。",
+    "Vega181種: 採取run35612400716の182ページと固定ROM観測を再利用。コード/原本hash不変なら43試験/二重生成を反復しない。次は3群5行の衝突と92種の原作進化/孵化意味だけ。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -833,21 +834,22 @@
   },
   "merge_performed": false,
   "next_action": {
-    "id": "LEARNSET_VEGA_ORIGINAL_SOURCE",
-    "goal_ja": "Issue #19: Vega元来181種の凍結ROM/atwiki原本とdexNo・SpeciesID・keyを結合し、方法別習得表を確定する。公式1299件の受入済み隔離生成は影響なしに再実行しない。",
+    "id": "LEARNSET_VEGA_SOURCE_ADJUDICATION",
+    "goal_ja": "Issue19: 保存済みVega原本の3群5行の衝突（リーテイル/ゴートン/ディザソル）を根拠付きで裁定し、92種2394行の進化前等経由eggを原作進化/孵化consumerと照合する。原本の再採取・公式1299件の再生成はしない。",
     "read_paths": [
-      "docs/PR16_LEARNSET_BASELINE_RESET_JA.md",
-      "content/modernization/pr16_learnset_baseline_checkpoint.json",
-      "config/pr16_learnset_baseline_source_lock.json",
-      "tools/pr16_learnset_baseline.py",
-      "config/species_surface.json",
-      "scripts/build_species_surface.py"
+      "docs/PR16_VEGA_ORIGINAL_AUDIT_JA.md",
+      "content/modernization/pr16_vega_original_checkpoint.json",
+      "content/modernization/pr16_vega_original_evidence/source_conflicts.json",
+      "content/modernization/pr16_vega_original_evidence/wiki_nondirect_egg.json",
+      "content/modernization/pr16_vega_original_evidence/source_lock.json",
+      "config/move_port.json",
+      "docs/PR16_LEARNSET_BASELINE_RESET_JA.md"
     ],
-    "stop_rule_ja": "原本衝突/未知move/未承認例外は台帳で停止。旧Wiki/候補/受入原本を保持。Vega原本・consumer切替・後継ROM/Wiki・影響nativeが揃うまでIssue19全体を完了扱いしない。",
-    "host_write_policy_ja": "入力ZIP/ROM/saveはGit管理外の読み取り専用原本。今回のsource-only受入をゲーム内受入へ昇格しない。"
+    "stop_rule_ja": "原本衝突の採用判断を未解決のままruntimeへ進めない。Side Changeは所有者決定に従い非採用。旧Wiki/候補ROM/受入原本を保持。Issue19全体は未完。",
+    "host_write_policy_ja": "凍結ROM/ZIP/saveは読み取り専用。原本観測9923行とWikiの進化前等経由行は別layer。owner overlayを増やさない。"
   },
   "observed_date_jst": "2026-09-21",
-  "observed_head": "6216e6d13fe13ed3de08f4a02a9f74d6ba685e75",
+  "observed_head": "9e53b256aeab708f20143509afabe09503094f43",
   "observed_head_checks": {
     "scope_head": "9834398c8430ded96a8d25ea96d02edd8a78212d",
     "runs": [
@@ -1684,7 +1686,7 @@
         ]
       }
     ],
-    "reason_ja": "既存runsは過去scopeとして保持。Issue19の39試験・独立2生成・純読取・tracked不変はlearnset_baselineの完了run原本を参照。全native再受入ではない。",
+    "reason_ja": "過去native/checksは元scopeのまま保持。新規43試験・独立2生成・純読取はlearnset_vega_originalの完了原本。採用判定とIssue19全体は未完。",
     "previous_reason_ja": "旧P08移送run35524571950のsuccessを確認。Wiki限定検証の結果はcandidate_wiki.acceptanceとverification_runを参照。Issue #18未完・PR draft維持。全nativeやrelease検証は追加していない。",
     "candidate_wiki_completion": {
       "id": 35564710398,
@@ -1694,10 +1696,11 @@
     },
     "reason_history_ja": [
       "この欄の既存runs/scope_headは過去scopeの履歴として保持。今回の候補Wikiは4回の限定Actionsと完了照合run35564710398がsuccess。全PR checksの成功やnative全回帰を意味しない。最新検証HEADと完了結果はcandidate_wikiを参照。",
-      "この欄の既存runs/scope_headは過去scopeの履歴として保持。候補Wikiの最新run35568404816と完了照合run35569000222はcompleted/successをGETで確認。全PR checksの成功やnative全回帰を意味しない。将来の最新検証HEADと完了結果はcandidate_wikiを参照。"
+      "この欄の既存runs/scope_headは過去scopeの履歴として保持。候補Wikiの最新run35568404816と完了照合run35569000222はcompleted/successをGETで確認。全PR checksの成功やnative全回帰を意味しない。将来の最新検証HEADと完了結果はcandidate_wikiを参照。",
+      "既存runsは過去scopeとして保持。Issue19の39試験・独立2生成・純読取・tracked不変はlearnset_baselineの完了run原本を参照。全native再受入ではない。"
     ]
   },
-  "observed_head_semantics": "完了Actionsの公式隔離検証入力HEAD。branchの最新HEAD/native受入HEADとは別。反映commitはgit log、原本run/artifactはlearnset_baselineを参照。",
+  "observed_head_semantics": "Vega原本隔離監査の完了Actions入力HEAD。branch最新HEAD/native受入HEADとは別。反映commitはgit log、原本runはlearnset_vega_originalを参照。",
   "p08_resume_synchronized": true,
   "party_retention_latest_attempt": {
     "accepted_native_cases_replayed": 0,
@@ -1873,7 +1876,7 @@
     "RELEASE_DECISION"
   ],
   "remaining_physical_gap_ids": [],
-  "remaining_sequence_ja": "Issue19公式原本隔離済み → Vega元来181種/例外判断 → runtime全consumer/後継ROM・Wiki/影響native → Issue18に残る限定監査 → 別承認後のclean-ROM二重生成/BPS/release。",
+  "remaining_sequence_ja": "公式原本隔離済み → Vega原本採取/方法別隔離監査済み → 原本衝突3群/非直接egg92種の裁定 → Side Change非採用を含むengine例外 → runtime全consumer/後継ROM・Wiki/影響native → Issue18限定監査 → 別承認のrelease。",
   "retained_fixed_form_accepted_case_count": 5,
   "reward_route_audit": {
     "artifact_id": 10311359991,
@@ -10379,12 +10382,12 @@
       "sha256": "e0587f5cf025fa76f6e6f7a0dc8f340e335b66d1d4ae744027dcc865b06e0d78"
     },
     "docs/PR16_LEARNSET_BASELINE_RESET_JA.md": {
-      "size": 2392,
-      "sha256": "333ca2ccc0442dd4eb3488211cd2f8098af445dc602eba82b1b58e857e106232"
+      "size": 4701,
+      "sha256": "4924be1b5cfa324fe72cff599758ebb467eae8d25911a085c2d444f3b1f3ab6a"
     },
     "CHATGPT_RESUME.md": {
-      "size": 4399,
-      "sha256": "bca799dccd27bff27c149083f58d46bda6fad1c7439a5ba1c23b9d16c5f3d7fa"
+      "size": 6124,
+      "sha256": "8d027f0c3f5e65b756c2ce3455d01b33bb0101f21b3dce7ddc0143c13ac0cc79"
     },
     "scripts/pr16_learnset_baseline_record.py": {
       "size": 18915,
@@ -10413,6 +10416,134 @@
     "content/modernization/pr16_learnset_baseline_evidence/recording-unit.log": {
       "size": 2077,
       "sha256": "737935b487c94d1fe875c7bac707ec903e5e5f2607c20235c096f9f8a70a6d01"
+    },
+    "tools/pr16_vega_original_baseline.py": {
+      "size": 12279,
+      "sha256": "2cab74e5b9e7d339f2ba5beafdc10c040cd2dbb77252a78e2e2649f3666c6ac7"
+    },
+    "tools/pr16_vega_original_audit.py": {
+      "size": 18036,
+      "sha256": "c1f1d98ac1e9c79fcc4f860a17f12f2fd66c867b91c8a14e7a514934829e061e"
+    },
+    "scripts/pr16_vega_original_collect.py": {
+      "size": 4681,
+      "sha256": "064968062410fcfd12b11008cc19acc1e1d3ba81f3556d1edbaef946d83788da"
+    },
+    "scripts/pr16_vega_original_verify.py": {
+      "size": 5880,
+      "sha256": "6c3e5ddf32ce099f38c4985907add28c45bf95b4443451f783fe58e837f70bc7"
+    },
+    "tests/test_pr16_vega_original_baseline.py": {
+      "size": 5890,
+      "sha256": "d231fcf04376c4810e8e8ffd9b06166f29f83a2528624c891331199c08619a34"
+    },
+    "tests/test_pr16_vega_original_archive.py": {
+      "size": 4044,
+      "sha256": "43cc1cc0e6994f2fe43cc1dd4762f986ef7b948e95a84943dca9de1cd065924a"
+    },
+    "tests/test_pr16_vega_original_audit.py": {
+      "size": 8083,
+      "sha256": "25f57172c3b504dce0f40b23441b522416e89077aac46b438bf801dc62b6d6da"
+    },
+    ".github/pr16-vega-original-audit.json": {
+      "size": 1559,
+      "sha256": "e17ab78adc2dcff6fbe48117a73eed6dcab40cee987afab7f58a715150c3a6a0"
+    },
+    ".github/workflows/pr16-vega-original-baseline.yml": {
+      "size": 1933,
+      "sha256": "d0c25a40478987ef041daddcc6a31fd3089a43acf10a57aef20c651f47e3d4dc"
+    },
+    ".github/workflows/pr16-vega-original-audit.yml": {
+      "size": 1539,
+      "sha256": "be44d2d1dce8afdee4a92e0da710b4dea030feda5c612e190c214ced40265bf3"
+    },
+    ".github/pr16-vega-original-record.json": {
+      "size": 472,
+      "sha256": "d76028888439232d94ecb54f098fa36ec180a640393df84d81f2b1eae2c703f9"
+    },
+    "content/modernization/pr16_vega_original_checkpoint.json": {
+      "size": 5857,
+      "sha256": "8d23c3966375390959f8d9936ca8be3f7fcc822527fc434425319d738341cb1f"
+    },
+    "docs/PR16_VEGA_ORIGINAL_AUDIT_JA.md": {
+      "size": 3157,
+      "sha256": "b455278ce23cd9c7e33283bbb5d3636a18a2d816411596f6809eccfd20888083"
+    },
+    "scripts/pr16_vega_original_record.py": {
+      "size": 17987,
+      "sha256": "b0879e3aee640d1685e0f21ca97389941395bd5dbb13c6b0e625762443715026"
+    },
+    "tests/test_pr16_vega_original_record.py": {
+      "size": 4789,
+      "sha256": "fad55e0be3d43cc88662063cc4ab66cfdad551b7ea75a8e13b96c31d723b6c9d"
+    },
+    ".github/workflows/pr16-vega-original-record.yml": {
+      "size": 3476,
+      "sha256": "fb654353413dd938e2a88eff9f4861c2d67db954aa011678c7c87006195b4043"
+    },
+    "content/modernization/pr16_vega_original_evidence/explicit_empty.json": {
+      "size": 5115,
+      "sha256": "92377fbdef229465722f3cd6f2466fa5a91759895a51fd3dfc9f46cab159065e"
+    },
+    "content/modernization/pr16_vega_original_evidence/layout.json": {
+      "size": 1823,
+      "sha256": "b9c37334b50ee0c6871c33f39dc3b39ca81ee3d69c451adab9ada32e17b4434a"
+    },
+    "content/modernization/pr16_vega_original_evidence/receipt.json": {
+      "size": 1634,
+      "sha256": "3e43a85983ae58eb718cba304d41f7dbf14ace59f65545acc58be63f885021db"
+    },
+    "content/modernization/pr16_vega_original_evidence/roster.json": {
+      "size": 44993,
+      "sha256": "892df3725b38e301865546cc7ae7115f67ec36ebc540d1bce323a3064aec5aa8"
+    },
+    "content/modernization/pr16_vega_original_evidence/source_conflicts.json": {
+      "size": 24819,
+      "sha256": "eaac6d1190800c3effcd44c08aecc772118d41d3ea6fd150d47bbb031c0b69fa"
+    },
+    "content/modernization/pr16_vega_original_evidence/source_lock.json": {
+      "size": 60193,
+      "sha256": "1a4a5c8e5ca3b0c02e43e48257245414cd848856b088179dccf8cb3b644f7eb2"
+    },
+    "content/modernization/pr16_vega_original_evidence/summary.json": {
+      "size": 1251,
+      "sha256": "be9773e1add1f47f19db0c2b616400ce7ddf99fd6e312685340e93ad26be1817"
+    },
+    "content/modernization/pr16_vega_original_evidence/vega_original_baseline.jsonl": {
+      "size": 1586291,
+      "sha256": "00504008cf19f0fa6f3b101f496b0fbe774e918ad333150ab101a817ce939a9e"
+    },
+    "content/modernization/pr16_vega_original_evidence/wiki_methods.jsonl": {
+      "size": 2617810,
+      "sha256": "366c3c9bdd4c67089a70be3cfdaa049894919ee6b588370db3a2701e3daba5e0"
+    },
+    "content/modernization/pr16_vega_original_evidence/wiki_nondirect_egg.json": {
+      "size": 1140469,
+      "sha256": "0071b3cff1d79effe095c56a69f32b0b59cd3ce1756338ab2e9ecbe8ddc34b49"
+    },
+    "content/modernization/pr16_vega_original_evidence/verify.json": {
+      "size": 2942,
+      "sha256": "5664a07c67942a077898646a20b4670688e9b936aff4244eafa0636f1ee774e5"
+    },
+    "content/modernization/pr16_vega_original_evidence/unit.txt": {
+      "size": 5630,
+      "sha256": "30db994af9c4c067968076bc7d6fff15e0af570f8ca16df602838816f663bfcd"
+    },
+    "content/modernization/pr16_vega_original_evidence/capture-unit.txt": {
+      "size": 2494,
+      "sha256": "08599bb84580d93b456d2bd514f3485c94b1565005095fda5cb3dfbcd2f4b561"
+    },
+    "content/modernization/pr16_vega_original_evidence/capture-actions.json": {
+      "size": 3240,
+      "sha256": "8729c3ae05b49791c7e4b1b50a60f115fa677d5727016ff96edd7ce9d7f6fa67"
+    },
+    "content/modernization/pr16_vega_original_evidence/recording-unit.txt": {
+      "size": 1403,
+      "sha256": "5430c0e90f09bdc44e0399fb117c6531f7b8cc31ec2822de2a12e56d64e277f7"
+    },
+    "content/modernization/pr16_vega_original_evidence/audit-actions.json": {
+      "size": 3220,
+      "sha256": "7d0787166330f665dea22dd657c0b5e06abcea4370046411cf6c5b355ce7c55d"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
@@ -10756,6 +10887,11 @@
       "head": "12f9591049a54bb8b06868ae9ce743e7cce1689c",
       "semantics": "run35568404816の候補Wiki検証入力HEAD（2026-09-21照合時点）。branchのリモートHEADやnative受入HEADではない。将来の最新値はcandidate_wiki.source_headを参照。反映commitはcandidate_wiki.reflected_head、完了結果はcandidate_wiki.completion_reconciliationが正本。自己commit SHAの追記は行わない。",
       "reason_ja": "Issue19公式原本隔離の検証HEADへ表示を更新。旧Wiki証拠は保持。"
+    },
+    {
+      "head": "6216e6d13fe13ed3de08f4a02a9f74d6ba685e75",
+      "semantics": "完了Actionsの公式隔離検証入力HEAD。branchの最新HEAD/native受入HEADとは別。反映commitはgit log、原本run/artifactはlearnset_baselineを参照。",
+      "reason_ja": "Vega原本監査の完了検証HEADを表示。公式原本/旧Wiki/nativeの各受入HEADは変更しない。"
     }
   ],
   "learnset_baseline": {
@@ -10940,5 +11076,201 @@
         "size": 1518
       }
     }
-  }
+  },
+  "learnset_vega_original": {
+    "accepted_native_reruns": 0,
+    "adoption_ready": false,
+    "capture_run_id": 35612400716,
+    "dex_mismatches": 0,
+    "exact_species_by_method": {
+      "egg": 89,
+      "level_up": 179,
+      "machine": 181,
+      "tutor": 180
+    },
+    "files": {
+      "explicit_empty.json": {
+        "sha256": "92377fbdef229465722f3cd6f2466fa5a91759895a51fd3dfc9f46cab159065e",
+        "size": 5115
+      },
+      "layout.json": {
+        "sha256": "b9c37334b50ee0c6871c33f39dc3b39ca81ee3d69c451adab9ada32e17b4434a",
+        "size": 1823
+      },
+      "receipt.json": {
+        "sha256": "3e43a85983ae58eb718cba304d41f7dbf14ace59f65545acc58be63f885021db",
+        "size": 1634
+      },
+      "roster.json": {
+        "sha256": "892df3725b38e301865546cc7ae7115f67ec36ebc540d1bce323a3064aec5aa8",
+        "size": 44993
+      },
+      "source_conflicts.json": {
+        "sha256": "eaac6d1190800c3effcd44c08aecc772118d41d3ea6fd150d47bbb031c0b69fa",
+        "size": 24819
+      },
+      "source_lock.json": {
+        "sha256": "1a4a5c8e5ca3b0c02e43e48257245414cd848856b088179dccf8cb3b644f7eb2",
+        "size": 60193
+      },
+      "summary.json": {
+        "sha256": "be9773e1add1f47f19db0c2b616400ce7ddf99fd6e312685340e93ad26be1817",
+        "size": 1251
+      },
+      "vega_original_baseline.jsonl": {
+        "sha256": "00504008cf19f0fa6f3b101f496b0fbe774e918ad333150ab101a817ce939a9e",
+        "size": 1586291
+      },
+      "wiki_methods.jsonl": {
+        "sha256": "366c3c9bdd4c67089a70be3cfdaa049894919ee6b588370db3a2701e3daba5e0",
+        "size": 2617810
+      },
+      "wiki_nondirect_egg.json": {
+        "sha256": "0071b3cff1d79effe095c56a69f32b0b59cd3ce1756338ab2e9ecbe8ddc34b49",
+        "size": 1140469
+      }
+    },
+    "focused_tests": 43,
+    "issue19_complete": false,
+    "local_and_actions_outputs_identical": true,
+    "method_rows": {
+      "egg": 1790,
+      "level_up": 3044,
+      "machine": 3549,
+      "tutor": 1540
+    },
+    "new_native_runs": 0,
+    "official_baseline_reruns": 0,
+    "owner_overlay_rows": 0,
+    "readonly_byte_mtime_unchanged": true,
+    "release_ready": false,
+    "remaining": [
+      "SOURCE_CONFLICT_ADJUDICATION",
+      "VEGA_PRE_EVOLUTION_BREEDING_SEMANTICS",
+      "OFFICIAL_ENGINE_EXCEPTIONS",
+      "RUNTIME_ALL_CONSUMERS",
+      "SUCCESSOR_ROM_WIKI_IMPACT_NATIVE"
+    ],
+    "rom_changes": 0,
+    "rom_identity": {
+      "sha256": "f600fb3faa565bd335ea75114f9233f9a4fe97c12cfed145e0a7b48784d0c9d5",
+      "size": 16777216
+    },
+    "schema_version": 1,
+    "side_change_implementation_added": false,
+    "source_conflict_groups": 3,
+    "source_head": "9a5cb4172571bfed953c54155c030ef73c845542",
+    "species": 181,
+    "status": "ACCEPTED_CAPTURE_AND_METHOD_AUDIT_ONLY_ADOPTION_BLOCKED",
+    "task": "USER-20260921-LEARNSET-BASELINE-RESET",
+    "total_direct_rows": 9923,
+    "tracked_tree_unchanged": true,
+    "two_process_outputs_identical": true,
+    "unknown_moves": 0,
+    "verification_head": "9e53b256aeab708f20143509afabe09503094f43",
+    "verification_run_id": 35614274855,
+    "wiki_nondirect_egg_routes": 2394,
+    "wiki_nondirect_egg_species": 92,
+    "wiki_pages": 182,
+    "phase": "vega-original-capture-method-audit-20260921",
+    "evidence_dir": "content/modernization/pr16_vega_original_evidence",
+    "recording_tests": 10,
+    "artifact": {
+      "id": 10645401410,
+      "name": "pr16-vega-original-audit-verified",
+      "size_in_bytes": 506342,
+      "digest": "sha256:d8c1281ba3afc37fed9072ff289c5f1222d0686625e08aafe8a6ea73a1794fd2",
+      "expires_at": "2026-10-21T14:45:40Z",
+      "workflow_run": {
+        "id": 35614274855,
+        "repository_id": 1358127462,
+        "head_repository_id": 1358127462,
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "9e53b256aeab708f20143509afabe09503094f43"
+      }
+    },
+    "job": 106380859060,
+    "proof_bindings": {
+      "explicit_empty.json": {
+        "size": 5115,
+        "sha256": "92377fbdef229465722f3cd6f2466fa5a91759895a51fd3dfc9f46cab159065e"
+      },
+      "layout.json": {
+        "size": 1823,
+        "sha256": "b9c37334b50ee0c6871c33f39dc3b39ca81ee3d69c451adab9ada32e17b4434a"
+      },
+      "receipt.json": {
+        "size": 1634,
+        "sha256": "3e43a85983ae58eb718cba304d41f7dbf14ace59f65545acc58be63f885021db"
+      },
+      "roster.json": {
+        "size": 44993,
+        "sha256": "892df3725b38e301865546cc7ae7115f67ec36ebc540d1bce323a3064aec5aa8"
+      },
+      "source_conflicts.json": {
+        "size": 24819,
+        "sha256": "eaac6d1190800c3effcd44c08aecc772118d41d3ea6fd150d47bbb031c0b69fa"
+      },
+      "source_lock.json": {
+        "size": 60193,
+        "sha256": "1a4a5c8e5ca3b0c02e43e48257245414cd848856b088179dccf8cb3b644f7eb2"
+      },
+      "summary.json": {
+        "size": 1251,
+        "sha256": "be9773e1add1f47f19db0c2b616400ce7ddf99fd6e312685340e93ad26be1817"
+      },
+      "vega_original_baseline.jsonl": {
+        "size": 1586291,
+        "sha256": "00504008cf19f0fa6f3b101f496b0fbe774e918ad333150ab101a817ce939a9e"
+      },
+      "wiki_methods.jsonl": {
+        "size": 2617810,
+        "sha256": "366c3c9bdd4c67089a70be3cfdaa049894919ee6b588370db3a2701e3daba5e0"
+      },
+      "wiki_nondirect_egg.json": {
+        "size": 1140469,
+        "sha256": "0071b3cff1d79effe095c56a69f32b0b59cd3ce1756338ab2e9ecbe8ddc34b49"
+      },
+      "verify.json": {
+        "size": 2942,
+        "sha256": "5664a07c67942a077898646a20b4670688e9b936aff4244eafa0636f1ee774e5"
+      },
+      "unit.txt": {
+        "size": 5630,
+        "sha256": "30db994af9c4c067968076bc7d6fff15e0af570f8ca16df602838816f663bfcd"
+      },
+      "capture-unit.txt": {
+        "size": 2494,
+        "sha256": "08599bb84580d93b456d2bd514f3485c94b1565005095fda5cb3dfbcd2f4b561"
+      },
+      "capture-actions.json": {
+        "size": 3240,
+        "sha256": "8729c3ae05b49791c7e4b1b50a60f115fa677d5727016ff96edd7ce9d7f6fa67"
+      },
+      "recording-unit.txt": {
+        "size": 1403,
+        "sha256": "5430c0e90f09bdc44e0399fb117c6531f7b8cc31ec2822de2a12e56d64e277f7"
+      },
+      "audit-actions.json": {
+        "size": 3220,
+        "sha256": "7d0787166330f665dea22dd657c0b5e06abcea4370046411cf6c5b355ce7c55d"
+      }
+    }
+  },
+  "source_binding_repairs": [
+    {
+      "path": "docs/PR16_LEARNSET_BASELINE_RESET_JA.md",
+      "previous": {
+        "size": 2392,
+        "sha256": "333ca2ccc0442dd4eb3488211cd2f8098af445dc602eba82b1b58e857e106232"
+      },
+      "current": {
+        "size": 4701,
+        "sha256": "4924be1b5cfa324fe72cff599758ebb467eae8d25911a085c2d444f3b1f3ab6a"
+      },
+      "content_changed": false,
+      "detected_by_record_run": 35615412670,
+      "reason_ja": "開始HEADのSide Change所有者追記に引継ぎhashが未追随。固定開始HEADとbyte一致を確認しmetadataのみ更新。既存公式受入原本は再生成しない。"
+    }
+  ]
 }

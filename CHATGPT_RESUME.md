@@ -55,3 +55,8 @@ merge・release・baseline切替は別途明示指示なしに行わないでく
 ## Issue19の実装・検証正本
 
 実装手順は `docs/PR16_LEARNSET_BASELINE_RESET_JA.md`、工程の受入範囲と未完項目は `content/modernization/pr16_learnset_baseline_checkpoint.json`。最新の次工程は固定再開MD/JSONを優先し、予約時点の説明と混同しない。
+
+
+## Vega181種の原本採取・隔離監査checkpoint
+
+`docs/PR16_VEGA_ORIGINAL_AUDIT_JA.md` と `content/modernization/pr16_vega_original_checkpoint.json` を参照。原本9923行/全182ページ/43試験は完了。次工程は3群5行の原本衝突と92種の非直接egg裁定。baseline採用/Issue19全体は未完。保存原本から再開し、公式隔離やWiki全件採取を繰り返さない。

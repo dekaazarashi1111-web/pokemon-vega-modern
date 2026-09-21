@@ -9221,3 +9221,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 全12証拠のGit size/SHA照合。欠落・改変・余剰3条件を拒否。resume/task graph/diff/限定最終indexを確認。39+12試験・独立生成・nativeの再実行0。
 - Commit: 本記録を含むcommit。記録入力HEAD=b08c99be195e4c277937d7e659d126db8516b5ac。
 - Network: Actions run35607343534（記録）,35607351926（source-validation）,35607351956（forgetting）の完了成功をGET照合。ROM/旧Wiki/受入済みnative原本/active baseline変更0、merge/releaseなし。
+
+
+## 2026-09-21T14:59:40+00:00 — Vega原作採取・方法別隔離監査完了
+- Task: USER-20260921-LEARNSET-BASELINE-RESET
+- Version: vega-original-capture-method-audit-20260921
+- Status: DONE（原本観測/監査の区切りのみ。採用BLOCKED、Issue19全体未完）
+- Summary: 181種/182ページ/直接9923行を分離。dex/key差分0・未知move0。3群5行の原本衝突と92種2394行の非直接eggを全件台帳へ。固定crosswalkのみ使用しowner overlay追加0。
+- Files changed: 原作専用reader/採取器/方法別監査器/43試験/限定Actions、typed原本/差分/完了証拠、専用guide/checkpoint、固定入口と引継ぎMD/JSON、両ログ。
+- Verify: 43境界試験・Actions独立2生成/実CLI純読取byte-mtime不変・ローカル期待hash一致。記録10境界試験、resume/task-graph/diff/changed-final-index guard。既受入official/native再実行0。
+- Commit: 本記録を含むcommit。検証HEAD=9e53b256aeab708f20143509afabe09503094f43。採取HEAD=9a5cb4172571bfed953c54155c030ef73c845542。
+- Network: GitHub connector/Actions。採取run35612400716、検証run35614274855、両完了job/全step/artifact digestを照合。Wiki採取1回（https://w.atwiki.jp/altair1/pages/19.html とsource_lockの181個別URL）、後続比較は保存原本のみ。
+- Recovery: 初回記録run35615412670はresumeの既存文書hash不一致でcommit前停止。開始HEAD d0929dd0のSide Change追記本文は不変と照合し、旧2392 bytesのbindingを現行4701 bytesへ同期。入口CHATGPT_RESUMEの既存旧hashも今回の記録本文で同期。公式受入原本の再実行なし。
+- Boundary: 原本衝突の片側を推測で採用しない。Side Change非採用を維持。ROM/ARM/native変更0、旧Wiki・候補・active baseline不変、merge/releaseなし。
