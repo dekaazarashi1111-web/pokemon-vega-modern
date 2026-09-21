@@ -1,0 +1,42 @@
+name: pr16-vega-original-audit
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - '.github/pr16-vega-original-audit.json'
+      - '.github/workflows/pr16-vega-original-audit.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: pr16-vega-original-audit
+  cancel-in-progress: false
+jobs:
+  audit-original:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+      GITHUB_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: 原作source専用43境界を検証
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-vega-original-audit-proof
+          python3 -B -m unittest tests.test_pr16_vega_original_baseline tests.test_pr16_vega_original_archive tests.test_pr16_vega_original_audit -v 2>&1 | tee .local/pr16-vega-original-audit-proof/unit.txt
+      - name: 保存原本だけの独立2生成と純読取check
+        run: python3 -B scripts/pr16_vega_original_verify.py verify
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-vega-original-audit-verified
+          path: .local/pr16-vega-original-audit-proof/
+          if-no-files-found: error
+          retention-days: 30
