@@ -9260,3 +9260,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 本記録を含むcommit。開始HEAD=d3eaab712e79b0692f1cad51653ba40f1357da6a。検証HEAD=1bd7e126dd4083581b43ade0776b72eddd38b9d1。途中の実装・試験を同branchへWIP非force反映。
 - Network: GitHub connector/Actions。受入公式artifact10641504482を再利用。後継proof/table artifactの完了run/job/全step/digest/全fileを照合。外部Wiki再取得0。
 - Boundary: consumer表は実ROM接続済みと表示しない。孵化差分を無断補充せず、旧表をfallbackにも一括削除にも使わない。active baseline/merge/release変更0。
+
+## 2026-09-21T21:20:26.958972+00:00
+- Timestamp: 2026-09-21T21:20:26.958972+00:00
+- Task: USER-20260921-LEARNSET-BASELINE-RESET / 後継binding入力と孵化非付与処理
+- Version: learnset-binding-v1
+- Status: DONE（入力復元/孵化処理のみ。Species binding/binary未完）
+- Summary: 受入表artifact再利用、2394行を照合し531差分の非付与を実装。191枠はmanifest付き台帳化。
+- Files changed: binding実装/新24試験/限定Actions、checkpoint/証拠/guide、固定MD/JSON、両ログ。
+- Verify: 新24試験PASS、artifact外側/全member hash、原本byte/mtime不変、孵化全行/531差分一致。原本生成/受入試験/native再実行0。run=35656548503 input=1fa45557c6ad1ae4ed0c976f84b84e953abf37ee。
+- Commit: 本記録を含む同branch非force commit。最終push完了はrun APIで別照合。
+- Network: GitHub connector/Actions、受入artifact10653200020再利用。Wiki再採取なし。

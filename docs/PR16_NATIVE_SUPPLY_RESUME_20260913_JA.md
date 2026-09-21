@@ -6,9 +6,9 @@
 
 ## いまの停止点と次の1手
 
-後継9consumer表128288経路/Side Change除外159行と旧候補1671枠との差分を39新試験・独立2生成・純読取・原本128447行独立監査で検証。孵化参照2394行は保持、direct/shared追加0。新孵化表のmembership差531行を別台帳化。ROM適用0。
+後継受入artifactをhash固定で再利用。非直接egg2394行のうち531差分を履歴参照・新規付与なしとして実装/全行照合し、新24境界試験PASS。191未選択枠はmanifest付き台帳へ分離。Species/Form裁定とbinary接続は未完。
 
-**次: Issue19: 検証済み後継9consumer表を再利用し、未選択191枠のSpecies/Form bindingと原作孵化先の新egg差分531行を明示処理してbinary consumer adapterへ接続する。その後に後継ROM・別Wiki・変更影響nativeを限定検証する。**
+**次: Issue19: 新規binding台帳の未選択191枠をSpecies/Formの正本へ明示対応させ、検証済み孵化531差分の非付与処理とともにbinary consumerへ接続する。後継ROM・別Wiki・影響nativeはその後。**
 
 後継表・差分の工程は完了、ROM適用は未完。191枠を旧表fallback/一括削除せず、531行をdirect/shared eggへ無断補充しない。原本裁定を未完へ戻さない。Issue19/18完了・merge/releaseへ昇格しない。
 
@@ -25,12 +25,11 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_LEARNSET_SUCCESSOR_JA.md`
-- `content/modernization/pr16_learnset_successor_checkpoint.json`
-- `content/modernization/pr16_learnset_successor_evidence/receipt.json`
-- `content/modernization/pr16_learnset_successor_evidence/compact-review.json`
-- `tools/pr16_learnset_successor.py`
-- `docs/PR16_LEARNSET_BASELINE_RESET_JA.md`
+- `docs/PR16_LEARNSET_BINDING_JA.md`
+- `content/modernization/pr16_learnset_binding_checkpoint.json`
+- `content/modernization/pr16_learnset_binding_evidence/unselected.jsonl`
+- `content/modernization/pr16_learnset_binding_evidence/summary.json`
+- `tools/pr16_learnset_binding.py`
 - `config/move_port.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
@@ -272,6 +271,7 @@ P08ゲート:
 - Issue19公式隔離: source/code hash不変なら39試験・CSV全件照合・二重生成は完了artifactを再利用。旧P07履歴1572件を新baseline/空overlayへ再投入しない。
 - Vega181種: 原本9923行/182ページ/43試験、衝突5行/5試験、非直接egg2394行/13試験は保存証拠を再利用。原本採取・公式1299件の再生成・入力不変の単独再検証をしない。3群/92種を未裁定へ戻さず、次はruntime全consumer。
 - 後継9consumer表v1: 128288採用/159明示除外、39新試験、独立2生成・純読取・原本128447行独立監査は保存済み。入力/生成器が同じなら再生成/単独再試験しない。未完は191枠binding/孵化531差分/binary接続と後継ROM・Wiki・影響native。
+- learnset binding: 受入9consumer表はartifact10653200020を再利用。531孵化差分は非付与として全行照合済み。旧原本/39受入試験/nativeを再実行せず、未選択191枠の明示bindingから続行。
 
 ## 次セッションへ残す更新手順
 

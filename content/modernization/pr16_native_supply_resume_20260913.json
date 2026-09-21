@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "後継9consumer表128288経路/Side Change除外159行と旧候補1671枠との差分を39新試験・独立2生成・純読取・原本128447行独立監査で検証。孵化参照2394行は保持、direct/shared追加0。新孵化表のmembership差531行を別台帳化。ROM適用0。",
+    "current_stop": "後継受入artifactをhash固定で再利用。非直接egg2394行のうち531差分を履歴参照・新規付与なしとして実装/全行照合し、新24境界試験PASS。191未選択枠はmanifest付き台帳へ分離。Species/Form裁定とbinary接続は未完。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "Issue19: 検証済み後継9consumer表を再利用し、未選択191枠のSpecies/Form bindingと原作孵化先の新egg差分531行を明示処理してbinary consumer adapterへ接続する。その後に後継ROM・別Wiki・変更影響nativeを限定検証する。",
+    "next_step": "Issue19: 新規binding台帳の未選択191枠をSpecies/Formの正本へ明示対応させ、検証済み孵化531差分の非付与処理とともにbinary consumerへ接続する。後継ROM・別Wiki・影響nativeはその後。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -748,7 +748,8 @@
     "保存実BG定数・templateからheap初期化→BG reset/config→属性→通常window→fonts setterの連続明示RAMを本原本から再利用。save3block退避後のRandom停止・callocのCpuSet未読を成功stubにしない。今回条件/旧採取/受入済BP/nativeは単独再実行禁止。次は未読save relocation/暗号化・CpuSet/画面転送・InitFieldMessageBoxの実caller供給。",
     "Issue19公式隔離: source/code hash不変なら39試験・CSV全件照合・二重生成は完了artifactを再利用。旧P07履歴1572件を新baseline/空overlayへ再投入しない。",
     "Vega181種: 原本9923行/182ページ/43試験、衝突5行/5試験、非直接egg2394行/13試験は保存証拠を再利用。原本採取・公式1299件の再生成・入力不変の単独再検証をしない。3群/92種を未裁定へ戻さず、次はruntime全consumer。",
-    "後継9consumer表v1: 128288採用/159明示除外、39新試験、独立2生成・純読取・原本128447行独立監査は保存済み。入力/生成器が同じなら再生成/単独再試験しない。未完は191枠binding/孵化531差分/binary接続と後継ROM・Wiki・影響native。"
+    "後継9consumer表v1: 128288採用/159明示除外、39新試験、独立2生成・純読取・原本128447行独立監査は保存済み。入力/生成器が同じなら再生成/単独再試験しない。未完は191枠binding/孵化531差分/binary接続と後継ROM・Wiki・影響native。",
+    "learnset binding: 受入9consumer表はartifact10653200020を再利用。531孵化差分は非付与として全行照合済み。旧原本/39受入試験/nativeを再実行せず、未選択191枠の明示bindingから続行。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -835,15 +836,14 @@
   },
   "merge_performed": false,
   "next_action": {
-    "id": "LEARNSET_SUCCESSOR_BINARY_ADAPTERS",
-    "goal_ja": "Issue19: 検証済み後継9consumer表を再利用し、未選択191枠のSpecies/Form bindingと原作孵化先の新egg差分531行を明示処理してbinary consumer adapterへ接続する。その後に後継ROM・別Wiki・変更影響nativeを限定検証する。",
+    "id": "LEARNSET_EXPLICIT_SPECIES_BINDING",
+    "goal_ja": "Issue19: 新規binding台帳の未選択191枠をSpecies/Formの正本へ明示対応させ、検証済み孵化531差分の非付与処理とともにbinary consumerへ接続する。後継ROM・別Wiki・影響nativeはその後。",
     "read_paths": [
-      "docs/PR16_LEARNSET_SUCCESSOR_JA.md",
-      "content/modernization/pr16_learnset_successor_checkpoint.json",
-      "content/modernization/pr16_learnset_successor_evidence/receipt.json",
-      "content/modernization/pr16_learnset_successor_evidence/compact-review.json",
-      "tools/pr16_learnset_successor.py",
-      "docs/PR16_LEARNSET_BASELINE_RESET_JA.md",
+      "docs/PR16_LEARNSET_BINDING_JA.md",
+      "content/modernization/pr16_learnset_binding_checkpoint.json",
+      "content/modernization/pr16_learnset_binding_evidence/unselected.jsonl",
+      "content/modernization/pr16_learnset_binding_evidence/summary.json",
+      "tools/pr16_learnset_binding.py",
       "config/move_port.json"
     ],
     "stop_rule_ja": "後継表・差分の工程は完了、ROM適用は未完。191枠を旧表fallback/一括削除せず、531行をdirect/shared eggへ無断補充しない。原本裁定を未完へ戻さない。Issue19/18完了・merge/releaseへ昇格しない。",
@@ -12165,6 +12165,78 @@
       "recording-unit.txt": {
         "sha256": "020c6224c39b43dcd185734bf2aa1b056a358bab90a2d41dfa0cb90417d7c9c1",
         "size": 1383
+      }
+    }
+  },
+  "learnset_binding": {
+    "unselected_species": 191,
+    "unselected_states": {
+      "SOURCE_NOT_SELECTED": 141,
+      "RUNTIME_EXTENSION_NOT_SELECTED": 50
+    },
+    "hatch_rows": 2394,
+    "hatch_dispositions": {
+      "SELECTED_HATCH_MEMBERSHIP_CARRY_REFERENCE": 1863,
+      "HISTORICAL_HATCH_REFERENCE_NO_NEW_GRANT": 531
+    },
+    "direct_grants": 0,
+    "shared_grants": 0,
+    "owner_overlay_grants": 0,
+    "existing_move_carry_policy_changed": false,
+    "acquisition_impossible_claimed": false,
+    "runtime_applied": false,
+    "rom_changes": 0,
+    "new_native_runs": 0,
+    "issue19_complete": false,
+    "release_ready": false,
+    "task": "USER-20260921-LEARNSET-BASELINE-RESET",
+    "status": "HATCH_DISPOSITIONS_VERIFIED_SPECIES_BINDING_PENDING",
+    "source_head": "1fa45557c6ad1ae4ed0c976f84b84e953abf37ee",
+    "run_id": 35656548503,
+    "actions_completion_confirmed": false,
+    "focused_tests": 24,
+    "accepted_tests_rerun": 0,
+    "source_generation_reruns": 0,
+    "input_tables_reused": true,
+    "readonly_byte_mtime_unchanged": true,
+    "code": {
+      "tools/pr16_learnset_binding.py": {
+        "sha256": "13fd97fce241e7e16b6e4cb5b1c05c0386304382920d2571d444fb2f16590621",
+        "size": 5317
+      },
+      "tests/test_pr16_learnset_binding.py": {
+        "sha256": "224e4505e4b865c838cb68aa00d751f337ce71a579ed450d4a0db1811fffd5ba",
+        "size": 7049
+      },
+      "scripts/pr16_learnset_binding_verify.py": {
+        "sha256": "d2aaa142a494df31c29453abaa76004e92569dfee50c1a3a88cde5d4509aa474",
+        "size": 13019
+      },
+      ".github/workflows/pr16-learnset-binding.yml": {
+        "sha256": "066c1cd2258b37011fa40c957e1ae45365ef27e7b41732f9f2a8fad888ced969",
+        "size": 3066
+      }
+    },
+    "outputs": {
+      "unselected.jsonl": {
+        "size": 148136,
+        "sha256": "ecbe806026c22668ae43c2410ca3963409eb2a3593745d883cb8e10cfc79e68e"
+      },
+      "hatch_decisions.csv": {
+        "size": 485910,
+        "sha256": "6bc281e2f9b3615f34f399043192ff8200b4b5fb23d5cdcd094c08fa533c2f91"
+      },
+      "summary.json": {
+        "size": 497,
+        "sha256": "18c4553f0c76d2e6a811826bc76e42eda280f48fd19d0a40a576b91681f888a0"
+      },
+      "source-actions.json": {
+        "size": 604,
+        "sha256": "881e6537faf8f7758735e5186fe5bd0b793dd08c400e77f86cd449907b579cca"
+      },
+      "unit.txt": {
+        "size": 2389,
+        "sha256": "206d25f212fe29411588f0fe5fda353d507b6d9dd5728495c8b909bc1d8f60fe"
       }
     }
   }
