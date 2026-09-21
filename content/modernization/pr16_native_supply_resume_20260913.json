@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "候補Wiki 4148 files。保存ELF40境界試験とWiki結合48試験を受入。17関数全body一致・21名前付きBL・技511の凍結互換由来/候補12byteを追加。最新Wiki 7da681a41ab694d31022c47a691af33172cc42f7 / run35568404816 はpush/upload完了原本を照合済み。前4差分110試験とnative受入を保持。Issue18全体は未完。",
+    "current_stop": "Issue19の公式原本隔離を完了。1299件/118524経路、39境界試験、Actions独立2生成/純読取checkを原本照合済み。Vega元来181種とruntime切替は未完。候補ROM・旧Wiki・native受入は変更なし。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "Issue18のremaining_work_jaだけを継続。保存ELF17関数・技511・既存110/今回40+48試験を影響なしに再実行しない。差分body9関数と間接辺、全通常野生/旧配布、通常初回供給/daycare、local patch/全handler履歴を証拠に応じて結合する。",
+    "next_step": "Issue #19: Vega元来181種の凍結ROM/atwiki原本とdexNo・SpeciesID・keyを結合し、方法別習得表を確定する。公式1299件の受入済み隔離生成は影響なしに再実行しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -745,7 +745,8 @@
     "flash全u8、field callbackの優先順位/false待機/true消去/拒否時部分書込、state3→4連続RAM、初期化資源停止の540条件は原本を再利用。callbackに渡した保存getterは合成初期条件で通常登録の証拠ではない。次はheap reset0804B85DとBG供給/default callbackの未解決owner。旧byte/1037+786+540条件/BP/native単独再実行禁止。",
     "heap/save・BG・画面初期化12入口と保存caller指定template2表の限定byteを再利用。未読依存を成功stubにせず、次は保存命令の実write/return/不足条件。旧540/1037/786条件、採取済byte、BP/nativeは単独再実行しない。default callbackとfield2 ownerは別未完。",
     "memcpy/heap/GPU供給とBG定数・属性7slotは本原本を再利用し、次はその保存命令によるreset→template→window連続RAMを検証。候補復元・旧870命令・旧540/1037/786条件・受入済BP/native単独再実行禁止。通常story/IO効果/未読save暗号化ownerは未証明。",
-    "保存実BG定数・templateからheap初期化→BG reset/config→属性→通常window→fonts setterの連続明示RAMを本原本から再利用。save3block退避後のRandom停止・callocのCpuSet未読を成功stubにしない。今回条件/旧採取/受入済BP/nativeは単独再実行禁止。次は未読save relocation/暗号化・CpuSet/画面転送・InitFieldMessageBoxの実caller供給。"
+    "保存実BG定数・templateからheap初期化→BG reset/config→属性→通常window→fonts setterの連続明示RAMを本原本から再利用。save3block退避後のRandom停止・callocのCpuSet未読を成功stubにしない。今回条件/旧採取/受入済BP/nativeは単独再実行禁止。次は未読save relocation/暗号化・CpuSet/画面転送・InitFieldMessageBoxの実caller供給。",
+    "Issue19公式隔離: source/code hash不変なら39試験・CSV全件照合・二重生成は完了artifactを再利用。旧P07履歴1572件を新baseline/空overlayへ再投入しない。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -832,29 +833,21 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "Issue18のremaining_work_jaだけを継続。保存ELF17関数・技511・既存110/今回40+48試験を影響なしに再実行しない。差分body9関数と間接辺、全通常野生/旧配布、通常初回供給/daycare、local patch/全handler履歴を証拠に応じて結合する。",
-    "host_write_policy_ja": "新しい実受付のguard開始後は入力/frames/readのみ。施設番号/効果/連勝/party/PC/LRのhost注入は禁止。初期配置fixtureと実入場/正規連勝を区別する。",
-    "id": "P08_CANDIDATE_WIKI_REMAINING",
+    "id": "LEARNSET_VEGA_ORIGINAL_SOURCE",
+    "goal_ja": "Issue #19: Vega元来181種の凍結ROM/atwiki原本とdexNo・SpeciesID・keyを結合し、方法別習得表を確定する。公式1299件の受入済み隔離生成は影響なしに再実行しない。",
     "read_paths": [
-      "content/modernization/pr16_candidate_wiki_acceptance.json",
-      "content/modernization/pr16_candidate_wiki_completed_runs_20260921.json",
-      "docs/wiki/p08-candidate-46487d98/RUNTIME_LIMITATIONS.md",
-      "docs/wiki/p08-candidate-46487d98/SAVED_LINK_AUDIT.md",
-      "docs/wiki/p08-candidate-46487d98/MOVE_511_LINEAGE.md",
-      "content/modernization/pr16_candidate_wiki_saved_link_sources.json",
-      "scripts/pr16_candidate_wiki_saved_link.py",
-      "scripts/build_pr16_candidate_wiki.py"
+      "docs/PR16_LEARNSET_BASELINE_RESET_JA.md",
+      "content/modernization/pr16_learnset_baseline_checkpoint.json",
+      "config/pr16_learnset_baseline_source_lock.json",
+      "tools/pr16_learnset_baseline.py",
+      "config/species_surface.json",
+      "scripts/build_species_surface.py"
     ],
-    "stop_rule_ja": "今回Wikiは全step・原本・同branch反映まで完了照合済み。byte一致をsource/macros・実到達/native受入へ昇格しない。merge・release・性能調整・active baseline変更へ先行しない。",
-    "success_observations": [
-      "監査残件に限定した差分",
-      "Stage61・現候補byte不変",
-      "証拠区分を維持",
-      "引継ぎ・両ログを更新"
-    ]
+    "stop_rule_ja": "原本衝突/未知move/未承認例外は台帳で停止。旧Wiki/候補/受入原本を保持。Vega原本・consumer切替・後継ROM/Wiki・影響nativeが揃うまでIssue19全体を完了扱いしない。",
+    "host_write_policy_ja": "入力ZIP/ROM/saveはGit管理外の読み取り専用原本。今回のsource-only受入をゲーム内受入へ昇格しない。"
   },
   "observed_date_jst": "2026-09-21",
-  "observed_head": "12f9591049a54bb8b06868ae9ce743e7cce1689c",
+  "observed_head": "6216e6d13fe13ed3de08f4a02a9f74d6ba685e75",
   "observed_head_checks": {
     "scope_head": "9834398c8430ded96a8d25ea96d02edd8a78212d",
     "runs": [
@@ -1691,7 +1684,7 @@
         ]
       }
     ],
-    "reason_ja": "この欄の既存runs/scope_headは過去scopeの履歴として保持。候補Wikiの最新run35568404816と完了照合run35569000222はcompleted/successをGETで確認。全PR checksの成功やnative全回帰を意味しない。将来の最新検証HEADと完了結果はcandidate_wikiを参照。",
+    "reason_ja": "既存runsは過去scopeとして保持。Issue19の39試験・独立2生成・純読取・tracked不変はlearnset_baselineの完了run原本を参照。全native再受入ではない。",
     "previous_reason_ja": "旧P08移送run35524571950のsuccessを確認。Wiki限定検証の結果はcandidate_wiki.acceptanceとverification_runを参照。Issue #18未完・PR draft維持。全nativeやrelease検証は追加していない。",
     "candidate_wiki_completion": {
       "id": 35564710398,
@@ -1700,10 +1693,11 @@
       "conclusion": "success"
     },
     "reason_history_ja": [
-      "この欄の既存runs/scope_headは過去scopeの履歴として保持。今回の候補Wikiは4回の限定Actionsと完了照合run35564710398がsuccess。全PR checksの成功やnative全回帰を意味しない。最新検証HEADと完了結果はcandidate_wikiを参照。"
+      "この欄の既存runs/scope_headは過去scopeの履歴として保持。今回の候補Wikiは4回の限定Actionsと完了照合run35564710398がsuccess。全PR checksの成功やnative全回帰を意味しない。最新検証HEADと完了結果はcandidate_wikiを参照。",
+      "この欄の既存runs/scope_headは過去scopeの履歴として保持。候補Wikiの最新run35568404816と完了照合run35569000222はcompleted/successをGETで確認。全PR checksの成功やnative全回帰を意味しない。将来の最新検証HEADと完了結果はcandidate_wikiを参照。"
     ]
   },
-  "observed_head_semantics": "run35568404816の候補Wiki検証入力HEAD（2026-09-21照合時点）。branchのリモートHEADやnative受入HEADではない。将来の最新値はcandidate_wiki.source_headを参照。反映commitはcandidate_wiki.reflected_head、完了結果はcandidate_wiki.completion_reconciliationが正本。自己commit SHAの追記は行わない。",
+  "observed_head_semantics": "完了Actionsの公式隔離検証入力HEAD。branchの最新HEAD/native受入HEADとは別。反映commitはgit log、原本run/artifactはlearnset_baselineを参照。",
   "p08_resume_synchronized": true,
   "party_retention_latest_attempt": {
     "accepted_native_cases_replayed": 0,
@@ -1879,7 +1873,7 @@
     "RELEASE_DECISION"
   ],
   "remaining_physical_gap_ids": [],
-  "remaining_sequence_ja": "P08移送済み → 候補Wikiスナップショット検証済み → Issue #18の明示残件 → 所有者の調整仕様 → 別承認後のclean-ROM二重生成/BPS/release。",
+  "remaining_sequence_ja": "Issue19公式原本隔離済み → Vega元来181種/例外判断 → runtime全consumer/後継ROM・Wiki/影響native → Issue18に残る限定監査 → 別承認後のclean-ROM二重生成/BPS/release。",
   "retained_fixed_form_accepted_case_count": 5,
   "reward_route_audit": {
     "artifact_id": 10311359991,
@@ -10363,6 +10357,46 @@
     "evidence/pr16_p08_transfer/35524571950/verification.json": {
       "size": 11169,
       "sha256": "389a956450ac328635990dd327aad2a7236e61b8a1d54686b5942ca28472bbec"
+    },
+    "tools/pr16_learnset_baseline.py": {
+      "size": 18180,
+      "sha256": "adcf31a5d34b2d6c8fb2627587cbee117a68837d50349b12502e4a71334cdff0"
+    },
+    "scripts/pr16_learnset_baseline.py": {
+      "size": 1102,
+      "sha256": "94af9a52ce1785380c964325ef9eebe7ed956e88b628632eb18f3ee518378212"
+    },
+    "config/pr16_learnset_baseline_source_lock.json": {
+      "size": 4105,
+      "sha256": "dda5b34c7ed947e2b291d7b5afcbd95b54b9711ffe0fe57a43ad762063598ceb"
+    },
+    ".github/pr16-learnset-baseline-record.json": {
+      "size": 895,
+      "sha256": "5a44a81240533777c21502adf7b076e140f17706bb8163a3107c338d5e20eaa4"
+    },
+    "content/modernization/pr16_learnset_baseline_checkpoint.json": {
+      "size": 2971,
+      "sha256": "e0587f5cf025fa76f6e6f7a0dc8f340e335b66d1d4ae744027dcc865b06e0d78"
+    },
+    "docs/PR16_LEARNSET_BASELINE_RESET_JA.md": {
+      "size": 2392,
+      "sha256": "333ca2ccc0442dd4eb3488211cd2f8098af445dc602eba82b1b58e857e106232"
+    },
+    "CHATGPT_RESUME.md": {
+      "size": 4399,
+      "sha256": "bca799dccd27bff27c149083f58d46bda6fad1c7439a5ba1c23b9d16c5f3d7fa"
+    },
+    "scripts/pr16_learnset_baseline_record.py": {
+      "size": 18915,
+      "sha256": "ce4ccd15510710e0b6ceb81c5aba3386f71b677014b14eb0a4e9a0ed28f3cf0f"
+    },
+    "tests/test_pr16_learnset_baseline_record.py": {
+      "size": 9039,
+      "sha256": "e75566696133c0fd8a65a045dfbe5e644f30d60dc59516b297608ac55b870d7c"
+    },
+    ".github/workflows/pr16-learnset-baseline-record.yml": {
+      "size": 3866,
+      "sha256": "52d11a787fefd62a25aacde6d08c3a74b6f7b75856862673bdefa0756f51f542"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
@@ -10701,6 +10735,97 @@
       "head": "6ea91ae2da54398fdc01bb3d0cf4f89427855ba4",
       "semantics": "最新候補Wikiの検証入力HEAD。branchのリモートHEADではなく、native受入HEADでもない。反映commitはcandidate_wiki.reflected_head、完了Actions照合はcandidate_wiki.completion_reconciliationを参照。自己commit SHAの追記は行わない。",
       "reason_ja": "Wiki個別記録は更新済みだが冒頭の汎用observed_headが古いままだったため、完了原本と一致するHEADへ同期。"
+    },
+    {
+      "head": "12f9591049a54bb8b06868ae9ce743e7cce1689c",
+      "semantics": "run35568404816の候補Wiki検証入力HEAD（2026-09-21照合時点）。branchのリモートHEADやnative受入HEADではない。将来の最新値はcandidate_wiki.source_headを参照。反映commitはcandidate_wiki.reflected_head、完了結果はcandidate_wiki.completion_reconciliationが正本。自己commit SHAの追記は行わない。",
+      "reason_ja": "Issue19公式原本隔離の検証HEADへ表示を更新。旧Wiki証拠は保持。"
     }
-  ]
+  ],
+  "learnset_baseline": {
+    "schema_version": 1,
+    "task": "USER-20260921-LEARNSET-BASELINE-RESET",
+    "phase": "official-source-isolation-20260921",
+    "status": "ACCEPTED_OFFICIAL_SOURCE_ISOLATION_ONLY",
+    "issue19_complete": false,
+    "source_head": "6216e6d13fe13ed3de08f4a02a9f74d6ba685e75",
+    "run_id": 35605822056,
+    "job_id": 106352514068,
+    "run_status": "completed",
+    "run_conclusion": "success",
+    "artifact": {
+      "id": 10641504482,
+      "sha256": "a4b77c345302625b166fbe01817a11464d156da3122dcd5ba6e63024ea56584e",
+      "size": 9853327,
+      "expires_at": "2026-10-21T13:30:19Z"
+    },
+    "source_receipt": "content/modernization/pr16_learnset_baseline_evidence/receipt.json",
+    "official_index": "content/modernization/pr16_learnset_baseline_evidence/official_index.json",
+    "adjudication": "content/modernization/pr16_learnset_baseline_evidence/adjudication.json",
+    "verification": "content/modernization/pr16_learnset_baseline_evidence/verify.json",
+    "official_records": 1299,
+    "official_routes": 118524,
+    "focused_tests": 39,
+    "recording_tests": 12,
+    "rom_changes": 0,
+    "new_native_runs": 0,
+    "p07_history_preserved": 1572,
+    "owner_overlay_rows": 0,
+    "remaining": [
+      "VEGA_ORIGINAL_BASELINE_REQUIRED",
+      "EXPLICIT_ENGINE_ADJUDICATION_REQUIRED",
+      "SUCCESSOR_ROM_WIKI_NATIVE_REQUIRED"
+    ],
+    "release_ready": false,
+    "proof_bindings": {
+      "actions.json": {
+        "size": 3886,
+        "sha256": "0c91270e8523b587ac284545d170a636e4e1e778f859c0b3d5ff7f41da84e1bd"
+      },
+      "build11.json": {
+        "size": 2904,
+        "sha256": "2417bff727361687af738a991ea08fa645f044d2cd0b4d5144e6de74535a548d"
+      },
+      "build29.json": {
+        "size": 2904,
+        "sha256": "2417bff727361687af738a991ea08fa645f044d2cd0b4d5144e6de74535a548d"
+      },
+      "check.json": {
+        "size": 2904,
+        "sha256": "2417bff727361687af738a991ea08fa645f044d2cd0b4d5144e6de74535a548d"
+      },
+      "adjudication.json": {
+        "size": 38174,
+        "sha256": "cae35ae03328c9d81810314769fd2101d6a437c66669716ec1912331ac8e8c98"
+      },
+      "official_index.json": {
+        "size": 536031,
+        "sha256": "d65643b3fe07e0484ff48f9df84ee4246963904712423844f37c1f366b723324"
+      },
+      "owner_approved_overlay.json": {
+        "size": 40,
+        "sha256": "ec25d796a0cc8c3b227f2293454da22273ea8d2051e9a6f6cd7e8667638ac02b"
+      },
+      "receipt.json": {
+        "size": 3362,
+        "sha256": "c6164e8e7dac2c717eab2d5ab0794617030c8c93272e1157581d66a8f802a5e0"
+      },
+      "vega_original_pending.json": {
+        "size": 28739,
+        "sha256": "b5a38b603eadb0bd4bdfddf3c34cd4c2b1b1b94b972ee4de09847eeaf955bee9"
+      },
+      "recording-unit.log": {
+        "size": 2077,
+        "sha256": "737935b487c94d1fe875c7bac707ec903e5e5f2607c20235c096f9f8a70a6d01"
+      },
+      "unit.log": {
+        "size": 4838,
+        "sha256": "ed6546d33799da3fc3f924219924574f1c642ec4bf514c251b7d669e95e0c94f"
+      },
+      "verify.json": {
+        "size": 1518,
+        "sha256": "43f78313f013a0bc91889c9a5b37f8f67651ee882c5703b6c937f26a39ab944e"
+      }
+    }
+  }
 }

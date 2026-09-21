@@ -6469,3 +6469,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 今回8試験、record run35569000222 completed/success・全step・反映commit親GET、resume/task graph/diff/final-index guard。既存40+48+18/110試験・Wiki build・native再実行なし。
 - Commit: 本記録を含むcommit。表示同期入力HEAD=c093dcd6289bb2ba018274f6fd95d1eafd109f99。
 - Network: GitHub connector/Actions run35569498593、完了run35569000222と反映53a2f104828f89ab4cc4f6ebcbb7dd2a4f51e5e9のGET。ROM/ARM/native0、Issue18未完・merge/release/baseline切替なし。
+
+
+## 2026-09-21T13:42:47+00:00 — Issue19公式原本隔離の完了記録
+- Task: USER-20260921-LEARNSET-BASELINE-RESET
+- Version: official-source-isolation-20260921
+- Status: DONE（公式原本隔離のみ。Issue19全体は未完）
+- Summary: 1299件/118524経路を無損失隔離。参考1377件/125746経路と5 CSVの意味差分0。Vega181種と旧P07 1572行/空overlayを分離。ID1063の159経路/103種とキャタピー訂正は明示例外台帳へ。
+- Files changed: 新規生成器/CLI/39境界試験/source-lock、限定Actions、公式index/例外/完了原本、固定入口/引継ぎMD・JSON、両ログ。
+- Verify: ローカルとActionsの独立2生成hash一致・実CLI checkのbyte/mtime不変。記録12境界試験、resume/task graph/diff/changed-final-index guard。既存native受入の再実行0。
+- Commit: 本記録を含むcommit。検証source HEAD=6216e6d13fe13ed3de08f4a02a9f74d6ba685e75。
+- Network: GitHub connector/Actions、完了run35605822056/artifact10641504482のSHA・全stepをGET照合。入力assetは固定hashのmodernization ZIPのみ。
+- Network（参照閲覧）: https://w.atwiki.jp/altair1/pages/19.html は原作Vega図鑑入口として確認。個別習得表の採用0。
+- Boundary: ROM/ARM/native変更0、旧Wiki/受入原本/active baseline不変、merge/releaseなし。初回ローカル試作では分類206枠を181実対象へ訂正後に再生成し、失敗をPASSへ転用していない。

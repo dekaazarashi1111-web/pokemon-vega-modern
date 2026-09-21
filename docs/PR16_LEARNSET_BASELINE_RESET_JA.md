@@ -23,3 +23,8 @@ python3 -B scripts/pr16_learnset_baseline.py check --output .local/pr16-learnset
 ## 継続が必要な範囲
 
 Vega元来181種の凍結ROM由来またはatwiki一次表とdexNo/SpeciesID/keyの結合、方法別の原本照合、明示例外の判断、runtime全consumer切替、旧候補との差分台帳、後継ROM/Wiki、変更影響に限ったnative受入は未完。基準復元全体・P08 releaseを完了扱いしない。
+
+
+## Issue19公式原本隔離の完了checkpoint
+
+公式1299件/118524経路・39境界試験・独立2生成/純読取checkをrun `35605822056` で検証し、全stepとartifactを完了照合済み。正本は `content/modernization/pr16_learnset_baseline_checkpoint.json`。Vega元来181種/例外/runtime切替/後継ROM・Wiki/nativeは未完。旧候補と受入済み原本は不変。

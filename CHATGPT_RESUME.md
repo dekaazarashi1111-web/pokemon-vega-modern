@@ -42,3 +42,8 @@ CHATGPT_RESUME.md を読み、指示された正本と最新Actionsを照合し�
 終了時は同じ引継ぎMD/JSON・両ログを更新してください。
 merge・release・baseline切替は別途明示指示なしに行わないでください。
 ```
+
+
+## Issue19の実装・検証正本
+
+実装手順は `docs/PR16_LEARNSET_BASELINE_RESET_JA.md`、工程の受入範囲と未完項目は `content/modernization/pr16_learnset_baseline_checkpoint.json`。最新の次工程は固定再開MD/JSONを優先し、予約時点の説明と混同しない。
