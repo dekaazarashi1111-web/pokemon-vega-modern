@@ -28,9 +28,17 @@ Issue #19は、技習得を次のフラットな基準へ復元するタスク�
 - `official_baseline`、`vega_original_baseline`、将来の `owner_approved_overlay` を分離し、本タスク完了時の追加overlayは原則空とする。
 - 変更前Wiki・候補・受入証拠を保持し、新候補ROMと新候補Wikiを別identityで生成する。変更影響台帳に基づき影響範囲だけ再受入する。
 
+### 所有者決定: サイドチェンジ
+
+- 原本の技ID1063 / Side Change / サイドチェンジ相当は、本プロジェクトでは実装・採用しない。battle effect、AI、animation、TM/TR/Tutor、タマゴ・共有タマゴ等を新設しない。
+- 原本159経路・103種は履歴から消さず、非採用理由付きで保持する。active learnsetでは原則として当該経路を除外する。
+- level-up行を単純除外すると表構造・順序・consumerが不必要に複雑になる場合に限り、実装済みの目立つ伝説専用技を一時placeholderとして置いてよい。第一候補は「ときのほうこう」。現行manifestから実key/IDを解決し、仮行を `TEMP_OWNER_PLACEHOLDER_FOR_ALLYSWITCH` 相当で全件台帳化する。
+- 仮技は最終バランスでも所有者承認済み配布でもない。後でWikiを見て、ベガ技または別技へ置換、もしくは削除する。level-up以外へ自動展開せず、後継Wikiで仮置きとして明示する。
+- 詳細な実装・validator条件は `docs/PR16_LEARNSET_BASELINE_RESET_JA.md` を正とする。Side Change自体のnative受入は不要。
+
 所有者提供ZIPは `userfile/imports/**` 等のGit管理外・読み取り専用入力として扱い、ZIP本体をcommitしない。入力が未提供またはhash不一致なら、似た名前の別資料や現行ROMを暗黙代用せずfail-closedにする。
 
-Issue #19の完了後、所有者が新Wikiを確認してから、技追加、種族値・特性・夢特性調整、追加メガ、追加専用Zの仕様を別途決める。本タスク中に新しい技配布を創作しない。
+Issue #19の完了後、所有者が新Wikiを確認してから、技追加、種族値・特性・夢特性調整、追加メガ、追加専用Zの仕様を別途決める。本タスク中に新しい最終配布を創作しない。上記Side Change用の明示placeholderだけは最終配布ではない仮置きとして例外的に許可する。
 
 ## 次回そのまま渡す指示
 
