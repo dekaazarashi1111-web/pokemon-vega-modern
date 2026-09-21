@@ -146,6 +146,15 @@ class ResumeTests(unittest.TestCase):
         self.s['remaining_physical_gap_ids'].append(self.s['remaining_physical_gap_ids'][0]);self.sync();self.assert_invalid()
 
     def test_closed_physical_keeps_p08_gates(self):
+        # 実台帳でnative受入済みになっても、未完P08 gateの保全を独立試験する。
+        gates=['FINAL_NATIVE_ACCEPTANCE','RELEASE_DECISION']
+        self.s['remaining_p08_gate_ids']=gates.copy()
+        backlog=m.load(self.root,m.BACKLOG)
+        backlog['remaining_conditions']=[row for row in backlog['remaining_conditions']
+                                         if row.get('phase')!='P08']
+        backlog['remaining_conditions'] += [{'id':gate,'phase':'P08'} for gate in gates]
+        self.put(m.BACKLOG,backlog)
+        self.bind_synthetic_ledgers();self.sync()
         self.set_physical_fixture([])
         result=m.validate(self.root)
         self.assertEqual(result['remaining_physical_gap_ids'],[])

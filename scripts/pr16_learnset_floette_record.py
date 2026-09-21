@@ -33,7 +33,7 @@ SOURCE=('reference.json','crosswalk.json','target.json','compiled.json','receipt
 OWNED={CHECKPOINT,GUIDE,OLD_GUIDE,STATE,DOC,'CHATGPT_RESUME.md','design/run_log.md','design/version_log.md'}
 OWNED|={EVIDENCE+'/'+name for name in PROOF}|{EVIDENCE+'/source/'+name for name in SOURCE}
 ALL_CHANGES=OWNED|set(CODE)|{REQUEST,'.github/pr16-learnset-floette-run.json',
-    '.github/workflows/pr16-learnset-adapter-sources.yml'}
+    '.github/workflows/pr16-learnset-adapter-sources.yml','tests/test_pr16_resume.py'}
 
 
 def git(*args):
@@ -73,7 +73,41 @@ def record():
     for name,ident in verification['proof_files'].items():
         need({'size':len(files[name]),'sha256':hashlib.sha256(files[name]).hexdigest()}==ident,'proof内側hash不一致')
     need(set(verification['code_bindings'])==set(CODE),'code binding集合不一致')
-    for name,ident in verification['code_bindings'].items():s.bound(ROOT/name,ident)
+    # 既受入payload/44試験へ影響しない記録器だけの修正を、旧版/新版hashの両方で固定。
+    amended=request['record_only_amendments']
+    need(set(amended)=={'scripts/pr16_learnset_floette_record.py',
+                       '.github/workflows/pr16-learnset-floette-record.yml'},'記録限定修正の対象拡張禁止')
+    for name,ident in verification['code_bindings'].items():
+        if name in amended:
+            original=git('show',request['source_head']+':'+name)
+            need({'size':len(original),'sha256':hashlib.sha256(original).hexdigest()}==ident
+                 and amended[name]['before']==ident,'受入時点の記録器hash不一致')
+            s.bound(ROOT/name,amended[name]['after'])
+        else:
+            s.bound(ROOT/name,ident)
+    repair=request['resume_fixture_repair']
+    need(repair['path']=='tests/test_pr16_resume.py'
+         and repair['failed_run_id']==35663195482 and repair['failed_job_id']==106542967515
+         and repair['accepted_other_tests']==27 and repair['rerun_only']==
+         'tests.test_pr16_resume.ResumeTests.test_closed_physical_keeps_p08_gates','fixture修正scope不一致')
+    original=git('show',request['source_head']+':'+repair['path'])
+    need({'size':len(original),'sha256':hashlib.sha256(original).hexdigest()}==repair['before'],
+         'fixture原本不一致')
+    s.bound(ROOT/repair['path'],repair['after'])
+    failed=fetch('actions/runs/35663195482')
+    need(failed['status']=='completed' and failed['conclusion']=='failure'
+         and failed['head_sha']=='50b645c9afc542f5ca4465a63c02951ebf83f828','先行記録runの状態不一致')
+    raw_prior=fetch('actions/artifacts/10667404648/zip',binary=True)
+    need(len(raw_prior)==1459 and hashlib.sha256(raw_prior).hexdigest()==
+         '81cfbad3d5af08c7ba377a977eaccf63c2aee1bfaa4528a5cdc8b8e563619c33','先行27試験証拠不一致')
+    with zipfile.ZipFile(io.BytesIO(raw_prior)) as prior:
+        unit_prior=prior.read('resume-tests.txt').decode('utf-8')
+    lines=unit_prior.splitlines()
+    need(sum(line.endswith(' ... ok') for line in lines)==27
+         and sum(line.endswith(' ... FAIL') for line in lines)==1
+         and 'FAILED (failures=1)' in unit_prior
+         and 'test_closed_physical_keeps_p08_gates' in unit_prior,'先行fixture以外の失敗混入')
+
     need(verification['payload_files']==s.read_json(ROOT/INPUTS)['expected_outputs']
          and verification['inputs_lock']==s.identity(ROOT/INPUTS),'ローカル/Actions固定出力不一致')
     need(receipt['source_reference_routes']==37 and receipt['parent_routes_preserved']==128352
@@ -100,6 +134,7 @@ def record():
         'completed_actions':done,'source_actions':source_done,'focused_tests':44,'actual_c_queries':15039,
         'proof_artifact':artifact,'payload_artifact':artifacts['pr16-learnset-floette-data'],
         'summary':receipt,'audit':audit,'other_actions_observed_at_record':observed,
+        'record_only_amendments':amended,'resume_fixture_repair':repair,
         'proof_bindings':{name:{'size':len(value),'sha256':hashlib.sha256(value).hexdigest()} for name,value in files.items()},
         'runtime_applied':False,'issue19_complete':False,'release_ready':False,
         'next_boundary':'game callsites, conditional consumers, ROM placement/pointers/capacity, separate Wiki, impact-only native acceptance'}
@@ -124,6 +159,7 @@ def record():
     state['bp']['current_stop']='Eternal1029の固定参考37経路を明示採用し、13 level/1進化時/23 machineを親不変の差分payloadへ変換。188保全枠を含むhost C owner gateと全15039 query、44新試験、独立2プロセス/全差分byteを受入。親128352経路を保全し計128389。game callsite/ROM/nativeは未接続。'
     state['do_not_repeat'].append('Eternal採用/host owner gate: run '+str(request['run_id'])+' の44試験・15039実owner C query・37原本経路/差分全byte・独立2プロセスは受入済み。親artifactとEternal差分を再利用。原本1299件/182ページ/531孵化差分/54旧payload試験は影響なしに再実行しない。')
     state['logs_synchronized']=True
+    # 不変入口に残っていた予約当時の「次」を最新進捗と誤読しない文へ訂正する。
     entry=ROOT/'CHATGPT_RESUME.md';text=entry.read_text()
     old='- 次はこの決定を3群5行へ適用した台帳を生成し、92種2394行の非直接eggを原作Vegaの進化・孵化consumerと照合する。原本182ページや公式1299件を取り直さない。'
     need(text.count(old)==1,'入口の旧予約文が変化')
@@ -153,7 +189,7 @@ def record():
     with (ROOT/OLD_GUIDE).open('a') as stream:
         stream.write('\n## 後続工程への参照\nこの文書の1029採用待ちは親payload受入時点の履歴。Eternal採用差分とhost owner gateは `'+GUIDE+'` / `'+CHECKPOINT+'` を参照する。最新未完は固定再開MD/JSONを優先し、旧工程を再実行しない。\n')
     stamp=datetime.datetime.now(datetime.timezone.utc).isoformat()
-    log=f'\n## {stamp}\n- Timestamp: {stamp}\n- Task: {TASK} / Eternal明示採用とhost owner gate\n- Version: learnset-floette-owner-v1\n- Status: DONE（Eternal差分/host gate限定。game callsite・ROM/native未接続）\n- Summary: 37経路を採用し親128352経路を保全。1029の9枠のみ更新、188枠を空表/fallbackにしないC gateを実装。\n- Files changed: 専用抽出器、明示裁定、差分compiler、C gate、44新試験、限定Actions/固定入力、checkpoint/証拠/guide、固定入口/MD/JSON、両ログ。\n- Verify: 44試験PASS、独立2プロセス/ローカルActions全hash一致、全差分byte/実owner C15039 query、親15030 index行/入力byte/mtime不変。run={request["run_id"]} source={request["source_head"]}。原本抽出run35661456139は37行CSV一致。\n- Commit: 本記録を含む同branch非force commit。自己SHAはgit logで照合。\n- Network: GitHub受入artifact再利用。既受入原本/payload再生成0、native0、ROM変更0。新TM23中12技の実供給と条件consumerは未接続。\n'
+    log=f'\n## {stamp}\n- Timestamp: {stamp}\n- Task: {TASK} / Eternal明示採用とhost owner gate\n- Version: learnset-floette-owner-v1\n- Status: DONE（Eternal差分/host gate限定。game callsite・ROM/native未接続）\n- Summary: 37経路を採用し親128352経路を保全。1029の9枠のみ更新、188枠を空表/fallbackにしないC gateを実装。\n- Files changed: 専用抽出器、明示裁定、差分compiler、C gate、44新試験、限定Actions/固定入力、checkpoint/証拠/guide、固定入口/MD/JSON、両ログ。\n- Verify: 44試験PASS、独立2プロセス/ローカルActions全hash一致、全差分byte/実owner C15039 query、親15030 index行/入力byte/mtime不変。run={request["run_id"]} source={request["source_head"]}。原本抽出run35661456139は37行CSV一致。\n- Record recovery: 先行記録run35663195482は既存引継ぎfixtureの古いP08 gate仮定1件で停止。実台帳を変更せず合成fixtureを明示し、その1試験だけ再検証。先行27試験・新44試験は再実行なし。\n- Commit: 本記録を含む同branch非force commit。自己SHAはgit logで照合。\n- Network: GitHub受入artifact再利用。既受入原本/payload再生成0、native0、ROM変更0。新TM23中12技の実供給と条件consumerは未接続。\n'
     for name in ('design/run_log.md','design/version_log.md'):
         with (ROOT/name).open('a') as stream:stream.write(log)
     print(json.dumps({'status':checkpoint['status'],'run_id':request['run_id'],'tests':44,'actual_c_queries':15039},ensure_ascii=False))

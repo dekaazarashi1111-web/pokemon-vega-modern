@@ -5,19 +5,29 @@
   "run_id": 35663067820,
   "job_id": 106542567466,
   "artifacts": [
-    {
-      "id": 10667986809,
-      "name": "pr16-learnset-floette-proof",
-      "size_in_bytes": 11342,
-      "digest": "sha256:111bf5fdaf1d66f9bed6f4ebac5161e382a26d526ce1413fe953d8b2afb81ec6"
-    },
-    {
-      "id": 10668111661,
-      "name": "pr16-learnset-floette-data",
-      "size_in_bytes": 220551,
-      "digest": "sha256:0ed479422bac03db40b887963bd7cba7199b6d5295b7ac650d236f75b4be671c"
-    }
+    {"id": 10667986809, "name": "pr16-learnset-floette-proof", "size_in_bytes": 11342, "digest": "sha256:111bf5fdaf1d66f9bed6f4ebac5161e382a26d526ce1413fe953d8b2afb81ec6"},
+    {"id": 10668111661, "name": "pr16-learnset-floette-data", "size_in_bytes": 220551, "digest": "sha256:0ed479422bac03db40b887963bd7cba7199b6d5295b7ac650d236f75b4be671c"}
   ],
+  "record_only_amendments": {
+    "scripts/pr16_learnset_floette_record.py": {
+      "before": {"sha256": "f0dd0d4f077ba0bf41386cf7f86d885d06509991bee4ea9ebf54675fa6caa441", "size": 17883},
+      "after": {"size": 20603, "sha256": "a40eea090f0b25f0baa8ec67a35607e1fd03998a953dcc7c671dc9c8dbf54cf5"}
+    },
+    ".github/workflows/pr16-learnset-floette-record.yml": {
+      "before": {"sha256": "af9cf9a1ace6d9dfad3c989d71e563e58a28ef9da01d6f112360a788239a9da3", "size": 2774},
+      "after": {"size": 2823, "sha256": "51df2ae94094bfa83fe0d63da9a8e03c5e9a9c8bd3fe98d5eeb01561f48a5387"}
+    }
+  },
+  "resume_fixture_repair": {
+    "path": "tests/test_pr16_resume.py",
+    "before": {"size": 12258, "sha256": "7f31a83f3d92805ba547827f862f376b485db991758ed0763963b7ecc5e1fadf"},
+    "after": {"size": 12856, "sha256": "cda46a7c39c0626d08b4f6ca84d3cc8917e5beb0487b12309c0fda2ac1adf8ff"},
+    "failed_run_id": 35663195482,
+    "failed_job_id": 106542967515,
+    "accepted_other_tests": 27,
+    "rerun_only": "tests.test_pr16_resume.ResumeTests.test_closed_physical_keeps_p08_gates",
+    "reason_ja": "実台帳でnative受入済みでも、物理gap閉鎖時の未完P08 gate保全を独立fixtureで検証。受入条件/実台帳は変更しない。"
+  },
   "accepted_tests_rerun": false,
   "native_runs": 0,
   "rom_changes": 0

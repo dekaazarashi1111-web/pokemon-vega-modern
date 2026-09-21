@@ -30,7 +30,7 @@ jobs:
           mkdir -p .local/pr16-learnset-floette/record-proof
           python3 -B scripts/pr16_learnset_floette_record.py record | tee .local/pr16-learnset-floette/record-proof/record.json
           python3 -B scripts/pr16_resume.py check | tee .local/pr16-learnset-floette/record-proof/resume.json
-          python3 -B -m unittest tests.test_pr16_resume -v 2>&1 | tee .local/pr16-learnset-floette/record-proof/resume-tests.txt
+          python3 -B -m unittest tests.test_pr16_resume.ResumeTests.test_closed_physical_keeps_p08_gates -v 2>&1 | tee .local/pr16-learnset-floette/record-proof/resume-tests.txt
           python3 -B scripts/validate_task_graph.py | tee .local/pr16-learnset-floette/record-proof/task-graph.txt
       - name: final index限定guardと同branch非force push
         run: |
