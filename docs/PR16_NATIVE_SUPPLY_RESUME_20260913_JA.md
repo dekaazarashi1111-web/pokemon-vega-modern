@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-所有者決定の原本衝突3群5行と非直接egg92種2394行の裁定を完了。原作411種の孵化探索順・直接egg表に静的照合。新13試験と独立2生成/純読取PASS、衝突5試験は受入原本を再利用。直接9923行・元Wiki行を保持し、runtime反映0。
+後継9consumer表128288経路/Side Change除外159行と旧候補1671枠との差分を39新試験・独立2生成・純読取・原本128447行独立監査で検証。孵化参照2394行は保持、direct/shared追加0。新孵化表のmembership差531行を別台帳化。ROM適用0。
 
-**次: Issue19: 裁定済み公式1299件/Vega181種/空owner overlayを入力にruntime全consumer用の後継表と旧候補差分を実装する。Side Change非採用の明示disposition、方法/条件/順序、原作孵化種のeggを保持し、影響範囲だけ後継ROM・Wiki・nativeで検証する。**
+**次: Issue19: 検証済み後継9consumer表を再利用し、未選択191枠のSpecies/Form bindingと原作孵化先の新egg差分531行を明示処理してbinary consumer adapterへ接続する。その後に後継ROM・別Wiki・変更影響nativeを限定検証する。**
 
-原本裁定は完了。runtime実装・全consumer/Side Change除外/後継Wiki/影響nativeは未完。旧CURRENT_PRESERVED/PRESERVE_V3等を検証済み新baselineと混同しない。Issue19/18全体・merge/releaseへ昇格しない。
+後継表・差分の工程は完了、ROM適用は未完。191枠を旧表fallback/一括削除せず、531行をdirect/shared eggへ無断補充しない。原本裁定を未完へ戻さない。Issue19/18完了・merge/releaseへ昇格しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `04b8ea96ac7244fd0940e9f9075026198869cdf4`。
-Vega原本衝突/非直接egg裁定の完了Actions入力HEAD。branch最新HEADとは別。現在HEADはremoteから取得し、反映commitはgit logで確認する。
+証拠のsource HEAD: `1bd7e126dd4083581b43ade0776b72eddd38b9d1`。
+後継consumer表検証の完了Actions入力HEAD。branch最新HEADではない。現在HEADはremoteから取得し、記録commitはgit logで確認する。
 
 ## 最短の再開手順
 
@@ -25,11 +25,11 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_VEGA_SOURCE_ADJUDICATION_JA.md`
-- `content/modernization/pr16_vega_adjudication_checkpoint.json`
-- `content/modernization/pr16_vega_adjudication/receipt.json`
-- `content/modernization/pr16_learnset_baseline_checkpoint.json`
-- `content/modernization/pr16_learnset_baseline_evidence/receipt.json`
+- `docs/PR16_LEARNSET_SUCCESSOR_JA.md`
+- `content/modernization/pr16_learnset_successor_checkpoint.json`
+- `content/modernization/pr16_learnset_successor_evidence/receipt.json`
+- `content/modernization/pr16_learnset_successor_evidence/compact-review.json`
+- `tools/pr16_learnset_successor.py`
 - `docs/PR16_LEARNSET_BASELINE_RESET_JA.md`
 - `config/move_port.json`
 
@@ -46,7 +46,7 @@ checkは限定source hashと正本間整合性を検査するだけで、GitHub�
 照合抄録: `content/modernization/pr16_bp_spending_verified.json`。
 2026-09-15: run34946969126/job104308573084で、同一candidateの3勝基礎9 BPに既存反復報酬3 BPが加算され12 BPへ確定。通常QOL供給ショップでかわらずのいしを4 BP購入し、残高12→8、所持0→1、Save counter5→6→7→7、通常Save/fresh Continue後の保持をscoped受入。ROM変更0、成功1process/2fresh cores。次はRing。
 
-凍結ROM/ZIP/save、旧Wiki・候補・受入原本は不変。非直接egg2394行を進化後のdirect/shared eggへ複製しない。親個体の自然入手/全交配の実機証明は今回のscope外。
+受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。
 
 ## 候補identityと残件
 
@@ -61,7 +61,7 @@ P08ゲート:
 
 2026-09-15: run34946969126/job104308573084で、同一candidateの3勝基礎9 BPに既存反復報酬3 BPが加算され12 BPへ確定。通常QOL供給ショップでかわらずのいしを4 BP購入し、残高12→8、所持0→1、Save counter5→6→7→7、通常Save/fresh Continue後の保持をscoped受入。ROM変更0、成功1process/2fresh cores。次はRing。 2026-09-18追記: Ring/policyは別scoped候補で完了。BP数値・原本の意味は変更しない。
 
-公式原本隔離済み → Vega原本採取/方法別隔離監査済み → 衝突3群5行/非直接egg92種2394行の裁定済み → Side Change非採用等のruntime明示処理 → 後継ROM・Wiki/影響native → Issue18限定監査 → 別承認のrelease。
+原本隔離/裁定済み → 後継9consumer表・旧候補差分検証済み → 未選択Species/Form/孵化差分の明示binding → binary consumer接続 → 後継ROM・別Wiki/影響native → Issue18限定監査 → 別承認release。
 
 ## 再実行・過大主張の禁止
 
@@ -271,6 +271,7 @@ P08ゲート:
 - 保存実BG定数・templateからheap初期化→BG reset/config→属性→通常window→fonts setterの連続明示RAMを本原本から再利用。save3block退避後のRandom停止・callocのCpuSet未読を成功stubにしない。今回条件/旧採取/受入済BP/nativeは単独再実行禁止。次は未読save relocation/暗号化・CpuSet/画面転送・InitFieldMessageBoxの実caller供給。
 - Issue19公式隔離: source/code hash不変なら39試験・CSV全件照合・二重生成は完了artifactを再利用。旧P07履歴1572件を新baseline/空overlayへ再投入しない。
 - Vega181種: 原本9923行/182ページ/43試験、衝突5行/5試験、非直接egg2394行/13試験は保存証拠を再利用。原本採取・公式1299件の再生成・入力不変の単独再検証をしない。3群/92種を未裁定へ戻さず、次はruntime全consumer。
+- 後継9consumer表v1: 128288採用/159明示除外、39新試験、独立2生成・純読取・原本128447行独立監査は保存済み。入力/生成器が同じなら再生成/単独再試験しない。未完は191枠binding/孵化531差分/binary接続と後継ROM・Wiki・影響native。
 
 ## 次セッションへ残す更新手順
 
@@ -300,6 +301,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-裁定run35623180576の13試験/2生成/純読取PASS。衝突run35621880869の5試験を再利用。既存native/checksは元scopeのまま。
+後継表run35627966003の新39試験、2生成、純読取、全128447原本行保存、ローカル/Actions13出力一致。旧native/原本採取・公式生成を再実行していない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

@@ -6519,3 +6519,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions。欠落進化/孵化範囲の採取run35622433529のみ追加。完了Actions/全step/artifact digest照合、182ページ再取得0。記録run=35624247604。
 - Repair: 開始HEADから未同期のCHATGPT_RESUME/旧Vega監査guideのbinding2件を本文byte不変確認後metadataだけ同期。新しい再開点は固定MD/JSONから後継guideへ。旧歴史は削除しない。
 - Boundary: 原作411種の静的consumer照合であり自然交配/native受入ではない。Side Change効果/AI追加0、ROM/ARM/active baseline変更0、PR16 draft/openのまま、merge/releaseなし。次はruntime全consumer/後継ROM・Wiki/影響native。
+
+
+## 2026-09-21T16:56:26.838227+00:00 — 後継9consumer表・旧候補差分の検証記録
+- Timestamp: 2026-09-21T16:56:26.838227+00:00
+- Task: USER-20260921-LEARNSET-BASELINE-RESET / 後継表をbinary接続の直前まで確定
+- Version: learnset-successor-consumer-tables-v1
+- Status: DONE（後継表工程。実ROM適用/Issue19全体は未完）
+- Summary: 1299公式+181Vegaの128447原本行を全数保存し、128288採用/159明示除外へ分離。孵化2394行のdirect/shared追加0。未選択191枠と孵化先新egg差分531行を台帳化。旧候補/Wikiは不変。
+- Files changed: 後継生成器/39試験/独立検証器/限定Actions、記録器/10試験、checkpoint/8証拠/guide、固定引継ぎMD/JSON、両ログ。全13大規模出力はartifact保管。
+- Verify: 新39試験、2生成(seed17/53)、純読取byte/mtime不変、128447行独立監査、ローカル/Actions13出力一致（run35627966003）。記録10試験、pr16_resume.py check、diff/開始HEADからのchanged-final-index guard。原本採取/公式生成/旧native再実行0。
+- Commit: 本記録を含むcommit。開始HEAD=d3eaab712e79b0692f1cad51653ba40f1357da6a。検証HEAD=1bd7e126dd4083581b43ade0776b72eddd38b9d1。途中の実装・試験を同branchへWIP非force反映。
+- Network: GitHub connector/Actions。受入公式artifact10641504482を再利用。後継proof/table artifactの完了run/job/全step/digest/全fileを照合。外部Wiki再取得0。
+- Boundary: consumer表は実ROM接続済みと表示しない。孵化差分を無断補充せず、旧表をfallbackにも一括削除にも使わない。active baseline/merge/release変更0。
