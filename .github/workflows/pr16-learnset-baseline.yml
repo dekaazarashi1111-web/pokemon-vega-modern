@@ -1,0 +1,71 @@
+name: pr16-learnset-baseline
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - '.github/pr16-learnset-baseline-run.json'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: pr16-learnset-baseline
+  cancel-in-progress: false
+jobs:
+  focused:
+    if: github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: 限定sourceを固定し検証の入力を保全
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib, json, pathlib, subprocess, zipfile
+          root = pathlib.Path('.')
+          request = json.loads((root / '.github/pr16-learnset-baseline-run.json').read_text())
+          assert request['task'] == 'USER-20260921-LEARNSET-BASELINE-RESET'
+          assert request['mode'] == 'source-bootstrap'
+          out = root / '.local/pr16-learnset-baseline'
+          out.mkdir(parents=True, exist_ok=True)
+          head = subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip()
+          tracked = subprocess.check_output(['git', 'ls-files', '-z']).decode().split('\0')
+          extensions = {'.py', '.c', '.h', '.s', '.ld', '.json', '.jsonl', '.csv', '.md', '.yml', '.yaml', '.toml', '.sh', '.ps1', '.txt'}
+          inventory, selected = [], {}
+          roots = {'scripts', 'tools', 'tests', 'src', 'manifests', 'config', 'state', 'tasks', '.github'}
+          for name in sorted(filter(None, tracked)):
+              p = pathlib.Path(name)
+              inventory.append(name)
+              allowed = (len(p.parts) == 1 or p.parts[0] in roots
+                         or (p.parts[0] in {'content', 'design'} and len(p.parts) <= 3)
+                         or name in {'docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md', 'docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md', 'docs/wiki/p08-candidate-46487d98/RUNTIME_LIMITATIONS.md'})
+              if not allowed or (p.suffix.lower() not in extensions and name not in {'.gitignore', '.gitattributes', 'Makefile'}):
+                  continue
+              if p.is_symlink() or not p.is_file():
+                  continue
+              data = p.read_bytes()
+              try:
+                  data.decode('utf-8')
+              except UnicodeDecodeError:
+                  continue
+              if b'\0' in data:
+                  continue
+              selected[name] = {'size': len(data), 'sha256': hashlib.sha256(data).hexdigest()}
+          manifest = {'schema_version': 1, 'source_head': head, 'task': request['task'], 'files': selected, 'tracked_paths': inventory, 'rom_or_private_inputs_included': False}
+          with zipfile.ZipFile(out / 'scoped-sources.zip', 'w', zipfile.ZIP_DEFLATED) as z:
+              for name in selected:
+                  z.write(name, name)
+              z.writestr('SOURCE_MANIFEST.json', json.dumps(manifest, ensure_ascii=False, indent=2) + '\n')
+          print(json.dumps({'source_head': head, 'source_files': len(selected), 'rom_changed': False}))
+          PY
+          python3 scripts/validate_task_graph.py
+          git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr16-learnset-baseline-sources
+          path: .local/pr16-learnset-baseline/scoped-sources.zip
+          if-no-files-found: error
+          retention-days: 7
