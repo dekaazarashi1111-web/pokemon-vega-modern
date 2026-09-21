@@ -3,10 +3,10 @@ run-name: PR16 species binding and payload ${{ github.sha }}
 on:
   push:
     branches: [codex/modernization-followup-20260908]
+    # 受入済み54試験を記録ロジックの修正だけで再実行しない。
+    # 実装/検証範囲を変更した場合は入力lockを更新して再検証を要求する。
     paths:
       - content/modernization/pr16_learnset_payload_inputs.json
-      - scripts/pr16_learnset_payload_verify.py
-      - .github/workflows/pr16-learnset-payload.yml
 permissions:
   contents: read
   actions: read
