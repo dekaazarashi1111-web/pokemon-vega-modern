@@ -15,11 +15,22 @@ PR本文・古いresume・一般タスクキューを、このPRの最新停止�
 
 ## 所有者予約済みの次タスク
 
-現在の再開メモと状態JSONが指すP08作業を先に区切りよく閉じた後、clean-ROM独立2生成・配布用BPS固定・release判定へ入る前に、GitHub Issue [#18](https://github.com/dekaazarashi1111-web/pokemon-vega-modern/issues/18) `USER-20260921-P08-CANDIDATE-WIKI` を実行する。
+候補Wiki生成のGitHub Issue [#18](https://github.com/dekaazarashi1111-web/pokemon-vega-modern/issues/18) は、`docs/wiki/p08-candidate-46487d98/**` を調整前・現状保存スナップショットとして生成済みである。同Wikiを上書きせず履歴として保持する。
 
-Issue #18は、既存 `docs/wiki/stage61/**` を固定履歴として変更せず、実行時点の最新P08候補から、ベガ性能、全Species/Form、種族値、タイプ、通常特性・夢特性、全習得経路、技性能、全メガ、専用Zワザ、Stage61との差分を、決定的generator・Markdown・JSON/JSONL・検査レポートとして詳細生成するタスクである。
+clean-ROM独立2生成・配布用BPS固定・`release_ready=true` 判定・PR merge・active baseline切替へ入る前に、GitHub Issue [#19](https://github.com/dekaazarashi1111-web/pokemon-vega-modern/issues/19) `USER-20260921-LEARNSET-BASELINE-RESET` を実行する。
 
-この予約は現在のP08受入を完了扱いにせず、Wiki生成中の性能変更・追加メガ・追加専用Z・merge・release・active baseline切替も許可しない。Wikiを調整前スナップショットとして生成・検証・記録した後、所有者が内容を見て別途調整仕様を決める。
+Issue #19は、技習得を次のフラットな基準へ復元するタスクである。
+
+- 原作ポケモン: 所有者提供ZIP `Pokemon_Vega_Stage61_技習得品質改善版_v1.3.0_20260905(5).zip`（82,683,251 bytes / SHA-256 `80b678320c08203e7b39236e5c123f5c2f2f0c729e7f4e5101bed88c84158adb`）の公式Species/Form採用データを基準にする。
+- ベガオリジナル: 原作Vegaの機械可読表または固定ROMからの直接抽出を優先し、`https://w.atwiki.jp/altair1/pages/19.html` のポケモン図鑑Vと各個別ページにあるレベル技・技マシン・教え技・タマゴ技を正本化または独立照合に使う。
+- より再現性が高い別方法を使ってよいが、原作Vega由来をhash/versionで固定し、atwikiとの差分と理由を全件記録する。
+- `CURRENT_PRESERVED`、`V3_ADDED`、V4/Modern後付け、旧ベガ由来499行等は、基準に存在しない限り現役習得から分離する。Move ID・技効果・過去の由来履歴は削除しない。
+- `official_baseline`、`vega_original_baseline`、将来の `owner_approved_overlay` を分離し、本タスク完了時の追加overlayは原則空とする。
+- 変更前Wiki・候補・受入証拠を保持し、新候補ROMと新候補Wikiを別identityで生成する。変更影響台帳に基づき影響範囲だけ再受入する。
+
+所有者提供ZIPは `userfile/imports/**` 等のGit管理外・読み取り専用入力として扱い、ZIP本体をcommitしない。入力が未提供またはhash不一致なら、似た名前の別資料や現行ROMを暗黙代用せずfail-closedにする。
+
+Issue #19の完了後、所有者が新Wikiを確認してから、技追加、種族値・特性・夢特性調整、追加メガ、追加専用Zの仕様を別途決める。本タスク中に新しい技配布を創作しない。
 
 ## 次回そのまま渡す指示
 
