@@ -79,8 +79,13 @@ def independent_audit(folder):
     need(sum(map(len,new.values()))==64,'明示追加64経路不一致')
     binding={r['species_id']:r for r in s.rows(folder/'species-bindings.jsonl')}
     need(len(binding)==191 and len([r for r in binding.values() if r['policy'] in b.NONPERMANENT])==188,'binding内訳不一致')
-    need([r['species_id'] for r in binding[1262]['reversion_targets']]==[1260,1261]
-         and binding[1262]['reversion_requires_original_form'] is True,'Ultra解除先が丸められている')
+    # 1262は未選択191枠ではなく公式選択済み。既存P02解除条件は別正本で保全する。
+    ultra=[r for r in s.rows(TABLES/'species_coverage.jsonl') if r['species_id']==1262]
+    reverse=[r for r in s.read_json(ROOT/p.CONTRACT_PATHS['p02'])['current_table']['rows']
+             if r['source']['canonical_id']==1262 and r['method']['family']=='BATTLE_TRANSFORM'
+             and r['condition']['parameter']['value']==0]
+    need(1262 not in binding and len(ultra)==1 and ultra[0]['selection']=='OFFICIAL_SOURCE_SELECTED'
+         and [r['target']['canonical_id'] for r in reverse]==[1260,1261], '選択済みUltra/2解除先を変更')
     need([r['move_id'] for r in new['level_up',649]]==[33,81,535]
          and [r['move_id'] for r in new['machine',649]]==[489],'Caterpie訂正4経路不一致')
     need({f:len(new[f,1670]) for f in b.CONSUMERS if new[f,1670]}==
@@ -255,7 +260,10 @@ def record():
         'completed_actions':done,'payload_artifact':by_name['pr16-learnset-payload-data'],
         'proof_artifact':artifact,'summary':receipt,'audit':audit,'source_snapshot_actions':snapshot_done,
         'prior_hatch_actions':old,'runtime_applied':False,'issue19_complete':False,'release_ready':False,
-        'proof_bindings':{name:b.identity(data) for name,data in files.items()}}
+        'proof_bindings':{name:b.identity(data) for name,data in files.items()},
+        'superseded_diagnostic':{'run_id':35659288132,'head':'3eb9f551603c55752060f59c92f62f85c3d216fe',
+            'status':'FAILURE_IN_AUDIT_OWNER_LOOKUP','reason':'1262 is already official-selected, not one of 191 unselected bindings',
+            'source_or_payload_changes_required':False}}
     (ROOT/CHECKPOINT).write_bytes(s.encode(cp))
     prior_path=ROOT/(BASE+'pr16_learnset_binding_checkpoint.json');prior=s.read_json(prior_path)
     need(prior['run_id']==35656548503 and prior['source_head']==old['head_sha'],'既受入孵化scope不一致')
@@ -286,12 +294,12 @@ def record():
         '凍結済み後継表を直接変更せず、旧欄をruntimeへ直結することは禁止する。上限はmachine128/tutor64。\n\n'
         '## 成果物と境界\nlevel/egg/進化時/reminder/shared egg/互換bit/不足技archiveの配置前binaryとconsumer index、全経路SHA台帳をartifactに保存。'
         'shared egg・進化前持越し・フォーム条件・特殊孵化を通常level/eggへ統合しない。188枠は空表ではなくIDENTITY_ONLY_NO_REPLACEMENT、1029はBLOCKED_SOURCE_ADOPTION。'
-        '保存済み4技は変更しない。Ultra Necrozmaの解除先2通りも保持。\n\n'
+        '保存済み4技は変更しない。選択済みUltra Necrozmaの既存P02解除先2通りも変更しない。\n\n'
         '## 次の未完\n1029はStage69で入手可能だがP01の習得元はapply=false。旧候補の技表や通常Floetteへのfallbackを避け、固定reference legendsza:0670.05の明示採用裁定を行う。'
         'その後、非学習/戦闘姿owner、条件付きconsumer、配置とpointer/容量、実供給を接続し、後継ROM・別Wiki・影響nativeを検証する。'
         '今回のartifactはインストール不可の配置前成果物であり、ROM受入/Issue19全体完了/merge/releaseではない。\n')
     stamp=datetime.datetime.now(datetime.timezone.utc).isoformat()
-    entry=f'\n## {stamp}\n- Timestamp: {stamp}\n- Task: {TASK} / 191枠bindingと配置前payload\n- Version: learnset-payload-v1\n- Status: DONE（静的binding/配置前payload限定。1029採用裁定・ROM接続未完）\n- Summary: 188枠identity保全、2owner64経路を明示接続、1枠は採用待ち。128288原経路を保全し33321経路のWiki slot 1始まりを補正。\n- Files changed: Species/payload実装、54新試験、限定Actionsと固定入力、checkpoint/証拠/guide、固定MD/JSON、両ログ。\n- Verify: 54新試験PASS、独立2プロセス全hash一致、旧Wikiからの独立全byte/128352行監査PASS、原本byte/mtime不変。run={request["run_id"]} head={request["source_head"]}。受入孵化run35656548503/source snapshot run35657130145の全step完了も照合。\n- Commit: 本記録を含む同branch非force commit。自己SHAは記載せずgit logで照合。\n- Network: GitHub Actions受入artifact再利用、原本/旧Wiki再生成0、native0、ROM変更0。\n'
+    entry=f'\n## {stamp}\n- Timestamp: {stamp}\n- Task: {TASK} / 191枠bindingと配置前payload\n- Version: learnset-payload-v1\n- Status: DONE（静的binding/配置前payload限定。1029採用裁定・ROM接続未完）\n- Summary: 188枠identity保全、2owner64経路を明示接続、1枠は採用待ち。128288原経路を保全し33321経路のWiki slot 1始まりを補正。\n- Files changed: Species/payload実装、54新試験、限定Actionsと固定入力、checkpoint/証拠/guide、固定MD/JSON、両ログ。\n- Verify: 54新試験PASS、独立2プロセス全hash一致、旧Wikiからの独立全byte/128352行監査PASS、原本byte/mtime不変。run={request["run_id"]} head={request["source_head"]}。受入孵化run35656548503/source snapshot run35657130145の全step完了も照合。\n- Prior attempt: run35659288132は1262の監査参照先誤りで停止。元表とpayloadは不変のまま監査だけを訂正。\n- Commit: 本記録を含む同branch非force commit。自己SHAは記載せずgit logで照合。\n- Network: GitHub Actions受入artifact再利用、原本/旧Wiki再生成0、native0、ROM変更0。\n'
     for name in ('design/run_log.md','design/version_log.md'):
         with (ROOT/name).open('a') as stream:stream.write(entry)
     print(json.dumps({'status':cp['status'],'run_id':request['run_id'],'tests':54},ensure_ascii=False))
