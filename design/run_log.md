@@ -9210,3 +9210,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、完了run35605822056/artifact10641504482のSHA・全stepをGET照合。入力assetは固定hashのmodernization ZIPのみ。
 - Network（参照閲覧）: https://w.atwiki.jp/altair1/pages/19.html は原作Vega図鑑入口として確認。個別習得表の採用0。
 - Boundary: ROM/ARM/native変更0、旧Wiki/受入原本/active baseline不変、merge/releaseなし。初回ローカル試作では分類206枠を181実対象へ訂正後に再生成し、失敗をPASSへ転用していない。
+
+
+## 2026-09-21T13:52:06+00:00 — Issue19検証ログのGit保存を補完
+- Task: USER-20260921-LEARNSET-BASELINE-RESET
+- Version: official-source-isolation-storage-closeout
+- Status: DONE（証拠保存の補完。Issue19全体は未完）
+- Summary: *.log除外で未追跡だったunit.log/recording-unit.logを元artifactのbyte/SHAのまま明示追加。旧checkpointのhashは書き換えず、全12証拠をGit HEADから読戻した。
+- Files changed: 証拠ログ2件、限定closeout workflow、storage JSON、固定状態JSON、両ログ。
+- Verify: 全12証拠のGit size/SHA照合。欠落・改変・余剰3条件を拒否。resume/task graph/diff/限定最終indexを確認。39+12試験・独立生成・nativeの再実行0。
+- Commit: 本記録を含むcommit。記録入力HEAD=b08c99be195e4c277937d7e659d126db8516b5ac。
+- Network: Actions run35607343534（記録）,35607351926（source-validation）,35607351956（forgetting）の完了成功をGET照合。ROM/旧Wiki/受入済みnative原本/active baseline変更0、merge/releaseなし。

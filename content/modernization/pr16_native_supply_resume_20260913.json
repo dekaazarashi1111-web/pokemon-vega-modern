@@ -10397,6 +10397,22 @@
     ".github/workflows/pr16-learnset-baseline-record.yml": {
       "size": 3866,
       "sha256": "52d11a787fefd62a25aacde6d08c3a74b6f7b75856862673bdefa0756f51f542"
+    },
+    "content/modernization/pr16_learnset_baseline_storage.json": {
+      "size": 3043,
+      "sha256": "e9b728c0d131a2861032eac0a36ca5b8a773ac7a1993ff231d9692aa0f53bdab"
+    },
+    ".github/workflows/pr16-learnset-baseline-proof-closeout.yml": {
+      "size": 9826,
+      "sha256": "2c6bbed55a37a2544d4704d17bf80271c129a29c521ed9c5836b21e563ea7eaa"
+    },
+    "content/modernization/pr16_learnset_baseline_evidence/unit.log": {
+      "size": 4838,
+      "sha256": "ed6546d33799da3fc3f924219924574f1c642ec4bf514c251b7d669e95e0c94f"
+    },
+    "content/modernization/pr16_learnset_baseline_evidence/recording-unit.log": {
+      "size": 2077,
+      "sha256": "737935b487c94d1fe875c7bac707ec903e5e5f2607c20235c096f9f8a70a6d01"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
@@ -10825,6 +10841,103 @@
       "verify.json": {
         "size": 1518,
         "sha256": "43f78313f013a0bc91889c9a5b37f8f67651ee882c5703b6c937f26a39ab944e"
+      }
+    }
+  },
+  "learnset_baseline_storage": {
+    "path": "content/modernization/pr16_learnset_baseline_storage.json",
+    "schema_version": 1,
+    "task": "USER-20260921-LEARNSET-BASELINE-RESET",
+    "status": "PASS_ALL_12_PROOFS_TRACKED",
+    "source_head": "b08c99be195e4c277937d7e659d126db8516b5ac",
+    "run_id": 35608337481,
+    "previous_recording_head": "eefffe6ea4ec7e247232ef0e944bb27946e28c89",
+    "recovered_files": [
+      "unit.log",
+      "recording-unit.log"
+    ],
+    "cause": "git add honored existing *.log ignore; connector committed exact original log bytes",
+    "tracked_proof_files": 12,
+    "negative_storage_checks": 3,
+    "completed_runs": [
+      {
+        "id": 35607343534,
+        "name": "pr16-learnset-baseline-record",
+        "head_sha": "0ae98859af26d2fba4fa376a6b23931300829d70",
+        "status": "completed",
+        "conclusion": "success",
+        "updated_at": "2026-09-21T13:42:54Z"
+      },
+      {
+        "id": 35607351926,
+        "name": "source-validation",
+        "head_sha": "0ae98859af26d2fba4fa376a6b23931300829d70",
+        "status": "completed",
+        "conclusion": "success",
+        "updated_at": "2026-09-21T13:44:00Z"
+      },
+      {
+        "id": 35607351956,
+        "name": "p03-forgetting-ci",
+        "head_sha": "0ae98859af26d2fba4fa376a6b23931300829d70",
+        "status": "completed",
+        "conclusion": "success",
+        "updated_at": "2026-09-21T13:43:06Z"
+      }
+    ],
+    "accepted_tests_reexecuted": 0,
+    "new_native_runs": 0,
+    "rom_changes": 0,
+    "issue19_complete": false,
+    "release_ready": false,
+    "proof_bindings": {
+      "actions.json": {
+        "sha256": "0c91270e8523b587ac284545d170a636e4e1e778f859c0b3d5ff7f41da84e1bd",
+        "size": 3886
+      },
+      "adjudication.json": {
+        "sha256": "cae35ae03328c9d81810314769fd2101d6a437c66669716ec1912331ac8e8c98",
+        "size": 38174
+      },
+      "build11.json": {
+        "sha256": "2417bff727361687af738a991ea08fa645f044d2cd0b4d5144e6de74535a548d",
+        "size": 2904
+      },
+      "build29.json": {
+        "sha256": "2417bff727361687af738a991ea08fa645f044d2cd0b4d5144e6de74535a548d",
+        "size": 2904
+      },
+      "check.json": {
+        "sha256": "2417bff727361687af738a991ea08fa645f044d2cd0b4d5144e6de74535a548d",
+        "size": 2904
+      },
+      "official_index.json": {
+        "sha256": "d65643b3fe07e0484ff48f9df84ee4246963904712423844f37c1f366b723324",
+        "size": 536031
+      },
+      "owner_approved_overlay.json": {
+        "sha256": "ec25d796a0cc8c3b227f2293454da22273ea8d2051e9a6f6cd7e8667638ac02b",
+        "size": 40
+      },
+      "receipt.json": {
+        "sha256": "c6164e8e7dac2c717eab2d5ab0794617030c8c93272e1157581d66a8f802a5e0",
+        "size": 3362
+      },
+      "recording-unit.log": {
+        "sha256": "737935b487c94d1fe875c7bac707ec903e5e5f2607c20235c096f9f8a70a6d01",
+        "size": 2077
+      },
+      "unit.log": {
+        "sha256": "ed6546d33799da3fc3f924219924574f1c642ec4bf514c251b7d669e95e0c94f",
+        "size": 4838
+      },
+      "vega_original_pending.json": {
+        "sha256": "b5a38b603eadb0bd4bdfddf3c34cd4c2b1b1b94b972ee4de09847eeaf955bee9",
+        "size": 28739
+      },
+      "verify.json": {
+        "sha256": "43f78313f013a0bc91889c9a5b37f8f67651ee882c5703b6c937f26a39ab944e",
+        "size": 1518
       }
     }
   }
