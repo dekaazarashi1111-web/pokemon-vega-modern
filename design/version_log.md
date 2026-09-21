@@ -6411,3 +6411,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 本記録を含むcommit。検証source HEAD=6ea91ae2da54398fdc01bb3d0cf4f89427855ba4。
 - Network: GitHub connector/Actions run35564248203。run全体はpush/upload前のin_progressとして記録。
 - Boundary: ROM変更0、ARM0、native0。既存受入試験は影響なしに再実行しない。Issue18・merge・release・active baseline切替なし。失敗run35535019570は検証成功/記録失敗を区別してfollowup JSONに保存。
+
+
+## 2026-09-21T05:29:44+00:00 — 4差分Wikiの完了Actions照合
+- Task: USER-20260921-P08-CANDIDATE-WIKI / 完了GETと原本の記録確定
+- Version: wiki-audit-20260921
+- Status: DONE（4差分の実装・検証・記録・反映。Issue18全体の完了ではない）
+- Summary: 4145 files / 112283459 bytes / 277778内部リンク。effect全1063技、patch全1671slot、生成技311経路/95野生行/4776profile、Z3入口32node/4BL。
+- Files changed: 完了照合script/差分試験/workflow、completed runs JSON、receipt/followup、固定引継ぎMD/JSON、両ログ。Wiki本文はこの記録段階では変更しない。
+- Verify: 4回のcompleted/success・全job/step・artifact digestと検証原本・反映commit親を照合。差分26+26+32+26=110試験、各2seed build一致・実check byte/mtime不変の保存結果を再利用。記録差分34試験・resume/task graph・最終index guard。
+- Commit: 本記録を含むcommit。記録source HEAD=2bb1d9c544bc36891d04797c7cca469aeee768d5。最新Wiki反映=24cc366c71df6a7e982635a33f4374cf965e75e1。
+- Network: GitHub API run35561743057/35562396044/35563498591/35564248203とそのjob/artifact/commitのGETのみ。署名download URL/credentialは記録しない。
+- Boundary: この記録段階でWiki再build0・ROM変更0・ARM0・native0・受入native再実行0。Stage61/active baseline/原本/過去失敗記録は保持。named Z callee・通常野生/旧配布・夢特性初回供給/daycare・技511/全handler履歴は未完のまま。

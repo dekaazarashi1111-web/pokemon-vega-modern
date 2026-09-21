@@ -1,125 +1,12 @@
 {
-  "active_baseline_changed": false,
+  "accepted_native_reruns": 0,
   "arm_builds": 0,
-  "bytes": 112283459,
   "candidate": {
     "crc32": "CC068B4A",
     "sha256": "46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38",
     "size": 33554432
   },
-  "check_writes": 0,
-  "cli_complete": true,
-  "completion_reconciliation": {
-    "completed_runs": [
-      35561743057,
-      35562396044,
-      35563498591,
-      35564248203
-    ],
-    "new_scoped_tests_total": 110,
-    "path": "content/modernization/pr16_candidate_wiki_completed_runs_20260921.json",
-    "source_head": "2bb1d9c544bc36891d04797c7cca469aeee768d5"
-  },
-  "corrected_details_run": 35529899896,
-  "counts": {
-    "ability": 318,
-    "item": 1044,
-    "move": 1063,
-    "species": 1671
-  },
-  "current_verification": {
-    "accepted_native_reruns": 0,
-    "active_baseline_changed": false,
-    "actual_check_unchanged_bytes_and_mtimes": true,
-    "arm_builds": 0,
-    "changed_snapshot_files": [
-      "CODEX_INDEX.md",
-      "CONSUMER_AUDIT.md",
-      "LINK_GRAPH_AUDIT.md",
-      "README.md",
-      "RUNTIME_LIMITATIONS.md",
-      "Z_MOVE_INDEX.md",
-      "data/followup_audit.json",
-      "data/index.json",
-      "data/link_graph_audit.json",
-      "data/provenance.json"
-    ],
-    "issue18_complete": false,
-    "new_native_runs": 0,
-    "rom_changes": 0,
-    "stage61_unchanged": true,
-    "status": "PASS_WIKI_BUILD_CHECK",
-    "two_process_builds_identical": true,
-    "unchanged_snapshot_files": 4135
-  },
-  "dedicated_cli": {
-    "check_writes": 0,
-    "current_scoped_tests": 26,
-    "make_build": "pr16-candidate-wiki",
-    "make_check": "pr16-candidate-wiki-check",
-    "path": "scripts/build_pr16_candidate_wiki.py"
-  },
-  "earlier_failures": [
-    {
-      "cause": "道具description offsetを英語ABIと誤認",
-      "run": 35529488690
-    },
-    {
-      "cause": "同問題の限定診断",
-      "run": 35529640583
-    },
-    {
-      "cause": "旧method254自己参照1行を全メガとして扱った検査失敗。正逆76行と監査1行に分離。",
-      "run": 35531068177
-    }
-  ],
-  "files": 4145,
-  "internal_links": 277778,
-  "issue18_complete": false,
-  "issue_number": 18,
-  "mega_mapping_summary": {
-    "forward_reverse_verified": 76,
-    "game_data_changed": false,
-    "raw_rows": 77,
-    "unverified_legacy_rows": 1
-  },
-  "native_reruns": 0,
-  "negative_output_fixtures": [
-    "missing",
-    "stale",
-    "changed",
-    "symlink"
-  ],
-  "new_native_runs": 0,
-  "output": "docs/wiki/p08-candidate-46487d98",
-  "previous_snapshot": {
-    "bytes": 112260519,
-    "files": 4143,
-    "source_head": "3969be6bfb4083ce4cb1e5dd48f0697a62665127",
-    "tree_sha256": "7b05cb160965feb5f50106747fe2f53ca4509e3e0e23403c6917243ded6cb392",
-    "unit": {
-      "errors": 0,
-      "failures": 0,
-      "scope": "CURRENT_CHANGED_WIKI_AUDIT_ONLY",
-      "skips": 0,
-      "tests": 32
-    },
-    "verification_run": 35563498591
-  },
-  "prior_transfer_run": {
-    "conclusion": "success",
-    "head_sha": "9834398c8430ded96a8d25ea96d02edd8a78212d",
-    "id": 35524571950,
-    "status": "completed"
-  },
-  "private_guard_scope": "CHANGED_FINAL_INDEX_ONLY",
-  "reconciled_run_history": [
-    {
-      "conclusion": "success",
-      "head_sha": "479f02fb059215e4f9f4da86895b85e8a373b5ee",
-      "id": 35546455254,
-      "status": "completed"
-    },
+  "completed_runs": [
     {
       "artifact": {
         "digest": "sha256:f310db26808ce43a2ae8e73f23b8cdb15713cd45e98e1f51d1df2b41ec8fc1ec",
@@ -353,27 +240,92 @@
         "stage61_unchanged": true,
         "two_process_builds_identical": true
       }
+    },
+    {
+      "artifact": {
+        "digest": "sha256:1937e60c39c6d3b60df8c192a05709b47cf47379941d20fd7ecbe52c4583dc5a",
+        "expired": false,
+        "id": 10623381727,
+        "name": "pr16-candidate-wiki-cli",
+        "size_in_bytes": 239543
+      },
+      "bytes": 112283459,
+      "candidate": {
+        "crc32": "CC068B4A",
+        "sha256": "46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38",
+        "size": 33554432
+      },
+      "conclusion": "success",
+      "files": 4145,
+      "head_sha": "6ea91ae2da54398fdc01bb3d0cf4f89427855ba4",
+      "id": 35564248203,
+      "internal_links": 277778,
+      "job": {
+        "completed_at": "2026-09-21T05:21:40Z",
+        "conclusion": "success",
+        "id": 106222815086,
+        "name": "wiki",
+        "status": "completed"
+      },
+      "proof_bindings": {
+        "acceptance.json": {
+          "sha256": "bdeddfad6969b543f7dd135c4ae182d14a1035348f2209de7a07fee3bcc8fd83",
+          "size": 7433
+        },
+        "build-11.json": {
+          "sha256": "a91743c9121806f217e9c5a5f0927c5924e814f8c3fde674933e6bbf01585efa",
+          "size": 829
+        },
+        "build-29.json": {
+          "sha256": "a91743c9121806f217e9c5a5f0927c5924e814f8c3fde674933e6bbf01585efa",
+          "size": 829
+        },
+        "check.stderr.txt": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size": 0
+        },
+        "check.stdout.json": {
+          "sha256": "4a77e1813be986e086b0c0e88f3dacd04e841cef7516253d0d94ddb6c1ff33a7",
+          "size": 829
+        },
+        "cli-check.json": {
+          "sha256": "58d842fd360ff27e7f73ecc3adcc00cceb7347cedb8a3f39adcf6abd240e6630",
+          "size": 650
+        },
+        "followup-unit.txt": {
+          "sha256": "a264c8f4a57be1e19a20abc687b20b4140387843a7c79bb4660e180e3b76eef4",
+          "size": 2631
+        },
+        "reflected-head.txt": {
+          "sha256": "7b42538b8e56ba75dc614d78fe0e905038c6bdd228e69a1768050500e85826f5",
+          "size": 41
+        }
+      },
+      "reflected_head": "24cc366c71df6a7e982635a33f4374cf965e75e1",
+      "run_url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/35564248203",
+      "scope": "LINK_GRAPH",
+      "status": "completed",
+      "tests": 26,
+      "tree_sha256": "9077da7cc44baa982a52b60fd1e8d3396dbca1014228d1845419e114b6e0bea3",
+      "verification": {
+        "accepted_native_reruns": 0,
+        "active_baseline_changed": false,
+        "actual_check_unchanged_bytes_and_mtimes": true,
+        "arm_builds": 0,
+        "issue18_complete": false,
+        "new_native_runs": 0,
+        "rom_changes": 0,
+        "stage61_unchanged": true,
+        "two_process_builds_identical": true
+      }
     }
   ],
-  "record_counts": {
-    "abilities": 318,
-    "hidden_abilities": 1671,
-    "items": 1044,
-    "learnsets": 1671,
-    "megas": 76,
-    "moves": 1063,
-    "p07_history": 1572,
-    "species": 1671,
-    "vega_balance": 206,
-    "z_moves": 31
-  },
-  "release_approved": false,
-  "remaining_source_inventory": {
-    "path": "content/modernization/pr16_wiki_remaining_source_inventory.json",
-    "run_id": 35558161437,
-    "scope": "LOCKED_SOURCE_INVENTORY_NOT_RUNTIME_ACCEPTANCE",
-    "source_head": "ae92584b07317530ba585772be6fb9879102a94f"
-  },
+  "issue18_complete": false,
+  "new_native_runs": 0,
+  "new_scoped_tests_total": 110,
+  "record_execution_run": 35564710398,
+  "record_execution_success_claimed_before_push": false,
+  "record_validation_tests": 34,
   "remaining_work_ja": [
     "追加野生95行・collection配布18/Floette1・collection raid292を現候補level表の初期技source規則に結合済み。残りは全通常野生header/既存story配布、現compiled初期化caller・マクロ、生成後form変更/custom技。条件付き計算を実生成技受入にしない。",
     "汎用Zのsplit/候補表に加え保存metadataの3入口からThumb-1構造graphを抽出済み。残りはCanUseZMove/GetTypeBasedZMove/CalcMoveSplitの名前付きcallee結合・間接辺。既存offsets.ini/linked.oの固定hashはlink_graph_auditに記録。再build/nativeなしに名前を推測しない。",
@@ -382,160 +334,8 @@
   ],
   "rom_changes": 0,
   "schema_version": 1,
-  "scope": "VERIFIED_DOCUMENTATION_SNAPSHOT",
-  "source_audit_summary": {
-    "creation_declared_routes": 311,
-    "creation_profile_species": 470,
-    "creation_profile_states": {
-      "SOURCE_RULE_APPLIED_TO_CANDIDATE_ROWS": 4776
-    },
-    "creation_profiles": 4776,
-    "creation_route_kinds": {
-      "COLLECTION_RAID": 292,
-      "FIXED_GIFT": 4,
-      "RESEARCH_EGG": 15
-    },
-    "effect_origin_records": 1063,
-    "effect_origin_states": {
-      "LOCKED_UPSTREAM_EFFECT_DECLARATION": 991,
-      "MOVE_NONE_NOT_PLAYABLE": 1,
-      "T04_SOURCE_ADAPTER_CLASSIFIED": 70,
-      "UNRESOLVED_SOURCE_LINEAGE": 1
-    },
-    "generic_z_records": 1063,
-    "generic_z_states": {
-      "DAMAGE_MOVE_SOURCE_RULE": 633,
-      "INTERNAL_Z_MAX_ROW_NOT_ORDINARY_BASE_MOVE": 156,
-      "MOVE_NONE_NOT_A_BASE_MOVE": 1,
-      "STATUS_MOVE_WITH_ADDITIONAL_EFFECT": 273
-    },
-    "hidden_patch_records": 1671,
-    "hidden_patch_states": {
-      "DISTINCT_NORMAL_ABILITY_CAN_TARGET_HIDDEN": 847,
-      "NORMAL_ABILITY_ALREADY_EQUALS_HIDDEN_ID": 57,
-      "NO_HIDDEN_ABILITY_ASSIGNED": 767
-    },
-    "hidden_slot_records": 1671,
-    "link_graph_direct_bl_sites": 4,
-    "link_graph_limited_seeds": 0,
-    "link_graph_nodes": 32,
-    "link_graph_overlap_sites": 0,
-    "link_graph_seeds": 3,
-    "missing_named_link_symbols": 16,
-    "physicality_candidate_table_matches": 1,
-    "runtime_z_records": 1063,
-    "runtime_z_rules": {
-      "CANDIDATE_BASE_SPLIT": 783,
-      "SHELL_SIDE_ARM_SELF_BANK_BASE_SPLIT": 1,
-      "STATUS_SENTINEL_NOT_DAMAGE_SPLIT": 275,
-      "STAT_STAGE_COMPARISON": 2,
-      "TERA_CONDITIONAL_STAT_COMPARISON": 2
-    },
-    "t04_adapters_with_central_queries": 17,
-    "t04_required_source_patch_contracts": 26,
-    "t04_script_origins": {
-      "PROJECT_COMPOSED_SCRIPT": 5,
-      "PROJECT_DYNAMIC_PREPARE_ADAPTER": 3,
-      "UPSTREAM_EFFECT_PARAMETER_ADAPTER": 43,
-      "UPSTREAM_SCRIPT_DELEGATE": 19
-    },
-    "t04_source_adapters": 70,
-    "type_split_mappings": 36,
-    "wild_overlay_entries": 95,
-    "wild_overlay_slots": 294,
-    "z_status_effects": 29
-  },
-  "source_head": "6ea91ae2da54398fdc01bb3d0cf4f89427855ba4",
-  "stage61_unchanged": true,
-  "status": "PASS_CANDIDATE_WIKI_FOLLOWUP_CHECKPOINT",
+  "source_head_at_reconciliation": "2bb1d9c544bc36891d04797c7cca469aeee768d5",
+  "status": "PASS_COMPLETED_WIKI_RUN_RECONCILIATION",
   "task": "USER-20260921-P08-CANDIDATE-WIKI",
-  "tree_sha256": "9077da7cc44baa982a52b60fd1e8d3396dbca1014228d1845419e114b6e0bea3",
-  "two_process_builds_identical": true,
-  "unit": {
-    "errors": 0,
-    "failures": 0,
-    "scope": "CURRENT_CHANGED_WIKI_AUDIT_ONLY",
-    "skips": 0,
-    "tests": 26
-  },
-  "verification_run": 35564248203,
-  "verification_run_reconciled": {
-    "artifact": {
-      "digest": "sha256:1937e60c39c6d3b60df8c192a05709b47cf47379941d20fd7ecbe52c4583dc5a",
-      "expired": false,
-      "id": 10623381727,
-      "name": "pr16-candidate-wiki-cli",
-      "size_in_bytes": 239543
-    },
-    "bytes": 112283459,
-    "candidate": {
-      "crc32": "CC068B4A",
-      "sha256": "46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38",
-      "size": 33554432
-    },
-    "conclusion": "success",
-    "files": 4145,
-    "head_sha": "6ea91ae2da54398fdc01bb3d0cf4f89427855ba4",
-    "id": 35564248203,
-    "internal_links": 277778,
-    "job": {
-      "completed_at": "2026-09-21T05:21:40Z",
-      "conclusion": "success",
-      "id": 106222815086,
-      "name": "wiki",
-      "status": "completed"
-    },
-    "proof_bindings": {
-      "acceptance.json": {
-        "sha256": "bdeddfad6969b543f7dd135c4ae182d14a1035348f2209de7a07fee3bcc8fd83",
-        "size": 7433
-      },
-      "build-11.json": {
-        "sha256": "a91743c9121806f217e9c5a5f0927c5924e814f8c3fde674933e6bbf01585efa",
-        "size": 829
-      },
-      "build-29.json": {
-        "sha256": "a91743c9121806f217e9c5a5f0927c5924e814f8c3fde674933e6bbf01585efa",
-        "size": 829
-      },
-      "check.stderr.txt": {
-        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "size": 0
-      },
-      "check.stdout.json": {
-        "sha256": "4a77e1813be986e086b0c0e88f3dacd04e841cef7516253d0d94ddb6c1ff33a7",
-        "size": 829
-      },
-      "cli-check.json": {
-        "sha256": "58d842fd360ff27e7f73ecc3adcc00cceb7347cedb8a3f39adcf6abd240e6630",
-        "size": 650
-      },
-      "followup-unit.txt": {
-        "sha256": "a264c8f4a57be1e19a20abc687b20b4140387843a7c79bb4660e180e3b76eef4",
-        "size": 2631
-      },
-      "reflected-head.txt": {
-        "sha256": "7b42538b8e56ba75dc614d78fe0e905038c6bdd228e69a1768050500e85826f5",
-        "size": 41
-      }
-    },
-    "reflected_head": "24cc366c71df6a7e982635a33f4374cf965e75e1",
-    "run_url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/35564248203",
-    "scope": "LINK_GRAPH",
-    "status": "completed",
-    "tests": 26,
-    "tree_sha256": "9077da7cc44baa982a52b60fd1e8d3396dbca1014228d1845419e114b6e0bea3",
-    "verification": {
-      "accepted_native_reruns": 0,
-      "active_baseline_changed": false,
-      "actual_check_unchanged_bytes_and_mtimes": true,
-      "arm_builds": 0,
-      "issue18_complete": false,
-      "new_native_runs": 0,
-      "rom_changes": 0,
-      "stage61_unchanged": true,
-      "two_process_builds_identical": true
-    }
-  },
-  "verification_run_status_at_recording": "completed: success（4回のGET・job全step・artifact SHA・検証原本・反映commit親を照合）"
+  "wiki_rebuilds_in_reconciliation": 0
 }

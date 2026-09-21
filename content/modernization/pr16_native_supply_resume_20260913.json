@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "候補Wiki 4145 files、今回差分26試験と2build/純読取checkを検証。Issue18の残りはcandidate_wiki.remaining_work_ja。受入済み監査・nativeの重複実行なし。",
+    "current_stop": "候補Wiki 4145 files、effect/夢特性patch/初期技/Z入口graphの4差分を実装・110試験受入。4回のActionsはpush/upload完了までGETと原本で照合済み。最新Wiki commit 24cc366c71df6a7e982635a33f4374cf965e75e1 / run 35564248203。Issue18全体は未完。残りのsource/caller未結合をcandidate_wiki.remaining_work_jaに固定。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "Issue #18の残件だけを継続。専用CLI/Makefile・今回受入済みsource監査を重複実装せず、remaining_work_jaを参照。native・性能調整・releaseへ先行しない。",
+    "next_step": "Issue18の残件だけを継続。4分野の既存generator/110試験は重複実装せず、残りのcaller・供給・handler結合を証拠に応じて進める。必要な変更影響がない受入済みnative/buildの反復なし。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -832,19 +832,20 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "Issue #18の残件だけを継続。専用CLI/Makefile・今回受入済みsource監査を重複実装せず、remaining_work_jaを参照。native・性能調整・releaseへ先行しない。",
+    "goal_ja": "Issue18の残件だけを継続。4分野の既存generator/110試験は重複実装せず、残りのcaller・供給・handler結合を証拠に応じて進める。必要な変更影響がない受入済みnative/buildの反復なし。",
     "host_write_policy_ja": "新しい実受付のguard開始後は入力/frames/readのみ。施設番号/効果/連勝/party/PC/LRのhost注入は禁止。初期配置fixtureと実入場/正規連勝を区別する。",
     "id": "P08_CANDIDATE_WIKI_REMAINING",
     "read_paths": [
       "content/modernization/pr16_candidate_wiki_acceptance.json",
-      "docs/wiki/p08-candidate-46487d98/README.md",
+      "content/modernization/pr16_candidate_wiki_completed_runs_20260921.json",
       "docs/wiki/p08-candidate-46487d98/RUNTIME_LIMITATIONS.md",
-      "scripts/pr16_candidate_wiki_catalog.py",
-      "scripts/pr16_candidate_wiki_render.py",
-      "scripts/pr16_candidate_wiki_details.py",
-      "scripts/pr16_candidate_wiki_mega_quality.py"
+      "scripts/build_pr16_candidate_wiki.py",
+      "scripts/pr16_candidate_wiki_effect_origin.py",
+      "scripts/pr16_candidate_wiki_hidden_patch.py",
+      "scripts/pr16_candidate_wiki_creation.py",
+      "scripts/pr16_candidate_wiki_link_graph.py"
     ],
-    "stop_rule_ja": "2プロセスbuild同一、実checkのbyte/mtime不変、変更影響に限定した試験を検証。push/uploadは完了GET後に受入。Issue18全体未完・受入native再実行なし。",
+    "stop_rule_ja": "今回の4差分はActions全step・artifact原本・同branch反映まで完了照合済み。残件はsource推定を実行受入に昇格しない。Issue18の全体完了・merge・release・active baseline切替は別判断。",
     "success_observations": [
       "監査残件に限定した差分",
       "Stage61・現候補byte不変",
@@ -10562,7 +10563,7 @@
     ],
     "new_native_runs": 0,
     "followup": "content/modernization/pr16_candidate_wiki_followup.json",
-    "verification_run_status": "in_progress_at_recording",
+    "verification_run_status": "completed_success",
     "cli_complete": true,
     "remaining_source_inventory": {
       "path": "content/modernization/pr16_wiki_remaining_source_inventory.json",
@@ -10633,6 +10634,18 @@
       "wild_overlay_entries": 95,
       "wild_overlay_slots": 294,
       "z_status_effects": 29
+    },
+    "reflected_head": "24cc366c71df6a7e982635a33f4374cf965e75e1",
+    "completion_reconciliation": {
+      "path": "content/modernization/pr16_candidate_wiki_completed_runs_20260921.json",
+      "source_head": "2bb1d9c544bc36891d04797c7cca469aeee768d5",
+      "completed_runs": [
+        35561743057,
+        35562396044,
+        35563498591,
+        35564248203
+      ],
+      "new_scoped_tests_total": 110
     }
   }
 }
