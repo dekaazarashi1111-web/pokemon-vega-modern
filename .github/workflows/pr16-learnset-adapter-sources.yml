@@ -24,15 +24,22 @@ jobs:
           out = root / '.local/pr16-learnset-adapter-sources'
           out.mkdir(parents=True, exist_ok=False)
           paths = subprocess.check_output(['git', 'ls-files', '-z']).decode().split('\0')
-          extensions = {'.py', '.json', '.csv', '.c', '.h', '.s', '.S', '.md'}
-          prefixes = {'config', 'manifests', 'scripts', 'tools', 'src'}
+          extensions = {'.py', '.json', '.jsonl', '.csv', '.c', '.h', '.s', '.S', '.md', '.yml', '.sh'}
+          prefixes = {'config', 'manifests', 'scripts', 'tools', 'src', 'tests', 'tasks'}
+          exact = {'AGENTS.md', 'README.md', 'CHATGPT_RESUME.md', '.gitignore', 'Makefile', 'package.json',
+                   'design/run_log.md', 'design/version_log.md', 'design/current_state.md',
+                   'design/agent_context_map.md', 'design/tasks_next.md', 'design/active_play_baseline.md',
+                   'state/source-lock.json', 'state/task_status.json'}
           inventory, files = [], {}
           for name in sorted(filter(None, paths)):
               p = pathlib.PurePosixPath(name)
               if p.parts[0] in ('config','manifests','scripts','tools','src','content','generated','overlays','vendor'):
                   inventory.append(name)
-              selected = p.parts[0] in prefixes or (p.parts[:2] == ('content','modernization') and len(p.parts) == 3)
-              if not selected or p.suffix not in extensions or 'private' in name.lower():
+              selected = (name in exact or p.parts[0] in prefixes
+                          or (p.parts[:2] == ('content','modernization') and (len(p.parts) == 3 or p.parts[2].startswith('pr16_learnset_')))
+                          or (p.parts[0] == 'docs' and len(p.parts) == 2 and p.name.startswith(('PR16_', 'CHATGPT_WEB_')))
+                          or (p.parts[:2] == ('.github','workflows') and p.name.startswith('pr16-learnset-')))
+              if not selected or (p.suffix not in extensions and name not in exact) or 'private' in name.lower():
                   continue
               file = root / name
               if file.is_symlink() or not file.is_file() or file.stat().st_size > 4000000:
