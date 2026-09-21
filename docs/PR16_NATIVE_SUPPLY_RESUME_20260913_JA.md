@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-Vega181種の原本採取・方法別隔離監査を完了。182ページ/直接9923行、43試験、Actions独立2生成/純読取一致。3群5行の原本衝突と92種2394行の非直接eggを別台帳へ保持し、runtime採用は停止。
+所有者決定の原本衝突3群5行と非直接egg92種2394行の裁定を完了。原作411種の孵化探索順・直接egg表に静的照合。新13試験と独立2生成/純読取PASS、衝突5試験は受入原本を再利用。直接9923行・元Wiki行を保持し、runtime反映0。
 
-**次: Issue19: 保存済みVega原本の3群5行の衝突（リーテイル/ゴートン/ディザソル）を根拠付きで裁定し、92種2394行の進化前等経由eggを原作進化/孵化consumerと照合する。原本の再採取・公式1299件の再生成はしない。**
+**次: Issue19: 裁定済み公式1299件/Vega181種/空owner overlayを入力にruntime全consumer用の後継表と旧候補差分を実装する。Side Change非採用の明示disposition、方法/条件/順序、原作孵化種のeggを保持し、影響範囲だけ後継ROM・Wiki・nativeで検証する。**
 
-原本衝突の採用判断を未解決のままruntimeへ進めない。Side Changeは所有者決定に従い非採用。旧Wiki/候補ROM/受入原本を保持。Issue19全体は未完。
+原本裁定は完了。runtime実装・全consumer/Side Change除外/後継Wiki/影響nativeは未完。旧CURRENT_PRESERVED/PRESERVE_V3等を検証済み新baselineと混同しない。Issue19/18全体・merge/releaseへ昇格しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `9e53b256aeab708f20143509afabe09503094f43`。
-Vega原本隔離監査の完了Actions入力HEAD。branch最新HEAD/native受入HEADとは別。反映commitはgit log、原本runはlearnset_vega_originalを参照。
+証拠のsource HEAD: `04b8ea96ac7244fd0940e9f9075026198869cdf4`。
+Vega原本衝突/非直接egg裁定の完了Actions入力HEAD。branch最新HEADとは別。現在HEADはremoteから取得し、反映commitはgit logで確認する。
 
 ## 最短の再開手順
 
@@ -25,13 +25,13 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_VEGA_ORIGINAL_AUDIT_JA.md`
-- `content/modernization/pr16_vega_original_checkpoint.json`
-- `content/modernization/pr16_vega_original_evidence/source_conflicts.json`
-- `content/modernization/pr16_vega_original_evidence/wiki_nondirect_egg.json`
-- `content/modernization/pr16_vega_original_evidence/source_lock.json`
-- `config/move_port.json`
+- `docs/PR16_VEGA_SOURCE_ADJUDICATION_JA.md`
+- `content/modernization/pr16_vega_adjudication_checkpoint.json`
+- `content/modernization/pr16_vega_adjudication/receipt.json`
+- `content/modernization/pr16_learnset_baseline_checkpoint.json`
+- `content/modernization/pr16_learnset_baseline_evidence/receipt.json`
 - `docs/PR16_LEARNSET_BASELINE_RESET_JA.md`
+- `config/move_port.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -46,7 +46,7 @@ checkは限定source hashと正本間整合性を検査するだけで、GitHub�
 照合抄録: `content/modernization/pr16_bp_spending_verified.json`。
 2026-09-15: run34946969126/job104308573084で、同一candidateの3勝基礎9 BPに既存反復報酬3 BPが加算され12 BPへ確定。通常QOL供給ショップでかわらずのいしを4 BP購入し、残高12→8、所持0→1、Save counter5→6→7→7、通常Save/fresh Continue後の保持をscoped受入。ROM変更0、成功1process/2fresh cores。次はRing。
 
-凍結ROM/ZIP/saveは読み取り専用。原本観測9923行とWikiの進化前等経由行は別layer。owner overlayを増やさない。
+凍結ROM/ZIP/save、旧Wiki・候補・受入原本は不変。非直接egg2394行を進化後のdirect/shared eggへ複製しない。親個体の自然入手/全交配の実機証明は今回のscope外。
 
 ## 候補identityと残件
 
@@ -61,7 +61,7 @@ P08ゲート:
 
 2026-09-15: run34946969126/job104308573084で、同一candidateの3勝基礎9 BPに既存反復報酬3 BPが加算され12 BPへ確定。通常QOL供給ショップでかわらずのいしを4 BP購入し、残高12→8、所持0→1、Save counter5→6→7→7、通常Save/fresh Continue後の保持をscoped受入。ROM変更0、成功1process/2fresh cores。次はRing。 2026-09-18追記: Ring/policyは別scoped候補で完了。BP数値・原本の意味は変更しない。
 
-公式原本隔離済み → Vega原本採取/方法別隔離監査済み → 原本衝突3群/非直接egg92種の裁定 → Side Change非採用を含むengine例外 → runtime全consumer/後継ROM・Wiki/影響native → Issue18限定監査 → 別承認のrelease。
+公式原本隔離済み → Vega原本採取/方法別隔離監査済み → 衝突3群5行/非直接egg92種2394行の裁定済み → Side Change非採用等のruntime明示処理 → 後継ROM・Wiki/影響native → Issue18限定監査 → 別承認のrelease。
 
 ## 再実行・過大主張の禁止
 
@@ -270,7 +270,7 @@ P08ゲート:
 - memcpy/heap/GPU供給とBG定数・属性7slotは本原本を再利用し、次はその保存命令によるreset→template→window連続RAMを検証。候補復元・旧870命令・旧540/1037/786条件・受入済BP/native単独再実行禁止。通常story/IO効果/未読save暗号化ownerは未証明。
 - 保存実BG定数・templateからheap初期化→BG reset/config→属性→通常window→fonts setterの連続明示RAMを本原本から再利用。save3block退避後のRandom停止・callocのCpuSet未読を成功stubにしない。今回条件/旧採取/受入済BP/nativeは単独再実行禁止。次は未読save relocation/暗号化・CpuSet/画面転送・InitFieldMessageBoxの実caller供給。
 - Issue19公式隔離: source/code hash不変なら39試験・CSV全件照合・二重生成は完了artifactを再利用。旧P07履歴1572件を新baseline/空overlayへ再投入しない。
-- Vega181種: 採取run35612400716の182ページと固定ROM観測を再利用。コード/原本hash不変なら43試験/二重生成を反復しない。次は3群5行の衝突と92種の原作進化/孵化意味だけ。
+- Vega181種: 原本9923行/182ページ/43試験、衝突5行/5試験、非直接egg2394行/13試験は保存証拠を再利用。原本採取・公式1299件の再生成・入力不変の単独再検証をしない。3群/92種を未裁定へ戻さず、次はruntime全consumer。
 
 ## 次セッションへ残す更新手順
 
@@ -300,6 +300,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-過去native/checksは元scopeのまま保持。新規43試験・独立2生成・純読取はlearnset_vega_originalの完了原本。採用判定とIssue19全体は未完。
+裁定run35623180576の13試験/2生成/純読取PASS。衝突run35621880869の5試験を再利用。既存native/checksは元scopeのまま。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

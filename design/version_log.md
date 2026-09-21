@@ -6506,3 +6506,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions。採取run35612400716、検証run35614274855、両完了job/全step/artifact digestを照合。Wiki採取1回（https://w.atwiki.jp/altair1/pages/19.html とsource_lockの181個別URL）、後続比較は保存原本のみ。
 - Recovery: 初回記録run35615412670はresumeの既存文書hash不一致でcommit前停止。開始HEAD d0929dd0のSide Change追記本文は不変と照合し、旧2392 bytesのbindingを現行4701 bytesへ同期。入口CHATGPT_RESUMEの既存旧hashも今回の記録本文で同期。公式受入原本の再実行なし。
 - Boundary: 原本衝突の片側を推測で採用しない。Side Change非採用を維持。ROM/ARM/native変更0、旧Wiki・候補・active baseline不変、merge/releaseなし。
+
+
+## 2026-09-21T16:14:03+00:00 — Vega原本衝突・非直接egg裁定完了
+- Task: USER-20260921-LEARNSET-BASELINE-RESET
+- Version: vega-source-adjudication-20260922
+- Status: DONE（source裁定の区切り。runtime適用0、Issue19全体未完）
+- Summary: 所有者ROM優先の3群5行を別台帳で裁定。92種2394行を原作孵化種direct eggへ結合。原本9923行・Wiki行/親注記保持、direct/shared追加0、未解決0、owner overlay追加0。
+- Files changed: 裁定器2本/試験/不足範囲採取器/限定Actions、裁定5出力/9証拠、後継checkpoint/guide、固定引継ぎMD/JSON、両ログ。元source_conflicts/旧checkpoint/公式/native受入原本は不変。
+- Verify: collision5試験run35621880869を再利用、新13試験run35623180576、独立2生成(seed17/53)・純読取byte/mtime不変・ローカル/Actions全出力一致。記録12試験、pr16_resume.py check、diff/changed-final-index guard。採取/native/公式生成の再実行なし。
+- Commit: 本記録を含むcommit。検証HEAD=04b8ea96ac7244fd0940e9f9075026198869cdf4。開始HEAD=df0526687af875a6bc589cb8931a6d083b44aa08。途中c8af78b7/3da7acfe/04b8ea96を同branchへ非force反映。
+- Network: GitHub connector/Actions。欠落進化/孵化範囲の採取run35622433529のみ追加。完了Actions/全step/artifact digest照合、182ページ再取得0。記録run=35624247604。
+- Repair: 開始HEADから未同期のCHATGPT_RESUME/旧Vega監査guideのbinding2件を本文byte不変確認後metadataだけ同期。新しい再開点は固定MD/JSONから後継guideへ。旧歴史は削除しない。
+- Boundary: 原作411種の静的consumer照合であり自然交配/native受入ではない。Side Change効果/AI追加0、ROM/ARM/active baseline変更0、PR16 draft/openのまま、merge/releaseなし。次はruntime全consumer/後継ROM・Wiki/影響native。

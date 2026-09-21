@@ -1,0 +1,129 @@
+{
+  "accepted_native_reruns": 0,
+  "artifact": {
+    "digest": "sha256:73389b7ef882728233182ae039242fa882775143f8cf6734cb63fa2d090bc4e1",
+    "expires_at": "2026-10-21T16:04:31Z",
+    "id": 10649469671,
+    "name": "pr16-vega-breeding-adjudicated",
+    "size_in_bytes": 382660,
+    "workflow_run": {
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_repository_id": 1358127462,
+      "head_sha": "04b8ea96ac7244fd0940e9f9075026198869cdf4",
+      "id": 35623180576,
+      "repository_id": 1358127462
+    }
+  },
+  "checkpoint_path": "content/modernization/pr16_vega_adjudication_checkpoint.json",
+  "evidence_dir": "content/modernization/pr16_vega_breeding_evidence",
+  "files": {
+    "adopted_vega_original_baseline.jsonl": {
+      "sha256": "9daaea8c97a744c0522afc03c157392b3179b5d0a359df97de2f3b1c0da6524f",
+      "size": 1744195
+    },
+    "breeding_families.json": {
+      "sha256": "c40133e37b9bb7c55af841daadcd913879ee71842a770081867bf8132eda4ec5",
+      "size": 338899
+    },
+    "nondirect_egg.jsonl": {
+      "sha256": "50850de6383731d5c9087f8821e2a4e3c5d5123b7e50ea75556358f654acebd8",
+      "size": 2111990
+    },
+    "receipt.json": {
+      "sha256": "de0b78942ecb48a0d9cfb8542d461f180d30f69c12311df78a65ed556881c1a9",
+      "size": 1730
+    },
+    "source_collisions.json": {
+      "sha256": "7e53ca0d4bddfbaa9b641a635dda562f482250b98fc19a2b3c0226c7d9dd2311",
+      "size": 37030
+    }
+  },
+  "focused_tests": 13,
+  "issue19_complete": false,
+  "job_id": 106410995783,
+  "new_native_runs": 0,
+  "official_baseline_reruns": 0,
+  "output_dir": "content/modernization/pr16_vega_adjudication",
+  "owner_overlay_rows_added": 0,
+  "phase": "vega-source-adjudication-20260922",
+  "physical_donor_chain_verified": false,
+  "proof_bindings": {
+    "audit-actions.json": {
+      "sha256": "0c72176ced6e7c796aaacc58ba91c982e094942aa51ed67f8f14bda2ebf2de0b",
+      "size": 3508
+    },
+    "collision-actions.json": {
+      "sha256": "ffc80ccd5acb1e2e2499cb15500ac8be6e5197ae821ac7bba6dc38e3a4a86848",
+      "size": 3215
+    },
+    "collision-unit.txt": {
+      "sha256": "a6719013cd4d3e62c5d5d1f36db9e91f0025413177f3ea6bb836cd516d4995dd",
+      "size": 783
+    },
+    "consumer-disassembly.txt": {
+      "sha256": "b2864e20eafc27892345c0a49ef94f7a1f85b1f961e6474c740c8e044eaf556b",
+      "size": 18182
+    },
+    "original-breeding.json": {
+      "sha256": "a5af5e8f1bda870c324457289c4b09dc9462e7fb08453add24084c3eb1bd6737",
+      "size": 455800
+    },
+    "recording-unit.txt": {
+      "sha256": "4a67c01b96ce008ebc9ab12f02eba3ad75a7a8cc9f9363b8a4f74630d8d697fc",
+      "size": 1815
+    },
+    "source-actions.json": {
+      "sha256": "654ac352c9e2b309e71d0edf19a2baed5c4a110e9d075ac12a084dd28db6659b",
+      "size": 3238
+    },
+    "unit.txt": {
+      "sha256": "384df30a75b8f0c45d94a39ebbea6008a696233ac99b90ce461fc0b69643ebf3",
+      "size": 1922
+    },
+    "verify.json": {
+      "sha256": "6247e9d3c8615b3028ff738b6eb97019580245dbc8938c21664a637bb1781c16",
+      "size": 1346
+    }
+  },
+  "readonly_byte_mtime_unchanged": true,
+  "recording_run_id": 35624247604,
+  "recording_source_head": "2610954a4c3d9e0a52a83e1b2e5c227e73fcb7bc",
+  "recording_tests": 12,
+  "release_ready": false,
+  "reused_collision_tests": {
+    "head": "c8af78b793c554d43230cddeab5ce33ae515a742",
+    "run_id": 35621880869,
+    "tests": 5
+  },
+  "rom_changes": 0,
+  "runtime_applied": false,
+  "source_conflict_groups_resolved": 3,
+  "source_conflict_rows_adjudicated": 5,
+  "source_conflicts_original_unchanged": true,
+  "status": "ACCEPTED_SOURCE_ADJUDICATION_ONLY_RUNTIME_PENDING",
+  "summary": {
+    "issue19_complete": false,
+    "note_scopes": {
+      "HATCH_BASE_REFERENCE": 2336,
+      "NO_BREEDING_NOTE": 1,
+      "SAME_FAMILY_INTERMEDIATE_REFERENCE": 57
+    },
+    "original_consumer_species_checked": 411,
+    "physical_donor_chain_verified": false,
+    "pre_evolution_egg_rows": 2394,
+    "receiver_direct_egg_rows_added": 0,
+    "reference_only_rows": 0,
+    "release_ready": false,
+    "rows": 2394,
+    "runtime_applied": false,
+    "shared_egg_rows_added": 0,
+    "species": 92,
+    "unresolved_rows": 0
+  },
+  "task": "USER-20260921-LEARNSET-BASELINE-RESET",
+  "two_process_outputs_identical": true,
+  "unselected_wiki_rows": 3,
+  "verification_head": "04b8ea96ac7244fd0940e9f9075026198869cdf4",
+  "verification_run_id": 35623180576,
+  "wiki_pages_fetched": 0
+}
