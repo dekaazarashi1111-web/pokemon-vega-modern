@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "task": "USER-20260921-LEARNSET-BASELINE-RESET",
+  "mode": "record-completed",
+  "request_id": "20260921-official-isolation-record-03",
+  "observed_start_head": "15340ce5cfad6a980c34af593655d371f3643cfc",
+  "verification": {
+    "run_id": 35605822056,
+    "source_head": "6216e6d13fe13ed3de08f4a02a9f74d6ba685e75",
+    "artifact_id": 10641504482,
+    "artifact_sha256": "a4b77c345302625b166fbe01817a11464d156da3122dcd5ba6e63024ea56584e"
+  },
+  "expected_blobs": {
+    "scripts/pr16_learnset_baseline_record.py": "4346b7e130224018ff993ec19f4ce84a17a1ccb3",
+    "tests/test_pr16_learnset_baseline_record.py": "cff184958ee1b774ca13d11af8df2bed4bf0a3e3",
+    ".github/workflows/pr16-learnset-baseline-record.yml": "fdcb46d5352a7c92ca942cef730cf70d3616071c"
+  },
+  "new_native_runs_authorized": 0,
+  "accepted_source_generation_rerun": false,
+  "issue19_complete": false
+}
