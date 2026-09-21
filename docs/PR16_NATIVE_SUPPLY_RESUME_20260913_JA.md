@@ -14,8 +14,8 @@
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `6ea91ae2da54398fdc01bb3d0cf4f89427855ba4`。
-最新候補Wikiの検証入力HEAD。branchのリモートHEADではなく、native受入HEADでもない。反映commitはcandidate_wiki.reflected_head、完了Actions照合はcandidate_wiki.completion_reconciliationを参照。自己commit SHAの追記は行わない。
+証拠のsource HEAD: `12f9591049a54bb8b06868ae9ce743e7cce1689c`。
+run35568404816の候補Wiki検証入力HEAD（2026-09-21照合時点）。branchのリモートHEADやnative受入HEADではない。将来の最新値はcandidate_wiki.source_headを参照。反映commitはcandidate_wiki.reflected_head、完了結果はcandidate_wiki.completion_reconciliationが正本。自己commit SHAの追記は行わない。
 
 ## 最短の再開手順
 
@@ -299,6 +299,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-この欄の既存runs/scope_headは過去scopeの履歴として保持。今回の候補Wikiは4回の限定Actionsと完了照合run35564710398がsuccess。全PR checksの成功やnative全回帰を意味しない。最新検証HEADと完了結果はcandidate_wikiを参照。
+この欄の既存runs/scope_headは過去scopeの履歴として保持。候補Wikiの最新run35568404816と完了照合run35569000222はcompleted/successをGETで確認。全PR checksの成功やnative全回帰を意味しない。将来の最新検証HEADと完了結果はcandidate_wikiを参照。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

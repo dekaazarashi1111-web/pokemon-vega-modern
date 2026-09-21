@@ -6458,3 +6458,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 本記録を含むcommit。記録source=595c35551c2a8936d21ca4ba7b4d1c72b8afdd9d、Wiki反映=7da681a41ab694d31022c47a691af33172cc42f7、検証source=12f9591049a54bb8b06868ae9ce743e7cce1689c。
 - Network: capture35566920479はsymbol表上限で停止、35567438143で修復成功（artifact10624750708）。Wiki35568404816/ artifact10625291699のcompleted/success・全step・ZIP SHA・原本・親commitを照合。失敗記録は削除しない。
 - Boundary: ROM変更0・ARM0・native0・受入native再実行0、記録段階のWiki再build0。自動Stage79の7domainは既存PASS cacheを再利用し実行skip。source/byte一致を実入手/使用・間接辺・全handler履歴の受入としない。merge/release/baseline切替なし。
+
+
+## 2026-09-21T06:40:51+00:00 — Wiki検証HEADの引継ぎ表示同期
+- Task: USER-20260921-P08-CANDIDATE-WIKI
+- Version: wiki-resume-identity-20260921
+- Status: DONE
+- Summary: 最終readbackで冒頭observed_headの旧値を検出。run35568404816/source12f9591049a54bb8b06868ae9ce743e7cce1689cへ同期し旧表示をhistory保存。最新値と歴史欄を区別。
+- Files changed: 固定引継ぎMD/JSON、表示同期helper/8境界試験/workflow、両ログ。Wiki本文・receipt・完了report・受入原本は不変。
+- Verify: 今回8試験、record run35569000222 completed/success・全step・反映commit親GET、resume/task graph/diff/final-index guard。既存40+48+18/110試験・Wiki build・native再実行なし。
+- Commit: 本記録を含むcommit。表示同期入力HEAD=c093dcd6289bb2ba018274f6fd95d1eafd109f99。
+- Network: GitHub connector/Actions run35569498593、完了run35569000222と反映53a2f104828f89ab4cc4f6ebcbb7dd2a4f51e5e9のGET。ROM/ARM/native0、Issue18未完・merge/release/baseline切替なし。
