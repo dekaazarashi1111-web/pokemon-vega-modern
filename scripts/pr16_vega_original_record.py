@@ -140,6 +140,17 @@ Side Changeは所有者決定どおり非採用。効果・AI・教え技等を�
     (ROOT / GUIDE).write_text(guide)
     with (ROOT / 'CHATGPT_RESUME.md').open('a') as f:
         f.write('\n\n## Vega181種の原本採取・隔離監査checkpoint\n\n'+f'`{GUIDE}` と `{CHECKPOINT}` を参照。原本9923行/全182ページ/43試験は完了。次工程は3群5行の原本衝突と92種の非直接egg裁定。baseline採用/Issue19全体は未完。保存原本から再開し、公式隔離やWiki全件採取を繰り返さない。\n')
+    # 開始HEAD d0929dd0 の所有者追記だけが旧hashで残っていた。原本dataは変更しない。
+    repair_path = 'docs/PR16_LEARNSET_BASELINE_RESET_JA.md'
+    old_binding = {'size':2392,'sha256':'333ca2ccc0442dd4eb3488211cd2f8098af445dc602eba82b1b58e857e106232'}
+    new_binding = {'size':4701,'sha256':'4924be1b5cfa324fe72cff599758ebb467eae8d25911a085c2d444f3b1f3ab6a'}
+    require(result['source_bindings'][repair_path] == old_binding
+            and identity((ROOT / repair_path).read_bytes()) == new_binding, '既存文書hash修復のscope外')
+    subprocess.run(['git','diff','--exit-code','d0929dd0c016728500bdc1153534b4b2e0b75c69','--',repair_path], cwd=ROOT, check=True)
+    result['source_bindings'][repair_path] = new_binding
+    result.setdefault('source_binding_repairs', []).append({'path':repair_path, 'previous':old_binding,
+        'current':new_binding, 'content_changed':False, 'detected_by_record_run':35615412670,
+        'reason_ja':'開始HEADのSide Change所有者追記に引継ぎhashが未追随。固定開始HEADとbyte一致を確認しmetadataのみ更新。既存公式受入原本は再生成しない。'})
     binding_paths = (*CODE,REQUEST,CHECKPOINT,GUIDE,'CHATGPT_RESUME.md',
                      'scripts/pr16_vega_original_record.py','tests/test_pr16_vega_original_record.py',
                      '.github/workflows/pr16-vega-original-record.yml',*(EVIDENCE+'/'+n for n in copied))
@@ -157,6 +168,7 @@ Side Changeは所有者決定どおり非採用。効果・AI・教え技等を�
 - Verify: 43境界試験・Actions独立2生成/実CLI純読取byte-mtime不変・ローカル期待hash一致。記録10境界試験、resume/task-graph/diff/changed-final-index guard。既受入official/native再実行0。
 - Commit: 本記録を含むcommit。検証HEAD={verification['source_head']}。採取HEAD=9a5cb4172571bfed953c54155c030ef73c845542。
 - Network: GitHub connector/Actions。採取run35612400716、検証run{verification['run_id']}、両完了job/全step/artifact digestを照合。Wiki採取1回（https://w.atwiki.jp/altair1/pages/19.html とsource_lockの181個別URL）、後続比較は保存原本のみ。
+- Recovery: 初回記録run35615412670はresumeの既存文書hash不一致でcommit前停止。開始HEAD d0929dd0のSide Change追記本文は不変と照合し、旧2392 bytesのbindingを現行4701 bytesへ同期。入口CHATGPT_RESUMEの既存旧hashも今回の記録本文で同期。公式受入原本の再実行なし。
 - Boundary: 原本衝突の片側を推測で採用しない。Side Change非採用を維持。ROM/ARM/native変更0、旧Wiki・候補・active baseline不変、merge/releaseなし。
 '''
     for name in ('design/run_log.md','design/version_log.md'):
