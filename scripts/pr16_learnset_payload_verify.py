@@ -263,7 +263,9 @@ def record():
         'proof_bindings':{name:b.identity(data) for name,data in files.items()},
         'superseded_diagnostic':{'run_id':35659288132,'head':'3eb9f551603c55752060f59c92f62f85c3d216fe',
             'status':'FAILURE_IN_AUDIT_OWNER_LOOKUP','reason':'1262 is already official-selected, not one of 191 unselected bindings',
-            'source_or_payload_changes_required':False}}
+            'source_or_payload_changes_required':False},
+        'superseded_record_attempt':{'run_id':35659771966,'reason':'resume observed_head_checks.reason_ja missing; no remote record was committed',
+            'accepted_tests_rerun_for_record_fix':0}}
     (ROOT/CHECKPOINT).write_bytes(s.encode(cp))
     prior_path=ROOT/(BASE+'pr16_learnset_binding_checkpoint.json');prior=s.read_json(prior_path)
     need(prior['run_id']==35656548503 and prior['source_head']==old['head_sha'],'既受入孵化scope不一致')
@@ -275,7 +277,8 @@ def record():
         'semantics':state['observed_head_semantics'],'checks':state['observed_head_checks'],
         'reason_ja':'191枠明示bindingと配置前payloadの完了Actionsへ表示を更新。旧受入範囲は保全。'})
     state['observed_head']=request['source_head'];state['observed_head_semantics']='191枠binding/配置前payloadの完了検証入力HEAD。branch最新HEAD/native受入HEADではない。現在HEADはremoteから取得する。'
-    state['observed_head_checks']={'scope_head':request['source_head'],'runs':[done]}
+    state['observed_head_checks']={'scope_head':request['source_head'],'runs':[done],
+        'reason_ja':'今回の新54試験・独立2プロセス・全128352経路と全byte監査は完了Actionsで照合済み。静的binding/配置前payloadだけの受入で、全PR checksやROM/native全回帰の成功ではない。'}
     state['observed_date_jst']=datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))).date().isoformat()
     goal='Issue19: Floette Eternal(1029)のgift入手契約とP01 learnset apply=falseを明示裁定し、既存贈呈先を消さず固定referenceを採用する。受入payloadを再利用し、188非学習/戦闘姿のruntime owner処理、条件付きconsumer、後継ROMの配置・別Wiki・影響nativeを接続する。'
     state['next_action']=dict(state['next_action'],id='LEARNSET_FLOETTE_ADOPTION_AND_RUNTIME_LINK',goal_ja=goal,
