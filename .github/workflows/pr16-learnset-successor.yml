@@ -1,6 +1,5 @@
 name: pr16-learnset-successor
 run-name: PR16 learnset successor ${{ github.sha }}
-
 on:
   push:
     branches: [codex/modernization-followup-20260908]
@@ -10,14 +9,11 @@ on:
       - tests/test_pr16_learnset_successor.py
       - scripts/record_pr16_learnset_successor.py
   workflow_dispatch:
-
 permissions:
   contents: read
-
 concurrency:
   group: pr16-learnset-successor-${{ github.ref }}
   cancel-in-progress: false
-
 jobs:
   scoped:
     if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
@@ -32,21 +28,22 @@ jobs:
           python3 - <<'PY'
           import fnmatch, hashlib, json, pathlib, subprocess, zipfile
           patterns = [
-              '*AGENTS.md', 'CHATGPT_RESUME.md',
-              'design/version_log.md', 'design/run_log.md',
-              'design/agent_context_map.md',
+              '*AGENTS.md', 'CHATGPT_RESUME.md', 'README.md',
+              'manifests/*.csv', 'tools/modernization*.py',
+              'content/modernization/identity_contract.json',
+              'content/modernization/p03_*',
+              'content/modernization/pr16_candidate_wiki*',
+              'docs/wiki/p08-candidate-46487d98/data/*',
+              'design/version_log.md', 'design/run_log.md', 'design/agent_context_map.md',
               'docs/PR16_*', 'config/*.json',
               'tools/pr16*.py', 'tools/*learnset*.py',
               'scripts/*pr16*.py', 'scripts/taskctl.py',
               'scripts/*guard*.py', 'scripts/*private*.py',
               'tests/test_pr16*.py', 'tests/test_*learnset*.py',
-              'content/modernization/pr16*learnset*',
-              'content/modernization/pr16*vega*',
+              'content/modernization/pr16*learnset*', 'content/modernization/pr16*vega*',
               'content/modernization/pr16_native_supply_resume_20260913.json',
               'content/modernization/pr16_bp_chooser_checkpoint.json',
-              'content/modernization/p08_remaining_work.json',
-              'content/expansion/*.json', 'content/expansion/*.csv',
-              '.github/workflows/pr16*',
+              'content/modernization/p08_remaining_work.json', '.github/workflows/pr16*',
           ]
           names = subprocess.check_output(['git', 'ls-files', '-z']).decode().split('\0')
           selected = sorted(p for p in names if p and any(fnmatch.fnmatch(p, x) for x in patterns))
