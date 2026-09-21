@@ -1,0 +1,58 @@
+name: pr16-learnset-floette-source
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - scripts/pr16_learnset_floette_source.py
+      - .github/workflows/pr16-learnset-floette-source.yml
+permissions:
+  contents: read
+concurrency:
+  group: pr16-learnset-floette-source
+  cancel-in-progress: false
+jobs:
+  fixed-reference:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: 固定原本の読み取り専用復元
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-learnset-floette-source/assets
+          tag=$(python3 -c 'import json; print(json.load(open("config/github_private_environment.json"))["release"]["tag"])')
+          gh release download "$tag" --pattern pokemon-vega-private-env-v1-modernization-inputs.zip --dir .local/pr16-learnset-floette-source/assets
+          python3 -B - <<'PY'
+          import json, pathlib, sys
+          sys.path.insert(0,'scripts')
+          from github_private_environment import restore_archive
+          root=pathlib.Path('.').resolve()
+          cfg=json.loads((root/'config/github_private_environment.json').read_bytes())
+          name='pokemon-vega-private-env-v1-modernization-inputs.zip'
+          bound=next(a for a in cfg['archives'] if a['name']==name)
+          restore_archive(root,root/'.local/pr16-learnset-floette-source/assets'/name,bound,False)
+          PY
+      - name: 未採用のEternal参考1件をCSVと照合
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B scripts/pr16_learnset_floette_source.py --zip 'userfile/imports/modernization_p01/Pokemon_Vega_Stage61_技習得品質改善版_v1.3.0_20260905.zip' --output .local/pr16-learnset-floette-source/proof
+          git diff --exit-code
+          test -z "$(git status --porcelain --untracked-files=no)"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr16-learnset-floette-source
+          path: .local/pr16-learnset-floette-source/proof/
+          if-no-files-found: error
+          retention-days: 30
