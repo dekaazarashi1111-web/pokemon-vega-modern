@@ -415,13 +415,24 @@
   "issue18_complete": false,
   "new_native_runs": 0,
   "remaining_work_ja": [
-    "野生初期技と固定配布の実movesetを全経路抽出し、推測と区別する。",
+    "追加野生95行・collection配布18/Floette1・collection raid292を現候補level表の初期技source規則に結合済み。残りは全通常野生header/既存story配布、現compiled初期化caller・マクロ、生成後form変更/custom技。条件付き計算を実生成技受入にしない。",
     "汎用Zの実行時split規則・固定physicality表・候補署名を照合済み。残りはcompiled consumer入口のcallgraph同定であり、table/pointer値一致だけを実行証拠にしない。",
     "夢特性パッチは全1671slotの適用条件とBP供給source/解禁を分類済み。残りは現候補のcompiled field callback・種族accessor・通常初回供給caller・育て屋の対応。source分類を実入手/使用受入にしない。",
     "T04全70アダプターのsource由来を分類済み。残りは未結合技[511]の由来、上流宣言技のlocal patch/全handler履歴、候補compiled dispatch対応。source分類をnative受入にしない。"
   ],
   "schema_version": 1,
   "summary": {
+    "creation_declared_routes": 311,
+    "creation_profile_species": 470,
+    "creation_profile_states": {
+      "SOURCE_RULE_APPLIED_TO_CANDIDATE_ROWS": 4776
+    },
+    "creation_profiles": 4776,
+    "creation_route_kinds": {
+      "COLLECTION_RAID": 292,
+      "FIXED_GIFT": 4,
+      "RESEARCH_EGG": 15
+    },
     "effect_origin_records": 1063,
     "effect_origin_states": {
       "LOCKED_UPSTREAM_EFFECT_DECLARATION": 991,
@@ -462,6 +473,8 @@
     },
     "t04_source_adapters": 70,
     "type_split_mappings": 36,
+    "wild_overlay_entries": 95,
+    "wild_overlay_slots": 294,
     "z_status_effects": 29
   }
 }

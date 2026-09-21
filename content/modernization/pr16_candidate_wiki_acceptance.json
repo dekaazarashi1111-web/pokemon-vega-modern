@@ -1,7 +1,7 @@
 {
   "active_baseline_changed": false,
   "arm_builds": 0,
-  "bytes": 107908829,
+  "bytes": 112260519,
   "candidate": {
     "crc32": "CC068B4A",
     "sha256": "46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38",
@@ -24,18 +24,16 @@
     "changed_snapshot_files": [
       "CODEX_INDEX.md",
       "CONSUMER_AUDIT.md",
-      "HIDDEN_ABILITY_INDEX.md",
-      "HIDDEN_PATCH_AUDIT.md",
+      "CREATION_MOVESET_AUDIT.md",
       "README.md",
       "RUNTIME_LIMITATIONS.md",
+      "data/creation_audit.json",
+      "data/creation_profiles.jsonl",
       "data/followup_audit.json",
-      "data/hidden_abilities.jsonl",
-      "data/hidden_patch_audit.json",
-      "data/hidden_supply_rules.json",
       "data/index.json",
       "data/provenance.json",
       "data/species.jsonl",
-      "items/943.md",
+      "data/wild_overlay_creation.json",
       "pokemon/0.md",
       "pokemon/1.md",
       "pokemon/10.md",
@@ -1714,11 +1712,11 @@
     "stage61_unchanged": true,
     "status": "PASS_WIKI_BUILD_CHECK",
     "two_process_builds_identical": true,
-    "unchanged_snapshot_files": 2454
+    "unchanged_snapshot_files": 2460
   },
   "dedicated_cli": {
     "check_writes": 0,
-    "current_scoped_tests": 26,
+    "current_scoped_tests": 32,
     "make_build": "pr16-candidate-wiki",
     "make_check": "pr16-candidate-wiki-check",
     "path": "scripts/build_pr16_candidate_wiki.py"
@@ -1737,8 +1735,8 @@
       "run": 35531068177
     }
   ],
-  "files": 4139,
-  "internal_links": 277453,
+  "files": 4143,
+  "internal_links": 277771,
   "issue18_complete": false,
   "issue_number": 18,
   "mega_mapping_summary": {
@@ -1757,10 +1755,10 @@
   "new_native_runs": 0,
   "output": "docs/wiki/p08-candidate-46487d98",
   "previous_snapshot": {
-    "bytes": 102958868,
-    "files": 4137,
-    "source_head": "69100d45363f7c22ad6d6b87dbdfab9aa15d68c4",
-    "tree_sha256": "a84488bfa3a2412507bc5b1a851d4c75baec1023f84302a9672e2bcb6c560e03",
+    "bytes": 107908829,
+    "files": 4139,
+    "source_head": "a2307c7b7fafd6f50913d3effbe49cc500b18070",
+    "tree_sha256": "ac7da5922bc465b4b8467504da51e0971e5cd903abf4b4bcd424cb24bf742b34",
     "unit": {
       "errors": 0,
       "failures": 0,
@@ -1768,7 +1766,7 @@
       "skips": 0,
       "tests": 26
     },
-    "verification_run": 35561743057
+    "verification_run": 35562396044
   },
   "prior_transfer_run": {
     "conclusion": "success",
@@ -1805,7 +1803,7 @@
     "source_head": "ae92584b07317530ba585772be6fb9879102a94f"
   },
   "remaining_work_ja": [
-    "野生初期技と固定配布の実movesetを全経路抽出し、推測と区別する。",
+    "追加野生95行・collection配布18/Floette1・collection raid292を現候補level表の初期技source規則に結合済み。残りは全通常野生header/既存story配布、現compiled初期化caller・マクロ、生成後form変更/custom技。条件付き計算を実生成技受入にしない。",
     "汎用Zの実行時split規則・固定physicality表・候補署名を照合済み。残りはcompiled consumer入口のcallgraph同定であり、table/pointer値一致だけを実行証拠にしない。",
     "夢特性パッチは全1671slotの適用条件とBP供給source/解禁を分類済み。残りは現候補のcompiled field callback・種族accessor・通常初回供給caller・育て屋の対応。source分類を実入手/使用受入にしない。",
     "T04全70アダプターのsource由来を分類済み。残りは未結合技[511]の由来、上流宣言技のlocal patch/全handler履歴、候補compiled dispatch対応。source分類をnative受入にしない。"
@@ -1814,6 +1812,17 @@
   "schema_version": 1,
   "scope": "VERIFIED_DOCUMENTATION_SNAPSHOT",
   "source_audit_summary": {
+    "creation_declared_routes": 311,
+    "creation_profile_species": 470,
+    "creation_profile_states": {
+      "SOURCE_RULE_APPLIED_TO_CANDIDATE_ROWS": 4776
+    },
+    "creation_profiles": 4776,
+    "creation_route_kinds": {
+      "COLLECTION_RAID": 292,
+      "FIXED_GIFT": 4,
+      "RESEARCH_EGG": 15
+    },
     "effect_origin_records": 1063,
     "effect_origin_states": {
       "LOCKED_UPSTREAM_EFFECT_DECLARATION": 991,
@@ -1854,21 +1863,23 @@
     },
     "t04_source_adapters": 70,
     "type_split_mappings": 36,
+    "wild_overlay_entries": 95,
+    "wild_overlay_slots": 294,
     "z_status_effects": 29
   },
-  "source_head": "a2307c7b7fafd6f50913d3effbe49cc500b18070",
+  "source_head": "3969be6bfb4083ce4cb1e5dd48f0697a62665127",
   "stage61_unchanged": true,
   "status": "PASS_CANDIDATE_WIKI_FOLLOWUP_CHECKPOINT",
   "task": "USER-20260921-P08-CANDIDATE-WIKI",
-  "tree_sha256": "ac7da5922bc465b4b8467504da51e0971e5cd903abf4b4bcd424cb24bf742b34",
+  "tree_sha256": "7b05cb160965feb5f50106747fe2f53ca4509e3e0e23403c6917243ded6cb392",
   "two_process_builds_identical": true,
   "unit": {
     "errors": 0,
     "failures": 0,
     "scope": "CURRENT_CHANGED_WIKI_AUDIT_ONLY",
     "skips": 0,
-    "tests": 26
+    "tests": 32
   },
-  "verification_run": 35562396044,
+  "verification_run": 35563498591,
   "verification_run_status_at_recording": "in_progress: 差分試験・build/check成功。push/upload完了は次のGETで照合。"
 }

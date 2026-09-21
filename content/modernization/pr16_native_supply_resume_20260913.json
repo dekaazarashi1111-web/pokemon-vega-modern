@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "候補Wiki 4139 files、今回差分26試験と2build/純読取checkを検証。Issue18の残りはcandidate_wiki.remaining_work_ja。受入済み監査・nativeの重複実行なし。",
+    "current_stop": "候補Wiki 4143 files、今回差分32試験と2build/純読取checkを検証。Issue18の残りはcandidate_wiki.remaining_work_ja。受入済み監査・nativeの重複実行なし。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -10552,10 +10552,10 @@
     },
     "snapshot_complete": true,
     "issue18_complete": false,
-    "source_head": "a2307c7b7fafd6f50913d3effbe49cc500b18070",
-    "verification_run": 35562396044,
+    "source_head": "3969be6bfb4083ce4cb1e5dd48f0697a62665127",
+    "verification_run": 35563498591,
     "remaining_work_ja": [
-      "野生初期技と固定配布の実movesetを全経路抽出し、推測と区別する。",
+      "追加野生95行・collection配布18/Floette1・collection raid292を現候補level表の初期技source規則に結合済み。残りは全通常野生header/既存story配布、現compiled初期化caller・マクロ、生成後form変更/custom技。条件付き計算を実生成技受入にしない。",
       "汎用Zの実行時split規則・固定physicality表・候補署名を照合済み。残りはcompiled consumer入口のcallgraph同定であり、table/pointer値一致だけを実行証拠にしない。",
       "夢特性パッチは全1671slotの適用条件とBP供給source/解禁を分類済み。残りは現候補のcompiled field callback・種族accessor・通常初回供給caller・育て屋の対応。source分類を実入手/使用受入にしない。",
       "T04全70アダプターのsource由来を分類済み。残りは未結合技[511]の由来、上流宣言技のlocal patch/全handler履歴、候補compiled dispatch対応。source分類をnative受入にしない。"
@@ -10570,9 +10570,20 @@
       "run_id": 35558161437,
       "scope": "LOCKED_SOURCE_INVENTORY_NOT_RUNTIME_ACCEPTANCE"
     },
-    "files": 4139,
-    "tree_sha256": "ac7da5922bc465b4b8467504da51e0971e5cd903abf4b4bcd424cb24bf742b34",
+    "files": 4143,
+    "tree_sha256": "7b05cb160965feb5f50106747fe2f53ca4509e3e0e23403c6917243ded6cb392",
     "source_audit_summary": {
+      "creation_declared_routes": 311,
+      "creation_profile_species": 470,
+      "creation_profile_states": {
+        "SOURCE_RULE_APPLIED_TO_CANDIDATE_ROWS": 4776
+      },
+      "creation_profiles": 4776,
+      "creation_route_kinds": {
+        "COLLECTION_RAID": 292,
+        "FIXED_GIFT": 4,
+        "RESEARCH_EGG": 15
+      },
       "effect_origin_records": 1063,
       "effect_origin_states": {
         "LOCKED_UPSTREAM_EFFECT_DECLARATION": 991,
@@ -10613,6 +10624,8 @@
       },
       "t04_source_adapters": 70,
       "type_split_mappings": 36,
+      "wild_overlay_entries": 95,
+      "wild_overlay_slots": 294,
       "z_status_effects": 29
     }
   }

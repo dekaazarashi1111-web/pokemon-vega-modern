@@ -25,6 +25,17 @@
   "issue18_complete": false,
   "latest_checkpoint": {
     "audit_summary": {
+      "creation_declared_routes": 311,
+      "creation_profile_species": 470,
+      "creation_profile_states": {
+        "SOURCE_RULE_APPLIED_TO_CANDIDATE_ROWS": 4776
+      },
+      "creation_profiles": 4776,
+      "creation_route_kinds": {
+        "COLLECTION_RAID": 292,
+        "FIXED_GIFT": 4,
+        "RESEARCH_EGG": 15
+      },
       "effect_origin_records": 1063,
       "effect_origin_states": {
         "LOCKED_UPSTREAM_EFFECT_DECLARATION": 991,
@@ -65,9 +76,11 @@
       },
       "t04_source_adapters": 70,
       "type_split_mappings": 36,
+      "wild_overlay_entries": 95,
+      "wild_overlay_slots": 294,
       "z_status_effects": 29
     },
-    "new_tests": 26,
+    "new_tests": 32,
     "result": {
       "accepted_native_reruns": 0,
       "active_baseline_changed": false,
@@ -76,18 +89,16 @@
       "changed_snapshot_files": [
         "CODEX_INDEX.md",
         "CONSUMER_AUDIT.md",
-        "HIDDEN_ABILITY_INDEX.md",
-        "HIDDEN_PATCH_AUDIT.md",
+        "CREATION_MOVESET_AUDIT.md",
         "README.md",
         "RUNTIME_LIMITATIONS.md",
+        "data/creation_audit.json",
+        "data/creation_profiles.jsonl",
         "data/followup_audit.json",
-        "data/hidden_abilities.jsonl",
-        "data/hidden_patch_audit.json",
-        "data/hidden_supply_rules.json",
         "data/index.json",
         "data/provenance.json",
         "data/species.jsonl",
-        "items/943.md",
+        "data/wild_overlay_creation.json",
         "pokemon/0.md",
         "pokemon/1.md",
         "pokemon/10.md",
@@ -1766,10 +1777,10 @@
       "stage61_unchanged": true,
       "status": "PASS_WIKI_BUILD_CHECK",
       "two_process_builds_identical": true,
-      "unchanged_snapshot_files": 2454
+      "unchanged_snapshot_files": 2460
     },
-    "source_head": "a2307c7b7fafd6f50913d3effbe49cc500b18070",
-    "verification_run": 35562396044
+    "source_head": "3969be6bfb4083ce4cb1e5dd48f0697a62665127",
+    "verification_run": 35563498591
   },
   "new_native_runs": 0,
   "prior_verification": {

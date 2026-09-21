@@ -52,3 +52,5 @@ raw登録77行のうち、正逆対応を確認できたメガは76行です。�
 [技effectのsource由来・残件](EFFECT_ORIGIN_AUDIT.md)
 
 [夢特性パッチ：種族別適用条件・供給source・未受入範囲](HIDDEN_PATCH_AUDIT.md)
+
+[野生・配布・raid初期技のsource規則と残件](CREATION_MOVESET_AUDIT.md)
