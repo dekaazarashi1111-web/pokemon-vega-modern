@@ -11,50 +11,37 @@ concurrency:
   group: pr16-vega-original-baseline
   cancel-in-progress: false
 jobs:
-  source-snapshot:
+  capture-original:
     if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
     runs-on: ubuntu-24.04
-    timeout-minutes: 5
+    timeout-minutes: 20
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
     steps:
       - uses: actions/checkout@v4
-      - name: Git管理済みtextだけを固定HEADから受渡し
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: 原作専用の19境界だけを検証
         shell: bash
         run: |
           set -euo pipefail
-          python3 - <<'PY'
-          import hashlib, json, os, pathlib, subprocess, zipfile
-          root = pathlib.Path('.').resolve()
-          out = root / '.local/pr16-vega-original-source'
-          out.mkdir(parents=True, exist_ok=False)
-          roots = ('tools/', 'scripts/', 'tests/', 'config/', 'content/', 'infra/')
-          names = {'AGENTS.md', 'CHATGPT_RESUME.md', '.gitignore', 'design/run_log.md', 'design/version_log.md', 'design/agent_context_map.md', 'tasks/task_graph.json'}
-          suffixes = {'.py', '.md', '.json', '.jsonl', '.csv', '.yml', '.yaml', '.c', '.h', '.inc', '.txt', '.toml'}
-          files = subprocess.check_output(['git', 'ls-files', '-z']).decode().split('\0')
-          manifest = {'source_head': os.environ['GITHUB_SHA'], 'run_id': int(os.environ['GITHUB_RUN_ID']), 'files': {}}
-          with zipfile.ZipFile(out / 'source.zip', 'w', zipfile.ZIP_DEFLATED) as archive:
-              for name in sorted(filter(None, files)):
-                  wanted = name in names or name.startswith(roots) or name.startswith('docs/PR16_') or name == 'docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md'
-                  path = root / name
-                  if not wanted or path.suffix not in suffixes and name not in names:
-                      continue
-                  if path.is_symlink() or not path.is_file():
-                      continue
-                  data = path.read_bytes()
-                  try:
-                      data.decode('utf-8')
-                  except UnicodeDecodeError:
-                      continue
-                  if b'\0' in data:
-                      continue
-                  archive.writestr(name, data)
-                  manifest['files'][name] = {'size': len(data), 'sha256': hashlib.sha256(data).hexdigest()}
-          (out / 'source-identity.json').write_text(json.dumps(manifest, ensure_ascii=False, sort_keys=True, indent=2) + '\n')
-          subprocess.run(['git', 'diff', '--exit-code'], check=True)
-          print(json.dumps({'status': 'READONLY_TRACKED_TEXT_SNAPSHOT', 'source_head': manifest['source_head'], 'files': len(manifest['files']), 'native_runs': 0, 'rom_changes': 0}))
-          PY
+          mkdir -p .local/pr16-vega-original-proof .local/pr16-vega-original-assets
+          python3 -B -m unittest tests.test_pr16_vega_original_baseline -v 2>&1 | tee .local/pr16-vega-original-proof/unit.log
+      - name: 固定archiveから原作Vegaだけを読みWikiと一度だけ採取
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          tag=$(python3 -c 'import json; print(json.load(open("config/github_private_environment.json"))["release"]["tag"])')
+          gh release download "$tag" --pattern pokemon-vega-private-env-v1-build-stages.zip --dir .local/pr16-vega-original-assets
+          python3 -B scripts/pr16_vega_original_collect.py --archive .local/pr16-vega-original-assets/pokemon-vega-private-env-v1-build-stages.zip --output .local/pr16-vega-original-proof/capture
+          git diff --exit-code
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
-          name: pr16-vega-original-source
-          path: .local/pr16-vega-original-source/
+          name: pr16-vega-original-capture
+          path: .local/pr16-vega-original-proof/
           if-no-files-found: error
-          retention-days: 7
+          retention-days: 30
