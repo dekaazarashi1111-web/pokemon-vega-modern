@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "候補Wiki 4134 files、今回差分24試験と2build/純読取checkを検証。Issue18の残りはcandidate_wiki.remaining_work_ja。受入済み監査・nativeの重複実行なし。",
+    "current_stop": "候補Wiki 4134 files、今回差分26試験と2build/純読取checkを検証。Issue18の残りはcandidate_wiki.remaining_work_ja。受入済み監査・nativeの重複実行なし。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -10552,8 +10552,8 @@
     },
     "snapshot_complete": true,
     "issue18_complete": false,
-    "source_head": "66a5d9d662279673b084cfdc42da5a343e0fe2c8",
-    "verification_run": 35559173404,
+    "source_head": "4659196b5f6502792e1f3165c0f2d0c19d5731e6",
+    "verification_run": 35559624000,
     "remaining_work_ja": [
       "野生初期技と固定配布の実movesetを全経路抽出し、推測と区別する。",
       "汎用Zの実行時split規則・固定physicality表・候補署名を照合済み。残りはcompiled consumer入口のcallgraph同定であり、table/pointer値一致だけを実行証拠にしない。",
@@ -10571,7 +10571,7 @@
       "scope": "LOCKED_SOURCE_INVENTORY_NOT_RUNTIME_ACCEPTANCE"
     },
     "files": 4134,
-    "tree_sha256": "6f4e05fb29128334da12d74c514522cfbab2930dc7696d2be788934a334754f5",
+    "tree_sha256": "813af6d3dde34de69a442e2b33205937293cf1550eefb7b8cab221b69ebf995a",
     "source_audit_summary": {
       "generic_z_records": 1063,
       "generic_z_states": {
@@ -10581,7 +10581,7 @@
         "STATUS_MOVE_WITH_ADDITIONAL_EFFECT": 273
       },
       "hidden_slot_records": 1671,
-      "physicality_candidate_table_matches": 0,
+      "physicality_candidate_table_matches": 1,
       "runtime_z_records": 1063,
       "runtime_z_rules": {
         "CANDIDATE_BASE_SPLIT": 783,

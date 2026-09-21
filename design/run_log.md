@@ -9084,3 +9084,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 本記録を含むcommit。検証source HEAD=66a5d9d662279673b084cfdc42da5a343e0fe2c8。
 - Network: GitHub connector/Actions run35559173404。run全体はpush/upload前のin_progressとして記録。
 - Boundary: ROM変更0、ARM0、native0。既存受入試験は影響なしに再実行しない。Issue18・merge・release・active baseline切替なし。失敗run35535019570は検証成功/記録失敗を区別してfollowup JSONに保存。
+
+
+## 2026-09-21T04:04:44+00:00 — USER-20260921-P08-CANDIDATE-WIKI / Wiki followup checkpoint
+- Task: USER-20260921-P08-CANDIDATE-WIKI
+- Status: DONE（今回の限定範囲。Issue18全体は継続）
+- Summary: {"generic_z_records": 1063, "generic_z_states": {"DAMAGE_MOVE_SOURCE_RULE": 633, "INTERNAL_Z_MAX_ROW_NOT_ORDINARY_BASE_MOVE": 156, "MOVE_NONE_NOT_A_BASE_MOVE": 1, "STATUS_MOVE_WITH_ADDITIONAL_EFFECT": 273}, "hidden_slot_records": 1671, "physicality_candidate_table_matches": 1, "runtime_z_records": 1063, "runtime_z_rules": {"CANDIDATE_BASE_SPLIT": 783, "SHELL_SIDE_ARM_SELF_BANK_BASE_SPLIT": 1, "STATUS_SENTINEL_NOT_DAMAGE_SPLIT": 275, "STAT_STAGE_COMPARISON": 2, "TERA_CONDITIONAL_STAT_COMPARISON": 2}, "type_split_mappings": 36, "z_status_effects": 29}
+- Files changed: Wiki生成器/CLI/差分試験、workflow、Makefile、候補Wiki、receipt/followup JSON、固定引継ぎMD/JSON、両ログ。
+- Verify: 追加26試験、seed11/29 build一致、実check byte/mtime不変、内部リンク、Stage61/active baseline保護、resume/task graph/diff/changed-final-index guard。受入native再実行0。
+- Commit: 本記録を含むcommit。検証source HEAD=4659196b5f6502792e1f3165c0f2d0c19d5731e6。
+- Network: GitHub connector/Actions run35559624000。run全体はpush/upload前のin_progressとして記録。
+- Boundary: ROM変更0、ARM0、native0。既存受入試験は影響なしに再実行しない。Issue18・merge・release・active baseline切替なし。失敗run35535019570は検証成功/記録失敗を区別してfollowup JSONに保存。

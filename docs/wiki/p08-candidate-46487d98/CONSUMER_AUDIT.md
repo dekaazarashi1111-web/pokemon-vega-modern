@@ -295,7 +295,7 @@
       "STATUS_MOVE_WITH_ADDITIONAL_EFFECT": 273
     },
     "hidden_slot_records": 1671,
-    "physicality_candidate_table_matches": 0,
+    "physicality_candidate_table_matches": 1,
     "runtime_z_records": 1063,
     "runtime_z_rules": {
       "CANDIDATE_BASE_SPLIT": 783,

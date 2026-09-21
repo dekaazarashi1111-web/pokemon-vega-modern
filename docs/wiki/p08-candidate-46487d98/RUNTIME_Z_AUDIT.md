@@ -46,11 +46,25 @@
     "candidate_native_acceptance": "DEFERRED_AUDIT",
     "compiled_consumer_entry_binding": "DEFERRED_AUDIT",
     "evidence": "EXACT_CANDIDATE_ROM",
-    "matches": [],
+    "matches": [
+      {
+        "address": "0x09040672",
+        "aligned_pointer_value_sites": [
+          "0x090D64D4",
+          "0x090D6528"
+        ]
+      }
+    ],
     "pointer_values_are_not_callgraph_proof": true,
-    "signature_sha256": "03bf3b8653d8da52410c6fd510d69c11c2d77168e315618538f9942660171d49",
+    "signature_sha256": "6e14b8d104448890e2fc2478e399ca78ba7c47723289cfa950f35759438e242b",
     "signature_size": 6,
-    "status": "NO_CANDIDATE_BYTE_MATCH"
+    "status": "BYTE_TABLE_FOUND",
+    "terminator": 65278,
+    "terminator_source": {
+      "definition": ".equ MOVE_TABLES_TERMIN, 0xFEFE",
+      "line": 11,
+      "path": "assembly/data/move_tables.s"
+    }
   },
   "physicality_move_keys": [
     "MOVE_KEY_PHOTONGEYSER",
