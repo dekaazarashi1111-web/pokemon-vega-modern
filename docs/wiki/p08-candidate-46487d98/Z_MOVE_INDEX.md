@@ -989,3 +989,5 @@ Species + Item + base Move → Z Move の表を候補byteと照合していま�
 [汎用Zの実行時split・候補table監査](RUNTIME_Z_AUDIT.md)
 
 [Z関連入口のcompiled構造graphと未解決callee](LINK_GRAPH_AUDIT.md)
+
+[保存ELFの全body照合・名前付きcallee・未解決差分](SAVED_LINK_AUDIT.md)

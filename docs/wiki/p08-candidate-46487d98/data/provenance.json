@@ -319,6 +319,10 @@
       "sha256": "2accef3c5cb3e45e3b032035acfbc727b2785deafd652a45f56ca0db3ebbf121",
       "size": 8066
     },
+    "config/move_port.json": {
+      "sha256": "ded26093f0e5b67443e11ec20691f9a8887e50bd3f693439e311f9a7aac32d72",
+      "size": 3752
+    },
     "config/stage61_wild_overlay_rate_policy.json": {
       "sha256": "1dc621a1ab6e5d7498b1611ca3f01c777c6faa1d49619329220b718f19e17792",
       "size": 779
@@ -374,6 +378,10 @@
     "content/modernization/pr16_candidate_wiki_p07_source_rows.json": {
       "sha256": "f1c1e361f99d5da9fd29077874856b4c5e92fd1ed87cce6d8cc80a70356d5766",
       "size": 675110
+    },
+    "content/modernization/pr16_candidate_wiki_saved_link_sources.json": {
+      "sha256": "8a85f18fa4f4e7d82704c4f29e327d3c0e8d8c09f3ddc03fc46df5ce67b6ccaf",
+      "size": 70153
     },
     "content/modernization/pr16_candidate_wiki_source_model.json": {
       "sha256": "ba3f0609c346ccc8f1c0acad7960ef508d32dc7babbf59a0400d80427c748150",
@@ -495,9 +503,13 @@
       "sha256": "374dcfc9e40d36f9fd3019c0191d52e278e495760fad666f445fb57d99d30817",
       "size": 54175
     },
+    "scripts/build_move_port.py": {
+      "sha256": "3880b373b32bbcd2340243f6aebc1927d1a42b84ca264a45468acdcc8993c0cd",
+      "size": 55655
+    },
     "scripts/build_pr16_candidate_wiki.py": {
-      "sha256": "13c1ab5ffc9a9584213ba40812d3d937898bf0d4da56ddb0d83f16d98ca4688d",
-      "size": 6470
+      "sha256": "6416519091182d7d222e92a693cf16b7ebab507194b3c24ea098d14d6b46ea8b",
+      "size": 6658
     },
     "scripts/pr16_candidate_wiki_catalog.py": {
       "sha256": "9b05f0641ebf92ad51ca1444a734c792f7e46f69db4beaddd34b5a6f65a68f08",
@@ -547,6 +559,10 @@
       "sha256": "cfc6424bad0c40fc4fe50cdabad3014a16ebf7f42cbede8b04845345a1bbb601",
       "size": 10399
     },
+    "scripts/pr16_candidate_wiki_saved_link.py": {
+      "sha256": "7398db4042a5748ed0433f7b4feddd782290b623e9617433f4ba40e68cc5b521",
+      "size": 16809
+    },
     "scripts/pr16_p08_impact.py": {
       "sha256": "d454d6e9be42c935e1bc83d22723dd12d83e67f185996fc778e15e0cb71dd835",
       "size": 13808
@@ -554,6 +570,14 @@
     "scripts/pr16_saved_recipe.py": {
       "sha256": "efc59531e7d657c4e16b66fb73b17e68bc1f754b85f95d1473bae32f4ea962df",
       "size": 7437
+    },
+    "scripts/pr16_wiki_elf_symbols.py": {
+      "sha256": "1ebc50e792db9570ad746eb83d4e76b2c642bf27ba6d954382488c390a32c2af",
+      "size": 5476
+    },
+    "scripts/pr16_wiki_saved_link_snapshot.py": {
+      "sha256": "83a14f61b7bcecc15d0a9ebfbbd01291cb00f5d5a87670297e39a310ee4a7244",
+      "size": 3333
     },
     "scripts/pr16_wiki_source_snapshot.py": {
       "sha256": "e1d30c7d8ea3b7d7ab029e887a51880a66e8997fbe0d03eb9af59dba5a529ef4",

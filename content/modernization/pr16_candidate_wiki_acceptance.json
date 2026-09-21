@@ -1,7 +1,7 @@
 {
   "active_baseline_changed": false,
   "arm_builds": 0,
-  "bytes": 112283459,
+  "bytes": 112667138,
   "candidate": {
     "crc32": "CC068B4A",
     "sha256": "46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38",
@@ -35,14 +35,29 @@
     "changed_snapshot_files": [
       "CODEX_INDEX.md",
       "CONSUMER_AUDIT.md",
+      "CREATION_MOVESET_AUDIT.md",
+      "EFFECT_ORIGIN_AUDIT.md",
+      "HIDDEN_ABILITY_INDEX.md",
+      "HIDDEN_PATCH_AUDIT.md",
       "LINK_GRAPH_AUDIT.md",
+      "MOVE_511_LINEAGE.md",
       "README.md",
       "RUNTIME_LIMITATIONS.md",
+      "RUNTIME_Z_AUDIT.md",
+      "SAVED_LINK_AUDIT.md",
       "Z_MOVE_INDEX.md",
+      "data/creation_audit.json",
+      "data/effect_origin_audit.json",
+      "data/effect_origins.jsonl",
       "data/followup_audit.json",
+      "data/hidden_patch_audit.json",
       "data/index.json",
       "data/link_graph_audit.json",
-      "data/provenance.json"
+      "data/moves.jsonl",
+      "data/provenance.json",
+      "data/runtime_z_audit.json",
+      "data/saved_link_audit.json",
+      "moves/511.md"
     ],
     "issue18_complete": false,
     "new_native_runs": 0,
@@ -50,11 +65,11 @@
     "stage61_unchanged": true,
     "status": "PASS_WIKI_BUILD_CHECK",
     "two_process_builds_identical": true,
-    "unchanged_snapshot_files": 4135
+    "unchanged_snapshot_files": 4123
   },
   "dedicated_cli": {
     "check_writes": 0,
-    "current_scoped_tests": 26,
+    "current_scoped_tests": 48,
     "make_build": "pr16-candidate-wiki",
     "make_check": "pr16-candidate-wiki-check",
     "path": "scripts/build_pr16_candidate_wiki.py"
@@ -73,8 +88,8 @@
       "run": 35531068177
     }
   ],
-  "files": 4145,
-  "internal_links": 277778,
+  "files": 4148,
+  "internal_links": 277795,
   "issue18_complete": false,
   "issue_number": 18,
   "mega_mapping_summary": {
@@ -93,18 +108,18 @@
   "new_native_runs": 0,
   "output": "docs/wiki/p08-candidate-46487d98",
   "previous_snapshot": {
-    "bytes": 112260519,
-    "files": 4143,
-    "source_head": "3969be6bfb4083ce4cb1e5dd48f0697a62665127",
-    "tree_sha256": "7b05cb160965feb5f50106747fe2f53ca4509e3e0e23403c6917243ded6cb392",
+    "bytes": 112283459,
+    "files": 4145,
+    "source_head": "6ea91ae2da54398fdc01bb3d0cf4f89427855ba4",
+    "tree_sha256": "9077da7cc44baa982a52b60fd1e8d3396dbca1014228d1845419e114b6e0bea3",
     "unit": {
       "errors": 0,
       "failures": 0,
       "scope": "CURRENT_CHANGED_WIKI_AUDIT_ONLY",
       "skips": 0,
-      "tests": 32
+      "tests": 26
     },
-    "verification_run": 35563498591
+    "verification_run": 35564248203
   },
   "prior_transfer_run": {
     "conclusion": "success",
@@ -353,6 +368,84 @@
         "stage61_unchanged": true,
         "two_process_builds_identical": true
       }
+    },
+    {
+      "artifact": {
+        "digest": "sha256:1937e60c39c6d3b60df8c192a05709b47cf47379941d20fd7ecbe52c4583dc5a",
+        "expired": false,
+        "id": 10623381727,
+        "name": "pr16-candidate-wiki-cli",
+        "size_in_bytes": 239543
+      },
+      "bytes": 112283459,
+      "candidate": {
+        "crc32": "CC068B4A",
+        "sha256": "46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38",
+        "size": 33554432
+      },
+      "conclusion": "success",
+      "files": 4145,
+      "head_sha": "6ea91ae2da54398fdc01bb3d0cf4f89427855ba4",
+      "id": 35564248203,
+      "internal_links": 277778,
+      "job": {
+        "completed_at": "2026-09-21T05:21:40Z",
+        "conclusion": "success",
+        "id": 106222815086,
+        "name": "wiki",
+        "status": "completed"
+      },
+      "proof_bindings": {
+        "acceptance.json": {
+          "sha256": "bdeddfad6969b543f7dd135c4ae182d14a1035348f2209de7a07fee3bcc8fd83",
+          "size": 7433
+        },
+        "build-11.json": {
+          "sha256": "a91743c9121806f217e9c5a5f0927c5924e814f8c3fde674933e6bbf01585efa",
+          "size": 829
+        },
+        "build-29.json": {
+          "sha256": "a91743c9121806f217e9c5a5f0927c5924e814f8c3fde674933e6bbf01585efa",
+          "size": 829
+        },
+        "check.stderr.txt": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size": 0
+        },
+        "check.stdout.json": {
+          "sha256": "4a77e1813be986e086b0c0e88f3dacd04e841cef7516253d0d94ddb6c1ff33a7",
+          "size": 829
+        },
+        "cli-check.json": {
+          "sha256": "58d842fd360ff27e7f73ecc3adcc00cceb7347cedb8a3f39adcf6abd240e6630",
+          "size": 650
+        },
+        "followup-unit.txt": {
+          "sha256": "a264c8f4a57be1e19a20abc687b20b4140387843a7c79bb4660e180e3b76eef4",
+          "size": 2631
+        },
+        "reflected-head.txt": {
+          "sha256": "7b42538b8e56ba75dc614d78fe0e905038c6bdd228e69a1768050500e85826f5",
+          "size": 41
+        }
+      },
+      "reflected_head": "24cc366c71df6a7e982635a33f4374cf965e75e1",
+      "run_url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/35564248203",
+      "scope": "LINK_GRAPH",
+      "status": "completed",
+      "tests": 26,
+      "tree_sha256": "9077da7cc44baa982a52b60fd1e8d3396dbca1014228d1845419e114b6e0bea3",
+      "verification": {
+        "accepted_native_reruns": 0,
+        "active_baseline_changed": false,
+        "actual_check_unchanged_bytes_and_mtimes": true,
+        "arm_builds": 0,
+        "issue18_complete": false,
+        "new_native_runs": 0,
+        "rom_changes": 0,
+        "stage61_unchanged": true,
+        "two_process_builds_identical": true
+      }
     }
   ],
   "record_counts": {
@@ -375,12 +468,24 @@
     "source_head": "ae92584b07317530ba585772be6fb9879102a94f"
   },
   "remaining_work_ja": [
-    "追加野生95行・collection配布18/Floette1・collection raid292を現候補level表の初期技source規則に結合済み。残りは全通常野生header/既存story配布、現compiled初期化caller・マクロ、生成後form変更/custom技。条件付き計算を実生成技受入にしない。",
-    "汎用Zのsplit/候補表に加え保存metadataの3入口からThumb-1構造graphを抽出済み。残りはCanUseZMove/GetTypeBasedZMove/CalcMoveSplitの名前付きcallee結合・間接辺。既存offsets.ini/linked.oの固定hashはlink_graph_auditに記録。再build/nativeなしに名前を推測しない。",
-    "夢特性パッチは全1671slotの適用条件とBP供給source/解禁を分類済み。残りは現候補のcompiled field callback・種族accessor・通常初回供給caller・育て屋の対応。source分類を実入手/使用受入にしない。",
-    "T04全70アダプターのsource由来を分類済み。残りは未結合技[511]の由来、上流宣言技のlocal patch/全handler履歴、候補compiled dispatch対応。source分類をnative受入にしない。"
+    "追加野生95行・collection配布18/Floette1・raid292の初期技source規則に加え、GiveBoxMonInitialMoveset/GiveMoveToBoxMon・ScriptGiveMon/CreateEggの全body一致を確認。残りは全通常野生header/既存story配布、CreateBoxMon/CreateWildMon/GiveEggFromDaycareの差分body・マクロ・生成後form/custom技。実生成技受入とは別。",
+    "保存ELFでGetTypeBasedZMove→CalcMoveSplitの直接BLと両関数全body一致を確認。CanUseZMove/HandleInputChooseMoveは保存bodyとの差分あり。残りはその差分の由来・間接辺・現在の実到達条件。元3入口graphや受入nativeは再実行しない。",
+    "夢特性パッチの全1671slot条件・BP供給sourceに加え、field入口と3 UI callbackの全body一致を確認。GetAbility1/2/GetHiddenAbility/GetMonAbility・GiveEggFromDaycareは保存bodyとの差分あり、DetermineEggAbilityは独立symbolなし。残りは差分accessor・育て屋・通常初回供給caller・実使用条件。native未受入のまま。",
+    "T04全70アダプターのsource由来、技511の凍結Vega互換重複由来・候補12byte、VegaResolveMoveEffectScript/VegaMoveEffectPrepareの全body一致を確認。技由来の未結合は解消。残りは上流宣言技のlocal patch/全handler履歴・dispatch間接辺と個別handler対応。source/byte一致をnative受入にしない。"
   ],
   "rom_changes": 0,
+  "saved_link_capture": {
+    "artifact_id": 10624750708,
+    "artifact_sha256": "7169bb41d334d783ff860dd7df2565958ce7fc8d525aca23896f0c305213e198",
+    "conclusion": "success",
+    "failed_predecessor": 35566920479,
+    "failure_ja": "保存ELFのsymbol表読取上限で停止。大規模有界表と切詰め拒否2試験を追加し修正。",
+    "job": 106231970424,
+    "report_sha256": "60d57ca066646e46e82594cd7404ae7bfd5041af7451e2cdc40d612c18045a77",
+    "run": 35567438143,
+    "source_body_equivalence_not_claimed": true,
+    "unit_tests": 40
+  },
   "schema_version": 1,
   "scope": "VERIFIED_DOCUMENTATION_SNAPSHOT",
   "source_audit_summary": {
@@ -397,11 +502,12 @@
     },
     "effect_origin_records": 1063,
     "effect_origin_states": {
+      "FROZEN_VEGA_COMPAT_DUPLICATE_BOUND": 1,
       "LOCKED_UPSTREAM_EFFECT_DECLARATION": 991,
       "MOVE_NONE_NOT_PLAYABLE": 1,
-      "T04_SOURCE_ADAPTER_CLASSIFIED": 70,
-      "UNRESOLVED_SOURCE_LINEAGE": 1
+      "T04_SOURCE_ADAPTER_CLASSIFIED": 70
     },
+    "frozen_compatibility_move_lineages": 1,
     "generic_z_records": 1063,
     "generic_z_states": {
       "DAMAGE_MOVE_SOURCE_RULE": 633,
@@ -431,6 +537,16 @@
       "STAT_STAGE_COMPARISON": 2,
       "TERA_CONDITIONAL_STAT_COMPARISON": 2
     },
+    "saved_elf_direct_call_sites": 94,
+    "saved_elf_exact_function_graphs": 17,
+    "saved_elf_exact_named_call_sites": 21,
+    "saved_elf_requested_symbols": 31,
+    "saved_elf_target_states": {
+      "CANDIDATE_BODY_DIFFERS": 9,
+      "EXACT_CANDIDATE_SYMBOL_BODY": 17,
+      "MISSING_SAVED_SYMBOL": 2,
+      "SYMBOL_WITHOUT_PROVEN_EXTENT": 3
+    },
     "t04_adapters_with_central_queries": 17,
     "t04_required_source_patch_contracts": 26,
     "t04_script_origins": {
@@ -445,97 +561,19 @@
     "wild_overlay_slots": 294,
     "z_status_effects": 29
   },
-  "source_head": "6ea91ae2da54398fdc01bb3d0cf4f89427855ba4",
+  "source_head": "12f9591049a54bb8b06868ae9ce743e7cce1689c",
   "stage61_unchanged": true,
   "status": "PASS_CANDIDATE_WIKI_FOLLOWUP_CHECKPOINT",
   "task": "USER-20260921-P08-CANDIDATE-WIKI",
-  "tree_sha256": "9077da7cc44baa982a52b60fd1e8d3396dbca1014228d1845419e114b6e0bea3",
+  "tree_sha256": "8ca5fbf3d1c245922cf22178f352b39d2669a32c3b27f32969da448c85fadefa",
   "two_process_builds_identical": true,
   "unit": {
     "errors": 0,
     "failures": 0,
     "scope": "CURRENT_CHANGED_WIKI_AUDIT_ONLY",
     "skips": 0,
-    "tests": 26
+    "tests": 48
   },
-  "verification_run": 35564248203,
-  "verification_run_reconciled": {
-    "artifact": {
-      "digest": "sha256:1937e60c39c6d3b60df8c192a05709b47cf47379941d20fd7ecbe52c4583dc5a",
-      "expired": false,
-      "id": 10623381727,
-      "name": "pr16-candidate-wiki-cli",
-      "size_in_bytes": 239543
-    },
-    "bytes": 112283459,
-    "candidate": {
-      "crc32": "CC068B4A",
-      "sha256": "46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38",
-      "size": 33554432
-    },
-    "conclusion": "success",
-    "files": 4145,
-    "head_sha": "6ea91ae2da54398fdc01bb3d0cf4f89427855ba4",
-    "id": 35564248203,
-    "internal_links": 277778,
-    "job": {
-      "completed_at": "2026-09-21T05:21:40Z",
-      "conclusion": "success",
-      "id": 106222815086,
-      "name": "wiki",
-      "status": "completed"
-    },
-    "proof_bindings": {
-      "acceptance.json": {
-        "sha256": "bdeddfad6969b543f7dd135c4ae182d14a1035348f2209de7a07fee3bcc8fd83",
-        "size": 7433
-      },
-      "build-11.json": {
-        "sha256": "a91743c9121806f217e9c5a5f0927c5924e814f8c3fde674933e6bbf01585efa",
-        "size": 829
-      },
-      "build-29.json": {
-        "sha256": "a91743c9121806f217e9c5a5f0927c5924e814f8c3fde674933e6bbf01585efa",
-        "size": 829
-      },
-      "check.stderr.txt": {
-        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "size": 0
-      },
-      "check.stdout.json": {
-        "sha256": "4a77e1813be986e086b0c0e88f3dacd04e841cef7516253d0d94ddb6c1ff33a7",
-        "size": 829
-      },
-      "cli-check.json": {
-        "sha256": "58d842fd360ff27e7f73ecc3adcc00cceb7347cedb8a3f39adcf6abd240e6630",
-        "size": 650
-      },
-      "followup-unit.txt": {
-        "sha256": "a264c8f4a57be1e19a20abc687b20b4140387843a7c79bb4660e180e3b76eef4",
-        "size": 2631
-      },
-      "reflected-head.txt": {
-        "sha256": "7b42538b8e56ba75dc614d78fe0e905038c6bdd228e69a1768050500e85826f5",
-        "size": 41
-      }
-    },
-    "reflected_head": "24cc366c71df6a7e982635a33f4374cf965e75e1",
-    "run_url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/35564248203",
-    "scope": "LINK_GRAPH",
-    "status": "completed",
-    "tests": 26,
-    "tree_sha256": "9077da7cc44baa982a52b60fd1e8d3396dbca1014228d1845419e114b6e0bea3",
-    "verification": {
-      "accepted_native_reruns": 0,
-      "active_baseline_changed": false,
-      "actual_check_unchanged_bytes_and_mtimes": true,
-      "arm_builds": 0,
-      "issue18_complete": false,
-      "new_native_runs": 0,
-      "rom_changes": 0,
-      "stage61_unchanged": true,
-      "two_process_builds_identical": true
-    }
-  },
-  "verification_run_status_at_recording": "completed: success（4回のGET・job全step・artifact SHA・検証原本・反映commit親を照合）"
+  "verification_run": 35568404816,
+  "verification_run_status_at_recording": "in_progress: 差分試験・build/check成功。push/upload完了は次のGETで照合。"
 }

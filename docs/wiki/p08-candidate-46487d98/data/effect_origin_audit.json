@@ -6,6 +6,7 @@
   },
   "candidate_native_acceptance": "DEFERRED_AUDIT",
   "full_handler_history_complete": false,
+  "later_saved_elf_audit": "data/saved_link_audit.json",
   "new_native_runs": 0,
   "rom_changes": 0,
   "schema_version": 1,
@@ -346,10 +347,10 @@
   "summary": {
     "effect_origin_records": 1063,
     "effect_origin_states": {
+      "FROZEN_VEGA_COMPAT_DUPLICATE_BOUND": 1,
       "LOCKED_UPSTREAM_EFFECT_DECLARATION": 991,
       "MOVE_NONE_NOT_PLAYABLE": 1,
-      "T04_SOURCE_ADAPTER_CLASSIFIED": 70,
-      "UNRESOLVED_SOURCE_LINEAGE": 1
+      "T04_SOURCE_ADAPTER_CLASSIFIED": 70
     },
     "t04_adapters_with_central_queries": 17,
     "t04_required_source_patch_contracts": 26,
@@ -361,9 +362,7 @@
     },
     "t04_source_adapters": 70
   },
-  "unresolved_move_ids": [
-    511
-  ],
+  "unresolved_move_ids": [],
   "upstream_source_bindings": {
     "assembly/data/move_tables.s": {
       "sha256": "1506b69f4a524d21432d670e0c4f21e2a45d102edf06970ec994c11fb03fba8c",

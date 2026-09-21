@@ -353,3 +353,5 @@ Secret Sword付与時のKeldeo変化を別field化。CreateBoxMon後段のToxtri
 | POOL_ENTRY_FORM_URSALUNA_BLOODMOON | COLLECTION_RAID | [1594](pokemon/1594.md) | 85–85 | RAID_HIGH_UNLOCKED |
 
 [レベル別初期技profile](data/creation_profiles.jsonl) / [追加野生slot](data/wild_overlay_creation.json) / [source証拠と入口](data/creation_audit.json)
+
+[保存ELFの全body照合・名前付きcallee・未解決差分](SAVED_LINK_AUDIT.md)

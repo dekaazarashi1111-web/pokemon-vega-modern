@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "候補Wiki 4145 files、effect/夢特性patch/初期技/Z入口graphの4差分を実装・110試験受入。4回のActionsはpush/upload完了までGETと原本で照合済み。最新Wiki commit 24cc366c71df6a7e982635a33f4374cf965e75e1 / run 35564248203。Issue18全体は未完。残りのsource/caller未結合をcandidate_wiki.remaining_work_jaに固定。",
+    "current_stop": "候補Wiki 4148 files、今回差分48試験と2build/純読取checkを検証。Issue18の残りはcandidate_wiki.remaining_work_ja。受入済み監査・nativeの重複実行なし。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "Issue18の残件だけを継続。4分野の既存generator/110試験は重複実装せず、残りのcaller・供給・handler結合を証拠に応じて進める。必要な変更影響がない受入済みnative/buildの反復なし。",
+    "next_step": "Issue #18の残件だけを継続。専用CLI/Makefile・今回受入済みsource監査を重複実装せず、remaining_work_jaを参照。native・性能調整・releaseへ先行しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -832,7 +832,7 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "Issue18の残件だけを継続。4分野の既存generator/110試験は重複実装せず、残りのcaller・供給・handler結合を証拠に応じて進める。必要な変更影響がない受入済みnative/buildの反復なし。",
+    "goal_ja": "Issue #18の残件だけを継続。専用CLI/Makefile・今回受入済みsource監査を重複実装せず、remaining_work_jaを参照。native・性能調整・releaseへ先行しない。",
     "host_write_policy_ja": "新しい実受付のguard開始後は入力/frames/readのみ。施設番号/効果/連勝/party/PC/LRのhost注入は禁止。初期配置fixtureと実入場/正規連勝を区別する。",
     "id": "P08_CANDIDATE_WIKI_REMAINING",
     "read_paths": [
@@ -845,7 +845,7 @@
       "scripts/pr16_candidate_wiki_creation.py",
       "scripts/pr16_candidate_wiki_link_graph.py"
     ],
-    "stop_rule_ja": "今回の4差分はActions全step・artifact原本・同branch反映まで完了照合済み。残件はsource推定を実行受入に昇格しない。Issue18の全体完了・merge・release・active baseline切替は別判断。",
+    "stop_rule_ja": "2プロセスbuild同一、実checkのbyte/mtime不変、変更影響に限定した試験を検証。push/uploadは完了GET後に受入。Issue18全体未完・受入native再実行なし。",
     "success_observations": [
       "監査残件に限定した差分",
       "Stage61・現候補byte不変",
@@ -10560,17 +10560,17 @@
     },
     "snapshot_complete": true,
     "issue18_complete": false,
-    "source_head": "6ea91ae2da54398fdc01bb3d0cf4f89427855ba4",
-    "verification_run": 35564248203,
+    "source_head": "12f9591049a54bb8b06868ae9ce743e7cce1689c",
+    "verification_run": 35568404816,
     "remaining_work_ja": [
-      "追加野生95行・collection配布18/Floette1・collection raid292を現候補level表の初期技source規則に結合済み。残りは全通常野生header/既存story配布、現compiled初期化caller・マクロ、生成後form変更/custom技。条件付き計算を実生成技受入にしない。",
-      "汎用Zのsplit/候補表に加え保存metadataの3入口からThumb-1構造graphを抽出済み。残りはCanUseZMove/GetTypeBasedZMove/CalcMoveSplitの名前付きcallee結合・間接辺。既存offsets.ini/linked.oの固定hashはlink_graph_auditに記録。再build/nativeなしに名前を推測しない。",
-      "夢特性パッチは全1671slotの適用条件とBP供給source/解禁を分類済み。残りは現候補のcompiled field callback・種族accessor・通常初回供給caller・育て屋の対応。source分類を実入手/使用受入にしない。",
-      "T04全70アダプターのsource由来を分類済み。残りは未結合技[511]の由来、上流宣言技のlocal patch/全handler履歴、候補compiled dispatch対応。source分類をnative受入にしない。"
+      "追加野生95行・collection配布18/Floette1・raid292の初期技source規則に加え、GiveBoxMonInitialMoveset/GiveMoveToBoxMon・ScriptGiveMon/CreateEggの全body一致を確認。残りは全通常野生header/既存story配布、CreateBoxMon/CreateWildMon/GiveEggFromDaycareの差分body・マクロ・生成後form/custom技。実生成技受入とは別。",
+      "保存ELFでGetTypeBasedZMove→CalcMoveSplitの直接BLと両関数全body一致を確認。CanUseZMove/HandleInputChooseMoveは保存bodyとの差分あり。残りはその差分の由来・間接辺・現在の実到達条件。元3入口graphや受入nativeは再実行しない。",
+      "夢特性パッチの全1671slot条件・BP供給sourceに加え、field入口と3 UI callbackの全body一致を確認。GetAbility1/2/GetHiddenAbility/GetMonAbility・GiveEggFromDaycareは保存bodyとの差分あり、DetermineEggAbilityは独立symbolなし。残りは差分accessor・育て屋・通常初回供給caller・実使用条件。native未受入のまま。",
+      "T04全70アダプターのsource由来、技511の凍結Vega互換重複由来・候補12byte、VegaResolveMoveEffectScript/VegaMoveEffectPrepareの全body一致を確認。技由来の未結合は解消。残りは上流宣言技のlocal patch/全handler履歴・dispatch間接辺と個別handler対応。source/byte一致をnative受入にしない。"
     ],
     "new_native_runs": 0,
     "followup": "content/modernization/pr16_candidate_wiki_followup.json",
-    "verification_run_status": "completed_success",
+    "verification_run_status": "in_progress_at_recording",
     "cli_complete": true,
     "remaining_source_inventory": {
       "path": "content/modernization/pr16_wiki_remaining_source_inventory.json",
@@ -10578,8 +10578,8 @@
       "run_id": 35558161437,
       "scope": "LOCKED_SOURCE_INVENTORY_NOT_RUNTIME_ACCEPTANCE"
     },
-    "files": 4145,
-    "tree_sha256": "9077da7cc44baa982a52b60fd1e8d3396dbca1014228d1845419e114b6e0bea3",
+    "files": 4148,
+    "tree_sha256": "8ca5fbf3d1c245922cf22178f352b39d2669a32c3b27f32969da448c85fadefa",
     "source_audit_summary": {
       "creation_declared_routes": 311,
       "creation_profile_species": 470,
@@ -10594,11 +10594,12 @@
       },
       "effect_origin_records": 1063,
       "effect_origin_states": {
+        "FROZEN_VEGA_COMPAT_DUPLICATE_BOUND": 1,
         "LOCKED_UPSTREAM_EFFECT_DECLARATION": 991,
         "MOVE_NONE_NOT_PLAYABLE": 1,
-        "T04_SOURCE_ADAPTER_CLASSIFIED": 70,
-        "UNRESOLVED_SOURCE_LINEAGE": 1
+        "T04_SOURCE_ADAPTER_CLASSIFIED": 70
       },
+      "frozen_compatibility_move_lineages": 1,
       "generic_z_records": 1063,
       "generic_z_states": {
         "DAMAGE_MOVE_SOURCE_RULE": 633,
@@ -10628,6 +10629,16 @@
         "STAT_STAGE_COMPARISON": 2,
         "TERA_CONDITIONAL_STAT_COMPARISON": 2
       },
+      "saved_elf_direct_call_sites": 94,
+      "saved_elf_exact_function_graphs": 17,
+      "saved_elf_exact_named_call_sites": 21,
+      "saved_elf_requested_symbols": 31,
+      "saved_elf_target_states": {
+        "CANDIDATE_BODY_DIFFERS": 9,
+        "EXACT_CANDIDATE_SYMBOL_BODY": 17,
+        "MISSING_SAVED_SYMBOL": 2,
+        "SYMBOL_WITHOUT_PROVEN_EXTENT": 3
+      },
       "t04_adapters_with_central_queries": 17,
       "t04_required_source_patch_contracts": 26,
       "t04_script_origins": {
@@ -10653,6 +10664,18 @@
         35564248203
       ],
       "new_scoped_tests_total": 110
+    },
+    "saved_link_capture": {
+      "artifact_id": 10624750708,
+      "artifact_sha256": "7169bb41d334d783ff860dd7df2565958ce7fc8d525aca23896f0c305213e198",
+      "conclusion": "success",
+      "failed_predecessor": 35566920479,
+      "failure_ja": "保存ELFのsymbol表読取上限で停止。大規模有界表と切詰め拒否2試験を追加し修正。",
+      "job": 106231970424,
+      "report_sha256": "60d57ca066646e46e82594cd7404ae7bfd5041af7451e2cdc40d612c18045a77",
+      "run": 35567438143,
+      "source_body_equivalence_not_claimed": true,
+      "unit_tests": 40
     }
   }
 }

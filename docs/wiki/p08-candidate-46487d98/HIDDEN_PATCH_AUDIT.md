@@ -1899,3 +1899,5 @@
   "unbound_extra_conditions_disabled_by_project_profile": true
 }
 ```
+
+[保存ELFの全body照合・名前付きcallee・未解決差分](SAVED_LINK_AUDIT.md)

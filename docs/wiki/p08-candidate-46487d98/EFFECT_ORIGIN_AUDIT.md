@@ -12,10 +12,10 @@
 {
   "effect_origin_records": 1063,
   "effect_origin_states": {
+    "FROZEN_VEGA_COMPAT_DUPLICATE_BOUND": 1,
     "LOCKED_UPSTREAM_EFFECT_DECLARATION": 991,
     "MOVE_NONE_NOT_PLAYABLE": 1,
-    "T04_SOURCE_ADAPTER_CLASSIFIED": 70,
-    "UNRESOLVED_SOURCE_LINEAGE": 1
+    "T04_SOURCE_ADAPTER_CLASSIFIED": 70
   },
   "t04_adapters_with_central_queries": 17,
   "t04_required_source_patch_contracts": 26,
@@ -106,7 +106,7 @@
 
 ## 未結合・未検証
 
-未結合技: [511]
+未結合技: []
 
 固定上流のeffect宣言一致は、全handlerが無改変である証拠ではありません。compiled dispatch・move ID分岐・patchの実適用とnative受入は別です。
 
@@ -141,3 +141,5 @@
   }
 ]
 ```
+
+[保存ELFの全body照合・名前付きcallee・未解決差分](SAVED_LINK_AUDIT.md)

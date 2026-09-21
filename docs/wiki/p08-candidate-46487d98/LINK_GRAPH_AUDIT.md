@@ -23,8 +23,8 @@
 | VegaBattlePolicyCanZ | 0x9126bb4 | 16 | 2 | {"POP_PC_RETURN_OR_INDIRECT":1} |
 | VegaBattlePolicyMarkZ | 0x9126be0 | 14 | 2 | {"POP_PC_RETURN_OR_INDIRECT":1} |
 
-## 未保存link表
+## 初回metadata監査時点のlink表
 
-全offsetsは13,131 symbols、SHA-256 `f9851fb5eea759573d1e4e0b923e69c34c85ddb171fb03321f5b7ce380870523`。linked.oは5,733,212 bytes、SHA-256 `52bbd57a7d2649164c4706ee45dc17ef1f8357862d8dbd79bdcd439c2b0a36fb`。今回調べた保存先に実体なし。再コンパイルや近傍prologueからの命名はしていません。
+全offsetsは13,131 symbols、SHA-256 `f9851fb5eea759573d1e4e0b923e69c34c85ddb171fb03321f5b7ce380870523`。linked.oは5,733,212 bytes、SHA-256 `52bbd57a7d2649164c4706ee45dc17ef1f8357862d8dbd79bdcd439c2b0a36fb`。初回の限定snapshotでは実体未取得でした。後続の固定cache読取で同一hashのELFを確認済みです。[全body一致・不一致を分けた最新監査](SAVED_LINK_AUDIT.md)を参照してください。再コンパイルや近傍prologueからの命名はしていません。
 
 [各命令・BL先・入力hash・未解決辺](data/link_graph_audit.json)

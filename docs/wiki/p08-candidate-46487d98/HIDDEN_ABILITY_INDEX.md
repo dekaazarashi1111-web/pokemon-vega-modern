@@ -2038,3 +2038,5 @@
 [今回追加の固定consumer監査・正確な残件](CONSUMER_AUDIT.md)
 
 [夢特性パッチ：種族別適用条件・供給source・未受入範囲](HIDDEN_PATCH_AUDIT.md)
+
+[保存ELFの全body照合・名前付きcallee・未解決差分](SAVED_LINK_AUDIT.md)

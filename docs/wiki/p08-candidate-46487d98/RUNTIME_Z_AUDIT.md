@@ -35,6 +35,7 @@
     "sha256": "46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38",
     "size": 33554432
   },
+  "later_saved_elf_audit": "data/saved_link_audit.json",
   "limit_ja": "候補table署名とaligned pointer値を照合するが、命令の逆アセンブルによる全caller同定や全modeのnative受入へ昇格しない。",
   "new_native_runs": 0,
   "old_move_split_enabled_in_locked_inputs": false,
@@ -115,3 +116,5 @@
   ]
 }
 ```
+
+[保存ELFの全body照合・名前付きcallee・未解決差分](SAVED_LINK_AUDIT.md)

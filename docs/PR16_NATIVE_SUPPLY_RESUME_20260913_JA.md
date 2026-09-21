@@ -6,11 +6,11 @@
 
 ## いまの停止点と次の1手
 
-候補Wiki 4145 files、effect/夢特性patch/初期技/Z入口graphの4差分を実装・110試験受入。4回のActionsはpush/upload完了までGETと原本で照合済み。最新Wiki commit 24cc366c71df6a7e982635a33f4374cf965e75e1 / run 35564248203。Issue18全体は未完。残りのsource/caller未結合をcandidate_wiki.remaining_work_jaに固定。
+候補Wiki 4148 files、今回差分48試験と2build/純読取checkを検証。Issue18の残りはcandidate_wiki.remaining_work_ja。受入済み監査・nativeの重複実行なし。
 
-**次: Issue18の残件だけを継続。4分野の既存generator/110試験は重複実装せず、残りのcaller・供給・handler結合を証拠に応じて進める。必要な変更影響がない受入済みnative/buildの反復なし。**
+**次: Issue #18の残件だけを継続。専用CLI/Makefile・今回受入済みsource監査を重複実装せず、remaining_work_jaを参照。native・性能調整・releaseへ先行しない。**
 
-今回の4差分はActions全step・artifact原本・同branch反映まで完了照合済み。残件はsource推定を実行受入に昇格しない。Issue18の全体完了・merge・release・active baseline切替は別判断。
+2プロセスbuild同一、実checkのbyte/mtime不変、変更影響に限定した試験を検証。push/uploadは完了GET後に受入。Issue18全体未完・受入native再実行なし。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 

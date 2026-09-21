@@ -44,3 +44,5 @@ raw登録77行のうち、正逆対応を確認できたメガは76行です。�
 [野生・配布・raid初期技のsource規則と残件](CREATION_MOVESET_AUDIT.md)
 
 [Z関連入口のcompiled構造graphと未解決callee](LINK_GRAPH_AUDIT.md)
+
+[保存ELFの全body照合・名前付きcallee・未解決差分](SAVED_LINK_AUDIT.md)
