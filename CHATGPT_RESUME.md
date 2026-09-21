@@ -36,6 +36,14 @@ Issue #19は、技習得を次のフラットな基準へ復元するタスク�
 - 仮技は最終バランスでも所有者承認済み配布でもない。後でWikiを見て、ベガ技または別技へ置換、もしくは削除する。level-up以外へ自動展開せず、後継Wikiで仮置きとして明示する。
 - 詳細な実装・validator条件は `docs/PR16_LEARNSET_BASELINE_RESET_JA.md` を正とする。Side Change自体のnative受入は不要。
 
+### 所有者決定: Vega原本とatwikiの衝突
+
+- Vegaオリジナルの技習得で固定原作Vega ROMとatwikiが食い違う場合、**固定ROM観測行をactive baselineへ採用する**。atwikiは独立照合・差分履歴として保持するが、単純な不一致だけを理由に採用を停止しない。
+- 現在の3群5行は、リーテイルのLv32「リーフブレード」・Lv46「こうごうせい」、ゴートンの「かみつく」Lv18、ディザソルのTutor「ギガスパーク」「バグノイズ」を固定ROMどおり採用する。
+- `content/modernization/pr16_vega_original_evidence/source_conflicts.json` は採取時点の原本として改作せず、`content/modernization/pr16_vega_original_source_decision.json` を後継adjudication/crosswalkから参照する。
+- 固定ROMの同定、table offset、stride、終端、move crosswalk、抽出器の完全性に疑義がある場合だけfail-closedで停止する。出典差だけでは停止しない。
+- 次はこの決定を3群5行へ適用した台帳を生成し、92種2394行の非直接eggを原作Vegaの進化・孵化consumerと照合する。原本182ページや公式1299件を取り直さない。
+
 所有者提供ZIPは `userfile/imports/**` 等のGit管理外・読み取り専用入力として扱い、ZIP本体をcommitしない。入力が未提供またはhash不一致なら、似た名前の別資料や現行ROMを暗黙代用せずfail-closedにする。
 
 Issue #19の完了後、所有者が新Wikiを確認してから、技追加、種族値・特性・夢特性調整、追加メガ、追加専用Zの仕様を別途決める。本タスク中に新しい最終配布を創作しない。上記Side Change用の明示placeholderだけは最終配布ではない仮置きとして例外的に許可する。
@@ -59,4 +67,4 @@ merge・release・baseline切替は別途明示指示なしに行わないでく
 
 ## Vega181種の原本採取・隔離監査checkpoint
 
-`docs/PR16_VEGA_ORIGINAL_AUDIT_JA.md` と `content/modernization/pr16_vega_original_checkpoint.json` を参照。原本9923行/全182ページ/43試験は完了。次工程は3群5行の原本衝突と92種の非直接egg裁定。baseline採用/Issue19全体は未完。保存原本から再開し、公式隔離やWiki全件採取を繰り返さない。
+`docs/PR16_VEGA_ORIGINAL_AUDIT_JA.md` と `content/modernization/pr16_vega_original_checkpoint.json` を参照。原本9923行/全182ページ/43試験は完了。3群5行は `content/modernization/pr16_vega_original_source_decision.json` により固定ROM優先で所有者決定済み。次工程はその決定の台帳適用と92種2394行の非直接egg裁定。baseline採用/Issue19全体は未完。保存原本から再開し、公式隔離やWiki全件採取を繰り返さない。
