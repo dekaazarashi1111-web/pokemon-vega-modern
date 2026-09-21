@@ -9271,3 +9271,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 新24試験PASS、artifact外側/全member hash、原本byte/mtime不変、孵化全行/531差分一致。原本生成/受入試験/native再実行0。run=35656548503 input=1fa45557c6ad1ae4ed0c976f84b84e953abf37ee。
 - Commit: 本記録を含む同branch非force commit。最終push完了はrun APIで別照合。
 - Network: GitHub connector/Actions、受入artifact10653200020再利用。Wiki再採取なし。
+
+## 2026-09-21T21:57:48.517443+00:00
+- Timestamp: 2026-09-21T21:57:48.517443+00:00
+- Task: USER-20260921-LEARNSET-BASELINE-RESET / 191枠bindingと配置前payload
+- Version: learnset-payload-v1
+- Status: DONE（静的binding/配置前payload限定。1029採用裁定・ROM接続未完）
+- Summary: 188枠identity保全、2owner64経路を明示接続、1枠は採用待ち。128288原経路を保全し33321経路のWiki slot 1始まりを補正。
+- Files changed: Species/payload実装、54新試験、限定Actionsと固定入力、checkpoint/証拠/guide、固定MD/JSON、両ログ。
+- Verify: 54新試験PASS、独立2プロセス全hash一致、旧Wikiからの独立全byte/128352行監査PASS、原本byte/mtime不変。run=35659593954 head=a7e2d99f44354b6e3e5b9a9993f15cae2f179b67。受入孵化run35656548503/source snapshot run35657130145の全step完了も照合。
+- Prior attempt: run35659288132は1262の監査参照先誤りで停止。元表とpayloadは不変のまま監査だけを訂正。
+- Commit: 本記録を含む同branch非force commit。自己SHAは記載せずgit logで照合。
+- Network: GitHub Actions受入artifact再利用、原本/旧Wiki再生成0、native0、ROM変更0。

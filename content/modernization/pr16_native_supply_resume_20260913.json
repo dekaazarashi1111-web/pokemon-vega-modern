@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "後継受入artifactをhash固定で再利用。非直接egg2394行のうち531差分を履歴参照・新規付与なしとして実装/全行照合し、新24境界試験PASS。191未選択枠はmanifest付き台帳へ分離。Species/Form裁定とbinary接続は未完。",
+    "current_stop": "191枠を188保全/2明示owner/1採用待ちへ分類。64追加経路、元128288経路を配置前payloadと全行台帳へ変換。Wikiの1始まりslotを33321経路で補正し54新試験/独立全byte照合PASS。ROM/native未変更。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "Issue19: 新規binding台帳の未選択191枠をSpecies/Formの正本へ明示対応させ、検証済み孵化531差分の非付与処理とともにbinary consumerへ接続する。後継ROM・別Wiki・影響nativeはその後。",
+    "next_step": "Issue19: Floette Eternal(1029)のgift入手契約とP01 learnset apply=falseを明示裁定し、既存贈呈先を消さず固定referenceを採用する。受入payloadを再利用し、188非学習/戦闘姿のruntime owner処理、条件付きconsumer、後継ROMの配置・別Wiki・影響nativeを接続する。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -749,7 +749,8 @@
     "Issue19公式隔離: source/code hash不変なら39試験・CSV全件照合・二重生成は完了artifactを再利用。旧P07履歴1572件を新baseline/空overlayへ再投入しない。",
     "Vega181種: 原本9923行/182ページ/43試験、衝突5行/5試験、非直接egg2394行/13試験は保存証拠を再利用。原本採取・公式1299件の再生成・入力不変の単独再検証をしない。3群/92種を未裁定へ戻さず、次はruntime全consumer。",
     "後継9consumer表v1: 128288採用/159明示除外、39新試験、独立2生成・純読取・原本128447行独立監査は保存済み。入力/生成器が同じなら再生成/単独再試験しない。未完は191枠binding/孵化531差分/binary接続と後継ROM・Wiki・影響native。",
-    "learnset binding: 受入9consumer表はartifact10653200020を再利用。531孵化差分は非付与として全行照合済み。旧原本/39受入試験/nativeを再実行せず、未選択191枠の明示bindingから続行。"
+    "learnset binding: 受入9consumer表はartifact10653200020を再利用。531孵化差分は非付与として全行照合済み。旧原本/39受入試験/nativeを再実行せず、未選択191枠の明示bindingから続行。",
+    "learnset payload: 191 binding、531孵化差分、64明示経路、33321 slot補正は証拠固定済み。配置前payload artifactを再利用。受入54/24試験・原本生成は影響変更がない限り再実行せず、1029採用裁定とruntime接続から続行。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -836,874 +837,90 @@
   },
   "merge_performed": false,
   "next_action": {
-    "id": "LEARNSET_EXPLICIT_SPECIES_BINDING",
-    "goal_ja": "Issue19: 新規binding台帳の未選択191枠をSpecies/Formの正本へ明示対応させ、検証済み孵化531差分の非付与処理とともにbinary consumerへ接続する。後継ROM・別Wiki・影響nativeはその後。",
+    "id": "LEARNSET_FLOETTE_ADOPTION_AND_RUNTIME_LINK",
+    "goal_ja": "Issue19: Floette Eternal(1029)のgift入手契約とP01 learnset apply=falseを明示裁定し、既存贈呈先を消さず固定referenceを採用する。受入payloadを再利用し、188非学習/戦闘姿のruntime owner処理、条件付きconsumer、後継ROMの配置・別Wiki・影響nativeを接続する。",
     "read_paths": [
-      "docs/PR16_LEARNSET_BINDING_JA.md",
-      "content/modernization/pr16_learnset_binding_checkpoint.json",
-      "content/modernization/pr16_learnset_binding_evidence/unselected.jsonl",
-      "content/modernization/pr16_learnset_binding_evidence/summary.json",
-      "tools/pr16_learnset_binding.py",
-      "config/move_port.json"
+      "docs/PR16_LEARNSET_PAYLOADS_JA.md",
+      "content/modernization/pr16_learnset_payload_checkpoint.json",
+      "content/modernization/pr16_learnset_payload_evidence/species-bindings.jsonl",
+      "tools/pr16_learnset_payloads.py",
+      "config/modernization_floette_gift.json",
+      "content/modernization/identity_contract.json"
     ],
-    "stop_rule_ja": "後継表・差分の工程は完了、ROM適用は未完。191枠を旧表fallback/一括削除せず、531行をdirect/shared eggへ無断補充しない。原本裁定を未完へ戻さない。Issue19/18完了・merge/releaseへ昇格しない。",
+    "stop_rule_ja": "旧表fallback/191枠一括削除は禁止。配置前payloadはROM受入ではない。531孵化差分・原本裁定を再実行しない。Issue19/18全体、merge/releaseは未完。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。"
   },
   "observed_date_jst": "2026-09-22",
-  "observed_head": "1bd7e126dd4083581b43ade0776b72eddd38b9d1",
+  "observed_head": "a7e2d99f44354b6e3e5b9a9993f15cae2f179b67",
   "observed_head_checks": {
-    "scope_head": "9834398c8430ded96a8d25ea96d02edd8a78212d",
+    "scope_head": "a7e2d99f44354b6e3e5b9a9993f15cae2f179b67",
     "runs": [
       {
-        "id": 35506654695,
-        "head_sha": "5a1b35ad66c0a9a157274835987d9d7d20ba1f12",
+        "id": 35659593954,
+        "head_sha": "a7e2d99f44354b6e3e5b9a9993f15cae2f179b67",
         "status": "completed",
         "conclusion": "success",
+        "path": ".github/workflows/pr16-learnset-payload.yml",
         "jobs": [
           {
-            "id": 106067500110,
-            "name": "receipt",
+            "id": 106531416710,
+            "name": "payload-verify",
             "status": "completed",
             "conclusion": "success",
             "steps": [
               {
                 "name": "Set up job",
                 "status": "completed",
-                "conclusion": "success",
-                "number": 1,
-                "started_at": "2026-09-20T11:01:06Z",
-                "completed_at": "2026-09-20T11:01:07Z"
+                "conclusion": "success"
               },
               {
                 "name": "Run actions/checkout@v4",
                 "status": "completed",
-                "conclusion": "success",
-                "number": 2,
-                "started_at": "2026-09-20T11:01:07Z",
-                "completed_at": "2026-09-20T11:01:12Z"
+                "conclusion": "success"
               },
               {
-                "name": "未登録のresume実装bindingを固定入力から修復しsource checkpointを非force保存",
+                "name": "Run actions/setup-python@v5",
                 "status": "completed",
-                "conclusion": "success",
-                "number": 3,
-                "started_at": "2026-09-20T11:01:12Z",
-                "completed_at": "2026-09-20T11:01:48Z"
+                "conclusion": "success"
               },
               {
-                "name": "完了原本と目視29画面を照合し正式受入・引継ぎ・両ログを非force保存",
+                "name": "新規54試験と後継payloadだけを独立2プロセスで検証",
                 "status": "completed",
-                "conclusion": "success",
-                "number": 4,
-                "started_at": "2026-09-20T11:01:48Z",
-                "completed_at": "2026-09-20T11:02:36Z"
-              },
-              {
-                "name": "P08限定読取用tracked textを保存（ROMとsaveは除外）",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 5,
-                "started_at": "2026-09-20T11:02:36Z",
-                "completed_at": "2026-09-20T11:02:36Z"
+                "conclusion": "success"
               },
               {
                 "name": "Run actions/upload-artifact@v4",
                 "status": "completed",
-                "conclusion": "success",
-                "number": 6,
-                "started_at": "2026-09-20T11:02:36Z",
-                "completed_at": "2026-09-20T11:02:38Z"
-              },
-              {
-                "name": "Post Run actions/checkout@v4",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 12,
-                "started_at": "2026-09-20T11:02:38Z",
-                "completed_at": "2026-09-20T11:02:38Z"
-              },
-              {
-                "name": "Complete job",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 13,
-                "started_at": "2026-09-20T11:02:38Z",
-                "completed_at": "2026-09-20T11:02:38Z"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "id": 35507102023,
-        "head_sha": "29202a863b14da9956c1e3b0b306b56ba3f77dc4",
-        "status": "completed",
-        "conclusion": "success",
-        "jobs": [
-          {
-            "id": 106068665551,
-            "name": "impact",
-            "status": "completed",
-            "conclusion": "success",
-            "steps": [
-              {
-                "name": "Set up job",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 1,
-                "started_at": "2026-09-20T11:10:43Z",
-                "completed_at": "2026-09-20T11:10:43Z"
-              },
-              {
-                "name": "Run actions/checkout@v4",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 2,
-                "started_at": "2026-09-20T11:10:43Z",
-                "completed_at": "2026-09-20T11:10:48Z"
-              },
-              {
-                "name": "21層の全ROM検証・owner影響・引継ぎと両ログを非force保存",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 3,
-                "started_at": "2026-09-20T11:10:48Z",
-                "completed_at": "2026-09-20T11:11:38Z"
-              },
-              {
-                "name": "ROMを除外し検査証拠だけ保存",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 4,
-                "started_at": "2026-09-20T11:11:38Z",
-                "completed_at": "2026-09-20T11:11:38Z"
+                "conclusion": "success"
               },
               {
                 "name": "Run actions/upload-artifact@v4",
                 "status": "completed",
-                "conclusion": "success",
-                "number": 5,
-                "started_at": "2026-09-20T11:11:38Z",
-                "completed_at": "2026-09-20T11:11:38Z"
+                "conclusion": "success"
+              },
+              {
+                "name": "Post Run actions/setup-python@v5",
+                "status": "completed",
+                "conclusion": "success"
               },
               {
                 "name": "Post Run actions/checkout@v4",
                 "status": "completed",
-                "conclusion": "success",
-                "number": 10,
-                "started_at": "2026-09-20T11:11:38Z",
-                "completed_at": "2026-09-20T11:11:39Z"
+                "conclusion": "success"
               },
               {
                 "name": "Complete job",
                 "status": "completed",
-                "conclusion": "success",
-                "number": 11,
-                "started_at": "2026-09-20T11:11:39Z",
-                "completed_at": "2026-09-20T11:11:39Z"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "id": 35507654812,
-        "head_sha": "870e65e58fa34289daa6216ae41ed201e54b5e29",
-        "status": "completed",
-        "conclusion": "failure",
-        "jobs": [
-          {
-            "id": 106070069903,
-            "name": "representative",
-            "status": "completed",
-            "conclusion": "failure",
-            "steps": [
-              {
-                "name": "Set up job",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 1,
-                "started_at": "2026-09-20T11:22:35Z",
-                "completed_at": "2026-09-20T11:22:35Z"
-              },
-              {
-                "name": "Run actions/checkout@v4",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 2,
-                "started_at": "2026-09-20T11:22:36Z",
-                "completed_at": "2026-09-20T11:22:41Z"
-              },
-              {
-                "name": "P08完了Actions・原本と22context契約を確認し開始を非force保存",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 3,
-                "started_at": "2026-09-20T11:22:41Z",
-                "completed_at": "2026-09-20T11:23:26Z"
-              },
-              {
-                "name": "host mGBA依存のみ導入（ARM buildなし）",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 4,
-                "started_at": "2026-09-20T11:23:26Z",
-                "completed_at": "2026-09-20T11:23:46Z"
-              },
-              {
-                "name": "同じ46487d98候補のRing active代表1件だけ実行",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 5,
-                "started_at": "2026-09-20T11:23:46Z",
-                "completed_at": "2026-09-20T11:24:10Z"
-              },
-              {
-                "name": "未観測と成功を分離し原本・引継ぎ・両ログを非force保存",
-                "status": "completed",
-                "conclusion": "failure",
-                "number": 6,
-                "started_at": "2026-09-20T11:24:10Z",
-                "completed_at": "2026-09-20T11:24:46Z"
-              },
-              {
-                "name": "ROM・saveを除外し画面と原本を保存",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 7,
-                "started_at": "2026-09-20T11:24:46Z",
-                "completed_at": "2026-09-20T11:24:46Z"
-              },
-              {
-                "name": "Run actions/upload-artifact@v4",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 8,
-                "started_at": "2026-09-20T11:24:46Z",
-                "completed_at": "2026-09-20T11:24:47Z"
-              },
-              {
-                "name": "失敗を成功に読み替えない",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 9,
-                "started_at": "2026-09-20T11:24:47Z",
-                "completed_at": "2026-09-20T11:24:47Z"
-              },
-              {
-                "name": "Post Run actions/checkout@v4",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 18,
-                "started_at": "2026-09-20T11:24:47Z",
-                "completed_at": "2026-09-20T11:24:48Z"
-              },
-              {
-                "name": "Complete job",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 19,
-                "started_at": "2026-09-20T11:24:48Z",
-                "completed_at": "2026-09-20T11:24:48Z"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "id": 35510095146,
-        "head_sha": "3a08d5dbed832a869161a7e5c842d96eebd58659",
-        "status": "completed",
-        "conclusion": "success",
-        "jobs": [
-          {
-            "id": 106076375842,
-            "name": "recovery",
-            "status": "completed",
-            "conclusion": "success",
-            "steps": [
-              {
-                "name": "Set up job",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 1,
-                "started_at": "2026-09-20T12:15:26Z",
-                "completed_at": "2026-09-20T12:15:27Z"
-              },
-              {
-                "name": "Run actions/checkout@v4",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 2,
-                "started_at": "2026-09-20T12:15:27Z",
-                "completed_at": "2026-09-20T12:15:33Z"
-              },
-              {
-                "name": "完了原本だけ回収・14画面とbyteを照合・受入記録を非force保存",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 3,
-                "started_at": "2026-09-20T12:15:33Z",
-                "completed_at": "2026-09-20T12:16:19Z"
-              },
-              {
-                "name": "Run actions/upload-artifact@v4",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 4,
-                "started_at": "2026-09-20T12:16:19Z",
-                "completed_at": "2026-09-20T12:16:21Z"
-              },
-              {
-                "name": "Post Run actions/checkout@v4",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 8,
-                "started_at": "2026-09-20T12:16:21Z",
-                "completed_at": "2026-09-20T12:16:21Z"
-              },
-              {
-                "name": "Complete job",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 9,
-                "started_at": "2026-09-20T12:16:21Z",
-                "completed_at": "2026-09-20T12:16:21Z"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "id": 35511250297,
-        "head_sha": "2b3fba89ee99e4d1360687f22d4cfb562fd0ec77",
-        "status": "completed",
-        "conclusion": "success",
-        "jobs": [
-          {
-            "id": 106079428228,
-            "name": "representative",
-            "status": "completed",
-            "conclusion": "success",
-            "steps": [
-              {
-                "name": "Set up job",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 1,
-                "started_at": "2026-09-20T12:39:38Z",
-                "completed_at": "2026-09-20T12:39:39Z"
-              },
-              {
-                "name": "Run actions/checkout@v4",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 2,
-                "started_at": "2026-09-20T12:39:39Z",
-                "completed_at": "2026-09-20T12:39:44Z"
-              },
-              {
-                "name": "固定原本と新契約を照合し開始checkpointを非force保存",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 3,
-                "started_at": "2026-09-20T12:39:44Z",
-                "completed_at": "2026-09-20T12:40:25Z"
-              },
-              {
-                "name": "Host mGBA dependency only",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 4,
-                "started_at": "2026-09-20T12:40:25Z",
-                "completed_at": "2026-09-20T12:40:43Z"
-              },
-              {
-                "name": "共有帰還と保存再開の影響代表1件だけ実行",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 5,
-                "started_at": "2026-09-20T12:40:43Z",
-                "completed_at": "2026-09-20T12:41:07Z"
-              },
-              {
-                "name": "実行原本と停止点を非force保存",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 6,
-                "started_at": "2026-09-20T12:41:07Z",
-                "completed_at": "2026-09-20T12:41:41Z"
-              },
-              {
-                "name": "Pack text and bounded screens only",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 7,
-                "started_at": "2026-09-20T12:41:41Z",
-                "completed_at": "2026-09-20T12:41:41Z"
-              },
-              {
-                "name": "Run actions/upload-artifact@v4",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 8,
-                "started_at": "2026-09-20T12:41:41Z",
-                "completed_at": "2026-09-20T12:41:42Z"
-              },
-              {
-                "name": "Native result",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 9,
-                "started_at": "2026-09-20T12:41:42Z",
-                "completed_at": "2026-09-20T12:41:42Z"
-              },
-              {
-                "name": "Post Run actions/checkout@v4",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 18,
-                "started_at": "2026-09-20T12:41:42Z",
-                "completed_at": "2026-09-20T12:41:43Z"
-              },
-              {
-                "name": "Complete job",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 19,
-                "started_at": "2026-09-20T12:41:43Z",
-                "completed_at": "2026-09-20T12:41:43Z"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "id": 35511721939,
-        "head_sha": "33bb7bce407e839fbf1931ee8968ca55fce82077",
-        "status": "completed",
-        "conclusion": "success",
-        "jobs": [
-          {
-            "id": 106080666506,
-            "name": "representative",
-            "status": "completed",
-            "conclusion": "success",
-            "steps": [
-              {
-                "name": "Set up job",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 1,
-                "started_at": "2026-09-20T12:49:30Z",
-                "completed_at": "2026-09-20T12:49:31Z"
-              },
-              {
-                "name": "Run actions/checkout@v4",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 2,
-                "started_at": "2026-09-20T12:49:31Z",
-                "completed_at": "2026-09-20T12:49:36Z"
-              },
-              {
-                "name": "固定原本と新契約を照合し開始checkpointを非force保存",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 3,
-                "started_at": "2026-09-20T12:49:36Z",
-                "completed_at": "2026-09-20T12:51:01Z"
-              },
-              {
-                "name": "Host mGBA dependency only",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 4,
-                "started_at": "2026-09-20T12:51:01Z",
-                "completed_at": "2026-09-20T12:51:16Z"
-              },
-              {
-                "name": "わざメモリー満杯置換と保存再開の影響代表1件だけ実行",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 5,
-                "started_at": "2026-09-20T12:51:16Z",
-                "completed_at": "2026-09-20T12:51:32Z"
-              },
-              {
-                "name": "実行原本と停止点を非force保存",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 6,
-                "started_at": "2026-09-20T12:51:32Z",
-                "completed_at": "2026-09-20T12:52:10Z"
-              },
-              {
-                "name": "Pack text and bounded screens only",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 7,
-                "started_at": "2026-09-20T12:52:10Z",
-                "completed_at": "2026-09-20T12:52:11Z"
-              },
-              {
-                "name": "Run actions/upload-artifact@v4",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 8,
-                "started_at": "2026-09-20T12:52:11Z",
-                "completed_at": "2026-09-20T12:52:11Z"
-              },
-              {
-                "name": "Native result",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 9,
-                "started_at": "2026-09-20T12:52:11Z",
-                "completed_at": "2026-09-20T12:52:11Z"
-              },
-              {
-                "name": "Post Run actions/checkout@v4",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 18,
-                "started_at": "2026-09-20T12:52:11Z",
-                "completed_at": "2026-09-20T12:52:12Z"
-              },
-              {
-                "name": "Complete job",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 19,
-                "started_at": "2026-09-20T12:52:12Z",
-                "completed_at": "2026-09-20T12:52:12Z"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "id": 35512429611,
-        "head_sha": "304eb25919601ccd7534dfd6e1da1dd5be091019",
-        "status": "completed",
-        "conclusion": "failure",
-        "jobs": [
-          {
-            "id": 106082548688,
-            "name": "representative",
-            "status": "completed",
-            "conclusion": "failure",
-            "steps": [
-              {
-                "name": "Set up job",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 1,
-                "started_at": "2026-09-20T13:04:25Z",
-                "completed_at": "2026-09-20T13:04:25Z"
-              },
-              {
-                "name": "Run actions/checkout@v4",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 2,
-                "started_at": "2026-09-20T13:04:25Z",
-                "completed_at": "2026-09-20T13:04:30Z"
-              },
-              {
-                "name": "固定原本と新契約を照合し開始checkpointを非force保存",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 3,
-                "started_at": "2026-09-20T13:04:30Z",
-                "completed_at": "2026-09-20T13:05:56Z"
-              },
-              {
-                "name": "真正退出Save30限定、cache missで再作成しない",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 4,
-                "started_at": "2026-09-20T13:05:56Z",
-                "completed_at": "2026-09-20T13:05:56Z"
-              },
-              {
-                "name": "Host mGBA dependency only",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 5,
-                "started_at": "2026-09-20T13:05:56Z",
-                "completed_at": "2026-09-20T13:06:11Z"
-              },
-              {
-                "name": "真正退出Save30から通常戦闘の自然calleeだけ検証",
-                "status": "completed",
-                "conclusion": "failure",
-                "number": 6,
-                "started_at": "2026-09-20T13:06:11Z",
-                "completed_at": "2026-09-20T13:06:25Z"
-              },
-              {
-                "name": "実行原本と停止点を非force保存",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 7,
-                "started_at": "2026-09-20T13:06:25Z",
-                "completed_at": "2026-09-20T13:07:05Z"
-              },
-              {
-                "name": "Pack text and bounded screens only",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 8,
-                "started_at": "2026-09-20T13:07:05Z",
-                "completed_at": "2026-09-20T13:07:05Z"
-              },
-              {
-                "name": "Run actions/upload-artifact@v4",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 9,
-                "started_at": "2026-09-20T13:07:05Z",
-                "completed_at": "2026-09-20T13:07:06Z"
-              },
-              {
-                "name": "Native result",
-                "status": "completed",
-                "conclusion": "failure",
-                "number": 10,
-                "started_at": "2026-09-20T13:07:06Z",
-                "completed_at": "2026-09-20T13:07:06Z"
-              },
-              {
-                "name": "Post Run actions/checkout@v4",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 20,
-                "started_at": "2026-09-20T13:07:06Z",
-                "completed_at": "2026-09-20T13:07:06Z"
-              },
-              {
-                "name": "Complete job",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 21,
-                "started_at": "2026-09-20T13:07:06Z",
-                "completed_at": "2026-09-20T13:07:06Z"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "id": 35512907219,
-        "head_sha": "63ec984e57524d747ef2a2b9816a7c979f2e1b37",
-        "status": "completed",
-        "conclusion": "success",
-        "jobs": [
-          {
-            "id": 106083860159,
-            "name": "representative",
-            "status": "completed",
-            "conclusion": "success",
-            "steps": [
-              {
-                "name": "Set up job",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 1,
-                "started_at": "2026-09-20T13:14:21Z",
-                "completed_at": "2026-09-20T13:14:22Z"
-              },
-              {
-                "name": "Run actions/checkout@v4",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 2,
-                "started_at": "2026-09-20T13:14:22Z",
-                "completed_at": "2026-09-20T13:14:27Z"
-              },
-              {
-                "name": "固定原本と新契約を照合し開始checkpointを非force保存",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 3,
-                "started_at": "2026-09-20T13:14:27Z",
-                "completed_at": "2026-09-20T13:15:14Z"
-              },
-              {
-                "name": "真正退出Save30限定、cache missで再作成しない",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 4,
-                "started_at": "2026-09-20T13:15:14Z",
-                "completed_at": "2026-09-20T13:15:15Z"
-              },
-              {
-                "name": "Host mGBA dependency only",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 5,
-                "started_at": "2026-09-20T13:15:15Z",
-                "completed_at": "2026-09-20T13:15:45Z"
-              },
-              {
-                "name": "真正退出Save30から通常戦闘の自然calleeだけ検証",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 6,
-                "started_at": "2026-09-20T13:15:45Z",
-                "completed_at": "2026-09-20T13:16:02Z"
-              },
-              {
-                "name": "実行原本と停止点を非force保存",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 7,
-                "started_at": "2026-09-20T13:16:02Z",
-                "completed_at": "2026-09-20T13:16:43Z"
-              },
-              {
-                "name": "Pack text and bounded screens only",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 8,
-                "started_at": "2026-09-20T13:16:43Z",
-                "completed_at": "2026-09-20T13:16:43Z"
-              },
-              {
-                "name": "Run actions/upload-artifact@v4",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 9,
-                "started_at": "2026-09-20T13:16:43Z",
-                "completed_at": "2026-09-20T13:16:44Z"
-              },
-              {
-                "name": "Native result",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 10,
-                "started_at": "2026-09-20T13:16:44Z",
-                "completed_at": "2026-09-20T13:16:44Z"
-              },
-              {
-                "name": "Post Run actions/checkout@v4",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 20,
-                "started_at": "2026-09-20T13:16:44Z",
-                "completed_at": "2026-09-20T13:16:45Z"
-              },
-              {
-                "name": "Complete job",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 21,
-                "started_at": "2026-09-20T13:16:45Z",
-                "completed_at": "2026-09-20T13:16:45Z"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "id": 35523960389,
-        "head_sha": "e800b909c1182f07bb4f4b0075f4ba1d7c8637c8",
-        "status": "completed",
-        "conclusion": "success",
-        "jobs": [
-          {
-            "id": 106112751051,
-            "name": "accept",
-            "status": "completed",
-            "conclusion": "success",
-            "steps": [
-              {
-                "name": "Set up job",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 1,
-                "started_at": "2026-09-20T16:50:19Z",
-                "completed_at": "2026-09-20T16:50:19Z"
-              },
-              {
-                "name": "Run actions/checkout@v4",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 2,
-                "started_at": "2026-09-20T16:50:19Z",
-                "completed_at": "2026-09-20T16:50:24Z"
-              },
-              {
-                "name": "原本受入の拒否系契約のみ",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 3,
-                "started_at": "2026-09-20T16:50:24Z",
-                "completed_at": "2026-09-20T16:50:24Z"
-              },
-              {
-                "name": "完了Actions・固定原本・5画面を照合し非force受入checkpoint",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 4,
-                "started_at": "2026-09-20T16:50:24Z",
-                "completed_at": "2026-09-20T16:51:08Z"
-              },
-              {
-                "name": "原本と次の候補移送に必要な限定textを保存",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 5,
-                "started_at": "2026-09-20T16:51:08Z",
-                "completed_at": "2026-09-20T16:51:09Z"
-              },
-              {
-                "name": "Run actions/upload-artifact@v4",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 6,
-                "started_at": "2026-09-20T16:51:09Z",
-                "completed_at": "2026-09-20T16:51:11Z"
-              },
-              {
-                "name": "Post Run actions/checkout@v4",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 12,
-                "started_at": "2026-09-20T16:51:11Z",
-                "completed_at": "2026-09-20T16:51:12Z"
-              },
-              {
-                "name": "Complete job",
-                "status": "completed",
-                "conclusion": "success",
-                "number": 13,
-                "started_at": "2026-09-20T16:51:12Z",
-                "completed_at": "2026-09-20T16:51:12Z"
+                "conclusion": "success"
               }
             ]
           }
         ]
       }
     ],
-    "reason_ja": "後継表run35627966003の新39試験、2生成、純読取、全128447原本行保存、ローカル/Actions13出力一致。旧native/原本採取・公式生成を再実行していない。",
-    "previous_reason_ja": "旧P08移送run35524571950のsuccessを確認。Wiki限定検証の結果はcandidate_wiki.acceptanceとverification_runを参照。Issue #18未完・PR draft維持。全nativeやrelease検証は追加していない。",
-    "candidate_wiki_completion": {
-      "id": 35564710398,
-      "head_sha": "2bb1d9c544bc36891d04797c7cca469aeee768d5",
-      "status": "completed",
-      "conclusion": "success"
-    },
-    "reason_history_ja": [
-      "この欄の既存runs/scope_headは過去scopeの履歴として保持。今回の候補Wikiは4回の限定Actionsと完了照合run35564710398がsuccess。全PR checksの成功やnative全回帰を意味しない。最新検証HEADと完了結果はcandidate_wikiを参照。",
-      "この欄の既存runs/scope_headは過去scopeの履歴として保持。候補Wikiの最新run35568404816と完了照合run35569000222はcompleted/successをGETで確認。全PR checksの成功やnative全回帰を意味しない。将来の最新検証HEADと完了結果はcandidate_wikiを参照。",
-      "既存runsは過去scopeとして保持。Issue19の39試験・独立2生成・純読取・tracked不変はlearnset_baselineの完了run原本を参照。全native再受入ではない。",
-      "過去native/checksは元scopeのまま保持。新規43試験・独立2生成・純読取はlearnset_vega_originalの完了原本。採用判定とIssue19全体は未完。",
-      "裁定run35623180576の13試験/2生成/純読取PASS。衝突run35621880869の5試験を再利用。既存native/checksは元scopeのまま。"
-    ]
+    "reason_ja": "今回の新54試験・独立2プロセス・全128352経路と全byte監査は完了Actionsで照合済み。静的binding/配置前payloadだけの受入で、全PR checksやROM/native全回帰の成功ではない。"
   },
-  "observed_head_semantics": "後継consumer表検証の完了Actions入力HEAD。branch最新HEADではない。現在HEADはremoteから取得し、記録commitはgit logで確認する。",
+  "observed_head_semantics": "191枠binding/配置前payloadの完了検証入力HEAD。branch最新HEAD/native受入HEADではない。現在HEADはremoteから取得する。",
   "p08_resume_synchronized": true,
   "party_retention_latest_attempt": {
     "accepted_native_cases_replayed": 0,
@@ -11057,6 +10274,863 @@
       "head": "04b8ea96ac7244fd0940e9f9075026198869cdf4",
       "semantics": "Vega原本衝突/非直接egg裁定の完了Actions入力HEAD。branch最新HEADとは別。現在HEADはremoteから取得し、反映commitはgit logで確認する。",
       "reason_ja": "source裁定受入を保持したまま、後継consumer表の完了証拠へ再開点を更新。"
+    },
+    {
+      "head": "1bd7e126dd4083581b43ade0776b72eddd38b9d1",
+      "semantics": "後継consumer表検証の完了Actions入力HEAD。branch最新HEADではない。現在HEADはremoteから取得し、記録commitはgit logで確認する。",
+      "checks": {
+        "scope_head": "9834398c8430ded96a8d25ea96d02edd8a78212d",
+        "runs": [
+          {
+            "id": 35506654695,
+            "head_sha": "5a1b35ad66c0a9a157274835987d9d7d20ba1f12",
+            "status": "completed",
+            "conclusion": "success",
+            "jobs": [
+              {
+                "id": 106067500110,
+                "name": "receipt",
+                "status": "completed",
+                "conclusion": "success",
+                "steps": [
+                  {
+                    "name": "Set up job",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 1,
+                    "started_at": "2026-09-20T11:01:06Z",
+                    "completed_at": "2026-09-20T11:01:07Z"
+                  },
+                  {
+                    "name": "Run actions/checkout@v4",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 2,
+                    "started_at": "2026-09-20T11:01:07Z",
+                    "completed_at": "2026-09-20T11:01:12Z"
+                  },
+                  {
+                    "name": "未登録のresume実装bindingを固定入力から修復しsource checkpointを非force保存",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 3,
+                    "started_at": "2026-09-20T11:01:12Z",
+                    "completed_at": "2026-09-20T11:01:48Z"
+                  },
+                  {
+                    "name": "完了原本と目視29画面を照合し正式受入・引継ぎ・両ログを非force保存",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 4,
+                    "started_at": "2026-09-20T11:01:48Z",
+                    "completed_at": "2026-09-20T11:02:36Z"
+                  },
+                  {
+                    "name": "P08限定読取用tracked textを保存（ROMとsaveは除外）",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 5,
+                    "started_at": "2026-09-20T11:02:36Z",
+                    "completed_at": "2026-09-20T11:02:36Z"
+                  },
+                  {
+                    "name": "Run actions/upload-artifact@v4",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 6,
+                    "started_at": "2026-09-20T11:02:36Z",
+                    "completed_at": "2026-09-20T11:02:38Z"
+                  },
+                  {
+                    "name": "Post Run actions/checkout@v4",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 12,
+                    "started_at": "2026-09-20T11:02:38Z",
+                    "completed_at": "2026-09-20T11:02:38Z"
+                  },
+                  {
+                    "name": "Complete job",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 13,
+                    "started_at": "2026-09-20T11:02:38Z",
+                    "completed_at": "2026-09-20T11:02:38Z"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": 35507102023,
+            "head_sha": "29202a863b14da9956c1e3b0b306b56ba3f77dc4",
+            "status": "completed",
+            "conclusion": "success",
+            "jobs": [
+              {
+                "id": 106068665551,
+                "name": "impact",
+                "status": "completed",
+                "conclusion": "success",
+                "steps": [
+                  {
+                    "name": "Set up job",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 1,
+                    "started_at": "2026-09-20T11:10:43Z",
+                    "completed_at": "2026-09-20T11:10:43Z"
+                  },
+                  {
+                    "name": "Run actions/checkout@v4",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 2,
+                    "started_at": "2026-09-20T11:10:43Z",
+                    "completed_at": "2026-09-20T11:10:48Z"
+                  },
+                  {
+                    "name": "21層の全ROM検証・owner影響・引継ぎと両ログを非force保存",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 3,
+                    "started_at": "2026-09-20T11:10:48Z",
+                    "completed_at": "2026-09-20T11:11:38Z"
+                  },
+                  {
+                    "name": "ROMを除外し検査証拠だけ保存",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 4,
+                    "started_at": "2026-09-20T11:11:38Z",
+                    "completed_at": "2026-09-20T11:11:38Z"
+                  },
+                  {
+                    "name": "Run actions/upload-artifact@v4",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 5,
+                    "started_at": "2026-09-20T11:11:38Z",
+                    "completed_at": "2026-09-20T11:11:38Z"
+                  },
+                  {
+                    "name": "Post Run actions/checkout@v4",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 10,
+                    "started_at": "2026-09-20T11:11:38Z",
+                    "completed_at": "2026-09-20T11:11:39Z"
+                  },
+                  {
+                    "name": "Complete job",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 11,
+                    "started_at": "2026-09-20T11:11:39Z",
+                    "completed_at": "2026-09-20T11:11:39Z"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": 35507654812,
+            "head_sha": "870e65e58fa34289daa6216ae41ed201e54b5e29",
+            "status": "completed",
+            "conclusion": "failure",
+            "jobs": [
+              {
+                "id": 106070069903,
+                "name": "representative",
+                "status": "completed",
+                "conclusion": "failure",
+                "steps": [
+                  {
+                    "name": "Set up job",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 1,
+                    "started_at": "2026-09-20T11:22:35Z",
+                    "completed_at": "2026-09-20T11:22:35Z"
+                  },
+                  {
+                    "name": "Run actions/checkout@v4",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 2,
+                    "started_at": "2026-09-20T11:22:36Z",
+                    "completed_at": "2026-09-20T11:22:41Z"
+                  },
+                  {
+                    "name": "P08完了Actions・原本と22context契約を確認し開始を非force保存",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 3,
+                    "started_at": "2026-09-20T11:22:41Z",
+                    "completed_at": "2026-09-20T11:23:26Z"
+                  },
+                  {
+                    "name": "host mGBA依存のみ導入（ARM buildなし）",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 4,
+                    "started_at": "2026-09-20T11:23:26Z",
+                    "completed_at": "2026-09-20T11:23:46Z"
+                  },
+                  {
+                    "name": "同じ46487d98候補のRing active代表1件だけ実行",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 5,
+                    "started_at": "2026-09-20T11:23:46Z",
+                    "completed_at": "2026-09-20T11:24:10Z"
+                  },
+                  {
+                    "name": "未観測と成功を分離し原本・引継ぎ・両ログを非force保存",
+                    "status": "completed",
+                    "conclusion": "failure",
+                    "number": 6,
+                    "started_at": "2026-09-20T11:24:10Z",
+                    "completed_at": "2026-09-20T11:24:46Z"
+                  },
+                  {
+                    "name": "ROM・saveを除外し画面と原本を保存",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 7,
+                    "started_at": "2026-09-20T11:24:46Z",
+                    "completed_at": "2026-09-20T11:24:46Z"
+                  },
+                  {
+                    "name": "Run actions/upload-artifact@v4",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 8,
+                    "started_at": "2026-09-20T11:24:46Z",
+                    "completed_at": "2026-09-20T11:24:47Z"
+                  },
+                  {
+                    "name": "失敗を成功に読み替えない",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 9,
+                    "started_at": "2026-09-20T11:24:47Z",
+                    "completed_at": "2026-09-20T11:24:47Z"
+                  },
+                  {
+                    "name": "Post Run actions/checkout@v4",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 18,
+                    "started_at": "2026-09-20T11:24:47Z",
+                    "completed_at": "2026-09-20T11:24:48Z"
+                  },
+                  {
+                    "name": "Complete job",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 19,
+                    "started_at": "2026-09-20T11:24:48Z",
+                    "completed_at": "2026-09-20T11:24:48Z"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": 35510095146,
+            "head_sha": "3a08d5dbed832a869161a7e5c842d96eebd58659",
+            "status": "completed",
+            "conclusion": "success",
+            "jobs": [
+              {
+                "id": 106076375842,
+                "name": "recovery",
+                "status": "completed",
+                "conclusion": "success",
+                "steps": [
+                  {
+                    "name": "Set up job",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 1,
+                    "started_at": "2026-09-20T12:15:26Z",
+                    "completed_at": "2026-09-20T12:15:27Z"
+                  },
+                  {
+                    "name": "Run actions/checkout@v4",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 2,
+                    "started_at": "2026-09-20T12:15:27Z",
+                    "completed_at": "2026-09-20T12:15:33Z"
+                  },
+                  {
+                    "name": "完了原本だけ回収・14画面とbyteを照合・受入記録を非force保存",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 3,
+                    "started_at": "2026-09-20T12:15:33Z",
+                    "completed_at": "2026-09-20T12:16:19Z"
+                  },
+                  {
+                    "name": "Run actions/upload-artifact@v4",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 4,
+                    "started_at": "2026-09-20T12:16:19Z",
+                    "completed_at": "2026-09-20T12:16:21Z"
+                  },
+                  {
+                    "name": "Post Run actions/checkout@v4",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 8,
+                    "started_at": "2026-09-20T12:16:21Z",
+                    "completed_at": "2026-09-20T12:16:21Z"
+                  },
+                  {
+                    "name": "Complete job",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 9,
+                    "started_at": "2026-09-20T12:16:21Z",
+                    "completed_at": "2026-09-20T12:16:21Z"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": 35511250297,
+            "head_sha": "2b3fba89ee99e4d1360687f22d4cfb562fd0ec77",
+            "status": "completed",
+            "conclusion": "success",
+            "jobs": [
+              {
+                "id": 106079428228,
+                "name": "representative",
+                "status": "completed",
+                "conclusion": "success",
+                "steps": [
+                  {
+                    "name": "Set up job",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 1,
+                    "started_at": "2026-09-20T12:39:38Z",
+                    "completed_at": "2026-09-20T12:39:39Z"
+                  },
+                  {
+                    "name": "Run actions/checkout@v4",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 2,
+                    "started_at": "2026-09-20T12:39:39Z",
+                    "completed_at": "2026-09-20T12:39:44Z"
+                  },
+                  {
+                    "name": "固定原本と新契約を照合し開始checkpointを非force保存",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 3,
+                    "started_at": "2026-09-20T12:39:44Z",
+                    "completed_at": "2026-09-20T12:40:25Z"
+                  },
+                  {
+                    "name": "Host mGBA dependency only",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 4,
+                    "started_at": "2026-09-20T12:40:25Z",
+                    "completed_at": "2026-09-20T12:40:43Z"
+                  },
+                  {
+                    "name": "共有帰還と保存再開の影響代表1件だけ実行",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 5,
+                    "started_at": "2026-09-20T12:40:43Z",
+                    "completed_at": "2026-09-20T12:41:07Z"
+                  },
+                  {
+                    "name": "実行原本と停止点を非force保存",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 6,
+                    "started_at": "2026-09-20T12:41:07Z",
+                    "completed_at": "2026-09-20T12:41:41Z"
+                  },
+                  {
+                    "name": "Pack text and bounded screens only",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 7,
+                    "started_at": "2026-09-20T12:41:41Z",
+                    "completed_at": "2026-09-20T12:41:41Z"
+                  },
+                  {
+                    "name": "Run actions/upload-artifact@v4",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 8,
+                    "started_at": "2026-09-20T12:41:41Z",
+                    "completed_at": "2026-09-20T12:41:42Z"
+                  },
+                  {
+                    "name": "Native result",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 9,
+                    "started_at": "2026-09-20T12:41:42Z",
+                    "completed_at": "2026-09-20T12:41:42Z"
+                  },
+                  {
+                    "name": "Post Run actions/checkout@v4",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 18,
+                    "started_at": "2026-09-20T12:41:42Z",
+                    "completed_at": "2026-09-20T12:41:43Z"
+                  },
+                  {
+                    "name": "Complete job",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 19,
+                    "started_at": "2026-09-20T12:41:43Z",
+                    "completed_at": "2026-09-20T12:41:43Z"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": 35511721939,
+            "head_sha": "33bb7bce407e839fbf1931ee8968ca55fce82077",
+            "status": "completed",
+            "conclusion": "success",
+            "jobs": [
+              {
+                "id": 106080666506,
+                "name": "representative",
+                "status": "completed",
+                "conclusion": "success",
+                "steps": [
+                  {
+                    "name": "Set up job",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 1,
+                    "started_at": "2026-09-20T12:49:30Z",
+                    "completed_at": "2026-09-20T12:49:31Z"
+                  },
+                  {
+                    "name": "Run actions/checkout@v4",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 2,
+                    "started_at": "2026-09-20T12:49:31Z",
+                    "completed_at": "2026-09-20T12:49:36Z"
+                  },
+                  {
+                    "name": "固定原本と新契約を照合し開始checkpointを非force保存",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 3,
+                    "started_at": "2026-09-20T12:49:36Z",
+                    "completed_at": "2026-09-20T12:51:01Z"
+                  },
+                  {
+                    "name": "Host mGBA dependency only",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 4,
+                    "started_at": "2026-09-20T12:51:01Z",
+                    "completed_at": "2026-09-20T12:51:16Z"
+                  },
+                  {
+                    "name": "わざメモリー満杯置換と保存再開の影響代表1件だけ実行",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 5,
+                    "started_at": "2026-09-20T12:51:16Z",
+                    "completed_at": "2026-09-20T12:51:32Z"
+                  },
+                  {
+                    "name": "実行原本と停止点を非force保存",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 6,
+                    "started_at": "2026-09-20T12:51:32Z",
+                    "completed_at": "2026-09-20T12:52:10Z"
+                  },
+                  {
+                    "name": "Pack text and bounded screens only",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 7,
+                    "started_at": "2026-09-20T12:52:10Z",
+                    "completed_at": "2026-09-20T12:52:11Z"
+                  },
+                  {
+                    "name": "Run actions/upload-artifact@v4",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 8,
+                    "started_at": "2026-09-20T12:52:11Z",
+                    "completed_at": "2026-09-20T12:52:11Z"
+                  },
+                  {
+                    "name": "Native result",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 9,
+                    "started_at": "2026-09-20T12:52:11Z",
+                    "completed_at": "2026-09-20T12:52:11Z"
+                  },
+                  {
+                    "name": "Post Run actions/checkout@v4",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 18,
+                    "started_at": "2026-09-20T12:52:11Z",
+                    "completed_at": "2026-09-20T12:52:12Z"
+                  },
+                  {
+                    "name": "Complete job",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 19,
+                    "started_at": "2026-09-20T12:52:12Z",
+                    "completed_at": "2026-09-20T12:52:12Z"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": 35512429611,
+            "head_sha": "304eb25919601ccd7534dfd6e1da1dd5be091019",
+            "status": "completed",
+            "conclusion": "failure",
+            "jobs": [
+              {
+                "id": 106082548688,
+                "name": "representative",
+                "status": "completed",
+                "conclusion": "failure",
+                "steps": [
+                  {
+                    "name": "Set up job",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 1,
+                    "started_at": "2026-09-20T13:04:25Z",
+                    "completed_at": "2026-09-20T13:04:25Z"
+                  },
+                  {
+                    "name": "Run actions/checkout@v4",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 2,
+                    "started_at": "2026-09-20T13:04:25Z",
+                    "completed_at": "2026-09-20T13:04:30Z"
+                  },
+                  {
+                    "name": "固定原本と新契約を照合し開始checkpointを非force保存",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 3,
+                    "started_at": "2026-09-20T13:04:30Z",
+                    "completed_at": "2026-09-20T13:05:56Z"
+                  },
+                  {
+                    "name": "真正退出Save30限定、cache missで再作成しない",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 4,
+                    "started_at": "2026-09-20T13:05:56Z",
+                    "completed_at": "2026-09-20T13:05:56Z"
+                  },
+                  {
+                    "name": "Host mGBA dependency only",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 5,
+                    "started_at": "2026-09-20T13:05:56Z",
+                    "completed_at": "2026-09-20T13:06:11Z"
+                  },
+                  {
+                    "name": "真正退出Save30から通常戦闘の自然calleeだけ検証",
+                    "status": "completed",
+                    "conclusion": "failure",
+                    "number": 6,
+                    "started_at": "2026-09-20T13:06:11Z",
+                    "completed_at": "2026-09-20T13:06:25Z"
+                  },
+                  {
+                    "name": "実行原本と停止点を非force保存",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 7,
+                    "started_at": "2026-09-20T13:06:25Z",
+                    "completed_at": "2026-09-20T13:07:05Z"
+                  },
+                  {
+                    "name": "Pack text and bounded screens only",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 8,
+                    "started_at": "2026-09-20T13:07:05Z",
+                    "completed_at": "2026-09-20T13:07:05Z"
+                  },
+                  {
+                    "name": "Run actions/upload-artifact@v4",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 9,
+                    "started_at": "2026-09-20T13:07:05Z",
+                    "completed_at": "2026-09-20T13:07:06Z"
+                  },
+                  {
+                    "name": "Native result",
+                    "status": "completed",
+                    "conclusion": "failure",
+                    "number": 10,
+                    "started_at": "2026-09-20T13:07:06Z",
+                    "completed_at": "2026-09-20T13:07:06Z"
+                  },
+                  {
+                    "name": "Post Run actions/checkout@v4",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 20,
+                    "started_at": "2026-09-20T13:07:06Z",
+                    "completed_at": "2026-09-20T13:07:06Z"
+                  },
+                  {
+                    "name": "Complete job",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 21,
+                    "started_at": "2026-09-20T13:07:06Z",
+                    "completed_at": "2026-09-20T13:07:06Z"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": 35512907219,
+            "head_sha": "63ec984e57524d747ef2a2b9816a7c979f2e1b37",
+            "status": "completed",
+            "conclusion": "success",
+            "jobs": [
+              {
+                "id": 106083860159,
+                "name": "representative",
+                "status": "completed",
+                "conclusion": "success",
+                "steps": [
+                  {
+                    "name": "Set up job",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 1,
+                    "started_at": "2026-09-20T13:14:21Z",
+                    "completed_at": "2026-09-20T13:14:22Z"
+                  },
+                  {
+                    "name": "Run actions/checkout@v4",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 2,
+                    "started_at": "2026-09-20T13:14:22Z",
+                    "completed_at": "2026-09-20T13:14:27Z"
+                  },
+                  {
+                    "name": "固定原本と新契約を照合し開始checkpointを非force保存",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 3,
+                    "started_at": "2026-09-20T13:14:27Z",
+                    "completed_at": "2026-09-20T13:15:14Z"
+                  },
+                  {
+                    "name": "真正退出Save30限定、cache missで再作成しない",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 4,
+                    "started_at": "2026-09-20T13:15:14Z",
+                    "completed_at": "2026-09-20T13:15:15Z"
+                  },
+                  {
+                    "name": "Host mGBA dependency only",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 5,
+                    "started_at": "2026-09-20T13:15:15Z",
+                    "completed_at": "2026-09-20T13:15:45Z"
+                  },
+                  {
+                    "name": "真正退出Save30から通常戦闘の自然calleeだけ検証",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 6,
+                    "started_at": "2026-09-20T13:15:45Z",
+                    "completed_at": "2026-09-20T13:16:02Z"
+                  },
+                  {
+                    "name": "実行原本と停止点を非force保存",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 7,
+                    "started_at": "2026-09-20T13:16:02Z",
+                    "completed_at": "2026-09-20T13:16:43Z"
+                  },
+                  {
+                    "name": "Pack text and bounded screens only",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 8,
+                    "started_at": "2026-09-20T13:16:43Z",
+                    "completed_at": "2026-09-20T13:16:43Z"
+                  },
+                  {
+                    "name": "Run actions/upload-artifact@v4",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 9,
+                    "started_at": "2026-09-20T13:16:43Z",
+                    "completed_at": "2026-09-20T13:16:44Z"
+                  },
+                  {
+                    "name": "Native result",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 10,
+                    "started_at": "2026-09-20T13:16:44Z",
+                    "completed_at": "2026-09-20T13:16:44Z"
+                  },
+                  {
+                    "name": "Post Run actions/checkout@v4",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 20,
+                    "started_at": "2026-09-20T13:16:44Z",
+                    "completed_at": "2026-09-20T13:16:45Z"
+                  },
+                  {
+                    "name": "Complete job",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 21,
+                    "started_at": "2026-09-20T13:16:45Z",
+                    "completed_at": "2026-09-20T13:16:45Z"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": 35523960389,
+            "head_sha": "e800b909c1182f07bb4f4b0075f4ba1d7c8637c8",
+            "status": "completed",
+            "conclusion": "success",
+            "jobs": [
+              {
+                "id": 106112751051,
+                "name": "accept",
+                "status": "completed",
+                "conclusion": "success",
+                "steps": [
+                  {
+                    "name": "Set up job",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 1,
+                    "started_at": "2026-09-20T16:50:19Z",
+                    "completed_at": "2026-09-20T16:50:19Z"
+                  },
+                  {
+                    "name": "Run actions/checkout@v4",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 2,
+                    "started_at": "2026-09-20T16:50:19Z",
+                    "completed_at": "2026-09-20T16:50:24Z"
+                  },
+                  {
+                    "name": "原本受入の拒否系契約のみ",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 3,
+                    "started_at": "2026-09-20T16:50:24Z",
+                    "completed_at": "2026-09-20T16:50:24Z"
+                  },
+                  {
+                    "name": "完了Actions・固定原本・5画面を照合し非force受入checkpoint",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 4,
+                    "started_at": "2026-09-20T16:50:24Z",
+                    "completed_at": "2026-09-20T16:51:08Z"
+                  },
+                  {
+                    "name": "原本と次の候補移送に必要な限定textを保存",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 5,
+                    "started_at": "2026-09-20T16:51:08Z",
+                    "completed_at": "2026-09-20T16:51:09Z"
+                  },
+                  {
+                    "name": "Run actions/upload-artifact@v4",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 6,
+                    "started_at": "2026-09-20T16:51:09Z",
+                    "completed_at": "2026-09-20T16:51:11Z"
+                  },
+                  {
+                    "name": "Post Run actions/checkout@v4",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 12,
+                    "started_at": "2026-09-20T16:51:11Z",
+                    "completed_at": "2026-09-20T16:51:12Z"
+                  },
+                  {
+                    "name": "Complete job",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 13,
+                    "started_at": "2026-09-20T16:51:12Z",
+                    "completed_at": "2026-09-20T16:51:12Z"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "reason_ja": "後継表run35627966003の新39試験、2生成、純読取、全128447原本行保存、ローカル/Actions13出力一致。旧native/原本採取・公式生成を再実行していない。",
+        "previous_reason_ja": "旧P08移送run35524571950のsuccessを確認。Wiki限定検証の結果はcandidate_wiki.acceptanceとverification_runを参照。Issue #18未完・PR draft維持。全nativeやrelease検証は追加していない。",
+        "candidate_wiki_completion": {
+          "id": 35564710398,
+          "head_sha": "2bb1d9c544bc36891d04797c7cca469aeee768d5",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        "reason_history_ja": [
+          "この欄の既存runs/scope_headは過去scopeの履歴として保持。今回の候補Wikiは4回の限定Actionsと完了照合run35564710398がsuccess。全PR checksの成功やnative全回帰を意味しない。最新検証HEADと完了結果はcandidate_wikiを参照。",
+          "この欄の既存runs/scope_headは過去scopeの履歴として保持。候補Wikiの最新run35568404816と完了照合run35569000222はcompleted/successをGETで確認。全PR checksの成功やnative全回帰を意味しない。将来の最新検証HEADと完了結果はcandidate_wikiを参照。",
+          "既存runsは過去scopeとして保持。Issue19の39試験・独立2生成・純読取・tracked不変はlearnset_baselineの完了run原本を参照。全native再受入ではない。",
+          "過去native/checksは元scopeのまま保持。新規43試験・独立2生成・純読取はlearnset_vega_originalの完了原本。採用判定とIssue19全体は未完。",
+          "裁定run35623180576の13試験/2生成/純読取PASS。衝突run35621880869の5試験を再利用。既存native/checksは元scopeのまま。"
+        ]
+      },
+      "reason_ja": "191枠明示bindingと配置前payloadの完了Actionsへ表示を更新。旧受入範囲は保全。"
     }
   ],
   "learnset_baseline": {
@@ -12169,75 +12243,614 @@
     }
   },
   "learnset_binding": {
-    "unselected_species": 191,
-    "unselected_states": {
-      "SOURCE_NOT_SELECTED": 141,
-      "RUNTIME_EXTENSION_NOT_SELECTED": 50
-    },
-    "hatch_rows": 2394,
-    "hatch_dispositions": {
-      "SELECTED_HATCH_MEMBERSHIP_CARRY_REFERENCE": 1863,
-      "HISTORICAL_HATCH_REFERENCE_NO_NEW_GRANT": 531
-    },
-    "direct_grants": 0,
-    "shared_grants": 0,
-    "owner_overlay_grants": 0,
-    "existing_move_carry_policy_changed": false,
-    "acquisition_impossible_claimed": false,
-    "runtime_applied": false,
-    "rom_changes": 0,
-    "new_native_runs": 0,
-    "issue19_complete": false,
-    "release_ready": false,
-    "task": "USER-20260921-LEARNSET-BASELINE-RESET",
-    "status": "HATCH_DISPOSITIONS_VERIFIED_SPECIES_BINDING_PENDING",
-    "source_head": "1fa45557c6ad1ae4ed0c976f84b84e953abf37ee",
-    "run_id": 35656548503,
-    "actions_completion_confirmed": false,
-    "focused_tests": 24,
     "accepted_tests_rerun": 0,
-    "source_generation_reruns": 0,
-    "input_tables_reused": true,
-    "readonly_byte_mtime_unchanged": true,
+    "acquisition_impossible_claimed": false,
+    "actions_completion_confirmed": true,
     "code": {
-      "tools/pr16_learnset_binding.py": {
-        "sha256": "13fd97fce241e7e16b6e4cb5b1c05c0386304382920d2571d444fb2f16590621",
-        "size": 5317
-      },
-      "tests/test_pr16_learnset_binding.py": {
-        "sha256": "224e4505e4b865c838cb68aa00d751f337ce71a579ed450d4a0db1811fffd5ba",
-        "size": 7049
+      ".github/workflows/pr16-learnset-binding.yml": {
+        "sha256": "066c1cd2258b37011fa40c957e1ae45365ef27e7b41732f9f2a8fad888ced969",
+        "size": 3066
       },
       "scripts/pr16_learnset_binding_verify.py": {
         "sha256": "d2aaa142a494df31c29453abaa76004e92569dfee50c1a3a88cde5d4509aa474",
         "size": 13019
       },
-      ".github/workflows/pr16-learnset-binding.yml": {
-        "sha256": "066c1cd2258b37011fa40c957e1ae45365ef27e7b41732f9f2a8fad888ced969",
-        "size": 3066
+      "tests/test_pr16_learnset_binding.py": {
+        "sha256": "224e4505e4b865c838cb68aa00d751f337ce71a579ed450d4a0db1811fffd5ba",
+        "size": 7049
+      },
+      "tools/pr16_learnset_binding.py": {
+        "sha256": "13fd97fce241e7e16b6e4cb5b1c05c0386304382920d2571d444fb2f16590621",
+        "size": 5317
       }
     },
+    "direct_grants": 0,
+    "existing_move_carry_policy_changed": false,
+    "focused_tests": 24,
+    "hatch_dispositions": {
+      "HISTORICAL_HATCH_REFERENCE_NO_NEW_GRANT": 531,
+      "SELECTED_HATCH_MEMBERSHIP_CARRY_REFERENCE": 1863
+    },
+    "hatch_rows": 2394,
+    "input_tables_reused": true,
+    "issue19_complete": false,
+    "new_native_runs": 0,
     "outputs": {
-      "unselected.jsonl": {
-        "size": 148136,
-        "sha256": "ecbe806026c22668ae43c2410ca3963409eb2a3593745d883cb8e10cfc79e68e"
-      },
       "hatch_decisions.csv": {
-        "size": 485910,
-        "sha256": "6bc281e2f9b3615f34f399043192ff8200b4b5fb23d5cdcd094c08fa533c2f91"
-      },
-      "summary.json": {
-        "size": 497,
-        "sha256": "18c4553f0c76d2e6a811826bc76e42eda280f48fd19d0a40a576b91681f888a0"
+        "sha256": "6bc281e2f9b3615f34f399043192ff8200b4b5fb23d5cdcd094c08fa533c2f91",
+        "size": 485910
       },
       "source-actions.json": {
-        "size": 604,
-        "sha256": "881e6537faf8f7758735e5186fe5bd0b793dd08c400e77f86cd449907b579cca"
+        "sha256": "881e6537faf8f7758735e5186fe5bd0b793dd08c400e77f86cd449907b579cca",
+        "size": 604
+      },
+      "summary.json": {
+        "sha256": "18c4553f0c76d2e6a811826bc76e42eda280f48fd19d0a40a576b91681f888a0",
+        "size": 497
       },
       "unit.txt": {
-        "size": 2389,
-        "sha256": "206d25f212fe29411588f0fe5fda353d507b6d9dd5728495c8b909bc1d8f60fe"
+        "sha256": "206d25f212fe29411588f0fe5fda353d507b6d9dd5728495c8b909bc1d8f60fe",
+        "size": 2389
+      },
+      "unselected.jsonl": {
+        "sha256": "ecbe806026c22668ae43c2410ca3963409eb2a3593745d883cb8e10cfc79e68e",
+        "size": 148136
       }
+    },
+    "owner_overlay_grants": 0,
+    "readonly_byte_mtime_unchanged": true,
+    "release_ready": false,
+    "rom_changes": 0,
+    "run_id": 35656548503,
+    "runtime_applied": false,
+    "shared_grants": 0,
+    "source_generation_reruns": 0,
+    "source_head": "1fa45557c6ad1ae4ed0c976f84b84e953abf37ee",
+    "status": "HATCH_DISPOSITIONS_VERIFIED_SPECIES_BINDING_PENDING",
+    "task": "USER-20260921-LEARNSET-BASELINE-RESET",
+    "unselected_species": 191,
+    "unselected_states": {
+      "RUNTIME_EXTENSION_NOT_SELECTED": 50,
+      "SOURCE_NOT_SELECTED": 141
+    },
+    "completed_actions": {
+      "id": 35656548503,
+      "head_sha": "1fa45557c6ad1ae4ed0c976f84b84e953abf37ee",
+      "status": "completed",
+      "conclusion": "success",
+      "path": ".github/workflows/pr16-learnset-binding.yml",
+      "jobs": [
+        {
+          "id": 106521535418,
+          "name": "binding-verify",
+          "status": "completed",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/setup-python@v5",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "受入artifactを再利用しbindingの新規範囲だけを検証",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "同一branchへcheckpointを非forceで保存",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/upload-artifact@v4",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/setup-python@v5",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "learnset_payloads": {
+    "task": "USER-20260921-LEARNSET-BASELINE-RESET",
+    "status": "ACCEPTED_BINDING_PAYLOADS_ONLY_ROM_PENDING",
+    "source_head": "a7e2d99f44354b6e3e5b9a9993f15cae2f179b67",
+    "run_id": 35659593954,
+    "focused_tests": 54,
+    "actions_completion_confirmed": true,
+    "completed_actions": {
+      "id": 35659593954,
+      "head_sha": "a7e2d99f44354b6e3e5b9a9993f15cae2f179b67",
+      "status": "completed",
+      "conclusion": "success",
+      "path": ".github/workflows/pr16-learnset-payload.yml",
+      "jobs": [
+        {
+          "id": 106531416710,
+          "name": "payload-verify",
+          "status": "completed",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/setup-python@v5",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "新規54試験と後継payloadだけを独立2プロセスで検証",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/upload-artifact@v4",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/upload-artifact@v4",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/setup-python@v5",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success"
+            }
+          ]
+        }
+      ]
+    },
+    "payload_artifact": {
+      "id": 10667620466,
+      "node_id": "MDg6QXJ0aWZhY3QxMDY2NzYyMDQ2Ng==",
+      "name": "pr16-learnset-payload-data",
+      "size_in_bytes": 7533998,
+      "url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/artifacts/10667620466",
+      "archive_download_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/artifacts/10667620466/zip",
+      "expired": false,
+      "digest": "sha256:9920a343648c037113be0a78358837729b137996b2e00c990c0521e6c83937bf",
+      "created_at": "2026-09-21T21:53:02Z",
+      "updated_at": "2026-09-21T21:53:02Z",
+      "expires_at": "2026-10-21T21:52:59Z",
+      "workflow_run": {
+        "id": 35659593954,
+        "repository_id": 1358127462,
+        "head_repository_id": 1358127462,
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "a7e2d99f44354b6e3e5b9a9993f15cae2f179b67"
+      }
+    },
+    "proof_artifact": {
+      "id": 10667555557,
+      "node_id": "MDg6QXJ0aWZhY3QxMDY2NzU1NTU1Nw==",
+      "name": "pr16-learnset-payload-proof",
+      "size_in_bytes": 55389,
+      "url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/artifacts/10667555557",
+      "archive_download_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/artifacts/10667555557/zip",
+      "expired": false,
+      "digest": "sha256:0b6dd6b51b82faca58b648d6f4693aad0ae2ef12a891e6f7a96f91e4be88d832",
+      "created_at": "2026-09-21T21:53:03Z",
+      "updated_at": "2026-09-21T21:53:03Z",
+      "expires_at": "2026-10-21T21:53:02Z",
+      "workflow_run": {
+        "id": 35659593954,
+        "repository_id": 1358127462,
+        "head_repository_id": 1358127462,
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "a7e2d99f44354b6e3e5b9a9993f15cae2f179b67"
+      }
+    },
+    "summary": {
+      "automatic_fallback": false,
+      "binding_consumers": {
+        "egg": 4,
+        "level_up": 17,
+        "machine": 39,
+        "shared_egg": 4
+      },
+      "binding_rows": 191,
+      "blanket_deletion": false,
+      "blocking": [
+        {
+          "policy": "GIFT_LEARNSET_ADOPTION_REQUIRED",
+          "species_id": 1029,
+          "species_key": "SPECIES_KEY_FLOETTE_ETERNAL"
+        }
+      ],
+      "conditional_form_runtime_connection": false,
+      "existing_move_rewrite": false,
+      "explicit_binding_routes": 64,
+      "files": {
+        "binding-routes.jsonl": {
+          "sha256": "e257aa62d28feb2334419b6b4c1ce00d316efc06820e896e8da3a44fc3e7b09a",
+          "size": 157705
+        },
+        "catalogs.json": {
+          "sha256": "13769fb9e196232a02d1ee1e5ffad66b6f3dd685d80f19290885a9b557e89b68",
+          "size": 15109
+        },
+        "consumer-index.jsonl": {
+          "sha256": "7d60d672f7f03732edb7f63145271fa88094617b4aa453a6cd0c90536e81b48d",
+          "size": 3183520
+        },
+        "egg.bin": {
+          "sha256": "7771fdc2a6d96d1f467f36137abea69571000837ee14fa44afab124bb01f81d3",
+          "size": 11678
+        },
+        "evolution.bin": {
+          "sha256": "e05da168c33c8d562dd9657997104cc55320aaf23e222067eb847f626492e778",
+          "size": 682
+        },
+        "level_up.bin": {
+          "sha256": "f83ccf22b312ed46dbc4c3dd965f27360d040d7b6aadc7eb53c1549a3f8d556f",
+          "size": 69165
+        },
+        "machine.bin": {
+          "sha256": "5bd0f8b3f12e64d0c53a56216bc5d4781005fa2fe6d10646c7490929a9577d9b",
+          "size": 23712
+        },
+        "machine_archive.bin": {
+          "sha256": "dfa185327424c44edef9da6ab3aa806b1134d239df13c61dcdb3d32a1544b09d",
+          "size": 52592
+        },
+        "reminder.bin": {
+          "sha256": "e33c1e3986f9cdb699e73ad9abcfd498ec32567f6389dd9fbd55fe84f8fbd2d7",
+          "size": 590
+        },
+        "route-ledger.jsonl": {
+          "sha256": "d9a7005f572b050ff8680a8f19142419a81014fcb91d51447dd8245a3b44d289",
+          "size": 52054163
+        },
+        "shared_egg.bin": {
+          "sha256": "9d39df5650fc323fbf84ab80e330fa5b36c3b9e4f9eb0c4d7d448810221548bd",
+          "size": 10054
+        },
+        "species-bindings.jsonl": {
+          "sha256": "979e9121547ecc327a9da375290a7202bbf6f210935c7dcd532b22967791f075",
+          "size": 225473
+        },
+        "tutor.bin": {
+          "sha256": "c6e1b952ce3a2ef37ee72d56c56371497dff5c2b68dbb0a87d843865f8d97570",
+          "size": 23712
+        },
+        "tutor_archive.bin": {
+          "sha256": "199af6c8f595ffc2f11412191be9c753bfd46c574a7755f9ee22b01071db31da",
+          "size": 3818
+        }
+      },
+      "inputs": {
+        "config/modernization_floette_gift.json": {
+          "sha256": "140da74d3e43a857b728417eeb8c701f44cfed0f6575719a6ff13ccab9c093c8",
+          "size": 6670
+        },
+        "config/modernization_p03_stage65.json": {
+          "sha256": "1846992a47218e8f6e65606e69d692bc611d974ede8177e137786aa0d405ec00",
+          "size": 6733
+        },
+        "content/modernization/identity_contract.json": {
+          "sha256": "be4e08a27986b7e384eab8239f5608732b5c6575b060fdae50efd0c90a810443",
+          "size": 1461322
+        },
+        "content/modernization/p02_evolution_contract.json": {
+          "sha256": "007f80996ad1a758e0f5365e65cd4685a6c9eb7c8a072d25544b86f2f613181b",
+          "size": 1440826
+        },
+        "content/modernization/p03_learnset_contract.json": {
+          "sha256": "4e421a5c6110ad5b4e2de399d354b058b566815aaf5aa30b8cc445cba38a6033",
+          "size": 11826
+        },
+        "content/modernization/p04_mega_runtime_mapping.json": {
+          "sha256": "31e4a36301dda169f7b894a62ee823d00ebd1374945a33f1478f3c9eecf5401f",
+          "size": 59026
+        },
+        "content/modernization/p04_species_runtime_contract.json": {
+          "sha256": "80ded428ec1df683b758555c8e4357123baee2ce8b5201dea960fa89618818a4",
+          "size": 413133
+        },
+        "content/modernization/rockruff_own_tempo_stage75_contract.json": {
+          "sha256": "f57efb88124fdf18681a012d520d4382b715763c917fd40eb56a30ba6dce5684",
+          "size": 5799
+        },
+        "manifests/move_ids.csv": {
+          "sha256": "dba3c65af59ee2dcfa9eecdeeeb1cc189a990b52e27b1878bad6eaec8e104f20",
+          "size": 128694
+        },
+        "manifests/species_ids.csv": {
+          "sha256": "4e7cd7ef13761214f506e8ad58611c3dc36a0843b8b6647368677a73613f9366",
+          "size": 207095
+        },
+        "scripts/pr16_candidate_wiki_extract.py": {
+          "sha256": "c058ffaf51405f866429ba4a4b9331e728603893db63583dbcb70e5890aef973",
+          "size": 9346
+        }
+      },
+      "install_ready": false,
+      "issue19_complete": false,
+      "misnamed_candidate_slot_rows_corrected": 33321,
+      "native_runs": 0,
+      "official_baseline_records_changed": false,
+      "payload_owners": {
+        "egg": 1482,
+        "evolution": 1482,
+        "form_change": 1482,
+        "level_up": 1482,
+        "machine": 1482,
+        "pre_evolution_carry": 1482,
+        "reminder": 1482,
+        "shared_egg": 1482,
+        "tutor": 1482
+      },
+      "phase": "SPECIES_BINDING_AND_RELOCATABLE_PAYLOADS_V1",
+      "physical_supply_verified": false,
+      "policies": {
+        "BATTLE_COPY_CARRY_ONLY": 6,
+        "BATTLE_FORM_CARRY_ONLY": 102,
+        "EXCLUDED_REMAKE_FORM_IDENTITY_ONLY": 7,
+        "EXPLICIT_CATERPIE_IDENTITY_REPAIR": 1,
+        "GIFT_LEARNSET_ADOPTION_REQUIRED": 1,
+        "INTERNAL_IDENTITY_ONLY": 21,
+        "NON_BATTLING_FORM_IDENTITY_ONLY": 3,
+        "P04_MEGA_CARRY_ONLY": 49,
+        "STAGE75_DISTINCT_OWNER_CLONE": 1
+      },
+      "release_ready": false,
+      "rom_changes": 0,
+      "route_policies": {
+        "CONDITIONAL_BREEDING_NOT_FLAT_EGG": 1,
+        "CONDITIONAL_FORM_REFERENCE": 70,
+        "EXISTING_MOVE_SLOT_CARRY_REFERENCE": 35141,
+        "egg": 4356,
+        "evolution": 341,
+        "level_up": 21573,
+        "machine": 58899,
+        "reminder": 295,
+        "shared_egg": 5027,
+        "tutor": 2649
+      },
+      "runtime_applied": false,
+      "source_consumers": {
+        "egg": 4353,
+        "evolution": 341,
+        "form_change": 70,
+        "level_up": 21556,
+        "machine": 58860,
+        "pre_evolution_carry": 35141,
+        "reminder": 295,
+        "shared_egg": 5023,
+        "tutor": 2649
+      },
+      "source_generations": 0,
+      "source_routes": 128288,
+      "source_tables_modified": false,
+      "total_accounted_routes": 128352
+    },
+    "audit": {
+      "blocking_species": [
+        1029
+      ],
+      "conditions_retained_by_source_hash": true,
+      "consumer_counts": {
+        "egg": 4357,
+        "evolution": 341,
+        "form_change": 70,
+        "level_up": 21573,
+        "machine": 58899,
+        "pre_evolution_carry": 35141,
+        "reminder": 295,
+        "shared_egg": 5027,
+        "tutor": 2649
+      },
+      "explicit_binding_rows": 64,
+      "identity_only_species": 188,
+      "install_ready": false,
+      "native_runs": 0,
+      "rom_changes": 0,
+      "source_rows": 128288,
+      "status": "PASS_INDEPENDENT_ALL_ROWS_AND_PAYLOAD_BYTES",
+      "wiki_one_based_to_bit_rows": 33321
+    },
+    "source_snapshot_actions": {
+      "id": 35657130145,
+      "head_sha": "7f53d58e0357c9172b6838a6e51f840008e64508",
+      "status": "completed",
+      "conclusion": "success",
+      "path": ".github/workflows/pr16-learnset-adapter-sources.yml",
+      "jobs": [
+        {
+          "id": 106523428504,
+          "name": "adapter-sources",
+          "status": "completed",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "consumer接続の静的入力を原本不変で束ねる",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/upload-artifact@v4",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success"
+            }
+          ]
+        }
+      ]
+    },
+    "prior_hatch_actions": {
+      "id": 35656548503,
+      "head_sha": "1fa45557c6ad1ae4ed0c976f84b84e953abf37ee",
+      "status": "completed",
+      "conclusion": "success",
+      "path": ".github/workflows/pr16-learnset-binding.yml",
+      "jobs": [
+        {
+          "id": 106521535418,
+          "name": "binding-verify",
+          "status": "completed",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/setup-python@v5",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "受入artifactを再利用しbindingの新規範囲だけを検証",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "同一branchへcheckpointを非forceで保存",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/upload-artifact@v4",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/setup-python@v5",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success"
+            }
+          ]
+        }
+      ]
+    },
+    "runtime_applied": false,
+    "issue19_complete": false,
+    "release_ready": false,
+    "proof_bindings": {
+      "receipt.json": {
+        "size": 4715,
+        "sha256": "4c3332e9bb871a1398b4ea6b68264a8a248669ebd7567b45c44ca52e7f45725f"
+      },
+      "species-bindings.jsonl": {
+        "size": 225473,
+        "sha256": "979e9121547ecc327a9da375290a7202bbf6f210935c7dcd532b22967791f075"
+      },
+      "binding-routes.jsonl": {
+        "size": 157705,
+        "sha256": "e257aa62d28feb2334419b6b4c1ce00d316efc06820e896e8da3a44fc3e7b09a"
+      },
+      "catalogs.json": {
+        "size": 15109,
+        "sha256": "13769fb9e196232a02d1ee1e5ffad66b6f3dd685d80f19290885a9b557e89b68"
+      },
+      "audit.json": {
+        "size": 461,
+        "sha256": "fab76dce876998a3729d1fccd7dc6a29027049cc4c3f3084e2000f2728925c61"
+      },
+      "verification.json": {
+        "size": 3586,
+        "sha256": "e44bc27b7194813dd255294c4d8bc4c9f09e76a93a3d92fe5082efc5239608fa"
+      },
+      "unit-species.txt": {
+        "size": 3812,
+        "sha256": "f3be125d598db56c30d166effbbe5c2c9e0118137b6eb54d10e370ef47029294"
+      },
+      "unit-payload.txt": {
+        "size": 2941,
+        "sha256": "aece6e91eccb210163b6caae1fc2a02d397a3142b0c363857bf4e3ec40ee21aa"
+      }
+    },
+    "superseded_diagnostic": {
+      "run_id": 35659288132,
+      "head": "3eb9f551603c55752060f59c92f62f85c3d216fe",
+      "status": "FAILURE_IN_AUDIT_OWNER_LOOKUP",
+      "reason": "1262 is already official-selected, not one of 191 unselected bindings",
+      "source_or_payload_changes_required": false
+    },
+    "superseded_record_attempt": {
+      "run_id": 35659771966,
+      "reason": "resume observed_head_checks.reason_ja missing; no remote record was committed",
+      "accepted_tests_rerun_for_record_fix": 0
     }
   }
 }

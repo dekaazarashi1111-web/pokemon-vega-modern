@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-後継受入artifactをhash固定で再利用。非直接egg2394行のうち531差分を履歴参照・新規付与なしとして実装/全行照合し、新24境界試験PASS。191未選択枠はmanifest付き台帳へ分離。Species/Form裁定とbinary接続は未完。
+191枠を188保全/2明示owner/1採用待ちへ分類。64追加経路、元128288経路を配置前payloadと全行台帳へ変換。Wikiの1始まりslotを33321経路で補正し54新試験/独立全byte照合PASS。ROM/native未変更。
 
-**次: Issue19: 新規binding台帳の未選択191枠をSpecies/Formの正本へ明示対応させ、検証済み孵化531差分の非付与処理とともにbinary consumerへ接続する。後継ROM・別Wiki・影響nativeはその後。**
+**次: Issue19: Floette Eternal(1029)のgift入手契約とP01 learnset apply=falseを明示裁定し、既存贈呈先を消さず固定referenceを採用する。受入payloadを再利用し、188非学習/戦闘姿のruntime owner処理、条件付きconsumer、後継ROMの配置・別Wiki・影響nativeを接続する。**
 
-後継表・差分の工程は完了、ROM適用は未完。191枠を旧表fallback/一括削除せず、531行をdirect/shared eggへ無断補充しない。原本裁定を未完へ戻さない。Issue19/18完了・merge/releaseへ昇格しない。
+旧表fallback/191枠一括削除は禁止。配置前payloadはROM受入ではない。531孵化差分・原本裁定を再実行しない。Issue19/18全体、merge/releaseは未完。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `1bd7e126dd4083581b43ade0776b72eddd38b9d1`。
-後継consumer表検証の完了Actions入力HEAD。branch最新HEADではない。現在HEADはremoteから取得し、記録commitはgit logで確認する。
+証拠のsource HEAD: `a7e2d99f44354b6e3e5b9a9993f15cae2f179b67`。
+191枠binding/配置前payloadの完了検証入力HEAD。branch最新HEAD/native受入HEADではない。現在HEADはremoteから取得する。
 
 ## 最短の再開手順
 
@@ -25,12 +25,12 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_LEARNSET_BINDING_JA.md`
-- `content/modernization/pr16_learnset_binding_checkpoint.json`
-- `content/modernization/pr16_learnset_binding_evidence/unselected.jsonl`
-- `content/modernization/pr16_learnset_binding_evidence/summary.json`
-- `tools/pr16_learnset_binding.py`
-- `config/move_port.json`
+- `docs/PR16_LEARNSET_PAYLOADS_JA.md`
+- `content/modernization/pr16_learnset_payload_checkpoint.json`
+- `content/modernization/pr16_learnset_payload_evidence/species-bindings.jsonl`
+- `tools/pr16_learnset_payloads.py`
+- `config/modernization_floette_gift.json`
+- `content/modernization/identity_contract.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -272,6 +272,7 @@ P08ゲート:
 - Vega181種: 原本9923行/182ページ/43試験、衝突5行/5試験、非直接egg2394行/13試験は保存証拠を再利用。原本採取・公式1299件の再生成・入力不変の単独再検証をしない。3群/92種を未裁定へ戻さず、次はruntime全consumer。
 - 後継9consumer表v1: 128288採用/159明示除外、39新試験、独立2生成・純読取・原本128447行独立監査は保存済み。入力/生成器が同じなら再生成/単独再試験しない。未完は191枠binding/孵化531差分/binary接続と後継ROM・Wiki・影響native。
 - learnset binding: 受入9consumer表はartifact10653200020を再利用。531孵化差分は非付与として全行照合済み。旧原本/39受入試験/nativeを再実行せず、未選択191枠の明示bindingから続行。
+- learnset payload: 191 binding、531孵化差分、64明示経路、33321 slot補正は証拠固定済み。配置前payload artifactを再利用。受入54/24試験・原本生成は影響変更がない限り再実行せず、1029採用裁定とruntime接続から続行。
 
 ## 次セッションへ残す更新手順
 
@@ -301,6 +302,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-後継表run35627966003の新39試験、2生成、純読取、全128447原本行保存、ローカル/Actions13出力一致。旧native/原本採取・公式生成を再実行していない。
+今回の新54試験・独立2プロセス・全128352経路と全byte監査は完了Actionsで照合済み。静的binding/配置前payloadだけの受入で、全PR checksやROM/native全回帰の成功ではない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
