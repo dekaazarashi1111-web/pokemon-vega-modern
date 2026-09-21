@@ -54,6 +54,7 @@ def generate(inputs: Inputs) -> tuple[dict[str, bytes], dict]:
     from pr16_candidate_wiki_runtime_z import enrich as enrich_runtime_z, append_pages as append_runtime_z
     from pr16_candidate_wiki_effect_origin import enrich as enrich_effects, append_pages as append_effects
     from pr16_candidate_wiki_hidden_patch import enrich as enrich_hidden_patch, append_pages as append_hidden_patch
+    from pr16_candidate_wiki_creation import enrich as enrich_creation, append_pages as append_creation
     candidate = selected_candidate(inputs)
     for name in ('scripts/build_pr16_candidate_wiki.py', 'scripts/pr16_candidate_wiki_catalog.py',
                  'scripts/pr16_candidate_wiki_render.py', 'scripts/pr16_candidate_wiki_mega_quality.py',
@@ -64,6 +65,7 @@ def generate(inputs: Inputs) -> tuple[dict[str, bytes], dict]:
     enrich_runtime_z(model, inputs, raw)
     enrich_effects(model, inputs)
     enrich_hidden_patch(model, inputs)
+    enrich_creation(model, inputs, raw)
     need(model['candidate'] == candidate, 'Wiki選択候補不一致')
     files = render(model)
     append_audit(files, model)
@@ -71,6 +73,7 @@ def generate(inputs: Inputs) -> tuple[dict[str, bytes], dict]:
     append_runtime_z(files, model)
     append_effects(files, model)
     append_hidden_patch(files, model)
+    append_creation(files, model)
     index = __import__('json').loads(files.pop('data/index.json'))
     index.update(mega_mapping_summary=model['mega_mapping_summary'], consumer_audit_summary=model['followup_audit']['summary'], issue18_complete=False,
                  snapshot_scope='ALL_ID_DOCUMENTATION_WITH_EXPLICIT_AUDIT_GAPS',
