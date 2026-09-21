@@ -12,6 +12,8 @@ on:
       - tests/test_pr16_candidate_wiki*.py
       - tests/test_pr16_wiki_followup*.py
       - tests/test_pr16_wiki_runtime_z.py
+      - tests/test_pr16_wiki_effect_origin.py
+      - tools/engine/cfru_move_effect_lowering.py
   workflow_dispatch:
 permissions:
   contents: write
@@ -35,10 +37,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: python3 -B scripts/pr16_wiki_followup_sources.py
-      - name: 今回追加のruntime Z差分24試験（受入native/旧CLI単体試験は再実行しない）
+      - name: 今回追加のeffect由来差分26試験（受入native/旧CLI単体試験は再実行しない）
         run: |
           set -euo pipefail
-          python3 -B -m unittest discover -s tests -p 'test_pr16_wiki_runtime_z.py' -v 2>&1 | tee .local/pr16-wiki/followup-unit.txt
+          python3 -B -m unittest discover -s tests -p 'test_pr16_wiki_effect_origin.py' -v 2>&1 | tee .local/pr16-wiki/followup-unit.txt
           make -n pr16-candidate-wiki | tee .local/pr16-wiki/make-build.txt
           make -n pr16-candidate-wiki-check | tee .local/pr16-wiki/make-check.txt
       - name: 決定的buildと実checkの純読取検証
@@ -60,7 +62,7 @@ jobs:
           test "$(git ls-remote origin refs/heads/codex/modernization-followup-20260908 | cut -f1)" = "$GITHUB_SHA"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'USER-20260921-P08-CANDIDATE-WIKI: runtime Z分類とWiki・固定引継ぎ・両ログを同期'
+          git commit -m 'USER-20260921-P08-CANDIDATE-WIKI: effect source由来を分類しWiki・固定引継ぎ・両ログを同期'
           git push origin HEAD:refs/heads/codex/modernization-followup-20260908
           git rev-parse HEAD > .local/pr16-wiki/reflected-head.txt
       - uses: actions/upload-artifact@v4
