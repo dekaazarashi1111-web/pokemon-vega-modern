@@ -1,0 +1,66 @@
+name: pr16-learnset-adapter-sources
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-learnset-adapter-sources.yml]
+permissions:
+  contents: read
+jobs:
+  adapter-sources:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: consumer接続の静的入力を原本不変で束ねる
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B - <<'PY'
+          import hashlib, json, os, pathlib, subprocess, zipfile
+          root = pathlib.Path.cwd()
+          out = root / '.local/pr16-learnset-adapter-sources'
+          out.mkdir(parents=True, exist_ok=False)
+          paths = subprocess.check_output(['git', 'ls-files', '-z']).decode().split('\0')
+          extensions = {'.py', '.json', '.csv', '.c', '.h', '.s', '.S', '.md'}
+          prefixes = {'config', 'manifests', 'scripts', 'tools', 'src'}
+          inventory, files = [], {}
+          for name in sorted(filter(None, paths)):
+              p = pathlib.PurePosixPath(name)
+              if p.parts[0] in ('config','manifests','scripts','tools','src','content','generated','overlays','vendor'):
+                  inventory.append(name)
+              selected = p.parts[0] in prefixes or (p.parts[:2] == ('content','modernization') and len(p.parts) == 3)
+              if not selected or p.suffix not in extensions or 'private' in name.lower():
+                  continue
+              file = root / name
+              if file.is_symlink() or not file.is_file() or file.stat().st_size > 4000000:
+                  continue
+              raw = file.read_bytes()
+              try:
+                  raw.decode('utf-8')
+              except UnicodeDecodeError:
+                  continue
+              if b'\0' in raw:
+                  continue
+              files[name] = {'sha256': hashlib.sha256(raw).hexdigest(), 'size': len(raw)}
+          assert sum(v['size'] for v in files.values()) < 200000000
+          report = {'source_head': os.environ['GITHUB_SHA'], 'run_id': int(os.environ['GITHUB_RUN_ID']),
+                    'files': files, 'path_inventory': inventory, 'source_generation_reruns': 0, 'native_runs': 0}
+          with zipfile.ZipFile(out/'tracked-text.zip', 'x', compression=zipfile.ZIP_DEFLATED) as z:
+              for name, ident in files.items():
+                  raw = (root/name).read_bytes()
+                  assert len(raw) == ident['size'] and hashlib.sha256(raw).hexdigest() == ident['sha256']
+                  z.writestr(name, raw)
+              z.writestr('source-index.json', json.dumps(report, ensure_ascii=False, sort_keys=True)+'\n')
+          print(json.dumps({'files':len(files),'bytes':sum(v['size'] for v in files.values()),'source_head':report['source_head']}))
+          PY
+          git diff --exit-code
+          test -z "$(git status --porcelain --untracked-files=no)"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr16-learnset-adapter-sources
+          path: .local/pr16-learnset-adapter-sources/tracked-text.zip
+          retention-days: 7
+          if-no-files-found: error
