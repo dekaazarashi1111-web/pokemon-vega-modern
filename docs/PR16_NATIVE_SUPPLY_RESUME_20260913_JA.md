@@ -6,9 +6,9 @@
 
 ## いまの停止点と次の1手
 
-前回Wiki run35546455254のpush/upload成功をGET照合。Issue18残件の固定source inventoryをcontent/modernization/pr16_wiki_remaining_source_inventory.jsonへ保存。Wiki本体の残件は未完。
+候補Wiki 4134 files、今回差分24試験と2build/純読取checkを検証。Issue18の残りはcandidate_wiki.remaining_work_ja。受入済み監査・nativeの重複実行なし。
 
-**次: Issue18の固定source inventoryから残件監査を実装し、既存generatorへ接続。完了済みCLI/静的Z対応/nativeを再実装・再実行しない。**
+**次: Issue #18の残件だけを継続。専用CLI/Makefile・今回受入済みsource監査を重複実装せず、remaining_work_jaを参照。native・性能調整・releaseへ先行しない。**
 
 2プロセスbuild同一、実checkのbyte/mtime不変、変更影響に限定した試験を検証。push/uploadは完了GET後に受入。Issue18全体未完・受入native再実行なし。
 

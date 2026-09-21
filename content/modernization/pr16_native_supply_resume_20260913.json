@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "前回Wiki run35546455254のpush/upload成功をGET照合。Issue18残件の固定source inventoryをcontent/modernization/pr16_wiki_remaining_source_inventory.jsonへ保存。Wiki本体の残件は未完。",
+    "current_stop": "候補Wiki 4134 files、今回差分24試験と2build/純読取checkを検証。Issue18の残りはcandidate_wiki.remaining_work_ja。受入済み監査・nativeの重複実行なし。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "Issue18の固定source inventoryから残件監査を実装し、既存generatorへ接続。完了済みCLI/静的Z対応/nativeを再実装・再実行しない。",
+    "next_step": "Issue #18の残件だけを継続。専用CLI/Makefile・今回受入済みsource監査を重複実装せず、remaining_work_jaを参照。native・性能調整・releaseへ先行しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -832,7 +832,7 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "Issue18の固定source inventoryから残件監査を実装し、既存generatorへ接続。完了済みCLI/静的Z対応/nativeを再実装・再実行しない。",
+    "goal_ja": "Issue #18の残件だけを継続。専用CLI/Makefile・今回受入済みsource監査を重複実装せず、remaining_work_jaを参照。native・性能調整・releaseへ先行しない。",
     "host_write_policy_ja": "新しい実受付のguard開始後は入力/frames/readのみ。施設番号/効果/連勝/party/PC/LRのhost注入は禁止。初期配置fixtureと実入場/正規連勝を区別する。",
     "id": "P08_CANDIDATE_WIKI_REMAINING",
     "read_paths": [
@@ -10552,23 +10552,46 @@
     },
     "snapshot_complete": true,
     "issue18_complete": false,
-    "source_head": "479f02fb059215e4f9f4da86895b85e8a373b5ee",
-    "verification_run": 35546455254,
+    "source_head": "66a5d9d662279673b084cfdc42da5a343e0fe2c8",
+    "verification_run": 35559173404,
     "remaining_work_ja": [
       "野生初期技と固定配布の実movesetを全経路抽出し、推測と区別する。",
-      "汎用Zの静的対応は追加済み。実行時physicality tableと候補consumer bindingを追加照合する（native再実行は不要）。",
+      "汎用Zの実行時split規則・固定physicality表・候補署名を照合済み。残りはcompiled consumer入口のcallgraph同定であり、table/pointer値一致だけを実行証拠にしない。",
       "夢特性は上流の継承/flag/DexNav/raid条件を分離済み。現候補の種族別初回供給caller・patch・育て屋を照合する。",
       "既存effect流用と新規handlerをsource履歴で区分する。native未受入を無断で再実行しない。"
     ],
     "new_native_runs": 0,
     "followup": "content/modernization/pr16_candidate_wiki_followup.json",
-    "verification_run_status": "completed_success",
+    "verification_run_status": "in_progress_at_recording",
     "cli_complete": true,
     "remaining_source_inventory": {
       "path": "content/modernization/pr16_wiki_remaining_source_inventory.json",
       "source_head": "ae92584b07317530ba585772be6fb9879102a94f",
       "run_id": 35558161437,
       "scope": "LOCKED_SOURCE_INVENTORY_NOT_RUNTIME_ACCEPTANCE"
+    },
+    "files": 4134,
+    "tree_sha256": "6f4e05fb29128334da12d74c514522cfbab2930dc7696d2be788934a334754f5",
+    "source_audit_summary": {
+      "generic_z_records": 1063,
+      "generic_z_states": {
+        "DAMAGE_MOVE_SOURCE_RULE": 633,
+        "INTERNAL_Z_MAX_ROW_NOT_ORDINARY_BASE_MOVE": 156,
+        "MOVE_NONE_NOT_A_BASE_MOVE": 1,
+        "STATUS_MOVE_WITH_ADDITIONAL_EFFECT": 273
+      },
+      "hidden_slot_records": 1671,
+      "physicality_candidate_table_matches": 0,
+      "runtime_z_records": 1063,
+      "runtime_z_rules": {
+        "CANDIDATE_BASE_SPLIT": 783,
+        "SHELL_SIDE_ARM_SELF_BANK_BASE_SPLIT": 1,
+        "STATUS_SENTINEL_NOT_DAMAGE_SPLIT": 275,
+        "STAT_STAGE_COMPARISON": 2,
+        "TERA_CONDITIONAL_STAT_COMPARISON": 2
+      },
+      "type_split_mappings": 36,
+      "z_status_effects": 29
     }
   }
 }

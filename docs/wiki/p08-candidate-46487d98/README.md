@@ -46,3 +46,5 @@ checkは候補・正本・全生成byte・リンク・stale fileを再照合し�
 raw登録77行のうち、正逆対応を確認できたメガは76行です。自己参照・逆変換なしの旧登録1行はメガ形態として数えず、[登録行監査](MEGA_MAPPING_AUDIT.md) に分離しました。ゲームデータは修正していません。
 
 [今回追加の固定consumer監査・正確な残件](CONSUMER_AUDIT.md)
+
+[汎用Zの実行時split・候補table監査](RUNTIME_Z_AUDIT.md)

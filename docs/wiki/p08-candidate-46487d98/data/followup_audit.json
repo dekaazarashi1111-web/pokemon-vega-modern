@@ -3,7 +3,7 @@
   "new_native_runs": 0,
   "remaining_work_ja": [
     "野生初期技と固定配布の実movesetを全経路抽出し、推測と区別する。",
-    "汎用Zの静的対応は追加済み。実行時physicality tableと候補consumer bindingを追加照合する（native再実行は不要）。",
+    "汎用Zの実行時split規則・固定physicality表・候補署名を照合済み。残りはcompiled consumer入口のcallgraph同定であり、table/pointer値一致だけを実行証拠にしない。",
     "夢特性は上流の継承/flag/DexNav/raid条件を分離済み。現候補の種族別初回供給caller・patch・育て屋を照合する。",
     "既存effect流用と新規handlerをsource履歴で区分する。native未受入を無断で再実行しない。"
   ],
@@ -17,6 +17,15 @@
       "STATUS_MOVE_WITH_ADDITIONAL_EFFECT": 273
     },
     "hidden_slot_records": 1671,
+    "physicality_candidate_table_matches": 0,
+    "runtime_z_records": 1063,
+    "runtime_z_rules": {
+      "CANDIDATE_BASE_SPLIT": 783,
+      "SHELL_SIDE_ARM_SELF_BANK_BASE_SPLIT": 1,
+      "STATUS_SENTINEL_NOT_DAMAGE_SPLIT": 275,
+      "STAT_STAGE_COMPARISON": 2,
+      "TERA_CONDITIONAL_STAT_COMPARISON": 2
+    },
     "type_split_mappings": 36,
     "z_status_effects": 29
   }
