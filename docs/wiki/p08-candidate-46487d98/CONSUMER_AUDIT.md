@@ -283,10 +283,17 @@
     "野生初期技と固定配布の実movesetを全経路抽出し、推測と区別する。",
     "汎用Zの実行時split規則・固定physicality表・候補署名を照合済み。残りはcompiled consumer入口のcallgraph同定であり、table/pointer値一致だけを実行証拠にしない。",
     "夢特性は上流の継承/flag/DexNav/raid条件を分離済み。現候補の種族別初回供給caller・patch・育て屋を照合する。",
-    "既存effect流用と新規handlerをsource履歴で区分する。native未受入を無断で再実行しない。"
+    "T04全70アダプターのsource由来を分類済み。残りは未結合技[511]の由来、上流宣言技のlocal patch/全handler履歴、候補compiled dispatch対応。source分類をnative受入にしない。"
   ],
   "schema_version": 1,
   "summary": {
+    "effect_origin_records": 1063,
+    "effect_origin_states": {
+      "LOCKED_UPSTREAM_EFFECT_DECLARATION": 991,
+      "MOVE_NONE_NOT_PLAYABLE": 1,
+      "T04_SOURCE_ADAPTER_CLASSIFIED": 70,
+      "UNRESOLVED_SOURCE_LINEAGE": 1
+    },
     "generic_z_records": 1063,
     "generic_z_states": {
       "DAMAGE_MOVE_SOURCE_RULE": 633,
@@ -304,6 +311,15 @@
       "STAT_STAGE_COMPARISON": 2,
       "TERA_CONDITIONAL_STAT_COMPARISON": 2
     },
+    "t04_adapters_with_central_queries": 17,
+    "t04_required_source_patch_contracts": 26,
+    "t04_script_origins": {
+      "PROJECT_COMPOSED_SCRIPT": 5,
+      "PROJECT_DYNAMIC_PREPARE_ADAPTER": 3,
+      "UPSTREAM_EFFECT_PARAMETER_ADAPTER": 43,
+      "UPSTREAM_SCRIPT_DELEGATE": 19
+    },
+    "t04_source_adapters": 70,
     "type_split_mappings": 36,
     "z_status_effects": 29
   }

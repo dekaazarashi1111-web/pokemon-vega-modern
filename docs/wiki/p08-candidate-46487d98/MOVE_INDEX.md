@@ -1069,3 +1069,5 @@
 | [1060: やけっぱち](moves/1060.md) | MOVE_KEY_TEMPERFLARE | ほのお | 物理 | 75 | 100 | 10 | 0 | &#91;"EFFECT_HIT"&#93; | 75 | 0 | False |
 | [1061: サンダーダイブ](moves/1061.md) | MOVE_KEY_SUPERCELLSLAM | でんき | 物理 | 100 | 95 | 15 | 0 | &#91;"EFFECT_RECOIL_IF_MISS"&#93; | 62 | 0 | False |
 | [1062: サイコノイズ](moves/1062.md) | MOVE_KEY_PSYCHICNOISE | エスパー | 特殊 | 75 | 100 | 10 | 0 | &#91;"EFFECT_ATTACK_BLOCKERS"&#93; | 81 | 0 | False |
+
+[技effectのsource由来・残件](EFFECT_ORIGIN_AUDIT.md)

@@ -48,3 +48,5 @@ raw登録77行のうち、正逆対応を確認できたメガは76行です。�
 [今回追加の固定consumer監査・正確な残件](CONSUMER_AUDIT.md)
 
 [汎用Zの実行時split・候補table監査](RUNTIME_Z_AUDIT.md)
+
+[技effectのsource由来・残件](EFFECT_ORIGIN_AUDIT.md)
