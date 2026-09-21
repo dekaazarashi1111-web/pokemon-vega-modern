@@ -22,58 +22,71 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
-      - name: 未取得の初期技sourceと現候補入口のみ（既存artifact・受入nativeは再取得/再実行しない）
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
+      - name: Z consumerの既存link情報・保存symbol表だけを取得（再build/実行なし）
         run: |
           set -euo pipefail
           python3 -B - <<'PY'
-          import base64,hashlib,json,os,pathlib,re,struct,sys,zipfile
+          import hashlib,json,os,pathlib,re,struct,subprocess,sys,zipfile
           sys.dont_write_bytecode=True;sys.path.insert(0,'scripts')
           from pr16_candidate_wiki_inputs import Inputs,Rom,candidate_bytes,identity,stable,need,digest
-          from pr16_wiki_remaining_capture import remote_json
           inp=Inputs();root=inp.root;out=root/'.local/pr16-wiki-followup';out.mkdir(parents=True,exist_ok=True)
-          local=['config/cfru_vega_minimal.h','overlays/modernization_floette_gift/modernization_floette_gift.c',
-            'overlays/modernization_floette_gift/modernization_floette_gift.h',
-            'overlays/modernization_p03_stage73_consumer_runtime/modernization_p03_stage73_consumer_runtime.c',
-            'overlays/modernization_p03_stage73_consumer_runtime/modernization_p03_stage73_consumer_runtime.h',
-            'scripts/pr16_saved_recipe.py','scripts/pr16_p08_impact.py',
-            'content/modernization/pr16_candidate_wiki_acceptance.json','content/modernization/pr16_native_supply_resume_20260913.json',
-            'docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md']
-          files={'local/'+n:inp.raw(n) for n in local}
-          lock=next(r for r in inp.json('state/source-lock.json')['sources'] if r['name']=='cfru')
-          commit=lock['configured_commit'];need(commit==lock['actual_commit'],'source-lock mismatch')
-          bindings={}
-          for path in ('src/learn_move.c','include/new/learn_move.h','include/pokemon.h','hooks'):
-              info=remote_json(f'https://api.github.com/repos/kapibarasan000/CFRU-JP/contents/{path}?ref={commit}')
-              data=base64.b64decode(info['content']);data.decode();need(b'\0' not in data,'upstream NUL')
-              need(hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()==info['sha'],'blob mismatch')
-              files['upstream/cfru/'+path]=data;bindings[path]={'commit':commit,'blob_sha':info['sha'],'size':len(data),'sha256':digest(data)}
-          raw=candidate_bytes(inp);rom=Rom(raw);hooks=files['upstream/cfru/hooks'].decode();entries=[]
-          for line in hooks.splitlines():
-              m=re.match(r'^(\w+)\s+([0-9A-Fa-f]{7,8})\s+([123])(?:\s|$)',line)
-              if not m or not any(s in m[1] for s in ('CreateMon','CreateBoxMon','InitialMoveset','GiveMoveToBoxMon','ZMove','ZEffect','CalcMoveSplit','CreateWildMon')):continue
-              address=int(m[2],16);unit=rom.read(address,8);a,b=struct.unpack_from('<HH',unit)
-              row={'symbol':m[1],'source_hook_line':line,'site':hex(address),'entry_signature_sha256':digest(unit),'status':'SOURCE_HOOK_SITE_ONLY_NOT_CALLEE_PROOF'}
-              if a&0xF800==0x4800 and b&0xFF87==0x4700 and ((a>>8)&7)==((b>>3)&15):
-                  literal=((address+4)&~3)+(a&255)*4;target=rom.u32(literal)
-                  if target&1 and 0x08000000<=target&~1<0x0A000000:
-                      row.update(status='EXACT_CANDIDATE_LITERAL_BX_ENTRY',literal_site=hex(literal),thumb_target=hex(target),target_window_sha256=digest(rom.read(target&~1,64)))
-              entries.append(row)
-          files['candidate-entry-inventory.json']=stable({'candidate':identity(raw),'source_commit':commit,'entries':entries,'new_native_runs':0,'rom_changes':0,'scope':'EXACT_ENTRY_THUNKS_NOT_FULL_COMPILED_CALLGRAPH'})
-          manifest={'source_head':os.environ['GITHUB_SHA'],'run_id':int(os.environ['GITHUB_RUN_ID']),'candidate':identity(raw),
-            'source_commit':commit,'upstream_bindings':bindings,'files':{n:{'size':len(v),'sha256':digest(v)} for n,v in sorted(files.items())},
-            'new_native_runs':0,'accepted_native_reruns':0,'arm_builds':0,'rom_changes':0,'snapshot_rebuilds':0}
-          files['manifest.json']=stable(manifest)
-          with zipfile.ZipFile(out/'creation-sources.zip','w',compression=zipfile.ZIP_DEFLATED) as archive:
-              for name,data in sorted(files.items()):
-                  data.decode();need(b'\0' not in data,'nontext payload');entry=zipfile.ZipInfo(name);entry.compress_type=zipfile.ZIP_DEFLATED;archive.writestr(entry,data)
-          print(json.dumps({'status':'PASS_CREATION_SOURCE_AND_ENTRY_INPUTS','files':len(files),'source_head':os.environ['GITHUB_SHA'],'candidate':identity(raw),'new_native_runs':0,'rom_changes':0},sort_keys=True))
+          name='build/stages/06_battle_core.json';meta_raw=inp.raw(name);meta=json.loads(meta_raw)
+          symbols={};symbol_sources={}
+          wanted=('CanUseZMove','GetTypeBasedZMove','CalcMoveSplit','GetSpecialZMove','SetZEffect','ReplaceWithZMoveRuntime','VegaBattlePolicyCanZ','VegaBattlePolicyMarkZ','HandleInputChooseMove','gMovesThatChangePhysicality','GiveBoxMonInitialMoveset','GiveMoveToBoxMon','CreateBoxMon','CreateMon','GetHiddenAbility','GetAbility1','GetAbility2','GetMonAbility','FieldUseFunc_AbilityCapsule')
+          def walk(node,path=''):
+              if isinstance(node,dict):
+                  for key,value in node.items():
+                      target=path+'/'+key
+                      if key in wanted and type(value) is int and 0x08000000<=value<0x0A000000:
+                          symbols.setdefault(key,set()).add(value);symbol_sources.setdefault(key,[]).append(target)
+                      walk(value,target)
+              elif isinstance(node,list):
+                  for i,value in enumerate(node):walk(value,path+'/'+str(i))
+          walk(meta)
+          tracked=list(filter(None,subprocess.check_output(['git','ls-files','-z']).decode().split('\0')))
+          matches=[n for n in tracked if n.endswith(('offsets.ini','linked.o')) and n.startswith(('build/battle-core/','generated/engine/battle_core/'))]
+          candidates=[p for p in (root/'build/battle-core').glob('*/run-1/offsets.ini')] if (root/'build/battle-core').exists() else []
+          files={};offset_bindings=[]
+          for path in sorted(set(candidates+[root/n for n in matches if n.endswith('offsets.ini')])):
+              need(path.is_file() and not path.is_symlink(),'bad offset source');raw=path.read_bytes()
+              wanted_hashes={r['offsets']['sha256'] for r in meta['upstream_runs']}
+              need(digest(raw) in wanted_hashes,'offset source does not match saved metadata')
+              for line in raw.decode().splitlines():
+                  match=re.match(r'^\s*(\w+)\s*[:=]\s*(?:0x)?([0-9A-Fa-f]+)\s*$',line)
+                  if match and match[1] in wanted:
+                      symbols.setdefault(match[1],set()).add(int(match[2],16));symbol_sources.setdefault(match[1],[]).append(path.relative_to(root).as_posix())
+              logical=path.relative_to(root).as_posix();offset_bindings.append({'path':logical,'sha256':digest(raw),'size':len(raw)})
+              files['offsets/'+str(len(offset_bindings))+'.ini']=raw
+          raw=candidate_bytes(inp);rom=Rom(raw);stage06_path=root/'build/stages/06_battle_core.gba'
+          old=stage06_path.read_bytes() if stage06_path.is_file() else None
+          rows=[]
+          for symbol,values in sorted(symbols.items()):
+              for at in sorted(values):
+                  address=at&~1;unit=rom.read(address,256)
+                  rows.append({'symbol':symbol,'address':hex(address),'metadata_paths':symbol_sources[symbol],
+                    'window_size':len(unit),'candidate_window_sha256':digest(unit),
+                    'same_256_byte_window_as_saved_stage06':None if old is None else old[address-0x08000000:address-0x08000000+256]==unit,
+                    'symbol_extent':'NOT_PROVEN_WITHOUT_ELF_SIZE','native_acceptance':'DEFERRED_AUDIT'})
+          meta_view={'source_head':os.environ['GITHUB_SHA'],'run_id':int(os.environ['GITHUB_RUN_ID']),
+              'metadata':{'path':name,'size':len(meta_raw),'sha256':digest(meta_raw),'keys':sorted(meta)},
+              'candidate':identity(raw),'stage06_identity':None if old is None else identity(old),
+              'payload':meta.get('payload'),'upstream_runs':[{k:r.get(k) for k in ('run','offsets','linked_object','output_bin')} for r in meta['upstream_runs']],
+              'symbol_windows':rows,'offset_bindings':offset_bindings,'available_link_paths':matches,
+              'missing_symbols':[n for n in wanted if n not in symbols],
+              'no_pattern_guessing':True,'new_native_runs':0,'arm_builds':0,'rom_changes':0,'snapshot_rebuilds':0}
+          files['link-inventory.json']=stable(meta_view)
+          for n in ('content/modernization/pr16_candidate_wiki_acceptance.json','content/modernization/pr16_native_supply_resume_20260913.json','docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md','docs/wiki/p08-candidate-46487d98/data/creation_audit.json','docs/wiki/p08-candidate-46487d98/data/runtime_z_audit.json'):
+              files['local/'+n]=inp.raw(n)
+          files['manifest.json']=stable({'source_head':os.environ['GITHUB_SHA'],'run_id':int(os.environ['GITHUB_RUN_ID']),'files':{n:{'size':len(v),'sha256':digest(v)} for n,v in sorted(files.items())},'new_native_runs':0,'rom_changes':0})
+          with zipfile.ZipFile(out/'link-sources.zip','w',compression=zipfile.ZIP_DEFLATED) as archive:
+              for n,data in sorted(files.items()):
+                  data.decode();need(b'\0' not in data,'nontext payload');entry=zipfile.ZipInfo(n);entry.compress_type=zipfile.ZIP_DEFLATED;archive.writestr(entry,data)
+          print(json.dumps({'status':'PASS_SAVED_LINK_INVENTORY','symbol_windows':len(rows),'offset_sources':len(offset_bindings),'missing_symbols':meta_view['missing_symbols'],'new_native_runs':0,'rom_changes':0},sort_keys=True))
           PY
           git diff --exit-code
       - uses: actions/upload-artifact@v4
         with:
-          name: pr16-wiki-creation-sources
-          path: .local/pr16-wiki-followup/creation-sources.zip
+          name: pr16-wiki-link-sources
+          path: .local/pr16-wiki-followup/link-sources.zip
           retention-days: 3
           if-no-files-found: error
