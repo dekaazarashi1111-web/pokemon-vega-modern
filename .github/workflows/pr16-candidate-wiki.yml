@@ -8,6 +8,9 @@ on:
       - scripts/pr16_candidate_wiki_*.py
       - scripts/pr16_wiki_checkpoint.py
       - scripts/pr16_wiki_source_snapshot.py
+      - scripts/pr16_wiki_saved_link_snapshot.py
+      - content/modernization/pr16_candidate_wiki_saved_link_sources.json
+      - tests/test_pr16_wiki_saved_link_audit.py
       - scripts/pr16_wiki_followup*.py
       - tests/test_pr16_candidate_wiki*.py
       - tests/test_pr16_wiki_followup*.py
@@ -43,10 +46,14 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: python3 -B scripts/pr16_wiki_followup_sources.py
-      - name: 今回追加のlink graph差分26試験（受入native/旧CLI単体試験は再実行しない）
+      - name: 成功済み保存ELF artifactをtracked textへ固定（初回のみ）
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 -B scripts/pr16_wiki_saved_link_snapshot.py
+      - name: 保存body・callee・技511結合の今回差分試験のみ（旧110/ELF40/nativeは再実行しない）
         run: |
           set -euo pipefail
-          python3 -B -m unittest discover -s tests -p 'test_pr16_wiki_link_graph.py' -v 2>&1 | tee .local/pr16-wiki/followup-unit.txt
+          python3 -B -m unittest discover -s tests -p 'test_pr16_wiki_saved_link_audit.py' -v 2>&1 | tee .local/pr16-wiki/followup-unit.txt
           make -n pr16-candidate-wiki | tee .local/pr16-wiki/make-build.txt
           make -n pr16-candidate-wiki-check | tee .local/pr16-wiki/make-check.txt
       - name: 決定的buildと実checkの純読取検証
@@ -62,13 +69,13 @@ jobs:
           python3 -B scripts/pr16_resume.py check
           python3 -B scripts/validate_task_graph.py
           git diff --check
-          git add -- content/modernization/pr16_candidate_wiki_consumer_sources.json Makefile docs/wiki/p08-candidate-46487d98 content/modernization/pr16_candidate_wiki_acceptance.json content/modernization/pr16_candidate_wiki_followup.json content/modernization/pr16_native_supply_resume_20260913.json docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md design/run_log.md design/version_log.md
+          git add -- content/modernization/pr16_candidate_wiki_saved_link_sources.json content/modernization/pr16_candidate_wiki_consumer_sources.json Makefile docs/wiki/p08-candidate-46487d98 content/modernization/pr16_candidate_wiki_acceptance.json content/modernization/pr16_candidate_wiki_followup.json content/modernization/pr16_native_supply_resume_20260913.json docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md design/run_log.md design/version_log.md
           python3 -B scripts/pr16_wiki_checkpoint.py guard
           git diff --cached --check
           test "$(git ls-remote origin refs/heads/codex/modernization-followup-20260908 | cut -f1)" = "$GITHUB_SHA"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'USER-20260921-P08-CANDIDATE-WIKI: Z関連入口のcompiled構造graphをWiki・固定引継ぎ・両ログへ同期'
+          git commit -m 'USER-20260921-P08-CANDIDATE-WIKI: 保存ELF17関数と技511互換由来をWiki・固定引継ぎ・両ログへ同期'
           git push origin HEAD:refs/heads/codex/modernization-followup-20260908
           git rev-parse HEAD > .local/pr16-wiki/reflected-head.txt
       - uses: actions/upload-artifact@v4

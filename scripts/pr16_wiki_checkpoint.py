@@ -19,7 +19,8 @@ RECEIPT = 'content/modernization/pr16_candidate_wiki_acceptance.json'
 FOLLOW = 'content/modernization/pr16_candidate_wiki_followup.json'
 WIKI = 'docs/wiki/p08-candidate-46487d98'
 ALLOWED = {'Makefile', RECEIPT, FOLLOW, STATE, DOC, 'design/run_log.md', 'design/version_log.md',
-           'content/modernization/pr16_candidate_wiki_consumer_sources.json'}
+           'content/modernization/pr16_candidate_wiki_consumer_sources.json',
+           'content/modernization/pr16_candidate_wiki_saved_link_sources.json'}
 
 
 def prepare() -> None:
@@ -92,6 +93,10 @@ def record() -> None:
                                     if audit is None else audit['remaining_work_ja'])
     if audit is not None:
         receipt['source_audit_summary'] = audit['summary']
+    saved_path = ROOT/WIKI/'data/saved_link_audit.json'
+    saved_link = json.loads(saved_path.read_bytes()) if saved_path.exists() else None
+    if saved_link is not None:
+        receipt['saved_link_capture'] = saved_link['capture_receipt']
     (ROOT/RECEIPT).write_bytes(stable(receipt)); (OUT/'acceptance.json').write_bytes(stable(receipt))
     follow = inp.json(FOLLOW)
     follow['latest_checkpoint'] = {'source_head': os.environ['GITHUB_SHA'], 'verification_run': int(os.environ['GITHUB_RUN_ID']),
@@ -99,11 +104,18 @@ def record() -> None:
     follow['source_input_runs'] = [{'run': n, 'conclusion': 'success'} for n in (35533926004,35534340606,35534758684)]
     failures = follow.setdefault('input_failures', [])
     known = {r['run'] for r in failures}
+    if saved_link is not None:
+        capture = saved_link['capture_receipt']
+        follow['saved_link_capture'] = capture
+        if capture['failed_predecessor'] not in known:
+            failures.append({'run':capture['failed_predecessor'],'reason':capture['failure_ja'],'new_native_runs':0})
     for run, reason in [(35534169956,'consumer globに非対象assemblerを含め停止。C/H限定で35534340606成功。'),
                          (35535019570,'追加11試験・build×2・実check・保護対象はPASS。記録時のbp.next_stepミラー未同期で停止。検査を緩和せずミラー更新を修復。')]:
         if run not in known: failures.append({'run':run,'reason':reason,'new_native_runs':0})
     (ROOT/FOLLOW).write_bytes(stable(follow))
     state = inp.json(STATE)
+    if saved_link is not None:
+        state['candidate_wiki']['saved_link_capture'] = saved_link['capture_receipt']
     state['candidate_wiki'].update(source_head=os.environ['GITHUB_SHA'], verification_run=int(os.environ['GITHUB_RUN_ID']),
         verification_run_status='in_progress_at_recording', cli_complete=True, remaining_work_ja=receipt['remaining_work_ja'])
     state['candidate_wiki'].update(files=result['files'], tree_sha256=result['tree_sha256'], source_audit_summary=receipt.get('source_audit_summary', {}))
