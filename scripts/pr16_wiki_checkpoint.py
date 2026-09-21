@@ -73,6 +73,11 @@ def record() -> None:
     need(count is not None and re.search(r'\nOK\s*$', log), '追加試験結果不正')
     receipt = inp.json(RECEIPT)
     previous = {k: receipt[k] for k in ('source_head', 'verification_run', 'tree_sha256', 'files', 'bytes')}
+    previous['unit'] = receipt.get('unit')
+    reconciled = receipt.pop('verification_run_reconciled', None)
+    if reconciled is not None:
+        receipt.setdefault('reconciled_run_history', []).append(reconciled)
+    receipt['unit'] = {'tests': int(count[1]), 'errors': 0, 'failures': 0, 'skips': 0, 'scope': 'CURRENT_CHANGED_WIKI_AUDIT_ONLY'}
     receipt.update({k: result[k] for k in ('candidate', 'output', 'files', 'bytes', 'tree_sha256', 'internal_links', 'counts', 'record_counts')})
     audit_path = ROOT/WIKI/'data/followup_audit.json'
     audit = json.loads(audit_path.read_bytes()) if audit_path.exists() else None
@@ -81,7 +86,7 @@ def record() -> None:
         verification_run_status_at_recording='in_progress: 差分試験・build/check成功。push/upload完了は次のGETで照合。',
         previous_snapshot=previous, cli_complete=True, issue18_complete=False,
         dedicated_cli={'path':'scripts/build_pr16_candidate_wiki.py', 'make_build':'pr16-candidate-wiki',
-                       'make_check':'pr16-candidate-wiki-check', 'added_tests':int(count[1]), 'check_writes':0},
+                       'make_check':'pr16-candidate-wiki-check', 'current_scoped_tests':int(count[1]), 'check_writes':0},
         current_verification=verified)
     receipt['remaining_work_ja'] = ([s for s in receipt['remaining_work_ja'] if not s.startswith('専用build/check')]
                                     if audit is None else audit['remaining_work_ja'])
@@ -101,6 +106,8 @@ def record() -> None:
     state = inp.json(STATE)
     state['candidate_wiki'].update(source_head=os.environ['GITHUB_SHA'], verification_run=int(os.environ['GITHUB_RUN_ID']),
         verification_run_status='in_progress_at_recording', cli_complete=True, remaining_work_ja=receipt['remaining_work_ja'])
+    state['candidate_wiki'].update(files=result['files'], tree_sha256=result['tree_sha256'], source_audit_summary=receipt.get('source_audit_summary', {}))
+    state['bp']['current_stop'] = f"候補Wiki {result['files']} files、今回差分{count[1]}試験と2build/純読取checkを検証。Issue18の残りはcandidate_wiki.remaining_work_ja。受入済み監査・nativeの重複実行なし。"
     state['next_action']['goal_ja'] = 'Issue #18の残件だけを継続。専用CLI/Makefile・今回受入済みsource監査を重複実装せず、remaining_work_jaを参照。native・性能調整・releaseへ先行しない。'
     state['bp']['next_step'] = state['next_action']['goal_ja']
     state['next_action']['stop_rule_ja'] = '2プロセスbuild同一、実checkのbyte/mtime不変、変更影響に限定した試験を検証。push/uploadは完了GET後に受入。Issue18全体未完・受入native再実行なし。'
