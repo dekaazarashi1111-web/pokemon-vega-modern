@@ -9051,3 +9051,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 本記録を含むcommit。検証source HEAD=1376d0ed77890a28b283d19abda05dcd624a962a。
 - Network: GitHub connector/Actions run35535460491。run全体はpush/upload前のin_progressとして記録。
 - Boundary: ROM変更0、ARM0、native0。既存受入試験は影響なしに再実行しない。Issue18・merge・release・active baseline切替なし。失敗run35535019570は検証成功/記録失敗を区別してfollowup JSONに保存。
+
+
+## 2026-09-21T00:04:49+00:00 — USER-20260921-P08-CANDIDATE-WIKI / Wiki followup checkpoint
+- Task: USER-20260921-P08-CANDIDATE-WIKI
+- Status: DONE（今回の限定範囲。Issue18全体は継続）
+- Summary: {"generic_z_records": 1063, "generic_z_states": {"DAMAGE_MOVE_SOURCE_RULE": 633, "INTERNAL_Z_MAX_ROW_NOT_ORDINARY_BASE_MOVE": 156, "MOVE_NONE_NOT_A_BASE_MOVE": 1, "STATUS_MOVE_WITH_ADDITIONAL_EFFECT": 273}, "hidden_slot_records": 1671, "type_split_mappings": 36, "z_status_effects": 29}
+- Files changed: Wiki生成器/CLI/差分試験、workflow、Makefile、候補Wiki、receipt/followup JSON、固定引継ぎMD/JSON、両ログ。
+- Verify: 追加34試験、seed11/29 build一致、実check byte/mtime不変、内部リンク、Stage61/active baseline保護、resume/task graph/diff/changed-final-index guard。受入native再実行0。
+- Commit: 本記録を含むcommit。検証source HEAD=479f02fb059215e4f9f4da86895b85e8a373b5ee。
+- Network: GitHub connector/Actions run35546455254。run全体はpush/upload前のin_progressとして記録。
+- Boundary: ROM変更0、ARM0、native0。既存受入試験は影響なしに再実行しない。Issue18・merge・release・active baseline切替なし。失敗run35535019570は検証成功/記録失敗を区別してfollowup JSONに保存。

@@ -6,9 +6,9 @@
 
 ## 汎用Z
 
-各技の実候補z_powerとz_effectを機械可読データに保持します。汎用変換先consumerの全組合せ監査はDEFERRED_AUDITであり、専用Zの対応表受入と混同しません。
+各技の実候補fieldと固定consumer規則を結合しました。36のtype/split対応、動的type、専用クリスタルの除外、変化技の0xFFFF返値を個別ページとconsumer監査に記録します。全組合せnative受入ではありません。
 
-| 元技 | type | 分類 | Z威力 | Z変化effect | Max canonical威力 |
+| 元技 | type | 分類 | Z威力 | Z/Max共用effect byte（適用区分は個別頁） | Max canonical威力 |
 | --- | --- | --- | --- | --- | --- |
 | [0: ー](moves/0.md) | ？？？ | 物理 | 100 | 0 | — |
 | [1: はたく](moves/1.md) | ノーマル | 物理 | 100 | 0 | 90 |
@@ -983,3 +983,5 @@ Species + Item + base Move → Z Move の表を候補byteと照合していま�
 | [1262: ネクロズマ](pokemon/1262.md) | [746: ウルトラネクロZ](items/746.md) | [733: フォトンゲイザー](moves/733.md) | [889: ZーMove 52](moves/889.md) | エスパー / 特殊 | {"accuracy":0,"power":200,"target_id":0} | &#91;"EFFECT_HIT"&#93; | {"current_route_native_acceptance":"DEFERRED_AUDIT","display_name":"ウルトラネクロZ","evidence":"GENERATED_CANONICAL","item_id":746,"item_key":"ITEM_KEY_ULTRANECROZIUM_Z","price":0,"quantity":1,"repeatability":"ONCE","repeatability_id":3,"secondary_source":"NONE","source":"NPC_GIFT","source_id":5,"source_path":"content/collection_supply_v1/canonical_model.json#items","target_policy":"OBTAINABLE_FINITE","unlock":"LEAGUE_II_CLEARED","unlock_id":12} | IMPLEMENTED_NOT_NATIVE_ACCEPTED |
 
 1戦1回・mode制約はcanonical policyの情報です。表のbyte一致のみから、その候補の全caller・全handler・全modeで実行済みとは扱いません。
+
+[今回追加の固定consumer監査・正確な残件](CONSUMER_AUDIT.md)

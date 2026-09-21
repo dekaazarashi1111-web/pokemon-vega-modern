@@ -16,7 +16,7 @@
 
 ## 明示的な未監査範囲
 
-野生初期技と固定配布の全実moveset、隠れ特性の種族別初回供給率・継承・patch、汎用Z変換先の全consumer、専用Z全組合せのnative E2E、全メガの交代・ひんし・終了・Save/Continue個別受入、全特性のAIとCircus抑制組合せは今回追加実行していません。各ページのDEFERRED_AUDIT/IMPLEMENTED_NOT_NATIVE_ACCEPTEDを参照してください。
+野生初期技と固定配布の全実moveset、隠れ特性の種族別初回供給caller・patch、専用Z全組合せのnative E2E、全メガの交代・ひんし・終了・Save/Continue個別受入、全特性のAIとCircus抑制組合せは今回追加実行していません。各ページのDEFERRED_AUDIT/IMPLEMENTED_NOT_NATIVE_ACCEPTEDを参照してください。
 
 専用handlerの完全新規追加か既存流用かはeffect IDだけで断定しません。effect_noveltyはStage61の技行に同じeffect IDが存在したかであり、handler新設の証拠ではありません。役割候補は自動検索補助で、強さの採否判断ではありません。
 
@@ -1336,3 +1336,5 @@
 ```
 
 source bindingとtable hashは [data/index.json](data/index.json) / [data/provenance.json](data/provenance.json) に保存します。
+
+[今回追加の固定consumer監査・正確な残件](CONSUMER_AUDIT.md)

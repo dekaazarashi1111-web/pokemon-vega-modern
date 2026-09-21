@@ -2034,3 +2034,5 @@
 | [1668: ゼラオラ（Mega Zeraora）](pokemon/1668.md) | SUPPLY_NOT_FOUND_IN_CURRENT_SOURCES |
 | [1669: ジガルデ（Mega Zygarde）](pokemon/1669.md) | SUPPLY_NOT_FOUND_IN_CURRENT_SOURCES |
 | [1670: イワンコ（マイペース）](pokemon/1670.md) | SUPPLY_NOT_FOUND_IN_CURRENT_SOURCES |
+
+[今回追加の固定consumer監査・正確な残件](CONSUMER_AUDIT.md)
