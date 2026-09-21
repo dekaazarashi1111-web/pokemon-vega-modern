@@ -1,0 +1,48 @@
+name: PR16 Wiki saved ELF binding
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-wiki-saved-link.yml
+      - scripts/pr16_wiki_saved_link_capture.py
+      - scripts/pr16_wiki_elf_symbols.py
+      - tests/test_pr16_wiki_saved_symbols.py
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: pr16-wiki-saved-link
+  cancel-in-progress: false
+jobs:
+  capture:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: 新規ELF読取38境界のみ（既存受入suiteなし）
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-wiki-saved-link
+          python3 -B -m unittest discover -s tests -p test_pr16_wiki_saved_symbols.py -v 2>&1 | tee .local/pr16-wiki-saved-link/unit.txt
+      - name: 固定保存cacheと技正本を取得（compiler導入・build・nativeなし）
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-wiki-saved-inputs
+          tag=$(python3 -c 'import json; print(json.load(open("config/github_private_environment.json"))["release"]["tag"])')
+          gh release download "$tag" --pattern pokemon-vega-private-env-v1-build-cache.zip --pattern pokemon-vega-private-env-v1-state.zip --dir .local/pr16-wiki-saved-inputs
+      - name: 保存ELF全関数byteと候補を照合し限定textを保存
+        run: |
+          set -euo pipefail
+          python3 -B scripts/pr16_wiki_saved_link_capture.py --cache .local/pr16-wiki-saved-inputs/pokemon-vega-private-env-v1-build-cache.zip --state .local/pr16-wiki-saved-inputs/pokemon-vega-private-env-v1-state.zip 2>&1 | tee .local/pr16-wiki-saved-link/capture.txt
+          git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-wiki-saved-link-text
+          path: .local/pr16-wiki-saved-link/
+          include-hidden-files: true
+          retention-days: 3
+          if-no-files-found: error
