@@ -2036,3 +2036,5 @@
 | [1670: イワンコ（マイペース）](pokemon/1670.md) | SUPPLY_NOT_FOUND_IN_CURRENT_SOURCES |
 
 [今回追加の固定consumer監査・正確な残件](CONSUMER_AUDIT.md)
+
+[夢特性パッチ：種族別適用条件・供給source・未受入範囲](HIDDEN_PATCH_AUDIT.md)

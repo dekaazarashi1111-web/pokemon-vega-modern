@@ -127,8 +127,143 @@
     "status": "UPSTREAM_SEARCH_LEVEL_AND_CAUGHT_GATED"
   },
   "patch": {
-    "reason_ja": "道具の存在と使用consumer、解禁・供給・個体slot変更を別々に照合する必要がある。",
-    "status": "DEFERRED_AUDIT"
+    "cancel_and_no_effect_do_not_consume": true,
+    "compiled_patch_and_species_accessors": "DEFERRED_AUDIT",
+    "confirm_consumes_one": true,
+    "confirm_sets_hidden_flag": true,
+    "current_ability_compared_not_only_hidden_flag": true,
+    "item_supply": {
+      "bp_shop_cost": 32,
+      "candidate_field_callback_binding": "DEFERRED_AUDIT",
+      "eighth_badge_flag": "0x827",
+      "exact_hold_effect_parameter": 1,
+      "field_callback_declaration": "FieldUseFunc_AbilityCapsule",
+      "input_runtime_binding_label_not_current_acceptance": "T06_RUNTIME_BIND_PENDING",
+      "item_id": 943,
+      "item_key": "ITEM_KEY_ABILITY_PATCH",
+      "normal_unlock": "VEGA_HALL_OF_FAME_OR_EIGHTH_BADGE_FLAG",
+      "quantity": 1,
+      "rom_price_field": 20000,
+      "secondary_source_declared_not_caller_proof": "RAID_REWARD",
+      "shop_to_bag_to_patch_native": "DEFERRED_AUDIT",
+      "source_proofs": [
+        {
+          "end_line": 498,
+          "evidence": "GENERATED_CANONICAL",
+          "file_sha256": "14c27f895b9ae8d1b3d9d077ce49999fc17a1422a83e8ddb87657c66ebab06d3",
+          "path": "overlays/collection_supply_v1/collection_supply_v1.c",
+          "start_line": 452,
+          "symbol": "unlock_satisfied",
+          "unit_sha256": "9ee3ea108f07089d544cec16ac10369cb1fda597ef948fb353c1f95c2b979874"
+        },
+        {
+          "end_line": 582,
+          "evidence": "GENERATED_CANONICAL",
+          "file_sha256": "14c27f895b9ae8d1b3d9d077ce49999fc17a1422a83e8ddb87657c66ebab06d3",
+          "path": "overlays/collection_supply_v1/collection_supply_v1.c",
+          "start_line": 573,
+          "symbol": "source_currency",
+          "unit_sha256": "067bd5b3f7573345df8ee9ec2b23779379457c3e157a285e52b4af20c866b912"
+        },
+        {
+          "end_line": 834,
+          "evidence": "GENERATED_CANONICAL",
+          "file_sha256": "14c27f895b9ae8d1b3d9d077ce49999fc17a1422a83e8ddb87657c66ebab06d3",
+          "path": "overlays/collection_supply_v1/collection_supply_v1.c",
+          "start_line": 758,
+          "symbol": "acquire_item",
+          "unit_sha256": "ff30dfe35edf7a8cb8c06b6cb2812647517b26d7891e617a1bfd1ac5f6bf48ab"
+        },
+        {
+          "end_line": 1334,
+          "evidence": "GENERATED_CANONICAL",
+          "file_sha256": "14c27f895b9ae8d1b3d9d077ce49999fc17a1422a83e8ddb87657c66ebab06d3",
+          "path": "overlays/collection_supply_v1/collection_supply_v1.c",
+          "start_line": 1291,
+          "symbol": "eligible_at",
+          "unit_sha256": "8d545521734bbbabe59a3997e0e2923ed31f3e520e3b69e485f53ac0efb83fe4"
+        }
+      ],
+      "test_mode_excluded": true,
+      "unlock_name": "HIDDEN_ABILITY_DEXNAV_UNLOCKED"
+    },
+    "new_native_runs": 0,
+    "source_proofs": [
+      {
+        "candidate_native_acceptance": "DEFERRED_AUDIT",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "end_line": 2467,
+        "evidence": "GENERATED_CANONICAL",
+        "file_sha256": "6b72ebe4b136af6d573c5e7079fe183497a7883ff2daceb4c519cd8dd8e66e59",
+        "path": "src/party_menu.c",
+        "repository": "kapibarasan000/CFRU-JP",
+        "start_line": 2463,
+        "symbol": "FieldUseFunc_AbilityCapsule",
+        "unit_sha256": "1de2bdb5cb0b7907edfc16329ed0ff3d18eed9fb1bf17ef234b19015927eaa3d"
+      },
+      {
+        "candidate_native_acceptance": "DEFERRED_AUDIT",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "end_line": 2493,
+        "evidence": "GENERATED_CANONICAL",
+        "file_sha256": "6b72ebe4b136af6d573c5e7079fe183497a7883ff2daceb4c519cd8dd8e66e59",
+        "path": "src/party_menu.c",
+        "repository": "kapibarasan000/CFRU-JP",
+        "start_line": 2471,
+        "symbol": "ItemUseCB_AbilityCapsule",
+        "unit_sha256": "7fc5915d3a58de246c5113115fa3eaf4d6edf281a229bcb43edf7b09b27ffba4"
+      },
+      {
+        "candidate_native_acceptance": "DEFERRED_AUDIT",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "end_line": 2535,
+        "evidence": "GENERATED_CANONICAL",
+        "file_sha256": "6b72ebe4b136af6d573c5e7079fe183497a7883ff2daceb4c519cd8dd8e66e59",
+        "path": "src/party_menu.c",
+        "repository": "kapibarasan000/CFRU-JP",
+        "start_line": 2495,
+        "symbol": "GetAbilityCapsuleNewAbility",
+        "unit_sha256": "5c5b3dc7b4b842a8b7932e4797098013b2a0db219ebc240b05a3904fe7407b9d"
+      },
+      {
+        "candidate_native_acceptance": "DEFERRED_AUDIT",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "end_line": 2544,
+        "evidence": "GENERATED_CANONICAL",
+        "file_sha256": "6b72ebe4b136af6d573c5e7079fe183497a7883ff2daceb4c519cd8dd8e66e59",
+        "path": "src/party_menu.c",
+        "repository": "kapibarasan000/CFRU-JP",
+        "start_line": 2537,
+        "symbol": "Task_OfferAbilityChange",
+        "unit_sha256": "e074b4cb30aaa73a54981503b94a912de7699f5d8b9e233e1f2bf308969d8661"
+      },
+      {
+        "candidate_native_acceptance": "DEFERRED_AUDIT",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "end_line": 2560,
+        "evidence": "GENERATED_CANONICAL",
+        "file_sha256": "6b72ebe4b136af6d573c5e7079fe183497a7883ff2daceb4c519cd8dd8e66e59",
+        "path": "src/party_menu.c",
+        "repository": "kapibarasan000/CFRU-JP",
+        "start_line": 2546,
+        "symbol": "Task_HandleAbilityChangeYesNoInput",
+        "unit_sha256": "704fc029a44aa2442562a0d53205c14c8e686bfffeb04daa904a8974f6986a61"
+      },
+      {
+        "candidate_native_acceptance": "DEFERRED_AUDIT",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "end_line": 2588,
+        "evidence": "GENERATED_CANONICAL",
+        "file_sha256": "6b72ebe4b136af6d573c5e7079fe183497a7883ff2daceb4c519cd8dd8e66e59",
+        "path": "src/party_menu.c",
+        "repository": "kapibarasan000/CFRU-JP",
+        "start_line": 2562,
+        "symbol": "Task_ChangeAbility",
+        "unit_sha256": "b20ac3a5d4ef4b15eb9e68081e566f3573dd1ad1d3fca903be5235469924752d"
+      }
+    ],
+    "status": "SOURCE_CONDITION_JOINED_TO_CANDIDATE_SLOTS",
+    "unbound_extra_conditions_disabled_by_project_profile": true
   },
   "raid": {
     "collection_pool_does_not_prove_this_caller": true,
@@ -282,7 +417,7 @@
   "remaining_work_ja": [
     "野生初期技と固定配布の実movesetを全経路抽出し、推測と区別する。",
     "汎用Zの実行時split規則・固定physicality表・候補署名を照合済み。残りはcompiled consumer入口のcallgraph同定であり、table/pointer値一致だけを実行証拠にしない。",
-    "夢特性は上流の継承/flag/DexNav/raid条件を分離済み。現候補の種族別初回供給caller・patch・育て屋を照合する。",
+    "夢特性パッチは全1671slotの適用条件とBP供給source/解禁を分類済み。残りは現候補のcompiled field callback・種族accessor・通常初回供給caller・育て屋の対応。source分類を実入手/使用受入にしない。",
     "T04全70アダプターのsource由来を分類済み。残りは未結合技[511]の由来、上流宣言技のlocal patch/全handler履歴、候補compiled dispatch対応。source分類をnative受入にしない。"
   ],
   "schema_version": 1,
@@ -300,6 +435,12 @@
       "INTERNAL_Z_MAX_ROW_NOT_ORDINARY_BASE_MOVE": 156,
       "MOVE_NONE_NOT_A_BASE_MOVE": 1,
       "STATUS_MOVE_WITH_ADDITIONAL_EFFECT": 273
+    },
+    "hidden_patch_records": 1671,
+    "hidden_patch_states": {
+      "DISTINCT_NORMAL_ABILITY_CAN_TARGET_HIDDEN": 847,
+      "NORMAL_ABILITY_ALREADY_EQUALS_HIDDEN_ID": 57,
+      "NO_HIDDEN_ABILITY_ASSIGNED": 767
     },
     "hidden_slot_records": 1671,
     "physicality_candidate_table_matches": 1,

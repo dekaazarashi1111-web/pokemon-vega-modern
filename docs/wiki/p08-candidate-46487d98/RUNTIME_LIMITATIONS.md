@@ -1342,3 +1342,5 @@ source bindingとtable hashは [data/index.json](data/index.json) / [data/proven
 [汎用Zの実行時split・候補table監査](RUNTIME_Z_AUDIT.md)
 
 [技effectのsource由来・残件](EFFECT_ORIGIN_AUDIT.md)
+
+[夢特性パッチ：種族別適用条件・供給source・未受入範囲](HIDDEN_PATCH_AUDIT.md)
