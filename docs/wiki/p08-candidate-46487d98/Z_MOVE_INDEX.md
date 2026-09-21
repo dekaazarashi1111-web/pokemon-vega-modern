@@ -987,3 +987,5 @@ Species + Item + base Move → Z Move の表を候補byteと照合していま�
 [今回追加の固定consumer監査・正確な残件](CONSUMER_AUDIT.md)
 
 [汎用Zの実行時split・候補table監査](RUNTIME_Z_AUDIT.md)
+
+[Z関連入口のcompiled構造graphと未解決callee](LINK_GRAPH_AUDIT.md)

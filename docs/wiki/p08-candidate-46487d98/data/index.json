@@ -37,6 +37,12 @@
       "NO_HIDDEN_ABILITY_ASSIGNED": 767
     },
     "hidden_slot_records": 1671,
+    "link_graph_direct_bl_sites": 4,
+    "link_graph_limited_seeds": 0,
+    "link_graph_nodes": 32,
+    "link_graph_overlap_sites": 0,
+    "link_graph_seeds": 3,
+    "missing_named_link_symbols": 16,
     "physicality_candidate_table_matches": 1,
     "runtime_z_records": 1063,
     "runtime_z_rules": {
@@ -76,12 +82,12 @@
       "size": 6502330
     },
     "CODEX_INDEX.md": {
-      "sha256": "bfd537e113f9b958b7ae125458f4b532409dd79e6814ae83977d43296c3b3edd",
-      "size": 2001
+      "sha256": "3e1fe740a9f1f7cc3e93085a1c6a88336e6e7b887dcceb3b4d63ff4426fa2cba",
+      "size": 2079
     },
     "CONSUMER_AUDIT.md": {
-      "sha256": "ad72f8389dd8bdbf04bf99f00b9e96c64e17f7f600c2b5753d62ba1d10d4b9c8",
-      "size": 22435
+      "sha256": "b0dc8aed6cb5bf2da694ef55dfb0b8e6da93707298068d1683328b1e5975818d",
+      "size": 22744
     },
     "CREATION_MOVESET_AUDIT.md": {
       "sha256": "a89e4a309440bd0fb30e7eed0cea7d613e40b905df5b49c2d72c36cb17a44c43",
@@ -107,6 +113,10 @@
       "sha256": "542c69c8d7310ff3636323811725e61b106a0f3ba280aa12bac916e355ec54b8",
       "size": 581289
     },
+    "LINK_GRAPH_AUDIT.md": {
+      "sha256": "382c5e91e506dd927947e3a88ca84c2469ef28637d8612596aaa26e569904e7c",
+      "size": 1387
+    },
     "MEGA_INDEX.md": {
       "sha256": "cca00c1c99fd06900e281a26fff52ed97d6f47e5c8fbc262012b5544088e4130",
       "size": 36192
@@ -124,12 +134,12 @@
       "size": 312727
     },
     "README.md": {
-      "sha256": "1b10760b887eb3262d1d79109bb42a02bd8ecd174411f04cd5ce42e9db3fb43f",
-      "size": 2257
+      "sha256": "f5952c7f9c017481908e3511d62ff3079e8ff14de053506c53dd339022c3f2ef",
+      "size": 2335
     },
     "RUNTIME_LIMITATIONS.md": {
-      "sha256": "ff0abd5f7bd7e0aa136169917454911018f42078b4539d05be5922352ddebb03",
-      "size": 49577
+      "sha256": "5821e048ab003d0161cebbba57dc756efcfe3dbf8d6aeba61852dc63f4d45815",
+      "size": 49655
     },
     "RUNTIME_Z_AUDIT.md": {
       "sha256": "7231b58ad1543002dfd3b18fe476fda9d17fd01a29056c128f8e3389043173d4",
@@ -140,8 +150,8 @@
       "size": 222530
     },
     "Z_MOVE_INDEX.md": {
-      "sha256": "2b860df853c99d75e45ae66bd3d3ecd8a8764f95b88cb613061f5c1e5647423a",
-      "size": 98805
+      "sha256": "8a850467b6f201ad36832eededbd116f000f1c52325d468b679ebe89018bfb04",
+      "size": 98883
     },
     "abilities/0.md": {
       "sha256": "5847aeb7349ba770cb89fdf949c0649778bb6c39ff0b0b70fae90500d79ef920",
@@ -1444,8 +1454,8 @@
       "size": 271443
     },
     "data/followup_audit.json": {
-      "sha256": "07f48433a8bf90182308d5dd7773287afe88c63a07c1aaff17564266b35a517a",
-      "size": 2948
+      "sha256": "feb24b5561bad2acee24fdd44e40ca26c9d46046b87870b5ba1348265b47300b",
+      "size": 3257
     },
     "data/generic_z.jsonl": {
       "sha256": "a14cbe6387d2b22e524a0f25148ddab256616bcb4bf07a28c0ce377f99cb8cc5",
@@ -1475,6 +1485,10 @@
       "sha256": "33b9a66a4de92c44757c5be666cd8c8810d71fceeaa91c83d704bcc9e3597cb3",
       "size": 17670131
     },
+    "data/link_graph_audit.json": {
+      "sha256": "76ff5a9877fea5c0640687a147b801f9ba82b93917c97a8cf125c4f3926e14a4",
+      "size": 19149
+    },
     "data/mega_assets.json": {
       "sha256": "3bf9827b8f30920d644d864c2523917ff56dfd63f65bac439464f327b39871bd",
       "size": 165320
@@ -1496,8 +1510,8 @@
       "size": 894260
     },
     "data/provenance.json": {
-      "sha256": "b63641faa8e7ded9132481410bc0a7d64c6964743669bd2df9446916b1a0c65e",
-      "size": 567877
+      "sha256": "e078044c906ebaa3fe91a3e92c17d495cdd83c5522f00fc9a64ed3ccec50a53d",
+      "size": 568371
     },
     "data/runtime_z_audit.json": {
       "sha256": "08681ba8f7a3e1b77b5a7d140c5e65991867f6b545f154ad09402fb08781aba7",
@@ -16644,7 +16658,7 @@
     "unverified_legacy_rows": 1
   },
   "new_native_runs": 0,
-  "payload_tree_sha256": "0d28752e4c4052ae8c30729a699cbd367983379e53141c7028349a8d533b7775",
+  "payload_tree_sha256": "ca2b50ac5541f1dc4a419d37bc7460a67776aafbd3ff61f4eb627d7fc137370b",
   "record_counts": {
     "abilities": 318,
     "hidden_abilities": 1671,
@@ -16663,6 +16677,10 @@
   "self_hash_policy": "index.json自身をpayload manifestから除外。全tree hashは検証reportに記録。",
   "snapshot_scope": "ALL_ID_DOCUMENTATION_WITH_EXPLICIT_AUDIT_GAPS",
   "source_bindings": {
+    "build/stages/06_battle_core.json": {
+      "sha256": "3c107c77cd50e39c075277a499e4a86a874c77ebbabd4e4507e125d5cc094260",
+      "size": 255032
+    },
     "config/cfru_vega_minimal.h": {
       "sha256": "cbf61ee395af2f61103c29c0bea4b6cddc15499a1e4c1706f2b1f72afeafe4f2",
       "size": 3078
@@ -16726,6 +16744,10 @@
     "content/modernization/pr16_candidate_wiki_hidden_patch_sources.json": {
       "sha256": "4e756d412f8295bccde6f510d876e05a08e7865d32c3bf2dfcda19682d9def76",
       "size": 6085
+    },
+    "content/modernization/pr16_candidate_wiki_link_sources.json": {
+      "sha256": "4c5a149fee6b258d2bdb2fef6cb3366cbe471bc18878030272b8b2ef9c90e18d",
+      "size": 4090
     },
     "content/modernization/pr16_candidate_wiki_p07_source_rows.json": {
       "sha256": "f1c1e361f99d5da9fd29077874856b4c5e92fd1ed87cce6d8cc80a70356d5766",
@@ -16852,8 +16874,8 @@
       "size": 54175
     },
     "scripts/build_pr16_candidate_wiki.py": {
-      "sha256": "5bbd56f262da31654a4da61365b409e2c74a5a552a8dcf1f6b0acf90c6a05e7d",
-      "size": 6282
+      "sha256": "13c1ab5ffc9a9584213ba40812d3d937898bf0d4da56ddb0d83f16d98ca4688d",
+      "size": 6470
     },
     "scripts/pr16_candidate_wiki_catalog.py": {
       "sha256": "9b05f0641ebf92ad51ca1444a734c792f7e46f69db4beaddd34b5a6f65a68f08",
@@ -16886,6 +16908,10 @@
     "scripts/pr16_candidate_wiki_inputs.py": {
       "sha256": "8e745e3fa2ec5b4947db545f382e4b88cd84ae1a7a910a75e7f0333691ca8108",
       "size": 15251
+    },
+    "scripts/pr16_candidate_wiki_link_graph.py": {
+      "sha256": "b26e7b98e2074257c98e18e45e309e6fff01611076ea3b5de0ead67c1b9f35af",
+      "size": 8655
     },
     "scripts/pr16_candidate_wiki_mega_quality.py": {
       "sha256": "143cac152d19e58b37dac84303a814b0cb123903c8c0ada474dd8508a07a6ef0",

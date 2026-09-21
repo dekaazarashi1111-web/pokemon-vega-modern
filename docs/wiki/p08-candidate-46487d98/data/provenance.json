@@ -299,6 +299,10 @@
     "state_path": "content/modernization/pr16_native_supply_resume_20260913.json"
   },
   "source_bindings": {
+    "build/stages/06_battle_core.json": {
+      "sha256": "3c107c77cd50e39c075277a499e4a86a874c77ebbabd4e4507e125d5cc094260",
+      "size": 255032
+    },
     "config/cfru_vega_minimal.h": {
       "sha256": "cbf61ee395af2f61103c29c0bea4b6cddc15499a1e4c1706f2b1f72afeafe4f2",
       "size": 3078
@@ -362,6 +366,10 @@
     "content/modernization/pr16_candidate_wiki_hidden_patch_sources.json": {
       "sha256": "4e756d412f8295bccde6f510d876e05a08e7865d32c3bf2dfcda19682d9def76",
       "size": 6085
+    },
+    "content/modernization/pr16_candidate_wiki_link_sources.json": {
+      "sha256": "4c5a149fee6b258d2bdb2fef6cb3366cbe471bc18878030272b8b2ef9c90e18d",
+      "size": 4090
     },
     "content/modernization/pr16_candidate_wiki_p07_source_rows.json": {
       "sha256": "f1c1e361f99d5da9fd29077874856b4c5e92fd1ed87cce6d8cc80a70356d5766",
@@ -488,8 +496,8 @@
       "size": 54175
     },
     "scripts/build_pr16_candidate_wiki.py": {
-      "sha256": "5bbd56f262da31654a4da61365b409e2c74a5a552a8dcf1f6b0acf90c6a05e7d",
-      "size": 6282
+      "sha256": "13c1ab5ffc9a9584213ba40812d3d937898bf0d4da56ddb0d83f16d98ca4688d",
+      "size": 6470
     },
     "scripts/pr16_candidate_wiki_catalog.py": {
       "sha256": "9b05f0641ebf92ad51ca1444a734c792f7e46f69db4beaddd34b5a6f65a68f08",
@@ -522,6 +530,10 @@
     "scripts/pr16_candidate_wiki_inputs.py": {
       "sha256": "8e745e3fa2ec5b4947db545f382e4b88cd84ae1a7a910a75e7f0333691ca8108",
       "size": 15251
+    },
+    "scripts/pr16_candidate_wiki_link_graph.py": {
+      "sha256": "b26e7b98e2074257c98e18e45e309e6fff01611076ea3b5de0ead67c1b9f35af",
+      "size": 8655
     },
     "scripts/pr16_candidate_wiki_mega_quality.py": {
       "sha256": "143cac152d19e58b37dac84303a814b0cb123903c8c0ada474dd8508a07a6ef0",

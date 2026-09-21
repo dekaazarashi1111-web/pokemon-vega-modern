@@ -416,7 +416,7 @@
   "new_native_runs": 0,
   "remaining_work_ja": [
     "追加野生95行・collection配布18/Floette1・collection raid292を現候補level表の初期技source規則に結合済み。残りは全通常野生header/既存story配布、現compiled初期化caller・マクロ、生成後form変更/custom技。条件付き計算を実生成技受入にしない。",
-    "汎用Zの実行時split規則・固定physicality表・候補署名を照合済み。残りはcompiled consumer入口のcallgraph同定であり、table/pointer値一致だけを実行証拠にしない。",
+    "汎用Zのsplit/候補表に加え保存metadataの3入口からThumb-1構造graphを抽出済み。残りはCanUseZMove/GetTypeBasedZMove/CalcMoveSplitの名前付きcallee結合・間接辺。既存offsets.ini/linked.oの固定hashはlink_graph_auditに記録。再build/nativeなしに名前を推測しない。",
     "夢特性パッチは全1671slotの適用条件とBP供給source/解禁を分類済み。残りは現候補のcompiled field callback・種族accessor・通常初回供給caller・育て屋の対応。source分類を実入手/使用受入にしない。",
     "T04全70アダプターのsource由来を分類済み。残りは未結合技[511]の由来、上流宣言技のlocal patch/全handler履歴、候補compiled dispatch対応。source分類をnative受入にしない。"
   ],
@@ -454,6 +454,12 @@
       "NO_HIDDEN_ABILITY_ASSIGNED": 767
     },
     "hidden_slot_records": 1671,
+    "link_graph_direct_bl_sites": 4,
+    "link_graph_limited_seeds": 0,
+    "link_graph_nodes": 32,
+    "link_graph_overlap_sites": 0,
+    "link_graph_seeds": 3,
+    "missing_named_link_symbols": 16,
     "physicality_candidate_table_matches": 1,
     "runtime_z_records": 1063,
     "runtime_z_rules": {

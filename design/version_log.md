@@ -6400,3 +6400,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 本記録を含むcommit。検証source HEAD=3969be6bfb4083ce4cb1e5dd48f0697a62665127。
 - Network: GitHub connector/Actions run35563498591。run全体はpush/upload前のin_progressとして記録。
 - Boundary: ROM変更0、ARM0、native0。既存受入試験は影響なしに再実行しない。Issue18・merge・release・active baseline切替なし。失敗run35535019570は検証成功/記録失敗を区別してfollowup JSONに保存。
+
+
+## 2026-09-21T05:21:32+00:00 — USER-20260921-P08-CANDIDATE-WIKI / Wiki followup checkpoint
+- Task: USER-20260921-P08-CANDIDATE-WIKI
+- Status: DONE（今回の限定範囲。Issue18全体は継続）
+- Summary: {"creation_declared_routes": 311, "creation_profile_species": 470, "creation_profile_states": {"SOURCE_RULE_APPLIED_TO_CANDIDATE_ROWS": 4776}, "creation_profiles": 4776, "creation_route_kinds": {"COLLECTION_RAID": 292, "FIXED_GIFT": 4, "RESEARCH_EGG": 15}, "effect_origin_records": 1063, "effect_origin_states": {"LOCKED_UPSTREAM_EFFECT_DECLARATION": 991, "MOVE_NONE_NOT_PLAYABLE": 1, "T04_SOURCE_ADAPTER_CLASSIFIED": 70, "UNRESOLVED_SOURCE_LINEAGE": 1}, "generic_z_records": 1063, "generic_z_states": {"DAMAGE_MOVE_SOURCE_RULE": 633, "INTERNAL_Z_MAX_ROW_NOT_ORDINARY_BASE_MOVE": 156, "MOVE_NONE_NOT_A_BASE_MOVE": 1, "STATUS_MOVE_WITH_ADDITIONAL_EFFECT": 273}, "hidden_patch_records": 1671, "hidden_patch_states": {"DISTINCT_NORMAL_ABILITY_CAN_TARGET_HIDDEN": 847, "NORMAL_ABILITY_ALREADY_EQUALS_HIDDEN_ID": 57, "NO_HIDDEN_ABILITY_ASSIGNED": 767}, "hidden_slot_records": 1671, "link_graph_direct_bl_sites": 4, "link_graph_limited_seeds": 0, "link_graph_nodes": 32, "link_graph_overlap_sites": 0, "link_graph_seeds": 3, "missing_named_link_symbols": 16, "physicality_candidate_table_matches": 1, "runtime_z_records": 1063, "runtime_z_rules": {"CANDIDATE_BASE_SPLIT": 783, "SHELL_SIDE_ARM_SELF_BANK_BASE_SPLIT": 1, "STATUS_SENTINEL_NOT_DAMAGE_SPLIT": 275, "STAT_STAGE_COMPARISON": 2, "TERA_CONDITIONAL_STAT_COMPARISON": 2}, "t04_adapters_with_central_queries": 17, "t04_required_source_patch_contracts": 26, "t04_script_origins": {"PROJECT_COMPOSED_SCRIPT": 5, "PROJECT_DYNAMIC_PREPARE_ADAPTER": 3, "UPSTREAM_EFFECT_PARAMETER_ADAPTER": 43, "UPSTREAM_SCRIPT_DELEGATE": 19}, "t04_source_adapters": 70, "type_split_mappings": 36, "wild_overlay_entries": 95, "wild_overlay_slots": 294, "z_status_effects": 29}
+- Files changed: Wiki生成器/CLI/差分試験、workflow、Makefile、候補Wiki、receipt/followup JSON、固定引継ぎMD/JSON、両ログ。
+- Verify: 追加26試験、seed11/29 build一致、実check byte/mtime不変、内部リンク、Stage61/active baseline保護、resume/task graph/diff/changed-final-index guard。受入native再実行0。
+- Commit: 本記録を含むcommit。検証source HEAD=6ea91ae2da54398fdc01bb3d0cf4f89427855ba4。
+- Network: GitHub connector/Actions run35564248203。run全体はpush/upload前のin_progressとして記録。
+- Boundary: ROM変更0、ARM0、native0。既存受入試験は影響なしに再実行しない。Issue18・merge・release・active baseline切替なし。失敗run35535019570は検証成功/記録失敗を区別してfollowup JSONに保存。
