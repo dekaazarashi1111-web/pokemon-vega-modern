@@ -1,0 +1,63 @@
+name: PR16 Vega adjudication
+on:
+  workflow_dispatch:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - tools/pr16_vega_adjudication.py
+      - tests/test_pr16_vega_adjudication.py
+      - .github/workflows/pr16-vega-adjudication.yml
+      - .github/pr16-vega-adjudication.request
+permissions:
+  contents: read
+jobs:
+  adjudicate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Targeted tests and offline owner decision
+        run: |
+          set -euo pipefail
+          mkdir -p reports/pr16-vega-adjudication
+          python -m unittest discover -s tests -p test_pr16_vega_adjudication.py -v 2>&1 | tee reports/pr16-vega-adjudication/unit.txt
+          python tools/pr16_vega_adjudication.py generate --output reports/pr16-vega-adjudication/generated
+          python tools/pr16_vega_adjudication.py check --output reports/pr16-vega-adjudication/generated
+          git diff --exit-code
+          git diff --check
+      - name: Export scoped tracked text for continued implementation
+        if: always()
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import subprocess, zipfile
+          out = Path('reports/pr16-vega-adjudication')
+          out.mkdir(parents=True, exist_ok=True)
+          paths = subprocess.check_output(['git', 'ls-files', '-z']).decode().split('\0')
+          (out / 'tracked_paths.txt').write_text('\n'.join(paths), encoding='utf-8')
+          (out / 'source_head.txt').write_text(subprocess.check_output(['git', 'rev-parse', 'HEAD']).decode(), encoding='utf-8')
+          exact = {'AGENTS.md', 'CHATGPT_RESUME.md', 'design/run_log.md', 'design/version_log.md',
+                   'content/modernization/pr16_native_supply_resume_20260913.json',
+                   'content/modernization/pr16_bp_chooser_checkpoint.json', 'content/modernization/p08_remaining_work.json'}
+          prefixes = ('tools/', 'scripts/', 'tests/', 'config/', 'manifests/', '.github/workflows/',
+                      'content/modernization/pr16_vega_', 'content/modernization/pr16_learnset_baseline',
+                      'docs/PR16_VEGA_', 'docs/PR16_LEARNSET_', 'docs/PR16_NATIVE_SUPPLY_',
+                      'docs/CHATGPT_WEB_GITHUB_ENVIRONMENT')
+          suffixes = {'.py', '.sh', '.md', '.json', '.jsonl', '.csv', '.yml', '.yaml', '.c', '.h', '.s', '.inc', '.txt'}
+          with zipfile.ZipFile(out / 'scoped-text.zip', 'w', zipfile.ZIP_DEFLATED) as archive:
+              for name in paths:
+                  path = Path(name)
+                  if path.is_file() and (name in exact or (name.startswith(prefixes) and path.suffix in suffixes) or path.name == 'AGENTS.md'):
+                      path.read_text(encoding='utf-8')
+                      archive.write(path, name)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-vega-adjudication
+          path: reports/pr16-vega-adjudication/
+          retention-days: 7
+          if-no-files-found: error
