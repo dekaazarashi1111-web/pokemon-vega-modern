@@ -24,7 +24,8 @@ GUIDE = 'docs/PR16_LEARNSET_SUPPLY_JA.md'
 WORK = ROOT/'.local/pr16-learnset-supply-rom'
 PROOF = WORK/'proof'
 CODE = {'scripts/pr16_learnset_supply_rom.py', 'tools/mgba_pr16_learnset_supply.c',
-        'tests/test_pr16_learnset_supply_rom.py', '.github/workflows/pr16-learnset-supply-rom.yml'}
+        'tests/test_pr16_learnset_supply_rom.py', '.github/workflows/pr16-learnset-supply-rom.yml',
+        'scripts/pr16_learnset_supply_rom_inputs.py', 'tests/test_pr16_learnset_supply_rom_inputs.py'}
 CANDIDATE = {'size':33554432, 'sha256':'ec5992aa139fb87ddc27857a687dd7146c13a2dffbc88227aa44c1a26bea569f'}
 SPECIAL = (399, 619, 618, 344, 630, 643, 644, 633, 783)
 STATUS = 'PASS_NEW_SUPPLY_FOUR_HOOKS'
@@ -112,7 +113,8 @@ def restore():
 def abi(candidate,link):
     from pr16_wiki_elf_symbols import Elf
     saved=load(ROOT/(BASE+'pr16_candidate_wiki_saved_link_sources.json'))['elf']
-    raw=(ROOT/saved['member']).read_bytes()
+    from pr16_learnset_supply_rom_inputs import load_elf
+    raw=load_elf(WORK,PROOF)
     need(identity(raw)=={k:saved[k] for k in ('size','sha256')},'saved ELF identity')
     elf=Elf(raw)
     relevant={name:items for name,items in elf.symbols.items() if any(t in name.lower() for t in ('flag','saveblock'))}
@@ -177,7 +179,9 @@ def verify():
     current_pr(os.environ['GITHUB_SHA']);WORK.mkdir(parents=True);PROOF.mkdir()
     need(not (ROOT/CP).exists(),'accepted native probe must not be rerun')
     before={name:identity((ROOT/name).read_bytes()) for name in CODE}
-    command([sys.executable,'-B','-m','unittest','tests.test_pr16_learnset_supply_rom','-v'],'unit')
+    from pr16_learnset_supply_rom_inputs import inherited
+    receipt=inherited(PROOF)
+    command([sys.executable,'-B','-m','unittest','tests.test_pr16_learnset_supply_rom_inputs','-v'],'unit-inputs')
     candidate,link=restore();bindings=abi(candidate,link);count=samples(bindings)
     binary=WORK/'native'
     command(['cc','-std=c11','-O2','-g','-fsanitize=address,undefined','-Wall','-Wextra','-Werror','-Itools','-I'+str(WORK),
@@ -193,7 +197,7 @@ def verify():
     write(PROOF/'verification.json',{'status':STATUS,'scope':SCOPE,'task':TASK,'source_head':os.environ['GITHUB_SHA'],
         'run_id':int(os.environ['GITHUB_RUN_ID']),'candidate':CANDIDATE,'candidate_crc32':'9A91E7FB',
         'samples':count,'native_processes':2,'native_results':results,'source_bindings':before,
-        'new_host_compiles':1,'new_arm_compiles':0,'new_arm_links':0,'accepted_tests_rerun':0,
+        'inherited_unit':receipt,'new_tests':10,'new_host_compiles':1,'new_arm_compiles':0,'new_arm_links':0,'accepted_tests_rerun':0,
         'accepted_native_reruns':0,'accepted_payload_regenerations':0,'accepted_source_regenerations':0,
         'input_candidate_unchanged':True,'independent_process_results_equal':True,
         'physical_supply_verified':False,'gameplay_e2e_accepted':False,'issue19_complete':False,
@@ -242,7 +246,7 @@ def record():
     prior=(ROOT/GUIDE).read_text(encoding='utf-8')
     (ROOT/GUIDE).write_text('# Issue19: 新供給4hookの実ROM ABI受入\n\n'+state['bp']['current_stop']+'\n\n正本 `'+CP+'`、run '+str(v['run_id'])+'。旧リンク/host証拠は不変。\n\n## 次工程\n\n'+goal+'\n\n## 前段階（履歴）\n\n'+prior,encoding='utf-8')
     stamp=datetime.datetime.now(datetime.timezone.utc).isoformat()
-    log=f'\n## {stamp}\n- Timestamp: {stamp}\n- Task: {TASK} / 保存候補の新供給4hook実ROM検証\n- Version: learnset-supply-native-v1\n- Status: DONE（直接ROM ABIのみ。通常操作/Wiki未完）\n- Summary: '+state['bp']['current_stop']+f'\n- Files changed: 新native runner/oracle/拒否試験/限定Actions、checkpoint/証拠、固定MD/JSON、guide、両ログ。\n- Verify: run{v["run_id"]}の新規試験・ASan/UBSan host compile・独立2process前後逆順一致、保存候補hash不変。旧ARM/原本生成/受入試験/native再実行0。resume/task graph/final index guard PASS後のみcommit。全履歴guard PASSは主張しない。\n- Commit: 同branch非forceの本記録commit。自己SHAはgit logで照合。\n- Network: GitHub保存artifact/固定sourceとUbuntu libmgba-devのみ。merge/release/baseline切替なし。\n'
+    log=f'\n## {stamp}\n- Timestamp: {stamp}\n- Task: {TASK} / 保存候補の新供給4hook実ROM検証\n- Version: learnset-supply-native-v1\n- Status: DONE（直接ROM ABIのみ。通常操作/Wiki未完）\n- Summary: '+state['bp']['current_stop']+f'\n- Files changed: 新native runner/oracle/拒否試験/限定Actions、checkpoint/証拠、固定MD/JSON、guide、両ログ。\n- Verify: run{v["run_id"]}の新規入力拒否10試験（旧14試験は失敗run35736673504の成功部分を継承）・ASan/UBSan host compile・独立2process前後逆順一致、保存候補hash不変。旧ARM/原本生成/受入試験/native再実行0。resume/task graph/final index guard PASS後のみcommit。全履歴guard PASSは主張しない。\n- Commit: 同branch非forceの本記録commit。自己SHAはgit logで照合。\n- Network: GitHub保存artifact/固定sourceとUbuntu libmgba-devのみ。merge/release/baseline切替なし。\n'
     for name in ('design/run_log.md','design/version_log.md'):
         with (ROOT/name).open('a',encoding='utf-8') as stream:stream.write(log)
     print(json.dumps({'status':checkpoint['status'],'run_id':v['run_id'],'source_head':v['source_head']}))
