@@ -25,6 +25,12 @@ static uint32_t invoke(struct mCore *c,uint32_t fn,uint32_t a,uint32_t b)
     while(((uint32_t)read_register(c,"pc")&~1U)!=0x08000002U){
         uint32_t pc=(uint32_t)read_register(c,"pc")&~1U;
         if(pc>=PR16_CODE_START && pc<PR16_CODE_END)seen=true;
+        if(hook==1 && !hook_seen[1] && steps<128)
+            fprintf(stderr,"first_archive step=%u pc=%08x sp=%08x lr=%08x r0=%08x r1=%08x r3=%08x r5=%08x mode=%u cpsr=%08x\n",
+                steps,pc,(uint32_t)read_register(c,"sp"),(uint32_t)read_register(c,"lr"),
+                (uint32_t)read_register(c,"r0"),(uint32_t)read_register(c,"r1"),
+                (uint32_t)read_register(c,"r3"),(uint32_t)read_register(c,"r5"),
+                read8(c,0x0203EC00U),(uint32_t)read_register(c,"cpsr"));
         if(++steps>BATTLE_CORE_DIRECT_CALL_LIMIT){fprintf(stderr,"fn=%08x a=%u b=%u pc=%08x\n",fn,a,b,pc);battle_core_die("supply timeout");}
         c->step(c);
     }
