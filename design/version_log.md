@@ -6602,3 +6602,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 本記録を含む同branch非force commit。自己SHAはgit logで照合。
 - Network: GitHub固定run/artifactのみ。原本再収集/旧ARM再compile/既存native再実行0。空間不足run35716683381とリンク失敗run35720010554・旧入口不一致run35720416968をfailureのまま保持。全履歴private guardのPASSは主張しない。
 - 記録修復: run35722277848は18記録試験成功後に固定入口のstale sourceで停止し、commit/pushなし。入口の動的追記を廃止し、source bindingの自動追認を拒否。18試験は再実行せず、新規ResumePublicationTests 6件と実resume/task graph/index guardだけを検証する。
+
+## 2026-09-22T12:23:27.574724+00:00
+- Timestamp: 2026-09-22T12:23:27.574724+00:00
+- Task: USER-20260922-LEARNSET-SUPPLY / PLA1と供給consumerのhost限定受入
+- Version: learnset-supply-pla1-host-v1
+- Status: DONE（host限定。実ROM ABI/接続・Wiki・通常操作E2Eは未完）
+- Summary: PLA1 21383 bytes、3342行/1232共有行/3順序templateを同値圧縮。殿堂入りgate・40行ページ・既習得除外・188非学習owner拒否・Tutor通常slotを読取専用adapterへ実装。
+- Files changed: tools/pr16_learnset_supply.py、supply C/header/game adapter、新規fixture/30試験、verify/record/拒否試験/限定Actions、証拠/checkpoint/guide、固定引継ぎMD/JSON、両ログ。CHATGPT_RESUME.mdは不変。
+- Verify: run35726123952 SUCCESS、新規30試験・145878 C/source照合・独立2PLA1のhash一致。保存原本の30試験/照合/生成を本記録で再実行しない。新規記録拒否試験・resume/task graph・final index限定guard・diff --check成功後のみcommit。
+- Commit: 同branchへの非force記録commit。自己SHAはgit logで照合。
+- Network: GitHub固定run/artifactを再利用。kapibarasan000/CFRU-JP@e24a16fe39e27ae162faf5b78596d1f3df18489d/src/item.cのCanMonLearnTutorMoveを確認し特殊Tutor条件を通常slotと区別（https://github.com/kapibarasan000/CFRU-JP/blob/e24a16fe39e27ae162faf5b78596d1f3df18489d/src/item.c）。実ROM ABIは未受入。原本/payload再生成0・旧96試験/native再実行0・新ARM/native0。歴史的全体private guardのPASSは主張しない。
