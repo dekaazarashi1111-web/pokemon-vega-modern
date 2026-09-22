@@ -7,6 +7,8 @@ on:
       - .github/pr16-learnset-runtime-run.json
 permissions:
   contents: read
+  actions: read
+  pull-requests: read
 concurrency:
   group: pr16-learnset-runtime
   cancel-in-progress: false
@@ -24,42 +26,24 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: 接続実装に必要なtracked textの読取専用snapshot
+      - name: 新規ARM配置と2入口検証の依存だけを導入
         run: |
-          python3 -B - <<'PY'
-          import hashlib, json, pathlib, subprocess, zipfile
-          root = pathlib.Path('.')
-          out = root / '.local/pr16-learnset-runtime'
-          out.mkdir(parents=True, exist_ok=True)
-          paths = subprocess.check_output(['git', 'ls-files', '-z']).decode().split('\0')
-          suffixes = {'.py', '.c', '.h', '.s', '.S', '.ld', '.inc', '.json', '.jsonl', '.csv', '.tsv', '.yml', '.yaml', '.sh', '.ps1', '.toml', '.txt'}
-          prefixes = ('src/', 'tools/', 'scripts/', 'tests/', 'config/', 'content/modernization/', '.github/', 'infra/', 'manifests/')
-          exact = {'AGENTS.md', 'CHATGPT_RESUME.md', 'README.md', 'Makefile', '.gitignore', 'state/source-lock.json', 'design/active_play_baseline.md', 'design/current_state.md', 'design/agent_context_map.md'}
-          records = {}
-          with zipfile.ZipFile(out / 'tracked-source.zip', 'w', zipfile.ZIP_DEFLATED) as z:
-              z.writestr('_tracked_paths.txt', '\n'.join(p for p in paths if p) + '\n')
-              for name in paths:
-                  if not name:
-                      continue
-                  p = pathlib.Path(name)
-                  wanted = name in exact or p.name == 'AGENTS.md' or (name.startswith(prefixes) and p.suffix in suffixes) or (name.startswith('docs/PR16') and p.suffix == '.md')
-                  if not wanted or not p.is_file() or p.is_symlink():
-                      continue
-                  data = p.read_bytes()
-                  try:
-                      data.decode('utf-8')
-                  except UnicodeDecodeError:
-                      continue
-                  if b'\0' in data:
-                      continue
-                  z.writestr(name, data)
-                  records[name] = {'size': len(data), 'sha256': hashlib.sha256(data).hexdigest()}
-              z.writestr('_snapshot.json', json.dumps({'head': subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(), 'files': records}, sort_keys=True))
-          print(json.dumps({'phase': 'READ_ONLY_SOURCE_CHECKPOINT', 'tracked_text_files': len(records), 'accepted_work_rerun': False, 'rom_changes': 0, 'native_runs': 0}))
-          PY
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends gcc-arm-none-eabi binutils-arm-none-eabi libmgba-dev
+      - name: 受入原本を再生成せず新19試験・全owner配置・2入口ARMを検証
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 -B scripts/pr16_learnset_runtime_verify.py verify
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-learnset-runtime-proof
+          path: .local/pr16-learnset-runtime/proof/
+          retention-days: 30
+          if-no-files-found: error
       - uses: actions/upload-artifact@v4
         with:
-          name: pr16-learnset-runtime-source
-          path: .local/pr16-learnset-runtime/tracked-source.zip
-          retention-days: 7
+          name: pr16-learnset-runtime-data
+          path: .local/pr16-learnset-runtime/data/
+          retention-days: 30
           if-no-files-found: error
