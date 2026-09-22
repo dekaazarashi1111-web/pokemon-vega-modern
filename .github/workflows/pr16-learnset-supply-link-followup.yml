@@ -1,0 +1,61 @@
+name: pr16-learnset-supply-link-followup
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-learnset-supply-link-followup.yml]
+permissions:
+  contents: read
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-learnset-supply-link
+  cancel-in-progress: false
+jobs:
+  supply-link-followup:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: 新供給module用ARM toolchain
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends gcc-arm-none-eabi
+      - name: 初回14試験を再利用し新ARMのmemsetだけを追加
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 -B scripts/pr16_learnset_supply_link_followup.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-learnset-supply-link-proof
+          path: .local/pr16-learnset-supply-link/proof/
+          retention-days: 30
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: pr16-learnset-supply-link-data
+          path: .local/pr16-learnset-supply-link/data/
+          retention-days: 30
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: pr16-learnset-supply-link-partial
+          path: |
+            .local/pr16-learnset-supply-link/build*/supply.bin
+            .local/pr16-learnset-supply-link/build*/supply.elf
+            .local/pr16-learnset-supply-link/build*/link.json
+            .local/pr16-learnset-supply-link/build*/disassembly.txt
+            .local/pr16-learnset-supply-link/build*/*.o
+          retention-days: 30
+          if-no-files-found: ignore
