@@ -1,3 +1,17 @@
+# Issue19: ELF配置修復と新供給4hookの実ROM ABI受入
+
+ELF実loadとROM配置の4byteずれを保存ELFから修復し後継6e88a021を独立2配置一致で確定。新供給4hookを28代表owner×独立2process、合計21392callで検証。特殊Tutor/HoF/raw40ページ/既習得除外/タマゴ/選択境界/保存4技PPを確認。直接ROM診断のみで通常操作・新Wiki・物理供給は未完。
+
+候補 `6e88a021785bfa7cf00e26d7f2433c380602d830e94e1d2fc31e3198cda31df2` / 33554432 bytes / CRC32 `00F31AF7`。run35748601580、入力HEAD `740ecf0a94de514fa735e4697f5d6129d45520e4`。
+
+正本 `content/modernization/pr16_learnset_supply_alignment_checkpoint.json` / `content/modernization/pr16_learnset_supply_native_checkpoint.json`。旧ec5992aaの独立2link結果は履歴として保持するが、実load不整合のため実行可能な現役候補とは扱わない。旧builderは固定証拠復元専用。先頭FF4bytesを補い、元ELF命令/全hook/PLA1/PLC2は不変。ARM再compile/link0。
+
+## 次工程
+
+Issue19: 修復後候補6e88a021のcontent/modernization/pr16_learnset_supply_alignment_checkpoint.jsonから保存ELF配置を復元し、別候補Wikiと変更影響の通常操作（Bag入口・殿堂入りgate・40行ページ選択/取消・習得選択・戦闘・Save/Continue）へ進む。旧ec5992aaは配置ずれがあるため現役候補へ戻さない。新4hook直接診断/16配置試験/旧24試験/ARM/PLA1/PLC2を変更影響なしに再実行しない。
+
+## 前段階（履歴・現役候補ではない）
+
 # Issue19: Tutor/追加archive consumer（実ROM配置受入済み）
 
 run35732715452の新供給ARM2784 bytes・PLA1 21383 bytes・4hookを候補ec5992aaへ配置し独立2生成一致を確認。特殊Tutor152..160 bodyとPLC2保存segmentは不変。14試験は初回失敗runの成功部分を継承。新native/通常操作/新Wikiは未完。

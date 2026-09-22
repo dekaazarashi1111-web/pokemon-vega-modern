@@ -6624,3 +6624,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 外側ZIP・全member/source hash・親checkpoint/BP/P08一致、新規記録拒否試験、resume/task graph/final index限定guard PASS後のみcommit。旧受入/native/ARM再実行0。全履歴guardのPASSは主張しない。
 - Commit: 本記録を含む同branch非force commit。自己SHAはgit logで照合。
 - Network: GitHub既存Actions/artifactだけ。原本再採取/merge/release/baseline切替なし。
+
+## 2026-09-22T15:37:57.696678+00:00
+- Timestamp: 2026-09-22T15:37:57.696678+00:00
+- Task: USER-20260922-LEARNSET-SUPPLY-NATIVE / ELF実load配置修復・新供給4hook受入
+- Version: learnset-supply-alignment-v1
+- Status: DONE（配置と直接ROM ABI限定。通常操作/Wikiは未完）
+- Summary: ELF実loadとROM配置の4byteずれを保存ELFから修復し後継6e88a021を独立2配置一致で確定。新供給4hookを28代表owner×独立2process、合計21392callで検証。特殊Tutor/HoF/raw40ページ/既習得除外/タマゴ/選択境界/保存4技PPを確認。直接ROM診断のみで通常操作・新Wiki・物理供給は未完。
+- Files changed: 配置修復器/16拒否試験/限定Actions、失敗入力lock、後継配置/native checkpoint/証拠、固定MD/JSON、guide、両ログ。
+- Verify: run35748601580、保存run35747048291の16配置試験/独立2配置一致を継承（今回再実行0）、旧26owner行は不変・正本280/855の2fixture追加、ASan/UBSan host compileと前後逆順2process一致。原本26owner行再採取0、旧14+10試験再実行0、ARM/PLA1/PLC2/受入native再実行0。差分は供給ARM配置2788bytes内限定・全hook不変。resume/task graph/final index guard PASS後のみcommit。全履歴guard PASSは主張しない。
+- Commit: 同branch非forceの本記録commit（自己SHAはgit logで照合）。WIP 1f71e563f8ab9c72b1f6a7756ef395e63c09a7a5に続く完了記録。
+- Network: GitHub固定run/artifactとUbuntu libmgba-devのみ。旧失敗を保持。merge/release/baseline切替なし。

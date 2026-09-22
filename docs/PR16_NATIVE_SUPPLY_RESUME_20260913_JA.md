@@ -6,9 +6,9 @@
 
 ## いまの停止点と次の1手
 
-run35732715452の新供給ARM2784 bytes・PLA1 21383 bytes・4hookを候補ec5992aaへ配置し独立2生成一致を確認。特殊Tutor152..160 bodyとPLC2保存segmentは不変。14試験は初回失敗runの成功部分を継承。新native/通常操作/新Wikiは未完。
+ELF実loadとROM配置の4byteずれを保存ELFから修復し後継6e88a021を独立2配置一致で確定。新供給4hookを28代表owner×独立2process、合計21392callで検証。特殊Tutor/HoF/raw40ページ/既習得除外/タマゴ/選択境界/保存4技PPを確認。直接ROM診断のみで通常操作・新Wiki・物理供給は未完。
 
-**次: Issue19: 保存候補ec5992aaと供給ARM/PLA1/link.jsonをhash検証で復元し、新しい4hookの実ROM ABI・Tutor特殊条件・raw40行ページ選択を検証する。既受入ARM/PLA1生成/14試験/旧4入口probeを再実行しない。次に別候補Wikiと変更影響のBag/戦闘/習得選択/Save/Continueへ進む。**
+**次: Issue19: 修復後候補6e88a021のcontent/modernization/pr16_learnset_supply_alignment_checkpoint.jsonから保存ELF配置を復元し、別候補Wikiと変更影響の通常操作（Bag入口・殿堂入りgate・40行ページ選択/取消・習得選択・戦闘・Save/Continue）へ進む。旧ec5992aaは配置ずれがあるため現役候補へ戻さない。新4hook直接診断/16配置試験/旧24試験/ARM/PLA1/PLC2を変更影響なしに再実行しない。**
 
 特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。
 
@@ -26,11 +26,10 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
 - `docs/PR16_LEARNSET_SUPPLY_JA.md`
-- `content/modernization/pr16_learnset_supply_link_checkpoint.json`
-- `src/modernization/pr16_learnset_supply_native.c`
-- `scripts/pr16_learnset_supply_link.py`
-- `docs/PR16_LEARNSET_COMPACT_JA.md`
-- `content/modernization/pr16_learnset_compact_checkpoint.json`
+- `content/modernization/pr16_learnset_supply_alignment_checkpoint.json`
+- `content/modernization/pr16_learnset_supply_native_checkpoint.json`
+- `scripts/pr16_supply_elf_placement.py`
+- `scripts/pr16_learnset_supply_rom_alignment.py`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -279,6 +278,7 @@ P08ゲート:
 - 四条件入口: run35721669287の2独立ARM配置/2native processを再実行しない。run35715106357の41試験/622669照合、run35716683381の成功18試験、run35720010554の成功25試験/15039照合とrun35720416968の成功6 compiler-option試験を継承。旧failureを成功へ改作せず、固定2segmentと親e168c06fから再開。
 - PLA1供給host: run35726123952/source09847331130d1b6764733f09bb8d09bb2bbe6c16の30試験・145878照合・独立2生成は保存原本を継承する。archive-image.bin SHA256 499714cc04fd43ecb59ac45d8d23dad6badbc0137189c4fbcb8facbe13c46d13、21383 bytes。同値圧縮を原本/payload再生成へ読み替えない。次は保存dataを取得し、未実行の新ARM/実ROM ABI接続のみ。
 - 供給ARM: run35732715452/abc3218f56f4の8compile/2linkと候補ec5992aaの同値性は受入済み。保存supply.bin/PLA1/link.jsonを再利用し、旧ARM/PLA1/初回14試験を再実行しない。run35731723699のmemset未解決failureは成功へ改作しない。
+- run35748601580: 6e88a021の新4hook/21392call/2processと新16配置試験を受入。旧14+10試験は保存原本を継承し再実行0。run35738895606の失敗原本は保持。次は新Wiki/通常操作のみ。
 
 ## 次セッションへ残す更新手順
 
