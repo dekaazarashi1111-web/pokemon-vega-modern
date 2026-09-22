@@ -6579,3 +6579,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: run35704908254 SUCCESS、ZIP/全member/source hash照合、新記録拒否試験・resume check・task graph・final index guard PASS後のみcommit。通常操作E2Eは未受入。
 - Commit: 本記録を含む同branch非force commit。自己SHAはgit logで照合。
 - Network: GitHub完了run/artifact再利用。新規ROM生成/host/ARM/native再実行0。過去3failureを保持。
+
+## 2026-09-22T09:29:52.234357+00:00
+- Timestamp: 2026-09-22T09:29:52.234357+00:00
+- Task: USER-20260922-LEARNSET-PROGRESS / 初期技・通常level-upのROM consumer接続
+- Version: learnset-progress-v1
+- Status: DONE（初期技/通常level-up直接ROM probe限定。条件経路/通常操作E2Eは未完）
+- Summary: 新候補e168c06f、3hook、P03進化分岐/旧PLR1/保存4技を保全。9代表条件×2native process、実PP/満杯/重複後継続を確認。
+- Files changed: 新C/typed fixture/30境界試験、配置・診断・継承・native検証器、限定Actions、証拠/checkpoint/guide、固定引継ぎMD/JSON、両ログ。
+- Verify: run35710087058 SUCCESS。30試験/318186照合は成功証拠継承。新記録拒否試験・resume check・task graph・diff --check・final index guard PASS後のみcommit。
+- Commit: 本記録を含む同branch非force commit。自己SHAはgit logで照合。
+- Network: GitHub固定run/artifact、CFRU-JP@e24a16feのBPRJ.ld/src/config.hをhash照合。原本収集/旧accepted native/hostの再実行0。ABI/offset失敗履歴はcheckpointに保持。

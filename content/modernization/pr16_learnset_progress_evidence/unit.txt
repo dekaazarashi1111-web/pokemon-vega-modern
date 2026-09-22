@@ -1,0 +1,35 @@
+test_capacity_failure_atomic (tests.test_pr16_learnset_progress.ProgressTests.test_capacity_failure_atomic) ... ok
+test_cursor_never_wraps (tests.test_pr16_learnset_progress.ProgressTests.test_cursor_never_wraps) ... ok
+test_cursor_reset_after_end (tests.test_pr16_learnset_progress.ProgressTests.test_cursor_reset_after_end) ... ok
+test_empty_owned_span (tests.test_pr16_learnset_progress.ProgressTests.test_empty_owned_span) ... ok
+test_full_capacity_forty (tests.test_pr16_learnset_progress.ProgressTests.test_full_capacity_forty) ... ok
+test_game_duplicate_advances_cursor (tests.test_pr16_learnset_progress.ProgressTests.test_game_duplicate_advances_cursor) ... ok
+test_game_egg_does_not_level_learn (tests.test_pr16_learnset_progress.ProgressTests.test_game_egg_does_not_level_learn) ... ok
+test_game_existing_full_mon_unchanged (tests.test_pr16_learnset_progress.ProgressTests.test_game_existing_full_mon_unchanged) ... ok
+test_game_existing_partial_mon_unchanged (tests.test_pr16_learnset_progress.ProgressTests.test_game_existing_partial_mon_unchanged) ... ok
+test_game_full_slots_reports_pending_without_mutation (tests.test_pr16_learnset_progress.ProgressTests.test_game_full_slots_reports_pending_without_mutation) ... ok
+test_game_identity_owners_preserved (tests.test_pr16_learnset_progress.ProgressTests.test_game_identity_owners_preserved) ... ok
+test_game_initial_fresh_mon (tests.test_pr16_learnset_progress.ProgressTests.test_game_initial_fresh_mon) ... ok
+test_game_invalid_owner_preserved (tests.test_pr16_learnset_progress.ProgressTests.test_game_invalid_owner_preserved) ... ok
+test_game_no_initial_cursor_write (tests.test_pr16_learnset_progress.ProgressTests.test_game_no_initial_cursor_write) ... ok
+test_game_null_mon (tests.test_pr16_learnset_progress.ProgressTests.test_game_null_mon) ... ok
+test_game_pending_retained_on_gap (tests.test_pr16_learnset_progress.ProgressTests.test_game_pending_retained_on_gap) ... ok
+test_gap_no_grant (tests.test_pr16_learnset_progress.ProgressTests.test_gap_no_grant) ... ok
+test_initial_duplicates_not_deduplicated_before_window (tests.test_pr16_learnset_progress.ProgressTests.test_initial_duplicates_not_deduplicated_before_window) ... ok
+test_initial_excludes_future (tests.test_pr16_learnset_progress.ProgressTests.test_initial_excludes_future) ... ok
+test_initial_last_four_raw_rows (tests.test_pr16_learnset_progress.ProgressTests.test_initial_last_four_raw_rows) ... ok
+test_initial_level_one (tests.test_pr16_learnset_progress.ProgressTests.test_initial_level_one) ... ok
+test_initial_null_output (tests.test_pr16_learnset_progress.ProgressTests.test_initial_null_output) ... ok
+test_invalid_levels_unchanged (tests.test_pr16_learnset_progress.ProgressTests.test_invalid_levels_unchanged) ... ok
+test_malformed_rows_reject_before_write (tests.test_pr16_learnset_progress.ProgressTests.test_malformed_rows_reject_before_write) ... ok
+test_nonmonotonic_reject_without_sort (tests.test_pr16_learnset_progress.ProgressTests.test_nonmonotonic_reject_without_sort) ... ok
+test_null_cursor (tests.test_pr16_learnset_progress.ProgressTests.test_null_cursor) ... ok
+test_null_span (tests.test_pr16_learnset_progress.ProgressTests.test_null_span) ... ok
+test_null_view (tests.test_pr16_learnset_progress.ProgressTests.test_null_view) ... ok
+test_owner_view_and_count_bounds (tests.test_pr16_learnset_progress.ProgressTests.test_owner_view_and_count_bounds) ... ok
+test_same_level_sequence (tests.test_pr16_learnset_progress.ProgressTests.test_same_level_sequence) ... ok
+
+----------------------------------------------------------------------
+Ran 30 tests in 0.296s
+
+OK
