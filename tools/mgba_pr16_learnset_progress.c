@@ -86,7 +86,7 @@ int main(int argc,char **argv)
         (void)progress_call(core,BATTLE_CORE_CREATE_MON,ADDR_PLAYER_PARTY,s->species,s->level,0);
         if(getdata(core,11)!=s->species || getdata(core,56)!=s->level)battle_core_die("creation identity");
         initial_check(core,s);++creations;
-        const uint32_t initial[2]={0x0803E175U,PR16_INITIAL_DIRECT};
+        const uint32_t initial[2]={0x0803E14DU,PR16_INITIAL_DIRECT};
         const uint32_t natural[2]={0x0803E1F5U,PR16_NATURAL_DIRECT};
         for(unsigned entry=0;entry<2;entry++) {
             moves(core,NULL,0);

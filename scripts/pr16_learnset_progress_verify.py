@@ -84,7 +84,7 @@ def restore():
     saved = s.read_json(ROOT/'content/modernization/pr16_candidate_wiki_saved_link_sources.json')['symbols']['GiveMoveToBoxMon']
     at = saved['address']-BASE
     need(hashlib.sha256(raw[at:at+saved['size']]).hexdigest() == saved['candidate_sha256'], '既存GiveMoveToBoxMon本体不一致')
-    need(raw[0x3e01c:0x3e024] == b'\x00\x4a\x10\x47'+struct.pack('<I',saved['address']|1), '既存GiveMoveToBoxMon hook不一致')
+    need(raw[0x3e01c:0x3e024] == bytes.fromhex('f0b581b0071c6846'), 'Vega既存GiveMoveToBoxMon本体入口不一致')
     config = s.read_json(ROOT/'content/modernization/pr16_candidate_wiki_creation_sources.json')
     need(config['upstream_config_sha256'] == '49ea2d82bbd5e0040e39b83e044ff3e4e21e09222bcc0a6879a786cc99da4f6e', '受入CFRU設定のbinding不一致')
     # Accepted source receipt records this exact config. Fetch only fixed ABI config,
@@ -95,7 +95,7 @@ def restore():
     need(not re.search(rb'^\s*#\s*define\s+FLAG_POKEMON_LEARNSET_RANDOMIZER\b',cfg,re.M), '有効randomizerを消さない')
     (WORK/'proof/abi.json').write_bytes(s.encode({'upstream_head':upstream,'linker_blob':'cf5363abd8439d63c7bd12cbe83ade861b0ebb51',
         'linker_identity':identity(ld),'config_identity':identity(cfg),'learnset_randomizer_enabled':False,
-        'functions':expected,'give_box_move_hook':{'address':0x0803E01D,'target':saved['address']|1,'body':saved['candidate_sha256']},'cursor':0x02023F88,'cursor_source':'kapibarasan000/CFRU-JP@'+upstream+':src/learn_move.c#sLearningMoveTableID'}))
+        'functions':expected,'give_box_move':{'legacy_address':0x0803E01D,'legacy_is_unhooked':True,'legacy_body':identity(raw[0x3e01c:0x3e08c]),'separate_cfru_body':saved['candidate_sha256']},'cursor':0x02023F88,'cursor_source':'kapibarasan000/CFRU-JP@'+upstream+':src/learn_move.c#sLearningMoveTableID'}))
     return report
 
 
@@ -146,17 +146,22 @@ def link(folder):
         if len(fields)==3: symbols[fields[2]]=int(fields[0],16)
     binary = (folder/'progress.bin').read_bytes()
     need(0<len(binary)<=4096 and parent[start:start+len(binary)] == b'\xff'*len(binary), '新code容量/preimage違反')
-    # Both pre-CFRU and direct CFRU calls must see the new owner, not old tables.
-    legacy = 0x3E1F4
-    need(parent[legacy:legacy+4] == b'\x00\x4a\x10\x47', 'natural入口veneer不一致')
-    natural = struct.unpack_from('<I', parent, legacy+4)[0]
-    need(natural & 1 and 0x09110000 <= natural < 0x09120000, 'natural実symbol範囲違反')
-    natural_off = (natural & ~1)-BASE
+    # 0x803E174 is a MID-FUNCTION species dispatch, not a C-ABI entry.
+    # Preserve the already accepted P03 evolution dispatch: normal calls alone
+    # tail-jump to QoL NORMAL; evolution LR sites still enter 0x09114121.
+    import pr16_evolution_learning_repair as evo
+    p03_start = evo.START
+    need(parent[p03_start:p03_start+len(evo.DISPATCH)] == evo.DISPATCH
+         and parent[evo.ENTRY:evo.ENTRY+8] == b'\x00\x4b\x18\x47'+struct.pack('<I',BASE+p03_start+1),
+         '受入P03進化dispatch不一致')
+    natural_off = evo.NORMAL-BASE-1
+    need(natural_off == 0x377728, '通常QoL delegate不一致')
     initial_off = 0x11145F0
     need(hashlib.sha256(parent[initial_off:initial_off+168]).hexdigest() == 'ce09526af6b37397bd031705203a53c7109fe8e0a19d3809e964677313379c3e', '固定initial本体不一致')
-    hooks = [('Pr16_GameGiveBoxMonInitialMoveset',0x3E174),('Pr16_GameGiveBoxMonInitialMoveset',initial_off),
-             ('Pr16_GameMonTryLearningNewMove',legacy),('Pr16_GameMonTryLearningNewMove',natural_off)]
-    need(len({at for _,at in hooks})==4, '入口重複')
+    need(parent[0x3e14c:0x3e154] == bytes.fromhex('f0b557464e464546'), '初期技の真の関数先頭不一致')
+    hooks = [('Pr16_GameGiveBoxMonInitialMoveset',0x3E14C),('Pr16_GameGiveBoxMonInitialMoveset',initial_off),
+             ('Pr16_GameMonTryLearningNewMove',natural_off)]
+    need(len({at for _,at in hooks})==3, '入口重複')
     output = bytearray(parent);output[start:start+len(binary)] = binary; patches=[]
     for name, at in hooks:
         target=symbols[name]
@@ -170,18 +175,26 @@ def link(folder):
     need(bytes(rollback)==parent, '宣言外ROM差分')
     for at in prior['protected_root_offsets']:
         need(output[at:at+4]==parent[at:at+4], '共有root/save変更')
+    need(output[p03_start:p03_start+len(evo.DISPATCH)] == parent[p03_start:p03_start+len(evo.DISPATCH)]
+         and output[evo.ENTRY:evo.ENTRY+8] == parent[evo.ENTRY:evo.ENTRY+8], 'P03進化分岐変更')
     old_start=prior['start'];need(output[old_start:old_start+prior['bundle']['size']]==parent[old_start:old_start+prior['bundle']['size']], '受入PLR1変更')
     plan=copy.deepcopy(prior['allocation'])
     plan['allocations'].append({'name':'pr16_learnset_initial_and_natural','region':region,'start':start,'end_exclusive':start+len(binary),
         'size':len(binary),'alignment':4,'placement':'FIRST_FIT','owner':TASK,'purpose':'owner-gated initial and natural learning',
         'content_sha256':hashlib.sha256(binary).hexdigest(),'sequence':len(plan['allocations']),'gba_start':address,'gba_end_exclusive':address+len(binary)})
+    # Reflect any patched old delegate body in its existing allocation identity.
+    touched=[]
+    for row in plan['allocations'][:-1]:
+        if any(row['start']<=patch['offset']<row['end_exclusive'] for patch in patches):
+            row['content_sha256']=hashlib.sha256(output[row['start']:row['end_exclusive']]).hexdigest()
+            touched.append(row['name'])
     summary=plan['summaries'];summary['allocation_count']+=1;summary['allocated_bytes']+=len(binary);summary['remaining_allocatable_bytes']-=len(binary)
     for usage in summary['region_usage']:
         if usage['region']==region: usage['allocation_count']+=1;usage['allocated_bytes']+=len(binary);usage['remaining_bytes']-=len(binary)
     report={'status':'LINKED_INITIAL_AND_NATURAL_GAME_ENTRYPOINTS','parent':identity(parent),'candidate':identity(bytes(output)),
         'candidate_crc32':f'{zlib.crc32(output)&0xffffffff:08X}','bundle':identity(binary),'start':start,'code_start':address,'code_end':address+len(binary),
         'hooks':patches,'symbols':{k:v for k,v in symbols.items() if k.startswith('Pr16')},'allocation':plan,
-        'protected_root_offsets':prior['protected_root_offsets'],'prior_image_unchanged':True,'outside_declared_ranges':0,
+        'protected_root_offsets':prior['protected_root_offsets'],'prior_image_unchanged':True,'outside_declared_ranges':0,'p03_evolution_dispatch_unchanged':True,'updated_allocation_hashes':touched,
         'new_arm_compiles':2,'new_arm_links':1,'old_arm_compiles':0,'gameplay_e2e_accepted':False,'release_ready':False}
     (folder/'candidate.gba').write_bytes(output);write(folder/'link.json',report)
     return report
@@ -227,7 +240,7 @@ def samples(report):
     lines=['#include <stdint.h>','#define PR16_CODE_START '+hex(report['code_start'])+'u',
            '#define PR16_CODE_END '+hex(report['code_end'])+'u',
            '#define PR16_INITIAL_DIRECT '+hex(report['hooks'][1]['offset']+BASE+1)+'u',
-           '#define PR16_NATURAL_DIRECT '+hex(report['hooks'][3]['offset']+BASE+1)+'u',
+           '#define PR16_NATURAL_DIRECT '+hex(report['hooks'][2]['offset']+BASE+1)+'u',
            'struct ProgressSample { uint16_t species; uint8_t level,policy,count,next_count; uint16_t moves[4],next[40]; };',
            'static const struct ProgressSample progress_samples[]={']
     for sid,level in SELECTED:
@@ -279,7 +292,7 @@ def verify():
         'source_head':os.environ['GITHUB_SHA'],'run_id':int(os.environ['GITHUB_RUN_ID']),'task':TASK,
         'candidate':first['candidate'],'candidate_crc32':first['candidate_crc32'],'focused_tests':30,'host_audit':host,
         'native_results':results,'native_processes':2,'new_arm_compiles':4,'new_arm_links':2,'independent_candidate_hashes_match':True,
-        'initial_and_natural_connected':True,'prior_two_entrypoints_unchanged':True,'conditional_consumers_connected':False,
+        'initial_and_natural_connected':True,'p03_evolution_dispatch_unchanged':True,'prior_two_entrypoints_unchanged':True,'conditional_consumers_connected':False,
         'gameplay_e2e_accepted':False,'release_ready':False,'active_baseline_changed':False,'issue19_complete':False,
         'accepted_native_reruns':0,'accepted_payload_regenerations':0,'accepted_source_regenerations':0,'old_arm_compiles':0,
         'input_byte_mtime_unchanged':True,'tracked_tree_unchanged':True,
