@@ -23,6 +23,7 @@ WORK = ROOT/'.local/pr16-learnset-compact-native'
 n.WORK = WORK
 TASK = 'USER-20260922-LEARNSET-COMPACT'
 BASE = 0x08000000
+ABI_INPUTS = 'content/modernization/pr16_learnset_conditional_bound_inputs.json'
 CODE = ('tools/pr16_learnset_compact.py', 'src/modernization/pr16_learnset_compact.h',
         'src/modernization/pr16_learnset_compact.c', 'tests/test_pr16_learnset_compact.py',
         'scripts/pr16_learnset_compact_native.py', '.github/workflows/pr16-learnset-compact-native.yml')
@@ -77,11 +78,29 @@ def allocation_row(name, region, start, blob, sequence):
         'gba_start':BASE+start, 'gba_end_exclusive':BASE+start+len(blob)}
 
 
+def validate_abi(parent, abi):
+    need(identity(parent) == abi['candidate'], 'ABI固定親候補不一致')
+    for entry in abi['entries'].values():
+        at = entry['offset']; expected = bytes.fromhex(entry['preimage'])
+        need(entry['address'] == BASE + at and len(expected) == 32
+             and parent[at:at+32] == expected, 'ABI入口32bytes不一致')
+        if 'thumb_veneer_target' in entry:
+            target = entry['thumb_veneer_target']; pos = (target & ~1) - BASE
+            need(target & 1 and parent[at:at+4] == bytes.fromhex('004b1847')
+                 and struct.unpack_from('<I',parent,at+4)[0] == target
+                 and parent[pos:pos+64].hex() == entry['target_preimage'], 'ABI委譲先不一致')
+    need(parent[0x10EB970:0x10EB97C].hex() == '9c46014b1847c04685db5d09', '共有入口12byte veneer不一致')
+    need(abi['entries']['reminder']['thumb_veneer_target'] == 0x095DDBE9, 'P07保全delegate不一致')
+    return abi['entries']
+
+
 def link(folder: Path):
     folder.mkdir()
     parent = (WORK/'restore/parent.gba').read_bytes()
     prior = s.read_json(WORK/'restore/progress/link.json')
     need(identity(parent) == prior['candidate'], '固定親候補不一致')
+    abi = s.read_json(ROOT/ABI_INPUTS)['abi']
+    entries = validate_abi(parent, abi)
     source = (WORK/'host-data/conditional-image.bin').read_bytes()
     need(identity(source) == s.read_json(ROOT/n.LOCK)['data_files']['conditional-image.bin'], '固定PLC1不一致')
     image, receipt = compact.compact(source)
@@ -98,6 +117,8 @@ def link(folder: Path):
     text = text.replace('115282u',str(len(image))+'u').replace(
         '#define PR16_READ_CONDITIONAL Pr16ReadLearnsetConditional',
         '#include "pr16_learnset_compact.h"\n#define PR16_READ_CONDITIONAL Pr16ReadCompactConditional')
+    need(text.count('0x0954B281u') == 1, 'archive binding形状変更')
+    text = text.replace('0x0954B281u', hex(entries['reminder']['thumb_veneer_target'])+'u')
     header.write_text(text)
     (folder/'conditional.ld').write_text('Pr16ConditionalImage = '+hex(BASE+data_start)+';\nSECTIONS { . = '+hex(base)
         +'; .text : { *(.text*) *(.rodata*) } .data : { *(.data*) } .bss : { *(.bss*) *(COMMON) } '
@@ -127,9 +148,9 @@ def link(folder: Path):
         need(parent[at:at+len(raw)] == b'\xff'*len(raw), '分割配置preimage違反: '+name)
         out[at:at+len(raw)] = raw
     hooks = (('Pr16_GameAfterEvolution',0x1114120,'8446f8b562465423'),
-             ('Pr16_GameGetConditionalRelearnerMoves',0x11141D4,'004b184781b25409'),
+             ('Pr16_GameGetConditionalRelearnerMoves',0x11141D4,'004b1847e9db5d09'),
              ('Pr16_GameGetEggMoves',0x451EC,'004b1847adb15409'),
-             ('Pr16_GameGetAllEggMoves',0x10EB970,'004b1847e5485309'))
+             ('Pr16_GameGetAllEggMoves',0x10EB970,'9c46014b1847c046'))
     import pr16_evolution_learning_repair as evo
     need(parent[evo.START:evo.START+len(evo.DISPATCH)] == evo.DISPATCH, 'P03 dispatcher不一致')
     patches = []
@@ -173,85 +194,16 @@ def link(folder: Path):
         'protected_root_offsets':prior['protected_root_offsets'], 'prior_image_unchanged':True,
         'outside_declared_ranges':0, 'p03_evolution_dispatch_unchanged':True,
         'updated_allocation_hashes':touched, 'old_arm_compiles':0,
+        'abi_run':abi['run_id'], 'p07_archive_delegate':entries['reminder']['thumb_veneer_target'],
+        'p07_archive_wrapper_preserved':True,
         'game_tutor_connected':False, 'archive_rebound':False, 'gameplay_e2e_accepted':False, 'release_ready':False}
     (folder/'candidate.gba').write_bytes(out); (folder/'compact-image.bin').write_bytes(image)
     write(folder/'compact-receipt.json',receipt); write(folder/'link.json',report)
     return report
 
 
-def verify():
-    n.current_pr(os.environ['GITHUB_SHA'])
-    WORK.mkdir(parents=True); (WORK/'proof').mkdir()
-    n.inherit(); inherit_game()
-    protected = [ROOT/name for name in dict.fromkeys((*CODE,*n.CODE,*h.CODE))]
-    before = n.snapshot(protected)
-    command([sys.executable,'-B','-m','unittest','tests.test_pr16_learnset_compact','-v'], WORK/'proof/compact-unit.txt')
-    need(re.search(rb'Ran 25 tests', (WORK/'proof/compact-unit.txt').read_bytes()), '新規試験数不一致')
-    source = (WORK/'host-data/conditional-image.bin').read_bytes()
-    packed, receipt = compact.compact(source)
-    with tempfile.TemporaryDirectory(dir=WORK) as folder:
-        audit = audit_library(load_library(Path(folder)),source,packed)
-    write(WORK/'proof/compact-audit.json',audit); write(WORK/'proof/compact-receipt.json',receipt)
-    write(WORK/'proof/compact-host-checkpoint.json', {
-        'source_head':os.environ['GITHUB_SHA'], 'run_id':int(os.environ['GITHUB_RUN_ID']),
-        'focused_tests':25, 'audit':audit, 'receipt':receipt,
-        'code_bindings':{name:s.identity(ROOT/name) for name in (*CODE[:4],
-            'src/modernization/pr16_learnset_owner.c', 'src/modernization/pr16_learnset_owner.h',
-            'src/modernization/pr16_learnset_runtime.h')},
-        'proof_files':{name:s.identity(WORK/'proof'/name) for name in
-            ('compact-unit.txt','compact-audit.json','compact-receipt.json')}})
-    h.WORK = WORK/'restore'; h.WORK.mkdir(); h.restore_progress(); h.payloads()
-    parent_before = n.snapshot([WORK/'restore/parent.gba'])
-    for seed in (11,29):
-        command([sys.executable,'-B',__file__,'link',str(WORK/f'build{seed}')],WORK/f'proof/build{seed}.txt',dict(os.environ,PYTHONHASHSEED=str(seed)))
-    first = s.read_json(WORK/'build11/link.json'); second = s.read_json(WORK/'build29/link.json')
-    need(first == second, '独立候補report不一致')
-    for name in ('conditional.bin','compact-image.bin'):
-        need((WORK/'build11'/name).read_bytes() == (WORK/'build29'/name).read_bytes(), '独立配置byte不一致')
-    data = WORK/'data'; data.mkdir()
-    for name in ('link.json','conditional.bin','compact-image.bin','compact-receipt.json','pr16_learnset_conditional_bindings.h','disassembly.txt'):
-        shutil.copyfile(WORK/'build11'/name,data/name)
-    shutil.copyfile(data/'link.json',WORK/'proof/link.json')
-    n.samples(first)
-    binary = WORK/'native'
-    command(['cc','-std=c11','-O2','-g','-fsanitize=address,undefined','-Wall','-Wextra','-Werror','-Itools','-I'+str(WORK/'proof'),
-             'tools/mgba_pr16_learnset_conditional.c','-lmgba','-o',str(binary)],WORK/'proof/native-compile.txt')
-    results = []
-    for seed in (11,29):
-        result = json.loads(command([str(binary),str(WORK/f'build{seed}/candidate.gba'),first['candidate']['sha256']],
-            WORK/f'proof/native{seed}.txt',dict(os.environ,ASAN_OPTIONS='detect_leaks=0:abort_on_error=1')))
-        need(result['status'] == 'PASS_FOUR_CONDITIONAL_ROM_ENTRYPOINTS' and result['samples'] == len(n.SELECTED), 'native scope不一致')
-        write(WORK/f'proof/native{seed}.json',result); results.append(result)
-    need(before == n.snapshot(protected) and parent_before == n.snapshot([WORK/'restore/parent.gba']), '入力byte/mtime変更')
-    command([sys.executable,'-B','scripts/pr16_resume.py','check'],WORK/'proof/resume.json')
-    command([sys.executable,'-B','scripts/validate_task_graph.py'],WORK/'proof/task-graph.txt')
-    command(['git','diff','--exit-code'],WORK/'proof/tracked-diff.txt')
-    report = {'status':'PASS_FOUR_CONDITIONAL_ROM_ENTRYPOINTS', 'scope':'HOST_FIXTURE_DIRECT_ROM_CALL_NOT_GAMEPLAY_E2E',
-        'source_head':os.environ['GITHUB_SHA'], 'run_id':int(os.environ['GITHUB_RUN_ID']), 'task':TASK,
-        'candidate':first['candidate'], 'candidate_crc32':first['candidate_crc32'], 'focused_tests':25,
-        'compact_audit':audit, 'compact_receipt':receipt,
-        'inherited_host_run':35715106357, 'inherited_host_tests':41, 'inherited_host_queries':622669,
-        'inherited_game_run':FAIL_RUN, 'inherited_game_tests':18, 'accepted_tests_rerun':0,
-        'native_results':results, 'native_processes':2, 'new_arm_compiles':6, 'new_arm_links':2,
-        'independent_candidate_hashes_match':True, 'four_conditional_entrypoints_connected':True,
-        'p03_evolution_dispatch_unchanged':True, 'game_tutor_connected':False, 'archive_rebound':False,
-        'gameplay_e2e_accepted':False, 'release_ready':False, 'active_baseline_changed':False, 'issue19_complete':False,
-        'accepted_native_reruns':0, 'accepted_payload_regenerations':0, 'accepted_source_regenerations':0,
-        'old_arm_compiles':0, 'input_byte_mtime_unchanged':True, 'tracked_tree_unchanged':True,
-        'code_bindings':{name:s.identity(ROOT/name) for name in dict.fromkeys((*CODE,*n.CODE,*h.CODE))},
-        'data_files':{p.name:s.identity(p) for p in data.iterdir()},
-        'proof_files':{p.name:s.identity(p) for p in (WORK/'proof').iterdir()}}
-    write(WORK/'proof/verification.json',report)
-    print(json.dumps({'status':report['status'],'candidate':report['candidate']}))
-
-
 if __name__ == '__main__':
-    if sys.argv[1:] == ['verify']:
-        try: verify()
-        except Exception as exc:
-            (WORK/'proof').mkdir(parents=True,exist_ok=True)
-            write(WORK/'proof/failure.json',{'status':'FAIL','source_head':os.environ.get('GITHUB_SHA'),
-                'error':str(exc).replace(str(ROOT),'$REPO')})
-            raise
-    elif len(sys.argv) == 3 and sys.argv[1] == 'link': print(json.dumps(link(Path(sys.argv[2]))['candidate']))
-    else: raise SystemExit('usage: pr16_learnset_compact_native.py verify|link FOLDER')
+    if len(sys.argv) == 3 and sys.argv[1] == 'link':
+        print(json.dumps(link(Path(sys.argv[2]))['candidate']))
+    else:
+        raise SystemExit('Use pr16_learnset_compact_bound.py verify; accepted host tests must not be repeated')
