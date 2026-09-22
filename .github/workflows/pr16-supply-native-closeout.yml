@@ -1,5 +1,5 @@
 name: pr16-supply-native-closeout
-# Native is already accepted. Only reconcile completed Actions and saved evidence.
+# v2: inherit the passed 12 evidence tests; verify live branch + bounded PR ancestor, never native.
 on:
   push:
     branches: [codex/modernization-followup-20260908]
@@ -25,22 +25,22 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: 新12証拠拒否試験だけ実行（nativeなし）
+      - name: 新6参照境界試験だけ実行（旧12試験/nativeなし）
         run: |
           set -euo pipefail
           mkdir -p .local/pr16-supply-native-closeout
-          python3 -B -m unittest tests.test_pr16_supply_native_closeout -v 2>&1 | tee .local/pr16-supply-native-closeout/unit.txt
-      - name: 完了Actions・原本・記録commitを照合して固定引継ぎへ反映
+          python3 -B -m unittest tests.test_pr16_supply_closeout_ref_guard -v 2>&1 | tee .local/pr16-supply-native-closeout/ref-unit.txt
+      - name: 保存12試験と完了原本を継承しlive ref・PR・記録commitを照合
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          python3 -B scripts/pr16_supply_native_closeout.py record 2>&1 | tee .local/pr16-supply-native-closeout/record.txt
+          python3 -B scripts/pr16_supply_closeout_ref_guard.py record 2>&1 | tee .local/pr16-supply-native-closeout/record.txt
           cp content/modernization/pr16_learnset_supply_completed_actions.json .local/pr16-supply-native-closeout/completed-actions.json
           python3 -B scripts/pr16_resume.py check
           python3 -B scripts/validate_task_graph.py
-          python3 -B scripts/pr16_supply_native_closeout.py paths | while IFS= read -r path; do git add -- "$path"; done
-          python3 -B scripts/pr16_supply_native_closeout.py guard
+          python3 -B scripts/pr16_supply_closeout_ref_guard.py paths | while IFS= read -r path; do git add -- "$path"; done
+          python3 -B scripts/pr16_supply_closeout_ref_guard.py guard
       - name: 同branchへ非force commit/pushし最新refを照合
         run: |
           set -euo pipefail
