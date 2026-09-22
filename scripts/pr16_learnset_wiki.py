@@ -321,8 +321,8 @@ def render(model, species, moves, old_blocks):
         pages[key[:2]].append('<a id="'+key+'"></a>\n\n## 条件 '+key+'\n\n```json\n'+json.dumps(value,ensure_ascii=False,sort_keys=True,indent=2).replace('```','\\u0060\\u0060\\u0060')+'\n```\n')
     for prefix,entries in pages.items():put('conditions/'+prefix+'.md','原本の習得条件 '+prefix,'\n'.join(entries))
     put('POKEMON_INDEX.md','全種族・フォーム1671 owner' if len(species)==1671 else '全種族・フォーム',
-        '\n'.join('['+str(sid)+': '+escape(r.get('display_name',r['species_key']))+'](pokemon/'+str(sid)+'.md)  ' for sid,r in species.items()))
-    put('MOVE_INDEX.md','全技ID逆引き', '\n'.join(move_link(mid,'')+'  ' for mid in moves))
+        '\n\n'.join('['+str(sid)+': '+escape(r.get('display_name',r['species_key']))+'](pokemon/'+str(sid)+'.md)' for sid,r in species.items()))
+    put('MOVE_INDEX.md','全技ID逆引き', '\n\n'.join(move_link(mid,'') for mid in moves))
     put('DIFF_INDEX.md','旧候補46487d98との直接membership差分',
         '旧Wikiは `docs/wiki/p08-candidate-46487d98` の保存履歴です。次表は技×consumer集合差分で、順序・習得レベル・供給受入の差分ではありません。旧のみでも保存済み4技を削除しません。carry、conditional egg、build preservationは直接付与と分離しています。\n\n'
         '| 種族 | 共通 | 旧のみ | 新のみ |\n|---|---|---|---|\n'+''.join('| ['+str(d['species_id'])+'](pokemon/'+str(d['species_id'])+'.md) | '+str(len(d['common']))+' | '+str(len(d['old_only']))+' | '+str(len(d['new_only']))+' |\n' for d in diffs))
