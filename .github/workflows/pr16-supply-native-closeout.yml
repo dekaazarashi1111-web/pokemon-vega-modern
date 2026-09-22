@@ -1,0 +1,62 @@
+name: pr16-supply-native-closeout
+# Native is already accepted. Only reconcile completed Actions and saved evidence.
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-supply-native-closeout.yml]
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-supply-native-closeout
+  cancel-in-progress: false
+jobs:
+  closeout:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: 新12証拠拒否試験だけ実行（nativeなし）
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-supply-native-closeout
+          python3 -B -m unittest tests.test_pr16_supply_native_closeout -v 2>&1 | tee .local/pr16-supply-native-closeout/unit.txt
+      - name: 完了Actions・原本・記録commitを照合して固定引継ぎへ反映
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python3 -B scripts/pr16_supply_native_closeout.py record 2>&1 | tee .local/pr16-supply-native-closeout/record.txt
+          cp content/modernization/pr16_learnset_supply_completed_actions.json .local/pr16-supply-native-closeout/completed-actions.json
+          python3 -B scripts/pr16_resume.py check
+          python3 -B scripts/validate_task_graph.py
+          python3 -B scripts/pr16_supply_native_closeout.py paths | while IFS= read -r path; do git add -- "$path"; done
+          python3 -B scripts/pr16_supply_native_closeout.py guard
+      - name: 同branchへ非force commit/pushし最新refを照合
+        run: |
+          set -euo pipefail
+          branch='codex/modernization-followup-20260908'
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20260922-LEARNSET-SUPPLY-NATIVE: 完了Actions・固定再開点・原本artifactと両ログを照合確定'
+          git push origin "HEAD:$branch"
+          sha=$(git rev-parse HEAD)
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$sha"
+          echo "RESULT=DONE TASK=USER-20260922-LEARNSET-SUPPLY-NATIVE VERIFY=PASS COMMIT=$sha NATIVE_RERUN=0" | tee .local/pr16-supply-native-closeout/result.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-supply-native-closeout-proof
+          path: .local/pr16-supply-native-closeout/
+          retention-days: 30
+          if-no-files-found: error
