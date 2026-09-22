@@ -31,7 +31,7 @@ def restore_candidate(folder,source):
         at=patch['offset'];before=bytes.fromhex(patch['before']);after=bytes.fromhex(patch['after'])
         v.need(parent[at:at+len(before)]==before and len(before)==len(after)==8,'保存hook preimage違反')
         raw[at:at+8]=after
-    v.need(v.linker.saved.identity(raw)==report['candidate'],'保存候補復元hash違反')
+    v.need(v.linker.saved.identity(bytes(raw))==report['candidate'],'保存候補復元hash違反')
     (folder/'candidate.gba').write_bytes(raw)
 
 
@@ -85,7 +85,8 @@ def main():
             'unit_tests_reexecuted':0,'host_queries_reexecuted':0,'runtime_c_unchanged':True,
             'link_reused_from':fixed,'arm_compiles_reexecuted':0,'arm_links_reexecuted':0,
             'native_repair':'remove free(core) after mGBA core->deinit owns and frees core',
-            'prior_failed_native_runs':[35703376221,35703851133]}))
+            'prior_failed_native_runs':[35703376221,35703851133],
+            'prior_pre_native_recovery_failure':{'run_id':35704666433,'native_processes':0,'reason':'immutable bytes contract at restore hash; converted bytearray to bytes'}}))
         return selected
     v.execute=recovered_execute;v.audit=recovered_audit;v.samples=recovered_samples
     v.verify()
