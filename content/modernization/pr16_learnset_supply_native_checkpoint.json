@@ -1,9 +1,106 @@
 {
-  "actions_completion": "VERIFY_AND_GUARDS_REQUIRED_BEFORE_NONFORCE_PUSH; inspect completed run separately",
+  "actions_completion": "COMPLETED_SUCCESS_WITH_RECORD_PUSH_AND_ARTIFACTS",
+  "actions_completion_confirmed": true,
+  "artifacts": {
+    "aligned_data": {
+      "digest": "sha256:a1130da2f577f4cd7f6a00e60ba67ae7658a8b6265bc3401a979c8758562ffc6",
+      "id": 10704282359,
+      "name": "pr16-learnset-supply-aligned-data",
+      "size_in_bytes": 50476
+    },
+    "proof": {
+      "digest": "sha256:199ed431af286ceb2881e9a1cb79174983652e531df568333468369e7f1af5d4",
+      "id": 10704202526,
+      "name": "pr16-learnset-supply-rom-proof",
+      "size_in_bytes": 89356
+    }
+  },
   "candidate": {
     "sha256": "6e88a021785bfa7cf00e26d7f2433c380602d830e94e1d2fc31e3198cda31df2",
     "size": 33554432
   },
+  "completed_actions": {
+    "conclusion": "success",
+    "created_at": "2026-09-22T15:36:59Z",
+    "event": "push",
+    "head_branch": "codex/modernization-followup-20260908",
+    "head_sha": "740ecf0a94de514fa735e4697f5d6129d45520e4",
+    "id": 35748601580,
+    "jobs": [
+      {
+        "conclusion": "success",
+        "id": 106816516184,
+        "name": "supply-rom",
+        "status": "completed",
+        "steps": [
+          {
+            "conclusion": "success",
+            "name": "Set up job",
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "新probe用host libraryだけ導入（ARM生成なし）",
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "保存配置を継承し28ownerの未受入4hookだけ検証",
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@v4",
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "後継配置とnative証拠・固定引継ぎを記録し限定guard",
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "同branchへ非force commit/pushし最新refを照合",
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@v4",
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Complete job",
+            "status": "completed"
+          }
+        ]
+      }
+    ],
+    "path": ".github/workflows/pr16-learnset-supply-rom.yml",
+    "status": "completed",
+    "updated_at": "2026-09-22T15:38:05Z"
+  },
+  "completion_reconciliation": "content/modernization/pr16_learnset_supply_completed_actions.json",
   "gameplay_e2e_accepted": false,
   "issue19_complete": false,
   "physical_supply_verified": false,
@@ -330,6 +427,7 @@
       "size": 40170
     }
   },
+  "record_commit": "b464a4df505d26067c42550db90615eeb3655cdd",
   "release_ready": false,
   "run_id": 35748601580,
   "source_head": "740ecf0a94de514fa735e4697f5d6129d45520e4",

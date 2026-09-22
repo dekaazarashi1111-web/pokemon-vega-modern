@@ -61,3 +61,7 @@ Tutor通常slot0..63は明示ownerの16byte互換bitを読む。特殊Tutor ID�
 実ROMのTutor入口と特殊条件、archiveのpage count/選択callbackを実測して束縛する。保存PLC2候補 `284b88223be484a1f0a674d242bc7f4447258bf79cdd5a04b54dadb928d85c85` と新PLA1を再利用し、新しいARM moduleだけを配置する。旧96試験・4入口direct probe・元payload生成は再実行しない。新候補Wikiは旧Wikiと別pathへ作成し、変更影響のBag/戦闘/習得選択/Save/Continueへ進む。
 
 現段階はROM変更0、ARM compile0、native0、実供給未受入。正式BP/P08、旧Wiki、保存4技、P03進化LR、baselineを変更しない。Issue19全体、merge、releaseは未完。
+
+## 完了Actionsの固定照合
+
+run35748601580/job106816516184はcompleted/success。記録commit `b464a4df505d26067c42550db90615eeb3655cdd`、照合正本 `content/modernization/pr16_learnset_supply_completed_actions.json`。保存aligned-data artifact10704282359を次工程で利用し、native2process/21392callを再実行しない。配置16試験はrun35747048291を継承。通常操作・新候補Wiki・物理供給の未完は変わらない。

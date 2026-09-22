@@ -6635,3 +6635,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: run35748601580、保存run35747048291の16配置試験/独立2配置一致を継承（今回再実行0）、旧26owner行は不変・正本280/855の2fixture追加、ASan/UBSan host compileと前後逆順2process一致。原本26owner行再採取0、旧14+10試験再実行0、ARM/PLA1/PLC2/受入native再実行0。差分は供給ARM配置2788bytes内限定・全hook不変。resume/task graph/final index guard PASS後のみcommit。全履歴guard PASSは主張しない。
 - Commit: 同branch非forceの本記録commit（自己SHAはgit logで照合）。WIP 1f71e563f8ab9c72b1f6a7756ef395e63c09a7a5に続く完了記録。
 - Network: GitHub固定run/artifactとUbuntu libmgba-devのみ。旧失敗を保持。merge/release/baseline切替なし。
+
+## 2026-09-22T15:47:18.457847+00:00
+- Timestamp: 2026-09-22T15:47:18.457847+00:00
+- Task: USER-20260922-LEARNSET-SUPPLY-NATIVE / completed Actionsと原本・再開HEADの照合
+- Version: learnset-supply-native-closeout-v1
+- Status: DONE（配置修復・4hook直接ROM診断・完了記録まで。Wiki/実操作は未完）
+- Summary: run35748601580/job106816516184 completed/success、28owner×独立2process、21392call、通常Tutor許可/拒否20/7148、特殊Tutor許可/拒否12/2004、readonly19024回。原本JSON/ログ・全member hash・保存aligned-data・非force記録commit b464a4df505d26067c42550db90615eeb3655cdd を照合。古いobserved_head表記をnative実入力へ同期。
+- Files changed: 完了照合器/12証拠拒否試験/限定workflow、completed-actions JSON、配置/native checkpoint、固定MD/JSON、guide、両ログ。
+- Verify: 保存run35749269393のcloseout12試験を継承（再実行0）、新ref境界6試験・resume check・task graph・限定final index/private差分guardを通過してからcommit。PR表示headとlive branch refは別記し、repo/branch/未merge/有界祖先とlive完全一致を検査。native/ARM compile/link/ROM復元/既受入試験は今回0。配置16試験はrun35747048291、旧24試験も保存継承。host compile失敗run35747886574（native0）は原本付きで保存し、740ecf0でラッパーだけ修復した。26owner診断失敗1processと28owner成功2processを混同しない。
+- Commit: 本記録を含む同branch非force commit。検証入力HEAD=688602071100edd7fc4e545e475686b3b45ae021。自己SHAはgit logで照合。
+- Network: GitHub固定run/artifact照合のみ。ROM/Save/ELF/binaryをtrackedへ追加しない。正式BP/P08/旧Wiki/基準ROMは不変、merge/release/active baseline切替なし。

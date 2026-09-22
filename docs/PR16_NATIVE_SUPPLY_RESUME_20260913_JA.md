@@ -6,7 +6,7 @@
 
 ## いまの停止点と次の1手
 
-ELF実loadとROM配置の4byteずれを保存ELFから修復し後継6e88a021を独立2配置一致で確定。新供給4hookを28代表owner×独立2process、合計21392callで検証。特殊Tutor/HoF/raw40ページ/既習得除外/タマゴ/選択境界/保存4技PPを確認。直接ROM診断のみで通常操作・新Wiki・物理供給は未完。
+ELF実loadとROM配置の4byteずれを保存ELFから修復し後継6e88a021を独立2配置一致で確定。新供給4hookを28代表owner×独立2process、合計21392callで検証。特殊Tutor/HoF/raw40ページ/既習得除外/タマゴ/選択境界/保存4技PPを確認。直接ROM診断のみで通常操作・新Wiki・物理供給は未完。 完了Actions/原本artifact/記録commitの対応を追加照合済み。
 
 **次: Issue19: 修復後候補6e88a021のcontent/modernization/pr16_learnset_supply_alignment_checkpoint.jsonから保存ELF配置を復元し、別候補Wikiと変更影響の通常操作（Bag入口・殿堂入りgate・40行ページ選択/取消・習得選択・戦闘・Save/Continue）へ進む。旧ec5992aaは配置ずれがあるため現役候補へ戻さない。新4hook直接診断/16配置試験/旧24試験/ARM/PLA1/PLC2を変更影響なしに再実行しない。**
 
@@ -14,8 +14,8 @@ ELF実loadとROM配置の4byteずれを保存ELFから修復し後継6e88a021を
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `abc3218f56f4bab6e97991cbfe8923b422d90f21`。
-供給ARM独立2link成功の入力HEAD。通常操作・native・記録commitの受入ではない。
+証拠のsource HEAD: `740ecf0a94de514fa735e4697f5d6129d45520e4`。
+新供給4hook診断成功の入力HEAD。保存ELF配置修復はrun35747048291、28owner×2processはrun35748601580、記録commitはb464a4df505d26067c42550db90615eeb3655cdd。正式BP欄の候補/受入履歴は不変。
 
 ## 最短の再開手順
 
@@ -26,10 +26,11 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
 - `docs/PR16_LEARNSET_SUPPLY_JA.md`
+- `content/modernization/pr16_learnset_supply_completed_actions.json`
 - `content/modernization/pr16_learnset_supply_alignment_checkpoint.json`
 - `content/modernization/pr16_learnset_supply_native_checkpoint.json`
 - `scripts/pr16_supply_elf_placement.py`
-- `scripts/pr16_learnset_supply_rom_alignment.py`
+- `scripts/pr16_supply_coverage_followup.py`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -279,6 +280,8 @@ P08ゲート:
 - PLA1供給host: run35726123952/source09847331130d1b6764733f09bb8d09bb2bbe6c16の30試験・145878照合・独立2生成は保存原本を継承する。archive-image.bin SHA256 499714cc04fd43ecb59ac45d8d23dad6badbc0137189c4fbcb8facbe13c46d13、21383 bytes。同値圧縮を原本/payload再生成へ読み替えない。次は保存dataを取得し、未実行の新ARM/実ROM ABI接続のみ。
 - 供給ARM: run35732715452/abc3218f56f4の8compile/2linkと候補ec5992aaの同値性は受入済み。保存supply.bin/PLA1/link.jsonを再利用し、旧ARM/PLA1/初回14試験を再実行しない。run35731723699のmemset未解決failureは成功へ改作しない。
 - run35748601580: 6e88a021の新4hook/21392call/2processと新16配置試験を受入。旧14+10試験は保存原本を継承し再実行0。run35738895606の失敗原本は保持。次は新Wiki/通常操作のみ。
+- 供給native完了照合: run35748601580は28owner/21392call/2process成功。配置16試験はrun35747048291、旧入力24試験も保存原本継承で再実行0。run35747886574はhost compile失敗のみ・native未起動。closeoutは新12件の証拠拒否試験だけでROM生成/native/既受入試験0。
+- closeoutの12証拠拒否試験はrun35749269393でPASSを継承し再実行0。このrunは新しい実branch ref/PR同一repo・branch・祖先境界6試験だけ。PR head表示遅延をlive branch ref完全一致とb464a4d以降の記録専用祖先で照合。
 
 ## 次セッションへ残す更新手順
 
@@ -308,6 +311,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-未反映run35732715452を照合。14試験は失敗runの成功部分を継承。今回記録でARM/native/既受入試験再実行0。
+供給native run35748601580/job106816516184は検証・限定guard・同branch非force push・artifact公開までcompleted/success。完了抄録はcontent/modernization/pr16_learnset_supply_completed_actions.json。source checksの実測結果のみ保存し、全履歴guard/release/通常操作の完了とは扱わない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
