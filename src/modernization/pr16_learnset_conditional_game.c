@@ -75,7 +75,11 @@ uint8_t Pr16_GameGetConditionalRelearnerMoves(void *mon, uint16_t *moves)
     mode = *PR16_MEMORY_MODE;
     if (mode == 1u) return Pr16_GameGetAllEggMoves(mon, moves, 1u);
     /* 既存archiveのmode ABIは維持。新owner表への再binding受入は別工程。 */
-    if (mode >= 2u && mode <= 7u) return PR16_PARENT_ARCHIVE_MOVES(mon, moves);
+    if (mode >= 2u && mode <= 7u) {
+        /* Floetteのarchive12技は実供給未受入。旧表からも付与しない。 */
+        if (species == 1029u) return 0;
+        return PR16_PARENT_ARCHIVE_MOVES(mon, moves);
+    }
     if (mode != 0u || !conditional(species, PR16_CONSUMER_REMINDER, &reminder) ||
         PR16_READ_VIEW(PR16_IMAGE, PR16_IMAGE_SIZE, species, PR16_CONSUMER_LEVEL_UP,
             &levels) != PR16_OWNER_PREPARED_LOOKUP) return 0;

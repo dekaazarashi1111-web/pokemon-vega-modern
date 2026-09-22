@@ -28,8 +28,8 @@ uint8_t Pr16ConditionView(const uint8_t *image, uint32_t size, uint16_t species,
 {
     (void)image; (void)size;
     view->bytes = (const uint8_t *)0; view->count = 0; view->owner = species;
-    if (species != 1u && species != 2u) return species < 1671u ? 2u : 0u;
-    if (species == 2u) return 1u; /* 明示空owner。species1の表へ逃がさない。 */
+    if (species != 1u && species != 2u && species != 1029u) return species < 1671u ? 2u : 0u;
+    if (species == 2u || species == 1029u) return 1u; /* 明示空owner。species1の表へ逃がさない。 */
     switch (family) {
     case PR16_CONSUMER_LEVEL_UP: view->bytes=levels; view->count=3; break;
     case PR16_CONSUMER_EVOLUTION: view->bytes=evolution; view->count=2; break;

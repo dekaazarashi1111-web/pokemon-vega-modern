@@ -57,6 +57,11 @@ class GameTests(unittest.TestCase):
         for mode in range(2,8):
             self.mode.value=mode;self.assertEqual(self.listing('Pr16_GameGetConditionalRelearnerMoves'),[100+mode])
         self.assertEqual(self.archives.value,6)
+    def test_floette_archive_is_not_granted(self):
+        self.mon[11]=1029
+        for mode in range(2,8):
+            self.mode.value=mode;self.assertEqual(self.listing('Pr16_GameGetConditionalRelearnerMoves'),[])
+        self.assertEqual(self.archives.value,0)
     def test_unknown_mode_fails_closed(self):
         for mode in (8,255):
             self.mode.value=mode;self.assertEqual(self.listing('Pr16_GameGetConditionalRelearnerMoves'),[])
