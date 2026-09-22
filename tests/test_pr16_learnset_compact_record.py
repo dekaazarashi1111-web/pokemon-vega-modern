@@ -67,4 +67,62 @@ class RecordTests(unittest.TestCase):
         self.reject('inherited-compact.json',lambda x:x.update(run_conclusion='success'))
 
 
+class ResumePublicationTests(unittest.TestCase):
+    """受入済み18試験を再実行せず、今回の固定入口退行だけを検証。"""
+    def setUp(self):
+        import tempfile
+        from pathlib import Path
+        from unittest.mock import patch
+        self.tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.tmp.cleanup)
+        self.root = Path(self.tmp.name)
+        self.addCleanup(patch.stopall)
+        patch.object(r, 'ROOT', self.root).start()
+        self.entry = self.root/r.ENTRY
+        self.entry.write_text('固定入口。進捗を複製しない。\n', encoding='utf-8')
+        for name in (r.STATE, r.DOC):
+            path = self.root/name
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_bytes(b'old-output')
+        self.state = {'source_bindings': {r.ENTRY:r.identity(self.entry.read_bytes())},
+                      'next_action': {'goal_ja':'tutor/archiveの次工程'}}
+        self.render = patch('pr16_resume.render', return_value='生成された固定再開メモ\n').start()
+
+    def test_entry_bytes_and_mtime_unchanged(self):
+        before = (self.entry.read_bytes(), self.entry.stat().st_mtime_ns)
+        r.publish_resume(self.state)
+        self.assertEqual(before, (self.entry.read_bytes(), self.entry.stat().st_mtime_ns))
+
+    def test_json_and_markdown_are_one_state(self):
+        r.publish_resume(self.state)
+        self.assertEqual(json.loads((self.root/r.STATE).read_bytes()), self.state)
+        self.assertEqual((self.root/r.DOC).read_text(), self.render.return_value)
+        self.render.assert_called_once_with(self.state)
+
+    def test_stale_binding_is_rejected_without_writes(self):
+        self.entry.write_text('不一致の入力', encoding='utf-8')
+        with self.assertRaisesRegex(ValueError, '自動追認しない'):
+            r.publish_resume(self.state)
+        self.assertEqual((self.root/r.STATE).read_bytes(), b'old-output')
+        self.assertEqual((self.root/r.DOC).read_bytes(), b'old-output')
+        self.render.assert_not_called()
+
+    def test_render_failure_leaves_both_outputs(self):
+        self.render.side_effect = ValueError('render拒否')
+        with self.assertRaises(ValueError):r.publish_resume(self.state)
+        for name in (r.STATE,r.DOC):
+            self.assertEqual((self.root/name).read_bytes(), b'old-output')
+
+    def test_binding_and_input_state_not_rewritten(self):
+        before = copy.deepcopy(self.state)
+        r.publish_resume(self.state)
+        self.assertEqual(self.state, before)
+
+    def test_entry_is_not_a_publication_output(self):
+        from unittest.mock import patch
+        with patch.object(r, 'inputs', return_value={'proof_files':{}}):
+            self.assertNotIn(r.ENTRY, r.owned())
+            self.assertTrue({r.STATE,r.DOC,r.CP}.issubset(r.owned()))
+
+
 if __name__=='__main__':unittest.main()

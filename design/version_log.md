@@ -6590,3 +6590,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: run35710087058 SUCCESS。30試験/318186照合は成功証拠継承。新記録拒否試験・resume check・task graph・diff --check・final index guard PASS後のみcommit。
 - Commit: 本記録を含む同branch非force commit。自己SHAはgit logで照合。
 - Network: GitHub固定run/artifact、CFRU-JP@e24a16feのBPRJ.ld/src/config.hをhash照合。原本収集/旧accepted native/hostの再実行0。ABI/offset失敗履歴はcheckpointに保持。
+
+## 2026-09-22T11:58:00.617622+00:00
+- Timestamp: 2026-09-22T11:58:00.617622+00:00
+- Task: USER-20260922-LEARNSET-COMPACT / 四条件consumerの接続と限定受入
+- Version: learnset-conditional-plc2-v1
+- Status: DONE（4入口直接ROM probe限定。tutor/archive/新Wiki/通常操作E2Eは未完）
+- Summary: PLC1 115282→PLC2 31014 bytes、8355行/842共有record同値、新候補284b8822、4hookと2segment、全差分rollback/旧PLR1/P03/4技・PPを保全。
+- Files changed: PLC2配置器/C decoder/25試験、分割ARM配置・継承器/6試験、実測ABI/6試験、限定Actions、証拠/checkpoint/guide、固定入口/引継ぎMD・JSON、両ログ。
+- Verify: run35721669287 SUCCESS、15代表条件×2process。41+18+25+6=90試験/622669+15039照合を原本継承。新記録拒否試験・resume/task graph・diff --check・final index限定guard後のみcommit。
+- Commit: 本記録を含む同branch非force commit。自己SHAはgit logで照合。
+- Network: GitHub固定run/artifactのみ。原本再収集/旧ARM再compile/既存native再実行0。空間不足run35716683381とリンク失敗run35720010554・旧入口不一致run35720416968をfailureのまま保持。全履歴private guardのPASSは主張しない。
+- 記録修復: run35722277848は18記録試験成功後に固定入口のstale sourceで停止し、commit/pushなし。入口の動的追記を廃止し、source bindingの自動追認を拒否。18試験は再実行せず、新規ResumePublicationTests 6件と実resume/task graph/index guardだけを検証する。

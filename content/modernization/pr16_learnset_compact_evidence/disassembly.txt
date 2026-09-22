@@ -1,0 +1,1277 @@
+
+.local/pr16-learnset-compact-native/build11/conditional.elf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+095f9a88 <get32>:
+ 95f9a88:	7842      	ldrb	r2, [r0, #1]
+ 95f9a8a:	7803      	ldrb	r3, [r0, #0]
+ 95f9a8c:	0212      	lsls	r2, r2, #8
+ 95f9a8e:	431a      	orrs	r2, r3
+ 95f9a90:	7883      	ldrb	r3, [r0, #2]
+ 95f9a92:	78c0      	ldrb	r0, [r0, #3]
+ 95f9a94:	041b      	lsls	r3, r3, #16
+ 95f9a96:	4313      	orrs	r3, r2
+ 95f9a98:	0600      	lsls	r0, r0, #24
+ 95f9a9a:	4318      	orrs	r0, r3
+ 95f9a9c:	4770      	bx	lr
+
+095f9a9e <valid_moves>:
+ 95f9a9e:	0002      	movs	r2, r0
+ 95f9aa0:	b5f0      	push	{r4, r5, r6, r7, lr}
+ 95f9aa2:	2800      	cmp	r0, #0
+ 95f9aa4:	d011      	beq.n	95f9aca <valid_moves+0x2c>
+ 95f9aa6:	88c4      	ldrh	r4, [r0, #6]
+ 95f9aa8:	4b17      	ldr	r3, [pc, #92]	@ (95f9b08 <valid_moves+0x6a>)
+ 95f9aaa:	2000      	movs	r0, #0
+ 95f9aac:	429c      	cmp	r4, r3
+ 95f9aae:	d80c      	bhi.n	95f9aca <valid_moves+0x2c>
+ 95f9ab0:	8895      	ldrh	r5, [r2, #4]
+ 95f9ab2:	2d32      	cmp	r5, #50	@ 0x32
+ 95f9ab4:	d809      	bhi.n	95f9aca <valid_moves+0x2c>
+ 95f9ab6:	4285      	cmp	r5, r0
+ 95f9ab8:	d002      	beq.n	95f9ac0 <valid_moves+0x22>
+ 95f9aba:	6813      	ldr	r3, [r2, #0]
+ 95f9abc:	1e18      	subs	r0, r3, #0
+ 95f9abe:	d004      	beq.n	95f9aca <valid_moves+0x2c>
+ 95f9ac0:	2400      	movs	r4, #0
+ 95f9ac2:	0020      	movs	r0, r4
+ 95f9ac4:	4285      	cmp	r5, r0
+ 95f9ac6:	d103      	bne.n	95f9ad0 <valid_moves+0x32>
+ 95f9ac8:	2001      	movs	r0, #1
+ 95f9aca:	bcf0      	pop	{r4, r5, r6, r7}
+ 95f9acc:	bc02      	pop	{r1}
+ 95f9ace:	4708      	bx	r1
+ 95f9ad0:	6813      	ldr	r3, [r2, #0]
+ 95f9ad2:	191e      	adds	r6, r3, r4
+ 95f9ad4:	5d1b      	ldrb	r3, [r3, r4]
+ 95f9ad6:	469c      	mov	ip, r3
+ 95f9ad8:	4667      	mov	r7, ip
+ 95f9ada:	7873      	ldrb	r3, [r6, #1]
+ 95f9adc:	021b      	lsls	r3, r3, #8
+ 95f9ade:	433b      	orrs	r3, r7
+ 95f9ae0:	3b01      	subs	r3, #1
+ 95f9ae2:	4f0a      	ldr	r7, [pc, #40]	@ (95f9b0c <valid_moves+0x6e>)
+ 95f9ae4:	041b      	lsls	r3, r3, #16
+ 95f9ae6:	0c1b      	lsrs	r3, r3, #16
+ 95f9ae8:	42bb      	cmp	r3, r7
+ 95f9aea:	d80a      	bhi.n	95f9b02 <valid_moves+0x64>
+ 95f9aec:	2903      	cmp	r1, #3
+ 95f9aee:	d103      	bne.n	95f9af8 <valid_moves+0x5a>
+ 95f9af0:	78b3      	ldrb	r3, [r6, #2]
+ 95f9af2:	3b01      	subs	r3, #1
+ 95f9af4:	2b63      	cmp	r3, #99	@ 0x63
+ 95f9af6:	d804      	bhi.n	95f9b02 <valid_moves+0x64>
+ 95f9af8:	3001      	adds	r0, #1
+ 95f9afa:	0400      	lsls	r0, r0, #16
+ 95f9afc:	0c00      	lsrs	r0, r0, #16
+ 95f9afe:	1864      	adds	r4, r4, r1
+ 95f9b00:	e7e0      	b.n	95f9ac4 <valid_moves+0x26>
+ 95f9b02:	2000      	movs	r0, #0
+ 95f9b04:	e7e1      	b.n	95f9aca <valid_moves+0x2c>
+ 95f9b06:	46c0      	nop			@ (mov r8, r8)
+ 95f9b08:	00000686 	.word	0x00000686
+ 95f9b0c:	00000425 	.word	0x00000425
+
+095f9b10 <contains>:
+ 95f9b10:	2300      	movs	r3, #0
+ 95f9b12:	b510      	push	{r4, lr}
+ 95f9b14:	3802      	subs	r0, #2
+ 95f9b16:	041c      	lsls	r4, r3, #16
+ 95f9b18:	0c24      	lsrs	r4, r4, #16
+ 95f9b1a:	42a1      	cmp	r1, r4
+ 95f9b1c:	d803      	bhi.n	95f9b26 <contains+0x16>
+ 95f9b1e:	2000      	movs	r0, #0
+ 95f9b20:	bc10      	pop	{r4}
+ 95f9b22:	bc02      	pop	{r1}
+ 95f9b24:	4708      	bx	r1
+ 95f9b26:	3301      	adds	r3, #1
+ 95f9b28:	005c      	lsls	r4, r3, #1
+ 95f9b2a:	5b04      	ldrh	r4, [r0, r4]
+ 95f9b2c:	4294      	cmp	r4, r2
+ 95f9b2e:	d1f2      	bne.n	95f9b16 <contains+0x6>
+ 95f9b30:	2001      	movs	r0, #1
+ 95f9b32:	e7f5      	b.n	95f9b20 <contains+0x10>
+
+095f9b34 <Pr16ReadLearnsetConditional>:
+ 95f9b34:	b5f0      	push	{r4, r5, r6, r7, lr}
+ 95f9b36:	b089      	sub	sp, #36	@ 0x24
+ 95f9b38:	9f0e      	ldr	r7, [sp, #56]	@ 0x38
+ 95f9b3a:	0004      	movs	r4, r0
+ 95f9b3c:	0016      	movs	r6, r2
+ 95f9b3e:	001d      	movs	r5, r3
+ 95f9b40:	9103      	str	r1, [sp, #12]
+ 95f9b42:	2f00      	cmp	r7, #0
+ 95f9b44:	d102      	bne.n	95f9b4c <Pr16ReadLearnsetConditional+0x18>
+ 95f9b46:	2300      	movs	r3, #0
+ 95f9b48:	9305      	str	r3, [sp, #20]
+ 95f9b4a:	e061      	b.n	95f9c10 <Pr16ReadLearnsetConditional+0xdc>
+ 95f9b4c:	2300      	movs	r3, #0
+ 95f9b4e:	603b      	str	r3, [r7, #0]
+ 95f9b50:	4b70      	ldr	r3, [pc, #448]	@ (95f9d14 <Pr16ReadLearnsetConditional+0x1e0>)
+ 95f9b52:	607b      	str	r3, [r7, #4]
+ 95f9b54:	2800      	cmp	r0, #0
+ 95f9b56:	d0f6      	beq.n	95f9b46 <Pr16ReadLearnsetConditional+0x12>
+ 95f9b58:	9b03      	ldr	r3, [sp, #12]
+ 95f9b5a:	4a6f      	ldr	r2, [pc, #444]	@ (95f9d18 <Pr16ReadLearnsetConditional+0x1e4>)
+ 95f9b5c:	4293      	cmp	r3, r2
+ 95f9b5e:	d9f2      	bls.n	95f9b46 <Pr16ReadLearnsetConditional+0x12>
+ 95f9b60:	f7ff ff92 	bl	95f9a88 <get32>
+ 95f9b64:	4b6d      	ldr	r3, [pc, #436]	@ (95f9d1c <Pr16ReadLearnsetConditional+0x1e8>)
+ 95f9b66:	4298      	cmp	r0, r3
+ 95f9b68:	d1ed      	bne.n	95f9b46 <Pr16ReadLearnsetConditional+0x12>
+ 95f9b6a:	7963      	ldrb	r3, [r4, #5]
+ 95f9b6c:	7922      	ldrb	r2, [r4, #4]
+ 95f9b6e:	021b      	lsls	r3, r3, #8
+ 95f9b70:	4313      	orrs	r3, r2
+ 95f9b72:	2b01      	cmp	r3, #1
+ 95f9b74:	d1e7      	bne.n	95f9b46 <Pr16ReadLearnsetConditional+0x12>
+ 95f9b76:	79e3      	ldrb	r3, [r4, #7]
+ 95f9b78:	79a1      	ldrb	r1, [r4, #6]
+ 95f9b7a:	4a69      	ldr	r2, [pc, #420]	@ (95f9d20 <Pr16ReadLearnsetConditional+0x1ec>)
+ 95f9b7c:	021b      	lsls	r3, r3, #8
+ 95f9b7e:	430b      	orrs	r3, r1
+ 95f9b80:	4293      	cmp	r3, r2
+ 95f9b82:	d1e0      	bne.n	95f9b46 <Pr16ReadLearnsetConditional+0x12>
+ 95f9b84:	0020      	movs	r0, r4
+ 95f9b86:	3008      	adds	r0, #8
+ 95f9b88:	f7ff ff7e 	bl	95f9a88 <get32>
+ 95f9b8c:	2820      	cmp	r0, #32
+ 95f9b8e:	d1da      	bne.n	95f9b46 <Pr16ReadLearnsetConditional+0x12>
+ 95f9b90:	0020      	movs	r0, r4
+ 95f9b92:	300c      	adds	r0, #12
+ 95f9b94:	f7ff ff78 	bl	95f9a88 <get32>
+ 95f9b98:	23d5      	movs	r3, #213	@ 0xd5
+ 95f9b9a:	00db      	lsls	r3, r3, #3
+ 95f9b9c:	4298      	cmp	r0, r3
+ 95f9b9e:	d1d2      	bne.n	95f9b46 <Pr16ReadLearnsetConditional+0x12>
+ 95f9ba0:	0020      	movs	r0, r4
+ 95f9ba2:	3010      	adds	r0, #16
+ 95f9ba4:	f7ff ff70 	bl	95f9a88 <get32>
+ 95f9ba8:	4b5e      	ldr	r3, [pc, #376]	@ (95f9d24 <Pr16ReadLearnsetConditional+0x1f0>)
+ 95f9baa:	4298      	cmp	r0, r3
+ 95f9bac:	d1cb      	bne.n	95f9b46 <Pr16ReadLearnsetConditional+0x12>
+ 95f9bae:	0020      	movs	r0, r4
+ 95f9bb0:	3014      	adds	r0, #20
+ 95f9bb2:	f7ff ff69 	bl	95f9a88 <get32>
+ 95f9bb6:	9b03      	ldr	r3, [sp, #12]
+ 95f9bb8:	4298      	cmp	r0, r3
+ 95f9bba:	d1c4      	bne.n	95f9b46 <Pr16ReadLearnsetConditional+0x12>
+ 95f9bbc:	0020      	movs	r0, r4
+ 95f9bbe:	3018      	adds	r0, #24
+ 95f9bc0:	f7ff ff62 	bl	95f9a88 <get32>
+ 95f9bc4:	23c4      	movs	r3, #196	@ 0xc4
+ 95f9bc6:	33ff      	adds	r3, #255	@ 0xff
+ 95f9bc8:	4298      	cmp	r0, r3
+ 95f9bca:	d1bc      	bne.n	95f9b46 <Pr16ReadLearnsetConditional+0x12>
+ 95f9bcc:	0020      	movs	r0, r4
+ 95f9bce:	301c      	adds	r0, #28
+ 95f9bd0:	f7ff ff5a 	bl	95f9a88 <get32>
+ 95f9bd4:	2800      	cmp	r0, #0
+ 95f9bd6:	d1b6      	bne.n	95f9b46 <Pr16ReadLearnsetConditional+0x12>
+ 95f9bd8:	230e      	movs	r3, #14
+ 95f9bda:	0020      	movs	r0, r4
+ 95f9bdc:	aa04      	add	r2, sp, #16
+ 95f9bde:	189b      	adds	r3, r3, r2
+ 95f9be0:	9300      	str	r3, [sp, #0]
+ 95f9be2:	0032      	movs	r2, r6
+ 95f9be4:	002b      	movs	r3, r5
+ 95f9be6:	494e      	ldr	r1, [pc, #312]	@ (95f9d20 <Pr16ReadLearnsetConditional+0x1ec>)
+ 95f9be8:	4e4f      	ldr	r6, [pc, #316]	@ (95f9d28 <Pr16ReadLearnsetConditional+0x1f4>)
+ 95f9bea:	3020      	adds	r0, #32
+ 95f9bec:	f000 f9ea 	bl	95f9fc4 <Pr16ConditionalTutorAllowed+0x36>
+ 95f9bf0:	9004      	str	r0, [sp, #16]
+ 95f9bf2:	9005      	str	r0, [sp, #20]
+ 95f9bf4:	2800      	cmp	r0, #0
+ 95f9bf6:	d0a6      	beq.n	95f9b46 <Pr16ReadLearnsetConditional+0x12>
+ 95f9bf8:	2d06      	cmp	r5, #6
+ 95f9bfa:	d040      	beq.n	95f9c7e <Pr16ReadLearnsetConditional+0x14a>
+ 95f9bfc:	d80d      	bhi.n	95f9c1a <Pr16ReadLearnsetConditional+0xe6>
+ 95f9bfe:	2d00      	cmp	r5, #0
+ 95f9c00:	d03f      	beq.n	95f9c82 <Pr16ReadLearnsetConditional+0x14e>
+ 95f9c02:	2301      	movs	r3, #1
+ 95f9c04:	429d      	cmp	r5, r3
+ 95f9c06:	d00d      	beq.n	95f9c24 <Pr16ReadLearnsetConditional+0xf0>
+ 95f9c08:	9b04      	ldr	r3, [sp, #16]
+ 95f9c0a:	2b04      	cmp	r3, #4
+ 95f9c0c:	d000      	beq.n	95f9c10 <Pr16ReadLearnsetConditional+0xdc>
+ 95f9c0e:	e07e      	b.n	95f9d0e <Pr16ReadLearnsetConditional+0x1da>
+ 95f9c10:	9805      	ldr	r0, [sp, #20]
+ 95f9c12:	b009      	add	sp, #36	@ 0x24
+ 95f9c14:	bcf0      	pop	{r4, r5, r6, r7}
+ 95f9c16:	bc02      	pop	{r1}
+ 95f9c18:	4708      	bx	r1
+ 95f9c1a:	2d07      	cmp	r5, #7
+ 95f9c1c:	d033      	beq.n	95f9c86 <Pr16ReadLearnsetConditional+0x152>
+ 95f9c1e:	2304      	movs	r3, #4
+ 95f9c20:	2d08      	cmp	r5, #8
+ 95f9c22:	d1f1      	bne.n	95f9c08 <Pr16ReadLearnsetConditional+0xd4>
+ 95f9c24:	2605      	movs	r6, #5
+ 95f9c26:	aa04      	add	r2, sp, #16
+ 95f9c28:	89d2      	ldrh	r2, [r2, #14]
+ 95f9c2a:	9202      	str	r2, [sp, #8]
+ 95f9c2c:	4372      	muls	r2, r6
+ 95f9c2e:	0016      	movs	r6, r2
+ 95f9c30:	36d5      	adds	r6, #213	@ 0xd5
+ 95f9c32:	18f6      	adds	r6, r6, r3
+ 95f9c34:	00f6      	lsls	r6, r6, #3
+ 95f9c36:	19a6      	adds	r6, r4, r6
+ 95f9c38:	0030      	movs	r0, r6
+ 95f9c3a:	f7ff ff25 	bl	95f9a88 <get32>
+ 95f9c3e:	7972      	ldrb	r2, [r6, #5]
+ 95f9c40:	7933      	ldrb	r3, [r6, #4]
+ 95f9c42:	0212      	lsls	r2, r2, #8
+ 95f9c44:	431a      	orrs	r2, r3
+ 95f9c46:	9b02      	ldr	r3, [sp, #8]
+ 95f9c48:	0119      	lsls	r1, r3, #4
+ 95f9c4a:	79b3      	ldrb	r3, [r6, #6]
+ 95f9c4c:	469c      	mov	ip, r3
+ 95f9c4e:	79f3      	ldrb	r3, [r6, #7]
+ 95f9c50:	4666      	mov	r6, ip
+ 95f9c52:	021b      	lsls	r3, r3, #8
+ 95f9c54:	4329      	orrs	r1, r5
+ 95f9c56:	4333      	orrs	r3, r6
+ 95f9c58:	0409      	lsls	r1, r1, #16
+ 95f9c5a:	041b      	lsls	r3, r3, #16
+ 95f9c5c:	1409      	asrs	r1, r1, #16
+ 95f9c5e:	141b      	asrs	r3, r3, #16
+ 95f9c60:	4299      	cmp	r1, r3
+ 95f9c62:	d000      	beq.n	95f9c66 <Pr16ReadLearnsetConditional+0x132>
+ 95f9c64:	e76f      	b.n	95f9b46 <Pr16ReadLearnsetConditional+0x12>
+ 95f9c66:	9b04      	ldr	r3, [sp, #16]
+ 95f9c68:	2b01      	cmp	r3, #1
+ 95f9c6a:	d00e      	beq.n	95f9c8a <Pr16ReadLearnsetConditional+0x156>
+ 95f9c6c:	3001      	adds	r0, #1
+ 95f9c6e:	d000      	beq.n	95f9c72 <Pr16ReadLearnsetConditional+0x13e>
+ 95f9c70:	e769      	b.n	95f9b46 <Pr16ReadLearnsetConditional+0x12>
+ 95f9c72:	2a00      	cmp	r2, #0
+ 95f9c74:	d000      	beq.n	95f9c78 <Pr16ReadLearnsetConditional+0x144>
+ 95f9c76:	e766      	b.n	95f9b46 <Pr16ReadLearnsetConditional+0x12>
+ 95f9c78:	9b02      	ldr	r3, [sp, #8]
+ 95f9c7a:	80fb      	strh	r3, [r7, #6]
+ 95f9c7c:	e7c8      	b.n	95f9c10 <Pr16ReadLearnsetConditional+0xdc>
+ 95f9c7e:	2302      	movs	r3, #2
+ 95f9c80:	e7d0      	b.n	95f9c24 <Pr16ReadLearnsetConditional+0xf0>
+ 95f9c82:	002b      	movs	r3, r5
+ 95f9c84:	e7ce      	b.n	95f9c24 <Pr16ReadLearnsetConditional+0xf0>
+ 95f9c86:	2303      	movs	r3, #3
+ 95f9c88:	e7cc      	b.n	95f9c24 <Pr16ReadLearnsetConditional+0xf0>
+ 95f9c8a:	2110      	movs	r1, #16
+ 95f9c8c:	2d08      	cmp	r5, #8
+ 95f9c8e:	d000      	beq.n	95f9c92 <Pr16ReadLearnsetConditional+0x15e>
+ 95f9c90:	0051      	lsls	r1, r2, #1
+ 95f9c92:	4b21      	ldr	r3, [pc, #132]	@ (95f9d18 <Pr16ReadLearnsetConditional+0x1e4>)
+ 95f9c94:	4298      	cmp	r0, r3
+ 95f9c96:	d800      	bhi.n	95f9c9a <Pr16ReadLearnsetConditional+0x166>
+ 95f9c98:	e755      	b.n	95f9b46 <Pr16ReadLearnsetConditional+0x12>
+ 95f9c9a:	9b03      	ldr	r3, [sp, #12]
+ 95f9c9c:	4283      	cmp	r3, r0
+ 95f9c9e:	d200      	bcs.n	95f9ca2 <Pr16ReadLearnsetConditional+0x16e>
+ 95f9ca0:	e751      	b.n	95f9b46 <Pr16ReadLearnsetConditional+0x12>
+ 95f9ca2:	1a1b      	subs	r3, r3, r0
+ 95f9ca4:	428b      	cmp	r3, r1
+ 95f9ca6:	d200      	bcs.n	95f9caa <Pr16ReadLearnsetConditional+0x176>
+ 95f9ca8:	e74d      	b.n	95f9b46 <Pr16ReadLearnsetConditional+0x12>
+ 95f9caa:	2301      	movs	r3, #1
+ 95f9cac:	0001      	movs	r1, r0
+ 95f9cae:	4019      	ands	r1, r3
+ 95f9cb0:	4218      	tst	r0, r3
+ 95f9cb2:	d000      	beq.n	95f9cb6 <Pr16ReadLearnsetConditional+0x182>
+ 95f9cb4:	e747      	b.n	95f9b46 <Pr16ReadLearnsetConditional+0x12>
+ 95f9cb6:	2d08      	cmp	r5, #8
+ 95f9cb8:	d111      	bne.n	95f9cde <Pr16ReadLearnsetConditional+0x1aa>
+ 95f9cba:	2a40      	cmp	r2, #64	@ 0x40
+ 95f9cbc:	d000      	beq.n	95f9cc0 <Pr16ReadLearnsetConditional+0x18c>
+ 95f9cbe:	e742      	b.n	95f9b46 <Pr16ReadLearnsetConditional+0x12>
+ 95f9cc0:	0021      	movs	r1, r4
+ 95f9cc2:	3108      	adds	r1, #8
+ 95f9cc4:	1823      	adds	r3, r4, r0
+ 95f9cc6:	1809      	adds	r1, r1, r0
+ 95f9cc8:	7a1d      	ldrb	r5, [r3, #8]
+ 95f9cca:	2d00      	cmp	r5, #0
+ 95f9ccc:	d000      	beq.n	95f9cd0 <Pr16ReadLearnsetConditional+0x19c>
+ 95f9cce:	e73a      	b.n	95f9b46 <Pr16ReadLearnsetConditional+0x12>
+ 95f9cd0:	3301      	adds	r3, #1
+ 95f9cd2:	4299      	cmp	r1, r3
+ 95f9cd4:	d1f8      	bne.n	95f9cc8 <Pr16ReadLearnsetConditional+0x194>
+ 95f9cd6:	1824      	adds	r4, r4, r0
+ 95f9cd8:	603c      	str	r4, [r7, #0]
+ 95f9cda:	80ba      	strh	r2, [r7, #4]
+ 95f9cdc:	e7cc      	b.n	95f9c78 <Pr16ReadLearnsetConditional+0x144>
+ 95f9cde:	1825      	adds	r5, r4, r0
+ 95f9ce0:	2a32      	cmp	r2, #50	@ 0x32
+ 95f9ce2:	d900      	bls.n	95f9ce6 <Pr16ReadLearnsetConditional+0x1b2>
+ 95f9ce4:	e72f      	b.n	95f9b46 <Pr16ReadLearnsetConditional+0x12>
+ 95f9ce6:	4291      	cmp	r1, r2
+ 95f9ce8:	d0f5      	beq.n	95f9cd6 <Pr16ReadLearnsetConditional+0x1a2>
+ 95f9cea:	782b      	ldrb	r3, [r5, #0]
+ 95f9cec:	469c      	mov	ip, r3
+ 95f9cee:	4666      	mov	r6, ip
+ 95f9cf0:	786b      	ldrb	r3, [r5, #1]
+ 95f9cf2:	021b      	lsls	r3, r3, #8
+ 95f9cf4:	4333      	orrs	r3, r6
+ 95f9cf6:	3b01      	subs	r3, #1
+ 95f9cf8:	4e0c      	ldr	r6, [pc, #48]	@ (95f9d2c <Pr16ReadLearnsetConditional+0x1f8>)
+ 95f9cfa:	041b      	lsls	r3, r3, #16
+ 95f9cfc:	0c1b      	lsrs	r3, r3, #16
+ 95f9cfe:	3502      	adds	r5, #2
+ 95f9d00:	42b3      	cmp	r3, r6
+ 95f9d02:	d900      	bls.n	95f9d06 <Pr16ReadLearnsetConditional+0x1d2>
+ 95f9d04:	e71f      	b.n	95f9b46 <Pr16ReadLearnsetConditional+0x12>
+ 95f9d06:	3101      	adds	r1, #1
+ 95f9d08:	0409      	lsls	r1, r1, #16
+ 95f9d0a:	0c09      	lsrs	r1, r1, #16
+ 95f9d0c:	e7eb      	b.n	95f9ce6 <Pr16ReadLearnsetConditional+0x1b2>
+ 95f9d0e:	2305      	movs	r3, #5
+ 95f9d10:	e71a      	b.n	95f9b48 <Pr16ReadLearnsetConditional+0x14>
+ 95f9d12:	46c0      	nop			@ (mov r8, r8)
+ 95f9d14:	ffff0000 	.word	0xffff0000
+ 95f9d18:	00010bbf 	.word	0x00010bbf
+ 95f9d1c:	31434c50 	.word	0x31434c50
+ 95f9d20:	00000687 	.word	0x00000687
+ 95f9d24:	00010bc0 	.word	0x00010bc0
+ 95f9d28:	095f9465 	.word	0x095f9465
+ 95f9d2c:	00000425 	.word	0x00000425
+
+095f9d30 <Pr16ConditionalList>:
+ 95f9d30:	b5f0      	push	{r4, r5, r6, r7, lr}
+ 95f9d32:	b0a1      	sub	sp, #132	@ 0x84
+ 95f9d34:	9303      	str	r3, [sp, #12]
+ 95f9d36:	ab26      	add	r3, sp, #152	@ 0x98
+ 95f9d38:	881b      	ldrh	r3, [r3, #0]
+ 95f9d3a:	9305      	str	r3, [sp, #20]
+ 95f9d3c:	9b03      	ldr	r3, [sp, #12]
+ 95f9d3e:	0007      	movs	r7, r0
+ 95f9d40:	9102      	str	r1, [sp, #8]
+ 95f9d42:	9201      	str	r2, [sp, #4]
+ 95f9d44:	2b00      	cmp	r3, #0
+ 95f9d46:	d104      	bne.n	95f9d52 <Pr16ConditionalList+0x22>
+ 95f9d48:	2000      	movs	r0, #0
+ 95f9d4a:	b021      	add	sp, #132	@ 0x84
+ 95f9d4c:	bcf0      	pop	{r4, r5, r6, r7}
+ 95f9d4e:	bc02      	pop	{r1}
+ 95f9d50:	4708      	bx	r1
+ 95f9d52:	9b01      	ldr	r3, [sp, #4]
+ 95f9d54:	2b04      	cmp	r3, #4
+ 95f9d56:	d8f7      	bhi.n	95f9d48 <Pr16ConditionalList+0x18>
+ 95f9d58:	2b00      	cmp	r3, #0
+ 95f9d5a:	d002      	beq.n	95f9d62 <Pr16ConditionalList+0x32>
+ 95f9d5c:	9b02      	ldr	r3, [sp, #8]
+ 95f9d5e:	2b00      	cmp	r3, #0
+ 95f9d60:	d0f2      	beq.n	95f9d48 <Pr16ConditionalList+0x18>
+ 95f9d62:	2102      	movs	r1, #2
+ 95f9d64:	0038      	movs	r0, r7
+ 95f9d66:	f7ff fe9a 	bl	95f9a9e <valid_moves>
+ 95f9d6a:	2800      	cmp	r0, #0
+ 95f9d6c:	d0ec      	beq.n	95f9d48 <Pr16ConditionalList+0x18>
+ 95f9d6e:	2600      	movs	r6, #0
+ 95f9d70:	0034      	movs	r4, r6
+ 95f9d72:	88bb      	ldrh	r3, [r7, #4]
+ 95f9d74:	9304      	str	r3, [sp, #16]
+ 95f9d76:	9a04      	ldr	r2, [sp, #16]
+ 95f9d78:	0433      	lsls	r3, r6, #16
+ 95f9d7a:	0c1b      	lsrs	r3, r3, #16
+ 95f9d7c:	429a      	cmp	r2, r3
+ 95f9d7e:	d80a      	bhi.n	95f9d96 <Pr16ConditionalList+0x66>
+ 95f9d80:	9b05      	ldr	r3, [sp, #20]
+ 95f9d82:	429c      	cmp	r4, r3
+ 95f9d84:	d8e0      	bhi.n	95f9d48 <Pr16ConditionalList+0x18>
+ 95f9d86:	2300      	movs	r3, #0
+ 95f9d88:	0062      	lsls	r2, r4, #1
+ 95f9d8a:	a907      	add	r1, sp, #28
+ 95f9d8c:	4293      	cmp	r3, r2
+ 95f9d8e:	d11f      	bne.n	95f9dd0 <Pr16ConditionalList+0xa0>
+ 95f9d90:	0620      	lsls	r0, r4, #24
+ 95f9d92:	0e00      	lsrs	r0, r0, #24
+ 95f9d94:	e7d9      	b.n	95f9d4a <Pr16ConditionalList+0x1a>
+ 95f9d96:	683b      	ldr	r3, [r7, #0]
+ 95f9d98:	0071      	lsls	r1, r6, #1
+ 95f9d9a:	5cca      	ldrb	r2, [r1, r3]
+ 95f9d9c:	185b      	adds	r3, r3, r1
+ 95f9d9e:	785d      	ldrb	r5, [r3, #1]
+ 95f9da0:	022d      	lsls	r5, r5, #8
+ 95f9da2:	4315      	orrs	r5, r2
+ 95f9da4:	002a      	movs	r2, r5
+ 95f9da6:	9901      	ldr	r1, [sp, #4]
+ 95f9da8:	9802      	ldr	r0, [sp, #8]
+ 95f9daa:	f7ff feb1 	bl	95f9b10 <contains>
+ 95f9dae:	2800      	cmp	r0, #0
+ 95f9db0:	d10c      	bne.n	95f9dcc <Pr16ConditionalList+0x9c>
+ 95f9db2:	002a      	movs	r2, r5
+ 95f9db4:	0021      	movs	r1, r4
+ 95f9db6:	a807      	add	r0, sp, #28
+ 95f9db8:	f7ff feaa 	bl	95f9b10 <contains>
+ 95f9dbc:	2800      	cmp	r0, #0
+ 95f9dbe:	d105      	bne.n	95f9dcc <Pr16ConditionalList+0x9c>
+ 95f9dc0:	1c63      	adds	r3, r4, #1
+ 95f9dc2:	aa07      	add	r2, sp, #28
+ 95f9dc4:	0064      	lsls	r4, r4, #1
+ 95f9dc6:	5315      	strh	r5, [r2, r4]
+ 95f9dc8:	041c      	lsls	r4, r3, #16
+ 95f9dca:	0c24      	lsrs	r4, r4, #16
+ 95f9dcc:	3601      	adds	r6, #1
+ 95f9dce:	e7d2      	b.n	95f9d76 <Pr16ConditionalList+0x46>
+ 95f9dd0:	5a58      	ldrh	r0, [r3, r1]
+ 95f9dd2:	9d03      	ldr	r5, [sp, #12]
+ 95f9dd4:	52e8      	strh	r0, [r5, r3]
+ 95f9dd6:	3302      	adds	r3, #2
+ 95f9dd8:	e7d8      	b.n	95f9d8c <Pr16ConditionalList+0x5c>
+
+095f9dda <Pr16ConditionalEvolutionNext>:
+ 95f9dda:	b5f7      	push	{r0, r1, r2, r4, r5, r6, r7, lr}
+ 95f9ddc:	001f      	movs	r7, r3
+ 95f9dde:	9b08      	ldr	r3, [sp, #32]
+ 95f9de0:	0004      	movs	r4, r0
+ 95f9de2:	000d      	movs	r5, r1
+ 95f9de4:	0016      	movs	r6, r2
+ 95f9de6:	2b00      	cmp	r3, #0
+ 95f9de8:	d023      	beq.n	95f9e32 <Pr16ConditionalEvolutionNext+0x58>
+ 95f9dea:	1e53      	subs	r3, r2, #1
+ 95f9dec:	2b63      	cmp	r3, #99	@ 0x63
+ 95f9dee:	d820      	bhi.n	95f9e32 <Pr16ConditionalEvolutionNext+0x58>
+ 95f9df0:	2102      	movs	r1, #2
+ 95f9df2:	f7ff fe54 	bl	95f9a9e <valid_moves>
+ 95f9df6:	2800      	cmp	r0, #0
+ 95f9df8:	d01b      	beq.n	95f9e32 <Pr16ConditionalEvolutionNext+0x58>
+ 95f9dfa:	2103      	movs	r1, #3
+ 95f9dfc:	0028      	movs	r0, r5
+ 95f9dfe:	f7ff fe4e 	bl	95f9a9e <valid_moves>
+ 95f9e02:	2800      	cmp	r0, #0
+ 95f9e04:	d015      	beq.n	95f9e32 <Pr16ConditionalEvolutionNext+0x58>
+ 95f9e06:	88e2      	ldrh	r2, [r4, #6]
+ 95f9e08:	88eb      	ldrh	r3, [r5, #6]
+ 95f9e0a:	429a      	cmp	r2, r3
+ 95f9e0c:	d111      	bne.n	95f9e32 <Pr16ConditionalEvolutionNext+0x58>
+ 95f9e0e:	2200      	movs	r2, #0
+ 95f9e10:	88a0      	ldrh	r0, [r4, #4]
+ 95f9e12:	88ab      	ldrh	r3, [r5, #4]
+ 95f9e14:	18c3      	adds	r3, r0, r3
+ 95f9e16:	041b      	lsls	r3, r3, #16
+ 95f9e18:	0c1b      	lsrs	r3, r3, #16
+ 95f9e1a:	4297      	cmp	r7, r2
+ 95f9e1c:	d101      	bne.n	95f9e22 <Pr16ConditionalEvolutionNext+0x48>
+ 95f9e1e:	9a08      	ldr	r2, [sp, #32]
+ 95f9e20:	7812      	ldrb	r2, [r2, #0]
+ 95f9e22:	2103      	movs	r1, #3
+ 95f9e24:	1a17      	subs	r7, r2, r0
+ 95f9e26:	4379      	muls	r1, r7
+ 95f9e28:	9101      	str	r1, [sp, #4]
+ 95f9e2a:	429a      	cmp	r2, r3
+ 95f9e2c:	d303      	bcc.n	95f9e36 <Pr16ConditionalEvolutionNext+0x5c>
+ 95f9e2e:	9a08      	ldr	r2, [sp, #32]
+ 95f9e30:	7013      	strb	r3, [r2, #0]
+ 95f9e32:	2000      	movs	r0, #0
+ 95f9e34:	e00b      	b.n	95f9e4e <Pr16ConditionalEvolutionNext+0x74>
+ 95f9e36:	1c57      	adds	r7, r2, #1
+ 95f9e38:	4290      	cmp	r0, r2
+ 95f9e3a:	d90b      	bls.n	95f9e54 <Pr16ConditionalEvolutionNext+0x7a>
+ 95f9e3c:	0053      	lsls	r3, r2, #1
+ 95f9e3e:	6822      	ldr	r2, [r4, #0]
+ 95f9e40:	18d2      	adds	r2, r2, r3
+ 95f9e42:	9b08      	ldr	r3, [sp, #32]
+ 95f9e44:	701f      	strb	r7, [r3, #0]
+ 95f9e46:	7850      	ldrb	r0, [r2, #1]
+ 95f9e48:	7813      	ldrb	r3, [r2, #0]
+ 95f9e4a:	0200      	lsls	r0, r0, #8
+ 95f9e4c:	4318      	orrs	r0, r3
+ 95f9e4e:	bcfe      	pop	{r1, r2, r3, r4, r5, r6, r7}
+ 95f9e50:	bc02      	pop	{r1}
+ 95f9e52:	4708      	bx	r1
+ 95f9e54:	9901      	ldr	r1, [sp, #4]
+ 95f9e56:	682a      	ldr	r2, [r5, #0]
+ 95f9e58:	1852      	adds	r2, r2, r1
+ 95f9e5a:	7891      	ldrb	r1, [r2, #2]
+ 95f9e5c:	42b1      	cmp	r1, r6
+ 95f9e5e:	d0f0      	beq.n	95f9e42 <Pr16ConditionalEvolutionNext+0x68>
+ 95f9e60:	9a01      	ldr	r2, [sp, #4]
+ 95f9e62:	3203      	adds	r2, #3
+ 95f9e64:	9201      	str	r2, [sp, #4]
+ 95f9e66:	043a      	lsls	r2, r7, #16
+ 95f9e68:	0c12      	lsrs	r2, r2, #16
+ 95f9e6a:	e7de      	b.n	95f9e2a <Pr16ConditionalEvolutionNext+0x50>
+
+095f9e6c <Pr16ConditionalReminder>:
+ 95f9e6c:	b5f0      	push	{r4, r5, r6, r7, lr}
+ 95f9e6e:	b0a1      	sub	sp, #132	@ 0x84
+ 95f9e70:	9304      	str	r3, [sp, #16]
+ 95f9e72:	ab28      	add	r3, sp, #160	@ 0xa0
+ 95f9e74:	881b      	ldrh	r3, [r3, #0]
+ 95f9e76:	9306      	str	r3, [sp, #24]
+ 95f9e78:	9b26      	ldr	r3, [sp, #152]	@ 0x98
+ 95f9e7a:	0006      	movs	r6, r0
+ 95f9e7c:	000d      	movs	r5, r1
+ 95f9e7e:	0014      	movs	r4, r2
+ 95f9e80:	2b00      	cmp	r3, #0
+ 95f9e82:	d104      	bne.n	95f9e8e <Pr16ConditionalReminder+0x22>
+ 95f9e84:	2000      	movs	r0, #0
+ 95f9e86:	b021      	add	sp, #132	@ 0x84
+ 95f9e88:	bcf0      	pop	{r4, r5, r6, r7}
+ 95f9e8a:	bc02      	pop	{r1}
+ 95f9e8c:	4708      	bx	r1
+ 95f9e8e:	9b27      	ldr	r3, [sp, #156]	@ 0x9c
+ 95f9e90:	2b00      	cmp	r3, #0
+ 95f9e92:	d0f7      	beq.n	95f9e84 <Pr16ConditionalReminder+0x18>
+ 95f9e94:	9b04      	ldr	r3, [sp, #16]
+ 95f9e96:	3b01      	subs	r3, #1
+ 95f9e98:	2b63      	cmp	r3, #99	@ 0x63
+ 95f9e9a:	d8f3      	bhi.n	95f9e84 <Pr16ConditionalReminder+0x18>
+ 95f9e9c:	2102      	movs	r1, #2
+ 95f9e9e:	f7ff fdfe 	bl	95f9a9e <valid_moves>
+ 95f9ea2:	2800      	cmp	r0, #0
+ 95f9ea4:	d0ee      	beq.n	95f9e84 <Pr16ConditionalReminder+0x18>
+ 95f9ea6:	2103      	movs	r1, #3
+ 95f9ea8:	0028      	movs	r0, r5
+ 95f9eaa:	f7ff fdf8 	bl	95f9a9e <valid_moves>
+ 95f9eae:	2800      	cmp	r0, #0
+ 95f9eb0:	d0e8      	beq.n	95f9e84 <Pr16ConditionalReminder+0x18>
+ 95f9eb2:	2102      	movs	r1, #2
+ 95f9eb4:	0020      	movs	r0, r4
+ 95f9eb6:	f7ff fdf2 	bl	95f9a9e <valid_moves>
+ 95f9eba:	2800      	cmp	r0, #0
+ 95f9ebc:	d0e2      	beq.n	95f9e84 <Pr16ConditionalReminder+0x18>
+ 95f9ebe:	88f2      	ldrh	r2, [r6, #6]
+ 95f9ec0:	88eb      	ldrh	r3, [r5, #6]
+ 95f9ec2:	4293      	cmp	r3, r2
+ 95f9ec4:	d1de      	bne.n	95f9e84 <Pr16ConditionalReminder+0x18>
+ 95f9ec6:	88e2      	ldrh	r2, [r4, #6]
+ 95f9ec8:	429a      	cmp	r2, r3
+ 95f9eca:	d1db      	bne.n	95f9e84 <Pr16ConditionalReminder+0x18>
+ 95f9ecc:	9609      	str	r6, [sp, #36]	@ 0x24
+ 95f9ece:	2600      	movs	r6, #0
+ 95f9ed0:	940b      	str	r4, [sp, #44]	@ 0x2c
+ 95f9ed2:	0034      	movs	r4, r6
+ 95f9ed4:	950a      	str	r5, [sp, #40]	@ 0x28
+ 95f9ed6:	af09      	add	r7, sp, #36	@ 0x24
+ 95f9ed8:	00b3      	lsls	r3, r6, #2
+ 95f9eda:	58fb      	ldr	r3, [r7, r3]
+ 95f9edc:	9302      	str	r3, [sp, #8]
+ 95f9ede:	889b      	ldrh	r3, [r3, #4]
+ 95f9ee0:	9305      	str	r3, [sp, #20]
+ 95f9ee2:	0633      	lsls	r3, r6, #24
+ 95f9ee4:	0e1b      	lsrs	r3, r3, #24
+ 95f9ee6:	9303      	str	r3, [sp, #12]
+ 95f9ee8:	3b01      	subs	r3, #1
+ 95f9eea:	425a      	negs	r2, r3
+ 95f9eec:	4153      	adcs	r3, r2
+ 95f9eee:	3302      	adds	r3, #2
+ 95f9ef0:	9307      	str	r3, [sp, #28]
+ 95f9ef2:	2300      	movs	r3, #0
+ 95f9ef4:	001d      	movs	r5, r3
+ 95f9ef6:	9300      	str	r3, [sp, #0]
+ 95f9ef8:	9b05      	ldr	r3, [sp, #20]
+ 95f9efa:	42ab      	cmp	r3, r5
+ 95f9efc:	d10a      	bne.n	95f9f14 <Pr16ConditionalReminder+0xa8>
+ 95f9efe:	3601      	adds	r6, #1
+ 95f9f00:	2e03      	cmp	r6, #3
+ 95f9f02:	d1e9      	bne.n	95f9ed8 <Pr16ConditionalReminder+0x6c>
+ 95f9f04:	2300      	movs	r3, #0
+ 95f9f06:	0062      	lsls	r2, r4, #1
+ 95f9f08:	a90c      	add	r1, sp, #48	@ 0x30
+ 95f9f0a:	429a      	cmp	r2, r3
+ 95f9f0c:	d13a      	bne.n	95f9f84 <Pr16ConditionalReminder+0x118>
+ 95f9f0e:	0620      	lsls	r0, r4, #24
+ 95f9f10:	0e00      	lsrs	r0, r0, #24
+ 95f9f12:	e7b8      	b.n	95f9e86 <Pr16ConditionalReminder+0x1a>
+ 95f9f14:	9b02      	ldr	r3, [sp, #8]
+ 95f9f16:	9a00      	ldr	r2, [sp, #0]
+ 95f9f18:	681b      	ldr	r3, [r3, #0]
+ 95f9f1a:	9900      	ldr	r1, [sp, #0]
+ 95f9f1c:	189a      	adds	r2, r3, r2
+ 95f9f1e:	5c59      	ldrb	r1, [r3, r1]
+ 95f9f20:	7853      	ldrb	r3, [r2, #1]
+ 95f9f22:	021b      	lsls	r3, r3, #8
+ 95f9f24:	430b      	orrs	r3, r1
+ 95f9f26:	9301      	str	r3, [sp, #4]
+ 95f9f28:	9b03      	ldr	r3, [sp, #12]
+ 95f9f2a:	2b01      	cmp	r3, #1
+ 95f9f2c:	d103      	bne.n	95f9f36 <Pr16ConditionalReminder+0xca>
+ 95f9f2e:	7893      	ldrb	r3, [r2, #2]
+ 95f9f30:	9a04      	ldr	r2, [sp, #16]
+ 95f9f32:	4293      	cmp	r3, r2
+ 95f9f34:	d81d      	bhi.n	95f9f72 <Pr16ConditionalReminder+0x106>
+ 95f9f36:	2104      	movs	r1, #4
+ 95f9f38:	9a01      	ldr	r2, [sp, #4]
+ 95f9f3a:	9826      	ldr	r0, [sp, #152]	@ 0x98
+ 95f9f3c:	f7ff fde8 	bl	95f9b10 <contains>
+ 95f9f40:	2800      	cmp	r0, #0
+ 95f9f42:	d116      	bne.n	95f9f72 <Pr16ConditionalReminder+0x106>
+ 95f9f44:	0021      	movs	r1, r4
+ 95f9f46:	9a01      	ldr	r2, [sp, #4]
+ 95f9f48:	a80c      	add	r0, sp, #48	@ 0x30
+ 95f9f4a:	f7ff fde1 	bl	95f9b10 <contains>
+ 95f9f4e:	2800      	cmp	r0, #0
+ 95f9f50:	d10f      	bne.n	95f9f72 <Pr16ConditionalReminder+0x106>
+ 95f9f52:	2c27      	cmp	r4, #39	@ 0x27
+ 95f9f54:	d900      	bls.n	95f9f58 <Pr16ConditionalReminder+0xec>
+ 95f9f56:	e795      	b.n	95f9e84 <Pr16ConditionalReminder+0x18>
+ 95f9f58:	9b06      	ldr	r3, [sp, #24]
+ 95f9f5a:	429c      	cmp	r4, r3
+ 95f9f5c:	d300      	bcc.n	95f9f60 <Pr16ConditionalReminder+0xf4>
+ 95f9f5e:	e791      	b.n	95f9e84 <Pr16ConditionalReminder+0x18>
+ 95f9f60:	2110      	movs	r1, #16
+ 95f9f62:	aa08      	add	r2, sp, #32
+ 95f9f64:	1852      	adds	r2, r2, r1
+ 95f9f66:	9901      	ldr	r1, [sp, #4]
+ 95f9f68:	1c63      	adds	r3, r4, #1
+ 95f9f6a:	0064      	lsls	r4, r4, #1
+ 95f9f6c:	5311      	strh	r1, [r2, r4]
+ 95f9f6e:	041c      	lsls	r4, r3, #16
+ 95f9f70:	0c24      	lsrs	r4, r4, #16
+ 95f9f72:	9a07      	ldr	r2, [sp, #28]
+ 95f9f74:	4694      	mov	ip, r2
+ 95f9f76:	9b00      	ldr	r3, [sp, #0]
+ 95f9f78:	3501      	adds	r5, #1
+ 95f9f7a:	042d      	lsls	r5, r5, #16
+ 95f9f7c:	4463      	add	r3, ip
+ 95f9f7e:	9300      	str	r3, [sp, #0]
+ 95f9f80:	0c2d      	lsrs	r5, r5, #16
+ 95f9f82:	e7b9      	b.n	95f9ef8 <Pr16ConditionalReminder+0x8c>
+ 95f9f84:	5a58      	ldrh	r0, [r3, r1]
+ 95f9f86:	9d27      	ldr	r5, [sp, #156]	@ 0x9c
+ 95f9f88:	52e8      	strh	r0, [r5, r3]
+ 95f9f8a:	3302      	adds	r3, #2
+ 95f9f8c:	e7bd      	b.n	95f9f0a <Pr16ConditionalReminder+0x9e>
+
+095f9f8e <Pr16ConditionalTutorAllowed>:
+ 95f9f8e:	b51f      	push	{r0, r1, r2, r3, r4, lr}
+ 95f9f90:	001c      	movs	r4, r3
+ 95f9f92:	2b3f      	cmp	r3, #63	@ 0x3f
+ 95f9f94:	d904      	bls.n	95f9fa0 <Pr16ConditionalTutorAllowed+0x12>
+ 95f9f96:	2000      	movs	r0, #0
+ 95f9f98:	b004      	add	sp, #16
+ 95f9f9a:	bc10      	pop	{r4}
+ 95f9f9c:	bc02      	pop	{r1}
+ 95f9f9e:	4708      	bx	r1
+ 95f9fa0:	ab02      	add	r3, sp, #8
+ 95f9fa2:	9300      	str	r3, [sp, #0]
+ 95f9fa4:	2308      	movs	r3, #8
+ 95f9fa6:	f7ff fdc5 	bl	95f9b34 <Pr16ReadLearnsetConditional>
+ 95f9faa:	0003      	movs	r3, r0
+ 95f9fac:	2801      	cmp	r0, #1
+ 95f9fae:	d1f2      	bne.n	95f9f96 <Pr16ConditionalTutorAllowed+0x8>
+ 95f9fb0:	9902      	ldr	r1, [sp, #8]
+ 95f9fb2:	08e2      	lsrs	r2, r4, #3
+ 95f9fb4:	5c88      	ldrb	r0, [r1, r2]
+ 95f9fb6:	2207      	movs	r2, #7
+ 95f9fb8:	4014      	ands	r4, r2
+ 95f9fba:	4120      	asrs	r0, r4
+ 95f9fbc:	4018      	ands	r0, r3
+ 95f9fbe:	0600      	lsls	r0, r0, #24
+ 95f9fc0:	0e00      	lsrs	r0, r0, #24
+ 95f9fc2:	e7e9      	b.n	95f9f98 <Pr16ConditionalTutorAllowed+0xa>
+ 95f9fc4:	4730      	bx	r6
+ 95f9fc6:	46c0      	nop			@ (mov r8, r8)
+
+095f9fc8 <get32>:
+ 95f9fc8:	7842      	ldrb	r2, [r0, #1]
+ 95f9fca:	7803      	ldrb	r3, [r0, #0]
+ 95f9fcc:	0212      	lsls	r2, r2, #8
+ 95f9fce:	431a      	orrs	r2, r3
+ 95f9fd0:	7883      	ldrb	r3, [r0, #2]
+ 95f9fd2:	78c0      	ldrb	r0, [r0, #3]
+ 95f9fd4:	041b      	lsls	r3, r3, #16
+ 95f9fd6:	4313      	orrs	r3, r2
+ 95f9fd8:	0600      	lsls	r0, r0, #24
+ 95f9fda:	4318      	orrs	r0, r3
+ 95f9fdc:	4770      	bx	lr
+
+095f9fde <Pr16ReadCompactConditional>:
+ 95f9fde:	b5f0      	push	{r4, r5, r6, r7, lr}
+ 95f9fe0:	b087      	sub	sp, #28
+ 95f9fe2:	001f      	movs	r7, r3
+ 95f9fe4:	9b0c      	ldr	r3, [sp, #48]	@ 0x30
+ 95f9fe6:	0004      	movs	r4, r0
+ 95f9fe8:	000d      	movs	r5, r1
+ 95f9fea:	0016      	movs	r6, r2
+ 95f9fec:	2b00      	cmp	r3, #0
+ 95f9fee:	d102      	bne.n	95f9ff6 <Pr16ReadCompactConditional+0x18>
+ 95f9ff0:	2300      	movs	r3, #0
+ 95f9ff2:	9303      	str	r3, [sp, #12]
+ 95f9ff4:	e070      	b.n	95fa0d8 <Pr16ReadCompactConditional+0xfa>
+ 95f9ff6:	2300      	movs	r3, #0
+ 95f9ff8:	9a0c      	ldr	r2, [sp, #48]	@ 0x30
+ 95f9ffa:	6013      	str	r3, [r2, #0]
+ 95f9ffc:	4b70      	ldr	r3, [pc, #448]	@ (95fa1c0 <Pr16ReadCompactConditional+0x1e2>)
+ 95f9ffe:	6053      	str	r3, [r2, #4]
+ 95fa000:	2800      	cmp	r0, #0
+ 95fa002:	d0f5      	beq.n	95f9ff0 <Pr16ReadCompactConditional+0x12>
+ 95fa004:	4b6f      	ldr	r3, [pc, #444]	@ (95fa1c4 <Pr16ReadCompactConditional+0x1e6>)
+ 95fa006:	4a70      	ldr	r2, [pc, #448]	@ (95fa1c8 <Pr16ReadCompactConditional+0x1ea>)
+ 95fa008:	18cb      	adds	r3, r1, r3
+ 95fa00a:	4293      	cmp	r3, r2
+ 95fa00c:	d8f0      	bhi.n	95f9ff0 <Pr16ReadCompactConditional+0x12>
+ 95fa00e:	f7ff ffdb 	bl	95f9fc8 <get32>
+ 95fa012:	4b6e      	ldr	r3, [pc, #440]	@ (95fa1cc <Pr16ReadCompactConditional+0x1ee>)
+ 95fa014:	4298      	cmp	r0, r3
+ 95fa016:	d1eb      	bne.n	95f9ff0 <Pr16ReadCompactConditional+0x12>
+ 95fa018:	7963      	ldrb	r3, [r4, #5]
+ 95fa01a:	7922      	ldrb	r2, [r4, #4]
+ 95fa01c:	021b      	lsls	r3, r3, #8
+ 95fa01e:	4313      	orrs	r3, r2
+ 95fa020:	2b01      	cmp	r3, #1
+ 95fa022:	d1e5      	bne.n	95f9ff0 <Pr16ReadCompactConditional+0x12>
+ 95fa024:	79e3      	ldrb	r3, [r4, #7]
+ 95fa026:	79a1      	ldrb	r1, [r4, #6]
+ 95fa028:	4a69      	ldr	r2, [pc, #420]	@ (95fa1d0 <Pr16ReadCompactConditional+0x1f2>)
+ 95fa02a:	021b      	lsls	r3, r3, #8
+ 95fa02c:	430b      	orrs	r3, r1
+ 95fa02e:	4293      	cmp	r3, r2
+ 95fa030:	d1de      	bne.n	95f9ff0 <Pr16ReadCompactConditional+0x12>
+ 95fa032:	0020      	movs	r0, r4
+ 95fa034:	3008      	adds	r0, #8
+ 95fa036:	f7ff ffc7 	bl	95f9fc8 <get32>
+ 95fa03a:	2820      	cmp	r0, #32
+ 95fa03c:	d1d8      	bne.n	95f9ff0 <Pr16ReadCompactConditional+0x12>
+ 95fa03e:	0020      	movs	r0, r4
+ 95fa040:	300c      	adds	r0, #12
+ 95fa042:	f7ff ffc1 	bl	95f9fc8 <get32>
+ 95fa046:	23d5      	movs	r3, #213	@ 0xd5
+ 95fa048:	00db      	lsls	r3, r3, #3
+ 95fa04a:	4298      	cmp	r0, r3
+ 95fa04c:	d1d0      	bne.n	95f9ff0 <Pr16ReadCompactConditional+0x12>
+ 95fa04e:	0020      	movs	r0, r4
+ 95fa050:	3010      	adds	r0, #16
+ 95fa052:	f7ff ffb9 	bl	95f9fc8 <get32>
+ 95fa056:	4b5f      	ldr	r3, [pc, #380]	@ (95fa1d4 <Pr16ReadCompactConditional+0x1f6>)
+ 95fa058:	4298      	cmp	r0, r3
+ 95fa05a:	d1c9      	bne.n	95f9ff0 <Pr16ReadCompactConditional+0x12>
+ 95fa05c:	0020      	movs	r0, r4
+ 95fa05e:	3014      	adds	r0, #20
+ 95fa060:	f7ff ffb2 	bl	95f9fc8 <get32>
+ 95fa064:	42a8      	cmp	r0, r5
+ 95fa066:	d1c3      	bne.n	95f9ff0 <Pr16ReadCompactConditional+0x12>
+ 95fa068:	0020      	movs	r0, r4
+ 95fa06a:	3018      	adds	r0, #24
+ 95fa06c:	f7ff ffac 	bl	95f9fc8 <get32>
+ 95fa070:	23c4      	movs	r3, #196	@ 0xc4
+ 95fa072:	33ff      	adds	r3, #255	@ 0xff
+ 95fa074:	4298      	cmp	r0, r3
+ 95fa076:	d1bb      	bne.n	95f9ff0 <Pr16ReadCompactConditional+0x12>
+ 95fa078:	0020      	movs	r0, r4
+ 95fa07a:	301c      	adds	r0, #28
+ 95fa07c:	f7ff ffa4 	bl	95f9fc8 <get32>
+ 95fa080:	2800      	cmp	r0, #0
+ 95fa082:	d1b5      	bne.n	95f9ff0 <Pr16ReadCompactConditional+0x12>
+ 95fa084:	4b54      	ldr	r3, [pc, #336]	@ (95fa1d8 <Pr16ReadCompactConditional+0x1fa>)
+ 95fa086:	5ce3      	ldrb	r3, [r4, r3]
+ 95fa088:	2b00      	cmp	r3, #0
+ 95fa08a:	d1b1      	bne.n	95f9ff0 <Pr16ReadCompactConditional+0x12>
+ 95fa08c:	4b53      	ldr	r3, [pc, #332]	@ (95fa1dc <Pr16ReadCompactConditional+0x1fe>)
+ 95fa08e:	5ce2      	ldrb	r2, [r4, r3]
+ 95fa090:	18e3      	adds	r3, r4, r3
+ 95fa092:	785b      	ldrb	r3, [r3, #1]
+ 95fa094:	021b      	lsls	r3, r3, #8
+ 95fa096:	4313      	orrs	r3, r2
+ 95fa098:	d1aa      	bne.n	95f9ff0 <Pr16ReadCompactConditional+0x12>
+ 95fa09a:	0020      	movs	r0, r4
+ 95fa09c:	aa02      	add	r2, sp, #8
+ 95fa09e:	330e      	adds	r3, #14
+ 95fa0a0:	189b      	adds	r3, r3, r2
+ 95fa0a2:	9300      	str	r3, [sp, #0]
+ 95fa0a4:	0032      	movs	r2, r6
+ 95fa0a6:	003b      	movs	r3, r7
+ 95fa0a8:	4949      	ldr	r1, [pc, #292]	@ (95fa1d0 <Pr16ReadCompactConditional+0x1f2>)
+ 95fa0aa:	4e4d      	ldr	r6, [pc, #308]	@ (95fa1e0 <Pr16ReadCompactConditional+0x202>)
+ 95fa0ac:	3020      	adds	r0, #32
+ 95fa0ae:	f000 f8a3 	bl	95fa1f8 <Pr16ReadCompactConditional+0x21a>
+ 95fa0b2:	9003      	str	r0, [sp, #12]
+ 95fa0b4:	2800      	cmp	r0, #0
+ 95fa0b6:	d09b      	beq.n	95f9ff0 <Pr16ReadCompactConditional+0x12>
+ 95fa0b8:	ab02      	add	r3, sp, #8
+ 95fa0ba:	89db      	ldrh	r3, [r3, #14]
+ 95fa0bc:	469c      	mov	ip, r3
+ 95fa0be:	4b49      	ldr	r3, [pc, #292]	@ (95fa1e4 <Pr16ReadCompactConditional+0x206>)
+ 95fa0c0:	459c      	cmp	ip, r3
+ 95fa0c2:	d895      	bhi.n	95f9ff0 <Pr16ReadCompactConditional+0x12>
+ 95fa0c4:	2f06      	cmp	r7, #6
+ 95fa0c6:	d029      	beq.n	95fa11c <Pr16ReadCompactConditional+0x13e>
+ 95fa0c8:	d80b      	bhi.n	95fa0e2 <Pr16ReadCompactConditional+0x104>
+ 95fa0ca:	1e3a      	subs	r2, r7, #0
+ 95fa0cc:	d00e      	beq.n	95fa0ec <Pr16ReadCompactConditional+0x10e>
+ 95fa0ce:	2f01      	cmp	r7, #1
+ 95fa0d0:	d00c      	beq.n	95fa0ec <Pr16ReadCompactConditional+0x10e>
+ 95fa0d2:	2305      	movs	r3, #5
+ 95fa0d4:	2804      	cmp	r0, #4
+ 95fa0d6:	d18c      	bne.n	95f9ff2 <Pr16ReadCompactConditional+0x14>
+ 95fa0d8:	9803      	ldr	r0, [sp, #12]
+ 95fa0da:	b007      	add	sp, #28
+ 95fa0dc:	bcf0      	pop	{r4, r5, r6, r7}
+ 95fa0de:	bc02      	pop	{r1}
+ 95fa0e0:	4708      	bx	r1
+ 95fa0e2:	2f07      	cmp	r7, #7
+ 95fa0e4:	d01c      	beq.n	95fa120 <Pr16ReadCompactConditional+0x142>
+ 95fa0e6:	2204      	movs	r2, #4
+ 95fa0e8:	2f08      	cmp	r7, #8
+ 95fa0ea:	d1f2      	bne.n	95fa0d2 <Pr16ReadCompactConditional+0xf4>
+ 95fa0ec:	2305      	movs	r3, #5
+ 95fa0ee:	0019      	movs	r1, r3
+ 95fa0f0:	4663      	mov	r3, ip
+ 95fa0f2:	434b      	muls	r3, r1
+ 95fa0f4:	189b      	adds	r3, r3, r2
+ 95fa0f6:	22d5      	movs	r2, #213	@ 0xd5
+ 95fa0f8:	0092      	lsls	r2, r2, #2
+ 95fa0fa:	189b      	adds	r3, r3, r2
+ 95fa0fc:	005b      	lsls	r3, r3, #1
+ 95fa0fe:	5d1a      	ldrb	r2, [r3, r4]
+ 95fa100:	18e3      	adds	r3, r4, r3
+ 95fa102:	785b      	ldrb	r3, [r3, #1]
+ 95fa104:	021b      	lsls	r3, r3, #8
+ 95fa106:	4313      	orrs	r3, r2
+ 95fa108:	2801      	cmp	r0, #1
+ 95fa10a:	d00b      	beq.n	95fa124 <Pr16ReadCompactConditional+0x146>
+ 95fa10c:	4a36      	ldr	r2, [pc, #216]	@ (95fa1e8 <Pr16ReadCompactConditional+0x20a>)
+ 95fa10e:	4293      	cmp	r3, r2
+ 95fa110:	d000      	beq.n	95fa114 <Pr16ReadCompactConditional+0x136>
+ 95fa112:	e76d      	b.n	95f9ff0 <Pr16ReadCompactConditional+0x12>
+ 95fa114:	9b0c      	ldr	r3, [sp, #48]	@ 0x30
+ 95fa116:	4662      	mov	r2, ip
+ 95fa118:	80da      	strh	r2, [r3, #6]
+ 95fa11a:	e7dd      	b.n	95fa0d8 <Pr16ReadCompactConditional+0xfa>
+ 95fa11c:	2202      	movs	r2, #2
+ 95fa11e:	e7e5      	b.n	95fa0ec <Pr16ReadCompactConditional+0x10e>
+ 95fa120:	2203      	movs	r2, #3
+ 95fa122:	e7e3      	b.n	95fa0ec <Pr16ReadCompactConditional+0x10e>
+ 95fa124:	4a31      	ldr	r2, [pc, #196]	@ (95fa1ec <Pr16ReadCompactConditional+0x20e>)
+ 95fa126:	4293      	cmp	r3, r2
+ 95fa128:	d800      	bhi.n	95fa12c <Pr16ReadCompactConditional+0x14e>
+ 95fa12a:	e761      	b.n	95f9ff0 <Pr16ReadCompactConditional+0x12>
+ 95fa12c:	001e      	movs	r6, r3
+ 95fa12e:	4006      	ands	r6, r0
+ 95fa130:	4203      	tst	r3, r0
+ 95fa132:	d000      	beq.n	95fa136 <Pr16ReadCompactConditional+0x158>
+ 95fa134:	e75c      	b.n	95f9ff0 <Pr16ReadCompactConditional+0x12>
+ 95fa136:	42ab      	cmp	r3, r5
+ 95fa138:	d900      	bls.n	95fa13c <Pr16ReadCompactConditional+0x15e>
+ 95fa13a:	e759      	b.n	95f9ff0 <Pr16ReadCompactConditional+0x12>
+ 95fa13c:	1aed      	subs	r5, r5, r3
+ 95fa13e:	2d01      	cmp	r5, #1
+ 95fa140:	d800      	bhi.n	95fa144 <Pr16ReadCompactConditional+0x166>
+ 95fa142:	e755      	b.n	95f9ff0 <Pr16ReadCompactConditional+0x12>
+ 95fa144:	18e0      	adds	r0, r4, r3
+ 95fa146:	7841      	ldrb	r1, [r0, #1]
+ 95fa148:	5ce2      	ldrb	r2, [r4, r3]
+ 95fa14a:	0209      	lsls	r1, r1, #8
+ 95fa14c:	4311      	orrs	r1, r2
+ 95fa14e:	2f08      	cmp	r7, #8
+ 95fa150:	d11f      	bne.n	95fa192 <Pr16ReadCompactConditional+0x1b4>
+ 95fa152:	4a27      	ldr	r2, [pc, #156]	@ (95fa1f0 <Pr16ReadCompactConditional+0x212>)
+ 95fa154:	4291      	cmp	r1, r2
+ 95fa156:	d000      	beq.n	95fa15a <Pr16ReadCompactConditional+0x17c>
+ 95fa158:	e74a      	b.n	95f9ff0 <Pr16ReadCompactConditional+0x12>
+ 95fa15a:	2210      	movs	r2, #16
+ 95fa15c:	2140      	movs	r1, #64	@ 0x40
+ 95fa15e:	3d02      	subs	r5, #2
+ 95fa160:	4295      	cmp	r5, r2
+ 95fa162:	d200      	bcs.n	95fa166 <Pr16ReadCompactConditional+0x188>
+ 95fa164:	e744      	b.n	95f9ff0 <Pr16ReadCompactConditional+0x12>
+ 95fa166:	2f08      	cmp	r7, #8
+ 95fa168:	d018      	beq.n	95fa19c <Pr16ReadCompactConditional+0x1be>
+ 95fa16a:	1c98      	adds	r0, r3, #2
+ 95fa16c:	4d21      	ldr	r5, [pc, #132]	@ (95fa1f4 <Pr16ReadCompactConditional+0x216>)
+ 95fa16e:	1820      	adds	r0, r4, r0
+ 95fa170:	42b1      	cmp	r1, r6
+ 95fa172:	d01e      	beq.n	95fa1b2 <Pr16ReadCompactConditional+0x1d4>
+ 95fa174:	7842      	ldrb	r2, [r0, #1]
+ 95fa176:	7807      	ldrb	r7, [r0, #0]
+ 95fa178:	0212      	lsls	r2, r2, #8
+ 95fa17a:	433a      	orrs	r2, r7
+ 95fa17c:	3a01      	subs	r2, #1
+ 95fa17e:	0412      	lsls	r2, r2, #16
+ 95fa180:	0c12      	lsrs	r2, r2, #16
+ 95fa182:	3002      	adds	r0, #2
+ 95fa184:	42aa      	cmp	r2, r5
+ 95fa186:	d900      	bls.n	95fa18a <Pr16ReadCompactConditional+0x1ac>
+ 95fa188:	e732      	b.n	95f9ff0 <Pr16ReadCompactConditional+0x12>
+ 95fa18a:	3601      	adds	r6, #1
+ 95fa18c:	0436      	lsls	r6, r6, #16
+ 95fa18e:	0c36      	lsrs	r6, r6, #16
+ 95fa190:	e7ee      	b.n	95fa170 <Pr16ReadCompactConditional+0x192>
+ 95fa192:	2932      	cmp	r1, #50	@ 0x32
+ 95fa194:	d900      	bls.n	95fa198 <Pr16ReadCompactConditional+0x1ba>
+ 95fa196:	e72b      	b.n	95f9ff0 <Pr16ReadCompactConditional+0x12>
+ 95fa198:	004a      	lsls	r2, r1, #1
+ 95fa19a:	e7e0      	b.n	95fa15e <Pr16ReadCompactConditional+0x180>
+ 95fa19c:	0002      	movs	r2, r0
+ 95fa19e:	0020      	movs	r0, r4
+ 95fa1a0:	3008      	adds	r0, #8
+ 95fa1a2:	18c0      	adds	r0, r0, r3
+ 95fa1a4:	7a95      	ldrb	r5, [r2, #10]
+ 95fa1a6:	2d00      	cmp	r5, #0
+ 95fa1a8:	d000      	beq.n	95fa1ac <Pr16ReadCompactConditional+0x1ce>
+ 95fa1aa:	e721      	b.n	95f9ff0 <Pr16ReadCompactConditional+0x12>
+ 95fa1ac:	3201      	adds	r2, #1
+ 95fa1ae:	4282      	cmp	r2, r0
+ 95fa1b0:	d1f8      	bne.n	95fa1a4 <Pr16ReadCompactConditional+0x1c6>
+ 95fa1b2:	3302      	adds	r3, #2
+ 95fa1b4:	18e4      	adds	r4, r4, r3
+ 95fa1b6:	9b0c      	ldr	r3, [sp, #48]	@ 0x30
+ 95fa1b8:	601c      	str	r4, [r3, #0]
+ 95fa1ba:	8099      	strh	r1, [r3, #4]
+ 95fa1bc:	e7ab      	b.n	95fa116 <Pr16ReadCompactConditional+0x138>
+ 95fa1be:	46c0      	nop			@ (mov r8, r8)
+ 95fa1c0:	ffff0000 	.word	0xffff0000
+ 95fa1c4:	ffffb810 	.word	0xffffb810
+ 95fa1c8:	0000b80e 	.word	0x0000b80e
+ 95fa1cc:	32434c50 	.word	0x32434c50
+ 95fa1d0:	00000687 	.word	0x00000687
+ 95fa1d4:	000047f0 	.word	0x000047f0
+ 95fa1d8:	000006a7 	.word	0x000006a7
+ 95fa1dc:	000047ee 	.word	0x000047ee
+ 95fa1e0:	095f9465 	.word	0x095f9465
+ 95fa1e4:	00000686 	.word	0x00000686
+ 95fa1e8:	0000ffff 	.word	0x0000ffff
+ 95fa1ec:	000047ef 	.word	0x000047ef
+ 95fa1f0:	00008040 	.word	0x00008040
+ 95fa1f4:	00000425 	.word	0x00000425
+ 95fa1f8:	4730      	bx	r6
+ 95fa1fa:	46c0      	nop			@ (mov r8, r8)
+
+095fa1fc <known_moves>:
+ 95fa1fc:	b570      	push	{r4, r5, r6, lr}
+ 95fa1fe:	0006      	movs	r6, r0
+ 95fa200:	000d      	movs	r5, r1
+ 95fa202:	2400      	movs	r4, #0
+ 95fa204:	0021      	movs	r1, r4
+ 95fa206:	4b07      	ldr	r3, [pc, #28]	@ (95fa224 <known_moves+0x28>)
+ 95fa208:	2200      	movs	r2, #0
+ 95fa20a:	0030      	movs	r0, r6
+ 95fa20c:	310d      	adds	r1, #13
+ 95fa20e:	f000 f96f 	bl	95fa4f0 <Pr16_GameGetConditionalRelearnerMoves+0xe0>
+ 95fa212:	0063      	lsls	r3, r4, #1
+ 95fa214:	3401      	adds	r4, #1
+ 95fa216:	52e8      	strh	r0, [r5, r3]
+ 95fa218:	2c04      	cmp	r4, #4
+ 95fa21a:	d1f3      	bne.n	95fa204 <known_moves+0x8>
+ 95fa21c:	bc70      	pop	{r4, r5, r6}
+ 95fa21e:	bc01      	pop	{r0}
+ 95fa220:	4700      	bx	r0
+ 95fa222:	46c0      	nop			@ (mov r8, r8)
+ 95fa224:	0803f355 	.word	0x0803f355
+
+095fa228 <conditional>:
+ 95fa228:	b513      	push	{r0, r1, r4, lr}
+ 95fa22a:	4c07      	ldr	r4, [pc, #28]	@ (95fa248 <conditional+0x20>)
+ 95fa22c:	000b      	movs	r3, r1
+ 95fa22e:	9200      	str	r2, [sp, #0]
+ 95fa230:	4906      	ldr	r1, [pc, #24]	@ (95fa24c <conditional+0x24>)
+ 95fa232:	0002      	movs	r2, r0
+ 95fa234:	0020      	movs	r0, r4
+ 95fa236:	f7ff fed2 	bl	95f9fde <Pr16ReadCompactConditional>
+ 95fa23a:	3801      	subs	r0, #1
+ 95fa23c:	4243      	negs	r3, r0
+ 95fa23e:	4158      	adcs	r0, r3
+ 95fa240:	bc16      	pop	{r1, r2, r4}
+ 95fa242:	bc02      	pop	{r1}
+ 95fa244:	4708      	bx	r1
+ 95fa246:	46c0      	nop			@ (mov r8, r8)
+ 95fa248:	09ff771c 	.word	0x09ff771c
+ 95fa24c:	00007926 	.word	0x00007926
+
+095fa250 <Pr16_GameAfterEvolution>:
+ 95fa250:	b5f0      	push	{r4, r5, r6, r7, lr}
+ 95fa252:	b08b      	sub	sp, #44	@ 0x2c
+ 95fa254:	1e04      	subs	r4, r0, #0
+ 95fa256:	9103      	str	r1, [sp, #12]
+ 95fa258:	d104      	bne.n	95fa264 <Pr16_GameAfterEvolution+0x14>
+ 95fa25a:	2000      	movs	r0, #0
+ 95fa25c:	b00b      	add	sp, #44	@ 0x2c
+ 95fa25e:	bcf0      	pop	{r4, r5, r6, r7}
+ 95fa260:	bc02      	pop	{r1}
+ 95fa262:	4708      	bx	r1
+ 95fa264:	2200      	movs	r2, #0
+ 95fa266:	212d      	movs	r1, #45	@ 0x2d
+ 95fa268:	4f1d      	ldr	r7, [pc, #116]	@ (95fa2e0 <Pr16_GameAfterEvolution+0x90>)
+ 95fa26a:	f000 f943 	bl	95fa4f4 <Pr16_GameGetConditionalRelearnerMoves+0xe4>
+ 95fa26e:	1e06      	subs	r6, r0, #0
+ 95fa270:	d1f3      	bne.n	95fa25a <Pr16_GameAfterEvolution+0xa>
+ 95fa272:	0002      	movs	r2, r0
+ 95fa274:	210b      	movs	r1, #11
+ 95fa276:	0020      	movs	r0, r4
+ 95fa278:	f000 f93c 	bl	95fa4f4 <Pr16_GameGetConditionalRelearnerMoves+0xe4>
+ 95fa27c:	0405      	lsls	r5, r0, #16
+ 95fa27e:	0c2d      	lsrs	r5, r5, #16
+ 95fa280:	2101      	movs	r1, #1
+ 95fa282:	0028      	movs	r0, r5
+ 95fa284:	aa06      	add	r2, sp, #24
+ 95fa286:	f7ff ffcf 	bl	95fa228 <conditional>
+ 95fa28a:	2800      	cmp	r0, #0
+ 95fa28c:	d0e5      	beq.n	95fa25a <Pr16_GameAfterEvolution+0xa>
+ 95fa28e:	ab08      	add	r3, sp, #32
+ 95fa290:	002a      	movs	r2, r5
+ 95fa292:	9300      	str	r3, [sp, #0]
+ 95fa294:	4913      	ldr	r1, [pc, #76]	@ (95fa2e4 <Pr16_GameAfterEvolution+0x94>)
+ 95fa296:	2303      	movs	r3, #3
+ 95fa298:	4813      	ldr	r0, [pc, #76]	@ (95fa2e8 <Pr16_GameAfterEvolution+0x98>)
+ 95fa29a:	4d14      	ldr	r5, [pc, #80]	@ (95fa2ec <Pr16_GameAfterEvolution+0x9c>)
+ 95fa29c:	f000 f929 	bl	95fa4f2 <Pr16_GameGetConditionalRelearnerMoves+0xe2>
+ 95fa2a0:	2801      	cmp	r0, #1
+ 95fa2a2:	d1da      	bne.n	95fa25a <Pr16_GameAfterEvolution+0xa>
+ 95fa2a4:	0032      	movs	r2, r6
+ 95fa2a6:	2138      	movs	r1, #56	@ 0x38
+ 95fa2a8:	0020      	movs	r0, r4
+ 95fa2aa:	f000 f923 	bl	95fa4f4 <Pr16_GameGetConditionalRelearnerMoves+0xe4>
+ 95fa2ae:	250f      	movs	r5, #15
+ 95fa2b0:	4e0f      	ldr	r6, [pc, #60]	@ (95fa2f0 <Pr16_GameAfterEvolution+0xa0>)
+ 95fa2b2:	aa02      	add	r2, sp, #8
+ 95fa2b4:	7833      	ldrb	r3, [r6, #0]
+ 95fa2b6:	18ad      	adds	r5, r5, r2
+ 95fa2b8:	0602      	lsls	r2, r0, #24
+ 95fa2ba:	702b      	strb	r3, [r5, #0]
+ 95fa2bc:	a908      	add	r1, sp, #32
+ 95fa2be:	9b03      	ldr	r3, [sp, #12]
+ 95fa2c0:	9500      	str	r5, [sp, #0]
+ 95fa2c2:	0e12      	lsrs	r2, r2, #24
+ 95fa2c4:	a806      	add	r0, sp, #24
+ 95fa2c6:	f7ff fd88 	bl	95f9dda <Pr16ConditionalEvolutionNext>
+ 95fa2ca:	782b      	ldrb	r3, [r5, #0]
+ 95fa2cc:	1e01      	subs	r1, r0, #0
+ 95fa2ce:	7033      	strb	r3, [r6, #0]
+ 95fa2d0:	d0c3      	beq.n	95fa25a <Pr16_GameAfterEvolution+0xa>
+ 95fa2d2:	4b08      	ldr	r3, [pc, #32]	@ (95fa2f4 <Pr16_GameAfterEvolution+0xa4>)
+ 95fa2d4:	8018      	strh	r0, [r3, #0]
+ 95fa2d6:	0020      	movs	r0, r4
+ 95fa2d8:	4b07      	ldr	r3, [pc, #28]	@ (95fa2f8 <Pr16_GameAfterEvolution+0xa8>)
+ 95fa2da:	f000 f909 	bl	95fa4f0 <Pr16_GameGetConditionalRelearnerMoves+0xe0>
+ 95fa2de:	e7bd      	b.n	95fa25c <Pr16_GameAfterEvolution+0xc>
+ 95fa2e0:	0803f355 	.word	0x0803f355
+ 95fa2e4:	0001a5e8 	.word	0x0001a5e8
+ 95fa2e8:	095dee7c 	.word	0x095dee7c
+ 95fa2ec:	095f94d3 	.word	0x095f94d3
+ 95fa2f0:	02023f88 	.word	0x02023f88
+ 95fa2f4:	02023f82 	.word	0x02023f82
+ 95fa2f8:	0803e009 	.word	0x0803e009
+
+095fa2fc <Pr16_GameGetEggMoves>:
+ 95fa2fc:	b51f      	push	{r0, r1, r2, r3, r4, lr}
+ 95fa2fe:	000c      	movs	r4, r1
+ 95fa300:	2800      	cmp	r0, #0
+ 95fa302:	d104      	bne.n	95fa30e <Pr16_GameGetEggMoves+0x12>
+ 95fa304:	2000      	movs	r0, #0
+ 95fa306:	b004      	add	sp, #16
+ 95fa308:	bc10      	pop	{r4}
+ 95fa30a:	bc02      	pop	{r1}
+ 95fa30c:	4708      	bx	r1
+ 95fa30e:	2900      	cmp	r1, #0
+ 95fa310:	d0f8      	beq.n	95fa304 <Pr16_GameGetEggMoves+0x8>
+ 95fa312:	2200      	movs	r2, #0
+ 95fa314:	210b      	movs	r1, #11
+ 95fa316:	4b0a      	ldr	r3, [pc, #40]	@ (95fa340 <Pr16_GameGetEggMoves+0x44>)
+ 95fa318:	f000 f8ea 	bl	95fa4f0 <Pr16_GameGetConditionalRelearnerMoves+0xe0>
+ 95fa31c:	0400      	lsls	r0, r0, #16
+ 95fa31e:	2100      	movs	r1, #0
+ 95fa320:	0c00      	lsrs	r0, r0, #16
+ 95fa322:	aa02      	add	r2, sp, #8
+ 95fa324:	f7ff ff80 	bl	95fa228 <conditional>
+ 95fa328:	2800      	cmp	r0, #0
+ 95fa32a:	d0eb      	beq.n	95fa304 <Pr16_GameGetEggMoves+0x8>
+ 95fa32c:	2332      	movs	r3, #50	@ 0x32
+ 95fa32e:	2200      	movs	r2, #0
+ 95fa330:	9300      	str	r3, [sp, #0]
+ 95fa332:	0011      	movs	r1, r2
+ 95fa334:	0023      	movs	r3, r4
+ 95fa336:	a802      	add	r0, sp, #8
+ 95fa338:	f7ff fcfa 	bl	95f9d30 <Pr16ConditionalList>
+ 95fa33c:	e7e3      	b.n	95fa306 <Pr16_GameGetEggMoves+0xa>
+ 95fa33e:	46c0      	nop			@ (mov r8, r8)
+ 95fa340:	0803f355 	.word	0x0803f355
+
+095fa344 <Pr16_GameGetAllEggMoves>:
+ 95fa344:	b5f0      	push	{r4, r5, r6, r7, lr}
+ 95fa346:	b0b9      	sub	sp, #228	@ 0xe4
+ 95fa348:	0006      	movs	r6, r0
+ 95fa34a:	0014      	movs	r4, r2
+ 95fa34c:	9102      	str	r1, [sp, #8]
+ 95fa34e:	2800      	cmp	r0, #0
+ 95fa350:	d105      	bne.n	95fa35e <Pr16_GameGetAllEggMoves+0x1a>
+ 95fa352:	2400      	movs	r4, #0
+ 95fa354:	0020      	movs	r0, r4
+ 95fa356:	b039      	add	sp, #228	@ 0xe4
+ 95fa358:	bcf0      	pop	{r4, r5, r6, r7}
+ 95fa35a:	bc02      	pop	{r1}
+ 95fa35c:	4708      	bx	r1
+ 95fa35e:	9b02      	ldr	r3, [sp, #8]
+ 95fa360:	2b00      	cmp	r3, #0
+ 95fa362:	d0f6      	beq.n	95fa352 <Pr16_GameGetAllEggMoves+0xe>
+ 95fa364:	4b29      	ldr	r3, [pc, #164]	@ (95fa40c <Pr16_GameGetAllEggMoves+0xc8>)
+ 95fa366:	2200      	movs	r2, #0
+ 95fa368:	210b      	movs	r1, #11
+ 95fa36a:	f000 f8c1 	bl	95fa4f0 <Pr16_GameGetConditionalRelearnerMoves+0xe0>
+ 95fa36e:	1e63      	subs	r3, r4, #1
+ 95fa370:	419c      	sbcs	r4, r3
+ 95fa372:	0405      	lsls	r5, r0, #16
+ 95fa374:	a909      	add	r1, sp, #36	@ 0x24
+ 95fa376:	0030      	movs	r0, r6
+ 95fa378:	f7ff ff40 	bl	95fa1fc <known_moves>
+ 95fa37c:	00a3      	lsls	r3, r4, #2
+ 95fa37e:	2400      	movs	r4, #0
+ 95fa380:	0026      	movs	r6, r4
+ 95fa382:	0021      	movs	r1, r4
+ 95fa384:	9304      	str	r3, [sp, #16]
+ 95fa386:	0c2d      	lsrs	r5, r5, #16
+ 95fa388:	0028      	movs	r0, r5
+ 95fa38a:	aa07      	add	r2, sp, #28
+ 95fa38c:	f7ff ff4c 	bl	95fa228 <conditional>
+ 95fa390:	2800      	cmp	r0, #0
+ 95fa392:	d0de      	beq.n	95fa352 <Pr16_GameGetAllEggMoves+0xe>
+ 95fa394:	2332      	movs	r3, #50	@ 0x32
+ 95fa396:	9a04      	ldr	r2, [sp, #16]
+ 95fa398:	9300      	str	r3, [sp, #0]
+ 95fa39a:	a909      	add	r1, sp, #36	@ 0x24
+ 95fa39c:	ab1f      	add	r3, sp, #124	@ 0x7c
+ 95fa39e:	a807      	add	r0, sp, #28
+ 95fa3a0:	f7ff fcc6 	bl	95f9d30 <Pr16ConditionalList>
+ 95fa3a4:	2300      	movs	r3, #0
+ 95fa3a6:	9005      	str	r0, [sp, #20]
+ 95fa3a8:	aa1f      	add	r2, sp, #124	@ 0x7c
+ 95fa3aa:	a80b      	add	r0, sp, #44	@ 0x2c
+ 95fa3ac:	9905      	ldr	r1, [sp, #20]
+ 95fa3ae:	428b      	cmp	r3, r1
+ 95fa3b0:	d10e      	bne.n	95fa3d0 <Pr16_GameGetAllEggMoves+0x8c>
+ 95fa3b2:	2107      	movs	r1, #7
+ 95fa3b4:	2e01      	cmp	r6, #1
+ 95fa3b6:	d109      	bne.n	95fa3cc <Pr16_GameGetAllEggMoves+0x88>
+ 95fa3b8:	2300      	movs	r3, #0
+ 95fa3ba:	0062      	lsls	r2, r4, #1
+ 95fa3bc:	a90b      	add	r1, sp, #44	@ 0x2c
+ 95fa3be:	4293      	cmp	r3, r2
+ 95fa3c0:	d0c8      	beq.n	95fa354 <Pr16_GameGetAllEggMoves+0x10>
+ 95fa3c2:	5a58      	ldrh	r0, [r3, r1]
+ 95fa3c4:	9d02      	ldr	r5, [sp, #8]
+ 95fa3c6:	52e8      	strh	r0, [r5, r3]
+ 95fa3c8:	3302      	adds	r3, #2
+ 95fa3ca:	e7f8      	b.n	95fa3be <Pr16_GameGetAllEggMoves+0x7a>
+ 95fa3cc:	2601      	movs	r6, #1
+ 95fa3ce:	e7db      	b.n	95fa388 <Pr16_GameGetAllEggMoves+0x44>
+ 95fa3d0:	2100      	movs	r1, #0
+ 95fa3d2:	060f      	lsls	r7, r1, #24
+ 95fa3d4:	0e3f      	lsrs	r7, r7, #24
+ 95fa3d6:	42bc      	cmp	r4, r7
+ 95fa3d8:	d805      	bhi.n	95fa3e6 <Pr16_GameGetAllEggMoves+0xa2>
+ 95fa3da:	d00e      	beq.n	95fa3fa <Pr16_GameGetAllEggMoves+0xb6>
+ 95fa3dc:	3301      	adds	r3, #1
+ 95fa3de:	061b      	lsls	r3, r3, #24
+ 95fa3e0:	0e1b      	lsrs	r3, r3, #24
+ 95fa3e2:	3202      	adds	r2, #2
+ 95fa3e4:	e7e2      	b.n	95fa3ac <Pr16_GameGetAllEggMoves+0x68>
+ 95fa3e6:	004f      	lsls	r7, r1, #1
+ 95fa3e8:	5a3f      	ldrh	r7, [r7, r0]
+ 95fa3ea:	9703      	str	r7, [sp, #12]
+ 95fa3ec:	8817      	ldrh	r7, [r2, #0]
+ 95fa3ee:	46bc      	mov	ip, r7
+ 95fa3f0:	9f03      	ldr	r7, [sp, #12]
+ 95fa3f2:	3101      	adds	r1, #1
+ 95fa3f4:	45bc      	cmp	ip, r7
+ 95fa3f6:	d1ec      	bne.n	95fa3d2 <Pr16_GameGetAllEggMoves+0x8e>
+ 95fa3f8:	e7f0      	b.n	95fa3dc <Pr16_GameGetAllEggMoves+0x98>
+ 95fa3fa:	2c28      	cmp	r4, #40	@ 0x28
+ 95fa3fc:	d0a9      	beq.n	95fa352 <Pr16_GameGetAllEggMoves+0xe>
+ 95fa3fe:	8817      	ldrh	r7, [r2, #0]
+ 95fa400:	1c61      	adds	r1, r4, #1
+ 95fa402:	0064      	lsls	r4, r4, #1
+ 95fa404:	5227      	strh	r7, [r4, r0]
+ 95fa406:	060c      	lsls	r4, r1, #24
+ 95fa408:	0e24      	lsrs	r4, r4, #24
+ 95fa40a:	e7e7      	b.n	95fa3dc <Pr16_GameGetAllEggMoves+0x98>
+ 95fa40c:	0803f355 	.word	0x0803f355
+
+095fa410 <Pr16_GameGetConditionalRelearnerMoves>:
+ 95fa410:	b5f0      	push	{r4, r5, r6, r7, lr}
+ 95fa412:	0004      	movs	r4, r0
+ 95fa414:	000f      	movs	r7, r1
+ 95fa416:	b08d      	sub	sp, #52	@ 0x34
+ 95fa418:	2800      	cmp	r0, #0
+ 95fa41a:	d104      	bne.n	95fa426 <Pr16_GameGetConditionalRelearnerMoves+0x16>
+ 95fa41c:	2000      	movs	r0, #0
+ 95fa41e:	b00d      	add	sp, #52	@ 0x34
+ 95fa420:	bcf0      	pop	{r4, r5, r6, r7}
+ 95fa422:	bc02      	pop	{r1}
+ 95fa424:	4708      	bx	r1
+ 95fa426:	2900      	cmp	r1, #0
+ 95fa428:	d0f8      	beq.n	95fa41c <Pr16_GameGetConditionalRelearnerMoves+0xc>
+ 95fa42a:	2200      	movs	r2, #0
+ 95fa42c:	212d      	movs	r1, #45	@ 0x2d
+ 95fa42e:	4d29      	ldr	r5, [pc, #164]	@ (95fa4d4 <Pr16_GameGetConditionalRelearnerMoves+0xc4>)
+ 95fa430:	f000 f85f 	bl	95fa4f2 <Pr16_GameGetConditionalRelearnerMoves+0xe2>
+ 95fa434:	1e02      	subs	r2, r0, #0
+ 95fa436:	d1f1      	bne.n	95fa41c <Pr16_GameGetConditionalRelearnerMoves+0xc>
+ 95fa438:	210b      	movs	r1, #11
+ 95fa43a:	0020      	movs	r0, r4
+ 95fa43c:	f000 f859 	bl	95fa4f2 <Pr16_GameGetConditionalRelearnerMoves+0xe2>
+ 95fa440:	0405      	lsls	r5, r0, #16
+ 95fa442:	0c2d      	lsrs	r5, r5, #16
+ 95fa444:	2101      	movs	r1, #1
+ 95fa446:	0028      	movs	r0, r5
+ 95fa448:	aa04      	add	r2, sp, #16
+ 95fa44a:	f7ff feed 	bl	95fa228 <conditional>
+ 95fa44e:	2800      	cmp	r0, #0
+ 95fa450:	d0e4      	beq.n	95fa41c <Pr16_GameGetConditionalRelearnerMoves+0xc>
+ 95fa452:	4b21      	ldr	r3, [pc, #132]	@ (95fa4d8 <Pr16_GameGetConditionalRelearnerMoves+0xc8>)
+ 95fa454:	781e      	ldrb	r6, [r3, #0]
+ 95fa456:	2e01      	cmp	r6, #1
+ 95fa458:	d105      	bne.n	95fa466 <Pr16_GameGetConditionalRelearnerMoves+0x56>
+ 95fa45a:	0032      	movs	r2, r6
+ 95fa45c:	0039      	movs	r1, r7
+ 95fa45e:	0020      	movs	r0, r4
+ 95fa460:	f7ff ff70 	bl	95fa344 <Pr16_GameGetAllEggMoves>
+ 95fa464:	e7db      	b.n	95fa41e <Pr16_GameGetConditionalRelearnerMoves+0xe>
+ 95fa466:	1eb3      	subs	r3, r6, #2
+ 95fa468:	2b05      	cmp	r3, #5
+ 95fa46a:	d808      	bhi.n	95fa47e <Pr16_GameGetConditionalRelearnerMoves+0x6e>
+ 95fa46c:	4b1b      	ldr	r3, [pc, #108]	@ (95fa4dc <Pr16_GameGetConditionalRelearnerMoves+0xcc>)
+ 95fa46e:	429d      	cmp	r5, r3
+ 95fa470:	d0d4      	beq.n	95fa41c <Pr16_GameGetConditionalRelearnerMoves+0xc>
+ 95fa472:	0039      	movs	r1, r7
+ 95fa474:	0020      	movs	r0, r4
+ 95fa476:	4b1a      	ldr	r3, [pc, #104]	@ (95fa4e0 <Pr16_GameGetConditionalRelearnerMoves+0xd0>)
+ 95fa478:	f000 f83a 	bl	95fa4f0 <Pr16_GameGetConditionalRelearnerMoves+0xe0>
+ 95fa47c:	e7cf      	b.n	95fa41e <Pr16_GameGetConditionalRelearnerMoves+0xe>
+ 95fa47e:	2e00      	cmp	r6, #0
+ 95fa480:	d1cc      	bne.n	95fa41c <Pr16_GameGetConditionalRelearnerMoves+0xc>
+ 95fa482:	2106      	movs	r1, #6
+ 95fa484:	0028      	movs	r0, r5
+ 95fa486:	aa08      	add	r2, sp, #32
+ 95fa488:	f7ff fece 	bl	95fa228 <conditional>
+ 95fa48c:	2800      	cmp	r0, #0
+ 95fa48e:	d0c5      	beq.n	95fa41c <Pr16_GameGetConditionalRelearnerMoves+0xc>
+ 95fa490:	ab06      	add	r3, sp, #24
+ 95fa492:	002a      	movs	r2, r5
+ 95fa494:	9300      	str	r3, [sp, #0]
+ 95fa496:	4913      	ldr	r1, [pc, #76]	@ (95fa4e4 <Pr16_GameGetConditionalRelearnerMoves+0xd4>)
+ 95fa498:	2303      	movs	r3, #3
+ 95fa49a:	4813      	ldr	r0, [pc, #76]	@ (95fa4e8 <Pr16_GameGetConditionalRelearnerMoves+0xd8>)
+ 95fa49c:	4d13      	ldr	r5, [pc, #76]	@ (95fa4ec <Pr16_GameGetConditionalRelearnerMoves+0xdc>)
+ 95fa49e:	f000 f828 	bl	95fa4f2 <Pr16_GameGetConditionalRelearnerMoves+0xe2>
+ 95fa4a2:	2801      	cmp	r0, #1
+ 95fa4a4:	d1ba      	bne.n	95fa41c <Pr16_GameGetConditionalRelearnerMoves+0xc>
+ 95fa4a6:	ad0a      	add	r5, sp, #40	@ 0x28
+ 95fa4a8:	0029      	movs	r1, r5
+ 95fa4aa:	0020      	movs	r0, r4
+ 95fa4ac:	f7ff fea6 	bl	95fa1fc <known_moves>
+ 95fa4b0:	0032      	movs	r2, r6
+ 95fa4b2:	2138      	movs	r1, #56	@ 0x38
+ 95fa4b4:	0020      	movs	r0, r4
+ 95fa4b6:	4b07      	ldr	r3, [pc, #28]	@ (95fa4d4 <Pr16_GameGetConditionalRelearnerMoves+0xc4>)
+ 95fa4b8:	f000 f81a 	bl	95fa4f0 <Pr16_GameGetConditionalRelearnerMoves+0xe0>
+ 95fa4bc:	2228      	movs	r2, #40	@ 0x28
+ 95fa4be:	0603      	lsls	r3, r0, #24
+ 95fa4c0:	9202      	str	r2, [sp, #8]
+ 95fa4c2:	9701      	str	r7, [sp, #4]
+ 95fa4c4:	9500      	str	r5, [sp, #0]
+ 95fa4c6:	0e1b      	lsrs	r3, r3, #24
+ 95fa4c8:	aa08      	add	r2, sp, #32
+ 95fa4ca:	a906      	add	r1, sp, #24
+ 95fa4cc:	a804      	add	r0, sp, #16
+ 95fa4ce:	f7ff fccd 	bl	95f9e6c <Pr16ConditionalReminder>
+ 95fa4d2:	e7a4      	b.n	95fa41e <Pr16_GameGetConditionalRelearnerMoves+0xe>
+ 95fa4d4:	0803f355 	.word	0x0803f355
+ 95fa4d8:	0203ec00 	.word	0x0203ec00
+ 95fa4dc:	00000405 	.word	0x00000405
+ 95fa4e0:	095ddbe9 	.word	0x095ddbe9
+ 95fa4e4:	0001a5e8 	.word	0x0001a5e8
+ 95fa4e8:	095dee7c 	.word	0x095dee7c
+ 95fa4ec:	095f94d3 	.word	0x095f94d3
+ 95fa4f0:	4718      	bx	r3
+ 95fa4f2:	4728      	bx	r5
+ 95fa4f4:	4738      	bx	r7
+ 95fa4f6:	46c0      	nop			@ (mov r8, r8)

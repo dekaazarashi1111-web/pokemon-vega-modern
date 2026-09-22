@@ -33,7 +33,7 @@ def inputs(): return json.loads((ROOT/INPUTS).read_bytes())
 
 
 def owned():
-    return {CP,STATE,DOC,GUIDE,ENTRY,'design/run_log.md','design/version_log.md'} | {
+    return {CP,STATE,DOC,GUIDE,'design/run_log.md','design/version_log.md'} | {
         EVIDENCE+'/'+name for name in (*inputs()['proof_files'],*DATA_TEXT)}
 
 
@@ -101,6 +101,19 @@ def validate(files, expected):
     return v
 
 
+def publish_resume(state):
+    """固定入口を改変せず、検証済みbindingのMD/JSONだけを発行する。"""
+    from pr16_resume import render, safe_path
+    for name, binding in state['source_bindings'].items():
+        need(identity(safe_path(ROOT, name).read_bytes()) == binding,
+             '引継ぎsource変更を自動追認しない: '+name)
+    # render失敗でJSONだけが更新されないよう、両出力を先に構築する。
+    payload = encode(state)
+    document = render(state)
+    (ROOT/STATE).write_bytes(payload)
+    (ROOT/DOC).write_text(document, encoding='utf-8')
+
+
 def record():
     from pr16_wiki_reconcile import fetch
     from pr16_learnset_payload_verify import completed_run, current_pr
@@ -138,7 +151,7 @@ def record():
             data_text[name] = value
     for name,binding in v['code_bindings'].items(): need(identity((ROOT/name).read_bytes()) == binding, '完了source変更: '+name)
     failures = []
-    for number in (35716683381,35720010554,35720416968):
+    for number in (35716683381,35720010554,35720416968,35722277848):
         run = fetch(f'actions/runs/{number}')
         need(run['status'] == 'completed' and run['conclusion'] == 'failure', '旧failure改作禁止')
         failures.append({key:run[key] for key in ('id','head_sha','status','conclusion')})
@@ -178,16 +191,14 @@ def record():
     state['bp']['current_stop'] = 'PLC1 115282→PLC2 31014 bytesの同値圧縮と分割配置を採用し、新候補'+v['candidate']['sha256'][:8]+'へ進化/思い出し/egg/shared-eggの4入口を接続。15代表条件×2processでP03両進化LR/満杯/重複/実PP/4技不変/Floette archive拒否を受入。Tutor実接続・archive再束縛・新Wiki・通常操作E2Eは未完。'
     state['do_not_repeat'].append('四条件入口: run'+str(config['run_id'])+'の2独立ARM配置/2native processを再実行しない。run35715106357の41試験/622669照合、run35716683381の成功18試験、run35720010554の成功25試験/15039照合とrun35720416968の成功6 compiler-option試験を継承。旧failureを成功へ改作せず、固定2segmentと親e168c06fから再開。')
     state['logs_synchronized'] = True
-    (ROOT/STATE).write_bytes(encode(state)); (ROOT/DOC).write_text(render(state),encoding='utf-8')
+    publish_resume(state)
     former = (ROOT/GUIDE).read_text()
     guide = '# Issue19: 四条件consumerのPLC2接続\n\n'+state['bp']['current_stop']+'\n\n'
     guide += '候補SHA-256 `'+v['candidate']['sha256']+'`、33554432 bytes、CRC32 `'+v['candidate_crc32']+'`。run `'+str(config['run_id'])+'` / HEAD `'+config['source_head']+'`。\n\n'
     guide += '受入はhost fixtureからの実ROM call限定。通常の遭遇・戦闘・習得画面・Save/Continueは未受入。旧初期技/通常level-upの受入を再実行しない。90試験は成功原本を継承、新規6 ABIガード試験と2独立リンク・2native processを実行した。\n\n'
     guide += '4hook以外は新data/code segmentのみ。既存ownerの再利用/削除0、全差分rollback一致、P03 dispatch/PLR1/共有root不変。Thumb switch補助関数未解決は-fno-jump-tablesで除き、旧3失敗runは原本を保持。\n\n## 次工程\n\n'+goal+'\n\n## 初回WIP設計の記録\n\n'+former
     (ROOT/GUIDE).write_text(guide,encoding='utf-8')
-    entry = (ROOT/ENTRY).read_text(); title,rest = entry.split('\n',1)
-    (ROOT/ENTRY).write_text(title+'\n\n## 最新の限定受入（2026-09-22）\n\n'
-        +'`'+GUIDE+'` / `'+CP+'` を固定引継ぎと併読する。四条件入口のPLC2接続・直接ROM probeは受入済み。次はtutor/archive境界・別候補Wiki・変更影響の通常操作E2E。96host試験と2native processの重複は禁止。製品全体・Issue19・releaseは未完。以下の旧受入章の次工程は記録時点の履歴であり、この最新項目と状態JSONのnext_actionを優先する。\n'+rest,encoding='utf-8')
+    # CHATGPT_RESUME.mdは固定ルート。動く進捗とHEADを複製しない。
     stamp = datetime.datetime.now(datetime.timezone.utc).isoformat()
     log = '\n## '+stamp+'\n- Timestamp: '+stamp+'\n- Task: '+TASK+' / 四条件consumerの接続と限定受入\n'
     log += '- Version: learnset-conditional-plc2-v1\n- Status: DONE（4入口直接ROM probe限定。tutor/archive/新Wiki/通常操作E2Eは未完）\n'
@@ -196,6 +207,7 @@ def record():
     log += '- Verify: run'+str(config['run_id'])+' SUCCESS、15代表条件×2process。41+18+25+6=90試験/622669+15039照合を原本継承。新記録拒否試験・resume/task graph・diff --check・final index限定guard後のみcommit。\n'
     log += '- Commit: 本記録を含む同branch非force commit。自己SHAはgit logで照合。\n'
     log += '- Network: GitHub固定run/artifactのみ。原本再収集/旧ARM再compile/既存native再実行0。空間不足run35716683381とリンク失敗run35720010554・旧入口不一致run35720416968をfailureのまま保持。全履歴private guardのPASSは主張しない。\n'
+    log += '- 記録修復: run35722277848は18記録試験成功後に固定入口のstale sourceで停止し、commit/pushなし。入口の動的追記を廃止し、source bindingの自動追認を拒否。18試験は再実行せず、新規ResumePublicationTests 6件と実resume/task graph/index guardだけを検証する。\n'
     for name in ('design/run_log.md','design/version_log.md'):
         with (ROOT/name).open('a',encoding='utf-8') as stream: stream.write(log)
     print(json.dumps({'status':checkpoint['status'],'candidate':v['candidate'],'run_id':config['run_id'],'new_native_runs':0}))
