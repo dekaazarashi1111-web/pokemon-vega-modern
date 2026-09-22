@@ -1,5 +1,5 @@
 name: pr16-learnset-supply-rom
-# v4: repair saved ELF load alignment without compilation; inherit 24 tests and original fixtures.
+# v5: inherit 16 placement + 24 input tests; add explicit special-positive owners 280/855 only.
 on:
   push:
     branches: [codex/modernization-followup-20260908]
@@ -29,10 +29,10 @@ jobs:
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends libmgba-dev
-      - name: 保存ELF配置修復と未受入4hookだけ検証
+      - name: 保存配置を継承し28ownerの未受入4hookだけ検証
         env:
           GITHUB_TOKEN: ${{ github.token }}
-        run: python3 -B scripts/pr16_learnset_supply_rom_alignment.py verify
+        run: python3 -B scripts/pr16_supply_coverage_followup.py verify
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -43,11 +43,11 @@ jobs:
       - name: 後継配置とnative証拠・固定引継ぎを記録し限定guard
         run: |
           set -euo pipefail
-          python3 -B scripts/pr16_learnset_supply_rom_alignment.py record
+          python3 -B scripts/pr16_supply_coverage_followup.py record
           python3 -B scripts/pr16_resume.py check
           python3 -B scripts/validate_task_graph.py
-          python3 -B scripts/pr16_learnset_supply_rom_alignment.py paths | while IFS= read -r path; do git add -- "$path"; done
-          python3 -B scripts/pr16_learnset_supply_rom_alignment.py guard
+          python3 -B scripts/pr16_supply_coverage_followup.py paths | while IFS= read -r path; do git add -- "$path"; done
+          python3 -B scripts/pr16_supply_coverage_followup.py guard
       - name: 同branchへ非force commit/pushし最新refを照合
         run: |
           set -euo pipefail
