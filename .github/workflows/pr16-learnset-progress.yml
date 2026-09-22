@@ -1,4 +1,5 @@
 name: pr16-learnset-progress
+# ABI fix: CFRU-defined GiveMoveToBoxMon is bound by saved body and hook, not BPRJ.ld.
 on:
   push:
     branches: [codex/modernization-followup-20260908]

@@ -77,10 +77,14 @@ def restore():
     need(hashlib.sha1(b'blob '+str(len(ld)).encode()+b'\0'+ld).hexdigest() == 'cf5363abd8439d63c7bd12cbe83ade861b0ebb51', 'JP ABI固定blob不一致')
     expected = {'GetMonData':0x0803F355,'GetBoxMonData':0x0803F4B1,
                 'GetLevelFromBoxMonExp':0x0803DF9D,'GiveMoveToMon':0x0803E009,
-                'GiveMoveToBoxMon':0x0803E01D,'gMoveToLearn':0x02023F82}
+                'gMoveToLearn':0x02023F82}
     for name, address in expected.items():
         match = re.search(r'^'+name+r'\s*=\s*(0x[0-9A-Fa-f]+)(\s*\|\s*1)?\s*;',ld.decode(),re.M)
         need(match and (int(match[1],16) | bool(match[2])) == address, 'JP ABIアドレス不一致: '+name)
+    saved = s.read_json(ROOT/'content/modernization/pr16_candidate_wiki_saved_link_sources.json')['symbols']['GiveMoveToBoxMon']
+    at = saved['address']-BASE
+    need(hashlib.sha256(raw[at:at+saved['size']]).hexdigest() == saved['candidate_sha256'], '既存GiveMoveToBoxMon本体不一致')
+    need(raw[0x3e01c:0x3e024] == b'\x00\x4a\x10\x47'+struct.pack('<I',saved['address']|1), '既存GiveMoveToBoxMon hook不一致')
     config = s.read_json(ROOT/'content/modernization/pr16_candidate_wiki_creation_sources.json')
     need(config['upstream_config_sha256'] == '49ea2d82bbd5e0040e39b83e044ff3e4e21e09222bcc0a6879a786cc99da4f6e', '受入CFRU設定のbinding不一致')
     # Accepted source receipt records this exact config. Fetch only fixed ABI config,
@@ -91,7 +95,7 @@ def restore():
     need(not re.search(rb'^\s*#\s*define\s+FLAG_POKEMON_LEARNSET_RANDOMIZER\b',cfg,re.M), '有効randomizerを消さない')
     (WORK/'proof/abi.json').write_bytes(s.encode({'upstream_head':upstream,'linker_blob':'cf5363abd8439d63c7bd12cbe83ade861b0ebb51',
         'linker_identity':identity(ld),'config_identity':identity(cfg),'learnset_randomizer_enabled':False,
-        'functions':expected,'cursor':0x02023F88,'cursor_source':'kapibarasan000/CFRU-JP@'+upstream+':src/learn_move.c#sLearningMoveTableID'}))
+        'functions':expected,'give_box_move_hook':{'address':0x0803E01D,'target':saved['address']|1,'body':saved['candidate_sha256']},'cursor':0x02023F88,'cursor_source':'kapibarasan000/CFRU-JP@'+upstream+':src/learn_move.c#sLearningMoveTableID'}))
     return report
 
 
@@ -285,6 +289,11 @@ def verify():
 
 
 if __name__=='__main__':
-    if sys.argv[1:]==['verify']:verify()
+    if sys.argv[1:]==['verify']:
+        try: verify()
+        except Exception as exc:
+            (WORK/'proof').mkdir(parents=True,exist_ok=True)
+            write(WORK/'proof/failure.json', {'status':'FAIL','source_head':os.environ.get('GITHUB_SHA'),'error_type':type(exc).__name__,'error':str(exc).replace(str(ROOT),'$REPO')})
+            raise
     elif len(sys.argv)==3 and sys.argv[1]=='link':print(json.dumps(link(Path(sys.argv[2]))['candidate']))
     else:raise SystemExit('usage: pr16_learnset_progress_verify.py verify|link FOLDER')
