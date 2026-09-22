@@ -1,0 +1,65 @@
+name: pr16-learnset-supply-link-record
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-learnset-supply-link-record.yml]
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-learnset-supply-link-record
+  cancel-in-progress: false
+jobs:
+  supply-link-record:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: 保存リンクの照合と新規記録拒否試験のみ
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-learnset-supply-link-record/record-proof
+          python3 -B scripts/pr16_learnset_supply_link_record.py record | tee .local/pr16-learnset-supply-link-record/record-proof/record.json
+          python3 -B -m unittest tests.test_pr16_learnset_supply_link_record -v 2>&1 | tee .local/pr16-learnset-supply-link-record/record-proof/tests.txt
+          python3 -B scripts/pr16_resume.py check | tee .local/pr16-learnset-supply-link-record/record-proof/resume.json
+          python3 -B scripts/validate_task_graph.py | tee .local/pr16-learnset-supply-link-record/record-proof/task-graph.txt
+      - name: 最終indexを検証し同branchへ非force commit/push
+        run: |
+          set -euo pipefail
+          python3 -B scripts/pr16_learnset_supply_link_record.py paths | while IFS= read -r path; do git add -- "$path"; done
+          python3 -B scripts/pr16_learnset_supply_link_record.py guard | tee .local/pr16-learnset-supply-link-record/record-proof/guard.json
+          branch='codex/modernization-followup-20260908'
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20260922-LEARNSET-SUPPLY-ABI: 保存リンク受入と失敗履歴・固定引継ぎ・両ログを確定'
+          git push origin "HEAD:$branch"
+          sha=$(git rev-parse HEAD)
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$sha"
+          echo "RESULT=DONE TASK=USER-20260922-LEARNSET-SUPPLY-ABI VERIFY=PASS COMMIT=$sha SCOPE=ROM_LINK_ONLY" | tee .local/pr16-learnset-supply-link-record/record-proof/result.txt
+          python3 -B scripts/pr16_learnset_supply_link_record.py snapshot | tee .local/pr16-learnset-supply-link-record/record-proof/context.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-learnset-supply-link-record-proof
+          path: .local/pr16-learnset-supply-link-record/record-proof/
+          retention-days: 30
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: pr16-learnset-supply-context
+          path: .local/pr16-learnset-supply-link-record/context.zip
+          retention-days: 30
+          if-no-files-found: error
