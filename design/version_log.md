@@ -6568,3 +6568,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 本記録を含む同branch非force commit。自己SHAはgit logで照合。
 - Network: GitHub受入artifact再利用。既受入原本/payload再生成0、native0、ROM変更0。新TM23中12技の実供給と条件consumerは未接続。
 - Binding recovery: run35663855295は修正試験の固定hash未同期で停止。旧hash/新hashを明示照合して当該1件だけ同期し、全source検査を再実施。受入実装/44試験は再実行なし。
+
+## 2026-09-22T08:41:34.289523+00:00
+- Timestamp: 2026-09-22T08:41:34.289523+00:00
+- Task: USER-20260922-LEARNSET-RUNTIME / 2入口ROM接続の完了証拠保存
+- Version: learnset-runtime-two-entrypoints-v1
+- Status: DONE（2入口直接call限定。通常操作/残consumerは未完）
+- Summary: 新ROM aabd52a0、2hook、全差分rollback/配置容量・13代表owner・2process/3382callを保存。19試験/host/ARMは継承し再実行0。
+- Files changed: runtime記録器/拒否試験/限定Actions、証拠/checkpoint、専用guide、固定再開MD/JSON、両ログ。
+- Verify: run35704908254 SUCCESS、ZIP/全member/source hash照合、新記録拒否試験・resume check・task graph・final index guard PASS後のみcommit。通常操作E2Eは未受入。
+- Commit: 本記録を含む同branch非force commit。自己SHAはgit logで照合。
+- Network: GitHub完了run/artifact再利用。新規ROM生成/host/ARM/native再実行0。過去3failureを保持。

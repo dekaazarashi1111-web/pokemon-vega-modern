@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-Eternal1029の固定参考37経路を明示採用し、13 level/1進化時/23 machineを親不変の差分payloadへ変換。188保全枠を含むhost C owner gateと全15039 query、44新試験、独立2プロセス/全差分byteを受入。親128352経路を保全し計128389。game callsite/ROM/nativeは未接続。
+2入口GetLevelUpMovesBySpecies/CanMonLearnTMHMを新ROM aabd52a0へ接続。配置/全差分rollbackと13代表owner×2process/3382直接callを受入。188保全枠/保存個体不変。初期4技・自然level-up・条件consumer・通常操作E2E/別Wikiは未完。
 
-**次: Issue19: 受入済み親payloadとEternal差分を再利用し、game callsiteへ明示owner/C gateと条件付きconsumerを接続する。配置・pointer/容量を検証し、後継ROMと別Wikiを生成して変更影響だけnative受入する。Eternal採用裁定・原本再採取は繰り返さない。**
+**次: Issue19: aabd52a0の保存配置と親/Eternal payloadを再利用し、初期4技・自然level-up・進化/思い出し等の条件consumerを明示ownerへ接続。別候補Wikiと影響nativeを生成し、通常操作E2Eを受入する。2入口直接callは再実行しない。**
 
-source採用待ちは解消したがROM未配置。188枠を空表/旧表fallbackへしない。条件付き経路・12件のarchive実供給を未検証で付与しない。旧Wiki/保存4技を変更せず、merge/release/baseline切替は行わない。
+188保全枠を空表/旧表fallbackにしない。条件経路・archive12件の実供給を未検証で付与しない。保存4技/旧Wikiは不変。直接callを通常操作へ昇格せず、merge/release/baseline切替は行わない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `7a8405d0e7b9085078f335a7dd95f4c8fb614141`。
-Eternal採用差分/host C owner gateの完了検証入力HEAD。記録commit/remote最新HEADやROM/native受入HEADではない。
+証拠のsource HEAD: `ba4a6367c5179372d06138fef02f0aa29588d0e2`。
+2入口の直接ROM call成功入力HEAD。通常操作E2E/Issue19全完了/記録commitではない。
 
 ## 最短の再開手順
 
@@ -25,13 +25,12 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_LEARNSET_FLOETTE_JA.md`
-- `content/modernization/pr16_learnset_floette_checkpoint.json`
-- `content/modernization/pr16_floette_learnset_adoption.json`
-- `content/modernization/pr16_learnset_floette_evidence/receipt.json`
-- `tools/pr16_learnset_floette.py`
-- `src/modernization/pr16_learnset_owner.h`
-- `src/modernization/pr16_learnset_owner.c`
+- `docs/PR16_LEARNSET_RUNTIME_JA.md`
+- `content/modernization/pr16_learnset_runtime_checkpoint.json`
+- `scripts/pr16_learnset_runtime_link.py`
+- `tools/pr16_learnset_runtime.py`
+- `src/modernization/pr16_learnset_game.c`
+- `src/modernization/pr16_learnset_runtime.c`
 - `docs/PR16_LEARNSET_PAYLOADS_JA.md`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
@@ -276,6 +275,7 @@ P08ゲート:
 - learnset binding: 受入9consumer表はartifact10653200020を再利用。531孵化差分は非付与として全行照合済み。旧原本/39受入試験/nativeを再実行せず、未選択191枠の明示bindingから続行。
 - learnset payload: 191 binding、531孵化差分、64明示経路、33321 slot補正は証拠固定済み。配置前payload artifactを再利用。受入54/24試験・原本生成は影響変更がない限り再実行せず、1029採用裁定とruntime接続から続行。
 - Eternal採用/host owner gate: run 35663067820 の44試験・15039実owner C query・37原本経路/差分全byte・独立2プロセスは受入済み。親artifactとEternal差分を再利用。原本1299件/182ページ/531孵化差分/54旧payload試験は影響なしに再実行しない。
+- run35704908254の2入口直接ROM call3382件/2processを再実行しない。19host試験/全owner queryはrun35703376221、独立ARM8compile/2linkはrun35703851133の成功部分を継承。過去3failureは保持。保存aabd52a0/固定link artifactから再開。
 
 ## 次セッションへ残す更新手順
 
@@ -305,6 +305,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-新44試験、独立2プロセス、差分全byte、実owner Cの15039 queryを完了Actionsで確認。一般PR checksは別記でaction_required等を成功へ読み替えない。ROM/game callsite/nativeは未接続。
+run35704908254成功。保存ARMから2process/3382直接ROM callを受入。19試験/host/独立2linkは既存証拠を継承し再実行0。通常操作E2E・残consumerは未受入。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
