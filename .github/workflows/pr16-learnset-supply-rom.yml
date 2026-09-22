@@ -1,5 +1,5 @@
 name: pr16-learnset-supply-rom
-# v5: inherit 16 placement + 24 input tests; add explicit special-positive owners 280/855 only.
+# v6: fix nested main-macro collision in host-only diagnostic wrapper; native was not started in v5.
 on:
   push:
     branches: [codex/modernization-followup-20260908]
