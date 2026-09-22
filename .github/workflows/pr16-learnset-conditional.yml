@@ -1,5 +1,4 @@
 name: pr16-learnset-conditional
-# 条件consumerの実装用checkpoint。受入済みhost/ARM/nativeは再実行しない。
 on:
   push:
     branches: [codex/modernization-followup-20260908]
@@ -21,44 +20,36 @@ jobs:
         with:
           persist-credentials: false
           fetch-depth: 1
-      - name: tracked textの限定入力と最新Actions状態を保存
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
+      - name: 条件consumerの固定sourceとABIのみ取得
         run: |
           python3 -B - <<'PY'
-          import hashlib, json, os, subprocess, urllib.request, zipfile
+          import hashlib, json, subprocess, urllib.request, zipfile
           from pathlib import Path
-          root = Path('.local/pr16-conditional-context')
-          root.mkdir(parents=True, exist_ok=True)
-          exact = {'AGENTS.md', 'README.md', 'CHATGPT_RESUME.md', 'design/current_state.md', 'design/agent_context_map.md', 'design/run_log.md', 'design/version_log.md', 'design/active_play_baseline.md', 'config/active_play_baseline.json', 'content/modernization/pr16_native_supply_resume_20260913.json', 'content/modernization/pr16_bp_chooser_checkpoint.json', 'content/modernization/p08_remaining_work.json'}
-          prefixes = ('scripts/', 'src/modernization/', 'tests/test_pr16_', 'tests/fixtures/pr16_', 'content/modernization/pr16_learnset', 'content/modernization/pr16_evolution_learning', 'docs/PR16_LEARNSET', 'docs/PR16_NATIVE_SUPPLY_RESUME_20260913', '.github/workflows/pr16-learnset', 'tools/stage61_interaction_oracle.py')
-          suffixes = {'.py', '.c', '.h', '.S', '.s', '.json', '.md', '.yml', '.txt'}
+          root = Path('.local/pr16-conditional-context'); root.mkdir(parents=True)
+          exact = {'tools/rom_allocator.py', 'tools/mgba_battle_core_smoke.c', 'tools/mgba_ai_fixture_runner.c', 'tools/__init__.py', 'config/rom_regions.csv', 'content/modernization/pr16_saved_reconstruction_recipes.json', 'content/modernization/pr16_circus_getter_followup.json', 'content/modernization/pr16_candidate_wiki_saved_link_sources.json', 'content/modernization/pr16_candidate_wiki_creation_sources.json'}
+          prefixes = ('tools/pr16_learnset', 'tools/mgba_pr16_learnset', 'content/modernization/pr16_learnset', 'content/modernization/pr16_candidate_wiki')
           manifest = {}
-          with zipfile.ZipFile(root / 'source.zip', 'w', zipfile.ZIP_DEFLATED) as z:
-              for name in subprocess.check_output(['git', 'ls-files', '-z']).decode().split('\0'):
+          with zipfile.ZipFile(root/'source.zip', 'w', zipfile.ZIP_DEFLATED) as z:
+              for name in subprocess.check_output(['git','ls-files','-z']).decode().split('\0'):
                   p = Path(name)
-                  if not name or not (name in exact or p.name == 'AGENTS.md' or name.startswith(prefixes)) or p.suffix not in suffixes:
+                  if not name or not (name in exact or name.startswith(prefixes)) or p.suffix not in {'.py','.c','.h','.json','.jsonl','.txt','.md','.csv'}:
                       continue
                   if not p.is_file() or p.is_symlink():
                       continue
-                  data = p.read_bytes()
-                  data.decode('utf-8')
-                  if b'\0' in data:
-                      raise ValueError('text-only export')
-                  z.writestr(name, data)
-                  manifest[name] = {'sha256': hashlib.sha256(data).hexdigest(), 'size': len(data)}
-          api = 'https://api.github.com/repos/' + os.environ['GITHUB_REPOSITORY']
-          def get(path):
-              request = urllib.request.Request(api + path, headers={'Authorization': 'Bearer ' + os.environ['GITHUB_TOKEN'], 'Accept': 'application/vnd.github+json'})
-              with urllib.request.urlopen(request, timeout=60) as r:
-                  return json.load(r)
-          pr = get('/pulls/16')
-          runs = get('/actions/runs?per_page=30')['workflow_runs']
-          record = {'source_head': subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(), 'files': manifest, 'new_tests': 0, 'new_native_runs': 0, 'pr': {k: pr[k] for k in ('number', 'state', 'draft', 'merged')}, 'pr_head': {'sha': pr['head']['sha'], 'ref': pr['head']['ref'], 'repository': pr['head']['repo']['full_name']}, 'runs': [{k: r[k] for k in ('id', 'name', 'path', 'head_sha', 'head_branch', 'event', 'status', 'conclusion', 'created_at', 'updated_at')} for r in runs]}
-          (root / 'context.json').write_text(json.dumps(record, ensure_ascii=False, indent=2) + '\n')
-          print('限定tracked text:', len(manifest), '新規native: 0')
+                  data=p.read_bytes(); data.decode('utf-8')
+                  if b'\0' in data: raise ValueError('text-only')
+                  z.writestr(name,data); manifest[name]={'sha256':hashlib.sha256(data).hexdigest(),'size':len(data)}
+              revision='e24a16fe39e27ae162faf5b78596d1f3df18489d'
+              for path in ('src/learn_move.c','src/daycare.c','src/item.c','include/constants/pokemon.h','BPRJ.ld','src/config.h'):
+                  with urllib.request.urlopen('https://raw.githubusercontent.com/kapibarasan000/CFRU-JP/'+revision+'/'+path,timeout=60) as response:
+                      data=response.read()
+                  data.decode('utf-8'); name='upstream/'+path; z.writestr(name,data)
+                  manifest[name]={'sha256':hashlib.sha256(data).hexdigest(),'size':len(data),'upstream_commit':revision}
+          (root/'context.json').write_text(json.dumps({'source_head':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'files':manifest,'new_tests':0,'new_native_runs':0},ensure_ascii=False,indent=2)+'\n')
+          print('text files:',len(manifest),'new native: 0')
           PY
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: pr16-learnset-conditional-context
           path: .local/pr16-conditional-context/
