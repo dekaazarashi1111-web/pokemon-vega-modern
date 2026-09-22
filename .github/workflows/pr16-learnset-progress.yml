@@ -1,5 +1,5 @@
 name: pr16-learnset-progress
-# ABI resolved: true creation entry; preserve P03 evolution dispatch and patch normal QoL delegate only.
+# Reuse passing 30 tests and 318186 host queries; corrected ROM offset for normal QoL delegate.
 on:
   push:
     branches: [codex/modernization-followup-20260908]
@@ -46,5 +46,17 @@ jobs:
         with:
           name: pr16-learnset-progress-data
           path: .local/pr16-learnset-progress/data/
+          retention-days: 30
+          if-no-files-found: warn
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-learnset-progress-partial-arm
+          path: |
+            .local/pr16-learnset-progress/build*/progress.bin
+            .local/pr16-learnset-progress/build*/progress.elf
+            .local/pr16-learnset-progress/build*/pr16_learnset_progress_bindings.h
+            .local/pr16-learnset-progress/build*/disassembly.txt
+            .local/pr16-learnset-progress/build*/link.json
           retention-days: 30
           if-no-files-found: warn

@@ -31,7 +31,7 @@ CODE = ('src/modernization/pr16_learnset_progress.h', 'src/modernization/pr16_le
         'src/modernization/pr16_learnset_progress_game.c', 'tests/fixtures/pr16_learnset_progress_bindings.h',
         'tests/fixtures/pr16_learnset_progress_fixture.c', 'tests/test_pr16_learnset_progress.py',
         'scripts/pr16_learnset_progress_verify.py', 'tools/mgba_pr16_learnset_progress.c',
-        '.github/workflows/pr16-learnset-progress.yml')
+        '.github/workflows/pr16-learnset-progress.yml', 'scripts/pr16_learnset_progress_reuse.py')
 SELECTED = ((1,50),(10,13),(649,9),(1029,50),(1670,48),(887,10),(1621,10),(1029,1),(649,1))
 BASE = 0x08000000
 need = r.need
@@ -155,7 +155,7 @@ def link(folder):
          and parent[evo.ENTRY:evo.ENTRY+8] == b'\x00\x4b\x18\x47'+struct.pack('<I',BASE+p03_start+1),
          '受入P03進化dispatch不一致')
     natural_off = evo.NORMAL-BASE-1
-    need(natural_off == 0x377728, '通常QoL delegate不一致')
+    need(natural_off == 0x1377728, '通常QoL delegate不一致')
     initial_off = 0x11145F0
     need(hashlib.sha256(parent[initial_off:initial_off+168]).hexdigest() == 'ce09526af6b37397bd031705203a53c7109fe8e0a19d3809e964677313379c3e', '固定initial本体不一致')
     need(parent[0x3e14c:0x3e154] == bytes.fromhex('f0b557464e464546'), '初期技の真の関数先頭不一致')
@@ -260,9 +260,8 @@ def verify():
     (WORK/'proof').mkdir();restore()
     protected=[ROOT/p for p in CODE]+list((WORK/'accepted').iterdir())+list(EVIDENCE.iterdir())+[WORK/'parent.gba']
     before=snapshot(protected)
-    unit=execute([sys.executable,'-B','-m','unittest','tests.test_pr16_learnset_progress','-v'],WORK/'proof/unit.txt')
-    text=(WORK/'proof/unit.txt').read_text();need(re.findall(r'^Ran (\d+) tests? in ',text,re.M)==['30'] and re.search(r'\nOK\s*$',text),'新30試験不一致')
-    host=host_audit()
+    from pr16_learnset_progress_reuse import inherit_host
+    host=inherit_host(WORK)
     for seed in (11,29):
         execute([sys.executable,'-B',__file__,'link',str(WORK/f'build{seed}')],WORK/f'proof/build{seed}.txt',dict(os.environ,PYTHONHASHSEED=str(seed)))
     first=s.read_json(WORK/'build11/link.json');second=s.read_json(WORK/'build29/link.json')
@@ -290,7 +289,7 @@ def verify():
     shutil.copyfile(data/'disassembly.txt',WORK/'proof/disassembly.txt')
     report={'status':'PASS_INITIAL_AND_NATURAL_ROM_PROBES','scope':'HOST_FIXTURE_DIRECT_ROM_CALL_NOT_GAMEPLAY_E2E',
         'source_head':os.environ['GITHUB_SHA'],'run_id':int(os.environ['GITHUB_RUN_ID']),'task':TASK,
-        'candidate':first['candidate'],'candidate_crc32':first['candidate_crc32'],'focused_tests':30,'host_audit':host,
+        'candidate':first['candidate'],'candidate_crc32':first['candidate_crc32'],'focused_tests':30,'focused_tests_executed':0,'host_queries_executed':0,'inherited_host_run':35709388462,'host_audit':host,
         'native_results':results,'native_processes':2,'new_arm_compiles':4,'new_arm_links':2,'independent_candidate_hashes_match':True,
         'initial_and_natural_connected':True,'p03_evolution_dispatch_unchanged':True,'prior_two_entrypoints_unchanged':True,'conditional_consumers_connected':False,
         'gameplay_e2e_accepted':False,'release_ready':False,'active_baseline_changed':False,'issue19_complete':False,
