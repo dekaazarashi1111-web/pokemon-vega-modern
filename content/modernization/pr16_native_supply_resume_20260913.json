@@ -1011,7 +1011,8 @@
     "run35748601580: 6e88a021の新4hook/21392call/2processと新16配置試験を受入。旧14+10試験は保存原本を継承し再実行0。run35738895606の失敗原本は保持。次は新Wiki/通常操作のみ。",
     "供給native完了照合: run35748601580は28owner/21392call/2process成功。配置16試験はrun35747048291、旧入力24試験も保存原本継承で再実行0。run35747886574はhost compile失敗のみ・native未起動。closeoutは新12件の証拠拒否試験だけでROM生成/native/既受入試験0。",
     "closeoutの12証拠拒否試験はrun35749269393でPASSを継承し再実行0。このrunは新しい実branch ref/PR同一repo・branch・祖先境界6試験だけ。PR head表示遅延をlive branch ref完全一致とb464a4d以降の記録専用祖先で照合。",
-    "run35756623313の36試験/独立2Wiki生成/純読取checkは受入済み成功step。全体failureは公開ログguardのみ。同一tree b153f51d26db955427ce4f29df341556ee0ea02143394a64b9ae4d8d430f53fe を1回復元して反映。以降このtreeと証拠は継承し再生成・再試験しない。"
+    "run35756623313の36試験/独立2Wiki生成/純読取checkは受入済み成功step。全体failureは公開ログguardのみ。同一tree b153f51d26db955427ce4f29df341556ee0ea02143394a64b9ae4d8d430f53fe を1回復元して反映。以降このtreeと証拠は継承し再生成・再試験しない。",
+    "後継Wikiの完了Actions照合は content/modernization/pr16_learnset_wiki_completed_actions.json に保存。36 Wiki試験/2生成/候補復元は当回再実行0。次は未受入の通常操作だけを対象にする。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -1404,12 +1405,13 @@
     }
   },
   "learnset_candidate_wiki": {
-    "actions_completion_confirmed": false,
+    "actions_completion_confirmed": true,
     "candidate": {
       "crc32": "00F31AF7",
       "sha256": "6e88a021785bfa7cf00e26d7f2433c380602d830e94e1d2fc31e3198cda31df2",
       "size": 33554432
     },
+    "completion_reconciliation": "content/modernization/pr16_learnset_wiki_completed_actions.json",
     "counts": {
       "active_side_change": 0,
       "carry_reference_rows": 35211,
@@ -1453,6 +1455,7 @@
     "output": "docs/wiki/issue19-candidate-6e88a021",
     "output_materializations": 1,
     "path": "content/modernization/pr16_learnset_wiki_checkpoint.json",
+    "record_commit": "ea2e8f07639d558ded613546f13dc4fe2cf9aaa2",
     "release_ready": false,
     "run_id": 35757877294,
     "source_head": "98ee079d413e7099c0f18db09987b71c23839cc5",
@@ -3412,8 +3415,57 @@
   "observed_date_jst": "2026-09-22",
   "observed_head": "98ee079d413e7099c0f18db09987b71c23839cc5",
   "observed_head_checks": {
-    "reason_ja": "当回は同一Wiki tree復元と公開view10試験/反映guard。旧36試験と独立2生成/checkは成功原本を継承し再実行0。完了Actionsは後続照合。",
-    "runs": [],
+    "reason_ja": "Wiki runの完了成功・原本証拠・非force反映commitを照合。各CIはsource HEADを明記し、後続記録HEADへ成功を流用しない。",
+    "runs": [
+      {
+        "conclusion": "success",
+        "event": "pull_request",
+        "head_sha": "98ee079d413e7099c0f18db09987b71c23839cc5",
+        "id": 35757887262,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "event": "pull_request",
+        "head_sha": "98ee079d413e7099c0f18db09987b71c23839cc5",
+        "id": 35757887285,
+        "path": ".github/workflows/ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "event": "push",
+        "head_sha": "98ee079d413e7099c0f18db09987b71c23839cc5",
+        "id": 35757877114,
+        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "event": "push",
+        "head_sha": "98ee079d413e7099c0f18db09987b71c23839cc5",
+        "id": 35757877188,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "event": "push",
+        "head_sha": "98ee079d413e7099c0f18db09987b71c23839cc5",
+        "id": 35757877041,
+        "path": ".github/workflows/ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "event": "push",
+        "head_sha": "98ee079d413e7099c0f18db09987b71c23839cc5",
+        "id": 35757877294,
+        "path": ".github/workflows/pr16-learnset-wiki-publish.yml",
+        "status": "completed"
+      }
+    ],
     "scope_head": "98ee079d413e7099c0f18db09987b71c23839cc5"
   },
   "observed_head_history": [
@@ -4768,7 +4820,7 @@
       "semantics": "PLA1圧縮と新規供給consumerのhost検証成功入力HEAD。ROM配置/実操作/記録commitの受入ではない。"
     }
   ],
-  "observed_head_semantics": "後継Wikiの反映source HEAD。生成・36試験はb8f8585d/run35756623313の成功stepを継承し、同一treeを復元。初回run全体のfailureをsuccessへ改作しない。",
+  "observed_head_semantics": "後継技習得Wikiの反映source HEAD。生成・36試験は別source b8f8585d/run35756623313の成功stepを継承。反映Actions原本とcommitの照合済み。通常操作の受入ではない。",
   "p08_candidate_impact": {
     "candidate": {
       "crc32": "CC068B4A",
@@ -5948,6 +6000,10 @@
       "sha256": "52d11a787fefd62a25aacde6d08c3a74b6f7b75856862673bdefa0756f51f542",
       "size": 3866
     },
+    ".github/workflows/pr16-learnset-wiki-closeout.yml": {
+      "sha256": "0121b2128d440407c4dc6986d23c1f6f38452dcf53d4aafd47afed83de6c3db8",
+      "size": 2815
+    },
     ".github/workflows/pr16-learnset-wiki-followup.yml": {
       "sha256": "050362d60b7a6a2c44e44e273a6d7a568d788e20cde038d40bbd51ae276e0617",
       "size": 2896
@@ -7037,8 +7093,12 @@
       "size": 2386
     },
     "content/modernization/pr16_learnset_wiki_checkpoint.json": {
-      "sha256": "9985359aa7aac9adeef125bafc2f1ca65a7cc52a149ab150c76447aa0754765d",
-      "size": 42259
+      "sha256": "71b538f186b03ca3a725a84cd87baa41d72ca2ef0fb43ce22dec0e198cdefbe7",
+      "size": 45627
+    },
+    "content/modernization/pr16_learnset_wiki_completed_actions.json": {
+      "sha256": "4c200406ab0a3895a44a82cb81d71dde1f99aaa1a281eba1da3e851062bf1808",
+      "size": 9673
     },
     "content/modernization/pr16_p08_bp_acceptance.json": {
       "sha256": "53fb3c843c1f7ff3468365abea5c22570f6339401c4cf5dff7428f95e6b38352",
@@ -7805,8 +7865,8 @@
       "size": 3811
     },
     "docs/PR16_LEARNSET_WIKI_JA.md": {
-      "sha256": "f704da8a3730fc61a0a700f96e14aed8131d0b528cb8d9b93d65f452b3232136",
-      "size": 2226
+      "sha256": "4c56bb8319bc491d0f4684d897ab5391248ccb85c7fdbd682464fb5e1efccaf4",
+      "size": 2681
     },
     "docs/PR16_VEGA_ORIGINAL_AUDIT_JA.md": {
       "sha256": "b9ee1dd32da36d9fe3d04aa1663afa0f2e6cc37aef491437dd2443a5870fb2d4",
@@ -11892,6 +11952,10 @@
       "sha256": "b5beb1b5de0bbadafa6545e2bb75d0848e2aace5c5525f124cf943c8df6c91e5",
       "size": 21665
     },
+    "scripts/pr16_learnset_wiki_closeout.py": {
+      "sha256": "ff57400f9660a51334da814e3f13471d74fb78d9b06eb24a7f08d32f75d91bf3",
+      "size": 12807
+    },
     "scripts/pr16_learnset_wiki_publish.py": {
       "sha256": "cb70d01d3e5f875552df3a38b4c270a63073df9d81652cc01cbd667dd8b2666a",
       "size": 12452
@@ -13031,6 +13095,10 @@
     "tests/test_pr16_learnset_wiki.py": {
       "sha256": "9d1a2231a5c754e86ea2fb96ac0c50da00013fc7a8689480617522ee6f9ccfb6",
       "size": 6681
+    },
+    "tests/test_pr16_learnset_wiki_closeout.py": {
+      "sha256": "f9fddeab4447769054876185a51d7da07c8dea9992abc54c3e842a850a5fd356",
+      "size": 3016
     },
     "tests/test_pr16_learnset_wiki_publish.py": {
       "sha256": "f0260ddf91b2b72a4382d02fe54e011c3926fe481f13262f6285c2fa49ac85b7",

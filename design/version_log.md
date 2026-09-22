@@ -6657,3 +6657,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: run35756623313の36試験/独立2生成/check成功は継承し再実行0。旧run全体はguard failureのまま。今run35757877294は新公開view10試験、同一tree materialize1、resume/task graph/限定index guard。原本採取/旧ARM/nativeの再実行0、ROM変更0。
 - Commit: 本完了commitを同branchへ非force反映。自己SHAはgit log/Actions resultと照合。
 - Network: 固定採用run/artifactと現在refのみ。旧Wiki4148file、BP/P08/baseline不変。全履歴guard PASS、通常操作受入、merge/releaseを主張しない。
+
+## 2026-09-22T17:04:50.870178+00:00
+- Timestamp: 2026-09-22T17:04:50.870178+00:00
+- Task: USER-20260923-LEARNSET-WIKI / 完了Actions原本の照合
+- Version: issue19-wiki-6e88a021-closeout-v1
+- Status: DONE（技習得Wiki記録限定）
+- Summary: run35757877294のrun/job/必須step成功（失敗時専用stepはskipped）、artifact外側digestと全member、反映commit ea2e8f07639d558ded613546f13dc4fe2cf9aaa2、受入source不変を照合。Wiki4932files/128389経路/36試験の受入は継承。
+- Files changed: closeout script/14試験/workflow、完了照合JSON、Wiki checkpoint/引継ぎMD/JSON/説明MD、両ログ。
+- Verify: 新しい記録境界14試験、resume/task graph/限定index guard。Wiki生成・旧36試験・原本採取・ROM復元・ARM・nativeの再実行0。
+- Commit: 同branch非forceの本記録commit。自己SHAはgit log/Actions resultと照合。
+- Network: 固定run/artifact/commit/source Checksと現在refのみ。全履歴guard PASS、製品受入、merge/release/baseline切替を主張しない。

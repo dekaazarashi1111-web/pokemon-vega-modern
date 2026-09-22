@@ -15,7 +15,7 @@
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
 証拠のsource HEAD: `98ee079d413e7099c0f18db09987b71c23839cc5`。
-後継Wikiの反映source HEAD。生成・36試験はb8f8585d/run35756623313の成功stepを継承し、同一treeを復元。初回run全体のfailureをsuccessへ改作しない。
+後継技習得Wikiの反映source HEAD。生成・36試験は別source b8f8585d/run35756623313の成功stepを継承。反映Actions原本とcommitの照合済み。通常操作の受入ではない。
 
 ## 最短の再開手順
 
@@ -281,6 +281,7 @@ P08ゲート:
 - 供給native完了照合: run35748601580は28owner/21392call/2process成功。配置16試験はrun35747048291、旧入力24試験も保存原本継承で再実行0。run35747886574はhost compile失敗のみ・native未起動。closeoutは新12件の証拠拒否試験だけでROM生成/native/既受入試験0。
 - closeoutの12証拠拒否試験はrun35749269393でPASSを継承し再実行0。このrunは新しい実branch ref/PR同一repo・branch・祖先境界6試験だけ。PR head表示遅延をlive branch ref完全一致とb464a4d以降の記録専用祖先で照合。
 - run35756623313の36試験/独立2Wiki生成/純読取checkは受入済み成功step。全体failureは公開ログguardのみ。同一tree b153f51d26db955427ce4f29df341556ee0ea02143394a64b9ae4d8d430f53fe を1回復元して反映。以降このtreeと証拠は継承し再生成・再試験しない。
+- 後継Wikiの完了Actions照合は content/modernization/pr16_learnset_wiki_completed_actions.json に保存。36 Wiki試験/2生成/候補復元は当回再実行0。次は未受入の通常操作だけを対象にする。
 
 ## 次セッションへ残す更新手順
 
@@ -310,6 +311,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-当回は同一Wiki tree復元と公開view10試験/反映guard。旧36試験と独立2生成/checkは成功原本を継承し再実行0。完了Actionsは後続照合。
+Wiki runの完了成功・原本証拠・非force反映commitを照合。各CIはsource HEADを明記し、後続記録HEADへ成功を流用しない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

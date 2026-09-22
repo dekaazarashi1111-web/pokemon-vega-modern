@@ -19,3 +19,7 @@ Side Change159非採用経路103種の履歴を保持しactive0。非学習188 o
 ## 次の未完
 
 Issue19: 候補6e88a021のWiki/原本結合は保存checkpointを継承し再生成しない。次は変更影響のBag通常入口、殿堂入り前後、raw40ページ選択/取消、習得選択、戦闘、通常Save/fresh Continue。Floette12追加技の実供給は未受入。旧4hook直接診断/ARM/PLA1/PLC2/旧Wikiを再実行しない。
+
+## 完了Actions照合
+
+run35757877294 / source `98ee079d413e7099c0f18db09987b71c23839cc5` / 反映 `ea2e8f07639d558ded613546f13dc4fe2cf9aaa2` のrun・job・必須step成功（失敗時専用stepはskipped）、保存証拠hash、親子commitを照合。正本 `content/modernization/pr16_learnset_wiki_completed_actions.json`。当回は新しい記録境界14試験だけで、受入済みWiki36試験/独立生成/ROM復元/nativeの再実行は0。
