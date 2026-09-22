@@ -1,0 +1,39 @@
+{
+  "task": "USER-20260922-LEARNSET-RUNTIME",
+  "mode": "native-harness-recovery",
+  "previous_run": 35703376221,
+  "previous_head": "015c87effcdd61bb27cab8df7835ac6d6bd882f1",
+  "proof_artifact": {
+    "id": 10683571641,
+    "name": "pr16-learnset-runtime-proof",
+    "size_in_bytes": 1386,
+    "digest": "sha256:f867ef83dd9e5e5b3b67bfb6fb20cbac1bfaa9ed97793853ff62437a4ce5895c"
+  },
+  "members": {
+    "build11.txt": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "build29.txt": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "host-audit.json": {
+      "size": 336,
+      "sha256": "64f8f59a6a21ef51d9e7ae6cce1246e24d60daee97214f731ba8e78ce1c6c084"
+    },
+    "native-compile.txt": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "native11.txt": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "unit.txt": {
+      "size": 2217,
+      "sha256": "4f476de537b9d2aa0e5b8077ec6e822af3fcab3c3baac4200993b702d2dadfde"
+    }
+  },
+  "reason_ja": "先行runの19試験/host全数照合は成功。native11プロセスで停止したため、host証拠を固定再利用してハーネスだけ診断する。前runにbundle artifactが残らなかったため新ARM配置2生成だけ復元し、今回はnative前checkpointを残す。"
+}

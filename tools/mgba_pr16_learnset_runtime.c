@@ -42,15 +42,22 @@ int main(int argc, char **argv)
     char sha[65]; sha256_file(argv[1],sha);
     if (strcmp(sha,argv[2])) battle_core_die("candidate SHA mismatch");
     struct mLogger logger = {.log=quiet_log,.filter=NULL}; mLogSetDefaultLogger(&logger);
+    fprintf(stderr,"phase=core-init\n");
     struct mCore *core = mCoreFind(argv[1]);
     if (!core || !core->init(core) || !mCoreLoadFile(core,argv[1])) battle_core_die("core load failed");
     mCoreInitConfig(core,NULL);
     mCoreConfigSetDefaultValue(&core->config,"idleOptimization","ignore");
+    static color_t video[240U*160U];
+    core->setVideoBuffer(core,video,240U);
+    struct mRTCSource rtc = {.sample=NULL,.unixTime=fixed_unix_time,.serialize=NULL,.deserialize=NULL};
+    mCoreSetRTC(core,&rtc);
     core->reset(core);
+    fprintf(stderr,"phase=reset-complete\n");
     const uint32_t scratch=0x0203C000U;
     unsigned calls=0;
     for (unsigned n=0; n<sizeof(pr16_samples)/sizeof(pr16_samples[0]); ++n) {
         const struct Pr16Sample *s=&pr16_samples[n];
+        fprintf(stderr,"phase=fixture species=%u\n",s->species);
         /* Host fixture only: zero personality/OT gives a valid empty checksum.
          * The ROM setter fills species and four nontrivial move/PP fields.
          * No natural creation/Save/Continue acceptance is claimed here. */
@@ -72,6 +79,7 @@ int main(int argc, char **argv)
         uint8_t mon[POKEMON_SIZE];
         for (unsigned b=0;b<POKEMON_SIZE;++b) mon[b]=read8(core,ADDR_PLAYER_PARTY+b);
         for (unsigned i=0;i<42U;++i) write16(core,scratch+2U*i,0xDEADU);
+        fprintf(stderr,"phase=new-entrypoints species=%u\n",s->species);
         uint32_t count=call_new(core,0x091142A1U,s->species,scratch); ++calls;
         if (count!=s->count) battle_core_die("new level count mismatch");
         for (unsigned i=0;i<42U;++i)
