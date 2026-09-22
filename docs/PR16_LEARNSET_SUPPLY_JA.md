@@ -1,3 +1,17 @@
+# Issue19: Tutor/追加archive consumer（実ROM配置受入済み）
+
+run35732715452の新供給ARM2784 bytes・PLA1 21383 bytes・4hookを候補ec5992aaへ配置し独立2生成一致を確認。特殊Tutor152..160 bodyとPLC2保存segmentは不変。14試験は初回失敗runの成功部分を継承。新native/通常操作/新Wikiは未完。
+
+候補SHA-256 `ec5992aa139fb87ddc27857a687dd7146c13a2dffbc88227aa44c1a26bea569f` / 33554432 bytes / CRC32 `9A91E7FB`。正本 `content/modernization/pr16_learnset_supply_link_checkpoint.json`。
+
+固定PLC2親から保存byteを適用した候補であり、clean-ROM最終2生成や通常操作の受入ではない。新ARM8compile/2linkは完了runの値。今回の記録では再実行0。初回記録run35734221410は失敗時artifactのskipを誤拒否してpush前に停止し、failureのまま保持。保存4技/PP、通常level/P03進化LR、正式BP/P08、旧Wiki、baselineを変更しない。
+
+## 次工程
+
+Issue19: 保存候補ec5992aaと供給ARM/PLA1/link.jsonをhash検証で復元し、新しい4hookの実ROM ABI・Tutor特殊条件・raw40行ページ選択を検証する。既受入ARM/PLA1生成/14試験/旧4入口probeを再実行しない。次に別候補Wikiと変更影響のBag/戦闘/習得選択/Save/Continueへ進む。
+
+## 前段階の記録（履歴）
+
 # Issue19: Tutor/追加archive consumer（host受入済み）
 
 保存済み不足技archiveを全3342 owner/consumer行・1232共有行・3順序template・最大差分深さ8のPLA1へ同値圧縮（21383 bytes）。新規30試験/145878 C照合/独立2生成を受入。殿堂入りgate・raw40行ページ・既習得除外・188owner拒否と読取専用game adapterはhost fixture限定。実ROM ABI/接続・新Wiki・通常操作E2Eは未完。

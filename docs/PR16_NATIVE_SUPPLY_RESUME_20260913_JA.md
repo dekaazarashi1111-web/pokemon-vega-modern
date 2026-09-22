@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-保存済み不足技archiveを全3342 owner/consumer行・1232共有行・3順序template・最大差分深さ8のPLA1へ同値圧縮（21383 bytes）。新規30試験/145878 C照合/独立2生成を受入。殿堂入りgate・raw40行ページ・既習得除外・188owner拒否と読取専用game adapterはhost fixture限定。実ROM ABI/接続・新Wiki・通常操作E2Eは未完。
+run35732715452の新供給ARM2784 bytes・PLA1 21383 bytes・4hookを候補ec5992aaへ配置し独立2生成一致を確認。特殊Tutor152..160 bodyとPLC2保存segmentは不変。14試験は初回失敗runの成功部分を継承。新native/通常操作/新Wikiは未完。
 
-**次: Issue19: 保存PLC2候補284b8822と受入済みPLA1の21383 bytesを再利用し、実ROMのTutor通常/特殊ABIおよびarchiveページ数・選択callbackを明示ownerへ束縛する。新しいARM moduleだけを配置・検証し、別候補Wikiと変更影響のBag/戦闘/習得選択/Save/Continueへ進む。30試験/145878照合/独立2PLA1生成と旧96試験・4入口nativeの単純再実行は禁止。**
+**次: Issue19: 保存候補ec5992aaと供給ARM/PLA1/link.jsonをhash検証で復元し、新しい4hookの実ROM ABI・Tutor特殊条件・raw40行ページ選択を検証する。既受入ARM/PLA1生成/14試験/旧4入口probeを再実行しない。次に別候補Wikiと変更影響のBag/戦闘/習得選択/Save/Continueへ進む。**
 
 特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `09847331130d1b6764733f09bb8d09bb2bbe6c16`。
-PLA1圧縮と新規供給consumerのhost検証成功入力HEAD。ROM配置/実操作/記録commitの受入ではない。
+証拠のsource HEAD: `abc3218f56f4bab6e97991cbfe8923b422d90f21`。
+供給ARM独立2link成功の入力HEAD。通常操作・native・記録commitの受入ではない。
 
 ## 最短の再開手順
 
@@ -26,9 +26,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
 - `docs/PR16_LEARNSET_SUPPLY_JA.md`
-- `content/modernization/pr16_learnset_supply_checkpoint.json`
-- `src/modernization/pr16_learnset_supply_game.c`
-- `scripts/pr16_learnset_supply_verify.py`
+- `content/modernization/pr16_learnset_supply_link_checkpoint.json`
+- `src/modernization/pr16_learnset_supply_native.c`
+- `scripts/pr16_learnset_supply_link.py`
 - `docs/PR16_LEARNSET_COMPACT_JA.md`
 - `content/modernization/pr16_learnset_compact_checkpoint.json`
 
@@ -278,6 +278,7 @@ P08ゲート:
 - 初期技/通常level-up: run35710087058の2process直接ROM probeと独立配置を再実行しない。30試験/318186 host照合はrun35709388462の成功部分を継承。途中失敗runは保持し、保存candidate/bundle/linkから再開。
 - 四条件入口: run35721669287の2独立ARM配置/2native processを再実行しない。run35715106357の41試験/622669照合、run35716683381の成功18試験、run35720010554の成功25試験/15039照合とrun35720416968の成功6 compiler-option試験を継承。旧failureを成功へ改作せず、固定2segmentと親e168c06fから再開。
 - PLA1供給host: run35726123952/source09847331130d1b6764733f09bb8d09bb2bbe6c16の30試験・145878照合・独立2生成は保存原本を継承する。archive-image.bin SHA256 499714cc04fd43ecb59ac45d8d23dad6badbc0137189c4fbcb8facbe13c46d13、21383 bytes。同値圧縮を原本/payload再生成へ読み替えない。次は保存dataを取得し、未実行の新ARM/実ROM ABI接続のみ。
+- 供給ARM: run35732715452/abc3218f56f4の8compile/2linkと候補ec5992aaの同値性は受入済み。保存supply.bin/PLA1/link.jsonを再利用し、旧ARM/PLA1/初回14試験を再実行しない。run35731723699のmemset未解決failureは成功へ改作しない。
 
 ## 次セッションへ残す更新手順
 
@@ -307,6 +308,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-新規30試験・145878 C/source照合・独立2PLA1生成を受入。旧96試験/4入口native/原本生成の再実行0。ROM接続・通常操作E2Eは未受入。
+未反映run35732715452を照合。14試験は失敗runの成功部分を継承。今回記録でARM/native/既受入試験再実行0。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

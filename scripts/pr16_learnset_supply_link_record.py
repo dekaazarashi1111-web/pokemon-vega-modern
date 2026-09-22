@@ -23,6 +23,8 @@ GUIDE = 'docs/PR16_LEARNSET_SUPPLY_JA.md'
 WORK = ROOT / '.local/pr16-learnset-supply-link-record'
 CODE = {INPUTS, 'scripts/pr16_learnset_supply_link_record.py',
         'tests/test_pr16_learnset_supply_link_record.py',
+        'scripts/pr16_learnset_supply_link_actions.py',
+        'tests/test_pr16_learnset_supply_link_actions.py',
         '.github/workflows/pr16-learnset-supply-link-record.yml'}
 FALSE_FLAGS = ('physical_supply_verified', 'gameplay_e2e_accepted', 'issue19_complete',
                'active_baseline_changed', 'release_ready')
@@ -119,7 +121,8 @@ def validate(files, config):
 
 def record():
     from pr16_learnset_floette_verify import download
-    from pr16_learnset_payload_verify import completed_run, current_pr
+    from pr16_learnset_payload_verify import current_pr
+    from pr16_learnset_supply_link_actions import completed_run
     from pr16_learnset_compact_record import publish_resume
     from pr16_resume import pending_ids
     config = inputs()
@@ -149,7 +152,10 @@ def record():
         'candidate': v['candidate'], 'candidate_crc32': v['candidate_crc32'], 'parent_candidate': config['parent_candidate'],
         'image': config['image'], 'verification': v, 'data_files': v['data_files'],
         'rom_hooks_installed': True, 'game_tutor_connected': True, 'archive_rebound': True,
-        'connection_scope': 'ROM_BYTE_LINK_ONLY_NOT_NATIVE_ACCEPTANCE', **{n: False for n in FALSE_FLAGS}}
+        'connection_scope': 'ROM_BYTE_LINK_ONLY_NOT_NATIVE_ACCEPTANCE',
+        'record_failed_predecessor': {'run_id': 35734221410, 'source_head': '4617ce06c04effcc7aa45b8bf5b30eab6a7f527f',
+            'conclusion': 'failure', 'reason': 'failure-only upload step was skipped; over-strict all-success checker rejected before record',
+            'new_tests': 0, 'new_native_processes': 0, 'pushed': False}, **{n: False for n in FALSE_FLAGS}}
     (ROOT / EVIDENCE).mkdir()
     for name, raw in files.items():
         (ROOT / EVIDENCE / name).write_bytes(raw)
@@ -178,7 +184,7 @@ def record():
     prior = (ROOT / GUIDE).read_text(encoding='utf-8')
     guide = '# Issue19: Tutor/追加archive consumer（実ROM配置受入済み）\n\n' + state['bp']['current_stop'] + '\n\n'
     guide += '候補SHA-256 `' + v['candidate']['sha256'] + '` / 33554432 bytes / CRC32 `9A91E7FB`。正本 `' + CP + '`。\n\n'
-    guide += '固定PLC2親から保存byteを適用した候補であり、clean-ROM最終2生成や通常操作の受入ではない。新ARM8compile/2linkは完了runの値。今回の記録では再実行0。保存4技/PP、通常level/P03進化LR、正式BP/P08、旧Wiki、baselineを変更しない。\n\n## 次工程\n\n' + goal + '\n\n## 前段階の記録（履歴）\n\n' + prior
+    guide += '固定PLC2親から保存byteを適用した候補であり、clean-ROM最終2生成や通常操作の受入ではない。新ARM8compile/2linkは完了runの値。今回の記録では再実行0。初回記録run35734221410は失敗時artifactのskipを誤拒否してpush前に停止し、failureのまま保持。保存4技/PP、通常level/P03進化LR、正式BP/P08、旧Wiki、baselineを変更しない。\n\n## 次工程\n\n' + goal + '\n\n## 前段階の記録（履歴）\n\n' + prior
     (ROOT / GUIDE).write_text(guide, encoding='utf-8')
     stamp = datetime.datetime.now(datetime.timezone.utc).isoformat()
     log = f'\n## {stamp}\n- Timestamp: {stamp}\n- Task: {TASK} / 未反映供給ARMリンクの受入・固定再開点更新\n- Version: learnset-supply-rom-link-v1\n- Status: DONE（ROM配置限定。実操作/新Wikiは未完）\n- Summary: run35732715452の保存証拠を照合。ec5992aa/4hook/ARM2784 bytes/PLA1 21383 bytes/独立2候補一致。初回14試験を継承、失敗履歴を保持。\n- Files changed: 専用record/拒否試験/入力binding/Actions、link証拠/checkpoint、固定再開MD/JSON、供給guide、両ログ。\n- Verify: 外側ZIP・全member/source hash・親checkpoint/BP/P08一致、新規記録拒否試験、resume/task graph/final index限定guard PASS後のみcommit。旧受入/native/ARM再実行0。全履歴guardのPASSは主張しない。\n- Commit: 本記録を含む同branch非force commit。自己SHAはgit logで照合。\n- Network: GitHub既存Actions/artifactだけ。原本再採取/merge/release/baseline切替なし。\n'

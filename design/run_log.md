@@ -9341,3 +9341,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: run35726123952 SUCCESS、新規30試験・145878 C/source照合・独立2PLA1のhash一致。保存原本の30試験/照合/生成を本記録で再実行しない。新規記録拒否試験・resume/task graph・final index限定guard・diff --check成功後のみcommit。
 - Commit: 同branchへの非force記録commit。自己SHAはgit logで照合。
 - Network: GitHub固定run/artifactを再利用。kapibarasan000/CFRU-JP@e24a16fe39e27ae162faf5b78596d1f3df18489d/src/item.cのCanMonLearnTutorMoveを確認し特殊Tutor条件を通常slotと区別（https://github.com/kapibarasan000/CFRU-JP/blob/e24a16fe39e27ae162faf5b78596d1f3df18489d/src/item.c）。実ROM ABIは未受入。原本/payload再生成0・旧96試験/native再実行0・新ARM/native0。歴史的全体private guardのPASSは主張しない。
+
+## 2026-09-22T13:39:03.367297+00:00
+- Timestamp: 2026-09-22T13:39:03.367297+00:00
+- Task: USER-20260922-LEARNSET-SUPPLY-ABI / 未反映供給ARMリンクの受入・固定再開点更新
+- Version: learnset-supply-rom-link-v1
+- Status: DONE（ROM配置限定。実操作/新Wikiは未完）
+- Summary: run35732715452の保存証拠を照合。ec5992aa/4hook/ARM2784 bytes/PLA1 21383 bytes/独立2候補一致。初回14試験を継承、失敗履歴を保持。
+- Files changed: 専用record/拒否試験/入力binding/Actions、link証拠/checkpoint、固定再開MD/JSON、供給guide、両ログ。
+- Verify: 外側ZIP・全member/source hash・親checkpoint/BP/P08一致、新規記録拒否試験、resume/task graph/final index限定guard PASS後のみcommit。旧受入/native/ARM再実行0。全履歴guardのPASSは主張しない。
+- Commit: 本記録を含む同branch非force commit。自己SHAはgit logで照合。
+- Network: GitHub既存Actions/artifactだけ。原本再採取/merge/release/baseline切替なし。

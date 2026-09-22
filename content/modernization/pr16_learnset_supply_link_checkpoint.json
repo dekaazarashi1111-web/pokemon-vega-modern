@@ -1,0 +1,350 @@
+{
+  "active_baseline_changed": false,
+  "archive_rebound": true,
+  "artifacts": {
+    "data": {
+      "digest": "sha256:ac33deb76f791209bc411ed42f02d777bd9c4598960e0edf406a04acbd184c90",
+      "id": 10696685700,
+      "name": "pr16-learnset-supply-link-data",
+      "size_in_bytes": 49471
+    },
+    "proof": {
+      "digest": "sha256:db141c4b1f6a25f9757f797580063ba3ebefe008a8243a5ee1ed30c7e8b2701f",
+      "id": 10696690673,
+      "name": "pr16-learnset-supply-link-proof",
+      "size_in_bytes": 18796
+    }
+  },
+  "candidate": {
+    "sha256": "ec5992aa139fb87ddc27857a687dd7146c13a2dffbc88227aa44c1a26bea569f",
+    "size": 33554432
+  },
+  "candidate_crc32": "9A91E7FB",
+  "completed_actions": {
+    "allowed_skip": {
+      "number": 8,
+      "reason": "failure-only artifact; success/data uploads6/7 required"
+    },
+    "conclusion": "success",
+    "head_sha": "abc3218f56f4bab6e97991cbfe8923b422d90f21",
+    "id": 35732715452,
+    "jobs": [
+      {
+        "conclusion": "success",
+        "id": 106762063715,
+        "name": "supply-link-followup",
+        "status": "completed",
+        "steps": [
+          {
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 3,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "新供給module用ARM toolchain",
+            "number": 4,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "初回14試験を再利用し新ARMのmemsetだけを追加",
+            "number": 5,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@v4",
+            "number": 6,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@v4",
+            "number": 7,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Run actions/upload-artifact@v4",
+            "number": 8,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 15,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 16,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 17,
+            "status": "completed"
+          }
+        ]
+      }
+    ],
+    "path": ".github/workflows/pr16-learnset-supply-link-followup.yml",
+    "status": "completed"
+  },
+  "connection_scope": "ROM_BYTE_LINK_ONLY_NOT_NATIVE_ACCEPTANCE",
+  "data_files": {
+    "archive-image.bin": {
+      "sha256": "499714cc04fd43ecb59ac45d8d23dad6badbc0137189c4fbcb8facbe13c46d13",
+      "size": 21383
+    },
+    "disassembly.txt": {
+      "sha256": "4b3a2187dd2a0f82b3c4748dd04fa05277c973b6bbb9699870d6b0cae6fe8f87",
+      "size": 49713
+    },
+    "link.json": {
+      "sha256": "44c6656a1414d3c142e80dbdfa5cf5600c53d92451874e255ce45ee54b98bb8b",
+      "size": 49709
+    },
+    "original_tutor.S": {
+      "sha256": "4bdae55d3e979cc50ea7c57bd6ad0e01a4536866da2261482feefcdba2af01a2",
+      "size": 840
+    },
+    "pr16_learnset_supply_bindings.h": {
+      "sha256": "530c2c3b7bcf2779e2efe147ba7d4cfd768da29ae5ddf091123e46ff1178ab46",
+      "size": 1048
+    },
+    "supply.bin": {
+      "sha256": "b7064dba828fcf63dfab2306a9875e0cccf0425bd5e0bf15a7e2eedc9322c0ae",
+      "size": 2784
+    },
+    "supply.elf": {
+      "sha256": "b065145771f9b2bb06de68955dc8c3290df25491368da35e2a1379e8112edb7d",
+      "size": 10580
+    }
+  },
+  "game_tutor_connected": true,
+  "gameplay_e2e_accepted": false,
+  "image": {
+    "sha256": "499714cc04fd43ecb59ac45d8d23dad6badbc0137189c4fbcb8facbe13c46d13",
+    "size": 21383
+  },
+  "issue19_complete": false,
+  "parent_candidate": {
+    "sha256": "284b88223be484a1f0a674d242bc7f4447258bf79cdd5a04b54dadb928d85c85",
+    "size": 33554432
+  },
+  "physical_supply_verified": false,
+  "proof_bindings": {
+    "inherited-unit.json": {
+      "sha256": "3b2df02ac1df07e9723ccb2765710b789e69280df95420f4980164d522827a69",
+      "size": 546
+    },
+    "link.json": {
+      "sha256": "44c6656a1414d3c142e80dbdfa5cf5600c53d92451874e255ce45ee54b98bb8b",
+      "size": 49709
+    },
+    "resume.json": {
+      "sha256": "df9f69096ae2c7d1841176d015e32cd18e15be6a2c1d00d9445f594fdb652d37",
+      "size": 83
+    },
+    "task-graph.txt": {
+      "sha256": "62088248f3d245c3853d2eaa0e2fdcffe8609be8f608995613c19a76e994466a",
+      "size": 77
+    },
+    "tracked-diff.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "unit.txt": {
+      "sha256": "8e65182e5af5e40c922a78f7dbcddc20c1a160eb60cfb0d20233e12d9e892853",
+      "size": 2251
+    },
+    "verification.json": {
+      "sha256": "74c4d04301001c65ccc8fdd1e78c8d7fd0f7c8b31fb85cbf5e0c2921b001f08a",
+      "size": 4414
+    }
+  },
+  "record_failed_predecessor": {
+    "conclusion": "failure",
+    "new_native_processes": 0,
+    "new_tests": 0,
+    "pushed": false,
+    "reason": "failure-only upload step was skipped; over-strict all-success checker rejected before record",
+    "run_id": 35734221410,
+    "source_head": "4617ce06c04effcc7aa45b8bf5b30eab6a7f527f"
+  },
+  "record_source_head": "b13cda9f513f1df312ed3886629b3e82ef253b3a",
+  "release_ready": false,
+  "rom_hooks_installed": true,
+  "run_id": 35732715452,
+  "source_head": "abc3218f56f4bab6e97991cbfe8923b422d90f21",
+  "status": "ACCEPTED_ROM_SUPPLY_LINK_NATIVE_PENDING",
+  "task": "USER-20260922-LEARNSET-SUPPLY-ABI",
+  "verification": {
+    "accepted_native_reruns": 0,
+    "accepted_payload_regenerations": 0,
+    "accepted_tests_rerun": 0,
+    "active_baseline_changed": false,
+    "arm_memory_helper_added": "src/modernization/pr16_learnset_supply_memory.S",
+    "candidate": {
+      "sha256": "ec5992aa139fb87ddc27857a687dd7146c13a2dffbc88227aa44c1a26bea569f",
+      "size": 33554432
+    },
+    "candidate_crc32": "9A91E7FB",
+    "code_bindings": {
+      ".github/workflows/pr16-learnset-supply-link-followup.yml": {
+        "sha256": "0c216b1c968951320793350661c111aeee6fa55a52b53a5976a00e27b4872d26",
+        "size": 2172
+      },
+      ".github/workflows/pr16-learnset-supply-link.yml": {
+        "sha256": "9c3a2b26bcd22e87447cdb6111c0198193829be30b1c9d31a93c80dd46c8f359",
+        "size": 2083
+      },
+      "scripts/pr16_learnset_supply_abi.py": {
+        "sha256": "4cf5d5c661dd7c7ebe536391445db4e8faa6fcf121c4d6b27a3e7a43878e5a70",
+        "size": 6842
+      },
+      "scripts/pr16_learnset_supply_link.py": {
+        "sha256": "6d61bb42fefccdd03a7b83d243ed953714b7473179f02d6550e8f05b8def3424",
+        "size": 15515
+      },
+      "scripts/pr16_learnset_supply_link_followup.py": {
+        "sha256": "529e4a34f2478a8afec317f768d9f5091dc8064dbf34bb244f19acac608c7cc8",
+        "size": 3595
+      },
+      "src/modernization/pr16_learnset_owner.h": {
+        "sha256": "41c3ab7d590aa7e377b56e321dd2a599d5e26f37480ef1962032cd3905545808",
+        "size": 1603
+      },
+      "src/modernization/pr16_learnset_runtime.h": {
+        "sha256": "f0aceda5fa6584e0fd681b2fd6e6437ecfb3beffde9db3af7a319db4a1b0844c",
+        "size": 1047
+      },
+      "src/modernization/pr16_learnset_supply.c": {
+        "sha256": "6824cd34dee8e10bc017fde5d6b4d7eece0661de6b9fcf5a4e187a9fcf90a17b",
+        "size": 4203
+      },
+      "src/modernization/pr16_learnset_supply.h": {
+        "sha256": "3c145cc131901fe43d82a183f33ee8841c5d73b99283dd3ea0c236f159659143",
+        "size": 857
+      },
+      "src/modernization/pr16_learnset_supply_game.c": {
+        "sha256": "c64e50f2809180b7e0ee5a6f0ef72d71c0350a29f122d819162109af1736c081",
+        "size": 1884
+      },
+      "src/modernization/pr16_learnset_supply_game.h": {
+        "sha256": "842e05c675a6334c985a75643a9943e3b0b7a163593abd57e36cfbbfbeb3d2c0",
+        "size": 396
+      },
+      "src/modernization/pr16_learnset_supply_memory.S": {
+        "sha256": "bf1898e570ba65f1968aaf06034b1e9c56e393ecf840c6a341fe4ecd004a77b5",
+        "size": 482
+      },
+      "src/modernization/pr16_learnset_supply_native.c": {
+        "sha256": "84382b1baedae0198623afe4f411ac1e32c74b40fd0960e7c8dd8bc972dd1a52",
+        "size": 2182
+      },
+      "tests/test_pr16_learnset_supply_native.py": {
+        "sha256": "77d3050a45aa53e7cb77973891153fac954c0fde67993848d8a528a4c52fbeac",
+        "size": 8306
+      }
+    },
+    "data_files": {
+      "archive-image.bin": {
+        "sha256": "499714cc04fd43ecb59ac45d8d23dad6badbc0137189c4fbcb8facbe13c46d13",
+        "size": 21383
+      },
+      "disassembly.txt": {
+        "sha256": "4b3a2187dd2a0f82b3c4748dd04fa05277c973b6bbb9699870d6b0cae6fe8f87",
+        "size": 49713
+      },
+      "link.json": {
+        "sha256": "44c6656a1414d3c142e80dbdfa5cf5600c53d92451874e255ce45ee54b98bb8b",
+        "size": 49709
+      },
+      "original_tutor.S": {
+        "sha256": "4bdae55d3e979cc50ea7c57bd6ad0e01a4536866da2261482feefcdba2af01a2",
+        "size": 840
+      },
+      "pr16_learnset_supply_bindings.h": {
+        "sha256": "530c2c3b7bcf2779e2efe147ba7d4cfd768da29ae5ddf091123e46ff1178ab46",
+        "size": 1048
+      },
+      "supply.bin": {
+        "sha256": "b7064dba828fcf63dfab2306a9875e0cccf0425bd5e0bf15a7e2eedc9322c0ae",
+        "size": 2784
+      },
+      "supply.elf": {
+        "sha256": "b065145771f9b2bb06de68955dc8c3290df25491368da35e2a1379e8112edb7d",
+        "size": 10580
+      }
+    },
+    "failed_predecessor": {
+      "conclusion": "failure",
+      "new_arm_compiles": 4,
+      "new_arm_link_attempts": 1,
+      "new_native_processes": 0,
+      "reason": "memset未解決。新規14試験は成功。",
+      "run_id": 35731723699,
+      "source_head": "1bb993d81ba08e5633e79cd67992a1326b4607da"
+    },
+    "gameplay_e2e_accepted": false,
+    "independent_candidate_match": true,
+    "inherited_scoped_tests": 14,
+    "issue19_complete": false,
+    "new_arm_compiles": 8,
+    "new_arm_links": 2,
+    "new_native_processes": 0,
+    "new_tests": 0,
+    "old_arm_compiles": 0,
+    "physical_supply_verified": false,
+    "proof_files": {
+      "inherited-unit.json": {
+        "sha256": "3b2df02ac1df07e9723ccb2765710b789e69280df95420f4980164d522827a69",
+        "size": 546
+      },
+      "link.json": {
+        "sha256": "44c6656a1414d3c142e80dbdfa5cf5600c53d92451874e255ce45ee54b98bb8b",
+        "size": 49709
+      },
+      "resume.json": {
+        "sha256": "df9f69096ae2c7d1841176d015e32cd18e15be6a2c1d00d9445f594fdb652d37",
+        "size": 83
+      },
+      "task-graph.txt": {
+        "sha256": "62088248f3d245c3853d2eaa0e2fdcffe8609be8f608995613c19a76e994466a",
+        "size": 77
+      },
+      "tracked-diff.txt": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "unit.txt": {
+        "sha256": "8e65182e5af5e40c922a78f7dbcddc20c1a160eb60cfb0d20233e12d9e892853",
+        "size": 2251
+      }
+    },
+    "release_ready": false,
+    "run_id": 35732715452,
+    "scope": "REAL_ROM_LINK_NOT_NATIVE_OR_GAMEPLAY_ACCEPTANCE",
+    "source_head": "abc3218f56f4bab6e97991cbfe8923b422d90f21",
+    "status": "PASS_NEW_SUPPLY_ARM_LINK",
+    "task": "USER-20260922-LEARNSET-SUPPLY-ABI"
+  }
+}
