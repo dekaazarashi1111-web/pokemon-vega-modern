@@ -100,6 +100,7 @@ int main(int argc, char **argv)
         if (read16(core,scratch+2U*i)!=0xDEADU) battle_core_die("invalid species wrote output");
     if (log_problem_count) battle_core_die("mGBA warning/error");
     printf("{\"status\":\"PASS_TWO_LINKED_ROM_ENTRYPOINTS\",\"candidate_sha256\":\"%s\",\"samples\":%zu,\"calls\":%u,\"new_code_pc_seen_for_every_call\":true,\"existing_mon_bytes_unchanged\":true,\"output_canaries_unchanged\":true,\"scope\":\"HOST_FIXTURE_DIRECT_ROM_CALL_NOT_GAMEPLAY_E2E\"}\n",sha,sizeof(pr16_samples)/sizeof(pr16_samples[0]),calls);
-    mCoreConfigDeinit(&core->config); core->deinit(core); free(core);
+    /* mGBA core->deinit owns and frees the core itself. */
+    mCoreConfigDeinit(&core->config); core->deinit(core);
     return 0;
 }
