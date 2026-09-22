@@ -1,5 +1,5 @@
 name: pr16-learnset-progress
-# ABI fix: CFRU-defined GiveMoveToBoxMon is bound by saved body and hook, not BPRJ.ld.
+# 固定ROM入口の限定診断。完了受入ではなく、旧試験/ARM/nativeの再実行なし。
 on:
   push:
     branches: [codex/modernization-followup-20260908]
@@ -15,7 +15,7 @@ jobs:
   progress-boundary:
     if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
     runs-on: ubuntu-24.04
-    timeout-minutes: 15
+    timeout-minutes: 10
     env:
       PYTHONDONTWRITEBYTECODE: '1'
     steps:
@@ -26,25 +26,18 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: 新規ARMとnative限定依存
+      - name: 逆アセンブラだけ導入
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y --no-install-recommends gcc-arm-none-eabi libmgba-dev
-      - name: 固定PLR1を再利用し初期技と自然level-upだけ検証
+          sudo apt-get install -y --no-install-recommends binutils-arm-none-eabi
+      - name: 既存ゲーム入口の読取専用診断
         env:
           GITHUB_TOKEN: ${{ github.token }}
-        run: python3 -B scripts/pr16_learnset_progress_verify.py verify
+        run: python3 -B scripts/pr16_learnset_progress_abi.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: pr16-learnset-progress-proof
+          name: pr16-learnset-progress-abi
           path: .local/pr16-learnset-progress/proof/
           retention-days: 30
-          if-no-files-found: warn
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: pr16-learnset-progress-data
-          path: .local/pr16-learnset-progress/data/
-          retention-days: 30
-          if-no-files-found: warn
+          if-no-files-found: error
