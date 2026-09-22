@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-ELF実loadとROM配置の4byteずれを保存ELFから修復し後継6e88a021を独立2配置一致で確定。新供給4hookを28代表owner×独立2process、合計21392callで検証。特殊Tutor/HoF/raw40ページ/既習得除外/タマゴ/選択境界/保存4技PPを確認。直接ROM診断のみで通常操作・新Wiki・物理供給は未完。 完了Actions/原本artifact/記録commitの対応を追加照合済み。
+候補6e88a021の技習得Wiki4932files/128389経路を、36試験/独立2生成/checkの保存成功証拠と同一treeで反映。過去失敗ログは原本と公開viewを分離。通常操作・物理供給は未完。
 
-**次: Issue19: 修復後候補6e88a021のcontent/modernization/pr16_learnset_supply_alignment_checkpoint.jsonから保存ELF配置を復元し、別候補Wikiと変更影響の通常操作（Bag入口・殿堂入りgate・40行ページ選択/取消・習得選択・戦闘・Save/Continue）へ進む。旧ec5992aaは配置ずれがあるため現役候補へ戻さない。新4hook直接診断/16配置試験/旧24試験/ARM/PLA1/PLC2を変更影響なしに再実行しない。**
+**次: Issue19: 候補6e88a021のWiki/原本結合は保存checkpointを継承し再生成しない。次は変更影響のBag通常入口、殿堂入り前後、raw40ページ選択/取消、習得選択、戦闘、通常Save/fresh Continue。Floette12追加技の実供給は未受入。旧4hook直接診断/ARM/PLA1/PLC2/旧Wikiを再実行しない。**
 
 特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `740ecf0a94de514fa735e4697f5d6129d45520e4`。
-新供給4hook診断成功の入力HEAD。保存ELF配置修復はrun35747048291、28owner×2processはrun35748601580、記録commitはb464a4df505d26067c42550db90615eeb3655cdd。正式BP欄の候補/受入履歴は不変。
+証拠のsource HEAD: `98ee079d413e7099c0f18db09987b71c23839cc5`。
+後継Wikiの反映source HEAD。生成・36試験はb8f8585d/run35756623313の成功stepを継承し、同一treeを復元。初回run全体のfailureをsuccessへ改作しない。
 
 ## 最短の再開手順
 
@@ -25,12 +25,10 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_LEARNSET_SUPPLY_JA.md`
-- `content/modernization/pr16_learnset_supply_completed_actions.json`
+- `docs/PR16_LEARNSET_WIKI_JA.md`
+- `content/modernization/pr16_learnset_wiki_checkpoint.json`
 - `content/modernization/pr16_learnset_supply_alignment_checkpoint.json`
 - `content/modernization/pr16_learnset_supply_native_checkpoint.json`
-- `scripts/pr16_supply_elf_placement.py`
-- `scripts/pr16_supply_coverage_followup.py`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -282,6 +280,7 @@ P08ゲート:
 - run35748601580: 6e88a021の新4hook/21392call/2processと新16配置試験を受入。旧14+10試験は保存原本を継承し再実行0。run35738895606の失敗原本は保持。次は新Wiki/通常操作のみ。
 - 供給native完了照合: run35748601580は28owner/21392call/2process成功。配置16試験はrun35747048291、旧入力24試験も保存原本継承で再実行0。run35747886574はhost compile失敗のみ・native未起動。closeoutは新12件の証拠拒否試験だけでROM生成/native/既受入試験0。
 - closeoutの12証拠拒否試験はrun35749269393でPASSを継承し再実行0。このrunは新しい実branch ref/PR同一repo・branch・祖先境界6試験だけ。PR head表示遅延をlive branch ref完全一致とb464a4d以降の記録専用祖先で照合。
+- run35756623313の36試験/独立2Wiki生成/純読取checkは受入済み成功step。全体failureは公開ログguardのみ。同一tree b153f51d26db955427ce4f29df341556ee0ea02143394a64b9ae4d8d430f53fe を1回復元して反映。以降このtreeと証拠は継承し再生成・再試験しない。
 
 ## 次セッションへ残す更新手順
 
@@ -311,6 +310,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-供給native run35748601580/job106816516184は検証・限定guard・同branch非force push・artifact公開までcompleted/success。完了抄録はcontent/modernization/pr16_learnset_supply_completed_actions.json。source checksの実測結果のみ保存し、全履歴guard/release/通常操作の完了とは扱わない。
+当回は同一Wiki tree復元と公開view10試験/反映guard。旧36試験と独立2生成/checkは成功原本を継承し再実行0。完了Actionsは後続照合。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

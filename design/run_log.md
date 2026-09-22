@@ -9374,3 +9374,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 保存run35749269393のcloseout12試験を継承（再実行0）、新ref境界6試験・resume check・task graph・限定final index/private差分guardを通過してからcommit。PR表示headとlive branch refは別記し、repo/branch/未merge/有界祖先とlive完全一致を検査。native/ARM compile/link/ROM復元/既受入試験は今回0。配置16試験はrun35747048291、旧24試験も保存継承。host compile失敗run35747886574（native0）は原本付きで保存し、740ecf0でラッパーだけ修復した。26owner診断失敗1processと28owner成功2processを混同しない。
 - Commit: 本記録を含む同branch非force commit。検証入力HEAD=688602071100edd7fc4e545e475686b3b45ae021。自己SHAはgit logで照合。
 - Network: GitHub固定run/artifact照合のみ。ROM/Save/ELF/binaryをtrackedへ追加しない。正式BP/P08/旧Wiki/基準ROMは不変、merge/release/active baseline切替なし。
+
+## 2026-09-22T17:01:51.954014+00:00
+- Timestamp: 2026-09-22T17:01:51.954014+00:00
+- Task: USER-20260923-LEARNSET-WIKI / 同一Wikiの反映と公開証拠view修復
+- Version: issue19-wiki-6e88a021-publish-v1
+- Status: DONE（技習得Wiki限定）
+- Summary: 4932files/128389経路のWikiを成功tree b153f51d26db955427ce4f29df341556ee0ea02143394a64b9ae4d8d430f53fe と同一byteで復元。原本を改変せず、追跡ログは伏字/末尾空白除去viewと原本hashの対で保存。
+- Files changed: 生成器/registry/試験/Actions、新Wiki、引継ぎMD/JSON、checkpoint/説明MD/text証拠、両ログ。
+- Verify: run35756623313の36試験/独立2生成/check成功は継承し再実行0。旧run全体はguard failureのまま。今run35757877294は新公開view10試験、同一tree materialize1、resume/task graph/限定index guard。原本採取/旧ARM/nativeの再実行0、ROM変更0。
+- Commit: 本完了commitを同branchへ非force反映。自己SHAはgit log/Actions resultと照合。
+- Network: 固定採用run/artifactと現在refのみ。旧Wiki4148file、BP/P08/baseline不変。全履歴guard PASS、通常操作受入、merge/releaseを主張しない。

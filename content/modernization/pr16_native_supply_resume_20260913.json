@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "ELF実loadとROM配置の4byteずれを保存ELFから修復し後継6e88a021を独立2配置一致で確定。新供給4hookを28代表owner×独立2process、合計21392callで検証。特殊Tutor/HoF/raw40ページ/既習得除外/タマゴ/選択境界/保存4技PPを確認。直接ROM診断のみで通常操作・新Wiki・物理供給は未完。 完了Actions/原本artifact/記録commitの対応を追加照合済み。",
+    "current_stop": "候補6e88a021の技習得Wiki4932files/128389経路を、36試験/独立2生成/checkの保存成功証拠と同一treeで反映。過去失敗ログは原本と公開viewを分離。通常操作・物理供給は未完。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "Issue19: 修復後候補6e88a021のcontent/modernization/pr16_learnset_supply_alignment_checkpoint.jsonから保存ELF配置を復元し、別候補Wikiと変更影響の通常操作（Bag入口・殿堂入りgate・40行ページ選択/取消・習得選択・戦闘・Save/Continue）へ進む。旧ec5992aaは配置ずれがあるため現役候補へ戻さない。新4hook直接診断/16配置試験/旧24試験/ARM/PLA1/PLC2を変更影響なしに再実行しない。",
+    "next_step": "Issue19: 候補6e88a021のWiki/原本結合は保存checkpointを継承し再生成しない。次は変更影響のBag通常入口、殿堂入り前後、raw40ページ選択/取消、習得選択、戦闘、通常Save/fresh Continue。Floette12追加技の実供給は未受入。旧4hook直接診断/ARM/PLA1/PLC2/旧Wikiを再実行しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -1010,7 +1010,8 @@
     "供給ARM: run35732715452/abc3218f56f4の8compile/2linkと候補ec5992aaの同値性は受入済み。保存supply.bin/PLA1/link.jsonを再利用し、旧ARM/PLA1/初回14試験を再実行しない。run35731723699のmemset未解決failureは成功へ改作しない。",
     "run35748601580: 6e88a021の新4hook/21392call/2processと新16配置試験を受入。旧14+10試験は保存原本を継承し再実行0。run35738895606の失敗原本は保持。次は新Wiki/通常操作のみ。",
     "供給native完了照合: run35748601580は28owner/21392call/2process成功。配置16試験はrun35747048291、旧入力24試験も保存原本継承で再実行0。run35747886574はhost compile失敗のみ・native未起動。closeoutは新12件の証拠拒否試験だけでROM生成/native/既受入試験0。",
-    "closeoutの12証拠拒否試験はrun35749269393でPASSを継承し再実行0。このrunは新しい実branch ref/PR同一repo・branch・祖先境界6試験だけ。PR head表示遅延をlive branch ref完全一致とb464a4d以降の記録専用祖先で照合。"
+    "closeoutの12証拠拒否試験はrun35749269393でPASSを継承し再実行0。このrunは新しい実branch ref/PR同一repo・branch・祖先境界6試験だけ。PR head表示遅延をlive branch ref完全一致とb464a4d以降の記録専用祖先で照合。",
+    "run35756623313の36試験/独立2Wiki生成/純読取checkは受入済み成功step。全体failureは公開ログguardのみ。同一tree b153f51d26db955427ce4f29df341556ee0ea02143394a64b9ae4d8d430f53fe を1回復元して反映。以降このtreeと証拠は継承し再生成・再試験しない。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -1401,6 +1402,64 @@
       "RUNTIME_EXTENSION_NOT_SELECTED": 50,
       "SOURCE_NOT_SELECTED": 141
     }
+  },
+  "learnset_candidate_wiki": {
+    "actions_completion_confirmed": false,
+    "candidate": {
+      "crc32": "00F31AF7",
+      "sha256": "6e88a021785bfa7cf00e26d7f2433c380602d830e94e1d2fc31e3198cda31df2",
+      "size": 33554432
+    },
+    "counts": {
+      "active_side_change": 0,
+      "carry_reference_rows": 35211,
+      "conditional_breeding_not_flat_rows": 5,
+      "conditions": 109659,
+      "consumers": {
+        "egg": 4357,
+        "evolution": 342,
+        "form_change": 70,
+        "level_up": 21586,
+        "machine": 58922,
+        "pre_evolution_carry": 35141,
+        "reminder": 295,
+        "shared_egg": 5027,
+        "tutor": 2649
+      },
+      "layers": {
+        "explicit_distinct_owner_clone": 60,
+        "explicit_identity_repair": 4,
+        "official_baseline": 118402,
+        "vega_original_baseline": 9923
+      },
+      "learning_owners": 1483,
+      "machine_archive_moves": 26308,
+      "moves": 1063,
+      "nonlearning_owners": 188,
+      "owner_overlay_rows": 0,
+      "placeholder_rows": 0,
+      "routes": 128389,
+      "species": 1671,
+      "tutor_archive_moves": 1909
+    },
+    "files": 4932,
+    "focused_tests": 36,
+    "focused_tests_executed": 0,
+    "gameplay_e2e_accepted": false,
+    "inherited_focused_tests": 36,
+    "issue19_complete": false,
+    "new_native_runs": 0,
+    "new_publish_tests": 10,
+    "output": "docs/wiki/issue19-candidate-6e88a021",
+    "output_materializations": 1,
+    "path": "content/modernization/pr16_learnset_wiki_checkpoint.json",
+    "release_ready": false,
+    "run_id": 35757877294,
+    "source_head": "98ee079d413e7099c0f18db09987b71c23839cc5",
+    "status": "PASS_SUCCESSOR_LEARNSET_WIKI",
+    "tree_sha256": "b153f51d26db955427ce4f29df341556ee0ea02143394a64b9ae4d8d430f53fe",
+    "verification_run_id": 35756623313,
+    "verification_source_head": "b8f8585da8c34652dd4fc59fec537f4c2e04df1c"
   },
   "learnset_conditional_compact": {
     "candidate": {
@@ -3339,89 +3398,23 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "Issue19: 修復後候補6e88a021のcontent/modernization/pr16_learnset_supply_alignment_checkpoint.jsonから保存ELF配置を復元し、別候補Wikiと変更影響の通常操作（Bag入口・殿堂入りgate・40行ページ選択/取消・習得選択・戦闘・Save/Continue）へ進む。旧ec5992aaは配置ずれがあるため現役候補へ戻さない。新4hook直接診断/16配置試験/旧24試験/ARM/PLA1/PLC2を変更影響なしに再実行しない。",
+    "goal_ja": "Issue19: 候補6e88a021のWiki/原本結合は保存checkpointを継承し再生成しない。次は変更影響のBag通常入口、殿堂入り前後、raw40ページ選択/取消、習得選択、戦闘、通常Save/fresh Continue。Floette12追加技の実供給は未受入。旧4hook直接診断/ARM/PLA1/PLC2/旧Wikiを再実行しない。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
-    "id": "LEARNSET_SUPPLY_WIKI_AND_GAMEPLAY",
+    "id": "LEARNSET_NORMAL_GAMEPLAY_AFTER_WIKI",
     "read_paths": [
-      "docs/PR16_LEARNSET_SUPPLY_JA.md",
-      "content/modernization/pr16_learnset_supply_completed_actions.json",
+      "docs/PR16_LEARNSET_WIKI_JA.md",
+      "content/modernization/pr16_learnset_wiki_checkpoint.json",
       "content/modernization/pr16_learnset_supply_alignment_checkpoint.json",
-      "content/modernization/pr16_learnset_supply_native_checkpoint.json",
-      "scripts/pr16_supply_elf_placement.py",
-      "scripts/pr16_supply_coverage_followup.py"
+      "content/modernization/pr16_learnset_supply_native_checkpoint.json"
     ],
     "stop_rule_ja": "特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。"
   },
   "observed_date_jst": "2026-09-22",
-  "observed_head": "740ecf0a94de514fa735e4697f5d6129d45520e4",
+  "observed_head": "98ee079d413e7099c0f18db09987b71c23839cc5",
   "observed_head_checks": {
-    "reason_ja": "供給native run35748601580/job106816516184は検証・限定guard・同branch非force push・artifact公開までcompleted/success。完了抄録はcontent/modernization/pr16_learnset_supply_completed_actions.json。source checksの実測結果のみ保存し、全履歴guard/release/通常操作の完了とは扱わない。",
-    "record_remote_ref_guard": {
-      "branch_ref_exact": true,
-      "live_branch_head": "688602071100edd7fc4e545e475686b3b45ae021",
-      "observed_pr_head": "700011a644e3d5504781ea3cf50a7ca3549f56b8",
-      "pr_head_display_lag": true,
-      "pr_head_in_verified_record_only_ancestry": true
-    },
-    "runs": [
-      {
-        "conclusion": "success",
-        "event": "pull_request",
-        "head_sha": "740ecf0a94de514fa735e4697f5d6129d45520e4",
-        "id": 35748613314,
-        "path": ".github/workflows/p03-forgetting-ci.yml",
-        "status": "completed"
-      },
-      {
-        "conclusion": "success",
-        "event": "pull_request",
-        "head_sha": "740ecf0a94de514fa735e4697f5d6129d45520e4",
-        "id": 35748613079,
-        "path": ".github/workflows/ci.yml",
-        "status": "completed"
-      },
-      {
-        "conclusion": "success",
-        "event": "push",
-        "head_sha": "740ecf0a94de514fa735e4697f5d6129d45520e4",
-        "id": 35748601577,
-        "path": ".github/workflows/p03-forgetting-ci.yml",
-        "status": "completed"
-      },
-      {
-        "conclusion": "success",
-        "event": "push",
-        "head_sha": "740ecf0a94de514fa735e4697f5d6129d45520e4",
-        "id": 35748601648,
-        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
-        "status": "completed"
-      },
-      {
-        "conclusion": "success",
-        "event": "push",
-        "head_sha": "740ecf0a94de514fa735e4697f5d6129d45520e4",
-        "id": 35748601580,
-        "path": ".github/workflows/pr16-learnset-supply-rom.yml",
-        "status": "completed"
-      },
-      {
-        "conclusion": "success",
-        "event": "push",
-        "head_sha": "740ecf0a94de514fa735e4697f5d6129d45520e4",
-        "id": 35748601657,
-        "path": ".github/workflows/ci.yml",
-        "status": "completed"
-      },
-      {
-        "conclusion": "success",
-        "event": "push",
-        "head_sha": "740ecf0a94de514fa735e4697f5d6129d45520e4",
-        "id": 35748601578,
-        "path": ".github/workflows/modernization-stage79-mgba.yml",
-        "status": "completed"
-      }
-    ],
-    "source_head": "740ecf0a94de514fa735e4697f5d6129d45520e4"
+    "reason_ja": "当回は同一Wiki tree復元と公開view10試験/反映guard。旧36試験と独立2生成/checkは成功原本を継承し再実行0。完了Actionsは後続照合。",
+    "runs": [],
+    "scope_head": "98ee079d413e7099c0f18db09987b71c23839cc5"
   },
   "observed_head_history": [
     {
@@ -4775,7 +4768,7 @@
       "semantics": "PLA1圧縮と新規供給consumerのhost検証成功入力HEAD。ROM配置/実操作/記録commitの受入ではない。"
     }
   ],
-  "observed_head_semantics": "新供給4hook診断成功の入力HEAD。保存ELF配置修復はrun35747048291、28owner×2processはrun35748601580、記録commitはb464a4df505d26067c42550db90615eeb3655cdd。正式BP欄の候補/受入履歴は不変。",
+  "observed_head_semantics": "後継Wikiの反映source HEAD。生成・36試験はb8f8585d/run35756623313の成功stepを継承し、同一treeを復元。初回run全体のfailureをsuccessへ改作しない。",
   "p08_candidate_impact": {
     "candidate": {
       "crc32": "CC068B4A",
@@ -5955,6 +5948,14 @@
       "sha256": "52d11a787fefd62a25aacde6d08c3a74b6f7b75856862673bdefa0756f51f542",
       "size": 3866
     },
+    ".github/workflows/pr16-learnset-wiki-followup.yml": {
+      "sha256": "050362d60b7a6a2c44e44e273a6d7a568d788e20cde038d40bbd51ae276e0617",
+      "size": 2896
+    },
+    ".github/workflows/pr16-learnset-wiki-publish.yml": {
+      "sha256": "39a1da8df8394904ce40035e8dda3fddf11fba43a9a09c969e6e7e37b1e2a209",
+      "size": 3496
+    },
     ".github/workflows/pr16-p05-native-supply-evidence-map.yml": {
       "sha256": "b6e715faf64cdc8b74da02b953840ea04aa03b304cf2eef08ef445c5cbb002eb",
       "size": 12319
@@ -7035,6 +7036,10 @@
       "sha256": "4aa10325e0d1f73a18977c3da343369494140076be1d904a24d6f936199f2f08",
       "size": 2386
     },
+    "content/modernization/pr16_learnset_wiki_checkpoint.json": {
+      "sha256": "9985359aa7aac9adeef125bafc2f1ca65a7cc52a149ab150c76447aa0754765d",
+      "size": 42259
+    },
     "content/modernization/pr16_p08_bp_acceptance.json": {
       "sha256": "53fb3c843c1f7ff3468365abea5c22570f6339401c4cf5dff7428f95e6b38352",
       "size": 37231
@@ -7798,6 +7803,10 @@
     "docs/PR16_LEARNSET_SUCCESSOR_JA.md": {
       "sha256": "b6a1c8dccc3109f5afb623340eae57ea00a95e28cfac8e757c85d05726823203",
       "size": 3811
+    },
+    "docs/PR16_LEARNSET_WIKI_JA.md": {
+      "sha256": "f704da8a3730fc61a0a700f96e14aed8131d0b528cb8d9b93d65f452b3232136",
+      "size": 2226
     },
     "docs/PR16_VEGA_ORIGINAL_AUDIT_JA.md": {
       "sha256": "b9ee1dd32da36d9fe3d04aa1663afa0f2e6cc37aef491437dd2443a5870fb2d4",
@@ -11875,6 +11884,22 @@
       "sha256": "ce4ccd15510710e0b6ceb81c5aba3386f71b677014b14eb0a4e9a0ed28f3cf0f",
       "size": 18915
     },
+    "scripts/pr16_learnset_wiki.py": {
+      "sha256": "812b34967f93e7f1e886fcfa0d5cb91f6ad38c59695324bda6a53d868a706d35",
+      "size": 25777
+    },
+    "scripts/pr16_learnset_wiki_actions.py": {
+      "sha256": "b5beb1b5de0bbadafa6545e2bb75d0848e2aace5c5525f124cf943c8df6c91e5",
+      "size": 21665
+    },
+    "scripts/pr16_learnset_wiki_publish.py": {
+      "sha256": "cb70d01d3e5f875552df3a38b4c270a63073df9d81652cc01cbd667dd8b2666a",
+      "size": 12452
+    },
+    "scripts/pr16_learnset_wiki_registry_followup.py": {
+      "sha256": "63d5fac96425213c4dae453fcad087d0ad28f211327d2064ca8b49758a900d9a",
+      "size": 8238
+    },
     "scripts/pr16_p05_native_supply_evidence_map.py": {
       "sha256": "55c40230901fc3d58174af46927e28d64bec4cc25acac4ae4cde2b48f739ff55",
       "size": 17044
@@ -13002,6 +13027,18 @@
     "tests/test_pr16_learnset_baseline_record.py": {
       "sha256": "e75566696133c0fd8a65a045dfbe5e644f30d60dc59516b297608ac55b870d7c",
       "size": 9039
+    },
+    "tests/test_pr16_learnset_wiki.py": {
+      "sha256": "9d1a2231a5c754e86ea2fb96ac0c50da00013fc7a8689480617522ee6f9ccfb6",
+      "size": 6681
+    },
+    "tests/test_pr16_learnset_wiki_publish.py": {
+      "sha256": "f0260ddf91b2b72a4382d02fe54e011c3926fe481f13262f6285c2fa49ac85b7",
+      "size": 1480
+    },
+    "tests/test_pr16_learnset_wiki_registry_followup.py": {
+      "sha256": "a6aff7cc551a76129ff1c828d707a4d2c86dea077935b1362744c969220c6b39",
+      "size": 1744
     },
     "tests/test_pr16_p05_native_supply_evidence_map.py": {
       "sha256": "053bb21ba8d94da9121e2dac3c7429f4ecb607e36d65aafee0b96e06a6e2032e",
