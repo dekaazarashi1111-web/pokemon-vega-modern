@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "Issue19候補6e88a021: Bag23/通常戦闘の完了を保持。条件付きタマゴ8ケース/24fresh coreと代表一覧・summary4枚（旧正常3枚+修復1枚）の目視・完了Actions照合済み。",
+    "current_stop": "Issue19: Bag23/戦闘/タマゴ8/代表画面を保持。通常アメlevel-up・進化11case FAIL、成功8。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "Issue19: 通常Bag23・通常戦闘・条件付きタマゴ8・代表一覧/summary4枚は保存原本/完了Actionsを継承し再実行しない。次は初期技/通常level-up/進化の実操作について現在候補6e88a021への変更影響を絞り、未受入経路だけ検証。原本収集/Wiki生成/旧4hook/ARM/PLA1/PLC2は再実行しない。全owner/全孵化条件/Issue19/release/baseline切替は未完。",
+    "next_step": "Issue19: 保存された通常Bagアメlevel-up/進化の成功ケースは再実行しない。未成功caseだけ修復し、完了後は自然生成の初期技・戦闘EXP由来level-upの変更影響へ。Bag23/通常戦闘/条件付きタマゴ8/代表画面/Wiki/旧4hook/ARM/PLA1/PLC2は不変・再実行しない。全owner/Issue19/release/baseline切替は未完。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -1017,7 +1017,8 @@
     "run35831256129: 通常操作の成功23件を保存。最新checkpointのvector/source/ROM影響を確認し、無関係な成功ケース・Wiki・旧4hook・ARMを再実行しない。",
     "Bag run35831256129 completed/success固定、23ケース/46core/32unitを継承。battle run35832603358の状態FAILと原本から次工程を判断し、無関係な受入を再実行しない。",
     "Bag run35831256129 completed/success固定、23ケース/46core/32unitを継承。battle run35833129256の状態FAILと原本から次工程を判断し、無関係な受入を再実行しない。",
-    "Bag run35831256129 completed/success固定、23ケース/46core/32unitを継承。battle run35833647521の状態PASS_SCOPEDと原本から次工程を判断し、無関係な受入を再実行しない。"
+    "Bag run35831256129 completed/success固定、23ケース/46core/32unitを継承。battle run35833647521の状態PASS_SCOPEDと原本から次工程を判断し、無関係な受入を再実行しない。",
+    "run35850873307のprogression成功caseを保存し、後継は失敗caseだけ。新候補変更なしのBag23/戦闘/タマゴ8/代表画像/ARM/旧hostは再実行しない。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -2464,6 +2465,30 @@
     "source_head": "d9f92e51826fbda4741c294635442a66cb777b64",
     "status": "ACCEPTED_INITIAL_AND_NATURAL_DIRECT_ROM_PROBES_GAMEPLAY_PENDING"
   },
+  "learnset_progression": {
+    "accepted_cases": [
+      "caterpie-below-level",
+      "caterpie-empty",
+      "caterpie-evolve-metapod",
+      "caterpie-known",
+      "caterpie-refuse",
+      "caterpie-replace",
+      "caterpie-summary-cancel",
+      "metapod-evolve-butterfree"
+    ],
+    "actions_completion_confirmed": false,
+    "candidate": {
+      "sha256": "6e88a021785bfa7cf00e26d7f2433c380602d830e94e1d2fc31e3198cda31df2",
+      "size": 33554432
+    },
+    "issue19_complete": false,
+    "native_processes": 11,
+    "path": "content/modernization/pr16_learnset_progression_checkpoint.json",
+    "release_ready": false,
+    "run_id": 35850873307,
+    "source_head": "502e5c35f5960cbd1c1adb5b334c588715574e5a",
+    "status": "FAIL"
+  },
   "learnset_runtime": {
     "candidate": {
       "sha256": "aabd52a0db65737b2da0d61bd60c355bedd6ef307b6f60bffad7465d3a6ee56c",
@@ -3477,44 +3502,27 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "Issue19: 通常Bag23・通常戦闘・条件付きタマゴ8・代表一覧/summary4枚は保存原本/完了Actionsを継承し再実行しない。次は初期技/通常level-up/進化の実操作について現在候補6e88a021への変更影響を絞り、未受入経路だけ検証。原本収集/Wiki生成/旧4hook/ARM/PLA1/PLC2は再実行しない。全owner/全孵化条件/Issue19/release/baseline切替は未完。",
+    "goal_ja": "Issue19: 保存された通常Bagアメlevel-up/進化の成功ケースは再実行しない。未成功caseだけ修復し、完了後は自然生成の初期技・戦闘EXP由来level-upの変更影響へ。Bag23/通常戦闘/条件付きタマゴ8/代表画面/Wiki/旧4hook/ARM/PLA1/PLC2は不変・再実行しない。全owner/Issue19/release/baseline切替は未完。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
-    "id": "LEARNSET_NEXT_CONSUMER_IMPACT",
+    "id": "LEARNSET_PROGRESSION_FAILURES_ONLY",
     "read_paths": [
-      "content/modernization/pr16_learnset_impact_completed_actions.json",
-      "docs/PR16_LEARNSET_EGG_GAMEPLAY_JA.md",
-      "docs/PR16_LEARNSET_VISUAL_JA.md",
-      "docs/PR16_LEARNSET_VISUAL_LIST_JA.md",
-      "docs/PR16_LEARNSET_PROGRESS_JA.md",
-      "content/modernization/pr16_learnset_progress_checkpoint.json"
+      "docs/PR16_LEARNSET_PROGRESSION_JA.md",
+      "content/modernization/pr16_learnset_progression_checkpoint.json"
     ],
     "stop_rule_ja": "特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。"
   },
   "observed_date_jst": "2026-09-22",
-  "observed_head": "749bf679ca7c622f14e8260a42bcad430dac8ac8",
+  "observed_head": "502e5c35f5960cbd1c1adb5b334c588715574e5a",
   "observed_head_checks": {
-    "reason_ja": "過去のaction_required/失敗を改作しない。対象native/capture runの終端と反映HEADのみ完了照合。",
+    "reason_ja": "実測原本とpush/upload後のActions終端は別。未終端を成功にしない。",
     "runs": [
       {
-        "conclusion": "success",
-        "id": 35837431004,
-        "source_head": "d9227eeb0ff92e523e4d2f848909b50ec83f022f",
-        "status": "completed"
-      },
-      {
-        "conclusion": "success",
-        "id": 35839299224,
-        "source_head": "29f1d8ca2b4f8468471265418a6e42430a660616",
-        "status": "completed"
-      },
-      {
-        "conclusion": "success",
-        "id": 35839963209,
-        "source_head": "ec80e1a3d59911cf3a25fe29092a1f4658398ba9",
-        "status": "completed"
+        "conclusion": null,
+        "id": 35850873307,
+        "status": "in_progress"
       }
     ],
-    "scope_head": "749bf679ca7c622f14e8260a42bcad430dac8ac8"
+    "scope_head": "502e5c35f5960cbd1c1adb5b334c588715574e5a"
   },
   "observed_head_history": [
     {
@@ -4868,7 +4876,7 @@
       "semantics": "PLA1圧縮と新規供給consumerのhost検証成功入力HEAD。ROM配置/実操作/記録commitの受入ではない。"
     }
   ],
-  "observed_head_semantics": "条件付きタマゴ8と代表画像4枚の保存原本・Actions終端・目視所見を記録限定で照合したsource。",
+  "observed_head_semantics": "通常アメlevel-up/進化の追加実操作source。最終Actionsは後続で照合。",
   "p08_candidate_impact": {
     "candidate": {
       "crc32": "CC068B4A",
@@ -6064,6 +6072,10 @@
       "sha256": "0c2cf12bd9164119cb01aae6b8ce59f601e2e4d08bcc0c5e634174588eba11fc",
       "size": 6476
     },
+    ".github/workflows/pr16-learnset-progression.yml": {
+      "sha256": "66647b41f2de274dacd9203fb35a772bfa4213073f88a4ef183d6b26d3c2fd86",
+      "size": 3964
+    },
     ".github/workflows/pr16-learnset-visual-list.yml": {
       "sha256": "65489f79cb73e174bf15c76d5599ea39bcbbcf3b517a8fc99c61752bcc4b8b00",
       "size": 2998
@@ -7156,6 +7168,10 @@
       "sha256": "95d2e53adf50a83b05da4f2fa3c6dbe15128bdff88cd64618feb004ab6521959",
       "size": 11264
     },
+    "content/modernization/pr16_learnset_progression_checkpoint.json": {
+      "sha256": "02d021fc49b130d6c62cea080ffb619dbe6aebcdce33d4306255460cf3612c42",
+      "size": 53472
+    },
     "content/modernization/pr16_learnset_successor_checkpoint.json": {
       "sha256": "f238c5045e75e9cf1888be4b2c0c0bd1f130e4988c34e8989b68dc92d17071d6",
       "size": 7350
@@ -7975,6 +7991,10 @@
     "docs/PR16_LEARNSET_GAMEPLAY_JA.md": {
       "sha256": "02feaa1765647747812b3f720cf24c869991ba54d8fad3e9b419f0b686dfc978",
       "size": 2351
+    },
+    "docs/PR16_LEARNSET_PROGRESSION_JA.md": {
+      "sha256": "401990981752ddbc0a4662d7ef9963f0af7ec38fbf9fd055d1f5507b5f307405",
+      "size": 1642
     },
     "docs/PR16_LEARNSET_SUCCESSOR_JA.md": {
       "sha256": "b6a1c8dccc3109f5afb623340eae57ea00a95e28cfac8e757c85d05726823203",
@@ -12100,6 +12120,10 @@
       "sha256": "47f5156318325fae167f877de5ad4d9223dfbcdea69a51a24ce4a8994f29c742",
       "size": 14662
     },
+    "scripts/pr16_learnset_progression.py": {
+      "sha256": "ec84a181bbcf06ebb44d6273ae2abc4878c60ceded7adf7b69214f70c2138243",
+      "size": 24221
+    },
     "scripts/pr16_learnset_visual.py": {
       "sha256": "f91a95966d551c6bca51a86f0283066236a722dc7f2f209e3ed6ec58bf188727",
       "size": 15847
@@ -13292,6 +13316,10 @@
       "sha256": "87debc4168225ed19b06d58aa20bac2af0442dfc2d10d5f8b0f82f2753f8ace3",
       "size": 1164
     },
+    "tests/test_pr16_learnset_progression.py": {
+      "sha256": "387d4c6aea83755905e845e7f55fc79da655b4ca2b1fa00de01dc2fd23efa765",
+      "size": 7353
+    },
     "tests/test_pr16_learnset_visual.py": {
       "sha256": "fcc474d07df45fd16a93d275ef36713c110675ccaddd6d3f308e2045ac41f991",
       "size": 2945
@@ -14139,6 +14167,10 @@
     "tools/mgba_pr16_learnset_gameplay.c": {
       "sha256": "4d6050d21c6ab970b28c38643f1e0f5313c9a1f0aba03a91c9865411d08cca68",
       "size": 6934
+    },
+    "tools/mgba_pr16_learnset_progression.c": {
+      "sha256": "1dbda4fd16914e48d0e14109ad7a2350aecf2eaf887703606b37ba141b01a893",
+      "size": 8860
     },
     "tools/mgba_pr16_p08_bp_lifecycle.h": {
       "sha256": "dc93904fff666a88a3b354026262ba8066289c813b7232e93b795590080970fc",

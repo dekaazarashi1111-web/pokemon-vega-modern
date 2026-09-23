@@ -6778,3 +6778,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 新規終端境界17unit、原本/inner/outer/source/ref照合、resume/taskgraph、最終index/private差分。native/受入unit/ARM/Wiki再実行0、ROM/baseline変更0。
 - Commit: 同branchへ非force push、remote refとreflected-head.txtを一致確認。
 - Network: 固定GitHub run/job/artifactのみ。過去失敗を保持。全履歴private guard/全Issue19/release成功は主張しない。
+
+## 2026-09-23T10:49:43.541436+00:00
+- Timestamp: 2026-09-23T10:49:43.541436+00:00
+- Task: USER-20260923-LEARNSET-PROGRESSION / 通常アメlevel-up・進化UI
+- Version: issue19-progression-v1
+- Status: BLOCKED（成功caseを保存し失敗だけ継続）
+- Summary: 原本spanに固定した通常level-up・既習得/拒否/取消・同level複数行と進化技。Save/fresh Continueで100bytes・PP・消費保持。
+- Files changed: 専用C/validator/新境界試験/限定Actions、checkpoint・text原本、専用guide・固定引継ぎMD/JSON・両ログ。
+- Verify: run35850873307 FAIL、新unit 31 / 継承0、新native 11、累計成功8。ARM/ROM変更/Wiki/受入済みnative再実行0。
+- Commit: 同branchへ非force pushしreflected-head.txtにremote照合結果。
+- Network: 固定artifact/保存候補復元・最新Actions照合。初期個体生成/戦闘EXP/全owner/Issue19/releaseは未完。原本ROM/save新規追跡なし。
