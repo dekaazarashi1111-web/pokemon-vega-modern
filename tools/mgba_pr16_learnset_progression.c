@@ -10,6 +10,23 @@ struct PCase {
 };
 #include "pr16_progression_vectors.h"
 struct PTrace { unsigned party,dialog,summary,selection,stop,begin,update,field,dialogs,selections,stops; };
+/* One failed same-level case: instruction stepping is observation, not PC or
+ * register injection. It preserves key input and stops at the same frame edge. */
+static void p_frame(struct mCore *c,const struct PCase *v,unsigned frame) {
+    if(strcmp(v->name,"butterfree-known-first") || frame<89U || frame>93U) {c->runFrame(c);return;}
+    unsigned began=c->frameCounter(c),steps=0;
+    while(c->frameCounter(c)==began) {
+        unsigned before=read8(c,0x02023F88U),move=read16(c,0x02023F82U);
+        unsigned pc=(unsigned)read_register(c,"pc"),lr=(unsigned)read_register(c,"lr");
+        unsigned r0=(unsigned)read_register(c,"r0"),r1=(unsigned)read_register(c,"r1");
+        unsigned r2=(unsigned)read_register(c,"r2"),r3=(unsigned)read_register(c,"r3");
+        c->step(c);
+        unsigned after=read8(c,0x02023F88U),next=read16(c,0x02023F82U);
+        if(before!=after || move!=next)
+            fprintf(stderr,"PROGRESSION instruction frame=%u pc=%08x lr=%08x r0=%08x r1=%08x r2=%08x r3=%08x cursor=%u->%u pending=%u->%u code=%04x,%04x,%04x\n",frame,pc,lr,r0,r1,r2,r3,before,after,move,next,read16(c,pc-4U),read16(c,pc-2U),read16(c,pc));
+        a_require(++steps<=2000000U,"passive instruction frame limit");
+    }
+}
 static struct PTrace p_scene(struct mCore *c,const struct PCase *v) {
     struct PTrace t={0};
     a_require(p02s_enter_item_party(c,P02S_ITEM_RARE_CANDY,"issue19_progression"),"ordinary Bag/party entry failed");
@@ -60,7 +77,7 @@ static struct PTrace p_scene(struct mCore *c,const struct PCase *v) {
                 key=QOL_KEY_B;
             } else if(!ask && !stop)key=QOL_KEY_A;
         }
-        c->setKeys(c,key);c->runFrame(c);
+        c->setKeys(c,key);p_frame(c,v,f);
         if(a_field(c) && (t.update || !v->evolution))++stable;else stable=0;
         if(stable>=240U) {t.field=f;c->setKeys(c,0U);return t;}
         if(f%3000U==0) {
