@@ -1,0 +1,69 @@
+name: pr16-learnset-gameplay
+# 通常操作の未受入範囲専用。旧native/ARM/Wiki生成は起動しない。
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-learnset-gameplay.yml]
+permissions:
+  contents: read
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-learnset-gameplay
+  cancel-in-progress: false
+jobs:
+  gameplay:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: 通常操作実装に必要なtracked textと現在のActionsだけを固定
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-learnset-gameplay/bootstrap
+          python3 - <<'PY'
+          import hashlib, json, os, pathlib, subprocess, urllib.request, zipfile
+          out = pathlib.Path('.local/pr16-learnset-gameplay/bootstrap')
+          paths = subprocess.check_output(['git', 'ls-files', '-z']).decode().split('\0')
+          manifest = []
+          source_roots = ('scripts/', 'tools/', 'tests/', 'config/', 'infra/', 'runtime/', 'src/', 'include/')
+          docs = {'AGENTS.md', 'CHATGPT_RESUME.md', '.gitignore', 'design/run_log.md', 'design/version_log.md', 'design/agent_context_map.md', 'design/active_play_baseline.md', 'state/source-lock.json', 'tasks/task_graph.json', 'design/tasks_next.md'}
+          with zipfile.ZipFile(out / 'tracked-source.zip', 'w', zipfile.ZIP_DEFLATED) as archive:
+              for name in paths:
+                  if not name:
+                      continue
+                  p = pathlib.Path(name)
+                  manifest.append({'path': name, 'size': p.stat().st_size})
+                  selected = name in docs or (name.startswith(source_roots) and p.suffix in {'.py', '.c', '.h', '.S', '.json', '.sh', '.md'}) or (name.startswith('docs/PR16_') and 'LEARNSET' in name) or (name.startswith('content/modernization/') and '/' not in name[len('content/modernization/'):] and p.suffix == '.json')
+                  if selected and p.is_file() and not p.is_symlink():
+                      data = p.read_bytes()
+                      data.decode('utf-8')
+                      archive.writestr(name, data)
+          (out / 'tracked-paths.json').write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n')
+          def api(path):
+              request = urllib.request.Request('https://api.github.com/repos/' + os.environ['GITHUB_REPOSITORY'] + '/' + path, headers={'Authorization': 'Bearer ' + os.environ['GH_TOKEN'], 'Accept': 'application/vnd.github+json'})
+              with urllib.request.urlopen(request, timeout=60) as response:
+                  return json.load(response)
+          keys = ('id','name','head_sha','head_branch','event','status','conclusion','path','created_at','updated_at','run_attempt')
+          runs = api('actions/runs?per_page=30')['workflow_runs']
+          pr = api('pulls/16')
+          result = {'source_head': os.environ['GITHUB_SHA'], 'run_id': int(os.environ['GITHUB_RUN_ID']), 'source_zip_sha256': hashlib.sha256((out / 'tracked-source.zip').read_bytes()).hexdigest(), 'pr': {'state': pr['state'], 'draft': pr['draft'], 'merged': pr['merged'], 'head': pr['head']['sha'], 'ref': pr['head']['ref'], 'repository': pr['head']['repo']['full_name']}, 'latest_runs': [{k: run.get(k) for k in keys} for run in runs], 'native_processes': 0, 'arm_compiles': 0, 'wiki_generations': 0, 'accepted_test_reruns': 0}
+          (out / 'bootstrap.json').write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n')
+          print(json.dumps(result, ensure_ascii=False))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr16-learnset-gameplay-source
+          path: .local/pr16-learnset-gameplay/bootstrap/
+          retention-days: 7
+          if-no-files-found: error
