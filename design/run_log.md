@@ -9484,3 +9484,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: run35839299224 native 2・unit 10。受入全Bag/戦闘/タマゴ/ARM/Wiki再実行0、ROM変更0。目視は別途未完として保持。
 - Commit: 同branchへ非force pushしreflected-headをremote照合。
 - Network: 保存候補/固定Bag artifactのみ。binaryは新規追跡しない。全履歴guard/release成功を主張しない。
+
+## 2026-09-23T08:57:08.602116+00:00
+- Timestamp: 2026-09-23T08:57:08.602116+00:00
+- Task: USER-20260923-LEARNSET-VISUAL-LIST
+- Version: issue19-list-settle-v1
+- Status: PASS_CAPTURE_PENDING_VISUAL_REVIEW
+- Summary: 目視で発見した一覧cursorの1frame遅延を修復。index10連続90frameで1枚だけ再撮影しsummary前に停止。正常3枚/旧不合格画像の原本は保持。
+- Files changed: 限定controller/8境界試験/Actions、checkpoint/text原本・guide・固定引継ぎMD/JSON・両ログ。
+- Verify: run35839963209、新規native 1、unit 8。習得/Save/受入Bag全体/戦闘/タマゴ/ARM/Wiki再実行0。
+- Commit: 同branchへ非force push、reflected-headをremote照合。
+- Network: 固定capture artifactと保存候補のみ。全履歴guard/release成功は主張しない。

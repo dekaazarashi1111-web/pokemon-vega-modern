@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "Issue19: Bag23/通常戦闘/タマゴの原本を保持。代表画像はPASS_CAPTURE_PENDING_VISUAL_REVIEW。",
+    "current_stop": "タマゴ8ケースPASS。代表4枚中3枚は目視正常、フラエッテ一覧1枚を限定再撮影: PASS_CAPTURE_PENDING_VISUAL_REVIEW。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "画像checkpointの実画像4枚を目視し、撮影・タマゴの最新Actions終端を記録限定で照合。成功したnativeを再実行しない。",
+    "next_step": "修復一覧1枚を目視し、正常な旧3枚と合わせて4枚を受入。タマゴ/撮影/修復のActions終端を記録限定で照合。成功したnative/画像/受入unitは再実行しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -3450,6 +3450,15 @@
     "status": "PASS_CAPTURE_PENDING_VISUAL_REVIEW",
     "visual_reviewed": false
   },
+  "learnset_visual_list": {
+    "actions_completion_confirmed": false,
+    "native_processes": 1,
+    "path": "content/modernization/pr16_learnset_visual_list_checkpoint.json",
+    "run_id": 35839963209,
+    "source_head": "ec80e1a3d59911cf3a25fe29092a1f4658398ba9",
+    "status": "PASS_CAPTURE_PENDING_VISUAL_REVIEW",
+    "visual_reviewed": false
+  },
   "logs_synchronized": true,
   "loss_return_completed": {
     "evidence": "content/modernization/pr16_bp_loss_return_verified.json",
@@ -3462,28 +3471,29 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "画像checkpointの実画像4枚を目視し、撮影・タマゴの最新Actions終端を記録限定で照合。成功したnativeを再実行しない。",
+    "goal_ja": "修復一覧1枚を目視し、正常な旧3枚と合わせて4枚を受入。タマゴ/撮影/修復のActions終端を記録限定で照合。成功したnative/画像/受入unitは再実行しない。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
-    "id": "LEARNSET_VISUAL_REVIEW",
+    "id": "LEARNSET_VISUAL_LIST_REVIEW",
     "read_paths": [
+      "docs/PR16_LEARNSET_VISUAL_LIST_JA.md",
+      "content/modernization/pr16_learnset_visual_list_checkpoint.json",
       "docs/PR16_LEARNSET_VISUAL_JA.md",
-      "content/modernization/pr16_learnset_visual_checkpoint.json",
-      "docs/PR16_LEARNSET_EGG_GAMEPLAY_JA.md"
+      "content/modernization/pr16_learnset_visual_checkpoint.json"
     ],
     "stop_rule_ja": "特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。"
   },
   "observed_date_jst": "2026-09-22",
-  "observed_head": "29f1d8ca2b4f8468471265418a6e42430a660616",
+  "observed_head": "ec80e1a3d59911cf3a25fe29092a1f4658398ba9",
   "observed_head_checks": {
-    "reason_ja": "artifact画像とActions終端の後続確認が必要。",
+    "reason_ja": "旧capture successと1枚の目視不合格を区別。修復画像の目視/終端は後続で確認。",
     "runs": [
       {
         "conclusion": null,
-        "id": 35839299224,
+        "id": 35839963209,
         "status": "in_progress"
       }
     ],
-    "scope_head": "29f1d8ca2b4f8468471265418a6e42430a660616"
+    "scope_head": "ec80e1a3d59911cf3a25fe29092a1f4658398ba9"
   },
   "observed_head_history": [
     {
@@ -4837,7 +4847,7 @@
       "semantics": "PLA1圧縮と新規供給consumerのhost検証成功入力HEAD。ROM配置/実操作/記録commitの受入ではない。"
     }
   ],
-  "observed_head_semantics": "代表2対象の撮影限定source。全Bagの再実行/習得/Saveは行わない。",
+  "observed_head_semantics": "フラエッテ一覧1枚のcursor描画待ち限定修復source。",
   "p08_candidate_impact": {
     "candidate": {
       "crc32": "CC068B4A",
@@ -6029,6 +6039,10 @@
       "sha256": "0c2cf12bd9164119cb01aae6b8ce59f601e2e4d08bcc0c5e634174588eba11fc",
       "size": 6476
     },
+    ".github/workflows/pr16-learnset-visual-list.yml": {
+      "sha256": "65489f79cb73e174bf15c76d5599ea39bcbbcf3b517a8fc99c61752bcc4b8b00",
+      "size": 2998
+    },
     ".github/workflows/pr16-learnset-visual.yml": {
       "sha256": "9f323df28f5e87f777ea5a650763928ab79981d221d71dd6f226b65e36d03f11",
       "size": 2922
@@ -7149,6 +7163,10 @@
       "sha256": "c44ba409056fa2f35263bcb1a5fc3197fdb04f8cc30a0be92d0676d63bcc8061",
       "size": 12256
     },
+    "content/modernization/pr16_learnset_visual_list_checkpoint.json": {
+      "sha256": "9f630d17e1deca43afc66a0a5663a0bd31ff28705726d7fba5e81dd55ababc81",
+      "size": 9058
+    },
     "content/modernization/pr16_learnset_wiki_checkpoint.json": {
       "sha256": "71b538f186b03ca3a725a84cd87baa41d72ca2ef0fb43ce22dec0e198cdefbe7",
       "size": 45627
@@ -7932,6 +7950,10 @@
     "docs/PR16_LEARNSET_VISUAL_JA.md": {
       "sha256": "41bfbc3050728f3de88cc01b8c860379d92c1fbd51d214a94a5fe145169cfde3",
       "size": 996
+    },
+    "docs/PR16_LEARNSET_VISUAL_LIST_JA.md": {
+      "sha256": "43d4d497955c636e078fcaa60ae0a4a26ab94959da5cc6ea19eef604d6cba178",
+      "size": 865
     },
     "docs/PR16_LEARNSET_WIKI_JA.md": {
       "sha256": "4c56bb8319bc491d0f4684d897ab5391248ccb85c7fdbd682464fb5e1efccaf4",
@@ -12045,6 +12067,10 @@
       "sha256": "f91a95966d551c6bca51a86f0283066236a722dc7f2f209e3ed6ec58bf188727",
       "size": 15847
     },
+    "scripts/pr16_learnset_visual_list.py": {
+      "sha256": "45dd61102c629e67f1adc9edc5aea945b1655568d8285f102dab79b504a5c5a5",
+      "size": 13820
+    },
     "scripts/pr16_learnset_wiki.py": {
       "sha256": "812b34967f93e7f1e886fcfa0d5cb91f6ad38c59695324bda6a53d868a706d35",
       "size": 25777
@@ -13228,6 +13254,10 @@
     "tests/test_pr16_learnset_visual.py": {
       "sha256": "fcc474d07df45fd16a93d275ef36713c110675ccaddd6d3f308e2045ac41f991",
       "size": 2945
+    },
+    "tests/test_pr16_learnset_visual_list.py": {
+      "sha256": "ef7d9b70ec5178d655dabee5235c332c1aee0ac2c77da4d1cbe5bb3116585d76",
+      "size": 2467
     },
     "tests/test_pr16_learnset_wiki.py": {
       "sha256": "9d1a2231a5c754e86ea2fb96ac0c50da00013fc7a8689480617522ee6f9ccfb6",

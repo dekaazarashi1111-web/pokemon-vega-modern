@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-Issue19: Bag23/通常戦闘/タマゴの原本を保持。代表画像はPASS_CAPTURE_PENDING_VISUAL_REVIEW。
+タマゴ8ケースPASS。代表4枚中3枚は目視正常、フラエッテ一覧1枚を限定再撮影: PASS_CAPTURE_PENDING_VISUAL_REVIEW。
 
-**次: 画像checkpointの実画像4枚を目視し、撮影・タマゴの最新Actions終端を記録限定で照合。成功したnativeを再実行しない。**
+**次: 修復一覧1枚を目視し、正常な旧3枚と合わせて4枚を受入。タマゴ/撮影/修復のActions終端を記録限定で照合。成功したnative/画像/受入unitは再実行しない。**
 
 特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `29f1d8ca2b4f8468471265418a6e42430a660616`。
-代表2対象の撮影限定source。全Bagの再実行/習得/Saveは行わない。
+証拠のsource HEAD: `ec80e1a3d59911cf3a25fe29092a1f4658398ba9`。
+フラエッテ一覧1枚のcursor描画待ち限定修復source。
 
 ## 最短の再開手順
 
@@ -25,9 +25,10 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `docs/PR16_LEARNSET_VISUAL_LIST_JA.md`
+- `content/modernization/pr16_learnset_visual_list_checkpoint.json`
 - `docs/PR16_LEARNSET_VISUAL_JA.md`
 - `content/modernization/pr16_learnset_visual_checkpoint.json`
-- `docs/PR16_LEARNSET_EGG_GAMEPLAY_JA.md`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -315,6 +316,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-artifact画像とActions終端の後続確認が必要。
+旧capture successと1枚の目視不合格を区別。修復画像の目視/終端は後続で確認。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
