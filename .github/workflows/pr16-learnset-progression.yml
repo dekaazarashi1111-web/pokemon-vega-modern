@@ -1,5 +1,5 @@
 name: pr16-learnset-progression
-# Current-candidate candy/evolution only. Existing accepted scopes are inherited.
+# Attempt 2: inherit eight passes and 31 unchanged tests; run three failures only.
 on:
   push:
     branches: [codex/modernization-followup-20260908]
@@ -15,7 +15,7 @@ jobs:
   progression:
     if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
     runs-on: ubuntu-24.04
-    timeout-minutes: 45
+    timeout-minutes: 30
     env:
       PYTHONDONTWRITEBYTECODE: '1'
     steps:
@@ -25,29 +25,36 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: ローカル検証済みsourceとの転送identityを照合
+      - name: 転送identityと受入8件の保存を照合
         run: |
           python3 - <<'PY'
-          import hashlib,pathlib
+          import hashlib,json,pathlib
           expected={
-            'tools/mgba_pr16_learnset_progression.c':'1dbda4fd16914e48d0e14109ad7a2350aecf2eaf887703606b37ba141b01a893',
+            'tools/mgba_pr16_learnset_progression.c':'fecf9a0896cc1c431b4612836589be60877a9788dcd8fbb4a73d022bc6d25b1b',
             'scripts/pr16_learnset_progression.py':'ec84a181bbcf06ebb44d6273ae2abc4878c60ceded7adf7b69214f70c2138243',
             'tests/test_pr16_learnset_progression.py':'387d4c6aea83755905e845e7f55fc79da655b4ca2b1fa00de01dc2fd23efa765'}
           for name,wanted in expected.items():
               if hashlib.sha256(pathlib.Path(name).read_bytes()).hexdigest()!=wanted: raise RuntimeError('source transfer mismatch: '+name)
-          print('PASS three exact transferred text sources')
+          cp=json.loads(pathlib.Path('content/modernization/pr16_learnset_progression_checkpoint.json').read_text())
+          if cp['run_id']!=35850873307 or len(cp['results'])!=8 or cp['status']!='FAIL': raise RuntimeError('not the reviewed failed checkpoint')
+          text=pathlib.Path('tools/mgba_pr16_learnset_progression.c').read_text()
+          assert '(!v->evolution && cb==P02S_CB2_FIELD)' in text
+          assert '(!v->evolution && f>6000U)' not in text
+          assert 'PROGRESSION cursor frame=' in text
+          assert text.count('a_guard(c);')==3
+          print('PASS transfer/retained-eight/field-latch/passive-trace contract')
           PY
-      - name: 未受入11経路用host libraryだけを導入
+      - name: 未成功3経路用host libraryだけを導入
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends libmgba-dev
-      - name: 最新Actions照合・新31境界試験・通常アメ習得と進化11経路
+      - name: 未成功3経路だけ通常入力で実測
         id: native
         continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: python3 -B scripts/pr16_learnset_progression.py execute
-      - name: 成功と失敗の原本・固定引継ぎ・両ログを記録
+      - name: 原本・固定引継ぎ・両ログを記録
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: |
@@ -65,12 +72,12 @@ jobs:
           test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'USER-20260923-LEARNSET-PROGRESSION: 通常アメlevel-up・進化の実測原本・成功継承・固定引継ぎ・両ログを保存'
+          git commit -m 'USER-20260923-LEARNSET-PROGRESSION: 未成功3件のcursor実測・受入8件継承・固定引継ぎ・両ログを保存'
           git push origin "HEAD:$branch"
           sha=$(git rev-parse HEAD)
           test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$sha"
           echo "$sha" | tee .local/pr16-learnset-progression/proof/reflected-head.txt
-          echo "RESULT=DONE TASK=USER-20260923-LEARNSET-PROGRESSION VERIFY=RECORDED COMMIT=$sha"
+          echo "TASK=USER-20260923-LEARNSET-PROGRESSION CHECKPOINT=REFLECTED COMMIT=$sha"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
