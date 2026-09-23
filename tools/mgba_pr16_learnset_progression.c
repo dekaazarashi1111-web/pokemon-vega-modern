@@ -14,10 +14,17 @@ static struct PTrace p_scene(struct mCore *c,const struct PCase *v) {
     struct PTrace t={0};
     a_require(p02s_enter_item_party(c,P02S_ITEM_RARE_CANDY,"issue19_progression"),"ordinary Bag/party entry failed");
     t.party=1;
-    unsigned previous=0,stable=0; bool summary_chosen=false,ask_chosen=false,stop_chosen=false;
+    unsigned previous=0,stable=0,last_cursor=~0U,last_pending=~0U; bool summary_chosen=false,ask_chosen=false,stop_chosen=false;
     for(unsigned f=2;f<=P02S_MAX_SCENE_FRAMES;++f) {
         unsigned cb=read32(c,BATTLE_CORE_MAIN_CALLBACK2);
         bool ask=p03f_task(c,P03F_LEARN_ASK),stop=p03f_task(c,P03F_STOP_ASK);
+        unsigned cursor=read8(c,0x02023F88U),pending=read16(c,0x02023F82U);
+        if(cursor!=last_cursor || pending!=last_pending) {
+            fprintf(stderr,"PROGRESSION cursor frame=%u index=%u pending=%u slots=%u,%u,%u,%u\n",f,cursor,pending,
+                read16(c,QOL_PLAYER_PARTY+0x2CU),read16(c,QOL_PLAYER_PARTY+0x2EU),
+                read16(c,QOL_PLAYER_PARTY+0x30U),read16(c,QOL_PLAYER_PARTY+0x32U));
+            last_cursor=cursor;last_pending=pending;
+        }
         if(cb!=previous) {
             fprintf(stderr,"PROGRESSION frame=%u callback=%08x\n",f,cb);previous=cb;
             if(cb!=P03F_SUMMARY_CB)summary_chosen=false;
@@ -48,7 +55,7 @@ static struct PTrace p_scene(struct mCore *c,const struct PCase *v) {
                 key=QOL_KEY_A;stop_chosen=true;if(!t.stop)t.stop=f;++t.stops;
             } else if(cb==P02S_CB2_EVOLUTION_UPDATE) {
                 key=v->evolution==1U?QOL_KEY_B:QOL_KEY_A;
-            } else if((t.update || (!v->evolution && f>6000U))
+            } else if((t.update || (!v->evolution && cb==P02S_CB2_FIELD))
                       && (cb==P02S_CB2_PARTY || cb==P02S_CB2_BAG || cb==P02S_CB2_FIELD)) {
                 key=QOL_KEY_B;
             } else if(!ask && !stop)key=QOL_KEY_A;
@@ -98,6 +105,7 @@ int main(int argc,char **argv) {
     unsigned before=read32(c,P03_SAVE_COUNTER);struct mCore saved=*c;
     /* 観測1: 通常入力のみ。技/進化関数、callback/PC/level/技/PPへの書込禁止。 */
     a_guard(c);struct PTrace t=p_scene(c,v);a_restore(c,&saved);
+    fprintf(stderr,"PROGRESSION counts dialogs=%u selections=%u stops=%u expected=%u,%u,%u\n",t.dialogs,t.selections,t.stops,v->dialogs,v->selections,v->stops);
     a_require(t.dialogs==v->dialogs && t.selections==v->selections && t.stops==v->stops,"native UI count differs");
     a_require((t.begin!=0)==(v->evolution!=0) && (t.update!=0)==(v->evolution!=0),"evolution branch differs");
     p_check(c,v->target,v->level+1U,v->after,v->after_pp);
