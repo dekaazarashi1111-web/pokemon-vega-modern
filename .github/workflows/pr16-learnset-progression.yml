@@ -1,12 +1,13 @@
 name: pr16-learnset-progression
-# 準備checkpoint: 固定HEADのtracked textのみ。ROM・旧受入試験は実行しない。
+# Current-candidate candy/evolution only. Existing accepted scopes are inherited.
 on:
   push:
     branches: [codex/modernization-followup-20260908]
     paths: [.github/workflows/pr16-learnset-progression.yml]
 permissions:
-  contents: read
+  contents: write
   actions: read
+  pull-requests: read
 concurrency:
   group: pr16-learnset-progression
   cancel-in-progress: false
@@ -14,54 +15,69 @@ jobs:
   progression:
     if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 45
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 1
-      - name: 変更影響に必要なtracked textとidentityだけを取得
-        shell: bash
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: ローカル検証済みsourceとの転送identityを照合
+        run: |
+          python3 - <<'PY'
+          import hashlib,pathlib
+          expected={
+            'tools/mgba_pr16_learnset_progression.c':'1dbda4fd16914e48d0e14109ad7a2350aecf2eaf887703606b37ba141b01a893',
+            'scripts/pr16_learnset_progression.py':'ec84a181bbcf06ebb44d6273ae2abc4878c60ceded7adf7b69214f70c2138243',
+            'tests/test_pr16_learnset_progression.py':'387d4c6aea83755905e845e7f55fc79da655b4ca2b1fa00de01dc2fd23efa765'}
+          for name,wanted in expected.items():
+              if hashlib.sha256(pathlib.Path(name).read_bytes()).hexdigest()!=wanted: raise RuntimeError('source transfer mismatch: '+name)
+          print('PASS three exact transferred text sources')
+          PY
+      - name: 未受入11経路用host libraryだけを導入
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends libmgba-dev
+      - name: 最新Actions照合・新31境界試験・通常アメ習得と進化11経路
+        id: native
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 -B scripts/pr16_learnset_progression.py execute
+      - name: 成功と失敗の原本・固定引継ぎ・両ログを記録
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          python3 - <<'PY'
-          import fnmatch, hashlib, json, os, pathlib, re, subprocess, zipfile
-          root=pathlib.Path('.')
-          tracked=set(subprocess.check_output(['git','ls-files','-z']).decode().split('\0'))-{''}
-          exact={'AGENTS.md','CHATGPT_RESUME.md','scripts/pr16_resume.py','scripts/validate_task_graph.py','scripts/guard_private_files.py','content/modernization/pr16_native_supply_resume_20260913.json','content/modernization/pr16_bp_chooser_checkpoint.json','content/modernization/p08_remaining_work.json','config/active_play_baseline.json','design/active_play_baseline.md','tools/mgba_modernization_p02_stage71_acceptance_smoke.c'}
-          patterns=('scripts/pr16_learnset*.py','tests/test_pr16_learnset*.py','tools/mgba_modernization_p03*.c','tools/mgba_modernization_p03*.py','docs/PR16_LEARNSET*.md','docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md','content/modernization/pr16_learnset*checkpoint.json','content/modernization/pr16_learnset*actions.json','content/modernization/pr16_learnset*impact*.json')
-          missing=exact-tracked
-          # guard filename differs in older sources; it is not executed here.
-          missing.discard('scripts/guard_private_files.py')
-          if missing: raise RuntimeError('required tracked text absent: '+','.join(sorted(missing)))
-          selected=(exact&tracked)|{p for p in tracked if any(fnmatch.fnmatchcase(p,pat) for pat in patterns)}
-          # Local C includes are followed by name, never by arbitrary path.
-          pending=[p for p in selected if p.endswith(('.c','.h'))]
-          while pending:
-              path=pending.pop(); text=(root/path).read_text()
-              for name in re.findall(r'^\s*#include\s+"([A-Za-z0-9_.-]+)"',text,re.M):
-                  dep=str(pathlib.PurePosixPath(path).parent/name)
-                  if dep in tracked and dep not in selected: selected.add(dep); pending.append(dep)
-          out=root/'.local/pr16-learnset-progression/proof'; out.mkdir(parents=True)
-          manifest={'schema_version':1,'source_head':os.environ['GITHUB_SHA'],'scope':'TRACKED_PROGRESSION_SOURCES_ONLY_NOT_ACCEPTANCE','native_runs':0,'arm_compiles':0,'accepted_test_reruns':0,'files':{}}
-          total=0
-          with zipfile.ZipFile(out/'sources.zip','w',zipfile.ZIP_DEFLATED) as archive:
-              for path in sorted(selected):
-                  p=root/path
-                  if p.is_symlink() or p.suffix not in {'.md','.json','.py','.c','.h','.yml'}: raise RuntimeError('unsafe source path')
-                  data=p.read_bytes(); data.decode('utf-8'); total+=len(data)
-                  if len(data)>8*1024*1024 or total>48*1024*1024: raise RuntimeError('bounded source snapshot exceeded')
-                  archive.writestr(path,data)
-                  manifest['files'][path]={'sha256':hashlib.sha256(data).hexdigest(),'size':len(data)}
-              for path in ('design/run_log.md','design/version_log.md'):
-                  data=(root/path).read_bytes(); data.decode('utf-8')
-                  archive.writestr(path+'.tail',b'\n'.join(data.splitlines()[-90:])+b'\n')
-                  manifest['files'][path]={'sha256':hashlib.sha256(data).hexdigest(),'size':len(data),'tail_only':True}
-          (out/'manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,sort_keys=True,indent=2)+'\n')
-          print('TRACKED_SOURCE_SNAPSHOT',len(selected),'files',total,'bytes; native=0 ARM=0 accepted-reruns=0')
-          PY
+          python3 -B scripts/pr16_learnset_progression.py record
+          python3 -B scripts/pr16_resume.py check
+          python3 -B scripts/validate_task_graph.py
+          python3 -B scripts/pr16_learnset_progression.py paths | tr '\n' '\0' >.local/pr16-learnset-progression/paths.z
+          git add --pathspec-from-file=.local/pr16-learnset-progression/paths.z --pathspec-file-nul
+          python3 -B scripts/pr16_learnset_progression.py guard
+      - name: 同branchへ非force commit/pushし最新refを照合
+        run: |
+          set -euo pipefail
+          branch='codex/modernization-followup-20260908'
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20260923-LEARNSET-PROGRESSION: 通常アメlevel-up・進化の実測原本・成功継承・固定引継ぎ・両ログを保存'
+          git push origin "HEAD:$branch"
+          sha=$(git rev-parse HEAD)
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$sha"
+          echo "$sha" | tee .local/pr16-learnset-progression/proof/reflected-head.txt
+          echo "RESULT=DONE TASK=USER-20260923-LEARNSET-PROGRESSION VERIFY=RECORDED COMMIT=$sha"
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
-          name: pr16-learnset-progression-source
+          name: pr16-learnset-progression-proof
           path: .local/pr16-learnset-progression/proof/
-          retention-days: 7
+          retention-days: 30
           if-no-files-found: error
+      - name: 失敗実測を成功へ読み替えずrun終端へ反映
+        if: steps.native.outcome != 'success'
+        run: exit 1
