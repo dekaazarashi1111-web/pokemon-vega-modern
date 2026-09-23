@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "Issue19候補6e88a021: Bag23/46core・32unit完了Actions照合済み。新しい通常戦闘はPASS_SCOPED。",
+    "current_stop": "Issue19候補6e88a021: Bag23/46core・32unitと通常戦闘1process/28unitの完了Actions照合済み。条件付きタマゴ・画像限定修復へ。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -1276,14 +1276,16 @@
     "tracked_proof_files": 12
   },
   "learnset_battle": {
-    "actions_completion_confirmed": false,
+    "actions_completion_confirmed": true,
     "candidate": {
       "sha256": "6e88a021785bfa7cf00e26d7f2433c380602d830e94e1d2fc31e3198cda31df2",
       "size": 33554432
     },
+    "completed_actions_path": "content/modernization/pr16_learnset_battle_completed_actions.json",
     "issue19_complete": false,
     "native_processes": 1,
     "path": "content/modernization/pr16_learnset_battle_checkpoint.json",
+    "reflected_head": "37b023853baea5d3e1f0dfb8f8de6de38334262c",
     "release_ready": false,
     "run_id": 35833647521,
     "source_head": "38fe29cec7477131741cddc98a0422207c874889",
@@ -3448,11 +3450,24 @@
     "stop_rule_ja": "特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。"
   },
   "observed_date_jst": "2026-09-22",
-  "observed_head": "38fe29cec7477131741cddc98a0422207c874889",
+  "observed_head": "b48e23f37b2ef0d83f034a7a95cf1289c37c822a",
   "observed_head_checks": {
-    "reason_ja": "Bag run35831256129 completed/success固定。新battle run35833647521の終端未照合。",
-    "runs": [],
-    "scope_head": "38fe29cec7477131741cddc98a0422207c874889"
+    "reason_ja": "戦闘run35833647521/job107091863129はcompleted/success。反映HEADの別PR CI二件はaction_requiredであり成功へ読み替えない。",
+    "runs": [
+      {
+        "conclusion": "action_required",
+        "id": 35833805963,
+        "name": "p03-forgetting-ci",
+        "status": "completed"
+      },
+      {
+        "conclusion": "action_required",
+        "id": 35833805841,
+        "name": "source-validation",
+        "status": "completed"
+      }
+    ],
+    "scope_head": "37b023853baea5d3e1f0dfb8f8de6de38334262c"
   },
   "observed_head_history": [
     {
@@ -4806,7 +4821,7 @@
       "semantics": "PLA1圧縮と新規供給consumerのhost検証成功入力HEAD。ROM配置/実操作/記録commitの受入ではない。"
     }
   ],
-  "observed_head_semantics": "習得済み個体の自然戦闘追加検証source HEAD。反映commit/Actions終端は後続の固定照合。",
+  "observed_head_semantics": "通常戦闘の完了Actionsを保存原本から照合した記録source。新規nativeは0。",
   "p08_candidate_impact": {
     "candidate": {
       "crc32": "CC068B4A",
@@ -5990,6 +6005,10 @@
       "sha256": "7e82b4671f2d82af521042cc2d2f8d6a51a43a72f13f3fa4ebab594acc901e2e",
       "size": 3038
     },
+    ".github/workflows/pr16-learnset-impact.yml": {
+      "sha256": "0c2cf12bd9164119cb01aae6b8ce59f601e2e4d08bcc0c5e634174588eba11fc",
+      "size": 6476
+    },
     ".github/workflows/pr16-learnset-wiki-closeout.yml": {
       "sha256": "0121b2128d440407c4dc6986d23c1f6f38452dcf53d4aafd47afed83de6c3db8",
       "size": 2815
@@ -7047,8 +7066,12 @@
       "size": 3043
     },
     "content/modernization/pr16_learnset_battle_checkpoint.json": {
-      "sha256": "d14003e749693e82d04fc221027051b758449d9b16948b44c9dc3ab78e4a7f25",
-      "size": 17309
+      "sha256": "a1f99fae7693dd5f51d34e774d9c6bf43985b7e9515226f747ec3230c24b8b59",
+      "size": 17707
+    },
+    "content/modernization/pr16_learnset_battle_completed_actions.json": {
+      "sha256": "58b0eae5ddd10a76d427e0574189bf20a0068104a8197abbba6abd2db2fda571",
+      "size": 4300
     },
     "content/modernization/pr16_learnset_gameplay_checkpoint.json": {
       "sha256": "ea69013f782168a52a0a9f5936468f87b2afd34aa3625cf74223202c6054f878",
@@ -7863,8 +7886,8 @@
       "size": 4701
     },
     "docs/PR16_LEARNSET_GAMEPLAY_JA.md": {
-      "sha256": "f77c643a8d6234f3d3f61d9063fc1b9a3b57900ad8204f12ebca67b1b83c31a7",
-      "size": 2220
+      "sha256": "02feaa1765647747812b3f720cf24c869991ba54d8fad3e9b419f0b686dfc978",
+      "size": 2351
     },
     "docs/PR16_LEARNSET_SUCCESSOR_JA.md": {
       "sha256": "b6a1c8dccc3109f5afb623340eae57ea00a95e28cfac8e757c85d05726823203",
@@ -11970,6 +11993,10 @@
       "sha256": "6e7d5b1127afc8a3ed37cf2242e64799a64d3f2943994d920a9fe46dce0feb74",
       "size": 6764
     },
+    "scripts/pr16_learnset_impact.py": {
+      "sha256": "e26c0c4693808dfa19db2847f161885a55151dd2d7235520979f1021c702dc28",
+      "size": 11738
+    },
     "scripts/pr16_learnset_wiki.py": {
       "sha256": "812b34967f93e7f1e886fcfa0d5cb91f6ad38c59695324bda6a53d868a706d35",
       "size": 25777
@@ -13137,6 +13164,14 @@
     "tests/test_pr16_learnset_gameplay_followup.py": {
       "sha256": "bd8f726c4a1a3b51e8f9d993c8da8771b7e559f62897df9303472da2466ad823",
       "size": 2530
+    },
+    "tests/test_pr16_learnset_impact.py": {
+      "sha256": "a78cca39019a62bd2e902d83b054a50cc7fd1de7b664146fdb4a21f47ccd8f86",
+      "size": 2857
+    },
+    "tests/test_pr16_learnset_impact_directory.py": {
+      "sha256": "87debc4168225ed19b06d58aa20bac2af0442dfc2d10d5f8b0f82f2753f8ace3",
+      "size": 1164
     },
     "tests/test_pr16_learnset_wiki.py": {
       "sha256": "9d1a2231a5c754e86ea2fb96ac0c50da00013fc7a8689480617522ee6f9ccfb6",

@@ -27,6 +27,7 @@ GUIDE='docs/PR16_LEARNSET_GAMEPLAY_JA.md'
 WORK=ROOT/'.local/pr16-learnset-impact'
 PROOF=WORK/'proof'
 CODE={'scripts/pr16_learnset_impact.py','tests/test_pr16_learnset_impact.py','.github/workflows/pr16-learnset-impact.yml'}
+CODE.add('tests/test_pr16_learnset_impact_directory.py')
 OWNED=CODE|{CP,DONE,STATE,DOC,GUIDE,'design/run_log.md','design/version_log.md'}
 
 
@@ -68,11 +69,15 @@ def report(v):
     need(v['candidate']=={'size':33554432,'sha256':'6e88a021785bfa7cf00e26d7f2433c380602d830e94e1d2fc31e3198cda31df2'},'戦闘候補不一致')
 
 
+def prepare_proof():
+    PROOF.mkdir(parents=True,exist_ok=True)
+
+
 def execute():
     from pr16_wiki_reconcile import fetch
     from pr16_learnset_wiki_actions import current
     import pr16_learnset_battle as b
-    current();need(not (ROOT/DONE).exists(),'完了照合の二重実行禁止');PROOF.mkdir(parents=True)
+    current();need(not (ROOT/DONE).exists(),'完了照合の二重実行禁止');prepare_proof()
     run=fetch('actions/runs/'+str(RUN));job=fetch('actions/jobs/'+str(JOB));art=fetch('actions/artifacts/'+str(ART['id']))
     metadata(run,job,art);data=unpack(fetch('actions/artifacts/'+str(ART['id'])+'/zip',binary=True));v=json.loads(data['verification.json']);report(v)
     need(set(data)==set(v['proof_bindings'])|{'verification.json','reflected-head.txt'},'戦闘原本集合不一致')
@@ -122,7 +127,7 @@ def record():
     for name in CODE|{CP,DONE,GUIDE}:state['source_bindings'][name]=identity((ROOT/name).read_bytes())
     state['logs_synchronized']=True;publish_resume(state)
     stamp=datetime.datetime.now(datetime.timezone.utc).isoformat()
-    log=f'\n## {stamp}\n- Timestamp: {stamp}\n- Task: USER-20260923-LEARNSET-IMPACT / 通常戦闘完了Actionsの固定照合\n- Version: issue19-impact-battle-completion-v1\n- Status: DONE（完了照合の区切り、Issue19全体は未完）\n- Summary: run{RUN}/job{JOB}/artifact{ART["id"]}/反映{START}、内外hash・原本・source・100byte保存結果を照合。受入28unit/通常戦闘は再実行せず継承。\n- Files changed: 完了validator・追加境界試験・限定Actions、battle checkpoint/完了JSON、固定引継ぎMD/JSON・guide・両ログ。\n- Verify: 新規境界unitは本Actionsのunit.txt、保存原本validator PASS、resume check/task graph/最終index scoped guard。新規native/ARM/Wiki/受入unit再実行0。\n- Commit: 本記録commitを同branchへ非force push、reflected-head.txtで最終remote HEAD照合。\n- Network: 固定GitHub run/job/artifactのみ。別PR CI action_required二件を成功へ改作しない。全履歴guard/全体releaseの完了は主張しない。\n'
+    log=f'\n## {stamp}\n- Timestamp: {stamp}\n- Task: USER-20260923-LEARNSET-IMPACT / 通常戦闘完了Actionsの固定照合\n- Version: issue19-impact-battle-completion-v1\n- Status: DONE（完了照合の区切り、Issue19全体は未完）\n- Summary: run{RUN}/job{JOB}/artifact{ART["id"]}/反映{START}、内外hash・原本・source・100byte保存結果を照合。受入28unit/通常戦闘は再実行せず継承。\n- Files changed: 完了validator・追加境界試験・限定Actions、battle checkpoint/完了JSON、固定引継ぎMD/JSON・guide・両ログ。\n- Verify: 境界14+3unitと完了validatorをrun35835731455/35836024443から継承。本runはprivate guard bytes契約の修復と記録のみ、保存原本validator PASS、resume check/task graph/最終index scoped guard。新規native/ARM/Wiki/受入unit再実行0。\n- Commit: 本記録commitを同branchへ非force push、reflected-head.txtで最終remote HEAD照合。\n- Network: 固定GitHub run/job/artifactのみ。別PR CI action_required二件を成功へ改作しない。全履歴guard/全体releaseの完了は主張しない。\n'
     for name in ('design/run_log.md','design/version_log.md'):
         with (ROOT/name).open('a') as f:f.write(log)
 
@@ -136,7 +141,7 @@ def guard():
         raw=git('show',':'+name);text=raw.decode();need(b'\0' not in raw,'tracked binary禁止')
         old=subprocess.run(['git','show',START+':'+name],cwd=ROOT,capture_output=True).stdout
         prior=old.decode();lines=text.splitlines();oldlines=prior.splitlines()
-        new=Counter(lines[n-1] for n in private.document_user_path_lines(text));before=Counter(oldlines[n-1] for n in private.document_user_path_lines(prior))
+        new=Counter(lines[n-1] for n in private.document_user_path_lines(raw));before=Counter(oldlines[n-1] for n in private.document_user_path_lines(old))
         need(not new-before,'新規private path禁止')
         if name.startswith('design/'):need(raw.startswith(old),'log append-only違反')
     subprocess.run(['git','diff','--cached','--check',START],cwd=ROOT,check=True)

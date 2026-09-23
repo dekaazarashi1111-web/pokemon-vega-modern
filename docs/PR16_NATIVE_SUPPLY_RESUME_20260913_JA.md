@@ -6,7 +6,7 @@
 
 ## いまの停止点と次の1手
 
-Issue19候補6e88a021: Bag23/46core・32unit完了Actions照合済み。新しい通常戦闘はPASS_SCOPED。
+Issue19候補6e88a021: Bag23/46core・32unitと通常戦闘1process/28unitの完了Actions照合済み。条件付きタマゴ・画像限定修復へ。
 
 **次: Issue19: Bag23ケース/32境界試験と習得技420の通常戦闘checkpointを継承し、未受入の条件付きタマゴ等の変更影響へ進む。一覧/summary画面は撮影タイミングの限定修復が必要で見た目未受入。旧Wiki/4hook/ARM/PLA1/PLC2/Bag23ケースを影響なく再実行しない。**
 
@@ -14,8 +14,8 @@ Issue19候補6e88a021: Bag23/46core・32unit完了Actions照合済み。新し�
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `38fe29cec7477131741cddc98a0422207c874889`。
-習得済み個体の自然戦闘追加検証source HEAD。反映commit/Actions終端は後続の固定照合。
+証拠のsource HEAD: `b48e23f37b2ef0d83f034a7a95cf1289c37c822a`。
+通常戦闘の完了Actionsを保存原本から照合した記録source。新規nativeは0。
 
 ## 最短の再開手順
 
@@ -315,6 +315,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-Bag run35831256129 completed/success固定。新battle run35833647521の終端未照合。
+戦闘run35833647521/job107091863129はcompleted/success。反映HEADの別PR CI二件はaction_requiredであり成功へ読み替えない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

@@ -6723,3 +6723,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: run35833647521、unit 6件、native 1process、status PASS_SCOPED。旧native/Bag/Wiki/ARM再実行0、ROM変更0。summary黒画面は見た目の受入にしない。
 - Commit: 本記録commitを同branchへ非force pushしremote refを照合。自己SHAはActions reflected-head/git log参照。
 - Network: 固定GitHub run/job/artifactのみ。原本ROM/saveの新規追跡なし。全履歴private guard/Issue19全体/releaseの完了を主張しない。
+
+## 2026-09-23T08:18:12.545302+00:00
+- Timestamp: 2026-09-23T08:18:12.545302+00:00
+- Task: USER-20260923-LEARNSET-IMPACT / 通常戦闘完了Actionsの固定照合
+- Version: issue19-impact-battle-completion-v1
+- Status: DONE（完了照合の区切り、Issue19全体は未完）
+- Summary: run35833647521/job107091863129/artifact10738122800/反映37b023853baea5d3e1f0dfb8f8de6de38334262c、内外hash・原本・source・100byte保存結果を照合。受入28unit/通常戦闘は再実行せず継承。
+- Files changed: 完了validator・追加境界試験・限定Actions、battle checkpoint/完了JSON、固定引継ぎMD/JSON・guide・両ログ。
+- Verify: 境界14+3unitと完了validatorをrun35835731455/35836024443から継承。本runはprivate guard bytes契約の修復と記録のみ、保存原本validator PASS、resume check/task graph/最終index scoped guard。新規native/ARM/Wiki/受入unit再実行0。
+- Commit: 本記録commitを同branchへ非force push、reflected-head.txtで最終remote HEAD照合。
+- Network: 固定GitHub run/job/artifactのみ。別PR CI action_required二件を成功へ改作しない。全履歴guard/全体releaseの完了は主張しない。

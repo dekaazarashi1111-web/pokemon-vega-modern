@@ -10,7 +10,7 @@ run35831256129/job107084145752 completed/success、反映 `574975b3ea189ae37c425
 
 ## 今回: 保存済み習得個体からの通常戦闘
 
-run35833647521、source `38fe29cec7477131741cddc98a0422207c874889`、状態 `PASS_SCOPED`。追加unit 6件、native 1 process。正本 `content/modernization/pr16_learnset_battle_checkpoint.json`。Bag再実行0。成功時は習得済みFloette420の100byteを初期fixtureとして継承し、歩行遭遇→通常の技選択→PP消費/敵HP低下→帰還→通常Save/fresh Continueを確認。タマゴ/全owner/全技戦闘の受入ではない。Actions終端は後続の記録限定照合で確定。
+run35833647521、source `38fe29cec7477131741cddc98a0422207c874889`、状態 `PASS_SCOPED`。追加unit 6件、native 1 process。正本 `content/modernization/pr16_learnset_battle_checkpoint.json`。Bag再実行0。成功時は習得済みFloette420の100byteを初期fixtureとして継承し、歩行遭遇→通常の技選択→PP消費/敵HP低下→帰還→通常Save/fresh Continueを確認。タマゴ/全owner/全技戦闘の受入ではない。Actions終端はrun35833647521/job107091863129 completed/success、artifact10738122800と反映HEAD `37b023853baea5d3e1f0dfb8f8de6de38334262c` で照合済み。新規戦闘再実行0。
 
 ## 見た目の証拠の限界
 
