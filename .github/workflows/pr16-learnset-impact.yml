@@ -1,53 +1,60 @@
 name: pr16-learnset-impact
-# WIP source-only checkpoint. Accepted native/ARM/Wiki are never executed here.
+# v2: accepted battle completion only; no accepted native/ARM/Wiki reruns.
 on:
   push:
     branches: [codex/modernization-followup-20260908]
     paths: [.github/workflows/pr16-learnset-impact.yml]
 permissions:
-  contents: read
+  contents: write
+  actions: read
+  pull-requests: read
 concurrency:
   group: pr16-learnset-impact
   cancel-in-progress: false
 jobs:
-  source:
+  impact:
     if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
     runs-on: ubuntu-24.04
-    timeout-minutes: 5
+    timeout-minutes: 10
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
     steps:
       - uses: actions/checkout@v4
-      - name: 次工程用のtracked textのみを固定HEADから抽出
-        shell: python
-        run: |
-          import hashlib, json, os, pathlib, subprocess, zipfile
-          root = pathlib.Path('.')
-          files = subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
-          selected = []
-          for name in files:
-              if not name:
-                  continue
-              p = pathlib.Path(name)
-              top = name.startswith('content/modernization/') and len(p.parts) == 3 and p.suffix == '.json'
-              code = name.startswith(('scripts/', 'tools/', 'tests/')) and p.suffix in ('.py','.c','.h') and ('pr16' in p.name or 'learnset' in p.name or 'egg' in p.name or p.name in ('mgba_ai_fixture_runner.c','mgba_battle_core_smoke.c','mgba_qol_production_smoke.c','build_battle_core.py','private_file_guard.py','validate_task_graph.py'))
-              docs = name in ('AGENTS.md','CHATGPT_RESUME.md','docs/PR16_LEARNSET_BASELINE_RESET_JA.md','docs/PR16_LEARNSET_GAMEPLAY_JA.md','docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md','config/active_play_baseline.json','design/active_play_baseline.md')
-              if (top or code or docs) and p.is_file() and not p.is_symlink():
-                  raw = p.read_bytes()
-                  if len(raw) > 16000000 or b'\0' in raw:
-                      raise ValueError('source text boundary')
-                  raw.decode('utf-8')
-                  selected.append((name, raw))
-          out = pathlib.Path('.local/pr16-learnset-impact')
-          out.mkdir(parents=True)
-          with zipfile.ZipFile(out/'source.zip','w',zipfile.ZIP_DEFLATED) as z:
-              for name,raw in selected:
-                  z.writestr(name,raw)
-              z.writestr('file-index.txt','\n'.join(files))
-              z.writestr('source-head.txt',os.environ['GITHUB_SHA']+'\n')
-              z.writestr('source-identities.json',json.dumps({n:{'size':len(b),'sha256':hashlib.sha256(b).hexdigest()} for n,b in selected},sort_keys=True))
-          print(json.dumps({'source_head':os.environ['GITHUB_SHA'],'text_files':len(selected),'native_runs':0,'arm_compiles':0,'wiki_rebuilds':0}))
-      - uses: actions/upload-artifact@v4
         with:
-          name: pr16-learnset-impact-source
-          path: .local/pr16-learnset-impact/source.zip
-          retention-days: 7
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: 新規14境界試験と戦闘原本の完了照合のみ
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-learnset-impact/proof
+          python3 -B -m unittest tests.test_pr16_learnset_impact -v 2>&1 | tee .local/pr16-learnset-impact/proof/unit.txt
+          python3 -B scripts/pr16_learnset_impact.py execute
+          python3 -B scripts/pr16_learnset_impact.py record
+          python3 -B scripts/pr16_resume.py check
+          python3 -B scripts/validate_task_graph.py
+          python3 -B scripts/pr16_learnset_impact.py paths | tr '\n' '\0' >.local/pr16-learnset-impact/paths.z
+          git add --pathspec-from-file=.local/pr16-learnset-impact/paths.z --pathspec-file-nul
+          python3 -B scripts/pr16_learnset_impact.py guard
+      - name: 同branchへ非force commit/pushし最新refを照合
+        run: |
+          set -euo pipefail
+          branch='codex/modernization-followup-20260908'
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20260923-LEARNSET-IMPACT: 通常戦闘の完了Actionsを原本照合し固定引継ぎ・両ログへ記録'
+          git push origin "HEAD:$branch"
+          sha=$(git rev-parse HEAD)
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$sha"
+          echo "$sha" | tee .local/pr16-learnset-impact/proof/reflected-head.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-learnset-impact-proof
+          path: .local/pr16-learnset-impact/proof/
+          retention-days: 30
           if-no-files-found: error
