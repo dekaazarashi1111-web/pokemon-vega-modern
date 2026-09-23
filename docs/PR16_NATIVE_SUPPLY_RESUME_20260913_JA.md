@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-候補6e88a021の技習得Wiki4932files/128389経路を、36試験/独立2生成/checkの保存成功証拠と同一treeで反映。過去失敗ログは原本と公開viewを分離。通常操作・物理供給は未完。
+Issue19候補6e88a021の通常Bag/保存再開を新規検証、成功0/23。失敗原本のactive_caseを先に読み未完だけ修復。
 
-**次: Issue19: 候補6e88a021のWiki/原本結合は保存checkpointを継承し再生成しない。次は変更影響のBag通常入口、殿堂入り前後、raw40ページ選択/取消、習得選択、戦闘、通常Save/fresh Continue。Floette12追加技の実供給は未受入。旧4hook直接診断/ARM/PLA1/PLC2/旧Wikiを再実行しない。**
+**次: Issue19: 通常Bag/殿堂入りgate/raw40ページ/取消/Floette12技/通常Save・fresh Continueの保存証拠を先に照合し、未受入ケースだけ続ける。全成功後は習得技の通常戦闘、条件付きタマゴ等の変更影響を検証。Wiki/4hook直接診断/ARM/PLA1/PLC2の単純再実行禁止。**
 
 特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `98ee079d413e7099c0f18db09987b71c23839cc5`。
-後継技習得Wikiの反映source HEAD。生成・36試験は別source b8f8585d/run35756623313の成功stepを継承。反映Actions原本とcommitの照合済み。通常操作の受入ではない。
+証拠のsource HEAD: `a906a09cc8537c04f9e6d1dd760634301bef9b3c`。
+通常Bag/保存再開の新規検証source HEAD。反映commitとActions終端はGit履歴・artifactで別照合。
 
 ## 最短の再開手順
 
@@ -25,10 +25,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_LEARNSET_WIKI_JA.md`
-- `content/modernization/pr16_learnset_wiki_checkpoint.json`
+- `docs/PR16_LEARNSET_GAMEPLAY_JA.md`
+- `content/modernization/pr16_learnset_gameplay_checkpoint.json`
 - `content/modernization/pr16_learnset_supply_alignment_checkpoint.json`
-- `content/modernization/pr16_learnset_supply_native_checkpoint.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -282,6 +281,7 @@ P08ゲート:
 - closeoutの12証拠拒否試験はrun35749269393でPASSを継承し再実行0。このrunは新しい実branch ref/PR同一repo・branch・祖先境界6試験だけ。PR head表示遅延をlive branch ref完全一致とb464a4d以降の記録専用祖先で照合。
 - run35756623313の36試験/独立2Wiki生成/純読取checkは受入済み成功step。全体failureは公開ログguardのみ。同一tree b153f51d26db955427ce4f29df341556ee0ea02143394a64b9ae4d8d430f53fe を1回復元して反映。以降このtreeと証拠は継承し再生成・再試験しない。
 - 後継Wikiの完了Actions照合は content/modernization/pr16_learnset_wiki_completed_actions.json に保存。36 Wiki試験/2生成/候補復元は当回再実行0。次は未受入の通常操作だけを対象にする。
+- run35830398856: 通常操作の成功0件を保存。最新checkpointのvector/source/ROM影響を確認し、無関係な成功ケース・Wiki・旧4hook・ARMを再実行しない。
 
 ## 次セッションへ残す更新手順
 
@@ -311,6 +311,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-Wiki runの完了成功・原本証拠・非force反映commitを照合。各CIはsource HEADを明記し、後続記録HEADへ成功を流用しない。
+run35830398856の通常操作検証0/23。run終端未照合。旧HEADのaction_requiredを試験失敗/成功へ読み替えない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
