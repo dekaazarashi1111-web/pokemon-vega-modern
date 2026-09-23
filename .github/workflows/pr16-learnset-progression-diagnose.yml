@@ -1,5 +1,5 @@
 name: pr16-learnset-progression-diagnose
-# Follow only newly identified Rare Candy continuation and helper extents.
+# Newly identified call sites only: no native or ARM compiler execution.
 on:
   push:
     branches: [codex/modernization-followup-20260908]
@@ -24,12 +24,12 @@ jobs:
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends binutils-arm-none-eabi
-      - name: 未取得の継続callerだけ読取（native/ARMコンパイルなし）
+      - name: 通常習得targetへの実BLとliteral参照だけを抽出
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: |
           python3 - <<'PY'
-          import hashlib,json,os,pathlib,subprocess,sys
+          import array,json,os,pathlib,struct,subprocess,sys
           sys.path[:0]=['scripts','.']
           import pr16_learnset_battle as b
           import pr16_learnset_gameplay as m
@@ -39,16 +39,33 @@ jobs:
           cp=m.load(m.ROOT/'content/modernization/pr16_learnset_progression_checkpoint.json')
           m.need(cp['run_id']==35850873307 and cp['status']=='FAIL' and len(cp['results'])==8,'preserved first attempt changed')
           rom=b.restore();m.need(m.identity(rom)==m.CANDIDATE,'candidate changed')
-          ranges=[('candy-continuation',0x125d00,0x1264c0),('iterator',0x15f9800,0x15f9948),('qol-candy-helper',0x13788c0,0x1378c00)]
-          manifest={'source_head':head,'run_id':int(os.environ['GITHUB_RUN_ID']),'candidate':m.CANDIDATE,'native_processes':0,'arm_compiles':0,'old_test_reruns':0,'previous_readonly_run':35851408571,'ranges':[]}
-          for name,start,end in ranges:
-              raw=rom[start:end];tmp=root/(name+'.bin');tmp.write_bytes(raw)
+          targets={0x0803e1f4,0x09377728,0x095f99e4};words=array.array('H',rom)
+          if sys.byteorder!='little':words.byteswap()
+          refs=[]
+          for i,h in enumerate(words[:-1]):
+              if h&0xf800!=0xf000:continue
+              lo=words[i+1]
+              if lo&0xf800!=0xf800:continue
+              high=h&0x7ff
+              if high&0x400:high-=0x800
+              target=0x08000000+i*2+4+(high<<12)+((lo&0x7ff)<<1)
+              if target in targets:refs.append({'kind':'thumb-bl','offset':i*2,'target':target})
+          for target in targets:
+              needle=struct.pack('<I',target|1);at=rom.find(needle)
+              while at>=0:
+                  refs.append({'kind':'literal','offset':at,'target':target});at=rom.find(needle,at+4)
+          m.need(1<=len(refs)<=64,'xref count boundary')
+          ranges={(r['offset']&~63)-128 for r in refs};ranges.add(0x125a00)
+          manifest={'source_head':head,'run_id':int(os.environ['GITHUB_RUN_ID']),'candidate':m.CANDIDATE,'native_processes':0,'arm_compiles':0,'old_test_reruns':0,'previous_readonly_runs':[35851408571,35851640240],'xrefs':refs,'ranges':[]}
+          for start in sorted(ranges):
+              end=start+(768 if start==0x125a00 else 512);m.need(0<=start<end<=len(rom),'xref span')
+              name='xref-'+hex(start);raw=rom[start:end];tmp=root/(name+'.bin');tmp.write_bytes(raw)
               cmd=['arm-none-eabi-objdump','-D','-b','binary','-m','arm','-M','force-thumb','--adjust-vma='+str(0x08000000+start),str(tmp)]
               text=subprocess.check_output(cmd).decode().replace(str(tmp),name)
               (proof/(name+'.asm.txt')).write_text(text)
               manifest['ranges'].append({'name':name,'address':hex(start+0x08000000),'bytes':m.identity(raw)})
           (proof/'diagnosis.json').write_text(json.dumps(manifest,sort_keys=True,indent=2)+'\n')
-          print('READONLY_DIAGNOSIS native=0 ARM=0 accepted-reruns=0')
+          print('READONLY_XREF',len(refs),'native=0 ARM=0 accepted-reruns=0')
           PY
       - uses: actions/upload-artifact@v4
         if: always()
