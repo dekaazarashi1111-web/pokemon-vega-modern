@@ -1,5 +1,6 @@
 name: pr16-learnset-gameplay
-# v2: 23 new ordinary-input cases; old native/ARM/Wiki generators never run.
+# v3: page Task initialization wait; inherited 20 tests, 12 new UI-transform tests.
+# The followup applies an exact two-line tracked transform hook, then records/commits it.
 on:
   push:
     branches: [codex/modernization-followup-20260908]
@@ -29,23 +30,23 @@ jobs:
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends libmgba-dev
-      - name: 保存候補・原本spanから23ケースの通常Bagと保存再開を検証
+      - name: 20試験を継承し12境界試験と未受入23ケースを検証
         id: native
         continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ github.token }}
-        run: python3 -B scripts/pr16_learnset_gameplay.py execute
+        run: python3 -B scripts/pr16_learnset_gameplay_followup.py execute
       - name: 成功prefixと失敗原本を区別し固定引継ぎ・両ログへ記録
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          python3 -B scripts/pr16_learnset_gameplay.py record
+          python3 -B scripts/pr16_learnset_gameplay_followup.py record
           python3 -B scripts/pr16_resume.py check
           python3 -B scripts/validate_task_graph.py
-          python3 -B scripts/pr16_learnset_gameplay.py paths | tr '\n' '\0' >.local/pr16-learnset-gameplay/paths.z
+          python3 -B scripts/pr16_learnset_gameplay_followup.py paths | tr '\n' '\0' >.local/pr16-learnset-gameplay/paths.z
           git add --pathspec-from-file=.local/pr16-learnset-gameplay/paths.z --pathspec-file-nul
-          python3 -B scripts/pr16_learnset_gameplay.py guard
+          python3 -B scripts/pr16_learnset_gameplay_followup.py guard
       - name: 同branchへ非force commit/pushし最新refを照合
         run: |
           set -euo pipefail
@@ -53,7 +54,7 @@ jobs:
           test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'USER-20260923-LEARNSET-GAMEPLAY: 通常Bag・保存再開の実測原本と固定引継ぎ・両ログを記録'
+          git commit -m 'USER-20260923-LEARNSET-GAMEPLAY: page入力競合修復・通常Bag実測と固定引継ぎ・両ログを記録'
           git push origin "HEAD:$branch"
           sha=$(git rev-parse HEAD)
           test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$sha"
