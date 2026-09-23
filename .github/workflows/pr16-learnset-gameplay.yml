@@ -1,5 +1,5 @@
 name: pr16-learnset-gameplay
-# v4: close saved Bag23, then one NEW learned-move natural battle. No Bag reruns.
+# v5: host LEFT constant only; inherit 16 passing tests, native never started in v4.
 on:
   push:
     branches: [codex/modernization-followup-20260908]
@@ -29,23 +29,23 @@ jobs:
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends libmgba-dev
-      - name: Bag23完了照合と新規16試験・自然戦闘1ケース
+      - name: 16試験を継承し6定数境界試験・未実行自然戦闘1ケース
         id: native
         continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ github.token }}
-        run: python3 -B scripts/pr16_learnset_battle.py execute
+        run: python3 -B scripts/pr16_learnset_battle_retry.py execute
       - name: 固定引継ぎMD/JSON・両ログと成功失敗の原本を記録
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          python3 -B scripts/pr16_learnset_battle.py record
+          python3 -B scripts/pr16_learnset_battle_retry.py record
           python3 -B scripts/pr16_resume.py check
           python3 -B scripts/validate_task_graph.py
-          python3 -B scripts/pr16_learnset_battle.py paths | tr '\n' '\0' >.local/pr16-learnset-battle/paths.z
+          python3 -B scripts/pr16_learnset_battle_retry.py paths | tr '\n' '\0' >.local/pr16-learnset-battle/paths.z
           git add --pathspec-from-file=.local/pr16-learnset-battle/paths.z --pathspec-file-nul
-          python3 -B scripts/pr16_learnset_battle.py guard
+          python3 -B scripts/pr16_learnset_battle_retry.py guard
       - name: 同branchへ非force commit/pushし最新refを照合
         run: |
           set -euo pipefail
@@ -53,7 +53,7 @@ jobs:
           test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'USER-20260923-LEARNSET-BATTLE: Bag完了Actions・習得技の自然戦闘実測と固定引継ぎ・両ログを記録'
+          git commit -m 'USER-20260923-LEARNSET-BATTLE: host入力定数を修復し自然戦闘実測と固定引継ぎ・両ログを記録'
           git push origin "HEAD:$branch"
           sha=$(git rev-parse HEAD)
           test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$sha"
