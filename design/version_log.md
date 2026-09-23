@@ -6745,3 +6745,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: run35837431004 status PASS_SCOPED、unit 18、native 8process、成功8。受入Bag/戦闘/ARM/Wiki再実行0・ROM変更0。
 - Commit: 同branchへ非force pushしreflected-head.txtにremote照合結果を保存。
 - Network: 固定artifact/保存候補復元のみ。原本ROM/saveを新規追跡しない。全履歴guard/全体releaseの完了は主張しない。
+
+## 2026-09-23T08:50:23.120092+00:00
+- Timestamp: 2026-09-23T08:50:23.120092+00:00
+- Task: USER-20260923-LEARNSET-VISUAL
+- Version: issue19-visual-capture-v1
+- Status: PASS_CAPTURE_PENDING_VISUAL_REVIEW
+- Summary: 一覧state4/6とsummary描画待ちを限定修復。Mew/Floetteの2対象は習得・Save前に停止し4枚をartifact保存。
+- Files changed: 専用source投影/validator/10境界試験/Actions、checkpoint/text原本・固定引継ぎMD/JSON・guide・両ログ。
+- Verify: run35839299224 native 2・unit 10。受入全Bag/戦闘/タマゴ/ARM/Wiki再実行0、ROM変更0。目視は別途未完として保持。
+- Commit: 同branchへ非force pushしreflected-headをremote照合。
+- Network: 保存候補/固定Bag artifactのみ。binaryは新規追跡しない。全履歴guard/release成功を主張しない。
