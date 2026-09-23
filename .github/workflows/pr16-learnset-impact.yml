@@ -1,5 +1,5 @@
 name: pr16-learnset-impact
-# v2: accepted battle completion only; no accepted native/ARM/Wiki reruns.
+# v3: repair proof mkdir only; inherit the completed 14 unit tests.
 on:
   push:
     branches: [codex/modernization-followup-20260908]
@@ -25,15 +25,46 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: 新規14境界試験と戦闘原本の完了照合のみ
+      - name: 成功済み14試験を原本継承しdirectory初期化だけ修復
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        shell: python
+        run: |
+          import hashlib, io, json, pathlib, subprocess, sys, zipfile
+          sys.path.insert(0,'scripts')
+          from pr16_wiki_reconcile import fetch
+          old='87093593388b79765e7649907778fd5046bf1843'
+          source=pathlib.Path('scripts/pr16_learnset_impact.py')
+          assert source.read_bytes()==subprocess.check_output(['git','show',old+':'+str(source)])
+          text=source.read_text()
+          needle='PROOF.mkdir(parents=True)'
+          assert text.count(needle)==1
+          text=text.replace(needle,'prepare_proof()')
+          text=text.replace('\ndef execute():','\ndef prepare_proof():\n    PROOF.mkdir(parents=True,exist_ok=True)\n\n\ndef execute():',1)
+          needle="OWNED=CODE|"
+          assert text.count(needle)==1
+          text=text.replace(needle,"CODE.add('tests/test_pr16_learnset_impact_directory.py')\n"+needle,1)
+          source.write_text(text)
+          run=fetch('actions/runs/35835731455')
+          assert run['status']=='completed' and run['conclusion']=='failure' and run['head_sha']==old
+          raw=fetch('actions/artifacts/10739290815/zip',binary=True)
+          assert len(raw)==404 and hashlib.sha256(raw).hexdigest()=='c72f4b9d72ec74f8a460948406316233b7ebe73e46ae398d1a63c875936fff9e'
+          with zipfile.ZipFile(io.BytesIO(raw)) as z:
+              assert z.namelist()==['unit.txt']
+              unit=z.read('unit.txt')
+          assert unit.count(b' ... ok\n')==14 and b'Ran 14 tests' in unit and unit.rstrip().endswith(b'OK')
+          assert pathlib.Path('tests/test_pr16_learnset_impact.py').read_bytes()==subprocess.check_output(['git','show',old+':tests/test_pr16_learnset_impact.py'])
+          proof=pathlib.Path('.local/pr16-learnset-impact/proof');proof.mkdir(parents=True)
+          (proof/'unit.txt').write_bytes(unit)
+          (proof/'inherited-unit.json').write_text(json.dumps({'run_id':35835731455,'source_head':old,'unit_tests':14,'tests_rerun':0,'prior_run_conclusion':'failure','stop':'FileExistsError before completion validator','repair':'idempotent proof directory initialization only'},sort_keys=True)+'\n')
+      - name: 新規3 directory試験と未完の原本照合・記録
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          mkdir -p .local/pr16-learnset-impact/proof
-          python3 -B -m unittest tests.test_pr16_learnset_impact -v 2>&1 | tee .local/pr16-learnset-impact/proof/unit.txt
-          python3 -B scripts/pr16_learnset_impact.py execute
-          python3 -B scripts/pr16_learnset_impact.py record
+          python3 -B -m unittest tests.test_pr16_learnset_impact_directory -v 2>&1 | tee .local/pr16-learnset-impact/proof/directory-unit.txt
+          python3 -B scripts/pr16_learnset_impact.py execute 2>&1 | tee .local/pr16-learnset-impact/execute.txt
+          python3 -B scripts/pr16_learnset_impact.py record 2>&1 | tee .local/pr16-learnset-impact/record.txt
           python3 -B scripts/pr16_resume.py check
           python3 -B scripts/validate_task_graph.py
           python3 -B scripts/pr16_learnset_impact.py paths | tr '\n' '\0' >.local/pr16-learnset-impact/paths.z
@@ -46,7 +77,7 @@ jobs:
           test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'USER-20260923-LEARNSET-IMPACT: 通常戦闘の完了Actionsを原本照合し固定引継ぎ・両ログへ記録'
+          git commit -m 'USER-20260923-LEARNSET-IMPACT: proof初期化を修復し通常戦闘の完了Actions・固定引継ぎ・両ログを記録'
           git push origin "HEAD:$branch"
           sha=$(git rev-parse HEAD)
           test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$sha"
@@ -55,6 +86,9 @@ jobs:
         if: always()
         with:
           name: pr16-learnset-impact-proof
-          path: .local/pr16-learnset-impact/proof/
+          path: |
+            .local/pr16-learnset-impact/proof/
+            .local/pr16-learnset-impact/execute.txt
+            .local/pr16-learnset-impact/record.txt
           retention-days: 30
           if-no-files-found: error
