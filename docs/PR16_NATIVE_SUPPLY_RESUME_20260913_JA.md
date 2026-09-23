@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-Issue19候補6e88a021: Bag23/46core・32unitと通常戦闘1process/28unitの完了Actions照合済み。条件付きタマゴ・画像限定修復へ。
+Issue19: Bag23/通常戦闘の受入を保持。条件付きタマゴ8ケースはPASS_SCOPED。
 
-**次: Issue19: Bag23ケース/32境界試験と習得技420の通常戦闘checkpointを継承し、未受入の条件付きタマゴ等の変更影響へ進む。一覧/summary画面は撮影タイミングの限定修復が必要で見た目未受入。旧Wiki/4hook/ARM/PLA1/PLC2/Bag23ケースを影響なく再実行しない。**
+**次: Issue19: 条件付きタマゴの8ケースは保存原本/最新Actionsから判定し、成功ケースを繰り返さない。次はBag一覧/summary撮影の限定修復と、未受入consumerの変更影響を絞る。Bag23/通常戦闘/Wiki/4hook/ARM/PLA1/PLC2の再実行禁止。**
 
 特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `b48e23f37b2ef0d83f034a7a95cf1289c37c822a`。
-通常戦闘の完了Actionsを保存原本から照合した記録source。新規nativeは0。
+証拠のsource HEAD: `d9227eeb0ff92e523e4d2f848909b50ec83f022f`。
+条件付きタマゴの通常操作を追加検証したsource。反映HEAD/Actions終端は後続で照合。
 
 ## 最短の再開手順
 
@@ -25,9 +25,8 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_LEARNSET_GAMEPLAY_JA.md`
-- `content/modernization/pr16_learnset_battle_checkpoint.json`
-- `content/modernization/pr16_learnset_gameplay_completed_actions.json`
+- `docs/PR16_LEARNSET_EGG_GAMEPLAY_JA.md`
+- `content/modernization/pr16_learnset_egg_gameplay_checkpoint.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -315,6 +314,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-戦闘run35833647521/job107091863129はcompleted/success。反映HEADの別PR CI二件はaction_requiredであり成功へ読み替えない。
+実測原本と実行中Actionsを区別。push/upload後の終端は後続の完了照合まで未確定。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

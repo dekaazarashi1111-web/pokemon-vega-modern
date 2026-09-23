@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "Issue19候補6e88a021: Bag23/46core・32unitと通常戦闘1process/28unitの完了Actions照合済み。条件付きタマゴ・画像限定修復へ。",
+    "current_stop": "Issue19: Bag23/通常戦闘の受入を保持。条件付きタマゴ8ケースはPASS_SCOPED。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "Issue19: Bag23ケース/32境界試験と習得技420の通常戦闘checkpointを継承し、未受入の条件付きタマゴ等の変更影響へ進む。一覧/summary画面は撮影タイミングの限定修復が必要で見た目未受入。旧Wiki/4hook/ARM/PLA1/PLC2/Bag23ケースを影響なく再実行しない。",
+    "next_step": "Issue19: 条件付きタマゴの8ケースは保存原本/最新Actionsから判定し、成功ケースを繰り返さない。次はBag一覧/summary撮影の限定修復と、未受入consumerの変更影響を絞る。Bag23/通常戦闘/Wiki/4hook/ARM/PLA1/PLC2の再実行禁止。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -1496,6 +1496,20 @@
     "run_id": 35721669287,
     "source_head": "4bf406cd0b008fb08c44124838d442925d53118b",
     "status": "ACCEPTED_FOUR_CONDITIONAL_DIRECT_ROM_PROBES_GAMEPLAY_PENDING"
+  },
+  "learnset_egg_gameplay": {
+    "actions_completion_confirmed": false,
+    "candidate": {
+      "sha256": "6e88a021785bfa7cf00e26d7f2433c380602d830e94e1d2fc31e3198cda31df2",
+      "size": 33554432
+    },
+    "issue19_complete": false,
+    "native_processes": 8,
+    "path": "content/modernization/pr16_learnset_egg_gameplay_checkpoint.json",
+    "release_ready": false,
+    "run_id": 35837431004,
+    "source_head": "d9227eeb0ff92e523e4d2f848909b50ec83f022f",
+    "status": "PASS_SCOPED"
   },
   "learnset_floette": {
     "actions_completion_confirmed": true,
@@ -3439,35 +3453,27 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "Issue19: Bag23ケース/32境界試験と習得技420の通常戦闘checkpointを継承し、未受入の条件付きタマゴ等の変更影響へ進む。一覧/summary画面は撮影タイミングの限定修復が必要で見た目未受入。旧Wiki/4hook/ARM/PLA1/PLC2/Bag23ケースを影響なく再実行しない。",
+    "goal_ja": "Issue19: 条件付きタマゴの8ケースは保存原本/最新Actionsから判定し、成功ケースを繰り返さない。次はBag一覧/summary撮影の限定修復と、未受入consumerの変更影響を絞る。Bag23/通常戦闘/Wiki/4hook/ARM/PLA1/PLC2の再実行禁止。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
-    "id": "LEARNSET_BATTLE_REVIEW",
+    "id": "LEARNSET_EGG_REVIEW",
     "read_paths": [
-      "docs/PR16_LEARNSET_GAMEPLAY_JA.md",
-      "content/modernization/pr16_learnset_battle_checkpoint.json",
-      "content/modernization/pr16_learnset_gameplay_completed_actions.json"
+      "docs/PR16_LEARNSET_EGG_GAMEPLAY_JA.md",
+      "content/modernization/pr16_learnset_egg_gameplay_checkpoint.json"
     ],
     "stop_rule_ja": "特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。"
   },
   "observed_date_jst": "2026-09-22",
-  "observed_head": "b48e23f37b2ef0d83f034a7a95cf1289c37c822a",
+  "observed_head": "d9227eeb0ff92e523e4d2f848909b50ec83f022f",
   "observed_head_checks": {
-    "reason_ja": "戦闘run35833647521/job107091863129はcompleted/success。反映HEADの別PR CI二件はaction_requiredであり成功へ読み替えない。",
+    "reason_ja": "実測原本と実行中Actionsを区別。push/upload後の終端は後続の完了照合まで未確定。",
     "runs": [
       {
-        "conclusion": "action_required",
-        "id": 35833805963,
-        "name": "p03-forgetting-ci",
-        "status": "completed"
-      },
-      {
-        "conclusion": "action_required",
-        "id": 35833805841,
-        "name": "source-validation",
-        "status": "completed"
+        "conclusion": null,
+        "id": 35837431004,
+        "status": "in_progress"
       }
     ],
-    "scope_head": "37b023853baea5d3e1f0dfb8f8de6de38334262c"
+    "scope_head": "d9227eeb0ff92e523e4d2f848909b50ec83f022f"
   },
   "observed_head_history": [
     {
@@ -4821,7 +4827,7 @@
       "semantics": "PLA1圧縮と新規供給consumerのhost検証成功入力HEAD。ROM配置/実操作/記録commitの受入ではない。"
     }
   ],
-  "observed_head_semantics": "通常戦闘の完了Actionsを保存原本から照合した記録source。新規nativeは0。",
+  "observed_head_semantics": "条件付きタマゴの通常操作を追加検証したsource。反映HEAD/Actions終端は後続で照合。",
   "p08_candidate_impact": {
     "candidate": {
       "crc32": "CC068B4A",
@@ -6001,6 +6007,10 @@
       "sha256": "52d11a787fefd62a25aacde6d08c3a74b6f7b75856862673bdefa0756f51f542",
       "size": 3866
     },
+    ".github/workflows/pr16-learnset-egg-gameplay.yml": {
+      "sha256": "b92f2863bde8341cfe9054978909a4969bde1f1813b5ef2e5a564e7e05328127",
+      "size": 3085
+    },
     ".github/workflows/pr16-learnset-gameplay.yml": {
       "sha256": "7e82b4671f2d82af521042cc2d2f8d6a51a43a72f13f3fa4ebab594acc901e2e",
       "size": 3038
@@ -7073,6 +7083,10 @@
       "sha256": "58b0eae5ddd10a76d427e0574189bf20a0068104a8197abbba6abd2db2fda571",
       "size": 4300
     },
+    "content/modernization/pr16_learnset_egg_gameplay_checkpoint.json": {
+      "sha256": "1ee094ff5e67d606ba334292b0ac038ff87e460c1670dbaacb5b7c9c5f6a7cfa",
+      "size": 32591
+    },
     "content/modernization/pr16_learnset_gameplay_checkpoint.json": {
       "sha256": "ea69013f782168a52a0a9f5936468f87b2afd34aa3625cf74223202c6054f878",
       "size": 92196
@@ -7884,6 +7898,10 @@
     "docs/PR16_LEARNSET_BASELINE_RESET_JA.md": {
       "sha256": "4924be1b5cfa324fe72cff599758ebb467eae8d25911a085c2d444f3b1f3ab6a",
       "size": 4701
+    },
+    "docs/PR16_LEARNSET_EGG_GAMEPLAY_JA.md": {
+      "sha256": "9410fc6ebaa0ac9a67e47bd721d64fa9692cbe6f477f81990ea5d6aec5d44d84",
+      "size": 1526
     },
     "docs/PR16_LEARNSET_GAMEPLAY_JA.md": {
       "sha256": "02feaa1765647747812b3f720cf24c869991ba54d8fad3e9b419f0b686dfc978",
@@ -11985,6 +12003,10 @@
       "sha256": "0ad2b6d4a8493ccf80b0e022947a7400cdf220ac04753349257dd33338b4482b",
       "size": 4554
     },
+    "scripts/pr16_learnset_egg_gameplay.py": {
+      "sha256": "2466bd9816534f195824b91ba44412d155ec70d0422ed19fc56ee8ae23ee51d6",
+      "size": 21265
+    },
     "scripts/pr16_learnset_gameplay.py": {
       "sha256": "f15310375b7db82b74e07d2f1d5c166f6c6ce9bf33db7f637b123d6e3f567062",
       "size": 25137
@@ -13156,6 +13178,10 @@
     "tests/test_pr16_learnset_battle_retry.py": {
       "sha256": "e604800e8aaf147ec16d9f50e7d75d6cedc9b1755105e2a97d1c0f409a2efcf3",
       "size": 1798
+    },
+    "tests/test_pr16_learnset_egg_gameplay.py": {
+      "sha256": "54e7a38f4f3e6f167d40e05f5ac8045526ce86e3d0e5b2366ad3186dc81027de",
+      "size": 4191
     },
     "tests/test_pr16_learnset_gameplay.py": {
       "sha256": "cc260bd53c015dcbd7892c6e07f01a88ee0f78b0195ee556675590e0044a5b98",

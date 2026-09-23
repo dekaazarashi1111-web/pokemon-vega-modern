@@ -9462,3 +9462,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 境界14+3unitと完了validatorをrun35835731455/35836024443から継承。本runはprivate guard bytes契約の修復と記録のみ、保存原本validator PASS、resume check/task graph/最終index scoped guard。新規native/ARM/Wiki/受入unit再実行0。
 - Commit: 本記録commitを同branchへ非force push、reflected-head.txtで最終remote HEAD照合。
 - Network: 固定GitHub run/job/artifactのみ。別PR CI action_required二件を成功へ改作しない。全履歴guard/全体releaseの完了は主張しない。
+
+## 2026-09-23T08:47:40.506130+00:00
+- Timestamp: 2026-09-23T08:47:40.506130+00:00
+- Task: USER-20260923-LEARNSET-EGG-GAMEPLAY
+- Version: issue19-conditional-egg-gameplay-v1
+- Status: DONE（8ケースの区切り、全体未完）
+- Summary: 原本spanに固定したLight Ball/incense/旧技除外/重複/4枠8ケース。通常育て屋・実歩行生成/孵化・タマゴと孵化後Save/fresh Continue。
+- Files changed: 専用source投影/validator/18境界試験/限定Actions、checkpointとtext原本、guide・固定引継ぎMD/JSON・両ログ。
+- Verify: run35837431004 status PASS_SCOPED、unit 18、native 8process、成功8。受入Bag/戦闘/ARM/Wiki再実行0・ROM変更0。
+- Commit: 同branchへ非force pushしreflected-head.txtにremote照合結果を保存。
+- Network: 固定artifact/保存候補復元のみ。原本ROM/saveを新規追跡しない。全履歴guard/全体releaseの完了は主張しない。
