@@ -14,7 +14,7 @@ Issue19: Bag23/戦闘/タマゴ8/代表画面を保持。通常アメlevel-up・
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `8e5af54e0063f874a3594139e637a6ac301b2cb2`。
+証拠のsource HEAD: `94a1b43c81b4de1d9773d9ea3a4457e59534d570`。
 通常アメlevel-up/進化の追加実操作source。最終Actionsは後続で照合。
 
 ## 最短の再開手順
@@ -287,6 +287,7 @@ P08ゲート:
 - Bag run35831256129 completed/success固定、23ケース/46core/32unitを継承。battle run35833647521の状態PASS_SCOPEDと原本から次工程を判断し、無関係な受入を再実行しない。
 - run35850873307のprogression成功caseを保存し、後継は失敗caseだけ。新候補変更なしのBag23/戦闘/タマゴ8/代表画像/ARM/旧hostは再実行しない。
 - run35852260342のprogression成功caseを保存し、後継は失敗caseだけ。新候補変更なしのBag23/戦闘/タマゴ8/代表画像/ARM/旧hostは再実行しない。
+- run35852603289のprogression成功caseを保存し、後継は失敗caseだけ。新候補変更なしのBag23/戦闘/タマゴ8/代表画像/ARM/旧hostは再実行しない。
 
 ## 次セッションへ残す更新手順
 

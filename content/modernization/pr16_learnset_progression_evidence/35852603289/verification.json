@@ -1,7 +1,6 @@
 {
   "accepted_cases": 8,
   "accepted_test_reruns": 0,
-  "actions_completion_confirmed": false,
   "active_baseline_changed": false,
   "arm_compiles": 0,
   "candidate": {
@@ -74,20 +73,6 @@
   "native_processes": 1,
   "new_unit_tests": 0,
   "next_step_ja": "Issue19: 保存された通常Bagアメlevel-up/進化の成功ケースは再実行しない。未成功caseだけ修復し、完了後は自然生成の初期技・戦闘EXP由来level-upの変更影響へ。Bag23/通常戦闘/条件付きタマゴ8/代表画面/Wiki/旧4hook/ARM/PLA1/PLC2は不変・再実行しない。全owner/Issue19/release/baseline切替は未完。",
-  "previous_attempts": [
-    {
-      "evidence": "content/modernization/pr16_learnset_progression_evidence/35850873307",
-      "run_id": 35850873307,
-      "source_head": "502e5c35f5960cbd1c1adb5b334c588715574e5a",
-      "status": "FAIL"
-    },
-    {
-      "evidence": "content/modernization/pr16_learnset_progression_evidence/35852260342",
-      "run_id": 35852260342,
-      "source_head": "8e5af54e0063f874a3594139e637a6ac301b2cb2",
-      "status": "FAIL"
-    }
-  ],
   "previous_checkpoint": {
     "sha256": "fd47f0818293c55a83badde78f17ab66ea0652a40cb6705a1aa4759ae3b77c80",
     "size": 46062
@@ -905,73 +890,6 @@
       "size": 9673
     }
   },
-  "public_evidence_bindings": {
-    "butterfree-known-first.process.json": {
-      "sha256": "182b1f564fcb386958d2a1d35aa5085633c1d294f3080b2ff2d4f29be34238a3",
-      "size": 44
-    },
-    "butterfree-known-first.stderr.txt": {
-      "sha256": "74879e323fcb66c3da68edc6bb8dff2e4c3a2b2c4e2c24c36adbf34f63dc0957",
-      "size": 3071
-    },
-    "butterfree-known-first.stdout.txt": {
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    "compile.process.json": {
-      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
-      "size": 44
-    },
-    "compile.stderr.txt": {
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    "compile.stdout.txt": {
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    "executed-vectors.h": {
-      "sha256": "7b5a980fb4ab3660c275c46b18c4cca79cdbf14d6c77807ea5dc30e11d95418a",
-      "size": 1131
-    },
-    "observed-0x911409a.asm.txt": {
-      "sha256": "d35e4f15779765b1ba63e1a03c74d864bc0fb9809874a6c316fc017454608c0c",
-      "size": 3642
-    },
-    "observed-0x91140b8.asm.txt": {
-      "sha256": "ef483819191ff51e57c55b122e9376a3e9b2abcdcd8b7699a81aa0bef3580682",
-      "size": 3683
-    },
-    "observed-0x91140be.asm.txt": {
-      "sha256": "9e8805a030ddc4c41ad70c3aab038f7579cd5cd97e8e1d31816dba69ac407265",
-      "size": 3666
-    },
-    "observed-0x95f9a54.asm.txt": {
-      "sha256": "45bb66f11a4e9f0d4127d030d87dfa38442501975202fcc1c7a9fbc3d3782ca5",
-      "size": 3548
-    },
-    "observed-0x95f9a5a.asm.txt": {
-      "sha256": "fb90befcfc2271f951985b1f4c5cf56ebcb47651c5e0d29cb81880aa67b87b92",
-      "size": 3548
-    },
-    "oracle.json": {
-      "sha256": "2a9230799515c75a85eefe4609c497fb7800f53be37b826434897a8de4a81ff4",
-      "size": 6053
-    },
-    "placed-owner414.json": {
-      "sha256": "b1aeaa5256f46050021747e8cf89dd249858966e6deee4b77a5bc5cb4d7d9c95",
-      "size": 805
-    },
-    "vectors.json": {
-      "sha256": "ffcb9939a11e9fa550c7ccc5f8ade524ee9755e9d2bc05b92737e08be1f588b9",
-      "size": 5646
-    },
-    "verification.json": {
-      "sha256": "e5b84959ada1004720c7e34d568e2a2e2293e209de3b9774ac5fa7bc3261c18c",
-      "size": 42251
-    }
-  },
-  "public_evidence_path": "content/modernization/pr16_learnset_progression_evidence/35852603289",
   "release_ready": false,
   "results": [
     {
