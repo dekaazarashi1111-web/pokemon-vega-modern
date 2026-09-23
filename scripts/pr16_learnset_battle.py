@@ -141,7 +141,7 @@ def validate(stdout,stderr):
 
 def execute():
     current();PROOF.mkdir(parents=True,exist_ok=True)
-    m.need(not (ROOT/CP).exists(),'battle checkpoint already exists: inspect before retry')
+    m.need(not (ROOT/CP).exists() or m.load(ROOT/CP)['status']=='FAIL','accepted battle rerun refused')
     report={'schema_version':1,'task':TASK,'source_head':os.environ['GITHUB_SHA'],'run_id':int(os.environ['GITHUB_RUN_ID']),
             'status':'RUNNING','candidate':m.CANDIDATE,'native_processes':0,'bag_reruns':0,'accepted_test_reruns':0,
             'arm_compiles':0,'wiki_generations':0,'rom_changes':0,'issue19_complete':False,'release_ready':False,

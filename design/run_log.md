@@ -9429,3 +9429,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: run35832603358、unit 16件、native 0process、status FAIL。旧native/Bag/Wiki/ARM再実行0、ROM変更0。summary黒画面は見た目の受入にしない。
 - Commit: 本記録commitを同branchへ非force pushしremote refを照合。自己SHAはActions reflected-head/git log参照。
 - Network: 固定GitHub run/job/artifactのみ。原本ROM/saveの新規追跡なし。全履歴private guard/Issue19全体/releaseの完了を主張しない。
+
+## 2026-09-23T07:43:37.846110+00:00
+- Timestamp: 2026-09-23T07:43:37.846110+00:00
+- Task: USER-20260923-LEARNSET-BATTLE / Bag完了Actions固定と習得技の通常戦闘
+- Version: issue19-learned-battle-6e88a021-v1
+- Status: BLOCKED（失敗原本を保存、Bag受入は不変）
+- Summary: Bag23/46core、20+12unitをrun35831256129/job107084145752/artifact10736439669へ固定し再実行0。習得個体420の初期fixtureから自然歩行遭遇・技選択・PP/ダメージ・通常Save/fresh Continueを新規実装。
+- Files changed: 新battle runner/C/試験、Actions、Bag完了JSON、battle checkpointとtext原本view、固定引継ぎMD/JSON、両ログ。
+- Verify: run35833129256、unit 6件、native 1process、status FAIL。旧native/Bag/Wiki/ARM再実行0、ROM変更0。summary黒画面は見た目の受入にしない。
+- Commit: 本記録commitを同branchへ非force pushしremote refを照合。自己SHAはActions reflected-head/git log参照。
+- Network: 固定GitHub run/job/artifactのみ。原本ROM/saveの新規追跡なし。全履歴private guard/Issue19全体/releaseの完了を主張しない。

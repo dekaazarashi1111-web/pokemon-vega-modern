@@ -3,6 +3,8 @@
  * No target, RNG, HP/PP, battle function or outcome injection while observed. */
 #include "pr16_gameplay_driver.c"
 #include "pr16_learnset_battle_fixture.h"
+/* GBA keypad left, matching the existing field drivers. */
+#define QOL_KEY_LEFT 0x0020U
 static unsigned lb_steps,lb_frames,lb_spent,lb_damage,lb_chosen,lb_outcome;
 static unsigned lb_before_pp,lb_after_pp,lb_enemy_hp,lb_min_hp;
 static bool lb_observe;

@@ -1,6 +1,5 @@
 {
   "accepted_test_reruns": 0,
-  "actions_completion_confirmed": false,
   "arm_compiles": 0,
   "bag_completion": {
     "actions_completion_confirmed": true,
@@ -123,26 +122,7 @@
     "sha256": "6e88a021785bfa7cf00e26d7f2433c380602d830e94e1d2fc31e3198cda31df2",
     "size": 33554432
   },
-  "compiled_sources": {
-    "tools/mgba_ai_fixture_runner.c": {
-      "sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f",
-      "size": 36272
-    },
-    "tools/mgba_battle_core_smoke.c": {
-      "sha256": "ed9875695ca60c61960685ac2f8e810a183c8eedd703e56545d67bde3df5cf24",
-      "size": 94688
-    },
-    "tools/mgba_pr16_learnset_battle.c": {
-      "sha256": "b4c153b9e363123f497111e7e0dbae2f8f5e42b63a8b53c42692ac34f1b0e67b",
-      "size": 12976
-    },
-    "tools/mgba_qol_production_smoke.c": {
-      "sha256": "2c4b9f065f4dce84e48f2be9afe2e2f9f666865088770ee8b068a908a0527b85",
-      "size": 149046
-    }
-  },
-  "compiler_repair": "missing host LEFT constant 0x20; native previously not started",
-  "error": "command failure: battle",
+  "error": "command failure: compile",
   "error_type": "ValueError",
   "generated_sources": {
     "p03_learning_embedded.c": {
@@ -174,57 +154,22 @@
       "size": 968
     }
   },
-  "host_compiles": 1,
-  "inherited_unit_tests": 16,
   "issue19_complete": false,
-  "native_processes": 1,
-  "new_unit_tests": 6,
+  "native_processes": 0,
+  "new_unit_tests": 16,
   "next_step_ja": "Issue19: Bag23ケース/32境界試験と習得技420の通常戦闘checkpointを継承し、未受入の条件付きタマゴ等の変更影響へ進む。一覧/summary画面は撮影タイミングの限定修復が必要で見た目未受入。旧Wiki/4hook/ARM/PLA1/PLC2/Bag23ケースを影響なく再実行しない。",
-  "previous_failed_run": 35832603358,
   "proof_bindings": {
     "bag-completed-actions.json": {
       "sha256": "7486f7ee2d7cc6c6d61b06bf7987fec91195590d04c5376684f4d958a8e1aa9d",
       "size": 3227
     },
-    "battle.process.json": {
-      "sha256": "182b1f564fcb386958d2a1d35aa5085633c1d294f3080b2ff2d4f29be34238a3",
-      "size": 44
-    },
-    "battle.stderr.txt": {
-      "sha256": "5c151051dd093a6d71d3d2b99454ca04882c4f859235b72c9d86b0c77f8dd717",
-      "size": 404
-    },
-    "battle.stdout.txt": {
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    "compile-prior-compile.process.json": {
-      "sha256": "182b1f564fcb386958d2a1d35aa5085633c1d294f3080b2ff2d4f29be34238a3",
-      "size": 44
-    },
-    "compile-prior-compile.stderr.txt": {
-      "sha256": "864b7b646a422b45ab211f6612f42b43cda94d6f5ccdf746a19367c20d463651",
-      "size": 1417
-    },
-    "compile-prior-unit.stderr.txt": {
-      "sha256": "5323e0662e7a7ec2769056204825aaee4260f9eaedb329d157d0005ab311d614",
-      "size": 1973
-    },
-    "compile-prior-unit.stdout.txt": {
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    "compile-prior-verification.json": {
-      "sha256": "9032f6988339342db2b3ec6a86ec44e0d44e5ae8e1345e550fcb6de5c3f1ce2d",
-      "size": 9075
-    },
     "compile.process.json": {
-      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "sha256": "182b1f564fcb386958d2a1d35aa5085633c1d294f3080b2ff2d4f29be34238a3",
       "size": 44
     },
     "compile.stderr.txt": {
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
+      "sha256": "864b7b646a422b45ab211f6612f42b43cda94d6f5ccdf746a19367c20d463651",
+      "size": 1417
     },
     "compile.stdout.txt": {
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -234,21 +179,13 @@
       "sha256": "cce7d5aa97dfa5776f2ef2dcc45de3eb6db30f971b3b10c0659b943ccefc964c",
       "size": 1937
     },
-    "inherited-unit.json": {
-      "sha256": "e5c66ddacbe99d0deb9fb5f1c24c03446eb922df04d07c217f620c0e8f2c7664",
-      "size": 467
-    },
-    "screens/floette-learned-420-natural-battle-battle-fixture.ppm": {
-      "sha256": "85dab1f4b15a8da55263de383bf8f0b5cbfa6db807bb04a115abe8f973601f9e",
-      "size": 115215
-    },
     "unit.process.json": {
       "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
       "size": 44
     },
     "unit.stderr.txt": {
-      "sha256": "9ca6b71b0d7695b784a8966810baad5d5d838f3c44e4870de172a910887e1a79",
-      "size": 816
+      "sha256": "5323e0662e7a7ec2769056204825aaee4260f9eaedb329d157d0005ab311d614",
+      "size": 1973
     },
     "unit.stdout.txt": {
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -281,97 +218,18 @@
       "size": 9673
     }
   },
-  "public_evidence_bindings": {
-    "bag-completed-actions.json": {
-      "sha256": "7486f7ee2d7cc6c6d61b06bf7987fec91195590d04c5376684f4d958a8e1aa9d",
-      "size": 3227
-    },
-    "battle.process.json": {
-      "sha256": "182b1f564fcb386958d2a1d35aa5085633c1d294f3080b2ff2d4f29be34238a3",
-      "size": 44
-    },
-    "battle.stderr.txt": {
-      "sha256": "90f95897c08248a1685eb42ddce1fc7dca4f0c349397c113faa70d3d03dda854",
-      "size": 246
-    },
-    "battle.stdout.txt": {
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    "compile-prior-compile.process.json": {
-      "sha256": "182b1f564fcb386958d2a1d35aa5085633c1d294f3080b2ff2d4f29be34238a3",
-      "size": 44
-    },
-    "compile-prior-compile.stderr.txt": {
-      "sha256": "864b7b646a422b45ab211f6612f42b43cda94d6f5ccdf746a19367c20d463651",
-      "size": 1417
-    },
-    "compile-prior-unit.stderr.txt": {
-      "sha256": "5323e0662e7a7ec2769056204825aaee4260f9eaedb329d157d0005ab311d614",
-      "size": 1973
-    },
-    "compile-prior-unit.stdout.txt": {
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    "compile-prior-verification.json": {
-      "sha256": "9032f6988339342db2b3ec6a86ec44e0d44e5ae8e1345e550fcb6de5c3f1ce2d",
-      "size": 9075
-    },
-    "compile.process.json": {
-      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
-      "size": 44
-    },
-    "compile.stderr.txt": {
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    "compile.stdout.txt": {
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    "geometry.json": {
-      "sha256": "cce7d5aa97dfa5776f2ef2dcc45de3eb6db30f971b3b10c0659b943ccefc964c",
-      "size": 1937
-    },
-    "inherited-unit.json": {
-      "sha256": "e5c66ddacbe99d0deb9fb5f1c24c03446eb922df04d07c217f620c0e8f2c7664",
-      "size": 467
-    },
-    "unit.process.json": {
-      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
-      "size": 44
-    },
-    "unit.stderr.txt": {
-      "sha256": "9ca6b71b0d7695b784a8966810baad5d5d838f3c44e4870de172a910887e1a79",
-      "size": 816
-    },
-    "unit.stdout.txt": {
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    "verification.json": {
-      "sha256": "3b35558741503dd6e7faeef7bcbd7e69a71ff670c29d352955b3d8c8fbed9045",
-      "size": 11680
-    }
-  },
-  "public_evidence_path": "content/modernization/pr16_learnset_battle_evidence/35833129256",
   "release_ready": false,
   "rom_changes": 0,
-  "run_id": 35833129256,
+  "run_id": 35832603358,
   "schema_version": 1,
   "source_bindings": {
     ".github/workflows/pr16-learnset-gameplay.yml": {
-      "sha256": "d3449b89e9e36621217ca65e7478ef6885889fafa52e8ef781f6b92b65596c47",
-      "size": 3036
+      "sha256": "98511ef2ac8d698d64199895b3c83933a1f9b1a70177ca4f66b09cb37b852ab8",
+      "size": 2998
     },
     "scripts/pr16_learnset_battle.py": {
-      "sha256": "93cbfaaa2fdd03e12ee8f3cccb037bf1fc64d969729388d8f69858cabccce018",
-      "size": 22111
-    },
-    "scripts/pr16_learnset_battle_retry.py": {
-      "sha256": "0ad2b6d4a8493ccf80b0e022947a7400cdf220ac04753349257dd33338b4482b",
-      "size": 4554
+      "sha256": "9e1d71a539ba98b2d042400945579a6efc05300544848f8db465f3d7e47d8a24",
+      "size": 22099
     },
     "scripts/pr16_learnset_gameplay.py": {
       "sha256": "f15310375b7db82b74e07d2f1d5c166f6c6ce9bf33db7f637b123d6e3f567062",
@@ -385,10 +243,6 @@
       "sha256": "92cdca74983d54c2ce991ff51e57b9b29332039db8954f518053b1ca3b14d5dd",
       "size": 5151
     },
-    "tests/test_pr16_learnset_battle_retry.py": {
-      "sha256": "e604800e8aaf147ec16d9f50e7d75d6cedc9b1755105e2a97d1c0f409a2efcf3",
-      "size": 1798
-    },
     "tests/test_pr16_learnset_gameplay.py": {
       "sha256": "cc260bd53c015dcbd7892c6e07f01a88ee0f78b0195ee556675590e0044a5b98",
       "size": 6166
@@ -398,15 +252,15 @@
       "size": 2530
     },
     "tools/mgba_pr16_learnset_battle.c": {
-      "sha256": "b4c153b9e363123f497111e7e0dbae2f8f5e42b63a8b53c42692ac34f1b0e67b",
-      "size": 12976
+      "sha256": "fabbb9c26011fe877afcd26d478cb9be855c6efb0c17708bdfe077b9010ae621",
+      "size": 12887
     },
     "tools/mgba_pr16_learnset_gameplay.c": {
       "sha256": "4d6050d21c6ab970b28c38643f1e0f5313c9a1f0aba03a91c9865411d08cca68",
       "size": 6934
     }
   },
-  "source_head": "120b1b365d8242e5bc840328c5c90ca129d99ae5",
+  "source_head": "ea7cf90458ee011719c7aafd137c740a97320c05",
   "status": "FAIL",
   "task": "USER-20260923-LEARNSET-BATTLE",
   "wiki_generations": 0

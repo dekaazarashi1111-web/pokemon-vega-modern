@@ -14,7 +14,7 @@ Issue19候補6e88a021: Bag23/46core・32unit完了Actions照合済み。新し�
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `ea7cf90458ee011719c7aafd137c740a97320c05`。
+証拠のsource HEAD: `120b1b365d8242e5bc840328c5c90ca129d99ae5`。
 習得済み個体の自然戦闘追加検証source HEAD。反映commit/Actions終端は後続の固定照合。
 
 ## 最短の再開手順
@@ -284,6 +284,7 @@ P08ゲート:
 - run35830398856: 通常操作の成功0件を保存。最新checkpointのvector/source/ROM影響を確認し、無関係な成功ケース・Wiki・旧4hook・ARMを再実行しない。
 - run35831256129: 通常操作の成功23件を保存。最新checkpointのvector/source/ROM影響を確認し、無関係な成功ケース・Wiki・旧4hook・ARMを再実行しない。
 - Bag run35831256129 completed/success固定、23ケース/46core/32unitを継承。battle run35832603358の状態FAILと原本から次工程を判断し、無関係な受入を再実行しない。
+- Bag run35831256129 completed/success固定、23ケース/46core/32unitを継承。battle run35833129256の状態FAILと原本から次工程を判断し、無関係な受入を再実行しない。
 
 ## 次セッションへ残す更新手順
 
@@ -313,6 +314,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-Bag run35831256129 completed/success固定。新battle run35832603358の終端未照合。
+Bag run35831256129 completed/success固定。新battle run35833129256の終端未照合。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
