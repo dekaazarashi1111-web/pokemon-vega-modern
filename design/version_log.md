@@ -6679,3 +6679,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: run35830398856、新unit 20件、native 1process。通常Save/fresh Continue/100byte/4技PP/counterを成功ケースごとに検証。旧受入・Wiki・ARM再実行0、ROM変更0。
 - Commit: 同branchへの本記録commitを非force pushしremote ref照合。自己SHAはActions result/git log参照。
 - Network: 固定GitHub source/run/artifactの復元のみ。原本ROM/saveを新規追跡しない。全履歴private guardのPASS、戦闘、releaseを主張しない。
+
+## 2026-09-23T07:26:12.231201+00:00
+- Timestamp: 2026-09-23T07:26:12.231201+00:00
+- Task: USER-20260923-LEARNSET-GAMEPLAY / 未受入通常Bag・保存再開の実装と検証
+- Version: issue19-gameplay-6e88a021-v1
+- Status: DONE（Bag/保存検証の区切り。全体未完）
+- Summary: 殿堂入りgate、raw40境界、取消、全12Floette archive技、通常思い出しを独立原本spanへ結合した23ケースを実装。成功23件。
+- Files changed: 新runner/C/vector契約試験/Actions、content/modernization/pr16_learnset_gameplay_checkpoint.json、docs/PR16_LEARNSET_GAMEPLAY_JA.md、text証拠、固定引継ぎMD/JSON、両ログ。
+- Verify: run35831256129、新unit 12件、native 23process。通常Save/fresh Continue/100byte/4技PP/counterを成功ケースごとに検証。旧受入・Wiki・ARM再実行0、ROM変更0。
+- Commit: 同branchへの本記録commitを非force pushしremote ref照合。自己SHAはActions result/git log参照。
+- Network: 固定GitHub source/run/artifactの復元のみ。原本ROM/saveを新規追跡しない。全履歴private guardのPASS、戦闘、releaseを主張しない。

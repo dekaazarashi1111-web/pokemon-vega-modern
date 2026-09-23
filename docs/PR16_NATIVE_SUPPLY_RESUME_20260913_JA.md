@@ -6,7 +6,7 @@
 
 ## いまの停止点と次の1手
 
-Issue19候補6e88a021の通常Bag/保存再開を新規検証、成功0/23。失敗原本のactive_caseを先に読み未完だけ修復。
+Issue19候補6e88a021の通常Bag/保存再開を新規検証、成功23/23。Bag境界成功、画面・完了Actions照合と戦闘等は未完。
 
 **次: Issue19: 通常Bag/殿堂入りgate/raw40ページ/取消/Floette12技/通常Save・fresh Continueの保存証拠を先に照合し、未受入ケースだけ続ける。全成功後は習得技の通常戦闘、条件付きタマゴ等の変更影響を検証。Wiki/4hook直接診断/ARM/PLA1/PLC2の単純再実行禁止。**
 
@@ -14,7 +14,7 @@ Issue19候補6e88a021の通常Bag/保存再開を新規検証、成功0/23。失
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `a906a09cc8537c04f9e6d1dd760634301bef9b3c`。
+証拠のsource HEAD: `059826fec559df3c543dd20cc549b470418ad5dd`。
 通常Bag/保存再開の新規検証source HEAD。反映commitとActions終端はGit履歴・artifactで別照合。
 
 ## 最短の再開手順
@@ -282,6 +282,7 @@ P08ゲート:
 - run35756623313の36試験/独立2Wiki生成/純読取checkは受入済み成功step。全体failureは公開ログguardのみ。同一tree b153f51d26db955427ce4f29df341556ee0ea02143394a64b9ae4d8d430f53fe を1回復元して反映。以降このtreeと証拠は継承し再生成・再試験しない。
 - 後継Wikiの完了Actions照合は content/modernization/pr16_learnset_wiki_completed_actions.json に保存。36 Wiki試験/2生成/候補復元は当回再実行0。次は未受入の通常操作だけを対象にする。
 - run35830398856: 通常操作の成功0件を保存。最新checkpointのvector/source/ROM影響を確認し、無関係な成功ケース・Wiki・旧4hook・ARMを再実行しない。
+- run35831256129: 通常操作の成功23件を保存。最新checkpointのvector/source/ROM影響を確認し、無関係な成功ケース・Wiki・旧4hook・ARMを再実行しない。
 
 ## 次セッションへ残す更新手順
 
@@ -311,6 +312,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-run35830398856の通常操作検証0/23。run終端未照合。旧HEADのaction_requiredを試験失敗/成功へ読み替えない。
+run35831256129の通常操作検証23/23。run終端未照合。旧HEADのaction_requiredを試験失敗/成功へ読み替えない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

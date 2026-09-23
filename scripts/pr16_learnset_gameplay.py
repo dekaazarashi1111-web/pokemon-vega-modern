@@ -31,6 +31,7 @@ PROOF = WORK/'proof'
 CANDIDATE = {'size':33554432, 'sha256':'6e88a021785bfa7cf00e26d7f2433c380602d830e94e1d2fc31e3198cda31df2'}
 SEED = '.local/60_wild_species_root_repair.srm'
 SEED_ID = {'size':131072, 'sha256':'f6bfdb107196ca22b012c1d12ee4bcdc8f5add309bbd3538447cd6e39c449bcb'}
+ARCHIVE_TRANSFORM = lambda text: text
 SCOPE = 'ISSUE19_ORDINARY_BAG_SAVE_CONTINUE_WITH_INITIAL_FIXTURE'
 FLOETTE = [63,76,80,104,118,129,219,263,318,347,420,682]
 NEXT = 'Issue19: 通常Bag/殿堂入りgate/raw40ページ/取消/Floette12技/通常Save・fresh Continueの保存証拠を先に照合し、未受入ケースだけ続ける。全成功後は習得技の通常戦闘、条件付きタマゴ等の変更影響を検証。Wiki/4hook直接診断/ARM/PLA1/PLC2の単純再実行禁止。'
@@ -271,7 +272,7 @@ def execute():
             ('tools/mgba_modernization_p03_learning_e2e.c','p03_learning_embedded.c','gameplay_old_learning'),
             ('tools/mgba_modernization_p02_stage71_acceptance_smoke.c','p03_p02_embedded.c','gameplay_old_p02')]:
             generated[dest]=embed((ROOT/src).read_text(),entry).encode()
-        archive=(ROOT/'tools/mgba_modernization_p03_archive_ui_e2e.c').read_text()
+        archive=ARCHIVE_TRANSFORM((ROOT/'tools/mgba_modernization_p03_archive_ui_e2e.c').read_text())
         anchor='int main(int argc,char**argv)';need(archive.count(anchor)==1,'embedded archive main')
         generated['pr16_gameplay_archive.c']=archive.replace(anchor,'int gameplay_old_archive(int argc,char**argv)').encode()
         for name,raw in generated.items():(WORK/name).write_bytes(raw)
