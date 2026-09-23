@@ -2493,7 +2493,7 @@
     "status": "FAIL"
   },
   "learnset_progression_entry_repair": {
-    "actions_completion_confirmed": false,
+    "actions_completion_confirmed": true,
     "candidate": {
       "sha256": "8946438bc37fda468c53e41378a6f82fac8f0b1af7ac6785ef07ca708c2714a1",
       "size": 33554432
@@ -3527,7 +3527,7 @@
   "next_action": {
     "goal_ja": "Issue19: このentry repair候補を保存parentへapplyして使用する。成功した通常アメlevel-up/進化11caseは再実行せず、自然生成の初期技と戦闘EXP由来level-upの未受入経路へ。Bag23/既存戦闘/条件付きegg8/代表画面/旧4hook/旧host/ARM/Wiki/PLA1/PLC2は影響なし・再実行しない。全owner/Issue19/release/active baseline切替は未完。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
-    "id": "LEARNSET_ENTRY_REPAIR_COMPLETION",
+    "id": "LEARNSET_INITIAL_CREATION_AND_BATTLE_EXP",
     "read_paths": [
       "docs/PR16_LEARNSET_ENTRY_REPAIR_JA.md",
       "content/modernization/pr16_learnset_entry_repair_checkpoint.json",
@@ -3536,14 +3536,14 @@
     "stop_rule_ja": "特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。"
   },
   "observed_date_jst": "2026-09-22",
-  "observed_head": "190a25a6032827d4a060d6d93c98db98da9eb9be",
+  "observed_head": "28abc92ea4dd9ed6bbbf3b447f516c41d9d8ddde",
   "observed_head_checks": {
     "reason_ja": "native証拠とActionsのcommit/push/upload終端を別途照合。",
     "runs": [
       {
-        "conclusion": null,
+        "conclusion": "success",
         "id": 35853901025,
-        "status": "in_progress"
+        "status": "completed"
       }
     ],
     "scope_head": "190a25a6032827d4a060d6d93c98db98da9eb9be"
@@ -6085,8 +6085,8 @@
       "size": 3085
     },
     ".github/workflows/pr16-learnset-entry-repair.yml": {
-      "sha256": "c72c4229bc990bc2733ff60e13221bc039269939269a0efa080f0151bb2a282e",
-      "size": 4086
+      "sha256": "14418a4de65fa257e4b355e3ead13d12a81abcbf035c21445a3d916ddabd6e6f",
+      "size": 2598
     },
     ".github/workflows/pr16-learnset-gameplay.yml": {
       "sha256": "7e82b4671f2d82af521042cc2d2f8d6a51a43a72f13f3fa4ebab594acc901e2e",
@@ -7181,8 +7181,8 @@
       "size": 32995
     },
     "content/modernization/pr16_learnset_entry_repair_checkpoint.json": {
-      "sha256": "cdd0d015bfaef4afa64783f7e416e2f57bd1831e1ba51df92f315935865e4bc9",
-      "size": 64574
+      "sha256": "8dee3523f709fdc663cf03e617a15c550454658c3d462fba421eb075313a24b6",
+      "size": 69331
     },
     "content/modernization/pr16_learnset_gameplay_checkpoint.json": {
       "sha256": "ea69013f782168a52a0a9f5936468f87b2afd34aa3625cf74223202c6054f878",
@@ -8021,8 +8021,8 @@
       "size": 1795
     },
     "docs/PR16_LEARNSET_ENTRY_REPAIR_JA.md": {
-      "sha256": "f1b3d131edc968821d3a43b122275430ef66ebdc4ecdad771536482b0a667cbc",
-      "size": 2423
+      "sha256": "ae50455ee1ed588ecc331a2fc8bf4c9be54d774239c99c1bb81c38e22375697b",
+      "size": 2422
     },
     "docs/PR16_LEARNSET_GAMEPLAY_JA.md": {
       "sha256": "02feaa1765647747812b3f720cf24c869991ba54d8fad3e9b419f0b686dfc978",

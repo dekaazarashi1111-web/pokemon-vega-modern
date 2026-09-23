@@ -14,7 +14,7 @@ Issue19: CFRU初回の旧表/新表混在を8byte入口接続で修復。PASS_RE
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `190a25a6032827d4a060d6d93c98db98da9eb9be`。
+証拠のsource HEAD: `28abc92ea4dd9ed6bbbf3b447f516c41d9d8ddde`。
 CFRU未接続初回入口の修復記録。旧native失敗と新候補受入を区別。
 
 ## 最短の再開手順

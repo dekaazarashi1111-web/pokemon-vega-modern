@@ -20,7 +20,7 @@
 3区間の7API書込barrier、通常Save、新core Continueで100bytes・PP・道具消費を検査。
 初期個体/道具/進行はfixtureなので、自然生成の初期技、戦闘EXP由来level-up、全ownerの受入へ拡張しない。
 
-Actions終端確認: `False`。原本とrecipeは `content/modernization/pr16_learnset_entry_repair_evidence/35853901025`。
+Actions終端確認: `True`。原本とrecipeは `content/modernization/pr16_learnset_entry_repair_evidence/35853901025`。
 旧失敗3回と旧8成功を上書きせず保持。正本 `content/modernization/pr16_learnset_entry_repair_checkpoint.json`。
 
 ## 次

@@ -1,5 +1,5 @@
 {
-  "actions_completion_confirmed": false,
+  "actions_completion_confirmed": true,
   "active_baseline_changed": false,
   "all_owners_accepted": false,
   "arm_assembler_runs": 1,
@@ -25,6 +25,151 @@
     "tools/mgba_qol_production_smoke.c": {
       "sha256": "2c4b9f065f4dce84e48f2be9afe2e2f9f666865088770ee8b068a908a0527b85",
       "size": 149046
+    }
+  },
+  "completed_actions": {
+    "arm_reruns": 0,
+    "artifact": {
+      "digest": "sha256:aa00c8801af28e74e5d291ee245a4f0b18342308508553cb06d7f911a7d0193e",
+      "id": 10746048932,
+      "name": "pr16-learnset-entry-repair-proof",
+      "size_in_bytes": 38049
+    },
+    "conclusion": "success",
+    "host_reruns": 0,
+    "job_id": 107157758267,
+    "native_reruns": 0,
+    "reflected_head": "e08909cbccfe0a1a8f29cdfc96411d49fa07bd6e",
+    "run_id": 35853901025,
+    "source_head": "190a25a6032827d4a060d6d93c98db98da9eb9be",
+    "steps": [
+      {
+        "completed_at": "2026-09-23T11:19:58Z",
+        "conclusion": "success",
+        "name": "Set up job",
+        "number": 1,
+        "started_at": "2026-09-23T11:19:57Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-23T11:20:09Z",
+        "conclusion": "success",
+        "name": "Run actions/checkout@v4",
+        "number": 2,
+        "started_at": "2026-09-23T11:19:58Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-23T11:20:09Z",
+        "conclusion": "success",
+        "name": "Run actions/setup-python@v5",
+        "number": 3,
+        "started_at": "2026-09-23T11:20:09Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-23T11:20:09Z",
+        "conclusion": "success",
+        "name": "ローカル検証済みsourceの転送identityを照合",
+        "number": 4,
+        "started_at": "2026-09-23T11:20:09Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-23T11:20:28Z",
+        "conclusion": "success",
+        "name": "限定host libraryと8byte assemblerだけ導入",
+        "number": 5,
+        "started_at": "2026-09-23T11:20:09Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-23T11:21:58Z",
+        "conclusion": "success",
+        "name": "原本原因照合・新26境界試験・影響11経路の実操作",
+        "number": 6,
+        "started_at": "2026-09-23T11:20:28Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-23T11:22:03Z",
+        "conclusion": "success",
+        "name": "recipe・実測原本・固定引継ぎ・両ログを記録",
+        "number": 7,
+        "started_at": "2026-09-23T11:21:58Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-23T11:22:06Z",
+        "conclusion": "success",
+        "name": "同branchへ非force commit/pushして最新refと照合",
+        "number": 8,
+        "started_at": "2026-09-23T11:22:03Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-23T11:22:07Z",
+        "conclusion": "success",
+        "name": "Run actions/upload-artifact@v4",
+        "number": 9,
+        "started_at": "2026-09-23T11:22:06Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-23T11:22:07Z",
+        "conclusion": "skipped",
+        "name": "実測FAILを成功へ読み替えない",
+        "number": 10,
+        "started_at": "2026-09-23T11:22:07Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-23T11:22:07Z",
+        "conclusion": "success",
+        "name": "Post Run actions/setup-python@v5",
+        "number": 19,
+        "started_at": "2026-09-23T11:22:07Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-23T11:22:08Z",
+        "conclusion": "success",
+        "name": "Post Run actions/checkout@v4",
+        "number": 20,
+        "started_at": "2026-09-23T11:22:07Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-23T11:22:08Z",
+        "conclusion": "success",
+        "name": "Complete job",
+        "number": 21,
+        "started_at": "2026-09-23T11:22:08Z",
+        "status": "completed"
+      }
+    ],
+    "verified_at_head": "28abc92ea4dd9ed6bbbf3b447f516c41d9d8ddde"
+  },
+  "completion_source_bindings": {
+    ".github/workflows/pr16-learnset-entry-repair.yml": {
+      "sha256": "14418a4de65fa257e4b355e3ead13d12a81abcbf035c21445a3d916ddabd6e6f",
+      "size": 2598
+    },
+    "overlays/modernization_pr16_learnset_entry/entry.s": {
+      "sha256": "cbc0b5ea5d01bf6bfa78c760f9d1d1ed6112b21e41e071051e5319e4806461fe",
+      "size": 275
+    },
+    "scripts/pr16_learnset_entry_repair.py": {
+      "sha256": "61e7d5459fdea592d4ef3275c64166c3cd44fb3aab0b76bc236c2afd8c605a3c",
+      "size": 24351
+    },
+    "tests/test_pr16_learnset_entry_repair.py": {
+      "sha256": "e72106dce9d715b0ad7c965cbabb1b62fbba4219be28bfbda41a7453294c433a",
+      "size": 5637
+    },
+    "tools/mgba_pr16_learnset_progression.c": {
+      "sha256": "e6dd7435386707c65fdd5c945c2bb66cdec7b499c1d3d0a9ee4d69105cf992a0",
+      "size": 10772
     }
   },
   "diagnosis": {
