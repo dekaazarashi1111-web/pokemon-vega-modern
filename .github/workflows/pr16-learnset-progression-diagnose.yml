@@ -1,5 +1,5 @@
 name: pr16-learnset-progression-diagnose
-# No native rerun or ARM compilation. Read only the preserved candidate callers.
+# Follow only newly identified Rare Candy continuation and helper extents.
 on:
   push:
     branches: [codex/modernization-followup-20260908]
@@ -20,16 +20,16 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: 逆アセンブラのみ導入（compilerなし）
+      - name: 逆アセンブラのみ導入
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends binutils-arm-none-eabi
-      - name: 保存候補の通常習得caller・cursor・対象関数を限定読取
+      - name: 未取得の継続callerだけ読取（native/ARMコンパイルなし）
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: |
           python3 - <<'PY'
-          import hashlib,json,os,pathlib,struct,subprocess,sys
+          import hashlib,json,os,pathlib,subprocess,sys
           sys.path[:0]=['scripts','.']
           import pr16_learnset_battle as b
           import pr16_learnset_gameplay as m
@@ -39,35 +39,14 @@ jobs:
           cp=m.load(m.ROOT/'content/modernization/pr16_learnset_progression_checkpoint.json')
           m.need(cp['run_id']==35850873307 and cp['status']=='FAIL' and len(cp['results'])==8,'preserved first attempt changed')
           rom=b.restore();m.need(m.identity(rom)==m.CANDIDATE,'candidate changed')
-          hooks={}
-          for at in (0x3e288,0x1377728,0x3e14c,0x11145f0):
-              hooks[hex(at+0x08000000)]=rom[at:at+16].hex()
-          ranges=[('ordinary-party-caller',0x1264c0,0x126c00),('legacy-learning-dispatch',0x3e000,0x3e340),('qol-normal-delegate',0x1377700,0x1377800)]
-          for at in (0x1377728,0x3e288):
-              if rom[at:at+4]==b'\0K\x18G':
-                  target=struct.unpack_from('<I',rom,at+4)[0]&~1
-                  m.need(0x08000000<=target<0x0a000000,'target pointer')
-                  ranges.append(('hook-'+hex(at),target-0x08000000,max(target-0x08000000+700,target-0x08000000+2)))
-          manifest={'source_head':head,'run_id':int(os.environ['GITHUB_RUN_ID']),'candidate':m.CANDIDATE,'native_processes':0,'arm_compiles':0,'old_test_reruns':0,'hooks':hooks,'ranges':[]}
+          ranges=[('candy-continuation',0x125d00,0x1264c0),('iterator',0x15f9800,0x15f9948),('qol-candy-helper',0x13788c0,0x1378c00)]
+          manifest={'source_head':head,'run_id':int(os.environ['GITHUB_RUN_ID']),'candidate':m.CANDIDATE,'native_processes':0,'arm_compiles':0,'old_test_reruns':0,'previous_readonly_run':35851408571,'ranges':[]}
           for name,start,end in ranges:
-              m.need(0<=start<end<=len(rom) and end-start<=4096,'bounded code extent')
               raw=rom[start:end];tmp=root/(name+'.bin');tmp.write_bytes(raw)
               cmd=['arm-none-eabi-objdump','-D','-b','binary','-m','arm','-M','force-thumb','--adjust-vma='+str(0x08000000+start),str(tmp)]
               text=subprocess.check_output(cmd).decode().replace(str(tmp),name)
               (proof/(name+'.asm.txt')).write_text(text)
               manifest['ranges'].append({'name':name,'address':hex(start+0x08000000),'bytes':m.identity(raw)})
-          sources=['src/modernization/pr16_learnset_progress.c','src/modernization/pr16_learnset_progress_game.c','src/modernization/pr16_learnset_progress.h','scripts/pr16_evolution_learning_repair.py','scripts/pr16_learnset_compact_verify.py','scripts/pr16_learnset_compact_record.py']
-          for name in sources:
-              p=pathlib.Path(name)
-              if p.is_file():
-                  text=p.read_text();m.need(len(text)<150000,'source cap');(proof/('source-'+p.name+'.txt')).write_text(text)
-          for name in ('link.json','allocation.json','bindings.h'):
-              for p in b.WORK.rglob(name):
-                  data=p.read_bytes()
-                  if len(data)>300000 or p.suffix!='.json':continue
-                  obj=json.loads(data)
-                  selected={k:v for k,v in obj.items() if k in ('start','end_exclusive','code_start','code_end','candidate','parent','symbols','hooks','bundle','image','allocation','directory','families','family_order','allocation_plan')}
-                  if selected:(proof/('saved-'+hashlib.sha256(str(p).encode()).hexdigest()[:10]+'-'+name)).write_text(json.dumps(selected,indent=2)+'\n')
           (proof/'diagnosis.json').write_text(json.dumps(manifest,sort_keys=True,indent=2)+'\n')
           print('READONLY_DIAGNOSIS native=0 ARM=0 accepted-reruns=0')
           PY
