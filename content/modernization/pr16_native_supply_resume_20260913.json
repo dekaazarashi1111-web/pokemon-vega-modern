@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "Issue19: Bag23/戦闘/タマゴ8/代表画面を保持。通常アメlevel-up・進化11case FAIL、成功8。",
+    "current_stop": "Issue19: CFRU初回の旧表/新表混在を8byte入口接続で修復。PASS_REPAIRED_CFRU_FIRST_CALL_ENTRY、11/11case。自然初期技/戦闘EXP/全体は未完。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "Issue19: 保存された通常Bagアメlevel-up/進化の成功ケースは再実行しない。未成功caseだけ修復し、完了後は自然生成の初期技・戦闘EXP由来level-upの変更影響へ。Bag23/通常戦闘/条件付きタマゴ8/代表画面/Wiki/旧4hook/ARM/PLA1/PLC2は不変・再実行しない。全owner/Issue19/release/baseline切替は未完。",
+    "next_step": "Issue19: このentry repair候補を保存parentへapplyして使用する。成功した通常アメlevel-up/進化11caseは再実行せず、自然生成の初期技と戦闘EXP由来level-upの未受入経路へ。Bag23/既存戦闘/条件付きegg8/代表画面/旧4hook/旧host/ARM/Wiki/PLA1/PLC2は影響なし・再実行しない。全owner/Issue19/release/active baseline切替は未完。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -1020,7 +1020,8 @@
     "Bag run35831256129 completed/success固定、23ケース/46core/32unitを継承。battle run35833647521の状態PASS_SCOPEDと原本から次工程を判断し、無関係な受入を再実行しない。",
     "run35850873307のprogression成功caseを保存し、後継は失敗caseだけ。新候補変更なしのBag23/戦闘/タマゴ8/代表画像/ARM/旧hostは再実行しない。",
     "run35852260342のprogression成功caseを保存し、後継は失敗caseだけ。新候補変更なしのBag23/戦闘/タマゴ8/代表画像/ARM/旧hostは再実行しない。",
-    "run35852603289のprogression成功caseを保存し、後継は失敗caseだけ。新候補変更なしのBag23/戦闘/タマゴ8/代表画像/ARM/旧hostは再実行しない。"
+    "run35852603289のprogression成功caseを保存し、後継は失敗caseだけ。新候補変更なしのBag23/戦闘/タマゴ8/代表画像/ARM/旧hostは再実行しない。",
+    "CFRU入口修復run35853901025の成功caseを再実行しない。候補変更は8byteで、無関係な既存受入は保持。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -2491,6 +2492,26 @@
     "source_head": "94a1b43c81b4de1d9773d9ea3a4457e59534d570",
     "status": "FAIL"
   },
+  "learnset_progression_entry_repair": {
+    "actions_completion_confirmed": false,
+    "candidate": {
+      "sha256": "8946438bc37fda468c53e41378a6f82fac8f0b1af7ac6785ef07ca708c2714a1",
+      "size": 33554432
+    },
+    "first_call_entry": 152125496,
+    "issue19_complete": false,
+    "native_processes": 11,
+    "parent": {
+      "sha256": "6e88a021785bfa7cf00e26d7f2433c380602d830e94e1d2fc31e3198cda31df2",
+      "size": 33554432
+    },
+    "path": "content/modernization/pr16_learnset_entry_repair_checkpoint.json",
+    "release_ready": false,
+    "run_id": 35853901025,
+    "source_head": "190a25a6032827d4a060d6d93c98db98da9eb9be",
+    "status": "PASS_REPAIRED_CFRU_FIRST_CALL_ENTRY",
+    "successful_cases": 11
+  },
   "learnset_runtime": {
     "candidate": {
       "sha256": "aabd52a0db65737b2da0d61bd60c355bedd6ef307b6f60bffad7465d3a6ee56c",
@@ -3504,27 +3525,28 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "Issue19: 保存された通常Bagアメlevel-up/進化の成功ケースは再実行しない。未成功caseだけ修復し、完了後は自然生成の初期技・戦闘EXP由来level-upの変更影響へ。Bag23/通常戦闘/条件付きタマゴ8/代表画面/Wiki/旧4hook/ARM/PLA1/PLC2は不変・再実行しない。全owner/Issue19/release/baseline切替は未完。",
+    "goal_ja": "Issue19: このentry repair候補を保存parentへapplyして使用する。成功した通常アメlevel-up/進化11caseは再実行せず、自然生成の初期技と戦闘EXP由来level-upの未受入経路へ。Bag23/既存戦闘/条件付きegg8/代表画面/旧4hook/旧host/ARM/Wiki/PLA1/PLC2は影響なし・再実行しない。全owner/Issue19/release/active baseline切替は未完。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
-    "id": "LEARNSET_PROGRESSION_FAILURES_ONLY",
+    "id": "LEARNSET_ENTRY_REPAIR_COMPLETION",
     "read_paths": [
-      "docs/PR16_LEARNSET_PROGRESSION_JA.md",
-      "content/modernization/pr16_learnset_progression_checkpoint.json"
+      "docs/PR16_LEARNSET_ENTRY_REPAIR_JA.md",
+      "content/modernization/pr16_learnset_entry_repair_checkpoint.json",
+      "scripts/pr16_learnset_entry_repair.py"
     ],
     "stop_rule_ja": "特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。"
   },
   "observed_date_jst": "2026-09-22",
-  "observed_head": "94a1b43c81b4de1d9773d9ea3a4457e59534d570",
+  "observed_head": "190a25a6032827d4a060d6d93c98db98da9eb9be",
   "observed_head_checks": {
-    "reason_ja": "実測原本とpush/upload後のActions終端は別。未終端を成功にしない。",
+    "reason_ja": "native証拠とActionsのcommit/push/upload終端を別途照合。",
     "runs": [
       {
         "conclusion": null,
-        "id": 35852603289,
+        "id": 35853901025,
         "status": "in_progress"
       }
     ],
-    "scope_head": "94a1b43c81b4de1d9773d9ea3a4457e59534d570"
+    "scope_head": "190a25a6032827d4a060d6d93c98db98da9eb9be"
   },
   "observed_head_history": [
     {
@@ -4878,7 +4900,7 @@
       "semantics": "PLA1圧縮と新規供給consumerのhost検証成功入力HEAD。ROM配置/実操作/記録commitの受入ではない。"
     }
   ],
-  "observed_head_semantics": "通常アメlevel-up/進化の追加実操作source。最終Actionsは後続で照合。",
+  "observed_head_semantics": "CFRU未接続初回入口の修復記録。旧native失敗と新候補受入を区別。",
   "p08_candidate_impact": {
     "candidate": {
       "crc32": "CC068B4A",
@@ -6062,6 +6084,10 @@
       "sha256": "b92f2863bde8341cfe9054978909a4969bde1f1813b5ef2e5a564e7e05328127",
       "size": 3085
     },
+    ".github/workflows/pr16-learnset-entry-repair.yml": {
+      "sha256": "c72c4229bc990bc2733ff60e13221bc039269939269a0efa080f0151bb2a282e",
+      "size": 4086
+    },
     ".github/workflows/pr16-learnset-gameplay.yml": {
       "sha256": "7e82b4671f2d82af521042cc2d2f8d6a51a43a72f13f3fa4ebab594acc901e2e",
       "size": 3038
@@ -7154,6 +7180,10 @@
       "sha256": "7623c9b5eca00c5a96669815eaa320c9afb4c783279f359ba4268477bdc06143",
       "size": 32995
     },
+    "content/modernization/pr16_learnset_entry_repair_checkpoint.json": {
+      "sha256": "cdd0d015bfaef4afa64783f7e416e2f57bd1831e1ba51df92f315935865e4bc9",
+      "size": 64574
+    },
     "content/modernization/pr16_learnset_gameplay_checkpoint.json": {
       "sha256": "ea69013f782168a52a0a9f5936468f87b2afd34aa3625cf74223202c6054f878",
       "size": 92196
@@ -7989,6 +8019,10 @@
     "docs/PR16_LEARNSET_EGG_GAMEPLAY_JA.md": {
       "sha256": "a937081e332d7eb9ee32a12703c8fd0534495a63e7ab64d7e4d46fbc1e988a1d",
       "size": 1795
+    },
+    "docs/PR16_LEARNSET_ENTRY_REPAIR_JA.md": {
+      "sha256": "f1b3d131edc968821d3a43b122275430ef66ebdc4ecdad771536482b0a667cbc",
+      "size": 2423
     },
     "docs/PR16_LEARNSET_GAMEPLAY_JA.md": {
       "sha256": "02feaa1765647747812b3f720cf24c869991ba54d8fad3e9b419f0b686dfc978",
@@ -11602,6 +11636,10 @@
       "sha256": "5b93ef199e97827876b876537945dfc5c8f143bc92150a5b4f8f4b653d87c1d7",
       "size": 7235
     },
+    "overlays/modernization_pr16_learnset_entry/entry.s": {
+      "sha256": "cbc0b5ea5d01bf6bfa78c760f9d1d1ed6112b21e41e071051e5319e4806461fe",
+      "size": 275
+    },
     "overlays/qol_production/hook_contract_stage35.json": {
       "sha256": "17a94205e58a00c52ddf24fb0fb45c20d6fe00a20930860854a7aa647051a5e4",
       "size": 14992
@@ -12105,6 +12143,10 @@
     "scripts/pr16_learnset_egg_gameplay.py": {
       "sha256": "2466bd9816534f195824b91ba44412d155ec70d0422ed19fc56ee8ae23ee51d6",
       "size": 21265
+    },
+    "scripts/pr16_learnset_entry_repair.py": {
+      "sha256": "61e7d5459fdea592d4ef3275c64166c3cd44fb3aab0b76bc236c2afd8c605a3c",
+      "size": 24351
     },
     "scripts/pr16_learnset_gameplay.py": {
       "sha256": "f15310375b7db82b74e07d2f1d5c166f6c6ce9bf33db7f637b123d6e3f567062",
@@ -13297,6 +13339,10 @@
     "tests/test_pr16_learnset_egg_gameplay.py": {
       "sha256": "54e7a38f4f3e6f167d40e05f5ac8045526ce86e3d0e5b2366ad3186dc81027de",
       "size": 4191
+    },
+    "tests/test_pr16_learnset_entry_repair.py": {
+      "sha256": "e72106dce9d715b0ad7c965cbabb1b62fbba4219be28bfbda41a7453294c433a",
+      "size": 5637
     },
     "tests/test_pr16_learnset_gameplay.py": {
       "sha256": "cc260bd53c015dcbd7892c6e07f01a88ee0f78b0195ee556675590e0044a5b98",

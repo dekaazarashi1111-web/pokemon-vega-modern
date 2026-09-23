@@ -9539,3 +9539,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: run35852603289 FAIL、新unit 0 / 継承31、新native 1、累計成功8。ARM/ROM変更/Wiki/受入済みnative再実行0。
 - Commit: 同branchへ非force pushしreflected-head.txtにremote照合結果。
 - Network: 固定artifact/保存候補復元・最新Actions照合。初期個体生成/戦闘EXP/全owner/Issue19/releaseは未完。原本ROM/save新規追跡なし。
+
+## 2026-09-23T11:22:02.046970+00:00
+- Timestamp: 2026-09-23T11:22:02.046970+00:00
+- Task: USER-20260923-LEARNSET-PROGRESSION / CFRU初回入口修復
+- Version: issue19-entry-repair-v1
+- Status: DONE（限定範囲、初期生成/戦闘EXP/全体未完）
+- Summary: first call旧CFRU/継続PLR1の混在を8bytesのtail jumpで修復。表/期待値/元失敗原本は不変。
+- Files changed: 限定recipe、Thumb entry source、新境界試験、限定Actions、text証拠、checkpoint/guide、固定MD/JSON、両ログ。
+- Verify: PASS_REPAIRED_CFRU_FIRST_CALL_ENTRY、run35853901025、新unit26、native11、成功11、fresh core22、影響あり旧受入再検証8、無関係再実行0。
+- Commit: 同branch非force push後にremote refを照合してartifactへ記録。
+- Network: 保存artifactと最新Actionsの固定identity照合。ROM/save新規追跡・release・baseline切替なし。

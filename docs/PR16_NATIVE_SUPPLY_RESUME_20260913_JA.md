@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-Issue19: Bag23/戦闘/タマゴ8/代表画面を保持。通常アメlevel-up・進化11case FAIL、成功8。
+Issue19: CFRU初回の旧表/新表混在を8byte入口接続で修復。PASS_REPAIRED_CFRU_FIRST_CALL_ENTRY、11/11case。自然初期技/戦闘EXP/全体は未完。
 
-**次: Issue19: 保存された通常Bagアメlevel-up/進化の成功ケースは再実行しない。未成功caseだけ修復し、完了後は自然生成の初期技・戦闘EXP由来level-upの変更影響へ。Bag23/通常戦闘/条件付きタマゴ8/代表画面/Wiki/旧4hook/ARM/PLA1/PLC2は不変・再実行しない。全owner/Issue19/release/baseline切替は未完。**
+**次: Issue19: このentry repair候補を保存parentへapplyして使用する。成功した通常アメlevel-up/進化11caseは再実行せず、自然生成の初期技と戦闘EXP由来level-upの未受入経路へ。Bag23/既存戦闘/条件付きegg8/代表画面/旧4hook/旧host/ARM/Wiki/PLA1/PLC2は影響なし・再実行しない。全owner/Issue19/release/active baseline切替は未完。**
 
 特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `94a1b43c81b4de1d9773d9ea3a4457e59534d570`。
-通常アメlevel-up/進化の追加実操作source。最終Actionsは後続で照合。
+証拠のsource HEAD: `190a25a6032827d4a060d6d93c98db98da9eb9be`。
+CFRU未接続初回入口の修復記録。旧native失敗と新候補受入を区別。
 
 ## 最短の再開手順
 
@@ -25,8 +25,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_LEARNSET_PROGRESSION_JA.md`
-- `content/modernization/pr16_learnset_progression_checkpoint.json`
+- `docs/PR16_LEARNSET_ENTRY_REPAIR_JA.md`
+- `content/modernization/pr16_learnset_entry_repair_checkpoint.json`
+- `scripts/pr16_learnset_entry_repair.py`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -288,6 +289,7 @@ P08ゲート:
 - run35850873307のprogression成功caseを保存し、後継は失敗caseだけ。新候補変更なしのBag23/戦闘/タマゴ8/代表画像/ARM/旧hostは再実行しない。
 - run35852260342のprogression成功caseを保存し、後継は失敗caseだけ。新候補変更なしのBag23/戦闘/タマゴ8/代表画像/ARM/旧hostは再実行しない。
 - run35852603289のprogression成功caseを保存し、後継は失敗caseだけ。新候補変更なしのBag23/戦闘/タマゴ8/代表画像/ARM/旧hostは再実行しない。
+- CFRU入口修復run35853901025の成功caseを再実行しない。候補変更は8byteで、無関係な既存受入は保持。
 
 ## 次セッションへ残す更新手順
 
@@ -317,6 +319,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-実測原本とpush/upload後のActions終端は別。未終端を成功にしない。
+native証拠とActionsのcommit/push/upload終端を別途照合。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
