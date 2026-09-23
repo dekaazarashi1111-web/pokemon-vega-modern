@@ -1,7 +1,6 @@
 {
   "accepted_cases": 8,
   "accepted_test_reruns": 0,
-  "actions_completion_confirmed": false,
   "active_baseline_changed": false,
   "arm_compiles": 0,
   "candidate": {
@@ -84,14 +83,6 @@
   "native_processes": 3,
   "new_unit_tests": 0,
   "next_step_ja": "Issue19: 保存された通常Bagアメlevel-up/進化の成功ケースは再実行しない。未成功caseだけ修復し、完了後は自然生成の初期技・戦闘EXP由来level-upの変更影響へ。Bag23/通常戦闘/条件付きタマゴ8/代表画面/Wiki/旧4hook/ARM/PLA1/PLC2は不変・再実行しない。全owner/Issue19/release/baseline切替は未完。",
-  "previous_attempts": [
-    {
-      "evidence": "content/modernization/pr16_learnset_progression_evidence/35850873307",
-      "run_id": 35850873307,
-      "source_head": "502e5c35f5960cbd1c1adb5b334c588715574e5a",
-      "status": "FAIL"
-    }
-  ],
   "previous_checkpoint": {
     "sha256": "02d021fc49b130d6c62cea080ffb619dbe6aebcdce33d4306255460cf3612c42",
     "size": 53472
@@ -929,73 +920,6 @@
       "size": 9673
     }
   },
-  "public_evidence_bindings": {
-    "butterfree-known-first.process.json": {
-      "sha256": "182b1f564fcb386958d2a1d35aa5085633c1d294f3080b2ff2d4f29be34238a3",
-      "size": 44
-    },
-    "butterfree-known-first.stderr.txt": {
-      "sha256": "16ee4f19d79b5bbc0f2d92ab32c3e8511ec273c004bae64113c4c7055f2c5599",
-      "size": 1261
-    },
-    "butterfree-known-first.stdout.txt": {
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    "butterfree-refuse-three.process.json": {
-      "sha256": "182b1f564fcb386958d2a1d35aa5085633c1d294f3080b2ff2d4f29be34238a3",
-      "size": 44
-    },
-    "butterfree-refuse-three.stderr.txt": {
-      "sha256": "de61491eb2b3770212111b70f1b1b9450ed75103ac360c169b1135b66832132f",
-      "size": 997
-    },
-    "butterfree-refuse-three.stdout.txt": {
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    "butterfree-three-moves.process.json": {
-      "sha256": "182b1f564fcb386958d2a1d35aa5085633c1d294f3080b2ff2d4f29be34238a3",
-      "size": 44
-    },
-    "butterfree-three-moves.stderr.txt": {
-      "sha256": "3cca5ddbed8a4f561e3ed1eb842673f665f896c8e45420460260924279e12d9b",
-      "size": 988
-    },
-    "butterfree-three-moves.stdout.txt": {
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    "compile.process.json": {
-      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
-      "size": 44
-    },
-    "compile.stderr.txt": {
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    "compile.stdout.txt": {
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    "executed-vectors.h": {
-      "sha256": "7b5a980fb4ab3660c275c46b18c4cca79cdbf14d6c77807ea5dc30e11d95418a",
-      "size": 1131
-    },
-    "oracle.json": {
-      "sha256": "2a9230799515c75a85eefe4609c497fb7800f53be37b826434897a8de4a81ff4",
-      "size": 6053
-    },
-    "vectors.json": {
-      "sha256": "ffcb9939a11e9fa550c7ccc5f8ade524ee9755e9d2bc05b92737e08be1f588b9",
-      "size": 5646
-    },
-    "verification.json": {
-      "sha256": "d0f5d79c467c85b30e0d31136646f307441193294471e687d88dcde570c5ac63",
-      "size": 43322
-    }
-  },
-  "public_evidence_path": "content/modernization/pr16_learnset_progression_evidence/35852260342",
   "release_ready": false,
   "results": [
     {
