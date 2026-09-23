@@ -10,7 +10,7 @@ run35831256129/job107084145752 completed/success、反映 `574975b3ea189ae37c425
 
 ## 今回: 保存済み習得個体からの通常戦闘
 
-run35833129256、source `120b1b365d8242e5bc840328c5c90ca129d99ae5`、状態 `FAIL`。追加unit 6件、native 1 process。正本 `content/modernization/pr16_learnset_battle_checkpoint.json`。Bag再実行0。成功時は習得済みFloette420の100byteを初期fixtureとして継承し、歩行遭遇→通常の技選択→PP消費/敵HP低下→帰還→通常Save/fresh Continueを確認。タマゴ/全owner/全技戦闘の受入ではない。Actions終端は後続の記録限定照合で確定。
+run35833647521、source `38fe29cec7477131741cddc98a0422207c874889`、状態 `PASS_SCOPED`。追加unit 6件、native 1 process。正本 `content/modernization/pr16_learnset_battle_checkpoint.json`。Bag再実行0。成功時は習得済みFloette420の100byteを初期fixtureとして継承し、歩行遭遇→通常の技選択→PP消費/敵HP低下→帰還→通常Save/fresh Continueを確認。タマゴ/全owner/全技戦闘の受入ではない。Actions終端は後続の記録限定照合で確定。
 
 ## 見た目の証拠の限界
 
@@ -18,4 +18,4 @@ run35833129256、source `120b1b365d8242e5bc840328c5c90ca129d99ae5`、状態 `FAI
 
 ## 次の未完
 
-最新battle checkpointのerrorと原本を先に読み、未受入の戦闘だけ修復する。Bag23/32unit/Wiki/旧hookは再実行しない。
+Issue19: Bag23ケース/32境界試験と習得技420の通常戦闘checkpointを継承し、未受入の条件付きタマゴ等の変更影響へ進む。一覧/summary画面は撮影タイミングの限定修復が必要で見た目未受入。旧Wiki/4hook/ARM/PLA1/PLC2/Bag23ケースを影響なく再実行しない。

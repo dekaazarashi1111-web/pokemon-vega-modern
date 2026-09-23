@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-Issue19候補6e88a021: Bag23/46core・32unit完了Actions照合済み。新しい通常戦闘はFAIL。
+Issue19候補6e88a021: Bag23/46core・32unit完了Actions照合済み。新しい通常戦闘はPASS_SCOPED。
 
-**次: 最新battle checkpointのerror/原本から未完の戦闘だけ修復。Bag23/32unit/Wiki/旧4hook/ARMは再実行しない。**
+**次: Issue19: Bag23ケース/32境界試験と習得技420の通常戦闘checkpointを継承し、未受入の条件付きタマゴ等の変更影響へ進む。一覧/summary画面は撮影タイミングの限定修復が必要で見た目未受入。旧Wiki/4hook/ARM/PLA1/PLC2/Bag23ケースを影響なく再実行しない。**
 
 特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `120b1b365d8242e5bc840328c5c90ca129d99ae5`。
+証拠のsource HEAD: `38fe29cec7477131741cddc98a0422207c874889`。
 習得済み個体の自然戦闘追加検証source HEAD。反映commit/Actions終端は後続の固定照合。
 
 ## 最短の再開手順
@@ -285,6 +285,7 @@ P08ゲート:
 - run35831256129: 通常操作の成功23件を保存。最新checkpointのvector/source/ROM影響を確認し、無関係な成功ケース・Wiki・旧4hook・ARMを再実行しない。
 - Bag run35831256129 completed/success固定、23ケース/46core/32unitを継承。battle run35832603358の状態FAILと原本から次工程を判断し、無関係な受入を再実行しない。
 - Bag run35831256129 completed/success固定、23ケース/46core/32unitを継承。battle run35833129256の状態FAILと原本から次工程を判断し、無関係な受入を再実行しない。
+- Bag run35831256129 completed/success固定、23ケース/46core/32unitを継承。battle run35833647521の状態PASS_SCOPEDと原本から次工程を判断し、無関係な受入を再実行しない。
 
 ## 次セッションへ残す更新手順
 
@@ -314,6 +315,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-Bag run35831256129 completed/success固定。新battle run35833129256の終端未照合。
+Bag run35831256129 completed/success固定。新battle run35833647521の終端未照合。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

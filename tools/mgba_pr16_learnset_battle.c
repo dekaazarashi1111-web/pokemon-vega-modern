@@ -10,6 +10,7 @@ static unsigned lb_before_pp,lb_after_pp,lb_enemy_hp,lb_min_hp;
 static bool lb_observe;
 static void lb_frame(struct mCore *c,unsigned key) {
     c->setKeys(c,key);c->runFrame(c);++lb_frames;
+    if(read8(c,BATTLE_CORE_BATTLE_OUTCOME))lb_outcome=read8(c,BATTLE_CORE_BATTLE_OUTCOME);
     if(lb_observe && read32(c,ADDR_NEW_BATTLE_STRUCT_POINTER)) {
         unsigned pp=read8(c,ADDR_BATTLE_MONS+BATTLE_MON_PP_OFFSET+1U);
         unsigned hp=read16(c,ADDR_BATTLE_MONS+BATTLE_MON_SIZE+BATTLE_CORE_MON_HP);
@@ -147,7 +148,10 @@ int main(int argc,char **argv) {
         unsigned s=lb_save1(c),x=read16(c,s),y=read16(c,s+2);a_require(y==30 && (x==14 || x==15),"audited grass pair");
         lb_step(c,x==14?QOL_KEY_RIGHT:QOL_KEY_LEFT);
     }
-    a_require(lb_action(c) && read32(c,ADDR_BATTLE_TYPE_FLAGS)==0 && read16(c,ADDR_BATTLE_MONS)==1029
+    fprintf(stderr,"LEARNED_ENCOUNTER frame=%u flags=%08x party=%u species=%u battle_pid=%08x party_pid=%08x\n",lb_frames,read32(c,ADDR_BATTLE_TYPE_FLAGS),read16(c,ADDR_BATTLER_PARTY_INDEXES),read16(c,ADDR_BATTLE_MONS),read32(c,ADDR_BATTLE_MONS+0x48),read32(c,QOL_PLAYER_PARTY));
+    g_shot("encounter-boundary");
+    /* BATTLE_TYPE_IS_MASTER=4 is always set for non-link battles. */
+    a_require(lb_action(c) && read32(c,ADDR_BATTLE_TYPE_FLAGS)==4U && read16(c,ADDR_BATTLE_MONS)==1029
         && read16(c,ADDR_BATTLER_PARTY_INDEXES)==0 && read32(c,ADDR_BATTLE_MONS+0x48)==read32(c,QOL_PLAYER_PARTY),"natural nonfacility learned battler");
     unsigned encounter=lb_frames,enemy=read16(c,ADDR_BATTLE_MONS+BATTLE_MON_SIZE);
     for(unsigned i=0;i<4;++i)a_require(read16(c,ADDR_BATTLE_MONS+BATTLE_MON_MOVES_OFFSET+2*i)==v->after[i]
