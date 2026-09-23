@@ -15,3 +15,7 @@ PichuのLight Ball父/母・未所持・旧440除外・重複と4枠、Happiny�
 ## 次
 
 Issue19: 条件付きタマゴの8ケースは保存原本/最新Actionsから判定し、成功ケースを繰り返さない。次はBag一覧/summary撮影の限定修復と、未受入consumerの変更影響を絞る。Bag23/通常戦闘/Wiki/4hook/ARM/PLA1/PLC2の再実行禁止。
+
+## 完了照合
+
+run35837431004/job107104139470 completed/success。artifact10740527650の外側digest・全原本member・reflected HEAD `3e05281b8adc824f736a6f3c712d346e65afbc90` を照合。現在の状態 `PASS_SCOPED`。再実行native/受入unit/ARM/Wikiは0。

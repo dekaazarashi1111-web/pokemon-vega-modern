@@ -9495,3 +9495,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: run35839963209、新規native 1、unit 8。習得/Save/受入Bag全体/戦闘/タマゴ/ARM/Wiki再実行0。
 - Commit: 同branchへ非force push、reflected-headをremote照合。
 - Network: 固定capture artifactと保存候補のみ。全履歴guard/release成功は主張しない。
+
+## 2026-09-23T09:01:03.195919+00:00
+- Timestamp: 2026-09-23T09:01:03.195919+00:00
+- Task: USER-20260923-LEARNSET-IMPACT-CLOSE
+- Version: issue19-impact-close-v1
+- Status: DONE（通常戦闘の完了記録・条件付きタマゴ8・代表画面4枚の区切り、Issue19全体未完）
+- Summary: タマゴ通常育て屋/実歩行孵化/保存24fresh core・18unit、撮影2core/10unitの正常3枚+一覧修復1core/8unitの1枚を保存原本から終端照合。目視所見を画像hashへ固定。
+- Files changed: 完了照合source/追加境界試験/plan/Actions、完了JSON・3checkpoint/guide・固定引継ぎMD/JSON・append-only両ログ。
+- Verify: 新規終端境界17unit、原本/inner/outer/source/ref照合、resume/taskgraph、最終index/private差分。native/受入unit/ARM/Wiki再実行0、ROM/baseline変更0。
+- Commit: 同branchへ非force push、remote refとreflected-head.txtを一致確認。
+- Network: 固定GitHub run/job/artifactのみ。過去失敗を保持。全履歴private guard/全Issue19/release成功は主張しない。

@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-タマゴ8ケースPASS。代表4枚中3枚は目視正常、フラエッテ一覧1枚を限定再撮影: PASS_CAPTURE_PENDING_VISUAL_REVIEW。
+Issue19候補6e88a021: Bag23/通常戦闘の完了を保持。条件付きタマゴ8ケース/24fresh coreと代表一覧・summary4枚（旧正常3枚+修復1枚）の目視・完了Actions照合済み。
 
-**次: 修復一覧1枚を目視し、正常な旧3枚と合わせて4枚を受入。タマゴ/撮影/修復のActions終端を記録限定で照合。成功したnative/画像/受入unitは再実行しない。**
+**次: Issue19: 通常Bag23・通常戦闘・条件付きタマゴ8・代表一覧/summary4枚は保存原本/完了Actionsを継承し再実行しない。次は初期技/通常level-up/進化の実操作について現在候補6e88a021への変更影響を絞り、未受入経路だけ検証。原本収集/Wiki生成/旧4hook/ARM/PLA1/PLC2は再実行しない。全owner/全孵化条件/Issue19/release/baseline切替は未完。**
 
 特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `ec80e1a3d59911cf3a25fe29092a1f4658398ba9`。
-フラエッテ一覧1枚のcursor描画待ち限定修復source。
+証拠のsource HEAD: `749bf679ca7c622f14e8260a42bcad430dac8ac8`。
+条件付きタマゴ8と代表画像4枚の保存原本・Actions終端・目視所見を記録限定で照合したsource。
 
 ## 最短の再開手順
 
@@ -25,10 +25,12 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_LEARNSET_VISUAL_LIST_JA.md`
-- `content/modernization/pr16_learnset_visual_list_checkpoint.json`
+- `content/modernization/pr16_learnset_impact_completed_actions.json`
+- `docs/PR16_LEARNSET_EGG_GAMEPLAY_JA.md`
 - `docs/PR16_LEARNSET_VISUAL_JA.md`
-- `content/modernization/pr16_learnset_visual_checkpoint.json`
+- `docs/PR16_LEARNSET_VISUAL_LIST_JA.md`
+- `docs/PR16_LEARNSET_PROGRESS_JA.md`
+- `content/modernization/pr16_learnset_progress_checkpoint.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -316,6 +318,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-旧capture successと1枚の目視不合格を区別。修復画像の目視/終端は後続で確認。
+過去のaction_required/失敗を改作しない。対象native/capture runの終端と反映HEADのみ完了照合。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
