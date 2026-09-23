@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "Issue19候補6e88a021の通常Bag/保存再開を新規検証、成功23/23。Bag境界成功、画面・完了Actions照合と戦闘等は未完。",
+    "current_stop": "Issue19候補6e88a021: Bag23/46core・32unit完了Actions照合済み。新しい通常戦闘はFAIL。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "Issue19: 通常Bag/殿堂入りgate/raw40ページ/取消/Floette12技/通常Save・fresh Continueの保存証拠を先に照合し、未受入ケースだけ続ける。全成功後は習得技の通常戦闘、条件付きタマゴ等の変更影響を検証。Wiki/4hook直接診断/ARM/PLA1/PLC2の単純再実行禁止。",
+    "next_step": "最新battle checkpointのerror/原本から未完の戦闘だけ修復。Bag23/32unit/Wiki/旧4hook/ARMは再実行しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -1014,7 +1014,8 @@
     "run35756623313の36試験/独立2Wiki生成/純読取checkは受入済み成功step。全体failureは公開ログguardのみ。同一tree b153f51d26db955427ce4f29df341556ee0ea02143394a64b9ae4d8d430f53fe を1回復元して反映。以降このtreeと証拠は継承し再生成・再試験しない。",
     "後継Wikiの完了Actions照合は content/modernization/pr16_learnset_wiki_completed_actions.json に保存。36 Wiki試験/2生成/候補復元は当回再実行0。次は未受入の通常操作だけを対象にする。",
     "run35830398856: 通常操作の成功0件を保存。最新checkpointのvector/source/ROM影響を確認し、無関係な成功ケース・Wiki・旧4hook・ARMを再実行しない。",
-    "run35831256129: 通常操作の成功23件を保存。最新checkpointのvector/source/ROM影響を確認し、無関係な成功ケース・Wiki・旧4hook・ARMを再実行しない。"
+    "run35831256129: 通常操作の成功23件を保存。最新checkpointのvector/source/ROM影響を確認し、無関係な成功ケース・Wiki・旧4hook・ARMを再実行しない。",
+    "Bag run35831256129 completed/success固定、23ケース/46core/32unitを継承。battle run35832603358の状態FAILと原本から次工程を判断し、無関係な受入を再実行しない。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -1271,6 +1272,20 @@
     "status": "PASS_ALL_12_PROOFS_TRACKED",
     "task": "USER-20260921-LEARNSET-BASELINE-RESET",
     "tracked_proof_files": 12
+  },
+  "learnset_battle": {
+    "actions_completion_confirmed": false,
+    "candidate": {
+      "sha256": "6e88a021785bfa7cf00e26d7f2433c380602d830e94e1d2fc31e3198cda31df2",
+      "size": 33554432
+    },
+    "issue19_complete": false,
+    "native_processes": 0,
+    "path": "content/modernization/pr16_learnset_battle_checkpoint.json",
+    "release_ready": false,
+    "run_id": 35832603358,
+    "source_head": "ea7cf90458ee011719c7aafd137c740a97320c05",
+    "status": "FAIL"
   },
   "learnset_binding": {
     "accepted_tests_rerun": 0,
@@ -1924,7 +1939,7 @@
     "task": "USER-20260921-LEARNSET-BASELINE-RESET"
   },
   "learnset_gameplay": {
-    "actions_completion_confirmed": false,
+    "actions_completion_confirmed": true,
     "battle_verified": false,
     "candidate": {
       "sha256": "6e88a021785bfa7cf00e26d7f2433c380602d830e94e1d2fc31e3198cda31df2",
@@ -3420,22 +3435,22 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "Issue19: 通常Bag/殿堂入りgate/raw40ページ/取消/Floette12技/通常Save・fresh Continueの保存証拠を先に照合し、未受入ケースだけ続ける。全成功後は習得技の通常戦闘、条件付きタマゴ等の変更影響を検証。Wiki/4hook直接診断/ARM/PLA1/PLC2の単純再実行禁止。",
+    "goal_ja": "最新battle checkpointのerror/原本から未完の戦闘だけ修復。Bag23/32unit/Wiki/旧4hook/ARMは再実行しない。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
-    "id": "LEARNSET_GAMEPLAY_REVIEW_AND_BATTLE",
+    "id": "LEARNSET_BATTLE_PENDING",
     "read_paths": [
       "docs/PR16_LEARNSET_GAMEPLAY_JA.md",
-      "content/modernization/pr16_learnset_gameplay_checkpoint.json",
-      "content/modernization/pr16_learnset_supply_alignment_checkpoint.json"
+      "content/modernization/pr16_learnset_battle_checkpoint.json",
+      "content/modernization/pr16_learnset_gameplay_completed_actions.json"
     ],
     "stop_rule_ja": "特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。"
   },
   "observed_date_jst": "2026-09-22",
-  "observed_head": "059826fec559df3c543dd20cc549b470418ad5dd",
+  "observed_head": "ea7cf90458ee011719c7aafd137c740a97320c05",
   "observed_head_checks": {
-    "reason_ja": "run35831256129の通常操作検証23/23。run終端未照合。旧HEADのaction_requiredを試験失敗/成功へ読み替えない。",
+    "reason_ja": "Bag run35831256129 completed/success固定。新battle run35832603358の終端未照合。",
     "runs": [],
-    "scope_head": "059826fec559df3c543dd20cc549b470418ad5dd"
+    "scope_head": "ea7cf90458ee011719c7aafd137c740a97320c05"
   },
   "observed_head_history": [
     {
@@ -4789,7 +4804,7 @@
       "semantics": "PLA1圧縮と新規供給consumerのhost検証成功入力HEAD。ROM配置/実操作/記録commitの受入ではない。"
     }
   ],
-  "observed_head_semantics": "通常Bag/保存再開の新規検証source HEAD。反映commitとActions終端はGit履歴・artifactで別照合。",
+  "observed_head_semantics": "習得済み個体の自然戦闘追加検証source HEAD。反映commit/Actions終端は後続の固定照合。",
   "p08_candidate_impact": {
     "candidate": {
       "crc32": "CC068B4A",
@@ -5970,8 +5985,8 @@
       "size": 3866
     },
     ".github/workflows/pr16-learnset-gameplay.yml": {
-      "sha256": "c4ee8727215be09206b53fae7be22e9a379887e9f80486fc20da4dfd1c47932c",
-      "size": 3152
+      "sha256": "98511ef2ac8d698d64199895b3c83933a1f9b1a70177ca4f66b09cb37b852ab8",
+      "size": 2998
     },
     ".github/workflows/pr16-learnset-wiki-closeout.yml": {
       "sha256": "0121b2128d440407c4dc6986d23c1f6f38452dcf53d4aafd47afed83de6c3db8",
@@ -7029,9 +7044,17 @@
       "sha256": "e9b728c0d131a2861032eac0a36ca5b8a773ac7a1993ff231d9692aa0f53bdab",
       "size": 3043
     },
+    "content/modernization/pr16_learnset_battle_checkpoint.json": {
+      "sha256": "ef23b84845d3b1ee540d91695020ea4495d8911c7030cc96a9ac412aafdd7887",
+      "size": 10474
+    },
     "content/modernization/pr16_learnset_gameplay_checkpoint.json": {
-      "sha256": "74e5c742003be01415dba863741f83d96974ddd9cfbb0db35629e3c13e214ade",
-      "size": 91793
+      "sha256": "ea69013f782168a52a0a9f5936468f87b2afd34aa3625cf74223202c6054f878",
+      "size": 92196
+    },
+    "content/modernization/pr16_learnset_gameplay_completed_actions.json": {
+      "sha256": "7486f7ee2d7cc6c6d61b06bf7987fec91195590d04c5376684f4d958a8e1aa9d",
+      "size": 3227
     },
     "content/modernization/pr16_learnset_successor_checkpoint.json": {
       "sha256": "f238c5045e75e9cf1888be4b2c0c0bd1f130e4988c34e8989b68dc92d17071d6",
@@ -7838,8 +7861,8 @@
       "size": 4701
     },
     "docs/PR16_LEARNSET_GAMEPLAY_JA.md": {
-      "sha256": "bffa2d4849e16ea0635b573e2aaaf6c97b5e62301a689c35dc059cee551829bc",
-      "size": 1223
+      "sha256": "5d4493f1157c925e92df89e5d7fc1076eccfa1a6265b53753daee7124356e600",
+      "size": 2034
     },
     "docs/PR16_LEARNSET_SUCCESSOR_JA.md": {
       "sha256": "b6a1c8dccc3109f5afb623340eae57ea00a95e28cfac8e757c85d05726823203",
@@ -11925,6 +11948,10 @@
       "sha256": "ce4ccd15510710e0b6ceb81c5aba3386f71b677014b14eb0a4e9a0ed28f3cf0f",
       "size": 18915
     },
+    "scripts/pr16_learnset_battle.py": {
+      "sha256": "9e1d71a539ba98b2d042400945579a6efc05300544848f8db465f3d7e47d8a24",
+      "size": 22099
+    },
     "scripts/pr16_learnset_gameplay.py": {
       "sha256": "f15310375b7db82b74e07d2f1d5c166f6c6ce9bf33db7f637b123d6e3f567062",
       "size": 25137
@@ -13081,6 +13108,10 @@
       "sha256": "e75566696133c0fd8a65a045dfbe5e644f30d60dc59516b297608ac55b870d7c",
       "size": 9039
     },
+    "tests/test_pr16_learnset_battle.py": {
+      "sha256": "92cdca74983d54c2ce991ff51e57b9b29332039db8954f518053b1ca3b14d5dd",
+      "size": 5151
+    },
     "tests/test_pr16_learnset_gameplay.py": {
       "sha256": "cc260bd53c015dcbd7892c6e07f01a88ee0f78b0195ee556675590e0044a5b98",
       "size": 6166
@@ -13920,6 +13951,10 @@
     "tools/mgba_pr16_circus_win_return_trace.h": {
       "sha256": "4258edf9c1e422bbb22a31208db8e3cdf65e7b34f1548d57fd8f3a29f7047d74",
       "size": 1758
+    },
+    "tools/mgba_pr16_learnset_battle.c": {
+      "sha256": "fabbb9c26011fe877afcd26d478cb9be855c6efb0c17708bdfe077b9010ae621",
+      "size": 12887
     },
     "tools/mgba_pr16_learnset_gameplay.c": {
       "sha256": "4d6050d21c6ab970b28c38643f1e0f5313c9a1f0aba03a91c9865411d08cca68",

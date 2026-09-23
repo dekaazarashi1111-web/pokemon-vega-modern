@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-Issue19候補6e88a021の通常Bag/保存再開を新規検証、成功23/23。Bag境界成功、画面・完了Actions照合と戦闘等は未完。
+Issue19候補6e88a021: Bag23/46core・32unit完了Actions照合済み。新しい通常戦闘はFAIL。
 
-**次: Issue19: 通常Bag/殿堂入りgate/raw40ページ/取消/Floette12技/通常Save・fresh Continueの保存証拠を先に照合し、未受入ケースだけ続ける。全成功後は習得技の通常戦闘、条件付きタマゴ等の変更影響を検証。Wiki/4hook直接診断/ARM/PLA1/PLC2の単純再実行禁止。**
+**次: 最新battle checkpointのerror/原本から未完の戦闘だけ修復。Bag23/32unit/Wiki/旧4hook/ARMは再実行しない。**
 
 特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `059826fec559df3c543dd20cc549b470418ad5dd`。
-通常Bag/保存再開の新規検証source HEAD。反映commitとActions終端はGit履歴・artifactで別照合。
+証拠のsource HEAD: `ea7cf90458ee011719c7aafd137c740a97320c05`。
+習得済み個体の自然戦闘追加検証source HEAD。反映commit/Actions終端は後続の固定照合。
 
 ## 最短の再開手順
 
@@ -26,8 +26,8 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
 - `docs/PR16_LEARNSET_GAMEPLAY_JA.md`
-- `content/modernization/pr16_learnset_gameplay_checkpoint.json`
-- `content/modernization/pr16_learnset_supply_alignment_checkpoint.json`
+- `content/modernization/pr16_learnset_battle_checkpoint.json`
+- `content/modernization/pr16_learnset_gameplay_completed_actions.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -283,6 +283,7 @@ P08ゲート:
 - 後継Wikiの完了Actions照合は content/modernization/pr16_learnset_wiki_completed_actions.json に保存。36 Wiki試験/2生成/候補復元は当回再実行0。次は未受入の通常操作だけを対象にする。
 - run35830398856: 通常操作の成功0件を保存。最新checkpointのvector/source/ROM影響を確認し、無関係な成功ケース・Wiki・旧4hook・ARMを再実行しない。
 - run35831256129: 通常操作の成功23件を保存。最新checkpointのvector/source/ROM影響を確認し、無関係な成功ケース・Wiki・旧4hook・ARMを再実行しない。
+- Bag run35831256129 completed/success固定、23ケース/46core/32unitを継承。battle run35832603358の状態FAILと原本から次工程を判断し、無関係な受入を再実行しない。
 
 ## 次セッションへ残す更新手順
 
@@ -312,6 +313,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-run35831256129の通常操作検証23/23。run終端未照合。旧HEADのaction_requiredを試験失敗/成功へ読み替えない。
+Bag run35831256129 completed/success固定。新battle run35832603358の終端未照合。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

@@ -2,9 +2,15 @@
   "accepted_native_reruns": 0,
   "accepted_tests_rerun": 0,
   "actions_completion": "run/job終端とartifactは後続の記録限定照合で確定する",
-  "actions_completion_confirmed": false,
+  "actions_completion_confirmed": true,
   "active_case": null,
   "arm_compiles": 0,
+  "artifact": {
+    "digest": "sha256:2fb104c444440ec47a11c9d2194a512c6aeb1079036ec66ee849d2a00f19722b",
+    "id": 10736439669,
+    "name": "pr16-learnset-gameplay-proof",
+    "size_in_bytes": 599038
+  },
   "battle_verified": false,
   "candidate": {
     "sha256": "6e88a021785bfa7cf00e26d7f2433c380602d830e94e1d2fc31e3198cda31df2",
@@ -1893,6 +1899,8 @@
       "size": 149046
     }
   },
+  "completed_actions_path": "content/modernization/pr16_learnset_gameplay_completed_actions.json",
+  "completed_job_id": 107084145752,
   "floette_archive_moves_physically_learned": [
     63,
     76,
@@ -3125,6 +3133,7 @@
     }
   },
   "public_evidence_path": "content/modernization/pr16_learnset_gameplay_evidence/35831256129",
+  "reflected_head": "574975b3ea189ae37c4258c583ba5d1efb1c5d82",
   "release_ready": false,
   "restoration": {
     "accepted_test_reruns": 0,
