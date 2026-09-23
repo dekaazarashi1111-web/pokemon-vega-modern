@@ -1,0 +1,67 @@
+name: pr16-learnset-progression
+# 準備checkpoint: 固定HEADのtracked textのみ。ROM・旧受入試験は実行しない。
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-learnset-progression.yml]
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: pr16-learnset-progression
+  cancel-in-progress: false
+jobs:
+  progression:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: 変更影響に必要なtracked textとidentityだけを取得
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import fnmatch, hashlib, json, os, pathlib, re, subprocess, zipfile
+          root=pathlib.Path('.')
+          tracked=set(subprocess.check_output(['git','ls-files','-z']).decode().split('\0'))-{''}
+          exact={'AGENTS.md','CHATGPT_RESUME.md','scripts/pr16_resume.py','scripts/validate_task_graph.py','scripts/guard_private_files.py','content/modernization/pr16_native_supply_resume_20260913.json','content/modernization/pr16_bp_chooser_checkpoint.json','content/modernization/p08_remaining_work.json','config/active_play_baseline.json','design/active_play_baseline.md','tools/mgba_modernization_p02_stage71_acceptance_smoke.c'}
+          patterns=('scripts/pr16_learnset*.py','tests/test_pr16_learnset*.py','tools/mgba_modernization_p03*.c','tools/mgba_modernization_p03*.py','docs/PR16_LEARNSET*.md','docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md','content/modernization/pr16_learnset*checkpoint.json','content/modernization/pr16_learnset*actions.json','content/modernization/pr16_learnset*impact*.json')
+          missing=exact-tracked
+          # guard filename differs in older sources; it is not executed here.
+          missing.discard('scripts/guard_private_files.py')
+          if missing: raise RuntimeError('required tracked text absent: '+','.join(sorted(missing)))
+          selected=(exact&tracked)|{p for p in tracked if any(fnmatch.fnmatchcase(p,pat) for pat in patterns)}
+          # Local C includes are followed by name, never by arbitrary path.
+          pending=[p for p in selected if p.endswith(('.c','.h'))]
+          while pending:
+              path=pending.pop(); text=(root/path).read_text()
+              for name in re.findall(r'^\s*#include\s+"([A-Za-z0-9_.-]+)"',text,re.M):
+                  dep=str(pathlib.PurePosixPath(path).parent/name)
+                  if dep in tracked and dep not in selected: selected.add(dep); pending.append(dep)
+          out=root/'.local/pr16-learnset-progression/proof'; out.mkdir(parents=True)
+          manifest={'schema_version':1,'source_head':os.environ['GITHUB_SHA'],'scope':'TRACKED_PROGRESSION_SOURCES_ONLY_NOT_ACCEPTANCE','native_runs':0,'arm_compiles':0,'accepted_test_reruns':0,'files':{}}
+          total=0
+          with zipfile.ZipFile(out/'sources.zip','w',zipfile.ZIP_DEFLATED) as archive:
+              for path in sorted(selected):
+                  p=root/path
+                  if p.is_symlink() or p.suffix not in {'.md','.json','.py','.c','.h','.yml'}: raise RuntimeError('unsafe source path')
+                  data=p.read_bytes(); data.decode('utf-8'); total+=len(data)
+                  if len(data)>8*1024*1024 or total>48*1024*1024: raise RuntimeError('bounded source snapshot exceeded')
+                  archive.writestr(path,data)
+                  manifest['files'][path]={'sha256':hashlib.sha256(data).hexdigest(),'size':len(data)}
+              for path in ('design/run_log.md','design/version_log.md'):
+                  data=(root/path).read_bytes(); data.decode('utf-8')
+                  archive.writestr(path+'.tail',b'\n'.join(data.splitlines()[-90:])+b'\n')
+                  manifest['files'][path]={'sha256':hashlib.sha256(data).hexdigest(),'size':len(data),'tail_only':True}
+          (out/'manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,sort_keys=True,indent=2)+'\n')
+          print('TRACKED_SOURCE_SNAPSHOT',len(selected),'files',total,'bytes; native=0 ARM=0 accepted-reruns=0')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr16-learnset-progression-source
+          path: .local/pr16-learnset-progression/proof/
+          retention-days: 7
+          if-no-files-found: error
