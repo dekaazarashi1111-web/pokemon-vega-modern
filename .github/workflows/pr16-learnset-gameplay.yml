@@ -1,11 +1,11 @@
 name: pr16-learnset-gameplay
-# 通常操作の未受入範囲専用。旧native/ARM/Wiki生成は起動しない。
+# v2: 23 new ordinary-input cases; old native/ARM/Wiki generators never run.
 on:
   push:
     branches: [codex/modernization-followup-20260908]
     paths: [.github/workflows/pr16-learnset-gameplay.yml]
 permissions:
-  contents: read
+  contents: write
   actions: read
   pull-requests: read
 concurrency:
@@ -15,55 +15,56 @@ jobs:
   gameplay:
     if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
     runs-on: ubuntu-24.04
-    timeout-minutes: 15
+    timeout-minutes: 20
     env:
       PYTHONDONTWRITEBYTECODE: '1'
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 1
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: 通常操作実装に必要なtracked textと現在のActionsだけを固定
+      - name: 未受入通常操作用のhost libraryだけ導入
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends libmgba-dev
+      - name: 保存候補・原本spanから23ケースの通常Bagと保存再開を検証
+        id: native
+        continue-on-error: true
         env:
-          GH_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 -B scripts/pr16_learnset_gameplay.py execute
+      - name: 成功prefixと失敗原本を区別し固定引継ぎ・両ログへ記録
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          mkdir -p .local/pr16-learnset-gameplay/bootstrap
-          python3 - <<'PY'
-          import hashlib, json, os, pathlib, subprocess, urllib.request, zipfile
-          out = pathlib.Path('.local/pr16-learnset-gameplay/bootstrap')
-          paths = subprocess.check_output(['git', 'ls-files', '-z']).decode().split('\0')
-          manifest = []
-          source_roots = ('scripts/', 'tools/', 'tests/', 'config/', 'infra/', 'runtime/', 'src/', 'include/')
-          docs = {'AGENTS.md', 'CHATGPT_RESUME.md', '.gitignore', 'design/run_log.md', 'design/version_log.md', 'design/agent_context_map.md', 'design/active_play_baseline.md', 'state/source-lock.json', 'tasks/task_graph.json', 'design/tasks_next.md'}
-          with zipfile.ZipFile(out / 'tracked-source.zip', 'w', zipfile.ZIP_DEFLATED) as archive:
-              for name in paths:
-                  if not name:
-                      continue
-                  p = pathlib.Path(name)
-                  manifest.append({'path': name, 'size': p.stat().st_size})
-                  selected = name in docs or (name.startswith(source_roots) and p.suffix in {'.py', '.c', '.h', '.S', '.json', '.sh', '.md'}) or (name.startswith('docs/PR16_') and 'LEARNSET' in name) or (name.startswith('content/modernization/') and '/' not in name[len('content/modernization/'):] and p.suffix == '.json')
-                  if selected and p.is_file() and not p.is_symlink():
-                      data = p.read_bytes()
-                      data.decode('utf-8')
-                      archive.writestr(name, data)
-          (out / 'tracked-paths.json').write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n')
-          def api(path):
-              request = urllib.request.Request('https://api.github.com/repos/' + os.environ['GITHUB_REPOSITORY'] + '/' + path, headers={'Authorization': 'Bearer ' + os.environ['GH_TOKEN'], 'Accept': 'application/vnd.github+json'})
-              with urllib.request.urlopen(request, timeout=60) as response:
-                  return json.load(response)
-          keys = ('id','name','head_sha','head_branch','event','status','conclusion','path','created_at','updated_at','run_attempt')
-          runs = api('actions/runs?per_page=30')['workflow_runs']
-          pr = api('pulls/16')
-          result = {'source_head': os.environ['GITHUB_SHA'], 'run_id': int(os.environ['GITHUB_RUN_ID']), 'source_zip_sha256': hashlib.sha256((out / 'tracked-source.zip').read_bytes()).hexdigest(), 'pr': {'state': pr['state'], 'draft': pr['draft'], 'merged': pr['merged'], 'head': pr['head']['sha'], 'ref': pr['head']['ref'], 'repository': pr['head']['repo']['full_name']}, 'latest_runs': [{k: run.get(k) for k in keys} for run in runs], 'native_processes': 0, 'arm_compiles': 0, 'wiki_generations': 0, 'accepted_test_reruns': 0}
-          (out / 'bootstrap.json').write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n')
-          print(json.dumps(result, ensure_ascii=False))
-          PY
+          python3 -B scripts/pr16_learnset_gameplay.py record
+          python3 -B scripts/pr16_resume.py check
+          python3 -B scripts/validate_task_graph.py
+          python3 -B scripts/pr16_learnset_gameplay.py paths | tr '\n' '\0' >.local/pr16-learnset-gameplay/paths.z
+          git add --pathspec-from-file=.local/pr16-learnset-gameplay/paths.z --pathspec-file-nul
+          python3 -B scripts/pr16_learnset_gameplay.py guard
+      - name: 同branchへ非force commit/pushし最新refを照合
+        run: |
+          set -euo pipefail
+          branch='codex/modernization-followup-20260908'
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20260923-LEARNSET-GAMEPLAY: 通常Bag・保存再開の実測原本と固定引継ぎ・両ログを記録'
+          git push origin "HEAD:$branch"
+          sha=$(git rev-parse HEAD)
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$sha"
+          echo "$sha" | tee .local/pr16-learnset-gameplay/proof/reflected-head.txt
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
-          name: pr16-learnset-gameplay-source
-          path: .local/pr16-learnset-gameplay/bootstrap/
-          retention-days: 7
+          name: pr16-learnset-gameplay-proof
+          path: .local/pr16-learnset-gameplay/proof/
+          retention-days: 30
           if-no-files-found: error
+      - name: 失敗した実測を成功へ読み替えずrun終端へ反映
+        if: steps.native.outcome != 'success'
+        run: exit 1
