@@ -1,5 +1,5 @@
 name: pr16-learnset-boundaries
-# 保存3成功と不変oracle19は再実行しない。失敗1caseのHP fixtureを修正。
+# 今回の旧3caseだけ保存HP不整合を実証済み。正常multi-levelと無関係旧検証は再実行しない。
 on:
   push:
     branches: [codex/modernization-followup-20260908]
@@ -29,29 +29,29 @@ jobs:
         run: |
           python3 - <<'PY'
           import hashlib,pathlib
-          expected={'scripts/pr16_exp_multilevel.py':'f4ee5e21a9a181ec75a1551ae9a601500825e442622207a9f387bb88f260349e','tools/pr16_exp_multilevel_trace.h':'aefdffa269bba6cf5c360d2a6944f122bc423d327ceeaf4a45d59584f024eaa6','tools/mgba_pr16_learnset_boundaries.c':'970e40c18717c0fd92d4e04aac2c30c8a7157912739c31a687492a869028c724','tests/test_pr16_exp_multilevel.py':'f83d024dd0a0f173f1146cd289c0f36fbe6daeb4124e51564113d76ffa3623e3'}
+          expected={'scripts/pr16_exp_health_policy.py':'e42f9b4283494b33c87e4339ecc733d42dcf8652c362add17dae1a8d7c14dc47','tools/mgba_pr16_learnset_boundaries.c':'a11747ba2ebffb5d780afb7feb87535f18a20dea8ef3dce28b47009e65b3a241','tests/test_pr16_exp_multilevel.py':'148e0aeed4f8f5d15df7201c0e5bf1eebc40ad0254f8593f21891075ca72dc26','tests/test_pr16_exp_health_policy.py':'f098571b63c7011882de33ce9faf64fa2d7b406a178792a646c81f8467818cae'}
           for path,digest in expected.items():assert hashlib.sha256(pathlib.Path(path).read_bytes()).hexdigest()==digest,path
           print('PASS source transfer')
           PY
       - name: host mGBAのみ準備（ARM compiler不要）
         run: sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends libmgba-dev
-      - name: 構造1試験・新HP8試験・失敗multilevel1case
+      - name: 原本で変更影響を限定・新8試験と構造2試験・HP不整合3caseのみ
         id: native
         continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ github.token }}
-        run: python3 -B scripts/pr16_exp_multilevel.py execute
-      - name: 保存3成功を維持・新HP証拠・固定引継ぎ・両ログ
+        run: python3 -B scripts/pr16_exp_health_policy.py execute
+      - name: 失効理由と正常HP証拠・固定引継ぎ・両ログを更新
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          python3 -B scripts/pr16_exp_multilevel.py record
+          python3 -B scripts/pr16_exp_health_policy.py record
           python3 -B scripts/pr16_resume.py check
           python3 -B scripts/validate_task_graph.py
-          python3 -B scripts/pr16_exp_multilevel.py paths | tr '\n' '\0' >.local/pr16-learnset-boundaries/paths.z
+          python3 -B scripts/pr16_exp_health_policy.py paths | tr '\n' '\0' >.local/pr16-learnset-boundaries/paths.z
           git add --pathspec-from-file=.local/pr16-learnset-boundaries/paths.z --pathspec-file-nul
-          python3 -B scripts/pr16_exp_multilevel.py guard
+          python3 -B scripts/pr16_exp_health_policy.py guard
       - name: 同branchへ非force commit/push・remote refを照合
         run: |
           set -euo pipefail
@@ -59,7 +59,7 @@ jobs:
           test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'USER-20260925-LEARNSET-BOUNDARIES: 複数EXPのHP境界修復・原本・引継ぎ・両ログ'
+          git commit -m 'USER-20260925-LEARNSET-BOUNDARIES: 実証HP影響3caseのみ再検証・失効理由・正常保存を確定'
           git push origin "HEAD:$branch"
           sha=$(git rev-parse HEAD)
           test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$sha"

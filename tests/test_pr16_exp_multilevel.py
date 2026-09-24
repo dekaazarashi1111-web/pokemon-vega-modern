@@ -31,7 +31,7 @@ class HealthTests(unittest.TestCase):
         with self.assertRaises(ValueError):x.health(raw().replace(b'stage=continued',b'stage=missing'))
     def test_native_fixture_writes_only_combat_stats(self):
         source=(x.x.ROOT/x.x.C).read_text()
-        self.assertIn('offset=v->min_delta>1?90:86',source)
+        self.assertIn('offset=90;offset<=98',source)
         self.assertIn('"native EXP health bounds"',source)
         self.assertIn('!log_problem_count',source)
 
