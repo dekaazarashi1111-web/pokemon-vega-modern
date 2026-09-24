@@ -30,14 +30,15 @@ static void nt_frame(struct mCore *c) {
 '''
 
 def execute():
-    prior=n.load(n.ROOT/n.CP)
+    base=n.ROOT/n.EVIDENCE/'36039653256'
+    prior=n.load(base/'verification.json')
     n.need(prior['run_id']==36039653256 and prior['status']=='FAIL' and prior['new_unit_tests']==25 and prior['native_processes']==1,'saved first failure')
     for path in (n.SELF,n.TEST,n.C):n.need(n.identity((n.ROOT/path).read_bytes())==prior['source_bindings'][path],'unchanged failed source')
     old_run=m.run
     def run(args,name,timeout=240):
         if name=='unit':
-            base=n.ROOT/prior['public_evidence_path'];out=(base/'unit.stdout.txt').read_bytes();err=(base/'unit.stderr.txt').read_bytes()
-            n.need(n.identity(out)==prior['public_evidence_bindings']['unit.stdout.txt'] and n.identity(err)==prior['public_evidence_bindings']['unit.stderr.txt'] and b'Ran 25 tests' in err and b'\nOK\n' in err,'inherited 25 unit result')
+            out=(base/'unit.stdout.txt').read_bytes();err=(base/'unit.stderr.txt').read_bytes()
+            n.need(n.identity(out)==prior['proof_bindings']['unit.stdout.txt'] and n.identity(err)==prior['proof_bindings']['unit.stderr.txt'] and b'Ran 25 tests' in err and b'\nOK\n' in err,'inherited 25 unit result')
             n.write(n.PROOF/'inherited-unit.json',{'source_run':prior['run_id'],'source_head':prior['source_head'],'new_unit_tests':0,'inherited_unit_tests':25,'tests':n.identity((n.ROOT/n.TEST).read_bytes()),'stdout':n.identity(out),'stderr':n.identity(err)})
             return out,err
         if name=='compile':
@@ -53,6 +54,8 @@ def execute():
             meta=n.load(n.ROOT/'content/modernization/pr16_candidate_wiki_saved_link_sources.json')
             for key,row in meta['symbols'].items():
                 if key not in ('GiveBoxMonInitialMoveset','GiveMoveToBoxMon','CreateBoxMon','CreateMon','CreateWildMon','SetMonData','SetBoxMonData'):continue
+                if 'address' not in row or 'size' not in row:
+                    ranges.append({'name':key,'saved':row,'code_range_available':False});continue
                 at=row['address']-0x08000000;size=row['size']
                 if 0<=at<at+size<=len(raw) and 0<size<=8192:ranges.append({'name':key,'saved':row,'current_bytes':raw[at:at+size].hex(),'current_identity':n.identity(raw[at:at+size])})
             for at,size in [(0x3D1C0,1024),(0x3E14C,32),(0x1114000,2048),(0x15F9800,1024)]:
@@ -62,17 +65,21 @@ def execute():
         return old_run(args,name,timeout)
     m.run=run
     try:n.execute()
-    except ValueError:pass
+    except Exception:pass
     finally:m.run=old_run
     v=n.load(n.PROOF/'verification.json')
     v.update(new_unit_tests=0,inherited_unit_tests=25,diagnostic_only=True,diagnostic_source=n.identity(Path(__file__).read_bytes()))
     if (n.PROOF/'pr16_natural_trace_walking.h').exists():
         v['actual_compiled_walking']=n.identity((n.PROOF/'pr16_natural_trace_walking.h').read_bytes())
+    v['historical_count_correction']={'run_id':36040259713,'new_unit_tests':0,'inherited_unit_tests':25,'native_processes':0,'reason':'KeyError before compile; inherited-unit.json is authoritative for execution counts'}
+    v['proof_bindings']={x.name:n.identity(x.read_bytes()) for x in n.PROOF.iterdir() if x.is_file() and x.name!='verification.json'}
+    n.write(n.PROOF/'verification.json',v)
     text=(n.PROOF/(n.CASE+'.stderr.txt')).read_text()
     n.need(v['status']=='FAIL' and 'NATURAL_TRACE ' in text and 'natural initial moves differ from locked original' in text,'expected diagnosed failure only')
     # Export only declared text source, never ROM/save files.
     for source in ('src/modernization/pr16_learnset_progress_game.c','state/source-lock.json'):
-        path=n.ROOT/source;(n.PROOF/('source-'+path.name)).write_text(path.read_text())
+        path=n.ROOT/source
+        if path.is_file():(n.PROOF/('source-'+path.name)).write_text(path.read_text())
     result=subprocess.run(['git','grep','-n','-E','CreateWildMon|GiveBoxMonInitialMoveset|SetWildMon|wild.*moves','--','scripts','src','overlays'],cwd=n.ROOT,capture_output=True)
     n.need(result.returncode in (0,1) and len(result.stdout)<1500000,'bounded source search')
     (n.PROOF/'source-caller-search.txt').write_bytes(result.stdout)
