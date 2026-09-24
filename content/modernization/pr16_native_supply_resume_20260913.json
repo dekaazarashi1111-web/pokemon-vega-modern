@@ -1531,12 +1531,142 @@
       "butterfree-exp-summary-refuse"
     ],
     "actions_completion_confirmed": false,
+    "change_impact_native_reruns": 3,
+    "health_policy": "All four current EXP cases require native initial HP/max HP and consistent Save/Continue HP.",
     "issue19_complete": false,
+    "native_health": {
+      "butterfree-exp-known": {
+        "phases": {
+          "continued": {
+            "hp": 106,
+            "level": 44,
+            "maximum_hp": 106
+          },
+          "fixture": {
+            "hp": 104,
+            "level": 43,
+            "maximum_hp": 104
+          },
+          "returned": {
+            "hp": 106,
+            "level": 44,
+            "maximum_hp": 106
+          },
+          "saved": {
+            "hp": 106,
+            "level": 44,
+            "maximum_hp": 106
+          }
+        },
+        "run_id": 36068573757,
+        "source": {
+          "sha256": "33334f30b0674512609286b43a6ca4b00c209a3319b24357e284e81d2d57b616",
+          "size": 2871
+        },
+        "status": "PASS"
+      },
+      "butterfree-exp-multilevel": {
+        "phases": {
+          "continued": {
+            "hp": 45,
+            "level": 16,
+            "maximum_hp": 45
+          },
+          "fixture": {
+            "hp": 32,
+            "level": 10,
+            "maximum_hp": 32
+          },
+          "returned": {
+            "hp": 45,
+            "level": 16,
+            "maximum_hp": 45
+          },
+          "saved": {
+            "hp": 45,
+            "level": 16,
+            "maximum_hp": 45
+          }
+        },
+        "run_id": 36067198527,
+        "source": {
+          "sha256": "260b14b6cd6173f67a3f7a40e3f0ecc5a8dea6cb7c4a6fd34bf30a2478b8a4af",
+          "size": 4087
+        },
+        "status": "PASS"
+      },
+      "butterfree-exp-replace": {
+        "phases": {
+          "continued": {
+            "hp": 106,
+            "level": 44,
+            "maximum_hp": 106
+          },
+          "fixture": {
+            "hp": 104,
+            "level": 43,
+            "maximum_hp": 104
+          },
+          "returned": {
+            "hp": 106,
+            "level": 44,
+            "maximum_hp": 106
+          },
+          "saved": {
+            "hp": 106,
+            "level": 44,
+            "maximum_hp": 106
+          }
+        },
+        "run_id": 36068573757,
+        "source": {
+          "sha256": "586217d54c6e46a48624c9841490bee28d95c3b384f203df8b03a1e7c2151e0e",
+          "size": 4012
+        },
+        "status": "PASS"
+      },
+      "butterfree-exp-summary-refuse": {
+        "phases": {
+          "continued": {
+            "hp": 106,
+            "level": 44,
+            "maximum_hp": 106
+          },
+          "fixture": {
+            "hp": 104,
+            "level": 43,
+            "maximum_hp": 104
+          },
+          "returned": {
+            "hp": 106,
+            "level": 44,
+            "maximum_hp": 106
+          },
+          "saved": {
+            "hp": 106,
+            "level": 44,
+            "maximum_hp": 106
+          }
+        },
+        "run_id": 36068573757,
+        "source": {
+          "sha256": "1fe3166b8c4f13ed16530c357f19562ca9c4a114362a172a64d90824f7d57835",
+          "size": 4004
+        },
+        "status": "PASS"
+      }
+    },
     "path": "content/modernization/pr16_learnset_boundaries_checkpoint.json",
     "pending_cases": [],
-    "run_id": 36067198527,
-    "source_head": "324c7c8ab593a1dc21adf1b39dbd62707561b411",
-    "status": "PASS_BATTLE_EXP_BOUNDARIES"
+    "run_id": 36068573757,
+    "source_head": "32b2ebfb0bfd2cd4679d378dca113a2e9ad534b9",
+    "status": "PASS_BATTLE_EXP_BOUNDARIES",
+    "superseded_case_names": [
+      "butterfree-exp-known",
+      "butterfree-exp-replace",
+      "butterfree-exp-summary-refuse"
+    ],
+    "unaffected_accepted_native_reruns": 0
   },
   "learnset_floette": {
     "actions_completion_confirmed": true,
@@ -3568,22 +3698,23 @@
     "read_paths": [
       "docs/PR16_LEARNSET_BOUNDARIES_JA.md",
       "content/modernization/pr16_learnset_boundaries_checkpoint.json",
-      "scripts/pr16_learnset_boundaries.py"
+      "scripts/pr16_exp_health_policy.py",
+      "tests/test_pr16_exp_health_policy.py"
     ],
     "stop_rule_ja": "特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。"
   },
   "observed_date_jst": "2026-09-22",
-  "observed_head": "324c7c8ab593a1dc21adf1b39dbd62707561b411",
+  "observed_head": "32b2ebfb0bfd2cd4679d378dca113a2e9ad534b9",
   "observed_head_checks": {
     "reason_ja": "各caseの成功/失敗原本を保持。一般CIと限定nativeを区別。",
     "runs": [
       {
         "conclusion": null,
-        "id": 36067198527,
+        "id": 36068573757,
         "status": "in_progress"
       }
     ],
-    "scope_head": "324c7c8ab593a1dc21adf1b39dbd62707561b411"
+    "scope_head": "32b2ebfb0bfd2cd4679d378dca113a2e9ad534b9"
   },
   "observed_head_history": [
     {
@@ -6118,8 +6249,8 @@
       "size": 3866
     },
     ".github/workflows/pr16-learnset-boundaries.yml": {
-      "sha256": "8b9ea8aef530ce0471c87f8204e6fabbd24adc5d405fa9d10f79ea4536115a61",
-      "size": 3769
+      "sha256": "34a9abb247a9d8b0ebcbcc5894c823094395018651d1eb1530e643793a60e6a0",
+      "size": 3865
     },
     ".github/workflows/pr16-learnset-egg-gameplay.yml": {
       "sha256": "b92f2863bde8341cfe9054978909a4969bde1f1813b5ef2e5a564e7e05328127",
@@ -7222,8 +7353,8 @@
       "size": 4300
     },
     "content/modernization/pr16_learnset_boundaries_checkpoint.json": {
-      "sha256": "c7ac62dffa58f8736c92e115310e6a1fb032fa9676a24bb6c6fa2265ad23717d",
-      "size": 22606
+      "sha256": "7db9674437b5558b0f657f75e5159362b0d26a51778ec782e932622af3fa3b20",
+      "size": 41768
     },
     "content/modernization/pr16_learnset_egg_gameplay_checkpoint.json": {
       "sha256": "7623c9b5eca00c5a96669815eaa320c9afb4c783279f359ba4268477bdc06143",
@@ -8070,8 +8201,8 @@
       "size": 4701
     },
     "docs/PR16_LEARNSET_BOUNDARIES_JA.md": {
-      "sha256": "7fb9e3371cadf9eac78e85909689cd4b614bceaded94a8ace044b59441e44da1",
-      "size": 1304
+      "sha256": "31855cafe8ce1ee2d5c0af7b5437849aae86f3ebbf83ebd6771351bb5e484ddb",
+      "size": 2566
     },
     "docs/PR16_LEARNSET_EGG_GAMEPLAY_JA.md": {
       "sha256": "a937081e332d7eb9ee32a12703c8fd0534495a63e7ab64d7e4d46fbc1e988a1d",
@@ -12177,6 +12308,10 @@
       "sha256": "70e4cfbe615e027630604dbf5c6c8b0f9511272076be7c429a7afeab243df23d",
       "size": 11251
     },
+    "scripts/pr16_exp_health_policy.py": {
+      "sha256": "e42f9b4283494b33c87e4339ecc733d42dcf8652c362add17dae1a8d7c14dc47",
+      "size": 9913
+    },
     "scripts/pr16_exp_multilevel.py": {
       "sha256": "f4ee5e21a9a181ec75a1551ae9a601500825e442622207a9f387bb88f260349e",
       "size": 3756
@@ -13401,9 +13536,13 @@
       "sha256": "9e1955a9feb789d749f0a0d0cda8681f418ea74e73af0fce9e1ff3bc326e082b",
       "size": 6452
     },
+    "tests/test_pr16_exp_health_policy.py": {
+      "sha256": "f098571b63c7011882de33ce9faf64fa2d7b406a178792a646c81f8467818cae",
+      "size": 2562
+    },
     "tests/test_pr16_exp_multilevel.py": {
-      "sha256": "f83d024dd0a0f173f1146cd289c0f36fbe6daeb4124e51564113d76ffa3623e3",
-      "size": 1836
+      "sha256": "148e0aeed4f8f5d15df7201c0e5bf1eebc40ad0254f8593f21891075ca72dc26",
+      "size": 1829
     },
     "tests/test_pr16_learnset_baseline_record.py": {
       "sha256": "e75566696133c0fd8a65a045dfbe5e644f30d60dc59516b297608ac55b870d7c",
@@ -14310,8 +14449,8 @@
       "size": 13452
     },
     "tools/mgba_pr16_learnset_boundaries.c": {
-      "sha256": "970e40c18717c0fd92d4e04aac2c30c8a7157912739c31a687492a869028c724",
-      "size": 9521
+      "sha256": "a11747ba2ebffb5d780afb7feb87535f18a20dea8ef3dce28b47009e65b3a241",
+      "size": 9467
     },
     "tools/mgba_pr16_learnset_gameplay.c": {
       "sha256": "4d6050d21c6ab970b28c38643f1e0f5313c9a1f0aba03a91c9865411d08cca68",

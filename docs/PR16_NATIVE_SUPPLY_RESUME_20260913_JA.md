@@ -14,7 +14,7 @@ Issue19: EXP境界4/4 native成功。PASS_BATTLE_EXP_BOUNDARIES。全体未完�
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `324c7c8ab593a1dc21adf1b39dbd62707561b411`。
+証拠のsource HEAD: `32b2ebfb0bfd2cd4679d378dca113a2e9ad534b9`。
 戦闘EXP境界の限定検証。native成功原本とActions終端を区別し、全体受入へ昇格しない。
 
 ## 最短の再開手順
@@ -27,7 +27,8 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 
 - `docs/PR16_LEARNSET_BOUNDARIES_JA.md`
 - `content/modernization/pr16_learnset_boundaries_checkpoint.json`
-- `scripts/pr16_learnset_boundaries.py`
+- `scripts/pr16_exp_health_policy.py`
+- `tests/test_pr16_exp_health_policy.py`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
