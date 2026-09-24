@@ -1,5 +1,5 @@
 name: pr16-learnset-boundaries
-# 保存3成功と不変oracle19は再実行しない。失敗1caseのみread-only診断。
+# 保存3成功と不変oracle19は再実行しない。失敗1caseのHP fixtureを修正。
 on:
   push:
     branches: [codex/modernization-followup-20260908]
@@ -29,19 +29,19 @@ jobs:
         run: |
           python3 - <<'PY'
           import hashlib,pathlib
-          expected={'scripts/pr16_exp_multilevel.py':'572c67cb7f3b9cf9900b7795c4ea6a81a74c828963e3267735405fc0f48cc21d','tools/pr16_exp_multilevel_trace.h':'aefdffa269bba6cf5c360d2a6944f122bc423d327ceeaf4a45d59584f024eaa6','tools/mgba_pr16_learnset_boundaries.c':'a9fb74f69558b81a01f9f195e2a28dc7c08eea36ee79fc7360217df44b9eb181'}
+          expected={'scripts/pr16_exp_multilevel.py':'f4ee5e21a9a181ec75a1551ae9a601500825e442622207a9f387bb88f260349e','tools/pr16_exp_multilevel_trace.h':'aefdffa269bba6cf5c360d2a6944f122bc423d327ceeaf4a45d59584f024eaa6','tools/mgba_pr16_learnset_boundaries.c':'970e40c18717c0fd92d4e04aac2c30c8a7157912739c31a687492a869028c724','tests/test_pr16_exp_multilevel.py':'f83d024dd0a0f173f1146cd289c0f36fbe6daeb4124e51564113d76ffa3623e3'}
           for path,digest in expected.items():assert hashlib.sha256(pathlib.Path(path).read_bytes()).hexdigest()==digest,path
           print('PASS source transfer')
           PY
       - name: host mGBAのみ準備（ARM compiler不要）
         run: sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends libmgba-dev
-      - name: 変更影響のある構造1試験・失敗multilevel1case
+      - name: 構造1試験・新HP8試験・失敗multilevel1case
         id: native
         continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: python3 -B scripts/pr16_exp_multilevel.py execute
-      - name: 保存3成功を維持・失敗診断原本・固定引継ぎ・両ログ
+      - name: 保存3成功を維持・新HP証拠・固定引継ぎ・両ログ
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: |
@@ -59,7 +59,7 @@ jobs:
           test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'USER-20260925-LEARNSET-BOUNDARIES: 未受入multilevel限定診断・引継ぎ・両ログを保存'
+          git commit -m 'USER-20260925-LEARNSET-BOUNDARIES: 複数EXPのHP境界修復・原本・引継ぎ・両ログ'
           git push origin "HEAD:$branch"
           sha=$(git rev-parse HEAD)
           test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$sha"

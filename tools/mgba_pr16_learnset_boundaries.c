@@ -35,7 +35,10 @@ int main(int argc,char **argv){
     a_require(p02s_data(c,25)==x_cube(v->level) && threshold==x_cube(v->level+1),"fixed owner growth curve");
     p02s_set_data(c,25,threshold-1);p02s_set_data(c,21,0);p02s_set_data(c,12,0);
     for(unsigned i=0;i<4;++i){p02s_set_data(c,13+i,v->moves[i]);p02s_set_data(c,17+i,v->points[i]);}
-    for(unsigned offset=86;offset<=98;offset+=2)write16(c,QOL_PLAYER_PARTY+offset,999);
+    /* Multiple native level-ups recalculate max HP. Keep HP/max HP generated;
+     * inflate only combat stats, not a health value that would overrun summary. */
+    for(unsigned offset=v->min_delta>1?90:86;offset<=98;offset+=2)write16(c,QOL_PLAYER_PARTY+offset,999);
+    if(v->min_delta>1)a_require(read16(c,QOL_PLAYER_PARTY+86)>0 && read16(c,QOL_PLAYER_PARTY+86)==read16(c,QOL_PLAYER_PARTY+88) && read16(c,QOL_PLAYER_PARTY+88)<999,"native initial HP/max HP fixture");
     n_slots(c,v->moves,v->points,v->level);
     unsigned char before[100],party[100],again[100];n_party(c,"fixture",before);lb_position(c,96,5,20,20);
     struct mCore saved=*c;a_guard(c);
@@ -86,6 +89,7 @@ int main(int argc,char **argv){
     afterpp[0]=p02s_data(c,17);a_require(afterpp[0]<v->points[0] && v->points[0]-afterpp[0]<=2*turns,"attack PP use");
     x_expect(v->level,level,v->mode,v->slot,after,afterpp,&prompts);
     a_require(summaries==prompts && selections==prompts,"native summary count");n_slots(c,after,afterpp,level);
+    if(v->min_delta>1)a_require(read16(c,QOL_PLAYER_PARTY+86)>0 && read16(c,QOL_PLAYER_PARTY+86)<=read16(c,QOL_PLAYER_PARTY+88),"native EXP health bounds");
     n_party(c,"returned",party);a_require(!memcmp(before,party,8) && read32(c,P03_SAVE_COUNTER)==2,"individual and unsaved counter");
     lb_resume_x=read16(c,lb_save1(c));lb_resume_y=read16(c,lb_save1(c)+2);
     a_guard(c);a_require(lb_normal_save(c),"boundary ordinary Save");a_restore(c,&saved);n_party(c,"saved",again);
