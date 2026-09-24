@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-Issue19: V4野生固定技分離 PASS_WILD_INITIAL_AND_BATTLE_EXP_EMPTY、自然生成/戦闘EXP成功1。全owner未完。
+Issue19: EXP境界3/4 native成功。PARTIAL_BATTLE_EXP_BOUNDARIES。全体未完。
 
-**次: Issue19: V4固定野生4技の切離しと自然野生初期技/戦闘EXP空き枠の保存成功は再実行しない。未受入の自然配布/孵化/form、戦闘EXP置換/拒否/既習得/複数level/進化/共有を影響台帳と照合して限定追加。釣り/隠し等の同じ野生adapterへの特殊技順は未受入。原本再採取/旧Wiki/旧host/ARM、アメ11/Bag23/egg8は変更影響なしに再実行しない。全owner/Issue19/release/baseline切替は未完。**
+**次: Issue19: EXP境界の保存成功caseを再実行せず、失敗caseだけを修復する。全4caseの終端照合後は、最初の質問での拒否、戦闘EXP進化/共有、自然配布/孵化/form、釣り/隠し野生の特殊技順を限定追加。既受入野生初期技/EXP空き枠・アメ11/Bag23/egg8/旧host/ARM/Wiki/原本再採取は変更影響なし。全owner/Issue19/release/baseline切替は未完。**
 
 特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `4b418184a79648635fb9214722a033fe7999bbf3`。
-V4野生専用上書きを原本へ接続する限定工程。全owner/Issue19完了ではない。
+証拠のsource HEAD: `3121b03c779207cc120fb5dc83ac219d965106ea`。
+戦闘EXP境界の限定検証。native成功原本とActions終端を区別し、全体受入へ昇格しない。
 
 ## 最短の再開手順
 
@@ -25,9 +25,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_LEARNSET_NATURAL_JA.md`
-- `content/modernization/pr16_learnset_natural_checkpoint.json`
-- `scripts/pr16_learnset_wild_repair.py`
+- `docs/PR16_LEARNSET_BOUNDARIES_JA.md`
+- `content/modernization/pr16_learnset_boundaries_checkpoint.json`
+- `scripts/pr16_learnset_boundaries.py`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -295,6 +295,7 @@ P08ゲート:
 - 自然初期技/戦闘EXP run36040704821の成功caseは再実行しない。開始fixtureと自然生成enemyを区別し、元の失敗原本を保持する。
 - 自然初期技/戦闘EXP run36041199782の成功caseは再実行しない。開始fixtureと自然生成enemyを区別し、元の失敗原本を保持する。
 - V4野生修復run36042409576成功部分は再実行しない。原本候補/未成功traceと新adapterの実測を区別。
+- EXP境界の保存成功caseは再実行しない。checkpoint acceptedと原本hashを照合し、失敗/未実施だけ選択する。
 
 ## 次セッションへ残す更新手順
 
@@ -324,6 +325,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-native結果とpush/upload終端を分離。診断Actions successをnative PASSへ読み替えない。
+各caseの成功/失敗原本を保持。一般CIと限定nativeを区別。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

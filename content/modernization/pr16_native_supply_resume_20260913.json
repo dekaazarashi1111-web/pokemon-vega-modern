@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "Issue19: V4野生固定技分離 PASS_WILD_INITIAL_AND_BATTLE_EXP_EMPTY、自然生成/戦闘EXP成功1。全owner未完。",
+    "current_stop": "Issue19: EXP境界3/4 native成功。PARTIAL_BATTLE_EXP_BOUNDARIES。全体未完。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "Issue19: V4固定野生4技の切離しと自然野生初期技/戦闘EXP空き枠の保存成功は再実行しない。未受入の自然配布/孵化/form、戦闘EXP置換/拒否/既習得/複数level/進化/共有を影響台帳と照合して限定追加。釣り/隠し等の同じ野生adapterへの特殊技順は未受入。原本再採取/旧Wiki/旧host/ARM、アメ11/Bag23/egg8は変更影響なしに再実行しない。全owner/Issue19/release/baseline切替は未完。",
+    "next_step": "Issue19: EXP境界の保存成功caseを再実行せず、失敗caseだけを修復する。全4caseの終端照合後は、最初の質問での拒否、戦闘EXP進化/共有、自然配布/孵化/form、釣り/隠し野生の特殊技順を限定追加。既受入野生初期技/EXP空き枠・アメ11/Bag23/egg8/旧host/ARM/Wiki/原本再採取は変更影響なし。全owner/Issue19/release/baseline切替は未完。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -1026,7 +1026,8 @@
     "自然初期技/戦闘EXP run36040259713の成功caseは再実行しない。開始fixtureと自然生成enemyを区別し、元の失敗原本を保持する。",
     "自然初期技/戦闘EXP run36040704821の成功caseは再実行しない。開始fixtureと自然生成enemyを区別し、元の失敗原本を保持する。",
     "自然初期技/戦闘EXP run36041199782の成功caseは再実行しない。開始fixtureと自然生成enemyを区別し、元の失敗原本を保持する。",
-    "V4野生修復run36042409576成功部分は再実行しない。原本候補/未成功traceと新adapterの実測を区別。"
+    "V4野生修復run36042409576成功部分は再実行しない。原本候補/未成功traceと新adapterの実測を区別。",
+    "EXP境界の保存成功caseは再実行しない。checkpoint acceptedと原本hashを照合し、失敗/未実施だけ選択する。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -1521,6 +1522,22 @@
     "run_id": 35837431004,
     "source_head": "d9227eeb0ff92e523e4d2f848909b50ec83f022f",
     "status": "PASS_SCOPED"
+  },
+  "learnset_exp_boundaries": {
+    "accepted_cases": [
+      "butterfree-exp-known",
+      "butterfree-exp-replace",
+      "butterfree-exp-summary-refuse"
+    ],
+    "actions_completion_confirmed": false,
+    "issue19_complete": false,
+    "path": "content/modernization/pr16_learnset_boundaries_checkpoint.json",
+    "pending_cases": [
+      "butterfree-exp-multilevel"
+    ],
+    "run_id": 36065509607,
+    "source_head": "3121b03c779207cc120fb5dc83ac219d965106ea",
+    "status": "PARTIAL_BATTLE_EXP_BOUNDARIES"
   },
   "learnset_floette": {
     "actions_completion_confirmed": true,
@@ -3546,28 +3563,28 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "Issue19: V4固定野生4技の切離しと自然野生初期技/戦闘EXP空き枠の保存成功は再実行しない。未受入の自然配布/孵化/form、戦闘EXP置換/拒否/既習得/複数level/進化/共有を影響台帳と照合して限定追加。釣り/隠し等の同じ野生adapterへの特殊技順は未受入。原本再採取/旧Wiki/旧host/ARM、アメ11/Bag23/egg8は変更影響なしに再実行しない。全owner/Issue19/release/baseline切替は未完。",
+    "goal_ja": "Issue19: EXP境界の保存成功caseを再実行せず、失敗caseだけを修復する。全4caseの終端照合後は、最初の質問での拒否、戦闘EXP進化/共有、自然配布/孵化/form、釣り/隠し野生の特殊技順を限定追加。既受入野生初期技/EXP空き枠・アメ11/Bag23/egg8/旧host/ARM/Wiki/原本再採取は変更影響なし。全owner/Issue19/release/baseline切替は未完。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
-    "id": "LEARNSET_WILD_REMAINING",
+    "id": "LEARNSET_EXP_BOUNDARIES",
     "read_paths": [
-      "docs/PR16_LEARNSET_NATURAL_JA.md",
-      "content/modernization/pr16_learnset_natural_checkpoint.json",
-      "scripts/pr16_learnset_wild_repair.py"
+      "docs/PR16_LEARNSET_BOUNDARIES_JA.md",
+      "content/modernization/pr16_learnset_boundaries_checkpoint.json",
+      "scripts/pr16_learnset_boundaries.py"
     ],
     "stop_rule_ja": "特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。"
   },
   "observed_date_jst": "2026-09-22",
-  "observed_head": "4b418184a79648635fb9214722a033fe7999bbf3",
+  "observed_head": "3121b03c779207cc120fb5dc83ac219d965106ea",
   "observed_head_checks": {
-    "reason_ja": "native結果とpush/upload終端を分離。診断Actions successをnative PASSへ読み替えない。",
+    "reason_ja": "各caseの成功/失敗原本を保持。一般CIと限定nativeを区別。",
     "runs": [
       {
-        "conclusion": "success",
-        "id": 36042409576,
-        "status": "completed"
+        "conclusion": null,
+        "id": 36065509607,
+        "status": "in_progress"
       }
     ],
-    "scope_head": "29aee3e4fbaf4618425ff1bad26838aa1bad8d7e"
+    "scope_head": "3121b03c779207cc120fb5dc83ac219d965106ea"
   },
   "observed_head_history": [
     {
@@ -4921,7 +4938,7 @@
       "semantics": "PLA1圧縮と新規供給consumerのhost検証成功入力HEAD。ROM配置/実操作/記録commitの受入ではない。"
     }
   ],
-  "observed_head_semantics": "V4野生専用上書きを原本へ接続する限定工程。全owner/Issue19完了ではない。",
+  "observed_head_semantics": "戦闘EXP境界の限定検証。native成功原本とActions終端を区別し、全体受入へ昇格しない。",
   "p08_candidate_impact": {
     "candidate": {
       "crc32": "CC068B4A",
@@ -6101,6 +6118,10 @@
       "sha256": "52d11a787fefd62a25aacde6d08c3a74b6f7b75856862673bdefa0756f51f542",
       "size": 3866
     },
+    ".github/workflows/pr16-learnset-boundaries.yml": {
+      "sha256": "b4f5919c44db73327a2905b30a02248169b22c1b55f6e31168a4d31fef2c1959",
+      "size": 3687
+    },
     ".github/workflows/pr16-learnset-egg-gameplay.yml": {
       "sha256": "b92f2863bde8341cfe9054978909a4969bde1f1813b5ef2e5a564e7e05328127",
       "size": 3085
@@ -7201,6 +7222,10 @@
       "sha256": "58b0eae5ddd10a76d427e0574189bf20a0068104a8197abbba6abd2db2fda571",
       "size": 4300
     },
+    "content/modernization/pr16_learnset_boundaries_checkpoint.json": {
+      "sha256": "5f156ad41e96eb042730d55b250c0b475c04f6f3b8c3594c27315bc0a81afa6d",
+      "size": 25073
+    },
     "content/modernization/pr16_learnset_egg_gameplay_checkpoint.json": {
       "sha256": "7623c9b5eca00c5a96669815eaa320c9afb4c783279f359ba4268477bdc06143",
       "size": 32995
@@ -8044,6 +8069,10 @@
     "docs/PR16_LEARNSET_BASELINE_RESET_JA.md": {
       "sha256": "4924be1b5cfa324fe72cff599758ebb467eae8d25911a085c2d444f3b1f3ab6a",
       "size": 4701
+    },
+    "docs/PR16_LEARNSET_BOUNDARIES_JA.md": {
+      "sha256": "a6f558654a023b9f65afec7465a57bad13527d607a166d2a912bfc1b8f3a375c",
+      "size": 1599
     },
     "docs/PR16_LEARNSET_EGG_GAMEPLAY_JA.md": {
       "sha256": "a937081e332d7eb9ee32a12703c8fd0534495a63e7ab64d7e4d46fbc1e988a1d",
@@ -12173,6 +12202,10 @@
       "sha256": "0ad2b6d4a8493ccf80b0e022947a7400cdf220ac04753349257dd33338b4482b",
       "size": 4554
     },
+    "scripts/pr16_learnset_boundaries.py": {
+      "sha256": "930ac803c21f637112d43009981a818e3d8076cf0e8a5fcfbc9fc376f2b0f44a",
+      "size": 21207
+    },
     "scripts/pr16_learnset_egg_gameplay.py": {
       "sha256": "2466bd9816534f195824b91ba44412d155ec70d0422ed19fc56ee8ae23ee51d6",
       "size": 21265
@@ -13381,6 +13414,10 @@
       "sha256": "e604800e8aaf147ec16d9f50e7d75d6cedc9b1755105e2a97d1c0f409a2efcf3",
       "size": 1798
     },
+    "tests/test_pr16_learnset_boundaries.py": {
+      "sha256": "32efc92275899507f8089b7dea7791a10c88f685a5a990b71107ed3652048e8d",
+      "size": 6903
+    },
     "tests/test_pr16_learnset_egg_gameplay.py": {
       "sha256": "54e7a38f4f3e6f167d40e05f5ac8045526ce86e3d0e5b2366ad3186dc81027de",
       "size": 4191
@@ -14264,6 +14301,10 @@
     "tools/mgba_pr16_learnset_battle.c": {
       "sha256": "6f0665441256b1f42468a65f146bc927654edd5e655d49cdaa3e60081741a999",
       "size": 13452
+    },
+    "tools/mgba_pr16_learnset_boundaries.c": {
+      "sha256": "e6bb77bbe80033b04849ce6344aff695d628f00b05939acd7b2271fa90f90708",
+      "size": 8933
     },
     "tools/mgba_pr16_learnset_gameplay.c": {
       "sha256": "4d6050d21c6ab970b28c38643f1e0f5313c9a1f0aba03a91c9865411d08cca68",

@@ -6899,3 +6899,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: PASS_WILD_INITIAL_AND_BATTLE_EXP_EMPTY run36042409576; new unit16 / inherited unit25 / new ARM1 / native1 / successful cases1; 旧ARM/旧host/アメ11/Bag23/egg8/Wiki/原本再実行0。
 - Commit: 同branchへ非force push、reflected-head.txtでremote refと照合。
 - Network: GitHub保存artifactのみ。release/merge/active baseline変更なし。
+
+## 2026-09-24T22:08:47.090601+00:00
+- Timestamp: 2026-09-24T22:08:47.090601+00:00
+- Task: USER-20260925-LEARNSET-BOUNDARIES / 戦闘EXP境界
+- Version: issue19-exp-boundaries-v1
+- Status: BLOCKED（成功を保存、残件のみ継続）
+- Summary: PARTIAL_BATTLE_EXP_BOUNDARIES。保存成功3/4。候補の復元のみ、3書込barrier/通常Save/fresh Continue。開始個体/EXP/能力/進行はfixture。
+- Files changed: 限定driver/native/tests/workflow、CP/guide/証拠、固定MD/JSON、両ログ。
+- Verify: unit20 native4 host compile1。ARM0、ROM変更0、旧受入再実行0。Actions終端確認=False。終端照合の場合unit/native/host再実行0。
+- Commit: 同branchへの非force push、reflected-head.txtとremoteで照合。
+- Network: GitHub保存artifact/Actionsのみ。原本再採取、Wiki/release/baseline切替なし。
