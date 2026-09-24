@@ -1,5 +1,5 @@
 name: pr16-learnset-natural
-# 診断のみ。native不一致をPASSに変更せず、受入済み25境界試験は再実行しない。
+# 診断v2。補助symbol欠損は受入条件と分離。25境界試験は保存結果継承・新規実行0。
 on:
   push:
     branches: [codex/modernization-followup-20260908]
