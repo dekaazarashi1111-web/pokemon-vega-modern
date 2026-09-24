@@ -8,9 +8,9 @@
 struct XCase { const char *name; unsigned level,mode,slot,min_delta,moves[4],points[4]; };
 #include "pr16_boundaries_vectors.h"
 #include "pr16_exp_multilevel_trace.h"
-/* 固定CFRU-JP e24a16f: ram_locs_battle.h / battle_script_macros.s。
+/* 固定CFRU-JP e24a16f: BPRJ.ld / battle_script_macros.s。
  * scriptを観測して通常B/A入力を選ぶだけ。opcodeや状態を注入しない。 */
-#define X_SCRIPT_SLOT 0x02023D74U
+#define X_SCRIPT_SLOT 0x02023CD4U
 static unsigned x_cube(unsigned n){return n*n*n;}
 static void x_expect(unsigned before,unsigned after,unsigned mode,unsigned slot,unsigned moves[4],unsigned points[4],unsigned *prompts) {
     *prompts=0;
