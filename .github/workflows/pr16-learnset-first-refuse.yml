@@ -53,8 +53,15 @@ jobs:
           from pr16_wiki_reconcile import fetch
           f=j.f;r=fetch('actions/runs?branch=codex%2Fmodernization-followup-20260908&per_page=20')
           v={'observed_at_source_head':os.environ['GITHUB_SHA'],'observer_run_id':int(os.environ['GITHUB_RUN_ID']),'note_ja':'一般CIのaction_required/in_progressを成功へ昇格しない。今回の終端証拠はCP.completed_actions。記録run自身の終端はpush/upload後にremoteで照合。','runs':[{k:x[k] for k in ('id','name','head_sha','path','status','conclusion')} for x in r['workflow_runs']]}
-          f.write(f.ROOT/f.EVIDENCE/os.environ['GITHUB_RUN_ID']/'actions-observation.json',v)
+          dest=f.ROOT/f.EVIDENCE/os.environ['GITHUB_RUN_ID']
+          dest.mkdir(parents=True,exist_ok=True)
+          f.write(dest/'actions-observation.json',v)
           f.write(f.PROOF/'actions-observation.json',v)
+          failure={'run_id':36072151730,'source_head':'761ab3fc0beab4dffa3469456f4024a4102b7383','conclusion':'failure','reason':'actions-observation.json parent directory was not created','native_source_terminal_verification':'passed','push_performed':False,'native_runs':0,'unit_runs':0,'host_compiles':0,'repair':'Create the scoped evidence directory before write; do not rerun accepted native/unit.'}
+          f.write(dest/'completion-record-repair.json',failure)
+          f.write(f.PROOF/'completion-record-repair.json',failure)
+          for name in ('design/run_log.md','design/version_log.md'):
+              with (f.ROOT/name).open('a') as out:out.write('- Completion record repair: run36072151730はnative成功原本の終端照合後、補助JSONの親directory未作成でpush前停止。保存先作成を修正し、記録だけ再開。成功native/unit/host/ARMの再実行0。\n')
           PY
           python3 -B scripts/pr16_resume.py check
           python3 -B scripts/validate_task_graph.py
