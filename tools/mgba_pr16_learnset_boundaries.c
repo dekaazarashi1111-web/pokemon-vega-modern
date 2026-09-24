@@ -1,9 +1,10 @@
 /* Issue19: 未受入の戦闘EXP境界。開始個体/EXP/能力/進行だけfixture。
  * 野生遭遇以降は通常キーのみ、全3区間で7書込APIを禁止する。
  * 既受入natural mainは呼ばず、固定・保存済みhelperだけを継承する。 */
-#define main pr16_natural_accepted_not_executed
-#include "mgba_pr16_learnset_natural.c"
-#undef main
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-function"
+#include "pr16_boundaries_helpers.h"
+#pragma GCC diagnostic pop
 struct XCase { const char *name; unsigned level,mode,slot,min_delta,moves[4],points[4]; };
 #include "pr16_boundaries_vectors.h"
 static unsigned x_cube(unsigned n){return n*n*n;}
