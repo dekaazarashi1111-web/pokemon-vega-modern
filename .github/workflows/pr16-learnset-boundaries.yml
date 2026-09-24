@@ -1,5 +1,5 @@
 name: pr16-learnset-boundaries
-# WIP bootstrap: saved native success is reconciled, never replayed.
+# 前回終端は照合済み。受入済みnative/ARM/原本生成は起動しない。
 on:
   push:
     branches: [codex/modernization-followup-20260908]
@@ -12,10 +12,10 @@ concurrency:
   group: pr16-learnset-boundaries
   cancel-in-progress: false
 jobs:
-  reconcile:
+  boundaries:
     if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 30
     env:
       PYTHONDONTWRITEBYTECODE: '1'
     steps:
@@ -25,50 +25,53 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: 保存済み成功のActions終端のみ照合・固定MDと両ログへ反映
+      - name: 新source転送identity
+        run: |
+          python3 - <<'PY'
+          import hashlib,pathlib
+          expected={'scripts/pr16_learnset_boundaries.py':'930ac803c21f637112d43009981a818e3d8076cf0e8a5fcfbc9fc376f2b0f44a','tools/mgba_pr16_learnset_boundaries.c':'e6bb77bbe80033b04849ce6344aff695d628f00b05939acd7b2271fa90f90708','tests/test_pr16_learnset_boundaries.py':'32efc92275899507f8089b7dea7791a10c88f685a5a990b71107ed3652048e8d'}
+          for path,digest in expected.items():assert hashlib.sha256(pathlib.Path(path).read_bytes()).hexdigest()==digest,path
+          print('PASS source transfer')
+          PY
+      - name: host mGBAのみ準備（ARM compiler不要）
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends libmgba-dev
+      - name: 新20境界試験・未受入の戦闘EXP4case
+        id: native
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 -B scripts/pr16_learnset_boundaries.py execute
+      - name: 成功と失敗を分離保存・固定引継ぎ・両ログを更新
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          python3 -B scripts/pr16_learnset_wild_repair.py complete
+          python3 -B scripts/pr16_learnset_boundaries.py record
           python3 -B scripts/pr16_resume.py check
           python3 -B scripts/validate_task_graph.py
-          python3 -B scripts/pr16_learnset_wild_repair.py paths | tr '\n' '\0' >.local/pr16-learnset-natural/paths.z
-          git add --pathspec-from-file=.local/pr16-learnset-natural/paths.z --pathspec-file-nul
-          python3 -B scripts/pr16_learnset_wild_repair.py guard
+          python3 -B scripts/pr16_learnset_boundaries.py paths | tr '\n' '\0' >.local/pr16-learnset-boundaries/paths.z
+          git add --pathspec-from-file=.local/pr16-learnset-boundaries/paths.z --pathspec-file-nul
+          python3 -B scripts/pr16_learnset_boundaries.py guard
+      - name: 同branchへ非force commit/push・remote refを照合
+        run: |
+          set -euo pipefail
           branch='codex/modernization-followup-20260908'
           test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'USER-20260925-LEARNSET-WILD-REPAIR: 保存成功のActions終端を再実行なしで照合'
+          git commit -m 'USER-20260925-LEARNSET-BOUNDARIES: EXP境界の実測原本・引継ぎ・両ログを保存'
           git push origin "HEAD:$branch"
-          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$(git rev-parse HEAD)"
-          echo "RESULT=DONE TASK=USER-20260925-LEARNSET-WILD-REPAIR VERIFY=PASS COMMIT=$(git rev-parse HEAD)"
-      - name: 次の限定実装用tracked text snapshot（私有入力・ROM・save除外）
-        if: always()
-        run: |
-          python3 - <<'PY'
-          import hashlib,json,pathlib,subprocess,zipfile
-          root=pathlib.Path('.'); out=root/'.local/pr16-boundaries-bootstrap';out.mkdir(parents=True,exist_ok=True)
-          records={}
-          names=subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
-          with zipfile.ZipFile(out/'source.zip','w',zipfile.ZIP_DEFLATED) as z:
-            for name in names:
-              p=root/name
-              selected=(name in ('AGENTS.md','CHATGPT_RESUME.md','README.md','Makefile','.gitignore','package.json') or name.endswith('/AGENTS.md') or name.startswith(('scripts/','src/modernization/','config/','infra/','state/source-lock.json','tasks/')) or name.startswith('tools/') and p.suffix in ('.py','.c','.h') or name.startswith('tests/') and ('pr16' in name or p.name in ('__init__.py','common.py')) or name.startswith('docs/PR16') and '/wiki/' not in name or name in ('design/current_state.md','design/agent_context_map.md','design/active_play_baseline.md') or name.startswith('content/modernization/') and (len(p.parts)==3 or p.parts[2].startswith('pr16_learnset')))
-              if not name or not selected or not p.is_file() or p.is_symlink() or p.suffix not in ('.py','.c','.h','.md','.json','.jsonl','.yml','.yaml','.toml','.txt','.sh','') and p.name not in ('Makefile','.gitignore'):continue
-              raw=p.read_bytes()
-              if b'\0' in raw:continue
-              try:raw.decode('utf-8')
-              except UnicodeDecodeError:continue
-              z.writestr(name,raw);records[name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
-          (out/'manifest.json').write_text(json.dumps({'source_head':subprocess.check_output(['git','rev-parse','HEAD']).decode().strip(),'files':records},sort_keys=True,indent=2)+'\n')
-          print('tracked text files:',len(records))
-          PY
+          sha=$(git rev-parse HEAD)
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$sha"
+          echo "$sha" | tee .local/pr16-learnset-boundaries/proof/reflected-head.txt
+          echo "RESULT=RECORDED TASK=USER-20260925-LEARNSET-BOUNDARIES COMMIT=$sha"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: pr16-boundaries-source
-          path: .local/pr16-boundaries-bootstrap/
-          retention-days: 7
+          name: pr16-learnset-boundaries-proof
+          path: .local/pr16-learnset-boundaries/proof/
+          retention-days: 30
           if-no-files-found: error
+      - name: native失敗を成功へ読み替えない
+        if: steps.native.outcome == 'failure'
+        run: exit 1
