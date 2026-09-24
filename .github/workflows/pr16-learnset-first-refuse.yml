@@ -1,42 +1,76 @@
 name: pr16-learnset-first-refuse
-# WIP: 初回だけのtracked text読取。既受入native/unit/buildは呼ばない。
+# 未受入first-question拒否1caseのみ。旧4成功/ARM/原本生成を再実行しない。
 on:
   push:
     branches: [codex/modernization-followup-20260908]
     paths: [.github/workflows/pr16-learnset-first-refuse.yml]
 permissions:
-  contents: read
+  contents: write
   actions: read
+  pull-requests: read
 concurrency:
   group: pr16-learnset-first-refuse
   cancel-in-progress: false
 jobs:
-  source:
+  first-refuse:
     if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 20
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
     steps:
       - uses: actions/checkout@v4
-      - name: Git管理内の必要textだけをhash付きで転送（ROM・private入力なし）
-        run: |
-          python3 -B - <<'PY'
-          import hashlib,json,pathlib,subprocess,zipfile
-          paths=subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
-          exact={'AGENTS.md','CHATGPT_RESUME.md','docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md','docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md','content/modernization/pr16_native_supply_resume_20260913.json','content/modernization/pr16_bp_chooser_checkpoint.json','content/modernization/p08_remaining_work.json','design/run_log.md','design/version_log.md','design/active_play_baseline.md','config/active_play_baseline.json'}
-          selected=[p for p in paths if p and (p in exact or p.endswith('/AGENTS.md') or p.startswith(('scripts/pr16_','tests/test_pr16_','tools/mgba_pr16_','tools/pr16_','.github/workflows/pr16-learnset-','docs/PR16_LEARNSET_','content/modernization/pr16_learnset_'))) and pathlib.Path(p).suffix in {'.py','.c','.h','.md','.json','.yml','.txt'}]
-          out=pathlib.Path('.local/first-refuse-source');out.mkdir(parents=True)
-          manifest={'source_head':subprocess.check_output(['git','rev-parse','HEAD']).decode().strip(),'files':{},'native_runs':0,'unit_runs':0,'arm_compiles':0}
-          with zipfile.ZipFile(out/'source.zip','w',zipfile.ZIP_DEFLATED) as z:
-              for p in sorted(selected):
-                  f=pathlib.Path(p);assert f.is_file() and not f.is_symlink()
-                  raw=f.read_bytes();assert len(raw)<16000000 and b'\0' not in raw;raw.decode('utf-8')
-                  z.writestr(p,raw);manifest['files'][p]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
-              z.writestr('source-manifest.json',json.dumps(manifest,sort_keys=True,indent=2)+'\n')
-          print('SOURCE_TEXT_FILES',len(selected),'NATIVE_RERUNS=0 UNIT_RERUNS=0 ARM_COMPILES=0')
-          PY
-      - uses: actions/upload-artifact@v4
         with:
-          name: pr16-first-refuse-source
-          path: .local/first-refuse-source/source.zip
-          retention-days: 3
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: ローカル検証済みの新source転送identity
+        run: |
+          echo '0e143e468f73fa6207cbc4a694389e5e64dd7dd11acdeb60d9cedbc9663d9258  scripts/pr16_learnset_first_refuse.py' | sha256sum -c -
+          echo '4cbb4540e6f5eac404f9d6820c1b1543e40ed04cf701b7a66742aa327418ed70  tools/mgba_pr16_learnset_first_refuse.c' | sha256sum -c -
+          echo '77dd88f258919b4d217cf58c9cb1e5c7cc416d88cef2b20ae22286685d3ca4b8  tests/test_pr16_learnset_first_refuse.py' | sha256sum -c -
+      - name: host mGBAだけを準備（ARM compilerなし）
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends libmgba-dev
+      - name: 新21試験・保存recipe復元・最初の質問でB拒否1case
+        id: native
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 -B scripts/pr16_learnset_first_refuse.py execute
+      - name: 成功と失敗原本・固定引継ぎ・両ログを記録し最終index検査
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python3 -B scripts/pr16_learnset_first_refuse.py record
+          python3 -B scripts/pr16_resume.py check
+          python3 -B scripts/validate_task_graph.py
+          python3 -B scripts/pr16_learnset_first_refuse.py paths | tr '\n' '\0' >.local/pr16-learnset-first-refuse/paths.z
+          git add --pathspec-from-file=.local/pr16-learnset-first-refuse/paths.z --pathspec-file-nul
+          python3 -B scripts/pr16_learnset_first_refuse.py guard
+      - name: 同branchへ非force commit/push・remote ref照合
+        run: |
+          set -euo pipefail
+          branch='codex/modernization-followup-20260908'
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20260925-LEARNSET-FIRST-REFUSE: 最初の質問の拒否実測・固定引継ぎと両ログを保存'
+          git push origin "HEAD:$branch"
+          sha=$(git rev-parse HEAD)
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$sha"
+          echo "$sha" | tee .local/pr16-learnset-first-refuse/proof/reflected-head.txt
+          echo "RESULT=STOPPED TASK=USER-20260925-LEARNSET-FIRST-REFUSE VERIFY=${{ steps.native.outcome }} COMMIT=$sha"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-learnset-first-refuse-proof
+          path: .local/pr16-learnset-first-refuse/proof/
+          retention-days: 30
           if-no-files-found: error
+      - name: native失敗を成功へ読み替えない
+        if: steps.native.outcome != 'success'
+        run: exit 1
