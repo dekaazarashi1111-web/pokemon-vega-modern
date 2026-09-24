@@ -14,7 +14,7 @@ Issue19: EXP境界3/4 native成功。PARTIAL_BATTLE_EXP_BOUNDARIES。全体未�
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `3121b03c779207cc120fb5dc83ac219d965106ea`。
+証拠のsource HEAD: `13ef2ef5a438a86a35044c049de51dceaa4f122a`。
 戦闘EXP境界の限定検証。native成功原本とActions終端を区別し、全体受入へ昇格しない。
 
 ## 最短の再開手順

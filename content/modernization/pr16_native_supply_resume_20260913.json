@@ -1535,8 +1535,8 @@
     "pending_cases": [
       "butterfree-exp-multilevel"
     ],
-    "run_id": 36065509607,
-    "source_head": "3121b03c779207cc120fb5dc83ac219d965106ea",
+    "run_id": 36066498141,
+    "source_head": "13ef2ef5a438a86a35044c049de51dceaa4f122a",
     "status": "PARTIAL_BATTLE_EXP_BOUNDARIES"
   },
   "learnset_floette": {
@@ -3574,17 +3574,17 @@
     "stop_rule_ja": "特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。"
   },
   "observed_date_jst": "2026-09-22",
-  "observed_head": "3121b03c779207cc120fb5dc83ac219d965106ea",
+  "observed_head": "13ef2ef5a438a86a35044c049de51dceaa4f122a",
   "observed_head_checks": {
     "reason_ja": "各caseの成功/失敗原本を保持。一般CIと限定nativeを区別。",
     "runs": [
       {
         "conclusion": null,
-        "id": 36065509607,
+        "id": 36066498141,
         "status": "in_progress"
       }
     ],
-    "scope_head": "3121b03c779207cc120fb5dc83ac219d965106ea"
+    "scope_head": "13ef2ef5a438a86a35044c049de51dceaa4f122a"
   },
   "observed_head_history": [
     {
@@ -6119,8 +6119,8 @@
       "size": 3866
     },
     ".github/workflows/pr16-learnset-boundaries.yml": {
-      "sha256": "b4f5919c44db73327a2905b30a02248169b22c1b55f6e31168a4d31fef2c1959",
-      "size": 3687
+      "sha256": "98dd8dc42bcd42407a05d616646f27e9791cfe2b984a0c3b74f79b8bca503311",
+      "size": 3683
     },
     ".github/workflows/pr16-learnset-egg-gameplay.yml": {
       "sha256": "b92f2863bde8341cfe9054978909a4969bde1f1813b5ef2e5a564e7e05328127",
@@ -7223,8 +7223,8 @@
       "size": 4300
     },
     "content/modernization/pr16_learnset_boundaries_checkpoint.json": {
-      "sha256": "5f156ad41e96eb042730d55b250c0b475c04f6f3b8c3594c27315bc0a81afa6d",
-      "size": 25073
+      "sha256": "581786d8fadf0075da1e2e77c5886f280a1bea5dc3947e332a5038e76aeccc23",
+      "size": 17258
     },
     "content/modernization/pr16_learnset_egg_gameplay_checkpoint.json": {
       "sha256": "7623c9b5eca00c5a96669815eaa320c9afb4c783279f359ba4268477bdc06143",
@@ -8071,8 +8071,8 @@
       "size": 4701
     },
     "docs/PR16_LEARNSET_BOUNDARIES_JA.md": {
-      "sha256": "a6f558654a023b9f65afec7465a57bad13527d607a166d2a912bfc1b8f3a375c",
-      "size": 1599
+      "sha256": "297316b11639d2079d5f5eb19c9f4827a59ce83836d4e5c42f406b24dc59a6b1",
+      "size": 1598
     },
     "docs/PR16_LEARNSET_EGG_GAMEPLAY_JA.md": {
       "sha256": "a937081e332d7eb9ee32a12703c8fd0534495a63e7ab64d7e4d46fbc1e988a1d",
@@ -12178,6 +12178,10 @@
       "sha256": "70e4cfbe615e027630604dbf5c6c8b0f9511272076be7c429a7afeab243df23d",
       "size": 11251
     },
+    "scripts/pr16_exp_multilevel.py": {
+      "sha256": "572c67cb7f3b9cf9900b7795c4ea6a81a74c828963e3267735405fc0f48cc21d",
+      "size": 2082
+    },
     "scripts/pr16_gear_originals.py": {
       "sha256": "7d4b617b96826343087dc2ca27cf017c9ad47e5bef1a4b91c90974da58f66bea",
       "size": 10661
@@ -14303,8 +14307,8 @@
       "size": 13452
     },
     "tools/mgba_pr16_learnset_boundaries.c": {
-      "sha256": "e6bb77bbe80033b04849ce6344aff695d628f00b05939acd7b2271fa90f90708",
-      "size": 8933
+      "sha256": "a9fb74f69558b81a01f9f195e2a28dc7c08eea36ee79fc7360217df44b9eb181",
+      "size": 8981
     },
     "tools/mgba_pr16_learnset_gameplay.c": {
       "sha256": "4d6050d21c6ab970b28c38643f1e0f5313c9a1f0aba03a91c9865411d08cca68",
@@ -14349,6 +14353,10 @@
     "tools/mgba_pr16_ring_policy.c": {
       "sha256": "ba8d25d7b8d95856777327d13f2fca8eadb663fe9fba1cc8915cf916748a2415",
       "size": 12153
+    },
+    "tools/pr16_exp_multilevel_trace.h": {
+      "sha256": "aefdffa269bba6cf5c360d2a6944f122bc423d327ceeaf4a45d59584f024eaa6",
+      "size": 2763
     },
     "tools/pr16_learnset_baseline.py": {
       "sha256": "adcf31a5d34b2d6c8fb2627587cbee117a68837d50349b12502e4a71334cdff0",
