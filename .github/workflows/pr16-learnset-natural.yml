@@ -1,0 +1,47 @@
+name: pr16-learnset-natural
+# 準備checkpoint。受入済みnative/host/ARM/Wikiの再実行はしない。
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-learnset-natural.yml]
+permissions:
+  contents: read
+concurrency:
+  group: pr16-learnset-natural
+  cancel-in-progress: false
+jobs:
+  scoped-source:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: 未受入経路に必要なtracked textだけをhash固定で転送
+        run: |
+          python3 - <<'PY'
+          import hashlib,json,os,pathlib,subprocess
+          root=pathlib.Path('.'); out=root/'.local/pr16-natural-source'; out.mkdir(parents=True)
+          exact={'AGENTS.md','CHATGPT_RESUME.md','scripts/validate_task_graph.py','scripts/private_file_guard.py','scripts/pr16_resume.py','scripts/pr16_wiki_reconcile.py','content/modernization/pr16_native_supply_resume_20260913.json','content/modernization/pr16_bp_chooser_checkpoint.json','content/modernization/p08_remaining_work.json','docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md','design/run_log.md','design/version_log.md','config/active_play_baseline.json','design/active_play_baseline.md'}
+          prefixes=('scripts/pr16_learnset','scripts/pr16_wiki','tools/mgba_','tests/test_pr16_learnset','content/modernization/pr16_learnset','docs/PR16_LEARNSET_','overlays/modernization_pr16_learnset','.github/workflows/pr16-learnset')
+          allowed={'.py','.c','.h','.s','.json','.md','.yml'}
+          manifest={}
+          paths=subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
+          for name in paths:
+              p=root/name
+              if not name or not (name in exact or name.startswith(prefixes)): continue
+              if p.suffix not in allowed or '/evidence/' in name or '_evidence/' in name: continue
+              if not p.is_file() or p.is_symlink(): raise ValueError('regular text required')
+              raw=p.read_bytes(); raw.decode('utf-8')
+              if b'\x00' in raw: raise ValueError('binary refused')
+              target=out/name; target.parent.mkdir(parents=True,exist_ok=True); target.write_bytes(raw)
+              manifest[name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+          (out/'transfer-manifest.json').write_text(json.dumps({'head':os.environ['GITHUB_SHA'],'files':manifest,'accepted_tests_rerun':0,'rom_rebuilds':0},ensure_ascii=False,indent=2)+'\n')
+          print('tracked text files:',len(manifest))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr16-natural-scoped-source
+          path: .local/pr16-natural-source/
+          retention-days: 7
+          if-no-files-found: error
+          include-hidden-files: true
