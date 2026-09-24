@@ -6960,3 +6960,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Health impact: 原本HP999/最大HP106の今回3caseを現行gateから失効。変更影響ありnative再実行3、影響なし0。正常multi-level成功は継承。HP/max HPは生成値のまま、観測中の書込禁止と警告拒否を維持。
 - Focused scope: 追加unit累計36種。最新10件（対象は新影響8+変更構造2）、保存26件の原本を照合。原本ROM生成/ARM build/候補変更0。
 - Upstream read-only reference: https://github.com/kapibarasan000/CFRU-JP/blob/e24a16fe39e27ae162faf5b78596d1f3df18489d/src/learn_move.c の既存ABIを補助確認。lock更新なし。HP修復の根拠は今回の保存原本。
+
+## 2026-09-24T23:11:37.535390+00:00
+- Timestamp: 2026-09-24T23:11:37.535390+00:00
+- Task: USER-20260925-LEARNSET-FIRST-REFUSE / 最初の質問でB拒否
+- Version: issue19-first-refusal-v1
+- Status: BLOCKED
+- Summary: PARTIAL_BATTLE_EXP_FIRST_REFUSAL。B拒否→A中止確認、summary非到達、正常HP/保存4技/PP/Save/fresh Continueの限定1case。旧4成功と履歴を保全。全owner/Issue19未完。
+- Files changed: 専用driver/C/tests/workflow・CP/guide/原本、固定MD/JSON、両ログ。
+- Verify: 新unit21、host compile1、native1。旧受入native/unit、ARM、ROM変更、Wiki生成0。Actions終端確認=False。complete時は再実行0。
+- Commit: 同branchへ非force pushしremoteとreflected-head.txtを照合。
+- Network: GitHub固定source/保存artifact/Actions。事前source転送WIP 5078bd7/run36070267613（native/unit0）。参照: CFRU-JP e24a16fe39e27ae162faf5b78596d1f3df18489d battle_script_macros.s, assembly/data/battle_script_commands_table.s, include/new/ram_locs_battle.h。source-lock変更なし。merge/release/baseline切替なし。
