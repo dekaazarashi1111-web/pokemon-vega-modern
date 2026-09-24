@@ -6921,3 +6921,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: unit1 native1 host compile1。ARM0、ROM変更0、旧受入再実行0。Actions終端確認=False。終端照合の場合unit/native/host再実行0。
 - Commit: 同branchへの非force push、reflected-head.txtとremoteで照合。
 - Network: GitHub保存artifact/Actionsのみ。原本再採取、Wiki/release/baseline切替なし。
+
+## 2026-09-24T22:25:01.402878+00:00
+- Timestamp: 2026-09-24T22:25:01.402878+00:00
+- Task: USER-20260925-LEARNSET-BOUNDARIES / 戦闘EXP境界
+- Version: issue19-exp-boundaries-v1
+- Status: DONE（限定4case、全体未完）
+- Summary: PASS_BATTLE_EXP_BOUNDARIES。保存成功4/4。候補の復元のみ、3書込barrier/通常Save/fresh Continue。開始個体/EXP/能力/進行はfixture。
+- Files changed: 限定driver/native/tests/workflow、CP/guide/証拠、固定MD/JSON、両ログ。
+- Verify: unit9 native1 host compile1。ARM0、ROM変更0、旧受入再実行0。Actions終端確認=False。終端照合の場合unit/native/host再実行0。
+- Commit: 同branchへの非force push、reflected-head.txtとremoteで照合。
+- Network: GitHub保存artifact/Actionsのみ。原本再採取、Wiki/release/baseline切替なし。
