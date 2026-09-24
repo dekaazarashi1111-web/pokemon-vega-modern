@@ -1,6 +1,6 @@
 # PR16 Issue19: 戦闘EXP境界
 
-状態 `PASS_BATTLE_EXP_BOUNDARIES`、入力HEAD `32b2ebfb0bfd2cd4679d378dca113a2e9ad534b9`、run `36068573757`。Actions終端確認 `False`。
+状態 `PASS_BATTLE_EXP_BOUNDARIES`、入力HEAD `32b2ebfb0bfd2cd4679d378dca113a2e9ad534b9`、run `36068573757`。Actions終端確認 `True`。
 
 候補 `b7790902733a638445129c388d65ab3c199bceb92a41338e0069221b556b9f91` は保存済みrecipeの復元のみ。ARM/原本生成/ROM変更と、変更影響がない受入済みcase再実行は0。
 
@@ -19,7 +19,7 @@
 
 ## 未完と次
 
-保存native成功は再実行せずcompleteでActions終端だけ照合。
+Issue19: 正常HPの戦闘EXP4境界は両Actions終端まで受入済み。再実行しない。次は技習得の最初の質問での拒否を限定追加し、その後に戦闘EXP進化/共有、未受入の自然配布/孵化/form、釣り/隠し野生の特殊技順へ進む。アメ11/Bag23/egg8/野生初期技/EXP空き枠/旧host・ARM・Wikiは変更影響なし。全owner/Issue19/release/baseline切替は未完。
 
 ## HP保存整合性の変更影響
 

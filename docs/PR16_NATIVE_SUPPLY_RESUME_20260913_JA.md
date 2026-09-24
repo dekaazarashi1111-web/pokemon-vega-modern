@@ -8,13 +8,13 @@
 
 Issue19: EXP境界4/4 native成功。PASS_BATTLE_EXP_BOUNDARIES。全体未完。
 
-**次: 保存native成功は再実行せずcompleteでActions終端だけ照合。**
+**次: Issue19: 正常HPの戦闘EXP4境界は両Actions終端まで受入済み。再実行しない。次は技習得の最初の質問での拒否を限定追加し、その後に戦闘EXP進化/共有、未受入の自然配布/孵化/form、釣り/隠し野生の特殊技順へ進む。アメ11/Bag23/egg8/野生初期技/EXP空き枠/旧host・ARM・Wikiは変更影響なし。全owner/Issue19/release/baseline切替は未完。**
 
 特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `32b2ebfb0bfd2cd4679d378dca113a2e9ad534b9`。
+証拠のsource HEAD: `27b3ceedcbe25a5ae1dc343cad21ca0a6dfba66a`。
 戦闘EXP境界の限定検証。native成功原本とActions終端を区別し、全体受入へ昇格しない。
 
 ## 最短の再開手順

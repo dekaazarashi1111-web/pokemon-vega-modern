@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "保存native成功は再実行せずcompleteでActions終端だけ照合。",
+    "next_step": "Issue19: 正常HPの戦闘EXP4境界は両Actions終端まで受入済み。再実行しない。次は技習得の最初の質問での拒否を限定追加し、その後に戦闘EXP進化/共有、未受入の自然配布/孵化/form、釣り/隠し野生の特殊技順へ進む。アメ11/Bag23/egg8/野生初期技/EXP空き枠/旧host・ARM・Wikiは変更影響なし。全owner/Issue19/release/baseline切替は未完。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -1530,7 +1530,7 @@
       "butterfree-exp-replace",
       "butterfree-exp-summary-refuse"
     ],
-    "actions_completion_confirmed": false,
+    "actions_completion_confirmed": true,
     "change_impact_native_reruns": 3,
     "health_policy": "All four current EXP cases require native initial HP/max HP and consistent Save/Continue HP.",
     "issue19_complete": false,
@@ -3692,7 +3692,7 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "保存native成功は再実行せずcompleteでActions終端だけ照合。",
+    "goal_ja": "Issue19: 正常HPの戦闘EXP4境界は両Actions終端まで受入済み。再実行しない。次は技習得の最初の質問での拒否を限定追加し、その後に戦闘EXP進化/共有、未受入の自然配布/孵化/form、釣り/隠し野生の特殊技順へ進む。アメ11/Bag23/egg8/野生初期技/EXP空き枠/旧host・ARM・Wikiは変更影響なし。全owner/Issue19/release/baseline切替は未完。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
     "id": "LEARNSET_EXP_BOUNDARIES",
     "read_paths": [
@@ -3704,14 +3704,14 @@
     "stop_rule_ja": "特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。"
   },
   "observed_date_jst": "2026-09-22",
-  "observed_head": "32b2ebfb0bfd2cd4679d378dca113a2e9ad534b9",
+  "observed_head": "27b3ceedcbe25a5ae1dc343cad21ca0a6dfba66a",
   "observed_head_checks": {
     "reason_ja": "各caseの成功/失敗原本を保持。一般CIと限定nativeを区別。",
     "runs": [
       {
-        "conclusion": null,
+        "conclusion": "success",
         "id": 36068573757,
-        "status": "in_progress"
+        "status": "completed"
       }
     ],
     "scope_head": "32b2ebfb0bfd2cd4679d378dca113a2e9ad534b9"
@@ -6249,8 +6249,8 @@
       "size": 3866
     },
     ".github/workflows/pr16-learnset-boundaries.yml": {
-      "sha256": "34a9abb247a9d8b0ebcbcc5894c823094395018651d1eb1530e643793a60e6a0",
-      "size": 3865
+      "sha256": "b765f9b2810da43bfb4b3542f7ce53915d1b8687aed159bb0709d032e5a20d21",
+      "size": 7592
     },
     ".github/workflows/pr16-learnset-egg-gameplay.yml": {
       "sha256": "b92f2863bde8341cfe9054978909a4969bde1f1813b5ef2e5a564e7e05328127",
@@ -7353,8 +7353,8 @@
       "size": 4300
     },
     "content/modernization/pr16_learnset_boundaries_checkpoint.json": {
-      "sha256": "7db9674437b5558b0f657f75e5159362b0d26a51778ec782e932622af3fa3b20",
-      "size": 41768
+      "sha256": "8368e8f7d1657ec685b147d96713e566f377b5aee3536822abfed37eca93ccfa",
+      "size": 46927
     },
     "content/modernization/pr16_learnset_egg_gameplay_checkpoint.json": {
       "sha256": "7623c9b5eca00c5a96669815eaa320c9afb4c783279f359ba4268477bdc06143",
@@ -8201,8 +8201,8 @@
       "size": 4701
     },
     "docs/PR16_LEARNSET_BOUNDARIES_JA.md": {
-      "sha256": "31855cafe8ce1ee2d5c0af7b5437849aae86f3ebbf83ebd6771351bb5e484ddb",
-      "size": 2566
+      "sha256": "da589edbd6d572b57840863578610afb5f0f1d045332122c72ec00bcb49b46d0",
+      "size": 2919
     },
     "docs/PR16_LEARNSET_EGG_GAMEPLAY_JA.md": {
       "sha256": "a937081e332d7eb9ee32a12703c8fd0534495a63e7ab64d7e4d46fbc1e988a1d",
