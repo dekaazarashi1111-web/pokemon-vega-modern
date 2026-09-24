@@ -8,20 +8,28 @@ import subprocess
 import pr16_learnset_natural as n
 m=n.m
 TRACE=r'''
-static unsigned nt_steps,nt_calls;
+static unsigned nt_steps,nt_calls,nt_move_calls;
 static bool lb_action(struct mCore *c);
 static void nt_frame(struct mCore *c) {
     unsigned sb=read32(c,QOL_SAVE_BLOCK1_SLOT);
-    if(!p02s_ewram_pointer(sb) || read8(c,sb+4)!=96 || read8(c,sb+5)!=17 || lb_action(c)){c->runFrame(c);return;}
+    if(!p02s_ewram_pointer(sb) || read8(c,sb+4)!=96 || read8(c,sb+5)!=17 || lb_action(c) || nt_move_calls>=8){c->runFrame(c);return;}
     unsigned frame=c->frameCounter(c),steps=0;
     while(c->frameCounter(c)==frame) {
         unsigned pc=(unsigned)read_register(c,"pc");
-        unsigned entries[]={0x0803D1C0,0x0803E14C,0x091145F0,read32(c,0x0803E150)&~1U,0x0803E01C,0x0803FBC4,ROM_SET_MON_DATA&~1U};
+        unsigned entries[]={0x0803D1C0,0x0803E14C,0x091145F0,read32(c,0x0803E150)&~1U,0x0803E01C,0x0803FBC4,ROM_SET_MON_DATA&~1U,0x09114698};
         for(unsigned i=0;i<sizeof(entries)/sizeof(*entries);++i)if(pc==entries[i]+4 || pc==entries[i]+2) {
             unsigned r0=(unsigned)read_register(c,"r0"),r1=(unsigned)read_register(c,"r1"),r2=(unsigned)read_register(c,"r2"),lr=(unsigned)read_register(c,"lr");
-            if(i<5 || (r0>=ADDR_ENEMY_PARTY && r0<ADDR_ENEMY_PARTY+600 && r1>=11 && r1<=25)) {
-                unsigned value=p02s_ewram_pointer(r2)?read32(c,r2):0;
+            if(i<5 || i==7 || (r0>=ADDR_ENEMY_PARTY && r0<ADDR_ENEMY_PARTY+600 && r1>=11 && r1<=25)) {
+                unsigned value=((r2>=0x02000000 && r2<0x02040000) || (r2>=0x03000000 && r2<0x03008000) || (r2>=0x08000000 && r2<0x0A000000))?read32(c,r2):0;
                 fprintf(stderr,"NATURAL_TRACE frame=%u pc=%08x entry=%08x lr=%08x r0=%08x r1=%08x r2=%08x value=%08x\n",lb_frames,pc,entries[i],lr,r0,r1,r2,value);++nt_calls;
+                if(i==7 && pc==entries[i]+2){
+                    ++nt_move_calls;
+                    unsigned start=(lr&~1U)-128;
+                    a_require(start>=0x08000000 && start+256<0x0A000000,"bounded caller ROM range");
+                    fprintf(stderr,"NATURAL_CALLER_RANGE address=%08x hex=",start);
+                    for(unsigned j=0;j<256;++j)fprintf(stderr,"%02x",read8(c,start+j));
+                    fputc('\n',stderr);
+                }
             }
         }
         c->step(c);a_require(++steps<=2000000 && ++nt_steps<=120000000,"bounded passive initial trace");
@@ -76,7 +84,6 @@ def execute():
     n.write(n.PROOF/'verification.json',v)
     text=(n.PROOF/(n.CASE+'.stderr.txt')).read_text()
     n.need(v['status']=='FAIL' and 'NATURAL_TRACE ' in text and 'natural initial moves differ from locked original' in text,'expected diagnosed failure only')
-    # Export only declared text source, never ROM/save files.
     for source in ('src/modernization/pr16_learnset_progress_game.c','state/source-lock.json'):
         path=n.ROOT/source
         if path.is_file():(n.PROOF/('source-'+path.name)).write_text(path.read_text())
