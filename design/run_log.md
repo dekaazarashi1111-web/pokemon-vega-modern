@@ -9561,3 +9561,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: PASS_REPAIRED_CFRU_FIRST_CALL_ENTRY、run35853901025、新unit26、native11、成功11、fresh core22、影響あり旧受入再検証8、無関係再実行0。 この記録工程はnative/host/ARM再実行0、完了Actions照合のみ。
 - Commit: 同branch非force push後にremote refを照合してartifactへ記録。
 - Network: 保存artifactと最新Actionsの固定identity照合。ROM/save新規追跡・release・baseline切替なし。
+
+## 2026-09-24T18:13:44.883000+00:00
+- Timestamp: 2026-09-24T18:13:44.883000+00:00
+- Task: USER-20260925-LEARNSET-NATURAL / 自然野生初期技・戦闘EXP
+- Version: issue19-natural-v1
+- Status: BLOCKED（保存失敗から限定継続）
+- Summary: 保存修復候補を再buildせず復元。自然野生の原本初期技、通常戦闘EXPの空き枠習得、Save/fresh Continueを限定検証。開始手持ち/EXP/能力値/進行はfixture。
+- Files changed: 新driver/C/tests/限定Actions、証拠/CP/guide、固定MD/JSON、両ログ。
+- Verify: FAIL run36039653256 unit25 native1 成功0。既受入再実行0、ARM0、ROM変更0、Wiki0。
+- Commit: 同branchへ非force pushしreflected-head.txtでremote照合。
+- Network: GitHub既存原本artifact/最新Actionsのみ。原本再採取・release・baseline切替なし。

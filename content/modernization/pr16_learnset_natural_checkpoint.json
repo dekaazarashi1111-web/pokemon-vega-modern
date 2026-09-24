@@ -1,0 +1,273 @@
+{
+  "accepted_case_reruns": 0,
+  "actions_completion_confirmed": false,
+  "active_baseline_changed": false,
+  "arm_compiles": 0,
+  "candidate": {
+    "sha256": "8946438bc37fda468c53e41378a6f82fac8f0b1af7ac6785ef07ca708c2714a1",
+    "size": 33554432
+  },
+  "compiled_sources": {
+    "tools/mgba_ai_fixture_runner.c": {
+      "sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f",
+      "size": 36272
+    },
+    "tools/mgba_battle_core_smoke.c": {
+      "sha256": "ed9875695ca60c61960685ac2f8e810a183c8eedd703e56545d67bde3df5cf24",
+      "size": 94688
+    },
+    "tools/mgba_pr16_learnset_natural.c": {
+      "sha256": "89ecfa71c937b6e9a656446b54579892f76b57758d20b4c64d9703155dd179b9",
+      "size": 9162
+    },
+    "tools/mgba_qol_production_smoke.c": {
+      "sha256": "2c4b9f065f4dce84e48f2be9afe2e2f9f666865088770ee8b068a908a0527b85",
+      "size": 149046
+    }
+  },
+  "error": "command failure: wild-initial-butterfree-exp-empty",
+  "error_type": "ValueError",
+  "generated_sources": {
+    "p03_learning_embedded.c": {
+      "sha256": "baab44445aea4df0ecec58f58affb2b5068f91f624f41ad41e0d978c6282afea",
+      "size": 7996
+    },
+    "p03_p02_embedded.c": {
+      "sha256": "cb68391efeaaeaecd0fe9c9be2a69fd234cbad79955d3a22a3e739de3a2e1b5e",
+      "size": 39678
+    },
+    "p03a_fullslots_embedded.c": {
+      "sha256": "d7f63f0df2631a3849ad8276c628ee06ead4312f66c73c4f5b865118ab2c2c75",
+      "size": 12877
+    },
+    "pr16_natural_vectors.h": {
+      "sha256": "11b30d5706e412d9229179adeb9ca462513e24d13f1676356a7df91bd766cd09",
+      "size": 197002
+    },
+    "pr16_natural_walking.h": {
+      "sha256": "b66fd13ddbecf428eb1eb7dd75b9744f3fb418b251b0080b83a1044f197d49d3",
+      "size": 7090
+    },
+    "pr16_progression_archive.c": {
+      "sha256": "b402843f81e3b72ab992154554b5f181e93a15daa3179cff05498d5c7c36de1f",
+      "size": 20163
+    }
+  },
+  "host_compiles": 1,
+  "issue19_complete": false,
+  "native_processes": 1,
+  "new_unit_tests": 25,
+  "previous_attempts": [],
+  "prior_actions": [
+    {
+      "conclusion": null,
+      "head_sha": "729453262e91d0b9a8428105eac6a4337aeff7d1",
+      "id": 36039653256,
+      "path": ".github/workflows/pr16-learnset-natural.yml",
+      "status": "in_progress"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "60dad4fe1feb86aebfbe236a3f8778fb76b7a942",
+      "id": 36038497090,
+      "path": ".github/workflows/pr16-learnset-natural.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "28abc92ea4dd9ed6bbbf3b447f516c41d9d8ddde",
+      "id": 35854257626,
+      "path": ".github/workflows/pr16-learnset-entry-repair.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "190a25a6032827d4a060d6d93c98db98da9eb9be",
+      "id": 35853901025,
+      "path": ".github/workflows/pr16-learnset-entry-repair.yml",
+      "status": "completed"
+    }
+  ],
+  "proof_bindings": {
+    "compile.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "compile.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "compile.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "geometry.json": {
+      "sha256": "cce7d5aa97dfa5776f2ef2dcc45de3eb6db30f971b3b10c0659b943ccefc964c",
+      "size": 1937
+    },
+    "original-source.json": {
+      "sha256": "f8bf5251cc7d27938c81c32ec77874897ff7240341922000e3a8f96584d6feb6",
+      "size": 1324
+    },
+    "recipe.json": {
+      "sha256": "465cfd77b0602f1f59aa23a62f4afe8b6ccbac893554d368e9d1715edd4129ef",
+      "size": 898
+    },
+    "unit.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "unit.stderr.txt": {
+      "sha256": "bda959bf2a7ef0d90ad3c93b5f4d38020b34de4959147e53b4ea09dc6b176ed0",
+      "size": 2489
+    },
+    "unit.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "wild-initial-butterfree-exp-empty.process.json": {
+      "sha256": "182b1f564fcb386958d2a1d35aa5085633c1d294f3080b2ff2d4f29be34238a3",
+      "size": 44
+    },
+    "wild-initial-butterfree-exp-empty.stderr.txt": {
+      "sha256": "6d57781db276a964daff7ae2b85cf686e86537994a73235e0278cdac4a15db7e",
+      "size": 884
+    },
+    "wild-initial-butterfree-exp-empty.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    }
+  },
+  "protected_bindings": {
+    "config/active_play_baseline.json": {
+      "sha256": "4800257add049ea99cdedda91413a70a255dcff9a85823463596edefa8785053",
+      "size": 394
+    },
+    "content/modernization/p08_remaining_work.json": {
+      "sha256": "d538985b7b16a1b295e2a75bf63f94371bc812208d49aae41c6a017b7ff26981",
+      "size": 41097
+    },
+    "content/modernization/pr16_bp_chooser_checkpoint.json": {
+      "sha256": "4deb7c27771c63740ab94b9cf8c7b3c386f7193b989f35ede9d131c4f4bf15bf",
+      "size": 9442
+    },
+    "content/modernization/pr16_learnset_battle_checkpoint.json": {
+      "sha256": "a1f99fae7693dd5f51d34e774d9c6bf43985b7e9515226f747ec3230c24b8b59",
+      "size": 17707
+    },
+    "content/modernization/pr16_learnset_egg_gameplay_checkpoint.json": {
+      "sha256": "7623c9b5eca00c5a96669815eaa320c9afb4c783279f359ba4268477bdc06143",
+      "size": 32995
+    },
+    "content/modernization/pr16_learnset_entry_repair_checkpoint.json": {
+      "sha256": "8dee3523f709fdc663cf03e617a15c550454658c3d462fba421eb075313a24b6",
+      "size": 69331
+    },
+    "content/modernization/pr16_learnset_progression_checkpoint.json": {
+      "sha256": "be5a1684a51e9bcced727139e5a243edab6c806a76f3518ccbc3f72e7ca3b412",
+      "size": 45167
+    },
+    "content/modernization/pr16_learnset_supply_native_checkpoint.json": {
+      "sha256": "75f6fd498056a7b2c60822fb99f2d36a47fd8eab0b8d0422e12dda58efc22dd8",
+      "size": 57961
+    },
+    "content/modernization/pr16_learnset_wiki_checkpoint.json": {
+      "sha256": "71b538f186b03ca3a725a84cd87baa41d72ca2ef0fb43ce22dec0e198cdefbe7",
+      "size": 45627
+    },
+    "content/modernization/pr16_learnset_wiki_completed_actions.json": {
+      "sha256": "4c200406ab0a3895a44a82cb81d71dde1f99aaa1a281eba1da3e851062bf1808",
+      "size": 9673
+    },
+    "docs/PR16_LEARNSET_ENTRY_REPAIR_JA.md": {
+      "sha256": "ae50455ee1ed588ecc331a2fc8bf4c9be54d774239c99c1bb81c38e22375697b",
+      "size": 2422
+    },
+    "docs/PR16_LEARNSET_PROGRESSION_JA.md": {
+      "sha256": "2d185c6a03df18aa63e7bb587095266dea2033eff0e5e3061e3d61d06277d4f5",
+      "size": 1640
+    }
+  },
+  "public_evidence_bindings": {
+    "compile.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "compile.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "compile.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "geometry.json": {
+      "sha256": "cce7d5aa97dfa5776f2ef2dcc45de3eb6db30f971b3b10c0659b943ccefc964c",
+      "size": 1937
+    },
+    "original-source.json": {
+      "sha256": "f8bf5251cc7d27938c81c32ec77874897ff7240341922000e3a8f96584d6feb6",
+      "size": 1324
+    },
+    "recipe.json": {
+      "sha256": "465cfd77b0602f1f59aa23a62f4afe8b6ccbac893554d368e9d1715edd4129ef",
+      "size": 898
+    },
+    "unit.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "unit.stderr.txt": {
+      "sha256": "bda959bf2a7ef0d90ad3c93b5f4d38020b34de4959147e53b4ea09dc6b176ed0",
+      "size": 2489
+    },
+    "unit.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "verification.json": {
+      "sha256": "8255ffc59cfdda0cd8b13e8b238551b5d81fdf4fc86a19653d156de53b105166",
+      "size": 7667
+    },
+    "wild-initial-butterfree-exp-empty.process.json": {
+      "sha256": "182b1f564fcb386958d2a1d35aa5085633c1d294f3080b2ff2d4f29be34238a3",
+      "size": 44
+    },
+    "wild-initial-butterfree-exp-empty.stderr.txt": {
+      "sha256": "6d57781db276a964daff7ae2b85cf686e86537994a73235e0278cdac4a15db7e",
+      "size": 884
+    },
+    "wild-initial-butterfree-exp-empty.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    }
+  },
+  "public_evidence_path": "content/modernization/pr16_learnset_natural_evidence/36039653256",
+  "release_ready": false,
+  "results": [],
+  "rom_changes_from_accepted_candidate": 0,
+  "run_id": 36039653256,
+  "schema_version": 1,
+  "source_bindings": {
+    ".github/workflows/pr16-learnset-natural.yml": {
+      "sha256": "5f54c51e0bea82587271c2391da94b22aa8fa984c9cf265072f73cd8af5220ed",
+      "size": 3720
+    },
+    "scripts/pr16_learnset_natural.py": {
+      "sha256": "4a47c6c84ee1c158942268abc4c185147ccfc629934426487460b2a1143b402c",
+      "size": 21990
+    },
+    "tests/test_pr16_learnset_natural.py": {
+      "sha256": "956e76b5b219f68b6bacee543f42bd11ba1304810dfe484093394ba06f948e51",
+      "size": 5543
+    },
+    "tools/mgba_pr16_learnset_natural.c": {
+      "sha256": "89ecfa71c937b6e9a656446b54579892f76b57758d20b4c64d9703155dd179b9",
+      "size": 9162
+    }
+  },
+  "source_head": "729453262e91d0b9a8428105eac6a4337aeff7d1",
+  "status": "FAIL",
+  "task": "USER-20260925-LEARNSET-NATURAL",
+  "wiki_generations": 0
+}
