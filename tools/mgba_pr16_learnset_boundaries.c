@@ -7,6 +7,7 @@
 #pragma GCC diagnostic pop
 struct XCase { const char *name; unsigned level,mode,slot,min_delta,moves[4],points[4]; };
 #include "pr16_boundaries_vectors.h"
+#include "pr16_exp_multilevel_trace.h"
 static unsigned x_cube(unsigned n){return n*n*n;}
 static void x_expect(unsigned before,unsigned after,unsigned mode,unsigned slot,unsigned moves[4],unsigned points[4],unsigned *prompts) {
     *prompts=0;
@@ -26,7 +27,7 @@ int main(int argc,char **argv){
     a_require(!strcmp(projectVersion,"0.10.2"),"mGBA version");
     char rh[65],sh[65],endhash[65];sha256_file(argv[1],rh);sha256_file(argv[2],sh);
     a_require(!strcmp(rh,argv[3]) && !strcmp(rh,N_ROM_SHA) && !strcmp(sh,argv[4]) && !strcmp(sh,N_SEED_SHA),"boundary input identity");
-    struct mLogger logger={.log=qol_log,.filter=NULL};mLogSetDefaultLogger(&logger);p03f_rtc_reserve(argv[2]);
+    struct mLogger logger={.log=x_log,.filter=NULL};mLogSetDefaultLogger(&logger);p03f_rtc_reserve(argv[2]);
     struct mCore *c=qol_open(argv[1],argv[2]);qol_log_core=c;static color_t video[240*160];c->setVideoBuffer(c,video,240);c->reset(c);
     a_require(a_continue(c),"boundary initial Continue");a_flash_prepare(c);a_require(p02s_install_field_fixture(c),"boundary field fixture");p02s_enable_national_dex(c);
     clear_parties(c);create_mon(c,QOL_PLAYER_PARTY,414,v->level+1);unsigned threshold=p02s_data(c,25);
@@ -48,7 +49,7 @@ int main(int argc,char **argv){
     unsigned summaries=0,selections=0,last_cb=0,summary_frame=0,selection_frame=0;bool chosen=false;
     a_require(hp_before>0,"live enemy");
     for(unsigned f=0;f<48000;++f){
-        unsigned cb=read32(c,BATTLE_CORE_MAIN_CALLBACK2);
+        x_trace(c);unsigned cb=read32(c,BATTLE_CORE_MAIN_CALLBACK2);
         if(cb!=last_cb){fprintf(stderr,"BOUNDARY_CALLBACK frame=%u callback=%08x\n",lb_frames,cb);last_cb=cb;if(cb!=P03F_SUMMARY_CB)chosen=false;}
         if(read32(c,ADDR_NEW_BATTLE_STRUCT_POINTER)){
             unsigned hp=read16(c,eb+BATTLE_CORE_MON_HP);if(hp<hp_min)hp_min=hp;
