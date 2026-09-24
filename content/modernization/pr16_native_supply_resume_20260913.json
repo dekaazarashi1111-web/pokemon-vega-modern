@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "Issue19: KeyErrorの保存原本を確認し、未成功の自然生成/戦闘EXP経路だけ修復する。既存アメ11/Bag23/旧戦闘/egg8/ARM/host/Wikiは再実行しない。",
+    "next_step": "Issue19: ValueErrorの保存原本を確認し、未成功の自然生成/戦闘EXP経路だけ修復する。既存アメ11/Bag23/旧戦闘/egg8/ARM/host/Wikiは再実行しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -1023,7 +1023,8 @@
     "run35852603289のprogression成功caseを保存し、後継は失敗caseだけ。新候補変更なしのBag23/戦闘/タマゴ8/代表画像/ARM/旧hostは再実行しない。",
     "CFRU入口修復run35853901025の成功caseを再実行しない。候補変更は8byteで、無関係な既存受入は保持。",
     "自然初期技/戦闘EXP run36039653256の成功caseは再実行しない。開始fixtureと自然生成enemyを区別し、元の失敗原本を保持する。",
-    "自然初期技/戦闘EXP run36040259713の成功caseは再実行しない。開始fixtureと自然生成enemyを区別し、元の失敗原本を保持する。"
+    "自然初期技/戦闘EXP run36040259713の成功caseは再実行しない。開始fixtureと自然生成enemyを区別し、元の失敗原本を保持する。",
+    "自然初期技/戦闘EXP run36040704821の成功caseは再実行しない。開始fixtureと自然生成enemyを区別し、元の失敗原本を保持する。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -1988,11 +1989,11 @@
       "size": 33554432
     },
     "issue19_complete": false,
-    "native_processes": 0,
+    "native_processes": 1,
     "path": "content/modernization/pr16_learnset_natural_checkpoint.json",
     "release_ready": false,
-    "run_id": 36040259713,
-    "source_head": "bb052880fe0658981c70e47c793c15a8524bf26d",
+    "run_id": 36040704821,
+    "source_head": "51242ac859b3a27402d7567cc347c785ac5e8174",
     "status": "FAIL",
     "successful_cases": 0
   },
@@ -3542,7 +3543,7 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "Issue19: KeyErrorの保存原本を確認し、未成功の自然生成/戦闘EXP経路だけ修復する。既存アメ11/Bag23/旧戦闘/egg8/ARM/host/Wikiは再実行しない。",
+    "goal_ja": "Issue19: ValueErrorの保存原本を確認し、未成功の自然生成/戦闘EXP経路だけ修復する。既存アメ11/Bag23/旧戦闘/egg8/ARM/host/Wikiは再実行しない。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
     "id": "LEARNSET_NATURAL_FAILURE_ONLY",
     "read_paths": [
@@ -3553,17 +3554,17 @@
     "stop_rule_ja": "特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。"
   },
   "observed_date_jst": "2026-09-22",
-  "observed_head": "bb052880fe0658981c70e47c793c15a8524bf26d",
+  "observed_head": "51242ac859b3a27402d7567cc347c785ac5e8174",
   "observed_head_checks": {
     "reason_ja": "native証拠とpush/upload終端を区別。一般CI action_requiredをnative失敗へ読み替えない。",
     "runs": [
       {
         "conclusion": null,
-        "id": 36040259713,
+        "id": 36040704821,
         "status": "in_progress"
       }
     ],
-    "scope_head": "bb052880fe0658981c70e47c793c15a8524bf26d"
+    "scope_head": "51242ac859b3a27402d7567cc347c785ac5e8174"
   },
   "observed_head_history": [
     {
@@ -6118,8 +6119,8 @@
       "size": 6476
     },
     ".github/workflows/pr16-learnset-natural.yml": {
-      "sha256": "4d5afef6c1c80717d4ccd2f7c13dc6733c97350ab0e6a165d44bde663af7fef8",
-      "size": 3035
+      "sha256": "7a6a25b1029a1aff9c93e1298249fb6a6947e1925d821abcdc3e34cac8fa9c49",
+      "size": 3040
     },
     ".github/workflows/pr16-learnset-progression.yml": {
       "sha256": "f42e172a412a38c36001268b2a6c26d66379cf204dc2b8e2c3223f776068204b",
@@ -7222,8 +7223,8 @@
       "size": 11264
     },
     "content/modernization/pr16_learnset_natural_checkpoint.json": {
-      "sha256": "b934cd0bdc5f314a49bd9ba0f5961fac273d9132e8c37d5a837dd533e84ebb66",
-      "size": 6717
+      "sha256": "46f80e4b4b9613db72191bbb906f3593d122a16452a3a15ef6277bf18ed2302e",
+      "size": 11523
     },
     "content/modernization/pr16_learnset_progression_checkpoint.json": {
       "sha256": "be5a1684a51e9bcced727139e5a243edab6c806a76f3518ccbc3f72e7ca3b412",
@@ -8054,8 +8055,8 @@
       "size": 2351
     },
     "docs/PR16_LEARNSET_NATURAL_JA.md": {
-      "sha256": "9eae9d72bf2056fd91d10e08a99e5c3cd99f7a63b6230153732d4ed7c54360d0",
-      "size": 1476
+      "sha256": "c4d92a852a7119787806eac02ce64b1d0a0590179fa4fd30b63fba37809d6f9f",
+      "size": 1477
     },
     "docs/PR16_LEARNSET_PROGRESSION_JA.md": {
       "sha256": "2d185c6a03df18aa63e7bb587095266dea2033eff0e5e3061e3d61d06277d4f5",

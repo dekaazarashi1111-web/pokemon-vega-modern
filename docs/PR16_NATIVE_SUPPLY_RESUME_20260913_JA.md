@@ -8,13 +8,13 @@
 
 Issue19: 自然野生初期技/戦闘EXP空き枠 FAIL、成功0。開始手持ち/EXP/能力値fixture。全owner/Issue19は未完。
 
-**次: Issue19: KeyErrorの保存原本を確認し、未成功の自然生成/戦闘EXP経路だけ修復する。既存アメ11/Bag23/旧戦闘/egg8/ARM/host/Wikiは再実行しない。**
+**次: Issue19: ValueErrorの保存原本を確認し、未成功の自然生成/戦闘EXP経路だけ修復する。既存アメ11/Bag23/旧戦闘/egg8/ARM/host/Wikiは再実行しない。**
 
 特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `bb052880fe0658981c70e47c793c15a8524bf26d`。
+証拠のsource HEAD: `51242ac859b3a27402d7567cc347c785ac5e8174`。
 自然野生生成/戦闘EXPの限定工程。開始手持ち/EXP/能力値はfixtureであり全owner受入ではない。
 
 ## 最短の再開手順
@@ -292,6 +292,7 @@ P08ゲート:
 - CFRU入口修復run35853901025の成功caseを再実行しない。候補変更は8byteで、無関係な既存受入は保持。
 - 自然初期技/戦闘EXP run36039653256の成功caseは再実行しない。開始fixtureと自然生成enemyを区別し、元の失敗原本を保持する。
 - 自然初期技/戦闘EXP run36040259713の成功caseは再実行しない。開始fixtureと自然生成enemyを区別し、元の失敗原本を保持する。
+- 自然初期技/戦闘EXP run36040704821の成功caseは再実行しない。開始fixtureと自然生成enemyを区別し、元の失敗原本を保持する。
 
 ## 次セッションへ残す更新手順
 

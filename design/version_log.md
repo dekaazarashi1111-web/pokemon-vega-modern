@@ -6855,3 +6855,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: FAIL run36040259713 unit25 native0 成功0。既受入再実行0、ARM0、ROM変更0、Wiki0。
 - Commit: 同branchへ非force pushしreflected-head.txtでremote照合。
 - Network: GitHub既存原本artifact/最新Actionsのみ。原本再採取・release・baseline切替なし。
+
+## 2026-09-24T18:23:08.014679+00:00
+- Timestamp: 2026-09-24T18:23:08.014679+00:00
+- Task: USER-20260925-LEARNSET-NATURAL / 自然野生初期技・戦闘EXP
+- Version: issue19-natural-v1
+- Status: BLOCKED（保存失敗から限定継続）
+- Summary: 保存修復候補を再buildせず復元。自然野生の原本初期技、通常戦闘EXPの空き枠習得、Save/fresh Continueを限定検証。開始手持ち/EXP/能力値/進行はfixture。
+- Files changed: 新driver/C/tests/限定Actions、証拠/CP/guide、固定MD/JSON、両ログ。
+- Verify: FAIL run36040704821 unit0 native1 成功0。既受入再実行0、ARM0、ROM変更0、Wiki0。
+- Commit: 同branchへ非force pushしreflected-head.txtでremote照合。
+- Network: GitHub既存原本artifact/最新Actionsのみ。原本再採取・release・baseline切替なし。
