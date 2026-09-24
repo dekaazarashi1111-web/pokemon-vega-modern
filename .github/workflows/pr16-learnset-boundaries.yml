@@ -1,5 +1,5 @@
 name: pr16-learnset-boundaries
-# 今回の旧3caseだけ保存HP不整合を実証済み。正常multi-levelと無関係旧検証は再実行しない。
+# 4caseは正常HPで保存成功。ここは保存Actions終端の照合のみ。native/compile/unit再実行なし。
 on:
   push:
     branches: [codex/modernization-followup-20260908]
@@ -12,10 +12,10 @@ concurrency:
   group: pr16-learnset-boundaries
   cancel-in-progress: false
 jobs:
-  boundaries:
+  complete:
     if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
     runs-on: ubuntu-24.04
-    timeout-minutes: 20
+    timeout-minutes: 10
     env:
       PYTHONDONTWRITEBYTECODE: '1'
     steps:
@@ -25,53 +25,84 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: 新source転送identity
+      - name: 正常HP4caseの両Actions終端・原本・反映commitを照合（再実行0）
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         run: |
-          python3 - <<'PY'
-          import hashlib,pathlib
-          expected={'scripts/pr16_exp_health_policy.py':'e42f9b4283494b33c87e4339ecc733d42dcf8652c362add17dae1a8d7c14dc47','tools/mgba_pr16_learnset_boundaries.c':'a11747ba2ebffb5d780afb7feb87535f18a20dea8ef3dce28b47009e65b3a241','tests/test_pr16_exp_multilevel.py':'148e0aeed4f8f5d15df7201c0e5bf1eebc40ad0254f8593f21891075ca72dc26','tests/test_pr16_exp_health_policy.py':'f098571b63c7011882de33ce9faf64fa2d7b406a178792a646c81f8467818cae'}
-          for path,digest in expected.items():assert hashlib.sha256(pathlib.Path(path).read_bytes()).hexdigest()==digest,path
-          print('PASS source transfer')
+          python3 -B - <<'PY'
+          import io,json,os,re,subprocess,sys,zipfile
+          sys.path.insert(0,'scripts')
+          import pr16_exp_health_policy as p
+          from pr16_wiki_reconcile import fetch
+          from pr16_learnset_wiki_actions import current
+          x=p.x;current();v=x.load(x.ROOT/x.CP)
+          x.need(v['status']=='PASS_BATTLE_EXP_BOUNDARIES' and not v['actions_completion_confirmed'],'only pending terminal success')
+          x.need(set(v['accepted'])=={c[0] for c in x.CASES} and set(v['native_health'])==set(v['accepted']),'all four healthy cases')
+          run_ids=sorted({a['run_id'] for a in v['accepted'].values()})
+          x.need(run_ids==[36067198527,36068573757],'exact two successful source runs')
+          receipts=[]
+          for rid in run_ids:
+              cases={name:a for name,a in v['accepted'].items() if a['run_id']==rid}
+              run=fetch('actions/runs/'+str(rid));jobs=fetch('actions/runs/'+str(rid)+'/jobs?per_page=100')
+              x.need(run['path']==x.WF and run['head_branch']=='codex/modernization-followup-20260908' and run['status']=='completed' and run['conclusion']=='success','source run terminal')
+              x.need(all(a['source_head']==run['head_sha'] for a in cases.values()),'case source HEAD')
+              x.need(jobs['total_count']==1 and len(jobs['jobs'])==1,'one complete source job');job=jobs['jobs'][0]
+              x.need(job['conclusion']=='success' and all(s['conclusion'] in ('success','skipped') for s in job['steps']),'record/push/upload success')
+              meta=fetch('actions/runs/'+str(rid)+'/artifacts?per_page=100')
+              x.need(meta['total_count']==1 and len(meta['artifacts'])==1,'one source proof');a=meta['artifacts'][0]
+              x.need(a['name']=='pr16-learnset-boundaries-proof' and not a['expired'] and a['workflow_run']['head_sha']==run['head_sha'],'proof source')
+              blob=fetch('actions/artifacts/'+str(a['id'])+'/zip',binary=True)
+              x.need(x.identity(blob)=={'size':a['size_in_bytes'],'sha256':a['digest'][7:]},'archive integrity')
+              with zipfile.ZipFile(io.BytesIO(blob)) as z:
+                  x.need(len(z.namelist())==len(set(z.namelist())) and all('/' not in i.filename and i.file_size<2_000_000 for i in z.infolist()),'bounded unique proof members')
+                  saved=json.loads(z.read('verification.json'));x.need(saved['status']=='PASS_BATTLE_EXP_BOUNDARIES' and saved['candidate']==x.CANDIDATE and saved['source_head']==run['head_sha'] and saved['run_id']==rid,'source proof identity')
+                  for name,acceptance in cases.items():
+                      x.need(saved['accepted'][name]==acceptance,'case acceptance identity')
+                      for suffix in ('.stdout.txt','.stderr.txt','.process.json'):
+                          leaf=name+suffix;raw=z.read(leaf)
+                          x.need(x.identity(raw)==saved['proof_bindings'][leaf] and raw==(x.ROOT/x.EVIDENCE/str(rid)/leaf).read_bytes(),'native raw immutable '+leaf)
+                      x.need(json.loads(z.read(name+'.process.json'))=={'returncode':0,'timed_out':False},'native original process')
+                      fixture=acceptance['result']['fixture'];health=p.health(z.read(name+'.stderr.txt'),fixture['level'],fixture['min_delta'])
+                      x.need(health['status']=='PASS' and dict(health,run_id=rid)==v['native_health'][name],'healthy saved original')
+                  reflected=z.read('reflected-head.txt').decode().strip()
+                  x.need(re.fullmatch('[0-9a-f]{40}',reflected) and subprocess.run(['git','merge-base','--is-ancestor',reflected,'HEAD']).returncode==0,'reflected ancestor')
+              receipts.append({'run_id':rid,'source_head':run['head_sha'],'job_id':job['id'],'conclusion':'success','cases':sorted(cases),'reflected_head':reflected,'artifact':{key:a[key] for key in ('id','name','size_in_bytes','digest')},'native_reruns':0,'unit_reruns':0,'host_compiles':0,'arm_compiles':0})
+          x.PROOF.mkdir(parents=True,exist_ok=True)
+          x.write(x.PROOF/'all-cases-actions.json',{'status':'PASS','receipts':receipts,'verified_at_head':os.environ['GITHUB_SHA']})
+          x.NEXT='Issue19: 正常HPの戦闘EXP4境界は両Actions終端まで受入済み。再実行しない。次は技習得の最初の質問での拒否を限定追加し、その後に戦闘EXP進化/共有、未受入の自然配布/孵化/form、釣り/隠し野生の特殊技順へ進む。アメ11/Bag23/egg8/野生初期技/EXP空き枠/旧host・ARM・Wikiは変更影響なし。全owner/Issue19/release/baseline切替は未完。'
+          def publish(value):
+              value['accepted_case_actions']=receipts
+              x.write(x.ROOT/x.CP,value)
+              p.publish(value)
+          x.publish=publish
+          x.complete()
+          print('PASS: four healthy cases; two terminal-success Actions runs; native/unit/host/ARM reruns zero')
           PY
-      - name: host mGBAのみ準備（ARM compiler不要）
-        run: sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends libmgba-dev
-      - name: 原本で変更影響を限定・新8試験と構造2試験・HP不整合3caseのみ
-        id: native
-        continue-on-error: true
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-        run: python3 -B scripts/pr16_exp_health_policy.py execute
-      - name: 失効理由と正常HP証拠・固定引継ぎ・両ログを更新
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
+      - name: 固定引継ぎ・両ログ・変更範囲を検査
         run: |
           set -euo pipefail
-          python3 -B scripts/pr16_exp_health_policy.py record
           python3 -B scripts/pr16_resume.py check
           python3 -B scripts/validate_task_graph.py
           python3 -B scripts/pr16_exp_health_policy.py paths | tr '\n' '\0' >.local/pr16-learnset-boundaries/paths.z
           git add --pathspec-from-file=.local/pr16-learnset-boundaries/paths.z --pathspec-file-nul
           python3 -B scripts/pr16_exp_health_policy.py guard
-      - name: 同branchへ非force commit/push・remote refを照合
+      - name: 完了記録を同branchへ非force commit/push・remote ref照合
         run: |
           set -euo pipefail
           branch='codex/modernization-followup-20260908'
           test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'USER-20260925-LEARNSET-BOUNDARIES: 実証HP影響3caseのみ再検証・失効理由・正常保存を確定'
+          git commit -m 'USER-20260925-LEARNSET-BOUNDARIES: 正常HP4境界・両Actions終端を確定、次工程へ引継ぎ'
           git push origin "HEAD:$branch"
           sha=$(git rev-parse HEAD)
           test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$sha"
           echo "$sha" | tee .local/pr16-learnset-boundaries/proof/reflected-head.txt
-          echo "RESULT=RECORDED TASK=USER-20260925-LEARNSET-BOUNDARIES COMMIT=$sha"
+          echo "RESULT=DONE TASK=USER-20260925-LEARNSET-BOUNDARIES VERIFY=PASS COMMIT=$sha"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: pr16-learnset-boundaries-proof
+          name: pr16-learnset-boundaries-completion
           path: .local/pr16-learnset-boundaries/proof/
           retention-days: 30
           if-no-files-found: error
-      - name: native失敗を成功へ読み替えない
-        if: steps.native.outcome == 'failure'
-        run: exit 1
