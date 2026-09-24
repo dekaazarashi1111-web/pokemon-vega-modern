@@ -1,5 +1,5 @@
 name: pr16-learnset-boundaries
-# 前回終端は照合済み。受入済みnative/ARM/原本生成は起動しない。
+# 保存3成功と不変oracle19は再実行しない。失敗1caseのみread-only診断。
 on:
   push:
     branches: [codex/modernization-followup-20260908]
@@ -15,7 +15,7 @@ jobs:
   boundaries:
     if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
     runs-on: ubuntu-24.04
-    timeout-minutes: 30
+    timeout-minutes: 20
     env:
       PYTHONDONTWRITEBYTECODE: '1'
     steps:
@@ -29,29 +29,29 @@ jobs:
         run: |
           python3 - <<'PY'
           import hashlib,pathlib
-          expected={'scripts/pr16_learnset_boundaries.py':'930ac803c21f637112d43009981a818e3d8076cf0e8a5fcfbc9fc376f2b0f44a','tools/mgba_pr16_learnset_boundaries.c':'e6bb77bbe80033b04849ce6344aff695d628f00b05939acd7b2271fa90f90708','tests/test_pr16_learnset_boundaries.py':'32efc92275899507f8089b7dea7791a10c88f685a5a990b71107ed3652048e8d'}
+          expected={'scripts/pr16_exp_multilevel.py':'572c67cb7f3b9cf9900b7795c4ea6a81a74c828963e3267735405fc0f48cc21d','tools/pr16_exp_multilevel_trace.h':'aefdffa269bba6cf5c360d2a6944f122bc423d327ceeaf4a45d59584f024eaa6','tools/mgba_pr16_learnset_boundaries.c':'a9fb74f69558b81a01f9f195e2a28dc7c08eea36ee79fc7360217df44b9eb181'}
           for path,digest in expected.items():assert hashlib.sha256(pathlib.Path(path).read_bytes()).hexdigest()==digest,path
           print('PASS source transfer')
           PY
       - name: host mGBAのみ準備（ARM compiler不要）
         run: sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends libmgba-dev
-      - name: 新20境界試験・未受入の戦闘EXP4case
+      - name: 変更影響のある構造1試験・失敗multilevel1case
         id: native
         continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ github.token }}
-        run: python3 -B scripts/pr16_learnset_boundaries.py execute
-      - name: 成功と失敗を分離保存・固定引継ぎ・両ログを更新
+        run: python3 -B scripts/pr16_exp_multilevel.py execute
+      - name: 保存3成功を維持・失敗診断原本・固定引継ぎ・両ログ
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          python3 -B scripts/pr16_learnset_boundaries.py record
+          python3 -B scripts/pr16_exp_multilevel.py record
           python3 -B scripts/pr16_resume.py check
           python3 -B scripts/validate_task_graph.py
-          python3 -B scripts/pr16_learnset_boundaries.py paths | tr '\n' '\0' >.local/pr16-learnset-boundaries/paths.z
+          python3 -B scripts/pr16_exp_multilevel.py paths | tr '\n' '\0' >.local/pr16-learnset-boundaries/paths.z
           git add --pathspec-from-file=.local/pr16-learnset-boundaries/paths.z --pathspec-file-nul
-          python3 -B scripts/pr16_learnset_boundaries.py guard
+          python3 -B scripts/pr16_exp_multilevel.py guard
       - name: 同branchへ非force commit/push・remote refを照合
         run: |
           set -euo pipefail
@@ -59,7 +59,7 @@ jobs:
           test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'USER-20260925-LEARNSET-BOUNDARIES: EXP境界の実測原本・引継ぎ・両ログを保存'
+          git commit -m 'USER-20260925-LEARNSET-BOUNDARIES: 未受入multilevel限定診断・引継ぎ・両ログを保存'
           git push origin "HEAD:$branch"
           sha=$(git rev-parse HEAD)
           test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$sha"
