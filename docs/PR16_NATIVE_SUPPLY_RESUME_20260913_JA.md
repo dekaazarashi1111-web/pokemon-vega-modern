@@ -14,7 +14,7 @@ Issue19: V4野生固定技分離 PASS_WILD_INITIAL_AND_BATTLE_EXP_EMPTY、自然
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `29aee3e4fbaf4618425ff1bad26838aa1bad8d7e`。
+証拠のsource HEAD: `4b418184a79648635fb9214722a033fe7999bbf3`。
 V4野生専用上書きを原本へ接続する限定工程。全owner/Issue19完了ではない。
 
 ## 最短の再開手順

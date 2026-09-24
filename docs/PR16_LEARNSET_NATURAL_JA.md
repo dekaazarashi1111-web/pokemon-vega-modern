@@ -1,7 +1,7 @@
 # Issue19: V4固定野生技の分離・自然生成と戦闘EXP
 
 状態 `PASS_WILD_INITIAL_AND_BATTLE_EXP_EMPTY` / run36042409576 / source `29aee3e4fbaf4618425ff1bad26838aa1bad8d7e`。
-候補 `b7790902733a638445129c388d65ab3c199bceb92a41338e0069221b556b9f91`。Actions終端確認 `False`。
+候補 `b7790902733a638445129c388d65ab3c199bceb92a41338e0069221b556b9f91`。Actions終端確認 `True`。
 
 ## 原因と実装
 

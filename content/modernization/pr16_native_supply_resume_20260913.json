@@ -1985,7 +1985,7 @@
     "successful_cases": 23
   },
   "learnset_natural_progression": {
-    "actions_completion_confirmed": false,
+    "actions_completion_confirmed": true,
     "candidate": {
       "sha256": "b7790902733a638445129c388d65ab3c199bceb92a41338e0069221b556b9f91",
       "size": 33554432
@@ -3548,7 +3548,7 @@
   "next_action": {
     "goal_ja": "Issue19: V4固定野生4技の切離しと自然野生初期技/戦闘EXP空き枠の保存成功は再実行しない。未受入の自然配布/孵化/form、戦闘EXP置換/拒否/既習得/複数level/進化/共有を影響台帳と照合して限定追加。釣り/隠し等の同じ野生adapterへの特殊技順は未受入。原本再採取/旧Wiki/旧host/ARM、アメ11/Bag23/egg8は変更影響なしに再実行しない。全owner/Issue19/release/baseline切替は未完。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
-    "id": "LEARNSET_WILD_COMPLETION",
+    "id": "LEARNSET_WILD_REMAINING",
     "read_paths": [
       "docs/PR16_LEARNSET_NATURAL_JA.md",
       "content/modernization/pr16_learnset_natural_checkpoint.json",
@@ -3557,14 +3557,14 @@
     "stop_rule_ja": "特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。"
   },
   "observed_date_jst": "2026-09-22",
-  "observed_head": "29aee3e4fbaf4618425ff1bad26838aa1bad8d7e",
+  "observed_head": "4b418184a79648635fb9214722a033fe7999bbf3",
   "observed_head_checks": {
     "reason_ja": "native結果とpush/upload終端を分離。診断Actions successをnative PASSへ読み替えない。",
     "runs": [
       {
-        "conclusion": null,
+        "conclusion": "success",
         "id": 36042409576,
-        "status": "in_progress"
+        "status": "completed"
       }
     ],
     "scope_head": "29aee3e4fbaf4618425ff1bad26838aa1bad8d7e"
@@ -7226,8 +7226,8 @@
       "size": 11264
     },
     "content/modernization/pr16_learnset_natural_checkpoint.json": {
-      "sha256": "b03694cc492e347f469465f1be1f9ed2f5c1dc0a67f0a92ee31e1d3418c644a4",
-      "size": 90000
+      "sha256": "f15336e39b840f21bcd7ef30a0b1989421a0516ffd80a7a527266186e69fdf69",
+      "size": 93858
     },
     "content/modernization/pr16_learnset_progression_checkpoint.json": {
       "sha256": "be5a1684a51e9bcced727139e5a243edab6c806a76f3518ccbc3f72e7ca3b412",
@@ -8058,8 +8058,8 @@
       "size": 2351
     },
     "docs/PR16_LEARNSET_NATURAL_JA.md": {
-      "sha256": "0c320c3cf25afbac9ad9d275b39d7e1fc483041cf914420ed807d404c56646d2",
-      "size": 2587
+      "sha256": "9a44a35c566df54043d9ab4558c7b3773145af6cf00a0e0402d3cdc4d4fe60f8",
+      "size": 2586
     },
     "docs/PR16_LEARNSET_PROGRESSION_JA.md": {
       "sha256": "2d185c6a03df18aa63e7bb587095266dea2033eff0e5e3061e3d61d06277d4f5",

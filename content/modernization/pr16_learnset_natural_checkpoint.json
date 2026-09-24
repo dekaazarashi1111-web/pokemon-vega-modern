@@ -1,6 +1,6 @@
 {
   "accepted_case_reruns": 0,
-  "actions_completion_confirmed": false,
+  "actions_completion_confirmed": true,
   "active_baseline_changed": false,
   "arm_compiles": 1,
   "arm_links": 1,
@@ -25,6 +25,129 @@
       "sha256": "2c4b9f065f4dce84e48f2be9afe2e2f9f666865088770ee8b068a908a0527b85",
       "size": 149046
     }
+  },
+  "completed_actions": {
+    "arm_reruns": 0,
+    "artifact": {
+      "digest": "sha256:9a0b099f4773e48a60cca4b6cada4249ed604fcf1a8db18e76c4aa39af0ecc45",
+      "id": 10827370928,
+      "name": "pr16-learnset-natural-proof",
+      "size_in_bytes": 61480
+    },
+    "conclusion": "success",
+    "host_reruns": 0,
+    "job_id": 107777536499,
+    "native_reruns": 0,
+    "reflected_head": "54ed513cbb843ae22dbcd64f0ccf2a354542546d",
+    "run_id": 36042409576,
+    "source_head": "29aee3e4fbaf4618425ff1bad26838aa1bad8d7e",
+    "steps": [
+      {
+        "completed_at": "2026-09-24T18:36:30Z",
+        "conclusion": "success",
+        "name": "Set up job",
+        "number": 1,
+        "started_at": "2026-09-24T18:36:29Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-24T18:36:40Z",
+        "conclusion": "success",
+        "name": "Run actions/checkout@v4",
+        "number": 2,
+        "started_at": "2026-09-24T18:36:30Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-24T18:36:40Z",
+        "conclusion": "success",
+        "name": "Run actions/setup-python@v5",
+        "number": 3,
+        "started_at": "2026-09-24T18:36:40Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-24T18:36:40Z",
+        "conclusion": "success",
+        "name": "新source転送identity",
+        "number": 4,
+        "started_at": "2026-09-24T18:36:40Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-24T18:37:04Z",
+        "conclusion": "success",
+        "name": "新adapter用のARM compilerとhost mGBA library",
+        "number": 5,
+        "started_at": "2026-09-24T18:36:40Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-24T18:37:37Z",
+        "conclusion": "success",
+        "name": "野生gate16試験・新ARM・自然初期技/戦闘EXP/保存",
+        "number": 6,
+        "started_at": "2026-09-24T18:37:04Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-24T18:37:42Z",
+        "conclusion": "success",
+        "name": "原本・停止点・固定引継ぎ・両ログを記録",
+        "number": 7,
+        "started_at": "2026-09-24T18:37:37Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-24T18:37:44Z",
+        "conclusion": "success",
+        "name": "同branchへ非force commit/pushして最新ref照合",
+        "number": 8,
+        "started_at": "2026-09-24T18:37:42Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-24T18:37:44Z",
+        "conclusion": "success",
+        "name": "Run actions/upload-artifact@v4",
+        "number": 9,
+        "started_at": "2026-09-24T18:37:44Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-24T18:37:44Z",
+        "conclusion": "skipped",
+        "name": "native失敗を成功へ読み替えない",
+        "number": 10,
+        "started_at": "2026-09-24T18:37:44Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-24T18:37:45Z",
+        "conclusion": "success",
+        "name": "Post Run actions/setup-python@v5",
+        "number": 19,
+        "started_at": "2026-09-24T18:37:44Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-24T18:37:45Z",
+        "conclusion": "success",
+        "name": "Post Run actions/checkout@v4",
+        "number": 20,
+        "started_at": "2026-09-24T18:37:45Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-24T18:37:45Z",
+        "conclusion": "success",
+        "name": "Complete job",
+        "number": 21,
+        "started_at": "2026-09-24T18:37:45Z",
+        "status": "completed"
+      }
+    ],
+    "verified_at_head": "4b418184a79648635fb9214722a033fe7999bbf3"
   },
   "fresh_cores": 2,
   "generated_sources": {

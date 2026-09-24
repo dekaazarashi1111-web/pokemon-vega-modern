@@ -9616,3 +9616,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: PASS_WILD_INITIAL_AND_BATTLE_EXP_EMPTY run36042409576; new unit16 / inherited unit25 / new ARM1 / native1 / successful cases1; 旧ARM/旧host/アメ11/Bag23/egg8/Wiki/原本再実行0。
 - Commit: 同branchへ非force push、reflected-head.txtでremote refと照合。
 - Network: GitHub保存artifactのみ。release/merge/active baseline変更なし。
+
+## 2026-09-24T21:49:56.247442+00:00
+- Timestamp: 2026-09-24T21:49:56.247442+00:00
+- Task: USER-20260925-LEARNSET-WILD-REPAIR / Actions終端照合（実測再実行0）
+- Version: issue19-wild-original-v1
+- Status: DONE（限定範囲、全体未完）
+- Summary: V4固定野生4技の後付けをwild-only prepared gateへ置換。保管/egg/未接続ownerは不変。原本初期化を再利用。
+- Files changed: 新wild game adapter/16境界試験/build・record driver/限定Actions、CP/guide/証拠、固定MD/JSON、両ログ。
+- Verify: PASS_WILD_INITIAL_AND_BATTLE_EXP_EMPTY run36042409576; new unit16 / inherited unit25 / new ARM1 / native1 / successful cases1; 旧ARM/旧host/アメ11/Bag23/egg8/Wiki/原本再実行0。
+- Commit: 同branchへ非force push、reflected-head.txtでremote refと照合。
+- Network: GitHub保存artifactのみ。release/merge/active baseline変更なし。
