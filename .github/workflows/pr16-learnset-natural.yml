@@ -1,47 +1,78 @@
 name: pr16-learnset-natural
-# 準備checkpoint。受入済みnative/host/ARM/Wikiの再実行はしない。
+# 自然野生初期技と戦闘EXP空き枠だけ。既受入のアメ/Bag/egg/ARM/Wikiは再実行しない。
 on:
   push:
     branches: [codex/modernization-followup-20260908]
     paths: [.github/workflows/pr16-learnset-natural.yml]
 permissions:
-  contents: read
+  contents: write
+  actions: read
+  pull-requests: read
 concurrency:
   group: pr16-learnset-natural
   cancel-in-progress: false
 jobs:
-  scoped-source:
+  natural:
     if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 20
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
     steps:
       - uses: actions/checkout@v4
-      - name: 未受入経路に必要なtracked textだけをhash固定で転送
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: 転送したsourceをローカル検証identityと照合
         run: |
           python3 - <<'PY'
-          import hashlib,json,os,pathlib,subprocess
-          root=pathlib.Path('.'); out=root/'.local/pr16-natural-source'; out.mkdir(parents=True)
-          exact={'AGENTS.md','CHATGPT_RESUME.md','scripts/validate_task_graph.py','scripts/private_file_guard.py','scripts/pr16_resume.py','scripts/pr16_wiki_reconcile.py','content/modernization/pr16_native_supply_resume_20260913.json','content/modernization/pr16_bp_chooser_checkpoint.json','content/modernization/p08_remaining_work.json','docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md','design/run_log.md','design/version_log.md','config/active_play_baseline.json','design/active_play_baseline.md'}
-          prefixes=('scripts/pr16_learnset','scripts/pr16_wiki','tools/mgba_','tests/test_pr16_learnset','content/modernization/pr16_learnset','docs/PR16_LEARNSET_','overlays/modernization_pr16_learnset','.github/workflows/pr16-learnset')
-          allowed={'.py','.c','.h','.s','.json','.md','.yml'}
-          manifest={}
-          paths=subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
-          for name in paths:
-              p=root/name
-              if not name or not (name in exact or name.startswith(prefixes)): continue
-              if p.suffix not in allowed or '/evidence/' in name or '_evidence/' in name: continue
-              if not p.is_file() or p.is_symlink(): raise ValueError('regular text required')
-              raw=p.read_bytes(); raw.decode('utf-8')
-              if b'\x00' in raw: raise ValueError('binary refused')
-              target=out/name; target.parent.mkdir(parents=True,exist_ok=True); target.write_bytes(raw)
-              manifest[name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
-          (out/'transfer-manifest.json').write_text(json.dumps({'head':os.environ['GITHUB_SHA'],'files':manifest,'accepted_tests_rerun':0,'rom_rebuilds':0},ensure_ascii=False,indent=2)+'\n')
-          print('tracked text files:',len(manifest))
+          import hashlib,pathlib
+          expected={'scripts/pr16_learnset_natural.py':'4a47c6c84ee1c158942268abc4c185147ccfc629934426487460b2a1143b402c','tools/mgba_pr16_learnset_natural.c':'89ecfa71c937b6e9a656446b54579892f76b57758d20b4c64d9703155dd179b9','tests/test_pr16_learnset_natural.py':'956e76b5b219f68b6bacee543f42bd11ba1304810dfe484093394ba06f948e51'}
+          for path,digest in expected.items():
+              assert hashlib.sha256(pathlib.Path(path).read_bytes()).hexdigest()==digest,path
+          print('PASS exact source transfer')
           PY
+      - name: 新hostランナー用mGBA libraryのみ導入
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq libmgba-dev
+      - name: 原本境界25試験・自然移動/野生生成/戦闘EXP/Save/Continue
+        id: native
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 -B scripts/pr16_learnset_natural.py execute
+      - name: 実測原本・停止点・固定引継ぎ・両ログを記録
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python3 -B scripts/pr16_learnset_natural.py record
+          python3 -B scripts/pr16_resume.py check
+          python3 -B scripts/validate_task_graph.py
+          python3 -B scripts/pr16_learnset_natural.py paths | tr '\n' '\0' >.local/pr16-learnset-natural/paths.z
+          git add --pathspec-from-file=.local/pr16-learnset-natural/paths.z --pathspec-file-nul
+          python3 -B scripts/pr16_learnset_natural.py guard
+      - name: 同branchへ非force commit/pushして最新refと照合
+        run: |
+          set -euo pipefail
+          branch='codex/modernization-followup-20260908'
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20260925-LEARNSET-NATURAL: 自然初期技・戦闘EXPの実測証拠と固定引継ぎを記録'
+          git push origin "HEAD:$branch"
+          sha=$(git rev-parse HEAD)
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$sha"
+          echo "$sha" | tee .local/pr16-learnset-natural/proof/reflected-head.txt
+          echo "RESULT=RECORDED TASK=USER-20260925-LEARNSET-NATURAL COMMIT=$sha"
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
-          name: pr16-natural-scoped-source
-          path: .local/pr16-natural-source/
-          retention-days: 7
+          name: pr16-learnset-natural-proof
+          path: .local/pr16-learnset-natural/proof/
+          retention-days: 30
           if-no-files-found: error
-          include-hidden-files: true
+      - name: 実測FAILを成功へ読み替えない
+        if: steps.native.outcome == 'failure'
+        run: exit 1
