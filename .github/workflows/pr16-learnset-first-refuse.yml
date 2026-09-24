@@ -1,5 +1,5 @@
 name: pr16-learnset-first-refuse
-# 未受入first-question拒否1caseのみ。旧4成功/ARM/原本生成を再実行しない。
+# 失敗したfirst-question1caseだけ修復。旧4native/変更なし20unit/ARMは再実行しない。
 on:
   push:
     branches: [codex/modernization-followup-20260908]
@@ -25,32 +25,32 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: ローカル検証済みの新source転送identity
+      - name: 新修正source転送identity
         run: |
-          echo '0e143e468f73fa6207cbc4a694389e5e64dd7dd11acdeb60d9cedbc9663d9258  scripts/pr16_learnset_first_refuse.py' | sha256sum -c -
-          echo '4cbb4540e6f5eac404f9d6820c1b1543e40ed04cf701b7a66742aa327418ed70  tools/mgba_pr16_learnset_first_refuse.c' | sha256sum -c -
-          echo '77dd88f258919b4d217cf58c9cb1e5c7cc416d88cef2b20ae22286685d3ca4b8  tests/test_pr16_learnset_first_refuse.py' | sha256sum -c -
+          echo 'bd87b1257773b587e1c563cc89fb2b2486f56b078c912f0052dd9e4c4ec36d08  scripts/pr16_first_refuse_jp.py' | sha256sum -c -
+          echo '7fd49871dc952c40bd68cd9d354f63bbe0a863dfd9ba92fc40e14ca2772a1d00  tools/mgba_pr16_learnset_first_refuse.c' | sha256sum -c -
+          echo 'a35f845cdb75dc733cff523a1b545d296958de66bb2ca41d31580c1c3965bfa2  tests/test_pr16_first_refuse_jp.py' | sha256sum -c -
       - name: host mGBAだけを準備（ARM compilerなし）
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends libmgba-dev
-      - name: 新21試験・保存recipe復元・最初の質問でB拒否1case
+      - name: 成功20unit原本を再利用・新4と構造1・JP質問拒否1case
         id: native
         continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ github.token }}
-        run: python3 -B scripts/pr16_learnset_first_refuse.py execute
+        run: python3 -B scripts/pr16_first_refuse_jp.py execute
       - name: 成功と失敗原本・固定引継ぎ・両ログを記録し最終index検査
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          python3 -B scripts/pr16_learnset_first_refuse.py record
+          python3 -B scripts/pr16_first_refuse_jp.py record
           python3 -B scripts/pr16_resume.py check
           python3 -B scripts/validate_task_graph.py
-          python3 -B scripts/pr16_learnset_first_refuse.py paths | tr '\n' '\0' >.local/pr16-learnset-first-refuse/paths.z
+          python3 -B scripts/pr16_first_refuse_jp.py paths | tr '\n' '\0' >.local/pr16-learnset-first-refuse/paths.z
           git add --pathspec-from-file=.local/pr16-learnset-first-refuse/paths.z --pathspec-file-nul
-          python3 -B scripts/pr16_learnset_first_refuse.py guard
+          python3 -B scripts/pr16_first_refuse_jp.py guard
       - name: 同branchへ非force commit/push・remote ref照合
         run: |
           set -euo pipefail
@@ -58,7 +58,7 @@ jobs:
           test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'USER-20260925-LEARNSET-FIRST-REFUSE: 最初の質問の拒否実測・固定引継ぎと両ログを保存'
+          git commit -m 'USER-20260925-LEARNSET-FIRST-REFUSE: 日本語版質問拒否の実測・履歴・引継ぎを保存'
           git push origin "HEAD:$branch"
           sha=$(git rev-parse HEAD)
           test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$sha"
