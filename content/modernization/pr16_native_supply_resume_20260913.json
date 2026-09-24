@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "Issue19: 自然野生初期技/戦闘EXP空き枠 FAIL、成功0。開始手持ち/EXP/能力値fixture。全owner/Issue19は未完。",
+    "current_stop": "Issue19: V4野生固定技分離 PASS_WILD_INITIAL_AND_BATTLE_EXP_EMPTY、自然生成/戦闘EXP成功1。全owner未完。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "Issue19: ValueErrorの保存原本を確認し、未成功の自然生成/戦闘EXP経路だけ修復する。既存アメ11/Bag23/旧戦闘/egg8/ARM/host/Wikiは再実行しない。",
+    "next_step": "Issue19: V4固定野生4技の切離しと自然野生初期技/戦闘EXP空き枠の保存成功は再実行しない。未受入の自然配布/孵化/form、戦闘EXP置換/拒否/既習得/複数level/進化/共有を影響台帳と照合して限定追加。釣り/隠し等の同じ野生adapterへの特殊技順は未受入。原本再採取/旧Wiki/旧host/ARM、アメ11/Bag23/egg8は変更影響なしに再実行しない。全owner/Issue19/release/baseline切替は未完。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -1025,7 +1025,8 @@
     "自然初期技/戦闘EXP run36039653256の成功caseは再実行しない。開始fixtureと自然生成enemyを区別し、元の失敗原本を保持する。",
     "自然初期技/戦闘EXP run36040259713の成功caseは再実行しない。開始fixtureと自然生成enemyを区別し、元の失敗原本を保持する。",
     "自然初期技/戦闘EXP run36040704821の成功caseは再実行しない。開始fixtureと自然生成enemyを区別し、元の失敗原本を保持する。",
-    "自然初期技/戦闘EXP run36041199782の成功caseは再実行しない。開始fixtureと自然生成enemyを区別し、元の失敗原本を保持する。"
+    "自然初期技/戦闘EXP run36041199782の成功caseは再実行しない。開始fixtureと自然生成enemyを区別し、元の失敗原本を保持する。",
+    "V4野生修復run36042409576成功部分は再実行しない。原本候補/未成功traceと新adapterの実測を区別。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -1986,17 +1987,18 @@
   "learnset_natural_progression": {
     "actions_completion_confirmed": false,
     "candidate": {
-      "sha256": "8946438bc37fda468c53e41378a6f82fac8f0b1af7ac6785ef07ca708c2714a1",
+      "sha256": "b7790902733a638445129c388d65ab3c199bceb92a41338e0069221b556b9f91",
       "size": 33554432
     },
     "issue19_complete": false,
     "native_processes": 1,
     "path": "content/modernization/pr16_learnset_natural_checkpoint.json",
     "release_ready": false,
-    "run_id": 36041199782,
-    "source_head": "47ee15b2ab3d45d94b0b50b0553294f79799157d",
-    "status": "FAIL",
-    "successful_cases": 0
+    "run_id": 36042409576,
+    "source_head": "29aee3e4fbaf4618425ff1bad26838aa1bad8d7e",
+    "status": "PASS_WILD_INITIAL_AND_BATTLE_EXP_EMPTY",
+    "successful_cases": 1,
+    "wild_only_repair": true
   },
   "learnset_payloads": {
     "actions_completion_confirmed": true,
@@ -3544,28 +3546,28 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "Issue19: ValueErrorの保存原本を確認し、未成功の自然生成/戦闘EXP経路だけ修復する。既存アメ11/Bag23/旧戦闘/egg8/ARM/host/Wikiは再実行しない。",
+    "goal_ja": "Issue19: V4固定野生4技の切離しと自然野生初期技/戦闘EXP空き枠の保存成功は再実行しない。未受入の自然配布/孵化/form、戦闘EXP置換/拒否/既習得/複数level/進化/共有を影響台帳と照合して限定追加。釣り/隠し等の同じ野生adapterへの特殊技順は未受入。原本再採取/旧Wiki/旧host/ARM、アメ11/Bag23/egg8は変更影響なしに再実行しない。全owner/Issue19/release/baseline切替は未完。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
-    "id": "LEARNSET_NATURAL_FAILURE_ONLY",
+    "id": "LEARNSET_WILD_COMPLETION",
     "read_paths": [
       "docs/PR16_LEARNSET_NATURAL_JA.md",
       "content/modernization/pr16_learnset_natural_checkpoint.json",
-      "scripts/pr16_learnset_natural.py"
+      "scripts/pr16_learnset_wild_repair.py"
     ],
     "stop_rule_ja": "特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。"
   },
   "observed_date_jst": "2026-09-22",
-  "observed_head": "47ee15b2ab3d45d94b0b50b0553294f79799157d",
+  "observed_head": "29aee3e4fbaf4618425ff1bad26838aa1bad8d7e",
   "observed_head_checks": {
-    "reason_ja": "native証拠とpush/upload終端を区別。一般CI action_requiredをnative失敗へ読み替えない。",
+    "reason_ja": "native結果とpush/upload終端を分離。診断Actions successをnative PASSへ読み替えない。",
     "runs": [
       {
         "conclusion": null,
-        "id": 36041199782,
+        "id": 36042409576,
         "status": "in_progress"
       }
     ],
-    "scope_head": "47ee15b2ab3d45d94b0b50b0553294f79799157d"
+    "scope_head": "29aee3e4fbaf4618425ff1bad26838aa1bad8d7e"
   },
   "observed_head_history": [
     {
@@ -4919,7 +4921,7 @@
       "semantics": "PLA1圧縮と新規供給consumerのhost検証成功入力HEAD。ROM配置/実操作/記録commitの受入ではない。"
     }
   ],
-  "observed_head_semantics": "自然野生生成/戦闘EXPの限定工程。開始手持ち/EXP/能力値はfixtureであり全owner受入ではない。",
+  "observed_head_semantics": "V4野生専用上書きを原本へ接続する限定工程。全owner/Issue19完了ではない。",
   "p08_candidate_impact": {
     "candidate": {
       "crc32": "CC068B4A",
@@ -6120,8 +6122,8 @@
       "size": 6476
     },
     ".github/workflows/pr16-learnset-natural.yml": {
-      "sha256": "66492e4715ee8bd9ddc8974f38f94f3f92a7a36b6e1e18164dd2631277c6ce9a",
-      "size": 3045
+      "sha256": "2c52fba50fda1f00cd90a17d12ea4a82be2fccf9e9429640b78c5d864ff187a3",
+      "size": 3736
     },
     ".github/workflows/pr16-learnset-progression.yml": {
       "sha256": "f42e172a412a38c36001268b2a6c26d66379cf204dc2b8e2c3223f776068204b",
@@ -7224,8 +7226,8 @@
       "size": 11264
     },
     "content/modernization/pr16_learnset_natural_checkpoint.json": {
-      "sha256": "4a742c37bac4caeff0c83adac782a3065f5235f1331ed5b29663e396a95268f1",
-      "size": 12822
+      "sha256": "b03694cc492e347f469465f1be1f9ed2f5c1dc0a67f0a92ee31e1d3418c644a4",
+      "size": 90000
     },
     "content/modernization/pr16_learnset_progression_checkpoint.json": {
       "sha256": "be5a1684a51e9bcced727139e5a243edab6c806a76f3518ccbc3f72e7ca3b412",
@@ -8056,8 +8058,8 @@
       "size": 2351
     },
     "docs/PR16_LEARNSET_NATURAL_JA.md": {
-      "sha256": "d8f4ce69fa4886f7121afd159679f0eb09528d915c1ac396fbc5a989134c8377",
-      "size": 1477
+      "sha256": "0c320c3cf25afbac9ad9d275b39d7e1fc483041cf914420ed807d404c56646d2",
+      "size": 2587
     },
     "docs/PR16_LEARNSET_PROGRESSION_JA.md": {
       "sha256": "2d185c6a03df18aa63e7bb587095266dea2033eff0e5e3061e3d61d06277d4f5",
@@ -12231,6 +12233,10 @@
       "sha256": "63d5fac96425213c4dae453fcad087d0ad28f211327d2064ca8b49758a900d9a",
       "size": 8238
     },
+    "scripts/pr16_learnset_wild_repair.py": {
+      "sha256": "0521380ce7d4cf19a1a0e79f591187a318b79f08d022fdf85c6912817b747da3",
+      "size": 17181
+    },
     "scripts/pr16_p05_native_supply_evidence_map.py": {
       "sha256": "55c40230901fc3d58174af46927e28d64bec4cc25acac4ae4cde2b48f739ff55",
       "size": 17044
@@ -12919,6 +12925,10 @@
       "sha256": "6c3e5ddf32ce099f38c4985907add28c45bf95b4443451f783fe58e837f70bc7",
       "size": 5880
     },
+    "src/modernization/pr16_learnset_wild_game.c": {
+      "sha256": "d6d8d380cf2127aacfc7b758c07b30675be212488353972156cc6526655c048c",
+      "size": 1130
+    },
     "tests/fixtures/circus_cold_load_fixture.c": {
       "sha256": "ec6f28d0d93d26f5cc6fd8cbdee00ac586ae34949f22493b5d6bdcc626c5e60a",
       "size": 4019
@@ -13430,6 +13440,10 @@
     "tests/test_pr16_learnset_wiki_registry_followup.py": {
       "sha256": "a6aff7cc551a76129ff1c828d707a4d2c86dea077935b1362744c969220c6b39",
       "size": 1744
+    },
+    "tests/test_pr16_learnset_wild_repair.py": {
+      "sha256": "3b2ea9ac4675d36a11cf01e8c3c996d8aeecca1ba5ba9f707ffc53701f0d650a",
+      "size": 5270
     },
     "tests/test_pr16_p05_native_supply_evidence_map.py": {
       "sha256": "053bb21ba8d94da9121e2dac3c7429f4ecb607e36d65aafee0b96e06a6e2032e",

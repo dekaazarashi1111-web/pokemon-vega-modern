@@ -1,0 +1,96 @@
+
+.local/pr16-learnset-natural/wild-link/wild.elf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+095ff880 <Pr16_GameApplyWildInitialMoves>:
+ 95ff880:	2300      	movs	r3, #0
+ 95ff882:	b570      	push	{r4, r5, r6, lr}
+ 95ff884:	b086      	sub	sp, #24
+ 95ff886:	0004      	movs	r4, r0
+ 95ff888:	9303      	str	r3, [sp, #12]
+ 95ff88a:	4298      	cmp	r0, r3
+ 95ff88c:	d105      	bne.n	95ff89a <Pr16_GameApplyWildInitialMoves+0x1a>
+ 95ff88e:	2500      	movs	r5, #0
+ 95ff890:	0028      	movs	r0, r5
+ 95ff892:	b006      	add	sp, #24
+ 95ff894:	bc70      	pop	{r4, r5, r6}
+ 95ff896:	bc02      	pop	{r1}
+ 95ff898:	4708      	bx	r1
+ 95ff89a:	4b21      	ldr	r3, [pc, #132]	@ (95ff920 <Pr16_GameApplyWildInitialMoves+0xa0>)
+ 95ff89c:	4298      	cmp	r0, r3
+ 95ff89e:	d00e      	beq.n	95ff8be <Pr16_GameApplyWildInitialMoves+0x3e>
+ 95ff8a0:	4b20      	ldr	r3, [pc, #128]	@ (95ff924 <Pr16_GameApplyWildInitialMoves+0xa4>)
+ 95ff8a2:	4298      	cmp	r0, r3
+ 95ff8a4:	d00b      	beq.n	95ff8be <Pr16_GameApplyWildInitialMoves+0x3e>
+ 95ff8a6:	4b20      	ldr	r3, [pc, #128]	@ (95ff928 <Pr16_GameApplyWildInitialMoves+0xa8>)
+ 95ff8a8:	4298      	cmp	r0, r3
+ 95ff8aa:	d008      	beq.n	95ff8be <Pr16_GameApplyWildInitialMoves+0x3e>
+ 95ff8ac:	4b1f      	ldr	r3, [pc, #124]	@ (95ff92c <Pr16_GameApplyWildInitialMoves+0xac>)
+ 95ff8ae:	4298      	cmp	r0, r3
+ 95ff8b0:	d005      	beq.n	95ff8be <Pr16_GameApplyWildInitialMoves+0x3e>
+ 95ff8b2:	4b1f      	ldr	r3, [pc, #124]	@ (95ff930 <Pr16_GameApplyWildInitialMoves+0xb0>)
+ 95ff8b4:	4298      	cmp	r0, r3
+ 95ff8b6:	d002      	beq.n	95ff8be <Pr16_GameApplyWildInitialMoves+0x3e>
+ 95ff8b8:	4b1e      	ldr	r3, [pc, #120]	@ (95ff934 <Pr16_GameApplyWildInitialMoves+0xb4>)
+ 95ff8ba:	4298      	cmp	r0, r3
+ 95ff8bc:	d1e7      	bne.n	95ff88e <Pr16_GameApplyWildInitialMoves+0xe>
+ 95ff8be:	2200      	movs	r2, #0
+ 95ff8c0:	212d      	movs	r1, #45	@ 0x2d
+ 95ff8c2:	0020      	movs	r0, r4
+ 95ff8c4:	4d1c      	ldr	r5, [pc, #112]	@ (95ff938 <Pr16_GameApplyWildInitialMoves+0xb8>)
+ 95ff8c6:	f000 f846 	bl	95ff956 <Pr16_GameApplyWildInitialMoves+0xd6>
+ 95ff8ca:	1e02      	subs	r2, r0, #0
+ 95ff8cc:	d1df      	bne.n	95ff88e <Pr16_GameApplyWildInitialMoves+0xe>
+ 95ff8ce:	210b      	movs	r1, #11
+ 95ff8d0:	0020      	movs	r0, r4
+ 95ff8d2:	f000 f840 	bl	95ff956 <Pr16_GameApplyWildInitialMoves+0xd6>
+ 95ff8d6:	ab04      	add	r3, sp, #16
+ 95ff8d8:	0402      	lsls	r2, r0, #16
+ 95ff8da:	9300      	str	r3, [sp, #0]
+ 95ff8dc:	4d17      	ldr	r5, [pc, #92]	@ (95ff93c <Pr16_GameApplyWildInitialMoves+0xbc>)
+ 95ff8de:	2303      	movs	r3, #3
+ 95ff8e0:	4917      	ldr	r1, [pc, #92]	@ (95ff940 <Pr16_GameApplyWildInitialMoves+0xc0>)
+ 95ff8e2:	4818      	ldr	r0, [pc, #96]	@ (95ff944 <Pr16_GameApplyWildInitialMoves+0xc4>)
+ 95ff8e4:	0c12      	lsrs	r2, r2, #16
+ 95ff8e6:	f000 f836 	bl	95ff956 <Pr16_GameApplyWildInitialMoves+0xd6>
+ 95ff8ea:	0005      	movs	r5, r0
+ 95ff8ec:	2801      	cmp	r0, #1
+ 95ff8ee:	d1ce      	bne.n	95ff88e <Pr16_GameApplyWildInitialMoves+0xe>
+ 95ff8f0:	0020      	movs	r0, r4
+ 95ff8f2:	4b15      	ldr	r3, [pc, #84]	@ (95ff948 <Pr16_GameApplyWildInitialMoves+0xc8>)
+ 95ff8f4:	f000 f82e 	bl	95ff954 <Pr16_GameApplyWildInitialMoves+0xd4>
+ 95ff8f8:	3801      	subs	r0, #1
+ 95ff8fa:	0600      	lsls	r0, r0, #24
+ 95ff8fc:	0e00      	lsrs	r0, r0, #24
+ 95ff8fe:	2863      	cmp	r0, #99	@ 0x63
+ 95ff900:	d8c5      	bhi.n	95ff88e <Pr16_GameApplyWildInitialMoves+0xe>
+ 95ff902:	260d      	movs	r6, #13
+ 95ff904:	0031      	movs	r1, r6
+ 95ff906:	0020      	movs	r0, r4
+ 95ff908:	4b10      	ldr	r3, [pc, #64]	@ (95ff94c <Pr16_GameApplyWildInitialMoves+0xcc>)
+ 95ff90a:	aa03      	add	r2, sp, #12
+ 95ff90c:	3601      	adds	r6, #1
+ 95ff90e:	f000 f821 	bl	95ff954 <Pr16_GameApplyWildInitialMoves+0xd4>
+ 95ff912:	2e16      	cmp	r6, #22
+ 95ff914:	d1f6      	bne.n	95ff904 <Pr16_GameApplyWildInitialMoves+0x84>
+ 95ff916:	0020      	movs	r0, r4
+ 95ff918:	4b0d      	ldr	r3, [pc, #52]	@ (95ff950 <Pr16_GameApplyWildInitialMoves+0xd0>)
+ 95ff91a:	f000 f81b 	bl	95ff954 <Pr16_GameApplyWildInitialMoves+0xd4>
+ 95ff91e:	e7b7      	b.n	95ff890 <Pr16_GameApplyWildInitialMoves+0x10>
+ 95ff920:	02023f8c 	.word	0x02023f8c
+ 95ff924:	02023ff0 	.word	0x02023ff0
+ 95ff928:	02024054 	.word	0x02024054
+ 95ff92c:	020240b8 	.word	0x020240b8
+ 95ff930:	0202411c 	.word	0x0202411c
+ 95ff934:	02024180 	.word	0x02024180
+ 95ff938:	0803f355 	.word	0x0803f355
+ 95ff93c:	095f94d3 	.word	0x095f94d3
+ 95ff940:	0001a5e8 	.word	0x0001a5e8
+ 95ff944:	095dee7c 	.word	0x095dee7c
+ 95ff948:	0803df9d 	.word	0x0803df9d
+ 95ff94c:	0803fa71 	.word	0x0803fa71
+ 95ff950:	095f9949 	.word	0x095f9949
+ 95ff954:	4718      	bx	r3
+ 95ff956:	4728      	bx	r5
