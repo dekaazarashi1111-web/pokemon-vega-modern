@@ -1,6 +1,6 @@
 # PR16 Issue19: 最初の質問での拒否
 
-状態 `PASS_BATTLE_EXP_FIRST_REFUSAL`。入力HEAD `f99b97530b25e11e71ee5d89363d33ca585a8af8`、run `36071876126`。Actions終端確認 `False`。
+状態 `PASS_BATTLE_EXP_FIRST_REFUSAL`。入力HEAD `f99b97530b25e11e71ee5d89363d33ca585a8af8`、run `36071876126`。Actions終端確認 `True`。
 
 候補 `b7790902733a638445129c388d65ab3c199bceb92a41338e0069221b556b9f91` は保存recipeを復元。ROM変更0、ARM0、旧4境界native再実行0。
 
@@ -12,7 +12,7 @@ battle script 0x5aを観測して通常B、0x5bで通常A中止確認。技一�
 
 ## 次の未完工程
 
-native成功を再実行せずcompleteでActions終端・push・artifact原本だけ照合する。
+Issue19: 最初の質問でB拒否/中止確認/Save/fresh Continueは限定受入済み。旧EXP4境界と今回成功を再実行せず、次は戦闘EXP進化/共有を限定追加する。その後は未受入の自然配布/孵化/form、釣り/隠し野生の特殊技順。アメ11/Bag23/egg8/野生初期技/EXP空き枠/旧host・ARM・Wikiは変更影響なし。全owner/Issue19/release/baseline切替は未完。
 
 ## 日本語版symbol訂正と履歴
 

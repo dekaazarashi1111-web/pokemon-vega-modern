@@ -9711,3 +9711,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 同branchへ非force pushしremoteとreflected-head.txtを照合。
 - Network: GitHub固定source/保存artifact/Actions。事前source転送WIP 5078bd7/run36070267613（native/unit0）。参照: CFRU-JP e24a16fe39e27ae162faf5b78596d1f3df18489d battle_script_macros.s, assembly/data/battle_script_commands_table.s, include/new/ram_locs_battle.h。source-lock変更なし。merge/release/baseline切替なし。
 - JP binding repair: run36071387743失敗原本を保全。BPRJ.ld実symbol0x02023CD4へ修正。成功unit20再利用、変更C構造1+新4を実行。旧native再実行0。参照 https://github.com/kapibarasan000/CFRU-JP/blob/e24a16fe39e27ae162faf5b78596d1f3df18489d/BPRJ.ld 。
+
+## 2026-09-24T23:23:04.856193+00:00
+- Timestamp: 2026-09-24T23:23:04.856193+00:00
+- Task: USER-20260925-LEARNSET-FIRST-REFUSE / 最初の質問でB拒否
+- Version: issue19-first-refusal-v1
+- Status: DONE
+- Summary: PASS_BATTLE_EXP_FIRST_REFUSAL。B拒否→A中止確認、summary非到達、正常HP/保存4技/PP/Save/fresh Continueの限定1case。旧4成功と履歴を保全。全owner/Issue19未完。
+- Files changed: 専用driver/C/tests/workflow・CP/guide/原本、固定MD/JSON、両ログ。
+- Verify: 新unit5、host compile1、native1。旧受入native/unit、ARM、ROM変更、Wiki生成0。Actions終端確認=True。complete時は再実行0。
+- Commit: 同branchへ非force pushしremoteとreflected-head.txtを照合。
+- Network: GitHub固定source/保存artifact/Actions。事前source転送WIP 5078bd7/run36070267613（native/unit0）。参照: CFRU-JP e24a16fe39e27ae162faf5b78596d1f3df18489d battle_script_macros.s, assembly/data/battle_script_commands_table.s, include/new/ram_locs_battle.h。source-lock変更なし。merge/release/baseline切替なし。
+- JP binding repair: run36071387743失敗原本を保全。BPRJ.ld実symbol0x02023CD4へ修正。成功unit20再利用、変更C構造1+新4を実行。旧native再実行0。参照 https://github.com/kapibarasan000/CFRU-JP/blob/e24a16fe39e27ae162faf5b78596d1f3df18489d/BPRJ.ld 。
+- Completion record repair: run36072151730はnative成功原本の終端照合後、補助JSONの親directory未作成でpush前停止。保存先作成を修正し、記録だけ再開。成功native/unit/host/ARMの再実行0。

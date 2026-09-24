@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-Issue19: 最初の質問でB拒否 PASS_BATTLE_EXP_FIRST_REFUSAL。Actions終端確認=False。旧EXP4成功は不変、全体未完。
+Issue19: 最初の質問でB拒否 PASS_BATTLE_EXP_FIRST_REFUSAL。Actions終端確認=True。旧EXP4成功は不変、全体未完。
 
-**次: native成功を再実行せずcompleteでActions終端・push・artifact原本だけ照合する。**
+**次: Issue19: 最初の質問でB拒否/中止確認/Save/fresh Continueは限定受入済み。旧EXP4境界と今回成功を再実行せず、次は戦闘EXP進化/共有を限定追加する。その後は未受入の自然配布/孵化/form、釣り/隠し野生の特殊技順。アメ11/Bag23/egg8/野生初期技/EXP空き枠/旧host・ARM・Wikiは変更影響なし。全owner/Issue19/release/baseline切替は未完。**
 
 特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `f99b97530b25e11e71ee5d89363d33ca585a8af8`。
+証拠のsource HEAD: `0853f5f429e0627290b90c0629bbe1629b94e6c1`。
 最初の質問でB拒否の限定追加。旧4境界は不変。native成功とActions終端を区別。
 
 ## 最短の再開手順
