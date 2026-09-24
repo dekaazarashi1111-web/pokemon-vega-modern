@@ -1,5 +1,5 @@
 name: pr16-learnset-natural
-# 診断v2。補助symbol欠損は受入条件と分離。25境界試験は保存結果継承・新規実行0。
+# 診断v3。初期化後の上書き8呼出で観測を終了。25境界試験は保存結果継承・新規実行0。
 on:
   push:
     branches: [codex/modernization-followup-20260908]
@@ -51,7 +51,7 @@ jobs:
           test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'USER-20260925-LEARNSET-NATURAL: 自然初期技の受動trace・失敗原本・引継ぎを保存'
+          git commit -m 'USER-20260925-LEARNSET-NATURAL: 初期化後の全枠上書き呼出元と失敗原本を保存'
           git push origin "HEAD:$branch"
           sha=$(git rev-parse HEAD)
           test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$sha"
