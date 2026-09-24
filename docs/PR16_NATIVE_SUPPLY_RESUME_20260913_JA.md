@@ -14,7 +14,7 @@ Issue19: 自然野生初期技/戦闘EXP空き枠 FAIL、成功0。開始手持�
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `51242ac859b3a27402d7567cc347c785ac5e8174`。
+証拠のsource HEAD: `47ee15b2ab3d45d94b0b50b0553294f79799157d`。
 自然野生生成/戦闘EXPの限定工程。開始手持ち/EXP/能力値はfixtureであり全owner受入ではない。
 
 ## 最短の再開手順
@@ -293,6 +293,7 @@ P08ゲート:
 - 自然初期技/戦闘EXP run36039653256の成功caseは再実行しない。開始fixtureと自然生成enemyを区別し、元の失敗原本を保持する。
 - 自然初期技/戦闘EXP run36040259713の成功caseは再実行しない。開始fixtureと自然生成enemyを区別し、元の失敗原本を保持する。
 - 自然初期技/戦闘EXP run36040704821の成功caseは再実行しない。開始fixtureと自然生成enemyを区別し、元の失敗原本を保持する。
+- 自然初期技/戦闘EXP run36041199782の成功caseは再実行しない。開始fixtureと自然生成enemyを区別し、元の失敗原本を保持する。
 
 ## 次セッションへ残す更新手順
 
