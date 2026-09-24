@@ -1,0 +1,59 @@
+name: pr16-exp-evolution-share
+# 受入済みnative/ARM/unitは再実行しない。初回は実装に必要なtracked textのみ取得。
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-exp-evolution-share.yml]
+permissions:
+  contents: read
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-exp-evolution-share
+  cancel-in-progress: false
+jobs:
+  source-context:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+      GITHUB_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: 固定HEADの関連tracked textと最新Actionsを取得（実行再検証0）
+        run: |
+          python3 -B - <<'PY'
+          import hashlib,json,os,pathlib,subprocess,sys,zipfile
+          root=pathlib.Path('.');dest=root/'.local/pr16-exp-evolution-share/context';dest.mkdir(parents=True)
+          specs=['AGENTS.md','CHATGPT_RESUME.md','scripts/*.py','tests/*.py','tools/*.c','tools/*.h','tools/*.py','.github/workflows/pr16*','content/modernization/pr16_native_supply_resume_20260913.json','content/modernization/pr16_learnset*.json','content/modernization/pr16_bp_chooser_checkpoint.json','content/modernization/p08_remaining_work.json','config/active_play_baseline.json','design/active_play_baseline.md','docs/PR16_LEARNSET*.md','docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md']
+          paths=subprocess.check_output(['git','ls-files','-z','--',*specs]).decode().split('\0');paths=[p for p in paths if p]
+          entries={};total=0
+          with zipfile.ZipFile(dest/'sources.zip','w',zipfile.ZIP_DEFLATED) as archive:
+              for name in paths:
+                  p=root/name
+                  if p.is_symlink() or p.suffix not in {'.py','.c','.h','.md','.json','.yml','.yaml'}:raise RuntimeError('non-source '+name)
+                  b=p.read_bytes();b.decode('utf-8');total+=len(b)
+                  if total>160000000:raise RuntimeError('source archive bound')
+                  entries[name]={'size':len(b),'sha256':hashlib.sha256(b).hexdigest()};archive.writestr(name,b)
+          sys.path.insert(0,'scripts')
+          from pr16_wiki_reconcile import fetch
+          recent=fetch('actions/runs?branch=codex%2Fmodernization-followup-20260908&per_page=30')
+          active=fetch('actions/runs?branch=codex%2Fmodernization-followup-20260908&status=in_progress&per_page=30')
+          value={'source_head':os.environ['GITHUB_SHA'],'source_parent':'3505bdb9bf84bf7d5a2ffff96abce305b4077c5e','run_id':int(os.environ['GITHUB_RUN_ID']),'files':entries,'accepted_native_reruns':0,'unit_reruns':0,'arm_compiles':0,'host_compiles':0,'recent_actions':[{k:r[k] for k in ('id','name','head_sha','path','status','conclusion')} for r in recent['workflow_runs']],'in_progress':[{k:r[k] for k in ('id','name','head_sha','path','status','conclusion')} for r in active['workflow_runs']]}
+          (dest/'manifest.json').write_text(json.dumps(value,ensure_ascii=False,indent=2)+'\n')
+          for name in ('design/run_log.md','design/version_log.md'):
+              data=(root/name).read_text();(dest/(pathlib.Path(name).stem+'-tail.txt')).write_text('\n'.join(data.splitlines()[-90:])+'\n')
+          print('TRACKED_TEXT_FILES',len(entries),'BYTES',total,'ACCEPTED_NATIVE_RERUNS=0 ARM_COMPILES=0')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr16-exp-evolution-share-context
+          path: .local/pr16-exp-evolution-share/context/
+          retention-days: 7
+          if-no-files-found: error
