@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-Issue19: 最初の質問でB拒否 PARTIAL_BATTLE_EXP_FIRST_REFUSAL。Actions終端確認=False。旧EXP4成功は不変、全体未完。
+Issue19: 最初の質問でB拒否 PASS_BATTLE_EXP_FIRST_REFUSAL。Actions終端確認=False。旧EXP4成功は不変、全体未完。
 
-**次: 今回失敗原本を保持し、最初の質問での拒否だけ修復する。旧EXP4成功/アメ11/Bag23/egg8は再実行しない。**
+**次: native成功を再実行せずcompleteでActions終端・push・artifact原本だけ照合する。**
 
 特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `dbba6d9d7623bb8b2987244e7f3a89126a51b1b0`。
+証拠のsource HEAD: `f99b97530b25e11e71ee5d89363d33ca585a8af8`。
 最初の質問でB拒否の限定追加。旧4境界は不変。native成功とActions終端を区別。
 
 ## 最短の再開手順
@@ -28,7 +28,8 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 - `docs/PR16_LEARNSET_FIRST_REFUSE_JA.md`
 - `content/modernization/pr16_learnset_first_refuse_checkpoint.json`
 - `scripts/pr16_learnset_first_refuse.py`
-- `tests/test_pr16_learnset_first_refuse.py`
+- `scripts/pr16_first_refuse_jp.py`
+- `tests/test_pr16_first_refuse_jp.py`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 

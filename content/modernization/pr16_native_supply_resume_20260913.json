@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "Issue19: 最初の質問でB拒否 PARTIAL_BATTLE_EXP_FIRST_REFUSAL。Actions終端確認=False。旧EXP4成功は不変、全体未完。",
+    "current_stop": "Issue19: 最初の質問でB拒否 PASS_BATTLE_EXP_FIRST_REFUSAL。Actions終端確認=False。旧EXP4成功は不変、全体未完。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "今回失敗原本を保持し、最初の質問での拒否だけ修復する。旧EXP4成功/アメ11/Bag23/egg8は再実行しない。",
+    "next_step": "native成功を再実行せずcompleteでActions終端・push・artifact原本だけ照合する。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -1670,18 +1670,20 @@
     "unaffected_accepted_native_reruns": 0
   },
   "learnset_first_refusal": {
-    "accepted_cases": [],
+    "accepted_cases": [
+      "butterfree-exp-first-refuse"
+    ],
     "accepted_native_reruns": 0,
     "actions_completion_confirmed": false,
     "host_compiles": 1,
     "issue19_complete": false,
     "native_processes": 1,
-    "new_unit_tests": 21,
+    "new_unit_tests": 5,
     "path": "content/modernization/pr16_learnset_first_refuse_checkpoint.json",
     "release_ready": false,
-    "run_id": 36071387743,
-    "source_head": "dbba6d9d7623bb8b2987244e7f3a89126a51b1b0",
-    "status": "PARTIAL_BATTLE_EXP_FIRST_REFUSAL"
+    "run_id": 36071876126,
+    "source_head": "f99b97530b25e11e71ee5d89363d33ca585a8af8",
+    "status": "PASS_BATTLE_EXP_FIRST_REFUSAL"
   },
   "learnset_floette": {
     "actions_completion_confirmed": true,
@@ -3707,29 +3709,30 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "今回失敗原本を保持し、最初の質問での拒否だけ修復する。旧EXP4成功/アメ11/Bag23/egg8は再実行しない。",
+    "goal_ja": "native成功を再実行せずcompleteでActions終端・push・artifact原本だけ照合する。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
     "id": "LEARNSET_EXP_FIRST_REFUSAL",
     "read_paths": [
       "docs/PR16_LEARNSET_FIRST_REFUSE_JA.md",
       "content/modernization/pr16_learnset_first_refuse_checkpoint.json",
       "scripts/pr16_learnset_first_refuse.py",
-      "tests/test_pr16_learnset_first_refuse.py"
+      "scripts/pr16_first_refuse_jp.py",
+      "tests/test_pr16_first_refuse_jp.py"
     ],
     "stop_rule_ja": "特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。"
   },
   "observed_date_jst": "2026-09-22",
-  "observed_head": "dbba6d9d7623bb8b2987244e7f3a89126a51b1b0",
+  "observed_head": "f99b97530b25e11e71ee5d89363d33ca585a8af8",
   "observed_head_checks": {
     "reason_ja": "限定nativeと一般CIを分離。最新観測はcheckpointのobserved_recent_actions。",
     "runs": [
       {
         "conclusion": null,
-        "id": 36071387743,
+        "id": 36071876126,
         "status": "in_progress"
       }
     ],
-    "scope_head": "dbba6d9d7623bb8b2987244e7f3a89126a51b1b0"
+    "scope_head": "f99b97530b25e11e71ee5d89363d33ca585a8af8"
   },
   "observed_head_history": [
     {
@@ -6276,8 +6279,8 @@
       "size": 2598
     },
     ".github/workflows/pr16-learnset-first-refuse.yml": {
-      "sha256": "1e8f4170a31c4d3db93e2e891baafb0e132ad21c70fa8bfeef48d60637990fd1",
-      "size": 3682
+      "sha256": "8f0a83eb1effbb394e9815cca8b4528dd8d0ae9d38b7589920b7668d5daea7aa",
+      "size": 3632
     },
     ".github/workflows/pr16-learnset-gameplay.yml": {
       "sha256": "7e82b4671f2d82af521042cc2d2f8d6a51a43a72f13f3fa4ebab594acc901e2e",
@@ -7384,8 +7387,8 @@
       "size": 69331
     },
     "content/modernization/pr16_learnset_first_refuse_checkpoint.json": {
-      "sha256": "bc782b11a5cba9bff8e5538611c164915df89293307b299757863bb17d4506cb",
-      "size": 16718
+      "sha256": "db3f6f75f0887491ed1486d5b70faac9a31d1d1aa0d2762fa8cd6413b0a7c4be",
+      "size": 23762
     },
     "content/modernization/pr16_learnset_gameplay_checkpoint.json": {
       "sha256": "ea69013f782168a52a0a9f5936468f87b2afd34aa3625cf74223202c6054f878",
@@ -8236,8 +8239,8 @@
       "size": 2422
     },
     "docs/PR16_LEARNSET_FIRST_REFUSE_JA.md": {
-      "sha256": "699e771e1498b04c9d279b23c0786e122dff274a4452ea97df7250b15e1842c4",
-      "size": 1356
+      "sha256": "85253b2d2a1364d71bff369a0842cdde4a1f818fc173b7e67940893d2b4cb55f",
+      "size": 1761
     },
     "docs/PR16_LEARNSET_GAMEPLAY_JA.md": {
       "sha256": "02feaa1765647747812b3f720cf24c869991ba54d8fad3e9b419f0b686dfc978",
@@ -12343,6 +12346,10 @@
       "sha256": "f4ee5e21a9a181ec75a1551ae9a601500825e442622207a9f387bb88f260349e",
       "size": 3756
     },
+    "scripts/pr16_first_refuse_jp.py": {
+      "sha256": "bd87b1257773b587e1c563cc89fb2b2486f56b078c912f0052dd9e4c4ec36d08",
+      "size": 4117
+    },
     "scripts/pr16_gear_originals.py": {
       "sha256": "7d4b617b96826343087dc2ca27cf017c9ad47e5bef1a4b91c90974da58f66bea",
       "size": 10661
@@ -13575,6 +13582,10 @@
       "sha256": "148e0aeed4f8f5d15df7201c0e5bf1eebc40ad0254f8593f21891075ca72dc26",
       "size": 1829
     },
+    "tests/test_pr16_first_refuse_jp.py": {
+      "sha256": "a35f845cdb75dc733cff523a1b545d296958de66bb2ca41d31580c1c3965bfa2",
+      "size": 1730
+    },
     "tests/test_pr16_learnset_baseline_record.py": {
       "sha256": "e75566696133c0fd8a65a045dfbe5e644f30d60dc59516b297608ac55b870d7c",
       "size": 9039
@@ -14488,8 +14499,8 @@
       "size": 9467
     },
     "tools/mgba_pr16_learnset_first_refuse.c": {
-      "sha256": "4cbb4540e6f5eac404f9d6820c1b1543e40ed04cf701b7a66742aa327418ed70",
-      "size": 10280
+      "sha256": "7fd49871dc952c40bd68cd9d354f63bbe0a863dfd9ba92fc40e14ca2772a1d00",
+      "size": 10270
     },
     "tools/mgba_pr16_learnset_gameplay.c": {
       "sha256": "4d6050d21c6ab970b28c38643f1e0f5313c9a1f0aba03a91c9865411d08cca68",
