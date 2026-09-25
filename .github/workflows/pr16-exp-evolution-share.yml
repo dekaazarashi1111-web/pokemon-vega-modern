@@ -1,5 +1,5 @@
 name: pr16-exp-evolution-share
-# 共有用の生成Cをnative前の独立HEADに保存する。旧unit/nativeは実行しない。
+# 保存済み55unit・進化2caseを継承し、通常field入力だけの変更影響を検証。
 on:
   push:
     branches: [codex/modernization-followup-20260908]
@@ -12,10 +12,10 @@ concurrency:
   group: pr16-exp-evolution-share
   cancel-in-progress: false
 jobs:
-  preparation:
+  evolution-share:
     if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 15
     env:
       PYTHONDONTWRITEBYTECODE: '1'
       GITHUB_TOKEN: ${{ github.token }}
@@ -26,65 +26,47 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: 固定生成・原本保全・WIP記録
+      - name: 固定source・旧受入不変
         run: |
           set -euo pipefail
-          git diff --exit-code a743c438461d37bd181c4c59aeaf46b0b0e591b2 HEAD -- scripts/pr16_exp_share_input.py tests/test_pr16_exp_share_input.py
-          python3 -B - <<'PY'
-          import ast,datetime,json,os,pathlib,sys
-          sys.path.insert(0,'scripts')
-          import pr16_exp_share_input as i
-          from pr16_learnset_compact_record import publish_resume
-          e=i.e;i.original_units()
-          target=pathlib.Path(i.C);assert not target.exists();target.write_text(i.derived_source())
-          for p in (i.SELF,i.TEST):ast.parse(pathlib.Path(p).read_text())
-          proof=pathlib.Path('.local/pr16-exp-share-input-preparation');proof.mkdir(parents=True)
-          receipt={'status':'WIP_NOT_NATIVE_ACCEPTED','source_head':os.environ['GITHUB_SHA'],'run_id':int(os.environ['GITHUB_RUN_ID']),'template':i.s.C,'template_identity':e.identity(pathlib.Path(i.s.C).read_bytes()),'derived':i.C,'derived_identity':e.identity(target.read_bytes()),'inherited_unit_tests':55,'unit_executions':0,'native_executions':0,'rom_changes':0,'previous_native':{'run':36079548406,'conclusion':'failure','reason':'shared field walking timeout; ordinary A keys now bounded before encounter'},'host_writes_added':0,'accepted_native_reruns':0}
-          rp='content/modernization/pr16_exp_share_input_preparation.json';e.write(pathlib.Path(rp),receipt)
-          (proof/'preparation.json').write_text(json.dumps(receipt,ensure_ascii=False,indent=2)+'\n')
-          with pathlib.Path(e.GUIDE).open('a') as out:out.write('\n## 通常field入力の修復準備\n\n共有fixture後の歩行はmapを移しても停止した。次は状態注入でなく、遭遇前field lock=1かつ通常field callbackに限る30frame間隔・最大120回のA入力を検証する。遭遇後は補助を無効にする。準備時点で共有nativeは未受入、既受入2caseは再実行しない。\n')
-          state=e.load(pathlib.Path(e.x.m.STATE));state['learnset_exp_evolution_share']['field_input_preparation']=receipt
-          goal='scripts/pr16_exp_share_input.py execute でfield通常入力の新規6unitと未受入共有1caseだけ検証する。55unitと進化2caseはsource/proof照合で継承。全3case成功後はcompleteのみで終端照合。'
-          state['bp']['current_stop']='Issue19: EXP進化2/3保存済み。共有の通常field入力修復を独立HEADへ準備、native未検証。'
-          state['bp']['next_step']=goal;state['observed_head']=os.environ['GITHUB_SHA']
-          state['observed_head_checks']={'scope_head':'023604d280177ad971bac96649b2b15f7c8e42e7','runs':[{'id':36079548406,'status':'completed','conclusion':'failure'}],'reason_ja':'前回は4unit/compile成功、共有歩行失敗。失敗原本を保全し準備コードを受入へ昇格しない。'}
-          state['next_action']=dict(state['next_action'],goal_ja=goal,read_paths=[e.GUIDE,e.CP,i.SELF,i.TEST,i.C])
-          for p in (i.SELF,i.TEST,i.C,e.WF,e.GUIDE,rp):state['source_bindings'][p]=e.identity(pathlib.Path(p).read_bytes())
-          publish_resume(state)
-          stamp=datetime.datetime.now(datetime.timezone.utc).isoformat()
-          note=f'\n## {stamp}\n- Timestamp: {stamp}\n- Task: {e.TASK} / 共有field入力の修復準備\n- Version: field-input-v1\n- Status: STOPPED（実装WIP・native未検証）\n- Summary: 共有開始fixture後のfield lock待ちへ上限付き通常A入力。遭遇後無効。状態注入0。\n- Files changed: 共有専用C・準備JSON・guide・固定MD/JSON・両ログ。\n- Verify: 固定生成・構文・55unit原本hash継承。unit/native/ARM実行0。旧native2case再実行0。resume/task graph/final indexを検査。\n- Commit: 同branchへの非force push・remote ref照合。\n- Network: GitHub保存原本のみ。過去run失敗は保持。全体guard PASSは主張しない。\n'
-          for p in ('design/run_log.md','design/version_log.md'):
-              with pathlib.Path(p).open('a') as out:out.write(note)
-          owned={i.C,rp,e.GUIDE,e.x.m.STATE,e.x.m.DOC,'design/run_log.md','design/version_log.md'}
-          (proof/'paths.z').write_bytes(b'\0'.join(p.encode() for p in sorted(owned))+b'\0')
-          PY
+          git diff --exit-code 03775db23b4feb1bff89286dabcd17fe7f45176a HEAD -- scripts/pr16_exp_share_input.py tests/test_pr16_exp_share_input.py tools/mgba_pr16_exp_share_input.c
+          git diff --exit-code 023604d280177ad971bac96649b2b15f7c8e42e7 HEAD -- scripts/pr16_exp_share_saved.py tests/test_pr16_exp_share_saved.py scripts/pr16_exp_share_route.py tests/test_pr16_exp_share_route.py scripts/pr16_exp_evolution_share.py tools/mgba_pr16_exp_evolution_sync.c tests/test_pr16_exp_evolution_share.py scripts/pr16_exp_evolution_sync.py tests/test_pr16_exp_evolution_sync.py scripts/pr16_exp_evolution_observation.py tests/test_pr16_exp_evolution_observation.py
+          git diff --exit-code 9cfde111077c1ca451344de0d4cd09c83f335b0c HEAD -- AGENTS.md CHATGPT_RESUME.md config/active_play_baseline.json design/active_play_baseline.md content/modernization/pr16_bp_chooser_checkpoint.json content/modernization/p08_remaining_work.json content/modernization/pr16_learnset_boundaries_checkpoint.json content/modernization/pr16_learnset_first_refuse_checkpoint.json
+      - name: host mGBAのみ準備
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends libmgba-dev
+      - name: 通常field入力6unit・未受入共有1case
+        id: native
+        continue-on-error: true
+        run: python3 -B scripts/pr16_exp_share_input.py execute
+      - name: 原本・引継ぎ・両ログを記録し最終index検査
+        run: |
+          set -euo pipefail
+          python3 -B scripts/pr16_exp_share_input.py record
           python3 -B scripts/pr16_resume.py check
           python3 -B scripts/validate_task_graph.py
-          git add --pathspec-from-file=.local/pr16-exp-share-input-preparation/paths.z --pathspec-file-nul
-          python3 -B - <<'PY'
-          import os,pathlib,subprocess,sys
-          sys.path.insert(0,'scripts')
-          import pr16_learnset_runtime_record as g
-          g.START=os.environ['GITHUB_SHA'];g.CODE=set()
-          g.OWNED=set(pathlib.Path('.local/pr16-exp-share-input-preparation/paths.z').read_bytes().decode().strip('\0').split('\0'))
-          g.guard();subprocess.run(['git','diff','--cached','--check'],check=True)
-          PY
-      - name: 修復準備を同branchへ非force保存
+          python3 -B scripts/pr16_exp_share_input.py paths | tr '\n' '\0' >.local/pr16-exp-evolution-share/paths.z
+          git add --pathspec-from-file=.local/pr16-exp-evolution-share/paths.z --pathspec-file-nul
+          python3 -B scripts/pr16_exp_share_input.py guard
+      - name: 同branchへ非force保存・remote照合
         run: |
           set -euo pipefail
           branch='codex/modernization-followup-20260908'
           test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'USER-20260925-LEARNSET-EXP-EVOLUTION-SHARE: WIP 共有field通常入力Cと引継ぎ・両ログを保存'
+          git commit -m 'USER-20260925-LEARNSET-EXP-EVOLUTION-SHARE: 通常field入力の共有native原本・引継ぎ・両ログを保存'
           git push origin "HEAD:$branch"
           sha=$(git rev-parse HEAD)
           test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$sha"
-          echo "RESULT=STOPPED TASK=USER-20260925-LEARNSET-EXP-EVOLUTION-SHARE VERIFY=PREPARATION_PASS COMMIT=$sha"
+          echo "$sha" | tee .local/pr16-exp-evolution-share/proof/reflected-head.txt
+          echo "RESULT=STOPPED TASK=USER-20260925-LEARNSET-EXP-EVOLUTION-SHARE VERIFY=${{ steps.native.outcome }} COMMIT=$sha"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: pr16-exp-share-input-preparation
-          path: .local/pr16-exp-share-input-preparation/*.json
+          name: pr16-exp-evolution-share-proof
+          path: .local/pr16-exp-evolution-share/proof/
           retention-days: 30
           if-no-files-found: error
+      - name: native失敗を成功へ読み替えない
+        if: steps.native.outcome == 'failure'
+        run: exit 1
