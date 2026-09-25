@@ -8,13 +8,13 @@
 
 Issue19: Collection学習owner 17/17。非学習owner1281の配布初期技は未受入。
 
-**次: 17学習ownerの保存成功native/旧unit/host/ARMを再実行せず、Actions/artifact終端照合だけ実施。**
+**次: Issue19: Collection学習owner17経路の通常配布・原本初期技・Save/fresh Continueは保存受入から再実行しない。ギザみみピチュー1281は既存EXCLUDED_REMAKE_FORM_IDENTITY_ONLYにより技の自動補完/通常ピチュー流用禁止、配布初期技の受入保留。未受入の研究タマゴ孵化後のform/技保持、釣り/隠し野生の特殊技順を続ける。全Issue19/release/active baseline切替は未完。**
 
 特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `cc160e5b9127a0acd32ddd65def74438c9b6a852`。
+証拠のsource HEAD: `2c3770116cc6d410189f260eb32cdf9d381dc163`。
 Collection学習owner17経路と非学習owner1281を区別。全18配布/全Issue19完成ではない。
 
 ## 最短の再開手順

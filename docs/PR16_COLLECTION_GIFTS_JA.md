@@ -1,6 +1,6 @@
 # PR16 Issue19: Collection学習owner配布
 
-状態 `PASS_COLLECTION_GIFTS_LEARNING_SCOPE`。学習owner限定受入 17/17、定義全体18件中1件は既存方針で保留。Actions終端 `False`。
+状態 `PASS_COLLECTION_GIFTS_LEARNING_SCOPE`。学習owner限定受入 17/17、定義全体18件中1件は既存方針で保留。Actions終端 `True`。
 
 source `cc160e5b9127a0acd32ddd65def74438c9b6a852` / run `36121122707`。候補 `b7790902733a638445129c388d65ab3c199bceb92a41338e0069221b556b9f91` / 33554432 bytes。ROM/runtime/原本方針は変更しない。
 
@@ -38,8 +38,14 @@ source `cc160e5b9127a0acd32ddd65def74438c9b6a852` / run `36121122707`。候補 `
 
 ## 次
 
-17学習ownerの保存成功native/旧unit/host/ARMを再実行せず、Actions/artifact終端照合だけ実施。
+Issue19: Collection学習owner17経路の通常配布・原本初期技・Save/fresh Continueは保存受入から再実行しない。ギザみみピチュー1281は既存EXCLUDED_REMAKE_FORM_IDENTITY_ONLYにより技の自動補完/通常ピチュー流用禁止、配布初期技の受入保留。未受入の研究タマゴ孵化後のform/技保持、釣り/隠し野生の特殊技順を続ける。全Issue19/release/active baseline切替は未完。
 
 ## 観測原本の適用範囲
 
 run36119380600の固定2件と研究1201はheadless実測の機械的受入。保存画像9枚は単色のため画面受入に使わない。1201は先頭cursorと一覧表示が同frameになる誤拒否を、raw menu/frameを追加照合して原本再検証した。失敗run/原本は成功へ書き換えていない。この3件を再実行せず、残りだけ描画初期化後の別controller identityで実行する。画像の非単色検査と意味内容の目視確認を区別する。
+
+## 終端確定と再開境界
+
+学習owner17/17の配布・初期4技/PP・通常Save・fresh-core Continue・再訪取消を限定受入。うち14件の42画像は保存ZIPと全フレームhashを照合して目視記録へ結合。先行3件の黒画像9枚は除外したまま。原本1281、ストーリー獲得、研究タマゴ孵化、特殊野生、Issue19全体、releaseはこの受入に含めない。
+
+この17件や旧受入を理由なく再実行しない。状態JSONの次作業は特殊野生と研究タマゴ孵化の未受入経路。今回の機械実測入口は `scripts/pr16_collection_gift_observation.py`、終端確定は `scripts/pr16_collection_closeout.py`。直接旧18件driverを再実行しない。

@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "17学習ownerの保存成功native/旧unit/host/ARMを再実行せず、Actions/artifact終端照合だけ実施。",
+    "next_step": "Issue19: Collection学習owner17経路の通常配布・原本初期技・Save/fresh Continueは保存受入から再実行しない。ギザみみピチュー1281は既存EXCLUDED_REMAKE_FORM_IDENTITY_ONLYにより技の自動補完/通常ピチュー流用禁止、配布初期技の受入保留。未受入の研究タマゴ孵化後のform/技保持、釣り/隠し野生の特殊技順を続ける。全Issue19/release/active baseline切替は未完。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -1617,7 +1617,7 @@
       "research-egg-1417",
       "research-egg-1425"
     ],
-    "actions_completion_confirmed": false,
+    "actions_completion_confirmed": true,
     "candidate": {
       "sha256": "b7790902733a638445129c388d65ab3c199bceb92a41338e0069221b556b9f91",
       "size": 33554432
@@ -1708,6 +1708,17 @@
     "schema_version": 1,
     "status": "PASS_OBSERVATION_REPAIR_THREE_MECHANICAL_CASES",
     "task": "USER-20260925-COLLECTION-OBSERVATION"
+  },
+  "learnset_collection_visual_review": {
+    "all_routes_visual_acceptance": false,
+    "binding": {
+      "sha256": "ff7eaec746cd9456c0bd63de5145ee5bb6035ae4afc918bc9a654a14d931dce1",
+      "size": 2333
+    },
+    "excluded_blank_frames": 9,
+    "path": "content/modernization/pr16_collection_visual_review_20260925.json",
+    "rendered_cases": 14,
+    "reviewed_frames": 42
   },
   "learnset_conditional_compact": {
     "candidate": {
@@ -3996,9 +4007,9 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "17学習ownerの保存成功native/旧unit/host/ARMを再実行せず、Actions/artifact終端照合だけ実施。",
+    "goal_ja": "Issue19: Collection学習owner17経路の通常配布・原本初期技・Save/fresh Continueは保存受入から再実行しない。ギザみみピチュー1281は既存EXCLUDED_REMAKE_FORM_IDENTITY_ONLYにより技の自動補完/通常ピチュー流用禁止、配布初期技の受入保留。未受入の研究タマゴ孵化後のform/技保持、釣り/隠し野生の特殊技順を続ける。全Issue19/release/active baseline切替は未完。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
-    "id": "COLLECTION_GIFTS",
+    "id": "SPECIAL_WILD_AND_RESEARCH_HATCH",
     "read_paths": [
       "docs/PR16_COLLECTION_GIFTS_JA.md",
       "content/modernization/pr16_collection_gifts_checkpoint.json",
@@ -4008,14 +4019,49 @@
     "stop_rule_ja": "特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。"
   },
   "observed_date_jst": "2026-09-25",
-  "observed_head": "cc160e5b9127a0acd32ddd65def74438c9b6a852",
+  "observed_head": "2c3770116cc6d410189f260eb32cdf9d381dc163",
   "observed_head_checks": {
     "reason_ja": "実測とActions終端を区別。一般CI/全体完成へ昇格しない。",
     "runs": [
       {
-        "conclusion": null,
+        "conclusion": "failure",
+        "head_sha": "41cde956a32911242a7d12c41b2ada62f29494a3",
+        "id": 36110983368,
+        "job_id": 107994149239,
+        "path": ".github/workflows/pr16-supply-followup-20260925.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "failure",
+        "head_sha": "194670bade3bcb584e651db301c09ba11c7eeb29",
+        "id": 36111746469,
+        "job_id": 107996542251,
+        "path": ".github/workflows/pr16-supply-followup-20260925.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "failure",
+        "head_sha": "d0f663e2094242f89ed6296463150229b8754721",
+        "id": 36118704240,
+        "job_id": 108018798756,
+        "path": ".github/workflows/pr16-supply-followup-20260925.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "failure",
+        "head_sha": "932576e5bdea3036f9eeb425bc4a2a860661c645",
+        "id": 36119380600,
+        "job_id": 108020978703,
+        "path": ".github/workflows/pr16-supply-followup-20260925.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "cc160e5b9127a0acd32ddd65def74438c9b6a852",
         "id": 36121122707,
-        "status": "in_progress"
+        "job_id": 108026595163,
+        "path": ".github/workflows/pr16-supply-followup-20260925.yml",
+        "status": "completed"
       }
     ],
     "scope_head": "cc160e5b9127a0acd32ddd65def74438c9b6a852"
@@ -7233,8 +7279,8 @@
       "size": 1328
     },
     ".github/workflows/pr16-supply-followup-20260925.yml": {
-      "sha256": "74ee9563ae83456f76b58e32c8ef37c77630e3789589058d5b91a18adb78a2d3",
-      "size": 4049
+      "sha256": "ed97283c96068000eed270573858a626f85a45eefa702a6e73ceae37414a2830",
+      "size": 2605
     },
     ".github/workflows/pr16-vega-adjudication-record.yml": {
       "sha256": "cb0490020433011ba362fe6e44d57a70b327bd4de7547891b42f01707b043d39",
@@ -7649,8 +7695,12 @@
       "size": 2600
     },
     "content/modernization/pr16_collection_gifts_checkpoint.json": {
-      "sha256": "dad3d976ae13d04dd90b8fd165ad6b67194a3e11e867a2ea90ec4514994bb0ca",
-      "size": 193187
+      "sha256": "2a56a9b5ae007c218a7fb49715da61b8e8fe33b040a35b965daac6d27360a9dc",
+      "size": 195207
+    },
+    "content/modernization/pr16_collection_visual_review_20260925.json": {
+      "sha256": "ff7eaec746cd9456c0bd63de5145ee5bb6035ae4afc918bc9a654a14d931dce1",
+      "size": 2333
     },
     "content/modernization/pr16_exp_evolution_share_checkpoint.json": {
       "sha256": "2ddb6d6e310ae494f340469bcfb9e639e878e199206c8a62a07c74ba2170f176",
@@ -8545,8 +8595,8 @@
       "size": 1140469
     },
     "docs/PR16_COLLECTION_GIFTS_JA.md": {
-      "sha256": "e651738cb4160402cff77b8d1e901692a2b4fb15cfa41d97556599fe5bc659f8",
-      "size": 3789
+      "sha256": "de3a89fbba784b510986b802e9497c7e559eac14948cc7054ca6b816766b8aef",
+      "size": 4872
     },
     "docs/PR16_EXP_EVOLUTION_SHARE_JA.md": {
       "sha256": "91bf0315d0ac20772a0caa27b4528df27916d52f1c3750f3b2acc331b41628a7",
@@ -12675,6 +12725,10 @@
     "scripts/pr16_collection_bg_prepare.py": {
       "sha256": "aed856bfc9f878f577cb4560c9fca36332a8eccc2a485e53ceaf580a21d8b65b",
       "size": 10427
+    },
+    "scripts/pr16_collection_closeout.py": {
+      "sha256": "3b2831056989ea111f8fa1fa87ce4f3ce819371b0a262a0e3ae8f9ea0e8d5d9b",
+      "size": 7095
     },
     "scripts/pr16_collection_gift_bg.py": {
       "sha256": "b8c9d81fe540abf422515e8a43150ed2e2f57c74e73c6ecdc476d3b3e85b0f49",

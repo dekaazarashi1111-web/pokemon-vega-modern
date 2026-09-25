@@ -3574,7 +3574,7 @@
     }
   },
   "accepted_case_reruns": 0,
-  "actions_completion_confirmed": false,
+  "actions_completion_confirmed": true,
   "active_baseline_changed": false,
   "arm_compiles": 0,
   "candidate": {
@@ -3603,6 +3603,7 @@
       "size": 149046
     }
   },
+  "completed_by_source": "2c3770116cc6d410189f260eb32cdf9d381dc163",
   "contracts": {
     "fixed-form-1254": {
       "candidate": {
@@ -6124,6 +6125,12 @@
     36118704240,
     36119380600
   ],
+  "proof_artifact": {
+    "digest": "sha256:3c473e93aff9e6cb1b6236f2a9523ca90874a5ac6e3dd565ec1eab4906b95269",
+    "id": 10857332033,
+    "name": "pr16-collection-gifts-proof",
+    "size_in_bytes": 68300
+  },
   "proof_bindings": {
     "compile.process.json": {
       "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
@@ -6586,6 +6593,7 @@
       "size": 185515
     }
   },
+  "reflected_head": "708a26b7fed1710390f5b92865458bb0d6d9244e",
   "release_ready": false,
   "results": [
     {
@@ -7831,6 +7839,48 @@
   "source_head": "cc160e5b9127a0acd32ddd65def74438c9b6a852",
   "status": "PASS_COLLECTION_GIFTS_LEARNING_SCOPE",
   "task": "USER-20260925-COLLECTION-GIFTS",
+  "terminal_actions": [
+    {
+      "conclusion": "failure",
+      "head_sha": "41cde956a32911242a7d12c41b2ada62f29494a3",
+      "id": 36110983368,
+      "job_id": 107994149239,
+      "path": ".github/workflows/pr16-supply-followup-20260925.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "failure",
+      "head_sha": "194670bade3bcb584e651db301c09ba11c7eeb29",
+      "id": 36111746469,
+      "job_id": 107996542251,
+      "path": ".github/workflows/pr16-supply-followup-20260925.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "failure",
+      "head_sha": "d0f663e2094242f89ed6296463150229b8754721",
+      "id": 36118704240,
+      "job_id": 108018798756,
+      "path": ".github/workflows/pr16-supply-followup-20260925.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "failure",
+      "head_sha": "932576e5bdea3036f9eeb425bc4a2a860661c645",
+      "id": 36119380600,
+      "job_id": 108020978703,
+      "path": ".github/workflows/pr16-supply-followup-20260925.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "cc160e5b9127a0acd32ddd65def74438c9b6a852",
+      "id": 36121122707,
+      "job_id": 108026595163,
+      "path": ".github/workflows/pr16-supply-followup-20260925.yml",
+      "status": "completed"
+    }
+  ],
   "unit_binding": {
     "scripts/pr16_collection_gift_bg.py": {
       "sha256": "b8c9d81fe540abf422515e8a43150ed2e2f57c74e73c6ecdc476d3b3e85b0f49",
@@ -8005,6 +8055,17 @@
     "nonuniform_images": 42,
     "previous_single_color_excluded": 9,
     "visual_semantics_accepted": false
+  },
+  "visual_review": {
+    "all_routes_visual_acceptance": false,
+    "binding": {
+      "sha256": "ff7eaec746cd9456c0bd63de5145ee5bb6035ae4afc918bc9a654a14d931dce1",
+      "size": 2333
+    },
+    "excluded_blank_frames": 9,
+    "path": "content/modernization/pr16_collection_visual_review_20260925.json",
+    "rendered_cases": 14,
+    "reviewed_frames": 42
   },
   "wiki_generations": 0
 }

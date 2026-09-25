@@ -7272,3 +7272,25 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 新scope-unit0、旧unit実行0、host1、native14。Actions終端False、終端専用=False（専用時native/旧unit/host/ARM0）。
 - Commit: 同branch非force push・reflected-head/remote照合。
 - Network: 固定GitHub原本/保存artifact/Actionsのみ。ROM/seed非追跡。受入済み3/EXP/Bag/egg8/旧野生/ARM/Wiki不変。merge/release/baseline切替なし。
+
+## 2026-09-25T10:04:31.686519+00:00
+- Timestamp: 2026-09-25T10:04:31.686519+00:00
+- Task: USER-20260925-COLLECTION-GIFTS
+- Version: issue19-collection-learning-owner-v1
+- Status: DONE（学習owner17限定、1281/全体は未完）
+- Summary: 実BG受付配布/原本初期技/Save/fresh Continue 17/17。初期party/場所/unlock/claimはfixture。1281は非学習owner方針により自動補完禁止・未受入。研究タマゴ孵化未受入。
+- Files changed: 明示scope/9新unit/限定Actions、checkpoint/guide/原本text、固定引継ぎMD/JSON、両ログ。
+- Verify: 新scope-unit0、旧unit実行0、host1、native14。Actions終端True、終端専用=True（専用時native/旧unit/host/ARM0）。
+- Commit: 同branch非force push・reflected-head/remote照合。
+- Network: 固定GitHub原本/保存artifact/Actionsのみ。ROM/seed非追跡。受入済み3/EXP/Bag/egg8/旧野生/ARM/Wiki不変。merge/release/baseline切替なし。
+
+## 2026-09-25T10:04:32.754639+00:00
+- Timestamp: 2026-09-25T10:04:32.754639+00:00
+- Task: USER-20260925-COLLECTION-GIFTS
+- Version: collection-learning-scope-terminal-v1
+- Status: DONE（学習owner17/17限定、Issue19/release未完）
+- Summary: 先行3件の機械的受入原本不変、未受入14件のみ追加実測。14件42画像を原本SHAで目視記録に結合し、先行黒画像9枚は視覚受入から除外。全Actions終端/最新proof ZIP/反映commit親/各raw証拠/source不変を照合。
+- Files changed: 終端照合器、目視JSON、Collection checkpoint/guide/text受領証、固定引継ぎMD/JSON、両ログ。
+- Verify: この終端runのnative/旧unit/host/ARM/ROM変更0。受入済み再実行0。resume check/task graph/final-index scoped private guardをcommit前実行。
+- Commit: 同branchへ非force commit/push・remote照合。成果SHAはterminal artifactのreflected-head.txt。
+- Network: GitHubの保存Actions/artifact原本照合のみ。ROM/save非追跡。merge/release/active baseline切替なし。1281 identity-only/自動fallback禁止を維持。
