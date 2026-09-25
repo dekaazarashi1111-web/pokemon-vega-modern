@@ -1,5 +1,5 @@
 name: pr16-supply-followup-20260925
-# BG契約修復の検証・保存。native/ROM生成/旧受入再実行は0。
+# BG契約修復済み。旧24/scope9の合成原本を継承し未受入17nativeのみ。
 on:
   push:
     branches: [codex/modernization-followup-20260908]
@@ -12,10 +12,10 @@ concurrency:
   group: pr16-supply-followup-20260925
   cancel-in-progress: false
 jobs:
-  collection-bg-repair:
+  collection-gifts:
     if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
     runs-on: ubuntu-24.04
-    timeout-minutes: 15
+    timeout-minutes: 45
     env:
       PYTHONDONTWRITEBYTECODE: '1'
       GITHUB_TOKEN: ${{ github.token }}
@@ -26,25 +26,66 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: 固定source修復・影響7試験・引継ぎ両ログ・index検査
-        run: python3 -B scripts/pr16_collection_bg_prepare.py
-      - name: 修復を同branchへ非force commit/push
+      - name: 合成cacheの新規5境界だけ検証
+        run: |
+          mkdir -p .local/collection-cache-test
+          python3 -B -m unittest tests.test_pr16_collection_gift_native -v 2>.local/collection-cache-test/unit.stderr.txt
+          cat .local/collection-cache-test/unit.stderr.txt
+      - name: 未受入配布用host libraryだけを導入
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends libmgba-dev
+      - name: 保存unit継承・未受入Collection17配布のみ
+        id: native
+        continue-on-error: true
+        run: python3 -B scripts/pr16_collection_gift_native.py execute
+      - name: 成功と失敗の原本・引継ぎ両ログを保存
+        run: |
+          set -euo pipefail
+          python3 -B - <<'PY'
+          import hashlib,json
+          from pathlib import Path
+          root=Path('.local/pr16-collection-gifts/proof')
+          raw=Path('.local/collection-cache-test/unit.stderr.txt').read_bytes()
+          assert b'Ran 5 tests' in raw and b'\nOK\n' in raw
+          (root/'cache-unit.stderr.txt').write_bytes(raw)
+          p=root/'verification.json';v=json.loads(p.read_bytes())
+          v['proof_bindings']['cache-unit.stderr.txt']={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+          p.write_text(json.dumps(v,ensure_ascii=False,sort_keys=True,indent=2)+'\n')
+          PY
+          python3 -B scripts/pr16_collection_gift_native.py record
+          python3 -B scripts/pr16_resume.py check
+          python3 -B scripts/validate_task_graph.py
+          python3 -B scripts/pr16_collection_gift_native.py paths | tr '\n' '\0' >.local/pr16-collection-gifts/paths.z
+          git add --pathspec-from-file=.local/pr16-collection-gifts/paths.z --pathspec-file-nul
+          python3 -B scripts/pr16_collection_gift_native.py guard
+      - name: 同branchへ非force commit/push・remote照合
         run: |
           set -euo pipefail
           branch='codex/modernization-followup-20260908'
           test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'USER-20260925-COLLECTION-BG-REPAIR: BG受付と接近契約を修復・影響7試験と引継ぎを保存'
+          git commit -m 'USER-20260925-COLLECTION-GIFTS: BG受付の配布実測とunit継承・引継ぎを保存'
           git push origin "HEAD:$branch"
           sha=$(git rev-parse HEAD)
           test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$sha"
-          echo "$sha" | tee .local/pr16-collection-bg-repair/reflected-head.txt
-          echo "RESULT=DONE TASK=USER-20260925-COLLECTION-BG-REPAIR VERIFY=PASS COMMIT=$sha"
+          echo "$sha" | tee .local/pr16-collection-gifts/proof/reflected-head.txt
+          echo "RESULT=STOPPED TASK=USER-20260925-COLLECTION-GIFTS VERIFY=${{ steps.native.outcome }} COMMIT=$sha"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: pr16-collection-bg-repair
-          path: .local/pr16-collection-bg-repair/
+          name: pr16-collection-gifts-proof
+          path: .local/pr16-collection-gifts/proof/
           retention-days: 30
           if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-collection-gifts-screens
+          path: .local/pr16-collection-gifts/screens/*.ppm
+          retention-days: 30
+          if-no-files-found: ignore
+      - name: 失敗をrun成功へ読み替えない
+        if: steps.native.outcome != 'success'
+        run: exit 1
