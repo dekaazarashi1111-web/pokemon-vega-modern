@@ -1,5 +1,5 @@
 name: pr16-natural-supply-20260925
-# 固定HEADのtracked textのみ。既存host/native/ARM/Wikiの再実行なし。
+# 不足分のtracked textのみ。既取得source・旧検証・ROMを再生成しない。
 on:
   push:
     branches: [codex/modernization-followup-20260908]
@@ -16,22 +16,22 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
-      - name: 未完自然供給に必要なtracked textを固定HEADから収集
+      - name: 既存nativeの不足補助sourceだけを固定HEADから収集
         run: |
           python3 -B - <<'PY'
           from pathlib import Path
           import fnmatch, hashlib, json, os, subprocess, zipfile
-          patterns = ['scripts/*.py','tests/test_pr16_*.py','tools/mgba_pr16*','tools/mgba_p03*','tools/mgba_p08*','tools/mgba_stage61*','tools/pr16_*.py','tools/stage61_interaction_oracle.py','tools/mgba_native*.h','tools/mgba_native*.c','content/modernization/*.json','docs/PR16_*.md','.github/workflows/pr16-*.yml','AGENTS.md','README.md','CHATGPT_RESUME.md','design/current_state.md','design/agent_context_map.md','design/tasks_next.md','design/active_play_baseline.md','config/active_play_baseline.json','config/github_private_environment.json','infra/toolchain_manifest.json','tasks/task_graph.json','design/run_log.md','design/version_log.md']
+          include=['tools/**','src/modernization/**','content/collection_supply_v1/canonical_model.json','config/modernization_floette_gift.json']
+          exclude=['tools/mgba_pr16*','tools/mgba_p03*','tools/mgba_p08*','tools/mgba_stage61*','tools/pr16_*.py','tools/stage61_interaction_oracle.py','tools/mgba_native*.h','tools/mgba_native*.c']
           names=subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
           out=Path('.local/pr16-natural-supply/source');out.mkdir(parents=True)
-          manifest={'source_head':os.environ['GITHUB_SHA'],'scope':'TRACKED_TEXT_ONLY_NOT_RUNTIME_ACCEPTANCE','rom_changes':0,'native_processes':0,'accepted_test_reruns':0,'files':{}}
+          manifest={'source_head':os.environ['GITHUB_SHA'],'scope':'ADDITIONAL_TRACKED_SOURCE_ONLY_NOT_RUNTIME_ACCEPTANCE','rom_changes':0,'native_processes':0,'accepted_test_reruns':0,'files':{}}
           with zipfile.ZipFile(out/'source.zip','w',zipfile.ZIP_DEFLATED) as z:
               for name in sorted(names):
                   p=Path(name)
                   if not name or p.is_symlink() or not p.is_file():continue
-                  if p.suffix not in ('.py','.c','.h','.json','.md','.yml'):continue
-                  if name.startswith('content/') and p.parent.as_posix()!='content/modernization':continue
-                  if not any(fnmatch.fnmatchcase(name,pat) for pat in patterns):continue
+                  if p.suffix not in ('.py','.c','.h','.json'):continue
+                  if not any(fnmatch.fnmatchcase(name,pat) for pat in include) or any(fnmatch.fnmatchcase(name,pat) for pat in exclude):continue
                   raw=p.read_bytes();raw.decode('utf-8')
                   manifest['files'][name]={'sha256':hashlib.sha256(raw).hexdigest(),'size':len(raw)}
                   z.writestr(name,raw)
