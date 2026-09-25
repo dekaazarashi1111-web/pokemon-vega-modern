@@ -7173,3 +7173,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Failure retained: 配布counter一増加の未検証前提を、guard下の二遷移raw観測に修正。ROM/ゲームruntimeを変更してテストへ合わせていない。既受入原本を上書きしない。
 - Commit: 同branchへ非force push。source/単一親/祖先/reflected-head/remoteを照合。
 - Network: 保存Actions artifact3件だけをhash照合。merge/release/baseline切替なし。一般CI全緑を主張しない。
+
+## 2026-09-25T08:05:47.587232+00:00
+- Timestamp: 2026-09-25T08:05:47.587232+00:00
+- Task: USER-20260925-COLLECTION-GIFTS
+- Version: issue19-collection-gifts-v1
+- Status: STOPPED（保存原本から未完だけ継続）
+- Summary: 実NPC/原本初期技/Save/fresh Continue 0/18。初期party/場所/unlock/未受領ownerはfixture、研究タマゴ孵化は未受入。
+- Files changed: driver/C/新unit/限定Actions、checkpoint/guide/text証拠、固定引継ぎMD/JSON、両ログ。
+- Verify: 新unit22 host0 native0、Actions終端False。終端専用=False（専用時native/旧unit/host/ARM再実行0）。旧自然供給3/EXP/Bag/egg8/旧野生/Wiki不変。
+- Commit: 同branchへ非force push、reflected-head.txt/remote照合。
+- Network: GitHub固定source/保存artifact/Actions。ROM・元saveは非追跡。merge/release/baseline切替なし。
