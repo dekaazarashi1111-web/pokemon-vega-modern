@@ -10066,3 +10066,25 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 新matrix unit23、旧32/復元30unit再実行0。予定worker10、成功raw10。各workerのhost compileはその新caseを動かすためのみ。ARM/ROM変更0。resume/task graph/final-index scoped guardをcommit前実行。
 - Commit: 集約jobのみ同branch非force push・remote SHA照合。
 - Network: 固定GitHub/保存artifactのみ。元save/ROM/配布17/既受入5不変。merge/release/baseline切替なし。
+
+## 2026-09-25T14:26:55.897815+00:00
+- Timestamp: 2026-09-25T14:26:55.897815+00:00
+- Task: USER-20260925-RESEARCH-HATCH / 研究タマゴの孵化後form・技保持
+- Version: issue19-research-hatch-v1
+- Status: DONE（15case限定、全体未完）
+- Summary: 保存配布個体fixtureからの実歩行/孵化/Save/fresh Continue 15/15。元save連続再開と混同しない。原本cycleを短縮しない。
+- Files changed: 既設C不変・新terminal driver/unit/限定Actions、checkpoint/guide/原本text、固定引継ぎMD/JSON、両ログ。
+- Verify: 原実測matrix runのunit23、host10、native10。Actions終端True。終端専用=True、専用時native/旧unit/compile0・新terminal unit22。旧配布/孵化/ARM/Wiki不変。
+- Commit: 同branch非force push、reflected-head/remote照合。
+- Network: 固定GitHub/保存artifact/Actions。ROM・元seed非追跡。merge/release/baseline切替なし。
+
+## 2026-09-25T14:26:56.339544+00:00
+- Timestamp: 2026-09-25T14:26:56.339544+00:00
+- Task: USER-20260925-RESEARCH-HATCH
+- Version: research-hatch-terminal-5-plus-10-v1
+- Status: DONE（15孵化限定、Issue19/release未完）
+- Summary: 5件の中断原本復元+10独立workerを終端確定。32初期unit/30復元unit/23matrix unitは各変更範囲で一度だけ、終端は新unit22のみ。
+- Files changed: terminal driver/unit/Actions、terminal原本、checkpoint/guide、固定引継ぎMD/JSON、両ログ。
+- Verify: 12job/22matrix artifact/成果commit直接親・祖先/15raw origin/30画面hashを照合。終端新native/旧unit/host/ARM/ROM変更0。原runのcancelledは保存。resume/task graph/final-index scoped guardをcommit前実行。
+- Commit: 同branch非force push・remote照合。source=c30492610319d075195b040092447296d5766343。成果SHAはterminal-proof/reflected-head.txt。
+- Network: 固定GitHub原本のみ。ROM/saveは非追跡。特殊野生はソース調査のみで実接続先未受入。merge/release/baseline切替なし。

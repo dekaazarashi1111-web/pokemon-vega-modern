@@ -2581,7 +2581,7 @@
     }
   },
   "accepted_case_reruns": 0,
-  "actions_completion_confirmed": false,
+  "actions_completion_confirmed": true,
   "active_baseline_changed": false,
   "arm_compiles": 0,
   "candidate": {
@@ -2606,6 +2606,8 @@
       "size": 149046
     }
   },
+  "completed_by_run": 36147481394,
+  "completed_by_source": "c30492610319d075195b040092447296d5766343",
   "contracts": {
     "research-egg-1201": {
       "candidate": {
@@ -7557,6 +7559,40 @@
   "source_head": "258a0afc2be9c3428e2a0671bb151551e5c96fe2",
   "status": "PASS_RESEARCH_HATCH_SCOPED",
   "task": "USER-20260925-RESEARCH-HATCH",
+  "terminal_actions": [
+    {
+      "conclusion": "cancelled",
+      "head_sha": "e12eda4098837fcd434194e3da713f2837209450",
+      "id": 36138860612,
+      "path": ".github/workflows/pr16-research-hatch-20260925.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "7356849af80057c4fe6dd05db73ea21df7d4fd40",
+      "id": 36144612816,
+      "path": ".github/workflows/pr16-research-hatch-recover-20260925.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "258a0afc2be9c3428e2a0671bb151551e5c96fe2",
+      "id": 36145839263,
+      "path": ".github/workflows/pr16-research-hatch-20260925.yml",
+      "status": "completed"
+    }
+  ],
+  "terminal_evidence": {
+    "accepted_cases": 15,
+    "binding": {
+      "sha256": "ace190356815512c417cb657a03e7d15fb34f172cde3aeba3dc78d32af133fe8",
+      "size": 56860
+    },
+    "new_native_processes": 0,
+    "new_unit_tests": 22,
+    "old_unit_tests": 0,
+    "path": "content/modernization/pr16_research_hatch_evidence/36147481394/terminal.json"
+  },
   "unit_binding": {
     "scripts/pr16_research_hatch.py": {
       "sha256": "15358679079ab84db48cea564883acf00aba95f6183abee63e63abca7cc17139",

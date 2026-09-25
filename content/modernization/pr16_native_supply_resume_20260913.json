@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "15研究孵化の保存成功native/旧unit/host/ARMを再実行せず、Actions/artifact終端だけ照合。",
+    "next_step": "Issue19: 研究タマゴ15種の保存個体fixtureからの実歩行・孵化後form/技・Save/fresh Continueを再実行しない。通常配布17件も保存受入を維持。次は未受入の釣り/隠し野生の特殊技順。1281は非学習ownerの既存方針で未受入。全供給/Issue19/release/active baseline切替は未完。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -3012,7 +3012,7 @@
       "research-egg-1417",
       "research-egg-1425"
     ],
-    "actions_completion_confirmed": false,
+    "actions_completion_confirmed": true,
     "candidate": {
       "sha256": "b7790902733a638445129c388d65ab3c199bceb92a41338e0069221b556b9f91",
       "size": 33554432
@@ -3021,19 +3021,55 @@
     "gift_reruns": 0,
     "issue19_complete": false,
     "matrix": {
-      "planned_workers": 10,
       "receipt_binding": {
         "sha256": "c9a23b42a34f21ddda3854816ee647d3f80fb151a2611abc95eda24500fbf995",
         "size": 51082
       },
-      "receipt_path": "content/modernization/pr16_research_hatch_evidence/36145839263/aggregate.json",
-      "successful_workers": 10
+      "receipt_path": "content/modernization/pr16_research_hatch_evidence/36145839263/aggregate.json"
     },
     "path": "content/modernization/pr16_research_hatch_checkpoint.json",
     "pending_cases": [],
+    "recovery": {
+      "binding": {
+        "sha256": "fc64f989ba8be98bc4c59e43c2336d48b7247e07e9df13d2b4bfb49912e07a3d",
+        "size": 4259
+      },
+      "commit_was_skipped": true,
+      "original_run_id": 36138860612,
+      "path": "content/modernization/pr16_research_hatch_evidence/36144612816/recovery.json",
+      "proof": {
+        "digest": "sha256:1b89c98fc132c65243dea0b0cccea415accadf90b389231e0fec32f5552f3f89",
+        "id": 10868027070,
+        "name": "pr16-research-hatch-proof",
+        "size_in_bytes": 45208
+      },
+      "raw_verification_binding": {
+        "sha256": "23ad9ecb39b2976f606c88b03192df784c8d160b1a0a45d3552a241a7ffd7757",
+        "size": 132501
+      },
+      "run_id": 36144612816,
+      "screens": {
+        "digest": "sha256:77282fc6d2b47784a8191df2b083f57fac6aa97dc3052620ed7cc7a24116fe38",
+        "id": 10868426825,
+        "name": "pr16-research-hatch-screens",
+        "size_in_bytes": 26642
+      },
+      "source_head": "7356849af80057c4fe6dd05db73ea21df7d4fd40"
+    },
     "run_id": 36145839263,
     "source_head": "258a0afc2be9c3428e2a0671bb151551e5c96fe2",
-    "status": "PASS_RESEARCH_HATCH_SCOPED"
+    "status": "PASS_RESEARCH_HATCH_SCOPED",
+    "terminal_evidence": {
+      "accepted_cases": 15,
+      "binding": {
+        "sha256": "ace190356815512c417cb657a03e7d15fb34f172cde3aeba3dc78d32af133fe8",
+        "size": 56860
+      },
+      "new_native_processes": 0,
+      "new_unit_tests": 22,
+      "old_unit_tests": 0,
+      "path": "content/modernization/pr16_research_hatch_evidence/36147481394/terminal.json"
+    }
   },
   "learnset_runtime": {
     "candidate": {
@@ -3046,6 +3082,39 @@
     "run_id": 35704908254,
     "source_head": "ba4a6367c5179372d06138fef02f0aa29588d0e2",
     "status": "ACCEPTED_TWO_ENTRYPOINTS_DIRECT_ROM_PROBES_GAMEPLAY_PENDING"
+  },
+  "learnset_special_wild_next_probe": {
+    "candidate": {
+      "sha256": "b7790902733a638445129c388d65ab3c199bceb92a41338e0069221b556b9f91",
+      "size": 33554432
+    },
+    "caution_ja": "候補内の実接続先と特殊技後の再初期化順を限定観測。Stage59 reset=0/旧V4だけで保持/不具合を決めず、既受入15孵化/17配布/旧野生を再実行しない。",
+    "native_cases": 0,
+    "read_ranges": {
+      "config/research_economy_v1.json": [
+        70,
+        104
+      ],
+      "overlays/move_distribution_v4/move_distribution_v4.c": [
+        128,
+        160
+      ],
+      "overlays/qol_production/qol_production.c": [
+        2667,
+        2808
+      ],
+      "overlays/research_economy_v1/research_economy_v1.c": [
+        1640,
+        1678
+      ],
+      "overlays/stage59_wild_identity_npc_regression_repair/stage59_wild_identity_npc_regression_repair.c": [
+        35,
+        86
+      ]
+    },
+    "rom_changes": 0,
+    "source_head": "c30492610319d075195b040092447296d5766343",
+    "status": "UNACCEPTED_SOURCE_TRACE_ONLY"
   },
   "learnset_successor_tables": {
     "accepted_native_reruns": 0,
@@ -4048,26 +4117,42 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "15研究孵化の保存成功native/旧unit/host/ARMを再実行せず、Actions/artifact終端だけ照合。",
+    "goal_ja": "Issue19: 研究タマゴ15種の保存個体fixtureからの実歩行・孵化後form/技・Save/fresh Continueを再実行しない。通常配布17件も保存受入を維持。次は未受入の釣り/隠し野生の特殊技順。1281は非学習ownerの既存方針で未受入。全供給/Issue19/release/active baseline切替は未完。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
-    "id": "RESEARCH_HATCH",
+    "id": "SPECIAL_WILD",
     "read_paths": [
       "docs/PR16_RESEARCH_HATCH_JA.md",
       "content/modernization/pr16_research_hatch_checkpoint.json",
-      "scripts/pr16_research_hatch.py",
-      "tests/test_pr16_research_hatch.py"
+      "scripts/pr16_research_hatch_terminal.py",
+      "content/modernization/pr16_research_hatch_evidence/36147481394/terminal.json"
     ],
     "stop_rule_ja": "特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。"
   },
   "observed_date_jst": "2026-09-25",
-  "observed_head": "258a0afc2be9c3428e2a0671bb151551e5c96fe2",
+  "observed_head": "c30492610319d075195b040092447296d5766343",
   "observed_head_checks": {
     "reason_ja": "実測とActions終端を分離。一般CIのaction_requiredをsuccess扱いしない。",
     "runs": [
       {
-        "conclusion": null,
+        "conclusion": "cancelled",
+        "head_sha": "e12eda4098837fcd434194e3da713f2837209450",
+        "id": 36138860612,
+        "path": ".github/workflows/pr16-research-hatch-20260925.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "7356849af80057c4fe6dd05db73ea21df7d4fd40",
+        "id": 36144612816,
+        "path": ".github/workflows/pr16-research-hatch-recover-20260925.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "258a0afc2be9c3428e2a0671bb151551e5c96fe2",
         "id": 36145839263,
-        "status": "in_progress"
+        "path": ".github/workflows/pr16-research-hatch-20260925.yml",
+        "status": "completed"
       }
     ],
     "scope_head": "258a0afc2be9c3428e2a0671bb151551e5c96fe2"
@@ -6720,6 +6805,10 @@
       "sha256": "f739f8dca99fadd74db87ad48076a1016057bb0ebe094905bc0c421f9d1b2f33",
       "size": 3313
     },
+    ".github/workflows/pr16-research-hatch-terminal-20260925.yml": {
+      "sha256": "38b44c9e6ee938604d34f74288081312eb74d1b9b7e421e7161c123c91e8955d",
+      "size": 3530
+    },
     ".github/workflows/pr16-ring-audio-boundary-contracts.yml": {
       "sha256": "fc9400ca2de465cfbeeadcf7b7d7db4ca6497320bf966bd086c1ecf22d530a11",
       "size": 1975
@@ -7356,6 +7445,10 @@
       "sha256": "54111d0d25b2f5ee3258a3a029d1c5304f630fd4e87fbf3bddab5edf9e659159",
       "size": 8618
     },
+    "config/research_economy_v1.json": {
+      "sha256": "206b9b4392e8d5a9e2b499a80e229d66b6a07fe3018a3b27254a2bc2fb7bf5f0",
+      "size": 9388
+    },
     "config/save_layout.csv": {
       "sha256": "e99a44990c1c3243b997182f506dbbbd55bf723cffc71670e4175f8d5df8d541",
       "size": 11098
@@ -7905,8 +7998,8 @@
       "size": 22989
     },
     "content/modernization/pr16_research_hatch_checkpoint.json": {
-      "sha256": "59a171daa0d8251a73c2853fcfd39c6aedc52f6b04231614b11ef462e013f3f2",
-      "size": 257850
+      "sha256": "3075da81e215bdd67eb033f6417c368aa424db95d34ca726c877edfdb51c3aba",
+      "size": 259029
     },
     "content/modernization/pr16_ring_audio_boundary_contracts.json": {
       "sha256": "61de96a6afd25c699b0dcb3cbd27d2b113b540ba53b609f641aea34434ac09d2",
@@ -8673,8 +8766,8 @@
       "size": 3662
     },
     "docs/PR16_RESEARCH_HATCH_JA.md": {
-      "sha256": "2cf7d87c51db9693904fc178039436f58b5e78e83344f584163ac734f47ab9be",
-      "size": 2996
+      "sha256": "0c0f7336745c506ee93c4147fbc86e1aa413a0ef19f65e7983c00f203406d450",
+      "size": 4323
     },
     "docs/PR16_VEGA_ORIGINAL_AUDIT_JA.md": {
       "sha256": "b9ee1dd32da36d9fe3d04aa1663afa0f2e6cc37aef491437dd2443a5870fb2d4",
@@ -12268,6 +12361,10 @@
       "sha256": "cbc0b5ea5d01bf6bfa78c760f9d1d1ed6112b21e41e071051e5319e4806461fe",
       "size": 275
     },
+    "overlays/move_distribution_v4/move_distribution_v4.c": {
+      "sha256": "2eb484e280530af0ab6408b87ef7304d69680fa095ba7f18bd724e78d1a7cc93",
+      "size": 5272
+    },
     "overlays/qol_production/hook_contract_stage35.json": {
       "sha256": "17a94205e58a00c52ddf24fb0fb45c20d6fe00a20930860854a7aa647051a5e4",
       "size": 14992
@@ -12275,6 +12372,10 @@
     "overlays/qol_production/qol_production.c": {
       "sha256": "fc69ca2ff94e98ffb46f1b4117c73156683e83bbc777e9f8527c027c70399423",
       "size": 164678
+    },
+    "overlays/research_economy_v1/research_economy_v1.c": {
+      "sha256": "3f71ea1d9f308c652e70dd863b601ad39a9c648ca25bf55932b4966fa4246e62",
+      "size": 63507
     },
     "overlays/ring_policy/ring_policy.c": {
       "sha256": "a9d523ad733b71af9cbfcd081555de0cd6361b14bb339463cb3e9e50b85de845",
@@ -12291,6 +12392,10 @@
     "overlays/save_migration/save_migration.h": {
       "sha256": "e266c4ec10a3244654837c0f3009b449ccf0e203fe0bfc1c11b319132baadf67",
       "size": 12497
+    },
+    "overlays/stage59_wild_identity_npc_regression_repair/stage59_wild_identity_npc_regression_repair.c": {
+      "sha256": "374f2ee99a8635db90048016e4d5ac3bc96fe0c8a9e99be1aff21feeaec9d768",
+      "size": 3022
     },
     "scripts/build_battle_core.py": {
       "sha256": "e83f659b912e4f61f790ef648f30dd7e669f737da84f326c234dc491a6d135c0",
@@ -12999,6 +13104,10 @@
     "scripts/pr16_research_hatch_recover.py": {
       "sha256": "bbffdfea91c92cfb44e1d04b95e3a97d720694c8f4aefe00246e6d93a0f70359",
       "size": 12131
+    },
+    "scripts/pr16_research_hatch_terminal.py": {
+      "sha256": "ee66d3b3d4cda3f14f7287c92933f783a5461b4c680014b4d72299c0914592f6",
+      "size": 19025
     },
     "scripts/pr16_restore_cfru_snapshot.py": {
       "sha256": "5b8bc2069f12fd6513ed2b8424de48043a71515e419d208087885d7066c2a202",
@@ -14291,6 +14400,10 @@
     "tests/test_pr16_research_hatch_recover.py": {
       "sha256": "719145df2814b12a24fb66eac047cdec4e7927b185d90a19d3e13e50141dc777",
       "size": 2572
+    },
+    "tests/test_pr16_research_hatch_terminal.py": {
+      "sha256": "0e1840a6ef7f17cc359724c90c4926d91b71adad46cabb9e3f140db07f91c0f5",
+      "size": 5342
     },
     "tests/test_pr16_restore_cfru_snapshot.py": {
       "sha256": "b0b743783966fe8af3b6a058ef367bf86560fa3a8728dbdc7e0cd44d38a14771",
