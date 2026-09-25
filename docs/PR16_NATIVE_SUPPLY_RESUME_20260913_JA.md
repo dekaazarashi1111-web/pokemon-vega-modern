@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-Issue19: Collection配布0/18。FAIL。全体未完。
+Issue19: Collection学習owner 0/17。非学習owner1281の配布初期技は未受入。
 
-**次: Collection配布checkpointの失敗原本を確認し未成功caseだけ修復。保存成功と旧受入は再実行しない。**
+**次: Collection配布の失敗原本を確認し未成功caseだけ修復。受入済みcaseは再実行しない。**
 
 特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `41cde956a32911242a7d12c41b2ada62f29494a3`。
-Collection配布限定18経路の実測source/記録source。既受入3件/全Issue19完成とは別。
+証拠のsource HEAD: `194670bade3bcb584e651db301c09ba11c7eeb29`。
+Collection学習owner17経路と非学習owner1281を区別。全18配布/全Issue19完成ではない。
 
 ## 最短の再開手順
 
@@ -27,8 +27,8 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 
 - `docs/PR16_COLLECTION_GIFTS_JA.md`
 - `content/modernization/pr16_collection_gifts_checkpoint.json`
+- `scripts/pr16_collection_gift_scope.py`
 - `scripts/pr16_collection_gifts.py`
-- `tests/test_pr16_collection_gifts.py`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -328,6 +328,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-実測成功とActions終端を区別。一般CI/action_requiredや全体完成へ昇格しない。
+実測とActions終端を区別。一般CI/全体完成へ昇格しない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

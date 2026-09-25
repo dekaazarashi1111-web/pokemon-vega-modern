@@ -1,20 +1,22 @@
-# PR16 Issue19: Collection配布の原本初期技
+# PR16 Issue19: Collection学習owner配布
 
-状態 `FAIL`。限定受入 0/18。Actions終端 `False`。
+状態 `FAIL`。学習owner限定受入 0/17、定義全体18件中1件は既存方針で保留。Actions終端 `False`。
 
-source `41cde956a32911242a7d12c41b2ada62f29494a3` / run `36110983368`。候補 `b7790902733a638445129c388d65ab3c199bceb92a41338e0069221b556b9f91` / 33554432 bytes。ROM・runtimeは変更しない。
+source `194670bade3bcb584e651db301c09ba11c7eeb29` / run `36111746469`。候補 `b7790902733a638445129c388d65ab3c199bceb92a41338e0069221b556b9f91` / 33554432 bytes。ROM/runtime/原本方針は変更しない。
 
-## 範囲
+## 範囲と保留
 
-18経路（固定form3、研究タマゴ15）の実NPC・root/menu/page/選択・配布・通常Save・fresh-core Continue・再訪取消。初期party、開始場所、全unlock、未受領ownerはfixture。ストーリー到達・研究ランク獲得・タマゴ孵化・全owner・releaseを含まない。
+固定form2と研究タマゴ15。初期party、開始場所、全unlock、未受領ownerはfixture。実NPCのroot/menu/page/選択、配布、原本初期技/PP、通常Save、fresh-core Continue、再訪取消を検証。ストーリー到達・研究ランク獲得・研究タマゴ孵化は含まない。7host書込APIを拒否し、getterはguard区間間の読み取り補助として分離。
 
-配布以降は7host書込APIを拒否し通常キー入力のみ。getterはguard外の読み取り補助として分離。4技/PP/PP Ups/HP/egg bit/元party100byte/全party200byte/owner CRCとclaim bit/Save counterをraw textで独立照合。固定配布のclaim bit保持は確認するが、二重受領の実選択はこの試験では行わない。
+ギザみみピチュー1281は `EXCLUDED_REMAKE_FORM_IDENTITY_ONLY` / `IDENTITY_ONLY_NO_REPLACEMENT` / payloadなし。自動fallback禁止・既存4技保持を優先し、通常ピチューの技流用や空4技を成功期待値にしていない。この配布初期技は未受入。初回run36110983368はこの期待値境界で停止、native/host0。旧22unit成功原本を継承し再実行しない。
 
 | case | species | level | egg | 原本4技 | 実測run |
 | --- | ---: | ---: | ---: | --- | ---: |
 
-未成功 `[]`。今回新unit 22、host compile 0、native process 0。旧自然供給3、EXP、Bag、egg8、通常野生、ARM/Wikiを再実行しない。source入力転送run36108830541/36109072704は検証件数へ数えない。失敗原本は成功に書き換えない。
+未成功学習owner `[]`。全party200byte/元party100byte、owner CRC/claim bit、4技/PP/PP Ups/HP/egg getter、frame/counterをraw textで照合。固定claim保持は確認するが、二重受取の実選択は含まない。
+
+今回新scope-unit 9、旧unit実行 0、host compile 0、native 0。受入済み自然配布/孵化3・EXP/Bag/egg8/旧野生/ARM/Wikiは再実行しない。
 
 ## 次
 
-Collection配布checkpointの失敗原本を確認し未成功caseだけ修復。保存成功と旧受入は再実行しない。
+Collection配布の失敗原本を確認し未成功caseだけ修復。受入済みcaseは再実行しない。
