@@ -110,8 +110,8 @@ def validate(out, err, case, geo):
     keys = ('boundary', 'root', 'list', 'selected', 'claimed', 'returned', 'saved', 'continued', 'revisited', 'cancelled')
     t = r['witness']
     need(type(t) is dict and set(t) == set(keys), 'witness keys')
-    need(all(type(t[k]) is int for k in keys) and 0 < t[keys[0]] and
-         all(t[a] < t[b] for a,b in zip(keys, keys[1:])) and t['cancelled'] < 150000, 'strict physical chronology')
+    from pr16_collection_gift_observation import chronology
+    chronology(t, case, geo, err)
     counters = r['save_counters']
     need(type(counters) is list and len(counters) == 5 and all(type(x) is int and x >= 0 for x in counters), 'counter types')
     need(0 < counters[1]-counters[0] <= 8 and counters[2] == counters[1]+1 and counters[2:] == [counters[2]]*3, 'native gift/manual Save/fresh Continue/cancel counters')

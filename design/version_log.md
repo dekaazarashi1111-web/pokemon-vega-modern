@@ -7239,3 +7239,25 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 新scope-unit0、旧unit実行0、host1、native3。Actions終端False、終端専用=False（専用時native/旧unit/host/ARM0）。
 - Commit: 同branch非force push・reflected-head/remote照合。
 - Network: 固定GitHub原本/保存artifact/Actionsのみ。ROM/seed非追跡。受入済み3/EXP/Bag/egg8/旧野生/ARM/Wiki不変。merge/release/baseline切替なし。
+
+## 2026-09-25T09:53:38.602704+00:00
+- Timestamp: 2026-09-25T09:53:38.602704+00:00
+- Task: USER-20260925-COLLECTION-GIFTS
+- Version: issue19-collection-learning-owner-v1
+- Status: STOPPED（原本保存から未完だけ継続）
+- Summary: 実BG受付配布/原本初期技/Save/fresh Continue 3/17。初期party/場所/unlock/claimはfixture。1281は非学習owner方針により自動補完禁止・未受入。研究タマゴ孵化未受入。
+- Files changed: 明示scope/9新unit/限定Actions、checkpoint/guide/原本text、固定引継ぎMD/JSON、両ログ。
+- Verify: 新scope-unit0、旧unit実行0、host1、native3。Actions終端False、終端専用=False（専用時native/旧unit/host/ARM0）。
+- Commit: 同branch非force push・reflected-head/remote照合。
+- Network: 固定GitHub原本/保存artifact/Actionsのみ。ROM/seed非追跡。受入済み3/EXP/Bag/egg8/旧野生/ARM/Wiki不変。merge/release/baseline切替なし。
+
+## 2026-09-25T09:53:39.318965+00:00
+- Timestamp: 2026-09-25T09:53:39.318965+00:00
+- Task: USER-20260925-COLLECTION-OBSERVATION
+- Version: collection-observation-v1
+- Status: DONE（時刻検査・描画初期化修復と3件の機械的受入、残り14native未完）
+- Summary: 先頭giftのみlist==selectedをraw cursor/host/座標/frameで厳密照合。他時刻はstrictのまま。研究1201の保存stdout/stderr/processを再検証し3/17へ。元run36119380600のfailure・旧raw・固定2受入は不変。9単色PPMは視覚証拠から除外。
+- Files changed: driver時刻検査、Cの2boot描画reset、新観測module/unit、checkpoint/guide、固定MD/JSON、text証拠、両ログ。
+- Verify: 新6unit PASS、1201原本再検証1、native/host/ARM/ROM変更0、旧受入再実行0。両sourceを逆置換し修復前完全SHAを照合。画像resetは残り未受入ケースで実測する。
+- Commit: 同branchへ非force commit/push・remote照合。
+- Network: read-only upstream確認: mgba-emu/mgba tag0.10.2 src/gba/core.c _GBACoreResetがoutputBuffer設定時にrendererを接続する原本。Web検索後GitHub connectorで固定tag/blobを確認。外部コードを複製せず2resetだけ修復。ROM/save非追跡、merge/release/baseline切替なし。

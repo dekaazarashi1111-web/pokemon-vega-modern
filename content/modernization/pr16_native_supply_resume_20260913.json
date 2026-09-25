@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "Issue19: Collection学習owner 2/17。非学習owner1281の配布初期技は未受入。",
+    "current_stop": "Issue19: Collection学習owner 3/17。非学習owner1281の配布初期技は未受入。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -1600,7 +1600,8 @@
   "learnset_collection_gifts": {
     "accepted_cases": [
       "fixed-form-1254",
-      "fixed-form-1390"
+      "fixed-form-1390",
+      "research-egg-1201"
     ],
     "actions_completion_confirmed": false,
     "candidate": {
@@ -1615,7 +1616,6 @@
     "learning_routes": 17,
     "path": "content/modernization/pr16_collection_gifts_checkpoint.json",
     "pending_cases": [
-      "research-egg-1201",
       "research-egg-1204",
       "research-egg-1206",
       "research-egg-1208",
@@ -1634,6 +1634,81 @@
     "run_id": 36119380600,
     "source_head": "932576e5bdea3036f9eeb425bc4a2a860661c645",
     "status": "PARTIAL_COLLECTION_GIFTS"
+  },
+  "learnset_collection_observation": {
+    "accepted_case_reruns": 0,
+    "accepted_original_cases": [
+      "fixed-form-1254",
+      "fixed-form-1390",
+      "research-egg-1201"
+    ],
+    "arm_compiles": 0,
+    "controller_after": {
+      "sha256": "512b67b61590517717ebed6989c850967d276ee013791cc005aea2ef52cc2722",
+      "size": 11869
+    },
+    "controller_before": {
+      "sha256": "50836c4a0a32d67182b1ca04f47c6c40ec4c6aaa799b6e0b7ac76af7b507d59d",
+      "size": 11845
+    },
+    "driver_after": {
+      "sha256": "63a827014b234772011a804bdbb18254d92b3076f26012680b2a345d0718be8f",
+      "size": 26632
+    },
+    "driver_before": {
+      "sha256": "f36ede0b0046eaf86b9f8c685fad22ca20cbbac3180d7931b9a5231957dc6fcf",
+      "size": 26723
+    },
+    "host_compiles": 0,
+    "input_head": "dfc6d35028c77d2dd0864a41c4fc759d15d2225e",
+    "issue19_complete": false,
+    "modified_source_after_input_head": true,
+    "native_origin_run": 36119380600,
+    "new_native_processes": 0,
+    "new_unit_tests": 6,
+    "observation_source_bindings": {
+      "scripts/pr16_collection_gift_observation.py": {
+        "sha256": "18dd57f6687c50648355500afd4261b9a45500fc4333ab480956f20914e4e130",
+        "size": 15382
+      },
+      "tests/test_pr16_collection_gift_observation.py": {
+        "sha256": "50cf2e30970f0b4bcfed4676fca3b62d4dac055883f10e843470094c26131e21",
+        "size": 2650
+      }
+    },
+    "old_unit_reruns": 0,
+    "original_run_conclusion": "failure",
+    "path": "content/modernization/pr16_collection_gifts_evidence/36120941191/observation-repair.json",
+    "previous_screens": {
+      "all_single_color": true,
+      "artifact_id": 10856621674,
+      "images": 9,
+      "run_id": 36119380600,
+      "visual_acceptance": false
+    },
+    "primary_source": "mgba-emu/mgba@0.10.2:src/gba/core.c:_GBACoreReset (blob 8bdf218b3e3b8a73d4da4c1b028ae86843f3a502)",
+    "raw_bindings": {
+      "process.json": {
+        "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+        "size": 44
+      },
+      "stderr.txt": {
+        "sha256": "37ae667203d7ebb2bbc0878e1826c7f537c0999d4ae35792b48a60661189e36b",
+        "size": 8479
+      },
+      "stdout.txt": {
+        "sha256": "535ba998dcdb86c54ccc81a0fe99d30d346f7ebe4cff043e42f3dc53f85bb42e",
+        "size": 849
+      }
+    },
+    "release_ready": false,
+    "render_fix_scope": "RESET_AFTER_VIDEO_BUFFER_BEFORE_EACH_BOOT_CONTINUE_NO_GIFT_LOGIC_CHANGE",
+    "revalidated_case": "research-egg-1201",
+    "rom_changes": 0,
+    "run_id": 36120941191,
+    "schema_version": 1,
+    "status": "PASS_OBSERVATION_REPAIR_THREE_MECHANICAL_CASES",
+    "task": "USER-20260925-COLLECTION-OBSERVATION"
   },
   "learnset_conditional_compact": {
     "candidate": {
@@ -3934,7 +4009,7 @@
     "stop_rule_ja": "特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。"
   },
   "observed_date_jst": "2026-09-25",
-  "observed_head": "932576e5bdea3036f9eeb425bc4a2a860661c645",
+  "observed_head": "dfc6d35028c77d2dd0864a41c4fc759d15d2225e",
   "observed_head_checks": {
     "reason_ja": "実測とActions終端を区別。一般CI/全体完成へ昇格しない。",
     "runs": [
@@ -7159,8 +7234,8 @@
       "size": 1328
     },
     ".github/workflows/pr16-supply-followup-20260925.yml": {
-      "sha256": "0cc1e9dec253e2f927d9f08000ce6a993292bd50b4a1dde552f18173b6c5ddf3",
-      "size": 5043
+      "sha256": "7572ac6ee5db8ca9f9229e3d54e735a43e767e8a34a66b46bea6ca5aebf26a3e",
+      "size": 2148
     },
     ".github/workflows/pr16-vega-adjudication-record.yml": {
       "sha256": "cb0490020433011ba362fe6e44d57a70b327bd4de7547891b42f01707b043d39",
@@ -7575,8 +7650,8 @@
       "size": 2600
     },
     "content/modernization/pr16_collection_gifts_checkpoint.json": {
-      "sha256": "e8bc5bb4d000092037249e00426e422c823724650682196e5a4a964d624e38df",
-      "size": 81040
+      "sha256": "1bf0c86a4232d161df2b984407926f9527e153ace97e0eb822493c139a3b60c0",
+      "size": 88386
     },
     "content/modernization/pr16_exp_evolution_share_checkpoint.json": {
       "sha256": "2ddb6d6e310ae494f340469bcfb9e639e878e199206c8a62a07c74ba2170f176",
@@ -8471,8 +8546,8 @@
       "size": 1140469
     },
     "docs/PR16_COLLECTION_GIFTS_JA.md": {
-      "sha256": "7384e0f06ee8271783b8f85831c7538d02d4cc23224a03183e7ddd3d2682c986",
-      "size": 2517
+      "sha256": "d0d582db8708e76fe24c80ef3e33afd150b4f3e56febc5a73ef3efaf0cbfac5b",
+      "size": 3099
     },
     "docs/PR16_EXP_EVOLUTION_SHARE_JA.md": {
       "sha256": "91bf0315d0ac20772a0caa27b4528df27916d52f1c3750f3b2acc331b41628a7",
@@ -12610,6 +12685,10 @@
       "sha256": "bd8e062093b4621917ccaf9dd12a7e020a46616663d32732c550b61e101187b7",
       "size": 10750
     },
+    "scripts/pr16_collection_gift_observation.py": {
+      "sha256": "18dd57f6687c50648355500afd4261b9a45500fc4333ab480956f20914e4e130",
+      "size": 15382
+    },
     "scripts/pr16_collection_gift_scope.py": {
       "sha256": "6e5ecd8cc9b6e940a813591346b26dbafa931445a80b143e88bbbd4a4956ab86",
       "size": 11246
@@ -12619,8 +12698,8 @@
       "size": 6189
     },
     "scripts/pr16_collection_gifts.py": {
-      "sha256": "f36ede0b0046eaf86b9f8c685fad22ca20cbbac3180d7931b9a5231957dc6fcf",
-      "size": 26723
+      "sha256": "63a827014b234772011a804bdbb18254d92b3076f26012680b2a345d0718be8f",
+      "size": 26632
     },
     "scripts/pr16_exp_evolution_observation.py": {
       "sha256": "085874d692a0a7c16137086eaf4f21ab644f08cfad94dd52c88146affe31955e",
@@ -13906,6 +13985,10 @@
       "sha256": "8606057591a12f849c24fd98c6ae66b390c0a7fad3749506c0f820e3399fddfc",
       "size": 2068
     },
+    "tests/test_pr16_collection_gift_observation.py": {
+      "sha256": "50cf2e30970f0b4bcfed4676fca3b62d4dac055883f10e843470094c26131e21",
+      "size": 2650
+    },
     "tests/test_pr16_collection_gift_scope.py": {
       "sha256": "fe57b7367a770add9d99a57272ecbbdf2ec54f631359353acb08f1f9f1039203",
       "size": 2882
@@ -14875,8 +14958,8 @@
       "size": 1758
     },
     "tools/mgba_pr16_collection_gifts.c": {
-      "sha256": "50836c4a0a32d67182b1ca04f47c6c40ec4c6aaa799b6e0b7ac76af7b507d59d",
-      "size": 11845
+      "sha256": "512b67b61590517717ebed6989c850967d276ee013791cc005aea2ef52cc2722",
+      "size": 11869
     },
     "tools/mgba_pr16_exp_evolution_share.c": {
       "sha256": "006956a135451fb50d3a5a8ffcb4e40787d5a00d2aa831bb1144bfb0c3129b5c",

@@ -6,7 +6,7 @@
 
 ## いまの停止点と次の1手
 
-Issue19: Collection学習owner 2/17。非学習owner1281の配布初期技は未受入。
+Issue19: Collection学習owner 3/17。非学習owner1281の配布初期技は未受入。
 
 **次: Collection配布の失敗原本を確認し未成功caseだけ修復。受入済みcaseは再実行しない。**
 
@@ -14,7 +14,7 @@ Issue19: Collection学習owner 2/17。非学習owner1281の配布初期技は未
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `932576e5bdea3036f9eeb425bc4a2a860661c645`。
+証拠のsource HEAD: `dfc6d35028c77d2dd0864a41c4fc759d15d2225e`。
 Collection学習owner17経路と非学習owner1281を区別。全18配布/全Issue19完成ではない。
 
 ## 最短の再開手順

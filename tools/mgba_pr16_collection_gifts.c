@@ -123,7 +123,7 @@ int main(int argc,char **argv) {
     char rom_hash[65],seed_hash[65],after_hash[65];sha256_file(argv[1],rom_hash);sha256_file(argv[2],seed_hash);
     a_require(!strcmp(rom_hash,B_ROM_SHA) && !strcmp(rom_hash,argv[3]) && !strcmp(seed_hash,B_SEED_SHA) && !strcmp(seed_hash,argv[4]),"collection input identity");
     struct mLogger logger={.log=qol_log,.filter=NULL};mLogSetDefaultLogger(&logger);p03f_rtc_reserve(argv[2]);
-    struct mCore *c=qol_open(argv[1],argv[2]);qol_log_core=c;c->setVideoBuffer(c,b_video,240U);
+    struct mCore *c=qol_open(argv[1],argv[2]);qol_log_core=c;c->setVideoBuffer(c,b_video,240U);c->reset(c);
     a_require(a_continue(c),"collection seed Continue");a_flash_prepare(c);
     a_require(p02s_install_field_fixture(c),"collection initial party fixture");
     /* Explicit unlock fixture; never claim story/progression acceptance. */
@@ -155,7 +155,7 @@ int main(int argc,char **argv) {
     a_require(b_save(c),"collection ordinary Save");cf_t.saved=b_frames;
     cf_raw(c,"saved",2U,again);counter[2]=read32(c,P03_SAVE_COUNTER);
     a_require(!memcmp(party,again,200U) && counter[2]==counter[1]+1U,"saved collection party");
-    a_restore(c,&saved);c=b_restart(c,argv[1],argv[2]);saved=*c;a_guard(c);
+    a_restore(c,&saved);c=b_restart(c,argv[1],argv[2]);c->reset(c);saved=*c;a_guard(c);
     a_require(b_continue(c),"collection fresh Continue");cf_t.continued=b_frames;b_position(c,CF_GROUP,CF_NUMBER,CF_X,CF_Y);
     cf_raw(c,"continued",2U,again);counter[3]=read32(c,P03_SAVE_COUNTER);
     a_require(!memcmp(party,again,200U) && counter[3]==counter[2],"fresh collection persistence");

@@ -435,6 +435,210 @@
       },
       "run_id": 36119380600,
       "source_head": "932576e5bdea3036f9eeb425bc4a2a860661c645"
+    },
+    "research-egg-1201": {
+      "contract": {
+        "candidate": {
+          "sha256": "b7790902733a638445129c388d65ab3c199bceb92a41338e0069221b556b9f91",
+          "size": 33554432
+        },
+        "case": {
+          "claim_bit": 0,
+          "display_name": "コラッタ",
+          "form_index": 191,
+          "gift_index": 0,
+          "is_egg": 1,
+          "level": 1,
+          "moves": [
+            33,
+            39,
+            0,
+            0
+          ],
+          "name": "research-egg-1201",
+          "original_rows": [
+            [
+              33,
+              1
+            ],
+            [
+              39,
+              1
+            ],
+            [
+              98,
+              4
+            ],
+            [
+              116,
+              7
+            ],
+            [
+              44,
+              10
+            ],
+            [
+              228,
+              13
+            ],
+            [
+              158,
+              16
+            ],
+            [
+              566,
+              19
+            ],
+            [
+              242,
+              22
+            ],
+            [
+              541,
+              25
+            ],
+            [
+              162,
+              28
+            ],
+            [
+              38,
+              31
+            ],
+            [
+              283,
+              34
+            ]
+          ],
+          "pp": [
+            35,
+            30,
+            0,
+            0
+          ],
+          "species": 1201,
+          "unlock_id": 6
+        },
+        "controller": {
+          "sha256": "50836c4a0a32d67182b1ca04f47c6c40ec4c6aaa799b6e0b7ac76af7b507d59d",
+          "size": 11845
+        },
+        "geometry": {
+          "approach": "PRE_BARRIER_ONE_TILE_UP_THEN_A_ONLY",
+          "bg_event_index": 3,
+          "bg_record_hex": "15000300030000003c214109",
+          "cells": [
+            {
+              "collision": 0,
+              "elevation": 3,
+              "metatile": 641,
+              "x": 21,
+              "y": 3
+            },
+            {
+              "collision": 0,
+              "elevation": 3,
+              "metatile": 641,
+              "x": 21,
+              "y": 4
+            },
+            {
+              "collision": 0,
+              "elevation": 3,
+              "metatile": 641,
+              "x": 21,
+              "y": 5
+            }
+          ],
+          "event_kind": "BG_NORMAL_FIELD_A",
+          "group": 1,
+          "host_index": 5,
+          "legacy_npc_fields_are_not_object_identity": true,
+          "local_id": 0,
+          "native": 155212561,
+          "npc_y": 3,
+          "number": 73,
+          "object_hex": "",
+          "script": 155263292,
+          "script_hex": "6a160480050023115b4009210d80090006015821410905d8214109ff27210d80",
+          "x": 21,
+          "y": 4
+        },
+        "helpers": {
+          "sha256": "fcb0a46b2226df914c700a87c612f14f223e2e646074b4b4391157f8f13c8002",
+          "size": 19450
+        }
+      },
+      "result": {
+        "all_owners_accepted": false,
+        "candidate_sha256": "b7790902733a638445129c388d65ab3c199bceb92a41338e0069221b556b9f91",
+        "case": "research-egg-1201",
+        "denied_host_write_apis": 7,
+        "egg_hatch_verified": false,
+        "fresh_cores": 2,
+        "gift_index": 0,
+        "guarded_phases": 4,
+        "initial_party_map_unlock_claim_are_fixtures": true,
+        "is_egg": 1,
+        "issue19_complete": false,
+        "level": 1,
+        "moves": [
+          33,
+          39,
+          0,
+          0
+        ],
+        "native_save_steps": 1,
+        "npc_script": 155263292,
+        "owner_claim_bits": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "party_identity": {
+          "sha256": "89de41a8b45b6ede33ccb2b19f7dce35b3a4eef5232d6dbddff9a4caf4ea855f",
+          "size": 200
+        },
+        "party_preserved_bytes": 200,
+        "pp": [
+          35,
+          30,
+          0,
+          0
+        ],
+        "release_ready": false,
+        "save_counters": [
+          2,
+          3,
+          4,
+          4,
+          4
+        ],
+        "schema_version": 1,
+        "scope": "COLLECTION_NPC_INITIAL_MOVES_SAVE_CONTINUE",
+        "species": 1201,
+        "status": "PASS",
+        "story_acquisition_verified": false,
+        "warnings_errors": 0,
+        "witness": {
+          "boundary": 38,
+          "cancelled": 4923,
+          "claimed": 219,
+          "continued": 4706,
+          "list": 194,
+          "returned": 822,
+          "revisited": 4862,
+          "root": 100,
+          "saved": 2284,
+          "selected": 194
+        }
+      },
+      "run_id": 36119380600,
+      "source_head": "932576e5bdea3036f9eeb425bc4a2a860661c645",
+      "validation_kind": "ORIGINAL_NATIVE_RAW_REVALIDATED_NO_RERUN",
+      "validation_source": "dfc6d35028c77d2dd0864a41c4fc759d15d2225e"
     }
   },
   "accepted_case_reruns": 0,
@@ -2868,15 +3072,8 @@
     "research-egg-1417",
     "research-egg-1425"
   ],
-  "error": "native/validation failure recorded",
-  "error_type": "ValueError",
   "evidence_path": "content/modernization/pr16_collection_gifts_evidence/36119380600",
-  "failures": {
-    "research-egg-1201": {
-      "error": "strict physical chronology",
-      "type": "ValueError"
-    }
-  },
+  "failures": {},
   "generated_sources": {
     "cf_helpers.c": {
       "sha256": "5500b7afd9ff7cbf1cb1f7d4293fd44c034db04b80bee2dac670bc0ae3a151f6",
@@ -2913,8 +3110,82 @@
   "new_cache_validator_tests": 0,
   "new_scope_unit_tests": 0,
   "new_unit_tests": 0,
+  "observation_repair": {
+    "accepted_case_reruns": 0,
+    "accepted_original_cases": [
+      "fixed-form-1254",
+      "fixed-form-1390",
+      "research-egg-1201"
+    ],
+    "arm_compiles": 0,
+    "controller_after": {
+      "sha256": "512b67b61590517717ebed6989c850967d276ee013791cc005aea2ef52cc2722",
+      "size": 11869
+    },
+    "controller_before": {
+      "sha256": "50836c4a0a32d67182b1ca04f47c6c40ec4c6aaa799b6e0b7ac76af7b507d59d",
+      "size": 11845
+    },
+    "driver_after": {
+      "sha256": "63a827014b234772011a804bdbb18254d92b3076f26012680b2a345d0718be8f",
+      "size": 26632
+    },
+    "driver_before": {
+      "sha256": "f36ede0b0046eaf86b9f8c685fad22ca20cbbac3180d7931b9a5231957dc6fcf",
+      "size": 26723
+    },
+    "host_compiles": 0,
+    "input_head": "dfc6d35028c77d2dd0864a41c4fc759d15d2225e",
+    "issue19_complete": false,
+    "modified_source_after_input_head": true,
+    "native_origin_run": 36119380600,
+    "new_native_processes": 0,
+    "new_unit_tests": 6,
+    "observation_source_bindings": {
+      "scripts/pr16_collection_gift_observation.py": {
+        "sha256": "18dd57f6687c50648355500afd4261b9a45500fc4333ab480956f20914e4e130",
+        "size": 15382
+      },
+      "tests/test_pr16_collection_gift_observation.py": {
+        "sha256": "50cf2e30970f0b4bcfed4676fca3b62d4dac055883f10e843470094c26131e21",
+        "size": 2650
+      }
+    },
+    "old_unit_reruns": 0,
+    "original_run_conclusion": "failure",
+    "path": "content/modernization/pr16_collection_gifts_evidence/36120941191/observation-repair.json",
+    "previous_screens": {
+      "all_single_color": true,
+      "artifact_id": 10856621674,
+      "images": 9,
+      "run_id": 36119380600,
+      "visual_acceptance": false
+    },
+    "primary_source": "mgba-emu/mgba@0.10.2:src/gba/core.c:_GBACoreReset (blob 8bdf218b3e3b8a73d4da4c1b028ae86843f3a502)",
+    "raw_bindings": {
+      "process.json": {
+        "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+        "size": 44
+      },
+      "stderr.txt": {
+        "sha256": "37ae667203d7ebb2bbc0878e1826c7f537c0999d4ae35792b48a60661189e36b",
+        "size": 8479
+      },
+      "stdout.txt": {
+        "sha256": "535ba998dcdb86c54ccc81a0fe99d30d346f7ebe4cff043e42f3dc53f85bb42e",
+        "size": 849
+      }
+    },
+    "release_ready": false,
+    "render_fix_scope": "RESET_AFTER_VIDEO_BUFFER_BEFORE_EACH_BOOT_CONTINUE_NO_GIFT_LOGIC_CHANGE",
+    "revalidated_case": "research-egg-1201",
+    "rom_changes": 0,
+    "run_id": 36120941191,
+    "schema_version": 1,
+    "status": "PASS_OBSERVATION_REPAIR_THREE_MECHANICAL_CASES",
+    "task": "USER-20260925-COLLECTION-OBSERVATION"
+  },
   "pending_cases": [
-    "research-egg-1201",
     "research-egg-1204",
     "research-egg-1206",
     "research-egg-1208",
