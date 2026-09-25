@@ -112,7 +112,7 @@ def validate(out,err,case,rows,pp):
     for k,v in fixed.items():need(type(r[k]) is type(v) and r[k]==v,'fixed '+k)
     need(all(type(r[k])is int for k in ints),'integer witnesses')
     for k in arrays:need(type(r[k])is list and len(r[k])==4 and all(type(v)is int for v in r[k]),'four integer slots')
-    spent=case['points'][0]-r['pp_after'][0];moves,points,eligible=expected(case,r['level_after'],pp,spent,rows)
+    spent=case['points'][0]-r['pp_after'][0];moves,points,eligible=expected(case,r['level_after'],PP if False else pp,spent,rows)
     need(r['moves_after']==moves and r['pp_after']==points,'lead original learning/PP')
     need(r['xp_before']==(case['level']+1)**3-1 and r['level_after']**3<=r['xp_after']<(r['level_after']+1)**3,'lead cubic EXP')
     need(0<r['boundary']<r['encounter']<r['pp_spent']<=r['level_frame']<r['returned']<100000,'battle/EXP chronology')
@@ -127,7 +127,7 @@ def validate(out,err,case,rows,pp):
     pulses=re.findall(rb'^ESHARE_EVOLUTION_INPUT frame=(\d+) key=(\d+)$',err,re.M)
     need(len(events)==err.count(b'ESHARE_EVOLUTION phase=') and len(pulses)==err.count(b'ESHARE_EVOLUTION_INPUT '),'complete evolution raw evidence')
     if share:
-        rm,rp,religible=expected(case,r['reserve_level_after'],pp,0,ROWS if False else rows,True)
+        rm,rp,religible=expected(case,r['reserve_level_after'],pp,0,rows,True)
         need(r['reserve_moves_after']==rm and r['reserve_pp_after']==rp,'nonparticipant original learning/PP')
         lv=r['reserve_level_after'];need(lv**3<=r['reserve_xp_after']<(lv+1)**3 and r['encounter']<r['reserve_level_frame']<r['returned'],'reserve EXP chronology')
         last=mon['returned',1];need((last['species'],last['level'],last['xp'],last['moves'],last['pp'])==(414,lv,r['reserve_xp_after'],rm,rp),'reserve raw/output binding')
