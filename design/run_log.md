@@ -9724,3 +9724,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub固定source/保存artifact/Actions。事前source転送WIP 5078bd7/run36070267613（native/unit0）。参照: CFRU-JP e24a16fe39e27ae162faf5b78596d1f3df18489d battle_script_macros.s, assembly/data/battle_script_commands_table.s, include/new/ram_locs_battle.h。source-lock変更なし。merge/release/baseline切替なし。
 - JP binding repair: run36071387743失敗原本を保全。BPRJ.ld実symbol0x02023CD4へ修正。成功unit20再利用、変更C構造1+新4を実行。旧native再実行0。参照 https://github.com/kapibarasan000/CFRU-JP/blob/e24a16fe39e27ae162faf5b78596d1f3df18489d/BPRJ.ld 。
 - Completion record repair: run36072151730はnative成功原本の終端照合後、補助JSONの親directory未作成でpush前停止。保存先作成を修正し、記録だけ再開。成功native/unit/host/ARMの再実行0。
+
+## 2026-09-25T00:01:32.845048+00:00
+- Timestamp: 2026-09-25T00:01:32.845048+00:00
+- Task: USER-20260925-LEARNSET-EXP-EVOLUTION-SHARE / native前source checkpoint
+- Version: issue19-exp-evolution-share-wip
+- Status: STOPPED
+- Summary: 新3case runner/driver/24試験を追加。転送時の定数false式を単一引数へ正規化しローカル構文/新unit24成功byteとSHA照合。実ROM受入はまだ0。
+- Files changed: 専用C/driver/tests/workflow、両ログ。既存受入CP・固定再開点はまだ変更しない。
+- Verify: 3source SHA一致、Python構文PASS。native/ARM/host/旧受入再実行0。次は新3caseのみ。
+- Commit: 同branchへ非force push/remote ref照合。
+- Network: GitHub Actions/sourceのみ。ROM/release/baseline不変。

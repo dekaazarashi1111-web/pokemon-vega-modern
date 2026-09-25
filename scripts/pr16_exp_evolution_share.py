@@ -112,7 +112,7 @@ def validate(out,err,case,rows,pp):
     for k,v in fixed.items():need(type(r[k]) is type(v) and r[k]==v,'fixed '+k)
     need(all(type(r[k])is int for k in ints),'integer witnesses')
     for k in arrays:need(type(r[k])is list and len(r[k])==4 and all(type(v)is int for v in r[k]),'four integer slots')
-    spent=case['points'][0]-r['pp_after'][0];moves,points,eligible=expected(case,r['level_after'],PP if False else pp,spent,rows)
+    spent=case['points'][0]-r['pp_after'][0];moves,points,eligible=expected(case,r['level_after'],pp,spent,rows)
     need(r['moves_after']==moves and r['pp_after']==points,'lead original learning/PP')
     need(r['xp_before']==(case['level']+1)**3-1 and r['level_after']**3<=r['xp_after']<(r['level_after']+1)**3,'lead cubic EXP')
     need(0<r['boundary']<r['encounter']<r['pp_spent']<=r['level_frame']<r['returned']<100000,'battle/EXP chronology')
