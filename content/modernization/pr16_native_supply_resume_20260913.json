@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "Issue19: Collection学習owner 17/17。非学習owner1281の配布初期技は未受入。",
+    "current_stop": "Issue19: 研究孵化 5/15。PARTIAL_RESEARCH_HATCH_RECOVERED_AFTER_TIMEOUT。全体未完。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "Issue19: Collection学習owner17経路の通常配布・原本初期技・Save/fresh Continueは保存受入から再実行しない。ギザみみピチュー1281は既存EXCLUDED_REMAKE_FORM_IDENTITY_ONLYにより技の自動補完/通常ピチュー流用禁止、配布初期技の受入保留。未受入の研究タマゴ孵化後のform/技保持、釣り/隠し野生の特殊技順を続ける。全Issue19/release/active baseline切替は未完。",
+    "next_step": "研究孵化の保存成功5件と32unitは再実行しない。残り10件を1case/workerの独立Actionsで並列測定し、集約jobだけが記録・非force pushする。50cycle/実歩数/既存C・候補ROMは変更しない。15件完了後に特殊野生へ。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -2994,6 +2994,66 @@
     "status": "PASS_REPAIRED_CFRU_FIRST_CALL_ENTRY",
     "successful_cases": 11
   },
+  "learnset_research_hatch": {
+    "accepted_cases": [
+      "research-egg-1201",
+      "research-egg-1204",
+      "research-egg-1206",
+      "research-egg-1208",
+      "research-egg-1210"
+    ],
+    "actions_completion_confirmed": false,
+    "candidate": {
+      "sha256": "b7790902733a638445129c388d65ab3c199bceb92a41338e0069221b556b9f91",
+      "size": 33554432
+    },
+    "fixture_only": true,
+    "gift_reruns": 0,
+    "issue19_complete": false,
+    "path": "content/modernization/pr16_research_hatch_checkpoint.json",
+    "pending_cases": [
+      "research-egg-1212",
+      "research-egg-1215",
+      "research-egg-1394",
+      "research-egg-1396",
+      "research-egg-1407",
+      "research-egg-1410",
+      "research-egg-1414",
+      "research-egg-1415",
+      "research-egg-1417",
+      "research-egg-1425"
+    ],
+    "recovery": {
+      "binding": {
+        "sha256": "fc64f989ba8be98bc4c59e43c2336d48b7247e07e9df13d2b4bfb49912e07a3d",
+        "size": 4259
+      },
+      "commit_was_skipped": true,
+      "original_run_id": 36138860612,
+      "path": "content/modernization/pr16_research_hatch_evidence/36144612816/recovery.json",
+      "proof": {
+        "digest": "sha256:1b89c98fc132c65243dea0b0cccea415accadf90b389231e0fec32f5552f3f89",
+        "id": 10868027070,
+        "name": "pr16-research-hatch-proof",
+        "size_in_bytes": 45208
+      },
+      "raw_verification_binding": {
+        "sha256": "23ad9ecb39b2976f606c88b03192df784c8d160b1a0a45d3552a241a7ffd7757",
+        "size": 132501
+      },
+      "run_id": 36144612816,
+      "screens": {
+        "digest": "sha256:77282fc6d2b47784a8191df2b083f57fac6aa97dc3052620ed7cc7a24116fe38",
+        "id": 10868426825,
+        "name": "pr16-research-hatch-screens",
+        "size_in_bytes": 26642
+      },
+      "source_head": "7356849af80057c4fe6dd05db73ea21df7d4fd40"
+    },
+    "run_id": 36138860612,
+    "source_head": "e12eda4098837fcd434194e3da713f2837209450",
+    "status": "PARTIAL_RESEARCH_HATCH_RECOVERED_AFTER_TIMEOUT"
+  },
   "learnset_runtime": {
     "candidate": {
       "sha256": "aabd52a0db65737b2da0d61bd60c355bedd6ef307b6f60bffad7465d3a6ee56c",
@@ -4007,64 +4067,29 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "Issue19: Collection学習owner17経路の通常配布・原本初期技・Save/fresh Continueは保存受入から再実行しない。ギザみみピチュー1281は既存EXCLUDED_REMAKE_FORM_IDENTITY_ONLYにより技の自動補完/通常ピチュー流用禁止、配布初期技の受入保留。未受入の研究タマゴ孵化後のform/技保持、釣り/隠し野生の特殊技順を続ける。全Issue19/release/active baseline切替は未完。",
+    "goal_ja": "研究孵化の保存成功5件と32unitは再実行しない。残り10件を1case/workerの独立Actionsで並列測定し、集約jobだけが記録・非force pushする。50cycle/実歩数/既存C・候補ROMは変更しない。15件完了後に特殊野生へ。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
-    "id": "SPECIAL_WILD_AND_RESEARCH_HATCH",
+    "id": "RESEARCH_HATCH_REMAINING_TEN",
     "read_paths": [
-      "docs/PR16_COLLECTION_GIFTS_JA.md",
-      "content/modernization/pr16_collection_gifts_checkpoint.json",
-      "scripts/pr16_collection_gift_scope.py",
-      "scripts/pr16_collection_gifts.py"
+      "docs/PR16_RESEARCH_HATCH_JA.md",
+      "content/modernization/pr16_research_hatch_checkpoint.json",
+      "scripts/pr16_research_hatch_recover.py",
+      "content/modernization/pr16_research_hatch_evidence/36144612816/recovery.json"
     ],
     "stop_rule_ja": "特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。"
   },
   "observed_date_jst": "2026-09-25",
-  "observed_head": "2c3770116cc6d410189f260eb32cdf9d381dc163",
+  "observed_head": "7356849af80057c4fe6dd05db73ea21df7d4fd40",
   "observed_head_checks": {
-    "reason_ja": "実測とActions終端を区別。一般CI/全体完成へ昇格しない。",
+    "reason_ja": "実測とActions終端を分離。一般CIのaction_requiredをsuccess扱いしない。",
     "runs": [
       {
-        "conclusion": "failure",
-        "head_sha": "41cde956a32911242a7d12c41b2ada62f29494a3",
-        "id": 36110983368,
-        "job_id": 107994149239,
-        "path": ".github/workflows/pr16-supply-followup-20260925.yml",
-        "status": "completed"
-      },
-      {
-        "conclusion": "failure",
-        "head_sha": "194670bade3bcb584e651db301c09ba11c7eeb29",
-        "id": 36111746469,
-        "job_id": 107996542251,
-        "path": ".github/workflows/pr16-supply-followup-20260925.yml",
-        "status": "completed"
-      },
-      {
-        "conclusion": "failure",
-        "head_sha": "d0f663e2094242f89ed6296463150229b8754721",
-        "id": 36118704240,
-        "job_id": 108018798756,
-        "path": ".github/workflows/pr16-supply-followup-20260925.yml",
-        "status": "completed"
-      },
-      {
-        "conclusion": "failure",
-        "head_sha": "932576e5bdea3036f9eeb425bc4a2a860661c645",
-        "id": 36119380600,
-        "job_id": 108020978703,
-        "path": ".github/workflows/pr16-supply-followup-20260925.yml",
-        "status": "completed"
-      },
-      {
-        "conclusion": "success",
-        "head_sha": "cc160e5b9127a0acd32ddd65def74438c9b6a852",
-        "id": 36121122707,
-        "job_id": 108026595163,
-        "path": ".github/workflows/pr16-supply-followup-20260925.yml",
-        "status": "completed"
+        "conclusion": null,
+        "id": 36138860612,
+        "status": "in_progress"
       }
     ],
-    "scope_head": "cc160e5b9127a0acd32ddd65def74438c9b6a852"
+    "scope_head": "e12eda4098837fcd434194e3da713f2837209450"
   },
   "observed_head_history": [
     {
@@ -5418,7 +5443,7 @@
       "semantics": "PLA1圧縮と新規供給consumerのhost検証成功入力HEAD。ROM配置/実操作/記録commitの受入ではない。"
     }
   ],
-  "observed_head_semantics": "Collection学習owner17経路と非学習owner1281を区別。全18配布/全Issue19完成ではない。",
+  "observed_head_semantics": "研究タマゴ原本個体fixtureの孵化後保持。通常配布の再実行/元saveの連続再開/全Issue19完成ではない。",
   "p08_candidate_impact": {
     "candidate": {
       "crc32": "CC068B4A",
@@ -6706,6 +6731,14 @@
       "sha256": "8bbceefdb44ba529cbf33743598520f297974e6df53811cae41bdf2c1f51f18e",
       "size": 1383
     },
+    ".github/workflows/pr16-research-hatch-20260925.yml": {
+      "sha256": "a1179f53c60a8b529f2295f637c4943f3a761526c2aa9f0f73c395ce426f7f76",
+      "size": 3627
+    },
+    ".github/workflows/pr16-research-hatch-recover-20260925.yml": {
+      "sha256": "f739f8dca99fadd74db87ad48076a1016057bb0ebe094905bc0c421f9d1b2f33",
+      "size": 3313
+    },
     ".github/workflows/pr16-ring-audio-boundary-contracts.yml": {
       "sha256": "fc9400ca2de465cfbeeadcf7b7d7db4ca6497320bf966bd086c1ecf22d530a11",
       "size": 1975
@@ -7890,6 +7923,10 @@
       "sha256": "05f6691ac66ebca2175b214792f02625cd16f01df288af511ba59250f990fa7d",
       "size": 22989
     },
+    "content/modernization/pr16_research_hatch_checkpoint.json": {
+      "sha256": "e0704d6f547cb46e69607523b1d78d0477389b262956639e85bfeb056c8bd3d0",
+      "size": 142067
+    },
     "content/modernization/pr16_ring_audio_boundary_contracts.json": {
       "sha256": "61de96a6afd25c699b0dcb3cbd27d2b113b540ba53b609f641aea34434ac09d2",
       "size": 412258
@@ -8653,6 +8690,10 @@
     "docs/PR16_NATURAL_SUPPLY_JA.md": {
       "sha256": "7f6b0a12d556415ef24ca476f1efeb894edd9a12b589a1c14879e3e91b89f721",
       "size": 3662
+    },
+    "docs/PR16_RESEARCH_HATCH_JA.md": {
+      "sha256": "272354c92461cf0eb290a2797e6cc971290e2562d1cc004dcd80dc442d0012c7",
+      "size": 3227
     },
     "docs/PR16_VEGA_ORIGINAL_AUDIT_JA.md": {
       "sha256": "b9ee1dd32da36d9fe3d04aa1663afa0f2e6cc37aef491437dd2443a5870fb2d4",
@@ -12962,6 +13003,18 @@
       "sha256": "6411fe108c0bab4f84791e52468d012393ce1ad9ef128e7298e29b53ccc9dffa",
       "size": 26146
     },
+    "scripts/pr16_research_hatch.py": {
+      "sha256": "15358679079ab84db48cea564883acf00aba95f6183abee63e63abca7cc17139",
+      "size": 25589
+    },
+    "scripts/pr16_research_hatch_proof.py": {
+      "sha256": "c5e104a3889c32d42095cb3392b9b96dd2f4b28f4b90e3c0c9fb4708453b2cf5",
+      "size": 3390
+    },
+    "scripts/pr16_research_hatch_recover.py": {
+      "sha256": "bbffdfea91c92cfb44e1d04b95e3a97d720694c8f4aefe00246e6d93a0f70359",
+      "size": 12131
+    },
     "scripts/pr16_restore_cfru_snapshot.py": {
       "sha256": "5b8bc2069f12fd6513ed2b8424de48043a71515e419d208087885d7066c2a202",
       "size": 8213
@@ -14238,6 +14291,18 @@
       "sha256": "11542d2cbc167c498d156be2279028a36dd7f66220208bf1989b641d523982d4",
       "size": 7727
     },
+    "tests/test_pr16_research_hatch.py": {
+      "sha256": "abdab054fadb53aa9e78823cf75e3d2e5653df2b40e552da37f63ddb6da1ec74",
+      "size": 9556
+    },
+    "tests/test_pr16_research_hatch_proof.py": {
+      "sha256": "1036236b1e8b3052b1686d14c52c6a734bb45b5b8617ac572e47b09054716d50",
+      "size": 4508
+    },
+    "tests/test_pr16_research_hatch_recover.py": {
+      "sha256": "719145df2814b12a24fb66eac047cdec4e7927b185d90a19d3e13e50141dc777",
+      "size": 2572
+    },
     "tests/test_pr16_restore_cfru_snapshot.py": {
       "sha256": "b0b743783966fe8af3b6a058ef367bf86560fa3a8728dbdc7e0cd44d38a14771",
       "size": 6311
@@ -15081,6 +15146,10 @@
     "tools/mgba_pr16_p08_ordinary_observer.h": {
       "sha256": "923431e93d921bc205fcfca7cac077392f3bea9577779550c4bf972bab604037",
       "size": 4107
+    },
+    "tools/mgba_pr16_research_hatch.c": {
+      "sha256": "29df9f752ec1e183334f7ec6f928088f51c5f48c7ff96c2985a4daca93f84055",
+      "size": 7327
     },
     "tools/mgba_pr16_ring_caller_snapshot.c": {
       "sha256": "5984c597aafedbe2a4da2ce5efdf6ed5108e699a5af3a8c8df79d1c779d3ea68",

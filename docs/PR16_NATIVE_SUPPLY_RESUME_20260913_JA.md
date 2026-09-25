@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-Issue19: Collection学習owner 17/17。非学習owner1281の配布初期技は未受入。
+Issue19: 研究孵化 5/15。PARTIAL_RESEARCH_HATCH_RECOVERED_AFTER_TIMEOUT。全体未完。
 
-**次: Issue19: Collection学習owner17経路の通常配布・原本初期技・Save/fresh Continueは保存受入から再実行しない。ギザみみピチュー1281は既存EXCLUDED_REMAKE_FORM_IDENTITY_ONLYにより技の自動補完/通常ピチュー流用禁止、配布初期技の受入保留。未受入の研究タマゴ孵化後のform/技保持、釣り/隠し野生の特殊技順を続ける。全Issue19/release/active baseline切替は未完。**
+**次: 研究孵化の保存成功5件と32unitは再実行しない。残り10件を1case/workerの独立Actionsで並列測定し、集約jobだけが記録・非force pushする。50cycle/実歩数/既存C・候補ROMは変更しない。15件完了後に特殊野生へ。**
 
 特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `2c3770116cc6d410189f260eb32cdf9d381dc163`。
-Collection学習owner17経路と非学習owner1281を区別。全18配布/全Issue19完成ではない。
+証拠のsource HEAD: `7356849af80057c4fe6dd05db73ea21df7d4fd40`。
+研究タマゴ原本個体fixtureの孵化後保持。通常配布の再実行/元saveの連続再開/全Issue19完成ではない。
 
 ## 最短の再開手順
 
@@ -25,10 +25,10 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_COLLECTION_GIFTS_JA.md`
-- `content/modernization/pr16_collection_gifts_checkpoint.json`
-- `scripts/pr16_collection_gift_scope.py`
-- `scripts/pr16_collection_gifts.py`
+- `docs/PR16_RESEARCH_HATCH_JA.md`
+- `content/modernization/pr16_research_hatch_checkpoint.json`
+- `scripts/pr16_research_hatch_recover.py`
+- `content/modernization/pr16_research_hatch_evidence/36144612816/recovery.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -328,6 +328,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-実測とActions終端を区別。一般CI/全体完成へ昇格しない。
+実測とActions終端を分離。一般CIのaction_requiredをsuccess扱いしない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

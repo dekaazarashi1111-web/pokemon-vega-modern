@@ -10022,3 +10022,25 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: この終端runのnative/旧unit/host/ARM/ROM変更0。受入済み再実行0。resume check/task graph/final-index scoped private guardをcommit前実行。
 - Commit: 同branchへ非force commit/push・remote照合。成果SHAはterminal artifactのreflected-head.txt。
 - Network: GitHubの保存Actions/artifact原本照合のみ。ROM/save非追跡。merge/release/active baseline切替なし。1281 identity-only/自動fallback禁止を維持。
+
+## 2026-09-25T14:00:46.902912+00:00
+- Timestamp: 2026-09-25T14:00:46.902912+00:00
+- Task: USER-20260925-RESEARCH-HATCH / 研究タマゴの孵化後form・技保持
+- Version: issue19-research-hatch-v1
+- Status: STOPPED（保存原本から未完だけ継続）
+- Summary: 保存配布個体fixtureからの実歩行/孵化/Save/fresh Continue 5/15。元save連続再開と混同しない。原本cycleを短縮しない。
+- Files changed: 新driver/C/unit/限定Actions、checkpoint/guide/原本text、固定引継ぎMD/JSON、両ログ。
+- Verify: 新unit32、host1、native5。Actions終端False。終端専用=False、専用時native/unit/compile0。旧配布/孵化/ARM/Wiki不変。
+- Commit: 同branch非force push、reflected-head/remote照合。
+- Network: 固定GitHub/保存artifact/Actions。ROM・元seed非追跡。merge/release/baseline切替なし。
+
+## 2026-09-25T14:00:47.624377+00:00
+- Timestamp: 2026-09-25T14:00:47.624377+00:00
+- Task: USER-20260925-RESEARCH-HATCH
+- Version: interrupted-proof-recovery-v1
+- Status: STOPPED（5/15保存成功を復元、残10）
+- Summary: 元runのcancelled/RUNNING/push skippedを改称せず5ケースの原本を復元。旧32unit/host1/native5は元runの件数であり復元runの実行件数ではない。
+- Files changed: 復元driver・純proof helper・新unit・復元Actions、5件原本文書、checkpoint/guide、固定引継ぎMD/JSON、両ログ。
+- Verify: 復元runは新unit30、raw純検証5、画像10のhash/目視限定。新native/旧unit/host/ARM/ROM変更0。resume check/task graph/最終index限定guardをcommit前実行。
+- Commit: 同branch非force push。source=7356849af80057c4fe6dd05db73ea21df7d4fd40。成果SHAはrecovery artifactのreflected-head.txt。
+- Network: 固定GitHub原本のみ。原本ZIP/save/ROMは非追跡。merge/release/active baseline切替なし。
