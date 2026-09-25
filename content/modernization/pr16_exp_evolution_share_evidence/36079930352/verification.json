@@ -669,28 +669,6 @@
       "status": "completed"
     }
   ],
-  "previous_attempts": [
-    {
-      "run_id": 36075652959,
-      "status": "PARTIAL_BATTLE_EXP_EVOLUTION_SHARE"
-    },
-    {
-      "run_id": 36076513362,
-      "status": "PARTIAL_BATTLE_EXP_EVOLUTION_SHARE"
-    },
-    {
-      "run_id": 36078747595,
-      "status": "PARTIAL_BATTLE_EXP_EVOLUTION_SHARE"
-    },
-    {
-      "run_id": 36079225466,
-      "status": "FAIL"
-    },
-    {
-      "run_id": 36079548406,
-      "status": "PARTIAL_BATTLE_EXP_EVOLUTION_SHARE"
-    }
-  ],
   "proof_bindings": {
     "butterfree-exp-share.process.json": {
       "sha256": "182b1f564fcb386958d2a1d35aa5085633c1d294f3080b2ff2d4f29be34238a3",
@@ -829,68 +807,6 @@
     "tools/mgba_pr16_learnset_first_refuse.c": {
       "sha256": "7fd49871dc952c40bd68cd9d354f63bbe0a863dfd9ba92fc40e14ca2772a1d00",
       "size": 10270
-    }
-  },
-  "public_evidence_bindings": {
-    "butterfree-exp-share.process.json": {
-      "sha256": "182b1f564fcb386958d2a1d35aa5085633c1d294f3080b2ff2d4f29be34238a3",
-      "size": 44
-    },
-    "butterfree-exp-share.stderr.txt": {
-      "sha256": "29ea8858df8db484170bd6db36643dfee98752af436b8522dfb6e1d4db15bc39",
-      "size": 1962
-    },
-    "butterfree-exp-share.stdout.txt": {
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    "compile.process.json": {
-      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
-      "size": 44
-    },
-    "compile.stderr.txt": {
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    "compile.stdout.txt": {
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    "field-input-impact.json": {
-      "sha256": "1663db4806dad88ca46ee401315a3c47f1731258f183266e3f0752d19a7e4bbb",
-      "size": 717
-    },
-    "geometry.json": {
-      "sha256": "cce7d5aa97dfa5776f2ef2dcc45de3eb6db30f971b3b10c0659b943ccefc964c",
-      "size": 1937
-    },
-    "original-source.json": {
-      "sha256": "a6cfe63bec1365e5dfec9136b60a8a5492dd6002d26671f5aa587c92ec5303ff",
-      "size": 2577
-    },
-    "recipe.json": {
-      "sha256": "f90867542da84fd00ef3a8f274a0bba873e4b1ef6cb501b3d4bed111d55e05f1",
-      "size": 71099
-    },
-    "unit.process.json": {
-      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
-      "size": 44
-    },
-    "unit.stderr.txt": {
-      "sha256": "c4b7651b28acf0a38c7dab079ccd94e3d35c867df5d12fff49697620264ea794",
-      "size": 1030
-    },
-    "unit.stdout.txt": {
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    "vectors.json": {
-      "sha256": "3c7c19eabca4fef83d15e0831eacd472cc00e8cbeb7efc56183378d8579ec835",
-      "size": 865
-    },
-    "verification.json": {
-      "sha256": "2ee37b1bdea6c0927ac66e86352657fb720262f3746025c35edeeccee0e03126",
-      "size": 27072
     }
   },
   "release_ready": false,
