@@ -1,5 +1,5 @@
 name: pr16-exp-evolution-share
-# 保存済み3caseの終端照合だけ。unit/native/host/ARM再実行0。
+# 3case受入後の記録専用。unit/native/host/ARM再実行0。
 on:
   push:
     branches: [codex/modernization-followup-20260908]
@@ -26,14 +26,64 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: 受入source・旧受入不変
+      - name: 受入原本不変・終端Actions・再開日付・両ログ同期
         run: |
-          set -euo pipefail
-          git diff --exit-code b6b301e673483c01562cb56d69f8104b829a8afd HEAD -- scripts/pr16_exp_share_grass.py tests/test_pr16_exp_share_grass.py tools/mgba_pr16_exp_share_grass.c
-          git diff --exit-code 9cfde111077c1ca451344de0d4cd09c83f335b0c HEAD -- AGENTS.md CHATGPT_RESUME.md config/active_play_baseline.json design/active_play_baseline.md content/modernization/pr16_bp_chooser_checkpoint.json content/modernization/p08_remaining_work.json content/modernization/pr16_learnset_boundaries_checkpoint.json content/modernization/pr16_learnset_first_refuse_checkpoint.json
-      - name: 保存3case・Actions成功・artifact・非force反映を照合
-        run: python3 -B scripts/pr16_exp_share_grass.py complete
-      - name: 引継ぎ・両ログ・最終index検査
+          python3 -B - <<'PY'
+          import datetime
+          import os
+          import subprocess
+          import sys
+          from zoneinfo import ZoneInfo
+          sys.path.insert(0, 'scripts')
+          import pr16_exp_share_grass as g
+          from pr16_learnset_compact_record import publish_resume
+          from pr16_learnset_wiki_actions import current
+          from pr16_wiki_reconcile import fetch
+          e=g.e;g.configure();head=current()
+          final='1adec9ac6095f0a31c7e9c147ae8b2cfb8195f78'
+          changed=subprocess.check_output(['git','diff','--name-only',final,'HEAD'],text=True).splitlines()
+          e.need(changed==[e.WF], 'record-only change since accepted completion')
+          cp_bytes=(e.ROOT/e.CP).read_bytes();cp=e.load(e.ROOT/e.CP)
+          e.need(cp['status']==e.STATUS and cp['actions_completion_confirmed'] and set(cp['accepted'])=={x[0] for x in e.CASES}, 'saved 3/3 terminal acceptance')
+          for path,binding in (cp['source_bindings']|cp.get('compiled_sources',{})).items():
+              if path!=e.WF:e.need(e.identity((e.ROOT/path).read_bytes())==binding, 'accepted source unchanged '+path)
+          for sha in ('9f2e5a9d6dc5d60d7c6e309869f430e3bcb8f662','511e2200fc994e3e3a6bfb089f7e5dfe68681a94','e3027023931bdd5636d7ef9a91228322d8181936',final):
+              subprocess.run(['git','merge-base','--is-ancestor',sha,'HEAD'],check=True)
+          runs=[]
+          for rid,sha,path,conclusion in (
+              (36083695295,'7e416efb13b95448355e6bc151eff50aa3c25a3a',e.WF,'failure'),
+              (36084083370,'b6b301e673483c01562cb56d69f8104b829a8afd',e.WF,'success'),
+              (36084224210,'6dfc3ba9a99424d87e6b199fd536b4ae14609b93',e.WF,'success'),
+              (36084224173,'6dfc3ba9a99424d87e6b199fd536b4ae14609b93','.github/workflows/ci.yml','success')):
+              r=fetch('actions/runs/'+str(rid))
+              e.need((r['head_sha'],r['path'],r['status'],r['conclusion'],r['head_branch'])==(sha,path,'completed',conclusion,'codex/modernization-followup-20260908'), 'exact original Actions terminal')
+              jobs=fetch('actions/runs/'+str(rid)+'/jobs?per_page=100')
+              e.need(jobs['total_count']==len(jobs['jobs'])==1, 'one complete job')
+              j=jobs['jobs'][0];e.need(j['conclusion']==conclusion, 'job terminal agrees')
+              if conclusion=='success':e.need(all(s['conclusion'] in ('success','skipped') for s in j['steps']), 'all successful terminal steps')
+              runs.append(dict({k:r[k] for k in ('id','head_sha','path','status','conclusion')},job_id=j['id']))
+          stamp=datetime.datetime.now(datetime.timezone.utc)
+          receipt={'schema_version':1,'task':e.TASK,'status':'PASS_EXP_EVOLUTION_SHARE_CLOSEOUT','source_head':head,'run_id':int(os.environ['GITHUB_RUN_ID']),'observed_at':stamp.isoformat(),'accepted_completion_head':final,'accepted_checkpoint':{'path':e.CP,**e.identity(cp_bytes)},'accepted_cases':{name:{'run_id':v['run_id'],'source_head':v['source_head']} for name,v in cp['accepted'].items()},'candidate':cp['candidate'],'observed_terminal_actions':runs,'preflight_failure':cp['preflight_failure_repaired'],'new_unit_tests':0,'host_compiles':0,'arm_compiles':0,'native_processes':0,'accepted_native_reruns':0,'rom_changes':0,'issue19_complete':False,'release_ready':False,'active_baseline_changed':False,'next_action_ja':e.NEXT}
+          dest=e.ROOT/e.EVIDENCE/os.environ['GITHUB_RUN_ID'];e.need(not dest.exists(), 'unique closeout record');dest.mkdir(parents=True)
+          e.write(dest/'closeout.json',receipt)
+          state=e.load(e.ROOT/e.x.m.STATE)
+          state['observed_date_jst']=stamp.astimezone(ZoneInfo('Asia/Tokyo')).date().isoformat()
+          state['observed_head']=head
+          state['observed_head_semantics']='受入済み戦闘EXP進化/共有3caseの記録終端。native・unit・host・ARM再実行0。成功3runと準備失敗1runは別HEADの原本として保持。'
+          relative=(dest/'closeout.json').relative_to(e.ROOT).as_posix()
+          state['learnset_exp_evolution_share_closeout']={'path':relative,'run_id':receipt['run_id'],'source_head':head,'accepted_completion_head':final,'accepted_native_reruns':0}
+          state['source_bindings'][e.WF]=e.identity((e.ROOT/e.WF).read_bytes())
+          state['source_bindings'][relative]=e.identity((dest/'closeout.json').read_bytes())
+          state['observed_head_checks']['reason_ja']='保存native成功・受入記録成功・source-validation成功を別HEADで照合。準備失敗はfailureのまま。詳細はlearnset_exp_evolution_share_closeout。最新記録HEADでnativeを再実行したとは主張しない。'
+          state['logs_synchronized']=True;publish_resume(state)
+          note=f"\n## {stamp.isoformat()}\n- Timestamp: {stamp.isoformat()}\n- Task: {e.TASK} / 受入終端・再開日付同期\n- Version: issue19-exp-evolution-share-closeout-v1\n- Status: DONE（限定3case、Issue19全体未完）\n- Summary: 3/3受入不変。準備失敗36083695295はderived C未追跡でunit/compile/native0、artifact/push0。511e220で生成Cを補完、36084083370で新6unit/1host/1native成功、e302702に原本保存。36084224210で再実行なしの終端照合、1adec9aに受入確定。source-validation36084224173も成功。\n- Files changed: 記録専用workflow、closeout.json、固定MD/JSON、両ログ。受入CP/driver/C/tests/旧原本は不変。\n- Verify: run/head/path/branch/job/全成功step・source hashes・commit祖先・MD/JSON・task graph・staged guard。今回unit/native/host/ARM再実行0、ROM変更0。\n- Commit: 同branchへ非force pushし、reflected-head.txtとremote refで照合。\n- Network: GitHub Actionsの終端metadataだけ。保存成功の再実行・原本再生成・merge・release・baseline切替なし。\n"
+          for path in ('design/run_log.md','design/version_log.md'):
+              with (e.ROOT/path).open('a') as out:out.write(note)
+          e.need((e.ROOT/e.CP).read_bytes()==cp_bytes, 'accepted checkpoint immutable')
+          e.PROOF.mkdir(parents=True,exist_ok=True);e.write(e.PROOF/'closeout.json',receipt)
+          print('3/3原本不変、native/記録/source-validation成功を照合、失敗はfailure維持。再実行0。')
+          PY
+      - name: 引継ぎ・最終index検査
         run: |
           set -euo pipefail
           python3 -B scripts/pr16_resume.py check
@@ -48,7 +98,7 @@ jobs:
           test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'USER-20260925-LEARNSET-EXP-EVOLUTION-SHARE: 進化承認・取消・控え共有3caseの終端受入と次工程を記録'
+          git commit -m 'USER-20260925-LEARNSET-EXP-EVOLUTION-SHARE: 最終Actions・準備失敗・再開日付を原本不変で同期'
           git push origin "HEAD:$branch"
           sha=$(git rev-parse HEAD)
           test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$sha"
@@ -57,7 +107,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: pr16-exp-evolution-share-completion
+          name: pr16-exp-evolution-share-closeout
           path: .local/pr16-exp-evolution-share/proof/
           retention-days: 30
           if-no-files-found: error
