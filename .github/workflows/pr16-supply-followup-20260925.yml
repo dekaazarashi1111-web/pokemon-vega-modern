@@ -1,51 +1,87 @@
 name: pr16-supply-followup-20260925
-# 後継の限定入力。前回取得済みPython/状態JSONやnativeは再実行しない。
+# Collection配布18経路のみ。受入済み自然供給3/EXP/Bag/egg8/旧野生/ARM/Wikiは再実行しない。
 on:
   push:
     branches: [codex/modernization-followup-20260908]
     paths: [.github/workflows/pr16-supply-followup-20260925.yml]
 permissions:
-  contents: read
+  contents: write
+  actions: read
+  pull-requests: read
 concurrency:
   group: pr16-supply-followup-20260925
   cancel-in-progress: false
 jobs:
-  source-contract:
+  collection-gifts:
     if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 45
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+      GITHUB_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: 未取得のC本体・局所依存だけをHEAD固定
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: 実行sourceを固定
         run: |
           python3 -B - <<'PY'
-          import hashlib,json,os,subprocess,zipfile
+          import hashlib
           from pathlib import Path
-          paths=subprocess.check_output(['git','ls-files','-z']).decode().rstrip('\0').split('\0')
-          out=Path('.local/pr16-supply-followup');out.mkdir(parents=True)
-          members={};total=0
-          with zipfile.ZipFile(out/'source-bundle.zip','w',zipfile.ZIP_DEFLATED) as z:
-              for name in paths:
-                  p=Path(name)
-                  chosen=p.parts[0] in ('tools','src','overlays','tests') and p.suffix in ('.c','.h')
-                  chosen |= p.parts[0]=='tools' and len(p.parts)>2 and p.suffix=='.py'
-                  chosen |= p.parts[0]=='manifests' and p.suffix=='.csv'
-                  chosen |= name in ('tests/__init__.py','content/normalized/shared_captures.csv','scripts/lib/__init__.py')
-                  if not chosen or p.is_symlink():continue
-                  raw=p.read_bytes();raw.decode('utf-8');assert b'\0' not in raw,name
-                  assert len(raw)<16*1024*1024,name
-                  total+=len(raw);assert total<96*1024*1024,'限定text入力の容量超過'
-                  z.writestr(name,raw);members[name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
-              z.writestr('source-index-extra.json',json.dumps({'source_head':os.environ['GITHUB_SHA'],'members':members},sort_keys=True,indent=2)+'\n')
-          result={'source_head':os.environ['GITHUB_SHA'],'accepted_native_reruns':0,'arm_compiles':0,'rom_changes':0,'wiki_generations':0,'source_files':len(members),'source_bytes':total,'bundle_sha256':hashlib.sha256((out/'source-bundle.zip').read_bytes()).hexdigest()}
-          (out/'bootstrap.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result))
+          for path,expected in {
+            'scripts/pr16_collection_gifts.py':'3ea4ad760aa89f3dc1d95648a10d000f55097e4ae245265e1a7014ce9927bafb',
+            'tools/mgba_pr16_collection_gifts.c':'130935e36f5f91642eaf481a5731a2953971436299077d82863ec76ba9740317',
+            'tests/test_pr16_collection_gifts.py':'0b2d4f9e1da684bbb0108fe83fe7fb3010f9d76e420c90f8acb019aa1215078f'
+          }.items():
+              assert hashlib.sha256(Path(path).read_bytes()).hexdigest()==expected,path
           PY
+      - name: 未受入配布用host libraryだけを導入
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends libmgba-dev
+      - name: 新22unit・保存候補復元・未受入Collection配布のみ
+        id: native
+        continue-on-error: true
+        run: python3 -B scripts/pr16_collection_gifts.py execute
+      - name: 成功・失敗原本と固定引継ぎ・両ログを保存
+        run: |
+          set -euo pipefail
+          python3 -B scripts/pr16_collection_gifts.py record
+          python3 -B scripts/pr16_resume.py check
+          python3 -B scripts/validate_task_graph.py
+          python3 -B scripts/pr16_collection_gifts.py paths | tr '\n' '\0' >.local/pr16-collection-gifts/paths.z
+          git add --pathspec-from-file=.local/pr16-collection-gifts/paths.z --pathspec-file-nul
+          python3 -B scripts/pr16_collection_gifts.py guard
+      - name: 同branchへ非force commit/push・remote照合
+        run: |
+          set -euo pipefail
+          branch='codex/modernization-followup-20260908'
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20260925-COLLECTION-GIFTS: 実NPC配布の観測原本・固定引継ぎ・両ログを保存'
+          git push origin "HEAD:$branch"
+          sha=$(git rev-parse HEAD)
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$sha"
+          echo "$sha" | tee .local/pr16-collection-gifts/proof/reflected-head.txt
+          echo "RESULT=RECORDED TASK=USER-20260925-COLLECTION-GIFTS COMMIT=$sha"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: pr16-supply-followup-source-extra
-          path: .local/pr16-supply-followup/
-          retention-days: 7
+          name: pr16-collection-gifts-proof
+          path: .local/pr16-collection-gifts/proof/
+          retention-days: 30
           if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-collection-gifts-screens
+          path: .local/pr16-collection-gifts/screens/*.ppm
+          retention-days: 30
+          if-no-files-found: ignore
+      - name: 失敗をrun成功へ読み替えない
+        if: steps.native.outcome != 'success'
+        run: exit 1
