@@ -1,12 +1,12 @@
 # PR16 Issue19: 戦闘EXP進化と控え共有
 
-状態 `PARTIAL_BATTLE_EXP_EVOLUTION_SHARE`。入力HEAD `2789bb68266e6d76dcb65de41699dbd6f9cca850`、run `36078747595`。Actions終端確認 `False`。
+状態 `FAIL`。入力HEAD `6942bfc0e1ceac900a4a925d19e12c1892ffc24a`、run `36079225466`。Actions終端確認 `False`。
 
 候補 `b7790902733a638445129c388d65ab3c199bceb92a41338e0069221b556b9f91` / 33554432 bytesは保存recipeを復元。ROM変更0、ARM0、旧受入native再実行0。
 
 Metapodの戦闘EXP進化承認とB取消、2体Butterfreeの控え共有EXPを別processで検証。原本413/414のlevel/evolution表から期待技を求める。共有の開始flag・個体・EXP・能力・進行はfixtureであり、自然供給や通常UIでのEXP共有有効化の受入ではない。戦闘/進化・Save・fresh Continueの3区間で7書込APIを拒否。出場indexを毎frame観測し控え非出場、攻撃PPのみ消費、HP<=最大HP、全100/200byte保存を確認する。
 
-新unit 42、host compile 1、新native 3。保存成功 ['metapod-exp-cancel', 'metapod-exp-evolve']。未成功 ['butterfree-exp-share']。原本 `content/modernization/pr16_exp_evolution_share_evidence/36078747595`。
+新unit 9、host compile 1、新native 0。保存成功 ['metapod-exp-cancel', 'metapod-exp-evolve']。未成功 ['butterfree-exp-share']。原本 `content/modernization/pr16_exp_evolution_share_evidence/36079225466`。
 
 ## 次の未完工程
 

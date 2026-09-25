@@ -7051,3 +7051,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 新unit42 host compile1 native3。Actions終端=False。記録終端照合のunit/native/host再実行0。ROM変更/ARM/変更影響なしの旧受入再実行0。
 - Commit: 同branchへの非force push。reflected-head.txtとremote ref照合。
 - Network: GitHub固定source/保存artifact/Actions。原本再採取・Wiki生成・release・baseline切替なし。一般CIのaction_requiredは限定nativeと別記録。
+
+## 2026-09-25T00:49:17.895727+00:00
+- Timestamp: 2026-09-25T00:49:17.895727+00:00
+- Task: USER-20260925-LEARNSET-EXP-EVOLUTION-SHARE / 戦闘EXP進化承認・取消・控え共有
+- Version: issue19-exp-evolution-share-v1
+- Status: BLOCKED
+- Summary: FAIL、限定2/3。開始fixtureと通常入力区間を分離。全owner/Issue19未完。
+- Files changed: 専用driver/C/tests/workflow、CP/guide/証拠、固定MD/JSON、両ログ。
+- Verify: 新unit9 host compile1 native0。Actions終端=False。記録終端照合のunit/native/host再実行0。ROM変更/ARM/変更影響なしの旧受入再実行0。
+- Commit: 同branchへの非force push。reflected-head.txtとremote ref照合。
+- Network: GitHub固定source/保存artifact/Actions。原本再採取・Wiki生成・release・baseline切替なし。一般CIのaction_requiredは限定nativeと別記録。
