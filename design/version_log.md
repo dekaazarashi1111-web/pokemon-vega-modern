@@ -7228,3 +7228,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 新fixture1試験PASS。guard後Cはbyte不変、逆置換で前Cの完全SHA一致。配布/menu/Save/ContinueやROMを変えていない。旧24/scope9/cache5/nativeの再実行0。
 - Commit: 同branchへの非force commit/push・remote照合。成果SHAはreflected-head.txt。
 - Network: GitHub固定原本/Actions。ROM/seed非追跡。merge/release/baseline切替なし。
+
+## 2026-09-25T09:37:54.903324+00:00
+- Timestamp: 2026-09-25T09:37:54.903324+00:00
+- Task: USER-20260925-COLLECTION-GIFTS
+- Version: issue19-collection-learning-owner-v1
+- Status: STOPPED（原本保存から未完だけ継続）
+- Summary: 実BG受付配布/原本初期技/Save/fresh Continue 2/17。初期party/場所/unlock/claimはfixture。1281は非学習owner方針により自動補完禁止・未受入。研究タマゴ孵化未受入。
+- Files changed: 明示scope/9新unit/限定Actions、checkpoint/guide/原本text、固定引継ぎMD/JSON、両ログ。
+- Verify: 新scope-unit0、旧unit実行0、host1、native3。Actions終端False、終端専用=False（専用時native/旧unit/host/ARM0）。
+- Commit: 同branch非force push・reflected-head/remote照合。
+- Network: 固定GitHub原本/保存artifact/Actionsのみ。ROM/seed非追跡。受入済み3/EXP/Bag/egg8/旧野生/ARM/Wiki不変。merge/release/baseline切替なし。

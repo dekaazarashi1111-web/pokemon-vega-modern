@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "Collection最初の配布前位置確認で停止。fixture歩行修復1試験PASS、nativeは未検証。",
+    "current_stop": "Issue19: Collection学習owner 2/17。非学習owner1281の配布初期技は未受入。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "Collection BG検出は通過。初期fixtureの方向入力を座標変化を待つ1マス歩行へ修復。未受入17配布を次に実行。旧24/scope9/cache5と受入済みnativeは再実行しない。",
+    "next_step": "Collection配布の失敗原本を確認し未成功caseだけ修復。受入済みcaseは再実行しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -1598,7 +1598,10 @@
     "task": "USER-20260925-COLLECTION-STEP"
   },
   "learnset_collection_gifts": {
-    "accepted_cases": [],
+    "accepted_cases": [
+      "fixed-form-1254",
+      "fixed-form-1390"
+    ],
     "actions_completion_confirmed": false,
     "candidate": {
       "sha256": "b7790902733a638445129c388d65ab3c199bceb92a41338e0069221b556b9f91",
@@ -1612,8 +1615,6 @@
     "learning_routes": 17,
     "path": "content/modernization/pr16_collection_gifts_checkpoint.json",
     "pending_cases": [
-      "fixed-form-1254",
-      "fixed-form-1390",
       "research-egg-1201",
       "research-egg-1204",
       "research-egg-1206",
@@ -1630,8 +1631,8 @@
       "research-egg-1417",
       "research-egg-1425"
     ],
-    "run_id": 36118704240,
-    "source_head": "d0f663e2094242f89ed6296463150229b8754721",
+    "run_id": 36119380600,
+    "source_head": "932576e5bdea3036f9eeb425bc4a2a860661c645",
     "status": "PARTIAL_COLLECTION_GIFTS"
   },
   "learnset_conditional_compact": {
@@ -3921,9 +3922,9 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "Collection BG検出は通過。初期fixtureの方向入力を座標変化を待つ1マス歩行へ修復。未受入17配布を次に実行。旧24/scope9/cache5と受入済みnativeは再実行しない。",
+    "goal_ja": "Collection配布の失敗原本を確認し未成功caseだけ修復。受入済みcaseは再実行しない。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
-    "id": "COLLECTION_GIFTS_BG_NATIVE",
+    "id": "COLLECTION_GIFTS",
     "read_paths": [
       "docs/PR16_COLLECTION_GIFTS_JA.md",
       "content/modernization/pr16_collection_gifts_checkpoint.json",
@@ -3933,17 +3934,17 @@
     "stop_rule_ja": "特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。"
   },
   "observed_date_jst": "2026-09-25",
-  "observed_head": "d0f663e2094242f89ed6296463150229b8754721",
+  "observed_head": "932576e5bdea3036f9eeb425bc4a2a860661c645",
   "observed_head_checks": {
     "reason_ja": "実測とActions終端を区別。一般CI/全体完成へ昇格しない。",
     "runs": [
       {
         "conclusion": null,
-        "id": 36118704240,
+        "id": 36119380600,
         "status": "in_progress"
       }
     ],
-    "scope_head": "d0f663e2094242f89ed6296463150229b8754721"
+    "scope_head": "932576e5bdea3036f9eeb425bc4a2a860661c645"
   },
   "observed_head_history": [
     {
@@ -7158,8 +7159,8 @@
       "size": 1328
     },
     ".github/workflows/pr16-supply-followup-20260925.yml": {
-      "sha256": "8b11834a1cb6e01f06b998b64cdbd0fbc848c1af5991d9baa337d4caf9dca506",
-      "size": 2070
+      "sha256": "0cc1e9dec253e2f927d9f08000ce6a993292bd50b4a1dde552f18173b6c5ddf3",
+      "size": 5043
     },
     ".github/workflows/pr16-vega-adjudication-record.yml": {
       "sha256": "cb0490020433011ba362fe6e44d57a70b327bd4de7547891b42f01707b043d39",
@@ -7574,8 +7575,8 @@
       "size": 2600
     },
     "content/modernization/pr16_collection_gifts_checkpoint.json": {
-      "sha256": "4337cb7b556d573dac133a815923940aa206411fecfd17c4b432413ff23fd0cf",
-      "size": 64361
+      "sha256": "e8bc5bb4d000092037249e00426e422c823724650682196e5a4a964d624e38df",
+      "size": 81040
     },
     "content/modernization/pr16_exp_evolution_share_checkpoint.json": {
       "sha256": "2ddb6d6e310ae494f340469bcfb9e639e878e199206c8a62a07c74ba2170f176",
@@ -8470,8 +8471,8 @@
       "size": 1140469
     },
     "docs/PR16_COLLECTION_GIFTS_JA.md": {
-      "sha256": "b1df50cc2220f013c4c65cc2feafb0a7bf1b4b91f2ff87df8cd8d737eb70a0d7",
-      "size": 2412
+      "sha256": "7384e0f06ee8271783b8f85831c7538d02d4cc23224a03183e7ddd3d2682c986",
+      "size": 2517
     },
     "docs/PR16_EXP_EVOLUTION_SHARE_JA.md": {
       "sha256": "91bf0315d0ac20772a0caa27b4528df27916d52f1c3750f3b2acc331b41628a7",

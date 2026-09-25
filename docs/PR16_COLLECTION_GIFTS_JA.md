@@ -1,8 +1,8 @@
 # PR16 Issue19: Collection学習owner配布
 
-状態 `PARTIAL_COLLECTION_GIFTS`。学習owner限定受入 0/17、定義全体18件中1件は既存方針で保留。Actions終端 `False`。
+状態 `PARTIAL_COLLECTION_GIFTS`。学習owner限定受入 2/17、定義全体18件中1件は既存方針で保留。Actions終端 `False`。
 
-source `d0f663e2094242f89ed6296463150229b8754721` / run `36118704240`。候補 `b7790902733a638445129c388d65ab3c199bceb92a41338e0069221b556b9f91` / 33554432 bytes。ROM/runtime/原本方針は変更しない。
+source `932576e5bdea3036f9eeb425bc4a2a860661c645` / run `36119380600`。候補 `b7790902733a638445129c388d65ab3c199bceb92a41338e0069221b556b9f91` / 33554432 bytes。ROM/runtime/原本方針は変更しない。
 
 ## 範囲と保留
 
@@ -14,10 +14,12 @@ source `d0f663e2094242f89ed6296463150229b8754721` / run `36118704240`。候補 `
 
 | case | species | level | egg | 原本4技 | 実測run |
 | --- | ---: | ---: | ---: | --- | ---: |
+| fixed-form-1254 | 1254 | 50 | 0 | [60, 62, 199, 492] | 36119380600 |
+| fixed-form-1390 | 1390 | 50 | 0 | [184, 408, 44, 530] | 36119380600 |
 
-未成功学習owner `['fixed-form-1254', 'fixed-form-1390', 'research-egg-1201', 'research-egg-1204', 'research-egg-1206', 'research-egg-1208', 'research-egg-1210', 'research-egg-1212', 'research-egg-1215', 'research-egg-1394', 'research-egg-1396', 'research-egg-1407', 'research-egg-1410', 'research-egg-1414', 'research-egg-1415', 'research-egg-1417', 'research-egg-1425']`。全party200byte/元party100byte、owner CRC/claim bit、4技/PP/PP Ups/HP/egg getter、frame/counterをraw textで照合。固定claim保持は確認するが、二重受取の実選択は含まない。
+未成功学習owner `['research-egg-1201', 'research-egg-1204', 'research-egg-1206', 'research-egg-1208', 'research-egg-1210', 'research-egg-1212', 'research-egg-1215', 'research-egg-1394', 'research-egg-1396', 'research-egg-1407', 'research-egg-1410', 'research-egg-1414', 'research-egg-1415', 'research-egg-1417', 'research-egg-1425']`。全party200byte/元party100byte、owner CRC/claim bit、4技/PP/PP Ups/HP/egg getter、frame/counterをraw textで照合。固定claim保持は確認するが、二重受取の実選択は含まない。
 
-今回新scope-unit 0、旧unit実行 0、host compile 1、native 1。受入済み自然配布/孵化3・EXP/Bag/egg8/旧野生/ARM/Wikiは再実行しない。
+今回新scope-unit 0、旧unit実行 0、host compile 1、native 3。受入済み自然配布/孵化3・EXP/Bag/egg8/旧野生/ARM/Wikiは再実行しない。
 
 ## 次
 
