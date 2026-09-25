@@ -7195,3 +7195,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 新scope-unit9、旧unit実行0、host0、native0。Actions終端False、終端専用=False（専用時native/旧unit/host/ARM0）。
 - Commit: 同branch非force push・reflected-head/remote照合。
 - Network: 固定GitHub原本/保存artifact/Actionsのみ。ROM/seed非追跡。受入済み3/EXP/Bag/egg8/旧野生/ARM/Wiki不変。merge/release/baseline切替なし。
+
+## 2026-09-25T09:22:38.734866+00:00
+- Timestamp: 2026-09-25T09:22:38.734866+00:00
+- Task: USER-20260925-COLLECTION-BG-REPAIR / Collection BG受付契約の修復
+- Version: collection-bg-contract-v1
+- Status: DONE（host修復限定、native配布0/17は未完）
+- Summary: 24byte NPC探索を12byte BG探索へ修正。通常A種別/host script/高度/接近2マス/他event衝突を検査。歩行可能BGへ突入せず、fixture区間で向きを確定しguard後はAのみ。前run36111746469 completed/failureを原本のまま照合。
+- Files changed: BG検出器・拒否試験、driver/C/影響unit/scope説明、固定引継ぎMD/JSON、BG修復証跡、両ログ。
+- Verify: 影響7unit PASS/skip0（BG拒否16変異含む）、native/host compile/ARM/ROM変更0。受入済みnative再実行0。resume/task graph/final index scoped private guardをcommit前検査。
+- Commit: この記録とsource変更を同branchへ非force commit/push。自己SHAはreflected-head.txt/remoteで照合。
+- Network: GitHub固定source/保存source artifact/前run終端のみ。ROM/saveを転送・追跡しない。merge/release/baseline切替なし。

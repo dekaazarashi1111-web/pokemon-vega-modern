@@ -126,15 +126,10 @@ class CollectionGiftsTests(unittest.TestCase):
         self.assertEqual(c.pending(accepted,contracts),['b'])
         contracts['a']['candidate']=2
         with self.assertRaises(ValueError):c.pending(accepted,contracts)
-    def test_geometry_uses_actual_object_and_native_script(self):
-        rom=bytearray(0x56000)
-        def ptr(at,to):struct.pack_into('<I',rom,at,0x08000000+to)
-        ptr(0x54b0c,0x100);ptr(0x104,0x200);ptr(0x20c,0x300);ptr(0x304,0x400)
-        rom[0x400]=1;ptr(0x404,0x500);rom[0x500]=7
-        struct.pack_into('<HH',rom,0x504,21,3);ptr(0x510,0x600)
-        rom[0x600:0x60b]=b'\x6a\x16\x04\x80\x00\x00\x23'+struct.pack('<I',0x08007001)
-        config=dict(physical_hosts=[dict(service='GIFT',map_group=1,map_num=3,x=21,y=3)])
-        geo=c.geometry(rom,config);self.assertEqual((geo['local_id'],geo['x'],geo['y']),(7,21,4))
+    def test_geometry_uses_actual_bg_and_native_script(self):
+        from tests.test_pr16_collection_gift_bg import fixture
+        rom,config=fixture();geo=c.geometry(rom,config)
+        self.assertEqual((geo['event_kind'],geo['x'],geo['y']),('BG_NORMAL_FIELD_A',21,4))
         rom[0x600]=0
         with self.assertRaises(ValueError):c.geometry(rom,config)
     def test_controller_barriers_and_no_testgift_execution(self):

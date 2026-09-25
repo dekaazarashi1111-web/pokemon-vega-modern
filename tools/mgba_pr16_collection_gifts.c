@@ -1,4 +1,4 @@
-/* Issue19 Collection gifts: actual NPC/menu inputs, never a TestGift call.
+/* Issue19 Collection gifts: actual BG/menu inputs, never a TestGift call.
  * Party, map, progress and unclaimed owner are fixtures before the barrier.
  * Original initial moves are independent vectors; ROM/host writes prohibited
  * throughout gift/menu/Save/Continue. Getter calls are separated explicitly. */
@@ -69,7 +69,6 @@ static void cf_down(struct mCore *c,unsigned target) {
 }
 static void cf_open(struct mCore *c) {
     b_position(c,CF_GROUP,CF_NUMBER,CF_X,CF_Y);
-    cf_press(c,QOL_KEY_UP,30U);b_position(c,CF_GROUP,CF_NUMBER,CF_X,CF_Y);
     cf_press(c,QOL_KEY_A,30U);cf_wait_menu(c,0U);
 }
 static void cf_list(struct mCore *c) {
@@ -133,8 +132,10 @@ int main(int argc,char **argv) {
     for(unsigned flag=0x820U;flag<0x828U;++flag)(void)call_preserving(c,QOL_FLAG_SET,flag,0,0,0);
     (void)call_preserving(c,QOL_FLAG_SET,0x82CU,0,0,0);(void)call_preserving(c,QOL_FLAG_SET,0x114BU,0,0,0);
     (void)call_preserving(c,QOL_SAVE_FINALIZE,QOL_LEDGER,0,0,0);
-    (void)call_preserving(c,0x09220861U,CF_GROUP,CF_NUMBER,CF_X,CF_Y);run_key_frames(c,0U,900U);
-    b_position(c,CF_GROUP,CF_NUMBER,CF_X,CF_Y);cf_fixture_owner(c);
+    (void)call_preserving(c,0x09220861U,CF_GROUP,CF_NUMBER,CF_X,CF_Y+1U);run_key_frames(c,0U,900U);
+    b_position(c,CF_GROUP,CF_NUMBER,CF_X,CF_Y+1U);
+    /* BGは歩行可能。初期fixture区間で1マス上へ移動し、その後はAだけ。 */
+    cf_press(c,QOL_KEY_UP,30U);b_position(c,CF_GROUP,CF_NUMBER,CF_X,CF_Y);cf_fixture_owner(c);
     a_require(!read8(c,CF_STATE+27U),"test mode forbidden");
     uint8_t initial[100],party[200],again[200];cf_raw(c,"fixture",1U,initial);
     unsigned counter[5]={read32(c,P03_SAVE_COUNTER),0,0,0,0};

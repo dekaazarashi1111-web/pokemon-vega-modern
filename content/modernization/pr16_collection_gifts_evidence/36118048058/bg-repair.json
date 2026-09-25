@@ -1,0 +1,71 @@
+{
+  "accepted_case_reruns": 0,
+  "active_baseline_changed": false,
+  "arm_compiles": 0,
+  "candidate": {
+    "sha256": "b7790902733a638445129c388d65ab3c199bceb92a41338e0069221b556b9f91",
+    "size": 33554432
+  },
+  "geometry_negative_subcases": 16,
+  "host_compiles": 0,
+  "input_head": "410c63c8c552c06fb80b0535f5c6425b963a1e3c",
+  "issue19_complete": false,
+  "modified_source_after_input_head": true,
+  "new_native_processes": 0,
+  "predecessor": {
+    "conclusion": "failure",
+    "head_sha": "194670bade3bcb584e651db301c09ba11c7eeb29",
+    "id": 36111746469,
+    "path": ".github/workflows/pr16-supply-followup-20260925.yml",
+    "status": "completed"
+  },
+  "prior_native_processes": 0,
+  "release_ready": false,
+  "rom_changes": 0,
+  "run_id": 36118048058,
+  "schema_version": 1,
+  "source_after": {
+    ".github/workflows/pr16-supply-followup-20260925.yml": {
+      "sha256": "7e1c67d32a8b9fa7549de179ad554d770f65402b88ad65f86af4cd64f43bc3d3",
+      "size": 2095
+    },
+    "scripts/pr16_collection_bg_prepare.py": {
+      "sha256": "aed856bfc9f878f577cb4560c9fca36332a8eccc2a485e53ceaf580a21d8b65b",
+      "size": 10427
+    },
+    "scripts/pr16_collection_gift_bg.py": {
+      "sha256": "b8c9d81fe540abf422515e8a43150ed2e2f57c74e73c6ecdc476d3b3e85b0f49",
+      "size": 3864
+    },
+    "scripts/pr16_collection_gift_scope.py": {
+      "sha256": "6e5ecd8cc9b6e940a813591346b26dbafa931445a80b143e88bbbd4a4956ab86",
+      "size": 11246
+    },
+    "scripts/pr16_collection_gifts.py": {
+      "sha256": "f36ede0b0046eaf86b9f8c685fad22ca20cbbac3180d7931b9a5231957dc6fcf",
+      "size": 26723
+    },
+    "tests/test_pr16_collection_gift_bg.py": {
+      "sha256": "edffaa54f5306c587468b7cf56e559b26d20c1cea8edb1945634dcd466c8da6a",
+      "size": 3946
+    },
+    "tests/test_pr16_collection_gifts.py": {
+      "sha256": "b2006c26557849770e3954325917048e8d5a46b560b43bc00ec4f2ea1c83659b",
+      "size": 8923
+    },
+    "tools/mgba_pr16_collection_gifts.c": {
+      "sha256": "80b3ace6b3e85853b3ab2f40bd39ba737d081a9f48e0552b26f4758968397662",
+      "size": 11795
+    }
+  },
+  "source_before": {
+    "scripts/pr16_collection_gift_scope.py": "10ceaace4d5608591d32a60b72e40d4b0f9824d9cc08cd976cb7e2b095cd732c",
+    "scripts/pr16_collection_gifts.py": "3ea4ad760aa89f3dc1d95648a10d000f55097e4ae245265e1a7014ce9927bafb",
+    "tests/test_pr16_collection_gifts.py": "0b2d4f9e1da684bbb0108fe83fe7fb3010f9d76e420c90f8acb019aa1215078f",
+    "tools/mgba_pr16_collection_gifts.c": "130935e36f5f91642eaf481a5731a2953971436299077d82863ec76ba9740317"
+  },
+  "status": "PASS_HOST_BG_REPAIR_NATIVE_PENDING",
+  "task": "USER-20260925-COLLECTION-BG-REPAIR",
+  "unit_skips": 0,
+  "unit_tests": 7
+}

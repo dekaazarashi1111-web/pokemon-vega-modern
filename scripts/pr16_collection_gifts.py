@@ -28,7 +28,7 @@ C = 'tools/mgba_pr16_collection_gifts.c'
 WF = '.github/workflows/pr16-supply-followup-20260925.yml'
 MODEL = 'content/collection_supply_v1/canonical_model.json'
 CONFIG = 'config/collection_supply_v1.json'
-CODE = {SELF, TEST, C, WF}
+CODE = {SELF, TEST, C, WF, 'scripts/pr16_collection_gift_bg.py', 'tests/test_pr16_collection_gift_bg.py'}
 CP = m.BASE + 'pr16_collection_gifts_checkpoint.json'
 GUIDE = 'docs/PR16_COLLECTION_GIFTS_JA.md'
 EVIDENCE = m.BASE + 'pr16_collection_gifts_evidence'
@@ -77,29 +77,9 @@ def vectors(model, rows, pp):
 
 
 def geometry(rom, config):
-    hosts = config['physical_hosts']
-    index, host = next((i, h) for i, h in enumerate(hosts) if h['service'] == 'GIFT')
-    group, number, x, y = (host[k] for k in ('map_group', 'map_num', 'x', 'y'))
-    def ptr(at):
-        need(type(at) is int and 0 <= at <= len(rom)-4, 'pointer offset')
-        value = struct.unpack_from('<I', rom, at)[0]-0x08000000
-        need(0 <= value < len(rom), 'pointer target')
-        return value
-    header = ptr(ptr(ptr(0x54b0c)+group*4)+number*4)
-    events = ptr(header+4); count = rom[events]; objects = ptr(events+4)
-    need(0 < count <= 64 and objects+24*count <= len(rom), 'bounded real objects')
-    matches = [rom[objects+i*24:objects+(i+1)*24] for i in range(count)
-               if struct.unpack_from('<HH', rom, objects+i*24+4) == (x, y)]
-    need(len(matches) == 1, 'unique configured physical NPC')
-    obj = matches[0]; script = struct.unpack_from('<I', obj, 16)[0]; at = script-0x08000000
-    need(0 <= at < len(rom)-11, 'NPC script pointer')
-    pre = bytes([0x6a, 0x16, 4, 0x80, index, 0, 0x23])
-    need(rom[at:at+7] == pre, 'real lock/setvar host/callnative source')
-    native = struct.unpack_from('<I', rom, at+7)[0]
-    need(native & 1 and 0x08000000 <= native < 0x0a000000, 'real host native pointer')
-    return dict(host_index=index, group=group, number=number, x=x, y=y+1,
-                local_id=obj[0], npc_y=y, script=script, native=native,
-                script_hex=rom[at:at+32].hex(), object_hex=obj.hex())
+    # Collection SupplyはNPCではなく通常A入力のBG eventを追加する。
+    from pr16_collection_gift_bg import geometry as bg_geometry
+    return bg_geometry(rom, config)
 
 
 def header(cases, geo):
@@ -203,11 +183,11 @@ def execute():
     previous=m.PROOF; m.PROOF=PROOF
     try:
         # New pure tests only; cache future unchanged test execution via original evidence.
-        test_binding={p:identity((ROOT/p).read_bytes()) for p in (TEST,SELF,C)}
+        test_binding={p:identity((ROOT/p).read_bytes()) for p in (TEST,SELF,C,'scripts/pr16_collection_gift_bg.py','tests/test_pr16_collection_gift_bg.py')}
         if old.get('unit_binding') == test_binding and old.get('unit_passed'):
             v.update(unit_binding=test_binding, unit_passed=True, unit_origin=old.get('unit_origin',old['run_id']))
         else:
-            _, err=m.run([sys.executable,'-B','-m','unittest','tests.test_pr16_collection_gifts','-v'],'unit')
+            _, err=m.run([sys.executable,'-B','-m','unittest','tests.test_pr16_collection_gifts','tests.test_pr16_collection_gift_bg','-v'],'unit')
             count=re.search(rb'Ran (\d+) tests? in ',err);need(count and b'\nOK\n' in err,'new unit result')
             v.update(new_unit_tests=int(count[1]),unit_binding=test_binding,unit_passed=True,unit_origin=v['run_id'])
         cp=load(ROOT/s.boundary.n.CP); need(cp['candidate']==CANDIDATE and cp['actions_completion_confirmed'], 'accepted candidate source')
@@ -226,7 +206,8 @@ def execute():
             span=(WORK/'floette/floette.level_up.bin').read_bytes()
             need(identity(span)==floette['summary']['files']['floette.level_up.bin'],'Floette original span')
             rows[1029]=s.boundary.n.p.decode_span(span,'level_up');audit['floette_span']=identity(span)
-        cases=vectors(model,rows,pp);geo=geometry(rom,load(ROOT/CONFIG))
+        cases=vectors(model,rows,pp);v['declared_cases']=[case['name'] for case in cases]
+        geo=geometry(rom,load(ROOT/CONFIG))
         write(PROOF/'oracle.json',dict(cases=cases,geometry=geo,source=audit,model=identity((ROOT/MODEL).read_bytes())))
         helper=s.hatch_source(s.hatch_cases({1:1,649:1}))
         # Only reusable key/guard/getter helpers are called. The embedded daycare main is never called.
