@@ -7117,3 +7117,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 新unit6 host compile1 native1。Actions終端=True。記録終端照合のunit/native/host再実行0。ROM変更/ARM/変更影響なしの旧受入再実行0。
 - Commit: 同branchへの非force push。reflected-head.txtとremote ref照合。
 - Network: GitHub固定source/保存artifact/Actions。原本再採取・Wiki生成・release・baseline切替なし。一般CIのaction_requiredは限定nativeと別記録。
+
+## 2026-09-25T02:04:11.323160+00:00
+- Timestamp: 2026-09-25T02:04:11.323160+00:00
+- Task: USER-20260925-LEARNSET-EXP-EVOLUTION-SHARE / 受入終端・再開日付同期
+- Version: issue19-exp-evolution-share-closeout-v2
+- Status: DONE（限定3case、Issue19全体未完）
+- Summary: 3/3受入不変。準備失敗36083695295はderived C未追跡でunit/compile/native0、artifact/push0。511e220で生成Cを補完、36084083370で新6unit/1host/1native成功、e302702に原本保存。36084224210で再実行なしの終端照合、1adec9aに受入確定。source-validation36084224173も成功。記録run36084448074はCP/guide不変と7file必須guardの不一致で停止・push0、artifact保持。記録専用5fileとCP/guide不変を併せて検証し、同じprivate/append-only guardを使用。
+- Files changed: 記録専用workflow、closeout.json、固定MD/JSON、両ログ。受入CP/driver/C/tests/guide/旧原本は不変。
+- Verify: run/head/path/branch/job/全成功step・source hashes・commit祖先・MD/JSON・task graph・staged guard。今回unit/native/host/ARM再実行0、ROM変更0。
+- Commit: 同branchへ非force pushし、reflected-head.txtとremote refで照合。
+- Network: GitHub Actionsの終端metadataだけ。保存成功の再実行・原本再生成・merge・release・baseline切替なし。

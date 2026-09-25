@@ -1,0 +1,113 @@
+{
+  "accepted_cases": {
+    "butterfree-exp-share": {
+      "run_id": 36084083370,
+      "source_head": "b6b301e673483c01562cb56d69f8104b829a8afd"
+    },
+    "metapod-exp-cancel": {
+      "run_id": 36078747595,
+      "source_head": "2789bb68266e6d76dcb65de41699dbd6f9cca850"
+    },
+    "metapod-exp-evolve": {
+      "run_id": 36078747595,
+      "source_head": "2789bb68266e6d76dcb65de41699dbd6f9cca850"
+    }
+  },
+  "accepted_checkpoint": {
+    "path": "content/modernization/pr16_exp_evolution_share_checkpoint.json",
+    "sha256": "2ddb6d6e310ae494f340469bcfb9e639e878e199206c8a62a07c74ba2170f176",
+    "size": 44290
+  },
+  "accepted_completion_head": "1adec9ac6095f0a31c7e9c147ae8b2cfb8195f78",
+  "accepted_native_reruns": 0,
+  "active_baseline_changed": false,
+  "arm_compiles": 0,
+  "candidate": {
+    "sha256": "b7790902733a638445129c388d65ab3c199bceb92a41338e0069221b556b9f91",
+    "size": 33554432
+  },
+  "host_compiles": 0,
+  "issue19_complete": false,
+  "native_processes": 0,
+  "new_unit_tests": 0,
+  "next_action_ja": "Issue19: 戦闘EXP進化承認/B取消と控え共有EXP・通常Save/fresh Continueの3caseは限定受入済み。保存成功を再実行せず、次は未受入の自然配布/孵化/form、続いて釣り/隠し野生の特殊技順。旧EXP4/最初の質問拒否/アメ11/Bag23/egg8/野生初期技/旧host・ARM・Wikiは変更影響なし。全owner/Issue19/release/baseline切替は未完。",
+  "observed_at": "2026-09-25T02:04:11.323160+00:00",
+  "observed_terminal_actions": [
+    {
+      "conclusion": "failure",
+      "head_sha": "7e416efb13b95448355e6bc151eff50aa3c25a3a",
+      "id": 36083695295,
+      "job_id": 107910860676,
+      "path": ".github/workflows/pr16-exp-evolution-share.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "b6b301e673483c01562cb56d69f8104b829a8afd",
+      "id": 36084083370,
+      "job_id": 107912006803,
+      "path": ".github/workflows/pr16-exp-evolution-share.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "6dfc3ba9a99424d87e6b199fd536b4ae14609b93",
+      "id": 36084224210,
+      "job_id": 107912424020,
+      "path": ".github/workflows/pr16-exp-evolution-share.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "6dfc3ba9a99424d87e6b199fd536b4ae14609b93",
+      "id": 36084224173,
+      "job_id": 107912423400,
+      "path": ".github/workflows/ci.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "failure",
+      "head_sha": "fc0268add1627a7129122bb8ce89954be2300773",
+      "id": 36084448074,
+      "job_id": 107913092321,
+      "path": ".github/workflows/pr16-exp-evolution-share.yml",
+      "status": "completed"
+    }
+  ],
+  "preflight_failure": {
+    "artifacts": 0,
+    "host_compiles": 0,
+    "missing_path": "tools/mgba_pr16_exp_share_grass.c",
+    "native_processes": 0,
+    "new_unit_tests": 0,
+    "reason": "MISSING_TRACKED_DERIVED_C_BEFORE_SOURCE_BINDINGS",
+    "result_pushes": 0,
+    "run_id": 36083695295
+  },
+  "prior_record_failure": {
+    "artifact": {
+      "digest": "sha256:b367baeb0efe51df5e9ddda3edfddd67b890b308051aa45989c79ce45a7e3aaf",
+      "id": 10842523436,
+      "name": "pr16-exp-evolution-share-closeout",
+      "size_in_bytes": 1586
+    },
+    "error": "final index変更集合不一致",
+    "host_compiles": 0,
+    "native_processes": 0,
+    "new_unit_tests": 0,
+    "phase": "scoped_final_index",
+    "result_pushes": 0,
+    "run_id": 36084448074,
+    "unchanged_paths_wrongly_required": [
+      "content/modernization/pr16_exp_evolution_share_checkpoint.json",
+      "docs/PR16_EXP_EVOLUTION_SHARE_JA.md"
+    ]
+  },
+  "release_ready": false,
+  "rom_changes": 0,
+  "run_id": 36084688485,
+  "schema_version": 1,
+  "source_head": "57ffbf5ef45a2aa74cf35e4d9bfa3c2b8235c14f",
+  "status": "PASS_EXP_EVOLUTION_SHARE_CLOSEOUT",
+  "task": "USER-20260925-LEARNSET-EXP-EVOLUTION-SHARE"
+}

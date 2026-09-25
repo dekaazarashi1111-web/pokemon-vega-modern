@@ -14,8 +14,8 @@ Issue19: 戦闘EXP進化/共有 3/3。PASS_BATTLE_EXP_EVOLUTION_SHARE。Actions�
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `6dfc3ba9a99424d87e6b199fd536b4ae14609b93`。
-戦闘EXP進化承認/取消と控え共有の限定追加。旧受入は不変。native原本とActions終端を区別。
+証拠のsource HEAD: `57ffbf5ef45a2aa74cf35e4d9bfa3c2b8235c14f`。
+受入済み戦闘EXP進化/共有3caseの記録終端。native・unit・host・ARM再実行0。成功と準備/記録失敗は別HEADの原本として保持。
 
 ## 最短の再開手順
 
@@ -328,6 +328,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-一般CI action_requiredを成功に昇格しない。最新観測はcheckpointのobserved_recent_actions。
+保存native成功・受入記録成功・source-validation成功を別HEADで照合。準備/記録失敗はfailureのまま。詳細はlearnset_exp_evolution_share_closeout。最新記録HEADでnativeを再実行したとは主張しない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
