@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-Issue19: 戦闘EXP進化/共有0/3。進化後現在level行・フレーム観測callback・共有fixture無入力安定の修復を適用。native未検証。
+Issue19: 戦闘EXP進化/共有 2/3。PARTIAL_BATTLE_EXP_EVOLUTION_SHARE。Actions終端=False、全体未完。
 
-**次: 修復後exact HEADで scripts/pr16_exp_evolution_observation.py execute を実行する。変更validator/Cに直結するunitのみ再検証し、未受入3caseを検証・保存する。旧受入native/ARM/ROM再生成は0。**
+**次: 今回の失敗原本を保持し未受入caseだけ修復する。保存成功caseと旧EXP4/最初の質問拒否/アメ11/Bag23/egg8は再実行しない。**
 
 特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `22efb2673ae679f016246d22bc2f81d0d41ab6b5`。
+証拠のsource HEAD: `2789bb68266e6d76dcb65de41699dbd6f9cca850`。
 戦闘EXP進化承認/取消と控え共有の限定追加。旧受入は不変。native原本とActions終端を区別。
 
 ## 最短の再開手順
@@ -328,6 +328,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-実native失敗の終端確認。修復準備はnative未実行で、受入済みへ昇格しない。
+一般CI action_requiredを成功に昇格しない。最新観測はcheckpointのobserved_recent_actions。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
