@@ -1,5 +1,5 @@
 name: pr16-exp-evolution-share
-# 戦闘EXP進化承認/取消と控え共有だけ。旧受入native/ARM/unitは再実行しない。
+# 初回24unitを保存原本から再利用し、読取・入力同期を直した未受入3caseだけ検証。
 on:
   push:
     branches: [codex/modernization-followup-20260908]
@@ -30,26 +30,26 @@ jobs:
         run: |
           python3 -B - <<'PY'
           import hashlib,pathlib
-          expected={'scripts/pr16_exp_evolution_share.py':'ff62b0ebf666b49aae4c705661d620a3ea210b04ebf590f113dafb61e059e04f','tools/mgba_pr16_exp_evolution_share.c':'006956a135451fb50d3a5a8ffcb4e40787d5a00d2aa831bb1144bfb0c3129b5c','tests/test_pr16_exp_evolution_share.py':'04a194760ee2805d68ed0e19f811e51b3d6e90c4c82d2839127518344e315598'}
+          expected={'scripts/pr16_exp_evolution_share.py':'ff62b0ebf666b49aae4c705661d620a3ea210b04ebf590f113dafb61e059e04f','tools/mgba_pr16_exp_evolution_share.c':'006956a135451fb50d3a5a8ffcb4e40787d5a00d2aa831bb1144bfb0c3129b5c','tests/test_pr16_exp_evolution_share.py':'04a194760ee2805d68ed0e19f811e51b3d6e90c4c82d2839127518344e315598','scripts/pr16_exp_evolution_sync.py':'8939e93278b88253da8676276320cdeb001cd80a429ef06736fd9bf2240ac2db','tools/mgba_pr16_exp_evolution_sync.c':'821936378f6dd59fc131eca42a839f3b6d503da2794ef69e7cc80b6ab06c4186','tests/test_pr16_exp_evolution_sync.py':'bc46dbdd0e3507605d540fd038c0fff75a3e10c858c4780dddd9afbba8f0f214'}
           for path,digest in expected.items():assert hashlib.sha256(pathlib.Path(path).read_bytes()).hexdigest()==digest,path
           print('SOURCE_TRANSFER=PASS')
           PY
           git diff --exit-code 3505bdb9bf84bf7d5a2ffff96abce305b4077c5e HEAD -- AGENTS.md CHATGPT_RESUME.md config/active_play_baseline.json design/active_play_baseline.md content/modernization/pr16_bp_chooser_checkpoint.json content/modernization/p08_remaining_work.json content/modernization/pr16_learnset_boundaries_checkpoint.json content/modernization/pr16_learnset_first_refuse_checkpoint.json tools/mgba_pr16_learnset_boundaries.c tools/mgba_pr16_learnset_first_refuse.c scripts/pr16_learnset_boundaries.py
       - name: host mGBAだけ準備（ARM compilerなし）
         run: sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends libmgba-dev
-      - name: 新24unit・進化承認取消と控え共有の3caseのみ
+      - name: 24unit原本再利用・新12unit・未受入3caseのみ
         id: native
         continue-on-error: true
-        run: python3 -B scripts/pr16_exp_evolution_share.py execute
+        run: python3 -B scripts/pr16_exp_evolution_sync.py execute
       - name: 成功/失敗原本・固定引継ぎ・両ログ記録と最終index検査
         run: |
           set -euo pipefail
-          python3 -B scripts/pr16_exp_evolution_share.py record
+          python3 -B scripts/pr16_exp_evolution_sync.py record
           python3 -B scripts/pr16_resume.py check
           python3 -B scripts/validate_task_graph.py
-          python3 -B scripts/pr16_exp_evolution_share.py paths | tr '\n' '\0' >.local/pr16-exp-evolution-share/paths.z
+          python3 -B scripts/pr16_exp_evolution_sync.py paths | tr '\n' '\0' >.local/pr16-exp-evolution-share/paths.z
           git add --pathspec-from-file=.local/pr16-exp-evolution-share/paths.z --pathspec-file-nul
-          python3 -B scripts/pr16_exp_evolution_share.py guard
+          python3 -B scripts/pr16_exp_evolution_sync.py guard
       - name: 同branchへ非force commit/push・remote ref照合
         run: |
           set -euo pipefail
@@ -57,7 +57,7 @@ jobs:
           test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'USER-20260925-LEARNSET-EXP-EVOLUTION-SHARE: 限定native原本と進化共有停止点を保存'
+          git commit -m 'USER-20260925-LEARNSET-EXP-EVOLUTION-SHARE: 読取同期修復の限定native原本と停止点を保存'
           git push origin "HEAD:$branch"
           sha=$(git rev-parse HEAD)
           test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$sha"
