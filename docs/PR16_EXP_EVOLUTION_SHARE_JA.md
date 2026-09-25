@@ -11,3 +11,7 @@ Metapodの戦闘EXP進化承認とB取消、2体Butterfreeの控え共有EXPを�
 ## 次の未完工程
 
 今回の失敗原本を保持し未受入caseだけ修復する。保存成功caseと旧EXP4/最初の質問拒否/アメ11/Bag23/egg8は再実行しない。
+
+## 通常field入力の修復準備
+
+共有fixture後の歩行はmapを移しても停止した。次は状態注入でなく、遭遇前field lock=1かつ通常field callbackに限る30frame間隔・最大120回のA入力を検証する。遭遇後は補助を無効にする。準備時点で共有nativeは未受入、既受入2caseは再実行しない。

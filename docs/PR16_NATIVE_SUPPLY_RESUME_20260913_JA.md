@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-Issue19: 戦闘EXP進化/共有 2/3。PARTIAL_BATTLE_EXP_EVOLUTION_SHARE。Actions終端=False、全体未完。
+Issue19: EXP進化2/3保存済み。共有の通常field入力修復を独立HEADへ準備、native未検証。
 
-**次: 今回の失敗原本を保持し未受入caseだけ修復する。保存成功caseと旧EXP4/最初の質問拒否/アメ11/Bag23/egg8は再実行しない。**
+**次: scripts/pr16_exp_share_input.py execute でfield通常入力の新規6unitと未受入共有1caseだけ検証する。55unitと進化2caseはsource/proof照合で継承。全3case成功後はcompleteのみで終端照合。**
 
 特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `023604d280177ad971bac96649b2b15f7c8e42e7`。
+証拠のsource HEAD: `20710b4cc3397af8529b0bdf2247d7a9481925b1`。
 戦闘EXP進化承認/取消と控え共有の限定追加。旧受入は不変。native原本とActions終端を区別。
 
 ## 最短の再開手順
@@ -27,8 +27,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 
 - `docs/PR16_EXP_EVOLUTION_SHARE_JA.md`
 - `content/modernization/pr16_exp_evolution_share_checkpoint.json`
-- `scripts/pr16_exp_share_saved.py`
-- `tests/test_pr16_exp_share_saved.py`
+- `scripts/pr16_exp_share_input.py`
+- `tests/test_pr16_exp_share_input.py`
+- `tools/mgba_pr16_exp_share_input.c`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -328,6 +329,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-一般CI action_requiredを成功に昇格しない。最新観測はcheckpointのobserved_recent_actions。
+前回は4unit/compile成功、共有歩行失敗。失敗原本を保全し準備コードを受入へ昇格しない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

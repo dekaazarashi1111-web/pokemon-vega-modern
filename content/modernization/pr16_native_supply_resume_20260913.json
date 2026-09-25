@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "Issue19: 戦闘EXP進化/共有 2/3。PARTIAL_BATTLE_EXP_EVOLUTION_SHARE。Actions終端=False、全体未完。",
+    "current_stop": "Issue19: EXP進化2/3保存済み。共有の通常field入力修復を独立HEADへ準備、native未検証。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "今回の失敗原本を保持し未受入caseだけ修復する。保存成功caseと旧EXP4/最初の質問拒否/アメ11/Bag23/egg8は再実行しない。",
+    "next_step": "scripts/pr16_exp_share_input.py execute でfield通常入力の新規6unitと未受入共有1caseだけ検証する。55unitと進化2caseはsource/proof照合で継承。全3case成功後はcompleteのみで終端照合。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -1677,6 +1677,32 @@
     ],
     "accepted_native_reruns": 0,
     "actions_completion_confirmed": false,
+    "field_input_preparation": {
+      "accepted_native_reruns": 0,
+      "derived": "tools/mgba_pr16_exp_share_input.c",
+      "derived_identity": {
+        "sha256": "d34b5d2eba8393d0967efd80dea892e8cf07019653e965c63d366761ceef9168",
+        "size": 16632
+      },
+      "host_writes_added": 0,
+      "inherited_unit_tests": 55,
+      "native_executions": 0,
+      "previous_native": {
+        "conclusion": "failure",
+        "reason": "shared field walking timeout; ordinary A keys now bounded before encounter",
+        "run": 36079548406
+      },
+      "rom_changes": 0,
+      "run_id": 36079873661,
+      "source_head": "20710b4cc3397af8529b0bdf2247d7a9481925b1",
+      "status": "WIP_NOT_NATIVE_ACCEPTED",
+      "template": "content/modernization/pr16_exp_evolution_share_evidence/36079225466/shared-route.c",
+      "template_identity": {
+        "sha256": "b2c519bc64ebe7e62edd67ae0773243e02e4c3df9fb3c501a1eaab6a477b01b2",
+        "size": 16066
+      },
+      "unit_executions": 0
+    },
     "host_compiles": 1,
     "issue19_complete": false,
     "native_processes": 1,
@@ -3730,26 +3756,27 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "今回の失敗原本を保持し未受入caseだけ修復する。保存成功caseと旧EXP4/最初の質問拒否/アメ11/Bag23/egg8は再実行しない。",
+    "goal_ja": "scripts/pr16_exp_share_input.py execute でfield通常入力の新規6unitと未受入共有1caseだけ検証する。55unitと進化2caseはsource/proof照合で継承。全3case成功後はcompleteのみで終端照合。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
     "id": "LEARNSET_EXP_EVOLUTION_SHARE",
     "read_paths": [
       "docs/PR16_EXP_EVOLUTION_SHARE_JA.md",
       "content/modernization/pr16_exp_evolution_share_checkpoint.json",
-      "scripts/pr16_exp_share_saved.py",
-      "tests/test_pr16_exp_share_saved.py"
+      "scripts/pr16_exp_share_input.py",
+      "tests/test_pr16_exp_share_input.py",
+      "tools/mgba_pr16_exp_share_input.c"
     ],
     "stop_rule_ja": "特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。"
   },
   "observed_date_jst": "2026-09-22",
-  "observed_head": "023604d280177ad971bac96649b2b15f7c8e42e7",
+  "observed_head": "20710b4cc3397af8529b0bdf2247d7a9481925b1",
   "observed_head_checks": {
-    "reason_ja": "一般CI action_requiredを成功に昇格しない。最新観測はcheckpointのobserved_recent_actions。",
+    "reason_ja": "前回は4unit/compile成功、共有歩行失敗。失敗原本を保全し準備コードを受入へ昇格しない。",
     "runs": [
       {
-        "conclusion": null,
+        "conclusion": "failure",
         "id": 36079548406,
-        "status": "in_progress"
+        "status": "completed"
       }
     ],
     "scope_head": "023604d280177ad971bac96649b2b15f7c8e42e7"
@@ -6279,8 +6306,8 @@
       "size": 1851
     },
     ".github/workflows/pr16-exp-evolution-share.yml": {
-      "sha256": "60141c2c113676815bc077da8b75da191dbb8eb44e4cd1387b6e0862ae037c66",
-      "size": 4106
+      "sha256": "d757990631f3c9c1ad246b4a689f2afecf40965f304e1acd056d08578cb2a7f4",
+      "size": 6854
     },
     ".github/workflows/pr16-learnset-baseline-proof-closeout.yml": {
       "sha256": "2c6bbed55a37a2544d4704d17bf80271c129a29c521ed9c5836b21e563ea7eaa",
@@ -7382,6 +7409,10 @@
       "sha256": "b2c519bc64ebe7e62edd67ae0773243e02e4c3df9fb3c501a1eaab6a477b01b2",
       "size": 16066
     },
+    "content/modernization/pr16_exp_share_input_preparation.json": {
+      "sha256": "b3e7ea499c7e389b41921b1ce4ffdc36ff2bd510841e8c3f8c9864aa49169ac3",
+      "size": 866
+    },
     "content/modernization/pr16_learnset_baseline_checkpoint.json": {
       "sha256": "e0587f5cf025fa76f6e6f7a0dc8f340e335b66d1d4ae744027dcc865b06e0d78",
       "size": 2971
@@ -8255,8 +8286,8 @@
       "size": 1140469
     },
     "docs/PR16_EXP_EVOLUTION_SHARE_JA.md": {
-      "sha256": "3368676c53527e2059f28e2ab4bbc8d195b946e3817601cf99b796fad832c00b",
-      "size": 1282
+      "sha256": "b23785100051769b5932da64aeb86133591864cad0531ce0e51422b4fe0d777c",
+      "size": 1643
     },
     "docs/PR16_LEARNSET_BASELINE_RESET_JA.md": {
       "sha256": "4924be1b5cfa324fe72cff599758ebb467eae8d25911a085c2d444f3b1f3ab6a",
@@ -12394,6 +12425,10 @@
       "sha256": "f4ee5e21a9a181ec75a1551ae9a601500825e442622207a9f387bb88f260349e",
       "size": 3756
     },
+    "scripts/pr16_exp_share_input.py": {
+      "sha256": "fd74a1aa53c7e7662729d778dd2ddceb832ea2487f342b955845c7c9990930a5",
+      "size": 4262
+    },
     "scripts/pr16_exp_share_route.py": {
       "sha256": "9f30a30a0b983abfb1dddcc9c3195cc710fa0c8540ae2a2c917c236d83ab2eb6",
       "size": 5997
@@ -13650,6 +13685,10 @@
       "sha256": "148e0aeed4f8f5d15df7201c0e5bf1eebc40ad0254f8593f21891075ca72dc26",
       "size": 1829
     },
+    "tests/test_pr16_exp_share_input.py": {
+      "sha256": "7f48a42ddefb3901776e9aa82720ea0e5971c40684b5dfcd14d5a4d424013ea2",
+      "size": 2894
+    },
     "tests/test_pr16_exp_share_route.py": {
       "sha256": "d711d42d2105d4dce288e9ef243043a5e7602e3f705c10085b878490b2742d20",
       "size": 4480
@@ -14573,6 +14612,10 @@
     "tools/mgba_pr16_exp_evolution_sync.c": {
       "sha256": "309d23368bc48a9e011f0efcdac502b9e53b9607606f1e30193553c81df091b0",
       "size": 15686
+    },
+    "tools/mgba_pr16_exp_share_input.c": {
+      "sha256": "d34b5d2eba8393d0967efd80dea892e8cf07019653e965c63d366761ceef9168",
+      "size": 16632
     },
     "tools/mgba_pr16_learnset_battle.c": {
       "sha256": "6f0665441256b1f42468a65f146bc927654edd5e655d49cdaa3e60081741a999",

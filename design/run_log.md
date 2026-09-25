@@ -9801,3 +9801,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 新unit4 host compile1 native1。Actions終端=False。記録終端照合のunit/native/host再実行0。ROM変更/ARM/変更影響なしの旧受入再実行0。
 - Commit: 同branchへの非force push。reflected-head.txtとremote ref照合。
 - Network: GitHub固定source/保存artifact/Actions。原本再採取・Wiki生成・release・baseline切替なし。一般CIのaction_requiredは限定nativeと別記録。
+
+## 2026-09-25T00:57:38.150996+00:00
+- Timestamp: 2026-09-25T00:57:38.150996+00:00
+- Task: USER-20260925-LEARNSET-EXP-EVOLUTION-SHARE / 共有field入力の修復準備
+- Version: field-input-v1
+- Status: STOPPED（実装WIP・native未検証）
+- Summary: 共有開始fixture後のfield lock待ちへ上限付き通常A入力。遭遇後無効。状態注入0。
+- Files changed: 共有専用C・準備JSON・guide・固定MD/JSON・両ログ。
+- Verify: 固定生成・構文・55unit原本hash継承。unit/native/ARM実行0。旧native2case再実行0。resume/task graph/final indexを検査。
+- Commit: 同branchへの非force push・remote ref照合。
+- Network: GitHub保存原本のみ。過去run失敗は保持。全体guard PASSは主張しない。
