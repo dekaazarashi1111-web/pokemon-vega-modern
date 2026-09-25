@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-Issue19: 自然供給2/3。PARTIAL_NATURAL_SUPPLY。全体未完。
+Issue19: 自然供給3/3。PASS_NATURAL_SUPPLY_SCOPED。全体未完。
 
-**次: 自然供給checkpointの失敗原本を確認し、未成功caseだけ修復。保存成功/旧受入は再実行しない。**
+**次: 保存成功を再実行せず、completeでActions終端だけ照合。**
 
 特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `eacba232c1fd33c8096bd1a92e0adb4043b2320f`。
+証拠のsource HEAD: `35b26cd4adc636b10dd6ccc003f25b5014ef2cd0`。
 自然供給限定caseのsource/保存原本。旧受入・全体完成とは別。
 
 ## 最短の再開手順

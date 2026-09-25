@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "Issue19: 自然供給2/3。PARTIAL_NATURAL_SUPPLY。全体未完。",
+    "current_stop": "Issue19: 自然供給3/3。PASS_NATURAL_SUPPLY_SCOPED。全体未完。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "自然供給checkpointの失敗原本を確認し、未成功caseだけ修復。保存成功/旧受入は再実行しない。",
+    "next_step": "保存成功を再実行せず、completeでActions終端だけ照合。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -2193,6 +2193,7 @@
   "learnset_natural_supply": {
     "accepted_cases": [
       "caterpie-initial-hatch",
+      "floette-eternal-npc-initial",
       "leepun-initial-hatch"
     ],
     "actions_completion_confirmed": false,
@@ -2202,12 +2203,10 @@
     },
     "issue19_complete": false,
     "path": "content/modernization/pr16_natural_supply_checkpoint.json",
-    "pending_cases": [
-      "floette-eternal-npc-initial"
-    ],
-    "run_id": 36103989903,
-    "source_head": "eacba232c1fd33c8096bd1a92e0adb4043b2320f",
-    "status": "PARTIAL_NATURAL_SUPPLY"
+    "pending_cases": [],
+    "run_id": 36104762658,
+    "source_head": "35b26cd4adc636b10dd6ccc003f25b5014ef2cd0",
+    "status": "PASS_NATURAL_SUPPLY_SCOPED"
   },
   "learnset_payloads": {
     "actions_completion_confirmed": true,
@@ -3755,7 +3754,7 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "自然供給checkpointの失敗原本を確認し、未成功caseだけ修復。保存成功/旧受入は再実行しない。",
+    "goal_ja": "保存成功を再実行せず、completeでActions終端だけ照合。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
     "id": "NATURAL_SUPPLY",
     "read_paths": [
@@ -3767,17 +3766,17 @@
     "stop_rule_ja": "特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。"
   },
   "observed_date_jst": "2026-09-25",
-  "observed_head": "eacba232c1fd33c8096bd1a92e0adb4043b2320f",
+  "observed_head": "35b26cd4adc636b10dd6ccc003f25b5014ef2cd0",
   "observed_head_checks": {
     "reason_ja": "保存成功/失敗とActions終端を区別。一般CI action_requiredを成功へ昇格しない。",
     "runs": [
       {
         "conclusion": null,
-        "id": 36103989903,
+        "id": 36104762658,
         "status": "in_progress"
       }
     ],
-    "scope_head": "eacba232c1fd33c8096bd1a92e0adb4043b2320f"
+    "scope_head": "35b26cd4adc636b10dd6ccc003f25b5014ef2cd0"
   },
   "observed_head_history": [
     {
@@ -6372,8 +6371,8 @@
       "size": 3496
     },
     ".github/workflows/pr16-natural-supply-20260925.yml": {
-      "sha256": "36a56ac0453df20dce3dab6d5beaacb049faeb993759ed934bf098b7e2abde77",
-      "size": 3738
+      "sha256": "4e535dba2c863289782aef7221891c193ae9e71ae57df83132ea14d68fd8ec27",
+      "size": 3783
     },
     ".github/workflows/pr16-p05-native-supply-evidence-map.yml": {
       "sha256": "b6e715faf64cdc8b74da02b953840ea04aa03b304cf2eef08ef445c5cbb002eb",
@@ -7536,8 +7535,8 @@
       "size": 9673
     },
     "content/modernization/pr16_natural_supply_checkpoint.json": {
-      "sha256": "540ce4699043f5a4453f313f2b035fcd29f578e5eb2b8d13d0517236aa509114",
-      "size": 17244
+      "sha256": "aa1b33cb34442b1fcd0f81b889cedcc1e38a96d43676fe9bfb450b5dee02836d",
+      "size": 21074
     },
     "content/modernization/pr16_p08_bp_acceptance.json": {
       "sha256": "53fb3c843c1f7ff3468365abea5c22570f6339401c4cf5dff7428f95e6b38352",
@@ -8348,8 +8347,8 @@
       "size": 2681
     },
     "docs/PR16_NATURAL_SUPPLY_JA.md": {
-      "sha256": "ca75563bacba0a682a0ea67a03087a3abb58109e115dec201bbf477f14c67ab7",
-      "size": 1340
+      "sha256": "9175fbc46f138aa404d430edceab71571cbffdebd7f14b8f447fd89b1ac932f1",
+      "size": 1292
     },
     "docs/PR16_VEGA_ORIGINAL_AUDIT_JA.md": {
       "sha256": "b9ee1dd32da36d9fe3d04aa1663afa0f2e6cc37aef491437dd2443a5870fb2d4",
@@ -12556,8 +12555,8 @@
       "size": 17181
     },
     "scripts/pr16_natural_gift_save.py": {
-      "sha256": "e08b0d391038e47f2b8bc20bc63bbe307028b8644c2ac985d4efab7ec37c1219",
-      "size": 5587
+      "sha256": "99de6460b4b48d3b56469be2dfe22d33a5ef76a5548d175e0ff8d02d01eaf7df",
+      "size": 7585
     },
     "scripts/pr16_natural_supply.py": {
       "sha256": "9c29301c8b9f227d918ed201244d7e0c1123457cf5ee2513eae22ba3b1da213a",
@@ -13820,8 +13819,8 @@
       "size": 5270
     },
     "tests/test_pr16_natural_gift_save.py": {
-      "sha256": "c95994505aa897be5cafb4b045f8ee1fbea3aa341e0c8c5419ed2ee769ad9673",
-      "size": 4604
+      "sha256": "b446831cb0b7a339d0f948a0b56d6f5c752eed0601f42db63472a2c116d20532",
+      "size": 5561
     },
     "tests/test_pr16_natural_supply.py": {
       "sha256": "2594cadafe2c8f48b7d12820b8f20c43ab1700f29beeea4ac9237386fe1738d7",
@@ -14684,8 +14683,8 @@
       "size": 10772
     },
     "tools/mgba_pr16_natural_gift.c": {
-      "sha256": "0c80baae801da5bcb3e4029291d1f4d50630390f4304ff9c6a6386337d550656",
-      "size": 6335
+      "sha256": "62da1d12d5dd8da2167def12fa716249cb658b3eaff512fdd66c2c065ac259b6",
+      "size": 6352
     },
     "tools/mgba_pr16_p08_bp_lifecycle.h": {
       "sha256": "dc93904fff666a88a3b354026262ba8066289c813b7232e93b795590080970fc",
