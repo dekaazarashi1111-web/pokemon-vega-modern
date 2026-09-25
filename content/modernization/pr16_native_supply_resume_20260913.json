@@ -2205,8 +2205,8 @@
     "pending_cases": [
       "floette-eternal-npc-initial"
     ],
-    "run_id": 36102544792,
-    "source_head": "e98e3a2581419a721e3e3ad7b0f351ba84371119",
+    "run_id": 36103989903,
+    "source_head": "eacba232c1fd33c8096bd1a92e0adb4043b2320f",
     "status": "PARTIAL_NATURAL_SUPPLY"
   },
   "learnset_payloads": {
@@ -3767,17 +3767,17 @@
     "stop_rule_ja": "特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。"
   },
   "observed_date_jst": "2026-09-25",
-  "observed_head": "e98e3a2581419a721e3e3ad7b0f351ba84371119",
+  "observed_head": "eacba232c1fd33c8096bd1a92e0adb4043b2320f",
   "observed_head_checks": {
     "reason_ja": "保存成功/失敗とActions終端を区別。一般CI action_requiredを成功へ昇格しない。",
     "runs": [
       {
         "conclusion": null,
-        "id": 36102544792,
+        "id": 36103989903,
         "status": "in_progress"
       }
     ],
-    "scope_head": "e98e3a2581419a721e3e3ad7b0f351ba84371119"
+    "scope_head": "eacba232c1fd33c8096bd1a92e0adb4043b2320f"
   },
   "observed_head_history": [
     {
@@ -6372,8 +6372,8 @@
       "size": 3496
     },
     ".github/workflows/pr16-natural-supply-20260925.yml": {
-      "sha256": "ed6d5b22af0d7c60791d4e2ddac1d8a19acec2423c553e351c103626db8714a3",
-      "size": 3626
+      "sha256": "36a56ac0453df20dce3dab6d5beaacb049faeb993759ed934bf098b7e2abde77",
+      "size": 3738
     },
     ".github/workflows/pr16-p05-native-supply-evidence-map.yml": {
       "sha256": "b6e715faf64cdc8b74da02b953840ea04aa03b304cf2eef08ef445c5cbb002eb",
@@ -7536,8 +7536,8 @@
       "size": 9673
     },
     "content/modernization/pr16_natural_supply_checkpoint.json": {
-      "sha256": "b65e84a94fdccdade4e2105f2d0786a8760b51576feb87c962b92091c7f1f501",
-      "size": 22748
+      "sha256": "540ce4699043f5a4453f313f2b035fcd29f578e5eb2b8d13d0517236aa509114",
+      "size": 17244
     },
     "content/modernization/pr16_p08_bp_acceptance.json": {
       "sha256": "53fb3c843c1f7ff3468365abea5c22570f6339401c4cf5dff7428f95e6b38352",
@@ -8348,7 +8348,7 @@
       "size": 2681
     },
     "docs/PR16_NATURAL_SUPPLY_JA.md": {
-      "sha256": "26c3de8b2eaa2e0330500d6fc1a8e4fdae54dfeaeb0ca5b8e9c0fc336b106d57",
+      "sha256": "ca75563bacba0a682a0ea67a03087a3abb58109e115dec201bbf477f14c67ab7",
       "size": 1340
     },
     "docs/PR16_VEGA_ORIGINAL_AUDIT_JA.md": {
@@ -12555,6 +12555,10 @@
       "sha256": "0521380ce7d4cf19a1a0e79f591187a318b79f08d022fdf85c6912817b747da3",
       "size": 17181
     },
+    "scripts/pr16_natural_gift_save.py": {
+      "sha256": "e08b0d391038e47f2b8bc20bc63bbe307028b8644c2ac985d4efab7ec37c1219",
+      "size": 5587
+    },
     "scripts/pr16_natural_supply.py": {
       "sha256": "9c29301c8b9f227d918ed201244d7e0c1123457cf5ee2513eae22ba3b1da213a",
       "size": 21963
@@ -13815,6 +13819,10 @@
       "sha256": "3b2ea9ac4675d36a11cf01e8c3c996d8aeecca1ba5ba9f707ffc53701f0d650a",
       "size": 5270
     },
+    "tests/test_pr16_natural_gift_save.py": {
+      "sha256": "c95994505aa897be5cafb4b045f8ee1fbea3aa341e0c8c5419ed2ee769ad9673",
+      "size": 4604
+    },
     "tests/test_pr16_natural_supply.py": {
       "sha256": "2594cadafe2c8f48b7d12820b8f20c43ab1700f29beeea4ac9237386fe1738d7",
       "size": 5834
@@ -14676,8 +14684,8 @@
       "size": 10772
     },
     "tools/mgba_pr16_natural_gift.c": {
-      "sha256": "61f818fb88d644cc1e4e41551ed670d3d5fdf9666e193f504245e0ce9f858a66",
-      "size": 5605
+      "sha256": "0c80baae801da5bcb3e4029291d1f4d50630390f4304ff9c6a6386337d550656",
+      "size": 6335
     },
     "tools/mgba_pr16_p08_bp_lifecycle.h": {
       "sha256": "dc93904fff666a88a3b354026262ba8066289c813b7232e93b795590080970fc",

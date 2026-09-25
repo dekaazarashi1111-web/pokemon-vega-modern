@@ -14,7 +14,7 @@ Issue19: 自然供給2/3。PARTIAL_NATURAL_SUPPLY。全体未完。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `e98e3a2581419a721e3e3ad7b0f351ba84371119`。
+証拠のsource HEAD: `eacba232c1fd33c8096bd1a92e0adb4043b2320f`。
 自然供給限定caseのsource/保存原本。旧受入・全体完成とは別。
 
 ## 最短の再開手順
