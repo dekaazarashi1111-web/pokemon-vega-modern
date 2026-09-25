@@ -1,46 +1,80 @@
 name: pr16-natural-supply-20260925
-# 不足分のtracked textのみ。既取得source・旧検証・ROMを再生成しない。
+# 新規3caseだけ。既受入EXP/Bag/egg8/host/ARM/Wikiは再実行しない。
 on:
   push:
     branches: [codex/modernization-followup-20260908]
     paths: [.github/workflows/pr16-natural-supply-20260925.yml]
 permissions:
-  contents: read
+  contents: write
+  actions: read
+  pull-requests: read
 concurrency:
   group: pr16-natural-supply-20260925
   cancel-in-progress: false
 jobs:
-  source-context:
+  natural-supply:
     if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 50
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+      GITHUB_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
-      - name: 既存nativeの不足補助sourceだけを固定HEADから収集
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: ローカル20unitと同じtracked sourceを照合
         run: |
           python3 -B - <<'PY'
+          import hashlib
           from pathlib import Path
-          import fnmatch, hashlib, json, os, subprocess, zipfile
-          include=['tools/**','src/modernization/**','content/collection_supply_v1/canonical_model.json','config/modernization_floette_gift.json']
-          exclude=['tools/mgba_pr16*','tools/mgba_p03*','tools/mgba_p08*','tools/mgba_stage61*','tools/pr16_*.py','tools/stage61_interaction_oracle.py','tools/mgba_native*.h','tools/mgba_native*.c']
-          names=subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
-          out=Path('.local/pr16-natural-supply/source');out.mkdir(parents=True)
-          manifest={'source_head':os.environ['GITHUB_SHA'],'scope':'ADDITIONAL_TRACKED_SOURCE_ONLY_NOT_RUNTIME_ACCEPTANCE','rom_changes':0,'native_processes':0,'accepted_test_reruns':0,'files':{}}
-          with zipfile.ZipFile(out/'source.zip','w',zipfile.ZIP_DEFLATED) as z:
-              for name in sorted(names):
-                  p=Path(name)
-                  if not name or p.is_symlink() or not p.is_file():continue
-                  if p.suffix not in ('.py','.c','.h','.json'):continue
-                  if not any(fnmatch.fnmatchcase(name,pat) for pat in include) or any(fnmatch.fnmatchcase(name,pat) for pat in exclude):continue
-                  raw=p.read_bytes();raw.decode('utf-8')
-                  manifest['files'][name]={'sha256':hashlib.sha256(raw).hexdigest(),'size':len(raw)}
-                  z.writestr(name,raw)
-              z.writestr('SOURCE_MANIFEST.json',json.dumps(manifest,indent=2,sort_keys=True)+'\n')
-          print(json.dumps({'source_head':manifest['source_head'],'files':len(manifest['files']),'native_processes':0,'accepted_test_reruns':0}))
+          for path,expected in {
+            'scripts/pr16_natural_supply.py':'9c29301c8b9f227d918ed201244d7e0c1123457cf5ee2513eae22ba3b1da213a',
+            'tools/mgba_pr16_natural_gift.c':'61f818fb88d644cc1e4e41551ed670d3d5fdf9666e193f504245e0ce9f858a66',
+            'tests/test_pr16_natural_supply.py':'2594cadafe2c8f48b7d12820b8f20c43ab1700f29beeea4ac9237386fe1738d7'
+          }.items():
+              assert hashlib.sha256(Path(path).read_bytes()).hexdigest()==expected,path
           PY
+      - name: 新規native用host libraryのみ導入
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends libmgba-dev
+      - name: 新規20unit・通常孵化2case・実NPC配布1case
+        id: native
+        continue-on-error: true
+        run: python3 -B scripts/pr16_natural_supply.py execute
+      - name: 成功と失敗の原本・固定引継ぎ・両ログを保存
+        run: |
+          set -euo pipefail
+          python3 -B scripts/pr16_natural_supply.py record
+          python3 -B scripts/pr16_resume.py check
+          python3 -B scripts/validate_task_graph.py
+          python3 -B scripts/pr16_natural_supply.py paths | tr '\n' '\0' >.local/pr16-natural-supply/paths.z
+          git add --pathspec-from-file=.local/pr16-natural-supply/paths.z --pathspec-file-nul
+          python3 -B scripts/pr16_natural_supply.py guard
+      - name: 同branchへ非force commit/push・remote照合
+        run: |
+          set -euo pipefail
+          branch='codex/modernization-followup-20260908'
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20260925-NATURAL-SUPPLY: 通常配布・初期技孵化の実測原本と固定引継ぎ・両ログを記録'
+          git push origin "HEAD:$branch"
+          sha=$(git rev-parse HEAD)
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$sha"
+          echo "$sha" | tee .local/pr16-natural-supply/proof/reflected-head.txt
+          echo "RESULT=RECORDED TASK=USER-20260925-NATURAL-SUPPLY COMMIT=$sha"
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
-          name: pr16-natural-supply-source
-          path: .local/pr16-natural-supply/source/source.zip
-          retention-days: 7
+          name: pr16-natural-supply-proof
+          path: .local/pr16-natural-supply/proof/
+          retention-days: 30
           if-no-files-found: error
+      - name: 失敗をrun成功へ読み替えない
+        if: steps.native.outcome != 'success'
+        run: exit 1
