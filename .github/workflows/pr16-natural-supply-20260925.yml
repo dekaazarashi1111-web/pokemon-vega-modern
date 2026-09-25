@@ -1,5 +1,5 @@
 name: pr16-natural-supply-20260925
-# 孵化2case/20unitを原本継承。配布1caseとcounter観測12unitだけ。
+# 旧Save移行と配布を原本sourceから区別。孵化2case/20unitは再実行しない。
 on:
   push:
     branches: [codex/modernization-followup-20260908]
@@ -33,9 +33,9 @@ jobs:
           from pathlib import Path
           for path,expected in {
             'scripts/pr16_natural_supply.py':'9c29301c8b9f227d918ed201244d7e0c1123457cf5ee2513eae22ba3b1da213a',
-            'scripts/pr16_natural_gift_save.py':'e08b0d391038e47f2b8bc20bc63bbe307028b8644c2ac985d4efab7ec37c1219',
-            'tools/mgba_pr16_natural_gift.c':'0c80baae801da5bcb3e4029291d1f4d50630390f4304ff9c6a6386337d550656',
-            'tests/test_pr16_natural_gift_save.py':'c95994505aa897be5cafb4b045f8ee1fbea3aa341e0c8c5419ed2ee769ad9673'
+            'scripts/pr16_natural_gift_save.py':'99de6460b4b48d3b56469be2dfe22d33a5ef76a5548d175e0ff8d02d01eaf7df',
+            'tools/mgba_pr16_natural_gift.c':'62da1d12d5dd8da2167def12fa716249cb658b3eaff512fdd66c2c065ac259b6',
+            'tests/test_pr16_natural_gift_save.py':'b446831cb0b7a339d0f948a0b56d6f5c752eed0601f42db63472a2c116d20532'
           }.items():
               assert hashlib.sha256(Path(path).read_bytes()).hexdigest()==expected,path
           PY
@@ -43,7 +43,7 @@ jobs:
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends libmgba-dev
-      - name: 新規12unit・未成功の配布1caseだけ
+      - name: 原本移行保存契約・変更影響13unit・未成功配布1case
         id: native
         continue-on-error: true
         run: python3 -B scripts/pr16_natural_gift_save.py execute
@@ -63,7 +63,7 @@ jobs:
           test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'USER-20260925-NATURAL-SUPPLY: 配布counter実測を保存、孵化成功2件は原本不変で継承'
+          git commit -m 'USER-20260925-NATURAL-SUPPLY: 旧Save移行から通常配布・再開までの原本と引継ぎを保存'
           git push origin "HEAD:$branch"
           sha=$(git rev-parse HEAD)
           test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$sha"

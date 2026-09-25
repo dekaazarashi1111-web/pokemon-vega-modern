@@ -32,7 +32,7 @@ static void gift_dialog(struct mCore *c,bool first) {
             ++gift_counter_steps;
             unsigned lock=read8(c,P02S_FIELD_LOCK),count=read8(c,QOL_PLAYER_PARTY_COUNT);
             fprintf(stderr,"SUPPLY_GIFT_SAVE frame=%u before=%u after=%u lock=%u count=%u pc=%08x\n",b_frames,before,after,lock,count,((struct ARMCore *)c->cpu)->gprs[15]);
-            a_require(first && gift_counter_steps<=2 && after==before+1 && lock && count==2,"gift native counter transition");
+            a_require(first && gift_counter_steps<=2 && after==before+1 && lock && count==gift_counter_steps,"gift native counter transition");
         }
     }
     a_die("native gift dialog timeout");

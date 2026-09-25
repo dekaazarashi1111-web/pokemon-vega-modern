@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """配布のcounter一増加という未検証前提を修正。保存済み孵化/20unitは不変。"""
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -31,7 +32,7 @@ def validate(out,err,pp):
     last=r['boundary']
     for i,row in enumerate(transitions):
         f,before,after,lock,count=map(int,row[:5]);pc=int(row[5],16)
-        need(last<f<r['returned'] and f>=r['claimed'] and before==counters[0]+i and after==before+1 and lock==1 and count==2 and (0x08000000<=pc<0x0a000000 or 0x03000000<=pc<0x03008000),'guarded配布中の一段ずつの遷移')
+        need(last<f<r['returned'] and ((i==0 and f<r['claimed']) or (i==1 and f>=r['claimed'])) and before==counters[0]+i and after==before+1 and lock==1 and count==i+1 and (0x08000000<=pc<0x0a000000 or 0x03000000<=pc<0x03008000),'guarded配布中の一段ずつの遷移')
         last=f
     party=re.findall(rb'^SUPPLY_PARTY stage=(fixture|claimed|saved|continued|repeat) counter=(\d+) hex=([0-9a-f]+)$',err,re.M)
     need(len(party)==err.count(b'SUPPLY_PARTY ')==5 and [x[0] for x in party]==[b'fixture',b'claimed',b'saved',b'continued',b'repeat'],'配布party原本')
@@ -55,10 +56,28 @@ def inherited():
     return v
 
 
+
+def flow(acquisition,claim):
+    ensure=acquisition.split('static u8 ensure_save(void)',1)[1].split('static const AcqFossilRecipe',1)[0]
+    pending=acquisition.split('VegaAcqPendingTransaction *VegaAcqEngine_GetPending(void)',1)[1].split('u8 VegaAcqEngine_IsUnlockSatisfied',1)[0]
+    gift=claim.split('u16 FloetteGift_Claim(void)',1)[1]
+    need('if (!ensure_save())' in pending and 'return &save_block()->pending;' in pending,'GetPending owns migration')
+    need(ensure.index('if (!VegaAcqSaveValidate(save_block()))')<ensure.index('VegaAcqSaveMigrate(')<ensure.index('persist_standard_save() || !persist_save_sector()'),'旧内側save移行の事前保存')
+    need(gift.index('pending = FN_ACQ_GET_PENDING();')<gift.index('if (!create_gift() || !deliver_gift(&token))')<gift.index('if (!persist_standard() || !persist_sector())'),'移行保存→配布→配布保存のsource順序')
+    return {'pre_delivery_save':'GetPending -> ensure_save -> migrate inner acquisition save -> persist_standard_save','post_delivery_save':'FloetteGift_Claim -> create/deliver -> flags -> persist_standard','first_transition_party_count':1,'second_transition_party_count':2}
+
+
+def source_contract():
+    pins={'overlays/acquisition_runtime/acquisition_engine_adapter_rom.c':'df58c5897a1802e90695ef1afb21fc388a87b6dd','overlays/modernization_floette_gift/modernization_floette_gift.c':'e6d9cbbd2fb5595a1e7b5299c7a6d82fe889f9f0'}
+    data={}
+    for name,pin in pins.items():
+        raw=(s.ROOT/name).read_bytes();need(hashlib.sha1(b'blob '+str(len(raw)).encode()+b'\0'+raw).hexdigest()==pin,'実runtime sourceのGit blob '+name);data[name]=raw
+    return dict(flow(*[raw.decode() for raw in data.values()]),source_bindings={name:s.identity(raw) for name,raw in data.items()})
+
 def scoped_run(command,name,*args,**kwargs):
     if name=='unit':
         inherited()
-        s.write(s.PROOF/'gift-save-impact.json',{'prior_run':PRIOR,'prior_status':'PARTIAL_NATURAL_SUPPLY','prior_failed_boundary':'gift counter 2->4 before manual Save; old assumption 2->3','accepted_hatch_reruns':0,'inherited_unit_tests':20,'inherited_unit_reruns':0,'candidate_unchanged':s.CANDIDATE,'rom_changes':0,'policy':'two exact native counter advances observed under write barrier; not inferred as two explicit host save calls'})
+        s.write(s.PROOF/'gift-save-impact.json',{'prior_run':PRIOR,'prior_status':'PARTIAL_NATURAL_SUPPLY','prior_failed_boundary':'gift counter 2->4 before manual Save; old assumption 2->3','accepted_hatch_reruns':0,'inherited_unit_tests':20,'inherited_unit_reruns':0,'candidate_unchanged':s.CANDIDATE,'rom_changes':0,'policy':'GetPending migration save with party1, then delivery save with party2; host write barrier throughout','source_contract':source_contract(),'unit_reexecution_reason':'12 gift validator tests are impacted by corrected counter/party chronology; inherited 20 tests remain unexecuted'})
         command=[sys.executable,'-B','-m','unittest','tests.test_pr16_natural_gift_save','-v']
     return BASE_RUN(command,name,*args,**kwargs)
 

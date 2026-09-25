@@ -15,7 +15,7 @@ class GiftSaveTests(unittest.TestCase):
         raw=bytes(100)+mon
         r={'schema_version':1,'status':'PASS','case':s.GIFT,'candidate_sha256':s.CANDIDATE['sha256'],'species':1029,'level':50,'moves':[204,235,382,738],'pp':list(pp.values()),'fresh_cores':2,'denied_host_write_apis':7,'guarded_phases':3,'party_preserved_bytes':200,'initial_party_map_ring_flag_are_fixtures':True,'all_owners_accepted':False,'issue19_complete':False,'release_ready':False,'warnings_errors':0,'gift_counter_steps':2,'boundary':10,'claimed':20,'returned':40,'saved':50,'continued':60,'repeat':70,'npc_script':0x09463300,'save_counters':[2,4,5,5,5]}
         err=''.join(f'SUPPLY_PARTY stage={n} counter={c} hex={b.hex()}\n' for n,c,b in zip(('fixture','claimed','saved','continued','repeat'),r['save_counters'],[bytes(100),raw,raw,raw,raw]))
-        err+='SUPPLY_GIFT_SAVE frame=25 before=2 after=3 lock=1 count=2 pc=080db240\nSUPPLY_GIFT_SAVE frame=30 before=3 after=4 lock=1 count=2 pc=080db240\noriginal core destroyed; new core boot and normal Continue\n'
+        err+='SUPPLY_GIFT_SAVE frame=15 before=2 after=3 lock=1 count=1 pc=080db240\nSUPPLY_GIFT_SAVE frame=30 before=3 after=4 lock=1 count=2 pc=080db240\noriginal core destroyed; new core boot and normal Continue\n'
         return r,err.encode(),pp
     def test_exact_two_raw_transitions(self):
         r,err,pp=self.fixture();v=g.validate(json.dumps(r),err,pp);self.assertEqual(len(v['gift_counter_witnesses']),2)
@@ -24,12 +24,12 @@ class GiftSaveTests(unittest.TestCase):
         with self.assertRaises(ValueError):g.validate(json.dumps(r),err,pp)
     def test_missing_transition(self):
         r,err,pp=self.fixture()
-        with self.assertRaises(ValueError):g.validate(json.dumps(r),err.replace(b'SUPPLY_GIFT_SAVE frame=25',b'MISSING frame=25'),pp)
+        with self.assertRaises(ValueError):g.validate(json.dumps(r),err.replace(b'SUPPLY_GIFT_SAVE frame=15',b'MISSING frame=15'),pp)
     def test_extra_transition(self):
         r,err,pp=self.fixture()
         with self.assertRaises(ValueError):g.validate(json.dumps(r),err+b'SUPPLY_GIFT_SAVE frame=35 before=4 after=5 lock=1 count=2 pc=080db240\n',pp)
     def test_mutated_transitions(self):
-        for old,new in [(b'frame=25',b'frame=19'),(b'after=3',b'after=4'),(b'lock=1',b'lock=0'),(b'count=2',b'count=1'),(b'pc=080db240',b'pc=02000000')]:
+        for old,new in [(b'frame=15',b'frame=25'),(b'after=3',b'after=4'),(b'lock=1',b'lock=0'),(b'count=1',b'count=2'),(b'pc=080db240',b'pc=02000000')]:
             r,err,pp=self.fixture()
             with self.assertRaises(ValueError,msg=str(new)):g.validate(json.dumps(r),err.replace(old,new,1),pp)
     def test_repeat_or_continue_changed(self):
@@ -58,5 +58,16 @@ class GiftSaveTests(unittest.TestCase):
         self.assertNotIn('write8(',section);self.assertNotIn('write32(',section)
         self.assertNotIn('call_preserving(c,0x080DB34',section)
         self.assertIn('SUPPLY_GIFT_SAVE frame=',text);self.assertIn('gift_counter_steps==2',text)
+
+    def test_migration_before_delivery_source_flow(self):
+        acquisition=('static u8 ensure_save(void) { if (!VegaAcqSaveValidate(save_block())) { VegaAcqSaveMigrate(); '
+                     'if (!persist_standard_save() || !persist_save_sector()) return 0; } } '
+                     'static const AcqFossilRecipe *next; '
+                     'VegaAcqPendingTransaction *VegaAcqEngine_GetPending(void) { if (!ensure_save()) return NULL; return &save_block()->pending; } '
+                     'u8 VegaAcqEngine_IsUnlockSatisfied(void);')
+        claim=('u16 FloetteGift_Claim(void) { pending = FN_ACQ_GET_PENDING(); '
+               'if (!create_gift() || !deliver_gift(&token)) return 2; if (!persist_standard() || !persist_sector()) return 3; }')
+        self.assertEqual(g.flow(acquisition,claim)['first_transition_party_count'],1)
+        with self.assertRaises(ValueError):g.flow(acquisition.replace('if (!ensure_save())','if (ready)'),claim)
 
 if __name__=='__main__':unittest.main()
