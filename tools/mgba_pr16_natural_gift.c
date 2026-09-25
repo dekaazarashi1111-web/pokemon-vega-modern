@@ -3,7 +3,7 @@
 #include "supply_breeding_helpers.c"
 #include "supply_gift_vectors.h"
 static const unsigned gift_moves[4]={204,235,382,738};
-static unsigned gift_claimed;
+static unsigned gift_claimed, gift_counter_steps;
 static void gift_party(struct mCore *c,const char *stage,unsigned count,uint8_t *out) {
     a_require(read8(c,QOL_PLAYER_PARTY_COUNT)==count,"gift party count");
     b_copy(c,QOL_PLAYER_PARTY,out,100*count);
@@ -15,6 +15,7 @@ static void gift_check(struct mCore *c) {
     unsigned mon=QOL_PLAYER_PARTY+100;
     a_require(b_data(c,mon,11)==1029 && b_data(c,mon,56)==50 && b_data(c,mon,21)==0,"gift form/level/bonus");
     for(unsigned i=0;i<4;++i)a_require(b_data(c,mon,13+i)==gift_moves[i] && b_data(c,mon,17+i)==supply_pp[i],"gift original moves/PP");
+    a_require(b_data(c,mon,57)>0 && b_data(c,mon,57)<=b_data(c,mon,58),"gift HP consistent");
     a_require(call_preserving(c,QOL_FLAG_GET,0x14CD,0,0,0)==1,"gift flag missing");
 }
 static void gift_dialog(struct mCore *c,bool first) {
@@ -24,7 +25,15 @@ static void gift_dialog(struct mCore *c,bool first) {
         if(first && read8(c,QOL_PLAYER_PARTY_COUNT)==2 && !gift_claimed)gift_claimed=b_frames;
         if(locked && b_field(c)){if(++stable==30){c->setKeys(c,0);return;}}else stable=0;
         if(f%300==0)fprintf(stderr,"SUPPLY_DIALOG frame=%u lock=%u count=%u script=%08x result=%u\n",b_frames,read8(c,P02S_FIELD_LOCK),read8(c,QOL_PLAYER_PARTY_COUNT),read32(c,B_CONTEXT+8),read16(c,0x02037004));
+        unsigned before=read32(c,P03_SAVE_COUNTER);
         b_frame(c,f%60==0?QOL_KEY_A:0);
+        unsigned after=read32(c,P03_SAVE_COUNTER);
+        if(after!=before) {
+            ++gift_counter_steps;
+            unsigned lock=read8(c,P02S_FIELD_LOCK),count=read8(c,QOL_PLAYER_PARTY_COUNT);
+            fprintf(stderr,"SUPPLY_GIFT_SAVE frame=%u before=%u after=%u lock=%u count=%u pc=%08x\n",b_frames,before,after,lock,count,((struct ARMCore *)c->cpu)->gprs[15]);
+            a_require(first && gift_counter_steps<=2 && after==before+1 && lock && count==2,"gift native counter transition");
+        }
     }
     a_die("native gift dialog timeout");
 }
@@ -48,7 +57,7 @@ int main(int argc,char **argv) {
     gift_dialog(c,true);unsigned returned=b_frames;
     a_require(gift_claimed>boundary && gift_claimed<returned && read16(c,0x02037004)==0,"native NPC gift result");
     b_position(c,96,5,25,20);gift_party(c,"claimed",2,party);counters[1]=read32(c,P03_SAVE_COUNTER);
-    a_require(!memcmp(initial,party,100) && counters[1]==counters[0]+1,"gift compensating standard Save/initial party");
+    a_require(!memcmp(initial,party,100) && counters[1]==counters[0]+2 && gift_counter_steps==2,"gift two native counter advances/initial party");
     a_restore(c,&saved);gift_check(c);a_guard(c);
     a_require(b_save(c),"gift ordinary Save");unsigned saved_frame=b_frames;
     gift_party(c,"saved",2,again);counters[2]=read32(c,P03_SAVE_COUNTER);
@@ -62,7 +71,7 @@ int main(int argc,char **argv) {
     a_require(!memcmp(party,again,200) && counters[4]==counters[3],"repeat gift unchanged");
     a_restore(c,&saved);gift_check(c);qol_close(c);qol_log_core=NULL;sha256_file(argv[1],againhash);
     a_require(!strcmp(rh,againhash) && !log_problem_count,"gift ROM/warnings");
-    printf("{\"schema_version\":1,\"status\":\"PASS\",\"case\":\"floette-eternal-npc-initial\",\"candidate_sha256\":\"%s\",\"species\":1029,\"level\":50,\"moves\":",rh);a_array(gift_moves);
+    printf("{\"gift_counter_steps\":2,\"schema_version\":1,\"status\":\"PASS\",\"case\":\"floette-eternal-npc-initial\",\"candidate_sha256\":\"%s\",\"species\":1029,\"level\":50,\"moves\":",rh);a_array(gift_moves);
     printf(",\"pp\":");a_array(supply_pp);
     printf(",\"boundary\":%u,\"claimed\":%u,\"returned\":%u,\"saved\":%u,\"continued\":%u,\"repeat\":%u,\"npc_script\":%u,\"save_counters\":[%u,%u,%u,%u,%u],",boundary,gift_claimed,returned,saved_frame,continued,repeated,SUPPLY_NPC_SCRIPT,counters[0],counters[1],counters[2],counters[3],counters[4]);
     printf("\"fresh_cores\":2,\"denied_host_write_apis\":7,\"guarded_phases\":3,\"party_preserved_bytes\":200,\"initial_party_map_ring_flag_are_fixtures\":true,\"all_owners_accepted\":false,\"issue19_complete\":false,\"release_ready\":false,\"warnings_errors\":0}\n");
