@@ -1,5 +1,5 @@
 name: pr16-natural-supply-20260925
-# 旧Save移行と配布を原本sourceから区別。孵化2case/20unitは再実行しない。
+# 完了照合専用。保存成功3case/旧unit/host/ARM/Wikiを再実行しない。
 on:
   push:
     branches: [codex/modernization-followup-20260908]
@@ -15,7 +15,7 @@ jobs:
   natural-supply:
     if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
     runs-on: ubuntu-24.04
-    timeout-minutes: 30
+    timeout-minutes: 15
     env:
       PYTHONDONTWRITEBYTECODE: '1'
       GITHUB_TOKEN: ${{ github.token }}
@@ -26,56 +26,53 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: 変更影響source一致・旧20試験原本不変
+      - name: 完了専用source一致
         run: |
           python3 -B - <<'PY'
           import hashlib
           from pathlib import Path
           for path,expected in {
-            'scripts/pr16_natural_supply.py':'9c29301c8b9f227d918ed201244d7e0c1123457cf5ee2513eae22ba3b1da213a',
-            'scripts/pr16_natural_gift_save.py':'99de6460b4b48d3b56469be2dfe22d33a5ef76a5548d175e0ff8d02d01eaf7df',
-            'tools/mgba_pr16_natural_gift.c':'62da1d12d5dd8da2167def12fa716249cb658b3eaff512fdd66c2c065ac259b6',
-            'tests/test_pr16_natural_gift_save.py':'b446831cb0b7a339d0f948a0b56d6f5c752eed0601f42db63472a2c116d20532'
+            'scripts/pr16_natural_supply_closeout.py':'7aeaa2c23a9967b26aebffd5b2745784fce6779e465157fa022b8271e99485bf',
+            'tests/test_pr16_natural_supply_closeout.py':'e8f43987dfdc31dff92590653ba899ace21781d94a8884be70d19de2c0349433'
           }.items():
               assert hashlib.sha256(Path(path).read_bytes()).hexdigest()==expected,path
           PY
-      - name: 未成功配布用host libraryのみ導入
+      - name: 新規15unit・保存3case・全artifact・Actions終端・引継ぎ確定
         run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y --no-install-recommends libmgba-dev
-      - name: 原本移行保存契約・変更影響13unit・未成功配布1case
-        id: native
-        continue-on-error: true
-        run: python3 -B scripts/pr16_natural_gift_save.py execute
-      - name: 成功と失敗の原本・固定引継ぎ・両ログを保存
+          python3 -B - <<'PY'
+          import sys
+          sys.path.insert(0,'scripts')
+          import pr16_natural_supply_closeout as c
+          c.s.PROOF.mkdir(parents=True)
+          c.s.m.PROOF=c.s.PROOF
+          c.s.m.run([sys.executable,'-B','-m','unittest','tests.test_pr16_natural_supply_closeout','-v'],'closeout-unit')
+          c.main()
+          PY
+      - name: 固定引継ぎ・task graph・今回10fileの最終guard
         run: |
           set -euo pipefail
-          python3 -B scripts/pr16_natural_gift_save.py record
           python3 -B scripts/pr16_resume.py check
           python3 -B scripts/validate_task_graph.py
-          python3 -B scripts/pr16_natural_gift_save.py paths | tr '\n' '\0' >.local/pr16-natural-supply/paths.z
+          python3 -B scripts/pr16_natural_supply_closeout.py paths | tr '\n' '\0' >.local/pr16-natural-supply/paths.z
           git add --pathspec-from-file=.local/pr16-natural-supply/paths.z --pathspec-file-nul
-          python3 -B scripts/pr16_natural_gift_save.py guard
-      - name: 同branchへ非force commit/push・remote照合
+          python3 -B scripts/pr16_natural_supply_closeout.py guard
+      - name: 完了記録を同branchへ非force commit/push・remote照合
         run: |
           set -euo pipefail
           branch='codex/modernization-followup-20260908'
           test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'USER-20260925-NATURAL-SUPPLY: 旧Save移行から通常配布・再開までの原本と引継ぎを保存'
+          git commit -m 'USER-20260925-NATURAL-SUPPLY: 通常配布・初期技孵化3caseの終端受入と固定引継ぎ・両ログを確定'
           git push origin "HEAD:$branch"
           sha=$(git rev-parse HEAD)
           test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$sha"
           echo "$sha" | tee .local/pr16-natural-supply/proof/reflected-head.txt
-          echo "RESULT=RECORDED TASK=USER-20260925-NATURAL-SUPPLY COMMIT=$sha"
+          echo "RESULT=DONE_SCOPED_3_CASES TASK=USER-20260925-NATURAL-SUPPLY COMMIT=$sha"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: pr16-natural-supply-proof
+          name: pr16-natural-supply-closeout
           path: .local/pr16-natural-supply/proof/
           retention-days: 30
           if-no-files-found: error
-      - name: 失敗をrun成功へ読み替えない
-        if: steps.native.outcome != 'success'
-        run: exit 1
