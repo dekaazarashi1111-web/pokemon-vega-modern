@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "Issue19: 最初の質問でB拒否 PASS_BATTLE_EXP_FIRST_REFUSAL。Actions終端確認=True。旧EXP4成功は不変、全体未完。",
+    "current_stop": "Issue19: 戦闘EXP進化/共有 0/3。PARTIAL_BATTLE_EXP_EVOLUTION_SHARE。Actions終端=False、全体未完。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "Issue19: 最初の質問でB拒否/中止確認/Save/fresh Continueは限定受入済み。旧EXP4境界と今回成功を再実行せず、次は戦闘EXP進化/共有を限定追加する。その後は未受入の自然配布/孵化/form、釣り/隠し野生の特殊技順。アメ11/Bag23/egg8/野生初期技/EXP空き枠/旧host・ARM・Wikiは変更影響なし。全owner/Issue19/release/baseline切替は未完。",
+    "next_step": "今回の失敗原本を保持し未受入caseだけ修復する。保存成功caseと旧EXP4/最初の質問拒否/アメ11/Bag23/egg8は再実行しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -1028,7 +1028,8 @@
     "自然初期技/戦闘EXP run36041199782の成功caseは再実行しない。開始fixtureと自然生成enemyを区別し、元の失敗原本を保持する。",
     "V4野生修復run36042409576成功部分は再実行しない。原本候補/未成功traceと新adapterの実測を区別。",
     "EXP境界の保存成功caseは再実行しない。checkpoint acceptedと原本hashを照合し、失敗/未実施だけ選択する。",
-    "旧EXP4境界と最初の質問での拒否は各checkpointの保存成功を再実行しない。未受入の戦闘EXP進化/共有以降だけ追加する。"
+    "旧EXP4境界と最初の質問での拒否は各checkpointの保存成功を再実行しない。未受入の戦闘EXP進化/共有以降だけ追加する。",
+    "戦闘EXP進化/共有の保存成功を再実行しない。未受入caseのみ選び、全成功後のcompleteは記録だけ。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -1668,6 +1669,25 @@
       "butterfree-exp-summary-refuse"
     ],
     "unaffected_accepted_native_reruns": 0
+  },
+  "learnset_exp_evolution_share": {
+    "accepted_cases": [],
+    "accepted_native_reruns": 0,
+    "actions_completion_confirmed": false,
+    "host_compiles": 1,
+    "issue19_complete": false,
+    "native_processes": 3,
+    "new_unit_tests": 24,
+    "path": "content/modernization/pr16_exp_evolution_share_checkpoint.json",
+    "pending_cases": [
+      "metapod-exp-evolve",
+      "metapod-exp-cancel",
+      "butterfree-exp-share"
+    ],
+    "release_ready": false,
+    "run_id": 36075652959,
+    "source_head": "6b69b8d48644d255962d218dcce81ff01c4904a7",
+    "status": "PARTIAL_BATTLE_EXP_EVOLUTION_SHARE"
   },
   "learnset_first_refusal": {
     "accepted_cases": [
@@ -3709,30 +3729,29 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "Issue19: 最初の質問でB拒否/中止確認/Save/fresh Continueは限定受入済み。旧EXP4境界と今回成功を再実行せず、次は戦闘EXP進化/共有を限定追加する。その後は未受入の自然配布/孵化/form、釣り/隠し野生の特殊技順。アメ11/Bag23/egg8/野生初期技/EXP空き枠/旧host・ARM・Wikiは変更影響なし。全owner/Issue19/release/baseline切替は未完。",
+    "goal_ja": "今回の失敗原本を保持し未受入caseだけ修復する。保存成功caseと旧EXP4/最初の質問拒否/アメ11/Bag23/egg8は再実行しない。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
-    "id": "LEARNSET_EXP_FIRST_REFUSAL",
+    "id": "LEARNSET_EXP_EVOLUTION_SHARE",
     "read_paths": [
-      "docs/PR16_LEARNSET_FIRST_REFUSE_JA.md",
-      "content/modernization/pr16_learnset_first_refuse_checkpoint.json",
-      "scripts/pr16_learnset_first_refuse.py",
-      "scripts/pr16_first_refuse_jp.py",
-      "tests/test_pr16_first_refuse_jp.py"
+      "docs/PR16_EXP_EVOLUTION_SHARE_JA.md",
+      "content/modernization/pr16_exp_evolution_share_checkpoint.json",
+      "scripts/pr16_exp_evolution_share.py",
+      "tests/test_pr16_exp_evolution_share.py"
     ],
     "stop_rule_ja": "特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。"
   },
   "observed_date_jst": "2026-09-22",
-  "observed_head": "0853f5f429e0627290b90c0629bbe1629b94e6c1",
+  "observed_head": "6b69b8d48644d255962d218dcce81ff01c4904a7",
   "observed_head_checks": {
-    "reason_ja": "限定nativeと一般CIを分離。最新観測はcheckpointのobserved_recent_actions。",
+    "reason_ja": "一般CI action_requiredを成功に昇格しない。最新観測はcheckpointのobserved_recent_actions。",
     "runs": [
       {
-        "conclusion": "success",
-        "id": 36071876126,
-        "status": "completed"
+        "conclusion": null,
+        "id": 36075652959,
+        "status": "in_progress"
       }
     ],
-    "scope_head": "f99b97530b25e11e71ee5d89363d33ca585a8af8"
+    "scope_head": "6b69b8d48644d255962d218dcce81ff01c4904a7"
   },
   "observed_head_history": [
     {
@@ -5086,7 +5105,7 @@
       "semantics": "PLA1圧縮と新規供給consumerのhost検証成功入力HEAD。ROM配置/実操作/記録commitの受入ではない。"
     }
   ],
-  "observed_head_semantics": "最初の質問でB拒否の限定追加。旧4境界は不変。native成功とActions終端を区別。",
+  "observed_head_semantics": "戦闘EXP進化承認/取消と控え共有の限定追加。旧受入は不変。native原本とActions終端を区別。",
   "p08_candidate_impact": {
     "candidate": {
       "crc32": "CC068B4A",
@@ -6258,6 +6277,10 @@
       "sha256": "08bfb901d0975135d1ddfcbbfc12d576e075311a9a4862205b43c8f33b55d536",
       "size": 1851
     },
+    ".github/workflows/pr16-exp-evolution-share.yml": {
+      "sha256": "42ebbda3157b04c271e7059f344f5e9a6440d6a8d1f0a9915446db865f40a061",
+      "size": 4199
+    },
     ".github/workflows/pr16-learnset-baseline-proof-closeout.yml": {
       "sha256": "2c6bbed55a37a2544d4704d17bf80271c129a29c521ed9c5836b21e563ea7eaa",
       "size": 9826
@@ -7350,6 +7373,10 @@
       "sha256": "8b0e9fe35669360f1e5f4c2e4b3562c6f3ced43a45d96307ad8669031320f50e",
       "size": 2600
     },
+    "content/modernization/pr16_exp_evolution_share_checkpoint.json": {
+      "sha256": "a902fd75a5971f038d2868442568b1a956258ebac0c25cac51d4ed3259a9def8",
+      "size": 19396
+    },
     "content/modernization/pr16_learnset_baseline_checkpoint.json": {
       "sha256": "e0587f5cf025fa76f6e6f7a0dc8f340e335b66d1d4ae744027dcc865b06e0d78",
       "size": 2971
@@ -8221,6 +8248,10 @@
     "content/modernization/pr16_vega_original_evidence/wiki_nondirect_egg.json": {
       "sha256": "0071b3cff1d79effe095c56a69f32b0b59cd3ce1756338ab2e9ecbe8ddc34b49",
       "size": 1140469
+    },
+    "docs/PR16_EXP_EVOLUTION_SHARE_JA.md": {
+      "sha256": "4c534eb85958d02341d068680c4233e8c439ddf5765bcd1740a516be3f71c01a",
+      "size": 1285
     },
     "docs/PR16_LEARNSET_BASELINE_RESET_JA.md": {
       "sha256": "4924be1b5cfa324fe72cff599758ebb467eae8d25911a085c2d444f3b1f3ab6a",
@@ -12338,6 +12369,10 @@
       "sha256": "70e4cfbe615e027630604dbf5c6c8b0f9511272076be7c429a7afeab243df23d",
       "size": 11251
     },
+    "scripts/pr16_exp_evolution_share.py": {
+      "sha256": "ff62b0ebf666b49aae4c705661d620a3ea210b04ebf590f113dafb61e059e04f",
+      "size": 20997
+    },
     "scripts/pr16_exp_health_policy.py": {
       "sha256": "e42f9b4283494b33c87e4339ecc733d42dcf8652c362add17dae1a8d7c14dc47",
       "size": 9913
@@ -13574,6 +13609,10 @@
       "sha256": "9e1955a9feb789d749f0a0d0cda8681f418ea74e73af0fce9e1ff3bc326e082b",
       "size": 6452
     },
+    "tests/test_pr16_exp_evolution_share.py": {
+      "sha256": "04a194760ee2805d68ed0e19f811e51b3d6e90c4c82d2839127518344e315598",
+      "size": 8665
+    },
     "tests/test_pr16_exp_health_policy.py": {
       "sha256": "f098571b63c7011882de33ce9faf64fa2d7b406a178792a646c81f8467818cae",
       "size": 2562
@@ -14489,6 +14528,10 @@
     "tools/mgba_pr16_circus_win_return_trace.h": {
       "sha256": "4258edf9c1e422bbb22a31208db8e3cdf65e7b34f1548d57fd8f3a29f7047d74",
       "size": 1758
+    },
+    "tools/mgba_pr16_exp_evolution_share.c": {
+      "sha256": "006956a135451fb50d3a5a8ffcb4e40787d5a00d2aa831bb1144bfb0c3129b5c",
+      "size": 13541
     },
     "tools/mgba_pr16_learnset_battle.c": {
       "sha256": "6f0665441256b1f42468a65f146bc927654edd5e655d49cdaa3e60081741a999",

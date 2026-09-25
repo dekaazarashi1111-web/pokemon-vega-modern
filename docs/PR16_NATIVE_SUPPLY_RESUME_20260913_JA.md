@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-Issue19: 最初の質問でB拒否 PASS_BATTLE_EXP_FIRST_REFUSAL。Actions終端確認=True。旧EXP4成功は不変、全体未完。
+Issue19: 戦闘EXP進化/共有 0/3。PARTIAL_BATTLE_EXP_EVOLUTION_SHARE。Actions終端=False、全体未完。
 
-**次: Issue19: 最初の質問でB拒否/中止確認/Save/fresh Continueは限定受入済み。旧EXP4境界と今回成功を再実行せず、次は戦闘EXP進化/共有を限定追加する。その後は未受入の自然配布/孵化/form、釣り/隠し野生の特殊技順。アメ11/Bag23/egg8/野生初期技/EXP空き枠/旧host・ARM・Wikiは変更影響なし。全owner/Issue19/release/baseline切替は未完。**
+**次: 今回の失敗原本を保持し未受入caseだけ修復する。保存成功caseと旧EXP4/最初の質問拒否/アメ11/Bag23/egg8は再実行しない。**
 
 特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `0853f5f429e0627290b90c0629bbe1629b94e6c1`。
-最初の質問でB拒否の限定追加。旧4境界は不変。native成功とActions終端を区別。
+証拠のsource HEAD: `6b69b8d48644d255962d218dcce81ff01c4904a7`。
+戦闘EXP進化承認/取消と控え共有の限定追加。旧受入は不変。native原本とActions終端を区別。
 
 ## 最短の再開手順
 
@@ -25,11 +25,10 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_LEARNSET_FIRST_REFUSE_JA.md`
-- `content/modernization/pr16_learnset_first_refuse_checkpoint.json`
-- `scripts/pr16_learnset_first_refuse.py`
-- `scripts/pr16_first_refuse_jp.py`
-- `tests/test_pr16_first_refuse_jp.py`
+- `docs/PR16_EXP_EVOLUTION_SHARE_JA.md`
+- `content/modernization/pr16_exp_evolution_share_checkpoint.json`
+- `scripts/pr16_exp_evolution_share.py`
+- `tests/test_pr16_exp_evolution_share.py`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -299,6 +298,7 @@ P08ゲート:
 - V4野生修復run36042409576成功部分は再実行しない。原本候補/未成功traceと新adapterの実測を区別。
 - EXP境界の保存成功caseは再実行しない。checkpoint acceptedと原本hashを照合し、失敗/未実施だけ選択する。
 - 旧EXP4境界と最初の質問での拒否は各checkpointの保存成功を再実行しない。未受入の戦闘EXP進化/共有以降だけ追加する。
+- 戦闘EXP進化/共有の保存成功を再実行しない。未受入caseのみ選び、全成功後のcompleteは記録だけ。
 
 ## 次セッションへ残す更新手順
 
@@ -328,6 +328,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-限定nativeと一般CIを分離。最新観測はcheckpointのobserved_recent_actions。
+一般CI action_requiredを成功に昇格しない。最新観測はcheckpointのobserved_recent_actions。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
