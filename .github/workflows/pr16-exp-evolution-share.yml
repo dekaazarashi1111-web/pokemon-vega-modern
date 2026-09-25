@@ -1,5 +1,5 @@
 name: pr16-exp-evolution-share
-# native実行前のsource転送確定。旧受入の実行0。
+# 戦闘EXP進化承認/取消と控え共有だけ。旧受入native/ARM/unitは再実行しない。
 on:
   push:
     branches: [codex/modernization-followup-20260908]
@@ -12,12 +12,13 @@ concurrency:
   group: pr16-exp-evolution-share
   cancel-in-progress: false
 jobs:
-  prepare-source:
+  evolution-share:
     if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
     runs-on: ubuntu-24.04
-    timeout-minutes: 5
+    timeout-minutes: 20
     env:
       PYTHONDONTWRITEBYTECODE: '1'
+      GITHUB_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -25,42 +26,50 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: source転送の単一式を検証済みbyteへ確定
+      - name: 新source転送・既存受入保全を照合
         run: |
           python3 -B - <<'PY'
-          import ast,datetime,hashlib,os,pathlib,sys
-          digest=lambda b:hashlib.sha256(b).hexdigest()
-          p=pathlib.Path('scripts/pr16_exp_evolution_share.py');old=p.read_bytes()
-          assert digest(old)=='1d8d4fd036267c6a308dc8835fa009e4f1244c2936a0fc551ffd595cf904e0f6'
-          assert old.count(b'PP if False else pp')==1
-          raw=old.replace(b'PP if False else pp',b'pp')
-          assert digest(raw)=='ff62b0ebf666b49aae4c705661d620a3ea210b04ebf590f113dafb61e059e04f'
-          ast.parse(raw);p.write_bytes(raw)
-          for name,sha in {'tools/mgba_pr16_exp_evolution_share.c':'006956a135451fb50d3a5a8ffcb4e40787d5a00d2aa831bb1144bfb0c3129b5c','tests/test_pr16_exp_evolution_share.py':'04a194760ee2805d68ed0e19f811e51b3d6e90c4c82d2839127518344e315598'}.items():assert digest(pathlib.Path(name).read_bytes())==sha,name
-          stamp=datetime.datetime.now(datetime.timezone.utc).isoformat()
-          note=f'\n## {stamp}\n- Timestamp: {stamp}\n- Task: USER-20260925-LEARNSET-EXP-EVOLUTION-SHARE / native前source checkpoint\n- Version: issue19-exp-evolution-share-wip\n- Status: STOPPED\n- Summary: 新3case runner/driver/24試験を追加。転送時の定数false式を単一引数へ正規化しローカル構文/新unit24成功byteとSHA照合。実ROM受入はまだ0。\n- Files changed: 専用C/driver/tests/workflow、両ログ。既存受入CP・固定再開点はまだ変更しない。\n- Verify: 3source SHA一致、Python構文PASS。native/ARM/host/旧受入再実行0。次は新3caseのみ。\n- Commit: 同branchへ非force push/remote ref照合。\n- Network: GitHub Actions/sourceのみ。ROM/release/baseline不変。\n'
-          for name in ('design/run_log.md','design/version_log.md'):
-              with pathlib.Path(name).open('a') as f:f.write(note)
-          print('SOURCE_TRANSFER=PASS NATIVE=0 ARM=0')
+          import hashlib,pathlib
+          expected={'scripts/pr16_exp_evolution_share.py':'ff62b0ebf666b49aae4c705661d620a3ea210b04ebf590f113dafb61e059e04f','tools/mgba_pr16_exp_evolution_share.c':'006956a135451fb50d3a5a8ffcb4e40787d5a00d2aa831bb1144bfb0c3129b5c','tests/test_pr16_exp_evolution_share.py':'04a194760ee2805d68ed0e19f811e51b3d6e90c4c82d2839127518344e315598'}
+          for path,digest in expected.items():assert hashlib.sha256(pathlib.Path(path).read_bytes()).hexdigest()==digest,path
+          print('SOURCE_TRANSFER=PASS')
           PY
+          git diff --exit-code 3505bdb9bf84bf7d5a2ffff96abce305b4077c5e HEAD -- AGENTS.md CHATGPT_RESUME.md config/active_play_baseline.json design/active_play_baseline.md content/modernization/pr16_bp_chooser_checkpoint.json content/modernization/p08_remaining_work.json content/modernization/pr16_learnset_boundaries_checkpoint.json content/modernization/pr16_learnset_first_refuse_checkpoint.json tools/mgba_pr16_learnset_boundaries.c tools/mgba_pr16_learnset_first_refuse.c scripts/pr16_learnset_boundaries.py
+      - name: host mGBAだけ準備（ARM compilerなし）
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends libmgba-dev
+      - name: 新24unit・進化承認取消と控え共有の3caseのみ
+        id: native
+        continue-on-error: true
+        run: python3 -B scripts/pr16_exp_evolution_share.py execute
+      - name: 成功/失敗原本・固定引継ぎ・両ログ記録と最終index検査
+        run: |
+          set -euo pipefail
+          python3 -B scripts/pr16_exp_evolution_share.py record
+          python3 -B scripts/pr16_resume.py check
           python3 -B scripts/validate_task_graph.py
-          git add scripts/pr16_exp_evolution_share.py design/run_log.md design/version_log.md
-          python3 -B - <<'PY'
-          import os,sys
-          sys.path.insert(0,'scripts')
-          import pr16_learnset_runtime_record as g
-          g.START=os.environ['GITHUB_SHA'];g.CODE={'scripts/pr16_exp_evolution_share.py'};g.OWNED={'design/run_log.md','design/version_log.md'};g.guard()
-          PY
-          git diff --cached --check
-      - name: 同branchへ非force反映
+          python3 -B scripts/pr16_exp_evolution_share.py paths | tr '\n' '\0' >.local/pr16-exp-evolution-share/paths.z
+          git add --pathspec-from-file=.local/pr16-exp-evolution-share/paths.z --pathspec-file-nul
+          python3 -B scripts/pr16_exp_evolution_share.py guard
+      - name: 同branchへ非force commit/push・remote ref照合
         run: |
           set -euo pipefail
           branch='codex/modernization-followup-20260908'
           test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'USER-20260925-LEARNSET-EXP-EVOLUTION-SHARE: source転送照合・native前checkpoint'
+          git commit -m 'USER-20260925-LEARNSET-EXP-EVOLUTION-SHARE: 限定native原本と進化共有停止点を保存'
           git push origin "HEAD:$branch"
           sha=$(git rev-parse HEAD)
           test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$sha"
-          echo "RESULT=STOPPED TASK=USER-20260925-LEARNSET-EXP-EVOLUTION-SHARE VERIFY=PASS COMMIT=$sha"
+          echo "$sha" | tee .local/pr16-exp-evolution-share/proof/reflected-head.txt
+          echo "RESULT=RECORDED TASK=USER-20260925-LEARNSET-EXP-EVOLUTION-SHARE COMMIT=$sha"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-exp-evolution-share-proof
+          path: .local/pr16-exp-evolution-share/proof/
+          retention-days: 30
+          if-no-files-found: error
+      - name: native失敗を成功へ読み替えない
+        if: steps.native.outcome == 'failure'
+        run: exit 1
