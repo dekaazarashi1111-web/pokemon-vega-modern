@@ -1,9 +1,14 @@
 name: pr16-research-hatch-20260925
 # 未受入研究孵化だけ。保存配布17/旧unit/ARM/Wikiを再実行しない。
+# 観測器だけを追加/修復したcommitでも専用検証へ到達させる。
 on:
   push:
     branches: [codex/modernization-followup-20260908]
-    paths: [.github/workflows/pr16-research-hatch-20260925.yml]
+    paths:
+      - .github/workflows/pr16-research-hatch-20260925.yml
+      - scripts/pr16_research_hatch.py
+      - tests/test_pr16_research_hatch.py
+      - tools/mgba_pr16_research_hatch.c
 permissions:
   contents: write
   actions: read
