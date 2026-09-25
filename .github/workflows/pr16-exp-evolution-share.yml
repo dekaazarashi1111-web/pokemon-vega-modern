@@ -1,5 +1,5 @@
 name: pr16-exp-evolution-share
-# 修復差分の限定適用。nativeは別のexact HEADで実行して原本identityを保つ。
+# 変更影響のある24+6既存unitと12新規unit。保存成功nativeは選択しない。
 on:
   push:
     branches: [codex/modernization-followup-20260908]
@@ -12,10 +12,10 @@ concurrency:
   group: pr16-exp-evolution-share
   cancel-in-progress: false
 jobs:
-  preparation:
+  evolution-share:
     if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 20
     env:
       PYTHONDONTWRITEBYTECODE: '1'
       GITHUB_TOKEN: ${{ github.token }}
@@ -26,73 +26,46 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: 固定修復patchだけ適用・既存原本は不変
+      - name: 修復済みsourceと不変の旧受入を固定HEADに照合
         run: |
           set -euo pipefail
-          git diff --exit-code 2955fa0c4ddb7015d3f03f40202a50cf4bddacfb HEAD -- .chatgpt/patches/pr16-exp-observation.patch scripts/pr16_exp_evolution_observation.py tests/test_pr16_exp_evolution_observation.py scripts/pr16_exp_evolution_share.py tests/test_pr16_exp_evolution_share.py tools/mgba_pr16_exp_evolution_sync.c
-          git apply --check .chatgpt/patches/pr16-exp-observation.patch
-          git apply .chatgpt/patches/pr16-exp-observation.patch
-          python3 -B scripts/validate_task_graph.py
-      - name: 修復準備と既知の終端失敗を記録・成功へ昇格しない
+          git diff --exit-code a3f5b70484bb22a37c790ce3109c8bb5fc2ee81e HEAD -- scripts/pr16_exp_evolution_share.py tools/mgba_pr16_exp_evolution_share.c tests/test_pr16_exp_evolution_share.py scripts/pr16_exp_evolution_sync.py tools/mgba_pr16_exp_evolution_sync.c tests/test_pr16_exp_evolution_sync.py scripts/pr16_exp_evolution_observation.py tests/test_pr16_exp_evolution_observation.py
+          git diff --exit-code 9cfde111077c1ca451344de0d4cd09c83f335b0c HEAD -- AGENTS.md CHATGPT_RESUME.md config/active_play_baseline.json design/active_play_baseline.md content/modernization/pr16_bp_chooser_checkpoint.json content/modernization/p08_remaining_work.json content/modernization/pr16_learnset_boundaries_checkpoint.json content/modernization/pr16_learnset_first_refuse_checkpoint.json tools/mgba_pr16_learnset_boundaries.c tools/mgba_pr16_learnset_first_refuse.c scripts/pr16_learnset_boundaries.py
+      - name: host mGBAだけ準備（ARM compilerなし）
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends libmgba-dev
+      - name: 変更影響42unit・未受入3caseのみ
+        id: native
+        continue-on-error: true
+        run: python3 -B scripts/pr16_exp_evolution_observation.py execute
+      - name: 成功/失敗原本・固定引継ぎ・両ログ記録と最終index検査
         run: |
-          python3 -B - <<'PY'
-          import ast,datetime,json,os,pathlib,subprocess,sys
-          sys.path.insert(0,'scripts')
-          import pr16_exp_evolution_observation as o
-          from pr16_learnset_compact_record import publish_resume
-          e=o.e
-          changed={'scripts/pr16_exp_evolution_share.py','tests/test_pr16_exp_evolution_share.py','tools/mgba_pr16_exp_evolution_sync.c'}
-          actual=set(subprocess.check_output(['git','diff','--name-only']).decode().splitlines())
-          assert actual==changed,(actual,changed)
-          for p in changed|{o.SELF,o.TEST}:
-              if p.endswith('.py'):ast.parse(pathlib.Path(p).read_text())
-          receipt={'schema_version':1,'status':'WIP_PATCH_APPLIED_NOT_NATIVE_ACCEPTED','source_head':os.environ['GITHUB_SHA'],'run_id':int(os.environ['GITHUB_RUN_ID']),'prior_bridge':{'run_id':36078410019,'job_id':107894730080,'conclusion':'failure','patch_apply':'success','unit_tests':0,'native_processes':0,'reason_ja':'既存tracked ROM/save・旧ZIP・機器pathの全体guard阻害。原本を改変せず保存。'},'prior_native':{'run_id':36076513362,'job_id':107888815589,'conclusion':'failure'},'changed_sources':{p:e.identity(pathlib.Path(p).read_bytes()) for p in sorted(changed|{o.SELF,o.TEST})},'new_native_processes':0,'accepted_native_reruns':0,'full_historical_guard_pass_claimed':False}
-          proof=pathlib.Path('.local/pr16-exp-evolution-preparation');proof.mkdir(parents=True)
-          (proof/'preparation.json').write_text(json.dumps(receipt,ensure_ascii=False,indent=2)+'\n')
-          state=e.load(e.ROOT/e.x.m.STATE)
-          state['learnset_exp_evolution_share']['repair_preparation']=receipt
-          state['observed_head']=os.environ['GITHUB_SHA']
-          state['observed_head_checks']={'scope_head':'97417f139591689085d88a866fd638e7dc6fae87','runs':[{'id':36076513362,'status':'completed','conclusion':'failure'}],'reason_ja':'実native失敗の終端確認。修復準備はnative未実行で、受入済みへ昇格しない。'}
-          state['bp']['current_stop']='Issue19: 戦闘EXP進化/共有0/3。進化後現在level行・フレーム観測callback・共有fixture無入力安定の修復を適用。native未検証。'
-          goal='修復後exact HEADで scripts/pr16_exp_evolution_observation.py execute を実行する。変更validator/Cに直結するunitのみ再検証し、未受入3caseを検証・保存する。旧受入native/ARM/ROM再生成は0。'
-          state['bp']['next_step']=goal
-          state['next_action']=dict(state['next_action'],id='LEARNSET_EXP_EVOLUTION_SHARE',goal_ja=goal,read_paths=[e.GUIDE,e.CP,o.SELF,o.TEST])
-          for p in changed|{o.SELF,o.TEST,e.WF}:state['source_bindings'][p]=e.identity(pathlib.Path(p).read_bytes())
-          state['logs_synchronized']=True;publish_resume(state)
-          stamp=datetime.datetime.now(datetime.timezone.utc).isoformat()
-          note=f'\n## {stamp}\n- Timestamp: {stamp}\n- Task: {e.TASK} / 観測契約修復準備\n- Version: exp-evolution-observation-v1\n- Status: STOPPED（実装WIP・native未検証）\n- Summary: 進化後現在level行を原本から追加照合。未観測beginを捏造せずupdate/入力/個体保存で判定。共有fixtureを通常無入力で安定させる。\n- Files changed: driver/tests/C、固定再開MD/JSON、両ログ。\n- Verify: patch適用・Python構文・task graph PASS。旧bridge run36078410019は既存全体guard違反でunit/native0。旧native run36076513362終端failureを保持。限定index guard後のみWIP commit。\n- Commit: 同branchへ非force push、remote ref照合。\n- Network: GitHub固定HEAD/Actionsのみ。ROM変更/ARM/既受入native再実行0。全体private guard PASSは主張しない。\n'
-          for p in ('design/run_log.md','design/version_log.md'):
-              with pathlib.Path(p).open('a') as f:f.write(note)
-          owned=changed|{e.x.m.STATE,e.x.m.DOC,'design/run_log.md','design/version_log.md'}
-          (proof/'paths.z').write_bytes(b'\0'.join(p.encode() for p in sorted(owned))+b'\0')
-          PY
+          set -euo pipefail
+          python3 -B scripts/pr16_exp_evolution_observation.py record
           python3 -B scripts/pr16_resume.py check
-          git add --pathspec-from-file=.local/pr16-exp-evolution-preparation/paths.z --pathspec-file-nul
-          python3 -B - <<'PY'
-          import os,pathlib,subprocess,sys
-          sys.path.insert(0,'scripts')
-          import pr16_learnset_runtime_record as g
-          g.START=os.environ['GITHUB_SHA'];g.CODE=set()
-          g.OWNED=set(pathlib.Path('.local/pr16-exp-evolution-preparation/paths.z').read_bytes().decode().strip('\0').split('\0'))
-          g.guard();subprocess.run(['git','diff','--cached','--check'],check=True)
-          PY
-      - name: 検証準備を同branchへ非force保存
+          python3 -B scripts/validate_task_graph.py
+          python3 -B scripts/pr16_exp_evolution_observation.py paths | tr '\n' '\0' >.local/pr16-exp-evolution-share/paths.z
+          git add --pathspec-from-file=.local/pr16-exp-evolution-share/paths.z --pathspec-file-nul
+          python3 -B scripts/pr16_exp_evolution_observation.py guard
+      - name: 同branchへ非force commit/push・remote ref照合
         run: |
           set -euo pipefail
           branch='codex/modernization-followup-20260908'
           test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'USER-20260925-LEARNSET-EXP-EVOLUTION-SHARE: WIP 観測契約と共有fixture同期を修復・失敗履歴保持'
+          git commit -m 'USER-20260925-LEARNSET-EXP-EVOLUTION-SHARE: 観測修復後の限定native原本・引継ぎ・両ログを保存'
           git push origin "HEAD:$branch"
           sha=$(git rev-parse HEAD)
           test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$sha"
-          echo "$sha" >.local/pr16-exp-evolution-preparation/reflected-head.txt
-          echo "RESULT=STOPPED TASK=USER-20260925-LEARNSET-EXP-EVOLUTION-SHARE VERIFY=PASS COMMIT=$sha"
+          echo "$sha" | tee .local/pr16-exp-evolution-share/proof/reflected-head.txt
+          echo "RESULT=STOPPED TASK=USER-20260925-LEARNSET-EXP-EVOLUTION-SHARE VERIFY=${{ steps.native.outcome }} COMMIT=$sha"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: pr16-exp-evolution-preparation
-          path: .local/pr16-exp-evolution-preparation/*.json
+          name: pr16-exp-evolution-share-proof
+          path: .local/pr16-exp-evolution-share/proof/
           retention-days: 30
           if-no-files-found: error
+      - name: native失敗を成功へ読み替えない
+        if: steps.native.outcome == 'failure'
+        run: exit 1
