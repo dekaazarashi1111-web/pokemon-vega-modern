@@ -14,7 +14,7 @@ Issue19: 戦闘EXP進化/共有 0/3。PARTIAL_BATTLE_EXP_EVOLUTION_SHARE。Actio
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `6b69b8d48644d255962d218dcce81ff01c4904a7`。
+証拠のsource HEAD: `97417f139591689085d88a866fd638e7dc6fae87`。
 戦闘EXP進化承認/取消と控え共有の限定追加。旧受入は不変。native原本とActions終端を区別。
 
 ## 最短の再開手順
@@ -27,8 +27,8 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 
 - `docs/PR16_EXP_EVOLUTION_SHARE_JA.md`
 - `content/modernization/pr16_exp_evolution_share_checkpoint.json`
-- `scripts/pr16_exp_evolution_share.py`
-- `tests/test_pr16_exp_evolution_share.py`
+- `scripts/pr16_exp_evolution_sync.py`
+- `tests/test_pr16_exp_evolution_sync.py`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
