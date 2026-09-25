@@ -1,61 +1,79 @@
 name: pr16-research-hatch-20260925
-# 読取専用の準備。既受入native/unit/ARM/ROM生成は実行しない。
+# 未受入研究孵化だけ。保存配布17/旧unit/ARM/Wikiを再実行しない。
 on:
   push:
     branches: [codex/modernization-followup-20260908]
     paths: [.github/workflows/pr16-research-hatch-20260925.yml]
 permissions:
-  contents: read
+  contents: write
   actions: read
   pull-requests: read
 concurrency:
   group: pr16-research-hatch-20260925
   cancel-in-progress: false
 jobs:
-  source-context:
+  research-hatch:
     if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 45
     env:
       GITHUB_TOKEN: ${{ github.token }}
       PYTHONDONTWRITEBYTECODE: '1'
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 1
-      - name: 対象tracked textと現行Actionsだけを固定
-        run: |
-          python3 -B - <<'PY'
-          import fnmatch, hashlib, json, os, pathlib, subprocess, urllib.parse, urllib.request, zipfile
-          root=pathlib.Path('.')
-          out=root/'.local/pr16-research-context';out.mkdir(parents=True)
-          patterns=['AGENTS.md','**/AGENTS.md','CHATGPT_RESUME.md','README.md','scripts/*.py','tests/*.py','tools/*.c','tools/*.h','tools/*.py','overlays/**/*.c','overlays/**/*.h','include/**/*.h','.github/workflows/pr16-*.yml','content/modernization/*.json','content/collection_supply_v1/*.json','docs/PR16*.md','docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md','config/collection_supply_v1.json','config/active_play_baseline.json','design/active_play_baseline.md','design/agent_context_map.md','design/current_state.md','design/tasks_next.md','state/source-lock.json','infra/toolchain_manifest.json']
-          tracked=subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
-          manifest={}
-          with zipfile.ZipFile(out/'source.zip','w',zipfile.ZIP_DEFLATED) as archive:
-              for path in tracked:
-                  if not path or not any(fnmatch.fnmatchcase(path,p) for p in patterns):continue
-                  if path.startswith('content/modernization/') and path.count('/')!=2:continue
-                  p=root/path
-                  if p.is_symlink() or p.suffix not in ('.md','.py','.c','.h','.json','.yml'):continue
-                  raw=p.read_bytes();raw.decode('utf-8')
-                  assert len(raw)<32*1024*1024,path
-                  manifest[path]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
-                  archive.writestr(path,raw)
-          def get(route):
-              req=urllib.request.Request('https://api.github.com/repos/'+os.environ['GITHUB_REPOSITORY']+'/'+route,headers={'Authorization':'Bearer '+os.environ['GITHUB_TOKEN'],'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'})
-              with urllib.request.urlopen(req,timeout=60) as response:return json.load(response)
-          pr=get('pulls/16')
-          assert pr['state']=='open' and not pr['merged'] and pr['head']['ref']=='codex/modernization-followup-20260908'
-          assert pr['head']['sha']==os.environ['GITHUB_SHA']
-          runs=get('actions/runs?branch='+urllib.parse.quote(pr['head']['ref'],safe='')+'&per_page=30')['workflow_runs']
-          report={'source_head':os.environ['GITHUB_SHA'],'pr':{k:pr[k] for k in ('number','state','draft','merged')},'head':pr['head']['sha'],'runs':[{k:r[k] for k in ('id','name','head_sha','status','conclusion','created_at','updated_at')} for r in runs],'native_runs':0,'unit_reruns':0,'arm_compiles':0,'rom_changes':0,'tracked_source':manifest}
-          (out/'reconciliation.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
-          print('固定tracked text',len(manifest),'files; native/unit/ARM/ROM生成0')
-          PY
-      - uses: actions/upload-artifact@v4
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
         with:
-          name: pr16-research-source-context
-          path: .local/pr16-research-context/
-          retention-days: 7
+          python-version: '3.12'
+      - name: 未受入孵化用host libraryのみ
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y libmgba-dev
+      - name: 新unitと原本個体fixtureから実歩行・孵化・Save・fresh Continue
+        id: native
+        continue-on-error: true
+        run: python3 -B scripts/pr16_research_hatch.py execute
+      - name: 成功・失敗原本と固定引継ぎ・両ログを保存
+        if: always() && steps.native.outcome != 'skipped'
+        run: python3 -B scripts/pr16_research_hatch.py record
+      - name: 引継ぎ整合・task graph・最終index限定guard
+        if: always() && steps.native.outcome != 'skipped'
+        run: |
+          set -euo pipefail
+          python3 -B scripts/pr16_resume.py check
+          python3 -B scripts/validate_task_graph.py
+          python3 -B scripts/pr16_research_hatch.py paths | tr '\n' '\0' >.local/pr16-research-hatch/paths.z
+          git add --pathspec-from-file=.local/pr16-research-hatch/paths.z --pathspec-file-nul
+          python3 -B scripts/pr16_research_hatch.py guard
+      - name: 同branch非force commit/push・remote照合
+        if: success()
+        run: |
+          set -euo pipefail
+          branch='codex/modernization-followup-20260908'
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20260925-RESEARCH-HATCH: 未受入研究孵化の実測原本・固定引継ぎ・両ログを保存'
+          git push origin "HEAD:$branch"
+          sha=$(git rev-parse HEAD)
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$sha"
+          echo "$sha" | tee .local/pr16-research-hatch/proof/reflected-head.txt
+          echo "RESULT=CHECKPOINT TASK=USER-20260925-RESEARCH-HATCH COMMIT=$sha"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-research-hatch-proof
+          path: .local/pr16-research-hatch/proof/
+          retention-days: 30
           if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-research-hatch-screens
+          path: .local/pr16-research-hatch/screens/
+          retention-days: 30
+          if-no-files-found: warn
+      - name: native失敗をActions成功へ改称しない
+        if: always() && steps.native.outcome != 'success'
+        run: exit 1
