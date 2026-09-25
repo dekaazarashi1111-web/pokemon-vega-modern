@@ -1,5 +1,5 @@
 name: pr16-exp-evolution-share
-# 変更影響のある24+6既存unitと12新規unit。保存成功nativeは選択しない。
+# 42unit原本と進化2caseは不変で継承。新規の共有fixture検証だけを実行。
 on:
   push:
     branches: [codex/modernization-followup-20260908]
@@ -15,7 +15,7 @@ jobs:
   evolution-share:
     if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
     runs-on: ubuntu-24.04
-    timeout-minutes: 20
+    timeout-minutes: 15
     env:
       PYTHONDONTWRITEBYTECODE: '1'
       GITHUB_TOKEN: ${{ github.token }}
@@ -26,26 +26,27 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: 修復済みsourceと不変の旧受入を固定HEADに照合
+      - name: 保存成功ソース不変・共有専用sourceを固定HEADに照合
         run: |
           set -euo pipefail
-          git diff --exit-code a3f5b70484bb22a37c790ce3109c8bb5fc2ee81e HEAD -- scripts/pr16_exp_evolution_share.py tools/mgba_pr16_exp_evolution_share.c tests/test_pr16_exp_evolution_share.py scripts/pr16_exp_evolution_sync.py tools/mgba_pr16_exp_evolution_sync.c tests/test_pr16_exp_evolution_sync.py scripts/pr16_exp_evolution_observation.py tests/test_pr16_exp_evolution_observation.py
+          git diff --exit-code 4129319c8a6be506fa09e7ddea6dcb7f1cde26ea HEAD -- scripts/pr16_exp_share_route.py tests/test_pr16_exp_share_route.py
+          git diff --exit-code 2789bb68266e6d76dcb65de41699dbd6f9cca850 HEAD -- scripts/pr16_exp_evolution_share.py tools/mgba_pr16_exp_evolution_share.c tests/test_pr16_exp_evolution_share.py scripts/pr16_exp_evolution_sync.py tools/mgba_pr16_exp_evolution_sync.c tests/test_pr16_exp_evolution_sync.py scripts/pr16_exp_evolution_observation.py tests/test_pr16_exp_evolution_observation.py
           git diff --exit-code 9cfde111077c1ca451344de0d4cd09c83f335b0c HEAD -- AGENTS.md CHATGPT_RESUME.md config/active_play_baseline.json design/active_play_baseline.md content/modernization/pr16_bp_chooser_checkpoint.json content/modernization/p08_remaining_work.json content/modernization/pr16_learnset_boundaries_checkpoint.json content/modernization/pr16_learnset_first_refuse_checkpoint.json tools/mgba_pr16_learnset_boundaries.c tools/mgba_pr16_learnset_first_refuse.c scripts/pr16_learnset_boundaries.py
       - name: host mGBAだけ準備（ARM compilerなし）
         run: sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends libmgba-dev
-      - name: 変更影響42unit・未受入3caseのみ
+      - name: 境界分離9unit・共有1caseのみ（42unitと進化2caseは継承）
         id: native
         continue-on-error: true
-        run: python3 -B scripts/pr16_exp_evolution_observation.py execute
+        run: python3 -B scripts/pr16_exp_share_route.py execute
       - name: 成功/失敗原本・固定引継ぎ・両ログ記録と最終index検査
         run: |
           set -euo pipefail
-          python3 -B scripts/pr16_exp_evolution_observation.py record
+          python3 -B scripts/pr16_exp_share_route.py record
           python3 -B scripts/pr16_resume.py check
           python3 -B scripts/validate_task_graph.py
-          python3 -B scripts/pr16_exp_evolution_observation.py paths | tr '\n' '\0' >.local/pr16-exp-evolution-share/paths.z
+          python3 -B scripts/pr16_exp_share_route.py paths | tr '\n' '\0' >.local/pr16-exp-evolution-share/paths.z
           git add --pathspec-from-file=.local/pr16-exp-evolution-share/paths.z --pathspec-file-nul
-          python3 -B scripts/pr16_exp_evolution_observation.py guard
+          python3 -B scripts/pr16_exp_share_route.py guard
       - name: 同branchへ非force commit/push・remote ref照合
         run: |
           set -euo pipefail
@@ -53,7 +54,7 @@ jobs:
           test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'USER-20260925-LEARNSET-EXP-EVOLUTION-SHARE: 観測修復後の限定native原本・引継ぎ・両ログを保存'
+          git commit -m 'USER-20260925-LEARNSET-EXP-EVOLUTION-SHARE: 共有専用native原本・保存済み進化継承・引継ぎを記録'
           git push origin "HEAD:$branch"
           sha=$(git rev-parse HEAD)
           test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$sha"
