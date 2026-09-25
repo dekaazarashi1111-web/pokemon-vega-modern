@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "Issue19: 研究孵化 5/15。PARTIAL_RESEARCH_HATCH_RECOVERED_AFTER_TIMEOUT。全体未完。",
+    "current_stop": "Issue19: 研究孵化 15/15。PASS_RESEARCH_HATCH_SCOPED。全体未完。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "研究孵化の保存成功5件と32unitは再実行しない。残り10件を1case/workerの独立Actionsで並列測定し、集約jobだけが記録・非force pushする。50cycle/実歩数/既存C・候補ROMは変更しない。15件完了後に特殊野生へ。",
+    "next_step": "15研究孵化の保存成功native/旧unit/host/ARMを再実行せず、Actions/artifact終端だけ照合。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -3000,18 +3000,7 @@
       "research-egg-1204",
       "research-egg-1206",
       "research-egg-1208",
-      "research-egg-1210"
-    ],
-    "actions_completion_confirmed": false,
-    "candidate": {
-      "sha256": "b7790902733a638445129c388d65ab3c199bceb92a41338e0069221b556b9f91",
-      "size": 33554432
-    },
-    "fixture_only": true,
-    "gift_reruns": 0,
-    "issue19_complete": false,
-    "path": "content/modernization/pr16_research_hatch_checkpoint.json",
-    "pending_cases": [
+      "research-egg-1210",
       "research-egg-1212",
       "research-egg-1215",
       "research-egg-1394",
@@ -3023,36 +3012,28 @@
       "research-egg-1417",
       "research-egg-1425"
     ],
-    "recovery": {
-      "binding": {
-        "sha256": "fc64f989ba8be98bc4c59e43c2336d48b7247e07e9df13d2b4bfb49912e07a3d",
-        "size": 4259
-      },
-      "commit_was_skipped": true,
-      "original_run_id": 36138860612,
-      "path": "content/modernization/pr16_research_hatch_evidence/36144612816/recovery.json",
-      "proof": {
-        "digest": "sha256:1b89c98fc132c65243dea0b0cccea415accadf90b389231e0fec32f5552f3f89",
-        "id": 10868027070,
-        "name": "pr16-research-hatch-proof",
-        "size_in_bytes": 45208
-      },
-      "raw_verification_binding": {
-        "sha256": "23ad9ecb39b2976f606c88b03192df784c8d160b1a0a45d3552a241a7ffd7757",
-        "size": 132501
-      },
-      "run_id": 36144612816,
-      "screens": {
-        "digest": "sha256:77282fc6d2b47784a8191df2b083f57fac6aa97dc3052620ed7cc7a24116fe38",
-        "id": 10868426825,
-        "name": "pr16-research-hatch-screens",
-        "size_in_bytes": 26642
-      },
-      "source_head": "7356849af80057c4fe6dd05db73ea21df7d4fd40"
+    "actions_completion_confirmed": false,
+    "candidate": {
+      "sha256": "b7790902733a638445129c388d65ab3c199bceb92a41338e0069221b556b9f91",
+      "size": 33554432
     },
-    "run_id": 36138860612,
-    "source_head": "e12eda4098837fcd434194e3da713f2837209450",
-    "status": "PARTIAL_RESEARCH_HATCH_RECOVERED_AFTER_TIMEOUT"
+    "fixture_only": true,
+    "gift_reruns": 0,
+    "issue19_complete": false,
+    "matrix": {
+      "planned_workers": 10,
+      "receipt_binding": {
+        "sha256": "c9a23b42a34f21ddda3854816ee647d3f80fb151a2611abc95eda24500fbf995",
+        "size": 51082
+      },
+      "receipt_path": "content/modernization/pr16_research_hatch_evidence/36145839263/aggregate.json",
+      "successful_workers": 10
+    },
+    "path": "content/modernization/pr16_research_hatch_checkpoint.json",
+    "pending_cases": [],
+    "run_id": 36145839263,
+    "source_head": "258a0afc2be9c3428e2a0671bb151551e5c96fe2",
+    "status": "PASS_RESEARCH_HATCH_SCOPED"
   },
   "learnset_runtime": {
     "candidate": {
@@ -4067,29 +4048,29 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "研究孵化の保存成功5件と32unitは再実行しない。残り10件を1case/workerの独立Actionsで並列測定し、集約jobだけが記録・非force pushする。50cycle/実歩数/既存C・候補ROMは変更しない。15件完了後に特殊野生へ。",
+    "goal_ja": "15研究孵化の保存成功native/旧unit/host/ARMを再実行せず、Actions/artifact終端だけ照合。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
-    "id": "RESEARCH_HATCH_REMAINING_TEN",
+    "id": "RESEARCH_HATCH",
     "read_paths": [
       "docs/PR16_RESEARCH_HATCH_JA.md",
       "content/modernization/pr16_research_hatch_checkpoint.json",
-      "scripts/pr16_research_hatch_recover.py",
-      "content/modernization/pr16_research_hatch_evidence/36144612816/recovery.json"
+      "scripts/pr16_research_hatch.py",
+      "tests/test_pr16_research_hatch.py"
     ],
     "stop_rule_ja": "特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。"
   },
   "observed_date_jst": "2026-09-25",
-  "observed_head": "7356849af80057c4fe6dd05db73ea21df7d4fd40",
+  "observed_head": "258a0afc2be9c3428e2a0671bb151551e5c96fe2",
   "observed_head_checks": {
     "reason_ja": "実測とActions終端を分離。一般CIのaction_requiredをsuccess扱いしない。",
     "runs": [
       {
         "conclusion": null,
-        "id": 36138860612,
+        "id": 36145839263,
         "status": "in_progress"
       }
     ],
-    "scope_head": "e12eda4098837fcd434194e3da713f2837209450"
+    "scope_head": "258a0afc2be9c3428e2a0671bb151551e5c96fe2"
   },
   "observed_head_history": [
     {
@@ -6732,8 +6713,8 @@
       "size": 1383
     },
     ".github/workflows/pr16-research-hatch-20260925.yml": {
-      "sha256": "a1179f53c60a8b529f2295f637c4943f3a761526c2aa9f0f73c395ce426f7f76",
-      "size": 3627
+      "sha256": "8389d93ad1b5e31cfa29da7da043bb3b035e2ec723843340eb935e55959b2f4b",
+      "size": 5321
     },
     ".github/workflows/pr16-research-hatch-recover-20260925.yml": {
       "sha256": "f739f8dca99fadd74db87ad48076a1016057bb0ebe094905bc0c421f9d1b2f33",
@@ -7924,8 +7905,8 @@
       "size": 22989
     },
     "content/modernization/pr16_research_hatch_checkpoint.json": {
-      "sha256": "e0704d6f547cb46e69607523b1d78d0477389b262956639e85bfeb056c8bd3d0",
-      "size": 142067
+      "sha256": "59a171daa0d8251a73c2853fcfd39c6aedc52f6b04231614b11ef462e013f3f2",
+      "size": 257850
     },
     "content/modernization/pr16_ring_audio_boundary_contracts.json": {
       "sha256": "61de96a6afd25c699b0dcb3cbd27d2b113b540ba53b609f641aea34434ac09d2",
@@ -8692,8 +8673,8 @@
       "size": 3662
     },
     "docs/PR16_RESEARCH_HATCH_JA.md": {
-      "sha256": "272354c92461cf0eb290a2797e6cc971290e2562d1cc004dcd80dc442d0012c7",
-      "size": 3227
+      "sha256": "2cf7d87c51db9693904fc178039436f58b5e78e83344f584163ac734f47ab9be",
+      "size": 2996
     },
     "docs/PR16_VEGA_ORIGINAL_AUDIT_JA.md": {
       "sha256": "b9ee1dd32da36d9fe3d04aa1663afa0f2e6cc37aef491437dd2443a5870fb2d4",
@@ -13007,6 +12988,10 @@
       "sha256": "15358679079ab84db48cea564883acf00aba95f6183abee63e63abca7cc17139",
       "size": 25589
     },
+    "scripts/pr16_research_hatch_matrix.py": {
+      "sha256": "1c5b61a31e649948c25ac580a73afe29fab0ab067c236d8973a0f44b4e9a248c",
+      "size": 17077
+    },
     "scripts/pr16_research_hatch_proof.py": {
       "sha256": "c5e104a3889c32d42095cb3392b9b96dd2f4b28f4b90e3c0c9fb4708453b2cf5",
       "size": 3390
@@ -14294,6 +14279,10 @@
     "tests/test_pr16_research_hatch.py": {
       "sha256": "abdab054fadb53aa9e78823cf75e3d2e5653df2b40e552da37f63ddb6da1ec74",
       "size": 9556
+    },
+    "tests/test_pr16_research_hatch_matrix.py": {
+      "sha256": "17f0423f0ed72ddd5fbeea4e58c1f335d4f3c9f403a5c53e23c00867888f86fd",
+      "size": 4859
     },
     "tests/test_pr16_research_hatch_proof.py": {
       "sha256": "1036236b1e8b3052b1686d14c52c6a734bb45b5b8617ac572e47b09054716d50",

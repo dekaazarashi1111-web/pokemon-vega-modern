@@ -7316,3 +7316,25 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 復元runは新unit30、raw純検証5、画像10のhash/目視限定。新native/旧unit/host/ARM/ROM変更0。resume check/task graph/最終index限定guardをcommit前実行。
 - Commit: 同branch非force push。source=7356849af80057c4fe6dd05db73ea21df7d4fd40。成果SHAはrecovery artifactのreflected-head.txt。
 - Network: 固定GitHub原本のみ。原本ZIP/save/ROMは非追跡。merge/release/active baseline切替なし。
+
+## 2026-09-25T14:22:00.699671+00:00
+- Timestamp: 2026-09-25T14:22:00.699671+00:00
+- Task: USER-20260925-RESEARCH-HATCH / 研究タマゴの孵化後form・技保持
+- Version: issue19-research-hatch-v1
+- Status: STOPPED（保存原本から未完だけ継続）
+- Summary: 保存配布個体fixtureからの実歩行/孵化/Save/fresh Continue 15/15。元save連続再開と混同しない。原本cycleを短縮しない。
+- Files changed: 新driver/C/unit/限定Actions、checkpoint/guide/原本text、固定引継ぎMD/JSON、両ログ。
+- Verify: 新unit23、host10、native10。Actions終端False。終端専用=False、専用時native/unit/compile0。旧配布/孵化/ARM/Wiki不変。
+- Commit: 同branch非force push、reflected-head/remote照合。
+- Network: 固定GitHub/保存artifact/Actions。ROM・元seed非追跡。merge/release/baseline切替なし。
+
+## 2026-09-25T14:22:01.240796+00:00
+- Timestamp: 2026-09-25T14:22:01.240796+00:00
+- Task: USER-20260925-RESEARCH-HATCH
+- Version: one-case-matrix-v1
+- Status: STOPPED（15/15、終端照合待ち）
+- Summary: 5件を再実行せず継承し、残10を独立workerで実測。成功worker10/10。元cancelledと復元境界を保持。
+- Files changed: matrix driver/unit/Actions、worker別原本、checkpoint/guide、固定引継ぎMD/JSON、両ログ。
+- Verify: 新matrix unit23、旧32/復元30unit再実行0。予定worker10、成功raw10。各workerのhost compileはその新caseを動かすためのみ。ARM/ROM変更0。resume/task graph/final-index scoped guardをcommit前実行。
+- Commit: 集約jobのみ同branch非force push・remote SHA照合。
+- Network: 固定GitHub/保存artifactのみ。元save/ROM/配布17/既受入5不変。merge/release/baseline切替なし。

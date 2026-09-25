@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-Issue19: 研究孵化 5/15。PARTIAL_RESEARCH_HATCH_RECOVERED_AFTER_TIMEOUT。全体未完。
+Issue19: 研究孵化 15/15。PASS_RESEARCH_HATCH_SCOPED。全体未完。
 
-**次: 研究孵化の保存成功5件と32unitは再実行しない。残り10件を1case/workerの独立Actionsで並列測定し、集約jobだけが記録・非force pushする。50cycle/実歩数/既存C・候補ROMは変更しない。15件完了後に特殊野生へ。**
+**次: 15研究孵化の保存成功native/旧unit/host/ARMを再実行せず、Actions/artifact終端だけ照合。**
 
 特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `7356849af80057c4fe6dd05db73ea21df7d4fd40`。
+証拠のsource HEAD: `258a0afc2be9c3428e2a0671bb151551e5c96fe2`。
 研究タマゴ原本個体fixtureの孵化後保持。通常配布の再実行/元saveの連続再開/全Issue19完成ではない。
 
 ## 最短の再開手順
@@ -27,8 +27,8 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 
 - `docs/PR16_RESEARCH_HATCH_JA.md`
 - `content/modernization/pr16_research_hatch_checkpoint.json`
-- `scripts/pr16_research_hatch_recover.py`
-- `content/modernization/pr16_research_hatch_evidence/36144612816/recovery.json`
+- `scripts/pr16_research_hatch.py`
+- `tests/test_pr16_research_hatch.py`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
