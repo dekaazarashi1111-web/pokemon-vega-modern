@@ -1,5 +1,5 @@
 name: pr16-supply-followup-20260925
-# Collection配布18経路のみ。受入済み自然供給3/EXP/Bag/egg8/旧野生/ARM/Wikiは再実行しない。
+# 17学習ownerの未受入配布だけ。非学習1281は技自動補完禁止。
 on:
   push:
     branches: [codex/modernization-followup-20260908]
@@ -26,7 +26,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: 実行sourceを固定
+      - name: 実行sourceと非学習owner分離を固定
         run: |
           python3 -B - <<'PY'
           import hashlib
@@ -34,7 +34,9 @@ jobs:
           for path,expected in {
             'scripts/pr16_collection_gifts.py':'3ea4ad760aa89f3dc1d95648a10d000f55097e4ae245265e1a7014ce9927bafb',
             'tools/mgba_pr16_collection_gifts.c':'130935e36f5f91642eaf481a5731a2953971436299077d82863ec76ba9740317',
-            'tests/test_pr16_collection_gifts.py':'0b2d4f9e1da684bbb0108fe83fe7fb3010f9d76e420c90f8acb019aa1215078f'
+            'tests/test_pr16_collection_gifts.py':'0b2d4f9e1da684bbb0108fe83fe7fb3010f9d76e420c90f8acb019aa1215078f',
+            'scripts/pr16_collection_gift_scope.py':'10ceaace4d5608591d32a60b72e40d4b0f9824d9cc08cd976cb7e2b095cd732c',
+            'tests/test_pr16_collection_gift_scope.py':'fe57b7367a770add9d99a57272ecbbdf2ec54f631359353acb08f1f9f1039203'
           }.items():
               assert hashlib.sha256(Path(path).read_bytes()).hexdigest()==expected,path
           PY
@@ -42,19 +44,19 @@ jobs:
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends libmgba-dev
-      - name: 新22unit・保存候補復元・未受入Collection配布のみ
+      - name: 旧22unit継承・追加9unit・未受入Collection17経路のみ
         id: native
         continue-on-error: true
-        run: python3 -B scripts/pr16_collection_gifts.py execute
+        run: python3 -B scripts/pr16_collection_gift_scope.py execute
       - name: 成功・失敗原本と固定引継ぎ・両ログを保存
         run: |
           set -euo pipefail
-          python3 -B scripts/pr16_collection_gifts.py record
+          python3 -B scripts/pr16_collection_gift_scope.py record
           python3 -B scripts/pr16_resume.py check
           python3 -B scripts/validate_task_graph.py
-          python3 -B scripts/pr16_collection_gifts.py paths | tr '\n' '\0' >.local/pr16-collection-gifts/paths.z
+          python3 -B scripts/pr16_collection_gift_scope.py paths | tr '\n' '\0' >.local/pr16-collection-gifts/paths.z
           git add --pathspec-from-file=.local/pr16-collection-gifts/paths.z --pathspec-file-nul
-          python3 -B scripts/pr16_collection_gifts.py guard
+          python3 -B scripts/pr16_collection_gift_scope.py guard
       - name: 同branchへ非force commit/push・remote照合
         run: |
           set -euo pipefail
@@ -62,7 +64,7 @@ jobs:
           test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'USER-20260925-COLLECTION-GIFTS: 実NPC配布の観測原本・固定引継ぎ・両ログを保存'
+          git commit -m 'USER-20260925-COLLECTION-GIFTS: 学習owner配布の観測原本と1281保留境界を保存'
           git push origin "HEAD:$branch"
           sha=$(git rev-parse HEAD)
           test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$sha"
