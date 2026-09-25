@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "Issue19: 戦闘EXP進化/共有 2/3。FAIL。Actions終端=False、全体未完。",
+    "current_stop": "Issue19: 戦闘EXP進化/共有 2/3。PARTIAL_BATTLE_EXP_EVOLUTION_SHARE。Actions終端=False、全体未完。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -1679,16 +1679,16 @@
     "actions_completion_confirmed": false,
     "host_compiles": 1,
     "issue19_complete": false,
-    "native_processes": 0,
-    "new_unit_tests": 9,
+    "native_processes": 1,
+    "new_unit_tests": 4,
     "path": "content/modernization/pr16_exp_evolution_share_checkpoint.json",
     "pending_cases": [
       "butterfree-exp-share"
     ],
     "release_ready": false,
-    "run_id": 36079225466,
-    "source_head": "6942bfc0e1ceac900a4a925d19e12c1892ffc24a",
-    "status": "FAIL"
+    "run_id": 36079548406,
+    "source_head": "023604d280177ad971bac96649b2b15f7c8e42e7",
+    "status": "PARTIAL_BATTLE_EXP_EVOLUTION_SHARE"
   },
   "learnset_first_refusal": {
     "accepted_cases": [
@@ -3736,23 +3736,23 @@
     "read_paths": [
       "docs/PR16_EXP_EVOLUTION_SHARE_JA.md",
       "content/modernization/pr16_exp_evolution_share_checkpoint.json",
-      "scripts/pr16_exp_share_route.py",
-      "tests/test_pr16_exp_share_route.py"
+      "scripts/pr16_exp_share_saved.py",
+      "tests/test_pr16_exp_share_saved.py"
     ],
     "stop_rule_ja": "特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。"
   },
   "observed_date_jst": "2026-09-22",
-  "observed_head": "6942bfc0e1ceac900a4a925d19e12c1892ffc24a",
+  "observed_head": "023604d280177ad971bac96649b2b15f7c8e42e7",
   "observed_head_checks": {
     "reason_ja": "一般CI action_requiredを成功に昇格しない。最新観測はcheckpointのobserved_recent_actions。",
     "runs": [
       {
         "conclusion": null,
-        "id": 36079225466,
+        "id": 36079548406,
         "status": "in_progress"
       }
     ],
-    "scope_head": "6942bfc0e1ceac900a4a925d19e12c1892ffc24a"
+    "scope_head": "023604d280177ad971bac96649b2b15f7c8e42e7"
   },
   "observed_head_history": [
     {
@@ -6279,8 +6279,8 @@
       "size": 1851
     },
     ".github/workflows/pr16-exp-evolution-share.yml": {
-      "sha256": "325bfaa262c39fd77c2fadacc57b524d9d301c8ea1eef544a06d9854b3d09038",
-      "size": 4251
+      "sha256": "60141c2c113676815bc077da8b75da191dbb8eb44e4cd1387b6e0862ae037c66",
+      "size": 4106
     },
     ".github/workflows/pr16-learnset-baseline-proof-closeout.yml": {
       "sha256": "2c6bbed55a37a2544d4704d17bf80271c129a29c521ed9c5836b21e563ea7eaa",
@@ -7375,8 +7375,12 @@
       "size": 2600
     },
     "content/modernization/pr16_exp_evolution_share_checkpoint.json": {
-      "sha256": "fb18b4c9580dfdac5c3940ce13178f588350c659125c5c11f775cd778449c28e",
-      "size": 25543
+      "sha256": "db716bbd11c2f8e7b4d593e0eab9c7850fb57d1909d241de57658fcb8e771c38",
+      "size": 29748
+    },
+    "content/modernization/pr16_exp_evolution_share_evidence/36079225466/shared-route.c": {
+      "sha256": "b2c519bc64ebe7e62edd67ae0773243e02e4c3df9fb3c501a1eaab6a477b01b2",
+      "size": 16066
     },
     "content/modernization/pr16_learnset_baseline_checkpoint.json": {
       "sha256": "e0587f5cf025fa76f6e6f7a0dc8f340e335b66d1d4ae744027dcc865b06e0d78",
@@ -8251,8 +8255,8 @@
       "size": 1140469
     },
     "docs/PR16_EXP_EVOLUTION_SHARE_JA.md": {
-      "sha256": "6bd812ebd2aa096b5b13ab2c15af33143ae1495b2c452711b28167f0357d136e",
-      "size": 1252
+      "sha256": "3368676c53527e2059f28e2ab4bbc8d195b946e3817601cf99b796fad832c00b",
+      "size": 1282
     },
     "docs/PR16_LEARNSET_BASELINE_RESET_JA.md": {
       "sha256": "4924be1b5cfa324fe72cff599758ebb467eae8d25911a085c2d444f3b1f3ab6a",
@@ -12394,6 +12398,10 @@
       "sha256": "9f30a30a0b983abfb1dddcc9c3195cc710fa0c8540ae2a2c917c236d83ab2eb6",
       "size": 5997
     },
+    "scripts/pr16_exp_share_saved.py": {
+      "sha256": "ace05d138995d092d6185c439a16a4b9567d92c6c1b1e8d69f97a316d18d8b0b",
+      "size": 3211
+    },
     "scripts/pr16_first_refuse_jp.py": {
       "sha256": "bd87b1257773b587e1c563cc89fb2b2486f56b078c912f0052dd9e4c4ec36d08",
       "size": 4117
@@ -13645,6 +13653,10 @@
     "tests/test_pr16_exp_share_route.py": {
       "sha256": "d711d42d2105d4dce288e9ef243043a5e7602e3f705c10085b878490b2742d20",
       "size": 4480
+    },
+    "tests/test_pr16_exp_share_saved.py": {
+      "sha256": "2bc89bbbfe545f90d2185b53d0ae066cdd9370ea0753a44a5694a9ce4189a179",
+      "size": 1352
     },
     "tests/test_pr16_first_refuse_jp.py": {
       "sha256": "a35f845cdb75dc733cff523a1b545d296958de66bb2ca41d31580c1c3965bfa2",

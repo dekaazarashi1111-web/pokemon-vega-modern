@@ -6,7 +6,7 @@
 
 ## いまの停止点と次の1手
 
-Issue19: 戦闘EXP進化/共有 2/3。FAIL。Actions終端=False、全体未完。
+Issue19: 戦闘EXP進化/共有 2/3。PARTIAL_BATTLE_EXP_EVOLUTION_SHARE。Actions終端=False、全体未完。
 
 **次: 今回の失敗原本を保持し未受入caseだけ修復する。保存成功caseと旧EXP4/最初の質問拒否/アメ11/Bag23/egg8は再実行しない。**
 
@@ -14,7 +14,7 @@ Issue19: 戦闘EXP進化/共有 2/3。FAIL。Actions終端=False、全体未完�
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `6942bfc0e1ceac900a4a925d19e12c1892ffc24a`。
+証拠のsource HEAD: `023604d280177ad971bac96649b2b15f7c8e42e7`。
 戦闘EXP進化承認/取消と控え共有の限定追加。旧受入は不変。native原本とActions終端を区別。
 
 ## 最短の再開手順
@@ -27,8 +27,8 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 
 - `docs/PR16_EXP_EVOLUTION_SHARE_JA.md`
 - `content/modernization/pr16_exp_evolution_share_checkpoint.json`
-- `scripts/pr16_exp_share_route.py`
-- `tests/test_pr16_exp_share_route.py`
+- `scripts/pr16_exp_share_saved.py`
+- `tests/test_pr16_exp_share_saved.py`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
