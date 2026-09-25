@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "Issue19: 特殊野生 {}。STOPPED_SPECIAL_WILD_DIAGNOSTIC。通常釣竿/スキャナー取得は未受入。",
+    "current_stop": "Issue19: STOPPED_SPECIAL_WILD_REPAIR。特殊野生の通常取得/保存継続は未受入。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "Issue19: 特殊野生診断の保存失敗原本から未成功caseだけ縮小修復。成功したcase/既受入を再実行しない。Issue19: 特殊野生checkpointの実ROM呼出順とbefore/afterを根拠に釣り/隠し専用の最小修復へ進む。診断済み同条件は再実行せず、変更後の必要な対照だけ追加。通常釣竿/スキャナー操作→捕獲→Save/fresh Continueは未受入。研究孵化15/研究配布17/旧野生/EXP/Bag/egg/旧ARM/Wikiは変更影響がなければ再実行しない。",
+    "next_step": "Issue19: 特殊野生修復checkpointの失敗原本を先に読み、未成功caseのみ修正する。保存成功の親診断や対照を再実行しない。Issue19: 特殊野生の2 callsite限定修復と直接native対照を保存。次は変更後候補で通常釣竿/スキャナーUI→捕獲→通常Save/fresh Continue。直接call fixtureを通常取得へ読み替えない。元親/同じ特殊技診断/受入済み研究孵化15・配布17・旧野生・EXP・Bag・egg・旧ARM・Wikiは変更影響がない限り再実行しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -3131,6 +3131,20 @@
     "source_head": "c30492610319d075195b040092447296d5766343",
     "status": "UNACCEPTED_SOURCE_TRACE_ONLY"
   },
+  "learnset_special_wild_repair": {
+    "actions_completion_confirmed": false,
+    "candidate": {
+      "sha256": "b7790902733a638445129c388d65ab3c199bceb92a41338e0069221b556b9f91",
+      "size": 33554432
+    },
+    "diagnostic_processes": 0,
+    "gameplay_accepted": false,
+    "issue19_complete": false,
+    "path": "content/modernization/pr16_special_wild_repair_checkpoint.json",
+    "run_id": 36155273674,
+    "source_head": "28a138552429c5ff7473aafd316a929b601051dd",
+    "status": "STOPPED_SPECIAL_WILD_REPAIR"
+  },
   "learnset_successor_tables": {
     "accepted_native_reruns": 0,
     "artifact": {
@@ -4132,29 +4146,33 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "Issue19: 特殊野生診断の保存失敗原本から未成功caseだけ縮小修復。成功したcase/既受入を再実行しない。Issue19: 特殊野生checkpointの実ROM呼出順とbefore/afterを根拠に釣り/隠し専用の最小修復へ進む。診断済み同条件は再実行せず、変更後の必要な対照だけ追加。通常釣竿/スキャナー操作→捕獲→Save/fresh Continueは未受入。研究孵化15/研究配布17/旧野生/EXP/Bag/egg/旧ARM/Wikiは変更影響がなければ再実行しない。",
+    "goal_ja": "Issue19: 特殊野生修復checkpointの失敗原本を先に読み、未成功caseのみ修正する。保存成功の親診断や対照を再実行しない。Issue19: 特殊野生の2 callsite限定修復と直接native対照を保存。次は変更後候補で通常釣竿/スキャナーUI→捕獲→通常Save/fresh Continue。直接call fixtureを通常取得へ読み替えない。元親/同じ特殊技診断/受入済み研究孵化15・配布17・旧野生・EXP・Bag・egg・旧ARM・Wikiは変更影響がない限り再実行しない。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
-    "id": "SPECIAL_WILD_ORDER",
+    "id": "SPECIAL_WILD_REPAIR_GAMEPLAY",
     "read_paths": [
       "docs/PR16_SPECIAL_WILD_JA.md",
-      "content/modernization/pr16_special_wild_checkpoint.json",
-      "scripts/pr16_special_wild.py",
-      "tests/test_pr16_special_wild.py"
+      "content/modernization/pr16_special_wild_repair_checkpoint.json",
+      "scripts/pr16_special_wild_repair.py",
+      "tests/test_pr16_special_wild_repair.py"
     ],
     "stop_rule_ja": "特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。"
   },
   "observed_date_jst": "2026-09-25",
-  "observed_head": "23420259b94bcfff71078d91ccb7593a1c30c92b",
+  "observed_head": "28a138552429c5ff7473aafd316a929b601051dd",
   "observed_head_checks": {
-    "reason_ja": "記録時点ではpush/upload終端未確認。初期b3e45540のsource転送run36150780558は成功、実受入0。一般CIを成功へ昇格しない。",
+    "predecessor": {
+      "conclusion": "failure",
+      "id": 36152934075
+    },
+    "reason_ja": "記録時点で現runのpush/upload終端は未確認。旧失敗原本は維持。",
     "runs": [
       {
         "conclusion": null,
-        "id": 36152934075,
+        "id": 36155273674,
         "status": "in_progress"
       }
     ],
-    "scope_head": "23420259b94bcfff71078d91ccb7593a1c30c92b"
+    "scope_head": "28a138552429c5ff7473aafd316a929b601051dd"
   },
   "observed_head_history": [
     {
@@ -5508,7 +5526,7 @@
       "semantics": "PLA1圧縮と新規供給consumerのhost検証成功入力HEAD。ROM配置/実操作/記録commitの受入ではない。"
     }
   ],
-  "observed_head_semantics": "特殊野生の新規直接診断。通常取得受入・全体完成とは別。",
+  "observed_head_semantics": "特殊野生2callsite後継の限定直接診断。通常取得/保存継続の受入ではない。",
   "p08_candidate_impact": {
     "candidate": {
       "crc32": "CC068B4A",
@@ -7380,6 +7398,10 @@
       "sha256": "72acbc1a2b6a1a2410c59be189d0017f22ee57893f677aed980a837ee82ff0cd",
       "size": 4871
     },
+    ".github/workflows/pr16-special-wild-repair-20260925.yml": {
+      "sha256": "1f7d60297f914bcadeddf60b62612d9ae49037ab91ffa9192a859be17d2b4088",
+      "size": 4638
+    },
     ".github/workflows/pr16-streak-record.yml": {
       "sha256": "257165114d76e6d1b9ea1c633c918a297ab4a32a6cfce9f5e7788b2b77d074be",
       "size": 1328
@@ -8584,6 +8606,10 @@
       "sha256": "62611e5c971766ad52bffa85954e65ce95cfd2ef0ae54224081a550d8f7eb203",
       "size": 9446
     },
+    "content/modernization/pr16_special_wild_repair_checkpoint.json": {
+      "sha256": "f5b71441c1dc1c8cf3d3ce3bbc0d9970b262f4f4ee584d544b097879bf33ed72",
+      "size": 9503
+    },
     "content/modernization/pr16_vega_adjudication/adopted_vega_original_baseline.jsonl": {
       "sha256": "9daaea8c97a744c0522afc03c157392b3179b5d0a359df97de2f3b1c0da6524f",
       "size": 1744195
@@ -8777,8 +8803,8 @@
       "size": 4323
     },
     "docs/PR16_SPECIAL_WILD_JA.md": {
-      "sha256": "b3ac2ad22362b6f504d90061cea86a4ee3d7bbf859cac2b4de648221a22a3516",
-      "size": 1814
+      "sha256": "b0ce495a03cafdb90a55a7740b6a3b5b5890fbbe07900deade5c006157359ee5",
+      "size": 2386
     },
     "docs/PR16_VEGA_ORIGINAL_AUDIT_JA.md": {
       "sha256": "b9ee1dd32da36d9fe3d04aa1663afa0f2e6cc37aef491437dd2443a5870fb2d4",
@@ -13724,6 +13750,10 @@
       "sha256": "2cb1441aaf91fc746d2b11ebe47e89ea496f7ff6fa0229fed90ce01f2b4db3e5",
       "size": 16866
     },
+    "scripts/pr16_special_wild_repair.py": {
+      "sha256": "bad1f646dcedd54c142cf35083d85da82fe24f3a0154b231c36f063d2653305c",
+      "size": 29798
+    },
     "scripts/pr16_streak_archive.py": {
       "sha256": "41e2d084249788a7c516c23b5713f1b07205568a619026c44cc0f3a3473f7d2d",
       "size": 1658
@@ -15007,6 +15037,10 @@
     "tests/test_pr16_special_wild.py": {
       "sha256": "86fc487b5d3440805871ac3e47bc383f7580383445433c4e6f4c1e6f992fa901",
       "size": 4960
+    },
+    "tests/test_pr16_special_wild_repair.py": {
+      "sha256": "09af617760d8ccbaa94c1c40377f39592681746cfb90b24a9d596990f0dca590",
+      "size": 8330
     },
     "tests/test_pr16_streak_record.py": {
       "sha256": "9a5853b9d1376cd1e7ae837c38293cf614e2b83ece15ba4da49c375ac7287e5e",

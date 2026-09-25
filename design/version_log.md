@@ -7371,3 +7371,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: STOPPED_SPECIAL_WILD_DIAGNOSTIC; 新unit 13, host 1, native 1; 旧受入/ARM/ROM/Wiki再実行0。Actions終端は未確認。
 - Commit: 同branchへ非force push、reflected-head.txtでremote照合。source取得WIP b3e45540/36150780558は転送のみ。
 - Network: GitHub固定artifact/Actionsのみ。原本再採取/merge/release/active baseline変更なし。
+
+## 2026-09-25T15:37:03.591267+00:00
+- Timestamp: 2026-09-25T15:37:03.591267+00:00
+- Task: USER-20260925-SPECIAL-WILD / 特殊野生の実特殊技順と2callsite限定修復
+- Version: issue19-special-wild-repair-v1
+- Status: STOPPED（保存成功は保持、未成功だけ継続）
+- Summary: STOPPED_SPECIAL_WILD_REPAIR。8byte限定修復、共通/land/旧原本は不変。元map11/3の8callは再実行せず保存正常対照を使用。Stage59は現候補経由でないと訂正。
+- Files changed: 専用repair driver/test/workflow/CP、guide、run別text証拠、固定引継ぎMD/JSON、両ログ。
+- Verify: 新unit 17, host 0, native 0, ARM0; 旧受入/旧13unit/旧ROM再build/Wiki再実行0。Actions終端未確認。通常操作/capture/Save未受入。
+- Commit: 同branchへの非force pushとreflected-head.txtにremote照合を保存。source 28a138552429c5ff7473aafd316a929b601051dd, run 36155273674。
+- Network: GitHub pinned artifact/Actionsのみ。merge/release/active baseline変更なし。

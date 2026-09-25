@@ -1,19 +1,24 @@
 # PR16 Issue19: 釣り・隠し野生の特殊技順
 
-状態 `STOPPED_SPECIAL_WILD_DIAGNOSTIC`。run `36152934075` / source `23420259b94bcfff71078d91ccb7593a1c30c92b`。
-候補 `b7790902733a638445129c388d65ab3c199bceb92a41338e0069221b556b9f91` / 33554432 bytes。判定 `{}`。
+状態 `STOPPED_SPECIAL_WILD_REPAIR`。run `36155273674` / source `28a138552429c5ff7473aafd316a929b601051dd`。
 
-## 今回の境界
+親候補 `b7790902733a638445129c388d65ab3c199bceb92a41338e0069221b556b9f91`。後継 `b7790902733a638445129c388d65ab3c199bceb92a41338e0069221b556b9f91`。
 
-新規のnative直接呼出診断であり、通常釣竿/スキャナーUI、通常解禁、捕獲、Save/Continueの受入ではない。
-新規起動後のmap/進行flag/profile/RNGは開始fixture。呼出入口/復帰のレジスタ設定も観測区間外。
-区間内は7種類のhost書込APIを拒否し、CPUをstepするだけで生成→QOL特殊技第4枠→実V4再初期化→復帰を記録。
-保存原本の同一PID/species/level・技4枠/PP/PP Upsを比較する。getter補助は区間外。
-候補のStage59入口、Research Economy delegate、V4 delegate、QOL special setterの実通過が必要。
-新規unit 13、host compile 1、native process 1。旧受入再実行/ARM/ROM変更0。
-Actions終端 `False`。診断のActions成功を製品受入へ読み替えない。
-原本 `content/modernization/pr16_special_wild_evidence/36152934075`。1281 identity-only、Issue19全体未完、release_ready=false、PR未merge、baseline不変。
+## 保存原本と修復境界
+
+初回36152934075は研究表のないmap11/3で特殊技を観測できずfailure。通常個体8callは変更前後一致。原失敗CP/証拠は不変。13旧unitや同じ8callを再実行しない。
+
+現候補の実入口はResearch Economyへ直接接続し、V4→QOLへ委譲する。旧Stage59ソースを現在の実到達経路へ読み替えない。846研究行と候補QOL blobの全table byte一致を要求し、実釣りheaderとの交差からfixtureを選ぶ。
+
+修復は釣り0x09392722・隠し0x0939274Aの共通再初期化へのBLだけをNOP化。原候補2経路で実QOL特殊技第4枠が消えることを観測した後だけ生成する。共通initializer・land・戻り値・owner方針は変更しない。8byte限定差分、全ROM rollback、2独立replayを検査。
+
+新開始map/進行flag/profile/RNGと入口レジスタはfixture。観測区間は7host書込み拒否下のCPU実行と読取のみ。通常釣竿/スキャナーUI、捕獲、Save/Continue、ストーリー到達は未受入。
+
+新unit 17、host compile 0、native process 0、ARM0。受入済み再実行0。後継作成 0。Actions終端未確認。原本 `content/modernization/pr16_special_wild_evidence/36155273674`。
+
+失敗記録 `{'message': 'exact authored846/QOL binary table', 'type': 'ValueError'}` / case別 `{}`。
+
+1281 identity-only/自動fallback禁止、Issue19全体未完、release_ready=false、PR未merge、active baseline不変。
 
 ## 次
-
-Issue19: 特殊野生診断の保存失敗原本から未成功caseだけ縮小修復。成功したcase/既受入を再実行しない。Issue19: 特殊野生checkpointの実ROM呼出順とbefore/afterを根拠に釣り/隠し専用の最小修復へ進む。診断済み同条件は再実行せず、変更後の必要な対照だけ追加。通常釣竿/スキャナー操作→捕獲→Save/fresh Continueは未受入。研究孵化15/研究配布17/旧野生/EXP/Bag/egg/旧ARM/Wikiは変更影響がなければ再実行しない。
+Issue19: 特殊野生修復checkpointの失敗原本を先に読み、未成功caseのみ修正する。保存成功の親診断や対照を再実行しない。Issue19: 特殊野生の2 callsite限定修復と直接native対照を保存。次は変更後候補で通常釣竿/スキャナーUI→捕獲→通常Save/fresh Continue。直接call fixtureを通常取得へ読み替えない。元親/同じ特殊技診断/受入済み研究孵化15・配布17・旧野生・EXP・Bag・egg・旧ARM・Wikiは変更影響がない限り再実行しない。
