@@ -26,22 +26,21 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: 固定source・旧受入不変
+      - name: 固定source・旧受入不変・生成Cの追跡確認
         run: |
           set -euo pipefail
-          git diff --exit-code 9f2e5a9d6dc5d60d7c6e309869f430e3bcb8f662 HEAD -- scripts/pr16_exp_share_grass.py tests/test_pr16_exp_share_grass.py tools/mgba_pr16_exp_share_grass.c
+          git ls-files --error-unmatch scripts/pr16_exp_share_grass.py tests/test_pr16_exp_share_grass.py tools/mgba_pr16_exp_share_grass.c
+          git diff --exit-code 511e2200fc994e3e3a6bfb089f7e5dfe68681a94 HEAD -- scripts/pr16_exp_share_grass.py tests/test_pr16_exp_share_grass.py tools/mgba_pr16_exp_share_grass.c
           git diff --exit-code 03775db23b4feb1bff89286dabcd17fe7f45176a HEAD -- scripts/pr16_exp_share_input.py tests/test_pr16_exp_share_input.py tools/mgba_pr16_exp_share_input.c
           git diff --exit-code 023604d280177ad971bac96649b2b15f7c8e42e7 HEAD -- scripts/pr16_exp_share_saved.py tests/test_pr16_exp_share_saved.py scripts/pr16_exp_share_route.py tests/test_pr16_exp_share_route.py scripts/pr16_exp_evolution_share.py tools/mgba_pr16_exp_evolution_sync.c tests/test_pr16_exp_evolution_share.py scripts/pr16_exp_evolution_sync.py tests/test_pr16_exp_evolution_sync.py scripts/pr16_exp_evolution_observation.py tests/test_pr16_exp_evolution_observation.py
           git diff --exit-code 9cfde111077c1ca451344de0d4cd09c83f335b0c HEAD -- AGENTS.md CHATGPT_RESUME.md config/active_play_baseline.json design/active_play_baseline.md content/modernization/pr16_bp_chooser_checkpoint.json content/modernization/p08_remaining_work.json content/modernization/pr16_learnset_boundaries_checkpoint.json content/modernization/pr16_learnset_first_refuse_checkpoint.json
-      - name: 前回Actions終端を照合・失敗原本を保持
-        run: |
           python3 -B - <<'PY'
           import sys
           sys.path.insert(0, 'scripts')
-          from pr16_wiki_reconcile import fetch
-          run = fetch('actions/runs/36079930352')
-          assert (run['head_sha'], run['status'], run['conclusion']) == ('d951b8cc7600c5412b9db7c30172e57cf0cb454e', 'completed', 'failure')
-          print('前回run36079930352: completed/failure。保存済み失敗原本は変更しない。')
+          import pr16_exp_share_grass as g
+          g.e.need((g.e.ROOT/g.C).read_text() == g.derived_source(), 'tracked grass C must match saved derivation')
+          g.e.need(g.e.identity((g.e.ROOT/g.C).read_bytes()) == {'size':16349, 'sha256':'49cea6f08391b3e2668d2a60c25ef20ccb3372c1ea537cc206af7d24500121bb'}, 'generated C transfer identity')
+          print('保存原本からの派生Cとtracked byte一致。旧unit/native実行0。')
           PY
       - name: host mGBAのみ準備
         run: sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends libmgba-dev
@@ -52,6 +51,24 @@ jobs:
       - name: 原本・引継ぎ・両ログを記録し最終index検査
         run: |
           set -euo pipefail
+          python3 -B - <<'PY'
+          import sys
+          sys.path.insert(0, 'scripts')
+          import pr16_exp_share_grass as g
+          from pr16_wiki_reconcile import fetch
+          e=g.e
+          prior=[]
+          for run_id,head in ((36079930352,'d951b8cc7600c5412b9db7c30172e57cf0cb454e'),(36083695295,'7e416efb13b95448355e6bc151eff50aa3c25a3a')):
+              r=fetch('actions/runs/'+str(run_id))
+              e.need((r['head_sha'],r['status'],r['conclusion']) == (head,'completed','failure'), 'prior terminal failure')
+              prior.append({k:r[k] for k in ('id','head_sha','status','conclusion','path')})
+          a=fetch('actions/runs/36083695295/artifacts?per_page=100')
+          e.need(a['total_count']==0, 'preflight failure produced no artifact')
+          receipt={'observed_runs':prior,'preflight_failure':{'run_id':36083695295,'reason':'MISSING_TRACKED_DERIVED_C_BEFORE_SOURCE_BINDINGS','missing_path':g.C,'new_unit_tests':0,'host_compiles':0,'native_processes':0,'result_pushes':0,'artifacts':0},'repair_head':'511e2200fc994e3e3a6bfb089f7e5dfe68681a94','accepted_case_reruns':0}
+          leaf='prior-terminal-failures.json'
+          e.write(e.PROOF/leaf,receipt)
+          v=e.load(e.PROOF/'verification.json');v['proof_bindings'][leaf]=e.identity((e.PROOF/leaf).read_bytes());v['preflight_failure_repaired']=receipt['preflight_failure'];e.write(e.PROOF/'verification.json',v)
+          PY
           python3 -B scripts/pr16_exp_share_grass.py record
           python3 -B scripts/pr16_resume.py check
           python3 -B scripts/validate_task_graph.py
@@ -65,7 +82,7 @@ jobs:
           test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'USER-20260925-LEARNSET-EXP-EVOLUTION-SHARE: 草むら直前の共有native原本・引継ぎ・両ログを保存'
+          git commit -m 'USER-20260925-LEARNSET-EXP-EVOLUTION-SHARE: 草むら直前の共有native原本・準備失敗・引継ぎ・両ログを保存'
           git push origin "HEAD:$branch"
           sha=$(git rev-parse HEAD)
           test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$sha"
