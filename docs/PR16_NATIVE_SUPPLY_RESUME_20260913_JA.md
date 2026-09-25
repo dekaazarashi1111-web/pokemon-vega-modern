@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-Issue19: Collection BG検出/接近の影響7試験PASS。nativeは0/17のまま未実行。
+Issue19: Collection学習owner 0/17。非学習owner1281の配布初期技は未受入。
 
-**次: CollectionのBG受付契約と初期接近を修復済み。固定候補b7790902を再利用し、未受入の学習owner17配布だけnative実行。1281は非学習ownerのまま保留。旧失敗run/受入原本は改作・再実行しない。**
+**次: Collection配布の失敗原本を確認し未成功caseだけ修復。受入済みcaseは再実行しない。**
 
 特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `194670bade3bcb584e651db301c09ba11c7eeb29`。
+証拠のsource HEAD: `d0f663e2094242f89ed6296463150229b8754721`。
 Collection学習owner17経路と非学習owner1281を区別。全18配布/全Issue19完成ではない。
 
 ## 最短の再開手順
