@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-Issue19: 研究孵化 15/15。PASS_RESEARCH_HATCH_SCOPED。全体未完。
+Issue19: 特殊野生 {}。STOPPED_SPECIAL_WILD_DIAGNOSTIC。通常釣竿/スキャナー取得は未受入。
 
-**次: Issue19: 研究タマゴ15種の保存個体fixtureからの実歩行・孵化後form/技・Save/fresh Continueを再実行しない。通常配布17件も保存受入を維持。次は未受入の釣り/隠し野生の特殊技順。1281は非学習ownerの既存方針で未受入。全供給/Issue19/release/active baseline切替は未完。**
+**次: Issue19: 特殊野生診断の保存失敗原本から未成功caseだけ縮小修復。成功したcase/既受入を再実行しない。Issue19: 特殊野生checkpointの実ROM呼出順とbefore/afterを根拠に釣り/隠し専用の最小修復へ進む。診断済み同条件は再実行せず、変更後の必要な対照だけ追加。通常釣竿/スキャナー操作→捕獲→Save/fresh Continueは未受入。研究孵化15/研究配布17/旧野生/EXP/Bag/egg/旧ARM/Wikiは変更影響がなければ再実行しない。**
 
 特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `c30492610319d075195b040092447296d5766343`。
-研究タマゴ原本個体fixtureの孵化後保持。通常配布の再実行/元saveの連続再開/全Issue19完成ではない。
+証拠のsource HEAD: `23420259b94bcfff71078d91ccb7593a1c30c92b`。
+特殊野生の新規直接診断。通常取得受入・全体完成とは別。
 
 ## 最短の再開手順
 
@@ -25,10 +25,10 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_RESEARCH_HATCH_JA.md`
-- `content/modernization/pr16_research_hatch_checkpoint.json`
-- `scripts/pr16_research_hatch_terminal.py`
-- `content/modernization/pr16_research_hatch_evidence/36147481394/terminal.json`
+- `docs/PR16_SPECIAL_WILD_JA.md`
+- `content/modernization/pr16_special_wild_checkpoint.json`
+- `scripts/pr16_special_wild.py`
+- `tests/test_pr16_special_wild.py`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -328,6 +328,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-実測とActions終端を分離。一般CIのaction_requiredをsuccess扱いしない。
+記録時点ではpush/upload終端未確認。初期b3e45540のsource転送run36150780558は成功、実受入0。一般CIを成功へ昇格しない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

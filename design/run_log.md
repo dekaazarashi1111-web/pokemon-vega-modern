@@ -10088,3 +10088,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 12job/22matrix artifact/成果commit直接親・祖先/15raw origin/30画面hashを照合。終端新native/旧unit/host/ARM/ROM変更0。原runのcancelledは保存。resume/task graph/final-index scoped guardをcommit前実行。
 - Commit: 同branch非force push・remote照合。source=c30492610319d075195b040092447296d5766343。成果SHAはterminal-proof/reflected-head.txt。
 - Network: 固定GitHub原本のみ。ROM/saveは非追跡。特殊野生はソース調査のみで実接続先未受入。merge/release/baseline切替なし。
+
+## 2026-09-25T15:16:42.197277+00:00
+- Timestamp: 2026-09-25T15:16:42.197277+00:00
+- Task: USER-20260925-SPECIAL-WILD / 特殊野生の実呼出順
+- Version: issue19-special-wild-diagnostic-v1
+- Status: STOPPED（保存原本から未完のみ継続）
+- Summary: {}。開始進行/map/profile/RNGと直接呼出はfixture、実観測区間7API書込拒否。
+- Files changed: 専用driver/C/tests/workflow、checkpoint/guide/text証拠、固定引継ぎMD/JSON、両ログ。
+- Verify: STOPPED_SPECIAL_WILD_DIAGNOSTIC; 新unit 13, host 1, native 1; 旧受入/ARM/ROM/Wiki再実行0。Actions終端は未確認。
+- Commit: 同branchへ非force push、reflected-head.txtでremote照合。source取得WIP b3e45540/36150780558は転送のみ。
+- Network: GitHub固定artifact/Actionsのみ。原本再採取/merge/release/active baseline変更なし。
