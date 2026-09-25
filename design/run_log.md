@@ -9889,3 +9889,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: unit 13 host 1 native 1。Actions終端=False。終端照合専用=False（専用時の全実行0）。ROM/ARM/旧受入case/Wiki再実行0。
 - Commit: 同branchへ非force push。reflected-head.txtとremoteを照合。
 - Network: GitHub固定source/artifact/Actions。source取得run36101411033/36101572572は検証ではなく転送のみ。原本再生成・merge/release/baseline切替なし。
+
+## 2026-09-25T07:00:07.998993+00:00
+- Timestamp: 2026-09-25T07:00:07.998993+00:00
+- Task: USER-20260925-NATURAL-SUPPLY / 終端照合
+- Version: issue19-natural-supply-v1-complete
+- Status: DONE（3case限定受入。Issue19/P08/release全体は未完）
+- Summary: 通常配布/固定form初期技1件と原本初期技孵化2件を保存原本で受入。fixture捕獲/進行/Ringの通常取得は対象外。
+- Files changed: 保存artifact専用validatorと15新試験、記録専用Actions、checkpoint/guide/固定引継ぎMD/JSON・両ログ・text証拠。
+- Verify: native原本run36102544792は2成功1失敗のfailure、run36104762658は配布1成功、旧孵化2件は不変。初回20unit/中間12unit/配布phase変更影響13unitの実行原本を継承。今回新15unit、native/旧unit/host/ARM/Wiki再実行0。
+- Failure retained: 配布counter一増加の未検証前提を、guard下の二遷移raw観測に修正。ROM/ゲームruntimeを変更してテストへ合わせていない。既受入原本を上書きしない。
+- Commit: 同branchへ非force push。source/単一親/祖先/reflected-head/remoteを照合。
+- Network: 保存Actions artifact3件だけをhash照合。merge/release/baseline切替なし。一般CI全緑を主張しない。

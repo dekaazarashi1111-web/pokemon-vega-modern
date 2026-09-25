@@ -302,7 +302,7 @@
     }
   },
   "accepted_case_reruns": 0,
-  "actions_completion_confirmed": false,
+  "actions_completion_confirmed": true,
   "active_baseline_changed": false,
   "arm_compiles": 0,
   "candidate": {
@@ -326,6 +326,37 @@
       "sha256": "2c4b9f065f4dce84e48f2be9afe2e2f9f666865088770ee8b068a908a0527b85",
       "size": 149046
     }
+  },
+  "completed_by_source": "a82be04b86acec7dafccada87629ae7f62ba0329",
+  "completion_record": {
+    "arm_compiles": 0,
+    "case_results_revalidated_from_saved_bytes": 3,
+    "evidence_path": "content/modernization/pr16_natural_supply_evidence/36105430192",
+    "files": {
+      "artifact-closeout.json": {
+        "sha256": "74df2b8f330c8644ad94314580eea5e9f3de781ad40316e1bb103c511c912818",
+        "size": 4486
+      },
+      "closeout-unit.process.json": {
+        "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+        "size": 44
+      },
+      "closeout-unit.stderr.txt": {
+        "sha256": "bc2bdd36a8393f4b3159d855fc1d596466876ffb0d1cd7ecca7651eab4ccde55",
+        "size": 1680
+      },
+      "closeout-unit.stdout.txt": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    },
+    "host_compiles": 0,
+    "native_processes": 0,
+    "new_unit_tests": 15,
+    "old_unit_reruns": 0,
+    "rom_changes": 0,
+    "run_id": 36105430192,
+    "source_head": "a82be04b86acec7dafccada87629ae7f62ba0329"
   },
   "contracts": {
     "caterpie-initial-hatch": {
@@ -735,5 +766,28 @@
   "source_head": "35b26cd4adc636b10dd6ccc003f25b5014ef2cd0",
   "status": "PASS_NATURAL_SUPPLY_SCOPED",
   "task": "USER-20260925-NATURAL-SUPPLY",
+  "terminal_actions": [
+    {
+      "conclusion": "failure",
+      "head_sha": "e98e3a2581419a721e3e3ad7b0f351ba84371119",
+      "id": 36102544792,
+      "path": ".github/workflows/pr16-natural-supply-20260925.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "failure",
+      "head_sha": "eacba232c1fd33c8096bd1a92e0adb4043b2320f",
+      "id": 36103989903,
+      "path": ".github/workflows/pr16-natural-supply-20260925.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "35b26cd4adc636b10dd6ccc003f25b5014ef2cd0",
+      "id": 36104762658,
+      "path": ".github/workflows/pr16-natural-supply-20260925.yml",
+      "status": "completed"
+    }
+  ],
   "wiki_generations": 0
 }

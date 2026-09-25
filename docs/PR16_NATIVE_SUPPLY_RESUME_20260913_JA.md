@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-Issue19: 自然供給3/3。PASS_NATURAL_SUPPLY_SCOPED。全体未完。
+Issue19: 通常配布・原本初期技孵化3case限定受入、Actions原本終端確認。全体未完。
 
-**次: 保存成功を再実行せず、completeでActions終端だけ照合。**
+**次: Issue19: 自然配布/孵化の保存成功を再実行しない。限定3caseの終端確定後は未受入の他配布・form初期技、釣り/隠し野生の特殊技順を優先する。Floette12技の全供給/全owner/Issue19/release/baseline切替は未完。EXP進化共有3/EXP4/最初の拒否/アメ11/Bag23/egg8/旧野生/host/ARM/Wikiは変更影響なし。**
 
 特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `35b26cd4adc636b10dd6ccc003f25b5014ef2cd0`。
-自然供給限定caseのsource/保存原本。旧受入・全体完成とは別。
+証拠のsource HEAD: `a82be04b86acec7dafccada87629ae7f62ba0329`。
+限定3caseの実測3run（失敗2+成功1）とartifactを完了照合。observed HEADはnative再実行なしの記録source。
 
 ## 最短の再開手順
 
@@ -27,8 +27,8 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 
 - `docs/PR16_NATURAL_SUPPLY_JA.md`
 - `content/modernization/pr16_natural_supply_checkpoint.json`
-- `scripts/pr16_natural_supply.py`
-- `tests/test_pr16_natural_supply.py`
+- `scripts/pr16_natural_supply_closeout.py`
+- `scripts/pr16_natural_gift_save.py`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -328,6 +328,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-保存成功/失敗とActions終端を区別。一般CI action_requiredを成功へ昇格しない。
+初回failureと修復successを原本のまま区別。一般CI/action_requiredや全体完成へ昇格しない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
