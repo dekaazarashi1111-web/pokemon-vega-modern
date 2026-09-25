@@ -1,5 +1,5 @@
 name: pr16-natural-supply-20260925
-# 新規3caseだけ。既受入EXP/Bag/egg8/host/ARM/Wikiは再実行しない。
+# 孵化2case/20unitを原本継承。配布1caseとcounter観測12unitだけ。
 on:
   push:
     branches: [codex/modernization-followup-20260908]
@@ -15,7 +15,7 @@ jobs:
   natural-supply:
     if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
     runs-on: ubuntu-24.04
-    timeout-minutes: 50
+    timeout-minutes: 30
     env:
       PYTHONDONTWRITEBYTECODE: '1'
       GITHUB_TOKEN: ${{ github.token }}
@@ -26,35 +26,36 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: ローカル20unitと同じtracked sourceを照合
+      - name: 変更影響source一致・旧20試験原本不変
         run: |
           python3 -B - <<'PY'
           import hashlib
           from pathlib import Path
           for path,expected in {
             'scripts/pr16_natural_supply.py':'9c29301c8b9f227d918ed201244d7e0c1123457cf5ee2513eae22ba3b1da213a',
-            'tools/mgba_pr16_natural_gift.c':'61f818fb88d644cc1e4e41551ed670d3d5fdf9666e193f504245e0ce9f858a66',
-            'tests/test_pr16_natural_supply.py':'2594cadafe2c8f48b7d12820b8f20c43ab1700f29beeea4ac9237386fe1738d7'
+            'scripts/pr16_natural_gift_save.py':'e08b0d391038e47f2b8bc20bc63bbe307028b8644c2ac985d4efab7ec37c1219',
+            'tools/mgba_pr16_natural_gift.c':'0c80baae801da5bcb3e4029291d1f4d50630390f4304ff9c6a6386337d550656',
+            'tests/test_pr16_natural_gift_save.py':'c95994505aa897be5cafb4b045f8ee1fbea3aa341e0c8c5419ed2ee769ad9673'
           }.items():
               assert hashlib.sha256(Path(path).read_bytes()).hexdigest()==expected,path
           PY
-      - name: 新規native用host libraryのみ導入
+      - name: 未成功配布用host libraryのみ導入
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends libmgba-dev
-      - name: 新規20unit・通常孵化2case・実NPC配布1case
+      - name: 新規12unit・未成功の配布1caseだけ
         id: native
         continue-on-error: true
-        run: python3 -B scripts/pr16_natural_supply.py execute
+        run: python3 -B scripts/pr16_natural_gift_save.py execute
       - name: 成功と失敗の原本・固定引継ぎ・両ログを保存
         run: |
           set -euo pipefail
-          python3 -B scripts/pr16_natural_supply.py record
+          python3 -B scripts/pr16_natural_gift_save.py record
           python3 -B scripts/pr16_resume.py check
           python3 -B scripts/validate_task_graph.py
-          python3 -B scripts/pr16_natural_supply.py paths | tr '\n' '\0' >.local/pr16-natural-supply/paths.z
+          python3 -B scripts/pr16_natural_gift_save.py paths | tr '\n' '\0' >.local/pr16-natural-supply/paths.z
           git add --pathspec-from-file=.local/pr16-natural-supply/paths.z --pathspec-file-nul
-          python3 -B scripts/pr16_natural_supply.py guard
+          python3 -B scripts/pr16_natural_gift_save.py guard
       - name: 同branchへ非force commit/push・remote照合
         run: |
           set -euo pipefail
@@ -62,7 +63,7 @@ jobs:
           test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'USER-20260925-NATURAL-SUPPLY: 通常配布・初期技孵化の実測原本と固定引継ぎ・両ログを記録'
+          git commit -m 'USER-20260925-NATURAL-SUPPLY: 配布counter実測を保存、孵化成功2件は原本不変で継承'
           git push origin "HEAD:$branch"
           sha=$(git rev-parse HEAD)
           test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$sha"
