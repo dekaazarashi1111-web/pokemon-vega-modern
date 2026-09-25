@@ -7217,3 +7217,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 新scope-unit0、旧unit実行0、host1、native1。Actions終端False、終端専用=False（専用時native/旧unit/host/ARM0）。
 - Commit: 同branch非force push・reflected-head/remote照合。
 - Network: 固定GitHub原本/保存artifact/Actionsのみ。ROM/seed非追跡。受入済み3/EXP/Bag/egg8/旧野生/ARM/Wiki不変。merge/release/baseline切替なし。
+
+## 2026-09-25T09:35:02.868943+00:00
+- Timestamp: 2026-09-25T09:35:02.868943+00:00
+- Task: USER-20260925-COLLECTION-STEP
+- Version: collection-fixture-step-v1
+- Status: DONE（観測前fixture修復限定、native未完）
+- Summary: run36118704240はBG照合/host compile通過、native1は配布前の位置確認で停止。残り16未実行、旧unit/scope再実行0。2frame方向入力を既存b_stepの座標変化待ちへ修復しwarp/接近の位置ログを追加。
+- Files changed: Cのguard前2箇所、歩行境界検査、unit継承の正規化証明、固定引継ぎMD/JSON、原本text、両ログ。
+- Verify: 新fixture1試験PASS。guard後Cはbyte不変、逆置換で前Cの完全SHA一致。配布/menu/Save/ContinueやROMを変えていない。旧24/scope9/cache5/nativeの再実行0。
+- Commit: 同branchへの非force commit/push・remote照合。成果SHAはreflected-head.txt。
+- Network: GitHub固定原本/Actions。ROM/seed非追跡。merge/release/baseline切替なし。

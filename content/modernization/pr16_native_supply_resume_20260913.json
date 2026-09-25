@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "Issue19: Collection学習owner 0/17。非学習owner1281の配布初期技は未受入。",
+    "current_stop": "Collection最初の配布前位置確認で停止。fixture歩行修復1試験PASS、nativeは未検証。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "Collection配布の失敗原本を確認し未成功caseだけ修復。受入済みcaseは再実行しない。",
+    "next_step": "Collection BG検出は通過。初期fixtureの方向入力を座標変化を待つ1マス歩行へ修復。未受入17配布を次に実行。旧24/scope9/cache5と受入済みnativeは再実行しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -1568,6 +1568,34 @@
     "task": "USER-20260925-COLLECTION-BG-REPAIR",
     "unit_skips": 0,
     "unit_tests": 7
+  },
+  "learnset_collection_gift_step": {
+    "arm_compiles": 0,
+    "guarded_controller_bytes_unchanged": true,
+    "host_compiles": 0,
+    "input_head": "076694f3908fd82f817c04e47d98575614f3b440",
+    "issue19_complete": false,
+    "modified_source_after_input_head": true,
+    "new_native_processes": 0,
+    "new_unit_tests": 1,
+    "old_native_reruns": 0,
+    "old_suite_coverage_unchanged": true,
+    "old_unit_reruns": 0,
+    "path": "content/modernization/pr16_collection_gifts_evidence/36119223729/step-repair.json",
+    "prior_run": 36118704240,
+    "release_ready": false,
+    "rom_changes": 0,
+    "run_id": 36119223729,
+    "source_after": {
+      "sha256": "50836c4a0a32d67182b1ca04f47c6c40ec4c6aaa799b6e0b7ac76af7b507d59d",
+      "size": 11845
+    },
+    "source_before": {
+      "sha256": "80b3ace6b3e85853b3ab2f40bd39ba737d081a9f48e0552b26f4758968397662",
+      "size": 11795
+    },
+    "status": "PASS_PRE_BARRIER_STEP_REPAIR_NATIVE_PENDING",
+    "task": "USER-20260925-COLLECTION-STEP"
   },
   "learnset_collection_gifts": {
     "accepted_cases": [],
@@ -3893,9 +3921,9 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "Collection配布の失敗原本を確認し未成功caseだけ修復。受入済みcaseは再実行しない。",
+    "goal_ja": "Collection BG検出は通過。初期fixtureの方向入力を座標変化を待つ1マス歩行へ修復。未受入17配布を次に実行。旧24/scope9/cache5と受入済みnativeは再実行しない。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
-    "id": "COLLECTION_GIFTS",
+    "id": "COLLECTION_GIFTS_BG_NATIVE",
     "read_paths": [
       "docs/PR16_COLLECTION_GIFTS_JA.md",
       "content/modernization/pr16_collection_gifts_checkpoint.json",
@@ -7130,8 +7158,8 @@
       "size": 1328
     },
     ".github/workflows/pr16-supply-followup-20260925.yml": {
-      "sha256": "9324b1607fcff621b0d8731acce59cd44a5e42bbabea2a4a39e5de81cb90eb78",
-      "size": 4198
+      "sha256": "8b11834a1cb6e01f06b998b64cdbd0fbc848c1af5991d9baa337d4caf9dca506",
+      "size": 2070
     },
     ".github/workflows/pr16-vega-adjudication-record.yml": {
       "sha256": "cb0490020433011ba362fe6e44d57a70b327bd4de7547891b42f01707b043d39",
@@ -12578,12 +12606,16 @@
       "size": 3864
     },
     "scripts/pr16_collection_gift_native.py": {
-      "sha256": "326de73403c0bf99aad14047dcd7a1f335f118d71bace206bf0bb4f418f995b0",
-      "size": 10267
+      "sha256": "bd8e062093b4621917ccaf9dd12a7e020a46616663d32732c550b61e101187b7",
+      "size": 10750
     },
     "scripts/pr16_collection_gift_scope.py": {
       "sha256": "6e5ecd8cc9b6e940a813591346b26dbafa931445a80b143e88bbbd4a4956ab86",
       "size": 11246
+    },
+    "scripts/pr16_collection_gift_step.py": {
+      "sha256": "a57262ea1b27183af9aff65c82cbc64d263feee81bf44e0f1b47a81b892f7beb",
+      "size": 6189
     },
     "scripts/pr16_collection_gifts.py": {
       "sha256": "f36ede0b0046eaf86b9f8c685fad22ca20cbbac3180d7931b9a5231957dc6fcf",
@@ -13877,6 +13909,10 @@
       "sha256": "fe57b7367a770add9d99a57272ecbbdf2ec54f631359353acb08f1f9f1039203",
       "size": 2882
     },
+    "tests/test_pr16_collection_gift_step.py": {
+      "sha256": "d49e5a343ee775aacfe3d6e1de2120f79ecd5b49581fc5608759ba736da6c6c2",
+      "size": 848
+    },
     "tests/test_pr16_collection_gifts.py": {
       "sha256": "b2006c26557849770e3954325917048e8d5a46b560b43bc00ec4f2ea1c83659b",
       "size": 8923
@@ -14838,8 +14874,8 @@
       "size": 1758
     },
     "tools/mgba_pr16_collection_gifts.c": {
-      "sha256": "80b3ace6b3e85853b3ab2f40bd39ba737d081a9f48e0552b26f4758968397662",
-      "size": 11795
+      "sha256": "50836c4a0a32d67182b1ca04f47c6c40ec4c6aaa799b6e0b7ac76af7b507d59d",
+      "size": 11845
     },
     "tools/mgba_pr16_exp_evolution_share.c": {
       "sha256": "006956a135451fb50d3a5a8ffcb4e40787d5a00d2aa831bb1144bfb0c3129b5c",

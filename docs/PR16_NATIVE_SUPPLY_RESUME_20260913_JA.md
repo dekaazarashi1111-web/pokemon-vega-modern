@@ -6,9 +6,9 @@
 
 ## いまの停止点と次の1手
 
-Issue19: Collection学習owner 0/17。非学習owner1281の配布初期技は未受入。
+Collection最初の配布前位置確認で停止。fixture歩行修復1試験PASS、nativeは未検証。
 
-**次: Collection配布の失敗原本を確認し未成功caseだけ修復。受入済みcaseは再実行しない。**
+**次: Collection BG検出は通過。初期fixtureの方向入力を座標変化を待つ1マス歩行へ修復。未受入17配布を次に実行。旧24/scope9/cache5と受入済みnativeは再実行しない。**
 
 特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。
 

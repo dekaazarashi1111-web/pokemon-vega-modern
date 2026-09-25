@@ -133,9 +133,9 @@ int main(int argc,char **argv) {
     (void)call_preserving(c,QOL_FLAG_SET,0x82CU,0,0,0);(void)call_preserving(c,QOL_FLAG_SET,0x114BU,0,0,0);
     (void)call_preserving(c,QOL_SAVE_FINALIZE,QOL_LEDGER,0,0,0);
     (void)call_preserving(c,0x09220861U,CF_GROUP,CF_NUMBER,CF_X,CF_Y+1U);run_key_frames(c,0U,900U);
-    b_position(c,CF_GROUP,CF_NUMBER,CF_X,CF_Y+1U);
+    b_state(c,"fixture-warp");b_position(c,CF_GROUP,CF_NUMBER,CF_X,CF_Y+1U);
     /* BGは歩行可能。初期fixture区間で1マス上へ移動し、その後はAだけ。 */
-    cf_press(c,QOL_KEY_UP,30U);b_position(c,CF_GROUP,CF_NUMBER,CF_X,CF_Y);cf_fixture_owner(c);
+    b_step(c,QOL_KEY_UP);b_state(c,"fixture-approach");b_position(c,CF_GROUP,CF_NUMBER,CF_X,CF_Y);cf_fixture_owner(c);
     a_require(!read8(c,CF_STATE+27U),"test mode forbidden");
     uint8_t initial[100],party[200],again[200];cf_raw(c,"fixture",1U,initial);
     unsigned counter[5]={read32(c,P03_SAVE_COUNTER),0,0,0,0};
