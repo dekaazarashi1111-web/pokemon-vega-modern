@@ -10110,3 +10110,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 新unit 17, host 0, native 0, ARM0; 旧受入/旧13unit/旧ROM再build/Wiki再実行0。Actions終端未確認。通常操作/capture/Save未受入。
 - Commit: 同branchへの非force pushとreflected-head.txtにremote照合を保存。source 28a138552429c5ff7473aafd316a929b601051dd, run 36155273674。
 - Network: GitHub pinned artifact/Actionsのみ。merge/release/active baseline変更なし。
+
+## 2026-09-25T15:40:52.316282+00:00
+- Timestamp: 2026-09-25T15:40:52.316282+00:00
+- Task: USER-20260925-SPECIAL-WILD / 研究表byte差分の限定監査
+- Version: issue19-special-wild-table-audit-v1
+- Status: DONE（読取監査のみ、特殊技未受入）
+- Summary: 36155273674は17新unit成功、native/host0のまま研究表一致gateで停止。原失敗を維持しliteral参照付き候補表の差分だけ保存。
+- Files changed: 専用監査JSON/Workflow、固定引継ぎMD/JSON、両ログ。
+- Verify: private ROM改変0、native/unit/host/ARM再実行0。全体Issue19/release未完。
+- Commit: 同branch非force push、反映先headをartifactで照合。
+- Network: 保存済みGitHub artifact/Actionsの読取のみ。

@@ -6,7 +6,7 @@
 
 ## いまの停止点と次の1手
 
-Issue19: STOPPED_SPECIAL_WILD_REPAIR。特殊野生の通常取得/保存継続は未受入。
+Issue19: native起動前の研究表byte照合差分を保存。監査JSONから未成功経路だけ再開。
 
 **次: Issue19: 特殊野生修復checkpointの失敗原本を先に読み、未成功caseのみ修正する。保存成功の親診断や対照を再実行しない。Issue19: 特殊野生の2 callsite限定修復と直接native対照を保存。次は変更後候補で通常釣竿/スキャナーUI→捕獲→通常Save/fresh Continue。直接call fixtureを通常取得へ読み替えない。元親/同じ特殊技診断/受入済み研究孵化15・配布17・旧野生・EXP・Bag・egg・旧ARM・Wikiは変更影響がない限り再実行しない。**
 
@@ -25,10 +25,10 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_special_wild_research_table_audit.json`
 - `docs/PR16_SPECIAL_WILD_JA.md`
 - `content/modernization/pr16_special_wild_repair_checkpoint.json`
 - `scripts/pr16_special_wild_repair.py`
-- `tests/test_pr16_special_wild_repair.py`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 

@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "Issue19: STOPPED_SPECIAL_WILD_REPAIR。特殊野生の通常取得/保存継続は未受入。",
+    "current_stop": "Issue19: native起動前の研究表byte照合差分を保存。監査JSONから未成功経路だけ再開。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -4150,10 +4150,10 @@
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
     "id": "SPECIAL_WILD_REPAIR_GAMEPLAY",
     "read_paths": [
+      "content/modernization/pr16_special_wild_research_table_audit.json",
       "docs/PR16_SPECIAL_WILD_JA.md",
       "content/modernization/pr16_special_wild_repair_checkpoint.json",
-      "scripts/pr16_special_wild_repair.py",
-      "tests/test_pr16_special_wild_repair.py"
+      "scripts/pr16_special_wild_repair.py"
     ],
     "stop_rule_ja": "特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。"
   },
@@ -7402,6 +7402,10 @@
       "sha256": "1f7d60297f914bcadeddf60b62612d9ae49037ab91ffa9192a859be17d2b4088",
       "size": 4638
     },
+    ".github/workflows/pr16-special-wild-table-audit-20260925.yml": {
+      "sha256": "dff944da362db99430317fdd8902cd8fee62108a7e6bafaf271f7648cb21d2e3",
+      "size": 7632
+    },
     ".github/workflows/pr16-streak-record.yml": {
       "sha256": "257165114d76e6d1b9ea1c633c918a297ab4a32a6cfce9f5e7788b2b77d074be",
       "size": 1328
@@ -8609,6 +8613,10 @@
     "content/modernization/pr16_special_wild_repair_checkpoint.json": {
       "sha256": "f5b71441c1dc1c8cf3d3ce3bbc0d9970b262f4f4ee584d544b097879bf33ed72",
       "size": 9503
+    },
+    "content/modernization/pr16_special_wild_research_table_audit.json": {
+      "sha256": "ed08a2fbfaba9750e0c10a01283ffd4ffae0d1ab22b6ac51f8f88572701386b2",
+      "size": 69159
     },
     "content/modernization/pr16_vega_adjudication/adopted_vega_original_baseline.jsonl": {
       "sha256": "9daaea8c97a744c0522afc03c157392b3179b5d0a359df97de2f3b1c0da6524f",
@@ -15356,6 +15364,12 @@
     "run_id": 34757633314,
     "source_gate_complete": true,
     "tested_head": "9e435e551598c2b99046c7aaff1bff6da1721da3"
+  },
+  "special_wild_table_audit": {
+    "native_runs": 0,
+    "path": "content/modernization/pr16_special_wild_research_table_audit.json",
+    "run_id": 36155747573,
+    "source_head": "821f5338ff05fb405c6e32f1c01eef3681803901"
   },
   "stable_entrypoint": "CHATGPT_RESUME.md",
   "stable_paths_do_not_rotate_with_date": true,
