@@ -58,7 +58,7 @@ class EvolutionShareTests(unittest.TestCase):
     def test_shared_nonparticipant_learns_and_persists_200bytes(self):
         r=self.accept(2);self.assertEqual(r['persisted_party']['size'],200);self.assertEqual(r['reserve_eligible_original_moves'],[497]);self.assertEqual(r['reserve_pp_after'][:2],[15,8])
     def test_evolution_not_same_as_regular_metapod_levelup(self):
-        c=e.vectors(PP)[0];mm,_,eligible=e.expected(c,20,PP,1,ROWS);self.assertEqual(eligible,[16]);self.assertNotIn(77,mm)
+        c=e.vectors(PP)[0];mm,_,eligible=e.expected(c,20,PP,1,ROWS);self.assertEqual(eligible,[16,18]);self.assertNotIn(77,mm)
     def test_phantom_reserve_is_rejected(self):
         with self.assertRaises(ValueError):self.accept(0,lambda r:r.update(reserve_level_after=10))
     def test_wrong_cancel_key_is_rejected(self):

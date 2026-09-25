@@ -66,7 +66,10 @@ def expected(case,level,pp,spent,rows,reserve=False):
     need(type(spent)is int and (spent==0 if reserve else 0<spent<case['points'][0]),'attack/reserve PP use')
     points=case['points'][:];points[0]-=spent
     eligible=[mid for mid,lv in (rows if case['mode']==2 else x.n.p.LEVELS[413]) if case['level']<lv<=level]
-    if case['mode']==0:eligible+=x.n.p.EVOLUTIONS[414]
+    if case['mode']==0:
+        eligible+=x.n.p.EVOLUTIONS[414]
+        # 進化技の後に、進化後ownerの現在level一致行を通常順で処理する。
+        eligible += [mid for mid,lv in rows if lv==level]
     moves,points,trace=x.n.p.simulate(case['moves'],points,eligible,0,case['slot'],pp)
     need(trace['selections']==0,'scope must not enter full-slot summary')
     return moves,points,eligible
@@ -134,8 +137,12 @@ def validate(out,err,case,rows,pp):
         need(not events and not pulses and r['evolution_begin']==r['evolution_update']==r['evolution_input_pulses']==0,'no evolution in sharing case')
     else:
         religible=[];need(r['reserve_moves_after']==r['reserve_pp_after']==[0]*4 and r['reserve_level_after']==r['reserve_xp_after']==r['reserve_level_frame']==0,'no phantom reserve')
-        need(events==[(b'begin',str(r['evolution_begin']).encode(),b'080cee71'),(b'update',str(r['evolution_update']).encode(),b'080cf869')],'exact native evolution callbacks')
-        need(r['level_frame']<r['evolution_begin']<r['evolution_update']<r['returned'],'evolution after battle EXP')
+        expected_events=[(b'update',str(r['evolution_update']).encode(),b'080cf869')]
+        if r['evolution_begin']:
+            need(r['level_frame']<r['evolution_begin']<r['evolution_update'],'observed begin chronology')
+            expected_events.insert(0,(b'begin',str(r['evolution_begin']).encode(),b'080cee71'))
+        need(events==expected_events,'exact frame-observed evolution callbacks')
+        need(r['level_frame']<r['evolution_update']<r['returned'],'evolution after battle EXP')
         need(0<len(pulses)==r['evolution_input_pulses']<=1000,'evolution input witnesses')
         frames=[int(f) for f,_ in pulses];need(frames==sorted(set(frames)) and r['evolution_update']<=frames[0]<=frames[-1]<r['returned'],'evolution key chronology')
         need(all(int(key)==(2 if case['mode']==1 else 1) for _,key in pulses),'normal accept/cancel key')

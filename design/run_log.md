@@ -9757,3 +9757,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 新unit12 host compile1 native3。Actions終端=False。記録終端照合のunit/native/host再実行0。ROM変更/ARM/変更影響なしの旧受入再実行0。
 - Commit: 同branchへの非force push。reflected-head.txtとremote ref照合。
 - Network: GitHub固定source/保存artifact/Actions。原本再採取・Wiki生成・release・baseline切替なし。一般CIのaction_requiredは限定nativeと別記録。
+
+## 2026-09-25T00:41:28.054781+00:00
+- Timestamp: 2026-09-25T00:41:28.054781+00:00
+- Task: USER-20260925-LEARNSET-EXP-EVOLUTION-SHARE / 観測契約修復準備
+- Version: exp-evolution-observation-v1
+- Status: STOPPED（実装WIP・native未検証）
+- Summary: 進化後現在level行を原本から追加照合。未観測beginを捏造せずupdate/入力/個体保存で判定。共有fixtureを通常無入力で安定させる。
+- Files changed: driver/tests/C、固定再開MD/JSON、両ログ。
+- Verify: patch適用・Python構文・task graph PASS。旧bridge run36078410019は既存全体guard違反でunit/native0。旧native run36076513362終端failureを保持。限定index guard後のみWIP commit。
+- Commit: 同branchへ非force push、remote ref照合。
+- Network: GitHub固定HEAD/Actionsのみ。ROM変更/ARM/既受入native再実行0。全体private guard PASSは主張しない。

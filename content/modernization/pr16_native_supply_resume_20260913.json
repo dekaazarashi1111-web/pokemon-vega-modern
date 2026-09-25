@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "Issue19: 戦闘EXP進化/共有 0/3。PARTIAL_BATTLE_EXP_EVOLUTION_SHARE。Actions終端=False、全体未完。",
+    "current_stop": "Issue19: 戦闘EXP進化/共有0/3。進化後現在level行・フレーム観測callback・共有fixture無入力安定の修復を適用。native未検証。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "今回の失敗原本を保持し未受入caseだけ修復する。保存成功caseと旧EXP4/最初の質問拒否/アメ11/Bag23/egg8は再実行しない。",
+    "next_step": "修復後exact HEADで scripts/pr16_exp_evolution_observation.py execute を実行する。変更validator/Cに直結するunitのみ再検証し、未受入3caseを検証・保存する。旧受入native/ARM/ROM再生成は0。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -1685,6 +1685,51 @@
       "butterfree-exp-share"
     ],
     "release_ready": false,
+    "repair_preparation": {
+      "accepted_native_reruns": 0,
+      "changed_sources": {
+        "scripts/pr16_exp_evolution_observation.py": {
+          "sha256": "085874d692a0a7c16137086eaf4f21ab644f08cfad94dd52c88146affe31955e",
+          "size": 2987
+        },
+        "scripts/pr16_exp_evolution_share.py": {
+          "sha256": "a522877704286847b1cc8d14db1475011493369e1c11824adf556339ac923ff4",
+          "size": 21367
+        },
+        "tests/test_pr16_exp_evolution_observation.py": {
+          "sha256": "7c4d350e7187df24b64d0cc5097186b827076af9559d6804c4fdd247dbef1b4f",
+          "size": 4221
+        },
+        "tests/test_pr16_exp_evolution_share.py": {
+          "sha256": "3bd5e4ded2d9af9408c4f88b1073fb59f9aa229de96e540851164077a4e60bd3",
+          "size": 8668
+        },
+        "tools/mgba_pr16_exp_evolution_sync.c": {
+          "sha256": "309d23368bc48a9e011f0efcdac502b9e53b9607606f1e30193553c81df091b0",
+          "size": 15686
+        }
+      },
+      "full_historical_guard_pass_claimed": false,
+      "new_native_processes": 0,
+      "prior_bridge": {
+        "conclusion": "failure",
+        "job_id": 107894730080,
+        "native_processes": 0,
+        "patch_apply": "success",
+        "reason_ja": "既存tracked ROM/save・旧ZIP・機器pathの全体guard阻害。原本を改変せず保存。",
+        "run_id": 36078410019,
+        "unit_tests": 0
+      },
+      "prior_native": {
+        "conclusion": "failure",
+        "job_id": 107888815589,
+        "run_id": 36076513362
+      },
+      "run_id": 36078671665,
+      "schema_version": 1,
+      "source_head": "22efb2673ae679f016246d22bc2f81d0d41ab6b5",
+      "status": "WIP_PATCH_APPLIED_NOT_NATIVE_ACCEPTED"
+    },
     "run_id": 36076513362,
     "source_head": "97417f139591689085d88a866fd638e7dc6fae87",
     "status": "PARTIAL_BATTLE_EXP_EVOLUTION_SHARE"
@@ -3729,26 +3774,26 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "今回の失敗原本を保持し未受入caseだけ修復する。保存成功caseと旧EXP4/最初の質問拒否/アメ11/Bag23/egg8は再実行しない。",
+    "goal_ja": "修復後exact HEADで scripts/pr16_exp_evolution_observation.py execute を実行する。変更validator/Cに直結するunitのみ再検証し、未受入3caseを検証・保存する。旧受入native/ARM/ROM再生成は0。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
     "id": "LEARNSET_EXP_EVOLUTION_SHARE",
     "read_paths": [
       "docs/PR16_EXP_EVOLUTION_SHARE_JA.md",
       "content/modernization/pr16_exp_evolution_share_checkpoint.json",
-      "scripts/pr16_exp_evolution_sync.py",
-      "tests/test_pr16_exp_evolution_sync.py"
+      "scripts/pr16_exp_evolution_observation.py",
+      "tests/test_pr16_exp_evolution_observation.py"
     ],
     "stop_rule_ja": "特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。"
   },
   "observed_date_jst": "2026-09-22",
-  "observed_head": "97417f139591689085d88a866fd638e7dc6fae87",
+  "observed_head": "22efb2673ae679f016246d22bc2f81d0d41ab6b5",
   "observed_head_checks": {
-    "reason_ja": "一般CI action_requiredを成功に昇格しない。最新観測はcheckpointのobserved_recent_actions。",
+    "reason_ja": "実native失敗の終端確認。修復準備はnative未実行で、受入済みへ昇格しない。",
     "runs": [
       {
-        "conclusion": null,
+        "conclusion": "failure",
         "id": 36076513362,
-        "status": "in_progress"
+        "status": "completed"
       }
     ],
     "scope_head": "97417f139591689085d88a866fd638e7dc6fae87"
@@ -6278,8 +6323,8 @@
       "size": 1851
     },
     ".github/workflows/pr16-exp-evolution-share.yml": {
-      "sha256": "1ba898f2e3658eacc88d18330543e51b6bf31b4b68a6110b83978805126c8b11",
-      "size": 4528
+      "sha256": "2d0dd599a23942c7d7647e6c4ac3467bc93bdbd9103aefbec641aa8f49477be2",
+      "size": 7410
     },
     ".github/workflows/pr16-learnset-baseline-proof-closeout.yml": {
       "sha256": "2c6bbed55a37a2544d4704d17bf80271c129a29c521ed9c5836b21e563ea7eaa",
@@ -12369,9 +12414,13 @@
       "sha256": "70e4cfbe615e027630604dbf5c6c8b0f9511272076be7c429a7afeab243df23d",
       "size": 11251
     },
+    "scripts/pr16_exp_evolution_observation.py": {
+      "sha256": "085874d692a0a7c16137086eaf4f21ab644f08cfad94dd52c88146affe31955e",
+      "size": 2987
+    },
     "scripts/pr16_exp_evolution_share.py": {
-      "sha256": "ff62b0ebf666b49aae4c705661d620a3ea210b04ebf590f113dafb61e059e04f",
-      "size": 20997
+      "sha256": "a522877704286847b1cc8d14db1475011493369e1c11824adf556339ac923ff4",
+      "size": 21367
     },
     "scripts/pr16_exp_evolution_sync.py": {
       "sha256": "8939e93278b88253da8676276320cdeb001cd80a429ef06736fd9bf2240ac2db",
@@ -13613,9 +13662,13 @@
       "sha256": "9e1955a9feb789d749f0a0d0cda8681f418ea74e73af0fce9e1ff3bc326e082b",
       "size": 6452
     },
+    "tests/test_pr16_exp_evolution_observation.py": {
+      "sha256": "7c4d350e7187df24b64d0cc5097186b827076af9559d6804c4fdd247dbef1b4f",
+      "size": 4221
+    },
     "tests/test_pr16_exp_evolution_share.py": {
-      "sha256": "04a194760ee2805d68ed0e19f811e51b3d6e90c4c82d2839127518344e315598",
-      "size": 8665
+      "sha256": "3bd5e4ded2d9af9408c4f88b1073fb59f9aa229de96e540851164077a4e60bd3",
+      "size": 8668
     },
     "tests/test_pr16_exp_evolution_sync.py": {
       "sha256": "bc46dbdd0e3507605d540fd038c0fff75a3e10c858c4780dddd9afbba8f0f214",
@@ -14542,8 +14595,8 @@
       "size": 13541
     },
     "tools/mgba_pr16_exp_evolution_sync.c": {
-      "sha256": "821936378f6dd59fc131eca42a839f3b6d503da2794ef69e7cc80b6ab06c4186",
-      "size": 14694
+      "sha256": "309d23368bc48a9e011f0efcdac502b9e53b9607606f1e30193553c81df091b0",
+      "size": 15686
     },
     "tools/mgba_pr16_learnset_battle.c": {
       "sha256": "6f0665441256b1f42468a65f146bc927654edd5e655d49cdaa3e60081741a999",

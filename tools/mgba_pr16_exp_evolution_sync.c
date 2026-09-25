@@ -70,7 +70,11 @@ static void e_expect(unsigned sid,unsigned before,unsigned after,bool evolved,un
     unsigned sequence[129],used=0;
     for(unsigned i=n_start[sid];i<n_start[sid]+n_count[sid];++i)
         if(before<n_rows[i][1] && n_rows[i][1]<=after){a_require(used<128,"bounded eligible rows");sequence[used++]=n_rows[i][0];}
-    if(evolved)sequence[used++]=16; /* payload evolution span is independently hash-checked by Python. */
+    if(evolved){
+        sequence[used++]=16; /* Pythonが固定payloadの進化spanを独立照合する。 */
+        for(unsigned i=n_start[414];i<n_start[414]+n_count[414];++i)
+            if(n_rows[i][1]==after){a_require(used<129,"bounded evolved current-level rows");sequence[used++]=n_rows[i][0];}
+    }
     for(unsigned i=0;i<used;++i){unsigned mid=sequence[i],empty=4;bool known=false;
         for(unsigned j=0;j<4;++j){if(moves[j]==mid)known=true;if(!moves[j] && empty==4)empty=j;}
         if(known)continue;
@@ -79,7 +83,11 @@ static void e_expect(unsigned sid,unsigned before,unsigned after,bool evolved,un
 }
 static void e_slots(struct mCore *c,unsigned index,unsigned species,unsigned level,const unsigned moves[4],const unsigned points[4]){
     a_require(e_get(c,index,11)==species && e_get(c,index,56)==level && e_get(c,index,21)==0 && e_get(c,index,12)==0,"owner/level/held/bonus");
-    for(unsigned j=0;j<4;++j)a_require(e_get(c,index,13+j)==moves[j] && e_get(c,index,17+j)==points[j],"original move/PP oracle");
+    for(unsigned j=0;j<4;++j){
+        unsigned actual=e_get(c,index,13+j),pp=e_get(c,index,17+j);
+        if(actual!=moves[j] || pp!=points[j])fprintf(stderr,"ESHARE_SLOT_MISMATCH index=%u slot=%u expected_move=%u actual_move=%u expected_pp=%u actual_pp=%u\n",index,j,moves[j],actual,points[j],pp);
+        a_require(actual==moves[j] && pp==points[j],"original move/PP oracle");
+    }
 }
 int main(int argc,char **argv){
     if(argc!=6)return 2;
@@ -110,6 +118,16 @@ int main(int argc,char **argv){
         (void)call_preserving(c,QOL_FLAG_SET,QOL_FLAG_EXP_SHARE_INITIALIZED,0,0,0);
         a_require(call_preserving(c,QOL_FLAG_GET,QOL_FLAG_EXP_SHARE,0,0,0)==1,"initial EXP Share flag fixture");
         e_slots(c,1,414,v->level,v->moves,v->points);
+    }
+    /* 追加の個体生成/setter後の移動を無入力で完了させる。状態を書いて解除しない。 */
+    if(e_count==2){
+        unsigned ready=0;
+        for(unsigned f=0;f<1800 && ready<120;++f){
+            if(lb_field(c))++ready;else ready=0;
+            lb_frame(c,0);
+        }
+        a_require(ready==120,"shared fixture neutral field readiness");
+        fprintf(stderr,"ESHARE_FIELD_READY frame=%u stable=%u\n",lb_frames,ready);
     }
     unsigned char before[200]={0},party[200]={0},again[200]={0};e_party(c,"fixture",before);lb_position(c,96,5,20,20);
     e_original_frame=c->runFrame;c->runFrame=e_frame;
@@ -161,7 +179,8 @@ int main(int argc,char **argv){
         memcpy(reserve_moves,v->moves,sizeof(reserve_moves));memcpy(reserve_pp,v->points,sizeof(reserve_pp));
         e_expect(414,v->level,reserve_level,false,reserve_moves,reserve_pp);e_slots(c,1,414,reserve_level,reserve_moves,reserve_pp);
         a_require(!evo_begin && !evo_update && !evo_pulses && e_samples>0 && !e_reserve_entries,"nonparticipant shared EXP only");
-    }else a_require(level_frame<evo_begin && evo_begin<evo_update && evo_update<returned && evo_pulses,"battle EXP evolution scene");
+    }else a_require(level_frame<evo_update && evo_update<returned && evo_pulses
+        && (!evo_begin || (level_frame<evo_begin && evo_begin<evo_update)),"frame-observed battle EXP evolution scene");
     e_party(c,"returned",party);a_require(!memcmp(before,party,8) && read32(c,P03_SAVE_COUNTER)==2,"individual and unsaved counter");
     if(e_count==2)a_require(!memcmp(before+100,party+100,8),"reserve individual preserved");
     lb_resume_x=read16(c,lb_save1(c));lb_resume_y=read16(c,lb_save1(c)+2);
