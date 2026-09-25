@@ -1,0 +1,64 @@
+name: pr16-supply-followup-20260925
+# 未受入供給経路の後継実装。bootstrapでは保存済みnative/ARM/Wikiを再実行しない。
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-supply-followup-20260925.yml]
+permissions:
+  contents: read
+concurrency:
+  group: pr16-supply-followup-20260925
+  cancel-in-progress: false
+jobs:
+  source-contract:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: 保存受入の境界と実装用text sourceを固定
+        run: |
+          python3 -B - <<'PY'
+          import hashlib, json, os, subprocess, zipfile
+          from pathlib import Path
+          root=Path.cwd()
+          cp=json.loads(Path('content/modernization/pr16_natural_supply_checkpoint.json').read_text())
+          assert cp['status']=='PASS_NATURAL_SUPPLY_SCOPED'
+          assert cp['actions_completion_confirmed'] is True and cp['issue19_complete'] is False
+          assert len(cp['accepted'])==3
+          paths=subprocess.check_output(['git','ls-files','-z']).decode().rstrip('\0').split('\0')
+          exact={'AGENTS.md','CHATGPT_RESUME.md','README.md','design/current_state.md','design/agent_context_map.md','design/active_play_baseline.md','config/active_play_baseline.json','docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md','docs/PR16_LEARNSET_BASELINE_RESET_JA.md','docs/PR16_NATURAL_SUPPLY_JA.md','docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md','state/source-lock.json'}
+          terms=('learnset','natural','egg','wild','bp_chooser_checkpoint','p08_remaining','resume_20260913','p08_candidate_transfer','source_decision','creation','supply')
+          allowed={'.py','.c','.h','.s','.S','.inc','.asm','.json','.md','.yaml','.yml','.txt'}
+          out=Path('.local/pr16-supply-followup');out.mkdir(parents=True)
+          members={};total=0
+          with zipfile.ZipFile(out/'source-bundle.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for name in paths:
+                  p=Path(name)
+                  chosen=name in exact or p.name=='AGENTS.md'
+                  chosen |= len(p.parts)==2 and p.parts[0]=='scripts' and p.suffix=='.py'
+                  chosen |= p.parts[0]=='tests' and p.name.startswith('test_pr16') and p.suffix=='.py'
+                  chosen |= len(p.parts)==2 and p.parts[0]=='tools' and p.suffix=='.py'
+                  chosen |= len(p.parts)==2 and p.parts[0]=='config' and p.suffix=='.json'
+                  chosen |= len(p.parts)==3 and p.parts[:2]==('content','modernization') and p.suffix=='.json' and any(t in p.name for t in terms)
+                  chosen |= len(p.parts)==2 and p.parts[0]=='docs' and p.name.startswith('PR16_') and any(t in p.name.lower() for t in terms)
+                  if not chosen or p.suffix not in allowed or p.is_symlink():continue
+                  raw=p.read_bytes();raw.decode('utf-8');assert b'\0' not in raw,name
+                  assert len(raw)<16*1024*1024,name
+                  total+=len(raw);assert total<96*1024*1024,'限定text入力の容量超過'
+                  z.writestr(name,raw);members[name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+              z.writestr('tracked-paths.txt','\n'.join(paths)+'\n')
+              z.writestr('source-index.json',json.dumps({'source_head':os.environ['GITHUB_SHA'],'members':members},ensure_ascii=False,sort_keys=True,indent=2)+'\n')
+          result={'source_head':os.environ['GITHUB_SHA'],'accepted_natural_cases':sorted(cp['accepted']),'accepted_native_reruns':0,'arm_compiles':0,'rom_changes':0,'wiki_generations':0,'source_files':len(members),'source_bytes':total,'bundle_sha256':hashlib.sha256((out/'source-bundle.zip').read_bytes()).hexdigest()}
+          (out/'bootstrap.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
+          print(json.dumps(result,ensure_ascii=False))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-supply-followup-source
+          path: .local/pr16-supply-followup/
+          retention-days: 7
+          if-no-files-found: error
