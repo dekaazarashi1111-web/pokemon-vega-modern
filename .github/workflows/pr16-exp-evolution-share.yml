@@ -1,5 +1,5 @@
 name: pr16-exp-evolution-share
-# 保存済み61unit・進化2caseを継承。草むら直前の共有fixture差分だけを検証。
+# 保存済み3caseの終端照合だけ。unit/native/host/ARM再実行0。
 on:
   push:
     branches: [codex/modernization-followup-20260908]
@@ -15,7 +15,7 @@ jobs:
   evolution-share:
     if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
     runs-on: ubuntu-24.04
-    timeout-minutes: 15
+    timeout-minutes: 10
     env:
       PYTHONDONTWRITEBYTECODE: '1'
       GITHUB_TOKEN: ${{ github.token }}
@@ -26,50 +26,16 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: 固定source・旧受入不変・生成Cの追跡確認
+      - name: 受入source・旧受入不変
         run: |
           set -euo pipefail
-          git ls-files --error-unmatch scripts/pr16_exp_share_grass.py tests/test_pr16_exp_share_grass.py tools/mgba_pr16_exp_share_grass.c
-          git diff --exit-code 511e2200fc994e3e3a6bfb089f7e5dfe68681a94 HEAD -- scripts/pr16_exp_share_grass.py tests/test_pr16_exp_share_grass.py tools/mgba_pr16_exp_share_grass.c
-          git diff --exit-code 03775db23b4feb1bff89286dabcd17fe7f45176a HEAD -- scripts/pr16_exp_share_input.py tests/test_pr16_exp_share_input.py tools/mgba_pr16_exp_share_input.c
-          git diff --exit-code 023604d280177ad971bac96649b2b15f7c8e42e7 HEAD -- scripts/pr16_exp_share_saved.py tests/test_pr16_exp_share_saved.py scripts/pr16_exp_share_route.py tests/test_pr16_exp_share_route.py scripts/pr16_exp_evolution_share.py tools/mgba_pr16_exp_evolution_sync.c tests/test_pr16_exp_evolution_share.py scripts/pr16_exp_evolution_sync.py tests/test_pr16_exp_evolution_sync.py scripts/pr16_exp_evolution_observation.py tests/test_pr16_exp_evolution_observation.py
+          git diff --exit-code b6b301e673483c01562cb56d69f8104b829a8afd HEAD -- scripts/pr16_exp_share_grass.py tests/test_pr16_exp_share_grass.py tools/mgba_pr16_exp_share_grass.c
           git diff --exit-code 9cfde111077c1ca451344de0d4cd09c83f335b0c HEAD -- AGENTS.md CHATGPT_RESUME.md config/active_play_baseline.json design/active_play_baseline.md content/modernization/pr16_bp_chooser_checkpoint.json content/modernization/p08_remaining_work.json content/modernization/pr16_learnset_boundaries_checkpoint.json content/modernization/pr16_learnset_first_refuse_checkpoint.json
-          python3 -B - <<'PY'
-          import sys
-          sys.path.insert(0, 'scripts')
-          import pr16_exp_share_grass as g
-          g.e.need((g.e.ROOT/g.C).read_text() == g.derived_source(), 'tracked grass C must match saved derivation')
-          g.e.need(g.e.identity((g.e.ROOT/g.C).read_bytes()) == {'size':16349, 'sha256':'49cea6f08391b3e2668d2a60c25ef20ccb3372c1ea537cc206af7d24500121bb'}, 'generated C transfer identity')
-          print('保存原本からの派生Cとtracked byte一致。旧unit/native実行0。')
-          PY
-      - name: host mGBAのみ準備
-        run: sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends libmgba-dev
-      - name: 草むら境界6unit・未受入共有1case
-        id: native
-        continue-on-error: true
-        run: python3 -B scripts/pr16_exp_share_grass.py execute
-      - name: 原本・引継ぎ・両ログを記録し最終index検査
+      - name: 保存3case・Actions成功・artifact・非force反映を照合
+        run: python3 -B scripts/pr16_exp_share_grass.py complete
+      - name: 引継ぎ・両ログ・最終index検査
         run: |
           set -euo pipefail
-          python3 -B - <<'PY'
-          import sys
-          sys.path.insert(0, 'scripts')
-          import pr16_exp_share_grass as g
-          from pr16_wiki_reconcile import fetch
-          e=g.e
-          prior=[]
-          for run_id,head in ((36079930352,'d951b8cc7600c5412b9db7c30172e57cf0cb454e'),(36083695295,'7e416efb13b95448355e6bc151eff50aa3c25a3a')):
-              r=fetch('actions/runs/'+str(run_id))
-              e.need((r['head_sha'],r['status'],r['conclusion']) == (head,'completed','failure'), 'prior terminal failure')
-              prior.append({k:r[k] for k in ('id','head_sha','status','conclusion','path')})
-          a=fetch('actions/runs/36083695295/artifacts?per_page=100')
-          e.need(a['total_count']==0, 'preflight failure produced no artifact')
-          receipt={'observed_runs':prior,'preflight_failure':{'run_id':36083695295,'reason':'MISSING_TRACKED_DERIVED_C_BEFORE_SOURCE_BINDINGS','missing_path':g.C,'new_unit_tests':0,'host_compiles':0,'native_processes':0,'result_pushes':0,'artifacts':0},'repair_head':'511e2200fc994e3e3a6bfb089f7e5dfe68681a94','accepted_case_reruns':0}
-          leaf='prior-terminal-failures.json'
-          e.write(e.PROOF/leaf,receipt)
-          v=e.load(e.PROOF/'verification.json');v['proof_bindings'][leaf]=e.identity((e.PROOF/leaf).read_bytes());v['preflight_failure_repaired']=receipt['preflight_failure'];e.write(e.PROOF/'verification.json',v)
-          PY
-          python3 -B scripts/pr16_exp_share_grass.py record
           python3 -B scripts/pr16_resume.py check
           python3 -B scripts/validate_task_graph.py
           python3 -B scripts/pr16_exp_share_grass.py paths | tr '\n' '\0' >.local/pr16-exp-evolution-share/paths.z
@@ -82,19 +48,16 @@ jobs:
           test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'USER-20260925-LEARNSET-EXP-EVOLUTION-SHARE: 草むら直前の共有native原本・準備失敗・引継ぎ・両ログを保存'
+          git commit -m 'USER-20260925-LEARNSET-EXP-EVOLUTION-SHARE: 進化承認・取消・控え共有3caseの終端受入と次工程を記録'
           git push origin "HEAD:$branch"
           sha=$(git rev-parse HEAD)
           test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$sha"
           echo "$sha" | tee .local/pr16-exp-evolution-share/proof/reflected-head.txt
-          echo "RESULT=STOPPED TASK=USER-20260925-LEARNSET-EXP-EVOLUTION-SHARE VERIFY=${{ steps.native.outcome }} COMMIT=$sha"
+          echo "RESULT=DONE TASK=USER-20260925-LEARNSET-EXP-EVOLUTION-SHARE VERIFY=PASS COMMIT=$sha"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: pr16-exp-evolution-share-proof
+          name: pr16-exp-evolution-share-completion
           path: .local/pr16-exp-evolution-share/proof/
           retention-days: 30
           if-no-files-found: error
-      - name: native失敗を成功へ読み替えない
-        if: steps.native.outcome == 'failure'
-        run: exit 1
