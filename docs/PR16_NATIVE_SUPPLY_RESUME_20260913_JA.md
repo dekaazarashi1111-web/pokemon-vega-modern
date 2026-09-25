@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-Issue19: 戦闘EXP進化/共有 2/3。PARTIAL_BATTLE_EXP_EVOLUTION_SHARE。Actions終端=False、全体未完。
+Issue19: 戦闘EXP進化/共有 3/3。PASS_BATTLE_EXP_EVOLUTION_SHARE。Actions終端=False、全体未完。
 
-**次: 今回の失敗原本を保持し未受入caseだけ修復する。保存成功caseと旧EXP4/最初の質問拒否/アメ11/Bag23/egg8は再実行しない。**
+**次: 保存3case成功を再実行せずcompleteでActions終端・push・artifactだけ照合する。**
 
 特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `d951b8cc7600c5412b9db7c30172e57cf0cb454e`。
+証拠のsource HEAD: `b6b301e673483c01562cb56d69f8104b829a8afd`。
 戦闘EXP進化承認/取消と控え共有の限定追加。旧受入は不変。native原本とActions終端を区別。
 
 ## 最短の再開手順
@@ -27,8 +27,8 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 
 - `docs/PR16_EXP_EVOLUTION_SHARE_JA.md`
 - `content/modernization/pr16_exp_evolution_share_checkpoint.json`
-- `scripts/pr16_exp_share_input.py`
-- `tests/test_pr16_exp_share_input.py`
+- `scripts/pr16_exp_share_grass.py`
+- `tests/test_pr16_exp_share_grass.py`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
