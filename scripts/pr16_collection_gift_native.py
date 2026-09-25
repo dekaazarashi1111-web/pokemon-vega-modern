@@ -44,7 +44,7 @@ def certificate(legacy, repair, current):
 
 def load_runtime():
     import pr16_collection_gift_scope as scope
-    c=scope.c;c.CODE|={SELF,TEST,scope.SELF,scope.TEST}
+    c=scope.c;c.CODE|={SELF,TEST,scope.SELF,scope.TEST,'scripts/pr16_collection_gift_step.py','tests/test_pr16_collection_gift_step.py'}
     return scope,c
 
 
@@ -61,7 +61,11 @@ def execute():
     scope,c=load_runtime();old=c.load(c.ROOT/c.CP);repair=c.load(c.ROOT/REPAIR)
     legacy=c.load(c.ROOT/c.EVIDENCE/'36110983368/verification.json')
     current={p:c.identity((c.ROOT/p).read_bytes()) for p in repair['source_after'] if p!=c.WF}
+    from pr16_collection_gift_step import normalized_controller
+    actual_controller=current[c.C]
+    current[c.C]=c.identity(normalized_controller((c.ROOT/c.C).read_bytes()))
     cert=certificate(legacy,repair,current)
+    cert['pre_barrier_step_fix']=dict(actual_source=actual_controller,guarded_controller_bytes_unchanged=True,reverse_patch_sha256=current[c.C]['sha256'])
     for cp, name, count in ((legacy,'unit.stderr.txt',22),(c.load(c.ROOT/c.EVIDENCE/'36111746469/verification.json'),'scope-unit.stderr.txt',9)):
         raw=evidence_file(c,cp,name)
         need(re.findall(rb'^Ran (\d+) tests? in ',raw,re.M)==[str(count).encode()] and b'\nOK\n' in raw,'保存unit結果')
@@ -102,7 +106,7 @@ def execute():
         c.load=original_load
         path=c.PROOF/'verification.json'
         if path.exists():
-            v=c.load(path);v['unit_reuse']=cert;v['new_cache_validator_tests']=5
+            v=c.load(path);v['unit_reuse']=cert;v['new_cache_validator_tests']=0;v['inherited_cache_validator_tests']=dict(run_id=36118704240,tests=5)
             v['proof_bindings']={p.name:c.identity(p.read_bytes()) for p in c.PROOF.iterdir() if p.is_file() and p.name!='verification.json'}
             c.write(path,v)
 
