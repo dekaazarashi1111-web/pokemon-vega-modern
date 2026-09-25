@@ -1,5 +1,5 @@
 name: pr16-supply-followup-20260925
-# 配布前fixtureの1マス歩行だけを修復し保存。native再実行0。
+# 歩行fixture修復済み。保存unitのみ継承して未受入17nativeを続行。
 on:
   push:
     branches: [codex/modernization-followup-20260908]
@@ -12,10 +12,10 @@ concurrency:
   group: pr16-supply-followup-20260925
   cancel-in-progress: false
 jobs:
-  collection-step-repair:
+  collection-gifts:
     if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
     runs-on: ubuntu-24.04
-    timeout-minutes: 15
+    timeout-minutes: 45
     env:
       PYTHONDONTWRITEBYTECODE: '1'
       GITHUB_TOKEN: ${{ github.token }}
@@ -26,25 +26,76 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: 観測前の歩行修復・新1試験・引継ぎ両ログ・index検査
-        run: python3 -B scripts/pr16_collection_gift_step.py
-      - name: 修復を同branchへ非force commit/push
+      - name: 歩行修復1試験とcache5試験の保存原本を継承
+        run: |
+          python3 -B - <<'PY'
+          import ast,hashlib,json,subprocess,sys
+          from pathlib import Path
+          sys.path.insert(0,'scripts')
+          from pr16_wiki_reconcile import fetch
+          root=Path('content/modernization/pr16_collection_gifts_evidence')
+          proof=json.loads((root/'36119223729/step-repair.json').read_bytes())
+          raw=Path('tools/mgba_pr16_collection_gifts.c').read_bytes()
+          assert proof['source_after']=={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+          run=fetch('actions/runs/36119223729')
+          assert run['status']=='completed' and run['conclusion']=='success' and run['head_sha']==proof['input_head']
+          v=json.loads((root/'36118704240/verification.json').read_bytes())
+          test='tests/test_pr16_collection_gift_native.py';raw=Path(test).read_bytes()
+          assert v['source_bindings'][test]=={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+          source='scripts/pr16_collection_gift_native.py'
+          original=subprocess.check_output(['git','show',v['source_head']+':'+source])
+          def function(text):
+              return ast.dump(next(n for n in ast.parse(text).body if isinstance(n,ast.FunctionDef) and n.name=='certificate'),include_attributes=False)
+          assert function(original)==function(Path(source).read_bytes())
+          raw=(root/'36118704240/cache-unit.stderr.txt').read_bytes()
+          assert v['proof_bindings']['cache-unit.stderr.txt']=={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+          assert b'Ran 5 tests' in raw and b'\nOK\n' in raw
+          print('PASS: step1/cache5原本継承、新規unit実行0')
+          PY
+      - name: 未受入配布用host libraryだけを導入
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends libmgba-dev
+      - name: 旧unit継承・未受入Collection配布のみ
+        id: native
+        continue-on-error: true
+        run: python3 -B scripts/pr16_collection_gift_native.py execute
+      - name: 成功と失敗の原本・引継ぎ両ログを保存
+        run: |
+          set -euo pipefail
+          python3 -B scripts/pr16_collection_gift_native.py record
+          python3 -B scripts/pr16_resume.py check
+          python3 -B scripts/validate_task_graph.py
+          python3 -B scripts/pr16_collection_gift_native.py paths | tr '\n' '\0' >.local/pr16-collection-gifts/paths.z
+          git add --pathspec-from-file=.local/pr16-collection-gifts/paths.z --pathspec-file-nul
+          python3 -B scripts/pr16_collection_gift_native.py guard
+      - name: 同branchへ非force commit/push・remote照合
         run: |
           set -euo pipefail
           branch='codex/modernization-followup-20260908'
           test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'USER-20260925-COLLECTION-STEP: guard前の1マス移動と位置診断を修復・保存'
+          git commit -m 'USER-20260925-COLLECTION-GIFTS: 座標待ちBG受付の配布実測と引継ぎを保存'
           git push origin "HEAD:$branch"
           sha=$(git rev-parse HEAD)
           test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$sha"
-          echo "$sha" | tee .local/pr16-collection-step/reflected-head.txt
-          echo "RESULT=DONE TASK=USER-20260925-COLLECTION-STEP VERIFY=PASS COMMIT=$sha"
+          echo "$sha" | tee .local/pr16-collection-gifts/proof/reflected-head.txt
+          echo "RESULT=STOPPED TASK=USER-20260925-COLLECTION-GIFTS VERIFY=${{ steps.native.outcome }} COMMIT=$sha"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: pr16-collection-step-repair
-          path: .local/pr16-collection-step/
+          name: pr16-collection-gifts-proof
+          path: .local/pr16-collection-gifts/proof/
           retention-days: 30
           if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-collection-gifts-screens
+          path: .local/pr16-collection-gifts/screens/*.ppm
+          retention-days: 30
+          if-no-files-found: ignore
+      - name: 失敗をrun成功へ読み替えない
+        if: steps.native.outcome != 'success'
+        run: exit 1
