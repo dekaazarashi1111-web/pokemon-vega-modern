@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-Issue19: 戦闘EXP進化/共有 3/3。PASS_BATTLE_EXP_EVOLUTION_SHARE。Actions終端=True、全体未完。
+Issue19: 自然供給2/3。PARTIAL_NATURAL_SUPPLY。全体未完。
 
-**次: Issue19: 戦闘EXP進化承認/B取消と控え共有EXP・通常Save/fresh Continueの3caseは限定受入済み。保存成功を再実行せず、次は未受入の自然配布/孵化/form、続いて釣り/隠し野生の特殊技順。旧EXP4/最初の質問拒否/アメ11/Bag23/egg8/野生初期技/旧host・ARM・Wikiは変更影響なし。全owner/Issue19/release/baseline切替は未完。**
+**次: 自然供給checkpointの失敗原本を確認し、未成功caseだけ修復。保存成功/旧受入は再実行しない。**
 
 特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `57ffbf5ef45a2aa74cf35e4d9bfa3c2b8235c14f`。
-受入済み戦闘EXP進化/共有3caseの記録終端。native・unit・host・ARM再実行0。成功と準備/記録失敗は別HEADの原本として保持。
+証拠のsource HEAD: `e98e3a2581419a721e3e3ad7b0f351ba84371119`。
+自然供給限定caseのsource/保存原本。旧受入・全体完成とは別。
 
 ## 最短の再開手順
 
@@ -25,10 +25,10 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_EXP_EVOLUTION_SHARE_JA.md`
-- `content/modernization/pr16_exp_evolution_share_checkpoint.json`
-- `scripts/pr16_exp_share_grass.py`
-- `tests/test_pr16_exp_share_grass.py`
+- `docs/PR16_NATURAL_SUPPLY_JA.md`
+- `content/modernization/pr16_natural_supply_checkpoint.json`
+- `scripts/pr16_natural_supply.py`
+- `tests/test_pr16_natural_supply.py`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -328,6 +328,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-保存native成功・受入記録成功・source-validation成功を別HEADで照合。準備/記録失敗はfailureのまま。詳細はlearnset_exp_evolution_share_closeout。最新記録HEADでnativeを再実行したとは主張しない。
+保存成功/失敗とActions終端を区別。一般CI action_requiredを成功へ昇格しない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "Issue19: 戦闘EXP進化/共有 3/3。PASS_BATTLE_EXP_EVOLUTION_SHARE。Actions終端=True、全体未完。",
+    "current_stop": "Issue19: 自然供給2/3。PARTIAL_NATURAL_SUPPLY。全体未完。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "Issue19: 戦闘EXP進化承認/B取消と控え共有EXP・通常Save/fresh Continueの3caseは限定受入済み。保存成功を再実行せず、次は未受入の自然配布/孵化/form、続いて釣り/隠し野生の特殊技順。旧EXP4/最初の質問拒否/アメ11/Bag23/egg8/野生初期技/旧host・ARM・Wikiは変更影響なし。全owner/Issue19/release/baseline切替は未完。",
+    "next_step": "自然供給checkpointの失敗原本を確認し、未成功caseだけ修復。保存成功/旧受入は再実行しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -2190,6 +2190,25 @@
     "successful_cases": 1,
     "wild_only_repair": true
   },
+  "learnset_natural_supply": {
+    "accepted_cases": [
+      "caterpie-initial-hatch",
+      "leepun-initial-hatch"
+    ],
+    "actions_completion_confirmed": false,
+    "candidate": {
+      "sha256": "b7790902733a638445129c388d65ab3c199bceb92a41338e0069221b556b9f91",
+      "size": 33554432
+    },
+    "issue19_complete": false,
+    "path": "content/modernization/pr16_natural_supply_checkpoint.json",
+    "pending_cases": [
+      "floette-eternal-npc-initial"
+    ],
+    "run_id": 36102544792,
+    "source_head": "e98e3a2581419a721e3e3ad7b0f351ba84371119",
+    "status": "PARTIAL_NATURAL_SUPPLY"
+  },
   "learnset_payloads": {
     "actions_completion_confirmed": true,
     "audit": {
@@ -3736,29 +3755,29 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "Issue19: 戦闘EXP進化承認/B取消と控え共有EXP・通常Save/fresh Continueの3caseは限定受入済み。保存成功を再実行せず、次は未受入の自然配布/孵化/form、続いて釣り/隠し野生の特殊技順。旧EXP4/最初の質問拒否/アメ11/Bag23/egg8/野生初期技/旧host・ARM・Wikiは変更影響なし。全owner/Issue19/release/baseline切替は未完。",
+    "goal_ja": "自然供給checkpointの失敗原本を確認し、未成功caseだけ修復。保存成功/旧受入は再実行しない。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
-    "id": "LEARNSET_EXP_EVOLUTION_SHARE",
+    "id": "NATURAL_SUPPLY",
     "read_paths": [
-      "docs/PR16_EXP_EVOLUTION_SHARE_JA.md",
-      "content/modernization/pr16_exp_evolution_share_checkpoint.json",
-      "scripts/pr16_exp_share_grass.py",
-      "tests/test_pr16_exp_share_grass.py"
+      "docs/PR16_NATURAL_SUPPLY_JA.md",
+      "content/modernization/pr16_natural_supply_checkpoint.json",
+      "scripts/pr16_natural_supply.py",
+      "tests/test_pr16_natural_supply.py"
     ],
     "stop_rule_ja": "特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。"
   },
   "observed_date_jst": "2026-09-25",
-  "observed_head": "57ffbf5ef45a2aa74cf35e4d9bfa3c2b8235c14f",
+  "observed_head": "e98e3a2581419a721e3e3ad7b0f351ba84371119",
   "observed_head_checks": {
-    "reason_ja": "保存native成功・受入記録成功・source-validation成功を別HEADで照合。準備/記録失敗はfailureのまま。詳細はlearnset_exp_evolution_share_closeout。最新記録HEADでnativeを再実行したとは主張しない。",
+    "reason_ja": "保存成功/失敗とActions終端を区別。一般CI action_requiredを成功へ昇格しない。",
     "runs": [
       {
-        "conclusion": "success",
-        "id": 36084083370,
-        "status": "completed"
+        "conclusion": null,
+        "id": 36102544792,
+        "status": "in_progress"
       }
     ],
-    "scope_head": "b6b301e673483c01562cb56d69f8104b829a8afd"
+    "scope_head": "e98e3a2581419a721e3e3ad7b0f351ba84371119"
   },
   "observed_head_history": [
     {
@@ -5112,7 +5131,7 @@
       "semantics": "PLA1圧縮と新規供給consumerのhost検証成功入力HEAD。ROM配置/実操作/記録commitの受入ではない。"
     }
   ],
-  "observed_head_semantics": "受入済み戦闘EXP進化/共有3caseの記録終端。native・unit・host・ARM再実行0。成功と準備/記録失敗は別HEADの原本として保持。",
+  "observed_head_semantics": "自然供給限定caseのsource/保存原本。旧受入・全体完成とは別。",
   "p08_candidate_impact": {
     "candidate": {
       "crc32": "CC068B4A",
@@ -6352,6 +6371,10 @@
       "sha256": "39a1da8df8394904ce40035e8dda3fddf11fba43a9a09c969e6e7e37b1e2a209",
       "size": 3496
     },
+    ".github/workflows/pr16-natural-supply-20260925.yml": {
+      "sha256": "ed6d5b22af0d7c60791d4e2ddac1d8a19acec2423c553e351c103626db8714a3",
+      "size": 3626
+    },
     ".github/workflows/pr16-p05-native-supply-evidence-map.yml": {
       "sha256": "b6e715faf64cdc8b74da02b953840ea04aa03b304cf2eef08ef445c5cbb002eb",
       "size": 12319
@@ -7512,6 +7535,10 @@
       "sha256": "4c200406ab0a3895a44a82cb81d71dde1f99aaa1a281eba1da3e851062bf1808",
       "size": 9673
     },
+    "content/modernization/pr16_natural_supply_checkpoint.json": {
+      "sha256": "b65e84a94fdccdade4e2105f2d0786a8760b51576feb87c962b92091c7f1f501",
+      "size": 22748
+    },
     "content/modernization/pr16_p08_bp_acceptance.json": {
       "sha256": "53fb3c843c1f7ff3468365abea5c22570f6339401c4cf5dff7428f95e6b38352",
       "size": 37231
@@ -8319,6 +8346,10 @@
     "docs/PR16_LEARNSET_WIKI_JA.md": {
       "sha256": "4c56bb8319bc491d0f4684d897ab5391248ccb85c7fdbd682464fb5e1efccaf4",
       "size": 2681
+    },
+    "docs/PR16_NATURAL_SUPPLY_JA.md": {
+      "sha256": "26c3de8b2eaa2e0330500d6fc1a8e4fdae54dfeaeb0ca5b8e9c0fc336b106d57",
+      "size": 1340
     },
     "docs/PR16_VEGA_ORIGINAL_AUDIT_JA.md": {
       "sha256": "b9ee1dd32da36d9fe3d04aa1663afa0f2e6cc37aef491437dd2443a5870fb2d4",
@@ -12524,6 +12555,10 @@
       "sha256": "0521380ce7d4cf19a1a0e79f591187a318b79f08d022fdf85c6912817b747da3",
       "size": 17181
     },
+    "scripts/pr16_natural_supply.py": {
+      "sha256": "9c29301c8b9f227d918ed201244d7e0c1123457cf5ee2513eae22ba3b1da213a",
+      "size": 21963
+    },
     "scripts/pr16_p05_native_supply_evidence_map.py": {
       "sha256": "55c40230901fc3d58174af46927e28d64bec4cc25acac4ae4cde2b48f739ff55",
       "size": 17044
@@ -13780,6 +13815,10 @@
       "sha256": "3b2ea9ac4675d36a11cf01e8c3c996d8aeecca1ba5ba9f707ffc53701f0d650a",
       "size": 5270
     },
+    "tests/test_pr16_natural_supply.py": {
+      "sha256": "2594cadafe2c8f48b7d12820b8f20c43ab1700f29beeea4ac9237386fe1738d7",
+      "size": 5834
+    },
     "tests/test_pr16_p05_native_supply_evidence_map.py": {
       "sha256": "053bb21ba8d94da9121e2dac3c7429f4ecb607e36d65aafee0b96e06a6e2032e",
       "size": 5839
@@ -14635,6 +14674,10 @@
     "tools/mgba_pr16_learnset_progression.c": {
       "sha256": "e6dd7435386707c65fdd5c945c2bb66cdec7b499c1d3d0a9ee4d69105cf992a0",
       "size": 10772
+    },
+    "tools/mgba_pr16_natural_gift.c": {
+      "sha256": "61f818fb88d644cc1e4e41551ed670d3d5fdf9666e193f504245e0ce9f858a66",
+      "size": 5605
     },
     "tools/mgba_pr16_p08_bp_lifecycle.h": {
       "sha256": "dc93904fff666a88a3b354026262ba8066289c813b7232e93b795590080970fc",

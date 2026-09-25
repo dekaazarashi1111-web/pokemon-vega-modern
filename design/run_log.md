@@ -9856,3 +9856,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: run/head/path/branch/job/全成功step・source hashes・commit祖先・MD/JSON・task graph・staged guard。今回unit/native/host/ARM再実行0、ROM変更0。
 - Commit: 同branchへ非force pushし、reflected-head.txtとremote refで照合。
 - Network: GitHub Actionsの終端metadataだけ。保存成功の再実行・原本再生成・merge・release・baseline切替なし。
+
+## 2026-09-25T06:29:09.837019+00:00
+- Timestamp: 2026-09-25T06:29:09.837019+00:00
+- Task: USER-20260925-NATURAL-SUPPLY / 通常配布・原本初期技孵化
+- Version: issue19-natural-supply-v1
+- Status: STOPPED（保存原本から未完のみ継続）
+- Summary: 2/3成功、未成功['floette-eternal-npc-initial']。親/場所/進行/Ringはfixture、取得・孵化・保存区間の7host書込APIを拒否。
+- Files changed: 専用driver/C/tests/workflow、checkpoint/guide/text証拠、固定引継ぎMD/JSON、両ログ。
+- Verify: unit 20 host 2 native 3。Actions終端=False。終端照合専用=False（専用時の全実行0）。ROM/ARM/旧受入case/Wiki再実行0。
+- Commit: 同branchへ非force push。reflected-head.txtとremoteを照合。
+- Network: GitHub固定source/artifact/Actions。source取得run36101411033/36101572572は検証ではなく転送のみ。原本再生成・merge/release/baseline切替なし。
