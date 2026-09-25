@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "Issue19: 戦闘EXP進化/共有 3/3。PASS_BATTLE_EXP_EVOLUTION_SHARE。Actions終端=False、全体未完。",
+    "current_stop": "Issue19: 戦闘EXP進化/共有 3/3。PASS_BATTLE_EXP_EVOLUTION_SHARE。Actions終端=True、全体未完。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "保存3case成功を再実行せずcompleteでActions終端・push・artifactだけ照合する。",
+    "next_step": "Issue19: 戦闘EXP進化承認/B取消と控え共有EXP・通常Save/fresh Continueの3caseは限定受入済み。保存成功を再実行せず、次は未受入の自然配布/孵化/form、続いて釣り/隠し野生の特殊技順。旧EXP4/最初の質問拒否/アメ11/Bag23/egg8/野生初期技/旧host・ARM・Wikiは変更影響なし。全owner/Issue19/release/baseline切替は未完。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -1677,7 +1677,7 @@
       "metapod-exp-evolve"
     ],
     "accepted_native_reruns": 0,
-    "actions_completion_confirmed": false,
+    "actions_completion_confirmed": true,
     "host_compiles": 1,
     "issue19_complete": false,
     "native_processes": 1,
@@ -3729,7 +3729,7 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "保存3case成功を再実行せずcompleteでActions終端・push・artifactだけ照合する。",
+    "goal_ja": "Issue19: 戦闘EXP進化承認/B取消と控え共有EXP・通常Save/fresh Continueの3caseは限定受入済み。保存成功を再実行せず、次は未受入の自然配布/孵化/form、続いて釣り/隠し野生の特殊技順。旧EXP4/最初の質問拒否/アメ11/Bag23/egg8/野生初期技/旧host・ARM・Wikiは変更影響なし。全owner/Issue19/release/baseline切替は未完。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
     "id": "LEARNSET_EXP_EVOLUTION_SHARE",
     "read_paths": [
@@ -3741,14 +3741,14 @@
     "stop_rule_ja": "特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。"
   },
   "observed_date_jst": "2026-09-22",
-  "observed_head": "b6b301e673483c01562cb56d69f8104b829a8afd",
+  "observed_head": "6dfc3ba9a99424d87e6b199fd536b4ae14609b93",
   "observed_head_checks": {
     "reason_ja": "一般CI action_requiredを成功に昇格しない。最新観測はcheckpointのobserved_recent_actions。",
     "runs": [
       {
-        "conclusion": null,
+        "conclusion": "success",
         "id": 36084083370,
-        "status": "in_progress"
+        "status": "completed"
       }
     ],
     "scope_head": "b6b301e673483c01562cb56d69f8104b829a8afd"
@@ -6278,8 +6278,8 @@
       "size": 1851
     },
     ".github/workflows/pr16-exp-evolution-share.yml": {
-      "sha256": "f0aa4697bd3fd663cc50f03dde910934d658d237c3923c9051398923865a4e50",
-      "size": 6490
+      "sha256": "498020e1c791dff4168313b647c7422dbc1d2b3af44c92c25ee12846ed65ab00",
+      "size": 3257
     },
     ".github/workflows/pr16-learnset-baseline-proof-closeout.yml": {
       "sha256": "2c6bbed55a37a2544d4704d17bf80271c129a29c521ed9c5836b21e563ea7eaa",
@@ -7374,8 +7374,8 @@
       "size": 2600
     },
     "content/modernization/pr16_exp_evolution_share_checkpoint.json": {
-      "sha256": "337b45493c53cd6107b7a515cd646dd4bfa61682b65460c8f61e1cd92d20ae98",
-      "size": 43762
+      "sha256": "2ddb6d6e310ae494f340469bcfb9e639e878e199206c8a62a07c74ba2170f176",
+      "size": 44290
     },
     "content/modernization/pr16_exp_evolution_share_evidence/36079225466/shared-route.c": {
       "sha256": "b2c519bc64ebe7e62edd67ae0773243e02e4c3df9fb3c501a1eaab6a477b01b2",
@@ -8258,8 +8258,8 @@
       "size": 1140469
     },
     "docs/PR16_EXP_EVOLUTION_SHARE_JA.md": {
-      "sha256": "d8c136b07b524b641e6b92e5a5432845fab78d90386c76782a9d3aa5d66849cd",
-      "size": 1220
+      "sha256": "91bf0315d0ac20772a0caa27b4528df27916d52f1c3750f3b2acc331b41628a7",
+      "size": 1522
     },
     "docs/PR16_LEARNSET_BASELINE_RESET_JA.md": {
       "sha256": "4924be1b5cfa324fe72cff599758ebb467eae8d25911a085c2d444f3b1f3ab6a",

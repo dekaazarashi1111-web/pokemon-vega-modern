@@ -1,6 +1,6 @@
 # PR16 Issue19: 戦闘EXP進化と控え共有
 
-状態 `PASS_BATTLE_EXP_EVOLUTION_SHARE`。入力HEAD `b6b301e673483c01562cb56d69f8104b829a8afd`、run `36084083370`。Actions終端確認 `False`。
+状態 `PASS_BATTLE_EXP_EVOLUTION_SHARE`。入力HEAD `b6b301e673483c01562cb56d69f8104b829a8afd`、run `36084083370`。Actions終端確認 `True`。
 
 候補 `b7790902733a638445129c388d65ab3c199bceb92a41338e0069221b556b9f91` / 33554432 bytesは保存recipeを復元。ROM変更0、ARM0、旧受入native再実行0。
 
@@ -10,4 +10,4 @@ Metapodの戦闘EXP進化承認とB取消、2体Butterfreeの控え共有EXPを�
 
 ## 次の未完工程
 
-保存3case成功を再実行せずcompleteでActions終端・push・artifactだけ照合する。
+Issue19: 戦闘EXP進化承認/B取消と控え共有EXP・通常Save/fresh Continueの3caseは限定受入済み。保存成功を再実行せず、次は未受入の自然配布/孵化/form、続いて釣り/隠し野生の特殊技順。旧EXP4/最初の質問拒否/アメ11/Bag23/egg8/野生初期技/旧host・ARM・Wikiは変更影響なし。全owner/Issue19/release/baseline切替は未完。
