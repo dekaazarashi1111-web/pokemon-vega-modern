@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "研究保存初期化/V1 RAM移行の5ケースと15fresh coreを受入。次はphase0実失敗とV1 load adapter。成功済み5件/旧18境界/unit22は再実行しない。通常new-game/取引UI・全catalog・map3/19除外130行は別の未完境界。",
+    "current_stop": "初期化/V1 RAM正常・破損拒否5件に加え、phase0既存native保存不可3/3件を記録。次は同一coreの失敗後再試行とV1通常load adapter。特にEMPTY失敗後はV2 RAMを残してblockedとなるため、再試行時の永続化をまだ保証していない。受入済み5/18/phase0成功ケースを再実行しない。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "研究保存初期化/V1 RAM移行の5ケースと15fresh coreを受入。次はphase0実失敗とV1 load adapter。成功済み5件/旧18境界/unit22は再実行しない。通常new-game/取引UI・全catalog・map3/19除外130行は別の未完境界。",
+    "next_step": "初期化/V1 RAM正常・破損拒否5件に加え、phase0既存native保存不可3/3件を記録。次は同一coreの失敗後再試行とV1通常load adapter。特にEMPTY失敗後はV2 RAMを残してblockedとなるため、再試行時の永続化をまだ保証していない。受入済み5/18/phase0成功ケースを再実行しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -4162,44 +4162,35 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "研究保存初期化/V1 RAM移行の5ケースと15fresh coreを受入。次はphase0実失敗とV1 load adapter。成功済み5件/旧18境界/unit22は再実行しない。通常new-game/取引UI・全catalog・map3/19除外130行は別の未完境界。",
+    "goal_ja": "初期化/V1 RAM正常・破損拒否5件に加え、phase0既存native保存不可3/3件を記録。次は同一coreの失敗後再試行とV1通常load adapter。特にEMPTY失敗後はV2 RAMを残してblockedとなるため、再試行時の永続化をまだ保証していない。受入済み5/18/phase0成功ケースを再実行しない。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
-    "id": "RESEARCH_PHASE0_FAILURE_AND_LOAD_NEXT",
+    "id": "RESEARCH_RETRY_AND_V1_LOAD_NEXT",
     "read_paths": [
+      "docs/PR16_RESEARCH_PHASE0_JA.md",
+      "content/modernization/pr16_research_phase0_checkpoint.json",
       "docs/PR16_RESEARCH_LIFECYCLE_JA.md",
       "content/modernization/pr16_research_lifecycle_checkpoint.json",
-      "scripts/pr16_research_lifecycle_record.py",
-      "tools/mgba_pr16_research_lifecycle.c",
+      "scripts/pr16_research_phase0_actions.py",
+      "scripts/pr16_research_phase0.py",
+      "tools/mgba_pr16_research_phase0.c",
       "overlays/research_economy_v1/research_economy_v1.c",
       "config/research_economy_v1.json"
     ],
-    "stop_rule_ja": "同一候補とsource/原本bindingを保持。RAMサービス試験を通常UI/new-game/V1保存loadへ昇格しない。phase!=0の既存故障flagをphase0故障と扱わない。既受入nativeの再実行禁止。merge/release/baseline切替禁止。"
+    "stop_rule_ja": "候補4aee03e8/source/原本を固定。保存不可RAM fixtureを実Flash装置故障・同一core retry・通常new-game/UIに昇格しない。旧5/18/特殊野生/BP/P08再実行禁止。merge/release/baseline変更禁止。"
   },
   "observed_date_jst": "2026-09-25",
-  "observed_head": "a5f00ea25dcde3056ee1fe2cf83c0f597a8f8b0b",
+  "observed_head": "4946ff7f22401b260362ca6d6be7e7cb4bd1c460",
   "observed_head_checks": {
-    "reason_ja": "native5件はPASS、元runは末尾空白diff check failureを保持。記録成功と全CI成功を区別する。",
+    "reason_ja": "限定phase0のみ。終端確認前にsuccessを自己確定せず、一般CI全体成功は主張しない。",
     "runs": [
       {
-        "conclusion": "failure",
-        "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "17871a2bb5701a547594cd11b0ece35382ff0748",
-        "id": 36234024026,
-        "path": ".github/workflows/pr16-research-lifecycle-v2-20260926.yml",
-        "run_attempt": 1,
-        "status": "completed"
-      },
-      {
-        "conclusion": "success",
-        "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "60f2ae1f8db456a357b45d570c59860ea7a3e7d2",
-        "id": 36234510967,
-        "path": ".github/workflows/pr16-research-lifecycle-record-20260926.yml",
-        "run_attempt": 1,
-        "status": "completed"
+        "conclusion": null,
+        "head_sha": "4946ff7f22401b260362ca6d6be7e7cb4bd1c460",
+        "id": 36234797221,
+        "status": "in_progress"
       }
     ],
-    "scope_head": "17871a2bb5701a547594cd11b0ece35382ff0748"
+    "scope_head": "4946ff7f22401b260362ca6d6be7e7cb4bd1c460"
   },
   "observed_head_history": [
     {
@@ -5553,7 +5544,7 @@
       "semantics": "PLA1圧縮と新規供給consumerのhost検証成功入力HEAD。ROM配置/実操作/記録commitの受入ではない。"
     }
   ],
-  "observed_head_semantics": "今回記録source HEAD。native測定は専用checkpointの17871a2b/run36234024026、自己commitはgit logで照合。",
+  "observed_head_semantics": "今回phase0記録source。測定HEAD/runは専用checkpoint、自己commitはgit log参照。",
   "p08_candidate_impact": {
     "candidate": {
       "crc32": "CC068B4A",
@@ -5787,6 +5778,17 @@
   ],
   "remaining_physical_gap_ids": [],
   "remaining_sequence_ja": "原本隔離/裁定済み → 後継9consumer表・旧候補差分検証済み → 未選択Species/Form/孵化差分の明示binding → binary consumer接続 → 後継ROM・別Wiki/影響native → Issue18限定監査 → 別承認release。",
+  "research_phase0": {
+    "accepted_cases": [
+      "init-erased-save-unavailable",
+      "init-zero-save-unavailable",
+      "v1-save-unavailable"
+    ],
+    "actions_completion_confirmed": false,
+    "path": "content/modernization/pr16_research_phase0_checkpoint.json",
+    "run_id": 36234797221,
+    "status": "PASS_PHASE0_NATIVE_UNAVAILABLE_3_SCOPED"
+  },
   "research_save_impact": {
     "accepted_cases": 18,
     "actions_completion_confirmed": true,
@@ -6914,6 +6916,10 @@
     ".github/workflows/pr16-research-lifecycle-v2-20260926.yml": {
       "sha256": "9d0786d1f53a88b5fa86dd0daf04200f2b439d937a08e4a81446966e1bfd88bf",
       "size": 3004
+    },
+    ".github/workflows/pr16-research-phase0-20260926.yml": {
+      "sha256": "01094ca325cc45c427776cc98ca66cb0c1df8ca2bf559a30c06255c648569690",
+      "size": 2857
     },
     ".github/workflows/pr16-research-save-impact-20260926.yml": {
       "sha256": "27fe320908a435283e7dd02a2eebf7bb80b112cc5f32abff1ab3d9e93b4c7603",
@@ -8155,6 +8161,10 @@
       "sha256": "36451c1700f14f62fa5110475312433b44e070462753ed870a2759b25c2660c8",
       "size": 6182
     },
+    "content/modernization/pr16_research_phase0_checkpoint.json": {
+      "sha256": "269f908fb1cb32b5cc448b833cf4e2f86f08b80b752d7ce0c30259b41d0ae813",
+      "size": 6206
+    },
     "content/modernization/pr16_research_save_impact_checkpoint.json": {
       "sha256": "7fad32c544c8aae20401665934c19b4e7ac6e3a712bd885dbd4c35afbc0aef13",
       "size": 10809
@@ -8950,6 +8960,10 @@
     "docs/PR16_RESEARCH_LIFECYCLE_JA.md": {
       "sha256": "c901d87cd64ff20ca0f42366e9fc61527cf026a46f95533c4933c7a59d683970",
       "size": 1421
+    },
+    "docs/PR16_RESEARCH_PHASE0_JA.md": {
+      "sha256": "b0a1671b69ff1ad60d13217a5354b3635e9e7f7efc9c68b18e5242c14c5ced1b",
+      "size": 1697
     },
     "docs/PR16_RESEARCH_SAVE_IMPACT_JA.md": {
       "sha256": "f1481163aba7ba0cf0bfc396895c9a9ccf7058fb4f65dd06842fb13fd4dd1afe",
@@ -13343,6 +13357,14 @@
       "sha256": "234e9a26bb918a0333b475725256dd3bff4d5866756b4098a54b4daf216e9238",
       "size": 14295
     },
+    "scripts/pr16_research_phase0.py": {
+      "sha256": "b6d2a60e77df4f50d3279f7cb7bdda6ae0b499231eb8c9bf03b0e0a83e6b8c14",
+      "size": 4646
+    },
+    "scripts/pr16_research_phase0_actions.py": {
+      "sha256": "d0d3749a95b9a23e18c31246776e4d9f7cba4885ae654f9726c6a20f1f06b1b6",
+      "size": 14530
+    },
     "scripts/pr16_research_public_evidence.py": {
       "sha256": "85f29aedeeda14a5d216366dfb3300e8470809e2be006887976f5eee07f13619",
       "size": 6053
@@ -14695,6 +14717,10 @@
       "sha256": "6b7980c9c4678efa0bbdb7b08db508fdb49691116f24cd6fb6d977640aca4f74",
       "size": 2152
     },
+    "tests/test_pr16_research_phase0.py": {
+      "sha256": "b85a78dda92cf01076969d5de8a4c385b230097f08dba522e750ad97e7dc3c58",
+      "size": 3459
+    },
     "tests/test_pr16_research_public_evidence.py": {
       "sha256": "2ec09ed98b29e11c794358b33b8e10c3a79fb61a6812475cc28c97161ab419cf",
       "size": 3722
@@ -15614,6 +15640,10 @@
     "tools/mgba_pr16_research_lifecycle.c": {
       "sha256": "76672efe0c466ea1816a67e36662206734cb008116586cb2f1b632d273289a0f",
       "size": 5759
+    },
+    "tools/mgba_pr16_research_phase0.c": {
+      "sha256": "a0f689be824b1feffbb08527f89553241f7d05a177bf3590d1c750bad68baa2a",
+      "size": 4167
     },
     "tools/mgba_pr16_research_save_impact.c": {
       "sha256": "b57e58a94f208f6f3ce8418b850d9cd03de203c12bb73a0cd0cdf6fb7968b78f",

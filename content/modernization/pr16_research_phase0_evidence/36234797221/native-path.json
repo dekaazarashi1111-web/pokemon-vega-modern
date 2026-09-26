@@ -1,0 +1,43 @@
+{
+  "candidate": {
+    "sha256": "4aee03e8ec0135efa52d8d2b41edf61637ddc65e4be9f1a0b60a2e1c23dbefe7",
+    "size": 33554432
+  },
+  "expected_native_return": 255,
+  "fixture_address": "0x03005044",
+  "fixture_initial": 1,
+  "fixture_input": 0,
+  "observed_return_pc": "0x0937767a",
+  "physical_flash_fault_accepted": false,
+  "ranges": [
+    {
+      "address": "0x9377660",
+      "binding": {
+        "sha256": "bf430c8e1e3986e52e62134a46aa4dbdf1df288ed6d40b4a3dc17f0889212ac6",
+        "size": 52
+      }
+    },
+    {
+      "address": "0x93789e4",
+      "binding": {
+        "sha256": "626e744d61249d7c81dee24da68faa741c98b80083136dfe9a1e68dca1601e42",
+        "size": 24
+      }
+    },
+    {
+      "address": "0x9378b28",
+      "binding": {
+        "sha256": "9957af7c56f8ec97159c4f0eb4115ab83a62456cd8c7bb9e549abe65c9ed452e",
+        "size": 8
+      }
+    },
+    {
+      "address": "0x80db356",
+      "binding": {
+        "sha256": "f49a20b995c6469ce9e647b18237f7e856821dab0f53afe98d57b564a0c23652",
+        "size": 64
+      }
+    }
+  ],
+  "rom_changes": 0
+}

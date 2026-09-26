@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-研究保存初期化/V1 RAM移行の5ケースと15fresh coreを受入。次はphase0実失敗とV1 load adapter。成功済み5件/旧18境界/unit22は再実行しない。通常new-game/取引UI・全catalog・map3/19除外130行は別の未完境界。
+初期化/V1 RAM正常・破損拒否5件に加え、phase0既存native保存不可3/3件を記録。次は同一coreの失敗後再試行とV1通常load adapter。特にEMPTY失敗後はV2 RAMを残してblockedとなるため、再試行時の永続化をまだ保証していない。受入済み5/18/phase0成功ケースを再実行しない。
 
-**次: 研究保存初期化/V1 RAM移行の5ケースと15fresh coreを受入。次はphase0実失敗とV1 load adapter。成功済み5件/旧18境界/unit22は再実行しない。通常new-game/取引UI・全catalog・map3/19除外130行は別の未完境界。**
+**次: 初期化/V1 RAM正常・破損拒否5件に加え、phase0既存native保存不可3/3件を記録。次は同一coreの失敗後再試行とV1通常load adapter。特にEMPTY失敗後はV2 RAMを残してblockedとなるため、再試行時の永続化をまだ保証していない。受入済み5/18/phase0成功ケースを再実行しない。**
 
-同一候補とsource/原本bindingを保持。RAMサービス試験を通常UI/new-game/V1保存loadへ昇格しない。phase!=0の既存故障flagをphase0故障と扱わない。既受入nativeの再実行禁止。merge/release/baseline切替禁止。
+候補4aee03e8/source/原本を固定。保存不可RAM fixtureを実Flash装置故障・同一core retry・通常new-game/UIに昇格しない。旧5/18/特殊野生/BP/P08再実行禁止。merge/release/baseline変更禁止。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `a5f00ea25dcde3056ee1fe2cf83c0f597a8f8b0b`。
-今回記録source HEAD。native測定は専用checkpointの17871a2b/run36234024026、自己commitはgit logで照合。
+証拠のsource HEAD: `4946ff7f22401b260362ca6d6be7e7cb4bd1c460`。
+今回phase0記録source。測定HEAD/runは専用checkpoint、自己commitはgit log参照。
 
 ## 最短の再開手順
 
@@ -25,10 +25,13 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `docs/PR16_RESEARCH_PHASE0_JA.md`
+- `content/modernization/pr16_research_phase0_checkpoint.json`
 - `docs/PR16_RESEARCH_LIFECYCLE_JA.md`
 - `content/modernization/pr16_research_lifecycle_checkpoint.json`
-- `scripts/pr16_research_lifecycle_record.py`
-- `tools/mgba_pr16_research_lifecycle.c`
+- `scripts/pr16_research_phase0_actions.py`
+- `scripts/pr16_research_phase0.py`
+- `tools/mgba_pr16_research_phase0.c`
 - `overlays/research_economy_v1/research_economy_v1.c`
 - `config/research_economy_v1.json`
 
@@ -331,6 +334,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-native5件はPASS、元runは末尾空白diff check failureを保持。記録成功と全CI成功を区別する。
+限定phase0のみ。終端確認前にsuccessを自己確定せず、一般CI全体成功は主張しない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
