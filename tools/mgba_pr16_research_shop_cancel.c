@@ -2,7 +2,8 @@
  * 観測中は通常入力のみ。shop関数/PC/戻り値/選択結果の注入は行わない。 */
 static unsigned uc_frames;
 static void uc_frame(struct mCore*c,unsigned key){run_key_frames(c,key,1);++uc_frames;}
-static void uc_tap(struct mCore*c,unsigned key){uc_frame(c,key);for(unsigned i=0;i<14;++i)uc_frame(c,0);}
+/* 既存qol_pressと同じ2frame押下。1frameでは受付周期を跨がない。 */
+static void uc_tap(struct mCore*c,unsigned key){for(unsigned i=0;i<2;++i)uc_frame(c,key);for(unsigned i=0;i<30;++i)uc_frame(c,0);}
 static bool uc_active(struct mCore*c){return read8(c,SI_VOL+33)==1;}
 static void uc_copy_flash(struct mCore*c,uint8_t*out){
  struct GBASavedata*s=&((struct GBA*)c->board)->memory.savedata;
@@ -28,7 +29,7 @@ static void uc_open_shop(struct mCore*c,const char*stage){
    unsigned task_count=0,callback=0;
    for(unsigned t=0;t<16;++t){unsigned a=0x030050D0U+40*t;if(read8(c,a+4)&&read32(c,a)>=0x093BD000U&&read32(c,a)<0x093C0000U){++task_count;callback=read32(c,a);}}
    si_need(task_count==1,"one Research native task");
-   printf("{\"shop_open\":\"%s\",\"eligible_count\":%u,\"window\":%u,\"callback\":%u,\"native_tasks\":%u}\n",stage,count,window,callback,task_count);fflush(stdout);return;
+   printf("{\"shop_open\":\"%s\",\"eligible_count\":%u,\"window\":%u,\"callback\":%u,\"native_tasks\":%u}\n",stage,count,window,callback,task_count);fflush(stdout);for(unsigned i=0;i<30;++i)uc_frame(c,0);return;
   }
   uc_frame(c,n%60==0?QOL_KEY_A:0);
  }
@@ -82,7 +83,7 @@ int main(int argc,char**argv){
   si_need(read8(c,SI_VOL+31)==page,"actual page index");
   for(unsigned row=0;row<rows;++row)uc_tap(c,QOL_KEY_DOWN);
   uc_tap(c,QOL_KEY_A);
-  if(page+1<pages)si_need(uc_active(c)&&read8(c,SI_VOL+31)==page+1,"normal next page action");
+  if(page+1<pages){if(!uc_active(c)||read8(c,SI_VOL+31)!=page+1)fprintf(stderr,"page transition expected=%u got=%u active=%u selected=%u result=%u\n",page+1,read8(c,SI_VOL+31),read8(c,SI_VOL+33),si_read16(c,SI_VOL+18),si_read16(c,SI_VOL+16));si_need(uc_active(c)&&read8(c,SI_VOL+31)==page+1,"normal next page action");}
  }
  uc_closed(c);uc_same_ledger(c,before);uc_same_inventory(c,inventory,party);uc_copy_flash(c,check);
  si_need(!memcmp(flash,check,131072)&&read32(c,SI_COUNTER)==counter,"row cancel no persistence");lc_event(c,"cancel_row");
