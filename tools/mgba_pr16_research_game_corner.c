@@ -38,7 +38,7 @@ static struct mCore*gc_setup(const char*rom,const char*save){
  si_need(read8(c,SI_VOL+28)==0&&read8(c,SI_VOL+34)==0&&si_read16(c,SI_VOL+20)==65535,"real services only");
  return c;
 }
-int main(int argc,char**argv){
+static int gc_diagnostic_main(int argc,char**argv){
  if(argc==3&&!strcmp(argv[1],"--guard-check"))si_guard_check(argv[2]);
  si_need(argc==4&&!strcmp(argv[3],"game-corner-diagnostic"),"closed diagnostic case");char sha[65];
  sha256_file(argv[1],sha);si_need(!strcmp(sha,UC_ROM),"fixed candidate");sha256_file(argv[2],sha);si_need(!strcmp(sha,UC_FIXTURE),"zero RP fixture");
@@ -54,4 +54,29 @@ int main(int argc,char**argv){
  }
  lc_event(c,"end");qol_close(c);si_need(!log_problem_count,"new game-corner log diagnostics");
  printf("{\"status\":\"STOPPED\",\"case\":\"game-corner-diagnostic\",\"native_acceptance\":false,\"fresh_cores\":%u,\"guarded_host_writes\":0,\"accepted_case_reruns\":0}\n",si_cores);return 0;
+}
+
+/* 実配当済みFlashだけを別coreで読む。稼得本体は再実行しない。 */
+static int gc_continue(const char*rom,const char*save){
+ const char*expected="c7f6a40cb830308cbd8721561edf4c0de257c4477176febc7ec473e8b74547c8";
+ const char*flash_expected="eed9d6c233bc3d4012db6d033db907d0b18ba732704a229bb468ea4708739a5c";
+ char hash[65];sha256_file(rom,hash);si_need(!strcmp(hash,UC_ROM),"continued candidate");
+ sha256_file(save,hash);si_need(!strcmp(hash,expected),"actual payout Flash identity");
+ struct mLogger logger={.log=qol_log};mLogSetDefaultLogger(&logger);
+ struct mCore*c=ct_open(rom,save);si_guard(c);
+ uint8_t flash[131072],ledger[2048],party[600];unsigned bag[2048];
+ uc_copy_flash(c,flash);si_digest(flash,sizeof(flash),hash);si_need(!strcmp(hash,flash_expected),"cold Continue no Flash mutation");
+ lc_read(c,ledger);si_inventory(c,bag);for(unsigned i=0;i<600;++i)party[i]=read8(c,QOL_PLAYER_PARTY+i);
+ si_need(gc_coins(c)==1223&&si_read16(c,SI_OWNER+4)==3&&read32(c,SI_COUNTER)==4,"payout-only saved coins/RP/counter");
+ si_need(si_read32(c,SI_OWNER+40)==0x012C039AU&&si_read32(c,SI_OWNER+36)==2,"payout transaction token");
+ gc_observe(c,"continued");lc_event(c,"continued");gc_screen("continued");
+ for(unsigned i=0;i<600;++i)uc_frame(c,0);
+ uc_same_ledger(c,ledger);uc_same_inventory(c,bag,party);uc_copy_flash(c,flash);si_digest(flash,sizeof(flash),hash);
+ si_need(!strcmp(hash,flash_expected)&&gc_coins(c)==1223&&read32(c,SI_COUNTER)==4,"idle Continue economic invariants");
+ gc_observe(c,"continued-idle");lc_event(c,"continued-idle");qol_close(c);si_need(!log_problem_count,"Continue warnings/errors");
+ printf("{\"status\":\"PASS\",\"case\":\"game-corner-continue\",\"fresh_cores\":1,\"coins\":1223,\"rp\":3,\"counter\":4,\"flash_sha256\":\"%s\",\"manual_saves\":0,\"new_earning_processes\":0,\"guarded_host_writes\":0,\"accepted_case_reruns\":0,\"warnings_errors\":0}\n",hash);return 0;
+}
+int main(int argc,char**argv){
+ if(argc==4&&!strcmp(argv[3],"game-corner-continue"))return gc_continue(argv[1],argv[2]);
+ return gc_diagnostic_main(argc,argv);
 }
