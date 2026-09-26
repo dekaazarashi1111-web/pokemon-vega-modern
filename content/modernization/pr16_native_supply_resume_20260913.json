@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "特殊野生2callsite計8byte修復・7直接native process/8callの終端照合完了。通常釣竿/スキャナーUI・捕獲・Save/Continueは未受入。",
+    "current_stop": "特殊野生の通常UI準備: PASS_SAVED_CANDIDATE_UI_INPUT_BINDING_NOT_GAMEPLAY。直接7process/8callは保持。通常取得/捕獲/保存は未受入。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "Issue19: 候補0205af9bの特殊野生2callsite修復は直接診断7process/8callまで完了。保存recipeを親b7790902へ適用して全ROM hashを照合し、次は未受入の通常釣竿（map3/38）・スキャナー（map3/63）UI→特殊個体捕獲→通常Save→fresh Continue。開始map/party/item/flag/RNGのfixtureと観測後のキー入力を明確に分離し、7host書込み禁止でhook通過・個体100byte・4技/PP/PP Upsを確認する。今回19+8unit/直接7process、旧研究孵化15・配布17・野生EXP・Bag・egg・ARM・Wikiを影響なしに再実行しない。map3/19の130行無効化の由来は別の未裁定項目で、表は改作しない。",
+    "next_step": "Issue19: 保存済み0205af9b候補と特殊野生UI準備checkpointを再利用し、map3/38の通常釣竿・map3/63のスキャナーから特殊個体捕獲→通常Save→fresh Continueを検証する。地形/道具bindingは実取得受入ではない。7host書込み禁止、開始fixtureと観測を分離し、旧直接7process/8call・旧受入・ARMは再実行しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -4162,17 +4162,15 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "Issue19: 候補0205af9bの特殊野生2callsite修復は直接診断7process/8callまで完了。保存recipeを親b7790902へ適用して全ROM hashを照合し、次は未受入の通常釣竿（map3/38）・スキャナー（map3/63）UI→特殊個体捕獲→通常Save→fresh Continue。開始map/party/item/flag/RNGのfixtureと観測後のキー入力を明確に分離し、7host書込み禁止でhook通過・個体100byte・4技/PP/PP Upsを確認する。今回19+8unit/直接7process、旧研究孵化15・配布17・野生EXP・Bag・egg・ARM・Wikiを影響なしに再実行しない。map3/19の130行無効化の由来は別の未裁定項目で、表は改作しない。",
+    "goal_ja": "Issue19: 保存済み0205af9b候補と特殊野生UI準備checkpointを再利用し、map3/38の通常釣竿・map3/63のスキャナーから特殊個体捕獲→通常Save→fresh Continueを検証する。地形/道具bindingは実取得受入ではない。7host書込み禁止、開始fixtureと観測を分離し、旧直接7process/8call・旧受入・ARMは再実行しない。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
     "id": "SPECIAL_WILD_NORMAL_CAPTURE_SAVE",
     "read_paths": [
-      "docs/PR16_SPECIAL_WILD_JA.md",
+      "docs/PR16_SPECIAL_WILD_GAMEPLAY_JA.md",
+      "content/modernization/pr16_special_wild_gameplay_checkpoint.json",
+      "scripts/pr16_special_wild_gameplay.py",
       "content/modernization/pr16_special_wild_bound_checkpoint.json",
-      "content/modernization/pr16_special_wild_bound_completed_actions.json",
-      "scripts/pr16_special_wild_bound.py",
-      "scripts/pr16_special_wild_header_binding.py",
-      "scripts/pr16_learnset_natural.py",
-      "tools/mgba_pr16_learnset_natural.c"
+      "tools/mgba_pr16_natural_capture.c"
     ],
     "stop_rule_ja": "特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。"
   },
@@ -7485,6 +7483,10 @@
     ".github/workflows/pr16-special-wild-bound-terminal-20260926.yml": {
       "sha256": "67b7f72005350ce5a0da0006e4da44fcb66cabe2286df3fdda39d2a5ada0b536",
       "size": 4296
+    },
+    ".github/workflows/pr16-special-wild-gameplay-20260926.yml": {
+      "sha256": "d2a9e76342528db06af0c493b111d649616c0efc9b34e7f7ca061c8a85c6af28",
+      "size": 4588
     },
     ".github/workflows/pr16-special-wild-repair-20260925.yml": {
       "sha256": "1f7d60297f914bcadeddf60b62612d9ae49037ab91ffa9192a859be17d2b4088",
@@ -13862,6 +13864,10 @@
       "sha256": "3b3760bab0b92f8e71998ff56d85f8d8efa2cf2499f1e213eca06d34553159a9",
       "size": 16499
     },
+    "scripts/pr16_special_wild_gameplay.py": {
+      "sha256": "cf275529edd682bc5e070d14f708ffb354fe3de2964da968357fe0440e483f73",
+      "size": 16550
+    },
     "scripts/pr16_special_wild_header_binding.py": {
       "sha256": "21d7a965662abca9d035cddce6fe2f132f4756d793d5b31eb57270b6d4bb8b65",
       "size": 3345
@@ -15162,6 +15168,10 @@
       "sha256": "dae1d55cf6bc04f564bcf4ef615f951c2831ca436bdb70c02dca5df701824566",
       "size": 3672
     },
+    "tests/test_pr16_special_wild_gameplay.py": {
+      "sha256": "81e40bfce39e249d724a730627260c48d7e25ecc39bba41742d9cdbb5813861b",
+      "size": 5090
+    },
     "tests/test_pr16_special_wild_header_binding.py": {
       "sha256": "648b82787d4e4c7bc0df1b0bd97a4e8341cff9bb2eb2b3965aa8af477dac2637",
       "size": 3343
@@ -15484,6 +15494,18 @@
     "run_id": 34757633314,
     "source_gate_complete": true,
     "tested_head": "9e435e551598c2b99046c7aaff1bff6da1721da3"
+  },
+  "special_wild_gameplay": {
+    "candidate": {
+      "sha256": "0205af9bd2d92b1b3303195ab0cc84e5ea0f3de390ade15d9f8ce42a6dcdd1a0",
+      "size": 33554432
+    },
+    "capture_save_continue_accepted": false,
+    "gameplay_accepted": false,
+    "path": "content/modernization/pr16_special_wild_gameplay_checkpoint.json",
+    "run_id": 36218655601,
+    "source_head": "8660fe70f4354333cf7647186663cacafa04451b",
+    "status": "PASS_SAVED_CANDIDATE_UI_INPUT_BINDING_NOT_GAMEPLAY"
   },
   "special_wild_table_audit": {
     "native_runs": 0,

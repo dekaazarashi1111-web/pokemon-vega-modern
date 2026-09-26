@@ -7426,3 +7426,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 新terminal8unit、保存19+8unit/7native process/8callの原本照合。旧試験/native/host/ARM/ROM再実行0。resume/task graph/final index guard後に非force push。通常UI/capture/Save未受入、全HEAD CI green主張なし。
 - Commit: native成果 dcce2ff32dd304df18c840d08e0bc9fb65086a9e; 本終端記録はsource 36b88bb2be1ed0889cb531ab035751a3df0992b7から同branch非force commit。
 - Network: 既存GitHub run/artifact原本の再読のみ。merge/release/active baseline変更なし。
+
+## 2026-09-26T04:43:36.104718+00:00
+- Timestamp: 2026-09-26T04:43:36.104718+00:00
+- Task: USER-20260926-SPECIAL-WILD-GAMEPLAY / 特殊野生の通常UI入力を固定候補へ結合
+- Version: special-wild-gameplay-preparation-v1
+- Status: DONE（入力binding限定。通常UI未受入）
+- Summary: PASS_SAVED_CANDIDATE_UI_INPUT_BINDING_NOT_GAMEPLAY。旧直接診断を再実行せず、保存recipeと全ROM hashを使う。
+- Files changed: 専用Python/新規unit/限定workflow、checkpoint/原本、専用guide、固定引継ぎMD・JSON、両ログ。
+- Verify: 新規unit 18、保存replay 1、native/ARM/受入再実行0。failure=None。resume/task graph/final index限定guard後のみcommit。
+- Commit: 本記録を含む同branch非force commit。自己SHAはgit logで照合。
+- Network: GitHub固定Actions/保存artifactのみ。ROM/saveは非tracked artifactのみ。全履歴private guardのPASSは主張しない。
