@@ -2,7 +2,7 @@
 
 通常load内phase0の保存不可2経路（V1移行/未確定稼得回復）を受入。原本全2048byte・全Flashを保持して拒否、通常cold Continueで1回保存し2回の後続Continueで完全一致。
 
-まず本runの終端・push/uploadを照合する。次は通常new-game/取引UIの未受入境界を限定実装/検証する。phase0 load 2件/43unit、通常V1 3件/旧40unit、7retry、BP/P08/特殊野生は変更影響なく再実行しない。
+次は通常new-game/取引UIの未受入境界を限定実装/検証する。phase0 load 2件/43unit、通常V1 3件/旧40unit、7retry、BP/P08/特殊野生は変更影響なく再実行しない。
 
 ## 境界と受入
 
@@ -20,4 +20,4 @@ V1移行とV2 prepared fishing稼得5点の2経路。実native return255、load 
 
 ## Actions
 
-source `187bb4a87fc4ad63f06022355c2d3be9ac47c2b5` / run `36244964437` / 終端確認 `False`。
+source `187bb4a87fc4ad63f06022355c2d3be9ac47c2b5` / run `36244964437` / 終端確認 `True`。 finalize run `36245144543`。

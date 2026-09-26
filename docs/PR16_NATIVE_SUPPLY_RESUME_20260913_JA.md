@@ -8,13 +8,13 @@
 
 通常load内phase0の保存不可2経路（V1移行/未確定稼得回復）を受入。原本全2048byte・全Flashを保持して拒否、通常cold Continueで1回保存し2回の後続Continueで完全一致。
 
-**次: まず本runの終端・push/uploadを照合する。次は通常new-game/取引UIの未受入境界を限定実装/検証する。phase0 load 2件/43unit、通常V1 3件/旧40unit、7retry、BP/P08/特殊野生は変更影響なく再実行しない。**
+**次: 次は通常new-game/取引UIの未受入境界を限定実装/検証する。phase0 load 2件/43unit、通常V1 3件/旧40unit、7retry、BP/P08/特殊野生は変更影響なく再実行しない。**
 
 候補5d1fc9c4と受入済み2load/旧3loadを保持。未受入UIだけへ進み、merge/release/baseline変更禁止。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `187bb4a87fc4ad63f06022355c2d3be9ac47c2b5`。
+証拠のsource HEAD: `22702cdbba183e89d481a8dc51b7ed197a421cf9`。
 通常load phase0境界の記録source。自己SHAはgit log参照。
 
 ## 最短の再開手順

@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "まず本runの終端・push/uploadを照合する。次は通常new-game/取引UIの未受入境界を限定実装/検証する。phase0 load 2件/43unit、通常V1 3件/旧40unit、7retry、BP/P08/特殊野生は変更影響なく再実行しない。",
+    "next_step": "次は通常new-game/取引UIの未受入境界を限定実装/検証する。phase0 load 2件/43unit、通常V1 3件/旧40unit、7retry、BP/P08/特殊野生は変更影響なく再実行しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -4162,7 +4162,7 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "まず本runの終端・push/uploadを照合する。次は通常new-game/取引UIの未受入境界を限定実装/検証する。phase0 load 2件/43unit、通常V1 3件/旧40unit、7retry、BP/P08/特殊野生は変更影響なく再実行しない。",
+    "goal_ja": "次は通常new-game/取引UIの未受入境界を限定実装/検証する。phase0 load 2件/43unit、通常V1 3件/旧40unit、7retry、BP/P08/特殊野生は変更影響なく再実行しない。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
     "id": "RESEARCH_NORMAL_NEW_GAME_TRANSACTION_UI_NEXT",
     "read_paths": [
@@ -4178,15 +4178,15 @@
     "stop_rule_ja": "候補5d1fc9c4と受入済み2load/旧3loadを保持。未受入UIだけへ進み、merge/release/baseline変更禁止。"
   },
   "observed_date_jst": "2026-09-25",
-  "observed_head": "187bb4a87fc4ad63f06022355c2d3be9ac47c2b5",
+  "observed_head": "22702cdbba183e89d481a8dc51b7ed197a421cf9",
   "observed_head_checks": {
     "reason_ja": "限定phase0 load受入。一般source-validationのaction_requiredを全CI成功にしない。",
     "runs": [
       {
-        "conclusion": null,
+        "conclusion": "success",
         "head_sha": "187bb4a87fc4ad63f06022355c2d3be9ac47c2b5",
         "id": 36244964437,
-        "status": "in_progress"
+        "status": "completed"
       }
     ],
     "scope_head": "187bb4a87fc4ad63f06022355c2d3be9ac47c2b5"
@@ -5793,7 +5793,7 @@
       "load-v1-phase0-unavailable",
       "load-pending-phase0-unavailable"
     ],
-    "actions_completion_confirmed": false,
+    "actions_completion_confirmed": true,
     "candidate": {
       "sha256": "5d1fc9c47225ae8c0a369514b899a062af3699fa3c9a2f617e94ffd5f7dcc1ab",
       "size": 33554432
@@ -5801,7 +5801,7 @@
     "failed_cases": [],
     "path": "content/modernization/pr16_research_phase0_load_checkpoint.json",
     "run_id": 36244964437,
-    "status": "PASS_PHASE0_LOAD_PENDING_TERMINAL"
+    "status": "PASS_PHASE0_LOAD_SCOPED"
   },
   "research_same_core_retry": {
     "accepted_cases": [
@@ -7005,8 +7005,8 @@
       "size": 2858
     },
     ".github/workflows/pr16-research-phase0-load-20260926.yml": {
-      "sha256": "a518e3bc52efdb49168b2a9a30c80343dba85be5fe8aebfbb902fd4adf719cb9",
-      "size": 3239
+      "sha256": "6903f073ca53adaf81fca14e1fe28e2ae52c862f5e83c71a62fa0d2b23e681e6",
+      "size": 3240
     },
     ".github/workflows/pr16-research-retry-20260926.yml": {
       "sha256": "84dc8bfa2d3efa8818097aefb974f45d2fe34bc1b591b3328fed777892d9218b",
@@ -8269,8 +8269,8 @@
       "size": 6524
     },
     "content/modernization/pr16_research_phase0_load_checkpoint.json": {
-      "sha256": "84d651310418a50eead4e534abb9a933914ffeeccbd67de7e8d529df2a0da41f",
-      "size": 32496
+      "sha256": "d449038fc8286cfd4e5d017ab1b1be419984f3dee970554d84b1dcf9b7cc187d",
+      "size": 37336
     },
     "content/modernization/pr16_research_retry_checkpoint.json": {
       "sha256": "267b927daf4eadf529ba5e3fdf1259d1fb5b3904cdaf6226adf498fd378af99b",
@@ -9109,8 +9109,8 @@
       "size": 1696
     },
     "docs/PR16_RESEARCH_PHASE0_LOAD_JA.md": {
-      "sha256": "cd9c4cad85915247152accd1e35481315e3df7ff8bcf9115294c5d91836df513",
-      "size": 2658
+      "sha256": "817f8683211f9ddebc41a59b7bb1c43fc3ad366f98f0a510719c867d981d2728",
+      "size": 2634
     },
     "docs/PR16_RESEARCH_RETRY_JA.md": {
       "sha256": "7fcf9ff9412802a9ab30714573d798959a7ffebd12eeb7ae12d8c6749f962f9f",
