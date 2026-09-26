@@ -3,8 +3,8 @@
     "fishing",
     "ecology"
   ],
-  "actions": "content/modernization/pr16_research_wild_local_evidence/actions-36275891559.json",
-  "actions_completion_confirmed": false,
+  "actions": "content/modernization/pr16_research_wild_local_evidence/actions-36276059655.json",
+  "actions_completion_confirmed": true,
   "active_baseline_changed": false,
   "all_activities_accepted": false,
   "all_dialogue_native_display_accepted": false,
@@ -36,11 +36,15 @@
     "run_id": 36273917599,
     "source_head": "69cdc31fd2c2f40d5a03c1a44005836ffab580b8"
   },
-  "previous_record_run_id": null,
+  "previous_record_run_id": 36275891559,
   "proof_bindings": {
     "content/modernization/pr16_research_wild_local_evidence/actions-36275891559.json": {
       "sha256": "4bd1612b1310f31be3e27dfb460486c307c19fc9a58de0fbafa0318d13ac8d94",
       "size": 7123
+    },
+    "content/modernization/pr16_research_wild_local_evidence/actions-36276059655.json": {
+      "sha256": "9d9f625ae62a7fda5de6725c24701100aec7a9d301200f533ec4c4ae693e7052",
+      "size": 8215
     },
     "content/modernization/pr16_research_wild_local_evidence/development.json": {
       "sha256": "25de7d5b2eb67aa9b19f9a4bb2cb206b4f07fcf5562b2560274e60380d557359",
@@ -1494,8 +1498,24 @@
     "native_processes": 0,
     "unit_processes": 0
   },
-  "record_run_id": 36275891559,
-  "record_source_head": "c25a0a0c106131546be173e686946d64e01cd610",
+  "record_run_id": 36276059655,
+  "record_scope_repair": {
+    "base_commit": "fbf7c9dc38b8a6c233e7583948dcb11b6aa0fd31",
+    "compiles": 0,
+    "failed_record": {
+      "conclusion": "failure",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "f0ecc346dcdd5233eec76c67eafb5e5a484817bb",
+      "id": 36275950886,
+      "path": ".github/workflows/pr16-research-wild-local-record-20260927.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    "native_processes": 0,
+    "reason_ja": "終端確認で実装前STARTを再利用し旧Actions証拠まで新規所有差分へ混入した。完了済み受入commitからの記録差分に限定して修復。native/unit/compile再実行0。",
+    "unit_processes": 0
+  },
+  "record_source_head": "fb33c3bf34a10e4f838cabf80e50e91f7b10a461",
   "release_ready": false,
   "remaining_activities": [
     "GAME_CORNER"
@@ -1796,8 +1816,8 @@
       "size": 2958
     },
     ".github/workflows/pr16-research-wild-local-record-20260927.yml": {
-      "sha256": "0cb96711028d5c3b3af00a76042b29000b86436496777ec4c2501c09a5172435",
-      "size": 5258
+      "sha256": "d95cbbba970fe8ebcb126560f1150a808c5b5e3d06ac2864c6e90775b1e4a21e",
+      "size": 5498
     },
     "content/modernization/pr16_research_map_view_controls.json": {
       "sha256": "f70479ae1938889b6acd956eaafc89c6586df0922814bf2b0ae0691be03f67ac",
@@ -2092,7 +2112,7 @@
       "size": 92902
     }
   },
-  "source_head": "c25a0a0c106131546be173e686946d64e01cd610",
+  "source_head": "fb33c3bf34a10e4f838cabf80e50e91f7b10a461",
   "status": "PASS_FISHING_ECOLOGY_REAL_EARNING_SCOPED",
   "task": "USER-20260927-RESEARCH-WILD",
   "unit": "content/modernization/pr16_research_wild_local_evidence/unit.json",

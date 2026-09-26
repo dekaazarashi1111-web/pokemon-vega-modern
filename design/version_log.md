@@ -7898,3 +7898,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: local native5=成功2+失敗2+打切り1、host compile4+先行Actions失敗1、ARM0、受入済みnative再実行0。65新検査PASSをsource拘束で再利用。ledger4状態×2を独立再構成、10画像目視・全hash一致。record native/compile/unit再実行0。resume/task graph/最終index scoped guardはcommit前必須。
 - Commit: source=c25a0a0c106131546be173e686946d64e01cd610; record run=36275891559; 自己SHAはgit log参照。同branch非force push。
 - Network: GitHub HEAD/PR/Actions・固定artifactのみ。候補/seed/受入済みsource/evidence/baseline不変。merge/releaseなし。全CI成功は主張しない。
+
+## 2026-09-26T22:22:58.977511+00:00
+- Timestamp: 2026-09-26T22:22:58.977511+00:00
+- Task: USER-20260927-RESEARCH-WILD / 釣り・生態実稼得の限定受入（confirm）
+- Version: research-wild-v2
+- Status: DONE（2活動の実稼得/逃走/取引Continue限定）
+- Summary: 釣り0→4RP/生態0→10RPの実稼得・逃走無加算・T24 typed credit併存・取引だけのfresh Continueを限定受入。次はGAME_CORNERの実配当→3RP、通常進行の受付/ショップ接続、残るnative文言。写真/虫取り/採掘/釣り/生態/BP/P08の無変更native再実行は禁止。日内上限・既捕獲種の実経路をこの2caseだけで全受入したと主張しない。
+- Files changed: 専用C/generator/oracle/65検査/記録器、完全stdoutと失敗履歴/画像hash/source差分/checkpoint、引継ぎMD/JSON、両ログ。
+- Verify: local native5=成功2+失敗2+打切り1、host compile4+先行Actions失敗1、ARM0、受入済みnative再実行0。65新検査PASSをsource拘束で再利用。ledger4状態×2を独立再構成、10画像目視・全hash一致。record native/compile/unit再実行0。resume/task graph/最終index scoped guardはcommit前必須。
+- Commit: source=fb33c3bf34a10e4f838cabf80e50e91f7b10a461; record run=36276059655; 自己SHAはgit log参照。同branch非force push。
+- Network: GitHub HEAD/PR/Actions・固定artifactのみ。候補/seed/受入済みsource/evidence/baseline不変。merge/releaseなし。全CI成功は主張しない。
+- Record scope repair: run36275950886の記録だけのfailureを保持。比較基準を受入commit fbf7c9dcへ固定し、旧Actions原本を不変継承。受入済みsource/evidence hashを再確認、native/unit/compile追加0。

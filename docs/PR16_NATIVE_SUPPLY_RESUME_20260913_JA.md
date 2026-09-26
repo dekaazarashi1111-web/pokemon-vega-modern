@@ -14,7 +14,7 @@ PASS_FISHING_ECOLOGY_REAL_EARNING_SCOPED
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `c25a0a0c106131546be173e686946d64e01cd610`。
+証拠のsource HEAD: `fb33c3bf34a10e4f838cabf80e50e91f7b10a461`。
 釣り/生態の新規ローカル実測を独立oracle/原本hash/65検査で記録するsource。Actions終端は専用項目で別管理。
 
 ## 最短の再開手順

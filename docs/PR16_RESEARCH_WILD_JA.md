@@ -20,6 +20,6 @@ T24 RewardEncountersV2のtyped credit保存1回がT23研究のphase1/phase2保�
 
 ## Actionsと再開
 
-Actions記録終端確認: False。`record_run_id` は今回記録runであり実行中に自己successとは記録しない。確認済み前回runは `content/modernization/pr16_research_wild_local_evidence/actions-36275891559.json`。一般CIの既存失敗/保留と限定native PASSを分離する。
+Actions記録終端確認: True。`record_run_id` は今回記録runであり実行中に自己successとは記録しない。確認済み前回runは `content/modernization/pr16_research_wild_local_evidence/actions-36276059655.json`。一般CIの既存失敗/保留と限定native PASSを分離する。
 
 釣り0→4RP/生態0→10RPの実稼得・逃走無加算・T24 typed credit併存・取引だけのfresh Continueを限定受入。次はGAME_CORNERの実配当→3RP、通常進行の受付/ショップ接続、残るnative文言。写真/虫取り/採掘/釣り/生態/BP/P08の無変更native再実行は禁止。日内上限・既捕獲種の実経路をこの2caseだけで全受入したと主張しない。
