@@ -1,0 +1,76 @@
+name: pr16-research-photo-visual-20260927
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-research-photo-visual-20260927.yml]
+permissions:
+  contents: read
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-research-photo-visual-20260927
+  cancel-in-progress: false
+jobs:
+  visual:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: 表示診断に必要なtracked textだけを固定取得（検証再実行0）
+        shell: python
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          import ast,hashlib,json,os,pathlib,subprocess,zipfile
+          root=pathlib.Path('.')
+          cp=json.loads((root/'content/modernization/pr16_research_photo_checkpoint.json').read_text())
+          assert cp['photo_accepted'] and cp['actions_completion_confirmed'] and not cp['cold_field_visual_accepted']
+          assert cp['run_id']==36253608437
+          tracked=set(subprocess.check_output(['git','ls-files','-z']).decode().split('\0'))-{''}
+          paths=set(cp['source_bindings'])|set(cp['protected_bindings'])
+          paths|={'AGENTS.md','CHATGPT_RESUME.md','docs/PR16_RESEARCH_PHOTO_JA.md','docs/PR16_RESEARCH_CATALOG_JA.md',
+            'docs/PR16_RESEARCH_NEW_GAME_JA.md','content/modernization/pr16_research_photo_checkpoint.json',
+            'content/modernization/pr16_native_supply_resume_20260913.json','docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md',
+            'scripts/pr16_resume.py','scripts/pr16_learnset_compact_record.py','scripts/validate_task_graph.py',
+            'scripts/private_file_guard.py','scripts/pr16_research_photo_actions.py','content/research_economy_v1/canonical_model.json'}
+          paths|={p for p in tracked if p.endswith('/AGENTS.md')}
+          paths|={p for p in tracked if (p.startswith('scripts/pr16_research') and p.endswith('.py')) or
+            (p.startswith('tools/mgba_pr16_research') and p.endswith(('.c','.h'))) or
+            (p.startswith('tests/test_pr16_research') and p.endswith('.py'))}
+          # 静的importを辿るだけ。受入unit/native/ARMや生成器は実行しない。
+          pending=list(paths);seen=set()
+          while pending:
+            path=pending.pop()
+            if path in seen or path not in tracked:continue
+            seen.add(path)
+            if not path.endswith('.py'):continue
+            for node in ast.walk(ast.parse((root/path).read_text())):
+              names=[]
+              if isinstance(node,ast.Import):names=[n.name for n in node.names]
+              if isinstance(node,ast.ImportFrom):names=[node.module or '']+[(node.module+'.' if node.module else '')+n.name for n in node.names]
+              for name in names:
+                for candidate in (name.replace('.','/')+'.py','scripts/'+name.replace('.','/')+'.py','tools/'+name.replace('.','/')+'.py'):
+                  if candidate in tracked and candidate not in paths:paths.add(candidate);pending.append(candidate)
+          paths={p for p in paths if p in tracked and pathlib.Path(p).suffix in ('.py','.c','.h','.md','.json','.yml','.yaml')}
+          out=root/'.local/pr16-photo-visual-source';out.mkdir(parents=True)
+          manifest={}
+          with zipfile.ZipFile(out/'source.zip','w',zipfile.ZIP_DEFLATED) as z:
+            for path in sorted(paths):
+              raw=subprocess.check_output(['git','show','HEAD:'+path]);raw.decode('utf-8')
+              assert b'\0' not in raw and len(raw)<32000000,path
+              z.writestr(path,raw);manifest[path]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+            z.writestr('SOURCE_RECEIPT.json',json.dumps({'source_head':os.environ['GITHUB_SHA'],'manifest':manifest},indent=2))
+          runs=json.loads(subprocess.check_output(['gh','api','repos/'+os.environ['GITHUB_REPOSITORY']+'/actions/runs?branch=codex%2Fmodernization-followup-20260908&per_page=12']))
+          summary=[{k:r[k] for k in ('id','path','head_sha','status','conclusion','created_at')} for r in runs['workflow_runs']]
+          (out/'actions.json').write_text(json.dumps(summary,indent=2))
+          print('SOURCE_ONLY',len(manifest),'unit=0 native=0 ARM=0 accepted_case_reruns=0')
+          print(json.dumps(summary))
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr16-photo-visual-source
+          path: .local/pr16-photo-visual-source/
+          retention-days: 7
+          if-no-files-found: error
