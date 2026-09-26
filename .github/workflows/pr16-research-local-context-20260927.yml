@@ -16,7 +16,7 @@ jobs:
       PYTHONDONTWRITEBYTECODE: '1'
     steps:
       - uses: actions/checkout@v4
-      - name: 最新tracked textとC helperの限定readonly輸出・native再実行なし
+      - name: 未検査の捕獲ledger連携source・native再実行なし
         shell: bash
         run: |
           set -euo pipefail
@@ -29,7 +29,7 @@ jobs:
               rows={p:z.read(p) for p in z.namelist()}
           index=json.loads(rows.pop('index.json'))
           for p in subprocess.check_output(['git','ls-files'],text=True).splitlines():
-              if (p.startswith('tools/') and pathlib.Path(p).suffix in ('.c','.h')) or p in ('scripts/pr16_special_wild_gameplay_native.py',):
+              if (p.startswith(('tools/','overlays/')) and pathlib.Path(p).suffix in ('.c','.h','.S')) or p in ('scripts/pr16_special_wild_gameplay_native.py','scripts/validate_task_graph.py','tasks/task_graph.json','design/tasks_next.md'):
                   data=(root/p).read_bytes();data.decode('utf-8')
                   assert b'\0' not in data and len(data)<5000000
                   rows[p]=data
