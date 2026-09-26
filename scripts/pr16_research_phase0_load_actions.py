@@ -22,7 +22,8 @@ CP='content/modernization/pr16_research_phase0_load_checkpoint.json'
 GUIDE='docs/PR16_RESEARCH_PHASE0_LOAD_JA.md'
 EVIDENCE='content/modernization/pr16_research_phase0_load_evidence'
 PREVIOUS='content/modernization/pr16_research_v1_corrupt_load_checkpoint.json'
-OWN_SOURCE={SELF,MODEL,TEST,WF,m.C}
+PREFLIGHT='scripts/pr16_research_phase0_load_preflight.py'
+OWN_SOURCE={SELF,MODEL,TEST,WF,m.C,PREFLIGHT}
 RETRY_RECIPE='content/modernization/pr16_research_retry_recipe.json'
 CORRUPT_RECIPE='content/modernization/pr16_research_v1_corrupt_load_recipe.json'
 
@@ -56,9 +57,8 @@ def measure():
     sources|={p for p in ('tools/mgba_qol_production_smoke.c','tools/mgba_battle_core_smoke.c','tools/mgba_ai_fixture_runner.c') if (ROOT/p).exists()}
     bound=d.bindings(sources)
     d.put('invocation.json',{'source_head':os.environ['GITHUB_SHA'],'run_id':int(os.environ['GITHUB_RUN_ID']),'source_bindings':bound,'protected_bindings':protected,'prior_terminal':prior_terminal,'accepted_case_reruns':0,'arm_compiles':0})
-    unit=subprocess.run([sys.executable,'-B','-m','unittest','discover','-s','tests','-p',Path(TEST).name,'-v'],capture_output=True,timeout=120)
-    unitraw=unit.stdout+unit.stderr;(d.PUBLIC/'unit.txt').write_bytes(unitraw)
-    need(unit.returncode==0 and unitraw.count(b' ... ok\n')==43 and b'Ran 43 tests' in unitraw and unitraw.endswith(b'\nOK\n'),'43 new tests, canonical adapter compile included')
+    from pr16_research_phase0_load_preflight import unit
+    unit(d,ROOT,TEST,MODEL,m.SOURCE)
     runtime,data,seed,parent,artifacts=d.restore()
     saved_parent=identity((data/'candidate.gba').read_bytes())
     retry_candidate,_=retry.apply(parent,bytes.fromhex(d.read(ROOT/RETRY_RECIPE)['after']))
@@ -103,7 +103,7 @@ def measure():
     need(d.bindings(bound)==bound and d.bindings(protected)==protected,'all measured sources and historical evidence unchanged')
     need(identity((data/'seed.srm').read_bytes())==identity(seed) and identity((data/'candidate.gba').read_bytes())==saved_parent and identity(rom.read_bytes())==m.CANDIDATE,'input preservation and unchanged exact candidate')
     d.put('fixtures.json',fixtures)
-    measurement={'source_head':os.environ['GITHUB_SHA'],'run_id':int(os.environ['GITHUB_RUN_ID']),'candidate':m.CANDIDATE,'cases':processes,'accepted':results,'failures':failures,'new_unit_tests':43,'native_processes':len(processes),'fresh_cores_accepted':sum(v['fresh_cores'] for v in results.values()),'guard_processes':7,'host_compiles':2,'arm_compiles':0,'arm_links':0,'accepted_case_reruns':0,'rom_changes':0}
+    measurement={'source_head':os.environ['GITHUB_SHA'],'run_id':int(os.environ['GITHUB_RUN_ID']),'candidate':m.CANDIDATE,'cases':processes,'accepted':results,'failures':failures,'new_unit_tests':43,'native_processes':len(processes),'fresh_cores_accepted':sum(v['fresh_cores'] for v in results.values()),'guard_processes':7,'host_compiles':3,'host_compiles_this_run':1,'initial_runner_compile_failures':1,'unit_processes_this_run':0,'arm_compiles':0,'arm_links':0,'accepted_case_reruns':0,'rom_changes':0}
     d.put('measurement.json',measurement)
     # Failure originals are saved to the artifact; a failed native run is never published as accepted.
     need(not failures,'native failures preserved; do not promote or rerun successful cases')
@@ -114,7 +114,7 @@ def measure():
         raw=p.read_bytes();raw.decode('utf-8');need(b'\0' not in raw,'no binary payload')
         target=ROOT/directory/p.name;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(raw);evidence[str(target.relative_to(ROOT))]=identity(raw)
     d.write(ROOT/directory/'manifest.json',evidence)
-    cp={'schema_version':1,'task':TASK,'status':'PASS_PHASE0_LOAD_PENDING_TERMINAL','source_head':os.environ['GITHUB_SHA'],'run_id':int(os.environ['GITHUB_RUN_ID']),'candidate':m.CANDIDATE,'accepted_cases':list(results),'failed_cases':[],'accepted_native_cases':2,'fresh_cores':8,'measurement':directory+'/measurement.json','manifest':directory+'/manifest.json','source_bindings':bound,'protected_bindings':protected,'prior_terminal':prior_terminal,'new_unit_tests':43,'native_processes':2,'guard_processes':7,'host_compiles':2,'arm_compiles':0,'arm_links':0,'accepted_case_reruns':0,'rom_changes':0,'availability_fixture_words_per_process':1,'availability_fixture_byte_writes_per_process':4,'guarded_host_writes':0,'ram_ledger_fixture_writes':0,'register_fixture_writes':0,'phase0_load_failure_accepted':True,'cold_recovery_accepted':True,'same_core_menu_retry_accepted':False,'actions_completion_confirmed':False,'physical_flash_fault_accepted':False,'normal_new_game_accepted':False,'transaction_ui_accepted':False,'active_baseline_changed':False,'issue19_complete':False,'release_ready':False}
+    cp={'schema_version':1,'task':TASK,'status':'PASS_PHASE0_LOAD_PENDING_TERMINAL','source_head':os.environ['GITHUB_SHA'],'run_id':int(os.environ['GITHUB_RUN_ID']),'candidate':m.CANDIDATE,'accepted_cases':list(results),'failed_cases':[],'accepted_native_cases':2,'fresh_cores':8,'measurement':directory+'/measurement.json','manifest':directory+'/manifest.json','source_bindings':bound,'protected_bindings':protected,'prior_terminal':prior_terminal,'new_unit_tests':43,'native_processes':2,'guard_processes':7,'host_compiles':3,'host_compiles_this_run':1,'initial_runner_compile_failures':1,'unit_processes_this_run':0,'arm_compiles':0,'arm_links':0,'accepted_case_reruns':0,'rom_changes':0,'availability_fixture_words_per_process':1,'availability_fixture_byte_writes_per_process':4,'guarded_host_writes':0,'ram_ledger_fixture_writes':0,'register_fixture_writes':0,'phase0_load_failure_accepted':True,'cold_recovery_accepted':True,'same_core_menu_retry_accepted':False,'actions_completion_confirmed':False,'physical_flash_fault_accepted':False,'normal_new_game_accepted':False,'transaction_ui_accepted':False,'active_baseline_changed':False,'issue19_complete':False,'release_ready':False}
     publish(cp,set(evidence)|{directory+'/manifest.json'})
 
 
@@ -124,7 +124,7 @@ def publish(cp,evidence):
     goal='次は通常new-game/取引UIの未受入境界を限定実装/検証する。phase0 load 2件/43unit、通常V1 3件/旧40unit、7retry、BP/P08/特殊野生は変更影響なく再実行しない。'
     if not cp['actions_completion_confirmed']:goal='まず本runの終端・push/uploadを照合する。'+goal
     d.write(ROOT/CP,cp)
-    guide='# PR16 通常load内phase0保存不可とcold回復\n\n'+summary+'\n\n'+goal+'\n\n## 境界と受入\n\n通常起動の先行rootとContinue loadを分離。Research→Mirage→QOLの既存本番delegateを通し、phase0入口の可用性word `0x03005044` だけを1→0にする。停止fixture区間で4byteを書き、7 API barrierを即時再装着する。全EWRAM、当該word以外のIWRAM、16レジスタ/CPSR、128KiB Flashを前後比較。ledger/owner/PC/戻り値の注入なし。guard中のhost書込0であり、fixture書込0とは主張しない。\n\nV1移行とV2 prepared fishing稼得5点の2経路。実native return255、load result0、last_result13、counter2、blocked1を確認。全2048byteと128KiB Flashは原本どおり。保存可用性をhostで戻さずfresh通常起動で復帰し、counter2→3、保存1回、期待ledger全byte一致。稼得はbalance/lifetime/daily各5、pending全解除、二重加算0。他sector31 owner/Bag/party保持。実fieldと後続fresh Continue2回で全ledger・counter・owner・Bag・party一致。\n\n## 計測と保存\n\n候補 `'+m.CANDIDATE['sha256']+'` を保存済みrecipeから復元。ROM変更/ARM compile/link0、旧受入再実行0。新native2process/8fresh cores、7guard拒否probe、host compile2（新runner/単体canonical C）。Actionsで新unit43PASS。開発時ローカルpreflightも同じ43件PASS（受入前の開発検査）。ソース本体修正は不要だった。証拠manifestとsource/protected hashはcheckpoint参照。\n\n## 限界\n\nこの受入は可用性fixtureであり物理Flash故障ではない。同一coreの拒否後メニューretry、通常new-game/取引UI全体、全catalog、Issue19、releaseは未受入。候補/原本/active baseline/旧Wikiは不変、merge/releaseなし。一般CIのaction_requiredを全CI成功に読み替えない。\n\n## Actions\n\nsource `'+cp['source_head']+'` / run `'+str(cp['run_id'])+'` / 終端確認 `'+str(cp['actions_completion_confirmed'])+'`。'+(' finalize run `'+str(cp['finalize_run_id'])+'`。' if 'finalize_run_id' in cp else '')+'\n'
+    guide='# PR16 通常load内phase0保存不可とcold回復\n\n'+summary+'\n\n'+goal+'\n\n## 境界と受入\n\n通常起動の先行rootとContinue loadを分離。Research→Mirage→QOLの既存本番delegateを通し、phase0入口の可用性word `0x03005044` だけを1→0にする。停止fixture区間で4byteを書き、7 API barrierを即時再装着する。全EWRAM、当該word以外のIWRAM、16レジスタ/CPSR、128KiB Flashを前後比較。ledger/owner/PC/戻り値の注入なし。guard中のhost書込0であり、fixture書込0とは主張しない。\n\nV1移行とV2 prepared fishing稼得5点の2経路。実native return255、load result0、last_result13、counter2、blocked1を確認。全2048byteと128KiB Flashは原本どおり。保存可用性をhostで戻さずfresh通常起動で復帰し、counter2→3、保存1回、期待ledger全byte一致。稼得はbalance/lifetime/daily各5、pending全解除、二重加算0。他sector31 owner/Bag/party保持。実fieldと後続fresh Continue2回で全ledger・counter・owner・Bag・party一致。\n\n## 計測と保存\n\n候補 `'+m.CANDIDATE['sha256']+'` を保存済みrecipeから復元。ROM変更/ARM compile/link0、旧受入再実行0。新native2process/8fresh cores、7guard拒否probe、host compile計3（初回単体C1・符号型不一致で失敗した初回runner1・修正runner1）。初回Actionsの43unit PASSはsource同一性を照合して再利用し再実行0。開発時ローカルpreflightも同じ43件PASS（受入前の開発検査）。製品ソース本体修正は不要だった。新runnerのCPSR snapshot型だけをmGBAのsigned packed型へ一致させた。証拠manifestとsource/protected hashはcheckpoint参照。\n\n## 限界\n\nこの受入は可用性fixtureであり物理Flash故障ではない。同一coreの拒否後メニューretry、通常new-game/取引UI全体、全catalog、Issue19、releaseは未受入。候補/原本/active baseline/旧Wikiは不変、merge/releaseなし。一般CIのaction_requiredを全CI成功に読み替えない。\n\n## Actions\n\nsource `'+cp['source_head']+'` / run `'+str(cp['run_id'])+'` / 終端確認 `'+str(cp['actions_completion_confirmed'])+'`。'+(' finalize run `'+str(cp['finalize_run_id'])+'`。' if 'finalize_run_id' in cp else '')+'\n'
     (ROOT/GUIDE).write_text(guide)
     state=d.read(ROOT/d.STATE)
     state['research_phase0_load']={k:cp[k] for k in ('status','candidate','accepted_cases','failed_cases','run_id','actions_completion_confirmed')};state['research_phase0_load']['path']=CP
@@ -135,7 +135,7 @@ def publish(cp,evidence):
     for path in OWN_SOURCE|{CP,GUIDE}:state['source_bindings'][path]=identity((ROOT/path).read_bytes())
     state['logs_synchronized']=True;publish_resume(state)
     stamp=datetime.datetime.now(datetime.timezone.utc).isoformat()
-    log=f'\n## {stamp}\n- Timestamp: {stamp}\n- Task: {TASK} / 通常load内phase0保存不可とcold回復\n- Version: research-phase0-load-v1\n- Status: DONE（限定2境界、全UIは未受入）\n- Summary: '+summary+'\n- Files changed: 新runner/model/43tests/Actions、証拠/checkpoint/guide、固定引継ぎMD/JSON、両ログ。\n- Verify: 新unit43PASS（canonical C compile1）、native2process/8cores、runner compile1、7guard拒否PASS。ローカル開発preflight43PASS。通常load拒否・回復・2回冪等Continue。ROM変更/ARM compile/link/旧受入再実行0。fixtureは可用性word1件4byte/各process、guarded host書込/ledger/PC/戻り値注入0。終端確認='+str(cp['actions_completion_confirmed'])+'、記録finalizeはnative/unit/compile0。resume/task graph/scoped final-index guard/diff-checkを同runで検査。全体歴史guard成功は主張しない。\n- Commit: 同branch非force。source='+os.environ['GITHUB_SHA']+'、自己SHAはgit log。\n- Network: GitHub固定artifactとActions API。私有payload新規tracked0、merge/release/active baseline変更0。\n'
+    log=f'\n## {stamp}\n- Timestamp: {stamp}\n- Task: {TASK} / 通常load内phase0保存不可とcold回復\n- Version: research-phase0-load-v1\n- Status: DONE（限定2境界、全UIは未受入）\n- Summary: '+summary+'\n- Files changed: 新runner/model/43tests/Actions、証拠/checkpoint/guide、固定引継ぎMD/JSON、両ログ。\n- Verify: 新unit43PASS（初回canonical C compile1）をsource同一で再利用、unit再実行0。native2process/8cores、成功runner compile1（初回runner sign-compare compile失敗1を別記）、7guard拒否PASS。ローカル開発preflight43PASS。通常load拒否・回復・2回冪等Continue。ROM変更/ARM compile/link/旧受入再実行0。fixtureは可用性word1件4byte/各process、guarded host書込/ledger/PC/戻り値注入0。終端確認='+str(cp['actions_completion_confirmed'])+'、記録finalizeはnative/unit/compile0。resume/task graph/scoped final-index guard/diff-checkを同runで検査。全体歴史guard成功は主張しない。\n- Commit: 同branch非force。source='+os.environ['GITHUB_SHA']+'、自己SHAはgit log。\n- Network: GitHub固定artifactとActions API。私有payload新規tracked0、merge/release/active baseline変更0。\n'
     for path in d.LOGS:
         with (ROOT/path).open('a') as f:f.write(log)
     owned=evidence|{CP,GUIDE,d.STATE,d.DOC}|d.LOGS
