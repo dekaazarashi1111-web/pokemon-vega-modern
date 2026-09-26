@@ -10582,3 +10582,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 元51unit/2native/3cores/host1原本と21path guardをhash再利用。unit/native/compile再実行0。旧失敗step7を隠さない。現在HEAD context exportの全hash、commit前resume/task graph/scoped index guard。
 - Commit: accepted=5e428c2f09c14d4cf65b10c9da78d39ca47f8277、closeout source=b0451cf9a855d5ddbda36046be4e3d23ea7ebc09、自己SHAはgit log参照、同branch非force push。
 - Network: GitHub ref/PR/Actions原本のみ。元ROM/seed/旧受入/baseline不変。残4活動/自然到達/受付ショップ接続・全CI・releaseは未受入。
+
+## 2026-09-26T19:56:59.817871+00:00
+- Timestamp: 2026-09-26T19:56:59.817871+00:00
+- Task: USER-20260927-RESEARCH-MINING / 採掘実RP稼得の限定受入
+- Version: research-mining-v1
+- Status: DONE（採掘限定scope）
+- Summary: 標準いわくだき0→10RP、条件不足/取消、保存2/独立Continue、fixture階往復後cap、4文言を受入。wild tail/自然到達/残3活動/受付ショップ接続は未受入。
+- Files changed: 採掘runner/oracle/64検査/測定・記録Actions、UTF8原本/失敗履歴/checkpoint/guide、固定引継ぎMD・JSON、両ログ。
+- Verify: run36267515706全step成功、3native/5cores/host1/ARM0/ROM変更0、失敗0、新64tests PASS。local開発8中5失敗は別記。記録unit/native/compile再実行0。source/11画像/全ledger/party/Bag/Flash照合。commit前resume/task graph/scoped final-index guard必須。
+- Commit: WIP f12167c7/2640e5d9、測定source=8fdda1bb5e4f559cf71120f17e7fc947116e8f69、記録source=7e6b62556df26589616d94073feedc658e22e82d、自己SHAはgit log参照、同branch非force push。
+- Network: GitHub HEAD/PR/完了Actions/固定artifactのみ。旧写真/虫取り/BP/P08/seed/baseline不変。一般CIと限定PASSを分離、merge/releaseなし。

@@ -1,13 +1,25 @@
-# PR16 採掘の実RP稼得 — 実装チェックポイント
+# PR16 採掘の実RP稼得
 
-USER-20260927-RESEARCH-MINING / WIP_NATIVE_MEASURED_ORACLE_PENDING
+PASS_MINING_REAL_EARNING_SCOPED / USER-20260927-RESEARCH-MINING
 
-開始HEAD `8ec5a37666e07a12f1b31d8c5257324168d8fe4e`。context保存 `f12167c776d230fa1cc10dab93f2617f1534c4df`、run36266517223 SUCCESS。写真・虫取り・保存viewの受入原本と候補を変更せず、新規採掘3ケース専用ランナーを追加した。
+## 実装・限定受入
 
-候補26dac23c / 33554432bytesは専用recipeのbyte適用だけで復元、ARM compile0。現ROMのmap97/82、local12、(1,20)、event0x09413B40、record0x0941397C、script0x093C050Cを確認。現在のobject template数は17、live対象岩1。旧configのappend前件数を現ROMの件数へ流用しない。
+候補 `26dac23cfdbc02c3c25e357b79dcdf3d247c10d893f54a4f6d6b1227bf5624da` / 33554432bytesは不変。標準いわくだきのfield effect37→岩除去→実FieldMiningを物理Aで通す。map97/82、local12、(1,20)、event0x09413B40、record0x0941397C、script0x093C050C。現在のobject template数17とlive対象岩1を区別する。
 
-ローカル開発8processのうち失敗5、成功3。バッジ不足・技不足はRP0/Flash不変、取消も不変。標準いわくだき→岩除去→実FieldMiningで0→10RP、counter2→4、取引自身の保存2回、手動Save0。独立coreの通常Continueで全2048byte台帳・party600byte・Bag・他owner・checksumと残高10を保持。日次上限は3番目のcoreの開始fixtureで隣接階へstock warpして戻し、実岩を再度調べてresult4/残高10/Flash不変を確認。自然な階往復を受入とはしない。
+バッジ不足・技不足・取消ではRP0/Flash不変。承諾で0→10RP、生涯10/日内mining10/claim2/取引ID2、保存counter2→4。取引自身の保存2回、手動Save0。全party600bytes・Bag・台帳2048bytes・他owner・checksumを検査。独立coreの通常Continueで残高10と全不変量を保持する。
 
-初期party/技/バッジ/進行/warpはfixture。報酬・上限文言で止め、後続RockSmashWildEncounterの自然終端は未受入。初期の過剰A入力によるparty変化2失敗、岩消去がContinueでも残るため再interactionへ進めなかった1失敗、件数誤仮定とCPU非保存のsetup各1失敗を成功に読み替えない。全原本はこの作業のローカルmeasurementへ保存してあり、次commitで固定のtext証拠として記録する。
+岩消去は同mapのContinueでも保持される。日次上限は3番目のcoreの開始fixtureで隣接階97/81へstock warpして戻し、再度実岩を調べresult4/RP10/counter4/Flash不変を確認。自然な階往復とは区別する。報酬と上限文言で入力を止め、RockSmashWildEncounterの自然終端は未受入。初期party/技/バッジ/進行/warpもfixture。barrier後host書込み0、RP/resultの注入0。
 
-4文言（条件不足、確認、10ポイント、日次上限）を目視確認。形式oracle・負例unit・Actionsでのexact source測定と引継ぎ/両ログ同期が未完了。採掘の正式受入へまだ昇格しない。次はこのランナーを再利用して原本検査を完成し、写真/虫取りのnativeを再実行しない。残る釣り・生態・ゲームコーナー、通常進行からResearch受付/ショップ接続は未完。PR draft/open、未merge、release/baseline変更なし。
+## 原本・実行数・失敗履歴
+
+Actions `36267515706` / source `8fdda1bb5e4f559cf71120f17e7fc947116e8f69` は全step成功。新規3process/5fresh cores、host compile1、ARM0、ROM変更0、失敗0。新規64unit成功（64owner byte変異、全行欠落/追加、型・順序・不変量・過大主張拒否を含む）。11PPMの完全hashが目視済み四文言に一致。記録時unit/native/compile再実行0。
+
+原本 `content/modernization/pr16_research_mining_measurement.json` はartifact10914865008のmeasurement.jsonをbyte不変保存。外側ZIP `4c8ef9850fec610641944b1b76f7673edee49169e00dbe75623989bca9381719`。`content/modernization/pr16_research_mining_evidence/36267515706/terminal.json`、unit/visual/reconciliation/manifestを照合する。
+
+ローカル開発は8process/成功3/失敗5。旧configの件数誤仮定1、CPU非保存のsetup1、過剰Aでwild tailへ進みparty変化2、Continue後の岩消去保持1を失敗として保存。途中失敗のstderr原文・stdout/source/measurement identity・compile/preflight履歴は `content/modernization/pr16_research_mining_local_development.json`。途中stdout全文はcontainer原本でありGitに全文保存したとは主張しない。正式原本は上記Actions。成功に読み替えない。
+
+## 次工程
+
+次は残る3活動（釣り・生態・ゲームコーナー）の実RP稼得、通常進行からResearch受付/ショップ接続、残るnative文言。修復候補26dac23cを専用recipeで復元し、写真/虫取り/採掘の受入済みケースは変更影響なしに再実行しない。採掘は標準いわくだきから0→10RP、条件不足/取消、取引保存2、独立Continue、別coreの階往復fixture後の日次上限、4文言まで。初期party/技/バッジ/進行/warpとcap再入場はfixture。RockSmashWildEncounterの自然終端・自然到達/再到達・全活動/全map/通常接続・releaseは未受入。
+
+既存P03 capacity source pin等の一般CI失敗は限定PASSと分離する。最新照合は `content/modernization/pr16_research_mining_evidence/36267515706/checks.json`。PR draft/open・未merge、release/baseline切替なし。記録workflow自身の終端はrecord_run_idから確認し、自己実行中をsuccessにしない。
