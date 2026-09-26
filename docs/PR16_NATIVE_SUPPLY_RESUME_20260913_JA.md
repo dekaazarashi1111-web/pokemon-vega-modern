@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-共有研究保存の16取引境界と容量拒否2件、Bag容量delegate誤接続2byte修正を受入。記録Actions終端は別runで確認する。
+共有研究保存の16取引境界と容量拒否2件、Bag容量delegate誤接続2byte修正を受入。記録Actions終端成功を確認済み。
 
-**次: 共有研究18境界・Bag誤接続修正の原本記録済み。次はこの記録Actionsの終端成功とpushを確認し、同workflowのRESEARCH_MODEだけfinalizeへ変更する。native/旧unit/ARMを再実行しない。**
+**次: 共有研究取引の18境界とBag誤接続修正を受入。earn8件は実行候補23d58409を保持し2byte差分証明で限定適用、spend/rank10件は4aee03e8。再実行しない。次は保存新規初期化/V1移行とphase0失敗の未検証影響範囲を限定検証する。通常取引UI/全catalogは未受入。map3/19除外130行も未確定。**
 
 固定候補identityと実行候補別の受入範囲を保持。fixture/scheduler実サービス試験を通常取引UI受入に昇格しない。既受入18件と特殊野生2件・BP/P08は影響がなければ再実行しない。新規/V1移行・phase0失敗・map3/19除外130行の未完を隠さず、merge/release/baseline変更をしない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `43cd63bbba977f5df07b4efc16106706ee1acd51`。
+証拠のsource HEAD: `fb44f475d954b200f9a7ffdddc90f4b2a137ca92`。
 研究保存限定記録工程のsource HEAD。自己commit SHAはgit logで確認する。正式BP/P08の実行HEAD/candidateとは別であり置換しない。
 
 ## 最短の再開手順

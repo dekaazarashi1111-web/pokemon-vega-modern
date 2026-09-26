@@ -53,3 +53,11 @@ source `43cd63bbba977f5df07b4efc16106706ee1acd51` / run `36231053062`。受入18
 共有研究18境界・Bag誤接続修正の原本記録済み。次はこの記録Actionsの終端成功とpushを確認し、同workflowのRESEARCH_MODEだけfinalizeへ変更する。native/旧unit/ARMを再実行しない。
 
 公開記録補足: raw compiler receiptは固定Actions artifact内で原本保持し、Gitには絶対引数3+4個だけを識別子へ置換したcompile.public.jsonを保存する。publication.jsonに全memberの原本hash/公開hash/変換有無を明示し、他の原本memberはbyte同一。初回記録run36230558876はprivate guard failure・push未実行として保持。そこで成功した68試験は依存source hashと7942-byte transcriptを束縛して再利用し、修正後の記録工程は公開変換12試験だけを新規実行した。finalizeでは両方再実行しない。
+
+## 記録工程 finalize
+
+source `fb44f475d954b200f9a7ffdddc90f4b2a137ca92` / run `36231114319`。受入18件、新unit=0、この記録工程のnative/host compile/ARM/既受入再実行=0。canonical Cは正しい空き確認delegateへ同期。
+
+共有研究取引の18境界とBag誤接続修正を受入。earn8件は実行候補23d58409を保持し2byte差分証明で限定適用、spend/rank10件は4aee03e8。再実行しない。次は保存新規初期化/V1移行とphase0失敗の未検証影響範囲を限定検証する。通常取引UI/全catalogは未受入。map3/19除外130行も未確定。
+
+公開記録補足: raw compiler receiptは固定Actions artifact内で原本保持し、Gitには絶対引数3+4個だけを識別子へ置換したcompile.public.jsonを保存する。publication.jsonに全memberの原本hash/公開hash/変換有無を明示し、他の原本memberはbyte同一。初回記録run36230558876はprivate guard failure・push未実行として保持。そこで成功した68試験は依存source hashと7942-byte transcriptを束縛して再利用し、修正後の記録工程は公開変換12試験だけを新規実行した。finalizeでは両方再実行しない。
