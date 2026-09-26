@@ -1,0 +1,56 @@
+name: pr16-special-wild-gameplay-20260926
+# 初回はsource/状態の限定転送のみ。ROM生成・native再実行なし。
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-special-wild-gameplay-20260926.yml]
+permissions:
+  contents: read
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-special-wild-gameplay-20260926
+  cancel-in-progress: false
+jobs:
+  gameplay:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: 対象sourceと最新Actionsの転送（検証済み成果の再実行0）
+        run: |
+          python3 -B - <<'PY'
+          import hashlib,json,os,pathlib,subprocess,urllib.request,zipfile
+          root=pathlib.Path('.');out=root/'.local/pr16-special-wild-gameplay/context';out.mkdir(parents=True)
+          tracked=subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
+          exact={'CHATGPT_RESUME.md','AGENTS.md','docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md','docs/PR16_SPECIAL_WILD_JA.md','docs/PR16_LEARNSET_BASELINE_RESET_JA.md','content/modernization/pr16_native_supply_resume_20260913.json','content/modernization/pr16_bp_chooser_checkpoint.json','content/modernization/p08_remaining_work.json','content/modernization/pr16_special_wild_bound_checkpoint.json','content/modernization/pr16_special_wild_bound_completed_actions.json','content/modernization/pr16_special_wild_research_table_audit.json','content/modernization/pr16_learnset_natural_checkpoint.json','config/active_play_baseline.json','design/active_play_baseline.md','design/run_log.md','design/version_log.md','scripts/common.py','scripts/pr16_resume.py'}
+          paths=[p for p in tracked if p in exact or p.endswith('/AGENTS.md') or (p.startswith('scripts/pr16_') and p.endswith('.py')) or (p.startswith('tools/mgba_') and p.endswith(('.c','.h'))) or (p.startswith('tests/test_pr16_') and any(t in p for t in ('special_wild','learnset_natural','learnset_battle'))) or p.startswith('content/modernization/pr16_special_wild_evidence/36213677615/')]
+          index={}
+          with zipfile.ZipFile(out/'context.zip','w',compression=zipfile.ZIP_DEFLATED) as z:
+              for p in sorted(paths):
+                  f=root/p
+                  assert f.is_file() and not f.is_symlink()
+                  raw=f.read_bytes();raw.decode('utf-8');assert b'\0' not in raw
+                  index[p]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()};z.writestr(p,raw)
+              z.writestr('index.json',json.dumps(index,sort_keys=True,indent=2)+'\n')
+          base='https://api.github.com/repos/'+os.environ['GITHUB_REPOSITORY']+'/'
+          def get(path):
+              req=urllib.request.Request(base+path,headers={'Authorization':'Bearer '+os.environ['GITHUB_TOKEN'],'Accept':'application/vnd.github+json'})
+              with urllib.request.urlopen(req) as r:return json.load(r)
+          runs=get('actions/runs?per_page=30')['workflow_runs'];pr=get('pulls/16')
+          summary={'source_head':os.environ['GITHUB_SHA'],'pr':{'state':pr['state'],'draft':pr['draft'],'merged':pr['merged'],'head_sha':pr['head']['sha'],'head_ref':pr['head']['ref'],'head_repo':pr['head']['repo']['full_name']},'runs':[{k:r[k] for k in ('id','name','head_sha','head_branch','path','status','conclusion')} for r in runs],'native_processes':0,'arm_compiles':0,'rom_rebuilds':0,'source_files':len(index)}
+          (out/'snapshot.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n')
+          print(json.dumps(summary,ensure_ascii=False))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr16-special-wild-gameplay-context
+          path: .local/pr16-special-wild-gameplay/context/
+          retention-days: 7
+          if-no-files-found: error
