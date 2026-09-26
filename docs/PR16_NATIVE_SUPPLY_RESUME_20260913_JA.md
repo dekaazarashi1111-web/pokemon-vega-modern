@@ -14,7 +14,7 @@
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `60f2ae1f8db456a357b45d570c59860ea7a3e7d2`。
+証拠のsource HEAD: `a5f00ea25dcde3056ee1fe2cf83c0f597a8f8b0b`。
 今回記録source HEAD。native測定は専用checkpointの17871a2b/run36234024026、自己commitはgit logで照合。
 
 ## 最短の再開手順

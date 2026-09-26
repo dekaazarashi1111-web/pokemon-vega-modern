@@ -7515,3 +7515,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 同branch非force push。source=60f2ae1f8db456a357b45d570c59860ea7a3e7d2、自己SHAはgit log参照。
 - Network: 固定GitHub UTF8証拠artifactのみ。ROM/save非tracked、旧18/BP/P08/特殊野生/baseline不変、全CI成功を主張しない。
 - Publication correction: 上記公開写像8試験はrun36234251833の成功原本を再利用（今回新unit0）。今回追加の二次診断写像2検査のみ実行。元の末尾空白を持つindex-guardもJSON文字列で可逆保存し、既存原本hashは不変。native再実行0。
+
+## 2026-09-26T10:02:51.244572+00:00
+- Timestamp: 2026-09-26T10:02:51.244572+00:00
+- Task: USER-20260926-RESEARCH-LIFECYCLE
+- Version: research-lifecycle-record-finalize-v1
+- Status: DONE（初期化/V1 RAM限定5境界、phase0故障/V1 loadは未完）
+- Summary: 研究保存初期化/V1 RAM移行の5ケースと15fresh coreを受入。次はphase0実失敗とV1 load adapter。成功済み5件/旧18境界/unit22は再実行しない。通常new-game/取引UI・全catalog・map3/19除外130行は別の未完境界。
+- Files changed: 専用build/validator/公開写像/8試験/Actions、原本とmanifest/checkpoint、固定引継ぎMD/JSON、guide、両ログ。
+- Verify: 測定native5/15cores/guard7はrun36234024026を再利用。unit22はrun36233675420を再利用。公開写像8新unitはrecordのみ。今回native0/compile0/ARM0。失敗原本をsuccessに改作せず保持。resume check/task graph/scoped final-index guard/diff check後にcommit。
+- Commit: 同branch非force push。source=a5f00ea25dcde3056ee1fe2cf83c0f597a8f8b0b、自己SHAはgit log参照。
+- Network: 固定GitHub UTF8証拠artifactのみ。ROM/save非tracked、旧18/BP/P08/特殊野生/baseline不変、全CI成功を主張しない。
+- Publication correction: 上記公開写像8試験はrun36234251833の成功原本を再利用（今回新unit0）。今回追加の二次診断写像2検査のみ実行。元の末尾空白を持つindex-guardもJSON文字列で可逆保存し、既存原本hashは不変。native再実行0。

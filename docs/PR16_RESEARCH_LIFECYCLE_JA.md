@@ -12,4 +12,4 @@
 
 ## 再開
 
-専用checkpointとmanifestに固定原本・全member/source hash・失敗runの状態を保持。Actions記録終端確認: False。BP/P08/特殊野生/active baselineは不変。
+専用checkpointとmanifestに固定原本・全member/source hash・失敗runの状態を保持。Actions記録終端確認: True。BP/P08/特殊野生/active baselineは不変。

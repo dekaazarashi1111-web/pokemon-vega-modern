@@ -4176,7 +4176,7 @@
     "stop_rule_ja": "同一候補とsource/原本bindingを保持。RAMサービス試験を通常UI/new-game/V1保存loadへ昇格しない。phase!=0の既存故障flagをphase0故障と扱わない。既受入nativeの再実行禁止。merge/release/baseline切替禁止。"
   },
   "observed_date_jst": "2026-09-25",
-  "observed_head": "60f2ae1f8db456a357b45d570c59860ea7a3e7d2",
+  "observed_head": "a5f00ea25dcde3056ee1fe2cf83c0f597a8f8b0b",
   "observed_head_checks": {
     "reason_ja": "native5件はPASS、元runは末尾空白diff check failureを保持。記録成功と全CI成功を区別する。",
     "runs": [
@@ -4186,6 +4186,15 @@
         "head_sha": "17871a2bb5701a547594cd11b0ece35382ff0748",
         "id": 36234024026,
         "path": ".github/workflows/pr16-research-lifecycle-v2-20260926.yml",
+        "run_attempt": 1,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "60f2ae1f8db456a357b45d570c59860ea7a3e7d2",
+        "id": 36234510967,
+        "path": ".github/workflows/pr16-research-lifecycle-record-20260926.yml",
         "run_attempt": 1,
         "status": "completed"
       }
@@ -5815,7 +5824,7 @@
       "v1-bad-checksum",
       "v1-nonzero-tail"
     ],
-    "actions_completion_confirmed": false,
+    "actions_completion_confirmed": true,
     "candidate": {
       "sha256": "4aee03e8ec0135efa52d8d2b41edf61637ddc65e4be9f1a0b60a2e1c23dbefe7",
       "size": 33554432
@@ -6899,8 +6908,8 @@
       "size": 3028
     },
     ".github/workflows/pr16-research-lifecycle-record-20260926.yml": {
-      "sha256": "66c8f961a95f8714d8896411c28ad55a0d3b00e033617a989336124a1c3aa8ef",
-      "size": 2726
+      "sha256": "59f324f1dc2fe93effa1a8c1ea2f33827f34dd1be4007bc2e93f5d1858b0a5e8",
+      "size": 2728
     },
     ".github/workflows/pr16-research-lifecycle-v2-20260926.yml": {
       "sha256": "9d0786d1f53a88b5fa86dd0daf04200f2b439d937a08e4a81446966e1bfd88bf",
@@ -8143,8 +8152,8 @@
       "size": 259029
     },
     "content/modernization/pr16_research_lifecycle_checkpoint.json": {
-      "sha256": "566d4a0b1cf40201423a2e71391583d70d7fc0e0c47541c94b802eb47c37e394",
-      "size": 5859
+      "sha256": "36451c1700f14f62fa5110475312433b44e070462753ed870a2759b25c2660c8",
+      "size": 6182
     },
     "content/modernization/pr16_research_save_impact_checkpoint.json": {
       "sha256": "7fad32c544c8aae20401665934c19b4e7ac6e3a712bd885dbd4c35afbc0aef13",
@@ -8939,8 +8948,8 @@
       "size": 4323
     },
     "docs/PR16_RESEARCH_LIFECYCLE_JA.md": {
-      "sha256": "57bd5edfca927a88ac75895deda48c71a14949be791be2c534454ec4f0db2fb1",
-      "size": 1422
+      "sha256": "c901d87cd64ff20ca0f42366e9fc61527cf026a46f95533c4933c7a59d683970",
+      "size": 1421
     },
     "docs/PR16_RESEARCH_SAVE_IMPACT_JA.md": {
       "sha256": "f1481163aba7ba0cf0bfc396895c9a9ccf7058fb4f65dd06842fb13fd4dd1afe",
