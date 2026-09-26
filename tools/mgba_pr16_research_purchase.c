@@ -21,8 +21,33 @@ static struct mCore*up_setup(const char*rom,const char*save){
  si_need(read8(c,SI_VOL+28)==0&&read8(c,SI_VOL+34)==0&&si_read16(c,SI_VOL+20)==65535,"real engine services");
  return c;
 }
+/* Continue preserves facing.  Unconditional UP can walk onto the BG tile;
+ * face only when necessary, as the existing Ring/shop input harness does. */
+static void up_stance(struct mCore*c){
+ unsigned s=read32(c,QOL_SAVE_BLOCK1_SLOT),id=read8(c,0x02036FB1U),obj=0x02036D6CU+36*id;
+ si_need(read8(c,s+4)==98&&read8(c,s+5)==3&&read16(c,s)==2&&read16(c,s+2)==2,"authored interaction stance preserved");
+ si_need(id<16&&(read8(c,obj)&1)&&read16(c,obj+0x10)==9&&read16(c,obj+0x12)==9,"actual player object stance");
+}
+static void up_open_shop(struct mCore*c,const char*stage){
+ up_stance(c);unsigned id=read8(c,0x02036FB1U);
+ if((read8(c,0x02036D6CU+36*id+0x18)&15)!=2)uc_tap(c,QOL_KEY_UP);
+ up_stance(c);
+ for(unsigned n=0;n<900;++n){
+  if(uc_active(c)){
+   unsigned count=read8(c,SI_VOL+30),window=read8(c,SI_VOL+32),tasks=0,callback=0;
+   si_need(count>=1&&count<=23&&window<32&&read8(c,SI_VOL+31)==0,"real first page/window");
+   si_need(si_read16(c,SI_VOL+18)==65535&&si_read16(c,SI_VOL+16)==9,"actual busy/unselected");
+   for(unsigned t=0;t<16;++t){unsigned a=0x030050D0U+40*t;if(read8(c,a+4)&&read32(c,a)>=0x093BD000U&&read32(c,a)<0x093C0000U){++tasks;callback=read32(c,a);}}
+   si_need(tasks==1,"one Research task");up_stance(c);
+   printf("{\"shop_open\":\"%s\",\"eligible_count\":%u,\"window\":%u,\"callback\":%u,\"native_tasks\":%u}\n",stage,count,window,callback,tasks);fflush(stdout);
+   for(unsigned i=0;i<30;++i)uc_frame(c,0);return;
+  }
+  uc_frame(c,n%60<2?QOL_KEY_A:0);
+ }
+ up_stance(c);si_die("normal Research shop open limit");
+}
 static void up_select(struct mCore*c,const char*stage){
- uc_open_shop(c,stage);si_need(si_read16(c,SI_VOL+36)==0,"first displayed row resolves catalog0");
+ up_open_shop(c,stage);si_need(si_read16(c,SI_VOL+36)==0,"first displayed row resolves catalog0");
  uc_tap(c,QOL_KEY_A);si_need(si_read16(c,SI_VOL+18)==0&&si_read16(c,SI_VOL+16)==10,"normal selection before confirmation");up_no_task(c);
 }
 static void up_finish(struct mCore*c,unsigned key,unsigned result){
