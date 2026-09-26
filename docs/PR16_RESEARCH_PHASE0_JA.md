@@ -14,4 +14,4 @@
 
 ## 原本
 
-source `4946ff7f22401b260362ca6d6be7e7cb4bd1c460` / run `36234797221`。成功: init-erased-save-unavailable, init-zero-save-unavailable, v1-save-unavailable。失敗: 。終端確認: False。
+source `4946ff7f22401b260362ca6d6be7e7cb4bd1c460` / run `36234797221`。成功: init-erased-save-unavailable, init-zero-save-unavailable, v1-save-unavailable。失敗: 。終端確認: True。

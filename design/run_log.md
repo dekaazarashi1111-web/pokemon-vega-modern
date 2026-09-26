@@ -10266,3 +10266,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: measure時のみ新unit18/native3/9cores/guard7/host compile1、finalize時は追加実行0。ARM0、旧5+18native/旧unit30の再実行0。全Flash不変/全owner/Bag/party/ledger/counter/実native戻り値255を照合。resume/task graph/最終index scoped private guard/diff check後のみcommit。
 - Commit: 同branch非force push。source=4946ff7f22401b260362ca6d6be7e7cb4bd1c460、自己SHAはgit log参照。
 - Network: 固定GitHub artifact/PR/Actionsのみ。ROM/save非tracked。全CI成功・通常UI・物理Flash故障・同一core retry・Issue19全体完了を主張しない。
+
+## 2026-09-26T10:10:02.194058+00:00
+- Timestamp: 2026-09-26T10:10:02.194058+00:00
+- Task: USER-20260926-RESEARCH-PHASE0
+- Version: research-phase0-finalize-v1
+- Status: PASS_PHASE0_NATIVE_UNAVAILABLE_3_SCOPED（限定scope）
+- Summary: 初期化/V1 RAM正常・破損拒否5件に加え、phase0既存native保存不可3/3件を記録。次は同一coreの失敗後再試行とV1通常load adapter。特にEMPTY失敗後はV2 RAMを残してblockedとなるため、再試行時の永続化をまだ保証していない。受入済み5/18/phase0成功ケースを再実行しない。
+- Files changed: 新phase0 C/validator/18負の試験/Actions、UTF8原本とcheckpoint、固定引継ぎMD/JSON、専用guide、両ログ。
+- Verify: measure時のみ新unit18/native3/9cores/guard7/host compile1、finalize時は追加実行0。ARM0、旧5+18native/旧unit30の再実行0。全Flash不変/全owner/Bag/party/ledger/counter/実native戻り値255を照合。resume/task graph/最終index scoped private guard/diff check後のみcommit。
+- Commit: 同branch非force push。source=0c0411d3b1a440149c57d339f59f73992375532f、自己SHAはgit log参照。
+- Network: 固定GitHub artifact/PR/Actionsのみ。ROM/save非tracked。全CI成功・通常UI・物理Flash故障・同一core retry・Issue19全体完了を主張しない。
