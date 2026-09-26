@@ -21,3 +21,13 @@ hidden: local固定mGBA原本、species843/move244。fishing: Actions原本、sp
 原測定run36220635424はnative/原本保存成功、index対象集合エラーでpublish skippedとなったfailureのまま。成功runへ改称しない。記録工程だけ復旧し、両nativeを再実行しない。今回phase=recover。
 
 通常UI2件の成功原本は記録復旧済み。次は記録復旧Actionsの終端成功を確認しfinalizeのみ実行する。native/旧unit/ARMは再実行しない。
+
+## 保存先修正と通常UI 2件の記録
+
+研究persist_phaseがSaveLoadAdapter(0x09377695)へ誤委譲し、捕獲直後に旧saveを読み戻していた。TrySavingDataAdapter(0x09377661)へ1byte修正し、configの同じdelegateを一致させた。固定親/候補hash、両target body、前後context、全rollbackを照合。ARM再compileなし。
+
+hidden: local固定mGBA原本、species843/move244。fishing: Actions原本、species492/move225、3回の通常cast。両方で7host write APIを禁止し、通常item UIから捕獲・Save/fresh Continueと個体100byte/手持ち200byte・全inventoryを照合。開始fixtureからstory到達の受入は主張しない。
+
+原測定run36220635424はnative/原本保存成功、index対象集合エラーでpublish skippedとなったfailureのまま。成功runへ改称しない。記録工程だけ復旧し、両nativeを再実行しない。今回phase=finalize。
+
+特殊野生の釣り/生態レーダー通常UI→捕獲→Save/fresh Continueは2/2受入。再実行しない。次は共有研究保存delegate修正の他取引（earn/spend/rank/recovery）の影響範囲を限定検証する。旧候補の取引受入を新candidate23d58409へ自動継承しない。map3/19除外130行は未確定のまま保持。

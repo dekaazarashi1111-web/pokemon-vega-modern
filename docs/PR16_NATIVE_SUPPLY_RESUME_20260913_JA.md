@@ -6,9 +6,9 @@
 
 ## いまの停止点と次の1手
 
-特殊野生通常UI 2/2受入。研究保存delegateの誤loadをsaveへ修正。記録復旧runの終端待ち。
+特殊野生通常UI 2/2受入。研究保存delegateの誤loadをsaveへ修正。Actions終端確認済み。
 
-**次: 通常UI2件の成功原本は記録復旧済み。次は記録復旧Actionsの終端成功を確認しfinalizeのみ実行する。native/旧unit/ARMは再実行しない。**
+**次: 特殊野生の釣り/生態レーダー通常UI→捕獲→Save/fresh Continueは2/2受入。再実行しない。次は共有研究保存delegate修正の他取引（earn/spend/rank/recovery）の影響範囲を限定検証する。旧候補の取引受入を新candidate23d58409へ自動継承しない。map3/19除外130行は未確定のまま保持。**
 
 特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。
 

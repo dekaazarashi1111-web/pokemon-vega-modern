@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "特殊野生通常UI 2/2受入。研究保存delegateの誤loadをsaveへ修正。記録復旧runの終端待ち。",
+    "current_stop": "特殊野生通常UI 2/2受入。研究保存delegateの誤loadをsaveへ修正。Actions終端確認済み。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "通常UI2件の成功原本は記録復旧済み。次は記録復旧Actionsの終端成功を確認しfinalizeのみ実行する。native/旧unit/ARMは再実行しない。",
+    "next_step": "特殊野生の釣り/生態レーダー通常UI→捕獲→Save/fresh Continueは2/2受入。再実行しない。次は共有研究保存delegate修正の他取引（earn/spend/rank/recovery）の影響範囲を限定検証する。旧候補の取引受入を新candidate23d58409へ自動継承しない。map3/19除外130行は未確定のまま保持。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -4162,9 +4162,9 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "通常UI2件の成功原本は記録復旧済み。次は記録復旧Actionsの終端成功を確認しfinalizeのみ実行する。native/旧unit/ARMは再実行しない。",
+    "goal_ja": "特殊野生の釣り/生態レーダー通常UI→捕獲→Save/fresh Continueは2/2受入。再実行しない。次は共有研究保存delegate修正の他取引（earn/spend/rank/recovery）の影響範囲を限定検証する。旧候補の取引受入を新candidate23d58409へ自動継承しない。map3/19除外130行は未確定のまま保持。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
-    "id": "SPECIAL_WILD_UI_TERMINAL",
+    "id": "RESEARCH_SAVE_DELEGATE_IMPACT",
     "read_paths": [
       "docs/PR16_SPECIAL_WILD_GAMEPLAY_JA.md",
       "content/modernization/pr16_special_wild_ui_checkpoint.json",
@@ -7497,8 +7497,8 @@
       "size": 7632
     },
     ".github/workflows/pr16-special-wild-ui-finish-20260926.yml": {
-      "sha256": "0ecd581e5058a4676bd196946c2f1dd150be963efa8cb2e95159dd4286036210",
-      "size": 3049
+      "sha256": "4159dd4353df7f5091b2115634cca701f257b45f57d58fd2174c4edd56f5fefa",
+      "size": 2610
     },
     ".github/workflows/pr16-streak-record.yml": {
       "sha256": "257165114d76e6d1b9ea1c633c918a297ab4a32a6cfce9f5e7788b2b77d074be",
@@ -15583,7 +15583,7 @@
       "fishing",
       "hidden"
     ],
-    "actions_completion_confirmed": false,
+    "actions_completion_confirmed": true,
     "candidate": {
       "sha256": "23d584095f7bc0691e1582da447d6cd9a389d8698e061ea2de9f6eac03b63f48",
       "size": 33554432
@@ -15636,7 +15636,16 @@
     },
     "run_id": 36220635424,
     "source_head": "26d807032a1b423da8f14050b6469e779bc03983",
-    "status": "PASS_SPECIAL_WILD_UI_CAPTURE_SAVE_SCOPED"
+    "status": "PASS_SPECIAL_WILD_UI_CAPTURE_SAVE_SCOPED",
+    "terminal_receipt": {
+      "binding": {
+        "sha256": "272d87405815cbef59ad4055c2559589f4aaadf64073464220a16ffc08315ca9",
+        "size": 5637
+      },
+      "path": "content/modernization/pr16_special_wild_ui_finish_evidence/36221094800/receipt.json",
+      "run_id": 36221094800,
+      "source_head": "e6135fb6cd22abbd9a25d3712a7a7b389d71042a"
+    }
   },
   "stable_entrypoint": "CHATGPT_RESUME.md",
   "stable_paths_do_not_rotate_with_date": true,

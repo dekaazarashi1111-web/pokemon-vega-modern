@@ -7470,3 +7470,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: phase=recover、新native/host/ARM/受入済み再実行0。新guard unit=8。resume check/task graph/final-index guard後のみcommit。
 - Commit: 同branch非force push・remote照合。source=45ab15f3927400ac9814ad3cdb2d55696a0ce72b。自己SHAはgit log参照。
 - Network: 固定Actions原本/metadataのみ。ROM/saveは非tracked。共有研究取引の全受入・Issue19完了・release・baseline切替は主張しない。
+
+## 2026-09-26T05:32:41.669213+00:00
+- Timestamp: 2026-09-26T05:32:41.669213+00:00
+- Task: USER-20260926-SPECIAL-WILD-UI
+- Version: special-wild-ui-finalize-v1
+- Status: DONE（通常UI2件の記録限定。Issue19/release未完）
+- Summary: 研究保存delegate修正と釣り/生態レーダー捕獲→Save/Continueを原本から記録。元run36220635424のfailure/push skippedを保存。
+- Files changed: 限定source/config、復旧/終端receipt、checkpoint、固定引継ぎMD/JSON、guide、両ログ。
+- Verify: phase=finalize、新native/host/ARM/受入済み再実行0。新guard unit=0。resume check/task graph/final-index guard後のみcommit。
+- Commit: 同branch非force push・remote照合。source=e6135fb6cd22abbd9a25d3712a7a7b389d71042a。自己SHAはgit log参照。
+- Network: 固定Actions原本/metadataのみ。ROM/saveは非tracked。共有研究取引の全受入・Issue19完了・release・baseline切替は主張しない。
