@@ -4,68 +4,57 @@ on:
     branches: [codex/modernization-followup-20260908]
     paths: [.github/workflows/pr16-research-activities-20260927.yml]
 permissions:
-  contents: read
+  contents: write
   actions: read
   pull-requests: read
 concurrency:
   group: pr16-research-activities-20260927
   cancel-in-progress: false
 jobs:
-  context:
+  record:
     if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 12
     env:
       GITHUB_TOKEN: ${{ github.token }}
       PYTHONDONTWRITEBYTECODE: '1'
     steps:
       - uses: actions/checkout@v4
-      - name: 現在HEADの限定ソース束と最新Actionsを固定（既受入再実行0）
-        run: python3 -B scripts/pr16_research_activities_context.py
-      - name: native runnerのC include依存を追加取得（コンパイル・実行なし）
+        with:
+          fetch-depth: 0
+      - name: 成功原本と12画像を照合・未保存参照を訂正・新51検査・固定引継ぎと両ログ
+        run: python3 -B scripts/pr16_research_bug_record.py record
+      - name: 固定引継ぎとtask graphの整合性
         run: |
-          python3 -B - <<'PY'
-          import hashlib,json,os,re,subprocess,zipfile
-          from pathlib import Path
-          tracked=set(subprocess.check_output(['git','ls-files']).decode().splitlines())
-          selected={p for p in tracked if p.startswith('tools/mgba') and Path(p).suffix in ('.c','.h')}
-          selected|={p for p in tracked if 'research_economy' in p and Path(p).suffix=='.py'}
-          pending=list(selected)
-          while pending:
-              p=pending.pop()
-              for name in re.findall(r'^\s*#\s*include\s*"([^"]+)"',Path(p).read_text(),re.M):
-                  for q in (str(Path(p).parent/name),'tools/'+name,name):
-                      if q in tracked and q not in selected:
-                          selected.add(q);pending.append(q)
-          out=Path('.local/pr16-research-activities/context')
-          index={'source_head':os.environ['GITHUB_SHA'],'files':{},'native_runs':0,'compiles':0}
-          with zipfile.ZipFile(out/'c-context.zip','w',zipfile.ZIP_DEFLATED) as z:
-              for p in sorted(selected):
-                  assert not Path(p).is_symlink()
-                  data=Path(p).read_bytes();data.decode('utf-8');assert b'\0' not in data
-                  index['files'][p]={'size':len(data),'sha256':hashlib.sha256(data).hexdigest(),'git_blob':subprocess.check_output(['git','rev-parse','HEAD:'+p]).decode().strip()}
-                  z.writestr(p,data)
-              z.writestr('index.json',json.dumps(index,ensure_ascii=False,indent=2)+'\n')
-          print('C_SOURCE_FILES='+str(len(selected)))
-          PY
-      - name: 未受入の虫取り2ケースのみ実測（旧ローカル原本の創作禁止）
-        run: python3 -B scripts/pr16_research_bug_capture.py
-      - name: 読取専用であることを確認
+          python3 -B scripts/pr16_resume.py check
+          python3 -B scripts/validate_task_graph.py
+      - name: 今回indexと開始HEADからの全変更を限定guard
+        run: python3 -B scripts/pr16_research_bug_record.py guard
+      - name: 最新HEAD再確認・commit・同branch非force push
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git ls-remote origin "$GITHUB_REF" | cut -f1)" = "$GITHUB_SHA"
+          python3 -B -c 'import sys;sys.path[:0]=["scripts","."];import pr16_research_lifecycle_actions as d;d.current()'
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m "USER-20260927-RESEARCH-ACTIVITIES: 虫取り0→8RP・保存再開・51検査受入と固定引継ぎ完了"
+          git push origin HEAD:refs/heads/codex/modernization-followup-20260908
+          test "$(git ls-remote origin "$GITHUB_REF" | cut -f1)" = "$(git rev-parse HEAD)"
+          echo "RESULT=DONE TASK=USER-20260927-RESEARCH-ACTIVITIES VERIFY=PASS COMMIT=$(git rev-parse HEAD)"
+      - name: 次工程向けのcommit済みソースとActionsを保存（native/compile再実行0）
+        run: GITHUB_SHA="$(git rev-parse HEAD)" python3 -B scripts/pr16_research_activities_context.py
+      - uses: actions/upload-artifact@v4
         if: always()
-        run: git diff --exit-code
+        with:
+          name: pr16-research-bug-closeout
+          path: .local/pr16-research-bug-record/public/
+          retention-days: 14
+          if-no-files-found: error
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: pr16-research-activities-context
           path: .local/pr16-research-activities/context/
-          retention-days: 7
-          if-no-files-found: error
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: pr16-research-bug-measurement
-          path: |
-            .local/pr16-research-bug-capture/public/*.json
-            .local/pr16-research-bug-capture/bug-*/*.ppm
           retention-days: 14
-          if-no-files-found: error
+          if-no-files-found: warn
