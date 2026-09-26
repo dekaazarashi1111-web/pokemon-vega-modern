@@ -30,7 +30,8 @@ static void lc_event(struct mCore*c,const char*stage){
  memset(prefix+4,0,2);memset(prefix+8,0,4);memset(prefix+0x73f,0,64);
  si_digest(b,sizeof(b),ledger);si_digest(prefix,sizeof(prefix),stable);
  si_event(c,stage,4);
- printf("{\"ledger_event\":\"%s\",\"version\":%u,\"size\":%u,\"checksum_valid\":%s,\"ledger_sha256\":\"%s\",\"unrelated_ledger_sha256\":\"%s\",\"migration_dirty\":%u,\"recovery_blocked\":%u}\n",stage,si_read16(c,LC_LEDGER+4),si_read16(c,LC_LEDGER+6),lc_u32(b,8)==lc_checksum(b)?"true":"false",ledger,stable,read8(c,SI_VOL+30),read8(c,SI_VOL+31));fflush(stdout);
+ /* ResearchEconomyVolatileState: wild/game=22..25, dirty=26, blocked=27。 */
+ printf("{\"ledger_event\":\"%s\",\"version\":%u,\"size\":%u,\"checksum_valid\":%s,\"ledger_sha256\":\"%s\",\"unrelated_ledger_sha256\":\"%s\",\"migration_dirty\":%u,\"recovery_blocked\":%u}\n",stage,si_read16(c,LC_LEDGER+4),si_read16(c,LC_LEDGER+6),lc_u32(b,8)==lc_checksum(b)?"true":"false",ledger,stable,read8(c,SI_VOL+26),read8(c,SI_VOL+27));fflush(stdout);
 }
 int main(int argc,char**argv){
  if(argc==3&&!strcmp(argv[1],"--guard-check"))si_guard_check(argv[2]);
