@@ -45,3 +45,11 @@ Task: `USER-20260926-RESEARCH-SAVE-IMPACT`
 通常研究取引UI、全catalog、save新規初期化/V1移行、phase0そのものの失敗注入は未受入。次はこの共有保存経路の未検証範囲を限定して扱う。既受入18件を理由なく再実行しない。map3/19の除外130行は未確定のまま保持し、Issue19全体の完了・merge・draft解除・release・active baseline切替を主張しない。
 
 原本の最終受入、canonical source反映、固定引継ぎMD/JSON、両ログ、Actions終端receiptは `content/modernization/pr16_research_save_impact_checkpoint.json` に束縛して記録する。checkpointの `actions_completion_confirmed` がtrueになるまでは終端未確定として扱う。
+
+## 記録工程 record
+
+source `43cd63bbba977f5df07b4efc16106706ee1acd51` / run `36231053062`。受入18件、新unit=12、この記録工程のnative/host compile/ARM/既受入再実行=0。canonical Cは正しい空き確認delegateへ同期。
+
+共有研究18境界・Bag誤接続修正の原本記録済み。次はこの記録Actionsの終端成功とpushを確認し、同workflowのRESEARCH_MODEだけfinalizeへ変更する。native/旧unit/ARMを再実行しない。
+
+公開記録補足: raw compiler receiptは固定Actions artifact内で原本保持し、Gitには絶対引数3+4個だけを識別子へ置換したcompile.public.jsonを保存する。publication.jsonに全memberの原本hash/公開hash/変換有無を明示し、他の原本memberはbyte同一。初回記録run36230558876はprivate guard failure・push未実行として保持。そこで成功した68試験は依存source hashと7942-byte transcriptを束縛して再利用し、修正後の記録工程は公開変換12試験だけを新規実行した。finalizeでは両方再実行しない。

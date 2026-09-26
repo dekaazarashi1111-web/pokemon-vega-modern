@@ -7481,3 +7481,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: phase=finalize、新native/host/ARM/受入済み再実行0。新guard unit=0。resume check/task graph/final-index guard後のみcommit。
 - Commit: 同branch非force push・remote照合。source=e6135fb6cd22abbd9a25d3712a7a7b389d71042a。自己SHAはgit log参照。
 - Network: 固定Actions原本/metadataのみ。ROM/saveは非tracked。共有研究取引の全受入・Issue19完了・release・baseline切替は主張しない。
+
+## 2026-09-26T08:52:14.345192+00:00
+- Timestamp: 2026-09-26T08:52:14.345192+00:00
+- Task: USER-20260926-RESEARCH-SAVE-IMPACT
+- Version: research-save-impact-record-v1
+- Status: DONE（共有取引18境界の限定記録。新規/V1移行・phase0失敗・通常取引UI・Issue19/release未完）
+- Summary: 研究保存delegate影響を実Flashで検証し、Bag空き確認が所持確認へ誤結合する不具合を2byteとcanonical C 1macroで修正。earn8件の原本を再利用、修正候補spend/rank8件と実容量拒否2件を受入。元failure run36228964902/36229142708/36230558876を保持。compile receiptの絶対引数7個は明示した公開写像のみ除去し原本はartifactに保持。68試験は原本再利用、公開変換12試験を追加。
+- Files changed: 専用C/Python/unit/workflow、canonical research C、18件のUTF8証拠/公開写像/manifest/receipt、checkpoint、固定引継ぎMD/JSON、guide、両ログ。
+- Verify: 測定Actions=16+10 native（元失敗8を含む）、成功18件/54 fresh cores、guard7+7、host compile1+1、ARM0。別途ローカル診断あり。今回記録phase=recordはnative/host/ARM/既受入再実行0、新unit=12。resume check/task graph/最終index限定private guard後のみcommit。
+- Commit: 同branch非force push、remote HEAD照合。source=43cd63bbba977f5df07b4efc16106706ee1acd51、自己SHAはgit log参照。
+- Network: 固定Actions metadata/原本artifactのみ。ROM/save非tracked、正式BP/P08/野生原本/baseline不変、全CI/通常取引UI/全catalog成功は主張しない。

@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "特殊野生通常UI 2/2受入。研究保存delegateの誤loadをsaveへ修正。Actions終端確認済み。",
+    "current_stop": "共有研究保存の16取引境界と容量拒否2件、Bag容量delegate誤接続2byte修正を受入。記録Actions終端は別runで確認する。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "特殊野生の釣り/生態レーダー通常UI→捕獲→Save/fresh Continueは2/2受入。再実行しない。次は共有研究保存delegate修正の他取引（earn/spend/rank/recovery）の影響範囲を限定検証する。旧候補の取引受入を新candidate23d58409へ自動継承しない。map3/19除外130行は未確定のまま保持。",
+    "next_step": "共有研究18境界・Bag誤接続修正の原本記録済み。次はこの記録Actionsの終端成功とpushを確認し、同workflowのRESEARCH_MODEだけfinalizeへ変更する。native/旧unit/ARMを再実行しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -4162,91 +4162,102 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "特殊野生の釣り/生態レーダー通常UI→捕獲→Save/fresh Continueは2/2受入。再実行しない。次は共有研究保存delegate修正の他取引（earn/spend/rank/recovery）の影響範囲を限定検証する。旧候補の取引受入を新candidate23d58409へ自動継承しない。map3/19除外130行は未確定のまま保持。",
+    "goal_ja": "共有研究18境界・Bag誤接続修正の原本記録済み。次はこの記録Actionsの終端成功とpushを確認し、同workflowのRESEARCH_MODEだけfinalizeへ変更する。native/旧unit/ARMを再実行しない。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
-    "id": "RESEARCH_SAVE_DELEGATE_IMPACT",
+    "id": "RESEARCH_SAVE_IMPACT_TERMINAL",
     "read_paths": [
-      "docs/PR16_SPECIAL_WILD_GAMEPLAY_JA.md",
-      "content/modernization/pr16_special_wild_ui_checkpoint.json",
-      "scripts/pr16_special_wild_ui_finish.py",
+      "docs/PR16_RESEARCH_SAVE_IMPACT_JA.md",
+      "content/modernization/pr16_research_save_impact_checkpoint.json",
+      "scripts/pr16_research_save_impact_record.py",
+      "scripts/pr16_research_save_impact.py",
+      "scripts/pr16_research_bag_delegate.py",
       "scripts/pr16_research_save_delegate.py",
+      "overlays/research_economy_v1/research_economy_v1.c",
       "config/research_economy_v1.json"
     ],
-    "stop_rule_ja": "特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。"
+    "stop_rule_ja": "固定候補identityと実行候補別の受入範囲を保持。fixture/scheduler実サービス試験を通常取引UI受入に昇格しない。既受入18件と特殊野生2件・BP/P08は影響がなければ再実行しない。新規/V1移行・phase0失敗・map3/19除外130行の未完を隠さず、merge/release/baseline変更をしない。"
   },
   "observed_date_jst": "2026-09-25",
-  "observed_head": "804417f6f8fa4fc88f882ac96d6f0a1720811500",
+  "observed_head": "43cd63bbba977f5df07b4efc16106706ee1acd51",
   "observed_head_checks": {
-    "previous_failed_run": {
-      "conclusion": "failure",
-      "head_sha": "af7a856d8ac04c2e3400cab550c02f0569185ae3",
-      "id": 36213386688,
-      "path": ".github/workflows/pr16-special-wild-bound-20260926.yml",
-      "status": "completed"
-    },
-    "reason_ja": "特殊野生の限定run36213677615は全step/push/upload完了success。run36213386688のheader停止failureは維持。後続記録HEADの全CI成功は主張しない。",
-    "record_head": "36b88bb2be1ed0889cb531ab035751a3df0992b7",
+    "previous_failed_runs": [
+      {
+        "conclusion": "failure",
+        "id": 36228964902
+      },
+      {
+        "accepted_earn_cases": 8,
+        "conclusion": "failure",
+        "failed_item_cases_retained": 8,
+        "id": 36229142708
+      },
+      {
+        "conclusion": "failure",
+        "failure_stage": "private guard; push skipped",
+        "id": 36230558876
+      }
+    ],
+    "reason_ja": "修正後native run36229762846は10件成功。元run36229142708はearn8成功/item8失敗のfailureを維持。記録runの終端は専用receiptで確定する。source-validation/P03等のaction_required・未完了を成功に読み替えず、全CI成功は主張しない。",
+    "record_head": "43cd63bbba977f5df07b4efc16106706ee1acd51",
     "record_head_runs": [
       {
         "conclusion": null,
-        "head_sha": "36b88bb2be1ed0889cb531ab035751a3df0992b7",
-        "id": 36214277327,
+        "head_sha": "43cd63bbba977f5df07b4efc16106706ee1acd51",
+        "id": 36231057492,
         "name": "source-validation",
+        "path": ".github/workflows/ci.yml",
         "status": "in_progress"
       },
       {
         "conclusion": null,
-        "head_sha": "36b88bb2be1ed0889cb531ab035751a3df0992b7",
-        "id": 36214277251,
+        "head_sha": "43cd63bbba977f5df07b4efc16106706ee1acd51",
+        "id": 36231057517,
         "name": "p03-forgetting-ci",
+        "path": ".github/workflows/p03-forgetting-ci.yml",
         "status": "in_progress"
       },
       {
         "conclusion": null,
-        "head_sha": "36b88bb2be1ed0889cb531ab035751a3df0992b7",
-        "id": 36214273219,
-        "name": "pr16-special-wild-bound-terminal-20260926",
-        "status": "in_progress"
-      },
-      {
-        "conclusion": null,
-        "head_sha": "36b88bb2be1ed0889cb531ab035751a3df0992b7",
-        "id": 36214273200,
+        "head_sha": "43cd63bbba977f5df07b4efc16106706ee1acd51",
+        "id": 36231053083,
         "name": "source-validation",
+        "path": ".github/workflows/ci.yml",
         "status": "in_progress"
       },
       {
         "conclusion": null,
-        "head_sha": "36b88bb2be1ed0889cb531ab035751a3df0992b7",
-        "id": 36214273204,
+        "head_sha": "43cd63bbba977f5df07b4efc16106706ee1acd51",
+        "id": 36231053062,
+        "name": "pr16-research-save-impact-record-20260926",
+        "path": ".github/workflows/pr16-research-save-impact-record-20260926.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "43cd63bbba977f5df07b4efc16106706ee1acd51",
+        "id": 36231053074,
         "name": "Stage79 runtime boundary audit",
-        "status": "in_progress"
+        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+        "status": "completed"
       },
       {
-        "conclusion": null,
-        "head_sha": "36b88bb2be1ed0889cb531ab035751a3df0992b7",
-        "id": 36214273228,
-        "name": "Stage79 mGBA (all)",
-        "status": "in_progress"
-      },
-      {
-        "conclusion": null,
-        "head_sha": "36b88bb2be1ed0889cb531ab035751a3df0992b7",
-        "id": 36214273202,
+        "conclusion": "success",
+        "head_sha": "43cd63bbba977f5df07b4efc16106706ee1acd51",
+        "id": 36231053064,
         "name": "p03-forgetting-ci",
-        "status": "in_progress"
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
       }
     ],
     "runs": [
       {
         "conclusion": "success",
-        "head_sha": "804417f6f8fa4fc88f882ac96d6f0a1720811500",
-        "id": 36213677615,
-        "path": ".github/workflows/pr16-special-wild-bound-20260926.yml",
+        "head_sha": "9cb7ca0a7699fd49f1e217cf8204fea682d5dbb8",
+        "id": 36229762846,
         "status": "completed"
       }
     ],
-    "scope_head": "804417f6f8fa4fc88f882ac96d6f0a1720811500"
+    "scope_head": "9cb7ca0a7699fd49f1e217cf8204fea682d5dbb8"
   },
   "observed_head_history": [
     {
@@ -5600,7 +5611,7 @@
       "semantics": "PLA1圧縮と新規供給consumerのhost検証成功入力HEAD。ROM配置/実操作/記録commitの受入ではない。"
     }
   ],
-  "observed_head_semantics": "特殊野生2callsite修復の実測source。成果commit dcce2ff3を終端照合済み。通常取得/保存とは別の直接診断。",
+  "observed_head_semantics": "研究保存限定記録工程のsource HEAD。自己commit SHAはgit logで確認する。正式BP/P08の実行HEAD/candidateとは別であり置換しない。",
   "p08_candidate_impact": {
     "candidate": {
       "crc32": "CC068B4A",
@@ -5834,6 +5845,26 @@
   ],
   "remaining_physical_gap_ids": [],
   "remaining_sequence_ja": "原本隔離/裁定済み → 後継9consumer表・旧候補差分検証済み → 未選択Species/Form/孵化差分の明示binding → binary consumer接続 → 後継ROM・別Wiki/影響native → Issue18限定監査 → 別承認release。",
+  "research_save_impact": {
+    "accepted_cases": 18,
+    "actions_completion_confirmed": false,
+    "candidate": {
+      "sha256": "4aee03e8ec0135efa52d8d2b41edf61637ddc65e4be9f1a0b60a2e1c23dbefe7",
+      "size": 33554432
+    },
+    "normal_transaction_ui_accepted": false,
+    "path": "content/modernization/pr16_research_save_impact_checkpoint.json",
+    "record_receipt": {
+      "binding": {
+        "sha256": "97c8964f2d4071a13bc04696ef95ff384442ef8ae12dffcfecf7adce0e398cbb",
+        "size": 16215
+      },
+      "path": "content/modernization/pr16_research_save_impact_evidence/36231053062/receipt.json",
+      "run_id": 36231053062,
+      "source_head": "43cd63bbba977f5df07b4efc16106706ee1acd51"
+    },
+    "status": "PASS_RESEARCH_SAVE_IMPACT_18_SCOPED"
+  },
   "retained_fixed_form_accepted_case_count": 5,
   "reward_route_audit": {
     "artifact_id": 10311359991,
@@ -6888,6 +6919,10 @@
       "sha256": "8bbceefdb44ba529cbf33743598520f297974e6df53811cae41bdf2c1f51f18e",
       "size": 1383
     },
+    ".github/workflows/pr16-research-bag-native-20260926.yml": {
+      "sha256": "43988c73c108cec3caa77d453636a090e424c41ee3ee6e0d066953b14623c20a",
+      "size": 1068
+    },
     ".github/workflows/pr16-research-hatch-20260925.yml": {
       "sha256": "8389d93ad1b5e31cfa29da7da043bb3b035e2ec723843340eb935e55959b2f4b",
       "size": 5321
@@ -6899,6 +6934,18 @@
     ".github/workflows/pr16-research-hatch-terminal-20260925.yml": {
       "sha256": "38b44c9e6ee938604d34f74288081312eb74d1b9b7e421e7161c123c91e8955d",
       "size": 3530
+    },
+    ".github/workflows/pr16-research-save-impact-20260926.yml": {
+      "sha256": "27fe320908a435283e7dd02a2eebf7bb80b112cc5f32abff1ab3d9e93b4c7603",
+      "size": 5361
+    },
+    ".github/workflows/pr16-research-save-impact-native-20260926.yml": {
+      "sha256": "f4efa2aa5b39560cdc6e3149cee257506bf69de96ed4d06b896c1964b9809087",
+      "size": 9601
+    },
+    ".github/workflows/pr16-research-save-impact-record-20260926.yml": {
+      "sha256": "14d5666e33af1511aeb34b536ad9c3ce6e58571e4db2975edace17f4833a99f4",
+      "size": 3234
     },
     ".github/workflows/pr16-ring-audio-boundary-contracts.yml": {
       "sha256": "fc9400ca2de465cfbeeadcf7b7d7db4ca6497320bf966bd086c1ecf22d530a11",
@@ -8124,6 +8171,10 @@
       "sha256": "3075da81e215bdd67eb033f6417c368aa424db95d34ca726c877edfdb51c3aba",
       "size": 259029
     },
+    "content/modernization/pr16_research_save_impact_checkpoint.json": {
+      "sha256": "238709088d7233eba2a70a470accac6f2a637b8a52b71ccef8f1bfad24bdbb91",
+      "size": 10468
+    },
     "content/modernization/pr16_ring_audio_boundary_contracts.json": {
       "sha256": "61de96a6afd25c699b0dcb3cbd27d2b113b540ba53b609f641aea34434ac09d2",
       "size": 412258
@@ -8911,6 +8962,10 @@
     "docs/PR16_RESEARCH_HATCH_JA.md": {
       "sha256": "0c0f7336745c506ee93c4147fbc86e1aa413a0ef19f65e7983c00f203406d450",
       "size": 4323
+    },
+    "docs/PR16_RESEARCH_SAVE_IMPACT_JA.md": {
+      "sha256": "02352cc729e3c0b890fcea902c4d41c957ffa01ae3a5f0ecd2d413f273ecf4b1",
+      "size": 6438
     },
     "docs/PR16_SPECIAL_WILD_JA.md": {
       "sha256": "0f5cf639c0a587063a143e845cf5e3d3f925c0d7fe1d485c7ee65faea4303fb3",
@@ -12521,8 +12576,12 @@
       "size": 164678
     },
     "overlays/research_economy_v1/research_economy_v1.c": {
-      "sha256": "3f71ea1d9f308c652e70dd863b601ad39a9c648ca25bf55932b4966fa4246e62",
+      "sha256": "88a14bd79e1c7247b80102c76b48023b8de67dc7cdc6fb526cd1c155393e93c3",
       "size": 63507
+    },
+    "overlays/research_economy_v1/research_economy_v1.h": {
+      "sha256": "3216824bad136a1ce3c886ecdbc3e2057970d3439d9bcd2272bece617c7c9021",
+      "size": 3743
     },
     "overlays/ring_policy/ring_policy.c": {
       "sha256": "a9d523ad733b71af9cbfcd081555de0cd6361b14bb339463cb3e9e50b85de845",
@@ -12559,6 +12618,14 @@
     "scripts/build_qol_production.py": {
       "sha256": "3719afca8f1a9385d8da073faba369c3994e98d848b65c01fec7c5832d062ea1",
       "size": 79738
+    },
+    "scripts/common.py": {
+      "sha256": "adeee991aef21b5bbae6bacdf05cb7e0a8e0c120811d325dcc01de065ea921d3",
+      "size": 9326
+    },
+    "scripts/guard_private_files.py": {
+      "sha256": "143426a7403abf47396791f6ece3a3a374fa97fbf8bedc88169f636cddbcc905",
+      "size": 5443
     },
     "scripts/pr16_bp_battle_progress.py": {
       "sha256": "59f7716a2eee46df96190f0e6511ca180aea11aac28f7c6efe529b19f7c1b24c",
@@ -13132,6 +13199,10 @@
       "sha256": "ec84a181bbcf06ebb44d6273ae2abc4878c60ceded7adf7b69214f70c2138243",
       "size": 24221
     },
+    "scripts/pr16_learnset_runtime_record.py": {
+      "sha256": "978c90346dce45544406174ff473c7cc2a016491938fce1f6f5a5a7ad4dfcca9",
+      "size": 17882
+    },
     "scripts/pr16_learnset_visual.py": {
       "sha256": "f91a95966d551c6bca51a86f0283066236a722dc7f2f209e3ed6ec58bf188727",
       "size": 15847
@@ -13236,6 +13307,14 @@
       "sha256": "6411fe108c0bab4f84791e52468d012393ce1ad9ef128e7298e29b53ccc9dffa",
       "size": 26146
     },
+    "scripts/pr16_research_bag_actions.py": {
+      "sha256": "785b1ec81ede3e50e673eb9f1a0861e6240048e7409f29d30d5331351527f5b8",
+      "size": 8168
+    },
+    "scripts/pr16_research_bag_delegate.py": {
+      "sha256": "9964a15ebf2fcb8a14145766fd9c89157ef98a525362832537a12774ecfaf7ad",
+      "size": 6509
+    },
     "scripts/pr16_research_hatch.py": {
       "sha256": "15358679079ab84db48cea564883acf00aba95f6183abee63e63abca7cc17139",
       "size": 25589
@@ -13256,9 +13335,21 @@
       "sha256": "ee66d3b3d4cda3f14f7287c92933f783a5461b4c680014b4d72299c0914592f6",
       "size": 19025
     },
+    "scripts/pr16_research_public_evidence.py": {
+      "sha256": "85f29aedeeda14a5d216366dfb3300e8470809e2be006887976f5eee07f13619",
+      "size": 6053
+    },
     "scripts/pr16_research_save_delegate.py": {
       "sha256": "ed64cc810b7ad05da32b68827d96e54e39eeb04d8eeb65302f07a4ef54676474",
       "size": 3372
+    },
+    "scripts/pr16_research_save_impact.py": {
+      "sha256": "c7bb583ba27d062c0bbf417a72fd846eff597d78bd64fc971d237c62c1c543e7",
+      "size": 20035
+    },
+    "scripts/pr16_research_save_impact_record.py": {
+      "sha256": "c5587df9b085491036d2e7ebf6e129692324424d5a4aff13e4f7e031c003d518",
+      "size": 21173
     },
     "scripts/pr16_restore_cfru_snapshot.py": {
       "sha256": "5b8bc2069f12fd6513ed2b8424de48043a71515e419d208087885d7066c2a202",
@@ -14588,9 +14679,17 @@
       "sha256": "0e1840a6ef7f17cc359724c90c4926d91b71adad46cabb9e3f140db07f91c0f5",
       "size": 5342
     },
+    "tests/test_pr16_research_public_evidence.py": {
+      "sha256": "2ec09ed98b29e11c794358b33b8e10c3a79fb61a6812475cc28c97161ab419cf",
+      "size": 3722
+    },
     "tests/test_pr16_research_save_delegate.py": {
       "sha256": "61563f70109a9d3509eec19696941654257810be4cddbcea81b19c18961a697d",
       "size": 3169
+    },
+    "tests/test_pr16_research_save_impact.py": {
+      "sha256": "e09a1928aa8384d7030f489ea32de830b90c964c2613c17405ac2796395ea40e",
+      "size": 16945
     },
     "tests/test_pr16_restore_cfru_snapshot.py": {
       "sha256": "b0b743783966fe8af3b6a058ef367bf86560fa3a8728dbdc7e0cd44d38a14771",
@@ -15495,6 +15594,10 @@
     "tools/mgba_pr16_research_hatch.c": {
       "sha256": "29df9f752ec1e183334f7ec6f928088f51c5f48c7ff96c2985a4daca93f84055",
       "size": 7327
+    },
+    "tools/mgba_pr16_research_save_impact.c": {
+      "sha256": "b57e58a94f208f6f3ce8418b850d9cd03de203c12bb73a0cd0cdf6fb7968b78f",
+      "size": 16977
     },
     "tools/mgba_pr16_ring_caller_snapshot.c": {
       "sha256": "5984c597aafedbe2a4da2ce5efdf6ed5108e699a5af3a8c8df79d1c779d3ea68",

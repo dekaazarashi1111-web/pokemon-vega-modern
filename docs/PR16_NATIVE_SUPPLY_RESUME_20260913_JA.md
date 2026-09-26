@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-特殊野生通常UI 2/2受入。研究保存delegateの誤loadをsaveへ修正。Actions終端確認済み。
+共有研究保存の16取引境界と容量拒否2件、Bag容量delegate誤接続2byte修正を受入。記録Actions終端は別runで確認する。
 
-**次: 特殊野生の釣り/生態レーダー通常UI→捕獲→Save/fresh Continueは2/2受入。再実行しない。次は共有研究保存delegate修正の他取引（earn/spend/rank/recovery）の影響範囲を限定検証する。旧候補の取引受入を新candidate23d58409へ自動継承しない。map3/19除外130行は未確定のまま保持。**
+**次: 共有研究18境界・Bag誤接続修正の原本記録済み。次はこの記録Actionsの終端成功とpushを確認し、同workflowのRESEARCH_MODEだけfinalizeへ変更する。native/旧unit/ARMを再実行しない。**
 
-特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。
+固定候補identityと実行候補別の受入範囲を保持。fixture/scheduler実サービス試験を通常取引UI受入に昇格しない。既受入18件と特殊野生2件・BP/P08は影響がなければ再実行しない。新規/V1移行・phase0失敗・map3/19除外130行の未完を隠さず、merge/release/baseline変更をしない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `804417f6f8fa4fc88f882ac96d6f0a1720811500`。
-特殊野生2callsite修復の実測source。成果commit dcce2ff3を終端照合済み。通常取得/保存とは別の直接診断。
+証拠のsource HEAD: `43cd63bbba977f5df07b4efc16106706ee1acd51`。
+研究保存限定記録工程のsource HEAD。自己commit SHAはgit logで確認する。正式BP/P08の実行HEAD/candidateとは別であり置換しない。
 
 ## 最短の再開手順
 
@@ -25,10 +25,13 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_SPECIAL_WILD_GAMEPLAY_JA.md`
-- `content/modernization/pr16_special_wild_ui_checkpoint.json`
-- `scripts/pr16_special_wild_ui_finish.py`
+- `docs/PR16_RESEARCH_SAVE_IMPACT_JA.md`
+- `content/modernization/pr16_research_save_impact_checkpoint.json`
+- `scripts/pr16_research_save_impact_record.py`
+- `scripts/pr16_research_save_impact.py`
+- `scripts/pr16_research_bag_delegate.py`
 - `scripts/pr16_research_save_delegate.py`
+- `overlays/research_economy_v1/research_economy_v1.c`
 - `config/research_economy_v1.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
@@ -330,6 +333,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-特殊野生の限定run36213677615は全step/push/upload完了success。run36213386688のheader停止failureは維持。後続記録HEADの全CI成功は主張しない。
+修正後native run36229762846は10件成功。元run36229142708はearn8成功/item8失敗のfailureを維持。記録runの終端は専用receiptで確定する。source-validation/P03等のaction_required・未完了を成功に読み替えず、全CI成功は主張しない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
