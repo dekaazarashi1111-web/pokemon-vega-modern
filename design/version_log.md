@@ -7865,3 +7865,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: run36267515706全step成功、3native/5cores/host1/ARM0/ROM変更0、失敗0、新64tests PASS。local開発8中5失敗は別記。記録unit/native/compile再実行0。source/11画像/全ledger/party/Bag/Flash照合。commit前resume/task graph/scoped final-index guard必須。
 - Commit: WIP f12167c7/2640e5d9、測定source=8fdda1bb5e4f559cf71120f17e7fc947116e8f69、記録source=7e6b62556df26589616d94073feedc658e22e82d、自己SHAはgit log参照、同branch非force push。
 - Network: GitHub HEAD/PR/完了Actions/固定artifactのみ。旧写真/虫取り/BP/P08/seed/baseline不変。一般CIと限定PASSを分離、merge/releaseなし。
+
+## 2026-09-26T21:34:53.107496+00:00
+- Timestamp: 2026-09-26T21:34:53.107496+00:00
+- Task: USER-20260927-RESEARCH-REMAINING / 未受入研究3活動の専用実装開始
+- Version: research-remaining-source-v1
+- Status: STOPPED（source契約完成、native実装継続）
+- Summary: 前回採掘記録run36267783546の終端successを照合。釣り/生態/ゲームコーナーの専用source契約と10新規負例検査、対象source索引を実装・保存。実RPの新受入は0。
+- Files changed: 専用script/test/workflow、source-contract/actions/unit、固定引継ぎMD/JSON、専用guide、両ログ。
+- Verify: 新10tests PASS。native/ARM/host compile/受入済み再実行0。既存source/evidence hash不変。最終resume/task graph/scoped guardをcommit前に実行。
+- Commit: source=df6e8939d4a5ad803c36b10d5610a57eb74bef54;自己SHAはgit log参照。同branchへ非force push。
+- Network: GitHub PR/HEAD/Actions APIのみ。merge/release/baseline変更なし。

@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-PASS_MINING_REAL_EARNING_SCOPED
+SOURCE_CONTRACT_READY_NATIVE_OPEN
 
-**次: 次は残る3活動（釣り・生態・ゲームコーナー）の実RP稼得、通常進行からResearch受付/ショップ接続、残るnative文言。修復候補26dac23cを専用recipeで復元し、写真/虫取り/採掘の受入済みケースは変更影響なしに再実行しない。採掘は標準いわくだきから0→10RP、条件不足/取消、取引保存2、独立Continue、別coreの階往復fixture後の日次上限、4文言まで。初期party/技/バッジ/進行/warpとcap再入場はfixture。RockSmashWildEncounterの自然終端・自然到達/再到達・全活動/全map/通常接続・releaseは未受入。**
+**次: 未受入3活動のsource契約・前回採掘記録終端を保存済み。PR16_RESEARCH_REMAINING_JA.mdから釣り/生態/ゲームコーナーのnative経路を実装する。SOURCE_CONTRACT_READY_NATIVE_OPENはnative未受入。旧写真/虫取り/採掘を無変更再実行しない。通常進行の受付/ショップ接続・残るnative文言も未完。**
 
 写真/虫取り/採掘/保存view・元ROM/seed/旧証拠を保全。採掘wild tail/自然再入場・全活動・全mapの過大主張禁止。無変更再実行、merge/release/baseline変更禁止。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `7e6b62556df26589616d94073feedc658e22e82d`。
-採掘Actions run36267515706/source8fdda1bbの受入記録source。自己commit SHAはgit log参照。record_run_idの終端と非force pushをremoteで確認する。
+証拠のsource HEAD: `df6e8939d4a5ad803c36b10d5610a57eb74bef54`。
+未受入研究3活動source契約の実行source。前回採掘record run36267783546の終端成功を照合。自己runは未終端として記録する。
 
 ## 最短の再開手順
 
@@ -25,14 +25,11 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_RESEARCH_MINING_JA.md`
+- `docs/PR16_RESEARCH_REMAINING_JA.md`
+- `content/modernization/pr16_research_remaining_evidence/36273404788/source-contract.json`
 - `content/modernization/pr16_research_mining_checkpoint.json`
-- `content/modernization/pr16_research_map_view_recipe.json`
 - `content/research_economy_v1/canonical_model.json`
 - `overlays/research_economy_v1/research_economy_v1.c`
-- `docs/PR16_RESEARCH_CATALOG_JA.md`
-- `content/modernization/pr16_research_catalog_checkpoint.json`
-- `docs/PR16_RESEARCH_NEW_GAME_JA.md`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -340,6 +337,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-採掘の実測・新64検査・context exportは全step成功。一般CIの既存失敗と分離。記録workflowの最終結果は実行中に自己確定せず、record_run_idとremote HEADで確認。
+前回記録成功と新source契約を分離。自己runの終端は後続で確認。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
