@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "正本Cの新規ゲーム初期化と取引UI callbackの限定host境界49試験PASS。通常native new-game/実取引は未受入。候補5d1fc9c4と既受入loadは保持。",
+    "current_stop": "実ResearchショップのB取消/末尾取消と通常Save→独立Continue2回を受入。進行・100RP・stock warpはfixture、購入/new-game全体は未受入。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "次は通常new-game入口→初回通常Save/Continue、および実取引UIの取消/選択/購入/保存をnativeで限定検証する。host49件とphase0 load2件/43unit、V1 load3件/40unit、7retryは変更影響なしに再実行しない。",
+    "next_step": "まず本runの終端・非force push・uploadを照合する。次は通常new-game→初回Save/Continueと実ショップの選択/購入/不足/保存境界。取消2経路/native1件/新oracle20件、host49件、既受入phase0/V1/retryは影響なしに再実行しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -4162,34 +4162,35 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "次は通常new-game入口→初回通常Save/Continue、および実取引UIの取消/選択/購入/保存をnativeで限定検証する。host49件とphase0 load2件/43unit、V1 load3件/40unit、7retryは変更影響なしに再実行しない。",
+    "goal_ja": "まず本runの終端・非force push・uploadを照合する。次は通常new-game→初回Save/Continueと実ショップの選択/購入/不足/保存境界。取消2経路/native1件/新oracle20件、host49件、既受入phase0/V1/retryは影響なしに再実行しない。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
-    "id": "RESEARCH_NORMAL_NEW_GAME_TRANSACTION_UI_NATIVE_NEXT",
+    "id": "RESEARCH_NEW_GAME_AND_PURCHASE_UI_NEXT",
     "read_paths": [
-      "docs/PR16_RESEARCH_UI_BOUNDARY_JA.md",
+      "docs/PR16_RESEARCH_SHOP_CANCEL_JA.md",
+      "content/modernization/pr16_research_shop_cancel_checkpoint.json",
+      "scripts/pr16_research_shop_cancel.py",
+      "scripts/pr16_research_shop_cancel_actions.py",
+      "tools/mgba_pr16_research_shop_cancel.c",
       "content/modernization/pr16_research_ui_boundary_checkpoint.json",
-      "scripts/pr16_research_ui_boundary.py",
-      "scripts/pr16_research_ui_boundary_actions.py",
-      "tools/research_ui_boundary_shim.c",
-      "content/modernization/pr16_research_phase0_load_checkpoint.json",
       "overlays/research_economy_v1/research_economy_v1.c",
-      "overlays/qol_production/qol_production.c"
+      "overlays/qol_production/qol_production.c",
+      "scripts/pr16_research_shop_cancel_followup.py"
     ],
-    "stop_rule_ja": "host検証をnative受入にしない。既受入を反復せず、候補/旧証拠/旧Wikiを保持。merge/release/active baseline変更禁止。"
+    "stop_rule_ja": "取消のnative受入を購入/new-game/自然進行へ拡張しない。受入反復/merge/release/baseline変更禁止。"
   },
   "observed_date_jst": "2026-09-25",
-  "observed_head": "1b32ca42d534eed264b50c26cd491079765686d4",
+  "observed_head": "7513da51e99e4511f88ecdc153c95434ed044791",
   "observed_head_checks": {
-    "reason_ja": "限定host境界のみ。一般CIのaction_requiredは別状態。",
+    "reason_ja": "限定native取消のみ。一般CI action_requiredは別状態。",
     "runs": [
       {
-        "conclusion": "success",
-        "head_sha": "7f7575ca83765ba0d3c7a033e95015874555dd33",
-        "id": 36246184229,
-        "status": "completed"
+        "conclusion": null,
+        "head_sha": "7513da51e99e4511f88ecdc153c95434ed044791",
+        "id": 36247330231,
+        "status": "in_progress"
       }
     ],
-    "scope_head": "7f7575ca83765ba0d3c7a033e95015874555dd33"
+    "scope_head": "7513da51e99e4511f88ecdc153c95434ed044791"
   },
   "observed_head_history": [
     {
@@ -5543,7 +5544,7 @@
       "semantics": "PLA1圧縮と新規供給consumerのhost検証成功入力HEAD。ROM配置/実操作/記録commitの受入ではない。"
     }
   ],
-  "observed_head_semantics": "限定host境界の実行または終端記録source。自己SHAはgit log参照。",
+  "observed_head_semantics": "実ショップ取消の実行/終端記録source。自己SHAはgit log。",
   "p08_candidate_impact": {
     "candidate": {
       "crc32": "CC068B4A",
@@ -5867,6 +5868,19 @@
     "path": "content/modernization/pr16_research_lifecycle_checkpoint.json",
     "run_id": 36234024026,
     "status": "PASS_INITIAL_LIFECYCLE_5_SCOPED"
+  },
+  "research_shop_cancel": {
+    "accepted_cases": [
+      "shop-two-cancels-save-continue"
+    ],
+    "actions_completion_confirmed": false,
+    "candidate": {
+      "sha256": "5d1fc9c47225ae8c0a369514b899a062af3699fa3c9a2f617e94ffd5f7dcc1ab",
+      "size": 33554432
+    },
+    "path": "content/modernization/pr16_research_shop_cancel_checkpoint.json",
+    "run_id": 36247330231,
+    "status": "PASS_NATIVE_SHOP_CANCEL_PENDING_TERMINAL"
   },
   "research_ui_boundary": {
     "actions_completion_confirmed": true,
@@ -7032,6 +7046,10 @@
     },
     ".github/workflows/pr16-research-save-impact-record-20260926.yml": {
       "sha256": "2baf5d68c96e00fb6ef7f6859379d72b6c2fdd0c7cf27afe375dc2c8f45c4d0b",
+      "size": 3236
+    },
+    ".github/workflows/pr16-research-shop-cancel-20260926.yml": {
+      "sha256": "1ccacf50dd6269232586a0543a6ee6db534a4f5c0164a635c95873777d714007",
       "size": 3236
     },
     ".github/workflows/pr16-research-ui-boundary-20260926.yml": {
@@ -8302,6 +8320,10 @@
       "sha256": "7fad32c544c8aae20401665934c19b4e7ac6e3a712bd885dbd4c35afbc0aef13",
       "size": 10809
     },
+    "content/modernization/pr16_research_shop_cancel_checkpoint.json": {
+      "sha256": "c39d365ad22ac963669e3be07c5940db6dedc3bd4a13e7e281b25b994e491ada",
+      "size": 43975
+    },
     "content/modernization/pr16_research_ui_boundary_checkpoint.json": {
       "sha256": "bdf148aa1b487845b850c2bd5f3400da04e85558a0e1f65cf3a774ff409bb46e",
       "size": 43401
@@ -9137,6 +9159,10 @@
     "docs/PR16_RESEARCH_SAVE_IMPACT_JA.md": {
       "sha256": "f1481163aba7ba0cf0bfc396895c9a9ccf7058fb4f65dd06842fb13fd4dd1afe",
       "size": 7658
+    },
+    "docs/PR16_RESEARCH_SHOP_CANCEL_JA.md": {
+      "sha256": "ec899cf0c9ad6bfde8d83358c14662c0bc4b954d77f9695a086551055a25cb7a",
+      "size": 2794
     },
     "docs/PR16_RESEARCH_UI_BOUNDARY_JA.md": {
       "sha256": "c6612deb907354729dbb4b7878ddb844cefb9573908c563288a299dce81e7939",
@@ -13590,6 +13616,18 @@
       "sha256": "c5587df9b085491036d2e7ebf6e129692324424d5a4aff13e4f7e031c003d518",
       "size": 21173
     },
+    "scripts/pr16_research_shop_cancel.py": {
+      "sha256": "2b765b0db1cb67fad98f0bf6011e545b928a08e2ab31cfe3e2d52961a8830d42",
+      "size": 5783
+    },
+    "scripts/pr16_research_shop_cancel_actions.py": {
+      "sha256": "55d108e8fab729f42635aea0b4ea0446a43bc84fef70761c4097654505fe07c4",
+      "size": 15128
+    },
+    "scripts/pr16_research_shop_cancel_followup.py": {
+      "sha256": "83f97d120f9c8d6393d7d0a38c70fafddfded21ebce9c40c915d1bd9239bb2fe",
+      "size": 3905
+    },
     "scripts/pr16_research_ui_boundary.py": {
       "sha256": "11d7d676da4263e94a92a65c958095bfa83b7d1c21556b008aa88aea35196e48",
       "size": 2832
@@ -14982,6 +15020,10 @@
       "sha256": "e09a1928aa8384d7030f489ea32de830b90c964c2613c17405ac2796395ea40e",
       "size": 16945
     },
+    "tests/test_pr16_research_shop_cancel.py": {
+      "sha256": "65d59688f63a5a9ed0972ab5a730395291f4e2c7e5d526bab49c38d9462e5cb4",
+      "size": 3661
+    },
     "tests/test_pr16_research_ui_boundary.py": {
       "sha256": "a9971c507ac87c7c0413ad4640755d94e57a447922b6e6c500711341e0dc4835",
       "size": 2841
@@ -15921,6 +15963,10 @@
     "tools/mgba_pr16_research_save_impact.c": {
       "sha256": "b57e58a94f208f6f3ce8418b850d9cd03de203c12bb73a0cd0cdf6fb7968b78f",
       "size": 16977
+    },
+    "tools/mgba_pr16_research_shop_cancel.c": {
+      "sha256": "945e78264ccbbf08e4ffe5b6e3b3d3af89be5627c6cae4ee37a11c46c77ec629",
+      "size": 8308
     },
     "tools/mgba_pr16_research_v1_load.c": {
       "sha256": "b227a92258a59d1f4261b8872b80d3f27f359bc2a42ca391c76a11fcddcec0d2",

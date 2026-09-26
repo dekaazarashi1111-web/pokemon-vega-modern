@@ -7670,3 +7670,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 新unit49PASS/host compile1（終端記録時は再実行0）。22正本関数と2048byte初期化、全23選択/取消/資源解放を検証。旧受入再実行/native/ARM/ROM変更0。resume check/task graph/scoped final-index guard/diff-checkは同runの後続gate。全体歴史guard成功は主張しない。終端確認=True。
 - Commit: source=1b32ca42d534eed264b50c26cd491079765686d4、同branch非force。自己SHAはgit log。
 - Network: GitHub Actions API/先行終端照合。私有入力取得0、外部調査0。merge/release/active baseline変更0。
+
+## 2026-09-26T14:06:17.607033+00:00
+- Timestamp: 2026-09-26T14:06:17.607033+00:00
+- Task: USER-20260926-RESEARCH-SHOP-CANCEL / 実ショップ取消と通常Save/Continue
+- Version: research-shop-cancel-v1
+- Status: DONE（取消限定、購入/new-game未受入）
+- Summary: 実ResearchショップのB取消/末尾取消と通常Save→独立Continue2回を受入。進行・100RP・stock warpはfixture、購入/new-game全体は未受入。
+- Files changed: .github/workflows/pr16-research-shop-cancel-20260926.yml, content/modernization/pr16_native_supply_resume_20260913.json, content/modernization/pr16_research_shop_cancel_checkpoint.json, design/run_log.md, design/version_log.md, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, docs/PR16_RESEARCH_SHOP_CANCEL_JA.md, scripts/pr16_research_shop_cancel.py, scripts/pr16_research_shop_cancel_actions.py, scripts/pr16_research_shop_cancel_followup.py, tests/test_pr16_research_shop_cancel.py, tools/mgba_pr16_research_shop_cancel.c、限定public証拠。
+- Verify: oracle20PASS、native1process/3cores、7guard拒否、strict host compile1。全Flash取消不変/全Bag/party/ledger対照、通常Save1回/Continue2回。既受入再実行/ROM変更/ARM compile/link0。終端記録でnative/unit/compile再実行0。終端確認=False。resume/task graph/scoped final-index guard/diff-checkは同run後続gate。全体歴史private guard成功は主張しない。
+- Commit: source=7513da51e99e4511f88ecdc153c95434ed044791、同branch非force。自己SHAはgit log。
+- Network: GitHub固定artifact/Actions API。私有入力は.localのみ、新規tracked binary0。merge/release/active baseline変更0。
+- Input followup: 初回36246971189はfailure保持。新driver入力seam変更のみ。20oracleは原本再利用/再実行0、旧native原本はimmutable prefix付き証拠。
