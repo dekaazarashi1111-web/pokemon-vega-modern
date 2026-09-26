@@ -11,10 +11,10 @@ concurrency:
   group: pr16-research-mining-20260927
   cancel-in-progress: false
 jobs:
-  context:
+  capture:
     if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 15
     env:
       GITHUB_TOKEN: ${{ github.token }}
       PYTHONDONTWRITEBYTECODE: '1'
@@ -22,43 +22,24 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: 最新引継ぎ・Actions・対象sourceを読取保存（旧試験再実行0）
-        run: python3 -B scripts/pr16_research_activities_context.py
-      - name: 採掘に必要なtracked C include closureを保存
-        shell: bash
-        run: |
-          python3 -B - <<'PY'
-          import hashlib,json,pathlib,re,subprocess,zipfile
-          root=pathlib.Path('.')
-          tracked=set(subprocess.check_output(['git','ls-files']).decode().splitlines())
-          selected={p for p in tracked if p.startswith(('tools/mgba_pr16_research','tools/mgba_qol_production_smoke','tools/mgba_battle_core_smoke','tools/mgba_ai_fixture_runner')) and p.endswith(('.c','.h'))}
-          selected.update(p for p in tracked if 'research_economy' in pathlib.Path(p).name and p.endswith(('.py','.json','.h','.c')))
-          selected.update({'scripts/validate_task_graph.py','tasks/task_graph.json','design/tasks_next.md','state/task_status.json'})
-          pending=list(selected)
-          while pending:
-              p=pending.pop()
-              if not p.endswith(('.c','.h')): continue
-              for name in re.findall(r'^\s*#include\s+"([^"]+)"',root.joinpath(p).read_text(),re.M):
-                  candidates=[str(pathlib.PurePosixPath(p).parent/name),name,'tools/'+name]
-                  for q in candidates:
-                      if q in tracked and q not in selected:
-                          selected.add(q);pending.append(q);break
-          assert selected<=tracked
-          out=root/'.local/pr16-research-activities/context'
-          index={'source_head':subprocess.check_output(['git','rev-parse','HEAD']).decode().strip(),'native_runs':0,'unit_runs':0,'files':{}}
-          with zipfile.ZipFile(out/'mining-dependencies.zip','w',zipfile.ZIP_DEFLATED) as z:
-              for p in sorted(selected):
-                  path=root/p;assert path.is_file() and not path.is_symlink()
-                  b=path.read_bytes();b.decode('utf-8');assert b'\0' not in b and len(b)<50000000
-                  index['files'][p]={'size':len(b),'sha256':hashlib.sha256(b).hexdigest(),'git_blob':subprocess.check_output(['git','rev-parse','HEAD:'+p]).decode().strip()}
-                  z.writestr(p,b)
-              z.writestr('mining-index.json',json.dumps(index,ensure_ascii=False,indent=2)+'\n')
-          print(json.dumps({'source_head':index['source_head'],'files':len(selected),'native_runs':0,'unit_runs':0}))
-          PY
+      - name: 新規採掘3ケース・64負例をsource固定で測定（旧受入再実行0）
+        run: python3 -B scripts/pr16_research_mining_capture.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: pr16-research-mining-context
+          name: pr16-research-mining-measurement
+          path: |
+            .local/pr16-research-mining-capture/public/
+            .local/pr16-research-mining-capture/mining-*/*.ppm
+          retention-days: 14
+          if-no-files-found: error
+      - name: 次工程contextと最新Actionsをread-only保存
+        if: always()
+        run: python3 -B scripts/pr16_research_activities_context.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-research-mining-source-context
           path: .local/pr16-research-activities/context/
           retention-days: 14
           if-no-files-found: error
