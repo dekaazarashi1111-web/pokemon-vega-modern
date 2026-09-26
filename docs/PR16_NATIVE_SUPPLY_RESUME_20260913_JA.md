@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-実Researchショップの行選択/確認拒否、10RP購入、残高不足拒否と取引直後の独立Continueを受入。通常Saveと続く独立Continue2回も保持。進行/10RP/warpはfixture。
+通常new-gameを消去Flashからキー入力のみで開始し、初回Start Saveと独立Continue2回を受入。counter0→1→1→1、全ledger2048/Bag5pocket/party600/Flash128KiBを照合。
 
-**次: 次は通常new-game→初回Save/Continue。購入/不足native1件・42oracle・旧取消/host49/phase0/V1/retryは影響なしに再実行しない。**
+**次: まず本runの終端・非force push・uploadを照合する。次は実RP稼得と通常進行からResearchショップへの接続、全catalog価格/日本語文言の監査。通常new-game1件・購入1件・取消1件、各oracleと旧host/phase0/V1/retryは影響なしに再実行しない。**
 
-catalog0の実購入だけの受入を全catalog/自然進行/new-gameへ拡張しない。未完nativeを先に読む。受入反復/merge/release/baseline変更禁止。
+新規開始/初回保存だけの受入をstarter/実RP/自然供給/全catalogへ拡張しない。受入済みcase反復/merge/release/baseline変更禁止。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `9f572f23ccf7e38052f21ef12d204950fe9df60a`。
-実ショップ購入の実行/終端記録source。自己SHAはgit log。
+証拠のsource HEAD: `bb2d74a1aa61d3d6d6b97580513bae49d8a71394`。
+通常new-gameの実行/終端記録source。自己SHAはgit log。
 
 ## 最短の再開手順
 
@@ -25,12 +25,13 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_RESEARCH_PURCHASE_JA.md`
+- `docs/PR16_RESEARCH_NEW_GAME_JA.md`
+- `content/modernization/pr16_research_new_game_checkpoint.json`
+- `scripts/pr16_research_new_game.py`
+- `scripts/pr16_research_new_game_actions.py`
+- `tools/mgba_pr16_research_new_game.c`
 - `content/modernization/pr16_research_purchase_checkpoint.json`
-- `scripts/pr16_research_purchase.py`
-- `scripts/pr16_research_purchase_actions.py`
-- `tools/mgba_pr16_research_purchase.c`
-- `content/modernization/pr16_research_shop_cancel_checkpoint.json`
+- `docs/PR16_RESEARCH_PURCHASE_JA.md`
 - `overlays/research_economy_v1/research_economy_v1.c`
 - `overlays/qol_production/qol_production.c`
 
@@ -333,6 +334,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-scoped原本だけを判定。記録中runの最終結論を自己確定しない。一般CIは別状態。
+scoped原本と終端を区別。一般CIは別状態。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
