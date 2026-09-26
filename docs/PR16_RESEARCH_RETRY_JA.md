@@ -1,8 +1,8 @@
 # PR16 研究保存・同一core再試行
 
-修正版の同一core再試行3ケースと影響のある拒否/回復4controlを実測。成功 7 / 7。
+同一core再試行3ケースと影響限定4controlを受入。測定run全step/push/uploadのsuccessを原本確認。今回のnative/unit/compile再実行0。
 
-測定runの終端を原本照合してから、未検証のV1通常load adapterを進める。失敗ケースがある場合はその原本と原因だけを先に扱う。受入済み再試行/29unit/旧18取引/BP/P08/特殊野生は影響なしに再実行しない。
+未検証のV1通常load adapterを進める。失敗ケースがある場合はその原本と原因だけを先に扱う。受入済み再試行/29unit/旧18取引/BP/P08/特殊野生は影響なしに再実行しない。
 
 ## 原因と修正
 
@@ -19,4 +19,4 @@ zero/erased/V1について保存不可を2回連続で実行し、入力全復�
 ## 記録
 
 source `9978dcfdafe356dd4815b021aa897e4e605abc34` / run `36236714339` / 候補 `58079dfbdbe15899d9b86f53ad3a21fe46ddcebf5fed231c85dcd2332ddd2d75`。
-受入: reject-v1-checksum, reject-v1-tail, retry-erased, retry-v1, retry-zero, valid-v2-blocked, valid-v2-idle。失敗: 。Actions終端確認: False。
+受入: reject-v1-checksum, reject-v1-tail, retry-erased, retry-v1, retry-zero, valid-v2-blocked, valid-v2-idle。失敗: 。Actions終端確認: True。

@@ -10288,3 +10288,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 測定は29unit（canonical stub host compile1含む）、ARM compile1/link1、native runner host compile1、guard7/native7。終端記録は全て再実行0。旧候補diagnosticはローカル1process/1core/host compile1を原本再利用。ローカルC縮小検討compile5attemptとtask thunk組立1は受入ではない。影響なしの旧18/BP/P08/特殊野生native再実行0。最終index/限定guard、resume check/task graph後のみcommit。
 - Commit: 同branch非force push。source=9978dcfdafe356dd4815b021aa897e4e605abc34、自己SHAはgit log参照。
 - Network: 固定GitHub artifactとUbuntu toolchain配布のみ。ROM/save/binaryは非tracked、保全path不変。
+
+## 2026-09-26T10:47:16.108707+00:00
+- Timestamp: 2026-09-26T10:47:16.108707+00:00
+- Task: USER-20260926-RESEARCH-RETRY
+- Version: research-retry-v1
+- Status: PASS_SAME_CORE_RETRY_SCOPED（限定scope、V1 load/UI等は未完）
+- Summary: 同一core再試行3ケースと影響限定4controlを受入。測定run全step/push/uploadのsuccessを原本確認。今回のnative/unit/compile再実行0。
+- Files changed: retry source/runner/29tests/Actions、canonical C、188byte recipe、原本UTF8証拠/checkpoint、固定引継ぎMD/JSON、guide、両ログ。
+- Verify: 測定は29unit（canonical stub host compile1含む）、ARM compile1/link1、native runner host compile1、guard7/native7。終端記録は全て再実行0。旧候補diagnosticはローカル1process/1core/host compile1を原本再利用。ローカルC縮小検討compile5attemptとtask thunk組立1は受入ではない。影響なしの旧18/BP/P08/特殊野生native再実行0。最終index/限定guard、resume check/task graph後のみcommit。
+- Commit: 同branch非force push。source=b10679ec15ab175a5c03d0bcef08149f199ec307、自己SHAはgit log参照。
+- Network: 固定GitHub artifactとUbuntu toolchain配布のみ。ROM/save/binaryは非tracked、保全path不変。

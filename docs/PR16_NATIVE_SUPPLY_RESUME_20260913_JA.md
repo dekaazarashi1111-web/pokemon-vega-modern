@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-修正版の同一core再試行3ケースと影響のある拒否/回復4controlを実測。成功 7 / 7。
+同一core再試行3ケースと影響限定4controlを受入。測定run全step/push/uploadのsuccessを原本確認。今回のnative/unit/compile再実行0。
 
-**次: 測定runの終端を原本照合してから、未検証のV1通常load adapterを進める。失敗ケースがある場合はその原本と原因だけを先に扱う。受入済み再試行/29unit/旧18取引/BP/P08/特殊野生は影響なしに再実行しない。**
+**次: 未検証のV1通常load adapterを進める。失敗ケースがある場合はその原本と原因だけを先に扱う。受入済み再試行/29unit/旧18取引/BP/P08/特殊野生は影響なしに再実行しない。**
 
 固定候補/source/原本hashを保持。旧候補の受入を新候補へ再ラベルしない。失敗と未実行を成功へ昇格しない。merge/release/baseline変更禁止。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `9978dcfdafe356dd4815b021aa897e4e605abc34`。
+証拠のsource HEAD: `b10679ec15ab175a5c03d0bcef08149f199ec307`。
 再試行記録source。自己commit SHAはgit log参照。BP/P08履歴とは別scope。
 
 ## 最短の再開手順

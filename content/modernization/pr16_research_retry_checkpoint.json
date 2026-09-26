@@ -8,7 +8,7 @@
     "valid-v2-blocked",
     "valid-v2-idle"
   ],
-  "actions_completion_confirmed": false,
+  "actions_completion_confirmed": true,
   "active_baseline_changed": false,
   "arm_compiles_measured_once": 1,
   "candidate": {
@@ -78,6 +78,8 @@
     }
   },
   "recipe": "content/modernization/pr16_research_retry_recipe.json",
+  "record_run_id": 36236815850,
+  "record_source_head": "b10679ec15ab175a5c03d0bcef08149f199ec307",
   "release_ready": false,
   "run_id": 36236714339,
   "schema_version": 1,
@@ -180,8 +182,10 @@
     }
   },
   "source_head": "9978dcfdafe356dd4815b021aa897e4e605abc34",
-  "status": "PASS_RETRY_MATRIX_PENDING_ACTIONS_TERMINAL",
+  "status": "PASS_SAME_CORE_RETRY_SCOPED",
   "task": "USER-20260926-RESEARCH-RETRY",
+  "terminal": "content/modernization/pr16_research_retry_evidence/36236714339/terminal.json",
+  "terminal_conclusion": "success",
   "unaffected_accepted_native_reruns": 0,
   "v1_load_adapter_accepted": false
 }

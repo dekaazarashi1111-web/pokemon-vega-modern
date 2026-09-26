@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "修正版の同一core再試行3ケースと影響のある拒否/回復4controlを実測。成功 7 / 7。",
+    "current_stop": "同一core再試行3ケースと影響限定4controlを受入。測定run全step/push/uploadのsuccessを原本確認。今回のnative/unit/compile再実行0。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "測定runの終端を原本照合してから、未検証のV1通常load adapterを進める。失敗ケースがある場合はその原本と原因だけを先に扱う。受入済み再試行/29unit/旧18取引/BP/P08/特殊野生は影響なしに再実行しない。",
+    "next_step": "未検証のV1通常load adapterを進める。失敗ケースがある場合はその原本と原因だけを先に扱う。受入済み再試行/29unit/旧18取引/BP/P08/特殊野生は影響なしに再実行しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -4162,7 +4162,7 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "測定runの終端を原本照合してから、未検証のV1通常load adapterを進める。失敗ケースがある場合はその原本と原因だけを先に扱う。受入済み再試行/29unit/旧18取引/BP/P08/特殊野生は影響なしに再実行しない。",
+    "goal_ja": "未検証のV1通常load adapterを進める。失敗ケースがある場合はその原本と原因だけを先に扱う。受入済み再試行/29unit/旧18取引/BP/P08/特殊野生は影響なしに再実行しない。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
     "id": "RESEARCH_V1_LOAD_ADAPTER_NEXT",
     "read_paths": [
@@ -4178,15 +4178,15 @@
     "stop_rule_ja": "固定候補/source/原本hashを保持。旧候補の受入を新候補へ再ラベルしない。失敗と未実行を成功へ昇格しない。merge/release/baseline変更禁止。"
   },
   "observed_date_jst": "2026-09-25",
-  "observed_head": "9978dcfdafe356dd4815b021aa897e4e605abc34",
+  "observed_head": "b10679ec15ab175a5c03d0bcef08149f199ec307",
   "observed_head_checks": {
     "reason_ja": "再試行専用runだけ。全CI成功の主張ではない。",
     "runs": [
       {
-        "conclusion": null,
+        "conclusion": "success",
         "head_sha": "9978dcfdafe356dd4815b021aa897e4e605abc34",
         "id": 36236714339,
-        "status": "in_progress"
+        "status": "completed"
       }
     ],
     "scope_head": "9978dcfdafe356dd4815b021aa897e4e605abc34"
@@ -5798,14 +5798,14 @@
       "valid-v2-blocked",
       "valid-v2-idle"
     ],
-    "actions_completion_confirmed": false,
+    "actions_completion_confirmed": true,
     "candidate": {
       "sha256": "58079dfbdbe15899d9b86f53ad3a21fe46ddcebf5fed231c85dcd2332ddd2d75",
       "size": 33554432
     },
     "path": "content/modernization/pr16_research_retry_checkpoint.json",
     "run_id": 36236714339,
-    "status": "PASS_RETRY_MATRIX_PENDING_ACTIONS_TERMINAL"
+    "status": "PASS_SAME_CORE_RETRY_SCOPED"
   },
   "research_save_impact": {
     "accepted_cases": 18,
@@ -6940,8 +6940,8 @@
       "size": 2858
     },
     ".github/workflows/pr16-research-retry-20260926.yml": {
-      "sha256": "41169131eff549b7e1fca7db328117c1686440ec44396638a52f32279ea6a36a",
-      "size": 3025
+      "sha256": "84dc8bfa2d3efa8818097aefb974f45d2fe34bc1b591b3328fed777892d9218b",
+      "size": 3026
     },
     ".github/workflows/pr16-research-save-impact-20260926.yml": {
       "sha256": "27fe320908a435283e7dd02a2eebf7bb80b112cc5f32abff1ab3d9e93b4c7603",
@@ -8188,8 +8188,8 @@
       "size": 6524
     },
     "content/modernization/pr16_research_retry_checkpoint.json": {
-      "sha256": "63c777fa2dc0c2ae8cbf3399d0b23cf0fee6f5f92a00970db4e55d90c69ab8a8",
-      "size": 7167
+      "sha256": "267b927daf4eadf529ba5e3fdf1259d1fb5b3904cdaf6226adf498fd378af99b",
+      "size": 7381
     },
     "content/modernization/pr16_research_retry_local_diagnostic.json": {
       "sha256": "92fb9beffa73fcd89ce2c3503dfabea419307bbb8551f4fa70d912646f69e579",
@@ -9000,8 +9000,8 @@
       "size": 1696
     },
     "docs/PR16_RESEARCH_RETRY_JA.md": {
-      "sha256": "b3eb34b2a6436499ca3483e2dbdb1ce381e7e9aa4ff98c8405b9b7455df3fa66",
-      "size": 2376
+      "sha256": "7fcf9ff9412802a9ab30714573d798959a7ffebd12eeb7ae12d8c6749f962f9f",
+      "size": 2381
     },
     "docs/PR16_RESEARCH_SAVE_IMPACT_JA.md": {
       "sha256": "f1481163aba7ba0cf0bfc396895c9a9ccf7058fb4f65dd06842fb13fd4dd1afe",
