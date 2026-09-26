@@ -29,9 +29,13 @@ class BugTests(unittest.TestCase):
     def test_missing_original(self):
         result=b.validate(self.raw['cases'][b.CASES[0]]['stdout'].encode(),b.CASES[0])
         self.assertEqual(result['earned_rp'],0);self.assertEqual(result['fresh_cores'],1)
-    def test_initial_harness_failure_not_accepted(self):
-        failure=self.raw['harness_failure'];self.assertEqual(failure['execution']['returncode'],1)
-        with self.assertRaises(ValueError):b.validate(failure['stdout'].encode(),b.CASES[0])
+    def test_missing_historical_measurement_is_not_fabricated(self):
+        prior=self.raw['previous_unpersisted_local_evidence']
+        self.assertIs(prior['available'],False)
+        self.assertIsNone(prior['execution_counts'])
+        self.assertNotIn('harness_failure',self.raw)
+        for case in b.CASES:
+            self.assertEqual(self.raw['cases'][case]['execution'],{'returncode':0,'timeout':False})
     def test_duplicate_json_key(self):
         raw=self.raw['cases'][b.CASES[1]]['stdout'].replace('"status":"PASS"','"status":"FAIL","status":"PASS"').encode()
         with self.assertRaises(ValueError):b.validate(raw,b.CASES[1])
@@ -69,7 +73,7 @@ class BugTests(unittest.TestCase):
         self.assertEqual(self.raw['counts']['rom_changes'],0)
         self.assertEqual(self.raw['counts']['accepted_case_reruns'],0)
         self.assertEqual(self.raw['counts']['accepted_native_processes'],2)
-        self.assertEqual(self.raw['counts']['failed_native_processes'],1)
+        self.assertEqual(self.raw['counts']['failed_native_processes'],0)
     def test_independent_ledger_requires_full_fixture(self):
         with self.assertRaises(ValueError):b.validate(self.raw['cases'][b.CASES[1]]['stdout'].encode(),b.CASES[1],bytes(16))
 

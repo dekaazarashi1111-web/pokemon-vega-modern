@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-PASS_MAP_VIEW_REPAIR_SCOPED
+PASS_BUG_REAL_EARNING_SCOPED
 
-**次: 次は他5活動の実RP稼得、通常進行によるResearch受付/ショップ接続、残るnative文言。保存view修復後の研究候補26dac23cを専用recipeで復元する。旧候補の写真成功/取消/重複拒否と、新候補の513空判定/clear境界・写真cold表示・54検査は同一入力で再実行しない。自然到達・全活動・全map・releaseは未受入。**
+**次: 次は残る4活動（釣り・生態・ゲームコーナー・採掘）の実RP稼得、通常進行からResearch受付/ショップ接続、残るnative文言。保存view修復26dac23cを専用recipeで復元する。写真と虫取りの受入原本は変更影響なしに再実行しない。虫取りは実NPC/0→8RP/取消/条件不足/同日重複拒否/取引保存/独立Continue/4文言まで。開始party・進行・warpはfixtureで、自然到達・全活動・全map・releaseは未受入。**
 
-旧写真/元ROM/seed/原本不変。後継26dac23cの保存view修復scopeを全map/自然到達へ拡張しない。変更影響がない受入再実行、merge/release/baseline変更禁止。
+写真/虫取り/保存view受入・元ROM/seed/旧証拠を不変に保つ。自然到達/全活動/全mapへの過大主張、無変更再実行、merge/release/baseline変更は禁止。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `d3c4c3b844f0f145420a0a35d0898e9ee4dc94bd`。
-保存view修復の記録source。native実測はローカルsource hash照合、Actions実測と混同しない。自己SHAはgit log参照。
+証拠のsource HEAD: `826fa3d262bd1a45dd7058a2e5bdf9aa0fcb06d2`。
+虫取りActions実測5412cee1/run36261672837の受入記録source。自己commit SHAはgit log参照。
 
 ## 最短の再開手順
 
@@ -25,12 +25,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_PHOTO_VISUAL_DIAGNOSIS_JA.md`
-- `content/modernization/pr16_research_map_view_checkpoint.json`
+- `docs/PR16_RESEARCH_BUG_JA.md`
+- `content/modernization/pr16_research_bug_checkpoint.json`
 - `content/modernization/pr16_research_map_view_recipe.json`
-- `scripts/pr16_research_map_view.py`
-- `scripts/pr16_research_map_view_actions.py`
-- `tools/mgba_pr16_research_map_view.c`
 - `content/research_economy_v1/canonical_model.json`
 - `overlays/research_economy_v1/research_economy_v1.c`
 - `docs/PR16_RESEARCH_CATALOG_JA.md`
@@ -69,6 +66,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- 虫取りrun36261672837/26dac23cは実NPC0→8RP・取消・条件不足・重複拒否・取引保存2・独立Continue・4文言を受入。新規51検査、2process/3cores、ROM/ARM0。旧ローカル未保存原本の件数はunknown。無変更再実行禁止、自然到達/全活動へ昇格しない。
 - 保存view修復26dac23cは513空判定/clear512byteと写真cold地形/台詞を専用checkpointで受入。54unitは初回53成功+訂正1成功。無変更再実行禁止。旧5d1fc9c4の青背景記録は歴史原本で、後継受入と混同しない。
 - 写真のcold ContinueはRP/claim/保存counterのみ受入。青い反復背景は未受入。稼得成功ケースを無変更で再実行せず、map layout/tileset/fixture境界だけを診断する。
 - 写真の0→6RP/取消/同日重複拒否/取引保存/独立Continueと3文言は専用原本を再利用。全活動/自然到達/通常ショップ接続に昇格しない。
@@ -341,6 +339,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-保存viewの限定受入と一般CIは別。P03旧source pin failure/承認待ちを全CI成功へ昇格しない。現実行の完了は次のterminal照合/remote refで確認。
+虫取りrun36261672837は全step成功。旧引継ぎの実行中6runも現在結果を照合。一般CIと本限定受入を分離し、P03既存source pin failure/承認待ちを全CI成功へ昇格しない。記録workflowの最終結果はremote HEADとActionsで確認。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

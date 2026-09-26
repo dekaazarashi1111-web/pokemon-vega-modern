@@ -10560,3 +10560,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 診断2native/4cores/2host、修正受入2native/3cores/2host、読取utility host1。ARM0。unit初回53PASS+1harness失敗、失敗1のみ修正再実行PASS。写真変更影響回帰1、無変更受入再実行0。Actions native/unit/compile0。全ROM rollback/原本hash/生成C/独立oracleを照合。resume/task graph/index guardは後続stepで検査。
 - Commit: source=d3c4c3b844f0f145420a0a35d0898e9ee4dc94bd、同branch非force push、自己SHAはgit log参照。
 - Network: 固定GitHub data取得・runtime metadata参照。新規ROM/save tracked0、baseline/merge/release不変。全CI/自然到達/全活動/全map受入ではない。
+
+## 2026-09-26T18:20:09.506761+00:00
+- Timestamp: 2026-09-26T18:20:09.506761+00:00
+- Task: USER-20260927-RESEARCH-ACTIVITIES / 虫取り実RP稼得の未保存WIPを完了
+- Version: research-bug-v1
+- Status: DONE（虫取り限定scope）
+- Summary: 実NPCから0→8RP、取消/条件不足/同日重複拒否、取引保存2/独立Continue、4文言12画像を受入。旧ローカル原本欠落はunknownとして新Actions原本と分離。残る4活動/自然到達/受付ショップ接続は未受入。
+- Files changed: 虫取りrunner/oracle/51検査/回収・記録Actions/UTF8原本/checkpoint/guide、固定引継ぎMD・JSON、両ログ。
+- Verify: run36261672837全step成功、2native/3cores/host1/ARM0/ROM変更0、失敗0。今回新51tests PASS。記録native/compile再実行0、旧受入再実行0。source/hash/12画像/ledger2048/party600/Bag/Flashを照合。commit前resume/task graph/scoped index guard必須。
+- Commit: WIP64f9894・5412cee、測定source=5412cee1d3cbde3d818a17fa6bf53d1096fc6c2c、記録source=826fa3d262bd1a45dd7058a2e5bdf9aa0fcb06d2、自己SHAはgit log参照、同branch非force push。
+- Network: GitHub live HEAD/PR/Actions/固定artifactだけ。旧実行中runを現在結果へ照合。一般CIは限定受入と分離。ROM/save非tracked、merge/release/baseline不変。

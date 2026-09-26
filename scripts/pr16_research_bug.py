@@ -8,7 +8,7 @@ import pr16_research_map_view as view
 need, identity, load, exact = photo.need, photo.identity, photo.load, photo.exact
 ROOT = Path(__file__).resolve().parents[1]
 C = 'tools/mgba_pr16_research_bug.c'
-RAW = 'content/modernization/pr16_research_bug_local_measurement.json'
+RAW = 'content/modernization/pr16_research_bug_measurement.json'
 CANDIDATE = {'size':33554432,'sha256':'26dac23cfdbc02c3c25e357b79dcdf3d247c10d893f54a4f6d6b1227bf5624da'}
 CASES = ('bug-missing-type-rejected','bug-earn-duplicate-cold')
 UNRELATED = 'f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e'
