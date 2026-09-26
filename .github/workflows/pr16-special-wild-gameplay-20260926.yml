@@ -1,11 +1,11 @@
 name: pr16-special-wild-gameplay-20260926
-# 初回はsource/状態の限定転送のみ。ROM生成・native再実行なし。
+# 保存candidate/通常UI入力だけを束縛。直接probe/既受入/ARMは再実行しない。
 on:
   push:
     branches: [codex/modernization-followup-20260908]
     paths: [.github/workflows/pr16-special-wild-gameplay-20260926.yml]
 permissions:
-  contents: read
+  contents: write
   actions: read
   pull-requests: read
 concurrency:
@@ -15,7 +15,7 @@ jobs:
   gameplay:
     if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
     runs-on: ubuntu-24.04
-    timeout-minutes: 15
+    timeout-minutes: 30
     env:
       GITHUB_TOKEN: ${{ github.token }}
       PYTHONDONTWRITEBYTECODE: '1'
@@ -23,34 +23,81 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: 対象sourceと最新Actionsの転送（検証済み成果の再実行0）
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: 固定候補の保存recipeと未受入UI入力を照合
+        run: python3 -B scripts/pr16_special_wild_gameplay.py execute
+      - name: 成功と失敗を固定引継ぎ・両ログへ記録
+        if: always()
         run: |
-          python3 -B - <<'PY'
-          import hashlib,json,os,pathlib,subprocess,urllib.request,zipfile
-          root=pathlib.Path('.');out=root/'.local/pr16-special-wild-gameplay/context';out.mkdir(parents=True)
-          tracked=subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
-          exact={'CHATGPT_RESUME.md','AGENTS.md','docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md','docs/PR16_SPECIAL_WILD_JA.md','docs/PR16_LEARNSET_BASELINE_RESET_JA.md','content/modernization/pr16_native_supply_resume_20260913.json','content/modernization/pr16_bp_chooser_checkpoint.json','content/modernization/p08_remaining_work.json','content/modernization/pr16_special_wild_bound_checkpoint.json','content/modernization/pr16_special_wild_bound_completed_actions.json','content/modernization/pr16_special_wild_research_table_audit.json','content/modernization/pr16_learnset_natural_checkpoint.json','config/active_play_baseline.json','design/active_play_baseline.md','design/run_log.md','design/version_log.md','scripts/common.py','scripts/pr16_resume.py'}
-          paths=[p for p in tracked if p in exact or p.endswith('/AGENTS.md') or (p.startswith('scripts/pr16_') and p.endswith('.py')) or (p.startswith('tools/mgba_') and p.endswith(('.c','.h'))) or (p.startswith('tests/test_pr16_') and any(t in p for t in ('special_wild','learnset_natural','learnset_battle'))) or p.startswith('content/modernization/pr16_special_wild_evidence/36213677615/')]
-          index={}
-          with zipfile.ZipFile(out/'context.zip','w',compression=zipfile.ZIP_DEFLATED) as z:
-              for p in sorted(paths):
-                  f=root/p
-                  assert f.is_file() and not f.is_symlink()
-                  raw=f.read_bytes();raw.decode('utf-8');assert b'\0' not in raw
-                  index[p]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()};z.writestr(p,raw)
-              z.writestr('index.json',json.dumps(index,sort_keys=True,indent=2)+'\n')
-          base='https://api.github.com/repos/'+os.environ['GITHUB_REPOSITORY']+'/'
-          def get(path):
-              req=urllib.request.Request(base+path,headers={'Authorization':'Bearer '+os.environ['GITHUB_TOKEN'],'Accept':'application/vnd.github+json'})
-              with urllib.request.urlopen(req) as r:return json.load(r)
-          runs=get('actions/runs?per_page=30')['workflow_runs'];pr=get('pulls/16')
-          summary={'source_head':os.environ['GITHUB_SHA'],'pr':{'state':pr['state'],'draft':pr['draft'],'merged':pr['merged'],'head_sha':pr['head']['sha'],'head_ref':pr['head']['ref'],'head_repo':pr['head']['repo']['full_name']},'runs':[{k:r[k] for k in ('id','name','head_sha','head_branch','path','status','conclusion')} for r in runs],'native_processes':0,'arm_compiles':0,'rom_rebuilds':0,'source_files':len(index)}
-          (out/'snapshot.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n')
-          print(json.dumps(summary,ensure_ascii=False))
-          PY
+          set -euo pipefail
+          test -f .local/pr16-special-wild-gameplay/proof/verification.json
+          python3 -B scripts/pr16_special_wild_gameplay.py record
+      - name: 引継ぎ整合・task graph・最終index限定guard
+        if: always()
+        run: |
+          set -euo pipefail
+          python3 -B scripts/pr16_resume.py check
+          python3 -B scripts/validate_task_graph.py
+          python3 -B scripts/pr16_special_wild_gameplay.py paths | tr '\n' '\0' >.local/pr16-special-wild-gameplay/paths.z
+          git add --pathspec-from-file=.local/pr16-special-wild-gameplay/paths.z --pathspec-file-nul
+          python3 -B scripts/pr16_special_wild_gameplay.py guard
+      - name: 同branchへ非force commit/push・remote照合
+        if: always()
+        run: |
+          set -euo pipefail
+          python3 -B scripts/pr16_special_wild_gameplay.py guard
+          branch='codex/modernization-followup-20260908'
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20260926-SPECIAL-WILD-GAMEPLAY: 保存候補と通常UI入力bindingの実測・引継ぎ・両ログを保存'
+          git push origin "HEAD:$branch"
+          sha=$(git rev-parse HEAD)
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$sha"
+          echo "$sha" | tee .local/pr16-special-wild-gameplay/proof/reflected-head.txt
+      - name: 限定sourceと最新Actionsを転送
+        if: always()
+        run: python3 -B scripts/pr16_special_wild_gameplay.py context
+      - name: 次の通常操作専用mGBA環境を保存（emulator実行なし）
+        if: always()
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends libmgba-dev
+          d=.local/pr16-special-wild-gameplay/runtime
+          mkdir -p "$d/lib" "$d/include"
+          cp -r /usr/include/mgba /usr/include/mgba-util "$d/include/"
+          cp -L /usr/lib/x86_64-linux-gnu/libmgba.so "$d/lib/libmgba.so"
+          ldd /usr/lib/x86_64-linux-gnu/libmgba.so | awk '/=> \// {print $3} /^\s*\// {print $1}' | while read -r p; do cp -L "$p" "$d/lib/"; done
+          cp -L /lib64/ld-linux-x86-64.so.2 "$d/ld.so"
+          dpkg-query -W libmgba-dev libmgba0.10 >"$d/version.txt"
       - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-special-wild-gameplay-proof
+          path: .local/pr16-special-wild-gameplay/proof/
+          retention-days: 30
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: pr16-special-wild-gameplay-context
           path: .local/pr16-special-wild-gameplay/context/
+          retention-days: 7
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-special-wild-gameplay-data
+          path: .local/pr16-special-wild-gameplay/data/
+          retention-days: 30
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-special-wild-gameplay-runtime
+          path: .local/pr16-special-wild-gameplay/runtime/
           retention-days: 7
           if-no-files-found: error
