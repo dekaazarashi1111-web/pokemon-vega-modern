@@ -1,5 +1,5 @@
 name: pr16-special-wild-gameplay-20260926
-# 保存candidate/通常UI入力だけを束縛。直接probe/既受入/ARMは再実行しない。
+# 通常UI v1。保存候補を再利用し、未受入の釣り/レーダーだけを実測する。
 on:
   push:
     branches: [codex/modernization-followup-20260908]
@@ -15,7 +15,7 @@ jobs:
   gameplay:
     if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
     runs-on: ubuntu-24.04
-    timeout-minutes: 30
+    timeout-minutes: 20
     env:
       GITHUB_TOKEN: ${{ github.token }}
       PYTHONDONTWRITEBYTECODE: '1'
@@ -26,78 +26,58 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: 固定候補の保存recipeと未受入UI入力を照合
-        run: python3 -B scripts/pr16_special_wild_gameplay.py execute
-      - name: 成功と失敗を固定引継ぎ・両ログへ記録
-        if: always()
-        run: |
-          set -euo pipefail
-          test -f .local/pr16-special-wild-gameplay/proof/verification.json
-          python3 -B scripts/pr16_special_wild_gameplay.py record
-      - name: 引継ぎ整合・task graph・最終index限定guard
-        if: always()
-        run: |
-          set -euo pipefail
-          python3 -B scripts/pr16_resume.py check
-          python3 -B scripts/validate_task_graph.py
-          python3 -B scripts/pr16_special_wild_gameplay.py paths | tr '\n' '\0' >.local/pr16-special-wild-gameplay/paths.z
-          git add --pathspec-from-file=.local/pr16-special-wild-gameplay/paths.z --pathspec-file-nul
-          python3 -B scripts/pr16_special_wild_gameplay.py guard
-      - name: 同branchへ非force commit/push・remote照合
-        if: always()
-        run: |
-          set -euo pipefail
-          python3 -B scripts/pr16_special_wild_gameplay.py guard
-          branch='codex/modernization-followup-20260908'
-          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'USER-20260926-SPECIAL-WILD-GAMEPLAY: 保存候補と通常UI入力bindingの実測・引継ぎ・両ログを保存'
-          git push origin "HEAD:$branch"
-          sha=$(git rev-parse HEAD)
-          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$sha"
-          echo "$sha" | tee .local/pr16-special-wild-gameplay/proof/reflected-head.txt
-      - name: 限定sourceと最新Actionsを転送
-        if: always()
-        run: python3 -B scripts/pr16_special_wild_gameplay.py context
-      - name: 次の通常操作専用mGBA環境を保存（emulator実行なし）
-        if: always()
+      - name: mGBA host依存（ARM compilerなし）
         run: |
           set -euo pipefail
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends libmgba-dev
-          d=.local/pr16-special-wild-gameplay/runtime
-          mkdir -p "$d/lib" "$d/include"
-          cp -r /usr/include/mgba /usr/include/mgba-util "$d/include/"
-          cp -L /usr/lib/x86_64-linux-gnu/libmgba.so "$d/lib/libmgba.so"
-          ldd /usr/lib/x86_64-linux-gnu/libmgba.so | awk '/=> \// {print $3} /^\s*\// {print $1}' | while read -r p; do cp -L "$p" "$d/lib/"; done
-          cp -L /lib64/ld-linux-x86-64.so.2 "$d/ld.so"
-          dpkg-query -W libmgba-dev libmgba0.10 >"$d/version.txt"
+      - name: 保存候補で未受入の通常UI・捕獲・保存を実測
+        run: python3 -B scripts/pr16_special_wild_gameplay_native.py execute
+      - name: 成功と失敗の原本・固定引継ぎ・両ログ
+        id: record
+        if: always()
+        run: |
+          set -euo pipefail
+          test -f .local/pr16-special-wild-ui/proof/verification.json
+          python3 -B scripts/pr16_special_wild_gameplay_native.py record
+      - name: 引継ぎ整合・task graph・最終index限定guard
+        id: validate
+        if: always() && steps.record.outcome == 'success'
+        run: |
+          set -euo pipefail
+          python3 -B scripts/pr16_resume.py check
+          python3 -B scripts/validate_task_graph.py
+          python3 -B scripts/pr16_special_wild_gameplay_native.py paths | tr '\n' '\0' >.local/pr16-special-wild-ui/paths.z
+          git add --pathspec-from-file=.local/pr16-special-wild-ui/paths.z --pathspec-file-nul
+          python3 -B scripts/pr16_special_wild_gameplay_native.py guard
+      - name: 検証済み記録を同branchへ非force commit/push・remote照合
+        if: always() && steps.record.outcome == 'success' && steps.validate.outcome == 'success'
+        run: |
+          set -euo pipefail
+          python3 -B scripts/pr16_special_wild_gameplay_native.py guard
+          branch='codex/modernization-followup-20260908'
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20260926-SPECIAL-WILD-UI: 通常UIの成功・失敗原本と引継ぎ・両ログを保存'
+          git push origin "HEAD:$branch"
+          sha=$(git rev-parse HEAD)
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$sha"
+          echo "$sha" | tee .local/pr16-special-wild-ui/proof/reflected-head.txt
+      - name: 限定sourceと記録を転送（native再実行なし）
+        if: always() && steps.record.outcome == 'success'
+        run: python3 -B scripts/pr16_special_wild_gameplay_native.py context
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: pr16-special-wild-gameplay-proof
-          path: .local/pr16-special-wild-gameplay/proof/
+          name: pr16-special-wild-ui-proof
+          path: .local/pr16-special-wild-ui/proof/
           retention-days: 30
           if-no-files-found: error
       - uses: actions/upload-artifact@v4
-        if: always()
+        if: always() && steps.record.outcome == 'success'
         with:
-          name: pr16-special-wild-gameplay-context
-          path: .local/pr16-special-wild-gameplay/context/
-          retention-days: 7
-          if-no-files-found: error
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: pr16-special-wild-gameplay-data
-          path: .local/pr16-special-wild-gameplay/data/
-          retention-days: 30
-          if-no-files-found: error
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: pr16-special-wild-gameplay-runtime
-          path: .local/pr16-special-wild-gameplay/runtime/
+          name: pr16-special-wild-ui-context
+          path: .local/pr16-special-wild-ui/context/
           retention-days: 7
           if-no-files-found: error
