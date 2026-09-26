@@ -18,7 +18,7 @@ jobs:
     env:
       GITHUB_TOKEN: ${{ github.token }}
       PYTHONDONTWRITEBYTECODE: '1'
-      MODE: measure
+      MODE: finalize
     steps:
       - uses: actions/checkout@v4
         with:
@@ -38,6 +38,52 @@ jobs:
           print('PASS_EXACT_NEW_GAME_SOURCE_TRANSFER')
       - name: 通常new-gameだけを計測し成功失敗を記録
         run: python3 -B scripts/pr16_research_new_game_actions.py "$MODE"
+      - name: 今回の限定2境界と履歴保全を引継ぎへ同期
+        shell: python
+        run: |
+          import datetime, os, pathlib, subprocess, sys
+          from zoneinfo import ZoneInfo
+          sys.path.insert(0,'scripts')
+          import pr16_research_new_game_actions as ng
+          from pr16_learnset_compact_record import publish_resume
+          d=ng.d
+          start='bddb239934a0ff3854009a2f5c64d3b680ec9cdc'
+          new=d.read(ng.CP);buy=d.read(ng.purchase.CP)
+          assert new['normal_new_game_accepted'] and new['actions_completion_confirmed'] and not new['failed_cases']
+          assert buy['purchase_accepted'] and buy['actions_completion_confirmed'] and not buy['failed_cases']
+          assert new['candidate']==buy['candidate']
+          def git(*args): return subprocess.check_output(['git',*args])
+          assert git('show',start+':config/active_play_baseline.json')==pathlib.Path('config/active_play_baseline.json').read_bytes()
+          for p in sorted(d.LOGS):
+              assert pathlib.Path(p).read_bytes().startswith(git('show',start+':'+p)), p
+          changed=git('diff','--name-only',start).decode().splitlines()
+          exact={'content/modernization/pr16_native_supply_resume_20260913.json','docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md',*d.LOGS}
+          prefixes=('.github/workflows/pr16-research-purchase-','.github/workflows/pr16-research-new-game-',
+            'content/modernization/pr16_research_purchase_','content/modernization/pr16_research_new_game_',
+            'docs/PR16_RESEARCH_PURCHASE','docs/PR16_RESEARCH_NEW_GAME',
+            'scripts/pr16_research_purchase','scripts/pr16_research_new_game',
+            'tests/test_pr16_research_purchase','tests/test_pr16_research_new_game',
+            'tools/mgba_pr16_research_purchase','tools/mgba_pr16_research_new_game')
+          assert changed and all(p in exact or p.startswith(prefixes) for p in changed)
+          assert all(pathlib.Path(p).suffix in ('.py','.c','.yml','.md','.json','.txt') for p in changed)
+          review={'initial_head':start,'finalize_source_head':os.environ['GITHUB_SHA'],
+            'purchase_run':buy['run_id'],'purchase_terminal_run':buy['finalize_run_id'],
+            'new_game_run':new['run_id'],'new_game_terminal_run':new['finalize_run_id'],
+            'scope_complete':True,'candidate':new['candidate'],'changed_paths':changed,
+            'new_native_cases_accepted':2,'finalize_native_processes':0,'finalize_unit_tests':0,
+            'accepted_case_reruns':0,'rom_changes':0,'active_baseline_changed':False,
+            'historical_logs_append_only':True,'release_ready':False}
+          state=d.read(d.STATE)
+          state['observed_date_jst']=datetime.datetime.now(ZoneInfo('Asia/Tokyo')).date().isoformat()
+          state['research_session_20260926']=review
+          note='研究保存の今回受入: 購入/不足run36249587919（42oracle原本再利用）、通常new-game/初回Save/独立Continue2回run36250444503（新52oracle）。両checkpointと不変source/candidateから継承し、旧取消/旧host/phase0/V1/retry/ARMを反復しない。購入失敗run36248750283とdriver向き診断は履歴のまま保持。次は実RP稼得・通常進行と全catalog監査。'
+          if note not in state['do_not_repeat']:state['do_not_repeat'].insert(0,note)
+          publish_resume(state)
+          d.put('session-summary.json',review)
+          line='\n- Session closeout: initial='+start+' / purchase run='+str(buy['run_id'])+' / ordinary-new-game run='+str(new['run_id'])+'。今回追加受入はこの2境界のみ。開始HEAD以降の全差分'+str(len(changed))+'pathは所有UTF8 textに限定し、両ログappend-only・active baseline不変を照合。終端記録でnative/unit/compile再実行0、全体release/P08の完了主張なし。\n'
+          for p in sorted(d.LOGS):
+              with pathlib.Path(p).open('a') as f:f.write(line)
+          print('PASS_TWO_SCOPES_AND_APPEND_ONLY_HISTORY; native/unit/compile reruns=0')
       - name: 引継ぎとtask graphと最終index
         shell: bash
         run: |
@@ -58,6 +104,7 @@ jobs:
           reflected=$(git rev-parse HEAD)
           test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$reflected"
           printf '%s\n' "$reflected" > .local/pr16-research-lifecycle/public/reflected-head.txt
+          printf 'RESULT=DONE TASK=USER-20260926-RESEARCH-NEW-GAME VERIFY=PASS COMMIT=%s\n' "$reflected" | tee .local/pr16-research-lifecycle/public/final-result.txt
       - uses: actions/upload-artifact@v4
         if: always()
         with:
