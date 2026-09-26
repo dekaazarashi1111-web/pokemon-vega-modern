@@ -10483,3 +10483,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub固定artifact/PR/Actions。元ROM/save非tracked、履歴/baseline保全。merge/release0。
 
 - Session closeout: initial=bddb239934a0ff3854009a2f5c64d3b680ec9cdc / purchase run=36249587919 / ordinary-new-game run=36250444503。今回追加受入はこの2境界のみ。開始HEAD以降の全差分71pathは所有UTF8 textに限定し、両ログappend-only・active baseline不変を照合。終端記録でnative/unit/compile再実行0、全体release/P08の完了主張なし。
+
+## 2026-09-26T15:39:12.902564+00:00
+- Timestamp: 2026-09-26T15:39:12.902564+00:00
+- Task: USER-20260927-RESEARCH-SUPPLY / 全catalog価格と日本語監査
+- Version: research-catalog-v1
+- Status: DONE（限定scope）
+- Summary: PASS_CATALOG_PENDING_TERMINAL / measure。23商品と35会話ROM byte、5page表示。自然RP/通常進行/35会話native全表示は未受入。
+- Files changed: catalog validator/native/oracle/Actions、専用証拠/MD/JSON、固定引継ぎ、両ログ。
+- Verify: 新規86oracle、host1/native1/guard7、ARM0。準備診断compile3/native3、2失敗を保存し専用fixture/videoだけ修正。終端はunit/native/compile0。旧受入ケース再実行0。resume/task graph/限定index guardをcommit前に検査。
+- Commit: 同branch非force push、source=e68fd9e4cb596d5ef082c68c3462786136af5aad。自己SHAはgit log参照。
+- Network: 接続済みGitHub APIと固定SHA artifactのみ。全体CI成功/releaseは主張しない。ROM/saveは非tracked、active baseline不変。

@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-通常new-gameを消去Flashからキー入力のみで開始し、初回Start Saveと独立Continue2回を受入。counter0→1→1→1、全ledger2048/Bag5pocket/party600/Flash128KiBを照合。
+PASS_CATALOG_PENDING_TERMINAL
 
-**次: 次は実RP稼得と通常進行からResearchショップへの接続、全catalog価格/日本語文言の監査。通常new-game1件・購入1件・取消1件、各oracleと旧host/phase0/V1/retryは影響なしに再実行しない。**
+**次: 次は実RP稼得と通常進行からResearchショップへの接続。全23商品価格/数量/解放/在庫/日本語行・5画面と35会話ROM byte監査は受入済み原本を再利用する。35会話のnative全表示/自然到達は別の未完境界。**
 
 新規開始/初回保存だけの受入をstarter/実RP/自然供給/全catalogへ拡張しない。受入済みcase反復/merge/release/baseline変更禁止。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `29f21cc483af5dc23c97baf98d0bdbefa043bc87`。
-通常new-gameの実行/終端記録source。自己SHAはgit log。
+証拠のsource HEAD: `e68fd9e4cb596d5ef082c68c3462786136af5aad`。
+catalog限定記録source。自己commitはgit log参照。
 
 ## 最短の再開手順
 
@@ -25,15 +25,15 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `docs/PR16_RESEARCH_CATALOG_JA.md`
+- `content/modernization/pr16_research_catalog_checkpoint.json`
+- `scripts/pr16_research_catalog.py`
+- `scripts/pr16_research_catalog_actions.py`
+- `tools/mgba_pr16_research_catalog.c`
 - `docs/PR16_RESEARCH_NEW_GAME_JA.md`
 - `content/modernization/pr16_research_new_game_checkpoint.json`
-- `scripts/pr16_research_new_game.py`
-- `scripts/pr16_research_new_game_actions.py`
-- `tools/mgba_pr16_research_new_game.c`
-- `content/modernization/pr16_research_purchase_checkpoint.json`
-- `docs/PR16_RESEARCH_PURCHASE_JA.md`
 - `overlays/research_economy_v1/research_economy_v1.c`
-- `overlays/qol_production/qol_production.c`
+- `content/research_economy_v1/canonical_model.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -67,6 +67,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- catalog23商品/5画面・35会話ROM byteは専用checkpointを参照。native全会話/自然RP/通常進行とは分離し、受入済み保存/購入/取消を再実行しない。
 - 研究保存の今回受入: 購入/不足run36249587919（42oracle原本再利用）、通常new-game/初回Save/独立Continue2回run36250444503（新52oracle）。両checkpointと不変source/candidateから継承し、旧取消/旧host/phase0/V1/retry/ARMを反復しない。購入失敗run36248750283とdriver向き診断は履歴のまま保持。次は実RP稼得・通常進行と全catalog監査。
 - P08の21層432patch全ROM監査はpr16_p08_candidate_impact.jsonに保存。同じ入力のARM/旧builder/旧nativeは再実行せず、未完4代表境界へ。
 - Circus正式scoped受入はpr16_circus_acceptance.json。35504302893の29画面/3勝/Save、35503514936の自然getter/抑制を再実行しない。旧failureの意味は維持。
@@ -335,6 +336,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-scoped原本と終端を区別。一般CIは別状態。
+限定工程と全体CIを区別。source-validation既存failure/承認待ちを全CI成功へ昇格しない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
