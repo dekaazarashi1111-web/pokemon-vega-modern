@@ -1,0 +1,96 @@
+name: pr16-research-wild-local-record-20260927
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-research-wild-local-record-20260927.yml]
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-research-wild-local-record-20260927
+  cancel-in-progress: false
+jobs:
+  record:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+      RECORD_MODE: publish
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: 固定hashの検証済みpublic text17件だけ復元・既存変更を上書きしない
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B - <<'PY'
+          import base64, hashlib, json, lzma
+          from pathlib import Path, PurePosixPath
+          def identity(data):
+              return {'size':len(data),'sha256':hashlib.sha256(data).hexdigest()}
+          index=json.loads(Path('content/modernization/pr16_research_wild_local_transport.json').read_text())
+          assert index['schema_version']==1 and index['encoding']=='xz-base64-public-utf8-source-and-evidence-only'
+          names=['content/modernization/pr16_research_wild_local_transport/'+str(i)+'.txt' for i in range(1,5)]
+          assert list(index['chunks'])==names
+          chunks=[]
+          for name in names:
+              data=Path(name).read_bytes()
+              assert identity(data)==index['chunks'][name], '転送chunk原本hash: '+name
+              chunks.append(data.strip())
+          packed=base64.b64decode(b''.join(chunks),validate=True)
+          decoder=lzma.LZMADecompressor(memlimit=64*1024*1024)
+          raw=decoder.decompress(packed,max_length=2000000)
+          assert decoder.eof and not decoder.unused_data
+          assert identity(raw)==index['decoded']=={'size':168669,'sha256':'037db67fe41e381f88cdefd8ec9649f61e2a2f51a6d960775cfb0f144cc8be34'}
+          bundle=json.loads(raw)
+          assert bundle['schema_version']==1 and bundle['base_head']=='f7f3bb73b822bf995bef404e953b18b7096c428c'
+          assert [row['path'] for row in bundle['files']]==index['allowed_paths']
+          assert len(set(index['allowed_paths']))==17
+          for row in bundle['files']:
+              name=row['path']; parts=PurePosixPath(name)
+              assert not parts.is_absolute() and '..' not in parts.parts
+              assert name.startswith(('content/modernization/pr16_research_wild_local_evidence/','scripts/pr16_research_wild_','tests/test_pr16_research_wild_','tools/mgba_pr16_research_wild.c'))
+              assert parts.suffix in ('.json','.txt','.py','.c')
+              data=row['content'].encode('utf-8')
+              assert b'\0' not in data and identity(data)==row['after']
+              path=Path(name)
+              if path.exists() and identity(path.read_bytes())==row['after']:
+                  continue
+              assert (not path.exists()) if row['before'] is None else (path.is_file() and identity(path.read_bytes())==row['before']), '旧source不一致: '+name
+              path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes(data)
+          print('PUBLIC_TEXT_RESTORE=PASS FILES=17 NATIVE=0 UNIT=0 COMPILE=0')
+          PY
+      - name: 原本・独立oracle・失敗履歴・65検査source拘束・Actions照合と記録
+        run: python3 -B scripts/pr16_research_wild_local_record.py "$RECORD_MODE"
+      - name: 固定引継ぎ・task graph・最終index限定guard
+        run: |
+          python3 -B scripts/pr16_resume.py check
+          python3 -B scripts/validate_task_graph.py
+          python3 -B scripts/pr16_research_wild_local_record.py guard
+      - name: 現HEAD確認・限定受入commit・同branch非force push
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git ls-remote origin "$GITHUB_REF" | cut -f1)" = "$GITHUB_SHA"
+          python3 -B -c 'import sys;sys.path[:0]=["scripts","."];import pr16_research_lifecycle_actions as d;d.current()'
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m "USER-20260927-RESEARCH-WILD: 釣り生態の実稼得・逃走・取引Continueと65検査を限定受入記録"
+          git push origin HEAD:refs/heads/codex/modernization-followup-20260908
+          test "$(git ls-remote origin "$GITHUB_REF" | cut -f1)" = "$(git rev-parse HEAD)"
+          echo "RESULT=DONE TASK=USER-20260927-RESEARCH-WILD VERIFY=PASS COMMIT=$(git rev-parse HEAD)"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-research-wild-local-record
+          path: |
+            .local/pr16-research-wild-local-record/
+            content/modernization/pr16_research_wild_local_evidence/
+            content/modernization/pr16_research_wild_local_transport/
+            content/modernization/pr16_research_wild_local_transport.json
+          retention-days: 14
+          if-no-files-found: warn
