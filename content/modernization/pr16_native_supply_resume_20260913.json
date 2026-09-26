@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "まず本runの終端・非force push・uploadを照合する。次は通常new-game→初回Save/Continueと実ショップの選択/購入/不足/保存境界。取消2経路/native1件/新oracle20件、host49件、既受入phase0/V1/retryは影響なしに再実行しない。",
+    "next_step": "次は通常new-game→初回Save/Continueと実ショップの選択/購入/不足/保存境界。取消2経路/native1件/新oracle20件、host49件、既受入phase0/V1/retryは影響なしに再実行しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -4162,7 +4162,7 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "まず本runの終端・非force push・uploadを照合する。次は通常new-game→初回Save/Continueと実ショップの選択/購入/不足/保存境界。取消2経路/native1件/新oracle20件、host49件、既受入phase0/V1/retryは影響なしに再実行しない。",
+    "goal_ja": "次は通常new-game→初回Save/Continueと実ショップの選択/購入/不足/保存境界。取消2経路/native1件/新oracle20件、host49件、既受入phase0/V1/retryは影響なしに再実行しない。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
     "id": "RESEARCH_NEW_GAME_AND_PURCHASE_UI_NEXT",
     "read_paths": [
@@ -4179,15 +4179,15 @@
     "stop_rule_ja": "取消のnative受入を購入/new-game/自然進行へ拡張しない。受入反復/merge/release/baseline変更禁止。"
   },
   "observed_date_jst": "2026-09-25",
-  "observed_head": "7513da51e99e4511f88ecdc153c95434ed044791",
+  "observed_head": "48a89d3c2afcbd5475a6e6f058dc8d1e27e2aa50",
   "observed_head_checks": {
     "reason_ja": "限定native取消のみ。一般CI action_requiredは別状態。",
     "runs": [
       {
-        "conclusion": null,
+        "conclusion": "success",
         "head_sha": "7513da51e99e4511f88ecdc153c95434ed044791",
         "id": 36247330231,
-        "status": "in_progress"
+        "status": "completed"
       }
     ],
     "scope_head": "7513da51e99e4511f88ecdc153c95434ed044791"
@@ -5873,14 +5873,14 @@
     "accepted_cases": [
       "shop-two-cancels-save-continue"
     ],
-    "actions_completion_confirmed": false,
+    "actions_completion_confirmed": true,
     "candidate": {
       "sha256": "5d1fc9c47225ae8c0a369514b899a062af3699fa3c9a2f617e94ffd5f7dcc1ab",
       "size": 33554432
     },
     "path": "content/modernization/pr16_research_shop_cancel_checkpoint.json",
     "run_id": 36247330231,
-    "status": "PASS_NATIVE_SHOP_CANCEL_PENDING_TERMINAL"
+    "status": "PASS_NATIVE_SHOP_CANCEL_SCOPED"
   },
   "research_ui_boundary": {
     "actions_completion_confirmed": true,
@@ -7049,8 +7049,8 @@
       "size": 3236
     },
     ".github/workflows/pr16-research-shop-cancel-20260926.yml": {
-      "sha256": "1ccacf50dd6269232586a0543a6ee6db534a4f5c0164a635c95873777d714007",
-      "size": 3236
+      "sha256": "cb53a514619deb9f1fa6e23bf545cd4b07c82c185521e0feb2f4cace9a2aeea3",
+      "size": 3237
     },
     ".github/workflows/pr16-research-ui-boundary-20260926.yml": {
       "sha256": "d116006085e17d3fa04b3f7a666d55296a899c7a50f894c70701c31e8bf6545a",
@@ -8321,8 +8321,8 @@
       "size": 10809
     },
     "content/modernization/pr16_research_shop_cancel_checkpoint.json": {
-      "sha256": "c39d365ad22ac963669e3be07c5940db6dedc3bd4a13e7e281b25b994e491ada",
-      "size": 43975
+      "sha256": "b9d322672bef36d7fc129cc5a4e9875bbe46e46f5c316e31f938a4cd05576d97",
+      "size": 48784
     },
     "content/modernization/pr16_research_ui_boundary_checkpoint.json": {
       "sha256": "bdf148aa1b487845b850c2bd5f3400da04e85558a0e1f65cf3a774ff409bb46e",
@@ -9161,8 +9161,8 @@
       "size": 7658
     },
     "docs/PR16_RESEARCH_SHOP_CANCEL_JA.md": {
-      "sha256": "ec899cf0c9ad6bfde8d83358c14662c0bc4b954d77f9695a086551055a25cb7a",
-      "size": 2794
+      "sha256": "dfac542a7ea9ec234fcd4355fd5e1261fcee771a87e525d452a533fc944921fc",
+      "size": 2729
     },
     "docs/PR16_RESEARCH_UI_BOUNDARY_JA.md": {
       "sha256": "c6612deb907354729dbb4b7878ddb844cefb9573908c563288a299dce81e7939",

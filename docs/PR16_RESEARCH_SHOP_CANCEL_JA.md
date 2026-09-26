@@ -14,9 +14,9 @@
 
 ## 次工程
 
-まず本runの終端・非force push・uploadを照合する。次は通常new-game→初回Save/Continueと実ショップの選択/購入/不足/保存境界。取消2経路/native1件/新oracle20件、host49件、既受入phase0/V1/retryは影響なしに再実行しない。
+次は通常new-game→初回Save/Continueと実ショップの選択/購入/不足/保存境界。取消2経路/native1件/新oracle20件、host49件、既受入phase0/V1/retryは影響なしに再実行しない。
 
-run `36247330231` / source `7513da51e99e4511f88ecdc153c95434ed044791` / 終端確認 `False`。manifest/source/protected bindingsはcheckpoint参照。一般CIのaction_requiredは全CI成功に読み替えない。
+run `36247330231` / source `7513da51e99e4511f88ecdc153c95434ed044791` / 終端確認 `True`。manifest/source/protected bindingsはcheckpoint参照。一般CIのaction_requiredは全CI成功に読み替えない。
 
 ## 入力seam修正と原本の分離
 

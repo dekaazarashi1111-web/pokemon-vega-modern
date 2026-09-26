@@ -8,13 +8,13 @@
 
 実ResearchショップのB取消/末尾取消と通常Save→独立Continue2回を受入。進行・100RP・stock warpはfixture、購入/new-game全体は未受入。
 
-**次: まず本runの終端・非force push・uploadを照合する。次は通常new-game→初回Save/Continueと実ショップの選択/購入/不足/保存境界。取消2経路/native1件/新oracle20件、host49件、既受入phase0/V1/retryは影響なしに再実行しない。**
+**次: 次は通常new-game→初回Save/Continueと実ショップの選択/購入/不足/保存境界。取消2経路/native1件/新oracle20件、host49件、既受入phase0/V1/retryは影響なしに再実行しない。**
 
 取消のnative受入を購入/new-game/自然進行へ拡張しない。受入反復/merge/release/baseline変更禁止。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `7513da51e99e4511f88ecdc153c95434ed044791`。
+証拠のsource HEAD: `48a89d3c2afcbd5475a6e6f058dc8d1e27e2aa50`。
 実ショップ取消の実行/終端記録source。自己SHAはgit log。
 
 ## 最短の再開手順
