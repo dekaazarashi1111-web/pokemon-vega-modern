@@ -19,6 +19,7 @@ jobs:
       GITHUB_TOKEN: ${{ github.token }}
       PYTHONDONTWRITEBYTECODE: '1'
       MODE: measure
+      REUSE_UNIT_RUN: '36246971189'
     steps:
       - uses: actions/checkout@v4
         with:
@@ -30,21 +31,22 @@ jobs:
           bindings = {
             'scripts/pr16_research_shop_cancel.py': 'c82a47aa47f7a491ae92dbaac0e8524d60c28d84',
             'scripts/pr16_research_shop_cancel_actions.py': '20ee8ada9afed17d2b90deddaa4db3dd3559433c',
+            'scripts/pr16_research_shop_cancel_followup.py': 'cb47fed109c9e6f3f55fab70a97c40d4202071f4',
             'tests/test_pr16_research_shop_cancel.py': 'fbd894c45a782bc2af5bc15c454c6c15b764312c',
-            'tools/mgba_pr16_research_shop_cancel.c': 'a85ef0ef7a776c625ed21f724ccd08be89c9ec0e',
+            'tools/mgba_pr16_research_shop_cancel.c': '61d4ecc868a0cd2e81f4356dc0b6826b22c8bd73',
           }
           for path, sha in bindings.items():
               assert subprocess.check_output(['git','hash-object',path]).decode().strip() == sha, path
           print('PASS_EXACT_SHOP_CANCEL_SOURCE_TRANSFER')
       - name: 新規native取消とoracleのみ計測記録
-        run: python3 -B scripts/pr16_research_shop_cancel_actions.py "$MODE"
+        run: python3 -B scripts/pr16_research_shop_cancel_followup.py "$MODE"
       - name: 引継ぎとtask graphと最終index
         shell: bash
         run: |
           set -euo pipefail
           python3 -B scripts/pr16_resume.py check | tee .local/pr16-research-lifecycle/public/resume-check.txt
           python3 -B scripts/validate_task_graph.py | tee .local/pr16-research-lifecycle/public/task-graph.txt
-          python3 -B scripts/pr16_research_shop_cancel_actions.py guard | tee .local/pr16-research-lifecycle/public/index-guard.txt
+          python3 -B scripts/pr16_research_shop_cancel_followup.py guard | tee .local/pr16-research-lifecycle/public/index-guard.txt
       - name: 同branchへcommitと非force push
         shell: bash
         run: |
