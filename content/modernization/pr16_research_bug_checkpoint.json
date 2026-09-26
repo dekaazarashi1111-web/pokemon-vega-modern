@@ -13,6 +13,21 @@
     "sha256": "26dac23cfdbc02c3c25e357b79dcdf3d247c10d893f54a4f6d6b1227bf5624da",
     "size": 33554432
   },
+  "closeout_execution": {
+    "compiles": 0,
+    "native_reruns": 0,
+    "unit_reruns": 0
+  },
+  "closeout_run_id": 36262353349,
+  "closeout_source_head": "b0451cf9a855d5ddbda36046be4e3d23ea7ebc09",
+  "context_export_recovery": {
+    "binding": {
+      "sha256": "7bfe18ff1e1c14a2d3b8da97d4ebc759c621dfefeb4e66d71936e8e648357c2d",
+      "size": 3039198
+    },
+    "files": 862,
+    "source_head": "b0451cf9a855d5ddbda36046be4e3d23ea7ebc09"
+  },
   "counts": {
     "accepted_case_reruns": 0,
     "accepted_native_processes": 2,
@@ -28,6 +43,7 @@
   "manifest": "content/modernization/pr16_research_bug_evidence/36261672837/manifest.json",
   "measurement": "content/modernization/pr16_research_bug_measurement.json",
   "natural_arrival_accepted": false,
+  "post_push_failure_reconciled": true,
   "prior_unpersisted_measurement": {
     "available": false,
     "execution_counts": null,
@@ -1367,6 +1383,7 @@
   },
   "record_run_id": 36262152385,
   "record_source_head": "826fa3d262bd1a45dd7058a2e5bdf9aa0fcb06d2",
+  "record_workflow_result": "content/modernization/pr16_research_bug_evidence/closeout/record-workflow-result.json",
   "release_ready": false,
   "run_id": 36261672837,
   "schema_version": 1,
@@ -1374,8 +1391,8 @@
   "source_adjudication": "content/modernization/pr16_research_bug_evidence/36261672837/source-adjudication.json",
   "source_bindings": {
     ".github/workflows/pr16-research-activities-20260927.yml": {
-      "sha256": "da6c7f95c9a04c34573cc54db7508f7ed01f23751ce00e820a63e314668b2480",
-      "size": 2775
+      "sha256": "9895dbd36928262208ed0b25e702a4cc75330b4c99b5fc7e6b36850736281c93",
+      "size": 2738
     },
     ".github/workflows/pr16-research-new-game-20260926.yml": {
       "sha256": "4df6defd4c99f6e8fff8d5296d7f85f11f2b6cc0bd701fd872b4546c36c9db6e",
@@ -1444,6 +1461,10 @@
     "scripts/pr16_research_bug_capture.py": {
       "sha256": "7b5dcee951963281ef9de8ef25136fba56aa9f1264fb58a65ecc4036c1d08930",
       "size": 6336
+    },
+    "scripts/pr16_research_bug_finish.py": {
+      "sha256": "c5333083c5accd00162776b9c2e61f5e9133d97cfceedc0183f06335daedd0ca",
+      "size": 9675
     },
     "scripts/pr16_research_bug_record.py": {
       "sha256": "d1dafa222450a9dcb01a8f3c450290cd56bc924498e32d2b6bce1c9a5bb70516",

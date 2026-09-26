@@ -10571,3 +10571,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: run36261672837全step成功、2native/3cores/host1/ARM0/ROM変更0、失敗0。今回新51tests PASS。記録native/compile再実行0、旧受入再実行0。source/hash/12画像/ledger2048/party600/Bag/Flashを照合。commit前resume/task graph/scoped index guard必須。
 - Commit: WIP64f9894・5412cee、測定source=5412cee1d3cbde3d818a17fa6bf53d1096fc6c2c、記録source=826fa3d262bd1a45dd7058a2e5bdf9aa0fcb06d2、自己SHAはgit log参照、同branch非force push。
 - Network: GitHub live HEAD/PR/Actions/固定artifactだけ。旧実行中runを現在結果へ照合。一般CIは限定受入と分離。ROM/save非tracked、merge/release/baseline不変。
+
+## 2026-09-26T18:23:37.948602+00:00
+- Timestamp: 2026-09-26T18:23:37.948602+00:00
+- Task: USER-20260927-RESEARCH-ACTIVITIES / 虫取り受入後の補助export終端
+- Version: research-bug-v1-closeout
+- Status: DONE（限定scope）
+- Summary: 受入commit5e428c2fの51検査/guard/非force pushを保全。旧記録run36262152385はpost-push context exportだけfailure。clean HEAD冒頭へ移動し原因と終端を明記。
+- Files changed: finish helper/workflow、虫取りcheckpoint/guide/終端JSON、固定引継ぎMD・JSON、両ログ。
+- Verify: 元51unit/2native/3cores/host1原本と21path guardをhash再利用。unit/native/compile再実行0。旧失敗step7を隠さない。現在HEAD context exportの全hash、commit前resume/task graph/scoped index guard。
+- Commit: accepted=5e428c2f09c14d4cf65b10c9da78d39ca47f8277、closeout source=b0451cf9a855d5ddbda36046be4e3d23ea7ebc09、自己SHAはgit log参照、同branch非force push。
+- Network: GitHub ref/PR/Actions原本のみ。元ROM/seed/旧受入/baseline不変。残4活動/自然到達/受付ショップ接続・全CI・releaseは未受入。

@@ -14,8 +14,8 @@ PASS_BUG_REAL_EARNING_SCOPED
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `826fa3d262bd1a45dd7058a2e5bdf9aa0fcb06d2`。
-虫取りActions実測5412cee1/run36261672837の受入記録source。自己commit SHAはgit log参照。
+証拠のsource HEAD: `b0451cf9a855d5ddbda36046be4e3d23ea7ebc09`。
+虫取り受入commit5e428c2f後の補助export失敗を再実測0で終端同期したsource。測定source5412cee1/run36261672837と分離。自己commit SHAはgit log参照。
 
 ## 最短の再開手順
 
@@ -339,6 +339,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-虫取りrun36261672837は全step成功。旧引継ぎの実行中6runも現在結果を照合。一般CIと本限定受入を分離し、P03既存source pin failure/承認待ちを全CI成功へ昇格しない。記録workflowの最終結果はremote HEADとActionsで確認。
+虫取りnative run36261672837成功、受入51検査/guard/push成功。記録run36262152385は後段context exportだけ失敗として保存し、次run冒頭へ移して修復。既存P03等の一般CI失敗/承認待ちとは別。全CI成功/merge/releaseは主張しない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

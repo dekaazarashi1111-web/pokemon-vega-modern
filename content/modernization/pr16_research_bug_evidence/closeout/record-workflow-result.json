@@ -1,0 +1,168 @@
+{
+  "accepted_commit": "5e428c2f09c14d4cf65b10c9da78d39ca47f8277",
+  "compiles": 0,
+  "failure_ja": "run36262152385のstep7のみ失敗。commit/push後にremote refは5e428c2fを確認済みだが、直後のPR API head一致検査で停止。HEAD反映遅延と整合するが、旧runをsuccessへ書き換えない。",
+  "native_reruns": 0,
+  "original_guard": {
+    "changed_paths": [
+      ".github/workflows/pr16-research-activities-20260927.yml",
+      "content/modernization/pr16_native_supply_resume_20260913.json",
+      "content/modernization/pr16_research_bug_checkpoint.json",
+      "content/modernization/pr16_research_bug_evidence/36261672837/checks.json",
+      "content/modernization/pr16_research_bug_evidence/36261672837/manifest.json",
+      "content/modernization/pr16_research_bug_evidence/36261672837/reconciliation.json",
+      "content/modernization/pr16_research_bug_evidence/36261672837/source-adjudication.json",
+      "content/modernization/pr16_research_bug_evidence/36261672837/terminal.json",
+      "content/modernization/pr16_research_bug_evidence/36261672837/unit.json",
+      "content/modernization/pr16_research_bug_evidence/36261672837/unit.stderr.txt",
+      "content/modernization/pr16_research_bug_evidence/36261672837/unit.stdout.txt",
+      "content/modernization/pr16_research_bug_evidence/36261672837/visual.json",
+      "content/modernization/pr16_research_bug_measurement.json",
+      "design/run_log.md",
+      "design/version_log.md",
+      "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
+      "docs/PR16_RESEARCH_BUG_JA.md",
+      "scripts/pr16_research_bug.py",
+      "scripts/pr16_research_bug_capture.py",
+      "scripts/pr16_research_bug_record.py",
+      "tests/test_pr16_research_bug.py"
+    ],
+    "from_task_head": "60afcc675a8230eec6299910f76bd69c95dc9357",
+    "full_historical_guard_pass_claimed": false,
+    "new_private_violations": 0,
+    "source_head": "826fa3d262bd1a45dd7058a2e5bdf9aa0fcb06d2",
+    "status": "PASS_SCOPED_FINAL_INDEX"
+  },
+  "original_jobs": [
+    {
+      "check_run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/check-runs/108459909987",
+      "completed_at": "2026-09-26T18:20:17Z",
+      "conclusion": "failure",
+      "created_at": "2026-09-26T18:19:51Z",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "826fa3d262bd1a45dd7058a2e5bdf9aa0fcb06d2",
+      "html_url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/36262152385/job/108459909987",
+      "id": 108459909987,
+      "labels": [
+        "ubuntu-24.04"
+      ],
+      "name": "record",
+      "node_id": "CR_kwDOUPNhZs8AAAAZQLbjYw",
+      "run_attempt": 1,
+      "run_id": 36262152385,
+      "run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/36262152385",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions",
+      "runner_id": 1000016467,
+      "runner_name": "GitHub Actions 1000016467",
+      "started_at": "2026-09-26T18:19:53Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completed_at": "2026-09-26T18:19:54Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "started_at": "2026-09-26T18:19:53Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-26T18:20:04Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 2,
+          "started_at": "2026-09-26T18:19:54Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-26T18:20:09Z",
+          "conclusion": "success",
+          "name": "成功原本と12画像を照合・未保存参照を訂正・新51検査・固定引継ぎと両ログ",
+          "number": 3,
+          "started_at": "2026-09-26T18:20:04Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-26T18:20:10Z",
+          "conclusion": "success",
+          "name": "固定引継ぎとtask graphの整合性",
+          "number": 4,
+          "started_at": "2026-09-26T18:20:09Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-26T18:20:11Z",
+          "conclusion": "success",
+          "name": "今回indexと開始HEADからの全変更を限定guard",
+          "number": 5,
+          "started_at": "2026-09-26T18:20:10Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-26T18:20:14Z",
+          "conclusion": "success",
+          "name": "最新HEAD再確認・commit・同branch非force push",
+          "number": 6,
+          "started_at": "2026-09-26T18:20:11Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-26T18:20:14Z",
+          "conclusion": "failure",
+          "name": "次工程向けのcommit済みソースとActionsを保存（native/compile再実行0）",
+          "number": 7,
+          "started_at": "2026-09-26T18:20:14Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-26T18:20:15Z",
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@v4",
+          "number": 8,
+          "started_at": "2026-09-26T18:20:14Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-26T18:20:15Z",
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@v4",
+          "number": 9,
+          "started_at": "2026-09-26T18:20:15Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-26T18:20:15Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 18,
+          "started_at": "2026-09-26T18:20:15Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-26T18:20:15Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 19,
+          "started_at": "2026-09-26T18:20:15Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/jobs/108459909987",
+      "workflow_name": "pr16-research-activities-20260927"
+    }
+  ],
+  "original_run": {
+    "conclusion": "failure",
+    "head_branch": "codex/modernization-followup-20260908",
+    "head_sha": "826fa3d262bd1a45dd7058a2e5bdf9aa0fcb06d2",
+    "id": 36262152385,
+    "path": ".github/workflows/pr16-research-activities-20260927.yml",
+    "run_attempt": 1,
+    "status": "completed"
+  },
+  "resolution_ja": "context輸出を次run冒頭の変更前HEADへ移動。現在ref/PRが同じことを確認し、受入試験/commitの再実行は禁止。",
+  "run_id": 36262353349,
+  "source_head": "b0451cf9a855d5ddbda36046be4e3d23ea7ebc09",
+  "status": "PASS_POST_PUSH_FAILURE_RECONCILED",
+  "unit_reruns": 0
+}

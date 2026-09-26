@@ -24,3 +24,7 @@ Actions run `36261672837` / source `5412cee1d3cbde3d818a17fa6bf53d1096fc6c2c`、
 次は残る4活動（釣り・生態・ゲームコーナー・採掘）の実RP稼得、通常進行からResearch受付/ショップ接続、残るnative文言。保存view修復26dac23cを専用recipeで復元する。写真と虫取りの受入原本は変更影響なしに再実行しない。虫取りは実NPC/0→8RP/取消/条件不足/同日重複拒否/取引保存/独立Continue/4文言まで。開始party・進行・warpはfixtureで、自然到達・全活動・全map・releaseは未受入。
 
 全体CIには既存P03 capacity source pin問題等があり、本限定PASSを全CI成功へ昇格しない。最新結果は固定引継ぎのobserved_head_checks。PR draft/open・未mergeを維持、release/baseline切替なし。
+
+## 受入commit後の補助処理の終端
+
+受入commit `5e428c2f09c14d4cf65b10c9da78d39ca47f8277` は51検査・resume/task graph・今回18path/全作業21path guard・非force pushまで成功。記録run36262152385はその直後の補助context exportだけがPR APIのHEAD不一致で失敗した。旧runはfailureとして保存し、成功へ読み替えない。次run冒頭のclean HEADでcontext exportを実行し、原本・unit receipt・全変更guardを再利用して終端同期。unit/native/compile再実行0。`content/modernization/pr16_research_bug_evidence/closeout/record-workflow-result.json` を参照。
