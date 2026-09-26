@@ -18,7 +18,7 @@ jobs:
     env:
       GITHUB_TOKEN: ${{ github.token }}
       PYTHONDONTWRITEBYTECODE: '1'
-      MODE: measure
+      MODE: finalize
     steps:
       - uses: actions/checkout@v4
         with:
