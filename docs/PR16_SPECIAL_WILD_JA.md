@@ -32,11 +32,17 @@
 
 - repaired-hidden: SPECIAL_SLOT_PRESERVED; species 1540; moves [207, 368, 253, 120] → [207, 368, 253, 120]; PP [15, 20, 10, 5] → [15, 20, 10, 5]; calls 1。
 
-新binding unit 0（継承 19）、新header unit 8 / host 1 / native 7 / ARM0 / 受入再実行0。保存case再利用 []。Actions終端は別途照合。
+新binding unit 0（継承 19）、新header unit 8 / host 1 / native 7 / ARM0 / 受入再実行0。保存case再利用 []。Actions終端・全step・両artifact公開・非force pushの照合済み。
 
 失敗 `None`。証拠 `content/modernization/pr16_special_wild_evidence/36213677615`。
 
 1281 identity-only、旧Wiki、BP/P08、active baselineは不変。Issue19未完、release_ready=false、未merge。
 
+## 完了照合
+
+run 36213677615 / source `804417f6f8fa4fc88f882ac96d6f0a1720811500` / 成果commit `dcce2ff32dd304df18c840d08e0bc9fb65086a9e` は完了success。候補 `0205af9bd2d92b1b3303195ab0cc84e5ea0f3de390ade15d9f8ce42a6dcdd1a0`。headerは265件、重複map0/0の18件はfixtureに採用せず、一意なmap3/38を使用。
+
+19 binding unitはrun36213386688の成功原本を継承（同run全体failureは維持）。header8unitと7native process/8callはrun36213677615で成功。今回の終端確認は新terminal8unitと原本再照合のみで、旧試験/native/host/ARM/ROM再実行0。通常UI・捕獲・保存は未受入。
+
 ## 次
-Issue19: 特殊野生の限定直接診断checkpointを確認し、成功caseを再実行しない。2callsite修復の全対照成功後は、別工程で通常釣竿/スキャナーUI→捕獲→通常Save/fresh Continueへ。map3/19の保存表130行は255/255のまま不変・由来未裁定で対象外。旧研究孵化15・配布17・野生・EXP・Bag・egg・ARM・Wikiは影響なしに再実行しない。
+Issue19: 候補0205af9bの特殊野生2callsite修復は直接診断7process/8callまで完了。保存recipeを親b7790902へ適用して全ROM hashを照合し、次は未受入の通常釣竿（map3/38）・スキャナー（map3/63）UI→特殊個体捕獲→通常Save→fresh Continue。開始map/party/item/flag/RNGのfixtureと観測後のキー入力を明確に分離し、7host書込み禁止でhook通過・個体100byte・4技/PP/PP Upsを確認する。今回19+8unit/直接7process、旧研究孵化15・配布17・野生EXP・Bag・egg・ARM・Wikiを影響なしに再実行しない。map3/19の130行無効化の由来は別の未裁定項目で、表は改作しない。

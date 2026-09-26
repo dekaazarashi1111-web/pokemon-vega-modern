@@ -1,6 +1,6 @@
 {
   "accepted_case_reruns": 0,
-  "actions_completion_confirmed": false,
+  "actions_completion_confirmed": true,
   "active_baseline_changed": false,
   "arm_compiles": 0,
   "candidate": {
@@ -10,6 +10,13 @@
   "compiled_source": {
     "sha256": "ee88aab6d4aff46b2dff95c67a893d081da81cfc184cd3f1af11a8d343e4f923",
     "size": 11223
+  },
+  "completed_actions": {
+    "conclusion": "success",
+    "head_sha": "804417f6f8fa4fc88f882ac96d6f0a1720811500",
+    "id": 36213677615,
+    "path": ".github/workflows/pr16-special-wild-bound-20260926.yml",
+    "status": "completed"
   },
   "evidence_path": "content/modernization/pr16_special_wild_evidence/36213677615",
   "failure": null,
@@ -2247,5 +2254,6 @@
     },
     "unchanged_rows": 716
   },
-  "task": "USER-20260926-SPECIAL-WILD"
+  "task": "USER-20260926-SPECIAL-WILD",
+  "terminal_receipt": "content/modernization/pr16_special_wild_bound_completed_actions.json"
 }

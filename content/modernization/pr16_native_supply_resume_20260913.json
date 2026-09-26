@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "PASS_SPECIAL_WILD_BOUND_DIRECT_SCOPED。特殊野生の実表bindingと未成功caseの進捗を保存。",
+    "current_stop": "特殊野生2callsite計8byte修復・7直接native process/8callの終端照合完了。通常釣竿/スキャナーUI・捕獲・Save/Continueは未受入。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "Issue19: 特殊野生の限定直接診断checkpointを確認し、成功caseを再実行しない。2callsite修復の全対照成功後は、別工程で通常釣竿/スキャナーUI→捕獲→通常Save/fresh Continueへ。map3/19の保存表130行は255/255のまま不変・由来未裁定で対象外。旧研究孵化15・配布17・野生・EXP・Bag・egg・ARM・Wikiは影響なしに再実行しない。",
+    "next_step": "Issue19: 候補0205af9bの特殊野生2callsite修復は直接診断7process/8callまで完了。保存recipeを親b7790902へ適用して全ROM hashを照合し、次は未受入の通常釣竿（map3/38）・スキャナー（map3/63）UI→特殊個体捕獲→通常Save→fresh Continue。開始map/party/item/flag/RNGのfixtureと観測後のキー入力を明確に分離し、7host書込み禁止でhook通過・個体100byte・4技/PP/PP Upsを確認する。今回19+8unit/直接7process、旧研究孵化15・配布17・野生EXP・Bag・egg・ARM・Wikiを影響なしに再実行しない。map3/19の130行無効化の由来は別の未裁定項目で、表は改作しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -1029,7 +1029,8 @@
     "V4野生修復run36042409576成功部分は再実行しない。原本候補/未成功traceと新adapterの実測を区別。",
     "EXP境界の保存成功caseは再実行しない。checkpoint acceptedと原本hashを照合し、失敗/未実施だけ選択する。",
     "旧EXP4境界と最初の質問での拒否は各checkpointの保存成功を再実行しない。未受入の戦闘EXP進化/共有以降だけ追加する。",
-    "戦闘EXP進化/共有の保存成功を再実行しない。未受入caseのみ選び、全成功後のcompleteは記録だけ。"
+    "戦闘EXP進化/共有の保存成功を再実行しない。未受入caseのみ選び、全成功後のcompleteは記録だけ。",
+    "run36213386688の19unit、run36213677615のheader8unit・特殊野生7process/8callは保存原本を継承。2callsite修復候補0205af9bを同じ親b7790902からrecipeで再現し、直接診断を繰り返さず通常UI/capture/Saveの未完だけへ。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -3099,7 +3100,7 @@
     "status": "STOPPED_SPECIAL_WILD_DIAGNOSTIC"
   },
   "learnset_special_wild_bound": {
-    "actions_completion_confirmed": false,
+    "actions_completion_confirmed": true,
     "candidate": {
       "sha256": "0205af9bd2d92b1b3303195ab0cc84e5ea0f3de390ade15d9f8ce42a6dcdd1a0",
       "size": 33554432
@@ -3110,7 +3111,8 @@
     "path": "content/modernization/pr16_special_wild_bound_checkpoint.json",
     "run_id": 36213677615,
     "source_head": "804417f6f8fa4fc88f882ac96d6f0a1720811500",
-    "status": "PASS_SPECIAL_WILD_BOUND_DIRECT_SCOPED"
+    "status": "PASS_SPECIAL_WILD_BOUND_DIRECT_SCOPED",
+    "terminal_receipt": "content/modernization/pr16_special_wild_bound_completed_actions.json"
   },
   "learnset_special_wild_next_probe": {
     "candidate": {
@@ -4160,37 +4162,90 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "Issue19: 特殊野生の限定直接診断checkpointを確認し、成功caseを再実行しない。2callsite修復の全対照成功後は、別工程で通常釣竿/スキャナーUI→捕獲→通常Save/fresh Continueへ。map3/19の保存表130行は255/255のまま不変・由来未裁定で対象外。旧研究孵化15・配布17・野生・EXP・Bag・egg・ARM・Wikiは影響なしに再実行しない。",
+    "goal_ja": "Issue19: 候補0205af9bの特殊野生2callsite修復は直接診断7process/8callまで完了。保存recipeを親b7790902へ適用して全ROM hashを照合し、次は未受入の通常釣竿（map3/38）・スキャナー（map3/63）UI→特殊個体捕獲→通常Save→fresh Continue。開始map/party/item/flag/RNGのfixtureと観測後のキー入力を明確に分離し、7host書込み禁止でhook通過・個体100byte・4技/PP/PP Upsを確認する。今回19+8unit/直接7process、旧研究孵化15・配布17・野生EXP・Bag・egg・ARM・Wikiを影響なしに再実行しない。map3/19の130行無効化の由来は別の未裁定項目で、表は改作しない。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
-    "id": "SPECIAL_WILD_BOUND_GAMEPLAY",
+    "id": "SPECIAL_WILD_NORMAL_CAPTURE_SAVE",
     "read_paths": [
       "docs/PR16_SPECIAL_WILD_JA.md",
       "content/modernization/pr16_special_wild_bound_checkpoint.json",
+      "content/modernization/pr16_special_wild_bound_completed_actions.json",
       "scripts/pr16_special_wild_bound.py",
-      "tests/test_pr16_special_wild_bound.py",
-      "content/modernization/pr16_special_wild_research_table_audit.json"
+      "scripts/pr16_special_wild_header_binding.py",
+      "scripts/pr16_learnset_natural.py",
+      "tools/mgba_pr16_learnset_natural.c"
     ],
     "stop_rule_ja": "特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。"
   },
   "observed_date_jst": "2026-09-25",
   "observed_head": "804417f6f8fa4fc88f882ac96d6f0a1720811500",
   "observed_head_checks": {
-    "predecessor_runs": [
-      {
-        "conclusion": "failure",
-        "id": 36155273674
-      },
-      {
-        "conclusion": "success",
-        "id": 36155747573
-      }
-    ],
-    "reason_ja": "現runのpush/upload終端は記録時点では未確認。旧失敗は維持。",
-    "runs": [
+    "previous_failed_run": {
+      "conclusion": "failure",
+      "head_sha": "af7a856d8ac04c2e3400cab550c02f0569185ae3",
+      "id": 36213386688,
+      "path": ".github/workflows/pr16-special-wild-bound-20260926.yml",
+      "status": "completed"
+    },
+    "reason_ja": "特殊野生の限定run36213677615は全step/push/upload完了success。run36213386688のheader停止failureは維持。後続記録HEADの全CI成功は主張しない。",
+    "record_head": "36b88bb2be1ed0889cb531ab035751a3df0992b7",
+    "record_head_runs": [
       {
         "conclusion": null,
-        "id": 36213677615,
+        "head_sha": "36b88bb2be1ed0889cb531ab035751a3df0992b7",
+        "id": 36214277327,
+        "name": "source-validation",
         "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "head_sha": "36b88bb2be1ed0889cb531ab035751a3df0992b7",
+        "id": 36214277251,
+        "name": "p03-forgetting-ci",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "head_sha": "36b88bb2be1ed0889cb531ab035751a3df0992b7",
+        "id": 36214273219,
+        "name": "pr16-special-wild-bound-terminal-20260926",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "head_sha": "36b88bb2be1ed0889cb531ab035751a3df0992b7",
+        "id": 36214273200,
+        "name": "source-validation",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "head_sha": "36b88bb2be1ed0889cb531ab035751a3df0992b7",
+        "id": 36214273204,
+        "name": "Stage79 runtime boundary audit",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "head_sha": "36b88bb2be1ed0889cb531ab035751a3df0992b7",
+        "id": 36214273228,
+        "name": "Stage79 mGBA (all)",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "head_sha": "36b88bb2be1ed0889cb531ab035751a3df0992b7",
+        "id": 36214273202,
+        "name": "p03-forgetting-ci",
+        "status": "in_progress"
+      }
+    ],
+    "runs": [
+      {
+        "conclusion": "success",
+        "head_sha": "804417f6f8fa4fc88f882ac96d6f0a1720811500",
+        "id": 36213677615,
+        "path": ".github/workflows/pr16-special-wild-bound-20260926.yml",
+        "status": "completed"
       }
     ],
     "scope_head": "804417f6f8fa4fc88f882ac96d6f0a1720811500"
@@ -5547,7 +5602,7 @@
       "semantics": "PLA1圧縮と新規供給consumerのhost検証成功入力HEAD。ROM配置/実操作/記録commitの受入ではない。"
     }
   ],
-  "observed_head_semantics": "固定研究表binding付き特殊野生の限定直接診断。通常取得・保存受入とは別。",
+  "observed_head_semantics": "特殊野生2callsite修復の実測source。成果commit dcce2ff3を終端照合済み。通常取得/保存とは別の直接診断。",
   "p08_candidate_impact": {
     "candidate": {
       "crc32": "CC068B4A",
@@ -7427,6 +7482,10 @@
       "sha256": "29bf366e1a1ec94bc400d1fed9b1ec15ac3975534f32ab3b552b472fd3afe743",
       "size": 4953
     },
+    ".github/workflows/pr16-special-wild-bound-terminal-20260926.yml": {
+      "sha256": "67b7f72005350ce5a0da0006e4da44fcb66cabe2286df3fdda39d2a5ada0b536",
+      "size": 4296
+    },
     ".github/workflows/pr16-special-wild-repair-20260925.yml": {
       "sha256": "1f7d60297f914bcadeddf60b62612d9ae49037ab91ffa9192a859be17d2b4088",
       "size": 4638
@@ -8636,8 +8695,12 @@
       "size": 9422
     },
     "content/modernization/pr16_special_wild_bound_checkpoint.json": {
-      "sha256": "e486a3d46a13ab278211adec18d2b309f390b5e52d00f85ca3f6529f422d3dd5",
-      "size": 57315
+      "sha256": "a723a9195d461bed309a3d0d9f389d780cff064d74487f3b0be518e281a6236e",
+      "size": 57646
+    },
+    "content/modernization/pr16_special_wild_bound_completed_actions.json": {
+      "sha256": "82fdc85813398e5a7b5224319f3350b485053a118fd7528bc2200d5a302561d1",
+      "size": 4604
     },
     "content/modernization/pr16_special_wild_checkpoint.json": {
       "sha256": "62611e5c971766ad52bffa85954e65ce95cfd2ef0ae54224081a550d8f7eb203",
@@ -8844,8 +8907,8 @@
       "size": 4323
     },
     "docs/PR16_SPECIAL_WILD_JA.md": {
-      "sha256": "a39bc369dc0951c20fd538379c3a3543c7cf0b26cf13c3971158e0f8c79aa78d",
-      "size": 3362
+      "sha256": "0f5cf639c0a587063a143e845cf5e3d3f925c0d7fe1d485c7ee65faea4303fb3",
+      "size": 4328
     },
     "docs/PR16_VEGA_ORIGINAL_AUDIT_JA.md": {
       "sha256": "b9ee1dd32da36d9fe3d04aa1663afa0f2e6cc37aef491437dd2443a5870fb2d4",
@@ -13795,6 +13858,10 @@
       "sha256": "1ddf6938436bbeb21adcd53bfcb032748e9a1367ca9bacb6d1de4bff5d4cd889",
       "size": 21292
     },
+    "scripts/pr16_special_wild_bound_terminal.py": {
+      "sha256": "3b3760bab0b92f8e71998ff56d85f8d8efa2cf2499f1e213eca06d34553159a9",
+      "size": 16499
+    },
     "scripts/pr16_special_wild_header_binding.py": {
       "sha256": "21d7a965662abca9d035cddce6fe2f132f4756d793d5b31eb57270b6d4bb8b65",
       "size": 3345
@@ -15090,6 +15157,10 @@
     "tests/test_pr16_special_wild_bound.py": {
       "sha256": "4fa7dabbf8f0370402639d5d9f2b8979646ef69b426bd398acd47bab35a31dfa",
       "size": 7987
+    },
+    "tests/test_pr16_special_wild_bound_terminal.py": {
+      "sha256": "dae1d55cf6bc04f564bcf4ef615f951c2831ca436bdb70c02dca5df701824566",
+      "size": 3672
     },
     "tests/test_pr16_special_wild_header_binding.py": {
       "sha256": "648b82787d4e4c7bc0df1b0bd97a4e8341cff9bb2eb2b3965aa8af477dac2637",

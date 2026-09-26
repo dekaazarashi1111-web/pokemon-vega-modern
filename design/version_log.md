@@ -7415,3 +7415,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 新binding unit 0（継承 19）/新header unit 8, host 1, native 7, ARM0、受入再実行0。通常UI/capture/Saveは未受入。Actions終端未確認。
 - Commit: source 804417f6f8fa4fc88f882ac96d6f0a1720811500, run 36213677615; 同branch非force push後remote照合をartifactへ保存。
 - Network: GitHub固定artifact/Actionsのみ。merge/release/active baseline変更なし。
+
+## 2026-09-26T03:16:21.290657+00:00
+- Timestamp: 2026-09-26T03:16:21.290657+00:00
+- Task: USER-20260926-SPECIAL-WILD / 特殊野生2callsite修復の完了原本照合
+- Version: issue19-special-wild-bound-terminal-v1
+- Status: DONE（2callsite限定直接診断。通常取得/保存は次工程）
+- Summary: 候補0205af9b、8byte限定修復、特殊技225/120と個体100byte保持、正常2対照不変。run36213677615全step/push/upload完了success、header停止run36213386688 failure維持。
+- Files changed: 新terminal記録器/8拒否試験/限定workflow、完了JSON、checkpoint、専用guide、固定引継ぎMD/JSON、両ログ。
+- Verify: 新terminal8unit、保存19+8unit/7native process/8callの原本照合。旧試験/native/host/ARM/ROM再実行0。resume/task graph/final index guard後に非force push。通常UI/capture/Save未受入、全HEAD CI green主張なし。
+- Commit: native成果 dcce2ff32dd304df18c840d08e0bc9fb65086a9e; 本終端記録はsource 36b88bb2be1ed0889cb531ab035751a3df0992b7から同branch非force commit。
+- Network: 既存GitHub run/artifact原本の再読のみ。merge/release/active baseline変更なし。
