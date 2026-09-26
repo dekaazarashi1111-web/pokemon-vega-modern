@@ -18,7 +18,7 @@ jobs:
     env:
       GH_TOKEN: ${{ github.token }}
       GITHUB_TOKEN: ${{ github.token }}
-      PHOTO_MODE: measure
+      PHOTO_MODE: finalize
     steps:
       - uses: actions/checkout@v4
         with:
@@ -34,6 +34,43 @@ jobs:
           print('PASS_EXACT_PHOTO_SOURCE',len(expected))
       - name: 写真の限定実測と原本記録
         run: python3 -B scripts/pr16_research_photo_actions.py "$PHOTO_MODE"
+      - name: cold背景の目視所見を別の未受入境界へ記録（実測再実行0）
+        shell: python
+        run: |
+          import datetime,os,pathlib,sys
+          sys.path[:0]=['scripts','.']
+          import pr16_research_photo_actions as a
+          from pr16_learnset_compact_record import publish_resume
+          d=a.d;cp=d.read(a.CP)
+          assert os.environ['PHOTO_MODE']=='finalize' and cp['actions_completion_confirmed'] and cp['photo_accepted']
+          proof=d.read(cp['measurement'])
+          image='photo-duplicate_after_continue-outcome.ppm'
+          digest='9e5f6272bbfc690a35b2eb2cfe242d2c23953dba1d22f7f82b2798ec3031971f'
+          assert cp['run_id']==36253608437 and proof['native']['screens'][image]==digest
+          finding={'id':'PHOTO_COLD_FIELD_VISUAL','status':'OPEN_UNACCEPTED','measurement':cp['measurement'],
+            'image':image,'sha256':digest,'native_reruns':0,
+            'observation_ja':'独立Continue後は台詞を読めるが、背景が青い反復タイルとなり建物/地形が表示されない。RP/claim/Bag/party/保存counterの受入とは別。',
+            'cause':'UNDETERMINED','next_ja':'保存済みmap layout/tilesetと停止warp fixtureの整合を調べ、field表示だけを切り分ける。自然到達や製品全体の破損を断定しない。写真稼得/取消/同日拒否の成功原本は再実行しない。'}
+          cp['cold_field_visual_accepted']=False;cp['known_unaccepted_findings']=[finding]
+          d.write(a.CP,cp)
+          note='\n## 追加の未受入境界: cold Continueのフィールド背景\n\n'+finding['observation_ja']+' 目視原本は `'+image+'`、SHA-256 `'+digest+'`。原因は未特定。'+finding['next_ja']+'\n'
+          with pathlib.Path(a.GUIDE).open('a') as stream:stream.write(note)
+          state=d.read(d.STATE)
+          goal='最優先は写真Continue後の青い反復背景（PHOTO_COLD_FIELD_VISUAL）の切分け。稼得/claim/取引保存の受入とは別で、field表示は未受入。'+finding['next_ja']+' その後に他5活動の実RP稼得、通常進行からResearch受付/ショップ接続、残るnative文言を進める。'
+          state['research_photo']['cold_field_visual_accepted']=False
+          state['research_photo']['known_unaccepted_findings']=[finding]
+          state['bp']['current_stop']='PASS_PHOTO_RP_WITH_COLD_VISUAL_OPEN';state['bp']['next_step']=goal
+          state['next_action']=dict(state['next_action'],id='PHOTO_COLD_FIELD_VISUAL_DIAGNOSTIC_NEXT',goal_ja=goal)
+          for path in (a.CP,a.GUIDE):state['source_bindings'][path]=a.identity(pathlib.Path(path).read_bytes())
+          note_repeat='写真のcold ContinueはRP/claim/保存counterのみ受入。青い反復背景は未受入。稼得成功ケースを無変更で再実行せず、map layout/tileset/fixture境界だけを診断する。'
+          if note_repeat not in state['do_not_repeat']:state['do_not_repeat'].insert(0,note_repeat)
+          publish_resume(state)
+          stamp=datetime.datetime.now(datetime.timezone.utc).isoformat()
+          log=f'\n## {stamp}\n- Timestamp: {stamp}\n- Task: USER-20260927-RESEARCH-PHOTO / cold field目視境界\n- Version: research-photo-v1-visual-scope\n- Status: BLOCKED（field表示だけ。写真RP受入とは分離）\n- Summary: Continue後の青い反復背景を原本から確認。原因未特定、natural arrival/releaseは未受入。\n- Files changed: 写真MD/JSON、固定引継ぎMD/JSON、両ログ。\n- Verify: run36253608437の7画像SHA一致、目視画像'+digest+'。unit/native/compile/ARM再実行0。resume/task graph/index guardは後続stepで検査。\n- Commit: source='+os.environ['GITHUB_SHA']+'、同branch非force push。自己SHAはgit log参照。\n- Network: 追加取得なし。ROM/save変更0、active baseline不変。\n'
+          for path in sorted(d.LOGS):
+              with pathlib.Path(path).open('a') as stream:stream.write(log)
+          d.put('cold-field-visual-finding.json',finding)
+          print('RECORDED_OPEN_COLD_FIELD_VISUAL; accepted RP observations unchanged; reruns=0')
       - name: 引継ぎ・task graph・限定indexと旧原本保全
         run: |
           python3 -B scripts/pr16_resume.py check
@@ -47,7 +84,7 @@ jobs:
           test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m "USER-20260927-RESEARCH-PHOTO: 写真限定結果と引継ぎを記録 ($PHOTO_MODE)"
+          git commit -m "USER-20260927-RESEARCH-PHOTO: 写真限定結果とcold背景の未完境界を記録 ($PHOTO_MODE)"
           git push origin "HEAD:refs/heads/$branch"
       - uses: actions/upload-artifact@v4
         if: always()
@@ -63,4 +100,4 @@ jobs:
         run: |
           set -euo pipefail
           python3 -B scripts/pr16_research_photo_actions.py result
-          echo "RESULT=DONE TASK=USER-20260927-RESEARCH-PHOTO VERIFY=PASS COMMIT=$(git rev-parse HEAD)"
+          echo "RESULT=DONE TASK=USER-20260927-RESEARCH-PHOTO VERIFY=PASS COMMIT=$(git rev-parse HEAD) SCOPE=RP_ONLY OPEN=PHOTO_COLD_FIELD_VISUAL"
