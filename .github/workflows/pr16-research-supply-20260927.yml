@@ -18,7 +18,7 @@ jobs:
     env:
       GH_TOKEN: ${{ github.token }}
       GITHUB_TOKEN: ${{ github.token }}
-      CATALOG_MODE: measure
+      CATALOG_MODE: finalize
     steps:
       - uses: actions/checkout@v4
         with:
