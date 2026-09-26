@@ -113,7 +113,7 @@ def measure():
         need(p.is_file() and p.suffix in ('.json','.txt'),'bounded public text only')
         raw=p.read_bytes();raw.decode('utf-8');need(b'\0' not in raw,'no binary payload')
         target=ROOT/directory/p.name;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(raw);evidence[str(target.relative_to(ROOT))]=identity(raw)
-    d.write(ROOT/directory+'/manifest.json',evidence)
+    d.write(ROOT/directory/'manifest.json',evidence)
     cp={'schema_version':1,'task':TASK,'status':'PASS_PHASE0_LOAD_PENDING_TERMINAL','source_head':os.environ['GITHUB_SHA'],'run_id':int(os.environ['GITHUB_RUN_ID']),'candidate':m.CANDIDATE,'accepted_cases':list(results),'failed_cases':[],'accepted_native_cases':2,'fresh_cores':8,'measurement':directory+'/measurement.json','manifest':directory+'/manifest.json','source_bindings':bound,'protected_bindings':protected,'prior_terminal':prior_terminal,'new_unit_tests':43,'native_processes':2,'guard_processes':7,'host_compiles':2,'arm_compiles':0,'arm_links':0,'accepted_case_reruns':0,'rom_changes':0,'availability_fixture_words_per_process':1,'availability_fixture_byte_writes_per_process':4,'guarded_host_writes':0,'ram_ledger_fixture_writes':0,'register_fixture_writes':0,'phase0_load_failure_accepted':True,'cold_recovery_accepted':True,'same_core_menu_retry_accepted':False,'actions_completion_confirmed':False,'physical_flash_fault_accepted':False,'normal_new_game_accepted':False,'transaction_ui_accepted':False,'active_baseline_changed':False,'issue19_complete':False,'release_ready':False}
     publish(cp,set(evidence)|{directory+'/manifest.json'})
 
