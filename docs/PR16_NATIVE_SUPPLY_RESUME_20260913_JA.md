@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-Issue19: native起動前の研究表byte照合差分を保存。監査JSONから未成功経路だけ再開。
+STOPPED_SPECIAL_WILD_BOUND。特殊野生の実表bindingと未成功caseの進捗を保存。
 
-**次: Issue19: 特殊野生修復checkpointの失敗原本を先に読み、未成功caseのみ修正する。保存成功の親診断や対照を再実行しない。Issue19: 特殊野生の2 callsite限定修復と直接native対照を保存。次は変更後候補で通常釣竿/スキャナーUI→捕獲→通常Save/fresh Continue。直接call fixtureを通常取得へ読み替えない。元親/同じ特殊技診断/受入済み研究孵化15・配布17・旧野生・EXP・Bag・egg・旧ARM・Wikiは変更影響がない限り再実行しない。**
+**次: Issue19: {'message': 'unique wild map header', 'type': 'ValueError'} を保存。次は未成功caseのみ修正。Issue19: 特殊野生の限定直接診断checkpointを確認し、成功caseを再実行しない。2callsite修復の全対照成功後は、別工程で通常釣竿/スキャナーUI→捕獲→通常Save/fresh Continueへ。map3/19の保存表130行は255/255のまま不変・由来未裁定で対象外。旧研究孵化15・配布17・野生・EXP・Bag・egg・ARM・Wikiは影響なしに再実行しない。**
 
 特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `28a138552429c5ff7473aafd316a929b601051dd`。
-特殊野生2callsite後継の限定直接診断。通常取得/保存継続の受入ではない。
+証拠のsource HEAD: `af7a856d8ac04c2e3400cab550c02f0569185ae3`。
+固定研究表binding付き特殊野生の限定直接診断。通常取得・保存受入とは別。
 
 ## 最短の再開手順
 
@@ -25,10 +25,11 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `content/modernization/pr16_special_wild_research_table_audit.json`
 - `docs/PR16_SPECIAL_WILD_JA.md`
-- `content/modernization/pr16_special_wild_repair_checkpoint.json`
-- `scripts/pr16_special_wild_repair.py`
+- `content/modernization/pr16_special_wild_bound_checkpoint.json`
+- `scripts/pr16_special_wild_bound.py`
+- `tests/test_pr16_special_wild_bound.py`
+- `content/modernization/pr16_special_wild_research_table_audit.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -328,6 +329,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-記録時点で現runのpush/upload終端は未確認。旧失敗原本は維持。
+現runのpush/upload終端は記録時点では未確認。旧失敗は維持。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
