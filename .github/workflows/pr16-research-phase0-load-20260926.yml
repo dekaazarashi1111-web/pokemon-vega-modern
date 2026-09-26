@@ -23,15 +23,16 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: 転送した4sourceのexact blobを照合
+      - name: 転送した5sourceのexact blobを照合
         shell: python
         run: |
           import subprocess
           bindings = {
             'scripts/pr16_research_phase0_load.py': '92091a8bf2742c96fa2a45e81ee4130ff641d6b3',
-            'tools/mgba_pr16_research_phase0_load.c': '8692466d2f6bd11715a87f91ce8f6e87eca8302a',
+            'tools/mgba_pr16_research_phase0_load.c': 'b6479628d3ac17b06347117981aea61c0f91eadf',
             'tests/test_pr16_research_phase0_load.py': 'eee47ef7f29184d925b811035434654f2cef58b0',
-            'scripts/pr16_research_phase0_load_actions.py': '1834192ffa6d34ad8f00cba9b4e89575646fb39a',
+            'scripts/pr16_research_phase0_load_actions.py': '44c7a30a74fe0fa57633eee0da2702455f35995d',
+            'scripts/pr16_research_phase0_load_preflight.py': 'cecbeb51e3214ba973e4d4938f77b02a15ad163d',
           }
           for path, sha in bindings.items():
               assert subprocess.check_output(['git','hash-object',path]).decode().strip() == sha, path
