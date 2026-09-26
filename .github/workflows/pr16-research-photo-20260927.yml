@@ -1,0 +1,66 @@
+name: pr16-research-photo-20260927
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-research-photo-20260927.yml]
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-research-photo-20260927
+  cancel-in-progress: false
+jobs:
+  photo:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GITHUB_TOKEN: ${{ github.token }}
+      PHOTO_MODE: measure
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: 写真実装のローカル検証sourceと完全一致
+        shell: python
+        run: |
+          import pathlib,subprocess
+          expected={'scripts/pr16_research_photo.py':'ef8df6e8e009b73904d414414224d55e6cf332b5','tools/mgba_pr16_research_photo.c':'5e3351077171497c2a275071995f43c494334829','tests/test_pr16_research_photo.py':'b00533a475c06c51415fb2f7431c9df2c9f3fb3e','scripts/pr16_research_photo_actions.py':'c989e4b2fdcc2eabef3c3fb7a19873baad4b7c79'}
+          for path,sha in expected.items():
+              assert pathlib.Path(path).is_file()
+              assert subprocess.check_output(['git','hash-object',path]).decode().strip()==sha,path
+          print('PASS_EXACT_PHOTO_SOURCE',len(expected))
+      - name: 写真の限定実測と原本記録
+        run: python3 -B scripts/pr16_research_photo_actions.py "$PHOTO_MODE"
+      - name: 引継ぎ・task graph・限定indexと旧原本保全
+        run: |
+          python3 -B scripts/pr16_resume.py check
+          python3 -B scripts/validate_task_graph.py
+          python3 -B scripts/pr16_research_photo_actions.py guard
+      - name: 同branchへcommitと非force push
+        shell: bash
+        run: |
+          set -euo pipefail
+          branch='codex/modernization-followup-20260908'
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m "USER-20260927-RESEARCH-PHOTO: 写真限定結果と引継ぎを記録 ($PHOTO_MODE)"
+          git push origin "HEAD:refs/heads/$branch"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-research-photo
+          path: |
+            .local/pr16-research-lifecycle/public/
+            .local/pr16-research-lifecycle/photo-screens/
+          retention-days: 14
+          if-no-files-found: error
+      - name: 原本保存後に受入結論を確定
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B scripts/pr16_research_photo_actions.py result
+          echo "RESULT=DONE TASK=USER-20260927-RESEARCH-PHOTO VERIFY=PASS COMMIT=$(git rev-parse HEAD)"
