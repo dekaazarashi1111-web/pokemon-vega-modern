@@ -1,0 +1,87 @@
+name: pr16-research-purchase-20260926
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-research-purchase-20260926.yml]
+permissions:
+  contents: read
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-research-purchase-20260926
+  cancel-in-progress: false
+jobs:
+  purchase:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: 固定HEADと最新Actionsを照合し未完工程のtracked textだけ取得
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: python
+        run: |
+          import hashlib, json, os, pathlib, subprocess, tarfile, urllib.request
+          root = pathlib.Path.cwd()
+          out = root / '.local/pr16-research-purchase-context'
+          out.mkdir(parents=True)
+          def api(path):
+              req = urllib.request.Request('https://api.github.com/repos/'+os.environ['GITHUB_REPOSITORY']+'/'+path,
+                  headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json'})
+              with urllib.request.urlopen(req, timeout=60) as r: return json.load(r)
+          def pick(obj, keys): return {k:obj.get(k) for k in keys}
+          pr = api('pulls/16')
+          assert pr['state']=='open' and pr['draft'] and not pr['merged']
+          assert pr['head']['sha']==os.environ['GITHUB_SHA']
+          assert pr['head']['ref']=='codex/modernization-followup-20260908'
+          assert pr['head']['repo']['full_name']==os.environ['GITHUB_REPOSITORY']
+          cp = json.loads((root/'content/modernization/pr16_research_shop_cancel_checkpoint.json').read_text())
+          assert cp['actions_completion_confirmed'] and not cp['purchase_accepted'] and not cp['normal_new_game_accepted']
+          prior = api('actions/runs/'+str(cp['finalize_run_id']))
+          assert prior['status']=='completed' and prior['conclusion']=='success'
+          assert prior['head_sha']==cp['finalize_source_head']
+          jobs = api('actions/runs/'+str(cp['finalize_run_id'])+'/jobs')['jobs']
+          assert jobs and all(j['conclusion']=='success' for j in jobs)
+          runs = api('actions/runs?branch=codex%2Fmodernization-followup-20260908&per_page=50')['workflow_runs']
+          summaries = [pick(r,['id','path','head_sha','status','conclusion','event','created_at']) for r in runs]
+          audit = {'source_head':os.environ['GITHUB_SHA'],'parent_head':'bddb239934a0ff3854009a2f5c64d3b680ec9cdc',
+                   'pr':{'number':16,'state':pr['state'],'draft':pr['draft'],'merged':pr['merged']},
+                   'cancel_terminal':pick(prior,['id','path','head_sha','status','conclusion']),
+                   'latest_runs':summaries,'accepted_test_reruns':0,'native_processes':0,'rom_changes':0}
+          (out/'preflight.json').write_text(json.dumps(audit,ensure_ascii=False,indent=2)+'\n')
+          tracked = subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
+          explicit = {'AGENTS.md','CHATGPT_RESUME.md','config/active_play_baseline.json',
+              'content/modernization/pr16_native_supply_resume_20260913.json',
+              'content/modernization/pr16_bp_chooser_checkpoint.json','content/modernization/p08_remaining_work.json',
+              'content/modernization/pr16_learnset_baseline_checkpoint.json',
+              'docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md','docs/PR16_RESEARCH_SHOP_CANCEL_JA.md',
+              'design/run_log.md','design/version_log.md'}
+          paths = []
+          for p in tracked:
+              if not p: continue
+              f = root/p
+              chosen = p in explicit or p.endswith('/AGENTS.md')
+              chosen |= p.startswith(('scripts/','tests/')) and f.suffix=='.py'
+              chosen |= p.startswith('tools/') and f.suffix in ('.c','.h','.py')
+              chosen |= p.startswith(('overlays/research_economy_v1/','overlays/qol_production/')) and f.suffix in ('.c','.h')
+              chosen |= p.startswith('content/modernization/pr16_research_') and '/' not in p[len('content/modernization/'):]
+              chosen |= p.startswith('.github/workflows/pr16-research-') and f.suffix=='.yml'
+              if chosen:
+                  assert f.is_file() and not f.is_symlink(), p
+                  raw = f.read_bytes(); raw.decode('utf-8'); assert b'\0' not in raw, p
+                  paths.append(p)
+          manifest = {p:{'size':(root/p).stat().st_size,'sha256':hashlib.sha256((root/p).read_bytes()).hexdigest()} for p in paths}
+          (out/'source-manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
+          with tarfile.open(out/'tracked-context.tar.gz','w:gz') as tar:
+              for p in paths: tar.add(root/p,arcname=p,recursive=False)
+          print('PASS_FIXED_SOURCE_CONTEXT files='+str(len(paths))+'; accepted/native/ARM reruns=0')
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-research-purchase-context
+          path: .local/pr16-research-purchase-context/
+          retention-days: 7
+          if-no-files-found: error
