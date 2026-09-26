@@ -20,7 +20,7 @@ def sample(case):
     valid=case==p.CASES[0];ledger=p.migrated(save[p.OFFSET:p.OFFSET+2048]) if valid else save[p.OFFSET:p.OFFSET+2048]
     state={'load_state':'adapter_return','counter':3 if valid else 2,'version':2 if valid else 1,
            'checksum_valid':p.checksum(ledger)==int.from_bytes(ledger[8:12],'little'),'migration_dirty':0,'recovery_blocked':0,
-           'last_result':0 if valid else 7,'ledger_sha256':hashlib.sha256(ledger).hexdigest(),'ledger_hex':ledger.hex()}
+           'last_result':0 if valid else 7,'ledger_sha256':hashlib.sha256(ledger).hexdigest()}
     trace=dict(p.expected_trace(case),steps=1000,save_type=0);rows=[state,trace]
     if valid:
         prefix=bytearray(ledger);prefix[4:6]=bytes(2);prefix[8:12]=bytes(4);prefix[0x73f:0x77f]=bytes(64)
@@ -69,7 +69,7 @@ class LoadTests(unittest.TestCase):
     def test_host_write(self):self.bad(lambda r:r[1].update(host_writes=1))
     def test_normalized_invalid(self):self.bad(lambda r:r[0].update(version=2),p.CASES[1])
     def test_invalid_result_hidden(self):self.bad(lambda r:r[1].update(root_result=1),p.CASES[2])
-    def test_ledger_byte_change(self):self.bad(lambda r:r[0].update(ledger_hex='0'*4096))
+    def test_ledger_byte_change(self):self.bad(lambda r:r[0].update(ledger_sha256='0'*64))
     def test_party_change(self):self.bad(lambda r:r[2].update(party_sha256='3'*64))
     def test_bag_change(self):self.bad(lambda r:r[4].update(inventory_sha256='3'*64))
     def test_second_continue_change(self):self.bad(lambda r:r[7].update(ledger_sha256='4'*64))

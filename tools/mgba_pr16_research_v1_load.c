@@ -42,8 +42,7 @@ static struct mCore*vl_open(const char*rom,const char*save){
 }
 static void vl_state(struct mCore*c,const char*stage){
  uint8_t ledger[2048];char sha[65];lc_read(c,ledger);si_digest(ledger,2048,sha);
- printf("{\"load_state\":\"%s\",\"counter\":%u,\"version\":%u,\"checksum_valid\":%s,\"migration_dirty\":%u,\"recovery_blocked\":%u,\"last_result\":%u,\"ledger_sha256\":\"%s\",\"ledger_hex\":\"",stage,read32(c,SI_COUNTER),si_read16(c,LC_LEDGER+4),lc_u32(ledger,8)==lc_checksum(ledger)?"true":"false",read8(c,SI_VOL+26),read8(c,SI_VOL+27),si_read16(c,SI_VOL+16),sha);
- for(unsigned i=0;i<2048;++i)printf("%02x",ledger[i]);puts("\"}");fflush(stdout);
+ printf("{\"load_state\":\"%s\",\"counter\":%u,\"version\":%u,\"checksum_valid\":%s,\"migration_dirty\":%u,\"recovery_blocked\":%u,\"last_result\":%u,\"ledger_sha256\":\"%s\"}\n",stage,read32(c,SI_COUNTER),si_read16(c,LC_LEDGER+4),lc_u32(ledger,8)==lc_checksum(ledger)?"true":"false",read8(c,SI_VOL+26),read8(c,SI_VOL+27),si_read16(c,SI_VOL+16),sha);fflush(stdout);
 }
 int main(int argc,char**argv){
  if(argc==3&&!strcmp(argv[1],"--guard-check"))si_guard_check(argv[2]);

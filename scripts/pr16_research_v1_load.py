@@ -2,7 +2,6 @@
 """実保存V1 fixtureと通常ロードの閉じたoracle。旧native/ARMの再実行なし。"""
 from __future__ import annotations
 import hashlib
-import re
 import struct
 import pr16_research_retry as retry
 lc=retry.lc; old=lc.old; need=old.need; identity=old.identity
@@ -10,7 +9,7 @@ CASES=('v1-load-valid','v1-load-checksum','v1-load-tail')
 CANDIDATE={'size':33554432,'sha256':'58079dfbdbe15899d9b86f53ad3a21fe46ddcebf5fed231c85dcd2332ddd2d75'}
 OFFSET=0x1F064
 SCOPE='V1_FLASH_FIXTURE_ORDINARY_LOAD_CHAIN'
-STATES={'load_state','counter','version','checksum_valid','migration_dirty','recovery_blocked','last_result','ledger_sha256','ledger_hex'}
+STATES={'load_state','counter','version','checksum_valid','migration_dirty','recovery_blocked','last_result','ledger_sha256'}
 
 
 def checksum(raw):
@@ -58,10 +57,9 @@ def validate(raw,case,save,baseline):
     need(len(rows)==(9 if valid else 3),'exact load observations')
     state,trace=rows[:2];result=rows[-1]
     need(set(state)==STATES and state['load_state']=='adapter_return','state schema')
-    need(isinstance(state['ledger_hex'],str) and re.fullmatch('[0-9a-f]{4096}',state['ledger_hex']),'complete all-byte loaded ledger')
-    ledger=bytes.fromhex(state['ledger_hex']);input_ledger=save[OFFSET:OFFSET+2048]
+    input_ledger=save[OFFSET:OFFSET+2048]
     target=migrated(input_ledger) if valid else input_ledger
-    need(ledger==target,'exact migrated ledger / invalid preimage unchanged')
+    need(state['ledger_sha256']==hashlib.sha256(target).hexdigest(),'complete migrated ledger / invalid preimage SHA-256')
     want={'counter':3 if valid else 2,'version':2 if valid else 1,
           'checksum_valid':checksum(target)==int.from_bytes(target[8:12],'little'),
           'migration_dirty':0,'recovery_blocked':0,'last_result':0 if valid else 7,
