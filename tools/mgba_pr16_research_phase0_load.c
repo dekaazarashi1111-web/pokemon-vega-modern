@@ -33,7 +33,7 @@ static void pl_make_unavailable(struct mCore*c){
  struct ARMCore*cpu=c->cpu;
  si_need(pl_fixture_words==0&&pl_pause&&pl_pc(c)==0x093BF630U&&cpu->gprs[0]==0&&read32(c,SI_COUNTER)==2&&read32(c,PL_AVAILABLE)==1,"one exact external availability fixture");
  uint8_t*ram=malloc(0x48000),*flash=malloc(0x20000);int32_t regs[16];
- si_need(ram&&flash,"fixture snapshot allocation");memcpy(regs,cpu->gprs,sizeof(regs));uint32_t cpsr=cpu->cpsr.packed;
+ si_need(ram&&flash,"fixture snapshot allocation");memcpy(regs,cpu->gprs,sizeof(regs));int32_t cpsr=cpu->cpsr.packed;
  for(unsigned i=0;i<0x40000;++i)ram[i]=read8(c,0x02000000U+i);
  for(unsigned i=0;i<0x8000;++i)ram[0x40000+i]=read8(c,0x03000000U+i);
  struct GBASavedata*s=&((struct GBA*)c->board)->memory.savedata;memcpy(flash,s->data,0x20000);
