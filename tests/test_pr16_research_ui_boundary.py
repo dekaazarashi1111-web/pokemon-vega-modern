@@ -43,7 +43,7 @@ class CanonicalUIBoundaryTests(unittest.TestCase):
         with self.assertRaises(ValueError): m.function(self.text+'\n'+body,'ResearchEconomy_OpenShop')
     def test_closed_function_set(self):
         self.assertEqual(set(self.bindings),set(m.FUNCTIONS))
-        self.assertEqual(len(self.bindings),21)
+        self.assertEqual(len(self.bindings),22)
     def test_unknown_runtime_case_rejected(self):
         p = subprocess.run([str(self.exe),'unknown'],capture_output=True,timeout=10)
         self.assertNotEqual(p.returncode,0)

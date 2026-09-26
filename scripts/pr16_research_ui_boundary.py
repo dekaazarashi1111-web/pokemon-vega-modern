@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SOURCE = 'overlays/research_economy_v1/research_economy_v1.c'
 SOURCE_BLOB = '888ea10e6fa008b4c7fdbbb7e5a302252bc2fadb'
 FUNCTIONS = (
-    'read_u16', 'write_u16', 'write_u32', 'clear_bytes', 'bytes_are_zero',
+    'read_u16', 'read_u32', 'write_u16', 'write_u32', 'clear_bytes', 'bytes_are_zero',
     'initialize_owner_at', 'reset_volatile_state', 'ensure_volatile_state',
     'set_result', 'ResearchEconomy_SaveChecksum', 'ResearchEconomy_SaveFinalize',
     'ResearchEconomy_SaveInitNew', 'close_window', 'page_row_count',
