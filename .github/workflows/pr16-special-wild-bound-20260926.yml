@@ -1,5 +1,5 @@
 name: pr16-special-wild-bound-20260926
-# 旧診断失敗の8call/13unit/受入済みは実行しない。
+# 再開2: 保存19unitは再実行せず、一意な野生headerだけを選ぶ8新規境界試験。
 on:
   push:
     branches: [codex/modernization-followup-20260908]

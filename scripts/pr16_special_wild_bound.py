@@ -18,7 +18,9 @@ TASK='USER-20260926-SPECIAL-WILD'
 SELF='scripts/pr16_special_wild_bound.py'
 TEST='tests/test_pr16_special_wild_bound.py'
 WF='.github/workflows/pr16-special-wild-bound-20260926.yml'
-CODE={SELF,TEST,WF}
+HEADER='scripts/pr16_special_wild_header_binding.py'
+HEADER_TEST='tests/test_pr16_special_wild_header_binding.py'
+CODE={SELF,TEST,WF,HEADER,HEADER_TEST}
 CP=old.BASE+'pr16_special_wild_bound_checkpoint.json'
 AUDIT=old.BASE+'pr16_special_wild_research_table_audit.json'
 AUDIT_HASH={'size':69159,'sha256':'ed08a2fbfaba9750e0c10a01283ffd4ffae0d1ab22b6ac51f8f88572701386b2'}
@@ -75,7 +77,8 @@ def bound_rows(rom,anchors,declared,audit):
 def bind_fixture(rom,audit):
     anchors=old.anchors(rom)
     effective,report=bound_rows(rom,anchors,s.research_rows(),audit)
-    selected=s.select_fixture(rom,anchors,effective)
+    from pr16_special_wild_header_binding import select_fixture
+    selected=select_fixture(rom,anchors,effective)
     for method in ('fishing','hidden'):
         need(selected[method]['map'] not in (EXCLUDED_MAP,[255,255],[11,3]),'未束縛/除外mapを選ばない')
         need(all(r['fields'][:2]==selected[method]['map'] for r in selected[method]['rows']),'fixtureの実map行のみ')
@@ -124,15 +127,28 @@ def execute():
             need(run['status']=='completed' and run['conclusion']==conclusion and run['head_sha']==sha,'旧Actions終端')
         v['predecessor_runs']=[{'id':36155273674,'conclusion':'failure'},{'id':AUDIT_RUN,'conclusion':'success'}]
         original_control=s.initial_control(load(ROOT/old.CP));v['original_control']=original_control
-        if prior and prior['source_bindings'][TEST]==v['source_bindings'][TEST] and prior['new_unit_tests']:
-            v['inherited_unit_tests']=prior['new_unit_tests']
+        if prior and prior['source_bindings'][TEST]==v['source_bindings'][TEST] and (prior['new_unit_tests'] or prior.get('inherited_unit_tests')):
+            v['inherited_unit_tests']=prior['new_unit_tests'] or prior['inherited_unit_tests']
+            original_unit=ROOT/prior['evidence_path']
+            for ext in ('stdout.txt','stderr.txt','process.json'):
+                name='new-unit.'+ext;raw=(original_unit/name).read_bytes()
+                need(identity(raw)==prior['public_evidence_bindings'][name],'19unit保存原本hash')
+                (PROOF/name).write_bytes(raw)
         else:
             _,err=old.command([sys.executable,'-B','-m','unittest','tests.test_pr16_special_wild_bound','-v'],'new-unit')
             count=re.search(rb'Ran (\d+) tests? in ',err);need(count and b'\nOK\n'in err,'新規unit完了')
             v['new_unit_tests']=int(count[1])
+        if prior and prior['source_bindings'].get(HEADER_TEST)==v['source_bindings'][HEADER_TEST] and prior.get('header_unit_tests')==8:
+            v['inherited_header_unit_tests']=8
+        else:
+            _,err=old.command([sys.executable,'-B','-m','unittest','tests.test_pr16_special_wild_header_binding','-v'],'header-unit')
+            need(b'Ran 8 tests in ' in err and b'\nOK\n'in err,'新規header8unit完了');v['header_unit_tests']=8
         b.WORK=WORK/'restore-root';b.WORK.mkdir();rom=b.restore();rom,_=entry.apply(rom)
         natural=load(ROOT/(old.BASE+'pr16_learnset_natural_checkpoint.json'));rom=wild.replay(rom,natural['wild_repair'])
-        a,fixtures,binding=bind_fixture(rom,load(ROOT/AUDIT));v['table_binding']=binding;v['fixtures']=fixtures
+        a=old.anchors(rom)
+        effective,binding=bound_rows(rom,a,s.research_rows(),load(ROOT/AUDIT))
+        v['table_binding']=binding;write(PROOF/'table-binding.json',binding)
+        a,fixtures,_=bind_fixture(rom,load(ROOT/AUDIT));v['fixtures']=fixtures
         write(PROOF/'table-binding.json',binding);write(PROOF/'fixtures.json',fixtures);write(PROOF/'anchors.json',a)
         source=s.generated_source();v['compiled_source']=identity(source.encode())
         if prior and prior['results']:
@@ -226,7 +242,7 @@ def record():
       '\n両経路で旧特殊技喪失を観測してから、釣り0x09392722・隠し0x0939274AのBLだけをNOP化。全8byte差分/全ROMrollback/同じ親から2独立replay。共通initializer・land・owner・戻り値は不変。',
       '\n開始map/flag/profile/RNG/入口registerはfixture。7host書込み禁止下の直接CPU診断であり、通常釣竿/スキャナーUI・捕獲・Save/fresh Continueの受入ではない。']
     for key,r in v['results'].items():lines.append(f"\n- {key}: {r['classification']}; species {r['before']['species']}; moves {r['before']['moves']} → {r['after']['moves']}; PP {r['before']['pp']} → {r['after']['pp']}; calls {r['calls']}。")
-    lines += [f"\n新unit {v['new_unit_tests']} / host {v['host_compiles']} / native {v['native_processes']} / ARM0 / 受入再実行0。保存case再利用 {v['reused_cases']}。Actions終端は別途照合。",
+    lines += [f"\n新binding unit {v['new_unit_tests']}（継承 {v.get('inherited_unit_tests',0)}）、新header unit {v.get('header_unit_tests',0)} / host {v['host_compiles']} / native {v['native_processes']} / ARM0 / 受入再実行0。保存case再利用 {v['reused_cases']}。Actions終端は別途照合。",
       f"\n失敗 `{v['failure']}`。証拠 `{v['evidence_path']}`。",'\n1281 identity-only、旧Wiki、BP/P08、active baselineは不変。Issue19未完、release_ready=false、未merge。','\n## 次',nextstep]
     (ROOT/old.GUIDE).write_text('\n'.join(lines)+'\n')
     state=load(ROOT/old.STATE)
@@ -241,7 +257,7 @@ def record():
     for p in CODE|{CP,old.GUIDE,'.github/workflows/pr16-special-wild-bound-context-20260926.yml'}:state['source_bindings'][p]=identity((ROOT/p).read_bytes())
     state['logs_synchronized']=True;publish_resume(state)
     stamp=datetime.datetime.now(datetime.timezone.utc).isoformat()
-    note=f'\n## {stamp}\n- Timestamp: {stamp}\n- Task: {TASK} / 固定実研究表bindingと特殊野生2callsite修復\n- Version: issue19-special-wild-bound-v1\n- Status: '+('DONE（限定直接診断）' if not v['failure'] else 'STOPPED（成功原本保存・未成功のみ継続）')+f'\n- Summary: {v["status"]}。130行mapのみ差分を固定し、除外mapへ受入を拡大しない。旧失敗/監査/17unit/正常8callは不変。\n- Files changed: 専用driver/test/workflow/checkpoint、run別text証拠、guide、固定引継ぎMD/JSON、両ログ。\n- Verify: 新unit {v["new_unit_tests"]}, host {v["host_compiles"]}, native {v["native_processes"]}, ARM0、受入再実行0。通常UI/capture/Saveは未受入。Actions終端未確認。\n- Commit: source {v["source_head"]}, run {v["run_id"]}; 同branch非force push後remote照合をartifactへ保存。\n- Network: GitHub固定artifact/Actionsのみ。merge/release/active baseline変更なし。\n'
+    note=f'\n## {stamp}\n- Timestamp: {stamp}\n- Task: {TASK} / 固定実研究表bindingと特殊野生2callsite修復\n- Version: issue19-special-wild-bound-v1\n- Status: '+('DONE（限定直接診断）' if not v['failure'] else 'STOPPED（成功原本保存・未成功のみ継続）')+f'\n- Summary: {v["status"]}。130行mapのみ差分を固定し、除外mapへ受入を拡大しない。旧失敗/監査/17unit/正常8callは不変。\n- Files changed: 専用driver/test/workflow/checkpoint、run別text証拠、guide、固定引継ぎMD/JSON、両ログ。\n- Verify: 新binding unit {v["new_unit_tests"]}（継承 {v.get("inherited_unit_tests",0)}）/新header unit {v.get("header_unit_tests",0)}, host {v["host_compiles"]}, native {v["native_processes"]}, ARM0、受入再実行0。通常UI/capture/Saveは未受入。Actions終端未確認。\n- Commit: source {v["source_head"]}, run {v["run_id"]}; 同branch非force push後remote照合をartifactへ保存。\n- Network: GitHub固定artifact/Actionsのみ。merge/release/active baseline変更なし。\n'
     for p in ('design/run_log.md','design/version_log.md'):
         with (ROOT/p).open('a') as f:f.write(note)
 
