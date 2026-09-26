@@ -820,25 +820,28 @@ u8 VegaQolProduction_BpShopUnlockSatisfied(u8 kind)
     }
 }
 
-static u8 restore_durable_ledger(void)
+static VegaSaveStatus restore_durable_ledger(void)
 {
     VegaModernSaveData *candidate;
+    VegaSaveStatus status;
     FN_READ_FLASH(31u, 0u, PTR(void *, SAVE_BUFFER), SAVE_SECTOR_SIZE);
     candidate = (VegaModernSaveData *)(void *)(
         PTR(u8 *, SAVE_BUFFER)
         + (VEGA_SAVE_EWRAM_ADDRESS - SECTOR31_IMAGE));
-    if (FN_SAVE_VALIDATE(candidate, VEGA_SAVE_LEDGER_SIZE) != VEGA_SAVE_OK)
-        return 0u;
-    copy_bytes(gVegaModernSaveData, candidate, VEGA_SAVE_LEDGER_SIZE);
-    return 1u;
+    status = FN_SAVE_VALIDATE(candidate, VEGA_SAVE_LEDGER_SIZE);
+    /* Only an empty durable ledger permits new-save initialization.  Keep
+     * a corrupt preimage for the caller's validation; never normalize it. */
+    if (status != VEGA_SAVE_EMPTY_OR_LEGACY)
+        copy_bytes(gVegaModernSaveData, candidate, VEGA_SAVE_LEDGER_SIZE);
+    return status;
 }
 
 static u8 ensure_save(void)
 {
     VegaSaveStatus status = FN_SAVE_VALIDATE(gVegaModernSaveData,
                                              VEGA_SAVE_LEDGER_SIZE);
-    if (status == VEGA_SAVE_EMPTY_OR_LEGACY && restore_durable_ledger())
-        status = VEGA_SAVE_OK;
+    if (status == VEGA_SAVE_EMPTY_OR_LEGACY)
+        status = restore_durable_ledger();
     if (status == VEGA_SAVE_OK)
         return 1u;
     if (status == VEGA_SAVE_EMPTY_OR_LEGACY) {

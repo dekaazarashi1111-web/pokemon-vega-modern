@@ -10332,3 +10332,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 新規parser20 PASS、生成C/2caller byte/入力hash/正常V1原本照合。測定native3/5cores/host成功1、記録native/ARM/host0、旧受入再実行0。破損2例FAILを保持。最終resume/task graph/scoped index guard/diff-check。
 - Commit: 同branch非force、source=6f5e19360868eb67781f339c210c21ea247d8e12、自己SHAはgit log。
 - Network: 固定GitHub入力artifactのhash照合。私有payloadはGitへ追加0。
+
+## 2026-09-26T11:56:32.101927+00:00
+- Timestamp: 2026-09-26T11:56:32.101927+00:00
+- Task: USER-20260926-RESEARCH-V1-CORRUPT
+- Version: research-v1-corrupt-load-v1
+- Status: DONE（通常V1 load 3境界、その他未受入）
+- Summary: 通常V1 loadの3件を受入。起動先行call誤認とQOLの空/破損混同を修復。破損checksum/tailは全入力とFlashを保持して拒否、正常V1は実保存と2回fresh Continue成功。
+- Files changed: QOL canonical Cの2関数、136byte recipe、検証model/20tests/原本/checkpoint/guide、固定引継ぎMD/JSON、両ログ。
+- Verify: 修正候補native3/5cores、ARM compile1/link1、host compile2（runner/新規C分岐試験）。新規unit20/100 status pairs PASS。先行call新規20は再実行0。正常V1のみ変更影響回帰1、旧26unit/7retry/他受入再実行0。記録・終端確認のnative/unit/compile0。終端確認=False。最終resume/task graph/scoped index guard/diff-check。
+- Commit: 同branch非force、source=33c78f6769104707a79f2ec027e3dff5990bd356、自己SHAはgit log。
+- Network: 固定GitHub artifact再利用、private payload新規tracked0。active baseline/merge/release変更0。
