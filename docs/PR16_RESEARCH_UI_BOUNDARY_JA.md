@@ -12,6 +12,6 @@
 
 ## 次工程
 
-まず本runの終端とpush/uploadを照合し、host49件を再実行せず受入記録を確定する。次は通常new-game入口→初回通常Save/Continue、および実取引UIの取消/選択/購入/保存をnativeで限定検証する。host49件とphase0 load2件/43unit、V1 load3件/40unit、7retryは変更影響なしに再実行しない。
+次は通常new-game入口→初回通常Save/Continue、および実取引UIの取消/選択/購入/保存をnativeで限定検証する。host49件とphase0 load2件/43unit、V1 load3件/40unit、7retryは変更影響なしに再実行しない。
 
-run `36246184229` / source `7f7575ca83765ba0d3c7a033e95015874555dd33` / 終端照合 `False`。source/protected bindingsと原本manifestはcheckpoint参照。一般CI action_requiredは全CI成功に読み替えない。
+run `36246184229` / source `7f7575ca83765ba0d3c7a033e95015874555dd33` / 終端照合 `True`。source/protected bindingsと原本manifestはcheckpoint参照。一般CI action_requiredは全CI成功に読み替えない。

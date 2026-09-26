@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "まず本runの終端とpush/uploadを照合し、host49件を再実行せず受入記録を確定する。次は通常new-game入口→初回通常Save/Continue、および実取引UIの取消/選択/購入/保存をnativeで限定検証する。host49件とphase0 load2件/43unit、V1 load3件/40unit、7retryは変更影響なしに再実行しない。",
+    "next_step": "次は通常new-game入口→初回通常Save/Continue、および実取引UIの取消/選択/購入/保存をnativeで限定検証する。host49件とphase0 load2件/43unit、V1 load3件/40unit、7retryは変更影響なしに再実行しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -4162,7 +4162,7 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "まず本runの終端とpush/uploadを照合し、host49件を再実行せず受入記録を確定する。次は通常new-game入口→初回通常Save/Continue、および実取引UIの取消/選択/購入/保存をnativeで限定検証する。host49件とphase0 load2件/43unit、V1 load3件/40unit、7retryは変更影響なしに再実行しない。",
+    "goal_ja": "次は通常new-game入口→初回通常Save/Continue、および実取引UIの取消/選択/購入/保存をnativeで限定検証する。host49件とphase0 load2件/43unit、V1 load3件/40unit、7retryは変更影響なしに再実行しない。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
     "id": "RESEARCH_NORMAL_NEW_GAME_TRANSACTION_UI_NATIVE_NEXT",
     "read_paths": [
@@ -4178,15 +4178,15 @@
     "stop_rule_ja": "host検証をnative受入にしない。既受入を反復せず、候補/旧証拠/旧Wikiを保持。merge/release/active baseline変更禁止。"
   },
   "observed_date_jst": "2026-09-25",
-  "observed_head": "7f7575ca83765ba0d3c7a033e95015874555dd33",
+  "observed_head": "1b32ca42d534eed264b50c26cd491079765686d4",
   "observed_head_checks": {
     "reason_ja": "限定host境界のみ。一般CIのaction_requiredは別状態。",
     "runs": [
       {
-        "conclusion": null,
+        "conclusion": "success",
         "head_sha": "7f7575ca83765ba0d3c7a033e95015874555dd33",
         "id": 36246184229,
-        "status": "in_progress"
+        "status": "completed"
       }
     ],
     "scope_head": "7f7575ca83765ba0d3c7a033e95015874555dd33"
@@ -5869,13 +5869,13 @@
     "status": "PASS_INITIAL_LIFECYCLE_5_SCOPED"
   },
   "research_ui_boundary": {
-    "actions_completion_confirmed": false,
+    "actions_completion_confirmed": true,
     "new_unit_tests": 49,
     "normal_new_game_accepted": false,
     "path": "content/modernization/pr16_research_ui_boundary_checkpoint.json",
     "run_id": 36246184229,
     "source_head": "7f7575ca83765ba0d3c7a033e95015874555dd33",
-    "status": "PASS_HOST_UI_BOUNDARY_PENDING_TERMINAL",
+    "status": "PASS_CANONICAL_HOST_UI_BOUNDARY",
     "transaction_ui_accepted": false
   },
   "research_v1_corrupt_load": {
@@ -7035,8 +7035,8 @@
       "size": 3236
     },
     ".github/workflows/pr16-research-ui-boundary-20260926.yml": {
-      "sha256": "31710f8f31c5bf9c6aa62fe6d3a6165d16c0006a34fdb137b1fbebe568cd1002",
-      "size": 3121
+      "sha256": "d116006085e17d3fa04b3f7a666d55296a899c7a50f894c70701c31e8bf6545a",
+      "size": 3122
     },
     ".github/workflows/pr16-research-v1-corrupt-20260926.yml": {
       "sha256": "ad24114291505ace1456b3fd7e830c5cfb4578c4fa42d58ba1e3b878278f7359",
@@ -8303,8 +8303,8 @@
       "size": 10809
     },
     "content/modernization/pr16_research_ui_boundary_checkpoint.json": {
-      "sha256": "8c627864ca62fa071c7e6d1d1f5498fa4c0ff7d61cbaff556c0e9f4f82d67f66",
-      "size": 38577
+      "sha256": "bdf148aa1b487845b850c2bd5f3400da04e85558a0e1f65cf3a774ff409bb46e",
+      "size": 43401
     },
     "content/modernization/pr16_research_v1_corrupt_load_checkpoint.json": {
       "sha256": "fae57e2551326349d3bfa3082b7d244a9de974c72fd36fb927673e57f4589822",
@@ -9139,8 +9139,8 @@
       "size": 7658
     },
     "docs/PR16_RESEARCH_UI_BOUNDARY_JA.md": {
-      "sha256": "4b176abb1efa9f5c97b8b9474f454dfc6aa80e39badd16ee4fb6c17adba67f9d",
-      "size": 1939
+      "sha256": "c6612deb907354729dbb4b7878ddb844cefb9573908c563288a299dce81e7939",
+      "size": 1831
     },
     "docs/PR16_RESEARCH_V1_CORRUPT_LOAD_JA.md": {
       "sha256": "c5d3f3ef2172d81340739f9d761c36720072314e275e33b084e53020556af510",

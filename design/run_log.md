@@ -10387,3 +10387,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 新unit49PASS/host compile1（終端記録時は再実行0）。22正本関数と2048byte初期化、全23選択/取消/資源解放を検証。旧受入再実行/native/ARM/ROM変更0。resume check/task graph/scoped final-index guard/diff-checkは同runの後続gate。全体歴史guard成功は主張しない。終端確認=False。
 - Commit: source=7f7575ca83765ba0d3c7a033e95015874555dd33、同branch非force。自己SHAはgit log。
 - Network: GitHub Actions API/先行終端照合。私有入力取得0、外部調査0。merge/release/active baseline変更0。
+
+## 2026-09-26T13:48:44.822596+00:00
+- Timestamp: 2026-09-26T13:48:44.822596+00:00
+- Task: USER-20260926-RESEARCH-UI-BOUNDARY / 新規ゲーム初期化と取引UIの正本C host境界
+- Version: research-ui-boundary-v1
+- Status: DONE（限定host境界、通常nativeは未受入）
+- Summary: 正本Cの新規ゲーム初期化と取引UI callbackの限定host境界49試験PASS。通常native new-game/実取引は未受入。候補5d1fc9c4と既受入loadは保持。
+- Files changed: .github/workflows/pr16-research-ui-boundary-20260926.yml, content/modernization/pr16_native_supply_resume_20260913.json, content/modernization/pr16_research_ui_boundary_checkpoint.json, design/run_log.md, design/version_log.md, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, docs/PR16_RESEARCH_UI_BOUNDARY_JA.md, scripts/pr16_research_ui_boundary.py, scripts/pr16_research_ui_boundary_actions.py, tests/test_pr16_research_ui_boundary.py, tools/research_ui_boundary_shim.c、限定証拠。
+- Verify: 新unit49PASS/host compile1（終端記録時は再実行0）。22正本関数と2048byte初期化、全23選択/取消/資源解放を検証。旧受入再実行/native/ARM/ROM変更0。resume check/task graph/scoped final-index guard/diff-checkは同runの後続gate。全体歴史guard成功は主張しない。終端確認=True。
+- Commit: source=1b32ca42d534eed264b50c26cd491079765686d4、同branch非force。自己SHAはgit log。
+- Network: GitHub Actions API/先行終端照合。私有入力取得0、外部調査0。merge/release/active baseline変更0。

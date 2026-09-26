@@ -8,13 +8,13 @@
 
 正本Cの新規ゲーム初期化と取引UI callbackの限定host境界49試験PASS。通常native new-game/実取引は未受入。候補5d1fc9c4と既受入loadは保持。
 
-**次: まず本runの終端とpush/uploadを照合し、host49件を再実行せず受入記録を確定する。次は通常new-game入口→初回通常Save/Continue、および実取引UIの取消/選択/購入/保存をnativeで限定検証する。host49件とphase0 load2件/43unit、V1 load3件/40unit、7retryは変更影響なしに再実行しない。**
+**次: 次は通常new-game入口→初回通常Save/Continue、および実取引UIの取消/選択/購入/保存をnativeで限定検証する。host49件とphase0 load2件/43unit、V1 load3件/40unit、7retryは変更影響なしに再実行しない。**
 
 host検証をnative受入にしない。既受入を反復せず、候補/旧証拠/旧Wikiを保持。merge/release/active baseline変更禁止。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `7f7575ca83765ba0d3c7a033e95015874555dd33`。
+証拠のsource HEAD: `1b32ca42d534eed264b50c26cd491079765686d4`。
 限定host境界の実行または終端記録source。自己SHAはgit log参照。
 
 ## 最短の再開手順
