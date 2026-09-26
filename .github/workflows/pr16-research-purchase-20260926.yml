@@ -31,7 +31,7 @@ jobs:
             'scripts/pr16_research_purchase.py': '9db1ac7c21db6694cb3b201da29b34d2721b7c2b',
             'scripts/pr16_research_purchase_actions.py': '9dce86fd1ffdeb1bdebe56616310cd696b143cf9',
             'tests/test_pr16_research_purchase.py': 'dc75f7b96ba3aaa00844fdc77039239ac87d262e',
-            'tools/mgba_pr16_research_purchase.c': 'b25e87a11286b2a5ed5a4c0dc9f821b776a19361',
+            'tools/mgba_pr16_research_purchase.c': 'f504d43fa2c0473e4a4834ec5547d09ee787cc37',
           }
           for path, sha in bindings.items():
               assert subprocess.check_output(['git','hash-object',path]).decode().strip() == sha, path
