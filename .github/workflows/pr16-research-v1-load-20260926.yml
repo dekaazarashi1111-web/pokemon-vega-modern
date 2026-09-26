@@ -18,7 +18,7 @@ jobs:
     env:
       GITHUB_TOKEN: ${{ github.token }}
       PYTHONDONTWRITEBYTECODE: '1'
-      MODE: measure
+      MODE: finalize
     steps:
       - uses: actions/checkout@v4
         with:
@@ -50,11 +50,29 @@ jobs:
           test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$reflected"
           printf '%s\n' "$reflected" > .local/pr16-research-lifecycle/public/reflected-head.txt
       - name: 失敗を成功扱いしない
+        if: env.MODE == 'measure'
         run: python3 -c "import json; c=json.load(open('content/modernization/pr16_research_v1_load_checkpoint.json')); assert not c['failed_cases'], c['failed_cases']"
+      - name: 固定text sourceだけを作業用artifactへ保存
+        run: |
+          python3 - <<'PY'
+          import json, pathlib, subprocess
+          root=pathlib.Path('.')
+          cp=json.loads((root/'content/modernization/pr16_research_v1_load_checkpoint.json').read_text())
+          paths=set(cp['source_bindings'])|set(cp['protected_bindings'])|{'AGENTS.md','scripts/pr16_research_v1_load_actions.py','scripts/pr16_research_v1_load.py','scripts/pr16_resume.py','scripts/pr16_learnset_compact_record.py','scripts/pr16_learnset_runtime_record.py','scripts/validate_task_graph.py','content/modernization/pr16_native_supply_resume_20260913.json','content/modernization/pr16_research_v1_load_checkpoint.json','docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md','docs/PR16_RESEARCH_V1_LOAD_JA.md'}
+          allowed={'.py','.c','.h','.json','.md','.txt','.yml'}
+          assert all((root/p).is_file() and pathlib.PurePosixPath(p).suffix in allowed and not p.startswith(('userfile/','inputs/','build/','.local/')) for p in paths)
+          subprocess.run(['git','archive','--format=zip','-o','.local/pr16-research-lifecycle/source-context.zip','HEAD','--',*sorted(paths)],check=True)
+          PY
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: pr16-research-v1-load
           path: .local/pr16-research-lifecycle/public/
           retention-days: 30
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr16-research-v1-load-source-context
+          path: .local/pr16-research-lifecycle/source-context.zip
+          retention-days: 7
           if-no-files-found: error
