@@ -7741,3 +7741,17 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Diagnosis: 正式測定前に同候補/消去Flashでinput-onlyローカル診断1process/1host compile、通常開始と初回Saveを確認。独立Continueは診断未実行。受入件数へ加算しない。
 - Commit: source=bb2d74a1aa61d3d6d6b97580513bae49d8a71394、同branch非force。自己SHAはgit log。
 - Network: GitHub固定artifact/PR/Actions。元ROM/save非tracked、履歴/baseline保全。merge/release0。
+
+## 2026-09-26T15:04:15.212535+00:00
+- Timestamp: 2026-09-26T15:04:15.212535+00:00
+- Task: USER-20260926-RESEARCH-NEW-GAME / 通常new-game・初回Save・独立Continue
+- Version: research-new-game-finalize-v1
+- Status: DONE（初回保存限定、自然供給未完）
+- Summary: 通常new-gameを消去Flashからキー入力のみで開始し、初回Start Saveと独立Continue2回を受入。counter0→1→1→1、全ledger2048/Bag5pocket/party600/Flash128KiBを照合。
+- Files changed: .github/workflows/pr16-research-new-game-20260926.yml, content/modernization/pr16_native_supply_resume_20260913.json, content/modernization/pr16_research_new_game_checkpoint.json, design/run_log.md, design/version_log.md, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, docs/PR16_RESEARCH_NEW_GAME_JA.md, scripts/pr16_research_new_game.py, scripts/pr16_research_new_game_actions.py, tests/test_pr16_research_new_game.py, tools/mgba_pr16_research_new_game.c と限定UTF8証拠。
+- Verify: ローカル新52oraclePASS。Actions新unit=52、native1process（成功時3cores）/guard7/host compile1。初期化/warp/文字速度/台帳/party注入0。ROM変更/ARM compile/link/旧受入再実行0。finalizeはunit/native/compile0。失敗=[]。後続resume/task graph/scoped final-index/diff gate後にcommit。全体歴史private guard成功は主張しない。
+- Diagnosis: 正式測定前に同候補/消去Flashでinput-onlyローカル診断1process/1host compile、通常開始と初回Saveを確認。独立Continueは診断未実行。受入件数へ加算しない。
+- Commit: source=29f21cc483af5dc23c97baf98d0bdbefa043bc87、同branch非force。自己SHAはgit log。
+- Network: GitHub固定artifact/PR/Actions。元ROM/save非tracked、履歴/baseline保全。merge/release0。
+
+- Session closeout: initial=bddb239934a0ff3854009a2f5c64d3b680ec9cdc / purchase run=36249587919 / ordinary-new-game run=36250444503。今回追加受入はこの2境界のみ。開始HEAD以降の全差分71pathは所有UTF8 textに限定し、両ログappend-only・active baseline不変を照合。終端記録でnative/unit/compile再実行0、全体release/P08の完了主張なし。

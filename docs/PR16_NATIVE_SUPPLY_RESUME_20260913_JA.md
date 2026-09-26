@@ -8,13 +8,13 @@
 
 通常new-gameを消去Flashからキー入力のみで開始し、初回Start Saveと独立Continue2回を受入。counter0→1→1→1、全ledger2048/Bag5pocket/party600/Flash128KiBを照合。
 
-**次: まず本runの終端・非force push・uploadを照合する。次は実RP稼得と通常進行からResearchショップへの接続、全catalog価格/日本語文言の監査。通常new-game1件・購入1件・取消1件、各oracleと旧host/phase0/V1/retryは影響なしに再実行しない。**
+**次: 次は実RP稼得と通常進行からResearchショップへの接続、全catalog価格/日本語文言の監査。通常new-game1件・購入1件・取消1件、各oracleと旧host/phase0/V1/retryは影響なしに再実行しない。**
 
 新規開始/初回保存だけの受入をstarter/実RP/自然供給/全catalogへ拡張しない。受入済みcase反復/merge/release/baseline変更禁止。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `bb2d74a1aa61d3d6d6b97580513bae49d8a71394`。
+証拠のsource HEAD: `29f21cc483af5dc23c97baf98d0bdbefa043bc87`。
 通常new-gameの実行/終端記録source。自己SHAはgit log。
 
 ## 最短の再開手順
@@ -67,6 +67,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- 研究保存の今回受入: 購入/不足run36249587919（42oracle原本再利用）、通常new-game/初回Save/独立Continue2回run36250444503（新52oracle）。両checkpointと不変source/candidateから継承し、旧取消/旧host/phase0/V1/retry/ARMを反復しない。購入失敗run36248750283とdriver向き診断は履歴のまま保持。次は実RP稼得・通常進行と全catalog監査。
 - P08の21層432patch全ROM監査はpr16_p08_candidate_impact.jsonに保存。同じ入力のARM/旧builder/旧nativeは再実行せず、未完4代表境界へ。
 - Circus正式scoped受入はpr16_circus_acceptance.json。35504302893の29画面/3勝/Save、35503514936の自然getter/抑制を再実行しない。旧failureの意味は維持。
 - run35503514936のgetter30/正規抑制は再観測不要。Fairy Lockは0x4000、任意交代を控える。次はlifecycle reportのみ。

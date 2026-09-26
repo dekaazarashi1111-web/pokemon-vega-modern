@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "まず本runの終端・非force push・uploadを照合する。次は実RP稼得と通常進行からResearchショップへの接続、全catalog価格/日本語文言の監査。通常new-game1件・購入1件・取消1件、各oracleと旧host/phase0/V1/retryは影響なしに再実行しない。",
+    "next_step": "次は実RP稼得と通常進行からResearchショップへの接続、全catalog価格/日本語文言の監査。通常new-game1件・購入1件・取消1件、各oracleと旧host/phase0/V1/retryは影響なしに再実行しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -793,6 +793,7 @@
   },
   "current_resume_doc": "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
   "do_not_repeat": [
+    "研究保存の今回受入: 購入/不足run36249587919（42oracle原本再利用）、通常new-game/初回Save/独立Continue2回run36250444503（新52oracle）。両checkpointと不変source/candidateから継承し、旧取消/旧host/phase0/V1/retry/ARMを反復しない。購入失敗run36248750283とdriver向き診断は履歴のまま保持。次は実RP稼得・通常進行と全catalog監査。",
     "P08の21層432patch全ROM監査はpr16_p08_candidate_impact.jsonに保存。同じ入力のARM/旧builder/旧nativeは再実行せず、未完4代表境界へ。",
     "Circus正式scoped受入はpr16_circus_acceptance.json。35504302893の29画面/3勝/Save、35503514936の自然getter/抑制を再実行しない。旧failureの意味は維持。",
     "run35503514936のgetter30/正規抑制は再観測不要。Fairy Lockは0x4000、任意交代を控える。次はlifecycle reportのみ。",
@@ -4162,7 +4163,7 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "まず本runの終端・非force push・uploadを照合する。次は実RP稼得と通常進行からResearchショップへの接続、全catalog価格/日本語文言の監査。通常new-game1件・購入1件・取消1件、各oracleと旧host/phase0/V1/retryは影響なしに再実行しない。",
+    "goal_ja": "次は実RP稼得と通常進行からResearchショップへの接続、全catalog価格/日本語文言の監査。通常new-game1件・購入1件・取消1件、各oracleと旧host/phase0/V1/retryは影響なしに再実行しない。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
     "id": "RESEARCH_NATURAL_SUPPLY_AND_CATALOG_NEXT",
     "read_paths": [
@@ -4178,16 +4179,16 @@
     ],
     "stop_rule_ja": "新規開始/初回保存だけの受入をstarter/実RP/自然供給/全catalogへ拡張しない。受入済みcase反復/merge/release/baseline変更禁止。"
   },
-  "observed_date_jst": "2026-09-25",
-  "observed_head": "bb2d74a1aa61d3d6d6b97580513bae49d8a71394",
+  "observed_date_jst": "2026-09-27",
+  "observed_head": "29f21cc483af5dc23c97baf98d0bdbefa043bc87",
   "observed_head_checks": {
     "reason_ja": "scoped原本と終端を区別。一般CIは別状態。",
     "runs": [
       {
-        "conclusion": null,
+        "conclusion": "success",
         "head_sha": "bb2d74a1aa61d3d6d6b97580513bae49d8a71394",
         "id": 36250444503,
-        "status": "in_progress"
+        "status": "completed"
       }
     ],
     "scope_head": "bb2d74a1aa61d3d6d6b97580513bae49d8a71394"
@@ -5782,7 +5783,7 @@
     "accepted_cases": [
       "ordinary-new-game-first-save-two-continues"
     ],
-    "actions_completion_confirmed": false,
+    "actions_completion_confirmed": true,
     "candidate": {
       "sha256": "5d1fc9c47225ae8c0a369514b899a062af3699fa3c9a2f617e94ffd5f7dcc1ab",
       "size": 33554432
@@ -5790,7 +5791,7 @@
     "failed_cases": [],
     "path": "content/modernization/pr16_research_new_game_checkpoint.json",
     "run_id": 36250444503,
-    "status": "PASS_NORMAL_NEW_GAME_PENDING_TERMINAL"
+    "status": "PASS_NORMAL_NEW_GAME_SCOPED"
   },
   "research_phase0": {
     "accepted_cases": [
@@ -5896,6 +5897,100 @@
     "path": "content/modernization/pr16_research_lifecycle_checkpoint.json",
     "run_id": 36234024026,
     "status": "PASS_INITIAL_LIFECYCLE_5_SCOPED"
+  },
+  "research_session_20260926": {
+    "accepted_case_reruns": 0,
+    "active_baseline_changed": false,
+    "candidate": {
+      "sha256": "5d1fc9c47225ae8c0a369514b899a062af3699fa3c9a2f617e94ffd5f7dcc1ab",
+      "size": 33554432
+    },
+    "changed_paths": [
+      ".github/workflows/pr16-research-new-game-20260926.yml",
+      ".github/workflows/pr16-research-purchase-20260926.yml",
+      "content/modernization/pr16_native_supply_resume_20260913.json",
+      "content/modernization/pr16_research_new_game_checkpoint.json",
+      "content/modernization/pr16_research_new_game_evidence/36250444503/bag-recipe.json",
+      "content/modernization/pr16_research_new_game_evidence/36250444503/compile.json",
+      "content/modernization/pr16_research_new_game_evidence/36250444503/compile.stderr.txt",
+      "content/modernization/pr16_research_new_game_evidence/36250444503/compile.stdout.txt",
+      "content/modernization/pr16_research_new_game_evidence/36250444503/guards.json",
+      "content/modernization/pr16_research_new_game_evidence/36250444503/inputs.json",
+      "content/modernization/pr16_research_new_game_evidence/36250444503/invocation.json",
+      "content/modernization/pr16_research_new_game_evidence/36250444503/latest-runs.json",
+      "content/modernization/pr16_research_new_game_evidence/36250444503/manifest.json",
+      "content/modernization/pr16_research_new_game_evidence/36250444503/measurement.json",
+      "content/modernization/pr16_research_new_game_evidence/36250444503/native-process.json",
+      "content/modernization/pr16_research_new_game_evidence/36250444503/native.stderr.txt",
+      "content/modernization/pr16_research_new_game_evidence/36250444503/native.stdout.txt",
+      "content/modernization/pr16_research_new_game_evidence/36250444503/save-recipe.json",
+      "content/modernization/pr16_research_new_game_evidence/36250444503/unit.json",
+      "content/modernization/pr16_research_new_game_evidence/36250444503/unit.txt",
+      "content/modernization/pr16_research_purchase_checkpoint.json",
+      "content/modernization/pr16_research_purchase_evidence/36248750283/bag-recipe.json",
+      "content/modernization/pr16_research_purchase_evidence/36248750283/compile.json",
+      "content/modernization/pr16_research_purchase_evidence/36248750283/compile.stderr.txt",
+      "content/modernization/pr16_research_purchase_evidence/36248750283/compile.stdout.txt",
+      "content/modernization/pr16_research_purchase_evidence/36248750283/generation.json",
+      "content/modernization/pr16_research_purchase_evidence/36248750283/guards.json",
+      "content/modernization/pr16_research_purchase_evidence/36248750283/inputs.json",
+      "content/modernization/pr16_research_purchase_evidence/36248750283/invocation.json",
+      "content/modernization/pr16_research_purchase_evidence/36248750283/latest-runs.json",
+      "content/modernization/pr16_research_purchase_evidence/36248750283/manifest.json",
+      "content/modernization/pr16_research_purchase_evidence/36248750283/measurement.json",
+      "content/modernization/pr16_research_purchase_evidence/36248750283/native-process.json",
+      "content/modernization/pr16_research_purchase_evidence/36248750283/native.stderr.txt",
+      "content/modernization/pr16_research_purchase_evidence/36248750283/native.stdout.txt",
+      "content/modernization/pr16_research_purchase_evidence/36248750283/save-recipe.json",
+      "content/modernization/pr16_research_purchase_evidence/36248750283/unit.json",
+      "content/modernization/pr16_research_purchase_evidence/36248750283/unit.txt",
+      "content/modernization/pr16_research_purchase_evidence/36249587919/bag-recipe.json",
+      "content/modernization/pr16_research_purchase_evidence/36249587919/compile.json",
+      "content/modernization/pr16_research_purchase_evidence/36249587919/compile.stderr.txt",
+      "content/modernization/pr16_research_purchase_evidence/36249587919/compile.stdout.txt",
+      "content/modernization/pr16_research_purchase_evidence/36249587919/generation.json",
+      "content/modernization/pr16_research_purchase_evidence/36249587919/guards.json",
+      "content/modernization/pr16_research_purchase_evidence/36249587919/inputs.json",
+      "content/modernization/pr16_research_purchase_evidence/36249587919/invocation.json",
+      "content/modernization/pr16_research_purchase_evidence/36249587919/latest-runs.json",
+      "content/modernization/pr16_research_purchase_evidence/36249587919/manifest.json",
+      "content/modernization/pr16_research_purchase_evidence/36249587919/measurement.json",
+      "content/modernization/pr16_research_purchase_evidence/36249587919/native-process.json",
+      "content/modernization/pr16_research_purchase_evidence/36249587919/native.stderr.txt",
+      "content/modernization/pr16_research_purchase_evidence/36249587919/native.stdout.txt",
+      "content/modernization/pr16_research_purchase_evidence/36249587919/previous-run.json",
+      "content/modernization/pr16_research_purchase_evidence/36249587919/save-recipe.json",
+      "content/modernization/pr16_research_purchase_evidence/36249587919/unit-reuse.json",
+      "content/modernization/pr16_research_purchase_evidence/36249587919/unit.json",
+      "content/modernization/pr16_research_purchase_evidence/36249587919/unit.txt",
+      "design/run_log.md",
+      "design/version_log.md",
+      "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
+      "docs/PR16_RESEARCH_NEW_GAME_JA.md",
+      "docs/PR16_RESEARCH_PURCHASE_DIAGNOSTICS_JA.md",
+      "docs/PR16_RESEARCH_PURCHASE_JA.md",
+      "scripts/pr16_research_new_game.py",
+      "scripts/pr16_research_new_game_actions.py",
+      "scripts/pr16_research_purchase.py",
+      "scripts/pr16_research_purchase_actions.py",
+      "tests/test_pr16_research_new_game.py",
+      "tests/test_pr16_research_purchase.py",
+      "tools/mgba_pr16_research_new_game.c",
+      "tools/mgba_pr16_research_purchase.c"
+    ],
+    "finalize_native_processes": 0,
+    "finalize_source_head": "29f21cc483af5dc23c97baf98d0bdbefa043bc87",
+    "finalize_unit_tests": 0,
+    "historical_logs_append_only": true,
+    "initial_head": "bddb239934a0ff3854009a2f5c64d3b680ec9cdc",
+    "new_game_run": 36250444503,
+    "new_game_terminal_run": 36250632594,
+    "new_native_cases_accepted": 2,
+    "purchase_run": 36249587919,
+    "purchase_terminal_run": 36249762967,
+    "release_ready": false,
+    "rom_changes": 0,
+    "scope_complete": true
   },
   "research_shop_cancel": {
     "accepted_cases": [
@@ -7053,8 +7148,8 @@
       "size": 3004
     },
     ".github/workflows/pr16-research-new-game-20260926.yml": {
-      "sha256": "cbd6af6011c1eaa574fa6f34ace01b1bf4ade13f127f2ed764e6508d5cd98b48",
-      "size": 3207
+      "sha256": "4df6defd4c99f6e8fff8d5296d7f85f11f2b6cc0bd701fd872b4546c36c9db6e",
+      "size": 7415
     },
     ".github/workflows/pr16-research-phase0-20260926.yml": {
       "sha256": "2c2d8f41665677f64ccfe131c8135b60c670ced52f069f3bbfa1dcca478f4c99",
@@ -8333,8 +8428,8 @@
       "size": 6182
     },
     "content/modernization/pr16_research_new_game_checkpoint.json": {
-      "sha256": "b0b6e1d21e3e59c081659e946a69b08fff109bda12a4ba728099e723e0d88d87",
-      "size": 60820
+      "sha256": "f28ada6f9e7b85c7cf9ac43bde15f2cecd98a35b687c38b6794a106cc85aa415",
+      "size": 65920
     },
     "content/modernization/pr16_research_phase0_checkpoint.json": {
       "sha256": "fca0f63f5bc8c08512806f57b011fe9715befbefcac2f1d89540cb0341ec3873",
@@ -9189,8 +9284,8 @@
       "size": 1421
     },
     "docs/PR16_RESEARCH_NEW_GAME_JA.md": {
-      "sha256": "3768a2fae21661864f3e5db9dddabcd5b665683c3471498927f88a0a38b66066",
-      "size": 2435
+      "sha256": "8aeb695c6addd3a97cb00633c1af09b87ec90c9a36c219a8b29b385e851afb7d",
+      "size": 2360
     },
     "docs/PR16_RESEARCH_PHASE0_JA.md": {
       "sha256": "cb2640ee469dcc5080640b703e08c9a5c7f60c78b762e510f89c80f4cfd880cd",

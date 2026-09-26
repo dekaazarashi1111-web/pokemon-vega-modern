@@ -14,8 +14,8 @@
 
 ## 記録
 
-run `36250444503` / source `bb2d74a1aa61d3d6d6b97580513bae49d8a71394` / status `PASS_NORMAL_NEW_GAME_PENDING_TERMINAL` / 終端確認 `False`。manifest `content/modernization/pr16_research_new_game_evidence/36250444503/manifest.json`。失敗原本はattempt_historyに保持し、途中の成功で全体を昇格しない。一般CIのaction_requiredは限定成功とは別である。
+run `36250444503` / source `bb2d74a1aa61d3d6d6b97580513bae49d8a71394` / status `PASS_NORMAL_NEW_GAME_SCOPED` / 終端確認 `True`。manifest `content/modernization/pr16_research_new_game_evidence/36250444503/manifest.json`。失敗原本はattempt_historyに保持し、途中の成功で全体を昇格しない。一般CIのaction_requiredは限定成功とは別である。
 
 ## 次工程
 
-まず本runの終端・非force push・uploadを照合する。次は実RP稼得と通常進行からResearchショップへの接続、全catalog価格/日本語文言の監査。通常new-game1件・購入1件・取消1件、各oracleと旧host/phase0/V1/retryは影響なしに再実行しない。
+次は実RP稼得と通常進行からResearchショップへの接続、全catalog価格/日本語文言の監査。通常new-game1件・購入1件・取消1件、各oracleと旧host/phase0/V1/retryは影響なしに再実行しない。
