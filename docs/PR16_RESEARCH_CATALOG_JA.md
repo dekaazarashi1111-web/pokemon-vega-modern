@@ -1,6 +1,6 @@
 # PR16 Research catalog価格・日本語監査
 
-PASS_CATALOG_PENDING_TERMINAL
+PASS_CATALOG_SCOPED
 
 次は実RP稼得と通常進行からResearchショップへの接続。全23商品価格/数量/解放/在庫/日本語行・5画面と35会話ROM byte監査は受入済み原本を再利用する。35会話のnative全表示/自然到達は別の未完境界。
 

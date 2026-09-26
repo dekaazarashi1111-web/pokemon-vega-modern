@@ -6,7 +6,7 @@
 
 ## いまの停止点と次の1手
 
-PASS_CATALOG_PENDING_TERMINAL
+PASS_CATALOG_SCOPED
 
 **次: 次は実RP稼得と通常進行からResearchショップへの接続。全23商品価格/数量/解放/在庫/日本語行・5画面と35会話ROM byte監査は受入済み原本を再利用する。35会話のnative全表示/自然到達は別の未完境界。**
 
@@ -14,7 +14,7 @@ PASS_CATALOG_PENDING_TERMINAL
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `e68fd9e4cb596d5ef082c68c3462786136af5aad`。
+証拠のsource HEAD: `fc23a28595939b617363d36ade2802b6f8b92d33`。
 catalog限定記録source。自己commitはgit log参照。
 
 ## 最短の再開手順
