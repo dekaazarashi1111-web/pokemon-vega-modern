@@ -48,11 +48,24 @@ jobs:
               z.writestr('index.json',json.dumps(index,ensure_ascii=False,indent=2)+'\n')
           print('C_SOURCE_FILES='+str(len(selected)))
           PY
+      - name: 未受入の虫取り2ケースのみ実測（旧ローカル原本の創作禁止）
+        run: python3 -B scripts/pr16_research_bug_capture.py
       - name: 読取専用であることを確認
+        if: always()
         run: git diff --exit-code
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: pr16-research-activities-context
           path: .local/pr16-research-activities/context/
           retention-days: 7
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-research-bug-measurement
+          path: |
+            .local/pr16-research-bug-capture/public/*.json
+            .local/pr16-research-bug-capture/bug-*/*.ppm
+          retention-days: 14
           if-no-files-found: error
