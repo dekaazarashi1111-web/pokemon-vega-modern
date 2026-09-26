@@ -1,0 +1,100 @@
+name: pr16-special-wild-bound-20260926
+# 旧診断失敗の8call/13unit/受入済みは実行しない。
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-special-wild-bound-20260926.yml]
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-special-wild-bound-20260926
+  cancel-in-progress: false
+jobs:
+  special-wild-repair:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: 新規probeのhost依存だけ（ARM compilerなし）
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends libmgba-dev
+      - name: 未成功経路を研究表へ結合し2callsite修復と必要なnative対照だけ新規実行
+        run: python3 -B scripts/pr16_special_wild_bound.py execute
+      - name: 成功と失敗原本を固定引継ぎ・両ログへ記録
+        if: always()
+        run: |
+          set -euo pipefail
+          test -f .local/pr16-special-wild-bound/proof/verification.json
+          python3 -B scripts/pr16_special_wild_bound.py record
+      - name: 引継ぎ整合・task graph・最終index限定guard
+        if: always()
+        run: |
+          set -euo pipefail
+          test -f content/modernization/pr16_special_wild_bound_checkpoint.json
+          python3 -B scripts/pr16_resume.py check
+          python3 -B scripts/validate_task_graph.py
+          python3 -B scripts/pr16_special_wild_bound.py paths | tr '\n' '\0' >.local/pr16-special-wild-bound/paths.z
+          git add --pathspec-from-file=.local/pr16-special-wild-bound/paths.z --pathspec-file-nul
+          python3 -B scripts/pr16_special_wild_bound.py guard
+      - name: 同branch非force commit/push・remote照合
+        if: always()
+        run: |
+          set -euo pipefail
+          python3 -B scripts/pr16_special_wild_bound.py guard
+          branch='codex/modernization-followup-20260908'
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20260926-SPECIAL-WILD: 固定実表bindingと特殊野生2callsite限定修復の実測と引継ぎ・両ログを保存（通常取得未受入）'
+          git push origin "HEAD:$branch"
+          sha=$(git rev-parse HEAD)
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$sha"
+          echo "$sha" | tee .local/pr16-special-wild-bound/proof/reflected-head.txt
+      - name: 最新状態と限定sourceを転送（再実行なし）
+        if: always()
+        run: |
+          python3 -B - <<'PY'
+          import pathlib, sys, zipfile
+          sys.path.insert(0,'scripts')
+          import pr16_special_wild_bound as s
+          from pr16_wiki_reconcile import fetch
+          out=s.WORK/'context';out.mkdir(parents=True,exist_ok=True)
+          paths=s.CODE|{s.CP,s.old.GUIDE,s.old.STATE,s.old.DOC,'design/run_log.md','design/version_log.md'}
+          index={}
+          with zipfile.ZipFile(out/'context.zip','w',compression=zipfile.ZIP_DEFLATED) as z:
+              for name in sorted(paths):
+                  p=pathlib.Path(name)
+                  if not p.is_file():continue
+                  raw=p.read_bytes();raw.decode('utf-8');assert b'\0' not in raw
+                  z.writestr(name,raw);index[name]=s.identity(raw)
+              z.writestr('index.json',s.encode(index))
+          runs=fetch('actions/runs?per_page=20')['workflow_runs']
+          s.write(out/'actions.json',[{k:r[k] for k in ('id','name','head_sha','head_branch','path','status','conclusion')} for r in runs])
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-special-wild-bound-proof
+          path: .local/pr16-special-wild-bound/proof/
+          retention-days: 30
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-special-wild-bound-context
+          path: .local/pr16-special-wild-bound/context/
+          retention-days: 7
+          if-no-files-found: error
