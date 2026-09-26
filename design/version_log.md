@@ -7404,3 +7404,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 新unit 19, host 0, native 0, ARM0、受入再実行0。通常UI/capture/Saveは未受入。Actions終端未確認。
 - Commit: source af7a856d8ac04c2e3400cab550c02f0569185ae3, run 36213386688; 同branch非force push後remote照合をartifactへ保存。
 - Network: GitHub固定artifact/Actionsのみ。merge/release/active baseline変更なし。
+
+## 2026-09-26T03:07:35.447191+00:00
+- Timestamp: 2026-09-26T03:07:35.447191+00:00
+- Task: USER-20260926-SPECIAL-WILD / 固定実研究表bindingと特殊野生2callsite修復
+- Version: issue19-special-wild-bound-v1
+- Status: DONE（限定直接診断）
+- Summary: PASS_SPECIAL_WILD_BOUND_DIRECT_SCOPED。130行mapのみ差分を固定し、除外mapへ受入を拡大しない。旧失敗/監査/17unit/正常8callは不変。
+- Files changed: 専用driver/test/workflow/checkpoint、run別text証拠、guide、固定引継ぎMD/JSON、両ログ。
+- Verify: 新binding unit 0（継承 19）/新header unit 8, host 1, native 7, ARM0、受入再実行0。通常UI/capture/Saveは未受入。Actions終端未確認。
+- Commit: source 804417f6f8fa4fc88f882ac96d6f0a1720811500, run 36213677615; 同branch非force push後remote照合をartifactへ保存。
+- Network: GitHub固定artifact/Actionsのみ。merge/release/active baseline変更なし。
