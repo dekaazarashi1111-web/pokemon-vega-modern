@@ -18,7 +18,7 @@ jobs:
     env:
       GITHUB_TOKEN: ${{ github.token }}
       PYTHONDONTWRITEBYTECODE: '1'
-      MODE: measure
+      MODE: finalize
       REUSE_UNIT_RUN: '36246971189'
     steps:
       - uses: actions/checkout@v4
