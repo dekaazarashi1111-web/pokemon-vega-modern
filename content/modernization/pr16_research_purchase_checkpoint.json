@@ -3,7 +3,7 @@
   "accepted_cases": [
     "shop-select-purchase-insufficient-save-continue"
   ],
-  "actions_completion_confirmed": false,
+  "actions_completion_confirmed": true,
   "active_baseline_changed": false,
   "arm_compiles": 0,
   "arm_links": 0,
@@ -25,6 +25,8 @@
     "size": 33554432
   },
   "failed_cases": [],
+  "finalize_run_id": 36249762967,
+  "finalize_source_head": "9f572f23ccf7e38052f21ef12d204950fe9df60a",
   "fresh_cores": 4,
   "guard_processes": 7,
   "host_compiles": 1,
@@ -1196,6 +1198,145 @@
     }
   },
   "source_head": "bd690e9be3933332ba955900d83f16a73a8b975e",
-  "status": "PASS_NATIVE_PURCHASE_PENDING_TERMINAL",
-  "task": "USER-20260926-RESEARCH-PURCHASE"
+  "status": "PASS_NATIVE_PURCHASE_SCOPED",
+  "task": "USER-20260926-RESEARCH-PURCHASE",
+  "terminal": {
+    "artifacts": [
+      {
+        "digest": "sha256:a318f50d6a937ccbc50ff45f48584c71314f94725e9f314dc5e601a70a7e5a3a",
+        "id": 10908043833,
+        "name": "pr16-research-purchase",
+        "size_in_bytes": 22478,
+        "workflow_run": {
+          "head_branch": "codex/modernization-followup-20260908",
+          "head_repository_id": 1358127462,
+          "head_sha": "bd690e9be3933332ba955900d83f16a73a8b975e",
+          "id": 36249587919,
+          "repository_id": 1358127462
+        }
+      }
+    ],
+    "compiles": 0,
+    "jobs": [
+      {
+        "check_run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/check-runs/108424996794",
+        "completed_at": "2026-09-26T14:46:08Z",
+        "conclusion": "success",
+        "created_at": "2026-09-26T14:45:30Z",
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "bd690e9be3933332ba955900d83f16a73a8b975e",
+        "html_url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/36249587919/job/108424996794",
+        "id": 108424996794,
+        "labels": [
+          "ubuntu-24.04"
+        ],
+        "name": "purchase",
+        "node_id": "CR_kwDOUPNhZs8AAAAZPqInug",
+        "run_attempt": 1,
+        "run_id": 36249587919,
+        "run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/36249587919",
+        "runner_group_id": 0,
+        "runner_group_name": "GitHub Actions",
+        "runner_id": 1000016060,
+        "runner_name": "GitHub Actions 1000016060",
+        "started_at": "2026-09-26T14:45:32Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completed_at": "2026-09-26T14:45:33Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "started_at": "2026-09-26T14:45:33Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-09-26T14:45:43Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "started_at": "2026-09-26T14:45:33Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-09-26T14:45:43Z",
+            "conclusion": "success",
+            "name": "exact source転送照合",
+            "number": 3,
+            "started_at": "2026-09-26T14:45:43Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-09-26T14:46:02Z",
+            "conclusion": "success",
+            "name": "新規購入境界だけを計測し成功失敗を記録",
+            "number": 4,
+            "started_at": "2026-09-26T14:45:43Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-09-26T14:46:04Z",
+            "conclusion": "success",
+            "name": "引継ぎとtask graphと最終index",
+            "number": 5,
+            "started_at": "2026-09-26T14:46:02Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-09-26T14:46:06Z",
+            "conclusion": "success",
+            "name": "同branchへcommitと非force push",
+            "number": 6,
+            "started_at": "2026-09-26T14:46:04Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-09-26T14:46:07Z",
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@v4",
+            "number": 7,
+            "started_at": "2026-09-26T14:46:06Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-09-26T14:46:07Z",
+            "conclusion": "success",
+            "name": "原本保存後に限定受入の結論を確定",
+            "number": 8,
+            "started_at": "2026-09-26T14:46:07Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-09-26T14:46:07Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 16,
+            "started_at": "2026-09-26T14:46:07Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-09-26T14:46:07Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 17,
+            "started_at": "2026-09-26T14:46:07Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/jobs/108424996794",
+        "workflow_name": "pr16-research-purchase-20260926"
+      }
+    ],
+    "native_reruns": 0,
+    "run": {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "bd690e9be3933332ba955900d83f16a73a8b975e",
+      "id": 36249587919,
+      "path": ".github/workflows/pr16-research-purchase-20260926.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    "unit_reruns": 0
+  }
 }

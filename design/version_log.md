@@ -7716,3 +7716,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: ローカル新oracle42PASS。今回Actions新unit=0、native process=1、成功時fresh cores=4、guard7、host compile1。ROM変更/ARM compile/link/旧受入再実行0。失敗=[]。finalizeはunit/native/compile再実行0。後続resume/task graph/scoped final-index/diff gate後にcommit。全体歴史private guard成功は主張しない。
 - Commit: source=bd690e9be3933332ba955900d83f16a73a8b975e、同branch非force。自己SHAはgit log。
 - Network: GitHub固定artifact/PR/Actions照合。元ROM/saveは非tracked。受入済み原本・baseline保全。merge/release0。
+
+## 2026-09-26T14:48:52.705352+00:00
+- Timestamp: 2026-09-26T14:48:52.705352+00:00
+- Task: USER-20260926-RESEARCH-PURCHASE / 実Research購入・残高不足の保存境界
+- Version: research-purchase-finalize-v1
+- Status: DONE（限定受入、通常new-game未完）
+- Summary: 実Researchショップの行選択/確認拒否、10RP購入、残高不足拒否と取引直後の独立Continueを受入。通常Saveと続く独立Continue2回も保持。進行/10RP/warpはfixture。
+- Files changed: .github/workflows/pr16-research-purchase-20260926.yml, content/modernization/pr16_native_supply_resume_20260913.json, content/modernization/pr16_research_purchase_checkpoint.json, design/run_log.md, design/version_log.md, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, docs/PR16_RESEARCH_PURCHASE_JA.md, scripts/pr16_research_purchase.py, scripts/pr16_research_purchase_actions.py, tests/test_pr16_research_purchase.py, tools/mgba_pr16_research_purchase.c と限定UTF8証拠。
+- Verify: ローカル新oracle42PASS。今回Actions新unit=0、native process=1、成功時fresh cores=4、guard7、host compile1。ROM変更/ARM compile/link/旧受入再実行0。失敗=[]。finalizeはunit/native/compile再実行0。後続resume/task graph/scoped final-index/diff gate後にcommit。全体歴史private guard成功は主張しない。
+- Commit: source=9f572f23ccf7e38052f21ef12d204950fe9df60a、同branch非force。自己SHAはgit log。
+- Network: GitHub固定artifact/PR/Actions照合。元ROM/saveは非tracked。受入済み原本・baseline保全。merge/release0。
+
+- Diagnosis: docs/PR16_RESEARCH_PURCHASE_DIAGNOSTICS_JA.md sha256=a6ffe416594e8eb0842a9f1f0f68c38517f0e2504338603fcbdd07fbfbd08fdb. 保存後は上向きなので無条件UPが歩行になるdriver原因。ローカル記録済み診断6process/5host compilesは受入試験外、後半5processは購入後cacheを再利用。別のsave attachment失敗1試行とstreaming tool拒否は受入証拠外。旧受入テスト再実行0。今回finalizeのnative/unit/compileは0。

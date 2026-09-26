@@ -12,8 +12,8 @@
 
 ## 原本
 
-run `36249587919` / source `bd690e9be3933332ba955900d83f16a73a8b975e`。status `PASS_NATIVE_PURCHASE_PENDING_TERMINAL`、終端確認 `False`。成功 ['shop-select-purchase-insufficient-save-continue']、失敗 []。manifest `content/modernization/pr16_research_purchase_evidence/36249587919/manifest.json`。過去失敗は `attempt_history` に別identityで保持。一般CIのaction_requiredを全CI成功へ読み替えない。
+run `36249587919` / source `bd690e9be3933332ba955900d83f16a73a8b975e`。status `PASS_NATIVE_PURCHASE_SCOPED`、終端確認 `True`。成功 ['shop-select-purchase-insufficient-save-continue']、失敗 []。manifest `content/modernization/pr16_research_purchase_evidence/36249587919/manifest.json`。過去失敗は `attempt_history` に別identityで保持。一般CIのaction_requiredを全CI成功へ読み替えない。
 
 ## 次工程
 
-まず本runの終端・非force push・uploadを照合する。次は通常new-game→初回Save/Continue。購入/不足native1件・42oracle・旧取消/host49/phase0/V1/retryは影響なしに再実行しない。
+次は通常new-game→初回Save/Continue。購入/不足native1件・42oracle・旧取消/host49/phase0/V1/retryは影響なしに再実行しない。
