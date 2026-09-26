@@ -8,13 +8,13 @@
 
 通常V1 loadの3件を受入。起動先行call誤認とQOLの空/破損混同を修復。破損checksum/tailは全入力とFlashを保持して拒否、正常V1は実保存と2回fresh Continue成功。
 
-**次: まず本record runの終端・push/uploadを照合する。次は通常load内のphase0保存不可境界・回復を限定実装/検証する。その後通常new-game/取引UI。3load/旧26unit/新40unit/7retry/BP/P08/特殊野生は変更影響なく再実行しない。**
+**次: 次は通常load内のphase0保存不可境界・回復を限定実装/検証する。その後通常new-game/取引UI。3load/旧26unit/新40unit/7retry/BP/P08/特殊野生は変更影響なく再実行しない。**
 
 最新候補5d1fc9c4をrecipeで復元し、旧seed/ROM/原本を保全。未受入境界を昇格せず、merge/release/baseline変更禁止。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `33c78f6769104707a79f2ec027e3dff5990bd356`。
+証拠のsource HEAD: `22e9ddad5ff722ea70f7cd1072d69c3354f5e3da`。
 通常V1破損拒否の記録source。自己SHAはgit log参照。
 
 ## 最短の再開手順

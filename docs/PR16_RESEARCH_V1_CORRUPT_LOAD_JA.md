@@ -2,7 +2,7 @@
 
 通常V1 loadの3件を受入。起動先行call誤認とQOLの空/破損混同を修復。破損checksum/tailは全入力とFlashを保持して拒否、正常V1は実保存と2回fresh Continue成功。
 
-まず本record runの終端・push/uploadを照合する。次は通常load内のphase0保存不可境界・回復を限定実装/検証する。その後通常new-game/取引UI。3load/旧26unit/新40unit/7retry/BP/P08/特殊野生は変更影響なく再実行しない。
+次は通常load内のphase0保存不可境界・回復を限定実装/検証する。その後通常new-game/取引UI。3load/旧26unit/新40unit/7retry/BP/P08/特殊野生は変更影響なく再実行しない。
 
 ## 修正
 
@@ -20,4 +20,4 @@ load内phase0保存不可/回復、通常new-game/取引UI、破損拒否後メ�
 
 ## 実行記録
 
-record source `33c78f6769104707a79f2ec027e3dff5990bd356`、run `36240353448`、終端確認 `False`。
+record source `33c78f6769104707a79f2ec027e3dff5990bd356`、run `36240353448`、終端確認 `True`。 finalize run `36240425197`。
