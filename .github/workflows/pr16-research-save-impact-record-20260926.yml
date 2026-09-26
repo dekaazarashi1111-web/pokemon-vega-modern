@@ -19,7 +19,7 @@ jobs:
     env:
       GITHUB_TOKEN: ${{ github.token }}
       PYTHONDONTWRITEBYTECODE: '1'
-      RESEARCH_MODE: record
+      RESEARCH_MODE: finalize
     steps:
       - uses: actions/checkout@v4
         with:
