@@ -10549,3 +10549,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 診断2native/4cores/2host、修正受入2native/3cores/2host、読取utility host1。ARM0。unit初回53PASS+1harness失敗、失敗1のみ修正再実行PASS。写真変更影響回帰1、無変更受入再実行0。Actions native/unit/compile0。全ROM rollback/原本hash/生成C/独立oracleを照合。resume/task graph/index guardは後続stepで検査。
 - Commit: source=470abaaad65fd64246867c3fb25ed69438d29502、同branch非force push、自己SHAはgit log参照。
 - Network: 固定GitHub data取得・runtime metadata参照。新規ROM/save tracked0、baseline/merge/release不変。全CI/自然到達/全活動/全map受入ではない。
+
+## 2026-09-26T16:53:45.548853+00:00
+- Timestamp: 2026-09-26T16:53:45.548853+00:00
+- Task: USER-20260927-PHOTO-VISUAL
+- Version: research-map-view-v1
+- Status: DONE（写真cold表示の限定scope）
+- Summary: 保存view空判定の隣接owner overreadを上限511→255の1byte修正で解消。finalize。
+- Files changed: 1byte recipe/検証Python・C/54tests/原本/checkpoint/guide/固定引継ぎMD・JSON/両ログ。
+- Verify: 診断2native/4cores/2host、修正受入2native/3cores/2host、読取utility host1。ARM0。unit初回53PASS+1harness失敗、失敗1のみ修正再実行PASS。写真変更影響回帰1、無変更受入再実行0。Actions native/unit/compile0。全ROM rollback/原本hash/生成C/独立oracleを照合。resume/task graph/index guardは後続stepで検査。
+- Commit: source=d3c4c3b844f0f145420a0a35d0898e9ee4dc94bd、同branch非force push、自己SHAはgit log参照。
+- Network: 固定GitHub data取得・runtime metadata参照。新規ROM/save tracked0、baseline/merge/release不変。全CI/自然到達/全活動/全map受入ではない。

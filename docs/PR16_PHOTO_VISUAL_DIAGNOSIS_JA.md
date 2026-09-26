@@ -1,6 +1,6 @@
 # PR16 保存view空判定と写真cold表示の修復
 
-PASS_MAP_VIEW_REPAIR_PENDING_TERMINAL
+PASS_MAP_VIEW_REPAIR_SCOPED
 
 次は他5活動の実RP稼得、通常進行によるResearch受付/ショップ接続、残るnative文言。保存view修復後の研究候補26dac23cを専用recipeで復元する。旧候補の写真成功/取消/重複拒否と、新候補の513空判定/clear境界・写真cold表示・54検査は同一入力で再実行しない。自然到達・全活動・全map・releaseは未受入。
 
@@ -26,6 +26,6 @@ nativeは拘束されたmainの末尾PASS直後にreturn0、stderr空。ただ�
 
 ## Actions・原本・残る境界
 
-記録source `470abaaad65fd64246867c3fb25ed69438d29502` / run `36256999619`。`content/modernization/pr16_research_map_view_evidence/36256999619/measurement-reconciliation.json`、`content/modernization/pr16_research_map_view_local_measurement.json`、`content/modernization/pr16_research_map_view_evidence/36256999619/manifest.json`。Actionsでは固定data/全source/生成C/全ROM rollbackと原本oracleを照合し、native/unit/compile再実行0。終端確認: False。旧写真run36253608437の青背景とRP受入原本はそのまま保全し、この後継修復への参照を固定引継ぎに追加する。
+記録source `470abaaad65fd64246867c3fb25ed69438d29502` / run `36256999619`。`content/modernization/pr16_research_map_view_evidence/36256999619/measurement-reconciliation.json`、`content/modernization/pr16_research_map_view_local_measurement.json`、`content/modernization/pr16_research_map_view_evidence/36256999619/manifest.json`。Actionsでは固定data/全source/生成C/全ROM rollbackと原本oracleを照合し、native/unit/compile再実行0。終端確認: True。旧写真run36253608437の青背景とRP受入原本はそのまま保全し、この後継修復への参照を固定引継ぎに追加する。
 
 自然到達、他5活動、通常進行から受付/ショップ、全map/全会話、releaseは未受入。一般CIの既存P03 source pin failure/承認待ちは今回の限定PASSとは別で、全CI成功を主張しない。引継ぎ/両ログ/限定index guardの完了後に同branchへ非force push。

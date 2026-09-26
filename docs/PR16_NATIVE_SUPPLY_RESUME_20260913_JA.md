@@ -6,7 +6,7 @@
 
 ## いまの停止点と次の1手
 
-PASS_MAP_VIEW_REPAIR_PENDING_TERMINAL
+PASS_MAP_VIEW_REPAIR_SCOPED
 
 **次: 次は他5活動の実RP稼得、通常進行によるResearch受付/ショップ接続、残るnative文言。保存view修復後の研究候補26dac23cを専用recipeで復元する。旧候補の写真成功/取消/重複拒否と、新候補の513空判定/clear境界・写真cold表示・54検査は同一入力で再実行しない。自然到達・全活動・全map・releaseは未受入。**
 
@@ -14,7 +14,7 @@ PASS_MAP_VIEW_REPAIR_PENDING_TERMINAL
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `470abaaad65fd64246867c3fb25ed69438d29502`。
+証拠のsource HEAD: `d3c4c3b844f0f145420a0a35d0898e9ee4dc94bd`。
 保存view修復の記録source。native実測はローカルsource hash照合、Actions実測と混同しない。自己SHAはgit log参照。
 
 ## 最短の再開手順
