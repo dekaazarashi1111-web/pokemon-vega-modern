@@ -10505,3 +10505,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 新規86oracle、host1/native1/guard7、ARM0。準備診断compile3/native3、2失敗を保存し専用fixture/videoだけ修正。終端はunit/native/compile0。旧受入ケース再実行0。resume/task graph/限定index guardをcommit前に検査。
 - Commit: 同branch非force push、source=fc23a28595939b617363d36ade2802b6f8b92d33。自己SHAはgit log参照。
 - Network: 接続済みGitHub APIと固定SHA artifactのみ。全体CI成功/releaseは主張しない。ROM/saveは非tracked、active baseline不変。
+
+## 2026-09-26T15:55:45.861217+00:00
+- Timestamp: 2026-09-26T15:55:45.861217+00:00
+- Task: USER-20260927-RESEARCH-PHOTO / 写真実RP稼得
+- Version: research-photo-v1
+- Status: DONE（限定scope）
+- Summary: PASS_PHOTO_PENDING_TERMINAL / measure。0→6RP/同日重複拒否/取引保存2/独立Continueと写真3文言。自然到達/全活動/ショップ接続は未受入。
+- Files changed: 写真validator/native/43検査/Actions/専用MD/JSON/UTF8証拠、固定引継ぎ、両ログ。
+- Verify: 新規43検査、host1/native1（core2）/ARM0、7 guardは同一受入原本再利用。準備compile/native各4、stance2診断と早い画像1を修正。終端は再実行0。resume/task graph/index guardをcommit前に検査。
+- Commit: source=ad71709096c5da19e5bf43e9f4e91b8c47fda35f、同branch非force push。自己SHAはgit log参照。
+- Network: GitHub接続API/固定artifactのみ。ROM/save非tracked、active baseline不変。一般CI既存P03 pin failureは別件、release/mergeなし。
