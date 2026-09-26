@@ -1,6 +1,13 @@
 {
-  "accepted_cases": [],
+  "accepted_cases": [
+    "fishing",
+    "ecology"
+  ],
+  "actions": "content/modernization/pr16_research_wild_local_evidence/actions-36275891559.json",
   "actions_completion_confirmed": false,
+  "active_baseline_changed": false,
+  "all_activities_accepted": false,
+  "all_dialogue_native_display_accepted": false,
   "candidate": {
     "sha256": "26dac23cfdbc02c3c25e357b79dcdf3d247c10d893f54a4f6d6b1227bf5624da",
     "size": 33554432
@@ -8,19 +15,106 @@
   "counts": {
     "accepted_case_reruns": 0,
     "arm_compiles": 0,
-    "guard_processes": 0,
-    "host_compiles": 1,
-    "native_processes": 0,
-    "rom_changes": 0
+    "failed_native_processes": 2,
+    "guard_processes": 7,
+    "interrupted_native_processes": 1,
+    "local_host_compiles": 4,
+    "local_native_processes": 5,
+    "new_scoped_tests": 65,
+    "prior_actions_host_compile_failures": 1,
+    "prior_actions_native_processes": 0,
+    "successful_native_processes": 2
   },
-  "failures": {
-    "preflight": {
-      "reason": "strict new host compile",
-      "type": "ValueError"
+  "daily_cap_native_accepted": false,
+  "development": "content/modernization/pr16_research_wild_local_evidence/development.json",
+  "duplicate_caught_native_accepted": false,
+  "evidence": "content/modernization/pr16_research_wild_local_evidence/input-manifest.json",
+  "native_acceptance": true,
+  "natural_arrival_accepted": false,
+  "original_actions_failure": {
+    "measurement": "content/modernization/pr16_research_wild_evidence/36273917599/measurement.json",
+    "run_id": 36273917599,
+    "source_head": "69cdc31fd2c2f40d5a03c1a44005836ffab580b8"
+  },
+  "previous_record_run_id": null,
+  "proof_bindings": {
+    "content/modernization/pr16_research_wild_local_evidence/actions-36275891559.json": {
+      "sha256": "4bd1612b1310f31be3e27dfb460486c307c19fc9a58de0fbafa0318d13ac8d94",
+      "size": 7123
+    },
+    "content/modernization/pr16_research_wild_local_evidence/development.json": {
+      "sha256": "25de7d5b2eb67aa9b19f9a4bb2cb206b4f07fcf5562b2560274e60380d557359",
+      "size": 37939
+    },
+    "content/modernization/pr16_research_wild_local_evidence/ecology-only-source.diff.txt": {
+      "sha256": "4fbd26255dfbd3b9d9a3362ac095a9359739e3cdd786ea6ff781308acdcea5ad",
+      "size": 1969
+    },
+    "content/modernization/pr16_research_wild_local_evidence/ecology.oracle.json": {
+      "sha256": "3ff9f981c10dff6460ceb194aa876632e3c2069db5baed78da6366ac6905e3a0",
+      "size": 4754
+    },
+    "content/modernization/pr16_research_wild_local_evidence/ecology.stdout.txt": {
+      "sha256": "14a5bfe15c975a236fbbbb32a92b6ceadda79d4540fff6ab9797f423173fdabc",
+      "size": 5733
+    },
+    "content/modernization/pr16_research_wild_local_evidence/fishing-reuse.json": {
+      "sha256": "e84b7b68b2945134adf6e7cf51e2a48986f6fd1434a5ebc17429b9f66a80507a",
+      "size": 322
+    },
+    "content/modernization/pr16_research_wild_local_evidence/fishing-source.c.txt": {
+      "sha256": "1de46d4ebcaaf4f61457b4190b896c731294f0ecf33505b234b7ba2294d3c625",
+      "size": 14669
+    },
+    "content/modernization/pr16_research_wild_local_evidence/fishing.oracle.json": {
+      "sha256": "f847e13bf19b15c525e72b8886394a5b62e1cfd9cb97bc248f4f44fcd2ea23c0",
+      "size": 4753
+    },
+    "content/modernization/pr16_research_wild_local_evidence/fishing.stdout.txt": {
+      "sha256": "622afe7cdc302dffd1dd268af46385f1b3669833cb4b02e6b56cc27c1e6fab70",
+      "size": 5563
+    },
+    "content/modernization/pr16_research_wild_local_evidence/input-manifest.json": {
+      "sha256": "17a9de3d15f997e31994b4574abade49027e7f0e6757d72728c6045ee9b31915",
+      "size": 2807
+    },
+    "content/modernization/pr16_research_wild_local_evidence/source-closure.json": {
+      "sha256": "a79ee7e3f5f92ea49ff7a4ad5615e55abc6a014b90039afa1f580b34d5c5dfa0",
+      "size": 2118
+    },
+    "content/modernization/pr16_research_wild_local_evidence/source-replacement.json": {
+      "sha256": "031702770e0991e87cd3825cf0cd5ab947319e7544fbed71642b6c8032b4dc5e",
+      "size": 829
+    },
+    "content/modernization/pr16_research_wild_local_evidence/unit.json": {
+      "sha256": "1025881714df4e5d2cd3fb17398ff4db6c7074acb19ecc5c017af67b91742bb0",
+      "size": 8014
+    },
+    "content/modernization/pr16_research_wild_local_evidence/visual-review.json": {
+      "sha256": "4a633547f09ead234dd36f49699d6460a3e87a5155aa2d29b8dee0449f8d2f23",
+      "size": 1948
+    },
+    "scripts/pr16_research_wild_capture.py": {
+      "sha256": "ea23053eef60429c648606c164a5d654b12caee41bd3c3f5ef441643ad737db6",
+      "size": 12173
+    },
+    "scripts/pr16_research_wild_local_record.py": {
+      "sha256": "8986e5d43214275dfb1dd848652da7997866443fc92c87975925fbb464f04d77",
+      "size": 19714
+    },
+    "scripts/pr16_research_wild_oracle.py": {
+      "sha256": "b2b5a5e99c8d2f930c1c265970bdd671d4a093d45e05cfb7b8825e6c72d882bd",
+      "size": 9513
+    },
+    "tests/test_pr16_research_wild_oracle.py": {
+      "sha256": "74ff5ce117fa0dc91dc768994e27b3c66b5c8fc142504c36b86a440a799b6bf9",
+      "size": 8008
+    },
+    "tools/mgba_pr16_research_wild.c": {
+      "sha256": "8c14c805e8b0bbeef957e5039ee9e37038648596e78b7cbd49bc5f16018101a6",
+      "size": 15588
     }
   },
-  "measurement": "content/modernization/pr16_research_wild_evidence/36273917599/measurement.json",
-  "native_acceptance": false,
   "protected_bindings": {
     ".github/workflows/pr16-research-new-game-20260926.yml": {
       "sha256": "4df6defd4c99f6e8fff8d5296d7f85f11f2b6cc0bd701fd872b4546c36c9db6e",
@@ -289,10 +383,6 @@
     "content/modernization/pr16_research_map_view_evidence/36256999619/unit-targeted.txt": {
       "sha256": "ef5c38e03114cfe22c839443889fc80fa76cac10c34fa131e888e5641d219c1c",
       "size": 195
-    },
-    "content/modernization/pr16_research_mining_checkpoint.json": {
-      "sha256": "deba65812d2d3f46cd0551eec151ee9dca704271675274b94da727f009a45868",
-      "size": 79226
     },
     "content/modernization/pr16_research_new_game_checkpoint.json": {
       "sha256": "f28ada6f9e7b85c7cf9ac43bde15f2cecd98a35b687c38b6794a106cc85aa415",
@@ -625,10 +715,6 @@
     "content/modernization/pr16_research_purchase_evidence/36249587919/unit.txt": {
       "sha256": "cdca7a8f82ee63b98c948ccd4fd65c454096f1451c9705382f8707792c7d09d8",
       "size": 4259
-    },
-    "content/modernization/pr16_research_remaining_evidence/36273404788/source-contract.json": {
-      "sha256": "07fbbf487bf0a10a8fbb57369f1ec043f0c2b6eb27ac44247f04b9d58530b8f0",
-      "size": 75590
     },
     "content/modernization/pr16_research_retry_checkpoint.json": {
       "sha256": "267b927daf4eadf529ba5e3fdf1259d1fb5b3904cdaf6226adf498fd378af99b",
@@ -1254,10 +1340,6 @@
       "sha256": "23a49e092d0e1d9b0d7321dcd4bfa90504ee199788f817a6ae5d55975fd29c48",
       "size": 14879
     },
-    "scripts/pr16_research_followup_20260927.py": {
-      "sha256": "986246b0de0395cdbe02522190346338b998e21826e453f22f3bae817f80b7cc",
-      "size": 10815
-    },
     "scripts/pr16_research_lifecycle_v2.py": {
       "sha256": "234e9a26bb918a0333b475725256dd3bff4d5866756b4098a54b4daf216e9238",
       "size": 14295
@@ -1334,10 +1416,6 @@
       "sha256": "5aaffa0262d93cf932a79064ac92ae541e58d63a971542aa3048708b0acbc78a",
       "size": 7509
     },
-    "tests/test_pr16_research_followup_20260927.py": {
-      "sha256": "14f3e32efe5c93911f2da81e6b7b0e2c267a90398fbb0a5a71552bef110aad2b",
-      "size": 1830
-    },
     "tests/test_pr16_research_new_game.py": {
       "sha256": "edafcd705a870b5cf34d1e9044a54039813eacaf1ea85ad96a9464a04d623482",
       "size": 6385
@@ -1411,7 +1489,275 @@
       "size": 11530
     }
   },
-  "run_id": 36273917599,
+  "record_execution": {
+    "compiles": 0,
+    "native_processes": 0,
+    "unit_processes": 0
+  },
+  "record_run_id": 36275891559,
+  "record_source_head": "c25a0a0c106131546be173e686946d64e01cd610",
+  "release_ready": false,
+  "remaining_activities": [
+    "GAME_CORNER"
+  ],
+  "results": {
+    "ecology": {
+      "all_activities_accepted": false,
+      "ledger_reconstructions": 4,
+      "method": "ecology",
+      "native_processes": 0,
+      "natural_arrival_accepted": false,
+      "observations": [
+        {
+          "balls": 20,
+          "checksum_valid": true,
+          "counter": 2,
+          "credit_kind": 3,
+          "factory_transaction": 0,
+          "flash_sha256": "434076d0db74c4c5bf1b63e3aa4cc336d17e1f2dbb894160e840c721aa337a38",
+          "frame": 900,
+          "generation": 0,
+          "inventory_sha256": "55114d41264ba5de7acc90bbd7e6c0f55d97780142c642f4ef1f9cb6dab3f0d5",
+          "kind": "snapshot",
+          "ledger_sha256": "e8e09f1668bdba79aa86e47ef892d1ee73d4adbc0c655f5c1c99ef6eef68ad64",
+          "map": [
+            3,
+            63,
+            14,
+            11
+          ],
+          "other_inventory_sha256": "44b370ec6734bc1ae41372033a7f724351124c09d20d042760be125ed999530e",
+          "owner": "01400000000001010000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000",
+          "party_count": 1,
+          "party_sha256": "f704dec75513be9284b505dbc7bd8bd5292acdb4b2e7b4e2dabb409dec28676b",
+          "result": 0,
+          "stage": "fixture",
+          "typed_credit": 0,
+          "unrelated_ledger_sha256": "0fbb6b559a83f3a688bfa0a614ea0f80a64fc28da5d960b8738bb3b26856096d",
+          "wild_armed": 0
+        },
+        {
+          "balls": 20,
+          "checksum_valid": true,
+          "counter": 2,
+          "credit_kind": 3,
+          "factory_transaction": 0,
+          "flash_sha256": "434076d0db74c4c5bf1b63e3aa4cc336d17e1f2dbb894160e840c721aa337a38",
+          "frame": 2526,
+          "generation": 0,
+          "inventory_sha256": "55114d41264ba5de7acc90bbd7e6c0f55d97780142c642f4ef1f9cb6dab3f0d5",
+          "kind": "snapshot",
+          "ledger_sha256": "e8e09f1668bdba79aa86e47ef892d1ee73d4adbc0c655f5c1c99ef6eef68ad64",
+          "map": [
+            3,
+            63,
+            14,
+            11
+          ],
+          "other_inventory_sha256": "44b370ec6734bc1ae41372033a7f724351124c09d20d042760be125ed999530e",
+          "owner": "01400000000001010000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000",
+          "party_count": 1,
+          "party_sha256": "f704dec75513be9284b505dbc7bd8bd5292acdb4b2e7b4e2dabb409dec28676b",
+          "result": 0,
+          "stage": "escaped",
+          "typed_credit": 0,
+          "unrelated_ledger_sha256": "0fbb6b559a83f3a688bfa0a614ea0f80a64fc28da5d960b8738bb3b26856096d",
+          "wild_armed": 0
+        },
+        {
+          "balls": 19,
+          "checksum_valid": true,
+          "counter": 5,
+          "credit_kind": 3,
+          "factory_transaction": 1,
+          "flash_sha256": "16bc31cbff5ecb4d6d7de91da10a884256f10d6c3cb22c58dd2636ccb841340e",
+          "frame": 6788,
+          "generation": 1,
+          "inventory_sha256": "efe49352844e7796684d12ace55234dee9fd6906a68eff803afe0b63853de10e",
+          "kind": "snapshot",
+          "ledger_sha256": "93fc5abbe3a79ac70e210bcad4cd91373e10d5b59fcbeb18d91f7d06af27cbf9",
+          "map": [
+            3,
+            63,
+            14,
+            11
+          ],
+          "other_inventory_sha256": "44b370ec6734bc1ae41372033a7f724351124c09d20d042760be125ed999530e",
+          "owner": "014000000a00010200000a00000000000a0000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000",
+          "party_count": 2,
+          "party_sha256": "957bd69737f9b1b4e81e1ed19084e67ab59d732b9616ffa751fce6a15edf2c66",
+          "result": 0,
+          "stage": "earned",
+          "typed_credit": 1,
+          "unrelated_ledger_sha256": "a233c73e90b24ef7ca291e874f48d9e5466d2e5c32da027f2ed304935c259054",
+          "wild_armed": 0
+        },
+        {
+          "balls": 19,
+          "checksum_valid": true,
+          "counter": 5,
+          "credit_kind": 3,
+          "factory_transaction": 1,
+          "flash_sha256": "16bc31cbff5ecb4d6d7de91da10a884256f10d6c3cb22c58dd2636ccb841340e",
+          "frame": 6788,
+          "generation": 1,
+          "inventory_sha256": "efe49352844e7796684d12ace55234dee9fd6906a68eff803afe0b63853de10e",
+          "kind": "snapshot",
+          "ledger_sha256": "93fc5abbe3a79ac70e210bcad4cd91373e10d5b59fcbeb18d91f7d06af27cbf9",
+          "map": [
+            3,
+            63,
+            14,
+            11
+          ],
+          "other_inventory_sha256": "44b370ec6734bc1ae41372033a7f724351124c09d20d042760be125ed999530e",
+          "owner": "014000000a00010200000a00000000000a0000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000",
+          "party_count": 2,
+          "party_sha256": "957bd69737f9b1b4e81e1ed19084e67ab59d732b9616ffa751fce6a15edf2c66",
+          "result": 0,
+          "stage": "continued",
+          "typed_credit": 1,
+          "unrelated_ledger_sha256": "a233c73e90b24ef7ca291e874f48d9e5466d2e5c32da027f2ed304935c259054",
+          "wild_armed": 0
+        }
+      ],
+      "raw": {
+        "sha256": "14a5bfe15c975a236fbbbb32a92b6ceadda79d4540fff6ab9797f423173fdabc",
+        "size": 5733
+      },
+      "rp": 10,
+      "status": "PASS"
+    },
+    "fishing": {
+      "all_activities_accepted": false,
+      "ledger_reconstructions": 4,
+      "method": "fishing",
+      "native_processes": 0,
+      "natural_arrival_accepted": false,
+      "observations": [
+        {
+          "balls": 20,
+          "checksum_valid": true,
+          "counter": 2,
+          "credit_kind": 0,
+          "factory_transaction": 0,
+          "flash_sha256": "434076d0db74c4c5bf1b63e3aa4cc336d17e1f2dbb894160e840c721aa337a38",
+          "frame": 932,
+          "generation": 0,
+          "inventory_sha256": "eb884d179a715e2bcde8bbe57fd78b2e39ed254a63cedbead6f39539d239458e",
+          "kind": "snapshot",
+          "ledger_sha256": "e8e09f1668bdba79aa86e47ef892d1ee73d4adbc0c655f5c1c99ef6eef68ad64",
+          "map": [
+            3,
+            38,
+            94,
+            10
+          ],
+          "other_inventory_sha256": "b359ffe232165b91cf4c88cadd9b0f4d8f398f0fc988933dacc9ca00e74cb76e",
+          "owner": "01400000000001010000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000",
+          "party_count": 1,
+          "party_sha256": "f704dec75513be9284b505dbc7bd8bd5292acdb4b2e7b4e2dabb409dec28676b",
+          "result": 0,
+          "stage": "fixture",
+          "typed_credit": 0,
+          "unrelated_ledger_sha256": "0fbb6b559a83f3a688bfa0a614ea0f80a64fc28da5d960b8738bb3b26856096d",
+          "wild_armed": 0
+        },
+        {
+          "balls": 20,
+          "checksum_valid": true,
+          "counter": 2,
+          "credit_kind": 0,
+          "factory_transaction": 0,
+          "flash_sha256": "434076d0db74c4c5bf1b63e3aa4cc336d17e1f2dbb894160e840c721aa337a38",
+          "frame": 2573,
+          "generation": 0,
+          "inventory_sha256": "eb884d179a715e2bcde8bbe57fd78b2e39ed254a63cedbead6f39539d239458e",
+          "kind": "snapshot",
+          "ledger_sha256": "e8e09f1668bdba79aa86e47ef892d1ee73d4adbc0c655f5c1c99ef6eef68ad64",
+          "map": [
+            3,
+            38,
+            94,
+            10
+          ],
+          "other_inventory_sha256": "b359ffe232165b91cf4c88cadd9b0f4d8f398f0fc988933dacc9ca00e74cb76e",
+          "owner": "01400000000001010000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000",
+          "party_count": 1,
+          "party_sha256": "f704dec75513be9284b505dbc7bd8bd5292acdb4b2e7b4e2dabb409dec28676b",
+          "result": 0,
+          "stage": "escaped",
+          "typed_credit": 0,
+          "unrelated_ledger_sha256": "0fbb6b559a83f3a688bfa0a614ea0f80a64fc28da5d960b8738bb3b26856096d",
+          "wild_armed": 0
+        },
+        {
+          "balls": 19,
+          "checksum_valid": true,
+          "counter": 5,
+          "credit_kind": 0,
+          "factory_transaction": 1,
+          "flash_sha256": "f4a8de7fd29b3dbd1fc594b6567f8d1e6a2e293c4d093c0198479ff89d480104",
+          "frame": 6893,
+          "generation": 1,
+          "inventory_sha256": "0423fea4a242e06100446a2a30ee128cfa8b3372e776bad21c5282458e9cc5e9",
+          "kind": "snapshot",
+          "ledger_sha256": "4c20778de823b8e948d5d459afa6f036080b1fd89df7df3f4a1e8970b36f5f9c",
+          "map": [
+            3,
+            38,
+            94,
+            10
+          ],
+          "other_inventory_sha256": "b359ffe232165b91cf4c88cadd9b0f4d8f398f0fc988933dacc9ca00e74cb76e",
+          "owner": "01400000040001020000040000000400000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000",
+          "party_count": 2,
+          "party_sha256": "55b6b909d79ee3ad958c0aeea7e8cb81d4e43fc193a3dda95e1a3453027588b7",
+          "result": 0,
+          "stage": "earned",
+          "typed_credit": 1,
+          "unrelated_ledger_sha256": "5b8b839ef17db5ba97457a865ea586105cedeb792732f992c00cb855c3f9ff8f",
+          "wild_armed": 0
+        },
+        {
+          "balls": 19,
+          "checksum_valid": true,
+          "counter": 5,
+          "credit_kind": 0,
+          "factory_transaction": 1,
+          "flash_sha256": "f4a8de7fd29b3dbd1fc594b6567f8d1e6a2e293c4d093c0198479ff89d480104",
+          "frame": 6893,
+          "generation": 1,
+          "inventory_sha256": "0423fea4a242e06100446a2a30ee128cfa8b3372e776bad21c5282458e9cc5e9",
+          "kind": "snapshot",
+          "ledger_sha256": "4c20778de823b8e948d5d459afa6f036080b1fd89df7df3f4a1e8970b36f5f9c",
+          "map": [
+            3,
+            38,
+            94,
+            10
+          ],
+          "other_inventory_sha256": "b359ffe232165b91cf4c88cadd9b0f4d8f398f0fc988933dacc9ca00e74cb76e",
+          "owner": "01400000040001020000040000000400000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000",
+          "party_count": 2,
+          "party_sha256": "55b6b909d79ee3ad958c0aeea7e8cb81d4e43fc193a3dda95e1a3453027588b7",
+          "result": 0,
+          "stage": "continued",
+          "typed_credit": 1,
+          "unrelated_ledger_sha256": "5b8b839ef17db5ba97457a865ea586105cedeb792732f992c00cb855c3f9ff8f",
+          "wild_armed": 0
+        }
+      ],
+      "raw": {
+        "sha256": "622afe7cdc302dffd1dd268af46385f1b3669833cb4b02e6b56cc27c1e6fab70",
+        "size": 5563
+      },
+      "rp": 4,
+      "status": "PASS"
+    }
+  },
+  "schema_version": 1,
+  "shop_connection_accepted": false,
   "source_bindings": {
     ".github/workflows/pr16-research-activities-20260927.yml": {
       "sha256": "9895dbd36928262208ed0b25e702a4cc75330b4c99b5fc7e6b36850736281c93",
@@ -1449,9 +1795,9 @@
       "sha256": "f2738ffbb33f539c7b5ba05995458eccfad8f051dc9e59f3c996b258fb2454c7",
       "size": 2958
     },
-    ".github/workflows/pr16-research-wild-20260927.yml": {
-      "sha256": "db72f01ddfa216d52634f20536fc32eecf95aaa7d245c6d261875bb670a0b4f6",
-      "size": 2198
+    ".github/workflows/pr16-research-wild-local-record-20260927.yml": {
+      "sha256": "0cb96711028d5c3b3af00a76042b29000b86436496777ec4c2501c09a5172435",
+      "size": 5258
     },
     "content/modernization/pr16_research_map_view_controls.json": {
       "sha256": "f70479ae1938889b6acd956eaafc89c6586df0922814bf2b0ae0691be03f67ac",
@@ -1489,9 +1835,29 @@
       "sha256": "f3c12e66256d29b675f1bd4f8e68bd0a90e20eb49b5715b8ecbfbc65aa8b2b90",
       "size": 447424
     },
+    "overlays/qol_production/qol_production_hooks.S": {
+      "sha256": "f98689fe9c02b1345ae63feddc861a9b28fbd35fd8e024b931e88f788f5ac4e5",
+      "size": 9448
+    },
     "overlays/research_economy_v1/research_economy_v1.c": {
       "sha256": "08375e4c9c65f698358b92c4eb1c8439fe5e70e7d7ddd9d17854edce4b58abda",
       "size": 63636
+    },
+    "overlays/reward_encounters_v2/reward_encounters_v2.c": {
+      "sha256": "e4e196f72e74521503e3ddc480c9a43dea277b82abd5c99368f31c3751e1b228",
+      "size": 50932
+    },
+    "overlays/reward_encounters_v2/reward_encounters_v2.h": {
+      "sha256": "a241ea24077d78d67b227112d27f7bd4536d604ef44bdbcf29d7919212b2a6db",
+      "size": 3379
+    },
+    "overlays/save_migration/save_migration.h": {
+      "sha256": "e266c4ec10a3244654837c0f3009b449ccf0e203fe0bfc1c11b319132baadf67",
+      "size": 12497
+    },
+    "overlays/wild_overlay/wild_overlay.c": {
+      "sha256": "5a8b1656e2ba04b56561db8941ebbff3f9fc81abeaa8bd3b9f210b6c8a40cee4",
+      "size": 19700
     },
     "scripts/pr16_research_bug.py": {
       "sha256": "c71d37aaff27720257f82c0920197dfbbdd0e22d52eed53def872781266c64df",
@@ -1601,9 +1967,21 @@
       "sha256": "08f4587aa3598f2be8bc2a1d16e4f44b247029a29b943841995a962b0dc735ca",
       "size": 3391
     },
+    "scripts/pr16_research_wild.py": {
+      "sha256": "b803d633b6b3d10747a54c9bf4c8b8ad32daa099e790dcb848716ef820558b55",
+      "size": 1395
+    },
     "scripts/pr16_research_wild_capture.py": {
-      "sha256": "fed2abfa9ab0170908b8b40bf6841d6ac70e6a7941c37562cb3cdff25ab67306",
-      "size": 12260
+      "sha256": "ea23053eef60429c648606c164a5d654b12caee41bd3c3f5ef441643ad737db6",
+      "size": 12173
+    },
+    "scripts/pr16_research_wild_local_record.py": {
+      "sha256": "8986e5d43214275dfb1dd848652da7997866443fc92c87975925fbb464f04d77",
+      "size": 19714
+    },
+    "scripts/pr16_research_wild_oracle.py": {
+      "sha256": "b2b5a5e99c8d2f930c1c265970bdd671d4a093d45e05cfb7b8825e6c72d882bd",
+      "size": 9513
     },
     "tests/test_pr16_research_bug.py": {
       "sha256": "70e56383cb72742cad1fb205564c7773bc46d408d2df86d92e5be21812dd940c",
@@ -1644,6 +2022,10 @@
     "tests/test_pr16_research_v1_corrupt_load.py": {
       "sha256": "0341b313aec8755390a7c6d79482faee471c345c66ac4e333bde1b7c5ce78b44",
       "size": 5810
+    },
+    "tests/test_pr16_research_wild_oracle.py": {
+      "sha256": "74ff5ce117fa0dc91dc768994e27b3c66b5c8fc142504c36b86a440a799b6bf9",
+      "size": 8008
     },
     "tools/mgba_ai_fixture_runner.c": {
       "sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f",
@@ -1694,15 +2076,25 @@
       "size": 7553
     },
     "tools/mgba_pr16_research_wild.c": {
-      "sha256": "3c3569e9efd23cad9267f09c2c3c081dad2bdb48bf88c035d6213acf26a3cfef",
-      "size": 13362
+      "sha256": "8c14c805e8b0bbeef957e5039ee9e37038648596e78b7cbd49bc5f16018101a6",
+      "size": 15588
     },
     "tools/mgba_qol_production_smoke.c": {
       "sha256": "2c4b9f065f4dce84e48f2be9afe2e2f9f666865088770ee8b068a908a0527b85",
       "size": 149046
+    },
+    "tools/mgba_reward_encounters_v2_smoke.c": {
+      "sha256": "d304374c4391417a8eeb837198c6d759b59661f91d8bb1f14235efbf8ed6d693",
+      "size": 34408
+    },
+    "tools/mgba_stage61_progression_lifecycle_e2e.c": {
+      "sha256": "605b1140a0bfd8fcfbdf18976346155ed43a8be96fdd4e75bb1014793d362fae",
+      "size": 92902
     }
   },
-  "source_head": "69cdc31fd2c2f40d5a03c1a44005836ffab580b8",
-  "status": "STOPPED_RESEARCH_WILD_NATIVE",
-  "task": "USER-20260927-RESEARCH-WILD"
+  "source_head": "c25a0a0c106131546be173e686946d64e01cd610",
+  "status": "PASS_FISHING_ECOLOGY_REAL_EARNING_SCOPED",
+  "task": "USER-20260927-RESEARCH-WILD",
+  "unit": "content/modernization/pr16_research_wild_local_evidence/unit.json",
+  "visual": "content/modernization/pr16_research_wild_local_evidence/visual-review.json"
 }

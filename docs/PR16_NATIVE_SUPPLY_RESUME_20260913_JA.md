@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-STOPPED_RESEARCH_WILD_NATIVE
+PASS_FISHING_ECOLOGY_REAL_EARNING_SCOPED
 
-**次: 研究wild専用Cを実装し、釣り/生態の通常Bag→逃走→捕獲→取引保存Continueを新規実測。失敗原本から未完境界だけ修正する。旧受入済み写真/虫取り/採掘/BP/P08/special-wildケースは再実行しない。ゲームコーナー/通常進行の受付ショップ接続/未確認文言は未完。**
+**次: 釣り0→4RP/生態0→10RPの実稼得・逃走無加算・T24 typed credit併存・取引だけのfresh Continueを限定受入。次はGAME_CORNERの実配当→3RP、通常進行の受付/ショップ接続、残るnative文言。写真/虫取り/採掘/釣り/生態/BP/P08の無変更native再実行は禁止。日内上限・既捕獲種の実経路をこの2caseだけで全受入したと主張しない。**
 
 写真/虫取り/採掘/保存view・元ROM/seed/旧証拠を保全。採掘wild tail/自然再入場・全活動・全mapの過大主張禁止。無変更再実行、merge/release/baseline変更禁止。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `69cdc31fd2c2f40d5a03c1a44005836ffab580b8`。
-研究wild新規実測のsource。自己Actionsの終端と独立oracleは未確認として保存。
+証拠のsource HEAD: `c25a0a0c106131546be173e686946d64e01cd610`。
+釣り/生態の新規ローカル実測を独立oracle/原本hash/65検査で記録するsource。Actions終端は専用項目で別管理。
 
 ## 最短の再開手順
 
@@ -27,10 +27,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 
 - `docs/PR16_RESEARCH_WILD_JA.md`
 - `content/modernization/pr16_research_wild_checkpoint.json`
-- `content/modernization/pr16_research_wild_evidence/36273917599/measurement.json`
-- `tools/mgba_pr16_research_wild.c`
-- `scripts/pr16_research_wild_capture.py`
 - `content/research_economy_v1/canonical_model.json`
+- `overlays/research_economy_v1/research_economy_v1.c`
+- `docs/PR16_RESEARCH_CATALOG_JA.md`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -64,6 +63,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- 釣りlocal#2/生態local#5、候補26dac23cの実稼得4/10RP・逃走・取引保存だけのfresh Continueを限定受入。T24 typed credit1save+T23研究2save、全ledger/Bag/party/Flash、65新検査・10画像。無変更native/旧unit再実行禁止。ゲームコーナー/自然到達/受付接続/未確認native文言は未完。
 - 採掘run36267515706/source8fdda1bb/26dac23cを限定受入。0→10RP・条件不足/取消・取引保存2・独立Continue・fixture再入場cap・4文言、3process/5cores/新64検査。無変更再実行禁止。wild tail/自然再到達/通常接続/全活動は未受入。
 - 虫取りrun36261672837/26dac23cは実NPC0→8RP・取消・条件不足・重複拒否・取引保存2・独立Continue・4文言を受入。新規51検査、2process/3cores、ROM/ARM0。旧ローカル未保存原本の件数はunknown。無変更再実行禁止、自然到達/全活動へ昇格しない。
 - 保存view修復26dac23cは513空判定/clear512byteと写真cold地形/台詞を専用checkpointで受入。54unitは初回53成功+訂正1成功。無変更再実行禁止。旧5d1fc9c4の青背景記録は歴史原本で、後継受入と混同しない。
@@ -338,6 +338,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-native実測失敗/成功と一般CIを分離。自己runの終端は後続で確認。
+専用実測成功/過去compile failure/一般CI/自己記録終端を区別。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

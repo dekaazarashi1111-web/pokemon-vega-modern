@@ -18,7 +18,7 @@ TASK='USER-20260927-RESEARCH-WILD'
 SELF='scripts/pr16_research_wild_capture.py'
 C='tools/mgba_pr16_research_wild.c'
 WF='.github/workflows/pr16-research-wild-20260927.yml'
-CODE={SELF,C,WF}
+CODE={SELF,C,WF,'scripts/pr16_research_wild.py'}
 CP='content/modernization/pr16_research_wild_checkpoint.json'
 GUIDE='docs/PR16_RESEARCH_WILD_JA.md'
 MINING='content/modernization/pr16_research_mining_checkpoint.json'
@@ -36,7 +36,7 @@ def measure():
     tracked=d.git('ls-files').decode().splitlines()
     need(not [p for p in tracked if p.endswith('/AGENTS.md') and p.split('/')[0] in ('scripts','tools','tests','content','docs','design')],'nested rule review')
     if Path(CP).exists():
-        prior=d.read(CP);need(not prior.get('actions_completion_confirmed',False),'accepted research wild may not rerun')
+        prior=d.read(CP);need(not prior.get('actions_completion_confirmed',False) and not prior.get('native_acceptance',False),'accepted research wild may not rerun')
     sources=d.bindings(set(cp['source_bindings'])|CODE)
     protected=d.bindings(set(cp['protected_bindings'])|{MINING,'scripts/pr16_research_followup_20260927.py','tests/test_pr16_research_followup_20260927.py','content/modernization/pr16_research_remaining_evidence/36273404788/source-contract.json'})
     result=dict(schema_version=1,task=TASK,source_head=os.environ['GITHUB_SHA'],run_id=int(os.environ['GITHUB_RUN_ID']),source_bindings=sources,protected_bindings=protected,candidate=b.CANDIDATE,cases={},failures={},
@@ -50,9 +50,9 @@ def measure():
         candidate,_=corrupt.apply(candidate,bytes.fromhex(recipe['after'])[:corrupt.CODE['size']]);candidate,reconstruction=view.apply(candidate)
         need(identity(candidate)==b.CANDIDATE,'unchanged candidate reconstruction')
         fixture,receipt=b.photo.fixture(seed);result.update(fixture=receipt,runtime_artifacts=artifacts,reconstruction=reconstruction)
-        rom=OUT/'candidate.gba';rom.write_bytes(candidate);source=b.generate(seed).decode();token='int main(int argc,char**argv){'
-        need(source.count(token)==1,'one inherited main, never executed')
-        source=source.replace(token,'int accepted_bug_main(int argc,char**argv){')+'\n'+Path(C).read_text()
+        rom=OUT/'candidate.gba';rom.write_bytes(candidate)
+        import pr16_research_wild as native
+        source=native.generate(seed).decode()
         code=OUT/'runner.c';code.write_text(source);exe=OUT/'runner'
         command=['cc','-std=c11','-O2','-Wall','-Wextra','-Werror','-Wno-misleading-indentation','-Itools','-I.','-I'+str(runtime/'include'),str(code),'-L'+str(runtime/'lib'),'-lmgba','-lm','-Wl,--allow-shlib-undefined','-o',str(exe)]
         result['counts']['host_compiles']=1;p=subprocess.run(command,capture_output=True,timeout=120)

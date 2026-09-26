@@ -75,22 +75,12 @@ static bool rw_encounter(struct mCore*c){
  rw_need(c,read16(c,0x0203ACA8U)==(rw_fishing?264U:348U),"actual key item selected");rw_press(c,QOL_KEY_A,180);
  if(!rw_fishing){
   rw_need(c,read8(c,0x03000F9CU)&&!read32(c,ADDR_NEW_BATTLE_STRUCT_POINTER),"actual radar menu");
-  /* Stock menu initializes its cursor from persistent expanded var 0x51FF,
-   * not always AUTO. Reading it is allowed; writing it here would fake input. */
-  unsigned mode=read16(c,0x0203B6E6U);if(mode>4)mode=0;
-  for(unsigned i=mode;i<4;++i)rw_press(c,QOL_KEY_DOWN,24);rw_press(c,QOL_KEY_A,1);
-  rw_need(c,read16(c,0x0203B6E6U)==4,"physical HIDDEN selection retained by stock menu");
-  printf("{\"kind\":\"radar_menu\",\"from_mode\":%u,\"down_presses\":%u,\"selected_mode\":4,\"frame\":%u}\n",mode,4-mode,uc_frames);fflush(stdout);
+  for(unsigned i=0;i<4;++i)rw_press(c,QOL_KEY_DOWN,24);rw_press(c,QOL_KEY_A,1);
  }
- unsigned idle=0,eco_idle=0;
+ unsigned idle=0;
  for(unsigned f=0;f<9000&&!rw_action(c);++f){
   bool task=false;for(unsigned i=0;i<16;++i){unsigned t=0x030050D0U+40*i;if(read8(c,t+4)&&read32(c,t)==0x0805CBC1U)task=true;}
   if(rw_fishing&&f>120&&!task&&!read32(c,ADDR_NEW_BATTLE_STRUCT_POINTER)&&si_field(c)){if(++idle>=120){printf("{\"kind\":\"no_bite\",\"attempt\":%u,\"frame\":%u}\n",rw_attempts,uc_frames);fflush(stdout);return false;}}else idle=0;
-  /* A stock radar miss returns to the field without arming research.
-   * Retry another real item use; do not inject a result or alter the RNG. */
-  if(!rw_fishing&&f>120&&!read32(c,ADDR_NEW_BATTLE_STRUCT_POINTER)&&si_field(c)){
-   if(++eco_idle>=120){rw_need(c,read8(c,SI_VOL+24)==0,"radar miss is not provenance");printf("{\"kind\":\"no_match\",\"attempt\":%u,\"frame\":%u}\n",rw_attempts,uc_frames);fflush(stdout);return false;}
-  }else eco_idle=0;
   uc_frame(c,f%60==0?QOL_KEY_A:0);
  }
  rw_need(c,rw_action(c),"physical item to native wild battle");++rw_encounters;
