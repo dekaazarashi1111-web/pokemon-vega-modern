@@ -7694,3 +7694,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: source=48a89d3c2afcbd5475a6e6f058dc8d1e27e2aa50、同branch非force。自己SHAはgit log。
 - Network: GitHub固定artifact/Actions API。私有入力は.localのみ、新規tracked binary0。merge/release/active baseline変更0。
 - Input followup: 初回36246971189はfailure保持。新driver入力seam変更のみ。20oracleは原本再利用/再実行0、旧native原本はimmutable prefix付き証拠。
+
+## 2026-09-26T14:31:07.277691+00:00
+- Timestamp: 2026-09-26T14:31:07.277691+00:00
+- Task: USER-20260926-RESEARCH-PURCHASE / 実Research購入・残高不足の保存境界
+- Version: research-purchase-measure-v1
+- Status: STOPPED（新native失敗原本保存）
+- Summary: 実Researchショップ購入の新driverは未受入。停止原本を保存し、成功済みoracle42は同一依存なら再利用する。
+- Files changed: .github/workflows/pr16-research-purchase-20260926.yml, content/modernization/pr16_native_supply_resume_20260913.json, content/modernization/pr16_research_purchase_checkpoint.json, design/run_log.md, design/version_log.md, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, docs/PR16_RESEARCH_PURCHASE_JA.md, scripts/pr16_research_purchase.py, scripts/pr16_research_purchase_actions.py, tests/test_pr16_research_purchase.py, tools/mgba_pr16_research_purchase.c と限定UTF8証拠。
+- Verify: ローカル新oracle42PASS。今回Actions新unit=42、native process=1、成功時fresh cores=4、guard7、host compile1。ROM変更/ARM compile/link/旧受入再実行0。失敗=['shop-select-purchase-insufficient-save-continue']。finalizeはunit/native/compile再実行0。後続resume/task graph/scoped final-index/diff gate後にcommit。全体歴史private guard成功は主張しない。
+- Commit: source=b15e08f07e58fe0e924efc1136ea5f3beea99cec、同branch非force。自己SHAはgit log。
+- Network: GitHub固定artifact/PR/Actions照合。元ROM/saveは非tracked。受入済み原本・baseline保全。merge/release0。

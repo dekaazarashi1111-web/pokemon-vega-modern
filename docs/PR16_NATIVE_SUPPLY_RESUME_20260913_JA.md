@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-実ResearchショップのB取消/末尾取消と通常Save→独立Continue2回を受入。進行・100RP・stock warpはfixture、購入/new-game全体は未受入。
+実Researchショップ購入の新driverは未受入。停止原本を保存し、成功済みoracle42は同一依存なら再利用する。
 
-**次: 次は通常new-game→初回Save/Continueと実ショップの選択/購入/不足/保存境界。取消2経路/native1件/新oracle20件、host49件、既受入phase0/V1/retryは影響なしに再実行しない。**
+**次: 専用checkpointの失敗原本と実停止を先に読む。最小原因修正後、未完nativeだけを再開し、受入済み取消や旧host/ARMは再実行しない。**
 
-取消のnative受入を購入/new-game/自然進行へ拡張しない。受入反復/merge/release/baseline変更禁止。
+catalog0の実購入だけの受入を全catalog/自然進行/new-gameへ拡張しない。未完nativeを先に読む。受入反復/merge/release/baseline変更禁止。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `48a89d3c2afcbd5475a6e6f058dc8d1e27e2aa50`。
-実ショップ取消の実行/終端記録source。自己SHAはgit log。
+証拠のsource HEAD: `b15e08f07e58fe0e924efc1136ea5f3beea99cec`。
+実ショップ購入の実行/終端記録source。自己SHAはgit log。
 
 ## 最短の再開手順
 
@@ -25,15 +25,14 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_RESEARCH_SHOP_CANCEL_JA.md`
+- `docs/PR16_RESEARCH_PURCHASE_JA.md`
+- `content/modernization/pr16_research_purchase_checkpoint.json`
+- `scripts/pr16_research_purchase.py`
+- `scripts/pr16_research_purchase_actions.py`
+- `tools/mgba_pr16_research_purchase.c`
 - `content/modernization/pr16_research_shop_cancel_checkpoint.json`
-- `scripts/pr16_research_shop_cancel.py`
-- `scripts/pr16_research_shop_cancel_actions.py`
-- `tools/mgba_pr16_research_shop_cancel.c`
-- `content/modernization/pr16_research_ui_boundary_checkpoint.json`
 - `overlays/research_economy_v1/research_economy_v1.c`
 - `overlays/qol_production/qol_production.c`
-- `scripts/pr16_research_shop_cancel_followup.py`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -334,6 +333,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-限定native取消のみ。一般CI action_requiredは別状態。
+scoped原本だけを判定。記録中runの最終結論を自己確定しない。一般CIは別状態。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
