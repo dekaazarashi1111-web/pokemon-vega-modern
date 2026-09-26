@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-通常cold boot/ContinueのV1移行・破損拒否3ケースを測定。成功 0 / 3。
+通常V1 loadの成功 0 / 3 と測定run終端 failure を原本確認。記録時のnative/unit/compile再実行0。
 
-**次: まず本測定runの終端とpush/upload結果を照合する。失敗した v1-load-checksum, v1-load-tail, v1-load-valid の原本とload chainを最初に切り分ける。成功case/26unit/ARM/同一core再試行7caseは影響なく再実行しない。**
+**次: 失敗した v1-load-checksum, v1-load-tail, v1-load-valid の原本とload chainを最初に切り分ける。成功case/26unit/ARM/同一core再試行7caseは影響なく再実行しない。**
 
 候補58079dfbとsource/原本hashを保持。未成功loadを受入へ昇格しない。既存原本/ROM/save/baselineは保全し、merge/release禁止。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `af1065f42eb965dacb26060a22595ed3f85a3adb`。
+証拠のsource HEAD: `81983f058ffd7929e78c752db6bb76c9eb245682`。
 V1通常load記録source。自己commit SHAはgit log参照。
 
 ## 最短の再開手順

@@ -1,8 +1,8 @@
 # PR16 V1実保存の通常ロード
 
-通常cold boot/ContinueのV1移行・破損拒否3ケースを測定。成功 0 / 3。
+通常V1 loadの成功 0 / 3 と測定run終端 failure を原本確認。記録時のnative/unit/compile再実行0。
 
-まず本測定runの終端とpush/upload結果を照合する。失敗した v1-load-checksum, v1-load-tail, v1-load-valid の原本とload chainを最初に切り分ける。成功case/26unit/ARM/同一core再試行7caseは影響なく再実行しない。
+失敗した v1-load-checksum, v1-load-tail, v1-load-valid の原本とload chainを最初に切り分ける。成功case/26unit/ARM/同一core再試行7caseは影響なく再実行しない。
 
 ## 検証境界
 
@@ -14,4 +14,4 @@
 
 ## 実行と記録
 
-source `af1065f42eb965dacb26060a22595ed3f85a3adb`、run `36237653594`。26unit、host compile1、guard7、native3。終端記録は全再実行0。受入: 。失敗: v1-load-checksum, v1-load-tail, v1-load-valid。終端確認: False。候補 `58079dfbdbe15899d9b86f53ad3a21fe46ddcebf5fed231c85dcd2332ddd2d75`。
+source `af1065f42eb965dacb26060a22595ed3f85a3adb`、run `36237653594`。26unit、host compile1、guard7、native3。終端記録は全再実行0。受入: 。失敗: v1-load-checksum, v1-load-tail, v1-load-valid。終端確認: True。候補 `58079dfbdbe15899d9b86f53ad3a21fe46ddcebf5fed231c85dcd2332ddd2d75`。

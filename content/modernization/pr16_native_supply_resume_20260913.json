@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "通常cold boot/ContinueのV1移行・破損拒否3ケースを測定。成功 0 / 3。",
+    "current_stop": "通常V1 loadの成功 0 / 3 と測定run終端 failure を原本確認。記録時のnative/unit/compile再実行0。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "まず本測定runの終端とpush/upload結果を照合する。失敗した v1-load-checksum, v1-load-tail, v1-load-valid の原本とload chainを最初に切り分ける。成功case/26unit/ARM/同一core再試行7caseは影響なく再実行しない。",
+    "next_step": "失敗した v1-load-checksum, v1-load-tail, v1-load-valid の原本とload chainを最初に切り分ける。成功case/26unit/ARM/同一core再試行7caseは影響なく再実行しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -4162,7 +4162,7 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "まず本測定runの終端とpush/upload結果を照合する。失敗した v1-load-checksum, v1-load-tail, v1-load-valid の原本とload chainを最初に切り分ける。成功case/26unit/ARM/同一core再試行7caseは影響なく再実行しない。",
+    "goal_ja": "失敗した v1-load-checksum, v1-load-tail, v1-load-valid の原本とload chainを最初に切り分ける。成功case/26unit/ARM/同一core再試行7caseは影響なく再実行しない。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
     "id": "RESEARCH_V1_LOAD_DIAGNOSE_NEXT",
     "read_paths": [
@@ -4180,15 +4180,15 @@
     "stop_rule_ja": "候補58079dfbとsource/原本hashを保持。未成功loadを受入へ昇格しない。既存原本/ROM/save/baselineは保全し、merge/release禁止。"
   },
   "observed_date_jst": "2026-09-25",
-  "observed_head": "af1065f42eb965dacb26060a22595ed3f85a3adb",
+  "observed_head": "81983f058ffd7929e78c752db6bb76c9eb245682",
   "observed_head_checks": {
     "reason_ja": "V1通常load専用run。全CI成功ではない。",
     "runs": [
       {
-        "conclusion": null,
+        "conclusion": "failure",
         "head_sha": "af1065f42eb965dacb26060a22595ed3f85a3adb",
         "id": 36237653594,
-        "status": "in_progress"
+        "status": "completed"
       }
     ],
     "scope_head": "af1065f42eb965dacb26060a22595ed3f85a3adb"
@@ -5857,7 +5857,7 @@
   },
   "research_v1_normal_load": {
     "accepted_cases": [],
-    "actions_completion_confirmed": false,
+    "actions_completion_confirmed": true,
     "candidate": {
       "sha256": "58079dfbdbe15899d9b86f53ad3a21fe46ddcebf5fed231c85dcd2332ddd2d75",
       "size": 33554432
@@ -5869,7 +5869,7 @@
     ],
     "path": "content/modernization/pr16_research_v1_load_checkpoint.json",
     "run_id": 36237653594,
-    "status": "PARTIAL_V1_LOAD_PENDING_TERMINAL"
+    "status": "PARTIAL_V1_LOAD_RECORDED"
   },
   "retained_fixed_form_accepted_case_count": 5,
   "reward_route_audit": {
@@ -6974,8 +6974,8 @@
       "size": 3236
     },
     ".github/workflows/pr16-research-v1-load-20260926.yml": {
-      "sha256": "010ada8796b7c8637ccdf4402a1429de58b944d2fa8f68a9e2e8258d30ebf689",
-      "size": 2635
+      "sha256": "cff0b4f4c941b16c010f9b6877de33f02ab82b8f5dcd46e3419c186d0f8fd08d",
+      "size": 4113
     },
     ".github/workflows/pr16-ring-audio-boundary-contracts.yml": {
       "sha256": "fc9400ca2de465cfbeeadcf7b7d7db4ca6497320bf966bd086c1ecf22d530a11",
@@ -8226,8 +8226,8 @@
       "size": 10809
     },
     "content/modernization/pr16_research_v1_load_checkpoint.json": {
-      "sha256": "e6c8f49be05f06d17cf847b7eefa4a0c069c74c4aa8c9e9b0ca9a07be811ac47",
-      "size": 20326
+      "sha256": "a266b70724c23e992c554453ee75325da5474d77bf58c8e8f8196135d9edc6be",
+      "size": 20549
     },
     "content/modernization/pr16_ring_audio_boundary_contracts.json": {
       "sha256": "61de96a6afd25c699b0dcb3cbd27d2b113b540ba53b609f641aea34434ac09d2",
@@ -9034,8 +9034,8 @@
       "size": 7658
     },
     "docs/PR16_RESEARCH_V1_LOAD_JA.md": {
-      "sha256": "fb8672647c451b7d2b7df84abef419d48a8df87b6c9b82128a5872f3b6b67ac1",
-      "size": 1921
+      "sha256": "f8c19d1a8e69f4c65856af79d5d9c96e6d968b18303a89408e9ef2183d2b464f",
+      "size": 1886
     },
     "docs/PR16_SPECIAL_WILD_JA.md": {
       "sha256": "0f5cf639c0a587063a143e845cf5e3d3f925c0d7fe1d485c7ee65faea4303fb3",
