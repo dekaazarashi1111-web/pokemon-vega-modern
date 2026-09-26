@@ -1,11 +1,13 @@
 # 特殊野生: 通常操作検証
 
-特殊野生の通常UI準備: PASS_SAVED_CANDIDATE_UI_INPUT_BINDING_NOT_GAMEPLAY。直接7process/8callは保持。通常取得/捕獲/保存は未受入。
+特殊野生通常UI: STOPPED_SPECIAL_WILD_UI_WITH_NATIVE_EVIDENCE。成功=[]、失敗={'fishing': {'message': 'native process failed', 'returncode': 1, 'timed_out': False}, 'hidden': {'message': 'native process failed', 'returncode': 1, 'timed_out': False}}。開始fixture/実取得は区別。
 
-Issue19: 保存済み0205af9b候補と特殊野生UI準備checkpointを再利用し、map3/38の通常釣竿・map3/63のスキャナーから特殊個体捕獲→通常Save→fresh Continueを検証する。地形/道具bindingは実取得受入ではない。7host書込み禁止、開始fixtureと観測を分離し、旧直接7process/8call・旧受入・ARMは再実行しない。
+Issue19: 特殊野生の通常UI checkpointの失敗原本を確認し、未成功caseだけ修復する。生態レーダーはROM生成ID348でありcatalogのITEM_KEY_SCANNER278とは別。捕獲/通常Save/fresh Continueの全条件が揃うまで昇格しない。保存候補0205af9b・前準備・直接7process/8call・旧受入は再実行しない。map3/19除外130行は変更しない。
 
-候補 `0205af9bd2d92b1b3303195ab0cc84e5ea0f3de390ade15d9f8ce42a6dcdd1a0`。保存8byte recipeのみ適用し、全候補hash/rollbackを照合する。地形のbehaviorは数値観測であり、釣り可否/到達成功を推測しない。
+生態レーダーID348の通常隠しメニューと、すごいつりざお264が対象。前準備のcatalog scanner278は通常隠しUIのownerではない。前準備原本は不変。
 
-開始map/party/item/flag/RNGはfixture。通常釣竿/スキャナーUI→特殊個体捕獲→通常Save/fresh Continueは別native証拠が必要。map3/19の130行は改作しない。
+初期map/lead/item/unlock/research/RNGだけfixture。観測区間は7host APIを遮断し、CPU読取りとキーだけを使う。特殊setter/4slot/PP/捕獲100byte/保存200byte・全inventoryを照合する。
 
-run `36218655601` / source `8660fe70f4354333cf7647186663cacafa04451b`。失敗: `None`。
+最新run `36219826803` / source `52daffc8fae043674bc0405df8fe296c1fcfbd61` / failure `None`。
+
+原本: `content/modernization/pr16_special_wild_ui_checkpoint.json`。全Actions完了は同run実行中の自己証明をしない。release/Issue19/baseline切替なし。

@@ -1,0 +1,145 @@
+{
+  "accepted_case_reruns": 0,
+  "actions_completion_confirmed": false,
+  "active_baseline_changed": false,
+  "arm_compiles": 0,
+  "candidate": {
+    "sha256": "0205af9bd2d92b1b3303195ab0cc84e5ea0f3de390ade15d9f8ce42a6dcdd1a0",
+    "size": 33554432
+  },
+  "capture_save_continue_accepted": false,
+  "failure": null,
+  "failures": {
+    "fishing": {
+      "message": "native process failed",
+      "returncode": 1,
+      "timed_out": false
+    },
+    "hidden": {
+      "message": "native process failed",
+      "returncode": 1,
+      "timed_out": false
+    }
+  },
+  "gameplay_accepted": false,
+  "guard_processes": 7,
+  "host_compiles": 1,
+  "issue19_complete": false,
+  "native_processes": 2,
+  "new_unit_tests": 22,
+  "preparation_receipt": {
+    "artifact": {
+      "digest": "sha256:7d3de78d4e852583eb35551076021630c1343aa623e91fe1529d73f4cf1471ed",
+      "id": 10898510128,
+      "name": "pr16-special-wild-gameplay-data",
+      "size_in_bytes": 17366330
+    },
+    "conclusion": "success",
+    "reflected_head": "699b07459ea48a02d381e16f5228aebda8da33c8",
+    "run": 36218655601,
+    "source_head": "8660fe70f4354333cf7647186663cacafa04451b",
+    "status": "completed"
+  },
+  "protected_bindings": {
+    "config/active_play_baseline.json": {
+      "sha256": "4800257add049ea99cdedda91413a70a255dcff9a85823463596edefa8785053",
+      "size": 394
+    },
+    "content/modernization/pr16_special_wild_bound_checkpoint.json": {
+      "sha256": "a723a9195d461bed309a3d0d9f389d780cff064d74487f3b0be518e281a6236e",
+      "size": 57646
+    },
+    "content/modernization/pr16_special_wild_bound_completed_actions.json": {
+      "sha256": "82fdc85813398e5a7b5224319f3350b485053a118fd7528bc2200d5a302561d1",
+      "size": 4604
+    },
+    "content/modernization/pr16_special_wild_gameplay_checkpoint.json": {
+      "sha256": "5ef94c1629ffcd612ceea48b8e990596798a2d1333e21f2b0653c7e4d8b3ba0b",
+      "size": 14279
+    }
+  },
+  "release_ready": false,
+  "results": {},
+  "reused_cases": [],
+  "rom_changes": 0,
+  "run_id": 36219826803,
+  "schema_version": 1,
+  "source_bindings": {
+    ".github/workflows/pr16-special-wild-gameplay-20260926.yml": {
+      "sha256": "6f91f266d395a0eb59b8b0c88b9b0312c4dab762a09b596c06fb2cb7dbbc3f2c",
+      "size": 3788
+    },
+    "scripts/pr16_special_wild_gameplay_native.py": {
+      "sha256": "d2e99d7dac787753557061cfb7070fbde10f5592b736c02b1551e8867506343e",
+      "size": 18889
+    },
+    "tests/test_pr16_special_wild_gameplay_native.py": {
+      "sha256": "bf7e72c9bcd43beae31e50eb425d763bc620e55c9ece1a3e1d4442deb3c05d6d",
+      "size": 5659
+    },
+    "tools/mgba_ai_fixture_runner.c": {
+      "sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f",
+      "size": 36272
+    },
+    "tools/mgba_battle_core_smoke.c": {
+      "sha256": "ed9875695ca60c61960685ac2f8e810a183c8eedd703e56545d67bde3df5cf24",
+      "size": 94688
+    },
+    "tools/mgba_modernization_p02_stage71_acceptance_smoke.c": {
+      "sha256": "4e543fa815ca030e74522b5d0f1455fd5074035d10f044aab3bdfd41d7319c3b",
+      "size": 39669
+    },
+    "tools/mgba_modernization_p03_archive_ui_e2e.c": {
+      "sha256": "ccaeed858b70ea0af53a999dbaae121a8b85c88c08522755dc800e24e159b467",
+      "size": 20154
+    },
+    "tools/mgba_modernization_p03_fullslots_e2e.c": {
+      "sha256": "f419ff2fffaf175061012dfb5dfc25d18c70a86d15c9ca89f5d5e6c886965ffa",
+      "size": 12868
+    },
+    "tools/mgba_modernization_p03_learning_e2e.c": {
+      "sha256": "154e277ef3f37b0037a7082b154805b658742f476eaf52abeb8c0ffb27a2742d",
+      "size": 7987
+    },
+    "tools/mgba_pr16_learnset_battle.c": {
+      "sha256": "6f0665441256b1f42468a65f146bc927654edd5e655d49cdaa3e60081741a999",
+      "size": 13452
+    },
+    "tools/mgba_pr16_shop_routes.c": {
+      "sha256": "16eda36fade0e8ef0ec3dc0b45b22c9776969f557aedc6ac25f1b65ffc09848c",
+      "size": 10000
+    },
+    "tools/mgba_pr16_special_wild_gameplay.c": {
+      "sha256": "c1d7f1a8760a056698c041bd689d5795bb50a861428cc18cd29bc2b43e9f5436",
+      "size": 13574
+    },
+    "tools/mgba_qol_production_smoke.c": {
+      "sha256": "2c4b9f065f4dce84e48f2be9afe2e2f9f666865088770ee8b068a908a0527b85",
+      "size": 149046
+    }
+  },
+  "source_head": "52daffc8fae043674bc0405df8fe296c1fcfbd61",
+  "status": "STOPPED_SPECIAL_WILD_UI_WITH_NATIVE_EVIDENCE",
+  "task": "USER-20260926-SPECIAL-WILD-UI",
+  "ui_items": {
+    "catalog_correction": "preparation.items.hidden=278 はカタログidentityだけ。通常隠し遭遇のownerは生成生態レーダー348。旧原本は改変せず本bindingで区別。",
+    "fishing": {
+      "field_callback": 134882829,
+      "id": 264,
+      "row": {
+        "sha256": "59586fa7bb1776f1837148325cfc93cbf82a1778eb9b22dd8d36ab26904cd240",
+        "size": 40
+      },
+      "row_offset": 17103432
+    },
+    "hidden": {
+      "field_callback": 153223649,
+      "id": 348,
+      "row": {
+        "sha256": "92e0969cdf8f0600202ed6f8164b3f686b1e42c490298a70bdb5ce5d9948b154",
+        "size": 40
+      },
+      "row_offset": 17106792
+    }
+  }
+}

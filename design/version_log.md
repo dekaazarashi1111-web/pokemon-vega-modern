@@ -7437,3 +7437,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 新規unit 18、保存replay 1、native/ARM/受入再実行0。failure=None。resume/task graph/final index限定guard後のみcommit。
 - Commit: 本記録を含む同branch非force commit。自己SHAはgit logで照合。
 - Network: GitHub固定Actions/保存artifactのみ。ROM/saveは非tracked artifactのみ。全履歴private guardのPASSは主張しない。
+
+## 2026-09-26T05:08:03.507893+00:00
+- Timestamp: 2026-09-26T05:08:03.507893+00:00
+- Task: USER-20260926-SPECIAL-WILD-UI / 通常特殊野生の捕獲・保存経路
+- Version: special-wild-ui-v1
+- Status: STOPPED（未受入経路のnative原本を保存）
+- Summary: STOPPED_SPECIAL_WILD_UI_WITH_NATIVE_EVIDENCE。catalog278と実UI348を分離し、通常Bag/メニュー・捕獲・Save/fresh Continueを実装。
+- Verify: 新規unit=22、guard=7、native=2、再利用=[]、成功=[]、失敗={'fishing': {'message': 'native process failed', 'returncode': 1, 'timed_out': False}, 'hidden': {'message': 'native process failed', 'returncode': 1, 'timed_out': False}}、failure=None。ARM/ROM変更/旧受入再実行0。
+- Files changed: 専用C/Python/unit/workflow、checkpoint/UTF8原本、固定引継ぎMD/JSON、guide、両ログ。
+- Commit: 本記録の同branch非force commit。自己SHAはgit logで照合。resume/task graph/index限定guard後のみ反映。
+- Network: GitHub固定Actions/保存data artifactのみ。ROM/save/画像は非tracked artifact。全履歴private guardのPASSは主張しない。
