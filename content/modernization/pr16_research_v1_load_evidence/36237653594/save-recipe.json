@@ -1,0 +1,33 @@
+{
+  "active_baseline_changed": false,
+  "affected_acceptance_not_inherited": [
+    "research persistence transactions on the new candidate"
+  ],
+  "after": "61763709",
+  "arm_compiles": 0,
+  "before": "95763709",
+  "candidate": {
+    "sha256": "23d584095f7bc0691e1582da447d6cd9a389d8698e061ea2de9f6eac03b63f48",
+    "size": 33554432
+  },
+  "canonical_config": "config/research_economy_v1.json",
+  "changed_bytes": 1,
+  "context_sha256": "d4e3f4d9b2045d1faee4fe9e4d31098e2d165ab7a43e7a54c8f2db8af4f6a014",
+  "new_delegate": "VegaQolProduction_TrySavingDataAdapter",
+  "offset": 20706940,
+  "old_delegate": "VegaQolProduction_SaveLoadAdapter",
+  "outside_declared_changes": 0,
+  "parent": {
+    "sha256": "0205af9bd2d92b1b3303195ab0cc84e5ea0f3de390ade15d9f8ce42a6dcdd1a0",
+    "size": 33554432
+  },
+  "rollback_verified": true,
+  "schema_version": 1,
+  "scope": "ResearchEconomy.persist_phase shared earn/spend/rank/recovery save delegate; not only wild",
+  "unaffected_code": [
+    "wild generation",
+    "special move setter",
+    "manual save handler",
+    "save load handler bodies"
+  ]
+}

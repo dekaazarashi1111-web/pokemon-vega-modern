@@ -10299,3 +10299,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 測定は29unit（canonical stub host compile1含む）、ARM compile1/link1、native runner host compile1、guard7/native7。終端記録は全て再実行0。旧候補diagnosticはローカル1process/1core/host compile1を原本再利用。ローカルC縮小検討compile5attemptとtask thunk組立1は受入ではない。影響なしの旧18/BP/P08/特殊野生native再実行0。最終index/限定guard、resume check/task graph後のみcommit。
 - Commit: 同branch非force push。source=b10679ec15ab175a5c03d0bcef08149f199ec307、自己SHAはgit log参照。
 - Network: 固定GitHub artifactとUbuntu toolchain配布のみ。ROM/save/binaryは非tracked、保全path不変。
+
+## 2026-09-26T11:04:19.046756+00:00
+- Timestamp: 2026-09-26T11:04:19.046756+00:00
+- Task: USER-20260926-RESEARCH-V1-LOAD
+- Version: research-v1-load-v1
+- Status: PARTIAL_V1_LOAD_PENDING_TERMINAL（限定scope、未受入境界はguide参照）
+- Summary: 通常cold boot/ContinueのV1移行・破損拒否3ケースを測定。成功 0 / 3。
+- Files changed: V1 fixture/oracle/26tests、通常load runner/Actions、原本/checkpoint、専用guide、固定引継ぎMD/JSON、両ログ。
+- Verify: 測定26unit/host compile1/guard7/native3、既存188byte recipeをhash照合して再利用（ARM compile/link0、ROM変更0）。終端記録はunit/host/ARM/native全0。BP/P08/特殊野生/旧18取引/再試行7受入のnative再実行0。最終resume/task graph/index限定guard/diff-check後にcommit。失敗はfailed_casesと原本のまま保持。
+- Commit: 同branch非force、source=af1065f42eb965dacb26060a22595ed3f85a3adb、自己SHAはgit log参照。
+- Network: 固定GitHub artifactだけ。私有seed/元ZIP保全。新規toolchain配布なし。

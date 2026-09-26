@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-同一core再試行3ケースと影響限定4controlを受入。測定run全step/push/uploadのsuccessを原本確認。今回のnative/unit/compile再実行0。
+通常cold boot/ContinueのV1移行・破損拒否3ケースを測定。成功 0 / 3。
 
-**次: 未検証のV1通常load adapterを進める。失敗ケースがある場合はその原本と原因だけを先に扱う。受入済み再試行/29unit/旧18取引/BP/P08/特殊野生は影響なしに再実行しない。**
+**次: まず本測定runの終端とpush/upload結果を照合する。失敗した v1-load-checksum, v1-load-tail, v1-load-valid の原本とload chainを最初に切り分ける。成功case/26unit/ARM/同一core再試行7caseは影響なく再実行しない。**
 
-固定候補/source/原本hashを保持。旧候補の受入を新候補へ再ラベルしない。失敗と未実行を成功へ昇格しない。merge/release/baseline変更禁止。
+候補58079dfbとsource/原本hashを保持。未成功loadを受入へ昇格しない。既存原本/ROM/save/baselineは保全し、merge/release禁止。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `b10679ec15ab175a5c03d0bcef08149f199ec307`。
-再試行記録source。自己commit SHAはgit log参照。BP/P08履歴とは別scope。
+証拠のsource HEAD: `af1065f42eb965dacb26060a22595ed3f85a3adb`。
+V1通常load記録source。自己commit SHAはgit log参照。
 
 ## 最短の再開手順
 
@@ -25,13 +25,15 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_RESEARCH_RETRY_JA.md`
+- `docs/PR16_RESEARCH_V1_LOAD_JA.md`
+- `content/modernization/pr16_research_v1_load_checkpoint.json`
+- `content/modernization/pr16_research_v1_load_evidence/36237653594/measurement.json`
+- `content/modernization/pr16_research_v1_load_evidence/36237653594/fixtures.json`
+- `scripts/pr16_research_v1_load_actions.py`
+- `tools/mgba_pr16_research_v1_load.c`
+- `scripts/pr16_research_v1_load.py`
 - `content/modernization/pr16_research_retry_checkpoint.json`
 - `content/modernization/pr16_research_retry_recipe.json`
-- `content/modernization/pr16_research_retry_local_diagnostic.json`
-- `scripts/pr16_research_retry_actions.py`
-- `tools/mgba_pr16_research_retry.c`
-- `scripts/pr16_research_retry.py`
 - `overlays/research_economy_v1/research_economy_v1.c`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
@@ -333,6 +335,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-再試行専用runだけ。全CI成功の主張ではない。
+V1通常load専用run。全CI成功ではない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
