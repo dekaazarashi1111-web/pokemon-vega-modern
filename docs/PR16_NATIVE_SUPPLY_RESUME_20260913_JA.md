@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-共有研究保存の16取引境界と容量拒否2件、Bag容量delegate誤接続2byte修正を受入。記録Actions終端成功を確認済み。
+研究保存初期化/V1 RAM移行の5ケースと15fresh coreを受入。次はphase0実失敗とV1 load adapter。成功済み5件/旧18境界/unit22は再実行しない。通常new-game/取引UI・全catalog・map3/19除外130行は別の未完境界。
 
-**次: 共有研究取引の18境界とBag誤接続修正を受入。earn8件は実行候補23d58409を保持し2byte差分証明で限定適用、spend/rank10件は4aee03e8。再実行しない。次は保存新規初期化/V1移行とphase0失敗の未検証影響範囲を限定検証する。通常取引UI/全catalogは未受入。map3/19除外130行も未確定。**
+**次: 研究保存初期化/V1 RAM移行の5ケースと15fresh coreを受入。次はphase0実失敗とV1 load adapter。成功済み5件/旧18境界/unit22は再実行しない。通常new-game/取引UI・全catalog・map3/19除外130行は別の未完境界。**
 
-固定候補identityと実行候補別の受入範囲を保持。fixture/scheduler実サービス試験を通常取引UI受入に昇格しない。既受入18件と特殊野生2件・BP/P08は影響がなければ再実行しない。新規/V1移行・phase0失敗・map3/19除外130行の未完を隠さず、merge/release/baseline変更をしない。
+同一候補とsource/原本bindingを保持。RAMサービス試験を通常UI/new-game/V1保存loadへ昇格しない。phase!=0の既存故障flagをphase0故障と扱わない。既受入nativeの再実行禁止。merge/release/baseline切替禁止。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `fb44f475d954b200f9a7ffdddc90f4b2a137ca92`。
-研究保存限定記録工程のsource HEAD。自己commit SHAはgit logで確認する。正式BP/P08の実行HEAD/candidateとは別であり置換しない。
+証拠のsource HEAD: `60f2ae1f8db456a357b45d570c59860ea7a3e7d2`。
+今回記録source HEAD。native測定は専用checkpointの17871a2b/run36234024026、自己commitはgit logで照合。
 
 ## 最短の再開手順
 
@@ -25,12 +25,10 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_RESEARCH_SAVE_IMPACT_JA.md`
-- `content/modernization/pr16_research_save_impact_checkpoint.json`
-- `scripts/pr16_research_save_impact_record.py`
-- `scripts/pr16_research_save_impact.py`
-- `scripts/pr16_research_bag_delegate.py`
-- `scripts/pr16_research_save_delegate.py`
+- `docs/PR16_RESEARCH_LIFECYCLE_JA.md`
+- `content/modernization/pr16_research_lifecycle_checkpoint.json`
+- `scripts/pr16_research_lifecycle_record.py`
+- `tools/mgba_pr16_research_lifecycle.c`
 - `overlays/research_economy_v1/research_economy_v1.c`
 - `config/research_economy_v1.json`
 
@@ -333,6 +331,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-修正後native run36229762846は10件成功。元run36229142708はearn8成功/item8失敗のfailureを維持。記録runの終端は専用receiptで確定する。source-validation/P03等のaction_required・未完了を成功に読み替えず、全CI成功は主張しない。
+native5件はPASS、元runは末尾空白diff check failureを保持。記録成功と全CI成功を区別する。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

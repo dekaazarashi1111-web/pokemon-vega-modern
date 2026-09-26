@@ -1,0 +1,10 @@
+{
+  "encoding": "utf-8",
+  "original_binding": {
+    "sha256": "2f7bcdd48fc82b35e147b9f78653df3f28fb324ccfa31dcd17ad4a4c0c637fe8",
+    "size": 823
+  },
+  "original_name": "previous-compile.stderr.txt",
+  "schema_version": 1,
+  "text": "In file included from tools/mgba_qol_production_smoke.c:7,\n                 from tools/mgba_pr16_research_save_impact.c:9,\n                 from tools/mgba_pr16_research_lifecycle.c:5:\ntools/mgba_battle_core_smoke.c:12: error: \"main\" redefined [-Werror]\n   12 | #define main t01_ai_fixture_bundled_entry_point\n      | \ntools/mgba_pr16_research_lifecycle.c:4: note: this is the location of the previous definition\n    4 | #define main research_impact_legacy_main\n      | \ntools/mgba_pr16_research_lifecycle.c:36:5: error: redefinition of ‘main’\n   36 | int main(int argc,char**argv){\n      |     ^~~~\ntools/mgba_pr16_research_save_impact.c:133:5: note: previous definition of ‘main’ with type ‘int(int,  char **)’\n  133 | int main(int argc,char**argv){\n      |     ^~~~\ncc1: all warnings being treated as errors\n"
+}

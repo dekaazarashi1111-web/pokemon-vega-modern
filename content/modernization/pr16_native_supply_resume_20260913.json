@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "共有研究保存の16取引境界と容量拒否2件、Bag容量delegate誤接続2byte修正を受入。記録Actions終端成功を確認済み。",
+    "current_stop": "研究保存初期化/V1 RAM移行の5ケースと15fresh coreを受入。次はphase0実失敗とV1 load adapter。成功済み5件/旧18境界/unit22は再実行しない。通常new-game/取引UI・全catalog・map3/19除外130行は別の未完境界。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "共有研究取引の18境界とBag誤接続修正を受入。earn8件は実行候補23d58409を保持し2byte差分証明で限定適用、spend/rank10件は4aee03e8。再実行しない。次は保存新規初期化/V1移行とphase0失敗の未検証影響範囲を限定検証する。通常取引UI/全catalogは未受入。map3/19除外130行も未確定。",
+    "next_step": "研究保存初期化/V1 RAM移行の5ケースと15fresh coreを受入。次はphase0実失敗とV1 load adapter。成功済み5件/旧18境界/unit22は再実行しない。通常new-game/取引UI・全catalog・map3/19除外130行は別の未完境界。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -4162,102 +4162,35 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "共有研究取引の18境界とBag誤接続修正を受入。earn8件は実行候補23d58409を保持し2byte差分証明で限定適用、spend/rank10件は4aee03e8。再実行しない。次は保存新規初期化/V1移行とphase0失敗の未検証影響範囲を限定検証する。通常取引UI/全catalogは未受入。map3/19除外130行も未確定。",
+    "goal_ja": "研究保存初期化/V1 RAM移行の5ケースと15fresh coreを受入。次はphase0実失敗とV1 load adapter。成功済み5件/旧18境界/unit22は再実行しない。通常new-game/取引UI・全catalog・map3/19除外130行は別の未完境界。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
-    "id": "RESEARCH_SAVE_PHASE0_IMPACT",
+    "id": "RESEARCH_PHASE0_FAILURE_AND_LOAD_NEXT",
     "read_paths": [
-      "docs/PR16_RESEARCH_SAVE_IMPACT_JA.md",
-      "content/modernization/pr16_research_save_impact_checkpoint.json",
-      "scripts/pr16_research_save_impact_record.py",
-      "scripts/pr16_research_save_impact.py",
-      "scripts/pr16_research_bag_delegate.py",
-      "scripts/pr16_research_save_delegate.py",
+      "docs/PR16_RESEARCH_LIFECYCLE_JA.md",
+      "content/modernization/pr16_research_lifecycle_checkpoint.json",
+      "scripts/pr16_research_lifecycle_record.py",
+      "tools/mgba_pr16_research_lifecycle.c",
       "overlays/research_economy_v1/research_economy_v1.c",
       "config/research_economy_v1.json"
     ],
-    "stop_rule_ja": "固定候補identityと実行候補別の受入範囲を保持。fixture/scheduler実サービス試験を通常取引UI受入に昇格しない。既受入18件と特殊野生2件・BP/P08は影響がなければ再実行しない。新規/V1移行・phase0失敗・map3/19除外130行の未完を隠さず、merge/release/baseline変更をしない。"
+    "stop_rule_ja": "同一候補とsource/原本bindingを保持。RAMサービス試験を通常UI/new-game/V1保存loadへ昇格しない。phase!=0の既存故障flagをphase0故障と扱わない。既受入nativeの再実行禁止。merge/release/baseline切替禁止。"
   },
   "observed_date_jst": "2026-09-25",
-  "observed_head": "fb44f475d954b200f9a7ffdddc90f4b2a137ca92",
+  "observed_head": "60f2ae1f8db456a357b45d570c59860ea7a3e7d2",
   "observed_head_checks": {
-    "previous_failed_runs": [
-      {
-        "conclusion": "failure",
-        "id": 36228964902
-      },
-      {
-        "accepted_earn_cases": 8,
-        "conclusion": "failure",
-        "failed_item_cases_retained": 8,
-        "id": 36229142708
-      },
-      {
-        "conclusion": "failure",
-        "failure_stage": "private guard; push skipped",
-        "id": 36230558876
-      }
-    ],
-    "reason_ja": "修正後native run36229762846は10件成功。元run36229142708はearn8成功/item8失敗のfailureを維持。記録runの終端は専用receiptで確定する。source-validation/P03等のaction_required・未完了を成功に読み替えず、全CI成功は主張しない。",
-    "record_head": "fb44f475d954b200f9a7ffdddc90f4b2a137ca92",
-    "record_head_runs": [
-      {
-        "conclusion": null,
-        "head_sha": "fb44f475d954b200f9a7ffdddc90f4b2a137ca92",
-        "id": 36231117847,
-        "name": "source-validation",
-        "path": ".github/workflows/ci.yml",
-        "status": "in_progress"
-      },
-      {
-        "conclusion": null,
-        "head_sha": "fb44f475d954b200f9a7ffdddc90f4b2a137ca92",
-        "id": 36231117924,
-        "name": "p03-forgetting-ci",
-        "path": ".github/workflows/p03-forgetting-ci.yml",
-        "status": "in_progress"
-      },
-      {
-        "conclusion": null,
-        "head_sha": "fb44f475d954b200f9a7ffdddc90f4b2a137ca92",
-        "id": 36231114319,
-        "name": "pr16-research-save-impact-record-20260926",
-        "path": ".github/workflows/pr16-research-save-impact-record-20260926.yml",
-        "status": "in_progress"
-      },
-      {
-        "conclusion": null,
-        "head_sha": "fb44f475d954b200f9a7ffdddc90f4b2a137ca92",
-        "id": 36231114299,
-        "name": "Stage79 runtime boundary audit",
-        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
-        "status": "in_progress"
-      },
-      {
-        "conclusion": null,
-        "head_sha": "fb44f475d954b200f9a7ffdddc90f4b2a137ca92",
-        "id": 36231114361,
-        "name": "source-validation",
-        "path": ".github/workflows/ci.yml",
-        "status": "in_progress"
-      },
-      {
-        "conclusion": null,
-        "head_sha": "fb44f475d954b200f9a7ffdddc90f4b2a137ca92",
-        "id": 36231114276,
-        "name": "p03-forgetting-ci",
-        "path": ".github/workflows/p03-forgetting-ci.yml",
-        "status": "in_progress"
-      }
-    ],
+    "reason_ja": "native5件はPASS、元runは末尾空白diff check failureを保持。記録成功と全CI成功を区別する。",
     "runs": [
       {
-        "conclusion": "success",
-        "head_sha": "9cb7ca0a7699fd49f1e217cf8204fea682d5dbb8",
-        "id": 36229762846,
+        "conclusion": "failure",
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "17871a2bb5701a547594cd11b0ece35382ff0748",
+        "id": 36234024026,
+        "path": ".github/workflows/pr16-research-lifecycle-v2-20260926.yml",
+        "run_attempt": 1,
         "status": "completed"
       }
     ],
-    "scope_head": "9cb7ca0a7699fd49f1e217cf8204fea682d5dbb8"
+    "scope_head": "17871a2bb5701a547594cd11b0ece35382ff0748"
   },
   "observed_head_history": [
     {
@@ -5611,7 +5544,7 @@
       "semantics": "PLA1圧縮と新規供給consumerのhost検証成功入力HEAD。ROM配置/実操作/記録commitの受入ではない。"
     }
   ],
-  "observed_head_semantics": "研究保存限定記録工程のsource HEAD。自己commit SHAはgit logで確認する。正式BP/P08の実行HEAD/candidateとは別であり置換しない。",
+  "observed_head_semantics": "今回記録source HEAD。native測定は専用checkpointの17871a2b/run36234024026、自己commitはgit logで照合。",
   "p08_candidate_impact": {
     "candidate": {
       "crc32": "CC068B4A",
@@ -5873,6 +5806,23 @@
       "run_id": 36231114319,
       "source_head": "fb44f475d954b200f9a7ffdddc90f4b2a137ca92"
     }
+  },
+  "research_save_lifecycle": {
+    "accepted_cases": [
+      "new-zero",
+      "new-erased",
+      "v1-valid",
+      "v1-bad-checksum",
+      "v1-nonzero-tail"
+    ],
+    "actions_completion_confirmed": false,
+    "candidate": {
+      "sha256": "4aee03e8ec0135efa52d8d2b41edf61637ddc65e4be9f1a0b60a2e1c23dbefe7",
+      "size": 33554432
+    },
+    "path": "content/modernization/pr16_research_lifecycle_checkpoint.json",
+    "run_id": 36234024026,
+    "status": "PASS_INITIAL_LIFECYCLE_5_SCOPED"
   },
   "retained_fixed_form_accepted_case_count": 5,
   "reward_route_audit": {
@@ -6943,6 +6893,18 @@
     ".github/workflows/pr16-research-hatch-terminal-20260925.yml": {
       "sha256": "38b44c9e6ee938604d34f74288081312eb74d1b9b7e421e7161c123c91e8955d",
       "size": 3530
+    },
+    ".github/workflows/pr16-research-lifecycle-20260926.yml": {
+      "sha256": "10801a389f2a21f1174f6f31d9afed61a7f9bb09ba38d467aae98e0b8a79c0df",
+      "size": 3028
+    },
+    ".github/workflows/pr16-research-lifecycle-record-20260926.yml": {
+      "sha256": "66c8f961a95f8714d8896411c28ad55a0d3b00e033617a989336124a1c3aa8ef",
+      "size": 2726
+    },
+    ".github/workflows/pr16-research-lifecycle-v2-20260926.yml": {
+      "sha256": "9d0786d1f53a88b5fa86dd0daf04200f2b439d937a08e4a81446966e1bfd88bf",
+      "size": 3004
     },
     ".github/workflows/pr16-research-save-impact-20260926.yml": {
       "sha256": "27fe320908a435283e7dd02a2eebf7bb80b112cc5f32abff1ab3d9e93b4c7603",
@@ -8180,6 +8142,10 @@
       "sha256": "3075da81e215bdd67eb033f6417c368aa424db95d34ca726c877edfdb51c3aba",
       "size": 259029
     },
+    "content/modernization/pr16_research_lifecycle_checkpoint.json": {
+      "sha256": "566d4a0b1cf40201423a2e71391583d70d7fc0e0c47541c94b802eb47c37e394",
+      "size": 5859
+    },
     "content/modernization/pr16_research_save_impact_checkpoint.json": {
       "sha256": "7fad32c544c8aae20401665934c19b4e7ac6e3a712bd885dbd4c35afbc0aef13",
       "size": 10809
@@ -8971,6 +8937,10 @@
     "docs/PR16_RESEARCH_HATCH_JA.md": {
       "sha256": "0c0f7336745c506ee93c4147fbc86e1aa413a0ef19f65e7983c00f203406d450",
       "size": 4323
+    },
+    "docs/PR16_RESEARCH_LIFECYCLE_JA.md": {
+      "sha256": "57bd5edfca927a88ac75895deda48c71a14949be791be2c534454ec4f0db2fb1",
+      "size": 1422
     },
     "docs/PR16_RESEARCH_SAVE_IMPACT_JA.md": {
       "sha256": "f1481163aba7ba0cf0bfc396895c9a9ccf7058fb4f65dd06842fb13fd4dd1afe",
@@ -13344,6 +13314,26 @@
       "sha256": "ee66d3b3d4cda3f14f7287c92933f783a5461b4c680014b4d72299c0914592f6",
       "size": 19025
     },
+    "scripts/pr16_research_lifecycle.py": {
+      "sha256": "eea83b47fa1b5549b504e63a10327f30ccc3fc332e403ecf4b7bd4a8c1f03ec7",
+      "size": 4705
+    },
+    "scripts/pr16_research_lifecycle_actions.py": {
+      "sha256": "98777603d976b7f08811c3bb5921418a884a69e6ad0b8abeae11a2c188edf136",
+      "size": 18178
+    },
+    "scripts/pr16_research_lifecycle_publication.py": {
+      "sha256": "cb8170fbe3da9196dd78ffa0d4dbabe876f3e17d209cc393dfe6c2b2c5846040",
+      "size": 3495
+    },
+    "scripts/pr16_research_lifecycle_record.py": {
+      "sha256": "f1ebe0bcf443c725a6459aae978ec3ab0dac25dae4bc22fc92b9ac3f19858de1",
+      "size": 12340
+    },
+    "scripts/pr16_research_lifecycle_v2.py": {
+      "sha256": "234e9a26bb918a0333b475725256dd3bff4d5866756b4098a54b4daf216e9238",
+      "size": 14295
+    },
     "scripts/pr16_research_public_evidence.py": {
       "sha256": "85f29aedeeda14a5d216366dfb3300e8470809e2be006887976f5eee07f13619",
       "size": 6053
@@ -14688,6 +14678,14 @@
       "sha256": "0e1840a6ef7f17cc359724c90c4926d91b71adad46cabb9e3f140db07f91c0f5",
       "size": 5342
     },
+    "tests/test_pr16_research_lifecycle.py": {
+      "sha256": "2db44c1820c292d41a641f1cde2154865954a7bb36d600462b141f9f204cb0fa",
+      "size": 4549
+    },
+    "tests/test_pr16_research_lifecycle_record.py": {
+      "sha256": "6b7980c9c4678efa0bbdb7b08db508fdb49691116f24cd6fb6d977640aca4f74",
+      "size": 2152
+    },
     "tests/test_pr16_research_public_evidence.py": {
       "sha256": "2ec09ed98b29e11c794358b33b8e10c3a79fb61a6812475cc28c97161ab419cf",
       "size": 3722
@@ -15603,6 +15601,10 @@
     "tools/mgba_pr16_research_hatch.c": {
       "sha256": "29df9f752ec1e183334f7ec6f928088f51c5f48c7ff96c2985a4daca93f84055",
       "size": 7327
+    },
+    "tools/mgba_pr16_research_lifecycle.c": {
+      "sha256": "76672efe0c466ea1816a67e36662206734cb008116586cb2f1b632d273289a0f",
+      "size": 5759
     },
     "tools/mgba_pr16_research_save_impact.c": {
       "sha256": "b57e58a94f208f6f3ce8418b850d9cd03de203c12bb73a0cd0cdf6fb7968b78f",
