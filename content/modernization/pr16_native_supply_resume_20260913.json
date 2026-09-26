@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "特殊野生通常UI: STOPPED_SPECIAL_WILD_UI_WITH_NATIVE_EVIDENCE。成功=[]、失敗={'fishing': {'message': 'native process failed', 'returncode': 1, 'timed_out': False}, 'hidden': {'message': 'native process failed', 'returncode': 1, 'timed_out': False}}。開始fixture/実取得は区別。",
+    "current_stop": "特殊野生通常UI 2/2受入。研究保存delegateの誤loadをsaveへ修正。記録復旧runの終端待ち。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "Issue19: 特殊野生の通常UI checkpointの失敗原本を確認し、未成功caseだけ修復する。生態レーダーはROM生成ID348でありcatalogのITEM_KEY_SCANNER278とは別。捕獲/通常Save/fresh Continueの全条件が揃うまで昇格しない。保存候補0205af9b・前準備・直接7process/8call・旧受入は再実行しない。map3/19除外130行は変更しない。",
+    "next_step": "通常UI2件の成功原本は記録復旧済み。次は記録復旧Actionsの終端成功を確認しfinalizeのみ実行する。native/旧unit/ARMは再実行しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -4162,15 +4162,15 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "Issue19: 特殊野生の通常UI checkpointの失敗原本を確認し、未成功caseだけ修復する。生態レーダーはROM生成ID348でありcatalogのITEM_KEY_SCANNER278とは別。捕獲/通常Save/fresh Continueの全条件が揃うまで昇格しない。保存候補0205af9b・前準備・直接7process/8call・旧受入は再実行しない。map3/19除外130行は変更しない。",
+    "goal_ja": "通常UI2件の成功原本は記録復旧済み。次は記録復旧Actionsの終端成功を確認しfinalizeのみ実行する。native/旧unit/ARMは再実行しない。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
-    "id": "SPECIAL_WILD_UI_CAPTURE_SAVE",
+    "id": "SPECIAL_WILD_UI_TERMINAL",
     "read_paths": [
       "docs/PR16_SPECIAL_WILD_GAMEPLAY_JA.md",
       "content/modernization/pr16_special_wild_ui_checkpoint.json",
-      "scripts/pr16_special_wild_gameplay_native.py",
-      "tools/mgba_pr16_special_wild_gameplay.c",
-      "content/modernization/pr16_special_wild_bound_checkpoint.json"
+      "scripts/pr16_special_wild_ui_finish.py",
+      "scripts/pr16_research_save_delegate.py",
+      "config/research_economy_v1.json"
     ],
     "stop_rule_ja": "特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。"
   },
@@ -7485,8 +7485,8 @@
       "size": 4296
     },
     ".github/workflows/pr16-special-wild-gameplay-20260926.yml": {
-      "sha256": "6f91f266d395a0eb59b8b0c88b9b0312c4dab762a09b596c06fb2cb7dbbc3f2c",
-      "size": 3788
+      "sha256": "374bcff49134d36582477d4444c0667ed84f038094c13a51820b4fe251e035a1",
+      "size": 3925
     },
     ".github/workflows/pr16-special-wild-repair-20260925.yml": {
       "sha256": "1f7d60297f914bcadeddf60b62612d9ae49037ab91ffa9192a859be17d2b4088",
@@ -7495,6 +7495,10 @@
     ".github/workflows/pr16-special-wild-table-audit-20260925.yml": {
       "sha256": "dff944da362db99430317fdd8902cd8fee62108a7e6bafaf271f7648cb21d2e3",
       "size": 7632
+    },
+    ".github/workflows/pr16-special-wild-ui-finish-20260926.yml": {
+      "sha256": "0ecd581e5058a4676bd196946c2f1dd150be963efa8cb2e95159dd4286036210",
+      "size": 3049
     },
     ".github/workflows/pr16-streak-record.yml": {
       "sha256": "257165114d76e6d1b9ea1c633c918a297ab4a32a6cfce9f5e7788b2b77d074be",
@@ -7565,7 +7569,7 @@
       "size": 8618
     },
     "config/research_economy_v1.json": {
-      "sha256": "206b9b4392e8d5a9e2b499a80e229d66b6a07fe3018a3b27254a2bc2fb7bf5f0",
+      "sha256": "7e92079158303a125358ae6fa49c231f6085b2ca0a335d5f0e8bb6c55db2ed8d",
       "size": 9388
     },
     "config/save_layout.csv": {
@@ -13252,6 +13256,10 @@
       "sha256": "ee66d3b3d4cda3f14f7287c92933f783a5461b4c680014b4d72299c0914592f6",
       "size": 19025
     },
+    "scripts/pr16_research_save_delegate.py": {
+      "sha256": "ed64cc810b7ad05da32b68827d96e54e39eeb04d8eeb65302f07a4ef54676474",
+      "size": 3372
+    },
     "scripts/pr16_restore_cfru_snapshot.py": {
       "sha256": "5b8bc2069f12fd6513ed2b8424de48043a71515e419d208087885d7066c2a202",
       "size": 8213
@@ -13869,8 +13877,8 @@
       "size": 16550
     },
     "scripts/pr16_special_wild_gameplay_native.py": {
-      "sha256": "d2e99d7dac787753557061cfb7070fbde10f5592b736c02b1551e8867506343e",
-      "size": 18889
+      "sha256": "aa8cc4927e892f1eb5756d750558a1ff72d54ca76f20ab653bd3d573e751585d",
+      "size": 21785
     },
     "scripts/pr16_special_wild_header_binding.py": {
       "sha256": "21d7a965662abca9d035cddce6fe2f132f4756d793d5b31eb57270b6d4bb8b65",
@@ -13879,6 +13887,10 @@
     "scripts/pr16_special_wild_repair.py": {
       "sha256": "bad1f646dcedd54c142cf35083d85da82fe24f3a0154b231c36f063d2653305c",
       "size": 29798
+    },
+    "scripts/pr16_special_wild_ui_finish.py": {
+      "sha256": "f9ff9256642b8516f24ce6bac9a57b2be5c08be82ef29cd6a387517355243e60",
+      "size": 13887
     },
     "scripts/pr16_streak_archive.py": {
       "sha256": "41e2d084249788a7c516c23b5713f1b07205568a619026c44cc0f3a3473f7d2d",
@@ -14576,6 +14588,10 @@
       "sha256": "0e1840a6ef7f17cc359724c90c4926d91b71adad46cabb9e3f140db07f91c0f5",
       "size": 5342
     },
+    "tests/test_pr16_research_save_delegate.py": {
+      "sha256": "61563f70109a9d3509eec19696941654257810be4cddbcea81b19c18961a697d",
+      "size": 3169
+    },
     "tests/test_pr16_restore_cfru_snapshot.py": {
       "sha256": "b0b743783966fe8af3b6a058ef367bf86560fa3a8728dbdc7e0cd44d38a14771",
       "size": 6311
@@ -15177,8 +15193,8 @@
       "size": 5090
     },
     "tests/test_pr16_special_wild_gameplay_native.py": {
-      "sha256": "bf7e72c9bcd43beae31e50eb425d763bc620e55c9ece1a3e1d4442deb3c05d6d",
-      "size": 5659
+      "sha256": "863d761a8ff1e1cb2f0b9418b6fb68e427a30f44c03cd61a8f354f377d7bb126",
+      "size": 6287
     },
     "tests/test_pr16_special_wild_header_binding.py": {
       "sha256": "648b82787d4e4c7bc0df1b0bd97a4e8341cff9bb2eb2b3965aa8af477dac2637",
@@ -15187,6 +15203,10 @@
     "tests/test_pr16_special_wild_repair.py": {
       "sha256": "09af617760d8ccbaa94c1c40377f39592681746cfb90b24a9d596990f0dca590",
       "size": 8330
+    },
+    "tests/test_pr16_special_wild_ui_finish.py": {
+      "sha256": "eda3d0186aee42487baf8ccefa3943e200692b4137902176c1eed7da1d27b977",
+      "size": 1466
     },
     "tests/test_pr16_streak_record.py": {
       "sha256": "9a5853b9d1376cd1e7ae837c38293cf614e2b83ece15ba4da49c375ac7287e5e",
@@ -15493,8 +15513,8 @@
       "size": 7221
     },
     "tools/mgba_pr16_special_wild_gameplay.c": {
-      "sha256": "c1d7f1a8760a056698c041bd689d5795bb50a861428cc18cd29bc2b43e9f5436",
-      "size": 13574
+      "sha256": "5ec4ed2fd3c66ffe46429d8da9a6cc0da7ff2349adb8f2cc8ea81c119c018024",
+      "size": 13950
     },
     "tools/mgba_qol_production_smoke.c": {
       "sha256": "2c4b9f065f4dce84e48f2be9afe2e2f9f666865088770ee8b068a908a0527b85",
@@ -15559,29 +15579,64 @@
     "source_head": "821f5338ff05fb405c6e32f1c01eef3681803901"
   },
   "special_wild_ui": {
-    "accepted_cases": [],
+    "accepted_cases": [
+      "fishing",
+      "hidden"
+    ],
+    "actions_completion_confirmed": false,
     "candidate": {
-      "sha256": "0205af9bd2d92b1b3303195ab0cc84e5ea0f3de390ade15d9f8ce42a6dcdd1a0",
+      "sha256": "23d584095f7bc0691e1582da447d6cd9a389d8698e061ea2de9f6eac03b63f48",
       "size": 33554432
     },
-    "capture_save_continue_accepted": false,
-    "failed_cases": {
-      "fishing": {
-        "message": "native process failed",
-        "returncode": 1,
-        "timed_out": false
-      },
-      "hidden": {
-        "message": "native process failed",
-        "returncode": 1,
-        "timed_out": false
-      }
-    },
-    "gameplay_accepted": false,
+    "capture_save_continue_accepted": true,
+    "failed_cases": {},
+    "gameplay_accepted": true,
     "path": "content/modernization/pr16_special_wild_ui_checkpoint.json",
-    "run_id": 36219826803,
-    "source_head": "52daffc8fae043674bc0405df8fe296c1fcfbd61",
-    "status": "STOPPED_SPECIAL_WILD_UI_WITH_NATIVE_EVIDENCE"
+    "record_recovery": {
+      "binding": {
+        "sha256": "673cba57a74cba3138a82f956ae3310baf1d169d47a048d8f6b1b306cb958e15",
+        "size": 11617
+      },
+      "path": "content/modernization/pr16_special_wild_ui_finish_evidence/36220968752/receipt.json",
+      "run_id": 36220968752,
+      "source_head": "45ab15f3927400ac9814ad3cdb2d55696a0ce72b"
+    },
+    "repair": {
+      "active_baseline_changed": false,
+      "affected_acceptance_not_inherited": [
+        "research persistence transactions on the new candidate"
+      ],
+      "after": "61763709",
+      "arm_compiles": 0,
+      "before": "95763709",
+      "candidate": {
+        "sha256": "23d584095f7bc0691e1582da447d6cd9a389d8698e061ea2de9f6eac03b63f48",
+        "size": 33554432
+      },
+      "canonical_config": "config/research_economy_v1.json",
+      "changed_bytes": 1,
+      "context_sha256": "d4e3f4d9b2045d1faee4fe9e4d31098e2d165ab7a43e7a54c8f2db8af4f6a014",
+      "new_delegate": "VegaQolProduction_TrySavingDataAdapter",
+      "offset": 20706940,
+      "old_delegate": "VegaQolProduction_SaveLoadAdapter",
+      "outside_declared_changes": 0,
+      "parent": {
+        "sha256": "0205af9bd2d92b1b3303195ab0cc84e5ea0f3de390ade15d9f8ce42a6dcdd1a0",
+        "size": 33554432
+      },
+      "rollback_verified": true,
+      "schema_version": 1,
+      "scope": "ResearchEconomy.persist_phase shared earn/spend/rank/recovery save delegate; not only wild",
+      "unaffected_code": [
+        "wild generation",
+        "special move setter",
+        "manual save handler",
+        "save load handler bodies"
+      ]
+    },
+    "run_id": 36220635424,
+    "source_head": "26d807032a1b423da8f14050b6469e779bc03983",
+    "status": "PASS_SPECIAL_WILD_UI_CAPTURE_SAVE_SCOPED"
   },
   "stable_entrypoint": "CHATGPT_RESUME.md",
   "stable_paths_do_not_rotate_with_date": true,

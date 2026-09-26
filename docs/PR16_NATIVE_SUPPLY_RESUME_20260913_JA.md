@@ -6,9 +6,9 @@
 
 ## いまの停止点と次の1手
 
-特殊野生通常UI: STOPPED_SPECIAL_WILD_UI_WITH_NATIVE_EVIDENCE。成功=[]、失敗={'fishing': {'message': 'native process failed', 'returncode': 1, 'timed_out': False}, 'hidden': {'message': 'native process failed', 'returncode': 1, 'timed_out': False}}。開始fixture/実取得は区別。
+特殊野生通常UI 2/2受入。研究保存delegateの誤loadをsaveへ修正。記録復旧runの終端待ち。
 
-**次: Issue19: 特殊野生の通常UI checkpointの失敗原本を確認し、未成功caseだけ修復する。生態レーダーはROM生成ID348でありcatalogのITEM_KEY_SCANNER278とは別。捕獲/通常Save/fresh Continueの全条件が揃うまで昇格しない。保存候補0205af9b・前準備・直接7process/8call・旧受入は再実行しない。map3/19除外130行は変更しない。**
+**次: 通常UI2件の成功原本は記録復旧済み。次は記録復旧Actionsの終端成功を確認しfinalizeのみ実行する。native/旧unit/ARMは再実行しない。**
 
 特殊Tutor IDを通常slot0..63へ平坦化しない。殿堂入り0x082C・Bag技メモリー経路・mode0/1・raw40行ページ境界を保持。188非学習owner/保存4技・PP/P03進化LR/通常level-up/正式BP/P08/旧Wiki/基準ROMは不変。Floette12技のデータ保持を実供給受入へ昇格しない。host fixtureを実ROM/実操作へ読み替えずmerge/releaseしない。
 
@@ -27,9 +27,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 
 - `docs/PR16_SPECIAL_WILD_GAMEPLAY_JA.md`
 - `content/modernization/pr16_special_wild_ui_checkpoint.json`
-- `scripts/pr16_special_wild_gameplay_native.py`
-- `tools/mgba_pr16_special_wild_gameplay.c`
-- `content/modernization/pr16_special_wild_bound_checkpoint.json`
+- `scripts/pr16_special_wild_ui_finish.py`
+- `scripts/pr16_research_save_delegate.py`
+- `config/research_economy_v1.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 

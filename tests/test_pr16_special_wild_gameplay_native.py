@@ -18,7 +18,7 @@ class NativeResultTests(unittest.TestCase):
         events=[dict(event='entry',method=method,attempt=1,pc=pc,frame=15) for pc in pcs]
         events += [dict(event='special_setter',attempt=1,frame=17,move=244)]
         events += [dict(event=k,method=method,attempt=1,frame=n,party=mon.hex()) for k,n in [('enemy',20),('captured',30),('saved',40),('reloaded',50)]]
-        events += [dict(status='PASS',scope=m.SCOPE,method=method,candidate_sha256=m.prep.CANDIDATE['sha256'],
+        events += [dict(status='PASS',scope=m.SCOPE,method=method,candidate_sha256=m.CANDIDATE['sha256'],
             manual_saves=1,fresh_cores=2,host_write_barriers=7,observed_host_calls=0,ball_consumed=1,
             initial_fixtures=True,party_and_inventory_persisted=True,release_ready=False,witness=[10,20,30,40,50],frames=60,
             attempts=1,species=843,special_move=244)]
@@ -82,6 +82,18 @@ class NativeResultTests(unittest.TestCase):
     def test_only_one_setter(self):
         ev=self.events();ev.insert(3,copy.deepcopy(ev[3]))
         with self.assertRaises(ValueError): self.run_events(ev)
+    def test_capture_metadata_is_not_move_pp(self):
+        ev=self.events()
+        for e in ev:
+            if e.get('event') in ('captured','saved','reloaded'):
+                raw=bytearray.fromhex(e['party']);raw[42]=4;e['party']=raw.hex()
+        self.run_events(ev)
+    def test_capture_pp_bonus_change(self):
+        ev=self.events()
+        for e in ev:
+            if e.get('event') in ('captured','saved','reloaded'):
+                raw=bytearray.fromhex(e['party']);raw[40]+=1;e['party']=raw.hex()
+        with self.assertRaises(ValueError):self.run_events(ev)
     def test_modified_artifact_refused_without_open(self):
         with self.assertRaises(ValueError): m.unwrap_data(b'not the fixed ZIP')
     def test_wrong_rom_refused(self):
@@ -90,10 +102,12 @@ class NativeResultTests(unittest.TestCase):
         rom=bytearray(0x1050768+40);table=0x1050768-348*40
         for item,cb in ((264,0x080A260D),(348,0x092201E1)):
             struct.pack_into('<H',rom,table+item*40+10,item);struct.pack_into('<I',rom,table+item*40+24,cb)
-        with patch.object(m,'identity',return_value=m.prep.CANDIDATE):
+        with patch.object(m,'identity',return_value=m.CANDIDATE):
             result=m.bind_ui(rom);self.assertEqual(result['hidden']['id'],348)
             struct.pack_into('<I',rom,0x1050768+24,0x080A34F9)
             with self.assertRaises(ValueError):m.bind_ui(rom)
 
+
+from test_pr16_research_save_delegate import SaveDelegateTests
 
 if __name__=='__main__':unittest.main()

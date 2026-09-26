@@ -7,12 +7,7 @@
     "sha256": "23d584095f7bc0691e1582da447d6cd9a389d8698e061ea2de9f6eac03b63f48",
     "size": 33554432
   },
-  "canonical_config_binding": {
-    "sha256": "7e92079158303a125358ae6fa49c231f6085b2ca0a335d5f0e8bb6c55db2ed8d",
-    "size": 9388
-  },
   "capture_save_continue_accepted": true,
-  "evidence_path": "content/modernization/pr16_special_wild_ui_evidence/36220635424",
   "failure": null,
   "failures": {},
   "gameplay_accepted": true,
@@ -135,12 +130,6 @@
     "visual_identity_acceptance_claimed": false
   },
   "native_processes": 1,
-  "native_run_terminal": {
-    "conclusion": "failure",
-    "head_sha": "26d807032a1b423da8f14050b6469e779bc03983",
-    "id": 36220635424,
-    "status": "completed"
-  },
   "new_unit_tests": 34,
   "preparation_receipt": {
     "artifact": {
@@ -172,161 +161,6 @@
       "sha256": "5ef94c1629ffcd612ceea48b8e990596798a2d1333e21f2b0653c7e4d8b3ba0b",
       "size": 14279
     }
-  },
-  "public_evidence_bindings": {
-    "fishing.process.json": {
-      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
-      "size": 44
-    },
-    "fishing.stderr.txt": {
-      "sha256": "46a32ceeabe8dfa9b724a993fd7f9bfa29e8b7fd72001a0bcef083d6ff4ee7d3",
-      "size": 4110
-    },
-    "fishing.stdout.txt": {
-      "sha256": "17d683d2654f3e271ea5f809dc2f28e9ae0cd349aa03ff212f2abf8eebaf9047",
-      "size": 2626
-    },
-    "guard-bus16.process.json": {
-      "sha256": "182b1f564fcb386958d2a1d35aa5085633c1d294f3080b2ff2d4f29be34238a3",
-      "size": 44
-    },
-    "guard-bus16.stderr.txt": {
-      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934",
-      "size": 50
-    },
-    "guard-bus16.stdout.txt": {
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    "guard-bus32.process.json": {
-      "sha256": "182b1f564fcb386958d2a1d35aa5085633c1d294f3080b2ff2d4f29be34238a3",
-      "size": 44
-    },
-    "guard-bus32.stderr.txt": {
-      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934",
-      "size": 50
-    },
-    "guard-bus32.stdout.txt": {
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    "guard-bus8.process.json": {
-      "sha256": "182b1f564fcb386958d2a1d35aa5085633c1d294f3080b2ff2d4f29be34238a3",
-      "size": 44
-    },
-    "guard-bus8.stderr.txt": {
-      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934",
-      "size": 50
-    },
-    "guard-bus8.stdout.txt": {
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    "guard-raw16.process.json": {
-      "sha256": "182b1f564fcb386958d2a1d35aa5085633c1d294f3080b2ff2d4f29be34238a3",
-      "size": 44
-    },
-    "guard-raw16.stderr.txt": {
-      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934",
-      "size": 50
-    },
-    "guard-raw16.stdout.txt": {
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    "guard-raw32.process.json": {
-      "sha256": "182b1f564fcb386958d2a1d35aa5085633c1d294f3080b2ff2d4f29be34238a3",
-      "size": 44
-    },
-    "guard-raw32.stderr.txt": {
-      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934",
-      "size": 50
-    },
-    "guard-raw32.stdout.txt": {
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    "guard-raw8.process.json": {
-      "sha256": "182b1f564fcb386958d2a1d35aa5085633c1d294f3080b2ff2d4f29be34238a3",
-      "size": 44
-    },
-    "guard-raw8.stderr.txt": {
-      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934",
-      "size": 50
-    },
-    "guard-raw8.stdout.txt": {
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    "guard-register.process.json": {
-      "sha256": "182b1f564fcb386958d2a1d35aa5085633c1d294f3080b2ff2d4f29be34238a3",
-      "size": 44
-    },
-    "guard-register.stderr.txt": {
-      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934",
-      "size": 50
-    },
-    "guard-register.stdout.txt": {
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    "hidden.process.json": {
-      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
-      "size": 44
-    },
-    "hidden.stderr.txt": {
-      "sha256": "f8c9097865f40ef004e1293aca987bc8ce7e21b3dbad28597d2ef24407d20d02",
-      "size": 1102
-    },
-    "hidden.stdout.txt": {
-      "sha256": "86411effc9a771ab791bb001dac445921c75f47452a66add8c10bb4f704feb2b",
-      "size": 2061
-    },
-    "host-compile.process.json": {
-      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
-      "size": 44
-    },
-    "host-compile.stderr.txt": {
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    "host-compile.stdout.txt": {
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    "new-unit.process.json": {
-      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
-      "size": 44
-    },
-    "new-unit.stderr.txt": {
-      "sha256": "83c12c6056715131fd545abd783d598f8c8808761031fa9063da58f690454cc1",
-      "size": 4211
-    },
-    "new-unit.stdout.txt": {
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "size": 0
-    },
-    "repair.json": {
-      "sha256": "c5c5eecedb955d32db3abe2b1868379859f704306397c1a8071dd206da3455d0",
-      "size": 1091
-    },
-    "ui-binding.json": {
-      "sha256": "36e35aadafaccfcf8fdae7646968997ed3cb7b1451888b3a7ccc6e43f3965772",
-      "size": 628
-    },
-    "verification.json": {
-      "sha256": "0cdf89c50b33b4ec0d82e632e1269c5a6cdd262013a71f503b6c489780719d3b",
-      "size": 13221
-    }
-  },
-  "record_recovery": {
-    "binding": {
-      "sha256": "673cba57a74cba3138a82f956ae3310baf1d169d47a048d8f6b1b306cb958e15",
-      "size": 11617
-    },
-    "path": "content/modernization/pr16_special_wild_ui_finish_evidence/36220968752/receipt.json",
-    "run_id": 36220968752,
-    "source_head": "45ab15f3927400ac9814ad3cdb2d55696a0ce72b"
   },
   "release_ready": false,
   "repair": {
@@ -464,10 +298,6 @@
     ".github/workflows/pr16-special-wild-gameplay-20260926.yml": {
       "sha256": "374bcff49134d36582477d4444c0667ed84f038094c13a51820b4fe251e035a1",
       "size": 3925
-    },
-    "config/research_economy_v1.json": {
-      "sha256": "7e92079158303a125358ae6fa49c231f6085b2ca0a335d5f0e8bb6c55db2ed8d",
-      "size": 9388
     },
     "scripts/pr16_research_save_delegate.py": {
       "sha256": "ed64cc810b7ad05da32b68827d96e54e39eeb04d8eeb65302f07a4ef54676474",

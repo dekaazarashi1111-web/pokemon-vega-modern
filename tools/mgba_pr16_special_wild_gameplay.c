@@ -9,7 +9,7 @@ static unsigned sw_map;
 #include "sw-field-helpers.c"
 #pragma GCC diagnostic pop
 #include "sw-inventory-helpers.c"
-#define SW_ROM "0205af9bd2d92b1b3303195ab0cc84e5ea0f3de390ade15d9f8ce42a6dcdd1a0"
+#define SW_ROM "23d584095f7bc0691e1582da447d6cd9a389d8698e061ea2de9f6eac03b63f48"
 #define SW_SEED "f6bfdb107196ca22b012c1d12ee4bcdc8f5add309bbd3538447cd6e39c449bcb"
 static color_t sw_video[240*160];
 static const char *sw_prefix,*sw_method;
@@ -80,8 +80,10 @@ static void sw_radar(struct mCore*c){
 }
 static bool sw_fishing(struct mCore*c){
  sw_use(c,264U);
- for(unsigned f=0;f<2400 && !lb_action(c);++f){
-  if(f>120 && lb_field(c))return false;
+ unsigned idle=0;
+ for(unsigned f=0;f<3000 && !lb_action(c);++f){
+  bool task=false;for(unsigned i=0;i<16;++i){unsigned t=QOL_TASKS+i*QOL_TASK_SIZE;if(read8(c,t+4) && read32(c,t)==0x0805CBC1U)task=true;}
+  if(f>120 && !task && !sw_entries[0] && !read32(c,ADDR_NEW_BATTLE_STRUCT_POINTER) && lb_field(c)){if(++idle>=120)return false;}else idle=0;
   if(f%240==0)sw_state(c,"fishing-wait");
   lb_frame(c,f%60==0?QOL_KEY_A:0);
  }
@@ -133,10 +135,10 @@ int main(int argc,char**argv){
   sw_need(c,fishing,"radar produced no special move");lb_cursor(c,BATTLE_CORE_ACTION_SELECTION_CURSOR,3);lb_press(c,QOL_KEY_A,60);lb_return(c);
  }
  sw_need(c,found && sw_special==1 && !sw_after_setter && sw_entries[fishing?0:1]==1 && sw_entries[fishing?2:3]==1 && sw_entries[fishing?4:5]==1,"special caller/initializer order differs");
- sw_need(c,read16(c,ADDR_ENEMY_PARTY+50)==sw_move,"special slot was overwritten");sw_encounter_frame=sw_frames;unsigned pid=read32(c,ADDR_ENEMY_PARTY),species=read16(c,ADDR_ENEMY_PARTY+32);uint8_t moves[20];sw_copy(c,ADDR_ENEMY_PARTY+40,moves,20);
+ sw_need(c,read16(c,ADDR_ENEMY_PARTY+50)==sw_move,"special slot was overwritten");sw_encounter_frame=sw_frames;unsigned pid=read32(c,ADDR_ENEMY_PARTY),species=read16(c,ADDR_ENEMY_PARTY+32);uint8_t moves[12];sw_copy(c,ADDR_ENEMY_PARTY+44,moves,12);unsigned bonus=read8(c,ADDR_ENEMY_PARTY+40);
  sw_shot("special-enemy");sw_catch(c);sw_need(c,lb_outcome==7 && sw_caught_frame && read8(c,QOL_PLAYER_PARTY_COUNT)==2 && read32(c,QOL_PLAYER_PARTY+100)==pid && read16(c,QOL_PLAYER_PARTY+132)==species,"captured identity");
- uint8_t captured_moves[20];sw_copy(c,QOL_PLAYER_PARTY+140,captured_moves,20);sw_need(c,!memcmp(moves,captured_moves,20),"capture moves/PP changed");g_inventory(c,got);sw_need(c,!memcmp(expected,got,sizeof(got)),"unrelated inventory changed");sw_mon(c,QOL_PLAYER_PARTY+100,"captured");sw_shot("captured");
- uint8_t party[200],loaded[200];sw_copy(c,QOL_PLAYER_PARTY,party,200);lb_resume_x=read16(c,lb_save1(c));lb_resume_y=read16(c,lb_save1(c)+2);
+ uint8_t captured_moves[12];sw_copy(c,QOL_PLAYER_PARTY+144,captured_moves,12);sw_need(c,!memcmp(moves,captured_moves,12) && read8(c,QOL_PLAYER_PARTY+140)==bonus,"capture moves/PP changed");g_inventory(c,got);sw_need(c,!memcmp(expected,got,sizeof(got)),"unrelated inventory changed");sw_mon(c,QOL_PLAYER_PARTY+100,"captured");sw_shot("captured");
+ counter=read32(c,P03_SAVE_COUNTER);uint8_t party[200],loaded[200];sw_copy(c,QOL_PLAYER_PARTY,party,200);lb_resume_x=read16(c,lb_save1(c));lb_resume_y=read16(c,lb_save1(c)+2);
  sw_need(c,lb_normal_save(c) && read32(c,P03_SAVE_COUNTER)==counter+1,"normal Save");sw_saved_frame=sw_frames;sw_mon(c,QOL_PLAYER_PARTY+100,"saved");
  a_restore(c,&original);c->runFrame=sw_fast;qol_close(c);c=qol_open(argv[1],argv[2]);qol_log_core=c;c->setVideoBuffer(c,sw_video,240);c->reset(c);original=*c;a_guard(c);sw_fast=c->runFrame;c->runFrame=sw_run_frame;
  sw_need(c,lb_normal_continue(c),"fresh Continue");sw_reload_frame=sw_frames;sw_copy(c,QOL_PLAYER_PARTY,loaded,200);g_inventory(c,got);

@@ -16,13 +16,16 @@ import zipfile
 ROOT = Path(__file__).resolve().parents[1]
 sys.path[:0] = [str(ROOT), str(ROOT/'scripts')]
 import pr16_special_wild_gameplay as prep
+import pr16_research_save_delegate as repair
+CANDIDATE = repair.CANDIDATE
+LOCAL = prep.BASE+"pr16_special_wild_ui_local_evidence/20260926-hidden"
 need, identity, load, write = prep.need, prep.identity, prep.load, prep.write
 TASK = 'USER-20260926-SPECIAL-WILD-UI'
 SELF = 'scripts/pr16_special_wild_gameplay_native.py'
 C = 'tools/mgba_pr16_special_wild_gameplay.c'
 TEST = 'tests/test_pr16_special_wild_gameplay_native.py'
 WF = '.github/workflows/pr16-special-wild-gameplay-20260926.yml'
-CODE = {SELF, C, TEST, WF}
+CODE = {SELF, C, TEST, WF, "scripts/pr16_research_save_delegate.py", "tests/test_pr16_research_save_delegate.py"}
 CP = prep.BASE+'pr16_special_wild_ui_checkpoint.json'
 WORK = ROOT/'.local/pr16-special-wild-ui'
 PROOF = WORK/'proof'
@@ -40,7 +43,7 @@ PREP_HEAD = '8660fe70f4354333cf7647186663cacafa04451b'
 PREP_REFLECTED = '699b07459ea48a02d381e16f5228aebda8da33c8'
 SEED = {'size':131072,'sha256':'f6bfdb107196ca22b012c1d12ee4bcdc8f5add309bbd3538447cd6e39c449bcb'}
 SCOPE = 'SPECIAL_WILD_PHYSICAL_UI_CAPTURE_SAVE_CONTINUE'
-NEXT = 'Issue19: 特殊野生の通常UI checkpointの失敗原本を確認し、未成功caseだけ修復する。生態レーダーはROM生成ID348でありcatalogのITEM_KEY_SCANNER278とは別。捕獲/通常Save/fresh Continueの全条件が揃うまで昇格しない。保存候補0205af9b・前準備・直接7process/8call・旧受入は再実行しない。map3/19除外130行は変更しない。'
+NEXT = 'Issue19: candidate23d58409の共有研究保存delegateにより影響する他の取引は旧受入を自動継承しない。通常UI2件が揃えばActions終端照合と設定・recipe bindingを確定し、同じnativeは再実行しない。特殊野生が未成功ならそのcaseだけ続行する。map3/19除外130行は変更しない。'
 
 
 def unwrap_data(raw):
@@ -58,7 +61,7 @@ def unwrap_data(raw):
 
 def bind_ui(rom):
     """Catalog名で推測せず、実ROMの二つのfield callbackとrootを束縛する。"""
-    need(identity(rom) == prep.CANDIDATE, 'UI candidate')
+    need(identity(rom) == CANDIDATE, 'UI candidate')
     result = {}
     # Generated item table: id348 ecology radar, id264 super rod, 40-byte ABI.
     table = 0x1050768 - 348*40
@@ -85,6 +88,12 @@ def build(folder=WORK):
     old='return read8(c,s+4)==96 && read8(c,s+5)==17 && read16(c,s)==lb_resume_x && read16(c,s+2)==lb_resume_y;'
     need(text.count(old)==1, 'fresh Continue generic helper boundary')
     text=text.replace(old,'return read8(c,s+4)==3 && read8(c,s+5)==sw_map && read16(c,s)==lb_resume_x && read16(c,s+2)==lb_resume_y;')
+    # Recording 1/2 is ordinary gameplay, not playback 2/3. The original
+    # helper admitted only stopped 0/0. Do not mutate either live RAM state.
+    old_field='&& !read8(c,P02S_QUEST_LOG_STATE) && !read8(c,P02S_QUEST_LOG_PLAYBACK_STATE) && id<16'
+    new_field='&& ((!read8(c,P02S_QUEST_LOG_STATE) && !read8(c,P02S_QUEST_LOG_PLAYBACK_STATE)) || (read8(c,P02S_QUEST_LOG_STATE)==1U && read8(c,P02S_QUEST_LOG_PLAYBACK_STATE)==2U)) && id<16'
+    need(text.count(old_field)==1,'field recording condition boundary')
+    text=text.replace(old_field,new_field)
     (folder/'sw-field-helpers.c').write_text(text)
     text=(ROOT/'tools/mgba_pr16_shop_routes.c').read_text()
     need(text.count('static void g_inventory')==1 and text.count('static bool g_menu')==1, 'inventory helper boundary')
@@ -110,7 +119,7 @@ def native_result(raw, method):
     final=[e for e in events if 'status' in e]
     need(len(final)==1 and events[-1] is final[0], 'single terminal result')
     r=final[0]
-    need(r['status']=='PASS' and r['scope']==SCOPE and r['method']==method and r['candidate_sha256']==prep.CANDIDATE['sha256'], 'native result identity')
+    need(r['status']=='PASS' and r['scope']==SCOPE and r['method']==method and r['candidate_sha256']==CANDIDATE['sha256'], 'native result identity')
     for k,n in [('manual_saves',1),('fresh_cores',2),('host_write_barriers',7),('observed_host_calls',0),('ball_consumed',1)]:
         need(type(r[k]) is int and r[k]==n, 'native count '+k)
     need(r['initial_fixtures'] is True and r['party_and_inventory_persisted'] is True and r['release_ready'] is False, 'native scope')
@@ -122,7 +131,7 @@ def native_result(raw, method):
         parties[kind]=selected[0]['party'];mon(parties[kind])
     need(parties['captured']==parties['saved']==parties['reloaded'], 'captured individual full100 persistence')
     enemy=bytes.fromhex(parties['enemy']);captured=bytes.fromhex(parties['captured'])
-    need(enemy[:4]==captured[:4] and enemy[32:34]==captured[32:34] and enemy[40:60]==captured[40:60], 'generated special identity/slots/PP')
+    need(enemy[:4]==captured[:4] and enemy[32:34]==captured[32:34] and enemy[40]==captured[40] and enemy[44:56]==captured[44:56], 'generated special identity/slots/PP')
     need(struct.unpack_from('<H',enemy,50)[0]==r['special_move'] and struct.unpack_from('<H',enemy,32)[0]==r['species'], 'special field identity')
     setters=[e for e in events if e.get('event')=='special_setter' and e['attempt']==r['attempts']]
     entries=[e['pc'] for e in events if e.get('event')=='entry' and e['attempt']==r['attempts']]
@@ -137,7 +146,7 @@ def execute():
     head=current();need(not WORK.exists(), 'do not duplicate native work directory');PROOF.mkdir(parents=True)
     prior=load(ROOT/CP) if (ROOT/CP).exists() else None
     protected={prep.CP,prep.DIRECT,prep.BASE+'pr16_special_wild_bound_completed_actions.json','config/active_play_baseline.json'}
-    v={'schema_version':1,'task':TASK,'source_head':head,'run_id':int(os.environ['GITHUB_RUN_ID']), 'candidate':prep.CANDIDATE,
+    v={'schema_version':1,'task':TASK,'source_head':head,'run_id':int(os.environ['GITHUB_RUN_ID']), 'candidate':CANDIDATE,
        'status':'RUNNING','results':{},'failures':{},'failure':None,'native_processes':0,'guard_processes':0,'new_unit_tests':0,
        'host_compiles':0,'arm_compiles':0,'rom_changes':0,'accepted_case_reruns':0,'reused_cases':[],
        'gameplay_accepted':False,'capture_save_continue_accepted':False,'actions_completion_confirmed':False,'release_ready':False,
@@ -150,12 +159,15 @@ def execute():
         child=fetch('git/commits/'+PREP_REFLECTED)
         need([p['sha'] for p in child['parents']]==[PREP_HEAD], 'preparation reflected parent')
         v['preparation_receipt']={'run':PREP_RUN,'source_head':PREP_HEAD,'reflected_head':PREP_REFLECTED,'status':'completed','conclusion':'success','artifact':DATA}
-        _,err,rc,timed=command([sys.executable,'-B','-m','unittest','discover','-s','tests','-p','test_pr16_special_wild_gameplay_native.py','-v'],'new-unit')
+        _,err,rc,timed=command([sys.executable,'-B','-m','unittest','discover','-s','tests','-p','test_pr16_*gameplay_native.py','-v'],'new-unit')
         count=re.search(rb'Ran (\d+) tests? in ',err);need(rc==0 and not timed and count and b'\nOK\n' in err,'new UI unit');v['new_unit_tests']=int(count[1])
         meta=fetch(f"actions/artifacts/{DATA['id']}")
         need(all(meta[k]==value for k,value in DATA.items()) and meta['expired'] is False and meta['workflow_run']['id']==PREP_RUN and meta['workflow_run']['head_sha']==PREP_HEAD,'fixed data metadata')
         data=unwrap_data(fetch(f"actions/artifacts/{DATA['id']}/zip",binary=True))
+        data['candidate.gba'],v['repair']=repair.apply(data['candidate.gba'])
+        v['rom_changes']=1
         for name,raw in data.items():(WORK/name).write_bytes(raw)
+        write(PROOF/'repair.json',v['repair'])
         v['ui_items']=bind_ui(data['candidate.gba']);write(PROOF/'ui-binding.json',v['ui_items'])
         binary=build();_,_,rc,timed=command(['cc','-std=c11','-O2','-Wall','-Wextra','-Werror','-Wno-misleading-indentation','-Itools','-I'+str(WORK),str(ROOT/C),'-lmgba','-lm','-o',str(binary)],'host-compile')
         need(rc==0 and not timed, 'host compile');v['host_compiles']=1
@@ -163,6 +175,23 @@ def execute():
             _,err,rc,timed=command([str(binary),'--guard-check',api],'guard-'+api,10);v['guard_processes']+=1
             need(rc==1 and not timed and b'host write after observation barrier' in err,'guard '+api)
         for method in ('hidden','fishing'):
+            if method=='hidden':
+                receipt=load(ROOT/LOCAL/'receipt.json')
+                need(receipt['candidate']==CANDIDATE and receipt['seed']==SEED and receipt['method']==method,'local witness inputs')
+                for path,binding in receipt['source_bindings'].items():
+                    need(identity((ROOT/path).read_bytes())==binding,'local accepted source changed: '+path)
+                for path,binding in receipt['generated_bindings'].items():
+                    need(identity((WORK/path).read_bytes())==binding,'local accepted helper changed: '+path)
+                for suffix in ('.stdout.txt','.stderr.txt','.process.json'):
+                    name=method+suffix;raw=(ROOT/LOCAL/name).read_bytes()
+                    need(identity(raw)==receipt['proof_bindings'][name],'local accepted raw changed')
+                    (PROOF/name).write_bytes(raw)
+                process=load(PROOF/(method+'.process.json'))
+                need(process=={'returncode':0,'timed_out':False},'local native process termination')
+                v['results'][method]=native_result((PROOF/(method+'.stdout.txt')).read_bytes(),method)
+                v['reused_cases'].append(method)
+                v['local_receipt']=receipt
+                continue
             if prior and method in prior['results']:
                 saved=prior['results'][method];name=method+'.stdout.txt';raw=(ROOT/prior['evidence_path']/name).read_bytes()
                 need(identity(raw)==prior['public_evidence_bindings'][name] and prior['candidate']==v['candidate'],'accepted raw binding')
@@ -179,7 +208,7 @@ def execute():
                 need(rc==0 and not timed,'native process failed')
                 v['results'][method]=native_result(out,method)
             except Exception as ex:v['failures'][method]={'returncode':rc,'timed_out':timed,'message':str(ex)}
-        need(identity((WORK/'candidate.gba').read_bytes())==prep.CANDIDATE,'ROM changed')
+        need(identity((WORK/'candidate.gba').read_bytes())==CANDIDATE,'ROM changed')
         v['gameplay_accepted']=v['capture_save_continue_accepted']=set(v['results'])=={'hidden','fishing'}
         v['status']='PASS_SPECIAL_WILD_UI_CAPTURE_SAVE_SCOPED' if v['gameplay_accepted'] else 'STOPPED_SPECIAL_WILD_UI_WITH_NATIVE_EVIDENCE'
     except Exception as ex:
@@ -191,7 +220,7 @@ def execute():
 
 
 def owned():
-    paths={CP,prep.STATE,prep.DOC,GUIDE,'design/run_log.md','design/version_log.md'}
+    paths=set(CODE)|{CP,prep.STATE,prep.DOC,GUIDE,repair.CONFIG,'design/run_log.md','design/version_log.md'}
     if (ROOT/CP).exists():
         v=load(ROOT/CP);paths.update(v['evidence_path']+'/'+name for name in v['public_evidence_bindings'])
     return paths
@@ -199,7 +228,12 @@ def owned():
 
 def record():
     from pr16_learnset_compact_record import publish_resume
-    v=load(PROOF/'verification.json');evidence=prep.BASE+'pr16_special_wild_ui_evidence/'+str(v['run_id'])
+    v=load(PROOF/'verification.json')
+    if v.get('repair'):
+        raw=(ROOT/repair.CONFIG).read_bytes();fixed=repair.correct_config(raw);(ROOT/repair.CONFIG).write_bytes(fixed)
+        v['canonical_config_binding']=identity(fixed)
+        v['source_bindings'][repair.CONFIG]=identity(fixed)
+    evidence=prep.BASE+'pr16_special_wild_ui_evidence/'+str(v['run_id'])
     need(not (ROOT/evidence).exists(),'immutable UI evidence')
     v['evidence_path']=evidence;v['public_evidence_bindings']={}
     for path in sorted(PROOF.iterdir()):
@@ -214,6 +248,7 @@ def record():
     state['special_wild_gameplay']['actions_completion_confirmed']=bool(v.get('preparation_receipt'))
     state['bp']['current_stop']='特殊野生通常UI: '+v['status']+'。成功='+str(sorted(v['results']))+'、失敗='+str(v['failures'])+'。開始fixture/実取得は区別。'
     state['bp']['next_step']=NEXT
+    state['special_wild_ui']['repair']=v.get('repair')
     state['next_action']=dict(state['next_action'],id='SPECIAL_WILD_UI_CAPTURE_SAVE',goal_ja=NEXT,read_paths=[GUIDE,CP,SELF,C,prep.DIRECT])
     state['source_bindings'].update(v['source_bindings']);state['logs_synchronized']=True;publish_resume(state)
     (ROOT/GUIDE).write_text('# 特殊野生: 通常操作検証\n\n'+state['bp']['current_stop']+'\n\n'+NEXT+'\n\n'
@@ -222,10 +257,10 @@ def record():
         +'最新run `'+str(v['run_id'])+'` / source `'+v['source_head']+'` / failure `'+str(v['failure'])+'`。\n\n'
         +'原本: `'+CP+'`。全Actions完了は同run実行中の自己証明をしない。release/Issue19/baseline切替なし。\n',encoding='utf-8')
     stamp=datetime.datetime.now(datetime.timezone.utc).isoformat()
-    log=f"\n## {stamp}\n- Timestamp: {stamp}\n- Task: {TASK} / 通常特殊野生の捕獲・保存経路\n- Version: special-wild-ui-v1\n"
+    log=f"\n## {stamp}\n- Timestamp: {stamp}\n- Task: {TASK} / 通常特殊野生の捕獲・保存経路\n- Version: special-wild-ui-save-delegate-v2\n"
     log+='- Status: '+('DONE（通常UI限定）' if v['gameplay_accepted'] else 'STOPPED（未受入経路のnative原本を保存）')+'\n'
     log+='- Summary: '+v['status']+'。catalog278と実UI348を分離し、通常Bag/メニュー・捕獲・Save/fresh Continueを実装。\n'
-    log+=f"- Verify: 新規unit={v['new_unit_tests']}、guard={v['guard_processes']}、native={v['native_processes']}、再利用={v['reused_cases']}、成功={sorted(v['results'])}、失敗={v['failures']}、failure={v['failure']}。ARM/ROM変更/旧受入再実行0。\n"
+    log+=f"- Verify: 新規unit={v['new_unit_tests']}、guard={v['guard_processes']}、native={v['native_processes']}、再利用={v['reused_cases']}、成功={sorted(v['results'])}、失敗={v['failures']}、failure={v['failure']}。ARM/旧受入再実行0、研究保存delegateのみ1byte差分。\n"
     log+='- Files changed: 専用C/Python/unit/workflow、checkpoint/UTF8原本、固定引継ぎMD/JSON、guide、両ログ。\n- Commit: 本記録の同branch非force commit。自己SHAはgit logで照合。resume/task graph/index限定guard後のみ反映。\n- Network: GitHub固定Actions/保存data artifactのみ。ROM/save/画像は非tracked artifact。全履歴private guardのPASSは主張しない。\n'
     for p in ('design/run_log.md','design/version_log.md'):
         with (ROOT/p).open('a',encoding='utf-8') as f:f.write(log)
@@ -233,13 +268,16 @@ def record():
 
 def guard():
     import pr16_learnset_runtime_record as g
-    g.START=os.environ['GITHUB_SHA'];g.CODE=set();g.OWNED=owned();g.guard()
+    g.START=os.environ['GITHUB_SHA'];g.CODE=set()
+    from pr16_special_wild_ui_finish import guard_scope, MANDATORY
+    actual=set(subprocess.check_output(['git','diff','--cached','--name-only','-z',g.START],cwd=ROOT).decode().strip('\0').split('\0'))
+    g.OWNED=guard_scope(owned(),actual,MANDATORY);g.guard()
     subprocess.run(['git','diff','--cached','--check'],cwd=ROOT,check=True)
 
 
 def context():
     out=WORK/'context';out.mkdir(parents=True,exist_ok=True)
-    paths=owned()|CODE|HELPERS|{'overlays/wild_overlay/wild_overlay.c','overlays/wild_overlay/wild_overlay.h'}
+    paths=owned()|CODE|HELPERS|{LOCAL+'/'+n for n in ('receipt.json','hidden.stdout.txt','hidden.stderr.txt','hidden.process.json')}|{'overlays/wild_overlay/wild_overlay.c','overlays/wild_overlay/wild_overlay.h',repair.CONFIG}
     index={}
     with zipfile.ZipFile(out/'context.zip','w',compression=zipfile.ZIP_DEFLATED) as z:
         for name in sorted(paths):
