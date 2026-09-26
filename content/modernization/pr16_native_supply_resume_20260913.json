@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "通常V1 loadの3件を受入。起動先行call誤認とQOLの空/破損混同を修復。破損checksum/tailは全入力とFlashを保持して拒否、正常V1は実保存と2回fresh Continue成功。",
+    "current_stop": "通常load内phase0の保存不可2経路（V1移行/未確定稼得回復）を受入。原本全2048byte・全Flashを保持して拒否、通常cold Continueで1回保存し2回の後続Continueで完全一致。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "次は通常load内のphase0保存不可境界・回復を限定実装/検証する。その後通常new-game/取引UI。3load/旧26unit/新40unit/7retry/BP/P08/特殊野生は変更影響なく再実行しない。",
+    "next_step": "まず本runの終端・push/uploadを照合する。次は通常new-game/取引UIの未受入境界を限定実装/検証する。phase0 load 2件/43unit、通常V1 3件/旧40unit、7retry、BP/P08/特殊野生は変更影響なく再実行しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -4162,38 +4162,34 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "次は通常load内のphase0保存不可境界・回復を限定実装/検証する。その後通常new-game/取引UI。3load/旧26unit/新40unit/7retry/BP/P08/特殊野生は変更影響なく再実行しない。",
+    "goal_ja": "まず本runの終端・push/uploadを照合する。次は通常new-game/取引UIの未受入境界を限定実装/検証する。phase0 load 2件/43unit、通常V1 3件/旧40unit、7retry、BP/P08/特殊野生は変更影響なく再実行しない。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
-    "id": "RESEARCH_V1_LOAD_PHASE0_FAILURE_NEXT",
+    "id": "RESEARCH_NORMAL_NEW_GAME_TRANSACTION_UI_NEXT",
     "read_paths": [
-      "docs/PR16_RESEARCH_V1_CORRUPT_LOAD_JA.md",
+      "docs/PR16_RESEARCH_PHASE0_LOAD_JA.md",
+      "content/modernization/pr16_research_phase0_load_checkpoint.json",
+      "scripts/pr16_research_phase0_load.py",
+      "scripts/pr16_research_phase0_load_actions.py",
+      "tools/mgba_pr16_research_phase0_load.c",
       "content/modernization/pr16_research_v1_corrupt_load_checkpoint.json",
-      "content/modernization/pr16_research_v1_corrupt_load_recipe.json",
-      "content/modernization/pr16_research_v1_corrupt_load_native.json",
-      "scripts/pr16_research_v1_corrupt_load.py",
-      "scripts/pr16_research_v1_corrupt_load_actions.py",
-      "scripts/pr16_research_v1_load_followup.py",
-      "tools/mgba_pr16_research_v1_load.c",
-      "content/modernization/pr16_research_v1_load_checkpoint.json",
-      "content/modernization/pr16_research_retry_checkpoint.json",
-      "overlays/qol_production/qol_production.c",
-      "overlays/research_economy_v1/research_economy_v1.c"
+      "overlays/research_economy_v1/research_economy_v1.c",
+      "overlays/qol_production/qol_production.c"
     ],
-    "stop_rule_ja": "最新候補5d1fc9c4をrecipeで復元し、旧seed/ROM/原本を保全。未受入境界を昇格せず、merge/release/baseline変更禁止。"
+    "stop_rule_ja": "候補5d1fc9c4と受入済み2load/旧3loadを保持。未受入UIだけへ進み、merge/release/baseline変更禁止。"
   },
   "observed_date_jst": "2026-09-25",
-  "observed_head": "22e9ddad5ff722ea70f7cd1072d69c3354f5e3da",
+  "observed_head": "187bb4a87fc4ad63f06022355c2d3be9ac47c2b5",
   "observed_head_checks": {
-    "reason_ja": "限定record成功。全CI成功ではない。",
+    "reason_ja": "限定phase0 load受入。一般source-validationのaction_requiredを全CI成功にしない。",
     "runs": [
       {
-        "conclusion": "success",
-        "head_sha": "33c78f6769104707a79f2ec027e3dff5990bd356",
-        "id": 36240353448,
-        "status": "completed"
+        "conclusion": null,
+        "head_sha": "187bb4a87fc4ad63f06022355c2d3be9ac47c2b5",
+        "id": 36244964437,
+        "status": "in_progress"
       }
     ],
-    "scope_head": "33c78f6769104707a79f2ec027e3dff5990bd356"
+    "scope_head": "187bb4a87fc4ad63f06022355c2d3be9ac47c2b5"
   },
   "observed_head_history": [
     {
@@ -5547,7 +5543,7 @@
       "semantics": "PLA1圧縮と新規供給consumerのhost検証成功入力HEAD。ROM配置/実操作/記録commitの受入ではない。"
     }
   ],
-  "observed_head_semantics": "通常V1破損拒否の記録source。自己SHAはgit log参照。",
+  "observed_head_semantics": "通常load phase0境界の記録source。自己SHAはgit log参照。",
   "p08_candidate_impact": {
     "candidate": {
       "crc32": "CC068B4A",
@@ -5791,6 +5787,21 @@
     "path": "content/modernization/pr16_research_phase0_checkpoint.json",
     "run_id": 36234797221,
     "status": "PASS_PHASE0_NATIVE_UNAVAILABLE_3_SCOPED"
+  },
+  "research_phase0_load": {
+    "accepted_cases": [
+      "load-v1-phase0-unavailable",
+      "load-pending-phase0-unavailable"
+    ],
+    "actions_completion_confirmed": false,
+    "candidate": {
+      "sha256": "5d1fc9c47225ae8c0a369514b899a062af3699fa3c9a2f617e94ffd5f7dcc1ab",
+      "size": 33554432
+    },
+    "failed_cases": [],
+    "path": "content/modernization/pr16_research_phase0_load_checkpoint.json",
+    "run_id": 36244964437,
+    "status": "PASS_PHASE0_LOAD_PENDING_TERMINAL"
   },
   "research_same_core_retry": {
     "accepted_cases": [
@@ -6992,6 +7003,10 @@
     ".github/workflows/pr16-research-phase0-20260926.yml": {
       "sha256": "2c2d8f41665677f64ccfe131c8135b60c670ced52f069f3bbfa1dcca478f4c99",
       "size": 2858
+    },
+    ".github/workflows/pr16-research-phase0-load-20260926.yml": {
+      "sha256": "a518e3bc52efdb49168b2a9a30c80343dba85be5fe8aebfbb902fd4adf719cb9",
+      "size": 3239
     },
     ".github/workflows/pr16-research-retry-20260926.yml": {
       "sha256": "84dc8bfa2d3efa8818097aefb974f45d2fe34bc1b591b3328fed777892d9218b",
@@ -8253,6 +8268,10 @@
       "sha256": "fca0f63f5bc8c08512806f57b011fe9715befbefcac2f1d89540cb0341ec3873",
       "size": 6524
     },
+    "content/modernization/pr16_research_phase0_load_checkpoint.json": {
+      "sha256": "84d651310418a50eead4e534abb9a933914ffeeccbd67de7e8d529df2a0da41f",
+      "size": 32496
+    },
     "content/modernization/pr16_research_retry_checkpoint.json": {
       "sha256": "267b927daf4eadf529ba5e3fdf1259d1fb5b3904cdaf6226adf498fd378af99b",
       "size": 7381
@@ -9088,6 +9107,10 @@
     "docs/PR16_RESEARCH_PHASE0_JA.md": {
       "sha256": "cb2640ee469dcc5080640b703e08c9a5c7f60c78b762e510f89c80f4cfd880cd",
       "size": 1696
+    },
+    "docs/PR16_RESEARCH_PHASE0_LOAD_JA.md": {
+      "sha256": "cd9c4cad85915247152accd1e35481315e3df7ff8bcf9115294c5d91836df513",
+      "size": 2658
     },
     "docs/PR16_RESEARCH_RETRY_JA.md": {
       "sha256": "7fcf9ff9412802a9ab30714573d798959a7ffebd12eeb7ae12d8c6749f962f9f",
@@ -13509,6 +13532,18 @@
       "sha256": "d0d3749a95b9a23e18c31246776e4d9f7cba4885ae654f9726c6a20f1f06b1b6",
       "size": 14530
     },
+    "scripts/pr16_research_phase0_load.py": {
+      "sha256": "29d9e9de9e23e4b86d4a89059d77986875c887fac5ac77b34b1231d7b7d57e63",
+      "size": 10182
+    },
+    "scripts/pr16_research_phase0_load_actions.py": {
+      "sha256": "952040d2b95fd91cf39e81f39b0af973511ef31702512a4191f6e35d8a80af78",
+      "size": 18138
+    },
+    "scripts/pr16_research_phase0_load_preflight.py": {
+      "sha256": "9ae52ce34a1a1a69bca22e255ea5a38f52381057e57a93e5b07890d1b328e269",
+      "size": 2741
+    },
     "scripts/pr16_research_public_evidence.py": {
       "sha256": "85f29aedeeda14a5d216366dfb3300e8470809e2be006887976f5eee07f13619",
       "size": 6053
@@ -14897,6 +14932,10 @@
       "sha256": "b85a78dda92cf01076969d5de8a4c385b230097f08dba522e750ad97e7dc3c58",
       "size": 3459
     },
+    "tests/test_pr16_research_phase0_load.py": {
+      "sha256": "edea5de718a5475f869810d22461b79dd15b906df6619781cb29bd08e4e37d5a",
+      "size": 13592
+    },
     "tests/test_pr16_research_public_evidence.py": {
       "sha256": "2ec09ed98b29e11c794358b33b8e10c3a79fb61a6812475cc28c97161ab419cf",
       "size": 3722
@@ -15836,6 +15875,10 @@
     "tools/mgba_pr16_research_phase0.c": {
       "sha256": "a0f689be824b1feffbb08527f89553241f7d05a177bf3590d1c750bad68baa2a",
       "size": 4167
+    },
+    "tools/mgba_pr16_research_phase0_load.c": {
+      "sha256": "17bf7f80906585fb13484af96c35711639dd0b8f7ddecea12fc6c19073222ce6",
+      "size": 9319
     },
     "tools/mgba_pr16_research_retry.c": {
       "sha256": "256da46b1114c77b066e2bfcb63943eaff67c85632659669e2543eadaadd8c33",

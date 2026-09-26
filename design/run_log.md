@@ -10354,3 +10354,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 修正候補native3/5cores、ARM compile1/link1、host compile2（runner/新規C分岐試験）。新規unit20/100 status pairs PASS。先行call新規20は再実行0。正常V1のみ変更影響回帰1、旧26unit/7retry/他受入再実行0。記録・終端確認のnative/unit/compile0。終端確認=True。最終resume/task graph/scoped index guard/diff-check。
 - Commit: 同branch非force、source=22e9ddad5ff722ea70f7cd1072d69c3354f5e3da、自己SHAはgit log。
 - Network: 固定GitHub artifact再利用、private payload新規tracked0。active baseline/merge/release変更0。
+
+## 2026-09-26T13:23:26.538636+00:00
+- Timestamp: 2026-09-26T13:23:26.538636+00:00
+- Task: USER-20260926-RESEARCH-PHASE0-LOAD / 通常load内phase0保存不可とcold回復
+- Version: research-phase0-load-v1
+- Status: DONE（限定2境界、全UIは未受入）
+- Summary: 通常load内phase0の保存不可2経路（V1移行/未確定稼得回復）を受入。原本全2048byte・全Flashを保持して拒否、通常cold Continueで1回保存し2回の後続Continueで完全一致。
+- Files changed: 新runner/model/43tests/Actions、証拠/checkpoint/guide、固定引継ぎMD/JSON、両ログ。
+- Verify: 新unit43PASS（初回canonical C compile1）をsource同一で再利用、unit再実行0。native2process/8cores、成功runner compile1（初回runner sign-compare compile失敗1を別記）、7guard拒否PASS。ローカル開発preflight43PASS。通常load拒否・回復・2回冪等Continue。ROM変更/ARM compile/link/旧受入再実行0。fixtureは可用性word1件4byte/各process、guarded host書込/ledger/PC/戻り値注入0。終端確認=False、記録finalizeはnative/unit/compile0。resume/task graph/scoped final-index guard/diff-checkを同runで検査。全体歴史guard成功は主張しない。
+- Commit: 同branch非force。source=187bb4a87fc4ad63f06022355c2d3be9ac47c2b5、自己SHAはgit log。
+- Network: GitHub固定artifactとActions API。私有payload新規tracked0、merge/release/active baseline変更0。
