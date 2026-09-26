@@ -1,5 +1,5 @@
 name: pr16-special-wild-gameplay-20260926
-# 通常UI v1。保存候補を再利用し、未受入の釣り/レーダーだけを実測する。
+# v2: 研究保存delegateを修正。hidden成功原本は再利用しfishingだけ実測。
 on:
   push:
     branches: [codex/modernization-followup-20260908]
@@ -26,12 +26,14 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: 完全preimage/postimage hashで限定text編集を適用
+        run: python3 -B scripts/pr16_special_wild_ui_v2_upgrade.py
       - name: mGBA host依存（ARM compilerなし）
         run: |
           set -euo pipefail
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends libmgba-dev
-      - name: 保存候補で未受入の通常UI・捕獲・保存を実測
+      - name: hidden原本を再利用・未受入fishingだけ通常UI検証
         run: python3 -B scripts/pr16_special_wild_gameplay_native.py execute
       - name: 成功と失敗の原本・固定引継ぎ・両ログ
         id: record
@@ -50,7 +52,7 @@ jobs:
           python3 -B scripts/pr16_special_wild_gameplay_native.py paths | tr '\n' '\0' >.local/pr16-special-wild-ui/paths.z
           git add --pathspec-from-file=.local/pr16-special-wild-ui/paths.z --pathspec-file-nul
           python3 -B scripts/pr16_special_wild_gameplay_native.py guard
-      - name: 検証済み記録を同branchへ非force commit/push・remote照合
+      - name: 検証済みsourceと記録を同branchへ非force commit/push
         if: always() && steps.record.outcome == 'success' && steps.validate.outcome == 'success'
         run: |
           set -euo pipefail
@@ -59,7 +61,7 @@ jobs:
           test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'USER-20260926-SPECIAL-WILD-UI: 通常UIの成功・失敗原本と引継ぎ・両ログを保存'
+          git commit -m 'USER-20260926-SPECIAL-WILD-UI: 研究保存delegate修正・通常UI実測・引継ぎ・両ログを保存'
           git push origin "HEAD:$branch"
           sha=$(git rev-parse HEAD)
           test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$sha"
