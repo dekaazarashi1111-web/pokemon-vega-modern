@@ -1,5 +1,5 @@
 name: pr16-special-wild-ui-finish-20260926
-# phase1: 成功原本の記録だけ復旧。native/既存unit/host/ARM再実行なし。
+# phase2: 記録復旧runの終端成功を照合。native/unit/host/ARMは実行しない。
 on:
   push:
     branches: [codex/modernization-followup-20260908]
@@ -26,15 +26,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: 検証済みsourceの完全hash転送（実行なし）
-        run: python3 -B scripts/pr16_special_wild_ui_v2_upgrade.py
-      - name: 新しい記録guardだけを検証
-        run: |
-          set -euo pipefail
-          mkdir -p .local/pr16-special-wild-ui-finish
-          python3 -B -m unittest discover -s tests -p test_pr16_special_wild_ui_finish.py -v 2>&1 | tee .local/pr16-special-wild-ui-finish/new-unit.txt
-      - name: 成功native原本・source・config・引継ぎ・両ログを復旧
-        run: python3 -B scripts/pr16_special_wild_ui_finish.py recover
+      - name: 復旧Actions全step・成果commit親子・原本を終端照合
+        run: python3 -B scripts/pr16_special_wild_ui_finish.py finalize
       - name: 引継ぎ・task graph・final index限定guard
         run: |
           set -euo pipefail
@@ -51,7 +44,7 @@ jobs:
           test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'USER-20260926-SPECIAL-WILD-UI: 通常UI2件と研究保存delegate修正の記録を再実測せず復旧'
+          git commit -m 'USER-20260926-SPECIAL-WILD-UI: 通常UI2件の終端・共有保存delegate修正・次工程を確定'
           git push origin "HEAD:$branch"
           sha=$(git rev-parse HEAD)
           test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$sha"
