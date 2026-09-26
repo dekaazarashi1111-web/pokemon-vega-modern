@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-PASS_PHOTO_PENDING_TERMINAL
+PASS_PHOTO_RP_WITH_COLD_VISUAL_OPEN
 
-**次: 次は他5活動の実RP稼得と、通常進行によるResearch受付/ショップへの接続。写真0→6RP・取消/同日重複拒否/取引保存/独立Continue・写真3文言、catalog23商品/5画面と35会話ROM byteは受入原本を再利用。自然到達、他5活動、全会話native表示、releaseは未受入。**
+**次: 最優先は写真Continue後の青い反復背景（PHOTO_COLD_FIELD_VISUAL）の切分け。稼得/claim/取引保存の受入とは別で、field表示は未受入。保存済みmap layout/tilesetと停止warp fixtureの整合を調べ、field表示だけを切り分ける。自然到達や製品全体の破損を断定しない。写真稼得/取消/同日拒否の成功原本は再実行しない。 その後に他5活動の実RP稼得、通常進行からResearch受付/ショップ接続、残るnative文言を進める。**
 
 新規開始/初回保存だけの受入をstarter/実RP/自然供給/全catalogへ拡張しない。受入済みcase反復/merge/release/baseline変更禁止。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `ad71709096c5da19e5bf43e9f4e91b8c47fda35f`。
+証拠のsource HEAD: `5ef2110f3ce6462433cb87c96adbe378d440f41b`。
 写真限定記録source。自己SHAはgit log参照。
 
 ## 最短の再開手順
@@ -69,6 +69,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- 写真のcold ContinueはRP/claim/保存counterのみ受入。青い反復背景は未受入。稼得成功ケースを無変更で再実行せず、map layout/tileset/fixture境界だけを診断する。
 - 写真の0→6RP/取消/同日重複拒否/取引保存/独立Continueと3文言は専用原本を再利用。全活動/自然到達/通常ショップ接続に昇格しない。
 - catalog23商品/5画面・35会話ROM byteは専用checkpointを参照。native全会話/自然RP/通常進行とは分離し、受入済み保存/購入/取消を再実行しない。
 - 研究保存の今回受入: 購入/不足run36249587919（42oracle原本再利用）、通常new-game/初回Save/独立Continue2回run36250444503（新52oracle）。両checkpointと不変source/candidateから継承し、旧取消/旧host/phase0/V1/retry/ARMを反復しない。購入失敗run36248750283とdriver向き診断は履歴のまま保持。次は実RP稼得・通常進行と全catalog監査。

@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "PASS_PHOTO_PENDING_TERMINAL",
+    "current_stop": "PASS_PHOTO_RP_WITH_COLD_VISUAL_OPEN",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "次は他5活動の実RP稼得と、通常進行によるResearch受付/ショップへの接続。写真0→6RP・取消/同日重複拒否/取引保存/独立Continue・写真3文言、catalog23商品/5画面と35会話ROM byteは受入原本を再利用。自然到達、他5活動、全会話native表示、releaseは未受入。",
+    "next_step": "最優先は写真Continue後の青い反復背景（PHOTO_COLD_FIELD_VISUAL）の切分け。稼得/claim/取引保存の受入とは別で、field表示は未受入。保存済みmap layout/tilesetと停止warp fixtureの整合を調べ、field表示だけを切り分ける。自然到達や製品全体の破損を断定しない。写真稼得/取消/同日拒否の成功原本は再実行しない。 その後に他5活動の実RP稼得、通常進行からResearch受付/ショップ接続、残るnative文言を進める。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -793,6 +793,7 @@
   },
   "current_resume_doc": "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
   "do_not_repeat": [
+    "写真のcold ContinueはRP/claim/保存counterのみ受入。青い反復背景は未受入。稼得成功ケースを無変更で再実行せず、map layout/tileset/fixture境界だけを診断する。",
     "写真の0→6RP/取消/同日重複拒否/取引保存/独立Continueと3文言は専用原本を再利用。全活動/自然到達/通常ショップ接続に昇格しない。",
     "catalog23商品/5画面・35会話ROM byteは専用checkpointを参照。native全会話/自然RP/通常進行とは分離し、受入済み保存/購入/取消を再実行しない。",
     "研究保存の今回受入: 購入/不足run36249587919（42oracle原本再利用）、通常new-game/初回Save/独立Continue2回run36250444503（新52oracle）。両checkpointと不変source/candidateから継承し、旧取消/旧host/phase0/V1/retry/ARMを反復しない。購入失敗run36248750283とdriver向き診断は履歴のまま保持。次は実RP稼得・通常進行と全catalog監査。",
@@ -4165,9 +4166,9 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "次は他5活動の実RP稼得と、通常進行によるResearch受付/ショップへの接続。写真0→6RP・取消/同日重複拒否/取引保存/独立Continue・写真3文言、catalog23商品/5画面と35会話ROM byteは受入原本を再利用。自然到達、他5活動、全会話native表示、releaseは未受入。",
+    "goal_ja": "最優先は写真Continue後の青い反復背景（PHOTO_COLD_FIELD_VISUAL）の切分け。稼得/claim/取引保存の受入とは別で、field表示は未受入。保存済みmap layout/tilesetと停止warp fixtureの整合を調べ、field表示だけを切り分ける。自然到達や製品全体の破損を断定しない。写真稼得/取消/同日拒否の成功原本は再実行しない。 その後に他5活動の実RP稼得、通常進行からResearch受付/ショップ接続、残るnative文言を進める。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
-    "id": "RESEARCH_OTHER_ACTIVITIES_AND_NATURAL_CONNECTION_NEXT",
+    "id": "PHOTO_COLD_FIELD_VISUAL_DIAGNOSTIC_NEXT",
     "read_paths": [
       "docs/PR16_RESEARCH_PHOTO_JA.md",
       "content/modernization/pr16_research_photo_checkpoint.json",
@@ -4184,24 +4185,15 @@
     "stop_rule_ja": "新規開始/初回保存だけの受入をstarter/実RP/自然供給/全catalogへ拡張しない。受入済みcase反復/merge/release/baseline変更禁止。"
   },
   "observed_date_jst": "2026-09-27",
-  "observed_head": "ad71709096c5da19e5bf43e9f4e91b8c47fda35f",
+  "observed_head": "5ef2110f3ce6462433cb87c96adbe378d440f41b",
   "observed_head_checks": {
     "reason_ja": "写真限定検証と全体CIを分離。既存P03 capacityのsource pin failure/承認待ちを全CI成功へ昇格しない。",
     "runs": [
       {
         "conclusion": null,
         "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "ad71709096c5da19e5bf43e9f4e91b8c47fda35f",
-        "id": 36253612742,
-        "path": ".github/workflows/ci.yml",
-        "run_attempt": 1,
-        "status": "in_progress"
-      },
-      {
-        "conclusion": null,
-        "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "ad71709096c5da19e5bf43e9f4e91b8c47fda35f",
-        "id": 36253612685,
+        "head_sha": "5ef2110f3ce6462433cb87c96adbe378d440f41b",
+        "id": 36253802175,
         "path": ".github/workflows/p03-forgetting-ci.yml",
         "run_attempt": 1,
         "status": "in_progress"
@@ -4209,29 +4201,92 @@
       {
         "conclusion": null,
         "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "ad71709096c5da19e5bf43e9f4e91b8c47fda35f",
-        "id": 36253608437,
+        "head_sha": "5ef2110f3ce6462433cb87c96adbe378d440f41b",
+        "id": 36253802253,
+        "path": ".github/workflows/ci.yml",
+        "run_attempt": 1,
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "5ef2110f3ce6462433cb87c96adbe378d440f41b",
+        "id": 36253798224,
         "path": ".github/workflows/pr16-research-photo-20260927.yml",
         "run_attempt": 1,
         "status": "in_progress"
       },
       {
+        "conclusion": "success",
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "5ef2110f3ce6462433cb87c96adbe378d440f41b",
+        "id": 36253798231,
+        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+        "run_attempt": 1,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "5ef2110f3ce6462433cb87c96adbe378d440f41b",
+        "id": 36253798230,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "run_attempt": 1,
+        "status": "completed"
+      },
+      {
         "conclusion": null,
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "5ef2110f3ce6462433cb87c96adbe378d440f41b",
+        "id": 36253798225,
+        "path": ".github/workflows/ci.yml",
+        "run_attempt": 1,
+        "status": "in_progress"
+      },
+      {
+        "conclusion": "action_required",
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "b555650b1ba7bbf23b49b238cfa290432cd160b8",
+        "id": 36253646105,
+        "path": ".github/workflows/ci.yml",
+        "run_attempt": 1,
+        "status": "completed"
+      },
+      {
+        "conclusion": "action_required",
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "b555650b1ba7bbf23b49b238cfa290432cd160b8",
+        "id": 36253646097,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "run_attempt": 1,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "ad71709096c5da19e5bf43e9f4e91b8c47fda35f",
+        "id": 36253612685,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "run_attempt": 1,
+        "status": "completed"
+      },
+      {
+        "conclusion": "failure",
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "ad71709096c5da19e5bf43e9f4e91b8c47fda35f",
+        "id": 36253612742,
+        "path": ".github/workflows/ci.yml",
+        "run_attempt": 1,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
         "head_branch": "codex/modernization-followup-20260908",
         "head_sha": "ad71709096c5da19e5bf43e9f4e91b8c47fda35f",
         "id": 36253608344,
         "path": ".github/workflows/p03-forgetting-ci.yml",
         "run_attempt": 1,
-        "status": "in_progress"
-      },
-      {
-        "conclusion": null,
-        "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "ad71709096c5da19e5bf43e9f4e91b8c47fda35f",
-        "id": 36253608377,
-        "path": ".github/workflows/ci.yml",
-        "run_attempt": 1,
-        "status": "in_progress"
+        "status": "completed"
       },
       {
         "conclusion": "success",
@@ -4241,63 +4296,9 @@
         "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
         "run_attempt": 1,
         "status": "completed"
-      },
-      {
-        "conclusion": null,
-        "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "d8db0db22c37b018b8beb126afa0d24ac1abd830",
-        "id": 36253589309,
-        "path": ".github/workflows/ci.yml",
-        "run_attempt": 1,
-        "status": "in_progress"
-      },
-      {
-        "conclusion": "cancelled",
-        "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "d8db0db22c37b018b8beb126afa0d24ac1abd830",
-        "id": 36253589321,
-        "path": ".github/workflows/p03-forgetting-ci.yml",
-        "run_attempt": 1,
-        "status": "completed"
-      },
-      {
-        "conclusion": null,
-        "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "d8db0db22c37b018b8beb126afa0d24ac1abd830",
-        "id": 36253583696,
-        "path": ".github/workflows/ci.yml",
-        "run_attempt": 1,
-        "status": "in_progress"
-      },
-      {
-        "conclusion": null,
-        "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "d8db0db22c37b018b8beb126afa0d24ac1abd830",
-        "id": 36253583693,
-        "path": ".github/workflows/modernization-stage79-mgba.yml",
-        "run_attempt": 1,
-        "status": "in_progress"
-      },
-      {
-        "conclusion": "success",
-        "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "d8db0db22c37b018b8beb126afa0d24ac1abd830",
-        "id": 36253583715,
-        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
-        "run_attempt": 1,
-        "status": "completed"
-      },
-      {
-        "conclusion": "success",
-        "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "d8db0db22c37b018b8beb126afa0d24ac1abd830",
-        "id": 36253583712,
-        "path": ".github/workflows/p03-forgetting-ci.yml",
-        "run_attempt": 1,
-        "status": "completed"
       }
     ],
-    "scope_head": "ad71709096c5da19e5bf43e9f4e91b8c47fda35f"
+    "scope_head": "5ef2110f3ce6462433cb87c96adbe378d440f41b"
   },
   "observed_head_history": [
     {
@@ -5938,16 +5939,30 @@
     "status": "PASS_PHASE0_LOAD_SCOPED"
   },
   "research_photo": {
-    "actions_completion_confirmed": false,
+    "actions_completion_confirmed": true,
     "candidate": {
       "sha256": "5d1fc9c47225ae8c0a369514b899a062af3699fa3c9a2f617e94ffd5f7dcc1ab",
       "size": 33554432
     },
+    "cold_field_visual_accepted": false,
+    "known_unaccepted_findings": [
+      {
+        "cause": "UNDETERMINED",
+        "id": "PHOTO_COLD_FIELD_VISUAL",
+        "image": "photo-duplicate_after_continue-outcome.ppm",
+        "measurement": "content/modernization/pr16_research_photo_evidence/36253608437/measurement.json",
+        "native_reruns": 0,
+        "next_ja": "保存済みmap layout/tilesetと停止warp fixtureの整合を調べ、field表示だけを切り分ける。自然到達や製品全体の破損を断定しない。写真稼得/取消/同日拒否の成功原本は再実行しない。",
+        "observation_ja": "独立Continue後は台詞を読めるが、背景が青い反復タイルとなり建物/地形が表示されない。RP/claim/Bag/party/保存counterの受入とは別。",
+        "sha256": "9e5f6272bbfc690a35b2eb2cfe242d2c23953dba1d22f7f82b2798ec3031971f",
+        "status": "OPEN_UNACCEPTED"
+      }
+    ],
     "path": "content/modernization/pr16_research_photo_checkpoint.json",
     "photo_accepted": true,
     "run_id": 36253608437,
     "source_head": "ad71709096c5da19e5bf43e9f4e91b8c47fda35f",
-    "status": "PASS_PHOTO_PENDING_TERMINAL"
+    "status": "PASS_PHOTO_REAL_EARNING_SCOPED"
   },
   "research_purchase": {
     "accepted_cases": [
@@ -7290,8 +7305,8 @@
       "size": 3240
     },
     ".github/workflows/pr16-research-photo-20260927.yml": {
-      "sha256": "71e1dfd602cde174d9f3f2c8b6c86f147bd76a3bfff7f48a53ab92c0c592a3b6",
-      "size": 2975
+      "sha256": "b96dcf2d8bb7da9c156075c3a974c7362224f4e3dc9ec88ca53f022c326f362d",
+      "size": 7184
     },
     ".github/workflows/pr16-research-purchase-20260926.yml": {
       "sha256": "06bbc166b8fbeec42c83cc0f63a9a15fb7b957add925b32bf03d21529da90906",
@@ -8582,8 +8597,8 @@
       "size": 37336
     },
     "content/modernization/pr16_research_photo_checkpoint.json": {
-      "sha256": "4168f635a8c699295da5a2ad7ba7f71e7d14e0c19fe5821467b5cc9025d74aa3",
-      "size": 65783
+      "sha256": "8d61968b8dfba2cbbe6cc82379cd35313693bad6ec21eb9768eccd8fc56c0ec6",
+      "size": 71834
     },
     "content/modernization/pr16_research_purchase_checkpoint.json": {
       "sha256": "3a458871e2b58e24053d9fa09de622c93e5c874413e7975df354882e3efc209b",
@@ -9446,8 +9461,8 @@
       "size": 2634
     },
     "docs/PR16_RESEARCH_PHOTO_JA.md": {
-      "sha256": "1542735ea1cca9cb7652fdca64f58db1d0285ac43f4704e0e695c2190cfb425f",
-      "size": 2307
+      "sha256": "c4ca5b31b90714d4b5b4e63b99ca38762e85c8042569df3cc54e66a144443734",
+      "size": 2953
     },
     "docs/PR16_RESEARCH_PURCHASE_JA.md": {
       "sha256": "bb044e2de0d32a4c215b2a99926fcb668f11a7b71826e1615246af9469bd930f",

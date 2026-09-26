@@ -7788,3 +7788,25 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 新規43検査、host1/native1（core2）/ARM0、7 guardは同一受入原本再利用。準備compile/native各4、stance2診断と早い画像1を修正。終端は再実行0。resume/task graph/index guardをcommit前に検査。
 - Commit: source=ad71709096c5da19e5bf43e9f4e91b8c47fda35f、同branch非force push。自己SHAはgit log参照。
 - Network: GitHub接続API/固定artifactのみ。ROM/save非tracked、active baseline不変。一般CI既存P03 pin failureは別件、release/mergeなし。
+
+## 2026-09-26T15:59:14.024036+00:00
+- Timestamp: 2026-09-26T15:59:14.024036+00:00
+- Task: USER-20260927-RESEARCH-PHOTO / 写真実RP稼得
+- Version: research-photo-v1
+- Status: DONE（限定scope）
+- Summary: PASS_PHOTO_REAL_EARNING_SCOPED / finalize。0→6RP/同日重複拒否/取引保存2/独立Continueと写真3文言。自然到達/全活動/ショップ接続は未受入。
+- Files changed: 写真validator/native/43検査/Actions/専用MD/JSON/UTF8証拠、固定引継ぎ、両ログ。
+- Verify: 新規43検査、host1/native1（core2）/ARM0、7 guardは同一受入原本再利用。準備compile/native各4、stance2診断と早い画像1を修正。終端は再実行0。resume/task graph/index guardをcommit前に検査。
+- Commit: source=5ef2110f3ce6462433cb87c96adbe378d440f41b、同branch非force push。自己SHAはgit log参照。
+- Network: GitHub接続API/固定artifactのみ。ROM/save非tracked、active baseline不変。一般CI既存P03 pin failureは別件、release/mergeなし。
+
+## 2026-09-26T15:59:14.622142+00:00
+- Timestamp: 2026-09-26T15:59:14.622142+00:00
+- Task: USER-20260927-RESEARCH-PHOTO / cold field目視境界
+- Version: research-photo-v1-visual-scope
+- Status: BLOCKED（field表示だけ。写真RP受入とは分離）
+- Summary: Continue後の青い反復背景を原本から確認。原因未特定、natural arrival/releaseは未受入。
+- Files changed: 写真MD/JSON、固定引継ぎMD/JSON、両ログ。
+- Verify: run36253608437の7画像SHA一致、目視画像9e5f6272bbfc690a35b2eb2cfe242d2c23953dba1d22f7f82b2798ec3031971f。unit/native/compile/ARM再実行0。resume/task graph/index guardは後続stepで検査。
+- Commit: source=5ef2110f3ce6462433cb87c96adbe378d440f41b、同branch非force push。自己SHAはgit log参照。
+- Network: 追加取得なし。ROM/save変更0、active baseline不変。

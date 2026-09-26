@@ -1,5 +1,5 @@
 {
-  "actions_completion_confirmed": false,
+  "actions_completion_confirmed": true,
   "active_baseline_changed": false,
   "all_activities_accepted": false,
   "all_dialogue_native_display_accepted": false,
@@ -7,6 +7,7 @@
     "sha256": "5d1fc9c47225ae8c0a369514b899a062af3699fa3c9a2f617e94ffd5f7dcc1ab",
     "size": 33554432
   },
+  "cold_field_visual_accepted": false,
   "counts": {
     "accepted_case_reruns": 0,
     "arm_compiles": 0,
@@ -18,6 +19,21 @@
     "rom_changes": 0
   },
   "failed_cases": [],
+  "finalize_run_id": 36253798224,
+  "finalize_source_head": "5ef2110f3ce6462433cb87c96adbe378d440f41b",
+  "known_unaccepted_findings": [
+    {
+      "cause": "UNDETERMINED",
+      "id": "PHOTO_COLD_FIELD_VISUAL",
+      "image": "photo-duplicate_after_continue-outcome.ppm",
+      "measurement": "content/modernization/pr16_research_photo_evidence/36253608437/measurement.json",
+      "native_reruns": 0,
+      "next_ja": "保存済みmap layout/tilesetと停止warp fixtureの整合を調べ、field表示だけを切り分ける。自然到達や製品全体の破損を断定しない。写真稼得/取消/同日拒否の成功原本は再実行しない。",
+      "observation_ja": "独立Continue後は台詞を読めるが、背景が青い反復タイルとなり建物/地形が表示されない。RP/claim/Bag/party/保存counterの受入とは別。",
+      "sha256": "9e5f6272bbfc690a35b2eb2cfe242d2c23953dba1d22f7f82b2798ec3031971f",
+      "status": "OPEN_UNACCEPTED"
+    }
+  ],
   "manifest": "content/modernization/pr16_research_photo_evidence/36253608437/manifest.json",
   "measurement": "content/modernization/pr16_research_photo_evidence/36253608437/measurement.json",
   "natural_arrival_accepted": false,
@@ -1406,6 +1422,145 @@
     }
   },
   "source_head": "ad71709096c5da19e5bf43e9f4e91b8c47fda35f",
-  "status": "PASS_PHOTO_PENDING_TERMINAL",
-  "task": "USER-20260927-RESEARCH-PHOTO"
+  "status": "PASS_PHOTO_REAL_EARNING_SCOPED",
+  "task": "USER-20260927-RESEARCH-PHOTO",
+  "terminal": {
+    "artifacts": [
+      {
+        "digest": "sha256:405b4ff811f27a91934610171da395f137046b4f1a155b488018574a64592afc",
+        "id": 10910018130,
+        "name": "pr16-research-photo",
+        "size_in_bytes": 51314,
+        "workflow_run": {
+          "head_branch": "codex/modernization-followup-20260908",
+          "head_repository_id": 1358127462,
+          "head_sha": "ad71709096c5da19e5bf43e9f4e91b8c47fda35f",
+          "id": 36253608437,
+          "repository_id": 1358127462
+        }
+      }
+    ],
+    "compiles": 0,
+    "jobs": [
+      {
+        "check_run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/check-runs/108436128914",
+        "completed_at": "2026-09-26T15:55:52Z",
+        "conclusion": "success",
+        "created_at": "2026-09-26T15:55:18Z",
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "ad71709096c5da19e5bf43e9f4e91b8c47fda35f",
+        "html_url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/36253608437/job/108436128914",
+        "id": 108436128914,
+        "labels": [
+          "ubuntu-24.04"
+        ],
+        "name": "photo",
+        "node_id": "CR_kwDOUPNhZs8AAAAZP0wEkg",
+        "run_attempt": 1,
+        "run_id": 36253608437,
+        "run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/36253608437",
+        "runner_group_id": 0,
+        "runner_group_name": "GitHub Actions",
+        "runner_id": 1000016247,
+        "runner_name": "GitHub Actions 1000016247",
+        "started_at": "2026-09-26T15:55:19Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completed_at": "2026-09-26T15:55:21Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "started_at": "2026-09-26T15:55:20Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-09-26T15:55:29Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "started_at": "2026-09-26T15:55:21Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-09-26T15:55:29Z",
+            "conclusion": "success",
+            "name": "写真実装のローカル検証sourceと完全一致",
+            "number": 3,
+            "started_at": "2026-09-26T15:55:29Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-09-26T15:55:45Z",
+            "conclusion": "success",
+            "name": "写真の限定実測と原本記録",
+            "number": 4,
+            "started_at": "2026-09-26T15:55:29Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-09-26T15:55:47Z",
+            "conclusion": "success",
+            "name": "引継ぎ・task graph・限定indexと旧原本保全",
+            "number": 5,
+            "started_at": "2026-09-26T15:55:45Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-09-26T15:55:49Z",
+            "conclusion": "success",
+            "name": "同branchへcommitと非force push",
+            "number": 6,
+            "started_at": "2026-09-26T15:55:47Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-09-26T15:55:50Z",
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@v4",
+            "number": 7,
+            "started_at": "2026-09-26T15:55:49Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-09-26T15:55:50Z",
+            "conclusion": "success",
+            "name": "原本保存後に受入結論を確定",
+            "number": 8,
+            "started_at": "2026-09-26T15:55:50Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-09-26T15:55:50Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 16,
+            "started_at": "2026-09-26T15:55:50Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-09-26T15:55:50Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 17,
+            "started_at": "2026-09-26T15:55:50Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/jobs/108436128914",
+        "workflow_name": "pr16-research-photo-20260927"
+      }
+    ],
+    "native_reruns": 0,
+    "run": {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "ad71709096c5da19e5bf43e9f4e91b8c47fda35f",
+      "id": 36253608437,
+      "path": ".github/workflows/pr16-research-photo-20260927.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    "unit_reruns": 0
+  }
 }

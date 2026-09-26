@@ -1,6 +1,6 @@
 # PR16 写真調査の実RP稼得
 
-PASS_PHOTO_PENDING_TERMINAL
+PASS_PHOTO_REAL_EARNING_SCOPED
 
 次は他5活動の実RP稼得と、通常進行によるResearch受付/ショップへの接続。写真0→6RP・取消/同日重複拒否/取引保存/独立Continue・写真3文言、catalog23商品/5画面と35会話ROM byteは受入原本を再利用。自然到達、他5活動、全会話native表示、releaseは未受入。
 
@@ -17,3 +17,7 @@ source `ad71709096c5da19e5bf43e9f4e91b8c47fda35f` / run `36253608437` / `content
 ## 全体CIと残作業
 
 今回の限定PASSと一般CIは別。実装前source-validation run36251713025/job108430855211はP03 capacityの25検査中2errorで、固定証拠に対する `tested source changed: overlays/qol_production/qol_production.c` が原因だった。今回そのproduction sourceやP03証拠を改変しない。全CI成功/merge/releaseは主張しない。通常new-game、購入、取消、catalog、旧保存の受入原本を保全。写真以外5活動・自然到達・通常経路からショップ接続は別の未完境界。
+
+## 追加の未受入境界: cold Continueのフィールド背景
+
+独立Continue後は台詞を読めるが、背景が青い反復タイルとなり建物/地形が表示されない。RP/claim/Bag/party/保存counterの受入とは別。 目視原本は `photo-duplicate_after_continue-outcome.ppm`、SHA-256 `9e5f6272bbfc690a35b2eb2cfe242d2c23953dba1d22f7f82b2798ec3031971f`。原因は未特定。保存済みmap layout/tilesetと停止warp fixtureの整合を調べ、field表示だけを切り分ける。自然到達や製品全体の破損を断定しない。写真稼得/取消/同日拒否の成功原本は再実行しない。
