@@ -1,0 +1,683 @@
+{
+  "schema_version": 1,
+  "task": "PR-P08-7-RING-CALLER-COMPOSE",
+  "source_head": "fc985116e19073345ac2f4f3511d76f9f40daa84",
+  "run_id": 35057073533,
+  "run_status_at_record": "in_progress",
+  "analysis": {
+    "classification": "SAVED_CALLER_COMPOSITION_AND_FAIL_CLOSED_SNAPSHOT_CHECKER",
+    "candidate": {
+      "size": 33554432,
+      "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b",
+      "crc32": "3EB17B36"
+    },
+    "composition": {
+      "classification": "CALLSITE_BOUND_CONDITIONAL_FLAGSET_CONTRACT",
+      "external_calls": [
+        {
+          "site": 134667752,
+          "target": 135346313,
+          "return_thumb": 134667757,
+          "args": [
+            "1",
+            "id"
+          ],
+          "entry_sp_offset": -24,
+          "local_frame_bytes": 16,
+          "deepest_sp_offset": -40,
+          "saved_lr_sp_offset": -28,
+          "return_sp_offset": -24,
+          "continuation_saved_node": {
+            "address": 134667756,
+            "size": 2,
+            "hex": "021c",
+            "kind": "ordinary",
+            "memory_write": false,
+            "successors": [
+              134667758
+            ]
+          },
+          "return_condition": "valid intact local frame and stable normal mapping; not a native observation"
+        },
+        {
+          "site": 134667792,
+          "target": 134667549,
+          "return_thumb": 134667797,
+          "args": [
+            "id",
+            "0"
+          ],
+          "entry_sp_offset": -24,
+          "local_frame_bytes": 4,
+          "deepest_sp_offset": -28,
+          "saved_lr_sp_offset": -28,
+          "return_sp_offset": -24,
+          "continuation_saved_node": {
+            "address": 134667796,
+            "size": 2,
+            "hex": "0006",
+            "kind": "ordinary",
+            "memory_write": false,
+            "successors": [
+              134667798
+            ]
+          },
+          "return_condition": "valid intact local frame and stable normal mapping; not a native observation"
+        },
+        {
+          "site": 134667828,
+          "target": 135346425,
+          "return_thumb": 134667833,
+          "args": [
+            "1",
+            "id",
+            "mem8[mem32[0x03005048]+0xEE0+(id>>3)]"
+          ],
+          "entry_sp_offset": -24,
+          "local_frame_bytes": 20,
+          "deepest_sp_offset": -44,
+          "saved_lr_sp_offset": -28,
+          "return_sp_offset": -24,
+          "continuation_saved_node": {
+            "address": 134667832,
+            "size": 2,
+            "hex": "0448",
+            "kind": "ordinary",
+            "literal_address": 134667852,
+            "literal_value": 50352200,
+            "memory_write": false,
+            "successors": [
+              134667834
+            ]
+          },
+          "return_condition": "valid intact local frame and stable normal mapping; not a native observation"
+        }
+      ],
+      "selector2_external3_id_ranges": [
+        [
+          560,
+          2047
+        ],
+        [
+          2080,
+          2303
+        ]
+      ],
+      "selector2_external3_id_count": 1712,
+      "selector2_external3_mode": 1,
+      "selector2_external3_header": "0x8000 | id (id <= 2303)",
+      "selector2_external3_payload_range": [
+        0,
+        255
+      ],
+      "selector2_external3_payload_high_byte": 0,
+      "active_prefix_index_max": 65534,
+      "counter_after_active_prefix_range": [
+        1,
+        65535
+      ],
+      "counter_wrap_possible_under_active_prefix_and_nonalias": false,
+      "peak_frame_bytes_by_route": {
+        "zero": 24,
+        "helper_nonzero": 24,
+        "high": 24,
+        "low_other": 24,
+        "low_selector1": 40,
+        "low_selector2_false": 28,
+        "low_selector2_true": 44
+      },
+      "external2_and_external3_frames_are_sequential_not_nested": true,
+      "outer_return_thumb": 134667905,
+      "flagset_final_write": {
+        "site": 134667922,
+        "width": 1,
+        "condition": "returned_pointer != 0",
+        "value": "read8(returned_pointer) | (1 << (id & 7))",
+        "live_frame_sp_offsets": [
+          -8,
+          0
+        ],
+        "retired_callee_frame_sp_offsets": [
+          -24,
+          -8
+        ]
+      },
+      "flagset_r0_on_conditional_return": 0,
+      "net_sp_delta_under_contract": 0,
+      "external3_r0_after_tail": 134667833,
+      "external3_r0_is_ignored_before_common_pointer_reconstruction": true,
+      "old_abi_executed": false,
+      "native_observation": false
+    },
+    "saved_contract_reports": [
+      {
+        "path": "content/modernization/pr16_ring_frame_join.json",
+        "sha256": "279cfedbac150421195f4ae1fbabdda45164032e6a0d3677f5f368450a96ebc4",
+        "run_id": 34974346670,
+        "source_head": "369299c404a28ece2aaadf82b578c636d3120021",
+        "reexecuted": false
+      },
+      {
+        "path": "content/modernization/pr16_ring_callee_abi.json",
+        "sha256": "ec45ae731bee3d124e5c7fa1bf9919f4f03520d526af3906e34623da3bf92ac8",
+        "run_id": 34978245004,
+        "source_head": "85e0b2a4558d5ec74f032f6b6cead6df249089a0",
+        "reexecuted": false
+      },
+      {
+        "path": "content/modernization/pr16_ring_helper_abi.json",
+        "sha256": "01e1428282d2271d352f8cb1644603d260a496f9e0861c976ed52b2232d2b928",
+        "run_id": 34984185105,
+        "source_head": "d339871fc1d8e9fb9abdc2f4139a547be2eb7dfa",
+        "reexecuted": false
+      },
+      {
+        "path": "content/modernization/pr16_ring_nonzero_abi.json",
+        "sha256": "d9a12d15b936d850bf1a59371bafef92ca8efa718c24bcdae72b516634092d40",
+        "run_id": 34990811278,
+        "source_head": "558ed9e28ca9318c2a3d8d9829775850d15f3a2c",
+        "reexecuted": false
+      },
+      {
+        "path": "content/modernization/pr16_ring_zero_abi.json",
+        "sha256": "2d6d97fc1998409e2589620589eb3911d92cf979b6e1f3b30418730e5efa0f90",
+        "run_id": 35002458426,
+        "source_head": "884db03b5e9436d67545e1cf43bf03f86acd33c1",
+        "reexecuted": false
+      },
+      {
+        "path": "content/modernization/pr16_ring_common_tail_abi.json",
+        "sha256": "ed344d342b1599eaf0ea51258fb61e2cf61b0defeed87b26c44fc96ec406e1e4",
+        "run_id": 35008976649,
+        "source_head": "5280f666fb592d961503d430dd7e88525dd0bd07",
+        "reexecuted": false
+      },
+      {
+        "path": "content/modernization/pr16_ring_epilogue_abi.json",
+        "sha256": "a336594a386f5b9f69c2832e35646daad5ff8ca33f2ce4d83a219ed36207f5cc",
+        "run_id": 35012341851,
+        "source_head": "c87afbb7619897cb840b1a3388f7f060e4b10acb",
+        "reexecuted": false
+      },
+      {
+        "path": "content/modernization/pr16_ring_high_branch_abi.json",
+        "sha256": "2e9a6c05f49a16d1dd92a3939876436b8e25dc1ec5012c3b527e25fcbd845e78",
+        "run_id": 35013060593,
+        "source_head": "de517da291587ca23867800f1df65997e5e6034e",
+        "reexecuted": false
+      },
+      {
+        "path": "content/modernization/pr16_ring_external1_abi.json",
+        "sha256": "6b85751600d2ac75f64bd24dc725bbd1b197ca4c99203faa1ee06c74f44be3c4",
+        "run_id": 35048669015,
+        "source_head": "48e81bb4249b6f2b610d93fb20b62dec5f903bfd",
+        "reexecuted": false
+      },
+      {
+        "path": "content/modernization/pr16_ring_external1_cont_abi.json",
+        "sha256": "fe9fa33b50dece21cac9f2c9f04b5bd37916947d79a4443894198166d7d71be4",
+        "run_id": 35049393487,
+        "source_head": "e95e2655414975a9bc353ad3fc0e4365ba6ab523",
+        "reexecuted": false
+      },
+      {
+        "path": "content/modernization/pr16_ring_external1_exit_abi.json",
+        "sha256": "1ee79e8e8305d50af84104dd9984502df656a5c3632c22efa81008ed28baa7c6",
+        "run_id": 35049978307,
+        "source_head": "f6617bfbca9363d4e958628a88bb1b6147f2818e",
+        "reexecuted": false
+      },
+      {
+        "path": "content/modernization/pr16_ring_external2_abi.json",
+        "sha256": "10171fb0872ab4ec7390ba828178c109ba4b0391c93d6f90a87785f49a46880c",
+        "run_id": 35051354515,
+        "source_head": "8d2504309caa29cfdcb749675c7f26a6b5a5fad0",
+        "reexecuted": false
+      },
+      {
+        "path": "content/modernization/pr16_ring_external3_abi.json",
+        "sha256": "abb56976a0d74faeabbf3b80b63b58ec58b697ce932193c4593e5c7eb9943acc",
+        "run_id": 35052121180,
+        "source_head": "cf5c6acd3744bcaae90f21829178704b5c5926d7",
+        "reexecuted": false
+      },
+      {
+        "path": "content/modernization/pr16_ring_external3_body_abi.json",
+        "sha256": "f2677bcd192914fc1f629811d48c470f570361686b96e1ee383be561b7618b0d",
+        "run_id": 35053018627,
+        "source_head": "4bea1aa74bd14e18f4bcb4d58375e88a52711750",
+        "reexecuted": false
+      },
+      {
+        "path": "content/modernization/pr16_ring_external3_tail_abi.json",
+        "sha256": "ffe7d250077f69858d56d331d567ec073484b761e9fa25c952b0b4e7e4d96664",
+        "run_id": 35054868301,
+        "source_head": "e64d6c86224905b21f108a57a3e5be00a226f001",
+        "reexecuted": false
+      },
+      {
+        "path": "content/modernization/pr16_ring_flagset_continuation.json",
+        "sha256": "f42e0ce2a7716e99c01315ea6c8a5e47454437a20956c8836ab0335caba25c97",
+        "run_id": 34971661219,
+        "source_head": "27f29ff3ce6b26ca9b1ac439e29f655910d5eebd",
+        "reexecuted": false
+      },
+      {
+        "path": "content/modernization/pr16_ring_zero_bytes.json",
+        "sha256": "053457495169b5628d8ff3c0c28c8a58e38053ffd66b4bf8547bae2b2cfb5036",
+        "run_id": 35000269301,
+        "source_head": "9df0a6c7fd9fcf34ee307346afcea209e8323817",
+        "reexecuted": false
+      }
+    ],
+    "saved_contract_actions_verified_without_replay": [
+      {
+        "name": "frame_join",
+        "id": 34974346670,
+        "head_sha": "369299c404a28ece2aaadf82b578c636d3120021",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "zero_abi",
+        "id": 35002458426,
+        "head_sha": "884db03b5e9436d67545e1cf43bf03f86acd33c1",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "external1_exit_abi",
+        "id": 35049978307,
+        "head_sha": "f6617bfbca9363d4e958628a88bb1b6147f2818e",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "external2_abi",
+        "id": 35051354515,
+        "head_sha": "8d2504309caa29cfdcb749675c7f26a6b5a5fad0",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "external3_tail_abi",
+        "id": 35054868301,
+        "head_sha": "e64d6c86224905b21f108a57a3e5be00a226f001",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    ],
+    "canonical_memory_model": {
+      "ram_half_open": [
+        [
+          33554432,
+          33816576
+        ],
+        [
+          50331648,
+          50364416
+        ]
+      ],
+      "reference": "https://github.com/mgba-emu/mgba/blob/master/include/mgba/internal/gba/memory.h",
+      "runtime_normal_mapping_confirmed": false,
+      "mirrors_mmio_wrap_unaligned_async_rejected": true,
+      "sufficient_not_necessary_conditions": true,
+      "peak_disjoint_required_for_entry_value_formulas": true
+    },
+    "runtime_obligations": [
+      "actual FlagSet entry SP and saved LR bound to the same candidate/caller",
+      "live count/limit/index/capacity/base_ptr/save_ptr/selector values and mapping stability",
+      "record and save allocation extents; return LR target executability",
+      "no asynchronous DMA/IRQ mutation while composing; actual path writes outside live frames",
+      "old 18 owner coverage; Ring story supply/cancel/capacity/idempotence/native save/continue"
+    ],
+    "old_unread_targets": [
+      134647037,
+      134647989,
+      134648233,
+      134648273,
+      135346165,
+      151613701,
+      154152717,
+      154155097,
+      154635157,
+      154635821,
+      154635823,
+      154635825,
+      154639241,
+      154639243,
+      154917233,
+      154917289,
+      154922465,
+      154922573
+    ],
+    "remaining_unread_targets": [
+      134647037,
+      134647989,
+      134648233,
+      134648273,
+      135346165,
+      151613701,
+      154152717,
+      154155097,
+      154635157,
+      154635821,
+      154635823,
+      154635825,
+      154639241,
+      154639243,
+      154917233,
+      154917289,
+      154922465,
+      154922573
+    ],
+    "unresolved_indirect_edges": [
+      {
+        "site": 135346532,
+        "kind": "indirect",
+        "register": 0,
+        "target": null
+      }
+    ],
+    "prior_external_indirect_edges_preserved": [
+      {
+        "site": 135346420,
+        "kind": "indirect",
+        "register": 1,
+        "target": null
+      },
+      {
+        "site": 134667610,
+        "kind": "indirect",
+        "register": 1,
+        "target": null
+      }
+    ],
+    "conditional_call_edges_bound": 3,
+    "actual_runtime_inputs_bound": false,
+    "caller_frame_integrity_discharged": false,
+    "side_effects_excluded": false,
+    "callee_return_proven": false,
+    "callee_return_observed": false,
+    "saved_slot_preservation_proven": false,
+    "return_pointer_non_alias_proven": false,
+    "all_runtime_owners_excluded": false,
+    "ring_acquisition_accepted": false,
+    "release_ready": false,
+    "rom_changes": 0,
+    "new_emulator_processes": 0,
+    "candidate_reconstructions": 0,
+    "new_graph_decodes": 0,
+    "accepted_native_cases_replayed": 0,
+    "prior_abi_classifications_replayed": 0
+  },
+  "source_bindings": {
+    "scripts/pr16_ring_followup_v2.py": {
+      "size": 11453,
+      "sha256": "71e33dbe40cd8988e185256821e33e6a1e06e4eddeb8ee6a3eb9047a4d3c49f7"
+    },
+    "scripts/pr16_ring_caller_compose.py": {
+      "size": 20785,
+      "sha256": "d3eb3d6419aa2c7004f925245d3408fbd15c5c042ec683785b8a4f9ef3760d95"
+    },
+    "tests/test_pr16_ring_caller_compose.py": {
+      "size": 12886,
+      "sha256": "ec8f583137a20fad1e7e9807e9e332018d63f5268922293cb52a7ea3e6f3ce9a"
+    },
+    ".github/workflows/pr16-ring-caller-compose.yml": {
+      "size": 1531,
+      "sha256": "6164f6974575142d264260c8483cab4354d1d2ff04e3acc8f69baa6af9c84014"
+    },
+    "content/modernization/pr16_ring_tail_ci_closeout.json": {
+      "size": 12470,
+      "sha256": "bdbcf78df74516cd4728ee67fb150259f4dd95c0554fb3564d8560fb14ef43eb"
+    },
+    "content/modernization/pr16_bp_chooser_checkpoint.json": {
+      "size": 9442,
+      "sha256": "853ed41b6abcfb63651aab136951a53c8c89ec635f769e8466327ba3a0c0ae41"
+    },
+    "scripts/pr16_resume.py": {
+      "size": 26649,
+      "sha256": "b0ec73bf933e46f7b254057559b0c637a2d1a9b625b08f348aa8308ea00dee5a"
+    },
+    "scripts/pr16_ring_compiled_record.py": {
+      "size": 13116,
+      "sha256": "768c94e59983d27bbf0ed46d6ba60008352a3a67e11612b18936e38b271e73ef"
+    },
+    "scripts/guard_private_files.py": {
+      "size": 5443,
+      "sha256": "143426a7403abf47396791f6ece3a3a374fa97fbf8bedc88169f636cddbcc905"
+    },
+    "content/modernization/pr16_ring_frame_join.json": {
+      "size": 12005,
+      "sha256": "279cfedbac150421195f4ae1fbabdda45164032e6a0d3677f5f368450a96ebc4"
+    },
+    "content/modernization/pr16_ring_callee_abi.json": {
+      "size": 12915,
+      "sha256": "ec45ae731bee3d124e5c7fa1bf9919f4f03520d526af3906e34623da3bf92ac8"
+    },
+    "content/modernization/pr16_ring_helper_abi.json": {
+      "size": 14158,
+      "sha256": "01e1428282d2271d352f8cb1644603d260a496f9e0861c976ed52b2232d2b928"
+    },
+    "content/modernization/pr16_ring_nonzero_abi.json": {
+      "size": 14128,
+      "sha256": "d9a12d15b936d850bf1a59371bafef92ca8efa718c24bcdae72b516634092d40"
+    },
+    "content/modernization/pr16_ring_zero_abi.json": {
+      "size": 14547,
+      "sha256": "2d6d97fc1998409e2589620589eb3911d92cf979b6e1f3b30418730e5efa0f90"
+    },
+    "content/modernization/pr16_ring_common_tail_abi.json": {
+      "size": 16527,
+      "sha256": "ed344d342b1599eaf0ea51258fb61e2cf61b0defeed87b26c44fc96ec406e1e4"
+    },
+    "content/modernization/pr16_ring_epilogue_abi.json": {
+      "size": 11160,
+      "sha256": "a336594a386f5b9f69c2832e35646daad5ff8ca33f2ce4d83a219ed36207f5cc"
+    },
+    "content/modernization/pr16_ring_high_branch_abi.json": {
+      "size": 9441,
+      "sha256": "2e9a6c05f49a16d1dd92a3939876436b8e25dc1ec5012c3b527e25fcbd845e78"
+    },
+    "content/modernization/pr16_ring_external1_abi.json": {
+      "size": 10768,
+      "sha256": "6b85751600d2ac75f64bd24dc725bbd1b197ca4c99203faa1ee06c74f44be3c4"
+    },
+    "content/modernization/pr16_ring_external1_cont_abi.json": {
+      "size": 9418,
+      "sha256": "fe9fa33b50dece21cac9f2c9f04b5bd37916947d79a4443894198166d7d71be4"
+    },
+    "content/modernization/pr16_ring_external1_exit_abi.json": {
+      "size": 14160,
+      "sha256": "1ee79e8e8305d50af84104dd9984502df656a5c3632c22efa81008ed28baa7c6"
+    },
+    "content/modernization/pr16_ring_external2_abi.json": {
+      "size": 10779,
+      "sha256": "10171fb0872ab4ec7390ba828178c109ba4b0391c93d6f90a87785f49a46880c"
+    },
+    "content/modernization/pr16_ring_external3_abi.json": {
+      "size": 9866,
+      "sha256": "abb56976a0d74faeabbf3b80b63b58ec58b697ce932193c4593e5c7eb9943acc"
+    },
+    "content/modernization/pr16_ring_external3_body_abi.json": {
+      "size": 12577,
+      "sha256": "f2677bcd192914fc1f629811d48c470f570361686b96e1ee383be561b7618b0d"
+    },
+    "content/modernization/pr16_ring_external3_tail_abi.json": {
+      "size": 12289,
+      "sha256": "ffe7d250077f69858d56d331d567ec073484b761e9fa25c952b0b4e7e4d96664"
+    },
+    "content/modernization/pr16_ring_flagset_continuation.json": {
+      "size": 17058,
+      "sha256": "f42e0ce2a7716e99c01315ea6c8a5e47454437a20956c8836ab0335caba25c97"
+    },
+    "content/modernization/pr16_ring_zero_bytes.json": {
+      "size": 35345,
+      "sha256": "053457495169b5628d8ff3c0c28c8a58e38053ffd66b4bf8547bae2b2cfb5036"
+    }
+  },
+  "focused_tests": {
+    "tests_run": 40,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "successful": true
+  },
+  "prior_actions_verified_without_replay": [
+    {
+      "id": 35055552309,
+      "head_sha": "47dffd12eaf98a4748b8429e3855a4b37371a958",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34946969126,
+      "head_sha": "0b7497b575a3180a045f2be377386490f192a012",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "actions_observed_before_record": [
+    {
+      "id": 35057076378,
+      "name": "source-validation",
+      "head_sha": "fc985116e19073345ac2f4f3511d76f9f40daa84",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35057076438,
+      "name": "p03-forgetting-ci",
+      "head_sha": "fc985116e19073345ac2f4f3511d76f9f40daa84",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35057073594,
+      "name": "source-validation",
+      "head_sha": "fc985116e19073345ac2f4f3511d76f9f40daa84",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35057073568,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "fc985116e19073345ac2f4f3511d76f9f40daa84",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35057073533,
+      "name": "Ring保存caller契約結合・限定検証・非force記録",
+      "head_sha": "fc985116e19073345ac2f4f3511d76f9f40daa84",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35057073566,
+      "name": "p03-forgetting-ci",
+      "head_sha": "fc985116e19073345ac2f4f3511d76f9f40daa84",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35057073547,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "fc985116e19073345ac2f4f3511d76f9f40daa84",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35056106494,
+      "name": "p03-forgetting-ci",
+      "head_sha": "fba9984ad1705a1656879e961ec2b82d8cb4cdb3",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35056106501,
+      "name": "source-validation",
+      "head_sha": "fba9984ad1705a1656879e961ec2b82d8cb4cdb3",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35056103126,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "fba9984ad1705a1656879e961ec2b82d8cb4cdb3",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35056103183,
+      "name": "Ring外側caller結合の限定source取得（native再実行なし）",
+      "head_sha": "fba9984ad1705a1656879e961ec2b82d8cb4cdb3",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35056103128,
+      "name": "p03-forgetting-ci",
+      "head_sha": "fba9984ad1705a1656879e961ec2b82d8cb4cdb3",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35056103127,
+      "name": "source-validation",
+      "head_sha": "fba9984ad1705a1656879e961ec2b82d8cb4cdb3",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35055596960,
+      "name": "source-validation",
+      "head_sha": "ee3760e77cddc9628982115d97ab150de5ba7b5d",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35055596992,
+      "name": "p03-forgetting-ci",
+      "head_sha": "ee3760e77cddc9628982115d97ab150de5ba7b5d",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35055555751,
+      "name": "p03-forgetting-ci",
+      "head_sha": "47dffd12eaf98a4748b8429e3855a4b37371a958",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35055555735,
+      "name": "source-validation",
+      "head_sha": "47dffd12eaf98a4748b8429e3855a4b37371a958",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35055552232,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "47dffd12eaf98a4748b8429e3855a4b37371a958",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35055552309,
+      "name": "保存末尾ABI成功照合とP05残件テスト修正・記録・非force push",
+      "head_sha": "47dffd12eaf98a4748b8429e3855a4b37371a958",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35055552325,
+      "name": "p03-forgetting-ci",
+      "head_sha": "47dffd12eaf98a4748b8429e3855a4b37371a958",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ]
+}

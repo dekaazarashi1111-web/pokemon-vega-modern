@@ -1,0 +1,94 @@
+name: pr16-learnset-impact
+# v4: record-only guard bytes fix; inherit 14+3 units and completed validator.
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-learnset-impact.yml]
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-learnset-impact
+  cancel-in-progress: false
+jobs:
+  impact:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: 17試験と完了validatorの成功原本を継承しbytes契約だけ修復
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        shell: python
+        run: |
+          import hashlib, io, json, os, pathlib, subprocess, sys, zipfile
+          sys.path.insert(0,'scripts')
+          from pr16_wiki_reconcile import fetch
+          old='87093593388b79765e7649907778fd5046bf1843'
+          source=pathlib.Path('scripts/pr16_learnset_impact.py')
+          assert source.read_bytes()==subprocess.check_output(['git','show',old+':'+str(source)])
+          text=source.read_text()
+          changes=[('PROOF.mkdir(parents=True)','prepare_proof()'),('\ndef execute():','\ndef prepare_proof():\n    PROOF.mkdir(parents=True,exist_ok=True)\n\n\ndef execute():'),('OWNED=CODE|',"CODE.add('tests/test_pr16_learnset_impact_directory.py')\nOWNED=CODE|"),('private.document_user_path_lines(text)','private.document_user_path_lines(raw)'),('private.document_user_path_lines(prior)','private.document_user_path_lines(old)'),('新規境界unitは本Actionsのunit.txt','境界14+3unitと完了validatorをrun35835731455/35836024443から継承。本runはprivate guard bytes契約の修復と記録のみ')]
+          for before,after in changes:
+              assert text.count(before)==1
+              text=text.replace(before,after,1)
+          source.write_text(text)
+          run=fetch('actions/runs/35836024443')
+          assert run['status']=='completed' and run['conclusion']=='failure' and run['head_sha']=='ec5e6845ed3ace416587cda22b11e4a58e2ad0d6'
+          raw=fetch('actions/artifacts/10739023989/zip',binary=True)
+          assert len(raw)==381770 and hashlib.sha256(raw).hexdigest()=='5023f67b86111c6a41be58afe368435af7d7b7afc9cb4ea8ff5ec5673ca063f5'
+          proof=pathlib.Path('.local/pr16-learnset-impact/proof');proof.mkdir(parents=True)
+          with zipfile.ZipFile(io.BytesIO(raw)) as z:
+              assert set(z.namelist())=={'proof/completed-actions.json','proof/inherited-unit.json','proof/directory-unit.txt','proof/next-source.zip','proof/unit.txt','record.txt','execute.txt'}
+              for n,count in [('unit.txt',14),('directory-unit.txt',3)]:
+                  unit=z.read('proof/'+n)
+                  assert unit.count(b' ... ok\n')==count and unit.rstrip().endswith(b'OK')
+                  (proof/n).write_bytes(unit)
+              assert z.read('execute.txt').decode().startswith('PASS: 戦闘完了Actions照合') and not z.read('record.txt')
+              done=json.loads(z.read('proof/completed-actions.json'))
+              assert done['run_id']==35833647521 and done['job_id']==107091863129 and done['actions_completion_confirmed'] is True
+              done.update(recording_run_id=int(os.environ['GITHUB_RUN_ID']),recording_source_head=os.environ['GITHUB_SHA'],recording_unit_tests=17,recording_tests_rerun=0,previous_recording_failures=[{'run_id':35835731455,'stop':'proof directory already exists; 14 units passed'},{'run_id':35836024443,'stop':'private guard str/bytes contract; completion validator and 3 units passed'}])
+              (proof/'completed-actions.json').write_text(json.dumps(done,ensure_ascii=False,sort_keys=True,indent=2)+'\n')
+          # Native/source acceptance is immutable; only the recording adapter changed.
+          for name in ['tests/test_pr16_learnset_impact.py','tests/test_pr16_learnset_impact_directory.py','content/modernization/pr16_learnset_battle_checkpoint.json']:
+              assert pathlib.Path(name).read_bytes()==subprocess.check_output(['git','show','ec5e6845ed3ace416587cda22b11e4a58e2ad0d6:'+name])
+      - name: 未反映の記録と変更indexの実guardだけを実施
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python3 -B scripts/pr16_learnset_impact.py record 2>&1 | tee .local/pr16-learnset-impact/proof/record.txt
+          python3 -B scripts/pr16_resume.py check | tee .local/pr16-learnset-impact/proof/resume.txt
+          python3 -B scripts/validate_task_graph.py | tee .local/pr16-learnset-impact/proof/task-graph.txt
+          python3 -B scripts/pr16_learnset_impact.py paths | tr '\n' '\0' >.local/pr16-learnset-impact/paths.z
+          git add --pathspec-from-file=.local/pr16-learnset-impact/paths.z --pathspec-file-nul
+          python3 -B scripts/pr16_learnset_impact.py guard 2>&1 | tee .local/pr16-learnset-impact/proof/guard.txt
+      - name: 同branchへ非force commit/pushし最新refを照合
+        run: |
+          set -euo pipefail
+          branch='codex/modernization-followup-20260908'
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20260923-LEARNSET-IMPACT: guard bytes契約を修復し通常戦闘の完了Actions・固定引継ぎ・両ログを記録'
+          git push origin "HEAD:$branch"
+          sha=$(git rev-parse HEAD)
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$sha"
+          echo "$sha" | tee .local/pr16-learnset-impact/proof/reflected-head.txt
+          python3 -B -c "import sys,zipfile;sys.path.insert(0,'scripts');import pr16_learnset_impact as m; z=zipfile.ZipFile(m.PROOF/'reflected-text.zip','w',zipfile.ZIP_DEFLATED);[z.write(m.ROOT/p,p) for p in sorted(m.OWNED)];z.close()"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-learnset-impact-proof
+          path: .local/pr16-learnset-impact/proof/
+          retention-days: 30
+          if-no-files-found: error

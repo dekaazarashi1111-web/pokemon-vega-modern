@@ -1,0 +1,1009 @@
+{
+  "schema_version": 1,
+  "task": "USER-20260920-P08-ORDINARY",
+  "regression_id": "P08_CIRCUS_POST_EXIT_ORDINARY",
+  "case": "circus-exit30-ordinary",
+  "source_head": "2ad35cf6a60f5bdbe8627be87b9b1cbad444452b",
+  "workflow_source_head": "304eb25919601ccd7534dfd6e1da1dd5be091019",
+  "candidate": {
+    "size": 33554432,
+    "sha256": "46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38"
+  },
+  "original": {
+    "run_id": 35504302893,
+    "job_id": 106061386465,
+    "head_sha": "cc5d6822266a9663b0e368c9cff2c94d2ede3435",
+    "artifact_id": 10603527226,
+    "archive": {
+      "size": 299507,
+      "sha256": "39481869e73b6685b964d58c8a24143f90c6650ee7e2c444f14207c11c8865e0"
+    },
+    "generated": {
+      "p03b_archive_embedded.c": {
+        "size": 20163,
+        "sha256": "d1aef42d46e770aa7784477965902e5f26297ca8f0b5da80b8f78b0e7c706a80"
+      },
+      "p03a_fullslots_embedded.c": {
+        "size": 12877,
+        "sha256": "d5230de78b19ab9990281d884b0f5242b76f0c4b427b574da25daddb0abc60a8"
+      },
+      "p03_learning_embedded.c": {
+        "size": 7996,
+        "sha256": "81a488ced101990d3b22af65542e1f68d24e628291c1dd7e90751f2a6b18f336"
+      },
+      "p03_p02_embedded.c": {
+        "size": 39678,
+        "sha256": "04ba837b8aad5625708751f7902ca794c74b0993e13307c6c7e390ae62af1cdf"
+      },
+      "pr16_shop_breeding_helpers.c": {
+        "size": 19626,
+        "sha256": "1a97210389443f72586fdb1fa6c6523b296f56ee116065e71040a14f465a14c0"
+      },
+      "pr16_capture_shop_helpers.c": {
+        "size": 10007,
+        "sha256": "0854289c5a7895ad7de2ee82b4ac578db0b96fcf6e1b570d6adb5205dabab881"
+      },
+      "pr16_gear_capture_helpers.c": {
+        "size": 9640,
+        "sha256": "4c057989f1638e14d6814c269291f952ad2cb8e96be5a36274ff8707fc63bee8"
+      },
+      "pr16_bp_native_helpers.c": {
+        "size": 16314,
+        "sha256": "29fd3a5f30d5e6e7ea229fd59d2fd8d2b072d07244ddef762ec01d59a03e4c9f"
+      },
+      "pr16_bp_control_embedded.c": {
+        "size": 11463,
+        "sha256": "06dd81f90dde1c8d57d156acf92b1bf2db30431341c1fc3ada3aa654cc396ee7"
+      },
+      "pr16_circus_selection_helpers.c": {
+        "size": 10511,
+        "sha256": "db81848dbd188a74b4afd0aab1e27aa796229964541dc392805801bcccc51da5"
+      },
+      "pr16_circus_turn_helpers.c": {
+        "size": 3939,
+        "sha256": "37b6581d714cf47e605b0516215456415e1787f03a9af830cc7ce441657a173b"
+      },
+      "pr16_gear_route.h": {
+        "size": 518,
+        "sha256": "bd60ed3f71b01b821c7722e3d80edeb2b3d9049b9dd876e6ffb4e49dac65cf1c"
+      },
+      "pr16_circus_addresses.h": {
+        "size": 87,
+        "sha256": "1b7247f0cd8ef1d75eaad6e7811ed584b32cfc638d4e5c458c2a4d515536287f"
+      },
+      "pr16_streak_legacy.c": {
+        "size": 11746,
+        "sha256": "de1618b95f09d8ce02c2a1ce8b833fa893f35c4da08b64dd69f9927cfe0c89c2"
+      },
+      "pr16_streak_policy.c": {
+        "size": 64920,
+        "sha256": "f8b1d0252056f3c11612204d3ea1320439ffa6495e356b1f36791d6f750179dc"
+      },
+      "controller.c": {
+        "size": 13153,
+        "sha256": "f395e059a52cc69d5d39d2a3d8fc4795d57f790e4887fe1cf74313e06f40ec7d"
+      },
+      "getter_suppression.h": {
+        "size": 6501,
+        "sha256": "bb8e8ef9510c7ebbbbf615ac94318a6d8423c7825d0523266bfe7a48e12075ea"
+      },
+      "cg_addresses.h": {
+        "size": 60,
+        "sha256": "21868ddb440be1b5cf8b04e44599e5428873746f324d48d3b220b1009e914c9d"
+      },
+      "ss_routes.h": {
+        "size": 2248,
+        "sha256": "537c00aaa9986c2de7a4328f03c737cf03c196cf43a1176a749bb4e05b21494b"
+      }
+    },
+    "cache": {
+      "source_run": 35494023398,
+      "save": {
+        "size": 131088,
+        "sha256": "b4846fe3d915f69f7cefb2f58a0c2c0c571d9f96d5d16a295537854d849c2371"
+      },
+      "cache_key": "pr16-circus-save30-2b107e7ef897844eff810ff0b40f82543640488696e8295194ceb3b66fb2c183-35494023398",
+      "prefix_wins_reexecuted": 0,
+      "host_state_injection": false
+    },
+    "exit_event": {
+      "label": "resume30",
+      "frame": 2602,
+      "battle": 30,
+      "callback2": 134569589,
+      "script": 0,
+      "newbs": 0,
+      "outcome": 0,
+      "flags": 0,
+      "types": 0,
+      "count": 1,
+      "bp": 90,
+      "save_counter": 3,
+      "pending": 0,
+      "snapshot": 0,
+      "marker": 0,
+      "order": [
+        0,
+        0,
+        0
+      ],
+      "owner": "56435331a9bcacce010040007913be65510000000a0000001e0000001e0000001e001e0000000100d535be400000000000000000000000000000000000000000",
+      "party": "f0ed6f94d535be406c7f6faeffffff00000001020101010101ff0000000000000400000070ca01000046040035003f0165017e000f280a050000000000000000000000000005320200000000000000000000000032ff640064003200430038002e004b000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "factory": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "note_ja": "現候補の施設退出cleanupは受入済み原本を継承。新規区間は旧候補由来の真正退出Save30を現候補でContinue後の通常戦闘だけ。"
+  },
+  "source_bindings": {
+    "scripts/pr16_p08_ordinary_representative.py": {
+      "size": 18299,
+      "sha256": "da11e612be0e617826755a7f4877943b4403321dd6be9962c680cdd72760ec2c"
+    },
+    "tools/mgba_pr16_p08_ordinary_main.h": {
+      "size": 5338,
+      "sha256": "f0cb583d59bf1387c648f26fbf7bfd7de35628d4cf81f614e2a9761fb4566905"
+    },
+    "tools/mgba_pr16_p08_ordinary_observer.h": {
+      "size": 4107,
+      "sha256": "923431e93d921bc205fcfca7cac077392f3bea9577779550c4bf972bab604037"
+    },
+    "tests/test_pr16_p08_ordinary_representative.py": {
+      "size": 7149,
+      "sha256": "de454577e9a1e56a205ee61b01c08154a2e16ea93ff96183c60875f70fa686c2"
+    },
+    ".github/workflows/pr16-p08-ordinary.yml": {
+      "size": 2404,
+      "sha256": "f015d8632521e2a155053ab76d949f13fdd7d091a6517710b76135e07faac955"
+    },
+    "scripts/pr16_p08_memory_acceptance.py": {
+      "size": 5249,
+      "sha256": "cfc97374d81751bffa575acfc8e0488c97d6abf54292eaa80229ed180197e10d"
+    }
+  },
+  "protected_originals": {
+    "content/modernization/pr16_p08_candidate_impact.json": {
+      "size": 739897,
+      "sha256": "9aeab30775211ba995a3d6dd589d697f70ed966bb34719aa1ea5e86548799142"
+    },
+    "content/modernization/pr16_p08_ring_acceptance.json": {
+      "size": 3292,
+      "sha256": "ca5b7ed5260273c6cbe18b895f502fe4d33e4c77d6a3fc9c262dc2a81f5e7193"
+    },
+    "content/modernization/pr16_circus_acceptance.json": {
+      "size": 5476,
+      "sha256": "265f903d57d1205ef87877b4f29a73bc16ef6ed208ffade8cd62b1c39f5ca2ab"
+    },
+    "content/modernization/pr16_circus_suppression_lifecycle.json": {
+      "size": 65187,
+      "sha256": "186ffa2d54e587de953922d89cede9e86182b354b8aa704255b8242518525a02"
+    },
+    "content/modernization/pr16_circus_getter_followup.json": {
+      "size": 117299,
+      "sha256": "856881aa9b0156f391736de4748733395f493fe3de48ac23596e828c5745ba27"
+    },
+    "content/modernization/pr16_bp_chooser_checkpoint.json": {
+      "size": 9442,
+      "sha256": "4deb7c27771c63740ab94b9cf8c7b3c386f7193b989f35ede9d131c4f4bf15bf"
+    },
+    "config/active_play_baseline.json": {
+      "size": 394,
+      "sha256": "4800257add049ea99cdedda91413a70a255dcff9a85823463596edefa8785053"
+    }
+  },
+  "native_verified": false,
+  "representative_accepted": false,
+  "visual_review_completed": false,
+  "new_emulator_processes": 1,
+  "host_compiles": 1,
+  "fresh_cores": 0,
+  "arm_compiles": 0,
+  "arm_links": 0,
+  "accepted_standalone_replays": 0,
+  "prefix_wins_reexecuted": 0,
+  "rom_changes": 0,
+  "release_ready": false,
+  "failures": [
+    {
+      "type": "ValueError",
+      "message": "ordinary native process"
+    }
+  ],
+  "recording_run": 35512429611,
+  "recording_source_head": "81fd0de02faed52a7bfd95a7b6f2cd722cb51076",
+  "phase": "FINISH",
+  "cache": {
+    "source_run": 35494023398,
+    "save": {
+      "size": 131088,
+      "sha256": "b4846fe3d915f69f7cefb2f58a0c2c0c571d9f96d5d16a295537854d849c2371"
+    },
+    "cache_key": "pr16-circus-save30-2b107e7ef897844eff810ff0b40f82543640488696e8295194ceb3b66fb2c183-35494023398",
+    "prefix_wins_reexecuted": 0,
+    "host_state_injection": false
+  },
+  "oracle": {
+    "paths": {
+      "town": [
+        [
+          19,
+          20
+        ],
+        [
+          18,
+          20
+        ],
+        [
+          18,
+          19
+        ],
+        [
+          18,
+          18
+        ],
+        [
+          19,
+          18
+        ],
+        [
+          20,
+          18
+        ],
+        [
+          21,
+          18
+        ],
+        [
+          22,
+          18
+        ],
+        [
+          22,
+          17
+        ],
+        [
+          23,
+          17
+        ],
+        [
+          23,
+          16
+        ],
+        [
+          23,
+          15
+        ],
+        [
+          23,
+          14
+        ],
+        [
+          23,
+          13
+        ],
+        [
+          23,
+          12
+        ],
+        [
+          23,
+          11
+        ],
+        [
+          23,
+          10
+        ],
+        [
+          23,
+          9
+        ],
+        [
+          23,
+          8
+        ],
+        [
+          23,
+          7
+        ],
+        [
+          23,
+          6
+        ],
+        [
+          23,
+          5
+        ],
+        [
+          23,
+          4
+        ],
+        [
+          23,
+          3
+        ],
+        [
+          23,
+          2
+        ],
+        [
+          23,
+          1
+        ],
+        [
+          23,
+          0
+        ]
+      ],
+      "grass": [
+        [
+          11,
+          38
+        ],
+        [
+          11,
+          37
+        ],
+        [
+          11,
+          36
+        ],
+        [
+          11,
+          35
+        ],
+        [
+          11,
+          34
+        ],
+        [
+          11,
+          33
+        ],
+        [
+          11,
+          32
+        ],
+        [
+          11,
+          31
+        ],
+        [
+          11,
+          30
+        ],
+        [
+          12,
+          30
+        ],
+        [
+          13,
+          30
+        ],
+        [
+          14,
+          30
+        ]
+      ]
+    },
+    "routes": [
+      {
+        "name": "AbilityBattleEffects",
+        "root": 151742076,
+        "target": 157112436,
+        "normal": 156451084,
+        "suppressed": 156451196,
+        "preserve_r3": true,
+        "stub": {
+          "size": 12,
+          "sha256": "2b0e0715fc3708a30de1a30272dfc85cc7379ac6133b66d3dfeb03d9c1f11453"
+        },
+        "dispatcher": {
+          "size": 64,
+          "sha256": "f221f44190427798e65ebc9544da36cf101cf082ec2c1d78ec2b7fa74bbd6848"
+        }
+      },
+      {
+        "name": "ProtectAffects",
+        "root": 151765480,
+        "target": 157112484,
+        "normal": 156451108,
+        "suppressed": 156451224,
+        "preserve_r3": true,
+        "stub": {
+          "size": 12,
+          "sha256": "f7daa1fda56fa79675c284e8b6a4c43fea23b0521c0f6992e096757845ef9895"
+        },
+        "dispatcher": {
+          "size": 64,
+          "sha256": "5777c36dd276ef5dd1296dc9b7cad47e6a4716b327f8517194a0af31aa0f394a"
+        }
+      },
+      {
+        "name": "DoesProtectionMoveBlockMove",
+        "root": 151766208,
+        "target": 157112532,
+        "normal": 156451096,
+        "suppressed": 156451252,
+        "preserve_r3": true,
+        "stub": {
+          "size": 12,
+          "sha256": "140d8c756b9d7fc282d0a56f7f384628d4d7788aba598acc96605fda00e6a805"
+        },
+        "dispatcher": {
+          "size": 64,
+          "sha256": "b64f24a2d3126f83299b55f410e25d3a9c29976690a55f1dc2f1cd181d76f6e0"
+        }
+      },
+      {
+        "name": "AccuracyCalc",
+        "root": 151766664,
+        "target": 157112580,
+        "normal": 156447152,
+        "suppressed": 156451848,
+        "preserve_r3": false,
+        "stub": {
+          "size": 8,
+          "sha256": "30e8a9878cfa057132d5e587c132278613457eeacd32aa98fae9892fc59c2f75"
+        },
+        "dispatcher": {
+          "size": 64,
+          "sha256": "4166a0e7b5833e9d91a02c057adf5c145aa279f51934a40cb5265e5c71e43a0a"
+        }
+      },
+      {
+        "name": "VisualAccuracyCalc",
+        "root": 151766712,
+        "target": 157112620,
+        "normal": 156447222,
+        "suppressed": 156451872,
+        "preserve_r3": false,
+        "stub": {
+          "size": 8,
+          "sha256": "5da4b0c42fb3f4285b15d4c9c97eb9759e284e80bf5c61ed2119add599b44b5f"
+        },
+        "dispatcher": {
+          "size": 64,
+          "sha256": "79ff71bcbddb9a83ac52217975c5d23ed52a76880b119d7d04f852c5629ed900"
+        }
+      },
+      {
+        "name": "VisualAccuracyCalc_NoTarget",
+        "root": 151766988,
+        "target": 157112660,
+        "normal": 156447292,
+        "suppressed": 156451896,
+        "preserve_r3": false,
+        "stub": {
+          "size": 8,
+          "sha256": "742e321da3df73869a206d4742ea8325535cf34de3cd29289abc8ab0557d841a"
+        },
+        "dispatcher": {
+          "size": 64,
+          "sha256": "8464b19a2f5f07fe380d7e73d29d79a96fc0868069750bf16711276640c6bc7c"
+        }
+      },
+      {
+        "name": "atk01_accuracycheck",
+        "root": 151767772,
+        "target": 157112700,
+        "normal": 156447092,
+        "suppressed": 156451824,
+        "preserve_r3": false,
+        "stub": {
+          "size": 8,
+          "sha256": "3d9c3a370e74424086490b85dd4834f8e488b8fb17f38e38a349b5f88f1f0783"
+        },
+        "dispatcher": {
+          "size": 64,
+          "sha256": "2b7e1d1a15e8ce7ff43a1c7257eddaa9d3815bf634d4ca280f15185936cf34d0"
+        }
+      },
+      {
+        "name": "ModifyGrowthInSun",
+        "root": 151817968,
+        "target": 157112740,
+        "normal": 156447360,
+        "suppressed": 156451920,
+        "preserve_r3": false,
+        "stub": {
+          "size": 8,
+          "sha256": "6080e19df3d1cc08ab649aab1e4b340f4d52f8d932f56d880e17fc55021ceb47"
+        },
+        "dispatcher": {
+          "size": 64,
+          "sha256": "13ed5f0d5ef519595562812ea35cc0ca9c5930e5450acc438922b2333b1924b8"
+        }
+      },
+      {
+        "name": "NonInvasiveCheckGrounding",
+        "root": 151864056,
+        "target": 157112780,
+        "normal": 156451120,
+        "suppressed": 156451280,
+        "preserve_r3": true,
+        "stub": {
+          "size": 12,
+          "sha256": "ffc1254e723ba76c6c61419e8ca8230d6ac1b36929ce70ac70897bad9a5a2ce0"
+        },
+        "dispatcher": {
+          "size": 64,
+          "sha256": "f7f6a16682e85fffd49142630a2fe4264b5dc457a0ff4673e3a9b7697857faf9"
+        }
+      },
+      {
+        "name": "CheckMonGrounding",
+        "root": 151864276,
+        "target": 157112828,
+        "normal": 156448844,
+        "suppressed": 156451600,
+        "preserve_r3": false,
+        "stub": {
+          "size": 8,
+          "sha256": "9f6fa85ab1821606900df649a73391eede04e7440aa102b7a3cddc1acd3f26b8"
+        },
+        "dispatcher": {
+          "size": 64,
+          "sha256": "689516ea6e2e8ec68086810f2b78780445d84505844239373f1a90583126ff7c"
+        }
+      },
+      {
+        "name": "CheckGroundingByDetails",
+        "root": 151864412,
+        "target": 157112868,
+        "normal": 156448932,
+        "suppressed": 156451628,
+        "preserve_r3": false,
+        "stub": {
+          "size": 8,
+          "sha256": "0349b370fc21af228b2f022f40bf92360221a362f8a76e027302347d97ba5cc3"
+        },
+        "dispatcher": {
+          "size": 64,
+          "sha256": "e78e805c33ff072d5ea00e9e3e6b2420c71564c1ccf89312bba379e85aeffd7f"
+        }
+      },
+      {
+        "name": "CheckGrounding",
+        "root": 151865112,
+        "target": 157112908,
+        "normal": 156448688,
+        "suppressed": 156451572,
+        "preserve_r3": false,
+        "stub": {
+          "size": 8,
+          "sha256": "f1918fc016b4a17b0d78145631e21019dd91ef8d493ab5c21bb988ca891b357f"
+        },
+        "dispatcher": {
+          "size": 64,
+          "sha256": "91da987c7e75f5104c1e1d8eb4b7650b02acda763d10b071cf4c809a3472dddd"
+        }
+      },
+      {
+        "name": "AttacksThisTurn",
+        "root": 151872892,
+        "target": 157112948,
+        "normal": 156448616,
+        "suppressed": 156451544,
+        "preserve_r3": false,
+        "stub": {
+          "size": 8,
+          "sha256": "dab2189d0c6e92fee8289ee25931c9f58f317d6bf9b042da6d09127c4be2cb57"
+        },
+        "dispatcher": {
+          "size": 64,
+          "sha256": "fab3cea1f47e4bfb8e7559b12da9165f6a0aa62491fdd2b3e5728562ec63bda0"
+        }
+      },
+      {
+        "name": "atk49_moveend",
+        "root": 151910304,
+        "target": 157112988,
+        "normal": 156450604,
+        "suppressed": 156451748,
+        "preserve_r3": false,
+        "stub": {
+          "size": 8,
+          "sha256": "5a3dcb3527643731b169626f6e7338be27e302763fa3bef162a8850efeb9a73b"
+        },
+        "dispatcher": {
+          "size": 64,
+          "sha256": "8e3fbb6aaf178b98dcc678b28c33ccf305fee29dbd8214442e05e76dfa6029b8"
+        }
+      },
+      {
+        "name": "AdjustBasePower",
+        "root": 151925040,
+        "target": 157113028,
+        "normal": 156447696,
+        "suppressed": 156451448,
+        "preserve_r3": false,
+        "stub": {
+          "size": 8,
+          "sha256": "5aa96999c90f1d458e844738b7fd92ca30d71dc1b275e7feb8decef191718bc0"
+        },
+        "dispatcher": {
+          "size": 64,
+          "sha256": "35027245b1613fce7322ae191fe5ef7eaa273a9d5678a34a853ec7c11c8bf80d"
+        }
+      },
+      {
+        "name": "atk4A_typecalc2",
+        "root": 151930752,
+        "target": 157113068,
+        "normal": 156450420,
+        "suppressed": 156451724,
+        "preserve_r3": false,
+        "stub": {
+          "size": 8,
+          "sha256": "ba1a0a5e03ca12a2f4852b9177ee85213ae24f378b4b3e2e0433bb62d2fdd7eb"
+        },
+        "dispatcher": {
+          "size": 64,
+          "sha256": "b7bb9512ea363363b7a7ba3e84f15c9ef576152320fbdbac61c943d2c95761e5"
+        }
+      },
+      {
+        "name": "atk06_typecalc",
+        "root": 151931520,
+        "target": 157113108,
+        "normal": 156450188,
+        "suppressed": 156451700,
+        "preserve_r3": false,
+        "stub": {
+          "size": 8,
+          "sha256": "be3bf63a20a06ea07b775228ecebf5adb0baf43d251aada3e0f4a97b9718d80e"
+        },
+        "dispatcher": {
+          "size": 64,
+          "sha256": "ac9d25adcadc5e7ccb72297cad83a73e9efbc14683b8d237dedd9d0bea909a14"
+        }
+      },
+      {
+        "name": "GetMoveTypeSpecialPostAbility",
+        "root": 151933876,
+        "target": 157113148,
+        "normal": 156447604,
+        "suppressed": 156451392,
+        "preserve_r3": false,
+        "stub": {
+          "size": 8,
+          "sha256": "3974383b34f3a4152d1eec06b445d17c25c77f03b00f09d83a9bdf7cdfa5caad"
+        },
+        "dispatcher": {
+          "size": 64,
+          "sha256": "be6229a0b863e4ba6de5c06ac051697f8566074c6bd8d2ef0dde2b8db1523836"
+        }
+      },
+      {
+        "name": "GetExceptionMoveType",
+        "root": 151933972,
+        "target": 157113188,
+        "normal": 156448392,
+        "suppressed": 156451496,
+        "preserve_r3": false,
+        "stub": {
+          "size": 8,
+          "sha256": "480b5f649c114fc30e500a3a03563c691c17e33013ca064556d339f417a746b3"
+        },
+        "dispatcher": {
+          "size": 64,
+          "sha256": "d3780badeb18be879362189742c134e569cf08da57cf76f9b8568faad9cff1cc"
+        }
+      },
+      {
+        "name": "GetMonExceptionMoveType",
+        "root": 151934868,
+        "target": 157113228,
+        "normal": 156448524,
+        "suppressed": 156451520,
+        "preserve_r3": false,
+        "stub": {
+          "size": 8,
+          "sha256": "102e2f091bb8979377aa4eea0e6bdb352805ff0af2809e913ddc8adcc91f9a82"
+        },
+        "dispatcher": {
+          "size": 64,
+          "sha256": "5fbbdbaa1f0a028acab06068f145aa7e6722de6728c4c8dbd6c94b3d7790cdf6"
+        }
+      },
+      {
+        "name": "GetMoveTypeSpecialPreAbility",
+        "root": 151935440,
+        "target": 157113268,
+        "normal": 156447452,
+        "suppressed": 156451420,
+        "preserve_r3": false,
+        "stub": {
+          "size": 8,
+          "sha256": "704da3a17a3438d5ea897611943c15f35eb671037f60cc174b1766d3063a0a75"
+        },
+        "dispatcher": {
+          "size": 64,
+          "sha256": "be62701863c26c8f6126ec869853a21ea14b0e2a27b4ccb31453842c380ce2f5"
+        }
+      },
+      {
+        "name": "VisualTypeCalc.part.0",
+        "root": 151935584,
+        "target": 157113308,
+        "normal": 156449332,
+        "suppressed": 156451676,
+        "preserve_r3": false,
+        "stub": {
+          "size": 8,
+          "sha256": "656ee34b50cf18f91808fb10bfa96f3c1092b53e23b38610aa4a04b0d264570d"
+        },
+        "dispatcher": {
+          "size": 64,
+          "sha256": "d325302b080858ffb8c2e9114e4f666c858556e0fe2db67b0809f1fa233a0a43"
+        }
+      },
+      {
+        "name": "AI_TypeCalc.part.0",
+        "root": 151936716,
+        "target": 157113348,
+        "normal": 156451144,
+        "suppressed": 156451336,
+        "preserve_r3": true,
+        "stub": {
+          "size": 12,
+          "sha256": "844c7bf81a09f8728a170ff629fd40b2ca3a5f816b5c740903d1376d99333023"
+        },
+        "dispatcher": {
+          "size": 64,
+          "sha256": "51f8f8ff73de634a30a506c518ece44571a702d9c215cd7c86bbc26135f37b86"
+        }
+      },
+      {
+        "name": "AI_SpecialTypeCalc",
+        "root": 151937656,
+        "target": 157113396,
+        "normal": 156449240,
+        "suppressed": 156451652,
+        "preserve_r3": false,
+        "stub": {
+          "size": 8,
+          "sha256": "b6280c8bc4d782fe7a78caf3e0a0effac96dcf7674c2d4b510fe9e97365b5ddf"
+        },
+        "dispatcher": {
+          "size": 64,
+          "sha256": "ce5d74495ea96ac8a3e1dc63242d06e35069be2a0d71f705cafbb528466beb92"
+        }
+      },
+      {
+        "name": "TypeCalc",
+        "root": 151938772,
+        "target": 157113436,
+        "normal": 156451132,
+        "suppressed": 156451308,
+        "preserve_r3": true,
+        "stub": {
+          "size": 12,
+          "sha256": "8997f46037050b85ea862a875852850f0c53105cfb9647072b2fc9f87e62925f"
+        },
+        "dispatcher": {
+          "size": 64,
+          "sha256": "50121b10321319b09f9fe00753f2806adfc78939cd2e38a55dd1ae30cbe5ebad"
+        }
+      },
+      {
+        "name": "CalcVisualBasePower",
+        "root": 151945316,
+        "target": 157113484,
+        "normal": 156451156,
+        "suppressed": 156451364,
+        "preserve_r3": true,
+        "stub": {
+          "size": 12,
+          "sha256": "1965a0b56eff23e729f0ec529c8bf29eb269fbdeaaef1526b326c8cea6eb7c0c"
+        },
+        "dispatcher": {
+          "size": 64,
+          "sha256": "a02b13c337419e252c3ced12889ef2b6ae6881bac31cfdef3aa111654a3c859d"
+        }
+      },
+      {
+        "name": "CalculateBaseDamage",
+        "root": 151946196,
+        "target": 157113532,
+        "normal": 156447940,
+        "suppressed": 156451472,
+        "preserve_r3": false,
+        "stub": {
+          "size": 8,
+          "sha256": "c6fcf147bf532e5994b32b5839c1bad3834033a9368e6ce9aa4b7d5fb6a8a815"
+        },
+        "dispatcher": {
+          "size": 64,
+          "sha256": "25a43f4e02a5b625ef11578f623829d00f4ee38f6dbb1fdc7b9e41812a3b5134"
+        }
+      },
+      {
+        "name": "atkC0_recoverbasedonsunlight",
+        "root": 152093164,
+        "target": 157113572,
+        "normal": 156450768,
+        "suppressed": 156451796,
+        "preserve_r3": false,
+        "stub": {
+          "size": 8,
+          "sha256": "5efef2da7aec3dd6a203dc810d0286798b45191c77435523024e65a895264b05"
+        },
+        "dispatcher": {
+          "size": 64,
+          "sha256": "78a0c70351c44af9a27331d240ed79b5d107b9eeb4dd747ac91a1f05a2eef2ad"
+        }
+      },
+      {
+        "name": "SetMoveEffect2",
+        "root": 152222052,
+        "target": 157113612,
+        "normal": 156450548,
+        "suppressed": 156451772,
+        "preserve_r3": false,
+        "stub": {
+          "size": 8,
+          "sha256": "cf2358d7f09bba492b101106dea7678e815b44910979452bb0feb6585b46f65b"
+        },
+        "dispatcher": {
+          "size": 64,
+          "sha256": "f39173ff689373de8bda33db16b03ea1140aec6b290e325c6ca7586e376e9559"
+        }
+      }
+    ],
+    "connection": [
+      2,
+      12,
+      96,
+      17
+    ],
+    "geometry": {
+      "town": {
+        "size": 307290,
+        "sha256": "171f4c538edd524c9d0436787bf228465d724806756159a7f2946b5d7f6eb26d"
+      },
+      "grass": {
+        "size": 126335,
+        "sha256": "cd5edbaa6584d88f89132da28febd5d2adc7513d1a5e9e9c72194f198c94059c"
+      }
+    }
+  },
+  "generated": {
+    "p03b_archive_embedded.c": {
+      "size": 20163,
+      "sha256": "d1aef42d46e770aa7784477965902e5f26297ca8f0b5da80b8f78b0e7c706a80"
+    },
+    "p03a_fullslots_embedded.c": {
+      "size": 12877,
+      "sha256": "d5230de78b19ab9990281d884b0f5242b76f0c4b427b574da25daddb0abc60a8"
+    },
+    "p03_learning_embedded.c": {
+      "size": 7996,
+      "sha256": "81a488ced101990d3b22af65542e1f68d24e628291c1dd7e90751f2a6b18f336"
+    },
+    "p03_p02_embedded.c": {
+      "size": 39678,
+      "sha256": "04ba837b8aad5625708751f7902ca794c74b0993e13307c6c7e390ae62af1cdf"
+    },
+    "pr16_shop_breeding_helpers.c": {
+      "size": 19626,
+      "sha256": "1a97210389443f72586fdb1fa6c6523b296f56ee116065e71040a14f465a14c0"
+    },
+    "pr16_capture_shop_helpers.c": {
+      "size": 10007,
+      "sha256": "0854289c5a7895ad7de2ee82b4ac578db0b96fcf6e1b570d6adb5205dabab881"
+    },
+    "pr16_gear_capture_helpers.c": {
+      "size": 9640,
+      "sha256": "4c057989f1638e14d6814c269291f952ad2cb8e96be5a36274ff8707fc63bee8"
+    },
+    "pr16_bp_native_helpers.c": {
+      "size": 16314,
+      "sha256": "29fd3a5f30d5e6e7ea229fd59d2fd8d2b072d07244ddef762ec01d59a03e4c9f"
+    },
+    "pr16_bp_control_embedded.c": {
+      "size": 11463,
+      "sha256": "06dd81f90dde1c8d57d156acf92b1bf2db30431341c1fc3ada3aa654cc396ee7"
+    },
+    "pr16_circus_selection_helpers.c": {
+      "size": 10511,
+      "sha256": "db81848dbd188a74b4afd0aab1e27aa796229964541dc392805801bcccc51da5"
+    },
+    "pr16_circus_turn_helpers.c": {
+      "size": 3939,
+      "sha256": "37b6581d714cf47e605b0516215456415e1787f03a9af830cc7ce441657a173b"
+    },
+    "pr16_gear_route.h": {
+      "size": 518,
+      "sha256": "bd60ed3f71b01b821c7722e3d80edeb2b3d9049b9dd876e6ffb4e49dac65cf1c"
+    },
+    "pr16_circus_addresses.h": {
+      "size": 87,
+      "sha256": "1b7247f0cd8ef1d75eaad6e7811ed584b32cfc638d4e5c458c2a4d515536287f"
+    },
+    "pr16_streak_legacy.c": {
+      "size": 11746,
+      "sha256": "de1618b95f09d8ce02c2a1ce8b833fa893f35c4da08b64dd69f9927cfe0c89c2"
+    },
+    "pr16_streak_policy.c": {
+      "size": 64920,
+      "sha256": "f8b1d0252056f3c11612204d3ea1320439ffa6495e356b1f36791d6f750179dc"
+    },
+    "controller.c": {
+      "size": 13195,
+      "sha256": "0688ce52f24379b7b6cf20247145223ce23633ebd62f960cb1b65393fda9a0ce"
+    },
+    "getter_suppression.h": {
+      "size": 6529,
+      "sha256": "3c6a3b54d02ab9b300f98f0896e03ac956221bde8c3c5d56ce2ba3133edd4dfd"
+    },
+    "cg_addresses.h": {
+      "size": 60,
+      "sha256": "21868ddb440be1b5cf8b04e44599e5428873746f324d48d3b220b1009e914c9d"
+    },
+    "ss_routes.h": {
+      "size": 2248,
+      "sha256": "537c00aaa9986c2de7a4328f03c737cf03c196cf43a1176a749bb4e05b21494b"
+    },
+    "po_walk.h": {
+      "size": 535,
+      "sha256": "7db787eaa75b7b00241d50ef7ee196aae141fdf301b8e3488c3fb8a60a1977b6"
+    },
+    "po_routes.h": {
+      "size": 2248,
+      "sha256": "df4e8f0f09890d568f33aaeba0c99f6ead92e922a1873e24ce583f057e05c65b"
+    }
+  },
+  "transitive_compiled_sources": {
+    "tools/mgba_qol_production_smoke.c": {
+      "size": 149046,
+      "sha256": "2c4b9f065f4dce84e48f2be9afe2e2f9f666865088770ee8b068a908a0527b85"
+    },
+    "tools/mgba_battle_core_smoke.c": {
+      "size": 94688,
+      "sha256": "ed9875695ca60c61960685ac2f8e810a183c8eedd703e56545d67bde3df5cf24"
+    },
+    "tools/mgba_ai_fixture_runner.c": {
+      "size": 36272,
+      "sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f"
+    },
+    "overlays/factory_high_modes_v2/factory_high_modes_v2.h": {
+      "size": 6051,
+      "sha256": "290c4f9ea7f274121273f5b43f736b5c598a6b50d412e0a85c320d0e1765622b"
+    },
+    "overlays/save_migration/save_migration.h": {
+      "size": 12497,
+      "sha256": "e266c4ec10a3244654837c0f3009b449ccf0e203fe0bfc1c11b319132baadf67"
+    },
+    "tools/mgba_pr16_circus_fairy_lock.h": {
+      "size": 1290,
+      "sha256": "4755599d85b87a16b2b90d711d4b37eace9645643299c0c8e3c998332d3b4388"
+    },
+    "tools/mgba_pr16_p08_ordinary_main.h": {
+      "size": 5338,
+      "sha256": "f0cb583d59bf1387c648f26fbf7bfd7de35628d4cf81f614e2a9761fb4566905"
+    },
+    "tools/mgba_pr16_p08_ordinary_observer.h": {
+      "size": 4107,
+      "sha256": "923431e93d921bc205fcfca7cac077392f3bea9577779550c4bf972bab604037"
+    }
+  },
+  "process": {
+    "schema_version": 1,
+    "returncode": 1,
+    "timed_out": false,
+    "spawn_error": null
+  },
+  "screens": {
+    "circus-exit30-ordinary-failure.ppm": {
+      "size": 115215,
+      "sha256": "88e3991df8cf76fff292f5112eaacc233e35eca5869bccc0761ed4939b40317b"
+    },
+    "circus-exit30-ordinary-streak-01-p08-exit30.ppm": {
+      "size": 115215,
+      "sha256": "205442de09fb3b8ad740d9a574a9675d5744837353bf245d8aa2c761ee275e22"
+    },
+    "circus-exit30-ordinary-streak-02-p08-town-boundary.ppm": {
+      "size": 115215,
+      "sha256": "3d834aecbc36ea9707ea07d046b77f6a69e13ded9da1e1bf28b0b6861e5d5799"
+    }
+  }
+}

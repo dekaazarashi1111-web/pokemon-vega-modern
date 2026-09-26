@@ -1,0 +1,85 @@
+name: pr16-special-wild-gameplay-20260926
+# v2: 研究保存delegateを修正。hidden成功原本は再利用しfishingだけ実測。
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-special-wild-gameplay-20260926.yml]
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-special-wild-gameplay-20260926
+  cancel-in-progress: false
+jobs:
+  gameplay:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: 完全preimage/postimage hashで限定text編集を適用
+        run: python3 -B scripts/pr16_special_wild_ui_v2_upgrade.py
+      - name: mGBA host依存（ARM compilerなし）
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends libmgba-dev
+      - name: hidden原本を再利用・未受入fishingだけ通常UI検証
+        run: python3 -B scripts/pr16_special_wild_gameplay_native.py execute
+      - name: 成功と失敗の原本・固定引継ぎ・両ログ
+        id: record
+        if: always()
+        run: |
+          set -euo pipefail
+          test -f .local/pr16-special-wild-ui/proof/verification.json
+          python3 -B scripts/pr16_special_wild_gameplay_native.py record
+      - name: 引継ぎ整合・task graph・最終index限定guard
+        id: validate
+        if: always() && steps.record.outcome == 'success'
+        run: |
+          set -euo pipefail
+          python3 -B scripts/pr16_resume.py check
+          python3 -B scripts/validate_task_graph.py
+          python3 -B scripts/pr16_special_wild_gameplay_native.py paths | tr '\n' '\0' >.local/pr16-special-wild-ui/paths.z
+          git add --pathspec-from-file=.local/pr16-special-wild-ui/paths.z --pathspec-file-nul
+          python3 -B scripts/pr16_special_wild_gameplay_native.py guard
+      - name: 検証済みsourceと記録を同branchへ非force commit/push
+        if: always() && steps.record.outcome == 'success' && steps.validate.outcome == 'success'
+        run: |
+          set -euo pipefail
+          python3 -B scripts/pr16_special_wild_gameplay_native.py guard
+          branch='codex/modernization-followup-20260908'
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20260926-SPECIAL-WILD-UI: 研究保存delegate修正・通常UI実測・引継ぎ・両ログを保存'
+          git push origin "HEAD:$branch"
+          sha=$(git rev-parse HEAD)
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$sha"
+          echo "$sha" | tee .local/pr16-special-wild-ui/proof/reflected-head.txt
+      - name: 限定sourceと記録を転送（native再実行なし）
+        if: always() && steps.record.outcome == 'success'
+        run: python3 -B scripts/pr16_special_wild_gameplay_native.py context
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-special-wild-ui-proof
+          path: .local/pr16-special-wild-ui/proof/
+          retention-days: 30
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.record.outcome == 'success'
+        with:
+          name: pr16-special-wild-ui-context
+          path: .local/pr16-special-wild-ui/context/
+          retention-days: 7
+          if-no-files-found: error

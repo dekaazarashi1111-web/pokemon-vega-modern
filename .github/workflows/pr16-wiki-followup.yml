@@ -1,0 +1,94 @@
+name: PR16 wiki followup
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-wiki-followup.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+defaults:
+  run:
+    shell: bash
+concurrency:
+  group: pr16-candidate-wiki
+  cancel-in-progress: false
+jobs:
+  sync:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: 完了照合済みWikiの検証HEAD表示だけを同期（native履歴・Wiki本文は変更しない）
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-wiki-head-sync
+          python3 -B - <<'PY'
+          import copy,datetime,json,os,sys
+          sys.dont_write_bytecode=True;sys.path.insert(0,'scripts')
+          from pr16_candidate_wiki_inputs import Inputs,STATE,ROOT,need,stable
+          from pr16_resume import DOC,render
+          from pr16_wiki_remaining_capture import remote_json
+          inp=Inputs();state=inp.json(STATE);before=copy.deepcopy(state)
+          receipt=inp.json('content/modernization/pr16_candidate_wiki_acceptance.json')
+          completed=inp.json('content/modernization/pr16_candidate_wiki_completed_runs_20260921.json')
+          latest=completed['completed_runs'][-1];wiki=state['candidate_wiki']
+          need(wiki['verification_run_status']=='completed_success','Wiki未照合')
+          need(latest['id']==receipt['verification_run']==wiki['verification_run']==35564248203,'最新run不一致')
+          need(latest['head_sha']==receipt['source_head']==wiki['source_head'],'最新Wiki入力HEAD不一致')
+          need(latest['reflected_head']==wiki['reflected_head'] and latest['tree_sha256']==receipt['tree_sha256']==wiki['tree_sha256'],'反映先/出力hash不一致')
+          prior=remote_json('https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/35564710398')
+          need(prior['status']=='completed' and prior['conclusion']=='success' and prior['head_sha']==completed['source_head_at_reconciliation'],'直前の記録確定runが未成功')
+          state['observed_head']=receipt['source_head']
+          state['observed_head_semantics']='最新候補Wikiの検証入力HEAD。branchのリモートHEADではなく、native受入HEADでもない。反映commitはcandidate_wiki.reflected_head、完了Actions照合はcandidate_wiki.completion_reconciliationを参照。自己commit SHAの追記は行わない。'
+          checks=state['observed_head_checks']
+          checks.setdefault('previous_reason_ja',checks['reason_ja'])
+          checks['reason_ja']='この欄の既存runs/scope_headは過去scopeの履歴として保持。今回の候補Wikiは4回の限定Actionsと完了照合run35564710398がsuccess。全PR checksの成功やnative全回帰を意味しない。最新検証HEADと完了結果はcandidate_wikiを参照。'
+          checks['candidate_wiki_completion']={k:prior[k] for k in ('id','head_sha','status','conclusion')}
+          allowed={'observed_head','observed_head_semantics','observed_head_checks'}
+          need(all(state[k]==before[k] for k in state if k not in allowed),'表示修正以外のstate変更')
+          need(checks['runs']==before['observed_head_checks']['runs'] and checks['scope_head']==before['observed_head_checks']['scope_head'],'過去Checks履歴変更')
+          need(state['candidate_wiki']==before['candidate_wiki'],'受入済みWiki記録変更')
+          text=render(state)
+          need(f"証拠のsource HEAD: `{receipt['source_head']}`。" in text,'生成MDのHEAD表示不一致')
+          (ROOT/STATE).write_text(json.dumps(state,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          (ROOT/DOC).write_text(text,encoding='utf-8')
+          now=datetime.datetime.now(datetime.timezone.utc).isoformat(timespec='seconds')
+          for name in ('design/run_log.md','design/version_log.md'):
+              with (ROOT/name).open('a',encoding='utf-8') as stream:
+                  stream.write(f'\n\n## {now} — Wiki検証HEAD表示の最終同期\n- Task: USER-20260921-P08-CANDIDATE-WIKI / 再開メモのHEAD表示\n- Version: wiki-audit-20260921\n- Status: DONE\n- Summary: observed_headの旧Wiki入力{before["observed_head"]}を最新検証入力{receipt["source_head"]}へ同期。リモートHEAD/native受入HEADとは別であることを明記。完了照合run35564710398 successをGET確認。\n- Files changed: 限定workflow、固定引継ぎMD/JSON、両ログ。\n- Verify: receipt/completed-runs/candidate_wikiのrun・source HEAD・反映先・tree hash一致、生成MD表示一致、その他stateと過去checks不変、resume/task graph、diff/private最終index。受入110+34試験の反復なし。\n- Commit: 本記録を含むcommit。検証source HEAD={os.environ["GITHUB_SHA"]}。\n- Network: GitHub API run35564710398の完了GETのみ。\n- Boundary: Wiki本文/receipt/既存原本/native受入/Stage61/active baseline変更0。build0・ARM0・native0・ROM変更0。Issue18全体は未完のまま。\n')
+          result={'status':'PASS_CURRENT_WIKI_HEAD_DISPLAY','old_observed_head':before['observed_head'],'wiki_tested_head':state['observed_head'],'completed_reconciliation_run':prior['id'],'native_acceptance_unchanged':True,'wiki_snapshot_unchanged':True,'new_native_runs':0,'rom_changes':0}
+          (ROOT/'.local/pr16-wiki-head-sync/result.json').write_bytes(stable(result));print(json.dumps(result,sort_keys=True))
+          PY
+          python3 -B scripts/pr16_resume.py check
+          python3 -B scripts/validate_task_graph.py
+          git diff --check
+          git diff --exit-code -- docs/wiki config/active_play_baseline.json CHATGPT_RESUME.md AGENTS.md state/source-lock.json content/modernization/pr16_candidate_wiki_acceptance.json content/modernization/pr16_candidate_wiki_followup.json content/modernization/pr16_candidate_wiki_completed_runs_20260921.json
+          git add -- content/modernization/pr16_native_supply_resume_20260913.json docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md design/run_log.md design/version_log.md
+          python3 -B - <<'PY'
+          import subprocess,sys
+          sys.dont_write_bytecode=True;sys.path.insert(0,'scripts')
+          import pr16_wiki_checkpoint as guard
+          from pr16_candidate_wiki_inputs import STATE,need
+          from pr16_resume import DOC
+          allowed={STATE,DOC,'design/run_log.md','design/version_log.md'}
+          names=set(filter(None,subprocess.check_output(['git','diff','--cached','--name-only','-z']).decode().split('\0')))
+          need(names==allowed,'最終表示同期の変更scope不一致');guard.ALLOWED=allowed;guard.guard()
+          PY
+          git diff --cached --check
+          test "$(git ls-remote origin refs/heads/codex/modernization-followup-20260908 | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20260921-P08-CANDIDATE-WIKI: 再開メモの最新Wiki検証HEADと完了結果を同期'
+          git push origin HEAD:refs/heads/codex/modernization-followup-20260908
+          git rev-parse HEAD > .local/pr16-wiki-head-sync/reflected-head.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-wiki-head-sync
+          path: .local/pr16-wiki-head-sync/
+          retention-days: 3
+          if-no-files-found: error

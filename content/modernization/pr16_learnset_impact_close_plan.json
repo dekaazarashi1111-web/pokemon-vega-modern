@@ -1,0 +1,76 @@
+{
+  "egg": {
+    "artifact": {
+      "digest": "sha256:69ae7e9324bd5cbe2772b296de53bf0ae1ce89ac69876b1493ccfed782ca9370",
+      "id": 10740527650,
+      "name": "pr16-learnset-egg-gameplay-proof",
+      "size_in_bytes": 28196
+    },
+    "job_id": 107104139470,
+    "reflected_head": "3e05281b8adc824f736a6f3c712d346e65afbc90",
+    "run_id": 35837431004,
+    "source_head": "d9227eeb0ff92e523e4d2f848909b50ec83f022f",
+    "workflow": ".github/workflows/pr16-learnset-egg-gameplay.yml"
+  },
+  "initial_head": "37b023853baea5d3e1f0dfb8f8de6de38334262c",
+  "schema_version": 1,
+  "visual": {
+    "artifact": {
+      "digest": "sha256:af74072b3e30a6462138e09d78dbbe63e6625638a177aae94256ec0359755a3b",
+      "id": 10741160378,
+      "name": "pr16-learnset-visual-proof",
+      "size_in_bytes": 53866
+    },
+    "job_id": 107110255482,
+    "reflected_head": "9fcdc3c68682a22d6e521169c7fe7c323c638cc7",
+    "run_id": 35839299224,
+    "source_head": "29f1d8ca2b4f8468471265418a6e42430a660616",
+    "workflow": ".github/workflows/pr16-learnset-visual.yml"
+  },
+  "visual_list": {
+    "artifact": {
+      "digest": "sha256:c620b1d2f9d174c7a59d6c60a281cd77dab21d3cb59da73c6bb1e876d2caa5b1",
+      "id": 10740712679,
+      "name": "pr16-learnset-visual-list-proof",
+      "size_in_bytes": 19105
+    },
+    "job_id": 107112414903,
+    "reflected_head": "14daff5721ceb21e3b621bcc0c22bbeb019f18cd",
+    "run_id": 35839963209,
+    "source_head": "ec80e1a3d59911cf3a25fe29092a1f4658398ba9",
+    "workflow": ".github/workflows/pr16-learnset-visual-list.yml"
+  },
+  "visual_review": {
+    "images": {
+      "repair/screens/floette-replace-420-list.ppm": {
+        "identity": {
+          "sha256": "1c5b4442db35afb798e1883954e1dcfc9b88281ad3baa97b049f5192838370a5",
+          "size": 115215
+        },
+        "observation_ja": "目視確認: 修復一覧ではカーソルが「あやしいかぜ」に一致し、左欄もゴースト・PP5・威力60・命中100と対応する説明に更新されている。旧画像の「めいそう」への描画遅延は解消。フラエッテへの習得確認と一覧枠が読める。"
+      },
+      "screens/floette-replace-420-summary.ppm": {
+        "identity": {
+          "sha256": "45ed97397b18c82ce9b27bc40e67ee6427ec70876b74633a17c160036f4f5707",
+          "size": 115215
+        },
+        "observation_ja": "目視確認: フラエッテのsummaryで既存4技とPP7/35・8/40・9/40・10/25を保持。5行目にゴーストの「あやしいかぜ」PP5/5が表示される。個体表示・技名・枠が描画され、黒い遷移画面ではない。"
+      },
+      "screens/machine-page4-replace-list.ppm": {
+        "identity": {
+          "sha256": "cf5a5ea7183db2b559da8d7a40a4b60132ba83a5b2082b8d166dec80106e024b",
+          "size": 115215
+        },
+        "observation_ja": "目視確認: ミュウの一覧先頭「うっぷんばらし」にカーソル。左欄にタイプあく・PP5・威力75・命中100と技説明、下欄にミュウへの習得確認が読める。枠と文字が描画され、黒い遷移画面ではない。"
+      },
+      "screens/machine-page4-replace-summary.ppm": {
+        "identity": {
+          "sha256": "055899baa9a765bb5efff41327f6100f09751d5148d54bb01189169f91d5df78",
+          "size": 115215
+        },
+        "observation_ja": "目視確認: ミュウのsummaryで既存4技（たいあたり・いとをはく・なきごえ・ひのこ）とPP7/35・8/40・9/40・10/25を表示。5行目に追加候補「うっぷんばらし」PP5/5が表示され、選択前の画面と枠が読める。"
+      }
+    },
+    "reviewed": true
+  }
+}

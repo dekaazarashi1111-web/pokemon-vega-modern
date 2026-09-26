@@ -1,0 +1,115 @@
+{
+  "artifact": {
+    "digest": "sha256:73389b7ef882728233182ae039242fa882775143f8cf6734cb63fa2d090bc4e1",
+    "expires_at": "2026-10-21T16:04:31Z",
+    "id": 10649469671,
+    "name": "pr16-vega-breeding-adjudicated",
+    "size_in_bytes": 382660,
+    "workflow_run": {
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_repository_id": 1358127462,
+      "head_sha": "04b8ea96ac7244fd0940e9f9075026198869cdf4",
+      "id": 35623180576,
+      "repository_id": 1358127462
+    }
+  },
+  "job": {
+    "conclusion": "success",
+    "id": 106410995783,
+    "name": "breeding-audit",
+    "status": "completed",
+    "steps": [
+      {
+        "completed_at": "2026-09-21T16:04:11Z",
+        "conclusion": "success",
+        "name": "Set up job",
+        "number": 1,
+        "started_at": "2026-09-21T16:04:10Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-21T16:04:21Z",
+        "conclusion": "success",
+        "name": "Run actions/checkout@v4",
+        "number": 2,
+        "started_at": "2026-09-21T16:04:11Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-21T16:04:21Z",
+        "conclusion": "success",
+        "name": "Run actions/setup-python@v5",
+        "number": 3,
+        "started_at": "2026-09-21T16:04:21Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-21T16:04:23Z",
+        "conclusion": "success",
+        "name": "完了済みの不足範囲採取artifactだけを照合",
+        "number": 4,
+        "started_at": "2026-09-21T16:04:21Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-21T16:04:26Z",
+        "conclusion": "success",
+        "name": "非直接eggと原作consumerの13境界だけを検証",
+        "number": 5,
+        "started_at": "2026-09-21T16:04:23Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-21T16:04:31Z",
+        "conclusion": "success",
+        "name": "独立2生成と純読取check・既存原本不変",
+        "number": 6,
+        "started_at": "2026-09-21T16:04:26Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-21T16:04:32Z",
+        "conclusion": "success",
+        "name": "Run actions/upload-artifact@v4",
+        "number": 7,
+        "started_at": "2026-09-21T16:04:31Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-21T16:04:32Z",
+        "conclusion": "success",
+        "name": "Post Run actions/setup-python@v5",
+        "number": 13,
+        "started_at": "2026-09-21T16:04:32Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-21T16:04:32Z",
+        "conclusion": "success",
+        "name": "Post Run actions/checkout@v4",
+        "number": 14,
+        "started_at": "2026-09-21T16:04:32Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-21T16:04:32Z",
+        "conclusion": "success",
+        "name": "Complete job",
+        "number": 15,
+        "started_at": "2026-09-21T16:04:32Z",
+        "status": "completed"
+      }
+    ]
+  },
+  "run": {
+    "conclusion": "success",
+    "created_at": "2026-09-21T16:04:07Z",
+    "event": "push",
+    "head_branch": "codex/modernization-followup-20260908",
+    "head_sha": "04b8ea96ac7244fd0940e9f9075026198869cdf4",
+    "id": 35623180576,
+    "path": ".github/workflows/pr16-vega-breeding-audit.yml",
+    "status": "completed",
+    "updated_at": "2026-09-21T16:04:34Z"
+  }
+}

@@ -1,0 +1,596 @@
+{
+  "artifact_id": 10294094459,
+  "job_id": 103521455738,
+  "kind": "diagnostic",
+  "new_emulator_runs_during_retention": 0,
+  "original": {
+    "path": "content/modernization/pr16_fixed_form_probe_evidence/34681725548/original.zip",
+    "sha256": "4b7606ab66dfd57a6cd0b4c5c301f34f63dd5f90a9374b543f889152217def5e",
+    "size": 221634
+  },
+  "p03_fixed_form_gap_closed": false,
+  "release_ready": false,
+  "result": {
+    "actual_new_processes": 4,
+    "candidate": {
+      "sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
+      "size": 33554432
+    },
+    "canonical_ordinals": {
+      "necrozma-dawn-wings-native-probe": 71,
+      "necrozma-dusk-mane-native-probe": 70,
+      "zacian-crowned-native-probe": 87,
+      "zamazenta-crowned-native-probe": 88
+    },
+    "contract": {
+      "canonical_model": {
+        "path": "content/collection_supply_v1/canonical_model.json",
+        "sha256": "fb8066c0a8140da079b1e947cdfb6c76e987cf0c2514456a86868ec554f061d0",
+        "size": 899889
+      },
+      "case_matrix": [
+        {
+          "id": "necrozma-dusk-mane-four-slot-roundtrip",
+          "required_witnesses": [
+            "native_transition_entry",
+            "transition_owned_move_resolution",
+            "four_slot_boundary",
+            "identity_preserved",
+            "native_reversion",
+            "normal_save",
+            "fresh_continue"
+          ],
+          "targets": [
+            1260
+          ]
+        },
+        {
+          "id": "necrozma-dawn-wings-four-slot-roundtrip",
+          "required_witnesses": [
+            "native_transition_entry",
+            "transition_owned_move_resolution",
+            "four_slot_boundary",
+            "identity_preserved",
+            "native_reversion",
+            "normal_save",
+            "fresh_continue"
+          ],
+          "targets": [
+            1261
+          ]
+        },
+        {
+          "id": "necrozma-decline-unchanged",
+          "required_witnesses": [
+            "native_transition_entry",
+            "native_decline_or_ineligible_control",
+            "party_bytes_unchanged",
+            "save_counter_unchanged"
+          ],
+          "targets": [
+            1260,
+            1261
+          ]
+        },
+        {
+          "id": "zacian-crowned-battle-roundtrip",
+          "required_witnesses": [
+            "native_held_item_or_battle_entry",
+            "battle_form_and_move",
+            "battle_exit_restoration",
+            "held_item_removal_boundary",
+            "no_invalid_saved_form_move_pair"
+          ],
+          "targets": [
+            1386
+          ]
+        },
+        {
+          "id": "zamazenta-crowned-battle-roundtrip",
+          "required_witnesses": [
+            "native_held_item_or_battle_entry",
+            "battle_form_and_move",
+            "battle_exit_restoration",
+            "held_item_removal_boundary",
+            "no_invalid_saved_form_move_pair"
+          ],
+          "targets": [
+            1387
+          ]
+        }
+      ],
+      "native_acceptance_claimed": false,
+      "p03_fixed_form_gap_closed": false,
+      "p03_umbrella_closed": false,
+      "release_ready": false,
+      "required_native_processes_minimum": 5,
+      "rom_or_save_modified": false,
+      "schema": "pr16_fixed_form_contract.v1",
+      "scope": "READ_ONLY_FIXED_FORM_ACCEPTANCE_CONTRACT",
+      "source_inventory": {
+        "fixed_rows_sha256": "22f64dca4a3fa3846cd6cd22365085f39bf8a7b7314425ffcbd17b82730ea91a",
+        "learnsets_zip": {
+          "path": "userfile/imports/modernization_p01/Pokemon_Vega_Stage61_技習得品質改善版_v1.3.0_20260905.zip",
+          "sha256": "80b678320c08203e7b39236e5c123f5c2f2f0c729e7f4e5101bed88c84158adb",
+          "size": 82683251
+        },
+        "route_count": 4,
+        "species_count": 4,
+        "status": "PASS_FINITE_FORM_OWNER_INVENTORY"
+      },
+      "status": "PASS_FIXED_FORM_CONTRACT_NATIVE_PENDING",
+      "targets": [
+        {
+          "base_species": 1198,
+          "base_species_key": "SPECIES_KEY_NECROZMA",
+          "family": "necrozma_fixed_transition",
+          "native_acceptance_required": true,
+          "official_move_id": 713,
+          "project_move_id": 690,
+          "reference_id": "scarletviolet:0800.01",
+          "route_id": "667255b406678096a7fa9344",
+          "service_index": 245,
+          "source_method": "form_move",
+          "target_species": 1260,
+          "target_species_key": "SPECIES_KEY_NECROZMA_DUSK_MANE"
+        },
+        {
+          "base_species": 1198,
+          "base_species_key": "SPECIES_KEY_NECROZMA",
+          "family": "necrozma_fixed_transition",
+          "native_acceptance_required": true,
+          "official_move_id": 714,
+          "project_move_id": 669,
+          "reference_id": "scarletviolet:0800.02",
+          "route_id": "a79bbbec71c9a6be03a7d1e4",
+          "service_index": 246,
+          "source_method": "form_move",
+          "target_species": 1261,
+          "target_species_key": "SPECIES_KEY_NECROZMA_DAWN_WINGS"
+        },
+        {
+          "base_species": 1361,
+          "base_species_key": "SPECIES_KEY_ZACIAN",
+          "family": "crowned_battle_transition",
+          "native_acceptance_required": true,
+          "official_move_id": 781,
+          "project_move_id": 768,
+          "reference_id": "scarletviolet:0888.01",
+          "route_id": "371ffcca84ed4eb8fbb6d56b",
+          "service_index": 280,
+          "source_method": "battle_transform",
+          "target_species": 1386,
+          "target_species_key": "SPECIES_KEY_ZACIAN_CROWNED"
+        },
+        {
+          "base_species": 1362,
+          "base_species_key": "SPECIES_KEY_ZAMAZENTA",
+          "family": "crowned_battle_transition",
+          "native_acceptance_required": true,
+          "official_move_id": 782,
+          "project_move_id": 769,
+          "reference_id": "scarletviolet:0889.01",
+          "route_id": "2a8a2a856af40ec96087c9a7",
+          "service_index": 281,
+          "source_method": "battle_transform",
+          "target_species": 1387,
+          "target_species_key": "SPECIES_KEY_ZAMAZENTA_CROWNED"
+        }
+      ]
+    },
+    "failures": [],
+    "full_p03_acceptance": false,
+    "guard_checks": [
+      "bus8",
+      "bus16",
+      "bus32",
+      "raw8",
+      "raw16",
+      "raw32",
+      "register"
+    ],
+    "native_acceptance_claimed": false,
+    "native_rows_matched": [
+      "necrozma-dusk-mane-native-probe",
+      "necrozma-dawn-wings-native-probe",
+      "zacian-crowned-native-probe",
+      "zamazenta-crowned-native-probe"
+    ],
+    "native_selections_sent": [
+      "necrozma-dusk-mane-native-probe",
+      "necrozma-dawn-wings-native-probe",
+      "zacian-crowned-native-probe",
+      "zamazenta-crowned-native-probe"
+    ],
+    "observations": [
+      {
+        "name": "necrozma-dusk-mane-native-probe",
+        "process": {
+          "returncode": 0,
+          "schema_version": 1,
+          "spawn_error": null,
+          "timed_out": false
+        },
+        "result": {
+          "acceptance_claimed": false,
+          "base_species": 1198,
+          "canonical_ordinal": 70,
+          "case": "necrozma-dusk-mane-native-probe",
+          "family": "necrozma_fixed_transition",
+          "field_returned": false,
+          "form_index": 245,
+          "fresh_core": true,
+          "full_p03_acceptance": false,
+          "held_item_after": 0,
+          "identity_preserved": true,
+          "input_only_after_guard": true,
+          "main_callback2": 134569589,
+          "menu_cursor": 0,
+          "menu_navigation": "canonical-ordinal-native-input",
+          "menu_opened": true,
+          "menu_page": 14,
+          "moves_after": [
+            98,
+            235,
+            552,
+            33
+          ],
+          "nonselected_preserved": true,
+          "p03_fixed_form_gap_closed": false,
+          "party_opened": true,
+          "pending_form": 245,
+          "pp_after": [
+            11,
+            3,
+            4,
+            7
+          ],
+          "pp_bonuses_after": 229,
+          "probe_outcome": "selected-target",
+          "project_move": 690,
+          "release_ready": false,
+          "result": 20,
+          "rom_sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
+          "route_id": "667255b406678096a7fa9344",
+          "save_counter_after": 2,
+          "save_counter_before": 2,
+          "schema_version": 1,
+          "scope": "PR16_P03_FIXED_FORM_TRANSITION_NATIVE_PROBE",
+          "selection_sent": true,
+          "species_after": 1260,
+          "starting_progress_individual_map_are_fixtures": true,
+          "status": "OBSERVED",
+          "target_match": true,
+          "target_species": 1260,
+          "total_frames": 4484,
+          "wait_kind": 1,
+          "warnings_errors": 0,
+          "window": 255
+        }
+      },
+      {
+        "name": "necrozma-dawn-wings-native-probe",
+        "process": {
+          "returncode": 0,
+          "schema_version": 1,
+          "spawn_error": null,
+          "timed_out": false
+        },
+        "result": {
+          "acceptance_claimed": false,
+          "base_species": 1198,
+          "canonical_ordinal": 71,
+          "case": "necrozma-dawn-wings-native-probe",
+          "family": "necrozma_fixed_transition",
+          "field_returned": false,
+          "form_index": 246,
+          "fresh_core": true,
+          "full_p03_acceptance": false,
+          "held_item_after": 0,
+          "identity_preserved": true,
+          "input_only_after_guard": true,
+          "main_callback2": 134569589,
+          "menu_cursor": 1,
+          "menu_navigation": "canonical-ordinal-native-input",
+          "menu_opened": true,
+          "menu_page": 14,
+          "moves_after": [
+            98,
+            235,
+            552,
+            33
+          ],
+          "nonselected_preserved": true,
+          "p03_fixed_form_gap_closed": false,
+          "party_opened": true,
+          "pending_form": 246,
+          "pp_after": [
+            11,
+            3,
+            4,
+            7
+          ],
+          "pp_bonuses_after": 229,
+          "probe_outcome": "selected-target",
+          "project_move": 669,
+          "release_ready": false,
+          "result": 20,
+          "rom_sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
+          "route_id": "a79bbbec71c9a6be03a7d1e4",
+          "save_counter_after": 2,
+          "save_counter_before": 2,
+          "schema_version": 1,
+          "scope": "PR16_P03_FIXED_FORM_TRANSITION_NATIVE_PROBE",
+          "selection_sent": true,
+          "species_after": 1261,
+          "starting_progress_individual_map_are_fixtures": true,
+          "status": "OBSERVED",
+          "target_match": true,
+          "target_species": 1261,
+          "total_frames": 4518,
+          "wait_kind": 1,
+          "warnings_errors": 0,
+          "window": 255
+        }
+      },
+      {
+        "name": "zacian-crowned-native-probe",
+        "process": {
+          "returncode": 0,
+          "schema_version": 1,
+          "spawn_error": null,
+          "timed_out": false
+        },
+        "result": {
+          "acceptance_claimed": false,
+          "base_species": 1361,
+          "canonical_ordinal": 87,
+          "case": "zacian-crowned-native-probe",
+          "family": "crowned_battle_transition",
+          "field_returned": false,
+          "form_index": 280,
+          "fresh_core": true,
+          "full_p03_acceptance": false,
+          "held_item_after": 0,
+          "identity_preserved": true,
+          "input_only_after_guard": true,
+          "main_callback2": 134569589,
+          "menu_cursor": 2,
+          "menu_navigation": "canonical-ordinal-native-input",
+          "menu_opened": true,
+          "menu_page": 17,
+          "moves_after": [
+            98,
+            235,
+            552,
+            33
+          ],
+          "nonselected_preserved": true,
+          "p03_fixed_form_gap_closed": false,
+          "party_opened": true,
+          "pending_form": 280,
+          "pp_after": [
+            11,
+            3,
+            4,
+            7
+          ],
+          "pp_bonuses_after": 229,
+          "probe_outcome": "selected-target",
+          "project_move": 768,
+          "release_ready": false,
+          "result": 20,
+          "rom_sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
+          "route_id": "371ffcca84ed4eb8fbb6d56b",
+          "save_counter_after": 2,
+          "save_counter_before": 2,
+          "schema_version": 1,
+          "scope": "PR16_P03_FIXED_FORM_TRANSITION_NATIVE_PROBE",
+          "selection_sent": true,
+          "species_after": 1386,
+          "starting_progress_individual_map_are_fixtures": true,
+          "status": "OBSERVED",
+          "target_match": true,
+          "target_species": 1386,
+          "total_frames": 5307,
+          "wait_kind": 1,
+          "warnings_errors": 0,
+          "window": 255
+        }
+      },
+      {
+        "name": "zamazenta-crowned-native-probe",
+        "process": {
+          "returncode": 0,
+          "schema_version": 1,
+          "spawn_error": null,
+          "timed_out": false
+        },
+        "result": {
+          "acceptance_claimed": false,
+          "base_species": 1362,
+          "canonical_ordinal": 88,
+          "case": "zamazenta-crowned-native-probe",
+          "family": "crowned_battle_transition",
+          "field_returned": false,
+          "form_index": 281,
+          "fresh_core": true,
+          "full_p03_acceptance": false,
+          "held_item_after": 0,
+          "identity_preserved": true,
+          "input_only_after_guard": true,
+          "main_callback2": 134569589,
+          "menu_cursor": 3,
+          "menu_navigation": "canonical-ordinal-native-input",
+          "menu_opened": true,
+          "menu_page": 17,
+          "moves_after": [
+            98,
+            235,
+            552,
+            33
+          ],
+          "nonselected_preserved": true,
+          "p03_fixed_form_gap_closed": false,
+          "party_opened": true,
+          "pending_form": 281,
+          "pp_after": [
+            11,
+            3,
+            4,
+            7
+          ],
+          "pp_bonuses_after": 229,
+          "probe_outcome": "selected-target",
+          "project_move": 769,
+          "release_ready": false,
+          "result": 20,
+          "rom_sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
+          "route_id": "2a8a2a856af40ec96087c9a7",
+          "save_counter_after": 2,
+          "save_counter_before": 2,
+          "schema_version": 1,
+          "scope": "PR16_P03_FIXED_FORM_TRANSITION_NATIVE_PROBE",
+          "selection_sent": true,
+          "species_after": 1387,
+          "starting_progress_individual_map_are_fixtures": true,
+          "status": "OBSERVED",
+          "target_match": true,
+          "target_species": 1387,
+          "total_frames": 5339,
+          "wait_kind": 1,
+          "warnings_errors": 0,
+          "window": 255
+        }
+      }
+    ],
+    "old_runs_relabelled": 0,
+    "p03_fixed_form_gap_closed": false,
+    "release_ready": false,
+    "schema_version": 1,
+    "scope": "PR16_P03_FIXED_FORM_TRANSITION_NATIVE_PROBE",
+    "sources": {
+      ".github/workflows/pr16-fixed-form-probe.yml": {
+        "sha256": "75b6a181e8d0dea16cdd744e84effe495124cab69b685138b171f6b295d094d4",
+        "size": 7038
+      },
+      "config/active_play_baseline.json": {
+        "sha256": "4800257add049ea99cdedda91413a70a255dcff9a85823463596edefa8785053",
+        "size": 394
+      },
+      "config/modernization_p03_stage73_consumers.json": {
+        "sha256": "61d53ed8059c2fbad935885d995c4a406b9e4b19b8e3035d688742188f4f0b27",
+        "size": 5064
+      },
+      "content/collection_supply_v1/canonical_model.json": {
+        "sha256": "fb8066c0a8140da079b1e947cdfb6c76e987cf0c2514456a86868ec554f061d0",
+        "size": 899889
+      },
+      "content/modernization/pr16_fixed_form_contract.json": {
+        "sha256": "42e229c61fab1b9f34319edbf1a7e8ce7945f488f981c6fa4c55e8ca124f80e7",
+        "size": 4713
+      },
+      "design/active_play_baseline.md": {
+        "sha256": "e486dfa3fd9771084ba50390dd30b70d5c52e008a0b48f8cd186086e05e819f8",
+        "size": 5551
+      },
+      "scripts/pr16_breeding_delta.py": {
+        "sha256": "96ca917dbe4466d201cfd42dbac96541058ffa3e6362dab50a41956404deb857",
+        "size": 10002
+      },
+      "scripts/pr16_fixed_form_contract.py": {
+        "sha256": "145a0a44b7d2c290976fc194a855dfc700eb6161127af0bcca0db46e8dce8297",
+        "size": 10758
+      },
+      "scripts/pr16_fixed_form_probe.py": {
+        "sha256": "ffd8c2b8dadf2a743e54f58e9a9fe8703f995a9a9a64d9b0277ae91f89e08198",
+        "size": 15827
+      },
+      "scripts/pr16_generic_form_carry.py": {
+        "sha256": "972200a1209dfcd05353093469eace148de1c263988f3835235f0433307c5338",
+        "size": 25740
+      },
+      "scripts/pr16_integration_continuation.py": {
+        "sha256": "b2b73d80af2da5862b076cd09768d28ad175ead5ad0522bff4fec9a98abbfce9",
+        "size": 11216
+      },
+      "scripts/pr16_p03_form_gap_inventory.py": {
+        "sha256": "81565ad71b26ddf1d08c32c5d1f732d19dc670771415735c132d7c9f142abccb",
+        "size": 8093
+      },
+      "scripts/pr16_p07_preserved_layer.py": {
+        "sha256": "d1f79d72582ce27095cf14993ef597ae633f751ff2a35c3ed23fd59fba308271",
+        "size": 14916
+      },
+      "scripts/pr16_repaired_acceptance.py": {
+        "sha256": "e83d17663ffaacfca99fe77df7cd28031671dcd20a83abad1a634a31ed603ba5",
+        "size": 6470
+      },
+      "scripts/run_modernization_p03_breeding_e2e.py": {
+        "sha256": "c293ceec2e3a72094300bbf0d6764c5a4017f6db4a1cf138d8ccf647cbbc9e75",
+        "size": 14073
+      },
+      "scripts/run_modernization_p03_fullslots_e2e.py": {
+        "sha256": "439db2906617448e7e46ce76bbcdc44fad6c2dbb4b4aede436bd7385a2b282ea",
+        "size": 13940
+      },
+      "tests/test_pr16_fixed_form_probe.py": {
+        "sha256": "4e8b409d0475609623a62397dbd6709b762dde9f0da609a46561bd6625984de2",
+        "size": 8698
+      },
+      "tools/mgba_ai_fixture_runner.c": {
+        "sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f",
+        "size": 36272
+      },
+      "tools/mgba_battle_core_smoke.c": {
+        "sha256": "ed9875695ca60c61960685ac2f8e810a183c8eedd703e56545d67bde3df5cf24",
+        "size": 94688
+      },
+      "tools/mgba_modernization_p02_stage71_acceptance_smoke.c": {
+        "sha256": "4e543fa815ca030e74522b5d0f1455fd5074035d10f044aab3bdfd41d7319c3b",
+        "size": 39669
+      },
+      "tools/mgba_modernization_p03_archive_ui_e2e.c": {
+        "sha256": "ccaeed858b70ea0af53a999dbaae121a8b85c88c08522755dc800e24e159b467",
+        "size": 20154
+      },
+      "tools/mgba_modernization_p03_breeding_e2e.c": {
+        "sha256": "a99cafd942f958c932709bed6099695f067dc292401b3bfb91e60afe4d6823de",
+        "size": 19614
+      },
+      "tools/mgba_modernization_p03_fullslots_e2e.c": {
+        "sha256": "f419ff2fffaf175061012dfb5dfc25d18c70a86d15c9ca89f5d5e6c886965ffa",
+        "size": 12868
+      },
+      "tools/mgba_modernization_p03_learning_e2e.c": {
+        "sha256": "154e277ef3f37b0037a7082b154805b658742f476eaf52abeb8c0ffb27a2742d",
+        "size": 7987
+      },
+      "tools/mgba_pr16_fixed_form_probe.c": {
+        "sha256": "4bc208162bc9675c5c77ba7ba71a0598a63742377f453105819636ffd37078f6",
+        "size": 14622
+      },
+      "tools/mgba_qol_production_smoke.c": {
+        "sha256": "2c4b9f065f4dce84e48f2be9afe2e2f9f666865088770ee8b068a908a0527b85",
+        "size": 149046
+      },
+      "tools/modernization_learnsets.py": {
+        "sha256": "fc2503f98a38a07899dd28adcb98faba755f571497184183d27ca457a4bb3698",
+        "size": 65067
+      },
+      "tools/modernization_p03_stage73_consumers.py": {
+        "sha256": "ae4541b6bc1f8d64c4dfdd8cdb19a9fff3faacb095850636d3f47b2cd19ae9ac",
+        "size": 13268
+      },
+      "tools/trainer_final/kanto_events.py": {
+        "sha256": "8dad7d1ab4786d3e991d00266fee96498b551b13a4ec167896e7549f004cf78c",
+        "size": 66506
+      }
+    },
+    "status": "PASS_DIAGNOSTIC_ONLY",
+    "successful_fresh_cores": 4
+  },
+  "run_id": 34681725548,
+  "schema_version": 1,
+  "tested_head": "d308bf867ff04fba8cca7f08500cfc6e0972dd82"
+}

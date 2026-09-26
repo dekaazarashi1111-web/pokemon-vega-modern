@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "task": "USER-20260921-LEARNSET-BASELINE-RESET",
+  "decision_id": "VEGA_ORIGINAL_SOURCE_PRIORITY_20260921",
+  "status": "OWNER_DECIDED",
+  "scope": "Vegaオリジナル181種の技習得について、固定原作Vega ROMとatwiki個別ページが食い違う場合の採用規則",
+  "source_checkpoint": "content/modernization/pr16_vega_original_checkpoint.json",
+  "source_conflicts": "content/modernization/pr16_vega_original_evidence/source_conflicts.json",
+  "frozen_rom": {
+    "role": "AUTHORITATIVE_BASELINE",
+    "sha256": "f600fb3faa565bd335ea75114f9233f9a4fe97c12cfed145e0a7b48784d0c9d5",
+    "size": 16777216
+  },
+  "atwiki": {
+    "role": "INDEPENDENT_AUDIT_AND_DIFFERENCE_RECORD",
+    "index_url": "https://w.atwiki.jp/altair1/pages/19.html"
+  },
+  "priority_rule": "FROZEN_VEGA_ROM_WINS",
+  "current_conflict_application": [
+    {
+      "species_key": "SPECIES_KEY_VEGA_003",
+      "name_ja": "リーテイル",
+      "method": "level_up",
+      "adopt": [
+        "Lv32 リーフブレード",
+        "Lv46 こうごうせい"
+      ],
+      "reject_for_active_baseline": [
+        "Lv32 はかいこうせん",
+        "Lv46 じこさいせい"
+      ]
+    },
+    {
+      "name_ja": "ゴートン",
+      "method": "level_up",
+      "adopt": [
+        "かみつく Lv18"
+      ],
+      "reject_for_active_baseline": [
+        "かみつく Lv20"
+      ]
+    },
+    {
+      "name_ja": "ディザソル",
+      "method": "tutor",
+      "adopt": [
+        "固定ROMに存在するギガスパークの教え技行",
+        "固定ROMに存在するバグノイズの教え技行"
+      ],
+      "reject_for_active_baseline": [
+        "atwikiに記載がないことを理由とした削除"
+      ]
+    }
+  ],
+  "rules": [
+    "固定ROMとatwikiの単純な不一致だけでは採用を停止しない。固定ROM観測行をactive baselineへ採用する。",
+    "atwiki側の値、URL、取得hash、行位置、差分は監査証拠として保持し、原本証拠を削除・改作しない。",
+    "source_conflicts.jsonは採取時点の不一致原本として不変にし、後継adjudication/crosswalkから本decisionを参照する。",
+    "固定ROMの同定、table offset、stride、終端、move crosswalk、抽出器の完全性に疑義がある場合だけfail-closedで停止する。",
+    "この判断は新しいバランス技の追加ではなく、原作Vega baselineの出典優先順位の確定である。owner_approved_overlayを増やさない。"
+  ],
+  "next_steps": [
+    "3群5行へ本決定を適用したadjudication/crosswalkを生成する。",
+    "92種2394行の非直接タマゴ技を原作Vegaの進化・孵化consumerと照合する。",
+    "その後にruntime全consumer、後継ROM、後継Wiki、変更影響に限定したnative受入へ進む。"
+  ],
+  "issue19_complete": false,
+  "rom_changes": 0,
+  "release_ready": false
+}

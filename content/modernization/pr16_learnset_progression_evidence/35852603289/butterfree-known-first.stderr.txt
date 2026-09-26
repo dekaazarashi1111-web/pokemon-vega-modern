@@ -1,0 +1,32 @@
+PROGRESSION observed species=414 level=11 slot=0 move=77 expected=77 pp=7 expected_pp=7
+PROGRESSION observed species=414 level=11 slot=1 move=81 expected=81 pp=8 expected_pp=8
+PROGRESSION observed species=414 level=11 slot=2 move=0 expected=0 pp=0 expected_pp=0
+PROGRESSION observed species=414 level=11 slot=3 move=0 expected=0 pp=0 expected_pp=0
+PROGRESSION cursor frame=2 index=0 pending=0 slots=77,81,0,0
+PROGRESSION frame=2 callback=0811f3a9
+PROGRESSION instruction frame=90 pc=0911409a lr=00000000 r0=00000678 r1=02023f88 r2=00000002 r3=00000001 cursor=0->1 pending=0->0 code=005a,700b,18d2
+PROGRESSION instruction frame=90 pc=0911409a lr=00000000 r0=00000678 r1=02023f88 r2=00000004 r3=00000002 cursor=1->2 pending=0->0 code=005a,700b,18d2
+PROGRESSION instruction frame=90 pc=0911409a lr=00000000 r0=00000678 r1=02023f88 r2=00000006 r3=00000003 cursor=2->3 pending=0->0 code=005a,700b,18d2
+PROGRESSION instruction frame=90 pc=0911409a lr=00000000 r0=00000678 r1=02023f88 r2=00000008 r3=00000004 cursor=3->4 pending=0->0 code=005a,700b,18d2
+PROGRESSION instruction frame=90 pc=0911409a lr=00000000 r0=00000678 r1=02023f88 r2=0000000a r3=00000005 cursor=4->5 pending=0->0 code=005a,700b,18d2
+PROGRESSION instruction frame=90 pc=0911409a lr=00000000 r0=00000678 r1=02023f88 r2=0000000c r3=00000006 cursor=5->6 pending=0->0 code=005a,700b,18d2
+PROGRESSION instruction frame=90 pc=0911409a lr=00000000 r0=00000678 r1=02023f88 r2=0000000e r3=00000007 cursor=6->7 pending=0->0 code=005a,700b,18d2
+PROGRESSION instruction frame=90 pc=0911409a lr=00000000 r0=00000678 r1=02023f88 r2=00000010 r3=00000008 cursor=7->8 pending=0->0 code=005a,700b,18d2
+PROGRESSION instruction frame=90 pc=091140b8 lr=00000000 r0=00000000 r1=09fe9722 r2=02023f88 r3=0000004d cursor=8->8 pending=0->77 code=4a13,802b,7813
+PROGRESSION instruction frame=90 pc=091140be lr=00000000 r0=00000000 r1=09fe9722 r2=02023f88 r3=00000009 cursor=8->9 pending=77->77 code=3301,7013,2396
+PROGRESSION cursor frame=91 index=9 pending=77 slots=77,81,0,0
+PROGRESSION instruction frame=91 pc=095f9a54 lr=095f98eb r0=0000004f r1=0000004f r2=095e7558 r3=0000000a cursor=9->10 pending=77->77 code=1e01,702b,d0cb
+PROGRESSION instruction frame=91 pc=095f9a5a lr=095f98eb r0=0000004f r1=0000004f r2=095e7558 r3=02023f82 cursor=10->10 pending=77->79 code=4b08,8018,0020
+PROGRESSION cursor frame=92 index=10 pending=79 slots=77,81,79,0
+PROGRESSION cursor frame=181 index=255 pending=79 slots=77,81,79,0
+PROGRESSION frame=199 callback=081256f5
+PROGRESSION frame=200 callback=08108a15
+PROGRESSION frame=207 callback=081089e5
+PROGRESSION frame=256 callback=08056169
+PROGRESSION frame=257 callback=080560c9
+PROGRESSION frame=283 callback=08055e75
+PROGRESSION counts dialogs=0 selections=0 stops=0 expected=0,0,0
+PROGRESSION observed species=414 level=12 slot=0 move=77 expected=77 pp=7 expected_pp=7
+PROGRESSION observed species=414 level=12 slot=1 move=81 expected=81 pp=8 expected_pp=8
+PROGRESSION observed species=414 level=12 slot=2 move=79 expected=78 pp=15 expected_pp=30
+P03 archive: progression move/PP result differs

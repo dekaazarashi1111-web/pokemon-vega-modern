@@ -1,0 +1,89 @@
+{
+  "artifact_id": 10182862548,
+  "artifact_name": "pr16-p06-current-reconcile",
+  "conclusion": "success",
+  "head_branch": "codex/modernization-followup-20260908",
+  "head_sha": "7ebc44f83ef2c4e4e49bb6151adc2e144acaff15",
+  "jobs": [
+    {
+      "conclusion": "success",
+      "head_sha": "7ebc44f83ef2c4e4e49bb6151adc2e144acaff15",
+      "id": 103131151475,
+      "name": "reconcile",
+      "run_id": 34556825622,
+      "status": "completed",
+      "steps": [
+        {
+          "completed_at": "2026-09-11T03:01:07Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "started_at": "2026-09-11T03:01:06Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T03:01:12Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 2,
+          "started_at": "2026-09-11T03:01:07Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T03:01:22Z",
+          "conclusion": "success",
+          "name": "Revalidate originals and regenerate current view, no emulator run",
+          "number": 3,
+          "started_at": "2026-09-11T03:01:12Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T03:01:24Z",
+          "conclusion": "success",
+          "name": "Commit only the verified mirror and append-only logs",
+          "number": 4,
+          "started_at": "2026-09-11T03:01:22Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T03:01:24Z",
+          "conclusion": "success",
+          "name": "Preserve resulting current-view text and checks",
+          "number": 5,
+          "started_at": "2026-09-11T03:01:24Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T03:01:25Z",
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@v4",
+          "number": 6,
+          "started_at": "2026-09-11T03:01:24Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T03:01:26Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 12,
+          "started_at": "2026-09-11T03:01:25Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T03:01:26Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 13,
+          "started_at": "2026-09-11T03:01:26Z",
+          "status": "completed"
+        }
+      ]
+    }
+  ],
+  "path": ".github/workflows/pr16-p06-current-reconcile.yml",
+  "run_attempt": 1,
+  "run_id": 34556825622,
+  "sha256": "3078ef8a535ca5036518ab3bfc1b0fc930b14284acf467ca3113d22a862d5401",
+  "size": 13564,
+  "status": "completed"
+}

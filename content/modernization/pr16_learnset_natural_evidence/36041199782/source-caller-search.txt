@@ -1,0 +1,48 @@
+overlays/move_distribution_v4/move_distribution_v4.h:25:void MoveDistributionV4_GiveBoxMonInitialMovesetDispatch(void);
+overlays/move_distribution_v4/move_distribution_v4_dispatch.S:8:.section .text.MoveDistributionV4_GiveBoxMonInitialMovesetDispatch, "ax", %progbits
+overlays/move_distribution_v4/move_distribution_v4_dispatch.S:9:.global MoveDistributionV4_GiveBoxMonInitialMovesetDispatch
+overlays/move_distribution_v4/move_distribution_v4_dispatch.S:10:.type MoveDistributionV4_GiveBoxMonInitialMovesetDispatch, %function
+overlays/move_distribution_v4/move_distribution_v4_dispatch.S:12:MoveDistributionV4_GiveBoxMonInitialMovesetDispatch:
+overlays/move_distribution_v4/move_distribution_v4_dispatch.S:22:.size MoveDistributionV4_GiveBoxMonInitialMovesetDispatch, . - MoveDistributionV4_GiveBoxMonInitialMovesetDispatch
+overlays/species_surface/species_runtime.c:300:__attribute__((section(".text.VegaSpeciesSurface_GiveBoxMonInitialMovesetAppended"),
+overlays/species_surface/species_runtime.c:302:void VegaSpeciesSurface_GiveBoxMonInitialMovesetAppended(
+overlays/species_surface/species_runtime.h:10:void VegaSpeciesSurface_GiveBoxMonInitialMovesetAppended(
+overlays/species_surface/species_runtime.h:12:void VegaSpeciesSurface_GiveBoxMonInitialMovesetDispatch(void);
+overlays/species_surface/species_runtime_trampoline.S:10:.section .text.VegaSpeciesSurface_GiveBoxMonInitialMovesetDispatch, "ax", %progbits
+overlays/species_surface/species_runtime_trampoline.S:11:.global VegaSpeciesSurface_GiveBoxMonInitialMovesetDispatch
+overlays/species_surface/species_runtime_trampoline.S:12:.type VegaSpeciesSurface_GiveBoxMonInitialMovesetDispatch, %function
+overlays/species_surface/species_runtime_trampoline.S:14:VegaSpeciesSurface_GiveBoxMonInitialMovesetDispatch:
+overlays/species_surface/species_runtime_trampoline.S:28:    bl VegaSpeciesSurface_GiveBoxMonInitialMovesetAppended
+overlays/species_surface/species_runtime_trampoline.S:40:.size VegaSpeciesSurface_GiveBoxMonInitialMovesetDispatch, . - VegaSpeciesSurface_GiveBoxMonInitialMovesetDispatch
+overlays/stage57_debug_repair/stage57_debug_repair.c:103:u16 Stage57Debug_NormalizeMonIdentity(void *mon, u8 reset_wild_moves)
+overlays/stage57_debug_repair/stage57_debug_repair.c:114:    if (reset_wild_moves)
+overlays/stage59_wild_identity_npc_regression_repair/stage59_wild_identity_npc_regression_repair.c:46:    /* reset_wild_moves=0 keeps fishing/hidden research-profile egg moves and
+scripts/build_battle_core.py:1935:        "\t\t\tGiveBoxMonInitialMoveset((void*) &gPlayerParty[i + 3]); //Give the randomized Pokemon moves it would normally have\n"
+scripts/build_chatgpt_pro_design_packets.py:510:        "wild_initial_moves_final.csv": {
+scripts/build_chatgpt_pro_design_packets.py:556:            {"output": "wild_initial_moves_final.csv", "output_field": "wild_record_key",
+scripts/build_move_distribution_v4.py:63:    "wild_initial_moves_final.csv",
+scripts/build_move_distribution_v4.py:75:    "MoveDistributionV4_GiveBoxMonInitialMovesetDispatch",
+scripts/build_move_distribution_v4.py:219:                "wild_initial_moves_final.csv",
+scripts/build_move_distribution_v4.py:353:        "wild_initial_moves_final.csv": int(counts["wild_rows"]),
+scripts/build_move_distribution_v4.py:470:    for row in submission["wild_initial_moves_final.csv"]:
+scripts/build_move_distribution_v4.py:476:        if species in wild_by_species or 0 in moves or len(set(moves)) != 4:
+scripts/build_move_distribution_v4.py:478:        wild_by_species[species] = moves
+scripts/build_move_distribution_v4.py:479:        wild_records.append({"species": species, "moves": list(moves)})
+scripts/build_move_distribution_v4.py:1108:        **{f"WILD_MOVE{index}": move for index, move in enumerate(fixtures["wild"]["moves"], 1)},
+scripts/build_species_surface.py:999:            "VegaSpeciesSurface_GiveBoxMonInitialMovesetAppended",
+scripts/build_species_surface.py:1000:            "VegaSpeciesSurface_GiveBoxMonInitialMovesetDispatch",
+scripts/pr16_candidate_wiki_catalog.py:180:        row['wild_initial_moves']={'status':DEFERRED,'reason':'現候補の全野生header/生成level/固定movesetを未抽出。一般レベル技から野生の実初期技を断定しない。'}
+scripts/pr16_candidate_wiki_consumers.py:202:                 'species_specific_flag_setter': UNKNOWN, 'consumer': source.proof('CreateWildMon')},
+scripts/pr16_candidate_wiki_creation.py:29:    a = mask_c(source.code('GiveBoxMonInitialMoveset'))
+scripts/pr16_candidate_wiki_creation.py:213:        row['wild_initial_moves'] = {'status': 'SCOPED_OVERLAY_TABLE_WITH_SOURCE_RULE_PROFILES', 'overlay_slots': wild_refs[sid],
+scripts/pr16_candidate_wiki_render.py:95:        body+='\n## 野生初期技・固定配布・フォーム固有\n\n'+jsonblock({'wild_initial':row['wild_initial_moves'],'fixed_gift':row['fixed_gift_moves'],'form_specific':'上記Species IDの実tableを参照。baseからの推測コピーはしない。'})
+scripts/pr16_candidate_wiki_saved_link.py:157:        '追加野生95行': '追加野生95行・collection配布18/Floette1・raid292の初期技source規則に加え、GiveBoxMonInitialMoveset/GiveMoveToBoxMon・ScriptGiveMon/CreateEggの全body一致を確認。残りは全通常野生header/既存story配布、CreateBoxMon/CreateWildMon/GiveEggFromDaycareの差分body・マクロ・生成後form/custom技。実生成技受入とは別。',
+scripts/pr16_candidate_wiki_saved_link.py:181:    body += '\n## 残件\n\nCanUseZMoveとHandleInputChooseMove、種族accessor、CreateBoxMon/CreateWildMon/GiveEggFromDaycareは旧bodyとの差分を別途追跡します。DetermineEggAbilityは独立symbolがなく、inline化と断定しません。全handler・間接辺・通常初回供給/使用の実行受入は未完です。\n\n'
+scripts/pr16_learnset_natural_trace.py:64:                if key not in ('GiveBoxMonInitialMoveset','GiveMoveToBoxMon','CreateBoxMon','CreateMon','CreateWildMon','SetMonData','SetBoxMonData'):continue
+scripts/pr16_learnset_natural_trace.py:90:    result=subprocess.run(['git','grep','-n','-E','CreateWildMon|GiveBoxMonInitialMoveset|SetWildMon|wild.*moves','--','scripts','src','overlays'],cwd=n.ROOT,capture_output=True)
+scripts/pr16_learnset_progress_verify.py:162:    hooks = [('Pr16_GameGiveBoxMonInitialMoveset',0x3E14C),('Pr16_GameGiveBoxMonInitialMoveset',initial_off),
+scripts/pr16_wiki_remaining_capture.py:46:    names = ('CalcMoveSplit', 'CreateWildMon', 'ScriptGiveMon', 'DetermineEggAbility',
+scripts/pr16_wiki_saved_link_capture.py:21:    'GiveBoxMonInitialMoveset', 'GiveMoveToBoxMon', 'CreateBoxMon', 'CreateMon', 'GetHiddenAbility',
+scripts/pr16_wiki_saved_link_capture.py:24:    'DetermineEggAbility', 'CreateEgg', 'GiveEggFromDaycare', 'CreateWildMon', 'ScriptGiveMon',
+scripts/pr16_wiki_source_snapshot.py:23:    'src/wild_encounter.c': ('CreateWildMon', 'sp117_CreateRaidMon'),
+src/modernization/pr16_learnset_progress_game.c:6:void Pr16_GameGiveBoxMonInitialMoveset(void *box)

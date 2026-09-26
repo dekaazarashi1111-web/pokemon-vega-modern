@@ -1,0 +1,36 @@
+{
+  "arm_compiles": 0,
+  "candidate": {
+    "sha256": "0205af9bd2d92b1b3303195ab0cc84e5ea0f3de390ade15d9f8ce42a6dcdd1a0",
+    "size": 33554432
+  },
+  "changed_bytes": 8,
+  "land_adapter_changed": false,
+  "outside_declared_changes": 0,
+  "parent": {
+    "sha256": "b7790902733a638445129c388d65ab3c199bceb92a41338e0069221b556b9f91",
+    "size": 33554432
+  },
+  "patches": [
+    {
+      "after": "c046c046",
+      "before": "fff767ff",
+      "offset": 20522786,
+      "surrounding": {
+        "sha256": "b6c11e8d74aea849fd8850ebeb5fe8c89fe626c53ebc1f63e9200efb655bbd1f",
+        "size": 32
+      }
+    },
+    {
+      "after": "c046c046",
+      "before": "fff753ff",
+      "offset": 20522826,
+      "surrounding": {
+        "sha256": "e59657c47988002fa67cccd02b17c3f4762f10e3bd2aff64287d8bf54334da40",
+        "size": 32
+      }
+    }
+  ],
+  "rollback_verified": true,
+  "shared_initializer_changed": false
+}

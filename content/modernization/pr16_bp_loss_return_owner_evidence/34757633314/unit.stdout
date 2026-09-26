@@ -1,0 +1,52 @@
+{
+  "needles": {
+    "BATTLE_TYPE_BATTLE_TOWER": 1,
+    "BATTLE_TYPE_FRONTIER": 1,
+    "CB2_ReturnToField": 1,
+    "CB2_WhiteOut": 1,
+    "EndBattleFlagClear": 2,
+    "EndOfBattleThings": 1,
+    "VegaBattlePolicyEnd": 2
+  },
+  "status": "PASS",
+  "summary": {
+    "accepted_native_cases_replayed": 0,
+    "callback_owner_candidates": [
+      {
+        "callbacks": [
+          "CB2_ReturnToField",
+          "CB2_WhiteOut"
+        ],
+        "function": "CB2_EndTrainerBattle",
+        "line": 6,
+        "path": "vendor/upstream/CFRU-JP/src/end_battle.c"
+      }
+    ],
+    "candidate_rom_changed": false,
+    "candidate_rom_owner_verified": false,
+    "end_lifecycle_paths": [
+      "scripts/build_battle_core.py",
+      "vendor/upstream/CFRU-JP/src/end_battle.c"
+    ],
+    "field_return_owner_paths": [
+      "vendor/upstream/CFRU-JP/src/end_battle.c"
+    ],
+    "field_return_reference_paths": [
+      "vendor/upstream/CFRU-JP/src/end_battle.c"
+    ],
+    "new_emulator_processes": 0,
+    "next_boundary": "CANDIDATE_ROM_CALLBACK_BYTES_REQUIRED",
+    "owner_resolved": true,
+    "reference_only_overlap_paths": [],
+    "source_scan_complete": true,
+    "whiteout_and_return_overlap_paths": [
+      "vendor/upstream/CFRU-JP/src/end_battle.c"
+    ],
+    "whiteout_owner_paths": [
+      "vendor/upstream/CFRU-JP/src/end_battle.c"
+    ],
+    "whiteout_reference_paths": [
+      "vendor/upstream/CFRU-JP/src/end_battle.c"
+    ]
+  }
+}

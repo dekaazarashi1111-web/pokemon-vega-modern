@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "status": "READ_ONLY_CHOOSER_BINDING_DIAGNOSTIC",
+  "candidate": {
+    "size": 33554432,
+    "sha256": "2b107e7ef897844eff810ff0b40f82543640488696e8295194ceb3b66fb2c183"
+  },
+  "private_archive": {
+    "name": "pokemon-vega-private-env-v1-state.zip",
+    "size": 218929898,
+    "sha256": "b878134dc4a00b7de1e028f178c329db638b0304096b96c84c6776ddfb0983af"
+  },
+  "sources": {
+    "vendor/upstream/CFRU-JP/BPRJ.ld": {
+      "size": 68505,
+      "sha256": "e371c23b9c9ea914c9ca3f644983e0b4e05be07bf11054492fa37afcfd58892a"
+    },
+    "vendor/upstream/CFRU-JP/include/event_data.h": {
+      "size": 2956,
+      "sha256": "a4c673d653fb76a7ee32dc066cbfee7fb437a47a56f53e35603d9e28cf8c500e"
+    },
+    "vendor/upstream/CFRU-JP/include/field_specials.h": {
+      "size": 159,
+      "sha256": "fb119b0461123d0c2729789765bc18d537e52efcf41a3f0036d92321c0d86053"
+    },
+    "vendor/upstream/CFRU-JP/include/new/party_menu.h": {
+      "size": 2040,
+      "sha256": "eb9796a2184411ddbc73787a00cb5c8e60ed7bea5cadb2b10b88089a878067af"
+    },
+    "vendor/upstream/CFRU-JP/include/party_menu.h": {
+      "size": 5950,
+      "sha256": "4d31fece0b6dac469d3d389bf69275986d365b70587caa529c1f762229a9e145"
+    },
+    "vendor/upstream/CFRU-JP/include/script.h": {
+      "size": 3500,
+      "sha256": "271e9bb46bfc426461568a68b49354b319b29307381b379c9f711d5c77584b6f"
+    },
+    "vendor/upstream/CFRU-JP/include/task.h": {
+      "size": 1143,
+      "sha256": "52e2c64c5c6ba38afbaf045895bcc93de8bdaa52ea40c5fdf6f403c0ad201b02"
+    },
+    "vendor/upstream/CFRU-JP/src/party_menu.c": {
+      "size": 83459,
+      "sha256": "6b72ebe4b136af6d573c5e7079fe183497a7883ff2daceb4c519cd8dd8e66e59"
+    }
+  },
+  "snapshot_budget": 7,
+  "key_timing_changed": false,
+  "rom_changes": 0,
+  "post_observation_host_writes": 0,
+  "context_layout_not_inferred_from_old_trace": true,
+  "bounded_rom_ranges": [
+    {
+      "address": 135429600,
+      "size": 128,
+      "hex": "10b583b0041c2406240e00f023f8002000900c4801900c48806802900420002100220023f7f722fa0849a4010a7a3f201040204308720648486003b010bc01bc00470000190312083031000314b003027580120800b5034800210322a1f0dcff01bc004748b0030210b500060416642060430449401800f017f80006002803d1"
+    },
+    {
+      "address": 153941536,
+      "size": 64,
+      "hex": "0f003ff52c090904252900272311e62c09210d800100060144f62c0905acf72c090000000f0059f52c0909042315e72c09210d800100060164f62c0905a0f72c"
+    }
+  ],
+  "native_rental_accepted": false,
+  "p05_native_bp_gap_closed": false,
+  "release_ready": false
+}

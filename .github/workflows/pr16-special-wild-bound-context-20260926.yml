@@ -1,0 +1,80 @@
+name: pr16-special-wild-bound-context-20260926
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-special-wild-bound-context-20260926.yml]
+permissions:
+  contents: read
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-special-wild-bound-context-20260926
+  cancel-in-progress: false
+jobs:
+  bound-context:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: 固定sourceと既存証拠だけ転送・実行やROM取得なし
+        run: |
+          python3 -B - <<'PY'
+          import fnmatch, hashlib, json, os, pathlib, subprocess, zipfile
+          root=pathlib.Path('.')
+          paths=subprocess.check_output(['git','ls-files','-z']).decode().split('\0')[:-1]
+          exact={
+            'AGENTS.md','CHATGPT_RESUME.md','design/run_log.md','design/version_log.md',
+            'docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md','docs/PR16_SPECIAL_WILD_JA.md',
+            'content/modernization/pr16_native_supply_resume_20260913.json',
+            'content/modernization/pr16_bp_chooser_checkpoint.json','content/modernization/p08_remaining_work.json',
+            'content/modernization/pr16_learnset_natural_checkpoint.json',
+            'content/modernization/pr16_collection_gifts_checkpoint.json',
+            'content/modernization/pr16_research_hatch_checkpoint.json',
+            'manifests/research_encounters.csv','manifests/species_ids.csv','content/map_bindings.csv',
+            'scripts/pr16_resume.py','scripts/pr16_wiki_reconcile.py','scripts/pr16_learnset_battle.py',
+            'scripts/pr16_learnset_entry_repair.py','scripts/pr16_learnset_wild_repair.py',
+            'scripts/pr16_learnset_compact_record.py','scripts/pr16_learnset_runtime_record.py',
+            'scripts/pr16_learnset_wiki_actions.py','tools/mgba_regression_smoke.c',
+            'tools/mgba_pr16_special_wild.c','src/modernization/pr16_learnset_wild_game.c',
+            'overlays/qol_production/qol_production.c','overlays/move_distribution_v4/move_distribution_v4.c',
+            'overlays/research_economy_v1/research_economy_v1.c',
+            'overlays/stage59_wild_identity_npc_regression_repair/stage59_wild_identity_npc_regression_repair.c'}
+          patterns=['scripts/pr16_special_wild*.py','tests/test_pr16_special_wild*.py',
+            'scripts/build_qol*.py','scripts/*research*.py','scripts/*wild*.py',
+            'config/*research*.json','config/*wild*.json',
+            'content/modernization/pr16_special_wild*.json',
+            'content/modernization/pr16_special_wild_evidence/*/*',
+            '.github/workflows/pr16-special-wild*.yml']
+          selected=sorted(p for p in paths if p in exact or any(fnmatch.fnmatchcase(p,g) for g in patterns))
+          out=root/'.local/pr16-special-wild-bound-context';out.mkdir(parents=True)
+          index={'source_head':os.environ['GITHUB_SHA'],'files':{}}
+          with zipfile.ZipFile(out/'context.zip','w',compression=zipfile.ZIP_DEFLATED) as z:
+            for name in selected:
+              p=root/name
+              if p.is_symlink():raise ValueError('symlink')
+              raw=p.read_bytes();raw.decode('utf-8')
+              if b'\0' in raw:raise ValueError('binary')
+              z.writestr(name,raw)
+              index['files'][name]={'sha256':hashlib.sha256(raw).hexdigest(),'size':len(raw)}
+            z.writestr('context-index.json',json.dumps(index,indent=2)+'\n')
+            names=[p for p in paths if any(x in p.lower() for x in ('research','ecology','wild','qol','stage59')) and p.startswith(('scripts/','config/','overlays/','tools/','tests/'))]
+            z.writestr('related-paths.json',json.dumps(names,indent=2)+'\n')
+          print(json.dumps({'source_head':index['source_head'],'text_files':len(selected),'native_runs':0,'unit_reruns':0,'rom_changes':0}))
+          PY
+      - name: 最新ActionsとPR状態を限定JSONへ保存
+        run: |
+          set -euo pipefail
+          gh api 'repos/dekaazarashi1111-web/pokemon-vega-modern/actions/runs?branch=codex%2Fmodernization-followup-20260908&per_page=30' --jq '[.workflow_runs[]|{id,name,head_sha,status,conclusion,path}]' >.local/pr16-special-wild-bound-context/actions.json
+          gh api repos/dekaazarashi1111-web/pokemon-vega-modern/pulls/16 --jq '{number,state,draft,merged,head:{ref:.head.ref,sha:.head.sha,repo:.head.repo.full_name}}' >.local/pr16-special-wild-bound-context/pr.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr16-special-wild-bound-context
+          path: .local/pr16-special-wild-bound-context/
+          retention-days: 7
+          if-no-files-found: error

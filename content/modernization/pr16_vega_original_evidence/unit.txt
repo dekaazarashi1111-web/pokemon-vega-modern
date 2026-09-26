@@ -1,0 +1,48 @@
+test_duplicate_egg_header_rejected (tests.test_pr16_vega_original_baseline.RomTests.test_duplicate_egg_header_rejected) ... ok
+test_egg_sequence_and_explicit_empty (tests.test_pr16_vega_original_baseline.RomTests.test_egg_sequence_and_explicit_empty) ... ok
+test_egg_species_outside_frozen_prefix_rejected (tests.test_pr16_vega_original_baseline.RomTests.test_egg_species_outside_frozen_prefix_rejected) ... ok
+test_egg_without_species_rejected (tests.test_pr16_vega_original_baseline.RomTests.test_egg_without_species_rejected) ... ok
+test_empty_level_is_explicit (tests.test_pr16_vega_original_baseline.RomTests.test_empty_level_is_explicit) ... ok
+test_level_zero_move_and_level_over_100_rejected (tests.test_pr16_vega_original_baseline.RomTests.test_level_zero_move_and_level_over_100_rejected) ... ok
+test_missing_level_terminator_rejected (tests.test_pr16_vega_original_baseline.RomTests.test_missing_level_terminator_rejected) ... ok
+test_outside_pointer_rejected (tests.test_pr16_vega_original_baseline.RomTests.test_outside_pointer_rejected) ... ok
+test_packed_level_order_and_duplicates_preserved (tests.test_pr16_vega_original_baseline.RomTests.test_packed_level_order_and_duplicates_preserved) ... ok
+test_all_181_dex_is_not_species_id (tests.test_pr16_vega_original_baseline.RosterTests.test_all_181_dex_is_not_species_id) ... ok
+test_id_collision_rejected (tests.test_pr16_vega_original_baseline.RosterTests.test_id_collision_rejected) ... ok
+test_missing_name_not_guessed (tests.test_pr16_vega_original_baseline.RosterTests.test_missing_name_not_guessed) ... ok
+test_preservation_rows_not_used (tests.test_pr16_vega_original_baseline.RosterTests.test_preservation_rows_not_used) ... ok
+test_duplicate_index_rejected (tests.test_pr16_vega_original_baseline.WikiTests.test_duplicate_index_rejected) ... ok
+test_foreign_url_rejected (tests.test_pr16_vega_original_baseline.WikiTests.test_foreign_url_rejected) ... ok
+test_index_join_links_and_dex (tests.test_pr16_vega_original_baseline.WikiTests.test_index_join_links_and_dex) ... ok
+test_missing_table_rejected (tests.test_pr16_vega_original_baseline.WikiTests.test_missing_table_rejected) ... ok
+test_span_and_order_preserved (tests.test_pr16_vega_original_baseline.WikiTests.test_span_and_order_preserved) ... ok
+test_unclosed_table_rejected (tests.test_pr16_vega_original_baseline.WikiTests.test_unclosed_table_rejected) ... ok
+test_corrupt_outer_digest_rejected (tests.test_pr16_vega_original_archive.ArchiveTests.test_corrupt_outer_digest_rejected) ... ok
+test_misnamed_manifest_rejected (tests.test_pr16_vega_original_archive.ArchiveTests.test_misnamed_manifest_rejected) ... ok
+test_only_declared_original_read (tests.test_pr16_vega_original_archive.ArchiveTests.test_only_declared_original_read) ... ok
+test_original_identity_conflict_rejected (tests.test_pr16_vega_original_archive.ArchiveTests.test_original_identity_conflict_rejected) ... ok
+test_undeclared_member_rejected (tests.test_pr16_vega_original_archive.ArchiveTests.test_undeclared_member_rejected) ... ok
+test_unsafe_zip_member_rejected (tests.test_pr16_vega_original_archive.ArchiveTests.test_unsafe_zip_member_rejected) ... ok
+test_wrong_original_bytes_rejected (tests.test_pr16_vega_original_archive.ArchiveTests.test_wrong_original_bytes_rejected) ... ok
+test_fixed_alias_not_modern_same_name (tests.test_pr16_vega_original_audit.AliasTests.test_fixed_alias_not_modern_same_name) ... ok
+test_unapproved_duplicate_is_not_resolved (tests.test_pr16_vega_original_audit.AliasTests.test_unapproved_duplicate_is_not_resolved) ... ok
+test_wrong_alias_identity_is_rejected (tests.test_pr16_vega_original_audit.AliasTests.test_wrong_alias_identity_is_rejected) ... ok
+test_duplicate_level_is_not_deduplicated (tests.test_pr16_vega_original_audit.AuditTests.test_duplicate_level_is_not_deduplicated) ... ok
+test_egg_notes_are_not_direct_learning (tests.test_pr16_vega_original_audit.AuditTests.test_egg_notes_are_not_direct_learning) ... ok
+test_empty_is_explicit_not_unknown_move (tests.test_pr16_vega_original_audit.AuditTests.test_empty_is_explicit_not_unknown_move) ... ok
+test_irregular_grid_is_rejected (tests.test_pr16_vega_original_audit.AuditTests.test_irregular_grid_is_rejected) ... ok
+test_missing_method_not_claimed_empty (tests.test_pr16_vega_original_audit.AuditTests.test_missing_method_not_claimed_empty) ... ok
+test_span_past_end_is_rejected (tests.test_pr16_vega_original_audit.AuditTests.test_span_past_end_is_rejected) ... ok
+test_spans_keep_original_cell_identity (tests.test_pr16_vega_original_audit.AuditTests.test_spans_keep_original_cell_identity) ... ok
+test_tm_number_is_source_number_not_runtime_slot (tests.test_pr16_vega_original_audit.AuditTests.test_tm_number_is_source_number_not_runtime_slot) ... ok
+test_unknown_level_cannot_become_one (tests.test_pr16_vega_original_audit.AuditTests.test_unknown_level_cannot_become_one) ... ok
+test_unknown_move_kept_in_ledger (tests.test_pr16_vega_original_audit.AuditTests.test_unknown_move_kept_in_ledger) ... ok
+test_check_does_not_repair_tampering (tests.test_pr16_vega_original_audit.ReplayTests.test_check_does_not_repair_tampering) ... ok
+test_check_preserves_bytes_and_mtime (tests.test_pr16_vega_original_audit.ReplayTests.test_check_preserves_bytes_and_mtime) ... ok
+test_existing_output_not_overwritten (tests.test_pr16_vega_original_audit.ReplayTests.test_existing_output_not_overwritten) ... ok
+test_symlink_output_is_rejected (tests.test_pr16_vega_original_audit.ReplayTests.test_symlink_output_is_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 43 tests in 0.173s
+
+OK

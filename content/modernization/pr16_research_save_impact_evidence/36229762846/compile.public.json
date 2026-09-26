@@ -1,0 +1,116 @@
+{
+  "kind": "PUBLIC_PROJECTION_NOT_ORIGINAL",
+  "original_binding": {
+    "sha256": "689fa8714738a65e6aadb7a5cec19e872824ff5d10a5d1e0bf971606a7a977ba",
+    "size": 2837
+  },
+  "original_member": "compile.json",
+  "policy": "Only absolute compiler arguments are replaced; original bytes remain in the pinned Actions artifact.",
+  "projection": {
+    "command": [
+      "cc",
+      "-std=c11",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wno-misleading-indentation",
+      "-Itools",
+      "-I<artifact-absolute-argument-8>",
+      "<artifact-absolute-argument-9>",
+      "-L<artifact-absolute-argument-10>",
+      "-lmgba",
+      "-lm",
+      "-Wl,--allow-shlib-undefined",
+      "-o",
+      "<artifact-absolute-argument-15>"
+    ],
+    "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0\nCopyright (C) 2023 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+    "executable": {
+      "sha256": "de6822a1ed2affe3fc22d3865499abf32e0e4dcad61545367827d8023d32390c",
+      "size": 56792
+    },
+    "returncode": 0,
+    "source_bindings": {
+      ".github/workflows/pr16-research-bag-native-20260926.yml": {
+        "sha256": "43988c73c108cec3caa77d453636a090e424c41ee3ee6e0d066953b14623c20a",
+        "size": 1068
+      },
+      "config/research_economy_v1.json": {
+        "sha256": "7e92079158303a125358ae6fa49c231f6085b2ca0a335d5f0e8bb6c55db2ed8d",
+        "size": 9388
+      },
+      "overlays/research_economy_v1/research_economy_v1.c": {
+        "sha256": "3f71ea1d9f308c652e70dd863b601ad39a9c648ca25bf55932b4966fa4246e62",
+        "size": 63507
+      },
+      "overlays/research_economy_v1/research_economy_v1.h": {
+        "sha256": "3216824bad136a1ce3c886ecdbc3e2057970d3439d9bcd2272bece617c7c9021",
+        "size": 3743
+      },
+      "scripts/pr16_research_bag_actions.py": {
+        "sha256": "785b1ec81ede3e50e673eb9f1a0861e6240048e7409f29d30d5331351527f5b8",
+        "size": 8168
+      },
+      "scripts/pr16_research_bag_delegate.py": {
+        "sha256": "9964a15ebf2fcb8a14145766fd9c89157ef98a525362832537a12774ecfaf7ad",
+        "size": 6509
+      },
+      "scripts/pr16_research_save_delegate.py": {
+        "sha256": "ed64cc810b7ad05da32b68827d96e54e39eeb04d8eeb65302f07a4ef54676474",
+        "size": 3372
+      },
+      "tools/mgba_ai_fixture_runner.c": {
+        "sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f",
+        "size": 36272
+      },
+      "tools/mgba_battle_core_smoke.c": {
+        "sha256": "ed9875695ca60c61960685ac2f8e810a183c8eedd703e56545d67bde3df5cf24",
+        "size": 94688
+      },
+      "tools/mgba_pr16_research_save_impact.c": {
+        "sha256": "b57e58a94f208f6f3ce8418b850d9cd03de203c12bb73a0cd0cdf6fb7968b78f",
+        "size": 16977
+      },
+      "tools/mgba_qol_production_smoke.c": {
+        "sha256": "2c4b9f065f4dce84e48f2be9afe2e2f9f666865088770ee8b068a908a0527b85",
+        "size": 149046
+      }
+    }
+  },
+  "redactions": [
+    {
+      "argument_index": 8,
+      "original_utf8": {
+        "sha256": "8a2d0bb36f89c03ce0e440b3202481e0f6a704e97afba4f8f5cd89043320a0b5",
+        "size": 100
+      },
+      "replacement": "-I<artifact-absolute-argument-8>"
+    },
+    {
+      "argument_index": 9,
+      "original_utf8": {
+        "sha256": "38af78a03e0870fd25a331f80cce4b5c0168cf08e2dc9b3fb0c26788ee2a467f",
+        "size": 107
+      },
+      "replacement": "<artifact-absolute-argument-9>"
+    },
+    {
+      "argument_index": 10,
+      "original_utf8": {
+        "sha256": "c4adbeb0c257798036806b36364a567ee4669f19c50416dd05b130cb068ab120",
+        "size": 96
+      },
+      "replacement": "-L<artifact-absolute-argument-10>"
+    },
+    {
+      "argument_index": 15,
+      "original_utf8": {
+        "sha256": "2951e970b8e6a271f1d55e5b884e0ab59db1941c52e48b29df622ecab4e12169",
+        "size": 89
+      },
+      "replacement": "<artifact-absolute-argument-15>"
+    }
+  ],
+  "schema_version": 1
+}

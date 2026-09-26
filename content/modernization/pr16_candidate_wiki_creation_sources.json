@@ -1,0 +1,81 @@
+{
+  "configuration_scope": "LOCKED_SOURCE_ONLY_CURRENT_COMPILED_MACROS_DEFERRED",
+  "entry_inventory": {
+    "candidate": {
+      "crc32": "CC068B4A",
+      "sha256": "46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38",
+      "size": 33554432
+    },
+    "entries": [
+      {
+        "entry_signature_sha256": "a2337d21067b7f256aab21fd4921c0425c0d4fbbf1acc8c7d0bd27715c36c2d7",
+        "site": "0x80825e8",
+        "source_hook_line": "CreateWildMon 80825E8 2",
+        "status": "SOURCE_HOOK_SITE_ONLY_NOT_CALLEE_PROOF",
+        "symbol": "CreateWildMon"
+      },
+      {
+        "entry_signature_sha256": "30dd16dccd453a84f4414bdbab89966ace23c479edf25ccd6f1d9f25030b445a",
+        "site": "0x803e01c",
+        "source_hook_line": "GiveMoveToBoxMon 0803E01C 2",
+        "status": "SOURCE_HOOK_SITE_ONLY_NOT_CALLEE_PROOF",
+        "symbol": "GiveMoveToBoxMon"
+      },
+      {
+        "entry_signature_sha256": "733e7ca34864bd2584344b5dbd53536ffc88519bbdf52b7289d6110648f2c836",
+        "site": "0x803e14c",
+        "source_hook_line": "GiveBoxMonInitialMoveset 0803E14C 1",
+        "status": "SOURCE_HOOK_SITE_ONLY_NOT_CALLEE_PROOF",
+        "symbol": "GiveBoxMonInitialMoveset"
+      }
+    ],
+    "new_native_runs": 0,
+    "rom_changes": 0,
+    "scope": "EXACT_ENTRY_THUNKS_NOT_FULL_COMPILED_CALLGRAPH",
+    "source_commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d"
+  },
+  "header_binding": {
+    "blob_sha": "87f6143f0ec9fa410d85e9c3674fb2193e9ea573",
+    "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+    "sha256": "9c471636b5989d1d4a401acd2582b9af6f50322bc8a6509de77634c44642917b",
+    "size": 1440
+  },
+  "initial_move_capacity": 40,
+  "input_receipt": {
+    "artifact_id": 10622353594,
+    "artifact_sha256": "10974a5e695602637f3ac5b0fc5a1a5e4213bac18636b861dda01133117a7177",
+    "manifest_sha256": "300eafec216d597e531199687c83d2e8974f9cbba11e86b4314b0c95123bd819",
+    "run_id": 35562654873,
+    "source_head": "d0730f5e621684425a67863bf268b55607179955"
+  },
+  "new_native_runs": 0,
+  "rom_changes": 0,
+  "schema_version": 1,
+  "source_commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+  "source_repository": "kapibarasan000/CFRU-JP",
+  "sources": {
+    "src/learn_move.c": {
+      "blob_sha": "a450dfbdc07289ce1f1c57018f9fccb130fe2db0",
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "sha256": "eb5fd374acedd481924e34e0ddfd0af901d8df2ce7faf36840a5fd1455daaec2",
+      "size": 14361,
+      "units": [
+        {
+          "end_line": 65,
+          "sha256": "85854698df61067edb80aa1b8f58b4bb22d417ec2773a54c2832bf1a0a6d5478",
+          "start_line": 35,
+          "symbol": "GiveBoxMonInitialMoveset",
+          "text": "void GiveBoxMonInitialMoveset(struct BoxPokemon* boxMon)\n{\n\ts32 i, k, index;\n\tu16 moveStack[MAX_LEARNABLE_MOVES];\n\n\tu16 species = GetBoxMonData(boxMon, MON_DATA_SPECIES, NULL);\n\ts32 level = GetLevelFromBoxMonExp(boxMon);\n\n\tfor (i = 0, k = 0; !(gLevelUpLearnsets[species][i].level == 0\n\t\t\t\t  && gLevelUpLearnsets[species][i].level == 0xFF); ++i)\n\t{\n\t\tstruct LevelUpMove lvlUpMove = gLevelUpLearnsets[species][i];\n\t\tu16 move = lvlUpMove.move;\n\n\t\t#ifdef FLAG_POKEMON_LEARNSET_RANDOMIZER\n\t\tif (FlagGet(FLAG_POKEMON_LEARNSET_RANDOMIZER) && !FlagGet(FLAG_BATTLE_FACILITY))\n\t\t\tmove = RandomizeMove(move);\n\t\t#endif\n\n\t\tif (lvlUpMove.level > level)\n\t\t\tbreak;\n\n\t\tmoveStack[k++] = move;\n\t}\n\n\tindex = k - MAX_MON_MOVES;\n\tif (index < 0)\n\t\tindex = 0;\n\n\twhile (index < k && GiveMoveToBoxMon(boxMon, moveStack[index++]) != 0xFFFF);\n}\n"
+        },
+        {
+          "end_line": 417,
+          "sha256": "f949b726c17d874301b0ca327949895203e27f2c66a0959bb17005d01939855f",
+          "start_line": 393,
+          "symbol": "GiveMoveToBoxMon",
+          "text": "u16 GiveMoveToBoxMon(struct BoxPokemon *boxMon, u16 move)\n{\n\tfor (int i = 0; i < MAX_MON_MOVES; i++)\n\t{\n\t\tu16 existingMove = GetBoxMonData(boxMon, MON_DATA_MOVE1 + i, NULL);\n\t\tif (!existingMove)\n\t\t{\n\t\t\tSetBoxMonData(boxMon, MON_DATA_MOVE1 + i, &move);\n\t\t\tSetBoxMonData(boxMon, MON_DATA_PP1 + i, &gBattleMoves[move].pp);\n\n\t\t\tif (move == MOVE_SECRETSWORD && GetBoxMonData(boxMon, MON_DATA_SPECIES, NULL) == SPECIES_KELDEO)\n\t\t\t{\n\t\t\t\tu16 resolute = SPECIES_KELDEO_RESOLUTE;\n\t\t\t\tSetBoxMonData(boxMon, MON_DATA_SPECIES, &resolute);\n\t\t\t}\n\n\t\t\treturn move;\n\t\t}\n\n\t\tif (existingMove == move)\n\t\t\treturn -2;\n\t}\n\n\treturn 0xFFFF;\n}\n"
+        }
+      ]
+    }
+  },
+  "upstream_config_sha256": "49ea2d82bbd5e0040e39b83e044ff3e4e21e09222bcc0a6879a786cc99da4f6e"
+}

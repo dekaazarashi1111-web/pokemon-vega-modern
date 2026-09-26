@@ -1,0 +1,47 @@
+name: pr16-research-local-context-20260927
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-research-local-context-20260927.yml]
+permissions:
+  contents: read
+  actions: read
+  pull-requests: read
+jobs:
+  source-context:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - name: 未検査の捕獲ledger連携source・native再実行なし
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B scripts/pr16_research_activities_context.py
+          python3 -B - <<'PY'
+          import hashlib,json,pathlib,subprocess,zipfile
+          root=pathlib.Path('.')
+          out=pathlib.Path('.local/pr16-research-activities/context')
+          with zipfile.ZipFile(out/'context.zip') as z:
+              rows={p:z.read(p) for p in z.namelist()}
+          index=json.loads(rows.pop('index.json'))
+          for p in subprocess.check_output(['git','ls-files'],text=True).splitlines():
+              if (p.startswith(('tools/','overlays/')) and pathlib.Path(p).suffix in ('.c','.h','.S')) or p in ('scripts/pr16_special_wild_gameplay_native.py','scripts/validate_task_graph.py','tasks/task_graph.json','design/tasks_next.md'):
+                  data=(root/p).read_bytes();data.decode('utf-8')
+                  assert b'\0' not in data and len(data)<5000000
+                  rows[p]=data
+                  index['files'][p]={'size':len(data),'sha256':hashlib.sha256(data).hexdigest(),'git_blob':subprocess.check_output(['git','rev-parse','HEAD:'+p],text=True).strip()}
+          with zipfile.ZipFile(out/'context-full.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for p,data in sorted(rows.items()):z.writestr(p,data)
+              z.writestr('index.json',json.dumps(index,ensure_ascii=False,indent=2)+'\n')
+          print(json.dumps({'source_head':index['source_head'],'tracked_text_files':len(rows),'native_processes':0,'unit_runs':0,'arm_compiles':0,'host_compiles':0}))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr16-research-local-tracked-context
+          path: .local/pr16-research-activities/context/context-full.zip
+          retention-days: 14
+          if-no-files-found: error

@@ -1,0 +1,125 @@
+name: pr16-learnset-progression
+# Attempt 3: only the failed known-first case, passive instruction observation.
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-learnset-progression.yml]
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-learnset-progression
+  cancel-in-progress: false
+jobs:
+  progression:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: 転送identityと受入8件継承を照合
+        run: |
+          python3 - <<'PY'
+          import hashlib,json,pathlib
+          expected={
+            'tools/mgba_pr16_learnset_progression.c':'e6dd7435386707c65fdd5c945c2bb66cdec7b499c1d3d0a9ee4d69105cf992a0',
+            'scripts/pr16_learnset_progression.py':'ec84a181bbcf06ebb44d6273ae2abc4878c60ceded7adf7b69214f70c2138243',
+            'tests/test_pr16_learnset_progression.py':'387d4c6aea83755905e845e7f55fc79da655b4ca2b1fa00de01dc2fd23efa765'}
+          for name,wanted in expected.items():
+              if hashlib.sha256(pathlib.Path(name).read_bytes()).hexdigest()!=wanted: raise RuntimeError('source transfer mismatch: '+name)
+          cp=json.loads(pathlib.Path('content/modernization/pr16_learnset_progression_checkpoint.json').read_text())
+          if cp['run_id']!=35852260342 or len(cp['results'])!=8 or cp['status']!='FAIL': raise RuntimeError('not the reviewed failed checkpoint')
+          print('PASS transfer/retained-eight; observation is one failed case, not acceptance')
+          PY
+      - name: 未成功1経路のhost libraryと逆アセンブラだけ導入
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends libmgba-dev binutils-arm-none-eabi
+      - name: 未成功1経路の命令観測と配置済み表の読取
+        id: native
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          python3 -B - <<'PY'
+          import json,pathlib,re,struct,subprocess,sys
+          sys.path[:0]=['scripts','.']
+          import pr16_learnset_progression as p
+          import pr16_learnset_battle as b
+          original_pending=p.pending
+          def selected(vv,previous):
+              todo,old=original_pending(vv,previous)
+              picked=[v for v in todo if v['name']=='butterfree-known-first']
+              p.need(len(picked)==1 and len(old)==8,'only the known-first failure may execute')
+              return picked,old
+          p.pending=selected
+          restore=b.restore
+          raw=None
+          def restored():
+              global raw
+              raw=restore()
+              image=raw[0x15dee7c:0x15dee7c+108008]
+              p.need(p.identity(image)=={'size':108008,'sha256':'5ebbc35c546370bc1c87d48d5d147dc93a6aba2739d9ab9d0825bbf8f307450c'},'placed PLR1 changed')
+              h=struct.unpack_from('<4sHHIIIIII',image)
+              p.need(h[:3]==(b'PLR1',1,1671),'placed image header')
+              at,n,machine=struct.unpack_from('<IHH',image,h[4]+414*8)
+              rows=list(struct.iter_unpack('<HB',image[at:at+n*3]))
+              p.need(rows==p.LEVELS[414],'placed owner414 differs from original oracle')
+              p.write(p.PROOF/'placed-owner414.json',{'image':p.identity(image),'species':414,'offset':at,'rows':rows,'original_rows_match':True,'native_reruns':0})
+              return raw
+          b.restore=restored
+          try:p.execute()
+          finally:
+              err=p.PROOF/'butterfree-known-first.stderr.txt'
+              if raw is not None and err.exists():
+                  pcs={int(x,16)&~1 for x in re.findall(r'PROGRESSION instruction frame=\d+ pc=([0-9a-f]+)',err.read_text())}
+                  p.need(len(pcs)<=16,'bounded observation sites')
+                  for pc in sorted(pcs):
+                      start=(pc-0x08000000-64)&~3;end=start+192
+                      p.need(0<=start<end<=len(raw),'observed PC in ROM')
+                      tmp=p.WORK/('observed-'+hex(pc)+'.bin');tmp.write_bytes(raw[start:end])
+                      cmd=['arm-none-eabi-objdump','-D','-b','binary','-m','arm','-M','force-thumb','--adjust-vma='+str(start+0x08000000),str(tmp)]
+                      text=subprocess.check_output(cmd).decode().replace(str(tmp),'observed-'+hex(pc))
+                      (p.PROOF/('observed-'+hex(pc)+'.asm.txt')).write_text(text)
+          PY
+      - name: 原本・固定引継ぎ・両ログを記録
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python3 -B scripts/pr16_learnset_progression.py record
+          python3 -B scripts/pr16_resume.py check
+          python3 -B scripts/validate_task_graph.py
+          python3 -B scripts/pr16_learnset_progression.py paths | tr '\n' '\0' >.local/pr16-learnset-progression/paths.z
+          git add --pathspec-from-file=.local/pr16-learnset-progression/paths.z --pathspec-file-nul
+          python3 -B scripts/pr16_learnset_progression.py guard
+      - name: 同branchへ非force commit/pushし最新refを照合
+        run: |
+          set -euo pipefail
+          branch='codex/modernization-followup-20260908'
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20260923-LEARNSET-PROGRESSION: 未成功1件の命令観測・配置表照合・受入8件継承・両ログを保存'
+          git push origin "HEAD:$branch"
+          sha=$(git rev-parse HEAD)
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$sha"
+          echo "$sha" | tee .local/pr16-learnset-progression/proof/reflected-head.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-learnset-progression-proof
+          path: .local/pr16-learnset-progression/proof/
+          retention-days: 30
+          if-no-files-found: error
+      - name: 原本がFAILならrunもFAILのまま残す
+        if: steps.native.outcome != 'success'
+        run: exit 1

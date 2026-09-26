@@ -1,0 +1,68 @@
+name: pr16-preserve-completion
+run-name: Preserve verified originals, not a new native run or product release
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-preserve-completion.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: pr16-preserve-completion
+  cancel-in-progress: false
+jobs:
+  preserve-completion:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+      - name: Revalidate exact API metadata, ZIP identities and native originals
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-retention
+          python3 scripts/pr16_completion_checkpoint.py --fetch --write > .local/pr16-retention/verification.json
+          python3 -m unittest discover -s tests -p test_pr16_completion_checkpoint.py -v > .local/pr16-retention/unit.log 2>&1
+          python3 -m unittest discover -s tests -p test_pr16_evolution_fullslots.py -v >> .local/pr16-retention/unit.log 2>&1
+          python3 -m unittest discover -s tests -p test_pr16_breeding_delta.py -v >> .local/pr16-retention/unit.log 2>&1
+          git diff --exit-code
+      - name: Add only seven new evidence files, reject concurrent updates, never force push
+        env:
+          EXPECTED_HEAD: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          branch=codex/modernization-followup-20260908
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$EXPECTED_HEAD"
+          python3 - <<'PY'
+          import pathlib,subprocess,sys
+          sys.path.insert(0,'scripts');import pr16_completion_checkpoint as c
+          names=[str(pathlib.Path(c.DIRECTORY)/str(r[0])/n) for r in c.RECORDS.values() for n in ('original.zip','actions.json')]+[c.RECEIPT]
+          subprocess.run(['git','add','-f','--',*names],check=True)
+          staged=subprocess.check_output(['git','diff','--cached','--name-only','-z']).decode().split('\0')
+          assert set(filter(None,staged))<=set(names)
+          changes=subprocess.check_output(['git','diff','--cached','--name-status'],text=True).splitlines()
+          assert all(row.startswith('A\t') for row in changes),'refuse modifications/deletions of originals'
+          PY
+          if ! git diff --cached --quiet; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m 'USER-MODERNIZATION-P08: preserve native originals and adopted P06 scoped completion'
+            git push origin "HEAD:refs/heads/$branch"
+          fi
+          git rev-parse HEAD > .local/pr16-retention/retained-head.txt
+          python3 scripts/pr16_completion_checkpoint.py >> .local/pr16-retention/verification.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-completion-retention
+          path: .local/pr16-retention/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

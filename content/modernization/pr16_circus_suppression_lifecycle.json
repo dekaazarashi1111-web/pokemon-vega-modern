@@ -1,0 +1,1535 @@
+{
+  "schema_version": 1,
+  "task": "USER-20260920-CIRCUS-FAIRY-LOCK",
+  "source_head": "cc5d6822266a9663b0e368c9cff2c94d2ede3435",
+  "candidate": {
+    "size": 33554432,
+    "sha256": "46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38"
+  },
+  "native_verified": true,
+  "failures": [],
+  "predecessor_checks": [
+    {
+      "id": 35503514936,
+      "head_sha": "5618a38f6854aa4551e5c518509f5f97cf2a79b0",
+      "status": "completed",
+      "conclusion": "failure"
+    }
+  ],
+  "inherited": {
+    "run_id": 35503514936,
+    "path": "content/modernization/pr16_circus_getter_followup.json",
+    "archive": {
+      "size": 332538,
+      "sha256": "c16ef7c1e05e5dad1ba4169016a9bbd863c97098eae9c2cb6c7d94d71d905eba"
+    },
+    "getter": [
+      {
+        "callsite": 152056704,
+        "veneer": 153993764,
+        "target": 167729373,
+        "args": [
+          0,
+          65535,
+          65535,
+          65535
+        ],
+        "r3_at_entry": 65535,
+        "fifth_argument": 0,
+        "sp_before": 50363836,
+        "sp_after": 50363836,
+        "result": 30,
+        "owner_current": 30,
+        "phase": 2,
+        "frames": 54,
+        "steps": 5478353,
+        "host_writes": 0,
+        "host_calls": 0
+      }
+    ],
+    "suppression": [
+      {
+        "kind": "dispatch",
+        "name": "CheckGrounding",
+        "frame": 25701,
+        "flags": 2147484160,
+        "types": 100663564,
+        "root": 151865112,
+        "delegate": 156451572,
+        "expected_suppressed": 156451572,
+        "preserve_r3": false,
+        "r3_before": 33808316,
+        "r3_after": 156451573,
+        "host_writes": 0,
+        "host_calls": 0,
+        "pcs": [
+          151865112,
+          151865114,
+          157112908,
+          157112910,
+          157112912,
+          157112914,
+          157112916,
+          157112918,
+          157112920,
+          157112922,
+          157112924,
+          157112926,
+          156451572
+        ]
+      },
+      {
+        "kind": "dispatch",
+        "name": "CheckGrounding",
+        "frame": 25701,
+        "flags": 2147484160,
+        "types": 100663564,
+        "root": 151865112,
+        "delegate": 156451572,
+        "expected_suppressed": 156451572,
+        "preserve_r3": false,
+        "r3_before": 65,
+        "r3_after": 156451573,
+        "host_writes": 0,
+        "host_calls": 0,
+        "pcs": [
+          151865112,
+          151865114,
+          157112908,
+          157112910,
+          157112912,
+          157112914,
+          157112916,
+          157112918,
+          157112920,
+          157112922,
+          157112924,
+          157112926,
+          156451572
+        ]
+      },
+      {
+        "kind": "dispatch",
+        "name": "AI_SpecialTypeCalc",
+        "frame": 25701,
+        "flags": 2147484160,
+        "types": 100663564,
+        "root": 151937656,
+        "delegate": 156451652,
+        "expected_suppressed": 156451652,
+        "preserve_r3": false,
+        "r3_before": 1,
+        "r3_after": 156451653,
+        "host_writes": 0,
+        "host_calls": 0,
+        "pcs": [
+          151937656,
+          151937658,
+          157113396,
+          157113398,
+          157113400,
+          157113402,
+          157113404,
+          157113406,
+          157113408,
+          157113410,
+          157113412,
+          157113414,
+          156451652
+        ]
+      },
+      {
+        "kind": "predicate",
+        "frame": 25701,
+        "flags": 2147484160,
+        "types": 100663564,
+        "bank": 1,
+        "raw_ability": 65,
+        "result": 1,
+        "return_pc": 152128898,
+        "host_writes": 0,
+        "host_calls": 0,
+        "pcs": [
+          151878576,
+          151878578,
+          151878580,
+          151878582,
+          151878584,
+          151878586,
+          151878588,
+          151878590,
+          151878592,
+          151878594,
+          151878596,
+          151878598,
+          151878600,
+          151878602,
+          151878604,
+          152128898
+        ]
+      },
+      {
+        "kind": "predicate",
+        "frame": 25701,
+        "flags": 2147484160,
+        "types": 100663564,
+        "bank": 1,
+        "raw_ability": 65,
+        "result": 1,
+        "return_pc": 152128898,
+        "host_writes": 0,
+        "host_calls": 0,
+        "pcs": [
+          151878576,
+          151878578,
+          151878580,
+          151878582,
+          151878584,
+          151878586,
+          151878588,
+          151878590,
+          151878592,
+          151878594,
+          151878596,
+          151878598,
+          151878600,
+          151878602,
+          151878604,
+          152128898
+        ]
+      },
+      {
+        "kind": "predicate",
+        "frame": 25701,
+        "flags": 2147484160,
+        "types": 100663564,
+        "bank": 0,
+        "raw_ability": 46,
+        "result": 1,
+        "return_pc": 152128898,
+        "host_writes": 0,
+        "host_calls": 0,
+        "pcs": [
+          151878576,
+          151878578,
+          151878580,
+          151878582,
+          151878584,
+          151878586,
+          151878588,
+          151878590,
+          151878592,
+          151878594,
+          151878596,
+          151878598,
+          151878600,
+          151878602,
+          151878604,
+          152128898
+        ]
+      },
+      {
+        "kind": "predicate",
+        "frame": 25701,
+        "flags": 2147484160,
+        "types": 100663564,
+        "bank": 0,
+        "raw_ability": 46,
+        "result": 1,
+        "return_pc": 152128898,
+        "host_writes": 0,
+        "host_calls": 0,
+        "pcs": [
+          151878576,
+          151878578,
+          151878580,
+          151878582,
+          151878584,
+          151878586,
+          151878588,
+          151878590,
+          151878592,
+          151878594,
+          151878596,
+          151878598,
+          151878600,
+          151878602,
+          151878604,
+          152128898
+        ]
+      },
+      {
+        "kind": "dispatch",
+        "name": "GetMoveTypeSpecialPreAbility",
+        "frame": 25701,
+        "flags": 2147484160,
+        "types": 100663564,
+        "root": 151935440,
+        "delegate": 156451420,
+        "expected_suppressed": 156451420,
+        "preserve_r3": false,
+        "r3_before": 20,
+        "r3_after": 156451421,
+        "host_writes": 0,
+        "host_calls": 0,
+        "pcs": [
+          151935440,
+          151935442,
+          157113268,
+          157113270,
+          157113272,
+          157113274,
+          157113276,
+          157113278,
+          157113280,
+          157113282,
+          157113284,
+          157113286,
+          156451420
+        ]
+      },
+      {
+        "kind": "dispatch",
+        "name": "GetMoveTypeSpecialPostAbility",
+        "frame": 25701,
+        "flags": 2147484160,
+        "types": 100663564,
+        "root": 151933876,
+        "delegate": 156451392,
+        "expected_suppressed": 156451392,
+        "preserve_r3": false,
+        "r3_before": 4294967295,
+        "r3_after": 156451393,
+        "host_writes": 0,
+        "host_calls": 0,
+        "pcs": [
+          151933876,
+          151933878,
+          157113148,
+          157113150,
+          157113152,
+          157113154,
+          157113156,
+          157113158,
+          157113160,
+          157113162,
+          157113164,
+          157113166,
+          156451392
+        ]
+      },
+      {
+        "kind": "dispatch",
+        "name": "CheckGrounding",
+        "frame": 25701,
+        "flags": 2147484160,
+        "types": 100663564,
+        "root": 151865112,
+        "delegate": 156451572,
+        "expected_suppressed": 156451572,
+        "preserve_r3": false,
+        "r3_before": 0,
+        "r3_after": 156451573,
+        "host_writes": 0,
+        "host_calls": 0,
+        "pcs": [
+          151865112,
+          151865114,
+          157112908,
+          157112910,
+          157112912,
+          157112914,
+          157112916,
+          157112918,
+          157112920,
+          157112922,
+          157112924,
+          157112926,
+          156451572
+        ]
+      },
+      {
+        "kind": "predicate",
+        "frame": 25701,
+        "flags": 2147484160,
+        "types": 100663564,
+        "bank": 1,
+        "raw_ability": 65,
+        "result": 1,
+        "return_pc": 152128898,
+        "host_writes": 0,
+        "host_calls": 0,
+        "pcs": [
+          151878576,
+          151878578,
+          151878580,
+          151878582,
+          151878584,
+          151878586,
+          151878588,
+          151878590,
+          151878592,
+          151878594,
+          151878596,
+          151878598,
+          151878600,
+          151878602,
+          151878604,
+          152128898
+        ]
+      },
+      {
+        "kind": "predicate",
+        "frame": 25701,
+        "flags": 2147484160,
+        "types": 100663564,
+        "bank": 1,
+        "raw_ability": 65,
+        "result": 1,
+        "return_pc": 152128898,
+        "host_writes": 0,
+        "host_calls": 0,
+        "pcs": [
+          151878576,
+          151878578,
+          151878580,
+          151878582,
+          151878584,
+          151878586,
+          151878588,
+          151878590,
+          151878592,
+          151878594,
+          151878596,
+          151878598,
+          151878600,
+          151878602,
+          151878604,
+          152128898
+        ]
+      },
+      {
+        "kind": "predicate",
+        "frame": 25701,
+        "flags": 2147484160,
+        "types": 100663564,
+        "bank": 0,
+        "raw_ability": 46,
+        "result": 1,
+        "return_pc": 152128898,
+        "host_writes": 0,
+        "host_calls": 0,
+        "pcs": [
+          151878576,
+          151878578,
+          151878580,
+          151878582,
+          151878584,
+          151878586,
+          151878588,
+          151878590,
+          151878592,
+          151878594,
+          151878596,
+          151878598,
+          151878600,
+          151878602,
+          151878604,
+          152128898
+        ]
+      },
+      {
+        "kind": "predicate",
+        "frame": 25701,
+        "flags": 2147484160,
+        "types": 100663564,
+        "bank": 0,
+        "raw_ability": 46,
+        "result": 1,
+        "return_pc": 152128898,
+        "host_writes": 0,
+        "host_calls": 0,
+        "pcs": [
+          151878576,
+          151878578,
+          151878580,
+          151878582,
+          151878584,
+          151878586,
+          151878588,
+          151878590,
+          151878592,
+          151878594,
+          151878596,
+          151878598,
+          151878600,
+          151878602,
+          151878604,
+          152128898
+        ]
+      },
+      {
+        "kind": "dispatch",
+        "name": "GetMoveTypeSpecialPreAbility",
+        "frame": 25701,
+        "flags": 2147484160,
+        "types": 100663564,
+        "root": 151935440,
+        "delegate": 156451420,
+        "expected_suppressed": 156451420,
+        "preserve_r3": false,
+        "r3_before": 33700764,
+        "r3_after": 156451421,
+        "host_writes": 0,
+        "host_calls": 0,
+        "pcs": [
+          151935440,
+          151935442,
+          157113268,
+          157113270,
+          157113272,
+          157113274,
+          157113276,
+          157113278,
+          157113280,
+          157113282,
+          157113284,
+          157113286,
+          156451420
+        ]
+      },
+      {
+        "kind": "dispatch",
+        "name": "GetMoveTypeSpecialPostAbility",
+        "frame": 25701,
+        "flags": 2147484160,
+        "types": 100663564,
+        "root": 151933876,
+        "delegate": 156451392,
+        "expected_suppressed": 156451392,
+        "preserve_r3": false,
+        "r3_before": 4294967295,
+        "r3_after": 156451393,
+        "host_writes": 0,
+        "host_calls": 0,
+        "pcs": [
+          151933876,
+          151933878,
+          157113148,
+          157113150,
+          157113152,
+          157113154,
+          157113156,
+          157113158,
+          157113160,
+          157113162,
+          157113164,
+          157113166,
+          156451392
+        ]
+      },
+      {
+        "kind": "dispatch",
+        "name": "AccuracyCalc",
+        "frame": 25701,
+        "flags": 2147484160,
+        "types": 100663564,
+        "root": 151766664,
+        "delegate": 156451848,
+        "expected_suppressed": 156451848,
+        "preserve_r3": false,
+        "r3_before": 151266656,
+        "r3_after": 156451849,
+        "host_writes": 0,
+        "host_calls": 0,
+        "pcs": [
+          151766664,
+          151766666,
+          157112580,
+          157112582,
+          157112584,
+          157112586,
+          157112588,
+          157112590,
+          157112592,
+          157112594,
+          157112596,
+          157112598,
+          156451848
+        ]
+      },
+      {
+        "kind": "dispatch",
+        "name": "CheckGrounding",
+        "frame": 25701,
+        "flags": 2147484160,
+        "types": 100663564,
+        "root": 151865112,
+        "delegate": 156451572,
+        "expected_suppressed": 156451572,
+        "preserve_r3": false,
+        "r3_before": 33808316,
+        "r3_after": 156451573,
+        "host_writes": 0,
+        "host_calls": 0,
+        "pcs": [
+          151865112,
+          151865114,
+          157112908,
+          157112910,
+          157112912,
+          157112914,
+          157112916,
+          157112918,
+          157112920,
+          157112922,
+          157112924,
+          157112926,
+          156451572
+        ]
+      },
+      {
+        "kind": "dispatch",
+        "name": "CheckGrounding",
+        "frame": 25701,
+        "flags": 2147484160,
+        "types": 100663564,
+        "root": 151865112,
+        "delegate": 156451572,
+        "expected_suppressed": 156451572,
+        "preserve_r3": false,
+        "r3_before": 65,
+        "r3_after": 156451573,
+        "host_writes": 0,
+        "host_calls": 0,
+        "pcs": [
+          151865112,
+          151865114,
+          157112908,
+          157112910,
+          157112912,
+          157112914,
+          157112916,
+          157112918,
+          157112920,
+          157112922,
+          157112924,
+          157112926,
+          156451572
+        ]
+      },
+      {
+        "kind": "dispatch",
+        "name": "GetMoveTypeSpecialPreAbility",
+        "frame": 25701,
+        "flags": 2147484160,
+        "types": 100663564,
+        "root": 151935440,
+        "delegate": 156451420,
+        "expected_suppressed": 156451420,
+        "preserve_r3": false,
+        "r3_before": 33700764,
+        "r3_after": 156451421,
+        "host_writes": 0,
+        "host_calls": 0,
+        "pcs": [
+          151935440,
+          151935442,
+          157113268,
+          157113270,
+          157113272,
+          157113274,
+          157113276,
+          157113278,
+          157113280,
+          157113282,
+          157113284,
+          157113286,
+          156451420
+        ]
+      }
+    ],
+    "draws": [
+      {
+        "attempt": 0,
+        "delay": 0,
+        "frame": 6136,
+        "current": 30,
+        "best": 30,
+        "bp": 90,
+        "counter": 3,
+        "flags": 8388672,
+        "types": 100663564,
+        "newbs": 33650228,
+        "target": false
+      },
+      {
+        "attempt": 1,
+        "delay": 17,
+        "frame": 12651,
+        "current": 30,
+        "best": 30,
+        "bp": 90,
+        "counter": 3,
+        "flags": 75497472,
+        "types": 100663564,
+        "newbs": 33650228,
+        "target": false
+      },
+      {
+        "attempt": 2,
+        "delay": 34,
+        "frame": 19185,
+        "current": 30,
+        "best": 30,
+        "bp": 90,
+        "counter": 3,
+        "flags": 37748736,
+        "types": 100663564,
+        "newbs": 33650228,
+        "target": false
+      },
+      {
+        "attempt": 3,
+        "delay": 51,
+        "frame": 25701,
+        "current": 30,
+        "best": 30,
+        "bp": 90,
+        "counter": 3,
+        "flags": 2147484160,
+        "types": 100663564,
+        "newbs": 33650228,
+        "target": true
+      }
+    ]
+  },
+  "host_tests": {
+    "tests_run": 22,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "successful": true
+  },
+  "new_emulator_processes": 1,
+  "arm_compiles": 0,
+  "arm_links": 0,
+  "accepted_standalone_replays": 0,
+  "prefix_wins_reexecuted": 0,
+  "rom_changes": 0,
+  "new_getter_traces": 0,
+  "new_suppression_traces": 0,
+  "physical_admission_accepted": false,
+  "suppression_accepted": false,
+  "release_ready": false,
+  "recording_run": 35504302893,
+  "recording_source_head": "d526bea14f450bca717011ede1bd0241d7a8abb2",
+  "text_evidence": {
+    "evidence/pr16_circus_fairy_lock/35504302893/execution/circus-suppression-save.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "evidence/pr16_circus_fairy_lock/35504302893/execution/circus-suppression-save.stderr": {
+      "size": 115420,
+      "sha256": "53bd06c32c868a1239b69e6e263d62c3918e807f3205ff0f72c2fa60e8f443b9"
+    },
+    "evidence/pr16_circus_fairy_lock/35504302893/execution/circus-suppression-save.stdout": {
+      "size": 669,
+      "sha256": "8011fae97f94424e24fdd07fc6784fea8c1e26b8d56218976f9b8a3ed43eb42f"
+    },
+    "evidence/pr16_circus_fairy_lock/35504302893/execution/compile.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "evidence/pr16_circus_fairy_lock/35504302893/execution/compile.stderr": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/pr16_circus_fairy_lock/35504302893/execution/compile.stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/pr16_circus_fairy_lock/35504302893/execution/fairy-contracts.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "evidence/pr16_circus_fairy_lock/35504302893/execution/fairy-contracts.stderr": {
+      "size": 2417,
+      "sha256": "25e7d4aee3182485672662b2919260b0f61a12b8979fc49b60f0c47d9b2d247d"
+    },
+    "evidence/pr16_circus_fairy_lock/35504302893/execution/fairy-contracts.stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/pr16_circus_fairy_lock/35504302893/execution/generated/cg_addresses.h": {
+      "size": 60,
+      "sha256": "21868ddb440be1b5cf8b04e44599e5428873746f324d48d3b220b1009e914c9d"
+    },
+    "evidence/pr16_circus_fairy_lock/35504302893/execution/generated/controller.c": {
+      "size": 13153,
+      "sha256": "f395e059a52cc69d5d39d2a3d8fc4795d57f790e4887fe1cf74313e06f40ec7d"
+    },
+    "evidence/pr16_circus_fairy_lock/35504302893/execution/generated/getter_suppression.h": {
+      "size": 6501,
+      "sha256": "bb8e8ef9510c7ebbbbf615ac94318a6d8423c7825d0523266bfe7a48e12075ea"
+    },
+    "evidence/pr16_circus_fairy_lock/35504302893/execution/generated/p03_learning_embedded.c": {
+      "size": 7996,
+      "sha256": "81a488ced101990d3b22af65542e1f68d24e628291c1dd7e90751f2a6b18f336"
+    },
+    "evidence/pr16_circus_fairy_lock/35504302893/execution/generated/p03_p02_embedded.c": {
+      "size": 39678,
+      "sha256": "04ba837b8aad5625708751f7902ca794c74b0993e13307c6c7e390ae62af1cdf"
+    },
+    "evidence/pr16_circus_fairy_lock/35504302893/execution/generated/p03a_fullslots_embedded.c": {
+      "size": 12877,
+      "sha256": "d5230de78b19ab9990281d884b0f5242b76f0c4b427b574da25daddb0abc60a8"
+    },
+    "evidence/pr16_circus_fairy_lock/35504302893/execution/generated/p03b_archive_embedded.c": {
+      "size": 20163,
+      "sha256": "d1aef42d46e770aa7784477965902e5f26297ca8f0b5da80b8f78b0e7c706a80"
+    },
+    "evidence/pr16_circus_fairy_lock/35504302893/execution/generated/pr16_bp_control_embedded.c": {
+      "size": 11463,
+      "sha256": "06dd81f90dde1c8d57d156acf92b1bf2db30431341c1fc3ada3aa654cc396ee7"
+    },
+    "evidence/pr16_circus_fairy_lock/35504302893/execution/generated/pr16_bp_native_helpers.c": {
+      "size": 16314,
+      "sha256": "29fd3a5f30d5e6e7ea229fd59d2fd8d2b072d07244ddef762ec01d59a03e4c9f"
+    },
+    "evidence/pr16_circus_fairy_lock/35504302893/execution/generated/pr16_capture_shop_helpers.c": {
+      "size": 10007,
+      "sha256": "0854289c5a7895ad7de2ee82b4ac578db0b96fcf6e1b570d6adb5205dabab881"
+    },
+    "evidence/pr16_circus_fairy_lock/35504302893/execution/generated/pr16_circus_addresses.h": {
+      "size": 87,
+      "sha256": "1b7247f0cd8ef1d75eaad6e7811ed584b32cfc638d4e5c458c2a4d515536287f"
+    },
+    "evidence/pr16_circus_fairy_lock/35504302893/execution/generated/pr16_circus_selection_helpers.c": {
+      "size": 10511,
+      "sha256": "db81848dbd188a74b4afd0aab1e27aa796229964541dc392805801bcccc51da5"
+    },
+    "evidence/pr16_circus_fairy_lock/35504302893/execution/generated/pr16_circus_turn_helpers.c": {
+      "size": 3939,
+      "sha256": "37b6581d714cf47e605b0516215456415e1787f03a9af830cc7ce441657a173b"
+    },
+    "evidence/pr16_circus_fairy_lock/35504302893/execution/generated/pr16_gear_capture_helpers.c": {
+      "size": 9640,
+      "sha256": "4c057989f1638e14d6814c269291f952ad2cb8e96be5a36274ff8707fc63bee8"
+    },
+    "evidence/pr16_circus_fairy_lock/35504302893/execution/generated/pr16_gear_route.h": {
+      "size": 518,
+      "sha256": "bd60ed3f71b01b821c7722e3d80edeb2b3d9049b9dd876e6ffb4e49dac65cf1c"
+    },
+    "evidence/pr16_circus_fairy_lock/35504302893/execution/generated/pr16_shop_breeding_helpers.c": {
+      "size": 19626,
+      "sha256": "1a97210389443f72586fdb1fa6c6523b296f56ee116065e71040a14f465a14c0"
+    },
+    "evidence/pr16_circus_fairy_lock/35504302893/execution/generated/pr16_streak_legacy.c": {
+      "size": 11746,
+      "sha256": "de1618b95f09d8ce02c2a1ce8b833fa893f35c4da08b64dd69f9927cfe0c89c2"
+    },
+    "evidence/pr16_circus_fairy_lock/35504302893/execution/generated/pr16_streak_policy.c": {
+      "size": 64920,
+      "sha256": "f8b1d0252056f3c11612204d3ea1320439ffa6495e356b1f36791d6f750179dc"
+    },
+    "evidence/pr16_circus_fairy_lock/35504302893/execution/generated/ss_routes.h": {
+      "size": 2248,
+      "sha256": "537c00aaa9986c2de7a4328f03c737cf03c196cf43a1176a749bb4e05b21494b"
+    },
+    "evidence/pr16_circus_fairy_lock/35504302893/execution/reconstruct.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "evidence/pr16_circus_fairy_lock/35504302893/execution/reconstruct.stderr": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/pr16_circus_fairy_lock/35504302893/execution/reconstruct.stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/pr16_circus_fairy_lock/35504302893/execution/resume-START.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "evidence/pr16_circus_fairy_lock/35504302893/execution/resume-START.stderr": {
+      "size": 2449,
+      "sha256": "a985912dec015af7151df6a3035a5e02e58a0ea1306c5838ba8c2df66fe032ac"
+    },
+    "evidence/pr16_circus_fairy_lock/35504302893/execution/resume-START.stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/pr16_circus_fairy_lock/35504302893/execution/task-graph-START.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "evidence/pr16_circus_fairy_lock/35504302893/execution/task-graph-START.stderr": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/pr16_circus_fairy_lock/35504302893/execution/task-graph-START.stdout": {
+      "size": 77,
+      "sha256": "62088248f3d245c3853d2eaa0e2fdcffe8609be8f608995613c19a76e994466a"
+    }
+  },
+  "native_source_head": "d526bea14f450bca717011ede1bd0241d7a8abb2",
+  "cache": {
+    "source_run": 35494023398,
+    "save": {
+      "size": 131088,
+      "sha256": "b4846fe3d915f69f7cefb2f58a0c2c0c571d9f96d5d16a295537854d849c2371"
+    },
+    "cache_key": "pr16-circus-save30-2b107e7ef897844eff810ff0b40f82543640488696e8295194ceb3b66fb2c183-35494023398",
+    "prefix_wins_reexecuted": 0,
+    "host_state_injection": false
+  },
+  "generated": {
+    "p03b_archive_embedded.c": {
+      "size": 20163,
+      "sha256": "d1aef42d46e770aa7784477965902e5f26297ca8f0b5da80b8f78b0e7c706a80"
+    },
+    "p03a_fullslots_embedded.c": {
+      "size": 12877,
+      "sha256": "d5230de78b19ab9990281d884b0f5242b76f0c4b427b574da25daddb0abc60a8"
+    },
+    "p03_learning_embedded.c": {
+      "size": 7996,
+      "sha256": "81a488ced101990d3b22af65542e1f68d24e628291c1dd7e90751f2a6b18f336"
+    },
+    "p03_p02_embedded.c": {
+      "size": 39678,
+      "sha256": "04ba837b8aad5625708751f7902ca794c74b0993e13307c6c7e390ae62af1cdf"
+    },
+    "pr16_shop_breeding_helpers.c": {
+      "size": 19626,
+      "sha256": "1a97210389443f72586fdb1fa6c6523b296f56ee116065e71040a14f465a14c0"
+    },
+    "pr16_capture_shop_helpers.c": {
+      "size": 10007,
+      "sha256": "0854289c5a7895ad7de2ee82b4ac578db0b96fcf6e1b570d6adb5205dabab881"
+    },
+    "pr16_gear_capture_helpers.c": {
+      "size": 9640,
+      "sha256": "4c057989f1638e14d6814c269291f952ad2cb8e96be5a36274ff8707fc63bee8"
+    },
+    "pr16_bp_native_helpers.c": {
+      "size": 16314,
+      "sha256": "29fd3a5f30d5e6e7ea229fd59d2fd8d2b072d07244ddef762ec01d59a03e4c9f"
+    },
+    "pr16_bp_control_embedded.c": {
+      "size": 11463,
+      "sha256": "06dd81f90dde1c8d57d156acf92b1bf2db30431341c1fc3ada3aa654cc396ee7"
+    },
+    "pr16_circus_selection_helpers.c": {
+      "size": 10511,
+      "sha256": "db81848dbd188a74b4afd0aab1e27aa796229964541dc392805801bcccc51da5"
+    },
+    "pr16_circus_turn_helpers.c": {
+      "size": 3939,
+      "sha256": "37b6581d714cf47e605b0516215456415e1787f03a9af830cc7ce441657a173b"
+    },
+    "pr16_gear_route.h": {
+      "size": 518,
+      "sha256": "bd60ed3f71b01b821c7722e3d80edeb2b3d9049b9dd876e6ffb4e49dac65cf1c"
+    },
+    "pr16_circus_addresses.h": {
+      "size": 87,
+      "sha256": "1b7247f0cd8ef1d75eaad6e7811ed584b32cfc638d4e5c458c2a4d515536287f"
+    },
+    "pr16_streak_legacy.c": {
+      "size": 11746,
+      "sha256": "de1618b95f09d8ce02c2a1ce8b833fa893f35c4da08b64dd69f9927cfe0c89c2"
+    },
+    "pr16_streak_policy.c": {
+      "size": 64920,
+      "sha256": "f8b1d0252056f3c11612204d3ea1320439ffa6495e356b1f36791d6f750179dc"
+    },
+    "controller.c": {
+      "size": 13153,
+      "sha256": "f395e059a52cc69d5d39d2a3d8fc4795d57f790e4887fe1cf74313e06f40ec7d"
+    },
+    "getter_suppression.h": {
+      "size": 6501,
+      "sha256": "bb8e8ef9510c7ebbbbf615ac94318a6d8423c7825d0523266bfe7a48e12075ea"
+    },
+    "cg_addresses.h": {
+      "size": 60,
+      "sha256": "21868ddb440be1b5cf8b04e44599e5428873746f324d48d3b220b1009e914c9d"
+    },
+    "ss_routes.h": {
+      "size": 2248,
+      "sha256": "537c00aaa9986c2de7a4328f03c737cf03c196cf43a1176a749bb4e05b21494b"
+    }
+  },
+  "host_compiles": 1,
+  "executable": {
+    "size": 218688,
+    "sha256": "52c0778e2f2e16a18ab619ef32073efcdb5a1ddd97f06db7eeda46a26821a390"
+  },
+  "guard_evidence_reused": [
+    "evidence/pr16_circus_rental_drought/35457636604/native/guard-bus8.process.json",
+    "evidence/pr16_circus_rental_drought/35457636604/native/guard-bus16.process.json",
+    "evidence/pr16_circus_rental_drought/35457636604/native/guard-bus32.process.json",
+    "evidence/pr16_circus_rental_drought/35457636604/native/guard-raw8.process.json",
+    "evidence/pr16_circus_rental_drought/35457636604/native/guard-raw16.process.json",
+    "evidence/pr16_circus_rental_drought/35457636604/native/guard-raw32.process.json",
+    "evidence/pr16_circus_rental_drought/35457636604/native/guard-register.process.json"
+  ],
+  "process": {
+    "schema_version": 1,
+    "returncode": 0,
+    "timed_out": false,
+    "spawn_error": null
+  },
+  "draws": [
+    {
+      "attempt": 3,
+      "delay": 51,
+      "frame": 6516,
+      "current": 30,
+      "best": 30,
+      "bp": 90,
+      "counter": 3,
+      "flags": 2147484160,
+      "types": 100663564,
+      "newbs": 33650228,
+      "target": true
+    }
+  ],
+  "fairy_lock": [
+    {
+      "frame": 32400,
+      "streak": 31,
+      "flags": 8404992,
+      "types": 100663564,
+      "hp": 141,
+      "pid": 3464769213,
+      "ot": 1086207445,
+      "host_writes": 0,
+      "forced_switch_untouched": true
+    }
+  ],
+  "events": [
+    {
+      "label": "resume30",
+      "frame": 2602,
+      "battle": 30,
+      "callback2": 134569589,
+      "script": 0,
+      "newbs": 0,
+      "outcome": 0,
+      "flags": 0,
+      "types": 0,
+      "count": 1,
+      "bp": 90,
+      "save_counter": 3,
+      "pending": 0,
+      "snapshot": 0,
+      "marker": 0,
+      "order": [
+        0,
+        0,
+        0
+      ],
+      "owner": "56435331a9bcacce010040007913be65510000000a0000001e0000001e0000001e001e0000000100d535be400000000000000000000000000000000000000000",
+      "party": "f0ed6f94d535be406c7f6faeffffff00000001020101010101ff0000000000000400000070ca01000046040035003f0165017e000f280a050000000000000000000000000005320200000000000000000000000032ff640064003200430038002e004b000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "factory": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "label": "selected",
+      "frame": 4403,
+      "battle": 30,
+      "callback2": 135394217,
+      "script": 167726261,
+      "newbs": 0,
+      "outcome": 0,
+      "flags": 0,
+      "types": 100663560,
+      "count": 6,
+      "bp": 90,
+      "save_counter": 3,
+      "pending": 0,
+      "snapshot": 1,
+      "marker": 1,
+      "order": [
+        4,
+        2,
+        6
+      ],
+      "owner": "56435331a9bcacce0100400062e3f108520000000b0000001e0000001e0000001e001e0001000100d535be400000000000000000000000000000000000000000",
+      "party": "442706bbd535be408bae5dffffffff00000001020101010101ff0000000000003f00000070ca0100ffff0f005e005b017300b60010202010040000fcfc0000000000000000053212ffffff3f000000800000000032ff6a006a0031003200910098003700ebb42920d535be40647b9c535dffff00000001020101010101ff0000000000004a0000005a620200ffff040059003d012100b60010183810fcfc0004000000000000000000053212ffffff3f000000800000000032ffce00ce0084006700480052006b00b4af42a9d535be407079607e58ffff00000001020101010101ff0000000000005c0000005a620200ffff1a00f7005c006d00b60018101010040000fcfc0000000000000000053212ffffff3f000000800000000032ffab00ab005a007d00a7005c005a00bd2e84ced535be4051985f79ffffff00000001020101010101ff0000000000003400000070ca0100ffff0d000100f2000d01b6003818201004fc00fc000000000000000000053212ffffff3f000000800000000032ff8d008d00b60050008b00550050006f23c921d535be406c7f6faeffffff00000001020101010101ff0000000000000400000070ca0100ffff040035007e004c01b60018082010040000fcfc0000000000000000053212ffffff3f000000800000000032ff7400740036005a0071005d005a00cc3694b3d535be405158605cffffff00000001020101010101ff0000000000000700000070ca0100ffff130037003a006001b60028102010fc008000008000000000000000053212ffffff3f000000800000000032ffa700a7003c0054003c0055006700",
+      "factory": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "label": "confirmation",
+      "frame": 4874,
+      "battle": 30,
+      "callback2": 135394217,
+      "script": 167726315,
+      "newbs": 0,
+      "outcome": 0,
+      "flags": 0,
+      "types": 100663560,
+      "count": 3,
+      "bp": 90,
+      "save_counter": 3,
+      "pending": 0,
+      "snapshot": 1,
+      "marker": 2,
+      "order": [
+        1,
+        2,
+        3
+      ],
+      "owner": "56435331a9bcacce01004000de9ada98530000000b0000001f0000001e0000001e001e0002000100d535be400000000000000000000000000000000000000000",
+      "party": "bd2e84ced535be4051985f79ffffff00000001020101010101ff0000000000003400000070ca0100ffff0d000100f2000d01b6003818201004fc00fc000000000000000000053212ffffff3f000000800000000032ff8d008d00b60050008b0055005000ebb42920d535be40647b9c535dffff00000001020101010101ff0000000000004a0000005a620200ffff040059003d012100b60010183810fcfc0004000000000000000000053212ffffff3f000000800000000032ffce00ce0084006700480052006b00cc3694b3d535be405158605cffffff00000001020101010101ff0000000000000700000070ca0100ffff130037003a006001b60028102010fc008000008000000000000000053212ffffff3f000000800000000032ffa700a7003c0054003c0055006700000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "factory": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "label": "action",
+      "frame": 6516,
+      "battle": 30,
+      "callback2": 134285761,
+      "script": 167726358,
+      "newbs": 33650228,
+      "outcome": 0,
+      "flags": 2147484160,
+      "types": 100663564,
+      "count": 3,
+      "bp": 90,
+      "save_counter": 3,
+      "pending": 0,
+      "snapshot": 1,
+      "marker": 2,
+      "order": [
+        1,
+        2,
+        3
+      ],
+      "owner": "56435331a9bcacce01004000de9ada98530000000b0000001f0000001e0000001e001e0002000100d535be400000000000000000000000000000000000000000",
+      "party": "bd2e84ced535be4051985f79ffffff00000001020101010101ff0000000000003400000070ca0100ffff0d000100f2000d01b6003818201004fc00fc000000000000000000053212ffffff3f000000800000000032ff8d008d00b60050008b0055005000ebb42920d535be40647b9c535dffff00000001020101010101ff0000000000004a0000005a620200ffff040059003d012100b60010183810fcfc0004000000000000000000053212ffffff3f000000800000000032ffce00ce0084006700480052006b00cc3694b3d535be405158605cffffff00000001020101010101ff0000000000000700000070ca0100ffff130037003a006001b60028102010fc008000008000000000000000053212ffffff3f000000800000000032ffa700a7003c0054003c0055006700000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "factory": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "label": "outcome",
+      "frame": 30056,
+      "battle": 30,
+      "callback2": 134285761,
+      "script": 167726358,
+      "newbs": 33650228,
+      "outcome": 1,
+      "flags": 2147484160,
+      "types": 100663564,
+      "count": 3,
+      "bp": 90,
+      "save_counter": 3,
+      "pending": 0,
+      "snapshot": 1,
+      "marker": 2,
+      "order": [
+        1,
+        2,
+        3
+      ],
+      "owner": "56435331a9bcacce01004000de9ada98530000000b0000001f0000001e0000001e001e0002000100d535be400000000000000000000000000000000000000000",
+      "party": "bd2e84ced535be4051985f79ffffff00000001020101010101ff0000000000003400000070ca0100ffff0d000100f2000d01b60038171f1004fc00fc000000000000000000053212ffffff3f000000800000000032ff00008d00b60050008b0055005000ebb42920d535be40647b9c535dffff00000001020101010101ff0000000000004a0000005a620200ffff040059003d012100b6000e183810fcfc0004000000000000000000053212ffffff3f000000800000000032ff0000ce0084006700480052006b00cc3694b3d535be405158605cffffff00000001020101010101ff0000000000000700000070ca0100ffff130037003a006001b60028062010fc008000008000000000000000053212ffffff3f000000800000000032ff4300a7003c0054003c0055006700000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "factory": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "label": "settled",
+      "frame": 30320,
+      "battle": 30,
+      "callback2": 134569589,
+      "script": 135867830,
+      "newbs": 0,
+      "outcome": 1,
+      "flags": 0,
+      "types": 100663564,
+      "count": 3,
+      "bp": 90,
+      "save_counter": 3,
+      "pending": 1,
+      "snapshot": 1,
+      "marker": 2,
+      "order": [
+        1,
+        2,
+        3
+      ],
+      "owner": "56435331a9bcacce01004000da29db72540000000b0000001f0000001f0000001f001f0001000100d535be400000000000000000000000000000000000000000",
+      "party": "bd2e84ced535be4051985f79ffffff00000001020101010101ff0000000000003400000070ca0100ffff0d000100f2000d01b6003818201004fc00fc000000000000000000053212ffffff3f000000800000000032ff8d008d00b60050008b0055005000ebb42920d535be40647b9c535dffff00000001020101010101ff0000000000004a0000005a620200ffff040059003d012100b60010183810fcfc0004000000000000000000053212ffffff3f000000800000000032ffce00ce0084006700480052006b00cc3694b3d535be405158605cffffff00000001020101010101ff0000000000000700000070ca0100ffff130037003a006001b60028102010fc008000008000000000000000053212ffffff3f000000800000000032ffa700a7003c0054003c0055006700000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "factory": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "label": "confirmation",
+      "frame": 30757,
+      "battle": 31,
+      "callback2": 135394217,
+      "script": 167726412,
+      "newbs": 0,
+      "outcome": 0,
+      "flags": 0,
+      "types": 100663564,
+      "count": 3,
+      "bp": 90,
+      "save_counter": 3,
+      "pending": 1,
+      "snapshot": 1,
+      "marker": 2,
+      "order": [
+        1,
+        2,
+        3
+      ],
+      "owner": "56435331a9bcacce01004000cab2a20b550000000b000000200000001f0000001f001f0002000100d535be400000000000000000000000000000000000000000",
+      "party": "bd2e84ced535be4051985f79ffffff00000001020101010101ff0000000000003400000070ca0100ffff0d000100f2000d01b6003818201004fc00fc000000000000000000053212ffffff3f000000800000000032ff8d008d00b60050008b0055005000ebb42920d535be40647b9c535dffff00000001020101010101ff0000000000004a0000005a620200ffff040059003d012100b60010183810fcfc0004000000000000000000053212ffffff3f000000800000000032ffce00ce0084006700480052006b00cc3694b3d535be405158605cffffff00000001020101010101ff0000000000000700000070ca0100ffff130037003a006001b60028102010fc008000008000000000000000053212ffffff3f000000800000000032ffa700a7003c0054003c0055006700000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "factory": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "label": "action",
+      "frame": 32400,
+      "battle": 31,
+      "callback2": 134285761,
+      "script": 167726455,
+      "newbs": 33650228,
+      "outcome": 0,
+      "flags": 8404992,
+      "types": 100663564,
+      "count": 3,
+      "bp": 90,
+      "save_counter": 3,
+      "pending": 1,
+      "snapshot": 1,
+      "marker": 2,
+      "order": [
+        1,
+        2,
+        3
+      ],
+      "owner": "56435331a9bcacce01004000cab2a20b550000000b000000200000001f0000001f001f0002000100d535be400000000000000000000000000000000000000000",
+      "party": "bd2e84ced535be4051985f79ffffff00000001020101010101ff0000000000003400000070ca0100ffff0d000100f2000d01b6003818201004fc00fc000000000000000000053212ffffff3f000000800000000032ff8d008d00b60050008b0055005000ebb42920d535be40647b9c535dffff00000001020101010101ff0000000000004a0000005a620200ffff040059003d012100b60010183810fcfc0004000000000000000000053212ffffff3f000000800000000032ffce00ce0084006700480052006b00cc3694b3d535be405158605cffffff00000001020101010101ff0000000000000700000070ca0100ffff130037003a006001b60028102010fc008000008000000000000000053212ffffff3f000000800000000032ffa700a7003c0054003c0055006700000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "factory": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "label": "outcome",
+      "frame": 50447,
+      "battle": 31,
+      "callback2": 134285761,
+      "script": 167726455,
+      "newbs": 33650228,
+      "outcome": 1,
+      "flags": 8404992,
+      "types": 100663564,
+      "count": 3,
+      "bp": 90,
+      "save_counter": 3,
+      "pending": 1,
+      "snapshot": 1,
+      "marker": 2,
+      "order": [
+        1,
+        2,
+        3
+      ],
+      "owner": "56435331a9bcacce01004000cab2a20b550000000b000000200000001f0000001f001f0002000100d535be400000000000000000000000000000000000000000",
+      "party": "bd2e84ced535be4051985f79ffffff00000001020101010101ff0000000000003400000070ca0100ffff0d000100f2000d01b60038131f1004fc00fc000000000000000000053212ffffff3f000000800000000032ff00008d00b60050008b0055005000ebb42920d535be40647b9c535dffff00000001020101010101ff0000000000004a0000005a620200ffff040059003d012100b6000c183810fcfc0004000000000000000000053212ffffff3f000000808000000032ff6e00ce0084006700480052006b00cc3694b3d535be405158605cffffff00000001020101010101ff0000000000000700000070ca0100ffff130037003a006001b600280e2010fc008000008000000000000000053212ffffff3f000000800000000032ff0000a7003c0054003c0055006700000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "factory": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "label": "settled",
+      "frame": 50715,
+      "battle": 31,
+      "callback2": 134569589,
+      "script": 135867830,
+      "newbs": 0,
+      "outcome": 1,
+      "flags": 0,
+      "types": 100663564,
+      "count": 3,
+      "bp": 90,
+      "save_counter": 3,
+      "pending": 2,
+      "snapshot": 1,
+      "marker": 2,
+      "order": [
+        1,
+        2,
+        3
+      ],
+      "owner": "56435331a9bcacce01004000aed406fb560000000b00000020000000200000002000200001000100d535be400000000000000000000000000000000000000000",
+      "party": "bd2e84ced535be4051985f79ffffff00000001020101010101ff0000000000003400000070ca0100ffff0d000100f2000d01b6003818201004fc00fc000000000000000000053212ffffff3f000000800000000032ff8d008d00b60050008b0055005000ebb42920d535be40647b9c535dffff00000001020101010101ff0000000000004a0000005a620200ffff040059003d012100b60010183810fcfc0004000000000000000000053212ffffff3f000000800000000032ffce00ce0084006700480052006b00cc3694b3d535be405158605cffffff00000001020101010101ff0000000000000700000070ca0100ffff130037003a006001b60028102010fc008000008000000000000000053212ffffff3f000000800000000032ffa700a7003c0054003c0055006700000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "factory": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "label": "confirmation",
+      "frame": 51152,
+      "battle": 32,
+      "callback2": 135394217,
+      "script": 167726509,
+      "newbs": 0,
+      "outcome": 0,
+      "flags": 0,
+      "types": 100663564,
+      "count": 3,
+      "bp": 90,
+      "save_counter": 3,
+      "pending": 2,
+      "snapshot": 1,
+      "marker": 2,
+      "order": [
+        1,
+        2,
+        3
+      ],
+      "owner": "56435331a9bcacce0100400012ad2d6b570000000b00000021000000200000002000200002000100d535be400000000000000000000000000000000000000000",
+      "party": "bd2e84ced535be4051985f79ffffff00000001020101010101ff0000000000003400000070ca0100ffff0d000100f2000d01b6003818201004fc00fc000000000000000000053212ffffff3f000000800000000032ff8d008d00b60050008b0055005000ebb42920d535be40647b9c535dffff00000001020101010101ff0000000000004a0000005a620200ffff040059003d012100b60010183810fcfc0004000000000000000000053212ffffff3f000000800000000032ffce00ce0084006700480052006b00cc3694b3d535be405158605cffffff00000001020101010101ff0000000000000700000070ca0100ffff130037003a006001b60028102010fc008000008000000000000000053212ffffff3f000000800000000032ffa700a7003c0054003c0055006700000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "factory": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "label": "action",
+      "frame": 52795,
+      "battle": 32,
+      "callback2": 134285761,
+      "script": 167726552,
+      "newbs": 33650228,
+      "outcome": 0,
+      "flags": 20971520,
+      "types": 100663564,
+      "count": 3,
+      "bp": 90,
+      "save_counter": 3,
+      "pending": 2,
+      "snapshot": 1,
+      "marker": 2,
+      "order": [
+        1,
+        2,
+        3
+      ],
+      "owner": "56435331a9bcacce0100400012ad2d6b570000000b00000021000000200000002000200002000100d535be400000000000000000000000000000000000000000",
+      "party": "bd2e84ced535be4051985f79ffffff00000001020101010101ff0000000000003400000070ca0100ffff0d000100f2000d01b6003818201004fc00fc000000000000000000053212ffffff3f000000800000000032ff8d008d00b60050008b0055005000ebb42920d535be40647b9c535dffff00000001020101010101ff0000000000004a0000005a620200ffff040059003d012100b60010183810fcfc0004000000000000000000053212ffffff3f000000800000000032ffce00ce0084006700480052006b00cc3694b3d535be405158605cffffff00000001020101010101ff0000000000000700000070ca0100ffff130037003a006001b60028102010fc008000008000000000000000053212ffffff3f000000800000000032ffa700a7003c0054003c0055006700000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "factory": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "label": "outcome",
+      "frame": 72381,
+      "battle": 32,
+      "callback2": 134285761,
+      "script": 167726552,
+      "newbs": 33650228,
+      "outcome": 1,
+      "flags": 20971520,
+      "types": 100663564,
+      "count": 3,
+      "bp": 90,
+      "save_counter": 3,
+      "pending": 2,
+      "snapshot": 1,
+      "marker": 2,
+      "order": [
+        1,
+        2,
+        3
+      ],
+      "owner": "56435331a9bcacce0100400012ad2d6b570000000b00000021000000200000002000200002000100d535be400000000000000000000000000000000000000000",
+      "party": "bd2e84ced535be4051985f79ffffff00000001020101010101ff0000000000003400000070ca0100ffff0d000100f2000d01b60038161e1004fc00fc000000000000000000053212ffffff3f000000800000000032ff00008d00b60050008b0055005000ebb42920d535be40647b9c535dffff00000001020101010101ff0000000000004a0000005a620200ffff040059003d012100b6000f183810fcfc0004000000000000000000053212ffffff3f000000800000000032ffa900ce0084006700480052006b00cc3694b3d535be405158605cffffff00000001020101010101ff0000000000000700000070ca0100ffff130037003a006001b60028101c10fc008000008000000000000000053212ffffff3f000000800000000032ff0500a7003c0054003c0055006700000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "factory": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "label": "settled",
+      "frame": 72640,
+      "battle": 32,
+      "callback2": 134569589,
+      "script": 135867820,
+      "newbs": 0,
+      "outcome": 1,
+      "flags": 0,
+      "types": 100663564,
+      "count": 1,
+      "bp": 99,
+      "save_counter": 3,
+      "pending": 0,
+      "snapshot": 0,
+      "marker": 0,
+      "order": [
+        0,
+        0,
+        0
+      ],
+      "owner": "56435331a9bcacce01004000766fd68b590000000b00000021000000210000002100210000000100d535be400000000000000000000000000000000000000000",
+      "party": "f0ed6f94d535be406c7f6faeffffff00000001020101010101ff0000000000000400000070ca01000046040035003f0165017e000f280a050000000000000000000000000005320200000000000000000000000032ff640064003200430038002e004b000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "factory": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "label": "returned",
+      "frame": 72822,
+      "battle": 33,
+      "callback2": 134569589,
+      "script": 0,
+      "newbs": 0,
+      "outcome": 1,
+      "flags": 0,
+      "types": 100663564,
+      "count": 1,
+      "bp": 99,
+      "save_counter": 3,
+      "pending": 0,
+      "snapshot": 0,
+      "marker": 0,
+      "order": [
+        0,
+        0,
+        0
+      ],
+      "owner": "56435331a9bcacce01004000766fd68b590000000b00000021000000210000002100210000000100d535be400000000000000000000000000000000000000000",
+      "party": "f0ed6f94d535be406c7f6faeffffff00000001020101010101ff0000000000000400000070ca01000046040035003f0165017e000f280a050000000000000000000000000005320200000000000000000000000032ff640064003200430038002e004b000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "factory": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "label": "saved",
+      "frame": 74284,
+      "battle": 33,
+      "callback2": 134569589,
+      "script": 0,
+      "newbs": 0,
+      "outcome": 1,
+      "flags": 0,
+      "types": 100663564,
+      "count": 1,
+      "bp": 99,
+      "save_counter": 4,
+      "pending": 0,
+      "snapshot": 0,
+      "marker": 0,
+      "order": [
+        0,
+        0,
+        0
+      ],
+      "owner": "56435331a9bcacce01004000766fd68b590000000b00000021000000210000002100210000000100d535be400000000000000000000000000000000000000000",
+      "party": "f0ed6f94d535be406c7f6faeffffff00000001020101010101ff0000000000000400000070ca01000046040035003f0165017e000f280a050000000000000000000000000005320200000000000000000000000032ff640064003200430038002e004b000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "factory": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "label": "reloaded",
+      "frame": 77066,
+      "battle": 33,
+      "callback2": 134569589,
+      "script": 0,
+      "newbs": 0,
+      "outcome": 0,
+      "flags": 0,
+      "types": 0,
+      "count": 1,
+      "bp": 99,
+      "save_counter": 4,
+      "pending": 0,
+      "snapshot": 0,
+      "marker": 0,
+      "order": [
+        0,
+        0,
+        0
+      ],
+      "owner": "56435331a9bcacce01004000766fd68b590000000b00000021000000210000002100210000000100d535be400000000000000000000000000000000000000000",
+      "party": "f0ed6f94d535be406c7f6faeffffff00000001020101010101ff0000000000000400000070ca01000046040035003f0165017e000f280a050000000000000000000000000005320200000000000000000000000032ff640064003200430038002e004b000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "factory": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+    }
+  ],
+  "raw_last_result": {
+    "schema_version": 1,
+    "case": "circus-suppression-save",
+    "candidate_sha256": "46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38",
+    "status": "PASS_CIRCUS_SUPPRESSION_LIFECYCLE",
+    "attempts": 1,
+    "new_battles": 3,
+    "new_wins": 3,
+    "new_losses": 0,
+    "bp_after": 99,
+    "prefix_wins_reexecuted": 0,
+    "fresh_cores": 2,
+    "predicate_returns": 0,
+    "suppressed_dispatches": 0,
+    "trace_frames": 0,
+    "trace_instructions": 0,
+    "total_frames": 77066,
+    "save_counter_before": 3,
+    "save_counter_after": 4,
+    "owner_bytes_verified": 64,
+    "party_bytes_verified": 600,
+    "host_write_barriers": 7,
+    "input_only_after_guard": true,
+    "physical_admission_accepted": false,
+    "suppression_accepted": false,
+    "release_ready": false,
+    "warnings_errors": 0
+  },
+  "analysis": {
+    "result": {
+      "schema_version": 1,
+      "case": "circus-suppression-save",
+      "candidate_sha256": "46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38",
+      "status": "PASS_CIRCUS_SUPPRESSION_LIFECYCLE",
+      "attempts": 1,
+      "new_battles": 3,
+      "new_wins": 3,
+      "new_losses": 0,
+      "bp_after": 99,
+      "prefix_wins_reexecuted": 0,
+      "fresh_cores": 2,
+      "predicate_returns": 0,
+      "suppressed_dispatches": 0,
+      "trace_frames": 0,
+      "trace_instructions": 0,
+      "total_frames": 77066,
+      "save_counter_before": 3,
+      "save_counter_after": 4,
+      "owner_bytes_verified": 64,
+      "party_bytes_verified": 600,
+      "host_write_barriers": 7,
+      "input_only_after_guard": true,
+      "physical_admission_accepted": false,
+      "suppression_accepted": false,
+      "release_ready": false,
+      "warnings_errors": 0
+    },
+    "fairy_lock": [
+      {
+        "frame": 32400,
+        "streak": 31,
+        "flags": 8404992,
+        "types": 100663564,
+        "hp": 141,
+        "pid": 3464769213,
+        "ot": 1086207445,
+        "host_writes": 0,
+        "forced_switch_untouched": true
+      }
+    ],
+    "lifecycle_verified": true,
+    "inherited_suppression": {
+      "predicate_returns": 8,
+      "suppressed_dispatches": 12,
+      "hook_names": [
+        "AI_SpecialTypeCalc",
+        "AccuracyCalc",
+        "CheckGrounding",
+        "GetMoveTypeSpecialPostAbility",
+        "GetMoveTypeSpecialPreAbility"
+      ],
+      "observed": true
+    },
+    "inherited_run": 35503514936,
+    "inherited_candidate": {
+      "size": 33554432,
+      "sha256": "46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38"
+    },
+    "new_cpu_trace_count": 0,
+    "visual_review_completed": false,
+    "physical_admission_accepted": false,
+    "suppression_accepted": false,
+    "release_ready": false
+  }
+}

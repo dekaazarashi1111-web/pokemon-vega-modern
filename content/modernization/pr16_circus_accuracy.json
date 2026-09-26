@@ -1,0 +1,148 @@
+{
+  "accepted_native_cases_replayed": 0,
+  "actual_new_processes": 1,
+  "attempts": [
+    {
+      "actual_new_processes": 1,
+      "path": ".local/pr16-circus-accuracy/drain-accurate-fire/native/report.json",
+      "policy": "drain-accurate-fire",
+      "result": {
+        "battles": 3,
+        "candidate_sha256": "3101772a3b91fe0461f200bbd3faf19f01064132bd3d8db9b0fe8f747445b399",
+        "case": "circus-streak-batch-save",
+        "events": 17,
+        "forced_identity_checks": 5,
+        "fresh_cores": 2,
+        "host_write_barriers": 7,
+        "input_only_after_guard": true,
+        "losses": 0,
+        "manual_saves": 1,
+        "owner_bytes_verified": 64,
+        "party_bytes_verified": 600,
+        "physical_admission_accepted": false,
+        "release_ready": false,
+        "save_counter_after": 3,
+        "save_counter_before": 2,
+        "schema_version": 1,
+        "status": "PASS_CIRCUS_STREAK_NATIVE",
+        "suppression_accepted": false,
+        "switches": 5,
+        "total_frames": 64818,
+        "turns": 52,
+        "warnings_errors": 0,
+        "wins": 3
+      },
+      "returncode": 0,
+      "status": "PASS_CIRCUS_SCOPED_NATIVE",
+      "successful_fresh_cores": 2
+    }
+  ],
+  "candidate": {
+    "sha256": "3101772a3b91fe0461f200bbd3faf19f01064132bd3d8db9b0fe8f747445b399",
+    "size": 33554432
+  },
+  "classification": "CIRCUS_THREE_WIN_ACCURACY_SAVE_CONTINUE_VERIFIED",
+  "cold_load_visual_review": {
+    "completed": true,
+    "path": "content/modernization/pr16_circus_visual_review_20260919.json",
+    "run_id": 35422605107
+  },
+  "diagnosis_ja": "旧drainは2勝後、炎対炎でFire Blastが外れて炎を失い、草の未成立Seed/Protectと毒で敗北。直近の全面攻撃は混乱で2回PP未消費のまま草を失った。4方策は旧drainを基礎に命中優先/毒中Protect/炎対草の直接攻撃/混乱を個別化。ゲーム状態や乱数は変更しない。",
+  "host_tests": [
+    {
+      "count": 6,
+      "pattern": "test_pr16_circus_accuracy.py",
+      "success": true
+    }
+  ],
+  "independent_arm_links_replayed": 0,
+  "input_policy_id": "bounded-accuracy-family-v1",
+  "physical_admission_accepted": false,
+  "policies": [
+    "drain-accurate-fire",
+    "drain-accurate-poison",
+    "drain-accurate-direct",
+    "drain-accurate-confuse"
+  ],
+  "predecessor": {
+    "losses": 1,
+    "original_conclusion": "failure",
+    "path": "content/modernization/pr16_circus_finish.json",
+    "run_id": 35424764823,
+    "wins": 2
+  },
+  "recording_run": 35425237415,
+  "release_ready": false,
+  "schema_version": 1,
+  "scoped_result": {
+    "accepted_native_cases_replayed": 0,
+    "candidate": {
+      "sha256": "3101772a3b91fe0461f200bbd3faf19f01064132bd3d8db9b0fe8f747445b399",
+      "size": 33554432
+    },
+    "classification": "CIRCUS_THREE_WIN_SAVE_CONTINUE",
+    "factory_streak_and_claim_unchanged": true,
+    "fresh_cores": 2,
+    "later_battle_launches_verified": 2,
+    "losses": 0,
+    "native_processes": 1,
+    "original_party_bytes_verified": 600,
+    "owner_bytes_verified": 64,
+    "physical_admission_accepted": false,
+    "raw_stderr": {
+      "sha256": "e49441005542fd432750b6c29b29bcdf6b39295fe032e268ed2b63ecb86a3828",
+      "size": 135080
+    },
+    "raw_stdout": {
+      "sha256": "45c816cdec4ba221d358773fc885154000ea0f6e3678e0f23e08bb68246bdf3c",
+      "size": 588
+    },
+    "release_ready": false,
+    "run_id": 35425237415,
+    "suppression_accepted": false,
+    "tested_head": "02533b790784b99d02ded593b7a18ade392a6189",
+    "wins": 3
+  },
+  "selected_policy": "drain-accurate-fire",
+  "stop_on_first_success": true,
+  "suppression_accepted": false,
+  "text_evidence": {
+    "evidence/pr16_circus_accuracy/35425237415/attempts.json": {
+      "sha256": "1e172475dfb8933835834de60c367b0943d33c38a522372f0eabc45ef9e2348e",
+      "size": 1058
+    },
+    "evidence/pr16_circus_accuracy/35425237415/drain-accurate-fire/native/circus-streak-batch-save.process.json": {
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb",
+      "size": 90
+    },
+    "evidence/pr16_circus_accuracy/35425237415/drain-accurate-fire/native/circus-streak-batch-save.stderr": {
+      "sha256": "e49441005542fd432750b6c29b29bcdf6b39295fe032e268ed2b63ecb86a3828",
+      "size": 135080
+    },
+    "evidence/pr16_circus_accuracy/35425237415/drain-accurate-fire/native/circus-streak-batch-save.stdout": {
+      "sha256": "45c816cdec4ba221d358773fc885154000ea0f6e3678e0f23e08bb68246bdf3c",
+      "size": 588
+    },
+    "evidence/pr16_circus_accuracy/35425237415/drain-accurate-fire/native/report.json": {
+      "sha256": "70cc1fba0498d4963793a604796d00bc58e6dfb72c814aa88cc1d02d923a4f6c",
+      "size": 105815
+    },
+    "evidence/pr16_circus_accuracy/35425237415/drain-accurate-fire/native/streak.json": {
+      "sha256": "33d726c7dab1a085d8894369bae7cc3f844ab76a11d23185c5dce658587d5e3a",
+      "size": 879
+    },
+    "evidence/pr16_circus_accuracy/35425237415/drain-accurate-fire/runner.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_accuracy/35425237415/drain-accurate-fire/runner.stdout": {
+      "sha256": "777bd181cf131fe4b38f80909aa91dbb063213142612d1d30494ac0a97cf1a8d",
+      "size": 112
+    },
+    "evidence/pr16_circus_accuracy/35425237415/reconstruction.json": {
+      "sha256": "144dcf042dec77ed86063be33f8f07adb1f0ef0b1eacda1ce9846c783edd81bd",
+      "size": 249
+    }
+  },
+  "visual_review_completed": false
+}

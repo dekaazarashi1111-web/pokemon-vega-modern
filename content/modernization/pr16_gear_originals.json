@@ -1,0 +1,81 @@
+{
+  "candidate": {
+    "sha256": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267",
+    "size": 33554432
+  },
+  "full_p05_acceptance": false,
+  "gear_to_battle_accepted": false,
+  "new_emulator_runs": 0,
+  "originals": {
+    "compile_rejected": {
+      "artifact_id": 10192446522,
+      "path": "content/modernization/pr16_gear_evidence/34583082652/original.zip",
+      "run_id": 34583082652,
+      "sha256": "f8c37244fd03bcdf41990b66bf441c7a8a6627216faef55020cf6072b8bc12e6",
+      "size": 132810,
+      "tested_head": "72f3cdb97382285ce9133540bc09b22d4b847982",
+      "verification": {
+        "new_native_passes": 0,
+        "status": "COMPILE_REJECTION_RETAINED"
+      }
+    },
+    "field_rejected": {
+      "artifact_id": 10193291472,
+      "path": "content/modernization/pr16_gear_evidence/34585139774/original.zip",
+      "run_id": 34585139774,
+      "sha256": "3d77102fae7f40f62fce00f3a1900931d6e510178514f17a94e350741843f390",
+      "size": 366866,
+      "tested_head": "3c199d8e2d0c44a75ef0687b79a5ec6ffbd63b4e",
+      "verification": {
+        "new_native_passes": 0,
+        "status": "LIVE_RECORDING_PREDICATE_REJECTION_RETAINED"
+      }
+    },
+    "policy_rejected": {
+      "artifact_id": 10193527572,
+      "path": "content/modernization/pr16_gear_evidence/34585692527/original.zip",
+      "run_id": 34585692527,
+      "sha256": "c7191e560b7f0a50602164c6c9ee2c5e739179eb57bcfc77de0a393409ed1d14",
+      "size": 458433,
+      "tested_head": "7ee8b23ba72f6d389ed07cd0c5cc4c55a80b7cac",
+      "verification": {
+        "accepted_mega_cases": 0,
+        "historical_successful_cores": 6,
+        "historical_successful_processes": 2,
+        "new_native_passes": 0,
+        "status": "VOLATILE_POLICY_REJECTION_RETAINED"
+      }
+    },
+    "prior_success": {
+      "artifact_id": 10194085202,
+      "path": "content/modernization/pr16_gear_evidence/34587080329/original.zip",
+      "run_id": 34587080329,
+      "sha256": "a571a83ab85d8fa8710f445d9f61aa65c8c796523f821bfdc84d73ff9d0cc7a2",
+      "size": 571143,
+      "tested_head": "6dec0d4e58ffa0c7751be1e05bdd864f87d023bd",
+      "verification": {
+        "historical_successful_cores": 9,
+        "historical_successful_processes": 4,
+        "new_native_passes": 0,
+        "not_added_to_successor_counts": true,
+        "status": "PRIOR_SUCCESS_RETAINED_NOT_NEW_CURRENT_EXECUTION"
+      }
+    },
+    "probe": {
+      "artifact_id": 10191015811,
+      "path": "content/modernization/pr16_gear_evidence/34579454070/original.zip",
+      "run_id": 34579454070,
+      "sha256": "12a465f0eb375b6febb8e8eb0c998aaf8425f476c2500080b6a5444b4617688c",
+      "size": 16626310,
+      "tested_head": "665bd5e82c0cf2492c98cc8d9748ee6f160d10e2",
+      "verification": {
+        "new_native_passes": 0,
+        "source_files": 3381,
+        "status": "STATIC_ORIGINAL_RETAINED_NOT_NATIVE_ACCEPTANCE"
+      }
+    }
+  },
+  "release_ready": false,
+  "schema_version": 2,
+  "status": "HISTORICAL_GEAR_ORIGINALS_RETAINED"
+}

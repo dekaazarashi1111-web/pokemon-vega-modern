@@ -1,0 +1,118 @@
+name: pr16-p05-checkpoint
+run-name: Retain shop data success AND visual rejection with exact originals
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-p05-checkpoint.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: pr16-p05-checkpoint
+  cancel-in-progress: false
+jobs:
+  preserve-p05:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+      - name: Verify original data and rejection without emulator reruns
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          out=.local/pr16-p05-checkpoint
+          mkdir -p "$out"
+          git rev-parse HEAD > "$out/tested-head.txt"
+          python3 scripts/restore_modernization_final_originals.py > "$out/restore.json"
+          python3 scripts/pr16_p05_route_checkpoint.py --fetch --write > "$out/originals.json"
+          python3 scripts/pr16_shared_egg_checkpoint.py > "$out/shared.json"
+          python3 scripts/pr16_physical_route_checkpoint.py > "$out/physical.json"
+          python3 scripts/pr16_completion_checkpoint.py > "$out/completion.json"
+          python3 scripts/pr16_refresh_current_view.py --write > "$out/refresh.json"
+          python3 scripts/pr16_refresh_current_view.py > "$out/check.json"
+          python3 scripts/record_modernization_final_acceptance.py > "$out/final-generator.json"
+          python3 scripts/record_modernization_p03_forgetting.py > "$out/forgetting-generator.json"
+          python3 -m unittest tests.test_pr16_p05_route_checkpoint tests.test_pr16_shop_routes tests.test_pr16_receiver_audit tests.test_pr16_p05_root_diagnostics tests.test_pr16_current_view tests.test_pr16_shared_egg_checkpoint tests.test_pr16_physical_route_checkpoint tests.test_pr16_completion_checkpoint -v > "$out/unit.log" 2>&1
+      - name: Preserve scope and rejected visuals in append-only history
+        run: |
+          python3 - <<'PY'
+          import json,os,pathlib,sys
+          sys.path.insert(0,'scripts');import pr16_p05_route_checkpoint as m
+          root=pathlib.Path('.');receipt=m.build();view=json.loads((root/m.prior.OVERVIEW).read_bytes())
+          assert receipt['shop_visual_acceptance'] is False and view['p05_route_checkpoint']['shop_visual_acceptance'] is False
+          assert view['full_p06_acceptance'] is True and view['p06_adoption']['full_phase_accepted'] is True
+          assert view['physical_route_checkpoint']['new_native_processes']==15 and view['shared_egg_checkpoint']['new_native_processes']==16
+          assert all(view[k] is False for k in ('release_ready','full_p03_acceptance','full_p05_acceptance','full_p07_acceptance'))
+          doc='''# PR16 P05実取得のデータ成功と表示不合格 — 2026-09-11
+          
+          **製品・P05・ショップ画面全体は未合格です。** 現在の残件は `content/modernization/p08_remaining_work.json`、今回の正確な記録は `content/modernization/pr16_p05_route_acceptance.json`。
+          
+          ## 新しい実ROM実行と、合否を分ける境界
+          
+          run **34568373963**、実行HEAD `cd0f07c9c190b9e5a84f36ef3addd9e18259e3c7`。10プロセス・20コア。Factoryのマップ96/5、実NPC local14 (24,19) に話しかけ、5品ずつの一覧を操作しました。オーダイル・シビルドン・カエンジシ・メガニウム・ドリュウズ・スコヴィランの6種の石の購入、最初のページと後のページでの取消、15BPの不足、リング未所持の拒否を確認しています。
+          
+          在庫全体・BP・手持ち全600 bytesの非対象変更なし、成功時だけ16BP消費と自動保存、10件すべての通常Start保存・別コアContinueがデータ検査に合格しました。再開後の購入済み除外も9件の解禁済みケースで確認。マップ・リング・BP・claim初期状態は試験fixtureです。石は観測開始後に実受付で取得しますが、リングの通常取得・BP稼ぎ・自然捕獲・取得個体の戦闘を確認したものではありません。観測中の7種類のhost書込みAPIは禁止し、その拒否を検査しています。
+          
+          **画面原本の確認は不合格です。** メニューの表示中と終了後に背景のタイル崩れがあり、購入だけでなく取消・BP不足でも再現します。一覧を開かないリング未所持の対照画面には同じ崩れがありません。スクリーンショットのハッシュと確認対象は受入JSONの `visual_review` に保存しています。原因は未確定です。データ用runnerのPASSを画面・ショップ全体の合格へ読み替えず、外側は `DATA_PATH_PASS_VISUAL_REJECTED`、`shop_visual_acceptance=false` です。
+          
+          候補は変更していません。SHA-256 `635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e`、33554432 bytes。旧成功を今回の10件に足していません。
+          
+          ## P05の静的経路診断
+          
+          run **34567225043**、HEAD `ca9a0489bbd2bd68d84b9f208f42bb9b83025308`。5340 root中5334を読み、6不正rootと1未知命令を明示したまま探索しました。野生表265ヘッダ中header139の釣りinfo参照は未解決です。初回座標ownerのspecies411の地上遭遇候補は1/113と1/118にありますが、これは捕獲成功ではありません。共有変数0x403Aやnative関数の存在だけでCircusの入場と断定していません。実行した対象unit testは16件で、エミュレータ実行は0件です。
+          
+          ## Gitに残した原本と再検査
+          
+          `content/modernization/pr16_p05_route_evidence/<run>/original.zip` と `actions.json` を保存。受入JSONはZIPのハッシュ・CRC・安全性、Actionsの成功した全stepと実行HEAD、検証コード、raw stdout/process、7書込み拒否を再照合して生成します。原本のデータPASSや画面を編集しません。ROM/saveを新しい原本へ入れていません。
+          
+          `python3 scripts/pr16_p05_route_checkpoint.py` と `python3 scripts/pr16_refresh_current_view.py` で再検査できます。既存の最終受入/P03忘却の両生成経路にも表示不合格が残ります。保存・再検査は追加の実ROM件数に数えません。
+          
+          ## 次に閉じる作業
+          
+          ショップ表示の原因修正と画面回帰、自然捕獲および通常取得から戦闘への接続、実Circus受付・入場、残るP03/P07供給経路の原本対応、P08の最終統合とclean ROMから全工程の独立2回生成・配布。Rotom/Happiny/Pichu/進化/共有技の旧成功、P06の内外整合、publicと無料わざメモリー承認は保持します。Stage62・実プレイsave・原本・履歴は変更せず、PR #16は未マージです。
+          '''
+          path=root/'docs/PR16_P05_ROUTE_CHECKPOINT_JA.md';assert not path.exists();path.write_text(doc)
+          marker='PR16-P05-DATA-PASS-VISUAL-REJECTED-20260911'
+          entry='\n## 2026-09-11 / '+marker+'\n\n- Task: USER-MODERNIZATION-P05. Physical shop run34568373963 / cd0f07c9: new10 processes20 cores, six stone purchases and four controls; data, BP, inventory, party, normal save and cold Continue PASS. The fixture boundary is explicit.\n- Visual inspection REJECTED: menu and post-close background corruption, including cancel/BP denial; missing-ring control remains intact. Keep raw PASS but never promote it to UI/P05 acceptance.\n- Root diagnostic run34567225043: 5334 decoded roots, 6 invalid roots, 1 unknown command, wild header139 unresolved; two rooted species411 candidates are not capture/admission acceptance.\n- Exact originals, Actions origin, raw validators, screenshot identities, scoped receipt and both current-view generators validated by retention run '+os.environ['GITHUB_RUN_ID']+'. Target tests are in its unit.log. No emulator rerun in retention.\n- No candidate ROM, Stage62, real save, owner/public policy, historical original or PR merge changed. Keep prior Rotom/Happiny/shared/P06 successes. Product unfinished; display repair and natural acquisition/battle/admission remain.\n'
+          for name in ('design/run_log.md','design/version_log.md'):
+              path=root/name;before=path.read_text();assert marker not in before;path.write_text(before+entry)
+          PY
+      - name: Commit exact originals and rejected-scope record only
+        env:
+          EXPECTED_HEAD: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          branch=codex/modernization-followup-20260908
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$EXPECTED_HEAD"
+          python3 - <<'PY'
+          import pathlib,subprocess,sys
+          sys.path.insert(0,'scripts');import pr16_p05_route_checkpoint as m
+          m.build();originals=[m.DIRECTORY+'/'+str(r[0])+'/original.zip' for r in m.RECORDS.values()]
+          paths=[m.RECEIPT,m.prior.OVERVIEW,'docs/PR16_P05_ROUTE_CHECKPOINT_JA.md','design/run_log.md','design/version_log.md',*originals,*[p.removesuffix('original.zip')+'actions.json' for p in originals]]
+          changed=set(filter(None,subprocess.check_output(['git','diff','--name-only','-z']).decode().split('\0')));assert changed<=set(paths)
+          for name in ('design/run_log.md','design/version_log.md'):assert pathlib.Path(name).read_bytes().startswith(subprocess.check_output(['git','show','HEAD:'+name]))
+          subprocess.run(['git','add','--',*[p for p in paths if p not in originals]],check=True)
+          subprocess.run(['git','add','-f','--',*originals],check=True)
+          assert set(filter(None,subprocess.check_output(['git','diff','--cached','--name-only','-z']).decode().split('\0')))==set(paths)
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-MODERNIZATION-P05: retain ten data successes, original screenshots and visual rejection'
+          git push origin "HEAD:refs/heads/$branch"
+          git rev-parse HEAD > .local/pr16-p05-checkpoint/published-head.txt
+          python3 scripts/pr16_p05_route_checkpoint.py > .local/pr16-p05-checkpoint/post-commit-originals.json
+          python3 scripts/pr16_refresh_current_view.py > .local/pr16-p05-checkpoint/post-commit-current.json
+          git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-p05-checkpoint-retention
+          path: .local/pr16-p05-checkpoint/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

@@ -1,0 +1,106 @@
+{
+  "accepted_original_core_instances": 48,
+  "accepted_original_processes": 42,
+  "actions_sha256": "6510854293c4d653885c76dd0499dc2d35b84759188d2c7133d3f6ecd7ea52da",
+  "active_baseline_changed": false,
+  "active_baseline_stage": 62,
+  "candidate_rom_sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d",
+  "candidate_stage": 82,
+  "closed_scope": [
+    "six_native_mega_ability_assignments",
+    "six_native_revert_save_cold_continue_lifecycles",
+    "36_nonactivation_controls"
+  ],
+  "evidence_directory": "content/modernization/p08_native_mega_evidence/34438575892",
+  "fixture_scope": "pre-input species/gear/policy/opponent; no host writes during observation",
+  "full_p05_acceptance": false,
+  "limits": [
+    "base Eelektross already has Levitate",
+    "native Mega also changes stats; Fire Mane contrast is not ability-only"
+  ],
+  "native_mega_turn_revert_cold_save_cases": [
+    "dragonize",
+    "eelevate_ground",
+    "fire_mane",
+    "mega_sol",
+    "piercing_drill",
+    "spicy_spray"
+  ],
+  "new_emulator_runs_during_integration": 0,
+  "nonactivation_controls_per_species": [
+    "no-toggle",
+    "no-ring",
+    "no-stone",
+    "wrong-stone",
+    "policy-denied",
+    "cancel-toggle"
+  ],
+  "original_archive": {
+    "sha256": "b1166c0d8cbd40487b300a3814851ad4e64fdb3fc190082df525f6241be37fe8",
+    "size": 162216
+  },
+  "original_cache_reuse": 0,
+  "release_ready": false,
+  "remaining_scope": [
+    "natural_capture_and_gear_acquisition",
+    "physical_battle_circus_admission",
+    "other_P03_and_P05_acceptance_paths",
+    "P06_P07_adopted_implementation",
+    "final_release_acceptance"
+  ],
+  "schema_version": 1,
+  "scope": "P05_NATIVE_MEGA_INPUT_TURN_REVERT_COLD_SAVE",
+  "source_bindings": {
+    "config/active_play_baseline.json": {
+      "sha256": "4800257add049ea99cdedda91413a70a255dcff9a85823463596edefa8785053",
+      "size": 394
+    },
+    "config/modernization_stage79_cumulative_mgba.json": {
+      "sha256": "ee6c6326e0c96445b113e9cd0d73f5b3b7a1d5c907789e58d88ea3878abca5d6",
+      "size": 28627
+    },
+    "content/modernization/p04_mega_runtime_mapping.json": {
+      "sha256": "31e4a36301dda169f7b894a62ee823d00ebd1374945a33f1478f3c9eecf5401f",
+      "size": 59026
+    },
+    "design/active_play_baseline.md": {
+      "sha256": "e486dfa3fd9771084ba50390dd30b70d5c52e008a0b48f8cd186086e05e819f8",
+      "size": 5551
+    },
+    "infra/toolchain_manifest.json": {
+      "sha256": "abf9f2fe3589323702aa8f934209d17b5165983773ad44207c6301f53afe1bff",
+      "size": 33230
+    },
+    "scripts/run_modernization_p05_mega_lifecycle_e2e.py": {
+      "sha256": "cf0c5dd339b8a2ea7282a140de5fc308f2575a875653f4047d4ca58ab68730a3",
+      "size": 12941
+    },
+    "tools/mgba_ai_fixture_runner.c": {
+      "sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f",
+      "size": 36272
+    },
+    "tools/mgba_battle_core_smoke.c": {
+      "sha256": "ed9875695ca60c61960685ac2f8e810a183c8eedd703e56545d67bde3df5cf24",
+      "size": 94688
+    },
+    "tools/mgba_modernization_p02_stage71_acceptance_smoke.c": {
+      "sha256": "4e543fa815ca030e74522b5d0f1455fd5074035d10f044aab3bdfd41d7319c3b",
+      "size": 39669
+    },
+    "tools/mgba_modernization_p05_mega_lifecycle_e2e.c": {
+      "sha256": "5f2b6eb369af84247b1236b1c5448553865db4c62b756495f00141bb2c538981",
+      "size": 14468
+    },
+    "tools/mgba_modernization_p05_scheduler_e2e.c": {
+      "sha256": "53a5982cf247d5d577cd52c1561ea8da6a3fddb927f1d71c65ec953856090cfa",
+      "size": 11642
+    },
+    "tools/mgba_qol_production_smoke.c": {
+      "sha256": "2c4b9f065f4dce84e48f2be9afe2e2f9f666865088770ee8b068a908a0527b85",
+      "size": 149046
+    }
+  },
+  "source_head_sha": "96c634134730f0c4f5aed989e7a4ed6b23c2c6d6",
+  "source_run_id": 34438575892,
+  "status": "PASS"
+}

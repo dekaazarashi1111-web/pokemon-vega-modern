@@ -1,0 +1,61 @@
+name: PR16 P08 Circus exit ordinary representative
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - scripts/pr16_p08_ordinary_representative.py
+      - tools/mgba_pr16_p08_ordinary_observer.h
+      - tests/test_pr16_p08_ordinary_representative.py
+      - .github/workflows/pr16-p08-ordinary.yml
+      - tools/mgba_pr16_p08_ordinary_main.h
+      - scripts/pr16_p08_memory_acceptance.py
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-circus-suppression
+  cancel-in-progress: false
+jobs:
+  representative:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: 固定原本と新契約を照合し開始checkpointを非force保存
+        run: python3 scripts/pr16_p08_ordinary_representative.py prepare
+      - name: 真正退出Save30限定、cache missで再作成しない
+        uses: actions/cache/restore@v4
+        with:
+          path: .local/pr16-circus-suppression/resume/
+          key: pr16-circus-save30-2b107e7ef897844eff810ff0b40f82543640488696e8295194ceb3b66fb2c183-35494023398
+          fail-on-cache-miss: true
+      - name: Host mGBA dependency only
+        run: |
+          sudo apt-get update > .local/pr16-p08-ordinary/apt-update.txt 2>&1
+          sudo apt-get install -y libmgba-dev > .local/pr16-p08-ordinary/apt-install.txt 2>&1
+      - name: 真正退出Save30から通常戦闘の自然calleeだけ検証
+        run: python3 scripts/pr16_p08_ordinary_representative.py native
+      - name: 実行原本と停止点を非force保存
+        if: always()
+        run: python3 scripts/pr16_p08_ordinary_representative.py finish
+      - name: Pack text and bounded screens only
+        if: always()
+        run: python3 scripts/pr16_p08_ordinary_representative.py pack
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-p08-ordinary
+          path: .local/pr16-p08-ordinary/artifact/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
+      - name: Native result
+        if: always()
+        run: python3 scripts/pr16_p08_ordinary_representative.py result

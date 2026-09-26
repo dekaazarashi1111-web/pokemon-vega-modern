@@ -1,0 +1,4186 @@
+{
+  "schema_version": 1,
+  "status": "PASS_FINITE_STATIC_INVENTORY_NOT_NATIVE_ACCEPTANCE",
+  "scope": "PR16_P05_NATIVE_RING_BP_POLICY_FINITE_INVENTORY",
+  "source_commit": "cec56d0aff5a336367b2e6ae4d4b816f6cd80362",
+  "candidate": {
+    "sha256": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267",
+    "size": 33554432
+  },
+  "coverage_inventory_complete": true,
+  "physical_acceptance_complete": false,
+  "emulator_runs_by_this_checkpoint": 0,
+  "purchased_gear_success_preserved": true,
+  "natural_capture_success_preserved": true,
+  "captured_to_battle_success_preserved": true,
+  "remaining_physical_gap_ids": [
+    "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
+    "P05_NATIVE_BP_EARNING_PHYSICAL",
+    "P05_ORDINARY_POLICY_SELECTION_PHYSICAL"
+  ],
+  "categories": {
+    "ring_supply": {
+      "match_count_retained": 120,
+      "implementation_match_count_retained": 111,
+      "anchor_match_count_retained": 4,
+      "selected_roots": [
+        {
+          "path": "scripts/pr16_gear_originals.py",
+          "line": 83,
+          "role": "implementation",
+          "score": 14,
+          "excerpt": "prior.fields(report,dict(status='PASS',schema_version=2,candidate=display.CANDIDATE,actual_new_processes=4,successful_fresh_cores=9,failures=[],old_runs_relabelled=0,purchased_gear_to_battle_accepted=True,initial_map_party_ring_bp_policy_ar"
+        },
+        {
+          "path": "scripts/pr16_purchased_gear.py",
+          "line": 33,
+          "role": "implementation",
+          "score": 14,
+          "excerpt": "initial_map_party_ring_bp_policy_are_fixtures=True,ring_bp_natural_acquisition_accepted=False,"
+        },
+        {
+          "path": "scripts/pr16_purchased_gear.py",
+          "line": 75,
+          "role": "implementation",
+          "score": 14,
+          "excerpt": "initial_map_party_ring_bp_policy_are_fixtures=True,no_post_observation_host_writes=True,"
+        },
+        {
+          "path": "scripts/pr16_purchased_gear.py",
+          "line": 165,
+          "role": "implementation",
+          "score": 14,
+          "excerpt": "purchased_gear_to_battle_accepted=not failures,initial_map_party_ring_bp_policy_are_fixtures=True,"
+        },
+        {
+          "path": "scripts/pr16_gear_screen_checkpoint.py",
+          "line": 46,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "prior.fields(report,dict(schema_version=2,status='PASS',scope=native.SCOPE,candidate=display.CANDIDATE,actual_new_processes=4,successful_fresh_cores=9,failures=[],guard_checks=prior.GUARDS,purchased_gear_to_battle_accepted=True,initial_map_"
+        },
+        {
+          "path": "scripts/pr16_gear_screen_checkpoint.py",
+          "line": 76,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "purchased_gear_to_battle_accepted=True,initial_map_party_ring_bp_policy_are_fixtures=True,"
+        },
+        {
+          "path": "scripts/pr16_natural_capture_checkpoint.py",
+          "line": 112,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "row.update(reason_ja='同一ショップ修正版で洞窟2経路の自然歩行→シビルドン捕獲→通常保存→別コア再開は2件4コア成功。開始位置・先頭個体・ボールはfixture。石の実購入・表示・保存の既存成功も保持。通常取得から戦闘への接続、リング/BP/ボールの通常入手は未受入',"
+        },
+        {
+          "path": "scripts/pr16_p05_native_supply_evidence_map.py",
+          "line": 60,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"reuse purchased-stone success as proof of ring acquisition\","
+        },
+        {
+          "path": "scripts/pr16_p05_native_supply_evidence_map.py",
+          "line": 321,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"P05_NATIVE_RING_ACQUISITION_PHYSICAL\": \"リング通常取得\","
+        },
+        {
+          "path": "scripts/pr16_purchased_gear_checkpoint.py",
+          "line": 47,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "prior.fields(report,dict(schema_version=2,status='PASS',scope=native.SCOPE,candidate=display.CANDIDATE,actual_new_processes=4,successful_fresh_cores=9,failures=[],guard_checks=prior.GUARDS,purchased_gear_to_battle_accepted=True,initial_map_"
+        },
+        {
+          "path": "scripts/run_modernization_mega_shop_mgba.py",
+          "line": 36,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"mega_ring_visible_before_bag_pointer_setup\": False,"
+        },
+        {
+          "path": "config/modernization_p04_mega_runtime.json",
+          "line": 260,
+          "role": "implementation",
+          "score": 8,
+          "excerpt": "\"UPSTREAM_MODE_KEYSTONE_GATE\","
+        }
+      ],
+      "anchor_matches": [
+        {
+          "path": "scripts/pr16_gear_originals.py",
+          "line": 83,
+          "role": "implementation",
+          "score": 14,
+          "excerpt": "prior.fields(report,dict(status='PASS',schema_version=2,candidate=display.CANDIDATE,actual_new_processes=4,successful_fresh_cores=9,failures=[],old_runs_relabelled=0,purchased_gear_to_battle_accepted=True,initial_map_party_ring_bp_policy_ar"
+        },
+        {
+          "path": "scripts/pr16_purchased_gear.py",
+          "line": 33,
+          "role": "implementation",
+          "score": 14,
+          "excerpt": "initial_map_party_ring_bp_policy_are_fixtures=True,ring_bp_natural_acquisition_accepted=False,"
+        },
+        {
+          "path": "scripts/pr16_purchased_gear.py",
+          "line": 75,
+          "role": "implementation",
+          "score": 14,
+          "excerpt": "initial_map_party_ring_bp_policy_are_fixtures=True,no_post_observation_host_writes=True,"
+        },
+        {
+          "path": "scripts/pr16_purchased_gear.py",
+          "line": 165,
+          "role": "implementation",
+          "score": 14,
+          "excerpt": "purchased_gear_to_battle_accepted=not failures,initial_map_party_ring_bp_policy_are_fixtures=True,"
+        }
+      ],
+      "all_retained_matches": [
+        {
+          "path": "scripts/pr16_gear_originals.py",
+          "line": 83,
+          "role": "implementation",
+          "score": 14,
+          "excerpt": "prior.fields(report,dict(status='PASS',schema_version=2,candidate=display.CANDIDATE,actual_new_processes=4,successful_fresh_cores=9,failures=[],old_runs_relabelled=0,purchased_gear_to_battle_accepted=True,initial_map_party_ring_bp_policy_ar"
+        },
+        {
+          "path": "scripts/pr16_purchased_gear.py",
+          "line": 33,
+          "role": "implementation",
+          "score": 14,
+          "excerpt": "initial_map_party_ring_bp_policy_are_fixtures=True,ring_bp_natural_acquisition_accepted=False,"
+        },
+        {
+          "path": "scripts/pr16_purchased_gear.py",
+          "line": 75,
+          "role": "implementation",
+          "score": 14,
+          "excerpt": "initial_map_party_ring_bp_policy_are_fixtures=True,no_post_observation_host_writes=True,"
+        },
+        {
+          "path": "scripts/pr16_purchased_gear.py",
+          "line": 165,
+          "role": "implementation",
+          "score": 14,
+          "excerpt": "purchased_gear_to_battle_accepted=not failures,initial_map_party_ring_bp_policy_are_fixtures=True,"
+        },
+        {
+          "path": "scripts/pr16_gear_screen_checkpoint.py",
+          "line": 46,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "prior.fields(report,dict(schema_version=2,status='PASS',scope=native.SCOPE,candidate=display.CANDIDATE,actual_new_processes=4,successful_fresh_cores=9,failures=[],guard_checks=prior.GUARDS,purchased_gear_to_battle_accepted=True,initial_map_"
+        },
+        {
+          "path": "scripts/pr16_gear_screen_checkpoint.py",
+          "line": 76,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "purchased_gear_to_battle_accepted=True,initial_map_party_ring_bp_policy_are_fixtures=True,"
+        },
+        {
+          "path": "scripts/pr16_natural_capture_checkpoint.py",
+          "line": 112,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "row.update(reason_ja='同一ショップ修正版で洞窟2経路の自然歩行→シビルドン捕獲→通常保存→別コア再開は2件4コア成功。開始位置・先頭個体・ボールはfixture。石の実購入・表示・保存の既存成功も保持。通常取得から戦闘への接続、リング/BP/ボールの通常入手は未受入',"
+        },
+        {
+          "path": "scripts/pr16_p05_native_supply_evidence_map.py",
+          "line": 60,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"reuse purchased-stone success as proof of ring acquisition\","
+        },
+        {
+          "path": "scripts/pr16_p05_native_supply_evidence_map.py",
+          "line": 321,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"P05_NATIVE_RING_ACQUISITION_PHYSICAL\": \"リング通常取得\","
+        },
+        {
+          "path": "scripts/pr16_purchased_gear_checkpoint.py",
+          "line": 47,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "prior.fields(report,dict(schema_version=2,status='PASS',scope=native.SCOPE,candidate=display.CANDIDATE,actual_new_processes=4,successful_fresh_cores=9,failures=[],guard_checks=prior.GUARDS,purchased_gear_to_battle_accepted=True,initial_map_"
+        },
+        {
+          "path": "scripts/run_modernization_mega_shop_mgba.py",
+          "line": 36,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"mega_ring_visible_before_bag_pointer_setup\": False,"
+        },
+        {
+          "path": "config/modernization_p04_mega_runtime.json",
+          "line": 260,
+          "role": "implementation",
+          "score": 8,
+          "excerpt": "\"UPSTREAM_MODE_KEYSTONE_GATE\","
+        },
+        {
+          "path": "config/modernization_p04_mega_runtime.json",
+          "line": 269,
+          "role": "implementation",
+          "score": 8,
+          "excerpt": "\"keystone_by_mode_after_project_policy\": {"
+        },
+        {
+          "path": "tools/mgba_modernization_mega_shop_smoke.c",
+          "line": 4,
+          "role": "implementation",
+          "score": 8,
+          "excerpt": "* AddBagItem for the Mega Ring / bag fixtures, VegaFactoryAddBattlePoints for"
+        },
+        {
+          "path": "tools/mgba_modernization_mega_shop_smoke.c",
+          "line": 463,
+          "role": "implementation",
+          "score": 8,
+          "excerpt": "if (mega_call_thumb(core, MEGA_ADD_BAG, MEGA_RING_ITEM, 1U, 0, 0) == 0U"
+        },
+        {
+          "path": "tools/mgba_modernization_mega_shop_smoke.c",
+          "line": 466,
+          "role": "implementation",
+          "score": 8,
+          "excerpt": "mega_die(\"Mega Ring production bag gate did not unlock shop\");"
+        },
+        {
+          "path": "tools/mgba_pr16_purchased_gear.c",
+          "line": 166,
+          "role": "implementation",
+          "score": 8,
+          "excerpt": "printf(\"\\\"bp_before\\\":64,\\\"bp_after\\\":48,\\\"automatic_saves\\\":1,\\\"manual_saves\\\":2,\\\"fresh_cores\\\":%u,\\\"cold_reload_before_encounter\\\":%s,\\\"host_write_barriers\\\":7,\\\"party_inventory_bp_persisted\\\":true,\\\"physical_give\\\":true,\\\"physical_map_t"
+        },
+        {
+          "path": "tools/modernization_mega_shop.py",
+          "line": 55,
+          "role": "implementation",
+          "score": 8,
+          "excerpt": "\"text_mega_shop_locked\": \"メガリングが ひつようです\","
+        },
+        {
+          "path": "tools/modernization_p04_mega_runtime.py",
+          "line": 129,
+          "role": "implementation",
+          "score": 8,
+          "excerpt": "policy.get(\"required_keystone_item_id\") != 580"
+        },
+        {
+          "path": "tools/modernization_p04_mega_runtime.py",
+          "line": 146,
+          "role": "implementation",
+          "score": 8,
+          "excerpt": "\"UPSTREAM_MODE_KEYSTONE_GATE\","
+        },
+        {
+          "path": "tools/modernization_p04_mega_runtime.py",
+          "line": 151,
+          "role": "implementation",
+          "score": 8,
+          "excerpt": "if policy.get(\"keystone_by_mode_after_project_policy\") != {"
+        },
+        {
+          "path": "tools/modernization_p04_mega_runtime.py",
+          "line": 157,
+          "role": "implementation",
+          "score": 8,
+          "excerpt": "_fail(\"Stage71 mode別keystone契約が不正です\")"
+        },
+        {
+          "path": "tools/modernization_p04_mega_runtime.py",
+          "line": 361,
+          "role": "implementation",
+          "score": 8,
+          "excerpt": "\"keystone_owner\": \"MegaEvolutionEnabled/FindBankKeystone after project policy\","
+        },
+        {
+          "path": "tools/modernization_p04_mega_runtime.py",
+          "line": 362,
+          "role": "implementation",
+          "score": 8,
+          "excerpt": "\"keystone_modes\": {"
+        },
+        {
+          "path": "tools/modernization_p04_mega_runtime.py",
+          "line": 443,
+          "role": "implementation",
+          "score": 8,
+          "excerpt": "if item_ids.get(config[\"runtime_policy\"][\"required_keystone_item_key\"]) != 580:"
+        },
+        {
+          "path": "tools/modernization_p04_mega_runtime.py",
+          "line": 613,
+          "role": "implementation",
+          "score": 8,
+          "excerpt": "\"\"\"project policy→keystone→exact stone→usageの順をhost上で表現する。\"\"\""
+        },
+        {
+          "path": "tools/modernization_p04_mega_runtime.py",
+          "line": 633,
+          "role": "implementation",
+          "score": 8,
+          "excerpt": "def upstream_keystone_enabled(mode: str, owns_ring: bool) -> bool:"
+        },
+        {
+          "path": "tools/modernization_p04_mega_runtime.py",
+          "line": 634,
+          "role": "implementation",
+          "score": 8,
+          "excerpt": "\"\"\"project policy通過後の固定CFRU mode別keystone判定。\"\"\""
+        },
+        {
+          "path": "tools/modernization_p04_mega_runtime.py",
+          "line": 749,
+          "role": "implementation",
+          "score": 8,
+          "excerpt": "\"keystone_after_project_policy\":"
+        },
+        {
+          "path": "tools/modernization_p04_mega_runtime.py",
+          "line": 750,
+          "role": "implementation",
+          "score": 8,
+          "excerpt": "config[\"runtime_policy\"][\"keystone_by_mode_after_project_policy\"],"
+        },
+        {
+          "path": "tools/modernization_p04_mega_runtime.py",
+          "line": 817,
+          "role": "implementation",
+          "score": 8,
+          "excerpt": "address = _as_int(row.get(\"address\"), \"keystone halfword address\")"
+        },
+        {
+          "path": "tools/modernization_p04_mega_runtime.py",
+          "line": 819,
+          "role": "implementation",
+          "score": 8,
+          "excerpt": "offset = _rom_offset(address, \"keystone halfword address\")"
+        },
+        {
+          "path": "tools/modernization_p04_mega_runtime.py",
+          "line": 822,
+          "role": "implementation",
+          "score": 8,
+          "excerpt": "_fail(f\"Mega Ring 580 compiled halfword不一致: 0x{address:08X}\")"
+        },
+        {
+          "path": "tools/modernization_p04_mega_runtime.py",
+          "line": 1447,
+          "role": "implementation",
+          "score": 8,
+          "excerpt": "\"keystone_by_mode_after_project_policy\": {"
+        },
+        {
+          "path": "tools/modernization_p04_mega_runtime.py",
+          "line": 1448,
+          "role": "implementation",
+          "score": 8,
+          "excerpt": "**config[\"runtime_policy\"][\"keystone_by_mode_after_project_policy\"],"
+        },
+        {
+          "path": "tools/modernization_p08_integration.py",
+          "line": 3529,
+          "role": "implementation",
+          "score": 8,
+          "excerpt": "and mega_shop_config.get(\"catalog\", {}).get(\"key_stone_item_id\") == 580,"
+        },
+        {
+          "path": "scripts/pr16_p05_native_supply_evidence_map.py",
+          "line": 35,
+          "role": "implementation",
+          "score": 6,
+          "excerpt": "\"ring_supply\": \"P05_NATIVE_RING_ACQUISITION_PHYSICAL\","
+        },
+        {
+          "path": "scripts/pr16_p05_native_supply_evidence_map.py",
+          "line": 49,
+          "role": "implementation",
+          "score": 6,
+          "excerpt": "\"ring_supply\": {"
+        },
+        {
+          "path": "scripts/run_modernization_mega_shop_mgba.py",
+          "line": 118,
+          "role": "implementation",
+          "score": 6,
+          "excerpt": "or catalog.get(\"key_stone_item_id\") != 580"
+        },
+        {
+          "path": "scripts/run_modernization_mega_shop_mgba.py",
+          "line": 120,
+          "role": "implementation",
+          "score": 6,
+          "excerpt": "_fail(\"Stage68 45石/16BP/Mega Ring/claim flag契約が不一致です\")"
+        },
+        {
+          "path": "scripts/run_modernization_mega_shop_mgba.py",
+          "line": 157,
+          "role": "implementation",
+          "score": 6,
+          "excerpt": "\"mega_ring_580_gate\","
+        },
+        {
+          "path": "scripts/run_modernization_mega_shop_mgba.py",
+          "line": 301,
+          "role": "implementation",
+          "score": 6,
+          "excerpt": "\"mega_ring_580_gate\": True,"
+        },
+        {
+          "path": "scripts/run_modernization_mega_shop_mgba.py",
+          "line": 351,
+          "role": "implementation",
+          "score": 6,
+          "excerpt": "\"mega_ring_580_gate\","
+        },
+        {
+          "path": "scripts/run_modernization_stage79_cumulative_mgba.py",
+          "line": 1735,
+          "role": "implementation",
+          "score": 6,
+          "excerpt": "\"probe_and_save_init\", \"mega_ring_580_gate\","
+        },
+        {
+          "path": "scripts/run_modernization_stage79_cumulative_mgba.py",
+          "line": 1766,
+          "role": "implementation",
+          "score": 6,
+          "excerpt": "\"physical_npc_script_graph_to_entrypoint\", \"mega_ring_580_gate\","
+        },
+        {
+          "path": ".github/workflows/pr16-apply-p05-ring-anchor-fix-once.yml",
+          "line": 32,
+          "role": "automation",
+          "score": 5,
+          "excerpt": "new = ''' \"ring_supply\": re.compile(\\n r\"(?ix)(?:initial_map_party_ring_bp_policy_are_fixtures|\"\\n r\"mega[_ -]?ring|key[_ -]?stone|\"\\n'''"
+        },
+        {
+          "path": ".github/workflows/pr16-apply-p05-ring-anchor-fix-once.yml",
+          "line": 67,
+          "role": "automation",
+          "score": 5,
+          "excerpt": "and 'initial_map_party_ring_bp_policy_are_fixtures' in row['excerpt']"
+        },
+        {
+          "path": ".github/workflows/pr16-captured-battle-checkpoint.yml",
+          "line": 77,
+          "role": "automation",
+          "score": 5,
+          "excerpt": "この受入は**捕獲した通常個体を実戦へつなぐ経路**です。相手は自然生成で、技の命中・ダメージ・全特性の効果試験やメガ進化を一括受入したものではありません。開始位置・Lv100先頭個体・1個のマスターボール・記憶ポケットはfixtureです。石/リング等の通常取得と装備から戦闘までの接続は引き続き未受入です。"
+        },
+        {
+          "path": ".github/workflows/pr16-p05-checkpoint.yml",
+          "line": 57,
+          "role": "automation",
+          "score": 5,
+          "excerpt": "run **34568373963**、実行HEAD `cd0f07c9c190b9e5a84f36ef3addd9e18259e3c7`。10プロセス・20コア。Factoryのマップ96/5、実NPC local14 (24,19) に話しかけ、5品ずつの一覧を操作しました。オーダイル・シビルドン・カエンジシ・メガニウム・ドリュウズ・スコヴィランの6種の石の購入、最初のページと後のページでの取消、15BPの不足、リング未所持の拒否を確認しています。"
+        },
+        {
+          "path": ".github/workflows/pr16-p05-checkpoint.yml",
+          "line": 59,
+          "role": "automation",
+          "score": 5,
+          "excerpt": "在庫全体・BP・手持ち全600 bytesの非対象変更なし、成功時だけ16BP消費と自動保存、10件すべての通常Start保存・別コアContinueがデータ検査に合格しました。再開後の購入済み除外も9件の解禁済みケースで確認。マップ・リング・BP・claim初期状態は試験fixtureです。石は観測開始後に実受付で取得しますが、リングの通常取得・BP稼ぎ・自然捕獲・取得個体の戦闘を確認したものではありません。観測中の7種類のhost書込みAPIは禁止し、その拒否を検査してい"
+        },
+        {
+          "path": ".github/workflows/pr16-p05-checkpoint.yml",
+          "line": 61,
+          "role": "automation",
+          "score": 5,
+          "excerpt": "**画面原本の確認は不合格です。** メニューの表示中と終了後に背景のタイル崩れがあり、購入だけでなく取消・BP不足でも再現します。一覧を開かないリング未所持の対照画面には同じ崩れがありません。スクリーンショットのハッシュと確認対象は受入JSONの `visual_review` に保存しています。原因は未確定です。データ用runnerのPASSを画面・ショップ全体の合格へ読み替えず、外側は `DATA_PATH_PASS_VISUAL_REJECTED`、`shop_vis"
+        },
+        {
+          "path": ".github/workflows/pr16-shop-display-checkpoint.yml",
+          "line": 78,
+          "role": "automation",
+          "score": 5,
+          "excerpt": "観測開始後は7種類のhost書込みAPIを禁止し、拒否の実行記録も保持。開始位置・リング・BP・claim初期状態はfixtureで、石そのものは観測後の実購入による取得です。リングの通常取得、BP稼ぎ、自然捕獲、取得個体の戦闘まで成功したという意味ではありません。"
+        },
+        {
+          "path": "config/modernization_candidate.json",
+          "line": 446,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "\"mega_ring_gate_item_id\": 580,"
+        },
+        {
+          "path": "config/modernization_floette_gift.json",
+          "line": 57,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "\"unlock_item_key\": \"ITEM_KEY_MEGA_RING\","
+        },
+        {
+          "path": "config/modernization_mega_shop.json",
+          "line": 58,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "\"key_stone_item_id\": 580,"
+        },
+        {
+          "path": "config/modernization_mega_shop.json",
+          "line": 59,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "\"key_stone_item_key\": \"ITEM_KEY_MEGA_RING\","
+        },
+        {
+          "path": "config/modernization_p04_mega_runtime.json",
+          "line": 93,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "\"keystone_580_thumb_halfwords\": ["
+        },
+        {
+          "path": "config/modernization_p04_mega_runtime.json",
+          "line": 103,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "\"keystone_function_span\": {"
+        },
+        {
+          "path": "config/modernization_p04_mega_runtime.json",
+          "line": 253,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "\"required_keystone_item_key\": \"ITEM_KEY_MEGA_RING\","
+        },
+        {
+          "path": "config/modernization_p04_mega_runtime.json",
+          "line": 254,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "\"required_keystone_item_id\": 580,"
+        },
+        {
+          "path": "content/codex_battle/catalog.json",
+          "line": 5808,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "\"key\": \"ITEM_KEY_MEGA_RING\","
+        },
+        {
+          "path": "content/codex_battle/catalog.json",
+          "line": 5809,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "\"name\": \"メガリング\","
+        },
+        {
+          "path": "content/codex_battle/catalog.json",
+          "line": 7088,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "\"key\": \"ITEM_KEY_STONE_PLATE\","
+        },
+        {
+          "path": "content/codex_battle/catalog.json",
+          "line": 8528,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "\"key\": \"ITEM_KEY_ODD_KEYSTONE\","
+        },
+        {
+          "path": "content/codex_battle/catalog.json",
+          "line": 170905,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "\"key\": \"MOVE_KEY_STONEEDGE\","
+        },
+        {
+          "path": "content/codex_battle/catalog.json",
+          "line": 177875,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "\"key\": \"MOVE_KEY_STONEAXE\","
+        },
+        {
+          "path": "content/collection_supply_v1/canonical_model.json",
+          "line": 15831,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "\"display_name\": \"メガリング\","
+        },
+        {
+          "path": "content/collection_supply_v1/canonical_model.json",
+          "line": 15833,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "\"item_key\": \"ITEM_KEY_MEGA_RING\","
+        },
+        {
+          "path": "content/collection_supply_v1/canonical_model.json",
+          "line": 17753,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "\"item_key\": \"ITEM_KEY_STONE_PLATE\","
+        },
+        {
+          "path": "content/collection_supply_v1/canonical_model.json",
+          "line": 19913,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "\"item_key\": \"ITEM_KEY_ODD_KEYSTONE\","
+        },
+        {
+          "path": "content/factory_high_modes_v2/canonical_model.json",
+          "line": 6252,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "\"move1_key\": \"MOVE_KEY_STONEAXE\","
+        },
+        {
+          "path": "content/factory_high_modes_v2/canonical_model.json",
+          "line": 6484,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "\"move1_key\": \"MOVE_KEY_STONEEDGE\","
+        },
+        {
+          "path": "generated/runtime/modernization_floette_gift_symbols.json",
+          "line": 142,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "\"text\": \"メガリングが ひつようです\""
+        },
+        {
+          "path": "generated/runtime/modernization_mega_shop_symbols.json",
+          "line": 156,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "\"text\": \"メガリングが ひつようです\""
+        },
+        {
+          "path": "tools/mgba_modernization_mega_shop_smoke.c",
+          "line": 47,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "#define MEGA_RING_ITEM UINT16_C(580)"
+        },
+        {
+          "path": "tools/mgba_modernization_mega_shop_smoke.c",
+          "line": 448,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "mega_phase(\"mega-ring-gate\");"
+        },
+        {
+          "path": "tools/mgba_modernization_mega_shop_smoke.c",
+          "line": 450,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "mega_die(\"index 0 unlocked without Mega Ring\");"
+        },
+        {
+          "path": "tools/mgba_modernization_mega_shop_smoke.c",
+          "line": 462,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "mega_die(\"Mega Ring gate rejection mutated state\");"
+        },
+        {
+          "path": "tools/mgba_modernization_mega_shop_smoke.c",
+          "line": 464,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "|| !mega_has_item(core, MEGA_RING_ITEM, 1U)"
+        },
+        {
+          "path": "tools/mgba_modernization_mega_shop_smoke.c",
+          "line": 535,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "bool loaded_ring = mega_has_item(core, MEGA_RING_ITEM, 1U);"
+        },
+        {
+          "path": "tools/mgba_modernization_mega_shop_smoke.c",
+          "line": 573,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "\"\\\"probe_and_save_init\\\":true,\\\"mega_ring_580_gate\\\":true,\""
+        },
+        {
+          "path": "tools/modernization_floette_gift.py",
+          "line": 41,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "KEY_STONE_ITEM = 580"
+        },
+        {
+          "path": "tools/modernization_floette_gift.py",
+          "line": 54,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "\"text_floette_gift_locked\": \"メガリングが ひつようです\","
+        },
+        {
+          "path": "tools/modernization_floette_gift.py",
+          "line": 892,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "KEY_STONE_ITEM, NATIONAL_DEX, COLLECTION_BIT,"
+        },
+        {
+          "path": "tools/modernization_floette_gift.py",
+          "line": 1241,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "\"unlock_item_id\": KEY_STONE_ITEM,"
+        },
+        {
+          "path": "tools/modernization_floette_gift.py",
+          "line": 1323,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "\"unlock\": {\"item_key\": gift[\"unlock_item_key\"], \"item_id\": KEY_STONE_ITEM},"
+        },
+        {
+          "path": "tools/modernization_floette_gift.py",
+          "line": 1365,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "\"unlock_item_id\": KEY_STONE_ITEM, \"claim_flag\": CLAIM_FLAG,"
+        },
+        {
+          "path": "tools/modernization_floette_gift.py",
+          "line": 1397,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "\"mega_ring_item580_gate\": gift[\"unlock_item_id\"] == KEY_STONE_ITEM,"
+        },
+        {
+          "path": "tools/modernization_mega_shop.py",
+          "line": 356,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "\"unlock\": {\"item_key\": \"ITEM_KEY_MEGA_RING\", \"item_id\": 580, \"quantity\": 1},"
+        },
+        {
+          "path": "tools/modernization_mega_shop.py",
+          "line": 1283,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "\"key_stone_item_id\": 580,"
+        },
+        {
+          "path": "tools/modernization_mega_shop.py",
+          "line": 1324,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "\"mega_ring_gate_item_580\": config[\"catalog\"][\"key_stone_item_id\"] == 580,"
+        },
+        {
+          "path": "tools/modernization_p04_mega_runtime.py",
+          "line": 356,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "\"MegaEvolutionEnabled/FindBankKeystone\","
+        },
+        {
+          "path": "tools/modernization_p04_mega_runtime.py",
+          "line": 444,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "_fail(\"Mega Ring stable keyが固定ID 580ではありません\")"
+        },
+        {
+          "path": "tools/modernization_p04_mega_runtime.py",
+          "line": 610,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "has_keystone: bool,"
+        },
+        {
+          "path": "tools/modernization_p04_mega_runtime.py",
+          "line": 616,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "if not has_keystone:"
+        },
+        {
+          "path": "tools/modernization_p04_mega_runtime.py",
+          "line": 743,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "\"save_during_owned_special_battle\": \"PRE_BATTLE_SNAPSHOT_RESTORE_BY_EXISTING_OWNER\","
+        },
+        {
+          "path": "tools/modernization_p04_mega_runtime.py",
+          "line": 804,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "span = assertions.get(\"keystone_function_span\")"
+        },
+        {
+          "path": "tools/modernization_p04_mega_runtime.py",
+          "line": 805,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "rows = assertions.get(\"keystone_580_thumb_halfwords\")"
+        },
+        {
+          "path": "tools/modernization_p04_mega_runtime.py",
+          "line": 807,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "_fail(\"Mega Ring 580 compiled assertion契約が不正です\")"
+        },
+        {
+          "path": "tools/modernization_p04_mega_runtime.py",
+          "line": 808,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "start = _as_int(span.get(\"start\"), \"keystone span start\")"
+        },
+        {
+          "path": "tools/modernization_p04_mega_runtime.py",
+          "line": 809,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "end = _as_int(span.get(\"end_exclusive\"), \"keystone span end\")"
+        },
+        {
+          "path": "tools/modernization_p04_mega_runtime.py",
+          "line": 810,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "raw = rom[_rom_offset(start, \"keystone span start\"):_rom_offset(end, \"keystone span end\")]"
+        },
+        {
+          "path": "tools/modernization_p04_mega_runtime.py",
+          "line": 812,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "_fail(\"固定CFRU keystone function ROM span hash不一致\")"
+        },
+        {
+          "path": "tools/modernization_p04_mega_runtime.py",
+          "line": 816,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "_fail(\"keystone halfword assertion row型不正\")"
+        },
+        {
+          "path": "tools/modernization_p04_mega_runtime.py",
+          "line": 818,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "expected = _as_int(row.get(\"expected\"), \"keystone halfword expected\")"
+        },
+        {
+          "path": "tools/modernization_p04_mega_runtime.py",
+          "line": 1316,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "has_keystone=True,"
+        },
+        {
+          "path": "tools/modernization_p04_mega_runtime.py",
+          "line": 1324,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "has_keystone=True,"
+        },
+        {
+          "path": "tools/modernization_p04_mega_runtime.py",
+          "line": 1332,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "has_keystone=False,"
+        },
+        {
+          "path": "tools/modernization_p04_mega_runtime.py",
+          "line": 1335,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "_fail(f\"通常戦Mega RingなしでMega可能: {mapping['record_key']}\")"
+        },
+        {
+          "path": "tools/modernization_p04_mega_runtime.py",
+          "line": 1340,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "has_keystone=True,"
+        },
+        {
+          "path": "tools/modernization_p04_mega_runtime.py",
+          "line": 1354,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "has_keystone=True,"
+        },
+        {
+          "path": "tools/modernization_p04_mega_runtime.py",
+          "line": 1523,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "\"upstream_keystone_enabled\","
+        },
+        {
+          "path": "tools/modernization_p08_integration.py",
+          "line": 1580,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "and catalog68.get(\"key_stone_item_id\") == 580"
+        },
+        {
+          "path": "tools/modernization_p08_integration.py",
+          "line": 2595,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "\"mega_ring_gate_item_id\": 580,"
+        },
+        {
+          "path": "tools/modernization_p08_integration.py",
+          "line": 2605,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "\"mega_ring_gate_item_id\": 580,"
+        },
+        {
+          "path": "tools/modernization_p08_integration.py",
+          "line": 5376,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "\"mega_ring_gate_item_id\": 580,"
+        },
+        {
+          "path": "tools/modernization_p08_integration.py",
+          "line": 5388,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "\"mega_ring_gate_item_id\": 580,"
+        },
+        {
+          "path": "tools/stage61_interaction_oracle.py",
+          "line": 45043,
+          "role": "implementation",
+          "score": 5,
+          "excerpt": "# flag. Requiring FLAG_CLEAR here would contradict the exact"
+        },
+        {
+          "path": "design/current_state.md",
+          "line": 16,
+          "role": "other",
+          "score": 3,
+          "excerpt": "- Stage70でMega用Species/Form 49件をID 1621〜1669として、28固定表とfront／back／palette／shiny／iconをROMへ接続した。既存Species 0〜1620の行はbyte一致を保持し、evolution表は1,670行・39 consumerへ再接続。Ability表は312→318行としてID 312〜317の差し替え可能な仮文言まで実装した。Stage71では49件のbase＋専用石の順方向行とMega→bas"
+        },
+        {
+          "path": "design/decisions.md",
+          "line": 346,
+          "role": "other",
+          "score": 3,
+          "excerpt": "- 解禁・重複: Mega Ring ID 580を解禁条件とし、個別expanded event flag `0x14A0..0x14CC`で1saveにつき各1回までとする。固定999-item取得bitmapやMirage 10-bit virtual itemには混ぜない。"
+        }
+      ]
+    },
+    "bp_earning": {
+      "match_count_retained": 120,
+      "implementation_match_count_retained": 120,
+      "anchor_match_count_retained": 25,
+      "selected_roots": [
+        {
+          "path": "scripts/build_bp_shop_runtime.py",
+          "line": 225,
+          "role": "implementation",
+          "score": 17,
+          "excerpt": "_fail(f\"BP shop reward contract differs: {reward.get('reward_key')}\")"
+        },
+        {
+          "path": "scripts/build_codex_battle_rewards.py",
+          "line": 1292,
+          "role": "implementation",
+          "score": 17,
+          "excerpt": "subprocess.SubprocessError, CodexBattleRewardsBuildError) as error:"
+        },
+        {
+          "path": "scripts/build_factory_repeat_reward_runtime.py",
+          "line": 202,
+          "role": "implementation",
+          "score": 17,
+          "excerpt": "points = \", \".join(f\"{row['battle_points']}u\" for row in rewards)"
+        },
+        {
+          "path": "scripts/build_factory_repeat_reward_runtime.py",
+          "line": 217,
+          "role": "implementation",
+          "score": 17,
+          "excerpt": "static const uint16_t gFactoryRepeatRewardBattlePoints[FACTORY_REPEAT_REWARD_COUNT] = {{"
+        },
+        {
+          "path": "scripts/build_factory_repeat_reward_runtime.py",
+          "line": 387,
+          "role": "implementation",
+          "score": 17,
+          "excerpt": "\"purpose\": \"Factory Trial repeat item/BP reward wrapper\","
+        },
+        {
+          "path": "scripts/build_factory_repeat_reward_runtime.py",
+          "line": 565,
+          "role": "implementation",
+          "score": 17,
+          "excerpt": "\"repeat_rewards_1_and_2_bp\": [row[\"battle_points\"] for row in catalog[\"rewards\"]] == [1, 2],"
+        },
+        {
+          "path": "scripts/build_factory_repeat_reward_runtime.py",
+          "line": 679,
+          "role": "implementation",
+          "score": 17,
+          "excerpt": "- ACTIVE `TRIAL_REPEAT` 2行をstock `Random()`で抽選し、`{rewards[0]['item_key']}`×1＋{rewards[0]['battle_points']} BP、`{rewards[1]['item_key']}`×1＋{rewards[1]['battle_points']} BPを接続した。"
+        },
+        {
+          "path": "scripts/build_factory_reward_runtime.py",
+          "line": 275,
+          "role": "implementation",
+          "score": 17,
+          "excerpt": "bp = selected[\"FACILITY_REWARD_KEY_TRIAL_BP\"]"
+        },
+        {
+          "path": "scripts/build_factory_reward_runtime.py",
+          "line": 371,
+          "role": "implementation",
+          "score": 17,
+          "excerpt": "\"bp_claim_bit\": FIRST_CLAIM_BITS[bp[\"facility_reward_key\"]],"
+        },
+        {
+          "path": "scripts/build_bp_shop_runtime.py",
+          "line": 60,
+          "role": "implementation",
+          "score": 14,
+          "excerpt": "\"BpShop_GetBalance\","
+        },
+        {
+          "path": "scripts/build_bp_shop_runtime.py",
+          "line": 270,
+          "role": "implementation",
+          "score": 14,
+          "excerpt": "header.append(_c_bytes(\"gBpShopBalancePrefix\", prefix))"
+        },
+        {
+          "path": "scripts/build_bp_shop_runtime.py",
+          "line": 778,
+          "role": "implementation",
+          "score": 14,
+          "excerpt": "\"order\": [\"AddBagItem\", \"VegaFactorySpendBattlePoints\", \"TrySavingData(0)\", \"TryWriteSector(31)\"],"
+        }
+      ],
+      "anchor_matches": [
+        {
+          "path": "scripts/build_bp_shop_runtime.py",
+          "line": 225,
+          "role": "implementation",
+          "score": 17,
+          "excerpt": "_fail(f\"BP shop reward contract differs: {reward.get('reward_key')}\")"
+        },
+        {
+          "path": "scripts/build_codex_battle_rewards.py",
+          "line": 1292,
+          "role": "implementation",
+          "score": 17,
+          "excerpt": "subprocess.SubprocessError, CodexBattleRewardsBuildError) as error:"
+        },
+        {
+          "path": "scripts/build_factory_repeat_reward_runtime.py",
+          "line": 202,
+          "role": "implementation",
+          "score": 17,
+          "excerpt": "points = \", \".join(f\"{row['battle_points']}u\" for row in rewards)"
+        },
+        {
+          "path": "scripts/build_factory_repeat_reward_runtime.py",
+          "line": 217,
+          "role": "implementation",
+          "score": 17,
+          "excerpt": "static const uint16_t gFactoryRepeatRewardBattlePoints[FACTORY_REPEAT_REWARD_COUNT] = {{"
+        },
+        {
+          "path": "scripts/build_factory_repeat_reward_runtime.py",
+          "line": 387,
+          "role": "implementation",
+          "score": 17,
+          "excerpt": "\"purpose\": \"Factory Trial repeat item/BP reward wrapper\","
+        },
+        {
+          "path": "scripts/build_factory_repeat_reward_runtime.py",
+          "line": 565,
+          "role": "implementation",
+          "score": 17,
+          "excerpt": "\"repeat_rewards_1_and_2_bp\": [row[\"battle_points\"] for row in catalog[\"rewards\"]] == [1, 2],"
+        },
+        {
+          "path": "scripts/build_factory_repeat_reward_runtime.py",
+          "line": 679,
+          "role": "implementation",
+          "score": 17,
+          "excerpt": "- ACTIVE `TRIAL_REPEAT` 2行をstock `Random()`で抽選し、`{rewards[0]['item_key']}`×1＋{rewards[0]['battle_points']} BP、`{rewards[1]['item_key']}`×1＋{rewards[1]['battle_points']} BPを接続した。"
+        },
+        {
+          "path": "scripts/build_factory_reward_runtime.py",
+          "line": 275,
+          "role": "implementation",
+          "score": 17,
+          "excerpt": "bp = selected[\"FACILITY_REWARD_KEY_TRIAL_BP\"]"
+        },
+        {
+          "path": "scripts/build_factory_reward_runtime.py",
+          "line": 371,
+          "role": "implementation",
+          "score": 17,
+          "excerpt": "\"bp_claim_bit\": FIRST_CLAIM_BITS[bp[\"facility_reward_key\"]],"
+        },
+        {
+          "path": "scripts/build_bp_shop_runtime.py",
+          "line": 60,
+          "role": "implementation",
+          "score": 14,
+          "excerpt": "\"BpShop_GetBalance\","
+        },
+        {
+          "path": "scripts/build_bp_shop_runtime.py",
+          "line": 270,
+          "role": "implementation",
+          "score": 14,
+          "excerpt": "header.append(_c_bytes(\"gBpShopBalancePrefix\", prefix))"
+        },
+        {
+          "path": "scripts/build_bp_shop_runtime.py",
+          "line": 778,
+          "role": "implementation",
+          "score": 14,
+          "excerpt": "\"order\": [\"AddBagItem\", \"VegaFactorySpendBattlePoints\", \"TrySavingData(0)\", \"TryWriteSector(31)\"],"
+        }
+      ],
+      "all_retained_matches": [
+        {
+          "path": "scripts/build_bp_shop_runtime.py",
+          "line": 225,
+          "role": "implementation",
+          "score": 17,
+          "excerpt": "_fail(f\"BP shop reward contract differs: {reward.get('reward_key')}\")"
+        },
+        {
+          "path": "scripts/build_codex_battle_rewards.py",
+          "line": 1292,
+          "role": "implementation",
+          "score": 17,
+          "excerpt": "subprocess.SubprocessError, CodexBattleRewardsBuildError) as error:"
+        },
+        {
+          "path": "scripts/build_factory_repeat_reward_runtime.py",
+          "line": 202,
+          "role": "implementation",
+          "score": 17,
+          "excerpt": "points = \", \".join(f\"{row['battle_points']}u\" for row in rewards)"
+        },
+        {
+          "path": "scripts/build_factory_repeat_reward_runtime.py",
+          "line": 217,
+          "role": "implementation",
+          "score": 17,
+          "excerpt": "static const uint16_t gFactoryRepeatRewardBattlePoints[FACTORY_REPEAT_REWARD_COUNT] = {{"
+        },
+        {
+          "path": "scripts/build_factory_repeat_reward_runtime.py",
+          "line": 387,
+          "role": "implementation",
+          "score": 17,
+          "excerpt": "\"purpose\": \"Factory Trial repeat item/BP reward wrapper\","
+        },
+        {
+          "path": "scripts/build_factory_repeat_reward_runtime.py",
+          "line": 565,
+          "role": "implementation",
+          "score": 17,
+          "excerpt": "\"repeat_rewards_1_and_2_bp\": [row[\"battle_points\"] for row in catalog[\"rewards\"]] == [1, 2],"
+        },
+        {
+          "path": "scripts/build_factory_repeat_reward_runtime.py",
+          "line": 679,
+          "role": "implementation",
+          "score": 17,
+          "excerpt": "- ACTIVE `TRIAL_REPEAT` 2行をstock `Random()`で抽選し、`{rewards[0]['item_key']}`×1＋{rewards[0]['battle_points']} BP、`{rewards[1]['item_key']}`×1＋{rewards[1]['battle_points']} BPを接続した。"
+        },
+        {
+          "path": "scripts/build_factory_reward_runtime.py",
+          "line": 275,
+          "role": "implementation",
+          "score": 17,
+          "excerpt": "bp = selected[\"FACILITY_REWARD_KEY_TRIAL_BP\"]"
+        },
+        {
+          "path": "scripts/build_factory_reward_runtime.py",
+          "line": 371,
+          "role": "implementation",
+          "score": 17,
+          "excerpt": "\"bp_claim_bit\": FIRST_CLAIM_BITS[bp[\"facility_reward_key\"]],"
+        },
+        {
+          "path": "scripts/build_bp_shop_runtime.py",
+          "line": 60,
+          "role": "implementation",
+          "score": 14,
+          "excerpt": "\"BpShop_GetBalance\","
+        },
+        {
+          "path": "scripts/build_bp_shop_runtime.py",
+          "line": 270,
+          "role": "implementation",
+          "score": 14,
+          "excerpt": "header.append(_c_bytes(\"gBpShopBalancePrefix\", prefix))"
+        },
+        {
+          "path": "scripts/build_bp_shop_runtime.py",
+          "line": 778,
+          "role": "implementation",
+          "score": 14,
+          "excerpt": "\"order\": [\"AddBagItem\", \"VegaFactorySpendBattlePoints\", \"TrySavingData(0)\", \"TryWriteSector(31)\"],"
+        },
+        {
+          "path": "scripts/build_bp_shop_runtime.py",
+          "line": 781,
+          "role": "implementation",
+          "score": 14,
+          "excerpt": "\"balance_storage\": \"VegaModernSaveData.factory.battle_points\","
+        },
+        {
+          "path": "scripts/build_bp_shop_runtime.py",
+          "line": 861,
+          "role": "implementation",
+          "score": 14,
+          "excerpt": "hex(entry[\"BpShop_GetBalance\"]),"
+        },
+        {
+          "path": "scripts/build_bp_shop_runtime.py",
+          "line": 923,
+          "role": "implementation",
+          "score": 14,
+          "excerpt": "- Trial runtimeと同じ `VegaModernSaveData.factory.battle_points` を残高正本に使用する。"
+        },
+        {
+          "path": "scripts/build_factory_repeat_reward_runtime.py",
+          "line": 142,
+          "role": "implementation",
+          "score": 14,
+          "excerpt": "for name in (\"VegaFactoryAddBattlePoints\", \"VegaSaveFinalize\", \"VegaSaveValidate\"):"
+        },
+        {
+          "path": "scripts/build_factory_repeat_reward_runtime.py",
+          "line": 265,
+          "role": "implementation",
+          "score": 14,
+          "excerpt": "f\"-DVEGA_FACTORY_ADD_BP_ADDRESS=0x{int(linked['VegaFactoryAddBattlePoints']):08X}u\","
+        },
+        {
+          "path": "scripts/build_factory_repeat_reward_runtime.py",
+          "line": 349,
+          "role": "implementation",
+          "score": 14,
+          "excerpt": "int(linked[\"VegaFactoryAddBattlePoints\"]),"
+        },
+        {
+          "path": "scripts/build_factory_repeat_reward_runtime.py",
+          "line": 512,
+          "role": "implementation",
+          "score": 14,
+          "excerpt": "\"VegaFactoryAddBattlePoints selected +1/+2\","
+        },
+        {
+          "path": "scripts/build_factory_reward_runtime.py",
+          "line": 84,
+          "role": "implementation",
+          "score": 14,
+          "excerpt": "\"VegaFactoryAddBattlePoints\","
+        },
+        {
+          "path": "scripts/build_factory_reward_runtime.py",
+          "line": 689,
+          "role": "implementation",
+          "score": 14,
+          "excerpt": "\"VegaFactoryAddBattlePoints +3\","
+        },
+        {
+          "path": "scripts/build_chatgpt_pro_collection_supply_packet.py",
+          "line": 891,
+          "role": "implementation",
+          "score": 12,
+          "excerpt": "- BP、研究ポイント、通常店、Factory、Raid報酬、既存field item、NPC giftを役割分担し、"
+        },
+        {
+          "path": "scripts/build_chatgpt_pro_design_packets.py",
+          "line": 50,
+          "role": "implementation",
+          "score": 12,
+          "excerpt": "\"title\": \"typed creditとBP価格を統一し施設外報酬遭遇24件を完成させる\","
+        },
+        {
+          "path": "scripts/build_chatgpt_pro_design_packets.py",
+          "line": 656,
+          "role": "implementation",
+          "score": 12,
+          "excerpt": "\"header\": [\"reward_key\", \"tier\", \"trigger_kind\", \"streak\", \"bp_amount\", \"item_key\","
+        },
+        {
+          "path": "scripts/build_chatgpt_pro_design_packets.py",
+          "line": 660,
+          "role": "implementation",
+          "score": 12,
+          "excerpt": "\"required_nonempty\": [\"reward_key\", \"tier\", \"trigger_kind\", \"streak\", \"bp_amount\","
+        },
+        {
+          "path": "scripts/build_chatgpt_pro_design_packets.py",
+          "line": 790,
+          "role": "implementation",
+          "score": 12,
+          "excerpt": "\"BP_PURCHASE\", \"QUEST_REWARD\"],"
+        },
+        {
+          "path": "scripts/build_chatgpt_pro_design_packets.py",
+          "line": 1242,
+          "role": "implementation",
+          "score": 12,
+          "excerpt": "- Factory Trial、BP shop、Trial/49/100報酬"
+        },
+        {
+          "path": "scripts/build_chatgpt_pro_design_packets.py",
+          "line": 1325,
+          "role": "implementation",
+          "score": 12,
+          "excerpt": "施設外報酬遭遇24件を、既存typed credit・BP・pending transactionへ接続できる"
+        },
+        {
+          "path": "scripts/build_engine_vertical_slice.py",
+          "line": 196,
+          "role": "implementation",
+          "score": 12,
+          "excerpt": "\"bp_awarded\": 9, \"status\": \"PASS\","
+        },
+        {
+          "path": "scripts/build_facility_runtime.py",
+          "line": 46,
+          "role": "implementation",
+          "score": 12,
+          "excerpt": "TRIAL_REWARD_BP = 9"
+        },
+        {
+          "path": "scripts/build_facility_runtime.py",
+          "line": 481,
+          "role": "implementation",
+          "score": 12,
+          "excerpt": "TRIAL_BATTLE_COUNT, 6, 3, TRIAL_REWARD_BP, POKEMON_SIZE,"
+        },
+        {
+          "path": "scripts/build_facility_runtime.py",
+          "line": 637,
+          "role": "implementation",
+          "score": 12,
+          "excerpt": "\"bp_reward\": TRIAL_REWARD_BP,"
+        },
+        {
+          "path": "scripts/build_facility_runtime.py",
+          "line": 738,
+          "role": "implementation",
+          "score": 12,
+          "excerpt": "- 9 BP / streak / once reward: {checks['reward_and_streak']}"
+        },
+        {
+          "path": "scripts/build_factory_high_modes_v2.py",
+          "line": 135,
+          "role": "implementation",
+          "score": 12,
+          "excerpt": "\"REWARD_BP_CLAIM_CREDIT_ATOMIC\","
+        },
+        {
+          "path": "scripts/build_factory_high_modes_v2.py",
+          "line": 1684,
+          "role": "implementation",
+          "score": 12,
+          "excerpt": "and model[\"rewards\"][0][\"bp_amount\"] == 9"
+        },
+        {
+          "path": "scripts/build_factory_high_modes_v2.py",
+          "line": 1694,
+          "role": "implementation",
+          "score": 12,
+          "excerpt": "\"REWARD_BP_CLAIM_CREDIT_ATOMIC\": len(model[\"rewards\"]) == 16,"
+        },
+        {
+          "path": "scripts/build_release.py",
+          "line": 606,
+          "role": "implementation",
+          "score": 12,
+          "excerpt": "\"bp_reward\": facility_stage_meta[\"contract\"][\"bp_reward\"],"
+        },
+        {
+          "path": "scripts/build_reward_encounters_v2.py",
+          "line": 121,
+          "role": "implementation",
+          "score": 12,
+          "excerpt": "\"RewardEncountersV2_TestGetBattlePoints\","
+        },
+        {
+          "path": "scripts/build_save_compatibility.py",
+          "line": 124,
+          "role": "implementation",
+          "score": 12,
+          "excerpt": "- Factory save/reset/restore、save失敗rollback、600-byte exact party、BP cap/underflow、once reward、"
+        },
+        {
+          "path": "scripts/build_stage58_qol_world_convenience_debug.py",
+          "line": 2076,
+          "role": "implementation",
+          "score": 12,
+          "excerpt": "\"factory_prepare_to_real_battle_to_bp_reward\": True,"
+        },
+        {
+          "path": "scripts/build_stage58_qol_world_convenience_debug.py",
+          "line": 2088,
+          "role": "implementation",
+          "score": 12,
+          "excerpt": "\"factory_prepare_to_real_battle_to_bp_reward\": False,"
+        },
+        {
+          "path": "scripts/build_stage58_qol_world_convenience_debug.py",
+          "line": 2121,
+          "role": "implementation",
+          "score": 12,
+          "excerpt": "factory_evidence.get(\"bp_after_reward\"),"
+        },
+        {
+          "path": "scripts/build_upstream.py",
+          "line": 1565,
+          "role": "implementation",
+          "score": 12,
+          "excerpt": "\"bp_reward\","
+        },
+        {
+          "path": "scripts/build_upstream.py",
+          "line": 1601,
+          "role": "implementation",
+          "score": 12,
+          "excerpt": "\"bp_reward\": len(fixture[\"bp_streaks\"]),"
+        },
+        {
+          "path": "scripts/pr16_p05_native_supply_evidence_map.py",
+          "line": 36,
+          "role": "implementation",
+          "score": 12,
+          "excerpt": "\"bp_earning\": \"P05_NATIVE_BP_EARNING_PHYSICAL\","
+        },
+        {
+          "path": "scripts/pr16_p05_native_supply_evidence_map.py",
+          "line": 63,
+          "role": "implementation",
+          "score": 12,
+          "excerpt": "\"bp_earning\": {"
+        },
+        {
+          "path": "scripts/pr16_p05_native_supply_evidence_map.py",
+          "line": 66,
+          "role": "implementation",
+          "score": 12,
+          "excerpt": "\"enter the authored BP-awarding activity through its real reception/menu\","
+        },
+        {
+          "path": "scripts/pr16_p05_native_supply_evidence_map.py",
+          "line": 322,
+          "role": "implementation",
+          "score": 12,
+          "excerpt": "\"P05_NATIVE_BP_EARNING_PHYSICAL\": \"BP通常獲得\","
+        },
+        {
+          "path": "scripts/rebuild_codex_battle_rewards_from_clean.py",
+          "line": 211,
+          "role": "implementation",
+          "score": 12,
+          "excerpt": "subprocess.SubprocessError, CodexBattleRewardsCleanError) as error:"
+        },
+        {
+          "path": "scripts/rebuild_reward_encounters_v2_from_clean.py",
+          "line": 386,
+          "role": "implementation",
+          "score": 12,
+          "excerpt": "subprocess.SubprocessError, RewardEncountersCleanRebuildError,"
+        },
+        {
+          "path": "scripts/run_stage58_mgba_validation.py",
+          "line": 481,
+          "role": "implementation",
+          "score": 12,
+          "excerpt": "\"factory_prepare_to_real_battle_to_bp_reward\": True,"
+        },
+        {
+          "path": "scripts/run_stage58_mgba_validation.py",
+          "line": 492,
+          "role": "implementation",
+          "score": 12,
+          "excerpt": "\"factory_prepare_to_real_battle_to_bp_reward\": False,"
+        },
+        {
+          "path": "scripts/run_stage58_mgba_validation.py",
+          "line": 558,
+          "role": "implementation",
+          "score": 12,
+          "excerpt": "factory.get(\"bp_after_reward\"), factory.get(\"bp_delta\"),"
+        },
+        {
+          "path": "config/factory_fixture_inputs.json",
+          "line": 14,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "\"bp_reward\": \"match\","
+        },
+        {
+          "path": "config/factory_fixture_inputs.json",
+          "line": 38,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "\"bp_reward_special_id\": 86,"
+        },
+        {
+          "path": "config/factory_high_modes_v2.json",
+          "line": 158,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "\"incremental_bps\": \"build/patches/reward-encounters-stage41-to-factory-high-modes-stage42.bps\","
+        },
+        {
+          "path": "config/t02_audit_policy.json",
+          "line": 224,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "\"fixture_measured_categories\": [\"selection\", \"bp_reward\", \"eligibility\", \"battle_mine_options\"],"
+        },
+        {
+          "path": "config/upstream_inventory.json",
+          "line": 439,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "\"factory_correspondence\": \"streak 0..101の全境界fixtureでBP報酬match。save layoutはVega adapterで別途接続\","
+        },
+        {
+          "path": "content/factory_high_modes_v2/canonical_model.json",
+          "line": 18329,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "\"create repeatable BP award transaction\","
+        },
+        {
+          "path": "content/reward_encounters_v2/canonical_model.json",
+          "line": 49,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "\"rollback_boundary\": \"source単位でhookを無効化し既存Factory報酬・釣り・調査・BP shop本体を維持\","
+        },
+        {
+          "path": "scripts/build_codex_battle_rewards.py",
+          "line": 569,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "_integer(after[\"expected_pointer\"], \"AfterBattle pointer\"),"
+        },
+        {
+          "path": "scripts/build_factory_repeat_reward_runtime.py",
+          "line": 195,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "\"battle_points\": int(row[\"amount\"], 0),"
+        },
+        {
+          "path": "scripts/build_factory_reward_runtime.py",
+          "line": 369,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "\"battle_points\": int(bp[\"amount\"], 0),"
+        },
+        {
+          "path": "scripts/build_factory_reward_runtime.py",
+          "line": 484,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "int(catalog[\"first_clear\"][\"battle_points\"]),"
+        },
+        {
+          "path": "tools/content/populate_content.py",
+          "line": 1305,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "QOL報酬とBP価格は `docs/QOL_POLICY.md` の最初の入手時期を後退させず、XL反復・金冠・強力な反復供給をKanto League後までgateする。早期Kantoは警告・強制戦闘なし・無料帰還を保持する。"
+        },
+        {
+          "path": "tools/factory_fixture_runner.c",
+          "line": 80,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "uint32_t bp_reward_special_id;"
+        },
+        {
+          "path": "tools/factory_fixture_runner.c",
+          "line": 125,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "uint32_t bp_reward;"
+        },
+        {
+          "path": "tools/factory_fixture_runner.c",
+          "line": 607,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "PARSE_U32(bp_reward_special_id, \"bp_reward_special_id\");"
+        },
+        {
+          "path": "tools/factory_fixture_runner.c",
+          "line": 677,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "|| config->bp_reward_special_id > 0x1FFU"
+        },
+        {
+          "path": "tools/factory_fixture_runner.c",
+          "line": 964,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "entrypoints->bp_reward = read_special_entry("
+        },
+        {
+          "path": "tools/factory_fixture_runner.c",
+          "line": 965,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "loaded->core, config, config->bp_reward_special_id);"
+        },
+        {
+          "path": "tools/factory_fixture_runner.c",
+          "line": 973,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "entrypoints->bp_reward,"
+        },
+        {
+          "path": "tools/factory_fixture_runner.c",
+          "line": 1052,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "loaded, config, entrypoints->bp_reward, 0U, 0U, 0U, 0U, &result)) {"
+        },
+        {
+          "path": "tools/factory_fixture_runner.c",
+          "line": 1056,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "observation->bp[index].reward = result & 0xFFFFU;"
+        },
+        {
+          "path": "tools/factory_fixture_runner.c",
+          "line": 1260,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "|| left->bp[index].reward != right->bp[index].reward) {"
+        },
+        {
+          "path": "tools/factory_fixture_runner.c",
+          "line": 1308,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "&& left->entrypoints.bp_reward == right->entrypoints.bp_reward"
+        },
+        {
+          "path": "tools/factory_fixture_runner.c",
+          "line": 1321,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "\"\\\"bp_reward\\\":\\\"0x%08\" PRIx32 \"\\\",\""
+        },
+        {
+          "path": "tools/factory_fixture_runner.c",
+          "line": 1325,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "entrypoints->bp_reward, entrypoints->eligibility,"
+        },
+        {
+          "path": "tools/factory_fixture_runner.c",
+          "line": 1354,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "observation->bp[index].streak, observation->bp[index].reward);"
+        },
+        {
+          "path": "tools/factory_fixture_runner.c",
+          "line": 1425,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "\" \\\"bp_reward\\\": {\\\"comparison\\\":\\\"%s\\\",\\\"factory\\\":\","
+        },
+        {
+          "path": "tools/mgba_factory_high_modes_v2_smoke.c",
+          "line": 682,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "\"REWARD_BP_CLAIM_CREDIT_ATOMIC\","
+        },
+        {
+          "path": "tools/mgba_factory_repeat_reward_smoke.c",
+          "line": 15,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "#define REWARD_BP_OFFSET UINT32_C(0)"
+        },
+        {
+          "path": "tools/mgba_factory_repeat_reward_smoke.c",
+          "line": 309,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "reward_write16(core, factory + REWARD_BP_OFFSET, bp);"
+        },
+        {
+          "path": "tools/mgba_factory_repeat_reward_smoke.c",
+          "line": 427,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "|| read16(core, factory + REWARD_BP_OFFSET) != 112U"
+        },
+        {
+          "path": "tools/mgba_factory_repeat_reward_smoke.c",
+          "line": 443,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "|| read16(core, factory + REWARD_BP_OFFSET) != 122U"
+        },
+        {
+          "path": "tools/mgba_factory_repeat_reward_smoke.c",
+          "line": 459,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "|| read16(core, factory + REWARD_BP_OFFSET) != 133U"
+        },
+        {
+          "path": "tools/mgba_factory_repeat_reward_smoke.c",
+          "line": 508,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "|| read16(core, factory + REWARD_BP_OFFSET) != 133U"
+        },
+        {
+          "path": "tools/mgba_factory_repeat_reward_smoke.c",
+          "line": 519,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "|| read16(core, factory + REWARD_BP_OFFSET) != 143U"
+        },
+        {
+          "path": "tools/mgba_factory_repeat_reward_smoke.c",
+          "line": 537,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "|| read16(core, factory + REWARD_BP_OFFSET) != 209U"
+        },
+        {
+          "path": "tools/mgba_factory_reward_smoke.c",
+          "line": 14,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "#define REWARD_BP_OFFSET UINT32_C(0)"
+        },
+        {
+          "path": "tools/mgba_factory_reward_smoke.c",
+          "line": 275,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "reward_write16(core, factory + REWARD_BP_OFFSET, bp);"
+        },
+        {
+          "path": "tools/mgba_factory_reward_smoke.c",
+          "line": 385,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "if (read16(core, factory + REWARD_BP_OFFSET) != 112U"
+        },
+        {
+          "path": "tools/mgba_factory_reward_smoke.c",
+          "line": 414,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "|| read16(core, factory + REWARD_BP_OFFSET) != 112U"
+        },
+        {
+          "path": "tools/mgba_factory_reward_smoke.c",
+          "line": 425,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "|| read16(core, factory + REWARD_BP_OFFSET) != 121U"
+        },
+        {
+          "path": "tools/mgba_factory_reward_smoke.c",
+          "line": 439,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "|| read16(core, factory + REWARD_BP_OFFSET) != 130U"
+        },
+        {
+          "path": "tools/mgba_factory_reward_smoke.c",
+          "line": 455,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "|| read16(core, factory + REWARD_BP_OFFSET) != 209U"
+        },
+        {
+          "path": "tools/mgba_factory_special_event_smoke.c",
+          "line": 16,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "#define REWARD_BP_OFFSET UINT32_C(0)"
+        },
+        {
+          "path": "tools/mgba_factory_special_event_smoke.c",
+          "line": 264,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "reward_write16(core, factory + REWARD_BP_OFFSET, bp);"
+        },
+        {
+          "path": "tools/mgba_factory_special_event_smoke.c",
+          "line": 358,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "uint16_t locked_bp = read16(core, factory + REWARD_BP_OFFSET);"
+        },
+        {
+          "path": "tools/mgba_factory_special_event_smoke.c",
+          "line": 385,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "|| read16(core, factory + REWARD_BP_OFFSET) != 320U"
+        },
+        {
+          "path": "tools/mgba_factory_special_event_smoke.c",
+          "line": 400,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "uint16_t catch_bp = read16(core, factory + REWARD_BP_OFFSET);"
+        },
+        {
+          "path": "tools/mgba_factory_special_event_smoke.c",
+          "line": 427,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "|| read16(core, factory + REWARD_BP_OFFSET) != 330U"
+        },
+        {
+          "path": "tools/mgba_factory_special_event_smoke.c",
+          "line": 442,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "|| read16(core, factory + REWARD_BP_OFFSET) != 340U"
+        },
+        {
+          "path": "tools/mgba_reward_encounters_v2_smoke.c",
+          "line": 48,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "static const uint16_t REWARD_BP_PRICE[REWARD_SERVICE_COUNT] = {"
+        },
+        {
+          "path": "tools/mgba_reward_encounters_v2_smoke.c",
+          "line": 66,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "X(purchase_bp, \"RewardEncounterPurchaseWithBp\") \\"
+        },
+        {
+          "path": "tools/mgba_reward_encounters_v2_smoke.c",
+          "line": 80,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "X(test_get_bp, \"RewardEncountersV2_TestGetBattlePoints\") \\"
+        },
+        {
+          "path": "tools/mgba_reward_encounters_v2_smoke.c",
+          "line": 259,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "static uint16_t reward_bp(struct mCore *core,"
+        },
+        {
+          "path": "tools/mgba_reward_encounters_v2_smoke.c",
+          "line": 370,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "&& read16(core, pointer + 6U) == REWARD_BP_PRICE[tier];"
+        },
+        {
+          "path": "tools/mgba_reward_encounters_v2_smoke.c",
+          "line": 401,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "tier, 2U, REWARD_BP_PRICE[tier] + 3U, 0U) == REWARD_OK;"
+        },
+        {
+          "path": "tools/mgba_reward_encounters_v2_smoke.c",
+          "line": 402,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "uint16_t bp_before = reward_bp(core, symbols);"
+        },
+        {
+          "path": "tools/mgba_reward_encounters_v2_smoke.c",
+          "line": 406,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "&& reward_bp(core, symbols) == bp_before"
+        },
+        {
+          "path": "tools/mgba_reward_encounters_v2_smoke.c",
+          "line": 411,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "tier, REWARD_PAYMENT_BP, 0U, 0U) == REWARD_PENDING_EXISTS;"
+        },
+        {
+          "path": "tools/mgba_reward_encounters_v2_smoke.c",
+          "line": 416,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "static bool reward_bp_direct(struct mCore *core,"
+        },
+        {
+          "path": "tools/mgba_reward_encounters_v2_smoke.c",
+          "line": 423,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "tier, 2U, REWARD_BP_PRICE[tier], 0U) == REWARD_OK;"
+        },
+        {
+          "path": "tools/mgba_reward_encounters_v2_smoke.c",
+          "line": 430,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "&& reward_bp(core, symbols) == 0U"
+        },
+        {
+          "path": "tools/mgba_reward_encounters_v2_smoke.c",
+          "line": 444,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "tier, 5U, REWARD_BP_PRICE[tier], 0U) == REWARD_OK"
+        },
+        {
+          "path": "tools/mgba_reward_encounters_v2_smoke.c",
+          "line": 447,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "&& reward_bp(core, symbols) == 0U"
+        },
+        {
+          "path": "tools/mgba_reward_encounters_v2_smoke.c",
+          "line": 453,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "tier, 0xFFFFU, REWARD_BP_PRICE[tier], 0U) == REWARD_OK"
+        },
+        {
+          "path": "tools/mgba_reward_encounters_v2_smoke.c",
+          "line": 457,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "&& reward_bp(core, symbols) == REWARD_BP_PRICE[tier];"
+        },
+        {
+          "path": "tools/mgba_reward_encounters_v2_smoke.c",
+          "line": 488,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "2U, REWARD_PAYMENT_BP, 0U, 0U) == REWARD_INSUFFICIENT"
+        }
+      ]
+    },
+    "policy_selection": {
+      "match_count_retained": 120,
+      "implementation_match_count_retained": 120,
+      "anchor_match_count_retained": 1,
+      "selected_roots": [
+        {
+          "path": "scripts/pr16_apply_gear_policy_boundary.py",
+          "line": 27,
+          "role": "implementation",
+          "score": 14,
+          "excerpt": "s=s[:a]+''' /* A configured NEXT-battle policy lives in volatile RAM, not the save."
+        },
+        {
+          "path": "scripts/pr16_gear_screen_checkpoint.py",
+          "line": 77,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "ring_bp_natural_acquisition_accepted=False,ordinary_policy_selection_accepted=False,all_six_gear_routes_accepted=False,full_p05_acceptance=False,release_ready=False)"
+        },
+        {
+          "path": "scripts/pr16_p05_native_supply_evidence_map.py",
+          "line": 37,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "\"policy_selection\": \"P05_ORDINARY_POLICY_SELECTION_PHYSICAL\","
+        },
+        {
+          "path": "scripts/pr16_p05_native_supply_evidence_map.py",
+          "line": 88,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "\"claim controller/scheduler fixture coverage as ordinary policy selection\","
+        },
+        {
+          "path": "scripts/pr16_p05_native_supply_evidence_map.py",
+          "line": 262,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "purchased_acceptance[\"ordinary_policy_selection_accepted\"] is False,"
+        },
+        {
+          "path": "scripts/pr16_p05_native_supply_evidence_map.py",
+          "line": 290,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "need(row[\"ordinary_policy_selection_required\"] is True, \"policy was prematurely closed\")"
+        },
+        {
+          "path": "scripts/pr16_p05_native_supply_evidence_map.py",
+          "line": 323,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "\"P05_ORDINARY_POLICY_SELECTION_PHYSICAL\": \"戦闘許可モード通常選択\","
+        },
+        {
+          "path": "scripts/pr16_purchased_gear_checkpoint.py",
+          "line": 73,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "purchased_gear_to_battle_accepted=True,ring_bp_natural_acquisition_accepted=False,ordinary_policy_selection_accepted=False,all_six_species_gear_routes_accepted=False,full_p05_acceptance=False,release_ready=False)"
+        },
+        {
+          "path": "scripts/pr16_purchased_gear_checkpoint.py",
+          "line": 85,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "out['purchased_gear_checkpoint']=dict(source_path=RECEIPT,candidate=display.CANDIDATE,new_native_processes=4,new_native_cores=9,purchased_gear_to_battle_accepted=True,ring_bp_natural_acquisition_accepted=False,ordinary_policy_selection_acce"
+        },
+        {
+          "path": "scripts/pr16_purchased_gear_checkpoint.py",
+          "line": 89,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "row.update(reason_ja='自然捕獲個体の実戦2件6コアを保持。シビルドナイトの実受付購入→Bagで持たせる→通常歩行/自然遭遇→メガ切替/未切替/取消→技使用→復帰→通常保存/別コア再開は新規4件9コア成功。開始個体・リング・BP・許可policyはfixture。リング/BPと戦闘モード自体の通常供給、他の採用取得経路の対応整理は未受入',purchased_gear_evidence=RECEIPT,captured_to_battle_required"
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 84,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"VegaConfigureNextBattlePolicy\","
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 85,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"VegaBattlePolicyResolveAIProfileBits\","
+        }
+      ],
+      "anchor_matches": [
+        {
+          "path": "scripts/pr16_apply_gear_policy_boundary.py",
+          "line": 27,
+          "role": "implementation",
+          "score": 14,
+          "excerpt": "s=s[:a]+''' /* A configured NEXT-battle policy lives in volatile RAM, not the save."
+        }
+      ],
+      "all_retained_matches": [
+        {
+          "path": "scripts/pr16_apply_gear_policy_boundary.py",
+          "line": 27,
+          "role": "implementation",
+          "score": 14,
+          "excerpt": "s=s[:a]+''' /* A configured NEXT-battle policy lives in volatile RAM, not the save."
+        },
+        {
+          "path": "scripts/pr16_gear_screen_checkpoint.py",
+          "line": 77,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "ring_bp_natural_acquisition_accepted=False,ordinary_policy_selection_accepted=False,all_six_gear_routes_accepted=False,full_p05_acceptance=False,release_ready=False)"
+        },
+        {
+          "path": "scripts/pr16_p05_native_supply_evidence_map.py",
+          "line": 37,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "\"policy_selection\": \"P05_ORDINARY_POLICY_SELECTION_PHYSICAL\","
+        },
+        {
+          "path": "scripts/pr16_p05_native_supply_evidence_map.py",
+          "line": 88,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "\"claim controller/scheduler fixture coverage as ordinary policy selection\","
+        },
+        {
+          "path": "scripts/pr16_p05_native_supply_evidence_map.py",
+          "line": 262,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "purchased_acceptance[\"ordinary_policy_selection_accepted\"] is False,"
+        },
+        {
+          "path": "scripts/pr16_p05_native_supply_evidence_map.py",
+          "line": 290,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "need(row[\"ordinary_policy_selection_required\"] is True, \"policy was prematurely closed\")"
+        },
+        {
+          "path": "scripts/pr16_p05_native_supply_evidence_map.py",
+          "line": 323,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "\"P05_ORDINARY_POLICY_SELECTION_PHYSICAL\": \"戦闘許可モード通常選択\","
+        },
+        {
+          "path": "scripts/pr16_purchased_gear_checkpoint.py",
+          "line": 73,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "purchased_gear_to_battle_accepted=True,ring_bp_natural_acquisition_accepted=False,ordinary_policy_selection_accepted=False,all_six_species_gear_routes_accepted=False,full_p05_acceptance=False,release_ready=False)"
+        },
+        {
+          "path": "scripts/pr16_purchased_gear_checkpoint.py",
+          "line": 85,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "out['purchased_gear_checkpoint']=dict(source_path=RECEIPT,candidate=display.CANDIDATE,new_native_processes=4,new_native_cores=9,purchased_gear_to_battle_accepted=True,ring_bp_natural_acquisition_accepted=False,ordinary_policy_selection_acce"
+        },
+        {
+          "path": "scripts/pr16_purchased_gear_checkpoint.py",
+          "line": 89,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "row.update(reason_ja='自然捕獲個体の実戦2件6コアを保持。シビルドナイトの実受付購入→Bagで持たせる→通常歩行/自然遭遇→メガ切替/未切替/取消→技使用→復帰→通常保存/別コア再開は新規4件9コア成功。開始個体・リング・BP・許可policyはfixture。リング/BPと戦闘モード自体の通常供給、他の採用取得経路の対応整理は未受入',purchased_gear_evidence=RECEIPT,captured_to_battle_required"
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 84,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"VegaConfigureNextBattlePolicy\","
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 85,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"VegaBattlePolicyResolveAIProfileBits\","
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 96,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"VegaConfigureNextBattlePolicy\","
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 100,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"VegaBattlePolicyEnd\","
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 104,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"VegaBattlePolicyCanMega\","
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 105,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"VegaBattlePolicyMarkMega\","
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 106,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"VegaBattlePolicyCanZ\","
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 107,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"VegaBattlePolicyMarkZ\","
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 108,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"VegaBattlePolicyCanDynamax\","
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 109,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"VegaBattlePolicyMarkDynamax\","
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 110,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"VegaBattlePolicyCanTera\","
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 111,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"VegaBattlePolicyMarkTera\","
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 1658,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"\\tCfruIntegrationState vegaBattlePolicy; //T06 battle-local policy; heap-owned\\n};\","
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 1664,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"CfruIntegrationState gCfruBattlePolicy;\\n\""
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 1666,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "'#include \"defines_battle.h\"\\n\\n#define gCfruBattlePolicy (gNewBS->vegaBattlePolicy)',"
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 1709,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"bool8 VegaBattlePolicyIsRaid(void);\\n\""
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 1857,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"#define VEGA_FACILITY_PARTNER ((VegaFacilityStateIsActive() || VegaBattlePolicyIsRaid()) ? VegaFacilityPartner() : VarGet(VAR_PARTNER))\","
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 1866,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"void BuildTrainerPartySetup(void)\\n{\\n\\t(void)VegaBattlePolicyPrepareFacilityBattle();\","
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 1897,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"BuildFrontierParty(&gPlayerParty[3], (VegaFacilityStateIsActive() || VegaBattlePolicyIsRaid()) ? VegaFacilityPartner() : VarGet(VAR_PARTNER), towerTier, 3, FALSE, B_SIDE_PLAYER);\","
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 2149,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"\\t(void)VegaBattlePolicyPrepareStorage();\","
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 2196,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"\\t(void)VegaBattlePolicyBegin();\\n}\","
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 2197,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"battle policy begin hook\","
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 2205,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"\\treturn VegaBattlePolicyResolveAIProfileBits(gActiveBattler, flags);\\n}\\n\\n#define NUM_COPY_STATS STAT_SPDEF\","
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 2273,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "CfruAiCacheSnapshot *snapshot = &gNewBS->vegaBattlePolicy.ai_cache_snapshot;"
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 2361,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "CfruAiCacheSnapshot *snapshot = &gNewBS->vegaBattlePolicy.ai_cache_snapshot;"
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 2473,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"\\t\\t(void)VegaBattlePolicyRestoreTeraTypes();\\n\""
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 2480,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"\\t\\tBringBackTheDead();\\n\\t\\t(void)VegaBattlePolicyEnd();\\n\\t\\tEndBattleFlagClear();\","
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 2481,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"battle policy end hook\","
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 2510,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"\\treturn VegaBattlePolicyIsRaid();\\n\""
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 2522,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"\\treturn VegaBattlePolicyRaidCaptureAllowed();\\n\""
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 2608,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"/* T06: Raid state is heap-owned and cleared by VegaBattlePolicyEnd. */\\n\","
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 2648,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"\\tif (VegaBattlePolicyRaidAdvanceTurnAndExpired()\\n\""
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 2671,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"\\t&& !VegaBattlePolicyRaidCaptureSucceeded())\\n\""
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 2689,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"\\t#else\\n\\n\\tif (!VegaBattlePolicyCanMega(bank, TRUE))\\n\\t\\treturn NULL;\\n\\n\\tif (!CheckUBInstead && !MegaEvolutionEnabled(bank))\","
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 2690,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"Mega policy gate\","
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 2695,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"move_t CanUseZMove(u8 bank, u8 moveIndex, u16 move)\\n{\\n\\tif (!VegaBattlePolicyCanZ(bank, TRUE))\\n\\t\\treturn MOVE_NONE;\\n\\n\\tif (IS_TRANSFORMED(bank))\","
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 2701,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"bool8 CanDynamax(u8 bank)\\n{\\n\\tif (!VegaBattlePolicyCanDynamax(bank, TRUE))\\n\\t\\treturn FALSE;\\n\\n\\tif (gBattleTypeFlags\","
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 2707,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"bool8 DynamaxEnabled(u8 bank)\\n{\\n\\tif (!VegaBattlePolicyCanDynamax(bank, TRUE))\\n\\t\\treturn FALSE;\\n\\n\\tif (gBattleTypeFlags\","
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 2713,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"bool8 CanTerastal(u8 bank)\\n{\\n\\tif (!VegaBattlePolicyCanTera(bank, TRUE))\\n\\t\\treturn FALSE;\\n\\n\\tu16 species\","
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 2719,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"bool8 TerastalEnabled(u8 bank)\\n{\\n\\tif (!VegaBattlePolicyCanTera(bank, TRUE))\\n\\t\\treturn FALSE;\\n\\n\\tif (gBattleTypeFlags\","
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 2725,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"if (script != NULL && VegaBattlePolicyMarkMega(bank))\","
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 2730,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"if (script != NULL && VegaBattlePolicyMarkTera(bank))\","
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 2735,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"if (script != NULL && VegaBattlePolicyMarkDynamax(bank))\","
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 2752,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"\\t\\t\\t&& VegaBattlePolicyMarkZ(gBankAttacker))\\n\\t\\t\\t{\","
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 2761,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"\\t\\t\\t\\t\\t\\tif (VegaBattlePolicyCanMega(primalBank, TRUE))\\n\""
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 2763,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"\\t\\t\\t\\t\\t\\tif (script != NULL && VegaBattlePolicyMarkMega(primalBank))\","
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 2773,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"\\t\\t\\tif (VegaBattlePolicyCanMega(gActiveBattler, TRUE))\\n\""
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 2777,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"\\t\\t\\t&& VegaBattlePolicyMarkMega(gActiveBattler))\","
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 3083,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"VegaBattlePolicyBegin\","
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 3084,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"VegaBattlePolicyEnd\","
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 3085,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"VegaConfigureNextBattlePolicy\","
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 3089,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"VegaBattlePolicyPrepareFacilityBattle\","
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 3091,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"VegaBattlePolicyResolveAIProfileBits\","
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 3092,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"VegaBattlePolicyCanMega\","
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 3093,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"VegaBattlePolicyMarkMega\","
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 3094,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"VegaBattlePolicyCanZ\","
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 3095,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"VegaBattlePolicyMarkZ\","
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 3096,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"VegaBattlePolicyCanDynamax\","
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 3097,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"VegaBattlePolicyMarkDynamax\","
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 3098,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"VegaBattlePolicyCanTera\","
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 3099,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"VegaBattlePolicyMarkTera\","
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 3478,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"tools/mgba_battle_policy_smoke.c\","
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 3837,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "_mapping(metadata.get(\"battle_policy_smoke\"), \"policy smoke evidence\").get(\"payload\"),"
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 4661,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "or payload.get(\"fixture\") != \"t06_battle_policy_integration_v1\""
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 4919,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "def run_battle_policy_smoke("
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 4925,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "source_logical=\"tools/mgba_battle_policy_smoke.c\","
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 5186,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "run_battle_policy_smoke, root, output, integration_symbols"
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 5223,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"battle_policy_smoke\": policy_smoke_evidence,"
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 5483,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"battle_policy_smoke\": \"tools/mgba_battle_policy_smoke.c\","
+        },
+        {
+          "path": "scripts/build_battle_core.py",
+          "line": 5509,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "_mapping(smoke_records[\"battle_policy_smoke\"].get(\"payload\"), \"policy payload\"),"
+        },
+        {
+          "path": "scripts/build_battle_rules.py",
+          "line": 46,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "MGBA_POLICY_FIXTURE = Path(\"build/stages/23_mgba_battle_policy.json\")"
+        },
+        {
+          "path": "scripts/build_battle_rules.py",
+          "line": 49,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "POLICY_RUNNER = Path(\"tools/mgba_battle_policy_smoke.c\")"
+        },
+        {
+          "path": "scripts/build_battle_rules.py",
+          "line": 522,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "or value.get(\"fixture\") != \"t06_battle_policy_integration_v1\""
+        },
+        {
+          "path": "scripts/build_battle_rules.py",
+          "line": 556,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "with tempfile.TemporaryDirectory(prefix=\"vega-battle-policy-mgba-\") as raw:"
+        },
+        {
+          "path": "scripts/build_battle_rules.py",
+          "line": 559,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "executable = directory / \"mgba-battle-policy-smoke\""
+        },
+        {
+          "path": "scripts/build_battle_rules.py",
+          "line": 564,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "], \"battle policy libmGBA runner compile\", cwd=root)"
+        },
+        {
+          "path": "scripts/build_battle_rules.py",
+          "line": 570,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"t06_process_runs\": t06[\"battle_policy_smoke\"][\"process_runs\"],"
+        },
+        {
+          "path": "scripts/build_battle_rules.py",
+          "line": 571,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"t06_source_sha256\": t06[\"battle_policy_smoke\"][\"source_sha256\"],"
+        },
+        {
+          "path": "scripts/build_battle_rules.py",
+          "line": 572,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"same_runner_source\": t06[\"battle_policy_smoke\"][\"source_sha256\"]"
+        },
+        {
+          "path": "scripts/build_battle_ui.py",
+          "line": 52,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "POLICY_FIXTURE = Path(\"build/stages/24_mgba_battle_policy.json\")"
+        },
+        {
+          "path": "scripts/build_battle_ui.py",
+          "line": 55,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "POLICY_RUNNER = Path(\"tools/mgba_battle_policy_smoke.c\")"
+        },
+        {
+          "path": "scripts/build_battle_ui.py",
+          "line": 979,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "or value.get(\"fixture\") != \"t06_battle_policy_integration_v1\""
+        },
+        {
+          "path": "scripts/build_battle_ui.py",
+          "line": 1016,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "executable = directory / \"mgba-battle-policy-smoke\""
+        },
+        {
+          "path": "scripts/build_battle_ui.py",
+          "line": 1028,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"t06_process_runs\": t06[\"battle_policy_smoke\"][\"process_runs\"],"
+        },
+        {
+          "path": "scripts/build_battle_ui.py",
+          "line": 1029,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"t06_source_sha256\": t06[\"battle_policy_smoke\"][\"source_sha256\"],"
+        },
+        {
+          "path": "scripts/build_battle_ui.py",
+          "line": 1030,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"same_runner_source\": t06[\"battle_policy_smoke\"][\"source_sha256\"] == source_hash,"
+        },
+        {
+          "path": "scripts/build_engine_vertical_slice.py",
+          "line": 229,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"t06_policy_status\": battle[\"battle_policy_smoke\"][\"status\"], \"status\": \"PASS\","
+        },
+        {
+          "path": "scripts/build_engine_vertical_slice.py",
+          "line": 242,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"battle_policy\": battle[\"battle_policy_smoke\"][\"status\"]},"
+        },
+        {
+          "path": "scripts/build_facility_runtime.py",
+          "line": 112,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "def _battle_policy_addresses(root: Path) -> dict[str, int]:"
+        },
+        {
+          "path": "scripts/build_facility_runtime.py",
+          "line": 165,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "root: Path, load_address: int, battle_policy_addresses: dict[str, int]"
+        },
+        {
+          "path": "scripts/build_facility_runtime.py",
+          "line": 198,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "f\"0x{battle_policy_addresses['configure_facility']:08X}u\","
+        },
+        {
+          "path": "scripts/build_facility_runtime.py",
+          "line": 200,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "f\"0x{battle_policy_addresses['generate_rentals']:08X}u\","
+        },
+        {
+          "path": "scripts/build_facility_runtime.py",
+          "line": 202,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "f\"0x{battle_policy_addresses['generate_trainer']:08X}u\","
+        },
+        {
+          "path": "scripts/build_facility_runtime.py",
+          "line": 464,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "battle_policy_addresses = _battle_policy_addresses(root)"
+        },
+        {
+          "path": "scripts/build_facility_runtime.py",
+          "line": 465,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "code, code_symbols = _compile_runtime(root, code_load, battle_policy_addresses)"
+        },
+        {
+          "path": "scripts/build_facility_runtime.py",
+          "line": 527,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"battle_policy\": {"
+        },
+        {
+          "path": "scripts/build_facility_runtime.py",
+          "line": 529,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"addresses\": battle_policy_addresses,"
+        },
+        {
+          "path": "scripts/build_facility_runtime.py",
+          "line": 641,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"battle_policy_source\": STAGE06_META.as_posix(),"
+        },
+        {
+          "path": "scripts/build_facility_runtime.py",
+          "line": 642,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"battle_policy_addresses\": runtime[\"battle_policy\"][\"addresses\"],"
+        },
+        {
+          "path": "scripts/build_facility_runtime.py",
+          "line": 699,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "hex(metadata[\"battle_policy\"][\"addresses\"][\"state_is_active\"]),"
+        },
+        {
+          "path": "scripts/build_fast_rom.py",
+          "line": 64,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"tools/mgba_battle_policy_smoke.c\", \"tools/mgba_ai_fixture_runner.c\","
+        },
+        {
+          "path": "scripts/build_mirage_production.py",
+          "line": 139,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"MIRAGE_CONFIGURE_BATTLE_POLICY_ADDRESS\": 0x091261F5,"
+        },
+        {
+          "path": "scripts/build_mirage_production.py",
+          "line": 1404,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"trainerbattle_mode\": 3,"
+        },
+        {
+          "path": "scripts/build_mirage_production.py",
+          "line": 1405,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"trainerbattle_mode_name\": \"SINGLE_NO_INTRO\","
+        },
+        {
+          "path": "scripts/build_mirage_production.py",
+          "line": 2026,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "and runtime[\"field\"][\"trainerbattle_mode\"] == 3"
+        },
+        {
+          "path": "scripts/build_mirage_production.py",
+          "line": 2295,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"trainerbattle_mode\": runtime[\"field\"][\"trainerbattle_mode\"],"
+        },
+        {
+          "path": "scripts/build_mirage_production.py",
+          "line": 2296,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"trainerbattle_mode_name\": runtime[\"field\"]["
+        },
+        {
+          "path": "scripts/build_mirage_production.py",
+          "line": 2297,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"trainerbattle_mode_name\""
+        },
+        {
+          "path": "scripts/build_mirage_production.py",
+          "line": 2372,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"mode\": runtime[\"field\"][\"trainerbattle_mode\"],"
+        },
+        {
+          "path": "scripts/build_modernization_p02_stage64.py",
+          "line": 450,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"note_ja\": \"build_species_surface.pyは履歴互換policyを既定値として保持し、modernization policyでWish MegaをMove namespaceへ修正した。Stage64はStage63を上書きせず決定的に2 bytesを修復する。\","
+        }
+      ]
+    }
+  },
+  "scanned_tracked_text_files": 3456,
+  "matched_source_identities": {
+    ".github/scripts/stage79_controller_input_repair.py": {
+      "size": 3677,
+      "sha256": "ac861240960414f54f4b4aaacddbbf2be6d76a05e2d993b5d33316c7f964ae12"
+    },
+    ".github/scripts/stage79_runtime_probe.py": {
+      "size": 7186,
+      "sha256": "83885116fbc8c45b7e11e78196d479817e277dbde246b4269dce1bbe874c360c"
+    },
+    ".github/workflows/modernization-final-integration.yml": {
+      "size": 12585,
+      "sha256": "2f770f42428173962c5ab4ff83a2acee32cfabe246ff2178a3db553645c8cd0a"
+    },
+    ".github/workflows/modernization-stage79-mgba.yml": {
+      "size": 6788,
+      "sha256": "e48bdfc946df489293b9e5c77abc506ed6c6719e0c3fecd060348e44b3eab87f"
+    },
+    ".github/workflows/modernization-stage81-mgba.yml": {
+      "size": 5277,
+      "sha256": "410dc275aaffd50b6006e38bdf0e63d7e99d6c71630d69e4900e3ff645a6bb53"
+    },
+    ".github/workflows/modernization-stage83-mgba.yml": {
+      "size": 5601,
+      "sha256": "3927b233f0f679867c785ad183e0f11498fd5971a66668133222c601c4a05ac3"
+    },
+    ".github/workflows/p03-archive-ui-e2e.yml": {
+      "size": 11836,
+      "sha256": "a7a32000bb6654ce6d6e67d32726a554b0ffeee8fc570d8d34e246ade641182b"
+    },
+    ".github/workflows/pr16-apply-p05-ring-anchor-fix-once.yml": {
+      "size": 4052,
+      "sha256": "6470768535ffa33c84b7a1985628a788999c987bbd3c8236e05ee360ac9baae2"
+    },
+    ".github/workflows/pr16-captured-battle-checkpoint.yml": {
+      "size": 13758,
+      "sha256": "dc258f8130ba679f91d90f4315078c8375e49d5109ca45c6615f59e8a343c4ba"
+    },
+    ".github/workflows/pr16-gear-refinement.yml": {
+      "size": 5002,
+      "sha256": "8cc441d933a37653679f3a8730fd2f9e38988fdb213e1eaea474807e5496e00a"
+    },
+    ".github/workflows/pr16-natural-capture-checkpoint.yml": {
+      "size": 11711,
+      "sha256": "597b71b5300742bfd19e25bf584f5d3d6523c9899a05b1b533a8577f255ad433"
+    },
+    ".github/workflows/pr16-p05-checkpoint.yml": {
+      "size": 11057,
+      "sha256": "15f017c3b1bb5e8f67847989880bcd1cfc41607d9b20df99cc40df7aef6b3287"
+    },
+    ".github/workflows/pr16-purchased-gear-checkpoint.yml": {
+      "size": 13733,
+      "sha256": "8d156cc6eec00bf1d5d9049c98a41888d9fd66224a90986043a7e6257c516b48"
+    },
+    ".github/workflows/pr16-shop-display-checkpoint.yml": {
+      "size": 14417,
+      "sha256": "c1ca9f08da988b329887e811fc865d01ad8ff6e6270a67c2f54aef8b0e5cff9e"
+    },
+    ".github/workflows/stage79-controller-input-repair.yml": {
+      "size": 5036,
+      "sha256": "50587bfaf440f61b9c2dd1372eb475f9a6b46d0b3573d4555ecd8acdced3b186"
+    },
+    ".github/workflows/stage79-harness-diagnostics.yml": {
+      "size": 2481,
+      "sha256": "c8ec4f0af73ba4bd85c0d7f0734215dffd7d6f1b0d25aed7c673f55a5296d22a"
+    },
+    ".github/workflows/stage79-record-followup.yml": {
+      "size": 6865,
+      "sha256": "edd4785f426d2df8e51a50ea0ff073d4d5738b1090a1c5622a59ee4c71e69ed2"
+    },
+    ".github/workflows/stage79-runtime-probe.yml": {
+      "size": 1109,
+      "sha256": "fefaa1a8111cfc883b318269a97d431cae696ff9269bef1557df4ad9b5be8a80"
+    },
+    "CHANGELOG.md": {
+      "size": 18851,
+      "sha256": "975c0c27a1255e1b7f2b8a59abc12f6b1d7b4296edb8ae851d5598f9e943e90f"
+    },
+    "KNOWN_ISSUES.md": {
+      "size": 3578,
+      "sha256": "65f138356b6e66f92a761e33826ba29c58e81c774f6b43bc2d5d8b3165a0c480"
+    },
+    "build/stages/06_battle_core.json": {
+      "size": 255032,
+      "sha256": "3c107c77cd50e39c075277a499e4a86a874c77ebbabd4e4507e125d5cc094260"
+    },
+    "build/stages/78_modernization_p05_eelevate_switch_ai_allocation.json": {
+      "size": 47029,
+      "sha256": "b92ef83b96482c6fc5f751af87a4dc7eb4783a10258b1c193fa298cc485d8d3b"
+    },
+    "config/battle_rules.json": {
+      "size": 2449,
+      "sha256": "819cdf9144e31d982f8b3d2d6381de9d73aca12e4f6307214aed8a0bef74393e"
+    },
+    "config/battle_ui.json": {
+      "size": 3527,
+      "sha256": "acb7521e5ce0902dd743209461a440f0c4c11f93dc8d2feed34fdc9e7634f1ed"
+    },
+    "config/factory_fixture_inputs.json": {
+      "size": 3310,
+      "sha256": "de0c38df5d970927fd0a99910955ea97bf735065e3549bf2ae1728b21eebc6b0"
+    },
+    "config/factory_high_modes_v2.json": {
+      "size": 5741,
+      "sha256": "58cb98afb685d7f0d9c41071872ed3c59d7771f8437d793b5b4eebd1f977863f"
+    },
+    "config/modernization_candidate.json": {
+      "size": 25208,
+      "sha256": "a7ec3f1ed18a0e058e37a6a50195437c2b411a3f4a9622afb94fe4028436505a"
+    },
+    "config/modernization_floette_gift.json": {
+      "size": 6670,
+      "sha256": "140da74d3e43a857b728417eeb8c701f44cfed0f6575719a6ff13ccab9c093c8"
+    },
+    "config/modernization_mega_shop.json": {
+      "size": 4298,
+      "sha256": "ac60c5941e2d510d9473353290a51b019c35198bf7f6466fae17b8f32cfb5fc3"
+    },
+    "config/modernization_p04_mega_runtime.json": {
+      "size": 14614,
+      "sha256": "3c3116a95d2b39b20b43f032aad0582ca11012390ede4ecffc85a400cad7c765"
+    },
+    "config/modernization_p08_stage79_evidence.json": {
+      "size": 5776,
+      "sha256": "12033aacab55ad909a31bc083bedc0f752787a640b1ad9b35ada85b6f3f8fb9f"
+    },
+    "config/modernization_p08_stage81_evidence.json": {
+      "size": 20416,
+      "sha256": "aea256ea40b7b9f4573578246cddeeca815488dbd07d07c4c5872e6baebaf3c7"
+    },
+    "config/modernization_stage79_cumulative_mgba.json": {
+      "size": 28627,
+      "sha256": "ee6c6326e0c96445b113e9cd0d73f5b3b7a1d5c907789e58d88ea3878abca5d6"
+    },
+    "config/t02_audit_policy.json": {
+      "size": 12656,
+      "sha256": "9853a8eac9a8144cf67eedd348667be9249155384ae1ec1077c405ad5b52b381"
+    },
+    "config/upstream_inventory.json": {
+      "size": 49305,
+      "sha256": "ce4ed3736093ef7e33bc1f20ac4f44e0a3543038627d5e8739452f650a5959a7"
+    },
+    "content/codex_battle/catalog.json": {
+      "size": 3739856,
+      "sha256": "89be0434d8811b768a5ad5d9b61c2f62f0c7cf095a510075f1bf192572e38f56"
+    },
+    "content/collection_supply_v1/canonical_model.json": {
+      "size": 899889,
+      "sha256": "fb8066c0a8140da079b1e947cdfb6c76e987cf0c2514456a86868ec554f061d0"
+    },
+    "content/facilities.json": {
+      "size": 5565,
+      "sha256": "d07a48c4e7c0dd01da2936f052a504d53c239cc0788a4b5714b4fe866a6a8ab5"
+    },
+    "content/factory_high_modes_v2/canonical_model.json": {
+      "size": 504238,
+      "sha256": "c5a92a16ee75256464b1e686ee808d4f4a05cd87a7ab2a9854a79e7ecaa59a57"
+    },
+    "content/modernization/floette_gift_checkpoint.json": {
+      "size": 27893,
+      "sha256": "25f729c990975d0ef5164192ca69af5fc9965fdb30118b2dafa2fa2e71ab2a71"
+    },
+    "content/modernization/floette_gift_contract.json": {
+      "size": 22396,
+      "sha256": "6c28376c1356fa0df08dabc58408449d69bf676514efbc23f1ed84b555a7ace5"
+    },
+    "content/modernization/floette_gift_mgba_runtime_gate.json": {
+      "size": 4119,
+      "sha256": "1547522c0ddd386ec997514ee0363868e0918e8cb2e24ccc861be8abfab79cc0"
+    },
+    "content/modernization/mega_shop_catalog.json": {
+      "size": 35588,
+      "sha256": "ddb8f0828ea998bbf04fd22dda80d722ee26c08c5f01705e93f48988ae8f2ed9"
+    },
+    "content/modernization/mega_shop_checkpoint.json": {
+      "size": 37093,
+      "sha256": "8ef28eb0395aa7a4d91623914b1e5136b94f3fb387206e20d456e973ceed0b29"
+    },
+    "content/modernization/mega_shop_mgba_runtime_gate.json": {
+      "size": 4318,
+      "sha256": "5b7b499ccb5af5777033aad1b1d234b2ec49c785d5fe02f818f9312715f8f03c"
+    },
+    "content/modernization/p02_evolution_contract.json": {
+      "size": 1440826,
+      "sha256": "007f80996ad1a758e0f5365e65cd4685a6c9eb7c8a072d25544b86f2f613181b"
+    },
+    "content/modernization/p02_stage64_checkpoint.json": {
+      "size": 5462,
+      "sha256": "36730cfc31c4beebe74137db29dae28c931e927ae2436192b8bdd5a9a71c2276"
+    },
+    "content/modernization/p04_capacity_allocation_manifest.json": {
+      "size": 437769,
+      "sha256": "8377afbe70ff3a1da1c805f51f5e83d49fd0a5befd271e6c549cf0f76bf082fe"
+    },
+    "content/modernization/p04_mega_runtime_checkpoint.json": {
+      "size": 30529,
+      "sha256": "0277f745b2f09af0e111cdcdd580bfb3104a74b95afc63ad45770fce539ae73c"
+    },
+    "content/modernization/p04_mega_runtime_mapping.json": {
+      "size": 59026,
+      "sha256": "31e4a36301dda169f7b894a62ee823d00ebd1374945a33f1478f3c9eecf5401f"
+    },
+    "content/modernization/p08_current_acceptance.json": {
+      "size": 130418,
+      "sha256": "97de8f4b781c8a069de0c139004a4ac34cbc4ecfa16425364e7dd31f02a52c8c"
+    },
+    "content/modernization/p08_final_candidate_acceptance.json": {
+      "size": 8870,
+      "sha256": "452317491f78bfe9da8a35a4084b6f800fde0bbc99f6da9e68e6b888b9ab6876"
+    },
+    "content/modernization/p08_integration_matrix.json": {
+      "size": 217877,
+      "sha256": "19977bd25c617388cb69cfc792eefe782f4a12cfc67e372eb6cdb2f9efba63a4"
+    },
+    "content/modernization/p08_release_handoff.json": {
+      "size": 75847,
+      "sha256": "3c61c80e2cf3ae8f8b699b32b1e026cdaa42f57a435e1e46b6cb5e09b1b8613e"
+    },
+    "content/modernization/p08_runtime_handoff.json": {
+      "size": 105888,
+      "sha256": "5db6b82836a6276cbfe0eff57a1f9af80fd76a02c135a49a3df068dfc01c0b5e"
+    },
+    "content/modernization/p08_stage81_closeout_evidence/34380153325/report.json": {
+      "size": 130418,
+      "sha256": "97de8f4b781c8a069de0c139004a4ac34cbc4ecfa16425364e7dd31f02a52c8c"
+    },
+    "content/modernization/p08_stage81_closeout_evidence/34380153325/stage81-cli/observations.json": {
+      "size": 140593,
+      "sha256": "83c4a71653d884ae4736ca79b1f8ceb0a9e903ba00531d991853b9da714851f7"
+    },
+    "content/modernization/p08_stage81_closeout_evidence/34380153325/verified-actions.json": {
+      "size": 38287,
+      "sha256": "cb8597defcfd233cc0b23fe7d8b95e1e0ff64ff45637db5225592467b0f0937f"
+    },
+    "content/modernization/p08_stage81_evidence/actions-stage81.json": {
+      "size": 14946,
+      "sha256": "535abcc5b39fe9e2c6288bda6ed811525d5c7ff729a0691dc6e6c82d7b1e613c"
+    },
+    "content/modernization/p08_stage81_evidence/stage81-cumulative-result/merge-summary.json": {
+      "size": 480,
+      "sha256": "bec3453d4dbbf99d0428bd715d8d8a7353e0721027aff56592280157e3e4a283"
+    },
+    "content/modernization/p08_stage81_evidence/stage81-cumulative-result/runtime_gate.json": {
+      "size": 31644,
+      "sha256": "5aa78e855e9329e0c4c6d06ae54515c94d9094f0f54984e2d87e016f543aac88"
+    },
+    "content/modernization/p08_stage81_evidence/stage81-domain-battle_policy/job-summary.json": {
+      "size": 296,
+      "sha256": "beeec65f3de4ffc330d968d1237b53e3a7a14aba318d9b8f314409216730fd9e"
+    },
+    "content/modernization/p08_stage81_evidence/stage81-domain-battle_policy/plan.json": {
+      "size": 515,
+      "sha256": "f19ffd9c25280df8388d38f3fe0222f5210ec13f95c8bcdb08af3da9b95af5b7"
+    },
+    "content/modernization/p08_stage81_evidence/stage81-domain-battle_policy/result.json": {
+      "size": 4744,
+      "sha256": "13b5003155c23d6ebe16656f155182a2614b9d63ece223c060f530b4aa46aba0"
+    },
+    "content/modernization/p08_stage81_evidence/stage81-domain-battle_policy/runner.stdout.json": {
+      "size": 2709,
+      "sha256": "20d504e3e184cae045604d5959370dabb97e48337d72942ed57feed31606edb6"
+    },
+    "content/modernization/p08_stage81_evidence/stage81-domain-battle_policy/validation.json": {
+      "size": 257,
+      "sha256": "d100e77b2336f7c3b02475bb6fbf214de14e0a79902a8c8344b7590723a71785"
+    },
+    "content/modernization/p08_stage81_evidence/stage81-domain-floette/plan.json": {
+      "size": 515,
+      "sha256": "f19ffd9c25280df8388d38f3fe0222f5210ec13f95c8bcdb08af3da9b95af5b7"
+    },
+    "content/modernization/p08_stage81_evidence/stage81-domain-floette/result.json": {
+      "size": 1959,
+      "sha256": "3ead9c5a2b31bf303fc2f987fb683f33d740f88b4a0ef326b33a8c29ac76482f"
+    },
+    "content/modernization/p08_stage81_evidence/stage81-domain-floette/runner.stdout.json": {
+      "size": 687,
+      "sha256": "e8800b06ef743ba0093a73c51b3bdb322909ca7312a189d6261362079309335c"
+    },
+    "content/modernization/p08_stage81_evidence/stage81-domain-mega_shop/plan.json": {
+      "size": 515,
+      "sha256": "f19ffd9c25280df8388d38f3fe0222f5210ec13f95c8bcdb08af3da9b95af5b7"
+    },
+    "content/modernization/p08_stage81_evidence/stage81-domain-mega_shop/result.json": {
+      "size": 2394,
+      "sha256": "c277c1ec3256d2f81364ae23593c85353dc13563ce7c055b7844d6c3ed329aee"
+    },
+    "content/modernization/p08_stage81_evidence/stage81-domain-mega_shop/runner.stdout.json": {
+      "size": 985,
+      "sha256": "edae417ef4a854cb9b15961c6ecd35e649676dcfe7723d9ea413381e847d5bb8"
+    },
+    "content/modernization/p08_stage81_evidence/stage81-domain-p02/plan.json": {
+      "size": 515,
+      "sha256": "f19ffd9c25280df8388d38f3fe0222f5210ec13f95c8bcdb08af3da9b95af5b7"
+    },
+    "content/modernization/p08_stage81_evidence/stage81-domain-p03/plan.json": {
+      "size": 515,
+      "sha256": "f19ffd9c25280df8388d38f3fe0222f5210ec13f95c8bcdb08af3da9b95af5b7"
+    },
+    "content/modernization/p08_stage81_evidence/stage81-domain-p04_mega_runtime/plan.json": {
+      "size": 515,
+      "sha256": "f19ffd9c25280df8388d38f3fe0222f5210ec13f95c8bcdb08af3da9b95af5b7"
+    },
+    "content/modernization/p08_stage81_evidence/stage81-domain-p05/plan.json": {
+      "size": 515,
+      "sha256": "f19ffd9c25280df8388d38f3fe0222f5210ec13f95c8bcdb08af3da9b95af5b7"
+    },
+    "content/modernization/p08_stage81_evidence/stage81-plan/config.json": {
+      "size": 30248,
+      "sha256": "fdc2c4314f70c1a21c7ccfea2060ef437b2aed1e150708a58b7644a065e60d0c"
+    },
+    "content/modernization/p08_stage81_evidence/stage81-plan/plan.json": {
+      "size": 515,
+      "sha256": "f19ffd9c25280df8388d38f3fe0222f5210ec13f95c8bcdb08af3da9b95af5b7"
+    },
+    "content/modernization/p08_stage81_integration_verification.json": {
+      "size": 41536,
+      "sha256": "75c3aa33d683648466e8d48d83839431875ffb6a3436765d7e3c1c87cfca23f9"
+    },
+    "content/modernization/p08_stage82_archive_acceptance.json": {
+      "size": 34248,
+      "sha256": "c3e3fd90341c24feb83541550da7e635fe521dde53e24b467f5ce3da21c910b5"
+    },
+    "content/modernization/p08_stage82_evidence/34397482740/actions-artifacts.json": {
+      "size": 8847,
+      "sha256": "5267292f8da75769592f33363c86dc863d4589624967c91b1acc5bbe890ed9d1"
+    },
+    "content/modernization/p08_stage82_evidence/34397482740/actions-jobs.json": {
+      "size": 32181,
+      "sha256": "2540eef7f0fac7c9f83419faaaa0492d9908631c4d9279032c73fd0df3ad24d0"
+    },
+    "content/modernization/p08_stage82_evidence/34397482740/merged/merge-summary.json": {
+      "size": 480,
+      "sha256": "0ae2d5afe5b75bb0d101589f1dd69315776c4b969c5dc8908800e8c57919452e"
+    },
+    "content/modernization/p08_stage82_evidence/34397482740/merged/runtime_gate.json": {
+      "size": 33190,
+      "sha256": "4d94f497909728d33a84a2fdeed389574cdd61bae23a35983c688ec62c6e7d32"
+    },
+    "content/modernization/p08_stage82_evidence/34397482740/stage82-domain-battle_policy/job-summary.json": {
+      "size": 296,
+      "sha256": "d1b86a8617c70247c57857749b1bab528916749bb543bc81d79d90f89077d42c"
+    },
+    "content/modernization/p08_stage82_evidence/34397482740/stage82-domain-battle_policy/plan.json": {
+      "size": 516,
+      "sha256": "3290a8a3ababb3b462d6c087f779564cc10524d349abdb8fc7b70e1b2f81d33d"
+    },
+    "content/modernization/p08_stage82_evidence/34397482740/stage82-domain-battle_policy/result.json": {
+      "size": 4745,
+      "sha256": "2609f827be26be478c62d23aa9ac9298a53ccd5c3865e75284ff1c6b852eff70"
+    },
+    "content/modernization/p08_stage82_evidence/34397482740/stage82-domain-battle_policy/runner.stdout.json": {
+      "size": 2709,
+      "sha256": "73cedb8a927dfd03fd29581283f2210edc462a9e7f5fa340d0d0a0602d0d87be"
+    },
+    "content/modernization/p08_stage82_evidence/34397482740/stage82-domain-battle_policy/validation.json": {
+      "size": 257,
+      "sha256": "77dbb6da5a4b0cbcbf3587808bf3ac6be901f325414c3c5c5a08e86b009a5879"
+    },
+    "content/modernization/p08_stage82_evidence/34397482740/stage82-domain-floette/plan.json": {
+      "size": 516,
+      "sha256": "3290a8a3ababb3b462d6c087f779564cc10524d349abdb8fc7b70e1b2f81d33d"
+    },
+    "content/modernization/p08_stage82_evidence/34397482740/stage82-domain-floette/result.json": {
+      "size": 1960,
+      "sha256": "925e5830cfa741d84f50078670f6291e48f79c5d71a1c0525b12bcb49aa8e51d"
+    },
+    "content/modernization/p08_stage82_evidence/34397482740/stage82-domain-floette/runner.stdout.json": {
+      "size": 687,
+      "sha256": "e8800b06ef743ba0093a73c51b3bdb322909ca7312a189d6261362079309335c"
+    },
+    "content/modernization/p08_stage82_evidence/34397482740/stage82-domain-mega_shop/plan.json": {
+      "size": 516,
+      "sha256": "3290a8a3ababb3b462d6c087f779564cc10524d349abdb8fc7b70e1b2f81d33d"
+    },
+    "content/modernization/p08_stage82_evidence/34397482740/stage82-domain-mega_shop/result.json": {
+      "size": 2395,
+      "sha256": "b61b8febb5ae64d99c263965337ed8ae49491ca0cd4bd318cd4adfc5c1693787"
+    },
+    "content/modernization/p08_stage82_evidence/34397482740/stage82-domain-mega_shop/runner.stdout.json": {
+      "size": 985,
+      "sha256": "edae417ef4a854cb9b15961c6ecd35e649676dcfe7723d9ea413381e847d5bb8"
+    },
+    "content/modernization/p08_stage82_evidence/34397482740/stage82-domain-p02/plan.json": {
+      "size": 516,
+      "sha256": "3290a8a3ababb3b462d6c087f779564cc10524d349abdb8fc7b70e1b2f81d33d"
+    },
+    "content/modernization/p08_stage82_evidence/34397482740/stage82-domain-p03/plan.json": {
+      "size": 516,
+      "sha256": "3290a8a3ababb3b462d6c087f779564cc10524d349abdb8fc7b70e1b2f81d33d"
+    },
+    "content/modernization/p08_stage82_evidence/34397482740/stage82-domain-p04_mega_runtime/plan.json": {
+      "size": 516,
+      "sha256": "3290a8a3ababb3b462d6c087f779564cc10524d349abdb8fc7b70e1b2f81d33d"
+    },
+    "content/modernization/p08_stage82_evidence/34397482740/stage82-domain-p05/plan.json": {
+      "size": 516,
+      "sha256": "3290a8a3ababb3b462d6c087f779564cc10524d349abdb8fc7b70e1b2f81d33d"
+    },
+    "content/modernization/p08_stage82_evidence/34397482740/stage82-plan/config.json": {
+      "size": 30668,
+      "sha256": "8f27300de931d6cdfa46375418e915104c997ddf0592731765ab945f77a6dab6"
+    },
+    "content/modernization/p08_stage82_evidence/34397482740/stage82-plan/plan.json": {
+      "size": 516,
+      "sha256": "3290a8a3ababb3b462d6c087f779564cc10524d349abdb8fc7b70e1b2f81d33d"
+    },
+    "content/modernization/pr16_completion_acceptance.json": {
+      "size": 4480,
+      "sha256": "f0c438447c8dbcc68fd3ea12ecd3eeaee24c5890caf0ef7d3b14ff2aabd3fc51"
+    },
+    "content/modernization/pr16_gear_refinement_status.json": {
+      "size": 1001,
+      "sha256": "94ef02e30f357b6708e63da35c5e4eacd5017aff97b82f59b8fac5cd0801a2e9"
+    },
+    "content/modernization/pr16_gear_screen_acceptance.json": {
+      "size": 33813,
+      "sha256": "baf85cb226ce46c0522882edbbe3773638a0bd1e878aac04153f5d49765983bc"
+    },
+    "content/modernization/pr16_purchased_gear_acceptance.json": {
+      "size": 19691,
+      "sha256": "176af395619c87e7bda9e9b862eaffdefd582808bb178427c8059f85e4e52fc3"
+    },
+    "content/modernization/stage79_cumulative_mgba_runtime_gate.json": {
+      "size": 28083,
+      "sha256": "9086028de03f1c00778cf6a6e1529127852c850acbaf618390c58d2b6e934451"
+    },
+    "content/modernization/stage79_evidence/34314414289/artifacts.json": {
+      "size": 6886,
+      "sha256": "3d7fe0f6009c7d9f6a18d46c7829b5c4e800af48301df7e493aceab672940901"
+    },
+    "content/modernization/stage79_evidence/34314414289/domains/battle_policy/job-summary.json": {
+      "size": 316,
+      "sha256": "c093e655e8128916844a7132a9ecbfe49bae34a34a92a7adbf2d96058cd49130"
+    },
+    "content/modernization/stage79_evidence/34314414289/domains/battle_policy/result.json": {
+      "size": 4763,
+      "sha256": "aacba597c47e561593c97db2938cff0e5ad869d23ef4e26fffb7371d3897288e"
+    },
+    "content/modernization/stage79_evidence/34314414289/domains/battle_policy/runner.stdout.json": {
+      "size": 2709,
+      "sha256": "af47ce352589353d0ead82a331c271348d02cc3e71d6cae656b9559b05b61c14"
+    },
+    "content/modernization/stage79_evidence/34314414289/domains/floette/result.json": {
+      "size": 1978,
+      "sha256": "11a7eda0fa22da88312541458afb5c9fdb36a9877822664455d24ca1b031f347"
+    },
+    "content/modernization/stage79_evidence/34314414289/domains/floette/runner.stdout.json": {
+      "size": 687,
+      "sha256": "e8800b06ef743ba0093a73c51b3bdb322909ca7312a189d6261362079309335c"
+    },
+    "content/modernization/stage79_evidence/34314414289/domains/mega_shop/result.json": {
+      "size": 2413,
+      "sha256": "6d7ecac41f69c01b5cb2f0f8a27b4397f84503844585bd97bd20d51727f8f42a"
+    },
+    "content/modernization/stage79_evidence/34314414289/domains/mega_shop/runner.stdout.json": {
+      "size": 985,
+      "sha256": "edae417ef4a854cb9b15961c6ecd35e649676dcfe7723d9ea413381e847d5bb8"
+    },
+    "content/modernization/stage79_evidence/34314414289/jobs.json": {
+      "size": 23663,
+      "sha256": "57ccca17174df9a62d9e13abf0a5083cdd64d74f3d31d7086c4ac8975fb7a716"
+    },
+    "content/modernization/stage79_evidence/34314414289/merged/merge-summary.json": {
+      "size": 480,
+      "sha256": "4cd7c10433302fc58732f2f00b78100168d963a97c92bc909afdc0eded451c45"
+    },
+    "content/modernization/stage79_evidence/34314414289/merged/runtime_gate.json": {
+      "size": 28083,
+      "sha256": "9086028de03f1c00778cf6a6e1529127852c850acbaf618390c58d2b6e934451"
+    },
+    "content/modernization/stage79_evidence/34314414289/plan/plan.json": {
+      "size": 555,
+      "sha256": "bf3e3439afb9602bb57655aa0e257ebaf2f4231fae44fbeecf012bf4c466f333"
+    },
+    "content/reward_encounters_v2/canonical_model.json": {
+      "size": 76647,
+      "sha256": "09de47bfa505871471a19aba6bd02b3c8fd15a8be6aad7e43ffbfcd1c3f1a212"
+    },
+    "design/catalog.md": {
+      "size": 15025,
+      "sha256": "5e82abcda6fa122adeaf585928e3d519a4ba8b7cb465452dade5999b3205df02"
+    },
+    "design/current_state.md": {
+      "size": 101293,
+      "sha256": "aaf13816a8f0e6dd9095c51ce0ef415ca54f7bab5d984f7c41b2696cefc300e4"
+    },
+    "design/decisions.md": {
+      "size": 60204,
+      "sha256": "a2c732f769689ac2cfb1a15e12e207a3cfe9a502e4d51dae3cb2b85a35d3f457"
+    },
+    "design/imported/VEGA_CFRU_DPE_統合設計/02_世界観・進行・イベント.md": {
+      "size": 8849,
+      "sha256": "96717340c0dc84ea9ac3acf2c4c34e20294e098f1fc4f004653534d190ef328b"
+    },
+    "design/imported/VEGA_CFRU_DPE_統合設計/07_イベント台本案.md": {
+      "size": 4207,
+      "sha256": "6d0c5bfa1de9016cd7b19754c40e975b330ddea33dba632380fac865f0cda13f"
+    },
+    "design/imported/VEGA_CFRU_DPE_統合設計/VEGA_CFRU_DPE_統合設計書_統合版.md": {
+      "size": 74252,
+      "sha256": "0c673ba13338e4d5ba9408a2b291cf83b935f5747da1c85e7bc79ff62478e9d6"
+    },
+    "design/imported/VEGA_CFRU_DPE_統合設計_V2_二地方生態版/04_カントー地方_クリア後出現・イベント詳細.md": {
+      "size": 48404,
+      "sha256": "e8818c0b297769a2d0608f366c4902532890600b4ce7a81f4d92e566c98c7f2c"
+    },
+    "design/imported/VEGA_CFRU_DPE_統合設計_V2_二地方生態版/VEGA_CFRU_DPE_統合設計書_V2_二地方生態版_統合版.md": {
+      "size": 177814,
+      "sha256": "44c54c75e1003d342d65807cb7c386698d7c5d5fc54ba225f7b5c86f5def0701"
+    },
+    "design/modernization_handoff.md": {
+      "size": 18199,
+      "sha256": "75a08e13a4cc33062a1f21f73cfd7d64ef2540b0e30ea4fc748cd41e56465d82"
+    },
+    "design/run_log.md": {
+      "size": 570258,
+      "sha256": "c752cfff09fd3da18bbb3b5aa2f016f570d3319e8957e4a80d4ce41334bbbe61"
+    },
+    "design/version_log.md": {
+      "size": 184992,
+      "sha256": "8903edcad448b0ff55fababb247e9d86dbff7ae83eb43e30d446a4a76d0c3159"
+    },
+    "docs/BUILD_PIPELINE.md": {
+      "size": 13978,
+      "sha256": "f357b360a78d82d679947a752cde18388157b39bc383101dc43fedd309e3eaaa"
+    },
+    "docs/FINAL_INTEGRATION_HANDOFF_JA.md": {
+      "size": 12166,
+      "sha256": "5f92eb54e0ab5bce65f23b128d8990bde30551081ec93adb297c8b4d4ff3b087"
+    },
+    "docs/P05_SCHEDULER_E2E.md": {
+      "size": 4142,
+      "sha256": "ec307db606bf375355850ba2ad1844eb177c32c8cdb5898830ef98574ee137cd"
+    },
+    "docs/P08_CURRENT_ACCEPTANCE.md": {
+      "size": 11739,
+      "sha256": "9b2c48f88e18ffb0c4db6795ca616d08d5d4937b1b0864f77827caddce43b0a6"
+    },
+    "docs/PR16_CAPTURED_BATTLE_CHECKPOINT_JA.md": {
+      "size": 5477,
+      "sha256": "7c48d1569f46f8bbd77c63b51eb0f8ce2d8a2aa76732d00fe44c98718097fe05"
+    },
+    "docs/PR16_NATURAL_CAPTURE_CHECKPOINT_JA.md": {
+      "size": 4016,
+      "sha256": "04c6774cbea4740f2f49e9ea3b750e4efc5c8fd2b888ad1a7932ea2af61589e0"
+    },
+    "docs/PR16_P05_ROUTE_CHECKPOINT_JA.md": {
+      "size": 4023,
+      "sha256": "7379a27877797f7ed6cf2e503847d1ad9f365fc31684f7db3b1a857ed357c709"
+    },
+    "docs/PR16_PURCHASED_GEAR_CHECKPOINT_JA.md": {
+      "size": 5324,
+      "sha256": "123429c840c2872f02a9535bae080c6bf0af69cc98024b6e153eba74af9067c0"
+    },
+    "docs/PR16_SHOP_DISPLAY_CHECKPOINT_JA.md": {
+      "size": 6204,
+      "sha256": "6255344453c7cffad05d18160df73d35ca6928980772dfbf35366b5393025d5e"
+    },
+    "docs/RELEASE_README_JA.md": {
+      "size": 18055,
+      "sha256": "1f71d3cd5d1a8a1d0d4ceeeddc1e5de48d94b638972a35a3012100a70f40a540"
+    },
+    "docs/SAVE_COMPATIBILITY.md": {
+      "size": 6791,
+      "sha256": "ba2fabd824cdbb83ee90ac1aadc21021549cde9ac7e1eae4828abcb8a618bf53"
+    },
+    "docs/stage79-pr16-followup-20260909.md": {
+      "size": 8360,
+      "sha256": "2dcf15c28c51f0704702633224cddbdaa0c7199de9ccf9a843b8301d3901de39"
+    },
+    "docs/wiki/stage61/ITEM_GUIDE.md": {
+      "size": 177324,
+      "sha256": "c44807e2993f975def59e89e207121396a891448c96ff925abc117515b8899ee"
+    },
+    "docs/wiki/stage61/ITEM_INDEX.md": {
+      "size": 264962,
+      "sha256": "a327794579b9a9678e7f329c93be69a8221885b02885dd0293a3b39413f5d845"
+    },
+    "docs/wiki/stage61/MAJOR_BATTLES.md": {
+      "size": 133334,
+      "sha256": "cf10fbd42bed772114c5cde606bd467b43126269b8560ebbf5b0cdea823627c8"
+    },
+    "docs/wiki/stage61/data/major_battles.json": {
+      "size": 354712,
+      "sha256": "3ffe6bda10312890044f7b21bbabafa6241178f7b58e2e04e5ecb9d5142ad284"
+    },
+    "generated/runtime/modernization_floette_gift_symbols.json": {
+      "size": 5354,
+      "sha256": "52bf96e216621e2f4da909e6f5cde1fc538388f09f5edbed3533d9fdeb8c3db4"
+    },
+    "generated/runtime/modernization_mega_shop_symbols.json": {
+      "size": 6082,
+      "sha256": "e01e24abec8f5f84aad744dd4e229d887364291bcc8fa6a303a193b0efd69610"
+    },
+    "overlays/bp_shop_runtime/bp_shop_runtime.c": {
+      "size": 18771,
+      "sha256": "7989faa0cdc9858dad06ebd3e78e55aeef9689513367377cf1223e435fb5861b"
+    },
+    "overlays/bp_shop_runtime/bp_shop_runtime.h": {
+      "size": 1027,
+      "sha256": "a9680a076c37bb957d5c0bd79e7c7095cb7df92287f5031d0715b90ef79c9d61"
+    },
+    "overlays/cfru/integration.c": {
+      "size": 31508,
+      "sha256": "b1ee5d94bd6601f7b4cc01eea45c9ccbe4f80fb04ca4074044201c7d550f4498"
+    },
+    "overlays/cfru/integration.h": {
+      "size": 8981,
+      "sha256": "8323050dac61b161d89393815ce63837cedee4369235a5f2277dc32fdd523f5a"
+    },
+    "overlays/cfru/rom_bridge.c": {
+      "size": 20530,
+      "sha256": "e7ca33758235005d66b3a73f864ed97d18f876f56935d1d86e42c99c78cd28c0"
+    },
+    "overlays/cfru/rom_bridge.h": {
+      "size": 3490,
+      "sha256": "b4eaa63177c0b9805e6960dc8f55b3f199f66501884c1ae72741e09c4e2bf08c"
+    },
+    "overlays/cfru/runtime.c": {
+      "size": 17429,
+      "sha256": "d24115e20bf2e21da600997a9c25d6b6beab4135070a63ae10ff8a22ec3bb6bd"
+    },
+    "overlays/cfru/runtime.h": {
+      "size": 8156,
+      "sha256": "9f608381273cd49af4df91af5ec9598420dfe6c4b8ec30150945c655fa64c476"
+    },
+    "overlays/codex_battle_runtime/codex_battle_runtime.c": {
+      "size": 123769,
+      "sha256": "2a8370c2ef4e48878b85f0b888bc46221db1b3e1ce442d4ba121cff6d7e32951"
+    },
+    "overlays/collection_supply_v1/collection_supply_v1.c": {
+      "size": 65077,
+      "sha256": "14c27f895b9ae8d1b3d9d077ce49999fc17a1422a83e8ddb87657c66ebab06d3"
+    },
+    "overlays/facility_runtime/facility_runtime.c": {
+      "size": 18139,
+      "sha256": "28603b55a0573dd376e1acdc4310591c017d158c69ade92393020781271e7cb0"
+    },
+    "overlays/factory_high_modes_v2/factory_high_modes_v2.c": {
+      "size": 76769,
+      "sha256": "681b53d6199ab8ec3dc03a47f4a1a6457412603dc032679930111e18e738268b"
+    },
+    "overlays/factory_repeat_reward_runtime/factory_repeat_reward_runtime.c": {
+      "size": 6295,
+      "sha256": "9fa19907cf298cf3cfe75d6e26cfbaa70f021b89a9d8f8763484327615a8868f"
+    },
+    "overlays/factory_reward_runtime/factory_reward_runtime.c": {
+      "size": 7235,
+      "sha256": "5b93ef199e97827876b876537945dfc5c8f143bc92150a5b4f8f4b653d87c1d7"
+    },
+    "overlays/mirage_production/mirage_production.c": {
+      "size": 42973,
+      "sha256": "bb8a59b76603e1acf4c1655d03c333f3ea067c47fdec9e6e03dbff4935381243"
+    },
+    "overlays/modernization_floette_gift/README.md": {
+      "size": 1116,
+      "sha256": "92fd6ac3e8282719d868efa8b3a814d603d5c8bdd19647afa89781807b1d0f62"
+    },
+    "overlays/modernization_floette_gift/mgba_modernization_floette_gift_smoke.c": {
+      "size": 28131,
+      "sha256": "256e84f60a672374359e501cbbe689b081c0f2770e22a5b1edef334fcb60afd2"
+    },
+    "overlays/modernization_floette_gift/modernization_floette_gift.c": {
+      "size": 16759,
+      "sha256": "849fd5160618ee2a13eccb7188ab9f82efa737d73ede1cb766e79820a700aebf"
+    },
+    "overlays/modernization_floette_gift/modernization_floette_gift.h": {
+      "size": 1171,
+      "sha256": "0f7365d10e4542f3086ba6f51cd4ac313c4db8f20f3c705bc7be6be4fdc3bfe3"
+    },
+    "overlays/modernization_floette_gift/modernization_floette_gift_host_test.c": {
+      "size": 13849,
+      "sha256": "01b318e4ccf0bbb08982a464fbbb46fd56e7e67715153aae92730d2908848adc"
+    },
+    "overlays/modernization_mega_shop/README.md": {
+      "size": 1001,
+      "sha256": "ffcb4d7346a02473a677b22ccf3f0e684697e87ad87fc78105aeb5ea4fd14b08"
+    },
+    "overlays/modernization_mega_shop/modernization_mega_shop.c": {
+      "size": 20929,
+      "sha256": "116bafdf4b3e736d5baf42870a30ce7069d2aafbbf33548a97bf1640c88b4b2d"
+    },
+    "overlays/modernization_mega_shop/modernization_mega_shop_host_harness.c": {
+      "size": 11280,
+      "sha256": "3cb5df15d9dd4498fbd96084caf02c07d9a306900c896bde38043f22a4fdafe1"
+    },
+    "overlays/modernization_p04_mega_runtime/README.md": {
+      "size": 1153,
+      "sha256": "a9874b599cff249ba279a16fffeb43b257f0a3f88709f809c830bce395e8c1b5"
+    },
+    "overlays/modernization_p04_mega_runtime/modernization_p04_mega_runtime_oracle.c": {
+      "size": 3437,
+      "sha256": "30d563b40acf0cfece1af002a22d62e223e5d28f006fe1b08ca240f23a9d8f71"
+    },
+    "overlays/modernization_p04_mega_runtime/modernization_p04_mega_runtime_oracle.h": {
+      "size": 1932,
+      "sha256": "423292924fb1b2b905b7ed3137e3b59d2dddfa8f085c53ef3e2c2fd25e0b131f"
+    },
+    "overlays/modernization_p04_mega_runtime/modernization_p04_mega_runtime_oracle_host.c": {
+      "size": 4087,
+      "sha256": "eec7fc8964fa770722e021bc21d5a1a515d046f45f3e8879785ef2751e113a20"
+    },
+    "overlays/qol_production/qol_production.c": {
+      "size": 164678,
+      "sha256": "fc69ca2ff94e98ffb46f1b4117c73156683e83bbc777e9f8527c027c70399423"
+    },
+    "overlays/reward_encounters_v2/reward_encounters_v2.c": {
+      "size": 50932,
+      "sha256": "e4e196f72e74521503e3ddc480c9a43dea277b82abd5c99368f31c3751e1b228"
+    },
+    "overlays/reward_encounters_v2/reward_encounters_v2.h": {
+      "size": 3379,
+      "sha256": "a241ea24077d78d67b227112d27f7bd4536d604ef44bdbcf29d7919212b2a6db"
+    },
+    "overlays/save_migration/save_migration.c": {
+      "size": 25098,
+      "sha256": "78e6a74c05ecf652d82e43c1e7ce196de3f6694731bbbabeeead76eef27b6320"
+    },
+    "overlays/save_migration/save_migration.h": {
+      "size": 12497,
+      "sha256": "e266c4ec10a3244654837c0f3009b449ccf0e203fe0bfc1c11b319132baadf67"
+    },
+    "overlays/trainer_changekit_final_runtime/README_JA.md": {
+      "size": 4676,
+      "sha256": "69337c384af01fd1fbc93cd483ea557fcad3075046c58775477283d75c4c3cfc"
+    },
+    "overlays/trainer_changekit_final_runtime/hook_contract_stage34.json": {
+      "size": 7014,
+      "sha256": "a8cd6437e0dc4dd6c2250ce08d80bb47eafb03c267f7c56a8df3296e57b42777"
+    },
+    "overlays/trainer_changekit_final_runtime/trainer_changekit_final_runtime.c": {
+      "size": 53259,
+      "sha256": "bd20bff34ea2656fa9646fcf4fef977422a339a3805308f4863c3754199b635f"
+    },
+    "scripts/build_battle_core.py": {
+      "size": 239192,
+      "sha256": "e83f659b912e4f61f790ef648f30dd7e669f737da84f326c234dc491a6d135c0"
+    },
+    "scripts/build_battle_rules.py": {
+      "size": 32897,
+      "sha256": "03b07e455e62cfa1c5829e3874056d1a0fed88dad1848d8c57aae859b1f737bc"
+    },
+    "scripts/build_battle_ui.py": {
+      "size": 54088,
+      "sha256": "7489c3aa28e1547eea0801ca7d8b532b8252cbf67ede2fe0d199c96587893ce6"
+    },
+    "scripts/build_bp_shop_runtime.py": {
+      "size": 42555,
+      "sha256": "6385e4cffadc7c9c72223e9e0327b7caaf3e500a849b08505a48934d7239ff33"
+    },
+    "scripts/build_chatgpt_pro_collection_supply_packet.py": {
+      "size": 62616,
+      "sha256": "357d3e21a688e219958702e99ce0736c84211ae17f30caab4b7f6d20b7c09bf0"
+    },
+    "scripts/build_chatgpt_pro_design_packets.py": {
+      "size": 88970,
+      "sha256": "cace966482005053fbd6e9ad944da1a6e1827f841b7db1488f28d8257961dbaa"
+    },
+    "scripts/build_codex_battle_rewards.py": {
+      "size": 60538,
+      "sha256": "1011490d67808d19fda9ae18723bd8aa123106e7589b413b3116ab01e02e6be6"
+    },
+    "scripts/build_collection_supply_v1.py": {
+      "size": 85174,
+      "sha256": "b25a000ef37a9115b1ccb17958ded1c605b859143df677c154e13dd79fa85f37"
+    },
+    "scripts/build_engine_vertical_slice.py": {
+      "size": 17944,
+      "sha256": "8a27daff64c440c8f5364754521875faa6ce03f87a4769952c5c242e67191053"
+    },
+    "scripts/build_facility_runtime.py": {
+      "size": 34113,
+      "sha256": "c5fcdc5e20f760637a233a90c5165a6c9726bbfdba56f763287b163333d11204"
+    },
+    "scripts/build_factory_high_modes_v2.py": {
+      "size": 94857,
+      "sha256": "9f7deb8dcc5347e70e84f17e0a31d188ccc7c7d382788fb0c46dd38b23474983"
+    },
+    "scripts/build_factory_repeat_reward_runtime.py": {
+      "size": 35740,
+      "sha256": "bc485542a676ce9ec7c8e2597513d2d2a22b5ec67eeb344c8fca451bb58ab4f4"
+    },
+    "scripts/build_factory_reward_runtime.py": {
+      "size": 39915,
+      "sha256": "240147ef793391379640d53d85d77e29dbed110ec96dbdf8dfb7c3b04444c223"
+    },
+    "scripts/build_fast_rom.py": {
+      "size": 13237,
+      "sha256": "c81e20696d06b1e0dfaec480954202b4151308eba5617b98c90b7353fa85368a"
+    },
+    "scripts/build_mirage_production.py": {
+      "size": 124369,
+      "sha256": "db270b8c32dae90cdd2bfe96fa7a398a405b1034b6d888bc06e8913046cd04ac"
+    },
+    "scripts/build_modernization_p02_stage64.py": {
+      "size": 22816,
+      "sha256": "a076c6a7f741e4c5c84b1fcd9cfc6d882b97cea1f0c59a12c03441b050d1b7ea"
+    },
+    "scripts/build_qol_release.py": {
+      "size": 17607,
+      "sha256": "6fca1df7be6c512903e5220bde580202f99c7f3676eae71b83eb1a230386fbe5"
+    },
+    "scripts/build_release.py": {
+      "size": 46547,
+      "sha256": "2d00d94bd7aec3c6f95687038483fdd451c6e09bdc1cd6c761a0a6ab82dbe101"
+    },
+    "scripts/build_reward_encounters_v2.py": {
+      "size": 69546,
+      "sha256": "111438a591dcc8fb954c4a0b906b0d21beb9ff2fa8727eed6b1cf1e2285b84a6"
+    },
+    "scripts/build_save_compatibility.py": {
+      "size": 7879,
+      "sha256": "4012931ce13f373dc73fa6d81d5af84e159a5fa8372f1928eb3c1ed23bcdfd6a"
+    },
+    "scripts/build_species_surface.py": {
+      "size": 88276,
+      "sha256": "d032f6cbf3e38914e332899deed99168873d85746f3c340cdafc5bc5db791bad"
+    },
+    "scripts/build_stage58_qol_world_convenience_debug.py": {
+      "size": 132743,
+      "sha256": "9178bd3b096bb1c6c395103631b5781e959f6226987c212d448106d2ad5c3176"
+    },
+    "scripts/build_stage61_display_npc_event_audit.py": {
+      "size": 1423400,
+      "sha256": "08286d81d867f199060ec63c42efceb9f0dd5b16a020f32847d799bb4c5fb94b"
+    },
+    "scripts/build_trainer_changekit_final.py": {
+      "size": 109603,
+      "sha256": "06b7609f957f3a6942b3b35e5a6388a365b4be5175dce4afe04d5df4eefe891b"
+    },
+    "scripts/build_upstream.py": {
+      "size": 121898,
+      "sha256": "278f7ef13f6605ce6155b0f0dcc4c5d6f44e85ea5728ee9d347717a406861e19"
+    },
+    "scripts/pr16_apply_gear_policy_boundary.py": {
+      "size": 5822,
+      "sha256": "f2e64dbf1970ee3d8f7709a34d6efd8adb88251fcd7bc5d63d5c4a319b47c3cd"
+    },
+    "scripts/pr16_completion_checkpoint.py": {
+      "size": 18709,
+      "sha256": "1a97d729f61072b799c4d0a65a342203258c67b86c7b151170605e543656e835"
+    },
+    "scripts/pr16_gear_originals.py": {
+      "size": 10661,
+      "sha256": "7d4b617b96826343087dc2ca27cf017c9ad47e5bef1a4b91c90974da58f66bea"
+    },
+    "scripts/pr16_gear_screen_checkpoint.py": {
+      "size": 7968,
+      "sha256": "4753a465b8b1ba6f55a18ff3b0b429e1cd9ee599364bde23466e9a230c78186f"
+    },
+    "scripts/pr16_integrated_domains.py": {
+      "size": 8493,
+      "sha256": "2da5be92e1601fdd383b57fc39f480d92cba8da82998bcc3a5b6e7008993b0d3"
+    },
+    "scripts/pr16_natural_capture_checkpoint.py": {
+      "size": 10875,
+      "sha256": "22a3cebade3a8120a792138caa2c9265272f99b823808b958accbd92f11ef403"
+    },
+    "scripts/pr16_p05_native_supply_evidence_map.py": {
+      "size": 16189,
+      "sha256": "92ef2a23648771ddfeab545b2b403df7624b0821c6182d0891816f816dba67c4"
+    },
+    "scripts/pr16_purchased_gear.py": {
+      "size": 13172,
+      "sha256": "da0878109e346e1454ac3f47b8e6d75247deb9a9c4f4b5fd2881a86458007a6d"
+    },
+    "scripts/pr16_purchased_gear_checkpoint.py": {
+      "size": 10173,
+      "sha256": "5ecaa2cabb208659a40b4df88214d9a6e245f6c261f28c13f6554cc35c3e5c83"
+    },
+    "scripts/pr16_purchased_gear_evidence.py": {
+      "size": 5104,
+      "sha256": "7a3e58c672ff8d2a864283fc5c6f90e67c6968f6f9b21b7868ef38bd2442d191"
+    },
+    "scripts/rebuild_codex_battle_rewards_from_clean.py": {
+      "size": 9189,
+      "sha256": "6f02027098e278aeaf87a1fdf10b4accd8284d229948be336f46213da0a148de"
+    },
+    "scripts/rebuild_mirage_production_from_clean.py": {
+      "size": 18567,
+      "sha256": "b3e88d34e98d3eb94d7e42c2506074c7ff03c0842359bb58ae312ff39cc9baa4"
+    },
+    "scripts/rebuild_reward_encounters_v2_from_clean.py": {
+      "size": 16195,
+      "sha256": "22056e86a327be8fc4d14db13cfbfe33c4bc9a0d9b9e6b80512b11d2c09a3fdf"
+    },
+    "scripts/record_modernization_final_acceptance.py": {
+      "size": 17552,
+      "sha256": "a35404fc4f65fe7a6e5cd2321613e795d28d2443458662fc5cbabe837f76db18"
+    },
+    "scripts/record_modernization_stage82_archive.py": {
+      "size": 11379,
+      "sha256": "47074589e006916f7a2322a096f80c67fe0a05a7790fe59518d4aad2c61567d8"
+    },
+    "scripts/run_modernization_mega_shop_mgba.py": {
+      "size": 15339,
+      "sha256": "13d01749b6e5ed9bbd4bb093cd85d33e7d2abd78af1d0e1df7661a58a686616c"
+    },
+    "scripts/run_modernization_stage79_cumulative_mgba.py": {
+      "size": 127092,
+      "sha256": "fc5eff879d6bfc9d0d9232162c47de26b44957bf8a897e19997afec6dbe793fb"
+    },
+    "scripts/run_stage58_mgba_validation.py": {
+      "size": 32804,
+      "sha256": "e63424d04e7acff389c4eccb93f619c17c7a1d9ccbd6baeceefd90e190d6659a"
+    },
+    "tasks/T08_SAVE_RAM.md": {
+      "size": 6391,
+      "sha256": "d4135e048bb166973a61a9a49188feeb514fc97c1887d5439670a0057eaa2a6a"
+    },
+    "tasks/T12_CONTENT_SCHEMA.md": {
+      "size": 7463,
+      "sha256": "82205f46f4af26c4db9dea67e81bcda21ce45cd833b4c2260d5eccd9bb5f01a4"
+    },
+    "tasks/T16_CONTENT_POPULATION.md": {
+      "size": 13278,
+      "sha256": "3ae1a026114ae4adc5a6c8dc374c4489e75c40b7220d7d08e58559da3ca09faa"
+    },
+    "tasks/T17_REGRESSION.md": {
+      "size": 9409,
+      "sha256": "c7742c9dee6f5c4f5cbc08f6f32275729ef3f16289235165d05b93b51cdbeccd"
+    },
+    "tasks/T21_MIRAGE_PRODUCTION_RUNTIME.md": {
+      "size": 12716,
+      "sha256": "d23ab81de6d47c22d7cf5ab50cebd9610ec9e4e63d94ab232647bcf0886ff540"
+    },
+    "tasks/T23_RESEARCH_ECONOMY_V1_IMPLEMENTATION.md": {
+      "size": 6236,
+      "sha256": "33f598a897f82dc4f3de0ab664f6a52cac130b869832a930a6ab847314cb6575"
+    },
+    "tasks/T25_FACTORY_HIGH_MODES_V2_IMPLEMENTATION.md": {
+      "size": 6586,
+      "sha256": "22375eea7c7f203df8a4fdb01ade05c77c986aad33b7caba3a709ba48226f94f"
+    },
+    "tasks/T27_CODEX_BATTLE_RUNTIME.md": {
+      "size": 13645,
+      "sha256": "718911b43dfb316f74fc9de5955601dafca23a327c4bd4acf5adbbcd22e3f6b2"
+    },
+    "tasks/USER_20260814_BATTLE_UI.md": {
+      "size": 1509,
+      "sha256": "77d706db1dbe16f986d6c9ab242510bff0980fb03c8964cf8ce4b103b7adf7ce"
+    },
+    "tasks/USER_20260815_SPECIES_NAME_LENGTH.md": {
+      "size": 4150,
+      "sha256": "d04c4e38d01675a82db710816b1abdf868da20e803428bca7e462a12c0f3822e"
+    },
+    "tasks/USER_20260817_BP_SHOP_RUNTIME.md": {
+      "size": 2805,
+      "sha256": "4af3c3905dbe87d8e65da985b3042ebac3f10a068b155e2223af56ca091d82cd"
+    },
+    "tasks/USER_20260818_FACTORY_REPEAT_REWARD_RUNTIME.md": {
+      "size": 3070,
+      "sha256": "e8139b8ff3f409b40a32e50e00e961767425b8e1d9cd984cc3de6f2b34b80bd6"
+    },
+    "tasks/USER_20260818_FACTORY_REWARD_RUNTIME.md": {
+      "size": 2962,
+      "sha256": "6cf760eecb2cfbda54c1e3fa17f588fb6ed123986162c5728ebeeaf65eb0c818"
+    },
+    "tests/fixtures/engine_slice.json": {
+      "size": 2384,
+      "sha256": "12debdfff3fa306416faf2d1c546bdd7f5be1194507f00d8f2d7d44beaea8080"
+    },
+    "tests/fixtures/engine_vertical_slice_fixture.c": {
+      "size": 6407,
+      "sha256": "a2a83ba561ac6b90b962790ac44e522408dd7b75196c6f9cbd31b53091670b9d"
+    },
+    "tests/fixtures/facility_schema/invalid_multi_gimmick.json": {
+      "size": 125,
+      "sha256": "999c1e49ea2bdeb4b4b5d0ea24deb31bba835e1bf84facf1b833247efc1fb611"
+    },
+    "tests/fixtures/factory_trial.json": {
+      "size": 487,
+      "sha256": "9b4a81dbd17a585f60154f271614b3445b2762b0c8987304ec9912d911172ae1"
+    },
+    "tests/fixtures/save_migration_fixture.c": {
+      "size": 17758,
+      "sha256": "30578585f9cb84c89be876267117a68814a2a158573ca6628f97436e2fa52aed"
+    },
+    "tests/fixtures/trainer_difficulty_schema/invalid_multi_gimmick.json": {
+      "size": 117,
+      "sha256": "ff3b68afb8d4278aa80e95c34c8d90082ee9d6e761cb34b8a3221e45d3c1cf41"
+    },
+    "tests/test_battle_rules.py": {
+      "size": 6071,
+      "sha256": "0ffaa91447217c6d8347b6554dc2a941fceaf973a8f8532e99e10bc16bea8070"
+    },
+    "tests/test_battle_ui.py": {
+      "size": 9666,
+      "sha256": "e0b9dc7d4338a56f9e1406ca464024ed7758fe10b2493bf42780c19b571c4f69"
+    },
+    "tests/test_build_battle_core.py": {
+      "size": 33344,
+      "sha256": "ce5b68a81493b77188b49daadf8c3abf0243fd1a4160c7cb06998639edcbd36f"
+    },
+    "tests/test_build_upstream.py": {
+      "size": 38262,
+      "sha256": "ab885260cfe225f73fe6b7d94466722f890d0ce8f11c0bffa51bc27bb7357f6e"
+    },
+    "tests/test_cfru_integration.py": {
+      "size": 16691,
+      "sha256": "501a6b523ff974e91a41e5a4be020a5eb74ca2e971b33437e476c6924c38e47c"
+    },
+    "tests/test_cfru_rom_bridge.py": {
+      "size": 26879,
+      "sha256": "6d65ddfede5e67641c6c6643583cf79291a3f733a872f7c11e138b7eec0d3a1a"
+    },
+    "tests/test_cfru_runtime.py": {
+      "size": 12231,
+      "sha256": "89fddd53cf89651d560947ec80fdabfb67d77f0ac44e2f69ceda67a3ff11dfa9"
+    },
+    "tests/test_factory_high_modes_v2.py": {
+      "size": 8688,
+      "sha256": "a9a5dd73159eab206529600ccc7431daddd15a12432021644f4a11ed619a3e81"
+    },
+    "tests/test_factory_repeat_reward_runtime.py": {
+      "size": 2583,
+      "sha256": "4b5238b8fe424b1deeae8e88bbe1c5f6680643298ddc6bb6b37fa6c267c8c4ff"
+    },
+    "tests/test_mgba_battle_core_ai_smoke.py": {
+      "size": 24962,
+      "sha256": "a841f9e27c01b3e1b1e82f18325cc1ebd9e6e2259d10ed2d84b8ef439113f566"
+    },
+    "tests/test_mgba_battle_policy_smoke.py": {
+      "size": 26955,
+      "sha256": "390c6e745fc44136a6f8d6fca4575b8c846361e7ad76b89eb378fe09eeae5cf6"
+    },
+    "tests/test_mgba_stage58_economy_source.py": {
+      "size": 10653,
+      "sha256": "827a5bcc071e6ee579ddf5ab558471a49749b41ccb869423dd49ffd8c5f74554"
+    },
+    "tests/test_mirage_production.py": {
+      "size": 29392,
+      "sha256": "e163204b08abc144fa6864c0f7a3e9fcfcd5b87132981185e628dafcff04f7f1"
+    },
+    "tests/test_modernization_p04_mega_runtime.py": {
+      "size": 22132,
+      "sha256": "3ad0e7a9318dcb0fbc5079fd79f2591ea594e83a06e830b38b03447cce33bf86"
+    },
+    "tests/test_modernization_p05_stage76_edges.py": {
+      "size": 29814,
+      "sha256": "db334092a15f2566e6e84e73e1f570912729ba1744b9d9c511b5cb59006af5fd"
+    },
+    "tests/test_modernization_stage79_controller_input.py": {
+      "size": 4117,
+      "sha256": "4c9fd043ce4f24202ece50aa3d4b6d3c8bb6fdc9e43499b36d90867b0ba38a98"
+    },
+    "tests/test_modernization_stage79_cumulative_mgba.py": {
+      "size": 47294,
+      "sha256": "55ae24b5bbd592e37b8db8d84466c81bce0dc894ca36aafde688bf1ae247cf67"
+    },
+    "tests/test_modernization_stage81_acceptance_cli.py": {
+      "size": 8734,
+      "sha256": "b69f51eb41563a5a2bc5aada03ee639591e85a12266cbba2f4a225d86036780c"
+    },
+    "tests/test_pr16_p05_native_supply_evidence_map.py": {
+      "size": 5194,
+      "sha256": "742669b47a5ccbae60f4675ea1028d5df751f0f78f48f77ddd7c787b584d7159"
+    },
+    "tests/test_pr16_purchased_gear.py": {
+      "size": 7560,
+      "sha256": "c3a391e8f83300719e6ab24b3c0f16dd449ddb9c1af625c8f484b6112cd2fb04"
+    },
+    "tests/test_pr16_purchased_gear_checkpoint.py": {
+      "size": 8200,
+      "sha256": "e242fa7c12f898d27cb9ec0d850b8e57886cbb92d00368efa945e082f160cfd2"
+    },
+    "tests/test_stage58_mgba_validation_source.py": {
+      "size": 9736,
+      "sha256": "7bcca6a55121d15037ecf98547f4ee8377d48aeb982921fb6b8badf6546ddcb2"
+    },
+    "tests/test_stage61_trainer_sight_entry_repair.py": {
+      "size": 8676,
+      "sha256": "6b46e89ccee8329d1003a5434346a66cc21a38cbfbb020a489207d63d2cf88f9"
+    },
+    "tests/test_t02_state_inventory.py": {
+      "size": 12605,
+      "sha256": "d3c990cf0457b5ef0dbd998e3cce1ee2f69b217bfec62acacd1293fe4337edb4"
+    },
+    "tests/test_t06_publish_gate.py": {
+      "size": 20027,
+      "sha256": "02b6052d99ba0f1f574c01e8f3a836aa605116e5d07d22637c22de6b4828e67a"
+    },
+    "tests/test_trainer_changekit_final_runtime.py": {
+      "size": 26198,
+      "sha256": "762b371baa921ae52583a929a321829ad0c9ec6ba33ab2e5873d9af445d2736c"
+    },
+    "tools/content/populate_content.py": {
+      "size": 76536,
+      "sha256": "dc97713e7e8286a230ad542e9b94782ca5845dbf09104a05dd4c1de906d73f64"
+    },
+    "tools/engine/t06_publish_gate.py": {
+      "size": 21719,
+      "sha256": "bfcae7af15e71a430e8b6f07c9d8df8750f4a2dc9e2873add40613cb5b803326"
+    },
+    "tools/factory_fixture_runner.c": {
+      "size": 55493,
+      "sha256": "361ff077dbb6fcb965045d76553b155b96ee46d38b10971cb6975527f83c2665"
+    },
+    "tools/mgba_battle_core_ai_smoke.c": {
+      "size": 58976,
+      "sha256": "95958ed0a0e7f771332c62f94e7542b230aa15a6fb4a8ee57881f635f3373bb5"
+    },
+    "tools/mgba_battle_policy_smoke.c": {
+      "size": 90064,
+      "sha256": "3369f45a958622045a9e963b1de61f5b5e186e288d04fb10fd3e90b633185ca3"
+    },
+    "tools/mgba_bp_shop_smoke.c": {
+      "size": 19463,
+      "sha256": "9c4e739277d5c3cd72a9ee93d1a5e79fc0a1ba0c0183d630646c09e8ec2969ca"
+    },
+    "tools/mgba_collection_supply_v1_smoke.c": {
+      "size": 28665,
+      "sha256": "1595468b2ffb568ab046124c6bdb0dc3147c6b3f6bfdc10547fb0a4dd90b13df"
+    },
+    "tools/mgba_factory_high_modes_v2_smoke.c": {
+      "size": 31210,
+      "sha256": "2bf39e557e52086337d4987430171c9ee63c2bbd6587042518d91c959c50cd1a"
+    },
+    "tools/mgba_factory_repeat_reward_smoke.c": {
+      "size": 24654,
+      "sha256": "537675cf939f19715940d47f974e6691426422f771fde82121149677c7d2c5a5"
+    },
+    "tools/mgba_factory_reward_smoke.c": {
+      "size": 20718,
+      "sha256": "9c2b7cc554a130022e27b436cb7a015c66642cab3dc703459275cc39325854cd"
+    },
+    "tools/mgba_factory_shiny_memorial_smoke.c": {
+      "size": 48541,
+      "sha256": "73cdd187bcd97deb35dde4073abc3b6b6dcbbe28f33f6d8ebc862a5c080ef91c"
+    },
+    "tools/mgba_factory_special_event_smoke.c": {
+      "size": 20483,
+      "sha256": "1ad29d23dc2034184e7dcd19d03ef8a78ed8595f69ff302e501836a9dad5ed0e"
+    },
+    "tools/mgba_mirage_production_smoke.c": {
+      "size": 111752,
+      "sha256": "48d9e8e2d92b46d88256d795252d132b264a08199fc3c89efcf356bfb47c269a"
+    },
+    "tools/mgba_modernization_mega_shop_smoke.c": {
+      "size": 25037,
+      "sha256": "36811c3a53d4e6326904a617ecd72af126ece54e61d6d8c2294d6b76dbb50994"
+    },
+    "tools/mgba_modernization_stage79_mega_runtime_smoke.c": {
+      "size": 9514,
+      "sha256": "370cfae3aa66875e4245e4ae9c29efe912d7cc1a090add2635e3043d8c30e0d7"
+    },
+    "tools/mgba_pr16_purchased_gear.c": {
+      "size": 16307,
+      "sha256": "ba8a7994d25bf7d5d95fdf9fb35bace671f4b1625f5cee96df235a92bbdac9aa"
+    },
+    "tools/mgba_reward_encounters_v2_smoke.c": {
+      "size": 34408,
+      "sha256": "d304374c4391417a8eeb837198c6d759b59661f91d8bb1f14235efbf8ed6d693"
+    },
+    "tools/mgba_stage58_economy_smoke.c": {
+      "size": 89667,
+      "sha256": "b889b0e56e26e23cf13a9d0d10ae51a04e63c818a488935984468b21efbd307a"
+    },
+    "tools/mgba_stage61_display_npc_event_e2e.c": {
+      "size": 1586763,
+      "sha256": "30c48a4ea935102e42a5e5d81ad600c800d4c11026a91847c75e14d3a166d0a0"
+    },
+    "tools/mgba_stage61_event_lifecycle_e2e.c": {
+      "size": 78542,
+      "sha256": "6b239931c0849bd01c154b1083303c2df6f448cf8bf6a4ac7eaf5f4b806c902e"
+    },
+    "tools/mgba_trainer_changekit_final_smoke.c": {
+      "size": 35291,
+      "sha256": "395bd2e76da4ea239bd02235b70258dc1c980da3d85f88812137959f4c2eab12"
+    },
+    "tools/modernization_evolution.py": {
+      "size": 63458,
+      "sha256": "7c984fd85f04e4fdf8834933b8726637b766587aa503e959ceead3adc6560599"
+    },
+    "tools/modernization_floette_gift.py": {
+      "size": 67319,
+      "sha256": "18dd8b9e26e72351b3bf4a4e8cb38d02469f74fdde5d527304d38c8663e4ad79"
+    },
+    "tools/modernization_mega_shop.py": {
+      "size": 63275,
+      "sha256": "b2e0cf9d107551a04d7f589b982afc6c587729a504deaa395f9b9f7643caeb35"
+    },
+    "tools/modernization_p04_capacity.py": {
+      "size": 184165,
+      "sha256": "a8916d98aa48b2ef1f94887a8efa7b0091e79cf3193f3077cfee6c6159f48f7e"
+    },
+    "tools/modernization_p04_mega_runtime.py": {
+      "size": 66068,
+      "sha256": "c2790f58ef67631114bdf974866d143a5c7fe8c76e0ff40bc11862d1b2326897"
+    },
+    "tools/modernization_p08_integration.py": {
+      "size": 318617,
+      "sha256": "58dd7c275908a5ab4a28af6d7a65dfd00fabe5664684d5a719196bb66dbe5cdb"
+    },
+    "tools/modernization_p08_stage79_evidence.py": {
+      "size": 12514,
+      "sha256": "82dd3270bebd1fdcdcdfae9cd5ecabe324a98b2ac30d0d972fb6d87fbb2ce14b"
+    },
+    "tools/modernization_p08_stage81_evidence.py": {
+      "size": 17983,
+      "sha256": "5178c4228e83fa59d15bfc6172b2df0bec072dddf8b747397ef429863aa6302d"
+    },
+    "tools/regression/model.py": {
+      "size": 29550,
+      "sha256": "bf18b4cc59705f0f611a22403cd58896a4284f3ef063bb652e9d3c54bd1e439a"
+    },
+    "tools/stage58_qol_economy_audit.py": {
+      "size": 44200,
+      "sha256": "ea2d0bca0120a17eab6303f4e4104ebfce468d91865873c167568fe114dbf35a"
+    },
+    "tools/stage61_interaction_oracle.py": {
+      "size": 2062397,
+      "sha256": "00496eca56765961f62e0733d5d08f9999b5f1d4acfafccca253e9190a1cae1f"
+    },
+    "tools/t02/state_inventory.py": {
+      "size": 120181,
+      "sha256": "5f3d5284add99c49e170eea54af5eacc8356abb54b3be6cc791d23a67ab90a75"
+    }
+  },
+  "source_receipts": {
+    "remaining_work": {
+      "path": "content/modernization/p08_remaining_work.json",
+      "size": 23927,
+      "sha256": "8f0d8cf12c078b293384d48cc31f24b9c8720edce09fb28d80f41d1c000032fa"
+    },
+    "purchased_gear": {
+      "path": "content/modernization/pr16_purchased_gear_acceptance.json",
+      "size": 19691,
+      "sha256": "176af395619c87e7bda9e9b862eaffdefd582808bb178427c8059f85e4e52fc3"
+    }
+  },
+  "separation": {
+    "circus_admission_is_separate": true,
+    "does_not_write_circus_flag": true,
+    "does_not_enable_mega_globally": true,
+    "does_not_inject_policy_after_cold_continue": true,
+    "does_not_repeat_purchased_stone_route": true
+  },
+  "release_ready": false
+}

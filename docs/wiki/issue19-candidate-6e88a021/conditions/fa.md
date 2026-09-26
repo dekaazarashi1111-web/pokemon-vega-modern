@@ -1,0 +1,11512 @@
+# 原本の習得条件 fa
+
+候補 SHA-256 `6e88a021785bfa7cf00e26d7f2433c380602d830e94e1d2fc31e3198cda31df2` / 33554432 bytes / CRC32 `00F31AF7`。
+
+[Wiki入口](../README.md)
+
+<a id="fa0119527e92b0524380657528c1c26e6a18fcca5d88672aa2134a8de750c9b3"></a>
+
+## 条件 fa0119527e92b0524380657528c1c26e6a18fcca5d88672aa2134a8de750c9b3
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ムチュール → ルージュラ",
+  "inheritance_chain": [
+    "0238.00",
+    "0124.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ムチュール",
+    "ルージュラ"
+  ],
+  "inheritance_path": [
+    "0238.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0238.00",
+  "learning_species_name_ja": "ムチュール",
+  "machine_item": "TM00",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0238.00",
+  "source_name_ja": "ムチュール",
+  "source_species": 238
+}
+```
+
+<a id="fa01b0b92b41caecbdd77de5c4dfa668b964454662a51cff5180cae66ea1e15b"></a>
+
+## 条件 fa01b0b92b41caecbdd77de5c4dfa668b964454662a51cff5180cae66ea1e15b
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0473.00",
+  "learning_species_name_ja": "マンムー",
+  "level": 65,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0473.00",
+  "source_name_ja": "マンムー",
+  "source_species": 473,
+  "target_learning_level": 65
+}
+```
+
+<a id="fa023b9cce5b517c10511bcca08e6a946d055528f87ce86636aa50153ecd2aff"></a>
+
+## 条件 fa023b9cce5b517c10511bcca08e6a946d055528f87ce86636aa50153ecd2aff
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "フラベベ（姿4） → フラエッテ（姿4）",
+  "inheritance_chain": [
+    "0669.04",
+    "0670.04"
+  ],
+  "inheritance_chain_names_ja": [
+    "フラベベ（姿4）",
+    "フラエッテ（姿4）"
+  ],
+  "inheritance_path": [
+    "0669.04"
+  ],
+  "learning_form_index": 4,
+  "learning_form_label": "姿4",
+  "learning_species_key": "0669.04",
+  "learning_species_name_ja": "フラベベ",
+  "method": "egg",
+  "method_ja": "タマゴ技",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 4,
+  "source_form_label": "姿4",
+  "source_key": "0669.04",
+  "source_name_ja": "フラベベ",
+  "source_species": 669
+}
+```
+
+<a id="fa0246b7d9af81f542e570a6880ada3295de7291d4b93a87d9bbd7b7d41fdd07"></a>
+
+## 条件 fa0246b7d9af81f542e570a6880ada3295de7291d4b93a87d9bbd7b7d41fdd07
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0486.00",
+  "learning_species_name_ja": "レジギガス",
+  "machine_item": "TM152",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0486.00",
+  "source_name_ja": "レジギガス",
+  "source_species": 486
+}
+```
+
+<a id="fa02ca82327318d432312472f3131f1e544c1526a281c3efc6c4d864350877b5"></a>
+
+## 条件 fa02ca82327318d432312472f3131f1e544c1526a281c3efc6c4d864350877b5
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "グルトン → パフュートン",
+  "inheritance_chain": [
+    "0915.00",
+    "0916.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "グルトン",
+    "パフュートン"
+  ],
+  "inheritance_path": [
+    "0915.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0915.00",
+  "learning_species_name_ja": "グルトン",
+  "machine_item": "TM066",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0915.00",
+  "source_name_ja": "グルトン",
+  "source_species": 915
+}
+```
+
+<a id="fa03776f34b98fcdc449e1190e03b5ccac3c107fa53c67deefe0b6c4d8bdfb32"></a>
+
+## 条件 fa03776f34b98fcdc449e1190e03b5ccac3c107fa53c67deefe0b6c4d8bdfb32
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0154.00",
+  "learning_species_name_ja": "メガニウム",
+  "machine_item": "TM111",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0154.00",
+  "source_name_ja": "メガニウム",
+  "source_species": 154
+}
+```
+
+<a id="fa03e63c268ec7c6ff260183890ed46ebc9c9b1394ee2c6d0895442c2d2303ad"></a>
+
+## 条件 fa03e63c268ec7c6ff260183890ed46ebc9c9b1394ee2c6d0895442c2d2303ad
+
+```json
+{
+  "catalog_offset": 4300762,
+  "compatibility_offset": 2160128,
+  "machine_kind": "TM",
+  "machine_number": 32,
+  "move_key": "MOVE_KEY_TRIATTACK",
+  "source_slot": 31
+}
+```
+
+<a id="fa0498ba20d524611391e3d1697e1aa65a146c61bc9b0aeb6b61b16562bb2000"></a>
+
+## 条件 fa0498ba20d524611391e3d1697e1aa65a146c61bc9b0aeb6b61b16562bb2000
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0827.00",
+  "learning_species_name_ja": "クスネ",
+  "method": "tutor",
+  "method_ja": "教え技",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0827.00",
+  "source_name_ja": "クスネ",
+  "source_species": 827
+}
+```
+
+<a id="fa04b0aa67868987d0be73dcf5a0dd34f5827202298760ec260344b13cb03e17"></a>
+
+## 条件 fa04b0aa67868987d0be73dcf5a0dd34f5827202298760ec260344b13cb03e17
+
+```json
+{
+  "catalog_offset": 4300710,
+  "compatibility_offset": 2161440,
+  "machine_kind": "TM",
+  "machine_number": 6,
+  "move_key": "MOVE_KEY_HEADBUTT",
+  "source_slot": 5
+}
+```
+
+<a id="fa04d1816fd4ceb15a2e204f8f74f8607f55c75006767053cbe466fd5e6d5c73"></a>
+
+## 条件 fa04d1816fd4ceb15a2e204f8f74f8607f55c75006767053cbe466fd5e6d5c73
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0463.00",
+  "learning_species_name_ja": "ベロベルト",
+  "machine_item": "TM09",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0463.00",
+  "source_name_ja": "ベロベルト",
+  "source_species": 463
+}
+```
+
+<a id="fa067dde09428a0661d584e3b6523ead5dbf652edd7643fd34bb40b2ef69ab8d"></a>
+
+## 条件 fa067dde09428a0661d584e3b6523ead5dbf652edd7643fd34bb40b2ef69ab8d
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 1,
+  "learning_form_label": "姿1",
+  "learning_species_key": "0101.01",
+  "learning_species_name_ja": "マルマイン",
+  "level": 34,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 1,
+  "source_form_label": "姿1",
+  "source_key": "0101.01",
+  "source_name_ja": "マルマイン",
+  "source_species": 101,
+  "target_learning_level": 34
+}
+```
+
+<a id="fa068c28112fc01dfcf425cf35c8c1a1123130e620e5c5c874f3e36f7aba84af"></a>
+
+## 条件 fa068c28112fc01dfcf425cf35c8c1a1123130e620e5c5c874f3e36f7aba84af
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ヒトカゲ → リザード → リザードン",
+  "inheritance_chain": [
+    "0004.00",
+    "0005.00",
+    "0006.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ヒトカゲ",
+    "リザード",
+    "リザードン"
+  ],
+  "inheritance_path": [
+    "0005.00",
+    "0004.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0004.00",
+  "learning_species_name_ja": "ヒトカゲ",
+  "machine_item": "TM086",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0004.00",
+  "source_name_ja": "ヒトカゲ",
+  "source_species": 4
+}
+```
+
+<a id="fa0776fbc36ffa299a3d02494afed7fd694f3649754da5e4857d7b51e9067c88"></a>
+
+## 条件 fa0776fbc36ffa299a3d02494afed7fd694f3649754da5e4857d7b51e9067c88
+
+```json
+{
+  "acquisition_condition_ja": "剣盾：技枠を空けた受け手と、対象の技を覚えた同じ種の相手を預かり屋に預けて共有する。進化前後は同じ種として扱わない。参照タマゴ技表に載る技だけが対象。",
+  "display_group": "shared_egg",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0835.00",
+  "learning_species_name_ja": "ワンパチ",
+  "method": "shared_egg",
+  "method_ja": "タマゴ技共有",
+  "note_ja": "剣盾：技枠を空けた受け手と、対象の技を覚えた同じ種の相手を預かり屋に預けて共有する。進化前後は同じ種として扱わない。参照タマゴ技表に載る技だけが対象。",
+  "route_kind": "shared_egg",
+  "route_kind_ja": "同作品内のタマゴ技共有",
+  "shared_egg_receiver_basis": "TARGET_OUT_OF_BATTLE_FORM",
+  "shared_egg_receiver_key": "0835.00",
+  "shared_egg_resolution": "OWN_RAW_EGG_POOL",
+  "shared_egg_source_key": "0835.00",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0835.00",
+  "source_name_ja": "ワンパチ",
+  "source_species": 835
+}
+```
+
+<a id="fa0781a46ad11bbdb07b69da11d5bd48b3ae3deccf421c9b907f571a009c68be"></a>
+
+## 条件 fa0781a46ad11bbdb07b69da11d5bd48b3ae3deccf421c9b907f571a009c68be
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ラルトス → キルリア → サーナイト",
+  "inheritance_chain": [
+    "0280.00",
+    "0281.00",
+    "0282.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ラルトス",
+    "キルリア",
+    "サーナイト"
+  ],
+  "inheritance_path": [
+    "0281.00",
+    "0280.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0280.00",
+  "learning_species_name_ja": "ラルトス",
+  "machine_item": "TM066",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0280.00",
+  "source_name_ja": "ラルトス",
+  "source_species": 280
+}
+```
+
+<a id="fa07b9220e0915a8bf0811dbb6ff3b45866c185403317e3a3db1ab4495c57bf2"></a>
+
+## 条件 fa07b9220e0915a8bf0811dbb6ff3b45866c185403317e3a3db1ab4495c57bf2
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ゴンベ → カビゴン",
+  "inheritance_chain": [
+    "0446.00",
+    "0143.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ゴンベ",
+    "カビゴン"
+  ],
+  "inheritance_path": [
+    "0446.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0446.00",
+  "learning_species_name_ja": "ゴンベ",
+  "machine_item": "TM152",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0446.00",
+  "source_name_ja": "ゴンベ",
+  "source_species": 446
+}
+```
+
+<a id="fa0949fccaaf61c7d8768482ef7c51555189e8317beba6c2db6d6d6010bf7f7d"></a>
+
+## 条件 fa0949fccaaf61c7d8768482ef7c51555189e8317beba6c2db6d6d6010bf7f7d
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "バリヤード（姿1） → バリコオル",
+  "donor_learning_level": 24,
+  "inheritance_chain": [
+    "0122.01",
+    "0866.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "バリヤード（姿1）",
+    "バリコオル"
+  ],
+  "inheritance_path": [
+    "0122.01"
+  ],
+  "learning_form_index": 1,
+  "learning_form_label": "姿1",
+  "learning_species_key": "0122.01",
+  "learning_species_name_ja": "バリヤード",
+  "level": 24,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 1,
+  "source_form_label": "姿1",
+  "source_key": "0122.01",
+  "source_name_ja": "バリヤード",
+  "source_species": 122
+}
+```
+
+<a id="fa096a4898f640d02cf16ab8057c92ab990f4d6d704d1215f816255c7833a6b2"></a>
+
+## 条件 fa096a4898f640d02cf16ab8057c92ab990f4d6d704d1215f816255c7833a6b2
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0106.00",
+  "learning_species_name_ja": "サワムラー",
+  "level": 21,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0106.00",
+  "source_name_ja": "サワムラー",
+  "source_species": 106,
+  "target_learning_level": 21
+}
+```
+
+<a id="fa09784091fb04d9619f841a7c67cbfca626fd940e20f2f5285b2d7cc3268929"></a>
+
+## 条件 fa09784091fb04d9619f841a7c67cbfca626fd940e20f2f5285b2d7cc3268929
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ウリムー → イノムー → マンムー",
+  "inheritance_chain": [
+    "0220.00",
+    "0221.00",
+    "0473.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ウリムー",
+    "イノムー",
+    "マンムー"
+  ],
+  "inheritance_path": [
+    "0221.00",
+    "0220.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0220.00",
+  "learning_species_name_ja": "ウリムー",
+  "machine_item": "TM035",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0220.00",
+  "source_name_ja": "ウリムー",
+  "source_species": 220
+}
+```
+
+<a id="fa0baed1b034e530cbac8f647d264eae207822e134427d66c06869f5cadc4305"></a>
+
+## 条件 fa0baed1b034e530cbac8f647d264eae207822e134427d66c06869f5cadc4305
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ゴースト → ゲンガー",
+  "inheritance_chain": [
+    "0093.00",
+    "0094.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ゴースト",
+    "ゲンガー"
+  ],
+  "inheritance_path": [
+    "0093.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0093.00",
+  "learning_species_name_ja": "ゴースト",
+  "machine_item": "TM069",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0093.00",
+  "source_name_ja": "ゴースト",
+  "source_species": 93
+}
+```
+
+<a id="fa0c0df316a71307c4340bd230e5c556488705245c1e4d4807d3ea3dfa61672b"></a>
+
+## 条件 fa0c0df316a71307c4340bd230e5c556488705245c1e4d4807d3ea3dfa61672b
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "スナバァ → シロデスナ",
+  "inheritance_chain": [
+    "0769.00",
+    "0770.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "スナバァ",
+    "シロデスナ"
+  ],
+  "inheritance_path": [
+    "0769.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0769.00",
+  "learning_species_name_ja": "スナバァ",
+  "machine_item": "TM085",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0769.00",
+  "source_name_ja": "スナバァ",
+  "source_species": 769
+}
+```
+
+<a id="fa0c3b4e5a244ad04f40401e0c9a85d28191e0ab1ac8ecbbb5354382fba689d9"></a>
+
+## 条件 fa0c3b4e5a244ad04f40401e0c9a85d28191e0ab1ac8ecbbb5354382fba689d9
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0028.00",
+  "learning_species_name_ja": "サンドパン",
+  "machine_item": "TM158",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0028.00",
+  "source_name_ja": "サンドパン",
+  "source_species": 28
+}
+```
+
+<a id="fa0dab9a65e93c5714c3f0c1538a4a385051d2eb9ca6be7061b442edf72384ee"></a>
+
+## 条件 fa0dab9a65e93c5714c3f0c1538a4a385051d2eb9ca6be7061b442edf72384ee
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0565.00",
+  "learning_species_name_ja": "アバゴーラ",
+  "machine_item": "TM83",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0565.00",
+  "source_name_ja": "アバゴーラ",
+  "source_species": 565
+}
+```
+
+<a id="fa0e117fd4545138a1983fa618f912cd31b485711088ff3d673d8dbe3b701aef"></a>
+
+## 条件 fa0e117fd4545138a1983fa618f912cd31b485711088ff3d673d8dbe3b701aef
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0739.00",
+  "learning_species_name_ja": "マケンカニ",
+  "machine_item": "TM110",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0739.00",
+  "source_name_ja": "マケンカニ",
+  "source_species": 739
+}
+```
+
+<a id="fa0eeaa439180a089f4bf89b7aa9ca4451f432afa352d51e1cf8c9c83fd67ec8"></a>
+
+## 条件 fa0eeaa439180a089f4bf89b7aa9ca4451f432afa352d51e1cf8c9c83fd67ec8
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 15,
+  "learning_form_label": "姿15",
+  "learning_species_key": "0493.15",
+  "learning_species_name_ja": "アルセウス",
+  "machine_item": "TM142",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 15,
+  "source_form_label": "姿15",
+  "source_key": "0493.15",
+  "source_name_ja": "アルセウス",
+  "source_species": 493
+}
+```
+
+<a id="fa0f13a76f3347ecc9a0403cf55bd8f4672c90675c7664c6ddba1720a3a559c6"></a>
+
+## 条件 fa0f13a76f3347ecc9a0403cf55bd8f4672c90675c7664c6ddba1720a3a559c6
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0164.00",
+  "learning_species_name_ja": "ヨルノズク",
+  "machine_item": "TM047",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0164.00",
+  "source_name_ja": "ヨルノズク",
+  "source_species": 164
+}
+```
+
+<a id="fa0ff868898a670bf2b6cc9925c8014483954dfda9a766c9f03bfc30f7a8dce1"></a>
+
+## 条件 fa0ff868898a670bf2b6cc9925c8014483954dfda9a766c9f03bfc30f7a8dce1
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0565.00",
+  "learning_species_name_ja": "アバゴーラ",
+  "machine_item": "TM55",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0565.00",
+  "source_name_ja": "アバゴーラ",
+  "source_species": 565
+}
+```
+
+<a id="fa102e39be7bd4e2b63f988bb36dd9ce5628bbb37a394827c3f01bf3540626c2"></a>
+
+## 条件 fa102e39be7bd4e2b63f988bb36dd9ce5628bbb37a394827c3f01bf3540626c2
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ニャビー → ニャヒート",
+  "inheritance_chain": [
+    "0725.00",
+    "0726.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ニャビー",
+    "ニャヒート"
+  ],
+  "inheritance_path": [
+    "0725.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0725.00",
+  "learning_species_name_ja": "ニャビー",
+  "machine_item": "TM087",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0725.00",
+  "source_name_ja": "ニャビー",
+  "source_species": 725
+}
+```
+
+<a id="fa10a241072528c6557caa49174033e65bcd96b6f4b3e8862871eb46a04654de"></a>
+
+## 条件 fa10a241072528c6557caa49174033e65bcd96b6f4b3e8862871eb46a04654de
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 1,
+  "learning_form_label": "姿1",
+  "learning_species_key": "0901.01",
+  "learning_species_name_ja": "ガチグマ",
+  "machine_item": "TM061",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 1,
+  "source_form_label": "姿1",
+  "source_key": "0901.01",
+  "source_name_ja": "ガチグマ",
+  "source_species": 901
+}
+```
+
+<a id="fa10d1edd48db07053cdfa543e4a70bf076d7e4c99658b6e0af0217a98dffb5c"></a>
+
+## 条件 fa10d1edd48db07053cdfa543e4a70bf076d7e4c99658b6e0af0217a98dffb5c
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 1,
+  "learning_form_label": "姿1",
+  "learning_species_key": "0925.01",
+  "learning_species_name_ja": "イッカネズミ",
+  "machine_item": "TM122",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 1,
+  "source_form_label": "姿1",
+  "source_key": "0925.01",
+  "source_name_ja": "イッカネズミ",
+  "source_species": 925
+}
+```
+
+<a id="fa12d5d2215328549ef02c2390462d17c807fd02fd1f431b5e3bea326e2c77bb"></a>
+
+## 条件 fa12d5d2215328549ef02c2390462d17c807fd02fd1f431b5e3bea326e2c77bb
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ブロロン → ブロロローム",
+  "inheritance_chain": [
+    "0965.00",
+    "0966.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ブロロン",
+    "ブロロローム"
+  ],
+  "inheritance_path": [
+    "0965.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0965.00",
+  "learning_species_name_ja": "ブロロン",
+  "method": "egg",
+  "method_ja": "タマゴ技",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0965.00",
+  "source_name_ja": "ブロロン",
+  "source_species": 965
+}
+```
+
+<a id="fa1315f24f2b4f37d9d8344523cb62f63ec5fa9c1080da582358d9201f9a853d"></a>
+
+## 条件 fa1315f24f2b4f37d9d8344523cb62f63ec5fa9c1080da582358d9201f9a853d
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ヒトカゲ → リザード → リザードン",
+  "donor_learning_level": 8,
+  "inheritance_chain": [
+    "0004.00",
+    "0005.00",
+    "0006.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ヒトカゲ",
+    "リザード",
+    "リザードン"
+  ],
+  "inheritance_path": [
+    "0005.00",
+    "0004.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0004.00",
+  "learning_species_name_ja": "ヒトカゲ",
+  "level": 8,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0004.00",
+  "source_name_ja": "ヒトカゲ",
+  "source_species": 4
+}
+```
+
+<a id="fa13a60745b9286030b7821da804bfc8346fccf1957e017d9aeb04e1ef5e0c61"></a>
+
+## 条件 fa13a60745b9286030b7821da804bfc8346fccf1957e017d9aeb04e1ef5e0c61
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ニャオハ → ニャローテ → マスカーニャ",
+  "inheritance_chain": [
+    "0906.00",
+    "0907.00",
+    "0908.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ニャオハ",
+    "ニャローテ",
+    "マスカーニャ"
+  ],
+  "inheritance_path": [
+    "0907.00",
+    "0906.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0906.00",
+  "learning_species_name_ja": "ニャオハ",
+  "machine_item": "TM025",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0906.00",
+  "source_name_ja": "ニャオハ",
+  "source_species": 906
+}
+```
+
+<a id="fa1499a8f66eb7dabe4fb3c1d85e8cf4f87e25302aaf0ca72527a8da95215352"></a>
+
+## 条件 fa1499a8f66eb7dabe4fb3c1d85e8cf4f87e25302aaf0ca72527a8da95215352
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ホエルコ → ホエルオー",
+  "inheritance_chain": [
+    "0320.00",
+    "0321.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ホエルコ",
+    "ホエルオー"
+  ],
+  "inheritance_path": [
+    "0320.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0320.00",
+  "learning_species_name_ja": "ホエルコ",
+  "machine_item": "TR10",
+  "method": "tr",
+  "method_ja": "わざレコード",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0320.00",
+  "source_name_ja": "ホエルコ",
+  "source_species": 320
+}
+```
+
+<a id="fa15ab8c7e49a20b1a095bd283c5d0dba12dc2734ae470e3715cd9f4796ac82e"></a>
+
+## 条件 fa15ab8c7e49a20b1a095bd283c5d0dba12dc2734ae470e3715cd9f4796ac82e
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0437.00",
+  "learning_species_name_ja": "ドータクン",
+  "machine_item": "TM130",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0437.00",
+  "source_name_ja": "ドータクン",
+  "source_species": 437
+}
+```
+
+<a id="fa16045d65aea909a589a4953a374493f84ec01ad4d7326e90982f6f55c4d3db"></a>
+
+## 条件 fa16045d65aea909a589a4953a374493f84ec01ad4d7326e90982f6f55c4d3db
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0967.00",
+  "learning_species_name_ja": "モトトカゲ",
+  "machine_item": "TM171",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0967.00",
+  "source_name_ja": "モトトカゲ",
+  "source_species": 967
+}
+```
+
+<a id="fa167b14184e6e23bf868da8ee8f468a83669ae032eba0bfdec429927f30585f"></a>
+
+## 条件 fa167b14184e6e23bf868da8ee8f468a83669ae032eba0bfdec429927f30585f
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0481.00",
+  "learning_species_name_ja": "エムリット",
+  "machine_item": "TM047",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0481.00",
+  "source_name_ja": "エムリット",
+  "source_species": 481
+}
+```
+
+<a id="fa17577e630847312ef40f33c56536cdfc481644cca3a7d6631b906d9e7cab31"></a>
+
+## 条件 fa17577e630847312ef40f33c56536cdfc481644cca3a7d6631b906d9e7cab31
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0094.00",
+  "learning_species_name_ja": "ゲンガー",
+  "machine_item": "TM175",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0094.00",
+  "source_name_ja": "ゲンガー",
+  "source_species": 94
+}
+```
+
+<a id="fa175ed5295d8f839a9b0f8a32d72b3f405f6f7edb1cd487d47f0ff8f9a456d1"></a>
+
+## 条件 fa175ed5295d8f839a9b0f8a32d72b3f405f6f7edb1cd487d47f0ff8f9a456d1
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 7,
+  "learning_form_label": "姿7",
+  "learning_species_key": "0774.07",
+  "learning_species_name_ja": "メテノ",
+  "machine_item": "TM079",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 7,
+  "source_form_label": "姿7",
+  "source_key": "0774.07",
+  "source_name_ja": "メテノ",
+  "source_species": 774
+}
+```
+
+<a id="fa1824f6158c0afbb73e4e855232caa1c50e2e99869ef8fb74a1f609c977b880"></a>
+
+## 条件 fa1824f6158c0afbb73e4e855232caa1c50e2e99869ef8fb74a1f609c977b880
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0921.00",
+  "learning_species_name_ja": "パモ",
+  "machine_item": "TM126",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0921.00",
+  "source_name_ja": "パモ",
+  "source_species": 921
+}
+```
+
+<a id="fa19400fadaa5fc95cfa18b3efc6fc69baab6761b759d15f6f56eadda29f3bb9"></a>
+
+## 条件 fa19400fadaa5fc95cfa18b3efc6fc69baab6761b759d15f6f56eadda29f3bb9
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 1,
+  "learning_form_label": "姿1",
+  "learning_species_key": "0059.01",
+  "learning_species_name_ja": "ウインディ",
+  "machine_item": "TM036",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 1,
+  "source_form_label": "姿1",
+  "source_key": "0059.01",
+  "source_name_ja": "ウインディ",
+  "source_species": 59
+}
+```
+
+<a id="fa19ce900f249428d10db8bea8d93e38d3404e42b6a767286e308835c4a7ec55"></a>
+
+## 条件 fa19ce900f249428d10db8bea8d93e38d3404e42b6a767286e308835c4a7ec55
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0306.00",
+  "learning_species_name_ja": "ボスゴドラ",
+  "machine_item": "TM76",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0306.00",
+  "source_name_ja": "ボスゴドラ",
+  "source_species": 306
+}
+```
+
+<a id="fa19f4343b3fe8c745dd2a989d41e03dab13d3e77ce3a81fcc8ecfb95e1152aa"></a>
+
+## 条件 fa19f4343b3fe8c745dd2a989d41e03dab13d3e77ce3a81fcc8ecfb95e1152aa
+
+```json
+{
+  "level": 22,
+  "move_key": "MOVE_KEY_HAIL"
+}
+```
+
+<a id="fa1a16ae7f302c4a485e2d36dd3bec83101b3028147fcc7776166ff8da661ae3"></a>
+
+## 条件 fa1a16ae7f302c4a485e2d36dd3bec83101b3028147fcc7776166ff8da661ae3
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "フシギソウ → フシギバナ",
+  "inheritance_chain": [
+    "0002.00",
+    "0003.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "フシギソウ",
+    "フシギバナ"
+  ],
+  "inheritance_path": [
+    "0002.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0002.00",
+  "learning_species_name_ja": "フシギソウ",
+  "machine_item": "TM020",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0002.00",
+  "source_name_ja": "フシギソウ",
+  "source_species": 2
+}
+```
+
+<a id="fa1b4db84370fc02d132b94cac5bd9df1cb1da11207bc8ad6de264af2d835977"></a>
+
+## 条件 fa1b4db84370fc02d132b94cac5bd9df1cb1da11207bc8ad6de264af2d835977
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ロコン → キュウコン",
+  "inheritance_chain": [
+    "0037.00",
+    "0038.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ロコン",
+    "キュウコン"
+  ],
+  "inheritance_path": [
+    "0037.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0037.00",
+  "learning_species_name_ja": "ロコン",
+  "machine_item": "TM024",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0037.00",
+  "source_name_ja": "ロコン",
+  "source_species": 37
+}
+```
+
+<a id="fa1b5b252e808b9d14e85c1193e19effbc43bb42528ff6a67b2aed8b65802b33"></a>
+
+## 条件 fa1b5b252e808b9d14e85c1193e19effbc43bb42528ff6a67b2aed8b65802b33
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0020.00",
+  "learning_species_name_ja": "ラッタ",
+  "machine_item": "TM93",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0020.00",
+  "source_name_ja": "ラッタ",
+  "source_species": 20
+}
+```
+
+<a id="fa1ba4cb06fa1771f5a2d1ca26690940b4b1f259ec200aeaa84710f2da923dc1"></a>
+
+## 条件 fa1ba4cb06fa1771f5a2d1ca26690940b4b1f259ec200aeaa84710f2da923dc1
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ヌイコグマ → キテルグマ",
+  "inheritance_chain": [
+    "0759.00",
+    "0760.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ヌイコグマ",
+    "キテルグマ"
+  ],
+  "inheritance_path": [
+    "0759.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0759.00",
+  "learning_species_name_ja": "ヌイコグマ",
+  "machine_item": "TM24",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0759.00",
+  "source_name_ja": "ヌイコグマ",
+  "source_species": 759
+}
+```
+
+<a id="fa1bd8659b3a1661a2951cf0aa650eb8584dab44fde769fd2a5ae5fbc6194668"></a>
+
+## 条件 fa1bd8659b3a1661a2951cf0aa650eb8584dab44fde769fd2a5ae5fbc6194668
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0022.00",
+  "learning_species_name_ja": "オニドリル",
+  "level": 18,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0022.00",
+  "source_name_ja": "オニドリル",
+  "source_species": 22,
+  "target_learning_level": 18
+}
+```
+
+<a id="fa1e3c4acbb739c007c70d709b038815d77713887d0f82a96922e1b6b73add52"></a>
+
+## 条件 fa1e3c4acbb739c007c70d709b038815d77713887d0f82a96922e1b6b73add52
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "マンキー → オコリザル → コノヨザル",
+  "inheritance_chain": [
+    "0056.00",
+    "0057.00",
+    "0979.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "マンキー",
+    "オコリザル",
+    "コノヨザル"
+  ],
+  "inheritance_path": [
+    "0057.00",
+    "0056.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0056.00",
+  "learning_species_name_ja": "マンキー",
+  "machine_item": "TM028",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0056.00",
+  "source_name_ja": "マンキー",
+  "source_species": 56
+}
+```
+
+<a id="fa204f763b8cc05b55be573b4b8b13e589826b4cf568a7f8f4bf3cdf5da53ed1"></a>
+
+## 条件 fa204f763b8cc05b55be573b4b8b13e589826b4cf568a7f8f4bf3cdf5da53ed1
+
+```json
+{
+  "catalog_offset": 4297456,
+  "compatibility_offset": 4297772,
+  "move_key": "MOVE_KEY_ICICLECRASH",
+  "source_slot": 0
+}
+```
+
+<a id="fa20b865066364c6c1b6b97922cd5edce1fb8ebc17bfe6a7505bd5c2dbb160ab"></a>
+
+## 条件 fa20b865066364c6c1b6b97922cd5edce1fb8ebc17bfe6a7505bd5c2dbb160ab
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0064.00",
+  "learning_species_name_ja": "ユンゲラー",
+  "machine_item": "TR31",
+  "method": "tr",
+  "method_ja": "わざレコード",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0064.00",
+  "source_name_ja": "ユンゲラー",
+  "source_species": 64
+}
+```
+
+<a id="fa210fdf0c4e9171865a3c225dadbf1c39372637fa83a2dd31a425c01eccf1ef"></a>
+
+## 条件 fa210fdf0c4e9171865a3c225dadbf1c39372637fa83a2dd31a425c01eccf1ef
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0849.00",
+  "learning_species_name_ja": "ストリンダー",
+  "machine_item": "TM166",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0849.00",
+  "source_name_ja": "ストリンダー",
+  "source_species": 849
+}
+```
+
+<a id="fa2129c75d2226a0410cec6ef67e4cb2be22e84c3acd62f263ee0521a6646878"></a>
+
+## 条件 fa2129c75d2226a0410cec6ef67e4cb2be22e84c3acd62f263ee0521a6646878
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "フシデ → ホイーガ → ペンドラー",
+  "inheritance_chain": [
+    "0543.00",
+    "0544.00",
+    "0545.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "フシデ",
+    "ホイーガ",
+    "ペンドラー"
+  ],
+  "inheritance_path": [
+    "0544.00",
+    "0543.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0543.00",
+  "learning_species_name_ja": "フシデ",
+  "machine_item": "TR91",
+  "method": "tr",
+  "method_ja": "わざレコード",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0543.00",
+  "source_name_ja": "フシデ",
+  "source_species": 543
+}
+```
+
+<a id="fa227ecec8458fe5c732ce374c1ad613a88ae0592731d50d2413367d90f963dd"></a>
+
+## 条件 fa227ecec8458fe5c732ce374c1ad613a88ae0592731d50d2413367d90f963dd
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "カプサイジ → スコヴィラン",
+  "inheritance_chain": [
+    "0951.00",
+    "0952.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "カプサイジ",
+    "スコヴィラン"
+  ],
+  "inheritance_path": [
+    "0951.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0951.00",
+  "learning_species_name_ja": "カプサイジ",
+  "machine_item": "TM103",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0951.00",
+  "source_name_ja": "カプサイジ",
+  "source_species": 951
+}
+```
+
+<a id="fa227ecfab4e27fc18bf56086eda62ef745a644395278bbca27dee31c39dcfed"></a>
+
+## 条件 fa227ecfab4e27fc18bf56086eda62ef745a644395278bbca27dee31c39dcfed
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ヒメグマ → リングマ",
+  "inheritance_chain": [
+    "0216.00",
+    "0217.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ヒメグマ",
+    "リングマ"
+  ],
+  "inheritance_path": [
+    "0216.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0216.00",
+  "learning_species_name_ja": "ヒメグマ",
+  "machine_item": "TM064",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0216.00",
+  "source_name_ja": "ヒメグマ",
+  "source_species": 216
+}
+```
+
+<a id="fa2316a5fc8bb10afad0f9893bcb9cd43af0e43b2cfc51ba51dbbf4e02ce356d"></a>
+
+## 条件 fa2316a5fc8bb10afad0f9893bcb9cd43af0e43b2cfc51ba51dbbf4e02ce356d
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0954.00",
+  "learning_species_name_ja": "ベラカス",
+  "machine_item": "TM102",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0954.00",
+  "source_name_ja": "ベラカス",
+  "source_species": 954
+}
+```
+
+<a id="fa235811675d2db6de31d26cf8b06e494e205e8e5576a4d80b2fe009ab0d55fd"></a>
+
+## 条件 fa235811675d2db6de31d26cf8b06e494e205e8e5576a4d80b2fe009ab0d55fd
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0106.00",
+  "learning_species_name_ja": "サワムラー",
+  "machine_item": "TM184",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0106.00",
+  "source_name_ja": "サワムラー",
+  "source_species": 106
+}
+```
+
+<a id="fa235d489940d87747cea186ac2442e24c7149c4e8d96bc3fd42a9197d181a86"></a>
+
+## 条件 fa235d489940d87747cea186ac2442e24c7149c4e8d96bc3fd42a9197d181a86
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0280.00",
+  "learning_species_name_ja": "ラルトス",
+  "machine_item": "TM139",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0280.00",
+  "source_name_ja": "ラルトス",
+  "source_species": 280
+}
+```
+
+<a id="fa23af99b414d02305ba8627aedb79931228645954c79f0f2d99f303d8744a97"></a>
+
+## 条件 fa23af99b414d02305ba8627aedb79931228645954c79f0f2d99f303d8744a97
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "フラベベ（姿3） → フラエッテ（姿3）",
+  "inheritance_chain": [
+    "0669.03",
+    "0670.03"
+  ],
+  "inheritance_chain_names_ja": [
+    "フラベベ（姿3）",
+    "フラエッテ（姿3）"
+  ],
+  "inheritance_path": [
+    "0669.03"
+  ],
+  "learning_form_index": 3,
+  "learning_form_label": "姿3",
+  "learning_species_key": "0669.03",
+  "learning_species_name_ja": "フラベベ",
+  "machine_item": "TM171",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 3,
+  "source_form_label": "姿3",
+  "source_key": "0669.03",
+  "source_name_ja": "フラベベ",
+  "source_species": 669
+}
+```
+
+<a id="fa23d42ec7f3bbbd683610a5de803bd80f3c98af82cbf7091c6b121483e05118"></a>
+
+## 条件 fa23d42ec7f3bbbd683610a5de803bd80f3c98af82cbf7091c6b121483e05118
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0709.00",
+  "learning_species_name_ja": "オーロット",
+  "machine_item": "TM111",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0709.00",
+  "source_name_ja": "オーロット",
+  "source_species": 709
+}
+```
+
+<a id="fa24bac0bc0a55b221066ac3a72d6fa59c250f004dfa2b7fa02d454bf3a1f064"></a>
+
+## 条件 fa24bac0bc0a55b221066ac3a72d6fa59c250f004dfa2b7fa02d454bf3a1f064
+
+```json
+{
+  "catalog_offset": 4300724,
+  "compatibility_offset": 2162296,
+  "machine_kind": "TM",
+  "machine_number": 13,
+  "move_key": "MOVE_KEY_SUBSTITUTE",
+  "source_slot": 12
+}
+```
+
+<a id="fa262669ac8c91033a8dc8077c4a5cbc8dc4230a304aed01e9a8f973ef60992f"></a>
+
+## 条件 fa262669ac8c91033a8dc8077c4a5cbc8dc4230a304aed01e9a8f973ef60992f
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ダルマッカ → ヒヒダルマ",
+  "inheritance_chain": [
+    "0554.00",
+    "0555.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ダルマッカ",
+    "ヒヒダルマ"
+  ],
+  "inheritance_path": [
+    "0554.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0554.00",
+  "learning_species_name_ja": "ダルマッカ",
+  "machine_item": "TR20",
+  "method": "tr",
+  "method_ja": "わざレコード",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0554.00",
+  "source_name_ja": "ダルマッカ",
+  "source_species": 554
+}
+```
+
+<a id="fa26783a5d968f796d39a1b835a361eb227dc0057aa26f8b62ccc87f221ed148"></a>
+
+## 条件 fa26783a5d968f796d39a1b835a361eb227dc0057aa26f8b62ccc87f221ed148
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "サニーゴ（姿1） → サニゴーン",
+  "donor_learning_level": 5,
+  "inheritance_chain": [
+    "0222.01",
+    "0864.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "サニーゴ（姿1）",
+    "サニゴーン"
+  ],
+  "inheritance_path": [
+    "0222.01"
+  ],
+  "learning_form_index": 1,
+  "learning_form_label": "姿1",
+  "learning_species_key": "0222.01",
+  "learning_species_name_ja": "サニーゴ",
+  "level": 5,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 1,
+  "source_form_label": "姿1",
+  "source_key": "0222.01",
+  "source_name_ja": "サニーゴ",
+  "source_species": 222
+}
+```
+
+<a id="fa26db546a97863d36e0f4f02e51959f41682154cb77cac36807953cd7b5e92d"></a>
+
+## 条件 fa26db546a97863d36e0f4f02e51959f41682154cb77cac36807953cd7b5e92d
+
+```json
+{
+  "catalog_offset": 4297482,
+  "compatibility_offset": 4297774,
+  "move_key": "MOVE_KEY_VEGA_475",
+  "source_slot": 13
+}
+```
+
+<a id="fa28816fb1e23524eb2b49002f86440907645d5fc18ce1d1bea70c571296e67f"></a>
+
+## 条件 fa28816fb1e23524eb2b49002f86440907645d5fc18ce1d1bea70c571296e67f
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0893.00",
+  "learning_species_name_ja": "ザルード",
+  "machine_item": "TM066",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0893.00",
+  "source_name_ja": "ザルード",
+  "source_species": 893
+}
+```
+
+<a id="fa28c202a14a283d36ed56f727f06c878d50f814b8dfefaf45810c0027328135"></a>
+
+## 条件 fa28c202a14a283d36ed56f727f06c878d50f814b8dfefaf45810c0027328135
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 1,
+  "learning_form_label": "姿1",
+  "learning_species_key": "0103.01",
+  "learning_species_name_ja": "ナッシー",
+  "machine_item": "TM115",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 1,
+  "source_form_label": "姿1",
+  "source_key": "0103.01",
+  "source_name_ja": "ナッシー",
+  "source_species": 103
+}
+```
+
+<a id="fa2937e5e06ed4db5d0820d79c8f6f7900f03ec5094b1a1058b1f44e4c3e3307"></a>
+
+## 条件 fa2937e5e06ed4db5d0820d79c8f6f7900f03ec5094b1a1058b1f44e4c3e3307
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0181.00",
+  "learning_species_name_ja": "デンリュウ",
+  "machine_item": "TM163",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0181.00",
+  "source_name_ja": "デンリュウ",
+  "source_species": 181
+}
+```
+
+<a id="fa299debdb5808d7b312f518d60a9f32ac0743c9aa40bf7fc3182953db8f0440"></a>
+
+## 条件 fa299debdb5808d7b312f518d60a9f32ac0743c9aa40bf7fc3182953db8f0440
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 1,
+  "learning_form_label": "姿1",
+  "learning_species_key": "0902.01",
+  "learning_species_name_ja": "イダイトウ",
+  "machine_item": "TM123",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 1,
+  "source_form_label": "姿1",
+  "source_key": "0902.01",
+  "source_name_ja": "イダイトウ",
+  "source_species": 902
+}
+```
+
+<a id="fa2a21962035d5ad848b32720352466a96eceafac4fde6adda21216e38837961"></a>
+
+## 条件 fa2a21962035d5ad848b32720352466a96eceafac4fde6adda21216e38837961
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0168.00",
+  "learning_species_name_ja": "アリアドス",
+  "machine_item": "TM177",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0168.00",
+  "source_name_ja": "アリアドス",
+  "source_species": 168
+}
+```
+
+<a id="fa2a9fc27594b4764666647da38ed451a5b32f0ff09e4d78071696408e04146d"></a>
+
+## 条件 fa2a9fc27594b4764666647da38ed451a5b32f0ff09e4d78071696408e04146d
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0751.00",
+  "learning_species_name_ja": "シズクモ",
+  "machine_item": "TM205",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0751.00",
+  "source_name_ja": "シズクモ",
+  "source_species": 751
+}
+```
+
+<a id="fa2c24be01ae76a8a1eccf9c8ad3784bbe6f42e86c1c68c103dcd05e1ecb2fc2"></a>
+
+## 条件 fa2c24be01ae76a8a1eccf9c8ad3784bbe6f42e86c1c68c103dcd05e1ecb2fc2
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0245.00",
+  "learning_species_name_ja": "スイクン",
+  "machine_item": "TM142",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0245.00",
+  "source_name_ja": "スイクン",
+  "source_species": 245
+}
+```
+
+<a id="fa2ef72d6556b55e8b8339461048b278421de4b2805c0b492229fcbda2c7c784"></a>
+
+## 条件 fa2ef72d6556b55e8b8339461048b278421de4b2805c0b492229fcbda2c7c784
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "イワンコ（姿1） → ルガルガン（姿2）",
+  "inheritance_chain": [
+    "0744.01",
+    "0745.02"
+  ],
+  "inheritance_chain_names_ja": [
+    "イワンコ（姿1）",
+    "ルガルガン（姿2）"
+  ],
+  "inheritance_path": [
+    "0744.01"
+  ],
+  "learning_form_index": 1,
+  "learning_form_label": "姿1",
+  "learning_species_key": "0744.01",
+  "learning_species_name_ja": "イワンコ",
+  "machine_item": "TM059",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 1,
+  "source_form_label": "姿1",
+  "source_key": "0744.01",
+  "source_name_ja": "イワンコ",
+  "source_species": 744
+}
+```
+
+<a id="fa303f51ebe5055930740bd7606a60b7e89261c46858a67315fc203ff8d7cc60"></a>
+
+## 条件 fa303f51ebe5055930740bd7606a60b7e89261c46858a67315fc203ff8d7cc60
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0051.00",
+  "learning_species_name_ja": "ダグトリオ",
+  "machine_item": "TM085",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0051.00",
+  "source_name_ja": "ダグトリオ",
+  "source_species": 51
+}
+```
+
+<a id="fa30f24518e21f767af1883d270ef6b80c9960e2dcf4f9b0e2e253d62ac87769"></a>
+
+## 条件 fa30f24518e21f767af1883d270ef6b80c9960e2dcf4f9b0e2e253d62ac87769
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 5,
+  "learning_form_label": "姿5",
+  "learning_species_key": "0773.05",
+  "learning_species_name_ja": "シルヴァディ",
+  "machine_item": "TM08",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 5,
+  "source_form_label": "姿5",
+  "source_key": "0773.05",
+  "source_name_ja": "シルヴァディ",
+  "source_species": 773
+}
+```
+
+<a id="fa319b3c50252b9a94065b3a9813bb06cd89aad9090125b89d054afbc2020f64"></a>
+
+## 条件 fa319b3c50252b9a94065b3a9813bb06cd89aad9090125b89d054afbc2020f64
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0260.00",
+  "learning_species_name_ja": "ラグラージ",
+  "machine_item": "TM152",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0260.00",
+  "source_name_ja": "ラグラージ",
+  "source_species": 260
+}
+```
+
+<a id="fa324ec65d49855cc81518b8217e416db6dc37dc664ce698300d489d4f2977f0"></a>
+
+## 条件 fa324ec65d49855cc81518b8217e416db6dc37dc664ce698300d489d4f2977f0
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0448.00",
+  "learning_species_name_ja": "ルカリオ",
+  "machine_item": "TM036",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0448.00",
+  "source_name_ja": "ルカリオ",
+  "source_species": 448
+}
+```
+
+<a id="fa32ffcb63fc2c5741c54415316b8f627a606d5fb635933d0399632c49832aaf"></a>
+
+## 条件 fa32ffcb63fc2c5741c54415316b8f627a606d5fb635933d0399632c49832aaf
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 2,
+  "learning_form_label": "姿2",
+  "learning_species_key": "0025.02",
+  "learning_species_name_ja": "ピカチュウ",
+  "machine_item": "TM127",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 2,
+  "source_form_label": "姿2",
+  "source_key": "0025.02",
+  "source_name_ja": "ピカチュウ",
+  "source_species": 25
+}
+```
+
+<a id="fa34090352ea827828c6924a3624b4fd511be641cb2d5db2aabc89655006f76f"></a>
+
+## 条件 fa34090352ea827828c6924a3624b4fd511be641cb2d5db2aabc89655006f76f
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0610.00",
+  "learning_species_name_ja": "キバゴ",
+  "level": 48,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0610.00",
+  "source_name_ja": "キバゴ",
+  "source_species": 610,
+  "target_learning_level": 48
+}
+```
+
+<a id="fa34701fa141e9c05727d710a5e0c8b42525c3da88cfbcae391d7033f07d5bc3"></a>
+
+## 条件 fa34701fa141e9c05727d710a5e0c8b42525c3da88cfbcae391d7033f07d5bc3
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0767.00",
+  "learning_species_name_ja": "コソクムシ",
+  "machine_item": "TR27",
+  "method": "tr",
+  "method_ja": "わざレコード",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0767.00",
+  "source_name_ja": "コソクムシ",
+  "source_species": 767
+}
+```
+
+<a id="fa34a5a90a737a397847c957b07cf264a4cff5e1abcc28d2b161b31edc02eb30"></a>
+
+## 条件 fa34a5a90a737a397847c957b07cf264a4cff5e1abcc28d2b161b31edc02eb30
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 3,
+  "learning_form_label": "姿3",
+  "learning_species_key": "1017.03",
+  "learning_species_name_ja": "オーガポン",
+  "level": 6,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 3,
+  "source_form_label": "姿3",
+  "source_key": "1017.03",
+  "source_name_ja": "オーガポン",
+  "source_species": 1017,
+  "target_learning_level": 6
+}
+```
+
+<a id="fa34cf0cef36a613c6a319d63943f1192e43c1af427756ae16644c174057632a"></a>
+
+## 条件 fa34cf0cef36a613c6a319d63943f1192e43c1af427756ae16644c174057632a
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ヒコザル → モウカザル",
+  "inheritance_chain": [
+    "0390.00",
+    "0391.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ヒコザル",
+    "モウカザル"
+  ],
+  "inheritance_path": [
+    "0390.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0390.00",
+  "learning_species_name_ja": "ヒコザル",
+  "machine_item": "TM070",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0390.00",
+  "source_name_ja": "ヒコザル",
+  "source_species": 390
+}
+```
+
+<a id="fa34f07f1fedabd24b929c41349c09ee53ef366995c4f559ca07f6ae74d03d07"></a>
+
+## 条件 fa34f07f1fedabd24b929c41349c09ee53ef366995c4f559ca07f6ae74d03d07
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 10,
+  "learning_form_label": "姿10",
+  "learning_species_key": "0666.10",
+  "learning_species_name_ja": "ビビヨン",
+  "machine_item": "TM049",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 10,
+  "source_form_label": "姿10",
+  "source_key": "0666.10",
+  "source_name_ja": "ビビヨン",
+  "source_species": 666
+}
+```
+
+<a id="fa355503987485783d7a3471372b51ebcdb9177b55958aa9a9b64799f8118bca"></a>
+
+## 条件 fa355503987485783d7a3471372b51ebcdb9177b55958aa9a9b64799f8118bca
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0926.00",
+  "learning_species_name_ja": "パピモッチ",
+  "level": 11,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0926.00",
+  "source_name_ja": "パピモッチ",
+  "source_species": 926,
+  "target_learning_level": 11
+}
+```
+
+<a id="fa35b8ae33d33a59cd40a10e5dba15f5c8bbcb1ddb04844aa3636c87cb73c1e8"></a>
+
+## 条件 fa35b8ae33d33a59cd40a10e5dba15f5c8bbcb1ddb04844aa3636c87cb73c1e8
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0059.00",
+  "learning_species_name_ja": "ウインディ",
+  "machine_item": "TM002",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0059.00",
+  "source_name_ja": "ウインディ",
+  "source_species": 59
+}
+```
+
+<a id="fa36b90f92274e3821a260e66a6a2ecb5d85f03c88755174ea84978a748e0d5d"></a>
+
+## 条件 fa36b90f92274e3821a260e66a6a2ecb5d85f03c88755174ea84978a748e0d5d
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "アチゲータ → ラウドボーン",
+  "inheritance_chain": [
+    "0910.00",
+    "0911.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "アチゲータ",
+    "ラウドボーン"
+  ],
+  "inheritance_path": [
+    "0910.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0910.00",
+  "learning_species_name_ja": "アチゲータ",
+  "machine_item": "TM141",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0910.00",
+  "source_name_ja": "アチゲータ",
+  "source_species": 910
+}
+```
+
+<a id="fa3873f5a3e45e54547457d89093009b1dd215ef5522be836531b4052121626d"></a>
+
+## 条件 fa3873f5a3e45e54547457d89093009b1dd215ef5522be836531b4052121626d
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0392.00",
+  "learning_species_name_ja": "ゴウカザル",
+  "machine_item": "TM195",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0392.00",
+  "source_name_ja": "ゴウカザル",
+  "source_species": 392
+}
+```
+
+<a id="fa38bbcebeca04eede61e22c9c9847d8aacae5a5659277f51438f7d9c8b1904e"></a>
+
+## 条件 fa38bbcebeca04eede61e22c9c9847d8aacae5a5659277f51438f7d9c8b1904e
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "セビエ → セゴール → セグレイブ",
+  "inheritance_chain": [
+    "0996.00",
+    "0997.00",
+    "0998.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "セビエ",
+    "セゴール",
+    "セグレイブ"
+  ],
+  "inheritance_path": [
+    "0997.00",
+    "0996.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0996.00",
+  "learning_species_name_ja": "セビエ",
+  "machine_item": "TM066",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0996.00",
+  "source_name_ja": "セビエ",
+  "source_species": 996
+}
+```
+
+<a id="fa39152a3805a5e9a2c1b545aa6423ac0d5a3578a19d5d2ef0d3da932492494e"></a>
+
+## 条件 fa39152a3805a5e9a2c1b545aa6423ac0d5a3578a19d5d2ef0d3da932492494e
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ゼニガメ → カメール → カメックス",
+  "inheritance_chain": [
+    "0007.00",
+    "0008.00",
+    "0009.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ゼニガメ",
+    "カメール",
+    "カメックス"
+  ],
+  "inheritance_path": [
+    "0008.00",
+    "0007.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0007.00",
+  "learning_species_name_ja": "ゼニガメ",
+  "machine_item": "TM110",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0007.00",
+  "source_name_ja": "ゼニガメ",
+  "source_species": 7
+}
+```
+
+<a id="fa3947634a74e8b2ad18ed83da2d4320102d960a3ea6621f013bf7b490688390"></a>
+
+## 条件 fa3947634a74e8b2ad18ed83da2d4320102d960a3ea6621f013bf7b490688390
+
+```json
+{
+  "catalog_offset": 4297484,
+  "compatibility_offset": 4297968,
+  "move_key": "MOVE_KEY_VEGA_459",
+  "source_slot": 14
+}
+```
+
+<a id="fa3969ac77637b5dbe6cb356d6613a1f98dbbf8263e6509dc39923da40bf3049"></a>
+
+## 条件 fa3969ac77637b5dbe6cb356d6613a1f98dbbf8263e6509dc39923da40bf3049
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0177.00",
+  "learning_species_name_ja": "ネイティ",
+  "machine_item": "TR77",
+  "method": "tr",
+  "method_ja": "わざレコード",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0177.00",
+  "source_name_ja": "ネイティ",
+  "source_species": 177
+}
+```
+
+<a id="fa3aca330832644388d973ee6c00f787d2d4781bf762509ae56d8722292d24e6"></a>
+
+## 条件 fa3aca330832644388d973ee6c00f787d2d4781bf762509ae56d8722292d24e6
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0729.00",
+  "learning_species_name_ja": "オシャマリ",
+  "level": 40,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0729.00",
+  "source_name_ja": "オシャマリ",
+  "source_species": 729,
+  "target_learning_level": 40
+}
+```
+
+<a id="fa3dfdf8dc39c0783ff6f7631d4e0e361f2d8d473c3a2fadb0169a9c131f087d"></a>
+
+## 条件 fa3dfdf8dc39c0783ff6f7631d4e0e361f2d8d473c3a2fadb0169a9c131f087d
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0425.00",
+  "learning_species_name_ja": "フワンテ",
+  "machine_item": "TM041",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0425.00",
+  "source_name_ja": "フワンテ",
+  "source_species": 425
+}
+```
+
+<a id="fa3e08975d629c84fa48d66efe07415cbd296bccdb5d87beb5fcc6881e6cfda9"></a>
+
+## 条件 fa3e08975d629c84fa48d66efe07415cbd296bccdb5d87beb5fcc6881e6cfda9
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "コジオ → ジオヅム",
+  "inheritance_chain": [
+    "0932.00",
+    "0933.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "コジオ",
+    "ジオヅム"
+  ],
+  "inheritance_path": [
+    "0932.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0932.00",
+  "learning_species_name_ja": "コジオ",
+  "machine_item": "TM066",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0932.00",
+  "source_name_ja": "コジオ",
+  "source_species": 932
+}
+```
+
+<a id="fa3e6a738b438ec187f035edf7d22a93da0fda3fb9b9cfc7a3c0fe45d16a6423"></a>
+
+## 条件 fa3e6a738b438ec187f035edf7d22a93da0fda3fb9b9cfc7a3c0fe45d16a6423
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0564.00",
+  "learning_species_name_ja": "プロトーガ",
+  "level": 27,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0564.00",
+  "source_name_ja": "プロトーガ",
+  "source_species": 564,
+  "target_learning_level": 27
+}
+```
+
+<a id="fa3f5b7b91a052410ba2a8edb892470c552566d40677dc6084659dc9d533ed91"></a>
+
+## 条件 fa3f5b7b91a052410ba2a8edb892470c552566d40677dc6084659dc9d533ed91
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 9,
+  "learning_form_label": "姿9",
+  "learning_species_key": "0493.09",
+  "learning_species_name_ja": "アルセウス",
+  "machine_item": "TM097",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 9,
+  "source_form_label": "姿9",
+  "source_key": "0493.09",
+  "source_name_ja": "アルセウス",
+  "source_species": 493
+}
+```
+
+<a id="fa3fb64d6c3afd9dd0c57562eab355b6ea84bd543f79b06aa79bcf483829e37b"></a>
+
+## 条件 fa3fb64d6c3afd9dd0c57562eab355b6ea84bd543f79b06aa79bcf483829e37b
+
+```json
+{
+  "catalog_offset": 4300710,
+  "compatibility_offset": 2161808,
+  "machine_kind": "TM",
+  "machine_number": 6,
+  "move_key": "MOVE_KEY_HEADBUTT",
+  "source_slot": 5
+}
+```
+
+<a id="fa41bfc4fc64a525dc4c94db694f0e77709c1a571d23e19aebfe5721d062fce4"></a>
+
+## 条件 fa41bfc4fc64a525dc4c94db694f0e77709c1a571d23e19aebfe5721d062fce4
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0745.00",
+  "learning_species_name_ja": "ルガルガン",
+  "machine_item": "TM063",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0745.00",
+  "source_name_ja": "ルガルガン",
+  "source_species": 745
+}
+```
+
+<a id="fa4398d52ff589ea5006f7a14a5144e25f3ce35bca4e3451a631c3faa5a4ad23"></a>
+
+## 条件 fa4398d52ff589ea5006f7a14a5144e25f3ce35bca4e3451a631c3faa5a4ad23
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0114.00",
+  "learning_species_name_ja": "モンジャラ",
+  "level": 48,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0114.00",
+  "source_name_ja": "モンジャラ",
+  "source_species": 114,
+  "target_learning_level": 48
+}
+```
+
+<a id="fa43de714601140be2aaa8ce3b9124179c863a4287e29e5bc63fbf23d2f940dc"></a>
+
+## 条件 fa43de714601140be2aaa8ce3b9124179c863a4287e29e5bc63fbf23d2f940dc
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0052.00",
+  "learning_species_name_ja": "ニャース",
+  "machine_item": "TM126",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0052.00",
+  "source_name_ja": "ニャース",
+  "source_species": 52
+}
+```
+
+<a id="fa43f6e858dbdb556e7123eff87d9ef736d2af9a6915ceab1c4b36645dd2db09"></a>
+
+## 条件 fa43f6e858dbdb556e7123eff87d9ef736d2af9a6915ceab1c4b36645dd2db09
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0009.00",
+  "learning_species_name_ja": "カメックス",
+  "machine_item": "TM171",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0009.00",
+  "source_name_ja": "カメックス",
+  "source_species": 9
+}
+```
+
+<a id="fa4516b691b548189d573bd3310b58bdb2669a1b1d64375787ecadbaeb37bbf8"></a>
+
+## 条件 fa4516b691b548189d573bd3310b58bdb2669a1b1d64375787ecadbaeb37bbf8
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 1,
+  "learning_form_label": "姿1",
+  "learning_species_key": "0670.01",
+  "learning_species_name_ja": "フラエッテ",
+  "machine_item": "TM025",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 1,
+  "source_form_label": "姿1",
+  "source_key": "0670.01",
+  "source_name_ja": "フラエッテ",
+  "source_species": 670
+}
+```
+
+<a id="fa4517e54f61ec8fb2f9728cbcd0008a6788b3e4254412da3a4d0b452940a2a9"></a>
+
+## 条件 fa4517e54f61ec8fb2f9728cbcd0008a6788b3e4254412da3a4d0b452940a2a9
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ヨマワル → サマヨール → ヨノワール",
+  "inheritance_chain": [
+    "0355.00",
+    "0356.00",
+    "0477.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ヨマワル",
+    "サマヨール",
+    "ヨノワール"
+  ],
+  "inheritance_path": [
+    "0356.00",
+    "0355.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0355.00",
+  "learning_species_name_ja": "ヨマワル",
+  "machine_item": "TM050",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0355.00",
+  "source_name_ja": "ヨマワル",
+  "source_species": 355
+}
+```
+
+<a id="fa45c5a91ad64cf6f9daf66e1a7350a8a11fa3b17919ee1d6a8c9469c8860985"></a>
+
+## 条件 fa45c5a91ad64cf6f9daf66e1a7350a8a11fa3b17919ee1d6a8c9469c8860985
+
+```json
+{
+  "catalog_offset": 4300812,
+  "compatibility_offset": 2161152,
+  "machine_kind": "HM",
+  "machine_number": 7,
+  "move_key": "MOVE_KEY_WATERFALL",
+  "source_slot": 56
+}
+```
+
+<a id="fa4619f344627d21363694d12529628b89a12eb8812a9d70b6d6cbf6100401f8"></a>
+
+## 条件 fa4619f344627d21363694d12529628b89a12eb8812a9d70b6d6cbf6100401f8
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0578.00",
+  "learning_species_name_ja": "ダブラン",
+  "machine_item": "TM082",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0578.00",
+  "source_name_ja": "ダブラン",
+  "source_species": 578
+}
+```
+
+<a id="fa462b52450a9ffdeaacb034825517311b4c83e64ed49d251c9ed85ca3c54b1c"></a>
+
+## 条件 fa462b52450a9ffdeaacb034825517311b4c83e64ed49d251c9ed85ca3c54b1c
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0389.00",
+  "learning_species_name_ja": "ドダイトス",
+  "machine_item": "TM168",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0389.00",
+  "source_name_ja": "ドダイトス",
+  "source_species": 389
+}
+```
+
+<a id="fa46acc4274ec9086cdb38b2f48db8367327d071896380dba0854abe21a72095"></a>
+
+## 条件 fa46acc4274ec9086cdb38b2f48db8367327d071896380dba0854abe21a72095
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "フワンテ → フワライド",
+  "donor_learning_level": 16,
+  "inheritance_chain": [
+    "0425.00",
+    "0426.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "フワンテ",
+    "フワライド"
+  ],
+  "inheritance_path": [
+    "0425.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0425.00",
+  "learning_species_name_ja": "フワンテ",
+  "level": 16,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0425.00",
+  "source_name_ja": "フワンテ",
+  "source_species": 425
+}
+```
+
+<a id="fa46e07fba2b0558da1ede18d50f702d3b218053e68d90672b071996e9ef4181"></a>
+
+## 条件 fa46e07fba2b0558da1ede18d50f702d3b218053e68d90672b071996e9ef4181
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0222.00",
+  "learning_species_name_ja": "サニーゴ",
+  "machine_item": "TM27",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0222.00",
+  "source_name_ja": "サニーゴ",
+  "source_species": 222
+}
+```
+
+<a id="fa46ff70668be400b3be190e9a9cef28e35706895ab1ec124dafad7f654f726f"></a>
+
+## 条件 fa46ff70668be400b3be190e9a9cef28e35706895ab1ec124dafad7f654f726f
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0193.00",
+  "learning_species_name_ja": "ヤンヤンマ",
+  "machine_item": "TM032",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0193.00",
+  "source_name_ja": "ヤンヤンマ",
+  "source_species": 193
+}
+```
+
+<a id="fa4754ff3d30cda07999a690ef102d504d225be61540b0465c7651f32dcb3ae9"></a>
+
+## 条件 fa4754ff3d30cda07999a690ef102d504d225be61540b0465c7651f32dcb3ae9
+
+```json
+{
+  "catalog_offset": 4297474,
+  "compatibility_offset": 4298298,
+  "move_key": "MOVE_KEY_TOXIC",
+  "source_slot": 9
+}
+```
+
+<a id="fa475e88d04798a26b410c170bd5e3ef6e5af9d65822ac6212900ca42fc81189"></a>
+
+## 条件 fa475e88d04798a26b410c170bd5e3ef6e5af9d65822ac6212900ca42fc81189
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0597.00",
+  "learning_species_name_ja": "テッシード",
+  "method": "egg",
+  "method_ja": "タマゴ技",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0597.00",
+  "source_name_ja": "テッシード",
+  "source_species": 597
+}
+```
+
+<a id="fa493b9be24426b051ce0302199ba7d2e7ff4181a2e08372ae4289695df1b47b"></a>
+
+## 条件 fa493b9be24426b051ce0302199ba7d2e7ff4181a2e08372ae4289695df1b47b
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0130.00",
+  "learning_species_name_ja": "ギャラドス",
+  "machine_item": "TM172",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0130.00",
+  "source_name_ja": "ギャラドス",
+  "source_species": 130
+}
+```
+
+<a id="fa496028b2529de105f9c0eef99463b85d2f4c293b714be08573a02e0bcae5c9"></a>
+
+## 条件 fa496028b2529de105f9c0eef99463b85d2f4c293b714be08573a02e0bcae5c9
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 2,
+  "learning_form_label": "姿2",
+  "learning_species_key": "0676.02",
+  "learning_species_name_ja": "トリミアン",
+  "machine_item": "TM01",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 2,
+  "source_form_label": "姿2",
+  "source_key": "0676.02",
+  "source_name_ja": "トリミアン",
+  "source_species": 676
+}
+```
+
+<a id="fa49c594c7d0b91d9594a9fc58c3c5fccff09c77d864ec34c41f40eb561f1998"></a>
+
+## 条件 fa49c594c7d0b91d9594a9fc58c3c5fccff09c77d864ec34c41f40eb561f1998
+
+```json
+{
+  "level": 49,
+  "move_key": "MOVE_KEY_PAINSPLIT"
+}
+```
+
+<a id="fa4ae72f6d81d4a6c3afe01efd5250fc7e8a4d03cd81b3fef8eb991676708d3d"></a>
+
+## 条件 fa4ae72f6d81d4a6c3afe01efd5250fc7e8a4d03cd81b3fef8eb991676708d3d
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "エレキッド → エレブー → エレキブル",
+  "donor_learning_level": 12,
+  "inheritance_chain": [
+    "0239.00",
+    "0125.00",
+    "0466.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "エレキッド",
+    "エレブー",
+    "エレキブル"
+  ],
+  "inheritance_path": [
+    "0125.00",
+    "0239.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0239.00",
+  "learning_species_name_ja": "エレキッド",
+  "level": 12,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0239.00",
+  "source_name_ja": "エレキッド",
+  "source_species": 239
+}
+```
+
+<a id="fa4b26b37758cb51720454b56a880a0c783f82ee6d081277be766f2fdd15a71f"></a>
+
+## 条件 fa4b26b37758cb51720454b56a880a0c783f82ee6d081277be766f2fdd15a71f
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ガバイト → ガブリアス",
+  "inheritance_chain": [
+    "0444.00",
+    "0445.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ガバイト",
+    "ガブリアス"
+  ],
+  "inheritance_path": [
+    "0444.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0444.00",
+  "learning_species_name_ja": "ガバイト",
+  "machine_item": "TM085",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0444.00",
+  "source_name_ja": "ガバイト",
+  "source_species": 444
+}
+```
+
+<a id="fa4bb1d2980138a4865d2d8ce83274d0d13f3fa4551c8a1f55ff2017ee2ca2aa"></a>
+
+## 条件 fa4bb1d2980138a4865d2d8ce83274d0d13f3fa4551c8a1f55ff2017ee2ca2aa
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0693.00",
+  "learning_species_name_ja": "ブロスター",
+  "machine_item": "TM025",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0693.00",
+  "source_name_ja": "ブロスター",
+  "source_species": 693
+}
+```
+
+<a id="fa4c0ec870970b40fddb749d7354d469def02beb8201ed656597199cb0a23e58"></a>
+
+## 条件 fa4c0ec870970b40fddb749d7354d469def02beb8201ed656597199cb0a23e58
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0136.00",
+  "learning_species_name_ja": "ブースター",
+  "machine_item": "TM041",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0136.00",
+  "source_name_ja": "ブースター",
+  "source_species": 136
+}
+```
+
+<a id="fa4c168cccac31e65faef4bbcdf857ee4c0e4d8b38054bfb3b4f00e1e50a3446"></a>
+
+## 条件 fa4c168cccac31e65faef4bbcdf857ee4c0e4d8b38054bfb3b4f00e1e50a3446
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0898.00",
+  "learning_species_name_ja": "バドレックス",
+  "machine_item": "TM033",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0898.00",
+  "source_name_ja": "バドレックス",
+  "source_species": 898
+}
+```
+
+<a id="fa4c49e3649d3ea1fa45e0226f7a914057fda7cf0f72269137828a6bb94308a4"></a>
+
+## 条件 fa4c49e3649d3ea1fa45e0226f7a914057fda7cf0f72269137828a6bb94308a4
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0213.00",
+  "learning_species_name_ja": "ツボツボ",
+  "level": 5,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0213.00",
+  "source_name_ja": "ツボツボ",
+  "source_species": 213,
+  "target_learning_level": 5
+}
+```
+
+<a id="fa4c6b0f9772add81fef2c8c23a05f2a291cfc2bba7468a33cccb7dba06a7cd0"></a>
+
+## 条件 fa4c6b0f9772add81fef2c8c23a05f2a291cfc2bba7468a33cccb7dba06a7cd0
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0608.00",
+  "learning_species_name_ja": "ランプラー",
+  "machine_item": "TM120",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0608.00",
+  "source_name_ja": "ランプラー",
+  "source_species": 608
+}
+```
+
+<a id="fa4c7049da1fc79bc993baef92743e165815f60a3ea606e08b735fafd6ffbe0f"></a>
+
+## 条件 fa4c7049da1fc79bc993baef92743e165815f60a3ea606e08b735fafd6ffbe0f
+
+```json
+{
+  "acquisition_condition_ja": "SV：受け手にものまねハーブを持たせ、技枠を空けて、対象の技を覚えた相手とピクニックする。参照タマゴ技表に載る技だけを共有できる。",
+  "display_group": "shared_egg",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0885.00",
+  "learning_species_name_ja": "ドラメシヤ",
+  "method": "shared_egg",
+  "method_ja": "タマゴ技共有",
+  "note_ja": "SV：受け手にものまねハーブを持たせ、技枠を空けて、対象の技を覚えた相手とピクニックする。参照タマゴ技表に載る技だけを共有できる。",
+  "route_kind": "shared_egg",
+  "route_kind_ja": "同作品内のタマゴ技共有",
+  "shared_egg_receiver_basis": "TARGET_OUT_OF_BATTLE_FORM",
+  "shared_egg_receiver_key": "0885.00",
+  "shared_egg_resolution": "OWN_RAW_EGG_POOL",
+  "shared_egg_source_key": "0885.00",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0885.00",
+  "source_name_ja": "ドラメシヤ",
+  "source_species": 885
+}
+```
+
+<a id="fa4cf8a867a6cbb67dca355034d9d7da35eed3fbd2da52d6e507c71ae69dce4e"></a>
+
+## 条件 fa4cf8a867a6cbb67dca355034d9d7da35eed3fbd2da52d6e507c71ae69dce4e
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0339.00",
+  "learning_species_name_ja": "ドジョッチ",
+  "machine_item": "TM001",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0339.00",
+  "source_name_ja": "ドジョッチ",
+  "source_species": 339
+}
+```
+
+<a id="fa4cfd886bebfa473fcc3c0aff00a481e47413eaef4c1647cb36d4865b6ea61b"></a>
+
+## 条件 fa4cfd886bebfa473fcc3c0aff00a481e47413eaef4c1647cb36d4865b6ea61b
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 15,
+  "learning_form_label": "姿15",
+  "learning_species_key": "0493.15",
+  "learning_species_name_ja": "アルセウス",
+  "machine_item": "TM105",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 15,
+  "source_form_label": "姿15",
+  "source_key": "0493.15",
+  "source_name_ja": "アルセウス",
+  "source_species": 493
+}
+```
+
+<a id="fa4d4b20fbec5609c3804b4f07af07c878c824175d6bf0b760bf055ecafd7d0b"></a>
+
+## 条件 fa4d4b20fbec5609c3804b4f07af07c878c824175d6bf0b760bf055ecafd7d0b
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0954.00",
+  "learning_species_name_ja": "ベラカス",
+  "machine_item": "TM085",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0954.00",
+  "source_name_ja": "ベラカス",
+  "source_species": 954
+}
+```
+
+<a id="fa4d579d5de215e56a9d7d30988607410bda2f6f4ed5cebe5475ea0939c55e05"></a>
+
+## 条件 fa4d579d5de215e56a9d7d30988607410bda2f6f4ed5cebe5475ea0939c55e05
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "コフーライ → ビビヨン（姿8）",
+  "inheritance_chain": [
+    "0665.00",
+    "0666.08"
+  ],
+  "inheritance_chain_names_ja": [
+    "コフーライ",
+    "ビビヨン（姿8）"
+  ],
+  "inheritance_path": [
+    "0665.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0665.00",
+  "learning_species_name_ja": "コフーライ",
+  "machine_item": "TM015",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0665.00",
+  "source_name_ja": "コフーライ",
+  "source_species": 665
+}
+```
+
+<a id="fa4e05bc9e88005a9d8caee81bc0ff81d871a23c28b62293edb1219e18a342ef"></a>
+
+## 条件 fa4e05bc9e88005a9d8caee81bc0ff81d871a23c28b62293edb1219e18a342ef
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0178.00",
+  "learning_species_name_ja": "ネイティオ",
+  "machine_item": "TM72",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0178.00",
+  "source_name_ja": "ネイティオ",
+  "source_species": 178
+}
+```
+
+<a id="fa4efb067268669c680db7d43758a91f5b06253cf8ac7caf825f05ea9096727d"></a>
+
+## 条件 fa4efb067268669c680db7d43758a91f5b06253cf8ac7caf825f05ea9096727d
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0747.00",
+  "learning_species_name_ja": "ヒドイデ",
+  "machine_item": "TM045",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0747.00",
+  "source_name_ja": "ヒドイデ",
+  "source_species": 747
+}
+```
+
+<a id="fa502950bea4f8da604777e2c7bc7c41a5afce1825f13ba19574a6b4188c1751"></a>
+
+## 条件 fa502950bea4f8da604777e2c7bc7c41a5afce1825f13ba19574a6b4188c1751
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ミニーブ → オリーニョ → オリーヴァ",
+  "donor_learning_level": 7,
+  "inheritance_chain": [
+    "0928.00",
+    "0929.00",
+    "0930.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ミニーブ",
+    "オリーニョ",
+    "オリーヴァ"
+  ],
+  "inheritance_path": [
+    "0929.00",
+    "0928.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0928.00",
+  "learning_species_name_ja": "ミニーブ",
+  "level": 7,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0928.00",
+  "source_name_ja": "ミニーブ",
+  "source_species": 928
+}
+```
+
+<a id="fa5037b0dc81991869a95947430a703f43d763886d9c587c1c03e20906df5afd"></a>
+
+## 条件 fa5037b0dc81991869a95947430a703f43d763886d9c587c1c03e20906df5afd
+
+```json
+{
+  "catalog_offset": 4300700,
+  "compatibility_offset": 2162576,
+  "machine_kind": "TM",
+  "machine_number": 1,
+  "move_key": "MOVE_KEY_SWORDSDANCE",
+  "source_slot": 0
+}
+```
+
+<a id="fa5065e4d923c57477fc6625aa1cd4657beef097833228da6caf353af293aad6"></a>
+
+## 条件 fa5065e4d923c57477fc6625aa1cd4657beef097833228da6caf353af293aad6
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0594.00",
+  "learning_species_name_ja": "ママンボウ",
+  "level": 13,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0594.00",
+  "source_name_ja": "ママンボウ",
+  "source_species": 594,
+  "target_learning_level": 13
+}
+```
+
+<a id="fa513baf76e6afb3da8fe7c6d0efe08d2652a393021209dc6e60233e9be79d3e"></a>
+
+## 条件 fa513baf76e6afb3da8fe7c6d0efe08d2652a393021209dc6e60233e9be79d3e
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0036.00",
+  "learning_species_name_ja": "ピクシー",
+  "machine_item": "TM007",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0036.00",
+  "source_name_ja": "ピクシー",
+  "source_species": 36
+}
+```
+
+<a id="fa51a21c1dcab217bc208ffe73d79ca2347ae609f708327b9a25512ffc05af45"></a>
+
+## 条件 fa51a21c1dcab217bc208ffe73d79ca2347ae609f708327b9a25512ffc05af45
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0866.00",
+  "learning_species_name_ja": "バリコオル",
+  "machine_item": "TM33",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0866.00",
+  "source_name_ja": "バリコオル",
+  "source_species": 866
+}
+```
+
+<a id="fa5206ac71b8937612cd8502d4f3683302a29d49a2eb74550c51509fd880bf2d"></a>
+
+## 条件 fa5206ac71b8937612cd8502d4f3683302a29d49a2eb74550c51509fd880bf2d
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 1,
+  "learning_form_label": "姿1",
+  "learning_species_key": "0483.01",
+  "learning_species_name_ja": "ディアルガ",
+  "machine_item": "TM078",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 1,
+  "source_form_label": "姿1",
+  "source_key": "0483.01",
+  "source_name_ja": "ディアルガ",
+  "source_species": 483
+}
+```
+
+<a id="fa52303d243744fcbf8db5b529858bf216b016503baaa5d73af9718a59205f8e"></a>
+
+## 条件 fa52303d243744fcbf8db5b529858bf216b016503baaa5d73af9718a59205f8e
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0467.00",
+  "learning_species_name_ja": "ブーバーン",
+  "machine_item": "TM018",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0467.00",
+  "source_name_ja": "ブーバーン",
+  "source_species": 467
+}
+```
+
+<a id="fa523fa77192d88c19c85a37952ec50ac1ee9663e323d8231be24b7bef651272"></a>
+
+## 条件 fa523fa77192d88c19c85a37952ec50ac1ee9663e323d8231be24b7bef651272
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ウリムー → イノムー",
+  "inheritance_chain": [
+    "0220.00",
+    "0221.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ウリムー",
+    "イノムー"
+  ],
+  "inheritance_path": [
+    "0220.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0220.00",
+  "learning_species_name_ja": "ウリムー",
+  "machine_item": "TM150",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0220.00",
+  "source_name_ja": "ウリムー",
+  "source_species": 220
+}
+```
+
+<a id="fa52966fa38d430d377d3fddeb87061cf9ffc3cdcfdf399bbd92ba0e670a9e58"></a>
+
+## 条件 fa52966fa38d430d377d3fddeb87061cf9ffc3cdcfdf399bbd92ba0e670a9e58
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0069.00",
+  "learning_species_name_ja": "マダツボミ",
+  "machine_item": "TM095",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0069.00",
+  "source_name_ja": "マダツボミ",
+  "source_species": 69
+}
+```
+
+<a id="fa54200e49fb7893a475df0fed95bd508201f3a9b2737d577867c9be7c1170ef"></a>
+
+## 条件 fa54200e49fb7893a475df0fed95bd508201f3a9b2737d577867c9be7c1170ef
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0661.00",
+  "learning_species_name_ja": "ヤヤコマ",
+  "machine_item": "TM216",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0661.00",
+  "source_name_ja": "ヤヤコマ",
+  "source_species": 661
+}
+```
+
+<a id="fa5432669f2cdc00567c6775ab9081bcc40eaec7729f9b95302e6214b652b30f"></a>
+
+## 条件 fa5432669f2cdc00567c6775ab9081bcc40eaec7729f9b95302e6214b652b30f
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ギアル → ギギアル",
+  "donor_learning_level": 36,
+  "inheritance_chain": [
+    "0599.00",
+    "0600.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ギアル",
+    "ギギアル"
+  ],
+  "inheritance_path": [
+    "0599.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0599.00",
+  "learning_species_name_ja": "ギアル",
+  "level": 36,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0599.00",
+  "source_name_ja": "ギアル",
+  "source_species": 599
+}
+```
+
+<a id="fa54736ac9d5ce0f7dd7264097661c6119865ad9227b56107a6774eb51f0a839"></a>
+
+## 条件 fa54736ac9d5ce0f7dd7264097661c6119865ad9227b56107a6774eb51f0a839
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "コフーライ → ビビヨン（姿18）",
+  "inheritance_chain": [
+    "0665.00",
+    "0666.18"
+  ],
+  "inheritance_chain_names_ja": [
+    "コフーライ",
+    "ビビヨン（姿18）"
+  ],
+  "inheritance_path": [
+    "0665.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0665.00",
+  "learning_species_name_ja": "コフーライ",
+  "machine_item": "TM015",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0665.00",
+  "source_name_ja": "コフーライ",
+  "source_species": 665
+}
+```
+
+<a id="fa5494250c14cb08a8b930cd625a22a363b546c78b16e4ff7a9e8ccb235e9e0b"></a>
+
+## 条件 fa5494250c14cb08a8b930cd625a22a363b546c78b16e4ff7a9e8ccb235e9e0b
+
+```json
+{
+  "level": 23,
+  "move_key": "MOVE_KEY_FAKETEARS"
+}
+```
+
+<a id="fa54e2b2a011afe96839dc9f09816e02a4a8e8765d95b610a10375ee36da6fa5"></a>
+
+## 条件 fa54e2b2a011afe96839dc9f09816e02a4a8e8765d95b610a10375ee36da6fa5
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ノコッチ → ノココッチ",
+  "inheritance_chain": [
+    "0206.00",
+    "0982.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ノコッチ",
+    "ノココッチ"
+  ],
+  "inheritance_path": [
+    "0206.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0206.00",
+  "learning_species_name_ja": "ノコッチ",
+  "machine_item": "TM026",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0206.00",
+  "source_name_ja": "ノコッチ",
+  "source_species": 206
+}
+```
+
+<a id="fa55b0d830cc019bd7f8f22f72d63b2f7ede9bb48ae943a2f9102c27796b29d6"></a>
+
+## 条件 fa55b0d830cc019bd7f8f22f72d63b2f7ede9bb48ae943a2f9102c27796b29d6
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "クズモー → ドラミドロ",
+  "donor_learning_level": 25,
+  "inheritance_chain": [
+    "0690.00",
+    "0691.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "クズモー",
+    "ドラミドロ"
+  ],
+  "inheritance_path": [
+    "0690.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0690.00",
+  "learning_species_name_ja": "クズモー",
+  "level": 25,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0690.00",
+  "source_name_ja": "クズモー",
+  "source_species": 690
+}
+```
+
+<a id="fa56bbc7b471217736da064c64d73ff94ca6ecdad34ee4afd82f48b527e0a114"></a>
+
+## 条件 fa56bbc7b471217736da064c64d73ff94ca6ecdad34ee4afd82f48b527e0a114
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 1,
+  "learning_form_label": "姿1",
+  "learning_species_key": "0705.01",
+  "learning_species_name_ja": "ヌメイル",
+  "machine_item": "TM156",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 1,
+  "source_form_label": "姿1",
+  "source_key": "0705.01",
+  "source_name_ja": "ヌメイル",
+  "source_species": 705
+}
+```
+
+<a id="fa570528d6e1803e5d39862e9c18ad6472e0e81319819e8de4c66ac1b42c1ce1"></a>
+
+## 条件 fa570528d6e1803e5d39862e9c18ad6472e0e81319819e8de4c66ac1b42c1ce1
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0150.00",
+  "learning_species_name_ja": "ミュウツー",
+  "machine_item": "TM126",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0150.00",
+  "source_name_ja": "ミュウツー",
+  "source_species": 150
+}
+```
+
+<a id="fa5751a878527b075317630183f0454bb8890bfb372f0edddee561b5ddf6e701"></a>
+
+## 条件 fa5751a878527b075317630183f0454bb8890bfb372f0edddee561b5ddf6e701
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ピィ → ピッピ",
+  "donor_learning_level": 12,
+  "inheritance_chain": [
+    "0173.00",
+    "0035.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ピィ",
+    "ピッピ"
+  ],
+  "inheritance_path": [
+    "0173.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0173.00",
+  "learning_species_name_ja": "ピィ",
+  "level": 12,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0173.00",
+  "source_name_ja": "ピィ",
+  "source_species": 173
+}
+```
+
+<a id="fa5754d8c6659caaf69cb293bfe4165fe996eff4018ffa5b68c264048d64c7b1"></a>
+
+## 条件 fa5754d8c6659caaf69cb293bfe4165fe996eff4018ffa5b68c264048d64c7b1
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0993.00",
+  "learning_species_name_ja": "テツノコウベ",
+  "level": 84,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0993.00",
+  "source_name_ja": "テツノコウベ",
+  "source_species": 993,
+  "target_learning_level": 84
+}
+```
+
+<a id="fa58fd12f98f2b11eb4bf19ac30f91508c390ac05a4bab1948597016550605de"></a>
+
+## 条件 fa58fd12f98f2b11eb4bf19ac30f91508c390ac05a4bab1948597016550605de
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0619.00",
+  "learning_species_name_ja": "コジョフー",
+  "machine_item": "TM001",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0619.00",
+  "source_name_ja": "コジョフー",
+  "source_species": 619
+}
+```
+
+<a id="fa5938927e017799c54d4ad1bfd6e97299c955b144ac3ebada9950992b991a58"></a>
+
+## 条件 fa5938927e017799c54d4ad1bfd6e97299c955b144ac3ebada9950992b991a58
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0289.00",
+  "learning_species_name_ja": "ケッキング",
+  "machine_item": "TM087",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0289.00",
+  "source_name_ja": "ケッキング",
+  "source_species": 289
+}
+```
+
+<a id="fa5988daa45611bf6fcd049ea6e01026b2eb8a61ca98307b04cd60178ee86da4"></a>
+
+## 条件 fa5988daa45611bf6fcd049ea6e01026b2eb8a61ca98307b04cd60178ee86da4
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "バルチャイ → バルジーナ",
+  "inheritance_chain": [
+    "0629.00",
+    "0630.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "バルチャイ",
+    "バルジーナ"
+  ],
+  "inheritance_path": [
+    "0629.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0629.00",
+  "learning_species_name_ja": "バルチャイ",
+  "machine_item": "TM097",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0629.00",
+  "source_name_ja": "バルチャイ",
+  "source_species": 629
+}
+```
+
+<a id="fa59ff3bcb37a9868f4725f03c45c160d4deac45129cbe882cc85d61cc95276a"></a>
+
+## 条件 fa59ff3bcb37a9868f4725f03c45c160d4deac45129cbe882cc85d61cc95276a
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0426.00",
+  "learning_species_name_ja": "フワライド",
+  "machine_item": "TM047",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0426.00",
+  "source_name_ja": "フワライド",
+  "source_species": 426
+}
+```
+
+<a id="fa5aad60761b72070c68e16b146d073f2535f3327552e7ad567cef338e06d9b9"></a>
+
+## 条件 fa5aad60761b72070c68e16b146d073f2535f3327552e7ad567cef338e06d9b9
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "サルノリ → バチンキー → ゴリランダー",
+  "inheritance_chain": [
+    "0810.00",
+    "0811.00",
+    "0812.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "サルノリ",
+    "バチンキー",
+    "ゴリランダー"
+  ],
+  "inheritance_path": [
+    "0811.00",
+    "0810.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0810.00",
+  "learning_species_name_ja": "サルノリ",
+  "machine_item": "TM066",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0810.00",
+  "source_name_ja": "サルノリ",
+  "source_species": 810
+}
+```
+
+<a id="fa5b94243a2d742f9041abcc51db01bba0a31b1eef21590d2e11bb912479f3a9"></a>
+
+## 条件 fa5b94243a2d742f9041abcc51db01bba0a31b1eef21590d2e11bb912479f3a9
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ブロロン → ブロロローム",
+  "donor_learning_level": 36,
+  "inheritance_chain": [
+    "0965.00",
+    "0966.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ブロロン",
+    "ブロロローム"
+  ],
+  "inheritance_path": [
+    "0965.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0965.00",
+  "learning_species_name_ja": "ブロロン",
+  "level": 36,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0965.00",
+  "source_name_ja": "ブロロン",
+  "source_species": 965
+}
+```
+
+<a id="fa5c061b85110356614df29abb3081a78057dae6ffad3aa9769fb417131e9d95"></a>
+
+## 条件 fa5c061b85110356614df29abb3081a78057dae6ffad3aa9769fb417131e9d95
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "メリープ → モココ → デンリュウ",
+  "donor_learning_level": 36,
+  "inheritance_chain": [
+    "0179.00",
+    "0180.00",
+    "0181.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "メリープ",
+    "モココ",
+    "デンリュウ"
+  ],
+  "inheritance_path": [
+    "0180.00",
+    "0179.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0179.00",
+  "learning_species_name_ja": "メリープ",
+  "level": 36,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0179.00",
+  "source_name_ja": "メリープ",
+  "source_species": 179
+}
+```
+
+<a id="fa5ca87225d8c82c8df9563f27d9dde7838be87e0e68df53075ed1f18268babd"></a>
+
+## 条件 fa5ca87225d8c82c8df9563f27d9dde7838be87e0e68df53075ed1f18268babd
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0067.00",
+  "learning_species_name_ja": "ゴーリキー",
+  "machine_item": "TR02",
+  "method": "tr",
+  "method_ja": "わざレコード",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0067.00",
+  "source_name_ja": "ゴーリキー",
+  "source_species": 67
+}
+```
+
+<a id="fa5cbad456dc331603c9738c216570eaf7209b1426e59819512b463d219c289f"></a>
+
+## 条件 fa5cbad456dc331603c9738c216570eaf7209b1426e59819512b463d219c289f
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "テブリム → ブリムオン",
+  "inheritance_chain": [
+    "0857.00",
+    "0858.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "テブリム",
+    "ブリムオン"
+  ],
+  "inheritance_path": [
+    "0857.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0857.00",
+  "learning_species_name_ja": "テブリム",
+  "machine_item": "TM079",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0857.00",
+  "source_name_ja": "テブリム",
+  "source_species": 857
+}
+```
+
+<a id="fa5cd4afa240f64f9c38a2c883bcafba0eb865fe06e54175cc0863b05914b808"></a>
+
+## 条件 fa5cd4afa240f64f9c38a2c883bcafba0eb865fe06e54175cc0863b05914b808
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0107.00",
+  "learning_species_name_ja": "エビワラー",
+  "machine_item": "TM066",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0107.00",
+  "source_name_ja": "エビワラー",
+  "source_species": 107
+}
+```
+
+<a id="fa5d51701ff003833eb11b1689e347fcdd589796c22213306f45891c81e8de3f"></a>
+
+## 条件 fa5d51701ff003833eb11b1689e347fcdd589796c22213306f45891c81e8de3f
+
+```json
+{
+  "catalog_offset": 4300742,
+  "compatibility_offset": 2160880,
+  "machine_kind": "TM",
+  "machine_number": 22,
+  "move_key": "MOVE_KEY_POISONJAB",
+  "source_slot": 21
+}
+```
+
+<a id="fa5e4f9932646b9f5d44c0e7e8c730a564d2ddd5e049ad02b41e1a593e5c58ba"></a>
+
+## 条件 fa5e4f9932646b9f5d44c0e7e8c730a564d2ddd5e049ad02b41e1a593e5c58ba
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0277.00",
+  "learning_species_name_ja": "オオスバメ",
+  "level": 33,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0277.00",
+  "source_name_ja": "オオスバメ",
+  "source_species": 277,
+  "target_learning_level": 33
+}
+```
+
+<a id="fa5ea9c88a92502bc26dd45b7abefeb61ca39ac1f43ade458cc4d4df77b672c0"></a>
+
+## 条件 fa5ea9c88a92502bc26dd45b7abefeb61ca39ac1f43ade458cc4d4df77b672c0
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0345.00",
+  "learning_species_name_ja": "リリーラ",
+  "machine_item": "TR27",
+  "method": "tr",
+  "method_ja": "わざレコード",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0345.00",
+  "source_name_ja": "リリーラ",
+  "source_species": 345
+}
+```
+
+<a id="fa606c70e3c2d21f11b3c87a1e0e03dba12b10b6ce3ab146bee3b19ee0c44363"></a>
+
+## 条件 fa606c70e3c2d21f11b3c87a1e0e03dba12b10b6ce3ab146bee3b19ee0c44363
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "メリープ → モココ",
+  "inheritance_chain": [
+    "0179.00",
+    "0180.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "メリープ",
+    "モココ"
+  ],
+  "inheritance_path": [
+    "0179.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0179.00",
+  "learning_species_name_ja": "メリープ",
+  "machine_item": "TM079",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0179.00",
+  "source_name_ja": "メリープ",
+  "source_species": 179
+}
+```
+
+<a id="fa609cb3be1ec7b953e26f06874abccbbb8a2cd5e4ccdd01487f5c4372720991"></a>
+
+## 条件 fa609cb3be1ec7b953e26f06874abccbbb8a2cd5e4ccdd01487f5c4372720991
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0635.00",
+  "learning_species_name_ja": "サザンドラ",
+  "level": 24,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0635.00",
+  "source_name_ja": "サザンドラ",
+  "source_species": 635,
+  "target_learning_level": 24
+}
+```
+
+<a id="fa60cab2c8980b03736df6920b2612f262f90140e39a4951b38e6bf9f844a5e8"></a>
+
+## 条件 fa60cab2c8980b03736df6920b2612f262f90140e39a4951b38e6bf9f844a5e8
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0626.00",
+  "learning_species_name_ja": "バッフロン",
+  "machine_item": "TM39",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0626.00",
+  "source_name_ja": "バッフロン",
+  "source_species": 626
+}
+```
+
+<a id="fa60cfbba5b80bf123e06e6c0976626dda6f2d854891f69bbef21926997bcc43"></a>
+
+## 条件 fa60cfbba5b80bf123e06e6c0976626dda6f2d854891f69bbef21926997bcc43
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "チョンチー → ランターン",
+  "donor_learning_level": 44,
+  "inheritance_chain": [
+    "0170.00",
+    "0171.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "チョンチー",
+    "ランターン"
+  ],
+  "inheritance_path": [
+    "0170.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0170.00",
+  "learning_species_name_ja": "チョンチー",
+  "level": 44,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0170.00",
+  "source_name_ja": "チョンチー",
+  "source_species": 170
+}
+```
+
+<a id="fa621e2dca794edd6ed48c8a055f752bc0a7fbc139ed58fa51dff4dddf6cb988"></a>
+
+## 条件 fa621e2dca794edd6ed48c8a055f752bc0a7fbc139ed58fa51dff4dddf6cb988
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0278.00",
+  "learning_species_name_ja": "キャモメ",
+  "machine_item": "TM052",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0278.00",
+  "source_name_ja": "キャモメ",
+  "source_species": 278
+}
+```
+
+<a id="fa622370a4a600747537151da6c3baefd5a242bce1174d61d2d43fb13268f66d"></a>
+
+## 条件 fa622370a4a600747537151da6c3baefd5a242bce1174d61d2d43fb13268f66d
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ヘイガニ → シザリガー",
+  "inheritance_chain": [
+    "0341.00",
+    "0342.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ヘイガニ",
+    "シザリガー"
+  ],
+  "inheritance_path": [
+    "0341.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0341.00",
+  "learning_species_name_ja": "ヘイガニ",
+  "machine_item": "TM105",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0341.00",
+  "source_name_ja": "ヘイガニ",
+  "source_species": 341
+}
+```
+
+<a id="fa628481cb8c628c493d9bdf21ad7d25ac82b69772be251d5e1d261d11f82749"></a>
+
+## 条件 fa628481cb8c628c493d9bdf21ad7d25ac82b69772be251d5e1d261d11f82749
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ヘイガニ → シザリガー",
+  "inheritance_chain": [
+    "0341.00",
+    "0342.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ヘイガニ",
+    "シザリガー"
+  ],
+  "inheritance_path": [
+    "0341.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0341.00",
+  "learning_species_name_ja": "ヘイガニ",
+  "machine_item": "TM001",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0341.00",
+  "source_name_ja": "ヘイガニ",
+  "source_species": 341
+}
+```
+
+<a id="fa64cd874e9a544650c047adf1182cba0e1c16598d7dea597ae3957e25d83a73"></a>
+
+## 条件 fa64cd874e9a544650c047adf1182cba0e1c16598d7dea597ae3957e25d83a73
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0514.00",
+  "learning_species_name_ja": "バオッキー",
+  "machine_item": "TM80",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0514.00",
+  "source_name_ja": "バオッキー",
+  "source_species": 514
+}
+```
+
+<a id="fa652727db56596d197fc2732729f218f9ba7ded49eec3306e6fc26aef150703"></a>
+
+## 条件 fa652727db56596d197fc2732729f218f9ba7ded49eec3306e6fc26aef150703
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 1,
+  "learning_form_label": "姿1",
+  "learning_species_key": "0105.01",
+  "learning_species_name_ja": "ガラガラ",
+  "machine_item": "TR67",
+  "method": "tr",
+  "method_ja": "わざレコード",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 1,
+  "source_form_label": "姿1",
+  "source_key": "0105.01",
+  "source_name_ja": "ガラガラ",
+  "source_species": 105
+}
+```
+
+<a id="fa66159a2f6611e02a8d27d7fb8166cb07d15d7b0caed22cd0edb91dbb3fde8d"></a>
+
+## 条件 fa66159a2f6611e02a8d27d7fb8166cb07d15d7b0caed22cd0edb91dbb3fde8d
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0495.00",
+  "learning_species_name_ja": "ツタージャ",
+  "level": 40,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0495.00",
+  "source_name_ja": "ツタージャ",
+  "source_species": 495,
+  "target_learning_level": 40
+}
+```
+
+<a id="fa66dc08f25150c996a03b6e86e836d418500cb13bfc7f4839b5023f922e8987"></a>
+
+## 条件 fa66dc08f25150c996a03b6e86e836d418500cb13bfc7f4839b5023f922e8987
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0432.00",
+  "learning_species_name_ja": "ブニャット",
+  "level": 17,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0432.00",
+  "source_name_ja": "ブニャット",
+  "source_species": 432,
+  "target_learning_level": 17
+}
+```
+
+<a id="fa66f74069424578d23a3a8e71fb22e687a7693f9c9be4bb44fc6d89efcbdc35"></a>
+
+## 条件 fa66f74069424578d23a3a8e71fb22e687a7693f9c9be4bb44fc6d89efcbdc35
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "メタング → メタグロス",
+  "inheritance_chain": [
+    "0375.00",
+    "0376.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "メタング",
+    "メタグロス"
+  ],
+  "inheritance_path": [
+    "0375.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0375.00",
+  "learning_species_name_ja": "メタング",
+  "machine_item": "TM050",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0375.00",
+  "source_name_ja": "メタング",
+  "source_species": 375
+}
+```
+
+<a id="fa676e0160845e41eeda795a57a58a0c66e9be62a53f3db39a76e1b9231fe438"></a>
+
+## 条件 fa676e0160845e41eeda795a57a58a0c66e9be62a53f3db39a76e1b9231fe438
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0745.00",
+  "learning_species_name_ja": "ルガルガン",
+  "machine_item": "TM059",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0745.00",
+  "source_name_ja": "ルガルガン",
+  "source_species": 745
+}
+```
+
+<a id="fa679837ee7cc0a351ced67d5be13b5653012863cf52a5d6623337526396516f"></a>
+
+## 条件 fa679837ee7cc0a351ced67d5be13b5653012863cf52a5d6623337526396516f
+
+```json
+{
+  "acquisition_condition_ja": "剣盾：技枠を空けた受け手と、対象の技を覚えた同じ種の相手を預かり屋に預けて共有する。進化前後は同じ種として扱わない。参照タマゴ技表に載る技だけが対象。",
+  "display_group": "shared_egg",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0439.00",
+  "learning_species_name_ja": "マネネ",
+  "method": "shared_egg",
+  "method_ja": "タマゴ技共有",
+  "note_ja": "剣盾：技枠を空けた受け手と、対象の技を覚えた同じ種の相手を預かり屋に預けて共有する。進化前後は同じ種として扱わない。参照タマゴ技表に載る技だけが対象。",
+  "route_kind": "shared_egg",
+  "route_kind_ja": "同作品内のタマゴ技共有",
+  "shared_egg_receiver_basis": "TARGET_OUT_OF_BATTLE_FORM",
+  "shared_egg_receiver_key": "0439.00",
+  "shared_egg_resolution": "OWN_RAW_EGG_POOL",
+  "shared_egg_source_key": "0439.00",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0439.00",
+  "source_name_ja": "マネネ",
+  "source_species": 439
+}
+```
+
+<a id="fa67de916c94e0280e34f220d42ead0f338193a792b7c8f889021ebccf550a79"></a>
+
+## 条件 fa67de916c94e0280e34f220d42ead0f338193a792b7c8f889021ebccf550a79
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 1,
+  "learning_form_label": "姿1",
+  "learning_species_key": "0423.01",
+  "learning_species_name_ja": "トリトドン",
+  "machine_item": "TM005",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 1,
+  "source_form_label": "姿1",
+  "source_key": "0423.01",
+  "source_name_ja": "トリトドン",
+  "source_species": 423
+}
+```
+
+<a id="fa683da0737776fe0f0e657f402a4c504750d267326b6a42bde0847ffcbb4438"></a>
+
+## 条件 fa683da0737776fe0f0e657f402a4c504750d267326b6a42bde0847ffcbb4438
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 1,
+  "learning_form_label": "姿1",
+  "learning_species_key": "1013.01",
+  "learning_species_name_ja": "ヤバソチャ",
+  "level": 36,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 1,
+  "source_form_label": "姿1",
+  "source_key": "1013.01",
+  "source_name_ja": "ヤバソチャ",
+  "source_species": 1013,
+  "target_learning_level": 36
+}
+```
+
+<a id="fa68a77de98481aea29b9f714898cb549deb4b736e9b52e8db16fefdef9d3988"></a>
+
+## 条件 fa68a77de98481aea29b9f714898cb549deb4b736e9b52e8db16fefdef9d3988
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "チェリンボ → チェリム",
+  "inheritance_chain": [
+    "0420.00",
+    "0421.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "チェリンボ",
+    "チェリム"
+  ],
+  "inheritance_path": [
+    "0420.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0420.00",
+  "learning_species_name_ja": "チェリンボ",
+  "machine_item": "TM39",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0420.00",
+  "source_name_ja": "チェリンボ",
+  "source_species": 420
+}
+```
+
+<a id="fa68cd37eb93b796893aaef998bcf99f73ea8e83f825283633089ad1e1a14d66"></a>
+
+## 条件 fa68cd37eb93b796893aaef998bcf99f73ea8e83f825283633089ad1e1a14d66
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ポカブ → チャオブー → エンブオー",
+  "donor_learning_level": 37,
+  "inheritance_chain": [
+    "0498.00",
+    "0499.00",
+    "0500.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ポカブ",
+    "チャオブー",
+    "エンブオー"
+  ],
+  "inheritance_path": [
+    "0499.00",
+    "0498.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0498.00",
+  "learning_species_name_ja": "ポカブ",
+  "level": 37,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0498.00",
+  "source_name_ja": "ポカブ",
+  "source_species": 498
+}
+```
+
+<a id="fa6b60fc4bb419ccb354c435c264ec7fab42b1227bdece214aa38c579fa82e95"></a>
+
+## 条件 fa6b60fc4bb419ccb354c435c264ec7fab42b1227bdece214aa38c579fa82e95
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ヤブクロン → ダストダス",
+  "inheritance_chain": [
+    "0568.00",
+    "0569.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ヤブクロン",
+    "ダストダス"
+  ],
+  "inheritance_path": [
+    "0568.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0568.00",
+  "learning_species_name_ja": "ヤブクロン",
+  "machine_item": "TM20",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0568.00",
+  "source_name_ja": "ヤブクロン",
+  "source_species": 568
+}
+```
+
+<a id="fa6b7be6485fbb79589ce595cc8dbd5ffbeb712b909ff953efcf89db9333a2cb"></a>
+
+## 条件 fa6b7be6485fbb79589ce595cc8dbd5ffbeb712b909ff953efcf89db9333a2cb
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "イーブイ → グレイシア",
+  "inheritance_chain": [
+    "0133.00",
+    "0471.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "イーブイ",
+    "グレイシア"
+  ],
+  "inheritance_path": [
+    "0133.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0133.00",
+  "learning_species_name_ja": "イーブイ",
+  "machine_item": "TM032",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0133.00",
+  "source_name_ja": "イーブイ",
+  "source_species": 133
+}
+```
+
+<a id="fa6e8dbcbc854a98e41aac0e32a61b864f1e35575c3dc40129bc6a1df13455c6"></a>
+
+## 条件 fa6e8dbcbc854a98e41aac0e32a61b864f1e35575c3dc40129bc6a1df13455c6
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0413.00",
+  "learning_species_name_ja": "ミノマダム",
+  "machine_item": "TM48",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0413.00",
+  "source_name_ja": "ミノマダム",
+  "source_species": 413
+}
+```
+
+<a id="fa700536227d8abea5fe36da44231e1361019c19c8d040e09a96bcce838e132d"></a>
+
+## 条件 fa700536227d8abea5fe36da44231e1361019c19c8d040e09a96bcce838e132d
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "シシコ → カエンジシ",
+  "inheritance_chain": [
+    "0667.00",
+    "0668.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "シシコ",
+    "カエンジシ"
+  ],
+  "inheritance_path": [
+    "0667.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0667.00",
+  "learning_species_name_ja": "シシコ",
+  "machine_item": "TM157",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0667.00",
+  "source_name_ja": "シシコ",
+  "source_species": 667
+}
+```
+
+<a id="fa71707b4a8841579e99c0a3c8d9850604bd2bc947a674bce035253ec55f522b"></a>
+
+## 条件 fa71707b4a8841579e99c0a3c8d9850604bd2bc947a674bce035253ec55f522b
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "バケッチャ（姿3） → パンプジン（姿3）",
+  "donor_learning_level": 44,
+  "inheritance_chain": [
+    "0710.03",
+    "0711.03"
+  ],
+  "inheritance_chain_names_ja": [
+    "バケッチャ（姿3）",
+    "パンプジン（姿3）"
+  ],
+  "inheritance_path": [
+    "0710.03"
+  ],
+  "learning_form_index": 3,
+  "learning_form_label": "姿3",
+  "learning_species_key": "0710.03",
+  "learning_species_name_ja": "バケッチャ",
+  "level": 44,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 3,
+  "source_form_label": "姿3",
+  "source_key": "0710.03",
+  "source_name_ja": "バケッチャ",
+  "source_species": 710
+}
+```
+
+<a id="fa71dd51ed50394df5e8de63535824d54508f0b58dc878050559c2f315c988ed"></a>
+
+## 条件 fa71dd51ed50394df5e8de63535824d54508f0b58dc878050559c2f315c988ed
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0396.00",
+  "learning_species_name_ja": "ムックル",
+  "level": 25,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0396.00",
+  "source_name_ja": "ムックル",
+  "source_species": 396,
+  "target_learning_level": 25
+}
+```
+
+<a id="fa7492ccb51c88191d60789767a1845687897ac38cf2690b5702f454a8ccf323"></a>
+
+## 条件 fa7492ccb51c88191d60789767a1845687897ac38cf2690b5702f454a8ccf323
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0620.00",
+  "learning_species_name_ja": "コジョンド",
+  "level": 15,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0620.00",
+  "source_name_ja": "コジョンド",
+  "source_species": 620,
+  "target_learning_level": 15
+}
+```
+
+<a id="fa749f88bdca4de0a5472f3149be0aed62f6766e8e4e9aae16330df58c7fdad8"></a>
+
+## 条件 fa749f88bdca4de0a5472f3149be0aed62f6766e8e4e9aae16330df58c7fdad8
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "パモ → パモット",
+  "inheritance_chain": [
+    "0921.00",
+    "0922.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "パモ",
+    "パモット"
+  ],
+  "inheritance_path": [
+    "0921.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0921.00",
+  "learning_species_name_ja": "パモ",
+  "machine_item": "TM147",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0921.00",
+  "source_name_ja": "パモ",
+  "source_species": 921
+}
+```
+
+<a id="fa75d77c3fa863ef118b52f1253225285993413a6f0099b5ebb9de09f6dc1049"></a>
+
+## 条件 fa75d77c3fa863ef118b52f1253225285993413a6f0099b5ebb9de09f6dc1049
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "1004.00",
+  "learning_species_name_ja": "イーユイ",
+  "level": 25,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "1004.00",
+  "source_name_ja": "イーユイ",
+  "source_species": 1004,
+  "target_learning_level": 25
+}
+```
+
+<a id="fa766220a7469af3bbbb67458d97fcf4f97a61b80c4aa9b32f38d3773179ce45"></a>
+
+## 条件 fa766220a7469af3bbbb67458d97fcf4f97a61b80c4aa9b32f38d3773179ce45
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0969.00",
+  "learning_species_name_ja": "キラーメ",
+  "level": 7,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0969.00",
+  "source_name_ja": "キラーメ",
+  "source_species": 969,
+  "target_learning_level": 7
+}
+```
+
+<a id="fa7695a3fa7fb19c176f3e08905aa89152a1013043b326d1b0c738d168dbab74"></a>
+
+## 条件 fa7695a3fa7fb19c176f3e08905aa89152a1013043b326d1b0c738d168dbab74
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0842.00",
+  "learning_species_name_ja": "タルップル",
+  "level": 24,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0842.00",
+  "source_name_ja": "タルップル",
+  "source_species": 842,
+  "target_learning_level": 24
+}
+```
+
+<a id="fa76f69b8242f67c7a55d09d9c1922e2a0fcbe93ebd384b7ec2b023164f0643a"></a>
+
+## 条件 fa76f69b8242f67c7a55d09d9c1922e2a0fcbe93ebd384b7ec2b023164f0643a
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0540.00",
+  "learning_species_name_ja": "クルミル",
+  "machine_item": "TM070",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0540.00",
+  "source_name_ja": "クルミル",
+  "source_species": 540
+}
+```
+
+<a id="fa77f29966bcf787849de987fa701b5ecbd67ccfdc3fc4aa0e2de95fbf33a8ec"></a>
+
+## 条件 fa77f29966bcf787849de987fa701b5ecbd67ccfdc3fc4aa0e2de95fbf33a8ec
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ハーデリア → ムーランド",
+  "inheritance_chain": [
+    "0507.00",
+    "0508.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ハーデリア",
+    "ムーランド"
+  ],
+  "inheritance_path": [
+    "0507.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0507.00",
+  "learning_species_name_ja": "ハーデリア",
+  "machine_item": "TM09",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0507.00",
+  "source_name_ja": "ハーデリア",
+  "source_species": 507
+}
+```
+
+<a id="fa78074bf825bce583a4696180d0a99a5943da30a9e17866620bcef15b747a04"></a>
+
+## 条件 fa78074bf825bce583a4696180d0a99a5943da30a9e17866620bcef15b747a04
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ミズゴロウ → ヌマクロー → ラグラージ",
+  "donor_learning_level": 33,
+  "inheritance_chain": [
+    "0258.00",
+    "0259.00",
+    "0260.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ミズゴロウ",
+    "ヌマクロー",
+    "ラグラージ"
+  ],
+  "inheritance_path": [
+    "0259.00",
+    "0258.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0258.00",
+  "learning_species_name_ja": "ミズゴロウ",
+  "level": 33,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0258.00",
+  "source_name_ja": "ミズゴロウ",
+  "source_species": 258
+}
+```
+
+<a id="fa7839d4375cd1b90286e94ec7d6e0cb3b09da0d1761e8d4b5840d22aec1419c"></a>
+
+## 条件 fa7839d4375cd1b90286e94ec7d6e0cb3b09da0d1761e8d4b5840d22aec1419c
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0257.00",
+  "learning_species_name_ja": "バシャーモ",
+  "machine_item": "TM132",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0257.00",
+  "source_name_ja": "バシャーモ",
+  "source_species": 257
+}
+```
+
+<a id="fa7984b14f2fe89df9d8d220f9183f25b9eeec5f1df191df86db2de16a6b8326"></a>
+
+## 条件 fa7984b14f2fe89df9d8d220f9183f25b9eeec5f1df191df86db2de16a6b8326
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 1,
+  "learning_form_label": "姿1",
+  "learning_species_key": "0642.01",
+  "learning_species_name_ja": "ボルトロス",
+  "machine_item": "TM025",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 1,
+  "source_form_label": "姿1",
+  "source_key": "0642.01",
+  "source_name_ja": "ボルトロス",
+  "source_species": 642
+}
+```
+
+<a id="fa7a0dc7eda544ac7513d3b427a962508a7fa3b36b8dc3f38309c7f34d314dfa"></a>
+
+## 条件 fa7a0dc7eda544ac7513d3b427a962508a7fa3b36b8dc3f38309c7f34d314dfa
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 10,
+  "learning_form_label": "姿10",
+  "learning_species_key": "0773.10",
+  "learning_species_name_ja": "シルヴァディ",
+  "machine_item": "TM56",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 10,
+  "source_form_label": "姿10",
+  "source_key": "0773.10",
+  "source_name_ja": "シルヴァディ",
+  "source_species": 773
+}
+```
+
+<a id="fa7a6639a5f3e6defa6924be667a1188c3010139e2148448150dae6ec2819645"></a>
+
+## 条件 fa7a6639a5f3e6defa6924be667a1188c3010139e2148448150dae6ec2819645
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0899.00",
+  "learning_species_name_ja": "アヤシシ",
+  "level": 3,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0899.00",
+  "source_name_ja": "アヤシシ",
+  "source_species": 899,
+  "target_learning_level": 3
+}
+```
+
+<a id="fa7a7d8587fb6b0931f7be3940b656ac6b175247848bf6710d74cb565787dde1"></a>
+
+## 条件 fa7a7d8587fb6b0931f7be3940b656ac6b175247848bf6710d74cb565787dde1
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0126.00",
+  "learning_species_name_ja": "ブーバー",
+  "machine_item": "TM172",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0126.00",
+  "source_name_ja": "ブーバー",
+  "source_species": 126
+}
+```
+
+<a id="fa7bd285ebac10749842caf6bf334897d368b19cdcf7da8352d047f49bcadd83"></a>
+
+## 条件 fa7bd285ebac10749842caf6bf334897d368b19cdcf7da8352d047f49bcadd83
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ワッカネズミ → イッカネズミ",
+  "inheritance_chain": [
+    "0924.00",
+    "0925.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ワッカネズミ",
+    "イッカネズミ"
+  ],
+  "inheritance_path": [
+    "0924.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0924.00",
+  "learning_species_name_ja": "ワッカネズミ",
+  "machine_item": "TM122",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0924.00",
+  "source_name_ja": "ワッカネズミ",
+  "source_species": 924
+}
+```
+
+<a id="fa7cd963eaeb397e53def371d43a5fe596f21c05f5fbe29ea393a4cc235385a2"></a>
+
+## 条件 fa7cd963eaeb397e53def371d43a5fe596f21c05f5fbe29ea393a4cc235385a2
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 8,
+  "learning_form_label": "姿8",
+  "learning_species_key": "0666.08",
+  "learning_species_name_ja": "ビビヨン",
+  "machine_item": "TM015",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 8,
+  "source_form_label": "姿8",
+  "source_key": "0666.08",
+  "source_name_ja": "ビビヨン",
+  "source_species": 666
+}
+```
+
+<a id="fa7e54046e55f4d084aaa48fb32bca486e629c32b3c751035d7a600093173d4b"></a>
+
+## 条件 fa7e54046e55f4d084aaa48fb32bca486e629c32b3c751035d7a600093173d4b
+
+```json
+{
+  "move_key": "MOVE_KEY_CHARGEBEAM"
+}
+```
+
+<a id="fa7f158c6d8d87c29111aacc3f06ee6a910e44a3bb3bbbd08891ca5c9d46c74f"></a>
+
+## 条件 fa7f158c6d8d87c29111aacc3f06ee6a910e44a3bb3bbbd08891ca5c9d46c74f
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "シシコ → カエンジシ",
+  "donor_learning_level": 20,
+  "inheritance_chain": [
+    "0667.00",
+    "0668.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "シシコ",
+    "カエンジシ"
+  ],
+  "inheritance_path": [
+    "0667.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0667.00",
+  "learning_species_name_ja": "シシコ",
+  "level": 20,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0667.00",
+  "source_name_ja": "シシコ",
+  "source_species": 667
+}
+```
+
+<a id="fa7f3982798a7bb3589aff14f561f36d48f740ccd29bad683cd75bed07693ed4"></a>
+
+## 条件 fa7f3982798a7bb3589aff14f561f36d48f740ccd29bad683cd75bed07693ed4
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0735.00",
+  "learning_species_name_ja": "デカグース",
+  "machine_item": "TM051",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0735.00",
+  "source_name_ja": "デカグース",
+  "source_species": 735
+}
+```
+
+<a id="fa7f7dd171ee38380a7f0de06494f409905b624bf089e6826cafec1b0e992d10"></a>
+
+## 条件 fa7f7dd171ee38380a7f0de06494f409905b624bf089e6826cafec1b0e992d10
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0747.00",
+  "learning_species_name_ja": "ヒドイデ",
+  "level": 50,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0747.00",
+  "source_name_ja": "ヒドイデ",
+  "source_species": 747,
+  "target_learning_level": 50
+}
+```
+
+<a id="fa7f88bc9252c3f8ad815ba275c56a39d377adffb36478566bcf8554c017460a"></a>
+
+## 条件 fa7f88bc9252c3f8ad815ba275c56a39d377adffb36478566bcf8554c017460a
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0089.00",
+  "learning_species_name_ja": "ベトベトン",
+  "level": 1,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0089.00",
+  "source_name_ja": "ベトベトン",
+  "source_species": 89,
+  "target_learning_level": 1
+}
+```
+
+<a id="fa7ff27b14a096440b9d2c65f80ae333cbd4da3901bd4e55350d0540a3f605ee"></a>
+
+## 条件 fa7ff27b14a096440b9d2c65f80ae333cbd4da3901bd4e55350d0540a3f605ee
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0084.00",
+  "learning_species_name_ja": "ドードー",
+  "machine_item": "TM181",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0084.00",
+  "source_name_ja": "ドードー",
+  "source_species": 84
+}
+```
+
+<a id="fa818a4584fb1cbce58c4d1ea380427e5d4cdcaa783d3cfaf91418f2a503e4e4"></a>
+
+## 条件 fa818a4584fb1cbce58c4d1ea380427e5d4cdcaa783d3cfaf91418f2a503e4e4
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0219.00",
+  "learning_species_name_ja": "マグカルゴ",
+  "machine_item": "TM101",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0219.00",
+  "source_name_ja": "マグカルゴ",
+  "source_species": 219
+}
+```
+
+<a id="fa8259f2be542f23dee690d27e9803de5f0dc4954fb9d00e2ed31cd0c2cfa208"></a>
+
+## 条件 fa8259f2be542f23dee690d27e9803de5f0dc4954fb9d00e2ed31cd0c2cfa208
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0281.00",
+  "learning_species_name_ja": "キルリア",
+  "machine_item": "TM069",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0281.00",
+  "source_name_ja": "キルリア",
+  "source_species": 281
+}
+```
+
+<a id="fa829155cf1302ee6a5fb92448e23f66152fd345a1e9cf0be2c7c9b4ec1c35aa"></a>
+
+## 条件 fa829155cf1302ee6a5fb92448e23f66152fd345a1e9cf0be2c7c9b4ec1c35aa
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ゴンベ → カビゴン",
+  "inheritance_chain": [
+    "0446.00",
+    "0143.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ゴンベ",
+    "カビゴン"
+  ],
+  "inheritance_path": [
+    "0446.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0446.00",
+  "learning_species_name_ja": "ゴンベ",
+  "machine_item": "TM102",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0446.00",
+  "source_name_ja": "ゴンベ",
+  "source_species": 446
+}
+```
+
+<a id="fa8393304aa0945478015089946f2816f89103afd1d8682ea4f1060b76f74d72"></a>
+
+## 条件 fa8393304aa0945478015089946f2816f89103afd1d8682ea4f1060b76f74d72
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0057.00",
+  "learning_species_name_ja": "オコリザル",
+  "machine_item": "TM014",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0057.00",
+  "source_name_ja": "オコリザル",
+  "source_species": 57
+}
+```
+
+<a id="fa83a3582a8af91caa2f2d34be9df6b84d8808121b8db3f4e0a4d313d836f197"></a>
+
+## 条件 fa83a3582a8af91caa2f2d34be9df6b84d8808121b8db3f4e0a4d313d836f197
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ナエトル → ハヤシガメ → ドダイトス",
+  "inheritance_chain": [
+    "0387.00",
+    "0388.00",
+    "0389.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ナエトル",
+    "ハヤシガメ",
+    "ドダイトス"
+  ],
+  "inheritance_path": [
+    "0388.00",
+    "0387.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0387.00",
+  "learning_species_name_ja": "ナエトル",
+  "machine_item": "TM146",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0387.00",
+  "source_name_ja": "ナエトル",
+  "source_species": 387
+}
+```
+
+<a id="fa84026409ec0458c5efb91c3d85a993104dcf5e50b821694ad573616de15d76"></a>
+
+## 条件 fa84026409ec0458c5efb91c3d85a993104dcf5e50b821694ad573616de15d76
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0987.00",
+  "learning_species_name_ja": "ハバタクカミ",
+  "machine_item": "TM163",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0987.00",
+  "source_name_ja": "ハバタクカミ",
+  "source_species": 987
+}
+```
+
+<a id="fa846f62d5355fad23e03360c0863c8daf6ea6c966e62f58bf76c8eedb9bd055"></a>
+
+## 条件 fa846f62d5355fad23e03360c0863c8daf6ea6c966e62f58bf76c8eedb9bd055
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0971.00",
+  "learning_species_name_ja": "ボチ",
+  "machine_item": "TM055",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0971.00",
+  "source_name_ja": "ボチ",
+  "source_species": 971
+}
+```
+
+<a id="fa84cf85699707ac410d10803e311d00175aaecef025b1fe7ba57149f4c13021"></a>
+
+## 条件 fa84cf85699707ac410d10803e311d00175aaecef025b1fe7ba57149f4c13021
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 1,
+  "learning_form_label": "姿1",
+  "learning_species_key": "0649.01",
+  "learning_species_name_ja": "ゲノセクト",
+  "machine_item": "TR69",
+  "method": "tr",
+  "method_ja": "わざレコード",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 1,
+  "source_form_label": "姿1",
+  "source_key": "0649.01",
+  "source_name_ja": "ゲノセクト",
+  "source_species": 649
+}
+```
+
+<a id="fa84fde7922f274e6bfd6702713b2500475ac4c9441f52f8fb8036bf95dfd414"></a>
+
+## 条件 fa84fde7922f274e6bfd6702713b2500475ac4c9441f52f8fb8036bf95dfd414
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "フカマル → ガバイト",
+  "donor_learning_level": 60,
+  "inheritance_chain": [
+    "0443.00",
+    "0444.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "フカマル",
+    "ガバイト"
+  ],
+  "inheritance_path": [
+    "0443.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0443.00",
+  "learning_species_name_ja": "フカマル",
+  "level": 60,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0443.00",
+  "source_name_ja": "フカマル",
+  "source_species": 443
+}
+```
+
+<a id="fa85a3f6506eff4bd8f5573abcce81910314671c785c1f0a42d36678b936d4e3"></a>
+
+## 条件 fa85a3f6506eff4bd8f5573abcce81910314671c785c1f0a42d36678b936d4e3
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0310.00",
+  "learning_species_name_ja": "ライボルト",
+  "level": 20,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0310.00",
+  "source_name_ja": "ライボルト",
+  "source_species": 310,
+  "target_learning_level": 20
+}
+```
+
+<a id="fa85b6079d831d4f9f31000a4056945953ca7b2f29906ba8d0ee2b0e7611ba20"></a>
+
+## 条件 fa85b6079d831d4f9f31000a4056945953ca7b2f29906ba8d0ee2b0e7611ba20
+
+```json
+{
+  "catalog_offset": 4297472,
+  "compatibility_offset": 4297654,
+  "move_key": "MOVE_KEY_VEGA_433",
+  "source_slot": 8
+}
+```
+
+<a id="fa865e8501e0633d4b3d384b2521b995d47da22682cdd7a4e8458774f68a28f7"></a>
+
+## 条件 fa865e8501e0633d4b3d384b2521b995d47da22682cdd7a4e8458774f68a28f7
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "スコルピ → ドラピオン",
+  "inheritance_chain": [
+    "0451.00",
+    "0452.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "スコルピ",
+    "ドラピオン"
+  ],
+  "inheritance_path": [
+    "0451.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0451.00",
+  "learning_species_name_ja": "スコルピ",
+  "machine_item": "TR26",
+  "method": "tr",
+  "method_ja": "わざレコード",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0451.00",
+  "source_name_ja": "スコルピ",
+  "source_species": 451
+}
+```
+
+<a id="fa89727220fcd1dd30766d648119f8ef83478e95c4fee64440e76eb0e17364eb"></a>
+
+## 条件 fa89727220fcd1dd30766d648119f8ef83478e95c4fee64440e76eb0e17364eb
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ヨマワル → サマヨール → ヨノワール",
+  "donor_learning_level": 32,
+  "inheritance_chain": [
+    "0355.00",
+    "0356.00",
+    "0477.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ヨマワル",
+    "サマヨール",
+    "ヨノワール"
+  ],
+  "inheritance_path": [
+    "0356.00",
+    "0355.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0355.00",
+  "learning_species_name_ja": "ヨマワル",
+  "level": 32,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0355.00",
+  "source_name_ja": "ヨマワル",
+  "source_species": 355
+}
+```
+
+<a id="fa8981dd3e5e748c23dbe29dfc12280e526cd7c705dec51939f51d28c7939db7"></a>
+
+## 条件 fa8981dd3e5e748c23dbe29dfc12280e526cd7c705dec51939f51d28c7939db7
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0289.00",
+  "learning_species_name_ja": "ケッキング",
+  "machine_item": "TM127",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0289.00",
+  "source_name_ja": "ケッキング",
+  "source_species": 289
+}
+```
+
+<a id="fa89f77003ac8f353af5af7d65ccf87a3239911de5a31be2df428b1723c64818"></a>
+
+## 条件 fa89f77003ac8f353af5af7d65ccf87a3239911de5a31be2df428b1723c64818
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0932.00",
+  "learning_species_name_ja": "コジオ",
+  "machine_item": "TM086",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0932.00",
+  "source_name_ja": "コジオ",
+  "source_species": 932
+}
+```
+
+<a id="fa8ae1bcf5a70ab036ca0e51c3f38f03689892cd3f1adaad2e8bee3910bab467"></a>
+
+## 条件 fa8ae1bcf5a70ab036ca0e51c3f38f03689892cd3f1adaad2e8bee3910bab467
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0206.00",
+  "learning_species_name_ja": "ノコッチ",
+  "machine_item": "TM133",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0206.00",
+  "source_name_ja": "ノコッチ",
+  "source_species": 206
+}
+```
+
+<a id="fa8b95175a87f4fe18dad7e06d52f0bc0d927d4d919271846abc0000d28af353"></a>
+
+## 条件 fa8b95175a87f4fe18dad7e06d52f0bc0d927d4d919271846abc0000d28af353
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0634.00",
+  "learning_species_name_ja": "ジヘッド",
+  "level": 40,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0634.00",
+  "source_name_ja": "ジヘッド",
+  "source_species": 634,
+  "target_learning_level": 40
+}
+```
+
+<a id="fa8bcd61c417247f7885f82c5a81dbd59cb0e56d6cf8eda5288b720aacd5fc97"></a>
+
+## 条件 fa8bcd61c417247f7885f82c5a81dbd59cb0e56d6cf8eda5288b720aacd5fc97
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0724.00",
+  "learning_species_name_ja": "ジュナイパー",
+  "machine_item": "TM033",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0724.00",
+  "source_name_ja": "ジュナイパー",
+  "source_species": 724
+}
+```
+
+<a id="fa8cede1f898542a6d6817a6fb1a4f01806532a31d4157eb066b141dbdb0d87a"></a>
+
+## 条件 fa8cede1f898542a6d6817a6fb1a4f01806532a31d4157eb066b141dbdb0d87a
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "アーケン → アーケオス",
+  "donor_learning_level": 1,
+  "inheritance_chain": [
+    "0566.00",
+    "0567.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "アーケン",
+    "アーケオス"
+  ],
+  "inheritance_path": [
+    "0566.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0566.00",
+  "learning_species_name_ja": "アーケン",
+  "level": 1,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0566.00",
+  "source_name_ja": "アーケン",
+  "source_species": 566
+}
+```
+
+<a id="fa8d701a6d5827f65b6930cc1d06a7618b14c57696f990d682b9a9a33c326bfc"></a>
+
+## 条件 fa8d701a6d5827f65b6930cc1d06a7618b14c57696f990d682b9a9a33c326bfc
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0586.00",
+  "learning_species_name_ja": "メブキジカ",
+  "level": 28,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0586.00",
+  "source_name_ja": "メブキジカ",
+  "source_species": 586,
+  "target_learning_level": 28
+}
+```
+
+<a id="fa8d715b61c6f3c26e1d566b252a1291b5f238201b49e6ef9f1b3618b7f45a4f"></a>
+
+## 条件 fa8d715b61c6f3c26e1d566b252a1291b5f238201b49e6ef9f1b3618b7f45a4f
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ヤミカラス → ドンカラス",
+  "inheritance_chain": [
+    "0198.00",
+    "0430.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ヤミカラス",
+    "ドンカラス"
+  ],
+  "inheritance_path": [
+    "0198.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0198.00",
+  "learning_species_name_ja": "ヤミカラス",
+  "machine_item": "TM094",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0198.00",
+  "source_name_ja": "ヤミカラス",
+  "source_species": 198
+}
+```
+
+<a id="fa8d87d0334116e59ef2d40da926013ec448cd8a00e1938f0566cbc09b030523"></a>
+
+## 条件 fa8d87d0334116e59ef2d40da926013ec448cd8a00e1938f0566cbc09b030523
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0272.00",
+  "learning_species_name_ja": "ルンパッパ",
+  "machine_item": "TM043",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0272.00",
+  "source_name_ja": "ルンパッパ",
+  "source_species": 272
+}
+```
+
+<a id="fa8e4ee5b7efc4ad89a4256d861fcb622df20ab804f89a09117eee2ff89d2b7b"></a>
+
+## 条件 fa8e4ee5b7efc4ad89a4256d861fcb622df20ab804f89a09117eee2ff89d2b7b
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0895.00",
+  "learning_species_name_ja": "レジドラゴ",
+  "machine_item": "TM007",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0895.00",
+  "source_name_ja": "レジドラゴ",
+  "source_species": 895
+}
+```
+
+<a id="fa8e84fb2012855e2768e7b91623479e2d24370117604622c060cc5529f4111f"></a>
+
+## 条件 fa8e84fb2012855e2768e7b91623479e2d24370117604622c060cc5529f4111f
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "フラエッテ（姿1） → フラージェス（姿1）",
+  "inheritance_chain": [
+    "0670.01",
+    "0671.01"
+  ],
+  "inheritance_chain_names_ja": [
+    "フラエッテ（姿1）",
+    "フラージェス（姿1）"
+  ],
+  "inheritance_path": [
+    "0670.01"
+  ],
+  "learning_form_index": 1,
+  "learning_form_label": "姿1",
+  "learning_species_key": "0670.01",
+  "learning_species_name_ja": "フラエッテ",
+  "machine_item": "TM033",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 1,
+  "source_form_label": "姿1",
+  "source_key": "0670.01",
+  "source_name_ja": "フラエッテ",
+  "source_species": 670
+}
+```
+
+<a id="fa8ebe32b5dd2a7e13fd40f8c07b0c4dae1432ffbc9ade0d92ed466c5ac32629"></a>
+
+## 条件 fa8ebe32b5dd2a7e13fd40f8c07b0c4dae1432ffbc9ade0d92ed466c5ac32629
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0739.00",
+  "learning_species_name_ja": "マケンカニ",
+  "machine_item": "TM018",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0739.00",
+  "source_name_ja": "マケンカニ",
+  "source_species": 739
+}
+```
+
+<a id="fa9206fce202856d9395cd542e619c87155ff08aecefe3ad476fbc16500661e3"></a>
+
+## 条件 fa9206fce202856d9395cd542e619c87155ff08aecefe3ad476fbc16500661e3
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "フラエッテ → フラージェス",
+  "inheritance_chain": [
+    "0670.00",
+    "0671.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "フラエッテ",
+    "フラージェス"
+  ],
+  "inheritance_path": [
+    "0670.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0670.00",
+  "learning_species_name_ja": "フラエッテ",
+  "machine_item": "TM129",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0670.00",
+  "source_name_ja": "フラエッテ",
+  "source_species": 670
+}
+```
+
+<a id="fa926c5768fc2998895cce560d24e2e4cfc186f839804c312bc28c24a2ddd3c8"></a>
+
+## 条件 fa926c5768fc2998895cce560d24e2e4cfc186f839804c312bc28c24a2ddd3c8
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0758.00",
+  "learning_species_name_ja": "エンニュート",
+  "machine_item": "TM100",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0758.00",
+  "source_name_ja": "エンニュート",
+  "source_species": 758
+}
+```
+
+<a id="fa93c350bac2bd3107e2b7082e05536c9a9111b9165f0d11456d022ed2c9facb"></a>
+
+## 条件 fa93c350bac2bd3107e2b7082e05536c9a9111b9165f0d11456d022ed2c9facb
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "カリキリ → ラランテス",
+  "inheritance_chain": [
+    "0753.00",
+    "0754.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "カリキリ",
+    "ラランテス"
+  ],
+  "inheritance_path": [
+    "0753.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0753.00",
+  "learning_species_name_ja": "カリキリ",
+  "machine_item": "TM111",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0753.00",
+  "source_name_ja": "カリキリ",
+  "source_species": 753
+}
+```
+
+<a id="fa93f38e26f40626c4720e2b08dfef686f8458c44b7989ef66082a0380b38d49"></a>
+
+## 条件 fa93f38e26f40626c4720e2b08dfef686f8458c44b7989ef66082a0380b38d49
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0317.00",
+  "learning_species_name_ja": "マルノーム",
+  "machine_item": "TM011",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0317.00",
+  "source_name_ja": "マルノーム",
+  "source_species": 317
+}
+```
+
+<a id="fa944ada6d74a23825e705ed3435487f6696e51192e86d4644d40519730ea236"></a>
+
+## 条件 fa944ada6d74a23825e705ed3435487f6696e51192e86d4644d40519730ea236
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0112.00",
+  "learning_species_name_ja": "サイドン",
+  "level": 54,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0112.00",
+  "source_name_ja": "サイドン",
+  "source_species": 112,
+  "target_learning_level": 54
+}
+```
+
+<a id="fa946c2b50a06333e6e3fb2ff953892752c78ab132ec8939dd8adecbb8ed46f5"></a>
+
+## 条件 fa946c2b50a06333e6e3fb2ff953892752c78ab132ec8939dd8adecbb8ed46f5
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0934.00",
+  "learning_species_name_ja": "キョジオーン",
+  "machine_item": "TM084",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0934.00",
+  "source_name_ja": "キョジオーン",
+  "source_species": 934
+}
+```
+
+<a id="fa94a7c567ded2ad175980d3be0dfad6b7844971c09c91d9725f57992f5638b1"></a>
+
+## 条件 fa94a7c567ded2ad175980d3be0dfad6b7844971c09c91d9725f57992f5638b1
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0503.00",
+  "learning_species_name_ja": "ダイケンキ",
+  "level": 13,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0503.00",
+  "source_name_ja": "ダイケンキ",
+  "source_species": 503,
+  "target_learning_level": 13
+}
+```
+
+<a id="fa94b44038112d6cffc08d667a2830bdff4cb74fcb07898edd28b01017d04058"></a>
+
+## 条件 fa94b44038112d6cffc08d667a2830bdff4cb74fcb07898edd28b01017d04058
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "コリンク → ルクシオ",
+  "inheritance_chain": [
+    "0403.00",
+    "0404.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "コリンク",
+    "ルクシオ"
+  ],
+  "inheritance_path": [
+    "0403.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0403.00",
+  "learning_species_name_ja": "コリンク",
+  "machine_item": "TM130",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0403.00",
+  "source_name_ja": "コリンク",
+  "source_species": 403
+}
+```
+
+<a id="fa95417b7a8cb8f65732bd9754a7cfb7f8c39bbd2dcaa68fd8ff2f21a3597545"></a>
+
+## 条件 fa95417b7a8cb8f65732bd9754a7cfb7f8c39bbd2dcaa68fd8ff2f21a3597545
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 1,
+  "learning_form_label": "姿1",
+  "learning_species_key": "0110.01",
+  "learning_species_name_ja": "マタドガス",
+  "machine_item": "TM148",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 1,
+  "source_form_label": "姿1",
+  "source_key": "0110.01",
+  "source_name_ja": "マタドガス",
+  "source_species": 110
+}
+```
+
+<a id="fa957539833b799a10938fa36eebbe05dd5aa3b53e2938f485a76a0fb0436241"></a>
+
+## 条件 fa957539833b799a10938fa36eebbe05dd5aa3b53e2938f485a76a0fb0436241
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 13,
+  "learning_form_label": "姿13",
+  "learning_species_key": "0493.13",
+  "learning_species_name_ja": "アルセウス",
+  "machine_item": "TM150",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 13,
+  "source_form_label": "姿13",
+  "source_key": "0493.13",
+  "source_name_ja": "アルセウス",
+  "source_species": 493
+}
+```
+
+<a id="fa959cfb8a165116c1b955deb098abf01958fe0198b07a603fbaed439a767373"></a>
+
+## 条件 fa959cfb8a165116c1b955deb098abf01958fe0198b07a603fbaed439a767373
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ジグザグマ（姿1） → マッスグマ（姿1）",
+  "inheritance_chain": [
+    "0263.01",
+    "0264.01"
+  ],
+  "inheritance_chain_names_ja": [
+    "ジグザグマ（姿1）",
+    "マッスグマ（姿1）"
+  ],
+  "inheritance_path": [
+    "0263.01"
+  ],
+  "learning_form_index": 1,
+  "learning_form_label": "姿1",
+  "learning_species_key": "0263.01",
+  "learning_species_name_ja": "ジグザグマ",
+  "machine_item": "TM36",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 1,
+  "source_form_label": "姿1",
+  "source_key": "0263.01",
+  "source_name_ja": "ジグザグマ",
+  "source_species": 263
+}
+```
+
+<a id="fa95b5d6cd153701492e384238c9227c242c827f782f39b6580465a14578455c"></a>
+
+## 条件 fa95b5d6cd153701492e384238c9227c242c827f782f39b6580465a14578455c
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 1,
+  "learning_form_label": "姿1",
+  "learning_species_key": "0122.01",
+  "learning_species_name_ja": "バリヤード",
+  "level": 52,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 1,
+  "source_form_label": "姿1",
+  "source_key": "0122.01",
+  "source_name_ja": "バリヤード",
+  "source_species": 122,
+  "target_learning_level": 52
+}
+```
+
+<a id="fa97342c853706965e113af195cfcdaf7dfe3738ae02b6760c05dd6955a108e0"></a>
+
+## 条件 fa97342c853706965e113af195cfcdaf7dfe3738ae02b6760c05dd6955a108e0
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 1,
+  "learning_form_label": "姿1",
+  "learning_species_key": "0075.01",
+  "learning_species_name_ja": "ゴローン",
+  "machine_item": "TM147",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 1,
+  "source_form_label": "姿1",
+  "source_key": "0075.01",
+  "source_name_ja": "ゴローン",
+  "source_species": 75
+}
+```
+
+<a id="fa97fd53ce34372414663afdabac7f5837bd0fc536a91e67f25a5c7e64bfacc9"></a>
+
+## 条件 fa97fd53ce34372414663afdabac7f5837bd0fc536a91e67f25a5c7e64bfacc9
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "タッツー → シードラ → キングドラ",
+  "inheritance_chain": [
+    "0116.00",
+    "0117.00",
+    "0230.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "タッツー",
+    "シードラ",
+    "キングドラ"
+  ],
+  "inheritance_path": [
+    "0117.00",
+    "0116.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0116.00",
+  "learning_species_name_ja": "タッツー",
+  "machine_item": "TM025",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0116.00",
+  "source_name_ja": "タッツー",
+  "source_species": 116
+}
+```
+
+<a id="fa98739112702ee1d9b0e153997ba1d0ddddf410d51aec7a8cb47206ed7e239f"></a>
+
+## 条件 fa98739112702ee1d9b0e153997ba1d0ddddf410d51aec7a8cb47206ed7e239f
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 1,
+  "learning_form_label": "姿1",
+  "learning_species_key": "0570.01",
+  "learning_species_name_ja": "ゾロア",
+  "machine_item": "TM029",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 1,
+  "source_form_label": "姿1",
+  "source_key": "0570.01",
+  "source_name_ja": "ゾロア",
+  "source_species": 570
+}
+```
+
+<a id="fa989373ede071faaad8147ee50db1f005006b39654588538395678180b74885"></a>
+
+## 条件 fa989373ede071faaad8147ee50db1f005006b39654588538395678180b74885
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ミジュマル → フタチマル",
+  "inheritance_chain": [
+    "0501.00",
+    "0502.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ミジュマル",
+    "フタチマル"
+  ],
+  "inheritance_path": [
+    "0501.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0501.00",
+  "learning_species_name_ja": "ミジュマル",
+  "machine_item": "TM065",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0501.00",
+  "source_name_ja": "ミジュマル",
+  "source_species": 501
+}
+```
+
+<a id="fa99279d9d7dc928b21299dfc87d0ba0cc716ec22ff63e7d5af2de0ce5caccf7"></a>
+
+## 条件 fa99279d9d7dc928b21299dfc87d0ba0cc716ec22ff63e7d5af2de0ce5caccf7
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0843.00",
+  "learning_species_name_ja": "スナヘビ",
+  "machine_item": "TM055",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0843.00",
+  "source_name_ja": "スナヘビ",
+  "source_species": 843
+}
+```
+
+<a id="fa99b8683adb69c2716a8cd80632c9bef2fffd2fd6ce7cac452235e11485ba74"></a>
+
+## 条件 fa99b8683adb69c2716a8cd80632c9bef2fffd2fd6ce7cac452235e11485ba74
+
+```json
+{
+  "catalog_offset": 4300704,
+  "compatibility_offset": 2162560,
+  "machine_kind": "TM",
+  "machine_number": 3,
+  "move_key": "MOVE_KEY_SPIKES",
+  "source_slot": 2
+}
+```
+
+<a id="fa9accdda9db29e80144a0aa4261f25663f325d2835bda52283a2c963fd7a94a"></a>
+
+## 条件 fa9accdda9db29e80144a0aa4261f25663f325d2835bda52283a2c963fd7a94a
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "コフキムシ → コフーライ → ビビヨン（姿3）",
+  "inheritance_chain": [
+    "0664.00",
+    "0665.00",
+    "0666.03"
+  ],
+  "inheritance_chain_names_ja": [
+    "コフキムシ",
+    "コフーライ",
+    "ビビヨン（姿3）"
+  ],
+  "inheritance_path": [
+    "0665.00",
+    "0664.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0664.00",
+  "learning_species_name_ja": "コフキムシ",
+  "machine_item": "TM171",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0664.00",
+  "source_name_ja": "コフキムシ",
+  "source_species": 664
+}
+```
+
+<a id="fa9b71d0cce9a609a92dc8e58d77573b2816fabe2f63d6cc6522d41749231ddd"></a>
+
+## 条件 fa9b71d0cce9a609a92dc8e58d77573b2816fabe2f63d6cc6522d41749231ddd
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ホエルコ → ホエルオー",
+  "inheritance_chain": [
+    "0320.00",
+    "0321.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ホエルコ",
+    "ホエルオー"
+  ],
+  "inheritance_path": [
+    "0320.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0320.00",
+  "learning_species_name_ja": "ホエルコ",
+  "machine_item": "TM55",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0320.00",
+  "source_name_ja": "ホエルコ",
+  "source_species": 320
+}
+```
+
+<a id="fa9c6c490991d9067c1acfe8e7a145812bbf8f8b901a6a0c391223bbddefe9a4"></a>
+
+## 条件 fa9c6c490991d9067c1acfe8e7a145812bbf8f8b901a6a0c391223bbddefe9a4
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ナマケロ → ヤルキモノ",
+  "inheritance_chain": [
+    "0287.00",
+    "0288.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ナマケロ",
+    "ヤルキモノ"
+  ],
+  "inheritance_path": [
+    "0287.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0287.00",
+  "learning_species_name_ja": "ナマケロ",
+  "machine_item": "TM125",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0287.00",
+  "source_name_ja": "ナマケロ",
+  "source_species": 287
+}
+```
+
+<a id="fa9d70b6792e715b0d22ef4d5ba1f9886cf02085f8af9aac07e78b3a7258ac29"></a>
+
+## 条件 fa9d70b6792e715b0d22ef4d5ba1f9886cf02085f8af9aac07e78b3a7258ac29
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0997.00",
+  "learning_species_name_ja": "セゴール",
+  "machine_item": "TM171",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0997.00",
+  "source_name_ja": "セゴール",
+  "source_species": 997
+}
+```
+
+<a id="fa9e2016e86271b25e77f430c98d0e2907fcdc3b18349e043bd7bf77afd6a78d"></a>
+
+## 条件 fa9e2016e86271b25e77f430c98d0e2907fcdc3b18349e043bd7bf77afd6a78d
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ピチュー → ピカチュウ",
+  "inheritance_chain": [
+    "0172.00",
+    "0025.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ピチュー",
+    "ピカチュウ"
+  ],
+  "inheritance_path": [
+    "0172.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0172.00",
+  "learning_species_name_ja": "ピチュー",
+  "machine_item": "TM032",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0172.00",
+  "source_name_ja": "ピチュー",
+  "source_species": 172
+}
+```
+
+<a id="fa9e4143aff461dfafc0732902fa9527f3a9129e759d5a0e965473f2dabf3f61"></a>
+
+## 条件 fa9e4143aff461dfafc0732902fa9527f3a9129e759d5a0e965473f2dabf3f61
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ツタージャ → ジャノビー → ジャローダ",
+  "inheritance_chain": [
+    "0495.00",
+    "0496.00",
+    "0497.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ツタージャ",
+    "ジャノビー",
+    "ジャローダ"
+  ],
+  "inheritance_path": [
+    "0496.00",
+    "0495.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0495.00",
+  "learning_species_name_ja": "ツタージャ",
+  "machine_item": "TM119",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0495.00",
+  "source_name_ja": "ツタージャ",
+  "source_species": 495
+}
+```
+
+<a id="fa9ef79037588d028a99f81995289c71276adbaac483d6f5370ee430c6ecfb21"></a>
+
+## 条件 fa9ef79037588d028a99f81995289c71276adbaac483d6f5370ee430c6ecfb21
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0485.00",
+  "learning_species_name_ja": "ヒードラン",
+  "machine_item": "TM107",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0485.00",
+  "source_name_ja": "ヒードラン",
+  "source_species": 485
+}
+```
+
+<a id="fa9fd14882ec82be24801d453cc862e04ccf7b1fcd4af6128fbf5e85f2bf6123"></a>
+
+## 条件 fa9fd14882ec82be24801d453cc862e04ccf7b1fcd4af6128fbf5e85f2bf6123
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "クルマユ → ハハコモリ",
+  "inheritance_chain": [
+    "0541.00",
+    "0542.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "クルマユ",
+    "ハハコモリ"
+  ],
+  "inheritance_path": [
+    "0541.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0541.00",
+  "learning_species_name_ja": "クルマユ",
+  "machine_item": "TM219",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0541.00",
+  "source_name_ja": "クルマユ",
+  "source_species": 541
+}
+```
+
+<a id="faa0b4f2c22c5ef5cf55aed6953078708062b18e8f3333495e8b9de84fa501db"></a>
+
+## 条件 faa0b4f2c22c5ef5cf55aed6953078708062b18e8f3333495e8b9de84fa501db
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 3,
+  "learning_form_label": "姿3",
+  "learning_species_key": "0931.03",
+  "learning_species_name_ja": "イキリンコ",
+  "level": 52,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 3,
+  "source_form_label": "姿3",
+  "source_key": "0931.03",
+  "source_name_ja": "イキリンコ",
+  "source_species": 931,
+  "target_learning_level": 52
+}
+```
+
+<a id="faa0d85d7193e40710b92c13ca5a1ca9690a7a56d48982e28e73240ba17fc515"></a>
+
+## 条件 faa0d85d7193e40710b92c13ca5a1ca9690a7a56d48982e28e73240ba17fc515
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 3,
+  "learning_form_label": "姿3",
+  "learning_species_key": "0649.03",
+  "learning_species_name_ja": "ゲノセクト",
+  "machine_item": "TR02",
+  "method": "tr",
+  "method_ja": "わざレコード",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 3,
+  "source_form_label": "姿3",
+  "source_key": "0649.03",
+  "source_name_ja": "ゲノセクト",
+  "source_species": 649
+}
+```
+
+<a id="faa0dd2e2653f94f247c8af059b8d2e521df581ad8adb2bb30e1a47cc5514e2a"></a>
+
+## 条件 faa0dd2e2653f94f247c8af059b8d2e521df581ad8adb2bb30e1a47cc5514e2a
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 1,
+  "learning_form_label": "姿1",
+  "learning_species_key": "0669.01",
+  "learning_species_name_ja": "フラベベ",
+  "machine_item": "TM022",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 1,
+  "source_form_label": "姿1",
+  "source_key": "0669.01",
+  "source_name_ja": "フラベベ",
+  "source_species": 669
+}
+```
+
+<a id="faa11bc12d59f2244fc6460d83e3e4b95548f8a5d93d1dd66e193b7cc1fecaca"></a>
+
+## 条件 faa11bc12d59f2244fc6460d83e3e4b95548f8a5d93d1dd66e193b7cc1fecaca
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 1,
+  "learning_form_label": "姿1",
+  "learning_species_key": "0720.01",
+  "learning_species_name_ja": "フーパ",
+  "machine_item": "TM221",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 1,
+  "source_form_label": "姿1",
+  "source_key": "0720.01",
+  "source_name_ja": "フーパ",
+  "source_species": 720
+}
+```
+
+<a id="faa147ff120c85e9d7ea1ac30f18661768e742a3227fc04403fdc33f98450ccd"></a>
+
+## 条件 faa147ff120c85e9d7ea1ac30f18661768e742a3227fc04403fdc33f98450ccd
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ヤジロン → ネンドール",
+  "inheritance_chain": [
+    "0343.00",
+    "0344.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ヤジロン",
+    "ネンドール"
+  ],
+  "inheritance_path": [
+    "0343.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0343.00",
+  "learning_species_name_ja": "ヤジロン",
+  "machine_item": "TR44",
+  "method": "tr",
+  "method_ja": "わざレコード",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0343.00",
+  "source_name_ja": "ヤジロン",
+  "source_species": 343
+}
+```
+
+<a id="faa281ae1110f5589d752bdb1895c187a3b5881c955da7038d0e743841d8ecd3"></a>
+
+## 条件 faa281ae1110f5589d752bdb1895c187a3b5881c955da7038d0e743841d8ecd3
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "1008.00",
+  "learning_species_name_ja": "ミライドン",
+  "machine_item": "TM157",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "1008.00",
+  "source_name_ja": "ミライドン",
+  "source_species": 1008
+}
+```
+
+<a id="faa315ed8fd98a705d33cf815c596d9ac0bc5f9e76d2f60954a10cd15ea48a09"></a>
+
+## 条件 faa315ed8fd98a705d33cf815c596d9ac0bc5f9e76d2f60954a10cd15ea48a09
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 3,
+  "learning_form_label": "姿3",
+  "learning_species_key": "0493.03",
+  "learning_species_name_ja": "アルセウス",
+  "machine_item": "TM118",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 3,
+  "source_form_label": "姿3",
+  "source_key": "0493.03",
+  "source_name_ja": "アルセウス",
+  "source_species": 493
+}
+```
+
+<a id="faa40751bb0cc643a9744fcecdabfefd2c371ef4b2cb17a95e1652ffd45ad101"></a>
+
+## 条件 faa40751bb0cc643a9744fcecdabfefd2c371ef4b2cb17a95e1652ffd45ad101
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ヒドイデ → ドヒドイデ",
+  "inheritance_chain": [
+    "0747.00",
+    "0748.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ヒドイデ",
+    "ドヒドイデ"
+  ],
+  "inheritance_path": [
+    "0747.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0747.00",
+  "learning_species_name_ja": "ヒドイデ",
+  "machine_item": "TM025",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0747.00",
+  "source_name_ja": "ヒドイデ",
+  "source_species": 747
+}
+```
+
+<a id="faa4086953f02dff1a8c341249335fc1eb2ebfbbc89f8c0f93faea98c19f8df7"></a>
+
+## 条件 faa4086953f02dff1a8c341249335fc1eb2ebfbbc89f8c0f93faea98c19f8df7
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0654.00",
+  "learning_species_name_ja": "テールナー",
+  "machine_item": "TM081",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0654.00",
+  "source_name_ja": "テールナー",
+  "source_species": 654
+}
+```
+
+<a id="faa55d932020a0aef2cecd8eb9516d660daa0ee27b3e965354539c65b192b58a"></a>
+
+## 条件 faa55d932020a0aef2cecd8eb9516d660daa0ee27b3e965354539c65b192b58a
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0094.00",
+  "learning_species_name_ja": "ゲンガー",
+  "machine_item": "TM045",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0094.00",
+  "source_name_ja": "ゲンガー",
+  "source_species": 94
+}
+```
+
+<a id="faa67a0d8e1f519c2f954316e80b6f305af41324b109396a04f43611d428d71d"></a>
+
+## 条件 faa67a0d8e1f519c2f954316e80b6f305af41324b109396a04f43611d428d71d
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "モクロー → フクスロー",
+  "inheritance_chain": [
+    "0722.00",
+    "0723.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "モクロー",
+    "フクスロー"
+  ],
+  "inheritance_path": [
+    "0722.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0722.00",
+  "learning_species_name_ja": "モクロー",
+  "machine_item": "TM181",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0722.00",
+  "source_name_ja": "モクロー",
+  "source_species": 722
+}
+```
+
+<a id="faa6f6db798c2c8740732442ccc22c5198e207fa43f666ea98efc0693e06355e"></a>
+
+## 条件 faa6f6db798c2c8740732442ccc22c5198e207fa43f666ea98efc0693e06355e
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0314.00",
+  "learning_species_name_ja": "イルミーゼ",
+  "machine_item": "TM049",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0314.00",
+  "source_name_ja": "イルミーゼ",
+  "source_species": 314
+}
+```
+
+<a id="faa6f9d9ebe8451f52c1c299cef3d83a955d723f550d21b3e39c39e52fb2f0dc"></a>
+
+## 条件 faa6f9d9ebe8451f52c1c299cef3d83a955d723f550d21b3e39c39e52fb2f0dc
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 1,
+  "learning_form_label": "姿1",
+  "learning_species_key": "0025.01",
+  "learning_species_name_ja": "ピカチュウ",
+  "machine_item": "TM075",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 1,
+  "source_form_label": "姿1",
+  "source_key": "0025.01",
+  "source_name_ja": "ピカチュウ",
+  "source_species": 25
+}
+```
+
+<a id="faa78f20c01b74dbae96662af8e4046c0a5e0870eb5200980fc6c3dccd29cfa2"></a>
+
+## 条件 faa78f20c01b74dbae96662af8e4046c0a5e0870eb5200980fc6c3dccd29cfa2
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0785.00",
+  "learning_species_name_ja": "カプ・コケコ",
+  "machine_item": "TR27",
+  "method": "tr",
+  "method_ja": "わざレコード",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0785.00",
+  "source_name_ja": "カプ・コケコ",
+  "source_species": 785
+}
+```
+
+<a id="faa7dcc24d7fbc23593ca64cb645d91a355a612e4c9a2ca7149c44d142a722b1"></a>
+
+## 条件 faa7dcc24d7fbc23593ca64cb645d91a355a612e4c9a2ca7149c44d142a722b1
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 8,
+  "learning_form_label": "姿8",
+  "learning_species_key": "0774.08",
+  "learning_species_name_ja": "メテノ",
+  "machine_item": "TM101",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 8,
+  "source_form_label": "姿8",
+  "source_key": "0774.08",
+  "source_name_ja": "メテノ",
+  "source_species": 774
+}
+```
+
+<a id="faa874ae3933886d36c916ad0fd3a04c185914268472ed46ff763ae3db5469c3"></a>
+
+## 条件 faa874ae3933886d36c916ad0fd3a04c185914268472ed46ff763ae3db5469c3
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0646.00",
+  "learning_species_name_ja": "キュレム",
+  "level": 72,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0646.00",
+  "source_name_ja": "キュレム",
+  "source_species": 646,
+  "target_learning_level": 72
+}
+```
+
+<a id="faa8d1d2be8ce55eae59ec7021b96e745f91f1bdbdc962cd34d0d3f6b4229497"></a>
+
+## 条件 faa8d1d2be8ce55eae59ec7021b96e745f91f1bdbdc962cd34d0d3f6b4229497
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0369.00",
+  "learning_species_name_ja": "ジーランス",
+  "level": 40,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0369.00",
+  "source_name_ja": "ジーランス",
+  "source_species": 369,
+  "target_learning_level": 40
+}
+```
+
+<a id="faa8df7428c7bfb3fb9a25277d7983aef802b65febd04610c7ef32dda504486c"></a>
+
+## 条件 faa8df7428c7bfb3fb9a25277d7983aef802b65febd04610c7ef32dda504486c
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0808.00",
+  "learning_species_name_ja": "メルタン",
+  "machine_item": "TR46",
+  "method": "tr",
+  "method_ja": "わざレコード",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0808.00",
+  "source_name_ja": "メルタン",
+  "source_species": 808
+}
+```
+
+<a id="faa8ea3323961bcbe72501186e6b6e00a3e60bc4e0e7039848ba76ac68c7cee7"></a>
+
+## 条件 faa8ea3323961bcbe72501186e6b6e00a3e60bc4e0e7039848ba76ac68c7cee7
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "イワーク → ハガネール",
+  "inheritance_chain": [
+    "0095.00",
+    "0208.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "イワーク",
+    "ハガネール"
+  ],
+  "inheritance_path": [
+    "0095.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0095.00",
+  "learning_species_name_ja": "イワーク",
+  "machine_item": "TR37",
+  "method": "tr",
+  "method_ja": "わざレコード",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0095.00",
+  "source_name_ja": "イワーク",
+  "source_species": 95
+}
+```
+
+<a id="faa9443b636d9c9a4f99882dad679feb0dcd14ae96dbd366354195d4f072a161"></a>
+
+## 条件 faa9443b636d9c9a4f99882dad679feb0dcd14ae96dbd366354195d4f072a161
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 1,
+  "learning_form_label": "姿1",
+  "learning_species_key": "1013.01",
+  "learning_species_name_ja": "ヤバソチャ",
+  "machine_item": "TM042",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 1,
+  "source_form_label": "姿1",
+  "source_key": "1013.01",
+  "source_name_ja": "ヤバソチャ",
+  "source_species": 1013
+}
+```
+
+<a id="faaa2b686e624efa7fa2e61cbed100e93fe14c183f3c0e6c8ecd76f4462593c0"></a>
+
+## 条件 faaa2b686e624efa7fa2e61cbed100e93fe14c183f3c0e6c8ecd76f4462593c0
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ズルッグ → ズルズキン",
+  "inheritance_chain": [
+    "0559.00",
+    "0560.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ズルッグ",
+    "ズルズキン"
+  ],
+  "inheritance_path": [
+    "0559.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0559.00",
+  "learning_species_name_ja": "ズルッグ",
+  "machine_item": "TM068",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0559.00",
+  "source_name_ja": "ズルッグ",
+  "source_species": 559
+}
+```
+
+<a id="faaac4323e43d591504ba316442d8bd5985ead888f519f6725bb4c1b7da95c38"></a>
+
+## 条件 faaac4323e43d591504ba316442d8bd5985ead888f519f6725bb4c1b7da95c38
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "レドームシ → イオルブ",
+  "inheritance_chain": [
+    "0825.00",
+    "0826.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "レドームシ",
+    "イオルブ"
+  ],
+  "inheritance_path": [
+    "0825.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0825.00",
+  "learning_species_name_ja": "レドームシ",
+  "machine_item": "TR26",
+  "method": "tr",
+  "method_ja": "わざレコード",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0825.00",
+  "source_name_ja": "レドームシ",
+  "source_species": 825
+}
+```
+
+<a id="faab8368eba54934db9276f601e5a273d59c6461fb78c3ee060e4d88f0a8ffcd"></a>
+
+## 条件 faab8368eba54934db9276f601e5a273d59c6461fb78c3ee060e4d88f0a8ffcd
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 1,
+  "learning_form_label": "姿1",
+  "learning_species_key": "0083.01",
+  "learning_species_name_ja": "カモネギ",
+  "machine_item": "TM42",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 1,
+  "source_form_label": "姿1",
+  "source_key": "0083.01",
+  "source_name_ja": "カモネギ",
+  "source_species": 83
+}
+```
+
+<a id="faab97c8daf9ebcaef86356799e4fc255285c3fb86caae2254f8053c77a2b6a6"></a>
+
+## 条件 faab97c8daf9ebcaef86356799e4fc255285c3fb86caae2254f8053c77a2b6a6
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ニューラ → マニューラ",
+  "inheritance_chain": [
+    "0215.00",
+    "0461.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ニューラ",
+    "マニューラ"
+  ],
+  "inheritance_path": [
+    "0215.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0215.00",
+  "learning_species_name_ja": "ニューラ",
+  "machine_item": "TM049",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0215.00",
+  "source_name_ja": "ニューラ",
+  "source_species": 215
+}
+```
+
+<a id="faabedcb542af41b4454d06322e0703f2380ed45c74456858689f02d58c6d73a"></a>
+
+## 条件 faabedcb542af41b4454d06322e0703f2380ed45c74456858689f02d58c6d73a
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ドテッコツ → ローブシン",
+  "inheritance_chain": [
+    "0533.00",
+    "0534.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ドテッコツ",
+    "ローブシン"
+  ],
+  "inheritance_path": [
+    "0533.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0533.00",
+  "learning_species_name_ja": "ドテッコツ",
+  "machine_item": "TM134",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0533.00",
+  "source_name_ja": "ドテッコツ",
+  "source_species": 533
+}
+```
+
+<a id="faac2cc7e6638cd641fffd1125ed1f420fe12712edac6bf32c3f5c830093f7d0"></a>
+
+## 条件 faac2cc7e6638cd641fffd1125ed1f420fe12712edac6bf32c3f5c830093f7d0
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0933.00",
+  "learning_species_name_ja": "ジオヅム",
+  "level": 1,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0933.00",
+  "source_name_ja": "ジオヅム",
+  "source_species": 933,
+  "target_learning_level": 1
+}
+```
+
+<a id="faac3b41e7625b4e40cadb587ad574318432836576cb8538ff86b502d2e97f6c"></a>
+
+## 条件 faac3b41e7625b4e40cadb587ad574318432836576cb8538ff86b502d2e97f6c
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0484.00",
+  "learning_species_name_ja": "パルキア",
+  "machine_item": "TM006",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0484.00",
+  "source_name_ja": "パルキア",
+  "source_species": 484
+}
+```
+
+<a id="faae58a410a7f247ecfb82d94dc8149ce48212bb00144fe4b3208546d31b4a44"></a>
+
+## 条件 faae58a410a7f247ecfb82d94dc8149ce48212bb00144fe4b3208546d31b4a44
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "オニスズメ → オニドリル",
+  "inheritance_chain": [
+    "0021.00",
+    "0022.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "オニスズメ",
+    "オニドリル"
+  ],
+  "inheritance_path": [
+    "0021.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0021.00",
+  "learning_species_name_ja": "オニスズメ",
+  "machine_item": "TM76",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0021.00",
+  "source_name_ja": "オニスズメ",
+  "source_species": 21
+}
+```
+
+<a id="faaec54e12f156aa7459cbdf96d130f8261c2d19d57e77a158564c7921474406"></a>
+
+## 条件 faaec54e12f156aa7459cbdf96d130f8261c2d19d57e77a158564c7921474406
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0449.00",
+  "learning_species_name_ja": "ヒポポタス",
+  "machine_item": "TM066",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0449.00",
+  "source_name_ja": "ヒポポタス",
+  "source_species": 449
+}
+```
+
+<a id="faaf00a73206bbb2a7cd24f4a0536a59035297f8f2ba6d3a645249e97355f2cb"></a>
+
+## 条件 faaf00a73206bbb2a7cd24f4a0536a59035297f8f2ba6d3a645249e97355f2cb
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ノコッチ → ノココッチ（姿1）",
+  "inheritance_chain": [
+    "0206.00",
+    "0982.01"
+  ],
+  "inheritance_chain_names_ja": [
+    "ノコッチ",
+    "ノココッチ（姿1）"
+  ],
+  "inheritance_path": [
+    "0206.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0206.00",
+  "learning_species_name_ja": "ノコッチ",
+  "machine_item": "TM004",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0206.00",
+  "source_name_ja": "ノコッチ",
+  "source_species": 206
+}
+```
+
+<a id="faaf2221b3bd8289638590df2d8381efb20c3b2be5914ad71ba2f1cd7f274966"></a>
+
+## 条件 faaf2221b3bd8289638590df2d8381efb20c3b2be5914ad71ba2f1cd7f274966
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0807.00",
+  "learning_species_name_ja": "ゼラオラ",
+  "machine_item": "TR48",
+  "method": "tr",
+  "method_ja": "わざレコード",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0807.00",
+  "source_name_ja": "ゼラオラ",
+  "source_species": 807
+}
+```
+
+<a id="fab09dc1be6aabbb3e87c225b208bb88e5666bb07da2d918cccd2d011c783c07"></a>
+
+## 条件 fab09dc1be6aabbb3e87c225b208bb88e5666bb07da2d918cccd2d011c783c07
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0836.00",
+  "learning_species_name_ja": "パルスワン",
+  "machine_item": "TR90",
+  "method": "tr",
+  "method_ja": "わざレコード",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0836.00",
+  "source_name_ja": "パルスワン",
+  "source_species": 836
+}
+```
+
+<a id="fab24612e70358501169f95705adb60272b850a88a9e750df03ac96e928ec0db"></a>
+
+## 条件 fab24612e70358501169f95705adb60272b850a88a9e750df03ac96e928ec0db
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 3,
+  "learning_form_label": "姿3",
+  "learning_species_key": "0586.03",
+  "learning_species_name_ja": "メブキジカ",
+  "level": 13,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 3,
+  "source_form_label": "姿3",
+  "source_key": "0586.03",
+  "source_name_ja": "メブキジカ",
+  "source_species": 586,
+  "target_learning_level": 13
+}
+```
+
+<a id="fab26ee4897f1dfcac405b1e375524025372b30a8c72fc6f848d9e688c833891"></a>
+
+## 条件 fab26ee4897f1dfcac405b1e375524025372b30a8c72fc6f848d9e688c833891
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "フシギダネ → フシギソウ",
+  "inheritance_chain": [
+    "0001.00",
+    "0002.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "フシギダネ",
+    "フシギソウ"
+  ],
+  "inheritance_path": [
+    "0001.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0001.00",
+  "learning_species_name_ja": "フシギダネ",
+  "machine_item": "TM171",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0001.00",
+  "source_name_ja": "フシギダネ",
+  "source_species": 1
+}
+```
+
+<a id="fab30156999db8c0aa6d95ed52355ae9d4671a9769bc312dec43bafb22e9cbfe"></a>
+
+## 条件 fab30156999db8c0aa6d95ed52355ae9d4671a9769bc312dec43bafb22e9cbfe
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0252.00",
+  "learning_species_name_ja": "キモリ",
+  "machine_item": "TM025",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0252.00",
+  "source_name_ja": "キモリ",
+  "source_species": 252
+}
+```
+
+<a id="fab34ba05a61fe164094a43a702b39b248b5f0c72611ca8cfd618e3fd2bc703c"></a>
+
+## 条件 fab34ba05a61fe164094a43a702b39b248b5f0c72611ca8cfd618e3fd2bc703c
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0288.00",
+  "learning_species_name_ja": "ヤルキモノ",
+  "machine_item": "TM114",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0288.00",
+  "source_name_ja": "ヤルキモノ",
+  "source_species": 288
+}
+```
+
+<a id="fab41aee2f43823c48916601991c15c3b5d2a55723e695319b48f0e4cd9bae17"></a>
+
+## 条件 fab41aee2f43823c48916601991c15c3b5d2a55723e695319b48f0e4cd9bae17
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0867.00",
+  "learning_species_name_ja": "デスバーン",
+  "machine_item": "TM26",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0867.00",
+  "source_name_ja": "デスバーン",
+  "source_species": 867
+}
+```
+
+<a id="fab42d7747f73dfc04af875fda90747128c64011d1f10adcde4b7e9bc089125d"></a>
+
+## 条件 fab42d7747f73dfc04af875fda90747128c64011d1f10adcde4b7e9bc089125d
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "プルリル → ブルンゲル",
+  "inheritance_chain": [
+    "0592.00",
+    "0593.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "プルリル",
+    "ブルンゲル"
+  ],
+  "inheritance_path": [
+    "0592.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0592.00",
+  "learning_species_name_ja": "プルリル",
+  "machine_item": "TM76",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0592.00",
+  "source_name_ja": "プルリル",
+  "source_species": 592
+}
+```
+
+<a id="fab442086590208938c1dc865ea0ab6397e3acfa3f8f8892e73ce72f26e90534"></a>
+
+## 条件 fab442086590208938c1dc865ea0ab6397e3acfa3f8f8892e73ce72f26e90534
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "キラーメ → キラフロル",
+  "inheritance_chain": [
+    "0969.00",
+    "0970.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "キラーメ",
+    "キラフロル"
+  ],
+  "inheritance_path": [
+    "0969.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0969.00",
+  "learning_species_name_ja": "キラーメ",
+  "machine_item": "TM049",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0969.00",
+  "source_name_ja": "キラーメ",
+  "source_species": 969
+}
+```
+
+<a id="fab45844175159b31925e1902c2f0f8e5c2f8daba92ccdb510a0d052125e8962"></a>
+
+## 条件 fab45844175159b31925e1902c2f0f8e5c2f8daba92ccdb510a0d052125e8962
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0353.00",
+  "learning_species_name_ja": "カゲボウズ",
+  "machine_item": "TM219",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0353.00",
+  "source_name_ja": "カゲボウズ",
+  "source_species": 353
+}
+```
+
+<a id="fab4ff8a8c9360b9094212faf77994617c001b464dbda762831cae9d7fe5666c"></a>
+
+## 条件 fab4ff8a8c9360b9094212faf77994617c001b464dbda762831cae9d7fe5666c
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0905.00",
+  "learning_species_name_ja": "ラブトロス",
+  "machine_item": "TM037",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0905.00",
+  "source_name_ja": "ラブトロス",
+  "source_species": 905
+}
+```
+
+<a id="fab54a423813ef8dc2f0c67d7de6bdc80920b0c0fabeafaad5166ca442da4476"></a>
+
+## 条件 fab54a423813ef8dc2f0c67d7de6bdc80920b0c0fabeafaad5166ca442da4476
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0885.00",
+  "learning_species_name_ja": "ドラメシヤ",
+  "machine_item": "TM103",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0885.00",
+  "source_name_ja": "ドラメシヤ",
+  "source_species": 885
+}
+```
+
+<a id="fab553a59442fa029ef29c24d3101cc3e414577998960a87f90375947e65cb01"></a>
+
+## 条件 fab553a59442fa029ef29c24d3101cc3e414577998960a87f90375947e65cb01
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "1020.00",
+  "learning_species_name_ja": "ウガツホムラ",
+  "level": 56,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "1020.00",
+  "source_name_ja": "ウガツホムラ",
+  "source_species": 1020,
+  "target_learning_level": 56
+}
+```
+
+<a id="fab5bbac63b0666d0da24332177b98d6ac50e26410bd7e7fd1eced0d73177821"></a>
+
+## 条件 fab5bbac63b0666d0da24332177b98d6ac50e26410bd7e7fd1eced0d73177821
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0173.00",
+  "learning_species_name_ja": "ピィ",
+  "machine_item": "TM168",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0173.00",
+  "source_name_ja": "ピィ",
+  "source_species": 173
+}
+```
+
+<a id="fab61635b45385b7f30b35a6a85f9f24fb524e2decb7e9714ac8d3258bbea1ed"></a>
+
+## 条件 fab61635b45385b7f30b35a6a85f9f24fb524e2decb7e9714ac8d3258bbea1ed
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0748.00",
+  "learning_species_name_ja": "ドヒドイデ",
+  "machine_item": "TM025",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0748.00",
+  "source_name_ja": "ドヒドイデ",
+  "source_species": 748
+}
+```
+
+<a id="fab6806b50a3036b1dc52b3e42677a19151d4da271890dbb32260de230732f18"></a>
+
+## 条件 fab6806b50a3036b1dc52b3e42677a19151d4da271890dbb32260de230732f18
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "コリンク → ルクシオ → レントラー",
+  "donor_learning_level": 28,
+  "inheritance_chain": [
+    "0403.00",
+    "0404.00",
+    "0405.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "コリンク",
+    "ルクシオ",
+    "レントラー"
+  ],
+  "inheritance_path": [
+    "0404.00",
+    "0403.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0403.00",
+  "learning_species_name_ja": "コリンク",
+  "level": 28,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0403.00",
+  "source_name_ja": "コリンク",
+  "source_species": 403
+}
+```
+
+<a id="fab7700984ee8b51aa9f75df158bdaa86a149d1430fc25f8bd5078d81bded1e6"></a>
+
+## 条件 fab7700984ee8b51aa9f75df158bdaa86a149d1430fc25f8bd5078d81bded1e6
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0809.00",
+  "learning_species_name_ja": "メルメタル",
+  "machine_item": "TM21",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0809.00",
+  "source_name_ja": "メルメタル",
+  "source_species": 809
+}
+```
+
+<a id="fab77d62729a157c8bba70120bcf21f1d9d2f85044595bab8966765dd5d45e50"></a>
+
+## 条件 fab77d62729a157c8bba70120bcf21f1d9d2f85044595bab8966765dd5d45e50
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ナマケロ → ヤルキモノ → ケッキング",
+  "inheritance_chain": [
+    "0287.00",
+    "0288.00",
+    "0289.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ナマケロ",
+    "ヤルキモノ",
+    "ケッキング"
+  ],
+  "inheritance_path": [
+    "0288.00",
+    "0287.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0287.00",
+  "learning_species_name_ja": "ナマケロ",
+  "machine_item": "TM224",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0287.00",
+  "source_name_ja": "ナマケロ",
+  "source_species": 287
+}
+```
+
+<a id="fab7876567925638753515c93060160c7f1f3d7fb13cf946344e225ae6a1f9af"></a>
+
+## 条件 fab7876567925638753515c93060160c7f1f3d7fb13cf946344e225ae6a1f9af
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0593.00",
+  "learning_species_name_ja": "ブルンゲル",
+  "machine_item": "TM08",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0593.00",
+  "source_name_ja": "ブルンゲル",
+  "source_species": 593
+}
+```
+
+<a id="fab81f4693491c41c2c5d03f21509b0da2be4ac9b1b70493b8e86646ec7c8c4a"></a>
+
+## 条件 fab81f4693491c41c2c5d03f21509b0da2be4ac9b1b70493b8e86646ec7c8c4a
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0743.00",
+  "learning_species_name_ja": "アブリボン",
+  "level": 48,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0743.00",
+  "source_name_ja": "アブリボン",
+  "source_species": 743,
+  "target_learning_level": 48
+}
+```
+
+<a id="fab864b10ad7efdfe0473885558dd7fe4a4e6a916ddb035c51d0d13d25bc1da0"></a>
+
+## 条件 fab864b10ad7efdfe0473885558dd7fe4a4e6a916ddb035c51d0d13d25bc1da0
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 1,
+  "learning_form_label": "姿1",
+  "learning_species_key": "0075.01",
+  "learning_species_name_ja": "ゴローン",
+  "machine_item": "TM005",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 1,
+  "source_form_label": "姿1",
+  "source_key": "0075.01",
+  "source_name_ja": "ゴローン",
+  "source_species": 75
+}
+```
+
+<a id="fab87af91cfcf0cedd85aae1fe83ba1585d2569f745a820e14e32a387efe8819"></a>
+
+## 条件 fab87af91cfcf0cedd85aae1fe83ba1585d2569f745a820e14e32a387efe8819
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ミミロル → ミミロップ",
+  "inheritance_chain": [
+    "0427.00",
+    "0428.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ミミロル",
+    "ミミロップ"
+  ],
+  "inheritance_path": [
+    "0427.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0427.00",
+  "learning_species_name_ja": "ミミロル",
+  "machine_item": "TM21",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0427.00",
+  "source_name_ja": "ミミロル",
+  "source_species": 427
+}
+```
+
+<a id="fab88e8423475c0b83bacb8d45e4f08dabcb26422bf52cf8ccccaa7c081b5a1f"></a>
+
+## 条件 fab88e8423475c0b83bacb8d45e4f08dabcb26422bf52cf8ccccaa7c081b5a1f
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ミネズミ → ミルホッグ",
+  "donor_learning_level": 11,
+  "inheritance_chain": [
+    "0504.00",
+    "0505.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ミネズミ",
+    "ミルホッグ"
+  ],
+  "inheritance_path": [
+    "0504.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0504.00",
+  "learning_species_name_ja": "ミネズミ",
+  "level": 11,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0504.00",
+  "source_name_ja": "ミネズミ",
+  "source_species": 504
+}
+```
+
+<a id="fab8ca69398fed8e784a20ee21e263b4684cd69a46131993b6fe3ede7a92fb7c"></a>
+
+## 条件 fab8ca69398fed8e784a20ee21e263b4684cd69a46131993b6fe3ede7a92fb7c
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "1006.00",
+  "learning_species_name_ja": "テツノブジン",
+  "machine_item": "TM029",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "1006.00",
+  "source_name_ja": "テツノブジン",
+  "source_species": 1006
+}
+```
+
+<a id="fab8e9bae5dc8f7c5ef0e2c291710f7e130aae13e1813bfb99fcee485280ffb7"></a>
+
+## 条件 fab8e9bae5dc8f7c5ef0e2c291710f7e130aae13e1813bfb99fcee485280ffb7
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0971.00",
+  "learning_species_name_ja": "ボチ",
+  "machine_item": "TM042",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0971.00",
+  "source_name_ja": "ボチ",
+  "source_species": 971
+}
+```
+
+<a id="fab97130cf16fc80f744a76d8a9a163bc38090f92fd6d3db536ec324890faa75"></a>
+
+## 条件 fab97130cf16fc80f744a76d8a9a163bc38090f92fd6d3db536ec324890faa75
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ニューラ → マニューラ",
+  "inheritance_chain": [
+    "0215.00",
+    "0461.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ニューラ",
+    "マニューラ"
+  ],
+  "inheritance_path": [
+    "0215.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0215.00",
+  "learning_species_name_ja": "ニューラ",
+  "machine_item": "TM229",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0215.00",
+  "source_name_ja": "ニューラ",
+  "source_species": 215
+}
+```
+
+<a id="fab998ffeeff466c715afa771a63317b0db100e87742c8e72a312c78f36541d2"></a>
+
+## 条件 fab998ffeeff466c715afa771a63317b0db100e87742c8e72a312c78f36541d2
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0003.00",
+  "learning_species_name_ja": "フシギバナ",
+  "machine_item": "TM020",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0003.00",
+  "source_name_ja": "フシギバナ",
+  "source_species": 3
+}
+```
+
+<a id="fab9b097f8676abbddbb78ee9fdf08b2efbd1b61f958fdd8d7db07822dfd8a71"></a>
+
+## 条件 fab9b097f8676abbddbb78ee9fdf08b2efbd1b61f958fdd8d7db07822dfd8a71
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ヤドン（姿1） → ヤドラン（姿2）",
+  "inheritance_chain": [
+    "0079.01",
+    "0080.02"
+  ],
+  "inheritance_chain_names_ja": [
+    "ヤドン（姿1）",
+    "ヤドラン（姿2）"
+  ],
+  "inheritance_path": [
+    "0079.01"
+  ],
+  "learning_form_index": 1,
+  "learning_form_label": "姿1",
+  "learning_species_key": "0079.01",
+  "learning_species_name_ja": "ヤドン",
+  "machine_item": "TM054",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 1,
+  "source_form_label": "姿1",
+  "source_key": "0079.01",
+  "source_name_ja": "ヤドン",
+  "source_species": 79
+}
+```
+
+<a id="faba6351966c67cef04a62f6005b721bdba07192ceeae3dcc5006e323e6c24f6"></a>
+
+## 条件 faba6351966c67cef04a62f6005b721bdba07192ceeae3dcc5006e323e6c24f6
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0571.00",
+  "learning_species_name_ja": "ゾロアーク",
+  "machine_item": "TM125",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0571.00",
+  "source_name_ja": "ゾロアーク",
+  "source_species": 571
+}
+```
+
+<a id="faba747449f3117b5dea3bed192bbe043a4410be8fa41aeda1c36f91e12014c5"></a>
+
+## 条件 faba747449f3117b5dea3bed192bbe043a4410be8fa41aeda1c36f91e12014c5
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ブルー → グランブル",
+  "inheritance_chain": [
+    "0209.00",
+    "0210.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ブルー",
+    "グランブル"
+  ],
+  "inheritance_path": [
+    "0209.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0209.00",
+  "learning_species_name_ja": "ブルー",
+  "machine_item": "TM007",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0209.00",
+  "source_name_ja": "ブルー",
+  "source_species": 209
+}
+```
+
+<a id="fabac97171b5ff7e81c7b90bee318c82d07378f70ca2d618dfb3a4f697002363"></a>
+
+## 条件 fabac97171b5ff7e81c7b90bee318c82d07378f70ca2d618dfb3a4f697002363
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0945.00",
+  "learning_species_name_ja": "タギングル",
+  "level": 51,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0945.00",
+  "source_name_ja": "タギングル",
+  "source_species": 945,
+  "target_learning_level": 51
+}
+```
+
+<a id="fabc022a8ac720c1686731023fd9d08bbc70c5866188a4e51aa5d9c9853045cd"></a>
+
+## 条件 fabc022a8ac720c1686731023fd9d08bbc70c5866188a4e51aa5d9c9853045cd
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0147.00",
+  "learning_species_name_ja": "ミニリュウ",
+  "machine_item": "TM082",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0147.00",
+  "source_name_ja": "ミニリュウ",
+  "source_species": 147
+}
+```
+
+<a id="fabc91528e998f34cf38751841784debe7f33921ca7593e4cc8e5fc73bcedfd0"></a>
+
+## 条件 fabc91528e998f34cf38751841784debe7f33921ca7593e4cc8e5fc73bcedfd0
+
+```json
+{
+  "level": 60,
+  "move_key": "MOVE_KEY_VEGA_475"
+}
+```
+
+<a id="fabca31605a3daa07a308e521ba381b274f5cb22977bbc0f922ff7e16d72381e"></a>
+
+## 条件 fabca31605a3daa07a308e521ba381b274f5cb22977bbc0f922ff7e16d72381e
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 15,
+  "learning_form_label": "姿15",
+  "learning_species_key": "0666.15",
+  "learning_species_name_ja": "ビビヨン",
+  "machine_item": "TM182",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 15,
+  "source_form_label": "姿15",
+  "source_key": "0666.15",
+  "source_name_ja": "ビビヨン",
+  "source_species": 666
+}
+```
+
+<a id="fabd1db9eb57e54655438033eb0acc01d7c0840f5e92d12662e36dcb37db3e83"></a>
+
+## 条件 fabd1db9eb57e54655438033eb0acc01d7c0840f5e92d12662e36dcb37db3e83
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 1,
+  "learning_form_label": "姿1",
+  "learning_species_key": "0550.01",
+  "learning_species_name_ja": "バスラオ",
+  "level": 40,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 1,
+  "source_form_label": "姿1",
+  "source_key": "0550.01",
+  "source_name_ja": "バスラオ",
+  "source_species": 550,
+  "target_learning_level": 40
+}
+```
+
+<a id="fabd5d2e7f95af4090a391df200225baa5a5150487c6fd36e7135727e8647687"></a>
+
+## 条件 fabd5d2e7f95af4090a391df200225baa5a5150487c6fd36e7135727e8647687
+
+```json
+{
+  "level": 39,
+  "move_key": "MOVE_KEY_DRAINPUNCH"
+}
+```
+
+<a id="fabe71b295e1d6f2338a787c03bf1c9c2bbb788c32e0357c81f044b0f08d6973"></a>
+
+## 条件 fabe71b295e1d6f2338a787c03bf1c9c2bbb788c32e0357c81f044b0f08d6973
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 1,
+  "learning_form_label": "姿1",
+  "learning_species_key": "0905.01",
+  "learning_species_name_ja": "ラブトロス",
+  "machine_item": "TM133",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 1,
+  "source_form_label": "姿1",
+  "source_key": "0905.01",
+  "source_name_ja": "ラブトロス",
+  "source_species": 905
+}
+```
+
+<a id="fabec3ee1dc1c1b9d908c5c9a4bbfd9a1d75ecf3915833bf54664f1fbca8efa2"></a>
+
+## 条件 fabec3ee1dc1c1b9d908c5c9a4bbfd9a1d75ecf3915833bf54664f1fbca8efa2
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ハネッコ → ポポッコ",
+  "inheritance_chain": [
+    "0187.00",
+    "0188.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ハネッコ",
+    "ポポッコ"
+  ],
+  "inheritance_path": [
+    "0187.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0187.00",
+  "learning_species_name_ja": "ハネッコ",
+  "machine_item": "TM079",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0187.00",
+  "source_name_ja": "ハネッコ",
+  "source_species": 187
+}
+```
+
+<a id="fabed3ce98485de97c568c91f0d7e3ab0f24b04d9918d4115f68cd03da463014"></a>
+
+## 条件 fabed3ce98485de97c568c91f0d7e3ab0f24b04d9918d4115f68cd03da463014
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0015.00",
+  "learning_species_name_ja": "スピアー",
+  "machine_item": "TM66",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0015.00",
+  "source_name_ja": "スピアー",
+  "source_species": 15
+}
+```
+
+<a id="fabf28bbe251c3c19dddaf7b25aeeea2f6120bedcd24b0d74064c3bcc50aded2"></a>
+
+## 条件 fabf28bbe251c3c19dddaf7b25aeeea2f6120bedcd24b0d74064c3bcc50aded2
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0048.00",
+  "learning_species_name_ja": "コンパン",
+  "machine_item": "TM017",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0048.00",
+  "source_name_ja": "コンパン",
+  "source_species": 48
+}
+```
+
+<a id="fabf74c0373eb0147881fd1461843d1eabef1e40878a01d713d45c8702146d2c"></a>
+
+## 条件 fabf74c0373eb0147881fd1461843d1eabef1e40878a01d713d45c8702146d2c
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0341.00",
+  "learning_species_name_ja": "ヘイガニ",
+  "machine_item": "TM011",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0341.00",
+  "source_name_ja": "ヘイガニ",
+  "source_species": 341
+}
+```
+
+<a id="fac0ca3165707c0f4dfe1afc050b906f9cd2ff85d085ddf34cbeef9de8c9c12f"></a>
+
+## 条件 fac0ca3165707c0f4dfe1afc050b906f9cd2ff85d085ddf34cbeef9de8c9c12f
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0732.00",
+  "learning_species_name_ja": "ケララッパ",
+  "level": 37,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0732.00",
+  "source_name_ja": "ケララッパ",
+  "source_species": 732,
+  "target_learning_level": 37
+}
+```
+
+<a id="fac0f18af844d699605d568307d3350502b6b0aa8c8771ab5905b2305eec26c1"></a>
+
+## 条件 fac0f18af844d699605d568307d3350502b6b0aa8c8771ab5905b2305eec26c1
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0698.00",
+  "learning_species_name_ja": "アマルス",
+  "method": "tutor",
+  "method_ja": "教え技",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0698.00",
+  "source_name_ja": "アマルス",
+  "source_species": 698
+}
+```
+
+<a id="fac11a978713152cd13be3ed9acc13f66a51bbfe6fd0c9aecd0c6850ee8c21ea"></a>
+
+## 条件 fac11a978713152cd13be3ed9acc13f66a51bbfe6fd0c9aecd0c6850ee8c21ea
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0446.00",
+  "learning_species_name_ja": "ゴンベ",
+  "machine_item": "TM007",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0446.00",
+  "source_name_ja": "ゴンベ",
+  "source_species": 446
+}
+```
+
+<a id="fac2cbf6046684bec03aeaa2ef44fdc5830ae9c02fac167c6de99935b05f5d60"></a>
+
+## 条件 fac2cbf6046684bec03aeaa2ef44fdc5830ae9c02fac167c6de99935b05f5d60
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 1,
+  "learning_form_label": "姿1",
+  "learning_species_key": "0199.01",
+  "learning_species_name_ja": "ヤドキング",
+  "machine_item": "TM070",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 1,
+  "source_form_label": "姿1",
+  "source_key": "0199.01",
+  "source_name_ja": "ヤドキング",
+  "source_species": 199
+}
+```
+
+<a id="fac30b349b3dbcbde59daf1ce78c6953ceae542e74b56322586a0b3ae126fd68"></a>
+
+## 条件 fac30b349b3dbcbde59daf1ce78c6953ceae542e74b56322586a0b3ae126fd68
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 19,
+  "learning_form_label": "姿19",
+  "learning_species_key": "0666.19",
+  "learning_species_name_ja": "ビビヨン",
+  "machine_item": "TM070",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 19,
+  "source_form_label": "姿19",
+  "source_key": "0666.19",
+  "source_name_ja": "ビビヨン",
+  "source_species": 666
+}
+```
+
+<a id="fac37e4530eae84fa532dae6f7a85eb8b79b3f6a40d56831b64844e2e9c65529"></a>
+
+## 条件 fac37e4530eae84fa532dae6f7a85eb8b79b3f6a40d56831b64844e2e9c65529
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0410.00",
+  "learning_species_name_ja": "タテトプス",
+  "machine_item": "TM215",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0410.00",
+  "source_name_ja": "タテトプス",
+  "source_species": 410
+}
+```
+
+<a id="fac385ab4bc83b405998a489510d966c03e9f2894e665d7400a0db78edc76513"></a>
+
+## 条件 fac385ab4bc83b405998a489510d966c03e9f2894e665d7400a0db78edc76513
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 1,
+  "learning_form_label": "姿1",
+  "learning_species_key": "0706.01",
+  "learning_species_name_ja": "ヌメルゴン",
+  "machine_item": "TM126",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 1,
+  "source_form_label": "姿1",
+  "source_key": "0706.01",
+  "source_name_ja": "ヌメルゴン",
+  "source_species": 706
+}
+```
+
+<a id="fac3c0a38889937ef151ba45b667a5ad0a765160da5393c4ceca61414bdc76cb"></a>
+
+## 条件 fac3c0a38889937ef151ba45b667a5ad0a765160da5393c4ceca61414bdc76cb
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0233.00",
+  "learning_species_name_ja": "ポリゴン２",
+  "machine_item": "TM023",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0233.00",
+  "source_name_ja": "ポリゴン２",
+  "source_species": 233
+}
+```
+
+<a id="fac405ba9b2aabef1fb92c40ff1810d72f03ca6f5faa18110e351c1bc9729368"></a>
+
+## 条件 fac405ba9b2aabef1fb92c40ff1810d72f03ca6f5faa18110e351c1bc9729368
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "トゲチック → トゲキッス",
+  "inheritance_chain": [
+    "0176.00",
+    "0468.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "トゲチック",
+    "トゲキッス"
+  ],
+  "inheritance_path": [
+    "0176.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0176.00",
+  "learning_species_name_ja": "トゲチック",
+  "machine_item": "TM43",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0176.00",
+  "source_name_ja": "トゲチック",
+  "source_species": 176
+}
+```
+
+<a id="fac5115f9182d5f0fbd15c32919d03858b92838b07531894e5a67456e99d6973"></a>
+
+## 条件 fac5115f9182d5f0fbd15c32919d03858b92838b07531894e5a67456e99d6973
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 1,
+  "learning_form_label": "姿1",
+  "learning_species_key": "0893.01",
+  "learning_species_name_ja": "ザルード",
+  "level": 36,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 1,
+  "source_form_label": "姿1",
+  "source_key": "0893.01",
+  "source_name_ja": "ザルード",
+  "source_species": 893,
+  "target_learning_level": 36
+}
+```
+
+<a id="fac58d5f177f35cffad70aeb1382a63c03ec7776c20ce9213e31fdd9f80d8adc"></a>
+
+## 条件 fac58d5f177f35cffad70aeb1382a63c03ec7776c20ce9213e31fdd9f80d8adc
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0689.00",
+  "learning_species_name_ja": "ガメノデス",
+  "machine_item": "TM08",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0689.00",
+  "source_name_ja": "ガメノデス",
+  "source_species": 689
+}
+```
+
+<a id="fac629892ab9e6e0015812d4736c1c1552339b01ce80f913b6b89005fc7cd590"></a>
+
+## 条件 fac629892ab9e6e0015812d4736c1c1552339b01ce80f913b6b89005fc7cd590
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0302.00",
+  "learning_species_name_ja": "ヤミラミ",
+  "level": 42,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0302.00",
+  "source_name_ja": "ヤミラミ",
+  "source_species": 302,
+  "target_learning_level": 42
+}
+```
+
+<a id="fac63727ef7a0e4eb46bce81e63057b0e78aac530e9f55975dbacb3c41db22cd"></a>
+
+## 条件 fac63727ef7a0e4eb46bce81e63057b0e78aac530e9f55975dbacb3c41db22cd
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0296.00",
+  "learning_species_name_ja": "マクノシタ",
+  "machine_item": "TM229",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0296.00",
+  "source_name_ja": "マクノシタ",
+  "source_species": 296
+}
+```
+
+<a id="fac6ad25ee5552badd115286c2b59f74616598b6aeb0764e12148a6ba0ee39aa"></a>
+
+## 条件 fac6ad25ee5552badd115286c2b59f74616598b6aeb0764e12148a6ba0ee39aa
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "1013.00",
+  "learning_species_name_ja": "ヤバソチャ",
+  "machine_item": "TM070",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "1013.00",
+  "source_name_ja": "ヤバソチャ",
+  "source_species": 1013
+}
+```
+
+<a id="faca05daefc66a19d61ca4810ba4bd0a172331ca6e0028022772404dbd5199d5"></a>
+
+## 条件 faca05daefc66a19d61ca4810ba4bd0a172331ca6e0028022772404dbd5199d5
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0410.00",
+  "learning_species_name_ja": "タテトプス",
+  "level": 10,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0410.00",
+  "source_name_ja": "タテトプス",
+  "source_species": 410,
+  "target_learning_level": 10
+}
+```
+
+<a id="faca1a8241378a84781a82d2d9403cd6cc4fd05327b87d63de7eef0503123fa4"></a>
+
+## 条件 faca1a8241378a84781a82d2d9403cd6cc4fd05327b87d63de7eef0503123fa4
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0614.00",
+  "learning_species_name_ja": "ツンベアー",
+  "machine_item": "TM058",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0614.00",
+  "source_name_ja": "ツンベアー",
+  "source_species": 614
+}
+```
+
+<a id="faca915108db976c8b28397e72ee1e2f15bad5df2e088a1878f9627bc3de7b46"></a>
+
+## 条件 faca915108db976c8b28397e72ee1e2f15bad5df2e088a1878f9627bc3de7b46
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ゴマゾウ → ドンファン",
+  "inheritance_chain": [
+    "0231.00",
+    "0232.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ゴマゾウ",
+    "ドンファン"
+  ],
+  "inheritance_path": [
+    "0231.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0231.00",
+  "learning_species_name_ja": "ゴマゾウ",
+  "machine_item": "TM186",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0231.00",
+  "source_name_ja": "ゴマゾウ",
+  "source_species": 231
+}
+```
+
+<a id="facba5467bd6522fc9b63208d1f567fbe6df43ae83caab8f91428aac7d22d1fc"></a>
+
+## 条件 facba5467bd6522fc9b63208d1f567fbe6df43ae83caab8f91428aac7d22d1fc
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "アサナン → チャーレム",
+  "donor_learning_level": 12,
+  "inheritance_chain": [
+    "0307.00",
+    "0308.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "アサナン",
+    "チャーレム"
+  ],
+  "inheritance_path": [
+    "0307.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0307.00",
+  "learning_species_name_ja": "アサナン",
+  "level": 12,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0307.00",
+  "source_name_ja": "アサナン",
+  "source_species": 307
+}
+```
+
+<a id="facbdb08856ea8cc7e42a44cf66e94d78acf566aa4cea1fa6cff2dbd48551853"></a>
+
+## 条件 facbdb08856ea8cc7e42a44cf66e94d78acf566aa4cea1fa6cff2dbd48551853
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ヤルキモノ → ケッキング",
+  "donor_learning_level": 43,
+  "inheritance_chain": [
+    "0288.00",
+    "0289.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ヤルキモノ",
+    "ケッキング"
+  ],
+  "inheritance_path": [
+    "0288.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0288.00",
+  "learning_species_name_ja": "ヤルキモノ",
+  "level": 43,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0288.00",
+  "source_name_ja": "ヤルキモノ",
+  "source_species": 288
+}
+```
+
+<a id="facc3ddc1bb87abfc8170c55e113256980080a2429b438a00cfbff3cb666d42e"></a>
+
+## 条件 facc3ddc1bb87abfc8170c55e113256980080a2429b438a00cfbff3cb666d42e
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 1,
+  "learning_form_label": "姿1",
+  "learning_species_key": "0982.01",
+  "learning_species_name_ja": "ノココッチ",
+  "level": 28,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 1,
+  "source_form_label": "姿1",
+  "source_key": "0982.01",
+  "source_name_ja": "ノココッチ",
+  "source_species": 982,
+  "target_learning_level": 28
+}
+```
+
+<a id="facd3cd86a70ede6d36b56868366a5539321f364f354d040e8498cf0c50fb52f"></a>
+
+## 条件 facd3cd86a70ede6d36b56868366a5539321f364f354d040e8498cf0c50fb52f
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ドッコラー → ドテッコツ → ローブシン",
+  "inheritance_chain": [
+    "0532.00",
+    "0533.00",
+    "0534.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ドッコラー",
+    "ドテッコツ",
+    "ローブシン"
+  ],
+  "inheritance_path": [
+    "0533.00",
+    "0532.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0532.00",
+  "learning_species_name_ja": "ドッコラー",
+  "machine_item": "TM049",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0532.00",
+  "source_name_ja": "ドッコラー",
+  "source_species": 532
+}
+```
+
+<a id="face4eb2b26e10514fb9baa577d0ad4c4c5317672a887ed1915f52d9fe511533"></a>
+
+## 条件 face4eb2b26e10514fb9baa577d0ad4c4c5317672a887ed1915f52d9fe511533
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0694.00",
+  "learning_species_name_ja": "エリキテル",
+  "method": "egg",
+  "method_ja": "タマゴ技",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0694.00",
+  "source_name_ja": "エリキテル",
+  "source_species": 694
+}
+```
+
+<a id="face65be2ac925a4674076ba3c041b2769125606c4d612474bd9be8f9fea1110"></a>
+
+## 条件 face65be2ac925a4674076ba3c041b2769125606c4d612474bd9be8f9fea1110
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0180.00",
+  "learning_species_name_ja": "モココ",
+  "machine_item": "TM068",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0180.00",
+  "source_name_ja": "モココ",
+  "source_species": 180
+}
+```
+
+<a id="facfbd818e2daf1e84d6a8d73a33e27701d03a3a8bce2beea2690fda534b1791"></a>
+
+## 条件 facfbd818e2daf1e84d6a8d73a33e27701d03a3a8bce2beea2690fda534b1791
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 1,
+  "learning_form_label": "姿1",
+  "learning_species_key": "0074.01",
+  "learning_species_name_ja": "イシツブテ",
+  "machine_item": "TM173",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 1,
+  "source_form_label": "姿1",
+  "source_key": "0074.01",
+  "source_name_ja": "イシツブテ",
+  "source_species": 74
+}
+```
+
+<a id="facfc739af803dec4cecaeb2a9aa4b895543045e88b5500a267acb9b4267805c"></a>
+
+## 条件 facfc739af803dec4cecaeb2a9aa4b895543045e88b5500a267acb9b4267805c
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ムックル → ムクバード",
+  "inheritance_chain": [
+    "0396.00",
+    "0397.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ムックル",
+    "ムクバード"
+  ],
+  "inheritance_path": [
+    "0396.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0396.00",
+  "learning_species_name_ja": "ムックル",
+  "machine_item": "TM103",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0396.00",
+  "source_name_ja": "ムックル",
+  "source_species": 396
+}
+```
+
+<a id="fad01aa56f7949576dc72a655e9f15035f73cfb12e2de7ee7f0a89c44ad75add"></a>
+
+## 条件 fad01aa56f7949576dc72a655e9f15035f73cfb12e2de7ee7f0a89c44ad75add
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0417.00",
+  "learning_species_name_ja": "パチリス",
+  "machine_item": "TM050",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0417.00",
+  "source_name_ja": "パチリス",
+  "source_species": 417
+}
+```
+
+<a id="fad14b3287c76b31fb9b3abbaedbd1b402167a655aa355f149a6412c27352a56"></a>
+
+## 条件 fad14b3287c76b31fb9b3abbaedbd1b402167a655aa355f149a6412c27352a56
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0872.00",
+  "learning_species_name_ja": "ユキハミ",
+  "machine_item": "TM085",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0872.00",
+  "source_name_ja": "ユキハミ",
+  "source_species": 872
+}
+```
+
+<a id="fad31e04ede6cc10126382703ed616b52f20f584e34e3403e94cea95a26b5e40"></a>
+
+## 条件 fad31e04ede6cc10126382703ed616b52f20f584e34e3403e94cea95a26b5e40
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 1,
+  "learning_form_label": "姿1",
+  "learning_species_key": "0585.01",
+  "learning_species_name_ja": "シキジカ",
+  "method": "egg",
+  "method_ja": "タマゴ技",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 1,
+  "source_form_label": "姿1",
+  "source_key": "0585.01",
+  "source_name_ja": "シキジカ",
+  "source_species": 585
+}
+```
+
+<a id="fad474b0694836fee70a96fa5e17c0414a8e6b155710f5499f2f5aa2c1f2756f"></a>
+
+## 条件 fad474b0694836fee70a96fa5e17c0414a8e6b155710f5499f2f5aa2c1f2756f
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0870.00",
+  "learning_species_name_ja": "タイレーツ",
+  "level": 25,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0870.00",
+  "source_name_ja": "タイレーツ",
+  "source_species": 870,
+  "target_learning_level": 25
+}
+```
+
+<a id="fad62847fa48c5997ad86e58543018d958247929d8f7905d88fbd96700207aeb"></a>
+
+## 条件 fad62847fa48c5997ad86e58543018d958247929d8f7905d88fbd96700207aeb
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0681.00",
+  "learning_species_name_ja": "ギルガルド",
+  "machine_item": "TM76",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0681.00",
+  "source_name_ja": "ギルガルド",
+  "source_species": 681
+}
+```
+
+<a id="fad83d14af0e2d944ccd86ad98fc632ce8114212558b264caf6c02e29078843e"></a>
+
+## 条件 fad83d14af0e2d944ccd86ad98fc632ce8114212558b264caf6c02e29078843e
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0273.00",
+  "learning_species_name_ja": "タネボー",
+  "level": 24,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0273.00",
+  "source_name_ja": "タネボー",
+  "source_species": 273,
+  "target_learning_level": 24
+}
+```
+
+<a id="fad8d0bfa93f8476e3b30988ccb7831c81068315d8d07e8f6eb829885665c6a3"></a>
+
+## 条件 fad8d0bfa93f8476e3b30988ccb7831c81068315d8d07e8f6eb829885665c6a3
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 1,
+  "learning_form_label": "姿1",
+  "learning_species_key": "0479.01",
+  "learning_species_name_ja": "ロトム",
+  "machine_item": "TM191",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 1,
+  "source_form_label": "姿1",
+  "source_key": "0479.01",
+  "source_name_ja": "ロトム",
+  "source_species": 479
+}
+```
+
+<a id="fadacdfccbb11f8f2ff99d5a34bf877a815dc88098f8130ffc6f4335b0658513"></a>
+
+## 条件 fadacdfccbb11f8f2ff99d5a34bf877a815dc88098f8130ffc6f4335b0658513
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0876.00",
+  "learning_species_name_ja": "イエッサン",
+  "level": 5,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0876.00",
+  "source_name_ja": "イエッサン",
+  "source_species": 876,
+  "target_learning_level": 5
+}
+```
+
+<a id="fadb9fd19b96f1cc78d4172b136142bb69d00c679258a1b350ff930b8e5dd418"></a>
+
+## 条件 fadb9fd19b96f1cc78d4172b136142bb69d00c679258a1b350ff930b8e5dd418
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ニャスパー → ニャオニクス（姿1）",
+  "inheritance_chain": [
+    "0677.00",
+    "0678.01"
+  ],
+  "inheritance_chain_names_ja": [
+    "ニャスパー",
+    "ニャオニクス（姿1）"
+  ],
+  "inheritance_path": [
+    "0677.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0677.00",
+  "learning_species_name_ja": "ニャスパー",
+  "machine_item": "TM228",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0677.00",
+  "source_name_ja": "ニャスパー",
+  "source_species": 677
+}
+```
+
+<a id="fadc66a89fc979cd7842dd4d9266cfa4e948e3819e973d1cf525c98f65fe6aaf"></a>
+
+## 条件 fadc66a89fc979cd7842dd4d9266cfa4e948e3819e973d1cf525c98f65fe6aaf
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ホゲータ → アチゲータ",
+  "inheritance_chain": [
+    "0909.00",
+    "0910.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ホゲータ",
+    "アチゲータ"
+  ],
+  "inheritance_path": [
+    "0909.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0909.00",
+  "learning_species_name_ja": "ホゲータ",
+  "machine_item": "TM038",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0909.00",
+  "source_name_ja": "ホゲータ",
+  "source_species": 909
+}
+```
+
+<a id="fadd22c6543214e5a5641b876de6cef7bc4c7fa781995a26a5d1ba6c205bcf2a"></a>
+
+## 条件 fadd22c6543214e5a5641b876de6cef7bc4c7fa781995a26a5d1ba6c205bcf2a
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ミジュマル → フタチマル",
+  "inheritance_chain": [
+    "0501.00",
+    "0502.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ミジュマル",
+    "フタチマル"
+  ],
+  "inheritance_path": [
+    "0501.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0501.00",
+  "learning_species_name_ja": "ミジュマル",
+  "machine_item": "TM135",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0501.00",
+  "source_name_ja": "ミジュマル",
+  "source_species": 501
+}
+```
+
+<a id="fade4fb75756a7800dc1206ff6c1d58521232a6811ebc2b4137bdfa7d1376a40"></a>
+
+## 条件 fade4fb75756a7800dc1206ff6c1d58521232a6811ebc2b4137bdfa7d1376a40
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "1023.00",
+  "learning_species_name_ja": "テツノカシラ",
+  "machine_item": "TM210",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "1023.00",
+  "source_name_ja": "テツノカシラ",
+  "source_species": 1023
+}
+```
+
+<a id="fadf289d0311548bffb875056e3d045ebd7beb411e3f3164f958cfdccca0505a"></a>
+
+## 条件 fadf289d0311548bffb875056e3d045ebd7beb411e3f3164f958cfdccca0505a
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0009.00",
+  "learning_species_name_ja": "カメックス",
+  "machine_item": "TM036",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0009.00",
+  "source_name_ja": "カメックス",
+  "source_species": 9
+}
+```
+
+<a id="fae12ff4dcb2bb47c68d4f1c19d87d76852de750f796a8129460224452a4f9f7"></a>
+
+## 条件 fae12ff4dcb2bb47c68d4f1c19d87d76852de750f796a8129460224452a4f9f7
+
+```json
+{
+  "level": 23,
+  "move_key": "MOVE_KEY_TAKEDOWN"
+}
+```
+
+<a id="fae2c36c3b380281b4734371efe5251cfc27f2b4cf5f2996f69dd6d78bdfc2f5"></a>
+
+## 条件 fae2c36c3b380281b4734371efe5251cfc27f2b4cf5f2996f69dd6d78bdfc2f5
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0157.00",
+  "learning_species_name_ja": "バクフーン",
+  "machine_item": "TM032",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0157.00",
+  "source_name_ja": "バクフーン",
+  "source_species": 157
+}
+```
+
+<a id="fae4c9e21e885149a1672ec1df12f4040ad414bda7dc3ca58f1653137820e162"></a>
+
+## 条件 fae4c9e21e885149a1672ec1df12f4040ad414bda7dc3ca58f1653137820e162
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "カゲボウズ → ジュペッタ",
+  "donor_learning_level": 38,
+  "inheritance_chain": [
+    "0353.00",
+    "0354.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "カゲボウズ",
+    "ジュペッタ"
+  ],
+  "inheritance_path": [
+    "0353.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0353.00",
+  "learning_species_name_ja": "カゲボウズ",
+  "level": 38,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0353.00",
+  "source_name_ja": "カゲボウズ",
+  "source_species": 353
+}
+```
+
+<a id="fae691751fef8458182b420b210a561ffc32a12cc0aeeaf7f3626c16e5b98857"></a>
+
+## 条件 fae691751fef8458182b420b210a561ffc32a12cc0aeeaf7f3626c16e5b98857
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0987.00",
+  "learning_species_name_ja": "ハバタクカミ",
+  "level": 49,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0987.00",
+  "source_name_ja": "ハバタクカミ",
+  "source_species": 987,
+  "target_learning_level": 49
+}
+```
+
+<a id="fae722da4eb2e2fc64d230e3ed7eec82614e6795ecc072937a6f124c22e812cf"></a>
+
+## 条件 fae722da4eb2e2fc64d230e3ed7eec82614e6795ecc072937a6f124c22e812cf
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0902.00",
+  "learning_species_name_ja": "イダイトウ",
+  "machine_item": "TM151",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0902.00",
+  "source_name_ja": "イダイトウ",
+  "source_species": 902
+}
+```
+
+<a id="fae778cd034a693a54255ad9f2e4e1c8d0ff16a78e3f3ea1091e29e250c5e041"></a>
+
+## 条件 fae778cd034a693a54255ad9f2e4e1c8d0ff16a78e3f3ea1091e29e250c5e041
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "オタマロ → ガマガル → ガマゲロゲ",
+  "inheritance_chain": [
+    "0535.00",
+    "0536.00",
+    "0537.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "オタマロ",
+    "ガマガル",
+    "ガマゲロゲ"
+  ],
+  "inheritance_path": [
+    "0536.00",
+    "0535.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0535.00",
+  "learning_species_name_ja": "オタマロ",
+  "machine_item": "TM35",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0535.00",
+  "source_name_ja": "オタマロ",
+  "source_species": 535
+}
+```
+
+<a id="fae9df93010779ab28edef2041cb0fa45387660054a674135f684ef489140ba5"></a>
+
+## 条件 fae9df93010779ab28edef2041cb0fa45387660054a674135f684ef489140ba5
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ユキハミ → モスノウ",
+  "inheritance_chain": [
+    "0872.00",
+    "0873.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ユキハミ",
+    "モスノウ"
+  ],
+  "inheritance_path": [
+    "0872.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0872.00",
+  "learning_species_name_ja": "ユキハミ",
+  "machine_item": "TM103",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0872.00",
+  "source_name_ja": "ユキハミ",
+  "source_species": 872
+}
+```
+
+<a id="faeab32210e3a0f9bd35c7014cbe7e5d3c0d5b7a230d75e000693c9fb97f40c5"></a>
+
+## 条件 faeab32210e3a0f9bd35c7014cbe7e5d3c0d5b7a230d75e000693c9fb97f40c5
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "セビエ → セゴール",
+  "inheritance_chain": [
+    "0996.00",
+    "0997.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "セビエ",
+    "セゴール"
+  ],
+  "inheritance_path": [
+    "0996.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0996.00",
+  "learning_species_name_ja": "セビエ",
+  "machine_item": "TM066",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0996.00",
+  "source_name_ja": "セビエ",
+  "source_species": 996
+}
+```
+
+<a id="faeaccf31f90958d73aed3ea697078a761401c795af3f7248bf3969bb3569381"></a>
+
+## 条件 faeaccf31f90958d73aed3ea697078a761401c795af3f7248bf3969bb3569381
+
+```json
+{
+  "catalog_offset": 4297480,
+  "compatibility_offset": 4297834,
+  "move_key": "MOVE_KEY_NASTYPLOT",
+  "source_slot": 12
+}
+```
+
+<a id="faead7cf6437c037594065be6d0b49d4a975f6f2e8ed437c6bc74df4c67cd69d"></a>
+
+## 条件 faead7cf6437c037594065be6d0b49d4a975f6f2e8ed437c6bc74df4c67cd69d
+
+```json
+{
+  "catalog_offset": 4297480,
+  "compatibility_offset": 4297562,
+  "move_key": "MOVE_KEY_NASTYPLOT",
+  "source_slot": 12
+}
+```
+
+<a id="faeaf7421ec0fd30495865683a9681bacc34fb2c52b3a0fc6047b0e3af4eed3f"></a>
+
+## 条件 faeaf7421ec0fd30495865683a9681bacc34fb2c52b3a0fc6047b0e3af4eed3f
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "セゴール → セグレイブ",
+  "inheritance_chain": [
+    "0997.00",
+    "0998.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "セゴール",
+    "セグレイブ"
+  ],
+  "inheritance_path": [
+    "0997.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0997.00",
+  "learning_species_name_ja": "セゴール",
+  "machine_item": "TM007",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0997.00",
+  "source_name_ja": "セゴール",
+  "source_species": 997
+}
+```
+
+<a id="faeb1a9ef9a1f45ed576664232dba10c630d72b6f2f8301dc5c1e0fe714a47b3"></a>
+
+## 条件 faeb1a9ef9a1f45ed576664232dba10c630d72b6f2f8301dc5c1e0fe714a47b3
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0655.00",
+  "learning_species_name_ja": "マフォクシー",
+  "machine_item": "TM215",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0655.00",
+  "source_name_ja": "マフォクシー",
+  "source_species": 655
+}
+```
+
+<a id="faeb48a88477d40dfc3292005cec774db3c3c4c4f931c6a67924346aada636fa"></a>
+
+## 条件 faeb48a88477d40dfc3292005cec774db3c3c4c4f931c6a67924346aada636fa
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0114.00",
+  "learning_species_name_ja": "モンジャラ",
+  "machine_item": "TR20",
+  "method": "tr",
+  "method_ja": "わざレコード",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0114.00",
+  "source_name_ja": "モンジャラ",
+  "source_species": 114
+}
+```
+
+<a id="faebe8615471eb35ab3b1b018ac5bff2265ab88269c8365b81daf9bf3fc0e52c"></a>
+
+## 条件 faebe8615471eb35ab3b1b018ac5bff2265ab88269c8365b81daf9bf3fc0e52c
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 1,
+  "learning_form_label": "姿1",
+  "learning_species_key": "0800.01",
+  "learning_species_name_ja": "ネクロズマ",
+  "machine_item": "TM070",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 1,
+  "source_form_label": "姿1",
+  "source_key": "0800.01",
+  "source_name_ja": "ネクロズマ",
+  "source_species": 800
+}
+```
+
+<a id="faec14798742684db66ba5264edb3dfe5380b776967f63c4b3c3cc4b978a9cbd"></a>
+
+## 条件 faec14798742684db66ba5264edb3dfe5380b776967f63c4b3c3cc4b978a9cbd
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0046.00",
+  "learning_species_name_ja": "パラス",
+  "machine_item": "TM17",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0046.00",
+  "source_name_ja": "パラス",
+  "source_species": 46
+}
+```
+
+<a id="faed02c668f96ef9c682864f90451355c9c1cc6ab8dc525773a325d3258b0ef0"></a>
+
+## 条件 faed02c668f96ef9c682864f90451355c9c1cc6ab8dc525773a325d3258b0ef0
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "バルチャイ → バルジーナ",
+  "inheritance_chain": [
+    "0629.00",
+    "0630.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "バルチャイ",
+    "バルジーナ"
+  ],
+  "inheritance_path": [
+    "0629.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0629.00",
+  "learning_species_name_ja": "バルチャイ",
+  "machine_item": "TM049",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0629.00",
+  "source_name_ja": "バルチャイ",
+  "source_species": 629
+}
+```
+
+<a id="faed0611ec78e53db04d79273e32170dfcf5ce11dd040767bf95304202930d88"></a>
+
+## 条件 faed0611ec78e53db04d79273e32170dfcf5ce11dd040767bf95304202930d88
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0375.00",
+  "learning_species_name_ja": "メタング",
+  "level": 1,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0375.00",
+  "source_name_ja": "メタング",
+  "source_species": 375,
+  "target_learning_level": 1
+}
+```
+
+<a id="faedf3e89e6ce0ce3f55ccbddb6fff76c3063c6f3f689f4c230a6ec01978f948"></a>
+
+## 条件 faedf3e89e6ce0ce3f55ccbddb6fff76c3063c6f3f689f4c230a6ec01978f948
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ストライク → ハッサム",
+  "donor_learning_level": 12,
+  "inheritance_chain": [
+    "0123.00",
+    "0212.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ストライク",
+    "ハッサム"
+  ],
+  "inheritance_path": [
+    "0123.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0123.00",
+  "learning_species_name_ja": "ストライク",
+  "level": 12,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0123.00",
+  "source_name_ja": "ストライク",
+  "source_species": 123
+}
+```
+
+<a id="faee2f3892c34cbdde29cc765148110f10f3b0a447bcb591d4bd4fd58fa9a3d9"></a>
+
+## 条件 faee2f3892c34cbdde29cc765148110f10f3b0a447bcb591d4bd4fd58fa9a3d9
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0247.00",
+  "learning_species_name_ja": "サナギラス",
+  "machine_item": "TM199",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0247.00",
+  "source_name_ja": "サナギラス",
+  "source_species": 247
+}
+```
+
+<a id="faee85f710abbc203db163b21ba377afa0d2d666a001085602638b280ef86eef"></a>
+
+## 条件 faee85f710abbc203db163b21ba377afa0d2d666a001085602638b280ef86eef
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ミツハニー → ビークイン",
+  "inheritance_chain": [
+    "0415.00",
+    "0416.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ミツハニー",
+    "ビークイン"
+  ],
+  "inheritance_path": [
+    "0415.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0415.00",
+  "learning_species_name_ja": "ミツハニー",
+  "machine_item": "TM185",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0415.00",
+  "source_name_ja": "ミツハニー",
+  "source_species": 415
+}
+```
+
+<a id="faefc7670334f0f8bb3fbfa04c4b0b06854bab4f9ee08b25379be1b9dd930e93"></a>
+
+## 条件 faefc7670334f0f8bb3fbfa04c4b0b06854bab4f9ee08b25379be1b9dd930e93
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ニューラ → マニューラ",
+  "inheritance_chain": [
+    "0215.00",
+    "0461.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ニューラ",
+    "マニューラ"
+  ],
+  "inheritance_path": [
+    "0215.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0215.00",
+  "learning_species_name_ja": "ニューラ",
+  "machine_item": "TM187",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0215.00",
+  "source_name_ja": "ニューラ",
+  "source_species": 215
+}
+```
+
+<a id="faefe67ae018da51c7874354fcd3859e9d01589ca3f41a91b6520f36d3ad4182"></a>
+
+## 条件 faefe67ae018da51c7874354fcd3859e9d01589ca3f41a91b6520f36d3ad4182
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0095.00",
+  "learning_species_name_ja": "イワーク",
+  "machine_item": "TM39",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0095.00",
+  "source_name_ja": "イワーク",
+  "source_species": 95
+}
+```
+
+<a id="faf0834a6dffcf3dcf7823a67aa7850d65e303f8086526ccb0ea9eb860b9870d"></a>
+
+## 条件 faf0834a6dffcf3dcf7823a67aa7850d65e303f8086526ccb0ea9eb860b9870d
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0724.00",
+  "learning_species_name_ja": "ジュナイパー",
+  "level": 58,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0724.00",
+  "source_name_ja": "ジュナイパー",
+  "source_species": 724,
+  "target_learning_level": 58
+}
+```
+
+<a id="faf0dabf6f025fbee4e7422b1e539af1a7c70fbb091c2373a22226c0497bca20"></a>
+
+## 条件 faf0dabf6f025fbee4e7422b1e539af1a7c70fbb091c2373a22226c0497bca20
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "オタマロ → ガマガル",
+  "donor_learning_level": 20,
+  "inheritance_chain": [
+    "0535.00",
+    "0536.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "オタマロ",
+    "ガマガル"
+  ],
+  "inheritance_path": [
+    "0535.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0535.00",
+  "learning_species_name_ja": "オタマロ",
+  "level": 20,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0535.00",
+  "source_name_ja": "オタマロ",
+  "source_species": 535
+}
+```
+
+<a id="faf54632f273feff50e4859b842379d5b9fae3bd8d3fb58b9d875d414f152790"></a>
+
+## 条件 faf54632f273feff50e4859b842379d5b9fae3bd8d3fb58b9d875d414f152790
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "メタング → メタグロス",
+  "donor_learning_level": 12,
+  "inheritance_chain": [
+    "0375.00",
+    "0376.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "メタング",
+    "メタグロス"
+  ],
+  "inheritance_path": [
+    "0375.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0375.00",
+  "learning_species_name_ja": "メタング",
+  "level": 12,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0375.00",
+  "source_name_ja": "メタング",
+  "source_species": 375
+}
+```
+
+<a id="faf58a4eadd471bb4ad1d1bdd2747a9c780f0fd823d1d97eee163d669bc03116"></a>
+
+## 条件 faf58a4eadd471bb4ad1d1bdd2747a9c780f0fd823d1d97eee163d669bc03116
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "チャデス → ヤバソチャ",
+  "inheritance_chain": [
+    "1012.00",
+    "1013.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "チャデス",
+    "ヤバソチャ"
+  ],
+  "inheritance_path": [
+    "1012.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "1012.00",
+  "learning_species_name_ja": "チャデス",
+  "machine_item": "TM202",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "1012.00",
+  "source_name_ja": "チャデス",
+  "source_species": 1012
+}
+```
+
+<a id="faf694cc22ef23f7128b0bfafe631c37420fa358437a9e1ebffc054d79a77816"></a>
+
+## 条件 faf694cc22ef23f7128b0bfafe631c37420fa358437a9e1ebffc054d79a77816
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 2,
+  "learning_form_label": "姿2",
+  "learning_species_key": "0978.02",
+  "learning_species_name_ja": "シャリタツ",
+  "machine_item": "TM140",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 2,
+  "source_form_label": "姿2",
+  "source_key": "0978.02",
+  "source_name_ja": "シャリタツ",
+  "source_species": 978
+}
+```
+
+<a id="faf7c7fbd6a2652489ca9e8ff5255ad07e878c63d8d37c0a5f923a72db4ec693"></a>
+
+## 条件 faf7c7fbd6a2652489ca9e8ff5255ad07e878c63d8d37c0a5f923a72db4ec693
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 1,
+  "learning_form_label": "姿1",
+  "learning_species_key": "0382.01",
+  "learning_species_name_ja": "カイオーガ",
+  "machine_item": "TM06",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 1,
+  "source_form_label": "姿1",
+  "source_key": "0382.01",
+  "source_name_ja": "カイオーガ",
+  "source_species": 382
+}
+```
+
+<a id="faf7da3c3d79265d2e1d2e12d372def3abc93808414365315e6a7b581b2b6538"></a>
+
+## 条件 faf7da3c3d79265d2e1d2e12d372def3abc93808414365315e6a7b581b2b6538
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 1,
+  "learning_form_label": "姿1",
+  "learning_species_key": "0025.01",
+  "learning_species_name_ja": "ピカチュウ",
+  "machine_item": "TM007",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 1,
+  "source_form_label": "姿1",
+  "source_key": "0025.01",
+  "source_name_ja": "ピカチュウ",
+  "source_species": 25
+}
+```
+
+<a id="faf9eb4c83ff65dc208d77aaa08fba0c0fc0e953ade8626790299be3e0dc1750"></a>
+
+## 条件 faf9eb4c83ff65dc208d77aaa08fba0c0fc0e953ade8626790299be3e0dc1750
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0288.00",
+  "learning_species_name_ja": "ヤルキモノ",
+  "machine_item": "TM158",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0288.00",
+  "source_name_ja": "ヤルキモノ",
+  "source_species": 288
+}
+```
+
+<a id="fafaa4655cc47705aa0e7d7e9adfe9607698dc0aea1e26560920b4d71f012828"></a>
+
+## 条件 fafaa4655cc47705aa0e7d7e9adfe9607698dc0aea1e26560920b4d71f012828
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "1020.00",
+  "learning_species_name_ja": "ウガツホムラ",
+  "level": 28,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "1020.00",
+  "source_name_ja": "ウガツホムラ",
+  "source_species": 1020,
+  "target_learning_level": 28
+}
+```
+
+<a id="fafb29cc80bdd532349a660c07514aebc95016701247af475b9e78de0ebd9c85"></a>
+
+## 条件 fafb29cc80bdd532349a660c07514aebc95016701247af475b9e78de0ebd9c85
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0498.00",
+  "learning_species_name_ja": "ポカブ",
+  "machine_item": "TM047",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0498.00",
+  "source_name_ja": "ポカブ",
+  "source_species": 498
+}
+```
+
+<a id="fafb689dd6ea6489036074659afd158952df2b9f0c44c822f89123c41e3a6507"></a>
+
+## 条件 fafb689dd6ea6489036074659afd158952df2b9f0c44c822f89123c41e3a6507
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "モンメン → エルフーン",
+  "donor_learning_level": 45,
+  "inheritance_chain": [
+    "0546.00",
+    "0547.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "モンメン",
+    "エルフーン"
+  ],
+  "inheritance_path": [
+    "0546.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0546.00",
+  "learning_species_name_ja": "モンメン",
+  "level": 45,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0546.00",
+  "source_name_ja": "モンメン",
+  "source_species": 546
+}
+```
+
+<a id="fafd16f888fda0bd43bc6722bddefbe57dfa539a63743c517b58871dc1e8dd09"></a>
+
+## 条件 fafd16f888fda0bd43bc6722bddefbe57dfa539a63743c517b58871dc1e8dd09
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 1,
+  "learning_form_label": "姿1",
+  "learning_species_key": "0037.01",
+  "learning_species_name_ja": "ロコン",
+  "level": 28,
+  "method": "level_up",
+  "method_ja": "レベルアップ",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 1,
+  "source_form_label": "姿1",
+  "source_key": "0037.01",
+  "source_name_ja": "ロコン",
+  "source_species": 37,
+  "target_learning_level": 28
+}
+```
+
+<a id="fafd423740321446a9f317c5673167ab5e016b057170666c742f4f015fc3dafd"></a>
+
+## 条件 fafd423740321446a9f317c5673167ab5e016b057170666c742f4f015fc3dafd
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 5,
+  "learning_form_label": "姿5",
+  "learning_species_key": "0493.05",
+  "learning_species_name_ja": "アルセウス",
+  "machine_item": "TM172",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 5,
+  "source_form_label": "姿5",
+  "source_key": "0493.05",
+  "source_name_ja": "アルセウス",
+  "source_species": 493
+}
+```
+
+<a id="fafe18ec4fe59edb6e419560d219c43da55548063bc6dab479d44b2fca8ff9da"></a>
+
+## 条件 fafe18ec4fe59edb6e419560d219c43da55548063bc6dab479d44b2fca8ff9da
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 2,
+  "learning_form_label": "姿2",
+  "learning_species_key": "0978.02",
+  "learning_species_name_ja": "シャリタツ",
+  "machine_item": "TM115",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 2,
+  "source_form_label": "姿2",
+  "source_key": "0978.02",
+  "source_name_ja": "シャリタツ",
+  "source_species": 978
+}
+```
+
+<a id="fafe1cf2682cee8b971cafcd8a877462fe2a08bcd77f248236a193d2eb99279e"></a>
+
+## 条件 fafe1cf2682cee8b971cafcd8a877462fe2a08bcd77f248236a193d2eb99279e
+
+```json
+{
+  "display_group": "direct",
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0110.00",
+  "learning_species_name_ja": "マタドガス",
+  "machine_item": "TM148",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "route_kind": "direct",
+  "route_kind_ja": "当該姿の通常表",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0110.00",
+  "source_name_ja": "マタドガス",
+  "source_species": 110
+}
+```
+
+<a id="fafe42b3ca1d6431f0cf672ccd4cdca7b11818edc8d9f784e03d1a173a3709a5"></a>
+
+## 条件 fafe42b3ca1d6431f0cf672ccd4cdca7b11818edc8d9f784e03d1a173a3709a5
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ワッカネズミ → イッカネズミ",
+  "inheritance_chain": [
+    "0924.00",
+    "0925.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ワッカネズミ",
+    "イッカネズミ"
+  ],
+  "inheritance_path": [
+    "0924.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0924.00",
+  "learning_species_name_ja": "ワッカネズミ",
+  "machine_item": "TM060",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0924.00",
+  "source_name_ja": "ワッカネズミ",
+  "source_species": 924
+}
+```
+
+<a id="faff409e615df32cf581f6ea59ae37ca6f094016cb9636287b881e451e1f2f56"></a>
+
+## 条件 faff409e615df32cf581f6ea59ae37ca6f094016cb9636287b881e451e1f2f56
+
+```json
+{
+  "also_available_without_evolution": true,
+  "carry_condition_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "display_group": "pre_evolution",
+  "display_path_ja": "ムウマ → ムウマージ",
+  "inheritance_chain": [
+    "0200.00",
+    "0429.00"
+  ],
+  "inheritance_chain_names_ja": [
+    "ムウマ",
+    "ムウマージ"
+  ],
+  "inheritance_path": [
+    "0200.00"
+  ],
+  "learning_form_index": 0,
+  "learning_form_label": "基本の姿",
+  "learning_species_key": "0200.00",
+  "learning_species_name_ja": "ムウマ",
+  "machine_item": "TM203",
+  "method": "tm",
+  "method_ja": "わざマシン",
+  "note_ja": "進化前の種・姿でこの方法により覚えてから、同じ作品内で進化条件を満たして持ち越す。レベルは元の種・姿の習得レベルであり、進化後自身の直接習得レベルや最速入手レベルではない。",
+  "route_kind": "pre_evolution",
+  "route_kind_ja": "同作品内の進化前から継承",
+  "source_form": 0,
+  "source_form_label": "基本の姿",
+  "source_key": "0200.00",
+  "source_name_ja": "ムウマ",
+  "source_species": 200
+}
+```

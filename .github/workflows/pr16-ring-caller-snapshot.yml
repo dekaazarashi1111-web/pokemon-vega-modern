@@ -1,0 +1,59 @@
+name: pr16-ring-caller-snapshot
+run-name: Read-only boot FlagSet caller snapshot (not Ring acquisition)
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-ring-caller-snapshot.yml
+      - scripts/pr16_ring_caller_snapshot.py
+      - scripts/pr16_ring_snapshot_record.py
+      - tools/mgba_pr16_ring_caller_snapshot.c
+      - tests/test_pr16_ring_caller_snapshot.py
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-ring-caller-snapshot
+  cancel-in-progress: false
+jobs:
+  observe-record:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: Exact HEAD, prior successful Actions and focused tests
+        run: python3 scripts/pr16_ring_snapshot_record.py preflight
+      - name: Restore only hash-fixed candidate without old native tests
+        run: python3 scripts/pr16_ring_snapshot_record.py restore
+      - name: One bounded read-only observation, verify, record and non-force push
+        run: python3 scripts/pr16_ring_snapshot_record.py record
+      - name: Check text-only diagnostic export
+        if: always()
+        id: export
+        run: |
+          python3 - <<'PY'
+          import pathlib,re
+          root=pathlib.Path('.local/pr16-ring-caller-snapshot')
+          assert root.is_dir()
+          for p in root.iterdir():
+              assert p.is_file() and not p.is_symlink() and p.suffix in {'.json','.jsonl','.txt'}
+              raw=p.read_bytes();raw.decode('utf-8')
+              assert b'\0' not in raw and len(raw)<=8000000
+              assert not re.search(rb'gh[pousr]_[A-Za-z0-9]{36,}|github_pat_[A-Za-z0-9_]{60,}|-----BEGIN [A-Z ]*PRIVATE KEY-----',raw)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.export.outcome == 'success'
+        with:
+          name: pr16-ring-caller-snapshot
+          path: .local/pr16-ring-caller-snapshot/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90

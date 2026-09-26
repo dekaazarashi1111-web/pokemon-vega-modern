@@ -1,0 +1,136 @@
+name: p08-representative-evidence-integration
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/p08-representative-evidence-integration.yml
+      - .github/repairs/p08-representative-evidence/**
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: p08-representative-evidence-integration
+  cancel-in-progress: false
+jobs:
+  integrate:
+    if: github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    env:
+      BRANCH: codex/modernization-followup-20260908
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+      - name: Apply byte-pinned implementation and preserve concurrent work
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .local/p08-representative-integration/archives
+          test "$(git ls-remote origin "refs/heads/$BRANCH" | cut -f1)" = "$GITHUB_SHA"
+          python3 .github/repairs/p08-representative-evidence/apply.py \
+            | tee .local/p08-representative-integration/apply.log
+          git diff --check
+      - name: Fetch fixed originals and verify actual Actions provenance
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/p08-representative-integration
+          repo=dekaazarashi1111-web/pokemon-vega-modern
+          gh api "repos/$repo/actions/artifacts/10102197760/zip" > "$out/archives/p03_learning.zip"
+          gh api "repos/$repo/actions/artifacts/10103780162/zip" > "$out/archives/p05_scheduler.zip"
+          gh api "repos/$repo/actions/artifacts/10105374554/zip" > "$out/archives/p05_controller.zip"
+          python3 scripts/integrate_modernization_p08_representative_evidence.py \
+            --archives "$out/archives" 2>&1 | tee "$out/import.log"
+      - name: Verify 269 regression cases, historical bytes and release gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/p08-representative-integration
+          python3 scripts/validate_task_graph.py | tee "$out/task-graph.log"
+          python3 -m unittest \
+            tests.test_github_private_environment tests.test_github_comment_control \
+            tests.test_github_large_file_bridge tests.test_github_result_summary \
+            tests.test_run_github_battle_command tests.test_run_github_private_suite \
+            tests.test_modernization_p03_learning_e2e tests.test_modernization_p05_scheduler_e2e \
+            tests.test_modernization_p05_controller_witness \
+            tests.test_modernization_p08_current_acceptance tests.test_modernization_p08_stage79_evidence \
+            tests.test_modernization_p08_representative_evidence -v 2>&1 | tee "$out/tests.log"
+          python3 scripts/check_modernization_p08_current_acceptance.py --check > "$out/report.json"
+          set +e
+          python3 scripts/check_modernization_p08_current_acceptance.py --check --require-release-ready \
+            > "$out/release-gate.json"
+          code=$?
+          set -e
+          test "$code" = 1
+          git diff --exit-code -- config/active_play_baseline.json design/active_play_baseline.md \
+            build/stages generated/runtime overlays content/modernization/stage79_evidence \
+            content/modernization/p03_learning_e2e_evidence content/modernization/p03_learning_e2e_record.json \
+            content/modernization/p05_scheduler_e2e_evidence content/modernization/p05_scheduler_e2e_record.json
+          python3 - <<'PY'
+          import hashlib, json, os, re, subprocess
+          from pathlib import Path
+          from tools import modernization_p08_representative_evidence as evidence
+          from scripts import check_modernization_p08_current_acceptance as acceptance
+          out = Path('.local/p08-representative-integration')
+          log = (out / 'tests.log').read_text()
+          counts = re.findall(r'^Ran (\d+) tests in ', log, re.MULTILINE)
+          assert counts and int(counts[-1]) == 269 and '\nOK\n' in log
+          historical = {}
+          for path in acceptance.DOCUMENTS:
+              before = subprocess.check_output(['git', 'show', os.environ['GITHUB_SHA'] + ':' + path])
+              after = json.loads(Path(path).read_bytes())
+              stripped = evidence.base.stable({k: v for k, v in after.items() if k not in evidence.KEYS})
+              assert before == stripped, 'old P08/Stage79 layer changed: ' + path
+              historical[path] = hashlib.sha256(before).hexdigest()
+          record = dict(schema_version=1, status='PASS', integration_run_id=int(os.environ['GITHUB_RUN_ID']),
+              source_head=os.environ['GITHUB_SHA'], regression_tests_passed=269, new_regression_tests=67,
+              retained_original_fresh_process_runs=30, fresh_process_runs_this_integration=0,
+              runtime_source_runs=[34347153852,34351006779,34354997505],
+              original_p08_stage79_sha256=historical, release_ready=False, active_baseline_changed=False)
+          raw = evidence.base.stable(record)
+          (out / 'validation.json').write_bytes(raw)
+          Path('content/modernization/p08_representative_evidence_record.json').write_bytes(raw)
+          heading = '\n\n## P08 representative E2E evidence integration / run ' + os.environ['GITHUB_RUN_ID'] + '\n\n'
+          text = ('P03 learning 2 / P05 scheduler 24 / P05 controller 4 の原本ZIP・Actions・'
+                  'ソース・結果契約を照合し、P08へ追補。新規回帰67件を含む269件PASS。'
+                  '原本の新規プロセス30件、今回の新規mGBA実行0件。Stage77/Stage79履歴、'
+                  'Stage62基準、P06/P07採用内容は変更なし。release_ready=false。\n')
+          for path in ('design/run_log.md', 'design/version_log.md'):
+              target = Path(path)
+              assert heading not in target.read_text()
+              target.write_text(target.read_text() + heading + text)
+          PY
+      - name: Commit verified evidence and implementation without force push
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --check
+          git add -- tools/modernization_p08_representative_evidence.py \
+            scripts/integrate_modernization_p08_representative_evidence.py \
+            scripts/check_modernization_p08_current_acceptance.py scripts/build_modernization_p08.py \
+            tests/test_modernization_p08_representative_evidence.py tests/test_modernization_p08_current_acceptance.py \
+            docs/P08_REPRESENTATIVE_E2E.md docs/P08_CURRENT_ACCEPTANCE.md \
+            config/modernization_p08_representative_evidence.json \
+            content/modernization/p08_integration_matrix.json content/modernization/p08_runtime_handoff.json \
+            content/modernization/p08_release_handoff.json content/modernization/p08_current_acceptance.json \
+            content/modernization/p08_representative_evidence_record.json design/run_log.md design/version_log.md
+          git add -f -- content/modernization/p08_representative_evidence
+          test "$(git ls-remote origin "refs/heads/$BRANCH" | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'test(p08): integrate 30 original representative E2E runs with strict provenance'
+          git push origin "HEAD:refs/heads/$BRANCH"
+          git rev-parse HEAD | tee .local/p08-representative-integration/committed-head.txt
+          git show --stat --oneline HEAD > .local/p08-representative-integration/commit.txt
+          git diff --binary "$GITHUB_SHA" HEAD > .local/p08-representative-integration/implementation.patch
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: p08-representative-evidence-integration
+          path: .local/p08-representative-integration/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14

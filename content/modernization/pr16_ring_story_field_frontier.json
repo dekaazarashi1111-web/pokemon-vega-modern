@@ -1,0 +1,3322 @@
+{
+  "schema_version": 1,
+  "task": "PR-P08-7-RING-STORY-FIELD-FRONTIER",
+  "source_head": "d466bed507d7ceb3d815d0eab5e306513ea42abe",
+  "run_id": 35319665678,
+  "run_status_at_record": "in_progress",
+  "analysis": {
+    "initial_roots": [
+      134571461,
+      134571485,
+      134571495,
+      134571505,
+      134571513,
+      134647261
+    ],
+    "new_nodes": [
+      {
+        "address": 134570740,
+        "size": 2,
+        "hex": "00b5",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134570742,
+        "size": 4,
+        "hex": "fff77bf9",
+        "kind": "call",
+        "target": 134567408,
+        "memory_write": false
+      },
+      {
+        "address": 134570746,
+        "size": 2,
+        "hex": "0006",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134570748,
+        "size": 2,
+        "hex": "000e",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134570750,
+        "size": 2,
+        "hex": "0028",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134570752,
+        "size": 2,
+        "hex": "07d0",
+        "kind": "conditional",
+        "target": 134570770,
+        "memory_write": false
+      },
+      {
+        "address": 134570754,
+        "size": 4,
+        "hex": "28f04ffa",
+        "kind": "call",
+        "target": 134735780,
+        "memory_write": false
+      },
+      {
+        "address": 134570758,
+        "size": 2,
+        "hex": "044a",
+        "kind": "ordinary",
+        "literal_address": 134570776,
+        "literal_value": 136500952,
+        "memory_write": false
+      },
+      {
+        "address": 134570760,
+        "size": 2,
+        "hex": "1068",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134570762,
+        "size": 2,
+        "hex": "5168",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134570764,
+        "size": 2,
+        "hex": "9268",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134570766,
+        "size": 4,
+        "hex": "31f0dbfb",
+        "kind": "call",
+        "target": 134773448,
+        "memory_write": false
+      },
+      {
+        "address": 134570770,
+        "size": 2,
+        "hex": "01bc",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134570772,
+        "size": 2,
+        "hex": "0047",
+        "kind": "indirect",
+        "register": 0,
+        "memory_write": false
+      },
+      {
+        "address": 134571460,
+        "size": 4,
+        "hex": "fff7d4fa",
+        "kind": "call",
+        "target": 134568816,
+        "memory_write": false
+      },
+      {
+        "address": 134571464,
+        "size": 4,
+        "hex": "bcf048fa",
+        "kind": "call",
+        "target": 135342684,
+        "memory_write": false
+      },
+      {
+        "address": 134571468,
+        "size": 2,
+        "hex": "0020",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134571470,
+        "size": 4,
+        "hex": "00f089f9",
+        "kind": "call",
+        "target": 134572260,
+        "memory_write": false
+      },
+      {
+        "address": 134571474,
+        "size": 4,
+        "hex": "00f0f5f9",
+        "kind": "call",
+        "target": 134572480,
+        "memory_write": false
+      },
+      {
+        "address": 134571478,
+        "size": 4,
+        "hex": "00f0fdf9",
+        "kind": "call",
+        "target": 134572500,
+        "memory_write": false
+      },
+      {
+        "address": 134571482,
+        "size": 2,
+        "hex": "09e0",
+        "kind": "jump",
+        "target": 134571504,
+        "memory_write": false
+      },
+      {
+        "address": 134571484,
+        "size": 4,
+        "hex": "00f0f4f8",
+        "kind": "call",
+        "target": 134571976,
+        "memory_write": false
+      },
+      {
+        "address": 134571488,
+        "size": 4,
+        "hex": "d5f0befa",
+        "kind": "call",
+        "target": 135445344,
+        "memory_write": false
+      },
+      {
+        "address": 134571492,
+        "size": 2,
+        "hex": "04e0",
+        "kind": "jump",
+        "target": 134571504,
+        "memory_write": false
+      },
+      {
+        "address": 134571494,
+        "size": 4,
+        "hex": "fff761fc",
+        "kind": "call",
+        "target": 134569644,
+        "memory_write": false
+      },
+      {
+        "address": 134571498,
+        "size": 2,
+        "hex": "0006",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134571500,
+        "size": 2,
+        "hex": "0028",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134571502,
+        "size": 2,
+        "hex": "05d0",
+        "kind": "conditional",
+        "target": 134571516,
+        "memory_write": false
+      },
+      {
+        "address": 134571504,
+        "size": 2,
+        "hex": "2078",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134571506,
+        "size": 2,
+        "hex": "0130",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134571508,
+        "size": 2,
+        "hex": "2070",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134571510,
+        "size": 2,
+        "hex": "01e0",
+        "kind": "jump",
+        "target": 134571516,
+        "memory_write": false
+      },
+      {
+        "address": 134571512,
+        "size": 2,
+        "hex": "0120",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134571514,
+        "size": 2,
+        "hex": "00e0",
+        "kind": "jump",
+        "target": 134571518,
+        "memory_write": false
+      },
+      {
+        "address": 134571976,
+        "size": 2,
+        "hex": "00b5",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134571978,
+        "size": 4,
+        "hex": "fff793fd",
+        "kind": "call",
+        "target": 134570740,
+        "memory_write": false
+      },
+      {
+        "address": 134571982,
+        "size": 4,
+        "hex": "00f005f8",
+        "kind": "call",
+        "target": 134571996,
+        "memory_write": false
+      },
+      {
+        "address": 134571986,
+        "size": 4,
+        "hex": "fef719f9",
+        "kind": "call",
+        "target": 134564360,
+        "memory_write": false
+      },
+      {
+        "address": 134571990,
+        "size": 2,
+        "hex": "01bc",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134571992,
+        "size": 2,
+        "hex": "0047",
+        "kind": "indirect",
+        "register": 0,
+        "memory_write": false
+      },
+      {
+        "address": 134571996,
+        "size": 2,
+        "hex": "10b5",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134571998,
+        "size": 4,
+        "hex": "a1f003f8",
+        "kind": "call",
+        "target": 135231464,
+        "memory_write": false
+      },
+      {
+        "address": 134572002,
+        "size": 4,
+        "hex": "a1f03df8",
+        "kind": "call",
+        "target": 135231584,
+        "memory_write": false
+      },
+      {
+        "address": 134572006,
+        "size": 2,
+        "hex": "4c20",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572008,
+        "size": 2,
+        "hex": "0021",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572010,
+        "size": 4,
+        "hex": "aaf725f9",
+        "kind": "call",
+        "target": 134220344,
+        "memory_write": false
+      },
+      {
+        "address": 134572014,
+        "size": 2,
+        "hex": "3749",
+        "kind": "ordinary",
+        "literal_address": 134572236,
+        "literal_value": 7967,
+        "memory_write": false
+      },
+      {
+        "address": 134572016,
+        "size": 2,
+        "hex": "4820",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572018,
+        "size": 4,
+        "hex": "aaf721f9",
+        "kind": "call",
+        "target": 134220344,
+        "memory_write": false
+      },
+      {
+        "address": 134572022,
+        "size": 2,
+        "hex": "3649",
+        "kind": "ordinary",
+        "literal_address": 134572240,
+        "literal_value": 257,
+        "memory_write": false
+      },
+      {
+        "address": 134572024,
+        "size": 2,
+        "hex": "4a20",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572026,
+        "size": 4,
+        "hex": "aaf71df9",
+        "kind": "call",
+        "target": 134220344,
+        "memory_write": false
+      },
+      {
+        "address": 134572030,
+        "size": 2,
+        "hex": "4020",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572032,
+        "size": 2,
+        "hex": "ff21",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572034,
+        "size": 4,
+        "hex": "aaf719f9",
+        "kind": "call",
+        "target": 134220344,
+        "memory_write": false
+      },
+      {
+        "address": 134572038,
+        "size": 2,
+        "hex": "4420",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572040,
+        "size": 2,
+        "hex": "ff21",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572042,
+        "size": 4,
+        "hex": "aaf715f9",
+        "kind": "call",
+        "target": 134220344,
+        "memory_write": false
+      },
+      {
+        "address": 134572046,
+        "size": 2,
+        "hex": "314c",
+        "kind": "ordinary",
+        "literal_address": 134572244,
+        "literal_value": 65535,
+        "memory_write": false
+      },
+      {
+        "address": 134572048,
+        "size": 2,
+        "hex": "4220",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572050,
+        "size": 2,
+        "hex": "211c",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572052,
+        "size": 4,
+        "hex": "aaf710f9",
+        "kind": "call",
+        "target": 134220344,
+        "memory_write": false
+      },
+      {
+        "address": 134572056,
+        "size": 2,
+        "hex": "4620",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572058,
+        "size": 2,
+        "hex": "211c",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572060,
+        "size": 4,
+        "hex": "aaf70cf9",
+        "kind": "call",
+        "target": 134220344,
+        "memory_write": false
+      },
+      {
+        "address": 134572064,
+        "size": 2,
+        "hex": "2d48",
+        "kind": "ordinary",
+        "literal_address": 134572248,
+        "literal_value": 136254212,
+        "memory_write": false
+      },
+      {
+        "address": 134572066,
+        "size": 2,
+        "hex": "4188",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572068,
+        "size": 2,
+        "hex": "8288",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572070,
+        "size": 2,
+        "hex": "1143",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572072,
+        "size": 2,
+        "hex": "c088",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572074,
+        "size": 2,
+        "hex": "0143",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572076,
+        "size": 2,
+        "hex": "8222",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572078,
+        "size": 2,
+        "hex": "5201",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572080,
+        "size": 2,
+        "hex": "101c",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572082,
+        "size": 2,
+        "hex": "0143",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572084,
+        "size": 2,
+        "hex": "5020",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572086,
+        "size": 4,
+        "hex": "aaf7fff8",
+        "kind": "call",
+        "target": 134220344,
+        "memory_write": false
+      },
+      {
+        "address": 134572090,
+        "size": 2,
+        "hex": "2849",
+        "kind": "ordinary",
+        "literal_address": 134572252,
+        "literal_value": 1805,
+        "memory_write": false
+      },
+      {
+        "address": 134572092,
+        "size": 2,
+        "hex": "5220",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572094,
+        "size": 4,
+        "hex": "aaf7fbf8",
+        "kind": "call",
+        "target": 134220344,
+        "memory_write": false
+      },
+      {
+        "address": 134572098,
+        "size": 2,
+        "hex": "0120",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572100,
+        "size": 4,
+        "hex": "a0f0daff",
+        "kind": "call",
+        "target": 135231484,
+        "memory_write": false
+      },
+      {
+        "address": 134572104,
+        "size": 2,
+        "hex": "0220",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572106,
+        "size": 4,
+        "hex": "a0f0d7ff",
+        "kind": "call",
+        "target": 135231484,
+        "memory_write": false
+      },
+      {
+        "address": 134572110,
+        "size": 2,
+        "hex": "0320",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572112,
+        "size": 4,
+        "hex": "a0f0d4ff",
+        "kind": "call",
+        "target": 135231484,
+        "memory_write": false
+      },
+      {
+        "address": 134572116,
+        "size": 2,
+        "hex": "2249",
+        "kind": "ordinary",
+        "literal_address": 134572256,
+        "literal_value": 28768,
+        "memory_write": false
+      },
+      {
+        "address": 134572118,
+        "size": 2,
+        "hex": "0020",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572120,
+        "size": 4,
+        "hex": "aaf7eef8",
+        "kind": "call",
+        "target": 134220344,
+        "memory_write": false
+      },
+      {
+        "address": 134572124,
+        "size": 2,
+        "hex": "0020",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572126,
+        "size": 4,
+        "hex": "abf7adf8",
+        "kind": "call",
+        "target": 134224316,
+        "memory_write": false
+      },
+      {
+        "address": 134572130,
+        "size": 2,
+        "hex": "0120",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572132,
+        "size": 4,
+        "hex": "abf7aaf8",
+        "kind": "call",
+        "target": 134224316,
+        "memory_write": false
+      },
+      {
+        "address": 134572136,
+        "size": 2,
+        "hex": "0220",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572138,
+        "size": 4,
+        "hex": "abf7a7f8",
+        "kind": "call",
+        "target": 134224316,
+        "memory_write": false
+      },
+      {
+        "address": 134572142,
+        "size": 2,
+        "hex": "0320",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572144,
+        "size": 4,
+        "hex": "abf7a4f8",
+        "kind": "call",
+        "target": 134224316,
+        "memory_write": false
+      },
+      {
+        "address": 134572148,
+        "size": 2,
+        "hex": "0020",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572150,
+        "size": 2,
+        "hex": "0021",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572152,
+        "size": 2,
+        "hex": "0022",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572154,
+        "size": 4,
+        "hex": "abf789f9",
+        "kind": "call",
+        "target": 134224784,
+        "memory_write": false
+      },
+      {
+        "address": 134572158,
+        "size": 2,
+        "hex": "0020",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572160,
+        "size": 2,
+        "hex": "0021",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572162,
+        "size": 2,
+        "hex": "0022",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572164,
+        "size": 4,
+        "hex": "abf740fa",
+        "kind": "call",
+        "target": 134225160,
+        "memory_write": false
+      },
+      {
+        "address": 134572168,
+        "size": 2,
+        "hex": "0120",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572170,
+        "size": 2,
+        "hex": "0021",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572172,
+        "size": 2,
+        "hex": "0022",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572174,
+        "size": 4,
+        "hex": "abf77ff9",
+        "kind": "call",
+        "target": 134224784,
+        "memory_write": false
+      },
+      {
+        "address": 134572178,
+        "size": 2,
+        "hex": "0120",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572180,
+        "size": 2,
+        "hex": "0021",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572182,
+        "size": 2,
+        "hex": "0022",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572184,
+        "size": 4,
+        "hex": "abf736fa",
+        "kind": "call",
+        "target": 134225160,
+        "memory_write": false
+      },
+      {
+        "address": 134572188,
+        "size": 2,
+        "hex": "0220",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572190,
+        "size": 2,
+        "hex": "0021",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572192,
+        "size": 2,
+        "hex": "0022",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572194,
+        "size": 4,
+        "hex": "abf775f9",
+        "kind": "call",
+        "target": 134224784,
+        "memory_write": false
+      },
+      {
+        "address": 134572198,
+        "size": 2,
+        "hex": "0220",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572200,
+        "size": 2,
+        "hex": "0021",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572202,
+        "size": 2,
+        "hex": "0022",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572204,
+        "size": 4,
+        "hex": "abf72cfa",
+        "kind": "call",
+        "target": 134225160,
+        "memory_write": false
+      },
+      {
+        "address": 134572208,
+        "size": 2,
+        "hex": "0320",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572210,
+        "size": 2,
+        "hex": "0021",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572212,
+        "size": 2,
+        "hex": "0022",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572214,
+        "size": 4,
+        "hex": "abf76bf9",
+        "kind": "call",
+        "target": 134224784,
+        "memory_write": false
+      },
+      {
+        "address": 134572218,
+        "size": 2,
+        "hex": "0320",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572220,
+        "size": 2,
+        "hex": "0021",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572222,
+        "size": 2,
+        "hex": "0022",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572224,
+        "size": 4,
+        "hex": "abf722fa",
+        "kind": "call",
+        "target": 134225160,
+        "memory_write": false
+      },
+      {
+        "address": 134572228,
+        "size": 2,
+        "hex": "10bc",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572230,
+        "size": 2,
+        "hex": "01bc",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572232,
+        "size": 2,
+        "hex": "0047",
+        "kind": "indirect",
+        "register": 0,
+        "memory_write": false
+      },
+      {
+        "address": 134572260,
+        "size": 2,
+        "hex": "10b5",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134572262,
+        "size": 2,
+        "hex": "041c",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572264,
+        "size": 4,
+        "hex": "20f034f9",
+        "kind": "call",
+        "target": 134703956,
+        "memory_write": false
+      },
+      {
+        "address": 134572268,
+        "size": 4,
+        "hex": "aff7cefe",
+        "kind": "call",
+        "target": 134243980,
+        "memory_write": false
+      },
+      {
+        "address": 134572272,
+        "size": 4,
+        "hex": "19f0ecf9",
+        "kind": "call",
+        "target": 134675660,
+        "memory_write": false
+      },
+      {
+        "address": 134572276,
+        "size": 4,
+        "hex": "31f0c8f8",
+        "kind": "call",
+        "target": 134773384,
+        "memory_write": false
+      },
+      {
+        "address": 134572280,
+        "size": 4,
+        "hex": "b5f0b4fe",
+        "kind": "call",
+        "target": 135317092,
+        "memory_write": false
+      },
+      {
+        "address": 134572284,
+        "size": 4,
+        "hex": "03f08afd",
+        "kind": "call",
+        "target": 134587412,
+        "memory_write": false
+      },
+      {
+        "address": 134572288,
+        "size": 4,
+        "hex": "03f0d8fe",
+        "kind": "call",
+        "target": 134588084,
+        "memory_write": false
+      },
+      {
+        "address": 134572292,
+        "size": 2,
+        "hex": "002c",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572294,
+        "size": 2,
+        "hex": "03d1",
+        "kind": "conditional",
+        "target": 134572304,
+        "memory_write": false
+      },
+      {
+        "address": 134572296,
+        "size": 2,
+        "hex": "0020",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572298,
+        "size": 4,
+        "hex": "08f03fff",
+        "kind": "call",
+        "target": 134608780,
+        "memory_write": false
+      },
+      {
+        "address": 134572302,
+        "size": 2,
+        "hex": "02e0",
+        "kind": "jump",
+        "target": 134572310,
+        "memory_write": false
+      },
+      {
+        "address": 134572304,
+        "size": 2,
+        "hex": "0120",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572306,
+        "size": 4,
+        "hex": "08f03bff",
+        "kind": "call",
+        "target": 134608780,
+        "memory_write": false
+      },
+      {
+        "address": 134572310,
+        "size": 4,
+        "hex": "2cf03ffd",
+        "kind": "call",
+        "target": 134755224,
+        "memory_write": false
+      },
+      {
+        "address": 134572314,
+        "size": 4,
+        "hex": "22f025fd",
+        "kind": "call",
+        "target": 134714216,
+        "memory_write": false
+      },
+      {
+        "address": 134572318,
+        "size": 4,
+        "hex": "23f0fbff",
+        "kind": "call",
+        "target": 134719768,
+        "memory_write": false
+      },
+      {
+        "address": 134572322,
+        "size": 2,
+        "hex": "002c",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572324,
+        "size": 2,
+        "hex": "01d1",
+        "kind": "conditional",
+        "target": 134572330,
+        "memory_write": false
+      },
+      {
+        "address": 134572326,
+        "size": 4,
+        "hex": "17f0a3fb",
+        "kind": "call",
+        "target": 134668400,
+        "memory_write": false
+      },
+      {
+        "address": 134572330,
+        "size": 4,
+        "hex": "12f0f1fd",
+        "kind": "call",
+        "target": 134649104,
+        "memory_write": false
+      },
+      {
+        "address": 134572334,
+        "size": 2,
+        "hex": "10bc",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572336,
+        "size": 2,
+        "hex": "01bc",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572338,
+        "size": 2,
+        "hex": "0047",
+        "kind": "indirect",
+        "register": 0,
+        "memory_write": false
+      },
+      {
+        "address": 134572480,
+        "size": 2,
+        "hex": "00b5",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134572482,
+        "size": 2,
+        "hex": "0020",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572484,
+        "size": 2,
+        "hex": "0021",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572486,
+        "size": 4,
+        "hex": "07f073fe",
+        "kind": "call",
+        "target": 134604464,
+        "memory_write": false
+      },
+      {
+        "address": 134572490,
+        "size": 4,
+        "hex": "12f0a7fd",
+        "kind": "call",
+        "target": 134649116,
+        "memory_write": false
+      },
+      {
+        "address": 134572494,
+        "size": 2,
+        "hex": "01bc",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572496,
+        "size": 2,
+        "hex": "0047",
+        "kind": "indirect",
+        "register": 0,
+        "memory_write": false
+      },
+      {
+        "address": 134572500,
+        "size": 2,
+        "hex": "00b5",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134572502,
+        "size": 2,
+        "hex": "084a",
+        "kind": "ordinary",
+        "literal_address": 134572536,
+        "literal_value": 33779052,
+        "memory_write": false
+      },
+      {
+        "address": 134572504,
+        "size": 2,
+        "hex": "084b",
+        "kind": "ordinary",
+        "literal_address": 134572540,
+        "literal_value": 33779628,
+        "memory_write": false
+      },
+      {
+        "address": 134572506,
+        "size": 2,
+        "hex": "5979",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572508,
+        "size": 2,
+        "hex": "c800",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572510,
+        "size": 2,
+        "hex": "4018",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572512,
+        "size": 2,
+        "hex": "8000",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572514,
+        "size": 2,
+        "hex": "8018",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572516,
+        "size": 2,
+        "hex": "4178",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572518,
+        "size": 2,
+        "hex": "8022",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572520,
+        "size": 2,
+        "hex": "1143",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572522,
+        "size": 2,
+        "hex": "4170",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134572524,
+        "size": 2,
+        "hex": "1879",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572526,
+        "size": 4,
+        "hex": "03f01dfd",
+        "kind": "call",
+        "target": 134587436,
+        "memory_write": false
+      },
+      {
+        "address": 134572530,
+        "size": 2,
+        "hex": "01bc",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134572532,
+        "size": 2,
+        "hex": "0047",
+        "kind": "indirect",
+        "register": 0,
+        "memory_write": false
+      },
+      {
+        "address": 134647260,
+        "size": 2,
+        "hex": "00b5",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134647262,
+        "size": 2,
+        "hex": "0348",
+        "kind": "ordinary",
+        "literal_address": 134647276,
+        "literal_value": 33779664,
+        "memory_write": false
+      },
+      {
+        "address": 134647264,
+        "size": 2,
+        "hex": "0078",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134647266,
+        "size": 2,
+        "hex": "0028",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134647268,
+        "size": 2,
+        "hex": "04d0",
+        "kind": "conditional",
+        "target": 134647280,
+        "memory_write": false
+      },
+      {
+        "address": 134647270,
+        "size": 2,
+        "hex": "0020",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134647272,
+        "size": 2,
+        "hex": "03e0",
+        "kind": "jump",
+        "target": 134647282,
+        "memory_write": false
+      },
+      {
+        "address": 134647280,
+        "size": 2,
+        "hex": "0120",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134647282,
+        "size": 2,
+        "hex": "02bc",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134647284,
+        "size": 2,
+        "hex": "0847",
+        "kind": "indirect",
+        "register": 1,
+        "memory_write": false
+      }
+    ],
+    "roots": [
+      {
+        "entry": 134571461,
+        "window": [
+          134571460,
+          134571588
+        ],
+        "new_node_addresses": [
+          134571460,
+          134571464,
+          134571468,
+          134571470,
+          134571474,
+          134571478,
+          134571482,
+          134571504,
+          134571506,
+          134571508,
+          134571510
+        ],
+        "boundaries": [
+          {
+            "site": 134571460,
+            "kind": "unread_call",
+            "target": 134568817
+          },
+          {
+            "site": 134571464,
+            "kind": "unread_call",
+            "target": 135342685
+          },
+          {
+            "site": 134571470,
+            "kind": "unread_call",
+            "target": 134572261
+          },
+          {
+            "site": 134571474,
+            "kind": "unread_call",
+            "target": 134572481
+          },
+          {
+            "site": 134571478,
+            "kind": "unread_call",
+            "target": 134572501
+          },
+          {
+            "site": 134571516,
+            "kind": "saved_node_boundary",
+            "target": 134571517
+          }
+        ],
+        "candidate_control_flow_only": true,
+        "runtime_reachable": false,
+        "side_effects_excluded": false
+      },
+      {
+        "entry": 134571485,
+        "window": [
+          134571484,
+          134571612
+        ],
+        "new_node_addresses": [
+          134571484,
+          134571488,
+          134571492
+        ],
+        "boundaries": [
+          {
+            "site": 134571484,
+            "kind": "unread_call",
+            "target": 134571977
+          },
+          {
+            "site": 134571488,
+            "kind": "unread_call",
+            "target": 135445345
+          },
+          {
+            "site": 134571504,
+            "kind": "cohort_node_boundary",
+            "target": 134571505
+          }
+        ],
+        "candidate_control_flow_only": true,
+        "runtime_reachable": false,
+        "side_effects_excluded": false
+      },
+      {
+        "entry": 134571495,
+        "window": [
+          134571494,
+          134571622
+        ],
+        "new_node_addresses": [
+          134571494,
+          134571498,
+          134571500,
+          134571502
+        ],
+        "boundaries": [
+          {
+            "site": 134571494,
+            "kind": "unread_call",
+            "target": 134569645
+          },
+          {
+            "site": 134571504,
+            "kind": "cohort_node_boundary",
+            "target": 134571505
+          },
+          {
+            "site": 134571516,
+            "kind": "saved_node_boundary",
+            "target": 134571517
+          }
+        ],
+        "candidate_control_flow_only": true,
+        "runtime_reachable": false,
+        "side_effects_excluded": false
+      },
+      {
+        "entry": 134571505,
+        "window": [
+          134571504,
+          134571632
+        ],
+        "new_node_addresses": [],
+        "boundaries": [
+          {
+            "site": 134571504,
+            "kind": "cohort_node_boundary",
+            "target": 134571505
+          }
+        ],
+        "candidate_control_flow_only": true,
+        "runtime_reachable": false,
+        "side_effects_excluded": false
+      },
+      {
+        "entry": 134571513,
+        "window": [
+          134571512,
+          134571640
+        ],
+        "new_node_addresses": [
+          134571512,
+          134571514
+        ],
+        "boundaries": [
+          {
+            "site": 134571518,
+            "kind": "saved_node_boundary",
+            "target": 134571519
+          }
+        ],
+        "candidate_control_flow_only": true,
+        "runtime_reachable": false,
+        "side_effects_excluded": false
+      },
+      {
+        "entry": 134647261,
+        "window": [
+          134647260,
+          134647388
+        ],
+        "new_node_addresses": [
+          134647260,
+          134647262,
+          134647264,
+          134647266,
+          134647268,
+          134647270,
+          134647272,
+          134647280,
+          134647282,
+          134647284
+        ],
+        "boundaries": [
+          {
+            "site": 134647282,
+            "kind": "revisited_node_boundary",
+            "target": 134647283
+          },
+          {
+            "site": 134647284,
+            "kind": "indirect_boundary",
+            "register": 1
+          }
+        ],
+        "candidate_control_flow_only": true,
+        "runtime_reachable": false,
+        "side_effects_excluded": false
+      },
+      {
+        "entry": 134571977,
+        "window": [
+          134571976,
+          134572104
+        ],
+        "new_node_addresses": [
+          134571976,
+          134571978,
+          134571982,
+          134571986,
+          134571990,
+          134571992
+        ],
+        "boundaries": [
+          {
+            "site": 134571978,
+            "kind": "unread_call",
+            "target": 134570741
+          },
+          {
+            "site": 134571982,
+            "kind": "unread_call",
+            "target": 134571997
+          },
+          {
+            "site": 134571986,
+            "kind": "unread_call",
+            "target": 134564361
+          },
+          {
+            "site": 134571992,
+            "kind": "indirect_boundary",
+            "register": 0
+          }
+        ],
+        "candidate_control_flow_only": true,
+        "runtime_reachable": false,
+        "side_effects_excluded": false
+      },
+      {
+        "entry": 134572261,
+        "window": [
+          134572260,
+          134572388
+        ],
+        "new_node_addresses": [
+          134572260,
+          134572262,
+          134572264,
+          134572268,
+          134572272,
+          134572276,
+          134572280,
+          134572284,
+          134572288,
+          134572292,
+          134572294,
+          134572296,
+          134572298,
+          134572302,
+          134572304,
+          134572306,
+          134572310,
+          134572314,
+          134572318,
+          134572322,
+          134572324,
+          134572326,
+          134572330,
+          134572334,
+          134572336,
+          134572338
+        ],
+        "boundaries": [
+          {
+            "site": 134572264,
+            "kind": "unread_call",
+            "target": 134703957
+          },
+          {
+            "site": 134572268,
+            "kind": "unread_call",
+            "target": 134243981
+          },
+          {
+            "site": 134572272,
+            "kind": "unread_call",
+            "target": 134675661
+          },
+          {
+            "site": 134572276,
+            "kind": "unread_call",
+            "target": 134773385
+          },
+          {
+            "site": 134572280,
+            "kind": "unread_call",
+            "target": 135317093
+          },
+          {
+            "site": 134572284,
+            "kind": "unread_call",
+            "target": 134587413
+          },
+          {
+            "site": 134572288,
+            "kind": "unread_call",
+            "target": 134588085
+          },
+          {
+            "site": 134572298,
+            "kind": "unread_call",
+            "target": 134608781
+          },
+          {
+            "site": 134572306,
+            "kind": "unread_call",
+            "target": 134608781
+          },
+          {
+            "site": 134572310,
+            "kind": "revisited_node_boundary",
+            "target": 134572311
+          },
+          {
+            "site": 134572310,
+            "kind": "unread_call",
+            "target": 134755225
+          },
+          {
+            "site": 134572314,
+            "kind": "unread_call",
+            "target": 134714217
+          },
+          {
+            "site": 134572318,
+            "kind": "unread_call",
+            "target": 134719769
+          },
+          {
+            "site": 134572326,
+            "kind": "unread_call",
+            "target": 134668401
+          },
+          {
+            "site": 134572330,
+            "kind": "revisited_node_boundary",
+            "target": 134572331
+          },
+          {
+            "site": 134572330,
+            "kind": "unread_call",
+            "target": 134649105
+          },
+          {
+            "site": 134572338,
+            "kind": "indirect_boundary",
+            "register": 0
+          }
+        ],
+        "candidate_control_flow_only": true,
+        "runtime_reachable": false,
+        "side_effects_excluded": false
+      },
+      {
+        "entry": 134572481,
+        "window": [
+          134572480,
+          134572608
+        ],
+        "new_node_addresses": [
+          134572480,
+          134572482,
+          134572484,
+          134572486,
+          134572490,
+          134572494,
+          134572496
+        ],
+        "boundaries": [
+          {
+            "site": 134572486,
+            "kind": "unread_call",
+            "target": 134604465
+          },
+          {
+            "site": 134572490,
+            "kind": "unread_call",
+            "target": 134649117
+          },
+          {
+            "site": 134572496,
+            "kind": "indirect_boundary",
+            "register": 0
+          }
+        ],
+        "candidate_control_flow_only": true,
+        "runtime_reachable": false,
+        "side_effects_excluded": false
+      },
+      {
+        "entry": 134572501,
+        "window": [
+          134572500,
+          134572628
+        ],
+        "new_node_addresses": [
+          134572500,
+          134572502,
+          134572504,
+          134572506,
+          134572508,
+          134572510,
+          134572512,
+          134572514,
+          134572516,
+          134572518,
+          134572520,
+          134572522,
+          134572524,
+          134572526,
+          134572530,
+          134572532
+        ],
+        "boundaries": [
+          {
+            "site": 134572526,
+            "kind": "unread_call",
+            "target": 134587437
+          },
+          {
+            "site": 134572532,
+            "kind": "indirect_boundary",
+            "register": 0
+          }
+        ],
+        "candidate_control_flow_only": true,
+        "runtime_reachable": false,
+        "side_effects_excluded": false
+      },
+      {
+        "entry": 134570741,
+        "window": [
+          134570740,
+          134570868
+        ],
+        "new_node_addresses": [
+          134570740,
+          134570742,
+          134570746,
+          134570748,
+          134570750,
+          134570752,
+          134570754,
+          134570758,
+          134570760,
+          134570762,
+          134570764,
+          134570766,
+          134570770,
+          134570772
+        ],
+        "boundaries": [
+          {
+            "site": 134570742,
+            "kind": "unread_call",
+            "target": 134567409
+          },
+          {
+            "site": 134570754,
+            "kind": "unread_call",
+            "target": 134735781
+          },
+          {
+            "site": 134570766,
+            "kind": "unread_call",
+            "target": 134773449
+          },
+          {
+            "site": 134570770,
+            "kind": "revisited_node_boundary",
+            "target": 134570771
+          },
+          {
+            "site": 134570772,
+            "kind": "indirect_boundary",
+            "register": 0
+          }
+        ],
+        "candidate_control_flow_only": true,
+        "runtime_reachable": false,
+        "side_effects_excluded": false
+      },
+      {
+        "entry": 134571997,
+        "window": [
+          134571996,
+          134572124
+        ],
+        "new_node_addresses": [
+          134571996,
+          134571998,
+          134572002,
+          134572006,
+          134572008,
+          134572010,
+          134572014,
+          134572016,
+          134572018,
+          134572022,
+          134572024,
+          134572026,
+          134572030,
+          134572032,
+          134572034,
+          134572038,
+          134572040,
+          134572042,
+          134572046,
+          134572048,
+          134572050,
+          134572052,
+          134572056,
+          134572058,
+          134572060,
+          134572064,
+          134572066,
+          134572068,
+          134572070,
+          134572072,
+          134572074,
+          134572076,
+          134572078,
+          134572080,
+          134572082,
+          134572084,
+          134572086,
+          134572090,
+          134572092,
+          134572094,
+          134572098,
+          134572100,
+          134572104,
+          134572106,
+          134572110,
+          134572112,
+          134572116,
+          134572118,
+          134572120
+        ],
+        "boundaries": [
+          {
+            "site": 134571998,
+            "kind": "unread_call",
+            "target": 135231465
+          },
+          {
+            "site": 134572002,
+            "kind": "unread_call",
+            "target": 135231585
+          },
+          {
+            "site": 134572010,
+            "kind": "unread_call",
+            "target": 134220345
+          },
+          {
+            "site": 134572018,
+            "kind": "unread_call",
+            "target": 134220345
+          },
+          {
+            "site": 134572026,
+            "kind": "unread_call",
+            "target": 134220345
+          },
+          {
+            "site": 134572034,
+            "kind": "unread_call",
+            "target": 134220345
+          },
+          {
+            "site": 134572042,
+            "kind": "unread_call",
+            "target": 134220345
+          },
+          {
+            "site": 134572052,
+            "kind": "unread_call",
+            "target": 134220345
+          },
+          {
+            "site": 134572060,
+            "kind": "unread_call",
+            "target": 134220345
+          },
+          {
+            "site": 134572086,
+            "kind": "unread_call",
+            "target": 134220345
+          },
+          {
+            "site": 134572094,
+            "kind": "unread_call",
+            "target": 134220345
+          },
+          {
+            "site": 134572100,
+            "kind": "unread_call",
+            "target": 135231485
+          },
+          {
+            "site": 134572106,
+            "kind": "unread_call",
+            "target": 135231485
+          },
+          {
+            "site": 134572112,
+            "kind": "unread_call",
+            "target": 135231485
+          },
+          {
+            "site": 134572120,
+            "kind": "unread_call",
+            "target": 134220345
+          },
+          {
+            "site": 134572124,
+            "kind": "window_boundary",
+            "target": 134572125
+          }
+        ],
+        "candidate_control_flow_only": true,
+        "runtime_reachable": false,
+        "side_effects_excluded": false
+      },
+      {
+        "entry": 134572125,
+        "window": [
+          134572124,
+          134572252
+        ],
+        "new_node_addresses": [
+          134572124,
+          134572126,
+          134572130,
+          134572132,
+          134572136,
+          134572138,
+          134572142,
+          134572144,
+          134572148,
+          134572150,
+          134572152,
+          134572154,
+          134572158,
+          134572160,
+          134572162,
+          134572164,
+          134572168,
+          134572170,
+          134572172,
+          134572174,
+          134572178,
+          134572180,
+          134572182,
+          134572184,
+          134572188,
+          134572190,
+          134572192,
+          134572194,
+          134572198,
+          134572200,
+          134572202,
+          134572204,
+          134572208,
+          134572210,
+          134572212,
+          134572214,
+          134572218,
+          134572220,
+          134572222,
+          134572224,
+          134572228,
+          134572230,
+          134572232
+        ],
+        "boundaries": [
+          {
+            "site": 134572126,
+            "kind": "unread_call",
+            "target": 134224317
+          },
+          {
+            "site": 134572132,
+            "kind": "unread_call",
+            "target": 134224317
+          },
+          {
+            "site": 134572138,
+            "kind": "unread_call",
+            "target": 134224317
+          },
+          {
+            "site": 134572144,
+            "kind": "unread_call",
+            "target": 134224317
+          },
+          {
+            "site": 134572154,
+            "kind": "unread_call",
+            "target": 134224785
+          },
+          {
+            "site": 134572164,
+            "kind": "unread_call",
+            "target": 134225161
+          },
+          {
+            "site": 134572174,
+            "kind": "unread_call",
+            "target": 134224785
+          },
+          {
+            "site": 134572184,
+            "kind": "unread_call",
+            "target": 134225161
+          },
+          {
+            "site": 134572194,
+            "kind": "unread_call",
+            "target": 134224785
+          },
+          {
+            "site": 134572204,
+            "kind": "unread_call",
+            "target": 134225161
+          },
+          {
+            "site": 134572214,
+            "kind": "unread_call",
+            "target": 134224785
+          },
+          {
+            "site": 134572224,
+            "kind": "unread_call",
+            "target": 134225161
+          },
+          {
+            "site": 134572232,
+            "kind": "indirect_boundary",
+            "register": 0
+          }
+        ],
+        "candidate_control_flow_only": true,
+        "runtime_reachable": false,
+        "side_effects_excluded": false
+      }
+    ],
+    "waves": [
+      {
+        "index": 0,
+        "roots": [
+          134571461,
+          134571485,
+          134571495,
+          134571505,
+          134571513,
+          134647261
+        ],
+        "new_nodes": 30,
+        "following": [
+          134571977,
+          134572261,
+          134572481,
+          134572501
+        ]
+      },
+      {
+        "index": 1,
+        "roots": [
+          134571977,
+          134572261,
+          134572481,
+          134572501
+        ],
+        "new_nodes": 55,
+        "following": [
+          134570741,
+          134571997
+        ]
+      },
+      {
+        "index": 2,
+        "roots": [
+          134570741,
+          134571997
+        ],
+        "new_nodes": 63,
+        "following": [
+          134572125
+        ]
+      },
+      {
+        "index": 3,
+        "roots": [
+          134572125
+        ],
+        "new_nodes": 43,
+        "following": []
+      }
+    ],
+    "deferred_by_wave_limit": [],
+    "saved_nodes_redecoded": 0,
+    "saved_boundary_links": [
+      {
+        "root": 134571461,
+        "site": 134571470,
+        "kind": "unread_call",
+        "target": 134572261,
+        "effective_target": 134572261,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      },
+      {
+        "root": 134571461,
+        "site": 134571474,
+        "kind": "unread_call",
+        "target": 134572481,
+        "effective_target": 134572481,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      },
+      {
+        "root": 134571461,
+        "site": 134571478,
+        "kind": "unread_call",
+        "target": 134572501,
+        "effective_target": 134572501,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      },
+      {
+        "root": 134571461,
+        "site": 134571516,
+        "kind": "saved_node_boundary",
+        "target": 134571517,
+        "effective_target": 134571517,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      },
+      {
+        "root": 134571485,
+        "site": 134571484,
+        "kind": "unread_call",
+        "target": 134571977,
+        "effective_target": 134571977,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      },
+      {
+        "root": 134571485,
+        "site": 134571504,
+        "kind": "cohort_node_boundary",
+        "target": 134571505,
+        "effective_target": 134571505,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      },
+      {
+        "root": 134571495,
+        "site": 134571504,
+        "kind": "cohort_node_boundary",
+        "target": 134571505,
+        "effective_target": 134571505,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      },
+      {
+        "root": 134571495,
+        "site": 134571516,
+        "kind": "saved_node_boundary",
+        "target": 134571517,
+        "effective_target": 134571517,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      },
+      {
+        "root": 134571505,
+        "site": 134571504,
+        "kind": "cohort_node_boundary",
+        "target": 134571505,
+        "effective_target": 134571505,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      },
+      {
+        "root": 134571513,
+        "site": 134571518,
+        "kind": "saved_node_boundary",
+        "target": 134571519,
+        "effective_target": 134571519,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      },
+      {
+        "root": 134647261,
+        "site": 134647282,
+        "kind": "revisited_node_boundary",
+        "target": 134647283,
+        "effective_target": 134647283,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      },
+      {
+        "root": 134571977,
+        "site": 134571978,
+        "kind": "unread_call",
+        "target": 134570741,
+        "effective_target": 134570741,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      },
+      {
+        "root": 134571977,
+        "site": 134571982,
+        "kind": "unread_call",
+        "target": 134571997,
+        "effective_target": 134571997,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      },
+      {
+        "root": 134572261,
+        "site": 134572310,
+        "kind": "revisited_node_boundary",
+        "target": 134572311,
+        "effective_target": 134572311,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      },
+      {
+        "root": 134572261,
+        "site": 134572330,
+        "kind": "revisited_node_boundary",
+        "target": 134572331,
+        "effective_target": 134572331,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      },
+      {
+        "root": 134570741,
+        "site": 134570770,
+        "kind": "revisited_node_boundary",
+        "target": 134570771,
+        "effective_target": 134570771,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      },
+      {
+        "root": 134571997,
+        "site": 134572124,
+        "kind": "window_boundary",
+        "target": 134572125,
+        "effective_target": 134572125,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      }
+    ],
+    "pending_boundaries": [
+      {
+        "root": 134571461,
+        "site": 134571460,
+        "kind": "unread_call",
+        "target": 134568817,
+        "effective_target": 134568817
+      },
+      {
+        "root": 134571461,
+        "site": 134571464,
+        "kind": "unread_call",
+        "target": 135342685,
+        "effective_target": 135342685
+      },
+      {
+        "root": 134571485,
+        "site": 134571488,
+        "kind": "unread_call",
+        "target": 135445345,
+        "effective_target": 135445345
+      },
+      {
+        "root": 134571495,
+        "site": 134571494,
+        "kind": "unread_call",
+        "target": 134569645,
+        "effective_target": 134569645
+      },
+      {
+        "root": 134647261,
+        "site": 134647284,
+        "kind": "indirect_boundary",
+        "register": 1
+      },
+      {
+        "root": 134571977,
+        "site": 134571986,
+        "kind": "unread_call",
+        "target": 134564361,
+        "effective_target": 134564361
+      },
+      {
+        "root": 134571977,
+        "site": 134571992,
+        "kind": "indirect_boundary",
+        "register": 0
+      },
+      {
+        "root": 134572261,
+        "site": 134572264,
+        "kind": "unread_call",
+        "target": 134703957,
+        "effective_target": 134703957
+      },
+      {
+        "root": 134572261,
+        "site": 134572268,
+        "kind": "unread_call",
+        "target": 134243981,
+        "effective_target": 134243981
+      },
+      {
+        "root": 134572261,
+        "site": 134572272,
+        "kind": "unread_call",
+        "target": 134675661,
+        "effective_target": 134675661
+      },
+      {
+        "root": 134572261,
+        "site": 134572276,
+        "kind": "unread_call",
+        "target": 134773385,
+        "effective_target": 134773385
+      },
+      {
+        "root": 134572261,
+        "site": 134572280,
+        "kind": "unread_call",
+        "target": 135317093,
+        "effective_target": 135317093
+      },
+      {
+        "root": 134572261,
+        "site": 134572284,
+        "kind": "unread_call",
+        "target": 134587413,
+        "effective_target": 134587413
+      },
+      {
+        "root": 134572261,
+        "site": 134572288,
+        "kind": "unread_call",
+        "target": 134588085,
+        "effective_target": 134588085
+      },
+      {
+        "root": 134572261,
+        "site": 134572298,
+        "kind": "unread_call",
+        "target": 134608781,
+        "effective_target": 134608781
+      },
+      {
+        "root": 134572261,
+        "site": 134572306,
+        "kind": "unread_call",
+        "target": 134608781,
+        "effective_target": 134608781
+      },
+      {
+        "root": 134572261,
+        "site": 134572310,
+        "kind": "unread_call",
+        "target": 134755225,
+        "effective_target": 134755225
+      },
+      {
+        "root": 134572261,
+        "site": 134572314,
+        "kind": "unread_call",
+        "target": 134714217,
+        "effective_target": 134714217
+      },
+      {
+        "root": 134572261,
+        "site": 134572318,
+        "kind": "unread_call",
+        "target": 134719769,
+        "effective_target": 134719769
+      },
+      {
+        "root": 134572261,
+        "site": 134572326,
+        "kind": "unread_call",
+        "target": 134668401,
+        "effective_target": 134668401
+      },
+      {
+        "root": 134572261,
+        "site": 134572330,
+        "kind": "unread_call",
+        "target": 134649105,
+        "effective_target": 134649105
+      },
+      {
+        "root": 134572261,
+        "site": 134572338,
+        "kind": "indirect_boundary",
+        "register": 0
+      },
+      {
+        "root": 134572481,
+        "site": 134572486,
+        "kind": "unread_call",
+        "target": 134604465,
+        "effective_target": 134604465
+      },
+      {
+        "root": 134572481,
+        "site": 134572490,
+        "kind": "unread_call",
+        "target": 134649117,
+        "effective_target": 134649117
+      },
+      {
+        "root": 134572481,
+        "site": 134572496,
+        "kind": "indirect_boundary",
+        "register": 0
+      },
+      {
+        "root": 134572501,
+        "site": 134572526,
+        "kind": "unread_call",
+        "target": 134587437,
+        "effective_target": 134587437
+      },
+      {
+        "root": 134572501,
+        "site": 134572532,
+        "kind": "indirect_boundary",
+        "register": 0
+      },
+      {
+        "root": 134570741,
+        "site": 134570742,
+        "kind": "unread_call",
+        "target": 134567409,
+        "effective_target": 134567409
+      },
+      {
+        "root": 134570741,
+        "site": 134570754,
+        "kind": "unread_call",
+        "target": 134735781,
+        "effective_target": 134735781
+      },
+      {
+        "root": 134570741,
+        "site": 134570766,
+        "kind": "unread_call",
+        "target": 134773449,
+        "effective_target": 134773449
+      },
+      {
+        "root": 134570741,
+        "site": 134570772,
+        "kind": "indirect_boundary",
+        "register": 0
+      },
+      {
+        "root": 134571997,
+        "site": 134571998,
+        "kind": "unread_call",
+        "target": 135231465,
+        "effective_target": 135231465
+      },
+      {
+        "root": 134571997,
+        "site": 134572002,
+        "kind": "unread_call",
+        "target": 135231585,
+        "effective_target": 135231585
+      },
+      {
+        "root": 134571997,
+        "site": 134572010,
+        "kind": "unread_call",
+        "target": 134220345,
+        "effective_target": 134220345
+      },
+      {
+        "root": 134571997,
+        "site": 134572018,
+        "kind": "unread_call",
+        "target": 134220345,
+        "effective_target": 134220345
+      },
+      {
+        "root": 134571997,
+        "site": 134572026,
+        "kind": "unread_call",
+        "target": 134220345,
+        "effective_target": 134220345
+      },
+      {
+        "root": 134571997,
+        "site": 134572034,
+        "kind": "unread_call",
+        "target": 134220345,
+        "effective_target": 134220345
+      },
+      {
+        "root": 134571997,
+        "site": 134572042,
+        "kind": "unread_call",
+        "target": 134220345,
+        "effective_target": 134220345
+      },
+      {
+        "root": 134571997,
+        "site": 134572052,
+        "kind": "unread_call",
+        "target": 134220345,
+        "effective_target": 134220345
+      },
+      {
+        "root": 134571997,
+        "site": 134572060,
+        "kind": "unread_call",
+        "target": 134220345,
+        "effective_target": 134220345
+      },
+      {
+        "root": 134571997,
+        "site": 134572086,
+        "kind": "unread_call",
+        "target": 134220345,
+        "effective_target": 134220345
+      },
+      {
+        "root": 134571997,
+        "site": 134572094,
+        "kind": "unread_call",
+        "target": 134220345,
+        "effective_target": 134220345
+      },
+      {
+        "root": 134571997,
+        "site": 134572100,
+        "kind": "unread_call",
+        "target": 135231485,
+        "effective_target": 135231485
+      },
+      {
+        "root": 134571997,
+        "site": 134572106,
+        "kind": "unread_call",
+        "target": 135231485,
+        "effective_target": 135231485
+      },
+      {
+        "root": 134571997,
+        "site": 134572112,
+        "kind": "unread_call",
+        "target": 135231485,
+        "effective_target": 135231485
+      },
+      {
+        "root": 134571997,
+        "site": 134572120,
+        "kind": "unread_call",
+        "target": 134220345,
+        "effective_target": 134220345
+      },
+      {
+        "root": 134572125,
+        "site": 134572126,
+        "kind": "unread_call",
+        "target": 134224317,
+        "effective_target": 134224317
+      },
+      {
+        "root": 134572125,
+        "site": 134572132,
+        "kind": "unread_call",
+        "target": 134224317,
+        "effective_target": 134224317
+      },
+      {
+        "root": 134572125,
+        "site": 134572138,
+        "kind": "unread_call",
+        "target": 134224317,
+        "effective_target": 134224317
+      },
+      {
+        "root": 134572125,
+        "site": 134572144,
+        "kind": "unread_call",
+        "target": 134224317,
+        "effective_target": 134224317
+      },
+      {
+        "root": 134572125,
+        "site": 134572154,
+        "kind": "unread_call",
+        "target": 134224785,
+        "effective_target": 134224785
+      },
+      {
+        "root": 134572125,
+        "site": 134572164,
+        "kind": "unread_call",
+        "target": 134225161,
+        "effective_target": 134225161
+      },
+      {
+        "root": 134572125,
+        "site": 134572174,
+        "kind": "unread_call",
+        "target": 134224785,
+        "effective_target": 134224785
+      },
+      {
+        "root": 134572125,
+        "site": 134572184,
+        "kind": "unread_call",
+        "target": 134225161,
+        "effective_target": 134225161
+      },
+      {
+        "root": 134572125,
+        "site": 134572194,
+        "kind": "unread_call",
+        "target": 134224785,
+        "effective_target": 134224785
+      },
+      {
+        "root": 134572125,
+        "site": 134572204,
+        "kind": "unread_call",
+        "target": 134225161,
+        "effective_target": 134225161
+      },
+      {
+        "root": 134572125,
+        "site": 134572214,
+        "kind": "unread_call",
+        "target": 134224785,
+        "effective_target": 134224785
+      },
+      {
+        "root": 134572125,
+        "site": 134572224,
+        "kind": "unread_call",
+        "target": 134225161,
+        "effective_target": 134225161
+      },
+      {
+        "root": 134572125,
+        "site": 134572232,
+        "kind": "indirect_boundary",
+        "register": 0
+      }
+    ],
+    "pending_direct_callees": [
+      134220345,
+      134224317,
+      134224785,
+      134225161,
+      134243981,
+      134564361,
+      134567409,
+      134568817,
+      134569645,
+      134587413,
+      134587437,
+      134588085,
+      134604465,
+      134608781,
+      134649105,
+      134649117,
+      134668401,
+      134675661,
+      134703957,
+      134714217,
+      134719769,
+      134735781,
+      134755225,
+      134773385,
+      134773449,
+      135231465,
+      135231485,
+      135231585,
+      135317093,
+      135342685,
+      135445345
+    ],
+    "pending_continuations": [],
+    "classification": "CANDIDATE_FIELD_STATE_TABLE_AND_WAIT_CALLBACK_NOT_STORY_EXECUTION",
+    "candidate": {
+      "size": 33554432,
+      "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b",
+      "crc32": "3EB17B36"
+    },
+    "field_slots": [
+      {
+        "state": 0,
+        "address": 134571440,
+        "hex": "c4650508",
+        "target": 134571460,
+        "decode_root": 134571461
+      },
+      {
+        "state": 1,
+        "address": 134571444,
+        "hex": "f0650508",
+        "target": 134571504,
+        "decode_root": 134571505
+      },
+      {
+        "state": 2,
+        "address": 134571448,
+        "hex": "dc650508",
+        "target": 134571484,
+        "decode_root": 134571485
+      },
+      {
+        "state": 3,
+        "address": 134571452,
+        "hex": "e6650508",
+        "target": 134571494,
+        "decode_root": 134571495
+      },
+      {
+        "state": 4,
+        "address": 134571456,
+        "hex": "f8650508",
+        "target": 134571512,
+        "decode_root": 134571513
+      }
+    ],
+    "wait_callback": 134647261,
+    "new_node_count": 191,
+    "saved_node_count": 8821,
+    "new_windows": [
+      {
+        "start": 134570740,
+        "end": 134570774,
+        "hex": "00b5fff77bf90006000e002807d028f04ffa044a10685168926831f0dbfb01bc0047",
+        "identity": {
+          "size": 34,
+          "sha256": "980bed69e734339102b379bd0c2686b9f8d0dacb5f5b43bc71eeb2b1dfec9854"
+        }
+      },
+      {
+        "start": 134570776,
+        "end": 134570780,
+        "hex": "d8d62208",
+        "identity": {
+          "size": 4,
+          "sha256": "37deaa1730fd35ff07c09e99fb6c7328e114a4c7a580da2cca4d23c230bd92fc"
+        }
+      },
+      {
+        "start": 134571440,
+        "end": 134571516,
+        "hex": "c4650508f0650508dc650508e6650508f8650508fff7d4fabcf048fa002000f089f900f0f5f900f0fdf909e000f0f4f8d5f0befa04e0fff761fc0006002805d020780130207001e0012000e0",
+        "identity": {
+          "size": 76,
+          "sha256": "2cdaf312c89ab649ac75f13d16fa4442c2b01902791dee91e0ab8fa3164d2383"
+        }
+      },
+      {
+        "start": 134571976,
+        "end": 134571994,
+        "hex": "00b5fff793fd00f005f8fef719f901bc0047",
+        "identity": {
+          "size": 18,
+          "sha256": "2127d1ae0ea32ce5b30386658e375ff8e03696a8c01013194e05801df3e255fd"
+        }
+      },
+      {
+        "start": 134571996,
+        "end": 134572234,
+        "hex": "10b5a1f003f8a1f03df84c200021aaf725f937494820aaf721f936494a20aaf71df94020ff21aaf719f94420ff21aaf715f9314c4220211caaf710f94620211caaf70cf92d48418882881143c088014382225201101c01435020aaf7fff828495220aaf7fbf80120a0f0daff0220a0f0d7ff0320a0f0d4ff22490020aaf7eef80020abf7adf80120abf7aaf80220abf7a7f80320abf7a4f8002000210022abf789f9002000210022abf740fa012000210022abf77ff9012000210022abf736fa022000210022abf775f9022000210022abf72cfa032000210022abf76bf9032000210022abf722fa10bc01bc0047",
+        "identity": {
+          "size": 238,
+          "sha256": "2f2f6f4fb62ce2b6f31478e683f4068e2b318e2b93c64dce291367844accb5dc"
+        }
+      },
+      {
+        "start": 134572236,
+        "end": 134572340,
+        "hex": "1f1f000001010000ffff000004131f080d0700006070000010b5041c20f034f9aff7cefe19f0ecf931f0c8f8b5f0b4fe03f08afd03f0d8fe002c03d1002008f03fff02e0012008f03bff2cf03ffd22f025fd23f0fbff002c01d117f0a3fb12f0f1fd10bc01bc0047",
+        "identity": {
+          "size": 104,
+          "sha256": "e14b5e68216b4140cff5b3740b03e370f1dd2f627364f3c54d1acf0853358edb"
+        }
+      },
+      {
+        "start": 134572480,
+        "end": 134572498,
+        "hex": "00b50020002107f073fe12f0a7fd01bc0047",
+        "identity": {
+          "size": 18,
+          "sha256": "4f9c776b046837c9c0b836f516c9023f50dc9a5eab91b2ffb11b1848b21ea804"
+        }
+      },
+      {
+        "start": 134572500,
+        "end": 134572534,
+        "hex": "00b5084a084b5979c8004018800080184178802211434170187903f01dfd01bc0047",
+        "identity": {
+          "size": 34,
+          "sha256": "86465eadb912837af4af4e1c406c54a83f486fe0f92c63b37f8a971e07b80732"
+        }
+      },
+      {
+        "start": 134572536,
+        "end": 134572544,
+        "hex": "6c6d0302ac6f0302",
+        "identity": {
+          "size": 8,
+          "sha256": "1a2f8e7a90379994509032d0cd65f8cfa6f3e2db5a60f8ac0ee6eddbff153b05"
+        }
+      },
+      {
+        "start": 134647260,
+        "end": 134647274,
+        "hex": "00b503480078002804d0002003e0",
+        "identity": {
+          "size": 14,
+          "sha256": "f8b1cd3ab5d0fb8bd28a976d5444dfb5f6b874000c3e673471cf9825919d3cc6"
+        }
+      },
+      {
+        "start": 134647276,
+        "end": 134647286,
+        "hex": "d06f0302012002bc0847",
+        "identity": {
+          "size": 10,
+          "sha256": "b01431c4e48acc72098246e5cea2ba7859974782de5db28f2cdbea2d0654da16"
+        }
+      }
+    ],
+    "new_window_bytes": 558,
+    "saved_bytes_reused": 0,
+    "new_inbound": {
+      "SetDefaultFontsPointer": {
+        "entry": 135236137,
+        "saved_inbound": [],
+        "all_callers_excluded": false
+      },
+      "DeactivateAllTextPrinters": {
+        "entry": 134229033,
+        "saved_inbound": [],
+        "all_callers_excluded": false
+      },
+      "ScrCmd_message": {
+        "entry": 134656205,
+        "saved_inbound": [],
+        "all_callers_excluded": false
+      }
+    },
+    "call_target_names": {
+      "134567409": [
+        "Overworld_GetFlashLevel"
+      ],
+      "134735781": [],
+      "134773449": [
+        "ScanlineEffect_SetParams"
+      ],
+      "134568817": [],
+      "135342685": [],
+      "134572261": [],
+      "134572481": [],
+      "134572501": [],
+      "134571977": [],
+      "135445345": [],
+      "134569645": [],
+      "134570741": [],
+      "134571997": [],
+      "134564361": [],
+      "135231465": [
+        "clear_scheduled_bg_copies_to_vram"
+      ],
+      "135231585": [
+        "ResetTempTileDataBuffers"
+      ],
+      "134220345": [
+        "SetGpuReg"
+      ],
+      "135231485": [
+        "ScheduleBgCopyTilemapToVram"
+      ],
+      "134224317": [
+        "ShowBg"
+      ],
+      "134224785": [
+        "ChangeBgX"
+      ],
+      "134225161": [
+        "ChangeBgY"
+      ],
+      "134703957": [
+        "ResetTasks"
+      ],
+      "134243981": [
+        "ResetSpriteData"
+      ],
+      "134675661": [
+        "ResetPaletteFade"
+      ],
+      "134773385": [
+        "ScanlineEffect_Clear"
+      ],
+      "135317093": [
+        "dp13_810C664",
+        "ResetAllPicSprites"
+      ],
+      "134587413": [],
+      "134588085": [],
+      "134608781": [],
+      "134755225": [],
+      "134714217": [],
+      "134719769": [],
+      "134668401": [],
+      "134649105": [],
+      "134604465": [],
+      "134649117": [],
+      "134587437": []
+    },
+    "candidate_reconstructions": 1,
+    "rom_changes": 0,
+    "new_emulator_processes": 0,
+    "full_rom_scans": 0,
+    "accepted_standalone_contracts_replayed": 0,
+    "accepted_native_cases_replayed": 0,
+    "normal_story_observed": false,
+    "ring_acquisition_accepted": false,
+    "release_ready": false,
+    "boundary_ja": "保存dispatchが要求した5slot/wait callbackと範囲内未読calleeだけ。保存nodeへ合流し既読契約を再実行しない。field資源供給と通常story取得は未受入。",
+    "export_manifest": {
+      "size": 57739,
+      "sha256": "b15e7d689fc34779646b21ad1dbc8c77a24c1171124d9e39b7608382e6570aa1"
+    }
+  },
+  "source_bindings": {
+    "scripts/pr16_ring_bios_record.py": {
+      "size": 11374,
+      "sha256": "448e17fa82fbe031d9202fd6045315e88c590202ae4f3c4f864283052a414ffa"
+    },
+    "scripts/pr16_ring_story_field_frontier.py": {
+      "size": 8234,
+      "sha256": "02f6948601a008d8b2f9f3aaf32158c72b8bfee8d880c4ece11d9e0a57a7f8ae"
+    },
+    "tests/test_pr16_ring_story_field_frontier.py": {
+      "size": 4950,
+      "sha256": "405945e5b777d7781b09fb51019abde0759dfabb7bc2fa9f78022fe8daa8bf1f"
+    },
+    ".github/workflows/pr16-ring-story-field-frontier.yml": {
+      "size": 1687,
+      "sha256": "6cc7d4d0cbccc985decd4084a653a5cbff88477f37c14a1081cfcf5c9baa0275"
+    },
+    "content/modernization/pr16_ring_story_dispatch_contracts.json": {
+      "size": 839141,
+      "sha256": "342cd1d70ab9795a2c142af864205d8bb56be7f9c47f8f5604afa9b71d8d8d2f"
+    },
+    "content/modernization/pr16_bp_chooser_checkpoint.json": {
+      "size": 9442,
+      "sha256": "853ed41b6abcfb63651aab136951a53c8c89ec635f769e8466327ba3a0c0ae41"
+    },
+    "scripts/pr16_resume.py": {
+      "size": 26649,
+      "sha256": "b0ec73bf933e46f7b254057559b0c637a2d1a9b625b08f348aa8308ea00dee5a"
+    },
+    "scripts/pr16_ring_compiled_record.py": {
+      "size": 13116,
+      "sha256": "768c94e59983d27bbf0ed46d6ba60008352a3a67e11612b18936e38b271e73ef"
+    },
+    "scripts/guard_private_files.py": {
+      "size": 5443,
+      "sha256": "143426a7403abf47396791f6ece3a3a374fa97fbf8bedc88169f636cddbcc905"
+    },
+    "scripts/pr16_ring_story_dispatch_contracts.py": {
+      "size": 11460,
+      "sha256": "fc3429c7a5a5c381b7782106ccbe237f12af929431c87466a723b01883a4df96"
+    },
+    "scripts/pr16_ring_story_dispatch_frontier.py": {
+      "size": 10872,
+      "sha256": "51373f424de8476dfdf6b39b86817c41ad4e0ed8c4e1e9f66f04813385ebad70"
+    },
+    "scripts/pr16_ring_story_caller_frontier.py": {
+      "size": 14052,
+      "sha256": "a3a344fed68068d672c70d1368589807913d513baf2c07384a10089dcca4a84e"
+    },
+    "scripts/pr16_ring_owner_frontier.py": {
+      "size": 12711,
+      "sha256": "e7505577537eba4df7a5ee641836b56f212706473eb99ef139a60d22141b9e65"
+    },
+    "scripts/pr16_ring_transitive_owner.py": {
+      "size": 15717,
+      "sha256": "4d934acefe35ae818ed998282e3e783c4c5550e8da699a8e629557d4d82508dc"
+    },
+    "scripts/pr16_ring_zero_bytes.py": {
+      "size": 16741,
+      "sha256": "ef6255772fdc3153ec4518888af94df1c27f15d028283d81f901e1b5b2e87998"
+    },
+    ".github/workflows/pr16-ring-callee-bytes.yml": {
+      "size": 6742,
+      "sha256": "f8bab211f28662062bff281c538487d4bc2f06ff1c71e2d078da9bbe52977d3d"
+    },
+    "scripts/pr16_ring_message_task_frontier.py": {
+      "size": 11023,
+      "sha256": "281514fa091e8a6082a37024fd6aa54869ff39b996ef15517e7132ce750322ee"
+    }
+  },
+  "focused_tests": {
+    "tests_run": 24,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "successful": true
+  },
+  "prior_actions_verified_without_replay": [
+    {
+      "id": 35319087228,
+      "head_sha": "f38bf4caa943f6096104970a7ad7e320d60483de",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34946969126,
+      "head_sha": "0b7497b575a3180a045f2be377386490f192a012",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "actions_observed_before_record": [
+    {
+      "id": 35319668581,
+      "name": "source-validation",
+      "head_sha": "d466bed507d7ceb3d815d0eab5e306513ea42abe",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35319668497,
+      "name": "p03-forgetting-ci",
+      "head_sha": "d466bed507d7ceb3d815d0eab5e306513ea42abe",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35319665724,
+      "name": "p03-forgetting-ci",
+      "head_sha": "d466bed507d7ceb3d815d0eab5e306513ea42abe",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35319665602,
+      "name": "source-validation",
+      "head_sha": "d466bed507d7ceb3d815d0eab5e306513ea42abe",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35319665678,
+      "name": "実field状態表とwait callbackの限定採取",
+      "head_sha": "d466bed507d7ceb3d815d0eab5e306513ea42abe",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35319665683,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "d466bed507d7ceb3d815d0eab5e306513ea42abe",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35319665600,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "d466bed507d7ceb3d815d0eab5e306513ea42abe",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35319146834,
+      "name": "source-validation",
+      "head_sha": "a4195f0e873ab4617ad6bbe422c210d9d08727af",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35319146833,
+      "name": "p03-forgetting-ci",
+      "head_sha": "a4195f0e873ab4617ad6bbe422c210d9d08727af",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35319091931,
+      "name": "p03-forgetting-ci",
+      "head_sha": "f38bf4caa943f6096104970a7ad7e320d60483de",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35319091879,
+      "name": "source-validation",
+      "head_sha": "f38bf4caa943f6096104970a7ad7e320d60483de",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35319087140,
+      "name": "p03-forgetting-ci",
+      "head_sha": "f38bf4caa943f6096104970a7ad7e320d60483de",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35319087123,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "f38bf4caa943f6096104970a7ad7e320d60483de",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35319087030,
+      "name": "source-validation",
+      "head_sha": "f38bf4caa943f6096104970a7ad7e320d60483de",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35319087228,
+      "name": "保存script状態と命令表の条件付き結合",
+      "head_sha": "f38bf4caa943f6096104970a7ad7e320d60483de",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35319087267,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "f38bf4caa943f6096104970a7ad7e320d60483de",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35316750248,
+      "name": "p03-forgetting-ci",
+      "head_sha": "16e8dbf2cd4183469ae3c9acb6462cfb4a539498",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35316750334,
+      "name": "source-validation",
+      "head_sha": "16e8dbf2cd4183469ae3c9acb6462cfb4a539498",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35316609729,
+      "name": "source-validation",
+      "head_sha": "74bfe6c81b8123e241e9f79b69f2bd61c0cba794",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35316609769,
+      "name": "p03-forgetting-ci",
+      "head_sha": "74bfe6c81b8123e241e9f79b69f2bd61c0cba794",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ]
+}

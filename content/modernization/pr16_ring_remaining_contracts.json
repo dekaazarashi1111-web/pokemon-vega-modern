@@ -1,0 +1,6882 @@
+{
+  "schema_version": 1,
+  "task": "PR-P08-7-RING-REMAINING-CONTRACTS",
+  "source_head": "f91e07e0c6d48e01f941eff299a8971db80b33c7",
+  "run_id": 35118343796,
+  "run_status_at_record": "in_progress",
+  "analysis": {
+    "validator_v1_cases": [
+      {
+        "case": "v1-empty-acquisition-normal",
+        "return_r0": 0,
+        "steps": 49959,
+        "maximum_stack_bytes": 48,
+        "nonstack_write_count": 0,
+        "nonstack_write_ranges": [],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true,
+        "input_sha256": "c92e4e4819741b7ec6c690840345cda8c3a51d861073ec28b1f15df44dc8fcdd"
+      },
+      {
+        "case": "v1-vacq-crc-normal-0",
+        "return_r0": 0,
+        "steps": 75940,
+        "maximum_stack_bytes": 48,
+        "nonstack_write_count": 0,
+        "nonstack_write_ranges": [],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true,
+        "input_sha256": "d55558190e6c2becba4a7984ba86f4fe8e17aa797c4ab9bdf82439617d340796"
+      },
+      {
+        "case": "v1-vacq-crc-normal-1",
+        "return_r0": 0,
+        "steps": 75940,
+        "maximum_stack_bytes": 48,
+        "nonstack_write_count": 0,
+        "nonstack_write_ranges": [],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true,
+        "input_sha256": "900636b151be333896a4d17596085f79177ccd4732f76a0ecdd1a980b35d27db"
+      },
+      {
+        "case": "v1-vacq-crc-normal-17",
+        "return_r0": 0,
+        "steps": 75940,
+        "maximum_stack_bytes": 48,
+        "nonstack_write_count": 0,
+        "nonstack_write_ranges": [],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true,
+        "input_sha256": "056953d442cc0efdef227ac1dadf5ea67954cb7847d037c97cdf6c42ce1d63df"
+      },
+      {
+        "case": "v1-vacq-crc-normal-255",
+        "return_r0": 0,
+        "steps": 75940,
+        "maximum_stack_bytes": 48,
+        "nonstack_write_count": 0,
+        "nonstack_write_ranges": [],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true,
+        "input_sha256": "c9b4c79ecc64dabcea15a7f67a2477e075eec6cd9f1178a0e509542d140ba486"
+      },
+      {
+        "case": "v1-vacq-reject-magic",
+        "return_r0": 15,
+        "steps": 47274,
+        "maximum_stack_bytes": 48,
+        "nonstack_write_count": 0,
+        "nonstack_write_ranges": [],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true,
+        "input_sha256": "7d4a757cf2bde1f387a856016efece69bf58014e9ae1e67b644ecd874d644afc"
+      },
+      {
+        "case": "v1-vacq-reject-version",
+        "return_r0": 15,
+        "steps": 47277,
+        "maximum_stack_bytes": 48,
+        "nonstack_write_count": 0,
+        "nonstack_write_ranges": [],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true,
+        "input_sha256": "ee2d0c704cd66a51793c06ee9e5d3c495ce3dbc726b98247840610684a53c2a7"
+      },
+      {
+        "case": "v1-vacq-reject-length-short",
+        "return_r0": 15,
+        "steps": 47286,
+        "maximum_stack_bytes": 48,
+        "nonstack_write_count": 0,
+        "nonstack_write_ranges": [],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true,
+        "input_sha256": "ab35951c67dc946353bc2d4bab065bfe4fc6a79b123f664d0e85f25e71d4921c"
+      },
+      {
+        "case": "v1-vacq-reject-length-long",
+        "return_r0": 15,
+        "steps": 47286,
+        "maximum_stack_bytes": 48,
+        "nonstack_write_count": 0,
+        "nonstack_write_ranges": [],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true,
+        "input_sha256": "2b82bc24a8d3aa1fca790f7a4d52ade441a212b8d22105c5fa11053ed6f3719d"
+      },
+      {
+        "case": "v1-vacq-reject-crc",
+        "return_r0": 15,
+        "steps": 74665,
+        "maximum_stack_bytes": 48,
+        "nonstack_write_count": 0,
+        "nonstack_write_ranges": [],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true,
+        "input_sha256": "10c89611acab690ed41ad131c776fcb31493d556dcea3bf5c813be7904444a57"
+      }
+    ],
+    "initializer_cases": [
+      {
+        "case": "initialize-0x0",
+        "return_r0": 134217985,
+        "steps": 33130,
+        "maximum_stack_bytes": 56,
+        "nonstack_write_count": 2139,
+        "nonstack_write_ranges": [
+          [
+            33558528,
+            33560576
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "initialize-0x1",
+        "return_r0": 134217985,
+        "steps": 33130,
+        "maximum_stack_bytes": 56,
+        "nonstack_write_count": 2139,
+        "nonstack_write_ranges": [
+          [
+            33558528,
+            33560576
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "initialize-0x2",
+        "return_r0": 134217985,
+        "steps": 33130,
+        "maximum_stack_bytes": 56,
+        "nonstack_write_count": 2139,
+        "nonstack_write_ranges": [
+          [
+            33558528,
+            33560576
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "initialize-0x7f",
+        "return_r0": 134217985,
+        "steps": 33130,
+        "maximum_stack_bytes": 56,
+        "nonstack_write_count": 2139,
+        "nonstack_write_ranges": [
+          [
+            33558528,
+            33560576
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "initialize-0x80",
+        "return_r0": 134217985,
+        "steps": 33130,
+        "maximum_stack_bytes": 56,
+        "nonstack_write_count": 2139,
+        "nonstack_write_ranges": [
+          [
+            33558528,
+            33560576
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "initialize-0xff",
+        "return_r0": 134217985,
+        "steps": 33130,
+        "maximum_stack_bytes": 56,
+        "nonstack_write_count": 2139,
+        "nonstack_write_ranges": [
+          [
+            33558528,
+            33560576
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "initialize-0x100",
+        "return_r0": 134217985,
+        "steps": 33130,
+        "maximum_stack_bytes": 56,
+        "nonstack_write_count": 2139,
+        "nonstack_write_ranges": [
+          [
+            33558528,
+            33560576
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "initialize-0xffff",
+        "return_r0": 134217985,
+        "steps": 33130,
+        "maximum_stack_bytes": 56,
+        "nonstack_write_count": 2139,
+        "nonstack_write_ranges": [
+          [
+            33558528,
+            33560576
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "initialize-0x80000000",
+        "return_r0": 134217985,
+        "steps": 33130,
+        "maximum_stack_bytes": 56,
+        "nonstack_write_count": 2139,
+        "nonstack_write_ranges": [
+          [
+            33558528,
+            33560576
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "initialize-0xffffffff",
+        "return_r0": 134217985,
+        "steps": 33130,
+        "maximum_stack_bytes": 56,
+        "nonstack_write_count": 2139,
+        "nonstack_write_ranges": [
+          [
+            33558528,
+            33560576
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "initialize-null",
+        "return_r0": 134217985,
+        "steps": 8,
+        "maximum_stack_bytes": 24,
+        "nonstack_write_count": 0,
+        "nonstack_write_ranges": [],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      }
+    ],
+    "flash_cases": [
+      {
+        "case": "flash-byte-sequence-0x0",
+        "return_r0": 0,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x1",
+        "return_r0": 1,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x2",
+        "return_r0": 2,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x3",
+        "return_r0": 3,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x4",
+        "return_r0": 4,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x5",
+        "return_r0": 5,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x6",
+        "return_r0": 6,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x7",
+        "return_r0": 7,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x8",
+        "return_r0": 8,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x9",
+        "return_r0": 9,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xa",
+        "return_r0": 10,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xb",
+        "return_r0": 11,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xc",
+        "return_r0": 12,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xd",
+        "return_r0": 13,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xe",
+        "return_r0": 14,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xf",
+        "return_r0": 15,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x10",
+        "return_r0": 16,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x11",
+        "return_r0": 17,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x12",
+        "return_r0": 18,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x13",
+        "return_r0": 19,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x14",
+        "return_r0": 20,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x15",
+        "return_r0": 21,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x16",
+        "return_r0": 22,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x17",
+        "return_r0": 23,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x18",
+        "return_r0": 24,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x19",
+        "return_r0": 25,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x1a",
+        "return_r0": 26,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x1b",
+        "return_r0": 27,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x1c",
+        "return_r0": 28,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x1d",
+        "return_r0": 29,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x1e",
+        "return_r0": 30,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x1f",
+        "return_r0": 31,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x20",
+        "return_r0": 32,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x21",
+        "return_r0": 33,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x22",
+        "return_r0": 34,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x23",
+        "return_r0": 35,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x24",
+        "return_r0": 36,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x25",
+        "return_r0": 37,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x26",
+        "return_r0": 38,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x27",
+        "return_r0": 39,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x28",
+        "return_r0": 40,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x29",
+        "return_r0": 41,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x2a",
+        "return_r0": 42,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x2b",
+        "return_r0": 43,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x2c",
+        "return_r0": 44,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x2d",
+        "return_r0": 45,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x2e",
+        "return_r0": 46,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x2f",
+        "return_r0": 47,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x30",
+        "return_r0": 48,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x31",
+        "return_r0": 49,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x32",
+        "return_r0": 50,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x33",
+        "return_r0": 51,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x34",
+        "return_r0": 52,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x35",
+        "return_r0": 53,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x36",
+        "return_r0": 54,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x37",
+        "return_r0": 55,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x38",
+        "return_r0": 56,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x39",
+        "return_r0": 57,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x3a",
+        "return_r0": 58,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x3b",
+        "return_r0": 59,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x3c",
+        "return_r0": 60,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x3d",
+        "return_r0": 61,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x3e",
+        "return_r0": 62,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x3f",
+        "return_r0": 63,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x40",
+        "return_r0": 64,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x41",
+        "return_r0": 65,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x42",
+        "return_r0": 66,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x43",
+        "return_r0": 67,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x44",
+        "return_r0": 68,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x45",
+        "return_r0": 69,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x46",
+        "return_r0": 70,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x47",
+        "return_r0": 71,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x48",
+        "return_r0": 72,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x49",
+        "return_r0": 73,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x4a",
+        "return_r0": 74,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x4b",
+        "return_r0": 75,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x4c",
+        "return_r0": 76,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x4d",
+        "return_r0": 77,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x4e",
+        "return_r0": 78,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x4f",
+        "return_r0": 79,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x50",
+        "return_r0": 80,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x51",
+        "return_r0": 81,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x52",
+        "return_r0": 82,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x53",
+        "return_r0": 83,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x54",
+        "return_r0": 84,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x55",
+        "return_r0": 85,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x56",
+        "return_r0": 86,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x57",
+        "return_r0": 87,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x58",
+        "return_r0": 88,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x59",
+        "return_r0": 89,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x5a",
+        "return_r0": 90,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x5b",
+        "return_r0": 91,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x5c",
+        "return_r0": 92,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x5d",
+        "return_r0": 93,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x5e",
+        "return_r0": 94,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x5f",
+        "return_r0": 95,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x60",
+        "return_r0": 96,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x61",
+        "return_r0": 97,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x62",
+        "return_r0": 98,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x63",
+        "return_r0": 99,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x64",
+        "return_r0": 100,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x65",
+        "return_r0": 101,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x66",
+        "return_r0": 102,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x67",
+        "return_r0": 103,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x68",
+        "return_r0": 104,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x69",
+        "return_r0": 105,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x6a",
+        "return_r0": 106,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x6b",
+        "return_r0": 107,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x6c",
+        "return_r0": 108,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x6d",
+        "return_r0": 109,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x6e",
+        "return_r0": 110,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x6f",
+        "return_r0": 111,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x70",
+        "return_r0": 112,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x71",
+        "return_r0": 113,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x72",
+        "return_r0": 114,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x73",
+        "return_r0": 115,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x74",
+        "return_r0": 116,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x75",
+        "return_r0": 117,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x76",
+        "return_r0": 118,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x77",
+        "return_r0": 119,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x78",
+        "return_r0": 120,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x79",
+        "return_r0": 121,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x7a",
+        "return_r0": 122,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x7b",
+        "return_r0": 123,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x7c",
+        "return_r0": 124,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x7d",
+        "return_r0": 125,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x7e",
+        "return_r0": 126,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x7f",
+        "return_r0": 127,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x80",
+        "return_r0": 128,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x81",
+        "return_r0": 129,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x82",
+        "return_r0": 130,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x83",
+        "return_r0": 131,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x84",
+        "return_r0": 132,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x85",
+        "return_r0": 133,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x86",
+        "return_r0": 134,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x87",
+        "return_r0": 135,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x88",
+        "return_r0": 136,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x89",
+        "return_r0": 137,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x8a",
+        "return_r0": 138,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x8b",
+        "return_r0": 139,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x8c",
+        "return_r0": 140,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x8d",
+        "return_r0": 141,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x8e",
+        "return_r0": 142,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x8f",
+        "return_r0": 143,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x90",
+        "return_r0": 144,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x91",
+        "return_r0": 145,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x92",
+        "return_r0": 146,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x93",
+        "return_r0": 147,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x94",
+        "return_r0": 148,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x95",
+        "return_r0": 149,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x96",
+        "return_r0": 150,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x97",
+        "return_r0": 151,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x98",
+        "return_r0": 152,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x99",
+        "return_r0": 153,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x9a",
+        "return_r0": 154,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x9b",
+        "return_r0": 155,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x9c",
+        "return_r0": 156,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x9d",
+        "return_r0": 157,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x9e",
+        "return_r0": 158,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x9f",
+        "return_r0": 159,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xa0",
+        "return_r0": 160,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xa1",
+        "return_r0": 161,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xa2",
+        "return_r0": 162,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xa3",
+        "return_r0": 163,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xa4",
+        "return_r0": 164,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xa5",
+        "return_r0": 165,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xa6",
+        "return_r0": 166,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xa7",
+        "return_r0": 167,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xa8",
+        "return_r0": 168,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xa9",
+        "return_r0": 169,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xaa",
+        "return_r0": 170,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xab",
+        "return_r0": 171,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xac",
+        "return_r0": 172,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xad",
+        "return_r0": 173,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xae",
+        "return_r0": 174,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xaf",
+        "return_r0": 175,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xb0",
+        "return_r0": 176,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xb1",
+        "return_r0": 177,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xb2",
+        "return_r0": 178,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xb3",
+        "return_r0": 179,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xb4",
+        "return_r0": 180,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xb5",
+        "return_r0": 181,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xb6",
+        "return_r0": 182,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xb7",
+        "return_r0": 183,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xb8",
+        "return_r0": 184,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xb9",
+        "return_r0": 185,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xba",
+        "return_r0": 186,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xbb",
+        "return_r0": 187,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xbc",
+        "return_r0": 188,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xbd",
+        "return_r0": 189,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xbe",
+        "return_r0": 190,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xbf",
+        "return_r0": 191,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xc0",
+        "return_r0": 192,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xc1",
+        "return_r0": 193,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xc2",
+        "return_r0": 194,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xc3",
+        "return_r0": 195,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xc4",
+        "return_r0": 196,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xc5",
+        "return_r0": 197,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xc6",
+        "return_r0": 198,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xc7",
+        "return_r0": 199,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xc8",
+        "return_r0": 200,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xc9",
+        "return_r0": 201,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xca",
+        "return_r0": 202,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xcb",
+        "return_r0": 203,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xcc",
+        "return_r0": 204,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xcd",
+        "return_r0": 205,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xce",
+        "return_r0": 206,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xcf",
+        "return_r0": 207,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xd0",
+        "return_r0": 208,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xd1",
+        "return_r0": 209,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xd2",
+        "return_r0": 210,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xd3",
+        "return_r0": 211,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xd4",
+        "return_r0": 212,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xd5",
+        "return_r0": 213,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xd6",
+        "return_r0": 214,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xd7",
+        "return_r0": 215,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xd8",
+        "return_r0": 216,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xd9",
+        "return_r0": 217,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xda",
+        "return_r0": 218,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xdb",
+        "return_r0": 219,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xdc",
+        "return_r0": 220,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xdd",
+        "return_r0": 221,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xde",
+        "return_r0": 222,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xdf",
+        "return_r0": 223,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xe0",
+        "return_r0": 224,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xe1",
+        "return_r0": 225,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xe2",
+        "return_r0": 226,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xe3",
+        "return_r0": 227,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xe4",
+        "return_r0": 228,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xe5",
+        "return_r0": 229,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xe6",
+        "return_r0": 230,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xe7",
+        "return_r0": 231,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xe8",
+        "return_r0": 232,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xe9",
+        "return_r0": 233,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xea",
+        "return_r0": 234,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xeb",
+        "return_r0": 235,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xec",
+        "return_r0": 236,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xed",
+        "return_r0": 237,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xee",
+        "return_r0": 238,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xef",
+        "return_r0": 239,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xf0",
+        "return_r0": 240,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xf1",
+        "return_r0": 241,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xf2",
+        "return_r0": 242,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xf3",
+        "return_r0": 243,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xf4",
+        "return_r0": 244,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xf5",
+        "return_r0": 245,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xf6",
+        "return_r0": 246,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xf7",
+        "return_r0": 247,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xf8",
+        "return_r0": 248,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xf9",
+        "return_r0": 249,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xfa",
+        "return_r0": 250,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xfb",
+        "return_r0": 251,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xfc",
+        "return_r0": 252,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xfd",
+        "return_r0": 253,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xfe",
+        "return_r0": 254,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xff",
+        "return_r0": 255,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x100",
+        "return_r0": 0,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0x80000000",
+        "return_r0": 0,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      },
+      {
+        "case": "flash-byte-sequence-0xffffffff",
+        "return_r0": 255,
+        "steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "nonstack_write_ranges": [
+          [
+            234881024,
+            234881025
+          ],
+          [
+            234891946,
+            234891947
+          ],
+          [
+            234902869,
+            234902870
+          ]
+        ],
+        "sp_and_r4_r11_restored": true,
+        "synthetic_only": true
+      }
+    ],
+    "synthetic_contract_cases": 280,
+    "initializer_layout": {
+      "version": 2,
+      "marker_offset": 29,
+      "boolean_offset": 30,
+      "bytes_written_union": 2048
+    },
+    "vacq_crc": {
+      "start": 68,
+      "length": 240,
+      "zeroed_crc_slot": [
+        8,
+        12
+      ],
+      "oracle": "zlib.crc32"
+    },
+    "limited_prefix_stops": [
+      {
+        "case": "v2-canonical-0",
+        "read_fault": {
+          "address": 154925558,
+          "size": 1,
+          "site": 154917830
+        },
+        "steps": 48856,
+        "return_proven": false,
+        "sp_and_r4_r11_restored": false,
+        "nonstack_write_count": 0
+      },
+      {
+        "case": "v2-canonical-1",
+        "read_fault": {
+          "address": 154925558,
+          "size": 1,
+          "site": 154917830
+        },
+        "steps": 48856,
+        "return_proven": false,
+        "sp_and_r4_r11_restored": false,
+        "nonstack_write_count": 0
+      },
+      {
+        "case": "v1-owner-buffer-0x203d000",
+        "stopped_at": 154922506,
+        "arguments": [
+          33809408,
+          33804288,
+          2048
+        ],
+        "return_proven": false,
+        "nonstack_writes": [
+          [
+            33812675,
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "case": "v1-owner-buffer-0x2039a14",
+        "stopped_at": 154922506,
+        "arguments": [
+          33809408,
+          33790484,
+          2048
+        ],
+        "return_proven": false,
+        "nonstack_writes": [
+          [
+            33812675,
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "case": "string-control-250",
+        "read_fault": {
+          "address": 134253416,
+          "size": 4,
+          "site": 134253408
+        },
+        "return_proven": false
+      },
+      {
+        "case": "string-control-251",
+        "read_fault": {
+          "address": 134253420,
+          "size": 4,
+          "site": 134253408
+        },
+        "return_proven": false
+      },
+      {
+        "case": "string-control-252",
+        "read_fault": {
+          "address": 134253424,
+          "size": 4,
+          "site": 134253408
+        },
+        "return_proven": false
+      },
+      {
+        "case": "string-control-253",
+        "read_fault": {
+          "address": 134253428,
+          "size": 4,
+          "site": 134253408
+        },
+        "return_proven": false
+      },
+      {
+        "case": "string-control-254",
+        "read_fault": {
+          "address": 134253432,
+          "size": 4,
+          "site": 134253408
+        },
+        "return_proven": false
+      },
+      {
+        "case": "string-control-255",
+        "read_fault": {
+          "address": 134253436,
+          "size": 4,
+          "site": 134253408
+        },
+        "return_proven": false
+      }
+    ],
+    "callsite_bindings": [
+      {
+        "entry": 134646989,
+        "calls": [
+          {
+            "site": 134646994,
+            "target": 134704053,
+            "arguments": {
+              "r0": "0x08068C31",
+              "r1": "0x00000050",
+              "r2": "('entry', 2)",
+              "r3": "('entry', 3)"
+            },
+            "unproven_prior_callee_requirements": []
+          }
+        ],
+        "stops": [
+          {
+            "site": 134647000,
+            "kind": "indirect"
+          }
+        ],
+        "runtime_reachable": false,
+        "return_proven": false
+      },
+      {
+        "entry": 135232957,
+        "calls": [
+          {
+            "site": 135232984,
+            "target": 135057297,
+            "arguments": {
+              "r0": "('and', ('lsr', ('lsl', ('entry', 0), 24), 24), 1)",
+              "r1": "('or', ('and', 4294967294, ('load', 135232972, 8, 50347664)), ('and', ('lsr', ('lsl', ('entry', 0), 24), 24), 1))",
+              "r2": "('load', 135232972, 8, 50347664)",
+              "r3": "0x03003E90"
+            },
+            "unproven_prior_callee_requirements": []
+          },
+          {
+            "site": 135232996,
+            "target": 135235849,
+            "arguments": {
+              "r0": "('lsr', ('lsl', ('call_result', 135232984), 24), 24)",
+              "r1": "UNKNOWN",
+              "r2": "UNKNOWN",
+              "r3": "UNKNOWN"
+            },
+            "unproven_prior_callee_requirements": [
+              "callee@0x080F7DD8: returns/SP/frame/r4-r11 preservation NOT PROVEN"
+            ]
+          },
+          {
+            "site": 135233024,
+            "target": 135232809,
+            "arguments": {
+              "r0": "0x00000000",
+              "r1": "0x00000004",
+              "r2": "0x02021C88",
+              "r3": "('lsr', ('lsl', ('call_result', 135232996), 24), 24)"
+            },
+            "unproven_prior_callee_requirements": [
+              "callee@0x080F7DD8: returns/SP/frame/r4-r11 preservation NOT PROVEN",
+              "callee@0x080F7DE4: returns/SP/frame/r4-r11 preservation NOT PROVEN"
+            ]
+          },
+          {
+            "site": 135233044,
+            "target": 135235849,
+            "arguments": {
+              "r0": "('lsr', ('lsl', ('call_result', 135232984), 24), 24)",
+              "r1": "UNKNOWN",
+              "r2": "UNKNOWN",
+              "r3": "UNKNOWN"
+            },
+            "unproven_prior_callee_requirements": [
+              "callee@0x080F7DD8: returns/SP/frame/r4-r11 preservation NOT PROVEN"
+            ]
+          },
+          {
+            "site": 135233072,
+            "target": 135232809,
+            "arguments": {
+              "r0": "0x00000000",
+              "r1": "0x00000005",
+              "r2": "0x02021C88",
+              "r3": "('lsr', ('lsl', ('call_result', 135233044), 24), 24)"
+            },
+            "unproven_prior_callee_requirements": [
+              "callee@0x080F7DD8: returns/SP/frame/r4-r11 preservation NOT PROVEN",
+              "callee@0x080F7E14: returns/SP/frame/r4-r11 preservation NOT PROVEN"
+            ]
+          },
+          {
+            "site": 135233084,
+            "target": 135235849,
+            "arguments": {
+              "r0": "('lsr', ('lsl', ('call_result', 135232984), 24), 24)",
+              "r1": "UNKNOWN",
+              "r2": "UNKNOWN",
+              "r3": "UNKNOWN"
+            },
+            "unproven_prior_callee_requirements": [
+              "callee@0x080F7DD8: returns/SP/frame/r4-r11 preservation NOT PROVEN"
+            ]
+          },
+          {
+            "site": 135233112,
+            "target": 135232809,
+            "arguments": {
+              "r0": "0x00000000",
+              "r1": "0x00000002",
+              "r2": "0x02021C88",
+              "r3": "('lsr', ('lsl', ('call_result', 135233084), 24), 24)"
+            },
+            "unproven_prior_callee_requirements": [
+              "callee@0x080F7DD8: returns/SP/frame/r4-r11 preservation NOT PROVEN",
+              "callee@0x080F7E3C: returns/SP/frame/r4-r11 preservation NOT PROVEN"
+            ]
+          }
+        ],
+        "stops": [
+          {
+            "site": 135233122,
+            "kind": "indirect"
+          }
+        ],
+        "runtime_reachable": false,
+        "return_proven": false
+      }
+    ],
+    "pending_direct_callees": [
+      134704053,
+      135057297,
+      135232809,
+      135235849,
+      136084181,
+      154922507
+    ],
+    "pending_data_ranges": [
+      {
+        "label": "string_dispatch",
+        "start": 134253416,
+        "length": 24,
+        "count": 6,
+        "stride": 4,
+        "site": 134253408
+      },
+      {
+        "label": "v2_rule_records",
+        "start": 154925548,
+        "length": 368,
+        "count": 23,
+        "stride": 16,
+        "site": 154917830
+      },
+      {
+        "label": "v2_counter_limits",
+        "start": 154926312,
+        "length": 48,
+        "count": 6,
+        "stride": 8,
+        "site": 154917912
+      }
+    ],
+    "pending_continuations": [],
+    "validator_v1_external_buffer_return_proven": true,
+    "validator_v2_normal_return_proven": false,
+    "validator_live_buffer_return_proven": false,
+    "all_live_frames_proven": false,
+    "all_callers_resolved": false,
+    "all_runtime_owners_excluded": false,
+    "caller_pointer_size_limit_proven": false,
+    "ring_acquisition_accepted": false,
+    "release_ready": false,
+    "rom_changes": 0,
+    "new_emulator_processes": 0,
+    "candidate_reconstructions": 0,
+    "new_byte_samples": 0,
+    "accepted_native_cases_replayed": 0,
+    "accepted_standalone_contracts_replayed": 0,
+    "preconditions": [
+      "保存命令と非alias合成buffer/stack、明示mapされた合成I/Oだけ",
+      "ARMv4 MULの未定義C/V依存は停止。未知命令/未map/間接先の推測なし",
+      "合成returnとnative到達・実周辺機器・正規story取得は別の受入条件"
+    ],
+    "classification": "SAVED_REMAINING_ABI_AND_DATA_BOUNDARIES_NOT_NATIVE_ACCEPTANCE",
+    "candidate": {
+      "size": 33554432,
+      "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b",
+      "crc32": "3EB17B36"
+    },
+    "saved_node_count": 1390
+  },
+  "source_bindings": {
+    "scripts/pr16_ring_followup_v2.py": {
+      "size": 11453,
+      "sha256": "71e33dbe40cd8988e185256821e33e6a1e06e4eddeb8ee6a3eb9047a4d3c49f7"
+    },
+    "scripts/pr16_ring_remaining_contracts.py": {
+      "size": 11862,
+      "sha256": "afb8dda5c8161f8833f4551f299981bdf177b57d4840e2c166945e5e1e4a74bd"
+    },
+    "tests/test_pr16_ring_remaining_contracts.py": {
+      "size": 6821,
+      "sha256": "1a010ceb685968b3a752c10934fabaa6832dff1dfc08d2085790facac3048d1f"
+    },
+    ".github/workflows/pr16-ring-remaining-contracts.yml": {
+      "size": 2037,
+      "sha256": "62b5d14bb8dcba0c5f205ab89ee9ef1bb3ef2890ea40db804cd5063a6b33a7f5"
+    },
+    "content/modernization/pr16_ring_remaining_frontier.json": {
+      "size": 133436,
+      "sha256": "b662d878ad13719e3619c6c53e7204ea1dd14604091037d599ebffcffff5f9fa"
+    },
+    "content/modernization/pr16_bp_chooser_checkpoint.json": {
+      "size": 9442,
+      "sha256": "853ed41b6abcfb63651aab136951a53c8c89ec635f769e8466327ba3a0c0ae41"
+    },
+    "scripts/pr16_resume.py": {
+      "size": 26649,
+      "sha256": "b0ec73bf933e46f7b254057559b0c637a2d1a9b625b08f348aa8308ea00dee5a"
+    },
+    "scripts/pr16_ring_compiled_record.py": {
+      "size": 13116,
+      "sha256": "768c94e59983d27bbf0ed46d6ba60008352a3a67e11612b18936e38b271e73ef"
+    },
+    "scripts/guard_private_files.py": {
+      "size": 5443,
+      "sha256": "143426a7403abf47396791f6ece3a3a374fa97fbf8bedc88169f636cddbcc905"
+    },
+    "scripts/pr16_ring_contract_machine.py": {
+      "size": 8710,
+      "sha256": "e48dfc6e12913c93efc9ee54d26117fc3082cf7aeb304df90bbae2438a83775b"
+    },
+    "scripts/pr16_ring_remaining_frontier.py": {
+      "size": 12375,
+      "sha256": "3aa490bc6a4615a447f996df72e2ea678f41ed585076d3e2ddc3d572cd6f94bd"
+    },
+    "content/modernization/pr16_ring_selector_owners.json": {
+      "size": 1704471,
+      "sha256": "64e746c4b085f85afb180bbf03299c84ae7efebd1e72964f5f0195e97d553727"
+    },
+    "content/modernization/pr16_ring_record_callers.json": {
+      "size": 102561,
+      "sha256": "622b9d69ef96fc0d975fc4e1bec5e08c4d07e85ee0ddea5a4f8fe538fa65d77a"
+    },
+    "content/modernization/pr16_ring_branch_frontier.json": {
+      "size": 18753,
+      "sha256": "3c1ea4c589af430f115a0a6ed02c330e41e609fb14fdc6f60e9c01090a80861b"
+    },
+    "content/modernization/pr16_ring_unread_frontier.json": {
+      "size": 13830,
+      "sha256": "1b7e08195d8c2d3f7d326e79102d760d6801eb9274ebf3e3131cc963b041a7df"
+    },
+    "content/modernization/pr16_ring_patch_owner.json": {
+      "size": 125662,
+      "sha256": "fb396fd19040d954ebc10c5296a35293575284e24f53bb6a0e23b440eb1a8746"
+    },
+    "content/modernization/pr16_ring_transitive_owner.json": {
+      "size": 34036,
+      "sha256": "2045f5f2d9b2f234f58b8c596121f26794ae578a220e960d38b4a2999ab51cb7"
+    },
+    "content/modernization/pr16_ring_flagset_continuation.json": {
+      "size": 17058,
+      "sha256": "f42e0ce2a7716e99c01315ea6c8a5e47454437a20956c8836ab0335caba25c97"
+    },
+    "content/modernization/pr16_ring_callee_bytes.json": {
+      "size": 15364,
+      "sha256": "292bb4f2ccba10bc19fc39e372519dd6cd797d4829b5b726b16ef6a47d359eaa"
+    },
+    "content/modernization/pr16_ring_helper_bytes.json": {
+      "size": 23847,
+      "sha256": "09ba17a7fdb61b327d7a0e18f71c09fbffb7c74b3e58004b72d31ead8de28c1b"
+    },
+    "content/modernization/pr16_ring_nonzero_bytes.json": {
+      "size": 11445,
+      "sha256": "d215da8016b55be5cfbde5c62b144182de6aed6254a0c3bb76ca22852d92a4bc"
+    },
+    "content/modernization/pr16_ring_zero_bytes.json": {
+      "size": 35345,
+      "sha256": "053457495169b5628d8ff3c0c28c8a58e38053ffd66b4bf8547bae2b2cfb5036"
+    },
+    "content/modernization/pr16_ring_owner_frontier.json": {
+      "size": 73322,
+      "sha256": "4260abb358c4ea4c93f0b28d18b91a8ca242a061681cdca52ddd36842dff4ccf"
+    },
+    "content/modernization/pr16_ring_owner_context.json": {
+      "size": 37372,
+      "sha256": "be7fbf1e7aa0d99bfd371e951e3b5cf8ca6b4d9c8ce65e178e07bb564083833f"
+    },
+    "content/modernization/pr16_ring_effective_frontier.json": {
+      "size": 48045,
+      "sha256": "4c94411def7bef40a660c472762f36de66c4fb3242adab88cb26a1374dc37cf3"
+    },
+    "scripts/pr16_ring_effective_frontier.py": {
+      "size": 10560,
+      "sha256": "31303cea8148726c922f40f41231aa588b249796c08e04d9b41225150f25759e"
+    },
+    "scripts/pr16_ring_owner_frontier.py": {
+      "size": 12711,
+      "sha256": "e7505577537eba4df7a5ee641836b56f212706473eb99ef139a60d22141b9e65"
+    },
+    "scripts/pr16_ring_record_callers.py": {
+      "size": 9264,
+      "sha256": "d30434a3ea9abdcd48c73c5265feafb268069dac8c7abf0e5117ad43e215bbfd"
+    },
+    "scripts/pr16_ring_branch_frontier.py": {
+      "size": 10233,
+      "sha256": "9fe8b6d2697127d0dcefa4afecd1b0365bdc51f3a3638b03acc63ea0987c3aff"
+    },
+    "scripts/pr16_ring_zero_bytes.py": {
+      "size": 16741,
+      "sha256": "ef6255772fdc3153ec4518888af94df1c27f15d028283d81f901e1b5b2e87998"
+    },
+    "scripts/pr16_ring_flagset_continuation.py": {
+      "size": 19471,
+      "sha256": "10f6aa42d04f81385e42ff1987ca325c6a1bab52264c6591c9de7e8841f10e33"
+    },
+    "scripts/pr16_ring_transitive_owner.py": {
+      "size": 15717,
+      "sha256": "4d934acefe35ae818ed998282e3e783c4c5550e8da699a8e629557d4d82508dc"
+    },
+    "scripts/pr16_ring_compiled_owner.py": {
+      "size": 13070,
+      "sha256": "708854062d694ef1e8bbafe633f24e684a92e44daea3abec01afb42c7a419aee"
+    },
+    "scripts/pr16_ring_selector_followup.py": {
+      "size": 10439,
+      "sha256": "84af72842589073fe5ba369ce07b91bbf314844c0dc0ea5aceaab32f73d33e79"
+    },
+    "scripts/pr16_ring_saved_contracts.py": {
+      "size": 15079,
+      "sha256": "1fe5c750ebc8be8faf46915f0e172706a35bd4313bb05bfec621af3760e50620"
+    },
+    "scripts/pr16_ring_owner_context.py": {
+      "size": 13828,
+      "sha256": "e4ceb839cb6f9e3676b50549471512ae18698b9d4a4428f5577992758e38c1f0"
+    },
+    "scripts/pr16_ring_effective_contracts.py": {
+      "size": 12157,
+      "sha256": "3021df97a7cd4ce3bb2832dd9a820e26313afcfaa02fec61e1ebf1a63a6c96a7"
+    },
+    ".github/workflows/pr16-ring-callee-bytes.yml": {
+      "size": 6742,
+      "sha256": "f8bab211f28662062bff281c538487d4bc2f06ff1c71e2d078da9bbe52977d3d"
+    }
+  },
+  "focused_tests": {
+    "tests_run": 42,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "successful": true
+  },
+  "prior_actions_verified_without_replay": [
+    {
+      "id": 35115765819,
+      "head_sha": "8a3309178aaaa4cc8de06899b14db2abb249b737",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34946969126,
+      "head_sha": "0b7497b575a3180a045f2be377386490f192a012",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "actions_observed_before_record": [
+    {
+      "id": 35118351327,
+      "name": "source-validation",
+      "head_sha": "f91e07e0c6d48e01f941eff299a8971db80b33c7",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35118351284,
+      "name": "p03-forgetting-ci",
+      "head_sha": "f91e07e0c6d48e01f941eff299a8971db80b33c7",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35118343707,
+      "name": "source-validation",
+      "head_sha": "f91e07e0c6d48e01f941eff299a8971db80b33c7",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35118343796,
+      "name": "保存validator/VACQ/初期化/合成I/O契約",
+      "head_sha": "f91e07e0c6d48e01f941eff299a8971db80b33c7",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35118343586,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "f91e07e0c6d48e01f941eff299a8971db80b33c7",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35118343727,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "f91e07e0c6d48e01f941eff299a8971db80b33c7",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35118343619,
+      "name": "p03-forgetting-ci",
+      "head_sha": "f91e07e0c6d48e01f941eff299a8971db80b33c7",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35115977669,
+      "name": "source-validation",
+      "head_sha": "8ffeb8427a35b8569e7ea12c201f508f2c6e6940",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35115977672,
+      "name": "p03-forgetting-ci",
+      "head_sha": "8ffeb8427a35b8569e7ea12c201f508f2c6e6940",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35115776168,
+      "name": "p03-forgetting-ci",
+      "head_sha": "8a3309178aaaa4cc8de06899b14db2abb249b737",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35115776264,
+      "name": "source-validation",
+      "head_sha": "8a3309178aaaa4cc8de06899b14db2abb249b737",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35115766156,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "8a3309178aaaa4cc8de06899b14db2abb249b737",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35115765998,
+      "name": "p03-forgetting-ci",
+      "head_sha": "8a3309178aaaa4cc8de06899b14db2abb249b737",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35115765929,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "8a3309178aaaa4cc8de06899b14db2abb249b737",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35115765819,
+      "name": "残るcalleeとvalidator正常継続の有限wave採取",
+      "head_sha": "8a3309178aaaa4cc8de06899b14db2abb249b737",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35115765798,
+      "name": "source-validation",
+      "head_sha": "8a3309178aaaa4cc8de06899b14db2abb249b737",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35114649137,
+      "name": "p03-forgetting-ci",
+      "head_sha": "fe3aadec4dbb154a618f6c2ac2e30b3d2588863f",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35114649129,
+      "name": "source-validation",
+      "head_sha": "fe3aadec4dbb154a618f6c2ac2e30b3d2588863f",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35114642802,
+      "name": "残るcalleeとvalidator正常継続の有限wave採取",
+      "head_sha": "fe3aadec4dbb154a618f6c2ac2e30b3d2588863f",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "id": 35114642534,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "fe3aadec4dbb154a618f6c2ac2e30b3d2588863f",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+name: pr16-research-activities-20260927
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-research-activities-20260927.yml]
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-research-activities-20260927
+  cancel-in-progress: false
+jobs:
+  finish:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: clean HEADの次工程ソースとActionsを保存（commit後PR反映待ちを要求しない）
+        run: python3 -B scripts/pr16_research_activities_context.py
+      - name: 受入commitの成功部分と補助export失敗を終端同期（unit/native/compile再実行0）
+        run: python3 -B scripts/pr16_research_bug_finish.py finish
+      - name: 固定引継ぎとtask graphの整合性
+        run: |
+          python3 -B scripts/pr16_resume.py check
+          python3 -B scripts/validate_task_graph.py
+      - name: 今回indexと受入HEADからの全変更を限定guard
+        run: python3 -B scripts/pr16_research_bug_finish.py guard
+      - name: 最新HEAD再確認・commit・同branch非force push
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git ls-remote origin "$GITHUB_REF" | cut -f1)" = "$GITHUB_SHA"
+          python3 -B -c 'import sys;sys.path[:0]=["scripts","."];import pr16_research_lifecycle_actions as d;d.current()'
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m "USER-20260927-RESEARCH-ACTIVITIES: 虫取り受入後の補助export修復・Actions終端記録完了"
+          git push origin HEAD:refs/heads/codex/modernization-followup-20260908
+          test "$(git ls-remote origin "$GITHUB_REF" | cut -f1)" = "$(git rev-parse HEAD)"
+          echo "RESULT=DONE TASK=USER-20260927-RESEARCH-ACTIVITIES VERIFY=PASS COMMIT=$(git rev-parse HEAD)"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-research-bug-finish
+          path: .local/pr16-research-bug-finish/public/
+          retention-days: 14
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-research-activities-context
+          path: .local/pr16-research-activities/context/
+          retention-days: 14
+          if-no-files-found: error

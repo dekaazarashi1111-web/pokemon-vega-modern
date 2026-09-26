@@ -1,0 +1,159 @@
+{
+  "acceptance": {
+    "path": "content/modernization/pr16_fixed_form_acceptance.json",
+    "sha256": "1de5c58c70d63441804a99e3622fef7773c09618cd9b16b6d42071c5d3893b3e",
+    "size": 16630
+  },
+  "candidate": {
+    "sha256": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267",
+    "size": 33554432
+  },
+  "full_p03_acceptance": false,
+  "native_acceptance_claimed": true,
+  "new_emulator_runs_during_aggregation": 0,
+  "originals": [
+    {
+      "actions": {
+        "path": "content/modernization/pr16_fixed_form_acceptance_evidence/34694218218/actions.json",
+        "sha256": "d2deb28f47161f19f5ab7a97949adc661da7c4d8ee62b40f5ef84094f98ff741",
+        "size": 23331
+      },
+      "actions_conclusion": "failure",
+      "actual_processes_in_original_run": 5,
+      "artifact_id": 10297554037,
+      "failures_in_original_run": 4,
+      "job_id": 103554787890,
+      "original": {
+        "path": "content/modernization/pr16_fixed_form_acceptance_evidence/34694218218/original.zip",
+        "sha256": "45fbc581ec17cf7e0504d2c8d3150072e44a9099e4deed04da759d8b3a6328c7",
+        "size": 802643
+      },
+      "original_receipt": {
+        "sha256": "94014c853c50806588fca85ee1d67efff1be7903e8d6ac550072b851e2038d0e",
+        "size": 7104
+      },
+      "original_result": {
+        "sha256": "437913cc2a8330a2e1bcf396b12a1bc324193a6d854eb88e5d19dc7451d7de45",
+        "size": 24785
+      },
+      "run_id": 34694218218,
+      "selected_successful_cases": [
+        "necrozma-decline-unchanged"
+      ],
+      "source_zip": {
+        "sha256": "08e63002cc023503805c171fa7281d0f17a097ac83f1289a792e0902046e2c16",
+        "size": 507244
+      },
+      "tested_head": "a9ec7ab9d93d8013139698242802826278aaf667"
+    },
+    {
+      "actions": {
+        "path": "content/modernization/pr16_fixed_form_acceptance_evidence/34695512247/actions.json",
+        "sha256": "93da12e7780d5a7f8fd5d26ca123ebe834d957844d1e01a90f920b802892ac0e",
+        "size": 23257
+      },
+      "actions_conclusion": "success",
+      "actual_processes_in_original_run": 2,
+      "artifact_id": 10298208423,
+      "failures_in_original_run": 0,
+      "job_id": 103558198010,
+      "original": {
+        "path": "content/modernization/pr16_fixed_form_acceptance_evidence/34695512247/original.zip",
+        "sha256": "0d31881c45e05e9aa4b3c122663ce3bfd7605ff4287299a602c48232dc893cc8",
+        "size": 854855
+      },
+      "original_receipt": {
+        "sha256": "2248199541fcca708da8d50143ff0895217c7c3dfd07d24ffcf9195a873d3033",
+        "size": 6912
+      },
+      "original_result": {
+        "sha256": "b11b4e368cdd100b578badd3381cd0f7b614e636701765ad5f20d1fe24ecb1f6",
+        "size": 26500
+      },
+      "run_id": 34695512247,
+      "selected_successful_cases": [
+        "zacian-crowned-battle-roundtrip",
+        "zamazenta-crowned-battle-roundtrip"
+      ],
+      "source_zip": {
+        "sha256": "c695dcd6821e3b64b01da5b941c455218c7936ebe9442180e1297700d9b06835",
+        "size": 509422
+      },
+      "tested_head": "952b9fb2e2ee8b5951214eda7a7847c4ca1092d5"
+    },
+    {
+      "actions": {
+        "path": "content/modernization/pr16_fixed_form_acceptance_evidence/34698120000/actions.json",
+        "sha256": "9a9c897f62f20d9becbf0413847e9c682565e47fae617c3812297789748f8f42",
+        "size": 23246
+      },
+      "actions_conclusion": "success",
+      "actual_processes_in_original_run": 2,
+      "artifact_id": 10299506555,
+      "failures_in_original_run": 0,
+      "job_id": 103565021381,
+      "original": {
+        "path": "content/modernization/pr16_fixed_form_acceptance_evidence/34698120000/original.zip",
+        "sha256": "3a2b3faa1ef98e2ddfde2ca1ef32bbcdc90e92469e53b6016d9700a286344c64",
+        "size": 1055169
+      },
+      "original_receipt": {
+        "sha256": "cc8f4ea501f47e60c1ed4b18af6a553dda2644506036fbf4dd536e812b09a2a2",
+        "size": 9890
+      },
+      "original_result": {
+        "sha256": "b2a6dd591d5ced91e2be3655e4496e430ea6cf1b55309ef437f221bd256c7cda",
+        "size": 29192
+      },
+      "run_id": 34698120000,
+      "selected_successful_cases": [
+        "necrozma-dusk-mane-four-slot-roundtrip",
+        "necrozma-dawn-wings-four-slot-roundtrip"
+      ],
+      "source_zip": {
+        "sha256": "71cc9772efa441ddc7fc3c677e352f95247ba544b105517a523e4720caf66b38",
+        "size": 601508
+      },
+      "tested_head": "a552361a250ff1a01afb4f328c5bfef8a329775e"
+    }
+  ],
+  "p03_fixed_form_gap_closed": true,
+  "release_ready": false,
+  "retained_originals_must_match_git_index_and_head": true,
+  "schema_version": 3,
+  "source_bindings": {
+    ".github/workflows/pr16-fixed-form-closeout.yml": {
+      "sha256": "e52f7da572d19a146649c7a186d1ea4c0572e0e93c8af0014cff48440ba26753",
+      "size": 12502
+    },
+    "content/modernization/pr16_fixed_form_contract.json": {
+      "sha256": "42e229c61fab1b9f34319edbf1a7e8ce7945f488f981c6fa4c55e8ca124f80e7",
+      "size": 4713
+    },
+    "scripts/pr16_fixed_form_acceptance.py": {
+      "sha256": "3c2888d1f1e3cb7ba083b49875251ff7642e046de4ba75003766a922f3fef6c8",
+      "size": 22320
+    },
+    "scripts/pr16_fixed_form_closeout.py": {
+      "sha256": "22e59395c52f41b5865085b98e154bba485fa7b221ef89279ff2a822ccb92e61",
+      "size": 18183
+    },
+    "scripts/pr16_fixed_form_originals.py": {
+      "sha256": "d5ac3faa94017c74212473688c29c32aebe504c20831d25527a427ee2f5035a8",
+      "size": 7827
+    },
+    "tests/test_pr16_fixed_form_closeout.py": {
+      "sha256": "af4fecaba817ec14388c78d838f796e87d3eebb57c72161466d4df5c80fee659",
+      "size": 7804
+    },
+    "tools/mgba_pr16_fixed_form_acceptance.c": {
+      "sha256": "2aa621cdcc13011449589650986965bdd12c8994f542e07ece6f5a28979b150a",
+      "size": 50145
+    },
+    "tools/mgba_pr16_necrozma_fusion_acceptance.c": {
+      "sha256": "c4633c15c8822ab900525ff6b478bc552885e33c58cc6fa5c98bd98c17c55cc8",
+      "size": 22168
+    }
+  },
+  "status": "PASS_FIVE_CASE_NATIVE_ACCEPTANCE_PENDING_P08_TRANSFER"
+}

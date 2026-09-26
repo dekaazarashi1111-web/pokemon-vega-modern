@@ -1,0 +1,71 @@
+name: pr16-learnset-successor
+run-name: PR16 learnset successor ${{ github.sha }}
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-learnset-successor.yml
+      - .github/pr16-learnset-successor-local.json
+      - tools/pr16_learnset_successor.py
+      - tests/test_pr16_learnset_successor.py
+      - scripts/pr16_learnset_successor_verify.py
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: pr16-learnset-successor-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  successor-verify:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+      GITHUB_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: 受入原本を再利用して後継表だけを検証
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B scripts/pr16_learnset_successor_verify.py
+          git diff --check
+          git diff --exit-code
+          test -z "$(git status --porcelain --untracked-files=no)"
+      - name: 後継全consumer表を保存
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr16-learnset-successor-tables
+          path: .local/pr16-learnset-successor/a/
+          retention-days: 30
+          if-no-files-found: error
+      - name: 完了記録用の小型証拠を保存
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr16-learnset-successor-verified
+          path: |
+            .local/pr16-learnset-successor/verify.json
+            .local/pr16-learnset-successor/receipt.json
+            .local/pr16-learnset-successor/unit.txt
+            .local/pr16-learnset-successor/compact-review.json
+            .local/pr16-learnset-successor/source-actions.json
+          retention-days: 30
+          if-no-files-found: error
+      - name: 限定診断ログを保存
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr16-learnset-successor-diagnostics
+          path: |
+            .local/pr16-learnset-successor/a.txt
+            .local/pr16-learnset-successor/b.txt
+            .local/pr16-learnset-successor/unit.txt
+          retention-days: 7
+          if-no-files-found: warn

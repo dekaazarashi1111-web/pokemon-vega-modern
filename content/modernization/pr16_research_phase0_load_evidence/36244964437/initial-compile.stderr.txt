@@ -1,0 +1,5 @@
+.local/pr16-research-lifecycle/phase0-load.c: In function ‘pl_make_unavailable’:
+.local/pr16-research-lifecycle/phase0-load.c:379:52: error: comparison of integer expressions of different signedness: ‘uint32_t’ {aka ‘unsigned int’} and ‘int32_t’ {aka ‘int’} [-Werror=sign-compare]
+  379 |  si_need(!memcmp(regs,cpu->gprs,sizeof(regs))&&cpsr==cpu->cpsr.packed&&!memcmp(flash,s->data,0x20000)&&read32(c,PL_AVAILABLE)==0,"fixture preserves registers and full Flash");free(ram);free(flash);
+      |                                                    ^~
+cc1: all warnings being treated as errors

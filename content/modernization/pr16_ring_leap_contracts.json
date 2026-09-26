@@ -1,0 +1,513 @@
+{
+  "schema_version": 1,
+  "task": "PR-P08-7-RING-LEAP-CONTRACTS",
+  "source_head": "ee4089b940fe03c17fbb0919ecb2b44af36c63a6",
+  "run_id": 35099285622,
+  "run_status_at_record": "in_progress",
+  "analysis": {
+    "classification": "SAVED_REMAINDER_THUNK_AND_FEBRUARY_SUFFIX_CONTRACTS_NOT_NATIVE_ACCEPTANCE",
+    "candidate": {
+      "size": 33554432,
+      "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b",
+      "crc32": "3EB17B36"
+    },
+    "prior_original_verified": {
+      "archive": {
+        "id": 10446593639,
+        "size": 3810,
+        "sha256": "5568aad8e4ccb6abe1d09830de51176969e1b5644d5b1302470e70882a339ee4"
+      },
+      "receipt": {
+        "status": "PASS_RECORDED_NONFORCE_PUSHED",
+        "task": "PR-P08-7-RING-DIVMOD-FRONTIER",
+        "source_head": "d51cfce034a86a14c151fbe6ef0135bc75ea635b",
+        "commit": "c561b1c065d262d1ddaab338a8eb796119082acd",
+        "run_id": 35097533760,
+        "tests": {
+          "tests_run": 14,
+          "failures": 0,
+          "errors": 0,
+          "skips": 0,
+          "successful": true
+        },
+        "outputs": [
+          "content/modernization/pr16_ring_divmod_frontier.json",
+          "content/modernization/pr16_native_supply_resume_20260913.json",
+          "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
+          "content/modernization/p08_remaining_work.json",
+          "design/run_log.md",
+          "design/version_log.md"
+        ],
+        "new_emulator_processes": 0,
+        "ring_acquisition_accepted": false,
+        "release_ready": false
+      },
+      "guard": {
+        "base": "f8fa61a0ec62cd4bfa3a32fffc9e0a93b4db30ca",
+        "changed_paths": [
+          ".github/workflows/pr16-ring-divmod-frontier.yml",
+          "content/modernization/p08_remaining_work.json",
+          "content/modernization/pr16_native_supply_resume_20260913.json",
+          "content/modernization/pr16_ring_divmod_frontier.json",
+          "design/run_log.md",
+          "design/version_log.md",
+          "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
+          "scripts/pr16_ring_divmod_frontier.py",
+          "tests/test_pr16_ring_divmod_frontier.py"
+        ],
+        "new_violations": 0,
+        "full_guard_before": 1,
+        "full_guard_after": 1,
+        "exact_output_match": true,
+        "full_guard_pass_claimed": false
+      }
+    },
+    "counts": {
+      "nonzero_u32_remainder_vectors": 7256,
+      "ror_exercised_vectors": 4543,
+      "linked_thunk_vectors": 105,
+      "february_vectors": 7185,
+      "february_call_vectors": 7185,
+      "maximum_division_halfword_fetches": 400,
+      "maximum_calendar_stack_bytes": 28
+    },
+    "byte_bindings": {
+      "0x081C85A4": {
+        "size": 192,
+        "sha256": "a748b8bdf4a1552ce78036dd7671884e403832c33cff134b91c80347a13467e1"
+      },
+      "0x09099E04": {
+        "size": 14,
+        "sha256": "977383a5ac7e225071545010308a27d3bf0de21000770a0ef62b5f0fdbea5530"
+      },
+      "0x09099E5C": {
+        "size": 4,
+        "sha256": "1f73cdedf6e1b8759299d2351cd563d95a873c799fcdaff7883a8002947d168a"
+      },
+      "0x09126EFC": {
+        "size": 356,
+        "sha256": "585bca349893446b98ae29c53ef52a48803da3363e4cd0d4104c774a3f1a7cc5"
+      }
+    },
+    "remainder": {
+      "entry": 136086948,
+      "code_end": 136087140,
+      "nonzero_divisor_vectors_match_python_unsigned_modulo": true,
+      "full_u32_domain_formally_proven": false,
+      "calendar_divisor": 100,
+      "calendar_dividends_exhausted": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99
+      ],
+      "r4_to_r11_and_sp_preserved_for_tested_vectors": true,
+      "nonstack_writes": 0
+    },
+    "thunk": {
+      "entry": 151625220,
+      "tail_target": 136086949,
+      "r0_and_r1_equal_remainder_for_tested_vectors": true,
+      "calendar_call_domain_exhausted": true,
+      "saved_stack_bytes_short_path": 4,
+      "saved_stack_bytes_full_path": 8
+    },
+    "february": {
+      "decoded_years": [
+        0,
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        28,
+        32,
+        36,
+        40,
+        44,
+        48,
+        52,
+        56,
+        60,
+        64,
+        68,
+        72,
+        76,
+        80,
+        84,
+        88,
+        92,
+        96
+      ],
+      "day_bytes_per_year": 256,
+      "day_limit": 29,
+      "day_zero_accepted": true,
+      "year_zero_day29_accepted": true,
+      "weekday_control_bytes": 256,
+      "year_epoch_or_general_century_semantics_proven": false,
+      "input_readonly": true,
+      "hour24_minute60_second60_accepted": true,
+      "result_flags_observed": [
+        0,
+        16,
+        32,
+        48,
+        256,
+        3584,
+        3600,
+        3616,
+        3632
+      ],
+      "unchanged_nonleap_and_other_month_prefixes_replayed": false
+    },
+    "zero_divisor": {
+      "returned": false,
+      "unread_call": 136085452,
+      "site": 136087132,
+      "not_reachable_from_checked_calendar_call_domain": true,
+      "helper_return_or_effects_proven": false
+    },
+    "old_unread_targets": [
+      134647037,
+      134647989,
+      134648233,
+      134648273,
+      135346165,
+      151613701,
+      154152717,
+      154155097,
+      154635157,
+      154635821,
+      154635823,
+      154635825,
+      154639241,
+      154639243,
+      154917233,
+      154917289,
+      154922465,
+      154922573
+    ],
+    "old_frontier_removed": false,
+    "all_callers_resolved": false,
+    "all_runtime_owners_excluded": false,
+    "caller_pointer_size_limit_proven": false,
+    "physical_hardware_behavior_proven": false,
+    "ring_acquisition_accepted": false,
+    "release_ready": false,
+    "rom_changes": 0,
+    "new_emulator_processes": 0,
+    "accepted_native_cases_replayed": 0,
+    "candidate_reconstructions": 0,
+    "new_bytes_sampled": 0
+  },
+  "source_bindings": {
+    "scripts/pr16_ring_followup_v2.py": {
+      "size": 11453,
+      "sha256": "71e33dbe40cd8988e185256821e33e6a1e06e4eddeb8ee6a3eb9047a4d3c49f7"
+    },
+    "scripts/pr16_ring_leap_contracts.py": {
+      "size": 15576,
+      "sha256": "38e7288db44b11a4351d4818a24b450f2d90f56a6f3f9cec9a04a08ec2bbfaba"
+    },
+    "tests/test_pr16_ring_leap_contracts.py": {
+      "size": 7377,
+      "sha256": "b50c4b9f450ba72806d980d6979671cdc179185cb983ed56e206629e98ce24ed"
+    },
+    ".github/workflows/pr16-ring-leap-contracts.yml": {
+      "size": 1930,
+      "sha256": "7ac6f2d1c9a568f0fac5c457943b97ea7900d56261df2091d6b7958c08fce4f8"
+    },
+    "content/modernization/pr16_ring_divmod_frontier.json": {
+      "size": 10223,
+      "sha256": "759bb3568756c7b13b87123f1d239ef768a4844af6ca03be58e2ec05ecc024ce"
+    },
+    "content/modernization/pr16_bp_chooser_checkpoint.json": {
+      "size": 9442,
+      "sha256": "853ed41b6abcfb63651aab136951a53c8c89ec635f769e8466327ba3a0c0ae41"
+    },
+    "scripts/pr16_resume.py": {
+      "size": 26649,
+      "sha256": "b0ec73bf933e46f7b254057559b0c637a2d1a9b625b08f348aa8308ea00dee5a"
+    },
+    "scripts/pr16_ring_compiled_record.py": {
+      "size": 13116,
+      "sha256": "768c94e59983d27bbf0ed46d6ba60008352a3a67e11612b18936e38b271e73ef"
+    },
+    "scripts/guard_private_files.py": {
+      "size": 5443,
+      "sha256": "143426a7403abf47396791f6ece3a3a374fa97fbf8bedc88169f636cddbcc905"
+    },
+    "content/modernization/pr16_ring_clock_contracts.json": {
+      "size": 20155,
+      "sha256": "937753132d8a1546f8ffb7b2e815b773ce58dcd67079d46cab4e335f4b1089be"
+    },
+    "scripts/pr16_ring_delegate_contracts.py": {
+      "size": 22642,
+      "sha256": "df3016656c40b1a46b2926405c4fc520e5d5637408fa4b9de94dfd3dcad5c3d7"
+    },
+    "scripts/pr16_ring_clock_contracts.py": {
+      "size": 17570,
+      "sha256": "383c1c1425559f24aa73180a44747044555ce1a9ff65a4948fc2ce873bf35acf"
+    }
+  },
+  "focused_tests": {
+    "tests_run": 37,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "successful": true
+  },
+  "prior_actions_verified_without_replay": [
+    {
+      "id": 35097533760,
+      "head_sha": "d51cfce034a86a14c151fbe6ef0135bc75ea635b",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34946969126,
+      "head_sha": "0b7497b575a3180a045f2be377386490f192a012",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "actions_observed_before_record": [
+    {
+      "id": 35099290714,
+      "name": "source-validation",
+      "head_sha": "ee4089b940fe03c17fbb0919ecb2b44af36c63a6",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35099290694,
+      "name": "p03-forgetting-ci",
+      "head_sha": "ee4089b940fe03c17fbb0919ecb2b44af36c63a6",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35099285561,
+      "name": "source-validation",
+      "head_sha": "ee4089b940fe03c17fbb0919ecb2b44af36c63a6",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35099285476,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "ee4089b940fe03c17fbb0919ecb2b44af36c63a6",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35099285622,
+      "name": "保存剰余・中継ABI・二月suffixを検証",
+      "head_sha": "ee4089b940fe03c17fbb0919ecb2b44af36c63a6",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35099285478,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "ee4089b940fe03c17fbb0919ecb2b44af36c63a6",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35099285621,
+      "name": "p03-forgetting-ci",
+      "head_sha": "ee4089b940fe03c17fbb0919ecb2b44af36c63a6",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35097729491,
+      "name": "p03-forgetting-ci",
+      "head_sha": "c561b1c065d262d1ddaab338a8eb796119082acd",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35097729528,
+      "name": "source-validation",
+      "head_sha": "c561b1c065d262d1ddaab338a8eb796119082acd",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35097536535,
+      "name": "p03-forgetting-ci",
+      "head_sha": "d51cfce034a86a14c151fbe6ef0135bc75ea635b",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35097536480,
+      "name": "source-validation",
+      "head_sha": "d51cfce034a86a14c151fbe6ef0135bc75ea635b",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35097533760,
+      "name": "未読081C85A5だけを保存",
+      "head_sha": "d51cfce034a86a14c151fbe6ef0135bc75ea635b",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35097533673,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "d51cfce034a86a14c151fbe6ef0135bc75ea635b",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35097533448,
+      "name": "p03-forgetting-ci",
+      "head_sha": "d51cfce034a86a14c151fbe6ef0135bc75ea635b",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35097533473,
+      "name": "source-validation",
+      "head_sha": "d51cfce034a86a14c151fbe6ef0135bc75ea635b",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35097533418,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "d51cfce034a86a14c151fbe6ef0135bc75ea635b",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35091570788,
+      "name": "p03-forgetting-ci",
+      "head_sha": "f8fa61a0ec62cd4bfa3a32fffc9e0a93b4db30ca",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35091571045,
+      "name": "source-validation",
+      "head_sha": "f8fa61a0ec62cd4bfa3a32fffc9e0a93b4db30ca",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35091504833,
+      "name": "p03-forgetting-ci",
+      "head_sha": "f5a25d8284eea63dce42c73f4adbb35f9f0ea5e0",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35091504807,
+      "name": "source-validation",
+      "head_sha": "f5a25d8284eea63dce42c73f4adbb35f9f0ea5e0",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ]
+}

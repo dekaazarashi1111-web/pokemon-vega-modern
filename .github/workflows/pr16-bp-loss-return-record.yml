@@ -1,0 +1,88 @@
+name: pr16-bp-loss-return-record
+run-name: Revalidate preserved native loss and stage text blobs; no native or branch writes
+on:
+  workflow_dispatch:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - scripts/pr16_bp_loss_return_evidence.py
+      - tests/test_pr16_bp_loss_return_evidence.py
+      - scripts/pr16_bp_loss_return_record.py
+      - .github/workflows/pr16-bp-loss-return-record.yml
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: pr16-bp-loss-return-record
+  cancel-in-progress: false
+jobs:
+  verify-and-stage-blobs:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Download exactly two preserved engineering artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-loss-return-record
+          mkdir -p "$out"
+          gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/10318786656/zip" > "$out/native.zip"
+          gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/10318541102/zip" > "$out/audit.zip"
+      - name: Verify native original and prepare fixed handoff in local checkout only
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python3 scripts/pr16_bp_loss_return_record.py prepare
+          out=.local/pr16-bp-loss-return-record
+          python3 -m unittest tests.test_pr16_bp_loss_return_evidence.LossEvidenceTests -v > "$out/evidence-unit.stdout" 2> "$out/evidence-unit.stderr"
+          python3 -m unittest tests.test_pr16_resume -v > "$out/resume-unit.stdout" 2> "$out/resume-unit.stderr"
+          python3 scripts/pr16_resume.py check > "$out/resume-check.json"
+          python3 scripts/validate_task_graph.py > "$out/task-graph.txt"
+      - name: Append both logs and verify exact staged/private-guard boundary
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python3 scripts/pr16_bp_loss_return_record.py stage
+      - name: Upload immutable text blobs only; manual review and connector commit required
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python3 scripts/pr16_bp_loss_return_record.py blobs
+      - name: Guard review artifact
+        id: guard
+        if: always()
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json,pathlib,re
+          out=pathlib.Path('.local/pr16-bp-loss-return-record')
+          for path in out.rglob('*'):
+              if not path.is_file() or path in (out/'native.zip',out/'audit.zip'):continue
+              assert not path.is_symlink()
+              raw=path.read_bytes();raw.decode('utf-8');assert b'\0' not in raw and len(raw)<16000000
+              assert not re.search(rb'gh[pousr]_[A-Za-z0-9]{36,}|github_pat_[A-Za-z0-9_]{60,}',raw)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.guard.outcome == 'success'
+        with:
+          name: pr16-bp-loss-return-record-review
+          path: |
+            .local/pr16-bp-loss-return-record/*.json
+            .local/pr16-bp-loss-return-record/*.stdout
+            .local/pr16-bp-loss-return-record/*.stderr
+            .local/pr16-bp-loss-return-record/*.txt
+            .local/pr16-bp-loss-return-record/*.diff
+            .local/pr16-bp-loss-return-record/review-files/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90

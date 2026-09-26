@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "task": "USER-20260920-CIRCUS-BATTLE28-RECEIPT",
+  "classification": "NATIVE_ORIGINAL_RECONCILED_NO_REPLAY",
+  "native": {
+    "run_id": 35471833294,
+    "job_id": 105974057584,
+    "workflow_source_head": "c7218dbf663df9c3b5be868712037e94c76d430d",
+    "status": "completed",
+    "conclusion": "failure",
+    "artifact_id": 10593200557,
+    "archive": {
+      "size": 1051654,
+      "sha256": "8bbc05f958bcc47e09d337c6369dedd079bfd125d36d52ba7e2262ca0b21575a"
+    },
+    "native_execution_head": "c0fae432feeb297382d33d84f6b5bab264113332"
+  },
+  "report_path": "content/modernization/pr16_circus_battle28.json",
+  "report_before": {
+    "size": 58614,
+    "sha256": "41dbcf04329d5e49fa34ac2b84ecf4b679485c3c516b8505597002c24c7d493f"
+  },
+  "candidate": {
+    "size": 33554432,
+    "sha256": "2b107e7ef897844eff810ff0b40f82543640488696e8295194ceb3b66fb2c183"
+  },
+  "visual_review": [
+    {
+      "name": "circus-continuous-30-save-streak-131-outcome.ppm",
+      "identity": {
+        "size": 115215,
+        "sha256": "f4b25aab8153958bbb87b0aae80bb9cd9615b040cc8c4c45af6e265ee653c2b7"
+      },
+      "review_ja": "28戦目のoutcome=1に対応。相手表示が消え、こちらの個体はHP87/182で生存。"
+    },
+    {
+      "name": "circus-continuous-30-save-streak-133-confirmation.ppm",
+      "identity": {
+        "size": 115215,
+        "sha256": "bf61f8cb99a024da4ebc8abe20ec9c41a0d34131056a67bffafd82b41230f73b"
+      },
+      "review_ja": "29戦目開始前は同じ選択3個体。通常選択UIで1〜3番目とConfirmを表示。型は対応するparty原本で確認。"
+    },
+    {
+      "name": "circus-continuous-30-save-streak-138-saved.ppm",
+      "identity": {
+        "size": 115215,
+        "sha256": "5c36b9a57780673c6acb4ed576062e6e0d88d0c54bab0317128961ef2d1fdb98"
+      },
+      "review_ja": "通常Save後に受付前のフィールド画面へ復帰。保存成立は併記したcounter/owner原本で判定。"
+    },
+    {
+      "name": "circus-continuous-30-save-streak-139-reloaded.ppm",
+      "identity": {
+        "size": 115215,
+        "sha256": "4034ee4630df5a9ddd25c876070ee97d5933f7bd540141101f5e2dd5842bc4b6"
+      },
+      "review_ja": "fresh coreの通常Continue後、受付前の同位置のフィールド画面。owner64/party600/inventoryは原本でも一致。"
+    }
+  ],
+  "new_emulator_processes": 0,
+  "arm_compiles": 0,
+  "arm_links": 0,
+  "accepted_standalone_replays": 0,
+  "rom_changes": 0,
+  "genuine_30_wins_verified": false,
+  "lifecycle_verified": true,
+  "physical_admission_accepted": false,
+  "suppression_accepted": false,
+  "release_ready": false,
+  "source_head": "f98a9778e79177bc8094798b43d663d2d6174499",
+  "next_loss_diagnostic": {
+    "battle": 29,
+    "first_switch_frame": 460169,
+    "first_switch_done": 461643,
+    "target_hp_before": 163,
+    "target_hp_after": 71,
+    "last_action_frame": 483459,
+    "own_hp": 4,
+    "enemy_hp": 2,
+    "observed_outcome_frame": 483938,
+    "next_action_ja": "29戦目の先発/通常交代を修復する。初回交代の163→71HPと終盤の相手2HP/こちら4HPを新原本で確認。28勝prefixと受入済みSave/Continueは単独再実行しない。ROM変更/連勝・RNG注入は禁止。"
+  }
+}

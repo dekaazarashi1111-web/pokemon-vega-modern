@@ -1,0 +1,829 @@
+{
+  "schema_version": 1,
+  "task": "PR-P08-7-RING-RECORD-INIT",
+  "source_head": "d42165a1fdaf578805e64b247b1a833a0a7316bc",
+  "run_id": 35074318490,
+  "run_status_at_record": "in_progress",
+  "analysis": {
+    "classification": "SAVED_LOCAL_INITIALIZER_CONTRACT_NOT_ALLOCATION_OR_NATIVE",
+    "candidate": {
+      "size": 33554432,
+      "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b",
+      "crc32": "3EB17B36"
+    },
+    "entry": 135346564,
+    "end": 135346652,
+    "saved_code": {
+      "size": 108,
+      "sha256": "94672ea4ca5d2d9993c7b940c9e769b099ae030d1bae6f3f7a5a69daea4b5aa7"
+    },
+    "abi": {
+      "state": "r0 low8",
+      "records": "r1 unchanged pointer",
+      "size": "r2 low16",
+      "capacity": "floor((r2 & 65535)/4)",
+      "frame_bytes": 12,
+      "r4_r5_preserved_conditionally": true,
+      "r0_at_return": "saved LR, not allocation pointer",
+      "external_calls_in_local_initializer": 0
+    },
+    "cases": [
+      {
+        "inputs": {
+          "state": 0,
+          "size": 12,
+          "limit": 3
+        },
+        "contract": {
+          "normalized_state": 0,
+          "normalized_size": 12,
+          "valid": false,
+          "registered_capacity": null,
+          "initialized_words": 0,
+          "required_initialization_bytes": 0,
+          "initialization_exceeds_declared_size": false,
+          "selector_written": 0,
+          "allocates_storage": false,
+          "frame_bytes": 12
+        },
+        "execution": {
+          "r0": 134292293,
+          "sp": 50360320,
+          "steps": 17,
+          "visited": [
+            135346564,
+            135346566,
+            135346568,
+            135346570,
+            135346572,
+            135346574,
+            135346576,
+            135346578,
+            135346580,
+            135346582,
+            135346584,
+            135346586,
+            135346588,
+            135346590,
+            135346646,
+            135346648,
+            135346650
+          ],
+          "selector": 0,
+          "record_base": 33587200,
+          "capacity": 123,
+          "index": 17,
+          "limit": 3,
+          "writes": [
+            {
+              "address": 50360308,
+              "width": 4,
+              "value": 305419896
+            },
+            {
+              "address": 50360312,
+              "width": 4,
+              "value": 2309737967
+            },
+            {
+              "address": 50360316,
+              "width": 4,
+              "value": 134292293
+            },
+            {
+              "address": 50355928,
+              "width": 1,
+              "value": 0
+            }
+          ],
+          "buffer_hex": "cccccccccccccccccccccccc"
+        },
+        "classification": "HOST_MODEL_ONLY_NOT_NATIVE"
+      },
+      {
+        "inputs": {
+          "state": 1,
+          "size": 12,
+          "limit": 3
+        },
+        "contract": {
+          "normalized_state": 1,
+          "normalized_size": 12,
+          "valid": true,
+          "registered_capacity": 3,
+          "initialized_words": 0,
+          "required_initialization_bytes": 0,
+          "initialization_exceeds_declared_size": false,
+          "selector_written": null,
+          "allocates_storage": false,
+          "frame_bytes": 12
+        },
+        "execution": {
+          "r0": 134292293,
+          "sp": 50360320,
+          "steps": 23,
+          "visited": [
+            135346564,
+            135346566,
+            135346568,
+            135346570,
+            135346572,
+            135346574,
+            135346576,
+            135346578,
+            135346580,
+            135346582,
+            135346596,
+            135346598,
+            135346600,
+            135346602,
+            135346604,
+            135346606,
+            135346608,
+            135346610,
+            135346612,
+            135346614,
+            135346646,
+            135346648,
+            135346650
+          ],
+          "selector": 7,
+          "record_base": 33619968,
+          "capacity": 3,
+          "index": 0,
+          "limit": 3,
+          "writes": [
+            {
+              "address": 50360308,
+              "width": 4,
+              "value": 305419896
+            },
+            {
+              "address": 50360312,
+              "width": 4,
+              "value": 2309737967
+            },
+            {
+              "address": 50360316,
+              "width": 4,
+              "value": 134292293
+            },
+            {
+              "address": 50339884,
+              "width": 4,
+              "value": 33619968
+            },
+            {
+              "address": 50339888,
+              "width": 2,
+              "value": 3
+            },
+            {
+              "address": 33795990,
+              "width": 2,
+              "value": 0
+            }
+          ],
+          "buffer_hex": "cccccccccccccccccccccccc"
+        },
+        "classification": "HOST_MODEL_ONLY_NOT_NATIVE"
+      },
+      {
+        "inputs": {
+          "state": 2,
+          "size": 12,
+          "limit": 3
+        },
+        "contract": {
+          "normalized_state": 2,
+          "normalized_size": 12,
+          "valid": true,
+          "registered_capacity": 3,
+          "initialized_words": 3,
+          "required_initialization_bytes": 12,
+          "initialization_exceeds_declared_size": false,
+          "selector_written": null,
+          "allocates_storage": false,
+          "frame_bytes": 12
+        },
+        "execution": {
+          "r0": 134292293,
+          "sp": 50360320,
+          "steps": 54,
+          "visited": [
+            135346564,
+            135346566,
+            135346568,
+            135346570,
+            135346572,
+            135346574,
+            135346576,
+            135346578,
+            135346580,
+            135346582,
+            135346596,
+            135346598,
+            135346600,
+            135346602,
+            135346604,
+            135346606,
+            135346608,
+            135346610,
+            135346612,
+            135346614,
+            135346616,
+            135346618,
+            135346620,
+            135346622,
+            135346624,
+            135346626,
+            135346628,
+            135346630,
+            135346632,
+            135346634,
+            135346636,
+            135346638,
+            135346640,
+            135346642,
+            135346644,
+            135346646,
+            135346648,
+            135346650
+          ],
+          "selector": 7,
+          "record_base": 33619968,
+          "capacity": 3,
+          "index": 0,
+          "limit": 3,
+          "writes": [
+            {
+              "address": 50360308,
+              "width": 4,
+              "value": 305419896
+            },
+            {
+              "address": 50360312,
+              "width": 4,
+              "value": 2309737967
+            },
+            {
+              "address": 50360316,
+              "width": 4,
+              "value": 134292293
+            },
+            {
+              "address": 50339884,
+              "width": 4,
+              "value": 33619968
+            },
+            {
+              "address": 50339888,
+              "width": 2,
+              "value": 3
+            },
+            {
+              "address": 33795990,
+              "width": 2,
+              "value": 0
+            },
+            {
+              "address": 33619968,
+              "width": 4,
+              "value": 2712847316
+            },
+            {
+              "address": 33619972,
+              "width": 4,
+              "value": 2712847316
+            },
+            {
+              "address": 33619976,
+              "width": 4,
+              "value": 2712847316
+            }
+          ],
+          "buffer_hex": "d4c3b2a1d4c3b2a1d4c3b2a1"
+        },
+        "classification": "HOST_MODEL_ONLY_NOT_NATIVE"
+      },
+      {
+        "inputs": {
+          "state": 2,
+          "size": 4,
+          "limit": 3
+        },
+        "contract": {
+          "normalized_state": 2,
+          "normalized_size": 4,
+          "valid": true,
+          "registered_capacity": 1,
+          "initialized_words": 3,
+          "required_initialization_bytes": 12,
+          "initialization_exceeds_declared_size": true,
+          "selector_written": null,
+          "allocates_storage": false,
+          "frame_bytes": 12
+        },
+        "execution": {
+          "r0": 134292293,
+          "sp": 50360320,
+          "steps": 54,
+          "visited": [
+            135346564,
+            135346566,
+            135346568,
+            135346570,
+            135346572,
+            135346574,
+            135346576,
+            135346578,
+            135346580,
+            135346582,
+            135346596,
+            135346598,
+            135346600,
+            135346602,
+            135346604,
+            135346606,
+            135346608,
+            135346610,
+            135346612,
+            135346614,
+            135346616,
+            135346618,
+            135346620,
+            135346622,
+            135346624,
+            135346626,
+            135346628,
+            135346630,
+            135346632,
+            135346634,
+            135346636,
+            135346638,
+            135346640,
+            135346642,
+            135346644,
+            135346646,
+            135346648,
+            135346650
+          ],
+          "selector": 7,
+          "record_base": 33619968,
+          "capacity": 1,
+          "index": 0,
+          "limit": 3,
+          "writes": [
+            {
+              "address": 50360308,
+              "width": 4,
+              "value": 305419896
+            },
+            {
+              "address": 50360312,
+              "width": 4,
+              "value": 2309737967
+            },
+            {
+              "address": 50360316,
+              "width": 4,
+              "value": 134292293
+            },
+            {
+              "address": 50339884,
+              "width": 4,
+              "value": 33619968
+            },
+            {
+              "address": 50339888,
+              "width": 2,
+              "value": 1
+            },
+            {
+              "address": 33795990,
+              "width": 2,
+              "value": 0
+            },
+            {
+              "address": 33619968,
+              "width": 4,
+              "value": 2712847316
+            },
+            {
+              "address": 33619972,
+              "width": 4,
+              "value": 2712847316
+            },
+            {
+              "address": 33619976,
+              "width": 4,
+              "value": 2712847316
+            }
+          ],
+          "buffer_hex": "d4c3b2a1d4c3b2a1d4c3b2a1"
+        },
+        "classification": "HOST_MODEL_ONLY_NOT_NATIVE"
+      },
+      {
+        "inputs": {
+          "state": 2,
+          "size": 12,
+          "limit": 0
+        },
+        "contract": {
+          "normalized_state": 2,
+          "normalized_size": 12,
+          "valid": true,
+          "registered_capacity": 3,
+          "initialized_words": 0,
+          "required_initialization_bytes": 0,
+          "initialization_exceeds_declared_size": false,
+          "selector_written": null,
+          "allocates_storage": false,
+          "frame_bytes": 12
+        },
+        "execution": {
+          "r0": 134292293,
+          "sp": 50360320,
+          "steps": 28,
+          "visited": [
+            135346564,
+            135346566,
+            135346568,
+            135346570,
+            135346572,
+            135346574,
+            135346576,
+            135346578,
+            135346580,
+            135346582,
+            135346596,
+            135346598,
+            135346600,
+            135346602,
+            135346604,
+            135346606,
+            135346608,
+            135346610,
+            135346612,
+            135346614,
+            135346616,
+            135346618,
+            135346620,
+            135346622,
+            135346624,
+            135346646,
+            135346648,
+            135346650
+          ],
+          "selector": 7,
+          "record_base": 33619968,
+          "capacity": 3,
+          "index": 0,
+          "limit": 0,
+          "writes": [
+            {
+              "address": 50360308,
+              "width": 4,
+              "value": 305419896
+            },
+            {
+              "address": 50360312,
+              "width": 4,
+              "value": 2309737967
+            },
+            {
+              "address": 50360316,
+              "width": 4,
+              "value": 134292293
+            },
+            {
+              "address": 50339884,
+              "width": 4,
+              "value": 33619968
+            },
+            {
+              "address": 50339888,
+              "width": 2,
+              "value": 3
+            },
+            {
+              "address": 33795990,
+              "width": 2,
+              "value": 0
+            }
+          ],
+          "buffer_hex": "cccccccccccccccccccccccc"
+        },
+        "classification": "HOST_MODEL_ONLY_NOT_NATIVE"
+      }
+    ],
+    "independent_extent_condition_ja": "state2はcapacityでなくLIMITのword数を初期化する。caller実所有範囲はmax(4*capacity,4*LIMIT)を別途確認し、制御域/stackとの非aliasを確認する。bufferの割当/解放はこの関数にない。mode1/2有効時にselectorを直接設定しない。",
+    "unread_template_address": 138505020,
+    "template_value_observed": false,
+    "foreign_control_alias_candidates": [
+      {
+        "start": 152203536,
+        "hex": "094d0a220021280072f77dfe01236b70ab700f332b71",
+        "literal_address": 152203576,
+        "pointer": 50355928,
+        "external_callee": 151625238,
+        "arguments_before_call": {
+          "r0": 50355928,
+          "r1": 0,
+          "r2": 10
+        },
+        "callee_effect_proven": false,
+        "r5_preservation_proven": false,
+        "post_call_stores_if_r5_preserved": [
+          {
+            "address": 50355929,
+            "width": 1,
+            "value": 1
+          },
+          {
+            "address": 50355930,
+            "width": 1,
+            "value": 1
+          },
+          {
+            "address": 50355932,
+            "width": 1,
+            "value": 16
+          }
+        ],
+        "conditional_limit_low_byte_alias": true,
+        "runtime_reachable": false
+      },
+      {
+        "start": 152203616,
+        "hex": "0a4d0a220021280072f755fe01236b70ab700f332b71",
+        "literal_address": 152203660,
+        "pointer": 50355928,
+        "external_callee": 151625238,
+        "arguments_before_call": {
+          "r0": 50355928,
+          "r1": 0,
+          "r2": 10
+        },
+        "callee_effect_proven": false,
+        "r5_preservation_proven": false,
+        "post_call_stores_if_r5_preserved": [
+          {
+            "address": 50355929,
+            "width": 1,
+            "value": 1
+          },
+          {
+            "address": 50355930,
+            "width": 1,
+            "value": 1
+          },
+          {
+            "address": 50355932,
+            "width": 1,
+            "value": 16
+          }
+        ],
+        "conditional_limit_low_byte_alias": true,
+        "runtime_reachable": false
+      }
+    ],
+    "old_unread_targets": [
+      134647037,
+      134647989,
+      134648233,
+      134648273,
+      135346165,
+      151613701,
+      154152717,
+      154155097,
+      154635157,
+      154635821,
+      154635823,
+      154635825,
+      154639241,
+      154639243,
+      154917233,
+      154917289,
+      154922465,
+      154922573
+    ],
+    "old_frontier_removed": false,
+    "allocated_storage_extent_proven": false,
+    "selector1_runtime_observed": false,
+    "selector2_runtime_observed": false,
+    "active_record_prefix_observed": false,
+    "normal_mapping_proven": false,
+    "synchrony_proven": false,
+    "all_runtime_owners_excluded": false,
+    "ring_acquisition_accepted": false,
+    "release_ready": false,
+    "rom_changes": 0,
+    "new_emulator_processes": 0,
+    "accepted_native_cases_replayed": 0,
+    "prior_abi_classifications_replayed": 0,
+    "candidate_reconstructions": 0
+  },
+  "source_bindings": {
+    "scripts/pr16_ring_followup_v2.py": {
+      "size": 11453,
+      "sha256": "71e33dbe40cd8988e185256821e33e6a1e06e4eddeb8ee6a3eb9047a4d3c49f7"
+    },
+    "scripts/pr16_ring_record_init.py": {
+      "size": 13625,
+      "sha256": "aba6b60208116ef58560ac98349e478897052840c6d0b15ac085df47c12fde46"
+    },
+    "tests/test_pr16_ring_record_init.py": {
+      "size": 4677,
+      "sha256": "e14d24b88c3cf570a17ad6dbabd53aab069829eaacac64279ce2e94ef2af838d"
+    },
+    ".github/workflows/pr16-ring-record-init.yml": {
+      "size": 1940,
+      "sha256": "d00cefe77d60450329fafdccd5dc63b823812e37a76d93c92055ede27509eae4"
+    },
+    "content/modernization/pr16_ring_selector_owners.json": {
+      "size": 1704471,
+      "sha256": "64e746c4b085f85afb180bbf03299c84ae7efebd1e72964f5f0195e97d553727"
+    },
+    "content/modernization/pr16_bp_chooser_checkpoint.json": {
+      "size": 9442,
+      "sha256": "853ed41b6abcfb63651aab136951a53c8c89ec635f769e8466327ba3a0c0ae41"
+    },
+    "scripts/pr16_resume.py": {
+      "size": 26649,
+      "sha256": "b0ec73bf933e46f7b254057559b0c637a2d1a9b625b08f348aa8308ea00dee5a"
+    },
+    "scripts/pr16_ring_compiled_record.py": {
+      "size": 13116,
+      "sha256": "768c94e59983d27bbf0ed46d6ba60008352a3a67e11612b18936e38b271e73ef"
+    },
+    "scripts/guard_private_files.py": {
+      "size": 5443,
+      "sha256": "143426a7403abf47396791f6ece3a3a374fa97fbf8bedc88169f636cddbcc905"
+    }
+  },
+  "focused_tests": {
+    "tests_run": 24,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "successful": true
+  },
+  "prior_actions_verified_without_replay": [
+    {
+      "id": 35073059942,
+      "head_sha": "0a9e8c00fbb67cff4c626eca9c7ae770b143c4de",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34946969126,
+      "head_sha": "0b7497b575a3180a045f2be377386490f192a012",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "actions_observed_before_record": [
+    {
+      "id": 35074321926,
+      "name": "p03-forgetting-ci",
+      "head_sha": "d42165a1fdaf578805e64b247b1a833a0a7316bc",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35074321744,
+      "name": "source-validation",
+      "head_sha": "d42165a1fdaf578805e64b247b1a833a0a7316bc",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35074318357,
+      "name": "source-validation",
+      "head_sha": "d42165a1fdaf578805e64b247b1a833a0a7316bc",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35074318490,
+      "name": "保存record初期化契約と制御域alias候補（native非実行）",
+      "head_sha": "d42165a1fdaf578805e64b247b1a833a0a7316bc",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35074318343,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "d42165a1fdaf578805e64b247b1a833a0a7316bc",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35074318391,
+      "name": "p03-forgetting-ci",
+      "head_sha": "d42165a1fdaf578805e64b247b1a833a0a7316bc",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35074318364,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "d42165a1fdaf578805e64b247b1a833a0a7316bc",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35073255905,
+      "name": "p03-forgetting-ci",
+      "head_sha": "5a3a79347acd235250cd389a6d79b650902f93f6",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35073256052,
+      "name": "source-validation",
+      "head_sha": "5a3a79347acd235250cd389a6d79b650902f93f6",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35073064845,
+      "name": "p03-forgetting-ci",
+      "head_sha": "0a9e8c00fbb67cff4c626eca9c7ae770b143c4de",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35073064812,
+      "name": "source-validation",
+      "head_sha": "0a9e8c00fbb67cff4c626eca9c7ae770b143c4de",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35073060004,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "0a9e8c00fbb67cff4c626eca9c7ae770b143c4de",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35073060116,
+      "name": "p03-forgetting-ci",
+      "head_sha": "0a9e8c00fbb67cff4c626eca9c7ae770b143c4de",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35073059937,
+      "name": "source-validation",
+      "head_sha": "0a9e8c00fbb67cff4c626eca9c7ae770b143c4de",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35073059942,
+      "name": "Ring未観測selector・record所有権の限定検証",
+      "head_sha": "0a9e8c00fbb67cff4c626eca9c7ae770b143c4de",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35073060001,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "0a9e8c00fbb67cff4c626eca9c7ae770b143c4de",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35072314502,
+      "name": "source-validation",
+      "head_sha": "7e9992a76829bef291ec7c62b88fa67552d5ea71",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35072314501,
+      "name": "p03-forgetting-ci",
+      "head_sha": "7e9992a76829bef291ec7c62b88fa67552d5ea71",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35072310454,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "7e9992a76829bef291ec7c62b88fa67552d5ea71",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35072310813,
+      "name": "Ring未観測selector・record所有権の限定検証",
+      "head_sha": "7e9992a76829bef291ec7c62b88fa67552d5ea71",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "active_baseline_changed": false,
+  "after_last_index": 255,
+  "arm_compiles": 0,
+  "arm_links": 0,
+  "before_last_index": 511,
+  "candidate": {
+    "sha256": "26dac23cfdbc02c3c25e357b79dcdf3d247c10d893f54a4f6d6b1227bf5624da",
+    "size": 33554432
+  },
+  "changed_bytes": 1,
+  "new_allocations": 0,
+  "parent": {
+    "sha256": "5d1fc9c47225ae8c0a369514b899a062af3699fa3c9a2f617e94ffd5f7dcc1ab",
+    "size": 33554432
+  },
+  "patches": [
+    {
+      "after": "ff000000",
+      "before": "ff010000",
+      "offset": 363080
+    }
+  ],
+  "purpose": "SAVED_MAP_VIEW_EMPTY_SCAN_256_HALFWORDS_NOT_512",
+  "release_ready": false,
+  "roots": {
+    "0x8058994": {
+      "sha256": "3c4e9e49d110d41af00dbf2596dc841e43192877514f3bd2dd1ea8064e440412",
+      "size": 128
+    },
+    "0x8058a14": {
+      "sha256": "b2053ac5b30d59529ab31c31323850008527a7624f8b6d238cd40ebb1a20e80a",
+      "size": 64
+    },
+    "0x8058a54": {
+      "sha256": "b74a8b1323453d08b72c690ae85363a104615c5cdfcae5a461e81a9010faba1b",
+      "size": 44
+    },
+    "0x8058a80": {
+      "sha256": "b66c1377adc6523992e80bd5c941a820a970954b403746b74150f0ff60a89a9f",
+      "size": 140
+    },
+    "0x806ee14": {
+      "sha256": "d4c8a5b891d6d5bbba725d612b08937a983d8ae8cdea1d3a3d100f6c79f6a3ee",
+      "size": 56
+    },
+    "0x81c7a88": {
+      "sha256": "07967ebdc3979cd4fd4de37fd22b3e6de8965b00dae4ac5585577c9709839652",
+      "size": 4
+    }
+  },
+  "saved_view_bytes": 512,
+  "saved_view_offset": 2200,
+  "schema_version": 1,
+  "visible_halfwords": 210
+}

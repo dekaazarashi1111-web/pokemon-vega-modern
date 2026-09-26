@@ -1,0 +1,2272 @@
+{
+  "accepted_case_reruns": 0,
+  "actions_completion_confirmed": false,
+  "active_baseline_changed": false,
+  "arm_compiles": 1,
+  "arm_links": 1,
+  "candidate": {
+    "sha256": "b7790902733a638445129c388d65ab3c199bceb92a41338e0069221b556b9f91",
+    "size": 33554432
+  },
+  "compiled_sources": {
+    "tools/mgba_ai_fixture_runner.c": {
+      "sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f",
+      "size": 36272
+    },
+    "tools/mgba_battle_core_smoke.c": {
+      "sha256": "ed9875695ca60c61960685ac2f8e810a183c8eedd703e56545d67bde3df5cf24",
+      "size": 94688
+    },
+    "tools/mgba_pr16_learnset_natural.c": {
+      "sha256": "89ecfa71c937b6e9a656446b54579892f76b57758d20b4c64d9703155dd179b9",
+      "size": 9162
+    },
+    "tools/mgba_qol_production_smoke.c": {
+      "sha256": "2c4b9f065f4dce84e48f2be9afe2e2f9f666865088770ee8b068a908a0527b85",
+      "size": 149046
+    }
+  },
+  "fresh_cores": 2,
+  "generated_sources": {
+    "p03_learning_embedded.c": {
+      "sha256": "baab44445aea4df0ecec58f58affb2b5068f91f624f41ad41e0d978c6282afea",
+      "size": 7996
+    },
+    "p03_p02_embedded.c": {
+      "sha256": "cb68391efeaaeaecd0fe9c9be2a69fd234cbad79955d3a22a3e739de3a2e1b5e",
+      "size": 39678
+    },
+    "p03a_fullslots_embedded.c": {
+      "sha256": "d7f63f0df2631a3849ad8276c628ee06ead4312f66c73c4f5b865118ab2c2c75",
+      "size": 12877
+    },
+    "pr16_natural_vectors.h": {
+      "sha256": "87c3de7b8dd531497fe853998015edc2f25005732e64282da0955b3eb145b6ab",
+      "size": 197002
+    },
+    "pr16_natural_walking.h": {
+      "sha256": "b66fd13ddbecf428eb1eb7dd75b9744f3fb418b251b0080b83a1044f197d49d3",
+      "size": 7090
+    },
+    "pr16_progression_archive.c": {
+      "sha256": "b402843f81e3b72ab992154554b5f181e93a15daa3179cff05498d5c7c36de1f",
+      "size": 20163
+    }
+  },
+  "host_compiles": 1,
+  "inherited_unit_tests": 25,
+  "issue19_complete": false,
+  "native_processes": 1,
+  "new_host_unit_compiles": 1,
+  "new_unit_tests": 16,
+  "prior_actions": [
+    {
+      "conclusion": null,
+      "head_sha": "29aee3e4fbaf4618425ff1bad26838aa1bad8d7e",
+      "id": 36042409576,
+      "path": ".github/workflows/pr16-learnset-natural.yml",
+      "status": "in_progress"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "47ee15b2ab3d45d94b0b50b0553294f79799157d",
+      "id": 36041199782,
+      "path": ".github/workflows/pr16-learnset-natural.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "failure",
+      "head_sha": "51242ac859b3a27402d7567cc347c785ac5e8174",
+      "id": 36040704821,
+      "path": ".github/workflows/pr16-learnset-natural.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "failure",
+      "head_sha": "bb052880fe0658981c70e47c793c15a8524bf26d",
+      "id": 36040259713,
+      "path": ".github/workflows/pr16-learnset-natural.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "failure",
+      "head_sha": "729453262e91d0b9a8428105eac6a4337aeff7d1",
+      "id": 36039653256,
+      "path": ".github/workflows/pr16-learnset-natural.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "60dad4fe1feb86aebfbe236a3f8778fb76b7a942",
+      "id": 36038497090,
+      "path": ".github/workflows/pr16-learnset-natural.yml",
+      "status": "completed"
+    }
+  ],
+  "proof_bindings": {
+    "compile.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "compile.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "compile.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "geometry.json": {
+      "sha256": "cce7d5aa97dfa5776f2ef2dcc45de3eb6db30f971b3b10c0659b943ccefc964c",
+      "size": 1937
+    },
+    "inherited-unit.json": {
+      "sha256": "5dc35ce66998a0a36aa5302cf381a184685c66cc6b2041a150347687fc41e604",
+      "size": 370
+    },
+    "original-source.json": {
+      "sha256": "f8bf5251cc7d27938c81c32ec77874897ff7240341922000e3a8f96584d6feb6",
+      "size": 1324
+    },
+    "pr16_wild_bindings.h": {
+      "sha256": "38874a4705dc33401cd7dd90a8739f1a884dd25d3febde68426202e86557a24e",
+      "size": 724
+    },
+    "recipe.json": {
+      "sha256": "81938018b874888f07bd5526da72e8c170ef3c64c38f18a891aec86aa4100591",
+      "size": 71027
+    },
+    "wild-arm-compile.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "wild-arm-compile.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "wild-arm-compile.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "wild-arm-link.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "wild-arm-link.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "wild-arm-link.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "wild-binary.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "wild-binary.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "wild-binary.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "wild-disassembly.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "wild-disassembly.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "wild-disassembly.stdout.txt": {
+      "sha256": "412517c433e846a29cd717d057928d3ec45c09579f2b8b34164ae449eedd5f71",
+      "size": 4624
+    },
+    "wild-initial-butterfree-exp-empty.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "wild-initial-butterfree-exp-empty.stderr.txt": {
+      "sha256": "457daeac646a86e3b2826917c35e4eaf8c34cc661d4bb707fa36baa62592991b",
+      "size": 2157
+    },
+    "wild-initial-butterfree-exp-empty.stdout.txt": {
+      "sha256": "35210ae6c795d9deb5322f749661fabbe40dcf783893212cde0bf339f2948eb3",
+      "size": 826
+    },
+    "wild-repair-link.json": {
+      "sha256": "b68d321a6c9a7513adac6b19994fe9db76b5e3aa1ef0be4c42a256cd713bb801",
+      "size": 66493
+    },
+    "wild-symbols.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "wild-symbols.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "wild-symbols.stdout.txt": {
+      "sha256": "96b5db6e78574d1c1994a5e4995d2fe285cb8d18a09709f146f54a3250d6f697",
+      "size": 42
+    },
+    "wild-undefined.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "wild-undefined.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "wild-undefined.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "wild-unit.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "wild-unit.stderr.txt": {
+      "sha256": "1050bf24359f24df3f2d3dbb60ed7b5686c84e824b5930a8cce5f7584731da91",
+      "size": 1751
+    },
+    "wild-unit.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "wild.ld": {
+      "sha256": "944226b1497b0742c7f4230ac3c9593a0fc8fdb984957236d1ef53750e1efb47",
+      "size": 258
+    }
+  },
+  "protected_bindings": {
+    "config/active_play_baseline.json": {
+      "sha256": "4800257add049ea99cdedda91413a70a255dcff9a85823463596edefa8785053",
+      "size": 394
+    },
+    "content/modernization/p08_remaining_work.json": {
+      "sha256": "d538985b7b16a1b295e2a75bf63f94371bc812208d49aae41c6a017b7ff26981",
+      "size": 41097
+    },
+    "content/modernization/pr16_bp_chooser_checkpoint.json": {
+      "sha256": "4deb7c27771c63740ab94b9cf8c7b3c386f7193b989f35ede9d131c4f4bf15bf",
+      "size": 9442
+    },
+    "content/modernization/pr16_learnset_battle_checkpoint.json": {
+      "sha256": "a1f99fae7693dd5f51d34e774d9c6bf43985b7e9515226f747ec3230c24b8b59",
+      "size": 17707
+    },
+    "content/modernization/pr16_learnset_egg_gameplay_checkpoint.json": {
+      "sha256": "7623c9b5eca00c5a96669815eaa320c9afb4c783279f359ba4268477bdc06143",
+      "size": 32995
+    },
+    "content/modernization/pr16_learnset_entry_repair_checkpoint.json": {
+      "sha256": "8dee3523f709fdc663cf03e617a15c550454658c3d462fba421eb075313a24b6",
+      "size": 69331
+    },
+    "content/modernization/pr16_learnset_progression_checkpoint.json": {
+      "sha256": "be5a1684a51e9bcced727139e5a243edab6c806a76f3518ccbc3f72e7ca3b412",
+      "size": 45167
+    },
+    "content/modernization/pr16_learnset_supply_native_checkpoint.json": {
+      "sha256": "75f6fd498056a7b2c60822fb99f2d36a47fd8eab0b8d0422e12dda58efc22dd8",
+      "size": 57961
+    },
+    "content/modernization/pr16_learnset_wiki_checkpoint.json": {
+      "sha256": "71b538f186b03ca3a725a84cd87baa41d72ca2ef0fb43ce22dec0e198cdefbe7",
+      "size": 45627
+    },
+    "content/modernization/pr16_learnset_wiki_completed_actions.json": {
+      "sha256": "4c200406ab0a3895a44a82cb81d71dde1f99aaa1a281eba1da3e851062bf1808",
+      "size": 9673
+    },
+    "docs/PR16_LEARNSET_ENTRY_REPAIR_JA.md": {
+      "sha256": "ae50455ee1ed588ecc331a2fc8bf4c9be54d774239c99c1bb81c38e22375697b",
+      "size": 2422
+    },
+    "docs/PR16_LEARNSET_PROGRESSION_JA.md": {
+      "sha256": "2d185c6a03df18aa63e7bb587095266dea2033eff0e5e3061e3d61d06277d4f5",
+      "size": 1640
+    }
+  },
+  "release_ready": false,
+  "results": [
+    {
+      "all_owners_accepted": false,
+      "boundary": 863,
+      "candidate_sha256": "b7790902733a638445129c388d65ab3c199bceb92a41338e0069221b556b9f91",
+      "case": "wild-initial-butterfree-exp-empty",
+      "denied_host_write_apis": 7,
+      "encounter": 1962,
+      "enemy_hp_before": 193,
+      "enemy_hp_min": 0,
+      "enemy_level": 76,
+      "enemy_moves": [
+        92,
+        537,
+        76,
+        147
+      ],
+      "enemy_pp": [
+        10,
+        20,
+        10,
+        15
+      ],
+      "enemy_species": 838,
+      "fresh_cores": 2,
+      "guarded_phases": 3,
+      "initial_party": {
+        "sha256": "fc4995ae24dd2dd3e8c22b60a0c468898510439a12e4ea9a84d3ac08762c7499",
+        "size": 100
+      },
+      "initial_party_exp_stats_progress_are_fixtures": true,
+      "issue19_complete": false,
+      "level_after": 44,
+      "level_before": 43,
+      "level_frame": 2434,
+      "moves_after": [
+        53,
+        89,
+        497,
+        0
+      ],
+      "original_rows": [
+        [
+          71,
+          1
+        ],
+        [
+          310,
+          1
+        ],
+        [
+          74,
+          4
+        ],
+        [
+          78,
+          8
+        ],
+        [
+          72,
+          12
+        ],
+        [
+          235,
+          16
+        ],
+        [
+          524,
+          20
+        ],
+        [
+          230,
+          24
+        ],
+        [
+          202,
+          28
+        ],
+        [
+          275,
+          32
+        ],
+        [
+          92,
+          36
+        ],
+        [
+          537,
+          40
+        ],
+        [
+          76,
+          44
+        ],
+        [
+          147,
+          48
+        ]
+      ],
+      "outcome": 1,
+      "party_preserved_bytes": 100,
+      "persisted_party": {
+        "sha256": "8379f1be42b460be4bbc3d998d17df8674d7efc0bc6fceb87fb99b59993bbed6",
+        "size": 100
+      },
+      "pp_after": [
+        14,
+        10,
+        20,
+        0
+      ],
+      "pp_spent": 2043,
+      "release_ready": false,
+      "returned": 3006,
+      "save_counters": [
+        2,
+        3,
+        3
+      ],
+      "schema_version": 1,
+      "status": "PASS",
+      "turns": 1,
+      "walking_steps": 48,
+      "warnings_errors": 0,
+      "xp_after": 86720,
+      "xp_before": 85183,
+      "xp_threshold": 85184
+    }
+  ],
+  "rom_changes_from_accepted_candidate": 224,
+  "run_id": 36042409576,
+  "schema_version": 1,
+  "scope": "WILD_ONLY_ORIGINAL_RESET_AND_BATTLE_EXP_EMPTY",
+  "source_bindings": {
+    ".github/workflows/pr16-learnset-natural.yml": {
+      "sha256": "2c52fba50fda1f00cd90a17d12ea4a82be2fccf9e9429640b78c5d864ff187a3",
+      "size": 3736
+    },
+    "scripts/pr16_learnset_natural.py": {
+      "sha256": "4a47c6c84ee1c158942268abc4c185147ccfc629934426487460b2a1143b402c",
+      "size": 21990
+    },
+    "scripts/pr16_learnset_wild_repair.py": {
+      "sha256": "0521380ce7d4cf19a1a0e79f591187a318b79f08d022fdf85c6912817b747da3",
+      "size": 17181
+    },
+    "src/modernization/pr16_learnset_wild_game.c": {
+      "sha256": "d6d8d380cf2127aacfc7b758c07b30675be212488353972156cc6526655c048c",
+      "size": 1130
+    },
+    "tests/test_pr16_learnset_natural.py": {
+      "sha256": "956e76b5b219f68b6bacee543f42bd11ba1304810dfe484093394ba06f948e51",
+      "size": 5543
+    },
+    "tests/test_pr16_learnset_wild_repair.py": {
+      "sha256": "3b2ea9ac4675d36a11cf01e8c3c996d8aeecca1ba5ba9f707ffc53701f0d650a",
+      "size": 5270
+    },
+    "tools/mgba_pr16_learnset_natural.c": {
+      "sha256": "89ecfa71c937b6e9a656446b54579892f76b57758d20b4c64d9703155dd179b9",
+      "size": 9162
+    }
+  },
+  "source_head": "29aee3e4fbaf4618425ff1bad26838aa1bad8d7e",
+  "status": "PASS_WILD_INITIAL_AND_BATTLE_EXP_EMPTY",
+  "task": "USER-20260925-LEARNSET-WILD-REPAIR",
+  "wiki_generations": 0,
+  "wild_repair": {
+    "accepted_initial_and_plr1_unchanged": true,
+    "allocation": {
+      "allocations": [
+        {
+          "alignment": 4,
+          "content_sha256": "16ab88fb53956eccba0cb99a9621c14e9f04282535f8c7cc74ee4b5dd010e350",
+          "end_exclusive": 18874402,
+          "gba_end_exclusive": 153092130,
+          "gba_start": 153092096,
+          "name": "vega_adapter_module",
+          "owner": "vega_adapter",
+          "placement": "EXPLICIT",
+          "purpose": "T03 deterministic no-op harness module",
+          "region": "integration_modules",
+          "sequence": 0,
+          "size": 34,
+          "start": 18874368
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "3714b6df11dab92069829afbf201bdad25d976980969aa0cac58fc042496a30b",
+          "end_exclusive": 18918436,
+          "gba_end_exclusive": 153136164,
+          "gba_start": 153092132,
+          "name": "move_table_bridge",
+          "owner": "T04",
+          "placement": "EXPLICIT",
+          "purpose": "Vega move tables with V3 adjustments and canonical repoints",
+          "region": "integration_modules",
+          "sequence": 1,
+          "size": 44032,
+          "start": 18874404
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "58d8e581d625eed139e35f589282d5581bd3c48d632b194fe7497750910ab895",
+          "end_exclusive": 32846504,
+          "gba_end_exclusive": 167064232,
+          "gba_start": 167051264,
+          "name": "species_surface_front",
+          "owner": "T09",
+          "placement": "EXPLICIT",
+          "purpose": "T09 front",
+          "region": "future_tail",
+          "sequence": 2,
+          "size": 12968,
+          "start": 32833536
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "59d6131c1a0eb7a8f43af824d2bc97a2bbbe0c532baf69a491cf62774289c691",
+          "end_exclusive": 32859472,
+          "gba_end_exclusive": 167077200,
+          "gba_start": 167064232,
+          "name": "species_surface_back",
+          "owner": "T09",
+          "placement": "EXPLICIT",
+          "purpose": "T09 back",
+          "region": "future_tail",
+          "sequence": 3,
+          "size": 12968,
+          "start": 32846504
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "942cba43f8e932580f2ea252d778a335ca17505ca3e8ddc87ea1224796dbb4d3",
+          "end_exclusive": 32872440,
+          "gba_end_exclusive": 167090168,
+          "gba_start": 167077200,
+          "name": "species_surface_palette",
+          "owner": "T09",
+          "placement": "EXPLICIT",
+          "purpose": "T09 palette",
+          "region": "future_tail",
+          "sequence": 4,
+          "size": 12968,
+          "start": 32859472
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "e8c9320e74dc87ee0bed31bb00966a81fd80a99f63696090625f9df2ee75dea0",
+          "end_exclusive": 32885408,
+          "gba_end_exclusive": 167103136,
+          "gba_start": 167090168,
+          "name": "species_surface_shiny_palette",
+          "owner": "T09",
+          "placement": "EXPLICIT",
+          "purpose": "T09 shiny_palette",
+          "region": "future_tail",
+          "sequence": 5,
+          "size": 12968,
+          "start": 32872440
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "dfd234e85e6fa02fe5f3f4f7ac34080137cfcd627c77e3986cf624290a3d06ca",
+          "end_exclusive": 32891892,
+          "gba_end_exclusive": 167109620,
+          "gba_start": 167103136,
+          "name": "species_surface_icon",
+          "owner": "T09",
+          "placement": "EXPLICIT",
+          "purpose": "T09 icon",
+          "region": "future_tail",
+          "sequence": 6,
+          "size": 6484,
+          "start": 32885408
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "1a1d28cc365f5ca478d964d4e521976d42889128735222cd85ae7ba690a04d89",
+          "end_exclusive": 32893513,
+          "gba_end_exclusive": 167111241,
+          "gba_start": 167109620,
+          "name": "species_surface_icon_palette",
+          "owner": "T09",
+          "placement": "EXPLICIT",
+          "purpose": "T09 icon_palette",
+          "region": "future_tail",
+          "sequence": 7,
+          "size": 1621,
+          "start": 32891892
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "f60fac43883f17304bdb3f69f4a8d96f3f3f2f9001aea8efcebbc2561d4d8382",
+          "end_exclusive": 32900000,
+          "gba_end_exclusive": 167117728,
+          "gba_start": 167111244,
+          "name": "species_surface_front_coords",
+          "owner": "T09",
+          "placement": "EXPLICIT",
+          "purpose": "T09 front_coords",
+          "region": "future_tail",
+          "sequence": 8,
+          "size": 6484,
+          "start": 32893516
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "3cbe584de6ae1f0d94b5cf198e43a038e060477e3b30da00bad7beb2fb496379",
+          "end_exclusive": 32906484,
+          "gba_end_exclusive": 167124212,
+          "gba_start": 167117728,
+          "name": "species_surface_back_coords",
+          "owner": "T09",
+          "placement": "EXPLICIT",
+          "purpose": "T09 back_coords",
+          "region": "future_tail",
+          "sequence": 9,
+          "size": 6484,
+          "start": 32900000
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "dcfc617f0708dd218e36dedb14b97f60a17b1fb71479e344d21e7a0774bca607",
+          "end_exclusive": 32908105,
+          "gba_end_exclusive": 167125833,
+          "gba_start": 167124212,
+          "name": "species_surface_elevation",
+          "owner": "T09",
+          "placement": "EXPLICIT",
+          "purpose": "T09 elevation",
+          "region": "future_tail",
+          "sequence": 10,
+          "size": 1621,
+          "start": 32906484
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "aa4f048339199ebc8b63fe45e2de4630316701158c180d72ab7d749ce79518ef",
+          "end_exclusive": 32914592,
+          "gba_end_exclusive": 167132320,
+          "gba_start": 167125836,
+          "name": "species_surface_footprint",
+          "owner": "T09",
+          "placement": "EXPLICIT",
+          "purpose": "T09 footprint",
+          "region": "future_tail",
+          "sequence": 11,
+          "size": 6484,
+          "start": 32908108
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "d1a4e5a1e566391dc8bc923b086f992fd238c16faedfe3933aec7dd299c7a504",
+          "end_exclusive": 32934044,
+          "gba_end_exclusive": 167151772,
+          "gba_start": 167132320,
+          "name": "species_surface_cry",
+          "owner": "T09",
+          "placement": "EXPLICIT",
+          "purpose": "T09 cry",
+          "region": "future_tail",
+          "sequence": 12,
+          "size": 19452,
+          "start": 32914592
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "3dddbc0be651cc63bd726aea30c31cfb58c79e6957b1dd6181f9df997455e138",
+          "end_exclusive": 32953496,
+          "gba_end_exclusive": 167171224,
+          "gba_start": 167151772,
+          "name": "species_surface_cry2",
+          "owner": "T09",
+          "placement": "EXPLICIT",
+          "purpose": "T09 cry2",
+          "region": "future_tail",
+          "sequence": 13,
+          "size": 19452,
+          "start": 32934044
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "399fc94c3cf1f8f5f28b80d990c52bc48bc28037881390c026abe8d0db0d46b2",
+          "end_exclusive": 32998884,
+          "gba_end_exclusive": 167216612,
+          "gba_start": 167171224,
+          "name": "species_surface_dex_entries",
+          "owner": "T09",
+          "placement": "EXPLICIT",
+          "purpose": "T09 dex_entries",
+          "region": "future_tail",
+          "sequence": 14,
+          "size": 45388,
+          "start": 32953496
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "4eb1fc7ea17d7af1df1ce0d965bfbf8936d066538e870196d486cf25b624f4f3",
+          "end_exclusive": 33002126,
+          "gba_end_exclusive": 167219854,
+          "gba_start": 167216612,
+          "name": "species_surface_national_dex",
+          "owner": "T09",
+          "placement": "EXPLICIT",
+          "purpose": "T09 national_dex",
+          "region": "future_tail",
+          "sequence": 15,
+          "size": 3242,
+          "start": 32998884
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "5b700e46500eddd8ac59a91c366beee9e4210057cab231007ae1262dffab7170",
+          "end_exclusive": 33005368,
+          "gba_end_exclusive": 167223096,
+          "gba_start": 167219856,
+          "name": "species_surface_national_dex_runtime",
+          "owner": "T09",
+          "placement": "EXPLICIT",
+          "purpose": "T09 national_dex_runtime",
+          "region": "future_tail",
+          "sequence": 16,
+          "size": 3240,
+          "start": 33002128
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "3fc4c8cd5d21c5b7f1fa2972223288ec1040f115321298a19e168694ee45e002",
+          "end_exclusive": 33212856,
+          "gba_end_exclusive": 167430584,
+          "gba_start": 167223096,
+          "name": "species_surface_evolutions",
+          "owner": "T09",
+          "placement": "EXPLICIT",
+          "purpose": "T09 evolutions",
+          "region": "future_tail",
+          "sequence": 17,
+          "size": 207488,
+          "start": 33005368
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "4544753386775f0330073d879222e4bf9527a49183c3a06d83559a32d73440c3",
+          "end_exclusive": 33294741,
+          "gba_end_exclusive": 167512469,
+          "gba_start": 167430584,
+          "name": "species_surface_level_up_data",
+          "owner": "T09",
+          "placement": "EXPLICIT",
+          "purpose": "T09 level_up_data",
+          "region": "future_tail",
+          "sequence": 18,
+          "size": 81885,
+          "start": 33212856
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "a3559c327f61a0f9ced3f676b6f646cc2250e37577c62334fd8dc1bdacf1a70f",
+          "end_exclusive": 33301228,
+          "gba_end_exclusive": 167518956,
+          "gba_start": 167512472,
+          "name": "species_surface_level_up_pointers",
+          "owner": "T09",
+          "placement": "EXPLICIT",
+          "purpose": "T09 level_up_pointers",
+          "region": "future_tail",
+          "sequence": 19,
+          "size": 6484,
+          "start": 33294744
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "715c6676fece3846db21a0779cdf77128cb825f80d49d5d6071ca27b53d5d2fa",
+          "end_exclusive": 33315982,
+          "gba_end_exclusive": 167533710,
+          "gba_start": 167518956,
+          "name": "species_surface_egg_moves",
+          "owner": "T09",
+          "placement": "EXPLICIT",
+          "purpose": "T09 egg_moves",
+          "region": "future_tail",
+          "sequence": 20,
+          "size": 14754,
+          "start": 33301228
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "a24cebced039ef5bb36da6104a678a26fe3ea3adba538622b5f3402f09b49768",
+          "end_exclusive": 33341920,
+          "gba_end_exclusive": 167559648,
+          "gba_start": 167533712,
+          "name": "species_surface_tmhm",
+          "owner": "T09",
+          "placement": "EXPLICIT",
+          "purpose": "T09 tmhm",
+          "region": "future_tail",
+          "sequence": 21,
+          "size": 25936,
+          "start": 33315984
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "a44431aea3f197a030bd496482aa91b747f260d19822d8ab4eedc0a8363b441f",
+          "end_exclusive": 33367856,
+          "gba_end_exclusive": 167585584,
+          "gba_start": 167559648,
+          "name": "species_surface_tutor",
+          "owner": "T09",
+          "placement": "EXPLICIT",
+          "purpose": "T09 tutor",
+          "region": "future_tail",
+          "sequence": 22,
+          "size": 25936,
+          "start": 33341920
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "2f0a184e6b566a3196a1d064c8c40c451de758f75e14b1a584a1891d14e889da",
+          "end_exclusive": 33385687,
+          "gba_end_exclusive": 167603415,
+          "gba_start": 167585584,
+          "name": "species_surface_species_names",
+          "owner": "T09",
+          "placement": "EXPLICIT",
+          "purpose": "T09 species_names",
+          "region": "future_tail",
+          "sequence": 23,
+          "size": 17831,
+          "start": 33367856
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "fd479f125007841683556ffc2a4478a5df1d941d65d83b4bfa922566d4f4a237",
+          "end_exclusive": 33398656,
+          "gba_end_exclusive": 167616384,
+          "gba_start": 167603416,
+          "name": "species_surface_species_names_legacy",
+          "owner": "T09",
+          "placement": "EXPLICIT",
+          "purpose": "T09 species_names_legacy",
+          "region": "future_tail",
+          "sequence": 24,
+          "size": 12968,
+          "start": 33385688
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "1a462029beef54897525230a1d57403ba059c9038e790bd8467634b548af42b6",
+          "end_exclusive": 33399356,
+          "gba_end_exclusive": 167617084,
+          "gba_start": 167616384,
+          "name": "species_surface_species_runtime",
+          "owner": "T09",
+          "placement": "EXPLICIT",
+          "purpose": "T09 species_runtime",
+          "region": "future_tail",
+          "sequence": 25,
+          "size": 700,
+          "start": 33398656
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "6058a8b222ae3cbdc50269fd5fc0f089075ad5896d91f99c061d8c4ef4f9c4a2",
+          "end_exclusive": 18995530,
+          "gba_end_exclusive": 153213258,
+          "gba_start": 153136164,
+          "name": "content_population_payload",
+          "owner": "T16",
+          "placement": "EXPLICIT",
+          "purpose": "dual-region manifests and runtime lookup payload",
+          "region": "integration_modules",
+          "sequence": 26,
+          "size": 77094,
+          "start": 18918436
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "4272ce6d22e977dbbbcf3da4886b65213c0c5b833baafa97cca9f45b3db413ae",
+          "end_exclusive": 19710932,
+          "gba_end_exclusive": 153928660,
+          "gba_start": 153213260,
+          "name": "regression_runtime_payload",
+          "owner": "T17",
+          "placement": "EXPLICIT",
+          "purpose": "Kanto map roots/assets/wild tables, portal, and QOL-B runtime",
+          "region": "integration_modules",
+          "sequence": 27,
+          "size": 715400,
+          "start": 18995532
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "b03de7b7c2dd310852ae864ef5fdc8ebccbb03217a66e26bff7cffbb85b7ac35",
+          "end_exclusive": 19719108,
+          "gba_end_exclusive": 153936836,
+          "gba_start": 153928660,
+          "name": "trainer_rebalance_v4_parties",
+          "owner": "USER-20260814-TRAINER-V4",
+          "placement": "EXPLICIT",
+          "purpose": "V4 main-story trainer party rows",
+          "region": "integration_modules",
+          "sequence": 28,
+          "size": 8176,
+          "start": 19710932
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "03d7b3ca8025954bf111f7a876d4937bf932f0b3330b0dfa86e4e30915ab9b10",
+          "end_exclusive": 19724318,
+          "gba_end_exclusive": 153942046,
+          "gba_start": 153936836,
+          "name": "facility_runtime_payload",
+          "owner": "USER-20260814-FACILITY-RUNTIME",
+          "placement": "EXPLICIT",
+          "purpose": "実ROM Factory受付、6候補/3選択、交換、3連戦、保存復元",
+          "region": "integration_modules",
+          "sequence": 29,
+          "size": 5210,
+          "start": 19719108
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "e24bf0a1c4cd0ff96981d8a434c2155fc747248f0e2abc051421798a01944832",
+          "end_exclusive": 19724512,
+          "gba_end_exclusive": 153942240,
+          "gba_start": 153942048,
+          "name": "first_battle_priority_guard",
+          "owner": "USER-20260814-FIRST-BATTLE-LOOP",
+          "placement": "EXPLICIT",
+          "purpose": "Quick Draw indicatorと実特性を照合するturn scheduler wrapper",
+          "region": "integration_modules",
+          "sequence": 30,
+          "size": 192,
+          "start": 19724320
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "002a4f140852bcca8d7f3552132ad9f42a50f3e8aa11883c47db26fbab3684d5",
+          "end_exclusive": 19724920,
+          "gba_end_exclusive": 153942648,
+          "gba_start": 153942240,
+          "name": "hm_field_access_runtime",
+          "owner": "USER-20260814-HM-FIELD-ACCESS",
+          "placement": "EXPLICIT",
+          "purpose": "Vega HM01..08所持を正本とするfield能力とparty callback guard",
+          "region": "integration_modules",
+          "sequence": 31,
+          "size": 408,
+          "start": 19724512
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "67100cbdfd05eca9f4534888efadebab9804c12035d52aaa802d769a3091f55f",
+          "end_exclusive": 19726120,
+          "gba_end_exclusive": 153943848,
+          "gba_start": 153942648,
+          "name": "battle_ui_runtime",
+          "owner": "USER-20260814-BATTLE-UI",
+          "placement": "EXPLICIT",
+          "purpose": "固定CFRU move type/effectiveness/STAB表示adapter",
+          "region": "integration_modules",
+          "sequence": 32,
+          "size": 1200,
+          "start": 19724920
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "6152439799fe625ffbfedfa14e88a87fc187e6d6cc159403740446ca2eca9e97",
+          "end_exclusive": 19729096,
+          "gba_end_exclusive": 153946824,
+          "gba_start": 153943856,
+          "name": "move_memory_runtime",
+          "owner": "USER-20260814-MOVE-MEMORY",
+          "placement": "EXPLICIT",
+          "purpose": "item/NPC共通の技思い出し・技忘れ・タマゴ技管理core",
+          "region": "integration_modules",
+          "sequence": 33,
+          "size": 2968,
+          "start": 19726128
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "b49996fd455a46dd8d4d195f84a589c063ef9136fd6893a4e601cc7b6e6f464b",
+          "end_exclusive": 19774165,
+          "gba_end_exclusive": 153991893,
+          "gba_start": 153946832,
+          "name": "acquisition_runtime",
+          "owner": "USER-20260816-ACQUISITION-EVENTS",
+          "placement": "EXPLICIT",
+          "purpose": "201取得event transaction/menu/save runtime",
+          "region": "integration_modules",
+          "sequence": 34,
+          "size": 45061,
+          "start": 19729104
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "b0801e6682455a6294e61cfe49c6828ef015346b3774473c74a11bea2f8f4301",
+          "end_exclusive": 19776036,
+          "gba_end_exclusive": 153993764,
+          "gba_start": 153991896,
+          "name": "acquisition_map_scripts",
+          "owner": "USER-20260816-ACQUISITION-EVENTS",
+          "placement": "EXPLICIT",
+          "purpose": "24取得host scripts/restored objects/event headers",
+          "region": "integration_modules",
+          "sequence": 35,
+          "size": 1868,
+          "start": 19774168
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "b8ca4ba9d62f19c2b49cda603ad386800e2cdeb77587719296af6b5287a48cc5",
+          "end_exclusive": 19780472,
+          "gba_end_exclusive": 153998200,
+          "gba_start": 153993776,
+          "name": "bp_shop_runtime_payload",
+          "owner": "USER-20260817-BP-SHOP-RUNTIME",
+          "placement": "EXPLICIT",
+          "purpose": "Factory BP catalog/menu/purchase/save runtime and physical shop NPC",
+          "region": "integration_modules",
+          "sequence": 36,
+          "size": 4424,
+          "start": 19776048
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "8094ce3dd299752c6ec99a74efd3f2cc8d3bb6db162c417f3b96c7d649a95d88",
+          "end_exclusive": 19782152,
+          "gba_end_exclusive": 153999880,
+          "gba_start": 153998208,
+          "name": "factory_reward_runtime_payload",
+          "owner": "USER-20260818-FACTORY-REWARD-RUNTIME",
+          "placement": "EXPLICIT",
+          "purpose": "Factory Trial first-clear item/BP and streak encounter-credit wrapper",
+          "region": "integration_modules",
+          "sequence": 37,
+          "size": 1672,
+          "start": 19780480
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "6ce2ff15aa77f10b86ac61e4fe0c3f08b4bccc0b5b887f8f9036a2e04ee32fec",
+          "end_exclusive": 19782732,
+          "gba_end_exclusive": 154000460,
+          "gba_start": 153999888,
+          "name": "factory_repeat_reward_runtime_payload",
+          "owner": "USER-20260818-FACTORY-REPEAT-REWARD-RUNTIME",
+          "placement": "EXPLICIT",
+          "purpose": "Factory Trial repeat item/BP reward wrapper",
+          "region": "integration_modules",
+          "sequence": 38,
+          "size": 572,
+          "start": 19782160
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "6c97dd30b6fc6885f4085c61abb32402dcb337185fa0d6125283a1cc2757a30e",
+          "end_exclusive": 19783160,
+          "gba_end_exclusive": 154000888,
+          "gba_start": 154000464,
+          "name": "factory_special_event_runtime_payload",
+          "owner": "USER-20260818-FACTORY-SPECIAL-EVENT-RUNTIME",
+          "placement": "EXPLICIT",
+          "purpose": "Factory Trial 49-streak special-event claim wrapper",
+          "region": "integration_modules",
+          "sequence": 39,
+          "size": 424,
+          "start": 19782736
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "985d450165c7bdc4fe6a3447bc10ba8e088b44111a4bc00673fe51148717f5f4",
+          "end_exclusive": 19786490,
+          "gba_end_exclusive": 154004218,
+          "gba_start": 154000896,
+          "name": "factory_shiny_memorial_runtime_payload",
+          "owner": "USER-20260818-FACTORY-SHINY-MEMORIAL-RUNTIME",
+          "placement": "EXPLICIT",
+          "purpose": "Factory Trial 100-streak shiny memorial transaction runtime",
+          "region": "integration_modules",
+          "sequence": 40,
+          "size": 3322,
+          "start": 19783168
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "23d922c55eaadadd95e572096c2f1e36ac397e756de1ff968ee6141247bdf562",
+          "end_exclusive": 19833744,
+          "gba_end_exclusive": 154051472,
+          "gba_start": 154004224,
+          "name": "trainer_v5_stage31_foundation_payload",
+          "owner": "USER-TRAINER-V5-STAGE31-INTEGRATION-FOUNDATION",
+          "placement": "EXPLICIT",
+          "purpose": "Trainer V5 25 encounters, expanded trainer table, sidecar runtime, save-compatible hooks",
+          "region": "integration_modules",
+          "sequence": 41,
+          "size": 47248,
+          "start": 19786496
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "f1374c489749c1906122a97c5116e9541c356693a3953bd1ff0170649693bb4e",
+          "end_exclusive": 19882720,
+          "gba_end_exclusive": 154100448,
+          "gba_start": 154051472,
+          "name": "trainer_v5_stage32_tohoku_batch02_payload",
+          "owner": "USER-TRAINER-V5-STAGE32-TOHOKU-BATCH02",
+          "placement": "EXPLICIT",
+          "purpose": "Trainer V5 cumulative 39 encounters, exact command rebind table, sidecar runtime, save-compatible hooks",
+          "region": "integration_modules",
+          "sequence": 42,
+          "size": 48976,
+          "start": 19833744
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "ff4c0096241cf99ad163a57f2bc0022e4280d46896a7adb8f249899f3992c7ea",
+          "end_exclusive": 19934032,
+          "gba_end_exclusive": 154151760,
+          "gba_start": 154100448,
+          "name": "trainer_v5_stage33_tohoku_batch03_payload",
+          "owner": "USER-TRAINER-V5-STAGE33-TOHOKU-BATCH03",
+          "placement": "EXPLICIT",
+          "purpose": "Trainer V5 cumulative 54 encounters, RematchMap V2, exact command rebind table, sidecar runtime, save-compatible hooks",
+          "region": "integration_modules",
+          "sequence": 43,
+          "size": 51312,
+          "start": 19882720
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "1c6fdddbc4415d67cb6ba1fcf9e60db53ebb93e5e16a83eb4a3f17a461cbd945",
+          "end_exclusive": 20409646,
+          "gba_end_exclusive": 154627374,
+          "gba_start": 154151760,
+          "name": "trainer_changekit_final_stage35_payload",
+          "owner": "USER-20260819-TRAINER-CHANGEKIT-FINAL-INTEGRATION",
+          "placement": "EXPLICIT",
+          "purpose": "Trainer ChangeKit 1302 physical battles, 4284 trainer table, 6490-member sidecars, Kanto/Archive events, dialogue and four-mechanic policy runtime",
+          "region": "integration_modules",
+          "sequence": 44,
+          "size": 475614,
+          "start": 19934032
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "bf7829c7bf28844de186e0d5cb12509c3b892cba2031bd8a722695c36d42a01f",
+          "end_exclusive": 20479088,
+          "gba_end_exclusive": 154696816,
+          "gba_start": 154627376,
+          "name": "qol_production_stage36_payload",
+          "owner": "T19",
+          "placement": "EXPLICIT",
+          "purpose": "QOL 35 production UI/PC/daycare/battle/save runtime and authored research table",
+          "region": "integration_modules",
+          "sequence": 45,
+          "size": 69440,
+          "start": 20409648
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "48daa966ac390f72f1edb0a4f7526428c0d6ec87f65a00d34df1a5cbecccaa81",
+          "end_exclusive": 20513648,
+          "gba_end_exclusive": 154731376,
+          "gba_start": 154696816,
+          "name": "event_design_stage37_payload",
+          "owner": "T20",
+          "placement": "EXPLICIT",
+          "purpose": "76 authored events, 326 dialogue strings, 63 rooted physical bindings, dispatcher scripts, and monotonic state runtime",
+          "region": "integration_modules",
+          "sequence": 46,
+          "size": 34560,
+          "start": 20479088
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "712e70c0a0f7096444b176171e29e822161d7c012198b14c9cc6317c04697c03",
+          "end_exclusive": 20522144,
+          "gba_end_exclusive": 154739872,
+          "gba_start": 154731376,
+          "name": "mirage_production_stage38_payload",
+          "owner": "T21",
+          "placement": "EXPLICIT",
+          "purpose": "Mirage carried-party 4-round/28-battle field scripts, isolated save transaction, virtual-item adapter, badge-exact cleanup and load chain",
+          "region": "integration_modules",
+          "sequence": 47,
+          "size": 8496,
+          "start": 20513648
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "d2b11236d8c586986c44329c6772337e1cc0e32ed782a615f61a52b208a21227",
+          "end_exclusive": 20699248,
+          "gba_end_exclusive": 154916976,
+          "gba_start": 154739872,
+          "name": "move_distribution_v4_stage39_payload",
+          "owner": "T22",
+          "placement": "EXPLICIT",
+          "purpose": "Move Distribution V4 canonical learnsets, form policy, wild-only adapter",
+          "region": "integration_modules",
+          "sequence": 48,
+          "size": 177104,
+          "start": 20522144
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "0f8186357d36cc363edfc9a970246de441765c1b337437e6150dfc62074bbc3f",
+          "end_exclusive": 20711816,
+          "gba_end_exclusive": 154929544,
+          "gba_start": 154916976,
+          "name": "research_economy_v1_stage40_payload",
+          "owner": "T23",
+          "placement": "EXPLICIT",
+          "purpose": "Research Economy V1 runtime, six activities, seven ranks, 23-row shop, 35 dialogues and nine Stage39-rooted field bindings",
+          "region": "integration_modules",
+          "sequence": 49,
+          "size": 12568,
+          "start": 20699248
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "17adb88a0df2e5bd336aa104c85113e116c4ac900a01f5a235576a21b2fbe1ea",
+          "end_exclusive": 20722596,
+          "gba_end_exclusive": 154940324,
+          "gba_start": 154929552,
+          "name": "reward_encounters_v2_stage41_payload",
+          "owner": "T24",
+          "placement": "EXPLICIT",
+          "purpose": "Reward Encounters V2 runtime, four services, 24-entry pool, 56 dialogues and Vermilion Scientist field root",
+          "region": "integration_modules",
+          "sequence": 50,
+          "size": 10772,
+          "start": 20711824
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "e05f53be976a9f9223108221edc08610643bd1d3d9e2994ed781ac2ee78553c3",
+          "end_exclusive": 20747563,
+          "gba_end_exclusive": 154965291,
+          "gba_start": 154940336,
+          "name": "factory_high_modes_v2_stage42_payload",
+          "owner": "T25",
+          "placement": "EXPLICIT",
+          "purpose": "Factory High Modes V2 runtime, 24 modes, 248 rentals, 55 profiles, 16 rewards, 28 dialogues and receptionist field graph",
+          "region": "integration_modules",
+          "sequence": 51,
+          "size": 24955,
+          "start": 20722608
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "f07c92eb55aa7258599b7c482cbcddb7c496f9ee43d35d14119023fff58784a3",
+          "end_exclusive": 20749136,
+          "gba_end_exclusive": 154966864,
+          "gba_start": 154965296,
+          "name": "codex_battle_bridge_stage43_payload",
+          "owner": "T26",
+          "placement": "EXPLICIT",
+          "purpose": "Stage43 gameplay-neutral versioned Codex Battle mailbox, ReadKeys delegate wrapper and PING/PONG validator",
+          "region": "integration_modules",
+          "sequence": 52,
+          "size": 1568,
+          "start": 20747568
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "370ef7f03885c1a92654b5270eecbede733b733b8a857fa4ebe9b5cfb79ae917",
+          "end_exclusive": 20765488,
+          "gba_end_exclusive": 154983216,
+          "gba_start": 154966864,
+          "name": "codex_battle_runtime_stage44_payload",
+          "owner": "T27",
+          "placement": "EXPLICIT",
+          "purpose": "Stage44 Codex 6-to-3 runtime, private action seal, controller interposer, UPSTREAM_OPEN adapters and production reception",
+          "region": "integration_modules",
+          "sequence": 53,
+          "size": 16352,
+          "start": 20749136
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "441017c04cd89f9af320aa3c10e34e107430a3c8f8d0c2d307c7062d44b1fc5c",
+          "end_exclusive": 20773712,
+          "gba_end_exclusive": 154991440,
+          "gba_start": 154983216,
+          "name": "codex_battle_rewards_stage45_payload",
+          "owner": "T28",
+          "placement": "EXPLICIT",
+          "purpose": "Stage45 match-bound optional reward journal, normal bag/party/PC delivery, replay recovery and field completion adapters",
+          "region": "integration_modules",
+          "sequence": 54,
+          "size": 8224,
+          "start": 20765488
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "4a73f05d101fc7b6fb8e6e8af4648d8b9cf30659872a6111cb4e22c47e4172cb",
+          "end_exclusive": 20782336,
+          "gba_end_exclusive": 155000064,
+          "gba_start": 154991440,
+          "name": "windows_battle_catalog_stage46_payload",
+          "owner": "T29",
+          "placement": "EXPLICIT",
+          "purpose": "Stage46 reusable Windows catalog context over the T28 normal bag/party/PC exactly-once transaction owner",
+          "region": "integration_modules",
+          "sequence": 55,
+          "size": 8624,
+          "start": 20773712
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "a44ba25dc01dc8d141589261de48793a19e57d00274aa76f4db94c6b4731325a",
+          "end_exclusive": 20792096,
+          "gba_end_exclusive": 155009824,
+          "gba_start": 155000064,
+          "name": "windows_box14_vault_stage47_payload",
+          "owner": "T30",
+          "placement": "EXPLICIT",
+          "purpose": "Stage47 Box14 exact 80-byte export/remove/import protocol over the Stage46 normal field runtime",
+          "region": "integration_modules",
+          "sequence": 56,
+          "size": 9760,
+          "start": 20782336
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "3446004594ea4d6cb6f2b63347e147afdd975aae79e3f9ce1c3ba4057b924d00",
+          "end_exclusive": 20827652,
+          "gba_end_exclusive": 155045380,
+          "gba_start": 155009824,
+          "name": "world_item_recovery_stage49_payload",
+          "owner": "USER-20260824-STAGE48-WORLD-ITEM-RECOVERY",
+          "placement": "EXPLICIT",
+          "purpose": "Stage48 world event復旧、低レベルRaid host、会話・店・回復script",
+          "region": "integration_modules",
+          "sequence": 57,
+          "size": 35556,
+          "start": 20792096
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "586d17d7d0dde699b63f8daf97a793411370bbb2d6922518a3897e1da8e4cc06",
+          "end_exclusive": 20899384,
+          "gba_end_exclusive": 155117112,
+          "gba_start": 155045392,
+          "name": "interaction_ownership_repair_stage50_payload",
+          "owner": "USER-20260824-STAGE49-INTERACTION-OWNERSHIP-REPAIR",
+          "placement": "EXPLICIT",
+          "purpose": "Stage49 interaction owner撤回、field object・遭遇・視線補正",
+          "region": "integration_modules",
+          "sequence": 58,
+          "size": 71720,
+          "start": 20827664
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "fb6a1e05bd07f3a560d79ad648cfbc05098da8a60955f5ed91f4fc4347490116",
+          "end_exclusive": 20994536,
+          "gba_end_exclusive": 155212264,
+          "gba_start": 155117120,
+          "name": "world_runtime_e2e_repair_stage55_payload",
+          "owner": "USER-20260824-STAGE51-WORLD-RUNTIME-E2E-REPAIR",
+          "placement": "EXPLICIT",
+          "purpose": "678 mapのtrainer/item/dialogue/field/wild owner根本修復",
+          "region": "integration_modules",
+          "sequence": 59,
+          "size": 95144,
+          "start": 20899392
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "3322be52ab63ab96aa0cb4640519ec1fed3db0801c7cf1e60e9753242ee0c43c",
+          "end_exclusive": 21053344,
+          "gba_end_exclusive": 155271072,
+          "gba_start": 155212272,
+          "name": "collection_supply_v1_stage56_payload",
+          "owner": "USER-20260827-COLLECTION-SUPPLY-V1-IMPLEMENTATION",
+          "placement": "EXPLICIT",
+          "purpose": "388 form・34 G-Max・999 Item・14 Raid hostのStage56 production runtime",
+          "region": "integration_modules",
+          "sequence": 60,
+          "size": 58800,
+          "start": 20994544
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "e82e3fb6781acef0b0c867924125f40783335150b192f769deed447f6b6b547d",
+          "end_exclusive": 21054064,
+          "gba_end_exclusive": 155271792,
+          "gba_start": 155271072,
+          "name": "comprehensive_debug_repair_stage57_payload",
+          "owner": "USER-20260827-STAGE56-COMPREHENSIVE-DEBUG-REPAIR",
+          "placement": "EXPLICIT",
+          "purpose": "NPC/menu/wild identity横断修復とBG安全script",
+          "region": "integration_modules",
+          "sequence": 61,
+          "size": 720,
+          "start": 21053344
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "12fdf78b4c9831ac84560b6e5af0645db923c41906ea1ddeb2cb523f9c42e4d4",
+          "end_exclusive": 21067312,
+          "gba_end_exclusive": 155285040,
+          "gba_start": 155271792,
+          "name": "qol_world_convenience_stage58_payload",
+          "owner": "USER-20260828-STAGE57-QOL-WORLD-CONVENIENCE-DEBUG",
+          "placement": "EXPLICIT",
+          "purpose": "Codex拠点PC・全回復・money mart、Kanto野生方式/確率、薄い場所イベント",
+          "region": "integration_modules",
+          "sequence": 62,
+          "size": 13248,
+          "start": 21054064
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "b06f000e393091bd4a0b69ddf7a03844b12ddcfe06004b28eab00e002c5f9777",
+          "end_exclusive": 21067348,
+          "gba_end_exclusive": 155285076,
+          "gba_start": 155285040,
+          "name": "root_cause_repair_stage59_payload",
+          "owner": "USER-20260829-STAGE58-ROOT-CAUSE-REPAIR",
+          "placement": "EXPLICIT",
+          "purpose": "kind9 trainerbattleの既存敗北継続flagsをstock callback用RAMへ橋渡し",
+          "region": "integration_modules",
+          "sequence": 63,
+          "size": 36,
+          "start": 21067312
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "6ad66a1b3be584c5a7b83b865a3e1e2577e68de26ee2624443a02dd941867168",
+          "end_exclusive": 21067952,
+          "gba_end_exclusive": 155285680,
+          "gba_start": 155285088,
+          "name": "wild_species_root_repair_stage60_payload",
+          "owner": "USER-20260829-STAGE59-WILD-SPECIES-ROOT-REPAIR",
+          "placement": "EXPLICIT",
+          "purpose": "global BuildTrainerParty ChangeKit ownership gate",
+          "region": "integration_modules",
+          "sequence": 64,
+          "size": 592,
+          "start": 21067360
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "6b2702fa54cf93848e021a2478c310ecb7ac0893fd19663875ef7d4b8cc91856",
+          "end_exclusive": 21281408,
+          "gba_end_exclusive": 155499136,
+          "gba_start": 155285680,
+          "name": "display_npc_event_audit_stage61_payload",
+          "owner": "USER-20260830-STAGE60-DISPLAY-NPC-PLACEMENT-AUDIT",
+          "placement": "EXPLICIT",
+          "purpose": "表示名名前空間、全SOURCE_DIRECT event、最終NPC配置、カビゴン固定遭遇の統合修復",
+          "region": "integration_modules",
+          "sequence": 65,
+          "size": 213456,
+          "start": 21067952
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "ef6d1b9ea5d5954fbf02d88dcff622f481ae3fc1c4aacf80400c8087b3e0535a",
+          "end_exclusive": 21307984,
+          "gba_end_exclusive": 155525712,
+          "gba_start": 155499136,
+          "name": "stage61_runtime_hotfix_payload",
+          "owner": "USER-20260903-STAGE61-RUNTIME-HOTFIX",
+          "placement": "EXPLICIT",
+          "purpose": "TM120+HM8・教え技64の実行時tableと互換bitset",
+          "region": "integration_modules",
+          "sequence": 66,
+          "size": 26576,
+          "start": 21281408
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "bfc502059916a7b645801191ef9625396942167b1566536c63bf8abe95fc00bb",
+          "end_exclusive": 33399368,
+          "gba_end_exclusive": 167617096,
+          "gba_start": 167617084,
+          "name": "modernization_p03_stage65_caterpie_level_up",
+          "owner": "USER-MODERNIZATION-P03-STAGE65-CATERPIE-SLICE",
+          "placement": "EXPLICIT",
+          "purpose": "P03 representative Caterpie replacement level-up rows",
+          "region": "future_tail",
+          "sequence": 67,
+          "size": 12,
+          "start": 33399356
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "0bde103cdbc375ec7842a72b79ba9cd85a9ea54e2d489848f5e098696281a09b",
+          "end_exclusive": 33459484,
+          "gba_end_exclusive": 167677212,
+          "gba_start": 167617096,
+          "name": "modernization_p03_stage66_bulk_level_up",
+          "owner": "USER-MODERNIZATION-P03-STAGE66-BULK-LEARNSET-CHECKPOINT",
+          "placement": "EXPLICIT",
+          "purpose": "P03 corrected targetsのruntime-ready level-up replacement rows",
+          "region": "future_tail",
+          "sequence": 68,
+          "size": 60116,
+          "start": 33399368
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "bc2546ffb6cc68c0e678da572a24df1ac0be7793a60d92d6673719c4e41e11ee",
+          "end_exclusive": 33476803,
+          "gba_end_exclusive": 167694531,
+          "gba_start": 167677212,
+          "name": "modernization_p03_stage67_evolution_level_rows",
+          "owner": "USER-MODERNIZATION-P03-STAGE67-CONSUMER-CHECKPOINT",
+          "placement": "EXPLICIT",
+          "purpose": "進化時level0 rowsとStage66通常level rowsの結合表",
+          "region": "future_tail",
+          "sequence": 69,
+          "size": 17319,
+          "start": 33459484
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "d9feba3494b83578dab53ab260705fada1f6ca64a18b5b5e52e37c3abab1f3a8",
+          "end_exclusive": 33491922,
+          "gba_end_exclusive": 167709650,
+          "gba_start": 167694532,
+          "name": "modernization_p03_stage67_normal_egg_rows",
+          "owner": "USER-MODERNIZATION-P03-STAGE67-CONSUMER-CHECKPOINT",
+          "placement": "EXPLICIT",
+          "purpose": "安全450 targetの通常egg replacementと未採用Vega record保存表",
+          "region": "future_tail",
+          "sequence": 70,
+          "size": 15118,
+          "start": 33476804
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "3ed9991c2f8f56cbd1ad1c1d304fae0e5d7c5cc2f23f887f997009ce35c01882",
+          "end_exclusive": 21375408,
+          "gba_end_exclusive": 155593136,
+          "gba_start": 155525712,
+          "name": "modernization_mega_shop_stage68_payload",
+          "owner": "USER-MODERNIZATION-MEGA-STONE-BP-SHOP",
+          "placement": "EXPLICIT",
+          "purpose": "45 Mega Stone item tables/assets, BP shop runtime, and Factory NPC",
+          "region": "integration_modules",
+          "sequence": 71,
+          "size": 67424,
+          "start": 21307984
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "c11517d3a05514970cbee20e2d07501ecab3383cc08d0fbc845271299036941b",
+          "end_exclusive": 21377380,
+          "gba_end_exclusive": 155595108,
+          "gba_start": 155593136,
+          "name": "modernization_floette_gift_stage69_payload",
+          "owner": "USER-MODERNIZATION-FLOETTE-ETERNAL-GIFT",
+          "placement": "EXPLICIT",
+          "purpose": "Floette Eternal one-time gift runtime, scripts, and Factory NPC",
+          "region": "integration_modules",
+          "sequence": 72,
+          "size": 1972,
+          "start": 21375408
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "642fa4f37ace84c2f735a6449b9cb33b90f7401db6a0c5165973d59e508ab695",
+          "end_exclusive": 22227936,
+          "gba_end_exclusive": 156445664,
+          "gba_start": 155595120,
+          "name": "modernization_p04_species_runtime_stage70_payload",
+          "owner": "USER-MODERNIZATION-P04-SPECIES-RUNTIME-STAGE70",
+          "placement": "EXPLICIT",
+          "purpose": "P04 Mega 49 species fixed tables/assets and Ability 312..317 UI-safe rows",
+          "region": "integration_modules",
+          "sequence": 73,
+          "size": 850544,
+          "start": 21377392
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "0d2e7fb9e238ba339c9494e8159bf1eed31f3525bc95a8c13854a64a747f2190",
+          "end_exclusive": 22235076,
+          "gba_end_exclusive": 156452804,
+          "gba_start": 156445664,
+          "name": "modernization_p05_ability_rom_runtime_stage72_payload",
+          "owner": "USER-MODERNIZATION-P05-ABILITY-ROM-RUNTIME-STAGE72",
+          "placement": "EXPLICIT",
+          "purpose": "Ability 312..317 thin CFRU-JP battle adapters and final descriptions",
+          "region": "integration_modules",
+          "sequence": 74,
+          "size": 7140,
+          "start": 22227936
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "aff0b17e3b1c243d084c3a412ccac9a74d2fa599600d6efe70b3f652f66e0f45",
+          "end_exclusive": 22256766,
+          "gba_end_exclusive": 156474494,
+          "gba_start": 156452816,
+          "name": "modernization_p03_stage73_consumer_runtime_payload",
+          "owner": "USER-MODERNIZATION-P03-STAGE73-CONSUMER-RUNTIME",
+          "placement": "EXPLICIT",
+          "purpose": "conditional/shared/reminder consumer hooks and Rotom form-move transaction adapter",
+          "region": "integration_modules",
+          "sequence": 75,
+          "size": 21678,
+          "start": 22235088
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "0aeb5095cbfe717dc360bd50433bb0475ea334254d85d0d326731383e6f19778",
+          "end_exclusive": 33506942,
+          "gba_end_exclusive": 167724670,
+          "gba_start": 167709652,
+          "name": "modernization_p03_stage73_exact_egg_rows",
+          "owner": "USER-MODERNIZATION-P03-STAGE73-CONSUMER-RUNTIME",
+          "placement": "EXPLICIT",
+          "purpose": "Stage67 egg table with seven audited alias/incense conflict species replaced exactly",
+          "region": "future_tail",
+          "sequence": 76,
+          "size": 15018,
+          "start": 33491924
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "714a4fdb3b2cb1781b516d072773f38c865e706bc6c49b7c09215860dadcb0dc",
+          "end_exclusive": 22327340,
+          "gba_end_exclusive": 156545068,
+          "gba_start": 156474496,
+          "name": "modernization_p03_stage74_supply_runtime_payload",
+          "owner": "USER-MODERNIZATION-P03-STAGE74-SUPPLY-RUNTIME",
+          "placement": "EXPLICIT",
+          "purpose": "family-separated direct machine/tutor archive tables, BuildLearnable-only preservation table, paged dispatcher, and bag UI scripts",
+          "region": "integration_modules",
+          "sequence": 77,
+          "size": 70572,
+          "start": 22256768
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "cc40c531609c1443502f722d239e14f20c3fd9ae26cba0db1acf505553f7009e",
+          "end_exclusive": 22892624,
+          "gba_end_exclusive": 157110352,
+          "gba_start": 156545072,
+          "name": "modernization_rockruff_own_tempo_stage75_payload",
+          "owner": "USER-MODERNIZATION-ROCKRUFF-OWN-TEMPO-STAGE75",
+          "placement": "EXPLICIT",
+          "purpose": "Own Tempo Rockruff internal form species tables, evolution, breeding, acquisition, and P03 owner runtime",
+          "region": "integration_modules",
+          "sequence": 78,
+          "size": 565280,
+          "start": 22327344
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "c9c34af10900cb6cedbaaeef9dacd2d95a2fc0df0be39cb3aa29f8226ffbc92e",
+          "end_exclusive": 22894690,
+          "gba_end_exclusive": 157112418,
+          "gba_start": 157110352,
+          "name": "modernization_p05_stage76_edges_payload",
+          "owner": "USER-MODERNIZATION-P05-STAGE76-EDGES",
+          "placement": "EXPLICIT",
+          "purpose": "Mega Sol production Solar Beam popup plus Piercing Drill and Spicy Spray AI edge adapters",
+          "region": "integration_modules",
+          "sequence": 79,
+          "size": 2066,
+          "start": 22892624
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "933c8d7fdf731eaae0aa87c74974803de356dda8e64c055ef09beee4d229c672",
+          "end_exclusive": 22895924,
+          "gba_end_exclusive": 157113652,
+          "gba_start": 157112432,
+          "name": "modernization_p05_stage77_circus_suppression_payload",
+          "owner": "USER-MODERNIZATION-P05-STAGE77-CIRCUS-SUPPRESSION",
+          "placement": "EXPLICIT",
+          "purpose": "Battle Circus global ability-suppression dispatch for all 29 Stage72 ability hooks",
+          "region": "integration_modules",
+          "sequence": 80,
+          "size": 1220,
+          "start": 22894704
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "a6b5fb28cca365af8e08862e673ce5040bbcf4deb0683566b79a552853d1f905",
+          "end_exclusive": 22896624,
+          "gba_end_exclusive": 157114352,
+          "gba_start": 157113664,
+          "name": "modernization_p05_stage78_eelevate_switch_ai_payload",
+          "owner": "USER-MODERNIZATION-P05-STAGE78-EELEVATE-SWITCH-AI",
+          "placement": "EXPLICIT",
+          "purpose": "Eelevate-aware FindMonThatAbsorbsOpponentsMove adapters and stable runtime probe",
+          "region": "integration_modules",
+          "sequence": 81,
+          "size": 688,
+          "start": 22895936
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "a53aa7ced55de4a1333245678ee3060b230cea898b8246483960659bac19dd12",
+          "end_exclusive": 22912761,
+          "gba_end_exclusive": 157130489,
+          "gba_start": 157114352,
+          "name": "modernization-p07-preserved-level",
+          "owner": "P07",
+          "placement": "EXPLICIT",
+          "purpose": "exact adopted V4 preservation level",
+          "region": "integration_modules",
+          "sequence": 82,
+          "size": 16137,
+          "start": 22896624
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "348d7903446a01b8e7bdf25e78458c382aac8d5d85da08b9713503a2b6f6fe7b",
+          "end_exclusive": 22928160,
+          "gba_end_exclusive": 157145888,
+          "gba_start": 157130492,
+          "name": "modernization-p07-preserved-egg",
+          "owner": "P07",
+          "placement": "EXPLICIT",
+          "purpose": "exact adopted V4 preservation egg",
+          "region": "integration_modules",
+          "sequence": 83,
+          "size": 15396,
+          "start": 22912764
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "bc96478be1386d04e04feb42c2be778863f41bcb293c568542ed2a2676ba6c57",
+          "end_exclusive": 22928558,
+          "gba_end_exclusive": 157146286,
+          "gba_start": 157145888,
+          "name": "modernization-p07-preserved-runtime",
+          "owner": "P07",
+          "placement": "EXPLICIT",
+          "purpose": "exact adopted V4 preservation runtime",
+          "region": "integration_modules",
+          "sequence": 84,
+          "size": 398,
+          "start": 22928160
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "17e7b93648efc04e1f0cd538a11612061681d78264e1d749322a1bfaf53a2ccb",
+          "end_exclusive": 22928600,
+          "gba_end_exclusive": 157146328,
+          "gba_start": 157146288,
+          "name": "modernization-p03-native-evolution-dispatch",
+          "owner": "P03",
+          "placement": "EXPLICIT",
+          "purpose": "two real evolution callers use accepted level-0 learning",
+          "region": "integration_modules",
+          "sequence": 85,
+          "size": 40,
+          "start": 22928560
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "4b9e8a45a541218d51346c9bd5e0e454e8bc4779750dbb61d3c51795f8b61876",
+          "end_exclusive": 22933116,
+          "gba_end_exclusive": 157150844,
+          "gba_start": 157146328,
+          "name": "pr16-shop-display-safe-content",
+          "owner": "P05",
+          "placement": "FIRST_FIT",
+          "purpose": "safe field-shop renderer: bounded tiles 1..336 and top border 1",
+          "region": "integration_modules",
+          "sequence": 86,
+          "size": 4516,
+          "start": 22928600
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "1c989258f2d1f8ce1e487bf3be817065f0eb106b1a48aff90a842c5dcf72fb30",
+          "end_exclusive": 33507124,
+          "gba_end_exclusive": 167724852,
+          "gba_start": 167724672,
+          "name": "pr16_factory_loss_return",
+          "owner": "USER-20260913-BP-LOSS-RETURN",
+          "placement": "EXPLICIT",
+          "purpose": "Bounded Trial loss script continuation; ordinary WhiteOut preserved",
+          "region": "future_tail",
+          "sequence": 87,
+          "size": 180,
+          "start": 33506944
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "9044e7978b40e75834cbb31fd0293a238e4563a187d9df49f9fdae92ca1cf6bf",
+          "end_exclusive": 19726128,
+          "gba_end_exclusive": 153943856,
+          "gba_start": 153943848,
+          "name": "pr16_factory_party_retention_trampoline",
+          "owner": "USER-20260914-BP-PARTY-RETENTION",
+          "placement": "EXPLICIT",
+          "purpose": "Near Thumb tail jump for the verified player predicate callsite",
+          "region": "integration_modules",
+          "sequence": 88,
+          "size": 8,
+          "start": 19726120
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "54292e541bf58e0572825f6b18aa86aa1e2cf3e38c7c213167238f1a2bf0eda5",
+          "end_exclusive": 33507312,
+          "gba_end_exclusive": 167725040,
+          "gba_start": 167724852,
+          "name": "pr16_factory_party_retention_runtime",
+          "owner": "USER-20260914-BP-PARTY-RETENTION",
+          "placement": "EXPLICIT",
+          "purpose": "Read-only exchange-party retention predicate wrapper",
+          "region": "future_tail",
+          "sequence": 89,
+          "size": 188,
+          "start": 33507124
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "8d9af0fe66a9b00b7240b687b85c9c03aec8335deafdc8945f783f201897d06b",
+          "end_exclusive": 33507864,
+          "gba_end_exclusive": 167725592,
+          "gba_start": 167725040,
+          "name": "pr16_ring_npc_runtime",
+          "owner": "USER-20260918-RING-NPC",
+          "placement": "EXPLICIT",
+          "purpose": "Safe Ring NPC; regular Bag grant; no policy or save-layout write",
+          "region": "future_tail",
+          "sequence": 90,
+          "size": 552,
+          "start": 33507312
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "a3a0f2ce19462c697e1d0fb7b01e93db7dd51f5a715a671624d3ab32d9c9907e",
+          "end_exclusive": 33508036,
+          "gba_end_exclusive": 167725764,
+          "gba_start": 167725592,
+          "name": "pr16_ring_ordinary_policy_runtime",
+          "owner": "USER-20260918-RING-POLICY",
+          "placement": "EXPLICIT",
+          "purpose": "Ring ordinary begin bridge; no NPC/save/UI replacement",
+          "region": "future_tail",
+          "sequence": 91,
+          "size": 172,
+          "start": 33507864
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "840c891514fc1073b089e355932c4f8af538643673e472ab5d54cccae6d4cff4",
+          "end_exclusive": 33509062,
+          "gba_end_exclusive": 167726790,
+          "gba_start": 167725776,
+          "name": "pr16_circus_reception_runtime",
+          "owner": "USER-20260918-CIRCUS-ENTRY",
+          "placement": "EXPLICIT",
+          "purpose": "Circus optional real reception and exact pending/draw sequence",
+          "region": "future_tail",
+          "sequence": 92,
+          "size": 1014,
+          "start": 33508048
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "13875fb82cbae6d7ae79fd07918567041ce481f66ffee68ff3572a55217fb70d",
+          "end_exclusive": 33509344,
+          "gba_end_exclusive": 167727072,
+          "gba_start": 167726792,
+          "name": "pr16_circus_party_retention_runtime",
+          "owner": "USER-20260919-CIRCUS-RETENTION",
+          "placement": "EXPLICIT",
+          "purpose": "Circus-only read-only party predicate; previous Factory predicate retained",
+          "region": "future_tail",
+          "sequence": 93,
+          "size": 280,
+          "start": 33509064
+        },
+        {
+          "alignment": 16,
+          "content_sha256": "a501c3c18af7a1d0f35e05db7dd93086f42dea5376e6aa1a8b8d29f0965b9afa",
+          "end_exclusive": 33515984,
+          "gba_end_exclusive": 167733712,
+          "gba_start": 167727072,
+          "name": "pr16_circus_streak_runtime",
+          "owner": "USER-20260919-CIRCUS-STREAK",
+          "placement": "EXPLICIT",
+          "purpose": "Circus-owned streak/save and isolated reception runtime",
+          "region": "future_tail",
+          "sequence": 94,
+          "size": 6640,
+          "start": 33509344
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "c8ff9377bc6536e8bbf7d284621758fb74934f1a592ce2e4de1b0e6f999658ef",
+          "end_exclusive": 19729104,
+          "gba_end_exclusive": 153946832,
+          "gba_start": 153946824,
+          "name": "pr16_circus_streak_get_veneer",
+          "owner": "USER-20260919-CIRCUS-STREAK",
+          "placement": "EXPLICIT",
+          "purpose": "sp072 read-only Circus streak getter long-call veneer",
+          "region": "integration_modules",
+          "sequence": 95,
+          "size": 8,
+          "start": 19729096
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "4c1953e00dd046396c401c33ada42f1f988e84d74a748018a5d298fcbe54b5f6",
+          "end_exclusive": 33516348,
+          "gba_end_exclusive": 167734076,
+          "gba_start": 167733712,
+          "name": "pr16_circus_cold_load_bridge",
+          "owner": "USER-20260919-CIRCUS-COLD-LOAD",
+          "placement": "EXPLICIT",
+          "purpose": "CRC-valid Circus64 prime before legacy automatic recovery Saves",
+          "region": "future_tail",
+          "sequence": 96,
+          "size": 364,
+          "start": 33515984
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "2823449e80d55dd74643741f7982e8fc27a9a32ec941ed009f05e1cc047db840",
+          "end_exclusive": 33517616,
+          "gba_end_exclusive": 167735344,
+          "gba_start": 167734076,
+          "name": "pr16_circus_drought_empty_loader",
+          "owner": "USER-20260920-CIRCUS-SELECTION-RUN35451609631",
+          "placement": "EXPLICIT",
+          "purpose": "Circus WIN only native empty Drought loader termination",
+          "region": "future_tail",
+          "sequence": 97,
+          "size": 1268,
+          "start": 33516348
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "7a0d04377d80920052e1f036dc8952dd6d891f29c00058aa4e6506898f793693",
+          "end_exclusive": 33519388,
+          "gba_end_exclusive": 167737116,
+          "gba_start": 167735344,
+          "name": "pr16_circus_rental_drought",
+          "owner": "USER-20260920-CIRCUS-RENTAL-DROUGHT-RUN35456028016",
+          "placement": "EXPLICIT",
+          "purpose": "Circus READY six-rental field return empty Drought loader termination",
+          "region": "future_tail",
+          "sequence": 98,
+          "size": 1772,
+          "start": 33517616
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "8bde5f74b38d833cec080ef107d265755969066ff494743b21dfa8fea059711b",
+          "end_exclusive": 19776048,
+          "gba_end_exclusive": 153993776,
+          "gba_start": 153993764,
+          "name": "pr16_circus_getter_preserve_r3",
+          "owner": "USER-20260920-CIRCUS-GETTER-REACH",
+          "placement": "EXPLICIT",
+          "purpose": "Circus getter five-argument preserving ARM interworking tail",
+          "region": "integration_modules",
+          "sequence": 99,
+          "size": 12,
+          "start": 19776036
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "a61d933f52a785088b5dc8dac81d0bc96f3eb9850d07929e9e4fc460a747992c",
+          "end_exclusive": 23042020,
+          "gba_end_exclusive": 157259748,
+          "gba_start": 157150844,
+          "name": "pr16_learnset_runtime_two_entrypoints",
+          "owner": "USER-20260922-LEARNSET-RUNTIME",
+          "placement": "FIRST_FIT",
+          "purpose": "PLR1 owner-gated level listing and existing machine slots",
+          "region": "integration_modules",
+          "sequence": 100,
+          "size": 108904,
+          "start": 22933116
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "680a798efac2c03f7eb643aaa7f5dce0e8dd89bd1a5bed93f55db8eeabdcc2ff",
+          "end_exclusive": 23042696,
+          "gba_end_exclusive": 157260424,
+          "gba_start": 157259748,
+          "name": "pr16_learnset_initial_and_natural",
+          "owner": "USER-20260922-LEARNSET-PROGRESS",
+          "placement": "FIRST_FIT",
+          "purpose": "owner-gated initial and natural learning",
+          "region": "integration_modules",
+          "sequence": 101,
+          "size": 676,
+          "start": 23042020
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "3fb75ac95022f2cfa9ea1a0bda13dd57f8ed883564b95271e97ba45489b7aa90",
+          "end_exclusive": 33550402,
+          "gba_end_exclusive": 167768130,
+          "gba_start": 167737116,
+          "name": "pr16_conditional_plc2",
+          "owner": "USER-20260922-LEARNSET-COMPACT",
+          "placement": "FIRST_FIT",
+          "purpose": "PLC2四条件consumerの分割配置",
+          "region": "future_tail",
+          "sequence": 102,
+          "size": 31014,
+          "start": 33519388
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "34d0d3a42dc7ebab3ec6f396bc9c4aba3457fec204262b8c4264d228436f6bda",
+          "end_exclusive": 23045368,
+          "gba_end_exclusive": 157263096,
+          "gba_start": 157260424,
+          "name": "pr16_conditional_plc2_code",
+          "owner": "USER-20260922-LEARNSET-COMPACT",
+          "placement": "FIRST_FIT",
+          "purpose": "PLC2四条件consumerの分割配置",
+          "region": "integration_modules",
+          "sequence": 103,
+          "size": 2672,
+          "start": 23042696
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "499714cc04fd43ecb59ac45d8d23dad6badbc0137189c4fbcb8facbe13c46d13",
+          "end_exclusive": 23066751,
+          "gba_end_exclusive": 157284479,
+          "gba_start": 157263096,
+          "name": "pr16_supply_pla1",
+          "owner": "USER-20260922-LEARNSET-SUPPLY-ABI",
+          "placement": "FIRST_FIT",
+          "purpose": "PLA1供給とTutor特殊ABIの明示owner接続",
+          "region": "integration_modules",
+          "sequence": 104,
+          "size": 21383,
+          "start": 23045368
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "14b2e916522ce3cda1e624676edf5f73e95e1da045bcaa14ed1a24be78ba95aa",
+          "end_exclusive": 33553192,
+          "gba_end_exclusive": 167770920,
+          "gba_start": 167768132,
+          "name": "pr16_supply_arm",
+          "owner": "USER-20260922-LEARNSET-SUPPLY-ABI",
+          "placement": "FIRST_FIT",
+          "purpose": "PLA1供給とTutor特殊ABIの明示owner接続",
+          "region": "future_tail",
+          "sequence": 105,
+          "size": 2788,
+          "start": 33550404
+        },
+        {
+          "alignment": 4,
+          "content_sha256": "62457f22d0ed246bb9c241994f21ae93f50e41bfc3d9cd6609c5c608418459c9",
+          "end_exclusive": 23066968,
+          "gba_end_exclusive": 157284696,
+          "gba_start": 157284480,
+          "name": "pr16_original_wild_initial",
+          "owner": "USER-20260925-LEARNSET-WILD-REPAIR",
+          "placement": "FIRST_FIT",
+          "purpose": "V4 wild-only override isolated; original prepared owner reset",
+          "region": "integration_modules",
+          "sequence": 106,
+          "size": 216,
+          "start": 23066752
+        }
+      ],
+      "regions": [
+        {
+          "alignment": 4,
+          "end_exclusive": 16777216,
+          "gba_end_exclusive": 150994944,
+          "gba_start": 134217728,
+          "kind": "reserved",
+          "name": "vega_base",
+          "owner": "Vega",
+          "purpose": "Vega IPS output and original data",
+          "size": 16777216,
+          "start": 0
+        },
+        {
+          "alignment": 4,
+          "end_exclusive": 18874368,
+          "gba_end_exclusive": 153092096,
+          "gba_start": 150994944,
+          "kind": "reserved",
+          "name": "cfru_payload",
+          "owner": "CFRU-JP",
+          "purpose": "T01 CFRU linked payload envelope",
+          "size": 2097152,
+          "start": 16777216
+        },
+        {
+          "alignment": 4,
+          "end_exclusive": 23068672,
+          "gba_end_exclusive": 157286400,
+          "gba_start": 153092096,
+          "kind": "allocatable",
+          "name": "integration_modules",
+          "owner": "project",
+          "purpose": "relocated adapters and integration modules",
+          "size": 4194304,
+          "start": 18874368
+        },
+        {
+          "alignment": 4,
+          "end_exclusive": 32833536,
+          "gba_end_exclusive": 167051264,
+          "gba_start": 157286400,
+          "kind": "reserved",
+          "name": "dpe_payload",
+          "owner": "DPE-JP",
+          "purpose": "T01 DPE linked payload envelope",
+          "size": 9764864,
+          "start": 23068672
+        },
+        {
+          "alignment": 4,
+          "end_exclusive": 33554432,
+          "gba_end_exclusive": 167772160,
+          "gba_start": 167051264,
+          "kind": "allocatable",
+          "name": "future_tail",
+          "owner": "project",
+          "purpose": "future small generated tables and metadata",
+          "size": 720896,
+          "start": 32833536
+        }
+      ],
+      "schema_version": 1,
+      "summaries": {
+        "allocatable_bytes": 4915200,
+        "allocatable_region_count": 2,
+        "allocated_bytes": 4912049,
+        "allocation_count": 107,
+        "gba_rom_base": 134217728,
+        "overlap_count": 0,
+        "region_bytes": 33554432,
+        "region_count": 5,
+        "region_usage": [
+          {
+            "allocated_bytes": 0,
+            "allocation_count": 0,
+            "kind": "reserved",
+            "region": "vega_base",
+            "remaining_bytes": 0,
+            "size": 16777216
+          },
+          {
+            "allocated_bytes": 0,
+            "allocation_count": 0,
+            "kind": "reserved",
+            "region": "cfru_payload",
+            "remaining_bytes": 0,
+            "size": 2097152
+          },
+          {
+            "allocated_bytes": 4192428,
+            "allocation_count": 66,
+            "kind": "allocatable",
+            "region": "integration_modules",
+            "remaining_bytes": 1876,
+            "size": 4194304
+          },
+          {
+            "allocated_bytes": 0,
+            "allocation_count": 0,
+            "kind": "reserved",
+            "region": "dpe_payload",
+            "remaining_bytes": 0,
+            "size": 9764864
+          },
+          {
+            "allocated_bytes": 719621,
+            "allocation_count": 41,
+            "kind": "allocatable",
+            "region": "future_tail",
+            "remaining_bytes": 1275,
+            "size": 720896
+          }
+        ],
+        "remaining_allocatable_bytes": 3151,
+        "reserved_bytes": 28639232,
+        "reserved_region_count": 3,
+        "rom_size": 33554432
+      }
+    },
+    "byte_complete_rollback": true,
+    "candidate": {
+      "sha256": "b7790902733a638445129c388d65ab3c199bceb92a41338e0069221b556b9f91",
+      "size": 33554432
+    },
+    "code": {
+      "sha256": "62457f22d0ed246bb9c241994f21ae93f50e41bfc3d9cd6609c5c608418459c9",
+      "size": 216
+    },
+    "code_hex": "002370b586b004000393984205d10025280006b070bc02bc0847214b98420ed0204b98420bd0204b984208d01f4b984205d01f4b984202d01e4b9842e7d100222d2120001c4d00f046f8021edfd10b21200000f040f804ab02040093174d032317491848120c00f036f805000128ced12000154b00f02ef801380006000e6328c5d80d2631002000104b03aa013600f021f8162ef6d120000d4b00f01bf8b7e78c3f0202f03f020254400202b84002021c4102028041020255f30308d3945f09e8a501007cee5d099ddf030871fa030849995f0918472847",
+    "hook": {
+      "after": "004b184781f85f09",
+      "before": "f7b5041e03d10020",
+      "offset": 20522484,
+      "target": 157284481
+    },
+    "new_arm_compiles": 1,
+    "new_arm_links": 1,
+    "old_arm_compiles": 0,
+    "old_v4_table_preserved_as_history": true,
+    "outside_declared_ranges": 0,
+    "parent": {
+      "sha256": "8946438bc37fda468c53e41378a6f82fac8f0b1af7ac6785ef07ca708c2714a1",
+      "size": 33554432
+    },
+    "schema_version": 1,
+    "source_bindings": {
+      "overlays/move_distribution_v4/move_distribution_v4.c": {
+        "sha256": "2eb484e280530af0ab6408b87ef7304d69680fa095ba7f18bd724e78d1a7cc93",
+        "size": 5272
+      },
+      "overlays/stage57_debug_repair/stage57_debug_repair.c": {
+        "sha256": "6dfa69dee60e26c3e887008a8887d8dfaad47a7bd0f8cffa2556a2c4af9e942a",
+        "size": 5500
+      },
+      "scripts/pr16_learnset_wild_repair.py": {
+        "sha256": "0521380ce7d4cf19a1a0e79f591187a318b79f08d022fdf85c6912817b747da3",
+        "size": 17181
+      },
+      "src/modernization/pr16_learnset_owner.h": {
+        "sha256": "41c3ab7d590aa7e377b56e321dd2a599d5e26f37480ef1962032cd3905545808",
+        "size": 1603
+      },
+      "src/modernization/pr16_learnset_runtime.h": {
+        "sha256": "f0aceda5fa6584e0fd681b2fd6e6437ecfb3beffde9db3af7a319db4a1b0844c",
+        "size": 1047
+      },
+      "src/modernization/pr16_learnset_wild_game.c": {
+        "sha256": "d6d8d380cf2127aacfc7b758c07b30675be212488353972156cc6526655c048c",
+        "size": 1130
+      },
+      "tests/test_pr16_learnset_wild_repair.py": {
+        "sha256": "3b2ea9ac4675d36a11cf01e8c3c996d8aeecca1ba5ba9f707ffc53701f0d650a",
+        "size": 5270
+      }
+    },
+    "start": 23066752,
+    "status": "LINKED_WILD_INITIAL_REPAIR",
+    "trace": {
+      "identity": {
+        "sha256": "6494899b82a6ab0c00f3271298c7715695f38cb51b032d6e9399960fc24e33c9",
+        "size": 22114
+      },
+      "old_move_calls": 8,
+      "old_moves": [
+        72,
+        488,
+        73,
+        182
+      ],
+      "original_moves": [
+        92,
+        537,
+        76,
+        147
+      ],
+      "run": 36041199782,
+      "source_head": "47ee15b2ab3d45d94b0b50b0553294f79799157d"
+    }
+  }
+}

@@ -1,0 +1,408 @@
+{
+  "candidate": {
+    "crc32": "CC068B4A",
+    "sha256": "46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38",
+    "size": 33554432
+  },
+  "candidate_native_acceptance": "DEFERRED_AUDIT",
+  "full_handler_history_complete": false,
+  "later_saved_elf_audit": "data/saved_link_audit.json",
+  "new_native_runs": 0,
+  "rom_changes": 0,
+  "schema_version": 1,
+  "scope_ja": "現在の固定上流宣言とlocal変換sourceの構造的由来。Git全履歴・候補compiled全callerの証明ではない。T04の新規アダプターと新しいengine opcodeを区別する。",
+  "source_patch_contracts": [
+    {
+      "consumers": [
+        "native adapter declaration"
+      ],
+      "expected_count": 1,
+      "id": "include-native-adapter-src-accuracy_calc-c",
+      "installed_on_candidate": "DEFERRED_AUDIT",
+      "needle_sha256": "62741d3d41fd07e6c75a65a367054cc1261406068d587e8ca1f46050c662b43a",
+      "path": "src/accuracy_calc.c",
+      "replacement_sha256": "31d6f87684f63a8dc96386c7750cfceaaae5ef7c8106dc94eca02fe152334b2d"
+    },
+    {
+      "consumers": [
+        "native adapter declaration"
+      ],
+      "expected_count": 1,
+      "id": "include-native-adapter-src-attackcanceler-c",
+      "installed_on_candidate": "DEFERRED_AUDIT",
+      "needle_sha256": "62741d3d41fd07e6c75a65a367054cc1261406068d587e8ca1f46050c662b43a",
+      "path": "src/attackcanceler.c",
+      "replacement_sha256": "31d6f87684f63a8dc96386c7750cfceaaae5ef7c8106dc94eca02fe152334b2d"
+    },
+    {
+      "consumers": [
+        "native adapter declaration"
+      ],
+      "expected_count": 1,
+      "id": "include-native-adapter-src-battle_util-c",
+      "installed_on_candidate": "DEFERRED_AUDIT",
+      "needle_sha256": "62741d3d41fd07e6c75a65a367054cc1261406068d587e8ca1f46050c662b43a",
+      "path": "src/battle_util.c",
+      "replacement_sha256": "31d6f87684f63a8dc96386c7750cfceaaae5ef7c8106dc94eca02fe152334b2d"
+    },
+    {
+      "consumers": [
+        "native adapter declaration"
+      ],
+      "expected_count": 1,
+      "id": "include-native-adapter-src-cmd49-c",
+      "installed_on_candidate": "DEFERRED_AUDIT",
+      "needle_sha256": "62741d3d41fd07e6c75a65a367054cc1261406068d587e8ca1f46050c662b43a",
+      "path": "src/cmd49.c",
+      "replacement_sha256": "31d6f87684f63a8dc96386c7750cfceaaae5ef7c8106dc94eca02fe152334b2d"
+    },
+    {
+      "consumers": [
+        "native adapter declaration"
+      ],
+      "expected_count": 1,
+      "id": "include-native-adapter-src-damage_calc-c",
+      "installed_on_candidate": "DEFERRED_AUDIT",
+      "needle_sha256": "62741d3d41fd07e6c75a65a367054cc1261406068d587e8ca1f46050c662b43a",
+      "path": "src/damage_calc.c",
+      "replacement_sha256": "31d6f87684f63a8dc96386c7750cfceaaae5ef7c8106dc94eca02fe152334b2d"
+    },
+    {
+      "consumers": [
+        "native adapter declaration"
+      ],
+      "expected_count": 1,
+      "id": "include-native-adapter-src-set_effect-c",
+      "installed_on_candidate": "DEFERRED_AUDIT",
+      "needle_sha256": "62741d3d41fd07e6c75a65a367054cc1261406068d587e8ca1f46050c662b43a",
+      "path": "src/set_effect.c",
+      "replacement_sha256": "31d6f87684f63a8dc96386c7750cfceaaae5ef7c8106dc94eca02fe152334b2d"
+    },
+    {
+      "consumers": [
+        "native adapter declaration"
+      ],
+      "expected_count": 1,
+      "id": "include-native-adapter-src-Battle_AI-ai_negatives-c",
+      "installed_on_candidate": "DEFERRED_AUDIT",
+      "needle_sha256": "a3ef184ebc3e4dad17c42e9ac7ed5ccff7a4066317691012eb17dfedd1ea0a53",
+      "path": "src/Battle_AI/ai_negatives.c",
+      "replacement_sha256": "1e46b6bd4491f2055d3de43f16d9ef8c6a9f0954b30f54b2cdfb7c8fecbcef48"
+    },
+    {
+      "consumers": [
+        "runtime damage",
+        "AI damage",
+        "menu damage"
+      ],
+      "expected_count": 1,
+      "id": "damage-calculation-flag-namespace",
+      "installed_on_candidate": "DEFERRED_AUDIT",
+      "needle_sha256": "18184b54ba83140327ebbd3fe0e9b223108d5d81dc348bbbdfd4d3a68fe3df50",
+      "path": "src/damage_calc.c",
+      "replacement_sha256": "4bc63896d3475a49d3db7cd6a44c3f236d56c5d5d6cfa74584f9d76685c1455d"
+    },
+    {
+      "consumers": [
+        "battle",
+        "AI",
+        "Soundproof",
+        "Throat Spray",
+        "move limitation"
+      ],
+      "expected_count": 1,
+      "id": "sound-central-query",
+      "installed_on_candidate": "DEFERRED_AUDIT",
+      "needle_sha256": "56d8ec1e36c4ef68106b96e7ec7e43d5b8640ff853264a656a46cbc6c6751ffb",
+      "path": "src/battle_util.c",
+      "replacement_sha256": "ce1ec53fd75ba680f25069b7e5d5f8ff8b72441a24502936d26e80501ab7278c"
+    },
+    {
+      "consumers": [
+        "battle move-end recoil"
+      ],
+      "expected_count": 1,
+      "id": "recoil-runtime-query",
+      "installed_on_candidate": "DEFERRED_AUDIT",
+      "needle_sha256": "bd80909cb7887bccab1ca71ca5202b85db59af35a7987eff9182fde8de7615b5",
+      "path": "src/cmd49.c",
+      "replacement_sha256": "c4d73016a264d1853f98aa55e7fe7b7301e719fe86a300cda353c7f6492b87bf"
+    },
+    {
+      "consumers": [
+        "AI recoil scoring"
+      ],
+      "expected_count": 1,
+      "id": "recoil-ai-query",
+      "installed_on_candidate": "DEFERRED_AUDIT",
+      "needle_sha256": "2d25ba8d3ceb32c28be5a1a19116dce8778ff977a87e0bc8343883301685635a",
+      "path": "src/Battle_AI/ai_negatives.c",
+      "replacement_sha256": "d5e609b11e609f6b2eb1b6d360c161b4f6ddb989f0ccaf4e73f9ab8324eb7a8c"
+    },
+    {
+      "consumers": [
+        "battle fixed-hit state"
+      ],
+      "expected_count": 1,
+      "id": "fixed-hit-runtime-query",
+      "installed_on_candidate": "DEFERRED_AUDIT",
+      "needle_sha256": "d9e647f7b80cf31d4f57f8653462654cee089d587a0f9dae47941b65895b95be",
+      "path": "src/attackcanceler.c",
+      "replacement_sha256": "defab9057276343347af12432167c2bce67ac5151f85e41b3332ab2afb2efd10"
+    },
+    {
+      "consumers": [
+        "battle damage",
+        "AI damage"
+      ],
+      "expected_count": 1,
+      "id": "fixed-hit-damage-query",
+      "installed_on_candidate": "DEFERRED_AUDIT",
+      "needle_sha256": "221de3a9994a0aab777d05d0ea01baada93c6832a4a1d996b03ce791fcd6aab8",
+      "path": "src/damage_calc.c",
+      "replacement_sha256": "0bc740097319ad944a7925a1afb9b2babba5fd162c164a9524dbb1b8f5876673"
+    },
+    {
+      "consumers": [
+        "AI party damage fixed-hit multiplier"
+      ],
+      "expected_count": 1,
+      "id": "fixed-hit-ai-party-query",
+      "installed_on_candidate": "DEFERRED_AUDIT",
+      "needle_sha256": "802f2d98573a3dd96203f6fe35b249f20addd13bdb79cac52857890b41e50286",
+      "path": "src/damage_calc.c",
+      "replacement_sha256": "1bd334882a49ddb1866ddf0294f67332f327506bd207441a8da962181a4c5c83"
+    },
+    {
+      "consumers": [
+        "AI active-defender damage fixed-hit multiplier"
+      ],
+      "expected_count": 1,
+      "id": "fixed-hit-ai-active-query",
+      "installed_on_candidate": "DEFERRED_AUDIT",
+      "needle_sha256": "487604aadb858d603be579c0e8f2c8ac1059b13fe6c1c58d7751423eeb91f76d",
+      "path": "src/damage_calc.c",
+      "replacement_sha256": "43ce4124116dbe925ec3c4cf7ece4080d003bc30ea811c5a5959723b5ebaefee"
+    },
+    {
+      "consumers": [
+        "battle fixed-hit Parental Bond exclusion",
+        "AI Parental Bond damage"
+      ],
+      "expected_count": 1,
+      "id": "fixed-hit-parental-bond-query",
+      "installed_on_candidate": "DEFERRED_AUDIT",
+      "needle_sha256": "fc550594e16df24712633e446aef202b6f8e229b23b637eec9117843459839c5",
+      "path": "src/battle_util.c",
+      "replacement_sha256": "1fa51c5e1e2f349956c42c832bf6204747af10e13bbaac4ad3feb811ea64ea74"
+    },
+    {
+      "consumers": [
+        "runtime damage",
+        "AI party damage",
+        "AI active damage"
+      ],
+      "expected_count": 3,
+      "id": "false-swipe-positive-query",
+      "installed_on_candidate": "DEFERRED_AUDIT",
+      "needle_sha256": "44951a2eb0100b2a513127dc42e1c8a036eaee72d4d52f4bcedc4dd698b00f39",
+      "path": "src/damage_calc.c",
+      "replacement_sha256": "eee754eaf1ff4ad7533b65ea72279c6dd49ca6156fb4ceeb7e16d92d55c20da9"
+    },
+    {
+      "consumers": [
+        "final damage floor"
+      ],
+      "expected_count": 1,
+      "id": "false-swipe-negative-query",
+      "installed_on_candidate": "DEFERRED_AUDIT",
+      "needle_sha256": "18ffd679a7dd0969aff7b8ba0d56f663123f3cb8cf4214f0790243a7d00560c6",
+      "path": "src/damage_calc.c",
+      "replacement_sha256": "40b31d8636149c3755c8c8300bf9deb8bfb78bcaf7e06819ee338856ce92edc1"
+    },
+    {
+      "consumers": [
+        "runtime positive-evasion-only accuracy",
+        "AI positive-evasion-only accuracy"
+      ],
+      "expected_count": 1,
+      "id": "ignore-positive-evasion-query",
+      "installed_on_candidate": "DEFERRED_AUDIT",
+      "needle_sha256": "c28a3a5f525c1d37304b6768d7718dbd21cee601dc593a42600c9529303f25eb",
+      "path": "src/accuracy_calc.c",
+      "replacement_sha256": "fce0eab6184ad45a58fb1e370167f0c2e25f2190d33caa7cc41fb7d62caad870"
+    },
+    {
+      "consumers": [
+        "runtime critical rank"
+      ],
+      "expected_count": 1,
+      "id": "critical-runtime-query",
+      "installed_on_candidate": "DEFERRED_AUDIT",
+      "needle_sha256": "b17bcc1fd104754213fad9f7d6614176cc4c0ddfd857cd058f27aa79115688c5",
+      "path": "src/damage_calc.c",
+      "replacement_sha256": "f9423bb575208df167d3822cea9065ff6d2e377af61cafaa7f9793295549fea9"
+    },
+    {
+      "consumers": [
+        "AI critical rank"
+      ],
+      "expected_count": 1,
+      "id": "critical-ai-query",
+      "installed_on_candidate": "DEFERRED_AUDIT",
+      "needle_sha256": "3dde2d9b4525a6c2c1234b412cc09ace71e30492922bc215059a278328d7e9ec",
+      "path": "src/damage_calc.c",
+      "replacement_sha256": "b30764ee4ea052c5d2f098b4f330cb3fa5685bc848ec4ee1471c8b3f97590756"
+    },
+    {
+      "consumers": [
+        "runtime base power",
+        "AI base power",
+        "menu base power"
+      ],
+      "expected_count": 1,
+      "id": "dynamic-power-query",
+      "installed_on_candidate": "DEFERRED_AUDIT",
+      "needle_sha256": "883c1c00be8af5eb42d502c80a2492e66712931820e6fa0163e98a59f761ead3",
+      "path": "src/damage_calc.c",
+      "replacement_sha256": "8a050616129c72fe994f17f9f90d84c106af9e990a0b108447b4a3d32f2545c9"
+    },
+    {
+      "consumers": [
+        "runtime Rollout timer",
+        "Defense Curl power doubling"
+      ],
+      "expected_count": 1,
+      "id": "rolling-power-query",
+      "installed_on_candidate": "DEFERRED_AUDIT",
+      "needle_sha256": "85a64d3d0661650e3cce9dfa9419368283db1a59a837e77048ff4bc7d949497e",
+      "path": "src/damage_calc.c",
+      "replacement_sha256": "a830973c5faf36ae8f4187be38aaa3a092299cd8bb70050bc3defd6e85a27fc4"
+    },
+    {
+      "consumers": [
+        "compound secondary effects"
+      ],
+      "expected_count": 1,
+      "id": "per-effect-secondary-chance",
+      "installed_on_candidate": "DEFERRED_AUDIT",
+      "needle_sha256": "50450c1add5fe30fa54e2ef3b412e8850cfa356a1713719ef6095612e3cee84f",
+      "path": "src/set_effect.c",
+      "replacement_sha256": "7b5ee56dced759dffe5103ff42de0ad03ecdfbc2e9a9a66c708b8d502bac7bd1"
+    },
+    {
+      "consumers": [
+        "multi-hit resolver redispatch",
+        "move 427 single user-boost roll",
+        "exact 0..99 secondary-effect percentage boundary"
+      ],
+      "expected_count": 1,
+      "id": "fixed-hit-user-secondary-once",
+      "installed_on_candidate": "DEFERRED_AUDIT",
+      "needle_sha256": "54bf2848bfc6d45576864b544fff0ba3af6e52deec2cee1546b212a8255dfb85",
+      "path": "src/set_effect.c",
+      "replacement_sha256": "eb0987722c1e7c5f57e67990d2845dd17f106b7f4a60b4a676eb39d2be36ff7a"
+    },
+    {
+      "consumers": [
+        "three-turn and four-to-five-turn trap"
+      ],
+      "expected_count": 1,
+      "id": "fixed-trap-duration",
+      "installed_on_candidate": "DEFERRED_AUDIT",
+      "needle_sha256": "34c0bad764a516d18899ac5c24ee8278b59d9cb4f68830c7a5bdf4718cf1618f",
+      "path": "src/set_effect.c",
+      "replacement_sha256": "b8bd2a2c4877339da3635ed46b62819f1073ca44e2049a245d63c311cedd07c3"
+    }
+  ],
+  "source_proofs": [
+    {
+      "end_line": 336,
+      "evidence": "GENERATED_CANONICAL",
+      "file_sha256": "1a40a23c851a740aeb4333b15ab4fe7a200f02098b2b79bf9e84bcc88f1f885c",
+      "path": "tools/engine/cfru_move_effect_lowering.py",
+      "start_line": 271,
+      "symbol": "_compile_commands",
+      "unit_sha256": "1d4c29c7172208a1fef6463ac5a81df8c068935030388df2568b8d4b47af5912"
+    },
+    {
+      "end_line": 904,
+      "evidence": "GENERATED_CANONICAL",
+      "file_sha256": "1a40a23c851a740aeb4333b15ab4fe7a200f02098b2b79bf9e84bcc88f1f885c",
+      "path": "tools/engine/cfru_move_effect_lowering.py",
+      "start_line": 679,
+      "symbol": "_required_patches",
+      "unit_sha256": "4cb89074cf5e1c498dd901ea8dc9478de7f4210a4c9d31ad2259e36bc3c01828"
+    },
+    {
+      "end_line": 1045,
+      "evidence": "GENERATED_CANONICAL",
+      "file_sha256": "1a40a23c851a740aeb4333b15ab4fe7a200f02098b2b79bf9e84bcc88f1f885c",
+      "path": "tools/engine/cfru_move_effect_lowering.py",
+      "start_line": 943,
+      "symbol": "lower_t04_move_effects",
+      "unit_sha256": "12f9eadd253422b35524cb1b8e8b14feccc7d37cc31bc8041287653897d9b4a3"
+    }
+  ],
+  "summary": {
+    "effect_origin_records": 1063,
+    "effect_origin_states": {
+      "FROZEN_VEGA_COMPAT_DUPLICATE_BOUND": 1,
+      "LOCKED_UPSTREAM_EFFECT_DECLARATION": 991,
+      "MOVE_NONE_NOT_PLAYABLE": 1,
+      "T04_SOURCE_ADAPTER_CLASSIFIED": 70
+    },
+    "t04_adapters_with_central_queries": 17,
+    "t04_required_source_patch_contracts": 26,
+    "t04_script_origins": {
+      "PROJECT_COMPOSED_SCRIPT": 5,
+      "PROJECT_DYNAMIC_PREPARE_ADAPTER": 3,
+      "UPSTREAM_EFFECT_PARAMETER_ADAPTER": 43,
+      "UPSTREAM_SCRIPT_DELEGATE": 19
+    },
+    "t04_source_adapters": 70
+  },
+  "unresolved_move_ids": [],
+  "upstream_source_bindings": {
+    "assembly/data/move_tables.s": {
+      "sha256": "1506b69f4a524d21432d670e0c4f21e2a45d102edf06970ec994c11fb03fba8c",
+      "size": 32614,
+      "source_commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d"
+    },
+    "charmap.tbl": {
+      "sha256": "35c1b978f7004129679751a79cf4b40d7edd2fcd678bc81a29483b64b75b7ed5",
+      "size": 1639,
+      "source_commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d"
+    },
+    "include/constants/battle_move_effects.h": {
+      "sha256": "17422df2ad75185493d11325f94f833a656265c7a9d23091260bb3677763b036",
+      "size": 8736,
+      "source_commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d"
+    },
+    "include/constants/pokemon.h": {
+      "sha256": "e22c8b86b94ee2c8c3272f7a395dc12761e052b83d142e00669c3649fd032417",
+      "size": 2940,
+      "source_commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d"
+    },
+    "src/Tables/battle_moves.c": {
+      "sha256": "7c13282701ce28e47370a7be82cd1d8f489e7cbf4b5030ab677ab6b70c79470d",
+      "size": 356184,
+      "source_commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d"
+    },
+    "src/defines_battle.h": {
+      "sha256": "e85a4e7a35321a05972fa3742fe469619869127b545242f640c6c6cf061355de",
+      "size": 7098,
+      "source_commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d"
+    },
+    "src/dynamax.c": {
+      "sha256": "165a51cf016a690a17c8fa981cb65db67e1ea853ad0a92a6ec374bbd6843c490",
+      "size": 66919,
+      "source_commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d"
+    },
+    "src/set_z_effect.c": {
+      "sha256": "578ff365e1b8695303ee62fdc27745d537f1c3d5682053c0b6376a989d0c67b3",
+      "size": 11278,
+      "source_commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d"
+    }
+  }
+}

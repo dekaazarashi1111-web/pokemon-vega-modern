@@ -1,0 +1,68 @@
+name: pr16-research-phase0-load-20260926
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-research-phase0-load-20260926.yml]
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-research-phase0-load-20260926
+  cancel-in-progress: false
+jobs:
+  phase0-load:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+      MODE: finalize
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: 転送した5sourceのexact blobを照合
+        shell: python
+        run: |
+          import subprocess
+          bindings = {
+            'scripts/pr16_research_phase0_load.py': '92091a8bf2742c96fa2a45e81ee4130ff641d6b3',
+            'tools/mgba_pr16_research_phase0_load.c': 'b6479628d3ac17b06347117981aea61c0f91eadf',
+            'tests/test_pr16_research_phase0_load.py': 'eee47ef7f29184d925b811035434654f2cef58b0',
+            'scripts/pr16_research_phase0_load_actions.py': '44c7a30a74fe0fa57633eee0da2702455f35995d',
+            'scripts/pr16_research_phase0_load_preflight.py': 'cecbeb51e3214ba973e4d4938f77b02a15ad163d',
+          }
+          for path, sha in bindings.items():
+              assert subprocess.check_output(['git','hash-object',path]).decode().strip() == sha, path
+          print('PASS_EXACT_PHASE0_SOURCE_TRANSFER')
+      - name: 通常load内phase0の未受入2境界を検証して記録
+        run: python3 -B scripts/pr16_research_phase0_load_actions.py "$MODE"
+      - name: 引継ぎとtask graphと最終index
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B scripts/pr16_resume.py check | tee .local/pr16-research-lifecycle/public/resume-check.txt
+          python3 -B scripts/validate_task_graph.py | tee .local/pr16-research-lifecycle/public/task-graph.txt
+          python3 -B scripts/pr16_research_phase0_load_actions.py guard | tee .local/pr16-research-lifecycle/public/index-guard.txt
+      - name: 同branchへcommitと非force push
+        shell: bash
+        run: |
+          set -euo pipefail
+          branch=codex/modernization-followup-20260908
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m "USER-20260926-RESEARCH-PHASE0-LOAD: 通常load保存不可2境界の${MODE}と引継ぎ記録"
+          git push origin "HEAD:refs/heads/$branch"
+          reflected=$(git rev-parse HEAD)
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$reflected"
+          printf '%s\n' "$reflected" > .local/pr16-research-lifecycle/public/reflected-head.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-research-phase0-load
+          path: .local/pr16-research-lifecycle/public/
+          retention-days: 30
+          if-no-files-found: error

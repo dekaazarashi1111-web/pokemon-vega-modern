@@ -1,0 +1,61 @@
+{
+  "all_load_bytes_mapped": true,
+  "elf": {
+    "sha256": "b065145771f9b2bb06de68955dc8c3290df25491368da35e2a1379e8112edb7d",
+    "size": 10580
+  },
+  "hook_bytes_changed": 0,
+  "hook_entries": [
+    {
+      "first_instruction_hex": "1623",
+      "symbol": "Pr16_GameCanLearnTutor",
+      "target": 167769809
+    },
+    {
+      "first_instruction_hex": "f0b5",
+      "symbol": "Pr16_GameSupplyRelearner",
+      "target": 167769609
+    },
+    {
+      "first_instruction_hex": "074b",
+      "symbol": "Pr16_GameSupplySelectedRowCount",
+      "target": 167770121
+    },
+    {
+      "first_instruction_hex": "00b5",
+      "symbol": "Pr16_GameSupplySelectedPageHasMoves",
+      "target": 167770161
+    }
+  ],
+  "load_address": 167768136,
+  "new_arm_compiles": 0,
+  "new_arm_links": 0,
+  "objcopy": {
+    "sha256": "b7064dba828fcf63dfab2306a9875e0cccf0425bd5e0bf15a7e2eedc9322c0ae",
+    "size": 2784
+  },
+  "origin": 167768132,
+  "outside_repair_span_changes": 0,
+  "placed_image": {
+    "sha256": "14b2e916522ce3cda1e624676edf5f73e95e1da045bcaa14ed1a24be78ba95aa",
+    "size": 2788
+  },
+  "prefix_bytes": 4,
+  "repair_end_exclusive": 33553192,
+  "repair_start": 33550404,
+  "section_alignment": 8,
+  "symbols": {
+    "Pr16SupplyDecode": 167768158,
+    "Pr16SupplyMemset": 167770256,
+    "Pr16SupplyPage": 167769084,
+    "Pr16SupplyPageCount": 167769052,
+    "Pr16SupplyTutorBit": 167768964,
+    "Pr16_GameCanLearnTutor": 167769808,
+    "Pr16_GameSupplyArchiveRowCount": 167769502,
+    "Pr16_GameSupplyRelearner": 167769608,
+    "Pr16_GameSupplySelectedPageHasMoves": 167770160,
+    "Pr16_GameSupplySelectedRowCount": 167770120,
+    "Pr16_GameSupplyTutorSlot": 167769460,
+    "Pr16_SupplyOriginalTutor": 167770236
+  }
+}

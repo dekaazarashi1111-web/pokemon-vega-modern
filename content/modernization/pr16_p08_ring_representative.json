@@ -1,0 +1,813 @@
+{
+  "schema_version": 1,
+  "task": "USER-20260920-P08-RING",
+  "source_head": "870e65e58fa34289daa6216ae41ed201e54b5e29",
+  "workflow_source_head": "870e65e58fa34289daa6216ae41ed201e54b5e29",
+  "candidate": {
+    "size": 33554432,
+    "sha256": "46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38"
+  },
+  "case": "ring-active",
+  "original": {
+    "run_id": 35347587112,
+    "head_sha": "a54fe471c666c280f116b5cbfc3b1a6c821e5395",
+    "artifact_id": 10547413771,
+    "archive": {
+      "size": 656588,
+      "sha256": "113b5972602453eafdab47f57272f1d9fd0ab22d1efcd4d956651b2f84ad0f65"
+    },
+    "sources": {
+      "config/github_private_environment.json": {
+        "sha256": "33ff93eb2a1183ccdc3fea5c08b986271d75e9a8e349627072b36dd4c6abb56a",
+        "size": 5007
+      },
+      "overlays/cfru/integration.h": {
+        "sha256": "8323050dac61b161d89393815ce63837cedee4369235a5f2277dc32fdd523f5a",
+        "size": 8981
+      },
+      "overlays/cfru/runtime.h": {
+        "sha256": "9f608381273cd49af4df91af5ec9598420dfe6c4b8ec30150945c655fa64c476",
+        "size": 8156
+      },
+      "overlays/ring_npc/ring_npc.c": {
+        "sha256": "e14d28dd4f891b4d3ef5d27d036de669013ed1f8bb8e9916111aab71a3b4bc5d",
+        "size": 1817
+      },
+      "overlays/ring_npc/ring_npc.h": {
+        "sha256": "32e9d0112e70555bfc4a93871a2cb9a3e3be2162527e67abf4d8518990d06386",
+        "size": 489
+      },
+      "overlays/ring_policy/ring_policy.c": {
+        "sha256": "a9d523ad733b71af9cbfcd081555de0cd6361b14bb339463cb3e9e50b85de845",
+        "size": 3207
+      },
+      "overlays/ring_policy/ring_policy.h": {
+        "sha256": "631d923b90c8f397a9a7672ce19f96ca9f4f4d6dc6c0131cac53269086c15583",
+        "size": 398
+      },
+      "scripts/pr16_capture_geometry.py": {
+        "sha256": "c4e1bd692944020fee552077705e7d86884530d525fbafba095e746bd00b157c",
+        "size": 3346
+      },
+      "scripts/pr16_natural_capture.py": {
+        "sha256": "99371140f7424806b25205f2b86e922bbbbfe50bd91c967cb478c804d91c26ef",
+        "size": 9937
+      },
+      "scripts/pr16_p05_root_diagnostics.py": {
+        "sha256": "1aece44ba87988435c5316d56cd8aa143ea5739ef7bda35103578b93a8c50018",
+        "size": 8880
+      },
+      "scripts/pr16_purchased_gear.py": {
+        "sha256": "da0878109e346e1454ac3f47b8e6d75247deb9a9c4f4b5fd2881a86458007a6d",
+        "size": 13172
+      },
+      "scripts/pr16_ring_npc_successor.py": {
+        "sha256": "4832d39eed10928f9ebb292fb1746546a8a3206c6ad0f86ed7241d1b5f8e73c2",
+        "size": 16901
+      },
+      "scripts/pr16_ring_policy_native.py": {
+        "sha256": "d008aae0dee1b1735ca14931850e4964c8ef70bf730d3d22608981f9dd2a9f74",
+        "size": 15416
+      },
+      "scripts/pr16_ring_policy_successor.py": {
+        "sha256": "13b4907245beaf484ee9bd32a44faeae7a0cdf5c047c51530a0c7b91ad72bf33",
+        "size": 11995
+      },
+      "scripts/pr16_shop_routes.py": {
+        "sha256": "29ef07ef51bd2564f443844cdd859fffb5fa182c02b4260d16f1abbae302b338",
+        "size": 9771
+      },
+      "scripts/run_modernization_p03_breeding_e2e.py": {
+        "sha256": "c293ceec2e3a72094300bbf0d6764c5a4017f6db4a1cf138d8ccf647cbbc9e75",
+        "size": 14073
+      },
+      "tools/mgba_modernization_p02_stage71_acceptance_smoke.c": {
+        "sha256": "4e543fa815ca030e74522b5d0f1455fd5074035d10f044aab3bdfd41d7319c3b",
+        "size": 39669
+      },
+      "tools/mgba_modernization_p03_archive_ui_e2e.c": {
+        "sha256": "ccaeed858b70ea0af53a999dbaae121a8b85c88c08522755dc800e24e159b467",
+        "size": 20154
+      },
+      "tools/mgba_modernization_p03_breeding_e2e.c": {
+        "sha256": "a99cafd942f958c932709bed6099695f067dc292401b3bfb91e60afe4d6823de",
+        "size": 19614
+      },
+      "tools/mgba_modernization_p03_fullslots_e2e.c": {
+        "sha256": "f419ff2fffaf175061012dfb5dfc25d18c70a86d15c9ca89f5d5e6c886965ffa",
+        "size": 12868
+      },
+      "tools/mgba_modernization_p03_learning_e2e.c": {
+        "sha256": "154e277ef3f37b0037a7082b154805b658742f476eaf52abeb8c0ffb27a2742d",
+        "size": 7987
+      },
+      "tools/mgba_pr16_natural_capture.c": {
+        "sha256": "cd09b0ad480403b0e76239196415656c36b26abe18f12bcc946c4f9f9c9d2e6e",
+        "size": 9630
+      },
+      "tools/mgba_pr16_purchased_gear.c": {
+        "sha256": "ba8a7994d25bf7d5d95fdf9fb35bace671f4b1625f5cee96df235a92bbdac9aa",
+        "size": 16307
+      },
+      "tools/mgba_pr16_ring_policy.c": {
+        "sha256": "ba8d25d7b8d95856777327d13f2fca8eadb663fe9fba1cc8915cf916748a2415",
+        "size": 12153
+      },
+      "tools/mgba_pr16_shop_routes.c": {
+        "sha256": "16eda36fade0e8ef0ec3dc0b45b22c9776969f557aedc6ac25f1b65ffc09848c",
+        "size": 10000
+      }
+    },
+    "generated": {
+      "p03_learning_embedded.c": {
+        "sha256": "8a772d3ef7b937ba475228a98782d25d49405a6faaed690810db80ebb4bd3543",
+        "size": 8005
+      },
+      "p03_p02_embedded.c": {
+        "sha256": "49a15c51cee2471bd0e911f6a8b804bb860bbecc54be2ef5f2474e9dfb31015b",
+        "size": 39687
+      },
+      "p03a_fullslots_embedded.c": {
+        "sha256": "c76199eb2186d979dd5130597987a6f45d6434fb3fe11b983935ad55a1e7c0a6",
+        "size": 12886
+      },
+      "p03b_archive_embedded.c": {
+        "sha256": "e675b1086391f1f4c57080e6d3a53d2eeeda68bd02dd92de3830256238e2a997",
+        "size": 20172
+      },
+      "pr16_capture_shop_helpers.c": {
+        "sha256": "e6ac82cf3157365bf669340d199dc649aaf7d6159a0c4fda80357b8ee2aa1b3f",
+        "size": 10012
+      },
+      "pr16_gear_capture_helpers.c": {
+        "sha256": "f13abfb70d53f8334d944ca596fd2c7d0d421d52f4ed6db6224c6241f02ac5a5",
+        "size": 9645
+      },
+      "pr16_gear_route.h": {
+        "sha256": "1a6934a98bc4e68cd0189c38bb9b851a2248bfa9c83996b6d7c4b959c984f09d",
+        "size": 528
+      },
+      "pr16_ring_gear_helpers.c": {
+        "sha256": "fb3d861669894d24ca75a0ba881e0e48acc989551abe282f178a2991943ce606",
+        "size": 16319
+      },
+      "pr16_ring_policy_generated.h": {
+        "sha256": "54231b1bd94e1c3e5079c3cd4a440906f4450b10918df8f2dddd3dc698ff973b",
+        "size": 286
+      },
+      "pr16_shop_breeding_helpers.c": {
+        "sha256": "29875c0c2fe7e45f12fbd0409ea52614e954a056e9a07c8487e790be3d21a3be",
+        "size": 19630
+      }
+    },
+    "guards": {
+      "bus8": {
+        "process": {
+          "schema_version": 1,
+          "returncode": 1,
+          "timed_out": false,
+          "spawn_error": null
+        },
+        "stderr": {
+          "size": 50,
+          "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934"
+        },
+        "stdout": {
+          "size": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "bus16": {
+        "process": {
+          "schema_version": 1,
+          "returncode": 1,
+          "timed_out": false,
+          "spawn_error": null
+        },
+        "stderr": {
+          "size": 50,
+          "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934"
+        },
+        "stdout": {
+          "size": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "bus32": {
+        "process": {
+          "schema_version": 1,
+          "returncode": 1,
+          "timed_out": false,
+          "spawn_error": null
+        },
+        "stderr": {
+          "size": 50,
+          "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934"
+        },
+        "stdout": {
+          "size": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "raw8": {
+        "process": {
+          "schema_version": 1,
+          "returncode": 1,
+          "timed_out": false,
+          "spawn_error": null
+        },
+        "stderr": {
+          "size": 50,
+          "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934"
+        },
+        "stdout": {
+          "size": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "raw16": {
+        "process": {
+          "schema_version": 1,
+          "returncode": 1,
+          "timed_out": false,
+          "spawn_error": null
+        },
+        "stderr": {
+          "size": 50,
+          "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934"
+        },
+        "stdout": {
+          "size": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "raw32": {
+        "process": {
+          "schema_version": 1,
+          "returncode": 1,
+          "timed_out": false,
+          "spawn_error": null
+        },
+        "stderr": {
+          "size": 50,
+          "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934"
+        },
+        "stdout": {
+          "size": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "register": {
+        "process": {
+          "schema_version": 1,
+          "returncode": 1,
+          "timed_out": false,
+          "spawn_error": null
+        },
+        "stderr": {
+          "size": 50,
+          "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934"
+        },
+        "stdout": {
+          "size": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    "exact_original_preserved": true,
+    "old_case_count": 5,
+    "old_cases_reexecuted": 0
+  },
+  "protected_originals": {
+    "content/modernization/pr16_ring_policy_acceptance.json": {
+      "size": 162934,
+      "sha256": "85c56f6eb79b8f589ef6ab7a49db18929f9beb97dc7aac0dadc273623b07acfd"
+    },
+    "content/modernization/pr16_ring_npc_gift_checkpoint_20260918.json": {
+      "size": 105995,
+      "sha256": "786e5e10a23e5008669b3ec76d8646ee523819d91740dbb8a361e5150598bae9"
+    },
+    "content/modernization/pr16_p08_candidate_impact.json": {
+      "size": 739897,
+      "sha256": "9aeab30775211ba995a3d6dd589d697f70ed966bb34719aa1ea5e86548799142"
+    },
+    "content/modernization/pr16_saved_reconstruction_recipes.json": {
+      "size": 1249360,
+      "sha256": "80d93a1de6175eaffb391baf1d38a0de8ec647c90b837863e2703868e33d1bd5"
+    },
+    "content/modernization/pr16_circus_getter_followup.json": {
+      "size": 117299,
+      "sha256": "856881aa9b0156f391736de4748733395f493fe3de48ac23596e828c5745ba27"
+    },
+    "config/active_play_baseline.json": {
+      "size": 394,
+      "sha256": "4800257add049ea99cdedda91413a70a255dcff9a85823463596edefa8785053"
+    }
+  },
+  "source_bindings": {
+    "scripts/pr16_p08_ring_representative.py": {
+      "size": 19613,
+      "sha256": "2127d51a3618b9ffeeff696bc9505205b2b4e206acf83aa41e6f431f65494d4e"
+    },
+    "tests/test_pr16_p08_ring_representative.py": {
+      "size": 4383,
+      "sha256": "8ac6c6bf6135d44b1e73911fb761990119afdecc4e5c2bca6265dd2f6a48e8fd"
+    },
+    ".github/workflows/pr16-p08-ring.yml": {
+      "size": 2196,
+      "sha256": "bb8247eee634f2ce910613e739d631e49c8f299e4503e27dac8040e6313c46de"
+    },
+    "scripts/pr16_ring_policy_native.py": {
+      "size": 15416,
+      "sha256": "d008aae0dee1b1735ca14931850e4964c8ef70bf730d3d22608981f9dd2a9f74"
+    },
+    "scripts/pr16_p08_impact.py": {
+      "size": 13808,
+      "sha256": "d454d6e9be42c935e1bc83d22723dd12d83e67f185996fc778e15e0cb71dd835"
+    }
+  },
+  "native_verified": true,
+  "representative_accepted": true,
+  "visual_review_completed": true,
+  "new_emulator_processes": 1,
+  "host_compiles": 1,
+  "fresh_cores": 3,
+  "arm_compiles": 0,
+  "arm_links": 0,
+  "accepted_standalone_replays": 0,
+  "prefix_wins_reexecuted": 0,
+  "rom_changes": 0,
+  "release_ready": false,
+  "failures": [],
+  "recording_run": 35507654812,
+  "phase": "FINISH_RECOVERED",
+  "oracle": {
+    "candidate": {
+      "size": 33554432,
+      "sha256": "46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38"
+    },
+    "paths": {
+      "town": [
+        [
+          25,
+          20
+        ],
+        [
+          26,
+          20
+        ],
+        [
+          26,
+          19
+        ],
+        [
+          26,
+          18
+        ],
+        [
+          26,
+          17
+        ],
+        [
+          26,
+          16
+        ],
+        [
+          26,
+          15
+        ],
+        [
+          26,
+          14
+        ],
+        [
+          26,
+          13
+        ],
+        [
+          26,
+          12
+        ],
+        [
+          26,
+          11
+        ],
+        [
+          26,
+          10
+        ],
+        [
+          26,
+          9
+        ],
+        [
+          26,
+          8
+        ],
+        [
+          25,
+          8
+        ],
+        [
+          24,
+          8
+        ],
+        [
+          24,
+          7
+        ],
+        [
+          24,
+          6
+        ],
+        [
+          24,
+          5
+        ],
+        [
+          24,
+          4
+        ],
+        [
+          24,
+          3
+        ],
+        [
+          24,
+          2
+        ],
+        [
+          24,
+          1
+        ],
+        [
+          24,
+          0
+        ],
+        [
+          23,
+          0
+        ]
+      ],
+      "grass": [
+        [
+          11,
+          39
+        ],
+        [
+          11,
+          38
+        ],
+        [
+          11,
+          37
+        ],
+        [
+          11,
+          36
+        ],
+        [
+          11,
+          35
+        ],
+        [
+          11,
+          34
+        ],
+        [
+          11,
+          33
+        ],
+        [
+          11,
+          32
+        ],
+        [
+          11,
+          31
+        ],
+        [
+          11,
+          30
+        ],
+        [
+          12,
+          30
+        ],
+        [
+          13,
+          30
+        ],
+        [
+          14,
+          30
+        ]
+      ]
+    },
+    "grass_header": 148,
+    "table": {
+      "rate": 7,
+      "slots": [
+        {
+          "min": 75,
+          "max": 80,
+          "species": 627
+        },
+        {
+          "min": 75,
+          "max": 80,
+          "species": 730
+        },
+        {
+          "min": 75,
+          "max": 80,
+          "species": 627
+        },
+        {
+          "min": 75,
+          "max": 80,
+          "species": 730
+        },
+        {
+          "min": 75,
+          "max": 80,
+          "species": 838
+        },
+        {
+          "min": 75,
+          "max": 80,
+          "species": 838
+        },
+        {
+          "min": 75,
+          "max": 80,
+          "species": 838
+        },
+        {
+          "min": 75,
+          "max": 80,
+          "species": 838
+        },
+        {
+          "min": 75,
+          "max": 80,
+          "species": 627
+        },
+        {
+          "min": 75,
+          "max": 80,
+          "species": 730
+        },
+        {
+          "min": 75,
+          "max": 80,
+          "species": 838
+        },
+        {
+          "min": 75,
+          "max": 80,
+          "species": 838
+        }
+      ]
+    },
+    "geometry": {
+      "5": {
+        "size": 307290,
+        "sha256": "a1493155a70c11207edad0ec80d8d5f769e9beace4b9666cc51758bfa95829f2"
+      },
+      "17": {
+        "size": 126335,
+        "sha256": "41abb2b15ca226ce08d190c5c0e8d2b0e2a817a975836563ea5fa41feeb44af1"
+      }
+    },
+    "unused_embedded_town_route": true,
+    "ring_is_fixture": false,
+    "policy_is_fixture": false,
+    "new_emulator_processes": 0,
+    "ordinary_battle_accepted": false,
+    "flag_contract": {
+      "archive": {
+        "name": "pokemon-vega-private-env-v1-state.zip",
+        "sha256": "b878134dc4a00b7de1e028f178c329db638b0304096b96c84c6776ddfb0983af",
+        "size": 218929898
+      },
+      "definitions": {
+        "BATTLE_TYPE_IS_MASTER": "#define BATTLE_TYPE_IS_MASTER       \t0x0004 // In not-link battles, it's always set.",
+        "BATTLE_TYPE_LINK": "#define BATTLE_TYPE_LINK            \t0x0002"
+      },
+      "headers": {
+        "vendor/upstream/CFRU-JP/include/battle.h": {
+          "sha256": "8c6b332ef73bc545297b4f6c5bedc1ad11fa4470901f39cf386c1be53f4abdc9",
+          "size": 52228
+        },
+        "vendor/upstream/CFRU-JP/include/constants/battle.h": {
+          "sha256": "88681a4d9e3f34b8608417adf44f828b8c1a19669bba30e00fe22540e2936fb0",
+          "size": 16608
+        }
+      },
+      "link": 2,
+      "master": 4,
+      "stage_ja": "自然遭遇の既存action controller入力待ち。開始時flagsとは別にmaster bitが立つ。"
+    }
+  },
+  "generated": {
+    "p03_learning_embedded.c": {
+      "size": 8005,
+      "sha256": "8a772d3ef7b937ba475228a98782d25d49405a6faaed690810db80ebb4bd3543"
+    },
+    "p03_p02_embedded.c": {
+      "size": 39687,
+      "sha256": "49a15c51cee2471bd0e911f6a8b804bb860bbecc54be2ef5f2474e9dfb31015b"
+    },
+    "p03a_fullslots_embedded.c": {
+      "size": 12886,
+      "sha256": "c76199eb2186d979dd5130597987a6f45d6434fb3fe11b983935ad55a1e7c0a6"
+    },
+    "p03b_archive_embedded.c": {
+      "size": 20172,
+      "sha256": "e675b1086391f1f4c57080e6d3a53d2eeeda68bd02dd92de3830256238e2a997"
+    },
+    "pr16_capture_shop_helpers.c": {
+      "size": 10012,
+      "sha256": "e6ac82cf3157365bf669340d199dc649aaf7d6159a0c4fda80357b8ee2aa1b3f"
+    },
+    "pr16_gear_capture_helpers.c": {
+      "size": 9645,
+      "sha256": "f13abfb70d53f8334d944ca596fd2c7d0d421d52f4ed6db6224c6241f02ac5a5"
+    },
+    "pr16_gear_route.h": {
+      "size": 528,
+      "sha256": "1a6934a98bc4e68cd0189c38bb9b851a2248bfa9c83996b6d7c4b959c984f09d"
+    },
+    "pr16_ring_gear_helpers.c": {
+      "size": 16319,
+      "sha256": "fb3d861669894d24ca75a0ba881e0e48acc989551abe282f178a2991943ce606"
+    },
+    "pr16_ring_policy_generated.h": {
+      "size": 286,
+      "sha256": "a9c5f751c45afd127570622c4a1f6481de991594af8b2ba8254f7a3ac5df2345"
+    },
+    "pr16_shop_breeding_helpers.c": {
+      "size": 19630,
+      "sha256": "29875c0c2fe7e45f12fbd0409ea52614e954a056e9a07c8487e790be3d21a3be"
+    }
+  },
+  "transitive_compiled_sources": {
+    "tools/mgba_pr16_ring_policy.c": {
+      "size": 12153,
+      "sha256": "ba8d25d7b8d95856777327d13f2fca8eadb663fe9fba1cc8915cf916748a2415"
+    },
+    "tools/mgba_qol_production_smoke.c": {
+      "size": 149046,
+      "sha256": "2c4b9f065f4dce84e48f2be9afe2e2f9f666865088770ee8b068a908a0527b85"
+    },
+    "tools/mgba_battle_core_smoke.c": {
+      "size": 94688,
+      "sha256": "ed9875695ca60c61960685ac2f8e810a183c8eedd703e56545d67bde3df5cf24"
+    },
+    "tools/mgba_ai_fixture_runner.c": {
+      "size": 36272,
+      "sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f"
+    },
+    "overlays/cfru/integration.h": {
+      "size": 8981,
+      "sha256": "8323050dac61b161d89393815ce63837cedee4369235a5f2277dc32fdd523f5a"
+    },
+    "overlays/cfru/runtime.h": {
+      "size": 8156,
+      "sha256": "9f608381273cd49af4df91af5ec9598420dfe6c4b8ec30150945c655fa64c476"
+    }
+  },
+  "executable": {
+    "size": 150584,
+    "sha256": "f68a13ab76edcff302ef79cec5594c035d71062c79858a29f260ba59aadbd4d0"
+  },
+  "process": {
+    "schema_version": 1,
+    "returncode": 0,
+    "timed_out": false,
+    "spawn_error": null
+  },
+  "native_result": {
+    "schema_version": 1,
+    "status": "PASS",
+    "scope": "PR16_RING_GIFT_COLD_ORDINARY_MEGA",
+    "case": "ring-active",
+    "rom_sha256": "46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38",
+    "species": 411,
+    "item": 1012,
+    "mega_species": 1634,
+    "ability": 313,
+    "toggles": 1,
+    "ring_before": 0,
+    "ring_after": 1,
+    "ring_after_continue": 1,
+    "policy_mode": 1,
+    "usage_observed": 1,
+    "personality": 148321381,
+    "enemy_species": 730,
+    "enemy_level": 75,
+    "move": 558,
+    "pp_before": 10,
+    "pp_after": 9,
+    "outcome": 4,
+    "walking_steps": 35,
+    "save_before": 2,
+    "save_after": 4,
+    "bp_before": 0,
+    "bp_after": 0,
+    "manual_saves": 2,
+    "automatic_saves": 0,
+    "fresh_cores": 3,
+    "host_write_barriers": 7,
+    "ring_is_fixture": false,
+    "policy_is_fixture": false,
+    "initial_map_progress_party_stone_are_fixtures": true,
+    "cold_reload_before_encounter": true,
+    "physical_give": true,
+    "held_stone_not_consumed": true,
+    "party_inventory_bp_persisted": true,
+    "ordinary_battle_accepted": false,
+    "release_ready": false,
+    "warnings_errors": 0,
+    "total_frames": 12478,
+    "witness": {
+      "interaction": 32,
+      "received": 169,
+      "bag": 537,
+      "equipped": 1055,
+      "saved": 2879,
+      "reloaded": 5301,
+      "walking": 5302,
+      "encounter": 6931,
+      "move_menu": 6993,
+      "toggle": 6994,
+      "mega": 7032,
+      "spent": 7514,
+      "field": 8594,
+      "saved_again": 10056,
+      "reloaded_again": 12478
+    }
+  },
+  "screens": {
+    "ring-active-bag-stone.ppm": {
+      "size": 115215,
+      "sha256": "485d108acf7ef9d7c8e26ed819a6475327087f36c13569a0e76bdd8cf7d82387"
+    },
+    "ring-active-battle-reloaded.ppm": {
+      "size": 115215,
+      "sha256": "3d27d5697797b7163efafeeedbad8f6197e1fa7dbbd0e1f4f0185d885dce8e54"
+    },
+    "ring-active-equip-menus-closed.ppm": {
+      "size": 115215,
+      "sha256": "4127a181929cbacb0ce807a91f06bc6d70fcac83226d506cec20e0c79e7c8e13"
+    },
+    "ring-active-equipped-reloaded.ppm": {
+      "size": 115215,
+      "sha256": "4127a181929cbacb0ce807a91f06bc6d70fcac83226d506cec20e0c79e7c8e13"
+    },
+    "ring-active-equipped.ppm": {
+      "size": 115215,
+      "sha256": "27d878a864beaa728a776a57d1cce58dadf367c2cdab4d93f5e78582489121a8"
+    },
+    "ring-active-fixture.ppm": {
+      "size": 115215,
+      "sha256": "0caa3a8e27f53247e692869fd915a6a4ab2b374e44899906f8a3ece16759052c"
+    },
+    "ring-active-give-menu.ppm": {
+      "size": 115215,
+      "sha256": "a0839ba700ded618645b2f3f3ed3f153d56676a589640691bd6f67391b9ade0a"
+    },
+    "ring-active-give-party.ppm": {
+      "size": 115215,
+      "sha256": "ef5461d6789f709747253f5a45bc9977a80cc54d859c7d85edc33c3e3312f3a0"
+    },
+    "ring-active-mega-active.ppm": {
+      "size": 115215,
+      "sha256": "cc590cb082411761042e0f9f8f83fbf1d5db03287e3e7649fc0f188a24649a5b"
+    },
+    "ring-active-mega-selection.ppm": {
+      "size": 115215,
+      "sha256": "d5a1fe5bd0280184d8f6b76f7322f431a899eada8e49c0892fdeff57f4951c4e"
+    },
+    "ring-active-native-turn.ppm": {
+      "size": 115215,
+      "sha256": "f2b215b72897b350917c96b63c1d4799a8737079a43f3ee20dbfd860d3d5e4db"
+    },
+    "ring-active-natural-equipped-battle.ppm": {
+      "size": 115215,
+      "sha256": "c5bea3921297137ebd3c4d4157febcc9a0b3406ed1b5e96af9791c16bb98619b"
+    },
+    "ring-active-npc-dialogue.ppm": {
+      "size": 115215,
+      "sha256": "992c4c3345bd9f982ef2915884839a9836546a71c70e1e18a9a50db1d0a5dcec"
+    },
+    "ring-active-reverted-field.ppm": {
+      "size": 115215,
+      "sha256": "3d27d5697797b7163efafeeedbad8f6197e1fa7dbbd0e1f4f0185d885dce8e54"
+    }
+  },
+  "acceptance_path": "content/modernization/pr16_p08_ring_acceptance.json",
+  "recovered_by_run": 35510095146,
+  "original_run_conclusion": "failure"
+}

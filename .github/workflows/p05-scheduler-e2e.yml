@@ -1,0 +1,41 @@
+name: p05-scheduler-e2e
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/p05-scheduler-e2e.yml
+      - tools/mgba_modernization_p05_scheduler_e2e.c
+      - scripts/run_modernization_p05_scheduler_e2e.py
+      - tests/test_modernization_p05_scheduler_e2e.py
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  six-abilities-first-turn:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Fixed emulator toolchain
+        run: bash infra/setup_github_actions.sh --install
+      - name: Result and execution regression tests
+        run: python3 -m unittest tests.test_modernization_p05_scheduler_e2e -v
+      - name: Fresh 24-process scheduler matrix and seven write guards
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .local/p05-scheduler-e2e
+          git rev-parse HEAD > .local/p05-scheduler-e2e/tested-head.txt
+          python3 scripts/run_modernization_p05_scheduler_e2e.py \
+            > .local/p05-scheduler-e2e/job.stdout.json \
+            2> .local/p05-scheduler-e2e/job.stderr.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: p05-scheduler-e2e
+          path: .local/p05-scheduler-e2e/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14

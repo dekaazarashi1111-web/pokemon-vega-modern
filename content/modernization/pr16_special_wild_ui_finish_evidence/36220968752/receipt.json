@@ -1,0 +1,336 @@
+{
+  "accepted_case_reruns": 0,
+  "arm_compiles": 0,
+  "artifact": {
+    "digest": "sha256:9790fbf157aded02ee6e5fff5aa56b9cda59b564ac17f94b256264685a27d72b",
+    "id": 10899112929,
+    "name": "pr16-special-wild-ui-context",
+    "size_in_bytes": 847273
+  },
+  "host_compiles": 0,
+  "mode": "recover",
+  "new_native_processes": 0,
+  "new_unit_tests": 8,
+  "original_jobs": [
+    {
+      "check_run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/check-runs/108345108206",
+      "completed_at": "2026-09-26T05:24:17Z",
+      "conclusion": "failure",
+      "created_at": "2026-09-26T05:23:09Z",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "26d807032a1b423da8f14050b6469e779bc03983",
+      "html_url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/36220635424/job/108345108206",
+      "id": 108345108206,
+      "labels": [
+        "ubuntu-24.04"
+      ],
+      "name": "gameplay",
+      "node_id": "CR_kwDOUPNhZs8AAAAZOd8m7g",
+      "run_attempt": 1,
+      "run_id": 36220635424,
+      "run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/36220635424",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions",
+      "runner_id": 1000015145,
+      "runner_name": "GitHub Actions 1000015145",
+      "started_at": "2026-09-26T05:23:10Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completed_at": "2026-09-26T05:23:12Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "started_at": "2026-09-26T05:23:11Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-26T05:23:21Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 2,
+          "started_at": "2026-09-26T05:23:12Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-26T05:23:21Z",
+          "conclusion": "success",
+          "name": "Run actions/setup-python@v5",
+          "number": 3,
+          "started_at": "2026-09-26T05:23:21Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-26T05:23:22Z",
+          "conclusion": "success",
+          "name": "完全preimage/postimage hashで限定text編集を適用",
+          "number": 4,
+          "started_at": "2026-09-26T05:23:21Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-26T05:23:35Z",
+          "conclusion": "success",
+          "name": "mGBA host依存（ARM compilerなし）",
+          "number": 5,
+          "started_at": "2026-09-26T05:23:22Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-26T05:24:11Z",
+          "conclusion": "success",
+          "name": "hidden原本を再利用・未受入fishingだけ通常UI検証",
+          "number": 6,
+          "started_at": "2026-09-26T05:23:35Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-26T05:24:12Z",
+          "conclusion": "success",
+          "name": "成功と失敗の原本・固定引継ぎ・両ログ",
+          "number": 7,
+          "started_at": "2026-09-26T05:24:11Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-26T05:24:13Z",
+          "conclusion": "failure",
+          "name": "引継ぎ整合・task graph・最終index限定guard",
+          "number": 8,
+          "started_at": "2026-09-26T05:24:12Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-26T05:24:13Z",
+          "conclusion": "skipped",
+          "name": "検証済みsourceと記録を同branchへ非force commit/push",
+          "number": 9,
+          "started_at": "2026-09-26T05:24:13Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-26T05:24:13Z",
+          "conclusion": "success",
+          "name": "限定sourceと記録を転送（native再実行なし）",
+          "number": 10,
+          "started_at": "2026-09-26T05:24:13Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-26T05:24:14Z",
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@v4",
+          "number": 11,
+          "started_at": "2026-09-26T05:24:13Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-26T05:24:15Z",
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@v4",
+          "number": 12,
+          "started_at": "2026-09-26T05:24:14Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-26T05:24:15Z",
+          "conclusion": "skipped",
+          "name": "Post Run actions/setup-python@v5",
+          "number": 23,
+          "started_at": "2026-09-26T05:24:15Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-26T05:24:15Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 24,
+          "started_at": "2026-09-26T05:24:15Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-26T05:24:15Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 25,
+          "started_at": "2026-09-26T05:24:15Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/jobs/108345108206",
+      "workflow_name": "pr16-special-wild-gameplay-20260926"
+    }
+  ],
+  "original_public_evidence": {
+    "fishing.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "fishing.stderr.txt": {
+      "sha256": "46a32ceeabe8dfa9b724a993fd7f9bfa29e8b7fd72001a0bcef083d6ff4ee7d3",
+      "size": 4110
+    },
+    "fishing.stdout.txt": {
+      "sha256": "17d683d2654f3e271ea5f809dc2f28e9ae0cd349aa03ff212f2abf8eebaf9047",
+      "size": 2626
+    },
+    "guard-bus16.process.json": {
+      "sha256": "182b1f564fcb386958d2a1d35aa5085633c1d294f3080b2ff2d4f29be34238a3",
+      "size": 44
+    },
+    "guard-bus16.stderr.txt": {
+      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934",
+      "size": 50
+    },
+    "guard-bus16.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "guard-bus32.process.json": {
+      "sha256": "182b1f564fcb386958d2a1d35aa5085633c1d294f3080b2ff2d4f29be34238a3",
+      "size": 44
+    },
+    "guard-bus32.stderr.txt": {
+      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934",
+      "size": 50
+    },
+    "guard-bus32.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "guard-bus8.process.json": {
+      "sha256": "182b1f564fcb386958d2a1d35aa5085633c1d294f3080b2ff2d4f29be34238a3",
+      "size": 44
+    },
+    "guard-bus8.stderr.txt": {
+      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934",
+      "size": 50
+    },
+    "guard-bus8.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "guard-raw16.process.json": {
+      "sha256": "182b1f564fcb386958d2a1d35aa5085633c1d294f3080b2ff2d4f29be34238a3",
+      "size": 44
+    },
+    "guard-raw16.stderr.txt": {
+      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934",
+      "size": 50
+    },
+    "guard-raw16.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "guard-raw32.process.json": {
+      "sha256": "182b1f564fcb386958d2a1d35aa5085633c1d294f3080b2ff2d4f29be34238a3",
+      "size": 44
+    },
+    "guard-raw32.stderr.txt": {
+      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934",
+      "size": 50
+    },
+    "guard-raw32.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "guard-raw8.process.json": {
+      "sha256": "182b1f564fcb386958d2a1d35aa5085633c1d294f3080b2ff2d4f29be34238a3",
+      "size": 44
+    },
+    "guard-raw8.stderr.txt": {
+      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934",
+      "size": 50
+    },
+    "guard-raw8.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "guard-register.process.json": {
+      "sha256": "182b1f564fcb386958d2a1d35aa5085633c1d294f3080b2ff2d4f29be34238a3",
+      "size": 44
+    },
+    "guard-register.stderr.txt": {
+      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934",
+      "size": 50
+    },
+    "guard-register.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "hidden.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "hidden.stderr.txt": {
+      "sha256": "f8c9097865f40ef004e1293aca987bc8ce7e21b3dbad28597d2ef24407d20d02",
+      "size": 1102
+    },
+    "hidden.stdout.txt": {
+      "sha256": "86411effc9a771ab791bb001dac445921c75f47452a66add8c10bb4f704feb2b",
+      "size": 2061
+    },
+    "host-compile.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "host-compile.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "host-compile.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "new-unit.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "new-unit.stderr.txt": {
+      "sha256": "83c12c6056715131fd545abd783d598f8c8808761031fa9063da58f690454cc1",
+      "size": 4211
+    },
+    "new-unit.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "repair.json": {
+      "sha256": "c5c5eecedb955d32db3abe2b1868379859f704306397c1a8071dd206da3455d0",
+      "size": 1091
+    },
+    "ui-binding.json": {
+      "sha256": "36e35aadafaccfcf8fdae7646968997ed3cb7b1451888b3a7ccc6e43f3965772",
+      "size": 628
+    },
+    "verification.json": {
+      "sha256": "0cdf89c50b33b4ec0d82e632e1269c5a6cdd262013a71f503b6c489780719d3b",
+      "size": 13221
+    }
+  },
+  "original_run": {
+    "conclusion": "failure",
+    "head_sha": "26d807032a1b423da8f14050b6469e779bc03983",
+    "id": 36220635424,
+    "status": "completed"
+  },
+  "run_id": 36220968752,
+  "source_bindings": {
+    ".github/workflows/pr16-special-wild-ui-finish-20260926.yml": {
+      "sha256": "0ecd581e5058a4676bd196946c2f1dd150be963efa8cb2e95159dd4286036210",
+      "size": 3049
+    },
+    "scripts/pr16_special_wild_ui_finish.py": {
+      "sha256": "f9ff9256642b8516f24ce6bac9a57b2be5c08be82ef29cd6a387517355243e60",
+      "size": 13887
+    },
+    "tests/test_pr16_special_wild_ui_finish.py": {
+      "sha256": "eda3d0186aee42487baf8ccefa3943e200692b4137902176c1eed7da1d27b977",
+      "size": 1466
+    }
+  },
+  "source_head": "45ab15f3927400ac9814ad3cdb2d55696a0ce72b",
+  "unit_binding": {
+    "sha256": "7fba8f88dad9612c367784a25bc54840e23041b002a1b4f2caf6bfc8c75e8970",
+    "size": 1088
+  }
+}

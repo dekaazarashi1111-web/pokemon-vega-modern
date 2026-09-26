@@ -1,0 +1,95 @@
+{
+  "candidate": {
+    "sha256": "4aee03e8ec0135efa52d8d2b41edf61637ddc65e4be9f1a0b60a2e1c23dbefe7",
+    "size": 33554432
+  },
+  "ranges": [
+    {
+      "binding": {
+        "sha256": "bf430c8e1e3986e52e62134a46aa4dbdf1df288ed6d40b4a3dc17f0889212ac6",
+        "size": 52
+      },
+      "direct_bl": [
+        {
+          "instruction": "0x9377664",
+          "target": "0x9378dac"
+        },
+        {
+          "instruction": "0x9377670",
+          "target": "0x9377690"
+        },
+        {
+          "instruction": "0x9377676",
+          "target": "0x93789e4"
+        },
+        {
+          "instruction": "0x937767e",
+          "target": "0x93797c0"
+        }
+      ],
+      "literal_candidates": [
+        {
+          "instruction": "0x937766c",
+          "literal": "0x9377688",
+          "register": 0,
+          "value": "0x203d000"
+        },
+        {
+          "instruction": "0x937766e",
+          "literal": "0x937768c",
+          "register": 3,
+          "value": "0x92d28d9"
+        }
+      ],
+      "start": "0x9377660"
+    },
+    {
+      "binding": {
+        "sha256": "695b9b15ffccbacf1efeece8036e38e316af6ec6d5a3b49b94c593eeb224dfae",
+        "size": 80
+      },
+      "direct_bl": [
+        {
+          "instruction": "0x93bf634",
+          "target": "0x93bee78"
+        },
+        {
+          "instruction": "0x93bf63a",
+          "target": "0x93bdd7c"
+        },
+        {
+          "instruction": "0x93bf662",
+          "target": "0x93bf680"
+        }
+      ],
+      "literal_candidates": [
+        {
+          "instruction": "0x93bf638",
+          "literal": "0x93bf670",
+          "register": 0,
+          "value": "0x203d000"
+        },
+        {
+          "instruction": "0x93bf63e",
+          "literal": "0x93bf674",
+          "register": 2,
+          "value": "0x203f0a0"
+        },
+        {
+          "instruction": "0x93bf654",
+          "literal": "0x93bf678",
+          "register": 3,
+          "value": "0x203f0a3"
+        },
+        {
+          "instruction": "0x93bf660",
+          "literal": "0x93bf67c",
+          "register": 3,
+          "value": "0x9377661"
+        }
+      ],
+      "start": "0x93bf630"
+    }
+  ],
+  "scope": "READONLY_LITERAL_BL_FRONTIER_NOT_FAULT_ACCEPTANCE"
+}

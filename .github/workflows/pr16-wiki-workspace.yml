@@ -1,0 +1,60 @@
+name: PR16 wiki text workspace
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-wiki-workspace.yml]
+permissions:
+  contents: read
+  actions: read
+jobs:
+  workspace:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Wikiに関係するtracked textのみ保存（native・ROM生成なし）
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p .local/wiki-workspace
+          python3 -B - <<'PY'
+          import hashlib,json,pathlib,subprocess,zipfile
+          root=pathlib.Path('.')
+          paths=subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
+          inventory=[]; included=[]
+          with zipfile.ZipFile('.local/wiki-workspace/source.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for name in sorted(filter(None,paths)):
+                  p=root/name
+                  if not p.is_file() or p.is_symlink(): continue
+                  inventory.append({'path':name,'size':p.stat().st_size})
+                  selected=(name in {'AGENTS.md','CHATGPT_RESUME.md','Makefile','docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md','docs/wiki/README.md'} or
+                      (name.startswith('scripts/') and p.suffix=='.py') or
+                      (name.startswith(('manifests/','config/','content/modernization/')) and p.suffix in {'.json','.jsonl','.csv'}) or
+                      (name.startswith('docs/wiki/stage61/') and p.suffix in {'.json','.jsonl'}) or
+                      (name.startswith('overlays/') and p.suffix in {'.c','.h','.json'}) or
+                      name=='tests/test_pr16_candidate_wiki.py')
+                  if not selected: continue
+                  data=p.read_bytes()
+                  try: data.decode('utf-8')
+                  except UnicodeDecodeError: continue
+                  if b'\0' in data: continue
+                  z.writestr(name,data)
+                  included.append({'path':name,'size':len(data),'sha256':hashlib.sha256(data).hexdigest()})
+              for name in ['design/run_log.md','design/version_log.md']:
+                  z.writestr(name,(root/name).read_text()[-18000:])
+          for name,value in [('inventory.json',inventory),('included.json',included)]:
+              (root/'.local/wiki-workspace'/name).write_text(json.dumps(value,ensure_ascii=False,indent=2)+'\n')
+          print(json.dumps({'status':'TEXT_ONLY','files':len(included),'source_head':subprocess.check_output(['git','rev-parse','HEAD']).decode().strip(),'new_native_runs':0}))
+          PY
+          gh api repos/${{ github.repository }}/actions/runs/35527813054 --jq '{id,status,conclusion,head_sha}' > .local/wiki-workspace/extraction-run.json
+          gh api repos/${{ github.repository }}/actions/workflows/pr16-p08-transfer.yml/runs?per_page=1 --jq '.workflow_runs|map({id,status,conclusion,head_sha})' > .local/wiki-workspace/transfer-runs.json
+          gh api repos/${{ github.repository }}/pulls/16 --jq '{number,state,draft,merged,head:.head.sha}' > .local/wiki-workspace/pr16.json
+          gh api repos/${{ github.repository }}/issues/18 --jq .body > .local/wiki-workspace/issue18.md
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr16-wiki-text-workspace
+          path: .local/wiki-workspace/
+          retention-days: 3
+          if-no-files-found: error

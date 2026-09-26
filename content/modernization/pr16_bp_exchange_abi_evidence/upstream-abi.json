@@ -1,0 +1,52 @@
+{
+  "archive_sha256": "b878134dc4a00b7de1e028f178c329db638b0304096b96c84c6776ddfb0983af",
+  "source_bindings": {
+    "vendor/upstream/CFRU-JP/src/frontier.c": {
+      "size": 56750,
+      "sha256": "a33395bfaf81eec041a423d44d5620908e587a4f6e5614780b4bde393d7f4e06"
+    },
+    "vendor/upstream/CFRU-JP/src/party_menu.c": {
+      "size": 83459,
+      "sha256": "6b72ebe4b136af6d573c5e7079fe183497a7883ff2daceb4c519cd8dd8e66e59"
+    },
+    "vendor/upstream/CFRU-JP/include/new/ram_locs.h": {
+      "size": 9008,
+      "sha256": "8c8d7fd53813fefff997173f203aa0c97e1c14062db933e55303d5c498b2f089"
+    }
+  },
+  "functions": {
+    "GetNumMonsOnTeamInFrontier": {
+      "path": "vendor/upstream/CFRU-JP/src/frontier.c",
+      "text": "u8 GetNumMonsOnTeamInFrontier(void)\n{\n\tif (FlagGet(FLAG_BATTLE_FACILITY))\n\t\treturn MathMin(MathMax(1, VarGet(VAR_BATTLE_FACILITY_POKE_NUM)), PARTY_SIZE);\n\telse\n\t\treturn 3; //Regular multi battle\n}"
+    },
+    "ChoosePokemon_LoadMaxPKMNStr": {
+      "path": "vendor/upstream/CFRU-JP/src/party_menu.c",
+      "text": "u8 ChoosePokemon_LoadMaxPKMNStr(const u8** strPtr, bool8 loadString)\n{\n\tu8 max = GetNumMonsOnTeamInFrontier();\n\n\tif (FlagGet(FLAG_BATTLE_FACILITY))\n\t{\n\t\tif (loadString)\n\t\t{\n\t\t\tif (max < 6)\n\t\t\t\t*strPtr = sChoosePokemonMaxStrings[max - 1];\n\t\t\telse\n\t\t\t\t*strPtr = sChoosePokemonMaxStrings[0]; //Can't select more than 6 anyways\n\t\t}\n\t}\n\telse\n\t{\n\t\tmax = 3;\n\n\t\tif (loadString)\n\t\t\t*strPtr = gOtherText_NoMoreThreePoke;\n\t}\n\n\treturn max;\n}"
+    },
+    "CursorCb_Enter": {
+      "path": "vendor/upstream/CFRU-JP/src/party_menu.c",
+      "text": "void CursorCb_Enter(u8 taskId)\n{\n\tu8 max;\n\tconst u8* string = NULL;\n\tint i;\n\n\tif (gPartyMenu.unk_8_6 == 2)\n\t{\n\t\tmax = 2;\n\t\tstring = sChoosePokemonMaxStrings[max - 1];\n\t}\n\telse\n\t\tmax = ChoosePokemon_LoadMaxPKMNStr(&string, TRUE);\n\n\tPartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);\n\tPartyMenuRemoveWindow(&sPartyMenuInternal->windowId[1]);\n\n\tbool8 eligibleIndices[PARTY_SIZE] = {FALSE};\n\tfor (i = 0; i < PARTY_SIZE; ++i)\n\t\teligibleIndices[i] = IsMonAllowedInBattleTower(&gPlayerParty[i]); //Record who's currently eligible\n\n\tfor (i = 0; i < max; ++i)\n\t{\n\t\tif (gSelectedOrderFromParty[i] == 0)\n\t\t{\n\t\t\tPlaySE(SE_SELECT);\n\t\t\tgSelectedOrderFromParty[i] = gPartyMenu.slotId + 1;\n\t\t\tDisplayPartyPokemonPriorityText(i, &sPartyMenuBoxes[gPartyMenu.slotId], 1);\n\n\t\t\tif (i == (max - 1))\n\t\t\t\tPartyMenu_MoveCursorToConfirm();\n\n\t\t\tDisplayPartyMenuStdMessage(0);\n\t\t\tgTasks[taskId].func = Task_HandleChooseMonInput;\n\n\t\t\tfor (i = 0; i < PARTY_SIZE; ++i) //Reload everyone else's text if needed\n\t\t\t{\n\t\t\t\tif (eligibleIndices[i] //Was eligible before the selection\n\t\t\t\t&& !IsMonAllowedInBattleTower(&gPlayerParty[i]) //Mon is now ineligible\n\t\t\t\t&& GetMonData(&gPlayerParty[i], MON_DATA_SPECIES, NULL) != SPECIES_NONE)\n\t\t\t\t\tDisplayPartyPokemonSelectData(i, 6);  //Reload eligibility text\n\t\t\t}\n\n\t\t\treturn;\n\t\t}\n\t}\n\n\tPlaySE(SE_ERROR);\n\tDisplayPartyMenuMessage(string, 1);\n\tgTasks[taskId].func = Task_ReturnToChooseMonAfterText;\n}"
+    },
+    "CanPokemonSelectedBeEnteredInBattleTower": {
+      "path": "vendor/upstream/CFRU-JP/src/party_menu.c",
+      "text": "u8 CanPokemonSelectedBeEnteredInBattleTower(void)\n{\n\tu8 i, j;\n\tu8 tier = VarGet(VAR_BATTLE_FACILITY_TIER);\n\tstruct Pokemon* party = gPlayerParty;\n\tu8 maxLength = GetNumMonsOnTeamInFrontier();\n\n\tif (gSelectedOrderFromParty[maxLength - 1] == 0) //Not enough mon's entered\n\t{\n\t\tif (maxLength == 1)\n\t\t\treturn 14;\n\n\t\tif (FlagGet(FLAG_BATTLE_FACILITY))\n\t\t{\n\t\t\tConvertIntToDecimalStringN(gStringVar1, maxLength, 0, 1);\n\t\t\treturn 17;\n\t\t}\n\t}\n\n\tif (!FlagGet(FLAG_BATTLE_FACILITY))\n\t\treturn 0xFF;\n\n\tfor (i = 0; i < maxLength - 1; ++i)\n\t{\n\t\tu16 species = GetMonData(&party[gSelectedOrderFromParty[i] - 1], MON_DATA_SPECIES, NULL);\n\t\tu16 item = GetMonData(&party[gSelectedOrderFromParty[i] - 1], MON_DATA_HELD_ITEM, NULL);\n\t\tfor (j = i + 1; j < maxLength; j++)\n\t\t{\n\t\t\tif (tier != BATTLE_FACILITY_NO_RESTRICTIONS\n\t\t\t&& species == GetMonData(&party[gSelectedOrderFromParty[j] - 1], MON_DATA_SPECIES, NULL))\n\t\t\t\treturn 18;\n\t\t\tif (item != 0 && DuplicateItemsAreBannedInTier(tier, VarGet(VAR_BATTLE_FACILITY_BATTLE_TYPE))\n\t\t\t&& item == GetMonData(&party[gSelectedOrderFromParty[j] - 1], MON_DATA_HELD_ITEM, NULL))\n\t\t\t\treturn 19;\n\t\t}\n\t}\n\n\treturn 0xFF;\n}"
+    }
+  },
+  "linker_anchors": [
+    "InitChooseHalfPartyForBattle = 0x8127DE0 | 1;"
+  ],
+  "selected_order_declarations": [
+    {
+      "path": "vendor/upstream/CFRU-JP/include/new/ram_locs.h",
+      "line": 97,
+      "text": "\t\t//#define gSelectedOrderFromParty ((u8*) 0x203B0D4)"
+    },
+    {
+      "path": "vendor/upstream/CFRU-JP/include/new/ram_locs.h",
+      "line": 170,
+      "text": "#define gSelectedOrderFromParty ((u8*) 0x203C6C8)"
+    }
+  ],
+  "new_emulator_processes": 0,
+  "native_exchange_accepted": false
+}

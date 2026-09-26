@@ -1,0 +1,87 @@
+name: PR16 candidate wiki
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-candidate-wiki.yml
+      - scripts/build_pr16_candidate_wiki.py
+      - scripts/pr16_candidate_wiki_*.py
+      - scripts/pr16_wiki_checkpoint.py
+      - scripts/pr16_wiki_source_snapshot.py
+      - scripts/pr16_wiki_saved_link_snapshot.py
+      - content/modernization/pr16_candidate_wiki_saved_link_sources.json
+      - tests/test_pr16_wiki_saved_link_audit.py
+      - scripts/pr16_wiki_followup*.py
+      - tests/test_pr16_candidate_wiki*.py
+      - tests/test_pr16_wiki_followup*.py
+      - tests/test_pr16_wiki_runtime_z.py
+      - tests/test_pr16_wiki_effect_origin.py
+      - tests/test_pr16_wiki_hidden_patch.py
+      - tests/test_pr16_wiki_creation.py
+      - tests/test_pr16_wiki_link_graph.py
+      - content/modernization/pr16_candidate_wiki_link_sources.json
+      - content/modernization/pr16_candidate_wiki_creation_sources.json
+      - content/modernization/pr16_candidate_wiki_hidden_patch_sources.json
+      - tools/engine/cfru_move_effect_lowering.py
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+defaults:
+  run:
+    shell: bash
+concurrency:
+  group: pr16-candidate-wiki
+  cancel-in-progress: false
+jobs:
+  wiki:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Stage61・active baseline保護とMakefile限定入口
+        run: python3 -B scripts/pr16_wiki_checkpoint.py prepare
+      - name: 固定source artifact再利用（初回だけ・nativeなし）
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 -B scripts/pr16_wiki_followup_sources.py
+      - name: 成功済み保存ELF artifactをtracked textへ固定（初回のみ）
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 -B scripts/pr16_wiki_saved_link_snapshot.py
+      - name: 保存body・callee・技511結合の今回差分試験のみ（旧110/ELF40/nativeは再実行しない）
+        run: |
+          set -euo pipefail
+          python3 -B -m unittest discover -s tests -p 'test_pr16_wiki_saved_link_audit.py' -v 2>&1 | tee .local/pr16-wiki/followup-unit.txt
+          make -n pr16-candidate-wiki | tee .local/pr16-wiki/make-build.txt
+          make -n pr16-candidate-wiki-check | tee .local/pr16-wiki/make-check.txt
+      - name: 決定的buildと実checkの純読取検証
+        run: |
+          set -euo pipefail
+          PYTHONHASHSEED=11 python3 -B scripts/build_pr16_candidate_wiki.py build | tee .local/pr16-wiki/build-11.json
+          PYTHONHASHSEED=29 python3 -B scripts/build_pr16_candidate_wiki.py build | tee .local/pr16-wiki/build-29.json
+          python3 -B scripts/pr16_wiki_checkpoint.py verify
+      - name: 固定引継ぎ・両ログ・Wikiを検証して同branchへ非force push
+        run: |
+          set -euo pipefail
+          python3 -B scripts/pr16_wiki_checkpoint.py record
+          python3 -B scripts/pr16_resume.py check
+          python3 -B scripts/validate_task_graph.py
+          git diff --check
+          git add -- content/modernization/pr16_candidate_wiki_saved_link_sources.json content/modernization/pr16_candidate_wiki_consumer_sources.json Makefile docs/wiki/p08-candidate-46487d98 content/modernization/pr16_candidate_wiki_acceptance.json content/modernization/pr16_candidate_wiki_followup.json content/modernization/pr16_native_supply_resume_20260913.json docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md design/run_log.md design/version_log.md
+          python3 -B scripts/pr16_wiki_checkpoint.py guard
+          git diff --cached --check
+          test "$(git ls-remote origin refs/heads/codex/modernization-followup-20260908 | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20260921-P08-CANDIDATE-WIKI: 保存ELF17関数と技511互換由来をWiki・固定引継ぎ・両ログへ同期'
+          git push origin HEAD:refs/heads/codex/modernization-followup-20260908
+          git rev-parse HEAD > .local/pr16-wiki/reflected-head.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-candidate-wiki-cli
+          path: .local/pr16-wiki/
+          retention-days: 3
+          if-no-files-found: error

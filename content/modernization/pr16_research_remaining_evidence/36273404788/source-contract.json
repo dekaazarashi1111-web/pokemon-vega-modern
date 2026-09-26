@@ -1,0 +1,2459 @@
+{
+  "accepted_case_reruns": 0,
+  "activity_contract": [
+    {
+      "activity": "FISHING",
+      "activity_key": "ACTIVITY_KEY_FISHING_RESEARCH",
+      "anti_farm_policy": "釣りでDex caughtが0から1へ変わる結果だけ。逃走・既捕獲種・交換・孵化・staticは対象外。",
+      "completion_semantics": "FISHING_CAUGHT_STATE_0_TO_1_COMMIT_ONCE",
+      "daily_cap": 24,
+      "implementation_mode": "EXISTING_HOOK",
+      "index": 0,
+      "notes": "既存catch-result transactionへ同一commit境界で加算。1研究日あたり最大6結果。",
+      "points_awarded": 4,
+      "repeatability": "ONCE_PER_RESULT",
+      "source_owner": "VEGA_EXISTING",
+      "status": "ACTIVE",
+      "trigger_key": "ACTIVITY_HOOK_FISHING",
+      "unlock_key": "KANTO_EARLY_ACCESS"
+    },
+    {
+      "activity": "ECOLOGY_RESEARCH",
+      "activity_key": "ACTIVITY_KEY_ECOLOGY_RESEARCH",
+      "anti_farm_policy": "research caught stateの初回遷移だけ。同じshared capture・敗北・再試行・通常profileは対象外。",
+      "completion_semantics": "RESEARCH_CAPTURE_STATE_0_TO_1_COMMIT_ONCE",
+      "daily_cap": 50,
+      "implementation_mode": "EXISTING_HOOK",
+      "index": 1,
+      "notes": "既存T10 selectorの捕獲commitへ接続。1研究日あたり最大5結果。",
+      "points_awarded": 10,
+      "repeatability": "ONCE_PER_RESULT",
+      "source_owner": "T10_SELECTOR",
+      "status": "ACTIVE",
+      "trigger_key": "ACTIVITY_HOOK_RESEARCH",
+      "unlock_key": "KANTO_EARLY_ACCESS"
+    },
+    {
+      "activity": "GAME_CORNER",
+      "activity_key": "ACTIVITY_KEY_GAME_CORNER_RESEARCH",
+      "anti_farm_policy": "確定payoutでarcade coin純増100以上だけ。購入・交換・取消・損失・再表示は対象外。",
+      "completion_semantics": "PAYOUT_NET_GAIN_AT_LEAST_100_COMMIT_ONCE",
+      "daily_cap": 18,
+      "implementation_mode": "EXISTING_HOOK",
+      "index": 2,
+      "notes": "既存payout transaction tokenで重複抑止。1研究日あたり最大6回。",
+      "points_awarded": 3,
+      "repeatability": "REPEATABLE_CAPPED",
+      "source_owner": "VEGA_EXISTING",
+      "status": "ACTIVE",
+      "trigger_key": "ACTIVITY_HOOK_GAME_CORNER",
+      "unlock_key": "KANTO_CERT_2"
+    }
+  ],
+  "all_activities_accepted": false,
+  "arm_compiles": 0,
+  "candidate": {
+    "sha256": "26dac23cfdbc02c3c25e357b79dcdf3d247c10d893f54a4f6d6b1227bf5624da",
+    "size": 33554432
+  },
+  "host_compiles": 0,
+  "native_processes": 0,
+  "new_scoped_tests": 10,
+  "previous_record": {
+    "conclusion": "success",
+    "head_branch": "codex/modernization-followup-20260908",
+    "head_sha": "7e6b62556df26589616d94073feedc658e22e82d",
+    "id": 36267783546,
+    "path": ".github/workflows/pr16-research-mining-record-20260927.yml",
+    "run_attempt": 1,
+    "status": "completed"
+  },
+  "release_ready": false,
+  "run_id": 36273404788,
+  "schema_version": 1,
+  "source_bindings": {
+    ".github/workflows/pr16-research-followup-20260927.yml": {
+      "sha256": "d16ae624bd2ec8ae6ff3710696bf6836c030858f9fc0941408e18292e57ea270",
+      "size": 2316
+    },
+    "scripts/pr16_research_followup_20260927.py": {
+      "sha256": "986246b0de0395cdbe02522190346338b998e21826e453f22f3bae817f80b7cc",
+      "size": 10815
+    },
+    "tests/test_pr16_research_followup_20260927.py": {
+      "sha256": "14f3e32efe5c93911f2da81e6b7b0e2c267a90398fbb0a5a71552bef110aad2b",
+      "size": 1830
+    }
+  },
+  "source_head": "df6e8939d4a5ad803c36b10d5610a57eb74bef54",
+  "source_inventory": {
+    "config/research_economy_v1.json": {
+      "lines": 222,
+      "sha256": "7e92079158303a125358ae6fa49c231f6085b2ca0a335d5f0e8bb6c55db2ed8d",
+      "size": 9388,
+      "symbols": [
+        {
+          "line": 70,
+          "text": "    \"move_fishing\": \"0x09392715\","
+        },
+        {
+          "line": 71,
+          "text": "    \"move_hidden\": \"0x0939273D\","
+        },
+        {
+          "line": 82,
+          "text": "    {\"name\":\"wild_fishing_chain\",\"address\":\"0x08082750\",\"expected_hex\":\"004b184715273909\",\"target\":\"ResearchEconomy_GenerateFishingEncounterAdapter\",\"mode\":\"THUMB_JUMP\"},"
+        },
+        {
+          "line": 83,
+          "text": "    {\"name\":\"wild_hidden_chain\",\"address\":\"0x09220198\",\"expected_hex\":\"004b18473d273909\",\"target\":\"ResearchEconomy_TryHiddenEncounterAdapter\",\"mode\":\"THUMB_JUMP\"},"
+        },
+        {
+          "line": 86,
+          "text": "    {\"name\":\"game_corner_bulk_payout\",\"address\":\"0x0814061A\",\"expected_hex\":\"91f751f8\",\"target\":\"ResearchEconomy_GameCornerPayoutAdapter\",\"mode\":\"THUMB_BL\",\"veneer\":\"game_corner_payout_veneer\"},"
+        },
+        {
+          "line": 87,
+          "text": "    {\"name\":\"game_corner_animated_payout\",\"address\":\"0x0814065A\",\"expected_hex\":\"91f731f8\",\"target\":\"ResearchEconomy_GameCornerPayoutAdapter\",\"mode\":\"THUMB_BL\",\"veneer\":\"game_corner_payout_veneer\"}"
+        },
+        {
+          "line": 100,
+          "text": "      \"name\": \"game_corner_payout_veneer\","
+        },
+        {
+          "line": 178,
+          "text": "      \"binding_key\": \"BINDING_KEY_GUIDE_FISHING\","
+        },
+        {
+          "line": 189,
+          "text": "      \"binding_key\": \"BINDING_KEY_GUIDE_GAME_CORNER\","
+        }
+      ]
+    },
+    "content/research_economy_v1/canonical_model.json": {
+      "lines": 1173,
+      "sha256": "4b49923047ed5494784b5c2a49ba672f1b7e7c12ff91cf7edc8a416f745d9efd",
+      "size": 46529,
+      "symbols": [
+        {
+          "line": 4,
+          "text": "      \"activity\": \"FISHING\","
+        },
+        {
+          "line": 5,
+          "text": "      \"activity_key\": \"ACTIVITY_KEY_FISHING_RESEARCH\","
+        },
+        {
+          "line": 7,
+          "text": "      \"completion_semantics\": \"FISHING_CAUGHT_STATE_0_TO_1_COMMIT_ONCE\","
+        },
+        {
+          "line": 16,
+          "text": "      \"trigger_key\": \"ACTIVITY_HOOK_FISHING\","
+        },
+        {
+          "line": 36,
+          "text": "      \"activity\": \"GAME_CORNER\","
+        },
+        {
+          "line": 37,
+          "text": "      \"activity_key\": \"ACTIVITY_KEY_GAME_CORNER_RESEARCH\","
+        },
+        {
+          "line": 38,
+          "text": "      \"anti_farm_policy\": \"確定payoutでarcade coin純増100以上だけ。購入・交換・取消・損失・再表示は対象外。\","
+        },
+        {
+          "line": 43,
+          "text": "      \"notes\": \"既存payout transaction tokenで重複抑止。1研究日あたり最大6回。\","
+        },
+        {
+          "line": 48,
+          "text": "      \"trigger_key\": \"ACTIVITY_HOOK_GAME_CORNER\","
+        },
+        {
+          "line": 386,
+          "text": "      \"binding_key\": \"BINDING_KEY_GUIDE_FISHING\","
+        },
+        {
+          "line": 387,
+          "text": "      \"dialogue_key\": \"DIALOGUE_KEY_FISHING_GUIDE\","
+        },
+        {
+          "line": 395,
+          "text": "      \"binding_key\": \"BINDING_KEY_GUIDE_FISHING\","
+        },
+        {
+          "line": 396,
+          "text": "      \"dialogue_key\": \"DIALOGUE_KEY_FISHING_CAP\","
+        },
+        {
+          "line": 404,
+          "text": "      \"binding_key\": \"BINDING_KEY_GUIDE_GAME_CORNER\","
+        },
+        {
+          "line": 413,
+          "text": "      \"binding_key\": \"BINDING_KEY_GUIDE_GAME_CORNER\","
+        },
+        {
+          "line": 470,
+          "text": "      \"scope\": \"fishing ecology research game cornerの既存hook adapter\","
+        },
+        {
+          "line": 472,
+          "text": "      \"verify_cases\": \"new caught only|research state transition|payout net gain|loss|cancel|daily cap\""
+        },
+        {
+          "line": 600,
+          "text": "      \"binding_key\": \"BINDING_KEY_GUIDE_FISHING\","
+        },
+        {
+          "line": 601,
+          "text": "      \"host_ref\": \"OBJHOST::KANTO_INDOOR_ROUTE12_FISHING_HOUSE::000\","
+        },
+        {
+          "line": 602,
+          "text": "      \"map_key\": \"KANTO_INDOOR_ROUTE12_FISHING_HOUSE\","
+        },
+        {
+          "line": 604,
+          "text": "      \"notes\": \"既存釣り人が新規caught限定と日上限を説明。awardはglobal fishing hook。\","
+        },
+        {
+          "line": 606,
+          "text": "      \"placement_key\": \"PLACEMENT_KEY_FISHING_GUIDE_ROUTE12\","
+        },
+        {
+          "line": 612,
+          "text": "      \"binding_key\": \"BINDING_KEY_GUIDE_GAME_CORNER\","
+        },
+        {
+          "line": 613,
+          "text": "      \"host_ref\": \"BGHOST::KANTO_INDOOR_CELADON_CITY_GAME_CORNER::034\","
+        },
+        {
+          "line": 614,
+          "text": "      \"map_key\": \"KANTO_INDOOR_CELADON_CITY_GAME_CORNER\","
+        },
+        {
+          "line": 616,
+          "text": "      \"notes\": \"既存machine/sign hostにpayout条件を表示。minigame本体は変更しない。\","
+        },
+        {
+          "line": 618,
+          "text": "      \"placement_key\": \"PLACEMENT_KEY_GAME_CORNER_GUIDE\","
+        }
+      ]
+    },
+    "overlays/research_economy_v1/research_economy_v1.c": {
+      "lines": 1855,
+      "sha256": "08375e4c9c65f698358b92c4eb1c8439fe5e70e7d7ddd9d17854edce4b58abda",
+      "size": 63636,
+      "symbols": [
+        {
+          "line": 207,
+          "text": "    u16 game_initial_payout;"
+        },
+        {
+          "line": 277,
+          "text": "#define G_GAME_CORNER_STATE_POINTER PTR(const volatile u8 *, 0x0203F314u)"
+        },
+        {
+          "line": 283,
+          "text": "#define FN_MOVE_FISHING \\"
+        },
+        {
+          "line": 284,
+          "text": "    PTR(WildFishingFn, RESEARCH_ECONOMY_DELEGATE_MOVE_FISHING)"
+        },
+        {
+          "line": 285,
+          "text": "#define FN_MOVE_HIDDEN PTR(WildHiddenFn, RESEARCH_ECONOMY_DELEGATE_MOVE_HIDDEN)"
+        },
+        {
+          "line": 318,
+          "text": "static u16 read_u16(const volatile u8 *bytes)"
+        },
+        {
+          "line": 323,
+          "text": "static u32 read_u32(const volatile u8 *bytes)"
+        },
+        {
+          "line": 331,
+          "text": "static void write_u16(volatile u8 *bytes, u16 value)"
+        },
+        {
+          "line": 337,
+          "text": "static void write_u32(volatile u8 *bytes, u32 value)"
+        },
+        {
+          "line": 345,
+          "text": "static void clear_bytes(volatile void *destination, u32 size)"
+        },
+        {
+          "line": 353,
+          "text": "static void copy_bytes(volatile void *destination,"
+        },
+        {
+          "line": 363,
+          "text": "static u8 bytes_are_zero(const volatile u8 *bytes, u32 size)"
+        },
+        {
+          "line": 373,
+          "text": "static u8 erased_or_zero(const volatile u8 *bytes)"
+        },
+        {
+          "line": 385,
+          "text": "static u32 acquisition_checksum(const volatile u8 *bytes)"
+        },
+        {
+          "line": 399,
+          "text": "static u8 acquisition_valid(const volatile u8 *bytes)"
+        },
+        {
+          "line": 409,
+          "text": "static u8 configured_daily_shop_limit(u8 slot)"
+        },
+        {
+          "line": 422,
+          "text": "static u32 configured_once_mask(void)"
+        },
+        {
+          "line": 434,
+          "text": "static u8 owner_v2_fields_valid(const volatile u8 *owner)"
+        },
+        {
+          "line": 481,
+          "text": "static u16 owner_u16(u32 offset)"
+        },
+        {
+          "line": 486,
+          "text": "static u32 owner_u32(u32 offset)"
+        },
+        {
+          "line": 491,
+          "text": "static void owner_set_u16(u32 offset, u16 value)"
+        },
+        {
+          "line": 496,
+          "text": "static void owner_set_u32(u32 offset, u32 value)"
+        },
+        {
+          "line": 501,
+          "text": "static u16 owner_daily(u8 activity)"
+        },
+        {
+          "line": 506,
+          "text": "static void owner_set_daily(u8 activity, u16 value)"
+        },
+        {
+          "line": 511,
+          "text": "static void initialize_owner_at(volatile u8 *owner)"
+        },
+        {
+          "line": 520,
+          "text": "static void reset_volatile_state(void)"
+        },
+        {
+          "line": 530,
+          "text": "static void ensure_volatile_state(void)"
+        },
+        {
+          "line": 536,
+          "text": "static u16 set_result(u16 result)"
+        },
+        {
+          "line": 545,
+          "text": "u32 ResearchEconomy_SaveChecksum(const void *ledger)"
+        },
+        {
+          "line": 563,
+          "text": "u32 ResearchEconomy_SaveValidate(const void *ledger, u32 available_size)"
+        },
+        {
+          "line": 626,
+          "text": "void ResearchEconomy_SaveFinalize(void *ledger)"
+        },
+        {
+          "line": 667,
+          "text": "void ResearchEconomy_SaveInitNew(void *ledger, u8 first_badge_owned)"
+        },
+        {
+          "line": 681,
+          "text": "u32 ResearchEconomy_MigrateV1(void *ledger, u32 available_size)"
+        },
+        {
+          "line": 694,
+          "text": "static u8 popcount8(u8 value)"
+        },
+        {
+          "line": 704,
+          "text": "static u8 flag_get(u16 flag)"
+        },
+        {
+          "line": 714,
+          "text": "static u8 hall_of_fame(void)"
+        },
+        {
+          "line": 721,
+          "text": "static u8 kanto_access(void)"
+        },
+        {
+          "line": 729,
+          "text": "static u8 unlock_satisfied(u8 kind)"
+        },
+        {
+          "line": 775,
+          "text": "static u8 recompute_rank(void)"
+        },
+        {
+          "line": 792,
+          "text": "static void clear_pending(void)"
+        },
+        {
+          "line": 797,
+          "text": "static u8 persist_phase(u8 phase)"
+        },
+        {
+          "line": 810,
+          "text": "static void snapshot_owner(void)"
+        },
+        {
+          "line": 816,
+          "text": "static void restore_owner_snapshot(void)"
+        },
+        {
+          "line": 823,
+          "text": "static u32 allocate_transaction(void)"
+        },
+        {
+          "line": 836,
+          "text": "static void prepare_pending(u8 kind, u8 key, u8 aux, u16 amount,"
+        },
+        {
+          "line": 853,
+          "text": "static u16 recover_internal(void)"
+        },
+        {
+          "line": 892,
+          "text": "        if (key == RESEARCH_ACTIVITY_GAME_CORNER)"
+        },
+        {
+          "line": 908,
+          "text": "static u8 ensure_save_idle(void)"
+        },
+        {
+          "line": 952,
+          "text": "u8 ResearchEconomy_SaveLoadAdapter(u8 save_type)"
+        },
+        {
+          "line": 1001,
+          "text": "u16 ResearchEconomy_Recover(void)"
+        },
+        {
+          "line": 1008,
+          "text": "u32 ResearchEconomy_Probe(u32 query)"
+        },
+        {
+          "line": 1028,
+          "text": "u16 ResearchEconomy_GetBalance(void)"
+        },
+        {
+          "line": 1036,
+          "text": "u16 ResearchEconomy_GetRank(void)"
+        },
+        {
+          "line": 1055,
+          "text": "u16 ResearchEconomy_MinuteTick(void)"
+        },
+        {
+          "line": 1080,
+          "text": "u16 ResearchEconomy_CreditActivity(u16 activity, u32 source_token,"
+        },
+        {
+          "line": 1109,
+          "text": "    if (activity == RESEARCH_ACTIVITY_GAME_CORNER"
+        },
+        {
+          "line": 1149,
+          "text": "    if (activity == RESEARCH_ACTIVITY_GAME_CORNER)"
+        },
+        {
+          "line": 1161,
+          "text": "static u8 bag_has_capacity(u16 item, u16 quantity)"
+        },
+        {
+          "line": 1172,
+          "text": "static u8 add_bag_item(u16 item, u16 quantity)"
+        },
+        {
+          "line": 1179,
+          "text": "static void remove_bag_item(u16 item, u16 quantity)"
+        },
+        {
+          "line": 1185,
+          "text": "static u16 shop_stock_result(const ResearchEconomyShopConfig *row)"
+        },
+        {
+          "line": 1208,
+          "text": "u16 ResearchEconomy_PurchaseByIndex(u16 catalog_index, u16 confirmed)"
+        },
+        {
+          "line": 1268,
+          "text": "u16 ResearchEconomy_ClaimNextRankReward(u16 confirmed)"
+        },
+        {
+          "line": 1322,
+          "text": "static void close_window(u8 task_id)"
+        },
+        {
+          "line": 1334,
+          "text": "static u8 page_row_count(void)"
+        },
+        {
+          "line": 1342,
+          "text": "static void append_balance_text(u16 balance)"
+        },
+        {
+          "line": 1366,
+          "text": "static u8 render_menu(u8 task_id)"
+        },
+        {
+          "line": 1411,
+          "text": "static void finish_menu(u8 task_id, u16 catalog, u16 result)"
+        },
+        {
+          "line": 1422,
+          "text": "static void Task_HandleResearchShop(u8 task_id)"
+        },
+        {
+          "line": 1458,
+          "text": "u16 ResearchEconomy_OpenShop(void)"
+        },
+        {
+          "line": 1495,
+          "text": "void ResearchEconomy_PostShopMenu(void)"
+        },
+        {
+          "line": 1506,
+          "text": "u16 ResearchEconomy_PurchaseSelected(void)"
+        },
+        {
+          "line": 1515,
+          "text": "u16 ResearchEconomy_FieldCounter(void)"
+        },
+        {
+          "line": 1539,
+          "text": "u16 ResearchEconomy_FieldRank(void)"
+        },
+        {
+          "line": 1544,
+          "text": "static u8 party_has_bug_type(void)"
+        },
+        {
+          "line": 1570,
+          "text": "u16 ResearchEconomy_FieldBug(void)"
+        },
+        {
+          "line": 1578,
+          "text": "u16 ResearchEconomy_FieldMining(void)"
+        },
+        {
+          "line": 1585,
+          "text": "u16 ResearchEconomy_FieldPhoto(void)"
+        },
+        {
+          "line": 1591,
+          "text": "void ResearchEconomy_PlayTimeAdapter(void)"
+        },
+        {
+          "line": 1610,
+          "text": "static u8 dex_caught(u16 species)"
+        },
+        {
+          "line": 1621,
+          "text": "static void clear_wild_provenance(void)"
+        },
+        {
+          "line": 1631,
+          "text": "static void arm_wild_provenance(u8 activity)"
+        },
+        {
+          "line": 1647,
+          "text": "u8 ResearchEconomy_TryGenerateWildMonAdapter(const void *info, u8 area,"
+        },
+        {
+          "line": 1657,
+          "text": "u16 ResearchEconomy_GenerateFishingEncounterAdapter(const void *info, u8 rod)"
+        },
+        {
+          "line": 1661,
+          "text": "    species = FN_MOVE_FISHING(info, rod);"
+        },
+        {
+          "line": 1663,
+          "text": "        arm_wild_provenance(RESEARCH_ACTIVITY_FISHING);"
+        },
+        {
+          "line": 1668,
+          "text": "u8 ResearchEconomy_TryHiddenEncounterAdapter(void)"
+        },
+        {
+          "line": 1672,
+          "text": "    result = FN_MOVE_HIDDEN();"
+        },
+        {
+          "line": 1680,
+          "text": "void ResearchEconomy_EndWildBattleCommitInternal(void)"
+        },
+        {
+          "line": 1707,
+          "text": "void ResearchEconomy_EndWildBattleAdapter(void)"
+        },
+        {
+          "line": 1727,
+          "text": "    u32 address = read_u32(G_GAME_CORNER_STATE_POINTER);"
+        },
+        {
+          "line": 1734,
+          "text": "void ResearchEconomy_GameCornerPayoutAdapter(u16 amount)"
+        },
+        {
+          "line": 1751,
+          "text": "                RESEARCH_ACTIVITY_GAME_CORNER, token, 0u);"
+        },
+        {
+          "line": 1762,
+          "text": "    already_paid = G_VOLATILE->game_initial_payout >= remaining"
+        },
+        {
+          "line": 1763,
+          "text": "        ? (u32)(G_VOLATILE->game_initial_payout - remaining) : 0u;"
+        },
+        {
+          "line": 1771,
+          "text": "        G_VOLATILE->game_initial_payout = remaining;"
+        },
+        {
+          "line": 1778,
+          "text": "        u16 initial = G_VOLATILE->game_initial_payout;"
+        },
+        {
+          "line": 1781,
+          "text": "        G_VOLATILE->game_initial_payout = 0u;"
+        },
+        {
+          "line": 1791,
+          "text": "                RESEARCH_ACTIVITY_GAME_CORNER, token, 0u);"
+        },
+        {
+          "line": 1797,
+          "text": "u16 ResearchEconomy_TestInitialize(void)"
+        }
+      ]
+    },
+    "overlays/research_economy_v1/research_economy_v1.h": {
+      "lines": 86,
+      "sha256": "3216824bad136a1ce3c886ecdbc3e2057970d3439d9bcd2272bece617c7c9021",
+      "size": 3743,
+      "symbols": [
+        {
+          "line": 34,
+          "text": "    RESEARCH_ACTIVITY_FISHING = 0,"
+        },
+        {
+          "line": 36,
+          "text": "    RESEARCH_ACTIVITY_GAME_CORNER = 2,"
+        },
+        {
+          "line": 43,
+          "text": "uint32_t ResearchEconomy_Probe(uint32_t query);"
+        },
+        {
+          "line": 44,
+          "text": "uint32_t ResearchEconomy_SaveChecksum(const void *ledger);"
+        },
+        {
+          "line": 45,
+          "text": "uint32_t ResearchEconomy_SaveValidate(const void *ledger, uint32_t available_size);"
+        },
+        {
+          "line": 46,
+          "text": "void ResearchEconomy_SaveFinalize(void *ledger);"
+        },
+        {
+          "line": 47,
+          "text": "void ResearchEconomy_SaveInitNew(void *ledger, uint8_t first_badge_owned);"
+        },
+        {
+          "line": 48,
+          "text": "uint32_t ResearchEconomy_MigrateV1(void *ledger, uint32_t available_size);"
+        },
+        {
+          "line": 49,
+          "text": "uint8_t ResearchEconomy_SaveLoadAdapter(uint8_t save_type);"
+        },
+        {
+          "line": 50,
+          "text": "uint16_t ResearchEconomy_Recover(void);"
+        },
+        {
+          "line": 51,
+          "text": "uint16_t ResearchEconomy_GetBalance(void);"
+        },
+        {
+          "line": 52,
+          "text": "uint16_t ResearchEconomy_GetRank(void);"
+        },
+        {
+          "line": 53,
+          "text": "uint16_t ResearchEconomy_MinuteTick(void);"
+        },
+        {
+          "line": 54,
+          "text": "uint16_t ResearchEconomy_CreditActivity(uint16_t activity,"
+        },
+        {
+          "line": 57,
+          "text": "uint16_t ResearchEconomy_PurchaseByIndex(uint16_t catalog_index,"
+        },
+        {
+          "line": 59,
+          "text": "uint16_t ResearchEconomy_ClaimNextRankReward(uint16_t confirmed);"
+        },
+        {
+          "line": 60,
+          "text": "uint16_t ResearchEconomy_OpenShop(void);"
+        },
+        {
+          "line": 61,
+          "text": "void ResearchEconomy_PostShopMenu(void);"
+        },
+        {
+          "line": 62,
+          "text": "uint16_t ResearchEconomy_PurchaseSelected(void);"
+        },
+        {
+          "line": 63,
+          "text": "uint16_t ResearchEconomy_FieldCounter(void);"
+        },
+        {
+          "line": 64,
+          "text": "uint16_t ResearchEconomy_FieldRank(void);"
+        },
+        {
+          "line": 65,
+          "text": "uint16_t ResearchEconomy_FieldBug(void);"
+        },
+        {
+          "line": 66,
+          "text": "uint16_t ResearchEconomy_FieldMining(void);"
+        },
+        {
+          "line": 67,
+          "text": "uint16_t ResearchEconomy_FieldPhoto(void);"
+        },
+        {
+          "line": 68,
+          "text": "void ResearchEconomy_PlayTimeAdapter(void);"
+        },
+        {
+          "line": 69,
+          "text": "uint8_t ResearchEconomy_TryGenerateWildMonAdapter(const void *info,"
+        },
+        {
+          "line": 72,
+          "text": "uint16_t ResearchEconomy_GenerateFishingEncounterAdapter(const void *info,"
+        },
+        {
+          "line": 74,
+          "text": "uint8_t ResearchEconomy_TryHiddenEncounterAdapter(void);"
+        },
+        {
+          "line": 75,
+          "text": "void ResearchEconomy_EndWildBattleAdapter(void);"
+        },
+        {
+          "line": 76,
+          "text": "void ResearchEconomy_GameCornerPayoutAdapter(uint16_t amount);"
+        },
+        {
+          "line": 79,
+          "text": "uint16_t ResearchEconomy_TestInitialize(void);"
+        },
+        {
+          "line": 80,
+          "text": "uint16_t ResearchEconomy_TestSetUnlockAll(uint16_t enabled);"
+        },
+        {
+          "line": 81,
+          "text": "uint16_t ResearchEconomy_TestSetPersistenceFault(uint16_t phase);"
+        },
+        {
+          "line": 82,
+          "text": "uint16_t ResearchEconomy_TestSetBagCapacity(uint16_t available);"
+        },
+        {
+          "line": 83,
+          "text": "uint16_t ResearchEconomy_TestGetOwnerByte(uint16_t offset);"
+        },
+        {
+          "line": 84,
+          "text": "uint16_t ResearchEconomy_TestSetBalance(uint16_t balance);"
+        }
+      ]
+    },
+    "scripts/build_research_economy_v1.py": {
+      "lines": 2749,
+      "sha256": "03ad1c326663e09ca5e694a7bcf84808f5d4b7c5c353d03c72cdc82482015341",
+      "size": 120273,
+      "symbols": [
+        {
+          "line": 152,
+          "text": "    \"BINDING_KEY_GUIDE_FISHING\": \"DIALOGUE_KEY_FISHING_GUIDE\","
+        },
+        {
+          "line": 153,
+          "text": "    \"BINDING_KEY_GUIDE_GAME_CORNER\": \"DIALOGUE_KEY_GAME_GUIDE\","
+        },
+        {
+          "line": 158,
+          "text": "    \"BINDING_KEY_GUIDE_FISHING\": \"DIALOGUE_KEY_FISHING_CAP\","
+        },
+        {
+          "line": 159,
+          "text": "    \"BINDING_KEY_GUIDE_GAME_CORNER\": \"DIALOGUE_KEY_GAME_CAP\","
+        },
+        {
+          "line": 217,
+          "text": "    \"GAME_CORNER_PAYOUT_ONLY\","
+        },
+        {
+          "line": 227,
+          "text": "def _fail(message: str) -> NoReturn:"
+        },
+        {
+          "line": 231,
+          "text": "def _read_json(path: Path) -> dict[str, Any]:"
+        },
+        {
+          "line": 238,
+          "text": "def _rows(path: Path) -> list[dict[str, str]]:"
+        },
+        {
+          "line": 243,
+          "text": "def _run(command: Sequence[str], label: str, *, timeout: int | None = None) -> str:"
+        },
+        {
+          "line": 257,
+          "text": "def _integer(value: Any, label: str) -> int:"
+        },
+        {
+          "line": 266,
+          "text": "def _rom_offset(address: int, size: int = 1, *, limit: int = ROM_SIZE) -> int:"
+        },
+        {
+          "line": 274,
+          "text": "def _identity(path: Path, model: Mapping[str, Any], label: str) -> bytes:"
+        },
+        {
+          "line": 284,
+          "text": "def _byte_position_count(raw: bytes, needle: bytes) -> int:"
+        },
+        {
+          "line": 298,
+          "text": "def _index("
+        },
+        {
+          "line": 310,
+          "text": "def _safe_submission("
+        },
+        {
+          "line": 418,
+          "text": "def _encode_dialogue(text: str, charmap: Mapping[str, Any]) -> bytes:"
+        },
+        {
+          "line": 444,
+          "text": "def _topological_batches(rows: Sequence[Mapping[str, str]]) -> list[str]:"
+        },
+        {
+          "line": 469,
+          "text": "def _save_field_size(field: Mapping[str, Any]) -> int:"
+        },
+        {
+          "line": 480,
+          "text": "def _canonical_model(config: Mapping[str, Any]) -> dict[str, Any]:"
+        },
+        {
+          "line": 527,
+          "text": "        \"ACTIVITY_KEY_FISHING_RESEARCH\": (\"EXISTING_HOOK\", 4, 24),"
+        },
+        {
+          "line": 529,
+          "text": "        \"ACTIVITY_KEY_GAME_CORNER_RESEARCH\": (\"EXISTING_HOOK\", 3, 18),"
+        },
+        {
+          "line": 631,
+          "text": "        \"SHOP_ONCE_BITS\", \"NEXT_TRANSACTION_ID\", \"LAST_GAME_CORNER_SOURCE_TOKEN\","
+        },
+        {
+          "line": 765,
+          "text": "def _runtime_header(model: Mapping[str, Any], config: Mapping[str, Any]) -> bytes:"
+        },
+        {
+          "line": 770,
+          "text": "        \"move_fishing\": \"RESEARCH_ECONOMY_DELEGATE_MOVE_FISHING\","
+        },
+        {
+          "line": 771,
+          "text": "        \"move_hidden\": \"RESEARCH_ECONOMY_DELEGATE_MOVE_HIDDEN\","
+        },
+        {
+          "line": 886,
+          "text": "def _compile_runtime("
+        },
+        {
+          "line": 958,
+          "text": "def _source_locations() -> dict[str, tuple[int, int]]:"
+        },
+        {
+          "line": 967,
+          "text": "def _signed_coord(value: int) -> int:"
+        },
+        {
+          "line": 971,
+          "text": "def _allocate_local_id(used: set[int], preferred: int) -> int:"
+        },
+        {
+          "line": 1044,
+          "text": "def _add_script(blob: _Blob, label: str, script: _Script) -> dict[str, Any]:"
+        },
+        {
+          "line": 1056,
+          "text": "def _binding_scripts("
+        },
+        {
+          "line": 1223,
+          "text": "def _physical_plan("
+        },
+        {
+          "line": 1399,
+          "text": "def _build_field_payload("
+        },
+        {
+          "line": 1523,
+          "text": "def _validate_save_and_ram(config: Mapping[str, Any]) -> dict[str, Any]:"
+        },
+        {
+          "line": 1603,
+          "text": "def _allocation("
+        },
+        {
+          "line": 1631,
+          "text": "def _build_payload("
+        },
+        {
+          "line": 1687,
+          "text": "def _patch("
+        },
+        {
+          "line": 1705,
+          "text": "def _decode_thumb_bl(source: int, encoded: bytes) -> int:"
+        },
+        {
+          "line": 1717,
+          "text": "def _thumb_bl(source: int, target_thumb: int) -> bytes:"
+        },
+        {
+          "line": 1733,
+          "text": "def _model_document(model: Mapping[str, Any], runtime: Mapping[str, Any]) -> dict[str, Any]:"
+        },
+        {
+          "line": 1768,
+          "text": "def _report(metadata: Mapping[str, Any]) -> bytes:"
+        },
+        {
+          "line": 1785,
+          "text": "def build_outputs() -> dict[str, bytes]:"
+        },
+        {
+          "line": 2160,
+          "text": "        \"wild_fishing\": delegates[\"move_fishing\"] == 0x09392715,"
+        },
+        {
+          "line": 2161,
+          "text": "        \"wild_hidden\": delegates[\"move_hidden\"] == 0x0939273D,"
+        },
+        {
+          "line": 2180,
+          "text": "        _fail(\"game-corner payout-only hook contract differs\")"
+        },
+        {
+          "line": 2210,
+          "text": "        \"GAME_CORNER_PAYOUT_ONLY\": len(game_corner_hooks) == 2,"
+        },
+        {
+          "line": 2420,
+          "text": "            \"nine_field_roots\", \"game_corner_payout\","
+        },
+        {
+          "line": 2451,
+          "text": "def _write_outputs(outputs: Mapping[str, bytes]) -> None:"
+        },
+        {
+          "line": 2462,
+          "text": "def _check_outputs(outputs: Mapping[str, bytes]) -> None:"
+        },
+        {
+          "line": 2473,
+          "text": "def _validate_mgba_document("
+        },
+        {
+          "line": 2518,
+          "text": "def _mgba_outputs(outputs: Mapping[str, bytes]) -> dict[str, bytes]:"
+        },
+        {
+          "line": 2704,
+          "text": "def main() -> int:"
+        }
+      ]
+    },
+    "scripts/pr16_captured_battle.py": {
+      "lines": 88,
+      "sha256": "c3d8f7bebf556601e4c55075be9b6e798a8c54e8ed50039cede4ead12988cf20",
+      "size": 8986,
+      "symbols": [
+        {
+          "line": 32,
+          "text": "def controller():"
+        },
+        {
+          "line": 39,
+          "text": "def validate(raw,stderr,name,code,audit):"
+        },
+        {
+          "line": 58,
+          "text": "def run():"
+        }
+      ]
+    },
+    "scripts/pr16_captured_battle_checkpoint.py": {
+      "lines": 97,
+      "sha256": "10e7d58c4eb7c4ad7f217d1b03f706404edb68b3595d3c760da9a35a1ce75035",
+      "size": 9348,
+      "symbols": [
+        {
+          "line": 30,
+          "text": "def fetch(root=ROOT):"
+        },
+        {
+          "line": 44,
+          "text": "def verify(files,root=ROOT):"
+        },
+        {
+          "line": 69,
+          "text": "def build(root=ROOT):"
+        },
+        {
+          "line": 78,
+          "text": "def project(previous,root=ROOT):"
+        },
+        {
+          "line": 90,
+          "text": "def main():"
+        }
+      ]
+    },
+    "scripts/pr16_natural_capture.py": {
+      "lines": 127,
+      "sha256": "99371140f7424806b25205f2b86e922bbbbfe50bd91c967cb478c804d91c26ef",
+      "size": 9937,
+      "symbols": [
+        {
+          "line": 29,
+          "text": "def expected(name):"
+        },
+        {
+          "line": 38,
+          "text": "def oracle(raw):"
+        },
+        {
+          "line": 55,
+          "text": "def validate(raw,stderr,name,code,audit):"
+        },
+        {
+          "line": 80,
+          "text": "def run():"
+        }
+      ]
+    },
+    "scripts/pr16_natural_capture_checkpoint.py": {
+      "lines": 124,
+      "sha256": "22a3cebade3a8120a792138caa2c9265272f99b823808b958accbd92f11ef403",
+      "size": 10875,
+      "symbols": [
+        {
+          "line": 36,
+          "text": "def fetch(root=ROOT):"
+        },
+        {
+          "line": 52,
+          "text": "def verify_geometry(files,root=ROOT):"
+        },
+        {
+          "line": 65,
+          "text": "def verify_capture(files,geometry,root=ROOT):"
+        },
+        {
+          "line": 94,
+          "text": "def build(root=ROOT):"
+        },
+        {
+          "line": 106,
+          "text": "def project(previous,root=ROOT):"
+        },
+        {
+          "line": 117,
+          "text": "def main():"
+        }
+      ]
+    },
+    "scripts/pr16_research_catalog.py": {
+      "lines": 174,
+      "sha256": "150af4452054b3446f3db92afb8a70e2c1553c9db246934e4979555d2f985b0c",
+      "size": 10182,
+      "symbols": [
+        {
+          "line": 25,
+          "text": "def need(condition: bool, message: str) -> None:"
+        },
+        {
+          "line": 29,
+          "text": "def identity(raw: bytes) -> dict:"
+        },
+        {
+          "line": 32,
+          "text": "def integer(value, low: int, high: int) -> int:"
+        },
+        {
+          "line": 36,
+          "text": "def load(raw: bytes):"
+        },
+        {
+          "line": 46,
+          "text": "def exact(actual, expected) -> bool:"
+        },
+        {
+          "line": 49,
+          "text": "def encoded(value: str) -> bytes:"
+        },
+        {
+          "line": 57,
+          "text": "def span(rom: bytes, address: int, size: int) -> bytes:"
+        },
+        {
+          "line": 64,
+          "text": "def audit_tables(rom: bytes, model: dict, item_csv: str) -> dict:"
+        },
+        {
+          "line": 123,
+          "text": "def audit(rom: bytes) -> dict:"
+        },
+        {
+          "line": 129,
+          "text": "def generate(seed: bytes) -> bytes:"
+        },
+        {
+          "line": 150,
+          "text": "def validate_native(raw: bytes) -> dict:"
+        }
+      ]
+    },
+    "scripts/pr16_research_catalog_actions.py": {
+      "lines": 171,
+      "sha256": "23a49e092d0e1d9b0d7321dcd4bfa90504ee199788f817a6ae5d55975fd29c48",
+      "size": 14879,
+      "symbols": [
+        {
+          "line": 32,
+          "text": "def run_logged(name, args, timeout=120, cwd=ROOT):"
+        },
+        {
+          "line": 38,
+          "text": "def measure():"
+        },
+        {
+          "line": 112,
+          "text": "def publish(cp, owned, mode):"
+        },
+        {
+          "line": 142,
+          "text": "def finalize():"
+        },
+        {
+          "line": 153,
+          "text": "def guard():"
+        }
+      ]
+    },
+    "scripts/pr16_ring_bios_selector_continuation.py": {
+      "lines": 182,
+      "sha256": "f38ceb78946b55e67e149f42b04e8124ad6d39caf75672636709bf6a8e03e706",
+      "size": 11026,
+      "symbols": [
+        {
+          "line": 34,
+          "text": "def plan(previous,c):"
+        },
+        {
+          "line": 56,
+          "text": "def read_slots(raw,rows):"
+        },
+        {
+          "line": 68,
+          "text": "def extend(raw,c,slots,decode):"
+        },
+        {
+          "line": 101,
+          "text": "def trace(c,palette,slots,new_nodes,state):"
+        },
+        {
+          "line": 126,
+          "text": "def analyze(previous,out):"
+        },
+        {
+          "line": 170,
+          "text": "def summaries(r):"
+        }
+      ]
+    },
+    "scripts/pr16_ring_selector_closeout.py": {
+      "lines": 186,
+      "sha256": "b9e12e5a217edf5d2ed58ab806671173f6f0f3301dea26653936f0338ec5cd9a",
+      "size": 13954,
+      "symbols": [
+        {
+          "line": 42,
+          "text": "def audit_archive(raw,row,report):"
+        },
+        {
+          "line": 71,
+          "text": "def test_suite(pattern):"
+        },
+        {
+          "line": 79,
+          "text": "def main():"
+        }
+      ]
+    },
+    "scripts/pr16_ring_selector_followup.py": {
+      "lines": 193,
+      "sha256": "84af72842589073fe5ba369ce07b91bbf314844c0dc0ea5aceaab32f73d33e79",
+      "size": 10439,
+      "symbols": [
+        {
+          "line": 39,
+          "text": "def literal_references(raw: bytes, targets: dict[str, int]) -> list[dict]:"
+        },
+        {
+          "line": 61,
+          "text": "def node_bytes(value, result=None):"
+        },
+        {
+          "line": 80,
+          "text": "def fresh_windows(refs, known, size):"
+        },
+        {
+          "line": 99,
+          "text": "def source_matches(root: Path):"
+        },
+        {
+          "line": 126,
+          "text": "def analyze(prior, out):"
+        },
+        {
+          "line": 180,
+          "text": "def summaries(result):"
+        }
+      ]
+    },
+    "scripts/pr16_ring_selector_reuse.py": {
+      "lines": 220,
+      "sha256": "434fbc7c2dcf3e85b3c9e949a083c77f511bb71e898672f57f5cc0f152402f2a",
+      "size": 13926,
+      "symbols": [
+        {
+          "line": 54,
+          "text": "def need(ok,text):"
+        },
+        {
+          "line": 58,
+          "text": "def identity(raw):return {'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}"
+        },
+        {
+          "line": 61,
+          "text": "def strict(raw):"
+        },
+        {
+          "line": 69,
+          "text": "def report_checked(raw,expected):"
+        },
+        {
+          "line": 78,
+          "text": "def byte_paths(report):"
+        },
+        {
+          "line": 83,
+          "text": "def merge_nodes(cached,graphs):"
+        },
+        {
+          "line": 104,
+          "text": "def pending_binding(pending,nodes):"
+        },
+        {
+          "line": 113,
+          "text": "def archive_checked(raw,spec,report):"
+        },
+        {
+          "line": 143,
+          "text": "def discover(root):"
+        },
+        {
+          "line": 154,
+          "text": "def analyze(prior,out):"
+        },
+        {
+          "line": 202,
+          "text": "def summaries(result):"
+        }
+      ]
+    },
+    "scripts/pr16_special_wild.py": {
+      "lines": 229,
+      "sha256": "2cb1441aaf91fc746d2b11ebe47e89ea496f7ff6fa0229fed90ce01f2b4db3e5",
+      "size": 16866,
+      "symbols": [
+        {
+          "line": 38,
+          "text": "METHODS=('fishing','hidden')"
+        },
+        {
+          "line": 41,
+          "text": "def need(ok,message):"
+        },
+        {
+          "line": 45,
+          "text": "def identity(raw):return {'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}"
+        },
+        {
+          "line": 46,
+          "text": "def encode(v):return (json.dumps(v,ensure_ascii=False,sort_keys=True,indent=2)+'\\n').encode()"
+        },
+        {
+          "line": 47,
+          "text": "def load(p):return json.loads(Path(p).read_bytes())"
+        },
+        {
+          "line": 48,
+          "text": "def write(p,v):p=Path(p);p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(encode(v))"
+        },
+        {
+          "line": 50,
+          "text": "def unique(pairs):"
+        },
+        {
+          "line": 57,
+          "text": "def decode_lines(raw):"
+        },
+        {
+          "line": 62,
+          "text": "def mon(raw):"
+        },
+        {
+          "line": 71,
+          "text": "def validate(raw,method):"
+        },
+        {
+          "line": 89,
+          "text": "    expected=[0x08082750,0x093BEA68,0x09392714] if method=='fishing' else [0x09220198,0x093BEA98,0x0939273C]"
+        },
+        {
+          "line": 95,
+          "text": "def anchors(rom):"
+        },
+        {
+          "line": 102,
+          "text": "    for name,off in [('fishing',0x82750),('hidden',0x1220198),('wild_initial',0x13925F4)]:"
+        },
+        {
+          "line": 110,
+          "text": "def command(args,name,timeout=300):"
+        },
+        {
+          "line": 121,
+          "text": "def execute():"
+        },
+        {
+          "line": 162,
+          "text": "def owned():"
+        },
+        {
+          "line": 167,
+          "text": "def publish(v):"
+        },
+        {
+          "line": 207,
+          "text": "def record():"
+        },
+        {
+          "line": 221,
+          "text": "def guard():"
+        }
+      ]
+    },
+    "scripts/pr16_special_wild_bound.py": {
+      "lines": 273,
+      "sha256": "1ddf6938436bbeb21adcd53bfcb032748e9a1367ca9bacb6d1de4bff5d4cd889",
+      "size": 21292,
+      "symbols": [
+        {
+          "line": 38,
+          "text": "def bound_rows(rom,anchors,declared,audit):"
+        },
+        {
+          "line": 77,
+          "text": "def bind_fixture(rom,audit):"
+        },
+        {
+          "line": 82,
+          "text": "    for method in ('fishing','hidden'):"
+        },
+        {
+          "line": 88,
+          "text": "def reuse_result(prior,key,fixture,patched,special,anchors):"
+        },
+        {
+          "line": 102,
+          "text": "def execute():"
+        },
+        {
+          "line": 186,
+          "text": "        for method in ('hidden','fishing'):"
+        },
+        {
+          "line": 187,
+          "text": "            f={'map':fixtures[method]['map'],'seed_start':0x13572468 if method=='hidden' else 0xABCD1234,'limit':s.LIMIT,'profile':1,'mode':2}"
+        },
+        {
+          "line": 193,
+          "text": "        for method in ('hidden','fishing'):"
+        },
+        {
+          "line": 198,
+          "text": "        control=probe('control-fishing-no-rule',successor,'fishing',f,True,False)"
+        },
+        {
+          "line": 200,
+          "text": "        f={'map':fixtures['hidden']['map'],'seed_start':0xABCDEF01,'limit':s.LIMIT,'profile':0,'mode':0}"
+        },
+        {
+          "line": 201,
+          "text": "        normal=probe('control-hidden-parent',parentpath,'hidden',f,False,False)"
+        },
+        {
+          "line": 203,
+          "text": "        changed=probe('control-hidden-repaired',successor,'hidden',f,True,False)"
+        },
+        {
+          "line": 215,
+          "text": "def owned():"
+        },
+        {
+          "line": 220,
+          "text": "def record():"
+        },
+        {
+          "line": 265,
+          "text": "def guard():"
+        }
+      ]
+    },
+    "scripts/pr16_special_wild_bound_terminal.py": {
+      "lines": 185,
+      "sha256": "3b3760bab0b92f8e71998ff56d85f8d8efa2cf2499f1e213eca06d34553159a9",
+      "size": 16499,
+      "symbols": [
+        {
+          "line": 30,
+          "text": "CASES={'parent-hidden','parent-fishing','repaired-hidden','repaired-fishing','control-fishing-no-rule','control-hidden-parent','control-hidden-repaired'}"
+        },
+        {
+          "line": 37,
+          "text": "def cohort(v):"
+        },
+        {
+          "line": 53,
+          "text": "    need(v['fixtures']['fishing']['map']==[3,38] and v['fixtures']['hidden']['map']==[3,63]"
+        },
+        {
+          "line": 59,
+          "text": "def terminal(run,jobs):"
+        },
+        {
+          "line": 76,
+          "text": "def unpack(raw):"
+        },
+        {
+          "line": 88,
+          "text": "def owned():"
+        },
+        {
+          "line": 92,
+          "text": "def execute():"
+        },
+        {
+          "line": 124,
+          "text": "        special=key.startswith(('parent-','repaired-'));patched=key.startswith('repaired-') or key in ('control-fishing-no-rule','control-hidden-repaired')"
+        },
+        {
+          "line": 127,
+          "text": "    for method in ('fishing','hidden'):"
+        },
+        {
+          "line": 131,
+          "text": "    need(cp['results']['control-fishing-no-rule']['after']==cp['original_control']['mon'],'旧正常8call原本との一致')"
+        },
+        {
+          "line": 132,
+          "text": "    p=cp['results']['control-hidden-parent'];q=cp['results']['control-hidden-repaired']"
+        },
+        {
+          "line": 177,
+          "text": "def guard():"
+        }
+      ]
+    },
+    "scripts/pr16_special_wild_gameplay.py": {
+      "lines": 310,
+      "sha256": "cf275529edd682bc5e070d14f708ffb354fe3de2964da968357fe0440e483f73",
+      "size": 16550,
+      "symbols": [
+        {
+          "line": 37,
+          "text": "def need(ok, message):"
+        },
+        {
+          "line": 42,
+          "text": "def identity(raw):"
+        },
+        {
+          "line": 46,
+          "text": "def encode(value):"
+        },
+        {
+          "line": 50,
+          "text": "def load(path):"
+        },
+        {
+          "line": 54,
+          "text": "def write(path, value):"
+        },
+        {
+          "line": 60,
+          "text": "def replay(parent, recipe):"
+        },
+        {
+          "line": 85,
+          "text": "def item_rows(text):"
+        },
+        {
+          "line": 88,
+          "text": "    for label, key in (('fishing', 'ITEM_KEY_SUPER_ROD'), ('hidden', 'ITEM_KEY_SCANNER')):"
+        },
+        {
+          "line": 90,
+          "text": "        if not selected and label == 'hidden':"
+        },
+        {
+          "line": 95,
+          "text": "    need(result['fishing']['id'] != result['hidden']['id'], 'distinct items')"
+        },
+        {
+          "line": 99,
+          "text": "def map_geometry(raw, group, number):"
+        },
+        {
+          "line": 131,
+          "text": "def initial_verification(head, run):"
+        },
+        {
+          "line": 141,
+          "text": "def no_promotion(v):"
+        },
+        {
+          "line": 149,
+          "text": "def execute():"
+        },
+        {
+          "line": 194,
+          "text": "        v['direct_fixture_inherited'] = {m: completed['fixtures'][m] for m in ('fishing', 'hidden')}"
+        },
+        {
+          "line": 196,
+          "text": "        for method, number in (('fishing', 38), ('hidden', 63)):"
+        },
+        {
+          "line": 214,
+          "text": "def owned():"
+        },
+        {
+          "line": 222,
+          "text": "def record():"
+        },
+        {
+          "line": 265,
+          "text": "def guard():"
+        },
+        {
+          "line": 274,
+          "text": "def context():"
+        }
+      ]
+    },
+    "scripts/pr16_special_wild_gameplay_native.py": {
+      "lines": 296,
+      "sha256": "aa8cc4927e892f1eb5756d750558a1ff72d54ca76f20ab653bd3d573e751585d",
+      "size": 21785,
+      "symbols": [
+        {
+          "line": 21,
+          "text": "LOCAL = prep.BASE+\"pr16_special_wild_ui_local_evidence/20260926-hidden\""
+        },
+        {
+          "line": 49,
+          "text": "def unwrap_data(raw):"
+        },
+        {
+          "line": 62,
+          "text": "def bind_ui(rom):"
+        },
+        {
+          "line": 68,
+          "text": "    for method, item in (('fishing',264),('hidden',348)):"
+        },
+        {
+          "line": 72,
+          "text": "        need(callback == (0x080A260D if method=='fishing' else 0x092201E1), 'runtime field callback '+method)"
+        },
+        {
+          "line": 74,
+          "text": "    need(result['hidden']['id'] != 278, 'catalog scanner is not ecology radar')"
+        },
+        {
+          "line": 75,
+          "text": "    result['catalog_correction'] = 'preparation.items.hidden=278 はカタログidentityだけ。通常隠し遭遇のownerは生成生態レーダー348。旧原本は改変せず本bindingで区別。'"
+        },
+        {
+          "line": 79,
+          "text": "def build(folder=WORK):"
+        },
+        {
+          "line": 104,
+          "text": "def command(args, name, timeout=180):"
+        },
+        {
+          "line": 116,
+          "text": "def native_result(raw, method):"
+        },
+        {
+          "line": 138,
+          "text": "    need(entries == ([0x08082750,0x093BEA68,0x09392714] if method=='fishing' else [0x09220198,0x093BEA98,0x0939273C]), 'exact production caller chain')"
+        },
+        {
+          "line": 143,
+          "text": "def execute():"
+        },
+        {
+          "line": 177,
+          "text": "        for method in ('hidden','fishing'):"
+        },
+        {
+          "line": 178,
+          "text": "            if method=='hidden':"
+        },
+        {
+          "line": 212,
+          "text": "        v['gameplay_accepted']=v['capture_save_continue_accepted']=set(v['results'])=={'hidden','fishing'}"
+        },
+        {
+          "line": 222,
+          "text": "def owned():"
+        },
+        {
+          "line": 229,
+          "text": "def record():"
+        },
+        {
+          "line": 269,
+          "text": "def guard():"
+        },
+        {
+          "line": 278,
+          "text": "def context():"
+        },
+        {
+          "line": 280,
+          "text": "    paths=owned()|CODE|HELPERS|{LOCAL+'/'+n for n in ('receipt.json','hidden.stdout.txt','hidden.stderr.txt','hidden.process.json')}|{'overlays/wild_overlay/wild_overlay.c','overlays/wild_overlay/wild_overlay.h',repair.C"
+        }
+      ]
+    },
+    "scripts/pr16_special_wild_header_binding.py": {
+      "lines": 55,
+      "sha256": "21d7a965662abca9d035cddce6fe2f132f4756d793d5b31eb57270b6d4bb8b65",
+      "size": 3345,
+      "symbols": [
+        {
+          "line": 8,
+          "text": "def select_fixture(rom, anchors, declared):"
+        },
+        {
+          "line": 39,
+          "text": "            excluded.append({'map':list(pair),'reason':'NO_VALID_FISHING_INFO','headers':headers});continue"
+        },
+        {
+          "line": 42,
+          "text": "            excluded.append({'map':list(pair),'reason':'NO_VALID_FISHING_SLOTS','headers':headers});continue"
+        },
+        {
+          "line": 46,
+          "text": "    need(candidates,'unique research/fishing intersection')"
+        },
+        {
+          "line": 48,
+          "text": "    need((3,63) in bymap,'hidden existing ecology fixture bound')"
+        },
+        {
+          "line": 50,
+          "text": "    return {'fishing':candidates[0],'hidden':{'map':[3,63],'rows':bymap[(3,63)]},"
+        }
+      ]
+    },
+    "scripts/pr16_special_wild_repair.py": {
+      "lines": 338,
+      "sha256": "bad1f646dcedd54c142cf35083d85da82fe24f3a0154b231c36f063d2653305c",
+      "size": 29798,
+      "symbols": [
+        {
+          "line": 38,
+          "text": "def rows(path):"
+        },
+        {
+          "line": 42,
+          "text": "def research_rows():"
+        },
+        {
+          "line": 55,
+          "text": "        fields=[int(m['group_id']),int(m['map_id']),int(sp['id']),int(r['level_min']),int(r['level_max']),int(r['iv_floor']),int(r['hidden_ability_rate']),5 if r['held_item_policy']=='MODERN_LEGAL_LOW_RATE' else 0,2,unlo"
+        },
+        {
+          "line": 62,
+          "text": "def select_fixture(rom,a,declared):"
+        },
+        {
+          "line": 84,
+          "text": "    need(ended and candidates,'terminated header inventory with research fishing intersection')"
+        },
+        {
+          "line": 88,
+          "text": "    need((3,63) in bymap,'hidden existing ecology fixture has authored research rows')"
+        },
+        {
+          "line": 89,
+          "text": "    return {'fishing':selected,'hidden':{'map':[3,63],'rows':bymap[(3,63)]},'candidates':[{k:c[k] for k in ('map','info')} for c in candidates],'research_table':{'offset':first,**identity(packed)},'root':root,'header_cou"
+        },
+        {
+          "line": 92,
+          "text": "def patch_candidate(rom):"
+        },
+        {
+          "line": 116,
+          "text": "int main(int argc,char**argv){"
+        },
+        {
+          "line": 119,
+          "text": "    bool fishing=!strcmp(argv[2],\"fishing\");if(!fishing&&strcmp(argv[2],\"hidden\"))return 2;"
+        },
+        {
+          "line": 137,
+          "text": "    if(fishing&&!rom_pointer(info))die(\"fishing fixture table absent\");"
+        },
+        {
+          "line": 143,
+          "text": "        printf(\"{\\\"event\\\":\\\"call\\\",\\\"attempt\\\":%u,\\\"seed\\\":%u,\\\"entry\\\":%u,\\\"map\\\":[%u,%u]}\\n\",attempt,seed,fishing?0x08082751U:0x09220199U,group,map);"
+        },
+        {
+          "line": 144,
+          "text": "        uint32_t result=observed(c,fishing?0x08082751U:0x09220199U,fishing?info:0,fishing?2U:0,attempt,qb,qe,&specials,&applies);"
+        },
+        {
+          "line": 155,
+          "text": "def generated_source():"
+        },
+        {
+          "line": 168,
+          "text": "def native_result(raw,method,a,fixture,patched,special):"
+        },
+        {
+          "line": 188,
+          "text": "    expected=[0x08082750,0x093BEA68,0x09392714] if method=='fishing' else [0x09220198,0x093BEA98,0x0939273C]"
+        },
+        {
+          "line": 203,
+          "text": "def initial_control(v):"
+        },
+        {
+          "line": 207,
+          "text": "    raw=(folder/'fishing.stdout.txt').read_bytes();data=old.decode_lines(raw)"
+        },
+        {
+          "line": 216,
+          "text": "def invoke(rom,method,a,fixture,patched,special,label):"
+        },
+        {
+          "line": 222,
+          "text": "def execute():"
+        },
+        {
+          "line": 250,
+          "text": "        for method in ('hidden','fishing'):"
+        },
+        {
+          "line": 251,
+          "text": "            f={'map':fixtures[method]['map'],'seed_start':0x13572468 if method=='hidden' else 0xABCD1234,'limit':LIMIT,'profile':1,'mode':2}"
+        },
+        {
+          "line": 259,
+          "text": "        for method in ('hidden','fishing'):"
+        },
+        {
+          "line": 271,
+          "text": "            control=invoke(successor,'fishing',a,f,True,False,'control-fishing-no-rule')"
+        },
+        {
+          "line": 272,
+          "text": "            need(control['after']==v['predecessor']['control']['mon'],'saved original normal control identity');v['controls']['fishing-no-rule']=control"
+        },
+        {
+          "line": 273,
+          "text": "        except Exception as ex:v['failures']['control-fishing-no-rule']={'type':type(ex).__name__,'message':str(ex)}"
+        },
+        {
+          "line": 275,
+          "text": "        f={'map':fixtures['hidden']['map'],'seed_start':0xABCDEF01,'limit':LIMIT,'profile':0,'mode':0}"
+        },
+        {
+          "line": 278,
+          "text": "            normal=invoke(parentpath,'hidden',a,f,False,False,'control-hidden-parent');v['controls']['hidden-parent']=normal"
+        },
+        {
+          "line": 280,
+          "text": "            changed=invoke(successor,'hidden',a,f,True,False,'control-hidden-repaired')"
+        },
+        {
+          "line": 281,
+          "text": "            need(changed['after']==normal['after'] and changed['returned']==normal['returned'],'normal hidden control unchanged');v['controls']['hidden-repaired']=changed"
+        },
+        {
+          "line": 282,
+          "text": "        except Exception as ex:v['failures']['control-hidden']={'type':type(ex).__name__,'message':str(ex)}"
+        },
+        {
+          "line": 293,
+          "text": "def owned():"
+        },
+        {
+          "line": 298,
+          "text": "def record():"
+        },
+        {
+          "line": 331,
+          "text": "def guard():"
+        }
+      ]
+    },
+    "scripts/pr16_special_wild_ui_finish.py": {
+      "lines": 173,
+      "sha256": "f9ff9256642b8516f24ce6bac9a57b2be5c08be82ef29cd6a387517355243e60",
+      "size": 13887,
+      "symbols": [
+        {
+          "line": 29,
+          "text": "def guard_scope(allowed, actual, mandatory):"
+        },
+        {
+          "line": 35,
+          "text": "def job_boundary(jobs, recovery=False):"
+        },
+        {
+          "line": 47,
+          "text": "def snapshot(raw):"
+        },
+        {
+          "line": 64,
+          "text": "    need(v['native_processes']==1 and v['reused_cases']==['hidden'] and v['guard_processes']==7 and v['new_unit_tests']==34,'measurement counts')"
+        },
+        {
+          "line": 68,
+          "text": "    for method in ('hidden','fishing'):"
+        },
+        {
+          "line": 77,
+          "text": "def evidence_path():"
+        },
+        {
+          "line": 81,
+          "text": "def save_record(v, receipt, mode):"
+        },
+        {
+          "line": 97,
+          "text": "    state['special_wild_ui'].update(status=v['status'],path=n.CP,candidate=v['candidate'],accepted_cases=['fishing','hidden'],failed_cases={},gameplay_accepted=True,capture_save_continue_accepted=True,actions_completion_"
+        },
+        {
+          "line": 103,
+          "text": "    guide='\\n## 保存先修正と通常UI 2件の記録\\n\\n研究persist_phaseがSaveLoadAdapter(0x09377695)へ誤委譲し、捕獲直後に旧saveを読み戻していた。TrySavingDataAdapter(0x09377661)へ1byte修正し、configの同じdelegateを一致させた。固定親/候補hash、両target body、前後context、全rollbackを照合。ARM"
+        },
+        {
+          "line": 116,
+          "text": "def recover():"
+        },
+        {
+          "line": 137,
+          "text": "def finalize():"
+        },
+        {
+          "line": 146,
+          "text": "    for method in ('hidden','fishing'):"
+        },
+        {
+          "line": 151,
+          "text": "def allowed():"
+        },
+        {
+          "line": 159,
+          "text": "def guard():"
+        }
+      ]
+    },
+    "scripts/pr16_special_wild_ui_v2_source_edits.json": {
+      "lines": 47,
+      "sha256": "fdb1f2769cc4dd7ccd573ca664755d58e128f415b38d90837f47b0b786a4a38d",
+      "size": 7933,
+      "symbols": [
+        {
+          "line": 16,
+          "text": "      [18,18,\"import pr16_research_save_delegate as repair\\nCANDIDATE = repair.CANDIDATE\\nLOCAL = prep.BASE+\\\"pr16_special_wild_ui_local_evidence/20260926-hidden\\\"\\n\"],"
+        },
+        {
+          "line": 27,
+          "text": "      [165,165,\"            if method=='hidden':\\n                receipt=load(ROOT/LOCAL/'receipt.json')\\n                need(receipt['candidate']==CANDIDATE and receipt['seed']==SEED and receipt['method']==method,'loc"
+        },
+        {
+          "line": 34,
+          "text": "      [241,242,\"    paths=owned()|CODE|HELPERS|{LOCAL+'/'+n for n in ('receipt.json','hidden.stdout.txt','hidden.stderr.txt','hidden.process.json')}|{'overlays/wild_overlay/wild_overlay.c','overlays/wild_overlay/wild_ove"
+        }
+      ]
+    },
+    "scripts/pr16_special_wild_ui_v2_upgrade.py": {
+      "lines": 24,
+      "sha256": "d4161210faa37badec30ef8c27223814aa8fa5163de5d11ad14aa3eba347dae1",
+      "size": 1315,
+      "symbols": []
+    },
+    "scripts/rebuild_research_economy_v1_from_clean.py": {
+      "lines": 440,
+      "sha256": "1327afcb7d9be893adc8705c1b6e629ee4d190bf78fa6db4f527a2596886f690",
+      "size": 17825,
+      "symbols": [
+        {
+          "line": 44,
+          "text": "def _fail(message: str) -> NoReturn:"
+        },
+        {
+          "line": 48,
+          "text": "def _sha(raw: bytes) -> str:"
+        },
+        {
+          "line": 52,
+          "text": "def _stable(value: object) -> bytes:"
+        },
+        {
+          "line": 58,
+          "text": "def _read(path: Path) -> bytes:"
+        },
+        {
+          "line": 65,
+          "text": "def _json(path: Path) -> dict[str, Any]:"
+        },
+        {
+          "line": 72,
+          "text": "def _run(command: Sequence[str], label: str) -> None:"
+        },
+        {
+          "line": 81,
+          "text": "def _atomic_write(path: Path, raw: bytes) -> None:"
+        },
+        {
+          "line": 90,
+          "text": "def _identity(raw: bytes, model: Mapping[str, Any], label: str) -> None:"
+        },
+        {
+          "line": 97,
+          "text": "def _validate_mgba("
+        },
+        {
+          "line": 123,
+          "text": "def _validate() -> tuple[dict[str, Any], bytes]:"
+        },
+        {
+          "line": 404,
+          "text": "def _execute(mode: str) -> dict[str, Any]:"
+        },
+        {
+          "line": 420,
+          "text": "def main() -> int:"
+        }
+      ]
+    },
+    "tools/mgba_pr16_captured_battle.h": {
+      "lines": 47,
+      "sha256": "75eda46c12f2d9542e97a02ba80a78f4abc6233be1e88f3494fc239ebee77e9c",
+      "size": 4485,
+      "symbols": []
+    },
+    "tools/mgba_pr16_natural_capture.c": {
+      "lines": 111,
+      "sha256": "cd09b0ad480403b0e76239196415656c36b26abe18f12bcc946c4f9f9c9d2e6e",
+      "size": 9630,
+      "symbols": [
+        {
+          "line": 16,
+          "text": "static void n_state(struct mCore*c,const char*label){"
+        },
+        {
+          "line": 19,
+          "text": "static bool n_action(struct mCore*c){"
+        },
+        {
+          "line": 23,
+          "text": "static void n_wait_action(struct mCore*c){"
+        },
+        {
+          "line": 27,
+          "text": "static void n_cursor(struct mCore*c,unsigned target){"
+        },
+        {
+          "line": 34,
+          "text": "static void n_return(struct mCore*c,bool caught){"
+        },
+        {
+          "line": 45,
+          "text": "static void n_step(struct mCore*c,unsigned key){"
+        },
+        {
+          "line": 56,
+          "text": "static void n_capture(struct mCore*c){"
+        },
+        {
+          "line": 66,
+          "text": "int main(int argc,char**argv){"
+        }
+      ]
+    },
+    "tools/mgba_pr16_research_catalog.c": {
+      "lines": 34,
+      "sha256": "eca0268576411c8ac3c1156dd8e04ae5b4f0c29baae4f36bb8d8065fa4592492",
+      "size": 2997,
+      "symbols": [
+        {
+          "line": 4,
+          "text": "static void ct_screen(unsigned page,char hash[65]){"
+        },
+        {
+          "line": 12,
+          "text": "int main(int argc,char**argv){"
+        }
+      ]
+    },
+    "tools/mgba_pr16_special_wild.c": {
+      "lines": 94,
+      "sha256": "703ddf5ec0bfe9bafd060adacbeeff2bb4b133097884a69f4df776eb3304273b",
+      "size": 7221,
+      "symbols": [
+        {
+          "line": 17,
+          "text": "static void raw8(struct mCore*c,uint32_t a,int s,uint8_t v){(void)s;deny8(c,a,v);}"
+        },
+        {
+          "line": 18,
+          "text": "static void raw16(struct mCore*c,uint32_t a,int s,uint16_t v){(void)s;deny16(c,a,v);}"
+        },
+        {
+          "line": 19,
+          "text": "static void raw32(struct mCore*c,uint32_t a,int s,uint32_t v){(void)s;deny32(c,a,v);}"
+        },
+        {
+          "line": 20,
+          "text": "static bool denyreg(struct mCore*c,const char*n,const void*v){(void)c;(void)n;(void)v;++violations;die(\"host write inside native observation\");return false;}"
+        },
+        {
+          "line": 21,
+          "text": "static void guard(struct mCore*c){c->busWrite8=deny8;c->busWrite16=deny16;c->busWrite32=deny32;c->rawWrite8=raw8;c->rawWrite16=raw16;c->rawWrite32=raw32;c->writeRegister=denyreg;}"
+        },
+        {
+          "line": 22,
+          "text": "static void unguard(struct mCore*c,const struct mCore*s){c->busWrite8=s->busWrite8;c->busWrite16=s->busWrite16;c->busWrite32=s->busWrite32;c->rawWrite8=s->rawWrite8;c->rawWrite16=s->rawWrite16;c->rawWrite32=s->rawWrite32"
+        },
+        {
+          "line": 23,
+          "text": "static void reject_test(const char*n){"
+        },
+        {
+          "line": 34,
+          "text": "static void dump_mon(struct mCore*c,const char*label,unsigned attempt,uint64_t step){"
+        },
+        {
+          "line": 39,
+          "text": "static uint32_t observed(struct mCore*c,uint32_t function,uint32_t r0,uint32_t r1,unsigned attempt,uint32_t qb,uint32_t qe,unsigned*special,unsigned*apply){"
+        },
+        {
+          "line": 61,
+          "text": "int main(int argc,char**argv){"
+        },
+        {
+          "line": 63,
+          "text": "    if(argc!=6){fprintf(stderr,\"usage: probe ROM fishing|hidden DISPATCH QOL_START QOL_END\\n\");return 2;}"
+        },
+        {
+          "line": 64,
+          "text": "    bool fishing=!strcmp(argv[2],\"fishing\");if(!fishing&&strcmp(argv[2],\"hidden\"))return 2;"
+        },
+        {
+          "line": 81,
+          "text": "    if(fishing&&!rom_pointer(info))die(\"fishing fixture table absent\");"
+        },
+        {
+          "line": 82,
+          "text": "    write8(c,save+4U,fishing?11U:3U);write8(c,save+5U,fishing?3U:63U);"
+        },
+        {
+          "line": 86,
+          "text": "        write8(c,ENEMY_PARTY_COUNT,0);uint32_t seed=(fishing?0x24681357U:0x10293847U)+attempt-1U;write32(c,GLOBAL_RNG,seed);"
+        },
+        {
+          "line": 87,
+          "text": "        printf(\"{\\\"event\\\":\\\"call\\\",\\\"attempt\\\":%u,\\\"seed\\\":%u,\\\"entry\\\":%u,\\\"map\\\":[%u,%u]}\\n\",attempt,seed,fishing?0x08082751U:0x09220199U,fishing?11U:3U,fishing?3U:63U);"
+        },
+        {
+          "line": 88,
+          "text": "        uint32_t result=observed(c,fishing?0x08082751U:0x09220199U,fishing?info:0,fishing?2U:0,attempt,qb,qe,&specials,&applies);"
+        }
+      ]
+    },
+    "tools/mgba_pr16_special_wild_gameplay.c": {
+      "lines": 148,
+      "sha256": "5ec4ed2fd3c66ffe46429d8da9a6cc0da7ff2349adb8f2cc8ea81c119c018024",
+      "size": 13950,
+      "symbols": [
+        {
+          "line": 22,
+          "text": "static void sw_shot(const char *name){"
+        },
+        {
+          "line": 29,
+          "text": "static void sw_state(struct mCore*c,const char*label){"
+        },
+        {
+          "line": 34,
+          "text": "static void sw_need(struct mCore*c,bool ok,const char*s){if(!ok){sw_state(c,s);sw_shot(\"failure\");a_die(s);}}"
+        },
+        {
+          "line": 35,
+          "text": "static void sw_mon(struct mCore*c,unsigned addr,const char*event){"
+        },
+        {
+          "line": 39,
+          "text": "static void sw_observe(struct mCore*c){"
+        },
+        {
+          "line": 48,
+          "text": "static void sw_run_frame(struct mCore*c){"
+        },
+        {
+          "line": 55,
+          "text": "static void sw_pocket(struct mCore*c,unsigned target){"
+        },
+        {
+          "line": 59,
+          "text": "static bool sw_bag(struct mCore*c){"
+        },
+        {
+          "line": 67,
+          "text": "static void sw_use(struct mCore*c,unsigned item){"
+        },
+        {
+          "line": 72,
+          "text": "static void sw_radar(struct mCore*c){"
+        },
+        {
+          "line": 74,
+          "text": " /* Fixture mode is AUTO (0). The source declares 6 menu rows, HIDDEN=4. */"
+        },
+        {
+          "line": 77,
+          "text": " sw_shot(\"radar-hidden-selected\");lb_press(c,QOL_KEY_A,1);"
+        },
+        {
+          "line": 81,
+          "text": "static bool sw_fishing(struct mCore*c){"
+        },
+        {
+          "line": 87,
+          "text": "  if(f%240==0)sw_state(c,\"fishing-wait\");"
+        },
+        {
+          "line": 92,
+          "text": "static void sw_catch(struct mCore*c){"
+        },
+        {
+          "line": 105,
+          "text": "static void sw_copy(struct mCore*c,unsigned a,uint8_t*out,unsigned n){for(unsigned i=0;i<n;++i)out[i]=read8(c,a+i);}"
+        },
+        {
+          "line": 106,
+          "text": "int main(int argc,char**argv){"
+        },
+        {
+          "line": 109,
+          "text": " sw_method=argv[3];sw_prefix=argv[4];bool fishing=!strcmp(sw_method,\"fishing\");if(!fishing && strcmp(sw_method,\"hidden\"))return 2;sw_map=fishing?38:63;"
+        },
+        {
+          "line": 113,
+          "text": " (void)call_preserving(c,0x09220861U,3,sw_map,fishing?94:14,fishing?10:11);run_key_frames(c,0,1800);"
+        },
+        {
+          "line": 115,
+          "text": " sw_need(c,lb_field(c),\"fixture map not idle\");lb_position(c,3,sw_map,fishing?94:14,fishing?10:11);"
+        },
+        {
+          "line": 120,
+          "text": " for(unsigned i=0;i<30;++i){write16(c,s1+0x3b8+4*i,0);write16(c,s1+0x3ba+4*i,key);}write16(c,s1+0x3b8,fishing?264:348);write16(c,s1+0x3ba,1^key);"
+        },
+        {
+          "line": 123,
+          "text": " write32_bytes(c,BATTLE_CORE_GLOBAL_RNG,fishing?0x24681357U:0x10293847U);"
+        },
+        {
+          "line": 127,
+          "text": " if(fishing){lb_press(c,QOL_KEY_LEFT,30);lb_position(c,3,38,94,10);}"
+        },
+        {
+          "line": 131,
+          "text": "  bool battle;if(fishing)battle=sw_fishing(c);else{sw_radar(c);battle=true;}"
+        },
+        {
+          "line": 132,
+          "text": "  sw_trace=false;if(!battle && fishing){sw_need(c,lb_field(c),\"fishing failure did not settle\");continue;}sw_need(c,battle,\"normal item UI produced no encounter\");"
+        },
+        {
+          "line": 135,
+          "text": "  sw_need(c,fishing,\"radar produced no special move\");lb_cursor(c,BATTLE_CORE_ACTION_SELECTION_CURSOR,3);lb_press(c,QOL_KEY_A,60);lb_return(c);"
+        },
+        {
+          "line": 137,
+          "text": " sw_need(c,found && sw_special==1 && !sw_after_setter && sw_entries[fishing?0:1]==1 && sw_entries[fishing?2:3]==1 && sw_entries[fishing?4:5]==1,\"special caller/initializer order differs\");"
+        }
+      ]
+    },
+    "tools/mgba_research_economy_v1_smoke.c": {
+      "lines": 1032,
+      "sha256": "943b06d4fa2227fe053477e4aa31c490d84e74b09bd3e9291dc945a08efbb200",
+      "size": 44673,
+      "symbols": [
+        {
+          "line": 68,
+          "text": "    RE_ACTIVITY_FISHING = 0U,"
+        },
+        {
+          "line": 70,
+          "text": "    RE_ACTIVITY_GAME_CORNER = 2U,"
+        },
+        {
+          "line": 83,
+          "text": "    RE_HOOK_WILD_HIDDEN = 0x09220198U,"
+        },
+        {
+          "line": 143,
+          "text": "    X(wild_fishing, \"ResearchEconomy_GenerateFishingEncounterAdapter\") \\"
+        },
+        {
+          "line": 144,
+          "text": "    X(wild_hidden, \"ResearchEconomy_TryHiddenEncounterAdapter\") \\"
+        },
+        {
+          "line": 180,
+          "text": "static void re_die(const char *message)"
+        },
+        {
+          "line": 214,
+          "text": "static uint32_t re_parse_number(const char *cursor)"
+        },
+        {
+          "line": 227,
+          "text": "static uint32_t re_json_symbol(const char *text, const char *name)"
+        },
+        {
+          "line": 273,
+          "text": "static unsigned re_count_occurrences(const char *text, const char *needle)"
+        },
+        {
+          "line": 284,
+          "text": "static bool re_contains_case_insensitive(const char *text, const char *needle)"
+        },
+        {
+          "line": 305,
+          "text": "        \"pending_reset\", \"nine_field_roots\", \"game_corner_payout\","
+        },
+        {
+          "line": 347,
+          "text": "static uint32_t re_call(struct mCore *core, uint32_t function,"
+        },
+        {
+          "line": 355,
+          "text": "static uint8_t re_owner8(struct mCore *core, const struct ReSymbols *symbols,"
+        },
+        {
+          "line": 364,
+          "text": "static uint16_t re_owner16(struct mCore *core, const struct ReSymbols *symbols,"
+        },
+        {
+          "line": 371,
+          "text": "static uint32_t re_owner32(struct mCore *core, const struct ReSymbols *symbols,"
+        },
+        {
+          "line": 380,
+          "text": "static void re_write_owner32(struct mCore *core, unsigned offset,"
+        },
+        {
+          "line": 390,
+          "text": "static void re_clear(struct mCore *core, uint32_t address, unsigned size)"
+        },
+        {
+          "line": 396,
+          "text": "static uint32_t re_thumb_bl_target(struct mCore *core, uint32_t site)"
+        },
+        {
+          "line": 409,
+          "text": "static uint32_t re_jump_target(struct mCore *core, uint32_t site)"
+        },
+        {
+          "line": 418,
+          "text": "static bool re_symbols_and_hooks(struct mCore *core,"
+        },
+        {
+          "line": 436,
+          "text": "        {RE_HOOK_WILD_FISH, symbols->wild_fishing, false},"
+        },
+        {
+          "line": 437,
+          "text": "        {RE_HOOK_WILD_HIDDEN, symbols->wild_hidden, false},"
+        },
+        {
+          "line": 458,
+          "text": "static bool re_initialize(struct mCore *core, const struct ReSymbols *symbols,"
+        },
+        {
+          "line": 474,
+          "text": "static bool re_reload_saved_ledger(struct mCore *core,"
+        },
+        {
+          "line": 489,
+          "text": "static bool re_save_migration(struct mCore *core,"
+        },
+        {
+          "line": 562,
+          "text": "static bool re_acquisition_v2_compat(struct mCore *core,"
+        },
+        {
+          "line": 576,
+          "text": "static uint32_t re_credit(struct mCore *core, const struct ReSymbols *symbols,"
+        },
+        {
+          "line": 584,
+          "text": "static bool re_activity_day_caps(struct mCore *core,"
+        },
+        {
+          "line": 600,
+          "text": "            if (activity == RE_ACTIVITY_GAME_CORNER && award == 0U) {"
+        },
+        {
+          "line": 656,
+          "text": "    exact = exact && re_credit(core, symbols, RE_ACTIVITY_FISHING, 9001U)"
+        },
+        {
+          "line": 672,
+          "text": "static bool re_credit_full_day(struct mCore *core,"
+        },
+        {
+          "line": 688,
+          "text": "static bool re_rank_contract(struct mCore *core,"
+        },
+        {
+          "line": 693,
+          "text": "        && re_credit(core, symbols, RE_ACTIVITY_FISHING, 1U) == RE_RESULT_LOCKED"
+        },
+        {
+          "line": 749,
+          "text": "static bool re_shop_contract(struct mCore *core,"
+        },
+        {
+          "line": 797,
+          "text": "static bool re_pending_recovery(struct mCore *core,"
+        },
+        {
+          "line": 803,
+          "text": "        core, symbols, RE_ACTIVITY_FISHING, 60001U) == RE_RESULT_PERSIST_FAILED"
+        },
+        {
+          "line": 810,
+          "text": "        core, symbols, RE_ACTIVITY_FISHING, 60002U) == RE_RESULT_PERSIST_FAILED"
+        },
+        {
+          "line": 869,
+          "text": "static bool re_game_corner_contract(struct mCore *core,"
+        },
+        {
+          "line": 883,
+          "text": "static bool re_owner_isolation(struct mCore *core,"
+        },
+        {
+          "line": 895,
+          "text": "        core, symbols, RE_ACTIVITY_FISHING, 70001U) == RE_RESULT_SUCCESS;"
+        },
+        {
+          "line": 905,
+          "text": "int main(int argc, char **argv)"
+        },
+        {
+          "line": 979,
+          "text": "        \"GAME_CORNER_PAYOUT_ONLY\","
+        },
+        {
+          "line": 1010,
+          "text": "        \"\\\"game_corner_payout_only\\\":%s,\\\"warnings_zero\\\":%s},\""
+        }
+      ]
+    }
+  },
+  "status": "SOURCE_CONTRACT_READY_NATIVE_OPEN",
+  "task": "USER-20260927-RESEARCH-REMAINING"
+}

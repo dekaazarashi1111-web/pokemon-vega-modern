@@ -57,3 +57,53 @@
   - Stage55は既に22 fresh-core fixture×独立2 process、全map owner監査、BPS往復、
     declared span外0、allocator overlap 0、warnings 0をPASSしているためDONEへ確定した。
   - iPadへのROM／save配置は希望時だけ行う任意運用とし、未実施や接続不能をblockerにしない。
+
+## 2026-09-08T12:53:05+09:00
+
+- Task: `USER-MODERNIZATION-P04` / Winds/Waves新規3種の完全GBA素材
+- Block reason:
+  - Browt、Pombon、Gecquaについて、front／back／icon／normal・shiny paletteを揃えた出典固定可能なGBA素材setを確認できない。
+  - 40x40 RGBAなど部分画像だけを、完成済み64x64 4bpp素材やpaletteとして偽装できない。別種画像や自動placeholderも採用しない。
+- What you tried:
+  - 固定DPE-JP、Shiny-Miner DPE、rh-hideout／TeamAquasHideout系、`xirosrh/wah-20-anniversary`、`Schn4pper/pokenigme`を対象名・asset directory・species symbolで照合した。
+  - Mega 49件／Stone 45件は固定sourceから取得でき、Tatsugiri 2形態の共通paletteも解決したが、上記3種の完全setは0/3だった。
+- Error excerpt:
+  - 実行errorなし。P04 asset manifestの`winds_waves_new_species`は`covered=0, required=3`、`fake_or_placeholder_generated=false`。
+- Question for human:
+  - 後で完全素材を含むrepository／ZIPを指定するか、既存デザインを参照した新規sprite制作を別途承認する必要がある。
+- Next step:
+  - 3種のID予約を維持したまま、素材に依存しないMega 49件、Stone 45件、ID／runtime／save拡張を先行する。完全素材受領後に同じstable keyへ差し替える。
+
+
+## 2026-09-13T22:07:05.622379+00:00 — USER-20260914-BP-PARTY-RETENTION
+- Timestamp: 2026-09-13T22:07:05.622379+00:00
+- Version: PR16 party retention WIP
+- Task: USER-20260914-BP-PARTY-RETENTION / 次戦で交換個体が失われる問題の修復
+- Status: BLOCKED
+- Summary: WIP: 次戦限定predicateとhost4回帰はPASS、固定candidateのowner監査run34785149994もSUCCESS。target呼出位置/ABIの確定・runtime接続・修復後native保持検証は未完。追加コード反映2回がOpenAIのツール安全性確認でブロックされたため、以後は解析/接続を停止して記録のみ実施。GitHub権限不足ではない。
+- Verify: host4tests PASS、owner Actions run34785149994 SUCCESS、artifact10325794218の全member hashを照合。記録回帰・resume tests/check・task graph・diff/index guard差分をpublish gateとする。native保持検証は未実行。
+- Files changed: predicate/C、host tests、owner script/workflow（WIP48a36ca）。今回は記録script/tests/workflow、WIP evidence JSON、固定引継ぎMD/JSON、P08 resume、両ログとblockers。
+- Commit: 実装WIP=48a36caf3361b1d167c302174eb2c4c4121c7508。記録はこの追記を含むcommit。入力HEAD=edd559148f79e65730d5ab0ccfba13ed6400e364。非force push後のhashはworkflow result.jsonとremote refで照合。
+- Network: GitHub connector/API・既存Actions artifactのみ。記録工程はROM/私有入力を開かず、native実行なし。
+- Blocker/Error excerpt: OpenAIツール安全性確認が追加コード反映2回をブロック。GitHubアクセス不足ではない。
+- Boundary: candidate7f32/CRC0D5D9178、正式physical4/P08 gate2、BP未受入、PR open/draft、baselineを維持。merge/releaseなし。受入済みcaseの再実行0（選択工程）。自動起動既存CIは別記。
+- Question for human: 権限確認の再依頼は不要。停止した要求は反復しない。
+- Next step: 保存済みWIPとowner監査を再利用し、未接続のtarget呼出位置/ABI照合・最小successor接続・修復後native個体保持検証を完了する。既存host4回帰/owner監査の単独再実行や同じtool-blocked要求の反復は行わず、保持確認前に2/3戦目・BP報酬へ進まない。
+
+
+## 2026-09-14T02:01:10.448721+00:00 — USER-20260914-BP-RETENTION-RESUME-NOTE
+- Timestamp: 2026-09-14T02:01:10.448721+00:00
+- Version: PR16 resume note
+- Task: USER-20260914-BP-RETENTION-RESUME-NOTE / 未反映ABI案と再開停止の記録
+- Status: BLOCKED
+- Summary: 2026-09-14再開: target呼出位置/ABIの追加検証コードをローカル作成し、新規8testsはPASS。ただしGitHub create_treeによるコード・workflow追加1回がOpenAI安全性チェックでブロックされ、branchへ未反映。追加Actions/target照合/runtime接続/native保持検証は未実行。GitHub権限不足ではない。同一要求を別経路で反復せず、今回は停止記録だけを更新。
+- Files changed: 記録script/tests/workflow、既存WIP JSON、固定引継ぎMD/JSON、P08再開文、両ログ、blockers。target/runtimeファイルは未変更。
+- Verify: ローカルABI案8tests PASS（未反映・Actions未実行）。記録回帰/resume check/tests、task graph、diff/index guard差分をpublish gateとする。
+- Native: 今回0process、受入case再実行0、candidate変更0、target ABI/保持は未検証。
+- Commit: この記録を含むcommit。entry=aece42964c1ff7b9c2bfd3d3c10bdd863d95febd、記録入力HEAD=d4e1d94f3e34622136c126d3002307c009362fef。非force push結果はworkflow result.jsonとremote refで確認。
+- Network: GitHub connectorのread・owner artifact取得・create_tree拒否。記録Actionsはmetadataのみ照会。private入力復元なし。
+- Block reason: OpenAIツール安全性チェック。GitHub権限エラーではない。追加コード要求1回を拒否、同じ要求の再試行なし。
+- Error excerpt: このツールの呼び出しは、OpenAI の安全性チェックによってブロックされました。
+- Question for human: 権限確認の再依頼は不要。正式受入・旧失敗原本を変更しない。
+- Boundary: BP未受入、physical4/P08ゲート2、PR open/draft、baseline維持。merge/releaseなし。
+- Next step: 保存済みWIP48a36caとowner run34785149994を再利用し、未完のtarget呼出位置/ABI照合・最小successor接続・修復後native個体保持検証を進める。ローカル8testsをtarget照合や反映済み実装と混同しない。同一tool-blocked要求や既存host4/ownerの単独再実行をせず、保持確認前に2/3戦目・BP報酬へ進まない。

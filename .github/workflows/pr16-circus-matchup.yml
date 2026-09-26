@@ -1,0 +1,77 @@
+name: PR16 Circus interruption and matchup
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-circus-matchup.yml
+      - scripts/pr16_circus_matchup.py
+      - tools/mgba_pr16_circus_matchup.h
+      - tests/test_pr16_circus_matchup.py
+      - tests/fixtures/circus_matchup_fixture.c
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: pr16-circus-three-win
+  cancel-in-progress: false
+jobs:
+  circus-matchup:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: 未実行setup失敗を限定修復し原本と両ログを保存
+        id: repair
+        run: python3 scripts/pr16_circus_matchup.py repair-interruption
+      - name: 実1勝後の第2戦を中断して3core検証
+        id: interruption
+        run: python3 scripts/pr16_circus_interruption.py pipeline
+      - name: 中断原本と固定引継ぎを非force保存
+        id: intrecord
+        if: always() && steps.repair.outcome == 'success'
+        run: python3 scripts/pr16_circus_interruption.py finish
+      - name: 中断証拠を別ZIPへ分離
+        if: always() && steps.intrecord.outcome == 'success'
+        run: |
+          python3 scripts/pr16_circus_interruption.py pack
+          mv .local/pr16-three-win-evidence .local/pr16-interruption-evidence
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.intrecord.outcome == 'success'
+        with:
+          name: pr16-circus-interruption-repaired
+          path: .local/pr16-interruption-evidence/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
+      - name: 第3戦のみ実PPと相性入力へ更新
+        id: prepare
+        if: always() && steps.intrecord.outcome == 'success'
+        run: python3 scripts/pr16_circus_matchup.py prepare
+      - name: 同じ候補を再構築せず実3勝を検証
+        if: always() && steps.prepare.outcome == 'success'
+        run: |
+          if test -f .local/pr16-streak-input/report.json; then
+            python3 scripts/pr16_circus_matchup.py native
+          else
+            python3 scripts/pr16_circus_matchup.py pipeline
+          fi
+      - name: 3勝原本と固定引継ぎを非force保存
+        if: always() && steps.prepare.outcome == 'success'
+        run: python3 scripts/pr16_circus_matchup.py finish
+      - name: ROMとsaveを除いた3勝証拠を保存
+        if: always() && steps.prepare.outcome == 'success'
+        run: python3 scripts/pr16_circus_matchup.py pack
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.prepare.outcome == 'success'
+        with:
+          name: pr16-circus-matchup
+          path: .local/pr16-three-win-evidence/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

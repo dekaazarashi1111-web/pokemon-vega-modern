@@ -1,0 +1,80 @@
+
+.local/pr16-streak-input/candidate.gba:     file format binary
+
+
+Disassembly of section .data:
+
+0806e030 <.data+0x6e030>:
+ 806e030:	b510      	push	{r4, lr}
+ 806e032:	0600      	lsls	r0, r0, #24
+ 806e034:	0e00      	lsrs	r0, r0, #24
+ 806e036:	0081      	lsls	r1, r0, #2
+ 806e038:	1809      	adds	r1, r1, r0
+ 806e03a:	00c9      	lsls	r1, r1, #3
+ 806e03c:	480a      	ldr	r0, [pc, #40]	@ (0x806e068)
+ 806e03e:	180c      	adds	r4, r1, r0
+ 806e040:	f7fb f8ea 	bl	0x8069218
+ 806e044:	0600      	lsls	r0, r0, #24
+ 806e046:	2800      	cmp	r0, #0
+ 806e048:	d10a      	bne.n	0x806e060
+ 806e04a:	4808      	ldr	r0, [pc, #32]	@ (0x806e06c)
+ 806e04c:	7800      	ldrb	r0, [r0, #0]
+ 806e04e:	3802      	subs	r0, #2
+ 806e050:	0600      	lsls	r0, r0, #24
+ 806e052:	0e00      	lsrs	r0, r0, #24
+ 806e054:	2801      	cmp	r0, #1
+ 806e056:	d903      	bls.n	0x806e060
+ 806e058:	1ca0      	adds	r0, r4, #2
+ 806e05a:	1d21      	adds	r1, r4, #4
+ 806e05c:	f7e7 fc6c 	bl	0x8055938
+ 806e060:	bc10      	pop	{r4}
+ 806e062:	bc01      	pop	{r0}
+ 806e064:	4700      	bx	r0
+ 806e066:	0000      	movs	r0, r0
+ 806e068:	50d8      	str	r0, [r3, r3]
+ 806e06a:	0300      	lsls	r0, r0, #12
+ 806e06c:	ad72      	add	r5, sp, #456	@ 0x1c8
+ 806e06e:	0203      	lsls	r3, r0, #8
+ 806e070:	b530      	push	{r4, r5, lr}
+ 806e072:	4d11      	ldr	r5, [pc, #68]	@ (0x806e0b8)
+ 806e074:	1c28      	adds	r0, r5, #0
+ 806e076:	f008 feb7 	bl	0x8076de8
+ 806e07a:	0600      	lsls	r0, r0, #24
+ 806e07c:	0e04      	lsrs	r4, r0, #24
+ 806e07e:	2c00      	cmp	r4, #0
+ 806e080:	d10b      	bne.n	0x806e09a
+ 806e082:	1c28      	adds	r0, r5, #0
+ 806e084:	2150      	movs	r1, #80	@ 0x50
+ 806e086:	f008 fd95 	bl	0x8076bb4
+ 806e08a:	0600      	lsls	r0, r0, #24
+ 806e08c:	0e00      	lsrs	r0, r0, #24
+ 806e08e:	4a0b      	ldr	r2, [pc, #44]	@ (0x806e0bc)
+ 806e090:	0081      	lsls	r1, r0, #2
+ 806e092:	1809      	adds	r1, r1, r0
+ 806e094:	00c9      	lsls	r1, r1, #3
+ 806e096:	1889      	adds	r1, r1, r2
+ 806e098:	810c      	strh	r4, [r1, #8]
+ 806e09a:	4c09      	ldr	r4, [pc, #36]	@ (0x806e0c0)
+ 806e09c:	1c20      	adds	r0, r4, #0
+ 806e09e:	f008 fea3 	bl	0x8076de8
+ 806e0a2:	0600      	lsls	r0, r0, #24
+ 806e0a4:	2800      	cmp	r0, #0
+ 806e0a6:	d103      	bne.n	0x806e0b0
+ 806e0a8:	1c20      	adds	r0, r4, #0
+ 806e0aa:	2150      	movs	r1, #80	@ 0x50
+ 806e0ac:	f008 fd82 	bl	0x8076bb4
+ 806e0b0:	bc30      	pop	{r4, r5}
+ 806e0b2:	bc01      	pop	{r0}
+ 806e0b4:	4700      	bx	r0
+ 806e0b6:	0000      	movs	r0, r0
+ 806e0b8:	e005      	b.n	0x806e0c6
+ 806e0ba:	0806      	lsrs	r6, r0, #32
+ 806e0bc:	50d0      	str	r0, [r2, r3]
+ 806e0be:	0300      	lsls	r0, r0, #12
+ 806e0c0:	e031      	b.n	0x806e126
+ 806e0c2:	0806      	lsrs	r6, r0, #32
+ 806e0c4:	b510      	push	{r4, lr}
+ 806e0c6:	0600      	lsls	r0, r0, #24
+ 806e0c8:	0e04      	lsrs	r4, r0, #24
+ 806e0ca:	480c      	ldr	r0, [pc, #48]	@ (0x806e0fc)
+ 806e0cc:	f008 fea8 	bl	0x8076e20

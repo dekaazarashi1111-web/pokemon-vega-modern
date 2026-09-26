@@ -1,0 +1,109 @@
+{
+  "accepted_native_cases_replayed": 0,
+  "checkpoint_path_failure": {
+    "accepted_native_cases_replayed": 0,
+    "artifacts": 0,
+    "head_sha": "3827258983b6a3a467af0ef584c408ae3bc4ef8b",
+    "job_id": 105886489666,
+    "native_processes": 0,
+    "original_conclusion": "failure",
+    "reason_ja": "source binding/生成MDは整合したが、親loss JSONに参照を結び付けず不変だったためcheckpoint必須差分検査で停止。commit/push/native/artifactなし。",
+    "reconcile_failed": true,
+    "run_id": 35439014239
+  },
+  "classification": "CIRCUS_DROUGHT_BOUNDARY_SOURCE_BINDING_RECONCILED",
+  "commit_scope": {
+    "added_only": true,
+    "base_head": "1e43febe6da4e7ba74549a4905b8466da88bef3d",
+    "changed_files": [
+      ".github/workflows/pr16-circus-drought-launch-boundary-resume.yml",
+      "scripts/pr16_circus_drought_launch_boundary_resume.py",
+      "tests/test_pr16_circus_drought_launch_boundary_resume.py"
+    ],
+    "parent_head": "3827258983b6a3a467af0ef584c408ae3bc4ef8b",
+    "source_head": "602abf6c601c39e3f912cde24c84d58ac960220a"
+  },
+  "genuine_30_wins_verified": false,
+  "independent_arm_links_replayed": 0,
+  "native_lifecycle_accepted": false,
+  "native_processes": 0,
+  "parent_loss_reference_bound": true,
+  "physical_admission_accepted": false,
+  "recording_run": 35450224019,
+  "release_ready": false,
+  "render_sync_failure": {
+    "accepted_native_cases_replayed": 0,
+    "artifacts": 0,
+    "head_sha": "725bbe8bdcc2149870dd78ce55406243fd71c86e",
+    "job_id": 105886059983,
+    "native_processes": 0,
+    "original_conclusion": "failure",
+    "reason_ja": "source binding更新後に生成MDを先に同期せず厳格resume.validateを実行し、Markdown driftで停止。native/pipeline/finish/pack/artifactは未実行。",
+    "reconcile_failed": true,
+    "run_id": 35438845025
+  },
+  "rom_or_save_evidence_published": false,
+  "schema_version": 1,
+  "source_binding_changes": {
+    ".github/workflows/pr16-circus-drought-launch-boundary-resume.yml": {
+      "after": {
+        "sha256": "0256f7c0d1de236d7bd279f43bd3db002c71981811a1d57174d955cc0bcf865f",
+        "size": 4587
+      },
+      "before": null,
+      "git_blob": "c4b046e27ac713d44f935803bd2334756fe52301"
+    },
+    "scripts/pr16_circus_drought_launch_boundary.py": {
+      "after": {
+        "sha256": "f2a7255e61e96501c1dfa43e3adf9bb9de79d55d410f2cc945624b73de581081",
+        "size": 17466
+      },
+      "before": {
+        "sha256": "a3b8ffe2a2c2d139b2fdbbbcc9e8bcf987755dab3c450856552ee7fa9e19427d",
+        "size": 14439
+      },
+      "git_blob": "823d241f654c999e247e69513ce727c9d589c323"
+    },
+    "scripts/pr16_circus_drought_launch_boundary_resume.py": {
+      "after": {
+        "sha256": "3366787af3904a8a2f97850511ee0af54796c49ddd187b73dcdcc590b8a3f9b5",
+        "size": 11288
+      },
+      "before": null,
+      "git_blob": "81514023cd1c5c5c4136b8df92eb054d35c08e92"
+    },
+    "tests/test_pr16_circus_drought_launch_boundary.py": {
+      "after": {
+        "sha256": "5042d339fee13a2c283cd55c13f22a8fdb4036aa32066e26a1256d8441d6826f",
+        "size": 4663
+      },
+      "before": {
+        "sha256": "ccace74b3b7f9a73f44f2c9f64bdd0b7f61f8f5decfed903c6f6df612f98033b",
+        "size": 3104
+      },
+      "git_blob": "1709e29535063ec3de817c8331c47338ab513c50"
+    },
+    "tests/test_pr16_circus_drought_launch_boundary_resume.py": {
+      "after": {
+        "sha256": "4bf1cdff24faf86d55da69c8cec6f64d2303aed53e477ce01ca0767cee4eadb9",
+        "size": 7396
+      },
+      "before": null,
+      "git_blob": "981d74803adc8095f486511eb075ab5062227e4f"
+    }
+  },
+  "stale_binding_failure": {
+    "accepted_native_cases_replayed": 0,
+    "artifacts": 0,
+    "head_sha": "1e43febe6da4e7ba74549a4905b8466da88bef3d",
+    "job_id": 105885315243,
+    "native_processes": 0,
+    "original_conclusion": "failure",
+    "prepare_failed": true,
+    "reason_ja": "正本source_bindingsが意図した診断script変更を旧fingerprintとして検知し、prepareで停止。native/pipeline/finish/pack/artifactは未実行。",
+    "run_id": 35438563815
+  },
+  "standard_save_fresh_continue": false,
+  "strict_resume_validation_after_rebind": true,
+  "suppression_accepted": false
+}

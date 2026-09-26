@@ -1,0 +1,177 @@
+{
+  "schema_version": 1,
+  "task": "USER-MODERNIZATION-P04-SPECIES-RUNTIME-STAGE70",
+  "stage": 70,
+  "status": "STAGE70_ROM_MATERIALIZED",
+  "inputs": {
+    "rom": {
+      "path": "build/stages/69_modernization_floette_gift.gba",
+      "size": 33554432,
+      "sha256": "6532002dabd3197ee6b8ded8b153a495d3241acf062fc931210987093172cb95"
+    },
+    "allocation": {
+      "path": "build/stages/69_modernization_floette_gift_allocation.json",
+      "sha256": "a5be7b923d4cd09466b89ddd4482a2f56fac1b3660de91737e5590eb127ae265"
+    },
+    "candidate_manifest": {
+      "path": "content/modernization/p04_candidate_manifest.json",
+      "sha256": "95fd141a4f38d4fd937af3a3873ae93f99028e94d9422db148279a1b90f6f9ac"
+    },
+    "capacity_manifest": {
+      "path": "content/modernization/p04_capacity_allocation_manifest.json",
+      "sha256": "8377afbe70ff3a1da1c805f51f5e83d49fd0a5befd271e6c549cf0f76bf082fe"
+    },
+    "asset_manifest": {
+      "path": "content/modernization/p04_asset_import_manifest.json",
+      "sha256": "d175514c66ee66d055d8457d6f15ff19b8a0d60f4bceb621e2f8c5e9a5aa8cc0"
+    },
+    "asset_sources": {
+      "path": "content/modernization/p04_asset_sources.json",
+      "sha256": "133c6b8dd56dc0afdb80acbb943c2e5b3ed1b72247bcc07350c78933e93e0636"
+    },
+    "species_manifest": {
+      "path": "manifests/species_ids.csv",
+      "sha256": "4e7cd7ef13761214f506e8ad58611c3dc36a0843b8b6647368677a73613f9366"
+    },
+    "type_manifest": {
+      "path": "manifests/type_ids.csv",
+      "sha256": "b6406423b9644d218389ae33d4f30a14100a3c1a70c39fa087475887f747c0cb"
+    },
+    "ability_manifest": {
+      "path": "manifests/ability_ids.csv",
+      "sha256": "8ae721ef01feeddb50cb0ef1ce2f59193a87a871133561ae2557ac8a5c9bfbcf"
+    },
+    "p05_ability_runtime_config": {
+      "path": "config/modernization_p05_ability_runtime.json",
+      "sha256": "52c14a10faeefe6bee002fc0c1ea40b077ce8ea7ecbab9ffd88fa5226bb85eb4"
+    },
+    "p05_ability_runtime_checkpoint": {
+      "path": "content/modernization/p05_ability_runtime_checkpoint.json",
+      "sha256": "41c505c1ed321e2d0b8271eb6f96ac802cbcc5c99290ba417ba2be8d2fa45c38"
+    },
+    "asset_root": "userfile/generated/modernization_p04_assets",
+    "upstream_checkout": ".local/modernization_sources/pokeemerald-expansion",
+    "upstream_commit": "cafe0221cefb2a991cc0ece429174ade877d037d"
+  },
+  "species_ids": {
+    "old_count": 1621,
+    "new_count": 1670,
+    "first_new_id": 1621,
+    "last_new_id": 1669,
+    "order": "P04_CAPACITY_STABLE_KEY_LEXICOGRAPHIC",
+    "excluded_record_keys": ["P04_SPECIES_BROWT", "P04_SPECIES_GECQUA", "P04_SPECIES_POMBON"],
+    "battle_mega_hooks": "OUT_OF_SCOPE_STAGE71"
+  },
+  "tables": [
+    {"table_key": "ability_names", "append_policy": "PROVISIONAL_REPLACEABLE_KANA_LOCALIZATION_17_BYTES"},
+    {"table_key": "ability_descriptions", "append_policy": "PROVISIONAL_PENDING_EFFECT_NOTICE_POINTER_REPLACE_AT_STAGE72"},
+    {"table_key": "ability_ratings", "append_policy": "PINNED_UPSTREAM_EXPLICIT_OR_DEFAULT_ZERO"},
+    {"table_key": "ability_mold_breaker_ignored", "append_policy": "SEMANTIC_REVIEW_EXPLICIT_FALSE_ALL_SIX"},
+    {"table_key": "species_front", "append_policy": "NEW_ASSET_LZ77_POINTER_SIZE2048_TAG_SPECIES"},
+    {"table_key": "species_back", "append_policy": "NEW_ASSET_LZ77_POINTER_SIZE2048_TAG_SPECIES"},
+    {"table_key": "species_palette", "append_policy": "NEW_ASSET_LZ77_POINTER_TAG_SPECIES"},
+    {"table_key": "species_shiny_palette", "append_policy": "NEW_ASSET_LZ77_POINTER_TAG_SPECIES_PLUS_1621"},
+    {"table_key": "species_icon", "append_policy": "NEW_ASSET_RAW_4BPP_POINTER"},
+    {"table_key": "species_icon_palette", "append_policy": "PINNED_UPSTREAM_ICON_PALETTE_SELECTOR"},
+    {"table_key": "species_front_coords", "append_policy": "PINNED_UPSTREAM_64X64_AND_Y_OFFSET"},
+    {"table_key": "species_back_coords", "append_policy": "PINNED_UPSTREAM_64X64_AND_Y_OFFSET"},
+    {"table_key": "species_elevation", "append_policy": "PINNED_UPSTREAM_OR_ZERO"},
+    {"table_key": "species_footprint", "append_policy": "CLONE_SOURCE_SPECIES_ROW"},
+    {"table_key": "species_cry", "append_policy": "CLONE_SOURCE_SPECIES_ROW_NO_NEW_AUDIO"},
+    {"table_key": "species_cry2", "append_policy": "CLONE_SOURCE_SPECIES_ROW_NO_NEW_AUDIO"},
+    {"table_key": "species_dex_entries", "append_policy": "CLONE_SOURCE_SPECIES_ROW"},
+    {"table_key": "species_national_dex", "append_policy": "P04_OFFICIAL_NATIONAL_DEX"},
+    {"table_key": "species_national_dex_runtime", "append_policy": "P04_OFFICIAL_NATIONAL_DEX_SPECIES_MINUS_ONE"},
+    {"table_key": "species_base_stats", "append_policy": "CLONE_SOURCE_THEN_PATCH_STATS_TYPES_ABILITY_U16"},
+    {"table_key": "species_species_names", "append_policy": "CLONE_SOURCE_NAME_11_BYTES"},
+    {"table_key": "species_species_names_legacy", "append_policy": "CLONE_SOURCE_NAME_8_BYTES"},
+    {"table_key": "species_level_up_pointers", "append_policy": "CLONE_SOURCE_SPECIES_ROW"},
+    {"table_key": "species_tmhm", "append_policy": "CLONE_SOURCE_SPECIES_ROW"},
+    {"table_key": "species_tutor", "append_policy": "CLONE_SOURCE_SPECIES_ROW"},
+    {"table_key": "species_wild_table", "append_policy": "CLONE_SOURCE_SPECIES_ROW"},
+    {"table_key": "acquisition_collection_defs", "append_policy": "FORM_NO_SEPARATE_COLLECTION_BIT"},
+    {"table_key": "evolution", "append_policy": "ZERO_ROWS_STAGE71_OWNS_MEGA_LINKS"}
+  ],
+  "pointer_consumers": {
+    "policy": "PINNED_CAPACITY_LITERAL_SET_PLUS_PARENT_ROM_20_BYTE_CONTEXT_AND_SEMANTIC_ALLOCATION_OWNER",
+    "context_bytes": 20,
+    "require_all_literal_matches_allowlisted": true,
+    "reject_pointer_sites_inside_relocated_table_spans": true,
+    "allow_owner_classes": ["VEGA_BASE", "CFRU_PAYLOAD", "DPE_PAYLOAD", "ALLOCATED_OWNER"]
+  },
+  "derived_pointer_consumers": {
+    "policy": "EXPLICIT_PARENT_CONTEXT_SEMANTIC_ALLOWLIST",
+    "sites": [
+      {"table_key": "ability_descriptions", "site": 20765968, "width": 4, "transform": "ADDRESS_RIGHT_SHIFT_2", "old": 37827338, "owner": "STAGE45_CODEX_REWARD_SUMMARY_ABILITY_DESCRIPTION"},
+      {"table_key": "ability_descriptions", "site": 20774192, "width": 4, "transform": "ADDRESS_RIGHT_SHIFT_2", "old": 37827338, "owner": "STAGE46_CODEX_REWARD_SUMMARY_ABILITY_DESCRIPTION"},
+      {"table_key": "ability_descriptions", "site": 20782816, "width": 4, "transform": "ADDRESS_RIGHT_SHIFT_2", "old": 37827338, "owner": "STAGE47_CODEX_REWARD_SUMMARY_ABILITY_DESCRIPTION_ACTIVE"}
+    ]
+  },
+  "ability_count_consumers": {
+    "policy": "EXPLICIT_THUMB_MOVS_HALF_COUNT_THEN_LSLS_ONE_CONTEXT_ALLOWLIST",
+    "old_count": 312,
+    "new_count": 318,
+    "sites": [
+      {"site": 20765896, "old_hex": "9c23", "new_hex": "9f23", "owner": "STAGE45_CODEX_REWARD_SUMMARY_ABILITY_BOUND"},
+      {"site": 20774120, "old_hex": "9c23", "new_hex": "9f23", "owner": "STAGE46_CODEX_REWARD_SUMMARY_ABILITY_BOUND"},
+      {"site": 20782744, "old_hex": "9c23", "new_hex": "9f23", "owner": "STAGE47_CODEX_REWARD_SUMMARY_ABILITY_BOUND_ACTIVE"}
+    ]
+  },
+  "ability_rows": [
+    {"id": 312, "ability_key": "ABILITY_KEY_DRAGONIZE", "localization_key": "P04_L10N_ABILITY_DRAGONIZE", "name_ja": "ドラゴナイズ", "description_ja": "こうかは じゅんびちゅう。", "rating": 0, "mold_breaker_ignored": 0},
+    {"id": 313, "ability_key": "ABILITY_KEY_EELEVATE", "localization_key": "P04_L10N_ABILITY_EELEVATE", "name_ja": "イーレベイト", "description_ja": "こうかは じゅんびちゅう。", "rating": 0, "mold_breaker_ignored": 0},
+    {"id": 314, "ability_key": "ABILITY_KEY_FIREMANE", "localization_key": "P04_L10N_ABILITY_FIREMANE", "name_ja": "ファイアメイン", "description_ja": "こうかは じゅんびちゅう。", "rating": 0, "mold_breaker_ignored": 0},
+    {"id": 315, "ability_key": "ABILITY_KEY_MEGASOL", "localization_key": "P04_L10N_ABILITY_MEGASOL", "name_ja": "メガソル", "description_ja": "こうかは じゅんびちゅう。", "rating": 0, "mold_breaker_ignored": 0},
+    {"id": 316, "ability_key": "ABILITY_KEY_PIERCINGDRILL", "localization_key": "P04_L10N_ABILITY_PIERCINGDRILL", "name_ja": "ピアシングドリル", "description_ja": "こうかは じゅんびちゅう。", "rating": 0, "mold_breaker_ignored": 0},
+    {"id": 317, "ability_key": "ABILITY_KEY_SPICYSPRAY", "localization_key": "P04_L10N_ABILITY_SPICYSPRAY", "name_ja": "スパイシースプレー", "description_ja": "こうかは じゅんびちゅう。", "rating": 0, "mold_breaker_ignored": 0}
+  ],
+  "ability_content_policy": {
+    "localization_status": "PROVISIONAL_LOCALIZATION_REPLACEABLE_P05_HAS_NO_JAPANESE_SUBMISSION",
+    "ui_rows_safe": true,
+    "effect_hooks": "OUT_OF_SCOPE_STAGE72",
+    "existing_rows_byte_exact": true
+  },
+  "count_consumers": {
+    "policy": "EXPLICIT_STAGE69_CONTEXT_PINNED_SPECIES_LIMIT_LITERALS",
+    "old_count": 1621,
+    "new_count": 1670,
+    "old_max": 1620,
+    "new_max": 1669,
+    "sites": [
+      {"site": 474632, "old": 1620, "new": 1669, "width": 4, "owner": "VEGA_SPECIES_LOOKUP_MAX_A"},
+      {"site": 474840, "old": 1620, "new": 1669, "width": 4, "owner": "VEGA_SPECIES_LOOKUP_MAX_B"},
+      {"site": 474936, "old": 1620, "new": 1669, "width": 4, "owner": "VEGA_SPECIES_LOOKUP_MAX_C"},
+      {"site": 1622876, "old": 1620, "new": 1669, "width": 4, "owner": "VEGA_GET_SPECIES_MAX_RETURN"},
+      {"site": 17806892, "old": 1621, "new": 1670, "width": 4, "owner": "CFRU_FORM_CHANGE_NUM_SPECIES"},
+      {"site": 19726940, "old": 1620, "new": 1669, "width": 4, "owner": "MOVE_MEMORY_SPECIES_MAX"},
+      {"site": 19733724, "old": 1620, "new": 1669, "width": 4, "owner": "ACQUISITION_SPECIES_MAX_A"},
+      {"site": 19734540, "old": 1620, "new": 1669, "width": 4, "owner": "ACQUISITION_SPECIES_MAX_B"},
+      {"site": 19734628, "old": 1620, "new": 1669, "width": 4, "owner": "ACQUISITION_SPECIES_MAX_C"},
+      {"site": 20522584, "old": 1620, "new": 1669, "width": 4, "owner": "MOVE_DISTRIBUTION_SPECIES_MAX_A"},
+      {"site": 20522708, "old": 1620, "new": 1669, "width": 4, "owner": "MOVE_DISTRIBUTION_SPECIES_MAX_B"},
+      {"site": 21054000, "old": 1621, "new": 1670, "width": 4, "owner": "STAGE57_NORMALIZE_SPECIES_COUNT"},
+      {"site": 21054040, "old": 1620, "new": 1669, "width": 4, "owner": "STAGE57_NORMALIZE_SPECIES_MAX"},
+      {"site": 21281448, "old": 1621, "new": 1670, "width": 4, "owner": "STAGE61_RUNTIME_HEADER_SPECIES_COUNT"},
+      {"site": 33398676, "old": 1620, "new": 1669, "width": 4, "owner": "T09_SPECIES_RUNTIME_MAX_ICON"},
+      {"site": 33398864, "old": 1620, "new": 1669, "width": 4, "owner": "T09_SPECIES_RUNTIME_MAX_DEX"},
+      {"site": 33399100, "old": 1621, "new": 1670, "width": 4, "owner": "T09_SPECIES_RUNTIME_COUNT_DEX"},
+      {"site": 33399156, "old": 1620, "new": 1669, "width": 4, "owner": "T09_SPECIES_RUNTIME_MAX_NAME"},
+      {"site": 33399284, "old": 1620, "new": 1669, "width": 4, "owner": "T09_SPECIES_RUNTIME_MAX_LEVEL"}
+    ]
+  },
+  "allocation": {
+    "name": "modernization_p04_species_runtime_stage70_payload",
+    "region": "integration_modules",
+    "alignment": 16
+  },
+  "outputs": {
+    "rom": "build/stages/70_modernization_p04_species_runtime.gba",
+    "metadata": "build/stages/70_modernization_p04_species_runtime.json",
+    "allocation": "build/stages/70_modernization_p04_species_runtime_allocation.json",
+    "bps": "build/stages/70_modernization_p04_species_runtime.bps",
+    "contract": "content/modernization/p04_species_runtime_contract.json",
+    "checkpoint": "content/modernization/p04_species_runtime_checkpoint.json",
+    "generated_payload": "generated/runtime/modernization_p04_species_runtime.bin",
+    "generated_rows": "generated/runtime/modernization_p04_species_runtime_rows.json"
+  }
+}

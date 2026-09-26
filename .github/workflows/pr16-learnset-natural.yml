@@ -1,0 +1,77 @@
+name: pr16-learnset-natural
+# V4野生上書き修復。旧25試験/旧ARMは再実行せず新adapterと失敗1件だけ。
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-learnset-natural.yml]
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-learnset-natural
+  cancel-in-progress: false
+jobs:
+  wild-repair:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: 新source転送identity
+        run: |
+          python3 - <<'PY'
+          import hashlib,pathlib
+          expected={'src/modernization/pr16_learnset_wild_game.c':'d6d8d380cf2127aacfc7b758c07b30675be212488353972156cc6526655c048c','tests/test_pr16_learnset_wild_repair.py':'3b2ea9ac4675d36a11cf01e8c3c996d8aeecca1ba5ba9f707ffc53701f0d650a','scripts/pr16_learnset_wild_repair.py':'0521380ce7d4cf19a1a0e79f591187a318b79f08d022fdf85c6912817b747da3'}
+          for path,digest in expected.items():assert hashlib.sha256(pathlib.Path(path).read_bytes()).hexdigest()==digest,path
+          print('PASS source transfer')
+          PY
+      - name: 新adapter用のARM compilerとhost mGBA library
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends gcc-arm-none-eabi binutils-arm-none-eabi libmgba-dev
+      - name: 野生gate16試験・新ARM・自然初期技/戦闘EXP/保存
+        id: native
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 -B scripts/pr16_learnset_wild_repair.py execute
+      - name: 原本・停止点・固定引継ぎ・両ログを記録
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python3 -B scripts/pr16_learnset_wild_repair.py record
+          python3 -B scripts/pr16_resume.py check
+          python3 -B scripts/validate_task_graph.py
+          python3 -B scripts/pr16_learnset_wild_repair.py paths | tr '\n' '\0' >.local/pr16-learnset-natural/paths.z
+          git add --pathspec-from-file=.local/pr16-learnset-natural/paths.z --pathspec-file-nul
+          python3 -B scripts/pr16_learnset_wild_repair.py guard
+      - name: 同branchへ非force commit/pushして最新ref照合
+        run: |
+          set -euo pipefail
+          branch='codex/modernization-followup-20260908'
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20260925-LEARNSET-WILD-REPAIR: 野生初期技修復と戦闘EXP実測・引継ぎを記録'
+          git push origin "HEAD:$branch"
+          sha=$(git rev-parse HEAD)
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$sha"
+          echo "$sha" | tee .local/pr16-learnset-natural/proof/reflected-head.txt
+          echo "RESULT=RECORDED TASK=USER-20260925-LEARNSET-WILD-REPAIR COMMIT=$sha"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-learnset-natural-proof
+          path: .local/pr16-learnset-natural/proof/
+          retention-days: 30
+          if-no-files-found: error
+      - name: native失敗を成功へ読み替えない
+        if: steps.native.outcome == 'failure'
+        run: exit 1

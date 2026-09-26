@@ -1,0 +1,42 @@
+name: pr16-native-source-context
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-native-source-context.yml]
+permissions:
+  contents: read
+jobs:
+  sources:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Export tracked controller sources, never ROM or save
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib,json,pathlib,subprocess,zipfile
+          root=pathlib.Path('.');out=root/'.local/pr16-native-source-context';out.mkdir(parents=True)
+          bindings={}
+          with zipfile.ZipFile(out/'source.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for name in subprocess.check_output(['git','ls-files','-z'],text=True).split('\0'):
+                  p=root/name
+                  if not (name.startswith(('tools/','overlays/','infra/')) and p.suffix in ('.c','.h','.S','.s','.inc','.sh','.json','.ld') or name in ('design/active_play_baseline.md','infra/toolchain_manifest.json','manifests/species_ids.csv','manifests/move_ids.csv','manifests/item_ids.csv','content/collection_supply_v1/canonical_model.json')):continue
+                  assert p.is_file() and not p.is_symlink()
+                  raw=p.read_bytes();raw.decode('utf8');assert b'\0' not in raw
+                  z.writestr(name,raw);bindings[name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+          (out/'bindings.json').write_text(json.dumps(bindings,sort_keys=True,indent=2)+'\n')
+          (out/'tested-head.txt').write_text(subprocess.check_output(['git','rev-parse','HEAD'],text=True))
+          PY
+          git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr16-native-source-context
+          path: .local/pr16-native-source-context/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

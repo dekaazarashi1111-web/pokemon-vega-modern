@@ -1,0 +1,115 @@
+{
+  "abilities": [
+    {
+      "connected": [
+        "live_type",
+        "party_type",
+        "damage",
+        "ai_damage",
+        "visual_power",
+        "ion_deluge_overridden",
+        "electrify_priority_retained",
+        "inactive_tera_blast_type_and_power",
+        "active_tera_blast_excluded",
+        "max_move_type_excluded",
+        "z_move_power_excluded",
+        "suppression_by_live_ability"
+      ],
+      "id": 312,
+      "key": "ABILITY_KEY_DRAGONIZE",
+      "status": "STATIC_CONNECTED"
+    },
+    {
+      "connected": [
+        "live_grounding",
+        "noninvasive_grounding",
+        "party_grounding",
+        "live_typecalc",
+        "ai_typecalc",
+        "visual_typecalc",
+        "visual_recorded_item_boundary",
+        "damaging_ground_only",
+        "ability_shield_preserves_immunity",
+        "knockout_state29_yield_boundary",
+        "knockout_boost",
+        "future_sight_same_user_and_partner_bank_knockout_boost",
+        "mold_breaker_flag"
+      ],
+      "id": 313,
+      "key": "ABILITY_KEY_EELEVATE",
+      "status": "STATIC_CONNECTED_AI_SWITCH_BONUS_GAP"
+    },
+    {
+      "connected": [
+        "physical_damage",
+        "special_damage",
+        "ai_damage",
+        "visual_power",
+        "suppression_by_live_ability"
+      ],
+      "id": 314,
+      "key": "ABILITY_KEY_FIREMANE",
+      "status": "STATIC_CONNECTED"
+    },
+    {
+      "connected": [
+        "fire_water_damage",
+        "weather_ball_live_party",
+        "solar_charge",
+        "weather_heal",
+        "weather_heal_popup_only_when_personal_sun_changes_result",
+        "holder_utility_umbrella_does_not_cancel_personal_sun",
+        "thunder_hurricane_accuracy",
+        "sand_veil_snow_cloak_ignored_for_holder",
+        "growth_plus_two",
+        "partner_flower_gift_not_activated",
+        "visual_power",
+        "no_persistent_field_weather"
+      ],
+      "id": 315,
+      "key": "ABILITY_KEY_MEGASOL",
+      "status": "STATIC_CONNECTED_SOLAR_CHARGE_POPUP_GAP"
+    },
+    {
+      "connected": [
+        "single_target_protect_bypass",
+        "real_protected_quarter_damage",
+        "shield_reaction_retained",
+        "max_guard_block",
+        "side_guard_rechecked_and_retained",
+        "spread_moves_excluded",
+        "ai_individual_protect_bypass_prediction",
+        "ohko_no_quarter"
+      ],
+      "id": 316,
+      "key": "ABILITY_KEY_PIERCINGDRILL",
+      "status": "STATIC_CONNECTED_AI_QUARTER_PREDICTION_GAP"
+    },
+    {
+      "connected": [
+        "real_damage_only",
+        "substitute_excluded",
+        "holder_may_faint",
+        "attacker_alive_present",
+        "future_sight_original_user_resolution",
+        "future_sight_off_field_no_trigger",
+        "burn_eligibility",
+        "noncontact"
+      ],
+      "id": 317,
+      "key": "ABILITY_KEY_SPICYSPRAY",
+      "status": "STATIC_CONNECTED_FRIENDLY_AI_GAP"
+    }
+  ],
+  "release_candidate": false,
+  "schema_version": 1,
+  "stage": 72,
+  "task": "USER-MODERNIZATION-P05-ABILITY-ROM-RUNTIME-STAGE72",
+  "unconnected_surfaces": [
+    "Mega SolのSolar Beam系charge省略時ability popupは、判定関数AttacksThisTurnがAI/utilityからも呼ばれるため副作用なしのまま（実効果は接続済み）",
+    "Eelevateの専用AI吸収switch bonusはTypeCalc/CheckMonGrounding認識まで（追加score関数未接続）",
+    "Piercing DrillのAI仮想Protectに対する1/4 damage予測は未接続（実戦の単体Protect貫通・1/4・side guard再評価は接続済み）",
+    "Spicy Sprayを味方へ能動発火する専用doubles AI利得scoreは未接続（Future Sight元使用者不在時の誤火傷は除外済み）",
+    "mGBA実戦闘は最終累積候補でrootが1回のみ実行予定"
+  ]
+}

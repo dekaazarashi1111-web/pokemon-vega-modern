@@ -1,0 +1,31 @@
+# PR16 保存view空判定と写真cold表示の修復
+
+PASS_MAP_VIEW_REPAIR_SCOPED
+
+次は他5活動の実RP稼得、通常進行によるResearch受付/ショップ接続、残るnative文言。保存view修復後の研究候補26dac23cを専用recipeで復元する。旧候補の写真成功/取消/重複拒否と、新候補の513空判定/clear境界・写真cold表示・54検査は同一入力で再実行しない。自然到達・全活動・全map・releaseは未受入。
+
+## 原因と最小修正
+
+保存viewはSaveBlock2+0x898から512bytes。空判定0x08058A14のliteral0x08058A48が511で、隣接ownerを含む1024bytesを走査していた。空のviewでも隣接データを非空と誤判定し、Continue時にゼロタイルを地形へ復元する。通常Saveのview snapshot(15x14半語)がある対照は正常、保存delegateだけの対照は青背景を再現。map96/37、layout497、72x20、primary/secondaryの同一性を両対照で確認。warp/tileset変更やRP保存処理の変更は不要。
+
+literalの上限511→255（ff010000→ff000000）だけを変更。実差分1byte、全ROM rollback一致、ARM compile/link0、追加allocation0。clear0x08058A54→CpuSetのnative ABIも512bytesと一致し、隣接512bytesは不変。
+
+親 `5d1fc9c47225ae8c0a369514b899a062af3699fa3c9a2f617e94ffd5f7dcc1ab` → 後継 `26dac23cfdbc02c3c25e357b79dcdf3d247c10d893f54a4f6d6b1227bf5624da`、各33554432bytes。recipe `content/modernization/pr16_research_map_view_recipe.json`。BP/P08候補やactive baselineの切替ではない。固定data artifact10898510128をsave/bag/retry/V1修復まで復元してから `pr16_research_map_view.apply(parent)` を適用する。後続研究検証もこの順序を使う。
+
+## 実測と限定受入
+
+ローカル新規native2process/3fresh cores。空判定はゼロ1・内側256・外側256=513、全1024byte読取不変。clear1回で512byteだけ消去し隣接ownerとFlashを保全。
+
+写真cold表示は変更影響回帰1件。停止warp後は通常キーだけ、写真実稼得0→6RP、日内/生涯6、claim4、保存counter2→4→4。全Bag/party600/ledger2048（自然minuteのみ除外）と独立Continue/確認台詞時の全Flash不変。稼得後とcold地形PPMは完全一致（e6aa09ed93ed4fd42593a0584509e2cc08ec309cf387c8cf836aad724dc4e1bc）。cold確認画面は旧受入のwarm promptと完全一致（b7bed16f0c7216dea297a2c408332b193f26272bd90ded4efc38259516784895）。建物・木・道・池と台詞を目視した。取消/同日重複拒否は再実行しない。
+
+54種類の新規unitは初回53PASS+1harness失敗。zero_case=1を1へ置換していた無変異テストだけvalue+1へ修正し、その1メソッドを再実行してPASS。53成功は再実行0。初回失敗/原source hashと訂正原本を保存。テスト全文の差分はこの1箇所だけ。predicate成功後、未実行photo observerのheader定数だけを最初の写真実行前に訂正して別host compile。predicate本体/依存は不変なので513判定の再実行0。
+
+ローカル診断は別2native/4cores/2host compile、修正受入は2native/3cores/2host compile、読取disassembler用host compile1。ARM0。新規unit実行2process、異なる54検査。変更影響回帰1、無変更受入再実行0、既受入7API拒否原本再利用でguard process0。
+
+nativeは拘束されたmainの末尾PASS直後にreturn0、stderr空。ただしshell数値exit codeを独立ファイルへ保存していないため、保存したという主張はしない。画像はローカル実測でありActionsが新撮影したものではない。
+
+## Actions・原本・残る境界
+
+記録source `470abaaad65fd64246867c3fb25ed69438d29502` / run `36256999619`。`content/modernization/pr16_research_map_view_evidence/36256999619/measurement-reconciliation.json`、`content/modernization/pr16_research_map_view_local_measurement.json`、`content/modernization/pr16_research_map_view_evidence/36256999619/manifest.json`。Actionsでは固定data/全source/生成C/全ROM rollbackと原本oracleを照合し、native/unit/compile再実行0。終端確認: True。旧写真run36253608437の青背景とRP受入原本はそのまま保全し、この後継修復への参照を固定引継ぎに追加する。
+
+自然到達、他5活動、通常進行から受付/ショップ、全map/全会話、releaseは未受入。一般CIの既存P03 source pin failure/承認待ちは今回の限定PASSとは別で、全CI成功を主張しない。引継ぎ/両ログ/限定index guardの完了後に同branchへ非force push。

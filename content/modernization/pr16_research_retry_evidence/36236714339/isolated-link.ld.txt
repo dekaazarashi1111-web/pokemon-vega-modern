@@ -1,0 +1,15 @@
+ENTRY(ensure_save_idle)
+SECTIONS {
+ . = 0x093BF7C8;
+ .text : { *(.text.ensure_save_idle) *(.text*) *(.rodata*) }
+ /DISCARD/ : { *(.ARM.exidx*) *(.ARM.extab*) *(.comment*) *(.note*) }
+ ASSERT(SIZEOF(.text) <= 188, "existing idle function window overflow")
+}
+ensure_volatile_state = 0x093bee79;
+ResearchEconomy_SaveValidate = 0x093bd9a9;
+ResearchEconomy_SaveInitNew = 0x093bde81;
+flag_get = 0x093bf2d5;
+persist_phase = 0x093bf631;
+ResearchEconomy_MigrateV1 = 0x093bdef1;
+recover_internal = 0x093bf6a9;
+copy_bytes = 0x093bee0b;

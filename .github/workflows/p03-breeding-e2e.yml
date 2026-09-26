@@ -1,0 +1,43 @@
+name: p03-breeding-e2e
+run-name: P03 native daycare inheritance hatch and two cold save reloads
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/p03-breeding-e2e.yml
+      - tools/mgba_modernization_p03_breeding_e2e.c
+      - scripts/run_modernization_p03_breeding_e2e.py
+      - tests/test_modernization_p03_breeding_e2e.py
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  breeding:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Install and verify fixed native toolchain
+        run: |
+          set -euo pipefail
+          mkdir -p .local/p03-breeding-ci
+          bash infra/setup_github_actions.sh --install | tee .local/p03-breeding-ci/toolchain.txt
+      - name: Reject invalid evidence and missing native observations
+        run: |
+          set -euo pipefail
+          /usr/bin/python3 -m unittest discover -s tests -p 'test_modernization_p03_breeding_e2e.py' -v 2>&1 | tee .local/p03-breeding-ci/regression.txt
+      - name: Rebuild unchanged Stage82 and execute eight fresh physical breeding cases
+        run: |
+          set -euo pipefail
+          /usr/bin/python3 scripts/run_modernization_p03_breeding_e2e.py --jobs 2 --output-directory .local/p03-breeding-ci/runtime 2>&1 | tee .local/p03-breeding-ci/runtime.txt
+          git diff --exit-code
+          git rev-parse HEAD > .local/p03-breeding-ci/source-head.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: p03-breeding-e2e
+          path: .local/p03-breeding-ci/
+          if-no-files-found: error
+          retention-days: 30

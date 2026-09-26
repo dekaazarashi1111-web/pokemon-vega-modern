@@ -1,0 +1,31 @@
+{
+  "command": [
+    "cc",
+    "-std=c11",
+    "-O2",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-Wno-misleading-indentation",
+    "-Itools",
+    "-I.",
+    "-I.local/pr16-research-lifecycle/runtime/include",
+    ".local/pr16-research-lifecycle/phase0-load.c",
+    "-L.local/pr16-research-lifecycle/runtime/lib",
+    "-lmgba",
+    "-lm",
+    "-Wl,--allow-shlib-undefined",
+    "-o",
+    ".local/pr16-research-lifecycle/phase0-load-runner"
+  ],
+  "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0\nCopyright (C) 2023 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+  "executable": {
+    "sha256": "d0bb69ab93c401a0b514ec684841baaaeca05e979f7f1ac4f4d09a6258f1b52a",
+    "size": 74576
+  },
+  "generated": {
+    "sha256": "d514a6a6354dae68676f8184287c4b9e1be0e243764c8bec211dcffb2a4c47cf",
+    "size": 40648
+  },
+  "returncode": 0
+}

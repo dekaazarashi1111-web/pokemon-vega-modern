@@ -1,0 +1,152 @@
+name: pr16-shared-checkpoint
+run-name: Retain sixteen shared-only physical successes without phase promotion
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-shared-checkpoint.yml
+      - scripts/pr16_shared_egg_checkpoint.py
+      - tests/test_pr16_shared_egg_checkpoint.py
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: pr16-shared-checkpoint
+  cancel-in-progress: false
+jobs:
+  preserve-shared:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+      - name: Read exact originals and validate all raw native outcomes
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          out=.local/pr16-shared-checkpoint
+          mkdir -p "$out"
+          git rev-parse HEAD > "$out/tested-head.txt"
+          python3 scripts/restore_modernization_final_originals.py > "$out/restore.json"
+          python3 scripts/pr16_shared_egg_checkpoint.py --fetch --write > "$out/shared-originals.json"
+          python3 scripts/pr16_physical_route_checkpoint.py > "$out/physical-originals.json"
+          python3 scripts/pr16_completion_checkpoint.py > "$out/historical-originals.json"
+          python3 scripts/pr16_refresh_current_view.py --write > "$out/refresh.json"
+          python3 scripts/pr16_refresh_current_view.py > "$out/current-check.json"
+          python3 scripts/record_modernization_final_acceptance.py > "$out/final-generator.json"
+          python3 scripts/record_modernization_p03_forgetting.py > "$out/forgetting-generator.json"
+          for pattern in test_pr16_shared_egg_checkpoint.py test_pr16_shared_egg_routes.py test_pr16_receiver_audit.py test_pr16_physical_route_checkpoint.py test_pr16_form_routes.py test_pr16_happiny_breeding.py test_pr16_current_view.py test_pr16_completion_checkpoint.py test_modernization_owner_policy.py; do
+            python3 -m unittest discover -s tests -p "$pattern" -v >> "$out/unit.log" 2>&1
+          done
+      - name: Record exact new scope and unresolved boundaries in append-only history
+        run: |
+          python3 - <<'PY'
+          import json,os,pathlib,sys
+          sys.path.insert(0,'scripts');import pr16_shared_egg_checkpoint as m
+          root=pathlib.Path('.');receipt=m.build();view=json.loads((root/m.prior.OVERVIEW).read_bytes())
+          assert view['full_p06_acceptance'] is True and view['p06_adoption']['full_phase_accepted'] is True
+          assert view['physical_route_checkpoint']['new_native_processes']==15 and view['physical_route_checkpoint']['new_native_cores']==40
+          assert view['shared_egg_checkpoint']['new_native_processes']==16 and view['shared_egg_checkpoint']['new_native_cores']==32
+          assert all(view[k] is False for k in ('release_ready','full_p03_acceptance','full_p05_acceptance','full_p07_acceptance'))
+          doc='''# PR16 共有タマゴ技の実メニュー受入 — 2026-09-11
+          
+          製品全体は未完成。最新の残件は `content/modernization/p08_remaining_work.json`、今回の追加受入は `content/modernization/pr16_shared_egg_acceptance.json`。
+          
+          ## 今回、新しく成功した実ROM試験
+          
+          run **34564143971**、実行HEAD `00fb5ccf6009e1f87e5a83b60fda1fde35f157ac`。**16プロセス・32個の新規コア**。以前のロトム10件・ピンプク5件・ピチュー5件・進化2件などは、この16件に加算しない。
+          
+          対象はバクーダ（species 605）とドンファン（549）。両方とも通常形態の進化後の個体。元のタマゴ技プールだけでは得られず、共有技追加処理が必要な技を選ぶ。バクーダは技ID 23 / 603、ドンファンは34 / 663。採用済み943受け手・5023共有行を静的照合した上で、共有追加が必要な通常形態・進化後の342候補から追加数降順・種族ID昇順という固定規則で2種を選んだ。実ROM受入はこの2種の16操作に限る。
+          
+          各種族につき、空き枠への習得1件、満杯の4枠それぞれへの置換4件、習得拒否・技入替画面での取消・技一覧での取消の3件。実際のStart→Bag→わざメモリー→タマゴ技→手持ち→技一覧を操作し、一覧全体、技とPP、ポイントアップの対象枠だけの解除、他枠保持、非破壊取消を照合した。
+          
+          全16件で通常の保存メニューを使い、コアを破棄して別コアから通常Continue。個体100 bytesと131072-byte flashの保持、保存カウンタ、観測後のhost書込み禁止と7種類の拒否試験を検査した。期待値は固定ROM表と旧種族逆引き処理の独立デコーダから生成し、実行結果や呼び出した技供給関数から逆算していない。
+          
+          **試験fixtureの境界:** 種族、初期技、わざメモリー、HOF/DH条件、開始マップは試験用に準備した。自然捕獲・通常解禁・親からの繁殖・他個体からの受渡しを確認したという意味ではない。共有技の実装先はわざメモリーであり、繁殖の追加成功と数えない。
+          
+          候補SHA-256: `635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e`。33,554,432 bytes。今回、ROM実装には追加変更していない。
+          
+          ## Git保存と再検証
+          
+          `content/modernization/pr16_shared_egg_evidence/34564143971/original.zip` と `actions.json` をGit追跡する。原本ZIPは115806 bytes、SHA-256 `1c272eaca2c44f177063633dcaec8957881b214a370979b52b4e84734488e55b`。ROM/saveを含まない。
+          
+          `python3 scripts/pr16_shared_egg_checkpoint.py` がZIPのハッシュ・CRC・Actionsの実行HEADと成功した全step・実行ソース・16件のraw stdout/process/stderr・書込み拒否を再検証する。`pr16_refresh_current_view.py` と既存の最終受入／P03忘却の両生成コマンドにも接続した。保存処理は実ROMを再実行しない。
+          
+          共通親ランナー内の一般的な `P07_INTEGRATED_NATIVE_MEMORY_SAVE` ラベルは来歴としてそのまま保持し、外側は `PR16_SHARED_ONLY_PHYSICAL_MEMORY_SAVE` で今回の実行と限定範囲を明示する。一般ラベルをP07全体の完了や過去試験の再利用と読み替えない。
+          
+          ## 保持する成功と残件
+          
+          [前回の実経路受入](PR16_PHYSICAL_ROUTE_CHECKPOINT_JA.md) のロトム実受付10件25コア、ピンプク繁殖5件15コア、P06の内外フラグ整合は保持する。旧原本・受入JSONは変更しない。
+          
+          P03/P07はその他の採用済み消費経路と既存原本の対応を確定し、不足する経路だけを埋める。943受け手全部の実操作完了ではない。1073追加・499保持を一律に新規採用し直さない。
+          
+          P05は通常捕獲・道具取得から戦闘まで、および実際のCircus受付・入場から特性抑制。今回の補助監査run 34563855235では技プールの静的読取はできたが、マップ12/7 object0の旧カタログ由来rootと野生表header139でデコーダが停止した。受付不存在やROM不具合と断定せず、静的監査未完了として扱う。これらは実受付成功ではない。
+          
+          P08は残る経路の同一候補への接続、必要な影響回帰、clean ROMから全工程の独立2回再生成、配布パッチとセーブ保護付きの導入・戻し方。製品リリースは未合格。
+          
+          public維持・無料わざメモリーは承認済み。Stage62・実プレイsave・公開範囲・履歴は変更しない。PR #16は未マージ。
+          '''
+          path=root/'docs/PR16_SHARED_EGG_CHECKPOINT_JA.md'
+          assert not path.exists(),'refuse unreviewed document replacement'
+          path.write_text(doc)
+          marker='PR16-SHARED-ONLY-20260911'
+          entry='\n## 2026-09-11 / '+marker+'\n\n- Task: USER-MODERNIZATION-P03-P07 / physical shared-only receiver routes.\n- New native run 34564143971, HEAD 00fb5ccf6009e1f87e5a83b60fda1fde35f157ac: Camerupt 605 and Donphan 549, 16 processes / 32 cores, unchanged candidate 635fd890. Empty slot, all four replacements, three cancels, normal save and fresh Continue.\n- Fixture boundary: initial species/moves, memory item, HOF/DH and location are prepared; no natural acquisition, breeding or full shared-table native claim.\n- Exact original ZIP + Actions metadata tracked; raw validation and both remaining-work regeneration paths checked by retention run '+os.environ['GITHUB_RUN_ID']+'. Oracle unit 12 and checkpoint/previous target suites are logged there. No new emulator run in retention.\n- Preserved Rotom, Happiny, Pichu, evolution, P06 and historical evidence. No ROM, active Stage62, real save, visibility, owner policy, history or PR merge changes.\n- Receiver audit has complete shared pool reading but unresolved catalogue root/wild header diagnostics; no physical Circus or natural-capture acceptance.\n- Remaining P03/P07 reconciliation, P05 natural acquisition/admission, P08 final integration and full clean reconstruction/distribution; product release remains false.\n'
+          for name in ('design/run_log.md','design/version_log.md'):
+              path=root/name;text=path.read_text();assert marker not in text;path.write_text(text+entry)
+          PY
+      - name: Commit only validated new original, receipt, current view and history
+        env:
+          EXPECTED_HEAD: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          branch=codex/modernization-followup-20260908
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$EXPECTED_HEAD"
+          python3 - <<'PY'
+          import pathlib,subprocess,sys
+          sys.path.insert(0,'scripts');import pr16_shared_egg_checkpoint as m
+          m.build()
+          prefix=m.DIRECTORY+'/'+str(m.RECORD[0])+'/'
+          original=prefix+'original.zip'
+          paths=[m.RECEIPT,m.prior.OVERVIEW,prefix+'actions.json',original,'docs/PR16_SHARED_EGG_CHECKPOINT_JA.md','design/run_log.md','design/version_log.md']
+          changed=set(filter(None,subprocess.check_output(['git','diff','--name-only','-z']).decode().split('\0')))
+          assert changed<=set(paths),'unrelated tracked mutation'
+          for name in ('design/run_log.md','design/version_log.md'):
+              assert pathlib.Path(name).read_bytes().startswith(subprocess.check_output(['git','show','HEAD:'+name]))
+          subprocess.run(['git','add','--',*[p for p in paths if p!=original]],check=True)
+          subprocess.run(['git','add','-f','--',original],check=True)
+          staged=set(filter(None,subprocess.check_output(['git','diff','--cached','--name-only','-z']).decode().split('\0')))
+          assert staged==set(paths),'unexpected staging membership'
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-MODERNIZATION-P03-P07: retain sixteen shared-only native successes and exact originals'
+          git push origin "HEAD:refs/heads/$branch"
+          git rev-parse HEAD > .local/pr16-shared-checkpoint/published-head.txt
+          python3 scripts/pr16_shared_egg_checkpoint.py > .local/pr16-shared-checkpoint/post-commit-shared.json
+          python3 scripts/pr16_physical_route_checkpoint.py > .local/pr16-shared-checkpoint/post-commit-physical.json
+          python3 scripts/pr16_refresh_current_view.py > .local/pr16-shared-checkpoint/post-commit-current.json
+          git diff --exit-code
+      - name: Preserve checkpoint implementation and generated view
+        if: always()
+        run: |
+          python3 - <<'PY'
+          import pathlib,zipfile
+          root=pathlib.Path('.');out=root/'.local/pr16-shared-checkpoint';out.mkdir(parents=True,exist_ok=True)
+          names=['scripts/pr16_shared_egg_checkpoint.py','tests/test_pr16_shared_egg_checkpoint.py','scripts/pr16_refresh_current_view.py','content/modernization/pr16_shared_egg_acceptance.json','content/modernization/p08_remaining_work.json','docs/PR16_SHARED_EGG_CHECKPOINT_JA.md','.github/workflows/pr16-shared-checkpoint.yml']
+          with zipfile.ZipFile(out/'current-view.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for name in names:
+                  p=root/name
+                  if p.is_file():z.writestr(name,p.read_bytes())
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-shared-checkpoint-retention
+          path: .local/pr16-shared-checkpoint/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

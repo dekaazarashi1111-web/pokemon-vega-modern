@@ -1,0 +1,33 @@
+{
+  "active_baseline_changed": false,
+  "after_hex": "004b184729773709",
+  "arm_compiles": 0,
+  "before_hex": "f0b5c64600b5038c",
+  "candidate": {
+    "sha256": "8946438bc37fda468c53e41378a6f82fac8f0b1af7ac6785ef07ca708c2714a1",
+    "size": 33554432
+  },
+  "cause": "first native candy call used the unhooked CFRU table while continuation used PLR1; their row indices differ",
+  "crc32": "AC98CEA0",
+  "declared_write_bytes": 8,
+  "entry": 152125496,
+  "new_allocations": 0,
+  "offset": 17907768,
+  "outside_declared_write_bytes": 0,
+  "parent": {
+    "sha256": "6e88a021785bfa7cf00e26d7f2433c380602d830e94e1d2fc31e3198cda31df2",
+    "size": 33554432
+  },
+  "preserves": [
+    "r0 mon",
+    "r1 firstMove",
+    "r2",
+    "incoming LR",
+    "stack",
+    "existing ordinary adapter",
+    "two P03 evolution caller paths"
+  ],
+  "save_layout_changes": 0,
+  "table_changes": 0,
+  "target": 154629929
+}

@@ -1,0 +1,38 @@
+name: pr16-ring-message-owner-contracts
+run-name: message生成・設定・slot0・task割当・font callbackの結合検証
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-ring-message-owner-contracts.yml
+      - scripts/pr16_ring_message_owner_contracts.py
+      - tests/test_pr16_ring_message_owner_contracts.py
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-ring-message-owner-contracts
+  cancel-in-progress: false
+jobs:
+  focused:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: 生成caller・slot・task・fontの限定testsと非force記録
+        run: python3 scripts/pr16_ring_message_owner_contracts.py run
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr16-ring-message-owner-contracts
+          path: .local/pr16-ring-message-owner-contracts/export/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90

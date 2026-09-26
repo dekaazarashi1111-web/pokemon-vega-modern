@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "stage": 81,
+  "status": "CANDIDATE_BUILT",
+  "parent": {
+    "path": "build/stages/80_modernization_runtime_boundary_repair.gba",
+    "size": 33554432,
+    "sha256": "6ff621edb1c1f99c6b1feb665ddce576eff939519776a2135002ab4fa90603a3"
+  },
+  "candidate": {
+    "size": 33554432,
+    "sha256": "521624a5e6065bd969b7c3143044f1d96491b8af05a0231827ba2e709d04d579"
+  },
+  "canonical_move_table": "0x090421F4",
+  "canonical_pp": "0x090421F8",
+  "bug_bite_pp": 20,
+  "patches": [
+    {
+      "rom_offset": "0x00010DC4",
+      "consumer": "trainer_custom_moves",
+      "before": "0x08E0CBB4",
+      "after": "0x090421F8",
+      "instruction_offset": "0x00010D9E",
+      "instruction_hex": "311c1131208842001218920006481218281c2ef05efe02340136"
+    },
+    {
+      "rom_offset": "0x00010F68",
+      "consumer": "trainer_custom_moves_with_item",
+      "before": "0x08E0CBB4",
+      "after": "0x090421F8",
+      "instruction_offset": "0x00010F0C",
+      "instruction_hex": "2ef0b0fd311c1131208842001218920012481218281c2ef0a5fd02340136"
+    },
+    {
+      "rom_offset": "0x0003E064",
+      "consumer": "give_move_to_box_mon_empty_slot",
+      "before": "0x08E0CBB4",
+      "after": "0x090421F8",
+      "instruction_offset": "0x0003E04C",
+      "instruction_hex": "1131308842001218920003481218381c01f0b2fd"
+    },
+    {
+      "rom_offset": "0x0003E10C",
+      "consumer": "set_mon_move_slot_replacement",
+      "before": "0x08E0CBB4",
+      "after": "0x090421F8",
+      "instruction_offset": "0x0003E0EE",
+      "instruction_hex": "6846008842001218920004481218281c211c01f0"
+    },
+    {
+      "rom_offset": "0x000405D4",
+      "consumer": "native_party_move_pp_initialization",
+      "before": "0x08E0CBB4",
+      "after": "0x090421F8",
+      "instruction_offset": "0x00040580",
+      "instruction_hex": "00684c300019008842001218920011481218381cfff76cfa023602340135"
+    }
+  ],
+  "modified_bytes": 20,
+  "active_baseline_changed": false,
+  "current_stage79_candidate_changed": false,
+  "full_p03_acceptance": false,
+  "release_ready": false
+}

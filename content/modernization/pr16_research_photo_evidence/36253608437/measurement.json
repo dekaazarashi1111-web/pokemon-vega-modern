@@ -1,0 +1,213 @@
+{
+  "counts": {
+    "accepted_case_reruns": 0,
+    "arm_compiles": 0,
+    "arm_links": 0,
+    "guard_processes": 0,
+    "host_compiles": 1,
+    "native_processes": 1,
+    "new_unit_tests": 43,
+    "rom_changes": 0
+  },
+  "failures": [],
+  "local_diagnostics": {
+    "accepted_case_reruns": 0,
+    "host_compiles": 4,
+    "native_processes": 4,
+    "new_unit_tests": 43,
+    "outcomes": [
+      "最初の2回は方向転換で既に背景eventが始まり、二重開始を前提としたstance検査が停止。画面を読んで入力driverだけ修正。",
+      "3回目は稼得/保存/重複拒否PASS。ただし報酬画面の採取がphase2保存完了前でpromptのままだったため、表示受入にはしない。",
+      "4回目は実保存counter+2を待って報酬を採取し、7画像/3文言と全観測の検査もPASS。"
+    ],
+    "production_changes": 0
+  },
+  "native": {
+    "accepted_case_reruns": 0,
+    "all_activities_accepted": false,
+    "candidate_sha256": "5d1fc9c47225ae8c0a369514b899a062af3699fa3c9a2f617e94ffd5f7dcc1ab",
+    "case": "photo-zero-earn-duplicate-cold-continue",
+    "daily_photo": 6,
+    "earned_rp": 6,
+    "fresh_cores": 2,
+    "guarded_host_writes": 0,
+    "initial_rp": 0,
+    "ledger_observations": [
+      {
+        "checksum_valid": true,
+        "ledger_event": "fixture",
+        "ledger_sha256": "bdaae0a71b80b9dd0f133c1633bf13863fd6d42a9f3364c557e2db0ea12356ce",
+        "migration_dirty": 0,
+        "recovery_blocked": 0,
+        "size": 2048,
+        "unrelated_ledger_sha256": "f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e",
+        "version": 2
+      },
+      {
+        "checksum_valid": true,
+        "ledger_event": "declined",
+        "ledger_sha256": "bdaae0a71b80b9dd0f133c1633bf13863fd6d42a9f3364c557e2db0ea12356ce",
+        "migration_dirty": 0,
+        "recovery_blocked": 0,
+        "size": 2048,
+        "unrelated_ledger_sha256": "f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e",
+        "version": 2
+      },
+      {
+        "checksum_valid": true,
+        "ledger_event": "earned",
+        "ledger_sha256": "272d3367e0796d604ff520fd4653f5fad31c86afa95c809126d7c7a439641c1f",
+        "migration_dirty": 0,
+        "recovery_blocked": 0,
+        "size": 2048,
+        "unrelated_ledger_sha256": "f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e",
+        "version": 2
+      },
+      {
+        "checksum_valid": true,
+        "ledger_event": "duplicate",
+        "ledger_sha256": "272d3367e0796d604ff520fd4653f5fad31c86afa95c809126d7c7a439641c1f",
+        "migration_dirty": 0,
+        "recovery_blocked": 0,
+        "size": 2048,
+        "unrelated_ledger_sha256": "f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e",
+        "version": 2
+      },
+      {
+        "checksum_valid": true,
+        "ledger_event": "continued",
+        "ledger_sha256": "272d3367e0796d604ff520fd4653f5fad31c86afa95c809126d7c7a439641c1f",
+        "migration_dirty": 0,
+        "recovery_blocked": 0,
+        "size": 2048,
+        "unrelated_ledger_sha256": "f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e",
+        "version": 2
+      },
+      {
+        "checksum_valid": true,
+        "ledger_event": "duplicate_after_continue",
+        "ledger_sha256": "272d3367e0796d604ff520fd4653f5fad31c86afa95c809126d7c7a439641c1f",
+        "migration_dirty": 0,
+        "recovery_blocked": 0,
+        "size": 2048,
+        "unrelated_ledger_sha256": "f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e",
+        "version": 2
+      }
+    ],
+    "manual_saves": 0,
+    "natural_arrival_accepted": false,
+    "observations": [
+      {
+        "counter": 2,
+        "event": "fixture",
+        "inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+        "item_quantity": 0,
+        "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+        "owner": "01400000000001010000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000",
+        "party_count": 6,
+        "party_sha256": "55514c6b16a517c723e3cdfe4826075020b214905950ada9cd65b41a97419430"
+      },
+      {
+        "counter": 2,
+        "event": "declined",
+        "inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+        "item_quantity": 0,
+        "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+        "owner": "01400000000001010000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000",
+        "party_count": 6,
+        "party_sha256": "55514c6b16a517c723e3cdfe4826075020b214905950ada9cd65b41a97419430"
+      },
+      {
+        "counter": 4,
+        "event": "earned",
+        "inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+        "item_quantity": 0,
+        "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+        "owner": "01400000060001010000060000000000000000000000000006000004000000000000000002000000000000000000000000000000000000000000000000000000",
+        "party_count": 6,
+        "party_sha256": "55514c6b16a517c723e3cdfe4826075020b214905950ada9cd65b41a97419430"
+      },
+      {
+        "counter": 4,
+        "event": "duplicate",
+        "inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+        "item_quantity": 0,
+        "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+        "owner": "01400000060001010000060000000000000000000000000006000004000000000000000002000000000000000000000000000000000000000000000000000000",
+        "party_count": 6,
+        "party_sha256": "55514c6b16a517c723e3cdfe4826075020b214905950ada9cd65b41a97419430"
+      },
+      {
+        "counter": 4,
+        "event": "continued",
+        "inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+        "item_quantity": 0,
+        "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+        "owner": "01400000060001010000060000000000000000000000000006000004000000000000000002000000000000000000000000000000000000000000000000000000",
+        "party_count": 6,
+        "party_sha256": "55514c6b16a517c723e3cdfe4826075020b214905950ada9cd65b41a97419430"
+      },
+      {
+        "counter": 4,
+        "event": "duplicate_after_continue",
+        "inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+        "item_quantity": 0,
+        "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+        "owner": "01400000060001010000060000000000000000000000000006000004000000000000000002000000000000000000000000000000000000000000000000000000",
+        "party_count": 6,
+        "party_sha256": "55514c6b16a517c723e3cdfe4826075020b214905950ada9cd65b41a97419430"
+      }
+    ],
+    "real_photo_earning_accepted": true,
+    "screens": {
+      "photo-decline-prompt.ppm": "b7bed16f0c7216dea297a2c408332b193f26272bd90ded4efc38259516784895",
+      "photo-duplicate-outcome.ppm": "c0165cbdc34c4dc31b3001f45f3115dae123e7605fb97221a9c66eca0c2f356a",
+      "photo-duplicate-prompt.ppm": "b7bed16f0c7216dea297a2c408332b193f26272bd90ded4efc38259516784895",
+      "photo-duplicate_after_continue-outcome.ppm": "9e5f6272bbfc690a35b2eb2cfe242d2c23953dba1d22f7f82b2798ec3031971f",
+      "photo-duplicate_after_continue-prompt.ppm": "b508cb0b06119028b846352208d12d84949e99b8b4cb0d39e8959adb8ae62a37",
+      "photo-earn-outcome.ppm": "080a24f32325bfa0bb11451545bd36fed684f0d869b7cb9da04e81fcedc82b3b",
+      "photo-earn-prompt.ppm": "b7bed16f0c7216dea297a2c408332b193f26272bd90ded4efc38259516784895"
+    },
+    "shop_connection_accepted": false,
+    "simple_claims": 4,
+    "status": "PASS",
+    "stdout": {
+      "sha256": "9e5acd83e13ebaf766abfab6460c3fd136129410f8514ba16880c464633753f3",
+      "size": 6308
+    },
+    "transaction_saves": 2,
+    "visits": [
+      {
+        "activity_result": 0,
+        "confirmed": false,
+        "frame": 1086,
+        "visit": "decline"
+      },
+      {
+        "activity_result": 0,
+        "confirmed": true,
+        "frame": 2540,
+        "visit": "earn"
+      },
+      {
+        "activity_result": 4,
+        "confirmed": true,
+        "frame": 2938,
+        "visit": "duplicate"
+      },
+      {
+        "activity_result": 4,
+        "confirmed": true,
+        "frame": 3336,
+        "visit": "duplicate_after_continue"
+      }
+    ],
+    "warnings_errors": 0
+  },
+  "status": "PASS",
+  "visual_review": {
+    "dialogues": 3,
+    "note_ja": "調査確認・6ポイント報酬・本日記録済みの3文言を目視。Actionsも同一画面hash。35会話全部とは主張しない。",
+    "status": "PASS"
+  }
+}

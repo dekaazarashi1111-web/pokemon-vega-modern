@@ -1,0 +1,130 @@
+name: pr16-ring-compiled-owner
+run-name: Ring compiled owner限定検証・受入済みnative再実行なし
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-ring-compiled-owner.yml
+      - scripts/pr16_ring_compiled_owner.py
+      - tests/test_pr16_ring_compiled_owner.py
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-ring-compiled-owner
+  cancel-in-progress: false
+jobs:
+  scoped-owner:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Exact HEAD・受入境界とfocused tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-ring-compiled-owner
+          mkdir -p "$out"
+          python3 - <<'PY'
+          import json,os,pathlib,subprocess
+          repo=os.environ['GITHUB_REPOSITORY'];head=os.environ['GITHUB_SHA']
+          def api(path):return json.loads(subprocess.check_output(['gh','api','repos/'+repo+'/'+path]))
+          pr=api('pulls/16')
+          assert pr['state']=='open' and pr['draft'] and not pr['merged']
+          assert pr['head']['sha']==head and pr['head']['ref']=='codex/modernization-followup-20260908'
+          assert pr['head']['repo']['full_name']==repo
+          assert api('git/ref/heads/codex/modernization-followup-20260908')['object']['sha']==head
+          native=api('actions/runs/34946969126')
+          assert native['status']=='completed' and native['conclusion']=='success'
+          assert native['head_sha']=='0b7497b575a3180a045f2be377386490f192a012'
+          runs=api('actions/runs?branch=codex%2Fmodernization-followup-20260908&per_page=30')['workflow_runs']
+          value={'source_head':head,'run_id':int(os.environ['GITHUB_RUN_ID']),'own_status_at_observation':'in_progress','runs':[{k:r[k] for k in ('id','name','head_sha','status','conclusion')} for r in runs]}
+          pathlib.Path('.local/pr16-ring-compiled-owner/actions-before.json').write_text(json.dumps(value,ensure_ascii=False,indent=2)+'\n')
+          PY
+          python3 scripts/pr16_resume.py check > "$out/resume-before.json"
+          python3 -m unittest discover -s tests -p 'test_pr16_ring_compiled_owner.py' -v > "$out/tests.stdout" 2> "$out/tests.stderr"
+      - name: 固定toolchainと同一Stage84入力のみ復元
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-ring-compiled-owner
+          bash infra/setup_github_actions.sh --install > "$out/toolchain.log" 2>&1
+          python3 scripts/modernization_final_integration.py prepare > "$out/stage84.json" 2> "$out/stage84.stderr"
+      - name: 固定private入力・字形表・既存event生成headerを復元
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-ring-compiled-owner
+          assets=.local/pr16-bp-trial-native-inputs
+          mkdir -p "$assets"
+          tag=$(python3 -c 'import json; print(json.load(open("config/github_private_environment.json"))["release"]["tag"])')
+          gh release download "$tag" --pattern pokemon-vega-private-env-v1-inputs.zip --pattern pokemon-vega-private-env-v1-modernization-inputs.zip --pattern pokemon-vega-private-env-v1-state.zip --dir "$assets"
+          python3 scripts/github_private_environment.py restore --archive-dir "$assets" --archive pokemon-vega-private-env-v1-inputs.zip --archive pokemon-vega-private-env-v1-modernization-inputs.zip > "$out/private-restore.json"
+          python3 - <<'PY'
+          import hashlib,json,pathlib,zipfile
+          cfg=json.loads(pathlib.Path('config/github_private_environment.json').read_bytes())
+          name='pokemon-vega-private-env-v1-state.zip';bound=next(a for a in cfg['archives'] if a['name']==name)
+          raw=(pathlib.Path('.local/pr16-bp-trial-native-inputs')/name).read_bytes()
+          assert len(raw)==bound['size'] and hashlib.sha256(raw).hexdigest()==bound['sha256']
+          source=pathlib.Path('.local/pr16-bp-trial-native-inputs')/name
+          evidence={}
+          with zipfile.ZipFile(source) as z:
+              for member,dest in [('vendor/upstream/CFRU-JP/charmap.tbl','vendor/upstream/CFRU-JP/charmap.tbl'),('generated/runtime/event_design_generated.h','.local/pr16-ring-compiled-inputs/event_design_generated.h')]:
+                  assert member in z.namelist(), 'required pinned member absent: '+member
+                  data=z.read(member);p=pathlib.Path(dest)
+                  assert not any(q.is_symlink() for q in (p,*p.parents))
+                  if p.exists():assert p.read_bytes()==data
+                  else:p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(data);p.chmod(0o444)
+                  evidence[member]={'size':len(data),'sha256':hashlib.sha256(data).hexdigest()}
+          pathlib.Path('.local/pr16-ring-compiled-owner/restored-bindings.json').write_text(json.dumps({'archive_sha256':bound['sha256'],'members':evidence},indent=2)+'\n')
+          PY
+      - name: 同一candidateをbyte監査用に再構築・native受入の再実行なし
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-ring-compiled-owner
+          python3 scripts/pr16_p07_preserved_layer.py > "$out/p07.stdout" 2> "$out/p07.stderr"
+          python3 scripts/pr16_evolution_learning_repair.py > "$out/repair.stdout" 2> "$out/repair.stderr"
+          python3 scripts/pr16_bp_party_retention_successor.py > "$out/candidate.stdout" 2> "$out/candidate.stderr"
+      - name: map97/80・scheduler・compiled runtimeを限定byte照合
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-ring-compiled-owner
+          python3 scripts/pr16_ring_compiled_owner.py --rom .local/pr16-bp-party-retention-successor/candidate.gba --header .local/pr16-ring-compiled-inputs/event_design_generated.h > "$out/audit.stdout" 2> "$out/audit.stderr"
+          python3 scripts/validate_task_graph.py > "$out/task-graph.stdout" 2> "$out/task-graph.stderr"
+          git diff --exit-code
+          git diff --check
+      - name: UTF-8限定証拠guard・ROM/save/private入力を公開しない
+        id: export
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib,json,pathlib,re,subprocess,zipfile
+          out=pathlib.Path('.local/pr16-ring-compiled-owner');bound={}
+          for p in out.iterdir():
+              assert p.is_file() and not p.is_symlink() and p.suffix in {'.json','.txt','.stdout','.stderr','.log'}
+              data=p.read_bytes();data.decode('utf-8');assert b'\0' not in data and len(data)<4000000
+              assert not re.search(rb'gh[pousr]_[A-Za-z0-9]{36,}|github_pat_[A-Za-z0-9_]{60,}',data)
+              bound[p.name]={'size':len(data),'sha256':hashlib.sha256(data).hexdigest()}
+          (out/'members.json').write_text(json.dumps(bound,indent=2)+'\n')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.export.outcome == 'success'
+        with:
+          name: pr16-ring-compiled-owner
+          path: .local/pr16-ring-compiled-owner/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90

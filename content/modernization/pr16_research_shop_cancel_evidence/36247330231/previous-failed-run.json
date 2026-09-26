@@ -1,0 +1,51 @@
+{
+  "archive": {
+    "sha256": "2385dc761e60075986f638979967702f06da8b3b98c6f3eddc619c3782a94db8",
+    "size": 15389
+  },
+  "artifact_id": 10908270748,
+  "changed_scope": "two-frame input pulse and menu settling only; real cancel trace affected",
+  "copies": {
+    "prior-36246971189-compile.json": {
+      "sha256": "80a807e4a9630a6b47859ca61924f6d0d683da0767f7fb34e46fdb17dffbb3f5",
+      "size": 707
+    },
+    "prior-36246971189-guards.json": {
+      "sha256": "ba74a27d494c4181eb2060ab4ff00f59d2c09e6f21a5d4dee4a7714f58431273",
+      "size": 1138
+    },
+    "prior-36246971189-inputs.json": {
+      "sha256": "f4b378760c80b46f80fc72905b8a7063736c97cd0ad2da6d3eb54de348bdd01c",
+      "size": 1834
+    },
+    "prior-36246971189-invocation.json": {
+      "sha256": "e5e64fb6fed2c56d7a788d246ac23e5d0249c450b7162d2c8da9eb9a38ccaf75",
+      "size": 42286
+    },
+    "prior-36246971189-native-process.json": {
+      "sha256": "b9d8af08fec69e488c14ffaf8a5a79299c5fac625d4058682779accfc1713257",
+      "size": 276
+    },
+    "prior-36246971189-native.stderr.txt": {
+      "sha256": "82f4ce411e447b130e5dfa8c22442e92f97723b9e55963ca6b2c3d0b7f8c9d71",
+      "size": 46
+    },
+    "prior-36246971189-native.stdout.txt": {
+      "sha256": "99bdf77b4d50f655d57a75a237f3c7e577b1551676c43fc4173e2d5505e7e3f3",
+      "size": 1920
+    }
+  },
+  "failure": "normal next page action",
+  "new_unit_tests": 0,
+  "old_native_accepted": false,
+  "old_unit_tests": 20,
+  "run": {
+    "conclusion": "failure",
+    "head_branch": "codex/modernization-followup-20260908",
+    "head_sha": "3cb13d02f548be5d4770bd3807d3bc74c98b39f7",
+    "id": 36246971189,
+    "path": ".github/workflows/pr16-research-shop-cancel-20260926.yml",
+    "run_attempt": 1,
+    "status": "completed"
+  }
+}

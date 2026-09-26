@@ -1,0 +1,57 @@
+name: PR16 Circus battle30 PP tie
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - scripts/pr16_circus_battle30_pp.py
+      - scripts/pr16_circus_battle30_pp_policy.py
+      - tests/test_pr16_circus_battle30_pp.py
+      - .github/workflows/pr16-circus-battle30-pp.yml
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-circus-battle30-pp
+  cancel-in-progress: false
+jobs:
+  battle30-pp:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: 前回29勝原本と新規10契約を照合し先に記録
+        id: prepare
+        run: |
+          mkdir -p .local/pr16-circus-battle25
+          python3 scripts/pr16_circus_battle30_pp.py prepare > .local/pr16-circus-battle25/prepare.stdout 2> .local/pr16-circus-battle25/prepare.stderr
+      - name: host mGBA依存のみ導入
+        run: |
+          set -euo pipefail
+          sudo apt-get update > .local/pr16-circus-battle25/apt-update.log 2>&1
+          sudo apt-get install -y libmgba-dev > .local/pr16-circus-battle25/apt-install.log 2>&1
+      - name: 保存byte候補で未完30戦目の同点選択を1回だけ継続
+        run: python3 scripts/pr16_circus_battle30_pp.py native
+      - name: 成功失敗を分離し原本と固定引継ぎ両ログを非force記録
+        if: always() && steps.prepare.outcome == 'success'
+        run: python3 scripts/pr16_circus_battle30_pp.py finish
+      - name: ROM save private入力を除いて保存
+        if: always()
+        run: python3 scripts/pr16_circus_battle30_pp.py pack
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-circus-battle30-pp
+          path: .local/pr16-circus-battle25/artifact/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
+      - name: 真正30勝の未達を成功へ改作しない
+        if: always() && steps.prepare.outcome == 'success'
+        run: python3 scripts/pr16_circus_battle30_pp.py result

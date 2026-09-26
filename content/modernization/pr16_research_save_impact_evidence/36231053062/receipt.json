@@ -1,0 +1,423 @@
+{
+  "accepted_case_reruns": 0,
+  "arm_compiles": 0,
+  "artifacts": [
+    {
+      "digest": "sha256:992fca1b848c54977c6301d4f267e3a834b16359e6af8f5bced23c9d339c3105",
+      "id": 10902306338,
+      "name": "pr16-research-save-impact-native",
+      "size_in_bytes": 26921,
+      "workflow_run": {
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_repository_id": 1358127462,
+        "head_sha": "625987cd510dcf379be575b3702d3bb9a80816cf",
+        "id": 36229142708,
+        "repository_id": 1358127462
+      }
+    },
+    {
+      "digest": "sha256:945e2b9b2dc70479761618a8702f3a1f873fad8d05fe1bd2374fb57e67b879f6",
+      "id": 10901613823,
+      "name": "pr16-research-bag-native",
+      "size_in_bytes": 29835,
+      "workflow_run": {
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_repository_id": 1358127462,
+        "head_sha": "9cb7ca0a7699fd49f1e217cf8204fea682d5dbb8",
+        "id": 36229762846,
+        "repository_id": 1358127462
+      }
+    }
+  ],
+  "evidence_manifest": {
+    "binding": {
+      "sha256": "755c363ef54965c8fe3bdc35434427813f8e4924bce6a167d3b2f79527d6e74f",
+      "size": 26176
+    },
+    "path": "content/modernization/pr16_research_save_impact_evidence/36231053062/evidence-manifest.json"
+  },
+  "host_compiles": 0,
+  "mode": "record",
+  "native_runs": [
+    {
+      "jobs": [
+        {
+          "check_run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/check-runs/108368823607",
+          "completed_at": "2026-09-26T08:14:55Z",
+          "conclusion": "failure",
+          "created_at": "2026-09-26T08:13:37Z",
+          "head_branch": "codex/modernization-followup-20260908",
+          "head_sha": "625987cd510dcf379be575b3702d3bb9a80816cf",
+          "html_url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/36229142708/job/108368823607",
+          "id": 108368823607,
+          "labels": [
+            "ubuntu-24.04"
+          ],
+          "name": "native",
+          "node_id": "CR_kwDOUPNhZs8AAAAZO0kFNw",
+          "run_attempt": 1,
+          "run_id": 36229142708,
+          "run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/36229142708",
+          "runner_group_id": 0,
+          "runner_group_name": "GitHub Actions",
+          "runner_id": 1000015209,
+          "runner_name": "GitHub Actions 1000015209",
+          "started_at": "2026-09-26T08:13:39Z",
+          "status": "completed",
+          "steps": [
+            {
+              "completed_at": "2026-09-26T08:13:41Z",
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "started_at": "2026-09-26T08:13:40Z",
+              "status": "completed"
+            },
+            {
+              "completed_at": "2026-09-26T08:13:53Z",
+              "conclusion": "success",
+              "name": "Run actions/checkout@v4",
+              "number": 2,
+              "started_at": "2026-09-26T08:13:41Z",
+              "status": "completed"
+            },
+            {
+              "completed_at": "2026-09-26T08:14:52Z",
+              "conclusion": "failure",
+              "name": "固定候補・mGBAで16境界を採取（既受入case/ARM再実行なし）",
+              "number": 3,
+              "started_at": "2026-09-26T08:13:53Z",
+              "status": "completed"
+            },
+            {
+              "completed_at": "2026-09-26T08:14:53Z",
+              "conclusion": "success",
+              "name": "Run actions/upload-artifact@v4",
+              "number": 4,
+              "started_at": "2026-09-26T08:14:52Z",
+              "status": "completed"
+            },
+            {
+              "completed_at": "2026-09-26T08:14:53Z",
+              "conclusion": "success",
+              "name": "Post Run actions/checkout@v4",
+              "number": 8,
+              "started_at": "2026-09-26T08:14:53Z",
+              "status": "completed"
+            },
+            {
+              "completed_at": "2026-09-26T08:14:53Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 9,
+              "started_at": "2026-09-26T08:14:53Z",
+              "status": "completed"
+            }
+          ],
+          "url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/jobs/108368823607",
+          "workflow_name": "pr16-research-save-impact-native-20260926"
+        }
+      ],
+      "run": {
+        "conclusion": "failure",
+        "created_at": "2026-09-26T08:13:37Z",
+        "event": "push",
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "625987cd510dcf379be575b3702d3bb9a80816cf",
+        "id": 36229142708,
+        "path": ".github/workflows/pr16-research-save-impact-native-20260926.yml",
+        "run_attempt": 1,
+        "status": "completed",
+        "updated_at": "2026-09-26T08:14:56Z"
+      }
+    },
+    {
+      "jobs": [
+        {
+          "check_run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/check-runs/108370575493",
+          "completed_at": "2026-09-26T08:27:45Z",
+          "conclusion": "success",
+          "created_at": "2026-09-26T08:26:06Z",
+          "head_branch": "codex/modernization-followup-20260908",
+          "head_sha": "9cb7ca0a7699fd49f1e217cf8204fea682d5dbb8",
+          "html_url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/36229762846/job/108370575493",
+          "id": 108370575493,
+          "labels": [
+            "ubuntu-24.04"
+          ],
+          "name": "native",
+          "node_id": "CR_kwDOUPNhZs8AAAAZO2PAhQ",
+          "run_attempt": 1,
+          "run_id": 36229762846,
+          "run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/36229762846",
+          "runner_group_id": 0,
+          "runner_group_name": "GitHub Actions",
+          "runner_id": 1000015234,
+          "runner_name": "GitHub Actions 1000015234",
+          "started_at": "2026-09-26T08:26:08Z",
+          "status": "completed",
+          "steps": [
+            {
+              "completed_at": "2026-09-26T08:26:10Z",
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "started_at": "2026-09-26T08:26:09Z",
+              "status": "completed"
+            },
+            {
+              "completed_at": "2026-09-26T08:26:22Z",
+              "conclusion": "success",
+              "name": "Run actions/checkout@v4",
+              "number": 2,
+              "started_at": "2026-09-26T08:26:10Z",
+              "status": "completed"
+            },
+            {
+              "completed_at": "2026-09-26T08:27:42Z",
+              "conclusion": "success",
+              "name": "修正候補spend/rank限定10件とhost書込禁止を検証",
+              "number": 3,
+              "started_at": "2026-09-26T08:26:22Z",
+              "status": "completed"
+            },
+            {
+              "completed_at": "2026-09-26T08:27:43Z",
+              "conclusion": "success",
+              "name": "Run actions/upload-artifact@v4",
+              "number": 4,
+              "started_at": "2026-09-26T08:27:42Z",
+              "status": "completed"
+            },
+            {
+              "completed_at": "2026-09-26T08:27:43Z",
+              "conclusion": "success",
+              "name": "Post Run actions/checkout@v4",
+              "number": 8,
+              "started_at": "2026-09-26T08:27:43Z",
+              "status": "completed"
+            },
+            {
+              "completed_at": "2026-09-26T08:27:43Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 9,
+              "started_at": "2026-09-26T08:27:43Z",
+              "status": "completed"
+            }
+          ],
+          "url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/jobs/108370575493",
+          "workflow_name": "pr16-research-bag-native-20260926"
+        }
+      ],
+      "run": {
+        "conclusion": "success",
+        "created_at": "2026-09-26T08:26:05Z",
+        "event": "push",
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "9cb7ca0a7699fd49f1e217cf8204fea682d5dbb8",
+        "id": 36229762846,
+        "path": ".github/workflows/pr16-research-bag-native-20260926.yml",
+        "run_attempt": 1,
+        "status": "completed",
+        "updated_at": "2026-09-26T08:27:46Z"
+      }
+    }
+  ],
+  "new_native_processes": 0,
+  "new_unit_tests": 12,
+  "pre_native_failure": {
+    "conclusion": "failure",
+    "created_at": "2026-09-26T08:10:04Z",
+    "event": "push",
+    "head_branch": "codex/modernization-followup-20260908",
+    "head_sha": "9866c4ce935927887daedb48ab2462f0ca7aa597",
+    "id": 36228964902,
+    "path": ".github/workflows/pr16-research-save-impact-native-20260926.yml",
+    "run_attempt": 1,
+    "status": "completed",
+    "updated_at": "2026-09-26T08:10:28Z"
+  },
+  "previous_publication_failure": {
+    "conclusion": "failure",
+    "created_at": "2026-09-26T08:41:58Z",
+    "event": "push",
+    "head_branch": "codex/modernization-followup-20260908",
+    "head_sha": "e7136f0658309862328871730f6e3ff10962faab",
+    "id": 36230558876,
+    "path": ".github/workflows/pr16-research-save-impact-record-20260926.yml",
+    "run_attempt": 1,
+    "status": "completed",
+    "updated_at": "2026-09-26T08:42:24Z"
+  },
+  "private_rom_save_tracked": false,
+  "reused_unit_tests": 68,
+  "run_id": 36231053062,
+  "source_bindings": {
+    ".github/workflows/pr16-research-bag-native-20260926.yml": {
+      "sha256": "43988c73c108cec3caa77d453636a090e424c41ee3ee6e0d066953b14623c20a",
+      "size": 1068
+    },
+    ".github/workflows/pr16-research-save-impact-20260926.yml": {
+      "sha256": "27fe320908a435283e7dd02a2eebf7bb80b112cc5f32abff1ab3d9e93b4c7603",
+      "size": 5361
+    },
+    ".github/workflows/pr16-research-save-impact-native-20260926.yml": {
+      "sha256": "f4efa2aa5b39560cdc6e3149cee257506bf69de96ed4d06b896c1964b9809087",
+      "size": 9601
+    },
+    ".github/workflows/pr16-research-save-impact-record-20260926.yml": {
+      "sha256": "14d5666e33af1511aeb34b536ad9c3ce6e58571e4db2975edace17f4833a99f4",
+      "size": 3234
+    },
+    "config/research_economy_v1.json": {
+      "sha256": "7e92079158303a125358ae6fa49c231f6085b2ca0a335d5f0e8bb6c55db2ed8d",
+      "size": 9388
+    },
+    "overlays/research_economy_v1/research_economy_v1.c": {
+      "sha256": "88a14bd79e1c7247b80102c76b48023b8de67dc7cdc6fb526cd1c155393e93c3",
+      "size": 63507
+    },
+    "overlays/research_economy_v1/research_economy_v1.h": {
+      "sha256": "3216824bad136a1ce3c886ecdbc3e2057970d3439d9bcd2272bece617c7c9021",
+      "size": 3743
+    },
+    "scripts/common.py": {
+      "sha256": "adeee991aef21b5bbae6bacdf05cb7e0a8e0c120811d325dcc01de065ea921d3",
+      "size": 9326
+    },
+    "scripts/guard_private_files.py": {
+      "sha256": "143426a7403abf47396791f6ece3a3a374fa97fbf8bedc88169f636cddbcc905",
+      "size": 5443
+    },
+    "scripts/pr16_learnset_runtime_record.py": {
+      "sha256": "978c90346dce45544406174ff473c7cc2a016491938fce1f6f5a5a7ad4dfcca9",
+      "size": 17882
+    },
+    "scripts/pr16_research_bag_actions.py": {
+      "sha256": "785b1ec81ede3e50e673eb9f1a0861e6240048e7409f29d30d5331351527f5b8",
+      "size": 8168
+    },
+    "scripts/pr16_research_bag_delegate.py": {
+      "sha256": "9964a15ebf2fcb8a14145766fd9c89157ef98a525362832537a12774ecfaf7ad",
+      "size": 6509
+    },
+    "scripts/pr16_research_public_evidence.py": {
+      "sha256": "85f29aedeeda14a5d216366dfb3300e8470809e2be006887976f5eee07f13619",
+      "size": 6053
+    },
+    "scripts/pr16_research_save_delegate.py": {
+      "sha256": "ed64cc810b7ad05da32b68827d96e54e39eeb04d8eeb65302f07a4ef54676474",
+      "size": 3372
+    },
+    "scripts/pr16_research_save_impact.py": {
+      "sha256": "c7bb583ba27d062c0bbf417a72fd846eff597d78bd64fc971d237c62c1c543e7",
+      "size": 20035
+    },
+    "scripts/pr16_research_save_impact_record.py": {
+      "sha256": "c5587df9b085491036d2e7ebf6e129692324424d5a4aff13e4f7e031c003d518",
+      "size": 21173
+    },
+    "tests/test_pr16_research_public_evidence.py": {
+      "sha256": "2ec09ed98b29e11c794358b33b8e10c3a79fb61a6812475cc28c97161ab419cf",
+      "size": 3722
+    },
+    "tests/test_pr16_research_save_impact.py": {
+      "sha256": "e09a1928aa8384d7030f489ea32de830b90c964c2613c17405ac2796395ea40e",
+      "size": 16945
+    },
+    "tools/mgba_ai_fixture_runner.c": {
+      "sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f",
+      "size": 36272
+    },
+    "tools/mgba_battle_core_smoke.c": {
+      "sha256": "ed9875695ca60c61960685ac2f8e810a183c8eedd703e56545d67bde3df5cf24",
+      "size": 94688
+    },
+    "tools/mgba_pr16_research_save_impact.c": {
+      "sha256": "b57e58a94f208f6f3ce8418b850d9cd03de203c12bb73a0cd0cdf6fb7968b78f",
+      "size": 16977
+    },
+    "tools/mgba_qol_production_smoke.c": {
+      "sha256": "2c4b9f065f4dce84e48f2be9afe2e2f9f666865088770ee8b068a908a0527b85",
+      "size": 149046
+    }
+  },
+  "source_head": "43cd63bbba977f5df07b4efc16106706ee1acd51",
+  "unit_reuse": {
+    "accepted_tests": 68,
+    "artifact_binding": {
+      "sha256": "42145d4436fbd698da0cec44eb83a7770617494de6d446e042545f90dc423058",
+      "size": 9179
+    },
+    "artifact_id": 10902343421,
+    "executed_again": false,
+    "failure_stage": "final-index private guard; commit was skipped",
+    "run_conclusion": "failure",
+    "run_id": 36230558876,
+    "source_head": "e7136f0658309862328871730f6e3ff10962faab",
+    "unit_binding": {
+      "sha256": "6043e79deeae4343a4b26cc8fa55f59eec0671aa7f4e5c981ec147d90f101f2e",
+      "size": 7942
+    },
+    "unit_member": "new-unit.txt",
+    "unit_source_bindings": {
+      ".github/workflows/pr16-research-bag-native-20260926.yml": {
+        "sha256": "43988c73c108cec3caa77d453636a090e424c41ee3ee6e0d066953b14623c20a",
+        "size": 1068
+      },
+      ".github/workflows/pr16-research-save-impact-native-20260926.yml": {
+        "sha256": "f4efa2aa5b39560cdc6e3149cee257506bf69de96ed4d06b896c1964b9809087",
+        "size": 9601
+      },
+      "config/research_economy_v1.json": {
+        "sha256": "7e92079158303a125358ae6fa49c231f6085b2ca0a335d5f0e8bb6c55db2ed8d",
+        "size": 9388
+      },
+      "overlays/research_economy_v1/research_economy_v1.c": {
+        "sha256": "88a14bd79e1c7247b80102c76b48023b8de67dc7cdc6fb526cd1c155393e93c3",
+        "size": 63507
+      },
+      "overlays/research_economy_v1/research_economy_v1.h": {
+        "sha256": "3216824bad136a1ce3c886ecdbc3e2057970d3439d9bcd2272bece617c7c9021",
+        "size": 3743
+      },
+      "scripts/pr16_research_bag_actions.py": {
+        "sha256": "785b1ec81ede3e50e673eb9f1a0861e6240048e7409f29d30d5331351527f5b8",
+        "size": 8168
+      },
+      "scripts/pr16_research_bag_delegate.py": {
+        "sha256": "9964a15ebf2fcb8a14145766fd9c89157ef98a525362832537a12774ecfaf7ad",
+        "size": 6509
+      },
+      "scripts/pr16_research_save_delegate.py": {
+        "sha256": "ed64cc810b7ad05da32b68827d96e54e39eeb04d8eeb65302f07a4ef54676474",
+        "size": 3372
+      },
+      "scripts/pr16_research_save_impact.py": {
+        "sha256": "c7bb583ba27d062c0bbf417a72fd846eff597d78bd64fc971d237c62c1c543e7",
+        "size": 20035
+      },
+      "tests/test_pr16_research_save_impact.py": {
+        "sha256": "e09a1928aa8384d7030f489ea32de830b90c964c2613c17405ac2796395ea40e",
+        "size": 16945
+      },
+      "tools/mgba_ai_fixture_runner.c": {
+        "sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f",
+        "size": 36272
+      },
+      "tools/mgba_battle_core_smoke.c": {
+        "sha256": "ed9875695ca60c61960685ac2f8e810a183c8eedd703e56545d67bde3df5cf24",
+        "size": 94688
+      },
+      "tools/mgba_pr16_research_save_impact.c": {
+        "sha256": "b57e58a94f208f6f3ce8418b850d9cd03de203c12bb73a0cd0cdf6fb7968b78f",
+        "size": 16977
+      },
+      "tools/mgba_qol_production_smoke.c": {
+        "sha256": "2c4b9f065f4dce84e48f2be9afe2e2f9f666865088770ee8b068a908a0527b85",
+        "size": 149046
+      }
+    }
+  }
+}

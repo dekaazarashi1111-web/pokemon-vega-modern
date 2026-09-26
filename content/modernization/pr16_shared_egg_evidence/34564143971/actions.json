@@ -1,0 +1,105 @@
+{
+  "artifact_id": 10185434186,
+  "artifact_name": "pr16-shared-egg-acceptance",
+  "conclusion": "success",
+  "head_branch": "codex/modernization-followup-20260908",
+  "head_sha": "00fb5ccf6009e1f87e5a83b60fda1fde35f157ac",
+  "jobs": [
+    {
+      "conclusion": "success",
+      "head_sha": "00fb5ccf6009e1f87e5a83b60fda1fde35f157ac",
+      "id": 103152685199,
+      "name": "shared-egg",
+      "run_id": 34564143971,
+      "status": "completed",
+      "steps": [
+        {
+          "completed_at": "2026-09-11T04:57:54Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "started_at": "2026-09-11T04:57:53Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T04:57:59Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 2,
+          "started_at": "2026-09-11T04:57:54Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T04:58:59Z",
+          "conclusion": "success",
+          "name": "Exact HEAD, toolchain and existing Stage84 parent",
+          "number": 3,
+          "started_at": "2026-09-11T04:57:59Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T04:59:00Z",
+          "conclusion": "success",
+          "name": "Restore only the exact previously adopted V4 source",
+          "number": 4,
+          "started_at": "2026-09-11T04:58:59Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T04:59:11Z",
+          "conclusion": "success",
+          "name": "Reconstruct frozen candidate and check independent oracle negatives",
+          "number": 5,
+          "started_at": "2026-09-11T04:59:00Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T05:00:35Z",
+          "conclusion": "success",
+          "name": "New normal Bag memory input, shared-only selection, save and fresh Continue",
+          "number": 6,
+          "started_at": "2026-09-11T04:59:11Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T05:00:35Z",
+          "conclusion": "success",
+          "name": "Preserve originals and executed source, never ROM or save",
+          "number": 7,
+          "started_at": "2026-09-11T05:00:35Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T05:00:37Z",
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@v4",
+          "number": 8,
+          "started_at": "2026-09-11T05:00:35Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T05:00:37Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 16,
+          "started_at": "2026-09-11T05:00:37Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T05:00:37Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 17,
+          "started_at": "2026-09-11T05:00:37Z",
+          "status": "completed"
+        }
+      ]
+    }
+  ],
+  "path": ".github/workflows/pr16-shared-egg-routes.yml",
+  "run_attempt": 1,
+  "run_id": 34564143971,
+  "sha256": "1c272eaca2c44f177063633dcaec8957881b214a370979b52b4e84734488e55b",
+  "size": 115806,
+  "status": "completed"
+}

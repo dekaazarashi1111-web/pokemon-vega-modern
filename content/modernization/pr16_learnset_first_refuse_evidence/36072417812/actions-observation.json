@@ -1,0 +1,167 @@
+{
+  "note_ja": "一般CIのaction_required/in_progressを成功へ昇格しない。今回の終端証拠はCP.completed_actions。記録run自身の終端はpush/upload後にremoteで照合。",
+  "observed_at_source_head": "0853f5f429e0627290b90c0629bbe1629b94e6c1",
+  "observer_run_id": 36072417812,
+  "runs": [
+    {
+      "conclusion": null,
+      "head_sha": "0853f5f429e0627290b90c0629bbe1629b94e6c1",
+      "id": 36072424363,
+      "name": "source-validation",
+      "path": ".github/workflows/ci.yml",
+      "status": "in_progress"
+    },
+    {
+      "conclusion": null,
+      "head_sha": "0853f5f429e0627290b90c0629bbe1629b94e6c1",
+      "id": 36072424279,
+      "name": "p03-forgetting-ci",
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "status": "in_progress"
+    },
+    {
+      "conclusion": null,
+      "head_sha": "0853f5f429e0627290b90c0629bbe1629b94e6c1",
+      "id": 36072417783,
+      "name": "source-validation",
+      "path": ".github/workflows/ci.yml",
+      "status": "in_progress"
+    },
+    {
+      "conclusion": null,
+      "head_sha": "0853f5f429e0627290b90c0629bbe1629b94e6c1",
+      "id": 36072417812,
+      "name": "pr16-learnset-first-refuse",
+      "path": ".github/workflows/pr16-learnset-first-refuse.yml",
+      "status": "in_progress"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "0853f5f429e0627290b90c0629bbe1629b94e6c1",
+      "id": 36072417817,
+      "name": "Stage79 runtime boundary audit",
+      "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": null,
+      "head_sha": "0853f5f429e0627290b90c0629bbe1629b94e6c1",
+      "id": 36072417772,
+      "name": "p03-forgetting-ci",
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "status": "in_progress"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "761ab3fc0beab4dffa3469456f4024a4102b7383",
+      "id": 36072158853,
+      "name": "source-validation",
+      "path": ".github/workflows/ci.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "761ab3fc0beab4dffa3469456f4024a4102b7383",
+      "id": 36072158973,
+      "name": "p03-forgetting-ci",
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "failure",
+      "head_sha": "761ab3fc0beab4dffa3469456f4024a4102b7383",
+      "id": 36072151730,
+      "name": "pr16-learnset-first-refuse",
+      "path": ".github/workflows/pr16-learnset-first-refuse.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "761ab3fc0beab4dffa3469456f4024a4102b7383",
+      "id": 36072151723,
+      "name": "Stage79 runtime boundary audit",
+      "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "761ab3fc0beab4dffa3469456f4024a4102b7383",
+      "id": 36072151734,
+      "name": "p03-forgetting-ci",
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "761ab3fc0beab4dffa3469456f4024a4102b7383",
+      "id": 36072151748,
+      "name": "source-validation",
+      "path": ".github/workflows/ci.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "action_required",
+      "head_sha": "9a8b107a5df7ad0271d2e090aae5e8d8cc906900",
+      "id": 36072024057,
+      "name": "p03-forgetting-ci",
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "action_required",
+      "head_sha": "9a8b107a5df7ad0271d2e090aae5e8d8cc906900",
+      "id": 36072024056,
+      "name": "source-validation",
+      "path": ".github/workflows/ci.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "f99b97530b25e11e71ee5d89363d33ca585a8af8",
+      "id": 36071884657,
+      "name": "p03-forgetting-ci",
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "f99b97530b25e11e71ee5d89363d33ca585a8af8",
+      "id": 36071884536,
+      "name": "source-validation",
+      "path": ".github/workflows/ci.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "f99b97530b25e11e71ee5d89363d33ca585a8af8",
+      "id": 36071876048,
+      "name": "p03-forgetting-ci",
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "f99b97530b25e11e71ee5d89363d33ca585a8af8",
+      "id": 36071876121,
+      "name": "Stage79 runtime boundary audit",
+      "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "f99b97530b25e11e71ee5d89363d33ca585a8af8",
+      "id": 36071876065,
+      "name": "source-validation",
+      "path": ".github/workflows/ci.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "f99b97530b25e11e71ee5d89363d33ca585a8af8",
+      "id": 36071876126,
+      "name": "pr16-learnset-first-refuse",
+      "path": ".github/workflows/pr16-learnset-first-refuse.yml",
+      "status": "completed"
+    }
+  ]
+}
