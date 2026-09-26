@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "実Researchショップ購入の新driverは未受入。停止原本を保存し、成功済みoracle42は同一依存なら再利用する。",
+    "current_stop": "実Researchショップの行選択/確認拒否、10RP購入、残高不足拒否と取引直後の独立Continueを受入。通常Saveと続く独立Continue2回も保持。進行/10RP/warpはfixture。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "専用checkpointの失敗原本と実停止を先に読む。最小原因修正後、未完nativeだけを再開し、受入済み取消や旧host/ARMは再実行しない。",
+    "next_step": "まず本runの終端・非force push・uploadを照合する。次は通常new-game→初回Save/Continue。購入/不足native1件・42oracle・旧取消/host49/phase0/V1/retryは影響なしに再実行しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -4162,9 +4162,9 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "専用checkpointの失敗原本と実停止を先に読む。最小原因修正後、未完nativeだけを再開し、受入済み取消や旧host/ARMは再実行しない。",
+    "goal_ja": "まず本runの終端・非force push・uploadを照合する。次は通常new-game→初回Save/Continue。購入/不足native1件・42oracle・旧取消/host49/phase0/V1/retryは影響なしに再実行しない。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
-    "id": "RESEARCH_PURCHASE_NATIVE_REPAIR",
+    "id": "RESEARCH_NORMAL_NEW_GAME_NEXT",
     "read_paths": [
       "docs/PR16_RESEARCH_PURCHASE_JA.md",
       "content/modernization/pr16_research_purchase_checkpoint.json",
@@ -4178,18 +4178,18 @@
     "stop_rule_ja": "catalog0の実購入だけの受入を全catalog/自然進行/new-gameへ拡張しない。未完nativeを先に読む。受入反復/merge/release/baseline変更禁止。"
   },
   "observed_date_jst": "2026-09-25",
-  "observed_head": "b15e08f07e58fe0e924efc1136ea5f3beea99cec",
+  "observed_head": "bd690e9be3933332ba955900d83f16a73a8b975e",
   "observed_head_checks": {
     "reason_ja": "scoped原本だけを判定。記録中runの最終結論を自己確定しない。一般CIは別状態。",
     "runs": [
       {
         "conclusion": null,
-        "head_sha": "b15e08f07e58fe0e924efc1136ea5f3beea99cec",
-        "id": 36248750283,
+        "head_sha": "bd690e9be3933332ba955900d83f16a73a8b975e",
+        "id": 36249587919,
         "status": "in_progress"
       }
     ],
-    "scope_head": "b15e08f07e58fe0e924efc1136ea5f3beea99cec"
+    "scope_head": "bd690e9be3933332ba955900d83f16a73a8b975e"
   },
   "observed_head_history": [
     {
@@ -5804,18 +5804,18 @@
     "status": "PASS_PHASE0_LOAD_SCOPED"
   },
   "research_purchase": {
-    "accepted_cases": [],
+    "accepted_cases": [
+      "shop-select-purchase-insufficient-save-continue"
+    ],
     "actions_completion_confirmed": false,
     "candidate": {
       "sha256": "5d1fc9c47225ae8c0a369514b899a062af3699fa3c9a2f617e94ffd5f7dcc1ab",
       "size": 33554432
     },
-    "failed_cases": [
-      "shop-select-purchase-insufficient-save-continue"
-    ],
+    "failed_cases": [],
     "path": "content/modernization/pr16_research_purchase_checkpoint.json",
-    "run_id": 36248750283,
-    "status": "FAIL_NATIVE_PURCHASE_RECORDED"
+    "run_id": 36249587919,
+    "status": "PASS_NATIVE_PURCHASE_PENDING_TERMINAL"
   },
   "research_same_core_retry": {
     "accepted_cases": [
@@ -7046,7 +7046,7 @@
       "size": 3240
     },
     ".github/workflows/pr16-research-purchase-20260926.yml": {
-      "sha256": "13e9e9d5576f3f2ec1b1805445d8b6600bc6dde9ec06e356954d4e5a431b33d8",
+      "sha256": "1bdf1ecbcba0bb0caefb2c66715222ade1782101c7e88afcd5e598e86f9962c3",
       "size": 3208
     },
     ".github/workflows/pr16-research-retry-20260926.yml": {
@@ -8322,8 +8322,8 @@
       "size": 37336
     },
     "content/modernization/pr16_research_purchase_checkpoint.json": {
-      "sha256": "41e49ef49478702ed779a7acddf06ff428e22665fb00c6dcfda8dbcb33e630b0",
-      "size": 50932
+      "sha256": "af6d850934663384853b7a83643104ca7d396d21aebbe0ab002fed3d3f7287a2",
+      "size": 54817
     },
     "content/modernization/pr16_research_retry_checkpoint.json": {
       "sha256": "267b927daf4eadf529ba5e3fdf1259d1fb5b3904cdaf6226adf498fd378af99b",
@@ -9174,8 +9174,8 @@
       "size": 2634
     },
     "docs/PR16_RESEARCH_PURCHASE_JA.md": {
-      "sha256": "2bc069360660e162ecc9fbc1e1ad6a69dfc5f3f6446ebbdb7d7253e09c9d6b37",
-      "size": 2072
+      "sha256": "ae61179fdab1502c0434d57edc0d59fdd98c458ca345fa448c74e1da45559135",
+      "size": 2185
     },
     "docs/PR16_RESEARCH_RETRY_JA.md": {
       "sha256": "7fcf9ff9412802a9ab30714573d798959a7ffebd12eeb7ae12d8c6749f962f9f",
@@ -15994,8 +15994,8 @@
       "size": 9319
     },
     "tools/mgba_pr16_research_purchase.c": {
-      "sha256": "66f609468e2dc5a4f58c57681df676d09db14db8092d427a345bad17b613c7ff",
-      "size": 6498
+      "sha256": "c41a998d967041dc345efb9e040dd7f8fdacca155e3f4b1475bd08b378a251ec",
+      "size": 8044
     },
     "tools/mgba_pr16_research_retry.c": {
       "sha256": "256da46b1114c77b066e2bfcb63943eaff67c85632659669e2543eadaadd8c33",

@@ -1,6 +1,6 @@
 # PR16 実Researchショップ選択・購入・残高不足
 
-実Researchショップ購入の新driverは未受入。停止原本を保存し、成功済みoracle42は同一依存なら再利用する。
+実Researchショップの行選択/確認拒否、10RP購入、残高不足拒否と取引直後の独立Continueを受入。通常Saveと続く独立Continue2回も保持。進行/10RP/warpはfixture。
 
 ## 境界と限定
 
@@ -12,8 +12,8 @@
 
 ## 原本
 
-run `36248750283` / source `b15e08f07e58fe0e924efc1136ea5f3beea99cec`。status `FAIL_NATIVE_PURCHASE_RECORDED`、終端確認 `False`。成功 []、失敗 ['shop-select-purchase-insufficient-save-continue']。manifest `content/modernization/pr16_research_purchase_evidence/36248750283/manifest.json`。過去失敗は `attempt_history` に別identityで保持。一般CIのaction_requiredを全CI成功へ読み替えない。
+run `36249587919` / source `bd690e9be3933332ba955900d83f16a73a8b975e`。status `PASS_NATIVE_PURCHASE_PENDING_TERMINAL`、終端確認 `False`。成功 ['shop-select-purchase-insufficient-save-continue']、失敗 []。manifest `content/modernization/pr16_research_purchase_evidence/36249587919/manifest.json`。過去失敗は `attempt_history` に別identityで保持。一般CIのaction_requiredを全CI成功へ読み替えない。
 
 ## 次工程
 
-専用checkpointの失敗原本と実停止を先に読む。最小原因修正後、未完nativeだけを再開し、受入済み取消や旧host/ARMは再実行しない。
+まず本runの終端・非force push・uploadを照合する。次は通常new-game→初回Save/Continue。購入/不足native1件・42oracle・旧取消/host49/phase0/V1/retryは影響なしに再実行しない。

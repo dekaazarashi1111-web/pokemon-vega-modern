@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-実Researchショップ購入の新driverは未受入。停止原本を保存し、成功済みoracle42は同一依存なら再利用する。
+実Researchショップの行選択/確認拒否、10RP購入、残高不足拒否と取引直後の独立Continueを受入。通常Saveと続く独立Continue2回も保持。進行/10RP/warpはfixture。
 
-**次: 専用checkpointの失敗原本と実停止を先に読む。最小原因修正後、未完nativeだけを再開し、受入済み取消や旧host/ARMは再実行しない。**
+**次: まず本runの終端・非force push・uploadを照合する。次は通常new-game→初回Save/Continue。購入/不足native1件・42oracle・旧取消/host49/phase0/V1/retryは影響なしに再実行しない。**
 
 catalog0の実購入だけの受入を全catalog/自然進行/new-gameへ拡張しない。未完nativeを先に読む。受入反復/merge/release/baseline変更禁止。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `b15e08f07e58fe0e924efc1136ea5f3beea99cec`。
+証拠のsource HEAD: `bd690e9be3933332ba955900d83f16a73a8b975e`。
 実ショップ購入の実行/終端記録source。自己SHAはgit log。
 
 ## 最短の再開手順

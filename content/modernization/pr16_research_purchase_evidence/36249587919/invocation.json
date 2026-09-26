@@ -1,41 +1,6 @@
 {
   "accepted_case_reruns": 0,
-  "accepted_cases": [
-    "shop-select-purchase-insufficient-save-continue"
-  ],
-  "actions_completion_confirmed": false,
-  "active_baseline_changed": false,
-  "arm_compiles": 0,
-  "arm_links": 0,
-  "attempt_history": [
-    {
-      "accepted_cases": [],
-      "failed_cases": [
-        "shop-select-purchase-insufficient-save-continue"
-      ],
-      "manifest": "content/modernization/pr16_research_purchase_evidence/36248750283/manifest.json",
-      "measurement": "content/modernization/pr16_research_purchase_evidence/36248750283/measurement.json",
-      "run_id": 36248750283,
-      "source_head": "b15e08f07e58fe0e924efc1136ea5f3beea99cec",
-      "status": "FAIL_NATIVE_PURCHASE_RECORDED"
-    }
-  ],
-  "candidate": {
-    "sha256": "5d1fc9c47225ae8c0a369514b899a062af3699fa3c9a2f617e94ffd5f7dcc1ab",
-    "size": 33554432
-  },
-  "failed_cases": [],
-  "fresh_cores": 4,
-  "guard_processes": 7,
-  "host_compiles": 1,
-  "issue19_complete": false,
-  "manifest": "content/modernization/pr16_research_purchase_evidence/36249587919/manifest.json",
-  "measurement": "content/modernization/pr16_research_purchase_evidence/36249587919/measurement.json",
-  "native_processes": 1,
-  "natural_progress_accepted": false,
-  "new_unit_tests": 0,
-  "normal_new_game_accepted": false,
-  "prior_terminal": {
+  "previous_terminal": {
     "artifacts": [
       {
         "digest": "sha256:fee947f9a7067d2a5e8b558da5e24dcd63e0e91ad1a67237d00cb182cb96351b",
@@ -1072,11 +1037,7 @@
       "size": 11530
     }
   },
-  "purchase_accepted": true,
-  "release_ready": false,
-  "rom_changes": 0,
   "run_id": 36249587919,
-  "schema_version": 1,
   "source_bindings": {
     ".github/workflows/pr16-research-phase0-load-20260926.yml": {
       "sha256": "6903f073ca53adaf81fca14e1fe28e2ae52c862f5e83c71a62fa0d2b23e681e6",
@@ -1195,7 +1156,5 @@
       "size": 149046
     }
   },
-  "source_head": "bd690e9be3933332ba955900d83f16a73a8b975e",
-  "status": "PASS_NATIVE_PURCHASE_PENDING_TERMINAL",
-  "task": "USER-20260926-RESEARCH-PURCHASE"
+  "source_head": "bd690e9be3933332ba955900d83f16a73a8b975e"
 }
