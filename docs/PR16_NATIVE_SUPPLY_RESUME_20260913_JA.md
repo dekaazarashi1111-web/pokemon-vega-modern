@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-初期化/V1 RAM正常・破損拒否5件に加え、phase0既存native保存不可3/3件を記録。次は同一coreの失敗後再試行とV1通常load adapter。特にEMPTY失敗後はV2 RAMを残してblockedとなるため、再試行時の永続化をまだ保証していない。受入済み5/18/phase0成功ケースを再実行しない。
+修正版の同一core再試行3ケースと影響のある拒否/回復4controlを実測。成功 7 / 7。
 
-**次: 初期化/V1 RAM正常・破損拒否5件に加え、phase0既存native保存不可3/3件を記録。次は同一coreの失敗後再試行とV1通常load adapter。特にEMPTY失敗後はV2 RAMを残してblockedとなるため、再試行時の永続化をまだ保証していない。受入済み5/18/phase0成功ケースを再実行しない。**
+**次: 測定runの終端を原本照合してから、未検証のV1通常load adapterを進める。失敗ケースがある場合はその原本と原因だけを先に扱う。受入済み再試行/29unit/旧18取引/BP/P08/特殊野生は影響なしに再実行しない。**
 
-候補4aee03e8/source/原本を固定。保存不可RAM fixtureを実Flash装置故障・同一core retry・通常new-game/UIに昇格しない。旧5/18/特殊野生/BP/P08再実行禁止。merge/release/baseline変更禁止。
+固定候補/source/原本hashを保持。旧候補の受入を新候補へ再ラベルしない。失敗と未実行を成功へ昇格しない。merge/release/baseline変更禁止。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `0c0411d3b1a440149c57d339f59f73992375532f`。
-今回phase0記録source。測定HEAD/runは専用checkpoint、自己commitはgit log参照。
+証拠のsource HEAD: `9978dcfdafe356dd4815b021aa897e4e605abc34`。
+再試行記録source。自己commit SHAはgit log参照。BP/P08履歴とは別scope。
 
 ## 最短の再開手順
 
@@ -25,15 +25,14 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_RESEARCH_PHASE0_JA.md`
-- `content/modernization/pr16_research_phase0_checkpoint.json`
-- `docs/PR16_RESEARCH_LIFECYCLE_JA.md`
-- `content/modernization/pr16_research_lifecycle_checkpoint.json`
-- `scripts/pr16_research_phase0_actions.py`
-- `scripts/pr16_research_phase0.py`
-- `tools/mgba_pr16_research_phase0.c`
+- `docs/PR16_RESEARCH_RETRY_JA.md`
+- `content/modernization/pr16_research_retry_checkpoint.json`
+- `content/modernization/pr16_research_retry_recipe.json`
+- `content/modernization/pr16_research_retry_local_diagnostic.json`
+- `scripts/pr16_research_retry_actions.py`
+- `tools/mgba_pr16_research_retry.c`
+- `scripts/pr16_research_retry.py`
 - `overlays/research_economy_v1/research_economy_v1.c`
-- `config/research_economy_v1.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -334,6 +333,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-限定phase0のみ。終端確認前にsuccessを自己確定せず、一般CI全体成功は主張しない。
+再試行専用runだけ。全CI成功の主張ではない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

@@ -1,0 +1,99 @@
+{
+  "active_baseline_changed": false,
+  "after": "f8b5fff755fb0124e502284e30002900fef7e6f80700012815d1254831002a00fff70ffb41204001fff770fd01003000fef742fb00263000fff716ff00281fd01c4806700ee0002f18d13079717909020818012806d130002900fef765fb002811d1e7e714480078002803d111484078002816d0fff734ff012812d9002410e0012f0a4e03d00b480078002804d0084930002a00fff7d5fa064800240470012141702000f8bc02bc0847c04600d0030200e40302baf003026fd70302",
+  "arm_compiles": 1,
+  "arm_links": 1,
+  "before": "70b5fff755fb802127480901fef7e8f80400012812d182200001fff777fd01002148fef749fb0020fff71eff002829d11e4bdc76002070bc02bc08470028f9d11b4b1a785b781b021343012b1ad1802115480901fef768fb144d041e0dd0ab7e002b05d0802213490f481201fff7e9fa0023ab760133eb76dce7fff7f5fe0028edd0ac760c4b1b78002b04d1074bdb7e0120002bcfd0fff723ff0122030000209a424041c7e7c04600d00302a0f0030204d0030200e403026fd70302",
+  "calls": [
+    {
+      "address": 154925002,
+      "target": 154922616
+    },
+    {
+      "address": 154925016,
+      "target": 154917288
+    },
+    {
+      "address": 154925032,
+      "target": 154922506
+    },
+    {
+      "address": 154925040,
+      "target": 154923732
+    },
+    {
+      "address": 154925048,
+      "target": 154918528
+    },
+    {
+      "address": 154925056,
+      "target": 154924592
+    },
+    {
+      "address": 154925090,
+      "target": 154918640
+    },
+    {
+      "address": 154925116,
+      "target": 154924712
+    },
+    {
+      "address": 154925148,
+      "target": 154922506
+    }
+  ],
+  "candidate": {
+    "sha256": "58079dfbdbe15899d9b86f53ad3a21fe46ddcebf5fed231c85dcd2332ddd2d75",
+    "size": 33554432
+  },
+  "changed_bytes": 165,
+  "compiled_code": {
+    "sha256": "bf019d91cc04b6a54eccde59b60d176ec38d987e3d9527f89be2a7fd2473a71c",
+    "size": 188
+  },
+  "compiler": "Ubuntu clang version 17.0.6 (9ubuntu1)\nTarget: x86_64-pc-linux-gnu\nThread model: posix\nInstalledDir: /usr/bin\n",
+  "elf": {
+    "sha256": "49b0b565b73df68462e73ce0463be707c46b2fe62f172bcd2a9d38b831bc6987",
+    "size": 64384
+  },
+  "linker": "Ubuntu LLD 17.0.6 (compatible with GNU linkers)\n",
+  "object": {
+    "sha256": "8ecb90b1e3eb8df64c594191b5e91bdb97bb946e939bb76aa37f9f4380229479",
+    "size": 1464
+  },
+  "offset": 20707272,
+  "outside_declared_changes": 0,
+  "parent": {
+    "sha256": "4aee03e8ec0135efa52d8d2b41edf61637ddc65e4be9f1a0b60a2e1c23dbefe7",
+    "size": 33554432
+  },
+  "release_ready": false,
+  "rollback_verified": true,
+  "rooted_helpers": {
+    "ResearchEconomy_MigrateV1": 154918641,
+    "ResearchEconomy_SaveInitNew": 154918529,
+    "ResearchEconomy_SaveValidate": 154917289,
+    "copy_bytes": 154922507,
+    "ensure_volatile_state": 154922617,
+    "flag_get": 154923733,
+    "persist_phase": 154924593,
+    "recover_internal": 154924713
+  },
+  "schema_version": 1,
+  "scope_ja": "単一canonical C関数を既存188byte窓にlink。新規配置/旧overlay再buildなし。研究idle初期化/移行/拒否/回復の影響だけを検証。",
+  "size": 188,
+  "source": "overlays/research_economy_v1/research_economy_v1.c",
+  "source_after": {
+    "sha256": "08375e4c9c65f698358b92c4eb1c8439fe5e70e7d7ddd9d17854edce4b58abda",
+    "size": 63636
+  },
+  "source_before": {
+    "sha256": "88a14bd79e1c7247b80102c76b48023b8de67dc7cdc6fb526cd1c155393e93c3",
+    "size": 63507
+  },
+  "source_function": "ensure_save_idle",
+  "translation_unit": {
+    "sha256": "f6c4e2d7483ffc79d300e20f8866a2b583dd00f33da9bcb27c7c0eab22583644",
+    "size": 3656
+  }
+}

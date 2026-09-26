@@ -1,0 +1,89 @@
+
+.local/pr16-research-lifecycle/retry-isolated.elf:	file format elf32-littlearm
+
+Disassembly of section .text:
+
+093bf7c8 <ensure_save_idle>:
+ 93bf7c8: b5f8         	push	{r3, r4, r5, r6, r7, lr}
+ 93bf7ca: f7ff fb55    	bl	0x93bee78 <copy_bytes+0x6d> @ imm = #-0x956
+ 93bf7ce: 2401         	movs	r4, #0x1
+ 93bf7d0: 02e5         	lsls	r5, r4, #0xb
+ 93bf7d2: 4e28         	ldr	r6, [pc, #0xa0]         @ 0x93bf874 <ensure_save_idle+0xac>
+ 93bf7d4: 0030         	movs	r0, r6
+ 93bf7d6: 0029         	movs	r1, r5
+ 93bf7d8: f7fe f8e6    	bl	0x93bd9a8 <retry-isolated.c+0x93bd9a8> @ imm = #-0x1e34
+ 93bf7dc: 0007         	movs	r7, r0
+ 93bf7de: 2801         	cmp	r0, #0x1
+ 93bf7e0: d115         	bne	0x93bf80e <ensure_save_idle+0x46> @ imm = #0x2a
+ 93bf7e2: 4825         	ldr	r0, [pc, #0x94]         @ 0x93bf878 <ensure_save_idle+0xb0>
+ 93bf7e4: 0031         	movs	r1, r6
+ 93bf7e6: 002a         	movs	r2, r5
+ 93bf7e8: f7ff fb0f    	bl	0x93bee0a <ResearchEconomy_MigrateV1+0xf19> @ imm = #-0x9e2
+ 93bf7ec: 2041         	movs	r0, #0x41
+ 93bf7ee: 0140         	lsls	r0, r0, #0x5
+ 93bf7f0: f7ff fd70    	bl	0x93bf2d4 <ensure_volatile_state+0x45b> @ imm = #-0x520
+ 93bf7f4: 0001         	movs	r1, r0
+ 93bf7f6: 0030         	movs	r0, r6
+ 93bf7f8: f7fe fb42    	bl	0x93bde80 <ResearchEconomy_SaveValidate+0x4d7> @ imm = #-0x197c
+ 93bf7fc: 2600         	movs	r6, #0x0
+ 93bf7fe: 0030         	movs	r0, r6
+ 93bf800: f7ff ff16    	bl	0x93bf630 <flag_get+0x35b> @ imm = #-0x1d4
+ 93bf804: 2800         	cmp	r0, #0x0
+ 93bf806: d01f         	beq	0x93bf848 <ensure_save_idle+0x80> @ imm = #0x3e
+ 93bf808: 481c         	ldr	r0, [pc, #0x70]         @ 0x93bf87c <ensure_save_idle+0xb4>
+ 93bf80a: 7006         	strb	r6, [r0]
+ 93bf80c: e00e         	b	0x93bf82c <ensure_save_idle+0x64> @ imm = #0x1c
+ 93bf80e: 2f00         	cmp	r7, #0x0
+ 93bf810: d118         	bne	0x93bf844 <ensure_save_idle+0x7c> @ imm = #0x30
+ 93bf812: 7930         	ldrb	r0, [r6, #0x4]
+ 93bf814: 7971         	ldrb	r1, [r6, #0x5]
+ 93bf816: 0209         	lsls	r1, r1, #0x8
+ 93bf818: 1808         	adds	r0, r1, r0
+ 93bf81a: 2801         	cmp	r0, #0x1
+ 93bf81c: d106         	bne	0x93bf82c <ensure_save_idle+0x64> @ imm = #0xc
+ 93bf81e: 0030         	movs	r0, r6
+ 93bf820: 0029         	movs	r1, r5
+ 93bf822: f7fe fb65    	bl	0x93bdef0 <ResearchEconomy_SaveInitNew+0x6f> @ imm = #-0x1936
+ 93bf826: 2800         	cmp	r0, #0x0
+ 93bf828: d111         	bne	0x93bf84e <ensure_save_idle+0x86> @ imm = #0x22
+ 93bf82a: e7e7         	b	0x93bf7fc <ensure_save_idle+0x34> @ imm = #-0x32
+ 93bf82c: 4814         	ldr	r0, [pc, #0x50]         @ 0x93bf880 <ensure_save_idle+0xb8>
+ 93bf82e: 7800         	ldrb	r0, [r0]
+ 93bf830: 2800         	cmp	r0, #0x0
+ 93bf832: d103         	bne	0x93bf83c <ensure_save_idle+0x74> @ imm = #0x6
+ 93bf834: 4811         	ldr	r0, [pc, #0x44]         @ 0x93bf87c <ensure_save_idle+0xb4>
+ 93bf836: 7840         	ldrb	r0, [r0, #0x1]
+ 93bf838: 2800         	cmp	r0, #0x0
+ 93bf83a: d016         	beq	0x93bf86a <ensure_save_idle+0xa2> @ imm = #0x2c
+ 93bf83c: f7ff ff34    	bl	0x93bf6a8 <persist_phase+0x77> @ imm = #-0x198
+ 93bf840: 2801         	cmp	r0, #0x1
+ 93bf842: d912         	bls	0x93bf86a <ensure_save_idle+0xa2> @ imm = #0x24
+ 93bf844: 2400         	movs	r4, #0x0
+ 93bf846: e010         	b	0x93bf86a <ensure_save_idle+0xa2> @ imm = #0x20
+ 93bf848: 2f01         	cmp	r7, #0x1
+ 93bf84a: 4e0a         	ldr	r6, [pc, #0x28]         @ 0x93bf874 <ensure_save_idle+0xac>
+ 93bf84c: d003         	beq	0x93bf856 <ensure_save_idle+0x8e> @ imm = #0x6
+ 93bf84e: 480b         	ldr	r0, [pc, #0x2c]         @ 0x93bf87c <ensure_save_idle+0xb4>
+ 93bf850: 7800         	ldrb	r0, [r0]
+ 93bf852: 2800         	cmp	r0, #0x0
+ 93bf854: d004         	beq	0x93bf860 <ensure_save_idle+0x98> @ imm = #0x8
+ 93bf856: 4908         	ldr	r1, [pc, #0x20]         @ 0x93bf878 <ensure_save_idle+0xb0>
+ 93bf858: 0030         	movs	r0, r6
+ 93bf85a: 002a         	movs	r2, r5
+ 93bf85c: f7ff fad5    	bl	0x93bee0a <ResearchEconomy_MigrateV1+0xf19> @ imm = #-0xa56
+ 93bf860: 4806         	ldr	r0, [pc, #0x18]         @ 0x93bf87c <ensure_save_idle+0xb4>
+ 93bf862: 2400         	movs	r4, #0x0
+ 93bf864: 7004         	strb	r4, [r0]
+ 93bf866: 2101         	movs	r1, #0x1
+ 93bf868: 7041         	strb	r1, [r0, #0x1]
+ 93bf86a: 0020         	movs	r0, r4
+ 93bf86c: bcf8         	pop	{r3, r4, r5, r6, r7}
+ 93bf86e: bc02         	pop	{r1}
+ 93bf870: 4708         	bx	r1
+ 93bf872: 46c0         	mov	r8, r8
+
+093bf874 <$d.1>:
+ 93bf874: 00 d0 03 02  	.word	0x0203d000
+ 93bf878: 00 e4 03 02  	.word	0x0203e400
+ 93bf87c: ba f0 03 02  	.word	0x0203f0ba
+ 93bf880: 6f d7 03 02  	.word	0x0203d76f

@@ -7549,3 +7549,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: measure時のみ新unit18/native3/9cores/guard7/host compile1、finalize時は追加実行0。ARM0、旧5+18native/旧unit30の再実行0。全Flash不変/全owner/Bag/party/ledger/counter/実native戻り値255を照合。resume/task graph/最終index scoped private guard/diff check後のみcommit。
 - Commit: 同branch非force push。source=0c0411d3b1a440149c57d339f59f73992375532f、自己SHAはgit log参照。
 - Network: 固定GitHub artifact/PR/Actionsのみ。ROM/save非tracked。全CI成功・通常UI・物理Flash故障・同一core retry・Issue19全体完了を主張しない。
+
+## 2026-09-26T10:45:53.786438+00:00
+- Timestamp: 2026-09-26T10:45:53.786438+00:00
+- Task: USER-20260926-RESEARCH-RETRY
+- Version: research-retry-v1
+- Status: PASS_RETRY_MATRIX_PENDING_ACTIONS_TERMINAL（限定scope、V1 load/UI等は未完）
+- Summary: 修正版の同一core再試行3ケースと影響のある拒否/回復4controlを実測。成功 7 / 7。
+- Files changed: retry source/runner/29tests/Actions、canonical C、188byte recipe、原本UTF8証拠/checkpoint、固定引継ぎMD/JSON、guide、両ログ。
+- Verify: 測定は29unit（canonical stub host compile1含む）、ARM compile1/link1、native runner host compile1、guard7/native7。終端記録は全て再実行0。旧候補diagnosticはローカル1process/1core/host compile1を原本再利用。ローカルC縮小検討compile5attemptとtask thunk組立1は受入ではない。影響なしの旧18/BP/P08/特殊野生native再実行0。最終index/限定guard、resume check/task graph後のみcommit。
+- Commit: 同branch非force push。source=9978dcfdafe356dd4815b021aa897e4e605abc34、自己SHAはgit log参照。
+- Network: 固定GitHub artifactとUbuntu toolchain配布のみ。ROM/save/binaryは非tracked、保全path不変。

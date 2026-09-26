@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "初期化/V1 RAM正常・破損拒否5件に加え、phase0既存native保存不可3/3件を記録。次は同一coreの失敗後再試行とV1通常load adapter。特にEMPTY失敗後はV2 RAMを残してblockedとなるため、再試行時の永続化をまだ保証していない。受入済み5/18/phase0成功ケースを再実行しない。",
+    "current_stop": "修正版の同一core再試行3ケースと影響のある拒否/回復4controlを実測。成功 7 / 7。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "初期化/V1 RAM正常・破損拒否5件に加え、phase0既存native保存不可3/3件を記録。次は同一coreの失敗後再試行とV1通常load adapter。特にEMPTY失敗後はV2 RAMを残してblockedとなるため、再試行時の永続化をまだ保証していない。受入済み5/18/phase0成功ケースを再実行しない。",
+    "next_step": "測定runの終端を原本照合してから、未検証のV1通常load adapterを進める。失敗ケースがある場合はその原本と原因だけを先に扱う。受入済み再試行/29unit/旧18取引/BP/P08/特殊野生は影響なしに再実行しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -4162,38 +4162,34 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "初期化/V1 RAM正常・破損拒否5件に加え、phase0既存native保存不可3/3件を記録。次は同一coreの失敗後再試行とV1通常load adapter。特にEMPTY失敗後はV2 RAMを残してblockedとなるため、再試行時の永続化をまだ保証していない。受入済み5/18/phase0成功ケースを再実行しない。",
+    "goal_ja": "測定runの終端を原本照合してから、未検証のV1通常load adapterを進める。失敗ケースがある場合はその原本と原因だけを先に扱う。受入済み再試行/29unit/旧18取引/BP/P08/特殊野生は影響なしに再実行しない。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
-    "id": "RESEARCH_RETRY_AND_V1_LOAD_NEXT",
+    "id": "RESEARCH_V1_LOAD_ADAPTER_NEXT",
     "read_paths": [
-      "docs/PR16_RESEARCH_PHASE0_JA.md",
-      "content/modernization/pr16_research_phase0_checkpoint.json",
-      "docs/PR16_RESEARCH_LIFECYCLE_JA.md",
-      "content/modernization/pr16_research_lifecycle_checkpoint.json",
-      "scripts/pr16_research_phase0_actions.py",
-      "scripts/pr16_research_phase0.py",
-      "tools/mgba_pr16_research_phase0.c",
-      "overlays/research_economy_v1/research_economy_v1.c",
-      "config/research_economy_v1.json"
+      "docs/PR16_RESEARCH_RETRY_JA.md",
+      "content/modernization/pr16_research_retry_checkpoint.json",
+      "content/modernization/pr16_research_retry_recipe.json",
+      "content/modernization/pr16_research_retry_local_diagnostic.json",
+      "scripts/pr16_research_retry_actions.py",
+      "tools/mgba_pr16_research_retry.c",
+      "scripts/pr16_research_retry.py",
+      "overlays/research_economy_v1/research_economy_v1.c"
     ],
-    "stop_rule_ja": "候補4aee03e8/source/原本を固定。保存不可RAM fixtureを実Flash装置故障・同一core retry・通常new-game/UIに昇格しない。旧5/18/特殊野生/BP/P08再実行禁止。merge/release/baseline変更禁止。"
+    "stop_rule_ja": "固定候補/source/原本hashを保持。旧候補の受入を新候補へ再ラベルしない。失敗と未実行を成功へ昇格しない。merge/release/baseline変更禁止。"
   },
   "observed_date_jst": "2026-09-25",
-  "observed_head": "0c0411d3b1a440149c57d339f59f73992375532f",
+  "observed_head": "9978dcfdafe356dd4815b021aa897e4e605abc34",
   "observed_head_checks": {
-    "reason_ja": "限定phase0のみ。終端確認前にsuccessを自己確定せず、一般CI全体成功は主張しない。",
+    "reason_ja": "再試行専用runだけ。全CI成功の主張ではない。",
     "runs": [
       {
-        "conclusion": "success",
-        "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "4946ff7f22401b260362ca6d6be7e7cb4bd1c460",
-        "id": 36234797221,
-        "path": ".github/workflows/pr16-research-phase0-20260926.yml",
-        "run_attempt": 1,
-        "status": "completed"
+        "conclusion": null,
+        "head_sha": "9978dcfdafe356dd4815b021aa897e4e605abc34",
+        "id": 36236714339,
+        "status": "in_progress"
       }
     ],
-    "scope_head": "4946ff7f22401b260362ca6d6be7e7cb4bd1c460"
+    "scope_head": "9978dcfdafe356dd4815b021aa897e4e605abc34"
   },
   "observed_head_history": [
     {
@@ -5547,7 +5543,7 @@
       "semantics": "PLA1圧縮と新規供給consumerのhost検証成功入力HEAD。ROM配置/実操作/記録commitの受入ではない。"
     }
   ],
-  "observed_head_semantics": "今回phase0記録source。測定HEAD/runは専用checkpoint、自己commitはgit log参照。",
+  "observed_head_semantics": "再試行記録source。自己commit SHAはgit log参照。BP/P08履歴とは別scope。",
   "p08_candidate_impact": {
     "candidate": {
       "crc32": "CC068B4A",
@@ -5791,6 +5787,25 @@
     "path": "content/modernization/pr16_research_phase0_checkpoint.json",
     "run_id": 36234797221,
     "status": "PASS_PHASE0_NATIVE_UNAVAILABLE_3_SCOPED"
+  },
+  "research_same_core_retry": {
+    "accepted_cases": [
+      "reject-v1-checksum",
+      "reject-v1-tail",
+      "retry-erased",
+      "retry-v1",
+      "retry-zero",
+      "valid-v2-blocked",
+      "valid-v2-idle"
+    ],
+    "actions_completion_confirmed": false,
+    "candidate": {
+      "sha256": "58079dfbdbe15899d9b86f53ad3a21fe46ddcebf5fed231c85dcd2332ddd2d75",
+      "size": 33554432
+    },
+    "path": "content/modernization/pr16_research_retry_checkpoint.json",
+    "run_id": 36236714339,
+    "status": "PASS_RETRY_MATRIX_PENDING_ACTIONS_TERMINAL"
   },
   "research_save_impact": {
     "accepted_cases": 18,
@@ -6923,6 +6938,10 @@
     ".github/workflows/pr16-research-phase0-20260926.yml": {
       "sha256": "2c2d8f41665677f64ccfe131c8135b60c670ced52f069f3bbfa1dcca478f4c99",
       "size": 2858
+    },
+    ".github/workflows/pr16-research-retry-20260926.yml": {
+      "sha256": "41169131eff549b7e1fca7db328117c1686440ec44396638a52f32279ea6a36a",
+      "size": 3025
     },
     ".github/workflows/pr16-research-save-impact-20260926.yml": {
       "sha256": "27fe320908a435283e7dd02a2eebf7bb80b112cc5f32abff1ab3d9e93b4c7603",
@@ -8168,6 +8187,18 @@
       "sha256": "fca0f63f5bc8c08512806f57b011fe9715befbefcac2f1d89540cb0341ec3873",
       "size": 6524
     },
+    "content/modernization/pr16_research_retry_checkpoint.json": {
+      "sha256": "63c777fa2dc0c2ae8cbf3399d0b23cf0fee6f5f92a00970db4e55d90c69ab8a8",
+      "size": 7167
+    },
+    "content/modernization/pr16_research_retry_local_diagnostic.json": {
+      "sha256": "92fb9beffa73fcd89ce2c3503dfabea419307bbb8551f4fa70d912646f69e579",
+      "size": 6162
+    },
+    "content/modernization/pr16_research_retry_recipe.json": {
+      "sha256": "b5416ee17f702e4c220b9db34174fed571add9920bb58e12e6b691c6c0d60f5f",
+      "size": 3444
+    },
     "content/modernization/pr16_research_save_impact_checkpoint.json": {
       "sha256": "7fad32c544c8aae20401665934c19b4e7ac6e3a712bd885dbd4c35afbc0aef13",
       "size": 10809
@@ -8967,6 +8998,10 @@
     "docs/PR16_RESEARCH_PHASE0_JA.md": {
       "sha256": "cb2640ee469dcc5080640b703e08c9a5c7f60c78b762e510f89c80f4cfd880cd",
       "size": 1696
+    },
+    "docs/PR16_RESEARCH_RETRY_JA.md": {
+      "sha256": "b3eb34b2a6436499ca3483e2dbdb1ce381e7e9aa4ff98c8405b9b7455df3fa66",
+      "size": 2376
     },
     "docs/PR16_RESEARCH_SAVE_IMPACT_JA.md": {
       "sha256": "f1481163aba7ba0cf0bfc396895c9a9ccf7058fb4f65dd06842fb13fd4dd1afe",
@@ -12581,8 +12616,8 @@
       "size": 164678
     },
     "overlays/research_economy_v1/research_economy_v1.c": {
-      "sha256": "88a14bd79e1c7247b80102c76b48023b8de67dc7cdc6fb526cd1c155393e93c3",
-      "size": 63507
+      "sha256": "08375e4c9c65f698358b92c4eb1c8439fe5e70e7d7ddd9d17854edce4b58abda",
+      "size": 63636
     },
     "overlays/research_economy_v1/research_economy_v1.h": {
       "sha256": "3216824bad136a1ce3c886ecdbc3e2057970d3439d9bcd2272bece617c7c9021",
@@ -13371,6 +13406,14 @@
     "scripts/pr16_research_public_evidence.py": {
       "sha256": "85f29aedeeda14a5d216366dfb3300e8470809e2be006887976f5eee07f13619",
       "size": 6053
+    },
+    "scripts/pr16_research_retry.py": {
+      "sha256": "0bd7bb710c28c06067151a23b097a8f579d3b4029a024230b17e212566486abf",
+      "size": 12450
+    },
+    "scripts/pr16_research_retry_actions.py": {
+      "sha256": "4d1907de336ac0030b401e27b376e5e74d7b13ee3381d40cb615e6fbce06c995",
+      "size": 19818
     },
     "scripts/pr16_research_save_delegate.py": {
       "sha256": "ed64cc810b7ad05da32b68827d96e54e39eeb04d8eeb65302f07a4ef54676474",
@@ -14728,6 +14771,10 @@
       "sha256": "2ec09ed98b29e11c794358b33b8e10c3a79fb61a6812475cc28c97161ab419cf",
       "size": 3722
     },
+    "tests/test_pr16_research_retry.py": {
+      "sha256": "30e73bcccb0dbf4fb6ded01dd33a40ddc7f5ff73d0b9277ed4ca5c02753ce455",
+      "size": 9384
+    },
     "tests/test_pr16_research_save_delegate.py": {
       "sha256": "61563f70109a9d3509eec19696941654257810be4cddbcea81b19c18961a697d",
       "size": 3169
@@ -15647,6 +15694,10 @@
     "tools/mgba_pr16_research_phase0.c": {
       "sha256": "a0f689be824b1feffbb08527f89553241f7d05a177bf3590d1c750bad68baa2a",
       "size": 4167
+    },
+    "tools/mgba_pr16_research_retry.c": {
+      "sha256": "256da46b1114c77b066e2bfcb63943eaff67c85632659669e2543eadaadd8c33",
+      "size": 7644
     },
     "tools/mgba_pr16_research_save_impact.c": {
       "sha256": "b57e58a94f208f6f3ce8418b850d9cd03de203c12bb73a0cd0cdf6fb7968b78f",
