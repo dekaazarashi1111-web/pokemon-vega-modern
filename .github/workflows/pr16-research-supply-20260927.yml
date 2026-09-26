@@ -1,0 +1,55 @@
+name: pr16-research-supply-20260927
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-research-supply-20260927.yml]
+permissions:
+  contents: read
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-research-supply-20260927
+  cancel-in-progress: false
+jobs:
+  supply:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: 未完工程のtracked sourceだけを転送（受入再実行0）
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: python
+        run: |
+          import hashlib,json,os,pathlib,subprocess,zipfile
+          root=pathlib.Path('.');out=root/'.local/research-supply-transfer';out.mkdir(parents=True)
+          files=subprocess.check_output(['git','ls-files']).decode().splitlines()
+          exact={'AGENTS.md','CHATGPT_RESUME.md','design/active_play_baseline.md','config/active_play_baseline.json','content/modernization/pr16_native_supply_resume_20260913.json','docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md','content/modernization/pr16_bp_chooser_checkpoint.json','content/modernization/p08_remaining_work.json'}
+          selected=[]
+          for p in files:
+              path=pathlib.Path(p)
+              if path.is_symlink() or path.suffix not in {'.py','.c','.h','.json','.md','.yml','.txt'}:continue
+              use=p in exact or p.endswith('/AGENTS.md') or (p.startswith('scripts/') and path.suffix=='.py') or (p.startswith('config/') and path.suffix=='.json')
+              use=use or (p.startswith(('overlays/research_economy_v1/','overlays/qol_production/','overlays/research_menu/')))
+              use=use or (p.startswith(('tools/','tests/','docs/','content/modernization/','.github/workflows/')) and ('research' in p.lower() or 'qol_production' in p.lower()) and '_evidence/' not in p)
+              use=use or (p.startswith('tools/') and path.name.startswith(('mgba_pr16_','mgba_stage61_')) and path.suffix in {'.c','.h'})
+              if use:
+                  b=path.read_bytes();b.decode('utf-8');selected.append((p,b))
+          assert sum(len(b) for _,b in selected)<150000000
+          with zipfile.ZipFile(out/'tracked-source.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for p,b in selected:z.writestr(p,b)
+          manifest={'source_head':os.environ['GITHUB_SHA'],'initial_head':'db6796aefc755e87c4ead86e54d240cae1c2a6d5','files':{p:{'size':len(b),'sha256':hashlib.sha256(b).hexdigest()} for p,b in selected},'unit_tests':0,'native_runs':0,'rom_changes':0}
+          (out/'manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n')
+          (out/'tracked-paths.txt').write_text('\n'.join(files)+'\n')
+          repo=os.environ['GITHUB_REPOSITORY']
+          raw=subprocess.check_output(['gh','api',f'repos/{repo}/actions/runs?branch=codex%2Fmodernization-followup-20260908&per_page=30'])
+          runs=json.loads(raw)['workflow_runs'];compact=[{k:r[k] for k in ('id','name','head_sha','status','conclusion','created_at','updated_at')} for r in runs]
+          (out/'latest-runs.json').write_text(json.dumps(compact,indent=2)+'\n')
+          print('TRACKED_SOURCE_TRANSFER',len(selected),'files; accepted/native/ARM reruns=0')
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr16-research-supply-source
+          path: .local/research-supply-transfer/
+          retention-days: 7
+          if-no-files-found: error
