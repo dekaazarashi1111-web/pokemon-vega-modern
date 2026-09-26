@@ -10604,3 +10604,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 新10tests PASS。native/ARM/host compile/受入済み再実行0。既存source/evidence hash不変。最終resume/task graph/scoped guardをcommit前に実行。
 - Commit: source=df6e8939d4a5ad803c36b10d5610a57eb74bef54;自己SHAはgit log参照。同branchへ非force push。
 - Network: GitHub PR/HEAD/Actions APIのみ。merge/release/baseline変更なし。
+
+## 2026-09-26T21:44:05.054952+00:00
+- Timestamp: 2026-09-26T21:44:05.054952+00:00
+- Task: USER-20260927-RESEARCH-WILD
+- Version: research-wild-native-v1
+- Status: STOPPED（実装/実測を保存、受入未確定）
+- Summary: 研究wild専用Cを実装し、釣り/生態の通常Bag→逃走→捕獲→取引保存Continueを新規実測。失敗原本から未完境界だけ修正する。旧受入済み写真/虫取り/採掘/BP/P08/special-wildケースは再実行しない。ゲームコーナー/通常進行の受付ショップ接続/未確認文言は未完。
+- Files changed: 専用C/実測script/workflow、実測原本/checkpoint/guide、固定引継ぎMD/JSON、両ログ。
+- Verify: counts={'host_compiles': 1, 'arm_compiles': 0, 'native_processes': 0, 'guard_processes': 0, 'accepted_case_reruns': 0, 'rom_changes': 0}; failures={'preflight': {'type': 'ValueError', 'reason': 'strict new host compile'}}; 新受入0、旧受入native再実行0。source/evidence/ROM/seedのSHA照合。resume/task graph/scoped guard後だけcommit。
+- Commit: source=69cdc31fd2c2f40d5a03c1a44005836ffab580b8; run=36273917599; 自己SHAはgit log参照。同branch非force push。
+- Network: 固定GitHub artifacts/HEAD/PR/Actionsだけ。merge/release/baseline変更なし。

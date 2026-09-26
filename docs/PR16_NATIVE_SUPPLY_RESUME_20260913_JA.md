@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-SOURCE_CONTRACT_READY_NATIVE_OPEN
+STOPPED_RESEARCH_WILD_NATIVE
 
-**次: 未受入3活動のsource契約・前回採掘記録終端を保存済み。PR16_RESEARCH_REMAINING_JA.mdから釣り/生態/ゲームコーナーのnative経路を実装する。SOURCE_CONTRACT_READY_NATIVE_OPENはnative未受入。旧写真/虫取り/採掘を無変更再実行しない。通常進行の受付/ショップ接続・残るnative文言も未完。**
+**次: 研究wild専用Cを実装し、釣り/生態の通常Bag→逃走→捕獲→取引保存Continueを新規実測。失敗原本から未完境界だけ修正する。旧受入済み写真/虫取り/採掘/BP/P08/special-wildケースは再実行しない。ゲームコーナー/通常進行の受付ショップ接続/未確認文言は未完。**
 
 写真/虫取り/採掘/保存view・元ROM/seed/旧証拠を保全。採掘wild tail/自然再入場・全活動・全mapの過大主張禁止。無変更再実行、merge/release/baseline変更禁止。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `df6e8939d4a5ad803c36b10d5610a57eb74bef54`。
-未受入研究3活動source契約の実行source。前回採掘record run36267783546の終端成功を照合。自己runは未終端として記録する。
+証拠のsource HEAD: `69cdc31fd2c2f40d5a03c1a44005836ffab580b8`。
+研究wild新規実測のsource。自己Actionsの終端と独立oracleは未確認として保存。
 
 ## 最短の再開手順
 
@@ -25,11 +25,12 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_RESEARCH_REMAINING_JA.md`
-- `content/modernization/pr16_research_remaining_evidence/36273404788/source-contract.json`
-- `content/modernization/pr16_research_mining_checkpoint.json`
+- `docs/PR16_RESEARCH_WILD_JA.md`
+- `content/modernization/pr16_research_wild_checkpoint.json`
+- `content/modernization/pr16_research_wild_evidence/36273917599/measurement.json`
+- `tools/mgba_pr16_research_wild.c`
+- `scripts/pr16_research_wild_capture.py`
 - `content/research_economy_v1/canonical_model.json`
-- `overlays/research_economy_v1/research_economy_v1.c`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -337,6 +338,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-前回記録成功と新source契約を分離。自己runの終端は後続で確認。
+native実測失敗/成功と一般CIを分離。自己runの終端は後続で確認。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
