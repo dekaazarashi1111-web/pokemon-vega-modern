@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-通常load内phase0の保存不可2経路（V1移行/未確定稼得回復）を受入。原本全2048byte・全Flashを保持して拒否、通常cold Continueで1回保存し2回の後続Continueで完全一致。
+正本Cの新規ゲーム初期化と取引UI callbackの限定host境界49試験PASS。通常native new-game/実取引は未受入。候補5d1fc9c4と既受入loadは保持。
 
-**次: 次は通常new-game/取引UIの未受入境界を限定実装/検証する。phase0 load 2件/43unit、通常V1 3件/旧40unit、7retry、BP/P08/特殊野生は変更影響なく再実行しない。**
+**次: まず本runの終端とpush/uploadを照合し、host49件を再実行せず受入記録を確定する。次は通常new-game入口→初回通常Save/Continue、および実取引UIの取消/選択/購入/保存をnativeで限定検証する。host49件とphase0 load2件/43unit、V1 load3件/40unit、7retryは変更影響なしに再実行しない。**
 
-候補5d1fc9c4と受入済み2load/旧3loadを保持。未受入UIだけへ進み、merge/release/baseline変更禁止。
+host検証をnative受入にしない。既受入を反復せず、候補/旧証拠/旧Wikiを保持。merge/release/active baseline変更禁止。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `22702cdbba183e89d481a8dc51b7ed197a421cf9`。
-通常load phase0境界の記録source。自己SHAはgit log参照。
+証拠のsource HEAD: `7f7575ca83765ba0d3c7a033e95015874555dd33`。
+限定host境界の実行または終端記録source。自己SHAはgit log参照。
 
 ## 最短の再開手順
 
@@ -25,12 +25,12 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_RESEARCH_PHASE0_LOAD_JA.md`
+- `docs/PR16_RESEARCH_UI_BOUNDARY_JA.md`
+- `content/modernization/pr16_research_ui_boundary_checkpoint.json`
+- `scripts/pr16_research_ui_boundary.py`
+- `scripts/pr16_research_ui_boundary_actions.py`
+- `tools/research_ui_boundary_shim.c`
 - `content/modernization/pr16_research_phase0_load_checkpoint.json`
-- `scripts/pr16_research_phase0_load.py`
-- `scripts/pr16_research_phase0_load_actions.py`
-- `tools/mgba_pr16_research_phase0_load.c`
-- `content/modernization/pr16_research_v1_corrupt_load_checkpoint.json`
 - `overlays/research_economy_v1/research_economy_v1.c`
 - `overlays/qol_production/qol_production.c`
 
@@ -333,6 +333,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-限定phase0 load受入。一般source-validationのaction_requiredを全CI成功にしない。
+限定host境界のみ。一般CIのaction_requiredは別状態。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "通常load内phase0の保存不可2経路（V1移行/未確定稼得回復）を受入。原本全2048byte・全Flashを保持して拒否、通常cold Continueで1回保存し2回の後続Continueで完全一致。",
+    "current_stop": "正本Cの新規ゲーム初期化と取引UI callbackの限定host境界49試験PASS。通常native new-game/実取引は未受入。候補5d1fc9c4と既受入loadは保持。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "次は通常new-game/取引UIの未受入境界を限定実装/検証する。phase0 load 2件/43unit、通常V1 3件/旧40unit、7retry、BP/P08/特殊野生は変更影響なく再実行しない。",
+    "next_step": "まず本runの終端とpush/uploadを照合し、host49件を再実行せず受入記録を確定する。次は通常new-game入口→初回通常Save/Continue、および実取引UIの取消/選択/購入/保存をnativeで限定検証する。host49件とphase0 load2件/43unit、V1 load3件/40unit、7retryは変更影響なしに再実行しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -4162,34 +4162,34 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "次は通常new-game/取引UIの未受入境界を限定実装/検証する。phase0 load 2件/43unit、通常V1 3件/旧40unit、7retry、BP/P08/特殊野生は変更影響なく再実行しない。",
+    "goal_ja": "まず本runの終端とpush/uploadを照合し、host49件を再実行せず受入記録を確定する。次は通常new-game入口→初回通常Save/Continue、および実取引UIの取消/選択/購入/保存をnativeで限定検証する。host49件とphase0 load2件/43unit、V1 load3件/40unit、7retryは変更影響なしに再実行しない。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
-    "id": "RESEARCH_NORMAL_NEW_GAME_TRANSACTION_UI_NEXT",
+    "id": "RESEARCH_NORMAL_NEW_GAME_TRANSACTION_UI_NATIVE_NEXT",
     "read_paths": [
-      "docs/PR16_RESEARCH_PHASE0_LOAD_JA.md",
+      "docs/PR16_RESEARCH_UI_BOUNDARY_JA.md",
+      "content/modernization/pr16_research_ui_boundary_checkpoint.json",
+      "scripts/pr16_research_ui_boundary.py",
+      "scripts/pr16_research_ui_boundary_actions.py",
+      "tools/research_ui_boundary_shim.c",
       "content/modernization/pr16_research_phase0_load_checkpoint.json",
-      "scripts/pr16_research_phase0_load.py",
-      "scripts/pr16_research_phase0_load_actions.py",
-      "tools/mgba_pr16_research_phase0_load.c",
-      "content/modernization/pr16_research_v1_corrupt_load_checkpoint.json",
       "overlays/research_economy_v1/research_economy_v1.c",
       "overlays/qol_production/qol_production.c"
     ],
-    "stop_rule_ja": "候補5d1fc9c4と受入済み2load/旧3loadを保持。未受入UIだけへ進み、merge/release/baseline変更禁止。"
+    "stop_rule_ja": "host検証をnative受入にしない。既受入を反復せず、候補/旧証拠/旧Wikiを保持。merge/release/active baseline変更禁止。"
   },
   "observed_date_jst": "2026-09-25",
-  "observed_head": "22702cdbba183e89d481a8dc51b7ed197a421cf9",
+  "observed_head": "7f7575ca83765ba0d3c7a033e95015874555dd33",
   "observed_head_checks": {
-    "reason_ja": "限定phase0 load受入。一般source-validationのaction_requiredを全CI成功にしない。",
+    "reason_ja": "限定host境界のみ。一般CIのaction_requiredは別状態。",
     "runs": [
       {
-        "conclusion": "success",
-        "head_sha": "187bb4a87fc4ad63f06022355c2d3be9ac47c2b5",
-        "id": 36244964437,
-        "status": "completed"
+        "conclusion": null,
+        "head_sha": "7f7575ca83765ba0d3c7a033e95015874555dd33",
+        "id": 36246184229,
+        "status": "in_progress"
       }
     ],
-    "scope_head": "187bb4a87fc4ad63f06022355c2d3be9ac47c2b5"
+    "scope_head": "7f7575ca83765ba0d3c7a033e95015874555dd33"
   },
   "observed_head_history": [
     {
@@ -5543,7 +5543,7 @@
       "semantics": "PLA1圧縮と新規供給consumerのhost検証成功入力HEAD。ROM配置/実操作/記録commitの受入ではない。"
     }
   ],
-  "observed_head_semantics": "通常load phase0境界の記録source。自己SHAはgit log参照。",
+  "observed_head_semantics": "限定host境界の実行または終端記録source。自己SHAはgit log参照。",
   "p08_candidate_impact": {
     "candidate": {
       "crc32": "CC068B4A",
@@ -5867,6 +5867,16 @@
     "path": "content/modernization/pr16_research_lifecycle_checkpoint.json",
     "run_id": 36234024026,
     "status": "PASS_INITIAL_LIFECYCLE_5_SCOPED"
+  },
+  "research_ui_boundary": {
+    "actions_completion_confirmed": false,
+    "new_unit_tests": 49,
+    "normal_new_game_accepted": false,
+    "path": "content/modernization/pr16_research_ui_boundary_checkpoint.json",
+    "run_id": 36246184229,
+    "source_head": "7f7575ca83765ba0d3c7a033e95015874555dd33",
+    "status": "PASS_HOST_UI_BOUNDARY_PENDING_TERMINAL",
+    "transaction_ui_accepted": false
   },
   "research_v1_corrupt_load": {
     "accepted_cases": [
@@ -7023,6 +7033,10 @@
     ".github/workflows/pr16-research-save-impact-record-20260926.yml": {
       "sha256": "2baf5d68c96e00fb6ef7f6859379d72b6c2fdd0c7cf27afe375dc2c8f45c4d0b",
       "size": 3236
+    },
+    ".github/workflows/pr16-research-ui-boundary-20260926.yml": {
+      "sha256": "31710f8f31c5bf9c6aa62fe6d3a6165d16c0006a34fdb137b1fbebe568cd1002",
+      "size": 3121
     },
     ".github/workflows/pr16-research-v1-corrupt-20260926.yml": {
       "sha256": "ad24114291505ace1456b3fd7e830c5cfb4578c4fa42d58ba1e3b878278f7359",
@@ -8288,6 +8302,10 @@
       "sha256": "7fad32c544c8aae20401665934c19b4e7ac6e3a712bd885dbd4c35afbc0aef13",
       "size": 10809
     },
+    "content/modernization/pr16_research_ui_boundary_checkpoint.json": {
+      "sha256": "8c627864ca62fa071c7e6d1d1f5498fa4c0ff7d61cbaff556c0e9f4f82d67f66",
+      "size": 38577
+    },
     "content/modernization/pr16_research_v1_corrupt_load_checkpoint.json": {
       "sha256": "fae57e2551326349d3bfa3082b7d244a9de974c72fd36fb927673e57f4589822",
       "size": 44034
@@ -9119,6 +9137,10 @@
     "docs/PR16_RESEARCH_SAVE_IMPACT_JA.md": {
       "sha256": "f1481163aba7ba0cf0bfc396895c9a9ccf7058fb4f65dd06842fb13fd4dd1afe",
       "size": 7658
+    },
+    "docs/PR16_RESEARCH_UI_BOUNDARY_JA.md": {
+      "sha256": "4b176abb1efa9f5c97b8b9474f454dfc6aa80e39badd16ee4fb6c17adba67f9d",
+      "size": 1939
     },
     "docs/PR16_RESEARCH_V1_CORRUPT_LOAD_JA.md": {
       "sha256": "c5d3f3ef2172d81340739f9d761c36720072314e275e33b084e53020556af510",
@@ -13568,6 +13590,14 @@
       "sha256": "c5587df9b085491036d2e7ebf6e129692324424d5a4aff13e4f7e031c003d518",
       "size": 21173
     },
+    "scripts/pr16_research_ui_boundary.py": {
+      "sha256": "11d7d676da4263e94a92a65c958095bfa83b7d1c21556b008aa88aea35196e48",
+      "size": 2832
+    },
+    "scripts/pr16_research_ui_boundary_actions.py": {
+      "sha256": "b51e9e44fcb7962cb25181e0e07139a2178a502e81d5536d52545c32286aab2b",
+      "size": 11270
+    },
     "scripts/pr16_research_v1_corrupt_load.py": {
       "sha256": "8c8e041170638626a2d261a39596e954ac7b58dc2afc380ae61814c0a8f5f030",
       "size": 5491
@@ -14952,6 +14982,10 @@
       "sha256": "e09a1928aa8384d7030f489ea32de830b90c964c2613c17405ac2796395ea40e",
       "size": 16945
     },
+    "tests/test_pr16_research_ui_boundary.py": {
+      "sha256": "a9971c507ac87c7c0413ad4640755d94e57a447922b6e6c500711341e0dc4835",
+      "size": 2841
+    },
     "tests/test_pr16_research_v1_corrupt_load.py": {
       "sha256": "0341b313aec8755390a7c6d79482faee471c345c66ac4e333bde1b7c5ce78b44",
       "size": 5810
@@ -15939,6 +15973,10 @@
     "tools/pr16_vega_original_baseline.py": {
       "sha256": "2cab74e5b9e7d339f2ba5beafdc10c040cd2dbb77252a78e2e2649f3666c6ac7",
       "size": 12279
+    },
+    "tools/research_ui_boundary_shim.c": {
+      "sha256": "f2e90b4712f7faf93fddd2eba0964e134136c6259eb3645ec11c4e819e5b834d",
+      "size": 11530
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
