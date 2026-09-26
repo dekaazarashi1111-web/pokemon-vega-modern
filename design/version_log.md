@@ -7593,3 +7593,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 測定26unit/host compile1/guard7/native3、既存188byte recipeをhash照合して再利用（ARM compile/link0、ROM変更0）。終端記録はunit/host/ARM/native全0。BP/P08/特殊野生/旧18取引/再試行7受入のnative再実行0。最終resume/task graph/index限定guard/diff-check後にcommit。失敗はfailed_casesと原本のまま保持。
 - Commit: 同branch非force、source=81983f058ffd7929e78c752db6bb76c9eb245682、自己SHAはgit log参照。
 - Network: 固定GitHub artifactだけ。私有seed/元ZIP保全。新規toolchain配布なし。
+
+## 2026-09-26T11:44:43.185195+00:00
+- Timestamp: 2026-09-26T11:44:43.185195+00:00
+- Task: USER-20260926-RESEARCH-V1-ROOT / V1先行call修復と破損境界保存
+- Version: research-v1-root-v1
+- Status: DONE（先行call修復の限定scope。破損loadは未完）
+- Summary: 先行load call誤認を修正。正常V1は保存counter2→3/全ledger移行/2回fresh Continue成功。破損2例は通常load中に有効V2へ初期化される実不具合を保持。
+- Files changed: 専用model/20tests/原本/record/guide/checkpoint、固定引継ぎMD/JSON、両ログ。
+- Verify: 新規parser20 PASS、生成C/2caller byte/入力hash/正常V1原本照合。測定native3/5cores/host成功1、記録native/ARM/host0、旧受入再実行0。破損2例FAILを保持。最終resume/task graph/scoped index guard/diff-check。
+- Commit: 同branch非force、source=6f5e19360868eb67781f339c210c21ea247d8e12、自己SHAはgit log。
+- Network: 固定GitHub入力artifactのhash照合。私有payloadはGitへ追加0。

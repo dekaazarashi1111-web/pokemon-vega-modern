@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-通常V1 loadの成功 0 / 3 と測定run終端 failure を原本確認。記録時のnative/unit/compile再実行0。
+先行load call誤認を修正。正常V1は保存counter2→3/全ledger移行/2回fresh Continue成功。破損2例は通常load中に有効V2へ初期化される実不具合を保持。
 
-**次: 失敗した v1-load-checksum, v1-load-tail, v1-load-valid の原本とload chainを最初に切り分ける。成功case/26unit/ARM/同一core再試行7caseは影響なく再実行しない。**
+**次: QOL restore_durable_ledger/ensure_saveの空・破損混同を修復し、破損2例の実load拒否だけを先に検証。正常V1成功/旧26unit/7retry/ARMを影響なく再実行しない。**
 
-候補58079dfbとsource/原本hashを保持。未成功loadを受入へ昇格しない。既存原本/ROM/save/baselineは保全し、merge/release禁止。
+元候補/seed/旧失敗・既受入を保全。破損loadを成功へ昇格しない。merge/release/baseline変更禁止。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `81983f058ffd7929e78c752db6bb76c9eb245682`。
-V1通常load記録source。自己commit SHAはgit log参照。
+証拠のsource HEAD: `6f5e19360868eb67781f339c210c21ea247d8e12`。
+V1先行call修復の原本照合record source。native測定sourceはcheckpoint参照。自己SHAはgit log。
 
 ## 最短の再開手順
 
@@ -25,15 +25,12 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_RESEARCH_V1_LOAD_JA.md`
-- `content/modernization/pr16_research_v1_load_checkpoint.json`
-- `content/modernization/pr16_research_v1_load_evidence/36237653594/measurement.json`
-- `content/modernization/pr16_research_v1_load_evidence/36237653594/fixtures.json`
-- `scripts/pr16_research_v1_load_actions.py`
-- `tools/mgba_pr16_research_v1_load.c`
-- `scripts/pr16_research_v1_load.py`
-- `content/modernization/pr16_research_retry_checkpoint.json`
-- `content/modernization/pr16_research_retry_recipe.json`
+- `docs/PR16_RESEARCH_V1_LOAD_FOLLOWUP_JA.md`
+- `content/modernization/pr16_research_v1_load_followup_checkpoint.json`
+- `content/modernization/pr16_research_v1_load_root_diagnostic.json`
+- `scripts/pr16_research_v1_load_followup.py`
+- `scripts/pr16_research_v1_load_followup_actions.py`
+- `overlays/qol_production/qol_production.c`
 - `overlays/research_economy_v1/research_economy_v1.c`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
@@ -335,6 +332,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-V1通常load専用run。全CI成功ではない。
+限定原本照合run。正常V1のみ受入。全CI成功を主張しない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

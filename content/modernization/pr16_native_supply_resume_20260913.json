@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "通常V1 loadの成功 0 / 3 と測定run終端 failure を原本確認。記録時のnative/unit/compile再実行0。",
+    "current_stop": "先行load call誤認を修正。正常V1は保存counter2→3/全ledger移行/2回fresh Continue成功。破損2例は通常load中に有効V2へ初期化される実不具合を保持。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "失敗した v1-load-checksum, v1-load-tail, v1-load-valid の原本とload chainを最初に切り分ける。成功case/26unit/ARM/同一core再試行7caseは影響なく再実行しない。",
+    "next_step": "QOL restore_durable_ledger/ensure_saveの空・破損混同を修復し、破損2例の実load拒否だけを先に検証。正常V1成功/旧26unit/7retry/ARMを影響なく再実行しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -4162,36 +4162,33 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "失敗した v1-load-checksum, v1-load-tail, v1-load-valid の原本とload chainを最初に切り分ける。成功case/26unit/ARM/同一core再試行7caseは影響なく再実行しない。",
+    "goal_ja": "QOL restore_durable_ledger/ensure_saveの空・破損混同を修復し、破損2例の実load拒否だけを先に検証。正常V1成功/旧26unit/7retry/ARMを影響なく再実行しない。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
-    "id": "RESEARCH_V1_LOAD_DIAGNOSE_NEXT",
+    "id": "RESEARCH_V1_CORRUPT_LOAD_REPAIR_NEXT",
     "read_paths": [
-      "docs/PR16_RESEARCH_V1_LOAD_JA.md",
-      "content/modernization/pr16_research_v1_load_checkpoint.json",
-      "content/modernization/pr16_research_v1_load_evidence/36237653594/measurement.json",
-      "content/modernization/pr16_research_v1_load_evidence/36237653594/fixtures.json",
-      "scripts/pr16_research_v1_load_actions.py",
-      "tools/mgba_pr16_research_v1_load.c",
-      "scripts/pr16_research_v1_load.py",
-      "content/modernization/pr16_research_retry_checkpoint.json",
-      "content/modernization/pr16_research_retry_recipe.json",
+      "docs/PR16_RESEARCH_V1_LOAD_FOLLOWUP_JA.md",
+      "content/modernization/pr16_research_v1_load_followup_checkpoint.json",
+      "content/modernization/pr16_research_v1_load_root_diagnostic.json",
+      "scripts/pr16_research_v1_load_followup.py",
+      "scripts/pr16_research_v1_load_followup_actions.py",
+      "overlays/qol_production/qol_production.c",
       "overlays/research_economy_v1/research_economy_v1.c"
     ],
-    "stop_rule_ja": "候補58079dfbとsource/原本hashを保持。未成功loadを受入へ昇格しない。既存原本/ROM/save/baselineは保全し、merge/release禁止。"
+    "stop_rule_ja": "元候補/seed/旧失敗・既受入を保全。破損loadを成功へ昇格しない。merge/release/baseline変更禁止。"
   },
   "observed_date_jst": "2026-09-25",
-  "observed_head": "81983f058ffd7929e78c752db6bb76c9eb245682",
+  "observed_head": "6f5e19360868eb67781f339c210c21ea247d8e12",
   "observed_head_checks": {
-    "reason_ja": "V1通常load専用run。全CI成功ではない。",
+    "reason_ja": "限定原本照合run。正常V1のみ受入。全CI成功を主張しない。",
     "runs": [
       {
-        "conclusion": "failure",
-        "head_sha": "af1065f42eb965dacb26060a22595ed3f85a3adb",
-        "id": 36237653594,
-        "status": "completed"
+        "conclusion": null,
+        "head_sha": "6f5e19360868eb67781f339c210c21ea247d8e12",
+        "id": 36239754501,
+        "status": "in_progress"
       }
     ],
-    "scope_head": "af1065f42eb965dacb26060a22595ed3f85a3adb"
+    "scope_head": "6f5e19360868eb67781f339c210c21ea247d8e12"
   },
   "observed_head_history": [
     {
@@ -5545,7 +5542,7 @@
       "semantics": "PLA1圧縮と新規供給consumerのhost検証成功入力HEAD。ROM配置/実操作/記録commitの受入ではない。"
     }
   ],
-  "observed_head_semantics": "V1通常load記録source。自己commit SHAはgit log参照。",
+  "observed_head_semantics": "V1先行call修復の原本照合record source。native測定sourceはcheckpoint参照。自己SHAはgit log。",
   "p08_candidate_impact": {
     "candidate": {
       "crc32": "CC068B4A",
@@ -5854,6 +5851,24 @@
     "path": "content/modernization/pr16_research_lifecycle_checkpoint.json",
     "run_id": 36234024026,
     "status": "PASS_INITIAL_LIFECYCLE_5_SCOPED"
+  },
+  "research_v1_load_followup": {
+    "accepted_cases": [
+      "v1-load-valid"
+    ],
+    "candidate": {
+      "sha256": "58079dfbdbe15899d9b86f53ad3a21fe46ddcebf5fed231c85dcd2332ddd2d75",
+      "size": 33554432
+    },
+    "corrupt_load_rejection_accepted": false,
+    "failed_cases": [
+      "v1-load-checksum",
+      "v1-load-tail"
+    ],
+    "path": "content/modernization/pr16_research_v1_load_followup_checkpoint.json",
+    "record_run_id": 36239754501,
+    "status": "PARTIAL_VALID_V1_ACCEPTED_CORRUPT_LOAD_OPEN",
+    "v1_valid_load_accepted": true
   },
   "research_v1_normal_load": {
     "accepted_cases": [],
@@ -6976,6 +6991,10 @@
     ".github/workflows/pr16-research-v1-load-20260926.yml": {
       "sha256": "cff0b4f4c941b16c010f9b6877de33f02ab82b8f5dcd46e3419c186d0f8fd08d",
       "size": 4113
+    },
+    ".github/workflows/pr16-research-v1-root-20260926.yml": {
+      "sha256": "1385e295d18819431118ea1941ac74a37d0cfed93ba8faebd92d120249b4662f",
+      "size": 2341
     },
     ".github/workflows/pr16-ring-audio-boundary-contracts.yml": {
       "sha256": "fc9400ca2de465cfbeeadcf7b7d7db4ca6497320bf966bd086c1ecf22d530a11",
@@ -8229,6 +8248,14 @@
       "sha256": "a266b70724c23e992c554453ee75325da5474d77bf58c8e8f8196135d9edc6be",
       "size": 20549
     },
+    "content/modernization/pr16_research_v1_load_followup_checkpoint.json": {
+      "sha256": "bb84dc632b922ec681a05229870b4e7df21044edf0cae6c1cd7696552605eee5",
+      "size": 29779
+    },
+    "content/modernization/pr16_research_v1_load_root_diagnostic.json": {
+      "sha256": "81223acef54a4a32ba7bd2d734994ce158af1cb336e5d3f1572616a98b9a09e1",
+      "size": 11742
+    },
     "content/modernization/pr16_ring_audio_boundary_contracts.json": {
       "sha256": "61de96a6afd25c699b0dcb3cbd27d2b113b540ba53b609f641aea34434ac09d2",
       "size": 412258
@@ -9032,6 +9059,10 @@
     "docs/PR16_RESEARCH_SAVE_IMPACT_JA.md": {
       "sha256": "f1481163aba7ba0cf0bfc396895c9a9ccf7058fb4f65dd06842fb13fd4dd1afe",
       "size": 7658
+    },
+    "docs/PR16_RESEARCH_V1_LOAD_FOLLOWUP_JA.md": {
+      "sha256": "0a6993121172f4bd3d870c99eb5809f01f77445efea6adf721ef7448e6e7caed",
+      "size": 1925
     },
     "docs/PR16_RESEARCH_V1_LOAD_JA.md": {
       "sha256": "f8c19d1a8e69f4c65856af79d5d9c96e6d968b18303a89408e9ef2183d2b464f",
@@ -13469,6 +13500,14 @@
       "sha256": "b2745889a5b371d1c216160eff083512cb0b9861660cff3ae3d1ce1a08567ef7",
       "size": 16423
     },
+    "scripts/pr16_research_v1_load_followup.py": {
+      "sha256": "08f4587aa3598f2be8bc2a1d16e4f44b247029a29b943841995a962b0dc735ca",
+      "size": 3391
+    },
+    "scripts/pr16_research_v1_load_followup_actions.py": {
+      "sha256": "ba2a36f97ad4335064d20d955060a20f90e18b504cf97ce5ef1fd390027f010f",
+      "size": 10201
+    },
     "scripts/pr16_restore_cfru_snapshot.py": {
       "sha256": "5b8bc2069f12fd6513ed2b8424de48043a71515e419d208087885d7066c2a202",
       "size": 8213
@@ -14828,6 +14867,10 @@
     "tests/test_pr16_research_v1_load.py": {
       "sha256": "c38f2f74b6b9fc3a261a74ce2d6d50d32334177dd8e01835811d28879df600dd",
       "size": 5570
+    },
+    "tests/test_pr16_research_v1_load_followup.py": {
+      "sha256": "3b646ceaaee85b773ef8a21f8c627e058daa80ac018a099d39504538c892e1ce",
+      "size": 3024
     },
     "tests/test_pr16_restore_cfru_snapshot.py": {
       "sha256": "b0b743783966fe8af3b6a058ef367bf86560fa3a8728dbdc7e0cd44d38a14771",
