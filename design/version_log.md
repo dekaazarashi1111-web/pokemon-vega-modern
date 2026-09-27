@@ -8114,3 +8114,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: artifact1313382bytes/SHA-256 55e88187f9dbc5ed2f075857506071a06789ae03c57004f8a0f4d54b0f251362 PASS。raw oracle/全party/Flash/研究ledger/位置/RP/counter保持PASS。新59検査と固定runner7禁止barrierは再利用。今回の終端照合は新native/compile/unit/旧受入再実行すべて0。render/check/task graph/scoped index/diff後にcommit。
 - Commit: source=fce3748d1307a0b214af65095f7e34c7c6c63fcd; terminal_run=36325665287; 同branch非force push。
 - Network: GitHub固定run/job/artifact/HEADのみ。一般CIを原statusで記録。merge/draft解除/release/baseline変更0。旧NewGame/スターター/今回完走区間を重複しない。
+
+## 2026-09-27T15:41:39.181976+00:00
+- Timestamp: 2026-09-27T15:41:39.181976+00:00
+- Task: USER-20260928-RESEARCH-STORY-ROUTE / 道路通常進行・キズぐすり保存継続
+- Version: research-story-route-source-v1
+- Status: DONE（実装と開発原本保存限定、Actions受入は次工程）
+- Summary: 道路からの通常敗北2回・母親回復・草側迂回・キズぐすり1個取得・通常Save counter2→3・独立Continue所持保持は開発実測済。新74検査成功原本を保存。次はこの新区間だけのActions独立測定と後継potion.srm artifact保持。正式runが既にあれば原本を回収し完走入力を重複しない。研究施設到達は未完、旧受入再実行禁止。
+- Files changed: 専用oracle/検査/入力原本/checkpoint/guide、固定引継ぎMD/JSON、両ログ。ROM/save/runner/画面は非tracked artifactのみ。
+- Verify: 開発native2/進行301入力31904frames・cold24入力1942frames。74新oracle全PASS原本とsource/evidence一致を再利用。初回終端schema例外1件を履歴保持して修正。53画面中治療暗転1枚は内容受入に数えず保持。転送run36330227611は64MiBメモリ上限で展開前停止、native/unit0。固定payloadの128MiB有界展開を確認して回復、失敗原本は content/modernization/pr16_research_story_route_development/source-install-recovery.json。今回installのnative/unit/compile再実行0。resume/task graph/scoped index後にcommit。
+- Commit: source=575707687a72a5f51fe6e7eb711421234d973fad; run=36330478316; 同branchへ非force push。
+- Network: 固定GitHub HEAD/Actions/artifact/APIのみ。一般CI action_required・失敗と歴史的全体private guardを成功へ読み替えない。merge/release/active baseline変更0。

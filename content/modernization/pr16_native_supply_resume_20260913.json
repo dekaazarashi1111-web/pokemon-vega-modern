@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "PASS_NATURAL_STORY_ROUTE_SAVE_SCOPED",
+    "current_stop": "STORY_ROUTE_POTION_DEVELOPED_ACTIONS_NEXT",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "保存starter以後のライバル敗北復帰→研究所退出→517番道路の木の拒否→東側道路map3/19→Save counter1→2→独立Continueを限定実測。次は後継artifactのroute.srmから未完ストーリーへ。研究活動施設への自然到達は未完。初期化/スターター/完了区間/旧RP/UI/BP/P08を再実行しない。",
+    "next_step": "道路からの通常敗北2回・母親回復・草側迂回・キズぐすり1個取得・通常Save counter2→3・独立Continue所持保持は開発実測済。新74検査成功原本を保存。次はこの新区間だけのActions独立測定と後継potion.srm artifact保持。正式runが既にあれば原本を回収し完走入力を重複しない。研究施設到達は未完、旧受入再実行禁止。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -793,6 +793,7 @@
   },
   "current_resume_doc": "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
   "do_not_repeat": [
+    "道路道具取得の開発原本 content/modernization/pr16_research_story_route_development/verification.json を保持。native2/74新検査。元Saveからの301入力を正式測定したrunがあれば原本回収だけにして重複しない。",
     "新規道路保存は content/modernization/pr16_research_story_continue_checkpoint.json。次はroute.srmからContinueだけ。旧starterと今回完走114入力/12012framesを再生しない。RP0の研究活動施設未到達。",
     "継続開発原本 content/modernization/pr16_research_story_continue_development/verification.json はnative2/新oracle59。新Actions原本が既に存在する場合は先に回収し、正常に完走した入力の再実行を禁止。初期化/スターターは再生不要。",
     "自然starterは content/modernization/pr16_research_story_checkpoint.json。元の通常NewGame保存試験を再オープンしない。次回はartifact starter.srmのContinueのみ。RP0/party1/map4/3保存をRP研究活動到達へ昇格しない。",
@@ -4191,16 +4192,17 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "保存starter以後のライバル敗北復帰→研究所退出→517番道路の木の拒否→東側道路map3/19→Save counter1→2→独立Continueを限定実測。次は後継artifactのroute.srmから未完ストーリーへ。研究活動施設への自然到達は未完。初期化/スターター/完了区間/旧RP/UI/BP/P08を再実行しない。",
+    "goal_ja": "道路からの通常敗北2回・母親回復・草側迂回・キズぐすり1個取得・通常Save counter2→3・独立Continue所持保持は開発実測済。新74検査成功原本を保存。次はこの新区間だけのActions独立測定と後継potion.srm artifact保持。正式runが既にあれば原本を回収し完走入力を重複しない。研究施設到達は未完、旧受入再実行禁止。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
-    "id": "NATURAL_STORY_FROM_ROUTE_CONTINUE_NEXT",
+    "id": "STORY_ROUTE_POTION_INDEPENDENT_MEASUREMENT_NEXT",
     "read_paths": [
-      "docs/PR16_RESEARCH_STORY_CONTINUE_JA.md",
-      "content/modernization/pr16_research_story_continue_checkpoint.json",
-      "content/modernization/pr16_research_story_continue_terminal.json",
-      "scripts/pr16_research_story_continue.py"
+      "docs/PR16_RESEARCH_STORY_ROUTE_JA.md",
+      "content/modernization/pr16_research_story_route_development/verification.json",
+      "scripts/pr16_research_story_route_actions.py",
+      "scripts/pr16_research_story_route.py",
+      "content/modernization/pr16_research_story_continue_checkpoint.json"
     ],
-    "stop_rule_ja": "run36325475401の全必須stepとartifact10933499471は終端確認済み。route.srmのsize/SHAと固定runner/runtime/candidateを確認してContinueし、その先の通常ストーリーだけを進める。旧starter/完走114入力/旧RP/UI/BP/P08は再実行しない。研究施設到達へ昇格しない。merge/release/baseline変更禁止。"
+    "stop_rule_ja": "新しいActions原本がある場合は先に回収し再生禁止。開発結果を正式Actions終端へ読み替えない。元route.srmからの新区間のみ。旧starter/前回114入力/旧RP/UI/BP/P08は再実行しない。merge/release/baseline変更禁止。"
   },
   "observed_date_jst": "2026-09-27",
   "observed_head": "4c5d2d46bbef7f984800ea4133afe0388ac4c73d",
@@ -6375,6 +6377,14 @@
     "status": "PASS_LOCAL_DEVELOPMENT_NOT_ACTIONS_ACCEPTANCE",
     "superseded_by": "content/modernization/pr16_research_story_continue_checkpoint.json"
   },
+  "research_story_route_development": {
+    "actions_completion_confirmed": false,
+    "local_native_processes": 2,
+    "natural_research_arrival_accepted": false,
+    "new_unit_tests": 74,
+    "path": "content/modernization/pr16_research_story_route_development/verification.json",
+    "status": "DEVELOPED_NEW_ROAD_POTION_SAVE_NOT_ACTIONS_ACCEPTANCE"
+  },
   "research_ui_boundary": {
     "actions_completion_confirmed": true,
     "new_unit_tests": 49,
@@ -7679,6 +7689,14 @@
     ".github/workflows/pr16-research-story-install.yml": {
       "sha256": "edf87c0550c4b35385f8f3ffa0374223aa449cf97b36549398116c83a7e490ae",
       "size": 9050
+    },
+    ".github/workflows/pr16-research-story-route-followup.yml": {
+      "sha256": "beec4be7d4755b22e59fc78afaa646274c1127fe55b4e5e9e0afce7b3fe789df",
+      "size": 3950
+    },
+    ".github/workflows/pr16-research-story-route-install.yml": {
+      "sha256": "0495e3f0cf29eee5cb64869ee26c9f8095b7a3930f81c631af00f45aa639cec6",
+      "size": 10259
     },
     ".github/workflows/pr16-research-story-terminal.yml": {
       "sha256": "d6a2b3ab0c4fe2e1d9c2e2de2d7f46be51c0e27454045c0433ccb554687358b3",
@@ -9480,6 +9498,58 @@
       "sha256": "c5c5eecedb955d32db3abe2b1868379859f704306397c1a8071dd206da3455d0",
       "size": 1091
     },
+    "content/modernization/pr16_research_story_route_development/commands.txt": {
+      "sha256": "116a128d7a424725aa10c639cb3a862efa4f2daa7b5068285e0b94c40ca1eec8",
+      "size": 3025
+    },
+    "content/modernization/pr16_research_story_route_development/continue-commands.txt": {
+      "sha256": "45d4270e0b18507ef717ad57d52ddb7e4f38795a91a2028965f8c205e72e4c13",
+      "size": 145
+    },
+    "content/modernization/pr16_research_story_route_development/continue.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_research_story_route_development/continue.stdout.txt": {
+      "sha256": "b5e8f92b5956a9d4b202995e3d1ac5dc526e8d25ee2fe21049496f9086b1a4e3",
+      "size": 3712
+    },
+    "content/modernization/pr16_research_story_route_development/initial-oracle-failure.json": {
+      "sha256": "4029a8aeb9aa97fe115e15f87ff17061b8ddd522d255725e556ad0c9dae6e111",
+      "size": 724
+    },
+    "content/modernization/pr16_research_story_route_development/progress.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_research_story_route_development/progress.stdout.txt": {
+      "sha256": "60b31c68272a01f319db1dd66131fc09ea5eb3a63099a45c750e482b2b850cb1",
+      "size": 41936
+    },
+    "content/modernization/pr16_research_story_route_development/setup.json": {
+      "sha256": "9a01ef8638b9d8fba32c9398ca7a57b9e502ab1107d41376cd70985383951258",
+      "size": 665
+    },
+    "content/modernization/pr16_research_story_route_development/source-install-recovery.json": {
+      "sha256": "29d424ed922eb96d0eed1132468a39ea2a26f2598cde542db3ed0adffba13a83",
+      "size": 775
+    },
+    "content/modernization/pr16_research_story_route_development/unit.stderr.txt": {
+      "sha256": "df7dae4e96eaa6045ca5d4652b039fa6db6449001ab6be72502fadb5ce72594a",
+      "size": 8133
+    },
+    "content/modernization/pr16_research_story_route_development/unit.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_research_story_route_development/verification.json": {
+      "sha256": "5f4c8b64e071fc9916c016414550479a43bd5ca7a473cdf524d6c357205f6e84",
+      "size": 7331
+    },
+    "content/modernization/pr16_research_story_route_development/visual-review.json": {
+      "sha256": "f51bbd8ae6fec4d8c07b715b640e0a18c3d7da07316e6a0a7a5055e40178608f",
+      "size": 16006
+    },
     "content/modernization/pr16_research_story_terminal.json": {
       "sha256": "8be100d127b13be49714710c8ed91cea9b677a2f3a860417d08263f5e458c58e",
       "size": 4016
@@ -10459,6 +10529,10 @@
     "docs/PR16_RESEARCH_STORY_JA.md": {
       "sha256": "8b9e996aab057cb7839bd74fc86c8c4639169e262b0cbbe469610686e3a7afcc",
       "size": 3944
+    },
+    "docs/PR16_RESEARCH_STORY_ROUTE_JA.md": {
+      "sha256": "cfed40d4d2a562c26ec0b9f660abfd6ed64b24e91058c3bdde1c46dda1e55a0f",
+      "size": 3576
     },
     "docs/PR16_RESEARCH_UI_BOUNDARY_JA.md": {
       "sha256": "c6612deb907354729dbb4b7878ddb844cefb9573908c563288a299dce81e7939",
@@ -15124,6 +15198,14 @@
       "sha256": "d117ecc29b7d1e58acfc1e3f3d29134501f9ad015bfc272bdde161c6d859e17a",
       "size": 17932
     },
+    "scripts/pr16_research_story_route.py": {
+      "sha256": "7cb78a6d596a7dd79784d042b5709c02b867eca2d2460646de335174b6d15353",
+      "size": 9692
+    },
+    "scripts/pr16_research_story_route_actions.py": {
+      "sha256": "15a592ced5f0632e3f3a7c8aa2e8676441d6a90a5bc144cd9528396b52d6404c",
+      "size": 15936
+    },
     "scripts/pr16_research_ui_boundary.py": {
       "sha256": "11d7d676da4263e94a92a65c958095bfa83b7d1c21556b008aa88aea35196e48",
       "size": 2832
@@ -16611,6 +16693,10 @@
     "tests/test_pr16_research_story_continue.py": {
       "sha256": "eb33ffc114d54ed93600dd95dd3f09ad956fb290200e77ad5874be0a074fa7ae",
       "size": 6755
+    },
+    "tests/test_pr16_research_story_route.py": {
+      "sha256": "f6f9e7f5126fe1e51e1048cc5971cd5b9ed02f513f1ff67787ed2ea67775cfc2",
+      "size": 9672
     },
     "tests/test_pr16_research_ui_boundary.py": {
       "sha256": "a9971c507ac87c7c0413ad4640755d94e57a447922b6e6c500711341e0dc4835",
