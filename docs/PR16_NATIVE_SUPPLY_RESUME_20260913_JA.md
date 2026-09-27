@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-PASS_PHYSICAL_DOOR_AND_STATIC_GUIDE_SCOPED
+受付の数値残高・rankを2境界/18画面で限定受入。旧runの検証失敗を原本から切り分け、63件の修正試験と不変15件で確定。次は標準list。
 
-**次: 物理4入口/受付静的5文言/初期ショップ開閉/釣り・ゲーム・生態の静的ガイドは原本と独立oracleで限定受入済み。次は受付の数値残高・rank/標準listを実装し変更影響だけ検証、その後自然稼得RP→ショップ支出と通常進行の接続を実測。旧稼得/今回4入口を無変更再実行しない。**
+**次: 受付の数値残高/rankは0RP・rank1と9999RP・rank7の2境界を限定受入済み。次はSTANDARD_LISTの選択・取消・再訪を後継candidate c3971e83へ実装し変更影響だけ検証、その後自然稼得RP→ショップ支出と通常ストーリー進行を接続する。数値2境界、物理4入口、旧稼得/BP/P08の成功部分を無変更再実行しない。**
 
-静的入口4件と旧稼得nativeは無変更再実行しない。数値表示・rank・自然RP支出は別受入。受入原本/基準不変、merge/release禁止。
+数値2境界/旧4入口/旧稼得を無変更再実行しない。標準list・自然RP支出・通常進行は未受入。原本/基準は不変、merge/release禁止。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `c4da83fc8dd55c18281a02d1ba838728d7ee48c6`。
-保存済み実測4入口の独立受入code HEAD。元実測2run終端success確認済み。自己記録runと一般CIは別管理。
+証拠のsource HEAD: `ca8b2648e74e2d603caf2f6bb7311cc8491ff455`。
+数値受付の独立受入・検証入力修復のsource HEAD。元実測runは終端failureを保持し成功native原本だけ再利用。自己記録run終端と一般CIは別途GitHubで確認。
 
 ## 最短の再開手順
 
@@ -25,10 +25,11 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_RESEARCH_CONNECTION_JA.md`
-- `content/modernization/pr16_research_connection_checkpoint.json`
-- `content/modernization/pr16_research_connection_acceptance.json`
-- `content/modernization/pr16_research_connection_acceptance/visual-review.json`
+- `docs/PR16_RESEARCH_COUNTER_JA.md`
+- `content/modernization/pr16_research_counter_checkpoint.json`
+- `content/modernization/pr16_research_counter_numeric_recipe.json`
+- `content/modernization/pr16_research_counter_acceptance/visual-review.json`
+- `scripts/pr16_research_counter_numeric.py`
 - `content/research_economy_v1/canonical_model.json`
 - `overlays/research_economy_v1/research_economy_v1.c`
 
@@ -64,6 +65,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- 受付数値0RP/rank1・9999RP/rank7はcheckpointと18画面で限定受入。元run36286898098のfailureを保持し、回復でnative再実行0。旧negative60件は受入せず陽性前提付き63件へ置換。不変event15件/compile1/guard7/実測2processを再実行しない。
 - 研究接続4入口はcontent/modernization/pr16_research_connection_acceptance.jsonで限定受入済み。原本/33画面/独立oracleを再利用し、未表示の受付数値/rankと自然RP支出の変更影響だけ実測。全活動/通常ストーリーへ昇格禁止。
 - 研究接続の新規MEASURED原本を先に照合。旧GAME_CORNER/写真/虫取り/採掘/釣り/生態の稼得nativeは再実行しない。今回の入口3成功計測は独立oracle/画面確認へ進み、未観測の生態ガイドだけ診断する。
 - GAME_CORNERの実300枚配当923→1223コイン/0→3RP・2取引保存・別core Continueを限定受入。小4枚無RP、終了後の未保存賭け1188と保存値1223を区別。native5=実稼得1+Continue1+計測器失敗3、guard7、117PASS+変更loader2PASS、ROM/ARM0、受入済み再実行0。Start配当/日内cap/自然到達/通常接続/ガイド文言は未完。
@@ -342,6 +344,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-元2run成功・保存原本の独立oracleと33画面限定受入。旧失敗は不変。自己記録run終端や全CI/全体private guard成功はまだ主張しない。
+受付数値の限定受入原本を保存。元run36286898098はfailureを改作せず回復済みとして記録。受入run自身の終端や一般CI全成功は事前に主張しない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

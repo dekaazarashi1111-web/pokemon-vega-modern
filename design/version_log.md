@@ -7965,3 +7965,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 新規oracle 140件PASS、33実画面/12静的文言の視認と固定artifact照合、2048byte ledger独立再計算。新native/host compile/ARM/ROM変更/受入済み再実行0。元Actions36284847516/36285051878 success、現在HEAD一般CIは別記。resume/task graph/最終index scoped guard。全体guard成功は主張しない。
 - Commit: source=c4da83fc8dd55c18281a02d1ba838728d7ee48c6; 同branchへの非force記録、自己SHAはgit log。
 - Network: GitHub固定artifact/PR/Actionsのみ。merge/release/baseline変更なし。
+
+## 2026-09-27T02:06:33.984442+00:00
+- Timestamp: 2026-09-27T02:06:33.984442+00:00
+- Task: USER-20260927-RESEARCH-COUNTER / 受付数値表示・独立受入と検証原本の修復
+- Version: research-counter-numeric-v1
+- Status: DONE（残高/rank数値表示の限定範囲。標準list/自然RP支出/通常進行は未完）
+- Summary: 既存147byte内88byteの数値会話を接続、2境界の実値・buffer・全文と18画面を確認。親26dac23c→c3971e83。人工9999RPを自然稼得と主張しない。
+- Files changed: 数値probe/oracle/専用試験/Actions、入力の不変コピーと陽性前提の修復、recipe、失敗原本と回復証拠/checkpoint/専用MD、固定引継ぎMD/JSON、両ログ。
+- Verify: 旧run36286898098はfailureを保持。成功native2/guard7/host1を再利用。修正63試験PASSと不変event15試験の原本を照合、計78件。新規native/guard/host/ARM/ROM生成0、既受入独立再実行0。task graph/resume/final index guard PASSを後段commitの必須条件とする。全体historical guard/一般CI全成功は主張しない。
+- Commit: source=ca8b2648e74e2d603caf2f6bb7311cc8491ff455 / acceptance run=36287524393; 同branch非force commit。自己SHAはgit logとremote refで照合。
+- Network: 固定GitHub artifactとrun/job/PR metadataのみ。原本absolute tracebackはartifactに保持、tracked正規化コピーは別hashで明示。ROM/save/binaryはGitに追加しない。merge/release/baseline変更なし。

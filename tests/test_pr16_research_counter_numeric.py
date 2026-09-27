@@ -95,7 +95,7 @@ class NativeEvidenceTests(unittest.TestCase):
         path=self.directory/str(index)
         m=oracle.load((path/'measurement.json').read_bytes())
         return [(path/'stdout.txt').read_bytes(),index,(path/'commands.txt').read_bytes(),
-                (self.directory.parent/(str(index)+'.srm')).read_bytes(),m['screens']]
+                (self.directory.parent/(str(index)+'.fixture.srm')).read_bytes(),m['screens']]
 
     def test_two_real_transcripts(self):
         for i in (0,1):
@@ -108,7 +108,10 @@ class NativeEvidenceTests(unittest.TestCase):
 
 def mutation_test(kind,index):
     def test(self):
-        args=self.inputs(index);rows=[oracle.load(line) for line in args[0].splitlines()]
+        args=self.inputs(index)
+        # 拒否試験ごとに有効な陽性原本から始め、別原因による見かけのPASSを防ぐ。
+        oracle.validate(*args)
+        rows=[oracle.load(line) for line in args[0].splitlines()]
         first=lambda key:next(r for r in rows if key in r)
         if kind=='drop': rows.pop(3)
         elif kind=='duplicate': rows.insert(3,copy.deepcopy(rows[3]))
@@ -116,6 +119,7 @@ def mutation_test(kind,index):
         elif kind=='truncate': args[0]=args[0][:-1]
         elif kind=='commands': args[2]=args[2].replace(b'0 120 counter_balance',b'1 120 counter_balance')
         elif kind=='fixture': args[3]=args[3][:-1]+bytes([args[3][-1]^1])
+        elif kind=='footer_input': args[3]+=bytes(16)
         elif kind=='screens': args[4]=dict(args[4]);args[4].pop('counter_balance.ppm')
         elif kind=='balance_text': next(r for r in rows if r.get('state')=='counter_balance')['text']='ff'
         elif kind=='buffer': next(r for r in rows if r.get('numeric')=='counter_balance')['buffers'][0]='ff'
@@ -141,13 +145,13 @@ def mutation_test(kind,index):
         elif kind=='save': rows[-1]['transaction_saves']=1
         elif kind=='promotion': rows[-1]['naturally_earned_spending_accepted']=True
         else: raise AssertionError(kind)
-        if kind not in ('truncate','commands','fixture','screens'):
+        if kind not in ('truncate','commands','fixture','footer_input','screens'):
             args[0]=b''.join(json.dumps(r).encode()+b'\n' for r in rows)
         with self.assertRaises(ValueError): oracle.validate(*args)
     return test
 
 for _i in (0,1):
-    for _kind in ('drop','duplicate','trailing','truncate','commands','fixture','screens','balance_text',
+    for _kind in ('drop','duplicate','trailing','truncate','commands','fixture','footer_input','screens','balance_text',
                   'buffer','rank','rp_bool','lifetime','owner','bag','party','ledger','counter','flash',
                   'position','object','result','field','key','frame','screen_hash','extra_field',
                   'scope','host_write','save','promotion'):

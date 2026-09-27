@@ -70,7 +70,9 @@ def measure():
     results={};failures={}
     for index in (0,1):
         directory=PUBLIC/str(index);directory.mkdir()
-        fixture,receipt=probe.fixture(seed,index);save=OUT/(str(index)+'.srm');save.write_bytes(fixture)
+        fixture,receipt=probe.fixture(seed,index)
+        (OUT/(str(index)+'.fixture.srm')).write_bytes(fixture)
+        save=OUT/(str(index)+'.srm');save.write_bytes(fixture)
         commands=probe.commands();(directory/'commands.txt').write_bytes(commands)
         COUNTS['native_processes']+=1;start=time.monotonic()
         try:
@@ -86,7 +88,9 @@ def measure():
         d.write(directory/'measurement.json',measurement)
         try:
             patch.need(rc==0 and not timed_out and not err,'clean native process')
-            patch.need(save.read_bytes()==fixture,'fixture Flash remained unchanged')
+            saved=save.read_bytes()
+            patch.need(len(saved) in (len(fixture),len(fixture)+16) and saved[:len(fixture)]==fixture,
+                       'post-close Flash prefix unchanged; container tail is not input fixture')
             results[str(index)]=oracle.validate(out,index,commands,fixture,screens)
         except (ValueError,KeyError,TypeError) as exc: failures[str(index)]=dict(type=type(exc).__name__,reason=str(exc))
         d.write(PUBLIC/'oracle.json',dict(results=results,failures=failures))
@@ -100,7 +104,7 @@ def measure():
     patch.need(d.bindings(CODE)==bound and d.bindings(PROTECTED)==protected,'source/protected byte identity')
     patch.need(patch.identity(rom.read_bytes())==patch.CANDIDATE,'candidate immutable during observation')
     d.write(PUBLIC/'measurement.json',dict(source_head=os.environ['GITHUB_SHA'],run_id=int(os.environ['GITHUB_RUN_ID']),candidate=patch.CANDIDATE,results=results,failures=failures,tests=count,tests_passed=passed,visual_review_completed=False,counts=COUNTS))
-    patch.need(not failures and unit.returncode==0 and passed==count==76 and not unit.stdout,'two numeric boundaries and all 76 new tests')
+    patch.need(not failures and unit.returncode==0 and passed==count==78 and not unit.stdout,'two numeric boundaries and all 78 checks')
 
 
 def record():
@@ -114,8 +118,14 @@ def record():
     for p in sorted(PUBLIC.rglob('*')):
         if not p.is_file() or p.suffix not in ('.json','.txt'): continue
         raw=p.read_bytes();raw.decode('utf-8');patch.need(b'\0' not in raw,'tracked UTF8 only')
-        target=directory/p.relative_to(PUBLIC);target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(raw)
-        evidence[str(target)]=patch.identity(raw)
+        target=directory/p.relative_to(PUBLIC);target.parent.mkdir(parents=True,exist_ok=True)
+        safe=raw.replace((str(ROOT)+'/').encode(),b'<checkout>/')
+        if safe!=raw:
+            target=target.with_name(target.stem+'.normalized'+target.suffix)
+            notice=target.with_suffix(target.suffix+'.normalization.json')
+            d.write(notice,dict(raw=patch.identity(raw),normalized=patch.identity(safe),method='CHECKOUT_ROOT_ONLY',raw_in_actions_artifact=True))
+            evidence[str(notice)]=patch.identity(notice.read_bytes())
+        target.write_bytes(safe);evidence[str(target)]=patch.identity(safe)
     d.write(directory/'manifest.json',evidence)
     cp=dict(schema_version=1,task=TASK,status='STOPPED_COUNTER_MEASUREMENT' if error else 'MEASURED_COUNTER_NUMERIC_ORACLE_PASS_PENDING_VISUAL_REVIEW',
         source_head=os.environ['GITHUB_SHA'],run_id=int(os.environ['GITHUB_RUN_ID']),candidate=patch.CANDIDATE,parent=patch.PARENT,
@@ -141,7 +151,7 @@ def record():
     from pr16_learnset_compact_record import publish_resume
     publish_resume(state)
     stamp=datetime.datetime.now(datetime.timezone.utc).isoformat()
-    log=f'\n## {stamp}\n- Timestamp: {stamp}\n- Task: {TASK} / 数値受付の限定実装・原本固定\n- Version: research-counter-numeric-measured-v1\n- Status: STOPPED（'+('失敗原本を保存' if error else '数値oracle成功、画面とActions終端の確認待ち')+f'）\n- Summary: 既存147byte内88byteの数値表示接続。0RP/rank1・9999RP/rank7だけを実測。標準list/自然RP支出は未完。\n- Files changed: 専用probe/oracle/新76検査/Actions、recipeとUTF8原本、専用MD/checkpoint、固定引継ぎMD/JSON、両ログ。\n- Verify: 計数と失敗有無は{CP}のmeasurement/errorを正本とする。新規2境界、guard7、host1、ARM0、既受入独立再実行0を計画し実数を保存。VMの値/分岐/原本改変拒否をnative件数に含めない。全体guard/全CI成功は主張しない。\n- Commit: source={os.environ["GITHUB_SHA"]}; 同branch非force記録。自己SHAはgit log。\n- Network: 固定GitHub artifactとActions/PR metadataのみ。ROM/saveはGit管理外。merge/release/baseline変更なし。\n'
+    log=f'\n## {stamp}\n- Timestamp: {stamp}\n- Task: {TASK} / 数値受付の限定実装・原本固定\n- Version: research-counter-numeric-measured-v1\n- Status: STOPPED（'+('失敗原本を保存' if error else '数値oracle成功、画面とActions終端の確認待ち')+f'）\n- Summary: 既存147byte内88byteの数値表示接続。0RP/rank1・9999RP/rank7だけを実測。標準list/自然RP支出は未完。\n- Files changed: 専用probe/oracle/78検査/Actions、recipeとUTF8原本、専用MD/checkpoint、固定引継ぎMD/JSON、両ログ。\n- Verify: 計数と失敗有無は{CP}のmeasurement/errorを正本とする。新規2境界、guard7、host1、ARM0、既受入独立再実行0を計画し実数を保存。VMの値/分岐/原本改変拒否をnative件数に含めない。全体guard/全CI成功は主張しない。\n- Commit: source={os.environ["GITHUB_SHA"]}; 同branch非force記録。自己SHAはgit log。\n- Network: 固定GitHub artifactとActions/PR metadataのみ。ROM/saveはGit管理外。merge/release/baseline変更なし。\n'
     for p in d.LOGS:
         with (ROOT/p).open('a',encoding='utf-8') as f: f.write(log)
     owned=set(evidence)|{str(directory/'manifest.json'),CP,GUIDE,d.STATE,d.DOC}|d.LOGS
