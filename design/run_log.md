@@ -10752,3 +10752,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 新規25検証PASS、元artifact SHA/全22画面/全保存manifest/source/protected一致。新規native/ARM/host/guard/旧試験再実行0。task graph/resume/final-index guard後のみcommit。一般CI全成功や全体historical guard PASSは主張しない。
 - Commit: source=c63448fa1ab349556530fe59a82d63946ca9e04f; acceptance run=36314900752; 同branchへの非force commit。自己SHAはremote/git logで確認。
 - Network: GitHub run/job/artifact/PRのみ。ROM/save/私有入力変更0、merge/release/baseline変更0。
+
+## 2026-09-27T12:06:34.631622+00:00
+- Timestamp: 2026-09-27T12:06:34.631622+00:00
+- Task: USER-20260927-RESEARCH-NATURAL-SPENDING
+- Version: research-natural-spending-shop-ui-v1
+- Status: DONE（自然稼得RP支出とshop UI限定。通常進行/自然移動は未完）
+- Summary: 実Rock Smashで0→10RPのsaveを1回だけ作成・保持。10RPでitem4を5個交換し0RP、lifetime/daily10/claim保持、自動保存2、別core Continueを確認。shopの純粋input/正しいframe/上余白を71byte修復。最後の1byte変更はUI-only・追加稼得/購入/保存0、12実画面を視認。
+- Files changed: 64byte Thumb source/recipe/patch検査、native観測器/独立oracle120件、失敗を含む原本text、専用MD/JSON、固定引継ぎMD/JSON、両ログ。
+- Verify: 最終23patch原本再利用、独立120検証PASS。全owner64/ledger2048/Bag/party600/Flash照合、保持したsaveの完全file一致、原本source再生成一致、全ROM rollback、accepted_case_reruns=0。記録Actionsでnative/host/ARM/guard実行0。全体historical guardや一般CI全成功は主張しない。
+- Development history: 初回pixel前提違い停止、旧2表示候補の残枠を保持。開発native計5（稼得1/支出3/UI-only1）、host compile4、production Thumb assemble/link4、guard7を同一prefixで再利用。
+- Commit: source=22ace1e6c69aa5b488a2c83bd4468ddb5dcaa581; recording run=36317871935; task graph/resume/scoped final-index後に同branchへ非force push。自己SHAはremoteで確認。
+- Network: GitHub固定data artifact/APIのみ。ROM/save/画像/private原本tracked変更0、merge/release/baseline変更0。badge/party/map/屋外warpは明示fixture。
