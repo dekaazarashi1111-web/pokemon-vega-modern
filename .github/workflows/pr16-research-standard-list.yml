@@ -4,60 +4,73 @@ on:
     branches: [codex/modernization-followup-20260908]
     paths: [.github/workflows/pr16-research-standard-list.yml]
 permissions:
-  contents: read
+  contents: write
+  actions: read
+  pull-requests: read
 concurrency:
   group: pr16-research-standard-list
   cancel-in-progress: false
 jobs:
-  isolated-menu-build:
+  standard-list:
     if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 15
     env:
+      GITHUB_TOKEN: ${{ github.token }}
       PYTHONDONTWRITEBYTECODE: '1'
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 1
-      - name: Fixed isolated ARM compiler
-        run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y --no-install-recommends gcc-arm-none-eabi=15:13.2.rel1-2 binutils-arm-none-eabi
-          test "$(arm-none-eabi-gcc -dumpfullversion)" = 13.2.1
-      - name: Thirty new list host and event tests
-        run: |
-          mkdir -p .local/pr16-standard-list-build
-          python3 -B -m unittest discover -s tests -p test_pr16_research_standard_list.py -v >.local/pr16-standard-list-build/unit.stdout.txt 2>.local/pr16-standard-list-build/unit.stderr.txt
-      - name: Compile explicit-initialization menu and export exact native helper source
+          fetch-depth: 0
+      - name: Source transfer identity
+        id: source
         shell: python
         run: |
-          import hashlib,json,os,pathlib,subprocess,sys
-          sys.path.insert(0,'scripts')
-          import pr16_research_standard_list as s
-          out=pathlib.Path('.local/pr16-standard-list-build');out.mkdir(parents=True,exist_ok=True)
-          files={}
-          names=(s.SOURCE,'scripts/pr16_research_standard_list.py','tests/test_pr16_research_standard_list.py')
-          for name in subprocess.check_output(['git','ls-files','-z']).decode().split('\0'):
-              p=pathlib.Path(name)
-              if not name or not ((name.startswith('tools/mgba') and p.suffix in ('.c','.h')) or name in names):
-                  continue
-              assert p.is_file() and not p.is_symlink()
-              data=p.read_bytes();data.decode('utf-8');assert len(data)<=4*1024*1024
-              dest=out/'source'/p;dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(data)
-              files[name]=s.identity(data)
-          (out/'source-manifest.json').write_text(json.dumps({'head':os.environ['GITHUB_SHA'],'files':files},ensure_ascii=False,indent=2)+'\n')
-          code,build=s.compile_code(out/'arm')
-          build['source_head']=os.environ['GITHUB_SHA']
-          build['run_id']=int(os.environ['GITHUB_RUN_ID'])
-          build['code_hex']=code.hex()
-          build['source_bindings']={p:s.identity(pathlib.Path(p).read_bytes()) for p in names}
-          (out/'build.json').write_text(json.dumps(build,ensure_ascii=False,indent=2)+'\n')
-          print(json.dumps({'new_arm_compiles':1,'native_runs':0,'code_size':len(code),'helper_files':len(files)}))
+          import hashlib,pathlib
+          expected={
+            'scripts/pr16_research_standard_list_probe.py':'cdad160c3c4cf832b9bce3ec07f85800726f28c2a2c414ecdd74914cb8de7328',
+            'scripts/pr16_research_standard_list_oracle.py':'6311cb7100da37d5819e6cac984f386db6cb47972427ca5b250ac96c95ed108a',
+            'scripts/pr16_research_standard_list_actions.py':'24025e61286a5256c54c762c7c30fcb38f8c90f816812eab0693868bdd789ab2',
+            'tests/test_pr16_research_standard_list_oracle.py':'6d57905b7d5cfc170733295c67f805ca17769dbd7b45bb75dca0f1da878953e0'}
+          for name,digest in expected.items():
+              assert hashlib.sha256(pathlib.Path(name).read_bytes()).hexdigest()==digest,name
+          print('PASS: four exact transferred sources; saved C/builder/30 tests are separately bound')
+      - name: New standard list selection cancellation and revisit only
+        id: measure
+        run: python3 -B scripts/pr16_research_standard_list_actions.py measure
+      - name: Preserve immutable measurement and handoff
+        id: record
+        if: always() && steps.source.outcome == 'success' && hashFiles('.local/pr16-standard-list/public/invocation.json') != ''
+        run: python3 -B scripts/pr16_research_standard_list_actions.py record
+      - name: Task graph and exact scoped final index
+        id: guard
+        if: always() && steps.record.outcome == 'success'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B scripts/validate_task_graph.py
+          mapfile -t owned < <(python3 -B scripts/pr16_research_standard_list_actions.py paths)
+          git add -- "${owned[@]}"
+          python3 -B scripts/pr16_research_standard_list_actions.py guard
+      - name: Non-force implementation and evidence checkpoint
+        if: always() && steps.guard.outcome == 'success'
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git ls-remote origin "$GITHUB_REF" | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20260927-RESEARCH-STANDARD-LIST: 標準list実測原本・固定引継ぎ・両ログを保存'
+          git push origin HEAD:refs/heads/codex/modernization-followup-20260908
+          test "$(git ls-remote origin "$GITHUB_REF" | cut -f1)" = "$(git rev-parse HEAD)"
+          echo "RESULT=STOPPED TASK=USER-20260927-RESEARCH-STANDARD-LIST VERIFY=SCOPED COMMIT=$(git rev-parse HEAD)"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: pr16-research-standard-list-build
-          path: .local/pr16-standard-list-build/
+          name: pr16-research-standard-list-native
+          path: |
+            .local/pr16-standard-list/public/
+            content/modernization/pr16_research_standard_list_checkpoint.json
           include-hidden-files: true
           retention-days: 14
           if-no-files-found: error
