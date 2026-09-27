@@ -1,0 +1,203 @@
+{
+  "accepted_case_reruns": 0,
+  "active_baseline_changed": false,
+  "arm_compiles": 0,
+  "failed_bridge": {
+    "conclusion": "failure",
+    "head_branch": "main",
+    "head_sha": "69ab9fa03f300387b46833ff01ac0a13a3a23f66",
+    "id": 36281697084,
+    "path": ".github/workflows/chatgpt-comment-control.yml",
+    "run_attempt": 1,
+    "status": "completed"
+  },
+  "failed_job": {
+    "conclusion": "failure",
+    "id": 108514655602,
+    "steps": {
+      "Complete job": "success",
+      "PR固有の生成済みfixtureを必要時だけ準備": "skipped",
+      "Post default branchの固定bridgeを取得": "success",
+      "Post exact PR HEADをwrite可能なworktreeへ取得": "success",
+      "Private Release資材を取得": "skipped",
+      "Private環境をhash検証して復元": "skipped",
+      "Set up job": "success",
+      "default branchの固定bridgeを取得": "success",
+      "exact PR HEADをwrite可能なworktreeへ取得": "success",
+      "tracked source境界を検証": "failure",
+      "unittest失敗をjob結論へ反映": "failure",
+      "テスト中に対象外tracked差分がないことを確認": "skipped",
+      "固定schemaの安全なunittest結果だけを受け渡す": "skipped",
+      "固定toolchainを導入": "skipped",
+      "小さいtracked patchを検査して適用": "success",
+      "指定された単一unittest IDを実行": "skipped",
+      "検証済みpatchをcommitして同じPR branchへpush": "skipped"
+    }
+  },
+  "failure_reason_ja": "既存tracked原本の全体private guardで停止。旧failureは不変、原本削除/guard変更なし。",
+  "full_historical_guard_pass_claimed": false,
+  "host_compiles": 0,
+  "native_processes": 0,
+  "new_handoff_tests": 1,
+  "observed_runs": [
+    {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "c4d2d69b9b639e3ae9d8efa332b4b4b47fe39002",
+      "id": 36281681323,
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "failure",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "c4d2d69b9b639e3ae9d8efa332b4b4b47fe39002",
+      "id": 36281681252,
+      "path": ".github/workflows/ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "c4d2d69b9b639e3ae9d8efa332b4b4b47fe39002",
+      "id": 36281675956,
+      "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "c4d2d69b9b639e3ae9d8efa332b4b4b47fe39002",
+      "id": 36281676013,
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "failure",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "c4d2d69b9b639e3ae9d8efa332b4b4b47fe39002",
+      "id": 36281675954,
+      "path": ".github/workflows/ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": null,
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "cecfb0118332f7f39c662f647477a708f4a66f97",
+      "id": 36283792037,
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "run_attempt": 1,
+      "status": "in_progress"
+    },
+    {
+      "conclusion": null,
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "cecfb0118332f7f39c662f647477a708f4a66f97",
+      "id": 36283792044,
+      "path": ".github/workflows/ci.yml",
+      "run_attempt": 1,
+      "status": "in_progress"
+    },
+    {
+      "conclusion": null,
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "cecfb0118332f7f39c662f647477a708f4a66f97",
+      "id": 36283786464,
+      "path": ".github/workflows/ci.yml",
+      "run_attempt": 1,
+      "status": "in_progress"
+    },
+    {
+      "conclusion": null,
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "cecfb0118332f7f39c662f647477a708f4a66f97",
+      "id": 36283786399,
+      "path": ".github/workflows/pr16-research-handoff-repair-20260927.yml",
+      "run_attempt": 1,
+      "status": "in_progress"
+    },
+    {
+      "conclusion": null,
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "cecfb0118332f7f39c662f647477a708f4a66f97",
+      "id": 36283786430,
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "run_attempt": 1,
+      "status": "in_progress"
+    },
+    {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "cecfb0118332f7f39c662f647477a708f4a66f97",
+      "id": 36283786321,
+      "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    }
+  ],
+  "original_patch_commit": "c4d2d69b9b639e3ae9d8efa332b4b4b47fe39002",
+  "own_run_completion_confirmed": false,
+  "patch_identity": {
+    "sha256": "21f99af11d4ed7f53c7774fafc2af0cd8a332207cee3f9f5996d18b4c092d76e",
+    "size": 16463
+  },
+  "patch_path": ".chatgpt/patches/pr16-game-corner-handoff-20260927.patch",
+  "protected_bindings": {
+    "CHATGPT_RESUME.md": {
+      "sha256": "963f3d4b12d184aaa9be7decbdd98cfe7b89317bfa8396008c8e1ab3581359f6",
+      "size": 7562
+    },
+    "config/active_play_baseline.json": {
+      "sha256": "4800257add049ea99cdedda91413a70a255dcff9a85823463596edefa8785053",
+      "size": 394
+    },
+    "content/modernization/p08_remaining_work.json": {
+      "sha256": "d538985b7b16a1b295e2a75bf63f94371bc812208d49aae41c6a017b7ff26981",
+      "size": 41097
+    },
+    "content/modernization/pr16_bp_chooser_checkpoint.json": {
+      "sha256": "4deb7c27771c63740ab94b9cf8c7b3c386f7193b989f35ede9d131c4f4bf15bf",
+      "size": 9442
+    },
+    "content/modernization/pr16_research_game_corner_checkpoint.json": {
+      "sha256": "da406e68da9ed502a1b7fc89db0cc75caaed18f9d0dd277e9baff4df05361163",
+      "size": 3065
+    },
+    "docs/PR16_RESEARCH_GAME_CORNER_JA.md": {
+      "sha256": "15c85ae83e316ae8040ecb0d4512402e17df2d1203d28fab345cbaa10355e00e",
+      "size": 3324
+    }
+  },
+  "release_ready": false,
+  "run_id": 36283786399,
+  "schema_version": 1,
+  "source_export": {
+    "conclusion": "success",
+    "head_branch": "codex/modernization-followup-20260908",
+    "head_sha": "b1cecbe42a3dbd5f4d9c685666b9f0999aeb0f08",
+    "id": 36283596928,
+    "path": ".github/workflows/pr16-research-local-context-20260927.yml",
+    "run_attempt": 1,
+    "status": "completed"
+  },
+  "source_head": "cecfb0118332f7f39c662f647477a708f4a66f97",
+  "status": "PASS_PREVIOUSLY_UNAPPLIED_HANDOFF",
+  "task": "USER-20260927-RESEARCH-HANDOFF",
+  "test_id": "tests.test_pr16_research_game_corner_record.RecordTests.test_updated_handoff",
+  "test_result": {
+    "returncode": 0,
+    "stderr": {
+      "sha256": "e406c4a5b5aac0767ccfe8c314bea51d121ca7422361e87324c070dbe72f479e",
+      "size": 204
+    },
+    "stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    }
+  }
+}

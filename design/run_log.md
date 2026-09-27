@@ -10638,3 +10638,25 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: source=fb33c3bf34a10e4f838cabf80e50e91f7b10a461; record run=36276059655; 自己SHAはgit log参照。同branch非force push。
 - Network: GitHub HEAD/PR/Actions・固定artifactのみ。候補/seed/受入済みsource/evidence/baseline不変。merge/releaseなし。全CI成功は主張しない。
 - Record scope repair: run36275950886の記録だけのfailureを保持。比較基準を受入commit fbf7c9dcへ固定し、旧Actions原本を不変継承。受入済みsource/evidence hashを再確認、native/unit/compile追加0。
+
+## 2026-09-27T09:08:16+09:00
+- Timestamp: 2026-09-27T09:08:16+09:00
+- Task: USER-20260927-RESEARCH-GAME-CORNER / 実300枚配当・取引保存・独立Continue
+- Version: research-game-corner-v1
+- Status: DONE（animated配当と保存継続の限定scope）
+- Summary: 実スロットの300枚923→1223コイン・0→3RP、完了後だけcredit、4枚無RP、取引Save2、別core Continue1223/3RP/counter4。未保存終了値1188とは分離。Start配当/日内cap/自然到達/受付ショップ/残るnative文言は未完。
+- Files changed: 専用C/oracle/117反証検査/記録契約、全観測2295行・Continue原本・画像hash・失敗履歴・source拘束・checkpoint・専用MD、固定引継ぎMD/JSON、両ログ。
+- Verify: 新規117PASS（初回1失敗を修正し履歴保持）、変更loader2PASS、記録binding1PASS。native5=実稼得1+Continue1+計測器失敗3、guard7拒否、host compile6、ROM/ARM0、受入済み再実行0。全ledger/Bag/party/Flashと6画像。最後の再開契約は本patch適用後に既設bridgeの単一testで検証。
+- Commit: source=4d97c6b73a929850d49abf7fa873b937fd3aed5a; evidence=3d2690fe3ebdeb7f75c925a6475bdfca2196ec05; checkpoint=f0d25936ffbfb7fae2928b4c700cb734754fb354; 同branchへ非force反映。自己SHAはgit log参照。
+- Network: GitHub限定。3d2690feのP03 CI成功、source-validation36281287703は既存P03 capacity契約でfailureを確認。今回のActions native成功・全CI成功は主張しない。workflow新規追加tool拒否は反復せず、既設限定patch bridgeを使用。merge/release/baseline変更なし。
+
+## 2026-09-27T00:52:20.429745+00:00
+- Timestamp: 2026-09-27T00:52:20.429745+00:00
+- Task: USER-20260927-RESEARCH-HANDOFF / 未適用4正本の同期と再実行防止
+- Version: research-handoff-repair-v1
+- Status: DONE
+- Summary: 保存済みpatchを一度だけ適用しGAME_CORNER限定受入を固定入口へ反映。旧bridge36281697084は既存原本guard failureのまま保持。次は通常受付/ショップ接続・native文言。
+- Files changed: 専用workflow/receipt、固定再開MD/JSON、両ログ。既存原本/候補/基準は不変。
+- Verify: 未実行handoff契約1PASS、全source binding、task graph、最終index scoped guard。native/ARM/host compile/受入済み再実行0。全体guard PASSは主張しない。
+- Commit: source=cecfb0118332f7f39c662f647477a708f4a66f97; 自己SHAはgit log参照。同branchへ非force push。
+- Network: GitHub PR/HEAD/Actionsのみ。merge/release/baseline変更なし。
