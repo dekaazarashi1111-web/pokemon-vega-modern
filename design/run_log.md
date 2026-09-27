@@ -10908,3 +10908,25 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 正式native2、367入力37210frames/cold38入力2736frames、92実画面/3UI一致、全party600bytes/Flash128KiB/ledger/位置/RP0/counter4保持。118新検査原本再利用、compile/ROM変更/旧受入再実行0。
 - Commit: source=52554a9b5eafe8743d87df57a4ba8565237fffae; run=36358726444; 同branchへ非force push。
 - Network: 固定GitHub HEAD/Actions/artifact/APIのみ。一般CI action_required・失敗は別記録。全体private guard成功、merge、release、active baseline変更を主張しない。
+
+## 2026-09-27T23:35:05.708294+00:00
+- Timestamp: 2026-09-27T23:35:05.708294+00:00
+- Task: USER-20260928-RESEARCH-STORY-GROWTH / 通常成長・道具消費・保存継続
+- Version: research-story-growth-terminal-v1
+- Status: DONE（新区間限定、通常研究施設到達は未完）
+- Summary: 野生勝利1回/逃走1回・キズぐすり1個消費・経験値37+33・Lv5→6・HP21/21・通常Save counter3→4と独立Continueの保持を限定受入。新区間のトレーナー敗北2回、勝利0。次はgrowth.srmのmap3/0 (4,27)、経験値204、道具0から通常ストーリーを進める。研究活動施設への自然到達は未完。旧367入力/301入力/114入力/旧starter/RP/UI/BP/P08を再生しない。
+- Files changed: 専用oracle/118検査/入力原本/checkpoint/guide、固定引継ぎMD/JSON、両ログ。ROM/save/runner/画面は非tracked artifactのみ。
+- Verify: run36358726444/job108731507916全11step成功、artifact10944976226全ZIP/3Save/runner/92画面/18text読戻しPASS。新118検査原本再利用、終端native/unit/compile再実行0。一般CIと全体private guardは別境界。
+- Commit: source=6326bdcf4b232d1bd332f960dc93efc1ccbebb2b; run=36359167038; 同branchへ非force push。
+- Network: 固定GitHub HEAD/Actions/artifact/APIのみ。一般CI action_required・失敗は別記録。全体private guard成功、merge、release、active baseline変更を主張しない。
+
+## 2026-09-27T23:35:07.879165+00:00
+- Timestamp: 2026-09-27T23:35:07.879165+00:00
+- Task: USER-20260928-RESEARCH-STORY-GROWTH / 通常成長・道具消費・保存継続
+- Version: research-story-growth-ci-boundary-v1
+- Status: DONE（一般CIは既知失敗のまま）
+- Summary: 新区間成功と一般CI既知失敗を分離して固定原本を保存。旧validator/旧C/旧testは変更しない。
+- Files changed: 専用oracle/118検査/入力原本/checkpoint/guide、固定引継ぎMD/JSON、両ログ。ROM/save/runner/画面は非tracked artifactのみ。
+- Verify: source-validation run36358732448/job108731524613 failure、artifact10945245745全byte一致、25検査23成功2ERROR。原因source hash不一致、後続skipped/upload failure保持。初回終端36358919647はprivate guardでcommit前停止。原本artifact限定保管へ修正、guard不変。回収処理native/unit/compile0。
+- Commit: source=6326bdcf4b232d1bd332f960dc93efc1ccbebb2b; run=36359167038; 同branchへ非force push。
+- Network: 固定GitHub HEAD/Actions/artifact/APIのみ。一般CI action_required・失敗は別記録。全体private guard成功、merge、release、active baseline変更を主張しない。

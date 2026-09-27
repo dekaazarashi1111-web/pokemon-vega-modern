@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "PASS_NATURAL_STORY_GROWTH_SAVE_PENDING_TERMINAL",
+    "current_stop": "PASS_NATURAL_STORY_GROWTH_SAVE_SCOPED",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -4209,24 +4209,16 @@
     "read_paths": [
       "docs/PR16_RESEARCH_STORY_GROWTH_JA.md",
       "content/modernization/pr16_research_story_growth_checkpoint.json",
+      "content/modernization/pr16_research_story_growth_terminal.json",
       "scripts/pr16_research_story_growth.py"
     ],
-    "stop_rule_ja": "先にこの新runの全必須step/後継Save artifactを外部照合する。完走367入力を繰り返さずgrowth.srmだけから進める。trainer勝利/研究到達/配布へ昇格せず、merge/release/baseline変更禁止。"
+    "stop_rule_ja": "run36358726444の全11必須stepとartifact10944976226は確認済み。growth.srmのsize/SHAと固定candidate/runtime/runnerを確認してContinue。map3/0(4,27)/Lv6/EXP204/counter4/道具0から先だけを進め、成功367入力と旧受入を再実行しない。trainer勝利/研究到達/配布へ昇格しない。merge/release/baseline変更禁止。"
   },
   "observed_date_jst": "2026-09-27",
   "observed_head": "52554a9b5eafe8743d87df57a4ba8565237fffae",
   "observed_head_checks": {
     "reason_ja": "新区間専用Actionsと一般CIを分離。未完/action_required/失敗を成功にしない。",
     "runs": [
-      {
-        "conclusion": null,
-        "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "52554a9b5eafe8743d87df57a4ba8565237fffae",
-        "id": 36358732448,
-        "path": ".github/workflows/ci.yml",
-        "run_attempt": 1,
-        "status": "in_progress"
-      },
       {
         "conclusion": "success",
         "head_branch": "codex/modernization-followup-20260908",
@@ -4237,22 +4229,13 @@
         "status": "completed"
       },
       {
-        "conclusion": null,
+        "conclusion": "failure",
         "head_branch": "codex/modernization-followup-20260908",
         "head_sha": "52554a9b5eafe8743d87df57a4ba8565237fffae",
-        "id": 36358726444,
-        "path": ".github/workflows/pr16-research-story-growth.yml",
-        "run_attempt": 1,
-        "status": "in_progress"
-      },
-      {
-        "conclusion": null,
-        "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "52554a9b5eafe8743d87df57a4ba8565237fffae",
-        "id": 36358726436,
+        "id": 36358732448,
         "path": ".github/workflows/ci.yml",
         "run_attempt": 1,
-        "status": "in_progress"
+        "status": "completed"
       },
       {
         "conclusion": "success",
@@ -4269,6 +4252,24 @@
         "head_sha": "52554a9b5eafe8743d87df57a4ba8565237fffae",
         "id": 36358726459,
         "path": ".github/workflows/p03-forgetting-ci.yml",
+        "run_attempt": 1,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "52554a9b5eafe8743d87df57a4ba8565237fffae",
+        "id": 36358726444,
+        "path": ".github/workflows/pr16-research-story-growth.yml",
+        "run_attempt": 1,
+        "status": "completed"
+      },
+      {
+        "conclusion": "failure",
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "52554a9b5eafe8743d87df57a4ba8565237fffae",
+        "id": 36358726436,
+        "path": ".github/workflows/ci.yml",
         "run_attempt": 1,
         "status": "completed"
       }
@@ -5627,7 +5628,7 @@
       "semantics": "PLA1圧縮と新規供給consumerのhost検証成功入力HEAD。ROM配置/実操作/記録commitの受入ではない。"
     }
   ],
-  "observed_head_semantics": "成長新区間を独立測定したsource HEAD。成功終端は外部APIで別途確認する。自己記録commit/製品最終SHAではない。",
+  "observed_head_semantics": "成長新区間を独立測定したsource HEAD。全11必須step・後継Save/RTC・92画面・commit原本を content/modernization/pr16_research_story_growth_terminal.json で外部確認。自己記録commitや製品最終SHAではない。",
   "p08_candidate_impact": {
     "candidate": {
       "crc32": "CC068B4A",
@@ -5749,23 +5750,7 @@
     "status": "NATIVE_PARTY_RETENTION_ACCEPTED_BP_PENDING",
     "tested_head": "10e535a046441dd3b797918106259b5c57b69716"
   },
-  "pending_runs": [
-    {
-      "run_id": 36358732448,
-      "status": "in_progress",
-      "tested_head": "52554a9b5eafe8743d87df57a4ba8565237fffae"
-    },
-    {
-      "run_id": 36358726444,
-      "status": "in_progress",
-      "tested_head": "52554a9b5eafe8743d87df57a4ba8565237fffae"
-    },
-    {
-      "run_id": 36358726436,
-      "status": "in_progress",
-      "tested_head": "52554a9b5eafe8743d87df57a4ba8565237fffae"
-    }
-  ],
+  "pending_runs": [],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
   "pr_draft": true,
   "pr_merged": false,
@@ -6403,17 +6388,25 @@
     "superseded_by": "content/modernization/pr16_research_story_continue_checkpoint.json"
   },
   "research_story_growth": {
-    "actions_completion_confirmed": false,
+    "actions_completion_confirmed": true,
     "candidate": {
       "sha256": "e1efb1009c6e6b0ec4967bf7b20562d2330bbd933f64f7f7863cdad56eb1f842",
       "size": 33554432
     },
     "natural_research_arrival_accepted": false,
     "path": "content/modernization/pr16_research_story_growth_checkpoint.json",
+    "retained_artifact_id": 10944976226,
     "retained_artifact_name": "pr16-research-story-growth-checkpoint",
     "run_id": 36358726444,
     "source_head": "52554a9b5eafe8743d87df57a4ba8565237fffae",
-    "status": "PASS_NATURAL_STORY_GROWTH_SAVE_PENDING_TERMINAL"
+    "status": "PASS_NATURAL_STORY_GROWTH_SAVE_SCOPED",
+    "terminal_receipt": "content/modernization/pr16_research_story_growth_terminal.json"
+  },
+  "research_story_growth_ci_limit": {
+    "path": "content/modernization/pr16_research_story_growth_ci/36358732448/limit.json",
+    "run_id": 36358732448,
+    "source_head": "52554a9b5eafe8743d87df57a4ba8565237fffae",
+    "status": "KNOWN_SOURCE_VALIDATION_FAILURE_NOT_GROWTH_REGRESSION"
   },
   "research_story_growth_development": {
     "actions_completion_confirmed": false,
@@ -6423,6 +6416,11 @@
     "path": "content/modernization/pr16_research_story_growth_development/verification.json",
     "status": "PASS_LOCAL_NATIVE_GROWTH_SAVE_NOT_ACTIONS_TERMINAL",
     "superseded_by": "content/modernization/pr16_research_story_growth_checkpoint.json"
+  },
+  "research_story_growth_terminal_recovery": {
+    "failed_run_id": 36358919647,
+    "native_reruns": 0,
+    "path": "content/modernization/pr16_research_story_growth_terminal_recovery.json"
   },
   "research_story_route": {
     "actions_completion_confirmed": true,
@@ -7752,6 +7750,10 @@
     ".github/workflows/pr16-research-story-growth-install.yml": {
       "sha256": "c23ea56a87be344b975b9ac8fa2542470973f9d6d2c46209f05c76ac2c726d60",
       "size": 6553
+    },
+    ".github/workflows/pr16-research-story-growth-terminal.yml": {
+      "sha256": "06178bae69afc713d8e8b0e6dd89f79acd7b2a5de0f35c06394276323f1f190c",
+      "size": 10869
     },
     ".github/workflows/pr16-research-story-growth.yml": {
       "sha256": "9ffdfef35dcbfe969fce74f5348907b419c3b8b21529a915c215ab5600f2c166",
@@ -9586,8 +9588,12 @@
       "size": 1091
     },
     "content/modernization/pr16_research_story_growth_checkpoint.json": {
-      "sha256": "bac4ff2ff9abc928039b754cc6ff138dd896667d705808a1f0839d2b924001b7",
-      "size": 5483
+      "sha256": "bcc9db2da53c8517c1f7a19864e171d7ffedd2f04b06bc3acc31624644e802d4",
+      "size": 6149
+    },
+    "content/modernization/pr16_research_story_growth_ci/36358732448/limit.json": {
+      "sha256": "d66abe83551d5ed6a700474e9fb281987d2fb2050b481374ca29466e7cd540dc",
+      "size": 7672
     },
     "content/modernization/pr16_research_story_growth_development/commands.txt": {
       "sha256": "d461c7ad6a0694c2196f10446db55bbf4adb069e4af9f35967ef4750a7b77b4f",
@@ -9684,6 +9690,14 @@
     "content/modernization/pr16_research_story_growth_session.json": {
       "sha256": "130d6de53585a0968f7a32ea2ace466c9c1b46775215ca042aaf09a9309c87d0",
       "size": 2023
+    },
+    "content/modernization/pr16_research_story_growth_terminal.json": {
+      "sha256": "a0f66ee31893ca5ec038e542493746f897631f3fb60596498e8a0f2f14ecdd0a",
+      "size": 10718
+    },
+    "content/modernization/pr16_research_story_growth_terminal_recovery.json": {
+      "sha256": "115a7c2ec29cae4d7da124f9c8fb7eb04e84c8dc95f26076cd3e9ac6f4451e2c",
+      "size": 3475
     },
     "content/modernization/pr16_research_story_route_checkpoint.json": {
       "sha256": "e0c46c45ac58f6429c748c164ed854d0eac5c101ac2e8c5c21889ddff692f80e",
@@ -10774,8 +10788,8 @@
       "size": 3955
     },
     "docs/PR16_RESEARCH_STORY_GROWTH_JA.md": {
-      "sha256": "2a4feb481e75a24f8640ce734ad6c1bcf7fe23e2a5438f0b0ec48ec871f752ce",
-      "size": 7143
+      "sha256": "7dbf132f11966f43fda342ee36885aec60fdfb4bc48a72eb5a4483de47d3ac66",
+      "size": 9248
     },
     "docs/PR16_RESEARCH_STORY_JA.md": {
       "sha256": "8b9e996aab057cb7839bd74fc86c8c4639169e262b0cbbe469610686e3a7afcc",

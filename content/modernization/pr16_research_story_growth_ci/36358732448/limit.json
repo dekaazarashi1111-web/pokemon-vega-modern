@@ -1,0 +1,237 @@
+{
+  "archive": {
+    "sha256": "ff43b946b533597a15edeff0dd5ea14dc5be4a814f976415b3356617fe3e9c3f",
+    "size": 1430
+  },
+  "artifact": {
+    "digest": "sha256:ff43b946b533597a15edeff0dd5ea14dc5be4a814f976415b3356617fe3e9c3f",
+    "id": 10945245745,
+    "name": "p03-capacity-final-ci",
+    "size_in_bytes": 1430,
+    "workflow_run": {
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_repository_id": 1358127462,
+      "head_sha": "52554a9b5eafe8743d87df57a4ba8565237fffae",
+      "id": 36358732448,
+      "repository_id": 1358127462
+    }
+  },
+  "collection_native_processes": 0,
+  "collection_unit_test_runs": 0,
+  "errors": 2,
+  "exception": "ValueError: tested source changed: overlays/qol_production/qol_production.c",
+  "growth_success_reinterpreted_as_all_ci_success": false,
+  "job": {
+    "conclusion": "failure",
+    "id": 108731524613,
+    "name": "validate",
+    "status": "completed",
+    "steps": [
+      {
+        "completed_at": "2026-09-27T23:27:10Z",
+        "conclusion": "success",
+        "name": "Set up job",
+        "number": 1,
+        "started_at": "2026-09-27T23:27:09Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T23:27:22Z",
+        "conclusion": "success",
+        "name": "Run actions/checkout@v4",
+        "number": 2,
+        "started_at": "2026-09-27T23:27:10Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T23:27:23Z",
+        "conclusion": "success",
+        "name": "Run actions/setup-python@v5",
+        "number": 3,
+        "started_at": "2026-09-27T23:27:22Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T23:27:24Z",
+        "conclusion": "success",
+        "name": "Git管理内の整合性を検証",
+        "number": 4,
+        "started_at": "2026-09-27T23:27:23Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T23:27:28Z",
+        "conclusion": "success",
+        "name": "P03/P05 representative E2E result contracts",
+        "number": 5,
+        "started_at": "2026-09-27T23:27:24Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T23:27:34Z",
+        "conclusion": "success",
+        "name": "Stage81 candidate and P03 full-slot regression contracts",
+        "number": 6,
+        "started_at": "2026-09-27T23:27:28Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T23:27:50Z",
+        "conclusion": "success",
+        "name": "現在のP08受入境界と原本証跡を検証",
+        "number": 7,
+        "started_at": "2026-09-27T23:27:34Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T23:27:59Z",
+        "conclusion": "success",
+        "name": "Stage81 real CLI evidence and release boundary",
+        "number": 8,
+        "started_at": "2026-09-27T23:27:50Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T23:28:00Z",
+        "conclusion": "success",
+        "name": "Run actions/upload-artifact@v4",
+        "number": 9,
+        "started_at": "2026-09-27T23:27:59Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T23:28:13Z",
+        "conclusion": "success",
+        "name": "Stage82 archive UI recipe, contracts and P08 originals",
+        "number": 10,
+        "started_at": "2026-09-27T23:28:00Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T23:28:17Z",
+        "conclusion": "success",
+        "name": "P03 physical breeding contracts and original Actions evidence",
+        "number": 11,
+        "started_at": "2026-09-27T23:28:13Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T23:28:17Z",
+        "conclusion": "success",
+        "name": "P05 native Mega lifecycle and immutable P08 originals",
+        "number": 12,
+        "started_at": "2026-09-27T23:28:17Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T23:28:18Z",
+        "conclusion": "success",
+        "name": "Run actions/upload-artifact@v4",
+        "number": 13,
+        "started_at": "2026-09-27T23:28:17Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T23:28:18Z",
+        "conclusion": "failure",
+        "name": "P03 capacity fixed originals and cold-save acceptance",
+        "number": 14,
+        "started_at": "2026-09-27T23:28:18Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T23:28:19Z",
+        "conclusion": "success",
+        "name": "Run actions/upload-artifact@v4",
+        "number": 15,
+        "started_at": "2026-09-27T23:28:18Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T23:28:19Z",
+        "conclusion": "skipped",
+        "name": "P03 relearner 46 fixed originals and 80 regression checks",
+        "number": 16,
+        "started_at": "2026-09-27T23:28:19Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T23:28:19Z",
+        "conclusion": "failure",
+        "name": "Run actions/upload-artifact@v4",
+        "number": 17,
+        "started_at": "2026-09-27T23:28:19Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T23:28:19Z",
+        "conclusion": "skipped",
+        "name": "Post Run actions/setup-python@v5",
+        "number": 33,
+        "started_at": "2026-09-27T23:28:19Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T23:28:19Z",
+        "conclusion": "success",
+        "name": "Post Run actions/checkout@v4",
+        "number": 34,
+        "started_at": "2026-09-27T23:28:19Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T23:28:19Z",
+        "conclusion": "success",
+        "name": "Complete job",
+        "number": 35,
+        "started_at": "2026-09-27T23:28:19Z",
+        "status": "completed"
+      }
+    ]
+  },
+  "original_storage": "artifact only: ci-originals/; tracked summary contains identities, not raw environment paths",
+  "originals": {
+    "checkout-head.txt": {
+      "sha256": "bddd199750f4e0345aa7b4157ed597cdba89ba3e492510d75c5d90cd276c27b9",
+      "size": 41
+    },
+    "source-head.txt": {
+      "sha256": "14978f509f50ad5ec92586f2b6f39ae612002ba985894107123efdc483d3e0b5",
+      "size": 41
+    },
+    "tests.txt": {
+      "sha256": "db0fdb436cbd7ad577bc7849b22d11a8e6cdd0f2d271886150fac1c3af692bbd",
+      "size": 5936
+    }
+  },
+  "passed": 23,
+  "previous_limit": "content/modernization/pr16_research_story_route_ci_limit.json",
+  "run": {
+    "conclusion": "failure",
+    "head_branch": "codex/modernization-followup-20260908",
+    "head_sha": "52554a9b5eafe8743d87df57a4ba8565237fffae",
+    "id": 36358732448,
+    "path": ".github/workflows/ci.yml",
+    "run_attempt": 1,
+    "status": "completed"
+  },
+  "schema_version": 1,
+  "status": "KNOWN_SOURCE_VALIDATION_FAILURE_NOT_GROWTH_REGRESSION",
+  "tests": 25,
+  "unchanged_dependencies": {
+    "overlays/qol_production/qol_production.c": {
+      "sha256": "6a07635ca20dcd37365a2393910eb610d4f9c5a682585149ecb1243738cce23a",
+      "size": 164877
+    },
+    "scripts/record_modernization_p03_capacity.py": {
+      "sha256": "edbb1784d0da5c5744f795caeb79a601ab75f55d632fb284a4f7baeff30ed03a",
+      "size": 16772
+    },
+    "tests/test_modernization_p08_capacity_evidence.py": {
+      "sha256": "4ae9088e5186c79014811033c4aacb70ae7195b7e4928b2dc89d433fec7697e6",
+      "size": 9582
+    }
+  },
+  "unchanged_since_start_head": "27c36f00177af193d3fb2883ba0d2416d0d2f929",
+  "validator_loosened": false
+}

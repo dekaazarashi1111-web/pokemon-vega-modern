@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-PASS_NATURAL_STORY_GROWTH_SAVE_PENDING_TERMINAL
+PASS_NATURAL_STORY_GROWTH_SAVE_SCOPED
 
 **次: 野生勝利1回/逃走1回・キズぐすり1個消費・経験値37+33・Lv5→6・HP21/21・通常Save counter3→4と独立Continueの保持を限定受入。新区間のトレーナー敗北2回、勝利0。次はgrowth.srmのmap3/0 (4,27)、経験値204、道具0から通常ストーリーを進める。研究活動施設への自然到達は未完。旧367入力/301入力/114入力/旧starter/RP/UI/BP/P08を再生しない。**
 
-先にこの新runの全必須step/後継Save artifactを外部照合する。完走367入力を繰り返さずgrowth.srmだけから進める。trainer勝利/研究到達/配布へ昇格せず、merge/release/baseline変更禁止。
+run36358726444の全11必須stepとartifact10944976226は確認済み。growth.srmのsize/SHAと固定candidate/runtime/runnerを確認してContinue。map3/0(4,27)/Lv6/EXP204/counter4/道具0から先だけを進め、成功367入力と旧受入を再実行しない。trainer勝利/研究到達/配布へ昇格しない。merge/release/baseline変更禁止。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
 証拠のsource HEAD: `52554a9b5eafe8743d87df57a4ba8565237fffae`。
-成長新区間を独立測定したsource HEAD。成功終端は外部APIで別途確認する。自己記録commit/製品最終SHAではない。
+成長新区間を独立測定したsource HEAD。全11必須step・後継Save/RTC・92画面・commit原本を content/modernization/pr16_research_story_growth_terminal.json で外部確認。自己記録commitや製品最終SHAではない。
 
 ## 最短の再開手順
 
@@ -27,6 +27,7 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 
 - `docs/PR16_RESEARCH_STORY_GROWTH_JA.md`
 - `content/modernization/pr16_research_story_growth_checkpoint.json`
+- `content/modernization/pr16_research_story_growth_terminal.json`
 - `scripts/pr16_research_story_growth.py`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。

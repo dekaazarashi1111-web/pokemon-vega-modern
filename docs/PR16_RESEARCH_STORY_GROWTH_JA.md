@@ -49,3 +49,15 @@
 野生勝利1回/逃走1回・キズぐすり1個消費・経験値37+33・Lv5→6・HP21/21・通常Save counter3→4と独立Continueの保持を限定受入。新区間のトレーナー敗北2回、勝利0。次はgrowth.srmのmap3/0 (4,27)、経験値204、道具0から通常ストーリーを進める。研究活動施設への自然到達は未完。旧367入力/301入力/114入力/旧starter/RP/UI/BP/P08を再生しない。
 
 source `52554a9b5eafe8743d87df57a4ba8565237fffae`、run `36358726444`。367入力/85画面とcold38入力/7画面、全stdout・全Save/RTCが開発原本と一致。正式native2/開発native2は別会計。118新検査は原本source一致で再利用し、再実行0。
+
+## 外部確認した成功終端
+
+run `36358726444` / job `108731507916` の全11必須stepがcompleted/success。完了commit `30bf3c2f504153affad487ec1fd4bca4bca1c72b`。artifact `10944976226` は 1303767 bytes / SHA-256 `be09450a6179b40ed1282b11a9f152d33dcb1d0863079d3bbe4b344929d0f0fa`。92実画面、3組の同一UI、3コピーのSave/RTC、固定runner、全commit text原本を照合。上の確認待ちは測定時点の履歴で、現在は終端確認済み。原本は `content/modernization/pr16_research_story_growth_terminal.json`。終端処理のnative/compile/unit再実行0。
+
+次は `growth.srm` を作業コピーにして固定candidate/runtime/runnerでContinueする。map3/0 (4,27)、party1/Lv6/HP21/21/EXP204、RP0、counter4、キズぐすり0。367入力を再生しない。トレーナー2名には未勝利であり、研究施設への自然到達も未完。
+
+## 今回のsourceに対する一般CI
+
+source-validation run36358732448 / job108731524613はfailure。固定artifact10945245745の全byteを回収し、25検査中23成功・2ERROR、原因 `ValueError: tested source changed: overlays/qol_production/qol_production.c` を確認した。当該C・旧validator・旧testは開始HEAD27c36f0から変更なし。後続relearner stepはskipped、対応artifact uploadもfailureであり、成功へ読み替えない。環境パスを含む原本は終端artifact内ci-originalsに全byteを保管し、Git内の識別情報と依存不変の証拠は `content/modernization/pr16_research_story_growth_ci/36358732448/limit.json`。既存CIの自動起動結果を回収しただけで、この収集処理のnative/unit再実行0。
+
+初回終端run36358919647は外部証拠確認に成功したが、CI原本内の環境パスを最終private guardが拒否しcommit前に停止した。guardは緩和せず原本をartifact限定へ移し、未加工原本のhashをGitのmanifestで参照するよう修正。詳細は `content/modernization/pr16_research_story_growth_terminal_recovery.json`。成功した成長測定・118検査を再実行しない。
