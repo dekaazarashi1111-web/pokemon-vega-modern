@@ -8013,3 +8013,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: 固定GitHub artifactsとActions/PR metadataのみ。ROM/save/実画像はGit管理外。merge/release/baseline変更なし。
 
 - UI repair scope correction: 共通recordのARM/30試験表記を最新実績で限定訂正。ARMとhost18/ELF8はrun36312100158、不変event14はrun36310534280を再利用。現在候補59ac6688576238f00dac88cccec1a42415f6f0e4f3f07d60411f6d3059bf61e6、code768byte/差分956byte。旧2native failureは保持。純粋入力/独立pixelタイル/ユーザ枠ロードだけの変更影響を今回のnativeで検査し、厳格oracleは緩和しない。視認・自己run終端の未確認を成功としない。
+
+## 2026-09-27T11:11:12.594424+00:00
+- Timestamp: 2026-09-27T11:11:12.594424+00:00
+- Task: USER-20260927-RESEARCH-STANDARD-LIST / 標準リスト22画面・終端の独立受入
+- Version: research-standard-list-accepted-v1
+- Status: DONE（選択/取消/再訪限定。自然RP支出・通常進行は未完）
+- Summary: 59ac6688で3訪問/2機能/2取消/終了1、22実画面の窓・枠・表示を視認。原本run36312254126のsuccessと保存済みoracleを結合。旧failureと未受入フラグは原本に保持。
+- Files changed: 独立受入検証器/25試験/視認記録/Actions、checkpoint/受入JSON/専用MD、固定引継ぎMD/JSON、両ログ。
+- Verify: 新規25検証PASS、元artifact SHA/全22画面/全保存manifest/source/protected一致。新規native/ARM/host/guard/旧試験再実行0。task graph/resume/final-index guard後のみcommit。一般CI全成功や全体historical guard PASSは主張しない。
+- Commit: source=c63448fa1ab349556530fe59a82d63946ca9e04f; acceptance run=36314900752; 同branchへの非force commit。自己SHAはremote/git logで確認。
+- Network: GitHub run/job/artifact/PRのみ。ROM/save/私有入力変更0、merge/release/baseline変更0。

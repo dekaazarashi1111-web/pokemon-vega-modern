@@ -4,7 +4,7 @@ Task: `USER-20260927-RESEARCH-STANDARD-LIST`
 
 ## 現在地
 
-`MEASURED_STANDARD_LIST_PENDING_VISUAL_AND_TERMINAL_REVIEW`。source `164028f28c9fa753afa1525907e2824b17a16698` / run `36312254126`。正本は `content/modernization/pr16_research_standard_list_ui_checkpoint.json` と `content/modernization/pr16_research_standard_list_ui_recipe.json`。自己run終端と22実画面の視認前に正式受入へ昇格しない。
+`PASS_STANDARD_LIST_SELECTION_CANCEL_REVISIT_SCOPED`。実測source `164028f28c9fa753afa1525907e2824b17a16698` / run `36312254126`。正本は `content/modernization/pr16_research_standard_list_ui_checkpoint.json` と `content/modernization/pr16_research_standard_list_ui_recipe.json`。独立受入でrun終端と22実画面を確認済み。自然稼得支出/通常進行は未受入。
 
 ## 実装
 
@@ -25,3 +25,9 @@ run36312100158の変更影響host18件・ELF8件・ARM生成を再利用。イ�
 ## 次の独立境界
 
 このlistの22画面とrun終端を照合後、自然稼得RP→ショップ支出と通常ストーリー進行へ進む。今回はRP注入なしだが初期map/party/progressionはfixtureであり、自然到達・自然稼得支出は未受入。merge/release/baseline変更は禁止。
+
+## 2026-09-27 独立限定受入
+
+標準リストは22画面/3訪問で限定受入済み。次は自然稼得RP→ショップ支出の未完境界。既存canonical shopの入力関数とwindow/frame所有を先に確認し、影響部分だけ修正・実測する。通常ストーリー進行は別の未完境界。数値2境界/旧4入口/旧稼得/BP/P08を再実行しない。
+
+原本run36312254126/job108600336124はcompleted/success。固定artifactの22 PPMを本会話で視認し、全メニュー行・会話窓・枠・選択・取消・終了・再訪を確認。所見は `content/modernization/pr16_research_standard_list_visual_review.json`、独立受入は `content/modernization/pr16_research_standard_list_acceptance.json`。原本oracleの未受入フラグは改作せず、後継判定として記録する。今回のnative/guard/host/ARM生成と旧試験再実行は0、新しい記録検証25件のみ。受付0RP/rank1は起動前fixtureであり自然稼得・自然到達の証拠ではない。一般CIのaction_requiredや歴史的failureをsuccessに読み替えない。

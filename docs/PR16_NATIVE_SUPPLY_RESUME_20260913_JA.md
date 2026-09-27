@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-MEASURED_STANDARD_LIST_PENDING_VISUAL_AND_TERMINAL_REVIEW
+PASS_STANDARD_LIST_SELECTION_CANCEL_REVISIT_SCOPED
 
-**次: 標準リストの生原本を保存。22実画面と実行run終端を照合し、選択/取消/再訪の限定受入を確定する。 次の独立境界は自然稼得RP→ショップ支出、通常ストーリー進行。数値2境界/旧4入口/旧稼得/BP/P08は再実行しない。**
+**次: 標準リストは22画面/3訪問で限定受入済み。次は自然稼得RP→ショップ支出の未完境界。既存canonical shopの入力関数とwindow/frame所有を先に確認し、影響部分だけ修正・実測する。通常ストーリー進行は別の未完境界。数値2境界/旧4入口/旧稼得/BP/P08を再実行しない。**
 
-保存済み生成/30検査/実測原本を再利用。変更影響なしの数値2境界/旧4入口/旧稼得/BP/P08を反復しない。merge/release/baseline変更禁止。
+標準リスト/数値/旧稼得を無変更再実行しない。自然RP支出と通常進行を別scopeで受入。merge/release/baseline変更禁止。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `164028f28c9fa753afa1525907e2824b17a16698`。
-標準リスト実測source HEAD。自己記録commitではなく、終端は次の読取で確定する。
+証拠のsource HEAD: `c63448fa1ab349556530fe59a82d63946ca9e04f`。
+標準リストの独立受入記録source。実測run36312254126は終端success確認済み。自己記録runの終端は次のAPI読取で照合する。
 
 ## 最短の再開手順
 
@@ -27,8 +27,10 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 
 - `docs/PR16_RESEARCH_STANDARD_LIST_JA.md`
 - `content/modernization/pr16_research_standard_list_ui_checkpoint.json`
-- `content/modernization/pr16_research_standard_list_ui_recipe.json`
-- `scripts/pr16_research_standard_list_oracle.py`
+- `content/modernization/pr16_research_standard_list_acceptance.json`
+- `overlays/research_economy_v1/research_economy_v1.c`
+- `scripts/pr16_research_lifecycle_actions.py`
+- `content/modernization/pr16_research_photo_checkpoint.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -62,6 +64,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- STANDARD_LIST run36312254126/59ac6688の22画面/3訪問/選択2/B取消2/終了1を限定受入。独立受入によるnative/ARM/host/guard/旧試験の再実行0。原本27oracle、18host/8ELF/14eventを再利用。自然RP支出/通常進行へ昇格しない。
 - STANDARD_LIST原本 content/modernization/pr16_research_standard_list_ui_checkpoint.json を先に照合。同じARM生成/host30検査/成功した物理入力を再実行しない。
 - STANDARD_LIST原本 content/modernization/pr16_research_standard_list_thumb_checkpoint.json を先に照合。同じARM生成/host30検査/成功した物理入力を再実行しない。
 - STANDARD_LIST原本 content/modernization/pr16_research_standard_list_checkpoint.json を先に照合。同じARM生成/host30検査/成功した物理入力を再実行しない。
@@ -344,6 +347,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-過去pendingの終端を別記照合。自己run/一般CIを一括成功へ昇格しない。
+最新Actionsを照合。action_required/failureは保持し、一般CI全成功を主張しない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

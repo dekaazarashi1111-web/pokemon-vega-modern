@@ -1,5 +1,7 @@
 {
-  "actions_completion_confirmed": false,
+  "acceptance": "content/modernization/pr16_research_standard_list_acceptance.json",
+  "acceptance_run": 36314900752,
+  "actions_completion_confirmed": true,
   "active_baseline_changed": false,
   "candidate": {
     "sha256": "59ac6688576238f00dac88cccec1a42415f6f0e4f3f07d60411f6d3059bf61e6",
@@ -150,6 +152,7 @@
   },
   "natural_story_progress_accepted": false,
   "naturally_earned_spending_accepted": false,
+  "original_measurement_unchanged": true,
   "parent": {
     "sha256": "c3971e83184613a27730eaec6490d203a2c1261c77894b711b0352f487808557",
     "size": 33554432
@@ -350,8 +353,8 @@
     }
   },
   "source_head": "164028f28c9fa753afa1525907e2824b17a16698",
-  "standard_list_accepted": false,
-  "status": "MEASURED_STANDARD_LIST_PENDING_VISUAL_AND_TERMINAL_REVIEW",
+  "standard_list_accepted": true,
+  "status": "PASS_STANDARD_LIST_SELECTION_CANCEL_REVISIT_SCOPED",
   "strict_oracle_unchanged": true,
   "supersedes_failed_checkpoints": [
     "content/modernization/pr16_research_standard_list_checkpoint.json",
@@ -363,5 +366,6 @@
     "separate 0x280 pixel tiles and 0x214 user frame tiles",
     "18 typed Thumb delegates"
   ],
-  "visual_review_completed": false
+  "visual_review": "content/modernization/pr16_research_standard_list_visual_review.json",
+  "visual_review_completed": true
 }
