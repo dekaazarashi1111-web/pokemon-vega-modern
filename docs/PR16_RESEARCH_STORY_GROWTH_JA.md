@@ -43,3 +43,9 @@
 ## CIと作業範囲
 
 旧P03容量CIのsource hash不一致は `content/modernization/pr16_research_story_route_ci_limit.json` の既知履歴。今回の成功を根拠に一般CI全体を成功へ読み替えない。古いvalidatorを緩めたり旧証拠を更新して帳尻を合わせたりしない。固定引継ぎMDは状態JSONから生成し、両ログはappend-only、最終indexのprivate guardは変更範囲だけ。全体の歴史的private guardが成功したとは主張しない。
+
+## Actions独立測定（この時点では終端確認待ち）
+
+野生勝利1回/逃走1回・キズぐすり1個消費・経験値37+33・Lv5→6・HP21/21・通常Save counter3→4と独立Continueの保持を限定受入。新区間のトレーナー敗北2回、勝利0。次はgrowth.srmのmap3/0 (4,27)、経験値204、道具0から通常ストーリーを進める。研究活動施設への自然到達は未完。旧367入力/301入力/114入力/旧starter/RP/UI/BP/P08を再生しない。
+
+source `52554a9b5eafe8743d87df57a4ba8565237fffae`、run `36358726444`。367入力/85画面とcold38入力/7画面、全stdout・全Save/RTCが開発原本と一致。正式native2/開発native2は別会計。118新検査は原本source一致で再利用し、再実行0。
