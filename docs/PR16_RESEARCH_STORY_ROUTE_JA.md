@@ -43,3 +43,7 @@
 ```
 
 入力は `key <mask> <frames>`、`observe <連番>`、`save`、最後に `quit`。観測0は自動Continue観測であり、追加観測は1から。maskは0/1/2/8/16/32/64/128、frames1〜600。今回301入力と前回114入力、NewGame/スターターを再生しない。新しい地点より先だけ進める。研究活動施設への自然到達・全体story・releaseは未受入。
+
+## 一般CIの既存制約（旧受入再実行なしの照合）
+
+一般CI run36330551685/job108651517097はP03容量原本の陽性2件が `ValueError: tested source changed: overlays/qol_production/qol_production.c` で失敗した。新規story検証の失敗ではない。artifact10935806576の25件中23成功・2errorを原本から確認し、容量検証source全依存・検査・旧original.zip・ci.ymlが作業開始20d1bb4fからbyte不変であること、および実際のPR merge checkoutも同じQOL blobであることを確認。旧原本が期待するハッシュとの不一致は今回の変更以前から存在する。詳しいidentityと失敗stepは `content/modernization/pr16_research_story_route_ci_limit.json`。旧原本の書換え・検査緩和・旧test/nativeの手動再実行は行っていない。一般CI全緑とは扱わず、道路Saveの限定受入と分離する。終端run36330809679も全8step成功を外部確認済み。

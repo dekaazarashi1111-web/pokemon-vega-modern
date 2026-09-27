@@ -29,6 +29,7 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 - `content/modernization/pr16_research_story_route_checkpoint.json`
 - `content/modernization/pr16_research_story_route_terminal.json`
 - `scripts/pr16_research_story_route.py`
+- `content/modernization/pr16_research_story_route_ci_limit.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -62,6 +63,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- 一般CIの旧容量原本source不一致は content/modernization/pr16_research_story_route_ci_limit.json。開始HEADから全依存不変で今回story変更に起因しない。旧受入を緩和/書換え/再実行せず、後継potion.srm以降を進める。
 - 道路通常進行は content/modernization/pr16_research_story_route_checkpoint.json。敗北2回/回復/キズぐすり1個/Save counter3まで完走301入力を保持し、次はpotion.srmだけ。旧受入区間を再生しない。
 - 道路道具取得の開発原本 content/modernization/pr16_research_story_route_development/verification.json を保持。native2/74新検査。元Saveからの301入力を正式測定したrunがあれば原本回収だけにして重複しない。
 - 新規道路保存は content/modernization/pr16_research_story_continue_checkpoint.json。次はroute.srmからContinueだけ。旧starterと今回完走114入力/12012framesを再生しない。RP0の研究活動施設未到達。

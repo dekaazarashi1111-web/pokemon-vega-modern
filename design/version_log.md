@@ -8147,3 +8147,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: run36330546824/job108651503407全11step成功、artifact10934928662全ZIP/3Save/runner/53画面/18text snapshot読戻しPASS。新74検査原本source一致再利用、終端のnative/compile/unit再実行0。一般CIは実際の状態を保持し全体private guard成功を主張しない。
 - Commit: source=6162f3e9a3dede208318bfd8dfce1cc1293500cd; run=36330809679; 同branchへ非force push。
 - Network: 固定GitHub HEAD/Actions/artifact/APIのみ。一般CI action_required・失敗と歴史的全体private guardを成功へ読み替えない。merge/release/active baseline変更0。
+
+## 2026-09-27T15:52:02.223069+00:00
+- Timestamp: 2026-09-27T15:52:02.223069+00:00
+- Task: USER-20260928-RESEARCH-STORY-ROUTE / 道路通常進行・キズぐすり保存継続
+- Version: research-story-route-ci-limit-v1
+- Status: DONE（既存CI制約の記録、道路Save限定受入は維持）
+- Summary: 道路Save受入を維持し、一般CIの旧容量source不一致を分離記録。作業開始HEADから全依存byte不変、CI merge QOLも同一、旧originalの期待SHAのみ相違。
+- Files changed: 専用oracle/検査/入力原本/checkpoint/guide、固定引継ぎMD/JSON、両ログ。ROM/save/runner/画面は非tracked artifactのみ。
+- Verify: 既存run36330551685の25件23成功/2error原本を回収。terminal36330809679全8step成功外部確認。今回のnative/unit/compile再実行0、旧原本変更0、一般CI全緑を主張しない。
+- Commit: source=9d68eae91936df187d7014ccc30a9b081ab2a0a8; run=36331100545; 同branchへ非force push。
+- Network: 固定GitHub HEAD/Actions/artifact/APIのみ。一般CI action_required・失敗と歴史的全体private guardを成功へ読み替えない。merge/release/active baseline変更0。

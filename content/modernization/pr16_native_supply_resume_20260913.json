@@ -793,6 +793,7 @@
   },
   "current_resume_doc": "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
   "do_not_repeat": [
+    "一般CIの旧容量原本source不一致は content/modernization/pr16_research_story_route_ci_limit.json。開始HEADから全依存不変で今回story変更に起因しない。旧受入を緩和/書換え/再実行せず、後継potion.srm以降を進める。",
     "道路通常進行は content/modernization/pr16_research_story_route_checkpoint.json。敗北2回/回復/キズぐすり1個/Save counter3まで完走301入力を保持し、次はpotion.srmだけ。旧受入区間を再生しない。",
     "道路道具取得の開発原本 content/modernization/pr16_research_story_route_development/verification.json を保持。native2/74新検査。元Saveからの301入力を正式測定したrunがあれば原本回収だけにして重複しない。",
     "新規道路保存は content/modernization/pr16_research_story_continue_checkpoint.json。次はroute.srmからContinueだけ。旧starterと今回完走114入力/12012framesを再生しない。RP0の研究活動施設未到達。",
@@ -1095,6 +1096,13 @@
     "script_advance_frame": 1967,
     "successful_fresh_cores": 0,
     "tested_head": "9bf3abe5e0fbef23f8c5727c658ba31a4d556473"
+  },
+  "general_ci_capacity_limit": {
+    "full_ci_green": false,
+    "inputs_unchanged_since_task_start": true,
+    "path": "content/modernization/pr16_research_story_route_ci_limit.json",
+    "run_id": 36330551685,
+    "status": "GENERAL_CI_PREEXISTING_CAPACITY_SOURCE_MISMATCH_NOT_NEW_STORY_FAILURE"
   },
   "handoff_maintenance_task": "USER-20260918-RING-NPC-PLAN",
   "history_handoff_retained": "content/modernization/pr16_native_supply_handoff.json",
@@ -4200,7 +4208,8 @@
       "docs/PR16_RESEARCH_STORY_ROUTE_JA.md",
       "content/modernization/pr16_research_story_route_checkpoint.json",
       "content/modernization/pr16_research_story_route_terminal.json",
-      "scripts/pr16_research_story_route.py"
+      "scripts/pr16_research_story_route.py",
+      "content/modernization/pr16_research_story_route_ci_limit.json"
     ],
     "stop_rule_ja": "run36330546824の全11必須stepとartifact10934928662は終端確認済み。potion.srmのsize/SHAと固定runner/runtime/candidateを確認しContinue。map3/19(26,17)/counter3/キズぐすり1個から先の通常storyだけ進める。成功301入力/前回114入力/旧starter/RP/UI/BP/P08を再実行しない。勝利や研究施設到達へ昇格せずmerge/release/baseline変更禁止。"
   },
@@ -7706,6 +7715,10 @@
       "sha256": "edf87c0550c4b35385f8f3ffa0374223aa449cf97b36549398116c83a7e490ae",
       "size": 9050
     },
+    ".github/workflows/pr16-research-story-route-ci-limit.yml": {
+      "sha256": "14aae50f11d4ed0f6b8b24fa9ac43ae15b58348a59c56f8d4ee6b2d27d391c24",
+      "size": 11952
+    },
     ".github/workflows/pr16-research-story-route-followup.yml": {
       "sha256": "beec4be7d4755b22e59fc78afaa646274c1127fe55b4e5e9e0afce7b3fe789df",
       "size": 3950
@@ -9526,6 +9539,10 @@
       "sha256": "e0c46c45ac58f6429c748c164ed854d0eac5c101ac2e8c5c21889ddff692f80e",
       "size": 478141
     },
+    "content/modernization/pr16_research_story_route_ci_limit.json": {
+      "sha256": "3a8f8c597231b3d556912c8a0c10faa3ebc2636340deddd4844c32d0971bf9f5",
+      "size": 19808
+    },
     "content/modernization/pr16_research_story_route_development/commands.txt": {
       "sha256": "116a128d7a424725aa10c639cb3a862efa4f2daa7b5068285e0b94c40ca1eec8",
       "size": 3025
@@ -10611,8 +10628,8 @@
       "size": 3944
     },
     "docs/PR16_RESEARCH_STORY_ROUTE_JA.md": {
-      "sha256": "cade9ac1ccda1be6065d057bc7767d6ebbccc05d13187cd4aeb9083a53cb9f99",
-      "size": 5782
+      "sha256": "dd4d19fda31e1d495d5255db44420accf16ec322a6cd45132f41ed8dae241f0f",
+      "size": 6762
     },
     "docs/PR16_RESEARCH_UI_BOUNDARY_JA.md": {
       "sha256": "c6612deb907354729dbb4b7878ddb844cefb9573908c563288a299dce81e7939",
