@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "PASS_NATURAL_STORY_POTION_SAVE_SCOPED",
+    "current_stop": "STORY_GROWTH_DEVELOPED_ACTIONS_NEXT",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "道路でのトレーナー敗北2回・母親の通常回復・草側迂回・キズぐすり1個の通常取得・Save counter2→3・独立Continueの所持保持を限定受入。次はpotion.srmのmap3/19 (26,17)から通常ストーリーへ。トレーナー勝利0、研究活動施設への自然到達は未完。旧starter/完走301入力/旧RP/UI/BP/P08を再実行しない。",
+    "next_step": "開発原本の367入力/92画面/通常成長Saveは完走済み。118新検査は初回全成功。次はこの新区間だけのActions独立測定とgrowth.srm artifact保持。正式runが既に存在したら原本回収のみ。野生勝利1回/逃走1回・キズぐすり1個消費・経験値37+33・Lv5→6・HP21/21・通常Save counter3→4と独立Continueの保持を限定受入。新区間のトレーナー敗北2回、勝利0。次はgrowth.srmのmap3/0 (4,27)、経験値204、道具0から通常ストーリーを進める。研究活動施設への自然到達は未完。旧367入力/301入力/114入力/旧starter/RP/UI/BP/P08を再生しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -793,6 +793,7 @@
   },
   "current_resume_doc": "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
   "do_not_repeat": [
+    "成長開発原本 content/modernization/pr16_research_story_growth_development/verification.json を保持。367入力/92画面/native2/新118検査。正式runができた後は新たな入力をgrowth.srmから行い、成功した区間を再生しない。",
     "一般CIの旧容量原本source不一致は content/modernization/pr16_research_story_route_ci_limit.json。開始HEADから全依存不変で今回story変更に起因しない。旧受入を緩和/書換え/再実行せず、後継potion.srm以降を進める。",
     "道路通常進行は content/modernization/pr16_research_story_route_checkpoint.json。敗北2回/回復/キズぐすり1個/Save counter3まで完走301入力を保持し、次はpotion.srmだけ。旧受入区間を再生しない。",
     "道路道具取得の開発原本 content/modernization/pr16_research_story_route_development/verification.json を保持。native2/74新検査。元Saveからの301入力を正式測定したrunがあれば原本回収だけにして重複しない。",
@@ -4201,17 +4202,17 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "道路でのトレーナー敗北2回・母親の通常回復・草側迂回・キズぐすり1個の通常取得・Save counter2→3・独立Continueの所持保持を限定受入。次はpotion.srmのmap3/19 (26,17)から通常ストーリーへ。トレーナー勝利0、研究活動施設への自然到達は未完。旧starter/完走301入力/旧RP/UI/BP/P08を再実行しない。",
+    "goal_ja": "開発原本の367入力/92画面/通常成長Saveは完走済み。118新検査は初回全成功。次はこの新区間だけのActions独立測定とgrowth.srm artifact保持。正式runが既に存在したら原本回収のみ。野生勝利1回/逃走1回・キズぐすり1個消費・経験値37+33・Lv5→6・HP21/21・通常Save counter3→4と独立Continueの保持を限定受入。新区間のトレーナー敗北2回、勝利0。次はgrowth.srmのmap3/0 (4,27)、経験値204、道具0から通常ストーリーを進める。研究活動施設への自然到達は未完。旧367入力/301入力/114入力/旧starter/RP/UI/BP/P08を再生しない。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
-    "id": "NATURAL_STORY_FROM_POTION_SAVE_NEXT",
+    "id": "STORY_GROWTH_INDEPENDENT_MEASUREMENT_NEXT",
     "read_paths": [
-      "docs/PR16_RESEARCH_STORY_ROUTE_JA.md",
-      "content/modernization/pr16_research_story_route_checkpoint.json",
-      "content/modernization/pr16_research_story_route_terminal.json",
-      "scripts/pr16_research_story_route.py",
-      "content/modernization/pr16_research_story_route_ci_limit.json"
+      "docs/PR16_RESEARCH_STORY_GROWTH_JA.md",
+      "content/modernization/pr16_research_story_growth_development/verification.json",
+      "scripts/pr16_research_story_growth_actions.py",
+      "scripts/pr16_research_story_growth.py",
+      "content/modernization/pr16_research_story_route_checkpoint.json"
     ],
-    "stop_rule_ja": "run36330546824の全11必須stepとartifact10934928662は終端確認済み。potion.srmのsize/SHAと固定runner/runtime/candidateを確認しContinue。map3/19(26,17)/counter3/キズぐすり1個から先の通常storyだけ進める。成功301入力/前回114入力/旧starter/RP/UI/BP/P08を再実行しない。勝利や研究施設到達へ昇格せずmerge/release/baseline変更禁止。"
+    "stop_rule_ja": "この367入力は開発完走済み。正式測定runがあれば回収だけにして再生しない。正式測定前に旧potion保存を復元し、新区間のみ測定する。旧受入を再実行せず、trainer勝利/研究到達へ昇格しない。"
   },
   "observed_date_jst": "2026-09-27",
   "observed_head": "228d31f3e3ab74dbfc089b63a75478c0d5fde1eb",
@@ -6386,6 +6387,14 @@
     "status": "PASS_LOCAL_DEVELOPMENT_NOT_ACTIONS_ACCEPTANCE",
     "superseded_by": "content/modernization/pr16_research_story_continue_checkpoint.json"
   },
+  "research_story_growth_development": {
+    "actions_completion_confirmed": false,
+    "local_native_processes": 2,
+    "natural_research_arrival_accepted": false,
+    "new_unit_tests": 118,
+    "path": "content/modernization/pr16_research_story_growth_development/verification.json",
+    "status": "PASS_LOCAL_NATIVE_GROWTH_SAVE_NOT_ACTIONS_TERMINAL"
+  },
   "research_story_route": {
     "actions_completion_confirmed": true,
     "candidate": {
@@ -7711,6 +7720,10 @@
       "sha256": "385c619220164e7c1c87b6860caea245f2d5cc221ecdf62b8228b203beb2e827",
       "size": 2549
     },
+    ".github/workflows/pr16-research-story-growth-install.yml": {
+      "sha256": "c23ea56a87be344b975b9ac8fa2542470973f9d6d2c46209f05c76ac2c726d60",
+      "size": 6553
+    },
     ".github/workflows/pr16-research-story-install.yml": {
       "sha256": "edf87c0550c4b35385f8f3ffa0374223aa449cf97b36549398116c83a7e490ae",
       "size": 9050
@@ -7738,6 +7751,10 @@
     ".github/workflows/pr16-research-story-terminal.yml": {
       "sha256": "d6a2b3ab0c4fe2e1d9c2e2de2d7f46be51c0e27454045c0433ccb554687358b3",
       "size": 13939
+    },
+    ".github/workflows/pr16-research-story-town-context.yml": {
+      "sha256": "1736d375acfe15b3de54f454bac00b64d531af4d3159fc89df82f15e9ad492f6",
+      "size": 3845
     },
     ".github/workflows/pr16-research-story.yml": {
       "sha256": "6e67192b88d2be0585c34842c5d1698e5fdb10eab10771365e1af9cabc0330c5",
@@ -9535,6 +9552,54 @@
       "sha256": "c5c5eecedb955d32db3abe2b1868379859f704306397c1a8071dd206da3455d0",
       "size": 1091
     },
+    "content/modernization/pr16_research_story_growth_development/commands.txt": {
+      "sha256": "d461c7ad6a0694c2196f10446db55bbf4adb069e4af9f35967ef4750a7b77b4f",
+      "size": 4009
+    },
+    "content/modernization/pr16_research_story_growth_development/continue-commands.txt": {
+      "sha256": "156137c3e94af515f8f2e50972a3290a82bf7b748bfbc5f0802832c0f492642e",
+      "size": 301
+    },
+    "content/modernization/pr16_research_story_growth_development/continue.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_research_story_growth_development/continue.stdout.txt": {
+      "sha256": "81d9d427ed8645f407ac151d75532a0c071e626ed78612610bb75d3591454f8f",
+      "size": 5998
+    },
+    "content/modernization/pr16_research_story_growth_development/progress.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_research_story_growth_development/progress.stdout.txt": {
+      "sha256": "3a8508d4bc8a1169b7b3440f681a1fa74a3a1a8a9075760402a7cb6655e10978",
+      "size": 65074
+    },
+    "content/modernization/pr16_research_story_growth_development/setup.json": {
+      "sha256": "3ac019ed1982ab22620174852d45183199a6b543f1c1a1cfd14d1e82840c6806",
+      "size": 1639
+    },
+    "content/modernization/pr16_research_story_growth_development/unit.stderr.txt": {
+      "sha256": "cb6b75f7fbd96ce311e9f03ae1c4308082840f514a78020050fbebf48478ef63",
+      "size": 13950
+    },
+    "content/modernization/pr16_research_story_growth_development/unit.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_research_story_growth_development/verification.json": {
+      "sha256": "ed6bbaebf67cae339b728e2d344342457625e00dff7d60778f75a264fca14aaf",
+      "size": 7812
+    },
+    "content/modernization/pr16_research_story_growth_development/visual-review.json": {
+      "sha256": "14a3399a6ded80f5df2814973e7bafe4debda80fcaec6c654e70fa422ef1140c",
+      "size": 18302
+    },
+    "content/modernization/pr16_research_story_growth_session.json": {
+      "sha256": "130d6de53585a0968f7a32ea2ace466c9c1b46775215ca042aaf09a9309c87d0",
+      "size": 2023
+    },
     "content/modernization/pr16_research_story_route_checkpoint.json": {
       "sha256": "e0c46c45ac58f6429c748c164ed854d0eac5c101ac2e8c5c21889ddff692f80e",
       "size": 478141
@@ -10622,6 +10687,10 @@
     "docs/PR16_RESEARCH_STORY_CONTINUE_JA.md": {
       "sha256": "2368e2fe10c33ac5f91c30d70bf9efcd05965d432ff2949aa125f67091a72902",
       "size": 3955
+    },
+    "docs/PR16_RESEARCH_STORY_GROWTH_JA.md": {
+      "sha256": "6bf9613e342d0253d51bd75b8ac123993a08e2cd4599dbacf79aeec4ac9fab5b",
+      "size": 6365
     },
     "docs/PR16_RESEARCH_STORY_JA.md": {
       "sha256": "8b9e996aab057cb7839bd74fc86c8c4639169e262b0cbbe469610686e3a7afcc",
@@ -15295,6 +15364,14 @@
       "sha256": "d117ecc29b7d1e58acfc1e3f3d29134501f9ad015bfc272bdde161c6d859e17a",
       "size": 17932
     },
+    "scripts/pr16_research_story_growth.py": {
+      "sha256": "a0c78eeb4b3880fbd3f006233c29ca1d55dae8349694f173e8353d90a70664ac",
+      "size": 13961
+    },
+    "scripts/pr16_research_story_growth_actions.py": {
+      "sha256": "6ca221f1a04663da41ca8d921ec504ffb9cc5d6712455aa60c1a5a46548acbed",
+      "size": 24704
+    },
     "scripts/pr16_research_story_route.py": {
       "sha256": "7cb78a6d596a7dd79784d042b5709c02b867eca2d2460646de335174b6d15353",
       "size": 9692
@@ -16790,6 +16867,10 @@
     "tests/test_pr16_research_story_continue.py": {
       "sha256": "eb33ffc114d54ed93600dd95dd3f09ad956fb290200e77ad5874be0a074fa7ae",
       "size": 6755
+    },
+    "tests/test_pr16_research_story_growth.py": {
+      "sha256": "a20c8e8643be797de1043bb802b7bb49bc73d0fb71e84e4a3ca91c9ec9d4c6ab",
+      "size": 11609
     },
     "tests/test_pr16_research_story_route.py": {
       "sha256": "f6f9e7f5126fe1e51e1048cc5971cd5b9ed02f513f1ff67787ed2ea67775cfc2",

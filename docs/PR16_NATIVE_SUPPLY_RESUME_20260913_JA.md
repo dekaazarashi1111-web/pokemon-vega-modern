@@ -6,11 +6,11 @@
 
 ## いまの停止点と次の1手
 
-PASS_NATURAL_STORY_POTION_SAVE_SCOPED
+STORY_GROWTH_DEVELOPED_ACTIONS_NEXT
 
-**次: 道路でのトレーナー敗北2回・母親の通常回復・草側迂回・キズぐすり1個の通常取得・Save counter2→3・独立Continueの所持保持を限定受入。次はpotion.srmのmap3/19 (26,17)から通常ストーリーへ。トレーナー勝利0、研究活動施設への自然到達は未完。旧starter/完走301入力/旧RP/UI/BP/P08を再実行しない。**
+**次: 開発原本の367入力/92画面/通常成長Saveは完走済み。118新検査は初回全成功。次はこの新区間だけのActions独立測定とgrowth.srm artifact保持。正式runが既に存在したら原本回収のみ。野生勝利1回/逃走1回・キズぐすり1個消費・経験値37+33・Lv5→6・HP21/21・通常Save counter3→4と独立Continueの保持を限定受入。新区間のトレーナー敗北2回、勝利0。次はgrowth.srmのmap3/0 (4,27)、経験値204、道具0から通常ストーリーを進める。研究活動施設への自然到達は未完。旧367入力/301入力/114入力/旧starter/RP/UI/BP/P08を再生しない。**
 
-run36330546824の全11必須stepとartifact10934928662は終端確認済み。potion.srmのsize/SHAと固定runner/runtime/candidateを確認しContinue。map3/19(26,17)/counter3/キズぐすり1個から先の通常storyだけ進める。成功301入力/前回114入力/旧starter/RP/UI/BP/P08を再実行しない。勝利や研究施設到達へ昇格せずmerge/release/baseline変更禁止。
+この367入力は開発完走済み。正式測定runがあれば回収だけにして再生しない。正式測定前に旧potion保存を復元し、新区間のみ測定する。旧受入を再実行せず、trainer勝利/研究到達へ昇格しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
@@ -25,11 +25,11 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_RESEARCH_STORY_ROUTE_JA.md`
+- `docs/PR16_RESEARCH_STORY_GROWTH_JA.md`
+- `content/modernization/pr16_research_story_growth_development/verification.json`
+- `scripts/pr16_research_story_growth_actions.py`
+- `scripts/pr16_research_story_growth.py`
 - `content/modernization/pr16_research_story_route_checkpoint.json`
-- `content/modernization/pr16_research_story_route_terminal.json`
-- `scripts/pr16_research_story_route.py`
-- `content/modernization/pr16_research_story_route_ci_limit.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -63,6 +63,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- 成長開発原本 content/modernization/pr16_research_story_growth_development/verification.json を保持。367入力/92画面/native2/新118検査。正式runができた後は新たな入力をgrowth.srmから行い、成功した区間を再生しない。
 - 一般CIの旧容量原本source不一致は content/modernization/pr16_research_story_route_ci_limit.json。開始HEADから全依存不変で今回story変更に起因しない。旧受入を緩和/書換え/再実行せず、後継potion.srm以降を進める。
 - 道路通常進行は content/modernization/pr16_research_story_route_checkpoint.json。敗北2回/回復/キズぐすり1個/Save counter3まで完走301入力を保持し、次はpotion.srmだけ。旧受入区間を再生しない。
 - 道路道具取得の開発原本 content/modernization/pr16_research_story_route_development/verification.json を保持。native2/74新検査。元Saveからの301入力を正式測定したrunがあれば原本回収だけにして重複しない。

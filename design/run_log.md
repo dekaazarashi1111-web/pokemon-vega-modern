@@ -10886,3 +10886,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 既存run36330551685の25件23成功/2error原本を回収。terminal36330809679全8step成功外部確認。今回のnative/unit/compile再実行0、旧原本変更0、一般CI全緑を主張しない。
 - Commit: source=9d68eae91936df187d7014ccc30a9b081ab2a0a8; run=36331100545; 同branchへ非force push。
 - Network: 固定GitHub HEAD/Actions/artifact/APIのみ。一般CI action_required・失敗と歴史的全体private guardを成功へ読み替えない。merge/release/active baseline変更0。
+
+## 2026-09-27T23:26:33.837469+00:00
+- Timestamp: 2026-09-27T23:26:33.837469+00:00
+- Task: USER-20260928-RESEARCH-STORY-GROWTH / 通常成長・道具消費・保存継続
+- Version: research-story-growth-source-v1
+- Status: DONE（実装・新試験原本保存、正式終端は未確認）
+- Summary: 開発原本の367入力/92画面/通常成長Saveは完走済み。118新検査は初回全成功。次はこの新区間だけのActions独立測定とgrowth.srm artifact保持。正式runが既に存在したら原本回収のみ。野生勝利1回/逃走1回・キズぐすり1個消費・経験値37+33・Lv5→6・HP21/21・通常Save counter3→4と独立Continueの保持を限定受入。新区間のトレーナー敗北2回、勝利0。次はgrowth.srmのmap3/0 (4,27)、経験値204、道具0から通常ストーリーを進める。研究活動施設への自然到達は未完。旧367入力/301入力/114入力/旧starter/RP/UI/BP/P08を再生しない。
+- Files changed: 専用oracle/118検査/入力原本/checkpoint/guide、固定引継ぎMD/JSON、両ログ。ROM/save/runner/画面は非tracked artifactのみ。
+- Verify: 開発native2、進行367入力37210frames/cold38入力2736frames、92実画面（空白0）、3UI全byte一致。118新検査初回全PASS。source/evidence binding確認を再利用し、このinstallでnative/unit/compile再実行0。
+- Commit: source=141a092068b265c9d5f9055c4b2da69469402ecb; run=36358647763; 同branchへ非force push。
+- Network: 固定GitHub HEAD/Actions/artifact/APIのみ。一般CI action_required・失敗は別記録。全体private guard成功、merge、release、active baseline変更を主張しない。

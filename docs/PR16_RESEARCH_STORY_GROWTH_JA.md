@@ -1,0 +1,45 @@
+# 通常成長・道具消費・保存継続の限定checkpoint
+
+## 今回の区切り
+
+`potion.srm` の受入済み道路地点から続けた新規区間。野生戦の37経験値と別トレーナーの相手1体からの33経験値により、リープンがLv5からLv6へ成長した。キズぐすり1個を通常バッグから使い、使用画面でHP9→19を確認した。新規トレーナー戦は2回とも敗北であり、勝利として数えない。通常の自宅復帰・母親回復を経て、Lv6、経験値204、HP21/21、道具ポケット空、RP0、party1のまま自宅前でSave counter3→4を保存した。
+
+新しい町や研究活動施設へ到達したという受入ではない。全体story、配布、全learnsetの受入、新しい技の習得、merge、active baseline切替を含まない。候補ROM、runner、既受入の解析器は変更していない。
+
+## 元の正式checkpoint
+
+親は `content/modernization/pr16_research_story_route_checkpoint.json`。run `36330546824`、source `228d31f3e3ab74dbfc089b63a75478c0d5fde1eb`、artifact `10934928662` の全11必須step成功と保存済み原本を照合した。旧301入力は再実行せず、保存地点map3/19 (26,17)から新しい入力だけを続けた。
+
+候補は33554432bytes / SHA-256 `e1efb1009c6e6b0ec4967bf7b20562d2330bbd933f64f7f7863cdad56eb1f842`。固定runnerは73792bytes / SHA-256 `67096f8c8a487c03957da071d0190f74542480fb051cf8e8934e1b05adee9a61`。runtime/data artifactは `10898620034` / `10898510128`。元Save/RTCは131088bytes / SHA-256 `8e924f8f058007f204db4319304f064f5b3232256b2e41a3706f88d4e2105110`。
+
+## 今回保存した新規原本
+
+`content/modernization/pr16_research_story_growth_development/` に操作原本、全stdout/stderr、118新検査の成功原本、目視した意味アンカーと画面集合の照合記録を保存する。進行367入力/37210frames/85画面、独立Continue38入力/2736frames/7画面。独立ContinueのSaveは0回。通常Saveは進行側に1回だけ。全92画面は本物の240×160 PPMで、空白画面は0。画像・ROM・Save・runnerそのものはtrackedへ入れず、正式Actionsのartifactに保持する。
+
+内容の意味は実画面と同frameの状態へ束縛した。特に経験値37、キズぐすり使用後の回復、相手1体撃破後の経験値33、Lv6への上昇、次の相手が残っている画面、2回の敗北を区別する。自宅回復後と独立Continue後の手持ち・能力・空バッグの3画面は全byteのSHA-256が一致した。能力画面は経験値204、次のレベルまで32、HP21/21を表示する。観測protocolに存在しないHP/EXP/道具数を架空のRAM観測fieldとして追加していない。
+
+入力の途中にあった行き止まり、待機、敗北、野生からの逃走は削除していない。開発は巻戻しなしの進行core1と保存後の独立core1。正式測定は未受入のこの新区間を別coreで一度だけ再現し、全stdout/Save/画面を開発原本と比較する。正式測定後はその原本を回収し、成功した367入力をもう一度測定しない。118新検査は初回全件成功し、source/evidenceが一致する限りActionsで再起動しない。
+
+## 実装の検証境界
+
+専用oracleは `scripts/pr16_research_story_growth.py`、新検査は `tests/test_pr16_research_story_growth.py`。閉じたkey/observe/save/quit protocolと実行前入力logを対応づける。親Save/candidate/runner/run/artifact、85+7観測、通常Save3→4、同frame実画面、全party600bytes、全Flash128KiB、研究ledger、位置・向き・RP・counterを検査する。
+
+118検査は実原本の陽性を前提とし、トレーナー敗北の勝利扱い、相手1体撃破を戦闘全体勝利とする改変、施設warp、道具/成長/能力画面差替え、coldの保存不一致、追加Save、キー改変、多重キー、JSON重複、boolと整数の別名、終端欠落、host write/fixtureの偽装を個別に拒否する。単なる全記録hash不一致だけを負例の根拠にしない。
+
+今回のcheckpointは必要な再開情報に絞り、過去2690件以上の保護bindingを重複コピーしない。正式source HEADの固定状態JSONとその全byte identity・path件数を参照し、Actions内では全保護ファイルを照合する。検証を省略するための省略ではない。
+
+## 次の再開位置
+
+正式終端確認後の後継名は `growth.srm`。131088bytes / SHA-256 `f36faf0e82cf1c57c8a2c2a5e4bcf30ea6a53432b4d7828c79f1ee2f67cdd8d9`。map3/0 (4,27)、live (11,34)、下向き、自宅前のidle。counter4、Lv6、経験値204、HP21/21、party1、RP0、キズぐすり0。
+
+```text
+<fixed-runtime>/ld.so --library-path <fixed-runtime>/lib <checkpoint>/runner <fixed-candidate> <working-save> continue-story f36faf0e82cf1c57c8a2c2a5e4bcf30ea6a53432b4d7828c79f1ee2f67cdd8d9
+```
+
+`observe 0` は自動Continueで出力される。追加観測は1から。maskは0/1/2/8/16/32/64/128、framesは1〜600、最後に明示 `quit`。新しい進行が保存条件を満たしたときだけ `save`。この保存から先で通常の準備・野生戦・道具購入・未撃破トレーナーへの挑戦・先の町への進行を行う。過去に負けた相手への成長後の新しい挑戦は進行であり得るが、失敗した入力列を盲目的に再生しない。
+
+道路map3/19の (38,8) ではトモヨとの戦闘、(36,17) では別トレーナーとの戦闘が発生した。後者はパモLv4の次にクヌギダマLv8が残っており、今回の勝利判定に含めない。研究施設への自然到達は未完。旧starter/114入力/301入力/367入力を受入目的で再実行せず、旧RP/UI/BP/P08やリリース判断を開始しない。
+
+## CIと作業範囲
+
+旧P03容量CIのsource hash不一致は `content/modernization/pr16_research_story_route_ci_limit.json` の既知履歴。今回の成功を根拠に一般CI全体を成功へ読み替えない。古いvalidatorを緩めたり旧証拠を更新して帳尻を合わせたりしない。固定引継ぎMDは状態JSONから生成し、両ログはappend-only、最終indexのprivate guardは変更範囲だけ。全体の歴史的private guardが成功したとは主張しない。
