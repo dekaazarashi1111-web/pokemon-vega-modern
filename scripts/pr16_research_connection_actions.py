@@ -34,9 +34,9 @@ def restore():
     candidate,_=view.apply(candidate)
     m.need(m.identity(candidate)==m.CANDIDATE,'fixed current candidate')
     rom=OUT/'candidate.gba';rom.write_bytes(candidate)
-    fixture=m.prior.photo.fixture(seed)
+    fixture,fixture_receipt=m.prior.photo.fixture(seed)
     m.need(m.identity(fixture)=={'size':131072,'sha256':'434076d0db74c4c5bf1b63e3aa4cc336d17e1f2dbb894160e840c721aa337a38'},'fixed zero RP fixture')
-    d.write(PUBLIC/'inputs.json',dict(candidate=m.identity(candidate),seed=m.identity(seed),fixture=m.identity(fixture),artifacts=artifacts))
+    d.write(PUBLIC/'inputs.json',dict(candidate=m.identity(candidate),seed=m.identity(seed),fixture=m.identity(fixture),fixture_receipt=fixture_receipt,artifacts=artifacts))
     return runtime,seed,candidate,rom,fixture
 
 def measure():
@@ -44,6 +44,9 @@ def measure():
     PUBLIC.mkdir(parents=True)
     protected=d.bindings(PROTECTED);source=d.bindings(CODE)
     d.write(PUBLIC/'invocation.json',dict(source_head=os.environ['GITHUB_SHA'],run_id=int(os.environ['GITHUB_RUN_ID']),source_bindings=source,protected_bindings=protected,accepted_case_reruns=0))
+    failed=d.inputs.api('actions/runs/36284738523')
+    m.need(failed['head_sha']=='0f178e314857b2b0c0b52d88226c541a5a3570c1' and failed['status']=='completed' and failed['conclusion']=='failure','preserve tuple preflight failure')
+    d.write(PUBLIC/'previous-failure.json',dict(run=d.run_summary(failed),job_id=108523224651,reason='fixture returns (bytes, receipt); unpack before identity',native_processes=0,host_compiles=0,guard_processes=0,arm_compiles=0,artifact_id=10920381187))
     runtime,seed,candidate,rom,fixture=restore()
     audit=m.audit(candidate);d.write(PUBLIC/'candidate-audit.json',audit)
     text=m.generate(seed);(PUBLIC/'generated.c.txt').write_bytes(text)
@@ -80,7 +83,6 @@ def measure():
             status['observation_error']=dict(type=type(exc).__name__,reason=str(exc))
         status['screens']={p.name:m.identity(p.read_bytes()) for p in sorted(directory.glob('*.ppm'))}
         d.write(directory/'measurement.json',status);results[case]=status
-        # The final record is assembled after every case; interruption still leaves raw output.
         d.write(PUBLIC/'measurement.json',dict(source_head=os.environ['GITHUB_SHA'],run_id=int(os.environ['GITHUB_RUN_ID']),candidate=m.CANDIDATE,cases=results,host_compiles=1,arm_compiles=0,native_processes=len(results),guard_processes=len(guards),accepted_case_reruns=0,independent_oracle_accepted=False))
         print(case,status['returncode'],status.get('observation'),flush=True)
     m.need(d.bindings(PROTECTED)==protected and d.bindings(CODE)==source,'inputs/source unchanged')
