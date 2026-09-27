@@ -11,10 +11,10 @@ concurrency:
   group: pr16-research-standard-list
   cancel-in-progress: false
 jobs:
-  ui-resource-build:
+  ui-native:
     if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 15
     env:
       GITHUB_TOKEN: ${{ github.token }}
       PYTHONDONTWRITEBYTECODE: '1'
@@ -22,84 +22,48 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Apply exact four-file ownership and frame repair
+      - name: Exact source transfer
+        id: source
         shell: python
         run: |
-          import hashlib,json,os,pathlib,subprocess,sys
-          sys.path.insert(0,'scripts')
-          import pr16_research_lifecycle_actions as d
-          d.current()
-          edits=json.loads(pathlib.Path('content/modernization/pr16_research_standard_list_ui_edits.json').read_bytes())
-          assert {r['path'] for r in edits}=={'tools/pr16_research_standard_list.c','scripts/pr16_research_standard_list.py','tests/test_pr16_research_standard_list.py','tests/test_pr16_research_standard_list_thumb.py'}
-          pending={}
-          for r in edits:
-              p=pathlib.Path(r['path']);raw=p.read_bytes();assert hashlib.sha256(raw).hexdigest()==r['before_sha256']
-              text=raw.decode()
-              for old,new in r['replacements']:
-                  assert text.count(old)==1,(str(p),old)
-                  text=text.replace(old,new)
-              raw=text.encode();assert hashlib.sha256(raw).hexdigest()==r['after_sha256'];pending[p]=raw
-          for p,raw in pending.items():p.write_bytes(raw)
-          subprocess.run(['git','add','--',*[str(p) for p in pending]],check=True)
-          subprocess.run(['git','diff','--cached','--check'],check=True)
-          assert set(d.git('diff','--cached','--name-only').decode().splitlines())=={str(p) for p in pending}
-          assert d.git('ls-remote','origin',os.environ['GITHUB_REF']).decode().split()[0]==os.environ['GITHUB_SHA']
-          subprocess.run(['git','config','user.name','github-actions[bot]'],check=True)
-          subprocess.run(['git','config','user.email','41898282+github-actions[bot]@users.noreply.github.com'],check=True)
-          subprocess.run(['git','commit','-m','USER-20260927-RESEARCH-STANDARD-LIST: WIP 会話窓を削除しない入力と独立タイル・枠初期化へ修正'],check=True)
-          subprocess.run(['git','push','origin','HEAD:refs/heads/codex/modernization-followup-20260908'],check=True)
-          head=d.git('rev-parse','HEAD').decode().strip()
-          assert d.git('ls-remote','origin',os.environ['GITHUB_REF']).decode().split()[0]==head
-          out=pathlib.Path('.local/pr16-standard-list-ui-build');out.mkdir(parents=True)
-          d.write(out/'source-commit.json',dict(workflow_head=os.environ['GITHUB_SHA'],source_head=head,edits=edits,non_force_push_confirmed=True))
-      - name: Fixed isolated ARM compiler
+          import hashlib,pathlib
+          assert hashlib.sha256(pathlib.Path('scripts/pr16_research_standard_list_ui_actions.py').read_bytes()).hexdigest()=='8ae23bf702c334b641fcbad4643fb76aaa1f834fed5b9d841772d6b8d8625f05'
+      - name: Corrected window ownership frame and physical list interaction
+        id: measure
+        run: python3 -B scripts/pr16_research_standard_list_ui_actions.py measure
+      - name: Preserve UI measurement and earlier failures separately
+        id: record
+        if: always() && steps.source.outcome == 'success' && hashFiles('.local/pr16-standard-list-ui-native/public/invocation.json') != ''
+        run: python3 -B scripts/pr16_research_standard_list_ui_actions.py record
+      - name: Task graph resume and entire task scoped index
+        id: guard
+        if: always() && steps.record.outcome == 'success'
+        shell: bash
         run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y --no-install-recommends gcc-arm-none-eabi=15:13.2.rel1-2 binutils-arm-none-eabi
-          test "$(arm-none-eabi-gcc -dumpfullversion)" = 13.2.1
-      - name: Affected host ownership and Thumb tests only
+          set -euo pipefail
+          python3 -B scripts/validate_task_graph.py
+          mapfile -t owned < <(python3 -B scripts/pr16_research_standard_list_ui_actions.py paths)
+          git add -- "${owned[@]}"
+          python3 -B scripts/pr16_research_standard_list_ui_actions.py guard
+      - name: Non-force UI evidence checkpoint
+        if: always() && steps.guard.outcome == 'success'
+        shell: bash
         run: |
-          PYTHONPATH=tests python3 -B -m unittest test_pr16_research_standard_list.HostListTests -v >.local/pr16-standard-list-ui-build/host.stdout.txt 2>.local/pr16-standard-list-ui-build/host.stderr.txt
-          python3 -B -m unittest discover -s tests -p test_pr16_research_standard_list_thumb.py -v >.local/pr16-standard-list-ui-build/thumb.stdout.txt 2>.local/pr16-standard-list-ui-build/thumb.stderr.txt
-      - name: Build corrected resources without weakening the window lifecycle oracle
-        shell: python
-        run: |
-          import json,os,pathlib,sys
-          sys.path.insert(0,'scripts')
-          import pr16_research_standard_list as s
-          import pr16_research_counter_accept as a
-          import pr16_research_lifecycle_actions as d
-          out=pathlib.Path('.local/pr16-standard-list-ui-build');receipt=d.read(out/'source-commit.json')
-          assert receipt['source_head']==d.git('rev-parse','HEAD').decode().strip()
-          assert d.git('ls-remote','origin',os.environ['GITHUB_REF']).decode().split()[0]==receipt['source_head']
-          for r in receipt['edits']:assert s.identity(pathlib.Path(r['path']).read_bytes())['sha256']==r['after_sha256']
-          old,meta=a.archive(10928552956,1259229,'84f278c2e18bdb17989e347688962589af5a693cfd125a00aa3ea96cf0de55f0',201,5334036,36310534280)
-          prior=old['source/tests/test_pr16_research_standard_list.py'].decode()
-          current=pathlib.Path('tests/test_pr16_research_standard_list.py').read_text()
-          assert prior.split('def walk(',1)[1]==current.split('def walk(',1)[1]
-          prior=old['source/scripts/pr16_research_standard_list.py'].decode()
-          current=pathlib.Path('scripts/pr16_research_standard_list.py').read_text()
-          assert prior.split('def event(',1)[1].split('def audit(',1)[0]==current.split('def event(',1)[1].split('def audit(',1)[0]
-          assert old['unit.stderr.txt'].count(b' ... ok\n')==30 and b'\nOK\n' in old['unit.stderr.txt']
-          for label,count in [('host',18),('thumb',8)]:
-              raw=(out/(label+'.stderr.txt')).read_bytes()
-              assert raw.count(b' ... ok\n')==count and b'\nOK\n' in raw and not (out/(label+'.stdout.txt')).read_bytes()
-          code,build=s.compile_code(out/'arm')
-          build.update(source_head=receipt['source_head'],workflow_head=os.environ['GITHUB_SHA'],run_id=int(os.environ['GITHUB_RUN_ID']),code_hex=code.hex())
-          paths=[r['path'] for r in receipt['edits']]+['content/modernization/pr16_research_standard_list_ui_edits.json']
-          build['source_bindings']={p:s.identity(pathlib.Path(p).read_bytes()) for p in paths}
-          d.write(out/'build.json',build)
-          d.write(out/'diagnosis.json',dict(failed_ui_run=36311562940,failed_ui_artifact=10929392533,
-              visual_review='All22 viewed; native return0 is insufficient: dialogue disappeared and frame used glyph tiles',
-              input_fix='0x08110BF9 -> 0x08110539; former wraps input and deletes sYesNoWindowId at 0x0203AD6B',
-              tile_fix='0x214 is frame tile base, not window pixel base; allocate pixels 0x280..0x2f7, load user frame at 0x214..0x21c',
-              unchanged_strict_oracle=True,new_arm_compiles=1,new_host_tests=18,new_thumb_tests=8,reused_event_tests=14,new_native_processes=0,
-              previous_unaccepted_native_runs_preserved=[36311122801,36311562940],old_numeric_boundary_reruns=0))
+          set -euo pipefail
+          test "$(git ls-remote origin "$GITHUB_REF" | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20260927-RESEARCH-STANDARD-LIST: UI資源修正後の限定実測・引継ぎを保存'
+          git push origin HEAD:refs/heads/codex/modernization-followup-20260908
+          test "$(git ls-remote origin "$GITHUB_REF" | cut -f1)" = "$(git rev-parse HEAD)"
+          echo "RESULT=STOPPED TASK=USER-20260927-RESEARCH-STANDARD-LIST VERIFY=SCOPED COMMIT=$(git rev-parse HEAD)"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: pr16-research-standard-list-ui-build
-          path: .local/pr16-standard-list-ui-build/
+          name: pr16-research-standard-list-ui-native
+          path: |
+            .local/pr16-standard-list-ui-native/public/
+            content/modernization/pr16_research_standard_list_ui_checkpoint.json
           include-hidden-files: true
           retention-days: 14
           if-no-files-found: error
