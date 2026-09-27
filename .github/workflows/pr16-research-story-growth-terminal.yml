@@ -1,0 +1,96 @@
+name: pr16-research-story-growth-terminal
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-research-story-growth-terminal.yml]
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+jobs:
+  terminal:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+      EXPECTED_RUN: '36358726444'
+      EXPECTED_SOURCE: '52554a9b5eafe8743d87df57a4ba8565237fffae'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Verify external completed run and exact retained originals without native replay
+        run: |
+          python3 -B - <<'PY'
+          import pathlib,subprocess,sys
+          sys.path[:0]=['scripts','.']
+          import pr16_research_story_growth_actions as s
+          s.terminal()
+          d,m=s.d,s.m
+          root=pathlib.Path.cwd()
+          run=d.inputs.api('actions/runs/36358732448')
+          m.need(run['head_sha']=='52554a9b5eafe8743d87df57a4ba8565237fffae' and run['status']=='completed' and run['conclusion']=='failure' and run['run_attempt']==1,'actual source CI remains failed')
+          listing=d.inputs.api('actions/runs/36358732448/jobs?per_page=100')
+          m.need(listing['total_count']==len(listing['jobs'])==1,'complete source CI job list')
+          job=listing['jobs'][0]
+          m.need(job['id']==108731524613 and any(x['name']=='P03 capacity fixed originals and cold-save acceptance' and x['conclusion']=='failure' for x in job['steps']),'same failed capacity boundary')
+          meta=d.inputs.api('actions/artifacts/10945245745')
+          m.need(not meta['expired'] and meta['workflow_run']['id']==run['id'] and meta['workflow_run']['head_sha']==run['head_sha'] and meta['name']=='p03-capacity-final-ci','same CI original artifact')
+          raw=d.inputs.api('actions/artifacts/10945245745/zip',True)
+          m.need(m.identity(raw)==dict(size=1430,sha256='ff43b946b533597a15edeff0dd5ea14dc5be4a814f976415b3356617fe3e9c3f') and meta['size_in_bytes']==1430 and meta['digest']=='sha256:'+m.identity(raw)['sha256'],'whole CI artifact')
+          base='content/modernization/pr16_research_story_growth_ci/36358732448'
+          owned=set(d.read(s.OUT/'owned.json'))
+          with s.helper.safe_zip(raw,10000) as z:
+              m.need(set(z.namelist())=={'tests.txt','source-head.txt','checkout-head.txt'},'closed CI original members')
+              tests=z.read('tests.txt')
+              m.need(m.identity(tests)==dict(size=5936,sha256='db0fdb436cbd7ad577bc7849b22d11a8e6cdd0f2d271886150fac1c3af692bbd') and tests.count(b' ... ok\n')==23 and tests.count(b' ... ERROR\n')==2 and b'FAILED (errors=2)' in tests and tests.count(b'ValueError: tested source changed: overlays/qol_production/qol_production.c')==2,'same 25 tests 23 pass 2 errors, no reinterpretation')
+              m.need(z.read('source-head.txt').decode().strip()==run['head_sha'],'source CI matches growth source')
+              for name in z.namelist():
+                  path=root/base/name;m.need(not path.exists(),'immutable fresh CI original')
+                  data=z.read(name);data.decode('utf-8');m.need(b'\0' not in data,'CI evidence text only')
+                  path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes(data);owned.add(base+'/'+name)
+          protected={'overlays/qol_production/qol_production.c','scripts/record_modernization_p03_capacity.py','tests/test_modernization_p08_capacity_evidence.py'}
+          subprocess.run(['git','diff','--exit-code','27c36f00177af193d3fb2883ba0d2416d0d2f929','HEAD','--',*sorted(protected)],check=True)
+          proof=base+'/limit.json'
+          d.write(root/proof,dict(schema_version=1,status='KNOWN_SOURCE_VALIDATION_FAILURE_NOT_GROWTH_REGRESSION',run=d.run_summary(run),job={k:job[k] for k in ('id','name','status','conclusion','steps')},artifact={k:meta[k] for k in ('id','name','size_in_bytes','digest','workflow_run')},archive=m.identity(raw),tests=25,passed=23,errors=2,exception='ValueError: tested source changed: overlays/qol_production/qol_production.c',originals=d.bindings({base+'/'+n for n in ('tests.txt','source-head.txt','checkout-head.txt')}),unchanged_since_start_head='27c36f00177af193d3fb2883ba0d2416d0d2f929',unchanged_dependencies=d.bindings(protected),previous_limit='content/modernization/pr16_research_story_route_ci_limit.json',collection_native_processes=0,collection_unit_test_runs=0,validator_loosened=False,growth_success_reinterpreted_as_all_ci_success=False))
+          owned.add(proof)
+          with (root/s.GUIDE).open('a') as f:
+              f.write('\n## 今回のsourceに対する一般CI\n\nsource-validation run36358732448 / job108731524613はfailure。固定artifact10945245745の全byteを回収し、25検査中23成功・2ERROR、原因 `ValueError: tested source changed: overlays/qol_production/qol_production.c` を確認した。当該C・旧validator・旧testは開始HEAD27c36f0から変更なし。後続relearner stepはskipped、対応artifact uploadもfailureであり、成功へ読み替えない。原本と依存不変の証拠は `'+proof+'`。既存CIの自動起動結果を回収しただけで、この収集処理のnative/unit再実行0。\n')
+          state=d.read(root/d.STATE)
+          state['research_story_growth_ci_limit']=dict(path=proof,status='KNOWN_SOURCE_VALIDATION_FAILURE_NOT_GROWTH_REGRESSION',run_id=run['id'],source_head=run['head_sha'])
+          for name in {s.GUIDE,proof}|{base+'/'+n for n in ('tests.txt','source-head.txt','checkout-head.txt')}:
+              state['source_bindings'][name]=m.identity((root/name).read_bytes())
+          s.publish_resume(state)
+          s.append_logs('新区間成功と一般CI既知失敗を分離して固定原本を保存。旧validator/旧C/旧testは変更しない。','source-validation run36358732448/job108731524613 failure、artifact10945245745全byte一致、25検査23成功2ERROR。原因source hash不一致、後続skipped/upload failure保持。回収処理native/unit/compile0。','research-story-growth-ci-boundary-v1','DONE（一般CIは既知失敗のまま）')
+          s.own(owned)
+          print('PASS: fresh CI failure originals retained separately; no validator changes or test rerun')
+          PY
+      - name: Task graph fixed resume and append-only scoped final index
+        run: |
+          python3 -B scripts/pr16_resume.py check
+          python3 -B scripts/validate_task_graph.py
+          mapfile -t paths < <(python3 -B scripts/pr16_research_story_growth_actions.py paths)
+          git add -- "${paths[@]}"
+          python3 -B scripts/pr16_research_story_growth_actions.py guard
+      - name: Non-force terminal receipt commit
+        run: |
+          test "$(git ls-remote origin "$GITHUB_REF" | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20260928-RESEARCH-STORY-GROWTH: 全必須stepと成長Save原本の成功終端を確定'
+          git push origin "HEAD:$GITHUB_REF"
+          test "$(git ls-remote origin "$GITHUB_REF" | cut -f1)" = "$(git rev-parse HEAD)"
+          git rev-parse HEAD > .local/pr16-story-growth-run/completion-head.txt
+          printf 'RESULT=DONE TASK=USER-20260928-RESEARCH-STORY-GROWTH VERIFY=TERMINAL_SCOPED_PASS COMMIT=%s\n' "$(git rev-parse HEAD)"
+      - name: Preserve committed text readback
+        run: python3 -B scripts/pr16_research_story_growth_actions.py snapshot
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-research-story-growth-terminal-record
+          path: .local/pr16-story-growth-run
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90
