@@ -11,3 +11,10 @@ source `ed1f8051c9e3ac80b3d4034553d80fe4d2172e8a` / run `36284847516`。`content
 ## ローカル前試行
 
 生成前dir不足1、host compile2、guard7、native5（candidate事前拒否1、lab/fishing/game完走3、生態1は環境リセットで中断）。原本消失のため受入0。後継Actions原本で独立受入し、失敗や消失を成功へ改作しない。
+
+## 生態ガイドの限定後続
+
+研究室/釣り/ゲームコーナーの計測原本を再実行せず、生態ガイドの追加1件と合わせて独立oracle・画像レビューを完了する。受付の数値残高/ランク表示欠落は実装未完、自然稼得RP→ショップ支出/通常ストーリー到達は未受入。
+
+{'measurement': 'content/modernization/pr16_research_connection_evidence/36285051878/measurement.json', 'manifest': 'content/modernization/pr16_research_connection_evidence/36285051878/manifest.json', 'source_head': '51f4ce7eae44ebb5ed6c192bf088b3ebbf030ed1', 'run_id': 36285051878, 'native_processes': 1, 'observed_complete': True, 'independent_oracle_accepted': False}
+移動NPCの現在位置を旧原本で確認し、player(3,5)からlocal1(2,5)へ左を向いて通常A。NPC座標/乱数/文言の書換えなし。旧3入口を再実行しない。

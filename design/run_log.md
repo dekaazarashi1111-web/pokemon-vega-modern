@@ -10671,3 +10671,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: strict host compile1、guard7拒否、native4計測、ARM/ROM変更/受入済み再実行0。正式native受入は独立oracleと画像照合まで0。source hash/保全原本/resume/task graph/最終index scoped guard。
 - Commit: source=ed1f8051c9e3ac80b3d4034553d80fe4d2172e8a; 同branchへ非force push。自己SHAはgit log参照。
 - Network: 固定GitHub artifactとPR/Actionsのみ。merge/release/baseline変更なし。全体private guard成功は主張しない。
+
+## 2026-09-27T01:17:23.867423+00:00
+- Timestamp: 2026-09-27T01:17:23.867423+00:00
+- Task: USER-20260927-RESEARCH-CONNECTION / 生態ガイドの通常入力のみ追加
+- Version: research-ecology-guide-measured-v1
+- Status: STOPPED（独立oracle・画面受入へ）
+- Summary: 旧原本の移動NPC位置を根拠に左向きAへ修正。候補/生成C不変。新native1、host compile1、guard7、ARM/ROM変更/既受入再実行0。旧3入口は再実行せず原本維持。
+- Files changed: 専用workflow、UTF8原本、checkpoint/guide、固定引継ぎMD/JSON、両ログ。
+- Verify: Actions36284847516終端success確認、source/原本hash、resume/task graph/最終index scoped guard。正式受入や全CI成功は主張しない。
+- Commit: source=51f4ce7eae44ebb5ed6c192bf088b3ebbf030ed1; 同branch非force push、自己SHAはgit log。
+- Network: 固定GitHub artifact/PR/Actionsのみ。merge/release/baseline不変。

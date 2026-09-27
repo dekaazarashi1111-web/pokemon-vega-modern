@@ -1,12 +1,21 @@
 {
   "accepted_case_reruns": 0,
   "accepted_native_cases": [],
-  "actions_completion_confirmed": false,
+  "actions_completion_confirmed": true,
   "active_baseline_changed": false,
   "arm_compiles": 0,
   "candidate": {
     "sha256": "26dac23cfdbc02c3c25e357b79dcdf3d247c10d893f54a4f6d6b1227bf5624da",
     "size": 33554432
+  },
+  "ecology_followup": {
+    "independent_oracle_accepted": false,
+    "manifest": "content/modernization/pr16_research_connection_evidence/36285051878/manifest.json",
+    "measurement": "content/modernization/pr16_research_connection_evidence/36285051878/measurement.json",
+    "native_processes": 1,
+    "observed_complete": true,
+    "run_id": 36285051878,
+    "source_head": "51f4ce7eae44ebb5ed6c192bf088b3ebbf030ed1"
   },
   "guard_processes": 7,
   "host_compiles": 1,
@@ -165,5 +174,14 @@
   },
   "source_head": "ed1f8051c9e3ac80b3d4034553d80fe4d2172e8a",
   "status": "MEASURED_PHYSICAL_CONNECTION_PENDING_INDEPENDENT_ORACLE",
-  "task": "USER-20260927-RESEARCH-CONNECTION"
+  "task": "USER-20260927-RESEARCH-CONNECTION",
+  "terminal_run": {
+    "conclusion": "success",
+    "head_branch": "codex/modernization-followup-20260908",
+    "head_sha": "ed1f8051c9e3ac80b3d4034553d80fe4d2172e8a",
+    "id": 36284847516,
+    "path": ".github/workflows/pr16-research-connection-20260927.yml",
+    "run_attempt": 1,
+    "status": "completed"
+  }
 }

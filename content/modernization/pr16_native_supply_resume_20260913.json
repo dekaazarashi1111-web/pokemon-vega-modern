@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "屋外4入口の未受入計測を原本固定。独立ledger/oracleと画面レビューで受入範囲を確定し、生態ガイドの未観測文言だけ追加調査する。受付数値残高の表示欠落・自然稼得RPのショップ支出接続は未完。GAME_CORNER/旧活動/今回の成功原本を無変更再実行しない。",
+    "next_step": "研究室/釣り/ゲームコーナーの計測原本を再実行せず、生態ガイドの追加1件と合わせて独立oracle・画像レビューを完了する。受付の数値残高/ランク表示欠落は実装未完、自然稼得RP→ショップ支出/通常ストーリー到達は未受入。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -4172,7 +4172,7 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "屋外4入口の未受入計測を原本固定。独立ledger/oracleと画面レビューで受入範囲を確定し、生態ガイドの未観測文言だけ追加調査する。受付数値残高の表示欠落・自然稼得RPのショップ支出接続は未完。GAME_CORNER/旧活動/今回の成功原本を無変更再実行しない。",
+    "goal_ja": "研究室/釣り/ゲームコーナーの計測原本を再実行せず、生態ガイドの追加1件と合わせて独立oracle・画像レビューを完了する。受付の数値残高/ランク表示欠落は実装未完、自然稼得RP→ショップ支出/通常ストーリー到達は未受入。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
     "id": "RESEARCH_CONNECTION_ORACLE_AND_ECOLOGY_NEXT",
     "read_paths": [
@@ -4184,18 +4184,27 @@
     "stop_rule_ja": "固定ROM/seed/受入原本は不変。fixture屋外入口を通常ストーリー到達へ昇格しない。受入済み再実行・merge/release/baseline変更禁止。"
   },
   "observed_date_jst": "2026-09-27",
-  "observed_head": "ed1f8051c9e3ac80b3d4034553d80fe4d2172e8a",
+  "observed_head": "51f4ce7eae44ebb5ed6c192bf088b3ebbf030ed1",
   "observed_head_checks": {
-    "reason_ja": "前handoff36283786399は成功確認済み。本runは原本記録のみで正式native受入/自己終端/全CI成功はまだ主張しない。",
+    "reason_ja": "前4入口記録Actions成功を確認。旧生態未観測を保持し、追加1件の計測のみ。独立oracle/画面/自己run終端/全CI成功は未確定。",
     "runs": [
       {
-        "conclusion": null,
+        "conclusion": "success",
+        "head_branch": "codex/modernization-followup-20260908",
         "head_sha": "ed1f8051c9e3ac80b3d4034553d80fe4d2172e8a",
         "id": 36284847516,
+        "path": ".github/workflows/pr16-research-connection-20260927.yml",
+        "run_attempt": 1,
+        "status": "completed"
+      },
+      {
+        "conclusion": null,
+        "head_sha": "51f4ce7eae44ebb5ed6c192bf088b3ebbf030ed1",
+        "id": 36285051878,
         "status": "in_progress"
       }
     ],
-    "scope_head": "ed1f8051c9e3ac80b3d4034553d80fe4d2172e8a"
+    "scope_head": "51f4ce7eae44ebb5ed6c192bf088b3ebbf030ed1"
   },
   "observed_head_history": [
     {
@@ -5858,6 +5867,16 @@
       "sha256": "26dac23cfdbc02c3c25e357b79dcdf3d247c10d893f54a4f6d6b1227bf5624da",
       "size": 33554432
     },
+    "ecology_followup": {
+      "independent_oracle_accepted": false,
+      "manifest": "content/modernization/pr16_research_connection_evidence/36285051878/manifest.json",
+      "measurement": "content/modernization/pr16_research_connection_evidence/36285051878/measurement.json",
+      "native_processes": 1,
+      "observed_complete": true,
+      "run_id": 36285051878,
+      "source_head": "51f4ce7eae44ebb5ed6c192bf088b3ebbf030ed1"
+    },
+    "first_actions_completion_confirmed": true,
     "path": "content/modernization/pr16_research_connection_checkpoint.json",
     "run_id": 36284847516,
     "status": "MEASURED_PHYSICAL_CONNECTION_PENDING_INDEPENDENT_ORACLE"
@@ -7377,6 +7396,10 @@
       "sha256": "c56ce9c6631d46dcaaf50938227fad4aad492a08c66097e7b85b7125d2b738e0",
       "size": 2627
     },
+    ".github/workflows/pr16-research-ecology-guide-20260927.yml": {
+      "sha256": "89042021706424fca9b5a6c141aacb3a1d2c54949842473221925abe715456d9",
+      "size": 10235
+    },
     ".github/workflows/pr16-research-followup-20260927.yml": {
       "sha256": "d16ae624bd2ec8ae6ff3710696bf6836c030858f9fc0941408e18292e57ea270",
       "size": 2316
@@ -8726,8 +8749,8 @@
       "size": 62636
     },
     "content/modernization/pr16_research_connection_checkpoint.json": {
-      "sha256": "fe00b61a736e9d60c28e51b4a1248bf06be5259b157e4124d788551219d42494",
-      "size": 6039
+      "sha256": "46f7d65d79501aa0b6aff5c3ba096e02ae5c7d4016eeb9c4c41175f4300b9535",
+      "size": 6780
     },
     "content/modernization/pr16_research_game_corner_checkpoint.json": {
       "sha256": "da406e68da9ed502a1b7fc89db0cc75caaed18f9d0dd277e9baff4df05361163",
@@ -9722,8 +9745,8 @@
       "size": 1591
     },
     "docs/PR16_RESEARCH_CONNECTION_JA.md": {
-      "sha256": "e051e4fa54ded2da62675259757faff7994987f0c71d58547834eb65261cfc9a",
-      "size": 1351
+      "sha256": "8ee1438256f7e751e92ac3931e152adfa9fee0bb3d1cc54fd66129e056d004ec",
+      "size": 2253
     },
     "docs/PR16_RESEARCH_GAME_CORNER_JA.md": {
       "sha256": "15c85ae83e316ae8040ecb0d4512402e17df2d1203d28fab345cbaa10355e00e",

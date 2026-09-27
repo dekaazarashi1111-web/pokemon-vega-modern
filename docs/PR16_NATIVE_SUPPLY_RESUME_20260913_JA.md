@@ -8,13 +8,13 @@
 
 MEASURED_PHYSICAL_CONNECTION_PENDING_INDEPENDENT_ORACLE
 
-**次: 屋外4入口の未受入計測を原本固定。独立ledger/oracleと画面レビューで受入範囲を確定し、生態ガイドの未観測文言だけ追加調査する。受付数値残高の表示欠落・自然稼得RPのショップ支出接続は未完。GAME_CORNER/旧活動/今回の成功原本を無変更再実行しない。**
+**次: 研究室/釣り/ゲームコーナーの計測原本を再実行せず、生態ガイドの追加1件と合わせて独立oracle・画像レビューを完了する。受付の数値残高/ランク表示欠落は実装未完、自然稼得RP→ショップ支出/通常ストーリー到達は未受入。**
 
 固定ROM/seed/受入原本は不変。fixture屋外入口を通常ストーリー到達へ昇格しない。受入済み再実行・merge/release/baseline変更禁止。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `ed1f8051c9e3ac80b3d4034553d80fe4d2172e8a`。
+証拠のsource HEAD: `51f4ce7eae44ebb5ed6c192bf088b3ebbf030ed1`。
 研究接続の新規測定source。自己run終端は後継で確認。旧ローカル消失原本は正式受入しない。
 
 ## 最短の再開手順
@@ -339,6 +339,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-前handoff36283786399は成功確認済み。本runは原本記録のみで正式native受入/自己終端/全CI成功はまだ主張しない。
+前4入口記録Actions成功を確認。旧生態未観測を保持し、追加1件の計測のみ。独立oracle/画面/自己run終端/全CI成功は未確定。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
