@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-PASS_GAME_CORNER_ANIMATED_PAYOUT_SCOPED
+MEASURED_PHYSICAL_CONNECTION_PENDING_INDEPENDENT_ORACLE
 
-**次: GAME_CORNERの実300枚配当0→3RP・取引保存2・fresh Continueは限定受入。次は通常進行の研究受付/ショップ接続と未確認native文言。Startまとめ払い/日内上限は別scope。受入済み稼得/Continueと旧活動の無変更再実行禁止。**
+**次: 屋外4入口の未受入計測を原本固定。独立ledger/oracleと画面レビューで受入範囲を確定し、生態ガイドの未観測文言だけ追加調査する。受付数値残高の表示欠落・自然稼得RPのショップ支出接続は未完。GAME_CORNER/旧活動/今回の成功原本を無変更再実行しない。**
 
-GAME_CORNER/写真/虫取り/採掘/釣り/生態/BP/P08の原本を保全。Start配当/日内上限/自然到達/通常接続/全活動/全mapの過大主張禁止。無変更再実行、merge/release/baseline変更禁止。
+固定ROM/seed/受入原本は不変。fixture屋外入口を通常ストーリー到達へ昇格しない。受入済み再実行・merge/release/baseline変更禁止。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `f0d25936ffbfb7fae2928b4c700cb734754fb354`。
-GAME_CORNER専用sourceは4d97c6b7、実測原本は3d2690fe、限定checkpointはf0d25936。実測は固定Actions資材のローカル実行。Actions native成功とは区別。
+証拠のsource HEAD: `ed1f8051c9e3ac80b3d4034553d80fe4d2172e8a`。
+研究接続の新規測定source。自己run終端は後継で確認。旧ローカル消失原本は正式受入しない。
 
 ## 最短の再開手順
 
@@ -25,11 +25,10 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_RESEARCH_GAME_CORNER_JA.md`
-- `content/modernization/pr16_research_game_corner_checkpoint.json`
-- `content/research_economy_v1/canonical_model.json`
-- `overlays/research_economy_v1/research_economy_v1.c`
-- `docs/PR16_RESEARCH_CATALOG_JA.md`
+- `docs/PR16_RESEARCH_CONNECTION_JA.md`
+- `content/modernization/pr16_research_connection_checkpoint.json`
+- `scripts/pr16_research_connection.py`
+- `tools/mgba_pr16_research_connection.c`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -63,6 +62,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- 研究接続の新規MEASURED原本を先に照合。旧GAME_CORNER/写真/虫取り/採掘/釣り/生態の稼得nativeは再実行しない。今回の入口3成功計測は独立oracle/画面確認へ進み、未観測の生態ガイドだけ診断する。
 - GAME_CORNERの実300枚配当923→1223コイン/0→3RP・2取引保存・別core Continueを限定受入。小4枚無RP、終了後の未保存賭け1188と保存値1223を区別。native5=実稼得1+Continue1+計測器失敗3、guard7、117PASS+変更loader2PASS、ROM/ARM0、受入済み再実行0。Start配当/日内cap/自然到達/通常接続/ガイド文言は未完。
 - 釣りlocal#2/生態local#5、候補26dac23cの実稼得4/10RP・逃走・取引保存だけのfresh Continueを限定受入。T24 typed credit1save+T23研究2save、全ledger/Bag/party/Flash、65新検査・10画像。無変更native/旧unit再実行禁止。ゲームコーナー/自然到達/受付接続/未確認native文言は未完。
 - 採掘run36267515706/source8fdda1bb/26dac23cを限定受入。0→10RP・条件不足/取消・取引保存2・独立Continue・fixture再入場cap・4文言、3process/5cores/新64検査。無変更再実行禁止。wild tail/自然再到達/通常接続/全活動は未受入。
@@ -339,6 +339,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-GAME_CORNERは固定ローカル実測の限定受入。旧bridge36281697084は全体guardでfailure・unittest/push skippedを保持し、未適用4正本を本runで同期。未実行handoff検査1件のみPASS、native/ARM/受入済み再実行0。一般CIと専用記録を区別し、全CI成功/全体guard成功/自己run終端成功は主張しない。
+前handoff36283786399は成功確認済み。本runは原本記録のみで正式native受入/自己終端/全CI成功はまだ主張しない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

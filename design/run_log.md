@@ -10660,3 +10660,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 未実行handoff契約1PASS、全source binding、task graph、最終index scoped guard。native/ARM/host compile/受入済み再実行0。全体guard PASSは主張しない。
 - Commit: source=cecfb0118332f7f39c662f647477a708f4a66f97; 自己SHAはgit log参照。同branchへ非force push。
 - Network: GitHub PR/HEAD/Actionsのみ。merge/release/baseline変更なし。
+
+## 2026-09-27T01:13:28.428684+00:00
+- Timestamp: 2026-09-27T01:13:28.428684+00:00
+- Task: USER-20260927-RESEARCH-CONNECTION / 屋外入口と未確認文言の原本固定
+- Version: research-connection-measured-v1
+- Status: STOPPED（計測原本を固定、独立oracle/画面受入へ）
+- Summary: 新4入口の限定入力probeを実装。受付残高数値欠落を未完保持、屋外fixtureと通常ストーリーを区別。前ローカル環境リセットの原本消失/失敗はcheckpointで明記。
+- Files changed: 専用C/Python/Actions、UTF8原本/checkpoint/専用MD、固定再開MD/JSON、両ログ。
+- Verify: strict host compile1、guard7拒否、native4計測、ARM/ROM変更/受入済み再実行0。正式native受入は独立oracleと画像照合まで0。source hash/保全原本/resume/task graph/最終index scoped guard。
+- Commit: source=ed1f8051c9e3ac80b3d4034553d80fe4d2172e8a; 同branchへ非force push。自己SHAはgit log参照。
+- Network: 固定GitHub artifactとPR/Actionsのみ。merge/release/baseline変更なし。全体private guard成功は主張しない。
