@@ -9,60 +9,50 @@ concurrency:
   group: pr16-research-standard-list
   cancel-in-progress: false
 jobs:
-  scoped-source:
+  isolated-menu-build:
     if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
     runs-on: ubuntu-24.04
-    timeout-minutes: 5
+    timeout-minutes: 10
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 1
-      - name: Export exact tracked source for scoped implementation; no native rerun
+      - name: Fixed isolated ARM compiler
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends gcc-arm-none-eabi=15:13.2.rel1-2 binutils-arm-none-eabi
+          test "$(arm-none-eabi-gcc -dumpfullversion)" = 13.2.1
+      - name: Compile new menu only and export exact native helper source
         shell: python
         run: |
-          import fnmatch, hashlib, json, os, pathlib, subprocess
-          root = pathlib.Path.cwd()
-          out = root / '.local/pr16-standard-list-source'
-          patterns = [
-            'AGENTS.md', '**/AGENTS.md', 'scripts/*.py', 'scripts/**/*.py',
-            'tools/mgba_pr16_research*.c', 'tools/mgba_pr16_special_wild*.c',
-            'tools/mgba_pr16_physical*.c', 'tools/mgba_*common*.h',
-            'overlays/research_economy_v1/*',
-            'tests/test_pr16_research*.py', 'tests/test_research*.py',
-            'content/research_economy_v1/*.json', 'config/research*.json',
-            'content/modernization/pr16_research*.json',
-            'content/modernization/pr16_native_supply_resume_20260913.json',
-            'content/modernization/pr16_bp_chooser_checkpoint.json',
-            'content/modernization/p08_remaining_work.json',
-            'docs/PR16_RESEARCH_COUNTER_JA.md', 'docs/PR16_RESEARCH_CONNECTION_JA.md',
-            'docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md',
-            'design/active_play_baseline.md', 'config/active_play_baseline.json',
-            'infra/toolchain_manifest.json', 'state/source-lock.json',
-            '.github/workflows/pr16-research-counter*.yml',
-          ]
-          tracked = subprocess.check_output(['git', 'ls-files', '-z']).decode().split('\0')
-          manifest = {'head': os.environ['GITHUB_SHA'], 'files': {}, 'native_runs': 0, 'rom_builds': 0}
-          for name in tracked:
-              if not name or not any(fnmatch.fnmatchcase(name, pattern) for pattern in patterns):
+          import hashlib,json,os,pathlib,subprocess,sys
+          sys.path.insert(0,'scripts')
+          import pr16_research_standard_list as s
+          out=pathlib.Path('.local/pr16-standard-list-build');out.mkdir(parents=True)
+          code,build=s.compile_code(out/'arm')
+          build['source_head']=os.environ['GITHUB_SHA']
+          build['run_id']=int(os.environ['GITHUB_RUN_ID'])
+          build['code_hex']=code.hex()
+          build['source_bindings']={p:s.identity(pathlib.Path(p).read_bytes()) for p in (s.SOURCE,'scripts/pr16_research_standard_list.py')}
+          (out/'build.json').write_text(json.dumps(build,ensure_ascii=False,indent=2)+'\n')
+          files={}
+          for name in subprocess.check_output(['git','ls-files','-z']).decode().split('\0'):
+              p=pathlib.Path(name)
+              if not name or not ((name.startswith('tools/mgba') and p.suffix in ('.c','.h')) or name in build['source_bindings']):
                   continue
-              path = root / name
-              if path.is_symlink() or not path.is_file():
-                  raise RuntimeError('non-regular tracked source')
-              data = path.read_bytes()
-              data.decode('utf-8')
-              if len(data) > 4 * 1024 * 1024:
-                  raise RuntimeError('source file exceeds bounded transfer')
-              dest = out / 'source' / name
-              dest.parent.mkdir(parents=True, exist_ok=True)
-              dest.write_bytes(data)
-              manifest['files'][name] = {'size': len(data), 'sha256': hashlib.sha256(data).hexdigest()}
-          out.mkdir(parents=True, exist_ok=True)
-          (out / 'manifest.json').write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n')
-          print(json.dumps({'head': manifest['head'], 'source_files': len(manifest['files']), 'native_runs': 0, 'rom_builds': 0}))
+              assert p.is_file() and not p.is_symlink()
+              data=p.read_bytes();data.decode('utf-8');assert len(data)<=4*1024*1024
+              dest=out/'source'/p;dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(data)
+              files[name]=s.identity(data)
+          (out/'source-manifest.json').write_text(json.dumps({'head':os.environ['GITHUB_SHA'],'files':files},ensure_ascii=False,indent=2)+'\n')
+          print(json.dumps({'new_arm_compiles':1,'native_runs':0,'code_size':len(code),'helper_files':len(files)}))
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
-          name: pr16-research-standard-list-source
-          path: .local/pr16-standard-list-source/
+          name: pr16-research-standard-list-build
+          path: .local/pr16-standard-list-build/
           include-hidden-files: true
-          retention-days: 7
+          retention-days: 14
           if-no-files-found: error
