@@ -6,7 +6,7 @@
 
 ## いまの停止点と次の1手
 
-PASS_NATURAL_STARTER_STORY_PENDING_TERMINAL
+PASS_NATURAL_STARTER_STORY_SCOPED
 
 **次: 通常NewGame→自宅→屋外誘導→ヒイラギ研究所(map4/3)→リープン選択→通常Save→独立Continueを限定受入。研究活動の研究所(map96系)への通常ストーリー到達は未完。次は保存済みstarter.srmのContinueから実ストーリーを続ける。初期化/スターター/旧RP稼得支出/UI/BP/P08を再実行しない。**
 
@@ -15,7 +15,7 @@ PASS_NATURAL_STARTER_STORY_PENDING_TERMINAL
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
 証拠のsource HEAD: `653d59e897c8ac366a68888b2c9128595b9b34de`。
-新しい自然starter進行の独立Actions実測source。自己記録commitではない。終端は次の外部API読取で確定する。
+自然starter進行の成功Actionsが実行したsource HEAD。終端・保存artifact・全stepの確認は content/modernization/pr16_research_story_terminal.json。自己記録commitや製品最終SHAではない。
 
 ## 最短の再開手順
 
@@ -349,6 +349,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-未完/一般CI action_requiredを原値で保持。限定native成功と全体CI/releaseは別。
+自然starter限定run36320959294は全step SUCCESS。一般CIはこのrunsの実status/conclusionを保持し、action_required・未完・失敗を成功へ読み替えない。全体private guard/releaseは別。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

@@ -8070,3 +8070,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Development: video接続順の非描画診断1と正常進行診断1。loader失敗の原本とmissing-headerのtool観測を区別して保存。最初のmissing-header stderrは未保存。正式native件数へ加算しない。
 - Commit: source=653d59e897c8ac366a68888b2c9128595b9b34de; run=36320959294; 同branch非force push。終端確認は外部APIで別記録。
 - Network: GitHub固定artifact/Actions/APIのみ。merge/release/baseline変更0。一般CI action_required/歴史的全体guardを成功扱いしない。
+
+## 2026-09-27T13:05:22.078692+00:00
+- Timestamp: 2026-09-27T13:05:22.078692+00:00
+- Task: USER-20260927-RESEARCH-STORY / 自然スターター保存の成功終端確定
+- Version: research-natural-starter-v1-terminal
+- Status: DONE（自然スターター取得・通常Save・独立Continue限定）
+- Summary: run36320959294/job108624554711の全11step成功とcommit3ca75c106928d10838111b8454734befc1235b66を照合。artifact10932059074のZIP/通常生成save/runner/19画面/原本JSON/全Git HEAD snapshotを読戻し検証。次はmap4/3 (8,5)、party1/RP0/counter1のstarter.srmからContinueして未完ストーリーへ進む。
+- Files changed: starter checkpoint/終端receipt/専用guide/固定引継ぎMD JSON、両ログ。
+- Verify: artifact1345883bytes/SHA-256 057f3c5630d1951a529bfba7e36318578b943049419eceffaf0601f77eb1f84b PASS。raw oracle/全party600/Flash128KiB/位置/RP/counter保持PASS。59新検査と7guard拒否は原本/source一致再利用。今回の終端照合は新native/compile/unit/旧受入再実行すべて0。続けてrender/check/task graph/scoped indexを検査。
+- Commit: source=753e72d3815081e4f4a5b21e59644b05a5f2bffb; terminal_run=36321166071; 同branchへ非force push。
+- Network: GitHub原本run/job/artifact/HEADのみ。RP研究活動までの通常ストーリー到達・全体完成・releaseは未受入。merge/draft解除/baseline変更0。

@@ -1,0 +1,139 @@
+{
+  "accepted_case_reruns": 0,
+  "active_baseline_changed": false,
+  "artifact": {
+    "created_at": "2026-09-27T13:02:30Z",
+    "digest": "sha256:057f3c5630d1951a529bfba7e36318578b943049419eceffaf0601f77eb1f84b",
+    "expired": false,
+    "expires_at": "2026-12-26T13:01:28Z",
+    "id": 10932059074,
+    "name": "pr16-research-story-checkpoint",
+    "size_in_bytes": 1345883,
+    "workflow_run": {
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_repository_id": 1358127462,
+      "head_sha": "653d59e897c8ac366a68888b2c9128595b9b34de",
+      "id": 36320959294,
+      "repository_id": 1358127462
+    }
+  },
+  "checkpoint": {
+    "candidate": {
+      "sha256": "e1efb1009c6e6b0ec4967bf7b20562d2330bbd933f64f7f7863cdad56eb1f842",
+      "size": 33554432
+    },
+    "commands": "quit\n",
+    "data_artifact": 10898510128,
+    "executable": {
+      "sha256": "67096f8c8a487c03957da071d0190f74542480fb051cf8e8934e1b05adee9a61",
+      "size": 73792
+    },
+    "frame": 30656,
+    "map": [
+      4,
+      3
+    ],
+    "mode": "continue-story",
+    "new_game_replay_required": false,
+    "party_count": 1,
+    "rp": 0,
+    "run_id": 36320959294,
+    "runtime_artifact": 10898620034,
+    "save": {
+      "sha256": "113f04e9e5222360687e28868fb78f394650aa5c85b357675737544d49ad346b",
+      "size": 131088
+    },
+    "save_counter": 1,
+    "schema_version": 1,
+    "source_head": "653d59e897c8ac366a68888b2c9128595b9b34de",
+    "xy": [
+      8,
+      5
+    ]
+  },
+  "completion_commit": "3ca75c106928d10838111b8454734befc1235b66",
+  "continue_visual_review": {
+    "finding_ja": "序盤研究所の保存位置へ戻った実画面。RP研究活動到達ではない。",
+    "method": "current-session direct original PPM inspection, not OCR",
+    "sha256": "adef9c497decd9d06d3b19e1f2e4fe9b8ea66d956d9967724e78eb1d0682e159"
+  },
+  "full_natural_research_activity_route_accepted": false,
+  "job_id": 108624554711,
+  "new_arm_compiles": 0,
+  "new_host_compiles": 0,
+  "new_native_processes": 0,
+  "new_unit_tests": 0,
+  "original_screens_verified": 19,
+  "release_ready": false,
+  "run": {
+    "conclusion": "success",
+    "head_branch": "codex/modernization-followup-20260908",
+    "head_sha": "653d59e897c8ac366a68888b2c9128595b9b34de",
+    "id": 36320959294,
+    "path": ".github/workflows/pr16-research-story.yml",
+    "run_attempt": 1,
+    "status": "completed"
+  },
+  "schema_version": 1,
+  "source_head": "653d59e897c8ac366a68888b2c9128595b9b34de",
+  "status": "PASS_NATURAL_STARTER_STORY_SCOPED",
+  "steps": [
+    {
+      "conclusion": "success",
+      "name": "Set up job",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Run actions/checkout@v4",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Measure new natural starter Save and independent Continue only",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Record immutable evidence fixed resume and append-only logs",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Task graph and scoped final index",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Non-force scoped completion commit",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Preserve text completion snapshot",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Preserve successful partial inputs even if later oracle or writer fails",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Run actions/upload-artifact@v4",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Post Run actions/checkout@v4",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Complete job",
+      "status": "completed"
+    }
+  ],
+  "task": "USER-20260927-RESEARCH-STORY",
+  "verified_at": "2026-09-27T13:05:22.078692+00:00"
+}

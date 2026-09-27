@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "PASS_NATURAL_STARTER_STORY_PENDING_TERMINAL",
+    "current_stop": "PASS_NATURAL_STARTER_STORY_SCOPED",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -4204,17 +4204,8 @@
   "observed_date_jst": "2026-09-27",
   "observed_head": "653d59e897c8ac366a68888b2c9128595b9b34de",
   "observed_head_checks": {
-    "reason_ja": "未完/一般CI action_requiredを原値で保持。限定native成功と全体CI/releaseは別。",
+    "reason_ja": "自然starter限定run36320959294は全step SUCCESS。一般CIはこのrunsの実status/conclusionを保持し、action_required・未完・失敗を成功へ読み替えない。全体private guard/releaseは別。",
     "runs": [
-      {
-        "conclusion": null,
-        "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "653d59e897c8ac366a68888b2c9128595b9b34de",
-        "id": 36320964632,
-        "path": ".github/workflows/ci.yml",
-        "run_attempt": 1,
-        "status": "in_progress"
-      },
       {
         "conclusion": "success",
         "head_branch": "codex/modernization-followup-20260908",
@@ -4225,22 +4216,13 @@
         "status": "completed"
       },
       {
-        "conclusion": null,
+        "conclusion": "failure",
         "head_branch": "codex/modernization-followup-20260908",
         "head_sha": "653d59e897c8ac366a68888b2c9128595b9b34de",
-        "id": 36320959294,
-        "path": ".github/workflows/pr16-research-story.yml",
-        "run_attempt": 1,
-        "status": "in_progress"
-      },
-      {
-        "conclusion": null,
-        "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "653d59e897c8ac366a68888b2c9128595b9b34de",
-        "id": 36320959279,
+        "id": 36320964632,
         "path": ".github/workflows/ci.yml",
         "run_attempt": 1,
-        "status": "in_progress"
+        "status": "completed"
       },
       {
         "conclusion": "success",
@@ -4248,6 +4230,24 @@
         "head_sha": "653d59e897c8ac366a68888b2c9128595b9b34de",
         "id": 36320959289,
         "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+        "run_attempt": 1,
+        "status": "completed"
+      },
+      {
+        "conclusion": "failure",
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "653d59e897c8ac366a68888b2c9128595b9b34de",
+        "id": 36320959279,
+        "path": ".github/workflows/ci.yml",
+        "run_attempt": 1,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "653d59e897c8ac366a68888b2c9128595b9b34de",
+        "id": 36320959294,
+        "path": ".github/workflows/pr16-research-story.yml",
         "run_attempt": 1,
         "status": "completed"
       },
@@ -5615,7 +5615,7 @@
       "semantics": "PLA1圧縮と新規供給consumerのhost検証成功入力HEAD。ROM配置/実操作/記録commitの受入ではない。"
     }
   ],
-  "observed_head_semantics": "新しい自然starter進行の独立Actions実測source。自己記録commitではない。終端は次の外部API読取で確定する。",
+  "observed_head_semantics": "自然starter進行の成功Actionsが実行したsource HEAD。終端・保存artifact・全stepの確認は content/modernization/pr16_research_story_terminal.json。自己記録commitや製品最終SHAではない。",
   "p08_candidate_impact": {
     "candidate": {
       "crc32": "CC068B4A",
@@ -5737,23 +5737,7 @@
     "status": "NATIVE_PARTY_RETENTION_ACCEPTED_BP_PENDING",
     "tested_head": "10e535a046441dd3b797918106259b5c57b69716"
   },
-  "pending_runs": [
-    {
-      "run_id": 36320964632,
-      "status": "in_progress",
-      "tested_head": "653d59e897c8ac366a68888b2c9128595b9b34de"
-    },
-    {
-      "run_id": 36320959294,
-      "status": "in_progress",
-      "tested_head": "653d59e897c8ac366a68888b2c9128595b9b34de"
-    },
-    {
-      "run_id": 36320959279,
-      "status": "in_progress",
-      "tested_head": "653d59e897c8ac366a68888b2c9128595b9b34de"
-    }
-  ],
+  "pending_runs": [],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
   "pr_draft": true,
   "pr_merged": false,
@@ -6351,6 +6335,7 @@
     "status": "PASS_STANDARD_LIST_SELECTION_CANCEL_REVISIT_SCOPED"
   },
   "research_story": {
+    "actions_completion_confirmed": true,
     "candidate": {
       "sha256": "e1efb1009c6e6b0ec4967bf7b20562d2330bbd933f64f7f7863cdad56eb1f842",
       "size": 33554432
@@ -6358,10 +6343,12 @@
     "natural_research_arrival_accepted": false,
     "natural_starter_accepted": true,
     "path": "content/modernization/pr16_research_story_checkpoint.json",
+    "retained_artifact_id": 10932059074,
     "retained_artifact_name": "pr16-research-story-checkpoint",
     "run_id": 36320959294,
     "source_head": "653d59e897c8ac366a68888b2c9128595b9b34de",
-    "status": "PASS_NATURAL_STARTER_STORY_PENDING_TERMINAL"
+    "status": "PASS_NATURAL_STARTER_STORY_SCOPED",
+    "terminal_receipt": "content/modernization/pr16_research_story_terminal.json"
   },
   "research_ui_boundary": {
     "actions_completion_confirmed": true,
@@ -7651,6 +7638,10 @@
     ".github/workflows/pr16-research-story-install.yml": {
       "sha256": "edf87c0550c4b35385f8f3ffa0374223aa449cf97b36549398116c83a7e490ae",
       "size": 9050
+    },
+    ".github/workflows/pr16-research-story-terminal.yml": {
+      "sha256": "d6a2b3ab0c4fe2e1d9c2e2de2d7f46be51c0e27454045c0433ccb554687358b3",
+      "size": 13939
     },
     ".github/workflows/pr16-research-story.yml": {
       "sha256": "6e67192b88d2be0585c34842c5d1698e5fdb10eab10771365e1af9cabc0330c5",
@@ -9233,8 +9224,8 @@
       "size": 6051
     },
     "content/modernization/pr16_research_story_checkpoint.json": {
-      "sha256": "9f73292e20d4016dd689493e0f157c8188a8df30680720384db4ca528ebec4b4",
-      "size": 461503
+      "sha256": "252610f8022e55ccf2384ac50912b5ac50ff2cdc6a61667c58e307ae6fda4160",
+      "size": 462155
     },
     "content/modernization/pr16_research_story_development/black-video.stderr.txt": {
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -9351,6 +9342,10 @@
     "content/modernization/pr16_research_story_evidence/36320959294/save-recipe.json": {
       "sha256": "c5c5eecedb955d32db3abe2b1868379859f704306397c1a8071dd206da3455d0",
       "size": 1091
+    },
+    "content/modernization/pr16_research_story_terminal.json": {
+      "sha256": "8be100d127b13be49714710c8ed91cea9b677a2f3a860417d08263f5e458c58e",
+      "size": 4016
     },
     "content/modernization/pr16_research_ui_boundary_checkpoint.json": {
       "sha256": "bdf148aa1b487845b850c2bd5f3400da04e85558a0e1f65cf3a774ff409bb46e",
@@ -10321,8 +10316,8 @@
       "size": 4015
     },
     "docs/PR16_RESEARCH_STORY_JA.md": {
-      "sha256": "e27607dbb76b631677a542349893797b0d96dbb7ddc312542aceec2d3b24df5d",
-      "size": 2675
+      "sha256": "8b9e996aab057cb7839bd74fc86c8c4639169e262b0cbbe469610686e3a7afcc",
+      "size": 3944
     },
     "docs/PR16_RESEARCH_UI_BOUNDARY_JA.md": {
       "sha256": "c6612deb907354729dbb4b7878ddb844cefb9573908c563288a299dce81e7939",

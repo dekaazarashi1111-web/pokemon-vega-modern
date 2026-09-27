@@ -1,6 +1,6 @@
 {
   "accepted_case_reruns": 0,
-  "actions_completion_confirmed": false,
+  "actions_completion_confirmed": true,
   "active_baseline_changed": false,
   "arm_compiles": 0,
   "candidate": {
@@ -10434,7 +10434,23 @@
     }
   },
   "release_ready": false,
-  "retained_artifact_id": null,
+  "retained_artifact": {
+    "created_at": "2026-09-27T13:02:30Z",
+    "digest": "sha256:057f3c5630d1951a529bfba7e36318578b943049419eceffaf0601f77eb1f84b",
+    "expired": false,
+    "expires_at": "2026-12-26T13:01:28Z",
+    "id": 10932059074,
+    "name": "pr16-research-story-checkpoint",
+    "size_in_bytes": 1345883,
+    "workflow_run": {
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_repository_id": 1358127462,
+      "head_sha": "653d59e897c8ac366a68888b2c9128595b9b34de",
+      "id": 36320959294,
+      "repository_id": 1358127462
+    }
+  },
+  "retained_artifact_id": 10932059074,
   "retained_artifact_name": "pr16-research-story-checkpoint",
   "reused_guard_processes": 7,
   "reused_new_oracle_tests": 59,
@@ -10584,6 +10600,7 @@
     }
   },
   "source_head": "653d59e897c8ac366a68888b2c9128595b9b34de",
-  "status": "PASS_NATURAL_STARTER_STORY_PENDING_TERMINAL",
+  "status": "PASS_NATURAL_STARTER_STORY_SCOPED",
+  "terminal_receipt": "content/modernization/pr16_research_story_terminal.json",
   "visual_review": "content/modernization/pr16_research_story_development/visual-review.json"
 }
