@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "PASS_NATURAL_STORY_POTION_SAVE_PENDING_TERMINAL",
+    "current_stop": "PASS_NATURAL_STORY_POTION_SAVE_SCOPED",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -4199,24 +4199,16 @@
     "read_paths": [
       "docs/PR16_RESEARCH_STORY_ROUTE_JA.md",
       "content/modernization/pr16_research_story_route_checkpoint.json",
+      "content/modernization/pr16_research_story_route_terminal.json",
       "scripts/pr16_research_story_route.py"
     ],
-    "stop_rule_ja": "先に新runの全必須stepと後継Save artifactを照合。potion.srmから先だけ進め、成功301入力を再実行しない。勝利/研究施設到達へ昇格禁止。merge/release/baseline変更禁止。"
+    "stop_rule_ja": "run36330546824の全11必須stepとartifact10934928662は終端確認済み。potion.srmのsize/SHAと固定runner/runtime/candidateを確認しContinue。map3/19(26,17)/counter3/キズぐすり1個から先の通常storyだけ進める。成功301入力/前回114入力/旧starter/RP/UI/BP/P08を再実行しない。勝利や研究施設到達へ昇格せずmerge/release/baseline変更禁止。"
   },
   "observed_date_jst": "2026-09-27",
   "observed_head": "228d31f3e3ab74dbfc089b63a75478c0d5fde1eb",
   "observed_head_checks": {
     "reason_ja": "新区間専用Actionsと一般CIを分離。未完/action_required/失敗を成功にしない。",
     "runs": [
-      {
-        "conclusion": null,
-        "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "228d31f3e3ab74dbfc089b63a75478c0d5fde1eb",
-        "id": 36330551685,
-        "path": ".github/workflows/ci.yml",
-        "run_attempt": 1,
-        "status": "in_progress"
-      },
       {
         "conclusion": "success",
         "head_branch": "codex/modernization-followup-20260908",
@@ -4227,22 +4219,22 @@
         "status": "completed"
       },
       {
-        "conclusion": null,
+        "conclusion": "failure",
         "head_branch": "codex/modernization-followup-20260908",
         "head_sha": "228d31f3e3ab74dbfc089b63a75478c0d5fde1eb",
-        "id": 36330546747,
+        "id": 36330551685,
         "path": ".github/workflows/ci.yml",
         "run_attempt": 1,
-        "status": "in_progress"
+        "status": "completed"
       },
       {
-        "conclusion": null,
+        "conclusion": "success",
         "head_branch": "codex/modernization-followup-20260908",
         "head_sha": "228d31f3e3ab74dbfc089b63a75478c0d5fde1eb",
         "id": 36330546824,
         "path": ".github/workflows/pr16-research-story-route.yml",
         "run_attempt": 1,
-        "status": "in_progress"
+        "status": "completed"
       },
       {
         "conclusion": "success",
@@ -4259,6 +4251,15 @@
         "head_sha": "228d31f3e3ab74dbfc089b63a75478c0d5fde1eb",
         "id": 36330546806,
         "path": ".github/workflows/p03-forgetting-ci.yml",
+        "run_attempt": 1,
+        "status": "completed"
+      },
+      {
+        "conclusion": "failure",
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "228d31f3e3ab74dbfc089b63a75478c0d5fde1eb",
+        "id": 36330546747,
+        "path": ".github/workflows/ci.yml",
         "run_attempt": 1,
         "status": "completed"
       }
@@ -5617,7 +5618,7 @@
       "semantics": "PLA1圧縮と新規供給consumerのhost検証成功入力HEAD。ROM配置/実操作/記録commitの受入ではない。"
     }
   ],
-  "observed_head_semantics": "道路の新規道具取得とSave継続を独立測定したsource HEAD。成功終端は別途API照合する。自己commit/製品最終SHAではない。",
+  "observed_head_semantics": "道路道具取得を独立測定したsource HEAD。全11必須step・後継Save/RTC・53画面・全commit原本は content/modernization/pr16_research_story_route_terminal.json で外部確認済み。自己記録commitや製品最終SHAではない。",
   "p08_candidate_impact": {
     "candidate": {
       "crc32": "CC068B4A",
@@ -5739,23 +5740,7 @@
     "status": "NATIVE_PARTY_RETENTION_ACCEPTED_BP_PENDING",
     "tested_head": "10e535a046441dd3b797918106259b5c57b69716"
   },
-  "pending_runs": [
-    {
-      "run_id": 36330551685,
-      "status": "in_progress",
-      "tested_head": "228d31f3e3ab74dbfc089b63a75478c0d5fde1eb"
-    },
-    {
-      "run_id": 36330546747,
-      "status": "in_progress",
-      "tested_head": "228d31f3e3ab74dbfc089b63a75478c0d5fde1eb"
-    },
-    {
-      "run_id": 36330546824,
-      "status": "in_progress",
-      "tested_head": "228d31f3e3ab74dbfc089b63a75478c0d5fde1eb"
-    }
-  ],
+  "pending_runs": [],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
   "pr_draft": true,
   "pr_merged": false,
@@ -6393,17 +6378,19 @@
     "superseded_by": "content/modernization/pr16_research_story_continue_checkpoint.json"
   },
   "research_story_route": {
-    "actions_completion_confirmed": false,
+    "actions_completion_confirmed": true,
     "candidate": {
       "sha256": "e1efb1009c6e6b0ec4967bf7b20562d2330bbd933f64f7f7863cdad56eb1f842",
       "size": 33554432
     },
     "natural_research_arrival_accepted": false,
     "path": "content/modernization/pr16_research_story_route_checkpoint.json",
+    "retained_artifact_id": 10934928662,
     "retained_artifact_name": "pr16-research-story-route-checkpoint",
     "run_id": 36330546824,
     "source_head": "228d31f3e3ab74dbfc089b63a75478c0d5fde1eb",
-    "status": "PASS_NATURAL_STORY_POTION_SAVE_PENDING_TERMINAL"
+    "status": "PASS_NATURAL_STORY_POTION_SAVE_SCOPED",
+    "terminal_receipt": "content/modernization/pr16_research_story_route_terminal.json"
   },
   "research_story_route_development": {
     "actions_completion_confirmed": false,
@@ -7726,6 +7713,10 @@
     ".github/workflows/pr16-research-story-route-install.yml": {
       "sha256": "0495e3f0cf29eee5cb64869ee26c9f8095b7a3930f81c631af00f45aa639cec6",
       "size": 10259
+    },
+    ".github/workflows/pr16-research-story-route-terminal.yml": {
+      "sha256": "df84778cc29bc270be067a6a604b0f867aced941c95de2167ac1fc9ea6c7c909",
+      "size": 13528
     },
     ".github/workflows/pr16-research-story-route.yml": {
       "sha256": "809d2f49d7314cc8fb7cf7b393d541046f9b30d83ddfe21f6b0ae4c61ac236aa",
@@ -9532,8 +9523,8 @@
       "size": 1091
     },
     "content/modernization/pr16_research_story_route_checkpoint.json": {
-      "sha256": "285bd35339f23ee149e9fff9c5a7e9a25493fd26539cffcb7fcfeb005395ed36",
-      "size": 477477
+      "sha256": "e0c46c45ac58f6429c748c164ed854d0eac5c101ac2e8c5c21889ddff692f80e",
+      "size": 478141
     },
     "content/modernization/pr16_research_story_route_development/commands.txt": {
       "sha256": "116a128d7a424725aa10c639cb3a862efa4f2daa7b5068285e0b94c40ca1eec8",
@@ -9634,6 +9625,10 @@
     "content/modernization/pr16_research_story_route_evidence/36330546824/save-recipe.json": {
       "sha256": "c5c5eecedb955d32db3abe2b1868379859f704306397c1a8071dd206da3455d0",
       "size": 1091
+    },
+    "content/modernization/pr16_research_story_route_terminal.json": {
+      "sha256": "09ddbaa76ed7c3177fae2bd391513705b231bb3cd2b1cd5ebcf453764521c47e",
+      "size": 18484
     },
     "content/modernization/pr16_research_story_terminal.json": {
       "sha256": "8be100d127b13be49714710c8ed91cea9b677a2f3a860417d08263f5e458c58e",
@@ -10616,8 +10611,8 @@
       "size": 3944
     },
     "docs/PR16_RESEARCH_STORY_ROUTE_JA.md": {
-      "sha256": "84959f810967204513bab5ac27fdd90a183c50108a13969c6a1c9c3acfb07c50",
-      "size": 4273
+      "sha256": "cade9ac1ccda1be6065d057bc7767d6ebbccc05d13187cd4aeb9083a53cb9f99",
+      "size": 5782
     },
     "docs/PR16_RESEARCH_UI_BOUNDARY_JA.md": {
       "sha256": "c6612deb907354729dbb4b7878ddb844cefb9573908c563288a299dce81e7939",

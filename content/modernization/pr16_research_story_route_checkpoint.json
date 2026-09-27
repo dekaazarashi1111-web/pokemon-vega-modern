@@ -1,6 +1,6 @@
 {
   "accepted_case_reruns": 0,
-  "actions_completion_confirmed": false,
+  "actions_completion_confirmed": true,
   "active_baseline_changed": false,
   "arm_compiles": 0,
   "candidate": {
@@ -10877,7 +10877,23 @@
     }
   },
   "release_ready": false,
-  "retained_artifact_id": null,
+  "retained_artifact": {
+    "created_at": "2026-09-27T15:43:31Z",
+    "digest": "sha256:53d6ce6e010ad325fad5382ed89cde758db8e6d320d2c05a41597aceea022c6c",
+    "expired": false,
+    "expires_at": "2026-12-26T15:42:26Z",
+    "id": 10934928662,
+    "name": "pr16-research-story-route-checkpoint",
+    "size_in_bytes": 1492715,
+    "workflow_run": {
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_repository_id": 1358127462,
+      "head_sha": "228d31f3e3ab74dbfc089b63a75478c0d5fde1eb",
+      "id": 36330546824,
+      "repository_id": 1358127462
+    }
+  },
+  "retained_artifact_id": 10934928662,
   "retained_artifact_name": "pr16-research-story-route-checkpoint",
   "reused_fixed_runner_barriers": 7,
   "reused_new_oracle_tests": 74,
@@ -10955,7 +10971,8 @@
     }
   },
   "source_head": "228d31f3e3ab74dbfc089b63a75478c0d5fde1eb",
-  "status": "PASS_NATURAL_STORY_POTION_SAVE_PENDING_TERMINAL",
+  "status": "PASS_NATURAL_STORY_POTION_SAVE_SCOPED",
+  "terminal_receipt": "content/modernization/pr16_research_story_route_terminal.json",
   "trainer_losses": 2,
   "trainer_victories": 0,
   "transition_only_screens": [

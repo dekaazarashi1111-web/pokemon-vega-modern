@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-PASS_NATURAL_STORY_POTION_SAVE_PENDING_TERMINAL
+PASS_NATURAL_STORY_POTION_SAVE_SCOPED
 
 **次: 道路でのトレーナー敗北2回・母親の通常回復・草側迂回・キズぐすり1個の通常取得・Save counter2→3・独立Continueの所持保持を限定受入。次はpotion.srmのmap3/19 (26,17)から通常ストーリーへ。トレーナー勝利0、研究活動施設への自然到達は未完。旧starter/完走301入力/旧RP/UI/BP/P08を再実行しない。**
 
-先に新runの全必須stepと後継Save artifactを照合。potion.srmから先だけ進め、成功301入力を再実行しない。勝利/研究施設到達へ昇格禁止。merge/release/baseline変更禁止。
+run36330546824の全11必須stepとartifact10934928662は終端確認済み。potion.srmのsize/SHAと固定runner/runtime/candidateを確認しContinue。map3/19(26,17)/counter3/キズぐすり1個から先の通常storyだけ進める。成功301入力/前回114入力/旧starter/RP/UI/BP/P08を再実行しない。勝利や研究施設到達へ昇格せずmerge/release/baseline変更禁止。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
 証拠のsource HEAD: `228d31f3e3ab74dbfc089b63a75478c0d5fde1eb`。
-道路の新規道具取得とSave継続を独立測定したsource HEAD。成功終端は別途API照合する。自己commit/製品最終SHAではない。
+道路道具取得を独立測定したsource HEAD。全11必須step・後継Save/RTC・53画面・全commit原本は content/modernization/pr16_research_story_route_terminal.json で外部確認済み。自己記録commitや製品最終SHAではない。
 
 ## 最短の再開手順
 
@@ -27,6 +27,7 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 
 - `docs/PR16_RESEARCH_STORY_ROUTE_JA.md`
 - `content/modernization/pr16_research_story_route_checkpoint.json`
+- `content/modernization/pr16_research_story_route_terminal.json`
 - `scripts/pr16_research_story_route.py`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。

@@ -31,3 +31,15 @@
 道路でのトレーナー敗北2回・母親の通常回復・草側迂回・キズぐすり1個の通常取得・Save counter2→3・独立Continueの所持保持を限定受入。次はpotion.srmのmap3/19 (26,17)から通常ストーリーへ。トレーナー勝利0、研究活動施設への自然到達は未完。旧starter/完走301入力/旧RP/UI/BP/P08を再実行しない。
 
 正式source `228d31f3e3ab74dbfc089b63a75478c0d5fde1eb`、run `36330546824`。開発と独立測定の全stdout/53画面/Saveが一致。正式native2、開発native2は別会計。新74検査成功原本はsource一致で再利用し再起動0。
+
+## 外部確認した成功終端と再開点
+
+正式run36330546824/job108651503407の全11必須stepがcompleted/success。完了commit408911e20138d51880fb0c9f76f31e9d311d73be。上の確認待ちは測定時点の履歴で、現在は終端確認済み。正本は `content/modernization/pr16_research_story_route_terminal.json`。artifact10934928662 `pr16-research-story-route-checkpoint` は1492715bytes / SHA-256 53d6ce6e010ad325fad5382ed89cde758db8e6d320d2c05a41597aceea022c6c、期限2026-12-26。ZIP73member、通常Save/RTCの3コピー、固定runner、53実画面（内容52・治療暗転1）、全原本JSON、commit snapshot18text filesを照合。終端確認のnative/compile/unit再実行0。
+
+次はpotion.srmを作業コピーにし、固定candidate/runtime/runnerでContinueする。map3/19 (26,17)、party1、RP0、counter3、キズぐすり1個。未使用、トレーナー未撃破。
+
+```text
+<fixed-runtime>/ld.so --library-path <fixed-runtime>/lib <checkpoint>/runner <fixed-candidate> <working-save> continue-story 8e924f8f058007f204db4319304f064f5b3232256b2e41a3706f88d4e2105110
+```
+
+入力は `key <mask> <frames>`、`observe <連番>`、`save`、最後に `quit`。観測0は自動Continue観測であり、追加観測は1から。maskは0/1/2/8/16/32/64/128、frames1〜600。今回301入力と前回114入力、NewGame/スターターを再生しない。新しい地点より先だけ進める。研究活動施設への自然到達・全体story・releaseは未受入。
