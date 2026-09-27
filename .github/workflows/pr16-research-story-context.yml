@@ -1,0 +1,63 @@
+name: pr16-research-story-context
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-research-story-context.yml]
+permissions:
+  contents: read
+  actions: read
+  pull-requests: read
+jobs:
+  context:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Export scoped tracked UTF-8 context without builds or native replay
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 -B - <<'PY'
+          import fnmatch, hashlib, json, os, pathlib, re, subprocess, urllib.request, zipfile
+          root=pathlib.Path.cwd(); out=root/'.local/pr16-story-context'; out.mkdir(parents=True)
+          names=set(subprocess.check_output(['git','ls-files','-z']).decode().split('\0'))-{''}
+          patterns=['AGENTS.md','CHATGPT_RESUME.md','scripts/pr16_*.py','scripts/validate_task_graph.py','scripts/guard_private_files.py','scripts/github_private_environment.py','tests/test_pr16_research*.py','tests/test_pr16_resume.py','tools/mgba_pr16_research*.c','tools/pr16_research*','content/modernization/pr16_research*.json','content/modernization/pr16_research_new_game_evidence/**/*.json','content/modernization/pr16_research_new_game_evidence/**/*.txt','content/modernization/pr16_native_supply_resume_20260913.json','content/modernization/pr16_bp_chooser_checkpoint.json','content/modernization/p08_remaining_work.json','docs/PR16_RESEARCH*.md','docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md','design/run_log.md','design/version_log.md','design/active_play_baseline.md','config/active_play_baseline.json','config/research*.json','config/*research*.json','infra/toolchain_manifest.json','tasks/task_graph.json','design/tasks_next.md','.github/workflows/pr16-research*.yml']
+          selected={n for n in names if any(fnmatch.fnmatchcase(n,p) for p in patterns)}
+          selected.add('tools/mgba_qol_production_smoke.c')
+          pending=list(selected)
+          while pending:
+            n=pending.pop(); p=root/n
+            if p.suffix not in ('.c','.h') or not p.is_file(): continue
+            for inc in re.findall(r'^\s*#include\s+"([^"]+)"',p.read_text(),re.M):
+              for q in (p.parent/inc,root/'tools'/inc,root/inc):
+                rel=q.relative_to(root).as_posix()
+                if rel in names:
+                  if rel not in selected: selected.add(rel); pending.append(rel)
+                  break
+          manifest={'source_head':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'run_id':int(os.environ['GITHUB_RUN_ID']),'files':{},'native_executions':0,'accepted_test_reruns':0}
+          with zipfile.ZipFile(out/'context.zip','w',zipfile.ZIP_DEFLATED) as z:
+            for n in sorted(selected):
+              p=root/n
+              if not p.is_file() or p.is_symlink(): raise ValueError('not a tracked regular file: '+n)
+              b=p.read_bytes(); b.decode('utf-8')
+              manifest['files'][n]={'size':len(b),'sha256':hashlib.sha256(b).hexdigest()}; z.writestr(n,b)
+            z.writestr('context-manifest.json',json.dumps(manifest,indent=2,ensure_ascii=False)+'\n')
+          def get(path):
+            req=urllib.request.Request('https://api.github.com/repos/'+os.environ['GITHUB_REPOSITORY']+'/'+path,headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json'})
+            with urllib.request.urlopen(req) as r: return json.load(r)
+          runs=get('actions/runs?branch=codex%2Fmodernization-followup-20260908&per_page=30')['workflow_runs']
+          pr=get('pulls/16'); ref=get('git/ref/heads/codex/modernization-followup-20260908')
+          status={'source_head':manifest['source_head'],'remote_head':ref['object']['sha'],'pr':{k:pr[k] for k in ('number','state','draft','merged')},'runs':[{k:r[k] for k in ('id','name','head_sha','head_branch','path','status','conclusion','event','created_at','updated_at','run_attempt')} for r in runs]}
+          (out/'latest-actions.json').write_text(json.dumps(status,indent=2,ensure_ascii=False)+'\n')
+          print(json.dumps({'files':len(selected),'source_head':manifest['source_head'],'native_executions':0,'accepted_test_reruns':0}))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr16-research-story-context
+          path: .local/pr16-story-context
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14
