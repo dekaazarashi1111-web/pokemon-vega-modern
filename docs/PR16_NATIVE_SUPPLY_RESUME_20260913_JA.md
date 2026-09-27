@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-受付の数値残高・rankを2境界/18画面で限定受入。旧runの検証失敗を原本から切り分け、63件の修正試験と不変15件で確定。次は標準list。
+STOPPED_STANDARD_LIST_MEASUREMENT
 
-**次: 受付の数値残高/rankは0RP・rank1と9999RP・rank7の2境界を限定受入済み。次はSTANDARD_LISTの選択・取消・再訪を後継candidate c3971e83へ実装し変更影響だけ検証、その後自然稼得RP→ショップ支出と通常ストーリー進行を接続する。数値2境界、物理4入口、旧稼得/BP/P08の成功部分を無変更再実行しない。**
+**次: 標準リスト失敗原本を先に読む。成功した入力/生成物を再実行せず、変更された障害層だけ修正する。 次の独立境界は自然稼得RP→ショップ支出、通常ストーリー進行。数値2境界/旧4入口/旧稼得/BP/P08は再実行しない。**
 
-数値2境界/旧4入口/旧稼得を無変更再実行しない。標準list・自然RP支出・通常進行は未受入。原本/基準は不変、merge/release禁止。
+保存済み生成/30検査/実測原本を再利用。変更影響なしの数値2境界/旧4入口/旧稼得/BP/P08を反復しない。merge/release/baseline変更禁止。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `ca8b2648e74e2d603caf2f6bb7311cc8491ff455`。
-数値受付の独立受入・検証入力修復のsource HEAD。元実測runは終端failureを保持し成功native原本だけ再利用。自己記録run終端と一般CIは別途GitHubで確認。
+証拠のsource HEAD: `a06f61d9ed78061d59f2b7cb681efdfe55d3daaa`。
+標準リスト実測source HEAD。自己記録commitではなく、終端は次の読取で確定する。
 
 ## 最短の再開手順
 
@@ -25,13 +25,10 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_RESEARCH_COUNTER_JA.md`
-- `content/modernization/pr16_research_counter_checkpoint.json`
-- `content/modernization/pr16_research_counter_numeric_recipe.json`
-- `content/modernization/pr16_research_counter_acceptance/visual-review.json`
-- `scripts/pr16_research_counter_numeric.py`
-- `content/research_economy_v1/canonical_model.json`
-- `overlays/research_economy_v1/research_economy_v1.c`
+- `docs/PR16_RESEARCH_STANDARD_LIST_JA.md`
+- `content/modernization/pr16_research_standard_list_checkpoint.json`
+- `content/modernization/pr16_research_standard_list_recipe.json`
+- `scripts/pr16_research_standard_list_oracle.py`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -65,6 +62,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- STANDARD_LIST原本 content/modernization/pr16_research_standard_list_checkpoint.json を先に照合。同じARM生成/host30検査/成功した物理入力を再実行しない。
 - 受付数値0RP/rank1・9999RP/rank7はcheckpointと18画面で限定受入。元run36286898098のfailureを保持し、回復でnative再実行0。旧negative60件は受入せず陽性前提付き63件へ置換。不変event15件/compile1/guard7/実測2processを再実行しない。
 - 研究接続4入口はcontent/modernization/pr16_research_connection_acceptance.jsonで限定受入済み。原本/33画面/独立oracleを再利用し、未表示の受付数値/rankと自然RP支出の変更影響だけ実測。全活動/通常ストーリーへ昇格禁止。
 - 研究接続の新規MEASURED原本を先に照合。旧GAME_CORNER/写真/虫取り/採掘/釣り/生態の稼得nativeは再実行しない。今回の入口3成功計測は独立oracle/画面確認へ進み、未観測の生態ガイドだけ診断する。
@@ -344,6 +342,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-受付数値の限定受入原本を保存。元run36286898098はfailureを改作せず回復済みとして記録。受入run自身の終端や一般CI全成功は事前に主張しない。
+過去pendingの終端を別記照合。自己run/一般CIを一括成功へ昇格しない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

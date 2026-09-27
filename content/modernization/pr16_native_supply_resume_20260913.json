@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "受付の数値残高・rankを2境界/18画面で限定受入。旧runの検証失敗を原本から切り分け、63件の修正試験と不変15件で確定。次は標準list。",
+    "current_stop": "STOPPED_STANDARD_LIST_MEASUREMENT",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "受付の数値残高/rankは0RP・rank1と9999RP・rank7の2境界を限定受入済み。次はSTANDARD_LISTの選択・取消・再訪を後継candidate c3971e83へ実装し変更影響だけ検証、その後自然稼得RP→ショップ支出と通常ストーリー進行を接続する。数値2境界、物理4入口、旧稼得/BP/P08の成功部分を無変更再実行しない。",
+    "next_step": "標準リスト失敗原本を先に読む。成功した入力/生成物を再実行せず、変更された障害層だけ修正する。 次の独立境界は自然稼得RP→ショップ支出、通常ストーリー進行。数値2境界/旧4入口/旧稼得/BP/P08は再実行しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -793,6 +793,7 @@
   },
   "current_resume_doc": "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
   "do_not_repeat": [
+    "STANDARD_LIST原本 content/modernization/pr16_research_standard_list_checkpoint.json を先に照合。同じARM生成/host30検査/成功した物理入力を再実行しない。",
     "受付数値0RP/rank1・9999RP/rank7はcheckpointと18画面で限定受入。元run36286898098のfailureを保持し、回復でnative再実行0。旧negative60件は受入せず陽性前提付き63件へ置換。不変event15件/compile1/guard7/実測2processを再実行しない。",
     "研究接続4入口はcontent/modernization/pr16_research_connection_acceptance.jsonで限定受入済み。原本/33画面/独立oracleを再利用し、未表示の受付数値/rankと自然RP支出の変更影響だけ実測。全活動/通常ストーリーへ昇格禁止。",
     "研究接続の新規MEASURED原本を先に照合。旧GAME_CORNER/写真/虫取り/採掘/釣り/生態の稼得nativeは再実行しない。今回の入口3成功計測は独立oracle/画面確認へ進み、未観測の生態ガイドだけ診断する。",
@@ -4174,30 +4175,27 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "受付の数値残高/rankは0RP・rank1と9999RP・rank7の2境界を限定受入済み。次はSTANDARD_LISTの選択・取消・再訪を後継candidate c3971e83へ実装し変更影響だけ検証、その後自然稼得RP→ショップ支出と通常ストーリー進行を接続する。数値2境界、物理4入口、旧稼得/BP/P08の成功部分を無変更再実行しない。",
+    "goal_ja": "標準リスト失敗原本を先に読む。成功した入力/生成物を再実行せず、変更された障害層だけ修正する。 次の独立境界は自然稼得RP→ショップ支出、通常ストーリー進行。数値2境界/旧4入口/旧稼得/BP/P08は再実行しない。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
-    "id": "RESEARCH_COUNTER_STANDARD_LIST_AND_NATURAL_SPENDING_NEXT",
+    "id": "RESEARCH_STANDARD_LIST_REVIEW_THEN_NATURAL_SPENDING",
     "read_paths": [
-      "docs/PR16_RESEARCH_COUNTER_JA.md",
-      "content/modernization/pr16_research_counter_checkpoint.json",
-      "content/modernization/pr16_research_counter_numeric_recipe.json",
-      "content/modernization/pr16_research_counter_acceptance/visual-review.json",
-      "scripts/pr16_research_counter_numeric.py",
-      "content/research_economy_v1/canonical_model.json",
-      "overlays/research_economy_v1/research_economy_v1.c"
+      "docs/PR16_RESEARCH_STANDARD_LIST_JA.md",
+      "content/modernization/pr16_research_standard_list_checkpoint.json",
+      "content/modernization/pr16_research_standard_list_recipe.json",
+      "scripts/pr16_research_standard_list_oracle.py"
     ],
-    "stop_rule_ja": "数値2境界/旧4入口/旧稼得を無変更再実行しない。標準list・自然RP支出・通常進行は未受入。原本/基準は不変、merge/release禁止。"
+    "stop_rule_ja": "保存済み生成/30検査/実測原本を再利用。変更影響なしの数値2境界/旧4入口/旧稼得/BP/P08を反復しない。merge/release/baseline変更禁止。"
   },
   "observed_date_jst": "2026-09-27",
-  "observed_head": "ca8b2648e74e2d603caf2f6bb7311cc8491ff455",
+  "observed_head": "a06f61d9ed78061d59f2b7cb681efdfe55d3daaa",
   "observed_head_checks": {
-    "reason_ja": "受付数値の限定受入原本を保存。元run36286898098はfailureを改作せず回復済みとして記録。受入run自身の終端や一般CI全成功は事前に主張しない。",
+    "reason_ja": "過去pendingの終端を別記照合。自己run/一般CIを一括成功へ昇格しない。",
     "runs": [
       {
         "conclusion": null,
         "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "ca8b2648e74e2d603caf2f6bb7311cc8491ff455",
-        "id": 36287528910,
+        "head_sha": "a06f61d9ed78061d59f2b7cb681efdfe55d3daaa",
+        "id": 36311129519,
         "path": ".github/workflows/ci.yml",
         "run_attempt": 1,
         "status": "in_progress"
@@ -4205,8 +4203,8 @@
       {
         "conclusion": null,
         "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "ca8b2648e74e2d603caf2f6bb7311cc8491ff455",
-        "id": 36287528794,
+        "head_sha": "a06f61d9ed78061d59f2b7cb681efdfe55d3daaa",
+        "id": 36311129568,
         "path": ".github/workflows/p03-forgetting-ci.yml",
         "run_attempt": 1,
         "status": "in_progress"
@@ -4214,17 +4212,8 @@
       {
         "conclusion": null,
         "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "ca8b2648e74e2d603caf2f6bb7311cc8491ff455",
-        "id": 36287524393,
-        "path": ".github/workflows/pr16-research-counter-accept.yml",
-        "run_attempt": 1,
-        "status": "in_progress"
-      },
-      {
-        "conclusion": null,
-        "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "ca8b2648e74e2d603caf2f6bb7311cc8491ff455",
-        "id": 36287524368,
+        "head_sha": "a06f61d9ed78061d59f2b7cb681efdfe55d3daaa",
+        "id": 36311122724,
         "path": ".github/workflows/ci.yml",
         "run_attempt": 1,
         "status": "in_progress"
@@ -4232,23 +4221,41 @@
       {
         "conclusion": null,
         "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "ca8b2648e74e2d603caf2f6bb7311cc8491ff455",
-        "id": 36287524388,
-        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "head_sha": "a06f61d9ed78061d59f2b7cb681efdfe55d3daaa",
+        "id": 36311122801,
+        "path": ".github/workflows/pr16-research-standard-list.yml",
         "run_attempt": 1,
         "status": "in_progress"
       },
       {
         "conclusion": "success",
         "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "ca8b2648e74e2d603caf2f6bb7311cc8491ff455",
-        "id": 36287524444,
+        "head_sha": "a06f61d9ed78061d59f2b7cb681efdfe55d3daaa",
+        "id": 36311122780,
         "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+        "run_attempt": 1,
+        "status": "completed"
+      },
+      {
+        "conclusion": null,
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "a06f61d9ed78061d59f2b7cb681efdfe55d3daaa",
+        "id": 36311122991,
+        "path": ".github/workflows/modernization-stage79-mgba.yml",
+        "run_attempt": 1,
+        "status": "in_progress"
+      },
+      {
+        "conclusion": "success",
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "a06f61d9ed78061d59f2b7cb681efdfe55d3daaa",
+        "id": 36311122751,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
         "run_attempt": 1,
         "status": "completed"
       }
     ],
-    "scope_head": "ca8b2648e74e2d603caf2f6bb7311cc8491ff455"
+    "scope_head": "a06f61d9ed78061d59f2b7cb681efdfe55d3daaa"
   },
   "observed_head_history": [
     {
@@ -5602,7 +5609,7 @@
       "semantics": "PLA1圧縮と新規供給consumerのhost検証成功入力HEAD。ROM配置/実操作/記録commitの受入ではない。"
     }
   ],
-  "observed_head_semantics": "数値受付の独立受入・検証入力修復のsource HEAD。元実測runは終端failureを保持し成功native原本だけ再利用。自己記録run終端と一般CIは別途GitHubで確認。",
+  "observed_head_semantics": "標準リスト実測source HEAD。自己記録commitではなく、終端は次の読取で確定する。",
   "p08_candidate_impact": {
     "candidate": {
       "crc32": "CC068B4A",
@@ -5726,29 +5733,29 @@
   },
   "pending_runs": [
     {
-      "run_id": 36287528910,
+      "run_id": 36311129519,
       "status": "in_progress",
-      "tested_head": "ca8b2648e74e2d603caf2f6bb7311cc8491ff455"
+      "tested_head": "a06f61d9ed78061d59f2b7cb681efdfe55d3daaa"
     },
     {
-      "run_id": 36287528794,
+      "run_id": 36311129568,
       "status": "in_progress",
-      "tested_head": "ca8b2648e74e2d603caf2f6bb7311cc8491ff455"
+      "tested_head": "a06f61d9ed78061d59f2b7cb681efdfe55d3daaa"
     },
     {
-      "run_id": 36287524393,
+      "run_id": 36311122724,
       "status": "in_progress",
-      "tested_head": "ca8b2648e74e2d603caf2f6bb7311cc8491ff455"
+      "tested_head": "a06f61d9ed78061d59f2b7cb681efdfe55d3daaa"
     },
     {
-      "run_id": 36287524368,
+      "run_id": 36311122801,
       "status": "in_progress",
-      "tested_head": "ca8b2648e74e2d603caf2f6bb7311cc8491ff455"
+      "tested_head": "a06f61d9ed78061d59f2b7cb681efdfe55d3daaa"
     },
     {
-      "run_id": 36287524388,
+      "run_id": 36311122991,
       "status": "in_progress",
-      "tested_head": "ca8b2648e74e2d603caf2f6bb7311cc8491ff455"
+      "tested_head": "a06f61d9ed78061d59f2b7cb681efdfe55d3daaa"
     }
   ],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
@@ -6318,6 +6325,18 @@
     "path": "content/modernization/pr16_research_shop_cancel_checkpoint.json",
     "run_id": 36247330231,
     "status": "PASS_NATIVE_SHOP_CANCEL_SCOPED"
+  },
+  "research_standard_list": {
+    "candidate": {
+      "sha256": "37f73b807c452165c37764a2b80811d2779f456e451175402a7d93ae6a746113",
+      "size": 33554432
+    },
+    "path": "content/modernization/pr16_research_standard_list_checkpoint.json",
+    "recipe": "content/modernization/pr16_research_standard_list_recipe.json",
+    "run_id": 36311122801,
+    "source_head": "a06f61d9ed78061d59f2b7cb681efdfe55d3daaa",
+    "standard_list_accepted": false,
+    "status": "STOPPED_STANDARD_LIST_MEASUREMENT"
   },
   "research_ui_boundary": {
     "actions_completion_confirmed": true,
@@ -7583,6 +7602,10 @@
     ".github/workflows/pr16-research-shop-cancel-20260926.yml": {
       "sha256": "cb53a514619deb9f1fa6e23bf545cd4b07c82c185521e0feb2f4cace9a2aeea3",
       "size": 3237
+    },
+    ".github/workflows/pr16-research-standard-list.yml": {
+      "sha256": "a6a3e11f230083a08984640409fa15b5d21324136cd045c1c00d1bdf66785890",
+      "size": 3624
     },
     ".github/workflows/pr16-research-supply-20260927.yml": {
       "sha256": "f2738ffbb33f539c7b5ba05995458eccfad8f051dc9e59f3c996b258fb2454c7",
@@ -8952,6 +8975,14 @@
       "sha256": "b9d322672bef36d7fc129cc5a4e9875bbe46e46f5c316e31f938a4cd05576d97",
       "size": 48784
     },
+    "content/modernization/pr16_research_standard_list_checkpoint.json": {
+      "sha256": "d475c09c3c6413f188c11c18ba82f17614cd2b0ed3971149eb7c94cd8d0a87e8",
+      "size": 11990
+    },
+    "content/modernization/pr16_research_standard_list_recipe.json": {
+      "sha256": "038429b3b7e35e797e544e3be18662c4de17f8a7f48b7ca6cce33968d1e4860a",
+      "size": 15789
+    },
     "content/modernization/pr16_research_ui_boundary_checkpoint.json": {
       "sha256": "bdf148aa1b487845b850c2bd5f3400da04e85558a0e1f65cf3a774ff409bb46e",
       "size": 43401
@@ -9911,6 +9942,10 @@
     "docs/PR16_RESEARCH_SHOP_CANCEL_JA.md": {
       "sha256": "dfac542a7ea9ec234fcd4355fd5e1261fcee771a87e525d452a533fc944921fc",
       "size": 2729
+    },
+    "docs/PR16_RESEARCH_STANDARD_LIST_JA.md": {
+      "sha256": "b534a417d178c5eb314584dc7b393c701d088e46f5cae0f729072ade6e91c405",
+      "size": 1817
     },
     "docs/PR16_RESEARCH_UI_BOUNDARY_JA.md": {
       "sha256": "c6612deb907354729dbb4b7878ddb844cefb9573908c563288a299dce81e7939",
@@ -14508,6 +14543,22 @@
       "sha256": "83f97d120f9c8d6393d7d0a38c70fafddfded21ebce9c40c915d1bd9239bb2fe",
       "size": 3905
     },
+    "scripts/pr16_research_standard_list.py": {
+      "sha256": "9dd2fb8008033e501cf444ecbab6d17600984a28c5849bb7495579609ad0d728",
+      "size": 9390
+    },
+    "scripts/pr16_research_standard_list_actions.py": {
+      "sha256": "24025e61286a5256c54c762c7c30fcb38f8c90f816812eab0693868bdd789ab2",
+      "size": 19933
+    },
+    "scripts/pr16_research_standard_list_oracle.py": {
+      "sha256": "6311cb7100da37d5819e6cac984f386db6cb47972427ca5b250ac96c95ed108a",
+      "size": 8961
+    },
+    "scripts/pr16_research_standard_list_probe.py": {
+      "sha256": "cdad160c3c4cf832b9bce3ec07f85800726f28c2a2c414ecdd74914cb8de7328",
+      "size": 3314
+    },
     "scripts/pr16_research_ui_boundary.py": {
       "sha256": "11d7d676da4263e94a92a65c958095bfa83b7d1c21556b008aa88aea35196e48",
       "size": 2832
@@ -15964,6 +16015,14 @@
       "sha256": "65d59688f63a5a9ed0972ab5a730395291f4e2c7e5d526bab49c38d9462e5cb4",
       "size": 3661
     },
+    "tests/test_pr16_research_standard_list.py": {
+      "sha256": "a4c9200caf1b7557e81eb44d00f748222c0d24641d9a586b41282c4b9eb4fd12",
+      "size": 9665
+    },
+    "tests/test_pr16_research_standard_list_oracle.py": {
+      "sha256": "6d57905b7d5cfc170733295c67f805ca17769dbd7b45bb75dca0f1da878953e0",
+      "size": 4130
+    },
     "tests/test_pr16_research_ui_boundary.py": {
       "sha256": "a9971c507ac87c7c0413ad4640755d94e57a447922b6e6c500711341e0dc4835",
       "size": 2841
@@ -16995,6 +17054,10 @@
     "tools/pr16_learnset_baseline.py": {
       "sha256": "adcf31a5d34b2d6c8fb2627587cbee117a68837d50349b12502e4a71334cdff0",
       "size": 18180
+    },
+    "tools/pr16_research_standard_list.c": {
+      "sha256": "c0ca5517dcd73b0f1c185a14d01e91fe7f5441fdb21b52d12c050603217f51e8",
+      "size": 3318
     },
     "tools/pr16_vega_adjudication.py": {
       "sha256": "c7dcc1275d770a6328a548e7c3485dbce393879e07325ad350f56a547f8debfc",

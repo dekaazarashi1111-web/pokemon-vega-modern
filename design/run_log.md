@@ -10704,3 +10704,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 旧run36286898098はfailureを保持。成功native2/guard7/host1を再利用。修正63試験PASSと不変event15試験の原本を照合、計78件。新規native/guard/host/ARM/ROM生成0、既受入独立再実行0。task graph/resume/final index guard PASSを後段commitの必須条件とする。全体historical guard/一般CI全成功は主張しない。
 - Commit: source=ca8b2648e74e2d603caf2f6bb7311cc8491ff455 / acceptance run=36287524393; 同branch非force commit。自己SHAはgit logとremote refで照合。
 - Network: 固定GitHub artifactとrun/job/PR metadataのみ。原本absolute tracebackはartifactに保持、tracked正規化コピーは別hashで明示。ROM/save/binaryはGitに追加しない。merge/release/baseline変更なし。
+
+## 2026-09-27T10:00:42.629370+00:00
+- Timestamp: 2026-09-27T10:00:42.629370+00:00
+- Task: USER-20260927-RESEARCH-STANDARD-LIST
+- Version: research-standard-list-v1-measured
+- Status: STOPPED（原本/画面/終端を区別して記録）
+- Summary: 標準リスト2機能/終了行/B取消/再訪を実装。後処理領域とlocal4 pointerのみ、旧数値層・保存owner不変。
+- Files changed: 新list C/builder/probe/oracle/30+27検査/Actions、専用MD/JSON/recipe/UTF8原本、固定引継ぎ、両ログ。
+- Verify: ARM/30検査はrun36310534280を再利用。初回暗黙memcpy失敗run36310336114を保持。今回の実行数とerrorはcontent/modernization/pr16_research_standard_list_checkpoint.jsonのmeasurement/errorを正本とする。計画はnative1/guard7/host1/ARM0、新oracle27。旧受入matrix再実行0。画面・自己run終端・全CI成功を未確認のまま主張しない。
+- Commit: source=a06f61d9ed78061d59f2b7cb681efdfe55d3daaa; 同branch非force記録、自己SHAはgit log。
+- Network: 固定GitHub artifactsとActions/PR metadataのみ。ROM/save/実画像はGit管理外。merge/release/baseline変更なし。
