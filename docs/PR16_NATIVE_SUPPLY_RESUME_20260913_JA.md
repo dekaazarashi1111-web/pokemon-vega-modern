@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-PASS_NATURALLY_EARNED_RP_SPENDING_AND_SHOP_UI_SCOPED
+PASS_NATURAL_STARTER_STORY_PENDING_TERMINAL
 
-**次: 自然稼得10RP→5個交換→残高0→独立Continueは限定受入。71byte shop UI後処理と最終12画面も受入。次は通常NewGame/ストーリー進行から研究活動・研究所へ到達する未完境界。既存badge/map/party/屋外warp fixtureを自然到達へ昇格しない。成功した稼得/支出save・数値2境界・標準リスト・旧4入口・旧稼得/BP/P08は変更影響なしに再実行しない。**
+**次: 通常NewGame→自宅→屋外誘導→ヒイラギ研究所(map4/3)→リープン選択→通常Save→独立Continueを限定受入。研究活動の研究所(map96系)への通常ストーリー到達は未完。次は保存済みstarter.srmのContinueから実ストーリーを続ける。初期化/スターター/旧RP稼得支出/UI/BP/P08を再実行しない。**
 
-RP稼得と支出は本checkpointの狭い連結で受入。通常進行/自然地理移動は別の未完境界。保存原本を優先し、無変更の受入済み入力・build・matrixを再実行しない。merge/release/baseline変更禁止。
+まずstarter checkpoint artifactのsize/SHA/source/runを検証しContinueする。map4/3は序盤研究所であり、RP研究活動到達ではない。旧native/matrix/new-game prefixは影響なしに再実行しない。merge/release/baseline変更禁止。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `24f8bbeb9440c7ed6a9d765ece157ada0ca62781`。
-検証済み完了commit24f8bbeb。記録run36317871935はcompleted/successを外部照合済み。現終端writerは新受入/実測でない記録専用。
+証拠のsource HEAD: `653d59e897c8ac366a68888b2c9128595b9b34de`。
+新しい自然starter進行の独立Actions実測source。自己記録commitではない。終端は次の外部API読取で確定する。
 
 ## 最短の再開手順
 
@@ -25,10 +25,10 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `docs/PR16_RESEARCH_STORY_JA.md`
+- `content/modernization/pr16_research_story_checkpoint.json`
+- `content/modernization/pr16_research_story_development/commands.txt`
 - `docs/PR16_RESEARCH_NATURAL_SPENDING_JA.md`
-- `content/modernization/pr16_research_natural_spending_checkpoint.json`
-- `content/modernization/pr16_research_shop_ui_recipe.json`
-- `docs/PR16_RESEARCH_STANDARD_LIST_JA.md`
 - `content/modernization/pr16_research_photo_checkpoint.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
@@ -63,6 +63,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- 自然starterは content/modernization/pr16_research_story_checkpoint.json。元の通常NewGame保存試験を再オープンしない。次回はartifact starter.srmのContinueのみ。RP0/party1/map4/3保存をRP研究活動到達へ昇格しない。
 - 自然RP支出の記録run36317871935終端と全必須stepはsuccess確定。24f8bbebの120検証/23patch/5開発native/最終12画面を再実行せず次の通常進行境界へ進む。
 - 自然稼得RP支出は content/modernization/pr16_research_natural_spending_checkpoint.json。実稼得入力1回だけを保持し、10RPから5個交換/0RP/Continueを受入。最後の表示1byte変更はUI-only・追加稼得/購入/保存0で受入。最終candidate e1efb100、12画面。旧数値/標準リスト/旧稼得/BP/P08を無変更で再実行しない。
 - STANDARD_LIST run36312254126/59ac6688の22画面/3訪問/選択2/B取消2/終了1を限定受入。独立受入によるnative/ARM/host/guard/旧試験の再実行0。原本27oracle、18host/8ELF/14eventを再利用。自然RP支出/通常進行へ昇格しない。
@@ -348,6 +349,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-前回の全pendingを終端照合。記録runはsuccess。一般CIの実際のconclusionを保持し、すべてsuccessとは主張しない。
+未完/一般CI action_requiredを原値で保持。限定native成功と全体CI/releaseは別。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

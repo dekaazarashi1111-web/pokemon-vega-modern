@@ -10786,3 +10786,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: transport外側/内側hash、59試験source/原本一致、生成source復元hash、AST確認PASS。新native/compile/旧試験再実行0。続けてtask graph/private scoped index検査。
 - Commit: source=ecd677675e6ec65231dc302046132198a63430c8; run=36320882720; 同branch非force push。
 - Network: GitHub固定4blobのみ。merge/release/baseline変更0。
+
+## 2026-09-27T13:02:23.772473+00:00
+- Timestamp: 2026-09-27T13:02:23.772473+00:00
+- Task: USER-20260927-RESEARCH-STORY / 通常NewGameから自然スターター保存へ
+- Version: research-natural-starter-v1
+- Status: DONE（スターター保存・Continue限定、RP研究活動への到達未完）
+- Summary: 自宅→屋外NPC誘導→序盤研究所→リープン選択を421入力/30656framesで独立再現。party0→1、RP0、通常Save counter0→1、別core Continueで全party/Flash/場所/残高保持。次はartifact内の通常生成starter.srmから継続し前提入力を繰り返さない。
+- Files changed: 専用input-only C/generator/oracle/test、開発・正式原本text/引継ぎMD/JSON、両ログ。画面/save/runnerはartifactのみ。
+- Verify: 新59oracle原本/source一致PASS、7旧guard拒否原本/実装一致再利用PASS。正式host compile1/native2core/画面19。ARM/ROM変更0、旧受入ケース再実行0。render/check/task graph/scoped index/diff検査後にcommit。
+- Development: video接続順の非描画診断1と正常進行診断1。loader失敗の原本とmissing-headerのtool観測を区別して保存。最初のmissing-header stderrは未保存。正式native件数へ加算しない。
+- Commit: source=653d59e897c8ac366a68888b2c9128595b9b34de; run=36320959294; 同branch非force push。終端確認は外部APIで別記録。
+- Network: GitHub固定artifact/Actions/APIのみ。merge/release/baseline変更0。一般CI action_required/歴史的全体guardを成功扱いしない。

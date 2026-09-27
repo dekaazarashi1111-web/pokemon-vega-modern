@@ -1,20 +1,21 @@
 # PR16 通常NewGameからの自然進行
 
-## 作業中の境界
+## 今回の限定受入
 
-開始HEADは `a088b40b023a4f6471538ddb5885e42c6d76529a`。固定再開MD/JSONが指定する次工程は、通常NewGame/ストーリーから研究活動・研究所への自然到達である。既存のbadge/map/party/屋外warp fixtureは自然到達に読み替えない。
+通常NewGame→自宅→屋外誘導→ヒイラギ研究所(map4/3)→リープン選択→通常Save→独立Continueを限定受入。研究活動の研究所(map96系)への通常ストーリー到達は未完。次は保存済みstarter.srmのContinueから実ストーリーを続ける。初期化/スターター/旧RP稼得支出/UI/BP/P08を再実行しない。
 
-現在は専用のキー入力protocol runnerを実装中。位置、party、RP、保存counter、全Flash/party/台帳hash、同一frameの画面、全入力を記録する。7個のhost write APIを最初のゲームframe前に拒否へ置換し、fixture・直接native call・CPU register変更・進行注入を実行しない。
+正本: `content/modernization/pr16_research_story_checkpoint.json`。候補 `e1efb1009c6e6b0ec4967bf7b20562d2330bbd933f64f7f7863cdad56eb1f842`、ROM変更0。正式測定はrun `36320959294` の2独立process/core。source `653d59e897c8ac366a68888b2c9128595b9b34de`。Actionsの外部終端確認前であり全体完成ではない。
 
-## 原本の再利用
+## 実入力と継続点
 
-- 自然稼得RP支出・最終shop UI候補 `e1efb1009c6e6b0ec4967bf7b20562d2330bbd933f64f7f7863cdad56eb1f842` を保存recipeのbyte差分だけから復元する。ARM再コンパイルや旧build/native matrixは実行しない。
-- 固定mGBA runtime artifact `10898620034` と親candidate artifact `10898510128` をarchive SHA-256と展開後identityで検証する。
-- 通常NewGame原本 `36250444503` のartifact `10907984892` にはセーブ本体がない。旧初回Save/独立Continue2回の受入テストを再実行せず、未完の進行へ到達するために消去Flashから既存233区間を前提入力として使う。これを新規NewGame受入件数に加算しない。
-- 古いNewGame runnerは表示受入を含まない。今回の最初の診断ではvideo接続がreset後だったため2枚が黒画面となった。保存0、party0、自然到達未受入の診断原本として保持し、video bufferを最初のreset前へ接続する専用openerへ修正する。ゲームROMの欠陥と断定しない。
+消去Flashから既存233区間を前提入力として使用し、未観測だった自宅退出、屋外NPCの研究所への誘導、スターター選択を追った。合計421入力/30656frames、通常Save1回でcounter0→1。map4/3 (8,5)、party1、RP0。実画面18枚をローカル開発原本と独立実測で完全一致確認し、別coreのContinue後にも実画面とparty600bytes/全Flash128KiB/場所/残高/counterを照合した。研究活動のRP研究所と序盤のヒイラギ研究所は別である。
 
-## 禁止事項と次の処理
+## 重複防止とartifact
 
-成功した未完区間のsaveと全input traceを保持して続きへ進む。同じ成功稼得/購入/旧数値/標準リスト/入口/BP/P08を変更影響なしに実行しない。新しい独立oracle、注入拒否検査、表示確認、変更箇所だけの検証を追加する。受入範囲と残件は完了checkpointへ記録し、固定再開JSONからMDをrenderする。merge/release/active baseline変更は行わない。
+`pr16-research-story-checkpoint` に通常生成のstarter.srm、固定runner、checkpoint.json、実画面を保持する。固定runtimeはartifact10898620034、候補は保存recipeから復元する。checkpointのsave/executable/full candidate SHAを照合し、`continue-story` modeへ渡す。通常NewGame原本にはsave本体がなかったため今回の開発に前提入力が必要だったが、今後はこのSaveを使用しnew-game-storyを再実行しない。ROM/save/runner/画面はGit trackedに入れない。
 
-本commitはWIPで、自然到達完了や新規native受入を主張しない。
+## 検証・境界
+
+新59oracle/拒否検査の原本とsource bindingをActionsで再利用。7host-write拒否も前回の同一実装/原本を再利用し再起動0。正式host compile1、native2。ARM compile/link0、ROM変更0、旧受入ケース再実行0。ローカル開発は非描画診断1と自然進行確認1で、正式受入件数には加算しない。非描画診断は最初のreset後にvideoを接続したrunnerの欠陥で、専用openerをreset前接続へ修正。ゲーム本体変更ではない。新oracleは黒画面/未対screen/未知call/注入/余分なRP/差し替えsave/過大受入を拒否する。
+
+一般CI action_required/歴史的private guardをsuccessへ読み替えない。merge/release/active baseline変更なし。
