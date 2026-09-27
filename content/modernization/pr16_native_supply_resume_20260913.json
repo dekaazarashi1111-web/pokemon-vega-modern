@@ -793,6 +793,7 @@
   },
   "current_resume_doc": "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
   "do_not_repeat": [
+    "STANDARD_LIST原本 content/modernization/pr16_research_standard_list_thumb_checkpoint.json を先に照合。同じARM生成/host30検査/成功した物理入力を再実行しない。",
     "STANDARD_LIST原本 content/modernization/pr16_research_standard_list_checkpoint.json を先に照合。同じARM生成/host30検査/成功した物理入力を再実行しない。",
     "受付数値0RP/rank1・9999RP/rank7はcheckpointと18画面で限定受入。元run36286898098のfailureを保持し、回復でnative再実行0。旧negative60件は受入せず陽性前提付き63件へ置換。不変event15件/compile1/guard7/実測2processを再実行しない。",
     "研究接続4入口はcontent/modernization/pr16_research_connection_acceptance.jsonで限定受入済み。原本/33画面/独立oracleを再利用し、未表示の受付数値/rankと自然RP支出の変更影響だけ実測。全活動/通常ストーリーへ昇格禁止。",
@@ -4180,40 +4181,40 @@
     "id": "RESEARCH_STANDARD_LIST_REVIEW_THEN_NATURAL_SPENDING",
     "read_paths": [
       "docs/PR16_RESEARCH_STANDARD_LIST_JA.md",
-      "content/modernization/pr16_research_standard_list_checkpoint.json",
-      "content/modernization/pr16_research_standard_list_recipe.json",
+      "content/modernization/pr16_research_standard_list_thumb_checkpoint.json",
+      "content/modernization/pr16_research_standard_list_thumb_recipe.json",
       "scripts/pr16_research_standard_list_oracle.py"
     ],
     "stop_rule_ja": "保存済み生成/30検査/実測原本を再利用。変更影響なしの数値2境界/旧4入口/旧稼得/BP/P08を反復しない。merge/release/baseline変更禁止。"
   },
   "observed_date_jst": "2026-09-27",
-  "observed_head": "a06f61d9ed78061d59f2b7cb681efdfe55d3daaa",
+  "observed_head": "995e87e0e38c167f52c1ed2feeca6324fe6e017b",
   "observed_head_checks": {
     "reason_ja": "過去pendingの終端を別記照合。自己run/一般CIを一括成功へ昇格しない。",
     "runs": [
       {
         "conclusion": null,
         "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "a06f61d9ed78061d59f2b7cb681efdfe55d3daaa",
-        "id": 36311129519,
+        "head_sha": "995e87e0e38c167f52c1ed2feeca6324fe6e017b",
+        "id": 36311567593,
         "path": ".github/workflows/ci.yml",
         "run_attempt": 1,
         "status": "in_progress"
       },
       {
-        "conclusion": null,
+        "conclusion": "success",
         "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "a06f61d9ed78061d59f2b7cb681efdfe55d3daaa",
-        "id": 36311129568,
+        "head_sha": "995e87e0e38c167f52c1ed2feeca6324fe6e017b",
+        "id": 36311567588,
         "path": ".github/workflows/p03-forgetting-ci.yml",
         "run_attempt": 1,
-        "status": "in_progress"
+        "status": "completed"
       },
       {
         "conclusion": null,
         "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "a06f61d9ed78061d59f2b7cb681efdfe55d3daaa",
-        "id": 36311122724,
+        "head_sha": "995e87e0e38c167f52c1ed2feeca6324fe6e017b",
+        "id": 36311562971,
         "path": ".github/workflows/ci.yml",
         "run_attempt": 1,
         "status": "in_progress"
@@ -4221,8 +4222,17 @@
       {
         "conclusion": null,
         "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "a06f61d9ed78061d59f2b7cb681efdfe55d3daaa",
-        "id": 36311122801,
+        "head_sha": "995e87e0e38c167f52c1ed2feeca6324fe6e017b",
+        "id": 36311563000,
+        "path": ".github/workflows/modernization-stage79-mgba.yml",
+        "run_attempt": 1,
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "995e87e0e38c167f52c1ed2feeca6324fe6e017b",
+        "id": 36311562940,
         "path": ".github/workflows/pr16-research-standard-list.yml",
         "run_attempt": 1,
         "status": "in_progress"
@@ -4230,32 +4240,23 @@
       {
         "conclusion": "success",
         "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "a06f61d9ed78061d59f2b7cb681efdfe55d3daaa",
-        "id": 36311122780,
+        "head_sha": "995e87e0e38c167f52c1ed2feeca6324fe6e017b",
+        "id": 36311562945,
         "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
         "run_attempt": 1,
         "status": "completed"
       },
       {
-        "conclusion": null,
-        "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "a06f61d9ed78061d59f2b7cb681efdfe55d3daaa",
-        "id": 36311122991,
-        "path": ".github/workflows/modernization-stage79-mgba.yml",
-        "run_attempt": 1,
-        "status": "in_progress"
-      },
-      {
         "conclusion": "success",
         "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "a06f61d9ed78061d59f2b7cb681efdfe55d3daaa",
-        "id": 36311122751,
+        "head_sha": "995e87e0e38c167f52c1ed2feeca6324fe6e017b",
+        "id": 36311563084,
         "path": ".github/workflows/p03-forgetting-ci.yml",
         "run_attempt": 1,
         "status": "completed"
       }
     ],
-    "scope_head": "a06f61d9ed78061d59f2b7cb681efdfe55d3daaa"
+    "scope_head": "995e87e0e38c167f52c1ed2feeca6324fe6e017b"
   },
   "observed_head_history": [
     {
@@ -5733,29 +5734,24 @@
   },
   "pending_runs": [
     {
-      "run_id": 36311129519,
+      "run_id": 36311567593,
       "status": "in_progress",
-      "tested_head": "a06f61d9ed78061d59f2b7cb681efdfe55d3daaa"
+      "tested_head": "995e87e0e38c167f52c1ed2feeca6324fe6e017b"
     },
     {
-      "run_id": 36311129568,
+      "run_id": 36311562971,
       "status": "in_progress",
-      "tested_head": "a06f61d9ed78061d59f2b7cb681efdfe55d3daaa"
+      "tested_head": "995e87e0e38c167f52c1ed2feeca6324fe6e017b"
     },
     {
-      "run_id": 36311122724,
+      "run_id": 36311563000,
       "status": "in_progress",
-      "tested_head": "a06f61d9ed78061d59f2b7cb681efdfe55d3daaa"
+      "tested_head": "995e87e0e38c167f52c1ed2feeca6324fe6e017b"
     },
     {
-      "run_id": 36311122801,
+      "run_id": 36311562940,
       "status": "in_progress",
-      "tested_head": "a06f61d9ed78061d59f2b7cb681efdfe55d3daaa"
-    },
-    {
-      "run_id": 36311122991,
-      "status": "in_progress",
-      "tested_head": "a06f61d9ed78061d59f2b7cb681efdfe55d3daaa"
+      "tested_head": "995e87e0e38c167f52c1ed2feeca6324fe6e017b"
     }
   ],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
@@ -6328,13 +6324,13 @@
   },
   "research_standard_list": {
     "candidate": {
-      "sha256": "37f73b807c452165c37764a2b80811d2779f456e451175402a7d93ae6a746113",
+      "sha256": "e98d4b517fa6f8c8356acbe482117aa79c1e8d84a1e2b111f62ddb070571b817",
       "size": 33554432
     },
-    "path": "content/modernization/pr16_research_standard_list_checkpoint.json",
-    "recipe": "content/modernization/pr16_research_standard_list_recipe.json",
-    "run_id": 36311122801,
-    "source_head": "a06f61d9ed78061d59f2b7cb681efdfe55d3daaa",
+    "path": "content/modernization/pr16_research_standard_list_thumb_checkpoint.json",
+    "recipe": "content/modernization/pr16_research_standard_list_thumb_recipe.json",
+    "run_id": 36311562940,
+    "source_head": "995e87e0e38c167f52c1ed2feeca6324fe6e017b",
     "standard_list_accepted": false,
     "status": "STOPPED_STANDARD_LIST_MEASUREMENT"
   },
@@ -7604,8 +7600,8 @@
       "size": 3237
     },
     ".github/workflows/pr16-research-standard-list.yml": {
-      "sha256": "a6a3e11f230083a08984640409fa15b5d21324136cd045c1c00d1bdf66785890",
-      "size": 3624
+      "sha256": "2bfd772d20edebf5ea0fc659677b11c03e6001e9fe1195e581c678be6a457c5b",
+      "size": 3101
     },
     ".github/workflows/pr16-research-supply-20260927.yml": {
       "sha256": "f2738ffbb33f539c7b5ba05995458eccfad8f051dc9e59f3c996b258fb2454c7",
@@ -8983,6 +8979,14 @@
       "sha256": "038429b3b7e35e797e544e3be18662c4de17f8a7f48b7ca6cce33968d1e4860a",
       "size": 15789
     },
+    "content/modernization/pr16_research_standard_list_thumb_checkpoint.json": {
+      "sha256": "4f37bb691e82255a0540af1c597d9c70b5b92a3c48b571032179e4e213099d3a",
+      "size": 13040
+    },
+    "content/modernization/pr16_research_standard_list_thumb_recipe.json": {
+      "sha256": "7b38731c22e80acbe8406a7a40a7a62e1fd25f625de03b8f8f748d90965bdcf3",
+      "size": 17631
+    },
     "content/modernization/pr16_research_ui_boundary_checkpoint.json": {
       "sha256": "bdf148aa1b487845b850c2bd5f3400da04e85558a0e1f65cf3a774ff409bb46e",
       "size": 43401
@@ -9944,8 +9948,8 @@
       "size": 2729
     },
     "docs/PR16_RESEARCH_STANDARD_LIST_JA.md": {
-      "sha256": "b534a417d178c5eb314584dc7b393c701d088e46f5cae0f729072ade6e91c405",
-      "size": 1817
+      "sha256": "f37439d3e1ac14c7858100e7c1ba60588838d40f3da83138338419802fb68f9e",
+      "size": 2434
     },
     "docs/PR16_RESEARCH_UI_BOUNDARY_JA.md": {
       "sha256": "c6612deb907354729dbb4b7878ddb844cefb9573908c563288a299dce81e7939",
@@ -14544,8 +14548,8 @@
       "size": 3905
     },
     "scripts/pr16_research_standard_list.py": {
-      "sha256": "9dd2fb8008033e501cf444ecbab6d17600984a28c5849bb7495579609ad0d728",
-      "size": 9390
+      "sha256": "68bdfe4fab1d80bd11b55865bfd9bc848164d261cc302997eb4dd23166b453b2",
+      "size": 11548
     },
     "scripts/pr16_research_standard_list_actions.py": {
       "sha256": "24025e61286a5256c54c762c7c30fcb38f8c90f816812eab0693868bdd789ab2",
@@ -14558,6 +14562,10 @@
     "scripts/pr16_research_standard_list_probe.py": {
       "sha256": "cdad160c3c4cf832b9bce3ec07f85800726f28c2a2c414ecdd74914cb8de7328",
       "size": 3314
+    },
+    "scripts/pr16_research_standard_list_thumb_actions.py": {
+      "sha256": "79e3035299f66c787e4f5c9a5a6416aee45a5708f2204810d43d02d4447a02bb",
+      "size": 6720
     },
     "scripts/pr16_research_ui_boundary.py": {
       "sha256": "11d7d676da4263e94a92a65c958095bfa83b7d1c21556b008aa88aea35196e48",
@@ -16022,6 +16030,10 @@
     "tests/test_pr16_research_standard_list_oracle.py": {
       "sha256": "6d57905b7d5cfc170733295c67f805ca17769dbd7b45bb75dca0f1da878953e0",
       "size": 4130
+    },
+    "tests/test_pr16_research_standard_list_thumb.py": {
+      "sha256": "88d4b7528809428cedd031eb24e4f1c064e9ac27682a1bbfc6b2159aa2765fd2",
+      "size": 2064
     },
     "tests/test_pr16_research_ui_boundary.py": {
       "sha256": "a9971c507ac87c7c0413ad4640755d94e57a447922b6e6c500711341e0dc4835",

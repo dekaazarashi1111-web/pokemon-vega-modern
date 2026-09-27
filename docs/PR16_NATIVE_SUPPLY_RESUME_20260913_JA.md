@@ -14,7 +14,7 @@ STOPPED_STANDARD_LIST_MEASUREMENT
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `a06f61d9ed78061d59f2b7cb681efdfe55d3daaa`。
+証拠のsource HEAD: `995e87e0e38c167f52c1ed2feeca6324fe6e017b`。
 標準リスト実測source HEAD。自己記録commitではなく、終端は次の読取で確定する。
 
 ## 最短の再開手順
@@ -26,8 +26,8 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
 - `docs/PR16_RESEARCH_STANDARD_LIST_JA.md`
-- `content/modernization/pr16_research_standard_list_checkpoint.json`
-- `content/modernization/pr16_research_standard_list_recipe.json`
+- `content/modernization/pr16_research_standard_list_thumb_checkpoint.json`
+- `content/modernization/pr16_research_standard_list_thumb_recipe.json`
 - `scripts/pr16_research_standard_list_oracle.py`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
@@ -62,6 +62,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- STANDARD_LIST原本 content/modernization/pr16_research_standard_list_thumb_checkpoint.json を先に照合。同じARM生成/host30検査/成功した物理入力を再実行しない。
 - STANDARD_LIST原本 content/modernization/pr16_research_standard_list_checkpoint.json を先に照合。同じARM生成/host30検査/成功した物理入力を再実行しない。
 - 受付数値0RP/rank1・9999RP/rank7はcheckpointと18画面で限定受入。元run36286898098のfailureを保持し、回復でnative再実行0。旧negative60件は受入せず陽性前提付き63件へ置換。不変event15件/compile1/guard7/実測2processを再実行しない。
 - 研究接続4入口はcontent/modernization/pr16_research_connection_acceptance.jsonで限定受入済み。原本/33画面/独立oracleを再利用し、未表示の受付数値/rankと自然RP支出の変更影響だけ実測。全活動/通常ストーリーへ昇格禁止。

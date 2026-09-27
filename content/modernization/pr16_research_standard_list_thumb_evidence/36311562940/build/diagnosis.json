@@ -1,0 +1,29 @@
+{
+  "fix": "17 explicit STT_FUNC .thumb_set symbols; source/event/owner unchanged",
+  "new_arm_compiles": 1,
+  "new_native_processes": 0,
+  "new_thumb_tests": 8,
+  "old_arm_ldr_pc_veneer_is_not_thumb_interworking": true,
+  "old_native_still_failure": true,
+  "original_artifact": {
+    "digest": "sha256:84f278c2e18bdb17989e347688962589af5a693cfd125a00aa3ea96cf0de55f0",
+    "id": 10928552956,
+    "name": "pr16-research-standard-list-build",
+    "size_in_bytes": 1259229,
+    "workflow_run": {
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_repository_id": 1358127462,
+      "head_sha": "8b4dfa8626903803d246f1979fa27ef9e12578ee",
+      "id": 36310534280,
+      "repository_id": 1358127462
+    }
+  },
+  "original_build_run": 36310534280,
+  "original_elf": {
+    "sha256": "4fa309045d2fd3ed1fda7b2ce009beafc900893fa7cfa4449e57bc7e5c9b69ce",
+    "size": 5464
+  },
+  "original_native_run": 36311122801,
+  "rejection": "typed Thumb delegate SL_ClearFrame",
+  "reused_host_event_tests": 30
+}
