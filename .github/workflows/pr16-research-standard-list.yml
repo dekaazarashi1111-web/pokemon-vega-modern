@@ -24,29 +24,34 @@ jobs:
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends gcc-arm-none-eabi=15:13.2.rel1-2 binutils-arm-none-eabi
           test "$(arm-none-eabi-gcc -dumpfullversion)" = 13.2.1
-      - name: Compile new menu only and export exact native helper source
+      - name: Thirty new list host and event tests
+        run: |
+          mkdir -p .local/pr16-standard-list-build
+          python3 -B -m unittest discover -s tests -p test_pr16_research_standard_list.py -v >.local/pr16-standard-list-build/unit.stdout.txt 2>.local/pr16-standard-list-build/unit.stderr.txt
+      - name: Compile explicit-initialization menu and export exact native helper source
         shell: python
         run: |
           import hashlib,json,os,pathlib,subprocess,sys
           sys.path.insert(0,'scripts')
           import pr16_research_standard_list as s
-          out=pathlib.Path('.local/pr16-standard-list-build');out.mkdir(parents=True)
-          code,build=s.compile_code(out/'arm')
-          build['source_head']=os.environ['GITHUB_SHA']
-          build['run_id']=int(os.environ['GITHUB_RUN_ID'])
-          build['code_hex']=code.hex()
-          build['source_bindings']={p:s.identity(pathlib.Path(p).read_bytes()) for p in (s.SOURCE,'scripts/pr16_research_standard_list.py')}
-          (out/'build.json').write_text(json.dumps(build,ensure_ascii=False,indent=2)+'\n')
+          out=pathlib.Path('.local/pr16-standard-list-build');out.mkdir(parents=True,exist_ok=True)
           files={}
+          names=(s.SOURCE,'scripts/pr16_research_standard_list.py','tests/test_pr16_research_standard_list.py')
           for name in subprocess.check_output(['git','ls-files','-z']).decode().split('\0'):
               p=pathlib.Path(name)
-              if not name or not ((name.startswith('tools/mgba') and p.suffix in ('.c','.h')) or name in build['source_bindings']):
+              if not name or not ((name.startswith('tools/mgba') and p.suffix in ('.c','.h')) or name in names):
                   continue
               assert p.is_file() and not p.is_symlink()
               data=p.read_bytes();data.decode('utf-8');assert len(data)<=4*1024*1024
               dest=out/'source'/p;dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(data)
               files[name]=s.identity(data)
           (out/'source-manifest.json').write_text(json.dumps({'head':os.environ['GITHUB_SHA'],'files':files},ensure_ascii=False,indent=2)+'\n')
+          code,build=s.compile_code(out/'arm')
+          build['source_head']=os.environ['GITHUB_SHA']
+          build['run_id']=int(os.environ['GITHUB_RUN_ID'])
+          build['code_hex']=code.hex()
+          build['source_bindings']={p:s.identity(pathlib.Path(p).read_bytes()) for p in names}
+          (out/'build.json').write_text(json.dumps(build,ensure_ascii=False,indent=2)+'\n')
           print(json.dumps({'new_arm_compiles':1,'native_runs':0,'code_size':len(code),'helper_files':len(files)}))
       - uses: actions/upload-artifact@v4
         if: always()

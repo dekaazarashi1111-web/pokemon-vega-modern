@@ -64,7 +64,7 @@ void SL_Task(u8 id)
 __attribute__((section(".text.SL_Open"), used, noinline))
 void SL_Open(void)
 {
-    struct SL_Window w = {0, 9, 1, 20, 6, 15, 0};
+    struct SL_Window w;
     u8 id, i;
     u16 window;
     RESULT = SL_ERROR;
@@ -74,6 +74,8 @@ void SL_Open(void)
     if (id >= 16) return;
     TASKS[id].data[0] = 255;
     TASKS[id].data[1] = 2; /* 会話終了に使ったAを新リストへ漏らさない。 */
+    /* freestanding ARMで暗黙memcpyを発生させない。 */
+    w.bg = 0; w.left = 9; w.top = 1; w.width = 20; w.height = 6; w.palette = 15;
     w.base = SL_BaseTile();
     window = SL_AddWindow(&w);
     if (window >= 255) { SL_DestroyTask(id); return; }
