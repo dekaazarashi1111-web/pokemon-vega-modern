@@ -6,11 +6,11 @@
 
 ## いまの停止点と次の1手
 
-PASS_NATURAL_STARTER_STORY_SCOPED
+STORY_CONTINUE_DEVELOPED_ACTIONS_NEXT
 
-**次: 通常NewGame→自宅→屋外誘導→ヒイラギ研究所(map4/3)→リープン選択→通常Save→独立Continueを限定受入。研究活動の研究所(map96系)への通常ストーリー到達は未完。次は保存済みstarter.srmのContinueから実ストーリーを続ける。初期化/スターター/旧RP稼得支出/UI/BP/P08を再実行しない。**
+**次: starter Continue以後のライバル敗北復帰→517番道路の木→東側道路map3/19→通常Save counter1→2→独立Continueは開発実測済。新59oracleを原本/source一致で保持。次はこの新規区間だけをActionsで独立測定しroute.srmを保存する。正式run/artifactがあれば先に照合し成功入力を重複しない。研究活動施設への通常到達は未完。旧初期化/スターター/RP/UI/BP/P08は再実行しない。**
 
-まずstarter checkpoint artifactのsize/SHA/source/runを検証しContinueする。map4/3は序盤研究所であり、RP研究活動到達ではない。旧native/matrix/new-game prefixは影響なしに再実行しない。merge/release/baseline変更禁止。
+原本SHA一致の保存Continue以後だけ。開発測定を正式Actions受入へ読み替えない。既存新run/artifactの確認後に必要な未測定部分だけを動かす。merge/release/baseline変更禁止。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
@@ -25,11 +25,11 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_RESEARCH_STORY_JA.md`
+- `docs/PR16_RESEARCH_STORY_CONTINUE_JA.md`
+- `content/modernization/pr16_research_story_continue_development/verification.json`
+- `content/modernization/pr16_research_story_continue_development/commands.txt`
+- `scripts/pr16_research_story_continue.py`
 - `content/modernization/pr16_research_story_checkpoint.json`
-- `content/modernization/pr16_research_story_development/commands.txt`
-- `docs/PR16_RESEARCH_NATURAL_SPENDING_JA.md`
-- `content/modernization/pr16_research_photo_checkpoint.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -63,6 +63,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- 継続開発原本 content/modernization/pr16_research_story_continue_development/verification.json はnative2/新oracle59。新Actions原本が既に存在する場合は先に回収し、正常に完走した入力の再実行を禁止。初期化/スターターは再生不要。
 - 自然starterは content/modernization/pr16_research_story_checkpoint.json。元の通常NewGame保存試験を再オープンしない。次回はartifact starter.srmのContinueのみ。RP0/party1/map4/3保存をRP研究活動到達へ昇格しない。
 - 自然RP支出の記録run36317871935終端と全必須stepはsuccess確定。24f8bbebの120検証/23patch/5開発native/最終12画面を再実行せず次の通常進行境界へ進む。
 - 自然稼得RP支出は content/modernization/pr16_research_natural_spending_checkpoint.json。実稼得入力1回だけを保持し、10RPから5個交換/0RP/Continueを受入。最後の表示1byte変更はUI-only・追加稼得/購入/保存0で受入。最終candidate e1efb100、12画面。旧数値/標準リスト/旧稼得/BP/P08を無変更で再実行しない。

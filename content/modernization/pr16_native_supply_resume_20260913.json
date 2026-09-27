@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "PASS_NATURAL_STARTER_STORY_SCOPED",
+    "current_stop": "STORY_CONTINUE_DEVELOPED_ACTIONS_NEXT",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "通常NewGame→自宅→屋外誘導→ヒイラギ研究所(map4/3)→リープン選択→通常Save→独立Continueを限定受入。研究活動の研究所(map96系)への通常ストーリー到達は未完。次は保存済みstarter.srmのContinueから実ストーリーを続ける。初期化/スターター/旧RP稼得支出/UI/BP/P08を再実行しない。",
+    "next_step": "starter Continue以後のライバル敗北復帰→517番道路の木→東側道路map3/19→通常Save counter1→2→独立Continueは開発実測済。新59oracleを原本/source一致で保持。次はこの新規区間だけをActionsで独立測定しroute.srmを保存する。正式run/artifactがあれば先に照合し成功入力を重複しない。研究活動施設への通常到達は未完。旧初期化/スターター/RP/UI/BP/P08は再実行しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -793,6 +793,7 @@
   },
   "current_resume_doc": "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
   "do_not_repeat": [
+    "継続開発原本 content/modernization/pr16_research_story_continue_development/verification.json はnative2/新oracle59。新Actions原本が既に存在する場合は先に回収し、正常に完走した入力の再実行を禁止。初期化/スターターは再生不要。",
     "自然starterは content/modernization/pr16_research_story_checkpoint.json。元の通常NewGame保存試験を再オープンしない。次回はartifact starter.srmのContinueのみ。RP0/party1/map4/3保存をRP研究活動到達へ昇格しない。",
     "自然RP支出の記録run36317871935終端と全必須stepはsuccess確定。24f8bbebの120検証/23patch/5開発native/最終12画面を再実行せず次の通常進行境界へ進む。",
     "自然稼得RP支出は content/modernization/pr16_research_natural_spending_checkpoint.json。実稼得入力1回だけを保持し、10RPから5個交換/0RP/Continueを受入。最後の表示1byte変更はUI-only・追加稼得/購入/保存0で受入。最終candidate e1efb100、12画面。旧数値/標準リスト/旧稼得/BP/P08を無変更で再実行しない。",
@@ -4189,17 +4190,17 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "通常NewGame→自宅→屋外誘導→ヒイラギ研究所(map4/3)→リープン選択→通常Save→独立Continueを限定受入。研究活動の研究所(map96系)への通常ストーリー到達は未完。次は保存済みstarter.srmのContinueから実ストーリーを続ける。初期化/スターター/旧RP稼得支出/UI/BP/P08を再実行しない。",
+    "goal_ja": "starter Continue以後のライバル敗北復帰→517番道路の木→東側道路map3/19→通常Save counter1→2→独立Continueは開発実測済。新59oracleを原本/source一致で保持。次はこの新規区間だけをActionsで独立測定しroute.srmを保存する。正式run/artifactがあれば先に照合し成功入力を重複しない。研究活動施設への通常到達は未完。旧初期化/スターター/RP/UI/BP/P08は再実行しない。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
-    "id": "NATURAL_STORY_FROM_STARTER_CONTINUE_NEXT",
+    "id": "STORY_CONTINUE_INDEPENDENT_MEASUREMENT_NEXT",
     "read_paths": [
-      "docs/PR16_RESEARCH_STORY_JA.md",
-      "content/modernization/pr16_research_story_checkpoint.json",
-      "content/modernization/pr16_research_story_development/commands.txt",
-      "docs/PR16_RESEARCH_NATURAL_SPENDING_JA.md",
-      "content/modernization/pr16_research_photo_checkpoint.json"
+      "docs/PR16_RESEARCH_STORY_CONTINUE_JA.md",
+      "content/modernization/pr16_research_story_continue_development/verification.json",
+      "content/modernization/pr16_research_story_continue_development/commands.txt",
+      "scripts/pr16_research_story_continue.py",
+      "content/modernization/pr16_research_story_checkpoint.json"
     ],
-    "stop_rule_ja": "まずstarter checkpoint artifactのsize/SHA/source/runを検証しContinueする。map4/3は序盤研究所であり、RP研究活動到達ではない。旧native/matrix/new-game prefixは影響なしに再実行しない。merge/release/baseline変更禁止。"
+    "stop_rule_ja": "原本SHA一致の保存Continue以後だけ。開発測定を正式Actions受入へ読み替えない。既存新run/artifactの確認後に必要な未測定部分だけを動かす。merge/release/baseline変更禁止。"
   },
   "observed_date_jst": "2026-09-27",
   "observed_head": "653d59e897c8ac366a68888b2c9128595b9b34de",
@@ -6350,6 +6351,14 @@
     "status": "PASS_NATURAL_STARTER_STORY_SCOPED",
     "terminal_receipt": "content/modernization/pr16_research_story_terminal.json"
   },
+  "research_story_continue_development": {
+    "actions_completion_confirmed": false,
+    "local_native_processes": 2,
+    "natural_research_arrival_accepted": false,
+    "new_unit_tests": 59,
+    "path": "content/modernization/pr16_research_story_continue_development/verification.json",
+    "status": "PASS_LOCAL_DEVELOPMENT_NOT_ACTIONS_ACCEPTANCE"
+  },
   "research_ui_boundary": {
     "actions_completion_confirmed": true,
     "new_unit_tests": 49,
@@ -7634,6 +7643,14 @@
     ".github/workflows/pr16-research-story-context.yml": {
       "sha256": "4768c5100968bb939899ffc01cd20d421b7fe39fa371972438774c419b502f77",
       "size": 4585
+    },
+    ".github/workflows/pr16-research-story-continue-context.yml": {
+      "sha256": "5da4f1847bf80d406d4bc2275e7a4d73bb55e3cd5910e62fc8dd8a42231df0cc",
+      "size": 4318
+    },
+    ".github/workflows/pr16-research-story-continue-install.yml": {
+      "sha256": "255b0479c96607909add4c43c2b119a62a181c5cae55e2c6cca4ec45ebf89dea",
+      "size": 10977
     },
     ".github/workflows/pr16-research-story-install.yml": {
       "sha256": "edf87c0550c4b35385f8f3ffa0374223aa449cf97b36549398116c83a7e490ae",
@@ -9227,6 +9244,46 @@
       "sha256": "252610f8022e55ccf2384ac50912b5ac50ff2cdc6a61667c58e307ae6fda4160",
       "size": 462155
     },
+    "content/modernization/pr16_research_story_continue_development/commands.txt": {
+      "sha256": "f951b16463909f84003f1a91efda62cdd022f071bd00b53caeabc4e7c16a4401",
+      "size": 960
+    },
+    "content/modernization/pr16_research_story_continue_development/continue.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_research_story_continue_development/continue.stdout.txt": {
+      "sha256": "e82779afbb640de934c393eab395282f3b19cf9f6a8e249ff536a0d05814bfa3",
+      "size": 1501
+    },
+    "content/modernization/pr16_research_story_continue_development/initial-invalid-oracle.json": {
+      "sha256": "775ebff7a65dc350de26163ae537f7cb2f6d242289e8276bb40ee64e16316dec",
+      "size": 628
+    },
+    "content/modernization/pr16_research_story_continue_development/progress.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_research_story_continue_development/progress.stdout.txt": {
+      "sha256": "f2a4290b7b78a2c882a561b486504477584535974899da0cd091d31c9ac77c28",
+      "size": 17359
+    },
+    "content/modernization/pr16_research_story_continue_development/unit.stderr.txt": {
+      "sha256": "521153f3754ab5d2824760a4c336689c9bfb01feed1fc5b449c3fbcf305d1c4a",
+      "size": 6610
+    },
+    "content/modernization/pr16_research_story_continue_development/unit.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_research_story_continue_development/verification.json": {
+      "sha256": "f055f516b1b04bd1df860789fbdd575fc61bd283360b3276da2668a58bd39ea6",
+      "size": 3556
+    },
+    "content/modernization/pr16_research_story_continue_development/visual-review.json": {
+      "sha256": "0aa0275452be6b38f85f0f8eed516acfba41879c3fa4a54dafa00ed116d486f2",
+      "size": 4825
+    },
     "content/modernization/pr16_research_story_development/black-video.stderr.txt": {
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
@@ -10314,6 +10371,10 @@
     "docs/PR16_RESEARCH_STANDARD_LIST_JA.md": {
       "sha256": "708997474c067a0f0c17593c9bfb867e451df13015485f3b866f9fadc88d99c6",
       "size": 4015
+    },
+    "docs/PR16_RESEARCH_STORY_CONTINUE_JA.md": {
+      "sha256": "a328218a731066a541a9ab286814411b5dc9c46bfd2419c00ead1ae913650e3b",
+      "size": 2231
     },
     "docs/PR16_RESEARCH_STORY_JA.md": {
       "sha256": "8b9e996aab057cb7839bd74fc86c8c4639169e262b0cbbe469610686e3a7afcc",
@@ -14975,6 +15036,10 @@
       "sha256": "eeaefe2748f36cdfa971459d8e9e29e7cf73f857240b1cd9c16cd6a046444b1d",
       "size": 17290
     },
+    "scripts/pr16_research_story_continue.py": {
+      "sha256": "f406bde45d500e324aa640154f01bbe334d556bebe210c9a404da43889d021e1",
+      "size": 7033
+    },
     "scripts/pr16_research_ui_boundary.py": {
       "sha256": "11d7d676da4263e94a92a65c958095bfa83b7d1c21556b008aa88aea35196e48",
       "size": 2832
@@ -16458,6 +16523,10 @@
     "tests/test_pr16_research_story.py": {
       "sha256": "48e3bd404336a608b53edbb8ff04ed778d99efe515111cfe017fc7f4353cd757",
       "size": 5064
+    },
+    "tests/test_pr16_research_story_continue.py": {
+      "sha256": "eb33ffc114d54ed93600dd95dd3f09ad956fb290200e77ad5874be0a074fa7ae",
+      "size": 6755
     },
     "tests/test_pr16_research_ui_boundary.py": {
       "sha256": "a9971c507ac87c7c0413ad4640755d94e57a447922b6e6c500711341e0dc4835",

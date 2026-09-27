@@ -10809,3 +10809,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: artifact1345883bytes/SHA-256 057f3c5630d1951a529bfba7e36318578b943049419eceffaf0601f77eb1f84b PASS。raw oracle/全party600/Flash128KiB/位置/RP/counter保持PASS。59新検査と7guard拒否は原本/source一致再利用。今回の終端照合は新native/compile/unit/旧受入再実行すべて0。続けてrender/check/task graph/scoped indexを検査。
 - Commit: source=753e72d3815081e4f4a5b21e59644b05a5f2bffb; terminal_run=36321166071; 同branchへ非force push。
 - Network: GitHub原本run/job/artifact/HEADのみ。RP研究活動までの通常ストーリー到達・全体完成・releaseは未受入。merge/draft解除/baseline変更0。
+
+## 2026-09-27T14:15:04.589494+00:00
+- Timestamp: 2026-09-27T14:15:04.589494+00:00
+- Task: USER-20260927-RESEARCH-STORY-CONTINUE / 保存Continue専用oracleの開発checkpoint
+- Version: research-story-continue-source-v1
+- Status: DONE（ソース保存限定。正式Actions測定と研究活動到達は未完）
+- Summary: 開発入力114区間/12012framesで通常ライバル戦の敗北復帰、517番道路の切れる木の拒否、町帰還と東側道路map3/19への退出、通常Save1→2を観測。別core Continueで全party/Flash/研究ledger/位置/RP0を保持。22実画面を目視確認。
+- Files changed: 新continuation oracle/test/閉じた入力/開発UTF8原本/guide、固定引継ぎMD/JSON、両ログ。ROM/save/runner/画面は非tracked。
+- Verify: 新59oracle全PASS原本とsource SHAを再利用、陽性oracle照合PASS。初回誤記17入力を実測12へ訂正した失敗は別receiptへ保持し負例okを未受入のまま扱う。開発native2、旧受入再実行0、compile/ROM変更0。このinstallは新native/unit起動0。resume/task graph/scoped index後にcommit。
+- Commit: source=755d62d5fae166c5c07f54d576b6dfdd3ab712dc; install_run=36325209383; 同branch非force push。
+- Network: 固定GitHub HEAD/context/artifact/APIのみ。初期head9314fd64とstarter成功run36320959294を照合。一般CI action_required/歴史的全体guardを成功へ読み替えず、merge/release/baseline変更0。
