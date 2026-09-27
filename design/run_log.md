@@ -10728,3 +10728,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: 固定GitHub artifactsとActions/PR metadataのみ。ROM/save/実画像はGit管理外。merge/release/baseline変更なし。
 
 - Thumb follow-up correction: 上の共通record文のARM再利用元はrun36311386781（17 typed delegates/ELF8検査）へ置換。host/event30件だけrun36310534280を継承。旧native失敗run36311122801/37f73b80は未受入のまま保存。候補e98d4b51、実差分933byte、型付けだけの変更影響native1。画面/自己run終端が未確認の間は正式受入しない。
+
+## 2026-09-27T10:21:45.124312+00:00
+- Timestamp: 2026-09-27T10:21:45.124312+00:00
+- Task: USER-20260927-RESEARCH-STANDARD-LIST
+- Version: research-standard-list-v1-measured
+- Status: STOPPED（原本/画面/終端を区別して記録）
+- Summary: 標準リスト2機能/終了行/B取消/再訪を実装。後処理領域とlocal4 pointerのみ、旧数値層・保存owner不変。
+- Files changed: 新list C/builder/probe/oracle/30+27検査/Actions、専用MD/JSON/recipe/UTF8原本、固定引継ぎ、両ログ。
+- Verify: ARM/30検査はrun36310534280を再利用。初回暗黙memcpy失敗run36310336114を保持。今回の実行数とerrorはcontent/modernization/pr16_research_standard_list_ui_checkpoint.jsonのmeasurement/errorを正本とする。計画はnative1/guard7/host1/ARM0、新oracle27。旧受入matrix再実行0。画面・自己run終端・全CI成功を未確認のまま主張しない。
+- Commit: source=164028f28c9fa753afa1525907e2824b17a16698; 同branch非force記録、自己SHAはgit log。
+- Network: 固定GitHub artifactsとActions/PR metadataのみ。ROM/save/実画像はGit管理外。merge/release/baseline変更なし。
+
+- UI repair scope correction: 共通recordのARM/30試験表記を最新実績で限定訂正。ARMとhost18/ELF8はrun36312100158、不変event14はrun36310534280を再利用。現在候補59ac6688576238f00dac88cccec1a42415f6f0e4f3f07d60411f6d3059bf61e6、code768byte/差分956byte。旧2native failureは保持。純粋入力/独立pixelタイル/ユーザ枠ロードだけの変更影響を今回のnativeで検査し、厳格oracleは緩和しない。視認・自己run終端の未確認を成功としない。

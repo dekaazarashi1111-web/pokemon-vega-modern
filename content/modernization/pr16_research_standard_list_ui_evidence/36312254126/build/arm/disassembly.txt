@@ -1,0 +1,336 @@
+
+.local/pr16-standard-list-ui-build/arm/menu.elf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+09f4a800 <SL_Open>:
+ 9f4a800:	2303      	movs	r3, #3
+ 9f4a802:	b5f0      	push	{r4, r5, r6, r7, lr}
+ 9f4a804:	4a3e      	ldr	r2, [pc, #248]	@ (9f4a900 <SL_Open+0x100>)
+ 9f4a806:	425b      	negs	r3, r3
+ 9f4a808:	8013      	strh	r3, [r2, #0]
+ 9f4a80a:	493e      	ldr	r1, [pc, #248]	@ (9f4a904 <SL_Open+0x104>)
+ 9f4a80c:	4b3e      	ldr	r3, [pc, #248]	@ (9f4a908 <SL_Open+0x108>)
+ 9f4a80e:	4a3f      	ldr	r2, [pc, #252]	@ (9f4a90c <SL_Open+0x10c>)
+ 9f4a810:	b087      	sub	sp, #28
+ 9f4a812:	7918      	ldrb	r0, [r3, #4]
+ 9f4a814:	2800      	cmp	r0, #0
+ 9f4a816:	d002      	beq.n	9f4a81e <SL_Open+0x1e>
+ 9f4a818:	6818      	ldr	r0, [r3, #0]
+ 9f4a81a:	4288      	cmp	r0, r1
+ 9f4a81c:	d01d      	beq.n	9f4a85a <SL_Open+0x5a>
+ 9f4a81e:	3328      	adds	r3, #40	@ 0x28
+ 9f4a820:	4293      	cmp	r3, r2
+ 9f4a822:	d1f6      	bne.n	9f4a812 <SL_Open+0x12>
+ 9f4a824:	2150      	movs	r1, #80	@ 0x50
+ 9f4a826:	4837      	ldr	r0, [pc, #220]	@ (9f4a904 <SL_Open+0x104>)
+ 9f4a828:	f000 f946 	bl	9f4aab8 <__SL_CreateTask_veneer>
+ 9f4a82c:	0007      	movs	r7, r0
+ 9f4a82e:	280f      	cmp	r0, #15
+ 9f4a830:	d813      	bhi.n	9f4a85a <SL_Open+0x5a>
+ 9f4a832:	2528      	movs	r5, #40	@ 0x28
+ 9f4a834:	4345      	muls	r5, r0
+ 9f4a836:	4b34      	ldr	r3, [pc, #208]	@ (9f4a908 <SL_Open+0x108>)
+ 9f4a838:	18ed      	adds	r5, r5, r3
+ 9f4a83a:	23ff      	movs	r3, #255	@ 0xff
+ 9f4a83c:	2602      	movs	r6, #2
+ 9f4a83e:	812b      	strh	r3, [r5, #8]
+ 9f4a840:	4b33      	ldr	r3, [pc, #204]	@ (9f4a910 <SL_Open+0x110>)
+ 9f4a842:	9304      	str	r3, [sp, #16]
+ 9f4a844:	4b33      	ldr	r3, [pc, #204]	@ (9f4a914 <SL_Open+0x114>)
+ 9f4a846:	816e      	strh	r6, [r5, #10]
+ 9f4a848:	a804      	add	r0, sp, #16
+ 9f4a84a:	9305      	str	r3, [sp, #20]
+ 9f4a84c:	f000 f93c 	bl	9f4aac8 <__SL_AddWindow_veneer>
+ 9f4a850:	28fe      	cmp	r0, #254	@ 0xfe
+ 9f4a852:	d906      	bls.n	9f4a862 <SL_Open+0x62>
+ 9f4a854:	0038      	movs	r0, r7
+ 9f4a856:	f000 f8c7 	bl	9f4a9e8 <__SL_DestroyTask_veneer>
+ 9f4a85a:	b007      	add	sp, #28
+ 9f4a85c:	bcf0      	pop	{r4, r5, r6, r7}
+ 9f4a85e:	bc01      	pop	{r0}
+ 9f4a860:	4700      	bx	r0
+ 9f4a862:	0403      	lsls	r3, r0, #16
+ 9f4a864:	141b      	asrs	r3, r3, #16
+ 9f4a866:	812b      	strh	r3, [r5, #8]
+ 9f4a868:	0604      	lsls	r4, r0, #24
+ 9f4a86a:	f000 f905 	bl	9f4aa78 <__SL_BaseTile_veneer>
+ 9f4a86e:	0e24      	lsrs	r4, r4, #24
+ 9f4a870:	22e0      	movs	r2, #224	@ 0xe0
+ 9f4a872:	0001      	movs	r1, r0
+ 9f4a874:	0020      	movs	r0, r4
+ 9f4a876:	f000 f907 	bl	9f4aa88 <__SL_LoadFrame_veneer>
+ 9f4a87a:	0020      	movs	r0, r4
+ 9f4a87c:	2111      	movs	r1, #17
+ 9f4a87e:	f000 f8e3 	bl	9f4aa48 <__SL_FillWindow_veneer>
+ 9f4a882:	2100      	movs	r1, #0
+ 9f4a884:	0020      	movs	r0, r4
+ 9f4a886:	f000 f927 	bl	9f4aad8 <__SL_DrawFrame_veneer>
+ 9f4a88a:	0020      	movs	r0, r4
+ 9f4a88c:	2500      	movs	r5, #0
+ 9f4a88e:	f000 f8cb 	bl	9f4aa28 <__SL_PutWindow_veneer>
+ 9f4a892:	2301      	movs	r3, #1
+ 9f4a894:	0031      	movs	r1, r6
+ 9f4a896:	0020      	movs	r0, r4
+ 9f4a898:	9300      	str	r3, [sp, #0]
+ 9f4a89a:	4a1f      	ldr	r2, [pc, #124]	@ (9f4a918 <SL_Open+0x118>)
+ 9f4a89c:	9502      	str	r5, [sp, #8]
+ 9f4a89e:	9501      	str	r5, [sp, #4]
+ 9f4a8a0:	3307      	adds	r3, #7
+ 9f4a8a2:	f000 f8c9 	bl	9f4aa38 <__SL_Print_veneer>
+ 9f4a8a6:	2311      	movs	r3, #17
+ 9f4a8a8:	0031      	movs	r1, r6
+ 9f4a8aa:	0020      	movs	r0, r4
+ 9f4a8ac:	9300      	str	r3, [sp, #0]
+ 9f4a8ae:	4a1b      	ldr	r2, [pc, #108]	@ (9f4a91c <SL_Open+0x11c>)
+ 9f4a8b0:	9502      	str	r5, [sp, #8]
+ 9f4a8b2:	9501      	str	r5, [sp, #4]
+ 9f4a8b4:	3b09      	subs	r3, #9
+ 9f4a8b6:	f000 f8bf 	bl	9f4aa38 <__SL_Print_veneer>
+ 9f4a8ba:	2321      	movs	r3, #33	@ 0x21
+ 9f4a8bc:	0031      	movs	r1, r6
+ 9f4a8be:	0020      	movs	r0, r4
+ 9f4a8c0:	9300      	str	r3, [sp, #0]
+ 9f4a8c2:	4a17      	ldr	r2, [pc, #92]	@ (9f4a920 <SL_Open+0x120>)
+ 9f4a8c4:	9502      	str	r5, [sp, #8]
+ 9f4a8c6:	9501      	str	r5, [sp, #4]
+ 9f4a8c8:	3b19      	subs	r3, #25
+ 9f4a8ca:	f000 f8b5 	bl	9f4aa38 <__SL_Print_veneer>
+ 9f4a8ce:	2703      	movs	r7, #3
+ 9f4a8d0:	2310      	movs	r3, #16
+ 9f4a8d2:	002a      	movs	r2, r5
+ 9f4a8d4:	0031      	movs	r1, r6
+ 9f4a8d6:	9300      	str	r3, [sp, #0]
+ 9f4a8d8:	0020      	movs	r0, r4
+ 9f4a8da:	3b0f      	subs	r3, #15
+ 9f4a8dc:	9502      	str	r5, [sp, #8]
+ 9f4a8de:	9701      	str	r7, [sp, #4]
+ 9f4a8e0:	f000 f88a 	bl	9f4a9f8 <__SL_Cursor_veneer>
+ 9f4a8e4:	0039      	movs	r1, r7
+ 9f4a8e6:	0020      	movs	r0, r4
+ 9f4a8e8:	f000 f8b6 	bl	9f4aa58 <__SL_CopyWindow_veneer>
+ 9f4a8ec:	0028      	movs	r0, r5
+ 9f4a8ee:	f000 f86b 	bl	9f4a9c8 <__SL_Schedule_veneer>
+ 9f4a8f2:	2301      	movs	r3, #1
+ 9f4a8f4:	4a02      	ldr	r2, [pc, #8]	@ (9f4a900 <SL_Open+0x100>)
+ 9f4a8f6:	425b      	negs	r3, r3
+ 9f4a8f8:	8013      	strh	r3, [r2, #0]
+ 9f4a8fa:	f000 f88d 	bl	9f4aa18 <__SL_Suspend_veneer>
+ 9f4a8fe:	e7ac      	b.n	9f4a85a <SL_Open+0x5a>
+ 9f4a900:	02037004 	.word	0x02037004
+ 9f4a904:	09f4a925 	.word	0x09f4a925
+ 9f4a908:	030050d0 	.word	0x030050d0
+ 9f4a90c:	03005350 	.word	0x03005350
+ 9f4a910:	14010900 	.word	0x14010900
+ 9f4a914:	02800f06 	.word	0x02800f06
+ 9f4a918:	09f4aaf7 	.word	0x09f4aaf7
+ 9f4a91c:	09f4aaec 	.word	0x09f4aaec
+ 9f4a920:	09f4aae8 	.word	0x09f4aae8
+
+09f4a924 <SL_Task>:
+ 9f4a924:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 9f4a926:	0007      	movs	r7, r0
+ 9f4a928:	280f      	cmp	r0, #15
+ 9f4a92a:	d814      	bhi.n	9f4a956 <SL_Task+0x32>
+ 9f4a92c:	2428      	movs	r4, #40	@ 0x28
+ 9f4a92e:	4344      	muls	r4, r0
+ 9f4a930:	4b20      	ldr	r3, [pc, #128]	@ (9f4a9b4 <SL_Task+0x90>)
+ 9f4a932:	18e4      	adds	r4, r4, r3
+ 9f4a934:	7923      	ldrb	r3, [r4, #4]
+ 9f4a936:	2b00      	cmp	r3, #0
+ 9f4a938:	d00d      	beq.n	9f4a956 <SL_Task+0x32>
+ 9f4a93a:	6822      	ldr	r2, [r4, #0]
+ 9f4a93c:	4b1e      	ldr	r3, [pc, #120]	@ (9f4a9b8 <SL_Task+0x94>)
+ 9f4a93e:	429a      	cmp	r2, r3
+ 9f4a940:	d109      	bne.n	9f4a956 <SL_Task+0x32>
+ 9f4a942:	8963      	ldrh	r3, [r4, #10]
+ 9f4a944:	041b      	lsls	r3, r3, #16
+ 9f4a946:	141b      	asrs	r3, r3, #16
+ 9f4a948:	2b00      	cmp	r3, #0
+ 9f4a94a:	dd07      	ble.n	9f4a95c <SL_Task+0x38>
+ 9f4a94c:	8963      	ldrh	r3, [r4, #10]
+ 9f4a94e:	3b01      	subs	r3, #1
+ 9f4a950:	041b      	lsls	r3, r3, #16
+ 9f4a952:	141b      	asrs	r3, r3, #16
+ 9f4a954:	8163      	strh	r3, [r4, #10]
+ 9f4a956:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 9f4a958:	bc01      	pop	{r0}
+ 9f4a95a:	4700      	bx	r0
+ 9f4a95c:	f000 f854 	bl	9f4aa08 <__SL_Input_veneer>
+ 9f4a960:	0006      	movs	r6, r0
+ 9f4a962:	1c83      	adds	r3, r0, #2
+ 9f4a964:	d0f7      	beq.n	9f4a956 <SL_Task+0x32>
+ 9f4a966:	8925      	ldrh	r5, [r4, #8]
+ 9f4a968:	062d      	lsls	r5, r5, #24
+ 9f4a96a:	0e2d      	lsrs	r5, r5, #24
+ 9f4a96c:	2dff      	cmp	r5, #255	@ 0xff
+ 9f4a96e:	d00b      	beq.n	9f4a988 <SL_Task+0x64>
+ 9f4a970:	2100      	movs	r1, #0
+ 9f4a972:	0028      	movs	r0, r5
+ 9f4a974:	f000 f898 	bl	9f4aaa8 <__SL_ClearFrame_veneer>
+ 9f4a978:	0028      	movs	r0, r5
+ 9f4a97a:	f000 f82d 	bl	9f4a9d8 <__SL_RemoveWindow_veneer>
+ 9f4a97e:	2000      	movs	r0, #0
+ 9f4a980:	f000 f822 	bl	9f4a9c8 <__SL_Schedule_veneer>
+ 9f4a984:	23ff      	movs	r3, #255	@ 0xff
+ 9f4a986:	8123      	strh	r3, [r4, #8]
+ 9f4a988:	0038      	movs	r0, r7
+ 9f4a98a:	f000 f82d 	bl	9f4a9e8 <__SL_DestroyTask_veneer>
+ 9f4a98e:	2005      	movs	r0, #5
+ 9f4a990:	f000 f882 	bl	9f4aa98 <__SL_Sound_veneer>
+ 9f4a994:	2302      	movs	r3, #2
+ 9f4a996:	1c72      	adds	r2, r6, #1
+ 9f4a998:	d005      	beq.n	9f4a9a6 <SL_Task+0x82>
+ 9f4a99a:	0633      	lsls	r3, r6, #24
+ 9f4a99c:	0e1b      	lsrs	r3, r3, #24
+ 9f4a99e:	2b02      	cmp	r3, #2
+ 9f4a9a0:	d806      	bhi.n	9f4a9b0 <SL_Task+0x8c>
+ 9f4a9a2:	0433      	lsls	r3, r6, #16
+ 9f4a9a4:	0c1b      	lsrs	r3, r3, #16
+ 9f4a9a6:	4a05      	ldr	r2, [pc, #20]	@ (9f4a9bc <SL_Task+0x98>)
+ 9f4a9a8:	8013      	strh	r3, [r2, #0]
+ 9f4a9aa:	f000 f85d 	bl	9f4aa68 <__SL_Resume_veneer>
+ 9f4a9ae:	e7d2      	b.n	9f4a956 <SL_Task+0x32>
+ 9f4a9b0:	4b03      	ldr	r3, [pc, #12]	@ (9f4a9c0 <SL_Task+0x9c>)
+ 9f4a9b2:	e7f8      	b.n	9f4a9a6 <SL_Task+0x82>
+ 9f4a9b4:	030050d0 	.word	0x030050d0
+ 9f4a9b8:	09f4a925 	.word	0x09f4a925
+ 9f4a9bc:	02037004 	.word	0x02037004
+ 9f4a9c0:	0000fffd 	.word	0x0000fffd
+ 9f4a9c4:	00000000 	.word	0x00000000
+
+09f4a9c8 <__SL_Schedule_veneer>:
+ 9f4a9c8:	4778      	bx	pc
+ 9f4a9ca:	e7fd      	b.n	9f4a9c8 <__SL_Schedule_veneer>
+ 9f4a9cc:	e59fc000 	ldr	ip, [pc]	@ 9f4a9d4 <__SL_Schedule_veneer+0xc>
+ 9f4a9d0:	e12fff1c 	bx	ip
+ 9f4a9d4:	080f77fd 	.word	0x080f77fd
+
+09f4a9d8 <__SL_RemoveWindow_veneer>:
+ 9f4a9d8:	4778      	bx	pc
+ 9f4a9da:	e7fd      	b.n	9f4a9d8 <__SL_RemoveWindow_veneer>
+ 9f4a9dc:	e59fc000 	ldr	ip, [pc]	@ 9f4a9e4 <__SL_RemoveWindow_veneer+0xc>
+ 9f4a9e0:	e12fff1c 	bx	ip
+ 9f4a9e4:	08003e09 	.word	0x08003e09
+
+09f4a9e8 <__SL_DestroyTask_veneer>:
+ 9f4a9e8:	4778      	bx	pc
+ 9f4a9ea:	e7fd      	b.n	9f4a9e8 <__SL_DestroyTask_veneer>
+ 9f4a9ec:	e59fc000 	ldr	ip, [pc]	@ 9f4a9f4 <__SL_DestroyTask_veneer+0xc>
+ 9f4a9f0:	e12fff1c 	bx	ip
+ 9f4a9f4:	08076ca1 	.word	0x08076ca1
+
+09f4a9f8 <__SL_Cursor_veneer>:
+ 9f4a9f8:	4778      	bx	pc
+ 9f4a9fa:	e7fd      	b.n	9f4a9f8 <__SL_Cursor_veneer>
+ 9f4a9fc:	e59fc000 	ldr	ip, [pc]	@ 9f4aa04 <__SL_Cursor_veneer+0xc>
+ 9f4aa00:	e12fff1c 	bx	ip
+ 9f4aa04:	0811030d 	.word	0x0811030d
+
+09f4aa08 <__SL_Input_veneer>:
+ 9f4aa08:	4778      	bx	pc
+ 9f4aa0a:	e7fd      	b.n	9f4aa08 <__SL_Input_veneer>
+ 9f4aa0c:	e59fc000 	ldr	ip, [pc]	@ 9f4aa14 <__SL_Input_veneer+0xc>
+ 9f4aa10:	e12fff1c 	bx	ip
+ 9f4aa14:	08110539 	.word	0x08110539
+
+09f4aa18 <__SL_Suspend_veneer>:
+ 9f4aa18:	4778      	bx	pc
+ 9f4aa1a:	e7fd      	b.n	9f4aa18 <__SL_Suspend_veneer>
+ 9f4aa1c:	e59fc000 	ldr	ip, [pc]	@ 9f4aa24 <__SL_Suspend_veneer+0xc>
+ 9f4aa20:	e12fff1c 	bx	ip
+ 9f4aa24:	08069201 	.word	0x08069201
+
+09f4aa28 <__SL_PutWindow_veneer>:
+ 9f4aa28:	4778      	bx	pc
+ 9f4aa2a:	e7fd      	b.n	9f4aa28 <__SL_PutWindow_veneer>
+ 9f4aa2c:	e59fc000 	ldr	ip, [pc]	@ 9f4aa34 <__SL_PutWindow_veneer+0xc>
+ 9f4aa30:	e12fff1c 	bx	ip
+ 9f4aa34:	08003f6d 	.word	0x08003f6d
+
+09f4aa38 <__SL_Print_veneer>:
+ 9f4aa38:	4778      	bx	pc
+ 9f4aa3a:	e7fd      	b.n	9f4aa38 <__SL_Print_veneer>
+ 9f4aa3c:	e59fc000 	ldr	ip, [pc]	@ 9f4aa44 <__SL_Print_veneer+0xc>
+ 9f4aa40:	e12fff1c 	bx	ip
+ 9f4aa44:	08002c45 	.word	0x08002c45
+
+09f4aa48 <__SL_FillWindow_veneer>:
+ 9f4aa48:	4778      	bx	pc
+ 9f4aa4a:	e7fd      	b.n	9f4aa48 <__SL_FillWindow_veneer>
+ 9f4aa4c:	e59fc000 	ldr	ip, [pc]	@ 9f4aa54 <__SL_FillWindow_veneer+0xc>
+ 9f4aa50:	e12fff1c 	bx	ip
+ 9f4aa54:	08004429 	.word	0x08004429
+
+09f4aa58 <__SL_CopyWindow_veneer>:
+ 9f4aa58:	4778      	bx	pc
+ 9f4aa5a:	e7fd      	b.n	9f4aa58 <__SL_CopyWindow_veneer>
+ 9f4aa5c:	e59fc000 	ldr	ip, [pc]	@ 9f4aa64 <__SL_CopyWindow_veneer+0xc>
+ 9f4aa60:	e12fff1c 	bx	ip
+ 9f4aa64:	08003eed 	.word	0x08003eed
+
+09f4aa68 <__SL_Resume_veneer>:
+ 9f4aa68:	4778      	bx	pc
+ 9f4aa6a:	e7fd      	b.n	9f4aa68 <__SL_Resume_veneer>
+ 9f4aa6c:	e59fc000 	ldr	ip, [pc]	@ 9f4aa74 <__SL_Resume_veneer+0xc>
+ 9f4aa70:	e12fff1c 	bx	ip
+ 9f4aa74:	080693f5 	.word	0x080693f5
+
+09f4aa78 <__SL_BaseTile_veneer>:
+ 9f4aa78:	4778      	bx	pc
+ 9f4aa7a:	e7fd      	b.n	9f4aa78 <__SL_BaseTile_veneer>
+ 9f4aa7c:	e59fc000 	ldr	ip, [pc]	@ 9f4aa84 <__SL_BaseTile_veneer+0xc>
+ 9f4aa80:	e12fff1c 	bx	ip
+ 9f4aa84:	080f89cd 	.word	0x080f89cd
+
+09f4aa88 <__SL_LoadFrame_veneer>:
+ 9f4aa88:	4778      	bx	pc
+ 9f4aa8a:	e7fd      	b.n	9f4aa88 <__SL_LoadFrame_veneer>
+ 9f4aa8c:	e59fc000 	ldr	ip, [pc]	@ 9f4aa94 <__SL_LoadFrame_veneer+0xc>
+ 9f4aa90:	e12fff1c 	bx	ip
+ 9f4aa94:	081530e1 	.word	0x081530e1
+
+09f4aa98 <__SL_Sound_veneer>:
+ 9f4aa98:	4778      	bx	pc
+ 9f4aa9a:	e7fd      	b.n	9f4aa98 <__SL_Sound_veneer>
+ 9f4aa9c:	e59fc000 	ldr	ip, [pc]	@ 9f4aaa4 <__SL_Sound_veneer+0xc>
+ 9f4aaa0:	e12fff1c 	bx	ip
+ 9f4aaa4:	08071a71 	.word	0x08071a71
+
+09f4aaa8 <__SL_ClearFrame_veneer>:
+ 9f4aaa8:	4778      	bx	pc
+ 9f4aaaa:	e7fd      	b.n	9f4aaa8 <__SL_ClearFrame_veneer>
+ 9f4aaac:	e59fc000 	ldr	ip, [pc]	@ 9f4aab4 <__SL_ClearFrame_veneer+0xc>
+ 9f4aab0:	e12fff1c 	bx	ip
+ 9f4aab4:	080f7ffd 	.word	0x080f7ffd
+
+09f4aab8 <__SL_CreateTask_veneer>:
+ 9f4aab8:	4778      	bx	pc
+ 9f4aaba:	e7fd      	b.n	9f4aab8 <__SL_CreateTask_veneer>
+ 9f4aabc:	e59fc000 	ldr	ip, [pc]	@ 9f4aac4 <__SL_CreateTask_veneer+0xc>
+ 9f4aac0:	e12fff1c 	bx	ip
+ 9f4aac4:	08076bb5 	.word	0x08076bb5
+
+09f4aac8 <__SL_AddWindow_veneer>:
+ 9f4aac8:	4778      	bx	pc
+ 9f4aaca:	e7fd      	b.n	9f4aac8 <__SL_AddWindow_veneer>
+ 9f4aacc:	e59fc000 	ldr	ip, [pc]	@ 9f4aad4 <__SL_AddWindow_veneer+0xc>
+ 9f4aad0:	e12fff1c 	bx	ip
+ 9f4aad4:	08003cb1 	.word	0x08003cb1
+
+09f4aad8 <__SL_DrawFrame_veneer>:
+ 9f4aad8:	4778      	bx	pc
+ 9f4aada:	e7fd      	b.n	9f4aad8 <__SL_DrawFrame_veneer>
+ 9f4aadc:	e59fc000 	ldr	ip, [pc]	@ 9f4aae4 <__SL_DrawFrame_veneer+0xc>
+ 9f4aae0:	e12fff1c 	bx	ip
+ 9f4aae4:	080f7f7d 	.word	0x080f7f7d
+
+09f4aae8 <SL_ROW_2>:
+ 9f4aae8:	ff292c05                                .,).
+
+09f4aaec <SL_ROW_1>:
+ 9f4aaec:	647e529f 22120119                        .R~d..."...
+
+09f4aaf7 <SL_ROW_0>:
+ 9f4aaf7:	647e529f 587e7714                        .R~d.w~X.

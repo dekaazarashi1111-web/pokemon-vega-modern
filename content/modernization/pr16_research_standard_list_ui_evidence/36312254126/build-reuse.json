@@ -1,0 +1,71 @@
+{
+  "archive": {
+    "sha256": "a60e9d87322801b0eca921b0d249fad417a140e5bdf48f05f05fa025e568f267",
+    "size": 11806
+  },
+  "artifact": {
+    "digest": "sha256:a60e9d87322801b0eca921b0d249fad417a140e5bdf48f05f05fa025e568f267",
+    "id": 10929104210,
+    "name": "pr16-research-standard-list-ui-build",
+    "size_in_bytes": 11806,
+    "workflow_run": {
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_repository_id": 1358127462,
+      "head_sha": "597673e7f4163a063593a1157a8f51a4236c3cdd",
+      "id": 36312100158,
+      "repository_id": 1358127462
+    }
+  },
+  "event_test_run": 36310534280,
+  "new_arm_compiles": 0,
+  "new_host_test_executions": 0,
+  "oracle_weakened": false,
+  "original_native_failures": [
+    {
+      "binding": {
+        "sha256": "d475c09c3c6413f188c11c18ba82f17614cd2b0ed3971149eb7c94cd8d0a87e8",
+        "size": 11990
+      },
+      "checkpoint": "content/modernization/pr16_research_standard_list_checkpoint.json",
+      "run": {
+        "conclusion": "failure",
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "a06f61d9ed78061d59f2b7cb681efdfe55d3daaa",
+        "id": 36311122801,
+        "path": ".github/workflows/pr16-research-standard-list.yml",
+        "run_attempt": 1,
+        "status": "completed"
+      }
+    },
+    {
+      "binding": {
+        "sha256": "4f37bb691e82255a0540af1c597d9c70b5b92a3c48b571032179e4e213099d3a",
+        "size": 13040
+      },
+      "checkpoint": "content/modernization/pr16_research_standard_list_thumb_checkpoint.json",
+      "run": {
+        "conclusion": "failure",
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "995e87e0e38c167f52c1ed2feeca6324fe6e017b",
+        "id": 36311562940,
+        "path": ".github/workflows/pr16-research-standard-list.yml",
+        "run_attempt": 1,
+        "status": "completed"
+      }
+    }
+  ],
+  "reused_arm_compiles": 1,
+  "reused_event_tests": 14,
+  "reused_host_tests": 18,
+  "reused_thumb_tests": 8,
+  "run": {
+    "conclusion": "success",
+    "head_branch": "codex/modernization-followup-20260908",
+    "head_sha": "597673e7f4163a063593a1157a8f51a4236c3cdd",
+    "id": 36312100158,
+    "path": ".github/workflows/pr16-research-standard-list.yml",
+    "run_attempt": 1,
+    "status": "completed"
+  },
+  "source_head": "ad9b61026eeec84431c43d5cdd493e421ce3cc83"
+}

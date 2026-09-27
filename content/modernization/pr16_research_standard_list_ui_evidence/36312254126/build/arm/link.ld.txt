@@ -1,0 +1,1 @@
+SECTIONS { . = 0x9F4A800; .text : { KEEP(*(.text.SL_Open)) *(.text*) *(.rodata*) } .data : { *(.data*) } .bss : { *(.bss*) *(COMMON) } /DISCARD/ : { *(.ARM.exidx*) *(.ARM.extab*) *(.comment*) *(.note*) } }
