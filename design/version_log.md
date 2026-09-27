@@ -8047,3 +8047,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: source=c58a3d0108256b5238ffaee1ad9b6766b4ca4194; terminal writer=36318251346; 同branch非force。自己SHAはremoteで確認。
 - Files changed: 終端記録器/Actions、終端JSON/checkpoint/専用MD、固定引継ぎMD/JSON、両ログ追記。
 - Network: GitHub PR/run/job/artifact metadataのみ。artifact再download、入力ROM/save再生成、merge/release/baseline変更なし。
+
+## 2026-09-27T13:00:30.978341+00:00
+- Timestamp: 2026-09-27T13:00:30.978341+00:00
+- Task: USER-20260927-RESEARCH-STORY / 自然進行のinput-only runner実装
+- Version: research-natural-starter-WIP
+- Status: STOPPED（実装checkpoint、正式nativeは次run）
+- Summary: 消去Flash→自宅退出→屋外誘導→序盤研究所→リープン選択→通常Saveの開発原本を保存。ホスト注入禁止のC、閉じた入力/画面/保存oracle、59新規試験原本を反映。自然RP到達は未受入。
+- Files changed: 専用C/Python/test4件、開発text原本13件、両ログ。ROM/save/画像はtrackedに含まない。
+- Verify: transport外側/内側hash、59試験source/原本一致、生成source復元hash、AST確認PASS。新native/compile/旧試験再実行0。続けてtask graph/private scoped index検査。
+- Commit: source=ecd677675e6ec65231dc302046132198a63430c8; run=36320882720; 同branch非force push。
+- Network: GitHub固定4blobのみ。merge/release/baseline変更0。
