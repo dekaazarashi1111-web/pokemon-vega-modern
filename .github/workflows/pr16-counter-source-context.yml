@@ -1,0 +1,37 @@
+name: pr16-counter-source-context
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-counter-source-context.yml]
+permissions:
+  contents: read
+jobs:
+  text-context:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: 受付変更に関係するtracked UTF8 textのみ保存
+        shell: python
+        run: |
+          import hashlib,json,pathlib,subprocess
+          root=pathlib.Path('.')
+          out=root/'.local/counter-text-context'
+          paths=subprocess.check_output(['git','ls-files','AGENTS.md','scripts/*.py','tools/mgba_pr16_research*.c','tools/mgba_pr16_special*.c','tools/mgba_pr16_qol*.c','tools/mgba_pr16_native*.c','tools/*research*.py','tools/*qol*.py','tests/*research*.py','tests/*resume*.py','tests/*compact_record*.py','tests/__init__.py','content/modernization/pr16_native_supply_resume_20260913.json','content/modernization/pr16_bp_chooser_checkpoint.json','content/modernization/p08_remaining_work.json','content/modernization/pr16_research*.json','content/modernization/pr16_research_connection_acceptance/*','content/research_economy_v1/*','overlays/research_economy_v1/*','config/research_economy_v1.json','config/active_play_baseline.json','config/github_private_environment.json','infra/toolchain_manifest.json','docs/PR16_RESEARCH*.md','docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md','design/run_log.md','design/version_log.md','.github/workflows/pr16-research*.yml']).decode().splitlines()
+          manifest={}
+          for name in paths:
+              p=root/name
+              if p.is_symlink() or p.suffix not in {'.py','.c','.h','.json','.md','.yml'}: continue
+              b=p.read_bytes(); b.decode('utf-8')
+              if b'\0' in b: raise ValueError('not text: '+name)
+              dest=out/'source'/name;dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(b)
+              manifest[name]={'size':len(b),'sha256':hashlib.sha256(b).hexdigest()}
+          (out/'manifest.json').write_text(json.dumps({'source_head':subprocess.check_output(['git','rev-parse','HEAD']).decode().strip(),'files':manifest},indent=2)+'\n')
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr16-counter-text-context
+          path: .local/counter-text-context/
+          include-hidden-files: true
+          retention-days: 1
+          if-no-files-found: error
