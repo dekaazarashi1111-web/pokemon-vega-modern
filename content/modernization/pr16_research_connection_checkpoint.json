@@ -1,6 +1,17 @@
 {
+  "acceptance": {
+    "path": "content/modernization/pr16_research_connection_acceptance.json",
+    "run_id": 36285446907,
+    "source_head": "c4da83fc8dd55c18281a02d1ba838728d7ee48c6",
+    "status": "PASS_PHYSICAL_DOOR_AND_STATIC_GUIDE_SCOPED"
+  },
   "accepted_case_reruns": 0,
-  "accepted_native_cases": [],
+  "accepted_native_cases": [
+    "lab",
+    "fishing",
+    "game",
+    "ecology"
+  ],
   "actions_completion_confirmed": true,
   "active_baseline_changed": false,
   "arm_compiles": 0,
@@ -9,13 +20,22 @@
     "size": 33554432
   },
   "ecology_followup": {
-    "independent_oracle_accepted": false,
+    "independent_oracle_accepted": true,
     "manifest": "content/modernization/pr16_research_connection_evidence/36285051878/manifest.json",
     "measurement": "content/modernization/pr16_research_connection_evidence/36285051878/measurement.json",
     "native_processes": 1,
     "observed_complete": true,
     "run_id": 36285051878,
-    "source_head": "51f4ce7eae44ebb5ed6c192bf088b3ebbf030ed1"
+    "source_head": "51f4ce7eae44ebb5ed6c192bf088b3ebbf030ed1",
+    "terminal_run": {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "51f4ce7eae44ebb5ed6c192bf088b3ebbf030ed1",
+      "id": 36285051878,
+      "path": ".github/workflows/pr16-research-ecology-guide-20260927.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    }
   },
   "guard_processes": 7,
   "host_compiles": 1,
@@ -32,15 +52,16 @@
   },
   "manifest": "content/modernization/pr16_research_connection_evidence/36284847516/manifest.json",
   "measurement": "content/modernization/pr16_research_connection_evidence/36284847516/measurement.json",
+  "measurement_status_preserved": "MEASURED_PHYSICAL_CONNECTION_PENDING_INDEPENDENT_ORACLE",
   "native_processes": 4,
   "not_accepted": [
-    "independent-ledger-oracle",
-    "native-visual-review",
     "counter-numeric-balance",
+    "counter-rank-standard-list",
     "natural-story-progress",
     "naturally-earned-spending",
     "all-activities",
-    "all-maps"
+    "all-maps",
+    "whole-game-visual-quality"
   ],
   "preliminary_observations": {
     "ecology": {
@@ -173,7 +194,7 @@
     }
   },
   "source_head": "ed1f8051c9e3ac80b3d4034553d80fe4d2172e8a",
-  "status": "MEASURED_PHYSICAL_CONNECTION_PENDING_INDEPENDENT_ORACLE",
+  "status": "PASS_PHYSICAL_DOOR_AND_STATIC_GUIDE_SCOPED",
   "task": "USER-20260927-RESEARCH-CONNECTION",
   "terminal_run": {
     "conclusion": "success",

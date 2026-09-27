@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-MEASURED_PHYSICAL_CONNECTION_PENDING_INDEPENDENT_ORACLE
+PASS_PHYSICAL_DOOR_AND_STATIC_GUIDE_SCOPED
 
-**次: 研究室/釣り/ゲームコーナーの計測原本を再実行せず、生態ガイドの追加1件と合わせて独立oracle・画像レビューを完了する。受付の数値残高/ランク表示欠落は実装未完、自然稼得RP→ショップ支出/通常ストーリー到達は未受入。**
+**次: 物理4入口/受付静的5文言/初期ショップ開閉/釣り・ゲーム・生態の静的ガイドは原本と独立oracleで限定受入済み。次は受付の数値残高・rank/標準listを実装し変更影響だけ検証、その後自然稼得RP→ショップ支出と通常進行の接続を実測。旧稼得/今回4入口を無変更再実行しない。**
 
-固定ROM/seed/受入原本は不変。fixture屋外入口を通常ストーリー到達へ昇格しない。受入済み再実行・merge/release/baseline変更禁止。
+静的入口4件と旧稼得nativeは無変更再実行しない。数値表示・rank・自然RP支出は別受入。受入原本/基準不変、merge/release禁止。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `51f4ce7eae44ebb5ed6c192bf088b3ebbf030ed1`。
-研究接続の新規測定source。自己run終端は後継で確認。旧ローカル消失原本は正式受入しない。
+証拠のsource HEAD: `c4da83fc8dd55c18281a02d1ba838728d7ee48c6`。
+保存済み実測4入口の独立受入code HEAD。元実測2run終端success確認済み。自己記録runと一般CIは別管理。
 
 ## 最短の再開手順
 
@@ -27,8 +27,10 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 
 - `docs/PR16_RESEARCH_CONNECTION_JA.md`
 - `content/modernization/pr16_research_connection_checkpoint.json`
-- `scripts/pr16_research_connection.py`
-- `tools/mgba_pr16_research_connection.c`
+- `content/modernization/pr16_research_connection_acceptance.json`
+- `content/modernization/pr16_research_connection_acceptance/visual-review.json`
+- `content/research_economy_v1/canonical_model.json`
+- `overlays/research_economy_v1/research_economy_v1.c`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -62,6 +64,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- 研究接続4入口はcontent/modernization/pr16_research_connection_acceptance.jsonで限定受入済み。原本/33画面/独立oracleを再利用し、未表示の受付数値/rankと自然RP支出の変更影響だけ実測。全活動/通常ストーリーへ昇格禁止。
 - 研究接続の新規MEASURED原本を先に照合。旧GAME_CORNER/写真/虫取り/採掘/釣り/生態の稼得nativeは再実行しない。今回の入口3成功計測は独立oracle/画面確認へ進み、未観測の生態ガイドだけ診断する。
 - GAME_CORNERの実300枚配当923→1223コイン/0→3RP・2取引保存・別core Continueを限定受入。小4枚無RP、終了後の未保存賭け1188と保存値1223を区別。native5=実稼得1+Continue1+計測器失敗3、guard7、117PASS+変更loader2PASS、ROM/ARM0、受入済み再実行0。Start配当/日内cap/自然到達/通常接続/ガイド文言は未完。
 - 釣りlocal#2/生態local#5、候補26dac23cの実稼得4/10RP・逃走・取引保存だけのfresh Continueを限定受入。T24 typed credit1save+T23研究2save、全ledger/Bag/party/Flash、65新検査・10画像。無変更native/旧unit再実行禁止。ゲームコーナー/自然到達/受付接続/未確認native文言は未完。
@@ -339,6 +342,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-前4入口記録Actions成功を確認。旧生態未観測を保持し、追加1件の計測のみ。独立oracle/画面/自己run終端/全CI成功は未確定。
+元2run成功・保存原本の独立oracleと33画面限定受入。旧失敗は不変。自己記録run終端や全CI/全体private guard成功はまだ主張しない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

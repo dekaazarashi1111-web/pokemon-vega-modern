@@ -10682,3 +10682,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: Actions36284847516終端success確認、source/原本hash、resume/task graph/最終index scoped guard。正式受入や全CI成功は主張しない。
 - Commit: source=51f4ce7eae44ebb5ed6c192bf088b3ebbf030ed1; 同branch非force push、自己SHAはgit log。
 - Network: 固定GitHub artifact/PR/Actionsのみ。merge/release/baseline不変。
+
+## 2026-09-27T01:25:03.530942+00:00
+- Timestamp: 2026-09-27T01:25:03.530942+00:00
+- Task: USER-20260927-RESEARCH-CONNECTION / 4物理入口と静的案内の独立受入
+- Version: research-connection-accepted-v1
+- Status: DONE（物理入口と静的案内の限定範囲）
+- Summary: 研究室の屋外→受付→初期ショップ/取消→屋外、釣り/ゲーム/生態の入口→案内→終了を受入。受付の数値残高/rank/標準list、自然稼得RP支出、通常ストーリー到達は未完として次へ。旧失敗・生態未観測・消失原本は保持。
+- Files changed: 独立oracle/改変拒否test/記録script/workflow、受入/画面レビュー/検査原本、checkpoint/guide、固定引継ぎMD/JSON、両ログ。
+- Verify: 新規oracle 140件PASS、33実画面/12静的文言の視認と固定artifact照合、2048byte ledger独立再計算。新native/host compile/ARM/ROM変更/受入済み再実行0。元Actions36284847516/36285051878 success、現在HEAD一般CIは別記。resume/task graph/最終index scoped guard。全体guard成功は主張しない。
+- Commit: source=c4da83fc8dd55c18281a02d1ba838728d7ee48c6; 同branchへの非force記録、自己SHAはgit log。
+- Network: GitHub固定artifact/PR/Actionsのみ。merge/release/baseline変更なし。
