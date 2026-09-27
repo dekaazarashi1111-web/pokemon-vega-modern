@@ -8036,3 +8036,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Development history: 初回pixel前提違い停止、旧2表示候補の残枠を保持。開発native計5（稼得1/支出3/UI-only1）、host compile4、production Thumb assemble/link4、guard7を同一prefixで再利用。
 - Commit: source=22ace1e6c69aa5b488a2c83bd4468ddb5dcaa581; recording run=36317871935; task graph/resume/scoped final-index後に同branchへ非force push。自己SHAはremoteで確認。
 - Network: GitHub固定data artifact/APIのみ。ROM/save/画像/private原本tracked変更0、merge/release/baseline変更0。badge/party/map/屋外warpは明示fixture。
+
+## 2026-09-27T12:13:26.514916+00:00
+- Timestamp: 2026-09-27T12:13:26.514916+00:00
+- Task: USER-20260927-RESEARCH-NATURAL-SPENDING / 外部Actions終端確定
+- Version: research-natural-spending-terminal-v1
+- Status: DONE（自然RP支出/shop UI限定。通常進行は次の未完境界）
+- Summary: 完了commit 24f8bbeb9440c7ed6a9d765ece157ada0ca62781、run36317871935/job108615900385の全必須step successと固定artifactを外部APIで確認。全旧pendingを終端化し、固定引継ぎMD/JSON/専用checkpointを同期。
+- Verify: 新native/ARM/host/unitと旧受入再実行は0。全既存source/protected binding不変、task graph/resume/final-index guard後だけcommit。一般CIやhistorical guard全成功を主張しない。
+- Commit: source=c58a3d0108256b5238ffaee1ad9b6766b4ca4194; terminal writer=36318251346; 同branch非force。自己SHAはremoteで確認。
+- Files changed: 終端記録器/Actions、終端JSON/checkpoint/専用MD、固定引継ぎMD/JSON、両ログ追記。
+- Network: GitHub PR/run/job/artifact metadataのみ。artifact再download、入力ROM/save再生成、merge/release/baseline変更なし。

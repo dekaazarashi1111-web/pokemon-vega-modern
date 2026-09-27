@@ -27,3 +27,7 @@ badge/map/partyは起動前fixture。支出時には稼得済みsaveの全ledger
 ## 検証と記録
 
 固定Actions artifactのruntimeをローカルで使用した実測であり、Actions上のnative実測ではない。GitHubには原本stdout/stderr/実行identity/生成C全bytes/画面hashと直接視認所見を保存。PPM/ROM/save/runnerはtrackedに含めない。稼得1process、支出開発3process（観測前提停止1を含む）、最終UI-only1process。最後の表示修正は成功した支出候補の1byteだけで、保持済み10RP/0RP saveを開き、追加稼得/購入/保存0で12画面を確認。23patch試験原本を再利用し、独立oracle/拒否120件を記録Actionsで検証。Actionsの終端は外部からの次の読取で確定し、一般CI action_requiredをsuccessへ変更しない。
+
+## 外部からの終端確定
+
+完了commit `24f8bbeb9440c7ed6a9d765ece157ada0ca62781`。記録run36317871935/job108615900385の全必須stepとartifactをcompleted/successで確認。旧pending runもAPIで照合済み。正本 `content/modernization/pr16_research_natural_spending_terminal.json`。今回の追記は記録だけで、native/compile/120unit/23patchの再実行は0。上の「次の読取で確定」は記録時点の説明として残し、現在は終端確定済み。一般CIは実際のconclusionを保持する。通常ストーリー・採掘地点から研究所への自然移動は未受入のまま。

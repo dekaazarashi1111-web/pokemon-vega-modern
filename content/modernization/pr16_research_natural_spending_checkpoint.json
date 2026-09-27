@@ -1,7 +1,7 @@
 {
   "accepted_case_reruns": 0,
-  "actions_completion_confirmed": false,
-  "actions_completion_semantics": "recording run must be checked by the next external API read; local native has no Actions run",
+  "actions_completion_confirmed": true,
+  "actions_completion_semantics": "recording run externally confirmed completed/success; original native venue remains local, not Actions native",
   "active_baseline_changed": false,
   "candidate": {
     "sha256": "e1efb1009c6e6b0ec4967bf7b20562d2330bbd933f64f7f7863cdad56eb1f842",
@@ -36,6 +36,7 @@
     "spend_development_executions": 3,
     "strict_host_compiles": 4
   },
+  "external_terminal_receipt": "content/modernization/pr16_research_natural_spending_terminal.json",
   "failures_preserved": [
     {
       "accepted": false,
@@ -10276,6 +10277,7 @@
   "recording_host_compiles": 0,
   "recording_native_processes": 0,
   "recording_run_id": 36317871935,
+  "recording_run_terminal": "completed/success",
   "release_ready": false,
   "retained_saves": {
     "earned": {

@@ -793,6 +793,7 @@
   },
   "current_resume_doc": "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
   "do_not_repeat": [
+    "自然RP支出の記録run36317871935終端と全必須stepはsuccess確定。24f8bbebの120検証/23patch/5開発native/最終12画面を再実行せず次の通常進行境界へ進む。",
     "自然稼得RP支出は content/modernization/pr16_research_natural_spending_checkpoint.json。実稼得入力1回だけを保持し、10RPから5個交換/0RP/Continueを受入。最後の表示1byte変更はUI-only・追加稼得/購入/保存0で受入。最終candidate e1efb100、12画面。旧数値/標準リスト/旧稼得/BP/P08を無変更で再実行しない。",
     "STANDARD_LIST run36312254126/59ac6688の22画面/3訪問/選択2/B取消2/終了1を限定受入。独立受入によるnative/ARM/host/guard/旧試験の再実行0。原本27oracle、18host/8ELF/14eventを再利用。自然RP支出/通常進行へ昇格しない。",
     "STANDARD_LIST原本 content/modernization/pr16_research_standard_list_ui_checkpoint.json を先に照合。同じARM生成/host30検査/成功した物理入力を再実行しない。",
@@ -1099,6 +1100,14 @@
   },
   "last_accepted_native_run": 34946969126,
   "last_accepted_native_tested_head": "0b7497b575a3180a045f2be377386490f192a012",
+  "last_external_terminal": {
+    "accepted_record_commit": "24f8bbeb9440c7ed6a9d765ece157ada0ca62781",
+    "conclusion": "success",
+    "job_id": 108615900385,
+    "path": "content/modernization/pr16_research_natural_spending_terminal.json",
+    "run_id": 36317871935,
+    "status": "completed"
+  },
   "last_successful_native_diagnostic": {
     "job_id": 103681167660,
     "path": "content/modernization/pr16_bp_progress_diagnostic.json",
@@ -4192,70 +4201,61 @@
     "stop_rule_ja": "RP稼得と支出は本checkpointの狭い連結で受入。通常進行/自然地理移動は別の未完境界。保存原本を優先し、無変更の受入済み入力・build・matrixを再実行しない。merge/release/baseline変更禁止。"
   },
   "observed_date_jst": "2026-09-27",
-  "observed_head": "22ace1e6c69aa5b488a2c83bd4468ddb5dcaa581",
+  "observed_head": "24f8bbeb9440c7ed6a9d765ece157ada0ca62781",
   "observed_head_checks": {
-    "reason_ja": "source HEADの一般CI action_required等も原値で保持。記録run終端は外部APIで別途確認する。",
+    "reason_ja": "前回の全pendingを終端照合。記録runはsuccess。一般CIの実際のconclusionを保持し、すべてsuccessとは主張しない。",
     "runs": [
       {
-        "conclusion": null,
+        "conclusion": "success",
         "head_branch": "codex/modernization-followup-20260908",
         "head_sha": "22ace1e6c69aa5b488a2c83bd4468ddb5dcaa581",
         "id": 36317876465,
         "path": ".github/workflows/p03-forgetting-ci.yml",
         "run_attempt": 1,
-        "status": "in_progress"
+        "status": "completed"
       },
       {
-        "conclusion": null,
+        "conclusion": "failure",
         "head_branch": "codex/modernization-followup-20260908",
         "head_sha": "22ace1e6c69aa5b488a2c83bd4468ddb5dcaa581",
         "id": 36317876477,
         "path": ".github/workflows/ci.yml",
         "run_attempt": 1,
-        "status": "in_progress"
-      },
-      {
-        "conclusion": null,
-        "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "22ace1e6c69aa5b488a2c83bd4468ddb5dcaa581",
-        "id": 36317871935,
-        "path": ".github/workflows/pr16-research-natural-spending-record.yml",
-        "run_attempt": 1,
-        "status": "in_progress"
-      },
-      {
-        "conclusion": null,
-        "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "22ace1e6c69aa5b488a2c83bd4468ddb5dcaa581",
-        "id": 36317871918,
-        "path": ".github/workflows/p03-forgetting-ci.yml",
-        "run_attempt": 1,
-        "status": "in_progress"
-      },
-      {
-        "conclusion": null,
-        "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "22ace1e6c69aa5b488a2c83bd4468ddb5dcaa581",
-        "id": 36317871894,
-        "path": ".github/workflows/modernization-stage79-mgba.yml",
-        "run_attempt": 1,
-        "status": "in_progress"
-      },
-      {
-        "conclusion": null,
-        "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "22ace1e6c69aa5b488a2c83bd4468ddb5dcaa581",
-        "id": 36317871902,
-        "path": ".github/workflows/ci.yml",
-        "run_attempt": 1,
-        "status": "in_progress"
+        "status": "completed"
       },
       {
         "conclusion": "success",
         "head_branch": "codex/modernization-followup-20260908",
         "head_sha": "22ace1e6c69aa5b488a2c83bd4468ddb5dcaa581",
-        "id": 36317871953,
-        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+        "id": 36317871935,
+        "path": ".github/workflows/pr16-research-natural-spending-record.yml",
+        "run_attempt": 1,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "22ace1e6c69aa5b488a2c83bd4468ddb5dcaa581",
+        "id": 36317871918,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "run_attempt": 1,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "22ace1e6c69aa5b488a2c83bd4468ddb5dcaa581",
+        "id": 36317871894,
+        "path": ".github/workflows/modernization-stage79-mgba.yml",
+        "run_attempt": 1,
+        "status": "completed"
+      },
+      {
+        "conclusion": "failure",
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "22ace1e6c69aa5b488a2c83bd4468ddb5dcaa581",
+        "id": 36317871902,
+        "path": ".github/workflows/ci.yml",
         "run_attempt": 1,
         "status": "completed"
       }
@@ -5614,7 +5614,7 @@
       "semantics": "PLA1圧縮と新規供給consumerのhost検証成功入力HEAD。ROM配置/実操作/記録commitの受入ではない。"
     }
   ],
-  "observed_head_semantics": "ローカル実測のsource全bytesと原本を照合した記録Actions source。自己記録commit SHAではない。自然地理移動/通常進行は未受入。",
+  "observed_head_semantics": "検証済み完了commit24f8bbeb。記録run36317871935はcompleted/successを外部照合済み。現終端writerは新受入/実測でない記録専用。",
   "p08_candidate_impact": {
     "candidate": {
       "crc32": "CC068B4A",
@@ -5736,38 +5736,7 @@
     "status": "NATIVE_PARTY_RETENTION_ACCEPTED_BP_PENDING",
     "tested_head": "10e535a046441dd3b797918106259b5c57b69716"
   },
-  "pending_runs": [
-    {
-      "run_id": 36317876465,
-      "status": "in_progress",
-      "tested_head": "22ace1e6c69aa5b488a2c83bd4468ddb5dcaa581"
-    },
-    {
-      "run_id": 36317876477,
-      "status": "in_progress",
-      "tested_head": "22ace1e6c69aa5b488a2c83bd4468ddb5dcaa581"
-    },
-    {
-      "run_id": 36317871935,
-      "status": "in_progress",
-      "tested_head": "22ace1e6c69aa5b488a2c83bd4468ddb5dcaa581"
-    },
-    {
-      "run_id": 36317871918,
-      "status": "in_progress",
-      "tested_head": "22ace1e6c69aa5b488a2c83bd4468ddb5dcaa581"
-    },
-    {
-      "run_id": 36317871894,
-      "status": "in_progress",
-      "tested_head": "22ace1e6c69aa5b488a2c83bd4468ddb5dcaa581"
-    },
-    {
-      "run_id": 36317871902,
-      "status": "in_progress",
-      "tested_head": "22ace1e6c69aa5b488a2c83bd4468ddb5dcaa581"
-    }
-  ],
+  "pending_runs": [],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
   "pr_draft": true,
   "pr_merged": false,
@@ -6069,6 +6038,7 @@
     "status": "PASS_MINING_REAL_EARNING_SCOPED"
   },
   "research_natural_spending": {
+    "actions_completion_confirmed": true,
     "candidate": {
       "sha256": "e1efb1009c6e6b0ec4967bf7b20562d2330bbd933f64f7f7863cdad56eb1f842",
       "size": 33554432
@@ -6079,7 +6049,8 @@
     "run_id": 36317871935,
     "shop_ui_accepted": true,
     "source_head": "22ace1e6c69aa5b488a2c83bd4468ddb5dcaa581",
-    "status": "PASS_NATURALLY_EARNED_RP_SPENDING_AND_SHOP_UI_SCOPED"
+    "status": "PASS_NATURALLY_EARNED_RP_SPENDING_AND_SHOP_UI_SCOPED",
+    "terminal_receipt": "content/modernization/pr16_research_natural_spending_terminal.json"
   },
   "research_normal_new_game": {
     "accepted_cases": [
@@ -7587,6 +7558,10 @@
       "sha256": "d61bb6b88cf6244e722bb1e25ddbed63481c196772b67636653d32fa279a6588",
       "size": 2971
     },
+    ".github/workflows/pr16-research-natural-spending-terminal.yml": {
+      "sha256": "57414ae8bd95efa09291189b4e24345bb75952633c619f3c88de2b627a733a61",
+      "size": 2741
+    },
     ".github/workflows/pr16-research-new-game-20260926.yml": {
       "sha256": "4df6defd4c99f6e8fff8d5296d7f85f11f2b6cc0bd701fd872b4546c36c9db6e",
       "size": 7415
@@ -8964,8 +8939,8 @@
       "size": 55960
     },
     "content/modernization/pr16_research_natural_spending_checkpoint.json": {
-      "sha256": "37558d5ab3e6c9d74782c25c9a54506b7519980a329a5cda4c8d1397d95f15dc",
-      "size": 460558
+      "sha256": "8af7f92153fc54105ba96cb3acbd083908b7549d96448b9919329a8371d0a0ee",
+      "size": 460724
     },
     "content/modernization/pr16_research_natural_spending_evidence/build/disassembly.txt": {
       "sha256": "7316357030202b396e7ddd50e15370bb42c8000dc40fce36837002cc9b602f26",
@@ -9126,6 +9101,10 @@
     "content/modernization/pr16_research_natural_spending_evidence/visual-review.json": {
       "sha256": "7e582ceb0e90eb6f36bafca68e671de15a8deab888a90321161dff972242a949",
       "size": 4084
+    },
+    "content/modernization/pr16_research_natural_spending_terminal.json": {
+      "sha256": "81a27be34ece2ce78b7edd8362f096dc2c01e2b8a40d4ce738920e7003885aa9",
+      "size": 10603
     },
     "content/modernization/pr16_research_new_game_checkpoint.json": {
       "sha256": "f28ada6f9e7b85c7cf9ac43bde15f2cecd98a35b687c38b6794a106cc85aa415",
@@ -10136,8 +10115,8 @@
       "size": 3538
     },
     "docs/PR16_RESEARCH_NATURAL_SPENDING_JA.md": {
-      "sha256": "167645631bd8e61b66527fb36c785a45720849442120b0bb2dcb1105351bc0d5",
-      "size": 3615
+      "sha256": "cc8225318242ca7b19d2bd4da978dcdc4cd69da573ebb23c67783b3c90c57793",
+      "size": 4249
     },
     "docs/PR16_RESEARCH_NEW_GAME_JA.md": {
       "sha256": "8aeb695c6addd3a97cb00633c1af09b87ec90c9a36c219a8b29b385e851afb7d",
@@ -14710,6 +14689,10 @@
     "scripts/pr16_research_natural_spending_record.py": {
       "sha256": "2fa5afa98402c25369212c47a4d55d261c1f01ebd2e29a8070ed37b7eccfe102",
       "size": 17137
+    },
+    "scripts/pr16_research_natural_spending_terminal.py": {
+      "sha256": "db36b0cbf319fc74b92070376c3b86f3b23b8ee83200d48d4f389b5b745cfcb8",
+      "size": 8948
     },
     "scripts/pr16_research_new_game.py": {
       "sha256": "190e52ce97d8159e0bb7907d64512dbd2ab9f66ca17ce33b102296bab455ecae",

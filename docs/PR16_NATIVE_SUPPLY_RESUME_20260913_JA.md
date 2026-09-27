@@ -14,8 +14,8 @@ RP稼得と支出は本checkpointの狭い連結で受入。通常進行/自然�
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `22ace1e6c69aa5b488a2c83bd4468ddb5dcaa581`。
-ローカル実測のsource全bytesと原本を照合した記録Actions source。自己記録commit SHAではない。自然地理移動/通常進行は未受入。
+証拠のsource HEAD: `24f8bbeb9440c7ed6a9d765ece157ada0ca62781`。
+検証済み完了commit24f8bbeb。記録run36317871935はcompleted/successを外部照合済み。現終端writerは新受入/実測でない記録専用。
 
 ## 最短の再開手順
 
@@ -63,6 +63,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- 自然RP支出の記録run36317871935終端と全必須stepはsuccess確定。24f8bbebの120検証/23patch/5開発native/最終12画面を再実行せず次の通常進行境界へ進む。
 - 自然稼得RP支出は content/modernization/pr16_research_natural_spending_checkpoint.json。実稼得入力1回だけを保持し、10RPから5個交換/0RP/Continueを受入。最後の表示1byte変更はUI-only・追加稼得/購入/保存0で受入。最終candidate e1efb100、12画面。旧数値/標準リスト/旧稼得/BP/P08を無変更で再実行しない。
 - STANDARD_LIST run36312254126/59ac6688の22画面/3訪問/選択2/B取消2/終了1を限定受入。独立受入によるnative/ARM/host/guard/旧試験の再実行0。原本27oracle、18host/8ELF/14eventを再利用。自然RP支出/通常進行へ昇格しない。
 - STANDARD_LIST原本 content/modernization/pr16_research_standard_list_ui_checkpoint.json を先に照合。同じARM生成/host30検査/成功した物理入力を再実行しない。
@@ -347,6 +348,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-source HEADの一般CI action_required等も原値で保持。記録run終端は外部APIで別途確認する。
+前回の全pendingを終端照合。記録runはsuccess。一般CIの実際のconclusionを保持し、すべてsuccessとは主張しない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
