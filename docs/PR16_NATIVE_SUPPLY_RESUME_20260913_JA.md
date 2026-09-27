@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-STORY_ROUTE_POTION_DEVELOPED_ACTIONS_NEXT
+PASS_NATURAL_STORY_POTION_SAVE_PENDING_TERMINAL
 
-**次: 道路からの通常敗北2回・母親回復・草側迂回・キズぐすり1個取得・通常Save counter2→3・独立Continue所持保持は開発実測済。新74検査成功原本を保存。次はこの新区間だけのActions独立測定と後継potion.srm artifact保持。正式runが既にあれば原本を回収し完走入力を重複しない。研究施設到達は未完、旧受入再実行禁止。**
+**次: 道路でのトレーナー敗北2回・母親の通常回復・草側迂回・キズぐすり1個の通常取得・Save counter2→3・独立Continueの所持保持を限定受入。次はpotion.srmのmap3/19 (26,17)から通常ストーリーへ。トレーナー勝利0、研究活動施設への自然到達は未完。旧starter/完走301入力/旧RP/UI/BP/P08を再実行しない。**
 
-新しいActions原本がある場合は先に回収し再生禁止。開発結果を正式Actions終端へ読み替えない。元route.srmからの新区間のみ。旧starter/前回114入力/旧RP/UI/BP/P08は再実行しない。merge/release/baseline変更禁止。
+先に新runの全必須stepと後継Save artifactを照合。potion.srmから先だけ進め、成功301入力を再実行しない。勝利/研究施設到達へ昇格禁止。merge/release/baseline変更禁止。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `4c5d2d46bbef7f984800ea4133afe0388ac4c73d`。
-通常スターター保存以後の成功Actions測定source HEAD。外部終端・後継Save/RTC・全必須step・全commit原本は content/modernization/pr16_research_story_continue_terminal.json で確認。自己commitや製品最終SHAではない。
+証拠のsource HEAD: `228d31f3e3ab74dbfc089b63a75478c0d5fde1eb`。
+道路の新規道具取得とSave継続を独立測定したsource HEAD。成功終端は別途API照合する。自己commit/製品最終SHAではない。
 
 ## 最短の再開手順
 
@@ -26,10 +26,8 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
 - `docs/PR16_RESEARCH_STORY_ROUTE_JA.md`
-- `content/modernization/pr16_research_story_route_development/verification.json`
-- `scripts/pr16_research_story_route_actions.py`
+- `content/modernization/pr16_research_story_route_checkpoint.json`
 - `scripts/pr16_research_story_route.py`
-- `content/modernization/pr16_research_story_continue_checkpoint.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -63,6 +61,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- 道路通常進行は content/modernization/pr16_research_story_route_checkpoint.json。敗北2回/回復/キズぐすり1個/Save counter3まで完走301入力を保持し、次はpotion.srmだけ。旧受入区間を再生しない。
 - 道路道具取得の開発原本 content/modernization/pr16_research_story_route_development/verification.json を保持。native2/74新検査。元Saveからの301入力を正式測定したrunがあれば原本回収だけにして重複しない。
 - 新規道路保存は content/modernization/pr16_research_story_continue_checkpoint.json。次はroute.srmからContinueだけ。旧starterと今回完走114入力/12012framesを再生しない。RP0の研究活動施設未到達。
 - 継続開発原本 content/modernization/pr16_research_story_continue_development/verification.json はnative2/新oracle59。新Actions原本が既に存在する場合は先に回収し、正常に完走した入力の再実行を禁止。初期化/スターターは再生不要。
@@ -352,6 +351,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-新区間専用Actionsは全必須step SUCCESS。一般CIは実conclusionを保存し、action_required・失敗・未完を成功へ読み替えない。全体private guard/releaseは別。
+新区間専用Actionsと一般CIを分離。未完/action_required/失敗を成功にしない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

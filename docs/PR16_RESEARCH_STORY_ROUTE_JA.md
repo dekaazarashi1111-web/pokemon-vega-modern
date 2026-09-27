@@ -25,3 +25,9 @@
 次は正式Actions終端と後継artifactを確認し、保存コピーへ `continue-story <全Save SHA>` を渡してこの地点より先だけ進める。トレーナーは未撃破。現時点でキズぐすり1個を持つ。旧NewGame/スターター/前回114入力/今回301入力を再生しない。
 
 固定再開MD/JSONを最新停止点の正とする。ROM/save/runner/画面はartifactにのみ保持する。一般CIのaction_requiredや歴史的全体private guardをこの限定検証の成功へ混同しない。merge、release、active baseline切替を行わない。
+
+## Actions独立測定（終端は外部照合待ち）
+
+道路でのトレーナー敗北2回・母親の通常回復・草側迂回・キズぐすり1個の通常取得・Save counter2→3・独立Continueの所持保持を限定受入。次はpotion.srmのmap3/19 (26,17)から通常ストーリーへ。トレーナー勝利0、研究活動施設への自然到達は未完。旧starter/完走301入力/旧RP/UI/BP/P08を再実行しない。
+
+正式source `228d31f3e3ab74dbfc089b63a75478c0d5fde1eb`、run `36330546824`。開発と独立測定の全stdout/53画面/Saveが一致。正式native2、開発native2は別会計。新74検査成功原本はsource一致で再利用し再起動0。

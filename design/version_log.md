@@ -8125,3 +8125,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 開発native2/進行301入力31904frames・cold24入力1942frames。74新oracle全PASS原本とsource/evidence一致を再利用。初回終端schema例外1件を履歴保持して修正。53画面中治療暗転1枚は内容受入に数えず保持。転送run36330227611は64MiBメモリ上限で展開前停止、native/unit0。固定payloadの128MiB有界展開を確認して回復、失敗原本は content/modernization/pr16_research_story_route_development/source-install-recovery.json。今回installのnative/unit/compile再実行0。resume/task graph/scoped index後にcommit。
 - Commit: source=575707687a72a5f51fe6e7eb711421234d973fad; run=36330478316; 同branchへ非force push。
 - Network: 固定GitHub HEAD/Actions/artifact/APIのみ。一般CI action_required・失敗と歴史的全体private guardを成功へ読み替えない。merge/release/active baseline変更0。
+
+## 2026-09-27T15:43:25.569331+00:00
+- Timestamp: 2026-09-27T15:43:25.569331+00:00
+- Task: USER-20260928-RESEARCH-STORY-ROUTE / 道路通常進行・キズぐすり保存継続
+- Version: research-story-route-v1
+- Status: DONE（新区間限定、研究施設への通常到達未完）
+- Summary: 道路でのトレーナー敗北2回・母親の通常回復・草側迂回・キズぐすり1個の通常取得・Save counter2→3・独立Continueの所持保持を限定受入。次はpotion.srmのmap3/19 (26,17)から通常ストーリーへ。トレーナー勝利0、研究活動施設への自然到達は未完。旧starter/完走301入力/旧RP/UI/BP/P08を再実行しない。
+- Files changed: 専用oracle/検査/入力原本/checkpoint/guide、固定引継ぎMD/JSON、両ログ。ROM/save/runner/画面は非tracked artifactのみ。
+- Verify: 正式native2/301入力31904frames・cold24入力1942frames/53画面/全party600bytes・Flash128KiB・研究ledger・位置・RP0・Bagキズぐすり1個一致。新74oracle原本再利用、compile/ROM変更/旧受入再実行/guard再起動0。task graph/resume/scoped index/diff後にcommit。
+- Commit: source=228d31f3e3ab74dbfc089b63a75478c0d5fde1eb; run=36330546824; 同branchへ非force push。
+- Network: 固定GitHub HEAD/Actions/artifact/APIのみ。一般CI action_required・失敗と歴史的全体private guardを成功へ読み替えない。merge/release/active baseline変更0。
