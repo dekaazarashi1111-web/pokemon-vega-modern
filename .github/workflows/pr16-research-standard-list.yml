@@ -1,0 +1,68 @@
+name: pr16-research-standard-list
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-research-standard-list.yml]
+permissions:
+  contents: read
+concurrency:
+  group: pr16-research-standard-list
+  cancel-in-progress: false
+jobs:
+  scoped-source:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Export exact tracked source for scoped implementation; no native rerun
+        shell: python
+        run: |
+          import fnmatch, hashlib, json, os, pathlib, subprocess
+          root = pathlib.Path.cwd()
+          out = root / '.local/pr16-standard-list-source'
+          patterns = [
+            'AGENTS.md', '**/AGENTS.md', 'scripts/*.py', 'scripts/**/*.py',
+            'tools/mgba_pr16_research*.c', 'tools/mgba_pr16_special_wild*.c',
+            'tools/mgba_pr16_physical*.c', 'tools/mgba_*common*.h',
+            'overlays/research_economy_v1/*',
+            'tests/test_pr16_research*.py', 'tests/test_research*.py',
+            'content/research_economy_v1/*.json', 'config/research*.json',
+            'content/modernization/pr16_research*.json',
+            'content/modernization/pr16_native_supply_resume_20260913.json',
+            'content/modernization/pr16_bp_chooser_checkpoint.json',
+            'content/modernization/p08_remaining_work.json',
+            'docs/PR16_RESEARCH_COUNTER_JA.md', 'docs/PR16_RESEARCH_CONNECTION_JA.md',
+            'docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md',
+            'design/active_play_baseline.md', 'config/active_play_baseline.json',
+            'infra/toolchain_manifest.json', 'state/source-lock.json',
+            '.github/workflows/pr16-research-counter*.yml',
+          ]
+          tracked = subprocess.check_output(['git', 'ls-files', '-z']).decode().split('\0')
+          manifest = {'head': os.environ['GITHUB_SHA'], 'files': {}, 'native_runs': 0, 'rom_builds': 0}
+          for name in tracked:
+              if not name or not any(fnmatch.fnmatchcase(name, pattern) for pattern in patterns):
+                  continue
+              path = root / name
+              if path.is_symlink() or not path.is_file():
+                  raise RuntimeError('non-regular tracked source')
+              data = path.read_bytes()
+              data.decode('utf-8')
+              if len(data) > 4 * 1024 * 1024:
+                  raise RuntimeError('source file exceeds bounded transfer')
+              dest = out / 'source' / name
+              dest.parent.mkdir(parents=True, exist_ok=True)
+              dest.write_bytes(data)
+              manifest['files'][name] = {'size': len(data), 'sha256': hashlib.sha256(data).hexdigest()}
+          out.mkdir(parents=True, exist_ok=True)
+          (out / 'manifest.json').write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n')
+          print(json.dumps({'head': manifest['head'], 'source_files': len(manifest['files']), 'native_runs': 0, 'rom_builds': 0}))
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr16-research-standard-list-source
+          path: .local/pr16-standard-list-source/
+          include-hidden-files: true
+          retention-days: 7
+          if-no-files-found: error
