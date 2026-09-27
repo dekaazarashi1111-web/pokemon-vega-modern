@@ -105,6 +105,33 @@ def audit(parent):
             'engine_heads':{name:identity(parent[(addr&~1)-0x08000000:(addr&~1)-0x08000000+32]) for name,addr in API.items()}}
 
 
+
+def audit_thumb_symbols(elf):
+    """ELF32の実symbol type/LSBを検証。奇数値のSTT_NOTYPEは拒否する。"""
+    need(type(elf) is bytes and len(elf)>=52 and elf[:7]==b'\x7fELF\x01\x01\x01', 'ELF32 little-endian input')
+    header = struct.unpack_from('<16sHHIIIIIHHHHHH', elf)
+    need(header[2]==40 and header[11]==40 and 0<header[12]<512, 'ARM ELF section table')
+    shoff = header[6]
+    need(shoff+40*header[12]<=len(elf), 'bounded ELF sections')
+    sections = [struct.unpack_from('<10I',elf,shoff+40*i) for i in range(header[12])]
+    found = {}
+    for section in sections:
+        if section[1]!=2: continue
+        need(section[9]==16 and section[5]%16==0 and section[6]<len(sections), 'ELF symbol table layout')
+        strings = sections[section[6]]
+        need(strings[4]+strings[5]<=len(elf) and section[4]+section[5]<=len(elf), 'bounded ELF symbol/string bytes')
+        names = elf[strings[4]:strings[4]+strings[5]]
+        for at in range(section[4],section[4]+section[5],16):
+            name,value,size,info,other,index = struct.unpack_from('<IIIBBH',elf,at)
+            need(name<len(names) and b'\0' in names[name:], 'terminated ELF symbol name')
+            text = names[name:names.index(0,name)].decode('ascii')
+            if text not in API: continue
+            need(text not in found and value==API[text] and info&15==2 and value&1, 'typed Thumb delegate '+text)
+            found[text]={'value':value,'type':'STT_FUNC','thumb':True}
+    need(set(found)==set(API), 'all 17 typed Thumb delegates')
+    return found
+
+
 def compile_code(out):
     out = Path(out); out.mkdir(parents=True, exist_ok=True)
     compiler = subprocess.check_output(['arm-none-eabi-gcc','-dumpfullversion'], text=True).strip()
@@ -113,15 +140,23 @@ def compile_code(out):
     ld = ('SECTIONS { . = 0x%X; .text : { KEEP(*(.text.SL_Open)) *(.text*) *(.rodata*) } '
           '.data : { *(.data*) } .bss : { *(.bss*) *(COMMON) } '
           '/DISCARD/ : { *(.ARM.exidx*) *(.ARM.extab*) *(.comment*) *(.note*) } }\n' % BASE)
-    ld += '\n'.join('%s = 0x%X;' % (name,address) for name,address in API.items())+'\n'
+    # 絶対linker代入だけではSTT_NOTYPEになり、ARMv4のldr-pc veneerが
+    # Thumbのstock関数をARMとして実行する。Thumb FUNC symbolで型を固定する。
+    api_asm = '.syntax unified\n.thumb\n' + '\n'.join(
+        '.global {0}\n.type {0}, %function\n.thumb_set {0}, 0x{1:X}'.format(name, address)
+        for name, address in API.items()) + '\n'
+    (out/'apis.S').write_text(api_asm)
     (out/'link.ld').write_text(ld)
     command = ['arm-none-eabi-gcc','-mcpu=arm7tdmi','-mthumb','-Os','-ffreestanding','-fno-builtin',
                '-fno-common','-ffunction-sections','-fdata-sections','-fno-unwind-tables','-fno-asynchronous-unwind-tables',
-               '-Wall','-Wextra','-Werror','-nostdlib','-I'+str(out),str(ROOT/SOURCE),
+               '-Wall','-Wextra','-Werror','-nostdlib','-I'+str(out),str(ROOT/SOURCE),str(out/'apis.S'),
                '-Wl,-T,'+str(out/'link.ld'),'-Wl,--gc-sections','-Wl,-e,SL_Open','-o',str(out/'menu.elf')]
     proc = subprocess.run(command,capture_output=True)
     (out/'compile.stdout.txt').write_bytes(proc.stdout); (out/'compile.stderr.txt').write_bytes(proc.stderr)
     need(proc.returncode == 0 and not proc.stderr, 'strict isolated ARM compile')
+    thumb_symbols = audit_thumb_symbols((out/'menu.elf').read_bytes())
+    disassembly = subprocess.check_output(['arm-none-eabi-objdump','-d',str(out/'menu.elf')],text=True)
+    (out/'disassembly.txt').write_text(disassembly)
     symbols = subprocess.check_output(['arm-none-eabi-nm','-n',str(out/'menu.elf')],text=True)
     need(not re.search(r'\s[BbDdCc]\s', symbols), 'no mutable or common allocation')
     resolved = {line.split()[-1]:int(line.split()[0],16) for line in symbols.splitlines() if len(line.split())==3}
@@ -130,7 +165,7 @@ def compile_code(out):
     code = (out/'menu.bin').read_bytes(); need(0 < len(code) <= EVENT-BASE, 'isolated code partition')
     return code, {'compiler':compiler,'code':identity(code),'open':resolved['SL_Open']|1,
                   'task':resolved['SL_Task']|1,'symbols':symbols,'source':identity((ROOT/SOURCE).read_bytes()),
-                  'rows':list(zip(ROW_TEXT,[b.hex() for b in rows()])),'new_arm_compiles':1}
+                  'rows':list(zip(ROW_TEXT,[b.hex() for b in rows()])), 'thumb_symbols':thumb_symbols,'new_arm_compiles':1}
 
 
 def apply(parent, code, build):
