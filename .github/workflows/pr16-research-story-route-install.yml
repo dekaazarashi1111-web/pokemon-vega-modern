@@ -28,6 +28,7 @@ jobs:
           import pr16_research_story as m
           from pr16_learnset_compact_record import publish_resume
           d.current()
+          out=root/'.local/pr16-story-route-source';out.mkdir(parents=True)
           subprocess.run(['git','merge-base','--is-ancestor','2520b457a56b92bcc74040c0c86eaf799825ac71','HEAD'],check=True)
           state=d.read(root/d.STATE);protected=dict(state['source_bindings'])
           m.need(d.bindings(set(protected))==protected,'accepted sources unchanged before install')
@@ -41,7 +42,7 @@ jobs:
             pieces.append(raw)
           packed=b''.join(pieces)
           m.need(m.identity(packed)==dict(size=21432,sha256='1b42810be01f0892fbf8235e6b38aa72053fd297150b3aca141f74812402a1e6'),'whole bounded compressed text')
-          decoder=lzma.LZMADecompressor(memlimit=67108864);raw=decoder.decompress(packed,max_length=131320)
+          decoder=lzma.LZMADecompressor(memlimit=134217728);raw=decoder.decompress(packed,max_length=131320)
           m.need(decoder.eof and not decoder.unused_data and m.identity(raw)==dict(size=131319,sha256='e51e89aa9b634a48cea1a2aff76c62f88190456fb650df5e80c479c3260ce311'),'whole decoded reviewed text')
           payload=json.loads(raw,object_pairs_hook=m.unique);base='content/modernization/pr16_research_story_route_development/'
           names={'scripts/pr16_research_story_route.py','tests/test_pr16_research_story_route.py','scripts/pr16_research_story_route_actions.py','docs/PR16_RESEARCH_STORY_ROUTE_JA.md'}|{base+n for n in ('commands.txt','continue-commands.txt','continue.stderr.txt','continue.stdout.txt','initial-oracle-failure.json','progress.stderr.txt','progress.stdout.txt','setup.json','unit.stderr.txt','unit.stdout.txt','verification.json','visual-review.json')}
@@ -55,6 +56,11 @@ jobs:
           for name in names:
             if name.endswith('.py'):ast.parse((root/name).read_text())
           m.need(d.bindings(set(protected))==protected,'old accepted originals unchanged after install')
+          failed=d.inputs.api('actions/runs/36330227611')
+          m.need(failed['head_sha']=='539f8d44b45996150e0d551627c2ff8960f39db9' and failed['status']=='completed' and failed['conclusion']=='failure','original failed installation remains failure')
+          recovery=base+'source-install-recovery.json'
+          d.write(root/recovery,dict(schema_version=1,failed_run=36330227611,failed_job=108650618034,failed_source_head=failed['head_sha'],failure_stage='BOUNDED_TEXT_DECOMPRESSION_BEFORE_INSTALL',exception_type='_lzma.LZMAError',reason_ja='64MiB辞書に管理領域が加わり旧64MiB上限を超えた。固定payload/出力131319bytes/hashを保持し128MiB上限で同一byteを確認。',previous_memory_limit=67108864,memory_limit=134217728,decoded_payload=m.identity(raw),native_processes=0,unit_test_runs=0,source_payload_changed=False,recovery_source_head=os.environ['GITHUB_SHA']))
+          names.add(recovery)
           goal='道路からの通常敗北2回・母親回復・草側迂回・キズぐすり1個取得・通常Save counter2→3・独立Continue所持保持は開発実測済。新74検査成功原本を保存。次はこの新区間だけのActions独立測定と後継potion.srm artifact保持。正式runが既にあれば原本を回収し完走入力を重複しない。研究施設到達は未完、旧受入再実行禁止。'
           state['research_story_route_development']=dict(path=base+'verification.json',status=v['status'],local_native_processes=2,new_unit_tests=74,actions_completion_confirmed=False,natural_research_arrival_accepted=False)
           state['bp']['current_stop']='STORY_ROUTE_POTION_DEVELOPED_ACTIONS_NEXT';state['bp']['next_step']=goal
@@ -62,8 +68,7 @@ jobs:
           state['do_not_repeat'].insert(0,'道路道具取得の開発原本 '+base+'verification.json を保持。native2/74新検査。元Saveからの301入力を正式測定したrunがあれば原本回収だけにして重複しない。')
           for name in names|{'.github/workflows/pr16-research-story-route-install.yml','.github/workflows/pr16-research-story-route-followup.yml'}:state['source_bindings'][name]=m.identity((root/name).read_bytes())
           state['logs_synchronized']=True;publish_resume(state)
-          s.append_logs(goal,'開発native2/進行301入力31904frames・cold24入力1942frames。74新oracle全PASS原本とsource/evidence一致を再利用。初回終端schema例外1件を履歴保持して修正。53画面中治療暗転1枚は内容受入に数えず保持。今回installのnative/unit/compile再実行0。resume/task graph/scoped index後にcommit。','research-story-route-source-v1','DONE（実装と開発原本保存限定、Actions受入は次工程）')
-          out=root/'.local/pr16-story-route-source';out.mkdir(parents=True)
+          s.append_logs(goal,'開発native2/進行301入力31904frames・cold24入力1942frames。74新oracle全PASS原本とsource/evidence一致を再利用。初回終端schema例外1件を履歴保持して修正。53画面中治療暗転1枚は内容受入に数えず保持。転送run36330227611は64MiBメモリ上限で展開前停止、native/unit0。固定payloadの128MiB有界展開を確認して回復、失敗原本は '+recovery+'。今回installのnative/unit/compile再実行0。resume/task graph/scoped index後にcommit。','research-story-route-source-v1','DONE（実装と開発原本保存限定、Actions受入は次工程）')
           owned=names|{d.STATE,d.DOC}|d.LOGS
           d.write(out/'owned.json',sorted(owned));d.write(out/'verification.json',dict(status='PASS_SOURCE_CHECKPOINT_ONLY',source_head=os.environ['GITHUB_SHA'],new_native_processes=0,new_unit_test_runs=0,reused_new_unit_tests=74,payload=m.identity(raw),result=v['result']))
           print('PASS: new source and original 74 tests retained; old replay 0')
