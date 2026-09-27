@@ -1,17 +1,19 @@
 # PR16 保存スターター以後の通常進行
 
-## 開発checkpoint（正式Actions受入前）
+## 今回の限定受入
 
-保存済みstarter.srmをContinueし、序盤ライバル戦の敗北・正常復帰、研究所退出、517番道路の切れる木の拒否会話、町への帰還、東側道路map3/19へ進めた。通常Saveでcounter1→2、別coreのContinueでparty600bytes・Flash128KiB・研究ledger・位置・RP0を保持した。勝利・木の切断・研究活動施設の到達は受入していない。
+保存starter以後のライバル敗北復帰→研究所退出→517番道路の木の拒否→東側道路map3/19→Save counter1→2→独立Continueを限定実測。次は後継artifactのroute.srmから未完ストーリーへ。研究活動施設への自然到達は未完。初期化/スターター/完了区間/旧RP/UI/BP/P08を再実行しない。
 
-候補は e1efb1009c6e6b0ec4967bf7b20562d2330bbd933f64f7f7863cdad56eb1f842 のまま。ROM変更、ARM/host compile、NewGame再生、旧受入ケースの再実行は0。旧starter原本は変更しない。
+正本: `content/modernization/pr16_research_story_continue_checkpoint.json`。正式source `4c5d2d46bbef7f984800ea4133afe0388ac4c73d`、run `36325475401`。専用Actionsの成功終端とartifact IDは外部API確認待ち。全体完成ではない。
 
-## 正本と次の限定測定
+## 実装と検証
 
-開発原本は `content/modernization/pr16_research_story_continue_development/verification.json`、閉じた入力は同directoryのcommands.txt、専用oracleは `scripts/pr16_research_story_continue.py`。実入力114区間/12012frames、通常Save1回。開発nativeは2process/core、実画面22枚を確認した。新59検査は陽性前提付きで成功。最初の入力件数誤記の検査失敗は別receiptへ保持し、失敗時の負例okを受入へ加算しない。
+新continuation oracleは保存前提をstarter artifact10932059074に限定し、通常ライバル戦での敗北・正常復帰を勝利へ読み替えない。517番道路の切れる木は会話だけで通過せず、町へ戻って東側道路map3/19へ進んだ。114入力/12012frames、実画面21枚、通常Save1回。別coreのContinueは12入力/1390frames・実画面1枚、party600bytes/Flash128KiB/研究ledger/位置/RP0/counter2を保持。戦闘flags/outcomeは一時状態として0へ初期化。
 
-次はこの新しい区間だけを固定starter artifact10932059074と同一runnerからActionsで独立測定し、後継route.srmをartifactへ保存して引継ぐ。既に新しいrun/artifactが存在する場合はその原本を先に照合し、成功した入力を再実行しない。受入済みの初期化・スターター・RP稼得支出・UI・BP・P08は再実行しない。
+新59oracle/拒否試験は成功原本とsource一致を再利用。最初のContinue入力件数誤記(17→実測12)は失敗receiptを保持し、そこでの負例okを受入しない。ローカル開発native2、正式native2は別会計。旧受入ケースの再実行0、NewGame再生0、guard再起動0、host/ARM compile0、ROM変更0。固定runnerの7禁止barrierと候補全体SHAを維持。
 
-後継Saveの予定identityは131088bytes / SHA-256 503e26cfdc8605ff79984afdcab3ffd9ce448f4557a8d1cdf64526ad15cdd65a。これは開発測定値であり、Actions artifactの確認前に正式な再開artifactと呼ばない。map3/19 (1,14)、party1、RP0、counter2。全体ストーリー・研究活動施設(map96/0外部→98/3内部)への通常到達は未完。
+## 重複防止と後継保存
 
-merge・release・active baseline変更なし。一般CIの失敗/action_requiredと歴史的全体private guardを成功へ読み替えない。ROM/save/画面/runnerは非tracked入力またはActions artifactに限る。
+通常生成route.srmは131088bytes / SHA-256 503e26cfdc8605ff79984afdcab3ffd9ce448f4557a8d1cdf64526ad15cdd65a。map3/19 (1,14)、party1/RP0/counter2。固定runtime10898620034・data10898510128とrunner identityをcheckpoint.jsonで照合する。保存原本を保全し作業コピーだけに continue-story と全Save SHAを渡す。次回の入力はこの地点より先だけで、既存commands.txtは再生しない。
+
+研究活動施設(map96/0→98/3)への通常到達、全体ストーリー、releaseは未受入。merge/active baseline変更なし。一般CI action_required/失敗と歴史的全体private guardを成功へ読み替えない。ROM/save/runner/画面はartifactだけに保持しGit trackedには入れない。
