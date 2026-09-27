@@ -8103,3 +8103,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 新59oracle成功原本/source一致再利用、正式native2core、host/ARM compile0、ROM変更0、旧受入再実行0。固定runner7禁止barrierは再起動せず同一実装を再利用。task graph/resume/scoped index/diff検査後にcommit。
 - Commit: source=4c5d2d46bbef7f984800ea4133afe0388ac4c73d; run=36325475401; 同branch非force push。成功終端/保存artifact IDは外部確認待ち。
 - Network: GitHub固定artifact/Actions/APIのみ。merge/release/baseline変更0、歴史的private guard/一般CI未完を成功扱いしない。次は後継route.srmだけから未完ストーリーへ進む。
+
+## 2026-09-27T14:22:41.835995+00:00
+- Timestamp: 2026-09-27T14:22:41.835995+00:00
+- Task: USER-20260927-RESEARCH-STORY-CONTINUE / 道路保存と独立Continueの成功終端確定
+- Version: research-story-continue-v1-terminal
+- Status: DONE（新区間保存・Continue限定、研究活動施設への通常到達未完）
+- Summary: run36325475401/job108637305546の全11必須stepと完了commit64777bc7fea788561a994bb3589bcf9a89c26175を照合。artifact10933499471の全42member、通常生成route.srm/RTC、固定runner、22実画面、JSON原本とcommit済みMD/JSON/両ログの全snapshotを読戻し一致。次はmap3/19 (1,14)、party1/RP0/counter2のroute.srmから先へ進む。
+- Files changed: 専用checkpoint/terminal receipt/guide、固定引継ぎMD/JSON、両ログ。
+- Verify: artifact1313382bytes/SHA-256 55e88187f9dbc5ed2f075857506071a06789ae03c57004f8a0f4d54b0f251362 PASS。raw oracle/全party/Flash/研究ledger/位置/RP/counter保持PASS。新59検査と固定runner7禁止barrierは再利用。今回の終端照合は新native/compile/unit/旧受入再実行すべて0。render/check/task graph/scoped index/diff後にcommit。
+- Commit: source=fce3748d1307a0b214af65095f7e34c7c6c63fcd; terminal_run=36325665287; 同branch非force push。
+- Network: GitHub固定run/job/artifact/HEADのみ。一般CIを原statusで記録。merge/draft解除/release/baseline変更0。旧NewGame/スターター/今回完走区間を重複しない。

@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-PASS_NATURAL_STORY_ROUTE_SAVE_PENDING_TERMINAL
+PASS_NATURAL_STORY_ROUTE_SAVE_SCOPED
 
 **次: 保存starter以後のライバル敗北復帰→研究所退出→517番道路の木の拒否→東側道路map3/19→Save counter1→2→独立Continueを限定実測。次は後継artifactのroute.srmから未完ストーリーへ。研究活動施設への自然到達は未完。初期化/スターター/完了区間/旧RP/UI/BP/P08を再実行しない。**
 
-まず新runの全step終端とcheckpoint artifactを照合。成功済み114入力を再実行せずroute.srmをContinue。研究施設到達/勝利/切断の受入へ昇格しない。merge/release/baseline変更禁止。
+run36325475401の全必須stepとartifact10933499471は終端確認済み。route.srmのsize/SHAと固定runner/runtime/candidateを確認してContinueし、その先の通常ストーリーだけを進める。旧starter/完走114入力/旧RP/UI/BP/P08は再実行しない。研究施設到達へ昇格しない。merge/release/baseline変更禁止。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
 証拠のsource HEAD: `4c5d2d46bbef7f984800ea4133afe0388ac4c73d`。
-通常starter保存以後の新規道路保存を測定したsource HEAD。終端は外部API確認待ちで、自己記録commitや最終製品SHAではない。
+通常スターター保存以後の成功Actions測定source HEAD。外部終端・後継Save/RTC・全必須step・全commit原本は content/modernization/pr16_research_story_continue_terminal.json で確認。自己commitや製品最終SHAではない。
 
 ## 最短の再開手順
 
@@ -27,7 +27,7 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 
 - `docs/PR16_RESEARCH_STORY_CONTINUE_JA.md`
 - `content/modernization/pr16_research_story_continue_checkpoint.json`
-- `content/modernization/pr16_research_story_continue_development/visual-review.json`
+- `content/modernization/pr16_research_story_continue_terminal.json`
 - `scripts/pr16_research_story_continue.py`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
@@ -350,6 +350,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-新規道路保存の限定測定と一般CIは別。未完/action_required/失敗をsuccessへ読み替えない。
+新区間専用Actionsは全必須step SUCCESS。一般CIは実conclusionを保存し、action_required・失敗・未完を成功へ読み替えない。全体private guard/releaseは別。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
