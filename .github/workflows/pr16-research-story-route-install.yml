@@ -1,0 +1,106 @@
+name: pr16-research-story-route-install
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-research-story-route-install.yml]
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+jobs:
+  install:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Install exact reviewed text and preserve new development originals without replay
+        run: |
+          python3 -B - <<'PY'
+          import ast,base64,json,lzma,os,pathlib,subprocess,sys
+          root=pathlib.Path.cwd();sys.path[:0]=[str(root/'scripts'),str(root)]
+          import pr16_research_lifecycle_actions as d
+          import pr16_research_story as m
+          from pr16_learnset_compact_record import publish_resume
+          d.current()
+          subprocess.run(['git','merge-base','--is-ancestor','2520b457a56b92bcc74040c0c86eaf799825ac71','HEAD'],check=True)
+          state=d.read(root/d.STATE);protected=dict(state['source_bindings'])
+          m.need(d.bindings(set(protected))==protected,'accepted sources unchanged before install')
+          specs=[('40a1278052b2a6b7ab0de0fcb91ffb41158112b3',4000,'c69fc25120d2b9a0829703033d7e7517ab708e2845bcf3ece11de1f663ae338d'),('153e7a9a26caac4bd084c7538081305881620e97',4000,'54e5c7f7f657b94e7e1e3d060bde97c40cc268b32ff136cd8bf2efa5555c14e5'),('49ed4d1101574afdf2d8e50f86b88822a43b109a',4000,'cf58d630c3becf36eea5967ee0e8eb3afcaacb6bdaade47a1ee3a67f5ef04c4e'),('ecdbbe6181bc765b006273b039d5fd03b8d89203',4000,'74688aad0d541def402fdae43212c1f0eca35f0be5c856dae07290309f5a26e8'),('6269468cbd47e7dab99f42ec826a2616cbdb1c47',4000,'20353294d9bb0ec2148b9a82f04e6079421878d5082a977818de1477d460e51d'),('772334c3a7664af5894eb22e231fb305ac932e84',1432,'be12cc102a7e0d4f50de12a866b25e886fe477dd83f4bdecbbc346eb7076f8b7')]
+          pieces=[]
+          for sha,size,digest in specs:
+            value=d.inputs.api('git/blobs/'+sha)
+            m.need(value['sha']==sha and value['encoding']=='base64','fixed text-transport blob')
+            raw=base64.b64decode(value['content'])
+            m.need(m.identity(raw)==dict(size=size,sha256=digest),'exact chunk identity')
+            pieces.append(raw)
+          packed=b''.join(pieces)
+          m.need(m.identity(packed)==dict(size=21432,sha256='1b42810be01f0892fbf8235e6b38aa72053fd297150b3aca141f74812402a1e6'),'whole bounded compressed text')
+          decoder=lzma.LZMADecompressor(memlimit=67108864);raw=decoder.decompress(packed,max_length=131320)
+          m.need(decoder.eof and not decoder.unused_data and m.identity(raw)==dict(size=131319,sha256='e51e89aa9b634a48cea1a2aff76c62f88190456fb650df5e80c479c3260ce311'),'whole decoded reviewed text')
+          payload=json.loads(raw,object_pairs_hook=m.unique);base='content/modernization/pr16_research_story_route_development/'
+          names={'scripts/pr16_research_story_route.py','tests/test_pr16_research_story_route.py','scripts/pr16_research_story_route_actions.py','docs/PR16_RESEARCH_STORY_ROUTE_JA.md'}|{base+n for n in ('commands.txt','continue-commands.txt','continue.stderr.txt','continue.stdout.txt','initial-oracle-failure.json','progress.stderr.txt','progress.stdout.txt','setup.json','unit.stderr.txt','unit.stdout.txt','verification.json','visual-review.json')}
+          m.need(set(payload)=={'schema_version','task','files'} and payload['schema_version']==1 and payload['task']=='USER-20260928-RESEARCH-STORY-ROUTE' and set(payload['files'])==names,'closed new-text payload')
+          for name,row in payload['files'].items():
+            path=root/name
+            m.need(set(row)=={'before','content'} and row['before'] is None and not path.exists() and type(row['content']) is str and '\0' not in row['content'],'new UTF8 tracked text only')
+            path.parent.mkdir(parents=True,exist_ok=True);path.write_text(row['content'],encoding='utf-8')
+          import pr16_research_story_route_actions as s
+          v=s.local_verified()
+          for name in names:
+            if name.endswith('.py'):ast.parse((root/name).read_text())
+          m.need(d.bindings(set(protected))==protected,'old accepted originals unchanged after install')
+          goal='道路からの通常敗北2回・母親回復・草側迂回・キズぐすり1個取得・通常Save counter2→3・独立Continue所持保持は開発実測済。新74検査成功原本を保存。次はこの新区間だけのActions独立測定と後継potion.srm artifact保持。正式runが既にあれば原本を回収し完走入力を重複しない。研究施設到達は未完、旧受入再実行禁止。'
+          state['research_story_route_development']=dict(path=base+'verification.json',status=v['status'],local_native_processes=2,new_unit_tests=74,actions_completion_confirmed=False,natural_research_arrival_accepted=False)
+          state['bp']['current_stop']='STORY_ROUTE_POTION_DEVELOPED_ACTIONS_NEXT';state['bp']['next_step']=goal
+          state['next_action']=dict(state['next_action'],id='STORY_ROUTE_POTION_INDEPENDENT_MEASUREMENT_NEXT',goal_ja=goal,read_paths=[s.GUIDE,base+'verification.json',s.SELF,s.m.SOURCE,s.m.PARENT],stop_rule_ja='新しいActions原本がある場合は先に回収し再生禁止。開発結果を正式Actions終端へ読み替えない。元route.srmからの新区間のみ。旧starter/前回114入力/旧RP/UI/BP/P08は再実行しない。merge/release/baseline変更禁止。')
+          state['do_not_repeat'].insert(0,'道路道具取得の開発原本 '+base+'verification.json を保持。native2/74新検査。元Saveからの301入力を正式測定したrunがあれば原本回収だけにして重複しない。')
+          for name in names|{'.github/workflows/pr16-research-story-route-install.yml','.github/workflows/pr16-research-story-route-followup.yml'}:state['source_bindings'][name]=m.identity((root/name).read_bytes())
+          state['logs_synchronized']=True;publish_resume(state)
+          s.append_logs(goal,'開発native2/進行301入力31904frames・cold24入力1942frames。74新oracle全PASS原本とsource/evidence一致を再利用。初回終端schema例外1件を履歴保持して修正。53画面中治療暗転1枚は内容受入に数えず保持。今回installのnative/unit/compile再実行0。resume/task graph/scoped index後にcommit。','research-story-route-source-v1','DONE（実装と開発原本保存限定、Actions受入は次工程）')
+          out=root/'.local/pr16-story-route-source';out.mkdir(parents=True)
+          owned=names|{d.STATE,d.DOC}|d.LOGS
+          d.write(out/'owned.json',sorted(owned));d.write(out/'verification.json',dict(status='PASS_SOURCE_CHECKPOINT_ONLY',source_head=os.environ['GITHUB_SHA'],new_native_processes=0,new_unit_test_runs=0,reused_new_unit_tests=74,payload=m.identity(raw),result=v['result']))
+          print('PASS: new source and original 74 tests retained; old replay 0')
+          PY
+      - name: Validate fixed resume graph and append-only scoped index
+        run: |
+          python3 -B scripts/pr16_resume.py check
+          python3 -B scripts/validate_task_graph.py
+          python3 -B - <<'PY'
+          import os,pathlib,subprocess,sys
+          sys.path.insert(0,'scripts');import pr16_research_lifecycle_actions as d
+          import pr16_learnset_runtime_record as g
+          owned=d.read(pathlib.Path('.local/pr16-story-route-source/owned.json'))
+          subprocess.run(['git','add','--',*owned],check=True)
+          g.START=os.environ['GITHUB_SHA'];g.CODE=set();g.OWNED=set(owned);g.guard()
+          subprocess.run(['git','diff','--cached','--check'],check=True)
+          PY
+      - name: Non-force source checkpoint commit
+        run: |
+          test "$(git ls-remote origin "$GITHUB_REF" | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20260928-RESEARCH-STORY-ROUTE: 通常道具取得oracleと74検査・開発原本を保存'
+          git push origin "HEAD:$GITHUB_REF"
+          test "$(git ls-remote origin "$GITHUB_REF" | cut -f1)" = "$(git rev-parse HEAD)"
+          git rev-parse HEAD > .local/pr16-story-route-source/completion-head.txt
+          python3 -B - <<'PY'
+          import pathlib,sys
+          sys.path.insert(0,'scripts');import pr16_research_story_route_actions as s
+          s.OUT=pathlib.Path('.local/pr16-story-route-source');s.ART=s.OUT/'checkpoint';s.snapshot()
+          PY
+          printf 'RESULT=DONE TASK=USER-20260928-RESEARCH-STORY-ROUTE VERIFY=SOURCE_PASS COMMIT=%s\n' "$(git rev-parse HEAD)"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-research-story-route-source-checkpoint
+          path: .local/pr16-story-route-source
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90
