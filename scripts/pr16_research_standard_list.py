@@ -22,7 +22,7 @@ API = {'SL_CreateTask':0x08076BB5, 'SL_DestroyTask':0x08076CA1,
        'SL_FillWindow':0x08004429, 'SL_Print':0x08002C45,
        'SL_Schedule':0x080F77FD, 'SL_DrawFrame':0x080F7F7D,
        'SL_ClearFrame':0x080F7FFD, 'SL_BaseTile':0x080F89CD,
-       'SL_Cursor':0x0811030D, 'SL_Input':0x08110BF9,
+       'SL_Cursor':0x0811030D, 'SL_Input':0x08110539, 'SL_LoadFrame':0x081530E1,
        'SL_Sound':0x08071A71, 'SL_Suspend':0x08069201, 'SL_Resume':0x080693F5}
 need, identity = numeric.need, numeric.identity
 
@@ -128,7 +128,7 @@ def audit_thumb_symbols(elf):
             if text not in API: continue
             need(text not in found and value==API[text] and info&15==2 and value&1, 'typed Thumb delegate '+text)
             found[text]={'value':value,'type':'STT_FUNC','thumb':True}
-    need(set(found)==set(API), 'all 17 typed Thumb delegates')
+    need(set(found)==set(API), 'all typed Thumb delegates')
     return found
 
 

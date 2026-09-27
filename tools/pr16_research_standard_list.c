@@ -28,6 +28,7 @@ extern void SL_Print(u8, u8, const u8 *, u8, u8, u8, void *);
 extern void SL_Schedule(u8);
 extern void SL_DrawFrame(u8, u8);
 extern void SL_ClearFrame(u8, u8);
+extern void SL_LoadFrame(u8, u16, u8);
 extern u16 SL_BaseTile(void);
 extern u8 SL_Cursor(u8, u8, u8, u8, u8, u8, u8);
 extern s8 SL_Input(void);
@@ -76,10 +77,12 @@ void SL_Open(void)
     TASKS[id].data[1] = 2; /* 会話終了に使ったAを新リストへ漏らさない。 */
     /* freestanding ARMで暗黙memcpyを発生させない。 */
     w.bg = 0; w.left = 9; w.top = 1; w.width = 20; w.height = 6; w.palette = 15;
-    w.base = SL_BaseTile();
+    /* 0x214..0x21c are frame tiles, not menu pixel storage. */
+    w.base = 0x280;
     window = SL_AddWindow(&w);
     if (window >= 255) { SL_DestroyTask(id); return; }
     TASKS[id].data[0] = (s16)window;
+    SL_LoadFrame((u8)window, SL_BaseTile(), 0xe0);
     SL_FillWindow((u8)window, 0x11);
     SL_DrawFrame((u8)window, 0);
     SL_PutWindow((u8)window);

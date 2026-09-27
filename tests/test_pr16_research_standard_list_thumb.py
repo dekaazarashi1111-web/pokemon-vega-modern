@@ -24,7 +24,7 @@ class ThumbSymbolTests(unittest.TestCase):
         self.entries=[(n,v,2) for n,v in s.API.items()]
     def reject(self):
         with self.assertRaises(ValueError):s.audit_thumb_symbols(fixture(self.entries))
-    def test_positive(self):self.assertEqual(len(s.audit_thumb_symbols(fixture())),17)
+    def test_positive(self):self.assertEqual(len(s.audit_thumb_symbols(fixture())),18)
     def test_notype_odd_address_is_not_thumb_proof(self):n,v,t=self.entries[0];self.entries[0]=(n,v,0);self.reject()
     def test_even_function_is_not_thumb(self):n,v,t=self.entries[0];self.entries[0]=(n,v-1,t);self.reject()
     def test_wrong_delegate_address(self):n,v,t=self.entries[0];self.entries[0]=(n,v+2,t);self.reject()
