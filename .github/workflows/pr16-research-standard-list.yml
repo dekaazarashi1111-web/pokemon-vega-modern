@@ -4,17 +4,17 @@ on:
     branches: [codex/modernization-followup-20260908]
     paths: [.github/workflows/pr16-research-standard-list.yml]
 permissions:
-  contents: read
+  contents: write
   actions: read
   pull-requests: read
 concurrency:
   group: pr16-research-standard-list
   cancel-in-progress: false
 jobs:
-  thumb-link:
+  thumb-native:
     if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 15
     env:
       GITHUB_TOKEN: ${{ github.token }}
       PYTHONDONTWRITEBYTECODE: '1'
@@ -22,52 +22,48 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Fixed isolated ARM compiler
-        run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y --no-install-recommends gcc-arm-none-eabi=15:13.2.rel1-2 binutils-arm-none-eabi
-          test "$(arm-none-eabi-gcc -dumpfullversion)" = 13.2.1
-      - name: New Thumb symbol rejection tests only
-        run: |
-          mkdir -p .local/pr16-standard-list-thumb
-          python3 -B -m unittest discover -s tests -p test_pr16_research_standard_list_thumb.py -v >.local/pr16-standard-list-thumb/unit.stdout.txt 2>.local/pr16-standard-list-thumb/unit.stderr.txt
-      - name: Typed Thumb link with original failure negative control
+      - name: Exact source transfer
+        id: source
         shell: python
         run: |
-          import io,json,os,pathlib,sys,zipfile
-          sys.path.insert(0,'scripts')
-          import pr16_research_standard_list as s
-          import pr16_research_counter_accept as a
-          import pr16_research_lifecycle_actions as d
-          d.current()
-          assert s.identity(pathlib.Path('scripts/pr16_research_standard_list.py').read_bytes())['sha256']=='68bdfe4fab1d80bd11b55865bfd9bc848164d261cc302997eb4dd23166b453b2'
-          out=pathlib.Path('.local/pr16-standard-list-thumb')
-          old,meta=a.archive(10928552956,1259229,'84f278c2e18bdb17989e347688962589af5a693cfd125a00aa3ea96cf0de55f0',201,5334036,36310534280)
-          before=json.loads(old['build.json'])
-          try:s.audit_thumb_symbols(old['arm/menu.elf'])
-          except ValueError as exc:reason=str(exc)
-          else:raise RuntimeError('old STT_NOTYPE ELF was not rejected')
-          assert reason.startswith('typed Thumb delegate ')
-          # The host source and event generator have no semantic edits; retain 30 results.
-          for p in (s.SOURCE,'tests/test_pr16_research_standard_list.py'):
-              assert s.identity(pathlib.Path(p).read_bytes())==before['source_bindings'][p]
-          prior=old['source/scripts/pr16_research_standard_list.py'].decode()
-          current=pathlib.Path('scripts/pr16_research_standard_list.py').read_text()
-          assert prior.split('def event(',1)[1].split('def audit(',1)[0]==current.split('def event(',1)[1].split('def audit(',1)[0]
-          assert old['unit.stderr.txt'].count(b' ... ok\n')==30 and b'\nOK\n' in old['unit.stderr.txt']
-          code,build=s.compile_code(out/'arm')
-          build.update(source_head=os.environ['GITHUB_SHA'],run_id=int(os.environ['GITHUB_RUN_ID']),code_hex=code.hex())
-          build['source_bindings']={p:s.identity(pathlib.Path(p).read_bytes()) for p in (s.SOURCE,'scripts/pr16_research_standard_list.py','tests/test_pr16_research_standard_list_thumb.py')}
-          d.write(out/'build.json',build)
-          d.write(out/'diagnosis.json',dict(original_build_run=36310534280,original_native_run=36311122801,original_artifact=meta,
-              original_elf=s.identity(old['arm/menu.elf']),rejection=reason,old_arm_ldr_pc_veneer_is_not_thumb_interworking=True,
-              fix='17 explicit STT_FUNC .thumb_set symbols; source/event/owner unchanged',old_native_still_failure=True,
-              reused_host_event_tests=30,new_thumb_tests=8,new_arm_compiles=1,new_native_processes=0))
+          import hashlib,pathlib
+          assert hashlib.sha256(pathlib.Path('scripts/pr16_research_standard_list_thumb_actions.py').read_bytes()).hexdigest()=='79e3035299f66c787e4f5c9a5a6416aee45a5708f2204810d43d02d4447a02bb'
+      - name: Corrected Thumb call boundary and previously unaccepted list
+        id: measure
+        run: python3 -B scripts/pr16_research_standard_list_thumb_actions.py measure
+      - name: Preserve original failure and new measurement separately
+        id: record
+        if: always() && steps.source.outcome == 'success' && hashFiles('.local/pr16-standard-list-thumb-native/public/invocation.json') != ''
+        run: python3 -B scripts/pr16_research_standard_list_thumb_actions.py record
+      - name: Task graph resume and entire task scoped index
+        id: guard
+        if: always() && steps.record.outcome == 'success'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B scripts/validate_task_graph.py
+          mapfile -t owned < <(python3 -B scripts/pr16_research_standard_list_thumb_actions.py paths)
+          git add -- "${owned[@]}"
+          python3 -B scripts/pr16_research_standard_list_thumb_actions.py guard
+      - name: Non-force corrected evidence checkpoint
+        if: always() && steps.guard.outcome == 'success'
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git ls-remote origin "$GITHUB_REF" | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20260927-RESEARCH-STANDARD-LIST: Thumb修正後の限定実測・引継ぎを保存'
+          git push origin HEAD:refs/heads/codex/modernization-followup-20260908
+          test "$(git ls-remote origin "$GITHUB_REF" | cut -f1)" = "$(git rev-parse HEAD)"
+          echo "RESULT=STOPPED TASK=USER-20260927-RESEARCH-STANDARD-LIST VERIFY=SCOPED COMMIT=$(git rev-parse HEAD)"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: pr16-research-standard-list-thumb
-          path: .local/pr16-standard-list-thumb/
+          name: pr16-research-standard-list-thumb-native
+          path: |
+            .local/pr16-standard-list-thumb-native/public/
+            content/modernization/pr16_research_standard_list_thumb_checkpoint.json
           include-hidden-files: true
           retention-days: 14
           if-no-files-found: error
