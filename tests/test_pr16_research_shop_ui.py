@@ -1,4 +1,4 @@
-"""変更3参照・60byteの後処理を閉じたpatch集合として検査する。"""
+"""2API/上余白・64byteの後処理を閉じたpatch集合として検査する。"""
 import copy
 import os
 from pathlib import Path
@@ -16,14 +16,16 @@ class PatchTests(unittest.TestCase):
     def test_whole_reverse(self):
         reverse=[dict(offset=r['offset'],before=r['after'],after=r['before']) for r in m.patch_rows()]
         self.assertEqual(m.edit(self.out,reverse),self.raw)
-    def test_change_count(self):self.assertEqual(self.recipe['changed_bytes'],70)
-    def test_only_three_literals_and_payload(self):self.assertEqual(len(m.patch_rows()),4)
+    def test_change_count(self):self.assertEqual(self.recipe['changed_bytes'],71)
+    def test_only_two_apis_top_and_payload(self):self.assertEqual(len(m.patch_rows()),4)
     def test_input_is_pure(self):self.assertEqual(struct.unpack_from('<I',self.out,0x13bf61c)[0],0x08110539)
-    def test_pixel_base_thumb(self):self.assertEqual(m.CODE[:6],bytes.fromhex('282000017047'))
-    def test_frame_preserves_r4_r5_r6_lr(self):self.assertEqual(m.CODE[8:14],bytes.fromhex('70b504000d00'))
-    def test_frame_returns_preserved_registers(self):self.assertEqual(m.CODE[42:46],bytes.fromhex('70bd1847'))
-    def test_frame_delegates(self):self.assertEqual(struct.unpack_from('<III',m.CODE,48),(0x080f89cd,0x081530e1,0x080f7f7d))
-    def test_pixels_do_not_overlap_frame(self):self.assertLessEqual(0x21d,0x280);self.assertLessEqual(0x280+21*16,1024)
+    def test_existing_pixel_base_unchanged(self):self.assertEqual(self.out[0x13bf05a:0x13bf05e],bytes.fromhex('3820c046'));self.assertEqual(self.out[0x13bf1e4:0x13bf1e8],self.raw[0x13bf1e4:0x13bf1e8])
+    def test_frame_preserves_r4_r5_r6_lr(self):self.assertEqual(m.CODE[:6],bytes.fromhex('70b504000d00'))
+    def test_frame_returns_preserved_registers(self):self.assertEqual(m.CODE[44:48],bytes.fromhex('70bd1847'))
+    def test_frame_delegates(self):self.assertEqual(struct.unpack_from('<IIII',m.CODE,48),(0x080f7fb5,0x080f89cd,0x081530e1,0x080f7f7d))
+    def test_pixels_do_not_overlap_frame(self):self.assertLessEqual(0x38+21*16,0x198);self.assertLessEqual(0x198+26*4,0x214)
+    def test_visible_top_border(self):self.assertEqual(self.out[0x13bf1e0:0x13bf1e4],bytes.fromhex('00080115'))
+    def test_modal_hides_without_window_free(self):self.assertEqual(m.CODE[6:10],bytes.fromhex('00200021'));self.assertNotIn(bytes.fromhex('093e0008'),m.CODE)
     def test_earlier_list_unchanged(self):self.assertEqual(self.raw[0x1f4a800:0x1f4b000],self.out[0x1f4a800:0x1f4b000])
     def test_catalog_and_transactions_unchanged(self):self.assertEqual(self.raw[0x13bf9ec:0x13c0700],self.out[0x13bf9ec:0x13c0700])
     def reject(self,change):
