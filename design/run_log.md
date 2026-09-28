@@ -11066,3 +11066,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: source=98f7e71dd51a54ae85e29ceeecc1cf31d7c8136f; run=36374723884; 同branch非force push。
 - Network: GitHub HEAD/Actions/artifactのみ。コンテナからgit cloneはDNS失敗のためconnector/専用Actionsを使用。merge/release/active baseline変更0。一般CI成功は主張しない。
 - Next: Save8のtraining.srm作業コピーから先だけ進める。リープンLv8/EXP331、次Lvまで88、HP24/24、PP35/30/25、手持ち1体、RP0、map4/0(8,3)。野生3勝でEXP61獲得、母親で2回回復し通常Save7→8と独立Continueを確認。ボールポケット空のため捕獲0。次は自然な用品入手/手持ち拡充または追加育成を進め、東側道路map3/19から通常ストーリーへ。マオリ勝利/研究施設自然到達/実渡航/全story/releaseは未完。完走316/cold34入力、旧Save7生成270/cold34、既受入nativeを再生しない。
+
+## 2026-09-28T10:14:17.661530+00:00
+- Timestamp: 2026-09-28T10:14:17.661530+00:00
+- Task: USER-20260928-STORY-SAVE9 / Save8後の通常育成・逃走区別・Save9
+- Version: story-save9-v1
+- Status: DONE（この育成/保存区間のみ。トレーナー/通常供給/研究施設/全story/releaseは未完）
+- Summary: Save8から野生エネコ/ドードー/フロン3勝で37+45+37=119EXP、Lv8→9。HP6/24で帰宅、途中のスバメと後のフロンから通常逃走、双方party不変で勝利と区別。母親2回回復。実レポートの確認/上書き/書込中/完了表示/counter8→9/field復帰。独立Continueの全Save/RTCと4UI一致。
+- Files changed: Save9専用oracle/76検査/新入力原本/証拠/checkpoint/guide、固定引継ぎMD/JSON、両ログ。ROM/save/runner/画面は非tracked artifactのみ。
+- Verify: 新区間native2・363入力31080framesとcold34入力2808frames、74画面/30目視anchor/4UI、全131088bytes、party589bytes・前回bank57344bytes保持、新76検査PASS。開発native2/76検査とは別会計。 旧受入の明示再実行0、compile/ROM改変0。task graph/resume/scoped index/diff確認後にcommit。全体private guardや一般CIの成功は主張しない。
+- Commit: source=be27b66e1486c28cdf9e2c40009359f2072881da; run=36408354430; 同branch非force push。WIP e50afac0で固定context、41ee5724で開発原本と76検査を先行保存。
+- Network: GitHub HEAD/Actions/artifactのみ。直接cloneのDNS失敗を権限不足と誤認せずconnector/Actionsを使用。merge/release/active baseline変更0。観測待機の延長は入力再送/process再起動なし。
+- Next: Save9のtraining.srm作業コピーから先だけ進める。リープンLv9/EXP450、次Lvまで110、HP26/26、PP35/30/25、手持ち1体、RP0、map4/0(8,5)。Save8からの野生3勝119EXP・通常逃走2回・母親回復2回・通常Save8→9完了表示・独立Continueを確認。捕獲/トレーナー勝利0。次は自然な用品入手/手持ち拡充または追加育成を経て、東側道路map3/19のマオリ/通常ストーリーへ。マオリ勝利/研究施設自然到達/実渡航/全story/releaseは未完。本区間363/cold34、親316/cold34とそれ以前の既受入nativeを再生しない。

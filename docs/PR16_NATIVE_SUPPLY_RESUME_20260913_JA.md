@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-PASS_STORY_SAFE_TRAINING_SAVE8_SCOPED
+PASS_STORY_SAVE9_PENDING_TERMINAL
 
-**次: Save8のtraining.srm作業コピーから先だけ進める。リープンLv8/EXP331、次Lvまで88、HP24/24、PP35/30/25、手持ち1体、RP0、map4/0(8,3)。野生3勝でEXP61獲得、母親で2回回復し通常Save7→8と独立Continueを確認。ボールポケット空のため捕獲0。次は自然な用品入手/手持ち拡充または追加育成を進め、東側道路map3/19から通常ストーリーへ。マオリ勝利/研究施設自然到達/実渡航/全story/releaseは未完。完走316/cold34入力、旧Save7生成270/cold34、既受入nativeを再生しない。**
+**次: Save9のtraining.srm作業コピーから先だけ進める。リープンLv9/EXP450、次Lvまで110、HP26/26、PP35/30/25、手持ち1体、RP0、map4/0(8,5)。Save8からの野生3勝119EXP・通常逃走2回・母親回復2回・通常Save8→9完了表示・独立Continueを確認。捕獲/トレーナー勝利0。次は自然な用品入手/手持ち拡充または追加育成を経て、東側道路map3/19のマオリ/通常ストーリーへ。マオリ勝利/研究施設自然到達/実渡航/全story/releaseは未完。本区間363/cold34、親316/cold34とそれ以前の既受入nativeを再生しない。**
 
-専用測定run/artifact終端を先に照合。後継training.srmのみ。316/cold34・親270/cold34を再生せず、失敗時も原本を保存して原因を限定。野生勝利をトレーナー勝利/研究到達へ昇格しない。
+専用測定run/artifact終端を先に照合。後継Save9のtraining.srmのみ。本区間363/cold34・親316/cold34や既受入nativeを再生せず、失敗原本を成功に改作しない。逃走を勝利、野生勝利をトレーナー勝利/研究到達へ昇格しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `c108d25ac7b29b77b8984384968d5ca9037daf4e`。
+証拠のsource HEAD: `be27b66e1486c28cdf9e2c40009359f2072881da`。
 新区間を独立測定したsource HEAD。自己記録commitやactive baselineではない。
 
 ## 最短の再開手順
@@ -25,10 +25,10 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_STORY_SAFE_TRAINING_JA.md`
-- `content/modernization/pr16_story_safe_training_checkpoint.json`
-- `scripts/pr16_story_safe_training.py`
-- `tests/test_pr16_story_safe_training.py`
+- `docs/PR16_STORY_SAVE9_JA.md`
+- `content/modernization/pr16_story_save9_checkpoint.json`
+- `scripts/pr16_story_save9.py`
+- `tests/test_pr16_story_save9.py`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -62,6 +62,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- Save8後継の新区間363入力/独立34入力は content/modernization/pr16_story_save9_checkpoint.json。Save9/EXP450/Lv9のtraining.srmから先だけ進める。通常逃走2回を勝利と区別。捕獲0/マオリ勝利未完。
 - Save7後継の野生育成316入力/独立34入力は content/modernization/pr16_story_safe_training_checkpoint.json。Save8/EXP331/Lv8のtraining.srmから先だけ進める。捕獲0/ボールポケット空、マオリ勝利未完。
 - 回復後の270入力/独立34入力は content/modernization/pr16_story_after_home_checkpoint.json に保存。Save7/EXP270から先だけ進む。マオリ敗北/全滅帰宅を勝利扱いせず、育成不足を補う。
 - 母親回復は content/modernization/pr16_home_recovery_native_checkpoint.json。新候補でSave counter6。回復81/cold34入力は完走済み、次は終端回収またはrecovery.srmから新しい進行のみ。
