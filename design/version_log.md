@@ -8224,3 +8224,25 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 正式native2、194入力19042frames/cold34入力2572frames、56実画面/4UI一致、全party600bytes/Flash128KiB/ledger/位置/RP0/counter5保持。86新検査原本再利用、compile/ROM変更/旧受入再実行0。
 - Commit: source=67e9cc46f50222e19799244598d65534360c53fd; run=36362293129; 同branchへ非force push。
 - Network: 固定GitHub HEAD/Actions/artifact/APIのみ。一般CI action_required・失敗は別記録。全体private guard成功、merge、release、active baseline変更を主張しない。
+
+## 2026-09-28T00:30:42.431868+00:00
+- Timestamp: 2026-09-28T00:30:42.431868+00:00
+- Task: USER-20260928-RESEARCH-STORY-TRAINING / 通常Lv7習得・回復不成立・保存継続
+- Version: research-story-training-terminal-v1
+- Status: DONE（新区間限定、通常研究施設到達は未完）
+- Summary: 野生ヒメグマ勝利1回・経験値41・Lv6→7・すいとる自然習得・Save counter4→5と独立Continueを限定受入。経験値245、HP13/23・麻痺・技PP31/30/25が保持。自宅local1はT17渡航の船運休で回復しない事実を実画面/全party/ROM pointer鎖に結合。次は原作Vega/stage16の母親previous_scriptと渡航ownerを照合し、正常回復との共存を最小差分で修正・検証してからtraining.srmで通常進行。研究施設到達は未完。旧194/367/301/114入力・starter/RP/UI/BP/P08は再生しない。
+- Files changed: 専用oracle/86検査/入力原本/checkpoint/guide、固定引継ぎMD/JSON、両ログ。ROM/save/runner/画面は非tracked artifactのみ。
+- Verify: run36362293129/job108741716867全11step成功、artifact10946201851全ZIP/3Save/runner/56画面/19text読戻しPASS。新86検査原本再利用、終端native/unit/compile再実行0。一般CIと全体private guardは別境界。
+- Commit: source=7420514edf7b5ab709258b2a13e8cc584182f35b; run=36362454676; 同branchへ非force push。
+- Network: 固定GitHub HEAD/Actions/artifact/APIのみ。一般CI action_required・失敗は別記録。全体private guard成功、merge、release、active baseline変更を主張しない。
+
+## 2026-09-28T00:30:44.448331+00:00
+- Timestamp: 2026-09-28T00:30:44.448331+00:00
+- Task: USER-20260928-RESEARCH-STORY-TRAINING / 通常Lv7習得・回復不成立・保存継続
+- Version: research-story-training-ci-boundary-v1
+- Status: DONE（新区間成功、一般CIは既知失敗）
+- Summary: Lv7自然習得の成功終端と一般CIの既知失敗を分離し原本を保持。旧validator/C/test変更なし。
+- Files changed: 専用oracle/86検査/入力原本/checkpoint/guide、固定引継ぎMD/JSON、両ログ。ROM/save/runner/画面は非tracked artifactのみ。
+- Verify: source-validation run36362293100/job108741716592 failure。artifact10945834648全ZIP一致。25検査23成功2ERROR、後続skipped/upload failure保持。回収native/unit/compile再実行0。
+- Commit: source=7420514edf7b5ab709258b2a13e8cc584182f35b; run=36362454676; 同branchへ非force push。
+- Network: 固定GitHub HEAD/Actions/artifact/APIのみ。一般CI action_required・失敗は別記録。全体private guard成功、merge、release、active baseline変更を主張しない。

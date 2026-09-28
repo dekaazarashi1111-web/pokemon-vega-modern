@@ -31,3 +31,13 @@
 野生ヒメグマ勝利1回・経験値41・Lv6→7・すいとる自然習得・Save counter4→5と独立Continueを限定受入。経験値245、HP13/23・麻痺・技PP31/30/25が保持。自宅local1はT17渡航の船運休で回復しない事実を実画面/全party/ROM pointer鎖に結合。次は原作Vega/stage16の母親previous_scriptと渡航ownerを照合し、正常回復との共存を最小差分で修正・検証してからtraining.srmで通常進行。研究施設到達は未完。旧194/367/301/114入力・starter/RP/UI/BP/P08は再生しない。
 
 source `67e9cc46f50222e19799244598d65534360c53fd`、run `36362293129`。194入力/49画面とcold34入力/7画面、全stdout・全Save/RTCが開発原本と一致。正式native2/開発native2は別会計。86新検査は原本source一致で再利用し、再実行0。
+
+## 外部確認した成功終端
+
+run `36362293129` / job `108741716867` の全11必須stepがcompleted/success。完了commit `63e1afc473250070b497b1807d080b0f82bbc1a6`。artifact `10946201851` は 1179243 bytes / SHA-256 `875a68c85e3f22ed0adfb3b5f782c094d569f6721f9ccda93e4433b13957d81c`。56実画面、4組の同一UI、3コピーのSave/RTC、固定runner、全commit text原本を照合。上の確認待ちは測定時点の履歴で、現在は終端確認済み。原本は `content/modernization/pr16_research_story_training_terminal.json`。終端処理のnative/compile/unit再実行0。
+
+次は `training.srm` を作業コピーにして固定candidate/runtime/runnerでContinueする。map3/0 (4,27)、party1/Lv7/HP13/23/EXP245・麻痺、RP0、counter5、すいとる25/25、キズぐすり0。194入力を再生しない。トレーナー戦は今回0・過去2名には未勝利であり、研究施設への自然到達も未完。
+
+## 同じsourceの一般CIは別境界
+
+source-validation run36362293100 / job108741716592はfailure。固定artifact10945834648の全ZIP/原本を回収し、25検査23成功・2ERROR、原因 `ValueError: tested source changed: overlays/qol_production/qol_production.c` を確認。当該C/旧validator/旧testは開始HEAD0019e5c0から不変。後続relearner skipped/upload failureも成功へ読み替えない。環境パスを含む原本はterminal artifact内ci-originalsだけに保持し、Git内のmanifestは `content/modernization/pr16_research_story_training_ci_limit.json`。この回収でnative/unit再実行0。

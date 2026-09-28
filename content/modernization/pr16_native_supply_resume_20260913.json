@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "PASS_NATURAL_LV7_ABSORB_SAVE_PENDING_TERMINAL",
+    "current_stop": "PASS_NATURAL_LV7_ABSORB_SAVE_SCOPED",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -4211,24 +4211,16 @@
     "read_paths": [
       "docs/PR16_RESEARCH_STORY_TRAINING_JA.md",
       "content/modernization/pr16_research_story_training_checkpoint.json",
+      "content/modernization/pr16_research_story_training_terminal.json",
       "scripts/pr16_research_story_training.py"
     ],
-    "stop_rule_ja": "先にこの新runの全必須step/後継Save artifactを外部照合する。完走194入力を繰り返さずtraining.srmだけから進める。trainer勝利/研究到達/配布へ昇格せず、merge/release/baseline変更禁止。"
+    "stop_rule_ja": "run36362293129の全11必須stepとartifact10946201851は確認済み。training.srmのsize/SHAと固定candidate/runtime/runnerを確認してContinue。map3/0(4,27)/Lv7/EXP245/HP13/23・麻痺/counter5/すいとる25/25/道具0から先だけを進め、成功194入力と旧受入を再実行しない。trainer勝利/研究到達/配布へ昇格しない。merge/release/baseline変更禁止。"
   },
   "observed_date_jst": "2026-09-27",
   "observed_head": "67e9cc46f50222e19799244598d65534360c53fd",
   "observed_head_checks": {
     "reason_ja": "新区間専用Actionsと一般CIを分離。未完/action_required/失敗を成功にしない。",
     "runs": [
-      {
-        "conclusion": null,
-        "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "67e9cc46f50222e19799244598d65534360c53fd",
-        "id": 36362297837,
-        "path": ".github/workflows/ci.yml",
-        "run_attempt": 1,
-        "status": "in_progress"
-      },
       {
         "conclusion": "success",
         "head_branch": "codex/modernization-followup-20260908",
@@ -4239,13 +4231,13 @@
         "status": "completed"
       },
       {
-        "conclusion": null,
+        "conclusion": "failure",
         "head_branch": "codex/modernization-followup-20260908",
         "head_sha": "67e9cc46f50222e19799244598d65534360c53fd",
-        "id": 36362293100,
+        "id": 36362297837,
         "path": ".github/workflows/ci.yml",
         "run_attempt": 1,
-        "status": "in_progress"
+        "status": "completed"
       },
       {
         "conclusion": "success",
@@ -4257,20 +4249,29 @@
         "status": "completed"
       },
       {
-        "conclusion": null,
-        "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "67e9cc46f50222e19799244598d65534360c53fd",
-        "id": 36362293129,
-        "path": ".github/workflows/pr16-research-story-training.yml",
-        "run_attempt": 1,
-        "status": "in_progress"
-      },
-      {
         "conclusion": "success",
         "head_branch": "codex/modernization-followup-20260908",
         "head_sha": "67e9cc46f50222e19799244598d65534360c53fd",
         "id": 36362293114,
         "path": ".github/workflows/p03-forgetting-ci.yml",
+        "run_attempt": 1,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "67e9cc46f50222e19799244598d65534360c53fd",
+        "id": 36362293129,
+        "path": ".github/workflows/pr16-research-story-training.yml",
+        "run_attempt": 1,
+        "status": "completed"
+      },
+      {
+        "conclusion": "failure",
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "67e9cc46f50222e19799244598d65534360c53fd",
+        "id": 36362293100,
+        "path": ".github/workflows/ci.yml",
         "run_attempt": 1,
         "status": "completed"
       }
@@ -5629,7 +5630,7 @@
       "semantics": "PLA1圧縮と新規供給consumerのhost検証成功入力HEAD。ROM配置/実操作/記録commitの受入ではない。"
     }
   ],
-  "observed_head_semantics": "Lv7自然習得新区間を独立測定したsource HEAD。成功終端は外部APIで別途確認する。自己記録commit/製品最終SHAではない。",
+  "observed_head_semantics": "Lv7自然習得新区間を独立測定したsource HEAD。全11必須step・後継Save/RTC・56画面・commit原本を content/modernization/pr16_research_story_training_terminal.json で外部確認。自己記録commitや製品最終SHAではない。",
   "p08_candidate_impact": {
     "candidate": {
       "crc32": "CC068B4A",
@@ -5751,23 +5752,7 @@
     "status": "NATIVE_PARTY_RETENTION_ACCEPTED_BP_PENDING",
     "tested_head": "10e535a046441dd3b797918106259b5c57b69716"
   },
-  "pending_runs": [
-    {
-      "run_id": 36362297837,
-      "status": "in_progress",
-      "tested_head": "67e9cc46f50222e19799244598d65534360c53fd"
-    },
-    {
-      "run_id": 36362293100,
-      "status": "in_progress",
-      "tested_head": "67e9cc46f50222e19799244598d65534360c53fd"
-    },
-    {
-      "run_id": 36362293129,
-      "status": "in_progress",
-      "tested_head": "67e9cc46f50222e19799244598d65534360c53fd"
-    }
-  ],
+  "pending_runs": [],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
   "pr_draft": true,
   "pr_merged": false,
@@ -6464,17 +6449,25 @@
     "superseded_by": "content/modernization/pr16_research_story_route_checkpoint.json"
   },
   "research_story_training": {
-    "actions_completion_confirmed": false,
+    "actions_completion_confirmed": true,
     "candidate": {
       "sha256": "e1efb1009c6e6b0ec4967bf7b20562d2330bbd933f64f7f7863cdad56eb1f842",
       "size": 33554432
     },
     "natural_research_arrival_accepted": false,
     "path": "content/modernization/pr16_research_story_training_checkpoint.json",
+    "retained_artifact_id": 10946201851,
     "retained_artifact_name": "pr16-research-story-training-checkpoint",
     "run_id": 36362293129,
     "source_head": "67e9cc46f50222e19799244598d65534360c53fd",
-    "status": "PASS_NATURAL_LV7_ABSORB_SAVE_PENDING_TERMINAL"
+    "status": "PASS_NATURAL_LV7_ABSORB_SAVE_SCOPED",
+    "terminal_receipt": "content/modernization/pr16_research_story_training_terminal.json"
+  },
+  "research_story_training_ci_limit": {
+    "path": "content/modernization/pr16_research_story_training_ci_limit.json",
+    "run_id": 36362293100,
+    "source_head": "67e9cc46f50222e19799244598d65534360c53fd",
+    "status": "KNOWN_SOURCE_VALIDATION_FAILURE_NOT_TRAINING_REGRESSION"
   },
   "research_story_training_development": {
     "actions_completion_confirmed": false,
@@ -7853,6 +7846,10 @@
     ".github/workflows/pr16-research-story-training-install.yml": {
       "sha256": "0a53f616f8dc95554e3fe39cbbea08ba157b43eb1ef531784c29aba110c8f250",
       "size": 4733
+    },
+    ".github/workflows/pr16-research-story-training-terminal.yml": {
+      "sha256": "3669b88ccd3cdb986a299dd65f2c920d3223d85acbbe7ed028b16035781ba26c",
+      "size": 7500
     },
     ".github/workflows/pr16-research-story-training.yml": {
       "sha256": "b34a1cb2b00c7eab0d90da7053b515839302d30e1a5c52f26d805e5eaee0ad47",
@@ -9883,8 +9880,12 @@
       "size": 4016
     },
     "content/modernization/pr16_research_story_training_checkpoint.json": {
-      "sha256": "b7a0140128dbcec6c2f0c5df4f60ccb0fb407ddf7b93c8b655d4e2acf2ec4530",
-      "size": 4185
+      "sha256": "2edb8efb620efe7dbd832db340410049269e0cd39144e910207e004e2c59c277",
+      "size": 4855
+    },
+    "content/modernization/pr16_research_story_training_ci_limit.json": {
+      "sha256": "cdabcd582dc658f9258c3f8fd730e83e3677571e323d57add5ff1c80a38cc817",
+      "size": 7537
     },
     "content/modernization/pr16_research_story_training_development/commands.txt": {
       "sha256": "c6d5f182fc901ff618028ef052ebb42e23dec5796a33f075c8130332229f5740",
@@ -9989,6 +9990,10 @@
     "content/modernization/pr16_research_story_training_session.json": {
       "sha256": "5246d024d6e303a6b602c0db2909832429cc64cd986fb2d267764230a3cc9cc4",
       "size": 2014
+    },
+    "content/modernization/pr16_research_story_training_terminal.json": {
+      "sha256": "5c39c2699069ed3c361c8ac6bfa7d6871d5eb5fddc9f0c6e8ba2c95879ba8f47",
+      "size": 10736
     },
     "content/modernization/pr16_research_ui_boundary_checkpoint.json": {
       "sha256": "bdf148aa1b487845b850c2bd5f3400da04e85558a0e1f65cf3a774ff409bb46e",
@@ -10975,8 +10980,8 @@
       "size": 6762
     },
     "docs/PR16_RESEARCH_STORY_TRAINING_JA.md": {
-      "sha256": "f94be9593acff984cda0792db166b4306149bed6742f6f3d8f2c0ea8a5da8573",
-      "size": 4563
+      "sha256": "a8af35ed2fca2c58ddd1df592f1ab8d22080e5165e990d43b8ccedde6ddd6245",
+      "size": 6148
     },
     "docs/PR16_RESEARCH_UI_BOUNDARY_JA.md": {
       "sha256": "c6612deb907354729dbb4b7878ddb844cefb9573908c563288a299dce81e7939",

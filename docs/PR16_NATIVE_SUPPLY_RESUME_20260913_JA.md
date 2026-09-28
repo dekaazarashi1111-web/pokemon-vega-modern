@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-PASS_NATURAL_LV7_ABSORB_SAVE_PENDING_TERMINAL
+PASS_NATURAL_LV7_ABSORB_SAVE_SCOPED
 
 **次: 野生ヒメグマ勝利1回・経験値41・Lv6→7・すいとる自然習得・Save counter4→5と独立Continueを限定受入。経験値245、HP13/23・麻痺・技PP31/30/25が保持。自宅local1はT17渡航の船運休で回復しない事実を実画面/全party/ROM pointer鎖に結合。次は原作Vega/stage16の母親previous_scriptと渡航ownerを照合し、正常回復との共存を最小差分で修正・検証してからtraining.srmで通常進行。研究施設到達は未完。旧194/367/301/114入力・starter/RP/UI/BP/P08は再生しない。**
 
-先にこの新runの全必須step/後継Save artifactを外部照合する。完走194入力を繰り返さずtraining.srmだけから進める。trainer勝利/研究到達/配布へ昇格せず、merge/release/baseline変更禁止。
+run36362293129の全11必須stepとartifact10946201851は確認済み。training.srmのsize/SHAと固定candidate/runtime/runnerを確認してContinue。map3/0(4,27)/Lv7/EXP245/HP13/23・麻痺/counter5/すいとる25/25/道具0から先だけを進め、成功194入力と旧受入を再実行しない。trainer勝利/研究到達/配布へ昇格しない。merge/release/baseline変更禁止。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
 証拠のsource HEAD: `67e9cc46f50222e19799244598d65534360c53fd`。
-Lv7自然習得新区間を独立測定したsource HEAD。成功終端は外部APIで別途確認する。自己記録commit/製品最終SHAではない。
+Lv7自然習得新区間を独立測定したsource HEAD。全11必須step・後継Save/RTC・56画面・commit原本を content/modernization/pr16_research_story_training_terminal.json で外部確認。自己記録commitや製品最終SHAではない。
 
 ## 最短の再開手順
 
@@ -27,6 +27,7 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 
 - `docs/PR16_RESEARCH_STORY_TRAINING_JA.md`
 - `content/modernization/pr16_research_story_training_checkpoint.json`
+- `content/modernization/pr16_research_story_training_terminal.json`
 - `scripts/pr16_research_story_training.py`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
