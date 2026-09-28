@@ -1,40 +1,105 @@
 {
-  "schema_version": 1,
-  "status": "DEVELOPMENT_SAVE13_COMPLETE_AWAITING_ORACLE",
+  "accepted_case_reruns": 0,
+  "active_baseline_changed": false,
   "base_head": "eec4c5d7fdde0fdd653e052b203e1fc7c03e2bd1",
-  "parent_checkpoint": "content/modernization/pr16_story_save12_checkpoint.json",
-  "parent_artifact": 10975157558,
-  "candidate": {"size": 33554432, "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"},
-  "input_save": {"size": 131088, "sha256": "22072b86a414a01f35c7925492698f52e390032edd014d5243853e54e64f2a6d"},
-  "output_save": {"size": 131088, "sha256": "fe238bfa190cecd4111b461424f1e50b42afac8e3381663292717ecb6e25baa0"},
-  "development_native_processes": 2,
-  "development_focused_tests": 0,
-  "progress_inputs": 255,
-  "progress_frames": 17251,
-  "continue_inputs": 40,
+  "candidate": {
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5",
+    "size": 33554432
+  },
+  "captures": 0,
   "continue_frames": 3054,
-  "screen_count": 76,
-  "save_counter": 13,
-  "map": [4, 0],
-  "xy": [8, 5],
-  "party_species": [1129, 1],
-  "level": [4, 9],
-  "hp": [[17, 17], [26, 26]],
-  "experience": [80, 479],
-  "experience_gained_by_species": {"1129": 53, "1": 29},
-  "moves_pp": [[35, 40], [35, 30, 25]],
+  "continue_inputs": 40,
+  "development_focused_tests": 95,
+  "development_native_processes": 2,
+  "development_source_bindings": {
+    "scripts/pr16_story_save13.py": {
+      "sha256": "93660b11320a6f326099ddccb763686364e49e065d191694d7394253e7881de8",
+      "size": 13894
+    },
+    "tests/test_pr16_story_save13.py": {
+      "sha256": "b67129123da8b7fd191f1c2ef6ecb3a3c8a1a8b7ac5165d3e8044360513f8027",
+      "size": 11272
+    }
+  },
+  "development_unit_stderr": {
+    "sha256": "eb9c7b56a9c7863e7befad82e71423e250e8989bf51ab7aa84ed2b6f184bec2b",
+    "size": 11337
+  },
+  "escapes": 0,
+  "experience": [
+    80,
+    479
+  ],
+  "experience_gained_by_species": {
+    "1": 29,
+    "1129": 53
+  },
+  "formal_focused_tests": 95,
+  "formal_native_processes": 2,
+  "formal_run_id": 36439214540,
+  "formal_source_head": "34d037bc5c56de271aba627a9a001f15b6534123",
+  "hp": [
+    [
+      17,
+      17
+    ],
+    [
+      26,
+      26
+    ]
+  ],
+  "input_save": {
+    "sha256": "22072b86a414a01f35c7925492698f52e390032edd014d5243853e54e64f2a6d",
+    "size": 131088
+  },
+  "level": [
+    4,
+    9
+  ],
+  "losses": 0,
+  "map": [
+    4,
+    0
+  ],
+  "mother_heal_visits": 1,
+  "moves_pp": [
+    [
+      35,
+      40
+    ],
+    [
+      35,
+      30,
+      25
+    ]
+  ],
+  "natural_research_arrival_accepted": false,
+  "normal_battle_switches": 1,
+  "notes_ja": "Save12原本から通常手持ち並替でツツケラを先頭へ。501番道路のスバメLv4に通常交代でリープンを出し、ひっかく3回で勝利。急所被弾のHP9/26も保持。53EXPでツツケラLv3→4、リープン29EXPを実画面確認。母親で通常回復しSave12→13、cold後全Save/RTC保持。通常帰宅の迂回/バッグ誤選択も原本へ保持。勝利残留battle_flags4/outcome1ではwire field:falseのままなのでcallback2=FIELD/lock0でfield復帰を判定。探索セルのfield真値仮定は修正、追加native実行なし。次は新検証器/失敗系試験と正式Actionsで限定受入、完走255/cold40やSave12/11の受入区間を再開探索として再生しない。",
+  "output_save": {
+    "sha256": "fe238bfa190cecd4111b461424f1e50b42afac8e3381663292717ecb6e25baa0",
+    "size": 131088
+  },
+  "parent_artifact": 10975157558,
+  "parent_checkpoint": "content/modernization/pr16_story_save12_checkpoint.json",
   "party_count": 2,
   "party_order_changes": 1,
-  "normal_battle_switches": 1,
-  "mother_heal_visits": 1,
+  "party_species": [
+    1129,
+    1
+  ],
+  "progress_frames": 17251,
+  "progress_inputs": 255,
+  "release_ready": false,
+  "save_counter": 13,
+  "schema_version": 1,
+  "screen_count": 76,
+  "status": "FORMAL_MEASUREMENT_COMPLETE_TERMINAL_PENDING",
+  "superseded_by": "content/modernization/pr16_story_save13_checkpoint.json",
   "trainer_victories": 0,
   "wild_victories": 1,
-  "captures": 0,
-  "losses": 0,
-  "escapes": 0,
-  "natural_research_arrival_accepted": false,
-  "release_ready": false,
-  "active_baseline_changed": false,
-  "accepted_case_reruns": 0,
-  "notes_ja": "Save12原本から通常手持ち並替でツツケラを先頭へ。501番道路のスバメLv4に通常交代でリープンを出し、ひっかく3回で勝利。急所被弾のHP9/26も保持。53EXPでツツケラLv3→4、リープン29EXPを実画面確認。母親で通常回復しSave12→13、cold後全Save/RTC保持。通常帰宅の迂回/バッグ誤選択も原本へ保持。勝利残留battle_flags4/outcome1ではwire field:falseのままなのでcallback2=FIELD/lock0でfield復帰を判定。探索セルのfield真値仮定は修正、追加native実行なし。次は新検証器/失敗系試験と正式Actionsで限定受入、完走255/cold40やSave12/11の受入区間を再開探索として再生しない。"
+  "xy": [
+    8,
+    5
+  ]
 }
