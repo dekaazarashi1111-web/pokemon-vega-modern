@@ -1,0 +1,51 @@
+name: pr16-story-save12-context
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-story-save12-context.yml]
+permissions:
+  contents: read
+  actions: read
+jobs:
+  context:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Export exact tracked text context without native replay
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-story-save12-context
+          python3 - <<'PY'
+          import hashlib,json,os,pathlib,subprocess,zipfile
+          root=pathlib.Path('.')
+          out=root/'.local/pr16-story-save12-context'
+          allowed_roots={'scripts','tests','content/modernization','docs','design','config','tasks','state'}
+          suffixes={'.py','.c','.h','.json','.md','.txt','.yml','.yaml','.sh'}
+          names=subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
+          selected=[]
+          for name in names:
+              if not name: continue
+              p=root/name
+              if p.is_symlink() or not p.is_file(): continue
+              exact=name in {'AGENTS.md','CHATGPT_RESUME.md','README.md','tools/stage61_interaction_oracle.py'}
+              scoped=any(name.startswith(prefix+'/') for prefix in allowed_roots)
+              if name.startswith(('docs/wiki/','design/imported/')): continue
+              if not exact and not (scoped and p.suffix in suffixes): continue
+              raw=p.read_bytes()
+              raw.decode('utf-8')
+              selected.append((name,raw))
+          manifest={'schema_version':1,'source_head':os.environ['GITHUB_SHA'],'parent_head':subprocess.check_output(['git','rev-parse','HEAD^']).decode().strip() if subprocess.call(['git','cat-file','-e','HEAD^'],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)==0 else None,'run_id':int(os.environ['GITHUB_RUN_ID']),'new_native_processes':0,'accepted_case_reruns':0,'files':{n:{'size':len(b),'sha256':hashlib.sha256(b).hexdigest()} for n,b in selected}}
+          with zipfile.ZipFile(out/'context.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for name,raw in selected:z.writestr(name,raw)
+              z.writestr('context-manifest.json',json.dumps(manifest,ensure_ascii=False,sort_keys=True,indent=2)+'\n')
+          (out/'source-head.txt').write_text(os.environ['GITHUB_SHA']+'\n')
+          print('tracked text files:',len(selected),'native/test executions: 0')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr16-story-save12-context
+          path: .local/pr16-story-save12-context/
+          retention-days: 30
+          if-no-files-found: error
