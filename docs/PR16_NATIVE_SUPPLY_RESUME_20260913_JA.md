@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-PASS_STORY_SAVE13_SCOPED
+PASS_STORY_SAVE14_PENDING_TERMINAL
 
-**次: Save13のtraining.srm作業コピーから先だけ進める。自宅map4/0(8,5)上向き、先頭ツツケラLv4/EXP80/HP17/17/PP35/40、2番目リープンLv9/EXP479/HP26/26/PP35/30/25。通常並替・戦闘中の通常交代でスバメLv4に1勝し、53/29EXPを獲得。母親で通常回復、Save12→13と独立Continue後の全Save/RTC保持を確認。手持ち2、ボール3、2776円、RP0。次は必要な通常育成を続けてマオリ/通常ストーリーへ。トレーナー勝利/研究施設自然到達/図鑑統合/全story/release未完。255/cold40、受入済みSave12の153/cold40、Save11の176/cold50等を再生しない。**
+**次: native/110試験を再実行せず、今回Actionsの全step・97画面/Save原本artifact・記録commitを終端確認する。その後 Save14のtraining.srm作業コピーから先だけ進める。自宅map4/0(8,5)上向き、ツツケラLv4/EXP80/HP17/17/PP35/40、リープンLv9/EXP516（次Lv44）/HP26/26/PP35/30/25。手持ち2、ボール3、2776円、RP0。野生ツツケラ雌Lv5へ1勝、味方ツツケラひんし1、全滅0。母親で回復し通常Save13→14と独立Continue全Save/RTC保持を確認。飛行技はリープンに効果抜群だったため、危険な育成交代を漫然と反復せず通常育成/用品・手持ちを整えてマオリ/通常storyへ進む。トレーナー勝利/研究施設自然到達/図鑑統合/全story/release未完。新303/cold40とSave13の255/cold40等の受入済み区間を再生しない。**
 
-Save13原本の終端を先に照合。training.srmから先だけ。完走255/cold40と受入済み153/cold40・176/cold50等を再生しない。野生1勝をトレーナー/研究施設到達へ昇格しない。
+Save14原本の終端を先に照合しtraining.srmから先だけ。303/cold40と旧255/cold40等は再生しない。味方ひんし1を全滅や経験値獲得にしない。野生1勝をトレーナー/研究施設到達へ昇格しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `34d037bc5c56de271aba627a9a001f15b6534123`。
-Save12後の通常交代育成区間Save13の測定source HEAD。記録commit/active baselineではない。
+証拠のsource HEAD: `96e9dd07d172f3791b1fab1ab803b2dfa1bf042a`。
+Save13後のひんし交代・野生1勝・Save14測定source HEAD。記録commit/active baselineではない。
 
 ## 最短の再開手順
 
@@ -25,12 +25,12 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_STORY_SAVE13_JA.md`
-- `content/modernization/pr16_story_save13_checkpoint.json`
-- `content/modernization/pr16_story_save13_working.json`
-- `scripts/pr16_story_save13.py`
-- `tests/test_pr16_story_save13.py`
-- `scripts/pr16_story_save13_actions.py`
+- `docs/PR16_STORY_SAVE14_JA.md`
+- `content/modernization/pr16_story_save14_checkpoint.json`
+- `content/modernization/pr16_story_save14_working.json`
+- `scripts/pr16_story_save14.py`
+- `tests/test_pr16_story_save14.py`
+- `scripts/pr16_story_save14_actions.py`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -64,6 +64,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- Save14の303/cold40入力・97画面・110試験は保存原本から照合するだけ。ひんしツツケラのEXP80は不変、リープンEXP516、両個体回復済み。勝利残留を再計上せず、coldのRAM時刻差と全Save/RTC不変を分離。次はSave14から先だけ。
 - Save13の255/cold40入力と76画面・95検査は保存原本から照合するだけ。ツツケラ先頭Lv4/EXP80とリープンEXP479、全回復済み。勝利残留flags4/outcome1・wire field:falseを追加勝利や未復帰にしない。次はSave13から先だけ。
 - Save12の153/cold40入力と57画面・69検査は保存原本から照合するだけ。母親で2体全回復済み。次はSave12から育成を進め、同じ回復/保存区間を再生しない。
 - Save11の176/cold50入力と83画面・68検査は保存原本から照合し、通常進行再開では再実行しない。初投失敗/名前UI/捕獲outcome7を区別。次はHP16/26と4/15の2体を通常回復してから先へ。

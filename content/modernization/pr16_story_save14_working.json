@@ -1,38 +1,89 @@
 {
-  "schema_version": 1,
-  "task": "USER-20260929-STORY-SAVE14",
-  "status": "DEVELOPMENT_SAVE14_COMPLETE_ORACLE_AND_FORMAL_PENDING",
-  "development_base_head": "2b52d4a3ea136eb69ebb27138d0d516a2e72d245",
-  "parent_artifact_id": 10976693019,
-  "input_save": {"size": 131088, "sha256": "fe238bfa190cecd4111b461424f1e50b42afac8e3381663292717ecb6e25baa0"},
-  "output_save": {"size": 131088, "sha256": "66d46ea79f6c72588b766385ec4a0851822e6b57815da60882ce53ba5901e13b"},
-  "development_native_processes": 2,
-  "development_inputs": [303, 40],
-  "development_frames": [23105, 3054],
-  "development_screens": 97,
-  "direct_pixel_review": true,
-  "full_image_equal_pairs": 7,
-  "save_rtc_all_131088_bytes_equal": true,
-  "save_counters": [13, 14, 14],
-  "wild_victories": 1,
-  "party_faints": 1,
-  "losses": 0,
-  "captures": 0,
-  "escapes": 0,
-  "trainer_victories": 0,
-  "normal_battle_switches": 2,
-  "forced_replacements": 1,
-  "experience_before": [80, 479],
-  "experience_after": [80, 516],
-  "mother_heal_visits": 1,
-  "hp_after_heal": [[17,17],[26,26]],
-  "money": 2776,
-  "poke_balls": 3,
-  "rp": 0,
   "accepted_case_reruns": 0,
-  "rom_runner_changes": 0,
   "actions_completion_confirmed": false,
-  "release_ready": false,
   "active_baseline_changed": false,
-  "notes_ja": "保存済みSave13から通常キーだけで進行。野生ツツケラ雌Lv5で通常交代2回。味方ツツケラLv4がひんしになりリープンへ通常の強制交代、ひっかくで1勝。ひんし個体のEXP80は不変、リープンだけ37EXPで516。母親で両個体のHP/PPを回復しSave14。独立Continueで全Save/RTCと7UI一致。操作誤選択・図鑑No???/捕獲1匹を保持。これは開発停止点で正式受入ではない。次は後継検証器/試験を実装し初回正式Actions測定・原本保存・固定引継ぎと両ログ同期。旧303/cold40を正式完了後に再生しない。"
+  "captures": 0,
+  "development_base_head": "2b52d4a3ea136eb69ebb27138d0d516a2e72d245",
+  "development_focused_tests": 110,
+  "development_frames": [
+    23105,
+    3054
+  ],
+  "development_inputs": [
+    303,
+    40
+  ],
+  "development_native_processes": 2,
+  "development_screens": 97,
+  "development_source_bindings": {
+    "scripts/pr16_story_save14.py": {
+      "sha256": "2315c2e7b17d5f91798aa876c5e44c8e9c9eda7699eb0845332b14a4f2e358b6",
+      "size": 14794
+    },
+    "tests/test_pr16_story_save14.py": {
+      "sha256": "c221e816421477ac860f37f8806f103ab50ba414eb5600062fd300344cd45466",
+      "size": 11708
+    }
+  },
+  "development_unit_stderr": {
+    "sha256": "1a75b29b57451398c9926159eb17c7ec0b511baa6cbcdadb57b4c795da2076e2",
+    "size": 11924
+  },
+  "direct_pixel_review": true,
+  "escapes": 0,
+  "experience_after": [
+    80,
+    516
+  ],
+  "experience_before": [
+    80,
+    479
+  ],
+  "forced_replacements": 1,
+  "formal_focused_tests": 110,
+  "formal_native_processes": 2,
+  "formal_run_id": 36487441645,
+  "formal_source_head": "96e9dd07d172f3791b1fab1ab803b2dfa1bf042a",
+  "full_image_equal_pairs": 7,
+  "hp_after_heal": [
+    [
+      17,
+      17
+    ],
+    [
+      26,
+      26
+    ]
+  ],
+  "input_save": {
+    "sha256": "fe238bfa190cecd4111b461424f1e50b42afac8e3381663292717ecb6e25baa0",
+    "size": 131088
+  },
+  "losses": 0,
+  "money": 2776,
+  "mother_heal_visits": 1,
+  "normal_battle_switches": 2,
+  "notes_ja": "保存済みSave13から通常キーだけで進行。野生ツツケラ雌Lv5で通常交代2回。味方ツツケラLv4がひんしになりリープンへ通常の強制交代、ひっかくで1勝。ひんし個体のEXP80は不変、リープンだけ37EXPで516。母親で両個体のHP/PPを回復しSave14。独立Continueで全Save/RTCと7UI一致。操作誤選択・図鑑No???/捕獲1匹を保持。これは開発停止点で正式受入ではない。次は後継検証器/試験を実装し初回正式Actions測定・原本保存・固定引継ぎと両ログ同期。旧303/cold40を正式完了後に再生しない。",
+  "output_save": {
+    "sha256": "66d46ea79f6c72588b766385ec4a0851822e6b57815da60882ce53ba5901e13b",
+    "size": 131088
+  },
+  "parent_artifact_id": 10976693019,
+  "party_faints": 1,
+  "poke_balls": 3,
+  "release_ready": false,
+  "rom_runner_changes": 0,
+  "rp": 0,
+  "save_counters": [
+    13,
+    14,
+    14
+  ],
+  "save_rtc_all_131088_bytes_equal": true,
+  "schema_version": 1,
+  "status": "FORMAL_MEASUREMENT_COMPLETE_TERMINAL_PENDING",
+  "superseded_by": "content/modernization/pr16_story_save14_checkpoint.json",
+  "task": "USER-20260929-STORY-SAVE14",
+  "trainer_victories": 0,
+  "wild_victories": 1
 }
