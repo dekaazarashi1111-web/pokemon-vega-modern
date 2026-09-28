@@ -8456,3 +8456,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: source=34d037bc5c56de271aba627a9a001f15b6534123; run=36439214540; 同branch非force push。WIP 5bed135cで停止点、c07dd98bで検証sourceを先行保存。
 - Network: GitHub HEAD/Actions/artifactのみ。Save12正式run36435307920と終端run36435622530の原本/compact contextを使用。旧capacity failure/action_requiredを成功へ改作しない。merge/release/active baseline変更0。
 - Next: native/95試験を再実行せず、今回Actionsの全step・76画面/Save原本artifact・記録commitを終端確認する。その後 Save13のtraining.srm作業コピーから先だけ進める。自宅map4/0(8,5)上向き、先頭ツツケラLv4/EXP80/HP17/17/PP35/40、2番目リープンLv9/EXP479/HP26/26/PP35/30/25。通常並替・戦闘中の通常交代でスバメLv4に1勝し、53/29EXPを獲得。母親で通常回復、Save12→13と独立Continue後の全Save/RTC保持を確認。手持ち2、ボール3、2776円、RP0。次は必要な通常育成を続けてマオリ/通常ストーリーへ。トレーナー勝利/研究施設自然到達/図鑑統合/全story/release未完。255/cold40、受入済みSave12の153/cold40、Save11の176/cold50等を再生しない。
+
+## 2026-09-28T21:09:22.231080+00:00
+- Timestamp: 2026-09-28T21:09:22.231080+00:00
+- Task: USER-20260928-STORY-SAVE13 / 通常交代の育成1勝・Save13終端確認
+- Version: story-save13-v1
+- Status: DONE（通常交代育成1勝/Save13限定。マオリ/研究施設/図鑑統合/全story/release未受入）
+- Summary: Save12から通常並替でツツケラ先頭、野生スバメLv4へ通常交代しリープンのひっかく3回で勝利。ツツケラ53EXPでLv3→4/EXP80、リープン29EXPでEXP479。母親でHP9→26/PP32→35へ回復し通常Save12→13。独立Continue後の全131088Save/RTC、7組全画像、前回bank57344bytes/未使用party400bytes保持。並替を整列したparty14bytes変更と回復2bytesを分離。全5bag pocket/ボール3/2776円/RP0保持。
+- Files changed: Save13後継検証器/95試験/入力目視原本/Actions/証拠/checkpoint/guide、固定引継ぎMD/JSON、両ログ。ROM/save/runner/画面は非tracked artifactのみ。
+- Verify: 専用run全step・原本ZIP全76画面/Save/95検査/commitを照合。新native0/test0。 単一戦闘14→30観測、経験値途中と勝利残留を分離。保存完了lock1と解除lock0、進行末尾wire field:falseとcold trueを保持。探索セルのfield真値仮定をcallback/lock判定へ訂正、nativeの再起動/追加入力なし。急所被弾・帰宅迂回・バッグ誤選択・図鑑No???/レポート1匹を原本へ保持。旧受入再実行0、ROM/runner/compile変更0。resume/task graph/scoped final index確認後にcommit。全体private guard/一般CI成功は主張しない。
+- Commit: source=0b2700d72e5ceb47e4d9186ce24e94d5efd089e9; run=36484123426; 同branch非force push。WIP 5bed135cで停止点、c07dd98bで検証sourceを先行保存。
+- Network: GitHub HEAD/Actions/artifactのみ。Save12正式run36435307920と終端run36435622530の原本/compact contextを使用。旧capacity failure/action_requiredを成功へ改作しない。merge/release/active baseline変更0。
+- Next: Save13のtraining.srm作業コピーから先だけ進める。自宅map4/0(8,5)上向き、先頭ツツケラLv4/EXP80/HP17/17/PP35/40、2番目リープンLv9/EXP479/HP26/26/PP35/30/25。通常並替・戦闘中の通常交代でスバメLv4に1勝し、53/29EXPを獲得。母親で通常回復、Save12→13と独立Continue後の全Save/RTC保持を確認。手持ち2、ボール3、2776円、RP0。次は必要な通常育成を続けてマオリ/通常ストーリーへ。トレーナー勝利/研究施設自然到達/図鑑統合/全story/release未完。255/cold40、受入済みSave12の153/cold40、Save11の176/cold50等を再生しない。

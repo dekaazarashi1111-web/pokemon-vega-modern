@@ -23,3 +23,7 @@ Save12から通常手持ちメニューでツツケラを先頭へ。501番道�
 開発2process/95検査、正式2process/95検査を別計上。旧受入の明示再実行0、ROM/runner/compile変更0。完走255/cold40入力/76画面は原本回収だけにして再生しない。Save12の153/cold40、Save11の176/cold50等も再生しない。
 
 正式source `34d037bc5c56de271aba627a9a001f15b6534123`、run 36439214540。全step/保存artifact/commit終端は別API照合で確定する。
+
+## 正式終端
+
+run 36439214540 の全step成功、completion `e6ed6433459ac5e8c49badc996c7279655e5c838`、原本artifact 10976693019。次はこのartifactのtraining.srmのみ。終端回収native0/test0。

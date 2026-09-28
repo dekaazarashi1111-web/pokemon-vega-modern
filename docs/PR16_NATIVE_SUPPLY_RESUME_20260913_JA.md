@@ -6,9 +6,9 @@
 
 ## いまの停止点と次の1手
 
-PASS_STORY_SAVE13_PENDING_TERMINAL
+PASS_STORY_SAVE13_SCOPED
 
-**次: native/95試験を再実行せず、今回Actionsの全step・76画面/Save原本artifact・記録commitを終端確認する。その後 Save13のtraining.srm作業コピーから先だけ進める。自宅map4/0(8,5)上向き、先頭ツツケラLv4/EXP80/HP17/17/PP35/40、2番目リープンLv9/EXP479/HP26/26/PP35/30/25。通常並替・戦闘中の通常交代でスバメLv4に1勝し、53/29EXPを獲得。母親で通常回復、Save12→13と独立Continue後の全Save/RTC保持を確認。手持ち2、ボール3、2776円、RP0。次は必要な通常育成を続けてマオリ/通常ストーリーへ。トレーナー勝利/研究施設自然到達/図鑑統合/全story/release未完。255/cold40、受入済みSave12の153/cold40、Save11の176/cold50等を再生しない。**
+**次: Save13のtraining.srm作業コピーから先だけ進める。自宅map4/0(8,5)上向き、先頭ツツケラLv4/EXP80/HP17/17/PP35/40、2番目リープンLv9/EXP479/HP26/26/PP35/30/25。通常並替・戦闘中の通常交代でスバメLv4に1勝し、53/29EXPを獲得。母親で通常回復、Save12→13と独立Continue後の全Save/RTC保持を確認。手持ち2、ボール3、2776円、RP0。次は必要な通常育成を続けてマオリ/通常ストーリーへ。トレーナー勝利/研究施設自然到達/図鑑統合/全story/release未完。255/cold40、受入済みSave12の153/cold40、Save11の176/cold50等を再生しない。**
 
 Save13原本の終端を先に照合。training.srmから先だけ。完走255/cold40と受入済み153/cold40・176/cold50等を再生しない。野生1勝をトレーナー/研究施設到達へ昇格しない。
 
