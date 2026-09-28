@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "HOME_RECOVERY_NATIVE_ORACLE_READY",
+    "current_stop": "PASS_NATURAL_HOME_RECOVERY_SAVE_SCOPED",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "母親回復の新oracle73検査と81/cold34入力の開発原本を固定。source52検査は再利用。次は通常compile済みbuild artifact10946449847を照合し、pr16-home-recovery-native.ymlで新区間2processのみ正式測定。旧194/367/301/114入力を再生しない。",
+    "next_step": "母親との元会話でHP13/23→23/23・麻痺解消・ひっかくPP31→35、通常Save5→6と独立Continueのparty/Flash/4画面保持を限定受入。次はartifactのrecovery.srmを作業コピーとして通常ストーリーへ。map4/0 (8,5)、Lv7/EXP245、RP0、キズぐすり0。母親81入力と旧194/367/301/114入力・starter/RP/UI/BP/P08は再生しない。渡航16条件はstatic検証で、解禁後実渡航native・研究施設自然到達・全ストーリー・releaseは未完。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -793,6 +793,7 @@
   },
   "current_resume_doc": "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
   "do_not_repeat": [
+    "母親回復は content/modernization/pr16_home_recovery_native_checkpoint.json。新候補でSave counter6。回復81/cold34入力は完走済み、次は終端回収またはrecovery.srmから新しい進行のみ。",
     "原本owner照合と母親15byte source修正は content/modernization/pr16_home_recovery_checkpoint.json。52専用試験はこのsource runで測定済み。次は回復の新native区間だけ。旧完走入力は再生しない。",
     "自然習得保存の完走194入力は content/modernization/pr16_research_story_training_checkpoint.json。次はtraining.srmのmap3/0(4,27)/Lv7/経験値245/HP13/23・麻痺/道具0からだけ。旧受入は再生しない。",
     "自然習得開発原本 content/modernization/pr16_research_story_training_development/verification.json を保持。194入力/56画面/native2/新86検査。正式runができた後は新たな入力をtraining.srmから行い、成功した区間を再生しない。",
@@ -1120,6 +1121,17 @@
     "run_id": 36364944598,
     "source_head": "4409a5dddf6c4f2f5d08833b35a470fdd544dde3",
     "status": "PASS_HOME_RECOVERY_SOURCE_NATIVE_PENDING"
+  },
+  "home_recovery_native": {
+    "candidate": {
+      "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5",
+      "size": 33554432
+    },
+    "natural_research_arrival_accepted": false,
+    "ordinary_recovery_accepted": true,
+    "path": "content/modernization/pr16_home_recovery_native_checkpoint.json",
+    "retained_artifact_name": "pr16-home-recovery-native-checkpoint",
+    "status": "PASS_NATURAL_HOME_RECOVERY_SAVE_SCOPED"
   },
   "inherited_bootstrap_accounting_correction": {
     "all_ancestor_arm_links_zero": false,
@@ -4216,78 +4228,78 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "母親回復の新oracle73検査と81/cold34入力の開発原本を固定。source52検査は再利用。次は通常compile済みbuild artifact10946449847を照合し、pr16-home-recovery-native.ymlで新区間2processのみ正式測定。旧194/367/301/114入力を再生しない。",
+    "goal_ja": "母親との元会話でHP13/23→23/23・麻痺解消・ひっかくPP31→35、通常Save5→6と独立Continueのparty/Flash/4画面保持を限定受入。次はartifactのrecovery.srmを作業コピーとして通常ストーリーへ。map4/0 (8,5)、Lv7/EXP245、RP0、キズぐすり0。母親81入力と旧194/367/301/114入力・starter/RP/UI/BP/P08は再生しない。渡航16条件はstatic検証で、解禁後実渡航native・研究施設自然到達・全ストーリー・releaseは未完。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
-    "id": "HOME_RECOVERY_NATIVE_ACTIONS_NEXT",
+    "id": "HOME_RECOVERY_TERMINAL_ONLY_NEXT",
     "read_paths": [
       "docs/PR16_HOME_RECOVERY_JA.md",
+      "content/modernization/pr16_home_recovery_native_checkpoint.json",
       "content/modernization/pr16_home_recovery_checkpoint.json",
-      "scripts/pr16_home_recovery_native_actions.py",
-      "content/modernization/pr16_home_recovery_native_development/verification.json"
+      "content/modernization/pr16_home_recovery_native_development/save-byte-proof.json"
     ],
-    "stop_rule_ja": "新native runが存在したらartifact回収のみ。存在しない場合だけ通常compile runnerで新区間を測定。成功Save原本は不変。merge/release/baseline変更禁止。"
+    "stop_rule_ja": "正式native runがある場合は全必須step/artifact/commitだけ回収し再生しない。終端確認後はrecovery.srmの作業コピーから新しい通常進行だけ。母親81入力/cold34入力/旧194/367/301/114を再生しない。merge/release/baseline変更禁止。"
   },
   "observed_date_jst": "2026-09-27",
-  "observed_head": "4409a5dddf6c4f2f5d08833b35a470fdd544dde3",
+  "observed_head": "f895a324d160055e70bd0788208907e2b4044a8f",
   "observed_head_checks": {
-    "reason_ja": "新区間専用Actionsと一般CIを分離。未完/action_required/失敗を成功にしない。",
+    "reason_ja": "一般CI failure/action_required/実行中は原値のまま。専用回復受入やreleaseとは別。",
     "runs": [
       {
-        "conclusion": "success",
+        "conclusion": null,
         "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "67e9cc46f50222e19799244598d65534360c53fd",
-        "id": 36362297846,
+        "head_sha": "f895a324d160055e70bd0788208907e2b4044a8f",
+        "id": 36366806520,
         "path": ".github/workflows/p03-forgetting-ci.yml",
         "run_attempt": 1,
-        "status": "completed"
+        "status": "in_progress"
       },
       {
-        "conclusion": "failure",
+        "conclusion": null,
         "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "67e9cc46f50222e19799244598d65534360c53fd",
-        "id": 36362297837,
+        "head_sha": "f895a324d160055e70bd0788208907e2b4044a8f",
+        "id": 36366806522,
         "path": ".github/workflows/ci.yml",
         "run_attempt": 1,
-        "status": "completed"
+        "status": "in_progress"
       },
       {
         "conclusion": "success",
         "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "67e9cc46f50222e19799244598d65534360c53fd",
-        "id": 36362293105,
+        "head_sha": "f895a324d160055e70bd0788208907e2b4044a8f",
+        "id": 36366801469,
         "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
         "run_attempt": 1,
         "status": "completed"
       },
       {
-        "conclusion": "success",
+        "conclusion": null,
         "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "67e9cc46f50222e19799244598d65534360c53fd",
-        "id": 36362293114,
-        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "head_sha": "f895a324d160055e70bd0788208907e2b4044a8f",
+        "id": 36366801337,
+        "path": ".github/workflows/pr16-home-recovery-collect.yml",
         "run_attempt": 1,
-        "status": "completed"
+        "status": "in_progress"
       },
       {
-        "conclusion": "success",
+        "conclusion": null,
         "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "67e9cc46f50222e19799244598d65534360c53fd",
-        "id": 36362293129,
-        "path": ".github/workflows/pr16-research-story-training.yml",
-        "run_attempt": 1,
-        "status": "completed"
-      },
-      {
-        "conclusion": "failure",
-        "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "67e9cc46f50222e19799244598d65534360c53fd",
-        "id": 36362293100,
+        "head_sha": "f895a324d160055e70bd0788208907e2b4044a8f",
+        "id": 36366801342,
         "path": ".github/workflows/ci.yml",
         "run_attempt": 1,
-        "status": "completed"
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "f895a324d160055e70bd0788208907e2b4044a8f",
+        "id": 36366801280,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "run_attempt": 1,
+        "status": "in_progress"
       }
     ],
-    "scope_head": "67e9cc46f50222e19799244598d65534360c53fd"
+    "scope_head": "f895a324d160055e70bd0788208907e2b4044a8f"
   },
   "observed_head_history": [
     {
@@ -5641,7 +5653,7 @@
       "semantics": "PLA1圧縮と新規供給consumerのhost検証成功入力HEAD。ROM配置/実操作/記録commitの受入ではない。"
     }
   ],
-  "observed_head_semantics": "source統合worktreeの出発HEAD。builderの前後bindingと全試験sourceは専用checkpointへ固定。native受入/最終製品SHAではない。",
+  "observed_head_semantics": "回復専用source/終端収集の出発HEAD。通常Saveの候補SHAと製品baselineは区別する。",
   "p08_candidate_impact": {
     "candidate": {
       "crc32": "CC068B4A",
@@ -5763,7 +5775,33 @@
     "status": "NATIVE_PARTY_RETENTION_ACCEPTED_BP_PENDING",
     "tested_head": "10e535a046441dd3b797918106259b5c57b69716"
   },
-  "pending_runs": [],
+  "pending_runs": [
+    {
+      "run_id": 36366806520,
+      "status": "in_progress",
+      "tested_head": "f895a324d160055e70bd0788208907e2b4044a8f"
+    },
+    {
+      "run_id": 36366806522,
+      "status": "in_progress",
+      "tested_head": "f895a324d160055e70bd0788208907e2b4044a8f"
+    },
+    {
+      "run_id": 36366801337,
+      "status": "in_progress",
+      "tested_head": "f895a324d160055e70bd0788208907e2b4044a8f"
+    },
+    {
+      "run_id": 36366801342,
+      "status": "in_progress",
+      "tested_head": "f895a324d160055e70bd0788208907e2b4044a8f"
+    },
+    {
+      "run_id": 36366801280,
+      "status": "in_progress",
+      "tested_head": "f895a324d160055e70bd0788208907e2b4044a8f"
+    }
+  ],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
   "pr_draft": true,
   "pr_merged": false,
@@ -7542,6 +7580,10 @@
       "sha256": "42d48cce1f1c9089a82e308b49837cf05aa20cab4a232c44c0be2a16fce0460b",
       "size": 10958
     },
+    ".github/workflows/pr16-home-recovery-collect.yml": {
+      "sha256": "a714138e4fa50ee7a3f5fde5e88fe9acda0e837d4c532d10fa0e8b5acc7f6729",
+      "size": 3200
+    },
     ".github/workflows/pr16-home-recovery-context.yml": {
       "sha256": "ab2fd2eac09544ac5c43b5e6983b8007caf174511c2bdcdae2e4e2e4498f29d7",
       "size": 3544
@@ -7549,6 +7591,10 @@
     ".github/workflows/pr16-home-recovery-native-source.yml": {
       "sha256": "3ad1b583da8bce905d55d9020ce5549f8ca534e50525aa629bc5049ff5eb292a",
       "size": 32669
+    },
+    ".github/workflows/pr16-home-recovery-native.yml": {
+      "sha256": "714a6e4a14d63fd12f09313be1b832048f2a4f8d7b03520e45a5466ce18e0bc4",
+      "size": 2545
     },
     ".github/workflows/pr16-home-recovery-owner.yml": {
       "sha256": "6fb992299177dfb86d48e7fd22b99a92f5b6cbdf10400451342560e5ff8d58ef",
@@ -8966,6 +9012,10 @@
       "sha256": "e9979d392aa0b5ff760895ac123f08dac30815acaee51e43155a0d252d54ec79",
       "size": 5350
     },
+    "content/modernization/pr16_home_recovery_native_checkpoint.json": {
+      "sha256": "abb10191b2347a345343c3886bd01a69af32d72d2fd495136493989636a77243",
+      "size": 11890
+    },
     "content/modernization/pr16_home_recovery_native_development/commands.txt": {
       "sha256": "f6ac217334a29229bf8a04cdf3c467e6c11bdf8390e0d3531247ae8a7f21faa2",
       "size": 638
@@ -9013,6 +9063,70 @@
     "content/modernization/pr16_home_recovery_native_development/visual-review.json": {
       "sha256": "fded9e1bd1217447b79c34a6f615910e614053353aab9c1d8fd4e16f052e80f5",
       "size": 1794
+    },
+    "content/modernization/pr16_home_recovery_native_evidence/36366801337/10898620034.json": {
+      "sha256": "d32ecff89318efe1b9889de01413f2c1ada00b4e1e8b0f23109fea3e159d112e",
+      "size": 467
+    },
+    "content/modernization/pr16_home_recovery_native_evidence/36366801337/10946449847.json": {
+      "sha256": "fe6d4ebf3eb55f2da649d6f2deb427a7a8bcdc5570abf5be33c5fd80315f7335",
+      "size": 456
+    },
+    "content/modernization/pr16_home_recovery_native_evidence/36366801337/10946773841.json": {
+      "sha256": "63afad40210fe9b9444620f3a825908d5185aa93327e0f9cc8a7025666363551",
+      "size": 468
+    },
+    "content/modernization/pr16_home_recovery_native_evidence/36366801337/collection-unit.stderr.txt": {
+      "sha256": "406e68d4715a2efc721ad9f8f7f0942c57fb074c996d8444aa02708459115283",
+      "size": 932
+    },
+    "content/modernization/pr16_home_recovery_native_evidence/36366801337/collection-unit.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_home_recovery_native_evidence/36366801337/continue.execution.json": {
+      "sha256": "d0bea442d0eb86944bfe7d896f470c14c51e17d444e2842d26d3ac61006802a2",
+      "size": 495
+    },
+    "content/modernization/pr16_home_recovery_native_evidence/36366801337/continue.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_home_recovery_native_evidence/36366801337/continue.stdout.txt": {
+      "sha256": "c345f55288d25e0cc9b9de88518b5b46456f7a0ac3b2084e6cb7299231c887e7",
+      "size": 5807
+    },
+    "content/modernization/pr16_home_recovery_native_evidence/36366801337/failed-native-origin.json": {
+      "sha256": "3f7a9d36645d26cb4b9281a4cfaad0b39f0fe6fb68431734b0fcacacf0d2a31d",
+      "size": 2854
+    },
+    "content/modernization/pr16_home_recovery_native_evidence/36366801337/measurement.json": {
+      "sha256": "6f1e7711422a19fdb74464ed0c164d41d55964a37e235ced254c1951e6ff4240",
+      "size": 4515
+    },
+    "content/modernization/pr16_home_recovery_native_evidence/36366801337/packaging-fix.json": {
+      "sha256": "e1eb0a5656d83b3177c86969ab123950f2dcf1e1128de9f49e937bb3e3da0bf5",
+      "size": 465
+    },
+    "content/modernization/pr16_home_recovery_native_evidence/36366801337/progress.execution.json": {
+      "sha256": "6a3ecaefa3a0a013e12ba4e870c59f7b66629449792ae2ce5b6785b188c8f5df",
+      "size": 496
+    },
+    "content/modernization/pr16_home_recovery_native_evidence/36366801337/progress.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_home_recovery_native_evidence/36366801337/progress.stdout.txt": {
+      "sha256": "b7523063e47578749324ed34764a398e91121ee6229ed644caf61641c35cd770",
+      "size": 14638
+    },
+    "content/modernization/pr16_home_recovery_native_evidence/36366801337/save-byte-proof.json": {
+      "sha256": "7a2028ac75fe033ddb986e2750dbf48bc15abc5c67764c68fcf292d751c33164",
+      "size": 788
+    },
+    "content/modernization/pr16_home_recovery_native_evidence/36366801337/source-build-terminal.json": {
+      "sha256": "3c9ad6fc204277bafd836480c2793ef705327added0697ec5705248f00464faf",
+      "size": 1811
     },
     "content/modernization/pr16_home_recovery_source_evidence/36364944598/10946201851.json": {
       "sha256": "3cd5ed4ae5c3e534d0834700e829ae037506875f58d90f41e8e06c6ac146ed20",
@@ -10963,8 +11077,8 @@
       "size": 1522
     },
     "docs/PR16_HOME_RECOVERY_JA.md": {
-      "sha256": "1ce43859f82df016c4cd7b880df1421a54e77036923073c26e1a50b2f22e179a",
-      "size": 1923
+      "sha256": "9a6b6ef4efa8a55eedadfbae823ad0d79559fe034e5264c2e72216a653fdbedb",
+      "size": 3630
     },
     "docs/PR16_LEARNSET_BASELINE_RESET_JA.md": {
       "sha256": "4924be1b5cfa324fe72cff599758ebb467eae8d25911a085c2d444f3b1f3ab6a",
@@ -15338,13 +15452,17 @@
       "sha256": "067cbe0f8b40f8ffa8d27ce777e2c070c436bbc8543e7154073cef71421e098e",
       "size": 5858
     },
+    "scripts/pr16_home_recovery_collect.py": {
+      "sha256": "4655238d9a88c89f79b16fe6d8099a85c39534d832c7e95bd26195f4ba404308",
+      "size": 9587
+    },
     "scripts/pr16_home_recovery_native.py": {
       "sha256": "b96a686b2919c6b0068b2fb0e0adf934f25fdb87a1dc8b30b61f11755b72d7f0",
       "size": 10494
     },
     "scripts/pr16_home_recovery_native_actions.py": {
-      "sha256": "ce36b8937c2e9438a9ba780f0a6b14f5017685e792b0667a8818d2a001d2e399",
-      "size": 19643
+      "sha256": "8d7de47797da3d5ad38377bfdb6c35b667fcbe0fd07e5a7a4f62b71131649339",
+      "size": 19778
     },
     "scripts/pr16_learnset_baseline.py": {
       "sha256": "94af9a52ce1785380c964325ef9eebe7ed956e88b628632eb18f3ee518378212",
@@ -17033,6 +17151,10 @@
     "tests/test_pr16_home_recovery.py": {
       "sha256": "207268a654ada5e35d626f85a08346bfd5d18c2a0b3f1cabfec98e41cfe04492",
       "size": 8884
+    },
+    "tests/test_pr16_home_recovery_collect.py": {
+      "sha256": "6d24ddce59777816cb6f5a343c4e5bfe946b043856fc0927055102d9282d6c98",
+      "size": 1892
     },
     "tests/test_pr16_home_recovery_native.py": {
       "sha256": "aff17b8053fa56515b71e6d602c0f55d776f5067ec09d0d54b303b1b15d6dde9",

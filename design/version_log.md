@@ -8268,3 +8268,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 新73検査原本/source binding照合PASS。input/画面/party回復3bytes/597bytes不変/Save/時計差分を検証。ここでnative/unit/compile再実行0。
 - Commit: source=a45d2be7936e81ab686684f694ae4c281d23b7de; same branch non-force。
 - Network: GitHub source/API only。release/baseline/global private guard PASSを主張しない。
+
+## 2026-09-28T01:39:43.108478+00:00
+- Timestamp: 2026-09-28T01:39:43.108478+00:00
+- Task: USER-20260928-HOME-RECOVERY / 母親の通常回復と保存Continue
+- Version: home-recovery-native-v1
+- Status: DONE（回復区間限定、研究施設自然到達/実渡航/全体は未完）
+- Summary: 母親との元会話でHP13/23→23/23・麻痺解消・ひっかくPP31→35、通常Save5→6と独立Continueのparty/Flash/4画面保持を限定受入。次はartifactのrecovery.srmを作業コピーとして通常ストーリーへ。map4/0 (8,5)、Lv7/EXP245、RP0、キズぐすり0。母親81入力と旧194/367/301/114入力・starter/RP/UI/BP/P08は再生しない。渡航16条件はstatic検証で、解禁後実渡航native・研究施設自然到達・全ストーリー・releaseは未完。
+- Files changed: 専用oracle/test/原本JSON/MD/固定引継ぎ/両ログ。binaryはartifactのみ。
+- Verify: source52 tests再利用、new oracle73 tests原本再利用。回復81inputs/6642frames+独立Continue34inputs/2572frames、26画面/4UI組、party600bytes中回復3bytesだけ/597bytes保持、全Save+RTC保持。RAM ledgerは分32→33/checksumだけで全2048byte SHA一致。
+- Accounting: この記録段階の追加native=0、追加compile=0、旧受入再実行=0。開発探索2processは正式2processと別計上。初期の実行ファイル文字列更新方式は採用せず、正式はsourceから通常compileされたartifact runnerのみ。初回新oracle73件中3不具合を修正後73PASS。
+- Commit: source=f895a324d160055e70bd0788208907e2b4044a8f; run=36366801337; same-branch non-force。
+- Network: fixed GitHub artifacts/API。全体private guard/一般CI全成功/merge/release/baseline切替は主張しない。

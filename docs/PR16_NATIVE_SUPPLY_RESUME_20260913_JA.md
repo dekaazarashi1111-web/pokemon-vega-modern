@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-HOME_RECOVERY_NATIVE_ORACLE_READY
+PASS_NATURAL_HOME_RECOVERY_SAVE_SCOPED
 
-**次: 母親回復の新oracle73検査と81/cold34入力の開発原本を固定。source52検査は再利用。次は通常compile済みbuild artifact10946449847を照合し、pr16-home-recovery-native.ymlで新区間2processのみ正式測定。旧194/367/301/114入力を再生しない。**
+**次: 母親との元会話でHP13/23→23/23・麻痺解消・ひっかくPP31→35、通常Save5→6と独立Continueのparty/Flash/4画面保持を限定受入。次はartifactのrecovery.srmを作業コピーとして通常ストーリーへ。map4/0 (8,5)、Lv7/EXP245、RP0、キズぐすり0。母親81入力と旧194/367/301/114入力・starter/RP/UI/BP/P08は再生しない。渡航16条件はstatic検証で、解禁後実渡航native・研究施設自然到達・全ストーリー・releaseは未完。**
 
-新native runが存在したらartifact回収のみ。存在しない場合だけ通常compile runnerで新区間を測定。成功Save原本は不変。merge/release/baseline変更禁止。
+正式native runがある場合は全必須step/artifact/commitだけ回収し再生しない。終端確認後はrecovery.srmの作業コピーから新しい通常進行だけ。母親81入力/cold34入力/旧194/367/301/114を再生しない。merge/release/baseline変更禁止。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `4409a5dddf6c4f2f5d08833b35a470fdd544dde3`。
-source統合worktreeの出発HEAD。builderの前後bindingと全試験sourceは専用checkpointへ固定。native受入/最終製品SHAではない。
+証拠のsource HEAD: `f895a324d160055e70bd0788208907e2b4044a8f`。
+回復専用source/終端収集の出発HEAD。通常Saveの候補SHAと製品baselineは区別する。
 
 ## 最短の再開手順
 
@@ -26,9 +26,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
 - `docs/PR16_HOME_RECOVERY_JA.md`
+- `content/modernization/pr16_home_recovery_native_checkpoint.json`
 - `content/modernization/pr16_home_recovery_checkpoint.json`
-- `scripts/pr16_home_recovery_native_actions.py`
-- `content/modernization/pr16_home_recovery_native_development/verification.json`
+- `content/modernization/pr16_home_recovery_native_development/save-byte-proof.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -62,6 +62,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- 母親回復は content/modernization/pr16_home_recovery_native_checkpoint.json。新候補でSave counter6。回復81/cold34入力は完走済み、次は終端回収またはrecovery.srmから新しい進行のみ。
 - 原本owner照合と母親15byte source修正は content/modernization/pr16_home_recovery_checkpoint.json。52専用試験はこのsource runで測定済み。次は回復の新native区間だけ。旧完走入力は再生しない。
 - 自然習得保存の完走194入力は content/modernization/pr16_research_story_training_checkpoint.json。次はtraining.srmのmap3/0(4,27)/Lv7/経験値245/HP13/23・麻痺/道具0からだけ。旧受入は再生しない。
 - 自然習得開発原本 content/modernization/pr16_research_story_training_development/verification.json を保持。194入力/56画面/native2/新86検査。正式runができた後は新たな入力をtraining.srmから行い、成功した区間を再生しない。
@@ -358,6 +359,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-新区間専用Actionsと一般CIを分離。未完/action_required/失敗を成功にしない。
+一般CI failure/action_required/実行中は原値のまま。専用回復受入やreleaseとは別。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

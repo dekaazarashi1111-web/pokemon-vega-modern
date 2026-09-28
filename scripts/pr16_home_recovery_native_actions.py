@@ -102,7 +102,9 @@ def preserve():
                 if p.is_file():shutil.copy2(p,dest/p.name)
     if PUBLIC.exists():shutil.copytree(PUBLIC,ART/'public',dirs_exist_ok=True)
     for name in ('runner','candidate.gba'):
-        if (OUT/name).exists():shutil.copy2(OUT/name,ART/name)
+        if (OUT/name).exists():
+            from pr16_home_recovery_collect import copy_immutable
+            copy_immutable(OUT/name,ART/name)
 
 
 def invoke(runtime,name,saved,commands):
@@ -153,7 +155,7 @@ def publish(state,owned,status,terminal=False):
     state['observed_head']=os.environ['GITHUB_SHA'];state['observed_head_semantics']='回復専用source/終端収集の出発HEAD。通常Saveの候補SHAと製品baselineは区別する。'
     state['logs_synchronized']=True;observed_checks(state);publish_resume(state)
     stamp=datetime.datetime.now(datetime.timezone.utc).isoformat()
-    entry=f'\n## {stamp}\n- Timestamp: {stamp}\n- Task: {TASK} / 母親の通常回復と保存Continue\n- Version: home-recovery-native-v1\n- Status: DONE（回復区間限定、研究施設自然到達/実渡航/全体は未完）\n- Summary: {GOAL}\n- Files changed: 専用oracle/test/原本JSON/MD/固定引継ぎ/両ログ。binaryはartifactのみ。\n- Verify: source52 tests再利用、new oracle73 tests原本再利用。回復81inputs/6642frames+独立Continue34inputs/2572frames、26画面/4UI組、party600bytes中回復3bytesだけ/597bytes保持、全Save+RTC保持。RAM ledgerは分32→33/checksumだけで全2048byte SHA一致。\n- Accounting: この記録段階の追加native={0 if terminal else 2}、追加compile=0、旧受入再実行=0。開発探索2processは正式2processと別計上。初期の実行ファイル文字列更新方式は採用せず、正式はsourceから通常compileされたartifact runnerのみ。初回新oracle73件中3不具合を修正後73PASS。\n- Commit: source={os.environ["GITHUB_SHA"]}; run={os.environ["GITHUB_RUN_ID"]}; same-branch non-force。\n- Network: fixed GitHub artifacts/API。全体private guard/一般CI全成功/merge/release/baseline切替は主張しない。\n'
+    entry=f'\n## {stamp}\n- Timestamp: {stamp}\n- Task: {TASK} / 母親の通常回復と保存Continue\n- Version: home-recovery-native-v1\n- Status: DONE（回復区間限定、研究施設自然到達/実渡航/全体は未完）\n- Summary: {GOAL}\n- Files changed: 専用oracle/test/原本JSON/MD/固定引継ぎ/両ログ。binaryはartifactのみ。\n- Verify: source52 tests再利用、new oracle73 tests原本再利用。回復81inputs/6642frames+独立Continue34inputs/2572frames、26画面/4UI組、party600bytes中回復3bytesだけ/597bytes保持、全Save+RTC保持。RAM ledgerは分32→33/checksumだけで全2048byte SHA一致。\n- Accounting: この記録段階の追加native={0 if terminal or os.environ.get("PR16_HOME_COLLECTION_ONLY") == "1" else 2}、追加compile=0、旧受入再実行=0。開発探索2processは正式2processと別計上。初期の実行ファイル文字列更新方式は採用せず、正式はsourceから通常compileされたartifact runnerのみ。初回新oracle73件中3不具合を修正後73PASS。\n- Commit: source={os.environ["GITHUB_SHA"]}; run={os.environ["GITHUB_RUN_ID"]}; same-branch non-force。\n- Network: fixed GitHub artifacts/API。全体private guard/一般CI全成功/merge/release/baseline切替は主張しない。\n'
     for n in d.LOGS:
         with (ROOT/n).open('a') as f:f.write(entry)
 
