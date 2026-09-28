@@ -14,7 +14,7 @@ PASS_NATURAL_HOME_RECOVERY_SAVE_SCOPED
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `f895a324d160055e70bd0788208907e2b4044a8f`。
+証拠のsource HEAD: `c1afa113aedc6a78080960f23b39d03872920e75`。
 回復専用source/終端収集の出発HEAD。通常Saveの候補SHAと製品baselineは区別する。
 
 ## 最短の再開手順
@@ -27,7 +27,7 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 
 - `docs/PR16_HOME_RECOVERY_JA.md`
 - `content/modernization/pr16_home_recovery_native_checkpoint.json`
-- `content/modernization/pr16_home_recovery_checkpoint.json`
+- `content/modernization/pr16_home_recovery_native_terminal.json`
 - `content/modernization/pr16_home_recovery_native_development/save-byte-proof.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
@@ -62,6 +62,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- 母親回復は content/modernization/pr16_home_recovery_native_checkpoint.json。新候補でSave counter6。回復81/cold34入力は完走済み、次は終端回収またはrecovery.srmから新しい進行のみ。
 - 母親回復は content/modernization/pr16_home_recovery_native_checkpoint.json。新候補でSave counter6。回復81/cold34入力は完走済み、次は終端回収またはrecovery.srmから新しい進行のみ。
 - 原本owner照合と母親15byte source修正は content/modernization/pr16_home_recovery_checkpoint.json。52専用試験はこのsource runで測定済み。次は回復の新native区間だけ。旧完走入力は再生しない。
 - 自然習得保存の完走194入力は content/modernization/pr16_research_story_training_checkpoint.json。次はtraining.srmのmap3/0(4,27)/Lv7/経験値245/HP13/23・麻痺/道具0からだけ。旧受入は再生しない。

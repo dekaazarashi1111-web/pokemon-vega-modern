@@ -23,3 +23,7 @@
 母親との元会話でHP13/23→23/23・麻痺解消・ひっかくPP31→35、通常Save5→6と独立Continueのparty/Flash/4画面保持を限定受入。次はartifactのrecovery.srmを作業コピーとして通常ストーリーへ。map4/0 (8,5)、Lv7/EXP245、RP0、キズぐすり0。母親81入力と旧194/367/301/114入力・starter/RP/UI/BP/P08は再生しない。渡航16条件はstatic検証で、解禁後実渡航native・研究施設自然到達・全ストーリー・releaseは未完。
 
 正式source `f895a324d160055e70bd0788208907e2b4044a8f` / run `36366801337`。81入力/19画面でSave5→6、別core34入力/7画面。全Save131088bytes SHA 0de597b9e95fd33d62de19610a166ed6dd650a5ba6a4309770083cefe9560773。600partybytes中ひっかくPP/麻痺/HPの3bytesだけが変化、残り597bytes不変。RAM ledger分32→33とチェックサムは全byte SHAから確認し、残高や他ownerの改変と区別した。終端artifact/全必須stepの外部確認は次段階。
+
+## 外部終端確認済み
+
+run 36366801337、job 108754722968、全11必須step成功。completion 8be37140565ed514ce39bfcefe7707d5a66bdc76。artifact 10947623338 の全ZIP/26実画面/3Save/runner/候補/commit textを検証。追加native/compile/unit0。これより上の終端待ちは記録時点の履歴。現在の再開点はrecovery.srmで、回復区間を再生しない。
