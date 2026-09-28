@@ -25,6 +25,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_story_save10_working.json`
+- `docs/PR16_STORY_SAVE10_WIP_JA.md`
+- `content/modernization/pr16_story_journey_sequence_checkpoint.json`
 - `docs/PR16_STORY_SAVE9_JA.md`
 - `content/modernization/pr16_story_save9_checkpoint.json`
 - `scripts/pr16_story_save9.py`
@@ -62,6 +65,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- Save10の前回WIPに通常Save/独立Continue終端はない。回収できる正式親はSave9 artifact10963436148。WIPの敗北を勝利とせず、観測境界28検査をゲーム進行受入と混同しない。
 - Save8後継の新区間363入力/独立34入力は content/modernization/pr16_story_save9_checkpoint.json。Save9/EXP450/Lv9のtraining.srmから先だけ進める。通常逃走2回を勝利と区別。捕獲0/マオリ勝利未完。
 - Save7後継の野生育成316入力/独立34入力は content/modernization/pr16_story_safe_training_checkpoint.json。Save8/EXP331/Lv8のtraining.srmから先だけ進める。捕獲0/ボールポケット空、マオリ勝利未完。
 - 回復後の270入力/独立34入力は content/modernization/pr16_story_after_home_checkpoint.json に保存。Save7/EXP270から先だけ進む。マオリ敗北/全滅帰宅を勝利扱いせず、育成不足を補う。

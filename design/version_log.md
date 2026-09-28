@@ -8362,3 +8362,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: source=e39f4268b645fd9c76f89c4b7844b445d57cc0d1; run=36408678103; 同branch非force push。WIP e50afac0で固定context、41ee5724で開発原本と76検査を先行保存。
 - Network: GitHub HEAD/Actions/artifactのみ。直接cloneのDNS失敗を権限不足と誤認せずconnector/Actionsを使用。merge/release/active baseline変更0。観測待機の延長は入力再送/process再起動なし。
 - Next: Save9のtraining.srm作業コピーから先だけ進める。リープンLv9/EXP450、次Lvまで110、HP26/26、PP35/30/25、手持ち1体、RP0、map4/0(8,5)。Save8からの野生3勝119EXP・通常逃走2回・母親回復2回・通常Save8→9完了表示・独立Continueを確認。捕獲/トレーナー勝利0。次は自然な用品入手/手持ち拡充または追加育成を経て、東側道路map3/19のマオリ/通常ストーリーへ。マオリ勝利/研究施設自然到達/実渡航/全story/releaseは未完。本区間363/cold34、親316/cold34とそれ以前の既受入nativeを再生しない。
+
+## 2026-09-28T12:12:56.159066+00:00
+- Timestamp: 2026-09-28T12:12:56.159066+00:00
+- Task: USER-20260928-STORY-SAVE10 / 観測列境界の完成
+- Version: story-journey-sequence-v1
+- Status: DONE（境界検査のみ。Save10/用品/トレーナー/全storyは未受入）
+- Summary: 欠落・重複・逆行・不正型・範囲を拒否。同frame観測と残留fieldを新規勝利にしない。前回WIPの敗北記述とSave9正式受入を保全。
+- Files changed: 境界source、新規16検査、28検査原本/checkpoint、固定引継ぎMD/JSON、両ログ。
+- Verify: 新規16 + 変更関数に直接影響する既存12 = 28 PASS。開発16 PASSとは別会計。このworkflowのnative/ROM変更/accepted native再実行0。resume/task graph/scoped index/diff確認。既存一般CIのcapacity原本failureは未解決、全体guard PASSは主張しない。
+- Commit: WIP5481f3c2024c57247dcdae493c2d490d448fe30c、検証source=35ce64a857cbff3690f37c3a1caafa07e5daf300、run=36420363480。記録を含むcommitを同branchへ非force push。
+- Network: GitHubのみ。merge/release/baseline変更0。

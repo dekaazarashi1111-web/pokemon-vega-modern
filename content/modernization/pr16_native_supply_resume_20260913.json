@@ -793,6 +793,7 @@
   },
   "current_resume_doc": "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
   "do_not_repeat": [
+    "Save10の前回WIPに通常Save/独立Continue終端はない。回収できる正式親はSave9 artifact10963436148。WIPの敗北を勝利とせず、観測境界28検査をゲーム進行受入と混同しない。",
     "Save8後継の新区間363入力/独立34入力は content/modernization/pr16_story_save9_checkpoint.json。Save9/EXP450/Lv9のtraining.srmから先だけ進める。通常逃走2回を勝利と区別。捕獲0/マオリ勝利未完。",
     "Save7後継の野生育成316入力/独立34入力は content/modernization/pr16_story_safe_training_checkpoint.json。Save8/EXP331/Lv8のtraining.srmから先だけ進める。捕獲0/ボールポケット空、マオリ勝利未完。",
     "回復後の270入力/独立34入力は content/modernization/pr16_story_after_home_checkpoint.json に保存。Save7/EXP270から先だけ進む。マオリ敗北/全滅帰宅を勝利扱いせず、育成不足を補う。",
@@ -4236,6 +4237,9 @@
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
     "id": "STORY_SUPPLIES_AND_TRAINING_FROM_SAVE9_NEXT",
     "read_paths": [
+      "content/modernization/pr16_story_save10_working.json",
+      "docs/PR16_STORY_SAVE10_WIP_JA.md",
+      "content/modernization/pr16_story_journey_sequence_checkpoint.json",
       "docs/PR16_STORY_SAVE9_JA.md",
       "content/modernization/pr16_story_save9_checkpoint.json",
       "scripts/pr16_story_save9.py",
@@ -8756,6 +8760,10 @@
       "sha256": "2b53696b4f9692580e37aa88332e803e3f0fd20a3deb276a4c4e710d30cdef9a",
       "size": 2473
     },
+    ".github/workflows/pr16-story-journey-sequence.yml": {
+      "sha256": "afc52f1346297df5dc55cba778a1c3697b08d017d1e2c9daaa55e8600575142c",
+      "size": 7310
+    },
     ".github/workflows/pr16-story-safe-training-context.yml": {
       "sha256": "48dda03ea40a5ec9dd994f8c505b768940968ace520042d8326e302e39240951",
       "size": 3919
@@ -11239,6 +11247,14 @@
     "content/modernization/pr16_story_after_home_terminal.json": {
       "sha256": "e5e74af2e4e0199511a42379de32e40a80c166fd55214d886a82943e0c158ea5",
       "size": 4613
+    },
+    "content/modernization/pr16_story_journey_sequence_checkpoint.json": {
+      "sha256": "ea1925672cd7d74057711358866097db0eef8a01703ce3b6308d90c463fdd347",
+      "size": 1568
+    },
+    "content/modernization/pr16_story_journey_sequence_unit.txt": {
+      "sha256": "828e3798a0ef005c155f0699d90cc410fe776928468dca047ee236ff038f3338",
+      "size": 3323
     },
     "content/modernization/pr16_story_safe_training_checkpoint.json": {
       "sha256": "bbf70d1f75f5b31bca14c38b161f8857970c65cdc45f5a6746ca9923cf7120ab",
@@ -17132,6 +17148,10 @@
       "sha256": "997f8f18544e1269d96b893cdf8bb132b16907d37bf6336d2e61291e83f211d3",
       "size": 20822
     },
+    "scripts/pr16_story_journey_boundaries.py": {
+      "sha256": "0c6d18a006c1870a53a1f6fc27e99354acd4cc09eb42c4dd4a85394fe4987574",
+      "size": 3227
+    },
     "scripts/pr16_story_safe_training.py": {
       "sha256": "63623315572c36d3a871222fe919e2ef6cc97fca1172bb95bda7e491fb5800d2",
       "size": 13573
@@ -18620,6 +18640,14 @@
       "sha256": "03b1c10d7b48859e2723bb0cd0c7dc054ec342f83009ab3c95574fa5a8b4f9bf",
       "size": 6848
     },
+    "tests/test_pr16_story_journey_boundaries.py": {
+      "sha256": "4c8d6dce5a0cbde901a36695d2f1af75551972eca3b955c252254745e86d94a4",
+      "size": 2843
+    },
+    "tests/test_pr16_story_journey_sequence.py": {
+      "sha256": "5112f515f411bc66b340d3e3bdacb1232c243cf83c62860d51dc73c540d85c43",
+      "size": 2190
+    },
     "tests/test_pr16_story_safe_training.py": {
       "sha256": "6946398f45077bca0e73a2f1833c8d8758aca1054f0e20d6fe82b9e79b821b35",
       "size": 10964
@@ -19196,6 +19224,13 @@
     "source_head": "5b378dcae45d7f92307d27ea07ab7041ebce25f5",
     "status": "PASS_STORY_AFTER_HOME_LOSS_SAVE_SCOPED",
     "trainer_victories": 0
+  },
+  "story_journey_sequence": {
+    "focused_tests": 28,
+    "path": "content/modernization/pr16_story_journey_sequence_checkpoint.json",
+    "run_id": 36420363480,
+    "source_head": "35ce64a857cbff3690f37c3a1caafa07e5daf300",
+    "status": "PASS_JOURNEY_SEQUENCE_SCOPED"
   },
   "story_safe_training": {
     "actions_completion_confirmed": true,

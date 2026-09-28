@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "task": "USER-20260928-STORY-SAVE10",
+  "status": "PASS_JOURNEY_SEQUENCE_SCOPED",
+  "source_head": "35ce64a857cbff3690f37c3a1caafa07e5daf300",
+  "run_id": 36420363480,
+  "focused_tests": 28,
+  "new_sequence_tests": 16,
+  "changed_boundary_regression_tests": 12,
+  "development_test_executions": 16,
+  "new_native_processes": 0,
+  "accepted_native_reruns": 0,
+  "rom_changes": 0,
+  "active_baseline_changed": false,
+  "ordinary_save10_accepted": false,
+  "release_ready": false,
+  "actions_completion_confirmed": false,
+  "scope_ja": "連続観測の欠落/重複/逆行/型/範囲拒否と戦闘終端の分類のみ。既存12検査は変更された境界関数への直接影響回帰。新ゲーム区間やSave10の受入ではない。",
+  "unit": {
+    "size": 3323,
+    "sha256": "828e3798a0ef005c155f0699d90cc410fe776928468dca047ee236ff038f3338"
+  },
+  "source_bindings": {
+    "scripts/pr16_story_journey_boundaries.py": {
+      "size": 3227,
+      "sha256": "0c6d18a006c1870a53a1f6fc27e99354acd4cc09eb42c4dd4a85394fe4987574"
+    },
+    "tests/test_pr16_story_journey_boundaries.py": {
+      "size": 2843,
+      "sha256": "4c8d6dce5a0cbde901a36695d2f1af75551972eca3b955c252254745e86d94a4"
+    },
+    "tests/test_pr16_story_journey_sequence.py": {
+      "size": 2190,
+      "sha256": "5112f515f411bc66b340d3e3bdacb1232c243cf83c62860d51dc73c540d85c43"
+    },
+    ".github/workflows/pr16-story-journey-sequence.yml": {
+      "size": 7310,
+      "sha256": "afc52f1346297df5dc55cba778a1c3697b08d017d1e2c9daaa55e8600575142c"
+    }
+  }
+}
