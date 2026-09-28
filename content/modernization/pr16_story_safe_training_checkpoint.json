@@ -1,6 +1,6 @@
 {
   "accepted_case_reruns": 0,
-  "actions_completion_confirmed": false,
+  "actions_completion_confirmed": true,
   "active_baseline_changed": false,
   "arm_compiles": 0,
   "candidate": {
@@ -21,6 +21,7 @@
   },
   "commands": "quit\n",
   "completed_segment_replay_required": false,
+  "completion_head": "8237efa33fab55009c6163d804724723bebcd35c",
   "continued": {
     "battle_flags": 0,
     "battle_outcome": 0,
@@ -120,7 +121,21 @@
   "parent_checkpoint": "content/modernization/pr16_story_after_home_checkpoint.json",
   "party_count": 1,
   "release_ready": false,
-  "retained_artifact_id": null,
+  "retained_artifact": {
+    "digest": "sha256:524ff401d9434fd0aa9eb86362f76cd29c5e73c7a18f694b8eef5010d7a40bd5",
+    "expires_at": "2026-12-27T03:39:32Z",
+    "id": 10950920338,
+    "name": "pr16-story-safe-training-checkpoint",
+    "size_in_bytes": 18582437,
+    "workflow_run": {
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_repository_id": 1358127462,
+      "head_sha": "c108d25ac7b29b77b8984384968d5ca9037daf4e",
+      "id": 36374575742,
+      "repository_id": 1358127462
+    }
+  },
+  "retained_artifact_id": 10950920338,
   "retained_artifact_name": "pr16-story-safe-training-checkpoint",
   "rom_changes": 0,
   "rp": 0,
@@ -164,7 +179,8 @@
     }
   },
   "source_head": "c108d25ac7b29b77b8984384968d5ca9037daf4e",
-  "status": "PASS_STORY_SAFE_TRAINING_SAVE8_PENDING_TERMINAL",
+  "status": "PASS_STORY_SAFE_TRAINING_SAVE8_SCOPED",
+  "terminal_receipt": "content/modernization/pr16_story_safe_training_terminal.json",
   "trainer_victories": 0,
   "wild_victories": 3,
   "xy": [

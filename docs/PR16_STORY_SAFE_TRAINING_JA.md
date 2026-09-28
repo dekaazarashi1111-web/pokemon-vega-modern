@@ -19,3 +19,7 @@ Lv8の能力/情報/技/手持ち4UIはcoldと全byte一致。EXP331、次Lvま�
 新規316入力/25208framesと独立34入力/2808frames、全70画面、34目視anchor、93検査PASS。開発native2/検査93と正式native2/検査93を分離。ROM/runner/既受入source不変、compile/fixture/明示した旧native再実行0。Save7生成270/cold34や本区間を再生せず、後継training.srmからのみ続ける。ROM/save/runner/画面は非tracked artifactのみ。
 
 正式source `c108d25ac7b29b77b8984384968d5ca9037daf4e`、run `36374575742`。終端は別のAPI回収で確認する。
+
+## Actions終端確認済み
+
+全11step成功。artifact `10950920338`、completion `8237efa33fab55009c6163d804724723bebcd35c`。全70画面/保存原本/93検査原本/commit textを照合。native/test再実行0。次は後継training.srmからのみ。

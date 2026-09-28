@@ -1,0 +1,211 @@
+{
+  "artifact": {
+    "digest": "sha256:524ff401d9434fd0aa9eb86362f76cd29c5e73c7a18f694b8eef5010d7a40bd5",
+    "expires_at": "2026-12-27T03:39:32Z",
+    "id": 10950920338,
+    "name": "pr16-story-safe-training-checkpoint",
+    "size_in_bytes": 18582437,
+    "workflow_run": {
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_repository_id": 1358127462,
+      "head_sha": "c108d25ac7b29b77b8984384968d5ca9037daf4e",
+      "id": 36374575742,
+      "repository_id": 1358127462
+    }
+  },
+  "completion_head": "8237efa33fab55009c6163d804724723bebcd35c",
+  "job": {
+    "conclusion": "success",
+    "id": 108777668109,
+    "name": "training",
+    "status": "completed",
+    "steps": [
+      {
+        "completed_at": "2026-09-28T03:39:36Z",
+        "conclusion": "success",
+        "name": "Set up job",
+        "number": 1,
+        "started_at": "2026-09-28T03:39:35Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-28T03:39:47Z",
+        "conclusion": "success",
+        "name": "Run actions/checkout@v4",
+        "number": 2,
+        "started_at": "2026-09-28T03:39:36Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-28T03:40:27Z",
+        "conclusion": "success",
+        "name": "Measure only new training interval and independent Continue",
+        "number": 3,
+        "started_at": "2026-09-28T03:39:47Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-28T03:40:37Z",
+        "conclusion": "success",
+        "name": "Record measured originals and fixed handoff",
+        "number": 4,
+        "started_at": "2026-09-28T03:40:27Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-28T03:40:39Z",
+        "conclusion": "success",
+        "name": "Validate task graph and exact staged text boundary",
+        "number": 5,
+        "started_at": "2026-09-28T03:40:37Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-28T03:40:41Z",
+        "conclusion": "success",
+        "name": "Commit verified text and non-force push same branch",
+        "number": 6,
+        "started_at": "2026-09-28T03:40:39Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-28T03:40:41Z",
+        "conclusion": "success",
+        "name": "Read back committed text and retain completion identity",
+        "number": 7,
+        "started_at": "2026-09-28T03:40:41Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-28T03:40:42Z",
+        "conclusion": "success",
+        "name": "Preserve partial native originals without replay",
+        "number": 8,
+        "started_at": "2026-09-28T03:40:41Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-28T03:40:44Z",
+        "conclusion": "success",
+        "name": "Run actions/upload-artifact@v4",
+        "number": 9,
+        "started_at": "2026-09-28T03:40:42Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-28T03:40:45Z",
+        "conclusion": "success",
+        "name": "Post Run actions/checkout@v4",
+        "number": 18,
+        "started_at": "2026-09-28T03:40:44Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-28T03:40:45Z",
+        "conclusion": "success",
+        "name": "Complete job",
+        "number": 19,
+        "started_at": "2026-09-28T03:40:45Z",
+        "status": "completed"
+      }
+    ]
+  },
+  "new_native_processes": 0,
+  "new_test_executions": 0,
+  "run": {
+    "conclusion": "success",
+    "head_branch": "codex/modernization-followup-20260908",
+    "head_sha": "c108d25ac7b29b77b8984384968d5ca9037daf4e",
+    "id": 36374575742,
+    "path": ".github/workflows/pr16-story-safe-training.yml",
+    "run_attempt": 1,
+    "status": "completed"
+  },
+  "run_id": 36374575742,
+  "save_byte_proof": {
+    "after_party_offset": 36920,
+    "all_save_rtc_preserved_after_continue": true,
+    "before_party_offset": 90168,
+    "experience_after": 331,
+    "experience_before": 270,
+    "experience_gained": 61,
+    "hp": [
+      24,
+      24
+    ],
+    "level_after": 8,
+    "level_before": 7,
+    "moves_pp": [
+      35,
+      30,
+      25
+    ],
+    "other_party_bytes_preserved": 589,
+    "party_changed_bytes": [
+      {
+        "after": 75,
+        "before": 14,
+        "offset": 36
+      },
+      {
+        "after": 96,
+        "before": 86,
+        "offset": 41
+      },
+      {
+        "after": 2,
+        "before": 0,
+        "offset": 59
+      },
+      {
+        "after": 8,
+        "before": 7,
+        "offset": 84
+      },
+      {
+        "after": 24,
+        "before": 23,
+        "offset": 86
+      },
+      {
+        "after": 24,
+        "before": 23,
+        "offset": 88
+      },
+      {
+        "after": 15,
+        "before": 14,
+        "offset": 90
+      },
+      {
+        "after": 12,
+        "before": 11,
+        "offset": 92
+      },
+      {
+        "after": 17,
+        "before": 15,
+        "offset": 94
+      },
+      {
+        "after": 16,
+        "before": 14,
+        "offset": 96
+      },
+      {
+        "after": 13,
+        "before": 12,
+        "offset": 98
+      }
+    ],
+    "previous_save_bank_preserved_bytes": 57344,
+    "save_counters": [
+      7,
+      8,
+      8
+    ],
+    "saved_minutes_after": 46,
+    "saved_minutes_before": 39
+  },
+  "source_head": "c108d25ac7b29b77b8984384968d5ca9037daf4e"
+}

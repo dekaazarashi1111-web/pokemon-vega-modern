@@ -6,7 +6,7 @@
 
 ## いまの停止点と次の1手
 
-PASS_STORY_SAFE_TRAINING_SAVE8_PENDING_TERMINAL
+PASS_STORY_SAFE_TRAINING_SAVE8_SCOPED
 
 **次: Save8のtraining.srm作業コピーから先だけ進める。リープンLv8/EXP331、次Lvまで88、HP24/24、PP35/30/25、手持ち1体、RP0、map4/0(8,3)。野生3勝でEXP61獲得、母親で2回回復し通常Save7→8と独立Continueを確認。ボールポケット空のため捕獲0。次は自然な用品入手/手持ち拡充または追加育成を進め、東側道路map3/19から通常ストーリーへ。マオリ勝利/研究施設自然到達/実渡航/全story/releaseは未完。完走316/cold34入力、旧Save7生成270/cold34、既受入nativeを再生しない。**
 

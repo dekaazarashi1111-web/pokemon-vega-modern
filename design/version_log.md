@@ -8326,3 +8326,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: source=c108d25ac7b29b77b8984384968d5ca9037daf4e; run=36374575742; 同branch非force push。
 - Network: GitHub HEAD/Actions/artifactのみ。コンテナからgit cloneはDNS失敗のためconnector/専用Actionsを使用。merge/release/active baseline変更0。一般CI成功は主張しない。
 - Next: Save8のtraining.srm作業コピーから先だけ進める。リープンLv8/EXP331、次Lvまで88、HP24/24、PP35/30/25、手持ち1体、RP0、map4/0(8,3)。野生3勝でEXP61獲得、母親で2回回復し通常Save7→8と独立Continueを確認。ボールポケット空のため捕獲0。次は自然な用品入手/手持ち拡充または追加育成を進め、東側道路map3/19から通常ストーリーへ。マオリ勝利/研究施設自然到達/実渡航/全story/releaseは未完。完走316/cold34入力、旧Save7生成270/cold34、既受入nativeを再生しない。
+
+## 2026-09-28T03:42:10.775914+00:00
+- Timestamp: 2026-09-28T03:42:10.775914+00:00
+- Task: USER-20260928-STORY-SAFE-TRAINING / Save7後の安全育成・Save8
+- Version: story-safe-training-v1-terminal
+- Status: DONE（育成区間限定。通常供給/研究施設/全story/releaseは未完）
+- Summary: 通常野生3勝/EXP270→331/Lv7→8、捕獲0/トレーナー勝利0。母親2回回復、実Start→レポート確認→上書き→書込中→field復帰、Save7→8。能力4UIと全Save/RTCがcoldで一致。
+- Files changed: 専用oracle/93検査/新入力原本/証拠/checkpoint/guide、固定引継ぎMD/JSON、両ログ。ROM/save/runner/画面は非tracked artifactのみ。
+- Verify: 専用測定run全step・artifact ZIP・70画面原本・全Save・93検査原本・commit text照合。native/test再実行0。 旧受入の明示再実行0、compile/ROM改変0、task graph/resume/scoped index/diff確認後にcommit。
+- Commit: source=98f7e71dd51a54ae85e29ceeecc1cf31d7c8136f; run=36374723884; 同branch非force push。
+- Network: GitHub HEAD/Actions/artifactのみ。コンテナからgit cloneはDNS失敗のためconnector/専用Actionsを使用。merge/release/active baseline変更0。一般CI成功は主張しない。
+- Next: Save8のtraining.srm作業コピーから先だけ進める。リープンLv8/EXP331、次Lvまで88、HP24/24、PP35/30/25、手持ち1体、RP0、map4/0(8,3)。野生3勝でEXP61獲得、母親で2回回復し通常Save7→8と独立Continueを確認。ボールポケット空のため捕獲0。次は自然な用品入手/手持ち拡充または追加育成を進め、東側道路map3/19から通常ストーリーへ。マオリ勝利/研究施設自然到達/実渡航/全story/releaseは未完。完走316/cold34入力、旧Save7生成270/cold34、既受入nativeを再生しない。
