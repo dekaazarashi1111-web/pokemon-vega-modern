@@ -21,3 +21,7 @@ Save11はリープンLv9/EXP450/HP16/26、ツツケラLv3/EXP27/HP4/15。通常�
 開発2process/68検査、正式2process/68検査を別計上。旧受入の明示再実行0、ROM/runner/compile変更0。新区間176/cold50入力/83画面が完了したら保存原本を回収し、終端記録のために再生しない。
 
 正式source `79be6cb0fe60277cb37df6d3b85d9a8414b28c51`、run 36430188567。全step/保存artifact/commit終端は別のAPI照合で確定する。
+
+## 正式終端
+
+run 36430188567 の全step成功、completion `6e3f0ed3569014d4bed32814f0953c4579fe8b2b`、原本artifact 10973111478。次はこのartifactのtraining.srmのみ。終端回収native0/test0。

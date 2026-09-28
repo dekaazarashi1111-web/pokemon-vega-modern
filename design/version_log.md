@@ -8408,3 +8408,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: source=79be6cb0fe60277cb37df6d3b85d9a8414b28c51; run=36430188567; 同branch非force push。WIP c9a3fbe2で停止点、df3708a3で検証sourceを先行保存。
 - Network: GitHub HEAD/Actions/artifactのみ。元Save10 run failureを保持。直接cloneのDNS失敗はconnector/保存contextで代替。merge/release/active baseline変更0。
 - Next: native/68試験を再実行せず、今回Actionsの全step・83画面/Save原本artifact・記録commitを終端確認する。その後 Save11のtraining.srm作業コピーから先だけ進める。501番道路map3/19(15,10)左向き。通常捕獲で手持ち1→2、ボール5→3、初投失敗/二投目成功を分離、通常Save10→11と独立Continue後の全Save/RTC保持を確認。リープンLv9/EXP450/HP16/26/PP35/30/22、ツツケラLv3/EXP27/HP4/15/PP33/38、RP0、2776円。次は2体の通常回復と育成を経てマオリ/通常ストーリーへ。トレーナー勝利/研究施設自然到達/全story/releaseは未完。地域図鑑No???・レポート図鑑1匹も観測履歴として保持し、図鑑統合を受入にしない。176/cold50と旧218/cold62等を再生しない。
+
+## 2026-09-28T13:42:29.589926+00:00
+- Timestamp: 2026-09-28T13:42:29.589926+00:00
+- Task: USER-20260928-STORY-SAVE11 / 最初の自然捕獲・Save11終端確認
+- Version: story-save11-v1
+- Status: DONE（自然捕獲/Save11限定。トレーナー/研究施設/図鑑統合/全story/release未受入）
+- Summary: 501番道路でツツケラLv3へ初投失敗・すいとる3回・二投目成功。ボール5→3、手持ち1→2、Save10→11、独立Continue後の全Save/RTC131088bytes保持。親bank57344bytes/未使用party400bytes保持。先頭個体のHP26→16/PP25→22の2bytesだけ変更。名前入力の寄道/地域図鑑No???/図鑑1匹を保持。
+- Files changed: Save11後継検証器/68試験/入力目視原本/Actions/証拠/checkpoint/guide、固定引継ぎMD/JSON、両ログ。ROM/save/runner/画面は非tracked artifactのみ。
+- Verify: 専用run全step・原本ZIP全83画面/Save/68検査/commitを照合。新native0/test0。 保存完了はlock1、coldでfield復帰。バッグ左端80pixel差を全一致にしない。初期実装の未使用slot全ゼロ仮定は既存FF sentinelを保持する条件へ修正してから68検査PASS。旧受入再実行0、ROM/compile変更0。resume/task graph/scoped final indexを確認後にcommit。全体private guard/一般CI成功は主張しない。
+- Commit: source=5dcfd06b36af6816586c9454e0ae0c0b9170645a; run=36430473903; 同branch非force push。WIP c9a3fbe2で停止点、df3708a3で検証sourceを先行保存。
+- Network: GitHub HEAD/Actions/artifactのみ。元Save10 run failureを保持。直接cloneのDNS失敗はconnector/保存contextで代替。merge/release/active baseline変更0。
+- Next: Save11のtraining.srm作業コピーから先だけ進める。501番道路map3/19(15,10)左向き。通常捕獲で手持ち1→2、ボール5→3、初投失敗/二投目成功を分離、通常Save10→11と独立Continue後の全Save/RTC保持を確認。リープンLv9/EXP450/HP16/26/PP35/30/22、ツツケラLv3/EXP27/HP4/15/PP33/38、RP0、2776円。次は2体の通常回復と育成を経てマオリ/通常ストーリーへ。トレーナー勝利/研究施設自然到達/全story/releaseは未完。地域図鑑No???・レポート図鑑1匹も観測履歴として保持し、図鑑統合を受入にしない。176/cold50と旧218/cold62等を再生しない。
