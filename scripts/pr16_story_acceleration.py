@@ -53,8 +53,9 @@ def resolve_move(rows, key):
 
 
 def rom_bytes(raw, address, size):
+    need(type(address) is int and type(size) is int and size >= 0, 'ROM range types')
     at = address - ROM_BASE
-    need(type(address) is int and 0 <= at <= len(raw) - size, 'ROM address bounds')
+    need(0 <= at <= len(raw) - size, 'ROM address bounds')
     return raw[at:at + size]
 
 
@@ -152,6 +153,48 @@ def audit(root, rom, save):
             'rom_changes': 0, 'release_ready': False, 'native_acceptance': False}
 
 
+def vectors(root, data):
+    """実台帳で確定した値だけをCへ渡す。field utilityは初期fixtureに入れない。"""
+    party, growth = data['story_party'], data['progression']
+    items = {x['key']: x['id'] for x in data['items']}
+    splash = int(resolve_move(registry(root, 'move'), 'MOVE_SPLASH')['id'])
+    values = {'sa_move_table': data['roots']['moves'], 'sa_axew': growth['id'],
+              'sa_fraxure': growth['evolution']['target_id'],
+              'sa_evolution_level': growth['evolution']['level'],
+              'sa_threshold': growth['evolution']['threshold_exp'],
+              'sa_caterpie': data['opponents'][0]['id'], 'sa_splash': splash}
+    lines = ['#define SA_ROM "' + data['candidate']['sha256'] + '"',
+             '#define SA_SAVE "' + data['source_save']['sha256'] + '"']
+    lines += [f'static const unsigned {k}={v};' for k, v in values.items()]
+    lines += ['static unsigned sa_expected_move,sa_initial_pp,sa_enemy_hp;']
+    def array(xs):
+        return '{' + ','.join(str(x) for x in xs) + '}'
+    lines += ['static const unsigned sa_species[4]=' + array(x['id'] for x in party) + ';']
+    move_rows = [array(m['id'] for m in p['moves']) if i < 2 else '{0,0,0,0}' for i, p in enumerate(party)]
+    lines += ['static const unsigned sa_story_moves[4][4]={' + ','.join(move_rows) + '};',
+              'static const unsigned sa_growth_moves[4]=' + array(m['id'] for m in growth['moves']) + ';',
+              'static const unsigned sa_held[4]=' + array([items['ITEM_KEY_' + k] for k in ('WISE_GLASSES', 'MUSCLE_BAND', 'SMOKE_BALL')] + [0]) + ';']
+    return '\n'.join(lines) + '\n'
+
+
+def byte_ledger(before, after):
+    """全RAM byte差分を連続範囲で記録する。非変更部分も全像hashに含める。"""
+    need(len(before) == len(after) == 0x48000, 'full EWRAM/IWRAM images required')
+    rows = []
+    index = 0
+    while index < len(before):
+        if before[index] == after[index]:
+            index += 1
+            continue
+        end = index + 1
+        while end < len(before) and before[end] != after[end] and end != 0x40000:
+            end += 1
+        address = 0x02000000 + index if index < 0x40000 else 0x03000000 + index - 0x40000
+        rows.append({'address': address, 'size': end-index, 'before': before[index:end].hex(), 'after': after[index:end].hex()})
+        index = end
+    return {'before': identity(before), 'after': identity(after), 'changed_bytes': sum(r['size'] for r in rows), 'ranges': rows}
+
+
 def prepare(root, rom_path, save_path, output):
     rom, save = rom_path.read_bytes(), save_path.read_bytes()
     result = audit(root, rom, save)
@@ -159,6 +202,7 @@ def prepare(root, rom_path, save_path, output):
     output.mkdir(parents=True, exist_ok=False)
     for lane in ('story-fast', 'progression'):
         (output / (lane + '.srm')).write_bytes(save)
+    (output / 'pr16_story_acceleration_vectors.h').write_text(vectors(root, result), encoding='utf-8')
     (output / 'abi.json').write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     return result
 
