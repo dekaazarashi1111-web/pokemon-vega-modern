@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-PASS_STORY_SAVE9_SCOPED
+PASS_STORY_SAVE10_PENDING_RECORD_TERMINAL
 
-**次: Save9のtraining.srm作業コピーから先だけ進める。リープンLv9/EXP450、次Lvまで110、HP26/26、PP35/30/25、手持ち1体、RP0、map4/0(8,5)。Save8からの野生3勝119EXP・通常逃走2回・母親回復2回・通常Save8→9完了表示・独立Continueを確認。捕獲/トレーナー勝利0。次は自然な用品入手/手持ち拡充または追加育成を経て、東側道路map3/19のマオリ/通常ストーリーへ。マオリ勝利/研究施設自然到達/実渡航/全story/releaseは未完。本区間363/cold34、親316/cold34とそれ以前の既受入nativeを再生しない。**
+**次: native/test再実行せず今回Actionsの全step・保存artifact・commitを先に終端確認。その後 Save10のtraining.srm作業コピーから先だけ進める。501番道路の民家map32/2(4,3)下向き、モンスターボール5個。女性の通常贈与0→5、再会話の二重受取防止、通常Save9→10、独立Continue後の5個/再受取防止を確認。リープンLv9/EXP450/HP26/26/PP35/30/25、手持ち1、RP0、2776円。次は自然捕獲で手持ち拡充または追加育成を経てマオリ/通常ストーリーへ。捕獲/トレーナー勝利/研究活動施設自然到達/全story/releaseは未完。218/cold62と旧363/cold34等の受入区間を再生しない。**
 
-専用測定run/artifact終端を先に照合。後継Save9のtraining.srmのみ。本区間363/cold34・親316/cold34や既受入nativeを再生せず、失敗原本を成功に改作しない。逃走を勝利、野生勝利をトレーナー勝利/研究到達へ昇格しない。
+専用run/artifact終端を先に照合。後継Save10 training.srmのみ。218/cold62も旧Save9の363/cold34も再生しない。用品供給を捕獲/トレーナー勝利/研究施設到達へ昇格しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `be27b66e1486c28cdf9e2c40009359f2072881da`。
-新区間を独立測定したsource HEAD。自己記録commitやactive baselineではない。
+証拠のsource HEAD: `02e451790c9b05d29861d29c3578ffca787061e6`。
+新区間Save10の測定source HEAD。記録commit/active baselineではない。
 
 ## 最短の再開手順
 
@@ -25,13 +25,13 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `docs/PR16_STORY_SAVE10_JA.md`
+- `content/modernization/pr16_story_save10_checkpoint.json`
 - `content/modernization/pr16_story_save10_working.json`
-- `docs/PR16_STORY_SAVE10_WIP_JA.md`
+- `scripts/pr16_story_save10.py`
+- `tests/test_pr16_story_save10.py`
+- `scripts/pr16_story_save10_actions.py`
 - `content/modernization/pr16_story_journey_sequence_checkpoint.json`
-- `docs/PR16_STORY_SAVE9_JA.md`
-- `content/modernization/pr16_story_save9_checkpoint.json`
-- `scripts/pr16_story_save9.py`
-- `tests/test_pr16_story_save9.py`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -65,6 +65,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- Save10の218/cold62と77画面・32検査は保存原本から照合し、通常進行の再開時に再実行しない。28境界検査も影響なしに再実行しない。前回未保存WIPの敗北は保持。
 - Save10の前回WIPに通常Save/独立Continue終端はない。回収できる正式親はSave9 artifact10963436148。WIPの敗北を勝利とせず、観測境界28検査をゲーム進行受入と混同しない。
 - Save8後継の新区間363入力/独立34入力は content/modernization/pr16_story_save9_checkpoint.json。Save9/EXP450/Lv9のtraining.srmから先だけ進める。通常逃走2回を勝利と区別。捕獲0/マオリ勝利未完。
 - Save7後継の野生育成316入力/独立34入力は content/modernization/pr16_story_safe_training_checkpoint.json。Save8/EXP331/Lv8のtraining.srmから先だけ進める。捕獲0/ボールポケット空、マオリ勝利未完。
@@ -367,6 +368,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-測定source・開始HEAD・作業checkpoint HEADと前回pendingを照合。一般CIのfailure/action_requiredをsuccessへ改作しない。自己run終端は別API回収。
+開始HEAD/今回source/記録sourceとpendingの実API。既存capacity原本の一般CI failureをsuccessへ改作せず、自己run終端は別途回収。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

@@ -112,6 +112,7 @@ def publish(state,cp,owned,terminal=False):
     if terminal:state['story_journey_sequence'].update(actions_completion_confirmed=True,retained_artifact_id=10969625772)
     state['bp']['current_stop']=cp['status'];state['bp']['next_step']=GOAL
     state['next_action']=dict(state['next_action'],id='STORY_PARTY_EXPANSION_FROM_SAVE10_NEXT' if terminal else 'STORY_SAVE10_TERMINAL_COLLECTION_ONLY',goal_ja=GOAL if terminal else 'native/test再実行せず今回Actionsの全step・保存artifact・commitを先に終端確認。その後 '+GOAL,read_paths=[GUIDE,m.CP,WORK,m.SOURCE,m.TEST,SELF,BCP],stop_rule_ja='専用run/artifact終端を先に照合。後継Save10 training.srmのみ。218/cold62も旧Save9の363/cold34も再生しない。用品供給を捕獲/トレーナー勝利/研究施設到達へ昇格しない。')
+    state['bp']['next_step']=state['next_action']['goal_ja']
     note='Save10の218/cold62と77画面・32検査は保存原本から照合し、通常進行の再開時に再実行しない。28境界検査も影響なしに再実行しない。前回未保存WIPの敗北は保持。'
     if note not in state['do_not_repeat']:state['do_not_repeat'].insert(0,note)
     state['observed_head']=cp['source_head'];state['observed_head_semantics']='新区間Save10の測定source HEAD。記録commit/active baselineではない。'

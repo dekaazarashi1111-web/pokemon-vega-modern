@@ -11101,3 +11101,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 新規16 + 変更関数に直接影響する既存12 = 28 PASS。開発16 PASSとは別会計。このworkflowのnative/ROM変更/accepted native再実行0。resume/task graph/scoped index/diff確認。既存一般CIのcapacity原本failureは未解決、全体guard PASSは主張しない。
 - Commit: WIP5481f3c2024c57247dcdae493c2d490d448fe30c、検証source=35ce64a857cbff3690f37c3a1caafa07e5daf300、run=36420363480。記録を含むcommitを同branchへ非force push。
 - Network: GitHubのみ。merge/release/baseline変更0。
+
+## 2026-09-28T12:52:46.586124+00:00
+- Timestamp: 2026-09-28T12:52:46.586124+00:00
+- Task: USER-20260928-STORY-SAVE10 / 通常用品供給・Save10限定受入
+- Version: story-save10-v1
+- Status: DONE（通常ボール5個/二重受取防止/Save10のみ。捕獲/トレーナー/全story/release未受入）
+- Summary: 501番道路の女性から通常0→5、再会話/独立Continue後も5。Save9→10、全Save/RTC131088bytes保持、旧bank57344bytes保持。徒歩友情+2以外599partybytes、他4bag pocket/2776円不変。12全画面一致、一覧358pixelはsprite animationのみ。
+- Files changed: Save10検証器/32検査/入力目視原本、専用Actions、証拠/checkpoint、固定引継ぎMD/JSON、専用guide、両ログ。
+- Verify: 新区間218/cold62入力・77画面・新規32検査PASS、開発2process/32検査と正式2process/32検査は別会計。 resume/task graph/scoped index/diff確認。既存一般CIのcapacity原本failureは保持、全体private guard PASSを主張しない。
+- Commit: source=02e451790c9b05d29861d29c3578ffca787061e6、measurement run=36423498952、record run=36424626327。同branch非force commit/push。
+- Network: GitHub原本再利用。accepted native再実行/ROM変更/host/ARM compile/merge/release/baseline切替0。
+- Record recovery: measured run36423498952 is failure at resume mirror after native/32-test success. artifact10970079659 retained. This recovery executed native0/test0; original 2/32 are inherited, not rerun. Fixed only publisher next-action mirror.
