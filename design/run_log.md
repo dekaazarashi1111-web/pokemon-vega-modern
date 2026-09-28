@@ -10985,3 +10985,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 52 new tests PASS; strict host compile1; ARM/native/accepted-case reruns0; 15byte rollback/outside preservation PASS.
 - Commit: source=4409a5dddf6c4f2f5d08833b35a470fdd544dde3; run=36364944598; same branch non-force.
 - Network: fixed GitHub artifacts/API only. Global private guard/一般CI全PASS/merge/release/baseline変更は主張しない。
+
+## 2026-09-28T01:30:31.525179+00:00
+- Timestamp: 2026-09-28T01:30:31.525179+00:00
+- Task: USER-20260928-HOME-RECOVERY
+- Version: home-recovery-native-oracle-v1
+- Status: DONE（新73oracle準備のみ、正式native未受入）
+- Summary: 母親回復の新oracle73検査と81/cold34入力の開発原本を固定。source52検査は再利用。次は通常compile済みbuild artifact10946449847を照合し、pr16-home-recovery-native.ymlで新区間2processのみ正式測定。旧194/367/301/114入力を再生しない。
+- Files changed: 新oracle/actions/test/開発原本text/MD/固定引継ぎ/両ログ。
+- Verify: 新73検査原本/source binding照合PASS。input/画面/party回復3bytes/597bytes不変/Save/時計差分を検証。ここでnative/unit/compile再実行0。
+- Commit: source=a45d2be7936e81ab686684f694ae4c281d23b7de; same branch non-force。
+- Network: GitHub source/API only。release/baseline/global private guard PASSを主張しない。

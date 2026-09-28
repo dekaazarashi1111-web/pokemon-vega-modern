@@ -7,3 +7,9 @@
 候補SHA 06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5。52試験、全ROM rollback、変更外不変、16通りのflag/yes-no、canonical一致を確認。driverは候補SHAを固定したCから通常compileし、実行ファイルは書換えない。初期探索の実行ファイル文字列更新方式は正式採用しない。
 
 このsource checkpointはnative受入ではない。一般CIの既存失敗/action_requiredとは区別する。merge/release/active baseline変更は禁止。
+
+## 新規回復oracle準備
+
+母親回復の新oracle73検査と81/cold34入力の開発原本を固定。source52検査は再利用。次は通常compile済みbuild artifact10946449847を照合し、pr16-home-recovery-native.ymlで新区間2processのみ正式測定。旧194/367/301/114入力を再生しない。
+
+初回73試験のうち、不完全schemaの例外2件と実入力未結合1件を修正後73全成功。初期探索の実行ファイル文字列更新方式は正式採用せず、source通常compile版で独立測定する。冷起動開発はその通常compile版を使用。native正式受入は未完。

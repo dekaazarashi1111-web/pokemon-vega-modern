@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "PASS_HOME_RECOVERY_SOURCE_NATIVE_PENDING",
+    "current_stop": "HOME_RECOVERY_NATIVE_ORACLE_READY",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "母親previous_script0x0817BCBBを固定Vega原本で確認。未解禁時と渡航辞退時を元会話/回復へ15bytesで委譲し、canonical全179bytes一致と52専用検査を確認。次はtraining.srmから新候補で実会話・回復・Save・独立Continueだけを測定する。研究施設自然到達/実渡航nativeは未受入。旧194/367/301/114入力と旧RP/UI/BP/P08は再生しない。",
+    "next_step": "母親回復の新oracle73検査と81/cold34入力の開発原本を固定。source52検査は再利用。次は通常compile済みbuild artifact10946449847を照合し、pr16-home-recovery-native.ymlで新区間2processのみ正式測定。旧194/367/301/114入力を再生しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -4216,15 +4216,16 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "母親previous_script0x0817BCBBを固定Vega原本で確認。未解禁時と渡航辞退時を元会話/回復へ15bytesで委譲し、canonical全179bytes一致と52専用検査を確認。次はtraining.srmから新候補で実会話・回復・Save・独立Continueだけを測定する。研究施設自然到達/実渡航nativeは未受入。旧194/367/301/114入力と旧RP/UI/BP/P08は再生しない。",
+    "goal_ja": "母親回復の新oracle73検査と81/cold34入力の開発原本を固定。source52検査は再利用。次は通常compile済みbuild artifact10946449847を照合し、pr16-home-recovery-native.ymlで新区間2processのみ正式測定。旧194/367/301/114入力を再生しない。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
-    "id": "HOME_RECOVERY_NATIVE_SAVE_NEXT",
+    "id": "HOME_RECOVERY_NATIVE_ACTIONS_NEXT",
     "read_paths": [
       "docs/PR16_HOME_RECOVERY_JA.md",
       "content/modernization/pr16_home_recovery_checkpoint.json",
-      "scripts/pr16_home_recovery.py"
+      "scripts/pr16_home_recovery_native_actions.py",
+      "content/modernization/pr16_home_recovery_native_development/verification.json"
     ],
-    "stop_rule_ja": "source build artifactと終端を確認。正式native runが存在したら回収のみ。training.srmの作業コピーから新しい回復区間のみ。旧候補/Save/受入を改変しない。"
+    "stop_rule_ja": "新native runが存在したらartifact回収のみ。存在しない場合だけ通常compile runnerで新区間を測定。成功Save原本は不変。merge/release/baseline変更禁止。"
   },
   "observed_date_jst": "2026-09-27",
   "observed_head": "4409a5dddf6c4f2f5d08833b35a470fdd544dde3",
@@ -7545,6 +7546,10 @@
       "sha256": "ab2fd2eac09544ac5c43b5e6983b8007caf174511c2bdcdae2e4e2e4498f29d7",
       "size": 3544
     },
+    ".github/workflows/pr16-home-recovery-native-source.yml": {
+      "sha256": "3ad1b583da8bce905d55d9020ce5549f8ca534e50525aa629bc5049ff5eb292a",
+      "size": 32669
+    },
     ".github/workflows/pr16-home-recovery-owner.yml": {
       "sha256": "6fb992299177dfb86d48e7fd22b99a92f5b6cbdf10400451342560e5ff8d58ef",
       "size": 5083
@@ -8960,6 +8965,54 @@
     "content/modernization/pr16_home_recovery_checkpoint.json": {
       "sha256": "e9979d392aa0b5ff760895ac123f08dac30815acaee51e43155a0d252d54ec79",
       "size": 5350
+    },
+    "content/modernization/pr16_home_recovery_native_development/commands.txt": {
+      "sha256": "f6ac217334a29229bf8a04cdf3c467e6c11bdf8390e0d3531247ae8a7f21faa2",
+      "size": 638
+    },
+    "content/modernization/pr16_home_recovery_native_development/continue-commands.txt": {
+      "sha256": "e098ea1a9e702d6f1b599baf2238a5b5c12cf363bb4dbbebfbd41a78e859e501",
+      "size": 265
+    },
+    "content/modernization/pr16_home_recovery_native_development/continue.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_home_recovery_native_development/continue.stdout.txt": {
+      "sha256": "c345f55288d25e0cc9b9de88518b5b46456f7a0ac3b2084e6cb7299231c887e7",
+      "size": 5807
+    },
+    "content/modernization/pr16_home_recovery_native_development/progress.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_home_recovery_native_development/progress.stdout.txt": {
+      "sha256": "b7523063e47578749324ed34764a398e91121ee6229ed644caf61641c35cd770",
+      "size": 14638
+    },
+    "content/modernization/pr16_home_recovery_native_development/result.json": {
+      "sha256": "8be43540deca166f373a95fe99642395b1ce5b0a4c5102eff2824404864e9ab3",
+      "size": 2605
+    },
+    "content/modernization/pr16_home_recovery_native_development/save-byte-proof.json": {
+      "sha256": "7a2028ac75fe033ddb986e2750dbf48bc15abc5c67764c68fcf292d751c33164",
+      "size": 788
+    },
+    "content/modernization/pr16_home_recovery_native_development/unit.stderr.txt": {
+      "sha256": "e356c06851c38583ed3ddcaa4f38f5a6c92d6f462853da76269a48461844c287",
+      "size": 9945
+    },
+    "content/modernization/pr16_home_recovery_native_development/unit.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_home_recovery_native_development/verification.json": {
+      "sha256": "f2df47f74ce7e7672922e87e097bd7b492516a8187631d042073a92f31f9c8fe",
+      "size": 2903
+    },
+    "content/modernization/pr16_home_recovery_native_development/visual-review.json": {
+      "sha256": "fded9e1bd1217447b79c34a6f615910e614053353aab9c1d8fd4e16f052e80f5",
+      "size": 1794
     },
     "content/modernization/pr16_home_recovery_source_evidence/36364944598/10946201851.json": {
       "sha256": "3cd5ed4ae5c3e534d0834700e829ae037506875f58d90f41e8e06c6ac146ed20",
@@ -10910,8 +10963,8 @@
       "size": 1522
     },
     "docs/PR16_HOME_RECOVERY_JA.md": {
-      "sha256": "63d71223c20e501a86608b2bc6bcb16472cb5da72f2abf3a16710880f15c3eca",
-      "size": 1293
+      "sha256": "1ce43859f82df016c4cd7b880df1421a54e77036923073c26e1a50b2f22e179a",
+      "size": 1923
     },
     "docs/PR16_LEARNSET_BASELINE_RESET_JA.md": {
       "sha256": "4924be1b5cfa324fe72cff599758ebb467eae8d25911a085c2d444f3b1f3ab6a",
@@ -15285,6 +15338,14 @@
       "sha256": "067cbe0f8b40f8ffa8d27ce777e2c070c436bbc8543e7154073cef71421e098e",
       "size": 5858
     },
+    "scripts/pr16_home_recovery_native.py": {
+      "sha256": "b96a686b2919c6b0068b2fb0e0adf934f25fdb87a1dc8b30b61f11755b72d7f0",
+      "size": 10494
+    },
+    "scripts/pr16_home_recovery_native_actions.py": {
+      "sha256": "ce36b8937c2e9438a9ba780f0a6b14f5017685e792b0667a8818d2a001d2e399",
+      "size": 19643
+    },
     "scripts/pr16_learnset_baseline.py": {
       "sha256": "94af9a52ce1785380c964325ef9eebe7ed956e88b628632eb18f3ee518378212",
       "size": 1102
@@ -16972,6 +17033,10 @@
     "tests/test_pr16_home_recovery.py": {
       "sha256": "207268a654ada5e35d626f85a08346bfd5d18c2a0b3f1cabfec98e41cfe04492",
       "size": 8884
+    },
+    "tests/test_pr16_home_recovery_native.py": {
+      "sha256": "aff17b8053fa56515b71e6d602c0f55d776f5067ec09d0d54b303b1b15d6dde9",
+      "size": 7937
     },
     "tests/test_pr16_learnset_baseline_record.py": {
       "sha256": "e75566696133c0fd8a65a045dfbe5e644f30d60dc59516b297608ac55b870d7c",

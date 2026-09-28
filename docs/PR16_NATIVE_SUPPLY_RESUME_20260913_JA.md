@@ -6,11 +6,11 @@
 
 ## いまの停止点と次の1手
 
-PASS_HOME_RECOVERY_SOURCE_NATIVE_PENDING
+HOME_RECOVERY_NATIVE_ORACLE_READY
 
-**次: 母親previous_script0x0817BCBBを固定Vega原本で確認。未解禁時と渡航辞退時を元会話/回復へ15bytesで委譲し、canonical全179bytes一致と52専用検査を確認。次はtraining.srmから新候補で実会話・回復・Save・独立Continueだけを測定する。研究施設自然到達/実渡航nativeは未受入。旧194/367/301/114入力と旧RP/UI/BP/P08は再生しない。**
+**次: 母親回復の新oracle73検査と81/cold34入力の開発原本を固定。source52検査は再利用。次は通常compile済みbuild artifact10946449847を照合し、pr16-home-recovery-native.ymlで新区間2processのみ正式測定。旧194/367/301/114入力を再生しない。**
 
-source build artifactと終端を確認。正式native runが存在したら回収のみ。training.srmの作業コピーから新しい回復区間のみ。旧候補/Save/受入を改変しない。
+新native runが存在したらartifact回収のみ。存在しない場合だけ通常compile runnerで新区間を測定。成功Save原本は不変。merge/release/baseline変更禁止。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
@@ -27,7 +27,8 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 
 - `docs/PR16_HOME_RECOVERY_JA.md`
 - `content/modernization/pr16_home_recovery_checkpoint.json`
-- `scripts/pr16_home_recovery.py`
+- `scripts/pr16_home_recovery_native_actions.py`
+- `content/modernization/pr16_home_recovery_native_development/verification.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 

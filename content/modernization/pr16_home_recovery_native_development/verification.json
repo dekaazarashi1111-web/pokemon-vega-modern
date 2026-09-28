@@ -1,0 +1,69 @@
+{
+  "development_processes": 2,
+  "evidence_bindings": {
+    "content/modernization/pr16_home_recovery_native_development/commands.txt": {
+      "sha256": "f6ac217334a29229bf8a04cdf3c467e6c11bdf8390e0d3531247ae8a7f21faa2",
+      "size": 638
+    },
+    "content/modernization/pr16_home_recovery_native_development/continue-commands.txt": {
+      "sha256": "e098ea1a9e702d6f1b599baf2238a5b5c12cf363bb4dbbebfbd41a78e859e501",
+      "size": 265
+    },
+    "content/modernization/pr16_home_recovery_native_development/continue.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_home_recovery_native_development/continue.stdout.txt": {
+      "sha256": "c345f55288d25e0cc9b9de88518b5b46456f7a0ac3b2084e6cb7299231c887e7",
+      "size": 5807
+    },
+    "content/modernization/pr16_home_recovery_native_development/progress.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_home_recovery_native_development/progress.stdout.txt": {
+      "sha256": "b7523063e47578749324ed34764a398e91121ee6229ed644caf61641c35cd770",
+      "size": 14638
+    },
+    "content/modernization/pr16_home_recovery_native_development/result.json": {
+      "sha256": "8be43540deca166f373a95fe99642395b1ce5b0a4c5102eff2824404864e9ab3",
+      "size": 2605
+    },
+    "content/modernization/pr16_home_recovery_native_development/save-byte-proof.json": {
+      "sha256": "7a2028ac75fe033ddb986e2750dbf48bc15abc5c67764c68fcf292d751c33164",
+      "size": 788
+    },
+    "content/modernization/pr16_home_recovery_native_development/unit.stderr.txt": {
+      "sha256": "e356c06851c38583ed3ddcaa4f38f5a6c92d6f462853da76269a48461844c287",
+      "size": 9945
+    },
+    "content/modernization/pr16_home_recovery_native_development/unit.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_home_recovery_native_development/visual-review.json": {
+      "sha256": "fded9e1bd1217447b79c34a6f615910e614053353aab9c1d8fd4e16f052e80f5",
+      "size": 1794
+    }
+  },
+  "formal_processes": 0,
+  "initial_unit_result": {
+    "errors": 2,
+    "failures": 1,
+    "reason_ja": "新oracleの不完全schema例外正規化と入力原本結合の不足を修正。初回生logはGit管理外。修正後73全成功。",
+    "tests": 73
+  },
+  "original_story_replays": 0,
+  "schema_version": 1,
+  "source_bindings": {
+    "scripts/pr16_home_recovery_native.py": {
+      "sha256": "b96a686b2919c6b0068b2fb0e0adf934f25fdb87a1dc8b30b61f11755b72d7f0",
+      "size": 10494
+    },
+    "tests/test_pr16_home_recovery_native.py": {
+      "sha256": "aff17b8053fa56515b71e6d602c0f55d776f5067ec09d0d54b303b1b15d6dde9",
+      "size": 7937
+    }
+  },
+  "unit_tests": 73
+}
