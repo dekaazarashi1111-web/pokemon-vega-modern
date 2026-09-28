@@ -10930,3 +10930,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: source-validation run36358732448/job108731524613 failure、artifact10945245745全byte一致、25検査23成功2ERROR。原因source hash不一致、後続skipped/upload failure保持。初回終端36358919647はprivate guardでcommit前停止。原本artifact限定保管へ修正、guard不変。回収処理native/unit/compile0。
 - Commit: source=6326bdcf4b232d1bd332f960dc93efc1ccbebb2b; run=36359167038; 同branchへ非force push。
 - Network: 固定GitHub HEAD/Actions/artifact/APIのみ。一般CI action_required・失敗は別記録。全体private guard成功、merge、release、active baseline変更を主張しない。
+
+## 2026-09-28T00:26:21.129015+00:00
+- Timestamp: 2026-09-28T00:26:21.129015+00:00
+- Task: USER-20260928-RESEARCH-STORY-TRAINING / 通常Lv7習得・回復不成立・保存継続
+- Version: research-story-training-source-v1
+- Status: DONE（実装・新試験原本保存、正式終端は未確認）
+- Summary: 開発原本の194入力/56画面/通常Lv7/習得Saveは完走済み。86新検査は初回全成功。次はこの新区間だけのActions独立測定とtraining.srm artifact保持。正式runが既に存在したら原本回収のみ。野生ヒメグマ勝利1回・経験値41・Lv6→7・すいとる自然習得・Save counter4→5と独立Continueを限定受入。経験値245、HP13/23・麻痺・技PP31/30/25が保持。自宅local1はT17渡航の船運休で回復しない事実を実画面/全party/ROM pointer鎖に結合。次は原作Vega/stage16の母親previous_scriptと渡航ownerを照合し、正常回復との共存を最小差分で修正・検証してからtraining.srmで通常進行。研究施設到達は未完。旧194/367/301/114入力・starter/RP/UI/BP/P08は再生しない。
+- Files changed: 専用oracle/86検査/入力原本/checkpoint/guide、固定引継ぎMD/JSON、両ログ。ROM/save/runner/画面は非tracked artifactのみ。
+- Verify: 開発native2、進行194入力19042frames/cold34入力2572frames、56実画面（空白0）、4UI全byte一致。86新検査初回全PASS。source/evidence binding確認を再利用し、このinstallでnative/unit/compile再実行0。
+- Commit: source=5026e43a3ab026f1e646fec639a02a7f120100cf; run=36362204668; 同branchへ非force push。
+- Network: 固定GitHub HEAD/Actions/artifact/APIのみ。一般CI action_required・失敗は別記録。全体private guard成功、merge、release、active baseline変更を主張しない。

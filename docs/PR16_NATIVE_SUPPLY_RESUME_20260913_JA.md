@@ -6,11 +6,11 @@
 
 ## いまの停止点と次の1手
 
-PASS_NATURAL_STORY_GROWTH_SAVE_SCOPED
+STORY_TRAINING_DEVELOPED_ACTIONS_NEXT
 
-**次: 野生勝利1回/逃走1回・キズぐすり1個消費・経験値37+33・Lv5→6・HP21/21・通常Save counter3→4と独立Continueの保持を限定受入。新区間のトレーナー敗北2回、勝利0。次はgrowth.srmのmap3/0 (4,27)、経験値204、道具0から通常ストーリーを進める。研究活動施設への自然到達は未完。旧367入力/301入力/114入力/旧starter/RP/UI/BP/P08を再生しない。**
+**次: 開発原本の194入力/56画面/通常Lv7/習得Saveは完走済み。86新検査は初回全成功。次はこの新区間だけのActions独立測定とtraining.srm artifact保持。正式runが既に存在したら原本回収のみ。野生ヒメグマ勝利1回・経験値41・Lv6→7・すいとる自然習得・Save counter4→5と独立Continueを限定受入。経験値245、HP13/23・麻痺・技PP31/30/25が保持。自宅local1はT17渡航の船運休で回復しない事実を実画面/全party/ROM pointer鎖に結合。次は原作Vega/stage16の母親previous_scriptと渡航ownerを照合し、正常回復との共存を最小差分で修正・検証してからtraining.srmで通常進行。研究施設到達は未完。旧194/367/301/114入力・starter/RP/UI/BP/P08は再生しない。**
 
-run36358726444の全11必須stepとartifact10944976226は確認済み。growth.srmのsize/SHAと固定candidate/runtime/runnerを確認してContinue。map3/0(4,27)/Lv6/EXP204/counter4/道具0から先だけを進め、成功367入力と旧受入を再実行しない。trainer勝利/研究到達/配布へ昇格しない。merge/release/baseline変更禁止。
+この194入力は開発完走済み。正式測定runがあれば回収だけにして再生しない。正式測定前に受入済みgrowth保存を復元し、新区間のみ測定する。旧受入を再実行せず、trainer勝利/研究到達へ昇格しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
@@ -25,10 +25,11 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_RESEARCH_STORY_GROWTH_JA.md`
+- `docs/PR16_RESEARCH_STORY_TRAINING_JA.md`
+- `content/modernization/pr16_research_story_training_development/verification.json`
+- `scripts/pr16_research_story_training_actions.py`
+- `scripts/pr16_research_story_training.py`
 - `content/modernization/pr16_research_story_growth_checkpoint.json`
-- `content/modernization/pr16_research_story_growth_terminal.json`
-- `scripts/pr16_research_story_growth.py`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -62,6 +63,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- 自然習得開発原本 content/modernization/pr16_research_story_training_development/verification.json を保持。194入力/56画面/native2/新86検査。正式runができた後は新たな入力をtraining.srmから行い、成功した区間を再生しない。
 - 成長保存の完走367入力は content/modernization/pr16_research_story_growth_checkpoint.json。次はgrowth.srmのmap3/0(4,27)/Lv6/経験値204/道具0からだけ。旧受入は再生しない。
 - 成長開発原本 content/modernization/pr16_research_story_growth_development/verification.json を保持。367入力/92画面/native2/新118検査。正式runができた後は新たな入力をgrowth.srmから行い、成功した区間を再生しない。
 - 一般CIの旧容量原本source不一致は content/modernization/pr16_research_story_route_ci_limit.json。開始HEADから全依存不変で今回story変更に起因しない。旧受入を緩和/書換え/再実行せず、後継potion.srm以降を進める。

@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "PASS_NATURAL_STORY_GROWTH_SAVE_SCOPED",
+    "current_stop": "STORY_TRAINING_DEVELOPED_ACTIONS_NEXT",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "野生勝利1回/逃走1回・キズぐすり1個消費・経験値37+33・Lv5→6・HP21/21・通常Save counter3→4と独立Continueの保持を限定受入。新区間のトレーナー敗北2回、勝利0。次はgrowth.srmのmap3/0 (4,27)、経験値204、道具0から通常ストーリーを進める。研究活動施設への自然到達は未完。旧367入力/301入力/114入力/旧starter/RP/UI/BP/P08を再生しない。",
+    "next_step": "開発原本の194入力/56画面/通常Lv7/習得Saveは完走済み。86新検査は初回全成功。次はこの新区間だけのActions独立測定とtraining.srm artifact保持。正式runが既に存在したら原本回収のみ。野生ヒメグマ勝利1回・経験値41・Lv6→7・すいとる自然習得・Save counter4→5と独立Continueを限定受入。経験値245、HP13/23・麻痺・技PP31/30/25が保持。自宅local1はT17渡航の船運休で回復しない事実を実画面/全party/ROM pointer鎖に結合。次は原作Vega/stage16の母親previous_scriptと渡航ownerを照合し、正常回復との共存を最小差分で修正・検証してからtraining.srmで通常進行。研究施設到達は未完。旧194/367/301/114入力・starter/RP/UI/BP/P08は再生しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -793,6 +793,7 @@
   },
   "current_resume_doc": "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
   "do_not_repeat": [
+    "自然習得開発原本 content/modernization/pr16_research_story_training_development/verification.json を保持。194入力/56画面/native2/新86検査。正式runができた後は新たな入力をtraining.srmから行い、成功した区間を再生しない。",
     "成長保存の完走367入力は content/modernization/pr16_research_story_growth_checkpoint.json。次はgrowth.srmのmap3/0(4,27)/Lv6/経験値204/道具0からだけ。旧受入は再生しない。",
     "成長開発原本 content/modernization/pr16_research_story_growth_development/verification.json を保持。367入力/92画面/native2/新118検査。正式runができた後は新たな入力をgrowth.srmから行い、成功した区間を再生しない。",
     "一般CIの旧容量原本source不一致は content/modernization/pr16_research_story_route_ci_limit.json。開始HEADから全依存不変で今回story変更に起因しない。旧受入を緩和/書換え/再実行せず、後継potion.srm以降を進める。",
@@ -4203,16 +4204,17 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "野生勝利1回/逃走1回・キズぐすり1個消費・経験値37+33・Lv5→6・HP21/21・通常Save counter3→4と独立Continueの保持を限定受入。新区間のトレーナー敗北2回、勝利0。次はgrowth.srmのmap3/0 (4,27)、経験値204、道具0から通常ストーリーを進める。研究活動施設への自然到達は未完。旧367入力/301入力/114入力/旧starter/RP/UI/BP/P08を再生しない。",
+    "goal_ja": "開発原本の194入力/56画面/通常Lv7/習得Saveは完走済み。86新検査は初回全成功。次はこの新区間だけのActions独立測定とtraining.srm artifact保持。正式runが既に存在したら原本回収のみ。野生ヒメグマ勝利1回・経験値41・Lv6→7・すいとる自然習得・Save counter4→5と独立Continueを限定受入。経験値245、HP13/23・麻痺・技PP31/30/25が保持。自宅local1はT17渡航の船運休で回復しない事実を実画面/全party/ROM pointer鎖に結合。次は原作Vega/stage16の母親previous_scriptと渡航ownerを照合し、正常回復との共存を最小差分で修正・検証してからtraining.srmで通常進行。研究施設到達は未完。旧194/367/301/114入力・starter/RP/UI/BP/P08は再生しない。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
-    "id": "NATURAL_STORY_FROM_GROWTH_SAVE_NEXT",
+    "id": "STORY_TRAINING_INDEPENDENT_MEASUREMENT_NEXT",
     "read_paths": [
-      "docs/PR16_RESEARCH_STORY_GROWTH_JA.md",
-      "content/modernization/pr16_research_story_growth_checkpoint.json",
-      "content/modernization/pr16_research_story_growth_terminal.json",
-      "scripts/pr16_research_story_growth.py"
+      "docs/PR16_RESEARCH_STORY_TRAINING_JA.md",
+      "content/modernization/pr16_research_story_training_development/verification.json",
+      "scripts/pr16_research_story_training_actions.py",
+      "scripts/pr16_research_story_training.py",
+      "content/modernization/pr16_research_story_growth_checkpoint.json"
     ],
-    "stop_rule_ja": "run36358726444の全11必須stepとartifact10944976226は確認済み。growth.srmのsize/SHAと固定candidate/runtime/runnerを確認してContinue。map3/0(4,27)/Lv6/EXP204/counter4/道具0から先だけを進め、成功367入力と旧受入を再実行しない。trainer勝利/研究到達/配布へ昇格しない。merge/release/baseline変更禁止。"
+    "stop_rule_ja": "この194入力は開発完走済み。正式測定runがあれば回収だけにして再生しない。正式測定前に受入済みgrowth保存を復元し、新区間のみ測定する。旧受入を再実行せず、trainer勝利/研究到達へ昇格しない。"
   },
   "observed_date_jst": "2026-09-27",
   "observed_head": "52554a9b5eafe8743d87df57a4ba8565237fffae",
@@ -6446,6 +6448,14 @@
     "status": "DEVELOPED_NEW_ROAD_POTION_SAVE_NOT_ACTIONS_ACCEPTANCE",
     "superseded_by": "content/modernization/pr16_research_story_route_checkpoint.json"
   },
+  "research_story_training_development": {
+    "actions_completion_confirmed": false,
+    "local_native_processes": 2,
+    "natural_research_arrival_accepted": false,
+    "new_unit_tests": 86,
+    "path": "content/modernization/pr16_research_story_training_development/verification.json",
+    "status": "PASS_LOCAL_NATIVE_LV7_SAVE_NOT_ACTIONS_TERMINAL"
+  },
   "research_ui_boundary": {
     "actions_completion_confirmed": true,
     "new_unit_tests": 49,
@@ -7147,6 +7157,22 @@
       "sha256": "5a44a81240533777c21502adf7b076e140f17706bb8163a3107c338d5e20eaa4",
       "size": 895
     },
+    ".github/pr16-story-training-source-1.txt": {
+      "sha256": "12daf4b0bc0616af3e22fb49c69876ce9f3d0557d3a61e50c7775caa872a9e91",
+      "size": 8100
+    },
+    ".github/pr16-story-training-source-2.txt": {
+      "sha256": "9537ef7ba5dffff4c32497cc2e558f7ab6e493404c2cc00861e542e8bf302c6e",
+      "size": 8100
+    },
+    ".github/pr16-story-training-source-3.txt": {
+      "sha256": "275f209dfbab0b6ae60e72fe7f8a1c6c6665b23ff5644efaf27f1e5fcf7908eb",
+      "size": 8100
+    },
+    ".github/pr16-story-training-source-4.txt": {
+      "sha256": "9d1f9027b1f5344ea3493c040ecfeebf46f00224640b85f2e3b43e7f16754ce0",
+      "size": 8084
+    },
     ".github/pr16-vega-adjudication-record.json": {
       "sha256": "ecf15b6bf3085c83fd1f5e76f60dbc9c6aa1a6f93ec9b87cb78d45dc3068398b",
       "size": 1592
@@ -7790,6 +7816,14 @@
     ".github/workflows/pr16-research-story-town-context.yml": {
       "sha256": "1736d375acfe15b3de54f454bac00b64d531af4d3159fc89df82f15e9ad492f6",
       "size": 3845
+    },
+    ".github/workflows/pr16-research-story-training-context.yml": {
+      "sha256": "bda610dc075473d49511aab4cd227d32473a0de68a59b72e38073f187304e11c",
+      "size": 4074
+    },
+    ".github/workflows/pr16-research-story-training-install.yml": {
+      "sha256": "0a53f616f8dc95554e3fe39cbbea08ba157b43eb1ef531784c29aba110c8f250",
+      "size": 4733
     },
     ".github/workflows/pr16-research-story.yml": {
       "sha256": "6e67192b88d2be0585c34842c5d1698e5fdb10eab10771365e1af9cabc0330c5",
@@ -9815,6 +9849,58 @@
       "sha256": "8be100d127b13be49714710c8ed91cea9b677a2f3a860417d08263f5e458c58e",
       "size": 4016
     },
+    "content/modernization/pr16_research_story_training_development/commands.txt": {
+      "sha256": "c6d5f182fc901ff618028ef052ebb42e23dec5796a33f075c8130332229f5740",
+      "size": 2114
+    },
+    "content/modernization/pr16_research_story_training_development/continue-commands.txt": {
+      "sha256": "e098ea1a9e702d6f1b599baf2238a5b5c12cf363bb4dbbebfbd41a78e859e501",
+      "size": 265
+    },
+    "content/modernization/pr16_research_story_training_development/continue.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_research_story_training_development/continue.stdout.txt": {
+      "sha256": "6421c08bfe84c33c809336c7dfe9b1e7543e95074d29c811736ed8e7f1723eaf",
+      "size": 5814
+    },
+    "content/modernization/pr16_research_story_training_development/diagnostic.json": {
+      "sha256": "ad3adf2cc7210172720dfbc64630af6792458ae6aa5e51beb93175802bc7695d",
+      "size": 1569
+    },
+    "content/modernization/pr16_research_story_training_development/progress.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_research_story_training_development/progress.stdout.txt": {
+      "sha256": "14bcba355d485e52e83c923327f8e0bb292701d183f90b40cdff63ae5e150670",
+      "size": 36794
+    },
+    "content/modernization/pr16_research_story_training_development/result.json": {
+      "sha256": "5d2cdbbf79d694eb92db47bb44a95a916cf6275d5782bd0625772166bb910081",
+      "size": 2363
+    },
+    "content/modernization/pr16_research_story_training_development/unit.stderr.txt": {
+      "sha256": "1a7d7afbf3d62d8df717ccc791042166a0829ec5676bc1dc15f154dce3f8043e",
+      "size": 9109
+    },
+    "content/modernization/pr16_research_story_training_development/unit.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_research_story_training_development/verification.json": {
+      "sha256": "b1332fd3131d8bffd56e16c1a609b029334d4e72a1f9a542fb57681b66d621ff",
+      "size": 8170
+    },
+    "content/modernization/pr16_research_story_training_development/visual-review.json": {
+      "sha256": "5ae49cbd78226f4482f60fab9b0d197581e31f9a87273b25e1cab05d7de8ae2a",
+      "size": 2529
+    },
+    "content/modernization/pr16_research_story_training_session.json": {
+      "sha256": "5246d024d6e303a6b602c0db2909832429cc64cd986fb2d267764230a3cc9cc4",
+      "size": 2014
+    },
     "content/modernization/pr16_research_ui_boundary_checkpoint.json": {
       "sha256": "bdf148aa1b487845b850c2bd5f3400da04e85558a0e1f65cf3a774ff409bb46e",
       "size": 43401
@@ -10798,6 +10884,10 @@
     "docs/PR16_RESEARCH_STORY_ROUTE_JA.md": {
       "sha256": "dd4d19fda31e1d495d5255db44420accf16ec322a6cd45132f41ed8dae241f0f",
       "size": 6762
+    },
+    "docs/PR16_RESEARCH_STORY_TRAINING_JA.md": {
+      "sha256": "7b93017e3c2f508cf51c0cfe770dec40cf2fc0937ef850b637321653cdd9faa2",
+      "size": 3647
     },
     "docs/PR16_RESEARCH_UI_BOUNDARY_JA.md": {
       "sha256": "c6612deb907354729dbb4b7878ddb844cefb9573908c563288a299dce81e7939",
@@ -15479,6 +15569,14 @@
       "sha256": "15a592ced5f0632e3f3a7c8aa2e8676441d6a90a5bc144cd9528396b52d6404c",
       "size": 15936
     },
+    "scripts/pr16_research_story_training.py": {
+      "sha256": "21c7ecd4c07a632389343786543eb5b3ca824ff8ff4c8cc0673fb20f1a96d273",
+      "size": 12013
+    },
+    "scripts/pr16_research_story_training_actions.py": {
+      "sha256": "9b5c6bbb0fbe05b6a56cbc26240215e7709199d783cd55efcfa0ed7d967140a9",
+      "size": 25516
+    },
     "scripts/pr16_research_ui_boundary.py": {
       "sha256": "11d7d676da4263e94a92a65c958095bfa83b7d1c21556b008aa88aea35196e48",
       "size": 2832
@@ -16974,6 +17072,10 @@
     "tests/test_pr16_research_story_route.py": {
       "sha256": "f6f9e7f5126fe1e51e1048cc5971cd5b9ed02f513f1ff67787ed2ea67775cfc2",
       "size": 9672
+    },
+    "tests/test_pr16_research_story_training.py": {
+      "sha256": "6381a08312536f5036a6f04627b97d33f5a1495dc302ddb6ad4431d8de0fc220",
+      "size": 8741
     },
     "tests/test_pr16_research_ui_boundary.py": {
       "sha256": "a9971c507ac87c7c0413ad4640755d94e57a447922b6e6c500711341e0dc4835",
