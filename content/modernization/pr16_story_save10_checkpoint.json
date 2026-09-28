@@ -1,6 +1,6 @@
 {
   "accepted_case_reruns": 0,
-  "actions_completion_confirmed": false,
+  "actions_completion_confirmed": true,
   "active_baseline_changed": false,
   "arm_compiles": 0,
   "candidate": {
@@ -28,6 +28,7 @@
   },
   "commands": "quit\n",
   "completed_segment_replay_required": false,
+  "completion_head": "6cc6f7cc03f96456f3b0a2f2cf66ab048c9537fd",
   "continued": {
     "battle_flags": 0,
     "battle_outcome": 0,
@@ -139,6 +140,20 @@
   "record_failure_preserved": true,
   "record_new_native_processes": 0,
   "record_new_test_executions": 0,
+  "record_recovery_artifact": {
+    "digest": "sha256:db294b6a3e307b4edf87039c44a532e0e93e9b829fc70e861e22da15681c3e03",
+    "expires_at": "2026-12-27T12:52:17Z",
+    "id": 10971585695,
+    "name": "pr16-story-save10-record",
+    "size_in_bytes": 1238699,
+    "workflow_run": {
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_repository_id": 1358127462,
+      "head_sha": "2701a01bbf662db4978728c1f7136236d4a5f81b",
+      "id": 36424626327,
+      "repository_id": 1358127462
+    }
+  },
   "record_recovery_artifact_name": "pr16-story-save10-record",
   "record_recovery_run_id": 36424626327,
   "record_recovery_source_head": "2701a01bbf662db4978728c1f7136236d4a5f81b",
@@ -236,7 +251,8 @@
     }
   },
   "source_head": "02e451790c9b05d29861d29c3578ffca787061e6",
-  "status": "PASS_STORY_SAVE10_PENDING_RECORD_TERMINAL",
+  "status": "PASS_STORY_SAVE10_SCOPED",
+  "terminal_receipt": "content/modernization/pr16_story_save10_terminal.json",
   "trainer_victories": 0,
   "wild_victories": 0,
   "xy": [

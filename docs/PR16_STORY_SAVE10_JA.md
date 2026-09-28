@@ -11,3 +11,7 @@ Save10 SHA-256 `c2c08321b12ef4b5039884d9e4155eb32a614415bb68a1497758cdedfb9000c0
 初期研究室での図鑑評価は研究活動施設自然到達ではない。捕獲/トレーナー勝利/全story/release未受入。前回未保存の敗北WIPを成功へ改作せず保持。次は本Save10の作業コピーのみを使い、218/cold62や既受入区間を再生しない。一般CIの既存capacity原本failureは未解決。
 
 記録回復runのpush/upload終端は別のAPI照合で確定する。
+
+## 正式終端
+
+記録回復run 36424626327 の全9step成功。completion `6cc6f7cc03f96456f3b0a2f2cf66ab048c9537fd`、記録artifact 10971585695。元測定runのfailureは保持。ゲーム再開用原本はartifact10970079659のtraining.srm。終端回収native0/test0。
