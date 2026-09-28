@@ -1,6 +1,6 @@
 {
   "accepted_case_reruns": 0,
-  "actions_completion_confirmed": false,
+  "actions_completion_confirmed": true,
   "active_baseline_changed": false,
   "arm_compiles": 0,
   "candidate": {
@@ -9,6 +9,7 @@
   },
   "commands": "quit\n",
   "completed_segment_replay_required": false,
+  "completion_head": "d55125bb7ec6f407e56270df873d8b2dfddd6fad",
   "continued": {
     "battle_flags": 0,
     "battle_outcome": 0,
@@ -109,7 +110,21 @@
   "parent_checkpoint": "content/modernization/pr16_home_recovery_native_checkpoint.json",
   "party_count": 1,
   "release_ready": false,
-  "retained_artifact_id": null,
+  "retained_artifact": {
+    "digest": "sha256:11762d516aca1df0e607b1c2549c8b2be2d0c374522b762a6df325e2efc21f31",
+    "expires_at": "2026-12-27T02:35:43Z",
+    "id": 10948853813,
+    "name": "pr16-story-after-home-checkpoint",
+    "size_in_bytes": 18792389,
+    "workflow_run": {
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_repository_id": 1358127462,
+      "head_sha": "5b378dcae45d7f92307d27ea07ab7041ebce25f5",
+      "id": 36370422350,
+      "repository_id": 1358127462
+    }
+  },
+  "retained_artifact_id": 10948853813,
   "retained_artifact_name": "pr16-story-after-home-checkpoint",
   "rom_changes": 0,
   "rp": 0,
@@ -145,7 +160,8 @@
     }
   },
   "source_head": "5b378dcae45d7f92307d27ea07ab7041ebce25f5",
-  "status": "PASS_STORY_AFTER_HOME_LOSS_SAVE_PENDING_TERMINAL",
+  "status": "PASS_STORY_AFTER_HOME_LOSS_SAVE_SCOPED",
+  "terminal_receipt": "content/modernization/pr16_story_after_home_terminal.json",
   "trainer_losses": 1,
   "trainer_victories": 0,
   "wild_escapes": 1,

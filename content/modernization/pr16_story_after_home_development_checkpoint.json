@@ -1,6 +1,6 @@
 {
   "accepted_case_reruns": 0,
-  "actions_completion_confirmed": false,
+  "actions_completion_confirmed": true,
   "active_baseline_changed": false,
   "arm_compiles": 0,
   "candidate": {
@@ -41,7 +41,7 @@
     25
   ],
   "natural_research_arrival_accepted": false,
-  "notes_ja": "回復済みSaveから東側道路map3/19(53,10)へ通常入力で進行。マオリのパモを撃破してEXP25、コフキムシLv8で敗北し通常帰宅。トレーナー勝利とはしない。戦闘後の旧field=false/flags12/outcome2を改変せず、実Start→レポート→承諾→上書き→完了でSave6→7。coldではflags/outcome0。次は専用oracle/新否定テスト/Actions独立測定/固定引継ぎと両ログの同期。既存完了区間は再生しない。",
+  "notes_ja": "Save7のstory.srm作業コピーから通常育成/手持ち拡充を進める。Lv7/EXP270、次Lvまで44EXP、HP23/23、技PP35/30/25、RP0、map4/0(8,5)。マオリ戦は敗北であり勝利0。同じ低戦力戦闘や完走270/cold34入力を無策に再生しない。北の伐採木で止まる経路を再探索せず、育成後は東側道路map3/19から自然ストーリー進行。研究施設自然到達/実渡航/全story/releaseは未完。",
   "opponents_defeated": 1,
   "output_save": {
     "sha256": "226865775c9a9eae143eaeac65354170e9d8868469cbd528af852ce05412c8a3",
@@ -59,13 +59,14 @@
     }
   },
   "release_ready": false,
+  "retained_artifact_id": 10948853813,
   "rom_changes": 0,
   "rp": 0,
   "runtime_artifact": 10898620034,
   "save_counter": 7,
   "schema_version": 1,
   "source_head": "a2b68477b144a529a48b4ad646ca26724d20aa1a",
-  "status": "FORMAL_MEASUREMENT_COMPLETE_TERMINAL_PENDING",
+  "status": "FORMAL_TERMINAL_CONFIRMED",
   "superseded_by": "content/modernization/pr16_story_after_home_checkpoint.json",
   "task": "USER-20260928-STORY-AFTER-HOME",
   "trainer_losses": 1,

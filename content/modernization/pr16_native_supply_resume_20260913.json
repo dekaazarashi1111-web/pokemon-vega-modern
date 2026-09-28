@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "PASS_STORY_AFTER_HOME_LOSS_SAVE_PENDING_TERMINAL",
+    "current_stop": "PASS_STORY_AFTER_HOME_LOSS_SAVE_SCOPED",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -4319,13 +4319,13 @@
         "status": "completed"
       },
       {
-        "conclusion": null,
+        "conclusion": "failure",
         "head_branch": "codex/modernization-followup-20260908",
         "head_sha": "5b378dcae45d7f92307d27ea07ab7041ebce25f5",
         "id": 36370422175,
         "path": ".github/workflows/ci.yml",
         "run_attempt": 1,
-        "status": "in_progress"
+        "status": "completed"
       },
       {
         "conclusion": "success",
@@ -4346,13 +4346,13 @@
         "status": "completed"
       },
       {
-        "conclusion": null,
+        "conclusion": "success",
         "head_branch": "codex/modernization-followup-20260908",
         "head_sha": "5b378dcae45d7f92307d27ea07ab7041ebce25f5",
         "id": 36370422350,
         "path": ".github/workflows/pr16-story-after-home.yml",
         "run_attempt": 1,
-        "status": "in_progress"
+        "status": "completed"
       },
       {
         "conclusion": "success",
@@ -4364,13 +4364,13 @@
         "status": "completed"
       },
       {
-        "conclusion": null,
+        "conclusion": "failure",
         "head_branch": "codex/modernization-followup-20260908",
         "head_sha": "5b378dcae45d7f92307d27ea07ab7041ebce25f5",
         "id": 36370428446,
         "path": ".github/workflows/ci.yml",
         "run_attempt": 1,
-        "status": "in_progress"
+        "status": "completed"
       }
     ],
     "scope_head": "5b378dcae45d7f92307d27ea07ab7041ebce25f5"
@@ -5849,23 +5849,7 @@
     "status": "NATIVE_PARTY_RETENTION_ACCEPTED_BP_PENDING",
     "tested_head": "10e535a046441dd3b797918106259b5c57b69716"
   },
-  "pending_runs": [
-    {
-      "run_id": 36370422175,
-      "status": "in_progress",
-      "tested_head": "5b378dcae45d7f92307d27ea07ab7041ebce25f5"
-    },
-    {
-      "run_id": 36370422350,
-      "status": "in_progress",
-      "tested_head": "5b378dcae45d7f92307d27ea07ab7041ebce25f5"
-    },
-    {
-      "run_id": 36370428446,
-      "status": "in_progress",
-      "tested_head": "5b378dcae45d7f92307d27ea07ab7041ebce25f5"
-    }
-  ],
+  "pending_runs": [],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
   "pr_draft": true,
   "pr_merged": false,
@@ -8628,6 +8612,10 @@
       "sha256": "4159dd4353df7f5091b2115634cca701f257b45f57d58fd2174c4edd56f5fefa",
       "size": 2610
     },
+    ".github/workflows/pr16-story-after-home-terminal.yml": {
+      "sha256": "f66e70e78343d8bd53fab5e54c7d6cae9b4020a69e5d5710d13deb7b6c4f9893",
+      "size": 2188
+    },
     ".github/workflows/pr16-story-after-home.yml": {
       "sha256": "2b53696b4f9692580e37aa88332e803e3f0fd20a3deb276a4c4e710d30cdef9a",
       "size": 2473
@@ -11013,8 +11001,8 @@
       "size": 69159
     },
     "content/modernization/pr16_story_after_home_checkpoint.json": {
-      "sha256": "3f04a5147beac64c500857e7de9b45c9ee13cab7cf2853de7c91f9904550e454",
-      "size": 4310
+      "sha256": "71f8021717ab95d29f46697a421eeb81322902a7ef205b52d3f778f7f0d56ca4",
+      "size": 4968
     },
     "content/modernization/pr16_story_after_home_development/commands.txt": {
       "sha256": "4fa2db3ee24d2f93596ac5a8884f2ce5721fee211af82eebe515538a8ac26947",
@@ -11025,8 +11013,8 @@
       "size": 283
     },
     "content/modernization/pr16_story_after_home_development_checkpoint.json": {
-      "sha256": "eba91da45bda2f0c96842f422556d07498e4f4a1785a0887e86922f188b888e2",
-      "size": 2375
+      "sha256": "183df9ab5b02a9a527c2ace1b78ef5aade9c734715ce6f34432e1a76b59a68b8",
+      "size": 2361
     },
     "content/modernization/pr16_story_after_home_evidence/36370422350/artifact-10898620034.json": {
       "sha256": "d32ecff89318efe1b9889de01413f2c1ada00b4e1e8b0f23109fea3e159d112e",
@@ -11087,6 +11075,10 @@
     "content/modernization/pr16_story_after_home_evidence/36370422350/unit.stdout.txt": {
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
+    },
+    "content/modernization/pr16_story_after_home_terminal.json": {
+      "sha256": "e5e74af2e4e0199511a42379de32e40a80c166fd55214d886a82943e0c158ea5",
+      "size": 4613
     },
     "content/modernization/pr16_vega_adjudication/adopted_vega_original_baseline.jsonl": {
       "sha256": "9daaea8c97a744c0522afc03c157392b3179b5d0a359df97de2f3b1c0da6524f",
@@ -11409,8 +11401,8 @@
       "size": 4328
     },
     "docs/PR16_STORY_AFTER_HOME_JA.md": {
-      "sha256": "225fed0ac6899aa3a57abb0db289c1e730707f4621f69aca4a5b7f0178256ebb",
-      "size": 1977
+      "sha256": "5f97d8ce4dd5b5015d3cdc01effb6331864a88875ba86388a7265ac49b2d377c",
+      "size": 2227
     },
     "docs/PR16_VEGA_ORIGINAL_AUDIT_JA.md": {
       "sha256": "b9ee1dd32da36d9fe3d04aa1663afa0f2e6cc37aef491437dd2443a5870fb2d4",
@@ -18804,7 +18796,7 @@
   "state_authority": "CURRENT_RESUME_STATE; acceptance and completion remain owned by referenced ledgers",
   "status": "PASS_NATIVE_BP_SPENDING_SAVE_CONTINUE",
   "story_after_home": {
-    "actions_completion_confirmed": false,
+    "actions_completion_confirmed": true,
     "candidate": {
       "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5",
       "size": 33554432
@@ -18815,10 +18807,10 @@
       "size": 131088
     },
     "path": "content/modernization/pr16_story_after_home_checkpoint.json",
-    "retained_artifact_id": null,
+    "retained_artifact_id": 10948853813,
     "run_id": 36370422350,
     "source_head": "5b378dcae45d7f92307d27ea07ab7041ebce25f5",
-    "status": "PASS_STORY_AFTER_HOME_LOSS_SAVE_PENDING_TERMINAL",
+    "status": "PASS_STORY_AFTER_HOME_LOSS_SAVE_SCOPED",
     "trainer_victories": 0
   },
   "win_exchange_completed": {

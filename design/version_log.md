@@ -8303,3 +8303,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 新区間native2・270入力28012frames、cold34入力2852frames、110画面、4UI全byte、Save全131088bytes、party597bytes保持、53新検査PASS。開発native2・検査改良過程53件を2回(106)は別会計。 旧受入再実行0、compile/ROM変更0。task graph/resume/scoped index/diff確認後にcommit。
 - Commit: source=5b378dcae45d7f92307d27ea07ab7041ebce25f5; run=36370422350; 同branch非force push。
 - Network: GitHub HEAD/Actions/artifactのみ。merge/release/active baseline変更0。全体CI成功とはしない。
+
+## 2026-09-28T02:37:56.175608+00:00
+- Timestamp: 2026-09-28T02:37:56.175608+00:00
+- Task: USER-20260928-STORY-AFTER-HOME / 回復後の通常進行・実キーSave7
+- Version: story-after-home-v1-terminal
+- Status: DONE（新区間限定、トレーナー勝利/研究到達未完）
+- Summary: Save7のstory.srm作業コピーから通常育成/手持ち拡充を進める。Lv7/EXP270、次Lvまで44EXP、HP23/23、技PP35/30/25、RP0、map4/0(8,5)。マオリ戦は敗北であり勝利0。同じ低戦力戦闘や完走270/cold34入力を無策に再生しない。北の伐採木で止まる経路を再探索せず、育成後は東側道路map3/19から自然ストーリー進行。研究施設自然到達/実渡航/全story/releaseは未完。
+- Files changed: 専用oracle/53検査/新入力原本/証拠/checkpoint/guide、固定引継ぎMD/JSON、両ログ。ROM/save/runner/画面は非tracked artifactだけ。
+- Verify: 終端API/全必須step/外側ZIP/全Save/原本/commit整合。native/test再実行0。 旧受入再実行0、compile/ROM変更0。task graph/resume/scoped index/diff確認後にcommit。
+- Commit: source=22a88165c20f9ce29bfc9c1e4a2db899c7122de0; run=36370543564; 同branch非force push。
+- Network: GitHub HEAD/Actions/artifactのみ。merge/release/active baseline変更0。全体CI成功とはしない。

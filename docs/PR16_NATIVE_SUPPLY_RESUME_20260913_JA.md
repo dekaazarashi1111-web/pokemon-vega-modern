@@ -6,7 +6,7 @@
 
 ## いまの停止点と次の1手
 
-PASS_STORY_AFTER_HOME_LOSS_SAVE_PENDING_TERMINAL
+PASS_STORY_AFTER_HOME_LOSS_SAVE_SCOPED
 
 **次: Save7のstory.srm作業コピーから通常育成/手持ち拡充を進める。Lv7/EXP270、次Lvまで44EXP、HP23/23、技PP35/30/25、RP0、map4/0(8,5)。マオリ戦は敗北であり勝利0。同じ低戦力戦闘や完走270/cold34入力を無策に再生しない。北の伐採木で止まる経路を再探索せず、育成後は東側道路map3/19から自然ストーリー進行。研究施設自然到達/実渡航/全story/releaseは未完。**
 
