@@ -1,5 +1,6 @@
 {
   "accepted_case_reruns": 0,
+  "actions_completion_confirmed": true,
   "active_baseline_changed": false,
   "base_head": "1406981c76829f7e66ab863caa0b395cd01ad4a2",
   "candidate": {
@@ -63,7 +64,7 @@
     ]
   ],
   "natural_research_arrival_accepted": false,
-  "notes_ja": "Save11から歩行と母親との通常会話のみ。2体のHP/PP全回復、通常Save11→12の書込途中/完了表示/field復帰を分離。独立Continue後の全Save/RTC131088bytes保持を実測。57画面は直接目視、図鑑No???/レポート1匹を未統合のまま保持。現在は新検証器/失敗系試験と正式Actionsを実装中。開発完走153/cold40を再開探索として再生しない。旧Save11/10以前の受入も再生しない。ROM/runner変更0。次の実進行はこのSave12から育成/マオリへ。",
+  "notes_ja": "正式Actions終端確認済み。Save12のtraining.srm作業コピーから先だけ進める。自宅map4/0(8,5)上向き、リープンLv9/EXP450/HP26/26/PP35/30/25、ツツケラLv3/EXP27/HP15/15/PP35/40。母親の通常会話1回で2体全回復、Save11→12と独立Continue後の全Save/RTC保持を確認。手持ち2、ボール3、2776円、RP0。次は育成からマオリ/通常ストーリーへ。今回に新しい戦闘/捕獲/経験値獲得はない。トレーナー勝利/研究施設自然到達/図鑑統合/全story/release未完。153/cold40と旧176/cold50等は再生しない。",
   "output_save": {
     "sha256": "22072b86a414a01f35c7925492698f52e390032edd014d5243853e54e64f2a6d",
     "size": 131088
@@ -74,10 +75,11 @@
   "progress_frames": 10399,
   "progress_inputs": 153,
   "release_ready": false,
+  "retained_artifact_id": 10975157558,
   "save_counter": 12,
   "schema_version": 1,
   "screen_count": 57,
-  "status": "FORMAL_MEASUREMENT_COMPLETE_TERMINAL_PENDING",
+  "status": "FORMAL_TERMINAL_CONFIRMED",
   "superseded_by": "content/modernization/pr16_story_save12_checkpoint.json",
   "trainer_victories": 0,
   "wild_victories": 0,

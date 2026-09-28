@@ -6,9 +6,9 @@
 
 ## いまの停止点と次の1手
 
-PASS_STORY_SAVE12_PENDING_TERMINAL
+PASS_STORY_SAVE12_SCOPED
 
-**次: native/69試験を再実行せず、今回Actionsの全step・57画面/Save原本artifact・記録commitを終端確認する。その後 Save12のtraining.srm作業コピーから先だけ進める。自宅map4/0(8,5)上向き、リープンLv9/EXP450/HP26/26/PP35/30/25、ツツケラLv3/EXP27/HP15/15/PP35/40。母親の通常会話1回で2体全回復、Save11→12と独立Continue後の全Save/RTC保持を確認。手持ち2、ボール3、2776円、RP0。次は育成からマオリ/通常ストーリーへ。今回に新しい戦闘/捕獲/経験値獲得はない。トレーナー勝利/研究施設自然到達/図鑑統合/全story/release未完。153/cold40と旧176/cold50等は再生しない。**
+**次: Save12のtraining.srm作業コピーから先だけ進める。自宅map4/0(8,5)上向き、リープンLv9/EXP450/HP26/26/PP35/30/25、ツツケラLv3/EXP27/HP15/15/PP35/40。母親の通常会話1回で2体全回復、Save11→12と独立Continue後の全Save/RTC保持を確認。手持ち2、ボール3、2776円、RP0。次は育成からマオリ/通常ストーリーへ。今回に新しい戦闘/捕獲/経験値獲得はない。トレーナー勝利/研究施設自然到達/図鑑統合/全story/release未完。153/cold40と旧176/cold50等は再生しない。**
 
 Save12原本の終端を先に照合。training.srmから先だけ。完走153/cold40と旧176/cold50等を再生しない。回復を成長/勝利/研究施設到達へ昇格しない。
 

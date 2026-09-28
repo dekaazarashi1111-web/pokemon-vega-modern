@@ -19,3 +19,7 @@ Save11から通常歩行で501番道路→ハクジタウン→自宅。回復�
 開発2process/69検査、正式2process/69検査を別計上。旧受入の明示再実行0、ROM/runner/compile変更0。完走153/cold40入力/57画面は原本回収だけにして再生しない。
 
 正式source `1540de2edb1dab0479b95a4468176e07b0bfd086`、run 36435307920。全step/保存artifact/commit終端は別API照合で確定する。
+
+## 正式終端
+
+run 36435307920 の全step成功、completion `92f9a632ba2114a3624ca71ea64063363349b35f`、原本artifact 10975157558。次はこのartifactのtraining.srmのみ。終端回収native0/test0。

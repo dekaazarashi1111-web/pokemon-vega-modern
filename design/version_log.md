@@ -8432,3 +8432,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: source=1540de2edb1dab0479b95a4468176e07b0bfd086; run=36435307920; 同branch非force push。WIP b85ce610で停止点、c084c6b7で検証sourceを先行保存。
 - Network: GitHub HEAD/Actions/artifactのみ。Save11終端run36430473903/source5a2e188fのcompact contextを再利用。追加context run36431970090はtext採取のみ/native0。初回cloneのDNS失敗はconnectorで代替。旧capacity failure/action_requiredを成功へ改作しない。merge/release/active baseline変更0。
 - Next: native/69試験を再実行せず、今回Actionsの全step・57画面/Save原本artifact・記録commitを終端確認する。その後 Save12のtraining.srm作業コピーから先だけ進める。自宅map4/0(8,5)上向き、リープンLv9/EXP450/HP26/26/PP35/30/25、ツツケラLv3/EXP27/HP15/15/PP35/40。母親の通常会話1回で2体全回復、Save11→12と独立Continue後の全Save/RTC保持を確認。手持ち2、ボール3、2776円、RP0。次は育成からマオリ/通常ストーリーへ。今回に新しい戦闘/捕獲/経験値獲得はない。トレーナー勝利/研究施設自然到達/図鑑統合/全story/release未完。153/cold40と旧176/cold50等は再生しない。
+
+## 2026-09-28T14:24:00.352802+00:00
+- Timestamp: 2026-09-28T14:24:00.352802+00:00
+- Task: USER-20260928-STORY-SAVE12 / 母親の2体回復・Save12終端確認
+- Version: story-save12-v1
+- Status: DONE（2体回復/Save12限定。育成/マオリ/研究施設/図鑑統合/全story/release未受入）
+- Summary: Save11から歩行で帰宅、母親1会話で2体全回復。HP16→26と4→15、PP35/30/25と35/40、通常Save11→12、独立Continue後の全Save/RTC131088bytes保持。前回bank57344bytes/未使用party400bytes保持。なつき度2bytesと回復HP/PP5bytesを分離。全5bag pocket/ボール3/2776円/EXP450,27/RP0保持。
+- Files changed: Save12後継検証器/69試験/入力目視原本/Actions/証拠/checkpoint/guide、固定引継ぎMD/JSON、両ログ。ROM/save/runner/画面は非tracked artifactのみ。
+- Verify: 専用run全step・原本ZIP全57画面/Save/69検査/commitを照合。新native0/test0。 4つの書込途中Flash・完了lock1・field解除・coldを分離。メニュー中の不発入力と図鑑No???/レポート1匹を原本へ保持。旧受入再実行0、ROM/runner/compile変更0。resume/task graph/scoped final index確認後にcommit。全体private guard/一般CI成功は主張しない。
+- Commit: source=57d86883eb4fa61bb2dd803be4c9cfa2ea06638c; run=36435622530; 同branch非force push。WIP b85ce610で停止点、c084c6b7で検証sourceを先行保存。
+- Network: GitHub HEAD/Actions/artifactのみ。Save11終端run36430473903/source5a2e188fのcompact contextを再利用。追加context run36431970090はtext採取のみ/native0。初回cloneのDNS失敗はconnectorで代替。旧capacity failure/action_requiredを成功へ改作しない。merge/release/active baseline変更0。
+- Next: Save12のtraining.srm作業コピーから先だけ進める。自宅map4/0(8,5)上向き、リープンLv9/EXP450/HP26/26/PP35/30/25、ツツケラLv3/EXP27/HP15/15/PP35/40。母親の通常会話1回で2体全回復、Save11→12と独立Continue後の全Save/RTC保持を確認。手持ち2、ボール3、2776円、RP0。次は育成からマオリ/通常ストーリーへ。今回に新しい戦闘/捕獲/経験値獲得はない。トレーナー勝利/研究施設自然到達/図鑑統合/全story/release未完。153/cold40と旧176/cold50等は再生しない。
