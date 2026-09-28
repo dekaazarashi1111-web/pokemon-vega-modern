@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-PASS_STORY_SAVE11_SCOPED
+PASS_STORY_SAVE12_PENDING_TERMINAL
 
-**次: Save11のtraining.srm作業コピーから先だけ進める。501番道路map3/19(15,10)左向き。通常捕獲で手持ち1→2、ボール5→3、初投失敗/二投目成功を分離、通常Save10→11と独立Continue後の全Save/RTC保持を確認。リープンLv9/EXP450/HP16/26/PP35/30/22、ツツケラLv3/EXP27/HP4/15/PP33/38、RP0、2776円。次は2体の通常回復と育成を経てマオリ/通常ストーリーへ。トレーナー勝利/研究施設自然到達/全story/releaseは未完。地域図鑑No???・レポート図鑑1匹も観測履歴として保持し、図鑑統合を受入にしない。176/cold50と旧218/cold62等を再生しない。**
+**次: native/69試験を再実行せず、今回Actionsの全step・57画面/Save原本artifact・記録commitを終端確認する。その後 Save12のtraining.srm作業コピーから先だけ進める。自宅map4/0(8,5)上向き、リープンLv9/EXP450/HP26/26/PP35/30/25、ツツケラLv3/EXP27/HP15/15/PP35/40。母親の通常会話1回で2体全回復、Save11→12と独立Continue後の全Save/RTC保持を確認。手持ち2、ボール3、2776円、RP0。次は育成からマオリ/通常ストーリーへ。今回に新しい戦闘/捕獲/経験値獲得はない。トレーナー勝利/研究施設自然到達/図鑑統合/全story/release未完。153/cold40と旧176/cold50等は再生しない。**
 
-Save11原本の終端を先に照合。training.srmから先だけ。176/cold50や既受入218/cold62等を再生しない。捕獲を勝利/研究施設到達/図鑑統合へ昇格しない。
+Save12原本の終端を先に照合。training.srmから先だけ。完走153/cold40と旧176/cold50等を再生しない。回復を成長/勝利/研究施設到達へ昇格しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `79be6cb0fe60277cb37df6d3b85d9a8414b28c51`。
-Save10後の新捕獲区間Save11の測定source HEAD。記録commit/active baselineではない。
+証拠のsource HEAD: `1540de2edb1dab0479b95a4468176e07b0bfd086`。
+Save11後の2体回復区間Save12の測定source HEAD。記録commit/active baselineではない。
 
 ## 最短の再開手順
 
@@ -25,12 +25,12 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_STORY_SAVE11_JA.md`
-- `content/modernization/pr16_story_save11_checkpoint.json`
-- `content/modernization/pr16_story_save11_working.json`
-- `scripts/pr16_story_save11.py`
-- `tests/test_pr16_story_save11.py`
-- `scripts/pr16_story_save11_actions.py`
+- `docs/PR16_STORY_SAVE12_JA.md`
+- `content/modernization/pr16_story_save12_checkpoint.json`
+- `content/modernization/pr16_story_save12_working.json`
+- `scripts/pr16_story_save12.py`
+- `tests/test_pr16_story_save12.py`
+- `scripts/pr16_story_save12_actions.py`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -64,6 +64,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- Save12の153/cold40入力と57画面・69検査は保存原本から照合するだけ。母親で2体全回復済み。次はSave12から育成を進め、同じ回復/保存区間を再生しない。
 - Save11の176/cold50入力と83画面・68検査は保存原本から照合し、通常進行再開では再実行しない。初投失敗/名前UI/捕獲outcome7を区別。次はHP16/26と4/15の2体を通常回復してから先へ。
 - Save10の218/cold62と77画面・32検査は保存原本から照合し、通常進行の再開時に再実行しない。28境界検査も影響なしに再実行しない。前回未保存WIPの敗北は保持。
 - Save10の前回WIPに通常Save/独立Continue終端はない。回収できる正式親はSave9 artifact10963436148。WIPの敗北を勝利とせず、観測境界28検査をゲーム進行受入と混同しない。
