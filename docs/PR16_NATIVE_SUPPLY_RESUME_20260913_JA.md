@@ -8,7 +8,7 @@
 
 PASS_STORY_SAVE14_SCOPED
 
-**次: 所有者決定の3レーンへ切替える。Save14原本を不変に保ち、(A) 自己OT Lv100のMewtwo/Haxorusと段階解禁utilityでマオリ以降の通常storyを高速走破、(B) 別fixtureで通常wild battle EXP→level-up/技習得/進化→通常Save/fresh Continueを変更境界ごとに自動検証、(C) Axew系+しあわせタマゴとAudino/Chansey/Blissey段階切替でLv100までsoakする。まず作業コピー2本を生成し、stable key/item ABIを再解決してから、服従/戦闘復帰/保存再開smokeと最初のEXP進化縦切りを受入する。**
+**次: 分離コピー2本と自己OT通常戦smokeは完了。新checkpointのartifact内story-fast.srmからマオリ以降へ進む。progression.srmはAxew Lv37/EXP68589の戦闘前保存。通常EXPでLv38に上がるが全国図鑑未解禁・target>151 gateが進化を自動取消する。次は正規の全国図鑑取得条件とgate設計ownerを照合し、必要な自然解禁境界またはsource修正/後継候補を定める。flag注入や進化成功への読み替えは禁止。Lucky Egg対照とsoakは未完。**
 
 Save14原本artifactと受入済みSave1〜14は不変。story-fastとprogressionを混同しない。fixture書込みは戦闘開始前だけとし、開始後のparty/EXP/level/技/進化/story flag/outcomeへのhost書込みを禁止する。Lv100走破を自然難易度・自然入手・自然育成へ、fixture戦を野生テーブル・自然初期技へ読み替えない。
 
@@ -25,13 +25,13 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `docs/PR16_STORY_ACCELERATION_CHECKPOINT_JA.md`
+- `content/modernization/pr16_story_acceleration_checkpoint.json`
 - `docs/PR16_STORY_ACCELERATED_ACCEPTANCE_PLAN_JA.md`
 - `content/modernization/pr16_story_acceleration_plan.json`
-- `docs/PR16_STORY_SAVE14_JA.md`
 - `content/modernization/pr16_story_save14_checkpoint.json`
-- `content/modernization/pr16_story_save14_working.json`
-- `content/modernization/pr16_learnset_progression_checkpoint.json`
-- `content/modernization/pr16_learnset_battle_checkpoint.json`
+- `tools/mgba_pr16_story_acceleration.c`
+- `tools/mgba_modernization_p02_stage71_acceptance_smoke.c`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 

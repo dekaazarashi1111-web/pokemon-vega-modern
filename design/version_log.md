@@ -8504,3 +8504,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 
 - `pr16_story_acceleration_plan.json` の既存party退避説明をツツケラspecies1129/リープンspecies1へ訂正。
 - 実装、候補ROM、Save、受入scope、次作業は不変。run `36495173345`。
+
+## 2026-09-28T23:58:25+00:00 — ストーリー分離fixtureの限定受入と進化gate停止
+
+- Task: `USER-20260929-STORY-ACCELERATION` / Save14作業コピー2本・自己OT戦smoke・通常EXP進化診断
+- Status: DONE（分離コピー/通常戦smoke）; BLOCKED（進化縦切り）
+- Summary: stable key/ROM ABI解決、原本identity保持、7write API禁止、全RAM差分台帳、通常Save/fresh Continueを実装。Axewは通常EXP68589→68590/Lv38後、全国図鑑gateで自動取消。進化未受入を保持。
+- Files changed: `scripts/pr16_story_acceleration*.py`、`tools/mgba_pr16_story_acceleration.c`、専用tests/workflow、`content/modernization/pr16_story_acceleration_checkpoint.json`、`docs/PR16_STORY_ACCELERATION_CHECKPOINT_JA.md`、固定引継ぎMD/JSON、CHATGPT_RESUME、両ログ。
+- Verify: 新19 tests/7拒否試験/compile PASS、native3 process/5 cores、通常Save2。run `36500700863` / source `5243a6000755bd5596f994f322b1587f33fc2484` / artifact `11005890195`。完了conclusionはActionsから別照会。旧受入再実行0/ROM変更0/release・merge・baseline変更0。
+- 開発履歴: 13 process/15 cores、PC再配置/unaligned OT ID/全国図鑑gateの失敗を含む。正式scopeと分離し、旧Save14 scenarioは再生せず。
+- Commit: `-`（本記録を含む非force Actions commit）。前段WIPは6b8ab6b8、05ffb19b、69d2fc47、bb979f92、4ca9d2f8。
+- Network: GitHub exact HEAD/Actions artifactを利用。gate照合ではpret/pokefireredのevolution_scene.cを参考にし、実候補の0x080CFA20/0x080D067Cのbranchとnative task遷移を独立確認。https://github.com/pret/pokefirered/blob/master/src/evolution_scene.c
+- 未完: 正規story続行、全国図鑑gateの設計/取得条件照合、進化・技習得12境界、Lucky Egg倍率、soak100。global private guardの旧違反をPASSへ読み替えず今回変更pathのみ検査。

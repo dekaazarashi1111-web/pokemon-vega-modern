@@ -1,0 +1,211 @@
+{
+  "schema_version": 1,
+  "task": "USER-20260929-STORY-ACCELERATION",
+  "status": "PASS_SPLIT_PREPARATION_WITH_PROGRESSION_BLOCKED",
+  "source_head": "5243a6000755bd5596f994f322b1587f33fc2484",
+  "run_id": 36500700863,
+  "recorded_at_utc": "2026-09-28T23:58:25+00:00",
+  "source_artifact_id": 10999218544,
+  "runtime_artifact_id": 10898620034,
+  "candidate": {
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5",
+    "size": 33554432
+  },
+  "source_save": {
+    "sha256": "66d46ea79f6c72588b766385ec4a0851822e6b57815da60882ce53ba5901e13b",
+    "size": 131088
+  },
+  "source_save_immutable": true,
+  "source_bindings": {
+    "scripts/pr16_story_acceleration.py": {
+      "sha256": "c5a21f3a3c2bc73304cd8d3c58c754b5d385261458afec53530cbda4e7f57933",
+      "size": 11317
+    },
+    "scripts/pr16_story_acceleration_run.py": {
+      "sha256": "b7c86dcf2c28131c833eda5440ba61f02a4891d2e44684202f9e98d3a5ff2346",
+      "size": 19276
+    },
+    "tests/test_pr16_story_acceleration.py": {
+      "sha256": "b969c84722cb5aba219be830b306a84ed6cd892e689c3d61b2978310f78cf47d",
+      "size": 6123
+    },
+    "tools/mgba_ai_fixture_runner.c": {
+      "sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f",
+      "size": 36272
+    },
+    "tools/mgba_battle_core_smoke.c": {
+      "sha256": "ed9875695ca60c61960685ac2f8e810a183c8eedd703e56545d67bde3df5cf24",
+      "size": 94688
+    },
+    "tools/mgba_pr16_story_acceleration.c": {
+      "sha256": "b767c28610be47e04703adadf8a36bfc6dcd3af7d1daf4ec014ee1e929482053",
+      "size": 19168
+    },
+    "tools/mgba_qol_production_smoke.c": {
+      "sha256": "2c4b9f065f4dce84e48f2be9afe2e2f9f666865088770ee8b068a908a0527b85",
+      "size": 149046
+    }
+  },
+  "plan_hint_corrections": [
+    {
+      "key": "SPECIES_KEY_MEWTWO",
+      "plan_hint": 151,
+      "resolved_id": 150
+    },
+    {
+      "key": "SPECIES_KEY_HAXORUS",
+      "plan_hint": 851,
+      "resolved_id": 850
+    },
+    {
+      "key": "SPECIES_KEY_MEW",
+      "plan_hint": 152,
+      "resolved_id": 151
+    },
+    {
+      "key": "SPECIES_KEY_BIBAREL",
+      "plan_hint": 691,
+      "resolved_id": 690
+    },
+    {
+      "key": "SPECIES_KEY_AXEW",
+      "plan_hint": 849,
+      "resolved_id": 848
+    },
+    {
+      "key": "SPECIES_KEY_AUDINO",
+      "plan_hint": 789,
+      "resolved_id": 788
+    },
+    {
+      "key": "SPECIES_KEY_CHANSEY",
+      "plan_hint": 366,
+      "resolved_id": 365
+    },
+    {
+      "key": "SPECIES_KEY_BLISSEY",
+      "plan_hint": 367,
+      "resolved_id": 366
+    }
+  ],
+  "cases": {
+    "story-fast": {
+      "status": "PASS_SPLIT_SMOKE",
+      "lane": "story-fast",
+      "frames": 5715,
+      "inputs": 22,
+      "fresh_cores": 2,
+      "guard_installations": 3,
+      "ordinary_saves": 1,
+      "save_counter": 15,
+      "save_sha256": "fa2bb585eeeec1c81f0b8498438001b72d010ead2b9091f8f2b87744be1c6e97",
+      "accepted_case_reruns": 0,
+      "rom_changes": 0,
+      "release_ready": false,
+      "returncode": 0,
+      "working_save": {
+        "sha256": "fa2bb585eeeec1c81f0b8498438001b72d010ead2b9091f8f2b87744be1c6e97",
+        "size": 131088
+      },
+      "save_path": "story-fast/story-fast.srm",
+      "fixture_changed_bytes": 337
+    },
+    "prepare-progression": {
+      "status": "PASS_PREBATTLE_PROGRESSION_COPY",
+      "lane": "prepare-progression",
+      "frames": 4242,
+      "inputs": 21,
+      "fresh_cores": 2,
+      "guard_installations": 3,
+      "ordinary_saves": 1,
+      "save_counter": 15,
+      "save_sha256": "617e59ce2ab6b4e32767917f0184db48d9473755e350b1c24b64abe9025f14a0",
+      "accepted_case_reruns": 0,
+      "rom_changes": 0,
+      "release_ready": false,
+      "returncode": 0,
+      "working_save": {
+        "sha256": "617e59ce2ab6b4e32767917f0184db48d9473755e350b1c24b64abe9025f14a0",
+        "size": 131088
+      },
+      "save_path": "prepare-progression/progression.srm",
+      "fixture_changed_bytes": 235
+    },
+    "progression": {
+      "status": "BLOCKED_NATIONAL_DEX_EVOLUTION_GUARD",
+      "lane": "progression",
+      "xp_before": 68589,
+      "xp_after": 68590,
+      "level": 38,
+      "species": 848,
+      "target": 849,
+      "evolution_frame": 2872,
+      "autocancel_frame": 3284,
+      "returned_frame": 3578,
+      "national_dex": 0,
+      "post_battle_host_writes": 0,
+      "evolution_accepted": false,
+      "release_ready": false,
+      "returncode": 3,
+      "working_save": {
+        "sha256": "66d46ea79f6c72588b766385ec4a0851822e6b57815da60882ce53ba5901e13b",
+        "size": 131088
+      },
+      "save_path": "progression/progression.srm",
+      "fixture_changed_bytes": 235
+    }
+  },
+  "national_dex_gate_code": [
+    {
+      "address": 135068192,
+      "sha256": "66f6a4a5766ce209563cc838d361685f73e0acc98a5994b9b821cc31f49990a9",
+      "size": 68
+    },
+    {
+      "address": 135071356,
+      "sha256": "33861b99eca2f9f14960b7885de6ea7c12e5998fef7ed404661a511875acf570",
+      "size": 64
+    }
+  ],
+  "native_processes": 3,
+  "fresh_cores": 5,
+  "ordinary_saves": 2,
+  "focused_tests": 19,
+  "write_rejection_tests": 7,
+  "host_compiles": 1,
+  "rom_changes": 0,
+  "accepted_case_reruns": 0,
+  "development_attempts": {
+    "native_processes": 13,
+    "fresh_cores": 15,
+    "formal_acceptance": false
+  },
+  "claims": {
+    "story_self_ot_obedience_smoke": true,
+    "split_working_copies_save_continue": true,
+    "normal_exp_level_up_observed": true,
+    "evolution_accepted": false,
+    "lucky_egg_multiplier": false,
+    "support_bag_items_added": false,
+    "field_hms_installed": false,
+    "full_story": false,
+    "natural_difficulty": false,
+    "natural_party_acquisition": false,
+    "soak_started": false,
+    "release_ready": false,
+    "active_baseline_changed": false,
+    "merge_performed": false
+  },
+  "actions_completion_confirmed": false,
+  "evidence_manifest": {
+    "sha256": "4c15273902713862d19913e7e8117ac76cdb6275378aca7fad9727e216d9b539",
+    "size": 10502
+  },
+  "artifact_id": 11005890195,
+  "artifact_paths": {
+    "story_fast": "story-fast.srm",
+    "progression": "progression.srm",
+    "proof": "manifest.json"
+  },
+  "scope_ja": "Save14原本から2作業コピーを構築し通常Save/fresh Continueを受入。story-fastは通常1戦の自己OT服従smokeのみ。progression進化は全国図鑑gateでBLOCKED。自然進行の正式停止点はSave14のまま。"
+}

@@ -78,3 +78,8 @@ merge・release・baseline切替は別途明示指示なしに行わないでく
 ## Vega181種の原本採取・隔離監査checkpoint
 
 `docs/PR16_VEGA_ORIGINAL_AUDIT_JA.md` と `content/modernization/pr16_vega_original_checkpoint.json` を参照。原本9923行/全182ページ/43試験は完了。3群5行は `content/modernization/pr16_vega_original_source_decision.json` により固定ROM優先で所有者決定済み。この記述は採取時点の履歴。以降の台帳適用・採用・consumer工程の完了範囲と次工程は固定再開MD/JSONを参照する。保存原本から再開し、公式隔離やWiki全件採取を繰り返さない。
+
+<!-- story-acceleration-implementation-checkpoint -->
+## Story分離実装の停止点
+
+作業コピー2本と自己OT通常戦smokeは実装済み。進化は全国図鑑未解禁gateで停止。現在の受入範囲・artifact・次工程は固定再開MD/JSONと `docs/PR16_STORY_ACCELERATION_CHECKPOINT_JA.md` を参照し、上の計画予約説明から再生成しない。

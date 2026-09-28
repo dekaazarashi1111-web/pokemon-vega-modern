@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "所有者決定の3レーンへ切替える。Save14原本を不変に保ち、(A) 自己OT Lv100のMewtwo/Haxorusと段階解禁utilityでマオリ以降の通常storyを高速走破、(B) 別fixtureで通常wild battle EXP→level-up/技習得/進化→通常Save/fresh Continueを変更境界ごとに自動検証、(C) Axew系+しあわせタマゴとAudino/Chansey/Blissey段階切替でLv100までsoakする。まず作業コピー2本を生成し、stable key/item ABIを再解決してから、服従/戦闘復帰/保存再開smokeと最初のEXP進化縦切りを受入する。",
+    "next_step": "分離コピー2本と自己OT通常戦smokeは完了。新checkpointのartifact内story-fast.srmからマオリ以降へ進む。progression.srmはAxew Lv37/EXP68589の戦闘前保存。通常EXPでLv38に上がるが全国図鑑未解禁・target>151 gateが進化を自動取消する。次は正規の全国図鑑取得条件とgate設計ownerを照合し、必要な自然解禁境界またはsource修正/後継候補を定める。flag注入や進化成功への読み替えは禁止。Lucky Egg対照とsoakは未完。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -4239,17 +4239,17 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "所有者決定の3レーンへ切替える。Save14原本を不変に保ち、(A) 自己OT Lv100のMewtwo/Haxorusと段階解禁utilityでマオリ以降の通常storyを高速走破、(B) 別fixtureで通常wild battle EXP→level-up/技習得/進化→通常Save/fresh Continueを変更境界ごとに自動検証、(C) Axew系+しあわせタマゴとAudino/Chansey/Blissey段階切替でLv100までsoakする。まず作業コピー2本を生成し、stable key/item ABIを再解決してから、服従/戦闘復帰/保存再開smokeと最初のEXP進化縦切りを受入する。",
+    "goal_ja": "分離コピー2本と自己OT通常戦smokeは完了。新checkpointのartifact内story-fast.srmからマオリ以降へ進む。progression.srmはAxew Lv37/EXP68589の戦闘前保存。通常EXPでLv38に上がるが全国図鑑未解禁・target>151 gateが進化を自動取消する。次は正規の全国図鑑取得条件とgate設計ownerを照合し、必要な自然解禁境界またはsource修正/後継候補を定める。flag注入や進化成功への読み替えは禁止。Lucky Egg対照とsoakは未完。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。Save14は作業コピーだけを使用する。自己OT party、manifest解決済み通常支援用品、EXP境界、safe opponentはpre-battle fixtureとして全byteを台帳化してよい。badge/key item/story flag/money/RPをfixture付与せず、戦闘開始後は通常入力とゲーム内処理だけを使う。",
-    "id": "STORY_FAST_E2E_AND_NATURAL_EXP_EVOLUTION_SPLIT",
+    "id": "STORY_FAST_CONTINUE_AND_NATIONAL_DEX_EVOLUTION_GATE",
     "read_paths": [
+      "docs/PR16_STORY_ACCELERATION_CHECKPOINT_JA.md",
+      "content/modernization/pr16_story_acceleration_checkpoint.json",
       "docs/PR16_STORY_ACCELERATED_ACCEPTANCE_PLAN_JA.md",
       "content/modernization/pr16_story_acceleration_plan.json",
-      "docs/PR16_STORY_SAVE14_JA.md",
       "content/modernization/pr16_story_save14_checkpoint.json",
-      "content/modernization/pr16_story_save14_working.json",
-      "content/modernization/pr16_learnset_progression_checkpoint.json",
-      "content/modernization/pr16_learnset_battle_checkpoint.json"
+      "tools/mgba_pr16_story_acceleration.c",
+      "tools/mgba_modernization_p02_stage71_acceptance_smoke.c"
     ],
     "stop_rule_ja": "Save14原本artifactと受入済みSave1〜14は不変。story-fastとprogressionを混同しない。fixture書込みは戦闘開始前だけとし、開始後のparty/EXP/level/技/進化/story flag/outcomeへのhost書込みを禁止する。Lv100走破を自然難易度・自然入手・自然育成へ、fixture戦を野生テーブル・自然初期技へ読み替えない。"
   },
@@ -8937,8 +8937,8 @@
       "size": 3476
     },
     "CHATGPT_RESUME.md": {
-      "sha256": "3cba1c0785e1db3cb79dd00186718e855db103fff28d62d07c5be1d165e476b6",
-      "size": 8854
+      "sha256": "b374bff6a93a6df00575eac83706303a662c816859439349be886e09fbb1f3e0",
+      "size": 9236
     },
     "config/active_play_baseline.json": {
       "sha256": "4800257add049ea99cdedda91413a70a255dcff9a85823463596edefa8785053",
@@ -19803,6 +19803,30 @@
     "content/modernization/pr16_story_acceleration_plan.json": {
       "sha256": "b3dbb95192635aa467ef2169a266f857dfda22a387335f936ab8b05dc024856b",
       "size": 9882
+    },
+    "content/modernization/pr16_story_acceleration_checkpoint.json": {
+      "sha256": "14e76bb3e919d54cec485df541f87ed438af26c81d11ce4f48221ed709dc7a9a",
+      "size": 6359
+    },
+    "docs/PR16_STORY_ACCELERATION_CHECKPOINT_JA.md": {
+      "sha256": "9ddd9b1c9c318eb26e30fed60dae02c985ef7c8f306e2d5c929734fe77e89e0b",
+      "size": 4090
+    },
+    "scripts/pr16_story_acceleration.py": {
+      "sha256": "c5a21f3a3c2bc73304cd8d3c58c754b5d385261458afec53530cbda4e7f57933",
+      "size": 11317
+    },
+    "scripts/pr16_story_acceleration_run.py": {
+      "sha256": "b7c86dcf2c28131c833eda5440ba61f02a4891d2e44684202f9e98d3a5ff2346",
+      "size": 19276
+    },
+    "tools/mgba_pr16_story_acceleration.c": {
+      "sha256": "b767c28610be47e04703adadf8a36bfc6dcd3af7d1daf4ec014ee1e929482053",
+      "size": 19168
+    },
+    "tests/test_pr16_story_acceleration.py": {
+      "sha256": "b969c84722cb5aba219be830b306a84ed6cd892e689c3d61b2978310f78cf47d",
+      "size": 6123
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
@@ -20217,5 +20241,15 @@
     "rom_changes": 0,
     "release_ready": false,
     "identity_correction_run_id": 36495173345
+  },
+  "story_acceleration_checkpoint": {
+    "path": "content/modernization/pr16_story_acceleration_checkpoint.json",
+    "run_id": 36500700863,
+    "artifact_id": 11005890195,
+    "status": "PASS_SPLIT_PREPARATION_WITH_PROGRESSION_BLOCKED",
+    "source_head": "5243a6000755bd5596f994f322b1587f33fc2484",
+    "evolution_accepted": false,
+    "accepted_case_reruns": 0,
+    "natural_stop_unchanged": true
   }
 }
