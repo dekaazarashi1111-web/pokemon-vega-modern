@@ -7,20 +7,25 @@ BATTLE_CALLBACK = 134285761
 
 
 def episodes(observations):
-    """field復帰までが1戦。残留flags/outcomeだけで次の勝利を作らない。"""
+    """field復帰までが1戦。連続観測だけを数え、残留状態を勝利にしない。"""
     if type(observations) is not list or not observations:
         raise ValueError('観測列が必要')
-    result, active, last_frame = [], None, -1
+    result, active, last_frame, last_observe = [], None, -1, None
     for o in observations:
-        if type(o) is not dict or type(o.get('observe')) is not int or type(o.get('frame')) is not int:
-            raise ValueError('観測の番号/時刻')
+        if type(o) is not dict:
+            raise ValueError('観測objectが必要')
+        for key in ('observe', 'frame', 'callback2', 'battle_flags', 'battle_outcome', 'lock'):
+            if type(o.get(key)) is not int or not 0 <= o[key] <= 0xffffffff:
+                raise ValueError('非負整数の観測が必要: ' + key)
+        if o['lock'] not in (0, 1):
+            raise ValueError('lockは0または1')
+        if last_observe is not None and o['observe'] != last_observe + 1:
+            raise ValueError('観測の欠落・重複・逆行を受入しない')
         if o['frame'] < last_frame:
             raise ValueError('時間を巻き戻さない')
-        last_frame = o['frame']
-        callback = o.get('callback2')
-        flags, outcome = o.get('battle_flags'), o.get('battle_outcome')
-        if type(flags) is not int or type(outcome) is not int or type(o.get('lock')) is not int:
-            raise ValueError('真偽値を戦闘状態に代用しない')
+        last_frame, last_observe = o['frame'], o['observe']
+        callback = o['callback2']
+        flags, outcome = o['battle_flags'], o['battle_outcome']
         if callback == BATTLE_CALLBACK:
             if flags not in (4, 12) or outcome not in (0, 1, 2, 4):
                 raise ValueError('対象外の戦闘状態')

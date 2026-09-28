@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "task": "USER-20260928-STORY-SAVE10",
+  "status": "WIP_SEQUENCE_HARDENING_LOCAL_16_PASS",
+  "start_head": "0912af7e71b89f48698256a1d0c2ec8fc084892c",
+  "formal_parent": "content/modernization/pr16_story_save9_checkpoint.json",
+  "parent_artifact_id": 10963436148,
+  "parent_output_save_sha256": "524df8da2e6e45b6a1d9dc0446e600740a79ff772c56a8423413994c09b32063",
+  "new_sequence_tests": 16,
+  "verification": "python3 -B -m unittest discover -s tests -p test_pr16_story_journey_sequence.py -v: 16 PASS",
+  "prior_wip": "docs/PR16_STORY_SAVE10_WIP_JA.md",
+  "prior_wip_native_accepted": false,
+  "prior_wip_successor_save_recovered": false,
+  "prior_wip_policy_ja": "前回の敗北を含む記述を保持。回収可能な終端セーブがないため、その入力を再生せず正式Save9から別新区間を開始。現在は研究室map4/3の博士通常会話まで。未保存の進行を再開用セーブや用品取得とみなさない。",
+  "ordinary_save10_accepted": false,
+  "accepted_native_reruns": 0,
+  "rom_changes": 0,
+  "active_baseline_changed": false,
+  "release_ready": false,
+  "next_ja": "新区間を通常Save・独立Continueまで確定し、専用証拠/checkpoint、固定引継ぎMD/JSON、両ログへ反映する。"
+}
