@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "PASS_NATURAL_LV7_ABSORB_SAVE_SCOPED",
+    "current_stop": "PASS_HOME_RECOVERY_SOURCE_NATIVE_PENDING",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "野生ヒメグマ勝利1回・経験値41・Lv6→7・すいとる自然習得・Save counter4→5と独立Continueを限定受入。経験値245、HP13/23・麻痺・技PP31/30/25が保持。自宅local1はT17渡航の船運休で回復しない事実を実画面/全party/ROM pointer鎖に結合。次は原作Vega/stage16の母親previous_scriptと渡航ownerを照合し、正常回復との共存を最小差分で修正・検証してからtraining.srmで通常進行。研究施設到達は未完。旧194/367/301/114入力・starter/RP/UI/BP/P08は再生しない。",
+    "next_step": "母親previous_script0x0817BCBBを固定Vega原本で確認。未解禁時と渡航辞退時を元会話/回復へ15bytesで委譲し、canonical全179bytes一致と52専用検査を確認。次はtraining.srmから新候補で実会話・回復・Save・独立Continueだけを測定する。研究施設自然到達/実渡航nativeは未受入。旧194/367/301/114入力と旧RP/UI/BP/P08は再生しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -793,6 +793,7 @@
   },
   "current_resume_doc": "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
   "do_not_repeat": [
+    "原本owner照合と母親15byte source修正は content/modernization/pr16_home_recovery_checkpoint.json。52専用試験はこのsource runで測定済み。次は回復の新native区間だけ。旧完走入力は再生しない。",
     "自然習得保存の完走194入力は content/modernization/pr16_research_story_training_checkpoint.json。次はtraining.srmのmap3/0(4,27)/Lv7/経験値245/HP13/23・麻痺/道具0からだけ。旧受入は再生しない。",
     "自然習得開発原本 content/modernization/pr16_research_story_training_development/verification.json を保持。194入力/56画面/native2/新86検査。正式runができた後は新たな入力をtraining.srmから行い、成功した区間を再生しない。",
     "成長保存の完走367入力は content/modernization/pr16_research_story_growth_checkpoint.json。次はgrowth.srmのmap3/0(4,27)/Lv6/経験値204/道具0からだけ。旧受入は再生しない。",
@@ -1110,6 +1111,16 @@
   },
   "handoff_maintenance_task": "USER-20260918-RING-NPC-PLAN",
   "history_handoff_retained": "content/modernization/pr16_native_supply_handoff.json",
+  "home_recovery": {
+    "candidate": {
+      "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5",
+      "size": 33554432
+    },
+    "path": "content/modernization/pr16_home_recovery_checkpoint.json",
+    "run_id": 36364944598,
+    "source_head": "4409a5dddf6c4f2f5d08833b35a470fdd544dde3",
+    "status": "PASS_HOME_RECOVERY_SOURCE_NATIVE_PENDING"
+  },
   "inherited_bootstrap_accounting_correction": {
     "all_ancestor_arm_links_zero": false,
     "note_ja": "末端Drought再link0を全pipelineへ外挿した旧記述は誤り。旧親compile/Ring host testsの再実行を記録。新native前に保存済みbyte再構築へ切替。",
@@ -4205,19 +4216,18 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "野生ヒメグマ勝利1回・経験値41・Lv6→7・すいとる自然習得・Save counter4→5と独立Continueを限定受入。経験値245、HP13/23・麻痺・技PP31/30/25が保持。自宅local1はT17渡航の船運休で回復しない事実を実画面/全party/ROM pointer鎖に結合。次は原作Vega/stage16の母親previous_scriptと渡航ownerを照合し、正常回復との共存を最小差分で修正・検証してからtraining.srmで通常進行。研究施設到達は未完。旧194/367/301/114入力・starter/RP/UI/BP/P08は再生しない。",
+    "goal_ja": "母親previous_script0x0817BCBBを固定Vega原本で確認。未解禁時と渡航辞退時を元会話/回復へ15bytesで委譲し、canonical全179bytes一致と52専用検査を確認。次はtraining.srmから新候補で実会話・回復・Save・独立Continueだけを測定する。研究施設自然到達/実渡航nativeは未受入。旧194/367/301/114入力と旧RP/UI/BP/P08は再生しない。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
-    "id": "HOME_RECOVERY_OWNER_BEFORE_STORY_NEXT",
+    "id": "HOME_RECOVERY_NATIVE_SAVE_NEXT",
     "read_paths": [
-      "docs/PR16_RESEARCH_STORY_TRAINING_JA.md",
-      "content/modernization/pr16_research_story_training_checkpoint.json",
-      "content/modernization/pr16_research_story_training_terminal.json",
-      "scripts/pr16_research_story_training.py"
+      "docs/PR16_HOME_RECOVERY_JA.md",
+      "content/modernization/pr16_home_recovery_checkpoint.json",
+      "scripts/pr16_home_recovery.py"
     ],
-    "stop_rule_ja": "run36362293129の全11必須stepとartifact10946201851は確認済み。training.srmのsize/SHAと固定candidate/runtime/runnerを確認してContinue。map3/0(4,27)/Lv7/EXP245/HP13/23・麻痺/counter5/すいとる25/25/道具0から先だけを進め、成功194入力と旧受入を再実行しない。trainer勝利/研究到達/配布へ昇格しない。merge/release/baseline変更禁止。"
+    "stop_rule_ja": "source build artifactと終端を確認。正式native runが存在したら回収のみ。training.srmの作業コピーから新しい回復区間のみ。旧候補/Save/受入を改変しない。"
   },
   "observed_date_jst": "2026-09-27",
-  "observed_head": "67e9cc46f50222e19799244598d65534360c53fd",
+  "observed_head": "4409a5dddf6c4f2f5d08833b35a470fdd544dde3",
   "observed_head_checks": {
     "reason_ja": "新区間専用Actionsと一般CIを分離。未完/action_required/失敗を成功にしない。",
     "runs": [
@@ -5630,7 +5640,7 @@
       "semantics": "PLA1圧縮と新規供給consumerのhost検証成功入力HEAD。ROM配置/実操作/記録commitの受入ではない。"
     }
   ],
-  "observed_head_semantics": "Lv7自然習得新区間を独立測定したsource HEAD。全11必須step・後継Save/RTC・56画面・commit原本を content/modernization/pr16_research_story_training_terminal.json で外部確認。自己記録commitや製品最終SHAではない。",
+  "observed_head_semantics": "source統合worktreeの出発HEAD。builderの前後bindingと全試験sourceは専用checkpointへ固定。native受入/最終製品SHAではない。",
   "p08_candidate_impact": {
     "candidate": {
       "crc32": "CC068B4A",
@@ -7531,6 +7541,18 @@
       "sha256": "42d48cce1f1c9089a82e308b49837cf05aa20cab4a232c44c0be2a16fce0460b",
       "size": 10958
     },
+    ".github/workflows/pr16-home-recovery-context.yml": {
+      "sha256": "ab2fd2eac09544ac5c43b5e6983b8007caf174511c2bdcdae2e4e2e4498f29d7",
+      "size": 3544
+    },
+    ".github/workflows/pr16-home-recovery-owner.yml": {
+      "sha256": "6fb992299177dfb86d48e7fd22b99a92f5b6cbdf10400451342560e5ff8d58ef",
+      "size": 5083
+    },
+    ".github/workflows/pr16-home-recovery-source.yml": {
+      "sha256": "60bf35d332e5ba0624913a0fbd071cfee1a136f158507ef55ca8a025de8a2035",
+      "size": 15337
+    },
     ".github/workflows/pr16-learnset-baseline-proof-closeout.yml": {
       "sha256": "2c6bbed55a37a2544d4704d17bf80271c129a29c521ed9c5836b21e563ea7eaa",
       "size": 9826
@@ -8934,6 +8956,62 @@
     "content/modernization/pr16_exp_share_input_preparation.json": {
       "sha256": "b3e7ea499c7e389b41921b1ce4ffdc36ff2bd510841e8c3f8c9864aa49169ac3",
       "size": 866
+    },
+    "content/modernization/pr16_home_recovery_checkpoint.json": {
+      "sha256": "e9979d392aa0b5ff760895ac123f08dac30815acaee51e43155a0d252d54ec79",
+      "size": 5350
+    },
+    "content/modernization/pr16_home_recovery_source_evidence/36364944598/10946201851.json": {
+      "sha256": "3cd5ed4ae5c3e534d0834700e829ae037506875f58d90f41e8e06c6ac146ed20",
+      "size": 864
+    },
+    "content/modernization/pr16_home_recovery_source_evidence/36364944598/10946690893.json": {
+      "sha256": "d6087133a6e6195ef3082ada342ecda95dd4d42678390c2f8ecbc17bcff508a1",
+      "size": 858
+    },
+    "content/modernization/pr16_home_recovery_source_evidence/36364944598/bag-recipe.json": {
+      "sha256": "b28b834b2a130cb6a0159f16f68da48d2585a2fcc44bb5b117e1b9e4929b048e",
+      "size": 1939
+    },
+    "content/modernization/pr16_home_recovery_source_evidence/36364944598/compile.json": {
+      "sha256": "11b6efff5a861deaa7b875bb76a0c5d36e121d1eb31ad64a7d31fbcedac19a82",
+      "size": 640
+    },
+    "content/modernization/pr16_home_recovery_source_evidence/36364944598/compile.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_home_recovery_source_evidence/36364944598/compile.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_home_recovery_source_evidence/36364944598/generated.c.txt": {
+      "sha256": "cfbbf06f1e50c9a452e98cca9994ff2e53f89f74f59aeb713dc07d9db73564d1",
+      "size": 34939
+    },
+    "content/modernization/pr16_home_recovery_source_evidence/36364944598/inputs.json": {
+      "sha256": "b278ef3ca88ef3327078a66d64b26e41b10d12dd33ec39fb185a567a2cda437b",
+      "size": 1192
+    },
+    "content/modernization/pr16_home_recovery_source_evidence/36364944598/owner-input.json": {
+      "sha256": "0186d92016a5e7cfe93dafe5e135a5fd629060c9e282f4ecafc1d77bde7994bc",
+      "size": 1245
+    },
+    "content/modernization/pr16_home_recovery_source_evidence/36364944598/recipe.json": {
+      "sha256": "3dd676fe9c123eee5296f9ccc714fb2f2ba97d4b44127eff19161b351bd3d9d0",
+      "size": 1997
+    },
+    "content/modernization/pr16_home_recovery_source_evidence/36364944598/save-recipe.json": {
+      "sha256": "c5c5eecedb955d32db3abe2b1868379859f704306397c1a8071dd206da3455d0",
+      "size": 1091
+    },
+    "content/modernization/pr16_home_recovery_source_evidence/36364944598/unit.stderr.txt": {
+      "sha256": "3402c3faa0a11af8da38a0c196087bcf62e66f8fb33e21901a30499da3c72c73",
+      "size": 5651
+    },
+    "content/modernization/pr16_home_recovery_source_evidence/36364944598/unit.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
     },
     "content/modernization/pr16_learnset_baseline_checkpoint.json": {
       "sha256": "e0587f5cf025fa76f6e6f7a0dc8f340e335b66d1d4ae744027dcc865b06e0d78",
@@ -10830,6 +10908,10 @@
     "docs/PR16_EXP_EVOLUTION_SHARE_JA.md": {
       "sha256": "91bf0315d0ac20772a0caa27b4528df27916d52f1c3750f3b2acc331b41628a7",
       "size": 1522
+    },
+    "docs/PR16_HOME_RECOVERY_JA.md": {
+      "sha256": "63d71223c20e501a86608b2bc6bcb16472cb5da72f2abf3a16710880f15c3eca",
+      "size": 1293
     },
     "docs/PR16_LEARNSET_BASELINE_RESET_JA.md": {
       "sha256": "4924be1b5cfa324fe72cff599758ebb467eae8d25911a085c2d444f3b1f3ab6a",
@@ -15199,6 +15281,10 @@
       "sha256": "7d4b617b96826343087dc2ca27cf017c9ad47e5bef1a4b91c90974da58f66bea",
       "size": 10661
     },
+    "scripts/pr16_home_recovery.py": {
+      "sha256": "067cbe0f8b40f8ffa8d27ce777e2c070c436bbc8543e7154073cef71421e098e",
+      "size": 5858
+    },
     "scripts/pr16_learnset_baseline.py": {
       "sha256": "94af9a52ce1785380c964325ef9eebe7ed956e88b628632eb18f3ee518378212",
       "size": 1102
@@ -16883,6 +16969,10 @@
       "sha256": "a35f845cdb75dc733cff523a1b545d296958de66bb2ca41d31580c1c3965bfa2",
       "size": 1730
     },
+    "tests/test_pr16_home_recovery.py": {
+      "sha256": "207268a654ada5e35d626f85a08346bfd5d18c2a0b3f1cabfec98e41cfe04492",
+      "size": 8884
+    },
     "tests/test_pr16_learnset_baseline_record.py": {
       "sha256": "e75566696133c0fd8a65a045dfbe5e644f30d60dc59516b297608ac55b870d7c",
       "size": 9039
@@ -18239,9 +18329,13 @@
       "sha256": "2cab74e5b9e7d339f2ba5beafdc10c040cd2dbb77252a78e2e2649f3666c6ac7",
       "size": 12279
     },
+    "tools/regression/home_recovery.py": {
+      "sha256": "3ce7ab9d117c5e4d907a516bfb6e638dec2453c25eb2d6ed0874565b733d1138",
+      "size": 1790
+    },
     "tools/regression/rom_runtime.py": {
-      "sha256": "8110772b2df98115e4efd353547150171204270965fd7b0f723a8b9b3aa4c7ba",
-      "size": 101835
+      "sha256": "f1ace4562ebea22ca24957e0561f9cc410fc737833e7c1bec467ad48bc569672",
+      "size": 102121
     },
     "tools/research_ui_boundary_shim.c": {
       "sha256": "f2e90b4712f7faf93fddd2eba0964e134136c6259eb3645ec11c4e819e5b834d",

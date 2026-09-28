@@ -8246,3 +8246,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: source-validation run36362293100/job108741716592 failure。artifact10945834648全ZIP一致。25検査23成功2ERROR、後続skipped/upload failure保持。回収native/unit/compile再実行0。
 - Commit: source=7420514edf7b5ab709258b2a13e8cc584182f35b; run=36362454676; 同branchへ非force push。
 - Network: 固定GitHub HEAD/Actions/artifact/APIのみ。一般CI action_required・失敗は別記録。全体private guard成功、merge、release、active baseline変更を主張しない。
+
+## 2026-09-28T01:10:41.142630+00:00
+- Timestamp: 2026-09-28T01:10:41.142630+00:00
+- Task: USER-20260928-HOME-RECOVERY
+- Version: home-recovery-source-v1
+- Status: DONE（原本owner/canonical/専用52検査、native未受入）
+- Summary: 母親previous_script0x0817BCBBを固定Vega原本で確認。未解禁時と渡航辞退時を元会話/回復へ15bytesで委譲し、canonical全179bytes一致と52専用検査を確認。次はtraining.srmから新候補で実会話・回復・Save・独立Continueだけを測定する。研究施設自然到達/実渡航nativeは未受入。旧194/367/301/114入力と旧RP/UI/BP/P08は再生しない。
+- Files changed: mother helper/recipe/52 tests/canonical、専用証拠/MD/JSON、固定引継ぎ、両ログ。
+- Verify: 52 new tests PASS; strict host compile1; ARM/native/accepted-case reruns0; 15byte rollback/outside preservation PASS.
+- Commit: source=4409a5dddf6c4f2f5d08833b35a470fdd544dde3; run=36364944598; same branch non-force.
+- Network: fixed GitHub artifacts/API only. Global private guard/一般CI全PASS/merge/release/baseline変更は主張しない。

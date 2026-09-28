@@ -13,6 +13,7 @@ import pr16_home_recovery as m
 from tools.regression import home_recovery as owner
 from tools.regression import rom_runtime as runtime
 
+@unittest.skipUnless(os.environ.get("PR16_HOME_INPUTS"), "dedicated fixed-input integration suite")
 class HomeRecoveryTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):

@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-PASS_NATURAL_LV7_ABSORB_SAVE_SCOPED
+PASS_HOME_RECOVERY_SOURCE_NATIVE_PENDING
 
-**次: 野生ヒメグマ勝利1回・経験値41・Lv6→7・すいとる自然習得・Save counter4→5と独立Continueを限定受入。経験値245、HP13/23・麻痺・技PP31/30/25が保持。自宅local1はT17渡航の船運休で回復しない事実を実画面/全party/ROM pointer鎖に結合。次は原作Vega/stage16の母親previous_scriptと渡航ownerを照合し、正常回復との共存を最小差分で修正・検証してからtraining.srmで通常進行。研究施設到達は未完。旧194/367/301/114入力・starter/RP/UI/BP/P08は再生しない。**
+**次: 母親previous_script0x0817BCBBを固定Vega原本で確認。未解禁時と渡航辞退時を元会話/回復へ15bytesで委譲し、canonical全179bytes一致と52専用検査を確認。次はtraining.srmから新候補で実会話・回復・Save・独立Continueだけを測定する。研究施設自然到達/実渡航nativeは未受入。旧194/367/301/114入力と旧RP/UI/BP/P08は再生しない。**
 
-run36362293129の全11必須stepとartifact10946201851は確認済み。training.srmのsize/SHAと固定candidate/runtime/runnerを確認してContinue。map3/0(4,27)/Lv7/EXP245/HP13/23・麻痺/counter5/すいとる25/25/道具0から先だけを進め、成功194入力と旧受入を再実行しない。trainer勝利/研究到達/配布へ昇格しない。merge/release/baseline変更禁止。
+source build artifactと終端を確認。正式native runが存在したら回収のみ。training.srmの作業コピーから新しい回復区間のみ。旧候補/Save/受入を改変しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `67e9cc46f50222e19799244598d65534360c53fd`。
-Lv7自然習得新区間を独立測定したsource HEAD。全11必須step・後継Save/RTC・56画面・commit原本を content/modernization/pr16_research_story_training_terminal.json で外部確認。自己記録commitや製品最終SHAではない。
+証拠のsource HEAD: `4409a5dddf6c4f2f5d08833b35a470fdd544dde3`。
+source統合worktreeの出発HEAD。builderの前後bindingと全試験sourceは専用checkpointへ固定。native受入/最終製品SHAではない。
 
 ## 最短の再開手順
 
@@ -25,10 +25,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_RESEARCH_STORY_TRAINING_JA.md`
-- `content/modernization/pr16_research_story_training_checkpoint.json`
-- `content/modernization/pr16_research_story_training_terminal.json`
-- `scripts/pr16_research_story_training.py`
+- `docs/PR16_HOME_RECOVERY_JA.md`
+- `content/modernization/pr16_home_recovery_checkpoint.json`
+- `scripts/pr16_home_recovery.py`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -62,6 +61,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- 原本owner照合と母親15byte source修正は content/modernization/pr16_home_recovery_checkpoint.json。52専用試験はこのsource runで測定済み。次は回復の新native区間だけ。旧完走入力は再生しない。
 - 自然習得保存の完走194入力は content/modernization/pr16_research_story_training_checkpoint.json。次はtraining.srmのmap3/0(4,27)/Lv7/経験値245/HP13/23・麻痺/道具0からだけ。旧受入は再生しない。
 - 自然習得開発原本 content/modernization/pr16_research_story_training_development/verification.json を保持。194入力/56画面/native2/新86検査。正式runができた後は新たな入力をtraining.srmから行い、成功した区間を再生しない。
 - 成長保存の完走367入力は content/modernization/pr16_research_story_growth_checkpoint.json。次はgrowth.srmのmap3/0(4,27)/Lv6/経験値204/道具0からだけ。旧受入は再生しない。

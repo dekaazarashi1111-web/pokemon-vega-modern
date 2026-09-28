@@ -1,0 +1,9 @@
+# PR16 母親回復と渡航の共存
+
+母親previous_script0x0817BCBBを固定Vega原本で確認。未解禁時と渡航辞退時を元会話/回復へ15bytesで委譲し、canonical全179bytes一致と52専用検査を確認。次はtraining.srmから新候補で実会話・回復・Save・独立Continueだけを測定する。研究施設自然到達/実渡航nativeは未受入。旧194/367/301/114入力と旧RP/UI/BP/P08は再生しない。
+
+原本取得run36363658910、artifact10946690893。元script/会話1024bytes・回復subscript12bytes・movement8bytesは現候補と原本で一致。NPC位置・解禁flag・承諾時渡航・帰還・保存codeは不変。goto委譲のみで回復を注入しない。旧locked text領域と全symbol配置は保持。
+
+候補SHA 06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5。52試験、全ROM rollback、変更外不変、16通りのflag/yes-no、canonical一致を確認。driverは候補SHAを固定したCから通常compileし、実行ファイルは書換えない。初期探索の実行ファイル文字列更新方式は正式採用しない。
+
+このsource checkpointはnative受入ではない。一般CIの既存失敗/action_requiredとは区別する。merge/release/active baseline変更は禁止。
