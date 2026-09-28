@@ -1,0 +1,306 @@
+{
+  "schema_version": 1,
+  "method": "DIRECT_PIXEL_REVIEW_NO_OCR",
+  "scope_ja": "Save9後の新規通常用品供給とSave10のみ。既存育成/勝敗区間は再生していない。",
+  "input_save": {
+    "size": 131088,
+    "sha256": "524df8da2e6e45b6a1d9dc0446e600740a79ff772c56a8423413994c09b32063"
+  },
+  "output_save": {
+    "size": 131088,
+    "sha256": "c2c08321b12ef4b5039884d9e4155eb32a614415bb68a1497758cdedfb9000c0"
+  },
+  "claims": {
+    "poke_balls_received": 5,
+    "poke_balls_before": 0,
+    "poke_balls_after": 5,
+    "ordinary_gift": true,
+    "repeat_gift_before_save": false,
+    "repeat_gift_after_continue": false,
+    "wild_victories": 0,
+    "trainer_victories": 0,
+    "losses": 0,
+    "escapes": 0,
+    "captures": 0,
+    "experience_gained": 0,
+    "ordinary_saves": 1,
+    "natural_research_arrival": false,
+    "full_story": false,
+    "release_ready": false
+  },
+  "progress_end": {
+    "end": "STORY_INPUT_CHECKPOINT",
+    "frames": 16486,
+    "inputs": 218,
+    "warnings_errors": 0,
+    "host_write_barriers": 7,
+    "guarded_host_writes": 0,
+    "fixture_calls": 0,
+    "natural_research_arrival_accepted": false
+  },
+  "continue_end": {
+    "end": "STORY_INPUT_CHECKPOINT",
+    "frames": 4608,
+    "inputs": 62,
+    "warnings_errors": 0,
+    "host_write_barriers": 7,
+    "guarded_host_writes": 0,
+    "fixture_calls": 0,
+    "natural_research_arrival_accepted": false
+  },
+  "screen_count": 77,
+  "full_image_pairs": [
+    [
+      26,
+      1
+    ],
+    [
+      27,
+      2
+    ],
+    [
+      44,
+      7
+    ],
+    [
+      48,
+      7
+    ],
+    [
+      50,
+      9
+    ],
+    [
+      51,
+      10
+    ],
+    [
+      52,
+      11
+    ],
+    [
+      45,
+      4
+    ],
+    [
+      46,
+      5
+    ],
+    [
+      47,
+      6
+    ],
+    [
+      63,
+      0
+    ],
+    [
+      63,
+      12
+    ]
+  ],
+  "party_list_animation": {
+    "progress": 49,
+    "continued": 8,
+    "different_pixels": 358,
+    "bounds_inclusive": [
+      10,
+      32,
+      37,
+      54
+    ],
+    "full_image_equal": false,
+    "scope_ja": "全画面一致とはしない。差分はsprite表示矩形のみ。HP/名前/残party領域は全pixel一致。全600partybytesも保存/Continueで一致。"
+  },
+  "cold_anchors": [
+    {
+      "screen": 0,
+      "sha256": "acb3a3b8a590589759fc1237804e7684302e341a8556f148a11d9440ae730f48",
+      "note_ja": "独立ContinueでSave10の位置/party/Flashを復元。"
+    },
+    {
+      "screen": 3,
+      "sha256": "e0966d1e6aef806e8045adb37053a586c98c2dd160cfa0a8850de7ca88f91897",
+      "note_ja": "初回coldバッグのボール×5。"
+    },
+    {
+      "screen": 7,
+      "sha256": "9ebd61fb5a37714ee923e985810346e9032306ed7eda6d433b2ad7e9d492cb82",
+      "note_ja": "cold再会話後もボール×5、贈与直後と全pixel一致。"
+    },
+    {
+      "screen": 8,
+      "sha256": "50fa3c5b3ea9b846fd084eaf79ae9e9e324c57f756aa754f1ae627134872a3c1",
+      "note_ja": "HP26/26、手持ち1体。"
+    },
+    {
+      "screen": 12,
+      "sha256": "acb3a3b8a590589759fc1237804e7684302e341a8556f148a11d9440ae730f48",
+      "note_ja": "cold終了も同じunlocked field。全Save/RTCは起動前後一致。"
+    }
+  ],
+  "anchors": [
+    {
+      "screen": 0,
+      "sha256": "e8bccedd6d971cb3cd1aaa63f2f5e0aede6465004fb8c3f10865ed311bebcfc6",
+      "note_ja": "Save9の正式親から開始。home、Lv9/HP26、party1。"
+    },
+    {
+      "screen": 6,
+      "sha256": "0124dd0e1d17ac1f59f4403f189be5e209b206dd0497f9174465f73803ef58f0",
+      "note_ja": "通常徒歩で初期研究室map4/3へ。対象の研究施設到達ではない。"
+    },
+    {
+      "screen": 13,
+      "sha256": "7c90d16a854eb03ff6e7e63b8ec1ee2fa5f3cd97893deefcfc8fbc88b2a89a1f",
+      "note_ja": "博士の図鑑評価: 見つけた7/捕まえた1。新しい捕獲ではない。"
+    },
+    {
+      "screen": 26,
+      "sha256": "66a723f4574b22ff66acaea23d0a1e847a9371953d4a2ccc696a3c124a9ee4ff",
+      "note_ja": "道具pocketは空。"
+    },
+    {
+      "screen": 27,
+      "sha256": "17a47499f0be459cd7a39029f6cec42ca758bd9fbba56901c38e65090e74199e",
+      "note_ja": "大切なものはタウンマップ。"
+    },
+    {
+      "screen": 28,
+      "sha256": "4972dba8ab751ae67f5a8dd93c5a529ce022ca1711f3afb368745cd2021d4a32",
+      "note_ja": "供給前のモンスターボールpocketは空。"
+    },
+    {
+      "screen": 31,
+      "sha256": "5156817a248563c54878188f4935b3eb8a75b6f384654b42a0d01ed07650df35",
+      "note_ja": "501番道路の民家map32/2へ通常徒歩で入る。"
+    },
+    {
+      "screen": 33,
+      "sha256": "9df908624f9a57d14031b7b1363209740f91825b65cc1bff54cb03c6cb5f4384",
+      "note_ja": "祖母の説明は捕獲の方法。用品取得の画面ではない。"
+    },
+    {
+      "screen": 37,
+      "sha256": "8130b1db9f10b7efa8cab0d78c802def5f8d47b742b3835066607a98bdce582b",
+      "note_ja": "民家の女性への初回通常会話。"
+    },
+    {
+      "screen": 39,
+      "sha256": "841b35a0e3f29161c252c5a443ffe4816c0b1fa9f9d7ccb4848a541ac87138de",
+      "note_ja": "手持ち1体で来たことへの言及。"
+    },
+    {
+      "screen": 41,
+      "sha256": "83404eb7afa2276cfff7802c14c49d5b17cf1e1d2ec40921d3bbdb30f48c5f30",
+      "note_ja": "初回会話の「これをもっていきなさい」。"
+    },
+    {
+      "screen": 42,
+      "sha256": "684e198336a5bee787cef3740a418e17637eee7fec3a52a0546fe8d7c063b981",
+      "note_ja": "贈与処理中の空text。アイテム名の受取表示を読んだとは主張しない。"
+    },
+    {
+      "screen": 43,
+      "sha256": "8d3f16ca33882fe6ca2727ccf417bdad93ce998af145e193eb62c7acc17c0f94",
+      "note_ja": "初回会話の贈与後text。"
+    },
+    {
+      "screen": 44,
+      "sha256": "9ebd61fb5a37714ee923e985810346e9032306ed7eda6d433b2ad7e9d492cb82",
+      "note_ja": "贈与後のバッグにモンスターボール×5。"
+    },
+    {
+      "screen": 45,
+      "sha256": "6a24babfc5ef807d6e00923733cef7b6b9e9df8a161799e18abd7c65e2e6e8a0",
+      "note_ja": "再会話はホウエン地方の話。"
+    },
+    {
+      "screen": 46,
+      "sha256": "2e31ed617948c374be20283388e093370da2b03cc89803243231b875114d2972",
+      "note_ja": "再会話はチャンピオンだったことへの言及。"
+    },
+    {
+      "screen": 47,
+      "sha256": "91144145c587a8cb97bd4c4e4f55203478465b46bd55a09804463c79b967bd41",
+      "note_ja": "再会話はツキカゲのファンというtext。"
+    },
+    {
+      "screen": 48,
+      "sha256": "9ebd61fb5a37714ee923e985810346e9032306ed7eda6d433b2ad7e9d492cb82",
+      "note_ja": "再会話後もボール×5。初回贈与後画面と全pixel一致。"
+    },
+    {
+      "screen": 49,
+      "sha256": "078d05abd83bf504ac9a6d3029b1a048953b623e1dfc6c9c67cff8d924bfd020",
+      "note_ja": "手持ち1体/Lv9/HP26/26。cold側とはsprite animationだけ異なる。"
+    },
+    {
+      "screen": 50,
+      "sha256": "b326be6d2db7ab9f5a374d6b6cb9fbbc6f3ad6a9b0599643872ae51fd686419b",
+      "note_ja": "リープン/草/持ち物なし。"
+    },
+    {
+      "screen": 51,
+      "sha256": "c79ab4b154f08ec495ab1750c3f38f15765d478a1a604d9fa44cacfa13863a72",
+      "note_ja": "EXP450、次Lv110、HP26/26、攻16防13特攻17特防14速18。"
+    },
+    {
+      "screen": 52,
+      "sha256": "226c163b3d2e97ec389a27acfa4c2b43eaee6e4e71e41d9e72d8976274bdea9f",
+      "note_ja": "ひっかく35/35、しっぽをふる30/30、すいとる25/25。"
+    },
+    {
+      "screen": 54,
+      "sha256": "ccf04787478e01152d823036270121a73644817aee82ad21c35a2b6da3a4b2f4",
+      "note_ja": "保存確認の地名は501ばんどうろ。502という開発中の呼称を訂正。"
+    },
+    {
+      "screen": 55,
+      "sha256": "28e9c4d37127eabcec859ef970f83f946cc96ab8c579417dba0d3fd7e320b5ec",
+      "note_ja": "通常上書き確認。"
+    },
+    {
+      "screen": 56,
+      "sha256": "dba4454be4fca3280f3173533b94ff538a2fc79044d0218137eaecd217039f4f",
+      "note_ja": "通常書込中。"
+    },
+    {
+      "screen": 62,
+      "sha256": "8fad9c65f34121cad35f210aa968b4f128c4ae6a1e4e4744d77f8bf8bf2e3edb",
+      "note_ja": "実レポート完了text、counter10、最終Flash。"
+    },
+    {
+      "screen": 63,
+      "sha256": "acb3a3b8a590589759fc1237804e7684302e341a8556f148a11d9440ae730f48",
+      "note_ja": "書込後のunlocked field、map32/2(4,3)、下向き。"
+    }
+  ],
+  "files": {
+    "commands.txt": {
+      "size": 2618,
+      "sha256": "0021f95038e2996b07d531bc5c08b50f60193651921eb3b006dfc79d3b2634b3"
+    },
+    "continue-commands.txt": {
+      "size": 583,
+      "sha256": "50a6525541607cad015e08d3952e40658e23fc1caf544893c940fdca48f8202c"
+    },
+    "progress.stdout.txt": {
+      "size": 46070,
+      "sha256": "4e187b094038fb2db3a2eeefc939233ea34865bb29909ece47c35029c35c74c9"
+    },
+    "continue.stdout.txt": {
+      "size": 10424,
+      "sha256": "863682ccda6cf2c9a06d1037fdb70e31d414733264ec26f6bbbfdaa0eaf594cc"
+    }
+  },
+  "accounting": {
+    "development_native_processes": 2,
+    "accepted_native_reruns": 0,
+    "host_compiles": 0,
+    "arm_compiles": 0,
+    "rom_changes": 0,
+    "guarded_host_writes": 0,
+    "fixture_calls": 0
+  }
+}
