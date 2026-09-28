@@ -1,6 +1,6 @@
 {
   "accepted_case_reruns": 0,
-  "actions_completion_confirmed": false,
+  "actions_completion_confirmed": true,
   "active_baseline_changed": false,
   "arm_compiles": 0,
   "candidate": {
@@ -23,6 +23,7 @@
   },
   "commands": "quit\n",
   "completed_segment_replay_required": false,
+  "completion_head": "fd76df97fda7227d1a1e5360f7cbe5c0b238526d",
   "continued": {
     "battle_flags": 0,
     "battle_outcome": 0,
@@ -125,7 +126,21 @@
   "parent_checkpoint": "content/modernization/pr16_story_safe_training_checkpoint.json",
   "party_count": 1,
   "release_ready": false,
-  "retained_artifact_id": null,
+  "retained_artifact": {
+    "digest": "sha256:4cca4769455a8e0f5791c1bc38ef264332931fb8a71a0f5d99f8f3d94a9f789b",
+    "expires_at": "2026-12-27T10:12:58Z",
+    "id": 10963436148,
+    "name": "pr16-story-save9-checkpoint",
+    "size_in_bytes": 18606567,
+    "workflow_run": {
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_repository_id": 1358127462,
+      "head_sha": "be27b66e1486c28cdf9e2c40009359f2072881da",
+      "id": 36408354430,
+      "repository_id": 1358127462
+    }
+  },
+  "retained_artifact_id": 10963436148,
   "retained_artifact_name": "pr16-story-save9-checkpoint",
   "rom_changes": 0,
   "rp": 0,
@@ -170,7 +185,8 @@
     }
   },
   "source_head": "be27b66e1486c28cdf9e2c40009359f2072881da",
-  "status": "PASS_STORY_SAVE9_PENDING_TERMINAL",
+  "status": "PASS_STORY_SAVE9_SCOPED",
+  "terminal_receipt": "content/modernization/pr16_story_save9_terminal.json",
   "trainer_victories": 0,
   "wild_escapes": 2,
   "wild_victories": 3,

@@ -6,7 +6,7 @@
 
 ## いまの停止点と次の1手
 
-PASS_STORY_SAVE9_PENDING_TERMINAL
+PASS_STORY_SAVE9_SCOPED
 
 **次: Save9のtraining.srm作業コピーから先だけ進める。リープンLv9/EXP450、次Lvまで110、HP26/26、PP35/30/25、手持ち1体、RP0、map4/0(8,5)。Save8からの野生3勝119EXP・通常逃走2回・母親回復2回・通常Save8→9完了表示・独立Continueを確認。捕獲/トレーナー勝利0。次は自然な用品入手/手持ち拡充または追加育成を経て、東側道路map3/19のマオリ/通常ストーリーへ。マオリ勝利/研究施設自然到達/実渡航/全story/releaseは未完。本区間363/cold34、親316/cold34とそれ以前の既受入nativeを再生しない。**
 

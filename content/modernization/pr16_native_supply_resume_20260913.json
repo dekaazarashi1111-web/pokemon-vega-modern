@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "PASS_STORY_SAVE9_PENDING_TERMINAL",
+    "current_stop": "PASS_STORY_SAVE9_SCOPED",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -4375,13 +4375,13 @@
         "status": "completed"
       },
       {
-        "conclusion": null,
+        "conclusion": "failure",
         "head_branch": "codex/modernization-followup-20260908",
         "head_sha": "be27b66e1486c28cdf9e2c40009359f2072881da",
         "id": 36408353840,
         "path": ".github/workflows/ci.yml",
         "run_attempt": 1,
-        "status": "in_progress"
+        "status": "completed"
       },
       {
         "conclusion": "success",
@@ -4402,22 +4402,22 @@
         "status": "completed"
       },
       {
-        "conclusion": null,
+        "conclusion": "success",
         "head_branch": "codex/modernization-followup-20260908",
         "head_sha": "be27b66e1486c28cdf9e2c40009359f2072881da",
         "id": 36408354430,
         "path": ".github/workflows/pr16-story-save9.yml",
         "run_attempt": 1,
-        "status": "in_progress"
+        "status": "completed"
       },
       {
-        "conclusion": null,
+        "conclusion": "failure",
         "head_branch": "codex/modernization-followup-20260908",
         "head_sha": "be27b66e1486c28cdf9e2c40009359f2072881da",
         "id": 36408362956,
         "path": ".github/workflows/ci.yml",
         "run_attempt": 1,
-        "status": "in_progress"
+        "status": "completed"
       },
       {
         "conclusion": "success",
@@ -4427,6 +4427,60 @@
         "path": ".github/workflows/p03-forgetting-ci.yml",
         "run_attempt": 1,
         "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "e39f4268b645fd9c76f89c4b7844b445d57cc0d1",
+        "id": 36408677939,
+        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+        "run_attempt": 1,
+        "status": "completed"
+      },
+      {
+        "conclusion": null,
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "e39f4268b645fd9c76f89c4b7844b445d57cc0d1",
+        "id": 36408678073,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "run_attempt": 1,
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "e39f4268b645fd9c76f89c4b7844b445d57cc0d1",
+        "id": 36408678103,
+        "path": ".github/workflows/pr16-story-save9-terminal.yml",
+        "run_attempt": 1,
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "e39f4268b645fd9c76f89c4b7844b445d57cc0d1",
+        "id": 36408678154,
+        "path": ".github/workflows/ci.yml",
+        "run_attempt": 1,
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "e39f4268b645fd9c76f89c4b7844b445d57cc0d1",
+        "id": 36408690460,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "run_attempt": 1,
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "e39f4268b645fd9c76f89c4b7844b445d57cc0d1",
+        "id": 36408690552,
+        "path": ".github/workflows/ci.yml",
+        "run_attempt": 1,
+        "status": "in_progress"
       }
     ],
     "scope_head": "be27b66e1486c28cdf9e2c40009359f2072881da"
@@ -5907,19 +5961,29 @@
   },
   "pending_runs": [
     {
-      "run_id": 36408353840,
+      "run_id": 36408678073,
       "status": "in_progress",
-      "tested_head": "be27b66e1486c28cdf9e2c40009359f2072881da"
+      "tested_head": "e39f4268b645fd9c76f89c4b7844b445d57cc0d1"
     },
     {
-      "run_id": 36408354430,
+      "run_id": 36408678103,
       "status": "in_progress",
-      "tested_head": "be27b66e1486c28cdf9e2c40009359f2072881da"
+      "tested_head": "e39f4268b645fd9c76f89c4b7844b445d57cc0d1"
     },
     {
-      "run_id": 36408362956,
+      "run_id": 36408678154,
       "status": "in_progress",
-      "tested_head": "be27b66e1486c28cdf9e2c40009359f2072881da"
+      "tested_head": "e39f4268b645fd9c76f89c4b7844b445d57cc0d1"
+    },
+    {
+      "run_id": 36408690460,
+      "status": "in_progress",
+      "tested_head": "e39f4268b645fd9c76f89c4b7844b445d57cc0d1"
+    },
+    {
+      "run_id": 36408690552,
+      "status": "in_progress",
+      "tested_head": "e39f4268b645fd9c76f89c4b7844b445d57cc0d1"
     }
   ],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
@@ -8708,6 +8772,10 @@
       "sha256": "5405678c5cdb6a81612b212b099b37bc42038ce2c00c5c564ab5fcf6c7287c27",
       "size": 4956
     },
+    ".github/workflows/pr16-story-save9-terminal.yml": {
+      "sha256": "d09b0051e180fa96ff6bb0fba9428017811c9c87d16b91d921bcff08b53846a3",
+      "size": 2166
+    },
     ".github/workflows/pr16-story-save9.yml": {
       "sha256": "55010edf85c501263c07f2818b7d10abe249d2b2526c98d8aa90a2ae98757d74",
       "size": 2720
@@ -11269,8 +11337,8 @@
       "size": 5433
     },
     "content/modernization/pr16_story_save9_checkpoint.json": {
-      "sha256": "c8538aee326aff335b2ba1eb4e1fff7471d6c835826b5e0711a13e6804e545fe",
-      "size": 5024
+      "sha256": "cf658c2fa47ba238672704713ea5ad3b1baf6abbe8a56ec769bf2de3964d0463",
+      "size": 5672
     },
     "content/modernization/pr16_story_save9_development/commands.txt": {
       "sha256": "1fde910ea7ccd33a1d1549ab8f9b988b43bc02d3050499e18682ca45b558f937",
@@ -11285,8 +11353,8 @@
       "size": 7824
     },
     "content/modernization/pr16_story_save9_development_checkpoint.json": {
-      "sha256": "bb03c163ce823184c7f9a523b4fb39813de3b522d06b5f8b045726eabd1727e4",
-      "size": 5795
+      "sha256": "57ce080b7a59d0d896917062a52037fdb9b02d8f650cefd820aee19e409ef09e",
+      "size": 5855
     },
     "content/modernization/pr16_story_save9_evidence/36408354430/artifact-10898620034.json": {
       "sha256": "d32ecff89318efe1b9889de01413f2c1ada00b4e1e8b0f23109fea3e159d112e",
@@ -11359,6 +11427,10 @@
     "content/modernization/pr16_story_save9_evidence/36408354430/verification.json": {
       "sha256": "ac26d18c1234b46fe4822a19001949a6bfc90c1d77fef2eecc00dabba7a45555",
       "size": 7824
+    },
+    "content/modernization/pr16_story_save9_terminal.json": {
+      "sha256": "fe9a7f7937a72b5bb76540ee961437b38e1dd295a7f3099eff1bd1a074a48462",
+      "size": 5328
     },
     "content/modernization/pr16_vega_adjudication/adopted_vega_original_baseline.jsonl": {
       "sha256": "9daaea8c97a744c0522afc03c157392b3179b5d0a359df97de2f3b1c0da6524f",
@@ -11689,8 +11761,8 @@
       "size": 2767
     },
     "docs/PR16_STORY_SAVE9_JA.md": {
-      "sha256": "29e924c5be0cff52f8cef7f0a44244b2a8bfa3ec61dfd552740bb08ed94155cc",
-      "size": 2959
+      "sha256": "61734b028e912a8cb8952376730c67ba598bb5f00056f4351bf0296626041e44",
+      "size": 3222
     },
     "docs/PR16_VEGA_ORIGINAL_AUDIT_JA.md": {
       "sha256": "b9ee1dd32da36d9fe3d04aa1663afa0f2e6cc37aef491437dd2443a5870fb2d4",
@@ -19147,7 +19219,7 @@
     "wild_victories": 3
   },
   "story_save9": {
-    "actions_completion_confirmed": false,
+    "actions_completion_confirmed": true,
     "candidate": {
       "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5",
       "size": 33554432
@@ -19160,10 +19232,10 @@
       "size": 131088
     },
     "path": "content/modernization/pr16_story_save9_checkpoint.json",
-    "retained_artifact_id": null,
+    "retained_artifact_id": 10963436148,
     "run_id": 36408354430,
     "source_head": "be27b66e1486c28cdf9e2c40009359f2072881da",
-    "status": "PASS_STORY_SAVE9_PENDING_TERMINAL",
+    "status": "PASS_STORY_SAVE9_SCOPED",
     "trainer_victories": 0,
     "wild_victories": 3
   },

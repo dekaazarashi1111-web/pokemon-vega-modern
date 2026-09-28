@@ -19,3 +19,7 @@ Start→レポート→書込確認→上書き確認→書込中→「しっか
 新区間363入力31080frames・独立Continue34入力2808frames、74画面、30直接目視anchor、76新検査PASS。開発native2/76検査と正式native2/76検査を分離。終端回収は保存原本を読むだけでnative/test再実行0。ROM/runner/既受入source/active baselineを変更せず、旧Save8生成316/cold34やそれ以前の受入nativeを明示再実行しない。次は後継Save9から先だけ。実行中の観測待機不足は待機延長で回収し、キー再送やprocess再起動は行わなかった。
 
 正式source `be27b66e1486c28cdf9e2c40009359f2072881da`、run `36408354430`。終端は別のAPI回収で確認する。
+
+## Actions終端確認済み
+
+全11step成功。artifact `10963436148`、completion `fd76df97fda7227d1a1e5360f7cbe5c0b238526d`。全74画面/保存原本/76検査原本/commit textを照合。native/test再実行0。次は後継Save9 training.srmからのみ。
