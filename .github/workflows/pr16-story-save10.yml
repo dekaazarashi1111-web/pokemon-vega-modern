@@ -16,6 +16,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     env:
+      GITHUB_TOKEN: ${{ github.token }}
       GH_TOKEN: ${{ github.token }}
       PYTHONDONTWRITEBYTECODE: '1'
     steps:
@@ -26,8 +27,18 @@ jobs:
         run: python3 -B scripts/pr16_resume.py check
       - name: New 218-input interval and independent cold62 only
         run: python3 -B scripts/pr16_story_save10_actions.py measure
-      - name: Record Save10 evidence and synchronized handoff
-        run: python3 -B scripts/pr16_story_save10_actions.py record
+      - name: Preserve pre-native failure and record Save10 evidence
+        run: |
+          python3 -B - <<'PY'
+          import sys
+          sys.path.insert(0,'scripts')
+          import pr16_story_save10_actions as a
+          run=a.d.inputs.api('actions/runs/36423263440')
+          jobs=a.d.inputs.api('actions/runs/36423263440/jobs?per_page=100')
+          a.m.need(run['head_sha']=='90429295e8d7b9e473779d7e7a466e8e20443818' and run['status']=='completed' and run['conclusion']=='failure','preserve failed preflight')
+          a.write(a.PUBLIC/'preflight-failure.json',dict(run=a.d.run_summary(run),jobs=jobs,reason_ja='d.currentでGITHUB_TOKEN未設定のKeyError。native/テスト/入力artifact取得より前に停止。GH_TOKENだけを渡していたworkflowを修正。失敗を成功へ改作しない。',new_native_processes=0,new_test_executions=0))
+          PY
+          python3 -B scripts/pr16_story_save10_actions.py record
       - name: Task graph and scoped final index
         run: |
           python3 -B scripts/validate_task_graph.py --check
