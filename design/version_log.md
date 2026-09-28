@@ -8480,3 +8480,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: source=96e9dd07d172f3791b1fab1ab803b2dfa1bf042a; run=36487441645; 同branch非force push/readback。WIP984ed574で停止点、04d0ae01/e48ab93f/b0d8c9b4で検証器/試験/目視原本を先行保存。
 - Network: GitHub HEAD/Actions/artifactのみ。Save13正式run36439214540/終端run36484123426を継承。一般CIの既存capacity failure/action_requiredは改作しない。merge/release/active baseline変更0。
 - Next: native/110試験を再実行せず、今回Actionsの全step・97画面/Save原本artifact・記録commitを終端確認する。その後 Save14のtraining.srm作業コピーから先だけ進める。自宅map4/0(8,5)上向き、ツツケラLv4/EXP80/HP17/17/PP35/40、リープンLv9/EXP516（次Lv44）/HP26/26/PP35/30/25。手持ち2、ボール3、2776円、RP0。野生ツツケラ雌Lv5へ1勝、味方ツツケラひんし1、全滅0。母親で回復し通常Save13→14と独立Continue全Save/RTC保持を確認。飛行技はリープンに効果抜群だったため、危険な育成交代を漫然と反復せず通常育成/用品・手持ちを整えてマオリ/通常storyへ進む。トレーナー勝利/研究施設自然到達/図鑑統合/全story/release未完。新303/cold40とSave13の255/cold40等の受入済み区間を再生しない。
+
+## 2026-09-28T21:40:49.543757+00:00
+- Timestamp: 2026-09-28T21:40:49.543757+00:00
+- Task: USER-20260929-STORY-SAVE14 / Save14終端確認
+- Version: story-save14-v1
+- Status: DONE（Save14限定。終端原本確認済み。マオリ/研究施設/図鑑統合/全story/release未受入）
+- Summary: Save13から野生ツツケラ雌Lv5へ通常交代2回。味方ツツケラがひんし、リープンへ通常の強制交代1回で1勝。全滅/捕獲/逃走0。ツツケラEXP80不変、リープン479→516。母親回復4bytesと最終party変更3bytesを分離。Save13→14、前回bank57344bytes/未使用party400bytes、全5bag pocket/ボール3/2776円/RP0保持。独立Continue全131088Save/RTCと7画面一致。RAM時計12→13分だけの差も証明。
+- Files changed: Save14後継検証器/110試験/入力・97目視原本/Actions/証拠/checkpoint/guide、固定引継ぎMD/JSON、両ログ。ROM/save/runner/画像は非tracked artifactのみ。
+- Verify: 専用run全step・ZIP全97画面/Save/110試験/commitを照合。新native0/test0。 味方ひんし35/相手ひんし41/EXP42を終端とせずfield43だけで1勝。保存中81..84と完了85/解除86を分離。図鑑誤選択No???/7-1/レポート1匹も保持。resume/task graph/scoped final indexを確認し、一般CI全体成功や一般sector checksum対応は主張しない。旧受入再実行0、ROM/runner/compile変更0。
+- Commit: source=b75a619ccdf0d7d1aac1f288517ca83d183f544d; run=36487654590; 同branch非force push/readback。WIP984ed574で停止点、04d0ae01/e48ab93f/b0d8c9b4で検証器/試験/目視原本を先行保存。
+- Network: GitHub HEAD/Actions/artifactのみ。Save13正式run36439214540/終端run36484123426を継承。一般CIの既存capacity failure/action_requiredは改作しない。merge/release/active baseline変更0。
+- Next: Save14のtraining.srm作業コピーから先だけ進める。自宅map4/0(8,5)上向き、ツツケラLv4/EXP80/HP17/17/PP35/40、リープンLv9/EXP516（次Lv44）/HP26/26/PP35/30/25。手持ち2、ボール3、2776円、RP0。野生ツツケラ雌Lv5へ1勝、味方ツツケラひんし1、全滅0。母親で回復し通常Save13→14と独立Continue全Save/RTC保持を確認。飛行技はリープンに効果抜群だったため、危険な育成交代を漫然と反復せず通常育成/用品・手持ちを整えてマオリ/通常storyへ進む。トレーナー勝利/研究施設自然到達/図鑑統合/全story/release未完。新303/cold40とSave13の255/cold40等の受入済み区間を再生しない。

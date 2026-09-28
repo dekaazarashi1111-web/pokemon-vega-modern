@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "PASS_STORY_SAVE14_PENDING_TERMINAL",
+    "current_stop": "PASS_STORY_SAVE14_SCOPED",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "native/110試験を再実行せず、今回Actionsの全step・97画面/Save原本artifact・記録commitを終端確認する。その後 Save14のtraining.srm作業コピーから先だけ進める。自宅map4/0(8,5)上向き、ツツケラLv4/EXP80/HP17/17/PP35/40、リープンLv9/EXP516（次Lv44）/HP26/26/PP35/30/25。手持ち2、ボール3、2776円、RP0。野生ツツケラ雌Lv5へ1勝、味方ツツケラひんし1、全滅0。母親で回復し通常Save13→14と独立Continue全Save/RTC保持を確認。飛行技はリープンに効果抜群だったため、危険な育成交代を漫然と反復せず通常育成/用品・手持ちを整えてマオリ/通常storyへ進む。トレーナー勝利/研究施設自然到達/図鑑統合/全story/release未完。新303/cold40とSave13の255/cold40等の受入済み区間を再生しない。",
+    "next_step": "Save14のtraining.srm作業コピーから先だけ進める。自宅map4/0(8,5)上向き、ツツケラLv4/EXP80/HP17/17/PP35/40、リープンLv9/EXP516（次Lv44）/HP26/26/PP35/30/25。手持ち2、ボール3、2776円、RP0。野生ツツケラ雌Lv5へ1勝、味方ツツケラひんし1、全滅0。母親で回復し通常Save13→14と独立Continue全Save/RTC保持を確認。飛行技はリープンに効果抜群だったため、危険な育成交代を漫然と反復せず通常育成/用品・手持ちを整えてマオリ/通常storyへ進む。トレーナー勝利/研究施設自然到達/図鑑統合/全story/release未完。新303/cold40とSave13の255/cold40等の受入済み区間を再生しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -4238,9 +4238,9 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "native/110試験を再実行せず、今回Actionsの全step・97画面/Save原本artifact・記録commitを終端確認する。その後 Save14のtraining.srm作業コピーから先だけ進める。自宅map4/0(8,5)上向き、ツツケラLv4/EXP80/HP17/17/PP35/40、リープンLv9/EXP516（次Lv44）/HP26/26/PP35/30/25。手持ち2、ボール3、2776円、RP0。野生ツツケラ雌Lv5へ1勝、味方ツツケラひんし1、全滅0。母親で回復し通常Save13→14と独立Continue全Save/RTC保持を確認。飛行技はリープンに効果抜群だったため、危険な育成交代を漫然と反復せず通常育成/用品・手持ちを整えてマオリ/通常storyへ進む。トレーナー勝利/研究施設自然到達/図鑑統合/全story/release未完。新303/cold40とSave13の255/cold40等の受入済み区間を再生しない。",
+    "goal_ja": "Save14のtraining.srm作業コピーから先だけ進める。自宅map4/0(8,5)上向き、ツツケラLv4/EXP80/HP17/17/PP35/40、リープンLv9/EXP516（次Lv44）/HP26/26/PP35/30/25。手持ち2、ボール3、2776円、RP0。野生ツツケラ雌Lv5へ1勝、味方ツツケラひんし1、全滅0。母親で回復し通常Save13→14と独立Continue全Save/RTC保持を確認。飛行技はリープンに効果抜群だったため、危険な育成交代を漫然と反復せず通常育成/用品・手持ちを整えてマオリ/通常storyへ進む。トレーナー勝利/研究施設自然到達/図鑑統合/全story/release未完。新303/cold40とSave13の255/cold40等の受入済み区間を再生しない。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
-    "id": "STORY_SAVE14_TERMINAL_COLLECTION_ONLY",
+    "id": "STORY_TRAINING_AND_MAORI_FROM_SAVE14_NEXT",
     "read_paths": [
       "docs/PR16_STORY_SAVE14_JA.md",
       "content/modernization/pr16_story_save14_checkpoint.json",
@@ -4275,114 +4275,6 @@
         "status": "completed"
       },
       {
-        "conclusion": "failure",
-        "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "0b2700d72e5ceb47e4d9186ce24e94d5efd089e9",
-        "id": 36484123318,
-        "path": ".github/workflows/ci.yml",
-        "run_attempt": 1,
-        "status": "completed"
-      },
-      {
-        "conclusion": "success",
-        "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "0b2700d72e5ceb47e4d9186ce24e94d5efd089e9",
-        "id": 36484123371,
-        "path": ".github/workflows/p03-forgetting-ci.yml",
-        "run_attempt": 1,
-        "status": "completed"
-      },
-      {
-        "conclusion": "success",
-        "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "0b2700d72e5ceb47e4d9186ce24e94d5efd089e9",
-        "id": 36484123426,
-        "path": ".github/workflows/pr16-story-save13-terminal.yml",
-        "run_attempt": 1,
-        "status": "completed"
-      },
-      {
-        "conclusion": "failure",
-        "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "0b2700d72e5ceb47e4d9186ce24e94d5efd089e9",
-        "id": 36484132636,
-        "path": ".github/workflows/ci.yml",
-        "run_attempt": 1,
-        "status": "completed"
-      },
-      {
-        "conclusion": "success",
-        "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "0b2700d72e5ceb47e4d9186ce24e94d5efd089e9",
-        "id": 36484132758,
-        "path": ".github/workflows/p03-forgetting-ci.yml",
-        "run_attempt": 1,
-        "status": "completed"
-      },
-      {
-        "conclusion": "success",
-        "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "984ed574a2411df98ce3c4e52fa0b027af19e2ff",
-        "id": 36485753525,
-        "path": ".github/workflows/p03-forgetting-ci.yml",
-        "run_attempt": 1,
-        "status": "completed"
-      },
-      {
-        "conclusion": "failure",
-        "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "04d0ae012d84a47bb518fcf33e3532247fcd927c",
-        "id": 36486292895,
-        "path": ".github/workflows/ci.yml",
-        "run_attempt": 1,
-        "status": "completed"
-      },
-      {
-        "conclusion": "success",
-        "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "04d0ae012d84a47bb518fcf33e3532247fcd927c",
-        "id": 36486292930,
-        "path": ".github/workflows/p03-forgetting-ci.yml",
-        "run_attempt": 1,
-        "status": "completed"
-      },
-      {
-        "conclusion": "success",
-        "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "04d0ae012d84a47bb518fcf33e3532247fcd927c",
-        "id": 36486293009,
-        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
-        "run_attempt": 1,
-        "status": "completed"
-      },
-      {
-        "conclusion": "success",
-        "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "04d0ae012d84a47bb518fcf33e3532247fcd927c",
-        "id": 36486293149,
-        "path": ".github/workflows/modernization-stage79-mgba.yml",
-        "run_attempt": 1,
-        "status": "completed"
-      },
-      {
-        "conclusion": "failure",
-        "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "04d0ae012d84a47bb518fcf33e3532247fcd927c",
-        "id": 36486301437,
-        "path": ".github/workflows/ci.yml",
-        "run_attempt": 1,
-        "status": "completed"
-      },
-      {
-        "conclusion": "success",
-        "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "04d0ae012d84a47bb518fcf33e3532247fcd927c",
-        "id": 36486301472,
-        "path": ".github/workflows/p03-forgetting-ci.yml",
-        "run_attempt": 1,
-        "status": "completed"
-      },
-      {
         "conclusion": "success",
         "head_branch": "codex/modernization-followup-20260908",
         "head_sha": "e48ab93f73de2e2735a63766fc7e0586ca037312",
@@ -4397,15 +4289,6 @@
         "head_sha": "e48ab93f73de2e2735a63766fc7e0586ca037312",
         "id": 36486386577,
         "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
-        "run_attempt": 1,
-        "status": "completed"
-      },
-      {
-        "conclusion": "failure",
-        "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "e48ab93f73de2e2735a63766fc7e0586ca037312",
-        "id": 36486386694,
-        "path": ".github/workflows/ci.yml",
         "run_attempt": 1,
         "status": "completed"
       },
@@ -4509,22 +4392,22 @@
         "status": "completed"
       },
       {
-        "conclusion": null,
+        "conclusion": "success",
         "head_branch": "codex/modernization-followup-20260908",
         "head_sha": "6485e296526bf3c1c971aeefe521d891d3feb5c3",
         "id": 36487401450,
         "path": ".github/workflows/modernization-stage79-mgba.yml",
         "run_attempt": 1,
-        "status": "in_progress"
+        "status": "completed"
       },
       {
-        "conclusion": null,
+        "conclusion": "failure",
         "head_branch": "codex/modernization-followup-20260908",
         "head_sha": "6485e296526bf3c1c971aeefe521d891d3feb5c3",
         "id": 36487414515,
         "path": ".github/workflows/ci.yml",
         "run_attempt": 1,
-        "status": "in_progress"
+        "status": "completed"
       },
       {
         "conclusion": "cancelled",
@@ -4554,31 +4437,31 @@
         "status": "completed"
       },
       {
-        "conclusion": null,
+        "conclusion": "failure",
         "head_branch": "codex/modernization-followup-20260908",
         "head_sha": "96e9dd07d172f3791b1fab1ab803b2dfa1bf042a",
         "id": 36487441520,
         "path": ".github/workflows/ci.yml",
         "run_attempt": 1,
-        "status": "in_progress"
+        "status": "completed"
       },
       {
-        "conclusion": null,
+        "conclusion": "success",
         "head_branch": "codex/modernization-followup-20260908",
         "head_sha": "96e9dd07d172f3791b1fab1ab803b2dfa1bf042a",
         "id": 36487441645,
         "path": ".github/workflows/pr16-story-save14.yml",
         "run_attempt": 1,
-        "status": "in_progress"
+        "status": "completed"
       },
       {
-        "conclusion": null,
+        "conclusion": "failure",
         "head_branch": "codex/modernization-followup-20260908",
         "head_sha": "96e9dd07d172f3791b1fab1ab803b2dfa1bf042a",
         "id": 36487449110,
         "path": ".github/workflows/ci.yml",
         "run_attempt": 1,
-        "status": "in_progress"
+        "status": "completed"
       },
       {
         "conclusion": "success",
@@ -4588,6 +4471,78 @@
         "path": ".github/workflows/p03-forgetting-ci.yml",
         "run_attempt": 1,
         "status": "completed"
+      },
+      {
+        "conclusion": "action_required",
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "56fbcf3f02a05e9c845cff92331da404f2449664",
+        "id": 36487569582,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "run_attempt": 1,
+        "status": "completed"
+      },
+      {
+        "conclusion": "action_required",
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "56fbcf3f02a05e9c845cff92331da404f2449664",
+        "id": 36487569595,
+        "path": ".github/workflows/ci.yml",
+        "run_attempt": 1,
+        "status": "completed"
+      },
+      {
+        "conclusion": null,
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "b75a619ccdf0d7d1aac1f288517ca83d183f544d",
+        "id": 36487654590,
+        "path": ".github/workflows/pr16-story-save14-terminal.yml",
+        "run_attempt": 1,
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "b75a619ccdf0d7d1aac1f288517ca83d183f544d",
+        "id": 36487654597,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "run_attempt": 1,
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "b75a619ccdf0d7d1aac1f288517ca83d183f544d",
+        "id": 36487654650,
+        "path": ".github/workflows/ci.yml",
+        "run_attempt": 1,
+        "status": "in_progress"
+      },
+      {
+        "conclusion": "success",
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "b75a619ccdf0d7d1aac1f288517ca83d183f544d",
+        "id": 36487654698,
+        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+        "run_attempt": 1,
+        "status": "completed"
+      },
+      {
+        "conclusion": null,
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "b75a619ccdf0d7d1aac1f288517ca83d183f544d",
+        "id": 36487665064,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "run_attempt": 1,
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "b75a619ccdf0d7d1aac1f288517ca83d183f544d",
+        "id": 36487665145,
+        "path": ".github/workflows/ci.yml",
+        "run_attempt": 1,
+        "status": "in_progress"
       }
     ],
     "scope_head": "96e9dd07d172f3791b1fab1ab803b2dfa1bf042a"
@@ -6068,29 +6023,29 @@
   },
   "pending_runs": [
     {
-      "run_id": 36487449110,
+      "run_id": 36487665064,
       "status": "in_progress",
-      "tested_head": "96e9dd07d172f3791b1fab1ab803b2dfa1bf042a"
+      "tested_head": "b75a619ccdf0d7d1aac1f288517ca83d183f544d"
     },
     {
-      "run_id": 36487441645,
+      "run_id": 36487665145,
       "status": "in_progress",
-      "tested_head": "96e9dd07d172f3791b1fab1ab803b2dfa1bf042a"
+      "tested_head": "b75a619ccdf0d7d1aac1f288517ca83d183f544d"
     },
     {
-      "run_id": 36487441520,
+      "run_id": 36487654597,
       "status": "in_progress",
-      "tested_head": "96e9dd07d172f3791b1fab1ab803b2dfa1bf042a"
+      "tested_head": "b75a619ccdf0d7d1aac1f288517ca83d183f544d"
     },
     {
-      "run_id": 36487414515,
+      "run_id": 36487654650,
       "status": "in_progress",
-      "tested_head": "6485e296526bf3c1c971aeefe521d891d3feb5c3"
+      "tested_head": "b75a619ccdf0d7d1aac1f288517ca83d183f544d"
     },
     {
-      "run_id": 36487401450,
+      "run_id": 36487654590,
       "status": "in_progress",
-      "tested_head": "6485e296526bf3c1c971aeefe521d891d3feb5c3"
+      "tested_head": "b75a619ccdf0d7d1aac1f288517ca83d183f544d"
     }
   ],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
@@ -8922,6 +8877,10 @@
     ".github/workflows/pr16-story-save14-prepare.yml": {
       "sha256": "b8c0234a23bd88cf0e95e2638ddf4c4ab974bb1ff5ce589c383875b35ec05689",
       "size": 2756
+    },
+    ".github/workflows/pr16-story-save14-terminal.yml": {
+      "sha256": "280b1d9cc44011e2431620cf96257c4ee4fbf4c0bf3a96d50b6f734f33ba92a7",
+      "size": 2341
     },
     ".github/workflows/pr16-story-save14.yml": {
       "sha256": "51dce9107f5bdc863dc70b0666523fe39116e3c1d5fec2d1033a4e140c13d6a5",
@@ -11908,8 +11867,8 @@
       "size": 3139
     },
     "content/modernization/pr16_story_save14_checkpoint.json": {
-      "sha256": "945eb281193cdab0f21fbb3113cce07d85184580d80a330fa51094570ccdc70a",
-      "size": 6734
+      "sha256": "fe370b9450f057c6d12f69d69436b0706ed2dda14d42ffc7cbab5efb007c8247",
+      "size": 6874
     },
     "content/modernization/pr16_story_save14_development/commands.txt": {
       "sha256": "f47eea9407c3af439afd8c72868f6f7f38f8ad88bd9ee29271be1b831618df6f",
@@ -11995,9 +11954,13 @@
       "sha256": "e47debfa06fda254fc8679cdfc7c0b7d3e6e4217bdedcabf4f7418e981a4f09d",
       "size": 22218
     },
+    "content/modernization/pr16_story_save14_terminal.json": {
+      "sha256": "0dc780630889edfcd55bb1718d17e7c9d668721c0c7bbadea740e2261c98e63e",
+      "size": 5263
+    },
     "content/modernization/pr16_story_save14_working.json": {
-      "sha256": "e4d085c7b25582b14529741ab5e3dd592c5b145b18da16bcfeb3740f66d2f511",
-      "size": 2799
+      "sha256": "1fd6659023f63f0b55fab47cec28f75c33b5531e6d4e62f6b62b86f97c0719b1",
+      "size": 2825
     },
     "content/modernization/pr16_story_save9_checkpoint.json": {
       "sha256": "cf658c2fa47ba238672704713ea5ad3b1baf6abbe8a56ec769bf2de3964d0463",
@@ -12440,8 +12403,8 @@
       "size": 3287
     },
     "docs/PR16_STORY_SAVE14_JA.md": {
-      "sha256": "50f48e4056a3a042bbc5aba1542533cfe98cde17340a45f06d763ddd3654c1a2",
-      "size": 3083
+      "sha256": "90ab2b094ea7dcdff30312c35ba9aadcfa306d66ee20ef6adbc8dc9f6f243f98",
+      "size": 3359
     },
     "docs/PR16_STORY_SAVE9_JA.md": {
       "sha256": "61734b028e912a8cb8952376730c67ba598bb5f00056f4351bf0296626041e44",
@@ -20140,7 +20103,7 @@
     "wild_victories": 1
   },
   "story_save14": {
-    "actions_completion_confirmed": false,
+    "actions_completion_confirmed": true,
     "candidate": {
       "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5",
       "size": 33554432
@@ -20195,10 +20158,10 @@
     ],
     "path": "content/modernization/pr16_story_save14_checkpoint.json",
     "poke_balls": 3,
-    "retained_artifact_id": null,
+    "retained_artifact_id": 10999218544,
     "run_id": 36487441645,
     "source_head": "96e9dd07d172f3791b1fab1ab803b2dfa1bf042a",
-    "status": "PASS_STORY_SAVE14_PENDING_TERMINAL",
+    "status": "PASS_STORY_SAVE14_SCOPED",
     "trainer_victories": 0,
     "wild_victories": 1
   },

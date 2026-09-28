@@ -19,3 +19,7 @@ Save13から通常キーのみで501番道路へ。野生ツツケラ雌Lv5に�
 開発2process/110検査、正式2process/110検査を別計上。新303/cold40入力、23105/3054frames、97画面。旧受入の明示再実行0、ROM/runner/compile変更0。終端回収は原本のみでnative/test0。Save13の255/cold40やそれ以前の受入区間を再生しない。
 
 正式source `96e9dd07d172f3791b1fab1ab803b2dfa1bf042a`、run `36487441645`。全step/原本artifact/記録commitは別API照合で確定する。
+
+## 終端確認
+
+run 36487441645 の全step成功、artifact 10999218544、記録commit `56fbcf3f02a05e9c845cff92331da404f2449664` を原本から照合。97画面・全Save/RTC・110試験原本・全公開textを読戻し、新native/test0。次はSave14から先だけ。
