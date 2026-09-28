@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-STORY_TRAINING_DEVELOPED_ACTIONS_NEXT
+PASS_NATURAL_LV7_ABSORB_SAVE_PENDING_TERMINAL
 
-**次: 開発原本の194入力/56画面/通常Lv7/習得Saveは完走済み。86新検査は初回全成功。次はこの新区間だけのActions独立測定とtraining.srm artifact保持。正式runが既に存在したら原本回収のみ。野生ヒメグマ勝利1回・経験値41・Lv6→7・すいとる自然習得・Save counter4→5と独立Continueを限定受入。経験値245、HP13/23・麻痺・技PP31/30/25が保持。自宅local1はT17渡航の船運休で回復しない事実を実画面/全party/ROM pointer鎖に結合。次は原作Vega/stage16の母親previous_scriptと渡航ownerを照合し、正常回復との共存を最小差分で修正・検証してからtraining.srmで通常進行。研究施設到達は未完。旧194/367/301/114入力・starter/RP/UI/BP/P08は再生しない。**
+**次: 野生ヒメグマ勝利1回・経験値41・Lv6→7・すいとる自然習得・Save counter4→5と独立Continueを限定受入。経験値245、HP13/23・麻痺・技PP31/30/25が保持。自宅local1はT17渡航の船運休で回復しない事実を実画面/全party/ROM pointer鎖に結合。次は原作Vega/stage16の母親previous_scriptと渡航ownerを照合し、正常回復との共存を最小差分で修正・検証してからtraining.srmで通常進行。研究施設到達は未完。旧194/367/301/114入力・starter/RP/UI/BP/P08は再生しない。**
 
-この194入力は開発完走済み。正式測定runがあれば回収だけにして再生しない。正式測定前に受入済みgrowth保存を復元し、新区間のみ測定する。旧受入を再実行せず、trainer勝利/研究到達へ昇格しない。
+先にこの新runの全必須step/後継Save artifactを外部照合する。完走194入力を繰り返さずtraining.srmだけから進める。trainer勝利/研究到達/配布へ昇格せず、merge/release/baseline変更禁止。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `52554a9b5eafe8743d87df57a4ba8565237fffae`。
-成長新区間を独立測定したsource HEAD。全11必須step・後継Save/RTC・92画面・commit原本を content/modernization/pr16_research_story_growth_terminal.json で外部確認。自己記録commitや製品最終SHAではない。
+証拠のsource HEAD: `67e9cc46f50222e19799244598d65534360c53fd`。
+Lv7自然習得新区間を独立測定したsource HEAD。成功終端は外部APIで別途確認する。自己記録commit/製品最終SHAではない。
 
 ## 最短の再開手順
 
@@ -26,10 +26,8 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
 - `docs/PR16_RESEARCH_STORY_TRAINING_JA.md`
-- `content/modernization/pr16_research_story_training_development/verification.json`
-- `scripts/pr16_research_story_training_actions.py`
+- `content/modernization/pr16_research_story_training_checkpoint.json`
 - `scripts/pr16_research_story_training.py`
-- `content/modernization/pr16_research_story_growth_checkpoint.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -63,6 +61,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- 自然習得保存の完走194入力は content/modernization/pr16_research_story_training_checkpoint.json。次はtraining.srmのmap3/0(4,27)/Lv7/経験値245/HP13/23・麻痺/道具0からだけ。旧受入は再生しない。
 - 自然習得開発原本 content/modernization/pr16_research_story_training_development/verification.json を保持。194入力/56画面/native2/新86検査。正式runができた後は新たな入力をtraining.srmから行い、成功した区間を再生しない。
 - 成長保存の完走367入力は content/modernization/pr16_research_story_growth_checkpoint.json。次はgrowth.srmのmap3/0(4,27)/Lv6/経験値204/道具0からだけ。旧受入は再生しない。
 - 成長開発原本 content/modernization/pr16_research_story_growth_development/verification.json を保持。367入力/92画面/native2/新118検査。正式runができた後は新たな入力をgrowth.srmから行い、成功した区間を再生しない。

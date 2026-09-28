@@ -25,3 +25,9 @@
 この新区間のActions runがあれば再生せず、全必須stepとartifact/通常Save/画面原本を終端回収する。正式受入後はT17より前の原作Vegaまたはstage16の同一object/previous_scriptを照合し、序盤の正規回復と既存渡航の共存を最小差分で修正・検証する。その変更影響に必要な回復/渡航だけを試験し、training.srmから通常ストーリーへ戻る。原本不一致なら推測でpatchせず診断境界を保持する。
 
 研究活動施設map96/0→98/3への自然到達、全ストーリー、releaseは未完。PR16 draft/open・未merge、active baseline変更なし。一般CIのaction_required/既知のlegacy不一致と専用新区間の成功は別記録。全体private guard成功を主張しない。
+
+## Actions独立測定（この時点では終端確認待ち）
+
+野生ヒメグマ勝利1回・経験値41・Lv6→7・すいとる自然習得・Save counter4→5と独立Continueを限定受入。経験値245、HP13/23・麻痺・技PP31/30/25が保持。自宅local1はT17渡航の船運休で回復しない事実を実画面/全party/ROM pointer鎖に結合。次は原作Vega/stage16の母親previous_scriptと渡航ownerを照合し、正常回復との共存を最小差分で修正・検証してからtraining.srmで通常進行。研究施設到達は未完。旧194/367/301/114入力・starter/RP/UI/BP/P08は再生しない。
+
+source `67e9cc46f50222e19799244598d65534360c53fd`、run `36362293129`。194入力/49画面とcold34入力/7画面、全stdout・全Save/RTCが開発原本と一致。正式native2/開発native2は別会計。86新検査は原本source一致で再利用し、再実行0。

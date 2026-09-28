@@ -8213,3 +8213,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 開発native2、進行194入力19042frames/cold34入力2572frames、56実画面（空白0）、4UI全byte一致。86新検査初回全PASS。source/evidence binding確認を再利用し、このinstallでnative/unit/compile再実行0。
 - Commit: source=5026e43a3ab026f1e646fec639a02a7f120100cf; run=36362204668; 同branchへ非force push。
 - Network: 固定GitHub HEAD/Actions/artifact/APIのみ。一般CI action_required・失敗は別記録。全体private guard成功、merge、release、active baseline変更を主張しない。
+
+## 2026-09-28T00:28:19.246795+00:00
+- Timestamp: 2026-09-28T00:28:19.246795+00:00
+- Task: USER-20260928-RESEARCH-STORY-TRAINING / 通常Lv7習得・回復不成立・保存継続
+- Version: research-story-training-measure-v1
+- Status: DONE（新区間測定、終端外部照合待ち）
+- Summary: 野生ヒメグマ勝利1回・経験値41・Lv6→7・すいとる自然習得・Save counter4→5と独立Continueを限定受入。経験値245、HP13/23・麻痺・技PP31/30/25が保持。自宅local1はT17渡航の船運休で回復しない事実を実画面/全party/ROM pointer鎖に結合。次は原作Vega/stage16の母親previous_scriptと渡航ownerを照合し、正常回復との共存を最小差分で修正・検証してからtraining.srmで通常進行。研究施設到達は未完。旧194/367/301/114入力・starter/RP/UI/BP/P08は再生しない。
+- Files changed: 専用oracle/86検査/入力原本/checkpoint/guide、固定引継ぎMD/JSON、両ログ。ROM/save/runner/画面は非tracked artifactのみ。
+- Verify: 正式native2、194入力19042frames/cold34入力2572frames、56実画面/4UI一致、全party600bytes/Flash128KiB/ledger/位置/RP0/counter5保持。86新検査原本再利用、compile/ROM変更/旧受入再実行0。
+- Commit: source=67e9cc46f50222e19799244598d65534360c53fd; run=36362293129; 同branchへ非force push。
+- Network: 固定GitHub HEAD/Actions/artifact/APIのみ。一般CI action_required・失敗は別記録。全体private guard成功、merge、release、active baseline変更を主張しない。
