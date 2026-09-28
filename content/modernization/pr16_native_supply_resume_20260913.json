@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "Save14のtraining.srm作業コピーから先だけ進める。自宅map4/0(8,5)上向き、ツツケラLv4/EXP80/HP17/17/PP35/40、リープンLv9/EXP516（次Lv44）/HP26/26/PP35/30/25。手持ち2、ボール3、2776円、RP0。野生ツツケラ雌Lv5へ1勝、味方ツツケラひんし1、全滅0。母親で回復し通常Save13→14と独立Continue全Save/RTC保持を確認。飛行技はリープンに効果抜群だったため、危険な育成交代を漫然と反復せず通常育成/用品・手持ちを整えてマオリ/通常storyへ進む。トレーナー勝利/研究施設自然到達/図鑑統合/全story/release未完。新303/cold40とSave13の255/cold40等の受入済み区間を再生しない。",
+    "next_step": "所有者決定の3レーンへ切替える。Save14原本を不変に保ち、(A) 自己OT Lv100のMewtwo/Haxorusと段階解禁utilityでマオリ以降の通常storyを高速走破、(B) 別fixtureで通常wild battle EXP→level-up/技習得/進化→通常Save/fresh Continueを変更境界ごとに自動検証、(C) Axew系+しあわせタマゴとAudino/Chansey/Blissey段階切替でLv100までsoakする。まず作業コピー2本を生成し、stable key/item ABIを再解決してから、服従/戦闘復帰/保存再開smokeと最初のEXP進化縦切りを受入する。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -793,6 +793,7 @@
   },
   "current_resume_doc": "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
   "do_not_repeat": [
+    "所有者決定後はSave14原本から自然育成を漫然と継続しない。story-fastは自己OT Lv100作業コピー、成長受入は別progression fixtureの通常戦闘EXPで行い、両レーンの主張を混同しない。",
     "Save14の303/cold40入力・97画面・110試験は保存原本から照合するだけ。ひんしツツケラのEXP80は不変、リープンEXP516、両個体回復済み。勝利残留を再計上せず、coldのRAM時刻差と全Save/RTC不変を分離。次はSave14から先だけ。",
     "Save13の255/cold40入力と76画面・95検査は保存原本から照合するだけ。ツツケラ先頭Lv4/EXP80とリープンEXP479、全回復済み。勝利残留flags4/outcome1・wire field:falseを追加勝利や未復帰にしない。次はSave13から先だけ。",
     "Save12の153/cold40入力と57画面・69検査は保存原本から照合するだけ。母親で2体全回復済み。次はSave12から育成を進め、同じ回復/保存区間を再生しない。",
@@ -4238,18 +4239,19 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "Save14のtraining.srm作業コピーから先だけ進める。自宅map4/0(8,5)上向き、ツツケラLv4/EXP80/HP17/17/PP35/40、リープンLv9/EXP516（次Lv44）/HP26/26/PP35/30/25。手持ち2、ボール3、2776円、RP0。野生ツツケラ雌Lv5へ1勝、味方ツツケラひんし1、全滅0。母親で回復し通常Save13→14と独立Continue全Save/RTC保持を確認。飛行技はリープンに効果抜群だったため、危険な育成交代を漫然と反復せず通常育成/用品・手持ちを整えてマオリ/通常storyへ進む。トレーナー勝利/研究施設自然到達/図鑑統合/全story/release未完。新303/cold40とSave13の255/cold40等の受入済み区間を再生しない。",
-    "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
-    "id": "STORY_TRAINING_AND_MAORI_FROM_SAVE14_NEXT",
+    "goal_ja": "所有者決定の3レーンへ切替える。Save14原本を不変に保ち、(A) 自己OT Lv100のMewtwo/Haxorusと段階解禁utilityでマオリ以降の通常storyを高速走破、(B) 別fixtureで通常wild battle EXP→level-up/技習得/進化→通常Save/fresh Continueを変更境界ごとに自動検証、(C) Axew系+しあわせタマゴとAudino/Chansey/Blissey段階切替でLv100までsoakする。まず作業コピー2本を生成し、stable key/item ABIを再解決してから、服従/戦闘復帰/保存再開smokeと最初のEXP進化縦切りを受入する。",
+    "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。Save14は作業コピーだけを使用する。自己OT party、manifest解決済み通常支援用品、EXP境界、safe opponentはpre-battle fixtureとして全byteを台帳化してよい。badge/key item/story flag/money/RPをfixture付与せず、戦闘開始後は通常入力とゲーム内処理だけを使う。",
+    "id": "STORY_FAST_E2E_AND_NATURAL_EXP_EVOLUTION_SPLIT",
     "read_paths": [
+      "docs/PR16_STORY_ACCELERATED_ACCEPTANCE_PLAN_JA.md",
+      "content/modernization/pr16_story_acceleration_plan.json",
       "docs/PR16_STORY_SAVE14_JA.md",
       "content/modernization/pr16_story_save14_checkpoint.json",
       "content/modernization/pr16_story_save14_working.json",
-      "scripts/pr16_story_save14.py",
-      "tests/test_pr16_story_save14.py",
-      "scripts/pr16_story_save14_actions.py"
+      "content/modernization/pr16_learnset_progression_checkpoint.json",
+      "content/modernization/pr16_learnset_battle_checkpoint.json"
     ],
-    "stop_rule_ja": "Save14原本の終端を先に照合しtraining.srmから先だけ。303/cold40と旧255/cold40等は再生しない。味方ひんし1を全滅や経験値獲得にしない。野生1勝をトレーナー/研究施設到達へ昇格しない。"
+    "stop_rule_ja": "Save14原本artifactと受入済みSave1〜14は不変。story-fastとprogressionを混同しない。fixture書込みは戦闘開始前だけとし、開始後のparty/EXP/level/技/進化/story flag/outcomeへのhost書込みを禁止する。Lv100走破を自然難易度・自然入手・自然育成へ、fixture戦を野生テーブル・自然初期技へ読み替えない。"
   },
   "observed_date_jst": "2026-09-29",
   "observed_head": "96e9dd07d172f3791b1fab1ab803b2dfa1bf042a",
@@ -8935,8 +8937,8 @@
       "size": 3476
     },
     "CHATGPT_RESUME.md": {
-      "sha256": "963f3d4b12d184aaa9be7decbdd98cfe7b89317bfa8396008c8e1ab3581359f6",
-      "size": 7562
+      "sha256": "3cba1c0785e1db3cb79dd00186718e855db103fff28d62d07c5be1d165e476b6",
+      "size": 8854
     },
     "config/active_play_baseline.json": {
       "sha256": "4800257add049ea99cdedda91413a70a255dcff9a85823463596edefa8785053",
@@ -19793,6 +19795,14 @@
     "tools/research_ui_boundary_shim.c": {
       "sha256": "f2e90b4712f7faf93fddd2eba0964e134136c6259eb3645ec11c4e819e5b834d",
       "size": 11530
+    },
+    "docs/PR16_STORY_ACCELERATED_ACCEPTANCE_PLAN_JA.md": {
+      "sha256": "18e69981df9450eba735b8a47a59c353d111b139219fefa2fd19602ea7f19002",
+      "size": 11141
+    },
+    "content/modernization/pr16_story_acceleration_plan.json": {
+      "sha256": "8e45d8c785c430d1e47b1699360a0d0d9b0c95de3e35196167f6c3798e028966",
+      "size": 9354
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
@@ -20190,5 +20200,21 @@
     "evidence": "content/modernization/pr16_bp_win_exchange_verified.json",
     "run_id": 34770280751,
     "scope": "NATIVE_DIAGNOSTIC_NOT_FORMAL_ACCEPTANCE"
+  },
+  "story_acceleration_plan": {
+    "path": "content/modernization/pr16_story_acceleration_plan.json",
+    "document": "docs/PR16_STORY_ACCELERATED_ACCEPTANCE_PLAN_JA.md",
+    "status": "OWNER_APPROVED_EXECUTION_PLAN_RECORDED",
+    "decision_base_head": "16e11cf367d9d6e977f66c6b209d8623931444dd",
+    "workflow_source_head": "3eba1137519372819b3299c93ac8178eb91762e5",
+    "generation_run_id": 36494701271,
+    "generation_artifact_id": 11003075314,
+    "recording_run_id": 36494988987,
+    "source_stop": "PASS_STORY_SAVE14_SCOPED",
+    "source_artifact_id": 10999218544,
+    "accepted_case_reruns": 0,
+    "new_native_processes": 0,
+    "rom_changes": 0,
+    "release_ready": false
   }
 }

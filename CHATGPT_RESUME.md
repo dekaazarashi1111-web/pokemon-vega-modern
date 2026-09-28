@@ -48,6 +48,16 @@ Issue #19は、技習得を次のフラットな基準へ復元するタスク�
 
 Issue #19の完了後、所有者が新Wikiを確認してから、技追加、種族値・特性・夢特性調整、追加メガ、追加専用Zの仕様を別途決める。本タスク中に新しい最終配布を創作しない。上記Side Change用の明示placeholderだけは最終配布ではない仮置きとして例外的に許可する。
 
+<!-- owner-story-acceleration-plan -->
+## 所有者決定: ストーリー走破と自然成長検証を分離
+
+- Save14原本は上書きせず、`story-fast.srm` と `progression.srm` の2作業コピーへ分ける。
+- story-fastはSave14の自己OTを正確に継承したLv100主力で戦闘を短縮し、イベント・warp・trainer勝利・通常Save/fresh Continue・全story接続を確認する。難易度や自然育成の受入にはしない。
+- progressionは通常wild battleを直接開始し、通常入力による撃破からEXP、level-up、技習得、進化、field復帰、通常Save/fresh Continueを検証する。しあわせタマゴとAudino/Chansey/Blissey段階切替によるsoakはitem ABIとbase EXP対照後に行う。
+- 主力、技、持ち物、自己OT、field utility、フラッシュ差替え、相手切替、host-write境界、最初の縦切りは `docs/PR16_STORY_ACCELERATED_ACCEPTANCE_PLAN_JA.md` と `content/modernization/pr16_story_acceleration_plan.json` を正とする。
+- 次作業は、作業コピー2本の生成、stable key/item ABI再解決、自己OT Lv100服従smoke、Axew第一進化直前からの通常戦闘EXP縦切りである。受入済みSave14以前を再生しない。
+<!-- /owner-story-acceleration-plan -->
+
 ## 次回そのまま渡す指示
 
 ```text

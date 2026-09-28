@@ -8,9 +8,9 @@
 
 PASS_STORY_SAVE14_SCOPED
 
-**次: Save14のtraining.srm作業コピーから先だけ進める。自宅map4/0(8,5)上向き、ツツケラLv4/EXP80/HP17/17/PP35/40、リープンLv9/EXP516（次Lv44）/HP26/26/PP35/30/25。手持ち2、ボール3、2776円、RP0。野生ツツケラ雌Lv5へ1勝、味方ツツケラひんし1、全滅0。母親で回復し通常Save13→14と独立Continue全Save/RTC保持を確認。飛行技はリープンに効果抜群だったため、危険な育成交代を漫然と反復せず通常育成/用品・手持ちを整えてマオリ/通常storyへ進む。トレーナー勝利/研究施設自然到達/図鑑統合/全story/release未完。新303/cold40とSave13の255/cold40等の受入済み区間を再生しない。**
+**次: 所有者決定の3レーンへ切替える。Save14原本を不変に保ち、(A) 自己OT Lv100のMewtwo/Haxorusと段階解禁utilityでマオリ以降の通常storyを高速走破、(B) 別fixtureで通常wild battle EXP→level-up/技習得/進化→通常Save/fresh Continueを変更境界ごとに自動検証、(C) Axew系+しあわせタマゴとAudino/Chansey/Blissey段階切替でLv100までsoakする。まず作業コピー2本を生成し、stable key/item ABIを再解決してから、服従/戦闘復帰/保存再開smokeと最初のEXP進化縦切りを受入する。**
 
-Save14原本の終端を先に照合しtraining.srmから先だけ。303/cold40と旧255/cold40等は再生しない。味方ひんし1を全滅や経験値獲得にしない。野生1勝をトレーナー/研究施設到達へ昇格しない。
+Save14原本artifactと受入済みSave1〜14は不変。story-fastとprogressionを混同しない。fixture書込みは戦闘開始前だけとし、開始後のparty/EXP/level/技/進化/story flag/outcomeへのhost書込みを禁止する。Lv100走破を自然難易度・自然入手・自然育成へ、fixture戦を野生テーブル・自然初期技へ読み替えない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
@@ -25,12 +25,13 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `docs/PR16_STORY_ACCELERATED_ACCEPTANCE_PLAN_JA.md`
+- `content/modernization/pr16_story_acceleration_plan.json`
 - `docs/PR16_STORY_SAVE14_JA.md`
 - `content/modernization/pr16_story_save14_checkpoint.json`
 - `content/modernization/pr16_story_save14_working.json`
-- `scripts/pr16_story_save14.py`
-- `tests/test_pr16_story_save14.py`
-- `scripts/pr16_story_save14_actions.py`
+- `content/modernization/pr16_learnset_progression_checkpoint.json`
+- `content/modernization/pr16_learnset_battle_checkpoint.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -45,7 +46,7 @@ checkは限定source hashと正本間整合性を検査するだけで、GitHub�
 照合抄録: `content/modernization/pr16_bp_spending_verified.json`。
 2026-09-15: run34946969126/job104308573084で、同一candidateの3勝基礎9 BPに既存反復報酬3 BPが加算され12 BPへ確定。通常QOL供給ショップでかわらずのいしを4 BP購入し、残高12→8、所持0→1、Save counter5→6→7→7、通常Save/fresh Continue後の保持をscoped受入。ROM変更0、成功1process/2fresh cores。次はRing。
 
-受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。
+受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。Save14は作業コピーだけを使用する。自己OT party、manifest解決済み通常支援用品、EXP境界、safe opponentはpre-battle fixtureとして全byteを台帳化してよい。badge/key item/story flag/money/RPをfixture付与せず、戦闘開始後は通常入力とゲーム内処理だけを使う。
 
 ## 候補identityと残件
 
@@ -64,6 +65,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- 所有者決定後はSave14原本から自然育成を漫然と継続しない。story-fastは自己OT Lv100作業コピー、成長受入は別progression fixtureの通常戦闘EXPで行い、両レーンの主張を混同しない。
 - Save14の303/cold40入力・97画面・110試験は保存原本から照合するだけ。ひんしツツケラのEXP80は不変、リープンEXP516、両個体回復済み。勝利残留を再計上せず、coldのRAM時刻差と全Save/RTC不変を分離。次はSave14から先だけ。
 - Save13の255/cold40入力と76画面・95検査は保存原本から照合するだけ。ツツケラ先頭Lv4/EXP80とリープンEXP479、全回復済み。勝利残留flags4/outcome1・wire field:falseを追加勝利や未復帰にしない。次はSave13から先だけ。
 - Save12の153/cold40入力と57画面・69検査は保存原本から照合するだけ。母親で2体全回復済み。次はSave12から育成を進め、同じ回復/保存区間を再生しない。

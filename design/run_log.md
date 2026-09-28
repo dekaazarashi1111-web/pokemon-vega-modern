@@ -11220,3 +11220,21 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: source=b75a619ccdf0d7d1aac1f288517ca83d183f544d; run=36487654590; 同branch非force push/readback。WIP984ed574で停止点、04d0ae01/e48ab93f/b0d8c9b4で検証器/試験/目視原本を先行保存。
 - Network: GitHub HEAD/Actions/artifactのみ。Save13正式run36439214540/終端run36484123426を継承。一般CIの既存capacity failure/action_requiredは改作しない。merge/release/active baseline変更0。
 - Next: Save14のtraining.srm作業コピーから先だけ進める。自宅map4/0(8,5)上向き、ツツケラLv4/EXP80/HP17/17/PP35/40、リープンLv9/EXP516（次Lv44）/HP26/26/PP35/30/25。手持ち2、ボール3、2776円、RP0。野生ツツケラ雌Lv5へ1勝、味方ツツケラひんし1、全滅0。母親で回復し通常Save13→14と独立Continue全Save/RTC保持を確認。飛行技はリープンに効果抜群だったため、危険な育成交代を漫然と反復せず通常育成/用品・手持ちを整えてマオリ/通常storyへ進む。トレーナー勝利/研究施設自然到達/図鑑統合/全story/release未完。新303/cold40とSave13の255/cold40等の受入済み区間を再生しない。
+
+## 2026-09-28T22:53:37Z
+
+- Task: `USER-20260929-STORY-ACCELERATION-PLAN` / ストーリー高速走破と自然EXP・技習得・進化検証の分離
+- Status: DONE
+- Summary:
+  - Save14原本を不変にし、自己OT Lv100によるstory-fast、通常wild battle EXPによるprogression、Axew系Lv100 soakの3レーンを所有者決定として固定した。
+  - Mewtwo/Haxorus/Mew/Bibarelの編成、技・持ち物・EV/IV、party空き2枠、field move段階解禁とFlash差替え、支援用品のmanifest解決規則を記録した。
+  - progressionはpre-battle fixtureだけを許可し、戦闘開始後のparty/EXP/level/技/進化/flag/outcome host-writeを禁止した。Lucky Egg対照、Exp. Share、技空き/置換/拒否、進化/cancel、複数level、Lv100 overflowを必須境界にした。
+  - 固定再開JSON、`CHATGPT_RESUME.md`、生成再開MD、両ログを同期し、変更した固定入口と新計画2ファイルのsource bindingを更新した。既受入native/ROM/Saveの再実行・変更は0。
+- Verify:
+  - `python3 scripts/pr16_resume.py render/check`: PASS
+  - `python3 -m unittest discover -s tests -p test_pr16_resume.py -v`: PASS
+  - `python3 scripts/validate_task_graph.py --check`: PASS
+  - plan JSON schema/source binding/`git diff --check`: PASS
+- Runtime accounting: new native process 0 / ROM change 0 / accepted-case rerun 0 / release・merge・baseline切替0。
+- Generation run: `36494701271`（freshness guardで停止、commitなし）/ recording run: `36494988987`。
+- Commit: `-`（本エントリを含むActions commit）

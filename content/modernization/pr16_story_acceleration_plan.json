@@ -1,0 +1,307 @@
+{
+  "schema_version": 1,
+  "task": "USER-20260929-STORY-ACCELERATION-PLAN",
+  "status": "OWNER_APPROVED_EXECUTION_PLAN_RECORDED",
+  "branch": "codex/modernization-followup-20260908",
+  "workflow_source_head": "3eba1137519372819b3299c93ac8178eb91762e5",
+  "decision_base_head": "16e11cf367d9d6e977f66c6b209d8623931444dd",
+  "recording_run_id": 36494988987,
+  "recorded_at_utc": "2026-09-28T22:53:37Z",
+  "source_stop": "PASS_STORY_SAVE14_SCOPED",
+  "source_artifact_id": 10999218544,
+  "source_save_immutable": true,
+  "accepted_case_reruns": 0,
+  "new_native_processes": 0,
+  "rom_changes": 0,
+  "release_ready": false,
+  "merge_performed": false,
+  "active_baseline_changed": false,
+  "documents": {
+    "plan": "docs/PR16_STORY_ACCELERATED_ACCEPTANCE_PLAN_JA.md",
+    "resume_state": "content/modernization/pr16_native_supply_resume_20260913.json",
+    "resume_doc": "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
+    "save14_checkpoint": "content/modernization/pr16_story_save14_checkpoint.json",
+    "learnset_progression": "content/modernization/pr16_learnset_progression_checkpoint.json",
+    "learnset_battle": "content/modernization/pr16_learnset_battle_checkpoint.json"
+  },
+  "decisions": {
+    "separate_story_and_growth_lanes": true,
+    "story_fast_uses_self_ot_level100_party": true,
+    "growth_uses_normal_wild_battle_exp": true,
+    "lucky_egg_soak_after_base_exp_control": true,
+    "changed_boundary_vectors_before_blanket_grind": true,
+    "preserve_two_open_party_slots": true,
+    "no_key_item_badge_story_flag_money_rp_fixture": true
+  },
+  "fixture_contract": {
+    "copies": [
+      "story-fast.srm",
+      "progression.srm"
+    ],
+    "self_ot_fields": [
+      "ot_id_32bit",
+      "ot_name",
+      "ot_gender",
+      "language"
+    ],
+    "allowed_before_battle": [
+      "party construction",
+      "ordinary held items",
+      "support medicine/repel/PP items",
+      "exact EXP boundary setup",
+      "safe opponent species/level/moves"
+    ],
+    "forbidden_after_battle_start": [
+      "party writes",
+      "EXP writes",
+      "level writes",
+      "move or PP writes",
+      "evolution/form writes",
+      "story flag writes",
+      "battle outcome writes"
+    ],
+    "hash_and_byte_ledger_required": true
+  },
+  "story_fast": {
+    "party": [
+      {
+        "role": "primary_special_sweeper",
+        "species_key": "SPECIES_KEY_MEWTWO",
+        "current_canonical_id": 151,
+        "level": 100,
+        "nature": "MODEST",
+        "ability": "PRESSURE",
+        "evs": {
+          "hp": 4,
+          "spa": 252,
+          "spe": 252
+        },
+        "ivs": "31_all",
+        "held_item_name": "ものしりメガネ",
+        "moves": [
+          {
+            "key": "MOVE_PSYSTRIKE",
+            "current_id": 600
+          },
+          {
+            "key": "MOVE_AURA_SPHERE",
+            "current_id": 366
+          },
+          {
+            "key": "MOVE_FLAMETHROWER",
+            "current_id": 53
+          },
+          {
+            "key": "MOVE_ICE_BEAM",
+            "current_id": 58
+          }
+        ]
+      },
+      {
+        "role": "physical_mold_breaker_backup",
+        "species_key": "SPECIES_KEY_HAXORUS",
+        "current_canonical_id": 851,
+        "level": 100,
+        "nature": "ADAMANT",
+        "ability": "MOLD_BREAKER",
+        "evs": {
+          "hp": 4,
+          "atk": 252,
+          "spe": 252
+        },
+        "ivs": "31_all",
+        "held_item_name": "ちからのハチマキ",
+        "moves": [
+          {
+            "key": "MOVE_DRAGON_CLAW",
+            "current_id": 337
+          },
+          {
+            "key": "MOVE_EARTHQUAKE",
+            "current_id": 89
+          },
+          {
+            "key": "MOVE_BRICK_BREAK",
+            "current_id": 280
+          },
+          {
+            "key": "MOVE_AERIAL_ACE",
+            "current_id": 332
+          }
+        ]
+      },
+      {
+        "role": "field_utility_a",
+        "species_key": "SPECIES_KEY_MEW",
+        "current_canonical_id": 152,
+        "level": 100,
+        "held_item_name": "けむりだま",
+        "moves": [
+          {
+            "key": "MOVE_SURF",
+            "current_id": 57
+          },
+          {
+            "key": "MOVE_FLY",
+            "current_id": 19
+          },
+          {
+            "key": "MOVE_STRENGTH",
+            "current_id": 70
+          },
+          {
+            "key": "MOVE_ROCK_SMASH",
+            "current_id": 249
+          }
+        ],
+        "authorization_rule": "enable only after the corresponding story-owned HM/key-item/badge authorization"
+      },
+      {
+        "role": "field_utility_b",
+        "species_key": "SPECIES_KEY_BIBAREL",
+        "current_canonical_id": 691,
+        "level": 100,
+        "held_item_name": null,
+        "moves": [
+          {
+            "key": "MOVE_CUT",
+            "current_id": 15
+          },
+          {
+            "key": "MOVE_WATERFALL",
+            "current_id": 127
+          },
+          {
+            "key": "MOVE_DIVE",
+            "current_id": 291
+          },
+          {
+            "key": "MOVE_ROCK_CLIMB",
+            "current_id": 398
+          }
+        ],
+        "authorization_rule": "enable only after the corresponding story-owned HM/key-item/badge authorization"
+      }
+    ],
+    "pc_preservation": "move original Toucannon and Leafeon to empty PC slots without rewriting their 100-byte identities",
+    "open_party_slots": 2,
+    "support_items": [
+      {
+        "name": "Max Repel",
+        "quantity": 99
+      },
+      {
+        "name": "Full Restore",
+        "quantity": 30
+      },
+      {
+        "name": "Max Elixir",
+        "quantity": 10
+      },
+      {
+        "name": "Escape Rope",
+        "quantity": 10
+      }
+    ],
+    "first_acceptance": [
+      "self-OT obedience",
+      "ordinary move selection",
+      "victory",
+      "field return",
+      "ordinary save",
+      "fresh continue"
+    ],
+    "not_claimed": [
+      "natural party acquisition",
+      "natural difficulty",
+      "natural economy",
+      "natural level curve",
+      "natural capture"
+    ],
+    "item_resolution_rule": "Resolve every held/support item by the current item manifest and verify ABI before use. If Wise Glasses, Muscle Band, Smoke Ball, or a support item cannot be resolved exactly, use no held item or omit that support item; never guess a numeric ID.",
+    "field_move_rotation": {
+      "rule": "A field move is installed only after its story-owned HM/key-item/badge authorization; every between-section move swap is a new recorded fixture boundary.",
+      "base_loadout": [
+        {
+          "species_key": "SPECIES_KEY_MEW",
+          "moves": [
+            "MOVE_SURF",
+            "MOVE_FLY",
+            "MOVE_STRENGTH",
+            "MOVE_ROCK_SMASH"
+          ]
+        },
+        {
+          "species_key": "SPECIES_KEY_BIBAREL",
+          "moves": [
+            "MOVE_CUT",
+            "MOVE_WATERFALL",
+            "MOVE_DIVE",
+            "MOVE_ROCK_CLIMB"
+          ]
+        }
+      ],
+      "conditional_swap": {
+        "move_key": "MOVE_FLASH",
+        "current_id": 148,
+        "install_on": "SPECIES_KEY_MEW",
+        "replace_temporarily": "the least-needed currently authorized utility move for the exact dark-area section",
+        "restore_after_section": true
+      }
+    }
+  },
+  "progression": {
+    "primary_soak_species_key": "SPECIES_KEY_AXEW",
+    "current_canonical_id": 849,
+    "held_item_name": "しあわせタマゴ",
+    "moves": [
+      {
+        "key": "MOVE_DRAGON_RAGE",
+        "current_id": 82
+      },
+      {
+        "key": "MOVE_AERIAL_ACE",
+        "current_id": 332
+      },
+      {
+        "key": "MOVE_BRICK_BREAK",
+        "current_id": 280
+      },
+      {
+        "key": "MOVE_DRAGON_CLAW",
+        "current_id": 337
+      }
+    ],
+    "opponent_ladder": [
+      {
+        "species_key": "SPECIES_KEY_CATERPIE",
+        "purpose": "exact low-EXP boundary"
+      },
+      {
+        "species_key": "SPECIES_KEY_AUDINO",
+        "current_canonical_id": 789,
+        "purpose": "mid-level acceleration"
+      },
+      {
+        "species_key": "SPECIES_KEY_CHANSEY",
+        "current_canonical_id": 366,
+        "purpose": "high-level physical farm"
+      },
+      {
+        "species_key": "SPECIES_KEY_BLISSEY",
+        "current_canonical_id": 367,
+        "purpose": "late and intentional multi-level cases"
+      }
+    ],
+    "opponent_selection": "calculate exact expected EXP and choose the smallest level that meets the case without unintended skips",
+    "first_vertical_slice": "resolve the current Axew first-evolution threshold, start one EXP short, win one normal wild battle, evolve, save, and fresh-continue",
+    "required_case_count": 12,
+    "post_level_100_extra_battle": true,
+    "held_item_resolution_rule": "Resolve Lucky Egg by the current item manifest and prove the held-effect ABI with a no-item/item EXP differential before the soak. Do not run the accelerated soak when the key or multiplier is unresolved."
+  },
+  "next_action_id": "STORY_FAST_E2E_AND_NATURAL_EXP_EVOLUTION_SPLIT",
+  "workflow_parent_head": "9210469fb8bd0c874cc9b1161d3c70eaf9f7b8d9",
+  "generation_run_id": 36494701271,
+  "generation_artifact_id": 11003075314,
+  "recording_repair_reason": "CHATGPT_RESUME.md source binding is refreshed after the owner-decision insertion; failed generation run remains historical"
+}

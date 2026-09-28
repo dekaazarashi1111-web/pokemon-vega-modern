@@ -8492,3 +8492,10 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: source=b75a619ccdf0d7d1aac1f288517ca83d183f544d; run=36487654590; 同branch非force push/readback。WIP984ed574で停止点、04d0ae01/e48ab93f/b0d8c9b4で検証器/試験/目視原本を先行保存。
 - Network: GitHub HEAD/Actions/artifactのみ。Save13正式run36439214540/終端run36484123426を継承。一般CIの既存capacity failure/action_requiredは改作しない。merge/release/active baseline変更0。
 - Next: Save14のtraining.srm作業コピーから先だけ進める。自宅map4/0(8,5)上向き、ツツケラLv4/EXP80/HP17/17/PP35/40、リープンLv9/EXP516（次Lv44）/HP26/26/PP35/30/25。手持ち2、ボール3、2776円、RP0。野生ツツケラ雌Lv5へ1勝、味方ツツケラひんし1、全滅0。母親で回復し通常Save13→14と独立Continue全Save/RTC保持を確認。飛行技はリープンに効果抜群だったため、危険な育成交代を漫然と反復せず通常育成/用品・手持ちを整えてマオリ/通常storyへ進む。トレーナー勝利/研究施設自然到達/図鑑統合/全story/release未完。新303/cold40とSave13の255/cold40等の受入済み区間を再生しない。
+
+## 2026-09-28T22:53:37Z — Story fast E2E / natural EXP-evolution split
+
+- `USER-20260929-STORY-ACCELERATION-PLAN`: Save14以降を、自己OT Lv100によるstory接続確認と、通常戦闘EXPによるlevel-up・技習得・進化検証へ分離した。
+- Mewtwo/Haxorus/Mew/Bibarelのstory-fast編成、Axew+Lucky EggとAudino/Chansey/Blisseyのsoak、Flashを含むfield move rotation、pre-battle fixture境界、必須12ケースを固定した。
+- 固定再開の次作業を作業コピー2本、stable key/item ABI解決、服従/勝利/保存再開smoke、最初のEXP進化縦切りへ更新した。runtime受入・release状態は不変。
+- Generation run `36494701271` / recording run `36494988987` / decision base `16e11cf367d9d6e977f66c6b209d8623931444dd`。
