@@ -183,7 +183,7 @@
         "authorization_rule": "enable only after the corresponding story-owned HM/key-item/badge authorization"
       }
     ],
-    "pc_preservation": "move original Toucannon and Leafeon to empty PC slots without rewriting their 100-byte identities",
+    "pc_preservation": "Save14の既存ツツケラ（species 1129）とリープン（species 1）を、各100-byte identityを変更せず空きPC slotへ退避する。進化後種・別種へ読み替えない。",
     "open_party_slots": 2,
     "support_items": [
       {
@@ -303,5 +303,12 @@
   "workflow_parent_head": "9210469fb8bd0c874cc9b1161d3c70eaf9f7b8d9",
   "generation_run_id": 36494701271,
   "generation_artifact_id": 11003075314,
-  "recording_repair_reason": "CHATGPT_RESUME.md source binding is refreshed after the owner-decision insertion; failed generation run remains historical"
+  "recording_repair_reason": "CHATGPT_RESUME.md source binding is refreshed after the owner-decision insertion; failed generation run remains historical",
+  "identity_correction": {
+    "run_id": 36495173345,
+    "source_head": "227dc77c1fd6497c36fefec5dceecc0edbecb50b",
+    "reason_ja": "計画Markdownはツツケラ/リープンで正しかったが、機械可読pc_preservationだけがToucannon/Leafeonと誤記されていたためSave14 checkpointのspecies [1129,1]へ同期。実個体byte・受入scope・編成は不変。",
+    "native_reruns": 0,
+    "rom_changes": 0
+  }
 }

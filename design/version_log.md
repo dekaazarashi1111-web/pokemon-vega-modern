@@ -8499,3 +8499,8 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Mewtwo/Haxorus/Mew/Bibarelのstory-fast編成、Axew+Lucky EggとAudino/Chansey/Blisseyのsoak、Flashを含むfield move rotation、pre-battle fixture境界、必須12ケースを固定した。
 - 固定再開の次作業を作業コピー2本、stable key/item ABI解決、服従/勝利/保存再開smoke、最初のEXP進化縦切りへ更新した。runtime受入・release状態は不変。
 - Generation run `36494701271` / recording run `36494988987` / decision base `16e11cf367d9d6e977f66c6b209d8623931444dd`。
+
+## 2026-09-28T22:55:34Z — Story acceleration Save14 identity text correction
+
+- `pr16_story_acceleration_plan.json` の既存party退避説明をツツケラspecies1129/リープンspecies1へ訂正。
+- 実装、候補ROM、Save、受入scope、次作業は不変。run `36495173345`。

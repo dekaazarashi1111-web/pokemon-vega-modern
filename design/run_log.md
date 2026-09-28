@@ -11238,3 +11238,12 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Runtime accounting: new native process 0 / ROM change 0 / accepted-case rerun 0 / release・merge・baseline切替0。
 - Generation run: `36494701271`（freshness guardで停止、commitなし）/ recording run: `36494988987`。
 - Commit: `-`（本エントリを含むActions commit）
+
+## 2026-09-28T22:55:34Z
+
+- Task: `USER-20260929-STORY-ACCELERATION-IDENTITY-CORRECTION`
+- Status: DONE
+- Summary: 機械可読planの既存party退避説明を、誤記Toucannon/LeafeonからSave14正本のツツケラspecies1129/リープンspecies1へ訂正。Markdown、実個体byte、受入scope、編成は不変。
+- Verify: Save14 checkpoint `party_species=[1129,1]`、plan source binding、resume render/check、focused tests、task graph、remote readback PASS。
+- Runtime accounting: native 0 / ROM 0 / accepted rerun 0。
+- Commit: `-`（Actions commit、run `36495173345`）
