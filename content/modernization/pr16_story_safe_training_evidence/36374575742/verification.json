@@ -1,0 +1,289 @@
+{
+  "schema_version": 1,
+  "method": "DIRECT_PIXEL_REVIEW_NO_OCR",
+  "files": {
+    "commands.txt": {
+      "size": 3572,
+      "sha256": "ccc44e31710e1c32c24f19ee552e60d43bedcc1ac576f22e8c6bef794980f438"
+    },
+    "continue-commands.txt": {
+      "size": 255,
+      "sha256": "90057ae27a579e485b741022514daddad5095e5848c03c87f352d8815fd5db78"
+    },
+    "progress.stdout.txt": {
+      "size": 50895,
+      "sha256": "b766f469f0b135625a89d460a2dd21780ccac19d358665694081ec7765ab2a3c"
+    },
+    "continue.stdout.txt": {
+      "size": 5258,
+      "sha256": "89b8ceaace1311de629d05d2b7578d90c634a8cb3a9d045e75cb722345033a39"
+    },
+    "progress.stderr.txt": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "continue.stderr.txt": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "input_save": {
+    "size": 131088,
+    "sha256": "226865775c9a9eae143eaeac65354170e9d8868469cbd528af852ce05412c8a3"
+  },
+  "output_save": {
+    "size": 131088,
+    "sha256": "f53ac305f8a02040744ffa26794451574d1c5df1b43765bf4229ba5454e034ba"
+  },
+  "progress_end": {
+    "end": "STORY_INPUT_CHECKPOINT",
+    "frames": 25208,
+    "inputs": 316,
+    "warnings_errors": 0,
+    "host_write_barriers": 7,
+    "guarded_host_writes": 0,
+    "fixture_calls": 0,
+    "natural_research_arrival_accepted": false
+  },
+  "continue_end": {
+    "end": "STORY_INPUT_CHECKPOINT",
+    "frames": 2808,
+    "inputs": 34,
+    "warnings_errors": 0,
+    "host_write_barriers": 7,
+    "guarded_host_writes": 0,
+    "fixture_calls": 0,
+    "natural_research_arrival_accepted": false
+  },
+  "anchors": [
+    {
+      "observe": 0,
+      "meaning_ja": "Save7の帰宅済み開始点。再戦前のLv7/EXP270は親の受入を継承。"
+    },
+    {
+      "observe": 11,
+      "meaning_ja": "ヤヤコマ♀Lv2とリープンLv7、HP23/23。"
+    },
+    {
+      "observe": 12,
+      "meaning_ja": "戦闘の技選択。ひっかく35/35、しっぽをふる、すいとる。"
+    },
+    {
+      "observe": 15,
+      "meaning_ja": "ボールポケットに品目がない。捕獲を主張しない。"
+    },
+    {
+      "observe": 16,
+      "meaning_ja": "ヤヤコマ戦1手後HP17/23、相手黄HP。"
+    },
+    {
+      "observe": 17,
+      "meaning_ja": "ヤヤコマ撃破表示。"
+    },
+    {
+      "observe": 18,
+      "meaning_ja": "実取得7けいけんち。"
+    },
+    {
+      "observe": 19,
+      "meaning_ja": "勝利後の道路field。旧battle telemetryは保持。"
+    },
+    {
+      "observe": 21,
+      "meaning_ja": "スバメ♀Lv3、戦闘前HP17/23。"
+    },
+    {
+      "observe": 22,
+      "meaning_ja": "スバメ戦1手後HP10/23、相手黄HP。"
+    },
+    {
+      "observe": 23,
+      "meaning_ja": "スバメ撃破表示。"
+    },
+    {
+      "observe": 24,
+      "meaning_ja": "実取得21けいけんち。"
+    },
+    {
+      "observe": 32,
+      "meaning_ja": "帰宅して母親へ通常会話。"
+    },
+    {
+      "observe": 34,
+      "meaning_ja": "母親回復後の会話。"
+    },
+    {
+      "observe": 39,
+      "meaning_ja": "スバメ♂Lv4に自然遭遇。"
+    },
+    {
+      "observe": 40,
+      "meaning_ja": "HP23/23とひっかく35/35。回復してから再戦。"
+    },
+    {
+      "observe": 41,
+      "meaning_ja": "HP17/23、相手緑HP。"
+    },
+    {
+      "observe": 42,
+      "meaning_ja": "HP9/23、相手赤HP。"
+    },
+    {
+      "observe": 43,
+      "meaning_ja": "実取得33けいけんち。"
+    },
+    {
+      "observe": 44,
+      "meaning_ja": "レベル8への上昇とHP10/24。"
+    },
+    {
+      "observe": 46,
+      "meaning_ja": "Lv上昇時の能力増分画面。"
+    },
+    {
+      "observe": 47,
+      "meaning_ja": "Lv上昇時の能力値画面。保存後summaryとの同値を未測定能力へ拡大しない。"
+    },
+    {
+      "observe": 50,
+      "meaning_ja": "再帰宅の母親回復会話。"
+    },
+    {
+      "observe": 51,
+      "meaning_ja": "二回目回復後の会話。"
+    },
+    {
+      "observe": 52,
+      "meaning_ja": "実Startメニュー、図鑑選択。"
+    },
+    {
+      "observe": 53,
+      "meaning_ja": "手持ち1体、Lv8/HP24/24。"
+    },
+    {
+      "observe": 54,
+      "meaning_ja": "個体情報・原親ID13772・くさ・所持なし。"
+    },
+    {
+      "observe": 55,
+      "meaning_ja": "EXP331、次Lvまで88、HP24/24、攻15/防12/特攻16/特防13/速17。"
+    },
+    {
+      "observe": 56,
+      "meaning_ja": "3技とPP35/30/25、4枠目空。"
+    },
+    {
+      "observe": 59,
+      "meaning_ja": "実Startメニューのレポート選択。"
+    },
+    {
+      "observe": 60,
+      "meaning_ja": "通常レポート保存確認、はい。"
+    },
+    {
+      "observe": 61,
+      "meaning_ja": "既存レポートへの上書き確認、はい。"
+    },
+    {
+      "observe": 62,
+      "meaning_ja": "通常保存中メッセージ。counterまだ7・Flashは途中状態。"
+    },
+    {
+      "observe": 63,
+      "meaning_ja": "保存終了後field、counter8。保存完了文言自体の画面は採取していない。"
+    }
+  ],
+  "ui_pairs": [
+    [
+      53,
+      1
+    ],
+    [
+      54,
+      2
+    ],
+    [
+      55,
+      3
+    ],
+    [
+      56,
+      4
+    ]
+  ],
+  "claims": {
+    "wild_victories": 3,
+    "trainer_victories": 0,
+    "losses": 0,
+    "captures": 0,
+    "experience_gained": 61,
+    "ordinary_saves": 1,
+    "mother_heal_visits": 2,
+    "research_arrival": false,
+    "full_story": false,
+    "release_ready": false
+  },
+  "party_delta": [
+    {
+      "offset": 36,
+      "before": 14,
+      "after": 75
+    },
+    {
+      "offset": 41,
+      "before": 86,
+      "after": 96
+    },
+    {
+      "offset": 59,
+      "before": 0,
+      "after": 2
+    },
+    {
+      "offset": 84,
+      "before": 7,
+      "after": 8
+    },
+    {
+      "offset": 86,
+      "before": 23,
+      "after": 24
+    },
+    {
+      "offset": 88,
+      "before": 23,
+      "after": 24
+    },
+    {
+      "offset": 90,
+      "before": 14,
+      "after": 15
+    },
+    {
+      "offset": 92,
+      "before": 11,
+      "after": 12
+    },
+    {
+      "offset": 94,
+      "before": 15,
+      "after": 17
+    },
+    {
+      "offset": 96,
+      "before": 14,
+      "after": 16
+    },
+    {
+      "offset": 98,
+      "before": 12,
+      "after": 13
+    }
+  ],
+  "notes_ja": [
+    "全70画面を直接確認。空白受入anchorなし。ROM/save/画像はGit管理外。",
+    "レベル上昇中の特攻15と回復後summary16を同じ表示とはしない。各原本の数値を保持。",
+    "byte41/59は実観測差分であり新しいowner解釈を作らない。",
+    "開発native2。正式受入前の独立測定は新区間だけ1回、完了後は後継Save8のみ。"
+  ]
+}
