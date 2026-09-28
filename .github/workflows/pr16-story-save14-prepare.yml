@@ -1,0 +1,47 @@
+name: pr16-story-save14-prepare
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-story-save14-prepare.yml]
+permissions:
+  contents: read
+jobs:
+  source:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Export tracked UTF-8 source only; no native or test invocation
+        run: |
+          python3 - <<'PY'
+          import hashlib,json,os,subprocess,zipfile
+          from pathlib import Path
+          root=Path.cwd()
+          exact={'AGENTS.md','CHATGPT_RESUME.md','config/active_play_baseline.json','design/active_play_baseline.md','design/run_log.md','design/version_log.md','content/modernization/pr16_native_supply_resume_20260913.json','content/modernization/pr16_bp_chooser_checkpoint.json','content/modernization/p08_remaining_work.json','docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md'}
+          paths=subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
+          chosen=[]
+          for name in paths:
+              p=Path(name)
+              accept=name in exact or (p.suffix=='.py' and name.startswith(('scripts/','tests/','tools/'))) or (name.startswith(('content/modernization/pr16_story_','content/modernization/pr16_research_story_','content/modernization/pr16_home_recovery_','docs/PR16_STORY_','.github/workflows/pr16-story-save')) and p.suffix in {'.json','.md','.txt','.yml'})
+              if accept:
+                  assert name and not p.is_absolute() and '..' not in p.parts and not p.is_symlink()
+                  raw=p.read_bytes();raw.decode('utf-8');assert len(raw)<20000000
+                  chosen.append((name,raw))
+          assert sum(len(raw) for _,raw in chosen)<500000000
+          out=root/'.local/pr16-story-save14-source';out.mkdir(parents=True)
+          manifest={'source_head':os.environ['GITHUB_SHA'],'run_id':int(os.environ['GITHUB_RUN_ID']),'native_executions':0,'test_executions':0,'files':{n:{'size':len(v),'sha256':hashlib.sha256(v).hexdigest()} for n,v in chosen}}
+          with zipfile.ZipFile(out/'source.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for name,raw in chosen:z.writestr(name,raw)
+          (out/'manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n')
+          print('tracked text files:',len(chosen),'bytes:',sum(len(v) for _,v in chosen))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr16-story-save14-source
+          path: .local/pr16-story-save14-source
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90
