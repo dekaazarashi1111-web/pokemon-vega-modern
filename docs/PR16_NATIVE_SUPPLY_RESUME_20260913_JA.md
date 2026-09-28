@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-PASS_NATURAL_HOME_RECOVERY_SAVE_SCOPED
+PASS_STORY_AFTER_HOME_LOSS_SAVE_PENDING_TERMINAL
 
-**次: 母親との元会話でHP13/23→23/23・麻痺解消・ひっかくPP31→35、通常Save5→6と独立Continueのparty/Flash/4画面保持を限定受入。次はartifactのrecovery.srmを作業コピーとして通常ストーリーへ。map4/0 (8,5)、Lv7/EXP245、RP0、キズぐすり0。母親81入力と旧194/367/301/114入力・starter/RP/UI/BP/P08は再生しない。渡航16条件はstatic検証で、解禁後実渡航native・研究施設自然到達・全ストーリー・releaseは未完。**
+**次: Save7のstory.srm作業コピーから通常育成/手持ち拡充を進める。Lv7/EXP270、次Lvまで44EXP、HP23/23、技PP35/30/25、RP0、map4/0(8,5)。マオリ戦は敗北であり勝利0。同じ低戦力戦闘や完走270/cold34入力を無策に再生しない。北の伐採木で止まる経路を再探索せず、育成後は東側道路map3/19から自然ストーリー進行。研究施設自然到達/実渡航/全story/releaseは未完。**
 
-正式native runがある場合は全必須step/artifact/commitだけ回収し再生しない。終端確認後はrecovery.srmの作業コピーから新しい通常進行だけ。母親81入力/cold34入力/旧194/367/301/114を再生しない。merge/release/baseline変更禁止。
+先に専用測定run/artifactの終端を照合。新story.srmだけから再開。敗北を勝利へ、帰宅を研究到達へ昇格しない。旧受入と270/cold34入力を再生しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `c1afa113aedc6a78080960f23b39d03872920e75`。
-回復専用source/終端収集の出発HEAD。通常Saveの候補SHAと製品baselineは区別する。
+証拠のsource HEAD: `5b378dcae45d7f92307d27ea07ab7041ebce25f5`。
+新区間を独立測定したsource HEAD。記録用自己commitやactive baselineのSHAではない。
 
 ## 最短の再開手順
 
@@ -25,10 +25,10 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_HOME_RECOVERY_JA.md`
-- `content/modernization/pr16_home_recovery_native_checkpoint.json`
-- `content/modernization/pr16_home_recovery_native_terminal.json`
-- `content/modernization/pr16_home_recovery_native_development/save-byte-proof.json`
+- `docs/PR16_STORY_AFTER_HOME_JA.md`
+- `content/modernization/pr16_story_after_home_checkpoint.json`
+- `scripts/pr16_story_after_home.py`
+- `tests/test_pr16_story_after_home.py`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -62,6 +62,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- 回復後の270入力/独立34入力は content/modernization/pr16_story_after_home_checkpoint.json に保存。Save7/EXP270から先だけ進む。マオリ敗北/全滅帰宅を勝利扱いせず、育成不足を補う。
 - 母親回復は content/modernization/pr16_home_recovery_native_checkpoint.json。新候補でSave counter6。回復81/cold34入力は完走済み、次は終端回収またはrecovery.srmから新しい進行のみ。
 - 母親回復は content/modernization/pr16_home_recovery_native_checkpoint.json。新候補でSave counter6。回復81/cold34入力は完走済み、次は終端回収またはrecovery.srmから新しい進行のみ。
 - 原本owner照合と母親15byte source修正は content/modernization/pr16_home_recovery_checkpoint.json。52専用試験はこのsource runで測定済み。次は回復の新native区間だけ。旧完走入力は再生しない。
@@ -360,6 +361,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-一般CI failure/action_required/実行中は原値のまま。専用回復受入やreleaseとは別。
+測定source・開始HEAD・context取得HEADと前回pendingを再照合。一般CI action_required/failureを成功へ改作しない。記録中の自己runの完了は外部APIで確認。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
