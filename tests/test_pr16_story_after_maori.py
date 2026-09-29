@@ -54,7 +54,7 @@ class MapTests(unittest.TestCase):
         put(0, 'I', 0x08000010); put(0x10, 'I', 0x08000020)
         put(0x20, 'IIII', 0x08000040, 0x08000080, 0, 0x08000100)
         put(0x40, 'IIII', 3, 2, 0, 0x08000060)
-        put(0x60, '6H', 0, 0x400, 0, 0, 0xc00)
+        put(0x60, '6H', 0, 0x400, 0, 0, 0, 0xc00)
         put(0x80, 'BBBBIIII', 1, 1, 0, 0, 0x080000a0, 0x080000c0, 0, 0)
         put(0xa0, 'B', 3); put(0xa4, 'hh', 0, 0); put(0xb0, 'I', 0x08000180)
         put(0xc0, 'hhBBBB', 1, 1, 0, 2, 4, 5)

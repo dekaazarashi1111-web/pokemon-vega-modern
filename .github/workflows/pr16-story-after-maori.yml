@@ -22,8 +22,17 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 1
-      - name: New Save16 boundary tests only
-        run: python3 -B -m unittest discover -s tests -p test_pr16_story_after_maori.py -v
+      - name: Exact locally tested source and new tests
+        run: |
+          mkdir -p .local/pr16-story-after-maori/artifact
+          printf '%s\n' '094873217c89f543c1a5ed00435bf2d7a50ff486e0ed06908ee6c75a0414eaf6  scripts/pr16_story_after_maori.py' '26dfaa2ea301f3b459334f690cad460f1edacde2d4b602054ef84eb97b251c5f  tests/test_pr16_story_after_maori.py' | sha256sum --check
+          python3 -B -m unittest discover -s tests -p test_pr16_story_after_maori.py -v > .local/pr16-story-after-maori/artifact/unit.stdout.txt 2> .local/pr16-story-after-maori/artifact/unit.stderr.txt
+          cat .local/pr16-story-after-maori/artifact/unit.stderr.txt
+      - name: Selected tracked source snapshot
+        if: always()
+        run: |
+          git archive --format=tar -o .local/pr16-story-after-maori/artifact/tracked-source.tar HEAD scripts tools/t02 AGENTS.md CHATGPT_RESUME.md content/modernization/pr16_bp_chooser_checkpoint.json content/modernization/p08_remaining_work.json content/modernization/pr16_story_acceleration_checkpoint.json content/modernization/pr16_national_dex_owner_checkpoint.json
+          git rev-parse HEAD > .local/pr16-story-after-maori/artifact/source-head.txt
       - name: Pinned Save16 and adjacent map inspection without native replay
         run: python3 -B scripts/pr16_story_after_maori.py inspect
       - name: Lightweight task graph
