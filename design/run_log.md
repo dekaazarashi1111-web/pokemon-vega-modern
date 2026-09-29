@@ -11349,3 +11349,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 測定e9c9a55c59705490cd49f834fb8586c41bb1861b、回収WIP50b87e638b96、記録source=6b7cbb0b5c133ca505ed5ef29cd6f7e8175c601f・run=36567761064。同branch非force pushと全text読戻し。
 - Network: 固定GitHub run/artifactの再利用だけ。旧BP/P08/progression/grant owner/active baseline/source-lock不変。PR16未merge、releaseなし。
 - Next: story-fastの唯一の開始点はartifact11028517527のstory-fast.srm（Save19、131088bytes、SHA256 dd7adddc09555c2232299075bba657e9e7261ad3b868d9cabb5f0edccc8ed06d）。アヤメPC map5/4・7,4北・party4全回復/RP0、badge1・var4071=5/4072=1から通常storyの未完区間だけを進める。ハヤカ/アマナ2勝・通常報酬・モスギス会話・Save19/coldは完了。HM05は未所持で必要なら通常会話で取得する。新464/cold34入力・73試験・旧BP/P08/Save1〜18は無影響に再走しない。分離progression原本Axew Lv37/EXP68589とNationalDex magic0・grant ownerを保全しflag/var注入で解禁しない。正規全国図鑑解禁、自然育成/進化、Lucky Egg対照・12成長ケース・Lv100soak・研究施設自然到達・全storyは未完。
+
+## 2026-09-29T13:15:39+00:00
+- Timestamp: 2026-09-29T13:15:39+00:00
+- Task: USER-20260929-STORY-HM05 / HM05通常取得・Save20新区間
+- Version: story-hm05-save20-v1
+- Status: DONE（支援story新区間限定。HM05習得/使用・自然育成/全国図鑑/全story未完）
+- Summary: Save19→通常trainer2勝/240円・HM05取得・野生2離脱→PC通常回復Save20/cold。全82画面/36目視anchor/全差分6783bytes・1784範囲を照合。
+- Files changed: 専用oracle/60拒否試験・測定器・開発text原本・記録器/12拒否試験・workflow・checkpoint/guide/text証跡、固定再開MD/JSON、両ログ。private binary/全差分hexはartifactのみ。
+- Verify: run36572961114/job109421243251全8step成功、artifact11036251453、248/cold59入力、Save/RTC全131088bytes保持。payload checksum42件/S61E CRC/旧bank/PC/Bag境界。開発native2/正式native2、記録native0・受入試験再走0・compile0。新記録12試験/scoped final-index/private/resume/task graph/diff通過後のみcommit。一般CI全成功は主張しない。
+- Commit: 測定b47f2d1720b200a7eb01888691e1e489c3df215e、記録source=556e4b2150df292af3ab90d8e88db9e41a759dfc・run=36573749814。同branch非force pushと全text読戻し。
+- Network: 固定GitHub artifactを再利用。旧BP/P08/Save1〜19/progression/grant owner/active baseline/source-lock不変。PR16未merge、releaseなし。旧P03 capacity source不一致failureは別scopeとして保持。
+- Next: story-fastの唯一の開始点はartifact11036251453のstory-fast.srm（Save20、131088bytes、SHA256 2ed14acca7a475598bde7098f68f4c8a8f0fb131ad8f2bc8ad6e4b508c1d08e5）。アヤメPC map5/4・7,4北・party4全回復/RP0、6016円・badge1・var4071=5/4072=1、HM05フラッシュ所持から通常storyの未完区間だけを進める。HM05は未習得/未使用。通常NPC取得、新トレーナー2勝、野生2離脱、PC回復/Save20/coldは完了。248/cold59入力・60試験・Save1〜19/旧BP/P08は無影響に再走しない。分離progression原本Axew Lv37/EXP68589とNationalDex magic0・grant ownerを保全し、flag/var注入で解禁しない。正規全国図鑑解禁、自然育成/進化、Lucky Egg対照・12成長ケース・Lv100soak・研究施設自然到達・全storyは未完。
