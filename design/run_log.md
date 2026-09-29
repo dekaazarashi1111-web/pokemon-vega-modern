@@ -11281,3 +11281,13 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: WIP92da857/3d07192、検証器a35eb96、測定source383ce0f49f4761f6db875e1a2f0a89692d2966e8。記録source=598c5a7b0fd5202fdee4a8fde519aab268ac3114; record run=36504857429、同branch非force pushと全text読戻し。
 - Network: GitHub固定HEAD/run/artifactのみ。原本Save14/分離progression/Stage62基準/source-lock/正式BP/P08不変、PR未merge・releaseなし。
 - Next: マオリ通常勝利・story-fast Save16・独立Continueは受入済み。次はartifact11006311891のstory-fast.srm（map3/19、53,10、北向き）から先へ進む。176/cold20入力とSave1〜14・分離smokeを再生しない。progression.srmは元の戦闘前Axew Lv37/EXP68589を保持。全国図鑑の正規解禁ownerと進化gateを照合し、自然解禁境界または影響台帳付きsource修正/後継候補へ進む。flag注入で進化成功扱いしない。Lucky Egg対照・12成長ケース・Lv100soak・研究施設自然到達・全storyは未完。
+
+## 2026-09-29T00:58:40+00:00
+- Task: USER-20260929-NATIONAL-DEX-OWNER / 全国図鑑grant owner固定
+- Version: national-dex-owner-v1
+- Status: DONE（静的3root限定、自然解禁/進化は未受入）
+- Summary: Vega var4072の9→10→研究所→11/special367をheaderから追跡。legacy4055=7と区別。CFRU VarGet hookを無視したsave-offset断定を避け、探索の6invalid/1diagnosticは全体PASSへ改作しない。
+- Files changed: owner検証器/14試験/限定Actions、audit/checkpoint/guide、固定引継ぎMD/JSON、両ログ。
+- Verify: 新14試験PASS、3root20nodes/decode0、特殊処理table/4native範囲/固定ROM/Save16 magic0。追加native/compile/既受入再実行0。Maori record36504857429全step終端成功を別API照合。最終resume/task graph/scoped index後のみcommit。
+- Commit: source=e86a3c81ca07886739d94404b6c2bc7df39e5255; run=36505642387; 同branch非force push/readback。
+- Next: マオリSave16と全国図鑑grant ownerの限定照合は完了。story-fastはartifact11006311891のstory-fast.srm、map3/19(53,10)から通常storyを続ける。全国図鑑のVega側経路はmap3/0のvar0x4072=9→10→map4/3へwarp、同研究所のvar10イベント→special367→var11の保存状態。var9に至る通常進行と有効化後の自然進化は未受入。legacy var0x4055=7経路を序盤で到達済みと扱わず、flag/var注入やgate緩和はしない。元progression戦闘前Axewを保全し、正規解禁後の別境界で成長/進化/Lucky Egg対照/12ケース/Lv100soakへ進む。旧受入入力・44試験・このowner走査の無影響再実行は禁止。

@@ -8,7 +8,7 @@
 
 story-fastはマオリ通常勝利後Save16、map3/19（53,10）、131088bytes保存/独立Continue一致。非支援laneはSave14のまま。progressionは全国図鑑gateで進化未受入。正式BP/P08受入は不変。
 
-**次: マオリ通常勝利・story-fast Save16・独立Continueは受入済み。次はartifact11006311891のstory-fast.srm（map3/19、53,10、北向き）から先へ進む。176/cold20入力とSave1〜14・分離smokeを再生しない。progression.srmは元の戦闘前Axew Lv37/EXP68589を保持。全国図鑑の正規解禁ownerと進化gateを照合し、自然解禁境界または影響台帳付きsource修正/後継候補へ進む。flag注入で進化成功扱いしない。Lucky Egg対照・12成長ケース・Lv100soak・研究施設自然到達・全storyは未完。**
+**次: マオリSave16と全国図鑑grant ownerの限定照合は完了。story-fastはartifact11006311891のstory-fast.srm、map3/19(53,10)から通常storyを続ける。全国図鑑のVega側経路はmap3/0のvar0x4072=9→10→map4/3へwarp、同研究所のvar10イベント→special367→var11の保存状態。var9に至る通常進行と有効化後の自然進化は未受入。legacy var0x4055=7経路を序盤で到達済みと扱わず、flag/var注入やgate緩和はしない。元progression戦闘前Axewを保全し、正規解禁後の別境界で成長/進化/Lucky Egg対照/12ケース/Lv100soakへ進む。旧受入入力・44試験・このowner走査の無影響再実行は禁止。**
 
 Save14原本artifactと受入済みSave1〜14は不変。story-fastとprogressionを混同しない。fixture書込みは戦闘開始前だけとし、開始後のparty/EXP/level/技/進化/story flag/outcomeへのhost書込みを禁止する。Lv100走破を自然難易度・自然入手・自然育成へ、fixture戦を野生テーブル・自然初期技へ読み替えない。
 
@@ -25,14 +25,13 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `docs/PR16_NATIONAL_DEX_OWNER_JA.md`
+- `content/modernization/pr16_national_dex_owner_checkpoint.json`
 - `docs/PR16_STORY_FAST_MAORI_JA.md`
 - `content/modernization/pr16_story_fast_maori_checkpoint.json`
 - `docs/PR16_STORY_ACCELERATION_CHECKPOINT_JA.md`
-- `content/modernization/pr16_story_acceleration_completion.json`
 - `content/modernization/pr16_story_acceleration_checkpoint.json`
 - `docs/PR16_STORY_ACCELERATED_ACCEPTANCE_PLAN_JA.md`
-- `content/modernization/pr16_story_acceleration_plan.json`
-- `tools/mgba_pr16_story_acceleration.c`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 

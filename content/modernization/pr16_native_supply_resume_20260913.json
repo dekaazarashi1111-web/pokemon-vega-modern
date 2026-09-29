@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "マオリ通常勝利・story-fast Save16・独立Continueは受入済み。次はartifact11006311891のstory-fast.srm（map3/19、53,10、北向き）から先へ進む。176/cold20入力とSave1〜14・分離smokeを再生しない。progression.srmは元の戦闘前Axew Lv37/EXP68589を保持。全国図鑑の正規解禁ownerと進化gateを照合し、自然解禁境界または影響台帳付きsource修正/後継候補へ進む。flag注入で進化成功扱いしない。Lucky Egg対照・12成長ケース・Lv100soak・研究施設自然到達・全storyは未完。",
+    "next_step": "マオリSave16と全国図鑑grant ownerの限定照合は完了。story-fastはartifact11006311891のstory-fast.srm、map3/19(53,10)から通常storyを続ける。全国図鑑のVega側経路はmap3/0のvar0x4072=9→10→map4/3へwarp、同研究所のvar10イベント→special367→var11の保存状態。var9に至る通常進行と有効化後の自然進化は未受入。legacy var0x4055=7経路を序盤で到達済みと扱わず、flag/var注入やgate緩和はしない。元progression戦闘前Axewを保全し、正規解禁後の別境界で成長/進化/Lucky Egg対照/12ケース/Lv100soakへ進む。旧受入入力・44試験・このowner走査の無影響再実行は禁止。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -4238,19 +4238,28 @@
     "source_only_revalidation_run": 34760913320
   },
   "merge_performed": false,
+  "national_dex_owner": {
+    "evolution_accepted": false,
+    "guide": "docs/PR16_NATIONAL_DEX_OWNER_JA.md",
+    "native_processes": 0,
+    "new_tests": 14,
+    "path": "content/modernization/pr16_national_dex_owner_checkpoint.json",
+    "run_id": 36505642387,
+    "source_head": "e86a3c81ca07886739d94404b6c2bc7df39e5255",
+    "status": "PASS_NATIONAL_DEX_GRANT_OWNER_SCOPED"
+  },
   "next_action": {
-    "goal_ja": "マオリ通常勝利・story-fast Save16・独立Continueは受入済み。次はartifact11006311891のstory-fast.srm（map3/19、53,10、北向き）から先へ進む。176/cold20入力とSave1〜14・分離smokeを再生しない。progression.srmは元の戦闘前Axew Lv37/EXP68589を保持。全国図鑑の正規解禁ownerと進化gateを照合し、自然解禁境界または影響台帳付きsource修正/後継候補へ進む。flag注入で進化成功扱いしない。Lucky Egg対照・12成長ケース・Lv100soak・研究施設自然到達・全storyは未完。",
+    "goal_ja": "マオリSave16と全国図鑑grant ownerの限定照合は完了。story-fastはartifact11006311891のstory-fast.srm、map3/19(53,10)から通常storyを続ける。全国図鑑のVega側経路はmap3/0のvar0x4072=9→10→map4/3へwarp、同研究所のvar10イベント→special367→var11の保存状態。var9に至る通常進行と有効化後の自然進化は未受入。legacy var0x4055=7経路を序盤で到達済みと扱わず、flag/var注入やgate緩和はしない。元progression戦闘前Axewを保全し、正規解禁後の別境界で成長/進化/Lucky Egg対照/12ケース/Lv100soakへ進む。旧受入入力・44試験・このowner走査の無影響再実行は禁止。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。Save14は作業コピーだけを使用する。自己OT party、manifest解決済み通常支援用品、EXP境界、safe opponentはpre-battle fixtureとして全byteを台帳化してよい。badge/key item/story flag/money/RPをfixture付与せず、戦闘開始後は通常入力とゲーム内処理だけを使う。",
-    "id": "STORY_FAST_AFTER_MAORI_AND_NATIONAL_DEX_GATE",
+    "id": "STORY_FAST_TO_NATURAL_DEX_BOUNDARY",
     "read_paths": [
+      "docs/PR16_NATIONAL_DEX_OWNER_JA.md",
+      "content/modernization/pr16_national_dex_owner_checkpoint.json",
       "docs/PR16_STORY_FAST_MAORI_JA.md",
       "content/modernization/pr16_story_fast_maori_checkpoint.json",
       "docs/PR16_STORY_ACCELERATION_CHECKPOINT_JA.md",
-      "content/modernization/pr16_story_acceleration_completion.json",
       "content/modernization/pr16_story_acceleration_checkpoint.json",
-      "docs/PR16_STORY_ACCELERATED_ACCEPTANCE_PLAN_JA.md",
-      "content/modernization/pr16_story_acceleration_plan.json",
-      "tools/mgba_pr16_story_acceleration.c"
+      "docs/PR16_STORY_ACCELERATED_ACCEPTANCE_PLAN_JA.md"
     ],
     "stop_rule_ja": "Save14原本artifactと受入済みSave1〜14は不変。story-fastとprogressionを混同しない。fixture書込みは戦闘開始前だけとし、開始後のparty/EXP/level/技/進化/story flag/outcomeへのhost書込みを禁止する。Lv100走破を自然難易度・自然入手・自然育成へ、fixture戦を野生テーブル・自然初期技へ読み替えない。"
   },
@@ -7941,6 +7950,10 @@
       "sha256": "39a1da8df8394904ce40035e8dda3fddf11fba43a9a09c969e6e7e37b1e2a209",
       "size": 3496
     },
+    ".github/workflows/pr16-national-dex-owner.yml": {
+      "sha256": "74a25d733fe3f04319e5f9c8429d7e1a763c0bff104127aa7ff31bfd92ecdc40",
+      "size": 2080
+    },
     ".github/workflows/pr16-natural-supply-20260925.yml": {
       "sha256": "23be3a121c076889893883cf03690bba2f1a3a92ac7e00699b64601d1468048e",
       "size": 3494
@@ -9668,6 +9681,18 @@
     "content/modernization/pr16_learnset_wiki_completed_actions.json": {
       "sha256": "4c200406ab0a3895a44a82cb81d71dde1f99aaa1a281eba1da3e851062bf1808",
       "size": 9673
+    },
+    "content/modernization/pr16_national_dex_owner_checkpoint.json": {
+      "sha256": "ecc1c0d76fbb95824dc76ad35a0e27946cd4dafa29401233f874d9435830f245",
+      "size": 2540
+    },
+    "content/modernization/pr16_national_dex_owner_evidence/audit.json": {
+      "sha256": "0076a86ff87495647e4e98c532ca4cb4f4ba59dcd6144252febab7028b90489d",
+      "size": 19506
+    },
+    "content/modernization/pr16_national_dex_owner_evidence/unit.txt": {
+      "sha256": "906d25ca4f7d78b332cd49879fb8bbc34ce3961ca2b8408c0dd8b2d12aabedca",
+      "size": 1621
     },
     "content/modernization/pr16_natural_supply_checkpoint.json": {
       "sha256": "1852997e4a76a0f4d5cdf8ae8894e17f8c2c9e16a610521cd15bbe5508ca3b6b",
@@ -12348,6 +12373,10 @@
     "docs/PR16_LEARNSET_WIKI_JA.md": {
       "sha256": "4c56bb8319bc491d0f4684d897ab5391248ccb85c7fdbd682464fb5e1efccaf4",
       "size": 2681
+    },
+    "docs/PR16_NATIONAL_DEX_OWNER_JA.md": {
+      "sha256": "8e40bb2b1e35c750663d4ab4e6ff2dc2bfdeb573a2abc18e454c09768713764f",
+      "size": 3101
     },
     "docs/PR16_NATURAL_SUPPLY_JA.md": {
       "sha256": "7f6b0a12d556415ef24ca476f1efeb894edd9a12b589a1c14879e3e91b89f721",
@@ -16825,6 +16854,10 @@
       "sha256": "0521380ce7d4cf19a1a0e79f591187a318b79f08d022fdf85c6912817b747da3",
       "size": 17181
     },
+    "scripts/pr16_national_dex_owner.py": {
+      "sha256": "edd6710bb8815e16b11c5c39557a27c27ebeb5e89ad78d77f0eb8b425363258e",
+      "size": 14466
+    },
     "scripts/pr16_natural_gift_save.py": {
       "sha256": "99de6460b4b48d3b56469be2dfe22d33a5ef76a5548d175e0ff8d02d01eaf7df",
       "size": 7585
@@ -18605,6 +18638,10 @@
       "sha256": "3b2ea9ac4675d36a11cf01e8c3c996d8aeecca1ba5ba9f707ffc53701f0d650a",
       "size": 5270
     },
+    "tests/test_pr16_national_dex_owner.py": {
+      "sha256": "77ea9af96f197a5e3384753ed26fce222aadac8d3cd67c6bab99044068c2ec2e",
+      "size": 2151
+    },
     "tests/test_pr16_natural_gift_save.py": {
       "sha256": "b446831cb0b7a339d0f948a0b56d6f5c752eed0601f42db63472a2c116d20532",
       "size": 5561
@@ -20107,6 +20144,8 @@
       "size": 131088
     },
     "path": "content/modernization/pr16_story_fast_maori_checkpoint.json",
+    "record_actions_completion_confirmed": true,
+    "record_completed_head": "3af810957b9d86578c595b11b0a8a67a0276a289",
     "record_run_id": 36504857429,
     "record_source_head": "598c5a7b0fd5202fdee4a8fde519aab268ac3114",
     "run_id": 36504040292,
