@@ -1,11 +1,17 @@
-# アヤメ前提・カチヌキ3兄弟 — 開発checkpoint
+# アヤメ前提・カチヌキ3兄弟 — Save18正式測定前checkpoint
 
-Task: USER-20260929-STORY-AYAME-GATE。2026-09-29、開始remote HEAD c0e997047b61ed0c2c405c8949a32d6b44299610。
+Task: USER-20260929-STORY-AYAME-GATE。2026-09-29、開始remote HEAD c0e997047b61ed0c2c405c8949a32d6b44299610。最初の実装checkpoint d75466777ae1ee5835b6df61fe6121733a09b5c2。
 
-固定Save17 artifact11008723945（全144memberと外側hash一致）を読み取り専用で回収した。bootstrap source e7e91000395c5412e802e5c4081eb3926700977c と開始HEADとの差分は旧未保存WIP 1ファイルのみ。実行中Actionsは0を確認。HEADのPR CIはforgetting成功、source-validation失敗であり全greenとは扱わない。
+固定Save17 artifact11008723945（全144memberと外側hash一致）を回収した。bootstrap source e7e91000395c5412e802e5c4081eb3926700977c と開始HEADとの差分は旧未保存WIP 1ファイルのみ。開始時の実行中Actionsは0。HEADのPR CIはforgetting成功、source-validationはP03 capacity fixed originals and cold-save acceptance段階で失敗し、全greenとは扱わない。
 
-旧 `pr16_story_ayame_gate_development/wip_20260929_0308.json` は保存終端も完了processも無い履歴であり、Save18ではない。唯一の保存済み開始点Save17から新しい通常入力を行った。町→ゲート上階の初回訪問だけでは連戦は始まらず、ジム前NPCとの通常会話後に再入場すると正規イベントが発火した。現在は第1戦の賞金200円まで観測、通常Save/coldは未完。
+旧 `pr16_story_ayame_gate_development/wip_20260929_0308.json` は保存終端も完了processも無い履歴であり、Save18ではない。唯一の保存済み開始点Save17から新しい通常入力を行った。初回のゲート上階訪問ではイベントが始まらず、ジム前NPCとの通常会話後に再入場すると正規イベントが発火した。3連勝→ジム前NPC移動→実ジムmap6/2入場→PC通常回復→Save18→独立Continue・手持ちUI・fieldまで開発時に確認した。ジムリーダー勝利は未完。
 
-`pr16_story_ayame_chain.py` と専用25試験を追加し、ローカルで25 PASS。交代用party UIからBATTLEへ戻る遷移、KO、field残留outcome1を新しい勝利や別戦に数えない。中間2戦はlock1を許容し、各戦のoutcome0リセット→battle上の勝利→field復帰と連戦全体の最終解錠を別々に要求する。未知callback、欠測、早期解錠、4戦目、敗北/逃走/捕獲を拒否する。
+新規55試験（連戦25・保存終端/S61E30）がローカルPASS。交代party UI/KO/field残留outcome1を新しい勝利に数えない。中間2戦のlock1を許容し、各戦outcome0リセット→battle上の勝利→field復帰と最終解錠を別要求。全145画像をhash/形式検査し、30画面anchorを直接pixelレビュー。正常終了code0だけでSave完了としない。
 
-これは実装途中のcheckpointであり、Save18・3連勝・自然育成・進化・全国図鑑・全storyを受入しない。ROM/原本Save/既受入BP/P08/Save1〜17/全国図鑑owner/active baselineは変更しない。終了前に通常Saveと独立Continue、影響範囲の検証、固定再開MD/JSONと両ログを更新する。
+開発harnessがcounter17/lock1の保存書込み途中で早期quitした失敗と、古いSave17へfallbackした診断coldを保存した。未受入の新区間だけを1回再実行し、全失敗観測prefix95617bytesを一致確認したうえで600frames待機を追加。counter18・lock0・独立Continue後の全131088bytes一致を確認。開発nativeは失敗2+成功2=4。詳細と失敗原本hashはexpected.json。旧受入の明示再走は0。
+
+所持金3372→3940（200+176+192）、Bag5pocket不変。旧WIPのHM05受領は今回の保存に継承しない。party600bytesは歩行友情2bytesのみ変化、全HP/PP回復。前Save17 bank57344bytes・PC boxed payload保持。chunk13末尾はPCではなくS61E拡張recordで、CRC32/反転値とgym flag4355のbit3（3→11）だけのpayload変化を検証した。他の拡張flags/vars/ball/coins保持。一般sector checksum全体の受入とは別。
+
+次のActionsはこの新Save18区間の初回正式測定だけ。固定ROM/runner/runtimeを再利用しcompile0、旧317/cold22入力・34/19試験・BP/P08/Save1〜17を再実行しない。正式原本と全終端stepの成功確認後、checkpoint・固定再開MD/JSON・両ログを更新してから完了する。
+
+現時点では正式受入をまだ宣言しない。ROM/原本Save/全国図鑑owner/active baseline不変。自然育成・進化・全国図鑑正規解禁・研究施設自然到達・全story・releaseは未完。
