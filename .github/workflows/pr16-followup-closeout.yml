@@ -1,0 +1,140 @@
+name: pr16-followup-closeout
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-followup-closeout.yml]
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-followup-closeout
+  cancel-in-progress: false
+jobs:
+  closeout:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Confirm completed originals and publish final handoff without replay
+        run: |
+          python3 - <<'PY'
+          import datetime,json,os,pathlib,sys
+          sys.path[:0]=['scripts','.']
+          import pr16_research_story_route_actions as h
+          import pr16_story_fast_maori as m
+          import pr16_national_dex_owner as n
+          from pr16_learnset_compact_record import publish_resume
+          h.d.current();s=h.source_check()
+          cp='content/modernization/pr16_story_followup_20260929_completion.json'
+          proof='content/modernization/pr16_followup_completion/record-unit-local.txt'
+          wf='.github/workflows/pr16-followup-closeout.yml'
+          out=pathlib.Path('.local/pr16-followup-closeout');out.mkdir(parents=True)
+          m.need(not pathlib.Path(cp).exists(),'do not duplicate completed closeout')
+          terminal=[]
+          for number,source,path in [
+              (36504040292,'383ce0f49f4761f6db875e1a2f0a89692d2966e8','.github/workflows/pr16-story-fast-maori.yml'),
+              (36504857429,'598c5a7b0fd5202fdee4a8fde519aab268ac3114','.github/workflows/pr16-story-fast-maori-record.yml'),
+              (36505642387,'e86a3c81ca07886739d94404b6c2bc7df39e5255','.github/workflows/pr16-national-dex-owner.yml')]:
+              r=h.d.inputs.api(f'actions/runs/{number}');j=h.d.inputs.api(f'actions/runs/{number}/jobs?per_page=100')
+              m.need(r['id']==number and r['head_sha']==source and r['path']==path and r['status']=='completed' and r['conclusion']=='success' and r['run_attempt']==1,'exact successful component run')
+              m.need(j['total_count']==len(j['jobs'])==1 and j['jobs'][0]['status']=='completed' and j['jobs'][0]['conclusion']=='success' and len(j['jobs'][0]['steps'])==8 and all(x['status']=='completed' and x['conclusion']=='success' for x in j['jobs'][0]['steps']),'all eight steps including push/upload/post')
+              terminal.append(dict(run=h.d.run_summary(r),job_id=j['jobs'][0]['id'],all_steps_completed_success=True,step_count=8))
+          bindings={
+              'scripts/pr16_story_fast_maori_record.py':dict(size=16329,sha256='b81d4da0e63ea06894d55a86383979f0ea30c068dca17dc71887badc622be69a'),
+              'tests/test_pr16_story_fast_maori_record.py':dict(size=2866,sha256='9779275caeaf45e1fd840c4305670b1c723839d2b4303f50061dd7e325137d44')}
+          m.need(h.d.bindings(bindings)==bindings,'exact locally tested record source')
+          unit='''test_artifact (test_pr16_story_fast_maori_record.RecordTests.test_artifact) ... ok
+          test_completed (test_pr16_story_fast_maori_record.RecordTests.test_completed) ... ok
+          test_incomplete_job_page (test_pr16_story_fast_maori_record.RecordTests.test_incomplete_job_page) ... ok
+          test_incomplete_or_foreign_run (test_pr16_story_fast_maori_record.RecordTests.test_incomplete_or_foreign_run) ... ok
+          test_missing_final_step (test_pr16_story_fast_maori_record.RecordTests.test_missing_final_step) ... ok
+          test_post_step_failure (test_pr16_story_fast_maori_record.RecordTests.test_post_step_failure) ... ok
+          test_skipped_upload (test_pr16_story_fast_maori_record.RecordTests.test_skipped_upload) ... ok
+          test_wrong_job (test_pr16_story_fast_maori_record.RecordTests.test_wrong_job) ... ok
+
+          ----------------------------------------------------------------------
+          Ran 8 tests in 0.001s
+
+          OK
+          '''
+          p=pathlib.Path(proof);p.parent.mkdir(parents=True);p.write_text(unit,encoding='utf-8')
+          m.need(unit.count(' ... ok\n')==8,'local original count, no new test run')
+          runs=h.d.inputs.api('actions/runs?branch=codex%2Fmodernization-followup-20260908&per_page=20')
+          recent=[h.d.run_summary(r) for r in runs['workflow_runs']]
+          record=dict(schema_version=1,task='USER-20260929-STORY-FOLLOWUP-CLOSEOUT',status='DONE_SCOPED_TWO_WORKSTREAMS',
+              source_head=os.environ['GITHUB_SHA'],record_run_id=int(os.environ['GITHUB_RUN_ID']),components=terminal,
+              story_status='PASS_STORY_FAST_MAORI_SAVE16_SCOPED',national_owner_status='PASS_NATIONAL_DEX_GRANT_OWNER_SCOPED',
+              story_save=m.OUTPUT_SAVE,story_artifact_id=11006311891,story_position=dict(map=[3,19],xy=[53,10],facing=2),
+              formal_native_processes=2,development_native_processes=2,closeout_native_processes=0,accepted_case_reruns=0,
+              unique_new_test_definitions=66,formal_new_tests=58,local_record_only_tests=8,local_record_test_source_bindings=bindings,
+              local_record_test_log=proof,rom_changes=0,compile_count=0,latest_twenty_actions_snapshot=recent,
+              general_ci_all_success_claimed=False,national_dex_gameplay_unlock_accepted=False,evolution_accepted=False,
+              natural_growth_accepted=False,full_story_accepted=False,release_ready=False,active_baseline_changed=False,
+              remaining_ja=['Save16以降の通常story','全国図鑑var4072=9への自然到達・正規解禁','自然EXP進化','Lucky Egg対照','12成長ケース','Lv100soak','研究施設自然到達と全story'],
+              next_goal_ja=s['next_action']['goal_ja'])
+          h.d.write(cp,record)
+          c=h.d.read(n.CP);m.need(c['run_id']==36505642387 and not c['actions_completion_confirmed'],'owner terminal not yet confirmed')
+          c.update(actions_completion_confirmed=True,actions_conclusion='success',completed_record_head='4aa8fbb84f33439ad438c37e8c3b158700a44fd0',completion_record=cp)
+          h.d.write(n.CP,c)
+          with pathlib.Path(n.GUIDE).open('a',encoding='utf-8') as f:
+              f.write('\n## 外部APIによる終端確認\n\nrun36505642387の全8step（push/upload/postを含む）completed/success、記録commit4aa8fbb84f33439ad438c37e8c3b158700a44fd0を確認。測定・14試験を再実行せず終端状態だけを同期した。集約記録は `'+cp+'`。全国図鑑のゲーム内解禁・進化未受入は変わらない。\n')
+          s['national_dex_owner'].update(actions_completion_confirmed=True,actions_conclusion='success',completion_record=cp)
+          s['story_followup_20260929_completion']=dict(path=cp,closed_scopes=2,accepted_case_reruns=0,release_ready=False)
+          s['next_action']['read_paths'].insert(0,cp)
+          s['observed_head_checks']['runs']=[x['run'] for x in terminal]
+          s['observed_head_checks']['reason_ja']='今回のMaori測定・記録・全国図鑑ownerの3run全24stepのcompleted/successを外部APIで確認。最新20Actionsは集約記録へ保存。一般CI全体成功・自然解禁・自然進化・全story・releaseは主張しない。'
+          owned={cp,proof,n.CP,n.GUIDE,h.d.STATE,h.d.DOC,*h.d.LOGS}
+          for p in (owned|{wf})-{h.d.STATE,h.d.DOC,*h.d.LOGS}:s['source_bindings'][p]=m.identity(pathlib.Path(p).read_bytes())
+          publish_resume(s)
+          stamp=datetime.datetime.now(datetime.timezone.utc).replace(microsecond=0).isoformat()
+          log=f'\n## {stamp}\n- Task: USER-20260929-STORY-FOLLOWUP-CLOSEOUT\n- Version: story-followup-closeout-v1\n- Status: DONE（Maori Save16・全国図鑑ownerの2限定scope）\n- Summary: 3run全24step終端成功を外部API照合し、owner未確定フラグを確定。新検査定義66=Maori44+記録8+owner14、Actionsでは新58、記録8はlocal原本/source hash保管のみ。\n- Files changed: 最終集約JSON/記録8試験原本、owner checkpoint/guide、固定引継ぎMD/JSON、両ログ、専用closeout workflow。\n- Verify: 新区間native開発2/正式2、closeout native0/test0/compile0、既受入case再実行0。ROM/原本Save14/基準/正式BP/P08不変。最新20Actionsを成功へ読み替えず保存。resume/task graph/scoped final index/diff確認後にcommit。\n- Commit: source={os.environ["GITHUB_SHA"]}; run={os.environ["GITHUB_RUN_ID"]}; 同branch非force反映・全text読戻し。\n- Next: 集約記録のSave16から新規区間へ。国図自然解禁/進化/Lucky Egg/12成長/soak/全storyは未完。\n'
+          for p in h.d.LOGS:
+              with pathlib.Path(p).open('a',encoding='utf-8') as f:f.write(log)
+          h.d.write(out/'owned.json',sorted(owned));h.d.git('add','--',*sorted(owned))
+          PY
+      - name: Final resume task graph and scoped index
+        run: |
+          python3 -B scripts/pr16_resume.py check
+          python3 -B scripts/validate_task_graph.py --check
+          python3 - <<'PY'
+          import json,os,sys
+          sys.path[:0]=['scripts','.']
+          import pr16_learnset_runtime_record as g
+          g.START=os.environ['GITHUB_SHA'];g.CODE=set();g.OWNED=set(json.load(open('.local/pr16-followup-closeout/owned.json')));g.guard()
+          PY
+          git diff --cached --check
+      - name: Non-force final commit and readback
+        run: |
+          set -euo pipefail
+          branch=codex/modernization-followup-20260908
+          test "$(git ls-remote origin refs/heads/$branch | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m "USER-20260929-STORY-FOLLOWUP-CLOSEOUT: 3run終端確認・2scope完了・固定引継ぎと両ログ同期 run=$GITHUB_RUN_ID"
+          git push origin HEAD:refs/heads/$branch
+          test "$(git ls-remote origin refs/heads/$branch | cut -f1)" = "$(git rev-parse HEAD)"
+          python3 - <<'PY'
+          import json,pathlib,subprocess,zipfile
+          out=pathlib.Path('.local/pr16-followup-closeout')
+          with zipfile.ZipFile(out/'record.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for p in json.loads((out/'owned.json').read_text()):
+                  b=subprocess.check_output(['git','show','HEAD:'+p]);assert b==pathlib.Path(p).read_bytes();z.writestr(p,b)
+              z.writestr('record-head.txt',subprocess.check_output(['git','rev-parse','HEAD']))
+          (out/'record-head.txt').write_bytes(subprocess.check_output(['git','rev-parse','HEAD']))
+          PY
+          echo "RESULT=DONE TASK=USER-20260929-STORY-FOLLOWUP-CLOSEOUT VERIFY=PASS_SCOPED COMMIT=$(git rev-parse HEAD)"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-followup-closeout
+          path: .local/pr16-followup-closeout/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90
