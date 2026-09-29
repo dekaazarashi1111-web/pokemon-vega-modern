@@ -1,0 +1,48 @@
+name: pr16-story-gym-closeout
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-story-gym-closeout.yml]
+permissions:
+  contents: read
+concurrency:
+  group: pr16-story-gym-closeout
+  cancel-in-progress: false
+jobs:
+  source-snapshot:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Export tracked text for offline closeout, no emulator
+        run: |
+          python3 - <<'PY'
+          import hashlib, json, pathlib, subprocess, zipfile
+          root=pathlib.Path('.')
+          out=root/'.local/pr16-story-gym-closeout';out.mkdir(parents=True)
+          names=subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
+          manifest={}
+          prefixes=('scripts/','tests/','tools/','config/','state/','tasks/','infra/','design/','content/modernization/','.github/workflows/')
+          with zipfile.ZipFile(out/'source.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for name in names:
+                  p=root/name
+                  selected=name in ('AGENTS.md','README.md','CHATGPT_RESUME.md','Makefile','.gitignore') or name.startswith(prefixes) or (name.startswith('docs/') and (p.name.startswith('PR16_') or p.name.startswith('CHATGPT_'))) or p.name=='AGENTS.md'
+                  if not name or not selected or not p.is_file() or p.is_symlink():continue
+                  data=p.read_bytes()
+                  if len(data)>16000000 or b'\x00' in data:continue
+                  try:data.decode('utf-8')
+                  except UnicodeDecodeError:continue
+                  z.writestr(name,data)
+                  manifest[name]={'size':len(data),'sha256':hashlib.sha256(data).hexdigest()}
+          record={'head':subprocess.check_output(['git','rev-parse','HEAD']).decode().strip(),'files':manifest,'native_processes':0,'accepted_case_reruns':0}
+          (out/'source-manifest.json').write_text(json.dumps(record,ensure_ascii=False,sort_keys=True,indent=2)+'\n')
+          print('SOURCE_ONLY',record['head'],len(manifest),'native=0')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr16-story-gym-closeout-source
+          path: .local/pr16-story-gym-closeout
+          include-hidden-files: true
+          retention-days: 7
+          if-no-files-found: error
