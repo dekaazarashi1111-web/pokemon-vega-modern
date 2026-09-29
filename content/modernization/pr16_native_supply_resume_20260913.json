@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "story-fastはマオリ通常勝利後Save16、map3/19（53,10）、131088bytes保存/独立Continue一致。非支援laneはSave14のまま。progressionは全国図鑑gateで進化未受入。正式BP/P08受入は不変。",
+    "current_stop": "支援story-fastで502番道路の通常3戦・ゲート通過・アヤメPC通常回復Save17・独立Continueを限定受入。全Save/RTC131088bytes保持、map5/4・7,4北、party4/RP0。全国図鑑magic0・progression進化blockedは維持。次はartifact11008723945から先の通常story。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "マオリSave16と全国図鑑grant ownerの限定照合は完了。story-fastはartifact11006311891のstory-fast.srm、map3/19(53,10)から通常storyを続ける。全国図鑑のVega側経路はmap3/0のvar0x4072=9→10→map4/3へwarp、同研究所のvar10イベント→special367→var11の保存状態。var9に至る通常進行と有効化後の自然進化は未受入。legacy var0x4055=7経路を序盤で到達済みと扱わず、flag/var注入やgate緩和はしない。元progression戦闘前Axewを保全し、正規解禁後の別境界で成長/進化/Lucky Egg対照/12ケース/Lv100soakへ進む。旧受入入力・44試験・このowner走査の無影響再実行は禁止。",
+    "next_step": "story-fastはアヤメシティ通常回復Save17を唯一の開始点とする。artifact11008723945のstory-fast.srmを復元し、map5/4・7,4・北向きのポケモンセンターから通常の出口・町イベントを進める。今回の317/cold22入力・34試験・受入済み19試験・マオリ・旧BP/P08/Save1〜16は影響なしに再走しない。全国図鑑正規解禁へ向けて通常storyを継続し、次の自然保存境界で区切る。progression原本は戦闘前Axew Lv37/EXP68589のまま保持し、NationalDex magic0を注入で解除しない。自然育成/進化、Lucky Egg対照・12成長ケース・Lv100soak・研究施設自然到達・全storyは未完。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -4252,55 +4252,90 @@
     "status": "PASS_NATIONAL_DEX_GRANT_OWNER_SCOPED"
   },
   "next_action": {
-    "goal_ja": "マオリSave16と全国図鑑grant ownerの限定照合は完了。story-fastはartifact11006311891のstory-fast.srm、map3/19(53,10)から通常storyを続ける。全国図鑑のVega側経路はmap3/0のvar0x4072=9→10→map4/3へwarp、同研究所のvar10イベント→special367→var11の保存状態。var9に至る通常進行と有効化後の自然進化は未受入。legacy var0x4055=7経路を序盤で到達済みと扱わず、flag/var注入やgate緩和はしない。元progression戦闘前Axewを保全し、正規解禁後の別境界で成長/進化/Lucky Egg対照/12ケース/Lv100soakへ進む。旧受入入力・44試験・このowner走査の無影響再実行は禁止。",
+    "goal_ja": "story-fastはアヤメシティ通常回復Save17を唯一の開始点とする。artifact11008723945のstory-fast.srmを復元し、map5/4・7,4・北向きのポケモンセンターから通常の出口・町イベントを進める。今回の317/cold22入力・34試験・受入済み19試験・マオリ・旧BP/P08/Save1〜16は影響なしに再走しない。全国図鑑正規解禁へ向けて通常storyを継続し、次の自然保存境界で区切る。progression原本は戦闘前Axew Lv37/EXP68589のまま保持し、NationalDex magic0を注入で解除しない。自然育成/進化、Lucky Egg対照・12成長ケース・Lv100soak・研究施設自然到達・全storyは未完。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。Save14は作業コピーだけを使用する。自己OT party、manifest解決済み通常支援用品、EXP境界、safe opponentはpre-battle fixtureとして全byteを台帳化してよい。badge/key item/story flag/money/RPをfixture付与せず、戦闘開始後は通常入力とゲーム内処理だけを使う。",
-    "id": "STORY_FAST_TO_NATURAL_DEX_BOUNDARY",
+    "id": "STORY_AFTER_AYAME_SAVE17",
     "read_paths": [
-      "content/modernization/pr16_story_followup_20260929_completion.json",
+      "docs/PR16_STORY_AFTER_MAORI_JA.md",
+      "content/modernization/pr16_story_after_maori_checkpoint.json",
       "docs/PR16_NATIONAL_DEX_OWNER_JA.md",
       "content/modernization/pr16_national_dex_owner_checkpoint.json",
-      "docs/PR16_STORY_FAST_MAORI_JA.md",
-      "content/modernization/pr16_story_fast_maori_checkpoint.json",
-      "docs/PR16_STORY_ACCELERATION_CHECKPOINT_JA.md",
       "content/modernization/pr16_story_acceleration_checkpoint.json",
-      "docs/PR16_STORY_ACCELERATED_ACCEPTANCE_PLAN_JA.md"
+      "content/modernization/pr16_story_after_maori_development/expected.json",
+      "scripts/pr16_story_after_maori_record.py"
     ],
-    "stop_rule_ja": "Save14原本artifactと受入済みSave1〜14は不変。story-fastとprogressionを混同しない。fixture書込みは戦闘開始前だけとし、開始後のparty/EXP/level/技/進化/story flag/outcomeへのhost書込みを禁止する。Lv100走破を自然難易度・自然入手・自然育成へ、fixture戦を野生テーブル・自然初期技へ読み替えない。"
+    "stop_rule_ja": "新しい通常story区間を自然Save/cold境界で区切る。受入済み317/cold22、34/19試験、旧BP/P08/マオリを再走しない。異常時は原本と失敗証跡を保全し、成功へ読み替えない。"
   },
   "observed_date_jst": "2026-09-29",
-  "observed_head": "383ce0f49f4761f6db875e1a2f0a89692d2966e8",
+  "observed_head": "0c5a118c855ee52eecbadaa7c4114d32a59e500f",
   "observed_head_checks": {
-    "reason_ja": "今回のMaori測定・記録・全国図鑑ownerの3run全24stepのcompleted/successを外部APIで確認。最新20Actionsは集約記録へ保存。一般CI全体成功・自然解禁・自然進化・全story・releaseは主張しない。",
+    "reason_ja": "専用run36510782954/job109222190727全7stepと144memberを照合。既存push CIのfailure/action_requiredは別scope。記録workflow自身の終端は別API照合。",
     "runs": [
       {
         "conclusion": "success",
         "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "383ce0f49f4761f6db875e1a2f0a89692d2966e8",
-        "id": 36504040292,
-        "path": ".github/workflows/pr16-story-fast-maori.yml",
+        "head_sha": "0c5a118c855ee52eecbadaa7c4114d32a59e500f",
+        "id": 36510793440,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "run_attempt": 1,
+        "status": "completed"
+      },
+      {
+        "conclusion": "failure",
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "0c5a118c855ee52eecbadaa7c4114d32a59e500f",
+        "id": 36510793435,
+        "path": ".github/workflows/ci.yml",
         "run_attempt": 1,
         "status": "completed"
       },
       {
         "conclusion": "success",
         "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "598c5a7b0fd5202fdee4a8fde519aab268ac3114",
-        "id": 36504857429,
-        "path": ".github/workflows/pr16-story-fast-maori-record.yml",
+        "head_sha": "0c5a118c855ee52eecbadaa7c4114d32a59e500f",
+        "id": 36510783058,
+        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
         "run_attempt": 1,
         "status": "completed"
       },
       {
         "conclusion": "success",
         "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "e86a3c81ca07886739d94404b6c2bc7df39e5255",
-        "id": 36505642387,
-        "path": ".github/workflows/pr16-national-dex-owner.yml",
+        "head_sha": "0c5a118c855ee52eecbadaa7c4114d32a59e500f",
+        "id": 36510783086,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "run_attempt": 1,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "0c5a118c855ee52eecbadaa7c4114d32a59e500f",
+        "id": 36510782954,
+        "path": ".github/workflows/pr16-story-after-maori.yml",
+        "run_attempt": 1,
+        "status": "completed"
+      },
+      {
+        "conclusion": "failure",
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "0c5a118c855ee52eecbadaa7c4114d32a59e500f",
+        "id": 36510782921,
+        "path": ".github/workflows/ci.yml",
+        "run_attempt": 1,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "0c5a118c855ee52eecbadaa7c4114d32a59e500f",
+        "id": 36510782957,
+        "path": ".github/workflows/modernization-stage79-mgba.yml",
         "run_attempt": 1,
         "status": "completed"
       }
     ],
-    "scope_head": "383ce0f49f4761f6db875e1a2f0a89692d2966e8"
+    "scope_head": "0c5a118c855ee52eecbadaa7c4114d32a59e500f"
   },
   "observed_head_history": [
     {
@@ -5951,9 +5986,47 @@
       "head": "96e9dd07d172f3791b1fab1ab803b2dfa1bf042a",
       "reason_ja": "Save14の非支援受入を保持し、別laneのマオリSave16限定受入を追加。",
       "semantics": "Save13後のひんし交代・野生1勝・Save14測定source HEAD。記録commit/active baselineではない。"
+    },
+    {
+      "checks": {
+        "reason_ja": "今回のMaori測定・記録・全国図鑑ownerの3run全24stepのcompleted/successを外部APIで確認。最新20Actionsは集約記録へ保存。一般CI全体成功・自然解禁・自然進化・全story・releaseは主張しない。",
+        "runs": [
+          {
+            "conclusion": "success",
+            "head_branch": "codex/modernization-followup-20260908",
+            "head_sha": "383ce0f49f4761f6db875e1a2f0a89692d2966e8",
+            "id": 36504040292,
+            "path": ".github/workflows/pr16-story-fast-maori.yml",
+            "run_attempt": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "head_branch": "codex/modernization-followup-20260908",
+            "head_sha": "598c5a7b0fd5202fdee4a8fde519aab268ac3114",
+            "id": 36504857429,
+            "path": ".github/workflows/pr16-story-fast-maori-record.yml",
+            "run_attempt": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "head_branch": "codex/modernization-followup-20260908",
+            "head_sha": "e86a3c81ca07886739d94404b6c2bc7df39e5255",
+            "id": 36505642387,
+            "path": ".github/workflows/pr16-national-dex-owner.yml",
+            "run_attempt": 1,
+            "status": "completed"
+          }
+        ],
+        "scope_head": "383ce0f49f4761f6db875e1a2f0a89692d2966e8"
+      },
+      "head": "383ce0f49f4761f6db875e1a2f0a89692d2966e8",
+      "reason_ja": "旧受入/全国図鑑ownerを保持し、通常3戦・アヤメSave17の別scopeを追加。",
+      "semantics": "自己OT Lv100 story-fastのマオリ勝利・Save16測定source HEAD。非支援Save14、進化成功、記録commit、active baselineではない。"
     }
   ],
-  "observed_head_semantics": "自己OT Lv100 story-fastのマオリ勝利・Save16測定source HEAD。非支援Save14、進化成功、記録commit、active baselineではない。",
+  "observed_head_semantics": "支援story-fastの通常3戦・アヤメ回復Save17測定source。進化/自然育成/全story、記録commit、active baselineではない。",
   "p08_candidate_impact": {
     "candidate": {
       "crc32": "CC068B4A",
@@ -8880,6 +8953,14 @@
       "sha256": "2b53696b4f9692580e37aa88332e803e3f0fd20a3deb276a4c4e710d30cdef9a",
       "size": 2473
     },
+    ".github/workflows/pr16-story-after-maori-record.yml": {
+      "sha256": "79a26ee9bd229bc4f06894b5e412857dd03962f4fc402b41f21009361802c90f",
+      "size": 3147
+    },
+    ".github/workflows/pr16-story-after-maori.yml": {
+      "sha256": "af82d703c686b0f6ae43800509244b7f024135635e8cb198b7eb2d7b5d6fc3c9",
+      "size": 1132
+    },
     ".github/workflows/pr16-story-fast-maori-record.yml": {
       "sha256": "2b9a9cb92edcd169c7a80097ab8ecad07877aefe82a05358562f3e9be89aef99",
       "size": 2125
@@ -11456,6 +11537,82 @@
       "sha256": "e5e74af2e4e0199511a42379de32e40a80c166fd55214d886a82943e0c158ea5",
       "size": 4613
     },
+    "content/modernization/pr16_story_after_maori_checkpoint.json": {
+      "sha256": "f30c7b8e13c3241afe78aaa99fd448b1772aa3e1ec5b884584793f9cc6c8d726",
+      "size": 11917
+    },
+    "content/modernization/pr16_story_after_maori_development/continue-commands.txt": {
+      "sha256": "6afc3877ca7a60e31e10f8c183397177be2461f7d2f98328017e7c4e55239f25",
+      "size": 114
+    },
+    "content/modernization/pr16_story_after_maori_development/expected.json": {
+      "sha256": "216d3f76fb0c5b822d4055f5d461bc244642b8ca883e8bf67ad8edc715545156",
+      "size": 2395
+    },
+    "content/modernization/pr16_story_after_maori_development/failure-receipt.json": {
+      "sha256": "3efaf1212da9a340ab5134709282827db56aeb46d57f1cb3397adf797ad65849",
+      "size": 981
+    },
+    "content/modernization/pr16_story_after_maori_development/progress-commands.txt": {
+      "sha256": "3300a282a157371fc4ec1209f53eec6367fba2cb592d3d9420052c495db07565",
+      "size": 4066
+    },
+    "content/modernization/pr16_story_after_maori_evidence/continue/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_story_after_maori_evidence/continue/stdout.txt": {
+      "sha256": "f262f23091e2139e4d2c137791f207ab91fb6a54c9d01e0c52916b23a57c3f93",
+      "size": 3059
+    },
+    "content/modernization/pr16_story_after_maori_evidence/development-failure-receipt.json": {
+      "sha256": "d261dc2754e72419ddbd975873dcc3afdc56fc6719a9d512c6e8e07c77ae606c",
+      "size": 1158
+    },
+    "content/modernization/pr16_story_after_maori_evidence/inspection.json": {
+      "sha256": "34efad7974aa2df272d4cb099d318a14ec608976db7f1dc33f8907497a25ab40",
+      "size": 23264
+    },
+    "content/modernization/pr16_story_after_maori_evidence/manifest.json": {
+      "sha256": "e0d53e9db9b7916e73689bbe9bf54e82b4e15e85a5c398279af14f2f151d4596",
+      "size": 19668
+    },
+    "content/modernization/pr16_story_after_maori_evidence/measurement.json": {
+      "sha256": "35e3ae32da784f940a36329e1c0b787f46481c401ba0b68910ea2459d9b82c12",
+      "size": 6648
+    },
+    "content/modernization/pr16_story_after_maori_evidence/prior-19-receipt.json": {
+      "sha256": "079f6c200b27096180b73f3a995ed6e04ed8962c5ded12693925e806dc3283b7",
+      "size": 1113
+    },
+    "content/modernization/pr16_story_after_maori_evidence/prior-19-unit.stderr.txt": {
+      "sha256": "d0576459c9c4071c22a0c0db9c6ecfda7288ba5c5188d8bc417faa1e5e65202e",
+      "size": 1764
+    },
+    "content/modernization/pr16_story_after_maori_evidence/progress/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_story_after_maori_evidence/progress/stdout.txt": {
+      "sha256": "7ee6edef325f5f0ea2fe0168282d5e6dc7857d6ed725c2b755e7125a54aff82b",
+      "size": 79953
+    },
+    "content/modernization/pr16_story_after_maori_evidence/terminal.json": {
+      "sha256": "f08c3189dc173d52966902187eaaab07bddb4aa13729665976db2ac5bc6af567",
+      "size": 5074
+    },
+    "content/modernization/pr16_story_after_maori_evidence/unit.stderr.txt": {
+      "sha256": "6122f49145f77281803e3936e8fb9c5616a6a89614209157822c3c01d879683a",
+      "size": 3575
+    },
+    "content/modernization/pr16_story_after_maori_evidence/unit.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_story_after_maori_evidence/verification.json": {
+      "sha256": "d73cf608aee03bc804590e78ae159082054d0c7dc3c9cd8a6e01e9ec8e475ca1",
+      "size": 3804
+    },
     "content/modernization/pr16_story_fast_maori_checkpoint.json": {
       "sha256": "b146d0e679270e10872331535965c6ba42fa47749de7014564d539ae8705c12d",
       "size": 11918
@@ -12551,6 +12708,10 @@
     "docs/PR16_STORY_AFTER_HOME_JA.md": {
       "sha256": "5f97d8ce4dd5b5015d3cdc01effb6331864a88875ba86388a7265ac49b2d377c",
       "size": 2227
+    },
+    "docs/PR16_STORY_AFTER_MAORI_JA.md": {
+      "sha256": "eb4b6fc11ac69140f41e5155906785dcd667da37653e5349afd9469107e43e1e",
+      "size": 4818
     },
     "docs/PR16_STORY_FAST_MAORI_JA.md": {
       "sha256": "a938f700a0eb9d97e83250687c4e74a0c80e81143efc07d6455c428b522f4fab",
@@ -17964,6 +18125,26 @@
       "sha256": "997f8f18544e1269d96b893cdf8bb132b16907d37bf6336d2e61291e83f211d3",
       "size": 20822
     },
+    "scripts/pr16_story_after_maori.py": {
+      "sha256": "094873217c89f543c1a5ed00435bf2d7a50ff486e0ed06908ee6c75a0414eaf6",
+      "size": 9178
+    },
+    "scripts/pr16_story_after_maori_accept.py": {
+      "sha256": "90aa3e30a34e8d14468e75b1859cad916c317647c837ee3d282e70b7e244dd9e",
+      "size": 10334
+    },
+    "scripts/pr16_story_after_maori_measure.py": {
+      "sha256": "de98881ca4a904ce3676a56e223c6691b0d00f07224bd6acb9116285b1513b82",
+      "size": 8189
+    },
+    "scripts/pr16_story_after_maori_record.py": {
+      "sha256": "660d2645c3ed42a3ea148298f1567374fe0e61cc62ea445e5fccb9f5b724a976",
+      "size": 18333
+    },
+    "scripts/pr16_story_after_maori_session.py": {
+      "sha256": "1fa24fa46102436b45989c92d821d3a48e97d0061dc650cf48feb6e3bd2484d2",
+      "size": 4370
+    },
     "scripts/pr16_story_fast_maori.py": {
       "sha256": "3add6d4ff7d2a0840085a398cfa3164bc4c11d11ceb5ef92caa26ab11c4bfa80",
       "size": 12364
@@ -19520,6 +19701,18 @@
       "sha256": "03b1c10d7b48859e2723bb0cd0c7dc054ec342f83009ab3c95574fa5a8b4f9bf",
       "size": 6848
     },
+    "tests/test_pr16_story_after_maori.py": {
+      "sha256": "26dfaa2ea301f3b459334f690cad460f1edacde2d4b602054ef84eb97b251c5f",
+      "size": 4289
+    },
+    "tests/test_pr16_story_after_maori_accept.py": {
+      "sha256": "ef0ce303c37b3e5ec33d1691b1f54f754e2f78779b610292e5eb208e77ecd4be",
+      "size": 4736
+    },
+    "tests/test_pr16_story_after_maori_record.py": {
+      "sha256": "0a6248163acfe23573336498e5fc882ef8fd0b60d9162ab2413cc960e5f86985",
+      "size": 2839
+    },
     "tests/test_pr16_story_fast_maori.py": {
       "sha256": "020fd8cbe7d465949740fa200dfcfee20aefa3587ce2b744c07816f5bb203f8b",
       "size": 8337
@@ -20165,6 +20358,29 @@
     "source_head": "5b378dcae45d7f92307d27ea07ab7041ebce25f5",
     "status": "PASS_STORY_AFTER_HOME_LOSS_SAVE_SCOPED",
     "trainer_victories": 0
+  },
+  "story_after_maori": {
+    "artifact_id": 11008723945,
+    "checkpoint": "content/modernization/pr16_story_after_maori_checkpoint.json",
+    "facing": 2,
+    "guide": "docs/PR16_STORY_AFTER_MAORI_JA.md",
+    "map": [
+      5,
+      4
+    ],
+    "next_goal_ja": "story-fastはアヤメシティ通常回復Save17を唯一の開始点とする。artifact11008723945のstory-fast.srmを復元し、map5/4・7,4・北向きのポケモンセンターから通常の出口・町イベントを進める。今回の317/cold22入力・34試験・受入済み19試験・マオリ・旧BP/P08/Save1〜16は影響なしに再走しない。全国図鑑正規解禁へ向けて通常storyを継続し、次の自然保存境界で区切る。progression原本は戦闘前Axew Lv37/EXP68589のまま保持し、NationalDex magic0を注入で解除しない。自然育成/進化、Lucky Egg対照・12成長ケース・Lv100soak・研究施設自然到達・全storyは未完。",
+    "record_run_id": 36511503554,
+    "release_ready": false,
+    "run_id": 36510782954,
+    "status": "PASS_STORY_AFTER_MAORI_AYAME_SAVE17_SCOPED",
+    "story_fast_save": {
+      "sha256": "6bd7a37962e31b3c3c553a882903c766b7146f016cdf00a62036273789ab6f2a",
+      "size": 131088
+    },
+    "xy": [
+      7,
+      4
+    ]
   },
   "story_fast_maori": {
     "actions_completion_confirmed": true,

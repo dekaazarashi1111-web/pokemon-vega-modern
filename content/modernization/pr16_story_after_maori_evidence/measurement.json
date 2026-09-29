@@ -1,0 +1,290 @@
+{
+  "source_head": "0c5a118c855ee52eecbadaa7c4114d32a59e500f",
+  "run_id": 36510782954,
+  "source_bindings": {
+    ".github/workflows/pr16-story-after-maori.yml": {
+      "size": 1132,
+      "sha256": "af82d703c686b0f6ae43800509244b7f024135635e8cb198b7eb2d7b5d6fc3c9"
+    },
+    "content/modernization/pr16_story_after_maori_development/continue-commands.txt": {
+      "size": 114,
+      "sha256": "6afc3877ca7a60e31e10f8c183397177be2461f7d2f98328017e7c4e55239f25"
+    },
+    "content/modernization/pr16_story_after_maori_development/expected.json": {
+      "size": 2395,
+      "sha256": "216d3f76fb0c5b822d4055f5d461bc244642b8ca883e8bf67ad8edc715545156"
+    },
+    "content/modernization/pr16_story_after_maori_development/failure-receipt.json": {
+      "size": 981,
+      "sha256": "3efaf1212da9a340ab5134709282827db56aeb46d57f1cb3397adf797ad65849"
+    },
+    "content/modernization/pr16_story_after_maori_development/progress-commands.txt": {
+      "size": 4066,
+      "sha256": "3300a282a157371fc4ec1209f53eec6367fba2cb592d3d9420052c495db07565"
+    },
+    "scripts/pr16_story_after_maori.py": {
+      "size": 9178,
+      "sha256": "094873217c89f543c1a5ed00435bf2d7a50ff486e0ed06908ee6c75a0414eaf6"
+    },
+    "scripts/pr16_story_after_maori_accept.py": {
+      "size": 10334,
+      "sha256": "90aa3e30a34e8d14468e75b1859cad916c317647c837ee3d282e70b7e244dd9e"
+    },
+    "scripts/pr16_story_after_maori_measure.py": {
+      "size": 8189,
+      "sha256": "de98881ca4a904ce3676a56e223c6691b0d00f07224bd6acb9116285b1513b82"
+    },
+    "scripts/pr16_story_after_maori_session.py": {
+      "size": 4370,
+      "sha256": "1fa24fa46102436b45989c92d821d3a48e97d0061dc650cf48feb6e3bd2484d2"
+    },
+    "tests/test_pr16_story_after_maori.py": {
+      "size": 4289,
+      "sha256": "26dfaa2ea301f3b459334f690cad460f1edacde2d4b602054ef84eb97b251c5f"
+    },
+    "tests/test_pr16_story_after_maori_accept.py": {
+      "size": 4736,
+      "sha256": "ef0ce303c37b3e5ec33d1691b1f54f754e2f78779b610292e5eb208e77ecd4be"
+    }
+  },
+  "result": {
+    "trainer_victories": 3,
+    "double_battles": 1,
+    "wild_victories": 0,
+    "captures": 0,
+    "escapes": 0,
+    "losses": 0,
+    "ordinary_heals": 1,
+    "ordinary_saves": 1,
+    "save_counter": 17,
+    "party_count": 4,
+    "rp": 0,
+    "route": [
+      [
+        3,
+        19
+      ],
+      [
+        3,
+        20
+      ],
+      [
+        3,
+        11
+      ],
+      [
+        3,
+        20
+      ],
+      [
+        3,
+        1
+      ],
+      [
+        5,
+        4
+      ]
+    ],
+    "episodes": [
+      {
+        "start": 14,
+        "outcome": 35,
+        "unlocked_field": 39,
+        "flags": 13
+      },
+      {
+        "start": 47,
+        "outcome": 59,
+        "unlocked_field": 61,
+        "flags": 12
+      },
+      {
+        "start": 69,
+        "outcome": 80,
+        "unlocked_field": 82,
+        "flags": 12
+      }
+    ],
+    "friendly_fire_preserved": true,
+    "save_success_text_frame_captured": false,
+    "natural_growth_accepted": false,
+    "natural_difficulty_accepted": false,
+    "evolution_accepted": false,
+    "natural_research_arrival_accepted": false,
+    "full_story_accepted": false,
+    "release_ready": false,
+    "save_structure": {
+      "party_changed_bytes": [
+        {
+          "offset": 41,
+          "before": 0,
+          "after": 1
+        },
+        {
+          "offset": 52,
+          "before": 6,
+          "after": 10
+        },
+        {
+          "offset": 58,
+          "before": 0,
+          "after": 2
+        },
+        {
+          "offset": 141,
+          "before": 36,
+          "after": 37
+        },
+        {
+          "offset": 158,
+          "before": 0,
+          "after": 1
+        },
+        {
+          "offset": 160,
+          "before": 0,
+          "after": 1
+        },
+        {
+          "offset": 241,
+          "before": 100,
+          "after": 101
+        },
+        {
+          "offset": 341,
+          "before": 50,
+          "after": 51
+        }
+      ],
+      "previous_bank_preserved_bytes": 57344,
+      "pc_sections_preserved": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "unused_party_bytes_preserved": 200,
+      "all_five_bag_pockets_unchanged": true,
+      "money_before": 2936,
+      "money_after": 3372,
+      "prize_money": 436,
+      "rooted_trainer_flags": [
+        175,
+        190,
+        702
+      ],
+      "additional_flag_delta_not_counted_as_trainer": 913,
+      "national_dex_magic": 0,
+      "all_save_rtc_preserved_after_continue": true,
+      "general_sector_checksum_acceptance_claimed": false
+    },
+    "rom_owners": [
+      {
+        "local_id": 1,
+        "xy": [
+          34,
+          17
+        ],
+        "script": 154623651,
+        "trainer_references": [
+          [
+            702,
+            7
+          ],
+          [
+            1342,
+            4
+          ]
+        ]
+      },
+      {
+        "local_id": 2,
+        "xy": [
+          33,
+          17
+        ],
+        "script": 154623651,
+        "trainer_references": [
+          [
+            702,
+            7
+          ],
+          [
+            1342,
+            4
+          ]
+        ]
+      },
+      {
+        "local_id": 10,
+        "xy": [
+          43,
+          11
+        ],
+        "script": 154589367,
+        "trainer_references": [
+          [
+            190,
+            0
+          ],
+          [
+            1107,
+            5
+          ]
+        ]
+      },
+      {
+        "local_id": 3,
+        "xy": [
+          65,
+          10
+        ],
+        "script": 154588091,
+        "trainer_references": [
+          [
+            175,
+            0
+          ],
+          [
+            1095,
+            5
+          ]
+        ]
+      }
+    ],
+    "input_save": {
+      "size": 131088,
+      "sha256": "5c4a03b9d92f7be54250d565162b03b5b85a2f221c3873d26d894b74b76778ce"
+    },
+    "output_save": {
+      "size": 131088,
+      "sha256": "6bd7a37962e31b3c3c553a882903c766b7146f016cdf00a62036273789ab6f2a"
+    },
+    "candidate": {
+      "size": 33554432,
+      "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+    },
+    "progress_inputs": 317,
+    "cold_inputs": 22,
+    "progress_frames": 28007,
+    "cold_frames": 1746,
+    "screens": 119
+  },
+  "focused_tests": 34,
+  "reused_prior_tests": 19,
+  "prior_test_reruns": 0,
+  "development_native_processes": 3,
+  "development_failed_native": 1,
+  "formal_native_processes": 2,
+  "accepted_case_reruns": 0,
+  "compile_count": 0,
+  "save_byte_ledger": {
+    "size": 184461,
+    "sha256": "e76b4c5679d59fe0602fa9a71245f7531c18be13db4b34b3577730dab7afda96"
+  }
+}

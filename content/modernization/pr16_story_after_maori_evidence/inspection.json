@@ -1,0 +1,886 @@
+{
+  "source_head": "0c5a118c855ee52eecbadaa7c4114d32a59e500f",
+  "run_id": 36510782954,
+  "input_save": {
+    "size": 131088,
+    "sha256": "5c4a03b9d92f7be54250d565162b03b5b85a2f221c3873d26d894b74b76778ce"
+  },
+  "candidate": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  },
+  "prior_closeout": {
+    "id": 36506355858,
+    "head_sha": "da3b6617cc336190c4caf2befe093cfce99ffbd4",
+    "status": "completed",
+    "conclusion": "success"
+  },
+  "current_stop": "story-fastはマオリ通常勝利後Save16、map3/19（53,10）、131088bytes保存/独立Continue一致。非支援laneはSave14のまま。progressionは全国図鑑gateで進化未受入。正式BP/P08受入は不変。",
+  "reconciliation": {
+    "content/modernization/pr16_bp_chooser_checkpoint.json": {
+      "identity": {
+        "size": 9442,
+        "sha256": "4deb7c27771c63740ab94b9cf8c7b3c386f7193b989f35ede9d131c4f4bf15bf"
+      },
+      "status": "PASS_RENTAL_CANCEL_SAVE_CONTINUE_AND_NATIVE_BP_EARNING_SPENDING",
+      "remaining": null,
+      "remaining_case_ids": null,
+      "claims": null,
+      "release_ready": false
+    },
+    "content/modernization/p08_remaining_work.json": {
+      "identity": {
+        "size": 41097,
+        "sha256": "d538985b7b16a1b295e2a75bf63f94371bc812208d49aae41c6a017b7ff26981"
+      },
+      "status": "P08_NATIVE_TRANSFER_COMPLETE_WIKI_BEFORE_RELEASE",
+      "remaining": null,
+      "remaining_case_ids": null,
+      "claims": null,
+      "release_ready": false
+    },
+    "content/modernization/pr16_story_acceleration_checkpoint.json": {
+      "identity": {
+        "size": 8021,
+        "sha256": "9b73b3745a8b168140da82a2e5f3fbed8e1daa6cbcd76907b2fc3e1d5446e410"
+      },
+      "status": "PASS_SPLIT_PREPARATION_WITH_PROGRESSION_BLOCKED",
+      "remaining": null,
+      "remaining_case_ids": null,
+      "claims": {
+        "story_self_ot_obedience_smoke": true,
+        "split_working_copies_save_continue": true,
+        "normal_exp_level_up_observed": true,
+        "evolution_accepted": false,
+        "lucky_egg_multiplier": false,
+        "support_bag_items_added": false,
+        "field_hms_installed": false,
+        "full_story": false,
+        "natural_difficulty": false,
+        "natural_party_acquisition": false,
+        "soak_started": false,
+        "release_ready": false,
+        "active_baseline_changed": false,
+        "merge_performed": false
+      },
+      "release_ready": null
+    },
+    "content/modernization/pr16_national_dex_owner_checkpoint.json": {
+      "identity": {
+        "size": 2738,
+        "sha256": "04b8176f2a0494f7c7d29e9f32418925474190c188369a49c9b9425164069dee"
+      },
+      "status": "PASS_NATIONAL_DEX_GRANT_OWNER_SCOPED",
+      "remaining": null,
+      "remaining_case_ids": null,
+      "claims": null,
+      "release_ready": false
+    }
+  },
+  "latest_actions": [
+    {
+      "id": 36510793435,
+      "path": ".github/workflows/ci.yml",
+      "head_sha": "0c5a118c855ee52eecbadaa7c4114d32a59e500f",
+      "status": "in_progress",
+      "conclusion": null,
+      "run_attempt": 1
+    },
+    {
+      "id": 36510793440,
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "head_sha": "0c5a118c855ee52eecbadaa7c4114d32a59e500f",
+      "status": "in_progress",
+      "conclusion": null,
+      "run_attempt": 1
+    },
+    {
+      "id": 36510782921,
+      "path": ".github/workflows/ci.yml",
+      "head_sha": "0c5a118c855ee52eecbadaa7c4114d32a59e500f",
+      "status": "in_progress",
+      "conclusion": null,
+      "run_attempt": 1
+    },
+    {
+      "id": 36510783086,
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "head_sha": "0c5a118c855ee52eecbadaa7c4114d32a59e500f",
+      "status": "in_progress",
+      "conclusion": null,
+      "run_attempt": 1
+    },
+    {
+      "id": 36510782954,
+      "path": ".github/workflows/pr16-story-after-maori.yml",
+      "head_sha": "0c5a118c855ee52eecbadaa7c4114d32a59e500f",
+      "status": "in_progress",
+      "conclusion": null,
+      "run_attempt": 1
+    },
+    {
+      "id": 36510782957,
+      "path": ".github/workflows/modernization-stage79-mgba.yml",
+      "head_sha": "0c5a118c855ee52eecbadaa7c4114d32a59e500f",
+      "status": "in_progress",
+      "conclusion": null,
+      "run_attempt": 1
+    },
+    {
+      "id": 36510783058,
+      "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+      "head_sha": "0c5a118c855ee52eecbadaa7c4114d32a59e500f",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1
+    },
+    {
+      "id": 36508887225,
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "head_sha": "9bb7577150c23926369f41fcc6538d92eda17614",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1
+    },
+    {
+      "id": 36508887162,
+      "path": ".github/workflows/ci.yml",
+      "head_sha": "9bb7577150c23926369f41fcc6538d92eda17614",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1
+    },
+    {
+      "id": 36508880935,
+      "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+      "head_sha": "9bb7577150c23926369f41fcc6538d92eda17614",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1
+    },
+    {
+      "id": 36508880929,
+      "path": ".github/workflows/pr16-story-after-maori.yml",
+      "head_sha": "9bb7577150c23926369f41fcc6538d92eda17614",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1
+    },
+    {
+      "id": 36508881024,
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "head_sha": "9bb7577150c23926369f41fcc6538d92eda17614",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1
+    },
+    {
+      "id": 36508880928,
+      "path": ".github/workflows/ci.yml",
+      "head_sha": "9bb7577150c23926369f41fcc6538d92eda17614",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1
+    },
+    {
+      "id": 36507865772,
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "head_sha": "f37b7c8c2c337c3ff31466049129bc331b42215c",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1
+    },
+    {
+      "id": 36507865813,
+      "path": ".github/workflows/ci.yml",
+      "head_sha": "f37b7c8c2c337c3ff31466049129bc331b42215c",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1
+    },
+    {
+      "id": 36507857727,
+      "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+      "head_sha": "f37b7c8c2c337c3ff31466049129bc331b42215c",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1
+    },
+    {
+      "id": 36507857717,
+      "path": ".github/workflows/pr16-story-after-maori.yml",
+      "head_sha": "f37b7c8c2c337c3ff31466049129bc331b42215c",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1
+    },
+    {
+      "id": 36507857660,
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "head_sha": "f37b7c8c2c337c3ff31466049129bc331b42215c",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1
+    },
+    {
+      "id": 36507857674,
+      "path": ".github/workflows/ci.yml",
+      "head_sha": "f37b7c8c2c337c3ff31466049129bc331b42215c",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1
+    },
+    {
+      "id": 36507857678,
+      "path": ".github/workflows/modernization-stage79-mgba.yml",
+      "head_sha": "f37b7c8c2c337c3ff31466049129bc331b42215c",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1
+    }
+  ],
+  "maps": [
+    {
+      "map": [
+        3,
+        19
+      ],
+      "header": 137447644,
+      "layout": 141500904,
+      "scripts": 135746620,
+      "width": 60,
+      "height": 24,
+      "connections": [
+        {
+          "direction": 3,
+          "offset": 0,
+          "target_map": [
+            3,
+            0
+          ]
+        },
+        {
+          "direction": 2,
+          "offset": 33,
+          "target_map": [
+            3,
+            20
+          ]
+        }
+      ],
+      "warps": [
+        {
+          "id": 0,
+          "xy": [
+            19,
+            6
+          ],
+          "elevation": 3,
+          "target_warp": 0,
+          "target_map": [
+            32,
+            2
+          ]
+        },
+        {
+          "id": 1,
+          "xy": [
+            4,
+            0
+          ],
+          "elevation": 0,
+          "target_warp": 0,
+          "target_map": [
+            0,
+            0
+          ]
+        }
+      ],
+      "objects": [
+        {
+          "local_id": 1,
+          "xy": [
+            26,
+            18
+          ],
+          "script": 148924081,
+          "flag": 340
+        },
+        {
+          "local_id": 2,
+          "xy": [
+            22,
+            9
+          ],
+          "script": 135746705,
+          "flag": 0
+        },
+        {
+          "local_id": 3,
+          "xy": [
+            54,
+            10
+          ],
+          "script": 154626451,
+          "flag": 0
+        },
+        {
+          "local_id": 4,
+          "xy": [
+            36,
+            19
+          ],
+          "script": 154626323,
+          "flag": 0
+        },
+        {
+          "local_id": 5,
+          "xy": [
+            38,
+            11
+          ],
+          "script": 154582403,
+          "flag": 0
+        },
+        {
+          "local_id": 6,
+          "xy": [
+            27,
+            7
+          ],
+          "script": 154625811,
+          "flag": 0
+        }
+      ],
+      "collision_grid": [
+        "####W####################################......####......###",
+        "#########################################......####......###",
+        "###########################..##.......####.....##..........#",
+        "##############.......#..###..##.......#####....###.........#",
+        "#######..##..#.######.#.###...........##########........##.#",
+        "#######..##..#..#####...###...........#####.....###.....##.#",
+        "#####........#..###W#...###............####.....##......##.#",
+        "#####........######.#######O....................#.......##.#",
+        "###...........................#...##............#..........#",
+        "###..##...............O...........####..........#..........#",
+        "###..####.........................####..........#.....O#####",
+        "###..####.........................####O...#######......#####",
+        "#...###...........................####.................#####",
+        "#...#.............................##...................#####",
+        "....#......................##.....................#......###",
+        "....##.....................##............................###",
+        ".....#.....................####............................#",
+        ".....######..#.............####............................#",
+        "#........................#O####................####..##....#",
+        "#..........................####.....O..........####..##....#",
+        "###..............##..##..########....##........########..###",
+        "###..............##..##..########....##........########..###",
+        "############################################################",
+        "############################################################"
+      ],
+      "scope": "STATIC_COLLISION_ONLY_NOT_REACHABILITY_ACCEPTANCE"
+    },
+    {
+      "map": [
+        0,
+        0
+      ],
+      "header": 137441848,
+      "layout": 136956568,
+      "scripts": 135673728,
+      "width": 14,
+      "height": 9,
+      "connections": [],
+      "warps": [
+        {
+          "id": 0,
+          "xy": [
+            6,
+            8
+          ],
+          "elevation": 3,
+          "target_warp": 127,
+          "target_map": [
+            127,
+            127
+          ]
+        },
+        {
+          "id": 1,
+          "xy": [
+            7,
+            8
+          ],
+          "elevation": 3,
+          "target_warp": 127,
+          "target_map": [
+            127,
+            127
+          ]
+        }
+      ],
+      "objects": [
+        {
+          "local_id": 1,
+          "xy": [
+            9,
+            3
+          ],
+          "script": 135933589,
+          "flag": 0
+        }
+      ],
+      "collision_grid": [
+        "##############",
+        "##############",
+        "##############",
+        "#........O...#",
+        "#............#",
+        "#............#",
+        "#............#",
+        "#............#",
+        "######WW######"
+      ],
+      "scope": "STATIC_COLLISION_ONLY_NOT_REACHABILITY_ACCEPTANCE"
+    },
+    {
+      "map": [
+        3,
+        0
+      ],
+      "header": 137447112,
+      "layout": 141493324,
+      "scripts": 143026928,
+      "width": 35,
+      "height": 30,
+      "connections": [
+        {
+          "direction": 2,
+          "offset": 0,
+          "target_map": [
+            3,
+            35
+          ]
+        },
+        {
+          "direction": 1,
+          "offset": 0,
+          "target_map": [
+            3,
+            36
+          ]
+        },
+        {
+          "direction": 4,
+          "offset": 0,
+          "target_map": [
+            3,
+            19
+          ]
+        }
+      ],
+      "warps": [
+        {
+          "id": 0,
+          "xy": [
+            4,
+            26
+          ],
+          "elevation": 0,
+          "target_warp": 1,
+          "target_map": [
+            4,
+            0
+          ]
+        },
+        {
+          "id": 1,
+          "xy": [
+            23,
+            9
+          ],
+          "elevation": 0,
+          "target_warp": 0,
+          "target_map": [
+            4,
+            2
+          ]
+        },
+        {
+          "id": 2,
+          "xy": [
+            17,
+            16
+          ],
+          "elevation": 0,
+          "target_warp": 0,
+          "target_map": [
+            4,
+            3
+          ]
+        },
+        {
+          "id": 3,
+          "xy": [
+            1,
+            1
+          ],
+          "elevation": 0,
+          "target_warp": 0,
+          "target_map": [
+            0,
+            0
+          ]
+        }
+      ],
+      "objects": [
+        {
+          "local_id": 1,
+          "xy": [
+            24,
+            16
+          ],
+          "script": 135723140,
+          "flag": 0
+        },
+        {
+          "local_id": 2,
+          "xy": [
+            13,
+            17
+          ],
+          "script": 141246330,
+          "flag": 0
+        },
+        {
+          "local_id": 3,
+          "xy": [
+            17,
+            26
+          ],
+          "script": 155117740,
+          "flag": 44
+        },
+        {
+          "local_id": 4,
+          "xy": [
+            7,
+            6
+          ],
+          "script": 148907744,
+          "flag": 0
+        },
+        {
+          "local_id": 5,
+          "xy": [
+            25,
+            21
+          ],
+          "script": 148907792,
+          "flag": 0
+        },
+        {
+          "local_id": 6,
+          "xy": [
+            28,
+            2
+          ],
+          "script": 141246307,
+          "flag": 0
+        },
+        {
+          "local_id": 7,
+          "xy": [
+            7,
+            14
+          ],
+          "script": 148907760,
+          "flag": 0
+        }
+      ],
+      "collision_grid": [
+        "############..#####################",
+        "#W##########..#####################",
+        "####..........####..##......O...###",
+        "####..........#####.##..##......###",
+        "##............####......###########",
+        "##............####........#########",
+        "##.#...O......##....###############",
+        "##............##....#......########",
+        "##..................#.####.#....###",
+        "##..................#.#W##.#....###",
+        "##.............####.#......#....###",
+        "##...#####.....####.##...###....###",
+        "##..............................###",
+        "##............#######...........###",
+        "######.O......#######..............",
+        "######.##.....#######..............",
+        "######.##.....###W###...O..........",
+        "######.......O.....................",
+        "#########..........#............###",
+        "###.....#.......................###",
+        "#####.###.............#......#..###",
+        "####...##.............#.#O..##..###",
+        "###.....#.......#....#..#..###..###",
+        "#########............#..##.###..###",
+        "#########............#......##..###",
+        "##.#####.#...........##....##...###",
+        "####W###.........O....#.####..#####",
+        "##............................#####",
+        "####..##############....###########",
+        "####..##############....###########"
+      ],
+      "scope": "STATIC_COLLISION_ONLY_NOT_REACHABILITY_ACCEPTANCE"
+    },
+    {
+      "map": [
+        3,
+        20
+      ],
+      "header": 137447672,
+      "layout": 141518788,
+      "scripts": 135746984,
+      "width": 80,
+      "height": 26,
+      "connections": [
+        {
+          "direction": 2,
+          "offset": 26,
+          "target_map": [
+            3,
+            32
+          ]
+        },
+        {
+          "direction": 1,
+          "offset": -33,
+          "target_map": [
+            3,
+            19
+          ]
+        },
+        {
+          "direction": 4,
+          "offset": -5,
+          "target_map": [
+            3,
+            1
+          ]
+        }
+      ],
+      "warps": [
+        {
+          "id": 0,
+          "xy": [
+            55,
+            13
+          ],
+          "elevation": 3,
+          "target_warp": 0,
+          "target_map": [
+            3,
+            11
+          ]
+        },
+        {
+          "id": 1,
+          "xy": [
+            61,
+            13
+          ],
+          "elevation": 3,
+          "target_warp": 2,
+          "target_map": [
+            3,
+            11
+          ]
+        }
+      ],
+      "objects": [
+        {
+          "local_id": 1,
+          "xy": [
+            34,
+            17
+          ],
+          "script": 154623651,
+          "flag": 0
+        },
+        {
+          "local_id": 2,
+          "xy": [
+            33,
+            17
+          ],
+          "script": 154623651,
+          "flag": 0
+        },
+        {
+          "local_id": 3,
+          "xy": [
+            65,
+            10
+          ],
+          "script": 154588091,
+          "flag": 0
+        },
+        {
+          "local_id": 4,
+          "xy": [
+            49,
+            3
+          ],
+          "script": 154627155,
+          "flag": 0
+        },
+        {
+          "local_id": 5,
+          "xy": [
+            7,
+            4
+          ],
+          "script": 138584742,
+          "flag": 0
+        },
+        {
+          "local_id": 6,
+          "xy": [
+            28,
+            21
+          ],
+          "script": 135941086,
+          "flag": 341
+        },
+        {
+          "local_id": 7,
+          "xy": [
+            55,
+            10
+          ],
+          "script": 154626707,
+          "flag": 0
+        },
+        {
+          "local_id": 8,
+          "xy": [
+            22,
+            6
+          ],
+          "script": 154626195,
+          "flag": 0
+        },
+        {
+          "local_id": 9,
+          "xy": [
+            31,
+            11
+          ],
+          "script": 154582147,
+          "flag": 0
+        },
+        {
+          "local_id": 10,
+          "xy": [
+            43,
+            11
+          ],
+          "script": 154589367,
+          "flag": 0
+        }
+      ],
+      "collision_grid": [
+        "####################################....########################################",
+        "####################################....########################################",
+        "######....##########################....######...############.####....##########",
+        "######....##########################....######...O#######...#.####.##.##########",
+        "######.O..##############....########....##..........#####...####...##.##########",
+        "######....##############....########....##..........#####......#......##########",
+        "######....############O...........##....................#...####........########",
+        "######....############.......#....##....................#...###..##..#..########",
+        "####........######.................................#....#...#######.........####",
+        "####..#.....######.......##.........................#...#...#..##...........####",
+        "####..........###......####...............#............O#...#....O..............",
+        "####..........##.......########O...........O............#####...................",
+        "##.....................########.........................#####...................",
+        "##.....................##....##..##.....#..............W#####W..................",
+        "##...........................########...................#####...................",
+        "##.............................######...................#####...................",
+        "##................######.........##.....................#...#.................##",
+        "##.....................#.........OO.....................#...#.................##",
+        "####...................#......................##......###...##................##",
+        "####...................####...................##......##....#..#..............##",
+        "######..................###################.######.....#....#.#...........######",
+        "######..................##..O...............######.....######....#........######",
+        "########......####......####................########....####........############",
+        "########......####......####................########....####........############",
+        "########......####......########################################################",
+        "########......####......########################################################"
+      ],
+      "scope": "STATIC_COLLISION_ONLY_NOT_REACHABILITY_ACCEPTANCE"
+    },
+    {
+      "map": [
+        32,
+        2
+      ],
+      "header": 137452628,
+      "layout": 136945000,
+      "scripts": 135858460,
+      "width": 11,
+      "height": 9,
+      "connections": [],
+      "warps": [
+        {
+          "id": 0,
+          "xy": [
+            4,
+            7
+          ],
+          "elevation": 3,
+          "target_warp": 0,
+          "target_map": [
+            3,
+            19
+          ]
+        }
+      ],
+      "objects": [
+        {
+          "local_id": 1,
+          "xy": [
+            4,
+            4
+          ],
+          "script": 148924103,
+          "flag": 0
+        },
+        {
+          "local_id": 2,
+          "xy": [
+            7,
+            5
+          ],
+          "script": 135858470,
+          "flag": 0
+        }
+      ],
+      "collision_grid": [
+        "###########",
+        "###########",
+        "...........",
+        "...........",
+        "#...O##....",
+        ".....##O...",
+        "...........",
+        "#...W......",
+        "###########"
+      ],
+      "scope": "STATIC_COLLISION_ONLY_NOT_REACHABILITY_ACCEPTANCE"
+    }
+  ],
+  "native_processes": 0,
+  "accepted_case_reruns": 0,
+  "compile_count": 0,
+  "rom_changes": 0,
+  "release_ready": false
+}

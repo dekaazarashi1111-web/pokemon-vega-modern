@@ -11301,3 +11301,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 新区間native開発2/正式2、closeout native0/test0/compile0、既受入case再実行0。ROM/原本Save14/基準/正式BP/P08不変。最新20Actionsを成功へ読み替えず保存。resume/task graph/scoped final index/diff確認後にcommit。
 - Commit: source=da3b6617cc336190c4caf2befe093cfce99ffbd4; run=36506355858; 同branch非force反映・全text読戻し。
 - Next: 集約記録のSave16から新規区間へ。国図自然解禁/進化/Lucky Egg/12成長/soak/全storyは未完。
+
+## 2026-09-29T11:12:51+09:00
+- Timestamp: 2026-09-29T11:12:51+09:00
+- Task: USER-20260929-STORY-AFTER-MAORI / マオリ後3戦・アヤメ通常回復Save17
+- Version: story-after-maori-v1
+- Status: DONE（支援storyの新規区間限定。自然育成/進化/全story未完）
+- Summary: 固定Save16→双子/ムギヒコ/ブンタ3勝・通常gate・アヤメPC全回復・Save17・独立Continue。賞金436。317/cold22入力、119画面。保存中113と完了114を分離。味方誤攻撃と失敗実行を隠さず保持。
+- Files changed: 新区間入力、600frame境界/検証器/34試験、正式測定/記録、text証跡/checkpoint/guide、固定引継ぎMD/JSON、両ログ。ROM/Save/画像/全差分hexはartifactのみ。
+- Verify: run36510782954/job109222190727全7step成功、artifact11008723945全144member hash、全Save差分6620bytes/1732範囲再構成一致、cold全131088bytes、前bank57344bytes/PC/Bag保持。開発34/正式34は同じ新34件。先行19原本再利用。新規記録gate16試験。開発native3（失敗1）/正式2、記録native0/受入再走0/compile0。scoped index/private path/resume/task graph/diff後のみcommit。既存push CIは別scopeで全成功としない。
+- Commit: WIPf37b7c8/9bb7577、測定source0c5a118c855ee52eecbadaa7c4114d32a59e500f。記録source=c4095e34e024c9331fea32c0135a201b98395bbd、run=36511503554。同branch非force push・全text読戻し。
+- Network: 固定GitHub HEAD/run/artifact。旧受入/BP/P08/非支援Save14/progression/全国図鑑owner/active baseline/source-lock不変。PR16未merge、releaseなし。
+- Next: story-fastはアヤメシティ通常回復Save17を唯一の開始点とする。artifact11008723945のstory-fast.srmを復元し、map5/4・7,4・北向きのポケモンセンターから通常の出口・町イベントを進める。今回の317/cold22入力・34試験・受入済み19試験・マオリ・旧BP/P08/Save1〜16は影響なしに再走しない。全国図鑑正規解禁へ向けて通常storyを継続し、次の自然保存境界で区切る。progression原本は戦闘前Axew Lv37/EXP68589のまま保持し、NationalDex magic0を注入で解除しない。自然育成/進化、Lucky Egg対照・12成長ケース・Lv100soak・研究施設自然到達・全storyは未完。
