@@ -11325,3 +11325,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: WIP d75466777ae1、測定source2577d253823bdca94bf3dfac0a67dea9776a6d8a、記録source=2e88af576e6c72b621b7ad221930e4f611c04e2a・run=36523214697。同branch非force push・全text読戻し。
 - Network: 固定GitHub HEAD/run/artifact。旧受入/BP/P08/progression/全国図鑑owner/active baseline/source-lock不変。PR16未merge、releaseなし。
 - Next: story-fastの唯一の開始点はartifact11012768108のstory-fast.srm（Save18、131088bytes、SHA256 dc1f690f0616affc61b6d45632924e4c81995c91c7c1939994f37bbe8527432d）。アヤメPC map5/4・7,4・北向き・party4全回復/RP0から、通常出口→入場可能になったアヤメジムの未完storyを進める。ジムリーダー勝利/バッジはまだ未受入。旧未保存WIPのHM05はこのSaveには無く、必要時は通常会話で取得する。新381/cold23入力・55試験・旧BP/P08/Save1〜17を無影響に再走しない。分離progression原本Axew Lv37/EXP68589、NationalDex magic0とownerを保全し、flag/var注入で解禁しない。正規全国図鑑解禁、自然育成/進化、Lucky Egg対照・12成長ケース・Lv100soak・研究施設自然到達・全storyは未完。
+
+## 2026-09-29T14:00:32+09:00
+- Timestamp: 2026-09-29T14:00:32+09:00
+- Task: USER-20260929-STORY-AYAME-PERSISTENCE-AUDIT
+- Version: ayame-persistence-audit-v1
+- Status: DONE（正式Save18原本の保存対応のみ。全story/自然育成/進化未完）
+- Summary: 実ROM section tableから56件payload checksum、372行trainer remapと保存3bit、var4071の1→3、NationalDex3条件0を独立照合。S61E/padding/RTCはstock checksum対象外。4bankの重複前世代照合を別Saveと数えない。
+- Files changed: 独立監査器/新42試験/記録workflow、監査JSON/text/guide、固定再開MD/JSON、両ログ。既存測定sourceと開始Saveを変更しない。
+- Verify: run36522150353/job109257152262全7step、記録run36523214697全終端、artifact11012768108全170member。新42試験PASS。旧55試験再走0、監査native/compile/host書込0、全Save/RTC一致。resume/task graph/scoped index/private/diff後のみcommit。
+- Commit: 監査source=e366675034472d9597fda32d6c5d65a37a877879、run=36524125377。同branchへ非force pushし全text読戻し。自己終端は後続API照合。
+- Network: 公式GitHub既完了原本を読取専用で再利用。並行Save948d9e58…は未採用履歴。正式dc1f690f…を維持。一般CI全成功とは主張しない。
+- Next: 正式Save18から通常アヤメジムへ。旧連戦/55試験/この42試験を影響なしに再実行しない。NationalDex/progression停止条件とactive baselineを維持。

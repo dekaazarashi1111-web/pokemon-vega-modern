@@ -1,0 +1,47 @@
+test_bank_boolean_counter_rejected (test_pr16_story_ayame_persistence_audit.PersistenceTests.test_bank_boolean_counter_rejected) ... ok
+test_bank_boolean_offset_rejected (test_pr16_story_ayame_persistence_audit.PersistenceTests.test_bank_boolean_offset_rejected) ... ok
+test_bank_duplicate_sid_rejected (test_pr16_story_ayame_persistence_audit.PersistenceTests.test_bank_duplicate_sid_rejected) ... ok
+test_bank_outside_sid_rejected (test_pr16_story_ayame_persistence_audit.PersistenceTests.test_bank_outside_sid_rejected) ... ok
+test_bank_partial_generation_rejected (test_pr16_story_ayame_persistence_audit.PersistenceTests.test_bank_partial_generation_rejected) ... ok
+test_bank_payload_corruption_rejected (test_pr16_story_ayame_persistence_audit.PersistenceTests.test_bank_payload_corruption_rejected) ... ok
+test_bank_signature_rejected (test_pr16_story_ayame_persistence_audit.PersistenceTests.test_bank_signature_rejected) ... ok
+test_bank_stored_checksum_corruption_rejected (test_pr16_story_ayame_persistence_audit.PersistenceTests.test_bank_stored_checksum_corruption_rejected) ... ok
+test_bank_truncated_rtc_rejected (test_pr16_story_ayame_persistence_audit.PersistenceTests.test_bank_truncated_rtc_rejected) ... ok
+test_checksum_does_not_claim_uncovered_padding (test_pr16_story_ayame_persistence_audit.PersistenceTests.test_checksum_does_not_claim_uncovered_padding) ... ok
+test_checksum_empty_rejected (test_pr16_story_ayame_persistence_audit.PersistenceTests.test_checksum_empty_rejected) ... ok
+test_checksum_final_16bit_fold (test_pr16_story_ayame_persistence_audit.PersistenceTests.test_checksum_final_16bit_fold) ... ok
+test_checksum_little_endian_words (test_pr16_story_ayame_persistence_audit.PersistenceTests.test_checksum_little_endian_words) ... ok
+test_checksum_mutable_input_rejected (test_pr16_story_ayame_persistence_audit.PersistenceTests.test_checksum_mutable_input_rejected) ... ok
+test_checksum_oversized_rejected (test_pr16_story_ayame_persistence_audit.PersistenceTests.test_checksum_oversized_rejected) ... ok
+test_checksum_unaligned_rejected (test_pr16_story_ayame_persistence_audit.PersistenceTests.test_checksum_unaligned_rejected) ... ok
+test_checksum_unsigned_wrap (test_pr16_story_ayame_persistence_audit.PersistenceTests.test_checksum_unsigned_wrap) ... ok
+test_layout_exact (test_pr16_story_ayame_persistence_audit.PersistenceTests.test_layout_exact) ... ok
+test_layout_s61e_is_not_pc_payload (test_pr16_story_ayame_persistence_audit.PersistenceTests.test_layout_s61e_is_not_pc_payload) ... ok
+test_layout_truncated_rejected (test_pr16_story_ayame_persistence_audit.PersistenceTests.test_layout_truncated_rejected) ... ok
+test_mapping_duplicate_rejected (test_pr16_story_ayame_persistence_audit.PersistenceTests.test_mapping_duplicate_rejected) ... ok
+test_mapping_high_ids_and_low_fallback (test_pr16_story_ayame_persistence_audit.PersistenceTests.test_mapping_high_ids_and_low_fallback) ... ok
+test_mapping_truncated_rejected (test_pr16_story_ayame_persistence_audit.PersistenceTests.test_mapping_truncated_rejected) ... ok
+test_mapping_unsorted_rejected (test_pr16_story_ayame_persistence_audit.PersistenceTests.test_mapping_unsorted_rejected) ... ok
+test_mapping_wrong_physical_rejected (test_pr16_story_ayame_persistence_audit.PersistenceTests.test_mapping_wrong_physical_rejected) ... ok
+test_rotated_sector_ids_and_full_coverage (test_pr16_story_ayame_persistence_audit.PersistenceTests.test_rotated_sector_ids_and_full_coverage) ... ok
+test_state_boolean_rejected (test_pr16_story_ayame_persistence_audit.PersistenceTests.test_state_boolean_rejected) ... ok
+test_state_dex_flag_injected_rejected (test_pr16_story_ayame_persistence_audit.PersistenceTests.test_state_dex_flag_injected_rejected) ... ok
+test_state_dex_var_injected_rejected (test_pr16_story_ayame_persistence_audit.PersistenceTests.test_state_dex_var_injected_rejected) ... ok
+test_state_gate_incomplete_rejected (test_pr16_story_ayame_persistence_audit.PersistenceTests.test_state_gate_incomplete_rejected) ... ok
+test_state_later_story_injected_rejected (test_pr16_story_ayame_persistence_audit.PersistenceTests.test_state_later_story_injected_rejected) ... ok
+test_state_missing_third_flag_rejected (test_pr16_story_ayame_persistence_audit.PersistenceTests.test_state_missing_third_flag_rejected) ... ok
+test_state_progress_and_exact_flag_deltas (test_pr16_story_ayame_persistence_audit.PersistenceTests.test_state_progress_and_exact_flag_deltas) ... ok
+test_state_unknown_flag_rejected (test_pr16_story_ayame_persistence_audit.PersistenceTests.test_state_unknown_flag_rejected) ... ok
+test_terminal_all_steps_success (test_pr16_story_ayame_persistence_audit.PersistenceTests.test_terminal_all_steps_success) ... ok
+test_terminal_boolean_attempt_rejected (test_pr16_story_ayame_persistence_audit.PersistenceTests.test_terminal_boolean_attempt_rejected) ... ok
+test_terminal_failed_upload_rejected (test_pr16_story_ayame_persistence_audit.PersistenceTests.test_terminal_failed_upload_rejected) ... ok
+test_terminal_incomplete_job_page_rejected (test_pr16_story_ayame_persistence_audit.PersistenceTests.test_terminal_incomplete_job_page_rejected) ... ok
+test_terminal_missing_complete_rejected (test_pr16_story_ayame_persistence_audit.PersistenceTests.test_terminal_missing_complete_rejected) ... ok
+test_terminal_other_head_rejected (test_pr16_story_ayame_persistence_audit.PersistenceTests.test_terminal_other_head_rejected) ... ok
+test_terminal_pending_post_rejected (test_pr16_story_ayame_persistence_audit.PersistenceTests.test_terminal_pending_post_rejected) ... ok
+test_terminal_second_attempt_rejected (test_pr16_story_ayame_persistence_audit.PersistenceTests.test_terminal_second_attempt_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 42 tests in 0.003s
+
+OK

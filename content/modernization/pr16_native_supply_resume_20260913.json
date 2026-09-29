@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "支援story-fastで三兄弟3連勝・通常ジム入場・PC全回復Save18・独立Continueを限定受入。全Save/RTC131088bytes保持。map5/4・7,4北・party4/RP0。ジムリーダー/バッジ未完、NationalDex magic0維持。次はartifact11012768108から先だけ。",
+    "current_stop": "支援story-fastで三兄弟3連勝・通常ジム入場・PC全回復Save18・独立Continueを限定受入。全Save/RTC131088bytes保持。map5/4・7,4北・party4/RP0。ジムリーダー/バッジ未完、NationalDex magic0維持。次はartifact11012768108から先だけ。 正式Save18のROM宣言payload checksum56件と三兄弟physical flags/var4071の保存対応を別監査済み。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -4262,7 +4262,9 @@
       "content/modernization/pr16_national_dex_owner_checkpoint.json",
       "content/modernization/pr16_story_acceleration_checkpoint.json",
       "content/modernization/pr16_story_ayame_gate_development/expected.json",
-      "scripts/pr16_story_ayame_record.py"
+      "scripts/pr16_story_ayame_record.py",
+      "docs/PR16_STORY_AYAME_PERSISTENCE_AUDIT_JA.md",
+      "content/modernization/pr16_story_ayame_persistence_audit.json"
     ],
     "stop_rule_ja": "Save18から先の通常storyだけを自然Save/cold境界で区切る。新381/cold23・55試験・旧BP/P08/Save1〜17を再走しない。書込み途中counter更新だけで保存完了としない。異常時は失敗証跡を保全。"
   },
@@ -9035,6 +9037,10 @@
       "sha256": "af82d703c686b0f6ae43800509244b7f024135635e8cb198b7eb2d7b5d6fc3c9",
       "size": 1132
     },
+    ".github/workflows/pr16-story-ayame-persistence-audit.yml": {
+      "sha256": "f435bec5df992a8022bd3195866e709f2d06940bf8d045d829b18484ce9d3876",
+      "size": 2599
+    },
     ".github/workflows/pr16-story-ayame-record.yml": {
       "sha256": "998b888b9b841f78b79d86e04a8fad0bd5039e56378e3fed31a2384125cfbda3",
       "size": 3087
@@ -11703,6 +11709,10 @@
       "sha256": "8d59d21ded03178ffce5662ed76b38431682fb54e0ad5d3c49d8795f3886689d",
       "size": 5791
     },
+    "content/modernization/pr16_story_ayame_gate_development/parallel_development.json": {
+      "sha256": "d25c23850517884cac9bcba01d67809a78fa1f1ab574e3eb1eb03ee3f871aa06",
+      "size": 2409
+    },
     "content/modernization/pr16_story_ayame_gate_evidence/continue/commands.txt": {
       "sha256": "a961ea7d32104f36b63136a21e9359a2a0269486a60818287670cc5a59a076b3",
       "size": 140
@@ -11778,6 +11788,26 @@
     "content/modernization/pr16_story_ayame_gate_evidence/verification.json": {
       "sha256": "90d71eba9c06689b2236cb0c0e622a72a7e2d9258e6cd23c347ad4bfe47cc53e",
       "size": 3789
+    },
+    "content/modernization/pr16_story_ayame_persistence_audit.json": {
+      "sha256": "56828cb076a6b65c7a1e90959e2925d69f17ed5b30692a7d3cea016fcedf6325",
+      "size": 13661
+    },
+    "content/modernization/pr16_story_ayame_persistence_evidence/audit.json": {
+      "sha256": "b74c6975a3f00e5ff2a79902692ee29f5bfa76325090d1bad4aac5cd13b6ee04",
+      "size": 10473
+    },
+    "content/modernization/pr16_story_ayame_persistence_evidence/terminal.json": {
+      "sha256": "1cf1b1dbdacb7946993a87585a8f0216e54dad7efc1a249a3de915be651c4cae",
+      "size": 8266
+    },
+    "content/modernization/pr16_story_ayame_persistence_evidence/unit.stderr.txt": {
+      "sha256": "d62e957a0f9aceccc1d1ffbebfcccdc0a0778088ed8cb9dc9f2a2c3a3d06bcc8",
+      "size": 5829
+    },
+    "content/modernization/pr16_story_ayame_persistence_evidence/unit.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
     },
     "content/modernization/pr16_story_fast_maori_checkpoint.json": {
       "sha256": "b146d0e679270e10872331535965c6ba42fa47749de7014564d539ae8705c12d",
@@ -12882,6 +12912,10 @@
     "docs/PR16_STORY_AYAME_GATE_JA.md": {
       "sha256": "489879d20ca7eaae1962e76a19ff41ee1b05969ae3ba66b3ba79ddda968e8e98",
       "size": 4744
+    },
+    "docs/PR16_STORY_AYAME_PERSISTENCE_AUDIT_JA.md": {
+      "sha256": "b728810d961665912cbecf8926272be52a923bb2b4269a84c885fda5febd6bbb",
+      "size": 2913
     },
     "docs/PR16_STORY_FAST_MAORI_JA.md": {
       "sha256": "a938f700a0eb9d97e83250687c4e74a0c80e81143efc07d6455c428b522f4fab",
@@ -18327,6 +18361,14 @@
       "sha256": "4c3fa333237454a34d54393798f706c3e4fb53112ef99e64ec81f818d7c1fb60",
       "size": 6802
     },
+    "scripts/pr16_story_ayame_persistence_audit.py": {
+      "sha256": "6b9eb2f5dde59ce956825a4dcf634c69620dc3bc4971cf9902a2c81141ebc7df",
+      "size": 9874
+    },
+    "scripts/pr16_story_ayame_persistence_record.py": {
+      "sha256": "a211851920e7d8a5d49a8a20a952042209fca814a5f1fa7d42b8f5b33cbc5484",
+      "size": 11956
+    },
     "scripts/pr16_story_ayame_record.py": {
       "sha256": "65d2e633ffb598bab2f7e687e04660cd37ac83f6635b39f9902045f0e71e84ae",
       "size": 18481
@@ -19907,6 +19949,10 @@
       "sha256": "d2c18f0d7adbfe9e2f5e5939a6ce3245aeb29b861f6cff68daf12018fead9e02",
       "size": 3532
     },
+    "tests/test_pr16_story_ayame_persistence_audit.py": {
+      "sha256": "5ac0ae3594afcc1cda56e3cc2f9c43076a951fd5369d5ff878216df342d342b3",
+      "size": 7865
+    },
     "tests/test_pr16_story_ayame_record.py": {
       "sha256": "e6153a7795b1a4695e2f5093ac9c2fb56209db287622fbc6ccba10a0e416a4a2",
       "size": 4709
@@ -20602,6 +20648,15 @@
       7,
       4
     ]
+  },
+  "story_ayame_persistence_audit": {
+    "audit_run_id": 36524125377,
+    "checkpoint": "content/modernization/pr16_story_ayame_persistence_audit.json",
+    "focused_tests": 42,
+    "guide": "docs/PR16_STORY_AYAME_PERSISTENCE_AUDIT_JA.md",
+    "native_processes": 0,
+    "parent_artifact_id": 11012768108,
+    "status": "PASS_AYAME_SAVE18_PERSISTENCE_AUDIT"
   },
   "story_fast_maori": {
     "actions_completion_confirmed": true,

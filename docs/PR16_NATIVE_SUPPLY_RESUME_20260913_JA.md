@@ -6,7 +6,7 @@
 
 ## いまの停止点と次の1手
 
-支援story-fastで三兄弟3連勝・通常ジム入場・PC全回復Save18・独立Continueを限定受入。全Save/RTC131088bytes保持。map5/4・7,4北・party4/RP0。ジムリーダー/バッジ未完、NationalDex magic0維持。次はartifact11012768108から先だけ。
+支援story-fastで三兄弟3連勝・通常ジム入場・PC全回復Save18・独立Continueを限定受入。全Save/RTC131088bytes保持。map5/4・7,4北・party4/RP0。ジムリーダー/バッジ未完、NationalDex magic0維持。次はartifact11012768108から先だけ。 正式Save18のROM宣言payload checksum56件と三兄弟physical flags/var4071の保存対応を別監査済み。
 
 **次: story-fastの唯一の開始点はartifact11012768108のstory-fast.srm（Save18、131088bytes、SHA256 dc1f690f0616affc61b6d45632924e4c81995c91c7c1939994f37bbe8527432d）。アヤメPC map5/4・7,4・北向き・party4全回復/RP0から、通常出口→入場可能になったアヤメジムの未完storyを進める。ジムリーダー勝利/バッジはまだ未受入。旧未保存WIPのHM05はこのSaveには無く、必要時は通常会話で取得する。新381/cold23入力・55試験・旧BP/P08/Save1〜17を無影響に再走しない。分離progression原本Axew Lv37/EXP68589、NationalDex magic0とownerを保全し、flag/var注入で解禁しない。正規全国図鑑解禁、自然育成/進化、Lucky Egg対照・12成長ケース・Lv100soak・研究施設自然到達・全storyは未完。**
 
@@ -32,6 +32,8 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 - `content/modernization/pr16_story_acceleration_checkpoint.json`
 - `content/modernization/pr16_story_ayame_gate_development/expected.json`
 - `scripts/pr16_story_ayame_record.py`
+- `docs/PR16_STORY_AYAME_PERSISTENCE_AUDIT_JA.md`
+- `content/modernization/pr16_story_ayame_persistence_audit.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
