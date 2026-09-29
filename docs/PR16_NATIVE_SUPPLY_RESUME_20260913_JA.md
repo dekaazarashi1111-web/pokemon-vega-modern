@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-支援story-fastで502番道路の通常3戦・ゲート通過・アヤメPC通常回復Save17・独立Continueを限定受入。全Save/RTC131088bytes保持、map5/4・7,4北、party4/RP0。全国図鑑magic0・progression進化blockedは維持。次はartifact11008723945から先の通常story。
+支援story-fastで三兄弟3連勝・通常ジム入場・PC全回復Save18・独立Continueを限定受入。全Save/RTC131088bytes保持。map5/4・7,4北・party4/RP0。ジムリーダー/バッジ未完、NationalDex magic0維持。次はartifact11012768108から先だけ。
 
-**次: story-fastはアヤメシティ通常回復Save17を唯一の開始点とする。artifact11008723945のstory-fast.srmを復元し、map5/4・7,4・北向きのポケモンセンターから通常の出口・町イベントを進める。今回の317/cold22入力・34試験・受入済み19試験・マオリ・旧BP/P08/Save1〜16は影響なしに再走しない。全国図鑑正規解禁へ向けて通常storyを継続し、次の自然保存境界で区切る。progression原本は戦闘前Axew Lv37/EXP68589のまま保持し、NationalDex magic0を注入で解除しない。自然育成/進化、Lucky Egg対照・12成長ケース・Lv100soak・研究施設自然到達・全storyは未完。**
+**次: story-fastの唯一の開始点はartifact11012768108のstory-fast.srm（Save18、131088bytes、SHA256 dc1f690f0616affc61b6d45632924e4c81995c91c7c1939994f37bbe8527432d）。アヤメPC map5/4・7,4・北向き・party4全回復/RP0から、通常出口→入場可能になったアヤメジムの未完storyを進める。ジムリーダー勝利/バッジはまだ未受入。旧未保存WIPのHM05はこのSaveには無く、必要時は通常会話で取得する。新381/cold23入力・55試験・旧BP/P08/Save1〜17を無影響に再走しない。分離progression原本Axew Lv37/EXP68589、NationalDex magic0とownerを保全し、flag/var注入で解禁しない。正規全国図鑑解禁、自然育成/進化、Lucky Egg対照・12成長ケース・Lv100soak・研究施設自然到達・全storyは未完。**
 
-新しい通常story区間を自然Save/cold境界で区切る。受入済み317/cold22、34/19試験、旧BP/P08/マオリを再走しない。異常時は原本と失敗証跡を保全し、成功へ読み替えない。
+Save18から先の通常storyだけを自然Save/cold境界で区切る。新381/cold23・55試験・旧BP/P08/Save1〜17を再走しない。書込み途中counter更新だけで保存完了としない。異常時は失敗証跡を保全。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `0c5a118c855ee52eecbadaa7c4114d32a59e500f`。
-支援story-fastの通常3戦・アヤメ回復Save17測定source。進化/自然育成/全story、記録commit、active baselineではない。
+証拠のsource HEAD: `2577d253823bdca94bf3dfac0a67dea9776a6d8a`。
+三兄弟3連勝・ジム入場・回復Save18測定source。ジムリーダー/自然育成/進化/全story、記録commit、active baselineではない。
 
 ## 最短の再開手順
 
@@ -25,13 +25,13 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_STORY_AFTER_MAORI_JA.md`
-- `content/modernization/pr16_story_after_maori_checkpoint.json`
+- `docs/PR16_STORY_AYAME_GATE_JA.md`
+- `content/modernization/pr16_story_ayame_gate_checkpoint.json`
 - `docs/PR16_NATIONAL_DEX_OWNER_JA.md`
 - `content/modernization/pr16_national_dex_owner_checkpoint.json`
 - `content/modernization/pr16_story_acceleration_checkpoint.json`
-- `content/modernization/pr16_story_after_maori_development/expected.json`
-- `scripts/pr16_story_after_maori_record.py`
+- `content/modernization/pr16_story_ayame_gate_development/expected.json`
+- `scripts/pr16_story_ayame_record.py`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -373,6 +373,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-専用run36510782954/job109222190727全7stepと144memberを照合。既存push CIのfailure/action_requiredは別scope。記録workflow自身の終端は別API照合。
+専用run36522150353/job109257152262全7stepと170memberを照合。既存CI失敗は別scope。記録workflow自身の終端は別API照合。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

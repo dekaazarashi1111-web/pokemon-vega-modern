@@ -11313,3 +11313,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: WIPf37b7c8/9bb7577、測定source0c5a118c855ee52eecbadaa7c4114d32a59e500f。記録source=c4095e34e024c9331fea32c0135a201b98395bbd、run=36511503554。同branch非force push・全text読戻し。
 - Network: 固定GitHub HEAD/run/artifact。旧受入/BP/P08/非支援Save14/progression/全国図鑑owner/active baseline/source-lock不変。PR16未merge、releaseなし。
 - Next: story-fastはアヤメシティ通常回復Save17を唯一の開始点とする。artifact11008723945のstory-fast.srmを復元し、map5/4・7,4・北向きのポケモンセンターから通常の出口・町イベントを進める。今回の317/cold22入力・34試験・受入済み19試験・マオリ・旧BP/P08/Save1〜16は影響なしに再走しない。全国図鑑正規解禁へ向けて通常storyを継続し、次の自然保存境界で区切る。progression原本は戦闘前Axew Lv37/EXP68589のまま保持し、NationalDex magic0を注入で解除しない。自然育成/進化、Lucky Egg対照・12成長ケース・Lv100soak・研究施設自然到達・全storyは未完。
+
+## 2026-09-29T13:48:13+09:00
+- Timestamp: 2026-09-29T13:48:13+09:00
+- Task: USER-20260929-STORY-AYAME-GATE / アヤメ前提3連戦・ジム入場・Save18
+- Version: story-ayame-save18-v1
+- Status: DONE（支援story新区間限定。ジムリーダー/自然育成/進化/全story未完）
+- Summary: Save17→通常条件会話・三兄弟3勝→ジム入場→PC回復・Save18・独立Continue。賞金568、Bag不変、旧WIPのHM05は未継承。連戦lock/交代UI/残留outcomeと保存途中を別判定。S61E tailをboxed payloadと分離しCRC/gym bitだけの変化を照合。
+- Files changed: 新規連戦/保存/S61E oracle・55試験・入力計画/失敗receipt、測定/記録workflow、checkpoint/guide/text証跡、固定再開MD/JSON、両ログ。ROM/Save/全差分hex/画像はartifactのみ。
+- Verify: run36522150353/job109257152262全7step成功、artifact11012768108全170member、145画像/30pixel anchor、381/cold23入力、全Save差分6731bytes/1740範囲、cold全131088bytes、前bank57344bytes/boxed PC/Bag保持。新55試験原本再利用、記録時は新しい終端gate24試験のみ。開発native4（失敗2）/正式2、記録native0/受入再走0/compile0。scoped final-index/private path/resume/task graph/diff後のみcommit。既存CI全成功とは主張しない。
+- Commit: WIP d75466777ae1、測定source2577d253823bdca94bf3dfac0a67dea9776a6d8a、記録source=2e88af576e6c72b621b7ad221930e4f611c04e2a・run=36523214697。同branch非force push・全text読戻し。
+- Network: 固定GitHub HEAD/run/artifact。旧受入/BP/P08/progression/全国図鑑owner/active baseline/source-lock不変。PR16未merge、releaseなし。
+- Next: story-fastの唯一の開始点はartifact11012768108のstory-fast.srm（Save18、131088bytes、SHA256 dc1f690f0616affc61b6d45632924e4c81995c91c7c1939994f37bbe8527432d）。アヤメPC map5/4・7,4・北向き・party4全回復/RP0から、通常出口→入場可能になったアヤメジムの未完storyを進める。ジムリーダー勝利/バッジはまだ未受入。旧未保存WIPのHM05はこのSaveには無く、必要時は通常会話で取得する。新381/cold23入力・55試験・旧BP/P08/Save1〜17を無影響に再走しない。分離progression原本Axew Lv37/EXP68589、NationalDex magic0とownerを保全し、flag/var注入で解禁しない。正規全国図鑑解禁、自然育成/進化、Lucky Egg対照・12成長ケース・Lv100soak・研究施設自然到達・全storyは未完。

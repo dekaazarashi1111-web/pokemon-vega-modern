@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "支援story-fastで502番道路の通常3戦・ゲート通過・アヤメPC通常回復Save17・独立Continueを限定受入。全Save/RTC131088bytes保持、map5/4・7,4北、party4/RP0。全国図鑑magic0・progression進化blockedは維持。次はartifact11008723945から先の通常story。",
+    "current_stop": "支援story-fastで三兄弟3連勝・通常ジム入場・PC全回復Save18・独立Continueを限定受入。全Save/RTC131088bytes保持。map5/4・7,4北・party4/RP0。ジムリーダー/バッジ未完、NationalDex magic0維持。次はartifact11012768108から先だけ。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "story-fastはアヤメシティ通常回復Save17を唯一の開始点とする。artifact11008723945のstory-fast.srmを復元し、map5/4・7,4・北向きのポケモンセンターから通常の出口・町イベントを進める。今回の317/cold22入力・34試験・受入済み19試験・マオリ・旧BP/P08/Save1〜16は影響なしに再走しない。全国図鑑正規解禁へ向けて通常storyを継続し、次の自然保存境界で区切る。progression原本は戦闘前Axew Lv37/EXP68589のまま保持し、NationalDex magic0を注入で解除しない。自然育成/進化、Lucky Egg対照・12成長ケース・Lv100soak・研究施設自然到達・全storyは未完。",
+    "next_step": "story-fastの唯一の開始点はartifact11012768108のstory-fast.srm（Save18、131088bytes、SHA256 dc1f690f0616affc61b6d45632924e4c81995c91c7c1939994f37bbe8527432d）。アヤメPC map5/4・7,4・北向き・party4全回復/RP0から、通常出口→入場可能になったアヤメジムの未完storyを進める。ジムリーダー勝利/バッジはまだ未受入。旧未保存WIPのHM05はこのSaveには無く、必要時は通常会話で取得する。新381/cold23入力・55試験・旧BP/P08/Save1〜17を無影響に再走しない。分離progression原本Axew Lv37/EXP68589、NationalDex magic0とownerを保全し、flag/var注入で解禁しない。正規全国図鑑解禁、自然育成/進化、Lucky Egg対照・12成長ケース・Lv100soak・研究施設自然到達・全storyは未完。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -4252,30 +4252,30 @@
     "status": "PASS_NATIONAL_DEX_GRANT_OWNER_SCOPED"
   },
   "next_action": {
-    "goal_ja": "story-fastはアヤメシティ通常回復Save17を唯一の開始点とする。artifact11008723945のstory-fast.srmを復元し、map5/4・7,4・北向きのポケモンセンターから通常の出口・町イベントを進める。今回の317/cold22入力・34試験・受入済み19試験・マオリ・旧BP/P08/Save1〜16は影響なしに再走しない。全国図鑑正規解禁へ向けて通常storyを継続し、次の自然保存境界で区切る。progression原本は戦闘前Axew Lv37/EXP68589のまま保持し、NationalDex magic0を注入で解除しない。自然育成/進化、Lucky Egg対照・12成長ケース・Lv100soak・研究施設自然到達・全storyは未完。",
+    "goal_ja": "story-fastの唯一の開始点はartifact11012768108のstory-fast.srm（Save18、131088bytes、SHA256 dc1f690f0616affc61b6d45632924e4c81995c91c7c1939994f37bbe8527432d）。アヤメPC map5/4・7,4・北向き・party4全回復/RP0から、通常出口→入場可能になったアヤメジムの未完storyを進める。ジムリーダー勝利/バッジはまだ未受入。旧未保存WIPのHM05はこのSaveには無く、必要時は通常会話で取得する。新381/cold23入力・55試験・旧BP/P08/Save1〜17を無影響に再走しない。分離progression原本Axew Lv37/EXP68589、NationalDex magic0とownerを保全し、flag/var注入で解禁しない。正規全国図鑑解禁、自然育成/進化、Lucky Egg対照・12成長ケース・Lv100soak・研究施設自然到達・全storyは未完。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。Save14は作業コピーだけを使用する。自己OT party、manifest解決済み通常支援用品、EXP境界、safe opponentはpre-battle fixtureとして全byteを台帳化してよい。badge/key item/story flag/money/RPをfixture付与せず、戦闘開始後は通常入力とゲーム内処理だけを使う。",
-    "id": "STORY_AFTER_AYAME_SAVE17",
+    "id": "STORY_AFTER_AYAME_GYM_ENTRY_SAVE18",
     "read_paths": [
-      "docs/PR16_STORY_AFTER_MAORI_JA.md",
-      "content/modernization/pr16_story_after_maori_checkpoint.json",
+      "docs/PR16_STORY_AYAME_GATE_JA.md",
+      "content/modernization/pr16_story_ayame_gate_checkpoint.json",
       "docs/PR16_NATIONAL_DEX_OWNER_JA.md",
       "content/modernization/pr16_national_dex_owner_checkpoint.json",
       "content/modernization/pr16_story_acceleration_checkpoint.json",
-      "content/modernization/pr16_story_after_maori_development/expected.json",
-      "scripts/pr16_story_after_maori_record.py"
+      "content/modernization/pr16_story_ayame_gate_development/expected.json",
+      "scripts/pr16_story_ayame_record.py"
     ],
-    "stop_rule_ja": "新しい通常story区間を自然Save/cold境界で区切る。受入済み317/cold22、34/19試験、旧BP/P08/マオリを再走しない。異常時は原本と失敗証跡を保全し、成功へ読み替えない。"
+    "stop_rule_ja": "Save18から先の通常storyだけを自然Save/cold境界で区切る。新381/cold23・55試験・旧BP/P08/Save1〜17を再走しない。書込み途中counter更新だけで保存完了としない。異常時は失敗証跡を保全。"
   },
   "observed_date_jst": "2026-09-29",
-  "observed_head": "0c5a118c855ee52eecbadaa7c4114d32a59e500f",
+  "observed_head": "2577d253823bdca94bf3dfac0a67dea9776a6d8a",
   "observed_head_checks": {
-    "reason_ja": "専用run36510782954/job109222190727全7stepと144memberを照合。既存push CIのfailure/action_requiredは別scope。記録workflow自身の終端は別API照合。",
+    "reason_ja": "専用run36522150353/job109257152262全7stepと170memberを照合。既存CI失敗は別scope。記録workflow自身の終端は別API照合。",
     "runs": [
       {
         "conclusion": "success",
         "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "0c5a118c855ee52eecbadaa7c4114d32a59e500f",
-        "id": 36510793440,
+        "head_sha": "2577d253823bdca94bf3dfac0a67dea9776a6d8a",
+        "id": 36522157857,
         "path": ".github/workflows/p03-forgetting-ci.yml",
         "run_attempt": 1,
         "status": "completed"
@@ -4283,8 +4283,8 @@
       {
         "conclusion": "failure",
         "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "0c5a118c855ee52eecbadaa7c4114d32a59e500f",
-        "id": 36510793435,
+        "head_sha": "2577d253823bdca94bf3dfac0a67dea9776a6d8a",
+        "id": 36522157967,
         "path": ".github/workflows/ci.yml",
         "run_attempt": 1,
         "status": "completed"
@@ -4292,8 +4292,8 @@
       {
         "conclusion": "success",
         "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "0c5a118c855ee52eecbadaa7c4114d32a59e500f",
-        "id": 36510783058,
+        "head_sha": "2577d253823bdca94bf3dfac0a67dea9776a6d8a",
+        "id": 36522150282,
         "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
         "run_attempt": 1,
         "status": "completed"
@@ -4301,8 +4301,8 @@
       {
         "conclusion": "success",
         "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "0c5a118c855ee52eecbadaa7c4114d32a59e500f",
-        "id": 36510783086,
+        "head_sha": "2577d253823bdca94bf3dfac0a67dea9776a6d8a",
+        "id": 36522150195,
         "path": ".github/workflows/p03-forgetting-ci.yml",
         "run_attempt": 1,
         "status": "completed"
@@ -4310,17 +4310,17 @@
       {
         "conclusion": "success",
         "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "0c5a118c855ee52eecbadaa7c4114d32a59e500f",
-        "id": 36510782954,
-        "path": ".github/workflows/pr16-story-after-maori.yml",
+        "head_sha": "2577d253823bdca94bf3dfac0a67dea9776a6d8a",
+        "id": 36522150353,
+        "path": ".github/workflows/pr16-story-ayame.yml",
         "run_attempt": 1,
         "status": "completed"
       },
       {
         "conclusion": "failure",
         "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "0c5a118c855ee52eecbadaa7c4114d32a59e500f",
-        "id": 36510782921,
+        "head_sha": "2577d253823bdca94bf3dfac0a67dea9776a6d8a",
+        "id": 36522150205,
         "path": ".github/workflows/ci.yml",
         "run_attempt": 1,
         "status": "completed"
@@ -4328,14 +4328,14 @@
       {
         "conclusion": "success",
         "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "0c5a118c855ee52eecbadaa7c4114d32a59e500f",
-        "id": 36510782957,
+        "head_sha": "2577d253823bdca94bf3dfac0a67dea9776a6d8a",
+        "id": 36522150187,
         "path": ".github/workflows/modernization-stage79-mgba.yml",
         "run_attempt": 1,
         "status": "completed"
       }
     ],
-    "scope_head": "0c5a118c855ee52eecbadaa7c4114d32a59e500f"
+    "scope_head": "2577d253823bdca94bf3dfac0a67dea9776a6d8a"
   },
   "observed_head_history": [
     {
@@ -6024,9 +6024,83 @@
       "head": "383ce0f49f4761f6db875e1a2f0a89692d2966e8",
       "reason_ja": "旧受入/全国図鑑ownerを保持し、通常3戦・アヤメSave17の別scopeを追加。",
       "semantics": "自己OT Lv100 story-fastのマオリ勝利・Save16測定source HEAD。非支援Save14、進化成功、記録commit、active baselineではない。"
+    },
+    {
+      "checks": {
+        "reason_ja": "専用run36510782954/job109222190727全7stepと144memberを照合。既存push CIのfailure/action_requiredは別scope。記録workflow自身の終端は別API照合。",
+        "runs": [
+          {
+            "conclusion": "success",
+            "head_branch": "codex/modernization-followup-20260908",
+            "head_sha": "0c5a118c855ee52eecbadaa7c4114d32a59e500f",
+            "id": 36510793440,
+            "path": ".github/workflows/p03-forgetting-ci.yml",
+            "run_attempt": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "failure",
+            "head_branch": "codex/modernization-followup-20260908",
+            "head_sha": "0c5a118c855ee52eecbadaa7c4114d32a59e500f",
+            "id": 36510793435,
+            "path": ".github/workflows/ci.yml",
+            "run_attempt": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "head_branch": "codex/modernization-followup-20260908",
+            "head_sha": "0c5a118c855ee52eecbadaa7c4114d32a59e500f",
+            "id": 36510783058,
+            "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+            "run_attempt": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "head_branch": "codex/modernization-followup-20260908",
+            "head_sha": "0c5a118c855ee52eecbadaa7c4114d32a59e500f",
+            "id": 36510783086,
+            "path": ".github/workflows/p03-forgetting-ci.yml",
+            "run_attempt": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "head_branch": "codex/modernization-followup-20260908",
+            "head_sha": "0c5a118c855ee52eecbadaa7c4114d32a59e500f",
+            "id": 36510782954,
+            "path": ".github/workflows/pr16-story-after-maori.yml",
+            "run_attempt": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "failure",
+            "head_branch": "codex/modernization-followup-20260908",
+            "head_sha": "0c5a118c855ee52eecbadaa7c4114d32a59e500f",
+            "id": 36510782921,
+            "path": ".github/workflows/ci.yml",
+            "run_attempt": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "head_branch": "codex/modernization-followup-20260908",
+            "head_sha": "0c5a118c855ee52eecbadaa7c4114d32a59e500f",
+            "id": 36510782957,
+            "path": ".github/workflows/modernization-stage79-mgba.yml",
+            "run_attempt": 1,
+            "status": "completed"
+          }
+        ],
+        "scope_head": "0c5a118c855ee52eecbadaa7c4114d32a59e500f"
+      },
+      "head": "0c5a118c855ee52eecbadaa7c4114d32a59e500f",
+      "reason_ja": "旧受入を保持し、三兄弟3連勝・ジム入場・通常回復Save18の別scopeを追加。",
+      "semantics": "支援story-fastの通常3戦・アヤメ回復Save17測定source。進化/自然育成/全story、記録commit、active baselineではない。"
     }
   ],
-  "observed_head_semantics": "支援story-fastの通常3戦・アヤメ回復Save17測定source。進化/自然育成/全story、記録commit、active baselineではない。",
+  "observed_head_semantics": "三兄弟3連勝・ジム入場・回復Save18測定source。ジムリーダー/自然育成/進化/全story、記録commit、active baselineではない。",
   "p08_candidate_impact": {
     "candidate": {
       "crc32": "CC068B4A",
@@ -8961,6 +9035,14 @@
       "sha256": "af82d703c686b0f6ae43800509244b7f024135635e8cb198b7eb2d7b5d6fc3c9",
       "size": 1132
     },
+    ".github/workflows/pr16-story-ayame-record.yml": {
+      "sha256": "998b888b9b841f78b79d86e04a8fad0bd5039e56378e3fed31a2384125cfbda3",
+      "size": 3087
+    },
+    ".github/workflows/pr16-story-ayame.yml": {
+      "sha256": "9985351fe59e540f0113a04e079c4c44c77a0164695252f2b1c9ad1089103a51",
+      "size": 1096
+    },
     ".github/workflows/pr16-story-fast-maori-record.yml": {
       "sha256": "2b9a9cb92edcd169c7a80097ab8ecad07877aefe82a05358562f3e9be89aef99",
       "size": 2125
@@ -11613,6 +11695,90 @@
       "sha256": "d73cf608aee03bc804590e78ae159082054d0c7dc3c9cd8a6e01e9ec8e475ca1",
       "size": 3804
     },
+    "content/modernization/pr16_story_ayame_gate_checkpoint.json": {
+      "sha256": "859a9e7e2bb7155557fb1f43094d8af2218cbffc5732323e4146d2c8935eb5ff",
+      "size": 11388
+    },
+    "content/modernization/pr16_story_ayame_gate_development/expected.json": {
+      "sha256": "8d59d21ded03178ffce5662ed76b38431682fb54e0ad5d3c49d8795f3886689d",
+      "size": 5791
+    },
+    "content/modernization/pr16_story_ayame_gate_evidence/continue/commands.txt": {
+      "sha256": "a961ea7d32104f36b63136a21e9359a2a0269486a60818287670cc5a59a076b3",
+      "size": 140
+    },
+    "content/modernization/pr16_story_ayame_gate_evidence/continue/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_story_ayame_gate_evidence/continue/stdout.txt": {
+      "sha256": "74d0fc3acd672f424af09a2f42ec85e2431bcd54de10e6364651400dc5200ce4",
+      "size": 4202
+    },
+    "content/modernization/pr16_story_ayame_gate_evidence/failed-development-progress.stdout.txt": {
+      "sha256": "33ea4014d3f4e661e5326dd7e5a890112923cded979e98494597b064554115c9",
+      "size": 95806
+    },
+    "content/modernization/pr16_story_ayame_gate_evidence/failure-receipt.json": {
+      "sha256": "52cd8cb2515246d2e3598237932ba432102ef118b4737fc73247a5d46a72b116",
+      "size": 3202
+    },
+    "content/modernization/pr16_story_ayame_gate_evidence/manifest.json": {
+      "sha256": "7e6a6433d908adb0faa498e8b28c86d5552a32d49d178dd0808f140b6390a982",
+      "size": 23275
+    },
+    "content/modernization/pr16_story_ayame_gate_evidence/measurement.json": {
+      "sha256": "f3f46ed5f546bd85ca7137f15d710c42368eb1bc8ae7409a068fa91de518cbba",
+      "size": 5792
+    },
+    "content/modernization/pr16_story_ayame_gate_evidence/parent.json": {
+      "sha256": "f763b1c2504769828584685d4631d61593b8d50720b96f30373e4f008d9ac55f",
+      "size": 465
+    },
+    "content/modernization/pr16_story_ayame_gate_evidence/progress/commands.txt": {
+      "sha256": "6d1c304bb82a336b3233b8a175d6c2c92109eefa6d1f0d0fc8199db37e0c1399",
+      "size": 4952
+    },
+    "content/modernization/pr16_story_ayame_gate_evidence/progress/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_story_ayame_gate_evidence/progress/stdout.txt": {
+      "sha256": "892d17da8ba83ab9f286d42da82c976093963f7a0f05ea34d34dd6174514abaa",
+      "size": 96411
+    },
+    "content/modernization/pr16_story_ayame_gate_evidence/record-unit.stderr.txt": {
+      "sha256": "b1027d88bca34391ef9d2de7a0c9fac4f46f4ce1096d862dce274d52b34b53ce",
+      "size": 2791
+    },
+    "content/modernization/pr16_story_ayame_gate_evidence/record-unit.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_story_ayame_gate_evidence/terminal.json": {
+      "sha256": "a803ce6ada2958a69fbd86b95159596a3299500bf71cf6f3e11921034712a4ef",
+      "size": 6051
+    },
+    "content/modernization/pr16_story_ayame_gate_evidence/unit-accept.stderr.txt": {
+      "sha256": "b41a29e7a90c4396ebc2ad80f7d48f08aa8fb84ffd7f695ac0d3845310d154e1",
+      "size": 3515
+    },
+    "content/modernization/pr16_story_ayame_gate_evidence/unit-accept.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_story_ayame_gate_evidence/unit-chain.stderr.txt": {
+      "sha256": "572c8973d63dac9ee9f93a457902bd7a1a18cb753ab644ab65ebade55f1d405c",
+      "size": 2827
+    },
+    "content/modernization/pr16_story_ayame_gate_evidence/unit-chain.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_story_ayame_gate_evidence/verification.json": {
+      "sha256": "90d71eba9c06689b2236cb0c0e622a72a7e2d9258e6cd23c347ad4bfe47cc53e",
+      "size": 3789
+    },
     "content/modernization/pr16_story_fast_maori_checkpoint.json": {
       "sha256": "b146d0e679270e10872331535965c6ba42fa47749de7014564d539ae8705c12d",
       "size": 11918
@@ -12712,6 +12878,10 @@
     "docs/PR16_STORY_AFTER_MAORI_JA.md": {
       "sha256": "eb4b6fc11ac69140f41e5155906785dcd667da37653e5349afd9469107e43e1e",
       "size": 4818
+    },
+    "docs/PR16_STORY_AYAME_GATE_JA.md": {
+      "sha256": "489879d20ca7eaae1962e76a19ff41ee1b05969ae3ba66b3ba79ddda968e8e98",
+      "size": 4744
     },
     "docs/PR16_STORY_FAST_MAORI_JA.md": {
       "sha256": "a938f700a0eb9d97e83250687c4e74a0c80e81143efc07d6455c428b522f4fab",
@@ -18145,6 +18315,22 @@
       "sha256": "1fa24fa46102436b45989c92d821d3a48e97d0061dc650cf48feb6e3bd2484d2",
       "size": 4370
     },
+    "scripts/pr16_story_ayame_accept.py": {
+      "sha256": "60bdce787d7c2c923a8e1d1effbda5d83c037daffcd594afa5fb2d48ba27519b",
+      "size": 11863
+    },
+    "scripts/pr16_story_ayame_chain.py": {
+      "sha256": "326aff8c6e18a17a84dbc76a5952176090af30bfa7550e94b75ca3b89320395d",
+      "size": 3628
+    },
+    "scripts/pr16_story_ayame_measure.py": {
+      "sha256": "4c3fa333237454a34d54393798f706c3e4fb53112ef99e64ec81f818d7c1fb60",
+      "size": 6802
+    },
+    "scripts/pr16_story_ayame_record.py": {
+      "sha256": "65d2e633ffb598bab2f7e687e04660cd37ac83f6635b39f9902045f0e71e84ae",
+      "size": 18481
+    },
     "scripts/pr16_story_fast_maori.py": {
       "sha256": "3add6d4ff7d2a0840085a398cfa3164bc4c11d11ceb5ef92caa26ab11c4bfa80",
       "size": 12364
@@ -19713,6 +19899,18 @@
       "sha256": "0a6248163acfe23573336498e5fc882ef8fd0b60d9162ab2413cc960e5f86985",
       "size": 2839
     },
+    "tests/test_pr16_story_ayame_accept.py": {
+      "sha256": "c511e5fad074a8cf927c021c21c51ec612a7b30ceb178d00fdcf2f3e2eced889",
+      "size": 4853
+    },
+    "tests/test_pr16_story_ayame_chain.py": {
+      "sha256": "d2c18f0d7adbfe9e2f5e5939a6ce3245aeb29b861f6cff68daf12018fead9e02",
+      "size": 3532
+    },
+    "tests/test_pr16_story_ayame_record.py": {
+      "sha256": "e6153a7795b1a4695e2f5093ac9c2fb56209db287622fbc6ccba10a0e416a4a2",
+      "size": 4709
+    },
     "tests/test_pr16_story_fast_maori.py": {
       "sha256": "020fd8cbe7d465949740fa200dfcfee20aefa3587ce2b744c07816f5bb203f8b",
       "size": 8337
@@ -20375,6 +20573,29 @@
     "status": "PASS_STORY_AFTER_MAORI_AYAME_SAVE17_SCOPED",
     "story_fast_save": {
       "sha256": "6bd7a37962e31b3c3c553a882903c766b7146f016cdf00a62036273789ab6f2a",
+      "size": 131088
+    },
+    "xy": [
+      7,
+      4
+    ]
+  },
+  "story_ayame_gate": {
+    "artifact_id": 11012768108,
+    "checkpoint": "content/modernization/pr16_story_ayame_gate_checkpoint.json",
+    "facing": 2,
+    "guide": "docs/PR16_STORY_AYAME_GATE_JA.md",
+    "map": [
+      5,
+      4
+    ],
+    "next_goal_ja": "story-fastの唯一の開始点はartifact11012768108のstory-fast.srm（Save18、131088bytes、SHA256 dc1f690f0616affc61b6d45632924e4c81995c91c7c1939994f37bbe8527432d）。アヤメPC map5/4・7,4・北向き・party4全回復/RP0から、通常出口→入場可能になったアヤメジムの未完storyを進める。ジムリーダー勝利/バッジはまだ未受入。旧未保存WIPのHM05はこのSaveには無く、必要時は通常会話で取得する。新381/cold23入力・55試験・旧BP/P08/Save1〜17を無影響に再走しない。分離progression原本Axew Lv37/EXP68589、NationalDex magic0とownerを保全し、flag/var注入で解禁しない。正規全国図鑑解禁、自然育成/進化、Lucky Egg対照・12成長ケース・Lv100soak・研究施設自然到達・全storyは未完。",
+    "record_run_id": 36523214697,
+    "release_ready": false,
+    "run_id": 36522150353,
+    "status": "PASS_AYAME_CHAIN_GYM_ENTRY_SAVE18_SCOPED",
+    "story_fast_save": {
+      "sha256": "dc1f690f0616affc61b6d45632924e4c81995c91c7c1939994f37bbe8527432d",
       "size": 131088
     },
     "xy": [
