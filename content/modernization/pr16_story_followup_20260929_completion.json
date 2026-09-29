@@ -1,0 +1,298 @@
+{
+  "accepted_case_reruns": 0,
+  "active_baseline_changed": false,
+  "closeout_failed_attempt": {
+    "cause": "GITHUB_TOKEN env missing before any record/native work",
+    "conclusion": "failure",
+    "fix": "Pass github.token under both GH_TOKEN and GITHUB_TOKEN",
+    "job_id": 109207284947,
+    "new_native_processes": 0,
+    "previous_component_replays": 0,
+    "run_id": 36505939132,
+    "source_head": "e4c9b62e341897ae2d13488d81034e4128df59da"
+  },
+  "closeout_native_processes": 0,
+  "compile_count": 0,
+  "components": [
+    {
+      "all_steps_completed_success": true,
+      "job_id": 109201289995,
+      "run": {
+        "conclusion": "success",
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "383ce0f49f4761f6db875e1a2f0a89692d2966e8",
+        "id": 36504040292,
+        "path": ".github/workflows/pr16-story-fast-maori.yml",
+        "run_attempt": 1,
+        "status": "completed"
+      },
+      "step_count": 8
+    },
+    {
+      "all_steps_completed_success": true,
+      "job_id": 109203878071,
+      "run": {
+        "conclusion": "success",
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "598c5a7b0fd5202fdee4a8fde519aab268ac3114",
+        "id": 36504857429,
+        "path": ".github/workflows/pr16-story-fast-maori-record.yml",
+        "run_attempt": 1,
+        "status": "completed"
+      },
+      "step_count": 8
+    },
+    {
+      "all_steps_completed_success": true,
+      "job_id": 109206354228,
+      "run": {
+        "conclusion": "success",
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "e86a3c81ca07886739d94404b6c2bc7df39e5255",
+        "id": 36505642387,
+        "path": ".github/workflows/pr16-national-dex-owner.yml",
+        "run_attempt": 1,
+        "status": "completed"
+      },
+      "step_count": 8
+    }
+  ],
+  "development_native_processes": 2,
+  "evolution_accepted": false,
+  "formal_native_processes": 2,
+  "formal_new_tests": 58,
+  "full_story_accepted": false,
+  "general_ci_all_success_claimed": false,
+  "latest_twenty_actions_snapshot": [
+    {
+      "conclusion": null,
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "da3b6617cc336190c4caf2befe093cfce99ffbd4",
+      "id": 36506362743,
+      "path": ".github/workflows/ci.yml",
+      "run_attempt": 1,
+      "status": "in_progress"
+    },
+    {
+      "conclusion": null,
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "da3b6617cc336190c4caf2befe093cfce99ffbd4",
+      "id": 36506362735,
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "run_attempt": 1,
+      "status": "in_progress"
+    },
+    {
+      "conclusion": null,
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "da3b6617cc336190c4caf2befe093cfce99ffbd4",
+      "id": 36506355882,
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "run_attempt": 1,
+      "status": "in_progress"
+    },
+    {
+      "conclusion": null,
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "da3b6617cc336190c4caf2befe093cfce99ffbd4",
+      "id": 36506355894,
+      "path": ".github/workflows/ci.yml",
+      "run_attempt": 1,
+      "status": "in_progress"
+    },
+    {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "da3b6617cc336190c4caf2befe093cfce99ffbd4",
+      "id": 36506355719,
+      "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": null,
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "da3b6617cc336190c4caf2befe093cfce99ffbd4",
+      "id": 36506355858,
+      "path": ".github/workflows/pr16-followup-closeout.yml",
+      "run_attempt": 1,
+      "status": "in_progress"
+    },
+    {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "e4c9b62e341897ae2d13488d81034e4128df59da",
+      "id": 36505946636,
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "failure",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "e4c9b62e341897ae2d13488d81034e4128df59da",
+      "id": 36505946473,
+      "path": ".github/workflows/ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "e4c9b62e341897ae2d13488d81034e4128df59da",
+      "id": 36505939120,
+      "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "failure",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "e4c9b62e341897ae2d13488d81034e4128df59da",
+      "id": 36505939132,
+      "path": ".github/workflows/pr16-followup-closeout.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "e4c9b62e341897ae2d13488d81034e4128df59da",
+      "id": 36505939148,
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "failure",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "e4c9b62e341897ae2d13488d81034e4128df59da",
+      "id": 36505939082,
+      "path": ".github/workflows/ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "action_required",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "4aa8fbb84f33439ad438c37e8c3b158700a44fd0",
+      "id": 36505696848,
+      "path": ".github/workflows/ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "action_required",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "4aa8fbb84f33439ad438c37e8c3b158700a44fd0",
+      "id": 36505696891,
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "e86a3c81ca07886739d94404b6c2bc7df39e5255",
+      "id": 36505648961,
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "failure",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "e86a3c81ca07886739d94404b6c2bc7df39e5255",
+      "id": 36505648958,
+      "path": ".github/workflows/ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "e86a3c81ca07886739d94404b6c2bc7df39e5255",
+      "id": 36505642387,
+      "path": ".github/workflows/pr16-national-dex-owner.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "e86a3c81ca07886739d94404b6c2bc7df39e5255",
+      "id": 36505642218,
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "e86a3c81ca07886739d94404b6c2bc7df39e5255",
+      "id": 36505642202,
+      "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "failure",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "e86a3c81ca07886739d94404b6c2bc7df39e5255",
+      "id": 36505642151,
+      "path": ".github/workflows/ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    }
+  ],
+  "local_record_only_tests": 8,
+  "local_record_test_log": "content/modernization/pr16_followup_completion/record-unit-local.txt",
+  "local_record_test_source_bindings": {
+    "scripts/pr16_story_fast_maori_record.py": {
+      "sha256": "b81d4da0e63ea06894d55a86383979f0ea30c068dca17dc71887badc622be69a",
+      "size": 16329
+    },
+    "tests/test_pr16_story_fast_maori_record.py": {
+      "sha256": "9779275caeaf45e1fd840c4305670b1c723839d2b4303f50061dd7e325137d44",
+      "size": 2866
+    }
+  },
+  "national_dex_gameplay_unlock_accepted": false,
+  "national_owner_status": "PASS_NATIONAL_DEX_GRANT_OWNER_SCOPED",
+  "natural_growth_accepted": false,
+  "next_goal_ja": "マオリSave16と全国図鑑grant ownerの限定照合は完了。story-fastはartifact11006311891のstory-fast.srm、map3/19(53,10)から通常storyを続ける。全国図鑑のVega側経路はmap3/0のvar0x4072=9→10→map4/3へwarp、同研究所のvar10イベント→special367→var11の保存状態。var9に至る通常進行と有効化後の自然進化は未受入。legacy var0x4055=7経路を序盤で到達済みと扱わず、flag/var注入やgate緩和はしない。元progression戦闘前Axewを保全し、正規解禁後の別境界で成長/進化/Lucky Egg対照/12ケース/Lv100soakへ進む。旧受入入力・44試験・このowner走査の無影響再実行は禁止。",
+  "record_run_id": 36506355858,
+  "release_ready": false,
+  "remaining_ja": [
+    "Save16以降の通常story",
+    "全国図鑑var4072=9への自然到達・正規解禁",
+    "自然EXP進化",
+    "Lucky Egg対照",
+    "12成長ケース",
+    "Lv100soak",
+    "研究施設自然到達と全story"
+  ],
+  "rom_changes": 0,
+  "schema_version": 1,
+  "source_head": "da3b6617cc336190c4caf2befe093cfce99ffbd4",
+  "status": "DONE_SCOPED_TWO_WORKSTREAMS",
+  "story_artifact_id": 11006311891,
+  "story_position": {
+    "facing": 2,
+    "map": [
+      3,
+      19
+    ],
+    "xy": [
+      53,
+      10
+    ]
+  },
+  "story_save": {
+    "sha256": "5c4a03b9d92f7be54250d565162b03b5b85a2f221c3873d26d894b74b76778ce",
+    "size": 131088
+  },
+  "story_status": "PASS_STORY_FAST_MAORI_SAVE16_SCOPED",
+  "task": "USER-20260929-STORY-FOLLOWUP-CLOSEOUT",
+  "unique_new_test_definitions": 66
+}

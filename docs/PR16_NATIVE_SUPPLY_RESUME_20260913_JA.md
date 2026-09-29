@@ -25,6 +25,7 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_story_followup_20260929_completion.json`
 - `docs/PR16_NATIONAL_DEX_OWNER_JA.md`
 - `content/modernization/pr16_national_dex_owner_checkpoint.json`
 - `docs/PR16_STORY_FAST_MAORI_JA.md`
@@ -373,6 +374,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-専用run36504040292/job109201289995の全8stepと73memberを照合済み。一般CI全成功は主張せず既存failure/action_requiredを保持。記録workflow自身の終端は別照合。
+今回のMaori測定・記録・全国図鑑ownerの3run全24stepのcompleted/successを外部APIで確認。最新20Actionsは集約記録へ保存。一般CI全体成功・自然解禁・自然進化・全story・releaseは主張しない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

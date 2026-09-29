@@ -4239,6 +4239,9 @@
   },
   "merge_performed": false,
   "national_dex_owner": {
+    "actions_completion_confirmed": true,
+    "actions_conclusion": "success",
+    "completion_record": "content/modernization/pr16_story_followup_20260929_completion.json",
     "evolution_accepted": false,
     "guide": "docs/PR16_NATIONAL_DEX_OWNER_JA.md",
     "native_processes": 0,
@@ -4253,6 +4256,7 @@
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。Save14は作業コピーだけを使用する。自己OT party、manifest解決済み通常支援用品、EXP境界、safe opponentはpre-battle fixtureとして全byteを台帳化してよい。badge/key item/story flag/money/RPをfixture付与せず、戦闘開始後は通常入力とゲーム内処理だけを使う。",
     "id": "STORY_FAST_TO_NATURAL_DEX_BOUNDARY",
     "read_paths": [
+      "content/modernization/pr16_story_followup_20260929_completion.json",
       "docs/PR16_NATIONAL_DEX_OWNER_JA.md",
       "content/modernization/pr16_national_dex_owner_checkpoint.json",
       "docs/PR16_STORY_FAST_MAORI_JA.md",
@@ -4266,7 +4270,7 @@
   "observed_date_jst": "2026-09-29",
   "observed_head": "383ce0f49f4761f6db875e1a2f0a89692d2966e8",
   "observed_head_checks": {
-    "reason_ja": "専用run36504040292/job109201289995の全8stepと73memberを照合済み。一般CI全成功は主張せず既存failure/action_requiredを保持。記録workflow自身の終端は別照合。",
+    "reason_ja": "今回のMaori測定・記録・全国図鑑ownerの3run全24stepのcompleted/successを外部APIで確認。最新20Actionsは集約記録へ保存。一般CI全体成功・自然解禁・自然進化・全story・releaseは主張しない。",
     "runs": [
       {
         "conclusion": "success",
@@ -4274,6 +4278,24 @@
         "head_sha": "383ce0f49f4761f6db875e1a2f0a89692d2966e8",
         "id": 36504040292,
         "path": ".github/workflows/pr16-story-fast-maori.yml",
+        "run_attempt": 1,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "598c5a7b0fd5202fdee4a8fde519aab268ac3114",
+        "id": 36504857429,
+        "path": ".github/workflows/pr16-story-fast-maori-record.yml",
+        "run_attempt": 1,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "e86a3c81ca07886739d94404b6c2bc7df39e5255",
+        "id": 36505642387,
+        "path": ".github/workflows/pr16-national-dex-owner.yml",
         "run_attempt": 1,
         "status": "completed"
       }
@@ -7858,6 +7880,10 @@
       "sha256": "42d48cce1f1c9089a82e308b49837cf05aa20cab4a232c44c0be2a16fce0460b",
       "size": 10958
     },
+    ".github/workflows/pr16-followup-closeout.yml": {
+      "sha256": "e3004c9ef67b12befad6a3d74a19bb3031ea4d21795e62bd937974ba7f601110",
+      "size": 11526
+    },
     ".github/workflows/pr16-home-recovery-collect.yml": {
       "sha256": "a714138e4fa50ee7a3f5fde5e88fe9acda0e837d4c532d10fa0e8b5acc7f6729",
       "size": 3200
@@ -9390,6 +9416,10 @@
       "sha256": "b3e7ea499c7e389b41921b1ce4ffdc36ff2bd510841e8c3f8c9864aa49169ac3",
       "size": 866
     },
+    "content/modernization/pr16_followup_completion/record-unit-local.txt": {
+      "sha256": "b84d2dc9a6ed15870a8f9c670ee2e0b36af41460887dc3095eb305fb7d76e09f",
+      "size": 872
+    },
     "content/modernization/pr16_home_recovery_checkpoint.json": {
       "sha256": "a1ebaaa23e079faf750b85f84bf60a299926474a5b760b50311d9ed9247488d7",
       "size": 5423
@@ -9683,8 +9713,8 @@
       "size": 9673
     },
     "content/modernization/pr16_national_dex_owner_checkpoint.json": {
-      "sha256": "ecc1c0d76fbb95824dc76ad35a0e27946cd4dafa29401233f874d9435830f245",
-      "size": 2540
+      "sha256": "04b8176f2a0494f7c7d29e9f32418925474190c188369a49c9b9425164069dee",
+      "size": 2738
     },
     "content/modernization/pr16_national_dex_owner_evidence/audit.json": {
       "sha256": "0076a86ff87495647e4e98c532ca4cb4f4ba59dcd6144252febab7028b90489d",
@@ -11482,6 +11512,10 @@
       "sha256": "c3ad3ef1a95f246f3aa5e0df33e2d689d0b10fe569da0c82dbea51b0386dc464",
       "size": 5260
     },
+    "content/modernization/pr16_story_followup_20260929_completion.json": {
+      "sha256": "59649364bc7d6ca8e2fe078bfa157db8bb29a3c649ae89085605538f9a9a269c",
+      "size": 10350
+    },
     "content/modernization/pr16_story_journey_sequence_checkpoint.json": {
       "sha256": "8fbbe9bb72ac58f3bcdfbc1489f300ab1e6b8f239ce3da9ad1982fce0d119168",
       "size": 1760
@@ -12375,8 +12409,8 @@
       "size": 2681
     },
     "docs/PR16_NATIONAL_DEX_OWNER_JA.md": {
-      "sha256": "8e40bb2b1e35c750663d4ab4e6ff2dc2bfdeb573a2abc18e454c09768713764f",
-      "size": 3101
+      "sha256": "5061c6575bebf9d913c9c8c50917221c80c1a969c5199d8d4a2acdea519f404a",
+      "size": 3508
     },
     "docs/PR16_NATURAL_SUPPLY_JA.md": {
       "sha256": "7f6b0a12d556415ef24ca476f1efeb894edd9a12b589a1c14879e3e91b89f721",
@@ -20151,6 +20185,12 @@
     "run_id": 36504040292,
     "source_head": "383ce0f49f4761f6db875e1a2f0a89692d2966e8",
     "status": "PASS_STORY_FAST_MAORI_SAVE16_SCOPED"
+  },
+  "story_followup_20260929_completion": {
+    "accepted_case_reruns": 0,
+    "closed_scopes": 2,
+    "path": "content/modernization/pr16_story_followup_20260929_completion.json",
+    "release_ready": false
   },
   "story_journey_sequence": {
     "actions_completion_confirmed": true,

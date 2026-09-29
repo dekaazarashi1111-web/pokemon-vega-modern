@@ -8548,3 +8548,13 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 新14試験PASS、3root20nodes/decode0、特殊処理table/4native範囲/固定ROM/Save16 magic0。追加native/compile/既受入再実行0。Maori record36504857429全step終端成功を別API照合。最終resume/task graph/scoped index後のみcommit。
 - Commit: source=e86a3c81ca07886739d94404b6c2bc7df39e5255; run=36505642387; 同branch非force push/readback。
 - Next: マオリSave16と全国図鑑grant ownerの限定照合は完了。story-fastはartifact11006311891のstory-fast.srm、map3/19(53,10)から通常storyを続ける。全国図鑑のVega側経路はmap3/0のvar0x4072=9→10→map4/3へwarp、同研究所のvar10イベント→special367→var11の保存状態。var9に至る通常進行と有効化後の自然進化は未受入。legacy var0x4055=7経路を序盤で到達済みと扱わず、flag/var注入やgate緩和はしない。元progression戦闘前Axewを保全し、正規解禁後の別境界で成長/進化/Lucky Egg対照/12ケース/Lv100soakへ進む。旧受入入力・44試験・このowner走査の無影響再実行は禁止。
+
+## 2026-09-29T01:07:23+00:00
+- Task: USER-20260929-STORY-FOLLOWUP-CLOSEOUT
+- Version: story-followup-closeout-v1
+- Status: DONE（Maori Save16・全国図鑑ownerの2限定scope）
+- Summary: 初回closeout36505939132はGITHUB_TOKEN未設定で書込前停止し、envのみ補正。3run全24step終端成功を外部API照合し、owner未確定フラグを確定。新検査定義66=Maori44+記録8+owner14、Actionsでは新58、記録8はlocal原本/source hash保管のみ。
+- Files changed: 最終集約JSON/記録8試験原本、owner checkpoint/guide、固定引継ぎMD/JSON、両ログ、専用closeout workflow。
+- Verify: 新区間native開発2/正式2、closeout native0/test0/compile0、既受入case再実行0。ROM/原本Save14/基準/正式BP/P08不変。最新20Actionsを成功へ読み替えず保存。resume/task graph/scoped final index/diff確認後にcommit。
+- Commit: source=da3b6617cc336190c4caf2befe093cfce99ffbd4; run=36506355858; 同branch非force反映・全text読戻し。
+- Next: 集約記録のSave16から新規区間へ。国図自然解禁/進化/Lucky Egg/12成長/soak/全storyは未完。

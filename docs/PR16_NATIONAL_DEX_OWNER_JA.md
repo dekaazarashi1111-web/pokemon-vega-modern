@@ -21,3 +21,7 @@ Maori Save16 artifact11006311891のROM06c5e85c…とSave5c4a03b9…を読取専�
 マオリSave16と全国図鑑grant ownerの限定照合は完了。story-fastはartifact11006311891のstory-fast.srm、map3/19(53,10)から通常storyを続ける。全国図鑑のVega側経路はmap3/0のvar0x4072=9→10→map4/3へwarp、同研究所のvar10イベント→special367→var11の保存状態。var9に至る通常進行と有効化後の自然進化は未受入。legacy var0x4055=7経路を序盤で到達済みと扱わず、flag/var注入やgate緩和はしない。元progression戦闘前Axewを保全し、正規解禁後の別境界で成長/進化/Lucky Egg対照/12ケース/Lv100soakへ進む。旧受入入力・44試験・このowner走査の無影響再実行は禁止。
 
 本workflow自身の終端成功は自己予測せず、push/upload後の外部API照合で確認する。
+
+## 外部APIによる終端確認
+
+run36505642387の全8step（push/upload/postを含む）completed/success、記録commit4aa8fbb84f33439ad438c37e8c3b158700a44fd0を確認。測定・14試験を再実行せず終端状態だけを同期した。集約記録は `content/modernization/pr16_story_followup_20260929_completion.json`。全国図鑑のゲーム内解禁・進化未受入は変わらない。
