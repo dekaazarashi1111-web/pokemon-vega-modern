@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "task": "USER-20260929-STORY-SAVE18",
+  "timestamp": "2026-09-29T03:08:31Z",
+  "status": "WIP_NATIVE_INTERVAL_NOT_YET_SAVED_OR_ACCEPTED",
+  "starting_remote_head": "1b652c970493615c328941f47f104983acb9c5f3",
+  "development_source_head": "e7e91000395c5412e802e5c4081eb3926700977c",
+  "parent_artifact": 11008723945,
+  "parent_save": {
+    "member": "story-fast.srm",
+    "counter": 17,
+    "size": 131088,
+    "sha256": "6bd7a37962e31b3c3c553a882903c766b7146f016cdf00a62036273789ab6f2a"
+  },
+  "candidate_sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5",
+  "runtime_libmgba_sha256": "0c87a12341640e6a2d325e59e76eb4b002947771ad4d8814b216e3b99817d68d",
+  "bootstrap": {"run": 36514588200, "artifact": 11010530928, "conclusion": "success", "native_processes": 0},
+  "prior_record_terminal": {"run": 36511503554, "conclusion": "success", "all_steps_completed_success": true},
+  "observed_progress_ja": [
+    "Save17のアヤメPCから通常歩行で町へ出た。ジム前NPCの通常会話により502番道路のカチヌキ3兄弟への勝利条件を確認した。",
+    "502番道路map3/20 local5・7,4のNPCから通常会話でひでんマシン05を受領した。入手とケース収納の実画面を保存した。",
+    "野生スバメとワッカネズミに通常遭遇し、それぞれ通常にげるでoutcome4→field復帰した。勝利として数えない。",
+    "通常ゲート階段からmap22/1へ入り、通常mapイベントが発火した。キミカ戦に勝利し賞金200円を実画面で確認した。次のコウタ戦への遷移中。"
+  ],
+  "native_observation": {"observe": 99, "frame": 18127, "map": [22, 1], "xy": [10, 9], "facing": 2, "callback2": 134282949, "lock": 1, "save_counter": 17, "party_count": 4, "rp": 0, "battle_flags": 12, "battle_outcome": 1},
+  "development_native_processes_started": 1,
+  "development_native_processes_finished": 0,
+  "accepted_old_case_reruns": 0,
+  "old_acceptance_test_reruns": 0,
+  "rom_changes": 0,
+  "compiles": 0,
+  "host_writes": 0,
+  "new_save18_accepted": false,
+  "evolution_accepted": false,
+  "natural_growth_accepted": false,
+  "full_story_accepted": false,
+  "release_ready": false,
+  "active_baseline_changed": false,
+  "oracle_followup_ja": "三兄弟は初戦outcome1の後、fieldへ戻ってもlock1を保持して次戦へ進む。各戦ごとにlock0を要求する旧単戦oracleを流用しない。BATTLEへの再進入とoutcome0へのリセット、独立した勝利を追い、連戦全体の最終解錠と通常Save/coldで受入する。KOやfieldの残留outcome1を別勝利に数えない。",
+  "resume_warning_ja": "本ファイルは時点記録であり、再開可能なSaveではない。正式な後継checkpointがまだ無い場合の唯一の保存済み原本はSave17。完了原本と最新Actionsを照合し、途中入力や旧受入を盲目的に再走しない。"
+}
