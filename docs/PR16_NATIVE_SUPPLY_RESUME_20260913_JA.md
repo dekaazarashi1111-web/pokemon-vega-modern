@@ -26,6 +26,7 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
 - `docs/PR16_STORY_ACCELERATION_CHECKPOINT_JA.md`
+- `content/modernization/pr16_story_acceleration_completion.json`
 - `content/modernization/pr16_story_acceleration_checkpoint.json`
 - `docs/PR16_STORY_ACCELERATED_ACCEPTANCE_PLAN_JA.md`
 - `content/modernization/pr16_story_acceleration_plan.json`

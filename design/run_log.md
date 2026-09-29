@@ -11259,3 +11259,13 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: `-`（本記録を含む非force Actions commit）。前段WIPは6b8ab6b8、05ffb19b、69d2fc47、bb979f92、4ca9d2f8。
 - Network: GitHub exact HEAD/Actions artifactを利用。gate照合ではpret/pokefireredのevolution_scene.cを参考にし、実候補の0x080CFA20/0x080D067Cのbranchとnative task遷移を独立確認。https://github.com/pret/pokefirered/blob/master/src/evolution_scene.c
 - 未完: 正規story続行、全国図鑑gateの設計/取得条件照合、進化・技習得12境界、Lucky Egg倍率、soak100。global private guardの旧違反をPASSへ読み替えず今回変更pathのみ検査。
+
+## 2026-09-29T00:01:57+00:00 — 分離fixture完了照会
+
+- Task: USER-20260929-STORY-ACCELERATION / 完了照会と全Save byte差分
+- Status: DONE（記録）; BLOCKED（進化）
+- Summary: run36500700863 completed/success、c2d3cf65反映を確認。75hash・15画面・全Save差分2本の再構成を照合。新native0/compile0/旧受入再実行0。
+- Files changed: 専用completion/checkpoint、固定引継ぎ、専用guide、blockers、両ログ。
+- Verify: 先行19新規tests、7拒否tests、28resume tests、task graph/index scoped guard PASS。completionはbyte再構成2本PASS、resume check PASS。
+- Commit: c2d3cf659d4122555842d2a31eaf7c7647c0cf51（受入記録）、本追記commitはActionsから参照。
+- Network: GitHub run/artifact読戻しのみ。原本Save14/ROM不変、進化は未受入。

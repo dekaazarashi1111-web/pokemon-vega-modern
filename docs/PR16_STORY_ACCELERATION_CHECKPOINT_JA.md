@@ -34,3 +34,7 @@ story-fast保存コピーからマオリ以降の通常storyを進める。原�
 ## 検証と境界
 
 新規19 focused tests、7host-write拒否、host compile1、新規native3 process/5 fresh cores、通常Save2。開発時13 process/15 coresは正式3件と分けて履歴化。Save1〜14の既受入scenario再実行0、ROM変更0。戦闘開始後の7write APIを拒否し、fixture前後SaveBlock1/2不変を検査。自然難易度・自然入手・全story・release/merge/baseline切替は主張しない。
+
+## 完了照会と全Save差分
+
+run36500700863はcompleted/success、記録commit c2d3cf659d4122555842d2a31eaf7c7647c0cf51の非force反映を確認。75 evidence hashを再照合し、15画面を目視確認した。全Save差分2本は再構成一致し、追加artifact 11005935534 へ保存。詳細は `content/modernization/pr16_story_acceleration_completion.json`。今回の追加native/compile/受入再実行は0。進化未受入を保持。

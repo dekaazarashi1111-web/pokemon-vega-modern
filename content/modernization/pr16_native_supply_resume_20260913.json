@@ -4244,6 +4244,7 @@
     "id": "STORY_FAST_CONTINUE_AND_NATIONAL_DEX_EVOLUTION_GATE",
     "read_paths": [
       "docs/PR16_STORY_ACCELERATION_CHECKPOINT_JA.md",
+      "content/modernization/pr16_story_acceleration_completion.json",
       "content/modernization/pr16_story_acceleration_checkpoint.json",
       "docs/PR16_STORY_ACCELERATED_ACCEPTANCE_PLAN_JA.md",
       "content/modernization/pr16_story_acceleration_plan.json",
@@ -19805,12 +19806,12 @@
       "size": 9882
     },
     "content/modernization/pr16_story_acceleration_checkpoint.json": {
-      "sha256": "14e76bb3e919d54cec485df541f87ed438af26c81d11ce4f48221ed709dc7a9a",
-      "size": 6359
+      "sha256": "9b73b3745a8b168140da82a2e5f3fbed8e1daa6cbcd76907b2fc3e1d5446e410",
+      "size": 8021
     },
     "docs/PR16_STORY_ACCELERATION_CHECKPOINT_JA.md": {
-      "sha256": "9ddd9b1c9c318eb26e30fed60dae02c985ef7c8f306e2d5c929734fe77e89e0b",
-      "size": 4090
+      "sha256": "0334b758ecce379b0a2e5bc079f9a6bd1fed8fe9329258b7a68e3f9b5f026b89",
+      "size": 4545
     },
     "scripts/pr16_story_acceleration.py": {
       "sha256": "c5a21f3a3c2bc73304cd8d3c58c754b5d385261458afec53530cbda4e7f57933",
@@ -19827,6 +19828,10 @@
     "tests/test_pr16_story_acceleration.py": {
       "sha256": "b969c84722cb5aba219be830b306a84ed6cd892e689c3d61b2978310f78cf47d",
       "size": 6123
+    },
+    "content/modernization/pr16_story_acceleration_completion.json": {
+      "sha256": "d3f49bd987a3aab76095c8c7399a30dde9106d4c3c800f0555959d2646e7d235",
+      "size": 2311
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
@@ -20250,6 +20255,8 @@
     "source_head": "5243a6000755bd5596f994f322b1587f33fc2484",
     "evolution_accepted": false,
     "accepted_case_reruns": 0,
-    "natural_stop_unchanged": true
+    "natural_stop_unchanged": true,
+    "actions_completion_confirmed": true,
+    "completion_record": "content/modernization/pr16_story_acceleration_completion.json"
   }
 }

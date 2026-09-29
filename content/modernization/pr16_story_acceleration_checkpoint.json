@@ -196,7 +196,7 @@
     "active_baseline_changed": false,
     "merge_performed": false
   },
-  "actions_completion_confirmed": false,
+  "actions_completion_confirmed": true,
   "evidence_manifest": {
     "sha256": "4c15273902713862d19913e7e8117ac76cdb6275378aca7fad9727e216d9b539",
     "size": 10502
@@ -207,5 +207,50 @@
     "progression": "progression.srm",
     "proof": "manifest.json"
   },
-  "scope_ja": "Save14原本から2作業コピーを構築し通常Save/fresh Continueを受入。story-fastは通常1戦の自己OT服従smokeのみ。progression進化は全国図鑑gateでBLOCKED。自然進行の正式停止点はSave14のまま。"
+  "scope_ja": "Save14原本から2作業コピーを構築し通常Save/fresh Continueを受入。story-fastは通常1戦の自己OT服従smokeのみ。progression進化は全国図鑑gateでBLOCKED。自然進行の正式停止点はSave14のまま。",
+  "actions_conclusion": "success",
+  "completion_head": "c2d3cf659d4122555842d2a31eaf7c7647c0cf51",
+  "completion_record": "content/modernization/pr16_story_acceleration_completion.json",
+  "visual_review": {
+    "reviewer": "ChatGPT",
+    "screen_count": 15,
+    "completed": true,
+    "scope_ja": "保存/Continueのfield、Mewtwo Lv100とAxew Lv37の戦闘画面、進化自動取消画面を目視照合。evolution-start.ppmは遷移black frame、move.ppmは描画前のaction画面のため、技名表示UI受入とはしない。技選択/PP/勝利はnative readbackで判定。"
+  },
+  "save_byte_ledgers": {
+    "story-fast": {
+      "ledger": {
+        "sha256": "cbfabf4f70c64fa60c06ce2717546604b5e203ba9a1ec27c866efd545d335630",
+        "size": 186572
+      },
+      "before": {
+        "sha256": "66d46ea79f6c72588b766385ec4a0851822e6b57815da60882ce53ba5901e13b",
+        "size": 131088
+      },
+      "after": {
+        "sha256": "fa2bb585eeeec1c81f0b8498438001b72d010ead2b9091f8f2b87744be1c6e97",
+        "size": 131088
+      },
+      "changed_bytes": 6386,
+      "ranges": 1765
+    },
+    "progression": {
+      "ledger": {
+        "sha256": "1c75bdcdf6464f7e4ff1edf3473a23b25a59dc51b9e9011a9b999a9ac1d24f56",
+        "size": 185330
+      },
+      "before": {
+        "sha256": "66d46ea79f6c72588b766385ec4a0851822e6b57815da60882ce53ba5901e13b",
+        "size": 131088
+      },
+      "after": {
+        "sha256": "617e59ce2ab6b4e32767917f0184db48d9473755e350b1c24b64abe9025f14a0",
+        "size": 131088
+      },
+      "changed_bytes": 6258,
+      "ranges": 1757
+    }
+  },
+  "save_ledger_artifact_id": 11005935534,
+  "resume_focused_tests": 28
 }

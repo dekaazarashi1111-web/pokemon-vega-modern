@@ -107,3 +107,12 @@
 - Question for human: 権限確認の再依頼は不要。正式受入・旧失敗原本を変更しない。
 - Boundary: BP未受入、physical4/P08ゲート2、PR open/draft、baseline維持。merge/releaseなし。
 - Next step: 保存済みWIP48a36caとowner run34785149994を再利用し、未完のtarget呼出位置/ABI照合・最小successor接続・修復後native個体保持検証を進める。ローカル8testsをtarget照合や反映済み実装と混同しない。同一tool-blocked要求や既存host4/ownerの単独再実行をせず、保持確認前に2/3戦目・BP報酬へ進まない。
+
+## 2026-09-29T00:01:57+00:00 — Save14条件の通常EXP進化
+
+- Task: USER-20260929-STORY-ACCELERATION
+- Block reason: 全国図鑑未解禁・進化先ID>151のnative branchで進化画面が自動取消。
+- What you tried: self-OT Axew848 Lv37/EXP68589をprebattleだけfixture、通常Caterpie Lv2戦→EXP68590/Lv38。native target849、task state17/stopped1を記録。
+- Error excerpt: BLOCKED_NATIONAL_DEX_EVOLUTION_GUARD / exit3 / national_dex=0。
+- Question for human: 現時点で権限依頼は不要。正規の全国図鑑取得条件と進化gate設計ownerを照合し、設計判断が競合した場合だけ確認する。
+- Next step: 保存済みstory-fastから正規story続行。進化は自然解禁後の別境界か、影響台帳付きsource修正/後継候補で解決し、flag注入で成功扱いしない。旧受入smokeを無影響に再実行しない。
