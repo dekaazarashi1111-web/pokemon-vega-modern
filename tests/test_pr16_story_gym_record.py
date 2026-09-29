@@ -98,11 +98,17 @@ class OriginalTests(unittest.TestCase):
         for key in m.COUNTS:
             data=copy.deepcopy(m.COUNTS);del data[key]
             with self.subTest(key=key),self.assertRaises(ValueError):m.counts(data)
-    def test_original_test_log(self):m.unit_original(b'',b'test ... ok\n\nOK\n',1)
+    def test_original_test_log(self):
+        for name in (b'test',b'test_skipped_word',b'test_FAILED_word'):
+            m.unit_original(b'',name+b' ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nOK\n',1)
     def test_wrong_unit_count(self):
-        with self.assertRaises(ValueError):m.unit_original(b'',b'test ... ok\n\nOK\n',73)
+        for count in (2,True,0):
+            with self.subTest(count=count),self.assertRaises(ValueError):
+                m.unit_original(b'',b'test ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nOK\n',count)
     def test_failed_skipped_or_stdout_rejected(self):
-        for out,err in [(b'unexpected',b'test ... ok\n\nOK\n'),(b'',b'test ... ok\nFAILED\n'),(b'',b'test ... ok\n\nOK\nskipped')]:
+        good=b'test ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nOK\n'
+        for out,err in [(b'unexpected',good),(b'',good.replace(b'OK',b'FAILED')),(b'',good+b'skipped'),
+                        (b'',good.replace(b'Ran 1 test',b'Ran 2 tests')),(b'',b'test ... ok\n\nOK\n')]:
             with self.subTest(out=out,err=err),self.assertRaises(ValueError):m.unit_original(out,err,1)
     def test_runtime_and_old_suite_not_invoked_by_gates(self):
         import unittest.mock

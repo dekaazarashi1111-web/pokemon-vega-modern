@@ -4,6 +4,7 @@ from __future__ import annotations
 import datetime
 import json
 import os
+import re
 from pathlib import Path
 import subprocess
 import sys
@@ -66,8 +67,11 @@ def counts(measured):
 
 
 def unit_original(stdout,stderr,count):
-    m.need(not stdout and stderr.count(b' ... ok\n') == count and b'\nOK\n' in stderr and
-           b'FAILED' not in stderr and b'skipped' not in stderr,'成功した試験原本だけ')
+    # テスト名のskipped/FAILEDを結果と混同せず、件数付きの終端を固定する。
+    footer=rb'\n-{10,}\nRan '+str(count).encode()+rb' tests? in [0-9]+(?:\.[0-9]+)?s\n\nOK\n\Z'
+    m.need(type(stdout) is bytes and type(stderr) is bytes and type(count) is int and count > 0 and
+           not stdout and stderr.count(b' ... ok\n') == count and re.search(footer,stderr) is not None,
+           '成功した試験原本の件数/終端だけ')
 
 
 def verify_original(folder):
@@ -116,6 +120,7 @@ def record():
         record_native_processes=0,record_accepted_test_reruns=0,record_compiles=0,record_new_tests=32,
         artifact={k:meta[k] for k in ('id','name','size_in_bytes','digest','workflow_run','expires_at')},
         measured_head_actions=latest,general_ci_all_success_claimed=False)
+    terminal['preserved_failed_record']={'run_id':36567145293,'job_id':109401758947,'source_head':'d614c2adc22dc616ee48cf0489870a010487b789','conclusion':'failure','native_processes':0,'tracked_changes_pushed':False,'reason_ja':'成功ログ内のtest名skippedを誤拒否し、pipefail未指定で記録/guardの終了値が隠れた。commitは変更なしで失敗。footer判定とbash pipefailで修正。'}
     h.d.write(evidence/'terminal.json',terminal)
     review=dict(reviewed_at_utc='2026-09-29',scope='保存済み正式PPMの35anchorを目視。新しい画面生成なし。',
         anchors=json.loads((ROOT/m.DEV/'expected.json').read_text())['visual_review'],

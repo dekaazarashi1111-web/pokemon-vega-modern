@@ -9,6 +9,9 @@ permissions:
 concurrency:
   group: pr16-story-gym-closeout
   cancel-in-progress: false
+defaults:
+  run:
+    shell: bash
 jobs:
   record:
     if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
@@ -24,19 +27,25 @@ jobs:
           fetch-depth: 8
       - name: New 32 record gates and scoped source guard only
         run: |
+          set -euo pipefail
           mkdir -p .local/pr16-story-gym-closeout/preflight .local/pr16-story-gym-closeout/public
-          printf '%s\n' 'fe8312a114964cb44356dec6bf7b5aefd6af9619e0b15030f1d13efa69d66a3e  scripts/pr16_story_gym_record.py' 'c0efa97f4b36e525792216f4bfa275a47f8303b00b3af73bdc23aafc96fb29c1  tests/test_pr16_story_gym_record.py' | sha256sum --check
+          printf '%s\n' '7447c250f51e6d32a7889ea7cb0f5287920c0712ad498c492c0eaf2db111f0cd  scripts/pr16_story_gym_record.py' 'bc67698684ae0ec6745979bdb1fd3e8587ef924d7b85d100fd82e8dedf4fc919  tests/test_pr16_story_gym_record.py' | sha256sum --check
           python3 -B -m unittest discover -s tests -p test_pr16_story_gym_record.py -v > .local/pr16-story-gym-closeout/preflight/unit.stdout.txt 2> .local/pr16-story-gym-closeout/preflight/unit.stderr.txt
           cat .local/pr16-story-gym-closeout/preflight/unit.stderr.txt
           python3 -B -c "import sys; sys.path.insert(0,'scripts'); import pr16_story_gym_record as r; import pr16_learnset_runtime_record as g; g.START='50b87e638b96b8fd1c2def8c3455f3e60189c36d'; g.CODE={r.SELF,r.WF,r.TEST}; g.OWNED=set(); g.guard()"
       - name: Record completed Save19 without emulator or accepted suite reruns
-        run: python3 -B scripts/pr16_story_gym_record.py record 2>&1 | tee .local/pr16-story-gym-closeout/public/record.log
+        run: |
+          set -euo pipefail
+          python3 -B scripts/pr16_story_gym_record.py record 2>&1 | tee .local/pr16-story-gym-closeout/public/record.log
       - name: Scoped final index private guard and fixed resume
-        run: python3 -B scripts/pr16_story_gym_record.py guard 2>&1 | tee .local/pr16-story-gym-closeout/public/guard.log
+        run: |
+          set -euo pipefail
+          python3 -B scripts/pr16_story_gym_record.py guard 2>&1 | tee .local/pr16-story-gym-closeout/public/guard.log
       - name: Lightweight task graph
         run: python3 -B scripts/validate_task_graph.py --check
       - name: Commit and nonforce push same branch
         run: |
+          set -euo pipefail
           test "$(git ls-remote origin refs/heads/codex/modernization-followup-20260908 | cut -f1)" = "$GITHUB_SHA"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
