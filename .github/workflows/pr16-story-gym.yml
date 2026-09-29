@@ -10,55 +10,27 @@ concurrency:
   group: pr16-story-gym
   cancel-in-progress: false
 jobs:
-  prepare:
+  continuation:
     if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 15
     env:
       GH_TOKEN: ${{ github.token }}
+      GITHUB_TOKEN: ${{ github.token }}
       PYTHONDONTWRITEBYTECODE: '1'
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 1
-      - name: Save18後継の読取専用sourceと最新Actionsを固定
-        run: |
-          python3 -B - <<'PY'
-          import hashlib,json,os,pathlib,subprocess,zipfile
-          root=pathlib.Path.cwd(); out=root/'.local/pr16-story-gym/prepare';out.mkdir(parents=True)
-          paths=subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
-          exact={'AGENTS.md','CHATGPT_RESUME.md','README.md','Makefile','state/source-lock.json','config/active_play_baseline.json','design/active_play_baseline.md','design/run_log.md','design/version_log.md','design/agent_context_map.md','design/current_state.md','design/tasks_next.md','tasks/task_graph.json'}
-          prefixes=('scripts/','tests/','tools/','infra/','content/modernization/','docs/PR16_','.github/workflows/')
-          suffixes={'.py','.c','.h','.json','.md','.txt','.sh','.yml','.yaml'}
-          manifest={}
-          with zipfile.ZipFile(out/'source.zip','w',zipfile.ZIP_DEFLATED) as z:
-              for name in paths:
-                  if not name or not (name in exact or name.startswith(prefixes)):continue
-                  if name not in exact and pathlib.Path(name).suffix not in suffixes:continue
-                  p=root/name
-                  if not p.is_file() or p.is_symlink():continue
-                  raw=p.read_bytes()
-                  try:raw.decode('utf-8')
-                  except UnicodeDecodeError:continue
-                  if b'\0' in raw:continue
-                  z.writestr(name,raw)
-                  manifest[name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
-          repo=os.environ['GITHUB_REPOSITORY']
-          def api(path):return json.loads(subprocess.check_output(['gh','api',f'repos/{repo}/{path}']))
-          runs=api('actions/runs?per_page=100')
-          recent=[{k:r.get(k) for k in ('id','name','head_sha','head_branch','status','conclusion','event','created_at','updated_at','path')} for r in runs['workflow_runs']]
-          pr=api('pulls/16')
-          record={'source_head':os.environ['GITHUB_SHA'],'source_files':manifest,'actions_observed':recent,'pr':{k:pr.get(k) for k in ('state','draft','merged','merged_at')},'pr_head':pr['head']['sha'],'accepted_case_reruns':0,'native_processes':0,'rom_changes':0,'purpose_ja':'Save18原本から先の未受入ジム工程だけを準備。原本・progression・全国図鑑owner・baselineは変更しない。'}
-          (out/'source-index.json').write_text(json.dumps(record,ensure_ascii=False,indent=2,sort_keys=True)+'\n')
-          print('限定source固定',len(manifest),'files; native0; accepted rerun0')
-          PY
+      - name: New Save19 gym interval and independent Continue only
+        run: python3 -B scripts/pr16_story_gym_measure.py
       - name: Lightweight task graph
         run: python3 -B scripts/validate_task_graph.py --check
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: pr16-story-gym-prepare
-          path: .local/pr16-story-gym/prepare
+          name: pr16-story-gym-checkpoint
+          path: .local/pr16-story-gym/artifact
           include-hidden-files: true
           if-no-files-found: error
           retention-days: 90
