@@ -1,0 +1,190 @@
+{
+  "artifact": {
+    "digest": "sha256:d93e36abb202788962f1ddd866189d1a72443efa51102a4b66a197ec0549156a",
+    "expires_at": "2026-12-28T11:01:14Z",
+    "id": 11028517527,
+    "name": "pr16-story-gym-checkpoint",
+    "size_in_bytes": 18664867,
+    "workflow_run": {
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_repository_id": 1358127462,
+      "head_sha": "e9c9a55c59705490cd49f834fb8586c41bb1861b",
+      "id": 36559147649,
+      "repository_id": 1358127462
+    }
+  },
+  "general_ci_all_success_claimed": false,
+  "job": {
+    "check_run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/check-runs/109375512907",
+    "completed_at": "2026-09-29T11:02:46Z",
+    "conclusion": "success",
+    "created_at": "2026-09-29T11:01:14Z",
+    "head_branch": "codex/modernization-followup-20260908",
+    "head_sha": "e9c9a55c59705490cd49f834fb8586c41bb1861b",
+    "html_url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/36559147649/job/109375512907",
+    "id": 109375512907,
+    "labels": [
+      "ubuntu-24.04"
+    ],
+    "name": "continuation",
+    "node_id": "CR_kwDOUPNhZs8AAAAZd0nhSw",
+    "run_attempt": 1,
+    "run_id": 36559147649,
+    "run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/36559147649",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions",
+    "runner_id": 1000018422,
+    "runner_name": "GitHub Actions 1000018422",
+    "started_at": "2026-09-29T11:01:16Z",
+    "status": "completed",
+    "steps": [
+      {
+        "completed_at": "2026-09-29T11:01:18Z",
+        "conclusion": "success",
+        "name": "Set up job",
+        "number": 1,
+        "started_at": "2026-09-29T11:01:17Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-29T11:01:31Z",
+        "conclusion": "success",
+        "name": "Run actions/checkout@v4",
+        "number": 2,
+        "started_at": "2026-09-29T11:01:18Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-29T11:02:41Z",
+        "conclusion": "success",
+        "name": "New Save19 gym interval and independent Continue only",
+        "number": 3,
+        "started_at": "2026-09-29T11:01:31Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-29T11:02:41Z",
+        "conclusion": "success",
+        "name": "Lightweight task graph",
+        "number": 4,
+        "started_at": "2026-09-29T11:02:41Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-29T11:02:44Z",
+        "conclusion": "success",
+        "name": "Run actions/upload-artifact@v4",
+        "number": 5,
+        "started_at": "2026-09-29T11:02:41Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-29T11:02:44Z",
+        "conclusion": "success",
+        "name": "Post Run actions/checkout@v4",
+        "number": 10,
+        "started_at": "2026-09-29T11:02:44Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-29T11:02:44Z",
+        "conclusion": "success",
+        "name": "Complete job",
+        "number": 11,
+        "started_at": "2026-09-29T11:02:44Z",
+        "status": "completed"
+      }
+    ],
+    "url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/jobs/109375512907",
+    "workflow_name": "pr16-story-gym"
+  },
+  "measured_head_actions": [
+    {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "e9c9a55c59705490cd49f834fb8586c41bb1861b",
+      "id": 36559154977,
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "failure",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "e9c9a55c59705490cd49f834fb8586c41bb1861b",
+      "id": 36559155007,
+      "path": ".github/workflows/ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "e9c9a55c59705490cd49f834fb8586c41bb1861b",
+      "id": 36559147652,
+      "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "e9c9a55c59705490cd49f834fb8586c41bb1861b",
+      "id": 36559147791,
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "e9c9a55c59705490cd49f834fb8586c41bb1861b",
+      "id": 36559147649,
+      "path": ".github/workflows/pr16-story-gym.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "failure",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "e9c9a55c59705490cd49f834fb8586c41bb1861b",
+      "id": 36559147747,
+      "path": ".github/workflows/ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "e9c9a55c59705490cd49f834fb8586c41bb1861b",
+      "id": 36559147725,
+      "path": ".github/workflows/modernization-stage79-mgba.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    }
+  ],
+  "preserved_failed_record": {
+    "conclusion": "failure",
+    "job_id": 109401758947,
+    "native_processes": 0,
+    "reason_ja": "成功ログ内のtest名skippedを誤拒否し、pipefail未指定で記録/guardの終了値が隠れた。commitは変更なしで失敗。footer判定とbash pipefailで修正。",
+    "run_id": 36567145293,
+    "source_head": "d614c2adc22dc616ee48cf0489870a010487b789",
+    "tracked_changes_pushed": false
+  },
+  "record_accepted_test_reruns": 0,
+  "record_compiles": 0,
+  "record_native_processes": 0,
+  "record_new_tests": 32,
+  "record_run_id": 36567761064,
+  "record_source_head": "6b7cbb0b5c133ca505ed5ef29cd6f7e8175c601f",
+  "run": {
+    "conclusion": "success",
+    "head_branch": "codex/modernization-followup-20260908",
+    "head_sha": "e9c9a55c59705490cd49f834fb8586c41bb1861b",
+    "id": 36559147649,
+    "path": ".github/workflows/pr16-story-gym.yml",
+    "run_attempt": 1,
+    "status": "completed"
+  }
+}

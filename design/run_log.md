@@ -11337,3 +11337,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 監査source=e366675034472d9597fda32d6c5d65a37a877879、run=36524125377。同branchへ非force pushし全text読戻し。自己終端は後続API照合。
 - Network: 公式GitHub既完了原本を読取専用で再利用。並行Save948d9e58…は未採用履歴。正式dc1f690f…を維持。一般CI全成功とは主張しない。
 - Next: 正式Save18から通常アヤメジムへ。旧連戦/55試験/この42試験を影響なしに再実行しない。NationalDex/progression停止条件とactive baselineを維持。
+
+## 2026-09-29T12:23:43+00:00
+- Timestamp: 2026-09-29T12:23:43+00:00
+- Task: USER-20260929-STORY-GYM / アヤメジム・badge1・Save19完了原本の無再走回収
+- Version: story-gym-save19-v1
+- Status: DONE（支援story新区間限定。自然育成/進化/全国図鑑/全story未完）
+- Summary: Save18→通常ジム2勝・窓switch・badge1・報酬・モスギス会話→PC回復Save19/cold。再開MDのSave18停止と完了Actionsの不一致を解消。全264member/243画面/35目視anchor/全Save差分6817bytes・1718範囲を照合。
+- Files changed: gym記録器・32拒否試験・closeout workflow、checkpoint/guide/text証跡、固定再開MD/JSON、両ログ。ROM/Save/画像/全差分hexはartifactのみ。
+- Verify: run36559147649/job109375512907全7step成功、artifact11028517527、464/cold34入力、cold全131088bytes、payload checksum42件/S61E CRC、旧bank/PC/Bag境界。記録native/compile/受入73試験再走0。新32試験とscoped final-index/private/resume/task graph/diff通過後のみcommit。一般CI全成功は主張しない。
+- Commit: 測定e9c9a55c59705490cd49f834fb8586c41bb1861b、回収WIP50b87e638b96、記録source=6b7cbb0b5c133ca505ed5ef29cd6f7e8175c601f・run=36567761064。同branch非force pushと全text読戻し。
+- Network: 固定GitHub run/artifactの再利用だけ。旧BP/P08/progression/grant owner/active baseline/source-lock不変。PR16未merge、releaseなし。
+- Next: story-fastの唯一の開始点はartifact11028517527のstory-fast.srm（Save19、131088bytes、SHA256 dd7adddc09555c2232299075bba657e9e7261ad3b868d9cabb5f0edccc8ed06d）。アヤメPC map5/4・7,4北・party4全回復/RP0、badge1・var4071=5/4072=1から通常storyの未完区間だけを進める。ハヤカ/アマナ2勝・通常報酬・モスギス会話・Save19/coldは完了。HM05は未所持で必要なら通常会話で取得する。新464/cold34入力・73試験・旧BP/P08/Save1〜18は無影響に再走しない。分離progression原本Axew Lv37/EXP68589とNationalDex magic0・grant ownerを保全しflag/var注入で解禁しない。正規全国図鑑解禁、自然育成/進化、Lucky Egg対照・12成長ケース・Lv100soak・研究施設自然到達・全storyは未完。

@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-支援story-fastで三兄弟3連勝・通常ジム入場・PC全回復Save18・独立Continueを限定受入。全Save/RTC131088bytes保持。map5/4・7,4北・party4/RP0。ジムリーダー/バッジ未完、NationalDex magic0維持。次はartifact11012768108から先だけ。 正式Save18のROM宣言payload checksum56件と三兄弟physical flags/var4071の保存対応を別監査済み。
+支援story-fastのアヤメジム2勝・badge1・通常報酬/モスギス会話・PC全回復Save19・独立Continueを限定受入。map5/4・7,4北・party4/RP0。NationalDex magic0維持。次はartifact11028517527から先だけ。
 
-**次: story-fastの唯一の開始点はartifact11012768108のstory-fast.srm（Save18、131088bytes、SHA256 dc1f690f0616affc61b6d45632924e4c81995c91c7c1939994f37bbe8527432d）。アヤメPC map5/4・7,4・北向き・party4全回復/RP0から、通常出口→入場可能になったアヤメジムの未完storyを進める。ジムリーダー勝利/バッジはまだ未受入。旧未保存WIPのHM05はこのSaveには無く、必要時は通常会話で取得する。新381/cold23入力・55試験・旧BP/P08/Save1〜17を無影響に再走しない。分離progression原本Axew Lv37/EXP68589、NationalDex magic0とownerを保全し、flag/var注入で解禁しない。正規全国図鑑解禁、自然育成/進化、Lucky Egg対照・12成長ケース・Lv100soak・研究施設自然到達・全storyは未完。**
+**次: story-fastの唯一の開始点はartifact11028517527のstory-fast.srm（Save19、131088bytes、SHA256 dd7adddc09555c2232299075bba657e9e7261ad3b868d9cabb5f0edccc8ed06d）。アヤメPC map5/4・7,4北・party4全回復/RP0、badge1・var4071=5/4072=1から通常storyの未完区間だけを進める。ハヤカ/アマナ2勝・通常報酬・モスギス会話・Save19/coldは完了。HM05は未所持で必要なら通常会話で取得する。新464/cold34入力・73試験・旧BP/P08/Save1〜18は無影響に再走しない。分離progression原本Axew Lv37/EXP68589とNationalDex magic0・grant ownerを保全しflag/var注入で解禁しない。正規全国図鑑解禁、自然育成/進化、Lucky Egg対照・12成長ケース・Lv100soak・研究施設自然到達・全storyは未完。**
 
-Save18から先の通常storyだけを自然Save/cold境界で区切る。新381/cold23・55試験・旧BP/P08/Save1〜17を再走しない。書込み途中counter更新だけで保存完了としない。異常時は失敗証跡を保全。
+Save19より先の未完storyだけを自然Save/cold境界で区切る。464/cold34・73試験・旧BP/P08/Save1〜18は再走しない。全国図鑑の注入解禁/保存途中での成功判定は禁止。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `2577d253823bdca94bf3dfac0a67dea9776a6d8a`。
-三兄弟3連勝・ジム入場・回復Save18測定source。ジムリーダー/自然育成/進化/全story、記録commit、active baselineではない。
+証拠のsource HEAD: `e9c9a55c59705490cd49f834fb8586c41bb1861b`。
+アヤメジム2勝・badge1・通常報酬/回復Save19測定source。記録commit/自然育成/全story/active baselineではない。
 
 ## 最短の再開手順
 
@@ -25,15 +25,13 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_STORY_AYAME_GATE_JA.md`
-- `content/modernization/pr16_story_ayame_gate_checkpoint.json`
+- `docs/PR16_STORY_GYM_JA.md`
+- `content/modernization/pr16_story_gym_checkpoint.json`
 - `docs/PR16_NATIONAL_DEX_OWNER_JA.md`
 - `content/modernization/pr16_national_dex_owner_checkpoint.json`
 - `content/modernization/pr16_story_acceleration_checkpoint.json`
-- `content/modernization/pr16_story_ayame_gate_development/expected.json`
-- `scripts/pr16_story_ayame_record.py`
-- `docs/PR16_STORY_AYAME_PERSISTENCE_AUDIT_JA.md`
-- `content/modernization/pr16_story_ayame_persistence_audit.json`
+- `content/modernization/pr16_story_gym_development/expected.json`
+- `scripts/pr16_story_gym_record.py`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -346,6 +344,7 @@ P08ゲート:
 - 旧EXP4境界と最初の質問での拒否は各checkpointの保存成功を再実行しない。未受入の戦闘EXP進化/共有以降だけ追加する。
 - 戦闘EXP進化/共有の保存成功を再実行しない。未受入caseのみ選び、全成功後のcompleteは記録だけ。
 - run36213386688の19unit、run36213677615のheader8unit・特殊野生7process/8callは保存原本を継承。2callsite修復候補0205af9bを同じ親b7790902からrecipeで再現し、直接診断を繰り返さず通常UI/capture/Saveの未完だけへ。
+- Save19 run36559147649の464/cold34入力・73試験・2勝/badge1/通常報酬/回復保存Continueは受入済み。無影響の再走禁止。Save18以前も不変。
 
 ## 次セッションへ残す更新手順
 
@@ -375,6 +374,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-専用run36522150353/job109257152262全7stepと170memberを照合。既存CI失敗は別scope。記録workflow自身の終端は別API照合。
+専用run36559147649/job109375512907全7stepと264memberを照合。一般CIの既存failureは別scope。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
