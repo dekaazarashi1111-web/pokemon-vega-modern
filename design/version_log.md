@@ -8526,3 +8526,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 先行19新規tests、7拒否tests、28resume tests、task graph/index scoped guard PASS。completionはbyte再構成2本PASS、resume check PASS。
 - Commit: c2d3cf659d4122555842d2a31eaf7c7647c0cf51（受入記録）、本追記commitはActionsから参照。
 - Network: GitHub run/artifact読戻しのみ。原本Save14/ROM不変、進化は未受入。
+
+## 2026-09-29T00:48:35+00:00
+- Timestamp: 2026-09-29T00:48:35+00:00
+- Task: USER-20260929-STORY-FAST-MAORI / マオリ通常勝利・Save16・独立Continue
+- Version: story-fast-maori-v1
+- Status: DONE（支援story進行限定、自然育成/進化/全storyは未完）
+- Summary: 新story-fast176/cold20入力でtrainer1勝・逃走1回・賞金160・counter15→16。全party差分2bytes、前bank57344bytes/PC/Bag保持、独立Continue全131088bytes一致、再会話再戦0。Save成功文frameは未取得と明記。
+- Files changed: 新検証器/44試験/入力/正式測定/記録器、公開text/checkpoint/guide、固定引継ぎMD/JSON、両ログ。ROM/save/画像/全差分hexはartifactのみ。
+- Verify: completed native run36504040292/job109201289995全8step成功、artifact11006311891全73member hash、48目視画像原本、全Save差分6418bytes/1757範囲再構成PASS。開発44/正式44は同じ新44件。開発native2/正式2、記録native0/test再実行0、compile/ROM変更/既受入native再実行0。resume/task graph/最終scoped index/diff後のみcommit。一般CI全成功は主張しない。
+- Commit: WIP92da857/3d07192、検証器a35eb96、測定source383ce0f49f4761f6db875e1a2f0a89692d2966e8。記録source=598c5a7b0fd5202fdee4a8fde519aab268ac3114; record run=36504857429、同branch非force pushと全text読戻し。
+- Network: GitHub固定HEAD/run/artifactのみ。原本Save14/分離progression/Stage62基準/source-lock/正式BP/P08不変、PR未merge・releaseなし。
+- Next: マオリ通常勝利・story-fast Save16・独立Continueは受入済み。次はartifact11006311891のstory-fast.srm（map3/19、53,10、北向き）から先へ進む。176/cold20入力とSave1〜14・分離smokeを再生しない。progression.srmは元の戦闘前Axew Lv37/EXP68589を保持。全国図鑑の正規解禁ownerと進化gateを照合し、自然解禁境界または影響台帳付きsource修正/後継候補へ進む。flag注入で進化成功扱いしない。Lucky Egg対照・12成長ケース・Lv100soak・研究施設自然到達・全storyは未完。

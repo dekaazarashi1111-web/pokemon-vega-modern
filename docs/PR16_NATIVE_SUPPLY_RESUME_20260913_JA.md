@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-PASS_STORY_SAVE14_SCOPED
+story-fastはマオリ通常勝利後Save16、map3/19（53,10）、131088bytes保存/独立Continue一致。非支援laneはSave14のまま。progressionは全国図鑑gateで進化未受入。正式BP/P08受入は不変。
 
-**次: 分離コピー2本と自己OT通常戦smokeは完了。新checkpointのartifact内story-fast.srmからマオリ以降へ進む。progression.srmはAxew Lv37/EXP68589の戦闘前保存。通常EXPでLv38に上がるが全国図鑑未解禁・target>151 gateが進化を自動取消する。次は正規の全国図鑑取得条件とgate設計ownerを照合し、必要な自然解禁境界またはsource修正/後継候補を定める。flag注入や進化成功への読み替えは禁止。Lucky Egg対照とsoakは未完。**
+**次: マオリ通常勝利・story-fast Save16・独立Continueは受入済み。次はartifact11006311891のstory-fast.srm（map3/19、53,10、北向き）から先へ進む。176/cold20入力とSave1〜14・分離smokeを再生しない。progression.srmは元の戦闘前Axew Lv37/EXP68589を保持。全国図鑑の正規解禁ownerと進化gateを照合し、自然解禁境界または影響台帳付きsource修正/後継候補へ進む。flag注入で進化成功扱いしない。Lucky Egg対照・12成長ケース・Lv100soak・研究施設自然到達・全storyは未完。**
 
 Save14原本artifactと受入済みSave1〜14は不変。story-fastとprogressionを混同しない。fixture書込みは戦闘開始前だけとし、開始後のparty/EXP/level/技/進化/story flag/outcomeへのhost書込みを禁止する。Lv100走破を自然難易度・自然入手・自然育成へ、fixture戦を野生テーブル・自然初期技へ読み替えない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `96e9dd07d172f3791b1fab1ab803b2dfa1bf042a`。
-Save13後のひんし交代・野生1勝・Save14測定source HEAD。記録commit/active baselineではない。
+証拠のsource HEAD: `383ce0f49f4761f6db875e1a2f0a89692d2966e8`。
+自己OT Lv100 story-fastのマオリ勝利・Save16測定source HEAD。非支援Save14、進化成功、記録commit、active baselineではない。
 
 ## 最短の再開手順
 
@@ -25,14 +25,14 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `docs/PR16_STORY_FAST_MAORI_JA.md`
+- `content/modernization/pr16_story_fast_maori_checkpoint.json`
 - `docs/PR16_STORY_ACCELERATION_CHECKPOINT_JA.md`
 - `content/modernization/pr16_story_acceleration_completion.json`
 - `content/modernization/pr16_story_acceleration_checkpoint.json`
 - `docs/PR16_STORY_ACCELERATED_ACCEPTANCE_PLAN_JA.md`
 - `content/modernization/pr16_story_acceleration_plan.json`
-- `content/modernization/pr16_story_save14_checkpoint.json`
 - `tools/mgba_pr16_story_acceleration.c`
-- `tools/mgba_modernization_p02_stage71_acceptance_smoke.c`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -374,6 +374,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-branch最新30件・開始/測定/記録HEAD全件と旧pendingをAPI照合。一般CIのcapacity原本failure/action_requiredを成功へ改作しない。自己run終端は別途確認。
+専用run36504040292/job109201289995の全8stepと73memberを照合済み。一般CI全成功は主張せず既存failure/action_requiredを保持。記録workflow自身の終端は別照合。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
