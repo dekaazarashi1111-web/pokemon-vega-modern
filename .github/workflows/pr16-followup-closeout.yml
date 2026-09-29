@@ -17,6 +17,7 @@ jobs:
     timeout-minutes: 10
     env:
       GH_TOKEN: ${{ github.token }}
+      GITHUB_TOKEN: ${{ github.token }}
       PYTHONDONTWRITEBYTECODE: '1'
     steps:
       - uses: actions/checkout@v4
@@ -79,6 +80,7 @@ jobs:
               natural_growth_accepted=False,full_story_accepted=False,release_ready=False,active_baseline_changed=False,
               remaining_ja=['Save16以降の通常story','全国図鑑var4072=9への自然到達・正規解禁','自然EXP進化','Lucky Egg対照','12成長ケース','Lv100soak','研究施設自然到達と全story'],
               next_goal_ja=s['next_action']['goal_ja'])
+          record['closeout_failed_attempt']=dict(run_id=36505939132,job_id=109207284947,source_head='e4c9b62e341897ae2d13488d81034e4128df59da',conclusion='failure',cause='GITHUB_TOKEN env missing before any record/native work',fix='Pass github.token under both GH_TOKEN and GITHUB_TOKEN',new_native_processes=0,previous_component_replays=0)
           h.d.write(cp,record)
           c=h.d.read(n.CP);m.need(c['run_id']==36505642387 and not c['actions_completion_confirmed'],'owner terminal not yet confirmed')
           c.update(actions_completion_confirmed=True,actions_conclusion='success',completed_record_head='4aa8fbb84f33439ad438c37e8c3b158700a44fd0',completion_record=cp)
@@ -94,7 +96,7 @@ jobs:
           for p in (owned|{wf})-{h.d.STATE,h.d.DOC,*h.d.LOGS}:s['source_bindings'][p]=m.identity(pathlib.Path(p).read_bytes())
           publish_resume(s)
           stamp=datetime.datetime.now(datetime.timezone.utc).replace(microsecond=0).isoformat()
-          log=f'\n## {stamp}\n- Task: USER-20260929-STORY-FOLLOWUP-CLOSEOUT\n- Version: story-followup-closeout-v1\n- Status: DONE（Maori Save16・全国図鑑ownerの2限定scope）\n- Summary: 3run全24step終端成功を外部API照合し、owner未確定フラグを確定。新検査定義66=Maori44+記録8+owner14、Actionsでは新58、記録8はlocal原本/source hash保管のみ。\n- Files changed: 最終集約JSON/記録8試験原本、owner checkpoint/guide、固定引継ぎMD/JSON、両ログ、専用closeout workflow。\n- Verify: 新区間native開発2/正式2、closeout native0/test0/compile0、既受入case再実行0。ROM/原本Save14/基準/正式BP/P08不変。最新20Actionsを成功へ読み替えず保存。resume/task graph/scoped final index/diff確認後にcommit。\n- Commit: source={os.environ["GITHUB_SHA"]}; run={os.environ["GITHUB_RUN_ID"]}; 同branch非force反映・全text読戻し。\n- Next: 集約記録のSave16から新規区間へ。国図自然解禁/進化/Lucky Egg/12成長/soak/全storyは未完。\n'
+          log=f'\n## {stamp}\n- Task: USER-20260929-STORY-FOLLOWUP-CLOSEOUT\n- Version: story-followup-closeout-v1\n- Status: DONE（Maori Save16・全国図鑑ownerの2限定scope）\n- Summary: 初回closeout36505939132はGITHUB_TOKEN未設定で書込前停止し、envのみ補正。3run全24step終端成功を外部API照合し、owner未確定フラグを確定。新検査定義66=Maori44+記録8+owner14、Actionsでは新58、記録8はlocal原本/source hash保管のみ。\n- Files changed: 最終集約JSON/記録8試験原本、owner checkpoint/guide、固定引継ぎMD/JSON、両ログ、専用closeout workflow。\n- Verify: 新区間native開発2/正式2、closeout native0/test0/compile0、既受入case再実行0。ROM/原本Save14/基準/正式BP/P08不変。最新20Actionsを成功へ読み替えず保存。resume/task graph/scoped final index/diff確認後にcommit。\n- Commit: source={os.environ["GITHUB_SHA"]}; run={os.environ["GITHUB_RUN_ID"]}; 同branch非force反映・全text読戻し。\n- Next: 集約記録のSave16から新規区間へ。国図自然解禁/進化/Lucky Egg/12成長/soak/全storyは未完。\n'
           for p in h.d.LOGS:
               with pathlib.Path(p).open('a',encoding='utf-8') as f:f.write(log)
           h.d.write(out/'owned.json',sorted(owned));h.d.git('add','--',*sorted(owned))
