@@ -1,0 +1,70 @@
+name: pr16-story-save22-record
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-story-save22-record.yml]
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-story-save22-record
+  cancel-in-progress: false
+defaults:
+  run:
+    shell: bash
+jobs:
+  record:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.run_attempt == 1
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 16
+      - name: New 22 record gates and scoped source guard only
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-story-save22-record/preflight .local/pr16-story-save22-record/public
+          printf '%s\n' 'e85faa1c804460f3d1d1736a833af9d8e45d429a26a6f0cb9cef507c16296f29  scripts/pr16_story_save22_record.py' 'c6be30082a6b5df31d1af5fd4e45883a88d2c0928fd55508183ec793452ebdce  tests/test_pr16_story_save22_record.py' | sha256sum --check
+          python3 -B -m unittest discover -s tests -p test_pr16_story_save22_record.py -v > .local/pr16-story-save22-record/preflight/unit.stdout.txt 2> .local/pr16-story-save22-record/preflight/unit.stderr.txt
+          cat .local/pr16-story-save22-record/preflight/unit.stderr.txt
+          python3 -B -c "import sys; sys.path.insert(0,'scripts'); import pr16_story_save22_record as m; import pr16_learnset_runtime_record as g; g.START=m.SOURCE; g.CODE=m.CODE; g.OWNED=set(); g.guard()"
+      - name: Record completed Save22 without native or accepted suite reruns
+        run: |
+          set -euo pipefail
+          python3 -B scripts/pr16_story_save22_record.py record 2>&1 | tee .local/pr16-story-save22-record/public/record.log
+      - name: Scoped final index private guard and fixed resume
+        run: |
+          set -euo pipefail
+          python3 -B scripts/pr16_story_save22_record.py guard 2>&1 | tee .local/pr16-story-save22-record/public/guard.log
+      - name: Lightweight task graph
+        run: python3 -B scripts/validate_task_graph.py --check
+      - name: Commit and nonforce push same branch
+        run: |
+          set -euo pipefail
+          test "$(git ls-remote origin refs/heads/codex/modernization-followup-20260908 | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20260930-STORY-SAVE22: 503新5勝・洞窟北入口とSave22独立Continueを原本から限定受入'
+          git push origin HEAD:codex/modernization-followup-20260908
+          test "$(git ls-remote origin refs/heads/codex/modernization-followup-20260908 | cut -f1)" = "$(git rev-parse HEAD)"
+      - name: Exact committed text readback
+        run: |
+          set -euo pipefail
+          python3 -B scripts/pr16_story_save22_record.py snapshot
+          echo "RESULT=DONE TASK=USER-20260930-STORY-SAVE22 VERIFY=PASS COMMIT=$(git rev-parse HEAD)"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-story-save22-record
+          path: |
+            .local/pr16-story-save22-record/public
+            .local/pr16-story-save22-record/preflight
+          include-hidden-files: true
+          retention-days: 90
+          if-no-files-found: error
