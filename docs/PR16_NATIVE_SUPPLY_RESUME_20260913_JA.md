@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-支援story-fastでHM05通常拒否・トシヒデ1勝/240円・503電話/自動移動・Save21/独立Continueを限定受入。map3/21・24,17西・party4/RP0・6256円・badge1。HM05未習得/未使用・原因未解決。NationalDex magic0保全。
+支援story-fastの503新5勝/6040円・洞窟北入口・Save22/独立Continueを限定受入。map1/36・4,6北・party4/RP0・12296円・badge1。HM05未習得/未使用・原因未解決。NationalDex magic0保全、洞窟内部/全story未完。
 
-**次: story-fastの唯一の開始点はartifact11073849807のstory-fast.srm（Save21、131088bytes、SHA256 c9cb14fa73a38e105a0e6553f7fc1dc82c9bdd182e0409e28022c8ffe44b3d20）。503番道路map3/21・24,17西・party4/RP0、6256円・badge1、var4071=6/4072=1。ミュウツーHP349/354・サイコブレイクPP5、他3体HP満タン。トシヒデ1勝/240円・電話会話/自動移動・通常Save21/独立Continueは完了。HM05所持、通常UIで4体とも非適合表示・ミュウ選択拒否。習得/使用/原因解決は未完。同じ拒否入力を繰り返さず、必要時は固定ROMの互換性判定ownerを限定照合し、自然取得条件を満たす承認済みfield-utility分離fixtureの適用条件を読む。基準外の習得を盲追加しない。現在地から通常storyの未完区間だけをSave/cold境界で進める。181/cold33入力・62試験・Save1〜20/旧BP/P08は無影響に再走しない。分離progression原本Axew Lv37/EXP68589とNationalDex magic0・grant ownerを保全し、flag/var注入で解禁しない。正規全国図鑑解禁、自然育成/進化、Lucky Egg対照・12成長ケース・Lv100soak・研究施設自然到達・全storyは未完。**
+**次: story-fastの唯一の開始点はartifact11076499444のstory-fast.srm（Save22、131088bytes、SHA256 bb3b6159ab12358fd051b88a592c99807b2bc14b1f9f41e952daf7a4d1a4529e）。ちえのどうくつ北入口map1/36・4,6北・party4/RP0、12296円・badge1・var4071=6/4072=1。ミュウツーHP324/354・PP[1,14,5,5]、他3体HP満タン。503新5勝/6040円・北入口warp・通常Save22/独立Continueは完了。洞窟内部/階段/走破は未到達。現在地から通常storyの未完区間だけをSave/cold境界で進める。397/cold35入力・68試験・Save1〜21/旧BP/P08は無影響に再走しない。HM05は所持だけで未習得/未使用・原因未解決。Save21の同一拒否入力は繰り返さず、必要時は固定ROMの互換性判定ownerを限定照合し、承認済みfield-utility分離fixtureの自然取得条件を確認する。基準外習得を盲追加しない。分離progression原本Axew Lv37/EXP68589とNationalDex magic0・grant ownerを保全し、flag/var注入で解禁しない。正規全国図鑑解禁、自然育成/進化、Lucky Egg対照・12成長ケース・Lv100soak・研究施設自然到達・全storyは未完。**
 
-Save21より先だけを通常story/Save/cold境界で区切る。181/cold33入力・62試験・Save1〜20/旧BP/P08は無影響に再走しない。HM05同一拒否入力の重複・互換性の盲修正・全国図鑑flag/var注入解禁は禁止。
+Save22北入口より先だけを通常story/Save/cold境界で区切る。397/cold35入力・68試験・Save1〜21/旧BP/P08の無影響再走、HM05拒否の重複、互換性の盲修正、全国図鑑flag/var注入解禁は禁止。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `b58a6356c9b100a9180a9af955d25e1c6be48d0c`。
-503電話イベント・トシヒデ1勝・Save21測定source。HM05拒否を観測したが習得/使用/原因修正は未受入。記録commit/自然育成/全story/active baselineではない。
+証拠のsource HEAD: `8c6f51827d3d51a1f2f25b4444f6103496d2ecba`。
+503新5勝/6040円・ちえのどうくつ北入口・Save22測定source。洞窟内部/全story/自然育成/全国図鑑/HM05解決/記録commit/active baselineではない。
 
 ## 最短の再開手順
 
@@ -25,13 +25,13 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_STORY_SAVE21_JA.md`
-- `content/modernization/pr16_story_save21_checkpoint.json`
+- `docs/PR16_STORY_SAVE22_JA.md`
+- `content/modernization/pr16_story_save22_checkpoint.json`
 - `docs/PR16_NATIONAL_DEX_OWNER_JA.md`
 - `content/modernization/pr16_national_dex_owner_checkpoint.json`
 - `content/modernization/pr16_story_acceleration_checkpoint.json`
-- `content/modernization/pr16_story_save21_development/expected.json`
-- `scripts/pr16_story_save21_record.py`
+- `content/modernization/pr16_story_save22_development/expected.json`
+- `scripts/pr16_story_save22_record.py`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -347,6 +347,7 @@ P08ゲート:
 - Save19 run36559147649の464/cold34入力・73試験・2勝/badge1/通常報酬/回復保存Continueは受入済み。無影響の再走禁止。Save18以前も不変。
 - Save20 run36572961114の248/cold59入力・60試験・通常HM05/2勝/2離脱/PC回復/保存Continueは受入済み。無影響の再走禁止。Save19以前も不変。
 - Save21 run36662466133の181/cold33入力・62試験・HM05拒否観測/トシヒデ1勝/電話イベント/保存Continueは記録済み。無影響の再走禁止。Save20以前も不変。
+- Save22 run36668710078の397/cold35入力・58+10試験・503新5勝/6040円/洞窟北入口/保存Continueは記録済み。無影響の再走禁止。Save21以前も不変。
 
 ## 次セッションへ残す更新手順
 
