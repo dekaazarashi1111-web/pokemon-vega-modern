@@ -8618,3 +8618,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 測定b47f2d1720b200a7eb01888691e1e489c3df215e、記録source=556e4b2150df292af3ab90d8e88db9e41a759dfc・run=36573749814。同branch非force pushと全text読戻し。
 - Network: 固定GitHub artifactを再利用。旧BP/P08/Save1〜19/progression/grant owner/active baseline/source-lock不変。PR16未merge、releaseなし。旧P03 capacity source不一致failureは別scopeとして保持。
 - Next: story-fastの唯一の開始点はartifact11036251453のstory-fast.srm（Save20、131088bytes、SHA256 2ed14acca7a475598bde7098f68f4c8a8f0fb131ad8f2bc8ad6e4b508c1d08e5）。アヤメPC map5/4・7,4北・party4全回復/RP0、6016円・badge1・var4071=5/4072=1、HM05フラッシュ所持から通常storyの未完区間だけを進める。HM05は未習得/未使用。通常NPC取得、新トレーナー2勝、野生2離脱、PC回復/Save20/coldは完了。248/cold59入力・60試験・Save1〜19/旧BP/P08は無影響に再走しない。分離progression原本Axew Lv37/EXP68589とNationalDex magic0・grant ownerを保全し、flag/var注入で解禁しない。正規全国図鑑解禁、自然育成/進化、Lucky Egg対照・12成長ケース・Lv100soak・研究施設自然到達・全storyは未完。
+
+## 2026-09-30T03:08:50+00:00
+- Timestamp: 2026-09-30T03:08:50+00:00
+- Task: USER-20260930-STORY-SAVE21 / 503電話イベント・Save21新区間
+- Version: story-route503-save21-v1
+- Status: DONE（支援story新区間限定。HM05習得/使用/原因修正・自然育成/全国図鑑/全story未完）
+- Summary: Save20→HM05通常拒否→トシヒデ1勝/240円→電話/自動移動→Save21/cold。全61画面/39目視anchor/全差分6988bytes・1783範囲。HMケース順序交換と会話中座標同期遅れ7枚を限定判定し、途中Save/menuを合格にしない。
+- Files changed: 新oracle/62拒否試験・測定器・開発text原本・記録器/12拒否試験・専用workflow・checkpoint/guide/text証跡、固定再開MD/JSON、両ログ。ROM/save/全差分hexはartifactのみ。
+- Verify: run36662466133/job109719980409全8step成功、artifact11073849807、181/cold33入力、Save/RTC全131088bytes保持。checksum42件/S61E CRC/旧bank/PC/全item個数。開発native2/正式native2、記録native0・受入試験再走0・compile0。新記録12試験/scoped final-index/private/resume/task graph/diff通過後のみcommit。一般CI全成功は主張しない。
+- Commit: 測定b58a6356c9b100a9180a9af955d25e1c6be48d0c、記録source=dd00a9d0a585849c4395645ee0384944526d2272・run=36663051577。小分けWIPを同branchへ逐次反映し、完了記録は非force pushと全text読戻し。
+- Network: GitHub connector/固定Actions artifactだけ。開始HEAD e517baa451b613283ca87bc05304bed42b75ded9・source転送run36659873782・旧Save20記録run36573749814全11step成功を照合。旧BP/P08/Save1〜20/progression/grant owner/active baseline/source-lock不変。PR16未merge、releaseなし。旧P03 capacity failureは別scopeとして保持。
+- Next: story-fastの唯一の開始点はartifact11073849807のstory-fast.srm（Save21、131088bytes、SHA256 c9cb14fa73a38e105a0e6553f7fc1dc82c9bdd182e0409e28022c8ffe44b3d20）。503番道路map3/21・24,17西・party4/RP0、6256円・badge1、var4071=6/4072=1。ミュウツーHP349/354・サイコブレイクPP5、他3体HP満タン。トシヒデ1勝/240円・電話会話/自動移動・通常Save21/独立Continueは完了。HM05所持、通常UIで4体とも非適合表示・ミュウ選択拒否。習得/使用/原因解決は未完。同じ拒否入力を繰り返さず、必要時は固定ROMの互換性判定ownerを限定照合し、自然取得条件を満たす承認済みfield-utility分離fixtureの適用条件を読む。基準外の習得を盲追加しない。現在地から通常storyの未完区間だけをSave/cold境界で進める。181/cold33入力・62試験・Save1〜20/旧BP/P08は無影響に再走しない。分離progression原本Axew Lv37/EXP68589とNationalDex magic0・grant ownerを保全し、flag/var注入で解禁しない。正規全国図鑑解禁、自然育成/進化、Lucky Egg対照・12成長ケース・Lv100soak・研究施設自然到達・全storyは未完。
