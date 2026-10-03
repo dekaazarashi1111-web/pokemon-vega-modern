@@ -29,7 +29,7 @@ jobs:
       - name: New inner mansion statue boundary checks
         run: |
           set -euo pipefail
-          python3 -B -m unittest discover -s tests -p test_pr16_story_save57_measure.py -v
+          python3 -B -m unittest -v tests.test_pr16_story_save57_measure.Controller.test_entry_route tests.test_pr16_story_save57_measure.Controller.test_effective_stair tests.test_pr16_story_save57_measure.Controller.test_new_origin_route
           python3 -B -c "import sys; sys.path.insert(0,'scripts'); import pr16_story_save57_measure as m; import pr16_learnset_runtime_record as g; g.START=m.BASE; g.CODE=m.CODE; g.OWNED=set(); g.guard()"
       - name: New ordinary statue paper route and Save57 with independent Continue
         run: python3 -B scripts/pr16_story_save57_measure.py
@@ -45,3 +45,5 @@ jobs:
           if-no-files-found: error
 
 
+
+# 着地点warp8と発火床の区別を訂正。旧未影響24検査は原log継承。

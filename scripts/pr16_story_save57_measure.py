@@ -46,15 +46,19 @@ def idle(o,counter):
 def start(o):
     idle(o,56);need(o['map']==ORIGIN and o['xy']==START and o['facing']==2 and o['party_sha256']==a.PARTY and o['flash_sha256']==a.FLASH and o['ledger_sha256']==a.COLD_LEDGER,'Save56唯一の親')
 
-ROUTE=[[20,25],[20,24]]
+ROUTE=[[20, 25], [19, 25], [19, 24], [19, 23], [19, 22], [19, 21], [19, 20], [19, 19], [19, 18], [19, 17], [19, 16], [19, 15], [19, 14], [19, 13], [19, 12], [18, 12], [17, 12], [16, 12], [15, 12], [14, 12], [13, 12], [12, 12], [11, 12], [10, 12], [9, 12], [8, 12], [7, 12], [7, 13], [7, 14], [7, 15], [7, 16], [6, 16], [5, 16], [5, 15], [5, 14], [5, 13], [5, 12], [5, 11], [5, 10], [5, 9], [5, 8], [5, 7], [5, 6], [6, 6], [7, 6], [8, 6], [9, 6], [10, 6], [11, 6], [12, 6], [13, 6], [14, 6], [15, 6], [16, 6], [17, 6], [18, 6], [19, 6], [20, 6], [21, 6], [22, 6], [23, 6], [24, 6], [25, 6], [26, 6], [27, 6], [28, 6], [28, 7], [28, 8], [28, 9], [28, 10], [29, 10], [30, 10]]
 INTERIOR_ROUTE=[[20,24],[20,23],[19,23],[18,23],[18,24],[18,25],[17,25],[16,25],[16,26],[16,27]]
 STATUE=[16,28]
 def inspect(raw,seed):
     need(identity(raw)==a.shared.plan.CANDIDATE and identity(seed)==a.OUTPUT,'正式Save56/同一候補')
     p=json.loads((ROOT/PREP).read_bytes());old=json.loads((ROOT/'content/modernization/pr16_story_save56_preparation.json').read_bytes())
     need(p['source_head']=='66490428811ca668483bfa8cd4b7e514a3c37f9f'and p['run_id']==37154213537 and p['candidate']==a.shared.plan.CANDIDATE and p['input_save']==a.OUTPUT,'15node/1444cell新owner原本だけ')
-    entry=next(w for w in old['interior']['warps']if w['xy']==[20,24]);need(entry['target_map']==DESTINATION and entry['target_warp']==5,'既読warp8から新階層warp5')
-    arrival=next(w for w in p['interior']['warps']if w['id']==5);need(arrival['xy']==[20,24]and arrival['target_map']==ORIGIN,'階段の相互接続')
+    entry=next(w for w in old['interior']['warps']if w['xy']==[30,10]);need(entry['target_map']==DESTINATION and entry['target_warp']==2,'床behavior108の実階段5から新階層warp2')
+    oldcells={tuple(c['xy']):c for c in old['terrain']}
+    need(oldcells[(20,24)]['behavior']==8,'warp8は上階からの着地点であり床上から発火しない')
+    for xy in ROUTE:
+        t=oldcells[tuple(xy)];need(t['collision']==0 and t['elevation']==3 and t['behavior']==(108 if xy==[30,10]else 8),'既読床だけの階段への新経路')
+    arrival=next(w for w in p['interior']['warps']if w['id']==2);need(arrival['xy']==[32,10]and arrival['target_map']==ORIGIN,'有効階段の相互接続')
     cells={tuple(c['xy']):c for c in p['terrain']}
     for xy in INTERIOR_ROUTE:
         t=cells[tuple(xy)];need(t['elevation']==3 and t['collision']==0 and t['behavior']==(102 if xy==[20,24]else 8),'像への最小経路10tileだけ')
@@ -62,7 +66,7 @@ def inspect(raw,seed):
     need(any(x['address']==149012477 and x['hex']=='4412010100'for x in p['instructions'])and any(x['address']==149012505 and x['hex']=='291f11'for x in p['instructions']),'通常additem274/flag4383のowner')
     tab,_=a.parent.sectors.bank(seed,0,56,a.parent.sectors.LAYOUT);party=seed[tab[1]+56:tab[1]+656]
     need(identity(party)['sha256']==a.PARTY and list(party[52:56])==PP,'実party/PP、host補充なし')
-    return dict(status='STATIC_SAVE57_STATUE_PAPER_FIRST_BOUNDARY_ONLY',preparation=identity((ROOT/PREP).read_bytes()),route=ROUTE,interior_route=INTERIOR_ROUTE,interior_terrain=[cells[tuple(x)]for x in INTERIOR_ROUTE],entry=entry,arrival=arrival,statue=paper,expected_item=274,expected_flag=4383,new_terrain_cells=0,new_map_views=0,new_script_nodes=0,native_route_accepted=False)
+    return dict(status='STATIC_SAVE57_STATUE_PAPER_FIRST_BOUNDARY_ONLY',preparation=identity((ROOT/PREP).read_bytes()),route=ROUTE,interior_route=INTERIOR_ROUTE,interior_terrain=[cells[tuple(x)]for x in INTERIOR_ROUTE],entry=entry,arrival=arrival,inert_warp8=dict(xy=[20,24],behavior=8,native_activation_observed=False),origin_terrain=[oldcells[tuple(x)]for x in ROUTE],statue=paper,expected_item=274,expected_flag=4383,new_terrain_cells=0,new_map_views=0,new_script_nodes=0,native_route_accepted=False)
 
 class MoveBudget:
     """選択コマンドの上限と相手確定を分離。PP実消費は保存byteで別途検証。"""
@@ -117,31 +121,29 @@ def event(s,route,trigger):
 
 def progress(s,inspection):
     start(s.last);route=[START]
-    o=s.step((64,8),(0,180))
+    for before,target in zip(ROUTE,ROUTE[1:]):
+        need(s.last['xy']==before and s.last['map']==ORIGIN,'直前の入口階位置')
+        for attempt in range(3):
+            o=s.step((direction(before,target),8),(0,48));need(o['map']in(ORIGIN,DESTINATION),'館の2階層だけ')
+            if o['map']==DESTINATION:break
+            if o['callback2']!=m.FIELD or o['lock']:
+                if target!=[30,10]:return event(s,route,target)
+                break
+            idle(o,56);need(o['xy']in(before,target),'1tile通常入力だけ')
+            if o['xy']==target:route.append(target);break
+        else:return route,None,dict(kind='unpassed_edge',before=before,target=target,attempts=3,map=o['map'],xy=o['xy'],observation=len(s.observations)-1),[]
+        if o['map']==DESTINATION or o['lock']or o['callback2']!=m.FIELD:break
     for attempt in range(8):
         o=s.last
         if o['map']==DESTINATION and o['callback2']==m.FIELD and o['lock']==0:break
-        need(o['map']in(ORIGIN,DESTINATION)and o['callback2']!=m.BATTLE and o['save_counter']==56,'階段warp待機だけ')
+        need(o['map']in(ORIGIN,DESTINATION)and o['callback2']!=m.BATTLE and o['save_counter']==56,'有効階段warp待機だけ')
         if o['map']==ORIGIN and o['callback2']==m.FIELD and o['lock']==0:
-            need(o['xy']in(START,[20,24]),'入口1tileだけ');s.step((64,8),(0,180))
+            need(o['xy']==[30,10],'実階段位置');s.step((16,8),(0,180))
         else:s.step((0,180))
     else:raise ValueError('有限階段warp上限')
-    o=s.last;idle(o,56)
-    # 階段到着のauto-step有無は静的warpだけでは断定しない。実測に一致する隣接2点の経路接尾辞だけ。
-    need(o['map']==DESTINATION and o['xy']in INTERIOR_ROUTE[:2],'warp5かその直前1tileだけ');route.append(o['xy'])
-    offset=INTERIOR_ROUTE.index(o['xy'])
-    for before,target in zip(INTERIOR_ROUTE[offset:],INTERIOR_ROUTE[offset+1:]):
-        need(s.last['xy']==before and s.last['map']==DESTINATION,'直前の新階層位置')
-        for attempt in range(3):
-            o=s.step((direction(before,target),8),(0,48));need(o['map']==DESTINATION,'別warpへ入らない')
-            if o['callback2']!=m.FIELD or o['lock']:return event(s,route,target)
-            idle(o,56);need(o['xy']in(before,target),'1tile通常入力')
-            if o['xy']==target:route.append(target);break
-        else:return route,None,dict(kind='unpassed_edge',before=before,target=target,attempts=3,map=o['map'],xy=o['xy'],observation=len(s.observations)-1),[]
-    need(s.last['xy']==[16,27]and s.last['facing']==1,'像16,28の北隣から南向き')
-    trigger=len(s.observations)-1;s.step((1,2),(0,180))
-    result=event(s,route,STATUE);result[2]['statue_trigger_observation']=trigger
-    return result
+    o=s.last;idle(o,56);need(o['map']==DESTINATION and o['xy']in([32,10],[33,10]),'warp2か階段auto-stepの隣接1tile')
+    route.append(o['xy'])
+    return route,None,dict(kind='new_floor_entry',map=DESTINATION,xy=o['xy'],observation=len(s.observations)-1),[]
 
 MENU_ARROW='7705d612f1603802f40ea0b7f47bb5bad299300872da8d93ed06212eb9a4a353'
 REPORT_LABEL='713a5de624898bc4f1fa230a1c3a4c33a1eb79c627e2394c798e46698597f5f4'
@@ -190,6 +192,19 @@ def restore():
     need(identity((runtime/'lib/libmgba.so').read_bytes())==dict(size=1968536,sha256='0c87a12341640e6a2d325e59e76eb4b002947771ad4d8814b216e3b99817d68d'),'同一mGBA')
     return runtime
 
+def prior_inert_warp_failure():
+    done=inherited.terminal(37154589799,'79ad87e8223c84f0cb781667e54ab85a395fcddd',111295266609,['success','success','success','failure','skipped','success','success','success'])
+    _,z=a.transport.archive(11285188296,37154589799,dict(size=7298,sha256='fbb49f49948a6308fd8c9613869c2413b2612e530f99eef6790cca2d9ea603de'),'79ad87e8223c84f0cb781667e54ab85a395fcddd')
+    with z:
+        manifest=json.loads(z.read('manifest.json'));need(len(manifest)==10 and set(z.namelist())==set(manifest)|{'manifest.json'},'未保存失敗10member全原本')
+        for n,b in manifest.items():need(identity(z.read(n))==b,'失敗member '+n)
+        receipt=json.loads(z.read('progress/execution.json'));need(receipt['final_save']==receipt['initial_save']==a.OUTPUT and receipt['observations']==3 and receipt['native_end']['inputs']==16,'未保存16入力だけ')
+        failure=json.loads(z.read('failure.json'));need(failure['message']=='入口1tileだけ'and failure['native_processes']==1,'床warpを発火階段と推測した失敗だけ')
+        obs=[json.loads(v)for v in z.read('progress/stdout.txt').decode().splitlines()if '"observe"'in v]
+        need([o['xy']for o in obs]==[[20,25],[20,24],[20,23]]and all(o['map']==ORIGIN and o['field']is True for o in obs),'着地点warp8は実床behavior8で不発')
+    result=dict(terminal=done,artifact_id=11285188296,archive=dict(size=7298,sha256='fbb49f49948a6308fd8c9613869c2413b2612e530f99eef6790cca2d9ea603de'),failure=failure,execution=receipt,reason_ja='warp8は上階からの着地点。床behavior8上の移動では発火しない。北2歩16入力/native1で未保存安全停止しSave56全byte不変。有効behavior108の階段への経路へ訂正。受入済区間再走0。',accepted_case_reruns=0)
+    write(ART/'prior-inert-warp-failure.json',result);return result
+
 def main():
     h.d.current();state=h.source_check();need(os.environ['GITHUB_RUN_ATTEMPT']=='1' and not OUT.exists(),'新区間初回のみ')
     protected=h.d.bindings(set(state['source_bindings'])|h.d.PROTECTED|CODE)
@@ -197,6 +212,7 @@ def main():
     try:
         write(ART/'save56-record-terminal.json',inherited.terminal(37153775936,'73261d17c77f56ad4e2fcc80a8cac30d9af21e6e',111292837644,['success']*11))
         need(state['story_save56']['story_fast_save']==a.OUTPUT,'正式Save56親')
+        prior_inert_warp_failure()
         runtime=restore();seed=(ASSETS/'input.srm').read_bytes()
         inspection=inspect((ASSETS/'candidate.gba').read_bytes(),seed);write(ART/'inspection.json',inspection)
         s=Session(runtime,ASSETS/'candidate.gba',ASSETS/'runner',seed,ART/'progress');sessions.append(s)

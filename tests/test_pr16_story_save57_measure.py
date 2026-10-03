@@ -6,7 +6,11 @@ class Controller(unittest.TestCase):
     def base(self):return dict(map=[1,59],xy=[20,25],live_xy=[27,32],facing=2,callback2=m.m.FIELD,lock=0,party_count=4,rp=0,save_counter=56,battle_flags=0,battle_outcome=0,party_sha256=m.a.PARTY,flash_sha256=m.a.FLASH,ledger_sha256=m.a.COLD_LEDGER)
     def test_parent(self):self.assertEqual(m.a.ARTIFACT,11284293358)
     def test_start(self):m.start(self.base())
-    def test_entry_route(self):self.assertEqual(m.ROUTE,[[20,25],[20,24]])
+    def test_entry_route(self):self.assertEqual((m.ROUTE[0],m.ROUTE[-1],len(m.ROUTE)),([20,25],[30,10],72))
+    def test_effective_stair(self):
+        p=json.loads((ROOT/'content/modernization/pr16_story_save56_preparation.json').read_bytes());cells={tuple(x['xy']):x for x in p['terrain']};self.assertEqual(cells[(30,10)]['behavior'],108);self.assertEqual(cells[(20,24)]['behavior'],8)
+    def test_new_origin_route(self):
+        self.assertTrue(all(m.direction(a,b)in(16,32,64,128)for a,b in zip(m.ROUTE,m.ROUTE[1:])));self.assertNotIn([20,24],m.ROUTE)
     def test_adjacent(self):self.assertEqual([m.direction(a,b)for a,b in zip(m.INTERIOR_ROUTE,m.INTERIOR_ROUTE[1:])],[64,32,32,128,128,32,32,128,128])
     def test_pp(self):self.assertEqual(m.PP,[15,10,15,14]);self.assertEqual(m.select([0,0,0,14]),0)
     def test_arrival_suffix(self):self.assertEqual(m.INTERIOR_ROUTE[:2],[[20,24],[20,23]])
