@@ -9207,3 +9207,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 測定source=a4995895e0933dc8728a53258fed3057b10ba128、記録source=f6f411e7bb102591b1afe2d014385a20efb05197・run=37161192971。scoped guard/task graph/resume後に同branch非force pushと全text読戻し。
 - Network: 同repo GitHub/Actionsのみ。既存ROM/runtime/input非再配布。一般CI既知不一致/action_requiredは全成功にしない。merge/release/baseline変更0。
 - Next: Save63 artifact11287229492のstory-fast.srm（131088bytes/SHA256 76dacf781f2e6cf3f44521223cf0c9228e9ca7e04ce26fadeabceba4c1777c87）だけから再開。初上階map1/60・32,10東。新8歩/方向転換2/北東階段30,10→warp2を限定受入し、通常Save63・独立Continue済み。HP288/294・PP15,10,15,6、全party600byte/Bag/18744円/RP0/badge1/story4071=9/4072=1/PC保持。次は保存済route-planの上階32,10→33,10→34,10から31,21の穴へ40歩の未通過接尾辞。最初の新event/戦闘/不通境界で保存。上階北部と紙側は静的非連結で、穴31,21→入口31,22→南東階段30,29→上階33,29→紙背面16,27が未検証候補。紙/穴作動/南東階段は未到達。27新controller/50新受入、69+cold13入力41画面56member/native2。32一時最終Flash、33counter63部分write、34成功→38field。最終field全画面/coldSaveRTC一致。physical2056解除とaux4021:89→97/4022:0→3、RAM台帳は36変化、runtime owner未解明。旧offset41/aux404d/40ac保持。Flash未使用/がくしゅうそうち未装備。受入済み通路/戦闘/保存は無影響再走しない。全国図鑑/全story/自然成長・進化/LuckyEgg/研究施設自然到達未完。既存ROM/runtime/input非再配布、host補充/回復再走/故意全滅/merge/release/baseline切替なし。一般CI既知不一致/action_requiredを全成功にしない。
+
+## 2026-10-03T23:23:00+00:00
+- Timestamp: 2026-10-03T23:23:00+00:00
+- Task: USER-20261003-MANSION-UPPER-WILD-SAVE64 / 上階新14歩と野生バーニン1勝Save64
+- Version: story-mansion-upper-wild-save64-v1
+- Status: DONE（上階新14歩/野生1勝/保存/独立Continue限定）
+- Summary: 上階32,10から14歩/転換2で26,6西。野生バーニン♂Lv11をつばめがえし1回/実PP6→5で撃破。party残り599byte/HP288/294/Bag/18744円/RP0保持。trainer戦0・穴/紙未到達。
+- Files changed: Save64 measure/27controller/53受入/record、checkpoint/text証拠/隣接NPC候補、固定再開MD/JSON、両ログ。
+- Verify: run37161289889/job111315087287全8step成功。95+cold13入力54画面69member。新27controller原log継承/53新受入拒否試験。record native0/compile0/既受入再走0。
+- Evidence: 46counter64部分write→47成功→51field。全SaveRTC/field画面一致。RAM台帳/全flags保持。aux4021:97→111・4022:3→0 owner未解明。旧bank57344byte/42checksum/6899byte1681範囲。残留fieldfalse/flags4/outcome1の意味を保持。西隣25,6のstatic trainer155候補へ次はA1回。
+- Commit: 測定source=22b20697f6c99fad2884c32874138b65ab42e8c5、記録source=7201d8628d7f1b51d714724c701f861623a676d1・run=37161576580。scoped guard/task graph/resume後に同branch非force pushと全text読戻し。
+- Network: 同repo GitHub/Actionsのみ。既存ROM/runtime/input非再配布。一般CI既知不一致/action_requiredは全成功にしない。merge/release/baseline変更0。
+- Next: Save64 artifact11286858775のstory-fast.srm（131088bytes/SHA256 7cab241382223fc8ddbd2d659f8c29619c5b9b0ff5fd6d24e9269b4f366833d0）だけから再開。上階map1/60・26,6西。上階新14歩/転換2、バーニン♂Lv11に野生1勝、つばめがえし1選択/実PP6→5、通常Save64・独立Continue済み。HP288/294・PP15,10,15,5、party残り599byte/Bag/18744円/RP0/badge1/story4071=9/4072=1/PC保持。西隣25,6には実画面NPC。保存済map1/60 local7・script154587024はtrainerbattle155だがruntime identityは未捕捉。次は西向きのままAを1回だけ押し、新会話/新戦闘/不応答を区別して最初の境界で保存。通行を無理に3回反復しない。応答受入後は未通過26歩の静的接尾辞26,6→25,6→24,6→23,6→23,11→25,11→25,16→31,16→穴31,21が候補。穴/南東階段/紙未到達。27新controller/53新受入、95+cold13入力54画面69member/native2。46counter64部分write、47成功→51field。全SaveRTC/field画面同一。勝利残留wire fieldfalse/flags4/outcome1を未復帰や追加勝利にしない。全RAM台帳/flags保持、aux4021:97→111/4022:3→0のruntime owner未解明。旧offset41/2056/aux404d/40ac未解明保持。Flash未使用/がくしゅうそうち未装備。旧経路/野生戦/保存は無影響再走しない。全国図鑑/全story/自然成長・進化/LuckyEgg/研究施設自然到達未完。既存ROM/runtime/input非再配布、host補充/回復再走/故意全滅/merge/release/baseline切替なし。一般CI既知不一致/action_requiredを全成功にしない。
