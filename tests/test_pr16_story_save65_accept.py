@@ -39,7 +39,7 @@ class Acceptance(unittest.TestCase):
 def case(lane,index,key,value):return lambda self:self.rejected(lane,index,key,value)
 CASES={
  'origin':('progress',0,'map',[1,59]),'start':('progress',0,'xy',[25,6]),'event_xy':('progress',0,'xy',[25,6]),
- 'event_lock':('progress',0,'lock',0),'event_field':('progress',0,'field',True),'event_callback':('progress',1,'callback2',a.m.m.BATTLE),
+ 'event_lock':('progress',1,'lock',0),'event_field':('progress',1,'field',True),'event_callback':('progress',1,'callback2',a.m.m.BATTLE),
  'battle_callback':('progress',2,'callback2',a.m.m.FIELD),'trainer_flags':('progress',2,'battle_flags',4),'event_outcome':('progress',2,'battle_outcome',1),
  'first_pp_early':('progress',9,'party_sha256',a.PARTIES[1]),'first_pp_missing':('progress',10,'party_sha256',a.PARTIES[0]),
  'second_pp_early':('progress',15,'party_sha256',a.PARTIES[2]),'second_pp_missing':('progress',16,'party_sha256',a.PARTIES[1]),
