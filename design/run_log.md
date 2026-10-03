@@ -11829,3 +11829,17 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 測定source=041077371f32b04015916058fe460e1ade4dd989、記録source=1e4551b4da705a01da77fd53f109a182cf316c8a・run=37150128228。scoped guard/task graph/resume後に同branch非force pushと全text読戻し。
 - Network: 同repo GitHub/Actionsのみ。既存ROM/runtime/input非再配布。一般CI既知不一致/action_requiredは全成功にしない。merge/release/baseline変更0。
 - Next: Save54 artifact11283366654のstory-fast.srm（131088bytes/SHA256 bfdd4fb964fd8a3b526b919921b2400e3c1f44c02011208b03f0507606a496ad）だけから再開。ポケモンセンター1F map6/5・7,4北。通常4歩/受付「あずける」/HP・PP全回復/Save54/独立Continueを限定受入。オノノクスHP294/294・PP[15,10,15,20]、ミュウツーHP354/354・PP[10,20,15,10]、空技のミュウ/ビーダルも全HP。party600byte差分は回復8byteだけ。Bag/17040円/RP0/badge1/story4071=9/4072=1/全flags/PC/S61E不変。回復を再実行せず、保存済室内mapとtown ownerから出口→ミルシティの次必須storyを限定調査し通常入力で進める。最初の新event/戦闘/未通過境界で通常保存、必須story省略なし。aux4021=110→114/4022=2→1と回復後RAM台帳3aef553d4f2dba8f52868966ed63e2e315f111535d017321afe1c0df1a7bd384のowner未解明、旧Save52 cold差ownerも未解明。Save54 progress/coldは同一。Save54counter32は書込中、成功33→field36。66+cold13入力39画面21controller43受入54memberを無影響再走0。全国図鑑/全story/自然育成・進化/LuckyEgg/研究施設自然到達未完、doubletarget分離native未実証。既存ROM/runtime/input非再配布、host補充/故意全滅/merge/release/baseline切替なし。一般CI既知不一致/action_requiredを全成功にしない。
+
+## 2026-10-03T20:34:48+00:00
+- Timestamp: 2026-10-03T20:34:48+00:00
+- Task: USER-20261003-MIRU-SAVE55 / 通常レンジャー戦・贈与・Save55
+- Version: story-miru-ranger-save55-v1
+- Status: DONE（新必須1勝/贈与/保存/独立Continue限定）
+- Summary: 回復再走なしで通常出口/30歩。trainer331の6体へ1勝、864円とがくしゅうそうち1個、像の裏の紙の依頼、離脱flag4381。オノノクス288/294・PP[15,10,15,14]。ミュウツー全HP/PP保持。
+- Files changed: Save55 inspect/measure/21controller/47受入/record、45node38cell静的原本、checkpoint/text証拠、固定再開MD/JSON、両ログ。
+- Verify: run37151051768/job111284855297全8step成功、268+cold13入力139画面154member、21controller原logと47新受入拒否。record native0/compile0/旧再走0。
+- Prior failure: run37151893850はGUIDE旧番号の宛先guardで停止。新試験0/native0/正本変更0。元failureを保持して定数だけ訂正。
+- Evidence: 全party9phase独立照合/保存5byte差分。131counter部分write→132安定/保存中→133成功→136field。items182を1個追加だけ、17904円/RP0、PC/S61E他payload不変。aux3件owner未解明、42checksum/旧bank57344byte/6999byte1764範囲/cold全SaveRTC一致。TM21民家map39/0を必須gymとして扱わない。
+- Commit: 測定source=3439daa92e993a3edb89f89d3a37a9bcbdba3e99、記録source=3238addb62097be451dbc10e653dba5946070312・run=37152018112。scoped guard/task graph/resume後に同branch非force pushと全text読戻し。
+- Network: 同repo GitHub/Actionsのみ。既存ROM/runtime/input非再配布。一般CI既知不一致/action_requiredは全成功にしない。merge/release/baseline変更0。
+- Next: Save55 artifact11284146293のstory-fast.srm（131088bytes/SHA256 f9f9638a49aa4b0f0553c3bfcbaeb736f49d4ae42e5b5ca2509c8aaad9f515a2）だけから再開。map3/2・16,20南、こころのやかた前。通常出口/市内30歩、レンジャー331の6体へ1勝/864円/がくしゅうそうち182を1個通常取得、離脱flag4381、Save55/独立Continue全SaveRTC一致を限定受入。オノノクス288/294・PP[15,10,15,14]、ミュウツー354/354・PP[10,20,15,10]、所持金17904円/RP0/badge1/story4071=9/4072=1。次はNPC実台詞「こころのやかた奥のどうぞうの裏の紙」を調べる必須導線。保存済town warp15,19→map1/59・warp1から、未読室内owner/必要地形だけ調査し通常入力で入館・最初の新event/戦闘/未通過境界を保存する。任意TM21民家map39/0をgymと誤認しない。がくしゅうそうちは取得のみ、装備/自然成長受入なし。RAM台帳4差分/仲間offset41三件/aux2件と40ac=16のowner未解明を保持。最終/cold台帳77ccaa1d7ceee4a641d1094ab5b8f5caf44668ea125287542f3e2bed65a80e57。Save55counter131は部分write、132安定でも保存中→133成功→136field。268+cold13入力139画面21controller47受入154memberを無影響再走0。全国図鑑/全story/自然育成・進化/LuckyEgg/研究施設自然到達未完、doubletarget分離native未実証。既存ROM/runtime/input非再配布、host補充/回復再走/故意全滅/merge/release/baseline切替なし。一般CI既知不一致/action_requiredを全成功にしない。
