@@ -8702,3 +8702,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: WIP3fde7851、記録source=d89e6f4596a65cff44fd5adde551023a70ccc50d・run=37115447922。scoped guard/task graph/resume後に同branch非force push、全text読戻し。
 - Network: 同repo GitHub/Actions原本のみ。既存ROM/runtime/input Save25はActions入力だけ。一般CI旧capacity source不一致は保持、merge/release/baseline変更0。
 - Next: Save26 artifact11270502866のstory-fast.srm（e65fc5bb2c76d7cfcdd144c1a69451ad8508ff73ad82e4c7f24595d75200624d、131088bytes）だけから再開。map1/73・32,15西・party4/RP0・12712円・badge1・story4071=6/4072=1。野生ディグダLv6の通常1勝、Save26/独立Continueは完了。次は32,15から西へ23,15、岩階段23,14→23,13、19,13→19,14の正規coord teleportを通常入力で確認する。trainer352（30,13）/353（21,17）は未対戦、残り経路は静的候補だけ。ミュウツーPP[1,14,1,5]/HP324、オノノクスPP[15,10,15,20]/HP294。残PPを実技UIで扱い、host回復/flag/var解禁は禁止。既存候補ROM/runnerはSave24 artifact11263343138、runtimeは11263910704をhash固定してActions入力のみ再利用。新公開artifactは新save/画面/textだけ。84/cold13入力・15controller/新20受入試験・Save1〜25は無影響再走しない。teleport/洞窟走破/HM05原因/全国図鑑/自然成長進化/全storyは未完。
+
+## 2026-10-03T10:28:05+00:00
+- Timestamp: 2026-10-03T10:28:05+00:00
+- Task: USER-20261003-CAVE-ROCK-STAIRS-SAVE27 / 岩階段通過とSave27
+- Version: story-cave-rock-stairs-save27-v1
+- Status: DONE（新区間野生1勝/保存限定。teleport/洞窟走破/全story未完）
+- Summary: 32,15から23,14岩階段を経て19,13西へ。野生ダンゴロ♂Lv7を残り火炎放射1回で撃破し通常Save27/独立Continue。新artifactはsave/画面/textだけ。
+- Files changed: Save27専用controller/20受入試験/record workflow、checkpointとtext証拠、固定再開MD/JSON、両ログ。
+- Verify: run37116043940/job111182955509全8step成功、86/cold13入力・38画面・全52member。party差分PP1byte、旧bank/Bag/PC/S61E/全国図鑑/全flags保持、42checksum。12controller原本再利用、新20受入試験だけ。record native0/ROM変更0/既受入再走0。Save26記録全10step成功も固定JSONへ反映。
+- Commit: WIP77b229ce、記録source=dacc10021fcb1a2d76e318113871b5e698878023・run=37116490265。scoped guard/task graph/resume後に同branch非force push、全text読戻し。
+- Network: 同repo GitHub/Actions原本のみ。既存ROM/runtime/input Save26はActions入力だけ。一般CI旧capacity source不一致は保持、merge/release/baseline変更0。
+- Next: Save27 artifact11271451341のstory-fast.srm（fb3c41c4178a04cee89301c74ecf2a646dc4d5633eefa8086664ca0057d7b1d4、131088bytes）だけから再開。map1/73・19,13西・party4/RP0・12712円・badge1・story4071=6/4072=1。岩階段23,14→23,13、高台西行と野生ダンゴロ♂Lv7の通常1勝、Save27/独立Continueは完了。次は19,13から南を向いて19,14の正規coord teleportを通常入力で確認。候補destination27,7または8,10を静的候補と実観測で区別し、最初の新境界で保存する。trainer352/353は未対戦。ミュウツーPP[1,14,0,5]/HP324、オノノクスPP[15,10,15,20]/HP294。火炎放射PP0を使わず実技UIで残PPを扱う。host回復/flag/var解禁は禁止。既存ROM/runnerはSave24 artifact11263343138、runtime11263910704をhash固定しActions入力のみ再利用。新公開artifactは新save/画面/textだけ。86/cold13入力・12controller/新20受入試験・Save1〜26は無影響再走しない。teleport/洞窟走破/HM05原因/全国図鑑/自然成長進化/全storyは未完。
