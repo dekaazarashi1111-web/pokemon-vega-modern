@@ -14,7 +14,7 @@ OUTPUT=dict(size=131088,sha256='f9f9638a49aa4b0f0553c3bfcbaeb736f49d4ae42e5b5ca2
 PARTY='297d2affbcb7fd61776e48afb3df6a587beba85c83240c0d52a4210628d82a20'
 FLASH='174ffa30735011b0de2428bb0a4a858ac77f6c91a687adc026e0ad0296f0dfda'
 CP='content/modernization/pr16_story_save55_checkpoint.json'
-GUIDE='docs/PR16_STORY_SAVE51_JA.md'
+GUIDE='docs/PR16_STORY_SAVE55_JA.md'
 EVIDENCE='content/modernization/pr16_story_save55_evidence'
 VISUAL='content/modernization/pr16_story_save55_visual_review.json'
 shared=m.a.shared;transport=m.a.transport;parent=m.a.parent
