@@ -1,0 +1,307 @@
+{
+  "status": "PASS_ROUTE504_UPPER_TRAINER114_SAVE43_SCOPED",
+  "trainer_victories": 1,
+  "trainer_id": 114,
+  "wild_victories": 0,
+  "escapes": 0,
+  "captures": 0,
+  "ordinary_saves": 1,
+  "save_counter": 43,
+  "map": [
+    3,
+    44
+  ],
+  "xy": [
+    39,
+    12
+  ],
+  "facing": 3,
+  "party_count": 4,
+  "rp": 0,
+  "upper_west_partial_accepted": true,
+  "west_descent_stairs_accepted": false,
+  "remaining_upper_route_accepted": false,
+  "cave_crossing_complete": true,
+  "encounter_transition": 11,
+  "battle_start": 14,
+  "battle_outcome_observation": 60,
+  "victory_field_return": 63,
+  "move_selections": 6,
+  "actual_pp_consumed": [
+    1,
+    5,
+    0,
+    0
+  ],
+  "remaining_pp": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "normal_recovery_required": true,
+  "save_success_text_observation": 84,
+  "save_success_wording_observed": true,
+  "stable_full_flash_observation": 83,
+  "save_counter_changed_observation": 83,
+  "stable_field_observation": 87,
+  "partial_write_observations": [
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    81,
+    82
+  ],
+  "progress_inputs": 170,
+  "continue_inputs": 13,
+  "screen_count": 90,
+  "native_processes": 2,
+  "record_native_processes": 0,
+  "accepted_case_reruns": 0,
+  "accepted_test_reruns": 0,
+  "compiles": 0,
+  "rom_changes": 0,
+  "fixture_writes": 0,
+  "hm05_taught_or_used": false,
+  "trainer352_accepted": false,
+  "national_dex_unlocked": false,
+  "natural_growth_accepted": false,
+  "natural_evolution_accepted": false,
+  "full_story_accepted": false,
+  "release_ready": false,
+  "progress_ram_ledger": "7d8ac5c85ad718b9f0dd16de19bc3020c5ed2c448451bc32d0d6efd70f3dbaf3",
+  "cold_ram_ledger": "7d8ac5c85ad718b9f0dd16de19bc3020c5ed2c448451bc32d0d6efd70f3dbaf3",
+  "save39_cold_ram_difference_owner_resolved": false,
+  "boundary": {
+    "party_changes": [
+      [
+        52,
+        1,
+        0
+      ],
+      [
+        53,
+        5,
+        0
+      ],
+      [
+        86,
+        64,
+        58
+      ]
+    ],
+    "trainer_owner": {
+      "root_count": 1,
+      "unique_root_address_count": 1,
+      "visited_script_count": 6,
+      "nodes": [
+        {
+          "address": 148911758,
+          "end_reason": "end",
+          "instruction_count": 6,
+          "edges": [
+            148911784
+          ],
+          "roots": [
+            "route504_local3"
+          ]
+        },
+        {
+          "address": 148911784,
+          "end_reason": "goto",
+          "instruction_count": 1,
+          "edges": [
+            154581920
+          ],
+          "roots": [
+            "route504_local3"
+          ]
+        },
+        {
+          "address": 148911798,
+          "end_reason": "end",
+          "instruction_count": 3,
+          "edges": [],
+          "roots": [
+            "route504_local3"
+          ]
+        },
+        {
+          "address": 154581891,
+          "end_reason": "goto",
+          "instruction_count": 2,
+          "edges": [
+            148911758
+          ],
+          "roots": [
+            "route504_local3"
+          ]
+        },
+        {
+          "address": 154581920,
+          "end_reason": "goto",
+          "instruction_count": 1,
+          "edges": [
+            154581955
+          ],
+          "roots": [
+            "route504_local3"
+          ]
+        },
+        {
+          "address": 154581955,
+          "end_reason": "goto",
+          "instruction_count": 2,
+          "edges": [
+            148911798
+          ],
+          "roots": [
+            "route504_local3"
+          ]
+        }
+      ],
+      "references": [
+        {
+          "category": "special",
+          "value": 57,
+          "access": "call",
+          "instruction_address": 148911758,
+          "opcode": 38,
+          "command": "specialvar",
+          "script_address": 148911758,
+          "roots": [
+            "route504_local3"
+          ]
+        },
+        {
+          "category": "trainer",
+          "value": 1038,
+          "access": "battle",
+          "instruction_address": 154581955,
+          "opcode": 92,
+          "command": "trainerbattle",
+          "battle_type": 5,
+          "script_address": 154581955,
+          "roots": [
+            "route504_local3"
+          ]
+        },
+        {
+          "category": "trainer",
+          "value": 114,
+          "access": "battle",
+          "instruction_address": 154581891,
+          "opcode": 92,
+          "command": "trainerbattle",
+          "battle_type": 0,
+          "script_address": 154581891,
+          "roots": [
+            "route504_local3"
+          ]
+        },
+        {
+          "category": "var",
+          "value": 32781,
+          "access": "write",
+          "instruction_address": 148911758,
+          "opcode": 38,
+          "command": "specialvar",
+          "script_address": 148911758,
+          "roots": [
+            "route504_local3"
+          ]
+        },
+        {
+          "category": "var",
+          "value": 32781,
+          "access": "read",
+          "instruction_address": 148911763,
+          "opcode": 33,
+          "command": "compare_var_to_value",
+          "operand": 1,
+          "script_address": 148911758,
+          "roots": [
+            "route504_local3"
+          ]
+        }
+      ],
+      "diagnostics": []
+    },
+    "pp": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "hp": [
+      314,
+      354
+    ],
+    "reward_yen": 468,
+    "bag_unchanged": true,
+    "hm05_owned": true,
+    "money_before": 13796,
+    "money_after": 14264,
+    "physical_flag_deltas": [
+      [
+        1394,
+        0,
+        1
+      ]
+    ],
+    "variable_deltas": [
+      [
+        16417,
+        96,
+        104
+      ],
+      [
+        16418,
+        1,
+        0
+      ]
+    ],
+    "auxiliary_runtime_owners_resolved": false,
+    "s61e_payload_deltas": [],
+    "expanded_flags": {
+      "4367": 1,
+      "4368": 1,
+      "4369": 1,
+      "4370": 1
+    },
+    "old_bank_preserved_bytes": 57344,
+    "pc_preserved": true,
+    "s61e_crc_verified": true,
+    "sector_checksum_checks": 42,
+    "national_dex_magic": 0,
+    "national_var404e": 0,
+    "national_flag840": 0,
+    "story_vars": {
+      "4071": 9,
+      "4072": 1
+    },
+    "badge_count": 1,
+    "all_save_rtc_cold_identical": true,
+    "changed_bytes": 6881,
+    "changed_ranges": 1710
+  },
+  "input_save": {
+    "size": 131088,
+    "sha256": "c1959acc33cd7592ff4c3202e5fc5f4397215315127ebe257cd27486997aa144"
+  },
+  "output_save": {
+    "size": 131088,
+    "sha256": "80d9c9387937173a62283f1164cb6ff035ebd39eaa38f78a779da92691ae788f"
+  },
+  "candidate": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  }
+}

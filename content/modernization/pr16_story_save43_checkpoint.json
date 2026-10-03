@@ -1,0 +1,445 @@
+{
+  "schema_version": 1,
+  "task": "USER-20261003-ROUTE504-SAVE43",
+  "status": "PASS_ROUTE504_UPPER_TRAINER114_SAVE43_SCOPED",
+  "measurement_source": "7bccc0c52b4232e8c4f98a81e5ed86ff73c97c57",
+  "run_id": 37133664958,
+  "job_id": 111233658951,
+  "artifact": {
+    "id": 11277619007,
+    "name": "pr16-story-save43-checkpoint",
+    "size_in_bytes": 543573,
+    "digest": "sha256:2a595f712c4779e6af3b921ef4ea4dae40d1296c1ede9d32e65bb5400b7c9af3",
+    "workflow_run": {
+      "id": 37133664958,
+      "repository_id": 1358127462,
+      "head_repository_id": 1358127462,
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "7bccc0c52b4232e8c4f98a81e5ed86ff73c97c57"
+    },
+    "expires_at": "2027-01-01T15:33:32Z"
+  },
+  "verification": {
+    "status": "PASS_ROUTE504_UPPER_TRAINER114_SAVE43_SCOPED",
+    "trainer_victories": 1,
+    "trainer_id": 114,
+    "wild_victories": 0,
+    "escapes": 0,
+    "captures": 0,
+    "ordinary_saves": 1,
+    "save_counter": 43,
+    "map": [
+      3,
+      44
+    ],
+    "xy": [
+      39,
+      12
+    ],
+    "facing": 3,
+    "party_count": 4,
+    "rp": 0,
+    "upper_west_partial_accepted": true,
+    "west_descent_stairs_accepted": false,
+    "remaining_upper_route_accepted": false,
+    "cave_crossing_complete": true,
+    "encounter_transition": 11,
+    "battle_start": 14,
+    "battle_outcome_observation": 60,
+    "victory_field_return": 63,
+    "move_selections": 6,
+    "actual_pp_consumed": [
+      1,
+      5,
+      0,
+      0
+    ],
+    "remaining_pp": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "normal_recovery_required": true,
+    "save_success_text_observation": 84,
+    "save_success_wording_observed": true,
+    "stable_full_flash_observation": 83,
+    "save_counter_changed_observation": 83,
+    "stable_field_observation": 87,
+    "partial_write_observations": [
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82
+    ],
+    "progress_inputs": 170,
+    "continue_inputs": 13,
+    "screen_count": 90,
+    "native_processes": 2,
+    "record_native_processes": 0,
+    "accepted_case_reruns": 0,
+    "accepted_test_reruns": 0,
+    "compiles": 0,
+    "rom_changes": 0,
+    "fixture_writes": 0,
+    "hm05_taught_or_used": false,
+    "trainer352_accepted": false,
+    "national_dex_unlocked": false,
+    "natural_growth_accepted": false,
+    "natural_evolution_accepted": false,
+    "full_story_accepted": false,
+    "release_ready": false,
+    "progress_ram_ledger": "7d8ac5c85ad718b9f0dd16de19bc3020c5ed2c448451bc32d0d6efd70f3dbaf3",
+    "cold_ram_ledger": "7d8ac5c85ad718b9f0dd16de19bc3020c5ed2c448451bc32d0d6efd70f3dbaf3",
+    "save39_cold_ram_difference_owner_resolved": false,
+    "boundary": {
+      "party_changes": [
+        [
+          52,
+          1,
+          0
+        ],
+        [
+          53,
+          5,
+          0
+        ],
+        [
+          86,
+          64,
+          58
+        ]
+      ],
+      "trainer_owner": {
+        "root_count": 1,
+        "unique_root_address_count": 1,
+        "visited_script_count": 6,
+        "nodes": [
+          {
+            "address": 148911758,
+            "end_reason": "end",
+            "instruction_count": 6,
+            "edges": [
+              148911784
+            ],
+            "roots": [
+              "route504_local3"
+            ]
+          },
+          {
+            "address": 148911784,
+            "end_reason": "goto",
+            "instruction_count": 1,
+            "edges": [
+              154581920
+            ],
+            "roots": [
+              "route504_local3"
+            ]
+          },
+          {
+            "address": 148911798,
+            "end_reason": "end",
+            "instruction_count": 3,
+            "edges": [],
+            "roots": [
+              "route504_local3"
+            ]
+          },
+          {
+            "address": 154581891,
+            "end_reason": "goto",
+            "instruction_count": 2,
+            "edges": [
+              148911758
+            ],
+            "roots": [
+              "route504_local3"
+            ]
+          },
+          {
+            "address": 154581920,
+            "end_reason": "goto",
+            "instruction_count": 1,
+            "edges": [
+              154581955
+            ],
+            "roots": [
+              "route504_local3"
+            ]
+          },
+          {
+            "address": 154581955,
+            "end_reason": "goto",
+            "instruction_count": 2,
+            "edges": [
+              148911798
+            ],
+            "roots": [
+              "route504_local3"
+            ]
+          }
+        ],
+        "references": [
+          {
+            "category": "special",
+            "value": 57,
+            "access": "call",
+            "instruction_address": 148911758,
+            "opcode": 38,
+            "command": "specialvar",
+            "script_address": 148911758,
+            "roots": [
+              "route504_local3"
+            ]
+          },
+          {
+            "category": "trainer",
+            "value": 1038,
+            "access": "battle",
+            "instruction_address": 154581955,
+            "opcode": 92,
+            "command": "trainerbattle",
+            "battle_type": 5,
+            "script_address": 154581955,
+            "roots": [
+              "route504_local3"
+            ]
+          },
+          {
+            "category": "trainer",
+            "value": 114,
+            "access": "battle",
+            "instruction_address": 154581891,
+            "opcode": 92,
+            "command": "trainerbattle",
+            "battle_type": 0,
+            "script_address": 154581891,
+            "roots": [
+              "route504_local3"
+            ]
+          },
+          {
+            "category": "var",
+            "value": 32781,
+            "access": "write",
+            "instruction_address": 148911758,
+            "opcode": 38,
+            "command": "specialvar",
+            "script_address": 148911758,
+            "roots": [
+              "route504_local3"
+            ]
+          },
+          {
+            "category": "var",
+            "value": 32781,
+            "access": "read",
+            "instruction_address": 148911763,
+            "opcode": 33,
+            "command": "compare_var_to_value",
+            "operand": 1,
+            "script_address": 148911758,
+            "roots": [
+              "route504_local3"
+            ]
+          }
+        ],
+        "diagnostics": []
+      },
+      "pp": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "hp": [
+        314,
+        354
+      ],
+      "reward_yen": 468,
+      "bag_unchanged": true,
+      "hm05_owned": true,
+      "money_before": 13796,
+      "money_after": 14264,
+      "physical_flag_deltas": [
+        [
+          1394,
+          0,
+          1
+        ]
+      ],
+      "variable_deltas": [
+        [
+          16417,
+          96,
+          104
+        ],
+        [
+          16418,
+          1,
+          0
+        ]
+      ],
+      "auxiliary_runtime_owners_resolved": false,
+      "s61e_payload_deltas": [],
+      "expanded_flags": {
+        "4367": 1,
+        "4368": 1,
+        "4369": 1,
+        "4370": 1
+      },
+      "old_bank_preserved_bytes": 57344,
+      "pc_preserved": true,
+      "s61e_crc_verified": true,
+      "sector_checksum_checks": 42,
+      "national_dex_magic": 0,
+      "national_var404e": 0,
+      "national_flag840": 0,
+      "story_vars": {
+        "4071": 9,
+        "4072": 1
+      },
+      "badge_count": 1,
+      "all_save_rtc_cold_identical": true,
+      "changed_bytes": 6881,
+      "changed_ranges": 1710
+    },
+    "input_save": {
+      "size": 131088,
+      "sha256": "c1959acc33cd7592ff4c3202e5fc5f4397215315127ebe257cd27486997aa144"
+    },
+    "output_save": {
+      "size": 131088,
+      "sha256": "80d9c9387937173a62283f1164cb6ff035ebd39eaa38f78a779da92691ae788f"
+    },
+    "candidate": {
+      "size": 33554432,
+      "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+    }
+  },
+  "record_source": "19e979ba428a69fc5b3acbee8e004657bb350be8",
+  "record_run_id": 37134410241,
+  "save43_accepted": true,
+  "trainer114_accepted": true,
+  "upper_west_partial_accepted": true,
+  "west_descent_stairs_accepted": false,
+  "normal_recovery_required": true,
+  "visual_review": "content/modernization/pr16_story_save43_visual_review.json",
+  "source_bindings": {
+    ".github/workflows/pr16-story-save43-record.yml": {
+      "size": 2395,
+      "sha256": "3556caa443b7e6195f9a70b20e27cea529da7c34ebf92de35f9927729c9d0b09"
+    },
+    ".github/workflows/pr16-story-save43.yml": {
+      "size": 1604,
+      "sha256": "72e56bf2dfbb9916e1c163d819d143f3e186b93bd6a051ff51f920b4b395af24"
+    },
+    "content/modernization/pr16_story_save43_visual_review.json": {
+      "size": 11277,
+      "sha256": "bff37b9c41841c848a8e17c8f710de9f8bd35dbb6b28baced9fbb3af75abf026"
+    },
+    "scripts/pr16_story_save43_accept.py": {
+      "size": 11611,
+      "sha256": "49cdd61b1dca51fdf47e87e3eb6c1961610e9a0317c9ae7a28b31af21844b019"
+    },
+    "scripts/pr16_story_save43_measure.py": {
+      "size": 13836,
+      "sha256": "15cedf774bc2ecf5245ec8cdfe024a6ec800ec20271948b433576a8e60239a83"
+    },
+    "scripts/pr16_story_save43_record.py": {
+      "size": 17099,
+      "sha256": "0aca60f75ef77fb3c9ebdda64fdf1bb9ddf740373cbf44b5218b8a05c5792d3a"
+    },
+    "tests/test_pr16_story_save43_accept.py": {
+      "size": 4422,
+      "sha256": "9af955096c7ecaaaefcf6f4817f3696862516c1949ebf32eb326f7e19a48a67b"
+    },
+    "tests/test_pr16_story_save43_measure.py": {
+      "size": 2056,
+      "sha256": "37581f8a32e3f492ecf44a1dadf89ba7a7b916b7d05fbb96b40fa868e258f645"
+    }
+  },
+  "evidence_bindings": {
+    "content/modernization/pr16_story_save43_evidence/continue/commands.txt": {
+      "size": 25,
+      "sha256": "5aa3363ef7287a5fe371442e67ec861616823326b1d70e16730c34c4baab07a3"
+    },
+    "content/modernization/pr16_story_save43_evidence/continue/execution.json": {
+      "size": 548,
+      "sha256": "4bd24b3ca43b96f0e992cce19145ce3cae0fba576e759c47450b33fd1e0db929"
+    },
+    "content/modernization/pr16_story_save43_evidence/continue/stderr.txt": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "content/modernization/pr16_story_save43_evidence/continue/stdout.txt": {
+      "size": 2103,
+      "sha256": "526b39ab8ded3ccab46b1ebd475b35878ec145ff8b51b40b981fba29aec29059"
+    },
+    "content/modernization/pr16_story_save43_evidence/controller-test-receipt.json": {
+      "size": 1621,
+      "sha256": "6b9b8e1eb625ecd94c0bdad555121f1031d65d5fcab72f0b7de7106d45996798"
+    },
+    "content/modernization/pr16_story_save43_evidence/inspection.json": {
+      "size": 5181,
+      "sha256": "736751932cb7fd19656545c0dcd08948fd1fc534a71456def3ca4d9be8019bd2"
+    },
+    "content/modernization/pr16_story_save43_evidence/manifest.json": {
+      "size": 14383,
+      "sha256": "678b66349bc3af6cb7572c07eac2402eb71159d2a661f2f0157be369c760eaf0"
+    },
+    "content/modernization/pr16_story_save43_evidence/measurement.json": {
+      "size": 10743,
+      "sha256": "049982395dee06861c8b3242a852ff19a4b4b60fcd655fbfb7d5735461ec5727"
+    },
+    "content/modernization/pr16_story_save43_evidence/progress/commands.txt": {
+      "size": 2376,
+      "sha256": "6a7c7786386b798ca04eeb5e0b72ff23b14647324a2ab3ba20c9246e52e8ff45"
+    },
+    "content/modernization/pr16_story_save43_evidence/progress/execution.json": {
+      "size": 551,
+      "sha256": "b08ad9fbaf6ae07c95157cfe9e178ec90a5633259312fcd05fe8d5b77938dd35"
+    },
+    "content/modernization/pr16_story_save43_evidence/progress/stderr.txt": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "content/modernization/pr16_story_save43_evidence/progress/stdout.txt": {
+      "size": 57288,
+      "sha256": "68804f2925321f15cb9d8e6b629f8fc4c2af6aba8b6b814655acd1eda3a7f9e7"
+    },
+    "content/modernization/pr16_story_save43_evidence/save42-record-terminal.json": {
+      "size": 4185,
+      "sha256": "4c7255b8d5a5942443ec69e19c6d7aedb53e72a06dc039cc6242f5c95a5c4b66"
+    },
+    "content/modernization/pr16_story_save43_evidence/terminal.json": {
+      "size": 3431,
+      "sha256": "c661debbaf7b163335c1661bcf94c9d70ecfca2fd696997ef0a344b591a06ffa"
+    },
+    "content/modernization/pr16_story_save43_evidence/unit.stderr.txt": {
+      "size": 3533,
+      "sha256": "828493c876b354eb1ed3de0aeede1b461d85c969c8dddfa539c8c1249493b8fc"
+    },
+    "content/modernization/pr16_story_save43_evidence/verification.json": {
+      "size": 6646,
+      "sha256": "eb670432319b0b597b27507239ded063d36b5c2270236921ef253c8feab2215b"
+    }
+  },
+  "new_controller_tests": 16,
+  "new_acceptance_tests": 34,
+  "successful_native_processes": 2,
+  "record_native_processes": 0,
+  "next_goal_ja": "Save43 artifact11277619007のstory-fast.srm（80d9c9387937173a62283f1164cb6ff035ebd39eaa38f78a779da92691ae788f、131088bytes）だけから再開。map3/44・39,12西/上段elevation4・party4/RP0・14264円・badge1・story4071=9/4072=1。主力HP314/354、全PP[0,0,0,0]。trainer114ショウダイの4体へ通常勝利し468円/physicalflag1394だけを追加、Save43/独立Continueを限定受入。次は通常戦闘へ進む前に既存Bagと通常回復地点を確認する。既存のPP回復用品があれば通常BagUIで使用し、なければ静的地形とtrainer視線を照合し通常回復地点へ向かう有限候補を作る。host補充、負けによる回復の暗黙選択、全PP0の旧技選択loopはしない。回復後の未完候補は39,12→38,12→37,12→37,13から西上段、26,10→26,11→26,12の下り階段。今回39,12以西/下り階段は未到達。保存済1440地形/既存ownerを再利用し未知scriptだけ調べる。170/cold13入力・90画面・16controller/34受入試験を無影響再走しない。64〜68実menu0→4、71〜82部分write、83counter43/安定Flash/文言空白→84成功文言→87field。全Save/RTC/cold RAM ledger一致。Save39旧cold RAM差owner未解明、Save40保存後parser回収、Save41/42のrecord失敗履歴を保持。通常story/正規全国図鑑/分離progression自然EXP・技習得・進化/Lucky Egg/12ケース/Lv100soak/研究施設自然到達は未完。trainer352未受入、HM05所持だけ。全story/一般CI全成功/製品release未完。clean-ROM二重生成/BPS固定、merge/release/baseline切替は別途所有者判断。既存ROM/runtime/inputはActions内入力のみ、新公開artifactは新save/画面/textだけ。",
+  "release_ready": false,
+  "active_baseline_changed": false,
+  "general_ci_all_success_claimed": false
+}

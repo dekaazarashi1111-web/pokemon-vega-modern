@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-504番道路47,13西・橋下から階段/橋上通過・Save42独立Continue受入。戦闘0/13796円/HP320/PP[1,5,0,0]。全国図鑑/自然成長/全storyは未完。
+504番道路39,12西/上段trainer114勝利・Save43独立Continue受入。14264円/HP314/PP[0,0,0,0]、次は通常回復。全国図鑑/自然成長/全story未完。
 
-**次: Save42 artifact11277536596のstory-fast.srm（c1959acc33cd7592ff4c3202e5fc5f4397215315127ebe257cd27486997aa144、131088bytes）だけから再開。map3/44（504番道路）・47,13西/橋上elevation4・party4/RP0・13796円・badge1・story4071=9/4072=1、HP320/354・PP[1,5,0,0]。橋下48,11から南通路、54,16→54,15階段→54,14上段、橋上49,13→48,13→47,13を通常通過し、Save42/独立Continueを限定受入。戦闘0。旧48,11→47,11は未通過のまま、今回再試行0。橋下/橋上の異なる高さを同じ経路にしない。次候補は47,13→46,13→46,12から上段を西へ。保存地形の42,12/37,13/34,13→33,13→31,13→30,10→26,10→26,11階段→26,12下段を候補とし、最初の新戦闘/event・未通過境界または通常回復地点で保存。保存済1440地形/既存ownerを再利用し、未知scriptだけ追加調査。PPはslot1残5/slot0残1を基準に通常技入力、host補充しない。今回103/cold13入力・57画面・16controller/30受入試験を無影響再走しない。30〜34実menu0→4、49は最終Flash一時一致/書込中、50counter42で再変化、51成功文言/安定全Flash→54field。今回全Save/RTC/cold RAM ledger一致。Save39旧cold RAM差owner未解明、Save40保存後parser failureの回収、Save41初回record guard failureを保持。残件: 通常story、正規全国図鑑解禁、分離progression自然EXP/技習得/進化、Lucky Egg/12ケース/Lv100soak、研究施設自然到達。trainer352未受入、HM05所持だけ・未習得/未使用。全story/一般CI全成功/製品release未完。clean-ROM二重生成/BPS固定、merge・release・baseline切替は別途所有者判断。既存ROM/runtime/inputはActions内入力のみ、新公開artifactは新save/画面/textだけ。**
+**次: Save43 artifact11277619007のstory-fast.srm（80d9c9387937173a62283f1164cb6ff035ebd39eaa38f78a779da92691ae788f、131088bytes）だけから再開。map3/44・39,12西/上段elevation4・party4/RP0・14264円・badge1・story4071=9/4072=1。主力HP314/354、全PP[0,0,0,0]。trainer114ショウダイの4体へ通常勝利し468円/physicalflag1394だけを追加、Save43/独立Continueを限定受入。次は通常戦闘へ進む前に既存Bagと通常回復地点を確認する。既存のPP回復用品があれば通常BagUIで使用し、なければ静的地形とtrainer視線を照合し通常回復地点へ向かう有限候補を作る。host補充、負けによる回復の暗黙選択、全PP0の旧技選択loopはしない。回復後の未完候補は39,12→38,12→37,12→37,13から西上段、26,10→26,11→26,12の下り階段。今回39,12以西/下り階段は未到達。保存済1440地形/既存ownerを再利用し未知scriptだけ調べる。170/cold13入力・90画面・16controller/34受入試験を無影響再走しない。64〜68実menu0→4、71〜82部分write、83counter43/安定Flash/文言空白→84成功文言→87field。全Save/RTC/cold RAM ledger一致。Save39旧cold RAM差owner未解明、Save40保存後parser回収、Save41/42のrecord失敗履歴を保持。通常story/正規全国図鑑/分離progression自然EXP・技習得・進化/Lucky Egg/12ケース/Lv100soak/研究施設自然到達は未完。trainer352未受入、HM05所持だけ。全story/一般CI全成功/製品release未完。clean-ROM二重生成/BPS固定、merge/release/baseline切替は別途所有者判断。既存ROM/runtime/inputはActions内入力のみ、新公開artifactは新save/画面/textだけ。**
 
-Save42の47,13橋上から西46,13→46,12へ。保存済地形で上段を西へ進む候補だけを選び、最初の新戦闘/event・未通過境界または通常回復地点で限定保存。旧48,11→47,11を再試行せず、既受入を無影響再走しない。
+Save43主力PP全0のため次戦闘の前に通常回復を優先。既存Bag/通常回復先を確認し、通常UIでの回復と保存を有限checkpointにする。host補充や旧入力反復をしない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `0dd57e34888b7d3de23bf5a42153a3f936a5f61d`。
-504橋下から階段・橋上の通常通過・Save42測定source。全国図鑑/自然成長/全story未完。
+証拠のsource HEAD: `7bccc0c52b4232e8c4f98a81e5ed86ff73c97c57`。
+504上段39,12でtrainer114通常勝利/Save43測定source。PP0/通常回復優先。全国図鑑/自然成長/全story未完。
 
 ## 最短の再開手順
 
@@ -25,10 +25,10 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_STORY_SAVE42_JA.md`
-- `content/modernization/pr16_story_save42_checkpoint.json`
-- `content/modernization/pr16_story_save42_visual_review.json`
-- `scripts/pr16_story_save42_accept.py`
+- `docs/PR16_STORY_SAVE43_JA.md`
+- `content/modernization/pr16_story_save43_checkpoint.json`
+- `content/modernization/pr16_story_save43_visual_review.json`
+- `scripts/pr16_story_save43_accept.py`
 - `content/modernization/pr16_story_save40_preparation.json`
 - `content/modernization/pr16_story_acceleration_checkpoint.json`
 - `docs/PR16_NATIONAL_DEX_OWNER_JA.md`
@@ -369,6 +369,7 @@ P08ゲート:
 - Save40の156/cold13入力83画面/13controller32受入を無影響再走しない。元run37129549744は保存Continue完了後の旧parser failureを保持しnative0で回収。30〜55はカメラ/live差を限定解釈、75counter40でも部分write→76成功/安定→80field。静的1440地形/11node再採取0。
 - Save41の77/cold13入力44画面/14controller26受入を無影響再走しない。58,10→56,10西段差は通過、48,11→47,11は3回未通過。17〜21実menu0→4、36counter41部分write→37成功/安定→41field。全SaveRTC/cold ledger一致。静的1440地形再採取0。
 - Save42の103/cold13入力57画面/16controller30受入を無影響再走しない。橋下→54,15階段→上段→橋上48,13→西47,13を通過。旧48,11→47,11は未通過のまま再試行0。30〜34実menu0→4、49最終Flash一時一致/50counter42再変化→51成功/安定→54field。全SaveRTC/cold ledger一致。静的1440地形再採取0。
+- Save43の170/cold13入力90画面/16controller34受入を無影響再走しない。39,12でtrainer114の4体へ1勝/468円/flag1394のみ。全PP0、次は通常回復優先。64〜68実menu0→4、71〜82部分write→83counter43/安定Flash/空白→84成功文言→87field。全SaveRTC/cold ledger一致。38,12以西/下り階段未到達。
 
 ## 次セッションへ残す更新手順
 
