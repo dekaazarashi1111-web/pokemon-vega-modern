@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-西階段/動的8,5/7,5event/trainer360勝利/Save36・独立Continue受入。6,13南・13576円・HP320/PP[1,8,0,0]。洞窟出口未完。保存後parser failureは原本のまま。
+洞窟本区画南出口→map1/38・6,4西/Save37・独立Continue受入。本区画走破のmilestone完了。13576円・HP320/PP[1,8,0,0]。出口部屋から外/全国図鑑/自然成長/全storyは未完。
 
-**次: Save36 artifact11274556304のstory-fast.srm（572b1816442da3ace4442b53167c59ae4e61aece80010a7bc17f291d8992f12c、131088bytes）だけから再開。map1/73・6,13南・party4/RP0・13576円・badge1・story4071=8/4072=1・flag4367/4368/4369=1。西岩階段/動的8,5/7,5event/trainer360の通常勝利/Save36・独立Continueまで限定受入。ミュウツーHP320/354・PP[1,8,0,0]。はどうだん4選択で5PP消費、最後のポリゴンのプレッシャーを区別。4体撃破/448円報酬。host回復/PP/flag/var注入禁止。次は6,13→6,14→6,15→6,16→6,17→6,18→6,19→5,19→4,19の出口候補。map1/38のwarp1は6,4、出口warp0は4,6→map3/21。実exitは未受入。flag4368/4369による敵NPC非表示は正規eventで保存。本原本227/cold13入力・114画面・全130memberを再生しない。run37125324369はnative2正常/保存完了後に旧Save21専用trace座標例外でfailure。失敗結論を保持し、新scoped parser/34受入で原本だけを回収。旧parser/旧受入は変更0。先行run37125164118は50入力20画面/native1・未保存のevent座標先行停止、旧13controller成功step継承/変更4controllerも原log継承。record native0・合計開発native3。107全Flash/108〜110保存成功文言/111field復帰/cold全SaveRTC一致。補助var4021=7→19のruntime owner未解決。trainer352、洞窟出口、正規全国図鑑、分離progression自然成長/進化、Lucky Egg/12ケース/Lv100soak、研究施設自然到達、全story、releaseは未完。洞窟出口を越えたら到達milestoneと残件を報告し全ゲーム完了とはしない。既存ROM/runtime/inputはActionsだけ、新公開artifactは新save/画面/textのみ。**
+**次: Save37 artifact11275371718のstory-fast.srm（7942159bf82220a864a128c66f97aa3da6e2558b0f3e8181d410a925e145a301、131088bytes）だけから再開。map1/38・6,4西・party4/RP0・13576円・badge1・story4071=8/4072=1、ミュウツーHP320/354・PP[1,8,0,0]。Save36の正規event/trainer360完了地点から洞窟本区画4,19→南出口部屋1/38へ通常warpし、Save37/独立Continueを限定受入。本区画走破のmilestoneは完了。外の503番道路への接続/全storyはまだ未受入。次は部屋6,4→6,5→5,5→4,5→4,6の通常出口候補。保存済map1/38 warp0は4,6→map3/21 warp1。必要なら既存のmap3/21 warp1保存ownerを照合し、未保存のtargetだけ限定採取する。host回復/PP/flag/var注入は禁止。受入済の西側event・trainer360・洞窟本区画・今回63/cold13入力33画面/12controller26受入を無影響再走しない。party600byte/Bag/13576円/PC/S61E/story値は不変、補助flag2056=0→1とvar4021=19→26/4022=0→2/404d=20→21だけ。runtime owner未解決。24のFlash一時一致/counter36を保存完了にせず、25のhash再差分、26〜29成功文言/安定全Flash、30field復帰/cold全SaveRTC一致を区別。残件は出口部屋→外の通常接続とその先のstory、正規全国図鑑解禁、分離progressionの自然EXP/技習得/進化、Lucky Egg/12ケース/Lv100soak、研究施設自然到達。trainer352は未受入だがこの正規出口経路を通るための追加勝利へ捏造せず、未実施のまま保持。HM05は所持のみで未習得/未使用、同じ拒否入力を反復しない。全story/一般CI全成功/製品releaseは未完。clean-ROM二重生成/BPS固定、merge・release・baseline切替は別途所有者判断の境界を保持。既存ROM/runtime/inputはActions内入力のみ、新公開artifactは新save/画面/textだけ。**
 
-Save36の6,13南から出口4,19→map1/38へ通常入力。227/cold13成功入力/旧受入の無影響再走禁止。洞窟出口と全story完了を区別。
+Save37南出口部屋から外の通常接続へ。本区画走破と全story完了を区別して到達milestone/残件を報告。既受入を無影響再走せず正規UIのみ。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `f4bc5af88aa4dec1e3fc2ccf34ff889d05df367f`。
-西側通路/7,5event/trainer360/Save36の保存完了source。runは保存後parser failureのまま原本回収。洞窟出口/全story未完。
+証拠のsource HEAD: `7e5bc03a76de3b99c4f999c05c9fcf48963b0044`。
+洞窟本区画南出口→map1/38・6,4/Save37測定source。本区画走破完了、出口部屋から外/全国図鑑/全story未完。
 
 ## 最短の再開手順
 
@@ -25,12 +25,13 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_STORY_SAVE36_JA.md`
-- `content/modernization/pr16_story_save36_checkpoint.json`
-- `content/modernization/pr16_story_save36_visual_review.json`
-- `scripts/pr16_story_save36_accept.py`
+- `docs/PR16_STORY_SAVE37_JA.md`
+- `content/modernization/pr16_story_save37_checkpoint.json`
+- `content/modernization/pr16_story_save37_visual_review.json`
+- `scripts/pr16_story_save37_measure.py`
 - `content/modernization/pr16_story_save32_preparation.json`
 - `content/modernization/pr16_story_acceleration_checkpoint.json`
+- `docs/PR16_NATIONAL_DEX_OWNER_JA.md`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -362,6 +363,7 @@ P08ゲート:
 - Save34の50/cold13入力・20画面・新14controller/24受入試験を無影響再走しない。北辺9,7→9,6の3回未通過を保持し反復しない。保存文言は未採取。全35member/独立Continueを保持。
 - Save35の115/cold13入力・60画面・28controller総数/新26受入を無影響再走しない。失敗2run合計native2と成功native2を分離。はどうだん選択2/ひるみ1/実PP消費1。西階段/8,5未到達。
 - Save36の227/cold13入力・114画面・13+4controller/34受入を無影響再走しない。run37125324369はnative正常保存後trace failureを保持し原本だけ回収。先行未保存native1と合計native3。4選択/Pressure実5PP消費、正規event4071=8/flag4368/4369だけ。
+- Save37の63/cold13入力・33画面・12controller/26受入を無影響再走しない。24Flash一時一致/counter36→25再差分→26安定/成功文言→30fieldを区別。本区画南出口は受入、外503接続/全story未完。
 
 ## 次セッションへ残す更新手順
 
