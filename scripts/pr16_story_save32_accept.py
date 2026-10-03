@@ -59,7 +59,7 @@ def boundary(before,after,cold,rom):
     need(changes==[(55,4,0),(86,68,66)] and identity(y)['sha256']==PARTY,'party差分はPP4→0とHP324→322だけ')
     modeled=bytearray(x)
     for expected,(pp,hp) in zip(PARTIES[1:],[(3,324),(3,322),(2,322),(1,322),(0,322)]):
-        modeled[55]=pp;struct.pack_into('<H',modeled,86,hp);need(identity(modeled)['sha256']==expected,'全中間partyを保存親から独立再構成')
+        modeled[55]=pp;struct.pack_into('<H',modeled,86,hp);need(identity(bytes(modeled))['sha256']==expected,'全中間partyを保存親から独立再構成')
     need(before[old[1]+52:old[1]+56]==after[new[1]+52:new[1]+56]==struct.pack('<I',4),'party4')
     bag_a,money_a=parent.shared.bag(before,old);bag_b,money_b=parent.shared.bag(after,new)
     need(bag_a==bag_b and (money_a,money_b)==(12712,13128),'Bag不変・通常報酬416円だけ')
