@@ -1,0 +1,58 @@
+name: pr16-story-save25
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-story-save25.yml]
+permissions:
+  contents: read
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-story-save25
+  cancel-in-progress: false
+defaults:
+  run:
+    shell: bash
+jobs:
+  continuation:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.run_attempt == 1
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+      PR16_SAVE25_CALIBRATION: .local/pr16-save25-calibration
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 4
+      - name: Read saved screen references without native replay
+        run: |
+          python3 -B - <<'PY'
+          import sys,pathlib
+          sys.path.insert(0,'scripts')
+          import pr16_story_after_maori_measure as t
+          _,z=t.archive(11076499444,36668710078,dict(size=17940588,sha256='43a9676c164ba2716366dd351ef1f2a973a115e92cce183ac14a8a8f6f1dcbb5'),'8c6f51827d3d51a1f2f25b4444f6103496d2ecba')
+          p=pathlib.Path('.local/pr16-save25-calibration');p.mkdir(parents=True)
+          with z:
+              for n in (0,6,7,10,11,56,69):
+                  name=f'screen-{n:04d}.ppm';(p/name).write_bytes(z.read('progress/'+name))
+          PY
+      - name: New screen-aware controller contracts and source guard
+        run: |
+          set -euo pipefail
+          python3 -B -m unittest discover -s tests -p test_pr16_story_save25_measure.py -v
+          python3 -B -c "import sys; sys.path.insert(0,'scripts'); import pr16_story_save25_measure as m; import pr16_learnset_runtime_record as g; g.START=m.BASE; g.CODE=m.CODE; g.OWNED=set(); g.guard()"
+      - name: One new east battle Save25 and independent Continue only
+        run: python3 -B scripts/pr16_story_save25_measure.py
+      - name: Lightweight task graph
+        run: python3 -B scripts/validate_task_graph.py --check
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-story-save25-checkpoint
+          path: .local/pr16-story-save25/artifact
+          include-hidden-files: true
+          retention-days: 90
+          if-no-files-found: error
