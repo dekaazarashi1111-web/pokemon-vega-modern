@@ -1,0 +1,685 @@
+{
+  "status": "PASS_EAST_TRAINER_OWNERS_PP_TERRAIN_STATIC_ONLY",
+  "trainers": [
+    {
+      "local_id": 5,
+      "xy": [
+        33,
+        7
+      ],
+      "script": 154601832,
+      "trainer_id": 351,
+      "graph": {
+        "root_count": 1,
+        "unique_root_address_count": 1,
+        "visited_script_count": 2,
+        "nodes": [
+          {
+            "address": 136398499,
+            "end_reason": "end",
+            "instruction_count": 3,
+            "edges": [],
+            "roots": [
+              "cave-east-5"
+            ]
+          },
+          {
+            "address": 154601832,
+            "end_reason": "goto",
+            "instruction_count": 2,
+            "edges": [
+              136398499
+            ],
+            "roots": [
+              "cave-east-5"
+            ]
+          }
+        ],
+        "references": [
+          {
+            "category": "trainer",
+            "value": 351,
+            "access": "battle",
+            "instruction_address": 154601832,
+            "opcode": 92,
+            "command": "trainerbattle",
+            "battle_type": 0,
+            "script_address": 154601832,
+            "roots": [
+              "cave-east-5"
+            ]
+          }
+        ],
+        "diagnostics": []
+      }
+    },
+    {
+      "local_id": 6,
+      "xy": [
+        30,
+        13
+      ],
+      "script": 154601860,
+      "trainer_id": 352,
+      "graph": {
+        "root_count": 1,
+        "unique_root_address_count": 1,
+        "visited_script_count": 2,
+        "nodes": [
+          {
+            "address": 136398522,
+            "end_reason": "end",
+            "instruction_count": 3,
+            "edges": [],
+            "roots": [
+              "cave-east-6"
+            ]
+          },
+          {
+            "address": 154601860,
+            "end_reason": "goto",
+            "instruction_count": 2,
+            "edges": [
+              136398522
+            ],
+            "roots": [
+              "cave-east-6"
+            ]
+          }
+        ],
+        "references": [
+          {
+            "category": "trainer",
+            "value": 352,
+            "access": "battle",
+            "instruction_address": 154601860,
+            "opcode": 92,
+            "command": "trainerbattle",
+            "battle_type": 0,
+            "script_address": 154601860,
+            "roots": [
+              "cave-east-6"
+            ]
+          }
+        ],
+        "diagnostics": []
+      }
+    },
+    {
+      "local_id": 7,
+      "xy": [
+        21,
+        17
+      ],
+      "script": 154601888,
+      "trainer_id": 353,
+      "graph": {
+        "root_count": 1,
+        "unique_root_address_count": 1,
+        "visited_script_count": 2,
+        "nodes": [
+          {
+            "address": 136398545,
+            "end_reason": "end",
+            "instruction_count": 3,
+            "edges": [],
+            "roots": [
+              "cave-east-7"
+            ]
+          },
+          {
+            "address": 154601888,
+            "end_reason": "goto",
+            "instruction_count": 2,
+            "edges": [
+              136398545
+            ],
+            "roots": [
+              "cave-east-7"
+            ]
+          }
+        ],
+        "references": [
+          {
+            "category": "trainer",
+            "value": 353,
+            "access": "battle",
+            "instruction_address": 154601888,
+            "opcode": 92,
+            "command": "trainerbattle",
+            "battle_type": 0,
+            "script_address": 154601888,
+            "roots": [
+              "cave-east-7"
+            ]
+          }
+        ],
+        "diagnostics": []
+      }
+    }
+  ],
+  "party": [
+    {
+      "slot": 0,
+      "species": 150,
+      "moves": [
+        600,
+        366,
+        53,
+        58
+      ],
+      "pp": [
+        1,
+        14,
+        5,
+        5
+      ],
+      "hp": [
+        324,
+        354
+      ]
+    },
+    {
+      "slot": 1,
+      "species": 850,
+      "moves": [
+        337,
+        89,
+        280,
+        332
+      ],
+      "pp": [
+        15,
+        10,
+        15,
+        20
+      ],
+      "hp": [
+        294,
+        294
+      ]
+    },
+    {
+      "slot": 2,
+      "species": 151,
+      "moves": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pp": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "hp": [
+        342,
+        342
+      ]
+    },
+    {
+      "slot": 3,
+      "species": 690,
+      "moves": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pp": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "hp": [
+        300,
+        300
+      ]
+    }
+  ],
+  "route": [
+    [
+      31,
+      4
+    ],
+    [
+      31,
+      5
+    ],
+    [
+      31,
+      6
+    ],
+    [
+      31,
+      7
+    ],
+    [
+      31,
+      8
+    ],
+    [
+      31,
+      9
+    ],
+    [
+      31,
+      10
+    ],
+    [
+      31,
+      11
+    ],
+    [
+      31,
+      12
+    ],
+    [
+      32,
+      12
+    ],
+    [
+      33,
+      12
+    ],
+    [
+      34,
+      12
+    ],
+    [
+      34,
+      13
+    ],
+    [
+      34,
+      14
+    ],
+    [
+      34,
+      15
+    ],
+    [
+      33,
+      15
+    ],
+    [
+      32,
+      15
+    ],
+    [
+      31,
+      15
+    ],
+    [
+      30,
+      15
+    ],
+    [
+      29,
+      15
+    ],
+    [
+      28,
+      15
+    ],
+    [
+      27,
+      15
+    ],
+    [
+      26,
+      15
+    ],
+    [
+      25,
+      15
+    ],
+    [
+      24,
+      15
+    ],
+    [
+      23,
+      15
+    ],
+    [
+      23,
+      14
+    ],
+    [
+      23,
+      13
+    ],
+    [
+      22,
+      13
+    ],
+    [
+      21,
+      13
+    ],
+    [
+      20,
+      13
+    ],
+    [
+      19,
+      13
+    ],
+    [
+      19,
+      14
+    ]
+  ],
+  "terrain": [
+    {
+      "xy": [
+        31,
+        4
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 8
+    },
+    {
+      "xy": [
+        31,
+        5
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 8
+    },
+    {
+      "xy": [
+        31,
+        6
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 8
+    },
+    {
+      "xy": [
+        31,
+        7
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 8
+    },
+    {
+      "xy": [
+        31,
+        8
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 8
+    },
+    {
+      "xy": [
+        31,
+        9
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 8
+    },
+    {
+      "xy": [
+        31,
+        10
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 8
+    },
+    {
+      "xy": [
+        31,
+        11
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 8
+    },
+    {
+      "xy": [
+        31,
+        12
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 8
+    },
+    {
+      "xy": [
+        32,
+        12
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 8
+    },
+    {
+      "xy": [
+        33,
+        12
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 8
+    },
+    {
+      "xy": [
+        34,
+        12
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 43
+    },
+    {
+      "xy": [
+        34,
+        13
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 8
+    },
+    {
+      "xy": [
+        34,
+        14
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 8
+    },
+    {
+      "xy": [
+        34,
+        15
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 8
+    },
+    {
+      "xy": [
+        33,
+        15
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 8
+    },
+    {
+      "xy": [
+        32,
+        15
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 8
+    },
+    {
+      "xy": [
+        31,
+        15
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 8
+    },
+    {
+      "xy": [
+        30,
+        15
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 8
+    },
+    {
+      "xy": [
+        29,
+        15
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 8
+    },
+    {
+      "xy": [
+        28,
+        15
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 8
+    },
+    {
+      "xy": [
+        27,
+        15
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 43
+    },
+    {
+      "xy": [
+        26,
+        15
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 43
+    },
+    {
+      "xy": [
+        25,
+        15
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 43
+    },
+    {
+      "xy": [
+        24,
+        15
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 8
+    },
+    {
+      "xy": [
+        23,
+        15
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 8
+    },
+    {
+      "xy": [
+        23,
+        14
+      ],
+      "elevation": 0,
+      "collision": 0,
+      "behavior": 42
+    },
+    {
+      "xy": [
+        23,
+        13
+      ],
+      "elevation": 4,
+      "collision": 0,
+      "behavior": 8
+    },
+    {
+      "xy": [
+        22,
+        13
+      ],
+      "elevation": 4,
+      "collision": 0,
+      "behavior": 8
+    },
+    {
+      "xy": [
+        21,
+        13
+      ],
+      "elevation": 4,
+      "collision": 0,
+      "behavior": 8
+    },
+    {
+      "xy": [
+        20,
+        13
+      ],
+      "elevation": 4,
+      "collision": 0,
+      "behavior": 8
+    },
+    {
+      "xy": [
+        19,
+        13
+      ],
+      "elevation": 4,
+      "collision": 0,
+      "behavior": 8
+    },
+    {
+      "xy": [
+        19,
+        14
+      ],
+      "elevation": 4,
+      "collision": 0,
+      "behavior": 0
+    }
+  ],
+  "native_processes": 0,
+  "accepted_case_reruns": 0,
+  "accepted_test_reruns": 0,
+  "rom_changes": 0,
+  "save_changes": 0,
+  "trainer_victories_accepted": 0,
+  "teleport_accepted": false,
+  "cave_crossing_complete": false,
+  "release_ready": false
+}
