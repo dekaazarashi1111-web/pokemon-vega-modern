@@ -11789,3 +11789,17 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 測定source=7bfc8f61d793c5533c0e6aed3e75dadd178fbac3、記録source=5803a1894ce67270c32e923ececf539d589ee653・run=37146098901。scoped guard/task graph/resume後に同branch非force pushと全text読戻し。
 - Network: 同repo GitHub/Actionsのみ。既存ROM/runtime/input非再配布。旧失敗・未解明差保持。一般CI既知source不一致/action_requiredは全成功としない。merge/release/baseline変更0。
 - Next: Save51 artifact11281768926のstory-fast.srm（131088bytes/SHA256 8661346e2de9bc73fc61d5a63af5bd6acd10008486b54c66c9459820a5447d65）だけから再開。505番道路22,18→新27歩/高台東階段→31,24南/高度3でワタミのsingle戦1勝、通常Save51/独立Continue全SaveRTC一致を限定受入。party4/RP0/17040円/badge1/story4071=9/4072=1。オノノクスHP294/294・PP[11,10,15,14]、ミュウツーHP50/354・PP全0、他2体技ID全0。正常回復が最優先。保存済みroute index84から残20歩と南connection→map3/2の28,0が候補。28,27/29,27の未戦闘trainerの視界を避けられるか、保存済みterrain/graphと必要な未読object属性だけで確認してから進む。最初の新戦闘/event/未通過境界/接続/実回復で保存。新controllerは選択とtargetを分離しSave50実PPへ再束縛、今回はsingleなので選択4/target0/実PP4だけをnative確認、次回実PP14へ再束縛。ダブルtarget分離native未実証。42/63RAMledgerとaux4021=37→63のowner未解明。90安定Flash/counter51→91成功文言→94fieldを分離。原本184+cold13入力97画面/22controller44受入/112memberを無影響再走0。旧Save50 raw6/実PP2・partybyte41/旧ledger差、旧失敗を保持。全国図鑑/全story/自然育成・進化/LuckyEgg/研究施設自然到達未完。ROM/host補充/故意全滅/merge/release/baseline切替なし。既存ROM/runtime/inputはActions入力専用。一般CI既知source不一致/action_requiredを全成功にしない。
+
+## 2026-10-03T19:16:11+00:00
+- Timestamp: 2026-10-03T19:16:11+00:00
+- Task: USER-20261003-ROUTE505-SAVE52 / 505番道路ペア迂回・ミルシティ接続・Save52
+- Version: story-miru-city-save52-v1
+- Status: DONE（20歩/南接続/保存/独立Continue限定受入。回復未完）
+- Summary: 31,24→20歩→28,39→ミルシティmap3/2の28,0南。戦闘0/HP/PP不変、17040円。オノノクスHP294/294・PP[11,10,15,14]、ミュウツーHP50/354・PP全0。
+- Files changed: Save52 inspect/measure/18新controller・39新受入拒否/record workflow、checkpoint/text証跡、固定再開MD/JSON、両ログ。
+- Verify: run37146655614/job111271886470全8step成功、94/cold13入力52画面67member。18controller原log継承、新39受入、record native0。ダブルtarget分離native未実証を保持。
+- Evidence: party全600byte不変。新接続physicalflag2194、vars4021/4022/40AEとcold RAMledger差owner未解明。33〜42/44部分write、43一時最終hash一致counter51→44counter52再差分→45成功→49field。42checksum/旧bank57344byte/7025byte1743範囲/cold全SaveRTC一致。
+- Reuse: 保存済terrain/map/scripts再採取0。未読2object属性16byteだけread-only採取し原本zip全byte結合。移動範囲/全方向視界を過大近似してペアを回避、草地4cellで遭遇0。
+- Commit: 測定source=2d43764b9253f306dcb8abcd23e040e7cecbd85f、記録source=9e4b701087c609141774a6a746b96bdc1aeede66・run=37147254753。scoped guard/task graph/resume後に同branch非force pushと全text読戻し。
+- Network: 同repo GitHub/Actionsのみ。既存ROM/runtime/input非再配布。旧失敗・未解明差保持。一般CI既知source不一致/action_requiredは全成功としない。merge/release/baseline変更0。
+- Next: Save52 artifact11282311020のstory-fast.srm（131088bytes/SHA256 f3fc9b1d3121b049900defb5c2f031a0b397a10b34fa3464d51f355a87833028）だけから再開。505の未戦闘ペアを視界過大近似の外側で迂回、20歩+南connectionを戦闘0で通過しミルシティmap3/2の28,0南/高度3へ到着。通常Save52/独立Continue全SaveRTC一致を限定受入。party全600byte/HP/PP/Bag/17040円/RP0/badge1/story4071=9/4072=1不変。オノノクスHP294/294・PP[11,10,15,14]、ミュウツーHP50/354・PP全0、他2体技ID全0。正常回復が最優先。保存済みtown collision/map/warpsから回復施設のowner・必要経路高度・必要eventだけ読取し、通常入口/会話/回復を目指す。最初の新story/event/未通過境界/新建物/実回復で保存、必須story省略なし。town新接続flag2194とaux4021=63→84/4022=0→1/40AE=91→80、およびcold RAMledger差のowner未解明を保持し次の限定調査で確認。progress ledger3c7c0390…は不変、cold def3a8d7…は別hash、全Save一致と混同しない。43最終Flash一時一致counter51→44counter52再差分→45成功/安定→49field。原本94+cold13入力52画面/18controller39受入/67memberを無影響再走0。doubletarget分離native未実証、旧失敗・Save50raw6/実PP2/partybyte41・旧ledger差は保持。全国図鑑/全story/自然育成・進化/LuckyEgg/研究施設自然到達未完。ROM/host補充/故意全滅/merge/release/baseline切替なし。既存ROM/runtime/inputはActions入力専用。一般CI既知source不一致/action_requiredを全成功にしない。
