@@ -11496,3 +11496,17 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 測定source=5518bc514b00151d4bd55dbd1baf66b3ca05dd04、記録source=34f54573124705f69963d7f6345f9ba7a472838e・run=37120155157。scoped guard/task graph/resume後に同branch非force pushし全text読戻し。
 - Network: 同repo GitHub/Actions原本だけ。既存ROM/runtime/input Save29の再配布0。一般CI既知source不一致を保持、merge/release/baseline変更0。
 - Next: Save30 artifact11273101471のstory-fast.srm（cb22ab0344990a51ef40d01e4049e8976a65340e629eaef2b390b6ce5f80d70b、131088bytes）だけから再開。map1/73・13,6南・party4/RP0・12712円・badge1・story4071=6/4072=1。正規岩階段13,5を通常通過し下層13,6のSave30/独立Continueを受入。次は下層から南のcoord11〜16,14へ進み、正規owner0x08214656によるflag4367/var4071=7を通常入力で観測する。保存済みlower_corridor_terrainでは13,6→13,7→14,7→14,8の南にbehavior59境界14,9がある。衝突bitだけで到達不能と断定せず、通常入力と画面で境界を確認する。ミュウツーHP324/PP[1,14,0,4]、オノノクスHP294/PP[15,10,15,20]は不変。今回戦闘0。火炎放射PP0を使わずhost回復/flag/var解禁は禁止。既存ROM/runnerはSave24 artifact11263343138、runtime11263910704をActions入力だけ再利用し、新公開artifactは新save/画面/textだけ。46/cold13入力・18画面・新12controller/20受入試験、Save1〜29は無影響再走しない。補助var4021=87/4022=1のruntime ownerは未解決。trainer352/353、story flag4367、洞窟走破、HM05原因、全国図鑑、自然成長進化、全storyは未完。
+
+## 2026-10-03T11:51:33+00:00
+- Timestamp: 2026-10-03T11:51:33+00:00
+- Task: USER-20261003-CAVE-OWNER-SAVE31 / 南段差2辺と正規story解禁Save31
+- Version: story-cave-owner-save31-v1
+- Status: DONE（南段差/flag4367解禁/保存限定。洞窟走破/全国図鑑は未完）
+- Summary: Save30の13,6→14,8→14,10→14,12→14,14南。正規owner0x08214656のflag4367=1/var4071=7を通常Save31/独立Continueで受入。今回戦闘0、HP/PP/party全600byte不変。
+- Files changed: Save31 controller/12変更試験/24受入試験/record workflow、checkpoint/text証拠、固定再開MD/JSON、両ログ。
+- Verify: run37120372607/job111195148880全8step成功、52/cold13入力・22画面・全37member。Bag/legacyflags/PC/全国図鑑保持、S61E offset257だけ65→193＋CRC/complement。var4071=6→7、補助var4021は87→93/4022は1→2（補助owner未解決）。42checksum/6960byte差分/全SaveRTC保持。新12controller原本再利用、新24受入のみ実行してstderr全保存。counter31でも未完な観測17を保存成功にしない。record native0/ROM変更0/旧ゲーム再走0。
+- Failure: 初回record37120815549/job111196397968は入力環境名の旧Save29を原因としてsetUpClassでKeyError、Ran0/native0。stderr原artifact11273570337保持、入力名だけSave30へ修正して未実行24試験へ。ゲーム測定再走0。
+- History: Save29以前のnative/record失敗と試験証拠限界は保持。Save30記録run37120155157全11step終端を固定JSONへ反映。
+- Commit: 測定source=accd52953d20245894396a0444d39f56b8d78a35、記録source=c0327a3c9f0cf9940a7cb2b11c508c4ce87dd985・run=37120967764。scoped guard/task graph/resume後に同branch非force pushし全text読戻し。
+- Network: 同repo GitHub/Actions原本だけ。既存ROM/runtime/input Save30再配布0。一般CI既知source不一致を保持、merge/release/baseline変更0。
+- Next: Save31 artifact11273187310のstory-fast.srm（f0d2c1afb303390fb415e52090379a234a813f1bd7854ea77d92f5cb7b50ac2f、131088bytes）だけから再開。map1/73・14,14南・party4/RP0・12712円・badge1・story4071=7/4072=1。南段差14,9/14,13を通常通過し、14,14のowner0x08214656でflag4367=1/var4071=7になった通常Save31と独立Continueを受入。次は14,14から南側通路を進み、洞窟全地形/obj/warpと新しいstory状態を固定ROMから照合して出口へ向かう。既存静的ownerでは19,14のteleport分岐はflag4367=1で8,10へ変わり、7,5のcoordはvar4071=7が発火条件。これらへの到達/発火/出口は未観測。保存済みlower_corridor_terrainはx8〜19/y4〜16だけ。範囲外を推測せず未読地形だけを採取して通常経路を決める。ミュウツーHP324/PP[1,14,0,4]、オノノクスHP294/PP[15,10,15,20]は不変。今回戦闘0。火炎放射PP0を使わずhost回復/flag/var解禁は禁止。既存ROM/runnerはSave24 artifact11263343138、runtime11263910704をActions入力だけ再利用し、新公開artifactは新save/画面/textだけ。52/cold13入力・22画面・新12controller/24受入試験、Save1〜30は無影響再走しない。補助var4021=93/4022=2のruntime ownerは未解決。trainer352/353、分岐先への実warp、洞窟走破、HM05原因、全国図鑑、自然成長進化、全storyは未完。

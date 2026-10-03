@@ -1,0 +1,283 @@
+{
+  "schema_version": 1,
+  "task": "USER-20261003-CAVE-OWNER-SAVE31",
+  "status": "PASS_CAVE_SOUTH_OWNER_SAVE31_SCOPED",
+  "measurement_source": "accd52953d20245894396a0444d39f56b8d78a35",
+  "run_id": 37120372607,
+  "job_id": 111195148880,
+  "artifact": {
+    "id": 11273187310,
+    "name": "pr16-story-save31-checkpoint",
+    "size_in_bytes": 166942,
+    "digest": "sha256:d5a5857b3fb520f5b12cd6825bf7d1760ac136dc35cc6d3cc021d3fd9a9938f3",
+    "workflow_run": {
+      "id": 37120372607,
+      "repository_id": 1358127462,
+      "head_repository_id": 1358127462,
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "accd52953d20245894396a0444d39f56b8d78a35"
+    },
+    "expires_at": "2027-01-01T11:39:50Z"
+  },
+  "verification": {
+    "status": "PASS_CAVE_SOUTH_OWNER_SAVE31_SCOPED",
+    "trainer_victories": 0,
+    "wild_victories": 0,
+    "escapes": 0,
+    "captures": 0,
+    "ordinary_saves": 1,
+    "save_counter": 31,
+    "map": [
+      1,
+      73
+    ],
+    "xy": [
+      14,
+      14
+    ],
+    "facing": 1,
+    "party_count": 4,
+    "rp": 0,
+    "ledge_observations": [
+      6,
+      9
+    ],
+    "story_coordinate_observation": 9,
+    "save_success_text_observation": 18,
+    "stable_field_observation": 19,
+    "partial_write_observations": [
+      14,
+      15,
+      16,
+      17
+    ],
+    "counter31_partial_write_observation": 17,
+    "progress_inputs": 52,
+    "continue_inputs": 13,
+    "screen_count": 22,
+    "native_processes": 2,
+    "record_native_processes": 0,
+    "accepted_case_reruns": 0,
+    "accepted_test_reruns": 0,
+    "compiles": 0,
+    "rom_changes": 0,
+    "fixture_writes": 0,
+    "hm05_taught_or_used": false,
+    "trainer352_accepted": false,
+    "trainer353_accepted": false,
+    "teleport_accepted": false,
+    "cave_crossing_complete": false,
+    "south_ledges_accepted": true,
+    "story_flag4367_accepted": true,
+    "national_dex_unlocked": false,
+    "natural_growth_accepted": false,
+    "natural_evolution_accepted": false,
+    "full_story_accepted": false,
+    "release_ready": false,
+    "boundary": {
+      "party_changes": [],
+      "bag_unchanged": true,
+      "hm05_owned": true,
+      "money_before": 12712,
+      "money_after": 12712,
+      "legacy_flag_deltas": [],
+      "variable_deltas": [
+        [
+          16417,
+          87,
+          93
+        ],
+        [
+          16418,
+          1,
+          2
+        ],
+        [
+          16497,
+          6,
+          7
+        ]
+      ],
+      "auxiliary_var_deltas": [
+        [
+          16417,
+          87,
+          93
+        ],
+        [
+          16418,
+          1,
+          2
+        ]
+      ],
+      "story_variable_deltas": [
+        [
+          16497,
+          6,
+          7
+        ]
+      ],
+      "auxiliary_runtime_owners_resolved": false,
+      "old_bank_preserved_bytes": 57344,
+      "pc_preserved": true,
+      "story_extension": {
+        "payload_changes": [
+          [
+            257,
+            65,
+            193
+          ]
+        ],
+        "flag4367": [
+          0,
+          1
+        ],
+        "s61e_crc_and_complement_checked": true,
+        "all_other_expanded_payload_preserved": true
+      },
+      "s61e_crc_verified": true,
+      "sector_checksum_checks": 42,
+      "national_dex_magic": 0,
+      "national_var404e": 0,
+      "national_flag840": 0,
+      "story_vars": {
+        "4071": 7,
+        "4072": 1
+      },
+      "badge_count": 1,
+      "all_save_rtc_cold_identical": true,
+      "changed_bytes": 6960,
+      "changed_ranges": 1775
+    },
+    "input_save": {
+      "size": 131088,
+      "sha256": "cb22ab0344990a51ef40d01e4049e8976a65340e629eaef2b390b6ce5f80d70b"
+    },
+    "output_save": {
+      "size": 131088,
+      "sha256": "f0d2c1afb303390fb415e52090379a234a813f1bd7854ea77d92f5cb7b50ac2f"
+    },
+    "candidate": {
+      "size": 33554432,
+      "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+    }
+  },
+  "record_source": "c0327a3c9f0cf9940a7cb2b11c508c4ce87dd985",
+  "record_run_id": 37120967764,
+  "save31_accepted": true,
+  "south_ledges_accepted": true,
+  "visual_review": "content/modernization/pr16_story_save31_visual_review.json",
+  "source_bindings": {
+    ".github/workflows/pr16-story-save31-record.yml": {
+      "size": 2428,
+      "sha256": "95dc379f8b80aaf1e3a9ce5067e32b6237ec2e301460be8a657de2958fd2b832"
+    },
+    ".github/workflows/pr16-story-save31.yml": {
+      "size": 1624,
+      "sha256": "b7f761f4517821f63fefbc19df329206b68ed78f93b2f79ca9b4a737b9cb954c"
+    },
+    "content/modernization/pr16_story_save31_visual_review.json": {
+      "size": 3304,
+      "sha256": "8fda7fe3da8cc95a21be79e924bd886c84fbc40f9040c3a1e3ed990a5c033c04"
+    },
+    "scripts/pr16_story_save31_accept.py": {
+      "size": 9236,
+      "sha256": "a5d38f267eead7549eb49627649e66f239ce50928be657947b8532b73f25a3a5"
+    },
+    "scripts/pr16_story_save31_measure.py": {
+      "size": 13796,
+      "sha256": "d273ac5bd06891b5fee621b1f9bfca66d578c30ebbe0a51ba8f6f9b62ab03f6a"
+    },
+    "scripts/pr16_story_save31_record.py": {
+      "size": 16710,
+      "sha256": "319bc201c5093983509d0c878c8c9362279fd10ad73a922d7d094d426e7eec11"
+    },
+    "tests/test_pr16_story_save31_accept.py": {
+      "size": 3588,
+      "sha256": "176fbdd7345b71b6013345f659dde4a9d89301012a2d72e2b51a87a13008524c"
+    },
+    "tests/test_pr16_story_save31_measure.py": {
+      "size": 1406,
+      "sha256": "1690f3e1b4de01e7132bbb13ebe2c94c201987f3366aee8f4619622e3ea4ec3d"
+    }
+  },
+  "evidence_bindings": {
+    "content/modernization/pr16_story_save31_evidence/continue/commands.txt": {
+      "size": 25,
+      "sha256": "5aa3363ef7287a5fe371442e67ec861616823326b1d70e16730c34c4baab07a3"
+    },
+    "content/modernization/pr16_story_save31_evidence/continue/execution.json": {
+      "size": 548,
+      "sha256": "0d65dd5157a57d5487cf45c84f094d39eedf35489d08edc07c484ca87a55f09c"
+    },
+    "content/modernization/pr16_story_save31_evidence/continue/stderr.txt": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "content/modernization/pr16_story_save31_evidence/continue/stdout.txt": {
+      "size": 2103,
+      "sha256": "1e78f065a2d963c152003af8e7623d231dacdde0c83f5a675711c37f1745f394"
+    },
+    "content/modernization/pr16_story_save31_evidence/controller-test-receipt.json": {
+      "size": 1287,
+      "sha256": "9888e85350def84167c0c93eacc0dbc35b701cb06f5c7e3ec98dae6bec158724"
+    },
+    "content/modernization/pr16_story_save31_evidence/failed-record-terminal.json": {
+      "size": 4923,
+      "sha256": "cc8fb441fa68fbc5a2d5e02f9f368422a9efcde1e9d94e2e6336591744927950"
+    },
+    "content/modernization/pr16_story_save31_evidence/inspection.json": {
+      "size": 24342,
+      "sha256": "0afd217a80164bc6903a31d6ed3f58999ce13de1da4db0e55698f98e25a2e986"
+    },
+    "content/modernization/pr16_story_save31_evidence/manifest.json": {
+      "size": 4999,
+      "sha256": "61226f1e664cd3fd2f0a90c0b9095379933861d01ba9d2cb47d1a3da98cf40a4"
+    },
+    "content/modernization/pr16_story_save31_evidence/measurement.json": {
+      "size": 31606,
+      "sha256": "f1823b85a3aa3c29f59c5685cced07c30bb7f5dcd0091155307c7a4c0cde53a8"
+    },
+    "content/modernization/pr16_story_save31_evidence/progress/commands.txt": {
+      "size": 575,
+      "sha256": "32b7be55b7af72d1547f117beb76b8abec4f1efdbe7424d4bc2270d53fab72a0"
+    },
+    "content/modernization/pr16_story_save31_evidence/progress/execution.json": {
+      "size": 549,
+      "sha256": "deed36710dad32896a4339729e3c342226cdadd76d08594622cf8eb252a63a68"
+    },
+    "content/modernization/pr16_story_save31_evidence/progress/stderr.txt": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "content/modernization/pr16_story_save31_evidence/progress/stdout.txt": {
+      "size": 13864,
+      "sha256": "ba42a86052269e2c31d7cfe42729a08c97fc4059d98d66112a381ab26fea2136"
+    },
+    "content/modernization/pr16_story_save31_evidence/save30-record-terminal.json": {
+      "size": 4204,
+      "sha256": "685a42e7da61c4f960167d7df5af7eac79c2ab76d4a4167bbd23a787b980e7b2"
+    },
+    "content/modernization/pr16_story_save31_evidence/terminal.json": {
+      "size": 3451,
+      "sha256": "6ec579daa70be528c0cef7ecbef6c85fec45e8c09d3ac636755d493360b5cdbe"
+    },
+    "content/modernization/pr16_story_save31_evidence/unit.stderr.txt": {
+      "size": 2583,
+      "sha256": "43dd22c5e2bf905c1bdd1729dc8ba5e16e793decf25e55ffc1c7e1325e500add"
+    },
+    "content/modernization/pr16_story_save31_evidence/verification.json": {
+      "size": 2896,
+      "sha256": "9f2d16199a9ee2d43af3bfa0a2d98959f3d9f9c878c0f071a2fda2f29541abc7"
+    }
+  },
+  "new_controller_tests": 12,
+  "new_acceptance_tests": 24,
+  "failed_record_run": 37120815549,
+  "failed_record_tests_executed": 0,
+  "record_native_processes": 0,
+  "next_goal_ja": "Save31 artifact11273187310のstory-fast.srm（f0d2c1afb303390fb415e52090379a234a813f1bd7854ea77d92f5cb7b50ac2f、131088bytes）だけから再開。map1/73・14,14南・party4/RP0・12712円・badge1・story4071=7/4072=1。南段差14,9/14,13を通常通過し、14,14のowner0x08214656でflag4367=1/var4071=7になった通常Save31と独立Continueを受入。次は14,14から南側通路を進み、洞窟全地形/obj/warpと新しいstory状態を固定ROMから照合して出口へ向かう。既存静的ownerでは19,14のteleport分岐はflag4367=1で8,10へ変わり、7,5のcoordはvar4071=7が発火条件。これらへの到達/発火/出口は未観測。保存済みlower_corridor_terrainはx8〜19/y4〜16だけ。範囲外を推測せず未読地形だけを採取して通常経路を決める。ミュウツーHP324/PP[1,14,0,4]、オノノクスHP294/PP[15,10,15,20]は不変。今回戦闘0。火炎放射PP0を使わずhost回復/flag/var解禁は禁止。既存ROM/runnerはSave24 artifact11263343138、runtime11263910704をActions入力だけ再利用し、新公開artifactは新save/画面/textだけ。52/cold13入力・22画面・新12controller/24受入試験、Save1〜30は無影響再走しない。補助var4021=93/4022=2のruntime ownerは未解決。trainer352/353、分岐先への実warp、洞窟走破、HM05原因、全国図鑑、自然成長進化、全storyは未完。",
+  "release_ready": false,
+  "active_baseline_changed": false,
+  "general_ci_all_success_claimed": false
+}
