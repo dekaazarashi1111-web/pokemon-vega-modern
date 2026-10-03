@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-こころのやかたへ通常入館、新廊下8歩でSave56。map1/59・20,25北。次は未読階層から像の裏の紙へ。
+こころのやかた入口階13歩/野生1勝でSave57。19,13北。着地点warp不発を訂正し、次は有効階段30,10への残り経路。
 
-**次: Save56 artifact11284293358のstory-fast.srm（131088bytes/SHA256 cf11b02c2152e238bf0f56fd2dadc3b30038ea6c45b105ca616ad4dc2ce93386）だけから再開。map1/59・20,25北、こころのやかた入口階の未読階層手前。通常入館2歩/warpと館内8歩/戦闘0/Save56/独立Continueを限定受入。party600byteとHP288/294・PP[15,10,15,14]、ミュウツー全HP/PP、Bag/17904円/RP0/badge1/story4071=9/4072=1保持。次は北20,24の既読warp8→map1/60・warp5。未読map1/60と必要owner/最小地形を限定調査し、NPC依頼「奥のどうぞうの裏の紙」を目標に最初の新event/戦闘/未通過境界まで通常入力で進める。紙は未調査、Flash未使用/未習得、がくしゅうそうち未装備。2056flagのruntime ownerとaux4021/4022/404d未解明、2221は館map3 script setworldmapflag照合。過去RAM台帳/仲間offset41/40ac=16のowner未解明も保持。Save56のRAM台帳は全観測/cold77ccaa1d7ceee4a641d1094ab5b8f5caf44668ea125287542f3e2bed65a80e57。32/33最終似hashでも旧counter55/保存中→34counter56でhash再変化→35成功→38fieldを区別。70+cold13入力41画面57member/65新受入を無影響再走しない。初回20,32推測は実20,33で未保存停止した21入力6画面/native1を原本保持し、3影響試験だけ訂正。全国図鑑/全story/自然育成・進化/LuckyEgg/研究施設自然到達未完。既存ROM/runtime/input非再配布、host補充/回復再走/故意全滅/merge/release/baseline切替なし。一般CIの既知不一致とaction_requiredを全成功にしない。**
+**次: Save57 artifact11284919827のstory-fast.srm（131088bytes/SHA256 082a6789ed90223995bd007efaa43337c8aca352d85f1a33068a6fae11b1b9ca）だけから再開。map1/59・19,13北。通常13歩と野生バーニンLv9へ1勝、つばめがえし1回/PP14→13、HP288/294・ミュウツー全HP/PP・Bag/17904円/RP0/badge1/story4071=9/4072=1保持、Save57/独立Continueを限定受入。上階/像の紙は未到達。旧次工程20,24のwarp8は床behavior8上の着地点であり、通常北入力では発火しない。未保存失敗16入力3画面/native1/Save56全byte不変を保持し、同じ北歩行を繰り返さない。次は保存済pr16_story_save57_measure.ROUTEの19,13からの接尾辞を使い、北19,12→西7,12→南7,16→西5,16→北5,6→東28,6→南28,10→東30,10のbehavior108階段warp5→map1/60warp2へ通常入力。最初の新event/戦闘/未通過境界で保存する。到着候補32,10/33,10は未測定。像の紙ownerはmap1/60背景16,28/script149012422・item274だいじなふうしょ/setflag4383と静的照合済みだが取得は未受入。次階層warp31,21→map1/59の31,22は逆向き着地点と区別。27controller計28実行と51新受入、93+cold13入力53画面69memberを無影響再走0。RAMledgerは観測3で939b183a3db45a9fedd87e87814bbb94e1cd42a8510dc3d3083d0ce96d9ff1d4へ変化しowner未解明、全coldSaveRTC/全暗所field画面同一。45counter57でも部分write、46成功→50field。旧RAM/offset41/2056/aux4021/4022/404d/40acのowner未解明を保持。Flash未使用/未習得、がくしゅうそうち未装備。全国図鑑/全story/自然育成・進化/LuckyEgg/研究施設自然到達未完。既存ROM/runtime/input非再配布、host補充/回復再走/故意全滅/merge/release/baseline切替なし。一般CI既知不一致/action_requiredを全成功にしない。**
 
-Save56だけから、北20,24warp→未読map1/60・warp5の必要ownerを限定調査して通常進行。紙未調査を完了扱いしない。最初の新event/戦闘/未通過境界で保存し、既受入区間は再走しない。
+Save57だけから19,13以降の保存済ROUTE接尾辞へ。20,24の着地点を発火warpとして再走しない。有効階段30,10を目標に最初の新event/戦闘/未通過境界で保存。野生1勝/旧区間は再走しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `e622b26e0c00a1572e4d879c7ea0bb5c17ed0c01`。
-こころのやかた入館/新廊下Save56。次は未読階層から像の裏の紙へ。
+証拠のsource HEAD: `c246f9c79b3513f01f1dbe5a987b685f8653fddc`。
+館内13歩/新野生1勝/Save57。次は有効階段30,10への残り経路。上階/紙未到達。
 
 ## 最短の再開手順
 
@@ -25,12 +25,13 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_STORY_SAVE56_JA.md`
-- `content/modernization/pr16_story_save56_checkpoint.json`
-- `content/modernization/pr16_story_save56_visual_review.json`
-- `scripts/pr16_story_save56_accept.py`
-- `scripts/pr16_story_save56_measure.py`
-- `content/modernization/pr16_story_save56_evidence/inspection.json`
+- `docs/PR16_STORY_SAVE57_JA.md`
+- `content/modernization/pr16_story_save57_checkpoint.json`
+- `content/modernization/pr16_story_save57_visual_review.json`
+- `scripts/pr16_story_save57_accept.py`
+- `scripts/pr16_story_save57_measure.py`
+- `content/modernization/pr16_story_save57_evidence/inspection.json`
+- `content/modernization/pr16_story_save57_preparation.json`
 - `content/modernization/pr16_story_save56_preparation.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
@@ -384,6 +385,7 @@ P08ゲート:
 - Save54の66/cold13入力39画面・21controller43受入を無影響再走しない。室内4歩/通常受付/回復、戦闘0。party回復8byteのみ。RAM台帳は会話終了で変化しowner未解明、保存S61E不変。旧Save52 cold差ownerも未解明。
 - Save55の268/cold13入力139画面・21controller47受入を無影響再走しない。レンジャー331の6体/864円/がくしゅうそうち/flag4381。131counterは部分write、132安定でも保存中→133成功→136field。RAM台帳差とoffset41三件/aux40acのowner未解明。
 - Save56の70/cold13入力41画面57member/65受入を無影響再走しない。入館初回20,32推測は実20,33で停止21入力6画面、影響3試験だけ訂正。32/33最終似hashでも34再変化→35成功→38field。2056/aux3varと過去RAM/offset41のowner未解明。
+- Save57の93/cold13入力53画面69member/51受入を無影響再走しない。warp8の誤仮定は未保存16入力3画面/native1、影響3試験だけ訂正。野生1勝/PP14→13、45counter部分write→46成功→50field。紙/上階未到達、RAM台帳/aux owner未解明。
 
 ## 次セッションへ残す更新手順
 
