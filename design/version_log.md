@@ -8678,3 +8678,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: WIP85e1e7d2/45ccca9b/d9835626、記録source=1a842ee45ca361522fd4e6f6cee766df6534428e・run=37094105840。scoped final index/resume/task graph/diff確認後、同branch非force push、全text読戻し。
 - Network: GitHub connector/固定Actions原本のみ。地形一次照合 https://github.com/pret/pokefirered/blob/master/include/constants/metatile_behaviors.h 。一般CI旧capacity source不一致/action_requiredは成功へ読み替えず、旧受入を緩めない。merge/release/active baseline変更0。
 - Next: Save24 artifact11263343138のstory-fast.srm（42a5fd672e8be714d40720a9fa4fece27e53293c0b0ca49a2ed0696e206455a0、131088bytes）だけから再開。map1/73・31,4南・party4/RP0・12296円・badge1・var4071=6/4072=1。次は東側通路を南へ通常入力で進み、NPC/野生戦は通常UIで対処し次のSave/独立Continue境界へ。27,4→27,5は高さ3→4/北側進入不可なので旧11歩候補を再試行しない。岩階段23,14へ回り込む候補は未実測、19,14のcoordはflag4367で27,7/8,10へ分岐する。静的座標ownerは再利用し、敵trainer/script/進路と手持ちPPを保存候補から照合して入力を計画する。当回56/cold13入力・32+12+7/新24試験・Save1〜23/旧BP/P08は無影響に再走しない。teleport/洞窟走破/HM05原因/全国図鑑/自然成長進化/全storyは未完。hostによるstory/flag/var解禁禁止。
+
+## 2026-10-03T09:41:33+00:00
+- Timestamp: 2026-10-03T09:41:33+00:00
+- Task: USER-20261003-CAVE-TRAINER351-SAVE25 / 洞窟東通路trainer351とSave25
+- Version: story-cave-trainer351-save25-v1
+- Status: DONE（trainer1勝/保存限定。洞窟走破/全story未完）
+- Summary: 31,7の通常trainer351を火炎放射3回・交代取消2回で勝利、416円。通常Save25と独立Continueの全byte保持。新artifactはsave/画面/textだけ。
+- Files changed: 専用controller/18受入試験/record workflow、Save25正本とtext証拠、固定再開MD/JSON、両ログ。
+- Verify: run37112730069/job111173640445全8step成功、94/cold13入力、42画面、party差分PP1byte、旧bank/Bag/PC/S61E/全国図鑑保持、42checksum。準備6静的/16controller/7path試験原本再利用、新18受入試験だけ。record native0/ROM変更0/既受入再走0。run37112433649はruntime原本404/native0 failureのまま保存。
+- Commit: WIP1c7b23e4/25049912/61d71820、記録source=dbb50b3c13ce33d7a8576d9a24178af9e056a49a・run=37113873113。scoped guard/task graph/resume後、同branch非force pushと全text読戻し。
+- Network: 同repoのGitHub/Actions原本のみ。既存ROM/runtimeはActions入力として読取り、新規再配布0。一般CI旧capacity source不一致を成功とせず、merge/release/baseline変更0。
+- Next: Save25 artifact11270560918のstory-fast.srm（4a92a1d2a36c1b74fa7ba211a9b3a815d63c04582fd34b117a5c3af16828a68f、131088bytes）だけから再開。map1/73・31,7南・party4/RP0・12712円・badge1・story4071=6/4072=1。trainer351の通常勝利/416円/Save25/独立Continueは完了。次は東通路の31,8以南から進み、trainer352（30,13）/353（21,17）と岩階段23,14経由の正規teleportを通常入力で確認する。3root/6node・33点地形は静的候補だけで実通行受入ではない。ミュウツーPP[1,14,2,5]/HP324、オノノクスPP[15,10,15,20]/HP294。通常UIで残PPを扱い、host回復/flag/var解禁は禁止。既存候補ROM/runnerはSave24 artifact11263343138からActions内で読取専用再利用。旧runtime artifact10898620034は404で消失、保持済み11263910704のruntime/manifest.json全member/hashを照合して利用。新公開artifactには新save/画面/textだけを入れ、既存ROM/runner/runtime/入力Saveは再配布しない。94/cold13入力、16+7/新18試験、Save1〜24を無影響再走しない。teleport/洞窟走破/HM05原因/全国図鑑/自然進化/全storyは未完。
