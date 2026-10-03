@@ -1,0 +1,291 @@
+{
+  "schema_version": 1,
+  "task": "USER-20261003-ROUTE504-SAVE41",
+  "status": "PASS_ROUTE504_WEST_LEDGE_UNDERPASS_SAVE41_SCOPED",
+  "measurement_source": "8c012df44845e982acef17db79396be6dd03dc14",
+  "run_id": 37130788526,
+  "job_id": 111225303265,
+  "artifact": {
+    "id": 11277075434,
+    "name": "pr16-story-save41-checkpoint",
+    "size_in_bytes": 315975,
+    "digest": "sha256:ed8e6939b07adb649f61516fedbe5050a250d2f72875ac75014f7ac3781c129d",
+    "workflow_run": {
+      "id": 37130788526,
+      "repository_id": 1358127462,
+      "head_repository_id": 1358127462,
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "8c012df44845e982acef17db79396be6dd03dc14"
+    },
+    "expires_at": "2027-01-01T14:46:00Z"
+  },
+  "verification": {
+    "status": "PASS_ROUTE504_WEST_LEDGE_UNDERPASS_SAVE41_SCOPED",
+    "trainer_victories": 0,
+    "wild_victories": 0,
+    "escapes": 0,
+    "captures": 0,
+    "ordinary_saves": 1,
+    "save_counter": 41,
+    "map": [
+      3,
+      44
+    ],
+    "xy": [
+      48,
+      11
+    ],
+    "facing": 3,
+    "party_count": 4,
+    "rp": 0,
+    "west_ledge_accepted": true,
+    "west_ledge": [
+      [
+        58,
+        10
+      ],
+      [
+        56,
+        10
+      ]
+    ],
+    "unpassed_edge": [
+      [
+        48,
+        11
+      ],
+      [
+        47,
+        11
+      ]
+    ],
+    "unpassed_edge_attempts": 3,
+    "bridge_west_edge_passed": false,
+    "cave_crossing_complete": true,
+    "save_success_text_observation": 37,
+    "save_success_wording_observed": true,
+    "stable_full_flash_observation": 37,
+    "save_counter_changed_observation": 36,
+    "stable_field_observation": 41,
+    "partial_write_observations": [
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36
+    ],
+    "progress_inputs": 77,
+    "continue_inputs": 13,
+    "screen_count": 44,
+    "native_processes": 2,
+    "record_native_processes": 0,
+    "accepted_case_reruns": 0,
+    "accepted_test_reruns": 0,
+    "compiles": 0,
+    "rom_changes": 0,
+    "fixture_writes": 0,
+    "hm05_taught_or_used": false,
+    "trainer352_accepted": false,
+    "national_dex_unlocked": false,
+    "natural_growth_accepted": false,
+    "natural_evolution_accepted": false,
+    "full_story_accepted": false,
+    "release_ready": false,
+    "progress_ram_ledger": "7a0eb126f868227ffd18a5a2c776246c41194f69d437a834570c1964e4a5f117",
+    "cold_ram_ledger": "7a0eb126f868227ffd18a5a2c776246c41194f69d437a834570c1964e4a5f117",
+    "save39_cold_ram_difference_owner_resolved": false,
+    "boundary": {
+      "party_unchanged_bytes": 600,
+      "pp": [
+        1,
+        5,
+        0,
+        0
+      ],
+      "hp": [
+        320,
+        354
+      ],
+      "bag_unchanged": true,
+      "hm05_owned": true,
+      "money_before": 13796,
+      "money_after": 13796,
+      "physical_flag_deltas": [],
+      "variable_deltas": [
+        [
+          16417,
+          63,
+          75
+        ],
+        [
+          16418,
+          3,
+          0
+        ]
+      ],
+      "auxiliary_runtime_owners_resolved": false,
+      "s61e_payload_deltas": [],
+      "expanded_flags": {
+        "4367": 1,
+        "4368": 1,
+        "4369": 1,
+        "4370": 1
+      },
+      "old_bank_preserved_bytes": 57344,
+      "pc_preserved": true,
+      "s61e_crc_verified": true,
+      "sector_checksum_checks": 42,
+      "national_dex_magic": 0,
+      "national_var404e": 0,
+      "national_flag840": 0,
+      "story_vars": {
+        "4071": 9,
+        "4072": 1
+      },
+      "badge_count": 1,
+      "all_save_rtc_cold_identical": true,
+      "changed_bytes": 6866,
+      "changed_ranges": 1695
+    },
+    "input_save": {
+      "size": 131088,
+      "sha256": "cf8fc894e9542afbfa411db72f26411bec5dae3220bc8f8104cf71bfc109add1"
+    },
+    "output_save": {
+      "size": 131088,
+      "sha256": "a70b790da5894eac9f67e2a324c68e3513d86330491ef9451ffca06c792f0140"
+    },
+    "candidate": {
+      "size": 33554432,
+      "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+    }
+  },
+  "record_source": "75d5b04934121c7213db4760f4ece87078524a45",
+  "record_run_id": 37131494568,
+  "save41_accepted": true,
+  "west_ledge_accepted": true,
+  "bridge_west_edge_passed": false,
+  "cave_crossing_complete": true,
+  "visual_review": "content/modernization/pr16_story_save41_visual_review.json",
+  "source_bindings": {
+    ".github/workflows/pr16-story-save41-record.yml": {
+      "size": 2396,
+      "sha256": "0476988d0e7e95e79111bbd81979c97e415065b02eb6640993546ab0a4fce5ea"
+    },
+    ".github/workflows/pr16-story-save41.yml": {
+      "size": 1617,
+      "sha256": "4cf73b4d204355f9cbbcec1ca18af1766ffcf5e39e6b1069e7b5b6c6d2e20998"
+    },
+    "content/modernization/pr16_story_save41_visual_review.json": {
+      "size": 5696,
+      "sha256": "5e88bdb6c0387d6dbdb020d3dfe86ebf0f6c0c20147c36ad77c1e6701f1a684f"
+    },
+    "scripts/pr16_story_save41_accept.py": {
+      "size": 8599,
+      "sha256": "4bfaab03125ff8b0c79986e32ba4840c0a776026f2ae9472d46ffa11e37a0ccd"
+    },
+    "scripts/pr16_story_save41_measure.py": {
+      "size": 13848,
+      "sha256": "0a4d0e02f2ab167691b12f1ca6fb2b10414e6f9acbf47c7a3610ad6d08930e31"
+    },
+    "scripts/pr16_story_save41_record.py": {
+      "size": 17123,
+      "sha256": "f83b1a11f742ebf1dfd992df57ebc8f429e94439fa628be3e7c3ef16dcc70e80"
+    },
+    "tests/test_pr16_story_save41_accept.py": {
+      "size": 3573,
+      "sha256": "04876c63943f8e8758197813befbc462ce71b22ef77e7e862421578e09d78a04"
+    },
+    "tests/test_pr16_story_save41_measure.py": {
+      "size": 2104,
+      "sha256": "153512127ebcbe59b78b2ffaf922eadbc4c42ed4222fd27be2ec617605293040"
+    }
+  },
+  "evidence_bindings": {
+    "content/modernization/pr16_story_save41_evidence/continue/commands.txt": {
+      "size": 25,
+      "sha256": "5aa3363ef7287a5fe371442e67ec861616823326b1d70e16730c34c4baab07a3"
+    },
+    "content/modernization/pr16_story_save41_evidence/continue/execution.json": {
+      "size": 548,
+      "sha256": "93e695fee74522376b39576181d699f3a4ba4abc0604c9671698e0b1e1a76258"
+    },
+    "content/modernization/pr16_story_save41_evidence/continue/stderr.txt": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "content/modernization/pr16_story_save41_evidence/continue/stdout.txt": {
+      "size": 2103,
+      "sha256": "6ce145e9130c59c1429ba73262a3661b3c317cb3b7096a4471e1605e25cffccb"
+    },
+    "content/modernization/pr16_story_save41_evidence/controller-test-receipt.json": {
+      "size": 1329,
+      "sha256": "fb16100c6a778dcbd12b6883d95acaa0df3244ef3e36f11654ef76378851e24e"
+    },
+    "content/modernization/pr16_story_save41_evidence/first-record-failure.json": {
+      "size": 4699,
+      "sha256": "44b45bbc62e34b332cd23a549b8f8001b187926653e8b08164111147d7762f3f"
+    },
+    "content/modernization/pr16_story_save41_evidence/inspection.json": {
+      "size": 9303,
+      "sha256": "374e1e31bad7c7c12d1b38cef5dce77914d0cb4eb32e93e52e13424743af4a6f"
+    },
+    "content/modernization/pr16_story_save41_evidence/manifest.json": {
+      "size": 8035,
+      "sha256": "cd51228dd5261efca6d506e8ac52c6728679bad614ca3582c23de3984d5a35d7"
+    },
+    "content/modernization/pr16_story_save41_evidence/measurement.json": {
+      "size": 14910,
+      "sha256": "7878ac6d40deb75975f545cc66cba2c0a398f6b95950cc6cbd24ac257cd1950f"
+    },
+    "content/modernization/pr16_story_save41_evidence/progress/commands.txt": {
+      "size": 1035,
+      "sha256": "47c370564b7f04736392b2d4853b72b1a374a0f8cb85c12facd3a893d4a720f5"
+    },
+    "content/modernization/pr16_story_save41_evidence/progress/execution.json": {
+      "size": 549,
+      "sha256": "8e438f9114e9620fd36dbe77ca62c8bc70cf442063d470ea0e99ac24ac2e9759"
+    },
+    "content/modernization/pr16_story_save41_evidence/progress/stderr.txt": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "content/modernization/pr16_story_save41_evidence/progress/stdout.txt": {
+      "size": 27217,
+      "sha256": "b94bcbf99b6a138b2b9d21c17e543cf09dfa5f27fce5805c3782013a89d74cec"
+    },
+    "content/modernization/pr16_story_save41_evidence/save40-record-terminal.json": {
+      "size": 4182,
+      "sha256": "43ac9da9920b514cf3fd1e035c49918e7f3caa53b9675ddcd8954ce6a34a4ab9"
+    },
+    "content/modernization/pr16_story_save41_evidence/terminal.json": {
+      "size": 3444,
+      "sha256": "c5a6da61885dfb704bf89171705a527dac24e44f26c3edde0812de468b13de0f"
+    },
+    "content/modernization/pr16_story_save41_evidence/unit.stderr.txt": {
+      "size": 2715,
+      "sha256": "498014eaab24e180f8d329056d07dd6cf775590345eff2e73146ef8c75a53096"
+    },
+    "content/modernization/pr16_story_save41_evidence/verification.json": {
+      "size": 3023,
+      "sha256": "303ab480e7a6d47d0c76c86aeb9efab09b973aabc2da8c1ad4c628ed1aa276d5"
+    }
+  },
+  "new_controller_tests": 14,
+  "new_acceptance_tests": 26,
+  "successful_native_processes": 2,
+  "record_native_processes": 0,
+  "first_record_failure_run": 37131369405,
+  "next_goal_ja": "Save41 artifact11277075434のstory-fast.srm（a70b790da5894eac9f67e2a324c68e3513d86330491ef9451ffca06c792f0140、131088bytes）だけから再開。map3/44（504番道路）・48,11西・party4/RP0・13796円・badge1・story4071=9/4072=1、HP320/354・PP[1,5,0,0]。西段差58,10→56,10と橋下48,11までの通常移動、Save41/独立Continueを限定受入。戦闘0。48,11→47,11は3回未通過で反復しない。保存地形では48,11/12/13がelevation15の橋下、47,11は4であり単純BFSの高さ無視が誤候補だった。次は南48,12→48,13→48,14→48,15→49,15→50,15→50,16→51,16→52,16→53,16→54,16→54,15の階段behavior42/elevation0候補。54,14の上段elevation4や以西は静的候補で、実通過を先取りしない。橋の15は現在高度を保持し、階段0で高度を切り替える地形モデル候補を使う。全1440地形/既存ownerは原本を再利用。最初の新戦闘/event・未通過境界または通常回復地点で保存、PPをhost補充しない。77/cold13入力・44画面・14controller/26受入試験は無影響に再走しない。実menu cursor17〜21の0→4、36counter41は部分write、37成功文言/安定全Flash→41field。今回の進行最終/cold RAM ledgerと全Save/RTCは一致。Save39の旧cold RAM差owner未解明を保持。Save40の元parser failureは保存後回収済みで改作/再走しない。残件: 通常story、正規全国図鑑解禁、分離progression自然EXP/技習得/進化、Lucky Egg/12ケース/Lv100soak、研究施設自然到達。trainer352未受入、HM05所持だけ・未習得/未使用。全story/一般CI全成功/製品release未完。clean-ROM二重生成/BPS固定、merge・release・baseline切替は別途所有者判断。既存ROM/runtime/inputはActions内入力のみ、新公開artifactは新save/画面/textだけ。",
+  "release_ready": false,
+  "active_baseline_changed": false,
+  "general_ci_all_success_claimed": false
+}
