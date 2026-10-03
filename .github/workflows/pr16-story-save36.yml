@@ -26,12 +26,12 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 4
-      - name: New Save36 route and parent-state controller checks
+      - name: Four changed live-coordinate event-entry checks; inherit thirteen controller tests
         run: |
           set -euo pipefail
-          python3 -B -m unittest discover -s tests -p 'test_pr16_story_save36_measure.py' -v
+          python3 -B -m unittest discover -s tests -p 'test_pr16_story_save36_event_entry.py' -v
           python3 -B -c "import sys; sys.path.insert(0,'scripts'); import pr16_story_save36_measure as m; import pr16_learnset_runtime_record as g; g.START=m.BASE; g.CODE=m.CODE; g.OWNED=set(); g.guard()"
-      - name: New western staircase and opened tile event from Save35
+      - name: Recover unsaved event entry with scoped live-coordinate handling
         run: python3 -B scripts/pr16_story_save36_measure.py
       - name: Lightweight task graph
         run: python3 -B scripts/validate_task_graph.py --check

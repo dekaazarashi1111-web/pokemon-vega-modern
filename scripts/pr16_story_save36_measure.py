@@ -13,7 +13,7 @@ import pr16_story_save25_measure as m
 h=m.h
 BASE='1c81fecae954a634c764756f7b033b9f46944848'
 OUT=ROOT/'.local/pr16-story-save36';ART=OUT/'artifact';ASSETS=OUT/'private-inputs'
-CODE={'scripts/pr16_story_save36_measure.py','tests/test_pr16_story_save36_measure.py','.github/workflows/pr16-story-save36.yml'}
+CODE={'scripts/pr16_story_save36_measure.py','tests/test_pr16_story_save36_measure.py','tests/test_pr16_story_save36_event_entry.py','.github/workflows/pr16-story-save36.yml'}
 PP=[1,13,0,0]
 TRANSITION=134569577 # 失敗原本の16,5で観測した野生戦直前callbackだけ
 def event_input(o):
@@ -84,6 +84,12 @@ def battle(s):
         need(o['callback2'] in (m.FIELD,m.BATTLE,TRANSITION),'未知callbackは停止')
         s.step(*(((0,60),)if o['callback2']==TRANSITION else ((1,2),(0,180))))
     raise ValueError('有限戦闘上限。無条件再走禁止')
+def allowed_step(o,before,target):
+    if o['map']!=[1,73]:return False
+    if o['xy']in(before,target):return True
+    # 7,5の通常coord eventでは保存xyを7,10へ先行設定、live7,5から移動開始する。
+    return target==[7,5] and o.get('lock')==1 and o.get('callback2')==m.FIELD and o['xy']==[7,10] and o.get('live_xy')==[14,12]
+
 def progress(s):
     start(s.last);route=[ROUTE[0]];teleports=[]
     for before,target in zip(ROUTE,ROUTE[1:]):
@@ -93,7 +99,7 @@ def progress(s):
         for _ in range(3):
             o=s.step((direction(before,target),8),(0,48));attempts.append(len(s.observations)-1)
             allowed=[before,target]+([TELEPORT[1]]if target==TELEPORT[0]else [])
-            need(o['map']==[1,73] and o['xy']in allowed,'固定通常辺と保存ownerの戻り転送だけ')
+            need(allowed_step(o,before,target),'固定通常辺または実7,5のscript座標先行だけ')
             if target==TELEPORT[0] and o['xy']in TELEPORT:
                 for _ in range(16):
                     if o['callback2']==m.FIELD and o['lock']==0 and o['xy']==TELEPORT[1]:
@@ -150,6 +156,18 @@ def restore():
     need(identity((runtime/'lib/libmgba.so').read_bytes())==dict(size=1968536,sha256='0c87a12341640e6a2d325e59e76eb4b002947771ad4d8814b216e3b99817d68d'),'同一mGBA')
     return runtime
 
+def failed_original():
+    _,z=a.transport.archive(11275540121,37125164118,dict(size=123735,sha256='be3fad81683d211b407355fe08cbde50da5a59597a92fdce6041894d7afc85c6'),'2c0bb3de05948da5b47b943eeb0b62fab778a789')
+    with z:
+        manifest=json.loads(z.read('manifest.json'));need(len(manifest)==27 and set(z.namelist())==set(manifest)|{'manifest.json'},'失敗28member保全')
+        for n,b in manifest.items():need(identity(z.read(n))==b,'失敗member '+n)
+        trace=[json.loads(x)for x in z.read('progress/stdout.txt').decode().splitlines()];obs=[x for x in trace if 'observe'in x]
+        need(len(obs)==20 and obs[-1]['xy']==[7,10] and obs[-1]['live_xy']==[14,12] and obs[-1]['lock']==1,'event開始の保存座標先行')
+        need(all(x['flash_sha256']==a.FLASH and x['save_counter']==35 for x in obs) and trace[-1]['inputs']==50 and not any(n.endswith('.srm')for n in manifest),'新保存なし・未受入区間だけ変更して回復')
+    log=h.d.inputs.api('actions/jobs/111208868259/logs',True).decode().splitlines();tests=[x.split('Z ',1)[-1]for x in log if ' ... ok'in x and 'test_pr16_story_save36_measure.'in x]
+    need(len(tests)==13 and any('Ran 13 tests in 'in x for x in log),'不変13controllerの成功step継承')
+    return dict(run_id=37125164118,job_id=111208868259,source_head='2c0bb3de05948da5b47b943eeb0b62fab778a789',artifact_id=11275540121,conclusion='failure',native_processes=1,inputs=50,screen_count=20,save_completed=False,controller_tests_passed=13,controller_tests_replayed=0,test_lines=tests)
+
 def main():
     h.d.current();state=h.source_check();need(os.environ['GITHUB_RUN_ATTEMPT']=='1' and not OUT.exists(),'新区間初回のみ')
     protected=h.d.bindings(set(state['source_bindings'])|h.d.PROTECTED|CODE)
@@ -157,6 +175,7 @@ def main():
     try:
         write(ART/'save35-record-terminal.json',inherited.terminal(37125070319,'091d51ca2184ab1befb931ec804232a824e90eb1',111208592840,['success']*11))
         need(state['story_save35']['story_fast_save']==a.OUTPUT,'正式Save35親')
+        write(ART/'failed-original.json',failed_original())
         runtime=restore();seed=(ASSETS/'input.srm').read_bytes()
         inspection=inspect((ASSETS/'candidate.gba').read_bytes(),seed);write(ART/'inspection.json',inspection)
         s=Session(runtime,ASSETS/'candidate.gba',ASSETS/'runner',seed,ART/'progress');sessions.append(s)
