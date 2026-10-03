@@ -1,0 +1,130 @@
+name: pr16-bp-candidate-return-audit
+run-name: bffd candidate callback and facility return bytes; no native replay
+on:
+  workflow_dispatch:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-bp-candidate-return-audit.yml
+      - scripts/pr16_bp_candidate_return_audit.py
+      - tests/test_pr16_bp_candidate_return_audit.py
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: pr16-bp-candidate-return-audit
+  cancel-in-progress: false
+jobs:
+  audit:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Focused tests and current remote reconciliation
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-candidate-return-audit
+          mkdir -p "$out"
+          python3 -m unittest tests.test_pr16_bp_candidate_return_audit -v > "$out/unit.stdout" 2> "$out/unit.stderr"
+          python3 scripts/pr16_resume.py check > "$out/resume-before.json"
+          python3 - <<'PYCODE'
+          import json,os,pathlib,subprocess
+          repo=os.environ['GITHUB_REPOSITORY'];head=os.environ['GITHUB_SHA'];branch='codex/modernization-followup-20260908'
+          def api(path):return json.loads(subprocess.check_output(['gh','api','repos/'+repo+'/'+path]))
+          def small(row):return {k:row[k] for k in ('id','name','head_sha','path','status','conclusion','event')}
+          assert api('git/ref/heads/'+branch)['object']['sha']==head,'branch advanced'
+          pr=api('pulls/16');assert pr['state']=='open' and pr['draft'] and not pr['merged'] and pr['head']['sha']==head
+          rows={}
+          for name,expected in [('pr16-bp-battle-return.yml',34749370272),('pr16-bp-loss-return-owner.yml',34757633314)]:
+              r=api('actions/workflows/'+name+'/runs?branch=codex%2Fmodernization-followup-20260908&per_page=1')['workflow_runs']
+              assert len(r)==1 and r[0]['id']==expected and r[0]['status']=='completed','new result must be reconciled first'
+              rows[name]=small(r[0])
+          start='c25a9d97c916d33017531784df22e506b70c2745'
+          r=api('actions/runs?head_sha='+start+'&per_page=100');assert r['total_count']==len(r['workflow_runs'])
+          rows['entry_head_runs']=[small(v) for v in r['workflow_runs']]
+          rows.update(tested_head=head,entry_head=start,pr_open_draft=True,new_emulator_processes=0)
+          pathlib.Path('.local/pr16-bp-candidate-return-audit/actions-before.json').write_text(json.dumps(rows,sort_keys=True,indent=2)+'\n')
+          PYCODE
+      - name: Restore pinned compiler and unchanged Stage84 input
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-candidate-return-audit
+          bash infra/setup_github_actions.sh --install > "$out/toolchain.log" 2>&1
+          python3 scripts/modernization_final_integration.py prepare > "$out/stage84.json" 2> "$out/stage84.stderr"
+      - name: Restore pinned inputs and character map
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-candidate-return-audit
+          assets=.local/pr16-bp-trial-native-inputs
+          mkdir -p "$assets"
+          tag=$(python3 -c 'import json; print(json.load(open("config/github_private_environment.json"))["release"]["tag"])')
+          gh release download "$tag" --pattern pokemon-vega-private-env-v1-inputs.zip --pattern pokemon-vega-private-env-v1-modernization-inputs.zip --pattern pokemon-vega-private-env-v1-state.zip --dir "$assets"
+          python3 scripts/github_private_environment.py restore --archive-dir "$assets" --archive pokemon-vega-private-env-v1-inputs.zip --archive pokemon-vega-private-env-v1-modernization-inputs.zip > "$out/private-restore.json"
+          python3 - <<'PY'
+          import hashlib,json,pathlib,zipfile
+          root=pathlib.Path('.');cfg=json.loads((root/'config/github_private_environment.json').read_bytes())
+          name='pokemon-vega-private-env-v1-state.zip';bound=next(a for a in cfg['archives'] if a['name']==name)
+          archive=root/'.local/pr16-bp-trial-native-inputs'/name;raw=archive.read_bytes()
+          assert len(raw)==bound['size'] and hashlib.sha256(raw).hexdigest()==bound['sha256']
+          member='vendor/upstream/CFRU-JP/charmap.tbl'
+          with zipfile.ZipFile(archive) as z:data=z.read(member)
+          path=root/member;assert not any(p.is_symlink() for p in (path,*path.parents))
+          if path.exists():assert path.read_bytes()==data
+          else:path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes(data);path.chmod(0o444)
+          (root/'.local/pr16-bp-candidate-return-audit/charmap-binding.json').write_text(json.dumps({'archive_sha256':bound['sha256'],'member':member,'size':len(data),'sha256':hashlib.sha256(data).hexdigest()},sort_keys=True)+'\n')
+          PY
+      - name: Rebuild exact candidate parents without historical native case replay
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-candidate-return-audit
+          python3 scripts/pr16_p07_preserved_layer.py > "$out/p07.stdout" 2> "$out/p07.stderr"
+          python3 scripts/pr16_evolution_learning_repair.py > "$out/repair.stdout" 2> "$out/repair.stderr"
+      - name: Audit candidate bytes and rooted script without emulator
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-candidate-return-audit
+          python3 scripts/pr16_bp_chooser_successor.py > "$out/candidate-build.stdout" 2> "$out/candidate-build.stderr"
+          python3 scripts/pr16_bp_candidate_return_audit.py > "$out/audit.stdout" 2> "$out/audit.stderr"
+          git diff --exit-code
+      - name: Bounded UTF-8 evidence only
+        id: guard
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PYCODE'
+          import hashlib,json,pathlib,re,subprocess
+          out=pathlib.Path('.local/pr16-bp-candidate-return-audit');bound={}
+          # Save current selected tracked text for byte-exact followup; no private source tree.
+          sources=['scripts/build_battle_core.py','scripts/build_facility_runtime.py','scripts/pr16_resume.py','tests/test_pr16_resume.py','content/modernization/pr16_native_supply_resume_20260913.json','content/modernization/p08_remaining_work.json','content/modernization/pr16_bp_battle_return_diagnostic.json','content/modernization/pr16_bp_chooser_checkpoint.json','content/modernization/pr16_bp_battle_return_evidence/reward-source-audit.json']
+          snapshot={p:pathlib.Path(p).read_text(encoding='utf-8') for p in sources}
+          (out/'tracked-snapshot.json').write_text(json.dumps(snapshot,ensure_ascii=False,sort_keys=True,indent=2)+'\n')
+          for p in out.iterdir():
+              assert p.is_file() and not p.is_symlink() and p.suffix in {'.json','.txt','.stdout','.stderr','.log'}
+              raw=p.read_bytes();raw.decode('utf-8');assert b'\0' not in raw and len(raw)<4000000
+              assert not re.search(rb'gh[pousr]_[A-Za-z0-9]{36,}|github_pat_[A-Za-z0-9_]{60,}',raw)
+              bound[p.name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+          (out/'members.json').write_text(json.dumps(bound,sort_keys=True,indent=2)+'\n')
+          PYCODE
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.guard.outcome == 'success'
+        with:
+          name: pr16-bp-candidate-return-audit
+          path: .local/pr16-bp-candidate-return-audit/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90

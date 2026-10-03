@@ -1,0 +1,1789 @@
+{
+  "schema_version": 1,
+  "task": "USER-20260921-P08-TRANSFER",
+  "classification": "P08_CHANGED_OWNER_NATIVE_TRANSFER",
+  "candidate": {
+    "sha256": "46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38",
+    "size": 33554432
+  },
+  "candidate_crc32": "CC068B4A",
+  "source_head": "9834398c8430ded96a8d25ea96d02edd8a78212d",
+  "recording_run": 35524571950,
+  "final_native_acceptance_complete": true,
+  "domain_transfers": {
+    "BP": {
+      "parent": {
+        "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b",
+        "size": 33554432
+      },
+      "candidate": {
+        "sha256": "46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38",
+        "size": 33554432
+      },
+      "source_path": "content/modernization/pr16_bp_chooser_checkpoint.json",
+      "original_identity": {
+        "sha256": "4deb7c27771c63740ab94b9cf8c7b3c386f7193b989f35ede9d131c4f4bf15bf",
+        "size": 9442
+      },
+      "changed_bytes": 11778,
+      "affected_owners": [
+        "BATTLE_LOSS_RETURN",
+        "DROUGHT_BATTLE_CALLBACK",
+        "FACTORY_GETTER_CALL",
+        "LOAD_DISPATCH",
+        "RING_ORDINARY_BEGIN",
+        "SAVE_DISPATCH",
+        "codex_battle_runtime_stage44_payload",
+        "pr16_circus_cold_load_bridge",
+        "pr16_circus_drought_empty_loader",
+        "pr16_circus_getter_preserve_r3",
+        "pr16_circus_party_retention_runtime",
+        "pr16_circus_reception_runtime",
+        "pr16_circus_rental_drought",
+        "pr16_circus_streak_get_veneer",
+        "pr16_circus_streak_runtime",
+        "pr16_factory_party_retention_trampoline",
+        "pr16_ring_npc_runtime",
+        "pr16_ring_ordinary_policy_runtime",
+        "regression_runtime_payload"
+      ],
+      "hooks": {
+        "SAVE_DISPATCH": [
+          "P08_SHARED_SAVE_LOAD",
+          "P08_RING_ORDINARY"
+        ],
+        "LOAD_DISPATCH": [
+          "P08_SHARED_SAVE_LOAD",
+          "P08_RING_ORDINARY"
+        ],
+        "BATTLE_LOSS_RETURN": [
+          "P08_BP_RETURN_PARTY"
+        ],
+        "DROUGHT_BATTLE_CALLBACK": [
+          "P08_RING_ORDINARY",
+          "P08_CIRCUS_POST_EXIT_ORDINARY"
+        ],
+        "FACTORY_GETTER_CALL": [
+          "P08_BP_RETURN_PARTY"
+        ],
+        "RING_ORDINARY_BEGIN": [
+          "P08_RING_ORDINARY"
+        ]
+      },
+      "representative_ids": [
+        "P08_BP_RETURN_PARTY",
+        "P08_CIRCUS_POST_EXIT_ORDINARY",
+        "P08_RING_ORDINARY",
+        "P08_SHARED_SAVE_LOAD"
+      ],
+      "decision": "ACCEPTED_CHANGED_OWNER_TRANSFER",
+      "accepted": true,
+      "original_source_manifest_missing": true,
+      "source_review_scope": "固定原本hashを維持。存在するsource manifestは一致を確認。未記録manifestを捏造しない。",
+      "original_candidate_relabelled": false,
+      "old_cases_replayed": 0
+    },
+    "CIRCUS": {
+      "parent": {
+        "sha256": "46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38",
+        "size": 33554432
+      },
+      "candidate": {
+        "sha256": "46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38",
+        "size": 33554432
+      },
+      "source_path": "content/modernization/pr16_circus_acceptance.json",
+      "original_identity": {
+        "sha256": "265f903d57d1205ef87877b4f29a73bc16ef6ed208ffade8cd62b1c39f5ca2ab",
+        "size": 5476
+      },
+      "changed_bytes": 0,
+      "affected_owners": [],
+      "hooks": {},
+      "representative_ids": [],
+      "decision": "SAME_CANDIDATE_INHERIT",
+      "accepted": true,
+      "original_source_manifest_missing": false,
+      "source_review_scope": "固定原本hashを維持。存在するsource manifestは一致を確認。未記録manifestを捏造しない。",
+      "original_candidate_relabelled": false,
+      "old_cases_replayed": 0
+    },
+    "FIXED_FORM": {
+      "parent": {
+        "sha256": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267",
+        "size": 33554432
+      },
+      "candidate": {
+        "sha256": "46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38",
+        "size": 33554432
+      },
+      "source_path": "content/modernization/pr16_fixed_form_acceptance.json",
+      "original_identity": {
+        "sha256": "1de5c58c70d63441804a99e3622fef7773c09618cd9b16b6d42071c5d3893b3e",
+        "size": 16630
+      },
+      "changed_bytes": 12163,
+      "affected_owners": [
+        "BATTLE_LOSS_RETURN",
+        "DROUGHT_BATTLE_CALLBACK",
+        "FACTORY_GETTER_CALL",
+        "LOAD_DISPATCH",
+        "PARTY_RESTORE_CALL",
+        "RING_ORDINARY_BEGIN",
+        "SAVE_DISPATCH",
+        "codex_battle_runtime_stage44_payload",
+        "facility_runtime_payload",
+        "factory_high_modes_v2_stage42_payload",
+        "pr16_circus_cold_load_bridge",
+        "pr16_circus_drought_empty_loader",
+        "pr16_circus_getter_preserve_r3",
+        "pr16_circus_party_retention_runtime",
+        "pr16_circus_reception_runtime",
+        "pr16_circus_rental_drought",
+        "pr16_circus_streak_get_veneer",
+        "pr16_circus_streak_runtime",
+        "pr16_factory_loss_return",
+        "pr16_factory_party_retention_runtime",
+        "pr16_factory_party_retention_trampoline",
+        "pr16_ring_npc_runtime",
+        "pr16_ring_ordinary_policy_runtime",
+        "regression_runtime_payload"
+      ],
+      "hooks": {
+        "SAVE_DISPATCH": [
+          "P08_SHARED_SAVE_LOAD",
+          "P08_RING_ORDINARY"
+        ],
+        "LOAD_DISPATCH": [
+          "P08_SHARED_SAVE_LOAD",
+          "P08_RING_ORDINARY"
+        ],
+        "BATTLE_LOSS_RETURN": [
+          "P08_BP_RETURN_PARTY"
+        ],
+        "DROUGHT_BATTLE_CALLBACK": [
+          "P08_RING_ORDINARY",
+          "P08_CIRCUS_POST_EXIT_ORDINARY"
+        ],
+        "PARTY_RESTORE_CALL": [
+          "P08_BP_RETURN_PARTY"
+        ],
+        "FACTORY_GETTER_CALL": [
+          "P08_BP_RETURN_PARTY"
+        ],
+        "RING_ORDINARY_BEGIN": [
+          "P08_RING_ORDINARY"
+        ]
+      },
+      "representative_ids": [
+        "P08_BP_RETURN_PARTY",
+        "P08_CIRCUS_POST_EXIT_ORDINARY",
+        "P08_RING_ORDINARY",
+        "P08_SHARED_SAVE_LOAD"
+      ],
+      "decision": "ACCEPTED_CHANGED_OWNER_TRANSFER",
+      "accepted": true,
+      "original_source_manifest_missing": true,
+      "source_review_scope": "固定原本hashを維持。存在するsource manifestは一致を確認。未記録manifestを捏造しない。",
+      "original_candidate_relabelled": false,
+      "old_cases_replayed": 0
+    },
+    "GENERIC_FORM": {
+      "parent": {
+        "sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
+        "size": 33554432
+      },
+      "candidate": {
+        "sha256": "46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38",
+        "size": 33554432
+      },
+      "source_path": "content/modernization/pr16_generic_form_acceptance.json",
+      "original_identity": {
+        "sha256": "414cd525f060e1c074d2522e0344dab8a82a3d16f723b9e68237e4949ea3d2b8",
+        "size": 2842
+      },
+      "changed_bytes": 16556,
+      "affected_owners": [
+        "BATTLE_LOSS_RETURN",
+        "DROUGHT_BATTLE_CALLBACK",
+        "FACTORY_GETTER_CALL",
+        "LOAD_DISPATCH",
+        "PARTY_RESTORE_CALL",
+        "RING_ORDINARY_BEGIN",
+        "SAVE_DISPATCH",
+        "codex_battle_runtime_stage44_payload",
+        "facility_runtime_payload",
+        "factory_high_modes_v2_stage42_payload",
+        "modernization_mega_shop_stage68_payload",
+        "pr16-shop-display-safe-content",
+        "pr16_circus_cold_load_bridge",
+        "pr16_circus_drought_empty_loader",
+        "pr16_circus_getter_preserve_r3",
+        "pr16_circus_party_retention_runtime",
+        "pr16_circus_reception_runtime",
+        "pr16_circus_rental_drought",
+        "pr16_circus_streak_get_veneer",
+        "pr16_circus_streak_runtime",
+        "pr16_factory_loss_return",
+        "pr16_factory_party_retention_runtime",
+        "pr16_factory_party_retention_trampoline",
+        "pr16_ring_npc_runtime",
+        "pr16_ring_ordinary_policy_runtime",
+        "regression_runtime_payload"
+      ],
+      "hooks": {
+        "SAVE_DISPATCH": [
+          "P08_SHARED_SAVE_LOAD",
+          "P08_RING_ORDINARY"
+        ],
+        "LOAD_DISPATCH": [
+          "P08_SHARED_SAVE_LOAD",
+          "P08_RING_ORDINARY"
+        ],
+        "BATTLE_LOSS_RETURN": [
+          "P08_BP_RETURN_PARTY"
+        ],
+        "DROUGHT_BATTLE_CALLBACK": [
+          "P08_RING_ORDINARY",
+          "P08_CIRCUS_POST_EXIT_ORDINARY"
+        ],
+        "PARTY_RESTORE_CALL": [
+          "P08_BP_RETURN_PARTY"
+        ],
+        "FACTORY_GETTER_CALL": [
+          "P08_BP_RETURN_PARTY"
+        ],
+        "RING_ORDINARY_BEGIN": [
+          "P08_RING_ORDINARY"
+        ]
+      },
+      "representative_ids": [
+        "P08_BP_RETURN_PARTY",
+        "P08_CIRCUS_POST_EXIT_ORDINARY",
+        "P08_RING_ORDINARY",
+        "P08_SHARED_SAVE_LOAD"
+      ],
+      "decision": "ACCEPTED_CHANGED_OWNER_TRANSFER",
+      "accepted": true,
+      "original_source_manifest_missing": true,
+      "source_review_scope": "固定原本hashを維持。存在するsource manifestは一致を確認。未記録manifestを捏造しない。",
+      "original_candidate_relabelled": false,
+      "old_cases_replayed": 0
+    },
+    "P03_P06_P07": {
+      "parent": {
+        "sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
+        "size": 33554432
+      },
+      "candidate": {
+        "sha256": "46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38",
+        "size": 33554432
+      },
+      "source_path": "content/modernization/pr16_completion_acceptance.json",
+      "original_identity": {
+        "sha256": "f0c438447c8dbcc68fd3ea12ecd3eeaee24c5890caf0ef7d3b14ff2aabd3fc51",
+        "size": 4480
+      },
+      "changed_bytes": 16556,
+      "affected_owners": [
+        "BATTLE_LOSS_RETURN",
+        "DROUGHT_BATTLE_CALLBACK",
+        "FACTORY_GETTER_CALL",
+        "LOAD_DISPATCH",
+        "PARTY_RESTORE_CALL",
+        "RING_ORDINARY_BEGIN",
+        "SAVE_DISPATCH",
+        "codex_battle_runtime_stage44_payload",
+        "facility_runtime_payload",
+        "factory_high_modes_v2_stage42_payload",
+        "modernization_mega_shop_stage68_payload",
+        "pr16-shop-display-safe-content",
+        "pr16_circus_cold_load_bridge",
+        "pr16_circus_drought_empty_loader",
+        "pr16_circus_getter_preserve_r3",
+        "pr16_circus_party_retention_runtime",
+        "pr16_circus_reception_runtime",
+        "pr16_circus_rental_drought",
+        "pr16_circus_streak_get_veneer",
+        "pr16_circus_streak_runtime",
+        "pr16_factory_loss_return",
+        "pr16_factory_party_retention_runtime",
+        "pr16_factory_party_retention_trampoline",
+        "pr16_ring_npc_runtime",
+        "pr16_ring_ordinary_policy_runtime",
+        "regression_runtime_payload"
+      ],
+      "hooks": {
+        "SAVE_DISPATCH": [
+          "P08_SHARED_SAVE_LOAD",
+          "P08_RING_ORDINARY"
+        ],
+        "LOAD_DISPATCH": [
+          "P08_SHARED_SAVE_LOAD",
+          "P08_RING_ORDINARY"
+        ],
+        "BATTLE_LOSS_RETURN": [
+          "P08_BP_RETURN_PARTY"
+        ],
+        "DROUGHT_BATTLE_CALLBACK": [
+          "P08_RING_ORDINARY",
+          "P08_CIRCUS_POST_EXIT_ORDINARY"
+        ],
+        "PARTY_RESTORE_CALL": [
+          "P08_BP_RETURN_PARTY"
+        ],
+        "FACTORY_GETTER_CALL": [
+          "P08_BP_RETURN_PARTY"
+        ],
+        "RING_ORDINARY_BEGIN": [
+          "P08_RING_ORDINARY"
+        ]
+      },
+      "representative_ids": [
+        "P08_BP_RETURN_PARTY",
+        "P08_CIRCUS_POST_EXIT_ORDINARY",
+        "P08_RING_ORDINARY",
+        "P08_SHARED_SAVE_LOAD"
+      ],
+      "decision": "ACCEPTED_CHANGED_OWNER_TRANSFER",
+      "accepted": true,
+      "original_source_manifest_missing": true,
+      "source_review_scope": "固定原本hashを維持。存在するsource manifestは一致を確認。未記録manifestを捏造しない。",
+      "original_candidate_relabelled": false,
+      "old_cases_replayed": 0
+    },
+    "RING": {
+      "parent": {
+        "sha256": "4ea33fb8224b0b84493ccca6e90161da245705eb1eb0a3874691ab39cc3806cc",
+        "size": 33554432
+      },
+      "candidate": {
+        "sha256": "46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38",
+        "size": 33554432
+      },
+      "source_path": "content/modernization/pr16_ring_policy_acceptance.json",
+      "original_identity": {
+        "sha256": "85c56f6eb79b8f589ef6ab7a49db18929f9beb97dc7aac0dadc273623b07acfd",
+        "size": 162934
+      },
+      "changed_bytes": 11071,
+      "affected_owners": [
+        "BATTLE_LOSS_RETURN",
+        "DROUGHT_BATTLE_CALLBACK",
+        "FACTORY_GETTER_CALL",
+        "LOAD_DISPATCH",
+        "SAVE_DISPATCH",
+        "codex_battle_runtime_stage44_payload",
+        "pr16_circus_cold_load_bridge",
+        "pr16_circus_drought_empty_loader",
+        "pr16_circus_getter_preserve_r3",
+        "pr16_circus_party_retention_runtime",
+        "pr16_circus_reception_runtime",
+        "pr16_circus_rental_drought",
+        "pr16_circus_streak_get_veneer",
+        "pr16_circus_streak_runtime",
+        "pr16_factory_party_retention_trampoline"
+      ],
+      "hooks": {
+        "SAVE_DISPATCH": [
+          "P08_SHARED_SAVE_LOAD",
+          "P08_RING_ORDINARY"
+        ],
+        "LOAD_DISPATCH": [
+          "P08_SHARED_SAVE_LOAD",
+          "P08_RING_ORDINARY"
+        ],
+        "BATTLE_LOSS_RETURN": [
+          "P08_BP_RETURN_PARTY"
+        ],
+        "DROUGHT_BATTLE_CALLBACK": [
+          "P08_RING_ORDINARY",
+          "P08_CIRCUS_POST_EXIT_ORDINARY"
+        ],
+        "FACTORY_GETTER_CALL": [
+          "P08_BP_RETURN_PARTY"
+        ]
+      },
+      "representative_ids": [
+        "P08_BP_RETURN_PARTY",
+        "P08_CIRCUS_POST_EXIT_ORDINARY",
+        "P08_RING_ORDINARY",
+        "P08_SHARED_SAVE_LOAD"
+      ],
+      "decision": "ACCEPTED_CHANGED_OWNER_TRANSFER",
+      "accepted": true,
+      "original_source_manifest_missing": false,
+      "source_review_scope": "固定原本hashを維持。存在するsource manifestは一致を確認。未記録manifestを捏造しない。",
+      "original_candidate_relabelled": false,
+      "old_cases_replayed": 0
+    }
+  },
+  "representative_evidence": {
+    "P08_SHARED_SAVE_LOAD": {
+      "path": "content/modernization/pr16_p08_memory_acceptance.json",
+      "identity": {
+        "size": 18986,
+        "sha256": "c2d3c0e70e687b3a692d5b606ae196ba5595b90f6b8fda8d74d21113e6cf6653"
+      },
+      "original_run_id": 35511721939,
+      "original_conclusion": "success",
+      "recording_run": 35512429611
+    },
+    "P08_BP_RETURN_PARTY": {
+      "path": "content/modernization/pr16_p08_bp_acceptance.json",
+      "identity": {
+        "size": 37231,
+        "sha256": "53fb3c843c1f7ff3468365abea5c22570f6339401c4cf5dff7428f95e6b38352"
+      },
+      "original_run_id": 35511250297,
+      "original_conclusion": "success",
+      "recording_run": 35511721939
+    },
+    "P08_RING_ORDINARY": {
+      "path": "content/modernization/pr16_p08_ring_acceptance.json",
+      "identity": {
+        "size": 3292,
+        "sha256": "ca5b7ed5260273c6cbe18b895f502fe4d33e4c77d6a3fc9c262dc2a81f5e7193"
+      },
+      "original_run_id": 35507654812,
+      "original_conclusion": "failure",
+      "recording_run": 35510095146
+    },
+    "P08_CIRCUS_POST_EXIT_ORDINARY": {
+      "path": "content/modernization/pr16_p08_ordinary_acceptance.json",
+      "identity": {
+        "size": 46852,
+        "sha256": "fdd97ef33a02c6b966ab8241dfa447b67c65233f355f46d0e97234633f08b4f0"
+      },
+      "original_run_id": 35512907219,
+      "original_conclusion": "success",
+      "recording_run": 35523960389
+    }
+  },
+  "required_representative_ids": [
+    "P08_SHARED_SAVE_LOAD",
+    "P08_BP_RETURN_PARTY",
+    "P08_RING_ORDINARY",
+    "P08_CIRCUS_POST_EXIT_ORDINARY"
+  ],
+  "remaining_representative_ids": [],
+  "source_bindings": {
+    "content/modernization/pr16_p08_candidate_impact.json": {
+      "size": 739897,
+      "sha256": "9aeab30775211ba995a3d6dd589d697f70ed966bb34719aa1ea5e86548799142"
+    },
+    "content/modernization/pr16_bp_chooser_checkpoint.json": {
+      "size": 9442,
+      "sha256": "4deb7c27771c63740ab94b9cf8c7b3c386f7193b989f35ede9d131c4f4bf15bf"
+    },
+    "content/modernization/pr16_circus_acceptance.json": {
+      "size": 5476,
+      "sha256": "265f903d57d1205ef87877b4f29a73bc16ef6ed208ffade8cd62b1c39f5ca2ab"
+    },
+    "content/modernization/pr16_circus_getter_followup.json": {
+      "size": 117299,
+      "sha256": "856881aa9b0156f391736de4748733395f493fe3de48ac23596e828c5745ba27"
+    },
+    "content/modernization/pr16_completion_acceptance.json": {
+      "size": 4480,
+      "sha256": "f0c438447c8dbcc68fd3ea12ecd3eeaee24c5890caf0ef7d3b14ff2aabd3fc51"
+    },
+    "content/modernization/pr16_fixed_form_acceptance.json": {
+      "size": 16630,
+      "sha256": "1de5c58c70d63441804a99e3622fef7773c09618cd9b16b6d42071c5d3893b3e"
+    },
+    "content/modernization/pr16_generic_form_acceptance.json": {
+      "size": 2842,
+      "sha256": "414cd525f060e1c074d2522e0344dab8a82a3d16f723b9e68237e4949ea3d2b8"
+    },
+    "content/modernization/pr16_ring_policy_acceptance.json": {
+      "size": 162934,
+      "sha256": "85c56f6eb79b8f589ef6ab7a49db18929f9beb97dc7aac0dadc273623b07acfd"
+    },
+    "content/modernization/pr16_saved_reconstruction_recipes.json": {
+      "size": 1249360,
+      "sha256": "80d93a1de6175eaffb391baf1d38a0de8ec647c90b837863e2703868e33d1bd5"
+    },
+    "scripts/pr16_p08_impact.py": {
+      "size": 13808,
+      "sha256": "d454d6e9be42c935e1bc83d22723dd12d83e67f185996fc778e15e0cb71dd835"
+    },
+    "scripts/pr16_saved_recipe.py": {
+      "size": 7437,
+      "sha256": "efc59531e7d657c4e16b66fb73b17e68bc1f754b85f95d1473bae32f4ea962df"
+    },
+    "scripts/pr16_p08_record.py": {
+      "size": 11327,
+      "sha256": "9b6409640a69530bf46a57a80898d14bb279716026e50c8101dd3cb4a45a0ab0"
+    },
+    "tests/test_pr16_p08_impact.py": {
+      "size": 5382,
+      "sha256": "fcbd5a3a0697fb48df97928024a3a56c2237ed6252ef69e6075d6c7a79d039e7"
+    },
+    ".github/workflows/pr16-p08-impact.yml": {
+      "size": 1374,
+      "sha256": "62fb0fa3b4e7aa4f7fdb556522e3f44613728952e587260a981810c7d0d822fc"
+    },
+    ".github/workflows/pr16-circus-acceptance.yml": {
+      "size": 4617,
+      "sha256": "941a124395166d3ce17f74711125d1b5086dd534e8169b480281273fd9e79b6b"
+    },
+    "content/modernization/pr16_circus_suppression_lifecycle.json": {
+      "size": 65187,
+      "sha256": "186ffa2d54e587de953922d89cede9e86182b354b8aa704255b8242518525a02"
+    },
+    "content/modernization/pr16_circus_visual_review.json": {
+      "size": 11208,
+      "sha256": "ed378d2cdf677fd1be931b666f79aa0f00c85f65424344d7c7478223c7f70427"
+    },
+    "scripts/pr16_circus_acceptance.py": {
+      "size": 22328,
+      "sha256": "9cf16632efe68a68b1e6c1ec655f86ac5cee01e6cd64e79851196a6a0a85f241"
+    },
+    "scripts/pr16_resume.py": {
+      "size": 27351,
+      "sha256": "385822716e7bbe1e3430ad778768a9ae0e1d2176d8bd3e3bdb09f1faf2b45252"
+    },
+    "tests/test_pr16_circus_acceptance.py": {
+      "size": 5302,
+      "sha256": "911a5e6009e6183a16dfdb3a1eeee71d49b9f3dcb3fd241cca65749c4f9b6eb3"
+    },
+    "tests/test_pr16_resume.py": {
+      "size": 12258,
+      "sha256": "7f31a83f3d92805ba547827f862f376b485db991758ed0763963b7ecc5e1fadf"
+    },
+    "config/github_private_environment.json": {
+      "size": 5007,
+      "sha256": "33ff93eb2a1183ccdc3fea5c08b986271d75e9a8e349627072b36dd4c6abb56a"
+    },
+    "overlays/cfru/integration.c": {
+      "size": 31508,
+      "sha256": "b1ee5d94bd6601f7b4cc01eea45c9ccbe4f80fb04ca4074044201c7d550f4498"
+    },
+    "overlays/cfru/integration.h": {
+      "size": 8981,
+      "sha256": "8323050dac61b161d89393815ce63837cedee4369235a5f2277dc32fdd523f5a"
+    },
+    "overlays/cfru/rom_bridge.c": {
+      "size": 20530,
+      "sha256": "e7ca33758235005d66b3a73f864ed97d18f876f56935d1d86e42c99c78cd28c0"
+    },
+    "overlays/cfru/runtime.h": {
+      "size": 8156,
+      "sha256": "9f608381273cd49af4df91af5ec9598420dfe6c4b8ec30150945c655fa64c476"
+    },
+    "overlays/ring_npc/ring_npc.c": {
+      "size": 1817,
+      "sha256": "e14d28dd4f891b4d3ef5d27d036de669013ed1f8bb8e9916111aab71a3b4bc5d"
+    },
+    "overlays/ring_npc/ring_npc.h": {
+      "size": 489,
+      "sha256": "32e9d0112e70555bfc4a93871a2cb9a3e3be2162527e67abf4d8518990d06386"
+    },
+    "overlays/ring_policy/ring_policy.c": {
+      "size": 3207,
+      "sha256": "a9d523ad733b71af9cbfcd081555de0cd6361b14bb339463cb3e9e50b85de845"
+    },
+    "overlays/ring_policy/ring_policy.h": {
+      "size": 398,
+      "sha256": "631d923b90c8f397a9a7672ce19f96ca9f4f4d6dc6c0131cac53269086c15583"
+    },
+    "scripts/build_battle_core.py": {
+      "size": 239192,
+      "sha256": "e83f659b912e4f61f790ef648f30dd7e669f737da84f326c234dc491a6d135c0"
+    },
+    "scripts/pr16_capture_geometry.py": {
+      "size": 3346,
+      "sha256": "c4e1bd692944020fee552077705e7d86884530d525fbafba095e746bd00b157c"
+    },
+    "scripts/pr16_natural_capture.py": {
+      "size": 9937,
+      "sha256": "99371140f7424806b25205f2b86e922bbbbfe50bd91c967cb478c804d91c26ef"
+    },
+    "scripts/pr16_p05_root_diagnostics.py": {
+      "size": 8880,
+      "sha256": "1aece44ba87988435c5316d56cd8aa143ea5739ef7bda35103578b93a8c50018"
+    },
+    "scripts/pr16_purchased_gear.py": {
+      "size": 13172,
+      "sha256": "da0878109e346e1454ac3f47b8e6d75247deb9a9c4f4b5fd2881a86458007a6d"
+    },
+    "scripts/pr16_ring_npc_successor.py": {
+      "size": 16901,
+      "sha256": "4832d39eed10928f9ebb292fb1746546a8a3206c6ad0f86ed7241d1b5f8e73c2"
+    },
+    "scripts/pr16_ring_policy_native.py": {
+      "size": 15416,
+      "sha256": "d008aae0dee1b1735ca14931850e4964c8ef70bf730d3d22608981f9dd2a9f74"
+    },
+    "scripts/pr16_ring_policy_successor.py": {
+      "size": 11995,
+      "sha256": "13b4907245beaf484ee9bd32a44faeae7a0cdf5c047c51530a0c7b91ad72bf33"
+    },
+    "scripts/pr16_shop_routes.py": {
+      "size": 9771,
+      "sha256": "29ef07ef51bd2564f443844cdd859fffb5fa182c02b4260d16f1abbae302b338"
+    },
+    "scripts/run_modernization_p03_breeding_e2e.py": {
+      "size": 14073,
+      "sha256": "c293ceec2e3a72094300bbf0d6764c5a4017f6db4a1cf138d8ccf647cbbc9e75"
+    },
+    "tools/mgba_modernization_p02_stage71_acceptance_smoke.c": {
+      "size": 39669,
+      "sha256": "4e543fa815ca030e74522b5d0f1455fd5074035d10f044aab3bdfd41d7319c3b"
+    },
+    "tools/mgba_modernization_p03_archive_ui_e2e.c": {
+      "size": 20154,
+      "sha256": "ccaeed858b70ea0af53a999dbaae121a8b85c88c08522755dc800e24e159b467"
+    },
+    "tools/mgba_modernization_p03_breeding_e2e.c": {
+      "size": 19614,
+      "sha256": "a99cafd942f958c932709bed6099695f067dc292401b3bfb91e60afe4d6823de"
+    },
+    "tools/mgba_modernization_p03_fullslots_e2e.c": {
+      "size": 12868,
+      "sha256": "f419ff2fffaf175061012dfb5dfc25d18c70a86d15c9ca89f5d5e6c886965ffa"
+    },
+    "tools/mgba_modernization_p03_learning_e2e.c": {
+      "size": 7987,
+      "sha256": "154e277ef3f37b0037a7082b154805b658742f476eaf52abeb8c0ffb27a2742d"
+    },
+    "tools/mgba_pr16_natural_capture.c": {
+      "size": 9630,
+      "sha256": "cd09b0ad480403b0e76239196415656c36b26abe18f12bcc946c4f9f9c9d2e6e"
+    },
+    "tools/mgba_pr16_purchased_gear.c": {
+      "size": 16307,
+      "sha256": "ba8a7994d25bf7d5d95fdf9fb35bace671f4b1625f5cee96df235a92bbdac9aa"
+    },
+    "tools/mgba_pr16_ring_policy.c": {
+      "size": 12153,
+      "sha256": "ba8d25d7b8d95856777327d13f2fca8eadb663fe9fba1cc8915cf916748a2415"
+    },
+    "tools/mgba_pr16_shop_routes.c": {
+      "size": 10000,
+      "sha256": "16eda36fade0e8ef0ec3dc0b45b22c9776969f557aedc6ac25f1b65ffc09848c"
+    },
+    "content/modernization/pr16_p08_memory_acceptance.json": {
+      "size": 18986,
+      "sha256": "c2d3c0e70e687b3a692d5b606ae196ba5595b90f6b8fda8d74d21113e6cf6653"
+    },
+    "content/modernization/pr16_p08_memory_representative.json": {
+      "size": 16623,
+      "sha256": "d808922af2d3d1534d187ed30744cfd5f6fcc301d34cf3ef5e1b1d88c851cfe6"
+    },
+    "scripts/pr16_p08_memory_representative.py": {
+      "size": 15139,
+      "sha256": "7a15bbb94e894106ecf56d2b5f2e92428172f1b6475b2bf68a1c1da5fd0d1c76"
+    },
+    "tools/mgba_pr16_p08_memory_observer.h": {
+      "size": 1666,
+      "sha256": "4a9b1b03a150fbbce4ce85bfc09f244b26d71ab6c9d0092b8488c17c61b02965"
+    },
+    "tests/test_pr16_p08_memory_representative.py": {
+      "size": 5155,
+      "sha256": "e9f9b2f88a551dfed60d23bfa56201973305c51193e59dbdd3f03eb837bebe0c"
+    },
+    ".github/workflows/pr16-p08-memory.yml": {
+      "size": 2070,
+      "sha256": "7d073e2ec3859319bb7d910847a9088815a46e9e29392998441dce6d7ea1486a"
+    },
+    "content/modernization/pr16_p08_memory_case.json": {
+      "size": 540,
+      "sha256": "ac917b29ff5614c3892f47c9f56b18da08fba598b656cbb929f5cdd1ecf1f9e9"
+    },
+    "scripts/pr16_p08_bp_acceptance.py": {
+      "size": 5648,
+      "sha256": "5e5657497298966b418044e07a7d5f46ae0f5fbe4cd657ea1541b4f5bbf14ce9"
+    },
+    "content/modernization/pr16_p08_ring_acceptance.json": {
+      "size": 3292,
+      "sha256": "ca5b7ed5260273c6cbe18b895f502fe4d33e4c77d6a3fc9c262dc2a81f5e7193"
+    },
+    "config/active_play_baseline.json": {
+      "size": 394,
+      "sha256": "4800257add049ea99cdedda91413a70a255dcff9a85823463596edefa8785053"
+    },
+    "tools/mgba_qol_production_smoke.c": {
+      "size": 149046,
+      "sha256": "2c4b9f065f4dce84e48f2be9afe2e2f9f666865088770ee8b068a908a0527b85"
+    },
+    "tools/mgba_battle_core_smoke.c": {
+      "size": 94688,
+      "sha256": "ed9875695ca60c61960685ac2f8e810a183c8eedd703e56545d67bde3df5cf24"
+    },
+    "tools/mgba_ai_fixture_runner.c": {
+      "size": 36272,
+      "sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f"
+    },
+    "content/modernization/pr16_p08_bp_acceptance.json": {
+      "size": 37231,
+      "sha256": "53fb3c843c1f7ff3468365abea5c22570f6339401c4cf5dff7428f95e6b38352"
+    },
+    "content/modernization/pr16_p08_bp_loss_policy.json": {
+      "size": 30068,
+      "sha256": "2805cd8f09dddde5c71e59762b0e5387ee2871b2c3a43ce43d96a2c5f076f5ca"
+    },
+    "scripts/pr16_p08_bp_loss_policy.py": {
+      "size": 7071,
+      "sha256": "8c3978f8fa05d3ad4cd3546df5f7b6abc98d5f9345ec1b13381dc5e83a99e814"
+    },
+    "tools/mgba_pr16_p08_bp_loss_policy.h": {
+      "size": 1901,
+      "sha256": "ff949bddbc59e3d9d6aeb30a3ab2c012b456f5ab4211c4f23ea4cfdbebacd6fc"
+    },
+    "tests/test_pr16_p08_bp_loss_policy.py": {
+      "size": 3162,
+      "sha256": "d84aa08d790faf5701ce641fb46dcd5ef9620b70f54fb57d3b09d6506be6a924"
+    },
+    ".github/workflows/pr16-p08-bp-loss.yml": {
+      "size": 1883,
+      "sha256": "e3f9b4d79ebb64b8c3be0028686a409a8c6630732263babe4438ea0a3921597b"
+    },
+    "scripts/pr16_p08_bp_representative.py": {
+      "size": 16155,
+      "sha256": "f7d8c7e6ad237d4b032d56c3c32a70c2648d6876baf3e13fb8357c96a312a61b"
+    },
+    "tools/mgba_pr16_p08_bp_lifecycle.h": {
+      "size": 3124,
+      "sha256": "dc93904fff666a88a3b354026262ba8066289c813b7232e93b795590080970fc"
+    },
+    "tests/test_pr16_p08_bp_representative.py": {
+      "size": 7390,
+      "sha256": "76bfa11c558181600beb583fa3fbcf18ab1315fd332df4a18a40284e2525f280"
+    },
+    ".github/workflows/pr16-p08-bp.yml": {
+      "size": 1894,
+      "sha256": "d8e349c9c1b79007240609421a8a887528daf772b4dad5acf04ec3609051387d"
+    },
+    "scripts/pr16_p08_checkpoint.py": {
+      "size": 8076,
+      "sha256": "efb1730abe602087de7d33abeb467cdc669cd3ad3e378574e510c99595bbe533"
+    },
+    "content/modernization/pr16_p08_bp_representative.json": {
+      "size": 25341,
+      "sha256": "751df20fe5cc0f59268ff8f8aba7531d633ce14d2216663aac926468987e88b5"
+    },
+    "overlays/factory_high_modes_v2/factory_high_modes_v2.h": {
+      "size": 6051,
+      "sha256": "290c4f9ea7f274121273f5b43f736b5c598a6b50d412e0a85c320d0e1765622b"
+    },
+    "overlays/save_migration/save_migration.h": {
+      "size": 12497,
+      "sha256": "e266c4ec10a3244654837c0f3009b449ccf0e203fe0bfc1c11b319132baadf67"
+    },
+    "evidence/pr16_p08_ring/35507654812/recovered/original-text.json": {
+      "size": 46863,
+      "sha256": "7ab3a5879490e058861b8b698fe25256ee31d0758f2e4d7639a13a159c4e0a54"
+    },
+    "evidence/pr16_p08_ring/35507654812/recovered/native-result.json": {
+      "size": 22829,
+      "sha256": "25ada8978c58575552300471844514a83dcddcfad9ed8d47c0c76ba91dba1cae"
+    },
+    "evidence/pr16_p08_ring/35507654812/recovered/visual-review.json": {
+      "size": 2864,
+      "sha256": "153d8abbb0f3b2f570529a3689e72e27054b22ad7da309ac15f55b8bb49032a0"
+    },
+    "evidence/pr16_p08_ring/35507654812/recovered/workflow-boundary.json": {
+      "size": 6974,
+      "sha256": "8003ae326b5fb434c0a3ebad07046c3830bb0cac378f295e408c068a7af50589"
+    },
+    "evidence/pr16_p08_ring/35507654812/recovered/recovery-tests.json": {
+      "size": 2878,
+      "sha256": "d94f5ecac74b8912b45120da80d478c3978ef66ccfdb0bad6e912ff0787f4ea1"
+    },
+    "scripts/pr16_p08_ring_representative.py": {
+      "size": 19613,
+      "sha256": "2127d51a3618b9ffeeff696bc9505205b2b4e206acf83aa41e6f431f65494d4e"
+    },
+    "tests/test_pr16_p08_ring_representative.py": {
+      "size": 4383,
+      "sha256": "8ac6c6bf6135d44b1e73911fb761990119afdecc4e5c2bca6265dd2f6a48e8fd"
+    },
+    ".github/workflows/pr16-p08-ring.yml": {
+      "size": 2196,
+      "sha256": "bb8247eee634f2ce910613e739d631e49c8f299e4503e27dac8040e6313c46de"
+    },
+    "content/modernization/pr16_ring_npc_gift_checkpoint_20260918.json": {
+      "size": 105995,
+      "sha256": "786e5e10a23e5008669b3ec76d8646ee523819d91740dbb8a361e5150598bae9"
+    },
+    "content/modernization/pr16_p08_ordinary_acceptance.json": {
+      "size": 46852,
+      "sha256": "fdd97ef33a02c6b966ab8241dfa447b67c65233f355f46d0e97234633f08b4f0"
+    },
+    "content/modernization/pr16_p08_ordinary_abi.json": {
+      "size": 44078,
+      "sha256": "43f5dba9d69cf91384625dc1c5adad0e7a6a6f34ad933088a56f603406015654"
+    },
+    "scripts/pr16_p08_ordinary_abi.py": {
+      "size": 11486,
+      "sha256": "d1f95373560356f658b2e9e06b717c2e5ccea09fa4b695814dd16b35e31f5ae9"
+    },
+    "tools/mgba_pr16_p08_ordinary_abi.h": {
+      "size": 4579,
+      "sha256": "2e82265f5605ce455ee4d00e50c22a6edfd0a7a072e7f5b5047e4ec2cef979f8"
+    },
+    "tests/test_pr16_p08_ordinary_abi.py": {
+      "size": 5415,
+      "sha256": "f76256f9e723319d367975e1590d1acb6cae15c0bd132c43830a598525c1a66e"
+    },
+    ".github/workflows/pr16-p08-ordinary-abi.yml": {
+      "size": 2226,
+      "sha256": "7fbff4de822c0c7d0f24b376555e443befd9949d770d4dde9f5dbf81d342b4c8"
+    },
+    "scripts/pr16_p08_ordinary_representative.py": {
+      "size": 18299,
+      "sha256": "da11e612be0e617826755a7f4877943b4403321dd6be9962c680cdd72760ec2c"
+    },
+    "tools/mgba_pr16_p08_ordinary_main.h": {
+      "size": 5338,
+      "sha256": "f0cb583d59bf1387c648f26fbf7bfd7de35628d4cf81f614e2a9761fb4566905"
+    },
+    "tools/mgba_pr16_p08_ordinary_observer.h": {
+      "size": 4107,
+      "sha256": "923431e93d921bc205fcfca7cac077392f3bea9577779550c4bf972bab604037"
+    },
+    "tests/test_pr16_p08_ordinary_representative.py": {
+      "size": 7149,
+      "sha256": "de454577e9a1e56a205ee61b01c08154a2e16ea93ff96183c60875f70fa686c2"
+    },
+    ".github/workflows/pr16-p08-ordinary.yml": {
+      "size": 2404,
+      "sha256": "f015d8632521e2a155053ab76d949f13fdd7d091a6517710b76135e07faac955"
+    },
+    "scripts/pr16_p08_memory_acceptance.py": {
+      "size": 5249,
+      "sha256": "cfc97374d81751bffa575acfc8e0488c97d6abf54292eaa80229ed180197e10d"
+    },
+    "content/modernization/pr16_p08_ordinary_representative.json": {
+      "size": 30539,
+      "sha256": "0db2e0369841c4d6e8de7bd049fffdfce705cf08220173fa7c04413d9ce7ad49"
+    },
+    "tools/mgba_pr16_circus_fairy_lock.h": {
+      "size": 1290,
+      "sha256": "4755599d85b87a16b2b90d711d4b37eace9645643299c0c8e3c998332d3b4388"
+    },
+    "design/active_play_baseline.md": {
+      "size": 5551,
+      "sha256": "e486dfa3fd9771084ba50390dd30b70d5c52e008a0b48f8cd186086e05e819f8"
+    }
+  },
+  "completed_actions": [
+    {
+      "id": 35506654695,
+      "head_sha": "5a1b35ad66c0a9a157274835987d9d7d20ba1f12",
+      "status": "completed",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 106067500110,
+          "name": "receipt",
+          "status": "completed",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-09-20T11:01:06Z",
+              "completed_at": "2026-09-20T11:01:07Z"
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-09-20T11:01:07Z",
+              "completed_at": "2026-09-20T11:01:12Z"
+            },
+            {
+              "name": "未登録のresume実装bindingを固定入力から修復しsource checkpointを非force保存",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-09-20T11:01:12Z",
+              "completed_at": "2026-09-20T11:01:48Z"
+            },
+            {
+              "name": "完了原本と目視29画面を照合し正式受入・引継ぎ・両ログを非force保存",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-09-20T11:01:48Z",
+              "completed_at": "2026-09-20T11:02:36Z"
+            },
+            {
+              "name": "P08限定読取用tracked textを保存（ROMとsaveは除外）",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-09-20T11:02:36Z",
+              "completed_at": "2026-09-20T11:02:36Z"
+            },
+            {
+              "name": "Run actions/upload-artifact@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-09-20T11:02:36Z",
+              "completed_at": "2026-09-20T11:02:38Z"
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12,
+              "started_at": "2026-09-20T11:02:38Z",
+              "completed_at": "2026-09-20T11:02:38Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13,
+              "started_at": "2026-09-20T11:02:38Z",
+              "completed_at": "2026-09-20T11:02:38Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 35507102023,
+      "head_sha": "29202a863b14da9956c1e3b0b306b56ba3f77dc4",
+      "status": "completed",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 106068665551,
+          "name": "impact",
+          "status": "completed",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-09-20T11:10:43Z",
+              "completed_at": "2026-09-20T11:10:43Z"
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-09-20T11:10:43Z",
+              "completed_at": "2026-09-20T11:10:48Z"
+            },
+            {
+              "name": "21層の全ROM検証・owner影響・引継ぎと両ログを非force保存",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-09-20T11:10:48Z",
+              "completed_at": "2026-09-20T11:11:38Z"
+            },
+            {
+              "name": "ROMを除外し検査証拠だけ保存",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-09-20T11:11:38Z",
+              "completed_at": "2026-09-20T11:11:38Z"
+            },
+            {
+              "name": "Run actions/upload-artifact@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-09-20T11:11:38Z",
+              "completed_at": "2026-09-20T11:11:38Z"
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10,
+              "started_at": "2026-09-20T11:11:38Z",
+              "completed_at": "2026-09-20T11:11:39Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11,
+              "started_at": "2026-09-20T11:11:39Z",
+              "completed_at": "2026-09-20T11:11:39Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 35507654812,
+      "head_sha": "870e65e58fa34289daa6216ae41ed201e54b5e29",
+      "status": "completed",
+      "conclusion": "failure",
+      "jobs": [
+        {
+          "id": 106070069903,
+          "name": "representative",
+          "status": "completed",
+          "conclusion": "failure",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-09-20T11:22:35Z",
+              "completed_at": "2026-09-20T11:22:35Z"
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-09-20T11:22:36Z",
+              "completed_at": "2026-09-20T11:22:41Z"
+            },
+            {
+              "name": "P08完了Actions・原本と22context契約を確認し開始を非force保存",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-09-20T11:22:41Z",
+              "completed_at": "2026-09-20T11:23:26Z"
+            },
+            {
+              "name": "host mGBA依存のみ導入（ARM buildなし）",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-09-20T11:23:26Z",
+              "completed_at": "2026-09-20T11:23:46Z"
+            },
+            {
+              "name": "同じ46487d98候補のRing active代表1件だけ実行",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-09-20T11:23:46Z",
+              "completed_at": "2026-09-20T11:24:10Z"
+            },
+            {
+              "name": "未観測と成功を分離し原本・引継ぎ・両ログを非force保存",
+              "status": "completed",
+              "conclusion": "failure",
+              "number": 6,
+              "started_at": "2026-09-20T11:24:10Z",
+              "completed_at": "2026-09-20T11:24:46Z"
+            },
+            {
+              "name": "ROM・saveを除外し画面と原本を保存",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7,
+              "started_at": "2026-09-20T11:24:46Z",
+              "completed_at": "2026-09-20T11:24:46Z"
+            },
+            {
+              "name": "Run actions/upload-artifact@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-09-20T11:24:46Z",
+              "completed_at": "2026-09-20T11:24:47Z"
+            },
+            {
+              "name": "失敗を成功に読み替えない",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9,
+              "started_at": "2026-09-20T11:24:47Z",
+              "completed_at": "2026-09-20T11:24:47Z"
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 18,
+              "started_at": "2026-09-20T11:24:47Z",
+              "completed_at": "2026-09-20T11:24:48Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 19,
+              "started_at": "2026-09-20T11:24:48Z",
+              "completed_at": "2026-09-20T11:24:48Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 35510095146,
+      "head_sha": "3a08d5dbed832a869161a7e5c842d96eebd58659",
+      "status": "completed",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 106076375842,
+          "name": "recovery",
+          "status": "completed",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-09-20T12:15:26Z",
+              "completed_at": "2026-09-20T12:15:27Z"
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-09-20T12:15:27Z",
+              "completed_at": "2026-09-20T12:15:33Z"
+            },
+            {
+              "name": "完了原本だけ回収・14画面とbyteを照合・受入記録を非force保存",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-09-20T12:15:33Z",
+              "completed_at": "2026-09-20T12:16:19Z"
+            },
+            {
+              "name": "Run actions/upload-artifact@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-09-20T12:16:19Z",
+              "completed_at": "2026-09-20T12:16:21Z"
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-09-20T12:16:21Z",
+              "completed_at": "2026-09-20T12:16:21Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9,
+              "started_at": "2026-09-20T12:16:21Z",
+              "completed_at": "2026-09-20T12:16:21Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 35511250297,
+      "head_sha": "2b3fba89ee99e4d1360687f22d4cfb562fd0ec77",
+      "status": "completed",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 106079428228,
+          "name": "representative",
+          "status": "completed",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-09-20T12:39:38Z",
+              "completed_at": "2026-09-20T12:39:39Z"
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-09-20T12:39:39Z",
+              "completed_at": "2026-09-20T12:39:44Z"
+            },
+            {
+              "name": "固定原本と新契約を照合し開始checkpointを非force保存",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-09-20T12:39:44Z",
+              "completed_at": "2026-09-20T12:40:25Z"
+            },
+            {
+              "name": "Host mGBA dependency only",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-09-20T12:40:25Z",
+              "completed_at": "2026-09-20T12:40:43Z"
+            },
+            {
+              "name": "共有帰還と保存再開の影響代表1件だけ実行",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-09-20T12:40:43Z",
+              "completed_at": "2026-09-20T12:41:07Z"
+            },
+            {
+              "name": "実行原本と停止点を非force保存",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-09-20T12:41:07Z",
+              "completed_at": "2026-09-20T12:41:41Z"
+            },
+            {
+              "name": "Pack text and bounded screens only",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7,
+              "started_at": "2026-09-20T12:41:41Z",
+              "completed_at": "2026-09-20T12:41:41Z"
+            },
+            {
+              "name": "Run actions/upload-artifact@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-09-20T12:41:41Z",
+              "completed_at": "2026-09-20T12:41:42Z"
+            },
+            {
+              "name": "Native result",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9,
+              "started_at": "2026-09-20T12:41:42Z",
+              "completed_at": "2026-09-20T12:41:42Z"
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 18,
+              "started_at": "2026-09-20T12:41:42Z",
+              "completed_at": "2026-09-20T12:41:43Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 19,
+              "started_at": "2026-09-20T12:41:43Z",
+              "completed_at": "2026-09-20T12:41:43Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 35511721939,
+      "head_sha": "33bb7bce407e839fbf1931ee8968ca55fce82077",
+      "status": "completed",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 106080666506,
+          "name": "representative",
+          "status": "completed",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-09-20T12:49:30Z",
+              "completed_at": "2026-09-20T12:49:31Z"
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-09-20T12:49:31Z",
+              "completed_at": "2026-09-20T12:49:36Z"
+            },
+            {
+              "name": "固定原本と新契約を照合し開始checkpointを非force保存",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-09-20T12:49:36Z",
+              "completed_at": "2026-09-20T12:51:01Z"
+            },
+            {
+              "name": "Host mGBA dependency only",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-09-20T12:51:01Z",
+              "completed_at": "2026-09-20T12:51:16Z"
+            },
+            {
+              "name": "わざメモリー満杯置換と保存再開の影響代表1件だけ実行",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-09-20T12:51:16Z",
+              "completed_at": "2026-09-20T12:51:32Z"
+            },
+            {
+              "name": "実行原本と停止点を非force保存",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-09-20T12:51:32Z",
+              "completed_at": "2026-09-20T12:52:10Z"
+            },
+            {
+              "name": "Pack text and bounded screens only",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7,
+              "started_at": "2026-09-20T12:52:10Z",
+              "completed_at": "2026-09-20T12:52:11Z"
+            },
+            {
+              "name": "Run actions/upload-artifact@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-09-20T12:52:11Z",
+              "completed_at": "2026-09-20T12:52:11Z"
+            },
+            {
+              "name": "Native result",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9,
+              "started_at": "2026-09-20T12:52:11Z",
+              "completed_at": "2026-09-20T12:52:11Z"
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 18,
+              "started_at": "2026-09-20T12:52:11Z",
+              "completed_at": "2026-09-20T12:52:12Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 19,
+              "started_at": "2026-09-20T12:52:12Z",
+              "completed_at": "2026-09-20T12:52:12Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 35512429611,
+      "head_sha": "304eb25919601ccd7534dfd6e1da1dd5be091019",
+      "status": "completed",
+      "conclusion": "failure",
+      "jobs": [
+        {
+          "id": 106082548688,
+          "name": "representative",
+          "status": "completed",
+          "conclusion": "failure",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-09-20T13:04:25Z",
+              "completed_at": "2026-09-20T13:04:25Z"
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-09-20T13:04:25Z",
+              "completed_at": "2026-09-20T13:04:30Z"
+            },
+            {
+              "name": "固定原本と新契約を照合し開始checkpointを非force保存",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-09-20T13:04:30Z",
+              "completed_at": "2026-09-20T13:05:56Z"
+            },
+            {
+              "name": "真正退出Save30限定、cache missで再作成しない",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-09-20T13:05:56Z",
+              "completed_at": "2026-09-20T13:05:56Z"
+            },
+            {
+              "name": "Host mGBA dependency only",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-09-20T13:05:56Z",
+              "completed_at": "2026-09-20T13:06:11Z"
+            },
+            {
+              "name": "真正退出Save30から通常戦闘の自然calleeだけ検証",
+              "status": "completed",
+              "conclusion": "failure",
+              "number": 6,
+              "started_at": "2026-09-20T13:06:11Z",
+              "completed_at": "2026-09-20T13:06:25Z"
+            },
+            {
+              "name": "実行原本と停止点を非force保存",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7,
+              "started_at": "2026-09-20T13:06:25Z",
+              "completed_at": "2026-09-20T13:07:05Z"
+            },
+            {
+              "name": "Pack text and bounded screens only",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-09-20T13:07:05Z",
+              "completed_at": "2026-09-20T13:07:05Z"
+            },
+            {
+              "name": "Run actions/upload-artifact@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9,
+              "started_at": "2026-09-20T13:07:05Z",
+              "completed_at": "2026-09-20T13:07:06Z"
+            },
+            {
+              "name": "Native result",
+              "status": "completed",
+              "conclusion": "failure",
+              "number": 10,
+              "started_at": "2026-09-20T13:07:06Z",
+              "completed_at": "2026-09-20T13:07:06Z"
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 20,
+              "started_at": "2026-09-20T13:07:06Z",
+              "completed_at": "2026-09-20T13:07:06Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 21,
+              "started_at": "2026-09-20T13:07:06Z",
+              "completed_at": "2026-09-20T13:07:06Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 35512907219,
+      "head_sha": "63ec984e57524d747ef2a2b9816a7c979f2e1b37",
+      "status": "completed",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 106083860159,
+          "name": "representative",
+          "status": "completed",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-09-20T13:14:21Z",
+              "completed_at": "2026-09-20T13:14:22Z"
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-09-20T13:14:22Z",
+              "completed_at": "2026-09-20T13:14:27Z"
+            },
+            {
+              "name": "固定原本と新契約を照合し開始checkpointを非force保存",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-09-20T13:14:27Z",
+              "completed_at": "2026-09-20T13:15:14Z"
+            },
+            {
+              "name": "真正退出Save30限定、cache missで再作成しない",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-09-20T13:15:14Z",
+              "completed_at": "2026-09-20T13:15:15Z"
+            },
+            {
+              "name": "Host mGBA dependency only",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-09-20T13:15:15Z",
+              "completed_at": "2026-09-20T13:15:45Z"
+            },
+            {
+              "name": "真正退出Save30から通常戦闘の自然calleeだけ検証",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-09-20T13:15:45Z",
+              "completed_at": "2026-09-20T13:16:02Z"
+            },
+            {
+              "name": "実行原本と停止点を非force保存",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7,
+              "started_at": "2026-09-20T13:16:02Z",
+              "completed_at": "2026-09-20T13:16:43Z"
+            },
+            {
+              "name": "Pack text and bounded screens only",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-09-20T13:16:43Z",
+              "completed_at": "2026-09-20T13:16:43Z"
+            },
+            {
+              "name": "Run actions/upload-artifact@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9,
+              "started_at": "2026-09-20T13:16:43Z",
+              "completed_at": "2026-09-20T13:16:44Z"
+            },
+            {
+              "name": "Native result",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10,
+              "started_at": "2026-09-20T13:16:44Z",
+              "completed_at": "2026-09-20T13:16:44Z"
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 20,
+              "started_at": "2026-09-20T13:16:44Z",
+              "completed_at": "2026-09-20T13:16:45Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 21,
+              "started_at": "2026-09-20T13:16:45Z",
+              "completed_at": "2026-09-20T13:16:45Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 35523960389,
+      "head_sha": "e800b909c1182f07bb4f4b0075f4ba1d7c8637c8",
+      "status": "completed",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 106112751051,
+          "name": "accept",
+          "status": "completed",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-09-20T16:50:19Z",
+              "completed_at": "2026-09-20T16:50:19Z"
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-09-20T16:50:19Z",
+              "completed_at": "2026-09-20T16:50:24Z"
+            },
+            {
+              "name": "原本受入の拒否系契約のみ",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-09-20T16:50:24Z",
+              "completed_at": "2026-09-20T16:50:24Z"
+            },
+            {
+              "name": "完了Actions・固定原本・5画面を照合し非force受入checkpoint",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-09-20T16:50:24Z",
+              "completed_at": "2026-09-20T16:51:08Z"
+            },
+            {
+              "name": "原本と次の候補移送に必要な限定textを保存",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-09-20T16:51:08Z",
+              "completed_at": "2026-09-20T16:51:09Z"
+            },
+            {
+              "name": "Run actions/upload-artifact@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-09-20T16:51:09Z",
+              "completed_at": "2026-09-20T16:51:11Z"
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12,
+              "started_at": "2026-09-20T16:51:11Z",
+              "completed_at": "2026-09-20T16:51:12Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13,
+              "started_at": "2026-09-20T16:51:12Z",
+              "completed_at": "2026-09-20T16:51:12Z"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "impact_report": "content/modernization/pr16_p08_candidate_impact.json",
+  "saved_recipe_layers": 21,
+  "saved_patch_operations": 432,
+  "impact_audit_reexecuted": false,
+  "inherited_representative_original_processes": 4,
+  "inherited_representative_original_cores": 8,
+  "new_emulator_processes": 0,
+  "fresh_cores": 0,
+  "arm_compiles": 0,
+  "arm_links": 0,
+  "rom_changes": 0,
+  "accepted_standalone_replays": 0,
+  "prefix_wins_reexecuted": 0,
+  "old_originals_relabelled": false,
+  "active_baseline_changed": false,
+  "release_ready": false,
+  "final_product_sha_fixed": false,
+  "clean_rom_two_build_verified": false,
+  "recording_verification_complete": true,
+  "inherited_parent_scope_limits_retained": true,
+  "next_task": "USER-20260921-P08-CANDIDATE-WIKI",
+  "next_issue": 18,
+  "ownership_test_repair": {
+    "path": "tests/test_modernization_p08_forgetting_evidence.py",
+    "before": {
+      "size": 14085,
+      "sha256": "ac711e9b7d83e54d0863c9c9eeeedbe41211aa8c95e9dd89a156147a3dc2e052"
+    },
+    "after": {
+      "size": 15237,
+      "sha256": "7a646386735c956e109f9070129ab6c2da8543e0d8031896e90f669db1da557b"
+    },
+    "prior_failure_run": 35522692225,
+    "prior_failure_job": 106109394836,
+    "reason": "Circus未完を固定した所有範囲テストを、親原本と後続移送の両立へ更新。拒否系は削除しない。"
+  },
+  "verification": {
+    "transfer-tests": {
+      "command": [
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_pr16_p08_transfer.py",
+        "-v"
+      ],
+      "returncode": 0,
+      "read_only": true,
+      "tests_run": 13
+    },
+    "ownership-tests": {
+      "command": [
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_modernization_p08_forgetting_evidence.py",
+        "-v"
+      ],
+      "returncode": 0,
+      "read_only": true,
+      "tests_run": 20
+    },
+    "forgetting-read-only": {
+      "command": [
+        "scripts/record_modernization_p03_forgetting.py"
+      ],
+      "returncode": 0,
+      "read_only": true
+    },
+    "task-graph": {
+      "command": [
+        "scripts/validate_task_graph.py"
+      ],
+      "returncode": 0,
+      "read_only": true
+    }
+  },
+  "verification_evidence": "evidence/pr16_p08_transfer/35524571950/verification.json"
+}

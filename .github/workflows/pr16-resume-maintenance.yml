@@ -1,0 +1,44 @@
+name: pr16-resume-maintenance
+run-name: PR16 fixed handoff source-only verification
+on:
+  workflow_dispatch:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - CHATGPT_RESUME.md
+      - AGENTS.md
+      - README.md
+      - docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md
+      - content/modernization/pr16_native_supply_resume_20260913.json
+      - content/modernization/pr16_bp_selection_diagnostic.json
+      - content/modernization/pr16_bp_chooser_checkpoint.json
+      - content/modernization/p08_remaining_work.json
+      - scripts/pr16_resume.py
+      - tests/test_pr16_resume.py
+      - .github/workflows/pr16-resume-maintenance.yml
+      - scripts/pr16_bp_*.py
+      - tools/mgba_pr16_bp_selection_native.c
+      - .github/workflows/pr16-bp-selection-native.yml
+      - config/factory_high_modes_v2.json
+      - config/active_play_baseline.json
+permissions:
+  contents: read
+concurrency:
+  group: pr16-resume-maintenance
+  cancel-in-progress: false
+jobs:
+  check:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Focused tests and read-only resume validation
+        run: |
+          python3 -m unittest discover -s tests -p test_pr16_resume.py -v
+          python3 scripts/pr16_resume.py check
+          python3 scripts/validate_task_graph.py
+          git diff --exit-code

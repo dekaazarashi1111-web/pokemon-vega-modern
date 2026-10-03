@@ -1,0 +1,121 @@
+name: pr16-p05-supply-owner
+run-name: P05 Ring macro and Circus owner audit (no native replay)
+on:
+  workflow_dispatch:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-p05-supply-owner.yml]
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: pr16-p05-supply-owner
+  cancel-in-progress: false
+jobs:
+  supply-owner-static:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Preserve completed fixed-form and test bounded source-only owner selection
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-p05-supply-owner
+          out=.local/pr16-p05-supply-owner
+          git rev-parse HEAD > "$out/tested-head.txt"
+          python3 -m unittest tests.test_pr16_p05_supply_owner_probe -v > "$out/unit.stdout" 2> "$out/unit.stderr"
+          python3 scripts/pr16_fixed_form_closeout.py --check > "$out/retained-fixed-form.json"
+          python3 scripts/validate_task_graph.py > "$out/task-graph.txt"
+      - name: Restore pinned compiler and unchanged Stage84 build input
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-p05-supply-owner
+          bash infra/setup_github_actions.sh --install > "$out/toolchain.log" 2>&1
+          python3 scripts/modernization_final_integration.py prepare > "$out/stage84.json" 2> "$out/stage84.stderr"
+      - name: Restore pinned inputs, character map and map catalogue archive
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          out=.local/pr16-p05-supply-owner
+          assets=.local/pr16-inputs
+          mkdir -p "$assets"
+          tag=$(python3 -c 'import json; print(json.load(open("config/github_private_environment.json"))["release"]["tag"])')
+          gh release download "$tag" --pattern pokemon-vega-private-env-v1-inputs.zip \
+            --pattern pokemon-vega-private-env-v1-modernization-inputs.zip \
+            --pattern pokemon-vega-private-env-v1-state.zip --dir "$assets"
+          python3 scripts/github_private_environment.py restore --archive-dir "$assets" \
+            --archive pokemon-vega-private-env-v1-inputs.zip \
+            --archive pokemon-vega-private-env-v1-modernization-inputs.zip > "$out/private-restore.json"
+          python3 - <<'PY'
+          import hashlib,json,pathlib,sys,zipfile
+          root=pathlib.Path('.');cfg=json.loads((root/'config/github_private_environment.json').read_bytes())
+          name='pokemon-vega-private-env-v1-state.zip';bound=next(a for a in cfg['archives'] if a['name']==name)
+          archive=root/'.local/pr16-inputs'/name;raw=archive.read_bytes()
+          assert len(raw)==bound['size'] and hashlib.sha256(raw).hexdigest()==bound['sha256']
+          member='vendor/upstream/CFRU-JP/charmap.tbl'
+          with zipfile.ZipFile(archive) as z:data=z.read(member)
+          path=root/member;assert not any(p.is_symlink() for p in (path,*path.parents))
+          if path.exists():assert path.read_bytes()==data
+          else:path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes(data);path.chmod(0o444)
+          record={'archive':name,'archive_sha256':bound['sha256'],'member':member,'size':len(data),'sha256':hashlib.sha256(data).hexdigest()}
+          (root/'.local/pr16-p05-supply-owner/charmap-binding.json').write_text(json.dumps(record,sort_keys=True,indent=2)+'\n')
+          PY
+      - name: Rebuild exact parent only, preserving accepted P03/P07 native originals
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-p05-supply-owner
+          python3 scripts/pr16_p07_preserved_layer.py > "$out/p07.stdout" 2> "$out/p07.stderr"
+          python3 scripts/pr16_evolution_learning_repair.py > "$out/repair.stdout" 2> "$out/repair.stderr"
+      - name: Read work-variable Ring candidates, malformed map headers and native owner sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-p05-supply-owner
+          python3 scripts/pr16_p05_supply_owner_probe.py \
+            --archive .local/pr16-inputs/pokemon-vega-private-env-v1-state.zip \
+            > "$out/probe.stdout" 2> "$out/probe.stderr"
+          git diff --exit-code
+      - name: Bound and hash source-only artifact, never ROM/save/private archives
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib,json,pathlib,stat,zipfile
+          out=pathlib.Path('.local/pr16-p05-supply-owner');bindings={}
+          forbidden={'.gba','.gb','.gbc','.sav','.srm','.bps','.ips','.ups','.bin'}
+          for path in out.iterdir():
+              assert path.is_file() and not path.is_symlink() and path.suffix.lower() not in forbidden
+              raw=path.read_bytes()
+              if path.suffix=='.zip':
+                  assert path.name=='owner-sources.zip'
+                  with zipfile.ZipFile(path) as z:
+                      infos=z.infolist();assert len(infos)==len(set(z.namelist()))<=160
+                      assert sum(i.file_size for i in infos)<=24000000
+                      for i in infos:
+                          p=pathlib.PurePosixPath(i.filename)
+                          assert not p.is_absolute() and '..' not in p.parts and '\\' not in i.filename
+                          assert not stat.S_ISLNK(i.external_attr>>16) and p.suffix.lower() not in forbidden|{'.zip'}
+                          data=z.read(i);data.decode('utf-8-sig');assert b'\0' not in data
+              else:raw.decode('utf-8');assert b'\0' not in raw and len(raw)<8000000
+              bindings[path.name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+          (out/'artifact-members.json').write_text(json.dumps(bindings,sort_keys=True,indent=2)+'\n')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-p05-supply-owner
+          path: .local/pr16-p05-supply-owner/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90

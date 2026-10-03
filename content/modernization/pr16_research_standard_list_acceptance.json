@@ -1,0 +1,182 @@
+{
+  "accepted_case_reruns": 0,
+  "actions_completion_confirmed": true,
+  "active_baseline_changed": false,
+  "artifact": {
+    "digest": "sha256:cd0dbfa95122b53b234a0431c5beb6e60e13f93578ce5b15fe193d0946c8c57b",
+    "id": 10929142898,
+    "name": "pr16-research-standard-list-ui-native",
+    "size_in_bytes": 154943,
+    "workflow_run": {
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_repository_id": 1358127462,
+      "head_sha": "164028f28c9fa753afa1525907e2824b17a16698",
+      "id": 36312254126,
+      "repository_id": 1358127462
+    }
+  },
+  "b_cancels": 2,
+  "candidate": {
+    "sha256": "59ac6688576238f00dac88cccec1a42415f6f0e4f3f07d60411f6d3059bf61e6",
+    "size": 33554432
+  },
+  "evidence_manifest": {
+    "sha256": "9e83ca87ad8f51c2a8e18e7772cf7988d19d320c578a0558c004d2d31de0cdaa",
+    "size": 9982
+  },
+  "exit_row_selections": 1,
+  "functional_rows_selected": 2,
+  "issue19_complete": false,
+  "latest_actions": [
+    {
+      "conclusion": null,
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "c63448fa1ab349556530fe59a82d63946ca9e04f",
+      "id": 36314905056,
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "run_attempt": 1,
+      "status": "in_progress"
+    },
+    {
+      "conclusion": null,
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "c63448fa1ab349556530fe59a82d63946ca9e04f",
+      "id": 36314905044,
+      "path": ".github/workflows/ci.yml",
+      "run_attempt": 1,
+      "status": "in_progress"
+    },
+    {
+      "conclusion": null,
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "c63448fa1ab349556530fe59a82d63946ca9e04f",
+      "id": 36314900752,
+      "path": ".github/workflows/pr16-research-standard-list-accept.yml",
+      "run_attempt": 1,
+      "status": "in_progress"
+    },
+    {
+      "conclusion": null,
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "c63448fa1ab349556530fe59a82d63946ca9e04f",
+      "id": 36314900762,
+      "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+      "run_attempt": 1,
+      "status": "in_progress"
+    },
+    {
+      "conclusion": null,
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "c63448fa1ab349556530fe59a82d63946ca9e04f",
+      "id": 36314900730,
+      "path": ".github/workflows/modernization-stage79-mgba.yml",
+      "run_attempt": 1,
+      "status": "in_progress"
+    },
+    {
+      "conclusion": null,
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "c63448fa1ab349556530fe59a82d63946ca9e04f",
+      "id": 36314900705,
+      "path": ".github/workflows/ci.yml",
+      "run_attempt": 1,
+      "status": "in_progress"
+    },
+    {
+      "conclusion": null,
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "c63448fa1ab349556530fe59a82d63946ca9e04f",
+      "id": 36314900700,
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "run_attempt": 1,
+      "status": "in_progress"
+    },
+    {
+      "conclusion": "action_required",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "d8437a43808f457b6abafed8e24be434ddfe896b",
+      "id": 36312299021,
+      "path": ".github/workflows/ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "action_required",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "d8437a43808f457b6abafed8e24be434ddfe896b",
+      "id": 36312299001,
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "164028f28c9fa753afa1525907e2824b17a16698",
+      "id": 36312258584,
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    }
+  ],
+  "measured_checkpoint": {
+    "sha256": "104e23bb84d3070d144dfb76dd25df5a2e1b66909f7f8da9f0100328f34e90ab",
+    "size": 13684
+  },
+  "measurement_run": 36312254126,
+  "measurement_source_head": "164028f28c9fa753afa1525907e2824b17a16698",
+  "natural_story_progress_accepted": false,
+  "naturally_earned_spending_accepted": false,
+  "new_arm_compiles": 0,
+  "new_guard_processes": 0,
+  "new_host_compiles": 0,
+  "new_native_processes": 0,
+  "new_validation_tests": 25,
+  "old_event_tests_reused": 14,
+  "old_host_tests_reused": 18,
+  "old_native_failures_preserved": [
+    36311122801,
+    36311562940
+  ],
+  "old_oracle_tests_reused": 27,
+  "old_test_executions": 0,
+  "old_thumb_tests_reused": 8,
+  "original_terminal": {
+    "job": {
+      "conclusion": "success",
+      "head_sha": "164028f28c9fa753afa1525907e2824b17a16698",
+      "id": 108600336124,
+      "run_id": 36312254126,
+      "status": "completed"
+    },
+    "run": {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "164028f28c9fa753afa1525907e2824b17a16698",
+      "id": 36312254126,
+      "path": ".github/workflows/pr16-research-standard-list.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    }
+  },
+  "release_ready": false,
+  "review": {
+    "sha256": "d5d5362e7f0ecd28b6649cb987127c9de69f6dc51da410a873013b6258967970",
+    "size": 6051
+  },
+  "run_id": 36314900752,
+  "screens": 22,
+  "source_head": "c63448fa1ab349556530fe59a82d63946ca9e04f",
+  "standard_list_accepted": true,
+  "status": "PASS_STANDARD_LIST_SELECTION_CANCEL_REVISIT_SCOPED",
+  "validation_stderr": {
+    "sha256": "efb63fc1cc56c84f204752a0698a6928302cb18062527ed4b02185a80e24762d",
+    "size": 3108
+  },
+  "validation_stdout": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "size": 0
+  },
+  "visits": 3,
+  "visual_review_completed": true
+}

@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "<user-path>", line 282, in <module>
+    need(len(args)<=2,'usage build|check [output]');cli(args[0],args[1] if len(args)==2 else OUTPUT)
+                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<user-path>", line 173, in cli
+    files,counts,audit=generate()
+                       ^^^^^^^^^^
+  File "<user-path>", line 142, in generate
+    species=w.read_registry(ROOT/'manifests/species_ids.csv','species_key',1671)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<user-path>", line 64, in read_registry
+    need(set(result)==set(range(count)) and len({r[key] for r in result.values()})==count,
+  File "<user-path>", line 29, in need
+    raise ValueError(message)
+ValueError: manifest ID/key集合不一致

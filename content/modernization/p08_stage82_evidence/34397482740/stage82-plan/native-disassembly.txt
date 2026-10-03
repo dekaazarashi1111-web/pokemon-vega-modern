@@ -1,0 +1,105 @@
+
+.local/stage82-plan/native.elf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+080e6088 <Stage82_RelearnerList>:
+ 80e6088:	b5f0      	push	{r4, r5, r6, r7, lr}
+ 80e608a:	b083      	sub	sp, #12
+ 80e608c:	482b      	ldr	r0, [pc, #172]	@ (80e613c <Stage82_RelearnerList+0xb4>)
+ 80e608e:	6804      	ldr	r4, [r0, #0]
+ 80e6090:	482b      	ldr	r0, [pc, #172]	@ (80e6140 <Stage82_RelearnerList+0xb8>)
+ 80e6092:	5c20      	ldrb	r0, [r4, r0]
+ 80e6094:	2164      	movs	r1, #100	@ 0x64
+ 80e6096:	4348      	muls	r0, r1
+ 80e6098:	492a      	ldr	r1, [pc, #168]	@ (80e6144 <Stage82_RelearnerList+0xbc>)
+ 80e609a:	1840      	adds	r0, r0, r1
+ 80e609c:	9000      	str	r0, [sp, #0]
+ 80e609e:	0021      	movs	r1, r4
+ 80e60a0:	31e8      	adds	r1, #232	@ 0xe8
+ 80e60a2:	4b29      	ldr	r3, [pc, #164]	@ (80e6148 <Stage82_RelearnerList+0xc0>)
+ 80e60a4:	f000 f848 	bl	80e6138 <Stage82_RelearnerList+0xb0>
+ 80e60a8:	2828      	cmp	r0, #40	@ 0x28
+ 80e60aa:	d900      	bls.n	80e60ae <Stage82_RelearnerList+0x26>
+ 80e60ac:	2000      	movs	r0, #0
+ 80e60ae:	0006      	movs	r6, r0
+ 80e60b0:	9601      	str	r6, [sp, #4]
+ 80e60b2:	3001      	adds	r0, #1
+ 80e60b4:	76a0      	strb	r0, [r4, #26]
+ 80e60b6:	2500      	movs	r5, #0
+ 80e60b8:	27b4      	movs	r7, #180	@ 0xb4
+ 80e60ba:	013f      	lsls	r7, r7, #4
+ 80e60bc:	193f      	adds	r7, r7, r4
+ 80e60be:	42b5      	cmp	r5, r6
+ 80e60c0:	d219      	bcs.n	80e60f6 <Stage82_RelearnerList+0x6e>
+ 80e60c2:	0069      	lsls	r1, r5, #1
+ 80e60c4:	31e8      	adds	r1, #232	@ 0xe8
+ 80e60c6:	5a61      	ldrh	r1, [r4, r1]
+ 80e60c8:	0109      	lsls	r1, r1, #4
+ 80e60ca:	4a20      	ldr	r2, [pc, #128]	@ (80e614c <Stage82_RelearnerList+0xc4>)
+ 80e60cc:	1889      	adds	r1, r1, r2
+ 80e60ce:	0038      	movs	r0, r7
+ 80e60d0:	2210      	movs	r2, #16
+ 80e60d2:	780b      	ldrb	r3, [r1, #0]
+ 80e60d4:	7003      	strb	r3, [r0, #0]
+ 80e60d6:	3101      	adds	r1, #1
+ 80e60d8:	3001      	adds	r0, #1
+ 80e60da:	3a01      	subs	r2, #1
+ 80e60dc:	d1f9      	bne.n	80e60d2 <Stage82_RelearnerList+0x4a>
+ 80e60de:	23ff      	movs	r3, #255	@ 0xff
+ 80e60e0:	73fb      	strb	r3, [r7, #15]
+ 80e60e2:	209f      	movs	r0, #159	@ 0x9f
+ 80e60e4:	0100      	lsls	r0, r0, #4
+ 80e60e6:	1900      	adds	r0, r0, r4
+ 80e60e8:	00e9      	lsls	r1, r5, #3
+ 80e60ea:	1840      	adds	r0, r0, r1
+ 80e60ec:	6007      	str	r7, [r0, #0]
+ 80e60ee:	6045      	str	r5, [r0, #4]
+ 80e60f0:	3710      	adds	r7, #16
+ 80e60f2:	3501      	adds	r5, #1
+ 80e60f4:	e7e3      	b.n	80e60be <Stage82_RelearnerList+0x36>
+ 80e60f6:	209f      	movs	r0, #159	@ 0x9f
+ 80e60f8:	0100      	lsls	r0, r0, #4
+ 80e60fa:	1900      	adds	r0, r0, r4
+ 80e60fc:	9002      	str	r0, [sp, #8]
+ 80e60fe:	00e9      	lsls	r1, r5, #3
+ 80e6100:	1840      	adds	r0, r0, r1
+ 80e6102:	4913      	ldr	r1, [pc, #76]	@ (80e6150 <Stage82_RelearnerList+0xc8>)
+ 80e6104:	6001      	str	r1, [r0, #0]
+ 80e6106:	21fe      	movs	r1, #254	@ 0xfe
+ 80e6108:	6041      	str	r1, [r0, #4]
+ 80e610a:	9800      	ldr	r0, [sp, #0]
+ 80e610c:	2102      	movs	r1, #2
+ 80e610e:	4a11      	ldr	r2, [pc, #68]	@ (80e6154 <Stage82_RelearnerList+0xcc>)
+ 80e6110:	4b11      	ldr	r3, [pc, #68]	@ (80e6158 <Stage82_RelearnerList+0xd0>)
+ 80e6112:	f000 f811 	bl	80e6138 <Stage82_RelearnerList+0xb0>
+ 80e6116:	4811      	ldr	r0, [pc, #68]	@ (80e615c <Stage82_RelearnerList+0xd4>)
+ 80e6118:	4911      	ldr	r1, [pc, #68]	@ (80e6160 <Stage82_RelearnerList+0xd8>)
+ 80e611a:	2206      	movs	r2, #6
+ 80e611c:	6803      	ldr	r3, [r0, #0]
+ 80e611e:	600b      	str	r3, [r1, #0]
+ 80e6120:	3004      	adds	r0, #4
+ 80e6122:	3104      	adds	r1, #4
+ 80e6124:	3a01      	subs	r2, #1
+ 80e6126:	d1f9      	bne.n	80e611c <Stage82_RelearnerList+0x94>
+ 80e6128:	490d      	ldr	r1, [pc, #52]	@ (80e6160 <Stage82_RelearnerList+0xd8>)
+ 80e612a:	9802      	ldr	r0, [sp, #8]
+ 80e612c:	6008      	str	r0, [r1, #0]
+ 80e612e:	9801      	ldr	r0, [sp, #4]
+ 80e6130:	3001      	adds	r0, #1
+ 80e6132:	8188      	strh	r0, [r1, #12]
+ 80e6134:	b003      	add	sp, #12
+ 80e6136:	bdf0      	pop	{r4, r5, r6, r7, pc}
+ 80e6138:	4718      	bx	r3
+ 80e613a:	46c0      	.short	0x46c0
+ 80e613c:	0203aa2c 	.word	0x0203aa2c
+ 80e6140:	000001e3 	.word	0x000001e3
+ 80e6144:	020241e4 	.word	0x020241e4
+ 80e6148:	080432d1 	.word	0x080432d1
+ 80e614c:	090453c8 	.word	0x090453c8
+ 80e6150:	083c5bc4 	.word	0x083c5bc4
+ 80e6154:	02021c4c 	.word	0x02021c4c
+ 80e6158:	0803f355 	.word	0x0803f355
+ 80e615c:	083c5c6c 	.word	0x083c5c6c
+ 80e6160:	03005ec0 	.word	0x03005ec0

@@ -1,0 +1,181 @@
+name: pr16-story-acceleration-confirm
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-story-acceleration-confirm.yml]
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: pr16-story-acceleration-confirm
+  cancel-in-progress: false
+jobs:
+  confirm:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Read completed run and immutable artifacts only
+        run: |
+          set -euo pipefail
+          python3 -B scripts/pr16_resume.py check
+          mkdir -p build/pr16-story-acceleration-confirm
+          gh api repos/$GITHUB_REPOSITORY/actions/runs/36500700863 > build/pr16-story-acceleration-confirm/run.json
+          gh api repos/$GITHUB_REPOSITORY/actions/artifacts/11005890195/zip > build/pr16-story-acceleration-confirm/proof.zip
+          gh api repos/$GITHUB_REPOSITORY/actions/artifacts/10999218544/zip > build/pr16-story-acceleration-confirm/source.zip
+      - name: Verify every evidence hash and derive full Save byte ledgers
+        run: |
+          python3 - <<'PY'
+          import hashlib, io, json, os, pathlib, zipfile
+          out=pathlib.Path('build/pr16-story-acceleration-confirm')
+          def ident(b): return {'sha256':hashlib.sha256(b).hexdigest(),'size':len(b)}
+          def load(p): return json.loads(pathlib.Path(p).read_text())
+          def dump(p,v): pathlib.Path(p).write_text(json.dumps(v,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          r=load(out/'run.json')
+          assert r['id']==36500700863 and r['status']=='completed' and r['conclusion']=='success'
+          assert r['head_sha']=='5243a6000755bd5596f994f322b1587f33fc2484'
+          assert r['head_branch']=='codex/modernization-followup-20260908'
+          archives=[]
+          for file,size,sha in [('proof.zip',486268,'051cf9d3746ebd5bc6a6b28a225d791b30f8bb1acca6ed214ccb91ed9854b4b5'),('source.zip',18749112,'963867cd062156378135838c420091a0b553fab77a5732c77e80e15e47483c3e')]:
+              raw=(out/file).read_bytes();assert ident(raw)=={'size':size,'sha256':sha}
+              archives.append(zipfile.ZipFile(io.BytesIO(raw)))
+          proof,source=archives
+          manifest=json.loads(proof.read('manifest.json'))
+          assert len(manifest)==75
+          for path,expected in manifest.items():
+              assert not pathlib.PurePosixPath(path).is_absolute() and '..' not in pathlib.PurePosixPath(path).parts
+              assert ident(proof.read(path))==expected,path
+          v=json.loads(proof.read('verification.json'))
+          before=source.read('training.srm');assert ident(before)==v['source_save']
+          ledgers={}
+          for lane,case in [('story-fast','story-fast'),('progression','prepare-progression')]:
+              after=proof.read(lane+'.srm');assert ident(after)==v['cases'][case]['working_save']
+              assert len(before)==len(after)==131088
+              ranges=[];i=0
+              while i<len(before):
+                  if before[i]==after[i]:i+=1;continue
+                  end=i+1
+                  while end<len(before) and before[end]!=after[end]:end+=1
+                  ranges.append({'offset':i,'size':end-i,'before':before[i:end].hex(),'after':after[i:end].hex()});i=end
+              reconstructed=bytearray(before)
+              for row in ranges:reconstructed[row['offset']:row['offset']+row['size']]=bytes.fromhex(row['after'])
+              assert reconstructed==after
+              full={'before':ident(before),'after':ident(after),'changed_bytes':sum(x['size'] for x in ranges),'ranges':ranges}
+              path=out/(lane+'-save-byte-ledger.json');dump(path,full)
+              ledgers[lane]={'ledger':ident(path.read_bytes()),'before':full['before'],'after':full['after'],'changed_bytes':full['changed_bytes'],'ranges':len(ranges)}
+          completion={'status':'COMPLETION_CONFIRMED_SCOPED','native_run':r['id'],'native_run_conclusion':r['conclusion'],
+              'native_source_head':r['head_sha'],'native_recording_head':'c2d3cf659d4122555842d2a31eaf7c7647c0cf51',
+              'confirmation_source_head':os.environ['GITHUB_SHA'],'confirmation_run_id':int(os.environ['GITHUB_RUN_ID']),
+              'artifact_id':11005890195,'artifact_sha256':'051cf9d3746ebd5bc6a6b28a225d791b30f8bb1acca6ed214ccb91ed9854b4b5',
+              'verified_evidence_files':len(manifest),'save_ledgers':ledgers,'new_native_processes':0,'new_host_compiles':0,
+              'accepted_case_reruns':0,'evolution_accepted':False,'release_ready':False,
+              'prior_verification':{'fixture_tests':19,'write_rejection_tests':7,'resume_tests':28,'task_graph':'PASS','scoped_index_guard':'PASS','global_private_guard_claimed':False},
+              'visual_review':{'reviewer':'ChatGPT','screen_count':15,'completed':True,
+                  'scope_ja':'保存/Continueのfield、Mewtwo Lv100とAxew Lv37の戦闘画面、進化自動取消画面を目視照合。evolution-start.ppmは遷移black frame、move.ppmは描画前のaction画面のため、技名表示UI受入とはしない。技選択/PP/勝利はnative readbackで判定。'}}
+          dump(out/'completion.json',completion)
+          print('EVIDENCE=75_HASH_PASS SAVE_BYTE_LEDGERS=2_ROUNDTRIP_PASS NATIVE_PROCESS=0')
+          PY
+      - uses: actions/upload-artifact@v4
+        id: ledgers
+        with:
+          name: pr16-story-acceleration-completion-${{ github.run_id }}
+          path: |
+            build/pr16-story-acceleration-confirm/*-save-byte-ledger.json
+            build/pr16-story-acceleration-confirm/completion.json
+          if-no-files-found: error
+          retention-days: 90
+      - name: Record completed result and design blocker without changing measured source
+        env:
+          LEDGER_ARTIFACT: ${{ steps.ledgers.outputs.artifact-id }}
+        run: |
+          python3 - <<'PY'
+          import datetime,hashlib,json,os,pathlib
+          def load(p):return json.loads(pathlib.Path(p).read_text())
+          def dump(p,v):pathlib.Path(p).write_text(json.dumps(v,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          def ident(p):
+              b=pathlib.Path(p).read_bytes();return {'sha256':hashlib.sha256(b).hexdigest(),'size':len(b)}
+          cp='content/modernization/pr16_story_acceleration_checkpoint.json'
+          completion_path='content/modernization/pr16_story_acceleration_completion.json'
+          guide='docs/PR16_STORY_ACCELERATION_CHECKPOINT_JA.md'
+          state='content/modernization/pr16_native_supply_resume_20260913.json'
+          c=load(cp);assert c['run_id']==36500700863 and not c['claims']['evolution_accepted']
+          assert not c['actions_completion_confirmed'],'already completed; do not duplicate records'
+          for p,x in c['source_bindings'].items():assert ident(p)==x,p
+          complete=load('build/pr16-story-acceleration-confirm/completion.json')
+          complete['save_ledger_artifact_id']=int(os.environ['LEDGER_ARTIFACT'])
+          dump(completion_path,complete)
+          c['actions_completion_confirmed']=True
+          c['actions_conclusion']='success'
+          c['completion_head']='c2d3cf659d4122555842d2a31eaf7c7647c0cf51'
+          c['completion_record']=completion_path
+          c['visual_review']=complete['visual_review']
+          c['save_byte_ledgers']=complete['save_ledgers']
+          c['save_ledger_artifact_id']=complete['save_ledger_artifact_id']
+          c['resume_focused_tests']=28
+          dump(cp,c)
+          when=datetime.datetime.now(datetime.timezone.utc).replace(microsecond=0).isoformat()
+          with pathlib.Path(guide).open('a',encoding='utf-8') as f:
+              f.write('\n## 完了照会と全Save差分\n\nrun36500700863はcompleted/success、記録commit c2d3cf659d4122555842d2a31eaf7c7647c0cf51の非force反映を確認。75 evidence hashを再照合し、15画面を目視確認した。全Save差分2本は再構成一致し、追加artifact '+str(complete['save_ledger_artifact_id'])+' へ保存。詳細は `'+completion_path+'`。今回の追加native/compile/受入再実行は0。進化未受入を保持。\n')
+          for log in ['design/run_log.md','design/version_log.md']:
+              with pathlib.Path(log).open('a',encoding='utf-8') as f:
+                  f.write('\n## '+when+' — 分離fixture完了照会\n\n- Task: USER-20260929-STORY-ACCELERATION / 完了照会と全Save byte差分\n- Status: DONE（記録）; BLOCKED（進化）\n- Summary: run36500700863 completed/success、c2d3cf65反映を確認。75hash・15画面・全Save差分2本の再構成を照合。新native0/compile0/旧受入再実行0。\n- Files changed: 専用completion/checkpoint、固定引継ぎ、専用guide、blockers、両ログ。\n- Verify: 先行19新規tests、7拒否tests、28resume tests、task graph/index scoped guard PASS。completionはbyte再構成2本PASS、resume check PASS。\n- Commit: c2d3cf659d4122555842d2a31eaf7c7647c0cf51（受入記録）、本追記commitはActionsから参照。\n- Network: GitHub run/artifact読戻しのみ。原本Save14/ROM不変、進化は未受入。\n')
+          with pathlib.Path('design/blockers.md').open('a',encoding='utf-8') as f:
+              f.write('\n## '+when+' — Save14条件の通常EXP進化\n\n- Task: USER-20260929-STORY-ACCELERATION\n- Block reason: 全国図鑑未解禁・進化先ID>151のnative branchで進化画面が自動取消。\n- What you tried: self-OT Axew848 Lv37/EXP68589をprebattleだけfixture、通常Caterpie Lv2戦→EXP68590/Lv38。native target849、task state17/stopped1を記録。\n- Error excerpt: BLOCKED_NATIONAL_DEX_EVOLUTION_GUARD / exit3 / national_dex=0。\n- Question for human: 現時点で権限依頼は不要。正規の全国図鑑取得条件と進化gate設計ownerを照合し、設計判断が競合した場合だけ確認する。\n- Next step: 保存済みstory-fastから正規story続行。進化は自然解禁後の別境界か、影響台帳付きsource修正/後継候補で解決し、flag注入で成功扱いしない。旧受入smokeを無影響に再実行しない。\n')
+          s=load(state)
+          s['story_acceleration_checkpoint']['actions_completion_confirmed']=True
+          s['story_acceleration_checkpoint']['completion_record']=completion_path
+          s['next_action']['read_paths'].insert(1,completion_path)
+          for p in [cp,completion_path,guide]:s['source_bindings'][p]=ident(p)
+          if 'design/blockers.md' in s['source_bindings']:s['source_bindings']['design/blockers.md']=ident('design/blockers.md')
+          dump(state,s)
+          PY
+          python3 -B scripts/pr16_resume.py render
+          python3 -B scripts/pr16_resume.py check
+          python3 -B scripts/validate_task_graph.py --check
+          git diff --check
+      - name: Stage text only and non-force push
+        run: |
+          set -euo pipefail
+          git add content/modernization/pr16_story_acceleration_checkpoint.json \
+            content/modernization/pr16_story_acceleration_completion.json \
+            content/modernization/pr16_native_supply_resume_20260913.json \
+            docs/PR16_STORY_ACCELERATION_CHECKPOINT_JA.md \
+            docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md \
+            design/blockers.md design/run_log.md design/version_log.md
+          git diff --cached --check
+          python3 - <<'PY'
+          import pathlib,subprocess,sys
+          sys.path.insert(0,'scripts')
+          import guard_private_files as g
+          for p in subprocess.check_output(['git','diff','--cached','--name-only']).decode().splitlines():
+              assert pathlib.Path(p).suffix in {'.md','.json'},p
+              raw=g.index_blob(pathlib.Path('.'),p);assert b'\0' not in raw
+              raw.decode('utf-8')
+          for line in subprocess.check_output(['git','diff','--cached','--unified=0']).decode().splitlines():
+              if line.startswith('+') and not line.startswith('+++'):
+                  assert not g.document_user_path_lines(line[1:].encode()),'new machine-specific path'
+          print('SCOPED_TEXT_INDEX=PASS NATIVE_RERUN=0')
+          PY
+          branch=codex/modernization-followup-20260908
+          test "$(git ls-remote origin refs/heads/$branch | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m "USER-20260929-STORY-ACCELERATION: 完了run・75hash・全Save差分・進化blockerを確定 run=$GITHUB_RUN_ID"
+          git push origin HEAD:refs/heads/$branch
+          test "$(git ls-remote origin refs/heads/$branch | cut -f1)" = "$(git rev-parse HEAD)"
+          python3 -B scripts/pr16_resume.py check
+          git rev-parse HEAD > build/pr16-story-acceleration-confirm/final-head.txt
+          echo "RESULT=DONE TASK=USER-20260929-STORY-ACCELERATION VERIFY=PASS_SCOPED_EVOLUTION_BLOCKED COMMIT=$(git rev-parse HEAD)"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-story-acceleration-confirm-head-${{ github.run_id }}
+          path: build/pr16-story-acceleration-confirm/final-head.txt
+          if-no-files-found: ignore
+          retention-days: 90

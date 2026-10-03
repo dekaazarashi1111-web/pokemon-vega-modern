@@ -1,0 +1,30 @@
+{
+  "command": [
+    "cc",
+    "-std=c11",
+    "-O2",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-Wno-misleading-indentation",
+    "-Itools",
+    "-I.",
+    "-I.local/pr16-research-lifecycle/runtime/include",
+    ".local/pr16-research-lifecycle/shop-cancel.c",
+    "-L.local/pr16-research-lifecycle/runtime/lib",
+    "-lmgba",
+    "-lm",
+    "-Wl,--allow-shlib-undefined",
+    "-o",
+    ".local/pr16-research-lifecycle/shop-cancel"
+  ],
+  "executable": {
+    "sha256": "e543d1e05600a141f42799e5344532288c057e177ca168957f6c1206b12a5827",
+    "size": 73688
+  },
+  "generated": {
+    "sha256": "360af09abcac4bcd9ee0a5085da4e3b812e579dd6f8bf197a9cb7d1468bbd64f",
+    "size": 31156
+  },
+  "returncode": 0
+}

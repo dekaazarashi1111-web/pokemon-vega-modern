@@ -1,0 +1,199 @@
+{
+  "active_play_baseline": {
+    "json": {
+      "path": "config/active_play_baseline.json",
+      "sha256": "4800257add049ea99cdedda91413a70a255dcff9a85823463596edefa8785053",
+      "size": 394
+    },
+    "markdown": {
+      "path": "design/active_play_baseline.md",
+      "sha256": "e486dfa3fd9771084ba50390dd30b70d5c52e008a0b48f8cd186086e05e819f8",
+      "size": 5551
+    },
+    "stage": 62,
+    "unchanged": true
+  },
+  "allocation_lineage": {
+    "first79_all_fields_equal": true,
+    "new_count": 80,
+    "new_first79_sha256": "8cf50825cd00551477106946878c76e6ecdfd9339d86ae212fb9812e08e72d3a",
+    "new_sequence": 79,
+    "parent_count": 79,
+    "parent_first79_sha256": "8cf50825cd00551477106946878c76e6ecdfd9339d86ae212fb9812e08e72d3a",
+    "parent_last_sequence": 78,
+    "payload_slice_sha256": "c9c34af10900cb6cedbaaeef9dacd2d95a2fc0df0be39cb3aa29f8226ffbc92e"
+  },
+  "allocation_sequence": 79,
+  "artifact_manifest": {
+    "all_paths_sizes_sha256_present": true,
+    "artifact_count": 9,
+    "artifacts": [
+      {
+        "path": "build/stages/76_modernization_p05_edges.gba",
+        "sha256": "f753f13720aeb5331cfc8a9bf9dd5fd4ad9ac34537356d20d76b73e0100100ac",
+        "sha256_scope": "WHOLE_FILE",
+        "size": 33554432
+      },
+      {
+        "path": "build/stages/76_modernization_p05_edges.json",
+        "sha256": "46eb197ba064f4380d6bfd31b16b7ad04bc63599707b72254adde2231aa4d792",
+        "sha256_scope": "WHOLE_FILE",
+        "size": 6059
+      },
+      {
+        "path": "build/stages/76_modernization_p05_edges_allocation.json",
+        "sha256": "64f992d8288b3d861a8e2cc160af880991e76de1eb1ae7dd4081ee4e8c59ae3e",
+        "sha256_scope": "WHOLE_FILE",
+        "size": 45818
+      },
+      {
+        "path": "build/patches/stage75-to-stage76-modernization-p05-edges.bps",
+        "sha256": "f06a18fb9c26b1d09e621eb81c208c3c6a018607e58727ac5dd04091a45b1810",
+        "sha256_scope": "WHOLE_FILE",
+        "size": 2191
+      },
+      {
+        "path": "generated/runtime/modernization_p05_stage76_edges.bin",
+        "sha256": "c9c34af10900cb6cedbaaeef9dacd2d95a2fc0df0be39cb3aa29f8226ffbc92e",
+        "sha256_scope": "WHOLE_FILE",
+        "size": 2066
+      },
+      {
+        "path": "generated/runtime/modernization_p05_stage76_edges_symbols.json",
+        "sha256": "15291753650a4d7d3af61016e2fd6960233c0b4142db5e23e7ce44c044f8faf8",
+        "sha256_scope": "WHOLE_FILE",
+        "size": 1518
+      },
+      {
+        "path": "generated/runtime/modernization_p05_stage76_edges_audit.json",
+        "sha256": "c15e42cd1fc405bf3bb007c0959fcb989f6f896e8b2bb54744cbea85b469facc",
+        "sha256_scope": "WHOLE_FILE",
+        "size": 10537
+      },
+      {
+        "path": "content/modernization/p05_stage76_edges_contract.json",
+        "sha256": "e7bb30ccd0fe8540970295d0ad3f9ced6ce6aeb67bfcd1c67ab7cd4cf0ba295b",
+        "sha256_scope": "WHOLE_FILE",
+        "size": 3469
+      },
+      {
+        "path": "content/modernization/p05_stage76_edges_checkpoint.json",
+        "sha256": "0356387a8b63f83f6d6efed0b82601e45787aefad9b6804363468243a4e4d341",
+        "sha256_scope": "STABLE_JSON_WITHOUT_ARTIFACT_MANIFEST",
+        "size": 7018
+      }
+    ],
+    "self_hash_is_nonrecursive": true
+  },
+  "bps": {
+    "path": "build/patches/stage75-to-stage76-modernization-p05-edges.bps",
+    "round_trip": true,
+    "sha256": "f06a18fb9c26b1d09e621eb81c208c3c6a018607e58727ac5dd04091a45b1810",
+    "size": 2191,
+    "source_sha256": "a179c024294f4f1bbf34eb603af255f6896265d9d8523344719b349f8a4495c3",
+    "target_sha256": "f753f13720aeb5331cfc8a9bf9dd5fd4ad9ac34537356d20d76b73e0100100ac"
+  },
+  "checks": {
+    "active_play_baseline_unchanged": "PASS",
+    "allocator_overlap": "PASS",
+    "bps_roundtrip": "PASS",
+    "browt_pombon_gecqua_added": 0,
+    "eelevate_parent_sites_preserved": "PASS",
+    "eelevate_unsafe_hooks_installed": 0,
+    "mega_production_pointer_only": "PASS",
+    "mgba_runtime": "NOT_RUN",
+    "parent_first79_rows_all_fields_preserved": "PASS",
+    "parent_preimages": "PASS",
+    "parent_stage75_implementation_cross_link": "PASS",
+    "payload_ff_preimage": "PASS",
+    "payload_rom_slice": "PASS",
+    "piercing_damage_calc_predicted_ability": "PASS",
+    "piercing_original_protection_gate": "PASS",
+    "rom_diff_outside_payload_plus_four_patches": 0,
+    "side_change_added": 0,
+    "spicy_direct_and_spread_exclusive_actual_hit_paths": "PASS"
+  },
+  "done": false,
+  "edges": {
+    "eelevate_dedicated_switch": "PENDING_UNSAFE_WITHOUT_FULL_GROUND_ABSORPTION_CONTEXT",
+    "mega_sol_solar_charge_popup": "IMPLEMENT",
+    "piercing_drill_ai_virtual_protect_quarter": "IMPLEMENT",
+    "spicy_spray_friendly_fire_ai_score": "IMPLEMENT"
+  },
+  "full_p05_done": false,
+  "implementation_sha256": "fff61c6c3b05ad2f88d44bf336737515b744d687f2c7a73c4fbd8d4455d49696",
+  "implemented_edge_count": 3,
+  "output": {
+    "crc32": "0A78B46A",
+    "path": "build/stages/76_modernization_p05_edges.gba",
+    "sha256": "f753f13720aeb5331cfc8a9bf9dd5fd4ad9ac34537356d20d76b73e0100100ac",
+    "size": 33554432
+  },
+  "parent": {
+    "commit": "595909446b6ad67749c9894b23fdc536f82c638e",
+    "path": "build/stages/75_modernization_rockruff_own_tempo.gba",
+    "sha256": "a179c024294f4f1bbf34eb603af255f6896265d9d8523344719b349f8a4495c3",
+    "size": 33554432,
+    "stage": 75
+  },
+  "payload": {
+    "allocation_sequence": 79,
+    "load_address": "0x095D5050",
+    "path": "generated/runtime/modernization_p05_stage76_edges.bin",
+    "sha256": "c9c34af10900cb6cedbaaeef9dacd2d95a2fc0df0be39cb3aa29f8226ffbc92e",
+    "size": 2066,
+    "start": 22892624
+  },
+  "pending": [
+    "Eelevate dedicated switch AI: full Ground/Thousand Arrows/grounding/Gravity/Mold Breaker/Ability Shield semantics",
+    "mGBA runtime validation (Mega popup / Piercing and Spicy AI battle decisions)"
+  ],
+  "pending_edge_count": 1,
+  "release_ready": false,
+  "rom_diff": {
+    "allowed_intervals": [
+      {
+        "changed_bytes": 3,
+        "end_exclusive": 17038504,
+        "name": "SolarBeamEffectScript",
+        "size": 4,
+        "start": 17038500
+      },
+      {
+        "changed_bytes": 11,
+        "end_exclusive": 17470960,
+        "name": "AIScript_Partner",
+        "size": 12,
+        "start": 17470948
+      },
+      {
+        "changed_bytes": 8,
+        "end_exclusive": 17498192,
+        "name": "RangeMoveCanHurtPartner",
+        "size": 8,
+        "start": 17498184
+      },
+      {
+        "changed_bytes": 11,
+        "end_exclusive": 17735280,
+        "name": "AI_CalcDmg",
+        "size": 12,
+        "start": 17735268
+      },
+      {
+        "changed_bytes": 2048,
+        "end_exclusive": 22894690,
+        "name": "payload",
+        "size": 2066,
+        "start": 22892624
+      }
+    ],
+    "allowlist_interval_count": 5,
+    "changed_bytes_inside_allowlist": 2081,
+    "changed_bytes_outside_allowlist": 0
+  },
+  "schema_version": 1,
+  "stage": 76,
+  "status": "THREE_EDGES_ROM_MATERIALIZED_EELEVATE_AND_MGBA_PENDING",
+  "task": "USER-MODERNIZATION-P05-STAGE76-EDGES"
+}

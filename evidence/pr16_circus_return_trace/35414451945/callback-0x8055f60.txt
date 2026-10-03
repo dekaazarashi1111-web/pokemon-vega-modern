@@ -1,0 +1,69 @@
+
+.local/pr16-streak-input/candidate.gba:     file format binary
+
+
+Disassembly of section .data:
+
+08055f60 <.data+0x55f60>:
+ 8055f60:	5e75      	ldrsh	r5, [r6, r1]
+ 8055f62:	0805      	lsrs	r5, r0, #32
+ 8055f64:	b500      	push	{lr}
+ 8055f66:	b081      	sub	sp, #4
+ 8055f68:	4917      	ldr	r1, [pc, #92]	@ (0x8055fc8)
+ 8055f6a:	2087      	movs	r0, #135	@ 0x87
+ 8055f6c:	00c0      	lsls	r0, r0, #3
+ 8055f6e:	1809      	adds	r1, r1, r0
+ 8055f70:	7808      	ldrb	r0, [r1, #0]
+ 8055f72:	3001      	adds	r0, #1
+ 8055f74:	7008      	strb	r0, [r1, #0]
+ 8055f76:	0600      	lsls	r0, r0, #24
+ 8055f78:	0e00      	lsrs	r0, r0, #24
+ 8055f7a:	2877      	cmp	r0, #119	@ 0x77
+ 8055f7c:	d921      	bls.n	0x8055fc2
+ 8055f7e:	f000 f97d 	bl	0x805627c
+ 8055f82:	f01b f959 	bl	0x8071238
+ 8055f86:	f7ff feab 	bl	0x8055ce0
+ 8055f8a:	f7fe fa7d 	bl	0x8054488
+ 8055f8e:	2002      	movs	r0, #2
+ 8055f90:	f7ff f992 	bl	0x80552b8
+ 8055f94:	f013 f9d4 	bl	0x8069340
+ 8055f98:	f013 f938 	bl	0x806920c
+ 8055f9c:	490b      	ldr	r1, [pc, #44]	@ (0x8055fcc)
+ 8055f9e:	480c      	ldr	r0, [pc, #48]	@ (0x8055fd0)
+ 8055fa0:	6008      	str	r0, [r1, #0]
+ 8055fa2:	4669      	mov	r1, sp
+ 8055fa4:	2000      	movs	r0, #0
+ 8055fa6:	7008      	strb	r0, [r1, #0]
+ 8055fa8:	4668      	mov	r0, sp
+ 8055faa:	f000 fbb7 	bl	0x805671c
+ 8055fae:	f0bc ff7d 	bl	0x8112eac
+ 8055fb2:	f000 f987 	bl	0x80562c4
+ 8055fb6:	4807      	ldr	r0, [pc, #28]	@ (0x8055fd4)
+ 8055fb8:	f7ff ff72 	bl	0x8055ea0
+ 8055fbc:	4806      	ldr	r0, [pc, #24]	@ (0x8055fd8)
+ 8055fbe:	f7aa fac1 	bl	0x8000544
+ 8055fc2:	b001      	add	sp, #4
+ 8055fc4:	bc01      	pop	{r0}
+ 8055fc6:	4700      	bx	r0
+ 8055fc8:	3130      	adds	r1, #48	@ 0x30
+ 8055fca:	0300      	lsls	r0, r0, #12
+ 8055fcc:	5060      	str	r0, [r4, r1]
+ 8055fce:	0300      	lsls	r0, r0, #12
+ 8055fd0:	ed19 0807 	ldc	8, cr0, [r9, #-28]	@ 0xffffffe4
+ 8055fd4:	5df5      	ldrb	r5, [r6, r7]
+ 8055fd6:	0805      	lsrs	r5, r0, #32
+ 8055fd8:	5e75      	ldrsh	r5, [r6, r1]
+ 8055fda:	0805      	lsrs	r5, r0, #32
+ 8055fdc:	b500      	push	{lr}
+ 8055fde:	f000 f94d 	bl	0x805627c
+ 8055fe2:	f013 f9ad 	bl	0x8069340
+ 8055fe6:	f013 f911 	bl	0x806920c
+ 8055fea:	2000      	movs	r0, #0
+ 8055fec:	f7ff ff58 	bl	0x8055ea0
+ 8055ff0:	4803      	ldr	r0, [pc, #12]	@ (0x8056000)
+ 8055ff2:	f7aa faa7 	bl	0x8000544
+ 8055ff6:	4903      	ldr	r1, [pc, #12]	@ (0x8056004)
+ 8055ff8:	4803      	ldr	r0, [pc, #12]	@ (0x8056008)
+ 8055ffa:	6088      	str	r0, [r1, #8]
+ 8055ffc:	bc01      	pop	{r0}
+ 8055ffe:	4700      	bx	r0

@@ -1,0 +1,97 @@
+{
+  "artifact_id": 10189282487,
+  "artifact_name": "pr16-capture-geometry",
+  "conclusion": "success",
+  "head_branch": "codex/modernization-followup-20260908",
+  "head_sha": "df5cad6e68e80053bec5eedc13d34c35f36c0c56",
+  "jobs": [
+    {
+      "conclusion": "success",
+      "head_sha": "df5cad6e68e80053bec5eedc13d34c35f36c0c56",
+      "id": 103185376554,
+      "name": "geometry",
+      "run_id": 34575014339,
+      "status": "completed",
+      "steps": [
+        {
+          "completed_at": "2026-09-11T07:34:30Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "started_at": "2026-09-11T07:34:29Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T07:34:35Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 2,
+          "started_at": "2026-09-11T07:34:30Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T07:34:36Z",
+          "conclusion": "success",
+          "name": "Bind tracked development sources, excluding binaries and private inputs",
+          "number": 3,
+          "started_at": "2026-09-11T07:34:35Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T07:35:12Z",
+          "conclusion": "success",
+          "name": "Restore exact parent and compiler without touching baseline",
+          "number": 4,
+          "started_at": "2026-09-11T07:34:36Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T07:35:15Z",
+          "conclusion": "success",
+          "name": "Fixed adopted V4 and original character map",
+          "number": 5,
+          "started_at": "2026-09-11T07:35:12Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T07:35:23Z",
+          "conclusion": "success",
+          "name": "Build exact parent and inspect rooted walking geometry",
+          "number": 6,
+          "started_at": "2026-09-11T07:35:15Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T07:35:25Z",
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@v4",
+          "number": 7,
+          "started_at": "2026-09-11T07:35:23Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T07:35:25Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 14,
+          "started_at": "2026-09-11T07:35:25Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T07:35:25Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 15,
+          "started_at": "2026-09-11T07:35:25Z",
+          "status": "completed"
+        }
+      ]
+    }
+  ],
+  "path": ".github/workflows/pr16-capture-geometry.yml",
+  "run_attempt": 1,
+  "run_id": 34575014339,
+  "sha256": "f7963318257bd6127eaaf09a0f0e7e1124789d5100abf93ce11d668c5292331e",
+  "size": 8329348,
+  "status": "completed"
+}

@@ -1,0 +1,871 @@
+{
+  "candidate": {
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5",
+    "size": 33554432
+  },
+  "current_save": {
+    "bytes_changed": 0,
+    "identity": {
+      "sha256": "5c4a03b9d92f7be54250d565162b03b5b85a2f221c3873d26d894b74b76778ce",
+      "size": 131088
+    },
+    "national_magic": 0
+  },
+  "dex_enabled_in_save": false,
+  "early_unlock_reachable_accepted": false,
+  "evolution_accepted": false,
+  "fixture_writes": 0,
+  "full_map_inventory_acceptance_claimed": false,
+  "gate_modified": false,
+  "native_processes": 0,
+  "native_regions": [
+    {
+      "address": 134666784,
+      "binding": {
+        "sha256": "e4d7ea64a05e5de20afdcd97b3b04afe39ed16c2d9c120d07d0d39492bdda108",
+        "size": 48
+      }
+    },
+    {
+      "address": 134666832,
+      "binding": {
+        "sha256": "415dc6802fecdae1bcf381f7f6402a1dd5f481870662aed1e03aaabc36ca9c60",
+        "size": 56
+      }
+    },
+    {
+      "address": 135068192,
+      "binding": {
+        "sha256": "ef6da906d96281af7aec11d3ffe2c0cd528c05e921086a4bcc7f994eeeefe1b8",
+        "size": 72
+      }
+    },
+    {
+      "address": 135071356,
+      "binding": {
+        "sha256": "74333eae1b5ceb97471a3aee31da3fb14d04b402c0ccdcbcae83b510f9dd1fed",
+        "size": 72
+      }
+    }
+  ],
+  "owner_abi": {
+    "enable_function": 134666785,
+    "national_flag": 2112,
+    "national_magic": 185,
+    "national_value": 25176,
+    "national_var": 16462,
+    "predicate": 134666833,
+    "save2_magic_offset": 27,
+    "special_table": 135671912
+  },
+  "release_ready": false,
+  "rom_changes": 0,
+  "rooted_graph": {
+    "diagnostics": [],
+    "nodes": [
+      {
+        "address": 135775773,
+        "edges": [
+          135775824
+        ],
+        "end_reason": "goto",
+        "instruction_count": 12,
+        "roots": [
+          "legacy-lab7"
+        ]
+      },
+      {
+        "address": 135775824,
+        "edges": [
+          135776143,
+          135776175,
+          135776214,
+          135776246,
+          135776257,
+          135776268,
+          135776279,
+          135776304,
+          135776322,
+          135777888,
+          135777899,
+          135777910,
+          135777928,
+          135778692,
+          135778710,
+          135872323
+        ],
+        "end_reason": "end",
+        "instruction_count": 76,
+        "roots": [
+          "legacy-lab7"
+        ]
+      },
+      {
+        "address": 135776143,
+        "edges": [],
+        "end_reason": "return",
+        "instruction_count": 7,
+        "roots": [
+          "legacy-lab7"
+        ]
+      },
+      {
+        "address": 135776175,
+        "edges": [],
+        "end_reason": "return",
+        "instruction_count": 8,
+        "roots": [
+          "legacy-lab7"
+        ]
+      },
+      {
+        "address": 135776214,
+        "edges": [],
+        "end_reason": "return",
+        "instruction_count": 7,
+        "roots": [
+          "legacy-lab7"
+        ]
+      },
+      {
+        "address": 135776246,
+        "edges": [],
+        "end_reason": "return",
+        "instruction_count": 3,
+        "roots": [
+          "legacy-lab7"
+        ]
+      },
+      {
+        "address": 135776257,
+        "edges": [],
+        "end_reason": "return",
+        "instruction_count": 3,
+        "roots": [
+          "legacy-lab7"
+        ]
+      },
+      {
+        "address": 135776268,
+        "edges": [],
+        "end_reason": "return",
+        "instruction_count": 3,
+        "roots": [
+          "legacy-lab7"
+        ]
+      },
+      {
+        "address": 135776279,
+        "edges": [],
+        "end_reason": "return",
+        "instruction_count": 5,
+        "roots": [
+          "legacy-lab7"
+        ]
+      },
+      {
+        "address": 135776304,
+        "edges": [],
+        "end_reason": "return",
+        "instruction_count": 4,
+        "roots": [
+          "legacy-lab7"
+        ]
+      },
+      {
+        "address": 135776322,
+        "edges": [],
+        "end_reason": "return",
+        "instruction_count": 3,
+        "roots": [
+          "legacy-lab7"
+        ]
+      },
+      {
+        "address": 135777888,
+        "edges": [],
+        "end_reason": "return",
+        "instruction_count": 3,
+        "roots": [
+          "legacy-lab7"
+        ]
+      },
+      {
+        "address": 135777899,
+        "edges": [],
+        "end_reason": "return",
+        "instruction_count": 3,
+        "roots": [
+          "legacy-lab7"
+        ]
+      },
+      {
+        "address": 135777910,
+        "edges": [],
+        "end_reason": "return",
+        "instruction_count": 4,
+        "roots": [
+          "legacy-lab7"
+        ]
+      },
+      {
+        "address": 135777928,
+        "edges": [],
+        "end_reason": "return",
+        "instruction_count": 3,
+        "roots": [
+          "legacy-lab7"
+        ]
+      },
+      {
+        "address": 135778692,
+        "edges": [],
+        "end_reason": "return",
+        "instruction_count": 4,
+        "roots": [
+          "legacy-lab7"
+        ]
+      },
+      {
+        "address": 135778710,
+        "edges": [],
+        "end_reason": "return",
+        "instruction_count": 3,
+        "roots": [
+          "legacy-lab7"
+        ]
+      },
+      {
+        "address": 135872323,
+        "edges": [],
+        "end_reason": "return",
+        "instruction_count": 2,
+        "roots": [
+          "legacy-lab7"
+        ]
+      },
+      {
+        "address": 142948388,
+        "edges": [],
+        "end_reason": "end",
+        "instruction_count": 26,
+        "roots": [
+          "vega-town9"
+        ]
+      },
+      {
+        "address": 142948528,
+        "edges": [],
+        "end_reason": "end",
+        "instruction_count": 121,
+        "roots": [
+          "vega-lab10"
+        ]
+      }
+    ],
+    "references": [
+      {
+        "access": "set",
+        "category": "flag",
+        "command": "setflag",
+        "instruction_address": 142948389,
+        "opcode": 41,
+        "roots": [
+          "vega-town9"
+        ],
+        "script_address": 142948388,
+        "value": 2121
+      },
+      {
+        "access": "clear",
+        "category": "flag",
+        "command": "clearflag",
+        "instruction_address": 135775805,
+        "opcode": 42,
+        "roots": [
+          "legacy-lab7"
+        ],
+        "script_address": 135775773,
+        "value": 43
+      },
+      {
+        "access": "clear",
+        "category": "flag",
+        "command": "clearflag",
+        "instruction_address": 142948883,
+        "opcode": 42,
+        "roots": [
+          "vega-lab10"
+        ],
+        "script_address": 142948528,
+        "value": 4352
+      },
+      {
+        "access": "set",
+        "category": "flag",
+        "command": "setflag",
+        "instruction_address": 142948944,
+        "opcode": 41,
+        "roots": [
+          "vega-lab10"
+        ],
+        "script_address": 142948528,
+        "value": 4352
+      },
+      {
+        "access": "clear",
+        "category": "flag",
+        "command": "clearflag",
+        "instruction_address": 142948965,
+        "opcode": 42,
+        "roots": [
+          "vega-lab10"
+        ],
+        "script_address": 142948528,
+        "value": 4352
+      },
+      {
+        "access": "clear",
+        "category": "flag",
+        "command": "clearflag",
+        "instruction_address": 142948395,
+        "opcode": 42,
+        "roots": [
+          "vega-town9"
+        ],
+        "script_address": 142948388,
+        "value": 44
+      },
+      {
+        "access": "set",
+        "category": "flag",
+        "command": "setflag",
+        "instruction_address": 142948481,
+        "opcode": 41,
+        "roots": [
+          "vega-town9"
+        ],
+        "script_address": 142948388,
+        "value": 44
+      },
+      {
+        "access": "clear",
+        "category": "flag",
+        "command": "clearflag",
+        "instruction_address": 142948962,
+        "opcode": 42,
+        "roots": [
+          "vega-lab10"
+        ],
+        "script_address": 142948528,
+        "value": 4437
+      },
+      {
+        "access": "clear",
+        "category": "flag",
+        "command": "clearflag",
+        "instruction_address": 142948697,
+        "opcode": 42,
+        "roots": [
+          "vega-lab10"
+        ],
+        "script_address": 142948528,
+        "value": 45
+      },
+      {
+        "access": "set",
+        "category": "flag",
+        "command": "setflag",
+        "instruction_address": 142948870,
+        "opcode": 41,
+        "roots": [
+          "vega-lab10"
+        ],
+        "script_address": 142948528,
+        "value": 45
+      },
+      {
+        "access": "warp",
+        "category": "map",
+        "command": "warpsilent",
+        "instruction_address": 142948971,
+        "map_id_class": "PHYSICAL",
+        "opcode": 58,
+        "roots": [
+          "vega-lab10"
+        ],
+        "script_address": 142948528,
+        "value": [
+          30,
+          0
+        ]
+      },
+      {
+        "access": "warp",
+        "category": "map",
+        "command": "warp",
+        "instruction_address": 142948484,
+        "map_id_class": "PHYSICAL",
+        "opcode": 57,
+        "roots": [
+          "vega-town9"
+        ],
+        "script_address": 142948388,
+        "value": [
+          4,
+          3
+        ]
+      },
+      {
+        "access": "call",
+        "category": "special",
+        "command": "special",
+        "instruction_address": 142948569,
+        "opcode": 37,
+        "roots": [
+          "vega-lab10"
+        ],
+        "script_address": 142948528,
+        "value": 275
+      },
+      {
+        "access": "call",
+        "category": "special",
+        "command": "special",
+        "instruction_address": 142948632,
+        "opcode": 37,
+        "roots": [
+          "vega-lab10"
+        ],
+        "script_address": 142948528,
+        "value": 275
+      },
+      {
+        "access": "call",
+        "category": "special",
+        "command": "special",
+        "instruction_address": 142948848,
+        "opcode": 37,
+        "roots": [
+          "vega-lab10"
+        ],
+        "script_address": 142948528,
+        "value": 275
+      },
+      {
+        "access": "call",
+        "category": "special",
+        "command": "special",
+        "instruction_address": 142948582,
+        "opcode": 37,
+        "roots": [
+          "vega-lab10"
+        ],
+        "script_address": 142948528,
+        "value": 276
+      },
+      {
+        "access": "call",
+        "category": "special",
+        "command": "special",
+        "instruction_address": 142948645,
+        "opcode": 37,
+        "roots": [
+          "vega-lab10"
+        ],
+        "script_address": 142948528,
+        "value": 276
+      },
+      {
+        "access": "call",
+        "category": "special",
+        "command": "special",
+        "instruction_address": 142948861,
+        "opcode": 37,
+        "roots": [
+          "vega-lab10"
+        ],
+        "script_address": 142948528,
+        "value": 276
+      },
+      {
+        "access": "call",
+        "category": "special",
+        "command": "special",
+        "instruction_address": 135776064,
+        "opcode": 37,
+        "roots": [
+          "legacy-lab7"
+        ],
+        "script_address": 135775824,
+        "value": 367
+      },
+      {
+        "access": "call",
+        "category": "special",
+        "command": "special",
+        "instruction_address": 142948968,
+        "opcode": 37,
+        "roots": [
+          "vega-lab10"
+        ],
+        "script_address": 142948528,
+        "value": 367
+      },
+      {
+        "access": "write",
+        "category": "var",
+        "command": "setvar",
+        "instruction_address": 135776136,
+        "opcode": 22,
+        "operand": 8,
+        "roots": [
+          "legacy-lab7"
+        ],
+        "script_address": 135775824,
+        "value": 16469
+      },
+      {
+        "access": "write",
+        "category": "var",
+        "command": "setvar",
+        "instruction_address": 142948476,
+        "opcode": 22,
+        "operand": 10,
+        "roots": [
+          "vega-town9"
+        ],
+        "script_address": 142948388,
+        "value": 16498
+      },
+      {
+        "access": "write",
+        "category": "var",
+        "command": "setvar",
+        "instruction_address": 142948957,
+        "opcode": 22,
+        "operand": 11,
+        "roots": [
+          "vega-lab10"
+        ],
+        "script_address": 142948528,
+        "value": 16498
+      },
+      {
+        "access": "write",
+        "category": "var",
+        "command": "setvar",
+        "instruction_address": 135775774,
+        "opcode": 22,
+        "operand": 2,
+        "roots": [
+          "legacy-lab7"
+        ],
+        "script_address": 135775773,
+        "value": 32780
+      },
+      {
+        "access": "read",
+        "category": "var",
+        "command": "compare_var_to_value",
+        "instruction_address": 135775833,
+        "opcode": 33,
+        "operand": 2,
+        "roots": [
+          "legacy-lab7"
+        ],
+        "script_address": 135775824,
+        "value": 32780
+      },
+      {
+        "access": "read",
+        "category": "var",
+        "command": "compare_var_to_value",
+        "instruction_address": 135775844,
+        "opcode": 33,
+        "operand": 1,
+        "roots": [
+          "legacy-lab7"
+        ],
+        "script_address": 135775824,
+        "value": 32780
+      },
+      {
+        "access": "read",
+        "category": "var",
+        "command": "compare_var_to_value",
+        "instruction_address": 135775855,
+        "opcode": 33,
+        "operand": 4,
+        "roots": [
+          "legacy-lab7"
+        ],
+        "script_address": 135775824,
+        "value": 32780
+      },
+      {
+        "access": "read",
+        "category": "var",
+        "command": "compare_var_to_value",
+        "instruction_address": 135775866,
+        "opcode": 33,
+        "operand": 3,
+        "roots": [
+          "legacy-lab7"
+        ],
+        "script_address": 135775824,
+        "value": 32780
+      },
+      {
+        "access": "read",
+        "category": "var",
+        "command": "compare_var_to_value",
+        "instruction_address": 135775894,
+        "opcode": 33,
+        "operand": 2,
+        "roots": [
+          "legacy-lab7"
+        ],
+        "script_address": 135775824,
+        "value": 32780
+      },
+      {
+        "access": "read",
+        "category": "var",
+        "command": "compare_var_to_value",
+        "instruction_address": 135775905,
+        "opcode": 33,
+        "operand": 3,
+        "roots": [
+          "legacy-lab7"
+        ],
+        "script_address": 135775824,
+        "value": 32780
+      },
+      {
+        "access": "read",
+        "category": "var",
+        "command": "compare_var_to_value",
+        "instruction_address": 135775932,
+        "opcode": 33,
+        "operand": 2,
+        "roots": [
+          "legacy-lab7"
+        ],
+        "script_address": 135775824,
+        "value": 32780
+      },
+      {
+        "access": "read",
+        "category": "var",
+        "command": "compare_var_to_value",
+        "instruction_address": 135775943,
+        "opcode": 33,
+        "operand": 1,
+        "roots": [
+          "legacy-lab7"
+        ],
+        "script_address": 135775824,
+        "value": 32780
+      },
+      {
+        "access": "read",
+        "category": "var",
+        "command": "compare_var_to_value",
+        "instruction_address": 135775954,
+        "opcode": 33,
+        "operand": 4,
+        "roots": [
+          "legacy-lab7"
+        ],
+        "script_address": 135775824,
+        "value": 32780
+      },
+      {
+        "access": "read",
+        "category": "var",
+        "command": "compare_var_to_value",
+        "instruction_address": 135775965,
+        "opcode": 33,
+        "operand": 3,
+        "roots": [
+          "legacy-lab7"
+        ],
+        "script_address": 135775824,
+        "value": 32780
+      },
+      {
+        "access": "read",
+        "category": "var",
+        "command": "compare_var_to_value",
+        "instruction_address": 135776003,
+        "opcode": 33,
+        "operand": 2,
+        "roots": [
+          "legacy-lab7"
+        ],
+        "script_address": 135775824,
+        "value": 32780
+      },
+      {
+        "access": "read",
+        "category": "var",
+        "command": "compare_var_to_value",
+        "instruction_address": 135776014,
+        "opcode": 33,
+        "operand": 1,
+        "roots": [
+          "legacy-lab7"
+        ],
+        "script_address": 135775824,
+        "value": 32780
+      },
+      {
+        "access": "read",
+        "category": "var",
+        "command": "compare_var_to_value",
+        "instruction_address": 135776025,
+        "opcode": 33,
+        "operand": 4,
+        "roots": [
+          "legacy-lab7"
+        ],
+        "script_address": 135775824,
+        "value": 32780
+      },
+      {
+        "access": "read",
+        "category": "var",
+        "command": "compare_var_to_value",
+        "instruction_address": 135776036,
+        "opcode": 33,
+        "operand": 3,
+        "roots": [
+          "legacy-lab7"
+        ],
+        "script_address": 135775824,
+        "value": 32780
+      },
+      {
+        "access": "read",
+        "category": "var",
+        "command": "compare_var_to_value",
+        "instruction_address": 135776088,
+        "opcode": 33,
+        "operand": 2,
+        "roots": [
+          "legacy-lab7"
+        ],
+        "script_address": 135775824,
+        "value": 32780
+      },
+      {
+        "access": "read",
+        "category": "var",
+        "command": "compare_var_to_value",
+        "instruction_address": 135776099,
+        "opcode": 33,
+        "operand": 1,
+        "roots": [
+          "legacy-lab7"
+        ],
+        "script_address": 135775824,
+        "value": 32780
+      },
+      {
+        "access": "read",
+        "category": "var",
+        "command": "compare_var_to_value",
+        "instruction_address": 135776110,
+        "opcode": 33,
+        "operand": 4,
+        "roots": [
+          "legacy-lab7"
+        ],
+        "script_address": 135775824,
+        "value": 32780
+      },
+      {
+        "access": "read",
+        "category": "var",
+        "command": "compare_var_to_value",
+        "instruction_address": 135776121,
+        "opcode": 33,
+        "operand": 3,
+        "roots": [
+          "legacy-lab7"
+        ],
+        "script_address": 135775824,
+        "value": 32780
+      },
+      {
+        "access": "write",
+        "category": "var",
+        "command": "copyvar",
+        "instruction_address": 135872323,
+        "opcode": 25,
+        "operand": 32787,
+        "roots": [
+          "legacy-lab7"
+        ],
+        "script_address": 135872323,
+        "value": 32786
+      }
+    ],
+    "root_count": 3,
+    "unique_root_address_count": 3,
+    "visited_script_count": 20
+  },
+  "routes": {
+    "graph_diagnostics": 0,
+    "lab_condition": [
+      16498,
+      10,
+      142948528
+    ],
+    "lab_grant": [
+      142948968,
+      367
+    ],
+    "lab_set": [
+      142948957,
+      16498,
+      11
+    ],
+    "lab_warp": [
+      142948971,
+      30,
+      0
+    ],
+    "legacy_condition": [
+      16469,
+      7,
+      135775773
+    ],
+    "legacy_grant": [
+      135776064,
+      367
+    ],
+    "special367": 134666785,
+    "special403": 134666833,
+    "town_condition": [
+      16498,
+      9,
+      142948388
+    ],
+    "town_set": [
+      142948476,
+      16498,
+      10
+    ],
+    "town_warp": [
+      142948484,
+      4,
+      3
+    ],
+    "visited_nodes": 20
+  },
+  "scope": "STATIC_THREE_ROOTS_NOT_GAMEPLAY_UNLOCK",
+  "status": "PASS_NATIONAL_DEX_GRANT_OWNER_SCOPED",
+  "var9_natural_arrival_accepted": false
+}

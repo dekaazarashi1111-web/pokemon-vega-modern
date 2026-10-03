@@ -1,0 +1,84 @@
+{
+  "issue18_complete": false,
+  "new_native_runs": 0,
+  "remaining_work_ja": [
+    "追加野生95行・collection配布18/Floette1・raid292の初期技source規則に加え、GiveBoxMonInitialMoveset/GiveMoveToBoxMon・ScriptGiveMon/CreateEggの全body一致を確認。残りは全通常野生header/既存story配布、CreateBoxMon/CreateWildMon/GiveEggFromDaycareの差分body・マクロ・生成後form/custom技。実生成技受入とは別。",
+    "保存ELFでGetTypeBasedZMove→CalcMoveSplitの直接BLと両関数全body一致を確認。CanUseZMove/HandleInputChooseMoveは保存bodyとの差分あり。残りはその差分の由来・間接辺・現在の実到達条件。元3入口graphや受入nativeは再実行しない。",
+    "夢特性パッチの全1671slot条件・BP供給sourceに加え、field入口と3 UI callbackの全body一致を確認。GetAbility1/2/GetHiddenAbility/GetMonAbility・GiveEggFromDaycareは保存bodyとの差分あり、DetermineEggAbilityは独立symbolなし。残りは差分accessor・育て屋・通常初回供給caller・実使用条件。native未受入のまま。",
+    "T04全70アダプターのsource由来、技511の凍結Vega互換重複由来・候補12byte、VegaResolveMoveEffectScript/VegaMoveEffectPrepareの全body一致を確認。技由来の未結合は解消。残りは上流宣言技のlocal patch/全handler履歴・dispatch間接辺と個別handler対応。source/byte一致をnative受入にしない。"
+  ],
+  "schema_version": 1,
+  "summary": {
+    "creation_declared_routes": 311,
+    "creation_profile_species": 470,
+    "creation_profile_states": {
+      "SOURCE_RULE_APPLIED_TO_CANDIDATE_ROWS": 4776
+    },
+    "creation_profiles": 4776,
+    "creation_route_kinds": {
+      "COLLECTION_RAID": 292,
+      "FIXED_GIFT": 4,
+      "RESEARCH_EGG": 15
+    },
+    "effect_origin_records": 1063,
+    "effect_origin_states": {
+      "FROZEN_VEGA_COMPAT_DUPLICATE_BOUND": 1,
+      "LOCKED_UPSTREAM_EFFECT_DECLARATION": 991,
+      "MOVE_NONE_NOT_PLAYABLE": 1,
+      "T04_SOURCE_ADAPTER_CLASSIFIED": 70
+    },
+    "frozen_compatibility_move_lineages": 1,
+    "generic_z_records": 1063,
+    "generic_z_states": {
+      "DAMAGE_MOVE_SOURCE_RULE": 633,
+      "INTERNAL_Z_MAX_ROW_NOT_ORDINARY_BASE_MOVE": 156,
+      "MOVE_NONE_NOT_A_BASE_MOVE": 1,
+      "STATUS_MOVE_WITH_ADDITIONAL_EFFECT": 273
+    },
+    "hidden_patch_records": 1671,
+    "hidden_patch_states": {
+      "DISTINCT_NORMAL_ABILITY_CAN_TARGET_HIDDEN": 847,
+      "NORMAL_ABILITY_ALREADY_EQUALS_HIDDEN_ID": 57,
+      "NO_HIDDEN_ABILITY_ASSIGNED": 767
+    },
+    "hidden_slot_records": 1671,
+    "link_graph_direct_bl_sites": 4,
+    "link_graph_limited_seeds": 0,
+    "link_graph_nodes": 32,
+    "link_graph_overlap_sites": 0,
+    "link_graph_seeds": 3,
+    "missing_named_link_symbols": 16,
+    "physicality_candidate_table_matches": 1,
+    "runtime_z_records": 1063,
+    "runtime_z_rules": {
+      "CANDIDATE_BASE_SPLIT": 783,
+      "SHELL_SIDE_ARM_SELF_BANK_BASE_SPLIT": 1,
+      "STATUS_SENTINEL_NOT_DAMAGE_SPLIT": 275,
+      "STAT_STAGE_COMPARISON": 2,
+      "TERA_CONDITIONAL_STAT_COMPARISON": 2
+    },
+    "saved_elf_direct_call_sites": 94,
+    "saved_elf_exact_function_graphs": 17,
+    "saved_elf_exact_named_call_sites": 21,
+    "saved_elf_requested_symbols": 31,
+    "saved_elf_target_states": {
+      "CANDIDATE_BODY_DIFFERS": 9,
+      "EXACT_CANDIDATE_SYMBOL_BODY": 17,
+      "MISSING_SAVED_SYMBOL": 2,
+      "SYMBOL_WITHOUT_PROVEN_EXTENT": 3
+    },
+    "t04_adapters_with_central_queries": 17,
+    "t04_required_source_patch_contracts": 26,
+    "t04_script_origins": {
+      "PROJECT_COMPOSED_SCRIPT": 5,
+      "PROJECT_DYNAMIC_PREPARE_ADAPTER": 3,
+      "UPSTREAM_EFFECT_PARAMETER_ADAPTER": 43,
+      "UPSTREAM_SCRIPT_DELEGATE": 19
+    },
+    "t04_source_adapters": 70,
+    "type_split_mappings": 36,
+    "wild_overlay_entries": 95,
+    "wild_overlay_slots": 294,
+    "z_status_effects": 29
+  }
+}

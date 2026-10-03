@@ -1,0 +1,28 @@
+{
+  "job_id": 111186021028,
+  "passed_tests": 16,
+  "development_controller_rechecks": 16,
+  "reason_ja": "実script先頭lockの位置修正でsynthetic原本とdecoderが変わったため16件を再検査。旧ゲーム受入suiteは再走0。",
+  "prior_development_test_counts": [
+    12,
+    4
+  ],
+  "test_lines": [
+    "test_boolean_truth_table (test_pr16_story_save28_branch.Branch.test_boolean_truth_table) ... ok",
+    "test_condition_zero_set (test_pr16_story_save28_branch.Branch.test_condition_zero_set) ... ok",
+    "test_condition_zero_unset (test_pr16_story_save28_branch.Branch.test_condition_zero_unset) ... ok",
+    "test_nonboolean_comparison_rejected (test_pr16_story_save28_branch.Branch.test_nonboolean_comparison_rejected) ... ok",
+    "test_bool (test_pr16_story_save28_measure.Decode.test_bool) ... ok",
+    "test_branch_target (test_pr16_story_save28_measure.Decode.test_branch_target) ... ok",
+    "test_false (test_pr16_story_save28_measure.Decode.test_false) ... ok",
+    "test_flag_owner (test_pr16_story_save28_measure.Decode.test_flag_owner) ... ok",
+    "test_invalid_flag (test_pr16_story_save28_measure.Decode.test_invalid_flag) ... ok",
+    "test_long (test_pr16_story_save28_measure.Decode.test_long) ... ok",
+    "test_short (test_pr16_story_save28_measure.Decode.test_short) ... ok",
+    "test_true (test_pr16_story_save28_measure.Decode.test_true) ... ok",
+    "test_wrong_destination (test_pr16_story_save28_measure.Decode.test_wrong_destination) ... ok",
+    "test_wrong_map (test_pr16_story_save28_measure.Decode.test_wrong_map) ... ok",
+    "test_wrong_release (test_pr16_story_save28_measure.Decode.test_wrong_release) ... ok",
+    "test_wrong_warp (test_pr16_story_save28_measure.Decode.test_wrong_warp) ... ok"
+  ]
+}

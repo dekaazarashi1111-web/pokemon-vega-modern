@@ -1,0 +1,115 @@
+name: p03-learning-e2e-record
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/p03-learning-e2e-record.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+jobs:
+  record:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: p03-learning-e2e
+          run-id: 34347153852
+          github-token: ${{ github.token }}
+          path: .local/p03-learning-source
+      - name: 原本実行とsourceと結果を再検証して保存
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p .local/p03-learning-record
+          python3 -m unittest tests.test_modernization_p03_learning_e2e -v 2>&1 | tee .local/p03-learning-record/tests.log
+          python3 - <<'PY'
+          import datetime, json, os, shutil, urllib.request
+          from pathlib import Path
+          from scripts.run_modernization_p03_learning_e2e import identity, validate_result
+          source = Path('.local/p03-learning-source')
+          run_id = 34347153852
+          expected_head = 'fdac91af6288953e740d4ceb5bc2cc25e3690cf7'
+          repo = 'dekaazarashi1111-web/pokemon-vega-modern'
+          def api(path):
+              request = urllib.request.Request('https://api.github.com/repos/' + repo + path,
+                  headers={'Authorization': 'Bearer ' + os.environ['GH_TOKEN'], 'Accept': 'application/vnd.github+json'})
+              with urllib.request.urlopen(request, timeout=30) as response: return json.load(response)
+          run = api('/actions/runs/' + str(run_id))
+          assert run['status'] == 'completed' and run['conclusion'] == 'success'
+          assert run['head_sha'] == expected_head and run['run_attempt'] == 1
+          assert run['head_repository']['full_name'] == repo
+          assert run['head_branch'] == 'codex/modernization-followup-20260908'
+          assert run['path'] == '.github/workflows/p03-learning-e2e.yml'
+          jobs = api('/actions/runs/' + str(run_id) + '/jobs')['jobs']
+          assert len(jobs) == 1 and jobs[0]['conclusion'] == 'success'
+          executed = [s for s in jobs[0]['steps'] if s['name'] == '新規2 processで通常習得・保存・Continueを実行']
+          assert len(executed) == 1 and executed[0]['conclusion'] == 'success'
+          assert (source / 'tested-head.txt').read_text().strip() == expected_head
+          assert identity(source / 'result.json') == {'size': 4373, 'sha256': '96f691f9284918e085a6fa0d096cf1b728f7d76637c612dc4369f99cd4a3ba57'}
+          artifact = api('/actions/artifacts/10102197760')
+          assert artifact['digest'] == 'sha256:87b95f9b6fb518f1f41d07001d5e8638b9147c029e26120b3344a63fa08355d9'
+          assert artifact['workflow_run']['head_sha'] == expected_head
+          report = json.loads((source / 'result.json').read_text())
+          assert report['status'] == 'PASS' and report['fresh_process_runs'] == 2
+          assert report['cached_results_reused'] == 0
+          for field in ('full_p03_acceptance', 'breeding_e2e', 'release_ready', 'active_baseline_changed'):
+              assert report[field] is False
+          for name, bound in report['source_bindings'].items(): assert identity(Path(name)) == bound, name
+          assert len(report['cases']) == 2
+          assert [c['mode'] for c in report['cases']] == ['learn', 'below-level']
+          for case in report['cases']:
+              mode = case['mode']
+              raw = (source / (mode + '.stdout')).read_bytes()
+              parsed = validate_result(raw, mode, case['returncode'])
+              assert parsed == case['runner_result']
+              for stream in ('stdout', 'stderr'): assert identity(source / (mode + '.' + stream)) == case[stream]
+          destination = Path('content/modernization/p03_learning_e2e_evidence') / str(run_id)
+          assert not destination.exists()
+          destination.mkdir(parents=True)
+          for name in ('result.json', 'learn.stdout', 'learn.stderr', 'below-level.stdout', 'below-level.stderr', 'tested-head.txt', 'compile.stdout', 'compile.stderr'):
+              shutil.copyfile(source / name, destination / name)
+          record = {'schema_version': 1, 'runtime_run_id': run_id, 'runtime_head': expected_head,
+              'source_artifact_id': 10102197760, 'source_artifact_digest': artifact['digest'],
+              'scope': report['scope'], 'fresh_process_runs': 2, 'cached_results_reused': 0,
+              'status': 'PASS', 'full_p03_acceptance': False, 'release_ready': False,
+              'record_source_head': os.environ['GITHUB_SHA'], 'record_run_id': int(os.environ['GITHUB_RUN_ID']),
+              'evidence': {p.name: identity(p) for p in sorted(destination.iterdir())}}
+          Path('content/modernization/p03_learning_e2e_record.json').write_text(json.dumps(record, ensure_ascii=False, indent=2) + '\n')
+          stamp = datetime.datetime.now(datetime.timezone.utc).isoformat()
+          marker = '<!-- USER-MODERNIZATION-P03-LEARNING-E2E:' + str(run_id) + ' -->'
+          entry = ('\n\n## ' + stamp + '\n' + marker + '\n'
+              '- Task: USER-MODERNIZATION-P03-LEARNING-E2E / 通常習得・保存・新規coreの代表通し試験\n'
+              '- Status: DONE（代表2ケースのみ。P03全体は未完了）\n'
+              '- Summary: キャタピーLv8→9のむしくい習得とLv7→8の非習得を、通常Bag/Party入力・進化取消・Start保存・新規core Continueで確認。\n'
+              '- Files changed: tools/mgba_modernization_p03_learning_e2e.c, scripts/run_modernization_p03_learning_e2e.py, tests/test_modernization_p03_learning_e2e.py, docs/P03_LEARNING_E2E.md, content/modernization/p03_learning_e2e_record.json, .github/workflows/p03-learning-e2e.yml\n'
+              '- Verify: 結果契約8 tests PASS; strict C compile PASS; 新規mGBA 2 process PASS、cache 0; 原本source/ROM/seed/Stage62不変。\n'
+              '- Commit: runtime対象 ' + expected_head + '。記録commitはrecord-head.txtに保存。\n'
+              '- Evidence: https://github.com/' + repo + '/actions/runs/' + str(run_id) + '\n'
+              '- Remaining: 他の習得UI、繁殖、P05 scheduler、P06/P07採用仕様、最終受入は未完了。過去Stage79/P08証跡を書き換えていない。\n'
+              '- Network: GitHub Actions/APIで固定入力の実行と証跡照合。外部仕様の追加採用なし。\n')
+          for name in ('design/run_log.md', 'design/version_log.md'):
+              p = Path(name)
+              assert marker not in p.read_text()
+              with p.open('a') as stream: stream.write(entry)
+          PY
+          python3 scripts/validate_task_graph.py
+          python3 scripts/check_modernization_p08_current_acceptance.py --check > .local/p03-learning-record/p08-check.json
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add design/run_log.md design/version_log.md content/modernization/p03_learning_e2e_evidence content/modernization/p03_learning_e2e_record.json
+          git commit -m 'test(p03): retain verified normal-input learning and fresh-core evidence'
+          git rev-parse HEAD > .local/p03-learning-record/record-head.txt
+          git push origin "HEAD:refs/heads/codex/p03-learning-record-${GITHUB_RUN_ID}"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: p03-learning-record
+          path: .local/p03-learning-record/
+          include-hidden-files: true
+          retention-days: 14

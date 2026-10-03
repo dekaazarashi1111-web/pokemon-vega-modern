@@ -1,0 +1,56 @@
+.syntax unified
+.thumb
+.global SL_CreateTask
+.type SL_CreateTask, %function
+.thumb_set SL_CreateTask, 0x8076BB5
+.global SL_DestroyTask
+.type SL_DestroyTask, %function
+.thumb_set SL_DestroyTask, 0x8076CA1
+.global SL_AddWindow
+.type SL_AddWindow, %function
+.thumb_set SL_AddWindow, 0x8003CB1
+.global SL_RemoveWindow
+.type SL_RemoveWindow, %function
+.thumb_set SL_RemoveWindow, 0x8003E09
+.global SL_CopyWindow
+.type SL_CopyWindow, %function
+.thumb_set SL_CopyWindow, 0x8003EED
+.global SL_PutWindow
+.type SL_PutWindow, %function
+.thumb_set SL_PutWindow, 0x8003F6D
+.global SL_FillWindow
+.type SL_FillWindow, %function
+.thumb_set SL_FillWindow, 0x8004429
+.global SL_Print
+.type SL_Print, %function
+.thumb_set SL_Print, 0x8002C45
+.global SL_Schedule
+.type SL_Schedule, %function
+.thumb_set SL_Schedule, 0x80F77FD
+.global SL_DrawFrame
+.type SL_DrawFrame, %function
+.thumb_set SL_DrawFrame, 0x80F7F7D
+.global SL_ClearFrame
+.type SL_ClearFrame, %function
+.thumb_set SL_ClearFrame, 0x80F7FFD
+.global SL_BaseTile
+.type SL_BaseTile, %function
+.thumb_set SL_BaseTile, 0x80F89CD
+.global SL_Cursor
+.type SL_Cursor, %function
+.thumb_set SL_Cursor, 0x811030D
+.global SL_Input
+.type SL_Input, %function
+.thumb_set SL_Input, 0x8110539
+.global SL_LoadFrame
+.type SL_LoadFrame, %function
+.thumb_set SL_LoadFrame, 0x81530E1
+.global SL_Sound
+.type SL_Sound, %function
+.thumb_set SL_Sound, 0x8071A71
+.global SL_Suspend
+.type SL_Suspend, %function
+.thumb_set SL_Suspend, 0x8069201
+.global SL_Resume
+.type SL_Resume, %function
+.thumb_set SL_Resume, 0x80693F5

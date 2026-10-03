@@ -1,0 +1,15 @@
+{
+  "status": "INVALID_ORACLE_PRECONDITION_NOT_ACCEPTED",
+  "actual_cold_input_count": 12,
+  "incorrect_expected_cold_input_count": 17,
+  "processes": 0,
+  "new_accepted_tests": 0,
+  "tests_observed": 59,
+  "observed_errors": 1,
+  "observed_negative_ok_not_accepted": 58,
+  "original_stderr": {
+    "size": 7986,
+    "sha256": "13517c2ca0911b3b57b095540d8109972ef33f878357af57b937f9d8e3dc7792"
+  },
+  "reason_ja": "陽性ケースで実測12入力を17と誤記し失敗。負例58のokは受入せず、実測値へ訂正しsetUpClassに陽性前提を追加後に新59件を一度だけ全実行。native再実行なし。"
+}

@@ -70,7 +70,26 @@ class GitHubPrivateEnvironmentTests(unittest.TestCase):
         }
         config_path = root / "config.json"
         config_path.write_text(json.dumps(config), encoding="utf-8")
+        self.write_private_asset_manifest(root)
         return temporary, root, config_path
+
+    @staticmethod
+    def write_private_asset_manifest(root: Path) -> Path:
+        manifest = root / "content/modernization/p04_asset_import_manifest.json"
+        manifest.parent.mkdir(parents=True, exist_ok=True)
+        manifest.write_text(
+            json.dumps(
+                {
+                    "schema_version": 1,
+                    "output": {
+                        "logical_root": "userfile/generated/modernization_p04_assets"
+                    },
+                    "rights": {"redistribution_allowed": False},
+                }
+            ),
+            encoding="utf-8",
+        )
+        return manifest
 
     def test_build_is_deterministic_and_restore_verifies_every_file(self) -> None:
         temporary, root, config_path = self.make_fixture()
@@ -141,6 +160,136 @@ class GitHubPrivateEnvironmentTests(unittest.TestCase):
         expected["sha256"] = "0" * 64
         with self.assertRaisesRegex(private_env.PrivateEnvironmentError, "外側hash"):
             private_env.restore_archive(root, output, expected, force=False)
+
+    def test_non_redistributable_asset_root_is_rejected_fail_closed(self) -> None:
+        temporary, root, config_path = self.make_fixture()
+        self.addCleanup(temporary.cleanup)
+        config = private_env._load_config(config_path)
+        self.write_private_asset_manifest(root)
+        asset = root / "userfile/generated/modernization_p04_assets/species/front.png"
+        asset.parent.mkdir(parents=True)
+        asset.write_bytes(b"private-upstream-png")
+
+        with self.assertRaisesRegex(
+            private_env.PrivateEnvironmentError, "再配布不可asset"
+        ):
+            private_env.collect_archive_files(root, config["archives"][0])
+
+    def test_explicit_exclusion_keeps_non_redistributable_assets_out(self) -> None:
+        temporary, root, config_path = self.make_fixture()
+        self.addCleanup(temporary.cleanup)
+        config = private_env._load_config(config_path)
+        self.write_private_asset_manifest(root)
+        asset = root / "userfile/generated/modernization_p04_assets/species/front.png"
+        asset.parent.mkdir(parents=True)
+        asset.write_bytes(b"private-upstream-png")
+        userfile_source = config["archives"][0]["sources"][2]
+        userfile_source["exclude"].append("generated/modernization_p04_assets")
+
+        files = private_env.collect_archive_files(root, config["archives"][0])
+        self.assertNotIn(
+            "userfile/generated/modernization_p04_assets/species/front.png",
+            {item.destination for item in files},
+        )
+
+    def test_repository_config_excludes_p04_private_use_assets(self) -> None:
+        config = private_env._load_config(ROOT / "config/github_private_environment.json")
+        inputs_archive = next(
+            row for row in config["archives"]
+            if row["name"] == "pokemon-vega-private-env-v1-inputs.zip"
+        )
+        userfile_source = next(
+            row for row in inputs_archive["sources"] if row["source"] == "userfile"
+        )
+        self.assertIn(
+            "generated/modernization_p04_assets", userfile_source["exclude"]
+        )
+
+    def test_bundle_source_root_and_file_symlinks_are_rejected(self) -> None:
+        temporary, root, config_path = self.make_fixture()
+        self.addCleanup(temporary.cleanup)
+        config = private_env._load_config(config_path)
+        external = root.parent / "external"
+        external.mkdir()
+        (external / "plain.bin").write_bytes(b"outside-workspace")
+
+        linked_root = root / "linked-root"
+        linked_root.symlink_to(external, target_is_directory=True)
+        config["archives"][0]["sources"].append(
+            {"source": "linked-root", "destination": "linked", "exclude": []}
+        )
+        with self.assertRaisesRegex(
+            private_env.PrivateEnvironmentError, "source pathのsymlink"
+        ):
+            private_env.collect_archive_files(root, config["archives"][0])
+
+        config["archives"][0]["sources"].pop()
+        linked_file = root / "userfile/imports/linked.bin"
+        linked_file.symlink_to(external / "plain.bin")
+        with self.assertRaisesRegex(
+            private_env.PrivateEnvironmentError, "source内のsymlink"
+        ):
+            private_env.collect_archive_files(root, config["archives"][0])
+
+    def test_missing_rights_manifest_fails_closed(self) -> None:
+        temporary, root, config_path = self.make_fixture()
+        self.addCleanup(temporary.cleanup)
+        config = private_env._load_config(config_path)
+        (root / private_env.RIGHTS_MANIFESTS[0]).unlink()
+        with self.assertRaisesRegex(
+            private_env.PrivateEnvironmentError, "rights manifestがありません"
+        ):
+            private_env.collect_archive_files(root, config["archives"][0])
+
+    def test_restore_links_rejects_parent_and_target_symlink_escape(self) -> None:
+        temporary, root, config_path = self.make_fixture()
+        self.addCleanup(temporary.cleanup)
+        config = private_env._load_config(config_path)
+        target = root / ".local/github-private-environment/PRIVATE_INPUTS/roms/clean.gba"
+        target.parent.mkdir(parents=True)
+        target.write_bytes(b"owned-rom")
+        outside = root.parent / "outside"
+        outside.mkdir()
+        (root / "inputs").symlink_to(outside, target_is_directory=True)
+
+        with self.assertRaisesRegex(
+            private_env.PrivateEnvironmentError,
+            "restore親pathがsymlink|workspace外",
+        ):
+            private_env.restore_links(root, config, force=True)
+        self.assertFalse((outside / "private/clean.gba").exists())
+
+        (root / "inputs").unlink()
+        external_target = outside / "external.gba"
+        external_target.write_bytes(b"outside")
+        target.unlink()
+        target.symlink_to(external_target)
+        with self.assertRaisesRegex(
+            private_env.PrivateEnvironmentError,
+            "workspace外|targetがありません",
+        ):
+            private_env.restore_links(root, config, force=True)
+
+    def test_restore_archive_rejects_manifest_parent_symlink(self) -> None:
+        temporary, root, config_path = self.make_fixture()
+        self.addCleanup(temporary.cleanup)
+        config = private_env._load_config(config_path)
+        output = root / "inputs.zip"
+        result = private_env.build_archive(root, config["archives"][0], output)
+        expected = dict(config["archives"][0])
+        expected["size"] = result["size"]
+        expected["sha256"] = result["sha256"]
+        outside = root.parent / "outside-manifests"
+        outside.mkdir()
+        manifest_link = root / ".local/github-private-environment/manifests"
+        manifest_link.parent.mkdir(parents=True)
+        manifest_link.symlink_to(outside, target_is_directory=True)
+
+        with self.assertRaisesRegex(
+            private_env.PrivateEnvironmentError, "restore親pathがsymlink"
+        ):
+            private_env.restore_archive(root, output, expected, force=True)
+        self.assertFalse((outside / "inputs.zip.json").exists())
 
 
 if __name__ == "__main__":

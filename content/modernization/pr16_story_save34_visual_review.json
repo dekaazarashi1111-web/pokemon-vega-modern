@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "run_id": 37123621651,
+  "measurement_source": "c181dc2610d01db9a29a9dc46edd6c8bb0ac0b46",
+  "total_screens_reviewed": 20,
+  "reviewed_screens": {
+    "progress": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17
+    ],
+    "continue": [
+      0,
+      1
+    ]
+  },
+  "save_success_wording_observed": false,
+  "screen_anchors": {
+    "continue/screen-0000.ppm": "4b907cf7546c9ba758a72a96b519257b62720206884569686ec1860efe45e810",
+    "continue/screen-0001.ppm": "4b907cf7546c9ba758a72a96b519257b62720206884569686ec1860efe45e810",
+    "progress/screen-0000.ppm": "2b9cab094dda204bed076209eeef853e22c433c95aa3f0b86b528574e52687e1",
+    "progress/screen-0001.ppm": "490188a44fade17261f5d817e9a03b9670eb80aa6d1e915eb22d102f05f09546",
+    "progress/screen-0002.ppm": "f281ec7fafc87f7c06ce1ea3c0369a5623806c03ea11be09dda6c53e7ab28a0c",
+    "progress/screen-0003.ppm": "27d9f016c848baed0b82422e90c6b9901311d91d4040a923ceb108768a4acfaf",
+    "progress/screen-0004.ppm": "12fc94c177319620b7ccc81056d985c0923d4a90823496ca250a752dfb1f5169",
+    "progress/screen-0005.ppm": "69478fb92501c16d76fbf933a16c607614ec06213574072c36eaf4ee9299efca",
+    "progress/screen-0006.ppm": "4b907cf7546c9ba758a72a96b519257b62720206884569686ec1860efe45e810",
+    "progress/screen-0007.ppm": "4b907cf7546c9ba758a72a96b519257b62720206884569686ec1860efe45e810",
+    "progress/screen-0008.ppm": "4b907cf7546c9ba758a72a96b519257b62720206884569686ec1860efe45e810",
+    "progress/screen-0009.ppm": "4b907cf7546c9ba758a72a96b519257b62720206884569686ec1860efe45e810",
+    "progress/screen-0010.ppm": "4259fffe89f5fe91fedcfcb85de56005699df5b55597af8ffca9246907453396",
+    "progress/screen-0011.ppm": "903365a9d7bf953f8005b08e35b6acfc447024081df6b8be81c074de7da77f83",
+    "progress/screen-0012.ppm": "d65af3289fc575d998350b383d2247e5cc988dab874cef36e3526a3b68179d8c",
+    "progress/screen-0013.ppm": "ec273c95b46e91a6edeb9847f65aa7b30007565f636b3d5fd05fa85dfcb2d05d",
+    "progress/screen-0014.ppm": "ec273c95b46e91a6edeb9847f65aa7b30007565f636b3d5fd05fa85dfcb2d05d",
+    "progress/screen-0015.ppm": "ec273c95b46e91a6edeb9847f65aa7b30007565f636b3d5fd05fa85dfcb2d05d",
+    "progress/screen-0016.ppm": "ec273c95b46e91a6edeb9847f65aa7b30007565f636b3d5fd05fa85dfcb2d05d",
+    "progress/screen-0017.ppm": "4b907cf7546c9ba758a72a96b519257b62720206884569686ec1860efe45e810"
+  },
+  "findings_ja": [
+    "0〜6: 西側転送床を離れ、9,10→9,9→9,8→9,7へ。",
+    "7〜9: 北を向いて入力するが9,6へ進まず、9,7のまま。崖の見た目と一致。未通過を保持。",
+    "10〜12: 通常レポート選択/保存質問/上書き質問。13〜16は書込中、17はfield復帰。120frame間隔のため保存成功文言の瞬間は採取されていない。表示済みと主張しない。",
+    "独立Continue0/1は同じ9,7北向き。保存完了は全sector checksum/Flash/全SaveRTC独立Continueで別途検証し、文言だけを取り直すためのnative再走はしない。"
+  ]
+}

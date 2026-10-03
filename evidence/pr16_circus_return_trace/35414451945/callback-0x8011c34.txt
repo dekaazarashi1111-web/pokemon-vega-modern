@@ -1,0 +1,83 @@
+
+.local/pr16-streak-input/candidate.gba:     file format binary
+
+
+Disassembly of section .data:
+
+08011c34 <.data+0x11c34>:
+ 8011c34:	b530      	push	{r4, r5, lr}
+ 8011c36:	480f      	ldr	r0, [pc, #60]	@ (0x8011c74)
+ 8011c38:	6800      	ldr	r0, [r0, #0]
+ 8011c3a:	f1b5 ff45 	bl	0x81c7ac8
+ 8011c3e:	490e      	ldr	r1, [pc, #56]	@ (0x8011c78)
+ 8011c40:	2000      	movs	r0, #0
+ 8011c42:	7008      	strb	r0, [r1, #0]
+ 8011c44:	480d      	ldr	r0, [pc, #52]	@ (0x8011c7c)
+ 8011c46:	7800      	ldrb	r0, [r0, #0]
+ 8011c48:	2800      	cmp	r0, #0
+ 8011c4a:	d010      	beq.n	0x8011c6e
+ 8011c4c:	4d0c      	ldr	r5, [pc, #48]	@ (0x8011c80)
+ 8011c4e:	1c0c      	adds	r4, r1, #0
+ 8011c50:	7820      	ldrb	r0, [r4, #0]
+ 8011c52:	0080      	lsls	r0, r0, #2
+ 8011c54:	1940      	adds	r0, r0, r5
+ 8011c56:	6800      	ldr	r0, [r0, #0]
+ 8011c58:	f1b5 ff36 	bl	0x81c7ac8
+ 8011c5c:	7820      	ldrb	r0, [r4, #0]
+ 8011c5e:	3001      	adds	r0, #1
+ 8011c60:	7020      	strb	r0, [r4, #0]
+ 8011c62:	4906      	ldr	r1, [pc, #24]	@ (0x8011c7c)
+ 8011c64:	0600      	lsls	r0, r0, #24
+ 8011c66:	0e00      	lsrs	r0, r0, #24
+ 8011c68:	7809      	ldrb	r1, [r1, #0]
+ 8011c6a:	4288      	cmp	r0, r1
+ 8011c6c:	d3f0      	bcc.n	0x8011c50
+ 8011c6e:	bc30      	pop	{r4, r5}
+ 8011c70:	bc01      	pop	{r0}
+ 8011c72:	4700      	bx	r0
+ 8011c74:	4fc4      	ldr	r7, [pc, #784]	@ (0x8011f88)
+ 8011c76:	0300      	lsls	r0, r0, #12
+ 8011c78:	3b24      	subs	r3, #36	@ 0x24
+ 8011c7a:	0202      	lsls	r2, r0, #8
+ 8011c7c:	3b2c      	subs	r3, #44	@ 0x2c
+ 8011c7e:	0202      	lsls	r2, r0, #8
+ 8011c80:	5020      	str	r0, [r4, r0]
+ 8011c82:	0300      	lsls	r0, r0, #12
+ 8011c84:	b5f0      	push	{r4, r5, r6, r7, lr}
+ 8011c86:	4657      	mov	r7, sl
+ 8011c88:	464e      	mov	r6, r9
+ 8011c8a:	4645      	mov	r5, r8
+ 8011c8c:	b4e0      	push	{r5, r6, r7}
+ 8011c8e:	2000      	movs	r0, #0
+ 8011c90:	f002 ff5e 	bl	0x8014b50
+ 8011c94:	f002 ffec 	bl	0x8014c70
+ 8011c98:	2200      	movs	r2, #0
+ 8011c9a:	2300      	movs	r3, #0
+ 8011c9c:	489f      	ldr	r0, [pc, #636]	@ (0x8011f1c)
+ 8011c9e:	4682      	mov	sl, r0
+ 8011ca0:	499f      	ldr	r1, [pc, #636]	@ (0x8011f20)
+ 8011ca2:	468c      	mov	ip, r1
+ 8011ca4:	489f      	ldr	r0, [pc, #636]	@ (0x8011f24)
+ 8011ca6:	4681      	mov	r9, r0
+ 8011ca8:	499f      	ldr	r1, [pc, #636]	@ (0x8011f28)
+ 8011caa:	4688      	mov	r8, r1
+ 8011cac:	4c9f      	ldr	r4, [pc, #636]	@ (0x8011f2c)
+ 8011cae:	2500      	movs	r5, #0
+ 8011cb0:	4f9f      	ldr	r7, [pc, #636]	@ (0x8011f30)
+ 8011cb2:	4ea0      	ldr	r6, [pc, #640]	@ (0x8011f34)
+ 8011cb4:	48a0      	ldr	r0, [pc, #640]	@ (0x8011f38)
+ 8011cb6:	1828      	adds	r0, r5, r0
+ 8011cb8:	6003      	str	r3, [r0, #0]
+ 8011cba:	2100      	movs	r1, #0
+ 8011cbc:	1860      	adds	r0, r4, r1
+ 8011cbe:	7003      	strb	r3, [r0, #0]
+ 8011cc0:	3101      	adds	r1, #1
+ 8011cc2:	291b      	cmp	r1, #27
+ 8011cc4:	d9fa      	bls.n	0x8011cbc
+ 8011cc6:	2002      	movs	r0, #2
+ 8011cc8:	75a0      	strb	r0, [r4, #22]
+ 8011cca:	499c      	ldr	r1, [pc, #624]	@ (0x8011f3c)
+ 8011ccc:	1850      	adds	r0, r2, r1
+ 8011cce:	7003      	strb	r3, [r0, #0]
+ 8011cd0:	4640      	mov	r0, r8
+ 8011cd2:	8003      	strh	r3, [r0, #0]

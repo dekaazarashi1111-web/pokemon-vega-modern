@@ -1,0 +1,187 @@
+diff --git a/content/modernization/pr16_native_supply_resume_20260913.json b/content/modernization/pr16_native_supply_resume_20260913.json
+--- a/content/modernization/pr16_native_supply_resume_20260913.json
++++ b/content/modernization/pr16_native_supply_resume_20260913.json
+@@ -1,2 +1,34 @@
+ {
++  "research_game_corner": {
++    "path": "content/modernization/pr16_research_game_corner_checkpoint.json",
++    "status": "PASS_GAME_CORNER_ANIMATED_PAYOUT_SCOPED",
++    "candidate": {
++      "size": 33554432,
++      "sha256": "26dac23cfdbc02c3c25e357b79dcdf3d247c10d893f54a4f6d6b1227bf5624da"
++    },
++    "new_tests_passed": 117,
++    "changed_transport_tests_passed": 2,
++    "accepted_case_reruns": 0,
++    "actions_observation": {
++      "head": "3d2690fe3ebdeb7f75c925a6475bdfca2196ec05",
++      "source_validation": {
++        "run_id": 36281287703,
++        "job_id": 108513460140,
++        "conclusion": "failure",
++        "failed_step": "P03 capacity fixed originals and cold-save acceptance"
++      },
++      "p03_forgetting_ci": {
++        "run_id": 36281287738,
++        "conclusion": "success"
++      },
++      "native_run": null
++    },
++    "not_accepted": [
++      "bulk-start-payout",
++      "daily-cap-native",
++      "natural-progress-arrival",
++      "reception-shop-connection",
++      "research-guide-native-wording"
++    ]
++  },
+   "accepted_scope_summary_ja": "取消/元party復元/保存再開と3勝基礎9 BPを保持し、稼得BP通常購入・保存再開を追加受入。",
+@@ -15,3 +47,3 @@
+     "cancellation_save_continue_accepted": true,
+-    "current_stop": "PASS_FISHING_ECOLOGY_REAL_EARNING_SCOPED",
++    "current_stop": "PASS_GAME_CORNER_ANIMATED_PAYOUT_SCOPED",
+     "earning_accepted": true,
+@@ -41,3 +73,3 @@
+     "next_battle_started_observed": true,
+-    "next_step": "釣り0→4RP/生態0→10RPの実稼得・逃走無加算・T24 typed credit併存・取引だけのfresh Continueを限定受入。次はGAME_CORNERの実配当→3RP、通常進行の受付/ショップ接続、残るnative文言。写真/虫取り/採掘/釣り/生態/BP/P08の無変更native再実行は禁止。日内上限・既捕獲種の実経路をこの2caseだけで全受入したと主張しない。",
++    "next_step": "GAME_CORNERの実300枚配当0→3RP・取引保存2・fresh Continueは限定受入。次は通常進行の研究受付/ショップ接続と未確認native文言。Startまとめ払い/日内上限は別scope。受入済み稼得/Continueと旧活動の無変更再実行禁止。",
+     "original_party_restored_bytes": 600,
+@@ -795,2 +827,3 @@
+   "do_not_repeat": [
++    "GAME_CORNERの実300枚配当923→1223コイン/0→3RP・2取引保存・別core Continueを限定受入。小4枚無RP、終了後の未保存賭け1188と保存値1223を区別。native5=実稼得1+Continue1+計測器失敗3、guard7、117PASS+変更loader2PASS、ROM/ARM0、受入済み再実行0。Start配当/日内cap/自然到達/通常接続/ガイド文言は未完。",
+     "釣りlocal#2/生態local#5、候補26dac23cの実稼得4/10RP・逃走・取引保存だけのfresh Continueを限定受入。T24 typed credit1save+T23研究2save、全ledger/Bag/party/Flash、65新検査・10画像。無変更native/旧unit再実行禁止。ゲームコーナー/自然到達/受付接続/未確認native文言は未完。",
+@@ -4172,8 +4205,8 @@
+   "next_action": {
+-    "goal_ja": "釣り0→4RP/生態0→10RPの実稼得・逃走無加算・T24 typed credit併存・取引だけのfresh Continueを限定受入。次はGAME_CORNERの実配当→3RP、通常進行の受付/ショップ接続、残るnative文言。写真/虫取り/採掘/釣り/生態/BP/P08の無変更native再実行は禁止。日内上限・既捕獲種の実経路をこの2caseだけで全受入したと主張しない。",
++    "goal_ja": "GAME_CORNERの実300枚配当0→3RP・取引保存2・fresh Continueは限定受入。次は通常進行の研究受付/ショップ接続と未確認native文言。Startまとめ払い/日内上限は別scope。受入済み稼得/Continueと旧活動の無変更再実行禁止。",
+     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。生成物は後継artifactを再利用。consumer接続で影響する最小範囲のみ再検証する。",
+-    "id": "RESEARCH_GAME_CORNER_AND_NATURAL_CONNECTION_NEXT",
++    "id": "RESEARCH_NATURAL_CONNECTION_AND_NATIVE_WORDING_NEXT",
+     "read_paths": [
+-      "docs/PR16_RESEARCH_WILD_JA.md",
+-      "content/modernization/pr16_research_wild_checkpoint.json",
++      "docs/PR16_RESEARCH_GAME_CORNER_JA.md",
++      "content/modernization/pr16_research_game_corner_checkpoint.json",
+       "content/research_economy_v1/canonical_model.json",
+@@ -4182,8 +4215,8 @@
+     ],
+-    "stop_rule_ja": "写真/虫取り/採掘/保存view・元ROM/seed/旧証拠を保全。採掘wild tail/自然再入場・全活動・全mapの過大主張禁止。無変更再実行、merge/release/baseline変更禁止。"
++    "stop_rule_ja": "GAME_CORNER/写真/虫取り/採掘/釣り/生態/BP/P08の原本を保全。Start配当/日内上限/自然到達/通常接続/全活動/全mapの過大主張禁止。無変更再実行、merge/release/baseline変更禁止。"
+   },
+   "observed_date_jst": "2026-09-27",
+-  "observed_head": "fb33c3bf34a10e4f838cabf80e50e91f7b10a461",
++  "observed_head": "f0d25936ffbfb7fae2928b4c700cb734754fb354",
+   "observed_head_checks": {
+-    "reason_ja": "専用実測成功/過去compile failure/一般CI/自己記録終端を区別。",
++    "reason_ja": "GAME_CORNERのローカル限定受入と一般CIを区別。3d2690feのp03-forgetting-ci36281287738はsuccess、source-validation36281287703はP03 capacity契約でfailure。全CI成功や今回のActions native成功は主張しない。既存runsは各head時点の履歴。",
+     "reconciliation": "content/modernization/pr16_research_wild_local_evidence/actions-36276059655.json",
+@@ -5608,3 +5641,3 @@
+   ],
+-  "observed_head_semantics": "釣り/生態の新規ローカル実測を独立oracle/原本hash/65検査で記録するsource。Actions終端は専用項目で別管理。",
++  "observed_head_semantics": "GAME_CORNER専用sourceは4d97c6b7、実測原本は3d2690fe、限定checkpointはf0d25936。実測は固定Actions資材のローカル実行。Actions native成功とは区別。",
+   "p08_candidate_impact": {
+@@ -6911,2 +6944,14 @@
+   "source_bindings": {
++    "content/modernization/pr16_research_game_corner_checkpoint.json": {
++      "size": 3065,
++      "sha256": "da406e68da9ed502a1b7fc89db0cc75caaed18f9d0dd277e9baff4df05361163"
++    },
++    "docs/PR16_RESEARCH_GAME_CORNER_JA.md": {
++      "size": 3324,
++      "sha256": "15c85ae83e316ae8040ecb0d4512402e17df2d1203d28fab345cbaa10355e00e"
++    },
++    "tests/test_pr16_research_game_corner_record.py": {
++      "size": 2751,
++      "sha256": "65aa548a1b82b0b06c9352e4efb9c83c607dc99ee245e41c9d0a0c46560408ee"
++    },
+     ".github/pr16-learnset-baseline-record.json": {
+diff --git a/docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md b/docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md
+--- a/docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md
++++ b/docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md
+@@ -6,16 +6,16 @@
+ 
+ ## いまの停止点と次の1手
+ 
+-PASS_FISHING_ECOLOGY_REAL_EARNING_SCOPED
+-
+-**次: 釣り0→4RP/生態0→10RPの実稼得・逃走無加算・T24 typed credit併存・取引だけのfresh Continueを限定受入。次はGAME_CORNERの実配当→3RP、通常進行の受付/ショップ接続、残るnative文言。写真/虫取り/採掘/釣り/生態/BP/P08の無変更native再実行は禁止。日内上限・既捕獲種の実経路をこの2caseだけで全受入したと主張しない。**
+-
+-写真/虫取り/採掘/保存view・元ROM/seed/旧証拠を保全。採掘wild tail/自然再入場・全活動・全mapの過大主張禁止。無変更再実行、merge/release/baseline変更禁止。
++PASS_GAME_CORNER_ANIMATED_PAYOUT_SCOPED
++
++**次: GAME_CORNERの実300枚配当0→3RP・取引保存2・fresh Continueは限定受入。次は通常進行の研究受付/ショップ接続と未確認native文言。Startまとめ払い/日内上限は別scope。受入済み稼得/Continueと旧活動の無変更再実行禁止。**
++
++GAME_CORNER/写真/虫取り/採掘/釣り/生態/BP/P08の原本を保全。Start配当/日内上限/自然到達/通常接続/全活動/全mapの過大主張禁止。無変更再実行、merge/release/baseline変更禁止。
+ 
+ branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
+ 
+-証拠のsource HEAD: `fb33c3bf34a10e4f838cabf80e50e91f7b10a461`。
+-釣り/生態の新規ローカル実測を独立oracle/原本hash/65検査で記録するsource。Actions終端は専用項目で別管理。
++証拠のsource HEAD: `f0d25936ffbfb7fae2928b4c700cb734754fb354`。
++GAME_CORNER専用sourceは4d97c6b7、実測原本は3d2690fe、限定checkpointはf0d25936。実測は固定Actions資材のローカル実行。Actions native成功とは区別。
+ 
+ ## 最短の再開手順
+ 
+@@ -25,8 +25,8 @@
+ 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
+ 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
+ 
+-- `docs/PR16_RESEARCH_WILD_JA.md`
+-- `content/modernization/pr16_research_wild_checkpoint.json`
++- `docs/PR16_RESEARCH_GAME_CORNER_JA.md`
++- `content/modernization/pr16_research_game_corner_checkpoint.json`
+ - `content/research_economy_v1/canonical_model.json`
+ - `overlays/research_economy_v1/research_economy_v1.c`
+ - `docs/PR16_RESEARCH_CATALOG_JA.md`
+@@ -63,6 +63,7 @@
+ 
+ ## 再実行・過大主張の禁止
+ 
++- GAME_CORNERの実300枚配当923→1223コイン/0→3RP・2取引保存・別core Continueを限定受入。小4枚無RP、終了後の未保存賭け1188と保存値1223を区別。native5=実稼得1+Continue1+計測器失敗3、guard7、117PASS+変更loader2PASS、ROM/ARM0、受入済み再実行0。Start配当/日内cap/自然到達/通常接続/ガイド文言は未完。
+ - 釣りlocal#2/生態local#5、候補26dac23cの実稼得4/10RP・逃走・取引保存だけのfresh Continueを限定受入。T24 typed credit1save+T23研究2save、全ledger/Bag/party/Flash、65新検査・10画像。無変更native/旧unit再実行禁止。ゲームコーナー/自然到達/受付接続/未確認native文言は未完。
+ - 採掘run36267515706/source8fdda1bb/26dac23cを限定受入。0→10RP・条件不足/取消・取引保存2・独立Continue・fixture再入場cap・4文言、3process/5cores/新64検査。無変更再実行禁止。wild tail/自然再到達/通常接続/全活動は未受入。
+ - 虫取りrun36261672837/26dac23cは実NPC0→8RP・取消・条件不足・重複拒否・取引保存2・独立Continue・4文言を受入。新規51検査、2process/3cores、ROM/ARM0。旧ローカル未保存原本の件数はunknown。無変更再実行禁止、自然到達/全活動へ昇格しない。
+@@ -338,6 +339,6 @@
+ 
+ ## Checks・releaseの境界
+ 
+-専用実測成功/過去compile failure/一般CI/自己記録終端を区別。
++GAME_CORNERのローカル限定受入と一般CIを区別。3d2690feのp03-forgetting-ci36281287738はsuccess、source-validation36281287703はP03 capacity契約でfailure。全CI成功や今回のActions native成功は主張しない。既存runsは各head時点の履歴。
+ 
+ merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
+diff --git a/design/run_log.md b/design/run_log.md
+--- a/design/run_log.md
++++ b/design/run_log.md
+@@ -10638,3 +10638,14 @@
+ - Commit: source=fb33c3bf34a10e4f838cabf80e50e91f7b10a461; record run=36276059655; 自己SHAはgit log参照。同branch非force push。
+ - Network: GitHub HEAD/PR/Actions・固定artifactのみ。候補/seed/受入済みsource/evidence/baseline不変。merge/releaseなし。全CI成功は主張しない。
+ - Record scope repair: run36275950886の記録だけのfailureを保持。比較基準を受入commit fbf7c9dcへ固定し、旧Actions原本を不変継承。受入済みsource/evidence hashを再確認、native/unit/compile追加0。
++
++## 2026-09-27T09:08:16+09:00
++- Timestamp: 2026-09-27T09:08:16+09:00
++- Task: USER-20260927-RESEARCH-GAME-CORNER / 実300枚配当・取引保存・独立Continue
++- Version: research-game-corner-v1
++- Status: DONE（animated配当と保存継続の限定scope）
++- Summary: 実スロットの300枚923→1223コイン・0→3RP、完了後だけcredit、4枚無RP、取引Save2、別core Continue1223/3RP/counter4。未保存終了値1188とは分離。Start配当/日内cap/自然到達/受付ショップ/残るnative文言は未完。
++- Files changed: 専用C/oracle/117反証検査/記録契約、全観測2295行・Continue原本・画像hash・失敗履歴・source拘束・checkpoint・専用MD、固定引継ぎMD/JSON、両ログ。
++- Verify: 新規117PASS（初回1失敗を修正し履歴保持）、変更loader2PASS、記録binding1PASS。native5=実稼得1+Continue1+計測器失敗3、guard7拒否、host compile6、ROM/ARM0、受入済み再実行0。全ledger/Bag/party/Flashと6画像。最後の再開契約は本patch適用後に既設bridgeの単一testで検証。
++- Commit: source=4d97c6b73a929850d49abf7fa873b937fd3aed5a; evidence=3d2690fe3ebdeb7f75c925a6475bdfca2196ec05; checkpoint=f0d25936ffbfb7fae2928b4c700cb734754fb354; 同branchへ非force反映。自己SHAはgit log参照。
++- Network: GitHub限定。3d2690feのP03 CI成功、source-validation36281287703は既存P03 capacity契約でfailureを確認。今回のActions native成功・全CI成功は主張しない。workflow新規追加tool拒否は反復せず、既設限定patch bridgeを使用。merge/release/baseline変更なし。
+diff --git a/design/version_log.md b/design/version_log.md
+--- a/design/version_log.md
++++ b/design/version_log.md
+@@ -7910,3 +7910,14 @@
+ - Commit: source=fb33c3bf34a10e4f838cabf80e50e91f7b10a461; record run=36276059655; 自己SHAはgit log参照。同branch非force push。
+ - Network: GitHub HEAD/PR/Actions・固定artifactのみ。候補/seed/受入済みsource/evidence/baseline不変。merge/releaseなし。全CI成功は主張しない。
+ - Record scope repair: run36275950886の記録だけのfailureを保持。比較基準を受入commit fbf7c9dcへ固定し、旧Actions原本を不変継承。受入済みsource/evidence hashを再確認、native/unit/compile追加0。
++
++## 2026-09-27T09:08:16+09:00
++- Timestamp: 2026-09-27T09:08:16+09:00
++- Task: USER-20260927-RESEARCH-GAME-CORNER / 実300枚配当・取引保存・独立Continue
++- Version: research-game-corner-v1
++- Status: DONE（animated配当と保存継続の限定scope）
++- Summary: 実スロットの300枚923→1223コイン・0→3RP、完了後だけcredit、4枚無RP、取引Save2、別core Continue1223/3RP/counter4。未保存終了値1188とは分離。Start配当/日内cap/自然到達/受付ショップ/残るnative文言は未完。
++- Files changed: 専用C/oracle/117反証検査/記録契約、全観測2295行・Continue原本・画像hash・失敗履歴・source拘束・checkpoint・専用MD、固定引継ぎMD/JSON、両ログ。
++- Verify: 新規117PASS（初回1失敗を修正し履歴保持）、変更loader2PASS、記録binding1PASS。native5=実稼得1+Continue1+計測器失敗3、guard7拒否、host compile6、ROM/ARM0、受入済み再実行0。全ledger/Bag/party/Flashと6画像。最後の再開契約は本patch適用後に既設bridgeの単一testで検証。
++- Commit: source=4d97c6b73a929850d49abf7fa873b937fd3aed5a; evidence=3d2690fe3ebdeb7f75c925a6475bdfca2196ec05; checkpoint=f0d25936ffbfb7fae2928b4c700cb734754fb354; 同branchへ非force反映。自己SHAはgit log参照。
++- Network: GitHub限定。3d2690feのP03 CI成功、source-validation36281287703は既存P03 capacity契約でfailureを確認。今回のActions native成功・全CI成功は主張しない。workflow新規追加tool拒否は反復せず、既設限定patch bridgeを使用。merge/release/baseline変更なし。

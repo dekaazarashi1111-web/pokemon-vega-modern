@@ -1,0 +1,2123 @@
+{
+  "schema_version": 1,
+  "task": "PR-P08-7-RING-RESOURCE-TAIL",
+  "source_head": "3029ad62d958b79904b300b57010728b4d4c0858",
+  "run_id": 35195532065,
+  "run_status_at_record": "in_progress",
+  "analysis": {
+    "roots": [
+      {
+        "entry": 134221485,
+        "window": [
+          134221484,
+          134221612
+        ],
+        "new_node_addresses": [
+          134221484,
+          134221486,
+          134221488,
+          134221490,
+          134221492,
+          134221494,
+          134221496,
+          134221498,
+          134221500,
+          134221502,
+          134221504,
+          134221506,
+          134221508,
+          134221510,
+          134221512,
+          134221514,
+          134221516,
+          134221518,
+          134221520,
+          134221522,
+          134221524,
+          134221526,
+          134221528,
+          134221530,
+          134221532,
+          134221534,
+          134221536,
+          134221538,
+          134221540,
+          134221542,
+          134221544,
+          134221546,
+          134221548,
+          134221550,
+          134221552,
+          134221554,
+          134221556,
+          134221558,
+          134221572,
+          134221574,
+          134221576,
+          134221578,
+          134221580,
+          134221582,
+          134221584,
+          134221586,
+          134221592,
+          134221594,
+          134221596,
+          134221598,
+          134221600,
+          134221602,
+          134221604,
+          134221606,
+          134221608,
+          134221610
+        ],
+        "boundaries": [
+          {
+            "site": 134221528,
+            "kind": "revisited_node_boundary",
+            "target": 134221529
+          },
+          {
+            "site": 134221576,
+            "kind": "revisited_node_boundary",
+            "target": 134221577
+          },
+          {
+            "site": 134221586,
+            "kind": "outside_branch",
+            "target": 134221621
+          },
+          {
+            "site": 134221604,
+            "kind": "revisited_node_boundary",
+            "target": 134221605
+          },
+          {
+            "site": 134221612,
+            "kind": "window_boundary",
+            "target": 134221613
+          }
+        ],
+        "candidate_control_flow_only": true,
+        "runtime_reachable": false,
+        "side_effects_excluded": false
+      },
+      {
+        "entry": 134221917,
+        "window": [
+          134221916,
+          134222044
+        ],
+        "new_node_addresses": [
+          134221916,
+          134221918,
+          134221920,
+          134221922,
+          134221924
+        ],
+        "boundaries": [
+          {
+            "site": 134221924,
+            "kind": "return_opcode_not_abi_proof"
+          }
+        ],
+        "candidate_control_flow_only": true,
+        "runtime_reachable": false,
+        "side_effects_excluded": false
+      },
+      {
+        "entry": 134222405,
+        "window": [
+          134222404,
+          134222532
+        ],
+        "new_node_addresses": [
+          134222404,
+          134222406,
+          134222408,
+          134222410,
+          134222412
+        ],
+        "boundaries": [
+          {
+            "site": 134222482,
+            "kind": "saved_node_boundary",
+            "target": 134222483
+          }
+        ],
+        "candidate_control_flow_only": true,
+        "runtime_reachable": false,
+        "side_effects_excluded": false
+      },
+      {
+        "entry": 134222415,
+        "window": [
+          134222414,
+          134222542
+        ],
+        "new_node_addresses": [
+          134222414,
+          134222416,
+          134222418,
+          134222420,
+          134222422
+        ],
+        "boundaries": [
+          {
+            "site": 134222482,
+            "kind": "saved_node_boundary",
+            "target": 134222483
+          }
+        ],
+        "candidate_control_flow_only": true,
+        "runtime_reachable": false,
+        "side_effects_excluded": false
+      },
+      {
+        "entry": 134222425,
+        "window": [
+          134222424,
+          134222552
+        ],
+        "new_node_addresses": [
+          134222424,
+          134222426,
+          134222428,
+          134222430,
+          134222432
+        ],
+        "boundaries": [
+          {
+            "site": 134222482,
+            "kind": "saved_node_boundary",
+            "target": 134222483
+          }
+        ],
+        "candidate_control_flow_only": true,
+        "runtime_reachable": false,
+        "side_effects_excluded": false
+      },
+      {
+        "entry": 134222435,
+        "window": [
+          134222434,
+          134222562
+        ],
+        "new_node_addresses": [
+          134222434,
+          134222436,
+          134222438,
+          134222440,
+          134222442
+        ],
+        "boundaries": [
+          {
+            "site": 134222482,
+            "kind": "saved_node_boundary",
+            "target": 134222483
+          }
+        ],
+        "candidate_control_flow_only": true,
+        "runtime_reachable": false,
+        "side_effects_excluded": false
+      },
+      {
+        "entry": 134222445,
+        "window": [
+          134222444,
+          134222572
+        ],
+        "new_node_addresses": [
+          134222444,
+          134222446,
+          134222448,
+          134222450
+        ],
+        "boundaries": [
+          {
+            "site": 134222482,
+            "kind": "saved_node_boundary",
+            "target": 134222483
+          }
+        ],
+        "candidate_control_flow_only": true,
+        "runtime_reachable": false,
+        "side_effects_excluded": false
+      },
+      {
+        "entry": 134222453,
+        "window": [
+          134222452,
+          134222580
+        ],
+        "new_node_addresses": [
+          134222452,
+          134222454,
+          134222456,
+          134222458,
+          134222460
+        ],
+        "boundaries": [
+          {
+            "site": 134222482,
+            "kind": "saved_node_boundary",
+            "target": 134222483
+          }
+        ],
+        "candidate_control_flow_only": true,
+        "runtime_reachable": false,
+        "side_effects_excluded": false
+      },
+      {
+        "entry": 134222463,
+        "window": [
+          134222462,
+          134222590
+        ],
+        "new_node_addresses": [
+          134222462,
+          134222464,
+          134222466,
+          134222468,
+          134222470
+        ],
+        "boundaries": [
+          {
+            "site": 134222482,
+            "kind": "saved_node_boundary",
+            "target": 134222483
+          }
+        ],
+        "candidate_control_flow_only": true,
+        "runtime_reachable": false,
+        "side_effects_excluded": false
+      },
+      {
+        "entry": 134222473,
+        "window": [
+          134222472,
+          134222600
+        ],
+        "new_node_addresses": [
+          134222472,
+          134222474,
+          134222476,
+          134222478
+        ],
+        "boundaries": [
+          {
+            "site": 134222482,
+            "kind": "saved_node_boundary",
+            "target": 134222483
+          }
+        ],
+        "candidate_control_flow_only": true,
+        "runtime_reachable": false,
+        "side_effects_excluded": false
+      },
+      {
+        "entry": 134223069,
+        "window": [
+          134223068,
+          134223196
+        ],
+        "new_node_addresses": [
+          134223068,
+          134223070,
+          134223072,
+          134223074,
+          134223076,
+          134223078,
+          134223080,
+          134223082,
+          134223084,
+          134223086
+        ],
+        "boundaries": [
+          {
+            "site": 134223084,
+            "kind": "revisited_node_boundary",
+            "target": 134223085
+          },
+          {
+            "site": 134223086,
+            "kind": "indirect_boundary",
+            "register": 1
+          }
+        ],
+        "candidate_control_flow_only": true,
+        "runtime_reachable": false,
+        "side_effects_excluded": false
+      },
+      {
+        "entry": 134221613,
+        "window": [
+          134221612,
+          134221740
+        ],
+        "new_node_addresses": [
+          134221612,
+          134221614,
+          134221616,
+          134221618,
+          134221620,
+          134221622,
+          134221624,
+          134221626,
+          134221628,
+          134221630,
+          134221632
+        ],
+        "boundaries": [
+          {
+            "site": 134221632,
+            "kind": "indirect_boundary",
+            "register": 1
+          }
+        ],
+        "candidate_control_flow_only": true,
+        "runtime_reachable": false,
+        "side_effects_excluded": false
+      },
+      {
+        "entry": 134221621,
+        "window": [
+          134221620,
+          134221748
+        ],
+        "new_node_addresses": [],
+        "boundaries": [
+          {
+            "site": 134221620,
+            "kind": "cohort_node_boundary",
+            "target": 134221621
+          }
+        ],
+        "candidate_control_flow_only": true,
+        "runtime_reachable": false,
+        "side_effects_excluded": false
+      }
+    ],
+    "new_nodes": [
+      {
+        "address": 134221484,
+        "size": 2,
+        "hex": "f0b5",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134221486,
+        "size": 2,
+        "hex": "5746",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134221488,
+        "size": 2,
+        "hex": "4e46",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134221490,
+        "size": 2,
+        "hex": "4546",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134221492,
+        "size": 2,
+        "hex": "e0b4",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134221494,
+        "size": 2,
+        "hex": "8446",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134221496,
+        "size": 2,
+        "hex": "8846",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134221498,
+        "size": 2,
+        "hex": "1204",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134221500,
+        "size": 2,
+        "hex": "170c",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134221502,
+        "size": 2,
+        "hex": "1b06",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134221504,
+        "size": 2,
+        "hex": "1c0e",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134221506,
+        "size": 2,
+        "hex": "0025",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134221508,
+        "size": 2,
+        "hex": "0c49",
+        "kind": "ordinary",
+        "literal_address": 134221560,
+        "literal_value": 50333896,
+        "memory_write": false
+      },
+      {
+        "address": 134221510,
+        "size": 2,
+        "hex": "0120",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134221512,
+        "size": 2,
+        "hex": "0870",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134221514,
+        "size": 2,
+        "hex": "0c48",
+        "kind": "ordinary",
+        "literal_address": 134221564,
+        "literal_value": 50333897,
+        "memory_write": false
+      },
+      {
+        "address": 134221516,
+        "size": 2,
+        "hex": "0278",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134221518,
+        "size": 2,
+        "hex": "8a46",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134221520,
+        "size": 2,
+        "hex": "0b4e",
+        "kind": "ordinary",
+        "literal_address": 134221568,
+        "literal_value": 50331848,
+        "memory_write": false
+      },
+      {
+        "address": 134221522,
+        "size": 2,
+        "hex": "b146",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134221524,
+        "size": 2,
+        "hex": "1001",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134221526,
+        "size": 2,
+        "hex": "8119",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134221528,
+        "size": 2,
+        "hex": "1301",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134221530,
+        "size": 2,
+        "hex": "0889",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134221532,
+        "size": 2,
+        "hex": "0028",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134221534,
+        "size": 2,
+        "hex": "1bd1",
+        "kind": "conditional",
+        "target": 134221592,
+        "memory_write": false
+      },
+      {
+        "address": 134221536,
+        "size": 2,
+        "hex": "6046",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134221538,
+        "size": 2,
+        "hex": "0860",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134221540,
+        "size": 2,
+        "hex": "4846",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134221542,
+        "size": 2,
+        "hex": "0430",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134221544,
+        "size": 2,
+        "hex": "1818",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134221546,
+        "size": 2,
+        "hex": "4346",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134221548,
+        "size": 2,
+        "hex": "0360",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134221550,
+        "size": 2,
+        "hex": "0f81",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134221552,
+        "size": 2,
+        "hex": "012c",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134221554,
+        "size": 2,
+        "hex": "07d1",
+        "kind": "conditional",
+        "target": 134221572,
+        "memory_write": false
+      },
+      {
+        "address": 134221556,
+        "size": 2,
+        "hex": "4c81",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134221558,
+        "size": 2,
+        "hex": "07e0",
+        "kind": "jump",
+        "target": 134221576,
+        "memory_write": false
+      },
+      {
+        "address": 134221572,
+        "size": 2,
+        "hex": "0320",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134221574,
+        "size": 2,
+        "hex": "4881",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134221576,
+        "size": 2,
+        "hex": "0020",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134221578,
+        "size": 2,
+        "hex": "0249",
+        "kind": "ordinary",
+        "literal_address": 134221588,
+        "literal_value": 50333896,
+        "memory_write": false
+      },
+      {
+        "address": 134221580,
+        "size": 2,
+        "hex": "0870",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134221582,
+        "size": 2,
+        "hex": "1004",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134221584,
+        "size": 2,
+        "hex": "0014",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134221586,
+        "size": 2,
+        "hex": "0fe0",
+        "kind": "jump",
+        "target": 134221620,
+        "memory_write": false
+      },
+      {
+        "address": 134221592,
+        "size": 2,
+        "hex": "1031",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134221594,
+        "size": 2,
+        "hex": "0132",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134221596,
+        "size": 2,
+        "hex": "7f2a",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134221598,
+        "size": 2,
+        "hex": "01dd",
+        "kind": "conditional",
+        "target": 134221604,
+        "memory_write": false
+      },
+      {
+        "address": 134221600,
+        "size": 2,
+        "hex": "311c",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134221602,
+        "size": 2,
+        "hex": "0022",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134221604,
+        "size": 2,
+        "hex": "0135",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134221606,
+        "size": 2,
+        "hex": "7f2d",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134221608,
+        "size": 2,
+        "hex": "d6dd",
+        "kind": "conditional",
+        "target": 134221528,
+        "memory_write": false
+      },
+      {
+        "address": 134221610,
+        "size": 2,
+        "hex": "0020",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134221612,
+        "size": 2,
+        "hex": "5346",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134221614,
+        "size": 2,
+        "hex": "1870",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134221616,
+        "size": 2,
+        "hex": "0120",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134221618,
+        "size": 2,
+        "hex": "4042",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134221620,
+        "size": 2,
+        "hex": "38bc",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134221622,
+        "size": 2,
+        "hex": "9846",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134221624,
+        "size": 2,
+        "hex": "a146",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134221626,
+        "size": 2,
+        "hex": "aa46",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134221628,
+        "size": 2,
+        "hex": "f0bc",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134221630,
+        "size": 2,
+        "hex": "02bc",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134221632,
+        "size": 2,
+        "hex": "0847",
+        "kind": "indirect",
+        "register": 1,
+        "memory_write": false
+      },
+      {
+        "address": 134221916,
+        "size": 2,
+        "hex": "0248",
+        "kind": "ordinary",
+        "literal_address": 134221928,
+        "literal_value": 50333904,
+        "memory_write": false
+      },
+      {
+        "address": 134221918,
+        "size": 2,
+        "hex": "017c",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134221920,
+        "size": 2,
+        "hex": "0720",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134221922,
+        "size": 2,
+        "hex": "0840",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134221924,
+        "size": 2,
+        "hex": "7047",
+        "kind": "return",
+        "register": 14,
+        "memory_write": false
+      },
+      {
+        "address": 134222404,
+        "size": 2,
+        "hex": "d018",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134222406,
+        "size": 2,
+        "hex": "0078",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134222408,
+        "size": 2,
+        "hex": "c007",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134222410,
+        "size": 2,
+        "hex": "c00f",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134222412,
+        "size": 2,
+        "hex": "21e0",
+        "kind": "jump",
+        "target": 134222482,
+        "memory_write": false
+      },
+      {
+        "address": 134222414,
+        "size": 2,
+        "hex": "d018",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134222416,
+        "size": 2,
+        "hex": "4078",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134222418,
+        "size": 2,
+        "hex": "8007",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134222420,
+        "size": 2,
+        "hex": "800f",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134222422,
+        "size": 2,
+        "hex": "1ce0",
+        "kind": "jump",
+        "target": 134222482,
+        "memory_write": false
+      },
+      {
+        "address": 134222424,
+        "size": 2,
+        "hex": "d018",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134222426,
+        "size": 2,
+        "hex": "4078",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134222428,
+        "size": 2,
+        "hex": "4006",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134222430,
+        "size": 2,
+        "hex": "c00e",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134222432,
+        "size": 2,
+        "hex": "17e0",
+        "kind": "jump",
+        "target": 134222482,
+        "memory_write": false
+      },
+      {
+        "address": 134222434,
+        "size": 2,
+        "hex": "d018",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134222436,
+        "size": 2,
+        "hex": "0078",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134222438,
+        "size": 2,
+        "hex": "0007",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134222440,
+        "size": 2,
+        "hex": "800f",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134222442,
+        "size": 2,
+        "hex": "12e0",
+        "kind": "jump",
+        "target": 134222482,
+        "memory_write": false
+      },
+      {
+        "address": 134222444,
+        "size": 2,
+        "hex": "d018",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134222446,
+        "size": 2,
+        "hex": "4078",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134222448,
+        "size": 2,
+        "hex": "c009",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134222450,
+        "size": 2,
+        "hex": "0ee0",
+        "kind": "jump",
+        "target": 134222482,
+        "memory_write": false
+      },
+      {
+        "address": 134222452,
+        "size": 2,
+        "hex": "d018",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134222454,
+        "size": 2,
+        "hex": "0078",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134222456,
+        "size": 2,
+        "hex": "8006",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134222458,
+        "size": 2,
+        "hex": "800f",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134222460,
+        "size": 2,
+        "hex": "09e0",
+        "kind": "jump",
+        "target": 134222482,
+        "memory_write": false
+      },
+      {
+        "address": 134222462,
+        "size": 2,
+        "hex": "d018",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134222464,
+        "size": 2,
+        "hex": "0078",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134222466,
+        "size": 2,
+        "hex": "4006",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134222468,
+        "size": 2,
+        "hex": "c00f",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134222470,
+        "size": 2,
+        "hex": "04e0",
+        "kind": "jump",
+        "target": 134222482,
+        "memory_write": false
+      },
+      {
+        "address": 134222472,
+        "size": 2,
+        "hex": "d018",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134222474,
+        "size": 2,
+        "hex": "0078",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134222476,
+        "size": 2,
+        "hex": "c009",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134222478,
+        "size": 2,
+        "hex": "00e0",
+        "kind": "jump",
+        "target": 134222482,
+        "memory_write": false
+      },
+      {
+        "address": 134223068,
+        "size": 2,
+        "hex": "00b5",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134223070,
+        "size": 2,
+        "hex": "0006",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134223072,
+        "size": 2,
+        "hex": "000e",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134223074,
+        "size": 2,
+        "hex": "0328",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134223076,
+        "size": 2,
+        "hex": "01d8",
+        "kind": "conditional",
+        "target": 134223082,
+        "memory_write": false
+      },
+      {
+        "address": 134223078,
+        "size": 2,
+        "hex": "0020",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134223080,
+        "size": 2,
+        "hex": "00e0",
+        "kind": "jump",
+        "target": 134223084,
+        "memory_write": false
+      },
+      {
+        "address": 134223082,
+        "size": 2,
+        "hex": "0120",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134223084,
+        "size": 2,
+        "hex": "02bc",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134223086,
+        "size": 2,
+        "hex": "0847",
+        "kind": "indirect",
+        "register": 1,
+        "memory_write": false
+      }
+    ],
+    "waves": [
+      {
+        "index": 0,
+        "entries": [
+          134221485,
+          134221917,
+          134222405,
+          134222415,
+          134222425,
+          134222435,
+          134222445,
+          134222453,
+          134222463,
+          134222473,
+          134223069
+        ],
+        "new_nodes": 109,
+        "next_continuations": [
+          134221613,
+          134221621
+        ]
+      },
+      {
+        "index": 1,
+        "entries": [
+          134221613,
+          134221621
+        ],
+        "new_nodes": 11,
+        "next_continuations": []
+      }
+    ],
+    "initial_roots": [
+      134221485,
+      134221917,
+      134222405,
+      134222415,
+      134222425,
+      134222435,
+      134222445,
+      134222453,
+      134222463,
+      134222473,
+      134223069
+    ],
+    "saved_roots_reused": [],
+    "deferred_by_wave_limit": [],
+    "wave_limit_reached": false,
+    "direct_calls_recursively_expanded": 0,
+    "saved_nodes_redecoded": 0,
+    "saved_boundary_links": [
+      {
+        "root": 134221485,
+        "site": 134221528,
+        "kind": "revisited_node_boundary",
+        "target": 134221529,
+        "effective_target": 134221529,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      },
+      {
+        "root": 134221485,
+        "site": 134221576,
+        "kind": "revisited_node_boundary",
+        "target": 134221577,
+        "effective_target": 134221577,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      },
+      {
+        "root": 134221485,
+        "site": 134221586,
+        "kind": "outside_branch",
+        "target": 134221621,
+        "effective_target": 134221621,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      },
+      {
+        "root": 134221485,
+        "site": 134221604,
+        "kind": "revisited_node_boundary",
+        "target": 134221605,
+        "effective_target": 134221605,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      },
+      {
+        "root": 134221485,
+        "site": 134221612,
+        "kind": "window_boundary",
+        "target": 134221613,
+        "effective_target": 134221613,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      },
+      {
+        "root": 134222405,
+        "site": 134222482,
+        "kind": "saved_node_boundary",
+        "target": 134222483,
+        "effective_target": 134222483,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      },
+      {
+        "root": 134222415,
+        "site": 134222482,
+        "kind": "saved_node_boundary",
+        "target": 134222483,
+        "effective_target": 134222483,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      },
+      {
+        "root": 134222425,
+        "site": 134222482,
+        "kind": "saved_node_boundary",
+        "target": 134222483,
+        "effective_target": 134222483,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      },
+      {
+        "root": 134222435,
+        "site": 134222482,
+        "kind": "saved_node_boundary",
+        "target": 134222483,
+        "effective_target": 134222483,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      },
+      {
+        "root": 134222445,
+        "site": 134222482,
+        "kind": "saved_node_boundary",
+        "target": 134222483,
+        "effective_target": 134222483,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      },
+      {
+        "root": 134222453,
+        "site": 134222482,
+        "kind": "saved_node_boundary",
+        "target": 134222483,
+        "effective_target": 134222483,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      },
+      {
+        "root": 134222463,
+        "site": 134222482,
+        "kind": "saved_node_boundary",
+        "target": 134222483,
+        "effective_target": 134222483,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      },
+      {
+        "root": 134222473,
+        "site": 134222482,
+        "kind": "saved_node_boundary",
+        "target": 134222483,
+        "effective_target": 134222483,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      },
+      {
+        "root": 134223069,
+        "site": 134223084,
+        "kind": "revisited_node_boundary",
+        "target": 134223085,
+        "effective_target": 134223085,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      },
+      {
+        "root": 134221621,
+        "site": 134221620,
+        "kind": "cohort_node_boundary",
+        "target": 134221621,
+        "effective_target": 134221621,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      }
+    ],
+    "pending_boundaries": [
+      {
+        "root": 134223069,
+        "site": 134223086,
+        "kind": "indirect_boundary",
+        "register": 1
+      },
+      {
+        "root": 134221613,
+        "site": 134221632,
+        "kind": "indirect_boundary",
+        "register": 1
+      }
+    ],
+    "pending_direct_callees": [],
+    "pending_continuations": [],
+    "classification": "FINITE_RESOURCE_DELEGATES_AND_SWITCH_TABLE_NOT_NATIVE_ACCEPTANCE",
+    "candidate": {
+      "size": 33554432,
+      "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b",
+      "crc32": "3EB17B36"
+    },
+    "tables": [
+      {
+        "label": "string_dispatch",
+        "start": 134253416,
+        "length": 24,
+        "count": 6,
+        "stride": 4,
+        "site": 134253408,
+        "hex": "228c0008228c0008948b0008808b0008228c0008288c0008",
+        "identity": {
+          "size": 24,
+          "sha256": "4ceac19c1c5b9b21e83fa80ca95e7e5dcef1ecfddb736e8d05746b437df896e9"
+        }
+      },
+      {
+        "label": "v2_rule_records",
+        "start": 154925548,
+        "length": 368,
+        "count": 23,
+        "stride": 16,
+        "site": 154917830,
+        "hex": "04000a0005000100ff00ff0085fc3b090600140003000100ff00ff0079fc3b0953000f0003000100ff00ff006bfc3b0955000a0001000100ff00ff005efc3b099a010f0003000100ff00ff0053fc3b095f001e0001000100ff00ff0047fc3b09dc030a0001000000ff00ff0039fc3b09dd03140001000000ff00ff002cfc3b09c300280001000200ff00ff001ffc3b09d903500001000000ff00ff0013fc3b09ae03a00001000000ff00ff0004fc3b098603780001000300ff00ff00f8fb3b095803500001000400ff00ff00ecfb3b09de03280001000500ff00ff00dffb3b09df036400010007010002ff00d1fb3b0955034001010007010101ff00c3fb3b09ba00f00001000600ff00ff00b4fb3b098d03f00001000600ff00ff00a5fb3b097c03f00001000600ff00ff0098fb3b099d03f00001000600ff00ff0089fb3b09e0037800010009010202ff007afb3b0956030005010009010301ff006bfb3b09bd03800201000a00ff00ff005cfb3b09",
+        "identity": {
+          "size": 368,
+          "sha256": "5f27149befecf94ea7adf054fde2865c3fb75ead165c2e30b7a38a5e2b842286"
+        }
+      },
+      {
+        "label": "v2_counter_limits",
+        "start": 154926312,
+        "length": 48,
+        "count": 6,
+        "stride": 8,
+        "site": 154917912,
+        "hex": "04001800010000000a00320001010000030012000c02000008000800010300000a000a000b0400000600060001050000",
+        "identity": {
+          "size": 48,
+          "sha256": "25a5e739de607917c048745201bebc76c24340760a5f545581950d5234abf722"
+        }
+      },
+      {
+        "label": "string_extended_subtypes",
+        "start": 134253492,
+        "length": 84,
+        "count": 21,
+        "stride": 4,
+        "site": 134253484,
+        "index": "subtype - 4; unsigned 0..20",
+        "hex": "088c0008188c0008188c00084e8b0008188c00084e8b0008188c0008108c0008188c0008188c0008188c00084e8b0008188c0008188c0008188c0008188c0008188c00084e8b00084e8b00084e8b00084e8b0008",
+        "identity": {
+          "size": 84,
+          "sha256": "78d659887e22ed99bf6304636f085daefd19cfe3c449fcebd6811a545efd553c"
+        }
+      },
+      {
+        "label": "placeholder_callback_table",
+        "start": 136254308,
+        "length": 56,
+        "count": 14,
+        "stride": 4,
+        "site": 134253928,
+        "hex": "958c00089d8c0008a98c0008b18c0008b98c0008c18c0008e58c0008258d00082d8d0008358d00083d8d0008458d00084d8d0008558d0008",
+        "identity": {
+          "size": 56,
+          "sha256": "5c8a218aeab743344002925ffda55c918cd8e4efe7915d287d98bc169d1735c0"
+        }
+      },
+      {
+        "label": "nibble_table",
+        "start": 138598028,
+        "length": 76,
+        "count": 76,
+        "stride": 1,
+        "site": 135517310,
+        "hex": "00000010111111101000001101001110001010000101010101010000000100001101000000101100101010000100333333333333333323222222222222222222222222222222222222222232",
+        "identity": {
+          "size": 76,
+          "sha256": "db1848177fe30915981a3b3ec238d292e5cc81d99a11c3155dfae8227e2731b5"
+        }
+      },
+      {
+        "label": "placeholder_fallback_first_byte",
+        "start": 138269148,
+        "length": 1,
+        "count": 1,
+        "stride": 1,
+        "site": 134253390,
+        "hex": "ff",
+        "identity": {
+          "size": 1,
+          "sha256": "a8100ae6aa1940d0b663bb31cd466142ebbdbd5187131b92d93818987832eb89"
+        }
+      },
+      {
+        "label": "placeholder_text_0x83dd1dd",
+        "start": 138269149,
+        "length": 3,
+        "max_terminator_scan": 32,
+        "hex": "082eff",
+        "identity": {
+          "size": 3,
+          "sha256": "63a1ad51e7565b65e27b6cede1a4a40f592a3428048b072669e9aa92a247a7ce"
+        }
+      },
+      {
+        "label": "placeholder_text_0x83dd1e0",
+        "start": 138269152,
+        "length": 10,
+        "max_terminator_scan": 32,
+        "hex": "11342eff5b6c7f5251ff",
+        "identity": {
+          "size": 10,
+          "sha256": "41e21a904ced0abc583b00a66dafc726feebbe6b9ec14538c491902adb5b56fd"
+        }
+      },
+      {
+        "label": "placeholder_text_0x83dd1ea",
+        "start": 138269162,
+        "length": 4,
+        "max_terminator_scan": 32,
+        "hex": "7997aeff",
+        "identity": {
+          "size": 4,
+          "sha256": "0db296166a8eaab3473786482a91274b604795f31b4e5506e6567890522908d5"
+        }
+      },
+      {
+        "label": "placeholder_text_0x83dd1ee",
+        "start": 138269166,
+        "length": 4,
+        "max_terminator_scan": 32,
+        "hex": "515851ff",
+        "identity": {
+          "size": 4,
+          "sha256": "366de29f8289a2812f6ac852a683910fc4fdcf8346a7be6ac76765e1b834eb07"
+        }
+      },
+      {
+        "label": "placeholder_text_0x83dd1f2",
+        "start": 138269170,
+        "length": 4,
+        "max_terminator_scan": 32,
+        "hex": "6f896fff",
+        "identity": {
+          "size": 4,
+          "sha256": "5aff76391a9e8eaa09c435737a229c2f1e132891275a48155e2fae679c513c47"
+        }
+      },
+      {
+        "label": "placeholder_text_0x83dd1f6",
+        "start": 138269174,
+        "length": 5,
+        "max_terminator_scan": 32,
+        "hex": "51558878ff",
+        "identity": {
+          "size": 5,
+          "sha256": "bd58281baefe0fdbf28fbab97f061964c7b5ade208e6c9613d40645a83c65dfe"
+        }
+      },
+      {
+        "label": "placeholder_text_0x83dd1fb",
+        "start": 138269179,
+        "length": 5,
+        "max_terminator_scan": 32,
+        "hex": "6f62985bff",
+        "identity": {
+          "size": 5,
+          "sha256": "f16cbde6351dea7a19d7ff7c8676a8390802b5a8e7b09a119da31bee6fbe91b0"
+        }
+      },
+      {
+        "label": "placeholder_text_0x83dd200",
+        "start": 138269184,
+        "length": 6,
+        "max_terminator_scan": 32,
+        "hex": "565255ae87ff",
+        "identity": {
+          "size": 6,
+          "sha256": "d5eb5003f87fa1392407fd8bef2310976049162a7371a6d438fe3feee1564a00"
+        }
+      },
+      {
+        "label": "placeholder_text_0x83dd206",
+        "start": 138269190,
+        "length": 6,
+        "max_terminator_scan": 32,
+        "hex": "8977ae957eff",
+        "identity": {
+          "size": 6,
+          "sha256": "6f39571d874bed16f744ff580d7f8ebcc451283d64c03d8dd11da3d84a137577"
+        }
+      },
+      {
+        "label": "placeholder_text_0x83dd20c",
+        "start": 138269196,
+        "length": 4,
+        "max_terminator_scan": 32,
+        "hex": "7aa095ff",
+        "identity": {
+          "size": 4,
+          "sha256": "f149f8e7dcc8c2f488db7d60a2489d7e1587fb16c1eea7a1a0c3f38f94123b4f"
+        }
+      },
+      {
+        "label": "placeholder_text_0x83dd210",
+        "start": 138269200,
+        "length": 32,
+        "max_terminator_scan": 32,
+        "hex": "8978ae7eff606f8bff9f59737eff0b020c360627001a3d2229ff124307062700",
+        "identity": {
+          "size": 32,
+          "sha256": "8901b7c12e8610f9aa26386b382be8a29187b3a593b92762d16a846d8029dfed"
+        }
+      },
+      {
+        "start": 134222372,
+        "length": 32,
+        "hex": "441200084e12000858120008621200086c120008741200087e12000888120008",
+        "targets": [
+          134222404,
+          134222414,
+          134222424,
+          134222434,
+          134222444,
+          134222452,
+          134222462,
+          134222472
+        ],
+        "identity": {
+          "size": 32,
+          "sha256": "b7f411a55069c46e30fe3f1e723d6cb2c7c990d4ebe76ab0e8189ddaa36def1e"
+        },
+        "semantics": "MOV_PC_THUMB_BRANCH_NOT_BX_OR_RUNTIME_CALLBACK_PROOF"
+      }
+    ],
+    "resource_switch_table": {
+      "start": 134222372,
+      "length": 32,
+      "hex": "441200084e12000858120008621200086c120008741200087e12000888120008",
+      "targets": [
+        134222404,
+        134222414,
+        134222424,
+        134222434,
+        134222444,
+        134222452,
+        134222462,
+        134222472
+      ],
+      "identity": {
+        "size": 32,
+        "sha256": "b7f411a55069c46e30fe3f1e723d6cb2c7c990d4ebe76ab0e8189ddaa36def1e"
+      },
+      "semantics": "MOV_PC_THUMB_BRANCH_NOT_BX_OR_RUNTIME_CALLBACK_PROOF"
+    },
+    "new_windows": [
+      {
+        "start": 134221484,
+        "end": 134221634,
+        "hex": "f0b557464e464546e0b4844688461204170c1b061c0e00250c49012008700c4802788a460b4eb146100181191301088900281bd160460860484604301818434603600f81012c07d14c8107e0c8080003c9080003c800000303204881002002490870100400140fe0c8080003103101327f2a01dd311c002201357f2dd6dd0020534618700120404238bc9846a146aa46f0bc02bc0847",
+        "identity": {
+          "size": 150,
+          "sha256": "ee7aed94fcdf0d1f1208f4a4b8aae2f67cdec11ecf1e8cf648f0effa990625d4"
+        }
+      },
+      {
+        "start": 134221916,
+        "end": 134221926,
+        "hex": "0248017c072008407047",
+        "identity": {
+          "size": 10,
+          "sha256": "58069461920bf98c0833acfcef20ac8316835699fd1c0afa7e9e18262d0a8de5"
+        }
+      },
+      {
+        "start": 134221928,
+        "end": 134221932,
+        "hex": "d0080003",
+        "identity": {
+          "size": 4,
+          "sha256": "dc526280b433c477e06283552cff19fb9cf3b8a31f24bde207eef9b388b5596a"
+        }
+      },
+      {
+        "start": 134222372,
+        "end": 134222480,
+        "hex": "441200084e12000858120008621200086c120008741200087e12000888120008d0180078c007c00f21e0d01840788007800f1ce0d01840784006c00e17e0d01800780007800f12e0d0184078c0090ee0d01800788006800f09e0d01800784006c00f04e0d0180078c00900e0",
+        "identity": {
+          "size": 108,
+          "sha256": "4315d6505748e8c8e969b448598640a57e6405cb3027dd9a8b7a9a87a78e00cf"
+        }
+      },
+      {
+        "start": 134223068,
+        "end": 134223088,
+        "hex": "00b50006000e032801d8002000e0012002bc0847",
+        "identity": {
+          "size": 20,
+          "sha256": "0140a92721cbeadec191e70b16babd84c7c12ccec3001e69e2efaca824741533"
+        }
+      }
+    ],
+    "new_node_count": 120,
+    "new_window_bytes": 292,
+    "saved_bytes_reused": 0,
+    "cached_node_count": 2850,
+    "saved_node_count": 2970,
+    "data_bytes_bound": 32,
+    "literal_references": [
+      {
+        "address": 134221508,
+        "size": 2,
+        "hex": "0c49",
+        "kind": "ordinary",
+        "literal_address": 134221560,
+        "literal_value": 50333896,
+        "memory_write": false
+      },
+      {
+        "address": 134221514,
+        "size": 2,
+        "hex": "0c48",
+        "kind": "ordinary",
+        "literal_address": 134221564,
+        "literal_value": 50333897,
+        "memory_write": false
+      },
+      {
+        "address": 134221520,
+        "size": 2,
+        "hex": "0b4e",
+        "kind": "ordinary",
+        "literal_address": 134221568,
+        "literal_value": 50331848,
+        "memory_write": false
+      },
+      {
+        "address": 134221578,
+        "size": 2,
+        "hex": "0249",
+        "kind": "ordinary",
+        "literal_address": 134221588,
+        "literal_value": 50333896,
+        "memory_write": false
+      },
+      {
+        "address": 134221916,
+        "size": 2,
+        "hex": "0248",
+        "kind": "ordinary",
+        "literal_address": 134221928,
+        "literal_value": 50333904,
+        "memory_write": false
+      }
+    ],
+    "unbound_runtime_data": [
+      {
+        "base": 50347472,
+        "index_offset": 5,
+        "stride": 12,
+        "read_bytes": 4,
+        "kind": "callback table pointer"
+      },
+      {
+        "base": 33686576,
+        "stride": 12,
+        "read_bytes": 12,
+        "kind": "resource record array"
+      },
+      {
+        "base": 33685552,
+        "stride": 32,
+        "write_bytes": 32,
+        "kind": "nonnull output slots"
+      },
+      {
+        "kind": "special pointer table",
+        "base": 135671828,
+        "read_bytes": 4,
+        "actual_entry_count_proven": false
+      },
+      {
+        "kind": "extended variable storage",
+        "base": 33796840,
+        "size": 1024,
+        "actual_allocation_proven": false
+      },
+      {
+        "kind": "saveblock1 ordinary variables",
+        "offset": 4096,
+        "size": 512,
+        "actual_allocation_proven": false
+      }
+    ],
+    "all_callers_resolved": false,
+    "all_live_frames_proven": false,
+    "all_runtime_owners_excluded": false,
+    "all_dispatch_returns_proven": false,
+    "all_live_slot_bounds_proven": false,
+    "caller_pointer_size_limit_proven": false,
+    "ring_acquisition_accepted": false,
+    "release_ready": false,
+    "rom_changes": 0,
+    "new_emulator_processes": 0,
+    "candidate_reconstructions": 1,
+    "accepted_native_cases_replayed": 0,
+    "accepted_standalone_contracts_replayed": 0,
+    "full_rom_scans": 0
+  },
+  "source_bindings": {
+    "scripts/pr16_ring_followup_v2.py": {
+      "size": 11453,
+      "sha256": "71e33dbe40cd8988e185256821e33e6a1e06e4eddeb8ee6a3eb9047a4d3c49f7"
+    },
+    "scripts/pr16_ring_resource_tail.py": {
+      "size": 7535,
+      "sha256": "f4988540601c2eaa63876d6ee981a362e8614d0aaa11ca4a791e68f2b6100b81"
+    },
+    "tests/test_pr16_ring_resource_tail.py": {
+      "size": 4105,
+      "sha256": "804f2c31b3459f38adbc7758e623a378cd3ec679a11f81f8470077a903f2da72"
+    },
+    ".github/workflows/pr16-ring-resource-tail.yml": {
+      "size": 1916,
+      "sha256": "a43f754164a0f767dc23b25860fe75fd885e0b6334ce3c11c30841bce413becb"
+    },
+    "content/modernization/pr16_ring_resource_frontier.json": {
+      "size": 126243,
+      "sha256": "4049cd397c124f333f1523d689bc80d466f03cb6a478b654af96973112e90ec7"
+    },
+    "content/modernization/pr16_bp_chooser_checkpoint.json": {
+      "size": 9442,
+      "sha256": "853ed41b6abcfb63651aab136951a53c8c89ec635f769e8466327ba3a0c0ae41"
+    },
+    "scripts/pr16_resume.py": {
+      "size": 26649,
+      "sha256": "b0ec73bf933e46f7b254057559b0c637a2d1a9b625b08f348aa8308ea00dee5a"
+    },
+    "scripts/pr16_ring_compiled_record.py": {
+      "size": 13116,
+      "sha256": "768c94e59983d27bbf0ed46d6ba60008352a3a67e11612b18936e38b271e73ef"
+    },
+    "scripts/guard_private_files.py": {
+      "size": 5443,
+      "sha256": "143426a7403abf47396791f6ece3a3a374fa97fbf8bedc88169f636cddbcc905"
+    },
+    "scripts/pr16_ring_resource_frontier.py": {
+      "size": 8691,
+      "sha256": "12bad41bba1c269433134d204f4bae896f79b417900b6c70ea56893fa58e4d88"
+    },
+    "scripts/pr16_ring_dispatch_frontier.py": {
+      "size": 7483,
+      "sha256": "2eb176afadc2310f6e6ab9587cff4a7dd01e1f6c8db1cd348e5cf8495f703191"
+    },
+    "scripts/pr16_ring_remaining_frontier.py": {
+      "size": 12375,
+      "sha256": "3aa490bc6a4615a447f996df72e2ea678f41ed585076d3e2ddc3d572cd6f94bd"
+    },
+    "scripts/pr16_ring_owner_frontier.py": {
+      "size": 12711,
+      "sha256": "e7505577537eba4df7a5ee641836b56f212706473eb99ef139a60d22141b9e65"
+    },
+    "scripts/pr16_ring_effective_frontier.py": {
+      "size": 10560,
+      "sha256": "31303cea8148726c922f40f41231aa588b249796c08e04d9b41225150f25759e"
+    },
+    "scripts/pr16_ring_branch_frontier.py": {
+      "size": 10233,
+      "sha256": "9fe8b6d2697127d0dcefa4afecd1b0365bdc51f3a3638b03acc63ea0987c3aff"
+    },
+    "scripts/pr16_ring_zero_bytes.py": {
+      "size": 16741,
+      "sha256": "ef6255772fdc3153ec4518888af94df1c27f15d028283d81f901e1b5b2e87998"
+    },
+    "scripts/pr16_ring_transitive_owner.py": {
+      "size": 15717,
+      "sha256": "4d934acefe35ae818ed998282e3e783c4c5550e8da699a8e629557d4d82508dc"
+    },
+    "scripts/pr16_ring_flagset_continuation.py": {
+      "size": 19471,
+      "sha256": "10f6aa42d04f81385e42ff1987ca325c6a1bab52264c6591c9de7e8841f10e33"
+    },
+    "scripts/pr16_ring_selector_reuse.py": {
+      "size": 13926,
+      "sha256": "434fbc7c2dcf3e85b3c9e949a083c77f511bb71e898672f57f5cc0f152402f2a"
+    },
+    "content/modernization/pr16_ring_selector_reuse.json": {
+      "size": 69731,
+      "sha256": "05453a6a8523caaf72ba68cd462f5c32f2a71c19bc64fcfe90f69d52d23c5c3b"
+    },
+    "content/modernization/pr16_ring_dispatch_frontier.json": {
+      "size": 86644,
+      "sha256": "0f6e133e062c92ddbcb0bcf11cf97543b899d57ad7138c6c61f8748204b9b994"
+    }
+  },
+  "focused_tests": {
+    "tests_run": 30,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "successful": true
+  },
+  "prior_actions_verified_without_replay": [
+    {
+      "id": 35194777629,
+      "head_sha": "4ab69d822720658c988cd2e7422f822d0e02f3f3",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34946969126,
+      "head_sha": "0b7497b575a3180a045f2be377386490f192a012",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "actions_observed_before_record": [
+    {
+      "id": 35195536194,
+      "name": "p03-forgetting-ci",
+      "head_sha": "3029ad62d958b79904b300b57010728b4d4c0858",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35195536200,
+      "name": "source-validation",
+      "head_sha": "3029ad62d958b79904b300b57010728b4d4c0858",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35195532077,
+      "name": "source-validation",
+      "head_sha": "3029ad62d958b79904b300b57010728b4d4c0858",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35195532005,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "3029ad62d958b79904b300b57010728b4d4c0858",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35195532002,
+      "name": "p03-forgetting-ci",
+      "head_sha": "3029ad62d958b79904b300b57010728b4d4c0858",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35195531972,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "3029ad62d958b79904b300b57010728b4d4c0858",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35195532065,
+      "name": "resourceの未読3calleeと8要素分岐表を有限採取",
+      "head_sha": "3029ad62d958b79904b300b57010728b4d4c0858",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35194954742,
+      "name": "p03-forgetting-ci",
+      "head_sha": "1d461b1dd2d3de04bff61e61861d51bbe3df6470",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35194954603,
+      "name": "source-validation",
+      "head_sha": "1d461b1dd2d3de04bff61e61861d51bbe3df6470",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35194781138,
+      "name": "p03-forgetting-ci",
+      "head_sha": "4ab69d822720658c988cd2e7422f822d0e02f3f3",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35194781027,
+      "name": "source-validation",
+      "head_sha": "4ab69d822720658c988cd2e7422f822d0e02f3f3",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35194777516,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "4ab69d822720658c988cd2e7422f822d0e02f3f3",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35194777558,
+      "name": "p03-forgetting-ci",
+      "head_sha": "4ab69d822720658c988cd2e7422f822d0e02f3f3",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35194777615,
+      "name": "source-validation",
+      "head_sha": "4ab69d822720658c988cd2e7422f822d0e02f3f3",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35194777569,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "4ab69d822720658c988cd2e7422f822d0e02f3f3",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35194777629,
+      "name": "未読resource 8calleeだけを有限採取",
+      "head_sha": "4ab69d822720658c988cd2e7422f822d0e02f3f3",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35192904363,
+      "name": "source-validation",
+      "head_sha": "d966a41f8856e8d940ad1c5f6ef0a97e462de9c5",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35192904349,
+      "name": "p03-forgetting-ci",
+      "head_sha": "d966a41f8856e8d940ad1c5f6ef0a97e462de9c5",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35192836958,
+      "name": "source-validation",
+      "head_sha": "bab6cb7ae680c9af89147940430b662a6aa83904",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35192836970,
+      "name": "p03-forgetting-ci",
+      "head_sha": "bab6cb7ae680c9af89147940430b662a6aa83904",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ]
+}

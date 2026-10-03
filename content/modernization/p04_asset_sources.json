@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "task": "USER-MODERNIZATION-P04",
+  "research_cutoff_date": "2026-09-08",
+  "retrieved_at": "2026-09-08T00:44:00Z",
+  "selected_source_key": "RH_HIDEOUT_POKEEMERALD_EXPANSION",
+  "selection_policy": {
+    "priority": [
+      "GBA_READY_INDEXED_SPRITES_AND_PALETTES",
+      "MEGA_AND_STONE_COVERAGE",
+      "REPRODUCIBLE_COMMIT",
+      "CLEAR_RIGHTS_AND_CREDITS"
+    ],
+    "asset_import_requires_license_review": true,
+    "notes_ja": "技術適合度と利用許諾は別判定。選定sourceにLICENSEがないため、取得・監査は可能だがtracked成果への画像取込や再配布は権利確認まで禁止する。"
+  },
+  "sources": [
+    {
+      "source_key": "RH_HIDEOUT_POKEEMERALD_EXPANSION",
+      "repository_url": "https://github.com/rh-hideout/pokeemerald-expansion",
+      "github_api_url": "https://api.github.com/repos/rh-hideout/pokeemerald-expansion",
+      "clone_url": "https://github.com/rh-hideout/pokeemerald-expansion.git",
+      "default_branch": "master",
+      "commit": "cafe0221cefb2a991cc0ece429174ade877d037d",
+      "commit_date": "2026-09-06T15:48:41Z",
+      "commit_url": "https://github.com/rh-hideout/pokeemerald-expansion/commit/cafe0221cefb2a991cc0ece429174ade877d037d",
+      "license_spdx": "NOASSERTION",
+      "license_file": null,
+      "license_status": "NO_LICENSE_FILE_REVIEW_REQUIRED",
+      "redistribution_allowed": false,
+      "inspection_method": "EXACT_LOCAL_GIT_CHECKOUT_AND_GITHUB_API",
+      "local_checkout": ".local/modernization_sources/pokeemerald-expansion",
+      "local_checkout_acquired_at": "2026-09-08T00:33:33Z",
+      "asset_layout": {
+        "species_root": "graphics/pokemon",
+        "species_required_files": ["front.png", "back.png", "icon.png"],
+        "front_back_contract": "64x64_INDEXED_PNG",
+        "icon_contract": "32x64_INDEXED_PNG",
+        "palette_contract": "JASC_PAL_AT_MOST_16_COLORS",
+        "palette_overrides": {
+          "tatsugiri/droopy/mega": "graphics/pokemon/tatsugiri/mega",
+          "tatsugiri/stretchy/mega": "graphics/pokemon/tatsugiri/mega"
+        },
+        "item_icon_root": "graphics/items/icons",
+        "item_palette_root": "graphics/items/icon_palettes",
+        "item_icon_contract": "24x24_INDEXED_PNG"
+      },
+      "evidence_sha256": {
+        "include/constants/species.h": "cd07f8773c77b41b9821ac030cbc3e0ef82cc6f0740efc7608afbf5ffe78ceaf",
+        "include/constants/items.h": "2d37d71fd294fbfc148cace384c08cecd23d81c21300d28862176bf9bf75cb56",
+        "CREDITS.md": "fcbe3c3bdeb477a02d307c7b7a4437aadbd518b07392f679f07134dafd209a6e",
+        "docs/changelogs/1.15.x/1.15.0.md": "75ddac973a7c92be96b4ecd88d365695f462bd5918661d33eeb06c6fc538f0ec"
+      },
+      "technical_fit": "SELECTED",
+      "known_gap": "Pokemon Winds/Waves starter artwork is absent"
+    },
+    {
+      "source_key": "POKEMON_WORKSHOP_GAME_DATA_PACKS",
+      "repository_url": "https://github.com/PokemonWorkshop/GameDataPacks",
+      "github_api_url": "https://api.github.com/repos/PokemonWorkshop/GameDataPacks",
+      "clone_url": "https://github.com/PokemonWorkshop/GameDataPacks.git",
+      "default_branch": "main",
+      "commit": "d430fb553df98ccde5f9f90ece78e36b07d8083c",
+      "commit_date": "2026-09-07T09:57:16Z",
+      "commit_url": "https://github.com/PokemonWorkshop/GameDataPacks/commit/d430fb553df98ccde5f9f90ece78e36b07d8083c",
+      "license_spdx": "NOASSERTION",
+      "license_file": null,
+      "license_status": "NO_LICENSE_FILE_REVIEW_REQUIRED",
+      "redistribution_allowed": false,
+      "inspection_method": "GITHUB_API_TREE_AND_RAW_FILES",
+      "asset_layout": "Gen 9/Legends Z-A contains Pokemon Studio data, graphics and item resources",
+      "technical_fit": "CONVERSION_REQUIRED",
+      "known_gap": "96x96/RGBA style sources require GBA resizing and deterministic 16-color palette conversion"
+    },
+    {
+      "source_key": "POKEAPI_SPRITES",
+      "repository_url": "https://github.com/PokeAPI/sprites",
+      "github_api_url": "https://api.github.com/repos/PokeAPI/sprites",
+      "clone_url": "https://github.com/PokeAPI/sprites.git",
+      "default_branch": "master",
+      "commit": "6e523c72bb714306c90912647e0b2ccc4fd2fff1",
+      "commit_date": "2026-09-07T03:58:17Z",
+      "commit_url": "https://github.com/PokeAPI/sprites/commit/6e523c72bb714306c90912647e0b2ccc4fd2fff1",
+      "license_spdx": "NOASSERTION",
+      "license_file": "LICENCE.txt",
+      "license_status": "CC0_REPOSITORY_NOTICE_WITH_POKEMON_COPYRIGHT_CAVEAT",
+      "redistribution_allowed": false,
+      "inspection_method": "GITHUB_API_TREE_AND_RAW_FILES",
+      "asset_layout": "PNG collections and item sprites",
+      "technical_fit": "CONVERSION_REQUIRED",
+      "known_gap": "No explicit GBA back/front/palette build contract; image copyrights still require review"
+    },
+    {
+      "source_key": "SMOGON_SPRITES",
+      "repository_url": "https://github.com/smogon/sprites",
+      "github_api_url": "https://api.github.com/repos/smogon/sprites",
+      "clone_url": "https://github.com/smogon/sprites.git",
+      "default_branch": "master",
+      "commit": "0e1f57f4234f20b999dbb442dac1093b445e0088",
+      "commit_date": "2026-09-06T17:07:51Z",
+      "commit_url": "https://github.com/smogon/sprites/commit/0e1f57f4234f20b999dbb442dac1093b445e0088",
+      "license_spdx": "NOASSERTION",
+      "license_file": null,
+      "license_status": "NO_LICENSE_FILE_REVIEW_REQUIRED",
+      "redistribution_allowed": false,
+      "inspection_method": "GITHUB_API_TREE_AND_RAW_FILES",
+      "asset_layout": "multi-generation community sprite collection",
+      "technical_fit": "NOT_GBA_READY",
+      "known_gap": "No fixed 64x64 indexed front/back plus 16-color palette contract"
+    },
+    {
+      "source_key": "CRISTOBALMITCHELL_POKEDEX",
+      "repository_url": "https://github.com/cristobalmitchell/pokedex",
+      "github_api_url": "https://api.github.com/repos/cristobalmitchell/pokedex",
+      "clone_url": "https://github.com/cristobalmitchell/pokedex.git",
+      "default_branch": "main",
+      "commit": "f6c9f3efc00a430fa06421f25c05c09380d9c623",
+      "commit_date": "2026-07-06T15:58:26Z",
+      "commit_url": "https://github.com/cristobalmitchell/pokedex/commit/f6c9f3efc00a430fa06421f25c05c09380d9c623",
+      "license_spdx": "MIT",
+      "license_file": "LICENSE",
+      "license_status": "SOFTWARE_MIT_ARTWORK_SEPARATE_RIGHTS_REVIEW_REQUIRED",
+      "redistribution_allowed": false,
+      "inspection_method": "GITHUB_API_TREE_AND_RAW_FILES",
+      "asset_layout": "web Pokédex front artwork and metadata",
+      "technical_fit": "NOT_GBA_READY",
+      "known_gap": "No back sprites, indexed palettes, or stone asset contract; MIT does not establish artwork rights"
+    }
+  ]
+}

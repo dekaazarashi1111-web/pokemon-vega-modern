@@ -1,0 +1,93 @@
+name: pr16-research-story-training-terminal
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-research-story-training-terminal.yml]
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+jobs:
+  terminal:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+      EXPECTED_RUN: '36362293129'
+      EXPECTED_SOURCE: '67e9cc46f50222e19799244598d65534360c53fd'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Verify completed run and original Save screens source and separate CI boundary
+        run: |
+          python3 -B - <<'PY'
+          import pathlib,subprocess,sys
+          sys.path[:0]=['scripts','.']
+          import pr16_research_story_training_actions as s
+          s.terminal()
+          d,m=s.d,s.m;root=pathlib.Path.cwd()
+          run=d.inputs.api('actions/runs/36362293100')
+          m.need(run['head_sha']==s.os.environ['EXPECTED_SOURCE'] and run['status']=='completed' and run['conclusion']=='failure' and run['run_attempt']==1,'separate actual source CI failure')
+          listing=d.inputs.api('actions/runs/36362293100/jobs?per_page=100')
+          m.need(listing['total_count']==len(listing['jobs'])==1,'complete CI job listing')
+          job=listing['jobs'][0]
+          m.need(job['id']==108741716592 and any(x['name']=='P03 capacity fixed originals and cold-save acceptance' and x['conclusion']=='failure' for x in job['steps']),'same capacity failure boundary')
+          meta=d.inputs.api('actions/artifacts/10945834648')
+          m.need(not meta['expired'] and meta['workflow_run']['id']==run['id'] and meta['workflow_run']['head_sha']==run['head_sha'] and meta['name']=='p03-capacity-final-ci','exact retained CI artifact')
+          raw=d.inputs.api('actions/artifacts/10945834648/zip',True)
+          archive=m.identity(raw)
+          m.need(archive==dict(size=1429,sha256='3887ad8f8e7b393e1d1477061573449d3833ba9b6f5f59b192eb805f36c43655') and meta['size_in_bytes']==archive['size'] and meta['digest']=='sha256:'+archive['sha256'],'whole CI ZIP')
+          out=s.OUT/'ci-originals';out.mkdir();(out/'archive.zip').write_bytes(raw)
+          originals={}
+          with s.helper.safe_zip(raw,10000) as z:
+              m.need(set(z.namelist())=={'tests.txt','source-head.txt','checkout-head.txt'},'closed CI members')
+              tests=z.read('tests.txt')
+              m.need(tests.count(b' ... ok\n')==23 and tests.count(b' ... ERROR\n')==2 and b'FAILED (errors=2)' in tests and tests.count(b'ValueError: tested source changed: overlays/qol_production/qol_production.c')==2,'same 25 tests:23 pass/2 errors; no reinterpretation')
+              m.need(z.read('source-head.txt').decode().strip()==run['head_sha'],'exact tested source')
+              for name in z.namelist():
+                  value=z.read(name);value.decode('utf-8');m.need(b'\0' not in value,'text CI original')
+                  (out/name).write_bytes(value);originals[name]=m.identity(value)
+          protected={'overlays/qol_production/qol_production.c','scripts/record_modernization_p03_capacity.py','tests/test_modernization_p08_capacity_evidence.py'}
+          subprocess.run(['git','diff','--exit-code','0019e5c05e1decb52e23bddc7b1a2e7652b36a40','HEAD','--',*sorted(protected)],check=True)
+          proof='content/modernization/pr16_research_story_training_ci_limit.json'
+          d.write(root/proof,dict(schema_version=1,status='KNOWN_SOURCE_VALIDATION_FAILURE_NOT_TRAINING_REGRESSION',run=d.run_summary(run),job={k:job[k] for k in ('id','name','status','conclusion','steps')},artifact={k:meta[k] for k in ('id','name','size_in_bytes','digest','workflow_run')},archive=archive,tests=25,passed=23,errors=2,exception='ValueError: tested source changed: overlays/qol_production/qol_production.c',originals=originals,original_storage='terminal artifact ci-originals only; tracked manifest holds identities not environment paths',unchanged_since_start_head='0019e5c05e1decb52e23bddc7b1a2e7652b36a40',unchanged_dependencies=d.bindings(protected),native_reruns=0,unit_reruns=0,validator_loosened=False,all_ci_success_claimed=False))
+          with (root/s.GUIDE).open('a') as f:
+              f.write('\n## 同じsourceの一般CIは別境界\n\nsource-validation run36362293100 / job108741716592はfailure。固定artifact10945834648の全ZIP/原本を回収し、25検査23成功・2ERROR、原因 `ValueError: tested source changed: overlays/qol_production/qol_production.c` を確認。当該C/旧validator/旧testは開始HEAD0019e5c0から不変。後続relearner skipped/upload failureも成功へ読み替えない。環境パスを含む原本はterminal artifact内ci-originalsだけに保持し、Git内のmanifestは `'+proof+'`。この回収でnative/unit再実行0。\n')
+          state=d.read(root/d.STATE)
+          state['research_story_training_ci_limit']=dict(path=proof,status='KNOWN_SOURCE_VALIDATION_FAILURE_NOT_TRAINING_REGRESSION',run_id=run['id'],source_head=run['head_sha'])
+          for name in (s.GUIDE,proof):state['source_bindings'][name]=m.identity((root/name).read_bytes())
+          s.publish_resume(state)
+          s.append_logs('Lv7自然習得の成功終端と一般CIの既知失敗を分離し原本を保持。旧validator/C/test変更なし。','source-validation run36362293100/job108741716592 failure。artifact10945834648全ZIP一致。25検査23成功2ERROR、後続skipped/upload failure保持。回収native/unit/compile再実行0。','research-story-training-ci-boundary-v1','DONE（新区間成功、一般CIは既知失敗）')
+          s.own(set(d.read(s.OUT/'owned.json'))|{proof})
+          print('PASS: exact external terminal and separate CI originals; no replay')
+          PY
+      - name: Fixed resume task graph and append-only scoped final index
+        run: |
+          python3 -B scripts/pr16_resume.py check
+          python3 -B scripts/validate_task_graph.py
+          mapfile -t paths < <(python3 -B scripts/pr16_research_story_training_actions.py paths)
+          git add -- "${paths[@]}"
+          python3 -B scripts/pr16_research_story_training_actions.py guard
+      - name: Non-force terminal receipt commit
+        run: |
+          test "$(git ls-remote origin "$GITHUB_REF" | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m "USER-20260928-RESEARCH-STORY-TRAINING: 全11stepとLv7習得Saveの成功終端を確定 run=$GITHUB_RUN_ID"
+          git push origin "HEAD:$GITHUB_REF"
+          test "$(git ls-remote origin "$GITHUB_REF" | cut -f1)" = "$(git rev-parse HEAD)"
+          git rev-parse HEAD > .local/pr16-story-training-run/completion-head.txt
+          printf 'RESULT=DONE TASK=USER-20260928-RESEARCH-STORY-TRAINING VERIFY=TERMINAL_SCOPED_PASS COMMIT=%s\n' "$(git rev-parse HEAD)"
+      - name: Preserve committed text readback
+        run: python3 -B scripts/pr16_research_story_training_actions.py snapshot
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-research-story-training-terminal-record
+          path: .local/pr16-story-training-run
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90

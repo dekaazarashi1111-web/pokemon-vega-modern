@@ -1,0 +1,142 @@
+name: pr16-research-story-route-terminal
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-research-story-route-terminal.yml]
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+jobs:
+  terminal:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Verify exact successful run Save screens and committed originals without replay
+        run: |
+          python3 -B - <<'PY'
+          import datetime,io,json,os,pathlib,subprocess,sys,zipfile
+          root=pathlib.Path.cwd();sys.path[:0]=[str(root/'scripts'),str(root)]
+          import pr16_research_story_route as m
+          import pr16_research_story_route_actions as s
+          import pr16_research_lifecycle_actions as d
+          from pr16_learnset_compact_record import publish_resume
+          RUN=36330546824;JOB=108651503407;SOURCE='228d31f3e3ab74dbfc089b63a75478c0d5fde1eb';COMPLETION='408911e20138d51880fb0c9f76f31e9d311d73be'
+          ART=10934928662;WF='.github/workflows/pr16-research-story-route-terminal.yml';RECEIPT=s.TERMINAL
+          ARCHIVE=dict(size=1492715,sha256='53d6ce6e010ad325fad5382ed89cde758db8e6d320d2c05a41597aceea022c6c')
+          d.current();out=root/'.local/pr16-story-route-terminal';out.mkdir(parents=True)
+          subprocess.run(['git','merge-base','--is-ancestor',COMPLETION,'HEAD'],check=True)
+          state=s.source_check();cp=d.read(root/s.CP)
+          m.need(cp['status']=='PASS_NATURAL_STORY_POTION_SAVE_PENDING_TERMINAL' and cp['actions_completion_confirmed'] is False and cp['source_head']==SOURCE and cp['run_id']==RUN and not (root/RECEIPT).exists(),'one exact pending result')
+          m.need(d.bindings(set(cp['source_bindings']))==cp['source_bindings'],'same measured source/evidence')
+          run=d.inputs.api('actions/runs/'+str(RUN))
+          m.need(run['head_sha']==SOURCE and run['head_branch']=='codex/modernization-followup-20260908' and run['path']==s.WF and run['status']=='completed' and run['conclusion']=='success' and run['run_attempt']==1,'external dedicated run success')
+          jobs=d.inputs.api('actions/runs/'+str(RUN)+'/jobs?per_page=100')
+          m.need(jobs['total_count']==len(jobs['jobs'])==1,'complete single-job collection')
+          job=jobs['jobs'][0]
+          m.need(job['id']==JOB and job['name']=='route-story' and job['status']=='completed' and job['conclusion']=='success','exact completed job')
+          expected=['Set up job','Run actions/checkout@v4','Measure only new road item interval and independent successor Bag Continue','Record immutable evidence fixed resume and append-only logs','Task graph fixed resume and scoped final index','Non-force scoped completion commit','Preserve text completion snapshot','Preserve partial progress without replay','Run actions/upload-artifact@v4','Post Run actions/checkout@v4','Complete job']
+          m.need([x['name'] for x in job['steps']]==expected and all(x['status']=='completed' and x['conclusion']=='success' for x in job['steps']),'all 11 required steps executed successfully')
+          meta=d.inputs.api('actions/artifacts/'+str(ART))
+          m.need(meta['name']==s.ARTNAME and not meta['expired'] and meta['workflow_run']['id']==RUN and meta['workflow_run']['head_sha']==SOURCE and meta['size_in_bytes']==ARCHIVE['size'] and meta['digest']=='sha256:'+ARCHIVE['sha256'],'fixed successor artifact metadata')
+          raw=d.inputs.api('actions/artifacts/'+str(ART)+'/zip',True)
+          m.need(m.identity(raw)==ARCHIVE,'exact whole downloaded archive')
+          with s.safe_zip(raw,20000000) as z:
+            m.need(len(z.infolist())==73 and sum(i.file_size for i in z.infolist())==8144467,'exact archive member bounds')
+            saved=m.load(z.read('checkpoint.json'))
+            m.need(saved==cp['checkpoint'] and saved['save']==m.OUTPUT_SAVE and saved['candidate']==m.CANDIDATE and m.identity(z.read('runner'))==m.RUNNER,'fixed checkpoint and executable')
+            for n in ('potion.srm','progress/story.srm','continue/story.srm'):
+              m.need(m.identity(z.read(n))==m.OUTPUT_SAVE,'whole ordinary Save/RTC: '+n)
+            m.need(z.read('completion-head.txt').decode().strip()==COMPLETION,'completion commit receipt')
+            screens=out/'screens';screens.mkdir()
+            for n in z.namelist():
+              if n.endswith('.ppm'):
+                p=screens/n;p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(z.read(n))
+            result=m.verify(z.read('progress.stdout.txt'),z.read('continue.stdout.txt'),d.read(root/m.PARENT),saved['save'],screens/'progress',screens/'continue')
+            m.need(not z.read('progress.stderr.txt') and not z.read('continue.stderr.txt') and not z.read('measure.stderr.txt'),'no native or measurement stderr')
+            measured=m.load(z.read('measurement.json'))
+            m.need(all(measured[k]==v for k,v in result.items()) and result['status']=='PASS_NATURAL_STORY_POTION_SAVE_SCOPED','independent oracle and scoped result')
+            local=s.local_verified()
+            m.need(result==local['result'],'retained positive and 74-test source/evidence original')
+            bindings=d.read(root/cp['manifest'])
+            m.need(d.bindings(set(bindings))==bindings,'all committed immutable evidence')
+            for p,binding in bindings.items():
+              name=pathlib.PurePosixPath(p).name
+              m.need(m.identity(z.read(name))==binding and z.read(name)==(root/p).read_bytes(),'artifact and committed evidence: '+name)
+            with s.safe_zip(z.read('record.zip'),8000000) as record:
+              m.need(len(record.namelist())==19 and record.read('record-head.txt').decode().strip()==COMPLETION,'exact completion snapshot')
+              for n in record.namelist():
+                if n=='record-head.txt':continue
+                b=record.read(n);b.decode('utf-8')
+                m.need(b'\0' not in b and b==subprocess.check_output(['git','show',COMPLETION+':'+n]) and b==(root/n).read_bytes(),'committed text readback: '+n)
+          stamp=datetime.datetime.now(datetime.timezone.utc).isoformat()
+          receipt=dict(schema_version=1,task=s.TASK,status=result['status'],observed_at=stamp,source_head=SOURCE,completion_commit=COMPLETION,run=d.run_summary(run),job={k:job[k] for k in ('id','name','status','conclusion','steps')},artifact={k:meta[k] for k in ('id','name','size_in_bytes','digest','workflow_run','created_at','expires_at','expired')},archive=ARCHIVE,checkpoint=saved,result=result,verified_real_screens=53,content_screens=52,transition_only_screens=1,new_native_processes=0,new_compiles=0,new_unit_test_runs=0,reused_new_oracle_tests=74,accepted_case_reruns=0,all_required_steps_succeeded=True,all_committed_originals_match=True,natural_research_arrival_accepted=False,release_ready=False,active_baseline_changed=False)
+          s.observe_checks(state,SOURCE)
+          recent=d.inputs.api('actions/runs?branch=codex%2Fmodernization-followup-20260908&per_page=30')
+          receipt['latest_branch_actions']=[d.run_summary(r) for r in recent['workflow_runs']]
+          receipt['complete_repository_history_claimed']=False
+          d.write(root/RECEIPT,receipt)
+          cp.update(status=result['status'],actions_completion_confirmed=True,retained_artifact_id=ART,retained_artifact=receipt['artifact'],terminal_receipt=RECEIPT)
+          d.write(root/s.CP,cp)
+          with (root/s.GUIDE).open('a') as f:
+            f.write('\n## 外部確認した成功終端と再開点\n\n正式run36330546824/job108651503407の全11必須stepがcompleted/success。完了commit408911e20138d51880fb0c9f76f31e9d311d73be。上の確認待ちは測定時点の履歴で、現在は終端確認済み。正本は `'+RECEIPT+'`。artifact10934928662 `pr16-research-story-route-checkpoint` は1492715bytes / SHA-256 '+ARCHIVE['sha256']+'、期限2026-12-26。ZIP73member、通常Save/RTCの3コピー、固定runner、53実画面（内容52・治療暗転1）、全原本JSON、commit snapshot18text filesを照合。終端確認のnative/compile/unit再実行0。\n\n次はpotion.srmを作業コピーにし、固定candidate/runtime/runnerでContinueする。map3/19 (26,17)、party1、RP0、counter3、キズぐすり1個。未使用、トレーナー未撃破。\n\n```text\n<fixed-runtime>/ld.so --library-path <fixed-runtime>/lib <checkpoint>/runner <fixed-candidate> <working-save> continue-story '+m.OUTPUT_SAVE['sha256']+'\n```\n\n入力は `key <mask> <frames>`、`observe <連番>`、`save`、最後に `quit`。観測0は自動Continue観測であり、追加観測は1から。maskは0/1/2/8/16/32/64/128、frames1〜600。今回301入力と前回114入力、NewGame/スターターを再生しない。新しい地点より先だけ進める。研究活動施設への自然到達・全体story・releaseは未受入。\n')
+          state['research_story_route'].update(status=result['status'],actions_completion_confirmed=True,retained_artifact_id=ART,terminal_receipt=RECEIPT)
+          state['research_story_route_development']['superseded_by']=s.CP
+          state['bp']['current_stop']=result['status'];state['bp']['next_step']=s.GOAL
+          state['next_action'].update(id='NATURAL_STORY_FROM_POTION_SAVE_NEXT',goal_ja=s.GOAL,read_paths=[s.GUIDE,s.CP,RECEIPT,m.SOURCE],stop_rule_ja='run36330546824の全11必須stepとartifact10934928662は終端確認済み。potion.srmのsize/SHAと固定runner/runtime/candidateを確認しContinue。map3/19(26,17)/counter3/キズぐすり1個から先の通常storyだけ進める。成功301入力/前回114入力/旧starter/RP/UI/BP/P08を再実行しない。勝利や研究施設到達へ昇格せずmerge/release/baseline変更禁止。')
+          state['observed_head']=SOURCE
+          state['observed_head_semantics']='道路道具取得を独立測定したsource HEAD。全11必須step・後継Save/RTC・53画面・全commit原本は '+RECEIPT+' で外部確認済み。自己記録commitや製品最終SHAではない。'
+          state['pending_runs']=[r for r in state['pending_runs'] if r['run_id']!=RUN]
+          for name in (s.CP,s.GUIDE,RECEIPT,WF):state['source_bindings'][name]=m.identity((root/name).read_bytes())
+          state['logs_synchronized']=True;publish_resume(state)
+          s.append_logs(s.GOAL,'run36330546824/job108651503407全11step成功、artifact10934928662全ZIP/3Save/runner/53画面/18text snapshot読戻しPASS。新74検査原本source一致再利用、終端のnative/compile/unit再実行0。一般CIは実際の状態を保持し全体private guard成功を主張しない。','research-story-route-terminal-v1')
+          paths={s.CP,s.GUIDE,RECEIPT,d.STATE,d.DOC}|d.LOGS
+          (out/'paths.txt').write_text('\n'.join(sorted(paths))+'\n')
+          d.write(out/'verification.json',dict(status=result['status'],verified_source_head=SOURCE,verified_completion_commit=COMPLETION,artifact=ART,archive=ARCHIVE,terminal_source_head=os.environ['GITHUB_SHA'],native_processes=0,unit_test_runs=0,compiles=0))
+          print('PASS: terminal and retained potion Save; no replay')
+          PY
+      - name: Fixed resume task graph and scoped append-only final index
+        run: |
+          python3 -B scripts/pr16_resume.py check
+          python3 -B scripts/validate_task_graph.py
+          mapfile -t paths < .local/pr16-story-route-terminal/paths.txt
+          git add -- "${paths[@]}"
+          python3 -B - <<'PY'
+          import os,pathlib,sys
+          sys.path.insert(0,'scripts');import pr16_learnset_runtime_record as g
+          g.START=os.environ['GITHUB_SHA'];g.CODE=set();g.OWNED=set(pathlib.Path('.local/pr16-story-route-terminal/paths.txt').read_text().splitlines());g.guard()
+          PY
+          git diff --cached --check
+      - name: Commit and non-force push terminal checkpoint
+        run: |
+          test "$(git ls-remote origin "$GITHUB_REF" | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20260928-RESEARCH-STORY-ROUTE: 成功終端と後継potion保存を確定'
+          git push origin "HEAD:$GITHUB_REF"
+          test "$(git ls-remote origin "$GITHUB_REF" | cut -f1)" = "$(git rev-parse HEAD)"
+          git rev-parse HEAD > .local/pr16-story-route-terminal/committed-head.txt
+          python3 -B - <<'PY'
+          import pathlib,subprocess,zipfile
+          out=pathlib.Path('.local/pr16-story-route-terminal')
+          with zipfile.ZipFile(out/'record.zip','w',zipfile.ZIP_DEFLATED) as z:
+            for p in (out/'paths.txt').read_text().splitlines():
+              raw=subprocess.check_output(['git','show','HEAD:'+p]);assert raw==pathlib.Path(p).read_bytes();z.writestr(p,raw)
+            z.writestr('record-head.txt',subprocess.check_output(['git','rev-parse','HEAD']))
+          PY
+          printf 'RESULT=DONE TASK=USER-20260928-RESEARCH-STORY-ROUTE VERIFY=PASS COMMIT=%s\n' "$(git rev-parse HEAD)"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-research-story-route-terminal
+          path: .local/pr16-story-route-terminal
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90

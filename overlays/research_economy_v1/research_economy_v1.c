@@ -289,7 +289,7 @@ typedef void (*PlaySeFn)(u16);
 #define FN_ADD_COINS PTR(AddCoinsFn, RESEARCH_ECONOMY_DELEGATE_ADD_COINS)
 #define FN_GET_COINS PTR(GetCoinsFn, 0x080D1671u)
 #define FN_FLAG_GET PTR(FlagGetFn, 0x0806DEC5u)
-#define FN_CHECK_BAG_SPACE PTR(BagFn, 0x08099949u)
+#define FN_CHECK_BAG_SPACE PTR(BagFn, 0x08099A09u)
 #define FN_ADD_BAG_ITEM PTR(BagFn, 0x08099A8Du)
 #define FN_REMOVE_BAG_ITEM PTR(BagFn, 0x08099BE1u)
 #define FN_GET_MON_DATA PTR(GetMonDataFn, 0x0803F355u)
@@ -912,30 +912,25 @@ static u8 ensure_save_idle(void)
     status = ResearchEconomy_SaveValidate((const void *)G_LEDGER,
                                            RESEARCH_ECONOMY_LEDGER_SIZE);
     if (status == SAVE_EMPTY) {
-        ResearchEconomy_SaveInitNew((void *)G_LEDGER,
-                                    flag_get(FLAG_BADGE_1));
-        if (!persist_phase(0u)) {
-            G_VOLATILE->recovery_blocked = 1u;
-            return 0u;
-        }
-    } else if (status == SAVE_OK
-               && read_u16(G_LEDGER + LEDGER_VERSION_OFFSET)
-                    == LEDGER_VERSION_V1) {
-        if (ResearchEconomy_MigrateV1((void *)G_LEDGER,
-                                      RESEARCH_ECONOMY_LEDGER_SIZE)
-                != SAVE_OK
-            || !persist_phase(0u)) {
-            if (G_VOLATILE->migration_dirty)
-                copy_bytes(G_LEDGER, G_SAVE_ROLLBACK,
-                           RESEARCH_ECONOMY_LEDGER_SIZE);
-            G_VOLATILE->migration_dirty = 0u;
-            G_VOLATILE->recovery_blocked = 1u;
-            return 0u;
-        }
-        G_VOLATILE->migration_dirty = 0u;
+        /* 未保存V2を有効扱いして再試行を素通りさせない。
+         * 初期化前の全byteを保持し、失敗時はV1と同じく復元する。 */
+        copy_bytes(G_SAVE_ROLLBACK, G_LEDGER,
+                   RESEARCH_ECONOMY_LEDGER_SIZE);
+        ResearchEconomy_SaveInitNew((void *)G_LEDGER, flag_get(FLAG_BADGE_1));
     } else if (status != SAVE_OK) {
         return 0u;
+    } else if (read_u16(G_LEDGER + LEDGER_VERSION_OFFSET)
+                    != LEDGER_VERSION_V1) {
+        goto recover;
+    } else if (ResearchEconomy_MigrateV1((void *)G_LEDGER,
+                                        RESEARCH_ECONOMY_LEDGER_SIZE)
+                    != SAVE_OK) {
+        goto failed;
     }
+    if (!persist_phase(0u))
+        goto failed;
+    G_VOLATILE->migration_dirty = 0u;
+recover:
     if (G_OWNER[OWNER_PENDING_KIND] != PENDING_NONE
         || G_VOLATILE->recovery_blocked) {
         u16 recovery = recover_internal();
@@ -944,6 +939,13 @@ static u8 ensure_save_idle(void)
             return 0u;
     }
     return 1u;
+failed:
+    if (status == SAVE_EMPTY || G_VOLATILE->migration_dirty)
+        copy_bytes(G_LEDGER, G_SAVE_ROLLBACK,
+                   RESEARCH_ECONOMY_LEDGER_SIZE);
+    G_VOLATILE->migration_dirty = 0u;
+    G_VOLATILE->recovery_blocked = 1u;
+    return 0u;
 }
 
 RESEARCH_EXPORT(ResearchEconomy_SaveLoadAdapter)

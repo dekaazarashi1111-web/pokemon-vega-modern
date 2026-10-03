@@ -1,0 +1,2639 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "scope": "P03_ARCHIVE_NATIVE_UI_SAVE_RELOAD",
+  "candidate_sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d",
+  "sources": {
+    ".github/workflows/p03-archive-ui-e2e.yml": {
+      "size": 11836,
+      "sha256": "a7a32000bb6654ce6d6e67d32726a554b0ffeee8fc570d8d34e246ade641182b"
+    },
+    "config/active_play_baseline.json": {
+      "size": 394,
+      "sha256": "4800257add049ea99cdedda91413a70a255dcff9a85823463596edefa8785053"
+    },
+    "config/modernization_stage79_cumulative_mgba.json": {
+      "size": 28627,
+      "sha256": "ee6c6326e0c96445b113e9cd0d73f5b3b7a1d5c907789e58d88ea3878abca5d6"
+    },
+    "infra/setup_github_actions.sh": {
+      "size": 2571,
+      "sha256": "8b081dd37ae761325e80ed4f689b1d790f76a6acb311ba810820221828c79cc2"
+    },
+    "infra/toolchain_manifest.json": {
+      "size": 33230,
+      "sha256": "abf9f2fe3589323702aa8f934209d17b5165983773ad44207c6301f53afe1bff"
+    },
+    "overlays/modernization_p03_archive_ui_repair/relearner_list.S": {
+      "size": 2984,
+      "sha256": "f01f83b0d583b2c8b3fd7961fa9911f80428d9c264c07a9f6b0de6ff83345082"
+    },
+    "scripts/run_modernization_p03_archive_ui_e2e.py": {
+      "size": 13483,
+      "sha256": "7fb8e040fe6e0cbe69713ce96d25c6d6cf1493872a7cfcd8fc635e80b7777c0d"
+    },
+    "scripts/run_modernization_p03_fullslots_e2e.py": {
+      "size": 13940,
+      "sha256": "439db2906617448e7e46ce76bbcdc44fad6c2dbb4b4aede436bd7385a2b282ea"
+    },
+    "tests/fixtures/p03_archive_ui_cases.json": {
+      "size": 5185,
+      "sha256": "8d314b5616b30d0345edc37de352be32166a4b223ec32e6255fb31b74abf8348"
+    },
+    "tests/test_modernization_p03_archive_ui_e2e.py": {
+      "size": 10434,
+      "sha256": "25469cb358bb45f7db7c14bf4972ae5846cd6e87e9f13101a496a623b23beceb"
+    },
+    "tools/mgba_ai_fixture_runner.c": {
+      "size": 36272,
+      "sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f"
+    },
+    "tools/mgba_battle_core_smoke.c": {
+      "size": 94688,
+      "sha256": "ed9875695ca60c61960685ac2f8e810a183c8eedd703e56545d67bde3df5cf24"
+    },
+    "tools/mgba_modernization_p02_stage71_acceptance_smoke.c": {
+      "size": 39669,
+      "sha256": "4e543fa815ca030e74522b5d0f1455fd5074035d10f044aab3bdfd41d7319c3b"
+    },
+    "tools/mgba_modernization_p03_archive_ui_e2e.c": {
+      "size": 20154,
+      "sha256": "ccaeed858b70ea0af53a999dbaae121a8b85c88c08522755dc800e24e159b467"
+    },
+    "tools/mgba_modernization_p03_fullslots_e2e.c": {
+      "size": 12868,
+      "sha256": "f419ff2fffaf175061012dfb5dfc25d18c70a86d15c9ca89f5d5e6c886965ffa"
+    },
+    "tools/mgba_modernization_p03_learning_e2e.c": {
+      "size": 7987,
+      "sha256": "154e277ef3f37b0037a7082b154805b658742f476eaf52abeb8c0ffb27a2742d"
+    },
+    "tools/mgba_qol_production_smoke.c": {
+      "size": 149046,
+      "sha256": "2c4b9f065f4dce84e48f2be9afe2e2f9f666865088770ee8b068a908a0527b85"
+    },
+    "tools/modernization_p03_archive_ui_repair.py": {
+      "size": 9187,
+      "sha256": "174d08673f9d28fc63b5bdc46e2503a9525b84527391fb4e2f96271df3f9207d"
+    },
+    "tools/modernization_p03_native_pp_repair.py": {
+      "size": 5164,
+      "sha256": "bfa4a1f2c8d470bafdb705d57fdd73a55a7885cfacb1dca6c392576a38f51e17"
+    }
+  },
+  "seed": {
+    "size": 131072,
+    "sha256": "f6bfdb107196ca22b012c1d12ee4bcdc8f5add309bbd3538447cd6e39c449bcb"
+  },
+  "recipe": {
+    "schema_version": 1,
+    "stage": 82,
+    "status": "BUILT_NOT_ACCEPTED",
+    "parent_sha256": "521624a5e6065bd969b7c3143044f1d96491b8af05a0231827ba2e709d04d579",
+    "candidate_sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d",
+    "size": 33554432,
+    "repairs": [
+      {
+        "name": "Stage75_MachineGateScript",
+        "offset": 22329071,
+        "before_hex": "210d800100",
+        "after_hex": "0000000000"
+      },
+      {
+        "name": "Stage75_TutorGateScript",
+        "offset": 22329099,
+        "before_hex": "210d800100",
+        "after_hex": "0000000000"
+      },
+      {
+        "name": "native_allocation",
+        "offset": 939904,
+        "before_hex": "9f20",
+        "after_hex": "dd20"
+      },
+      {
+        "name": "native_list_builder",
+        "offset": 942216,
+        "before_hex": "f0b5474680b483b0424f3968424c0819007864267043414d4019e8315df714f93968887639680c19207870434019e8315df70af90006000e804600253868807e854213da3e1c8d246400316808196a00e831891809880901314a891822f70cfc093401353068807e8542eedb294c2068294940180178642048432849401802216a4659f723f92748694622f7adfb2068817e90218d277f00c9194018224922f7ebfb2168887e013088760025012343449c4645450fda261c3c1c3068eb00011c2031c91802190a602430c0180560093401354545f1db0f4c2268eb00101c2030c018114901602432d218fe2010600f4a111c0f4868c868c168c868c12068203010606546958103b008bc9846f0bc01bc004700002caa0302e3010000e4410202c85304094c1c0202c45b3c08c05e00036c5c3c08",
+        "after_hex": "f0b583b02b4804682b48205c642148432a49401800902100e831294b00f048f8282800d90020060001960130a0760025b4273f013f19b54219d26900e831615a0901204a8918380010220b78037001310130013af9d1ff23fb739f2000010019e90040180760456010370135e3e79f20000100190290e900401813490160fe21416000980221114a114b00f011f811481149062203680b6004300431013af9d10d490298086001980130888103b0f0bd1847c0462caa0302e3010000e4410202d1320408c8530409c45b3c084c1c020255f303086c5c3c08c05e0003c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046"
+      },
+      {
+        "name": "native_name_index",
+        "offset": 942584,
+        "before_hex": "d3009a188d235b00",
+        "after_hex": "12011246b4231b01"
+      },
+      {
+        "name": "native_learned_name_stride",
+        "offset": 941556,
+        "before_hex": "c900",
+        "after_hex": "0901"
+      }
+    ],
+    "changed_byte_count": 317,
+    "layout": {
+      "allocation": 3536,
+      "moves": 232,
+      "capacity": 40,
+      "selected_party": 483,
+      "selected_slot": 484,
+      "items": 2544,
+      "item_stride": 8,
+      "names": 2880,
+      "name_stride": 16
+    },
+    "hall_of_fame_required": true,
+    "unrelated_bytes_preserved": true,
+    "learnsets_changed": false,
+    "active_baseline_changed": false,
+    "full_p03_acceptance": false,
+    "breeding_e2e": false,
+    "release_ready": false
+  },
+  "cases": [
+    {
+      "name": "machine-slot-0",
+      "status": "PASS",
+      "process": {
+        "schema_version": 1,
+        "returncode": 0,
+        "timed_out": false,
+        "spawn_error": null
+      },
+      "result": {
+        "schema_version": 1,
+        "status": "PASS",
+        "scope": "P03_ARCHIVE_NATIVE_UI_SAVE_RELOAD",
+        "rom_sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d",
+        "family": 3,
+        "species": 151,
+        "level": 50,
+        "page": 0,
+        "index": 0,
+        "action": 0,
+        "learned_slot": 0,
+        "candidate_count": 40,
+        "selected_move": 34,
+        "canonical_pp": 15,
+        "moves_before": [
+          33,
+          81,
+          45,
+          52
+        ],
+        "pp_before": [
+          7,
+          8,
+          9,
+          10
+        ],
+        "moves_after": [
+          34,
+          81,
+          45,
+          52
+        ],
+        "pp_after": [
+          15,
+          8,
+          9,
+          10
+        ],
+        "normal_bag_input": true,
+        "host_write_barriers": 3,
+        "normal_save_menu": true,
+        "fresh_core_normal_continue": true,
+        "save_counter_delta": 1,
+        "rtc_flash_bytes_preserved": 131072,
+        "breeding_e2e": false,
+        "full_p03_acceptance": false,
+        "release_ready": false,
+        "warnings_errors": 0,
+        "witness": {
+          "bag": 138,
+          "mode_menu": 566,
+          "mode_choice": 656,
+          "party": 732,
+          "page_menu": 799,
+          "page_choice": 806,
+          "list": 874,
+          "ask": 897,
+          "delete_ask": 991,
+          "summary": 1116,
+          "selection": 1166,
+          "replaced": 1225,
+          "learned": 1349,
+          "giveup": 0,
+          "locked": 0,
+          "field": 1677
+        }
+      },
+      "rom": {
+        "size": 33554432,
+        "sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d"
+      },
+      "stdout": {
+        "size": 898,
+        "sha256": "c80541da15bbc5ca83a9e4a48afef70d956b11638158d51267f80990736826c1"
+      },
+      "stderr": {
+        "size": 1852,
+        "sha256": "8e8ca67f7c093ec715d177145df63e7ee912bc8385d17b47dd2d0682f2afc5d8"
+      },
+      "private_save_after": {
+        "size": 131088,
+        "sha256": "2395bc8bdb81fa6e93ee7f984920c53adfcf1b2e9a5c80b9349bc7112641cc5d"
+      }
+    },
+    {
+      "name": "machine-slot-1",
+      "status": "PASS",
+      "process": {
+        "schema_version": 1,
+        "returncode": 0,
+        "timed_out": false,
+        "spawn_error": null
+      },
+      "result": {
+        "schema_version": 1,
+        "status": "PASS",
+        "scope": "P03_ARCHIVE_NATIVE_UI_SAVE_RELOAD",
+        "rom_sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d",
+        "family": 3,
+        "species": 151,
+        "level": 50,
+        "page": 0,
+        "index": 0,
+        "action": 0,
+        "learned_slot": 1,
+        "candidate_count": 40,
+        "selected_move": 34,
+        "canonical_pp": 15,
+        "moves_before": [
+          33,
+          81,
+          45,
+          52
+        ],
+        "pp_before": [
+          7,
+          8,
+          9,
+          10
+        ],
+        "moves_after": [
+          33,
+          34,
+          45,
+          52
+        ],
+        "pp_after": [
+          7,
+          15,
+          9,
+          10
+        ],
+        "normal_bag_input": true,
+        "host_write_barriers": 3,
+        "normal_save_menu": true,
+        "fresh_core_normal_continue": true,
+        "save_counter_delta": 1,
+        "rtc_flash_bytes_preserved": 131072,
+        "breeding_e2e": false,
+        "full_p03_acceptance": false,
+        "release_ready": false,
+        "warnings_errors": 0,
+        "witness": {
+          "bag": 138,
+          "mode_menu": 566,
+          "mode_choice": 656,
+          "party": 732,
+          "page_menu": 799,
+          "page_choice": 806,
+          "list": 874,
+          "ask": 897,
+          "delete_ask": 991,
+          "summary": 1116,
+          "selection": 1196,
+          "replaced": 1259,
+          "learned": 1379,
+          "giveup": 0,
+          "locked": 0,
+          "field": 1706
+        }
+      },
+      "rom": {
+        "size": 33554432,
+        "sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d"
+      },
+      "stdout": {
+        "size": 898,
+        "sha256": "a495bad16c966331869e8062ac40e2971d324b005d0032f5d992076f84cdad6c"
+      },
+      "stderr": {
+        "size": 1852,
+        "sha256": "a8ed90095d98b876614570409c62b5e32dd9f819186245e5bbd9ea3f295be998"
+      },
+      "private_save_after": {
+        "size": 131088,
+        "sha256": "18c93e4b16d05e19e2de140494905502f0924bd8c260fbcc1d44f54b0dac01e7"
+      }
+    },
+    {
+      "name": "machine-slot-2",
+      "status": "PASS",
+      "process": {
+        "schema_version": 1,
+        "returncode": 0,
+        "timed_out": false,
+        "spawn_error": null
+      },
+      "result": {
+        "schema_version": 1,
+        "status": "PASS",
+        "scope": "P03_ARCHIVE_NATIVE_UI_SAVE_RELOAD",
+        "rom_sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d",
+        "family": 3,
+        "species": 151,
+        "level": 50,
+        "page": 0,
+        "index": 0,
+        "action": 0,
+        "learned_slot": 2,
+        "candidate_count": 40,
+        "selected_move": 34,
+        "canonical_pp": 15,
+        "moves_before": [
+          33,
+          81,
+          45,
+          52
+        ],
+        "pp_before": [
+          7,
+          8,
+          9,
+          10
+        ],
+        "moves_after": [
+          33,
+          81,
+          34,
+          52
+        ],
+        "pp_after": [
+          7,
+          8,
+          15,
+          10
+        ],
+        "normal_bag_input": true,
+        "host_write_barriers": 3,
+        "normal_save_menu": true,
+        "fresh_core_normal_continue": true,
+        "save_counter_delta": 1,
+        "rtc_flash_bytes_preserved": 131072,
+        "breeding_e2e": false,
+        "full_p03_acceptance": false,
+        "release_ready": false,
+        "warnings_errors": 0,
+        "witness": {
+          "bag": 138,
+          "mode_menu": 566,
+          "mode_choice": 656,
+          "party": 732,
+          "page_menu": 799,
+          "page_choice": 806,
+          "list": 874,
+          "ask": 897,
+          "delete_ask": 991,
+          "summary": 1116,
+          "selection": 1226,
+          "replaced": 1289,
+          "learned": 1409,
+          "giveup": 0,
+          "locked": 0,
+          "field": 1736
+        }
+      },
+      "rom": {
+        "size": 33554432,
+        "sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d"
+      },
+      "stdout": {
+        "size": 898,
+        "sha256": "c3a51360bb14370535ba16b615e6a15a1e14add52792ef4456c8ec9894059390"
+      },
+      "stderr": {
+        "size": 1852,
+        "sha256": "2e4bc0fa8b833a8447cfdd5a7f6146ce6ac5babc6556b1da92e718c38051b3d9"
+      },
+      "private_save_after": {
+        "size": 131088,
+        "sha256": "b40b542faa7edd841730bc2eff3f8791387fab43aed2a7da702f7e43552d86dd"
+      }
+    },
+    {
+      "name": "machine-slot-3",
+      "status": "PASS",
+      "process": {
+        "schema_version": 1,
+        "returncode": 0,
+        "timed_out": false,
+        "spawn_error": null
+      },
+      "result": {
+        "schema_version": 1,
+        "status": "PASS",
+        "scope": "P03_ARCHIVE_NATIVE_UI_SAVE_RELOAD",
+        "rom_sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d",
+        "family": 3,
+        "species": 151,
+        "level": 50,
+        "page": 0,
+        "index": 0,
+        "action": 0,
+        "learned_slot": 3,
+        "candidate_count": 40,
+        "selected_move": 34,
+        "canonical_pp": 15,
+        "moves_before": [
+          33,
+          81,
+          45,
+          52
+        ],
+        "pp_before": [
+          7,
+          8,
+          9,
+          10
+        ],
+        "moves_after": [
+          33,
+          81,
+          45,
+          34
+        ],
+        "pp_after": [
+          7,
+          8,
+          9,
+          15
+        ],
+        "normal_bag_input": true,
+        "host_write_barriers": 3,
+        "normal_save_menu": true,
+        "fresh_core_normal_continue": true,
+        "save_counter_delta": 1,
+        "rtc_flash_bytes_preserved": 131072,
+        "breeding_e2e": false,
+        "full_p03_acceptance": false,
+        "release_ready": false,
+        "warnings_errors": 0,
+        "witness": {
+          "bag": 138,
+          "mode_menu": 566,
+          "mode_choice": 656,
+          "party": 732,
+          "page_menu": 799,
+          "page_choice": 806,
+          "list": 874,
+          "ask": 897,
+          "delete_ask": 991,
+          "summary": 1116,
+          "selection": 1256,
+          "replaced": 1318,
+          "learned": 1439,
+          "giveup": 0,
+          "locked": 0,
+          "field": 1767
+        }
+      },
+      "rom": {
+        "size": 33554432,
+        "sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d"
+      },
+      "stdout": {
+        "size": 897,
+        "sha256": "2eb65d179d259902a2987e6af9330e9c143f81be2df188a187390c66d2697ee0"
+      },
+      "stderr": {
+        "size": 1846,
+        "sha256": "cbe62a511672e36bcf174374309baa2b604c7d4dfcf0f17b8f948c3ff57250de"
+      },
+      "private_save_after": {
+        "size": 131088,
+        "sha256": "ee33882bd467697c102dd56ac13700fc9074f61e9bff6019cbd03c1630fa8781"
+      }
+    },
+    {
+      "name": "machine-last",
+      "status": "PASS",
+      "process": {
+        "schema_version": 1,
+        "returncode": 0,
+        "timed_out": false,
+        "spawn_error": null
+      },
+      "result": {
+        "schema_version": 1,
+        "status": "PASS",
+        "scope": "P03_ARCHIVE_NATIVE_UI_SAVE_RELOAD",
+        "rom_sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d",
+        "family": 3,
+        "species": 151,
+        "level": 50,
+        "page": 0,
+        "index": 39,
+        "action": 0,
+        "learned_slot": 3,
+        "candidate_count": 40,
+        "selected_move": 283,
+        "canonical_pp": 5,
+        "moves_before": [
+          33,
+          81,
+          45,
+          52
+        ],
+        "pp_before": [
+          7,
+          8,
+          9,
+          10
+        ],
+        "moves_after": [
+          33,
+          81,
+          45,
+          283
+        ],
+        "pp_after": [
+          7,
+          8,
+          9,
+          5
+        ],
+        "normal_bag_input": true,
+        "host_write_barriers": 3,
+        "normal_save_menu": true,
+        "fresh_core_normal_continue": true,
+        "save_counter_delta": 1,
+        "rtc_flash_bytes_preserved": 131072,
+        "breeding_e2e": false,
+        "full_p03_acceptance": false,
+        "release_ready": false,
+        "warnings_errors": 0,
+        "witness": {
+          "bag": 138,
+          "mode_menu": 566,
+          "mode_choice": 656,
+          "party": 732,
+          "page_menu": 799,
+          "page_choice": 806,
+          "list": 874,
+          "ask": 2067,
+          "delete_ask": 2162,
+          "summary": 2288,
+          "selection": 2426,
+          "replaced": 2488,
+          "learned": 2609,
+          "giveup": 0,
+          "locked": 0,
+          "field": 2939
+        }
+      },
+      "rom": {
+        "size": 33554432,
+        "sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d"
+      },
+      "stdout": {
+        "size": 900,
+        "sha256": "108ad02a86e20d5c310bb26fd67bdba719aa48a4a61e5da3876af757170662e3"
+      },
+      "stderr": {
+        "size": 1851,
+        "sha256": "492cb0413d2fe9a85fc92fd6aabf3cfd03bbeaf2d1fe496f57fe14b6079a13af"
+      },
+      "private_save_after": {
+        "size": 131088,
+        "sha256": "77722c345327a9457d5cc273858d2f58faa482883c66f027ef545ed844ca3a63"
+      }
+    },
+    {
+      "name": "machine-page-1-first",
+      "status": "PASS",
+      "process": {
+        "schema_version": 1,
+        "returncode": 0,
+        "timed_out": false,
+        "spawn_error": null
+      },
+      "result": {
+        "schema_version": 1,
+        "status": "PASS",
+        "scope": "P03_ARCHIVE_NATIVE_UI_SAVE_RELOAD",
+        "rom_sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d",
+        "family": 3,
+        "species": 151,
+        "level": 50,
+        "page": 1,
+        "index": 0,
+        "action": 0,
+        "learned_slot": 0,
+        "candidate_count": 40,
+        "selected_move": 285,
+        "canonical_pp": 10,
+        "moves_before": [
+          33,
+          81,
+          45,
+          52
+        ],
+        "pp_before": [
+          7,
+          8,
+          9,
+          10
+        ],
+        "moves_after": [
+          285,
+          81,
+          45,
+          52
+        ],
+        "pp_after": [
+          10,
+          8,
+          9,
+          10
+        ],
+        "normal_bag_input": true,
+        "host_write_barriers": 3,
+        "normal_save_menu": true,
+        "fresh_core_normal_continue": true,
+        "save_counter_delta": 1,
+        "rtc_flash_bytes_preserved": 131072,
+        "breeding_e2e": false,
+        "full_p03_acceptance": false,
+        "release_ready": false,
+        "warnings_errors": 0,
+        "witness": {
+          "bag": 138,
+          "mode_menu": 566,
+          "mode_choice": 656,
+          "party": 732,
+          "page_menu": 799,
+          "page_choice": 836,
+          "list": 903,
+          "ask": 927,
+          "delete_ask": 1021,
+          "summary": 1147,
+          "selection": 1196,
+          "replaced": 1259,
+          "learned": 1379,
+          "giveup": 0,
+          "locked": 0,
+          "field": 1706
+        }
+      },
+      "rom": {
+        "size": 33554432,
+        "sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d"
+      },
+      "stdout": {
+        "size": 901,
+        "sha256": "ad17219a7be2a5cb3df5f86d061c43d9599fd804b2c262fe8ef156503f45833c"
+      },
+      "stderr": {
+        "size": 1859,
+        "sha256": "8d15a707a966aa8dcf4514a3bf785bf80fad0d589d24b9ff7ab425ea0fef67d6"
+      },
+      "private_save_after": {
+        "size": 131088,
+        "sha256": "da0b3056174ec6756516bac0bd971e6c77637119721f9d1a33641466e579a8df"
+      }
+    },
+    {
+      "name": "machine-page-1-last",
+      "status": "PASS",
+      "process": {
+        "schema_version": 1,
+        "returncode": 0,
+        "timed_out": false,
+        "spawn_error": null
+      },
+      "result": {
+        "schema_version": 1,
+        "status": "PASS",
+        "scope": "P03_ARCHIVE_NATIVE_UI_SAVE_RELOAD",
+        "rom_sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d",
+        "family": 3,
+        "species": 151,
+        "level": 50,
+        "page": 1,
+        "index": 39,
+        "action": 0,
+        "learned_slot": 3,
+        "candidate_count": 40,
+        "selected_move": 389,
+        "canonical_pp": 10,
+        "moves_before": [
+          33,
+          81,
+          45,
+          52
+        ],
+        "pp_before": [
+          7,
+          8,
+          9,
+          10
+        ],
+        "moves_after": [
+          33,
+          81,
+          45,
+          389
+        ],
+        "pp_after": [
+          7,
+          8,
+          9,
+          10
+        ],
+        "normal_bag_input": true,
+        "host_write_barriers": 3,
+        "normal_save_menu": true,
+        "fresh_core_normal_continue": true,
+        "save_counter_delta": 1,
+        "rtc_flash_bytes_preserved": 131072,
+        "breeding_e2e": false,
+        "full_p03_acceptance": false,
+        "release_ready": false,
+        "warnings_errors": 0,
+        "witness": {
+          "bag": 138,
+          "mode_menu": 566,
+          "mode_choice": 656,
+          "party": 732,
+          "page_menu": 799,
+          "page_choice": 836,
+          "list": 903,
+          "ask": 2097,
+          "delete_ask": 2191,
+          "summary": 2317,
+          "selection": 2456,
+          "replaced": 2517,
+          "learned": 2639,
+          "giveup": 0,
+          "locked": 0,
+          "field": 2968
+        }
+      },
+      "rom": {
+        "size": 33554432,
+        "sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d"
+      },
+      "stdout": {
+        "size": 902,
+        "sha256": "2304a0ad2ebdc4ca5027806680715df5d151e2f4d6cd81f867663246a1617055"
+      },
+      "stderr": {
+        "size": 1857,
+        "sha256": "b338b5ccf934921ecf3ff8eb36c494f1c5c71f25e4f9f970ec06bdcbf4817fd9"
+      },
+      "private_save_after": {
+        "size": 131088,
+        "sha256": "1ecf189616b75843b8372e56a491aa28982d1913f78631a0fb1bd92cd916c50c"
+      }
+    },
+    {
+      "name": "machine-page-2-first",
+      "status": "PASS",
+      "process": {
+        "schema_version": 1,
+        "returncode": 0,
+        "timed_out": false,
+        "spawn_error": null
+      },
+      "result": {
+        "schema_version": 1,
+        "status": "PASS",
+        "scope": "P03_ARCHIVE_NATIVE_UI_SAVE_RELOAD",
+        "rom_sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d",
+        "family": 3,
+        "species": 151,
+        "level": 50,
+        "page": 2,
+        "index": 0,
+        "action": 0,
+        "learned_slot": 0,
+        "candidate_count": 40,
+        "selected_move": 422,
+        "canonical_pp": 15,
+        "moves_before": [
+          33,
+          81,
+          45,
+          52
+        ],
+        "pp_before": [
+          7,
+          8,
+          9,
+          10
+        ],
+        "moves_after": [
+          422,
+          81,
+          45,
+          52
+        ],
+        "pp_after": [
+          15,
+          8,
+          9,
+          10
+        ],
+        "normal_bag_input": true,
+        "host_write_barriers": 3,
+        "normal_save_menu": true,
+        "fresh_core_normal_continue": true,
+        "save_counter_delta": 1,
+        "rtc_flash_bytes_preserved": 131072,
+        "breeding_e2e": false,
+        "full_p03_acceptance": false,
+        "release_ready": false,
+        "warnings_errors": 0,
+        "witness": {
+          "bag": 138,
+          "mode_menu": 566,
+          "mode_choice": 656,
+          "party": 732,
+          "page_menu": 799,
+          "page_choice": 866,
+          "list": 934,
+          "ask": 957,
+          "delete_ask": 1051,
+          "summary": 1176,
+          "selection": 1226,
+          "replaced": 1290,
+          "learned": 1409,
+          "giveup": 0,
+          "locked": 0,
+          "field": 1736
+        }
+      },
+      "rom": {
+        "size": 33554432,
+        "sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d"
+      },
+      "stdout": {
+        "size": 901,
+        "sha256": "e0f338b0617527070ba1ddb67eaf021204ec0e0594aab0f89e377305c4f12e9e"
+      },
+      "stderr": {
+        "size": 1859,
+        "sha256": "b733dd45b5b857eeec5002284f828f4164df1ac08bac42d64c144092c82fc745"
+      },
+      "private_save_after": {
+        "size": 131088,
+        "sha256": "f68c61b3d354cc07985f4c4a59bced3dd39f38672bffd7fe443ecae27dd5ad0b"
+      }
+    },
+    {
+      "name": "machine-page-2-last",
+      "status": "PASS",
+      "process": {
+        "schema_version": 1,
+        "returncode": 0,
+        "timed_out": false,
+        "spawn_error": null
+      },
+      "result": {
+        "schema_version": 1,
+        "status": "PASS",
+        "scope": "P03_ARCHIVE_NATIVE_UI_SAVE_RELOAD",
+        "rom_sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d",
+        "family": 3,
+        "species": 151,
+        "level": 50,
+        "page": 2,
+        "index": 39,
+        "action": 0,
+        "learned_slot": 3,
+        "candidate_count": 40,
+        "selected_move": 793,
+        "canonical_pp": 10,
+        "moves_before": [
+          33,
+          81,
+          45,
+          52
+        ],
+        "pp_before": [
+          7,
+          8,
+          9,
+          10
+        ],
+        "moves_after": [
+          33,
+          81,
+          45,
+          793
+        ],
+        "pp_after": [
+          7,
+          8,
+          9,
+          10
+        ],
+        "normal_bag_input": true,
+        "host_write_barriers": 3,
+        "normal_save_menu": true,
+        "fresh_core_normal_continue": true,
+        "save_counter_delta": 1,
+        "rtc_flash_bytes_preserved": 131072,
+        "breeding_e2e": false,
+        "full_p03_acceptance": false,
+        "release_ready": false,
+        "warnings_errors": 0,
+        "witness": {
+          "bag": 138,
+          "mode_menu": 566,
+          "mode_choice": 656,
+          "party": 732,
+          "page_menu": 799,
+          "page_choice": 866,
+          "list": 934,
+          "ask": 2127,
+          "delete_ask": 2221,
+          "summary": 2348,
+          "selection": 2486,
+          "replaced": 2548,
+          "learned": 2670,
+          "giveup": 0,
+          "locked": 0,
+          "field": 2998
+        }
+      },
+      "rom": {
+        "size": 33554432,
+        "sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d"
+      },
+      "stdout": {
+        "size": 902,
+        "sha256": "e683bf910832e55ff723d53e34e812e972a12e415d2fd57880dd4702e301c662"
+      },
+      "stderr": {
+        "size": 1857,
+        "sha256": "eaf30e7439098d8a7b1379899d5045f5697fe54529fcc1577fde44dd1498100b"
+      },
+      "private_save_after": {
+        "size": 131088,
+        "sha256": "458e2b643ff9d8b9154da0ae4db1abef13231e8345d60a3972942b55bb2a4511"
+      }
+    },
+    {
+      "name": "machine-page-3-first",
+      "status": "PASS",
+      "process": {
+        "schema_version": 1,
+        "returncode": 0,
+        "timed_out": false,
+        "spawn_error": null
+      },
+      "result": {
+        "schema_version": 1,
+        "status": "PASS",
+        "scope": "P03_ARCHIVE_NATIVE_UI_SAVE_RELOAD",
+        "rom_sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d",
+        "family": 3,
+        "species": 151,
+        "level": 50,
+        "page": 3,
+        "index": 0,
+        "action": 0,
+        "learned_slot": 0,
+        "candidate_count": 11,
+        "selected_move": 795,
+        "canonical_pp": 5,
+        "moves_before": [
+          33,
+          81,
+          45,
+          52
+        ],
+        "pp_before": [
+          7,
+          8,
+          9,
+          10
+        ],
+        "moves_after": [
+          795,
+          81,
+          45,
+          52
+        ],
+        "pp_after": [
+          5,
+          8,
+          9,
+          10
+        ],
+        "normal_bag_input": true,
+        "host_write_barriers": 3,
+        "normal_save_menu": true,
+        "fresh_core_normal_continue": true,
+        "save_counter_delta": 1,
+        "rtc_flash_bytes_preserved": 131072,
+        "breeding_e2e": false,
+        "full_p03_acceptance": false,
+        "release_ready": false,
+        "warnings_errors": 0,
+        "witness": {
+          "bag": 138,
+          "mode_menu": 566,
+          "mode_choice": 656,
+          "party": 732,
+          "page_menu": 799,
+          "page_choice": 896,
+          "list": 963,
+          "ask": 987,
+          "delete_ask": 1081,
+          "summary": 1205,
+          "selection": 1256,
+          "replaced": 1319,
+          "learned": 1439,
+          "giveup": 0,
+          "locked": 0,
+          "field": 1767
+        }
+      },
+      "rom": {
+        "size": 33554432,
+        "sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d"
+      },
+      "stdout": {
+        "size": 899,
+        "sha256": "d4cb584effe501ab27c1f8598c2732840ca6e9b279103d11ec9a0bf700c67616"
+      },
+      "stderr": {
+        "size": 1855,
+        "sha256": "aaaa7e5e2f8d54f950c504856d9f1bc14e7b02a0e7c23b95a9863b3ec7b8f392"
+      },
+      "private_save_after": {
+        "size": 131088,
+        "sha256": "8d483db38b3550f96b213a2ff26282c181f98eece9abc83930fabb559037269b"
+      }
+    },
+    {
+      "name": "machine-page-3-last",
+      "status": "PASS",
+      "process": {
+        "schema_version": 1,
+        "returncode": 0,
+        "timed_out": false,
+        "spawn_error": null
+      },
+      "result": {
+        "schema_version": 1,
+        "status": "PASS",
+        "scope": "P03_ARCHIVE_NATIVE_UI_SAVE_RELOAD",
+        "rom_sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d",
+        "family": 3,
+        "species": 151,
+        "level": 50,
+        "page": 3,
+        "index": 10,
+        "action": 0,
+        "learned_slot": 3,
+        "candidate_count": 11,
+        "selected_move": 1045,
+        "canonical_pp": 15,
+        "moves_before": [
+          33,
+          81,
+          45,
+          52
+        ],
+        "pp_before": [
+          7,
+          8,
+          9,
+          10
+        ],
+        "moves_after": [
+          33,
+          81,
+          45,
+          1045
+        ],
+        "pp_after": [
+          7,
+          8,
+          9,
+          15
+        ],
+        "normal_bag_input": true,
+        "host_write_barriers": 3,
+        "normal_save_menu": true,
+        "fresh_core_normal_continue": true,
+        "save_counter_delta": 1,
+        "rtc_flash_bytes_preserved": 131072,
+        "breeding_e2e": false,
+        "full_p03_acceptance": false,
+        "release_ready": false,
+        "warnings_errors": 0,
+        "witness": {
+          "bag": 138,
+          "mode_menu": 566,
+          "mode_choice": 656,
+          "party": 732,
+          "page_menu": 799,
+          "page_choice": 896,
+          "list": 963,
+          "ask": 1287,
+          "delete_ask": 1381,
+          "summary": 1507,
+          "selection": 1646,
+          "replaced": 1710,
+          "learned": 1829,
+          "giveup": 0,
+          "locked": 0,
+          "field": 2158
+        }
+      },
+      "rom": {
+        "size": 33554432,
+        "sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d"
+      },
+      "stdout": {
+        "size": 904,
+        "sha256": "f6187bf3e3091ba258451ddcf503e79b92665a0a9ec46b09dd0dd53952b268dd"
+      },
+      "stderr": {
+        "size": 1863,
+        "sha256": "6ee3a5109eefc67642df1ba59b9f240bd72512c06520166b37d45f5bfe8ede36"
+      },
+      "private_save_after": {
+        "size": 131088,
+        "sha256": "5a3bf3c157883a1c7c627d5e8d29dd238d5b50267e0e53e8a8e781229d8463f2"
+      }
+    },
+    {
+      "name": "tutor-first",
+      "status": "PASS",
+      "process": {
+        "schema_version": 1,
+        "returncode": 0,
+        "timed_out": false,
+        "spawn_error": null
+      },
+      "result": {
+        "schema_version": 1,
+        "status": "PASS",
+        "scope": "P03_ARCHIVE_NATIVE_UI_SAVE_RELOAD",
+        "rom_sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d",
+        "family": 4,
+        "species": 762,
+        "level": 50,
+        "page": 0,
+        "index": 0,
+        "action": 0,
+        "learned_slot": 0,
+        "candidate_count": 12,
+        "selected_move": 7,
+        "canonical_pp": 15,
+        "moves_before": [
+          33,
+          81,
+          45,
+          52
+        ],
+        "pp_before": [
+          7,
+          8,
+          9,
+          10
+        ],
+        "moves_after": [
+          7,
+          81,
+          45,
+          52
+        ],
+        "pp_after": [
+          15,
+          8,
+          9,
+          10
+        ],
+        "normal_bag_input": true,
+        "host_write_barriers": 3,
+        "normal_save_menu": true,
+        "fresh_core_normal_continue": true,
+        "save_counter_delta": 1,
+        "rtc_flash_bytes_preserved": 131072,
+        "breeding_e2e": false,
+        "full_p03_acceptance": false,
+        "release_ready": false,
+        "warnings_errors": 0,
+        "witness": {
+          "bag": 138,
+          "mode_menu": 566,
+          "mode_choice": 686,
+          "party": 761,
+          "page_menu": 0,
+          "page_choice": 0,
+          "list": 891,
+          "ask": 897,
+          "delete_ask": 992,
+          "summary": 1117,
+          "selection": 1166,
+          "replaced": 1226,
+          "learned": 1349,
+          "giveup": 0,
+          "locked": 0,
+          "field": 1677
+        }
+      },
+      "rom": {
+        "size": 33554432,
+        "sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d"
+      },
+      "stdout": {
+        "size": 892,
+        "sha256": "2de245325f0cac3a64c1d27f5ce11bbe0048c45a989e02a2e4b7d5c2e9a5986a"
+      },
+      "stderr": {
+        "size": 1846,
+        "sha256": "bf6d834bc2ed71d97534d91609fd04e3db6c159d220c7410a345fe7b943ad7e9"
+      },
+      "private_save_after": {
+        "size": 131088,
+        "sha256": "71de6e6b1172e112d1b857d5977e87d309c1862105bb9ceb5737eaa25cfd6201"
+      }
+    },
+    {
+      "name": "tutor-last",
+      "status": "PASS",
+      "process": {
+        "schema_version": 1,
+        "returncode": 0,
+        "timed_out": false,
+        "spawn_error": null
+      },
+      "result": {
+        "schema_version": 1,
+        "status": "PASS",
+        "scope": "P03_ARCHIVE_NATIVE_UI_SAVE_RELOAD",
+        "rom_sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d",
+        "family": 4,
+        "species": 762,
+        "level": 50,
+        "page": 0,
+        "index": 11,
+        "action": 0,
+        "learned_slot": 3,
+        "candidate_count": 12,
+        "selected_move": 688,
+        "canonical_pp": 10,
+        "moves_before": [
+          33,
+          81,
+          45,
+          52
+        ],
+        "pp_before": [
+          7,
+          8,
+          9,
+          10
+        ],
+        "moves_after": [
+          33,
+          81,
+          45,
+          688
+        ],
+        "pp_after": [
+          7,
+          8,
+          9,
+          10
+        ],
+        "normal_bag_input": true,
+        "host_write_barriers": 3,
+        "normal_save_menu": true,
+        "fresh_core_normal_continue": true,
+        "save_counter_delta": 1,
+        "rtc_flash_bytes_preserved": 131072,
+        "breeding_e2e": false,
+        "full_p03_acceptance": false,
+        "release_ready": false,
+        "warnings_errors": 0,
+        "witness": {
+          "bag": 138,
+          "mode_menu": 566,
+          "mode_choice": 686,
+          "party": 761,
+          "page_menu": 0,
+          "page_choice": 0,
+          "list": 891,
+          "ask": 1227,
+          "delete_ask": 1321,
+          "summary": 1447,
+          "selection": 1586,
+          "replaced": 1650,
+          "learned": 1769,
+          "giveup": 0,
+          "locked": 0,
+          "field": 2097
+        }
+      },
+      "rom": {
+        "size": 33554432,
+        "sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d"
+      },
+      "stdout": {
+        "size": 898,
+        "sha256": "7103078f528527388dfe2f40fab176579dfc6eefca628548ef8f4b976b2d7d4f"
+      },
+      "stderr": {
+        "size": 1857,
+        "sha256": "651298de7f477aea0cdb0fa792b721fc072a4a0dbaeccc8d127ef8164068cc3b"
+      },
+      "private_save_after": {
+        "size": 131088,
+        "sha256": "4b5d0ebe8d82b19cb4d2e4399f265eb4cfbd31bddbd9eb3fddd67d7e7a17c415"
+      }
+    },
+    {
+      "name": "machine-empty",
+      "status": "PASS",
+      "process": {
+        "schema_version": 1,
+        "returncode": 0,
+        "timed_out": false,
+        "spawn_error": null
+      },
+      "result": {
+        "schema_version": 1,
+        "status": "PASS",
+        "scope": "P03_ARCHIVE_NATIVE_UI_SAVE_RELOAD",
+        "rom_sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d",
+        "family": 3,
+        "species": 151,
+        "level": 50,
+        "page": 0,
+        "index": 0,
+        "action": 1,
+        "learned_slot": 2,
+        "candidate_count": 40,
+        "selected_move": 34,
+        "canonical_pp": 15,
+        "moves_before": [
+          33,
+          81,
+          0,
+          0
+        ],
+        "pp_before": [
+          7,
+          8,
+          0,
+          0
+        ],
+        "moves_after": [
+          33,
+          81,
+          34,
+          0
+        ],
+        "pp_after": [
+          7,
+          8,
+          15,
+          0
+        ],
+        "normal_bag_input": true,
+        "host_write_barriers": 3,
+        "normal_save_menu": true,
+        "fresh_core_normal_continue": true,
+        "save_counter_delta": 1,
+        "rtc_flash_bytes_preserved": 131072,
+        "breeding_e2e": false,
+        "full_p03_acceptance": false,
+        "release_ready": false,
+        "warnings_errors": 0,
+        "witness": {
+          "bag": 138,
+          "mode_menu": 566,
+          "mode_choice": 656,
+          "party": 732,
+          "page_menu": 799,
+          "page_choice": 806,
+          "list": 874,
+          "ask": 897,
+          "delete_ask": 0,
+          "summary": 0,
+          "selection": 0,
+          "replaced": 0,
+          "learned": 928,
+          "giveup": 0,
+          "locked": 0,
+          "field": 1198
+        }
+      },
+      "rom": {
+        "size": 33554432,
+        "sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d"
+      },
+      "stdout": {
+        "size": 881,
+        "sha256": "4052a7449eec3005cd849f280387466e26dabfd120b5315fc13e7f2114d3eb1b"
+      },
+      "stderr": {
+        "size": 1337,
+        "sha256": "3f5cba621f6bf10655a8d68a4dfa2adc01310c0334a7a46e8f90436b211b91ad"
+      },
+      "private_save_after": {
+        "size": 131088,
+        "sha256": "4c9a510a1f90a0038d54970fe3de5088d2b7f2bccc491c8d5dd91642d8aa23aa"
+      }
+    },
+    {
+      "name": "machine-refuse",
+      "status": "PASS",
+      "process": {
+        "schema_version": 1,
+        "returncode": 0,
+        "timed_out": false,
+        "spawn_error": null
+      },
+      "result": {
+        "schema_version": 1,
+        "status": "PASS",
+        "scope": "P03_ARCHIVE_NATIVE_UI_SAVE_RELOAD",
+        "rom_sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d",
+        "family": 3,
+        "species": 151,
+        "level": 50,
+        "page": 0,
+        "index": 0,
+        "action": 2,
+        "learned_slot": -1,
+        "candidate_count": 40,
+        "selected_move": 34,
+        "canonical_pp": 0,
+        "moves_before": [
+          33,
+          81,
+          45,
+          52
+        ],
+        "pp_before": [
+          7,
+          8,
+          9,
+          10
+        ],
+        "moves_after": [
+          33,
+          81,
+          45,
+          52
+        ],
+        "pp_after": [
+          7,
+          8,
+          9,
+          10
+        ],
+        "normal_bag_input": true,
+        "host_write_barriers": 3,
+        "normal_save_menu": true,
+        "fresh_core_normal_continue": true,
+        "save_counter_delta": 1,
+        "rtc_flash_bytes_preserved": 131072,
+        "breeding_e2e": false,
+        "full_p03_acceptance": false,
+        "release_ready": false,
+        "warnings_errors": 0,
+        "witness": {
+          "bag": 138,
+          "mode_menu": 566,
+          "mode_choice": 656,
+          "party": 732,
+          "page_menu": 799,
+          "page_choice": 806,
+          "list": 874,
+          "ask": 897,
+          "delete_ask": 0,
+          "summary": 0,
+          "selection": 0,
+          "replaced": 0,
+          "learned": 0,
+          "giveup": 963,
+          "locked": 0,
+          "field": 1307
+        }
+      },
+      "rom": {
+        "size": 33554432,
+        "sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d"
+      },
+      "stdout": {
+        "size": 885,
+        "sha256": "c006e1005e6a2ffcb05c04e65272ff52fd95d306ba2c52b592d48db5e4db5f41"
+      },
+      "stderr": {
+        "size": 1618,
+        "sha256": "0ee56d25e74a7d2d734fdd0b6cf7c20153cf505bddbc5f5b8ee81c4ec08788d4"
+      },
+      "private_save_after": {
+        "size": 131088,
+        "sha256": "7f18405306d85aace8d89aa64ee00c272a9ae164654d12dd0f44e69f8890f0be"
+      }
+    },
+    {
+      "name": "machine-cancel-summary",
+      "status": "PASS",
+      "process": {
+        "schema_version": 1,
+        "returncode": 0,
+        "timed_out": false,
+        "spawn_error": null
+      },
+      "result": {
+        "schema_version": 1,
+        "status": "PASS",
+        "scope": "P03_ARCHIVE_NATIVE_UI_SAVE_RELOAD",
+        "rom_sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d",
+        "family": 3,
+        "species": 151,
+        "level": 50,
+        "page": 0,
+        "index": 0,
+        "action": 3,
+        "learned_slot": -1,
+        "candidate_count": 40,
+        "selected_move": 34,
+        "canonical_pp": 0,
+        "moves_before": [
+          33,
+          81,
+          45,
+          52
+        ],
+        "pp_before": [
+          7,
+          8,
+          9,
+          10
+        ],
+        "moves_after": [
+          33,
+          81,
+          45,
+          52
+        ],
+        "pp_after": [
+          7,
+          8,
+          9,
+          10
+        ],
+        "normal_bag_input": true,
+        "host_write_barriers": 3,
+        "normal_save_menu": true,
+        "fresh_core_normal_continue": true,
+        "save_counter_delta": 1,
+        "rtc_flash_bytes_preserved": 131072,
+        "breeding_e2e": false,
+        "full_p03_acceptance": false,
+        "release_ready": false,
+        "warnings_errors": 0,
+        "witness": {
+          "bag": 138,
+          "mode_menu": 566,
+          "mode_choice": 656,
+          "party": 732,
+          "page_menu": 799,
+          "page_choice": 806,
+          "list": 874,
+          "ask": 897,
+          "delete_ask": 991,
+          "summary": 1116,
+          "selection": 1166,
+          "replaced": 0,
+          "learned": 0,
+          "giveup": 1291,
+          "locked": 0,
+          "field": 1638
+        }
+      },
+      "rom": {
+        "size": 33554432,
+        "sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d"
+      },
+      "stdout": {
+        "size": 894,
+        "sha256": "ff07043a0595d99f02313f707df2114771957adc7ded4f6e7e3813bd9f277fe8"
+      },
+      "stderr": {
+        "size": 2254,
+        "sha256": "6954608c62f52256e26f32da2383d785a24ac423f3745759310635dac50e2453"
+      },
+      "private_save_after": {
+        "size": 131088,
+        "sha256": "dc682ffbed1a26acb0d07207fc57272206680fda7dbceb20ae69cb1205402c6d"
+      }
+    },
+    {
+      "name": "machine-cancel-list",
+      "status": "PASS",
+      "process": {
+        "schema_version": 1,
+        "returncode": 0,
+        "timed_out": false,
+        "spawn_error": null
+      },
+      "result": {
+        "schema_version": 1,
+        "status": "PASS",
+        "scope": "P03_ARCHIVE_NATIVE_UI_SAVE_RELOAD",
+        "rom_sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d",
+        "family": 3,
+        "species": 151,
+        "level": 50,
+        "page": 0,
+        "index": 0,
+        "action": 4,
+        "learned_slot": -1,
+        "candidate_count": 40,
+        "selected_move": 0,
+        "canonical_pp": 0,
+        "moves_before": [
+          33,
+          81,
+          45,
+          52
+        ],
+        "pp_before": [
+          7,
+          8,
+          9,
+          10
+        ],
+        "moves_after": [
+          33,
+          81,
+          45,
+          52
+        ],
+        "pp_after": [
+          7,
+          8,
+          9,
+          10
+        ],
+        "normal_bag_input": true,
+        "host_write_barriers": 3,
+        "normal_save_menu": true,
+        "fresh_core_normal_continue": true,
+        "save_counter_delta": 1,
+        "rtc_flash_bytes_preserved": 131072,
+        "breeding_e2e": false,
+        "full_p03_acceptance": false,
+        "release_ready": false,
+        "warnings_errors": 0,
+        "witness": {
+          "bag": 138,
+          "mode_menu": 566,
+          "mode_choice": 656,
+          "party": 732,
+          "page_menu": 799,
+          "page_choice": 806,
+          "list": 874,
+          "ask": 0,
+          "delete_ask": 0,
+          "summary": 0,
+          "selection": 0,
+          "replaced": 0,
+          "learned": 0,
+          "giveup": 901,
+          "locked": 0,
+          "field": 1247
+        }
+      },
+      "rom": {
+        "size": 33554432,
+        "sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d"
+      },
+      "stdout": {
+        "size": 882,
+        "sha256": "2941e340a74418aa4ac432b55f78e2916dbf2c21858f74d40d872d84c5fa6913"
+      },
+      "stderr": {
+        "size": 1443,
+        "sha256": "f5736c711565a309cc311721303e749e2def1052bbe3eb3b4529d2d4d495777d"
+      },
+      "private_save_after": {
+        "size": 131088,
+        "sha256": "2dfbf5aa08f1b04a88930d28831acbd2b8bfc4c7f6a58eae2263fb0c35270c06"
+      }
+    },
+    {
+      "name": "machine-locked",
+      "status": "PASS",
+      "process": {
+        "schema_version": 1,
+        "returncode": 0,
+        "timed_out": false,
+        "spawn_error": null
+      },
+      "result": {
+        "schema_version": 1,
+        "status": "PASS",
+        "scope": "P03_ARCHIVE_NATIVE_UI_SAVE_RELOAD",
+        "rom_sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d",
+        "family": 3,
+        "species": 151,
+        "level": 50,
+        "page": 0,
+        "index": 0,
+        "action": 6,
+        "learned_slot": -1,
+        "candidate_count": 40,
+        "selected_move": 0,
+        "canonical_pp": 0,
+        "moves_before": [
+          33,
+          81,
+          45,
+          52
+        ],
+        "pp_before": [
+          7,
+          8,
+          9,
+          10
+        ],
+        "moves_after": [
+          33,
+          81,
+          45,
+          52
+        ],
+        "pp_after": [
+          7,
+          8,
+          9,
+          10
+        ],
+        "normal_bag_input": true,
+        "host_write_barriers": 3,
+        "normal_save_menu": true,
+        "fresh_core_normal_continue": true,
+        "save_counter_delta": 1,
+        "rtc_flash_bytes_preserved": 131072,
+        "breeding_e2e": false,
+        "full_p03_acceptance": false,
+        "release_ready": false,
+        "warnings_errors": 0,
+        "witness": {
+          "bag": 138,
+          "mode_menu": 566,
+          "mode_choice": 656,
+          "party": 0,
+          "page_menu": 0,
+          "page_choice": 0,
+          "list": 0,
+          "ask": 0,
+          "delete_ask": 0,
+          "summary": 0,
+          "selection": 0,
+          "replaced": 0,
+          "learned": 0,
+          "giveup": 0,
+          "locked": 659,
+          "field": 807
+        }
+      },
+      "rom": {
+        "size": 33554432,
+        "sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d"
+      },
+      "stdout": {
+        "size": 873,
+        "sha256": "117fb8c630c1d2f74ed9124e085826d2e1e6a96b0e5cf2ea0808a6e03a0e0a3e"
+      },
+      "stderr": {
+        "size": 503,
+        "sha256": "541780a5a7d483dfba771060817d8c38abc4952685412e78f1ea4adfa5b53f74"
+      },
+      "private_save_after": {
+        "size": 131088,
+        "sha256": "ef8fa58d200cb8821ad92e95af09d23bdea38ba99d839f5af46aa98c661cd531"
+      }
+    },
+    {
+      "name": "tutor-empty",
+      "status": "PASS",
+      "process": {
+        "schema_version": 1,
+        "returncode": 0,
+        "timed_out": false,
+        "spawn_error": null
+      },
+      "result": {
+        "schema_version": 1,
+        "status": "PASS",
+        "scope": "P03_ARCHIVE_NATIVE_UI_SAVE_RELOAD",
+        "rom_sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d",
+        "family": 4,
+        "species": 762,
+        "level": 50,
+        "page": 0,
+        "index": 0,
+        "action": 1,
+        "learned_slot": 2,
+        "candidate_count": 12,
+        "selected_move": 7,
+        "canonical_pp": 15,
+        "moves_before": [
+          33,
+          81,
+          0,
+          0
+        ],
+        "pp_before": [
+          7,
+          8,
+          0,
+          0
+        ],
+        "moves_after": [
+          33,
+          81,
+          7,
+          0
+        ],
+        "pp_after": [
+          7,
+          8,
+          15,
+          0
+        ],
+        "normal_bag_input": true,
+        "host_write_barriers": 3,
+        "normal_save_menu": true,
+        "fresh_core_normal_continue": true,
+        "save_counter_delta": 1,
+        "rtc_flash_bytes_preserved": 131072,
+        "breeding_e2e": false,
+        "full_p03_acceptance": false,
+        "release_ready": false,
+        "warnings_errors": 0,
+        "witness": {
+          "bag": 138,
+          "mode_menu": 566,
+          "mode_choice": 686,
+          "party": 761,
+          "page_menu": 0,
+          "page_choice": 0,
+          "list": 891,
+          "ask": 897,
+          "delete_ask": 0,
+          "summary": 0,
+          "selection": 0,
+          "replaced": 0,
+          "learned": 928,
+          "giveup": 0,
+          "locked": 0,
+          "field": 1198
+        }
+      },
+      "rom": {
+        "size": 33554432,
+        "sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d"
+      },
+      "stdout": {
+        "size": 875,
+        "sha256": "57d3f2acfcc3370473f8b855efe76389ed2be7c329c0fc2d3e5b1d1b305ac4b3"
+      },
+      "stderr": {
+        "size": 1331,
+        "sha256": "bcbd90dc8f42e1dfd92e663a1e1622087c91783cff82b3397b1ad24622c62d58"
+      },
+      "private_save_after": {
+        "size": 131088,
+        "sha256": "5a82af90724d6f17798aeacd2540a25ce728f0c7e4760720132f1f57460e6751"
+      }
+    },
+    {
+      "name": "tutor-refuse",
+      "status": "PASS",
+      "process": {
+        "schema_version": 1,
+        "returncode": 0,
+        "timed_out": false,
+        "spawn_error": null
+      },
+      "result": {
+        "schema_version": 1,
+        "status": "PASS",
+        "scope": "P03_ARCHIVE_NATIVE_UI_SAVE_RELOAD",
+        "rom_sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d",
+        "family": 4,
+        "species": 762,
+        "level": 50,
+        "page": 0,
+        "index": 0,
+        "action": 2,
+        "learned_slot": -1,
+        "candidate_count": 12,
+        "selected_move": 7,
+        "canonical_pp": 0,
+        "moves_before": [
+          33,
+          81,
+          45,
+          52
+        ],
+        "pp_before": [
+          7,
+          8,
+          9,
+          10
+        ],
+        "moves_after": [
+          33,
+          81,
+          45,
+          52
+        ],
+        "pp_after": [
+          7,
+          8,
+          9,
+          10
+        ],
+        "normal_bag_input": true,
+        "host_write_barriers": 3,
+        "normal_save_menu": true,
+        "fresh_core_normal_continue": true,
+        "save_counter_delta": 1,
+        "rtc_flash_bytes_preserved": 131072,
+        "breeding_e2e": false,
+        "full_p03_acceptance": false,
+        "release_ready": false,
+        "warnings_errors": 0,
+        "witness": {
+          "bag": 138,
+          "mode_menu": 566,
+          "mode_choice": 686,
+          "party": 761,
+          "page_menu": 0,
+          "page_choice": 0,
+          "list": 891,
+          "ask": 897,
+          "delete_ask": 0,
+          "summary": 0,
+          "selection": 0,
+          "replaced": 0,
+          "learned": 0,
+          "giveup": 963,
+          "locked": 0,
+          "field": 1307
+        }
+      },
+      "rom": {
+        "size": 33554432,
+        "sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d"
+      },
+      "stdout": {
+        "size": 880,
+        "sha256": "f5cc2aee7ac9c2c69591a7426337d1aeb29627e0e97fec7c65944c926fb6014e"
+      },
+      "stderr": {
+        "size": 1618,
+        "sha256": "bd8cd24f9609e79534a4b27f7dc36137a8fc0c374f0a330b8b980eddca1199a8"
+      },
+      "private_save_after": {
+        "size": 131088,
+        "sha256": "69ef1f730df138f351917b79942b4939d71ef5613173a4df97fd17e488225338"
+      }
+    },
+    {
+      "name": "tutor-cancel-summary",
+      "status": "PASS",
+      "process": {
+        "schema_version": 1,
+        "returncode": 0,
+        "timed_out": false,
+        "spawn_error": null
+      },
+      "result": {
+        "schema_version": 1,
+        "status": "PASS",
+        "scope": "P03_ARCHIVE_NATIVE_UI_SAVE_RELOAD",
+        "rom_sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d",
+        "family": 4,
+        "species": 762,
+        "level": 50,
+        "page": 0,
+        "index": 0,
+        "action": 3,
+        "learned_slot": -1,
+        "candidate_count": 12,
+        "selected_move": 7,
+        "canonical_pp": 0,
+        "moves_before": [
+          33,
+          81,
+          45,
+          52
+        ],
+        "pp_before": [
+          7,
+          8,
+          9,
+          10
+        ],
+        "moves_after": [
+          33,
+          81,
+          45,
+          52
+        ],
+        "pp_after": [
+          7,
+          8,
+          9,
+          10
+        ],
+        "normal_bag_input": true,
+        "host_write_barriers": 3,
+        "normal_save_menu": true,
+        "fresh_core_normal_continue": true,
+        "save_counter_delta": 1,
+        "rtc_flash_bytes_preserved": 131072,
+        "breeding_e2e": false,
+        "full_p03_acceptance": false,
+        "release_ready": false,
+        "warnings_errors": 0,
+        "witness": {
+          "bag": 138,
+          "mode_menu": 566,
+          "mode_choice": 686,
+          "party": 761,
+          "page_menu": 0,
+          "page_choice": 0,
+          "list": 891,
+          "ask": 897,
+          "delete_ask": 992,
+          "summary": 1117,
+          "selection": 1166,
+          "replaced": 0,
+          "learned": 0,
+          "giveup": 1291,
+          "locked": 0,
+          "field": 1638
+        }
+      },
+      "rom": {
+        "size": 33554432,
+        "sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d"
+      },
+      "stdout": {
+        "size": 889,
+        "sha256": "d8a1a46a442996299e687aed6a3334e73e428f38bcceb03877b9a7340508d5aa"
+      },
+      "stderr": {
+        "size": 2254,
+        "sha256": "2b0cf520517890b5fe9d6a8573ac4dbbe46d6003b48579cb8c8cfac1ccc1ad20"
+      },
+      "private_save_after": {
+        "size": 131088,
+        "sha256": "ae64b224991c659b3b88f9b8db400c22524ae15ea3bef3f8b190bdf54d813ab2"
+      }
+    },
+    {
+      "name": "tutor-cancel-list",
+      "status": "PASS",
+      "process": {
+        "schema_version": 1,
+        "returncode": 0,
+        "timed_out": false,
+        "spawn_error": null
+      },
+      "result": {
+        "schema_version": 1,
+        "status": "PASS",
+        "scope": "P03_ARCHIVE_NATIVE_UI_SAVE_RELOAD",
+        "rom_sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d",
+        "family": 4,
+        "species": 762,
+        "level": 50,
+        "page": 0,
+        "index": 0,
+        "action": 4,
+        "learned_slot": -1,
+        "candidate_count": 12,
+        "selected_move": 0,
+        "canonical_pp": 0,
+        "moves_before": [
+          33,
+          81,
+          45,
+          52
+        ],
+        "pp_before": [
+          7,
+          8,
+          9,
+          10
+        ],
+        "moves_after": [
+          33,
+          81,
+          45,
+          52
+        ],
+        "pp_after": [
+          7,
+          8,
+          9,
+          10
+        ],
+        "normal_bag_input": true,
+        "host_write_barriers": 3,
+        "normal_save_menu": true,
+        "fresh_core_normal_continue": true,
+        "save_counter_delta": 1,
+        "rtc_flash_bytes_preserved": 131072,
+        "breeding_e2e": false,
+        "full_p03_acceptance": false,
+        "release_ready": false,
+        "warnings_errors": 0,
+        "witness": {
+          "bag": 138,
+          "mode_menu": 566,
+          "mode_choice": 686,
+          "party": 761,
+          "page_menu": 0,
+          "page_choice": 0,
+          "list": 891,
+          "ask": 0,
+          "delete_ask": 0,
+          "summary": 0,
+          "selection": 0,
+          "replaced": 0,
+          "learned": 0,
+          "giveup": 901,
+          "locked": 0,
+          "field": 1247
+        }
+      },
+      "rom": {
+        "size": 33554432,
+        "sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d"
+      },
+      "stdout": {
+        "size": 878,
+        "sha256": "4392050d4600dc7271974acd9ba5f6d6ec3312e64b4f0e5c523259d27667b8dd"
+      },
+      "stderr": {
+        "size": 1443,
+        "sha256": "365716fa31512965988c332012eb9ed12ed9652f0e01efdb9052aa4b1e1ac1a7"
+      },
+      "private_save_after": {
+        "size": 131088,
+        "sha256": "ef3309f49343808006526458ddd84cb77d428a4fd56f71cabeb2794f932e851d"
+      }
+    },
+    {
+      "name": "tutor-locked",
+      "status": "PASS",
+      "process": {
+        "schema_version": 1,
+        "returncode": 0,
+        "timed_out": false,
+        "spawn_error": null
+      },
+      "result": {
+        "schema_version": 1,
+        "status": "PASS",
+        "scope": "P03_ARCHIVE_NATIVE_UI_SAVE_RELOAD",
+        "rom_sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d",
+        "family": 4,
+        "species": 762,
+        "level": 50,
+        "page": 0,
+        "index": 0,
+        "action": 6,
+        "learned_slot": -1,
+        "candidate_count": 12,
+        "selected_move": 0,
+        "canonical_pp": 0,
+        "moves_before": [
+          33,
+          81,
+          45,
+          52
+        ],
+        "pp_before": [
+          7,
+          8,
+          9,
+          10
+        ],
+        "moves_after": [
+          33,
+          81,
+          45,
+          52
+        ],
+        "pp_after": [
+          7,
+          8,
+          9,
+          10
+        ],
+        "normal_bag_input": true,
+        "host_write_barriers": 3,
+        "normal_save_menu": true,
+        "fresh_core_normal_continue": true,
+        "save_counter_delta": 1,
+        "rtc_flash_bytes_preserved": 131072,
+        "breeding_e2e": false,
+        "full_p03_acceptance": false,
+        "release_ready": false,
+        "warnings_errors": 0,
+        "witness": {
+          "bag": 138,
+          "mode_menu": 566,
+          "mode_choice": 686,
+          "party": 0,
+          "page_menu": 0,
+          "page_choice": 0,
+          "list": 0,
+          "ask": 0,
+          "delete_ask": 0,
+          "summary": 0,
+          "selection": 0,
+          "replaced": 0,
+          "learned": 0,
+          "giveup": 0,
+          "locked": 689,
+          "field": 837
+        }
+      },
+      "rom": {
+        "size": 33554432,
+        "sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d"
+      },
+      "stdout": {
+        "size": 873,
+        "sha256": "e5ebf013e7d814fec88d5c91739e988370071ff2071342b9bffadfa253b60e97"
+      },
+      "stderr": {
+        "size": 503,
+        "sha256": "541780a5a7d483dfba771060817d8c38abc4952685412e78f1ea4adfa5b53f74"
+      },
+      "private_save_after": {
+        "size": 131088,
+        "sha256": "31ee0fbbed5cffa1cc2367fe5921b562e7203b39ecc061e0157ec21f45fcda32"
+      }
+    },
+    {
+      "name": "machine-cancel-page",
+      "status": "PASS",
+      "process": {
+        "schema_version": 1,
+        "returncode": 0,
+        "timed_out": false,
+        "spawn_error": null
+      },
+      "result": {
+        "schema_version": 1,
+        "status": "PASS",
+        "scope": "P03_ARCHIVE_NATIVE_UI_SAVE_RELOAD",
+        "rom_sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d",
+        "family": 3,
+        "species": 151,
+        "level": 50,
+        "page": 0,
+        "index": 0,
+        "action": 5,
+        "learned_slot": -1,
+        "candidate_count": 40,
+        "selected_move": 0,
+        "canonical_pp": 0,
+        "moves_before": [
+          33,
+          81,
+          45,
+          52
+        ],
+        "pp_before": [
+          7,
+          8,
+          9,
+          10
+        ],
+        "moves_after": [
+          33,
+          81,
+          45,
+          52
+        ],
+        "pp_after": [
+          7,
+          8,
+          9,
+          10
+        ],
+        "normal_bag_input": true,
+        "host_write_barriers": 3,
+        "normal_save_menu": true,
+        "fresh_core_normal_continue": true,
+        "save_counter_delta": 1,
+        "rtc_flash_bytes_preserved": 131072,
+        "breeding_e2e": false,
+        "full_p03_acceptance": false,
+        "release_ready": false,
+        "warnings_errors": 0,
+        "witness": {
+          "bag": 138,
+          "mode_menu": 566,
+          "mode_choice": 656,
+          "party": 732,
+          "page_menu": 799,
+          "page_choice": 806,
+          "list": 0,
+          "ask": 0,
+          "delete_ask": 0,
+          "summary": 0,
+          "selection": 0,
+          "replaced": 0,
+          "learned": 0,
+          "giveup": 0,
+          "locked": 0,
+          "field": 928
+        }
+      },
+      "rom": {
+        "size": 33554432,
+        "sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d"
+      },
+      "stdout": {
+        "size": 877,
+        "sha256": "baf5fe168ec2b600c06626f24658d34fb0440cbdb74b03d7bff3f1f758305d3f"
+      },
+      "stderr": {
+        "size": 728,
+        "sha256": "14b5357316b3b58ab913a925c896546a62b2f4a33cc45b353e54a403f9ae36fc"
+      },
+      "private_save_after": {
+        "size": 131088,
+        "sha256": "17f148f766f10106dc22c4a76094ef46dfe30122fdb4677c20d4601720d5db54"
+      }
+    },
+    {
+      "name": "cancel-mode",
+      "status": "PASS",
+      "process": {
+        "schema_version": 1,
+        "returncode": 0,
+        "timed_out": false,
+        "spawn_error": null
+      },
+      "result": {
+        "schema_version": 1,
+        "status": "PASS",
+        "scope": "P03_ARCHIVE_NATIVE_UI_SAVE_RELOAD",
+        "rom_sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d",
+        "family": 3,
+        "species": 151,
+        "level": 50,
+        "page": 0,
+        "index": 0,
+        "action": 7,
+        "learned_slot": -1,
+        "candidate_count": 40,
+        "selected_move": 0,
+        "canonical_pp": 0,
+        "moves_before": [
+          33,
+          81,
+          45,
+          52
+        ],
+        "pp_before": [
+          7,
+          8,
+          9,
+          10
+        ],
+        "moves_after": [
+          33,
+          81,
+          45,
+          52
+        ],
+        "pp_after": [
+          7,
+          8,
+          9,
+          10
+        ],
+        "normal_bag_input": true,
+        "host_write_barriers": 3,
+        "normal_save_menu": true,
+        "fresh_core_normal_continue": true,
+        "save_counter_delta": 1,
+        "rtc_flash_bytes_preserved": 131072,
+        "breeding_e2e": false,
+        "full_p03_acceptance": false,
+        "release_ready": false,
+        "warnings_errors": 0,
+        "witness": {
+          "bag": 138,
+          "mode_menu": 566,
+          "mode_choice": 566,
+          "party": 0,
+          "page_menu": 0,
+          "page_choice": 0,
+          "list": 0,
+          "ask": 0,
+          "delete_ask": 0,
+          "summary": 0,
+          "selection": 0,
+          "replaced": 0,
+          "learned": 0,
+          "giveup": 0,
+          "locked": 0,
+          "field": 688
+        }
+      },
+      "rom": {
+        "size": 33554432,
+        "sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d"
+      },
+      "stdout": {
+        "size": 871,
+        "sha256": "a049b53ad4f1c27f12b3ad0931d6888cd91d78d7761a26250529f7d097ecc0a9"
+      },
+      "stderr": {
+        "size": 503,
+        "sha256": "541780a5a7d483dfba771060817d8c38abc4952685412e78f1ea4adfa5b53f74"
+      },
+      "private_save_after": {
+        "size": 131088,
+        "sha256": "94ee863b8cda789876a3f28ad4345e2f4932ff2f3fb5ce7c8b78e2bb6c33437c"
+      }
+    }
+  ],
+  "negative_controls": [
+    {
+      "name": "parent-gate",
+      "status": "REJECTED_EXPECTED",
+      "process": {
+        "schema_version": 1,
+        "returncode": 1,
+        "timed_out": false,
+        "spawn_error": null
+      },
+      "result": null,
+      "rom": {
+        "size": 33554432,
+        "sha256": "521624a5e6065bd969b7c3143044f1d96491b8af05a0231827ba2e709d04d579"
+      },
+      "stdout": {
+        "size": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "size": 204,
+        "sha256": "5dab9b699df03e3324fef5c52f910e3491a2467317bf24eb34fc0c7ae4f3623b"
+      },
+      "private_save_after": {
+        "size": 131088,
+        "sha256": "a7371100188c803962d09ecc0fd6470b5f670672f9cb254c3f53bb181d2e71c9"
+      }
+    },
+    {
+      "name": "gate-only-list",
+      "status": "REJECTED_EXPECTED",
+      "process": {
+        "schema_version": 1,
+        "returncode": 1,
+        "timed_out": false,
+        "spawn_error": null
+      },
+      "result": null,
+      "rom": {
+        "size": 33554432,
+        "sha256": "bc0d08028e64478cbc03aead5207706a222bfabd7492534fa555d9cb783fdf3a"
+      },
+      "stdout": {
+        "size": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "size": 662,
+        "sha256": "c4dbe7359112bd26f951f62b85917f6a260d87d921305513f31917d4c89b50be"
+      },
+      "private_save_after": {
+        "size": 131088,
+        "sha256": "a7371100188c803962d09ecc0fd6470b5f670672f9cb254c3f53bb181d2e71c9"
+      }
+    }
+  ],
+  "host_write_guard_checks": [
+    {
+      "api": "bus8",
+      "status": "REJECTED_EXPECTED",
+      "process": {
+        "schema_version": 1,
+        "returncode": 1,
+        "timed_out": false,
+        "spawn_error": null
+      }
+    },
+    {
+      "api": "bus16",
+      "status": "REJECTED_EXPECTED",
+      "process": {
+        "schema_version": 1,
+        "returncode": 1,
+        "timed_out": false,
+        "spawn_error": null
+      }
+    },
+    {
+      "api": "bus32",
+      "status": "REJECTED_EXPECTED",
+      "process": {
+        "schema_version": 1,
+        "returncode": 1,
+        "timed_out": false,
+        "spawn_error": null
+      }
+    },
+    {
+      "api": "raw8",
+      "status": "REJECTED_EXPECTED",
+      "process": {
+        "schema_version": 1,
+        "returncode": 1,
+        "timed_out": false,
+        "spawn_error": null
+      }
+    },
+    {
+      "api": "raw16",
+      "status": "REJECTED_EXPECTED",
+      "process": {
+        "schema_version": 1,
+        "returncode": 1,
+        "timed_out": false,
+        "spawn_error": null
+      }
+    },
+    {
+      "api": "raw32",
+      "status": "REJECTED_EXPECTED",
+      "process": {
+        "schema_version": 1,
+        "returncode": 1,
+        "timed_out": false,
+        "spawn_error": null
+      }
+    },
+    {
+      "api": "register",
+      "status": "REJECTED_EXPECTED",
+      "process": {
+        "schema_version": 1,
+        "returncode": 1,
+        "timed_out": false,
+        "spawn_error": null
+      }
+    }
+  ],
+  "fresh_successful_mgba_processes": 25,
+  "fresh_negative_mgba_processes": 2,
+  "cached_passes": 0,
+  "breeding_e2e": false,
+  "full_p03_acceptance": false,
+  "release_ready": false
+}

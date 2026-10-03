@@ -1,0 +1,255 @@
+{
+  "accepted_case_reruns": 0,
+  "actions_completion_confirmed": false,
+  "arm_compiles": 0,
+  "dependency_bindings": {
+    "scripts/pr16_research_new_game.py": {
+      "sha256": "190e52ce97d8159e0bb7907d64512dbd2ab9f66ca17ce33b102296bab455ecae",
+      "size": 5981
+    },
+    "scripts/pr16_research_shop_ui.py": {
+      "sha256": "c0a1f2b70436ee4bca6c92aa652cc4d720872074719f118cd1e042ce6dd59c0e",
+      "size": 5186
+    },
+    "scripts/pr16_research_story.py": {
+      "sha256": "0a034a82c6e1639de662191e5c4482ffc0ad9ae5ebb4bac5fcfd36f8cdd7db79",
+      "size": 9890
+    },
+    "scripts/pr16_research_story_continue.py": {
+      "sha256": "f406bde45d500e324aa640154f01bbe334d556bebe210c9a404da43889d021e1",
+      "size": 7033
+    },
+    "scripts/pr16_research_story_route.py": {
+      "sha256": "7cb78a6d596a7dd79784d042b5709c02b867eca2d2460646de335174b6d15353",
+      "size": 9692
+    },
+    "tools/mgba_pr16_research_story.c": {
+      "sha256": "fe53e9fd5f7c00eade3ea0cba654d7e86aa35bced617510de4dd3aebc4c9f30a",
+      "size": 6485
+    }
+  },
+  "evidence_bindings": {
+    "content/modernization/pr16_research_story_growth_development/commands.txt": {
+      "sha256": "d461c7ad6a0694c2196f10446db55bbf4adb069e4af9f35967ef4750a7b77b4f",
+      "size": 4009
+    },
+    "content/modernization/pr16_research_story_growth_development/continue-commands.txt": {
+      "sha256": "156137c3e94af515f8f2e50972a3290a82bf7b748bfbc5f0802832c0f492642e",
+      "size": 301
+    },
+    "content/modernization/pr16_research_story_growth_development/continue.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_research_story_growth_development/continue.stdout.txt": {
+      "sha256": "81d9d427ed8645f407ac151d75532a0c071e626ed78612610bb75d3591454f8f",
+      "size": 5998
+    },
+    "content/modernization/pr16_research_story_growth_development/progress.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_research_story_growth_development/progress.stdout.txt": {
+      "sha256": "3a8508d4bc8a1169b7b3440f681a1fa74a3a1a8a9075760402a7cb6655e10978",
+      "size": 65074
+    },
+    "content/modernization/pr16_research_story_growth_development/setup.json": {
+      "sha256": "3ac019ed1982ab22620174852d45183199a6b543f1c1a1cfd14d1e82840c6806",
+      "size": 1639
+    },
+    "content/modernization/pr16_research_story_growth_development/unit.stderr.txt": {
+      "sha256": "cb6b75f7fbd96ce311e9f03ae1c4308082840f514a78020050fbebf48478ef63",
+      "size": 13950
+    },
+    "content/modernization/pr16_research_story_growth_development/unit.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_research_story_growth_development/visual-review.json": {
+      "sha256": "14a3399a6ded80f5df2814973e7bafe4debda80fcaec6c654e70fa422ef1140c",
+      "size": 18302
+    }
+  },
+  "host_compiles": 0,
+  "native_processes": 2,
+  "output_save": {
+    "sha256": "f36faf0e82cf1c57c8a2c2a5e4bcf30ea6a53432b4d7828c79f1ee2f67cdd8d9",
+    "size": 131088
+  },
+  "result": {
+    "active_baseline_changed": false,
+    "candidate": {
+      "sha256": "e1efb1009c6e6b0ec4967bf7b20562d2330bbd933f64f7f7863cdad56eb1f842",
+      "size": 33554432
+    },
+    "cold_frames": 2736,
+    "cold_input_count": 38,
+    "cold_ui_exit": {
+      "battle_flags": 0,
+      "battle_outcome": 0,
+      "callback2": 134569589,
+      "facing": 1,
+      "field": true,
+      "flash_sha256": "50852a2ed3e214102bfe6c43ae3d3d4724959d7656246f794ed4c138b2987c83",
+      "frame": 2736,
+      "ledger_sha256": "4e21de857eeb30a48e7918c8e11a8e72be9b5634b82fba1575bab6680300640a",
+      "live_xy": [
+        11,
+        34
+      ],
+      "lock": 0,
+      "map": [
+        3,
+        0
+      ],
+      "observe": 6,
+      "party_count": 1,
+      "party_sha256": "861938aff0d75fdb446e4a4fa131dd1c84d80d48a32103e72266a22dcdd4f194",
+      "rp": 0,
+      "save_counter": 4,
+      "xy": [
+        4,
+        27
+      ]
+    },
+    "content_screens": 92,
+    "continued": {
+      "battle_flags": 0,
+      "battle_outcome": 0,
+      "callback2": 134569589,
+      "facing": 1,
+      "field": true,
+      "flash_sha256": "50852a2ed3e214102bfe6c43ae3d3d4724959d7656246f794ed4c138b2987c83",
+      "frame": 1390,
+      "ledger_sha256": "4e21de857eeb30a48e7918c8e11a8e72be9b5634b82fba1575bab6680300640a",
+      "live_xy": [
+        11,
+        34
+      ],
+      "lock": 0,
+      "map": [
+        3,
+        0
+      ],
+      "observe": 0,
+      "party_count": 1,
+      "party_sha256": "861938aff0d75fdb446e4a4fa131dd1c84d80d48a32103e72266a22dcdd4f194",
+      "rp": 0,
+      "save_counter": 4,
+      "xy": [
+        4,
+        27
+      ]
+    },
+    "experience_awards": [
+      37,
+      33
+    ],
+    "final_experience": 204,
+    "final_hp": [
+      21,
+      21
+    ],
+    "first_save": {
+      "battle_flags": 12,
+      "battle_outcome": 2,
+      "callback2": 134569589,
+      "facing": 1,
+      "field": true,
+      "flash_sha256": "50852a2ed3e214102bfe6c43ae3d3d4724959d7656246f794ed4c138b2987c83",
+      "frame": 37210,
+      "ledger_sha256": "4e21de857eeb30a48e7918c8e11a8e72be9b5634b82fba1575bab6680300640a",
+      "live_xy": [
+        11,
+        34
+      ],
+      "lock": 0,
+      "map": [
+        3,
+        0
+      ],
+      "observe": 84,
+      "party_count": 1,
+      "party_sha256": "861938aff0d75fdb446e4a4fa131dd1c84d80d48a32103e72266a22dcdd4f194",
+      "rp": 0,
+      "save_counter": 4,
+      "xy": [
+        4,
+        27
+      ]
+    },
+    "full_story_accepted": false,
+    "initial": {
+      "battle_flags": 0,
+      "battle_outcome": 0,
+      "callback2": 134569589,
+      "facing": 1,
+      "field": true,
+      "flash_sha256": "56d7a59e5762fbff1cbd449d207d39a1190fb58ab58ef84ab6176031a8c6c778",
+      "frame": 1390,
+      "ledger_sha256": "95aeb7d49ed5ecb4784e6f569d3b4760b29ef1570859947a2f3922e483751fc3",
+      "live_xy": [
+        33,
+        24
+      ],
+      "lock": 0,
+      "map": [
+        3,
+        19
+      ],
+      "observe": 0,
+      "party_count": 1,
+      "party_sha256": "c82f531a0b2596756d2add2387d16a764ceddeae4696acd5c417b0bfe09ef5fc",
+      "rp": 0,
+      "save_counter": 3,
+      "xy": [
+        26,
+        17
+      ]
+    },
+    "input_count": 367,
+    "input_frames": 37210,
+    "input_save": {
+      "sha256": "8e924f8f058007f204db4319304f064f5b3232256b2e41a3706f88d4e2105110",
+      "size": 131088
+    },
+    "level_after": 6,
+    "level_before": 5,
+    "native_bag_potion_count": 0,
+    "natural_level_up_observed": true,
+    "natural_research_arrival_accepted": false,
+    "new_move_learning_accepted": false,
+    "new_town_arrival_accepted": false,
+    "ordinary_save_count": 1,
+    "output_save": {
+      "sha256": "f36faf0e82cf1c57c8a2c2a5e4bcf30ea6a53432b4d7828c79f1ee2f67cdd8d9",
+      "size": 131088
+    },
+    "potion_consumed": true,
+    "pre_post_ui_matches": 3,
+    "release_ready": false,
+    "screen_count": 92,
+    "status": "PASS_NATURAL_STORY_GROWTH_SAVE_SCOPED",
+    "trainer_losses": 2,
+    "trainer_pokemon_defeated": 1,
+    "trainer_victories": 0,
+    "transition_only_screens": [],
+    "wild_escapes": 1,
+    "wild_victories": 1
+  },
+  "rom_changes": 0,
+  "schema_version": 1,
+  "source_bindings": {
+    "scripts/pr16_research_story_growth.py": {
+      "sha256": "a0c78eeb4b3880fbd3f006233c29ca1d55dae8349694f173e8353d90a70664ac",
+      "size": 13961
+    },
+    "tests/test_pr16_research_story_growth.py": {
+      "sha256": "a20c8e8643be797de1043bb802b7bb49bc73d0fb71e84e4a3ca91c9ec9d4c6ab",
+      "size": 11609
+    }
+  },
+  "status": "PASS_LOCAL_NATIVE_GROWTH_SAVE_NOT_ACTIONS_TERMINAL",
+  "unit_test_processes": 1,
+  "unit_tests": 118
+}

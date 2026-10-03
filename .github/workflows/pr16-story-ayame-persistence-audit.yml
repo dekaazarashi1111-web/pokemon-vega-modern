@@ -1,0 +1,55 @@
+name: pr16-story-ayame-persistence-audit
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-story-ayame-persistence-audit.yml]
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: pr16-story-ayame-persistence-audit
+  cancel-in-progress: false
+jobs:
+  audit:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Pin accepted measurement source without checkout
+        run: git fetch --no-tags --depth=1 origin 2577d253823bdca94bf3dfac0a67dea9776a6d8a
+      - name: Check locally tested source bytes
+        run: |
+          python3 -B -c "import sys; sys.path.insert(0, 'scripts'); import pr16_story_ayame_persistence_record as r; r.m.need(r.h.d.bindings(r.LOCAL) == r.LOCAL, 'exact local source bytes')"
+      - name: New 42 persistence tests only
+        run: |
+          mkdir -p .local/pr16-ayame-persistence/public
+          python3 -B -m unittest discover -s tests -p test_pr16_story_ayame_persistence_audit.py -v > .local/pr16-ayame-persistence/public/unit.stdout.txt 2> .local/pr16-ayame-persistence/public/unit.stderr.txt
+          cat .local/pr16-ayame-persistence/public/unit.stderr.txt
+      - name: Read-only completed originals and prepare records
+        run: python3 -B scripts/pr16_story_ayame_persistence_record.py record
+      - name: Lightweight task graph
+        run: python3 -B scripts/validate_task_graph.py --check
+      - name: Resume and scoped final index guard
+        run: python3 -B scripts/pr16_story_ayame_persistence_record.py guard
+      - name: Commit and non-force push with text readback
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m "USER-20260929-STORY-AYAME-PERSISTENCE-AUDIT: Save18の保存checksum・三兄弟flag対応と42試験を記録"
+          git push origin HEAD:codex/modernization-followup-20260908
+          python3 -B scripts/pr16_story_ayame_persistence_record.py snapshot
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-story-ayame-persistence-audit
+          path: .local/pr16-ayame-persistence/public
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90

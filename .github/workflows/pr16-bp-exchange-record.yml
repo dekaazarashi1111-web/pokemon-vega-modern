@@ -1,0 +1,118 @@
+name: pr16-bp-exchange-record
+run-name: 交換ABI検証原本を固定引継ぎ・両ログへ保存（source-only）
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-bp-exchange-record.yml
+      - scripts/pr16_bp_exchange_record.py
+      - tests/test_pr16_bp_exchange_record.py
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: pr16-bp-exchange-record
+  cancel-in-progress: false
+jobs:
+  record:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: 完了原本のexact hash・HEAD照合と固定MD/JSON・両ログの明示更新
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-bp-exchange-record
+          python3 scripts/pr16_bp_exchange_record.py record
+      - name: 新規証拠境界8tests・固定引継ぎ18tests・task graph（ROM再生成なし）
+        run: |
+          set -euo pipefail
+          python3 -m unittest discover -s tests -p test_pr16_bp_exchange_record.py -v 2>&1 | tee .local/pr16-bp-exchange-record/record-tests.log
+          python3 -m unittest discover -s tests -p test_pr16_resume.py -v 2>&1 | tee .local/pr16-bp-exchange-record/resume-tests.log
+          python3 scripts/pr16_bp_exchange_record.py check
+          python3 scripts/pr16_resume.py check
+          python3 scripts/validate_task_graph.py
+          git diff --check
+      - name: 標準guardのbaseline/index比較・allowlist検査・非force commit/push・読戻し
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib,json,os,pathlib,re,subprocess,sys,tempfile
+          sys.path[:0]=['scripts','.']
+          import pr16_bp_exchange_record as m
+          root=pathlib.Path.cwd();out=root/'.local/pr16-bp-exchange-record'
+          def git(*args,**kw):return subprocess.check_output(['git',*args],**kw)
+          def ident(raw):return dict(size=len(raw),sha256=hashlib.sha256(raw).hexdigest())
+          need=m.need
+          head=git('rev-parse','HEAD',text=True).strip()
+          need(head==os.environ['GITHUB_SHA'] and m.current_head()==head,'HEAD advanced; no commit/push')
+          writes=set(m.WRITES)
+          actual=set(git('diff','--name-only',text=True).splitlines())
+          untracked=set(git('ls-files','--others','--exclude-standard',text=True).splitlines())
+          need(actual|untracked==writes,'unexpected changed/untracked file scope')
+          for name in m.LOGS:
+              before=git('show',head+':'+name);after=(root/name).read_bytes()
+              need(after.startswith(before),'log is not append-only')
+          git('add','--',*sorted(writes))
+          need(set(git('diff','--cached','--name-only',text=True).splitlines())==writes,'staged scope')
+          git('diff','--cached','--check')
+          with tempfile.TemporaryDirectory() as tmp:
+              env=dict(os.environ,GIT_INDEX_FILE=str(pathlib.Path(tmp)/'baseline.index'))
+              git('read-tree',m.ENTRY,env=env)
+              baseline=subprocess.run([sys.executable,'scripts/guard_private_files.py'],env=env,capture_output=True)
+          final=subprocess.run([sys.executable,'scripts/guard_private_files.py'],capture_output=True)
+          need(baseline.returncode in (0,1) and not baseline.stderr,'baseline guard execution failed')
+          need(final.returncode==baseline.returncode and final.stdout==baseline.stdout and not final.stderr,'new global guard violations')
+          import guard_private_files as guard
+          all_changed=git('diff','--name-only',m.ENTRY,'--',text=True).splitlines()
+          for name in all_changed:
+              p=root/name;raw=p.read_bytes();raw.decode('utf-8')
+              need(not p.is_symlink() and b'\0' not in raw and p.suffix.lower() not in guard.BLOCKED_SUFFIXES,'non-text/private change')
+              need(not any(name==x or name.startswith(x+'/') for x in guard.BLOCKED_PARTS),'private input added')
+              need(re.search(rb'gh[pousr]_[A-Za-z0-9]{36,}|github_pat_[A-Za-z0-9_]{60,}|-----BEGIN (?:RSA |OPENSSH |EC )?PRIVATE KEY-----',raw) is None,'credential-like source')
+              if p.suffix.lower() in guard.DOCUMENT_SUFFIXES:
+                  old=subprocess.run(['git','show',m.ENTRY+':'+name],capture_output=True)
+                  before=old.stdout if old.returncode==0 else b''
+                  need(guard.document_user_path_lines(raw)==guard.document_user_path_lines(before),'new user path')
+          boundary=dict(baseline_head=m.ENTRY,final_input_head=head,
+              baseline_returncode=baseline.returncode,final_returncode=final.returncode,
+              standard_guard_stdout=ident(final.stdout),new_violations=0,
+              whole_guard_passed=final.returncode==0,scope='original index vs final index; existing failures retained')
+          (out/'guard-boundary.json').write_bytes(m.stable(boundary))
+          m.verify_saved()
+          content={p:ident((root/p).read_bytes()) for p in writes}
+          need(m.current_head()==head,'HEAD advanced before commit; no push')
+          git('config','user.name','github-actions[bot]')
+          git('config','user.email','41898282+github-actions[bot]@users.noreply.github.com')
+          git('commit','-m',m.TASK+': 交換単体ABIの2byte修復を検証完了し固定引継ぎ・両ログへ記録')
+          new=git('rev-parse','HEAD',text=True).strip()
+          need(git('rev-parse','HEAD^',text=True).strip()==head,'commit parent differs')
+          for p,meta in content.items():need(ident(git('show',new+':'+p))==meta,'committed blob readback differs')
+          need(m.current_head()==head,'HEAD advanced before nonforce push')
+          git('push','origin','HEAD:refs/heads/'+m.BRANCH)
+          need(m.current_head()==new,'remote readback differs')
+          need(not git('status','--porcelain','--untracked-files=no'),'post-push tracked change')
+          result=dict(status='PASS_RECORDED_COMMITTED_NONFORCE_PUSHED',task=m.TASK,parent=head,commit=new,
+              branch=m.BRANCH,source_verification_run=m.RUN,source_verification_job=m.JOB,
+              recording_run=int(os.environ['GITHUB_RUN_ID']),source_tests_reused=9,
+              new_evidence_tests=8,resume_tests=18,guard=boundary,files=content,
+              accepted_native_cases_replayed=0,new_emulator_processes=0,native_exchange_accepted=False,
+              native_bp_earning_accepted=False,release_ready=False)
+          (out/'result.json').write_bytes(m.stable(result))
+          print('RESULT=DONE TASK='+m.TASK+' VERIFY=PASS COMMIT='+new)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-bp-exchange-record
+          path: .local/pr16-bp-exchange-record/
+          include-hidden-files: true
+          retention-days: 90
+          if-no-files-found: error

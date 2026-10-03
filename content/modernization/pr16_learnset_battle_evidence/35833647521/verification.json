@@ -1,0 +1,419 @@
+{
+  "accepted_test_reruns": 0,
+  "arm_compiles": 0,
+  "bag_completion": {
+    "actions_completion_confirmed": true,
+    "artifact": {
+      "digest": "sha256:2fb104c444440ec47a11c9d2194a512c6aeb1079036ec66ee849d2a00f19722b",
+      "id": 10736439669,
+      "name": "pr16-learnset-gameplay-proof",
+      "size_in_bytes": 599038
+    },
+    "candidate": {
+      "sha256": "6e88a021785bfa7cf00e26d7f2433c380602d830e94e1d2fc31e3198cda31df2",
+      "size": 33554432
+    },
+    "fixture_party_source": {
+      "case": "floette-replace-420",
+      "identity": {
+        "sha256": "e19c16d9192efa69c033ac281507f777efc5cc179b4dcbb8408b77b00dfbcc2e",
+        "size": 100
+      },
+      "phase": "continued"
+    },
+    "fresh_cores": 46,
+    "inherited_unit_tests": 20,
+    "issue19_complete": false,
+    "job_id": 107084145752,
+    "job_steps": [
+      {
+        "conclusion": "success",
+        "name": "Set up job",
+        "number": 1,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Run actions/checkout@v4",
+        "number": 2,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Run actions/setup-python@v5",
+        "number": 3,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "未受入通常操作用のhost libraryだけ導入",
+        "number": 4,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "20試験を継承し12境界試験と未受入23ケースを検証",
+        "number": 5,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "成功prefixと失敗原本を区別し固定引継ぎ・両ログへ記録",
+        "number": 6,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "同branchへ非force commit/pushし最新refを照合",
+        "number": 7,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Run actions/upload-artifact@v4",
+        "number": 8,
+        "status": "completed"
+      },
+      {
+        "conclusion": "skipped",
+        "name": "失敗した実測を成功へ読み替えずrun終端へ反映",
+        "number": 9,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Post Run actions/setup-python@v5",
+        "number": 17,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Post Run actions/checkout@v4",
+        "number": 18,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Complete job",
+        "number": 19,
+        "status": "completed"
+      }
+    ],
+    "native_reruns": 0,
+    "new_unit_tests": 12,
+    "raw_verification": {
+      "sha256": "d3a7f83bc0db79309c85d8e378e8b10ce7ef2e42b05f9f86c66653994b798b0b",
+      "size": 78441
+    },
+    "reflected_head": "574975b3ea189ae37c4258c583ba5d1efb1c5d82",
+    "release_ready": false,
+    "run_id": 35831256129,
+    "screen_review": {
+      "field_and_continue_sample": "visible normal field",
+      "list": "no state6 capture in positive cases; state4/input/list/slot evidence accepted, layout review remains pending",
+      "summary": "16 transition frames are black; not accepted as layout evidence"
+    },
+    "source_head": "059826fec559df3c543dd20cc549b470418ad5dd",
+    "status": "PASS_COMPLETED_ACTIONS_SCOPED_BAG_SAVE_CONTINUE",
+    "verified_cases": 23
+  },
+  "bag_reruns": 0,
+  "battle_verified": true,
+  "candidate": {
+    "sha256": "6e88a021785bfa7cf00e26d7f2433c380602d830e94e1d2fc31e3198cda31df2",
+    "size": 33554432
+  },
+  "compiled_sources": {
+    "tools/mgba_ai_fixture_runner.c": {
+      "sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f",
+      "size": 36272
+    },
+    "tools/mgba_battle_core_smoke.c": {
+      "sha256": "ed9875695ca60c61960685ac2f8e810a183c8eedd703e56545d67bde3df5cf24",
+      "size": 94688
+    },
+    "tools/mgba_pr16_learnset_battle.c": {
+      "sha256": "6f0665441256b1f42468a65f146bc927654edd5e655d49cdaa3e60081741a999",
+      "size": 13452
+    },
+    "tools/mgba_qol_production_smoke.c": {
+      "sha256": "2c4b9f065f4dce84e48f2be9afe2e2f9f666865088770ee8b068a908a0527b85",
+      "size": 149046
+    }
+  },
+  "field_repair": "exact IS_MASTER=4 and readonly encounter/outcome witness",
+  "generated_sources": {
+    "p03_learning_embedded.c": {
+      "sha256": "5892a04bf5316aea7b52d87b02e40fb39afcc61e7f6fae2a610227327499c0db",
+      "size": 8004
+    },
+    "p03_p02_embedded.c": {
+      "sha256": "955ef6e7322bb086c5a8a9b4d862b41923f042522abc2beadc67a805a88f4543",
+      "size": 39681
+    },
+    "p03a_fullslots_embedded.c": {
+      "sha256": "a0a2f1ea348a4863dbb08c3dd41e41522c56a81b3341de7c60b96b08f0b2af09",
+      "size": 12886
+    },
+    "pr16_gameplay_archive.c": {
+      "sha256": "8f7cdf0e3897c6d1dbf6b80eb7936687c4d080a35ab896bb8db871c623e6d383",
+      "size": 20788
+    },
+    "pr16_gameplay_driver.c": {
+      "sha256": "b19359537903936f19bf3fe82d13cf9a885d44eb7dc4a1a45f0fc2cfe727f4d1",
+      "size": 6954
+    },
+    "pr16_gameplay_vectors.h": {
+      "sha256": "bb590b0ebc600652a532162a4871d0f74ea9529bdf961e5d815e357cf60b0a84",
+      "size": 3888
+    },
+    "pr16_learnset_battle_fixture.h": {
+      "sha256": "ad1068a1c75f8d2dfed1a4d43916e644b5dbcb14c1e0364e553f353fe0830fd4",
+      "size": 968
+    }
+  },
+  "host_compiles": 1,
+  "inherited_unit_tests": 22,
+  "issue19_complete": false,
+  "native_processes": 1,
+  "new_unit_tests": 6,
+  "next_step_ja": "Issue19: Bag23ケース/32境界試験と習得技420の通常戦闘checkpointを継承し、未受入の条件付きタマゴ等の変更影響へ進む。一覧/summary画面は撮影タイミングの限定修復が必要で見た目未受入。旧Wiki/4hook/ARM/PLA1/PLC2/Bag23ケースを影響なく再実行しない。",
+  "previous_failed_run": 35833129256,
+  "primary_constant_source": {
+    "identity": {
+      "sha256": "05f6691ac66ebca2175b214792f02625cd16f01df288af511ba59250f990fa7d",
+      "size": 22989
+    },
+    "path": "content/modernization/pr16_p08_ring_representative.json"
+  },
+  "proof_bindings": {
+    "bag-completed-actions.json": {
+      "sha256": "7486f7ee2d7cc6c6d61b06bf7987fec91195590d04c5376684f4d958a8e1aa9d",
+      "size": 3227
+    },
+    "battle.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "battle.stderr.txt": {
+      "sha256": "d8603940731250e021e4c77ee3a667715c32ef0d4844f6920f7dae937e840994",
+      "size": 1421
+    },
+    "battle.stdout.txt": {
+      "sha256": "e7f84b7edc0e0d175bb3a4ead4b52d1d1e9e01bfa4889be7af06d4e79119d0b4",
+      "size": 659
+    },
+    "compile.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "compile.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "compile.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "field-prior-battle.process.json": {
+      "sha256": "182b1f564fcb386958d2a1d35aa5085633c1d294f3080b2ff2d4f29be34238a3",
+      "size": 44
+    },
+    "field-prior-battle.stderr.txt": {
+      "sha256": "5c151051dd093a6d71d3d2b99454ca04882c4f859235b72c9d86b0c77f8dd717",
+      "size": 404
+    },
+    "field-prior-compile-prior-unit.stderr.txt": {
+      "sha256": "5323e0662e7a7ec2769056204825aaee4260f9eaedb329d157d0005ab311d614",
+      "size": 1973
+    },
+    "field-prior-unit.stderr.txt": {
+      "sha256": "9ca6b71b0d7695b784a8966810baad5d5d838f3c44e4870de172a910887e1a79",
+      "size": 816
+    },
+    "field-prior-verification.json": {
+      "sha256": "3b35558741503dd6e7faeef7bcbd7e69a71ff670c29d352955b3d8c8fbed9045",
+      "size": 11680
+    },
+    "geometry.json": {
+      "sha256": "cce7d5aa97dfa5776f2ef2dcc45de3eb6db30f971b3b10c0659b943ccefc964c",
+      "size": 1937
+    },
+    "inherited-unit.json": {
+      "sha256": "1e1c98410eace1138711bba5ab1c61723e0b1ba80f0e1ea3fe286402b03884c3",
+      "size": 507
+    },
+    "screens/floette-learned-420-natural-battle-battle-continued.ppm": {
+      "sha256": "3d27d5697797b7163efafeeedbad8f6197e1fa7dbbd0e1f4f0185d885dce8e54",
+      "size": 115215
+    },
+    "screens/floette-learned-420-natural-battle-battle-field.ppm": {
+      "sha256": "3d27d5697797b7163efafeeedbad8f6197e1fa7dbbd0e1f4f0185d885dce8e54",
+      "size": 115215
+    },
+    "screens/floette-learned-420-natural-battle-battle-fixture.ppm": {
+      "sha256": "85dab1f4b15a8da55263de383bf8f0b5cbfa6db807bb04a115abe8f973601f9e",
+      "size": 115215
+    },
+    "screens/floette-learned-420-natural-battle-battle-saved.ppm": {
+      "sha256": "3d27d5697797b7163efafeeedbad8f6197e1fa7dbbd0e1f4f0185d885dce8e54",
+      "size": 115215
+    },
+    "screens/floette-learned-420-natural-battle-encounter-boundary.ppm": {
+      "sha256": "a2d6df8201fd4b376cad8c7c48f63646ffe8838efff3a205bf56eaf07d6437ac",
+      "size": 115215
+    },
+    "screens/floette-learned-420-natural-battle-learned-move-selected.ppm": {
+      "sha256": "179869e34ee123be95840d73ef73e335555e7f0c632e1d29a2545cc961b7296b",
+      "size": 115215
+    },
+    "screens/floette-learned-420-natural-battle-learned-native-turn.ppm": {
+      "sha256": "fd8d745e6cef4103b18e8f95f89e31fd0ed413fac232fb6edf4b3a0e58a70460",
+      "size": 115215
+    },
+    "screens/floette-learned-420-natural-battle-natural-battle.ppm": {
+      "sha256": "a2d6df8201fd4b376cad8c7c48f63646ffe8838efff3a205bf56eaf07d6437ac",
+      "size": 115215
+    },
+    "unit.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "unit.stderr.txt": {
+      "sha256": "24e3fbd70a034344fa288feeac4b2e188e6a2eb30032f494d853ca6290dab1be",
+      "size": 832
+    },
+    "unit.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    }
+  },
+  "protected_bindings": {
+    "config/active_play_baseline.json": {
+      "sha256": "4800257add049ea99cdedda91413a70a255dcff9a85823463596edefa8785053",
+      "size": 394
+    },
+    "content/modernization/p08_remaining_work.json": {
+      "sha256": "d538985b7b16a1b295e2a75bf63f94371bc812208d49aae41c6a017b7ff26981",
+      "size": 41097
+    },
+    "content/modernization/pr16_bp_chooser_checkpoint.json": {
+      "sha256": "4deb7c27771c63740ab94b9cf8c7b3c386f7193b989f35ede9d131c4f4bf15bf",
+      "size": 9442
+    },
+    "content/modernization/pr16_learnset_supply_native_checkpoint.json": {
+      "sha256": "75f6fd498056a7b2c60822fb99f2d36a47fd8eab0b8d0422e12dda58efc22dd8",
+      "size": 57961
+    },
+    "content/modernization/pr16_learnset_wiki_checkpoint.json": {
+      "sha256": "71b538f186b03ca3a725a84cd87baa41d72ca2ef0fb43ce22dec0e198cdefbe7",
+      "size": 45627
+    },
+    "content/modernization/pr16_learnset_wiki_completed_actions.json": {
+      "sha256": "4c200406ab0a3895a44a82cb81d71dde1f99aaa1a281eba1da3e851062bf1808",
+      "size": 9673
+    }
+  },
+  "release_ready": false,
+  "result": {
+    "bag_reruns": 0,
+    "boundary": 863,
+    "candidate_sha256": "6e88a021785bfa7cf00e26d7f2433c380602d830e94e1d2fc31e3198cda31df2",
+    "chosen": 2018,
+    "damage": 2280,
+    "encounter": 1942,
+    "enemy_hp_before": 193,
+    "enemy_hp_min": 139,
+    "enemy_species": 838,
+    "fresh_cores": 2,
+    "host_write_barriers": 3,
+    "initial_party": {
+      "sha256": "e19c16d9192efa69c033ac281507f777efc5cc179b4dcbb8408b77b00dfbcc2e",
+      "size": 100
+    },
+    "initial_party_fixture": true,
+    "issue19_complete": false,
+    "manual_saves": 1,
+    "move": 420,
+    "outcome": 4,
+    "party_preserved_bytes": 100,
+    "persisted_party": {
+      "sha256": "fcfd46c6566483158eb4b02faac8b2afd5e0ed800f319d1bcec8283d1bfd3802",
+      "size": 100
+    },
+    "pp_after": 4,
+    "pp_before": 5,
+    "pp_spent": 2034,
+    "release_ready": false,
+    "returned": 3190,
+    "scope": "LEARNED_PARTY_FIXTURE_NATURAL_BATTLE_SAVE_CONTINUE",
+    "selection": 2016,
+    "slot": 1,
+    "species": 1029,
+    "status": "PASS",
+    "story_acquisition_verified": false,
+    "walking_steps": 48,
+    "warnings_errors": 0
+  },
+  "rom_changes": 0,
+  "run_id": 35833647521,
+  "schema_version": 1,
+  "source_bindings": {
+    ".github/workflows/pr16-learnset-gameplay.yml": {
+      "sha256": "7e82b4671f2d82af521042cc2d2f8d6a51a43a72f13f3fa4ebab594acc901e2e",
+      "size": 3038
+    },
+    "scripts/pr16_learnset_battle.py": {
+      "sha256": "93cbfaaa2fdd03e12ee8f3cccb037bf1fc64d969729388d8f69858cabccce018",
+      "size": 22111
+    },
+    "scripts/pr16_learnset_battle_field.py": {
+      "sha256": "0ad3143ea6e1fba8eeb8f86b608b6868dd2bfaac02c140cdc32d9ee34ef94afd",
+      "size": 5265
+    },
+    "scripts/pr16_learnset_battle_retry.py": {
+      "sha256": "0ad2b6d4a8493ccf80b0e022947a7400cdf220ac04753349257dd33338b4482b",
+      "size": 4554
+    },
+    "scripts/pr16_learnset_gameplay.py": {
+      "sha256": "f15310375b7db82b74e07d2f1d5c166f6c6ce9bf33db7f637b123d6e3f567062",
+      "size": 25137
+    },
+    "scripts/pr16_learnset_gameplay_followup.py": {
+      "sha256": "6e7d5b1127afc8a3ed37cf2242e64799a64d3f2943994d920a9fe46dce0feb74",
+      "size": 6764
+    },
+    "tests/test_pr16_learnset_battle.py": {
+      "sha256": "92cdca74983d54c2ce991ff51e57b9b29332039db8954f518053b1ca3b14d5dd",
+      "size": 5151
+    },
+    "tests/test_pr16_learnset_battle_field.py": {
+      "sha256": "9b903fdd2d0cbf5f6ecd9ec30008ca7deb4ec458d5c7e1a39f3a05d448dfa1da",
+      "size": 1780
+    },
+    "tests/test_pr16_learnset_battle_retry.py": {
+      "sha256": "e604800e8aaf147ec16d9f50e7d75d6cedc9b1755105e2a97d1c0f409a2efcf3",
+      "size": 1798
+    },
+    "tests/test_pr16_learnset_gameplay.py": {
+      "sha256": "cc260bd53c015dcbd7892c6e07f01a88ee0f78b0195ee556675590e0044a5b98",
+      "size": 6166
+    },
+    "tests/test_pr16_learnset_gameplay_followup.py": {
+      "sha256": "bd8f726c4a1a3b51e8f9d993c8da8771b7e559f62897df9303472da2466ad823",
+      "size": 2530
+    },
+    "tools/mgba_pr16_learnset_battle.c": {
+      "sha256": "6f0665441256b1f42468a65f146bc927654edd5e655d49cdaa3e60081741a999",
+      "size": 13452
+    },
+    "tools/mgba_pr16_learnset_gameplay.c": {
+      "sha256": "4d6050d21c6ab970b28c38643f1e0f5313c9a1f0aba03a91c9865411d08cca68",
+      "size": 6934
+    }
+  },
+  "source_head": "38fe29cec7477131741cddc98a0422207c874889",
+  "status": "PASS_SCOPED",
+  "task": "USER-20260923-LEARNSET-BATTLE",
+  "wiki_generations": 0
+}

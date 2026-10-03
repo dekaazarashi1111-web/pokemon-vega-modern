@@ -1,0 +1,247 @@
+{
+  "accepted_case_reruns": 0,
+  "actions_completion_confirmed": false,
+  "active_baseline_changed": false,
+  "arm_compiles": 0,
+  "candidate": {
+    "sha256": "b7790902733a638445129c388d65ab3c199bceb92a41338e0069221b556b9f91",
+    "size": 33554432
+  },
+  "controls": {},
+  "failure": {
+    "message": "exact authored846/QOL binary table",
+    "type": "ValueError"
+  },
+  "failures": {},
+  "host_compiles": 0,
+  "issue19_complete": false,
+  "native_processes": 0,
+  "new_unit_tests": 17,
+  "parent_candidate": {
+    "sha256": "b7790902733a638445129c388d65ab3c199bceb92a41338e0069221b556b9f91",
+    "size": 33554432
+  },
+  "predecessor": {
+    "conclusion": "failure",
+    "control": {
+      "cases_reexecuted": 0,
+      "mon": {
+        "identity": {
+          "sha256": "4b82f55755f5cf5de280506052760cacaf2666039d0f6a4efade52937e2ce5dc",
+          "size": 100
+        },
+        "level": 28,
+        "moves": [
+          250,
+          48,
+          62,
+          182
+        ],
+        "pid": 150764422,
+        "pp": [
+          15,
+          20,
+          20,
+          10
+        ],
+        "pp_bonus": 0,
+        "species": 41
+      },
+      "raw_binding": {
+        "sha256": "70c124ff774cec0b3d3ac1ca8ceb3fecc0c5f32c56df6d4d8283d49f0ffc77be",
+        "size": 7533
+      },
+      "selected_seed": 610800471,
+      "source_run": 36152934075
+    },
+    "head": "23420259b94bcfff71078d91ccb7593a1c30c92b",
+    "reflected_head": "684fd787802a6df546b7953b8ab94bdbb95051cd",
+    "run_id": 36152934075
+  },
+  "proof_bindings": {
+    "new-unit.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "new-unit.stderr.txt": {
+      "sha256": "fc09847ab8ed4621f89e6c9e83779501e2c27fea6dc60f7af4ad14c63c3284c7",
+      "size": 2371
+    },
+    "new-unit.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    }
+  },
+  "protected_bindings": {
+    ".github/workflows/pr16-special-wild-20260925.yml": {
+      "sha256": "72acbc1a2b6a1a2410c59be189d0017f22ee57893f677aed980a837ee82ff0cd",
+      "size": 4871
+    },
+    "config/active_play_baseline.json": {
+      "sha256": "4800257add049ea99cdedda91413a70a255dcff9a85823463596edefa8785053",
+      "size": 394
+    },
+    "config/research_economy_v1.json": {
+      "sha256": "206b9b4392e8d5a9e2b499a80e229d66b6a07fe3018a3b27254a2bc2fb7bf5f0",
+      "size": 9388
+    },
+    "config/stage59_wild_identity_npc_regression_repair.json": {
+      "sha256": "2ba562dadc9fbde9bf822ac71af7c55a7a3929c49699ee7a6745f155a6179f99",
+      "size": 3052
+    },
+    "content/modernization/p08_remaining_work.json": {
+      "sha256": "d538985b7b16a1b295e2a75bf63f94371bc812208d49aae41c6a017b7ff26981",
+      "size": 41097
+    },
+    "content/modernization/pr16_bp_chooser_checkpoint.json": {
+      "sha256": "4deb7c27771c63740ab94b9cf8c7b3c386f7193b989f35ede9d131c4f4bf15bf",
+      "size": 9442
+    },
+    "content/modernization/pr16_collection_gifts_checkpoint.json": {
+      "sha256": "2a56a9b5ae007c218a7fb49715da61b8e8fe33b040a35b965daac6d27360a9dc",
+      "size": 195207
+    },
+    "content/modernization/pr16_learnset_natural_checkpoint.json": {
+      "sha256": "f15336e39b840f21bcd7ef30a0b1989421a0516ffd80a7a527266186e69fdf69",
+      "size": 93858
+    },
+    "content/modernization/pr16_natural_supply_checkpoint.json": {
+      "sha256": "1852997e4a76a0f4d5cdf8ae8894e17f8c2c9e16a610521cd15bbe5508ca3b6b",
+      "size": 22881
+    },
+    "content/modernization/pr16_research_hatch_checkpoint.json": {
+      "sha256": "3075da81e215bdd67eb033f6417c368aa424db95d34ca726c877edfdb51c3aba",
+      "size": 259029
+    },
+    "content/modernization/pr16_special_wild_checkpoint.json": {
+      "sha256": "62611e5c971766ad52bffa85954e65ce95cfd2ef0ae54224081a550d8f7eb203",
+      "size": 9446
+    },
+    "overlays/move_distribution_v4/move_distribution_v4.c": {
+      "sha256": "2eb484e280530af0ab6408b87ef7304d69680fa095ba7f18bd724e78d1a7cc93",
+      "size": 5272
+    },
+    "overlays/qol_production/qol_production.c": {
+      "sha256": "fc69ca2ff94e98ffb46f1b4117c73156683e83bbc777e9f8527c027c70399423",
+      "size": 164678
+    },
+    "overlays/research_economy_v1/research_economy_v1.c": {
+      "sha256": "3f71ea1d9f308c652e70dd863b601ad39a9c648ca25bf55932b4966fa4246e62",
+      "size": 63507
+    },
+    "overlays/stage59_wild_identity_npc_regression_repair/stage59_wild_identity_npc_regression_repair.c": {
+      "sha256": "374f2ee99a8635db90048016e4d5ac3bc96fe0c8a9e99be1aff21feeaec9d768",
+      "size": 3022
+    },
+    "scripts/pr16_special_wild.py": {
+      "sha256": "2cb1441aaf91fc746d2b11ebe47e89ea496f7ff6fa0229fed90ce01f2b4db3e5",
+      "size": 16866
+    },
+    "src/modernization/pr16_learnset_wild_game.c": {
+      "sha256": "d6d8d380cf2127aacfc7b758c07b30675be212488353972156cc6526655c048c",
+      "size": 1130
+    },
+    "state/source-lock.json": {
+      "sha256": "0e230bf9fad2766d05ccb2410b22274c32085fed7544a78e37e0b5f451bda3c4",
+      "size": 3166
+    },
+    "tests/test_pr16_special_wild.py": {
+      "sha256": "86fc487b5d3440805871ac3e47bc383f7580383445433c4e6f4c1e6f992fa901",
+      "size": 4960
+    },
+    "tools/mgba_pr16_special_wild.c": {
+      "sha256": "703ddf5ec0bfe9bafd060adacbeeff2bb4b133097884a69f4df776eb3304273b",
+      "size": 7221
+    },
+    "tools/mgba_regression_smoke.c": {
+      "sha256": "8bd407a14d15893085ed41f7a1a424fa66935ff3f5301b2dd44c276276383423",
+      "size": 42788
+    }
+  },
+  "release_ready": false,
+  "results": {},
+  "rom_changes": 0,
+  "run_id": 36155273674,
+  "schema_version": 1,
+  "source_bindings": {
+    ".github/workflows/pr16-special-wild-20260925.yml": {
+      "sha256": "72acbc1a2b6a1a2410c59be189d0017f22ee57893f677aed980a837ee82ff0cd",
+      "size": 4871
+    },
+    ".github/workflows/pr16-special-wild-repair-20260925.yml": {
+      "sha256": "1f7d60297f914bcadeddf60b62612d9ae49037ab91ffa9192a859be17d2b4088",
+      "size": 4638
+    },
+    "config/research_economy_v1.json": {
+      "sha256": "206b9b4392e8d5a9e2b499a80e229d66b6a07fe3018a3b27254a2bc2fb7bf5f0",
+      "size": 9388
+    },
+    "config/stage59_wild_identity_npc_regression_repair.json": {
+      "sha256": "2ba562dadc9fbde9bf822ac71af7c55a7a3929c49699ee7a6745f155a6179f99",
+      "size": 3052
+    },
+    "content/map_bindings.csv": {
+      "sha256": "9197d8b6c4a593c2096158c2730b6b4879aecd339776cbd3b1519e4c68ceaeac",
+      "size": 18357
+    },
+    "manifests/research_encounters.csv": {
+      "sha256": "da96838351dfa2f003f70378d40699d3d1208932781535d8cca6729463999b15",
+      "size": 361891
+    },
+    "manifests/species_ids.csv": {
+      "sha256": "4e7cd7ef13761214f506e8ad58611c3dc36a0843b8b6647368677a73613f9366",
+      "size": 207095
+    },
+    "overlays/move_distribution_v4/move_distribution_v4.c": {
+      "sha256": "2eb484e280530af0ab6408b87ef7304d69680fa095ba7f18bd724e78d1a7cc93",
+      "size": 5272
+    },
+    "overlays/qol_production/qol_production.c": {
+      "sha256": "fc69ca2ff94e98ffb46f1b4117c73156683e83bbc777e9f8527c027c70399423",
+      "size": 164678
+    },
+    "overlays/research_economy_v1/research_economy_v1.c": {
+      "sha256": "3f71ea1d9f308c652e70dd863b601ad39a9c648ca25bf55932b4966fa4246e62",
+      "size": 63507
+    },
+    "overlays/stage59_wild_identity_npc_regression_repair/stage59_wild_identity_npc_regression_repair.c": {
+      "sha256": "374f2ee99a8635db90048016e4d5ac3bc96fe0c8a9e99be1aff21feeaec9d768",
+      "size": 3022
+    },
+    "scripts/build_qol_production.py": {
+      "sha256": "3719afca8f1a9385d8da073faba369c3994e98d848b65c01fec7c5832d062ea1",
+      "size": 79738
+    },
+    "scripts/pr16_special_wild.py": {
+      "sha256": "2cb1441aaf91fc746d2b11ebe47e89ea496f7ff6fa0229fed90ce01f2b4db3e5",
+      "size": 16866
+    },
+    "scripts/pr16_special_wild_repair.py": {
+      "sha256": "bad1f646dcedd54c142cf35083d85da82fe24f3a0154b231c36f063d2653305c",
+      "size": 29798
+    },
+    "src/modernization/pr16_learnset_wild_game.c": {
+      "sha256": "d6d8d380cf2127aacfc7b758c07b30675be212488353972156cc6526655c048c",
+      "size": 1130
+    },
+    "tests/test_pr16_special_wild.py": {
+      "sha256": "86fc487b5d3440805871ac3e47bc383f7580383445433c4e6f4c1e6f992fa901",
+      "size": 4960
+    },
+    "tests/test_pr16_special_wild_repair.py": {
+      "sha256": "09af617760d8ccbaa94c1c40377f39592681746cfb90b24a9d596990f0dca590",
+      "size": 8330
+    },
+    "tools/mgba_pr16_special_wild.c": {
+      "sha256": "703ddf5ec0bfe9bafd060adacbeeff2bb4b133097884a69f4df776eb3304273b",
+      "size": 7221
+    },
+    "tools/mgba_regression_smoke.c": {
+      "sha256": "8bd407a14d15893085ed41f7a1a424fa66935ff3f5301b2dd44c276276383423",
+      "size": 42788
+    }
+  },
+  "source_head": "28a138552429c5ff7473aafd316a929b601051dd",
+  "status": "STOPPED_SPECIAL_WILD_REPAIR",
+  "task": "USER-20260925-SPECIAL-WILD"
+}

@@ -1,0 +1,150 @@
+name: pr16-fixed-form-contract
+run-name: Extract exact fixed FORM owner contract without claiming native acceptance
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - codex/modernization-followup-20260908
+    paths:
+      - .github/workflows/pr16-fixed-form-contract.yml
+      - scripts/pr16_fixed_form_contract.py
+      - scripts/pr16_p03_form_gap_inventory.py
+      - tests/test_pr16_fixed_form_contract.py
+      - tests/test_pr16_p03_form_gap_inventory.py
+      - content/modernization/pr16_fixed_form_contract.json
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pr16-fixed-form-contract
+  cancel-in-progress: false
+
+jobs:
+  contract:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - name: Checkout exact triggering commit
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+
+      - name: Record source identity and run focused unit tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-fixed-form-contract
+          mkdir -p "$out"
+          git rev-parse HEAD > "$out/tested-head.txt"
+          python3 -m unittest discover \
+            -s tests \
+            -p 'test_pr16_fixed_form_contract.py' \
+            -v > "$out/fixed-contract-unit.log" 2>&1
+          python3 -m unittest discover \
+            -s tests \
+            -p 'test_pr16_p03_form_gap_inventory.py' \
+            -v > "$out/inventory-unit.log" 2>&1
+
+      - name: Download only the pinned private source archives
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          tag=$(python3 -c 'import json; print(json.load(open("config/github_private_environment.json"))["release"]["tag"])')
+          assets=.local/github-private-environment/assets
+          mkdir -p "$assets"
+          gh release download "$tag" \
+            --pattern 'pokemon-vega-private-env-v1-inputs.zip' \
+            --pattern 'pokemon-vega-private-env-v1-modernization-inputs.zip' \
+            --dir "$assets"
+
+      - name: Hash-check and restore exact P03 source archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-fixed-form-contract
+          python3 scripts/github_private_environment.py restore \
+            --archive-dir .local/github-private-environment/assets \
+            --archive pokemon-vega-private-env-v1-inputs.zip \
+            --archive pokemon-vega-private-env-v1-modernization-inputs.zip \
+            > "$out/private-restore.json"
+
+      - name: Build and drift-check exact four-route fixed FORM contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-fixed-form-contract
+          python3 scripts/pr16_fixed_form_contract.py \
+            --output "$out/contract.json" \
+            > "$out/stdout.json" \
+            2> "$out/stderr.txt"
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          out=Path('.local/pr16-fixed-form-contract')
+          value=json.loads((out/'contract.json').read_text())
+          assert value['status']=='PASS_FIXED_FORM_CONTRACT_NATIVE_PENDING'
+          assert [row['target_species'] for row in value['targets']]==[1260,1261,1386,1387]
+          assert value['source_inventory']['route_count']==4
+          assert value['source_inventory']['species_count']==4
+          assert value['native_acceptance_claimed'] is False
+          assert value['p03_fixed_form_gap_closed'] is False
+          assert value['p03_umbrella_closed'] is False
+          assert value['rom_or_save_modified'] is False
+          assert value['release_ready'] is False
+          (out/'summary.json').write_text(json.dumps({
+              'status':'PASS',
+              'tested_head':(out/'tested-head.txt').read_text().strip(),
+              'target_species':[row['target_species'] for row in value['targets']],
+              'route_ids':[row['route_id'] for row in value['targets']],
+              'project_move_ids':[row['project_move_id'] for row in value['targets']],
+              'case_ids':[row['id'] for row in value['case_matrix']],
+              'native_acceptance_claimed':False,
+          },sort_keys=True,indent=2)+'\n')
+          PY
+          cmp "$out/contract.json" content/modernization/pr16_fixed_form_contract.json
+          git diff --exit-code
+
+      - name: Preserve source bindings, never private archive, ROM, or save
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-fixed-form-contract
+          python3 - <<'PY'
+          import hashlib,json,pathlib
+          root=pathlib.Path('.')
+          out=root/'.local/pr16-fixed-form-contract'
+          names=[
+              'scripts/pr16_fixed_form_contract.py',
+              'scripts/pr16_p03_form_gap_inventory.py',
+              'tests/test_pr16_fixed_form_contract.py',
+              'tests/test_pr16_p03_form_gap_inventory.py',
+              '.github/workflows/pr16-fixed-form-contract.yml',
+              'tools/modernization_learnsets.py',
+              'tools/modernization_p03_stage73_consumers.py',
+              'config/modernization_p03_stage73_consumers.json',
+              'content/collection_supply_v1/canonical_model.json',
+              'content/modernization/pr16_fixed_form_contract.json',
+          ]
+          bindings={}
+          for name in names:
+              raw=(root/name).read_bytes()
+              bindings[name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+          (out/'source-bindings.json').write_text(json.dumps(bindings,sort_keys=True,indent=2)+'\n')
+          PY
+
+      - name: Upload exact read-only contract
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr16-fixed-form-contract
+          path: .local/pr16-fixed-form-contract/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

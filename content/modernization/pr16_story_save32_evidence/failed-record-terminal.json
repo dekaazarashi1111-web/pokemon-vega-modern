@@ -1,0 +1,131 @@
+{
+  "run": {
+    "id": 37122292424,
+    "head_sha": "730146ee64b35f6e7feac264680cedf4d46a6033",
+    "head_branch": "codex/modernization-followup-20260908",
+    "path": ".github/workflows/pr16-story-save32-record.yml",
+    "status": "completed",
+    "conclusion": "failure",
+    "run_attempt": 1
+  },
+  "job": {
+    "id": 111200634955,
+    "run_id": 37122292424,
+    "workflow_name": "pr16-story-save32-record",
+    "head_branch": "codex/modernization-followup-20260908",
+    "run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/37122292424",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOUPNhZs8AAAAZ5BMISw",
+    "head_sha": "730146ee64b35f6e7feac264680cedf4d46a6033",
+    "url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/jobs/111200634955",
+    "html_url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/37122292424/job/111200634955",
+    "status": "completed",
+    "conclusion": "failure",
+    "created_at": "2026-10-03T12:15:40Z",
+    "started_at": "2026-10-03T12:15:43Z",
+    "completed_at": "2026-10-03T12:16:35Z",
+    "name": "record",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-10-03T12:16:19Z",
+        "completed_at": "2026-10-03T12:16:20Z"
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-10-03T12:16:20Z",
+        "completed_at": "2026-10-03T12:16:33Z"
+      },
+      {
+        "name": "Scoped source guard before saved Save32 acceptance",
+        "status": "completed",
+        "conclusion": "failure",
+        "number": 3,
+        "started_at": "2026-10-03T12:16:33Z",
+        "completed_at": "2026-10-03T12:16:33Z"
+      },
+      {
+        "name": "Record Save32 and twenty-four new acceptance checks with retained stderr",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 4,
+        "started_at": "2026-10-03T12:16:33Z",
+        "completed_at": "2026-10-03T12:16:33Z"
+      },
+      {
+        "name": "Scoped final index private guard and fixed resume",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 5,
+        "started_at": "2026-10-03T12:16:33Z",
+        "completed_at": "2026-10-03T12:16:33Z"
+      },
+      {
+        "name": "Lightweight task graph",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 6,
+        "started_at": "2026-10-03T12:16:33Z",
+        "completed_at": "2026-10-03T12:16:33Z"
+      },
+      {
+        "name": "Commit and nonforce push same branch",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 7,
+        "started_at": "2026-10-03T12:16:33Z",
+        "completed_at": "2026-10-03T12:16:33Z"
+      },
+      {
+        "name": "Exact committed text readback",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 8,
+        "started_at": "2026-10-03T12:16:33Z",
+        "completed_at": "2026-10-03T12:16:33Z"
+      },
+      {
+        "name": "Run actions/upload-artifact@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 9,
+        "started_at": "2026-10-03T12:16:33Z",
+        "completed_at": "2026-10-03T12:16:33Z"
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 18,
+        "started_at": "2026-10-03T12:16:33Z",
+        "completed_at": "2026-10-03T12:16:34Z"
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 19,
+        "started_at": "2026-10-03T12:16:34Z",
+        "completed_at": "2026-10-03T12:16:34Z"
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/check-runs/111200634955",
+    "labels": [
+      "ubuntu-24.04"
+    ],
+    "runner_id": 1000019217,
+    "runner_name": "GitHub Actions 1000019217",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  },
+  "native_processes": 0,
+  "tests_executed": 0,
+  "artifact_count": 0,
+  "reason_ja": "strict guardのCODEへ比較base以前に追加済みの採取器2pathを含め、変更集合不一致で停止。CODEは実差分5pathへ限定し、採取器の保全bindingは別PREPARATION_CODEへ分離。入力/ROM/測定/旧試験を再走しない。"
+}

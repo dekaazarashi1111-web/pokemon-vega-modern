@@ -1,0 +1,190 @@
+{
+  "actions": {
+    "completed_at": "2026-09-14T03:17:26Z",
+    "conclusion": "success",
+    "event": "push",
+    "head_sha": "7bfbaeae42005ec6c133f316f07fb75dce438cad",
+    "job_id": 103846389011,
+    "run_id": 34802013676,
+    "started_at": "2026-09-14T03:15:59Z",
+    "status": "completed",
+    "workflow_name": "交換個体保持target callsite・ABIのbuild-cache照合",
+    "workflow_path": ".github/workflows/pr16-bp-retention-abi-cache.yml"
+  },
+  "artifact": {
+    "digest": "sha256:d09f9593ca715af1a0f0700d3888101e2b9f8254b4a06210905426781d7c27af",
+    "id": 10331807964,
+    "member_hashes": {
+      "abi.json": {
+        "sha256": "85ff04f8249655458b152dfc06b40c0390d50986f0d4a793231f2e5a0f5023e7",
+        "size": 12309
+      },
+      "abi.stderr": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "abi.stdout": {
+        "sha256": "9347b5127bcd50e85ddfb6293fb2b9e4be41ed18dc8934a7e8bc2d70867a58ac",
+        "size": 600
+      },
+      "actions-before.json": {
+        "sha256": "c4f18411651e92b1ca02c1f5a2094c42104a4e1c6d219bd732d3bbcb50d1367a",
+        "size": 1325
+      },
+      "archive-binding.json": {
+        "sha256": "4e3943afb418486f72177ebc00d963aece5d5e2999d8988d3b8c6434f89368e6",
+        "size": 489
+      },
+      "cache-discovery.json": {
+        "sha256": "6840e22d2817eacbb8f0bad470ecaa78e4bee8614a6a3c3f6b29465040c47ebb",
+        "size": 314748
+      },
+      "resume-before.json": {
+        "sha256": "df9f69096ae2c7d1841176d015e32cd18e15be6a2c1d00d9445f594fdb652d37",
+        "size": 83
+      },
+      "unit.stderr": {
+        "sha256": "b90e6aa25ce98bc517ec88f16e42e07d1777d28ca93ea551e09bc70b69b46d5b",
+        "size": 1938
+      },
+      "unit.stdout": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      }
+    },
+    "name": "pr16-bp-retention-abi-cache",
+    "size": 88087
+  },
+  "boundary_ja": "固定source・2 linked.o・最終candidateのCFG/ABIだけを照合。runtime wrapper接続、native個体保持、2/3戦目、3勝BP稼得/消費は未受入。",
+  "cache": {
+    "binding": {
+      "name": "pokemon-vega-private-env-v1-build-cache.zip",
+      "sha256": "bf1053779eb1301d324c8f192d00ca07a1a830c734e3a05034f0bd90f46f143f",
+      "size": 724902234
+    },
+    "fingerprint_aliases": [
+      "9215826454ee6023888d2f53d33b662d21a340af868c92637aae2c5c191c5717",
+      "a356f976cfbb991d5768d8000e9863d3f2b6ba9d10fa27d799bea3c158dba7fa"
+    ],
+    "inventory": {
+      "sha256": "6840e22d2817eacbb8f0bad470ecaa78e4bee8614a6a3c3f6b29465040c47ebb",
+      "size": 314748
+    },
+    "linked_objects": [
+      {
+        "sha256": "52bbd57a7d2649164c4706ee45dc17ef1f8357862d8dbd79bdcd439c2b0a36fb",
+        "size": 5733212
+      },
+      {
+        "sha256": "52bbd57a7d2649164c4706ee45dc17ef1f8357862d8dbd79bdcd439c2b0a36fb",
+        "size": 5733212
+      }
+    ],
+    "linked_objects_byte_identical": true,
+    "selected_fingerprint": "9215826454ee6023888d2f53d33b662d21a340af868c92637aae2c5c191c5717"
+  },
+  "candidate": {
+    "sha256": "7f32ba99ad34cd0320559a8dc6990876084f371c8bfae769c7482090c7be90cd",
+    "size": 33554432
+  },
+  "candidate_changed": false,
+  "classification": "SCOPED_STATIC_AUDIT_NOT_RUNTIME_NOT_NATIVE",
+  "implementation_commit": "7bfbaeae42005ec6c133f316f07fb75dce438cad",
+  "implementation_parent": "66b08fe8d50676e8a90cc798185d19720f3a53e7",
+  "native_bp_earning_accepted": false,
+  "native_retention_verified": false,
+  "next_step_ja": "照合済みplayer predicate callsite 0x090DD51C のtrue pathだけへ既存保持wrapperを最小接続し、修復後native個体保持検証を実行する。保持確認前に2/3戦目・BP報酬へ進まない。",
+  "recorded_at": "2026-09-14T03:32:55Z",
+  "release_ready": false,
+  "runtime_connected": false,
+  "schema_version": 1,
+  "source_contract": {
+    "builder_signature": "void BuildTrainerPartySetup(void)",
+    "frontier_call_count": 7,
+    "predicate_argument_count": 0,
+    "predicate_call_count": 2,
+    "predicate_declaration": "bool8 IsRandomBattleTowerBattle();",
+    "predicate_definition": "bool8 IsRandomBattleTowerBattle()",
+    "predicate_return_abi": "bool8/u8 in r0",
+    "second_predicate_role": "multi-partner fallback",
+    "target_player_call": "BuildFrontierParty(gPlayerParty, 0, towerTier, TRUE, TRUE + 1, B_SIDE_PLAYER)",
+    "target_predicate_ordinal_zero_based": 0
+  },
+  "source_identities": {
+    "vendor/upstream/CFRU-JP/include/new/frontier.h": {
+      "sha256": "aa62962fe7f2828a89b64fd8355e386c9ce72f16f0cff27db279d3448d971801",
+      "size": 11523
+    },
+    "vendor/upstream/CFRU-JP/src/build_pokemon.c": {
+      "sha256": "ac81e3a9a8c7a58105573e6ee2abf62a4b22922e88c6c7d3a1ecdc6c9431e824",
+      "size": 138366
+    },
+    "vendor/upstream/CFRU-JP/src/frontier.c": {
+      "sha256": "a33395bfaf81eec041a423d44d5620908e587a4f6e5614780b4bde393d7f4e06",
+      "size": 56750
+    }
+  },
+  "status": "PASS_TARGET_CALLSITE_ABI_NOT_RUNTIME_CONNECTION_NOT_NATIVE_ACCEPTANCE",
+  "target": {
+    "build_function_address": 151900836,
+    "build_function_address_hex": "0x090DD2A4",
+    "candidate_branch_targets_verified": true,
+    "candidate_control_flow_verified": true,
+    "frontier_call_count": 7,
+    "guard": {
+      "compare": "cmp r0, #0",
+      "compare_address": 151901474,
+      "compare_address_hex": "0x090DD522",
+      "condition": "BNE/nonzero bool8",
+      "condition_branch_address": 151901476,
+      "condition_branch_address_hex": "0x090DD524",
+      "false_branch_address": 151901478,
+      "false_branch_address_hex": "0x090DD526",
+      "false_continuation": 151900902,
+      "false_continuation_hex": "0x090DD2E6",
+      "paths_rejoin": true,
+      "player_build_callsite": {
+        "address": 151901496,
+        "bytes": "fcf7b0fe",
+        "symbol": "BuildFrontierParty.isra.0",
+        "symbol_size": 9552,
+        "target": 151888540
+      },
+      "true_block_direct_call_count": 1,
+      "true_block_exit_address": 151901500,
+      "true_block_exit_address_hex": "0x090DD53C",
+      "true_block_exit_target": 151900902,
+      "true_block_exit_target_hex": "0x090DD2E6",
+      "true_block_start": 151901480,
+      "true_block_start_hex": "0x090DD528"
+    },
+    "player_build_callsite": {
+      "address": 151901496,
+      "bytes": "fcf7b0fe",
+      "symbol": "BuildFrontierParty.isra.0",
+      "symbol_size": 9552,
+      "target": 151888540
+    },
+    "player_build_callsite_address_hex": "0x090DD538",
+    "player_build_symbol": "BuildFrontierParty.isra.0",
+    "predicate_call_count": 2,
+    "predicate_callsite_address": 151901468,
+    "predicate_callsite_address_hex": "0x090DD51C",
+    "predicate_ordinal_zero_based": 0,
+    "predicate_symbol_address": 152049540,
+    "predicate_symbol_address_hex": "0x09101784"
+  },
+  "target_abi_verified": true,
+  "target_callsite_verified": true,
+  "task": "USER-20260914-BP-RETENTION-ABI",
+  "tested_head": "7bfbaeae42005ec6c133f316f07fb75dce438cad",
+  "validation": {
+    "abi_stderr_empty": true,
+    "accepted_native_cases_replayed": 0,
+    "actions_host_test_count": 12,
+    "actions_host_test_result": "PASS",
+    "local_cfg_regression_test_count": 4,
+    "local_cfg_regression_test_result": "PASS",
+    "new_emulator_processes": 0
+  }
+}

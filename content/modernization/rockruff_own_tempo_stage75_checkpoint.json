@@ -1,0 +1,145 @@
+{
+  "allocation": {
+    "inherited_layout_changes": 0,
+    "mutated_content_hash_sequences": [
+      25,
+      27,
+      33,
+      34,
+      44,
+      48,
+      61,
+      62,
+      66
+    ],
+    "new_sequence": 78,
+    "path": "build/stages/75_modernization_rockruff_own_tempo_allocation.json",
+    "sha256": "90a68321eebbebde765077eca81643f176d91152f331be77360cb8c52e188f09",
+    "size": 45230
+  },
+  "bps": {
+    "path": "build/patches/stage74-to-stage75-modernization-rockruff-own-tempo.bps",
+    "round_trip": true,
+    "sha256": "23c012b655b15a3ac5d97813b4d8c64661aadb93c9bf8539d8e8c22a10bdeba7",
+    "size": 336487,
+    "source_sha256": "481083bc50bd353955990375e3cc5e0a76f9b0f681ae54caa6c31f66ef22d65e",
+    "target_sha256": "a179c024294f4f1bbf34eb603af255f6896265d9d8523344719b349f8a4495c3"
+  },
+  "checks": {
+    "ability_slots_20_20_20": "PASS",
+    "all_19_species_count_consumers_updated": "PASS",
+    "all_22_stage73_stage74_runtime_abi_pins": "PASS",
+    "all_24_species_tables_relocated": "PASS",
+    "all_310_pointer_consumers_repointed": "PASS",
+    "bps_roundtrip": "PASS",
+    "collection_row_internal_form_no_weight": "PASS",
+    "engine_and_existing_script_preimages": "PASS",
+    "natdex_744_both_tables": "PASS",
+    "normal_dusk_edge_removed": "PASS",
+    "own_dusk_edge_added": "PASS",
+    "p03_owner_resolved_without_accounting_delta": "PASS",
+    "save_layout_unchanged": "PASS"
+  },
+  "contract": {
+    "path": "content/modernization/rockruff_own_tempo_stage75_contract.json",
+    "sha256": "f57efb88124fdf18681a012d520d4382b715763c917fd40eb56a30ba6dce5684",
+    "size": 5799
+  },
+  "done": false,
+  "identity": {
+    "ability_id": 20,
+    "ability_slots": [
+      20,
+      20,
+      20
+    ],
+    "classification": "INTERNAL_CONDITIONAL_FORM",
+    "collection_class": 4,
+    "collection_weight": 0,
+    "dusk_species_id": 1263,
+    "form_key": "FORM_KEY_ROCKRUFF_OWN_TEMPO",
+    "national_dex": 744,
+    "normal_species_id": 1142,
+    "reference_id": "scarletviolet:0744.01",
+    "save_layout_changed": false,
+    "species_id": 1670,
+    "species_key": "SPECIES_KEY_ROCKRUFF_OWN_TEMPO"
+  },
+  "metadata": {
+    "path": "build/stages/75_modernization_rockruff_own_tempo.json",
+    "sha256": "be84b5a54c7ea8de23d4245402a427cc0dd444949363b8b6ca3e206b5ecd93f4",
+    "size": 151435
+  },
+  "mgba": "DEFERRED_TO_ROOT_FINAL_CUMULATIVE_ONCE",
+  "output": {
+    "crc32": "1511F429",
+    "path": "build/stages/75_modernization_rockruff_own_tempo.gba",
+    "sha256": "a179c024294f4f1bbf34eb603af255f6896265d9d8523344719b349f8a4495c3",
+    "size": 33554432
+  },
+  "p03": {
+    "accounting": {
+      "materialized_routes_after": 83162,
+      "materialized_routes_before": 83162,
+      "owner_identity_support_routes": 60,
+      "reason": "38 carry routes were already accounted on target 1263; Stage75 resolves their owner identity without duplicating routes",
+      "route_accounting_delta": 0,
+      "selected_routes_after": 118369,
+      "selected_routes_before": 118369
+    },
+    "exclusions": {
+      "browt_pombon_gecqua_materialized": 0,
+      "full_p03_done": false,
+      "prohibited_coercions_materialized": 0,
+      "side_change_materialized": 0,
+      "side_change_project_move_id": 1063
+    },
+    "full_p03_done": false,
+    "missing_owner_paths": 0
+  },
+  "parent": {
+    "path": "build/stages/74_modernization_p03_supply_runtime.gba",
+    "sha256": "481083bc50bd353955990375e3cc5e0a76f9b0f681ae54caa6c31f66ef22d65e",
+    "size": 33554432
+  },
+  "payload": {
+    "address": "0x0954B030",
+    "allocation_sequence": 78,
+    "path": "generated/runtime/modernization_rockruff_own_tempo_stage75.bin",
+    "sha256": "18a62cc6fad32eb5997e569d4c340a87ed56f068826ae841dbe36a9764616206",
+    "size": 565280
+  },
+  "pending": [
+    "STAGE75_FOCUSED_MGBA",
+    "FINAL_CUMULATIVE_MGBA",
+    "OTHER_P02_P05_PENDING_EDGES"
+  ],
+  "release_candidate": false,
+  "route_audit": {
+    "path": "generated/runtime/modernization_rockruff_own_tempo_stage75_route_audit.json",
+    "sha256": "ac3deebaa4eb190ab1e581666bb5d56aa98540e2fa15e72a2ffd22ffb1c255a5",
+    "size": 2604
+  },
+  "runtime_audit": {
+    "path": "generated/runtime/modernization_rockruff_own_tempo_stage75_audit.json",
+    "sha256": "51c564a4b372e15cf43edb1899760a705c528be4af826f2a9dc8d077dac6ac99",
+    "size": 1086089
+  },
+  "save": {
+    "existing_1142_preserved": true,
+    "existing_1263_preserved": true,
+    "layout_changed": false,
+    "migration_required": false,
+    "new_species_field_width": "existing_u16"
+  },
+  "schema_version": 1,
+  "species_count": 1671,
+  "stage": 75,
+  "status": "ROM_MATERIALIZED_CHECKPOINT",
+  "symbols": {
+    "path": "generated/runtime/modernization_rockruff_own_tempo_stage75_symbols.json",
+    "sha256": "48b2251110325dcc5a03b32a0bf820d73f02fca74a51ab5ff1073a6dcc8ac769",
+    "size": 7027
+  },
+  "task": "USER-MODERNIZATION-ROCKRUFF-OWN-TEMPO-STAGE75"
+}

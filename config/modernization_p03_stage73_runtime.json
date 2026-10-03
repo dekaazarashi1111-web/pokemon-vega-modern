@@ -1,0 +1,137 @@
+{
+  "schema_version": 1,
+  "task": "USER-MODERNIZATION-P03-STAGE73-CONSUMER-RUNTIME",
+  "stage": 73,
+  "status": "STAGE72_IDENTITY_PINNED",
+  "parent_identity": {
+    "stage72_commit": "bbab6b2e943186cf437a6dca90712c01f0319ded",
+    "rom": {"path": "build/stages/72_modernization_p05_ability_rom_runtime.gba", "size": 33554432, "sha256": "f27411a2dcef2ec2c1f3c06de624b24838683f5e77017fafa9bf445edc00d059"},
+    "metadata": {"path": "build/stages/72_modernization_p05_ability_rom_runtime.json", "size": 15789, "sha256": "d3998b9d8a2eea0b2fff7dbc79538673d0bd48931faa373e277a12dd36c28c8f"},
+    "allocation": {"path": "build/stages/72_modernization_p05_ability_rom_runtime_allocation.json", "size": 42769, "sha256": "8caad52acb7cf8a16dd6105526c844935119c01d56895508a710be0de9d5f9e2"},
+    "checkpoint": {"path": "content/modernization/p05_ability_rom_runtime_checkpoint.json", "size": 1464, "sha256": "1683e4fa6d2ed8d445e8ffd7d78aa97004a52e537453d1abf1394afbeb9f71bb"},
+    "policy": "FAIL_CLOSED_UNTIL_EXACT_STAGE72_COMMIT_AND_FOUR_ARTIFACT_IDENTITIES_ARE_PINNED"
+  },
+  "inputs": {
+    "consumer_preflight": {
+      "path": "config/modernization_p03_stage73_consumers.json",
+      "size": 5064,
+      "sha256": "61d53ed8059c2fbad935885d995c4a406b9e4b19b8e3035d688742188f4f0b27"
+    },
+    "stage67_checkpoint": {
+      "path": "content/modernization/p03_stage67_checkpoint.json",
+      "size": 11581,
+      "sha256": "90c6d83eba73ec9aee3450c111d1f4da607bc0b8b58945245cb13888cba96629"
+    },
+    "stage67_route_audit": {
+      "path": "content/modernization/p03_stage67_consumer_route_audit.json",
+      "size": 92230,
+      "sha256": "9db0a2766711d6bb45d7822189833c6add033638ac78f51d5ea7e2ca450df0f0"
+    },
+    "stage67_config": {
+      "path": "config/modernization_p03_stage67.json",
+      "size": 9974,
+      "sha256": "d477e805302192ca645adc673cc683ab41f224bbdd18b5c566212c07d7b55b83"
+    },
+    "collection_model": {
+      "path": "content/collection_supply_v1/canonical_model.json",
+      "size": 899889,
+      "sha256": "fb8066c0a8140da079b1e947cdfb6c76e987cf0c2514456a86868ec554f061d0"
+    },
+    "collection_runtime_source": {
+      "path": "overlays/collection_supply_v1/collection_supply_v1.c",
+      "size": 65077,
+      "sha256": "14c27f895b9ae8d1b3d9d077ce49999fc17a1422a83e8ddb87657c66ebab06d3"
+    },
+    "rom_regions": {
+      "path": "config/rom_regions.csv",
+      "size": 513,
+      "sha256": "f5dcb0ecf2f726bfff1e9c8382204e79b1354ee9071f8d9ac00a83de7a9b3553"
+    }
+  },
+  "consumer_contract": {
+    "accounted_route_count": 40570,
+    "new_runtime_materialized_route_count": 5363,
+    "existing_owner_accounted_route_count": 35207,
+    "conditional_egg": {"routes": 41, "exact_rows": 40, "existing_light_ball_owner": 1},
+    "shared_egg": {"routes": 5023, "consumer": "MOVE_MEMORY_MIRROR_HERB_DISTINCT_TABLE"},
+    "pre_evolution_carry": {"routes": 35141, "consumer": "EXISTING_FOUR_MOVE_SLOT_PERSISTENCE"},
+    "reminder": {"routes": 295, "consumer": "MOVE_MEMORY_NORMAL_MODE_DEDICATED_TABLE"},
+    "form_change": {"routes": 70, "generic_carry": 61, "existing_fixed_transition": 4, "rotom_runtime": 5},
+    "remaining_full_p03_routes": {"machine": 26279, "tutor": 369, "total": 26648},
+    "completion_claim": "FIVE_GROUP_CONSUMER_BOUNDARY_CHECKPOINT_NOT_FULL_P03"
+  },
+  "runtime": {
+    "species_count": 1621,
+    "move_count": 1063,
+    "candidate_capacity": 40,
+    "side_change_project_move_id": 1063,
+    "prohibited_species_keys": ["SPECIES_KEY_BROWT", "SPECIES_KEY_POMBON", "SPECIES_KEY_GECQUA"],
+    "prohibited_coercions": [
+      "SHARED_EGG_TO_NORMAL_EGG_TABLE",
+      "PRE_EVOLUTION_CARRY_TO_TARGET_LEVEL_OR_EGG",
+      "FORM_CHANGE_TO_TARGET_LEVEL_OR_EGG",
+      "REMINDER_TO_LEVEL_ZERO",
+      "SPECIAL_BREEDING_TO_UNCONDITIONAL_EGG"
+    ],
+    "exact_egg_species": [203, 324, 364, 608, 719, 724, 727],
+    "rotom_signature_moves": {"894": 315, "895": 56, "896": 59, "897": 373, "898": 401}
+  },
+  "parent_abi": {
+    "collection_form_service": {
+      "entry": "0x09405BD5",
+      "continuation_after_8_byte_prologue": "0x09405BDD",
+      "state": "0x0203F720",
+      "last_result_offset": 8,
+      "pending_index_offset": 10,
+      "test_mode_offset": 27,
+      "try_saving_data": "0x093789E5",
+      "get_mon_data": "0x0803F355",
+      "set_mon_data": "0x0803FA71",
+      "set_mon_move_slot": "0x09114699",
+      "remove_mon_pp_bonus": "0x08040755",
+      "shift_move_slot": "0x080C0C79"
+    },
+    "egg": {
+      "primary_root_literal_rom_offset": "0x00045214",
+      "secondary_root_literal_rom_offset": "0x0004528C",
+      "scan_limit_literal_rom_offset": "0x00045288",
+      "expected_root": "0x09FED0C4",
+      "expected_scan_limit": 7557,
+      "expected_table_size": 15118,
+      "expected_table_sha256": "d9feba3494b83578dab53ab260705fada1f6ca64a18b5b5e52e37c3abab1f3a8",
+      "row_abi": "U16_20000_PLUS_SPECIES_MARKER_MOVE_IDS_FFFF_TERMINATOR"
+    },
+    "hooks": [
+      {"name": "GetAllEggMoves", "address": "0x090EB970", "width": 12, "target": "Stage73_GetAllEggMoves", "parent_hex": "f0b5de4657464e464546e0b5"},
+      {"name": "VegaMoveMemory_GetMoveRelearnerMoves", "address": "0x091141D4", "width": 8, "target": "Stage73_GetMoveRelearnerMoves", "parent_hex": "004b184745012d09"},
+      {"name": "CollectionSupply_ApplySelectedForm", "address": "0x09405BD4", "width": 8, "target": "Stage73_CollectionApplySelectedForm", "parent_hex": "10b5064b5889064b"}
+    ]
+  },
+  "allocations": [
+    {
+      "name": "modernization_p03_stage73_consumer_runtime_payload",
+      "region": "integration_modules",
+      "alignment": 16,
+      "owner": "USER-MODERNIZATION-P03-STAGE73-CONSUMER-RUNTIME",
+      "purpose": "conditional/shared/reminder consumer hooks and Rotom form-move transaction adapter"
+    },
+    {
+      "name": "modernization_p03_stage73_exact_egg_rows",
+      "region": "future_tail",
+      "alignment": 4,
+      "owner": "USER-MODERNIZATION-P03-STAGE73-CONSUMER-RUNTIME",
+      "purpose": "Stage67 egg table with seven audited alias/incense conflict species replaced exactly"
+    }
+  ],
+  "outputs": {
+    "rom": "build/stages/73_modernization_p03_consumer_runtime.gba",
+    "metadata": "build/stages/73_modernization_p03_consumer_runtime.json",
+    "allocation": "build/stages/73_modernization_p03_consumer_runtime_allocation.json",
+    "incremental_bps": "build/patches/stage72-to-stage73-modernization-p03-consumer-runtime.bps",
+    "payload": "generated/runtime/modernization_p03_stage73_consumer_runtime.bin",
+    "symbols": "generated/runtime/modernization_p03_stage73_consumer_runtime_symbols.json",
+    "audit": "generated/runtime/modernization_p03_stage73_consumer_runtime_audit.json",
+    "checkpoint": "content/modernization/p03_stage73_consumer_runtime_checkpoint.json",
+    "route_audit": "content/modernization/p03_stage73_consumer_runtime_route_audit.json"
+  }
+}

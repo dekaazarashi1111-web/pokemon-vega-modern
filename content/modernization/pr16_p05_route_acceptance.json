@@ -1,0 +1,601 @@
+{
+  "acceptance": {
+    "roots": {
+      "capture_candidates": [
+        {
+          "first_coordinate_owner": true,
+          "group": 1,
+          "header": 73,
+          "map": 113,
+          "max": 80,
+          "method": "land",
+          "min": 71,
+          "slot": 6,
+          "species": 411
+        },
+        {
+          "first_coordinate_owner": true,
+          "group": 1,
+          "header": 90,
+          "map": 118,
+          "max": 100,
+          "method": "land",
+          "min": 90,
+          "slot": 4,
+          "species": 411
+        }
+      ],
+      "decoded_roots": 5334,
+      "new_emulator_runs": 0,
+      "physical_admission_accepted": false,
+      "script_diagnostics": [
+        {
+          "address": 156560604,
+          "kind": "unknown_opcode",
+          "opcode": 240
+        }
+      ],
+      "status": "STATIC_PARTIAL_DIAGNOSTICS_NOT_NATIVE_ACCEPTANCE",
+      "unresolved_roots": [
+        {
+          "address": 285868032,
+          "kind": "object",
+          "label": "map:12:7:object:0"
+        },
+        {
+          "address": 544108397,
+          "kind": "coord",
+          "label": "map:12:7:coord:16"
+        },
+        {
+          "address": 173,
+          "kind": "coord",
+          "label": "map:12:7:coord:26"
+        },
+        {
+          "address": 25344,
+          "kind": "bg",
+          "label": "map:12:7:bg:15"
+        },
+        {
+          "address": 4294967295,
+          "kind": "bg",
+          "label": "map:12:7:bg:17"
+        },
+        {
+          "address": 173,
+          "kind": "bg",
+          "label": "map:12:7:bg:35"
+        }
+      ],
+      "wild_diagnostics": [
+        {
+          "error": "info pointer outside ROM",
+          "group": 96,
+          "header": 139,
+          "info": 1819541504,
+          "map": 8,
+          "method": "fishing"
+        }
+      ]
+    },
+    "shop": {
+      "battle_connection_accepted": false,
+      "cases": [
+        {
+          "automatic_saves": 1,
+          "battle_connection_accepted": false,
+          "bp_after": 48,
+          "bp_before": 64,
+          "case": "feraligatr",
+          "catalog_index": 17,
+          "claim_catalogue_rechecked": true,
+          "fresh_cores": 2,
+          "full_p05_acceptance": false,
+          "host_write_barriers": 7,
+          "inventory_and_party_preserved": true,
+          "item": 1016,
+          "manual_saves": 1,
+          "map_ring_bp_claims_are_fixtures": true,
+          "natural_capture_accepted": false,
+          "pages": 3,
+          "physical_host": [
+            96,
+            5,
+            14,
+            24,
+            19
+          ],
+          "quantity": 1,
+          "release_ready": false,
+          "result": 0,
+          "rom_sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
+          "rtc_flash_bytes_preserved": 131072,
+          "schema_version": 1,
+          "scope": "PR16_PHYSICAL_MEGA_SHOP_ACQUISITION_SAVE",
+          "status": "PASS",
+          "total_frames": 5613,
+          "warnings_errors": 0,
+          "witness": {
+            "interaction": 1,
+            "menu": 123,
+            "reloaded": 5370,
+            "returned": 1486,
+            "revisit": 5492,
+            "saved": 2948,
+            "selection": 790
+          }
+        },
+        {
+          "automatic_saves": 1,
+          "battle_connection_accepted": false,
+          "bp_after": 48,
+          "bp_before": 64,
+          "case": "eelektross",
+          "catalog_index": 13,
+          "claim_catalogue_rechecked": true,
+          "fresh_cores": 2,
+          "full_p05_acceptance": false,
+          "host_write_barriers": 7,
+          "inventory_and_party_preserved": true,
+          "item": 1012,
+          "manual_saves": 1,
+          "map_ring_bp_claims_are_fixtures": true,
+          "natural_capture_accepted": false,
+          "pages": 2,
+          "physical_host": [
+            96,
+            5,
+            14,
+            24,
+            19
+          ],
+          "quantity": 1,
+          "release_ready": false,
+          "result": 0,
+          "rom_sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
+          "rtc_flash_bytes_preserved": 131072,
+          "schema_version": 1,
+          "scope": "PR16_PHYSICAL_MEGA_SHOP_ACQUISITION_SAVE",
+          "status": "PASS",
+          "total_frames": 5423,
+          "warnings_errors": 0,
+          "witness": {
+            "interaction": 1,
+            "menu": 123,
+            "reloaded": 5180,
+            "returned": 1296,
+            "revisit": 5302,
+            "saved": 2758,
+            "selection": 568
+          }
+        },
+        {
+          "automatic_saves": 1,
+          "battle_connection_accepted": false,
+          "bp_after": 48,
+          "bp_before": 64,
+          "case": "pyroar",
+          "catalog_index": 32,
+          "claim_catalogue_rechecked": true,
+          "fresh_cores": 2,
+          "full_p05_acceptance": false,
+          "host_write_barriers": 7,
+          "inventory_and_party_preserved": true,
+          "item": 1031,
+          "manual_saves": 1,
+          "map_ring_bp_claims_are_fixtures": true,
+          "natural_capture_accepted": false,
+          "pages": 6,
+          "physical_host": [
+            96,
+            5,
+            14,
+            24,
+            19
+          ],
+          "quantity": 1,
+          "release_ready": false,
+          "result": 0,
+          "rom_sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
+          "rtc_flash_bytes_preserved": 131072,
+          "schema_version": 1,
+          "scope": "PR16_PHYSICAL_MEGA_SHOP_ACQUISITION_SAVE",
+          "status": "PASS",
+          "total_frames": 6309,
+          "warnings_errors": 0,
+          "witness": {
+            "interaction": 1,
+            "menu": 123,
+            "reloaded": 6066,
+            "returned": 2182,
+            "revisit": 6188,
+            "saved": 3644,
+            "selection": 1456
+          }
+        },
+        {
+          "automatic_saves": 1,
+          "battle_connection_accepted": false,
+          "bp_after": 48,
+          "bp_before": 64,
+          "case": "meganium",
+          "catalog_index": 30,
+          "claim_catalogue_rechecked": true,
+          "fresh_cores": 2,
+          "full_p05_acceptance": false,
+          "host_write_barriers": 7,
+          "inventory_and_party_preserved": true,
+          "item": 1029,
+          "manual_saves": 1,
+          "map_ring_bp_claims_are_fixtures": true,
+          "natural_capture_accepted": false,
+          "pages": 6,
+          "physical_host": [
+            96,
+            5,
+            14,
+            24,
+            19
+          ],
+          "quantity": 1,
+          "release_ready": false,
+          "result": 0,
+          "rom_sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
+          "rtc_flash_bytes_preserved": 131072,
+          "schema_version": 1,
+          "scope": "PR16_PHYSICAL_MEGA_SHOP_ACQUISITION_SAVE",
+          "status": "PASS",
+          "total_frames": 6245,
+          "warnings_errors": 0,
+          "witness": {
+            "interaction": 1,
+            "menu": 123,
+            "reloaded": 6002,
+            "returned": 2118,
+            "revisit": 6124,
+            "saved": 3580,
+            "selection": 1456
+          }
+        },
+        {
+          "automatic_saves": 1,
+          "battle_connection_accepted": false,
+          "bp_after": 48,
+          "bp_before": 64,
+          "case": "excadrill",
+          "catalog_index": 15,
+          "claim_catalogue_rechecked": true,
+          "fresh_cores": 2,
+          "full_p05_acceptance": false,
+          "host_write_barriers": 7,
+          "inventory_and_party_preserved": true,
+          "item": 1014,
+          "manual_saves": 1,
+          "map_ring_bp_claims_are_fixtures": true,
+          "natural_capture_accepted": false,
+          "pages": 3,
+          "physical_host": [
+            96,
+            5,
+            14,
+            24,
+            19
+          ],
+          "quantity": 1,
+          "release_ready": false,
+          "result": 0,
+          "rom_sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
+          "rtc_flash_bytes_preserved": 131072,
+          "schema_version": 1,
+          "scope": "PR16_PHYSICAL_MEGA_SHOP_ACQUISITION_SAVE",
+          "status": "PASS",
+          "total_frames": 5549,
+          "warnings_errors": 0,
+          "witness": {
+            "interaction": 1,
+            "menu": 123,
+            "reloaded": 5306,
+            "returned": 1422,
+            "revisit": 5428,
+            "saved": 2884,
+            "selection": 790
+          }
+        },
+        {
+          "automatic_saves": 1,
+          "battle_connection_accepted": false,
+          "bp_after": 48,
+          "bp_before": 64,
+          "case": "scovillain",
+          "catalog_index": 36,
+          "claim_catalogue_rechecked": true,
+          "fresh_cores": 2,
+          "full_p05_acceptance": false,
+          "host_write_barriers": 7,
+          "inventory_and_party_preserved": true,
+          "item": 1035,
+          "manual_saves": 1,
+          "map_ring_bp_claims_are_fixtures": true,
+          "natural_capture_accepted": false,
+          "pages": 7,
+          "physical_host": [
+            96,
+            5,
+            14,
+            24,
+            19
+          ],
+          "quantity": 1,
+          "release_ready": false,
+          "result": 0,
+          "rom_sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
+          "rtc_flash_bytes_preserved": 131072,
+          "schema_version": 1,
+          "scope": "PR16_PHYSICAL_MEGA_SHOP_ACQUISITION_SAVE",
+          "status": "PASS",
+          "total_frames": 6469,
+          "warnings_errors": 0,
+          "witness": {
+            "interaction": 1,
+            "menu": 123,
+            "reloaded": 6226,
+            "returned": 2342,
+            "revisit": 6348,
+            "saved": 3804,
+            "selection": 1678
+          }
+        },
+        {
+          "automatic_saves": 0,
+          "battle_connection_accepted": false,
+          "bp_after": 64,
+          "bp_before": 64,
+          "case": "cancel-first",
+          "catalog_index": 13,
+          "claim_catalogue_rechecked": true,
+          "fresh_cores": 2,
+          "full_p05_acceptance": false,
+          "host_write_barriers": 7,
+          "inventory_and_party_preserved": true,
+          "item": 1012,
+          "manual_saves": 1,
+          "map_ring_bp_claims_are_fixtures": true,
+          "natural_capture_accepted": false,
+          "pages": 0,
+          "physical_host": [
+            96,
+            5,
+            14,
+            24,
+            19
+          ],
+          "quantity": 0,
+          "release_ready": false,
+          "result": 2,
+          "rom_sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
+          "rtc_flash_bytes_preserved": 131072,
+          "schema_version": 1,
+          "scope": "PR16_PHYSICAL_MEGA_SHOP_ACQUISITION_SAVE",
+          "status": "PASS",
+          "total_frames": 4371,
+          "warnings_errors": 0,
+          "witness": {
+            "interaction": 1,
+            "menu": 123,
+            "reloaded": 4128,
+            "returned": 244,
+            "revisit": 4250,
+            "saved": 1706,
+            "selection": 124
+          }
+        },
+        {
+          "automatic_saves": 0,
+          "battle_connection_accepted": false,
+          "bp_after": 64,
+          "bp_before": 64,
+          "case": "cancel-page",
+          "catalog_index": 36,
+          "claim_catalogue_rechecked": true,
+          "fresh_cores": 2,
+          "full_p05_acceptance": false,
+          "host_write_barriers": 7,
+          "inventory_and_party_preserved": true,
+          "item": 1035,
+          "manual_saves": 1,
+          "map_ring_bp_claims_are_fixtures": true,
+          "natural_capture_accepted": false,
+          "pages": 7,
+          "physical_host": [
+            96,
+            5,
+            14,
+            24,
+            19
+          ],
+          "quantity": 0,
+          "release_ready": false,
+          "result": 2,
+          "rom_sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
+          "rtc_flash_bytes_preserved": 131072,
+          "schema_version": 1,
+          "scope": "PR16_PHYSICAL_MEGA_SHOP_ACQUISITION_SAVE",
+          "status": "PASS",
+          "total_frames": 5925,
+          "warnings_errors": 0,
+          "witness": {
+            "interaction": 1,
+            "menu": 123,
+            "reloaded": 5682,
+            "returned": 1798,
+            "revisit": 5804,
+            "saved": 3260,
+            "selection": 1678
+          }
+        },
+        {
+          "automatic_saves": 0,
+          "battle_connection_accepted": false,
+          "bp_after": 15,
+          "bp_before": 15,
+          "case": "insufficient-bp",
+          "catalog_index": 13,
+          "claim_catalogue_rechecked": true,
+          "fresh_cores": 2,
+          "full_p05_acceptance": false,
+          "host_write_barriers": 7,
+          "inventory_and_party_preserved": true,
+          "item": 1012,
+          "manual_saves": 1,
+          "map_ring_bp_claims_are_fixtures": true,
+          "natural_capture_accepted": false,
+          "pages": 2,
+          "physical_host": [
+            96,
+            5,
+            14,
+            24,
+            19
+          ],
+          "quantity": 0,
+          "release_ready": false,
+          "result": 14,
+          "rom_sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
+          "rtc_flash_bytes_preserved": 131072,
+          "schema_version": 1,
+          "scope": "PR16_PHYSICAL_MEGA_SHOP_ACQUISITION_SAVE",
+          "status": "PASS",
+          "total_frames": 5033,
+          "warnings_errors": 0,
+          "witness": {
+            "interaction": 1,
+            "menu": 123,
+            "reloaded": 4790,
+            "returned": 906,
+            "revisit": 4912,
+            "saved": 2368,
+            "selection": 568
+          }
+        },
+        {
+          "automatic_saves": 0,
+          "battle_connection_accepted": false,
+          "bp_after": 64,
+          "bp_before": 64,
+          "case": "missing-ring",
+          "catalog_index": 13,
+          "claim_catalogue_rechecked": false,
+          "fresh_cores": 2,
+          "full_p05_acceptance": false,
+          "host_write_barriers": 7,
+          "inventory_and_party_preserved": true,
+          "item": 1012,
+          "manual_saves": 1,
+          "map_ring_bp_claims_are_fixtures": true,
+          "natural_capture_accepted": false,
+          "pages": 0,
+          "physical_host": [
+            96,
+            5,
+            14,
+            24,
+            19
+          ],
+          "quantity": 0,
+          "release_ready": false,
+          "result": 3,
+          "rom_sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
+          "rtc_flash_bytes_preserved": 131072,
+          "schema_version": 1,
+          "scope": "PR16_PHYSICAL_MEGA_SHOP_ACQUISITION_SAVE",
+          "status": "PASS",
+          "total_frames": 4068,
+          "warnings_errors": 0,
+          "witness": {
+            "interaction": 1,
+            "menu": 0,
+            "reloaded": 4068,
+            "returned": 184,
+            "revisit": 0,
+            "saved": 1646,
+            "selection": 0
+          }
+        }
+      ],
+      "fixture_boundary": "MAP_RING_BP_AND_CLEARED_CLAIMS_BEFORE_OBSERVATION_ONLY",
+      "fresh_cores": 20,
+      "full_p05_acceptance": false,
+      "natural_capture_accepted": false,
+      "new_native_processes": 10,
+      "purchase_cancel_inventory_bp_save_pass": true,
+      "release_ready": false,
+      "shop_visual_acceptance": false,
+      "status": "DATA_PATH_PASS_VISUAL_REJECTED",
+      "visual_review": {
+        "control": "missing-ring does not open the shop list and its returned background remains intact",
+        "images": {
+          "cancel-first-returned.ppm": {
+            "sha256": "e8fee2272d7de6ad5361f9a5c0ed8c0479131e41f3980958af0f1d9af75c92b8",
+            "size": 115215
+          },
+          "cancel-page-returned.ppm": {
+            "sha256": "84ec6bd542ac8aaae30ec795e077fbfc5033fae1a426cdbe5f3b3c97b6c77dac",
+            "size": 115215
+          },
+          "eelektross-fixture.ppm": {
+            "sha256": "9a903ac5b48663f794924652e5faeead43147499171551205dee1b71bfb2b78b",
+            "size": 115215
+          },
+          "eelektross-returned.ppm": {
+            "sha256": "84ec6bd542ac8aaae30ec795e077fbfc5033fae1a426cdbe5f3b3c97b6c77dac",
+            "size": 115215
+          },
+          "eelektross-selected-page.ppm": {
+            "sha256": "51db87ad7fa72d57393158091276319e7feffb0e029a6a301e36ca696367310a",
+            "size": 115215
+          },
+          "insufficient-bp-returned.ppm": {
+            "sha256": "84ec6bd542ac8aaae30ec795e077fbfc5033fae1a426cdbe5f3b3c97b6c77dac",
+            "size": 115215
+          },
+          "missing-ring-returned.ppm": {
+            "sha256": "e1b1038cbfcdceafbc9a281b2294cb9d7133b87d06eb204d1e8c2d45b3d74383",
+            "size": 115215
+          }
+        },
+        "reason": "MENU_AND_POST_CLOSE_BACKGROUND_CORRUPTION",
+        "status": "REJECTED"
+      }
+    }
+  },
+  "candidate": {
+    "sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
+    "size": 33554432
+  },
+  "full_p05_acceptance": false,
+  "historical_originals_preserved": true,
+  "new_emulator_runs": 0,
+  "originals": {
+    "roots": {
+      "artifact_id": 10186464456,
+      "path": "content/modernization/pr16_p05_route_evidence/34567225043/original.zip",
+      "run_id": 34567225043,
+      "sha256": "059ab4dee4ce06dce0456984f64cc11da1bbe60053ec17ae88c133d54e715b2e",
+      "size": 7506357,
+      "tested_head": "ca9a0489bbd2bd68d84b9f208f42bb9b83025308"
+    },
+    "shop": {
+      "artifact_id": 10186871315,
+      "path": "content/modernization/pr16_p05_route_evidence/34568373963/original.zip",
+      "run_id": 34568373963,
+      "sha256": "b99594606925f7d5e0b1ea41e54650e8ac8224ac153420a60d3053f0c912e684",
+      "size": 428590,
+      "tested_head": "cd0f07c9c190b9e5a84f36ef3addd9e18259e3c7"
+    }
+  },
+  "release_ready": false,
+  "schema_version": 1,
+  "shop_visual_acceptance": false,
+  "status": "PARTIAL_P05_DATA_PASS_DISPLAY_REPAIR_REQUIRED"
+}

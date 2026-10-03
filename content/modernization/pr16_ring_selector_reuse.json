@@ -1,0 +1,2535 @@
+{
+  "schema_version": 1,
+  "task": "PR-P08-7-RING-SELECTOR-REUSE",
+  "source_head": "ed04397bd452f85305e208efe208538bf6dadd24",
+  "run_id": 35191815881,
+  "run_status_at_record": "in_progress",
+  "analysis": {
+    "classification": "SAVED_EXTERNAL_GRAPH_REUSE_AND_SESSION_ORIGINALS_NOT_NATIVE_ACCEPTANCE",
+    "candidate": {
+      "size": 33554432,
+      "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b",
+      "crc32": "3EB17B36"
+    },
+    "cached_node_count": 2330,
+    "new_node_count": 0,
+    "reused_external_node_count": 127,
+    "saved_node_count": 2457,
+    "reused_external_nodes": [
+      {
+        "address": 134667548,
+        "size": 2,
+        "hex": "00b5",
+        "kind": "ordinary",
+        "memory_write": true,
+        "successors": [
+          134667550
+        ]
+      },
+      {
+        "address": 134667550,
+        "size": 2,
+        "hex": "0004",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          134667552
+        ]
+      },
+      {
+        "address": 134667552,
+        "size": 2,
+        "hex": "020c",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          134667554
+        ]
+      },
+      {
+        "address": 134667554,
+        "size": 2,
+        "hex": "101c",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          134667556
+        ]
+      },
+      {
+        "address": 134667556,
+        "size": 2,
+        "hex": "0906",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          134667558
+        ]
+      },
+      {
+        "address": 134667558,
+        "size": 2,
+        "hex": "0029",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          134667560
+        ]
+      },
+      {
+        "address": 134667560,
+        "size": 2,
+        "hex": "0ed1",
+        "kind": "conditional",
+        "target": 134667592,
+        "memory_write": false,
+        "successors": [
+          134667562,
+          134667592
+        ]
+      },
+      {
+        "address": 134667562,
+        "size": 2,
+        "hex": "0548",
+        "kind": "ordinary",
+        "literal_address": 134667584,
+        "literal_value": 559,
+        "memory_write": false,
+        "successors": [
+          134667564
+        ]
+      },
+      {
+        "address": 134667564,
+        "size": 2,
+        "hex": "8242",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          134667566
+        ]
+      },
+      {
+        "address": 134667566,
+        "size": 2,
+        "hex": "05d9",
+        "kind": "conditional",
+        "target": 134667580,
+        "memory_write": false,
+        "successors": [
+          134667568,
+          134667580
+        ]
+      },
+      {
+        "address": 134667568,
+        "size": 2,
+        "hex": "0449",
+        "kind": "ordinary",
+        "literal_address": 134667588,
+        "literal_value": 4294965248,
+        "memory_write": false,
+        "successors": [
+          134667570
+        ]
+      },
+      {
+        "address": 134667570,
+        "size": 2,
+        "hex": "5018",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          134667572
+        ]
+      },
+      {
+        "address": 134667572,
+        "size": 2,
+        "hex": "0004",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          134667574
+        ]
+      },
+      {
+        "address": 134667574,
+        "size": 2,
+        "hex": "000c",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          134667576
+        ]
+      },
+      {
+        "address": 134667576,
+        "size": 2,
+        "hex": "1f28",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          134667578
+        ]
+      },
+      {
+        "address": 134667578,
+        "size": 2,
+        "hex": "0cd8",
+        "kind": "conditional",
+        "target": 134667606,
+        "memory_write": false,
+        "successors": [
+          134667580,
+          134667606
+        ]
+      },
+      {
+        "address": 134667580,
+        "size": 2,
+        "hex": "0020",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          134667582
+        ]
+      },
+      {
+        "address": 134667582,
+        "size": 2,
+        "hex": "0be0",
+        "kind": "jump",
+        "target": 134667608,
+        "memory_write": false,
+        "successors": [
+          134667608
+        ]
+      },
+      {
+        "address": 134667592,
+        "size": 2,
+        "hex": "2f2a",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          134667594
+        ]
+      },
+      {
+        "address": 134667594,
+        "size": 2,
+        "hex": "f7d9",
+        "kind": "conditional",
+        "target": 134667580,
+        "memory_write": false,
+        "successors": [
+          134667580,
+          134667596
+        ]
+      },
+      {
+        "address": 134667596,
+        "size": 2,
+        "hex": "5038",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          134667598
+        ]
+      },
+      {
+        "address": 134667598,
+        "size": 2,
+        "hex": "0004",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          134667600
+        ]
+      },
+      {
+        "address": 134667600,
+        "size": 2,
+        "hex": "000c",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          134667602
+        ]
+      },
+      {
+        "address": 134667602,
+        "size": 2,
+        "hex": "6328",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          134667604
+        ]
+      },
+      {
+        "address": 134667604,
+        "size": 2,
+        "hex": "f2d9",
+        "kind": "conditional",
+        "target": 134667580,
+        "memory_write": false,
+        "successors": [
+          134667580,
+          134667606
+        ]
+      },
+      {
+        "address": 134667606,
+        "size": 2,
+        "hex": "0120",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          134667608
+        ]
+      },
+      {
+        "address": 134667608,
+        "size": 2,
+        "hex": "02bc",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          134667610
+        ]
+      },
+      {
+        "address": 134667610,
+        "size": 2,
+        "hex": "0847",
+        "kind": "indirect",
+        "register": 1,
+        "memory_write": false,
+        "successors": []
+      },
+      {
+        "address": 135346312,
+        "size": 2,
+        "hex": "70b5",
+        "kind": "ordinary",
+        "memory_write": true,
+        "successors": [
+          135346314
+        ]
+      },
+      {
+        "address": 135346314,
+        "size": 2,
+        "hex": "0006",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346316
+        ]
+      },
+      {
+        "address": 135346316,
+        "size": 2,
+        "hex": "060e",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346318
+        ]
+      },
+      {
+        "address": 135346318,
+        "size": 2,
+        "hex": "0904",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346320
+        ]
+      },
+      {
+        "address": 135346320,
+        "size": 2,
+        "hex": "0d0c",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346322
+        ]
+      },
+      {
+        "address": 135346322,
+        "size": 2,
+        "hex": "0848",
+        "kind": "ordinary",
+        "literal_address": 135346356,
+        "literal_value": 33795856,
+        "memory_write": false,
+        "successors": [
+          135346324
+        ]
+      },
+      {
+        "address": 135346324,
+        "size": 2,
+        "hex": "0188",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346326
+        ]
+      },
+      {
+        "address": 135346326,
+        "size": 2,
+        "hex": "0029",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346328
+        ]
+      },
+      {
+        "address": 135346328,
+        "size": 2,
+        "hex": "09d0",
+        "kind": "conditional",
+        "target": 135346350,
+        "memory_write": false,
+        "successors": [
+          135346330,
+          135346350
+        ]
+      },
+      {
+        "address": 135346330,
+        "size": 2,
+        "hex": "0748",
+        "kind": "ordinary",
+        "literal_address": 135346360,
+        "literal_value": 50355932,
+        "memory_write": false,
+        "successors": [
+          135346332
+        ]
+      },
+      {
+        "address": 135346332,
+        "size": 2,
+        "hex": "0088",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346334
+        ]
+      },
+      {
+        "address": 135346334,
+        "size": 2,
+        "hex": "8142",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346336
+        ]
+      },
+      {
+        "address": 135346336,
+        "size": 2,
+        "hex": "05d2",
+        "kind": "conditional",
+        "target": 135346350,
+        "memory_write": false,
+        "successors": [
+          135346338,
+          135346350
+        ]
+      },
+      {
+        "address": 135346338,
+        "size": 2,
+        "hex": "064c",
+        "kind": "ordinary",
+        "literal_address": 135346364,
+        "literal_value": 33795990,
+        "memory_write": false,
+        "successors": [
+          135346340
+        ]
+      },
+      {
+        "address": 135346340,
+        "size": 2,
+        "hex": "0649",
+        "kind": "ordinary",
+        "literal_address": 135346368,
+        "literal_value": 50339888,
+        "memory_write": false,
+        "successors": [
+          135346342
+        ]
+      },
+      {
+        "address": 135346342,
+        "size": 2,
+        "hex": "2088",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346344
+        ]
+      },
+      {
+        "address": 135346344,
+        "size": 2,
+        "hex": "0988",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346346
+        ]
+      },
+      {
+        "address": 135346346,
+        "size": 2,
+        "hex": "8842",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346348
+        ]
+      },
+      {
+        "address": 135346348,
+        "size": 2,
+        "hex": "0ad3",
+        "kind": "conditional",
+        "target": 135346372,
+        "memory_write": false,
+        "successors": [
+          135346350,
+          135346372
+        ]
+      },
+      {
+        "address": 135346350,
+        "size": 2,
+        "hex": "0020",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346352
+        ]
+      },
+      {
+        "address": 135346352,
+        "size": 2,
+        "hex": "1ee0",
+        "kind": "jump",
+        "target": 135346416,
+        "memory_write": false,
+        "successors": []
+      },
+      {
+        "address": 135346372,
+        "size": 2,
+        "hex": "2388",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346374
+        ]
+      },
+      {
+        "address": 135346374,
+        "size": 2,
+        "hex": "0848",
+        "kind": "ordinary",
+        "literal_address": 135346408,
+        "literal_value": 50339884,
+        "memory_write": false,
+        "successors": []
+      },
+      {
+        "address": 135346376,
+        "size": 2,
+        "hex": "0168",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346378
+        ]
+      },
+      {
+        "address": 135346378,
+        "size": 2,
+        "hex": "9800",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346380
+        ]
+      },
+      {
+        "address": 135346380,
+        "size": 2,
+        "hex": "4218",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346382
+        ]
+      },
+      {
+        "address": 135346382,
+        "size": 2,
+        "hex": "1168",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346384
+        ]
+      },
+      {
+        "address": 135346384,
+        "size": 2,
+        "hex": "4804",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346386
+        ]
+      },
+      {
+        "address": 135346386,
+        "size": 2,
+        "hex": "400c",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346388
+        ]
+      },
+      {
+        "address": 135346388,
+        "size": 2,
+        "hex": "a842",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346390
+        ]
+      },
+      {
+        "address": 135346390,
+        "size": 2,
+        "hex": "09d1",
+        "kind": "conditional",
+        "target": 135346412,
+        "memory_write": false,
+        "successors": [
+          135346392,
+          135346412
+        ]
+      },
+      {
+        "address": 135346392,
+        "size": 2,
+        "hex": "0804",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346394
+        ]
+      },
+      {
+        "address": 135346394,
+        "size": 2,
+        "hex": "c00f",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346396
+        ]
+      },
+      {
+        "address": 135346396,
+        "size": 2,
+        "hex": "b042",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346398
+        ]
+      },
+      {
+        "address": 135346398,
+        "size": 2,
+        "hex": "05d1",
+        "kind": "conditional",
+        "target": 135346412,
+        "memory_write": false,
+        "successors": [
+          135346400,
+          135346412
+        ]
+      },
+      {
+        "address": 135346400,
+        "size": 2,
+        "hex": "911c",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346402
+        ]
+      },
+      {
+        "address": 135346402,
+        "size": 2,
+        "hex": "581c",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346404
+        ]
+      },
+      {
+        "address": 135346404,
+        "size": 2,
+        "hex": "2080",
+        "kind": "ordinary",
+        "memory_write": true,
+        "successors": [
+          135346406
+        ]
+      },
+      {
+        "address": 135346406,
+        "size": 2,
+        "hex": "02e0",
+        "kind": "jump",
+        "target": 135346414,
+        "memory_write": false,
+        "successors": [
+          135346414
+        ]
+      },
+      {
+        "address": 135346412,
+        "size": 2,
+        "hex": "0021",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346414
+        ]
+      },
+      {
+        "address": 135346414,
+        "size": 2,
+        "hex": "081c",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": []
+      },
+      {
+        "address": 135346416,
+        "size": 2,
+        "hex": "70bc",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346418
+        ]
+      },
+      {
+        "address": 135346418,
+        "size": 2,
+        "hex": "02bc",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346420
+        ]
+      },
+      {
+        "address": 135346420,
+        "size": 2,
+        "hex": "0847",
+        "kind": "indirect",
+        "register": 1,
+        "memory_write": false,
+        "successors": []
+      },
+      {
+        "address": 135346424,
+        "size": 2,
+        "hex": "f0b5",
+        "kind": "ordinary",
+        "memory_write": true,
+        "successors": [
+          135346426
+        ]
+      },
+      {
+        "address": 135346426,
+        "size": 2,
+        "hex": "0006",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346428
+        ]
+      },
+      {
+        "address": 135346428,
+        "size": 2,
+        "hex": "070e",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346430
+        ]
+      },
+      {
+        "address": 135346430,
+        "size": 2,
+        "hex": "0904",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346432
+        ]
+      },
+      {
+        "address": 135346432,
+        "size": 2,
+        "hex": "0b0c",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346434
+        ]
+      },
+      {
+        "address": 135346434,
+        "size": 2,
+        "hex": "1204",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346436
+        ]
+      },
+      {
+        "address": 135346436,
+        "size": 2,
+        "hex": "120c",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346438
+        ]
+      },
+      {
+        "address": 135346438,
+        "size": 2,
+        "hex": "9446",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346440
+        ]
+      },
+      {
+        "address": 135346440,
+        "size": 2,
+        "hex": "1748",
+        "kind": "ordinary",
+        "literal_address": 135346536,
+        "literal_value": 33795856,
+        "memory_write": false,
+        "successors": [
+          135346442
+        ]
+      },
+      {
+        "address": 135346442,
+        "size": 2,
+        "hex": "0188",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346444
+        ]
+      },
+      {
+        "address": 135346444,
+        "size": 2,
+        "hex": "0029",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346446
+        ]
+      },
+      {
+        "address": 135346446,
+        "size": 2,
+        "hex": "27d0",
+        "kind": "conditional",
+        "target": 135346528,
+        "memory_write": false,
+        "successors": [
+          135346448
+        ]
+      },
+      {
+        "address": 135346448,
+        "size": 2,
+        "hex": "1648",
+        "kind": "ordinary",
+        "literal_address": 135346540,
+        "literal_value": 50355932,
+        "memory_write": false,
+        "successors": [
+          135346450
+        ]
+      },
+      {
+        "address": 135346450,
+        "size": 2,
+        "hex": "0088",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346452
+        ]
+      },
+      {
+        "address": 135346452,
+        "size": 2,
+        "hex": "8142",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346454
+        ]
+      },
+      {
+        "address": 135346454,
+        "size": 2,
+        "hex": "23d2",
+        "kind": "conditional",
+        "target": 135346528,
+        "memory_write": false,
+        "successors": [
+          135346456
+        ]
+      },
+      {
+        "address": 135346456,
+        "size": 2,
+        "hex": "154e",
+        "kind": "ordinary",
+        "literal_address": 135346544,
+        "literal_value": 33795990,
+        "memory_write": false,
+        "successors": [
+          135346458
+        ]
+      },
+      {
+        "address": 135346458,
+        "size": 2,
+        "hex": "1649",
+        "kind": "ordinary",
+        "literal_address": 135346548,
+        "literal_value": 50339888,
+        "memory_write": false,
+        "successors": [
+          135346460
+        ]
+      },
+      {
+        "address": 135346460,
+        "size": 2,
+        "hex": "3088",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346462
+        ]
+      },
+      {
+        "address": 135346462,
+        "size": 2,
+        "hex": "0988",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346464
+        ]
+      },
+      {
+        "address": 135346464,
+        "size": 2,
+        "hex": "8842",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346466
+        ]
+      },
+      {
+        "address": 135346466,
+        "size": 2,
+        "hex": "1dd2",
+        "kind": "conditional",
+        "target": 135346528,
+        "memory_write": false,
+        "successors": [
+          135346468
+        ]
+      },
+      {
+        "address": 135346468,
+        "size": 2,
+        "hex": "021c",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346470
+        ]
+      },
+      {
+        "address": 135346470,
+        "size": 2,
+        "hex": "144d",
+        "kind": "ordinary",
+        "literal_address": 135346552,
+        "literal_value": 50339884,
+        "memory_write": false,
+        "successors": [
+          135346472
+        ]
+      },
+      {
+        "address": 135346472,
+        "size": 2,
+        "hex": "2c68",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346474
+        ]
+      },
+      {
+        "address": 135346474,
+        "size": 2,
+        "hex": "9200",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346476
+        ]
+      },
+      {
+        "address": 135346476,
+        "size": 2,
+        "hex": "1219",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346478
+        ]
+      },
+      {
+        "address": 135346478,
+        "size": 2,
+        "hex": "1349",
+        "kind": "ordinary",
+        "literal_address": 135346556,
+        "literal_value": 32767,
+        "memory_write": false,
+        "successors": [
+          135346480
+        ]
+      },
+      {
+        "address": 135346480,
+        "size": 2,
+        "hex": "1940",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346482
+        ]
+      },
+      {
+        "address": 135346482,
+        "size": 2,
+        "hex": "1388",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346484
+        ]
+      },
+      {
+        "address": 135346484,
+        "size": 2,
+        "hex": "1248",
+        "kind": "ordinary",
+        "literal_address": 135346560,
+        "literal_value": 4294934528,
+        "memory_write": false,
+        "successors": [
+          135346486
+        ]
+      },
+      {
+        "address": 135346486,
+        "size": 2,
+        "hex": "1840",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": []
+      },
+      {
+        "address": 135346488,
+        "size": 2,
+        "hex": "0843",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346490
+        ]
+      },
+      {
+        "address": 135346490,
+        "size": 2,
+        "hex": "1080",
+        "kind": "ordinary",
+        "memory_write": true,
+        "successors": [
+          135346492
+        ]
+      },
+      {
+        "address": 135346492,
+        "size": 2,
+        "hex": "3188",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346494
+        ]
+      },
+      {
+        "address": 135346494,
+        "size": 2,
+        "hex": "8900",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346496
+        ]
+      },
+      {
+        "address": 135346496,
+        "size": 2,
+        "hex": "0919",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346498
+        ]
+      },
+      {
+        "address": 135346498,
+        "size": 2,
+        "hex": "fb01",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346500
+        ]
+      },
+      {
+        "address": 135346500,
+        "size": 2,
+        "hex": "4a78",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346502
+        ]
+      },
+      {
+        "address": 135346502,
+        "size": 2,
+        "hex": "7f20",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346504
+        ]
+      },
+      {
+        "address": 135346504,
+        "size": 2,
+        "hex": "1040",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346506
+        ]
+      },
+      {
+        "address": 135346506,
+        "size": 2,
+        "hex": "1843",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346508
+        ]
+      },
+      {
+        "address": 135346508,
+        "size": 2,
+        "hex": "4870",
+        "kind": "ordinary",
+        "memory_write": true,
+        "successors": [
+          135346510
+        ]
+      },
+      {
+        "address": 135346510,
+        "size": 2,
+        "hex": "3088",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346512
+        ]
+      },
+      {
+        "address": 135346512,
+        "size": 2,
+        "hex": "2968",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346514
+        ]
+      },
+      {
+        "address": 135346514,
+        "size": 2,
+        "hex": "8000",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346516
+        ]
+      },
+      {
+        "address": 135346516,
+        "size": 2,
+        "hex": "4018",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346518
+        ]
+      },
+      {
+        "address": 135346518,
+        "size": 2,
+        "hex": "6146",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346520
+        ]
+      },
+      {
+        "address": 135346520,
+        "size": 2,
+        "hex": "4180",
+        "kind": "ordinary",
+        "memory_write": true,
+        "successors": [
+          135346522
+        ]
+      },
+      {
+        "address": 135346522,
+        "size": 2,
+        "hex": "3088",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346524
+        ]
+      },
+      {
+        "address": 135346524,
+        "size": 2,
+        "hex": "0130",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346526
+        ]
+      },
+      {
+        "address": 135346526,
+        "size": 2,
+        "hex": "3080",
+        "kind": "ordinary",
+        "memory_write": true,
+        "successors": []
+      },
+      {
+        "address": 135346528,
+        "size": 2,
+        "hex": "f0bc",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346530
+        ]
+      },
+      {
+        "address": 135346530,
+        "size": 2,
+        "hex": "01bc",
+        "kind": "ordinary",
+        "memory_write": false,
+        "successors": [
+          135346532
+        ]
+      },
+      {
+        "address": 135346532,
+        "size": 2,
+        "hex": "0047",
+        "kind": "indirect",
+        "register": 0,
+        "memory_write": false,
+        "successors": []
+      }
+    ],
+    "node_source_provenance": {
+      "135346312": [
+        "content/modernization/pr16_ring_external1_bytes.json"
+      ],
+      "135346314": [
+        "content/modernization/pr16_ring_external1_bytes.json"
+      ],
+      "135346316": [
+        "content/modernization/pr16_ring_external1_bytes.json"
+      ],
+      "135346318": [
+        "content/modernization/pr16_ring_external1_bytes.json"
+      ],
+      "135346320": [
+        "content/modernization/pr16_ring_external1_bytes.json"
+      ],
+      "135346322": [
+        "content/modernization/pr16_ring_external1_bytes.json"
+      ],
+      "135346324": [
+        "content/modernization/pr16_ring_external1_bytes.json"
+      ],
+      "135346326": [
+        "content/modernization/pr16_ring_external1_bytes.json"
+      ],
+      "135346328": [
+        "content/modernization/pr16_ring_external1_bytes.json"
+      ],
+      "135346330": [
+        "content/modernization/pr16_ring_external1_bytes.json"
+      ],
+      "135346332": [
+        "content/modernization/pr16_ring_external1_bytes.json"
+      ],
+      "135346334": [
+        "content/modernization/pr16_ring_external1_bytes.json"
+      ],
+      "135346336": [
+        "content/modernization/pr16_ring_external1_bytes.json"
+      ],
+      "135346338": [
+        "content/modernization/pr16_ring_external1_bytes.json"
+      ],
+      "135346340": [
+        "content/modernization/pr16_ring_external1_bytes.json"
+      ],
+      "135346342": [
+        "content/modernization/pr16_ring_external1_bytes.json"
+      ],
+      "135346344": [
+        "content/modernization/pr16_ring_external1_bytes.json"
+      ],
+      "135346346": [
+        "content/modernization/pr16_ring_external1_bytes.json"
+      ],
+      "135346348": [
+        "content/modernization/pr16_ring_external1_bytes.json"
+      ],
+      "135346350": [
+        "content/modernization/pr16_ring_external1_bytes.json"
+      ],
+      "135346352": [
+        "content/modernization/pr16_ring_external1_bytes.json"
+      ],
+      "135346372": [
+        "content/modernization/pr16_ring_external1_bytes.json"
+      ],
+      "135346374": [
+        "content/modernization/pr16_ring_external1_bytes.json"
+      ],
+      "135346376": [
+        "content/modernization/pr16_ring_external1_cont_bytes.json"
+      ],
+      "135346378": [
+        "content/modernization/pr16_ring_external1_cont_bytes.json"
+      ],
+      "135346380": [
+        "content/modernization/pr16_ring_external1_cont_bytes.json"
+      ],
+      "135346382": [
+        "content/modernization/pr16_ring_external1_cont_bytes.json"
+      ],
+      "135346384": [
+        "content/modernization/pr16_ring_external1_cont_bytes.json"
+      ],
+      "135346386": [
+        "content/modernization/pr16_ring_external1_cont_bytes.json"
+      ],
+      "135346388": [
+        "content/modernization/pr16_ring_external1_cont_bytes.json"
+      ],
+      "135346390": [
+        "content/modernization/pr16_ring_external1_cont_bytes.json"
+      ],
+      "135346392": [
+        "content/modernization/pr16_ring_external1_cont_bytes.json"
+      ],
+      "135346394": [
+        "content/modernization/pr16_ring_external1_cont_bytes.json"
+      ],
+      "135346396": [
+        "content/modernization/pr16_ring_external1_cont_bytes.json"
+      ],
+      "135346398": [
+        "content/modernization/pr16_ring_external1_cont_bytes.json"
+      ],
+      "135346400": [
+        "content/modernization/pr16_ring_external1_cont_bytes.json"
+      ],
+      "135346402": [
+        "content/modernization/pr16_ring_external1_cont_bytes.json"
+      ],
+      "135346404": [
+        "content/modernization/pr16_ring_external1_cont_bytes.json"
+      ],
+      "135346406": [
+        "content/modernization/pr16_ring_external1_cont_bytes.json"
+      ],
+      "135346412": [
+        "content/modernization/pr16_ring_external1_cont_bytes.json"
+      ],
+      "135346414": [
+        "content/modernization/pr16_ring_external1_cont_bytes.json"
+      ],
+      "135346416": [
+        "content/modernization/pr16_ring_external1_exit_bytes.json"
+      ],
+      "135346418": [
+        "content/modernization/pr16_ring_external1_exit_bytes.json"
+      ],
+      "135346420": [
+        "content/modernization/pr16_ring_external1_exit_bytes.json"
+      ],
+      "134667548": [
+        "content/modernization/pr16_ring_external2_bytes.json"
+      ],
+      "134667550": [
+        "content/modernization/pr16_ring_external2_bytes.json"
+      ],
+      "134667552": [
+        "content/modernization/pr16_ring_external2_bytes.json"
+      ],
+      "134667554": [
+        "content/modernization/pr16_ring_external2_bytes.json"
+      ],
+      "134667556": [
+        "content/modernization/pr16_ring_external2_bytes.json"
+      ],
+      "134667558": [
+        "content/modernization/pr16_ring_external2_bytes.json"
+      ],
+      "134667560": [
+        "content/modernization/pr16_ring_external2_bytes.json"
+      ],
+      "134667562": [
+        "content/modernization/pr16_ring_external2_bytes.json"
+      ],
+      "134667564": [
+        "content/modernization/pr16_ring_external2_bytes.json"
+      ],
+      "134667566": [
+        "content/modernization/pr16_ring_external2_bytes.json"
+      ],
+      "134667568": [
+        "content/modernization/pr16_ring_external2_bytes.json"
+      ],
+      "134667570": [
+        "content/modernization/pr16_ring_external2_bytes.json"
+      ],
+      "134667572": [
+        "content/modernization/pr16_ring_external2_bytes.json"
+      ],
+      "134667574": [
+        "content/modernization/pr16_ring_external2_bytes.json"
+      ],
+      "134667576": [
+        "content/modernization/pr16_ring_external2_bytes.json"
+      ],
+      "134667578": [
+        "content/modernization/pr16_ring_external2_bytes.json"
+      ],
+      "134667580": [
+        "content/modernization/pr16_ring_external2_bytes.json"
+      ],
+      "134667582": [
+        "content/modernization/pr16_ring_external2_bytes.json"
+      ],
+      "134667592": [
+        "content/modernization/pr16_ring_external2_bytes.json"
+      ],
+      "134667594": [
+        "content/modernization/pr16_ring_external2_bytes.json"
+      ],
+      "134667596": [
+        "content/modernization/pr16_ring_external2_bytes.json"
+      ],
+      "134667598": [
+        "content/modernization/pr16_ring_external2_bytes.json"
+      ],
+      "134667600": [
+        "content/modernization/pr16_ring_external2_bytes.json"
+      ],
+      "134667602": [
+        "content/modernization/pr16_ring_external2_bytes.json"
+      ],
+      "134667604": [
+        "content/modernization/pr16_ring_external2_bytes.json"
+      ],
+      "134667606": [
+        "content/modernization/pr16_ring_external2_bytes.json"
+      ],
+      "134667608": [
+        "content/modernization/pr16_ring_external2_bytes.json"
+      ],
+      "134667610": [
+        "content/modernization/pr16_ring_external2_bytes.json"
+      ],
+      "135346488": [
+        "content/modernization/pr16_ring_external3_body_bytes.json"
+      ],
+      "135346490": [
+        "content/modernization/pr16_ring_external3_body_bytes.json"
+      ],
+      "135346492": [
+        "content/modernization/pr16_ring_external3_body_bytes.json"
+      ],
+      "135346494": [
+        "content/modernization/pr16_ring_external3_body_bytes.json"
+      ],
+      "135346496": [
+        "content/modernization/pr16_ring_external3_body_bytes.json"
+      ],
+      "135346498": [
+        "content/modernization/pr16_ring_external3_body_bytes.json"
+      ],
+      "135346500": [
+        "content/modernization/pr16_ring_external3_body_bytes.json"
+      ],
+      "135346502": [
+        "content/modernization/pr16_ring_external3_body_bytes.json"
+      ],
+      "135346504": [
+        "content/modernization/pr16_ring_external3_body_bytes.json"
+      ],
+      "135346506": [
+        "content/modernization/pr16_ring_external3_body_bytes.json"
+      ],
+      "135346508": [
+        "content/modernization/pr16_ring_external3_body_bytes.json"
+      ],
+      "135346510": [
+        "content/modernization/pr16_ring_external3_body_bytes.json"
+      ],
+      "135346512": [
+        "content/modernization/pr16_ring_external3_body_bytes.json"
+      ],
+      "135346514": [
+        "content/modernization/pr16_ring_external3_body_bytes.json"
+      ],
+      "135346516": [
+        "content/modernization/pr16_ring_external3_body_bytes.json"
+      ],
+      "135346518": [
+        "content/modernization/pr16_ring_external3_body_bytes.json"
+      ],
+      "135346520": [
+        "content/modernization/pr16_ring_external3_body_bytes.json"
+      ],
+      "135346522": [
+        "content/modernization/pr16_ring_external3_body_bytes.json"
+      ],
+      "135346524": [
+        "content/modernization/pr16_ring_external3_body_bytes.json"
+      ],
+      "135346526": [
+        "content/modernization/pr16_ring_external3_body_bytes.json"
+      ],
+      "135346424": [
+        "content/modernization/pr16_ring_external3_bytes.json"
+      ],
+      "135346426": [
+        "content/modernization/pr16_ring_external3_bytes.json"
+      ],
+      "135346428": [
+        "content/modernization/pr16_ring_external3_bytes.json"
+      ],
+      "135346430": [
+        "content/modernization/pr16_ring_external3_bytes.json"
+      ],
+      "135346432": [
+        "content/modernization/pr16_ring_external3_bytes.json"
+      ],
+      "135346434": [
+        "content/modernization/pr16_ring_external3_bytes.json"
+      ],
+      "135346436": [
+        "content/modernization/pr16_ring_external3_bytes.json"
+      ],
+      "135346438": [
+        "content/modernization/pr16_ring_external3_bytes.json"
+      ],
+      "135346440": [
+        "content/modernization/pr16_ring_external3_bytes.json"
+      ],
+      "135346442": [
+        "content/modernization/pr16_ring_external3_bytes.json"
+      ],
+      "135346444": [
+        "content/modernization/pr16_ring_external3_bytes.json"
+      ],
+      "135346446": [
+        "content/modernization/pr16_ring_external3_bytes.json"
+      ],
+      "135346448": [
+        "content/modernization/pr16_ring_external3_bytes.json"
+      ],
+      "135346450": [
+        "content/modernization/pr16_ring_external3_bytes.json"
+      ],
+      "135346452": [
+        "content/modernization/pr16_ring_external3_bytes.json"
+      ],
+      "135346454": [
+        "content/modernization/pr16_ring_external3_bytes.json"
+      ],
+      "135346456": [
+        "content/modernization/pr16_ring_external3_bytes.json"
+      ],
+      "135346458": [
+        "content/modernization/pr16_ring_external3_bytes.json"
+      ],
+      "135346460": [
+        "content/modernization/pr16_ring_external3_bytes.json"
+      ],
+      "135346462": [
+        "content/modernization/pr16_ring_external3_bytes.json"
+      ],
+      "135346464": [
+        "content/modernization/pr16_ring_external3_bytes.json"
+      ],
+      "135346466": [
+        "content/modernization/pr16_ring_external3_bytes.json"
+      ],
+      "135346468": [
+        "content/modernization/pr16_ring_external3_bytes.json"
+      ],
+      "135346470": [
+        "content/modernization/pr16_ring_external3_bytes.json"
+      ],
+      "135346472": [
+        "content/modernization/pr16_ring_external3_bytes.json"
+      ],
+      "135346474": [
+        "content/modernization/pr16_ring_external3_bytes.json"
+      ],
+      "135346476": [
+        "content/modernization/pr16_ring_external3_bytes.json"
+      ],
+      "135346478": [
+        "content/modernization/pr16_ring_external3_bytes.json"
+      ],
+      "135346480": [
+        "content/modernization/pr16_ring_external3_bytes.json"
+      ],
+      "135346482": [
+        "content/modernization/pr16_ring_external3_bytes.json"
+      ],
+      "135346484": [
+        "content/modernization/pr16_ring_external3_bytes.json"
+      ],
+      "135346486": [
+        "content/modernization/pr16_ring_external3_bytes.json"
+      ],
+      "135346528": [
+        "content/modernization/pr16_ring_external3_tail_bytes.json"
+      ],
+      "135346530": [
+        "content/modernization/pr16_ring_external3_tail_bytes.json"
+      ],
+      "135346532": [
+        "content/modernization/pr16_ring_external3_tail_bytes.json"
+      ]
+    },
+    "reused_byte_reports": {
+      "content/modernization/pr16_ring_external1_bytes.json": {
+        "size": 25306,
+        "sha256": "2df5de29ce937a02491b839993edbb631ab0016c09176d6134c9759a1434461c"
+      },
+      "content/modernization/pr16_ring_external1_cont_bytes.json": {
+        "size": 19735,
+        "sha256": "68cbe5050197c88270291df29da7299c7b5da7ee47b53e63afae2e6ad2c44719"
+      },
+      "content/modernization/pr16_ring_external1_exit_bytes.json": {
+        "size": 13944,
+        "sha256": "e82589506956e58f2165a16c423f600bd3879ba32b0ba8004c3862f208f2b695"
+      },
+      "content/modernization/pr16_ring_external2_bytes.json": {
+        "size": 24924,
+        "sha256": "dd8ce6b8def2e0c9a2a64bfb1a21bf04382ca17ceaf14ea585b3ee07b82454f3"
+      },
+      "content/modernization/pr16_ring_external3_bytes.json": {
+        "size": 28741,
+        "sha256": "0e846bf2838e453810ed488ef0533b91672707da81d837aee307bbe028c5d141"
+      },
+      "content/modernization/pr16_ring_external3_body_bytes.json": {
+        "size": 21757,
+        "sha256": "628d3e733f8811563e35b90227877742325b86346f62ef3e6ccbc9750d9b1d66"
+      },
+      "content/modernization/pr16_ring_external3_tail_bytes.json": {
+        "size": 15296,
+        "sha256": "d8733736708554f9509b7df34d9e9988f6d641e8d78adb6519ceb660bdecd09c"
+      }
+    },
+    "old_contract_actions_verified": [
+      {
+        "path": "content/modernization/pr16_ring_external1_abi.json",
+        "identity": {
+          "size": 10768,
+          "sha256": "6b85751600d2ac75f64bd24dc725bbd1b197ca4c99203faa1ee06c74f44be3c4"
+        },
+        "run_id": 35048669015,
+        "source_head": "48e81bb4249b6f2b610d93fb20b62dec5f903bfd",
+        "conclusion": "success",
+        "native_or_abi_replayed": false
+      },
+      {
+        "path": "content/modernization/pr16_ring_external1_cont_abi.json",
+        "identity": {
+          "size": 9418,
+          "sha256": "fe9fa33b50dece21cac9f2c9f04b5bd37916947d79a4443894198166d7d71be4"
+        },
+        "run_id": 35049393487,
+        "source_head": "e95e2655414975a9bc353ad3fc0e4365ba6ab523",
+        "conclusion": "success",
+        "native_or_abi_replayed": false
+      },
+      {
+        "path": "content/modernization/pr16_ring_external1_exit_abi.json",
+        "identity": {
+          "size": 14160,
+          "sha256": "1ee79e8e8305d50af84104dd9984502df656a5c3632c22efa81008ed28baa7c6"
+        },
+        "run_id": 35049978307,
+        "source_head": "f6617bfbca9363d4e958628a88bb1b6147f2818e",
+        "conclusion": "success",
+        "native_or_abi_replayed": false
+      },
+      {
+        "path": "content/modernization/pr16_ring_external2_abi.json",
+        "identity": {
+          "size": 10779,
+          "sha256": "10171fb0872ab4ec7390ba828178c109ba4b0391c93d6f90a87785f49a46880c"
+        },
+        "run_id": 35051354515,
+        "source_head": "8d2504309caa29cfdcb749675c7f26a6b5a5fad0",
+        "conclusion": "success",
+        "native_or_abi_replayed": false
+      },
+      {
+        "path": "content/modernization/pr16_ring_external3_abi.json",
+        "identity": {
+          "size": 9866,
+          "sha256": "abb56976a0d74faeabbf3b80b63b58ec58b697ce932193c4593e5c7eb9943acc"
+        },
+        "run_id": 35052121180,
+        "source_head": "cf5c6acd3744bcaae90f21829178704b5c5926d7",
+        "conclusion": "success",
+        "native_or_abi_replayed": false
+      },
+      {
+        "path": "content/modernization/pr16_ring_external3_body_abi.json",
+        "identity": {
+          "size": 12577,
+          "sha256": "f2677bcd192914fc1f629811d48c470f570361686b96e1ee383be561b7618b0d"
+        },
+        "run_id": 35053018627,
+        "source_head": "4bea1aa74bd14e18f4bcb4d58375e88a52711750",
+        "conclusion": "success",
+        "native_or_abi_replayed": false
+      },
+      {
+        "path": "content/modernization/pr16_ring_external3_tail_abi.json",
+        "identity": {
+          "size": 12289,
+          "sha256": "ffe7d250077f69858d56d331d567ec073484b761e9fa25c952b0b4e7e4d96664"
+        },
+        "run_id": 35054868301,
+        "source_head": "e64d6c86224905b21f108a57a3e5be00a226f001",
+        "conclusion": "success",
+        "native_or_abi_replayed": false
+      }
+    ],
+    "historical_failed_attempt": {
+      "run_id": 35191559008,
+      "job_id": 105105049376,
+      "source_head": "123a14d9ac0d933b4b3268f5e97e270ed157e1de",
+      "conclusion": "failure",
+      "reason_ja": "命令56byteをliteral込み64byte窓と混同した範囲検査。末尾命令の回帰を追加し修正。",
+      "acceptance_record_created": false,
+      "native_or_old_contract_replayed": false
+    },
+    "session_stages_verified_without_replay": [
+      {
+        "spec": {
+          "slug": "pr16_ring_dispatch_frontier",
+          "run": 35189858767,
+          "job": 105099821934,
+          "artifact": 10483757804,
+          "source": "f25707e6a655a3beb41882a10d124f2171d75799",
+          "commit": "ed8d6e9e8a0284a747d1d6769185d230e0d10222",
+          "digest": "35de982e85b5275855a58e0cb2e6c22caaff074d79f7088e3ab2d14c0837ef51",
+          "tests": 23
+        },
+        "archive_identity": {
+          "size": 67361,
+          "sha256": "35de982e85b5275855a58e0cb2e6c22caaff074d79f7088e3ab2d14c0837ef51"
+        },
+        "receipt": {
+          "status": "PASS_RECORDED_NONFORCE_PUSHED",
+          "task": "PR-P08-7-RING-DISPATCH-FRONTIER",
+          "source_head": "f25707e6a655a3beb41882a10d124f2171d75799",
+          "commit": "ed8d6e9e8a0284a747d1d6769185d230e0d10222",
+          "run_id": 35189858767,
+          "tests": {
+            "tests_run": 23,
+            "failures": 0,
+            "errors": 0,
+            "skips": 0,
+            "successful": true
+          },
+          "outputs": [
+            "content/modernization/pr16_ring_dispatch_frontier.json",
+            "content/modernization/pr16_native_supply_resume_20260913.json",
+            "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
+            "content/modernization/p08_remaining_work.json",
+            "design/run_log.md",
+            "design/version_log.md"
+          ],
+          "new_emulator_processes": 0,
+          "ring_acquisition_accepted": false,
+          "release_ready": false
+        },
+        "guard": {
+          "base": "5e8d6025997a964805bd26893ef3fef3686e2b96",
+          "changed_paths": [
+            ".github/workflows/pr16-ring-dispatch-frontier.yml",
+            "content/modernization/p08_remaining_work.json",
+            "content/modernization/pr16_native_supply_resume_20260913.json",
+            "content/modernization/pr16_ring_dispatch_frontier.json",
+            "design/run_log.md",
+            "design/version_log.md",
+            "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
+            "scripts/pr16_ring_dispatch_frontier.py",
+            "tests/test_pr16_ring_dispatch_frontier.py"
+          ],
+          "new_violations": 0,
+          "full_guard_before": 1,
+          "full_guard_after": 1,
+          "exact_output_match": true,
+          "full_guard_pass_claimed": false
+        },
+        "member_identities": {
+          "development-source.json": {
+            "size": 85123,
+            "sha256": "ad62960c6644d075a9d3b25f93c8736baf3cd83771aec8a8ba32a7b98ecef82c"
+          },
+          "guard.json": {
+            "size": 665,
+            "sha256": "8fb5a07fc606876bf56231dd6e834a178b24cbcd033b9912c1188ae5cca8e0e9"
+          },
+          "analysis.json": {
+            "size": 66928,
+            "sha256": "c9711a7823cdb706abce6fab2ccd363f894d14aab853d233b9236b0a76f72f05"
+          },
+          "preflight.json": {
+            "size": 8267,
+            "sha256": "66615daf40544c92b6412f3fcde5ef6663feec1e23e8f093f36b0272b285e02c"
+          },
+          "recorded-result.json": {
+            "size": 754,
+            "sha256": "170d1177fede75b760c061e5e5639a7053695688d7c6153894193265003360c9"
+          },
+          "saved-context.json": {
+            "size": 437171,
+            "sha256": "aab5e1e6acbdbb477c787653c6a1d2394801333cb40142e1009bdf86ee52b98a"
+          },
+          "tests.json": {
+            "size": 90,
+            "sha256": "ddb03db0be69a492d1609b90508b47e9cf4b6a9d3f3a4c44f3aebb61423aa154"
+          },
+          "tests.txt": {
+            "size": 2389,
+            "sha256": "e585c009131c8037a7310e416d1f9000c5ec4ca8b2994831a72ec0a84100c265"
+          }
+        },
+        "original_conclusion": "success",
+        "original_zip_verified": true,
+        "analysis_equal_to_tracked_report": true,
+        "replayed": false
+      },
+      {
+        "spec": {
+          "slug": "pr16_ring_dispatch_contracts",
+          "run": 35190870442,
+          "job": 105102929360,
+          "artifact": 10483749352,
+          "source": "9e14bfb6ec932f1411fe072beb5aec9385db59b1",
+          "commit": "67cad0bc29c3614993d091c0687d36ee6da4c3a8",
+          "digest": "ff1eee1da8a3bbc3fdf77deafdf69799d93a2f9334860e703e346e6ea9eda673",
+          "tests": 38
+        },
+        "archive_identity": {
+          "size": 48921,
+          "sha256": "ff1eee1da8a3bbc3fdf77deafdf69799d93a2f9334860e703e346e6ea9eda673"
+        },
+        "receipt": {
+          "status": "PASS_RECORDED_NONFORCE_PUSHED",
+          "task": "PR-P08-7-RING-DISPATCH-CONTRACTS",
+          "source_head": "9e14bfb6ec932f1411fe072beb5aec9385db59b1",
+          "commit": "67cad0bc29c3614993d091c0687d36ee6da4c3a8",
+          "run_id": 35190870442,
+          "tests": {
+            "tests_run": 38,
+            "failures": 0,
+            "errors": 0,
+            "skips": 0,
+            "successful": true
+          },
+          "outputs": [
+            "content/modernization/pr16_ring_dispatch_contracts.json",
+            "content/modernization/pr16_native_supply_resume_20260913.json",
+            "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
+            "content/modernization/p08_remaining_work.json",
+            "design/run_log.md",
+            "design/version_log.md"
+          ],
+          "new_emulator_processes": 0,
+          "ring_acquisition_accepted": false,
+          "release_ready": false
+        },
+        "guard": {
+          "base": "ed8d6e9e8a0284a747d1d6769185d230e0d10222",
+          "changed_paths": [
+            ".github/workflows/pr16-ring-dispatch-contracts.yml",
+            "content/modernization/p08_remaining_work.json",
+            "content/modernization/pr16_native_supply_resume_20260913.json",
+            "content/modernization/pr16_ring_dispatch_contracts.json",
+            "design/run_log.md",
+            "design/version_log.md",
+            "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
+            "scripts/pr16_ring_dispatch_contracts.py",
+            "tests/test_pr16_ring_dispatch_contracts.py"
+          ],
+          "new_violations": 0,
+          "full_guard_before": 1,
+          "full_guard_after": 1,
+          "exact_output_match": true,
+          "full_guard_pass_claimed": false
+        },
+        "member_identities": {
+          "analysis.json": {
+            "size": 1219671,
+            "sha256": "b9fa3511f3d598eb236226ef9eb8c444ad6df7fdb5884c8ba9c5867bdf0f49fc"
+          },
+          "raw-effects.json": {
+            "size": 1152752,
+            "sha256": "d6a64c7b15fdda1a837bfa22d426f3d52247e8879c1728d27dabd55515a25f70"
+          },
+          "guard.json": {
+            "size": 669,
+            "sha256": "21d0d59577ea9399e7f0f40178d57f968e605f03f07ae1e9d6894bd4d3ad4821"
+          },
+          "recorded-result.json": {
+            "size": 756,
+            "sha256": "09bfa49678e5a92e80141e7c3b7e66859feceff010b8b46a2c14e80fcac4373a"
+          },
+          "resume-tests.txt": {
+            "size": 2449,
+            "sha256": "a6af6626bf01f4df0e6417fadf097053681f97fb4048b9a98a19f3ba7f0b3c33"
+          },
+          "tests.json": {
+            "size": 90,
+            "sha256": "aff69c52c3c732af98a2a1872dc4ea21cb8368b8b4db4a786628148f51d89bb8"
+          },
+          "tests.txt": {
+            "size": 3915,
+            "sha256": "9a105b2b72e25a39ddf8e9da7cf5d077d9aaa884ea87c62ca733d5f5467048dd"
+          }
+        },
+        "original_conclusion": "success",
+        "original_zip_verified": true,
+        "analysis_equal_to_tracked_report": true,
+        "replayed": false
+      }
+    ],
+    "pending_direct_callees": [
+      134222309,
+      134222489,
+      134223089,
+      134227773,
+      134227885,
+      134228121,
+      134228205,
+      134228225
+    ],
+    "known_callees_awaiting_caller_contracts": [
+      134667549,
+      135346313,
+      135346425
+    ],
+    "all_callees_return_proven": false,
+    "old_byte_samples_repeated": 0,
+    "old_abi_contracts_replayed": 0,
+    "pending_effective_targets": [],
+    "pending_continuations": [],
+    "pending_data_ranges": [],
+    "unbound_runtime_data": [
+      {
+        "base": 50347472,
+        "index_offset": 5,
+        "stride": 12,
+        "read_bytes": 4,
+        "kind": "callback table pointer"
+      },
+      {
+        "base": 33686576,
+        "stride": 12,
+        "read_bytes": 12,
+        "kind": "resource record array"
+      },
+      {
+        "base": 33685552,
+        "stride": 32,
+        "write_bytes": 32,
+        "kind": "nonnull output slots"
+      },
+      {
+        "kind": "special pointer table",
+        "base": 135671828,
+        "read_bytes": 4,
+        "actual_entry_count_proven": false
+      },
+      {
+        "kind": "extended variable storage",
+        "base": 33796840,
+        "size": 1024,
+        "actual_allocation_proven": false
+      },
+      {
+        "kind": "saveblock1 ordinary variables",
+        "offset": 4096,
+        "size": 512,
+        "actual_allocation_proven": false
+      }
+    ],
+    "all_callers_resolved": false,
+    "all_live_frames_proven": false,
+    "caller_pointer_size_limit_proven": false,
+    "all_runtime_owners_excluded": false,
+    "all_dispatch_returns_proven": false,
+    "all_live_slot_bounds_proven": false,
+    "ring_acquisition_accepted": false,
+    "release_ready": false,
+    "rom_changes": 0,
+    "new_emulator_processes": 0,
+    "candidate_reconstructions": 0,
+    "new_byte_samples": 0,
+    "saved_nodes_redecoded": 0,
+    "accepted_native_cases_replayed": 0,
+    "accepted_standalone_contracts_replayed": 0
+  },
+  "source_bindings": {
+    "scripts/pr16_ring_followup_v2.py": {
+      "size": 11453,
+      "sha256": "71e33dbe40cd8988e185256821e33e6a1e06e4eddeb8ee6a3eb9047a4d3c49f7"
+    },
+    "scripts/pr16_ring_selector_reuse.py": {
+      "size": 13926,
+      "sha256": "434fbc7c2dcf3e85b3c9e949a083c77f511bb71e898672f57f5cc0f152402f2a"
+    },
+    "tests/test_pr16_ring_selector_reuse.py": {
+      "size": 6962,
+      "sha256": "0bd878c94ea075e24c5b1f003595b80914f72f8acaf6886b55e9960426d73413"
+    },
+    ".github/workflows/pr16-ring-selector-reuse.yml": {
+      "size": 1937,
+      "sha256": "bf23435563966f5cde94aa56c6b2d191b9c480d35d93802c2146098422e752b4"
+    },
+    "content/modernization/pr16_ring_dispatch_contracts.json": {
+      "size": 1337484,
+      "sha256": "f7e8ed67cc45b58cb3e15385e6b6629fe7d97e06da42f6035600091dd6287ddc"
+    },
+    "content/modernization/pr16_bp_chooser_checkpoint.json": {
+      "size": 9442,
+      "sha256": "853ed41b6abcfb63651aab136951a53c8c89ec635f769e8466327ba3a0c0ae41"
+    },
+    "scripts/pr16_resume.py": {
+      "size": 26649,
+      "sha256": "b0ec73bf933e46f7b254057559b0c637a2d1a9b625b08f348aa8308ea00dee5a"
+    },
+    "scripts/pr16_ring_compiled_record.py": {
+      "size": 13116,
+      "sha256": "768c94e59983d27bbf0ed46d6ba60008352a3a67e11612b18936e38b271e73ef"
+    },
+    "scripts/guard_private_files.py": {
+      "size": 5443,
+      "sha256": "143426a7403abf47396791f6ece3a3a374fa97fbf8bedc88169f636cddbcc905"
+    },
+    "scripts/pr16_ring_dispatch_contracts.py": {
+      "size": 14635,
+      "sha256": "55a743873e6c3409e65813d4a2a474f194827ccb440587595c86bda291d6b2f1"
+    },
+    "scripts/pr16_ring_dispatch_frontier.py": {
+      "size": 7483,
+      "sha256": "2eb176afadc2310f6e6ab9587cff4a7dd01e1f6c8db1cd348e5cf8495f703191"
+    },
+    "content/modernization/pr16_ring_dispatch_frontier.json": {
+      "size": 86644,
+      "sha256": "0f6e133e062c92ddbcb0bcf11cf97543b899d57ad7138c6c61f8748204b9b994"
+    },
+    "content/modernization/pr16_ring_external1_abi.json": {
+      "size": 10768,
+      "sha256": "6b85751600d2ac75f64bd24dc725bbd1b197ca4c99203faa1ee06c74f44be3c4"
+    },
+    "content/modernization/pr16_ring_external1_cont_abi.json": {
+      "size": 9418,
+      "sha256": "fe9fa33b50dece21cac9f2c9f04b5bd37916947d79a4443894198166d7d71be4"
+    },
+    "content/modernization/pr16_ring_external1_exit_abi.json": {
+      "size": 14160,
+      "sha256": "1ee79e8e8305d50af84104dd9984502df656a5c3632c22efa81008ed28baa7c6"
+    },
+    "content/modernization/pr16_ring_external2_abi.json": {
+      "size": 10779,
+      "sha256": "10171fb0872ab4ec7390ba828178c109ba4b0391c93d6f90a87785f49a46880c"
+    },
+    "content/modernization/pr16_ring_external3_abi.json": {
+      "size": 9866,
+      "sha256": "abb56976a0d74faeabbf3b80b63b58ec58b697ce932193c4593e5c7eb9943acc"
+    },
+    "content/modernization/pr16_ring_external3_body_abi.json": {
+      "size": 12577,
+      "sha256": "f2677bcd192914fc1f629811d48c470f570361686b96e1ee383be561b7618b0d"
+    },
+    "content/modernization/pr16_ring_external3_tail_abi.json": {
+      "size": 12289,
+      "sha256": "ffe7d250077f69858d56d331d567ec073484b761e9fa25c952b0b4e7e4d96664"
+    },
+    "content/modernization/pr16_ring_external1_bytes.json": {
+      "size": 25306,
+      "sha256": "2df5de29ce937a02491b839993edbb631ab0016c09176d6134c9759a1434461c"
+    },
+    "content/modernization/pr16_ring_external1_cont_bytes.json": {
+      "size": 19735,
+      "sha256": "68cbe5050197c88270291df29da7299c7b5da7ee47b53e63afae2e6ad2c44719"
+    },
+    "content/modernization/pr16_ring_external1_exit_bytes.json": {
+      "size": 13944,
+      "sha256": "e82589506956e58f2165a16c423f600bd3879ba32b0ba8004c3862f208f2b695"
+    },
+    "content/modernization/pr16_ring_external2_bytes.json": {
+      "size": 24924,
+      "sha256": "dd8ce6b8def2e0c9a2a64bfb1a21bf04382ca17ceaf14ea585b3ee07b82454f3"
+    },
+    "content/modernization/pr16_ring_external3_bytes.json": {
+      "size": 28741,
+      "sha256": "0e846bf2838e453810ed488ef0533b91672707da81d837aee307bbe028c5d141"
+    },
+    "content/modernization/pr16_ring_external3_body_bytes.json": {
+      "size": 21757,
+      "sha256": "628d3e733f8811563e35b90227877742325b86346f62ef3e6ccbc9750d9b1d66"
+    },
+    "content/modernization/pr16_ring_external3_tail_bytes.json": {
+      "size": 15296,
+      "sha256": "d8733736708554f9509b7df34d9e9988f6d641e8d78adb6519ceb660bdecd09c"
+    },
+    "scripts/pr16_ring_gate_contracts.py": {
+      "size": 15264,
+      "sha256": "681de11dd4404608122b3069321c60f2f6331b0f04c18d75d87aef208ac383a7"
+    },
+    "scripts/pr16_ring_caller_contracts.py": {
+      "size": 17412,
+      "sha256": "bde459691a9b1fdf1fa239a4df1f12c1ae3e3d16f8405634d46bd88e2290907f"
+    },
+    "scripts/pr16_ring_saved_contracts.py": {
+      "size": 15079,
+      "sha256": "1fe5c750ebc8be8faf46915f0e172706a35bd4313bb05bfec621af3760e50620"
+    },
+    "scripts/pr16_ring_owner_context.py": {
+      "size": 13828,
+      "sha256": "e4ceb839cb6f9e3676b50549471512ae18698b9d4a4428f5577992758e38c1f0"
+    },
+    "scripts/pr16_ring_reference_frontier.py": {
+      "size": 9214,
+      "sha256": "6f455c0e8e03e7dafef6eba2d72c6dfda25464b26521ce20ad41680aca1d6a6f"
+    },
+    "scripts/pr16_ring_string_contracts.py": {
+      "size": 12335,
+      "sha256": "eefc7066a2e0acc3c88450999102d82486c2bc89cf148612d764edb258279ec3"
+    },
+    "scripts/pr16_ring_string_machine.py": {
+      "size": 2000,
+      "sha256": "1db71b3632a95a5a676a4315ccac2dae51ba6a3d80a9d4be42916145703a6581"
+    },
+    "scripts/pr16_ring_contract_machine.py": {
+      "size": 8710,
+      "sha256": "e48dfc6e12913c93efc9ee54d26117fc3082cf7aeb304df90bbae2438a83775b"
+    },
+    "scripts/pr16_ring_remaining_contracts.py": {
+      "size": 11862,
+      "sha256": "afb8dda5c8161f8833f4551f299981bdf177b57d4840e2c166945e5e1e4a74bd"
+    },
+    "scripts/pr16_ring_string_frontier.py": {
+      "size": 9172,
+      "sha256": "86e904151e55a96fc23789562973892f5928962f8fd1f8e10999d64e71fdd0c6"
+    },
+    "content/modernization/pr16_ring_string_frontier.json": {
+      "size": 68514,
+      "sha256": "ab9623e037550cca8e0612aa661547a4798c803d3942d31ef12badb1eb64b59b"
+    },
+    "scripts/pr16_ring_dependency_contracts.py": {
+      "size": 12312,
+      "sha256": "9553ff9b8a34b058093636234c6045410c3c960dc5d0f8dc2b071518af9bfe5f"
+    },
+    "scripts/pr16_ring_dependency_frontier.py": {
+      "size": 8278,
+      "sha256": "9d91f46f77bdec429a994822e05f9b96b15ccfaf618e6303908a8d289a521d17"
+    },
+    "content/modernization/pr16_ring_dependency_frontier.json": {
+      "size": 65220,
+      "sha256": "7fec9a6c21d55e350677a45db840e54dfe6d5560858f4db04d3074b0cc0223f7"
+    },
+    "scripts/pr16_ring_remaining_frontier.py": {
+      "size": 12375,
+      "sha256": "3aa490bc6a4615a447f996df72e2ea678f41ed585076d3e2ddc3d572cd6f94bd"
+    },
+    "content/modernization/pr16_ring_remaining_frontier.json": {
+      "size": 133436,
+      "sha256": "b662d878ad13719e3619c6c53e7204ea1dd14604091037d599ebffcffff5f9fa"
+    },
+    "content/modernization/pr16_ring_selector_owners.json": {
+      "size": 1704471,
+      "sha256": "64e746c4b085f85afb180bbf03299c84ae7efebd1e72964f5f0195e97d553727"
+    },
+    "content/modernization/pr16_ring_record_callers.json": {
+      "size": 102561,
+      "sha256": "622b9d69ef96fc0d975fc4e1bec5e08c4d07e85ee0ddea5a4f8fe538fa65d77a"
+    },
+    "content/modernization/pr16_ring_branch_frontier.json": {
+      "size": 18753,
+      "sha256": "3c1ea4c589af430f115a0a6ed02c330e41e609fb14fdc6f60e9c01090a80861b"
+    },
+    "content/modernization/pr16_ring_unread_frontier.json": {
+      "size": 13830,
+      "sha256": "1b7e08195d8c2d3f7d326e79102d760d6801eb9274ebf3e3131cc963b041a7df"
+    },
+    "content/modernization/pr16_ring_patch_owner.json": {
+      "size": 125662,
+      "sha256": "fb396fd19040d954ebc10c5296a35293575284e24f53bb6a0e23b440eb1a8746"
+    },
+    "content/modernization/pr16_ring_transitive_owner.json": {
+      "size": 34036,
+      "sha256": "2045f5f2d9b2f234f58b8c596121f26794ae578a220e960d38b4a2999ab51cb7"
+    },
+    "content/modernization/pr16_ring_flagset_continuation.json": {
+      "size": 17058,
+      "sha256": "f42e0ce2a7716e99c01315ea6c8a5e47454437a20956c8836ab0335caba25c97"
+    },
+    "content/modernization/pr16_ring_callee_bytes.json": {
+      "size": 15364,
+      "sha256": "292bb4f2ccba10bc19fc39e372519dd6cd797d4829b5b726b16ef6a47d359eaa"
+    },
+    "content/modernization/pr16_ring_helper_bytes.json": {
+      "size": 23847,
+      "sha256": "09ba17a7fdb61b327d7a0e18f71c09fbffb7c74b3e58004b72d31ead8de28c1b"
+    },
+    "content/modernization/pr16_ring_nonzero_bytes.json": {
+      "size": 11445,
+      "sha256": "d215da8016b55be5cfbde5c62b144182de6aed6254a0c3bb76ca22852d92a4bc"
+    },
+    "content/modernization/pr16_ring_zero_bytes.json": {
+      "size": 35345,
+      "sha256": "053457495169b5628d8ff3c0c28c8a58e38053ffd66b4bf8547bae2b2cfb5036"
+    },
+    "content/modernization/pr16_ring_owner_frontier.json": {
+      "size": 73322,
+      "sha256": "4260abb358c4ea4c93f0b28d18b91a8ca242a061681cdca52ddd36842dff4ccf"
+    },
+    "content/modernization/pr16_ring_owner_context.json": {
+      "size": 37372,
+      "sha256": "be7fbf1e7aa0d99bfd371e951e3b5cf8ca6b4d9c8ce65e178e07bb564083833f"
+    },
+    "content/modernization/pr16_ring_effective_frontier.json": {
+      "size": 48045,
+      "sha256": "4c94411def7bef40a660c472762f36de66c4fb3242adab88cb26a1374dc37cf3"
+    },
+    "scripts/pr16_ring_effective_frontier.py": {
+      "size": 10560,
+      "sha256": "31303cea8148726c922f40f41231aa588b249796c08e04d9b41225150f25759e"
+    },
+    "scripts/pr16_ring_owner_frontier.py": {
+      "size": 12711,
+      "sha256": "e7505577537eba4df7a5ee641836b56f212706473eb99ef139a60d22141b9e65"
+    },
+    "scripts/pr16_ring_record_callers.py": {
+      "size": 9264,
+      "sha256": "d30434a3ea9abdcd48c73c5265feafb268069dac8c7abf0e5117ad43e215bbfd"
+    },
+    "scripts/pr16_ring_branch_frontier.py": {
+      "size": 10233,
+      "sha256": "9fe8b6d2697127d0dcefa4afecd1b0365bdc51f3a3638b03acc63ea0987c3aff"
+    },
+    "scripts/pr16_ring_zero_bytes.py": {
+      "size": 16741,
+      "sha256": "ef6255772fdc3153ec4518888af94df1c27f15d028283d81f901e1b5b2e87998"
+    },
+    "scripts/pr16_ring_flagset_continuation.py": {
+      "size": 19471,
+      "sha256": "10f6aa42d04f81385e42ff1987ca325c6a1bab52264c6591c9de7e8841f10e33"
+    },
+    "scripts/pr16_ring_transitive_owner.py": {
+      "size": 15717,
+      "sha256": "4d934acefe35ae818ed998282e3e783c4c5550e8da699a8e629557d4d82508dc"
+    },
+    "scripts/pr16_ring_compiled_owner.py": {
+      "size": 13070,
+      "sha256": "708854062d694ef1e8bbafe633f24e684a92e44daea3abec01afb42c7a419aee"
+    },
+    "scripts/pr16_ring_selector_followup.py": {
+      "size": 10439,
+      "sha256": "84af72842589073fe5ba369ce07b91bbf314844c0dc0ea5aceaab32f73d33e79"
+    },
+    "scripts/pr16_ring_effective_contracts.py": {
+      "size": 12157,
+      "sha256": "3021df97a7cd4ce3bb2832dd9a820e26313afcfaa02fec61e1ebf1a63a6c96a7"
+    },
+    ".github/workflows/pr16-ring-callee-bytes.yml": {
+      "size": 6742,
+      "sha256": "f8bab211f28662062bff281c538487d4bc2f06ff1c71e2d078da9bbe52977d3d"
+    }
+  },
+  "focused_tests": {
+    "tests_run": 31,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "successful": true
+  },
+  "prior_actions_verified_without_replay": [
+    {
+      "id": 35190870442,
+      "head_sha": "9e14bfb6ec932f1411fe072beb5aec9385db59b1",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34946969126,
+      "head_sha": "0b7497b575a3180a045f2be377386490f192a012",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "actions_observed_before_record": [
+    {
+      "id": 35191819059,
+      "name": "source-validation",
+      "head_sha": "ed04397bd452f85305e208efe208538bf6dadd24",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35191819039,
+      "name": "p03-forgetting-ci",
+      "head_sha": "ed04397bd452f85305e208efe208538bf6dadd24",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35191815927,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "ed04397bd452f85305e208efe208538bf6dadd24",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35191815879,
+      "name": "p03-forgetting-ci",
+      "head_sha": "ed04397bd452f85305e208efe208538bf6dadd24",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35191815910,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "ed04397bd452f85305e208efe208538bf6dadd24",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35191815882,
+      "name": "source-validation",
+      "head_sha": "ed04397bd452f85305e208efe208538bf6dadd24",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35191815881,
+      "name": "旧external3根の保存graph再利用と原Actions照合",
+      "head_sha": "ed04397bd452f85305e208efe208538bf6dadd24",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35191563394,
+      "name": "p03-forgetting-ci",
+      "head_sha": "123a14d9ac0d933b4b3268f5e97e270ed157e1de",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35191563363,
+      "name": "source-validation",
+      "head_sha": "123a14d9ac0d933b4b3268f5e97e270ed157e1de",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35191559008,
+      "name": "旧external3根の保存graph再利用と原Actions照合",
+      "head_sha": "123a14d9ac0d933b4b3268f5e97e270ed157e1de",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "id": 35191559134,
+      "name": "source-validation",
+      "head_sha": "123a14d9ac0d933b4b3268f5e97e270ed157e1de",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35191558863,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "123a14d9ac0d933b4b3268f5e97e270ed157e1de",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35191558959,
+      "name": "p03-forgetting-ci",
+      "head_sha": "123a14d9ac0d933b4b3268f5e97e270ed157e1de",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35191558957,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "123a14d9ac0d933b4b3268f5e97e270ed157e1de",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35190954661,
+      "name": "p03-forgetting-ci",
+      "head_sha": "67cad0bc29c3614993d091c0687d36ee6da4c3a8",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35190954772,
+      "name": "source-validation",
+      "head_sha": "67cad0bc29c3614993d091c0687d36ee6da4c3a8",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35190873654,
+      "name": "p03-forgetting-ci",
+      "head_sha": "9e14bfb6ec932f1411fe072beb5aec9385db59b1",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35190873671,
+      "name": "source-validation",
+      "head_sha": "9e14bfb6ec932f1411fe072beb5aec9385db59b1",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35190870475,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "9e14bfb6ec932f1411fe072beb5aec9385db59b1",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35190870402,
+      "name": "p03-forgetting-ci",
+      "head_sha": "9e14bfb6ec932f1411fe072beb5aec9385db59b1",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ]
+}

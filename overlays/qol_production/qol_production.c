@@ -337,6 +337,8 @@ typedef struct QolListMenuTemplate {
 #define FN_FLAG_SET PTR(FlagChangeFn, 0x0806DE75u)
 #define FN_FLAG_CLEAR PTR(FlagChangeFn, 0x0806DE9Du)
 #define FN_GET_BOX_MON_DATA PTR(GetBoxMonDataFn, 0x0803F4B1u)
+/* Party-only fields (notably LEVEL) require GetMonData. */
+#define FN_GET_MON_DATA PTR(GetBoxMonDataFn, 0x0803F355u)
 #define FN_SET_BOX_MON_DATA PTR(SetBoxMonDataFn, 0x0803FBC5u)
 #define FN_GET_BOX_MON_DATA_AT PTR(GetBoxMonDataAtFn, 0x0808B4B5u)
 #define FN_GET_BOXED_MON PTR(GetBoxedMonPtrFn, 0x0808B7CDu)
@@ -818,25 +820,28 @@ u8 VegaQolProduction_BpShopUnlockSatisfied(u8 kind)
     }
 }
 
-static u8 restore_durable_ledger(void)
+static VegaSaveStatus restore_durable_ledger(void)
 {
     VegaModernSaveData *candidate;
+    VegaSaveStatus status;
     FN_READ_FLASH(31u, 0u, PTR(void *, SAVE_BUFFER), SAVE_SECTOR_SIZE);
     candidate = (VegaModernSaveData *)(void *)(
         PTR(u8 *, SAVE_BUFFER)
         + (VEGA_SAVE_EWRAM_ADDRESS - SECTOR31_IMAGE));
-    if (FN_SAVE_VALIDATE(candidate, VEGA_SAVE_LEDGER_SIZE) != VEGA_SAVE_OK)
-        return 0u;
-    copy_bytes(gVegaModernSaveData, candidate, VEGA_SAVE_LEDGER_SIZE);
-    return 1u;
+    status = FN_SAVE_VALIDATE(candidate, VEGA_SAVE_LEDGER_SIZE);
+    /* Only an empty durable ledger permits new-save initialization.  Keep
+     * a corrupt preimage for the caller's validation; never normalize it. */
+    if (status != VEGA_SAVE_EMPTY_OR_LEGACY)
+        copy_bytes(gVegaModernSaveData, candidate, VEGA_SAVE_LEDGER_SIZE);
+    return status;
 }
 
 static u8 ensure_save(void)
 {
     VegaSaveStatus status = FN_SAVE_VALIDATE(gVegaModernSaveData,
                                              VEGA_SAVE_LEDGER_SIZE);
-    if (status == VEGA_SAVE_EMPTY_OR_LEGACY && restore_durable_ledger())
-        status = VEGA_SAVE_OK;
+    if (status == VEGA_SAVE_EMPTY_OR_LEGACY)
+        status = restore_durable_ledger();
     if (status == VEGA_SAVE_OK)
         return 1u;
     if (status == VEGA_SAVE_EMPTY_OR_LEGACY) {
@@ -1705,17 +1710,17 @@ static void candy_continue_task(u8 task_id)
     u8 *mon = PTR(u8 *, PLAYER_PARTY)
         + (u32)state->relearn_position * VEGA_PARTY_MON_SIZE;
     if (state->relearn_position >= *(volatile u8 *)(uintptr_t)PLAYER_PARTY_COUNT
-        || FN_GET_BOX_MON_DATA(mon, MON_DATA_IS_EGG, (u8 *)0)) {
+        || FN_GET_MON_DATA(mon, MON_DATA_IS_EGG, (u8 *)0)) {
         finish_quantity_sequence(task_id, state->relearn_index != 0u);
         return;
     }
     for (;;) {
-        u16 species = (u16)FN_GET_BOX_MON_DATA(
+        u16 species = (u16)FN_GET_MON_DATA(
             mon, MON_DATA_SPECIES, (u8 *)0);
-        u8 level = (u8)FN_GET_BOX_MON_DATA(
+        u8 level = (u8)FN_GET_MON_DATA(
             mon, MON_DATA_LEVEL, (u8 *)0);
         u8 cap = FN_EFFECTIVE_LEVEL_CAP();
-        u32 current_exp = FN_GET_BOX_MON_DATA(mon, MON_DATA_EXP, (u8 *)0);
+        u32 current_exp = FN_GET_MON_DATA(mon, MON_DATA_EXP, (u8 *)0);
         u32 cap_exp;
         u32 next_exp;
         u32 target_exp;

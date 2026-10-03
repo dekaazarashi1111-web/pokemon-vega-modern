@@ -1,0 +1,207 @@
+{
+  "all_activities_accepted": false,
+  "candidate": {
+    "sha256": "26dac23cfdbc02c3c25e357b79dcdf3d247c10d893f54a4f6d6b1227bf5624da",
+    "size": 33554432
+  },
+  "cases": {
+    "photo-cold-visual": {
+      "generated_source": {
+        "sha256": "8cf2ef23331e9ae53d9682a250233645ad20bb43294530c007409c87ddcfb4ed",
+        "size": 55923
+      },
+      "stderr": "",
+      "stdout": "{\"binding\":\"map96/37-background0\",\"events\":155268944,\"backgrounds\":155268872,\"script\":154928612,\"x\":48,\"y\":4,\"activity\":5,\"points\":6,\"cap\":6}\n{\"event\":\"fixture\",\"counter\":2,\"item_quantity\":0,\"inventory_sha256\":\"688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec\",\"other_inventory_sha256\":\"688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec\",\"party_sha256\":\"55514c6b16a517c723e3cdfe4826075020b214905950ada9cd65b41a97419430\",\"party_count\":6,\"owner\":\"01400000000001010000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000\"}\n{\"ledger_event\":\"fixture\",\"version\":2,\"size\":2048,\"checksum_valid\":true,\"ledger_sha256\":\"bdaae0a71b80b9dd0f133c1633bf13863fd6d42a9f3364c557e2db0ea12356ce\",\"unrelated_ledger_sha256\":\"f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e\",\"migration_dirty\":0,\"recovery_blocked\":0}\n{\"prompt\":\"earn\",\"entry_keys\":64,\"screen_sha256\":\"b7bed16f0c7216dea297a2c408332b193f26272bd90ded4efc38259516784895\"}\n{\"outcome\":\"earn\",\"screen_sha256\":\"080a24f32325bfa0bb11451545bd36fed684f0d869b7cb9da04e81fcedc82b3b\"}\n{\"visit\":\"earn\",\"confirmed\":true,\"activity_result\":0,\"frame\":2354}\n{\"event\":\"earned\",\"counter\":4,\"item_quantity\":0,\"inventory_sha256\":\"688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec\",\"other_inventory_sha256\":\"688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec\",\"party_sha256\":\"55514c6b16a517c723e3cdfe4826075020b214905950ada9cd65b41a97419430\",\"party_count\":6,\"owner\":\"01400000060001010000060000000000000000000000000006000004000000000000000002000000000000000000000000000000000000000000000000000000\"}\n{\"ledger_event\":\"earned\",\"version\":2,\"size\":2048,\"checksum_valid\":true,\"ledger_sha256\":\"272d3367e0796d604ff520fd4653f5fad31c86afa95c809126d7c7a439641c1f\",\"unrelated_ledger_sha256\":\"f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e\",\"migration_dirty\":0,\"recovery_blocked\":0}\n{\"visual\":\"earned\",\"map\":[96,37],\"position\":[48,5],\"layout_id\":497,\"layout\":153765016,\"primary\":153402332,\"secondary\":153321160,\"view_empty\":true,\"screen\":\"e6aa09ed93ed4fd42593a0584509e2cc08ec309cf387c8cf836aad724dc4e1bc\"}\n{\"event\":\"cold\",\"counter\":4,\"item_quantity\":0,\"inventory_sha256\":\"688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec\",\"other_inventory_sha256\":\"688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec\",\"party_sha256\":\"55514c6b16a517c723e3cdfe4826075020b214905950ada9cd65b41a97419430\",\"party_count\":6,\"owner\":\"01400000060001010000060000000000000000000000000006000004000000000000000002000000000000000000000000000000000000000000000000000000\"}\n{\"ledger_event\":\"cold\",\"version\":2,\"size\":2048,\"checksum_valid\":true,\"ledger_sha256\":\"272d3367e0796d604ff520fd4653f5fad31c86afa95c809126d7c7a439641c1f\",\"unrelated_ledger_sha256\":\"f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e\",\"migration_dirty\":0,\"recovery_blocked\":0}\n{\"visual\":\"cold\",\"map\":[96,37],\"position\":[48,5],\"layout_id\":497,\"layout\":153765016,\"primary\":153402332,\"secondary\":153321160,\"view_empty\":true,\"screen\":\"e6aa09ed93ed4fd42593a0584509e2cc08ec309cf387c8cf836aad724dc4e1bc\"}\n{\"visual\":\"cold_prompt\",\"map\":[96,37],\"position\":[48,5],\"layout_id\":497,\"layout\":153765016,\"primary\":153402332,\"secondary\":153321160,\"view_empty\":true,\"screen\":\"b7bed16f0c7216dea297a2c408332b193f26272bd90ded4efc38259516784895\"}\n{\"invariants\":\"after-cold-prompt\",\"full_flash_unchanged\":true,\"full_ledger_unchanged\":true,\"full_bag_party_unchanged\":true,\"counter\":4}\n{\"status\":\"PASS\",\"case\":\"photo-cold-visual\",\"candidate_sha256\":\"26dac23cfdbc02c3c25e357b79dcdf3d247c10d893f54a4f6d6b1227bf5624da\",\"fresh_cores\":2,\"predicate_calls\":0,\"clear_calls\":0,\"transaction_saves\":2,\"manual_saves\":0,\"guarded_host_writes\":0,\"photo_earning_regressions\":1,\"natural_arrival_accepted\":false,\"release_ready\":false,\"warnings_errors\":0}\n",
+      "stdout_identity": {
+        "sha256": "6ebb56c4137cdd4c8a4c452ba4f783db6c691d25ffd8a997e64e9b283ed0ed2d",
+        "size": 3844
+      },
+      "terminal": "PASS followed immediately by return 0 in the bound main; numeric shell exit status not separately persisted"
+    },
+    "predicate-boundary": {
+      "generated_source": {
+        "sha256": "6b350c6b951f0436d84f8b92709d7193ada3f045039af58a19ff8aad080a650b",
+        "size": 55923
+      },
+      "stderr": "",
+      "stdout": "{\"boundary\":\"saved-map-view\",\"view_bytes\":512,\"neighbor_bytes\":512,\"inside_one_hot_cases\":256,\"outside_one_hot_cases\":256,\"zero_case\":1,\"source_unchanged\":true,\"clear_bytes\":512,\"clear_neighbor_unchanged\":true,\"flash_unchanged\":true}\n{\"status\":\"PASS\",\"case\":\"predicate-boundary\",\"candidate_sha256\":\"26dac23cfdbc02c3c25e357b79dcdf3d247c10d893f54a4f6d6b1227bf5624da\",\"fresh_cores\":1,\"predicate_calls\":513,\"clear_calls\":1,\"transaction_saves\":0,\"manual_saves\":0,\"guarded_host_writes\":0,\"photo_earning_regressions\":0,\"natural_arrival_accepted\":false,\"release_ready\":false,\"warnings_errors\":0}\n",
+      "stdout_identity": {
+        "sha256": "d6c8c28e48dbfdb44f75321934e6bfec5d16414bcb761a54f1ca122c8687d76e",
+        "size": 588
+      },
+      "terminal": "PASS followed immediately by return 0 in the bound main; numeric shell exit status not separately persisted"
+    }
+  },
+  "compiler": "cc (Debian 14.2.0-19) 14.2.0\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+  "controls": {
+    "binding": {
+      "sha256": "f70479ae1938889b6acd956eaafc89c6586df0922814bf2b0ae0691be03f67ac",
+      "size": 9741
+    },
+    "path": "content/modernization/pr16_research_map_view_controls.json"
+  },
+  "counts": {
+    "accepted_case_impact_regressions": 1,
+    "accepted_fresh_cores": 3,
+    "accepted_host_compiles": 2,
+    "accepted_native_processes": 2,
+    "arm_compiles": 0,
+    "arm_links": 0,
+    "changed_rom_bytes": 1,
+    "diagnostic_fresh_cores": 4,
+    "diagnostic_host_compiles": 2,
+    "diagnostic_native_processes": 2,
+    "guard_processes": 0,
+    "initial_unit_harness_failures": 1,
+    "readonly_disassembler_host_compiles": 1,
+    "unchanged_accepted_case_reruns": 0,
+    "unit_processes": 2,
+    "unit_tests_accepted": 54
+  },
+  "environment": "ChatGPT Linux container; not an Actions native run",
+  "export_head": "75fdbd5d107bb3629d5947e9b3cb503076b1bf7c",
+  "fixture": {
+    "balance_credit_injected": false,
+    "fixture": {
+      "sha256": "434076d0db74c4c5bf1b63e3aa4cc336d17e1f2dbb894160e840c721aa337a38",
+      "size": 131072
+    },
+    "initial_lifetime": 0,
+    "initial_rp": 0,
+    "ledger": {
+      "sha256": "14674d7af0c4b8d32abefb5661603456d9cc2aff92b29538cccff936ab50a913",
+      "size": 2048
+    },
+    "natural_arrival_claimed": false,
+    "offset": 127076,
+    "outside_ledger_changes": 0,
+    "progression_is_fixture": true,
+    "seed": {
+      "sha256": "f6bfdb107196ca22b012c1d12ee4bcdc8f5add309bbd3538447cd6e39c449bcb",
+      "size": 131072
+    }
+  },
+  "flags": [
+    "-std=c11",
+    "-O2",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-Wno-misleading-indentation",
+    "-lmgba",
+    "-lm",
+    "-Wl,--allow-shlib-undefined"
+  ],
+  "historical_bindings_not_locally_used": {
+    "manifests/item_ids.csv": {
+      "sha256": "f3c12e66256d29b675f1bd4f8e68bd0a90e20eb49b5715b8ecbfbc65aa8b2b90",
+      "size": 447424
+    }
+  },
+  "inherited_source_binding_exclusions": [
+    ".github/workflows/pr16-research-photo-20260927.yml"
+  ],
+  "inherited_source_binding_ref": "content/modernization/pr16_research_photo_checkpoint.json",
+  "natural_arrival_accepted": false,
+  "new_native_reruns_required": false,
+  "new_unit_reruns_required": false,
+  "parent": {
+    "sha256": "5d1fc9c47225ae8c0a369514b899a062af3699fa3c9a2f617e94ffd5f7dcc1ab",
+    "size": 33554432
+  },
+  "release_ready": false,
+  "runtime": {
+    "artifact_id": 10898620034,
+    "artifact_sha256": "a6aeccb72fa15411d956b418ca5f030aa5020a466303a25e0f8814ba2eeb5c4d",
+    "library": {
+      "sha256": "0c87a12341640e6a2d325e59e76eb4b002947771ad4d8814b216e3b99817d68d",
+      "size": 1968536
+    }
+  },
+  "schema_version": 1,
+  "screens": {
+    "photo-earn-outcome.ppm": {
+      "identity": {
+        "sha256": "080a24f32325bfa0bb11451545bd36fed684f0d869b7cb9da04e81fcedc82b3b",
+        "size": 115215
+      },
+      "location": "local capture; SHA bound in native stdout. Cold prompt pixels equal original artifact photo-earn-prompt.ppm.",
+      "visually_reviewed": false
+    },
+    "photo-earn-prompt.ppm": {
+      "identity": {
+        "sha256": "b7bed16f0c7216dea297a2c408332b193f26272bd90ded4efc38259516784895",
+        "size": 115215
+      },
+      "location": "local capture; SHA bound in native stdout. Cold prompt pixels equal original artifact photo-earn-prompt.ppm.",
+      "visually_reviewed": false
+    },
+    "visual-cold.ppm": {
+      "identity": {
+        "sha256": "e6aa09ed93ed4fd42593a0584509e2cc08ec309cf387c8cf836aad724dc4e1bc",
+        "size": 115215
+      },
+      "location": "local capture; SHA bound in native stdout. Cold prompt pixels equal original artifact photo-earn-prompt.ppm.",
+      "visually_reviewed": true
+    },
+    "visual-cold_prompt.ppm": {
+      "identity": {
+        "sha256": "b7bed16f0c7216dea297a2c408332b193f26272bd90ded4efc38259516784895",
+        "size": 115215
+      },
+      "location": "local capture; SHA bound in native stdout. Cold prompt pixels equal original artifact photo-earn-prompt.ppm.",
+      "visually_reviewed": true
+    },
+    "visual-earned.ppm": {
+      "identity": {
+        "sha256": "e6aa09ed93ed4fd42593a0584509e2cc08ec309cf387c8cf836aad724dc4e1bc",
+        "size": 115215
+      },
+      "location": "local capture; SHA bound in native stdout. Cold prompt pixels equal original artifact photo-earn-prompt.ppm.",
+      "visually_reviewed": true
+    }
+  },
+  "source_adjudications": [
+    {
+      "after_source": {
+        "sha256": "b0af4083d9785499b67deda9e15e11bede8eca911f36886753321eed661e94b5",
+        "size": 5035
+      },
+      "before_source": {
+        "sha256": "b54158daa3c35ef77528781267aec11786d91081c7fdaf17a647ee9430b6239f",
+        "size": 5035
+      },
+      "case": "predicate-boundary",
+      "new_literal": "h=0x02036D30U",
+      "old_literal": "h=0x02037130U",
+      "reason_ja": "未実行の写真observerのheader定数を最初の写真実行前に訂正。受入predicate本体/依存関数は完全同一、513成功判定を再実行しない。写真は訂正版をcompileして1回実行。"
+    }
+  ],
+  "source_bindings": {
+    "content/modernization/pr16_research_map_view_recipe.json": {
+      "sha256": "8f00e483abff17e1352d58776ee7f567b0935f6c9a8ae78cbb5fcfad9ebc670e",
+      "size": 1513
+    },
+    "scripts/pr16_research_map_view.py": {
+      "sha256": "9eac432c0ae4a3e468a1ac22db1fbe6f92f8c7eb87f3c5410e44f8911d6c2e10",
+      "size": 9239
+    },
+    "tests/test_pr16_research_map_view.py": {
+      "sha256": "841a331ffe48254feb173da75c27b26eb6fb8a7074c22bbee892d42b6766b8ec",
+      "size": 10197
+    },
+    "tools/mgba_pr16_research_map_view.c": {
+      "sha256": "b0af4083d9785499b67deda9e15e11bede8eca911f36886753321eed661e94b5",
+      "size": 5035
+    }
+  },
+  "start_head": "45114dd931e8e8b9e7263a774847a16d7896d3be",
+  "task": "USER-20260927-PHOTO-VISUAL",
+  "unit": {
+    "binding": {
+      "sha256": "27625c560d34d95f6b4dcf72599ab53fdd806ff8644f81a69c70994f40af7201",
+      "size": 7143
+    },
+    "path": "content/modernization/pr16_research_map_view_unit.json"
+  }
+}

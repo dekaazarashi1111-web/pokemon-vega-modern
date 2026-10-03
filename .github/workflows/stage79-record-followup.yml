@@ -1,0 +1,111 @@
+name: stage79-record-followup
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/stage79-record-followup.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: write
+concurrency:
+  group: stage79-record-followup-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  record:
+    if: github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify the immutable five-domain result before recording it
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p .local/stage79-record-followup
+          gh api repos/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/34302717908 > .local/stage79-record-followup/run.json
+          gh api 'repos/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/34302717908/jobs?per_page=100' > .local/stage79-record-followup/jobs.json
+          python3 - <<'PY'
+          import json, pathlib
+          root = pathlib.Path('.local/stage79-record-followup')
+          run = json.loads((root / 'run.json').read_text())
+          assert run['head_sha'] == '3c2794a191ae3ef014df6ab8e97de8103fb8eaaf'
+          assert run['status'] == 'completed' and run['conclusion'] == 'failure'
+          jobs = {j['name']: j for j in json.loads((root / 'jobs.json').read_text())['jobs']}
+          passed = ['mega_shop', 'p03', 'p04_mega_runtime', 'battle_policy', 'p05']
+          failed = ['p02', 'floette']
+          for domain in passed + failed:
+              job = jobs[f'domain ({domain})']
+              assert job['status'] == 'completed'
+              assert job['conclusion'] == ('success' if domain in passed else 'failure')
+              executed = next(step for step in job['steps'] if step['name'] == 'domainをmGBAで実行')
+              assert executed['conclusion'] == ('success' if domain in passed else 'failure')
+          assert jobs['plan']['conclusion'] == 'success'
+          assert jobs['merge']['conclusion'] == 'failure'
+          PY
+      - name: Append the partial-result entry without rewriting existing logs
+        run: |
+          python3 - <<'PY'
+          import datetime, hashlib, json, pathlib, subprocess
+          config = json.loads(pathlib.Path('config/modernization_stage79_cumulative_mgba.json').read_text())
+          rom = config['input_identity']['rom']
+          assert hashlib.sha256(pathlib.Path(rom['path']).read_bytes()).hexdigest() == rom['sha256']
+          gate = json.loads(pathlib.Path(config['execution']['runtime_gate']).read_text())
+          assert gate['status'] == 'READY_NOT_RUN' and gate['not_yet_executed'] is True
+          assert gate['execution']['evidenced_domain_runs'] == 0
+          marker = '<!-- USER-STAGE79-PR16-RUNTIME-FOLLOWUP-20260909 -->'
+          timestamp = datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+          run = 'https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/34302717908'
+          common = (
+              f'\n\n{marker}\n## {timestamp}\n\n'
+              '- Task: `USER-STAGE79-PR16-RUNTIME-FOLLOWUP` / PR #16 runtime investigation and fixes\n'
+              '- Status: PARTIAL — 5/7 domains PASS; P02 and Floette FAIL; P08 not promoted.\n'
+              '- Commit: `-` (this append-only log commit); source fixes `fe26265ee7eaf88fa425773f66a75765ba11f414` and `3c2794a191ae3ef014df6ab8e97de8103fb8eaaf`.\n'
+              '- Summary: Corrected the Stage68-shop/Stage69-map cross-link with exact 15-object validation while retaining historical 14-object checks; fixed the harness latch that prevented retrying ignored physical controller inputs.\n'
+              '- Verify: 20 new regressions (13 map + 7 compiled C input-predicate tests), 42 total PASS in repair run 34302668497; pre-fix failures reproduced. Both shop variants and battle runner compiled with warnings as errors.\n'
+              f'- Runtime: [{run.rsplit("/", 1)[-1]}]({run}), immutable source HEAD `3c2794a191ae3ef014df6ab8e97de8103fb8eaaf`: fresh PASS mega_shop/p03/p04_mega_runtime/battle_policy/p05; FAIL p02/floette; strict merge FAIL.\n'
+              '- Remaining: Floette migration has relocated-start/stale-end and neighboring-table-end alias defects in the frozen product. P02 changes level 15 to 100 before any evolution callback; its exact root cause is not yet established.\n'
+              '- Evidence: `docs/stage79-pr16-followup-20260909.md`; diagnostic runs 34302526120, 34303136112 and 34303410270 are not acceptance evidence.\n'
+              '- Scope: ROM/save hashes, Stage62 active baseline, expected behavior and strict exit/JSON checks preserved; no skips, fake PASS records, P08 promotion or PR merge.\n'
+          )
+          for name in ('design/run_log.md', 'design/version_log.md'):
+              path = pathlib.Path(name)
+              original = path.read_bytes()
+              if marker.encode() in original:
+                  continue
+              with path.open('ab') as stream:
+                  stream.write(common.encode('utf-8'))
+              assert path.read_bytes()[:len(original)] == original
+          changed = set(subprocess.check_output(['git', 'diff', '--name-only'], text=True).splitlines())
+          assert changed <= {'design/run_log.md', 'design/version_log.md'}, changed
+          PY
+      - name: Commit only the append-only project log entries
+        env:
+          EXPECTED_SHA: ${{ github.sha }}
+          HEAD_REF: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+          test "$(git ls-remote origin "refs/heads/$HEAD_REF" | cut -f1)" = "$EXPECTED_SHA"
+          git diff --check
+          git add -- design/run_log.md design/version_log.md
+          git diff --cached > .local/stage79-record-followup/recorded.patch
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          if ! git diff --cached --quiet; then
+            git commit -m 'USER-STAGE79-PR16-RUNTIME-FOLLOWUP: record five verified domains and two unresolved blockers'
+            git push origin "HEAD:refs/heads/$HEAD_REF"
+          fi
+          git rev-parse HEAD > .local/stage79-record-followup/committed-head.txt
+      - name: Revalidate Stage79 including all 42 regressions on the committed HEAD
+        env:
+          GH_TOKEN: ${{ github.token }}
+          HEAD_REF: ${{ github.ref_name }}
+        run: gh workflow run modernization-stage79-mgba.yml --ref "$HEAD_REF" -f domain=all
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage79-record-followup
+          path: .local/stage79-record-followup
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14

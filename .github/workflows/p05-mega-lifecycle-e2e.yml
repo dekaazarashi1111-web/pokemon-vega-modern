@@ -1,0 +1,69 @@
+name: p05-native-mega-lifecycle-e2e
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/p05-mega-lifecycle-e2e.yml
+      - tools/mgba_modernization_p05_mega_lifecycle_e2e.c
+      - scripts/run_modernization_p05_mega_lifecycle_e2e.py
+      - tests/test_modernization_p05_mega_lifecycle_e2e.py
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  native-mega-turn-revert-cold-save:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Fixed compiler and emulator
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .local/p05-mega-lifecycle
+          bash infra/setup_github_actions.sh --install 2>&1 | tee .local/p05-mega-lifecycle/fixed-toolchain.log
+      - name: Regression contracts and exact candidate
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m unittest discover -s tests -p test_modernization_p05_mega_lifecycle_e2e.py -v > .local/p05-mega-lifecycle/unittest.stdout 2> .local/p05-mega-lifecycle/unittest.stderr
+          python3 scripts/run_modernization_stage82_github_domain.py prepare > .local/p05-mega-lifecycle/prepare.json
+          git rev-parse HEAD > .local/p05-mega-lifecycle/tested-head.txt
+      - name: Fresh 42 processes and 48 cores without PASS cache
+        shell: bash
+        run: |
+          set -uo pipefail
+          python3 scripts/run_modernization_p05_mega_lifecycle_e2e.py > .local/p05-mega-lifecycle/job.stdout.json 2> .local/p05-mega-lifecycle/job.stderr.log
+          rc=$?
+          printf '%s\n' "$rc" > .local/p05-mega-lifecycle/native-exit-code.txt
+          exit "$rc"
+      - name: Preserve exact source and workflow
+        if: always()
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import hashlib,json,pathlib,shutil
+          root=pathlib.Path('.')
+          out=root/'.local/p05-mega-lifecycle'
+          result=out/'result.json'
+          names=set(json.loads(result.read_text())['source_bindings']) if result.exists() else set()
+          names.update(['tools/mgba_modernization_p05_mega_lifecycle_e2e.c','scripts/run_modernization_p05_mega_lifecycle_e2e.py','tests/test_modernization_p05_mega_lifecycle_e2e.py','.github/workflows/p05-mega-lifecycle-e2e.yml'])
+          bindings={}
+          for name in sorted(names):
+              data=(root/name).read_bytes()
+              target=out/'sources'/name
+              target.parent.mkdir(parents=True,exist_ok=True)
+              target.write_bytes(data)
+              bindings[name]={'size':len(data),'sha256':hashlib.sha256(data).hexdigest()}
+          (out/'source-archive.json').write_text(json.dumps(bindings,sort_keys=True,indent=2)+'\n')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: p05-native-mega-lifecycle
+          path: .local/p05-mega-lifecycle/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

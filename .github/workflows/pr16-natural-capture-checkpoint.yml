@@ -1,0 +1,124 @@
+name: pr16-natural-capture-checkpoint
+run-name: Retain natural-capture originals, scoped acceptance and remaining route
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-natural-capture-checkpoint.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: pr16-natural-capture-checkpoint
+  cancel-in-progress: false
+jobs:
+  retain-capture:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+      - name: Revalidate original runs and install bounded current-view projection
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          out=.local/pr16-natural-capture-checkpoint
+          mkdir -p "$out"
+          git rev-parse HEAD > "$out/tested-head.txt"
+          python3 scripts/restore_modernization_final_originals.py > "$out/restore.json"
+          python3 scripts/pr16_natural_capture_checkpoint.py --fetch --write > "$out/capture.json"
+          python3 - <<'PY'
+          import hashlib,pathlib
+          p=pathlib.Path('scripts/pr16_refresh_current_view.py');raw=p.read_bytes()
+          assert hashlib.sha256(raw).hexdigest()=='8acd1248b1dd1c42ca353d282ef1047164a1372e6aba4b260f0a139adae50bc8'
+          before='    return out\n\n\ndef install_hook(root=ROOT):'
+          after='    from pr16_natural_capture_checkpoint import RECEIPT as capture_receipt, project as capture_project\n    if (root / capture_receipt).is_file():\n        out=capture_project(out,root)\n'+before
+          text=raw.decode();assert text.count(before)==1;p.write_text(text.replace(before,after,1))
+          PY
+          python3 scripts/pr16_shop_display_checkpoint.py > "$out/shop.json"
+          python3 scripts/pr16_refresh_current_view.py --write > "$out/refresh.json"
+          python3 scripts/pr16_refresh_current_view.py > "$out/check.json"
+          python3 scripts/record_modernization_final_acceptance.py > "$out/final-generator.json"
+          python3 scripts/record_modernization_p03_forgetting.py > "$out/forgetting-generator.json"
+          python3 -m unittest tests.test_pr16_natural_capture tests.test_pr16_natural_capture_checkpoint tests.test_pr16_shop_display_checkpoint tests.test_pr16_shop_display_repair tests.test_pr16_p05_route_checkpoint tests.test_pr16_shop_routes tests.test_pr16_receiver_audit tests.test_pr16_p05_root_diagnostics tests.test_pr16_current_view tests.test_pr16_shared_egg_checkpoint tests.test_pr16_physical_route_checkpoint tests.test_pr16_completion_checkpoint -v > "$out/unit.log" 2>&1
+      - name: Record scoped natural acquisition and append-only work history
+        run: |
+          python3 - <<'PY'
+          import json,os,pathlib,sys
+          sys.path.insert(0,'scripts');import pr16_natural_capture_checkpoint as m
+          root=pathlib.Path('.');value=m.build();view=json.loads((root/m.prior.OVERVIEW).read_bytes())
+          assert view['natural_capture_checkpoint']['natural_capture_accepted'] is True
+          assert view['p06_adoption']['full_phase_accepted'] is view['full_p06_acceptance'] is True
+          assert all(view[k] is False for k in ('full_p03_acceptance','full_p05_acceptance','full_p07_acceptance','release_ready'))
+          assert len(view['remaining_conditions'])==6 and view['next_integration_candidate']['candidate']==m.display.CANDIDATE
+          assert b'Ran 106 tests' in (root/'.local/pr16-natural-capture-checkpoint/unit.log').read_bytes()
+          doc='''# PR16 自然捕獲・通常保存の受入 — 2026-09-11
+          
+          **2つの洞窟での自然歩行→シビルドンの捕獲→通常保存→別コアContinueは、新規2件4コア成功。製品全体、道具の通常入手と戦闘接続、Circus入場は未完了です。**
+          
+          ## 実行した経路と原本
+          
+          実run `34575955233`、実行HEAD `68f9459630a2bf7215c58f12cb0557f57f15c6ff`。候補はショップ表示修正版 `e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267`、33554432 bytes、CRC32 `BFB089F9`。今回はROM変更なしです。
+          
+          マップ1/113では313歩・15遭遇でLv80のシビルドン、1/118では202歩・9遭遇でLv99のシビルドンに遭遇しました。対象外の14件/8件は実際の「にげる」で離脱しています。遭遇ログの全種族・レベルを、その座標で最初に参照される実ROMの地上遭遇表と照合。乱数・野生個体・遭遇関数を試験側から操作していません。
+          
+          戦闘中の実Bag→マスターボール選択→使用で捕獲。自然生成個体と捕獲個体のpersonalityを照合し、ボール1個の消費、他の在庫不変、手持ち200 bytes、通常Start保存、旧コア破棄後の別コアContinue、手持ち・在庫・保存番号の保持まで検査しました。最初の歩行から保存再開まで、7種類のhost書込みAPIを禁止し、その拒否試験も実行済みです。
+          
+          **開始位置、Lv100の先頭個体、1個のマスターボール、記憶されたボールポケットはfixtureです。** 先頭個体やボールの通常入手、捕獲後個体を戦闘へ出すこと、メガストーン取得と装備を通した一連の経路までは合格としていません。`gear_acquisition_accepted` / `battle_connection_accepted` / `full_p05_acceptance` / `release_ready` はfalseです。
+          
+          画面原本12枚を確認しました。自然遭遇時の種族/レベル、ボール一覧/使用選択、捕獲後/再開後の背景を確認し、今回の画面にショップのような破損は見られません。1/118の暗さは開始時からあり、捕獲後と再開後で一致しています。画像ハッシュはcheckpointのIMAGESに固定。画面だけで個体保持を判定せず、データ照合も必須です。
+          
+          地形解析run `34575014339` / HEAD `df5cad6e68e80053bec5eedc13d34c35f36c0c56` は、独立した静的根拠として保持します。こちらはエミュレータ0件で、捕獲2件に加算しません。ショップ修正版の既存成功や親候補のP03/P06/P07成功も、新規件数には加えません。
+          
+          ## 永続保存と再開
+          
+          `content/modernization/pr16_natural_capture_evidence/<run>/original.zip` と `actions.json` に、上の2runをGit追跡しています。SHA-256・ZIP CRC/安全性・Actions全step・実行HEAD・実ソース・raw stdout/stderr/process・拒否記録・画像を照合して `content/modernization/pr16_natural_capture_acceptance.json` を生成します。原本にはROM/saveを含みません。
+          
+          再検査は `python3 scripts/pr16_natural_capture_checkpoint.py`、現在ビューは `python3 scripts/pr16_refresh_current_view.py`。最終受入・P03忘却の両生成経路にも接続済みです。捕獲実行runの対象テスト34件、保存時の新旧対象テスト106件。保存/再検査を新しいROM実行とは数えません。
+          
+          再開入口は `p08_remaining_work.json` の `NATURAL_CAPTURE_GEAR`。自然捕獲を未確認へ戻さず、取得個体の実戦投入・道具の通常入手/装備と戦闘接続へ進んでください。実Circus受付/入場、P03/P07の残る採用経路対応、同一候補への影響回帰、clean ROM全工程独立2回、配布パッチ/導入戻し方も残ります。
+          
+          publicと無料わざメモリーの承認、P06の内外true、親候補の既存原本を保持。Stage62・実プレイsave・旧原本・公開範囲・履歴を変更せず、PR #16は未マージです。
+          '''
+          p=root/'docs/PR16_NATURAL_CAPTURE_CHECKPOINT_JA.md';assert not p.exists();p.write_text(doc)
+          marker='PR16-NATURAL-CAPTURE-20260911'
+          entry='\n## 2026-09-11 / '+marker+'\n\n- USER-MODERNIZATION: native walking/capture/cold-save run34575955233 at 68f94596; 2 processes4 cores on unchanged e630f7f1 shop successor. Cave113:313 steps/15 encounters/Lv80; cave118:202 steps/9 encounters/Lv99. Exact first native land tables and captured personality checked; physical Bag/ball, inventory, party200 bytes, normal save and independent Continue. Seven host-write barriers tested.\n- Initial map/lead/Master Ball are explicit fixtures. Gear acquisition/battle connection/full P05/release remain false. No target/RNG injection. Geometry run34575014339 is static0 emulator runs, not additional native acceptance.\n- Retention run '+os.environ['GITHUB_RUN_ID']+': exact originals, Actions, source, raw exits and12 reviewed images retained;106 targeted tests and both current generators. P06 true mirrors, old shop/P03/P07 originals, Stage62, real saves, owner policy/public and unmerged PR preserved.\n'
+          for name in ('design/run_log.md','design/version_log.md'):
+              p=root/name;before=p.read_text();assert marker not in before;p.write_text(before+entry)
+          PY
+      - name: Commit exact originals and receipt only if branch has not moved
+        env:
+          EXPECTED_HEAD: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          branch=codex/modernization-followup-20260908
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$EXPECTED_HEAD"
+          python3 - <<'PY'
+          import pathlib,subprocess,sys
+          sys.path.insert(0,'scripts');import pr16_natural_capture_checkpoint as m
+          m.build();originals=[m.DIRECTORY+'/'+str(r[0])+'/original.zip' for r in m.RECORDS.values()]
+          paths=[m.RECEIPT,m.prior.OVERVIEW,'scripts/pr16_refresh_current_view.py','docs/PR16_NATURAL_CAPTURE_CHECKPOINT_JA.md','design/run_log.md','design/version_log.md',*originals,*[p.removesuffix('original.zip')+'actions.json' for p in originals]]
+          changed=set(filter(None,subprocess.check_output(['git','diff','--name-only','-z']).decode().split('\0')));assert changed<=set(paths)
+          for name in ('design/run_log.md','design/version_log.md'):assert pathlib.Path(name).read_bytes().startswith(subprocess.check_output(['git','show','HEAD:'+name]))
+          subprocess.run(['git','add','--',*[p for p in paths if p not in originals]],check=True);subprocess.run(['git','add','-f','--',*originals],check=True)
+          assert set(filter(None,subprocess.check_output(['git','diff','--cached','--name-only','-z']).decode().split('\0')))==set(paths)
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-MODERNIZATION: retain natural-capture originals, reviewed screens and scoped remaining route'
+          git push origin "HEAD:refs/heads/$branch"
+          git rev-parse HEAD > .local/pr16-natural-capture-checkpoint/published-head.txt
+          python3 scripts/pr16_natural_capture_checkpoint.py > .local/pr16-natural-capture-checkpoint/post-commit-originals.json
+          python3 scripts/pr16_refresh_current_view.py > .local/pr16-natural-capture-checkpoint/post-commit-current.json
+          git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-natural-capture-checkpoint
+          path: .local/pr16-natural-capture-checkpoint/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

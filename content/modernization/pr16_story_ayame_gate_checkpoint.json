@@ -1,0 +1,362 @@
+{
+  "actions_completion_confirmed": true,
+  "actions_conclusion": "success",
+  "active_baseline_changed": false,
+  "artifact": {
+    "digest": "sha256:4e7a2e5d25dbf01284fdd992327971b7a0d84df2e86022ea6cefc685b2dd064b",
+    "expires_at": "2026-12-28T04:33:24Z",
+    "id": 11012768108,
+    "name": "pr16-story-ayame-checkpoint",
+    "size_in_bytes": 18101058,
+    "workflow_run": {
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_repository_id": 1358127462,
+      "head_sha": "2577d253823bdca94bf3dfac0a67dea9776a6d8a",
+      "id": 36522150353,
+      "repository_id": 1358127462
+    }
+  },
+  "chain_helper_flag_scope": "verification.save_acceptance_claimed=false is the chain-only helper; Save18 is accepted separately by completion, structural bytes, independent Continue and completed Actions.",
+  "evidence_bindings": {
+    "content/modernization/pr16_story_ayame_gate_evidence/continue/commands.txt": {
+      "sha256": "a961ea7d32104f36b63136a21e9359a2a0269486a60818287670cc5a59a076b3",
+      "size": 140
+    },
+    "content/modernization/pr16_story_ayame_gate_evidence/continue/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_story_ayame_gate_evidence/continue/stdout.txt": {
+      "sha256": "74d0fc3acd672f424af09a2f42ec85e2431bcd54de10e6364651400dc5200ce4",
+      "size": 4202
+    },
+    "content/modernization/pr16_story_ayame_gate_evidence/failed-development-progress.stdout.txt": {
+      "sha256": "33ea4014d3f4e661e5326dd7e5a890112923cded979e98494597b064554115c9",
+      "size": 95806
+    },
+    "content/modernization/pr16_story_ayame_gate_evidence/failure-receipt.json": {
+      "sha256": "52cd8cb2515246d2e3598237932ba432102ef118b4737fc73247a5d46a72b116",
+      "size": 3202
+    },
+    "content/modernization/pr16_story_ayame_gate_evidence/manifest.json": {
+      "sha256": "7e6a6433d908adb0faa498e8b28c86d5552a32d49d178dd0808f140b6390a982",
+      "size": 23275
+    },
+    "content/modernization/pr16_story_ayame_gate_evidence/measurement.json": {
+      "sha256": "f3f46ed5f546bd85ca7137f15d710c42368eb1bc8ae7409a068fa91de518cbba",
+      "size": 5792
+    },
+    "content/modernization/pr16_story_ayame_gate_evidence/parent.json": {
+      "sha256": "f763b1c2504769828584685d4631d61593b8d50720b96f30373e4f008d9ac55f",
+      "size": 465
+    },
+    "content/modernization/pr16_story_ayame_gate_evidence/progress/commands.txt": {
+      "sha256": "6d1c304bb82a336b3233b8a175d6c2c92109eefa6d1f0d0fc8199db37e0c1399",
+      "size": 4952
+    },
+    "content/modernization/pr16_story_ayame_gate_evidence/progress/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_story_ayame_gate_evidence/progress/stdout.txt": {
+      "sha256": "892d17da8ba83ab9f286d42da82c976093963f7a0f05ea34d34dd6174514abaa",
+      "size": 96411
+    },
+    "content/modernization/pr16_story_ayame_gate_evidence/record-unit.stderr.txt": {
+      "sha256": "b1027d88bca34391ef9d2de7a0c9fac4f46f4ce1096d862dce274d52b34b53ce",
+      "size": 2791
+    },
+    "content/modernization/pr16_story_ayame_gate_evidence/record-unit.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_story_ayame_gate_evidence/terminal.json": {
+      "sha256": "a803ce6ada2958a69fbd86b95159596a3299500bf71cf6f3e11921034712a4ef",
+      "size": 6051
+    },
+    "content/modernization/pr16_story_ayame_gate_evidence/unit-accept.stderr.txt": {
+      "sha256": "b41a29e7a90c4396ebc2ad80f7d48f08aa8fb84ffd7f695ac0d3845310d154e1",
+      "size": 3515
+    },
+    "content/modernization/pr16_story_ayame_gate_evidence/unit-accept.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_story_ayame_gate_evidence/unit-chain.stderr.txt": {
+      "sha256": "572c8973d63dac9ee9f93a457902bd7a1a18cb753ab644ab65ebade55f1d405c",
+      "size": 2827
+    },
+    "content/modernization/pr16_story_ayame_gate_evidence/unit-chain.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_story_ayame_gate_evidence/verification.json": {
+      "sha256": "90d71eba9c06689b2236cb0c0e622a72a7e2d9258e6cd23c347ad4bfe47cc53e",
+      "size": 3789
+    }
+  },
+  "general_ci_all_success_claimed": false,
+  "job_id": 109257152262,
+  "next_goal_ja": "story-fastの唯一の開始点はartifact11012768108のstory-fast.srm（Save18、131088bytes、SHA256 dc1f690f0616affc61b6d45632924e4c81995c91c7c1939994f37bbe8527432d）。アヤメPC map5/4・7,4・北向き・party4全回復/RP0から、通常出口→入場可能になったアヤメジムの未完storyを進める。ジムリーダー勝利/バッジはまだ未受入。旧未保存WIPのHM05はこのSaveには無く、必要時は通常会話で取得する。新381/cold23入力・55試験・旧BP/P08/Save1〜17を無影響に再走しない。分離progression原本Axew Lv37/EXP68589、NationalDex magic0とownerを保全し、flag/var注入で解禁しない。正規全国図鑑解禁、自然育成/進化、Lucky Egg対照・12成長ケース・Lv100soak・研究施設自然到達・全storyは未完。",
+  "record_run_id": 36523214697,
+  "record_source_head": "2e88af576e6c72b621b7ad221930e4f611c04e2a",
+  "release_ready": false,
+  "run_id": 36522150353,
+  "save18_accepted": true,
+  "save_byte_ledger": {
+    "artifact_only": true,
+    "binding": {
+      "sha256": "aeb13d736477404e1af0587a0e9a184a3502c3125125364d5bd0aace4e091dea",
+      "size": 185579
+    },
+    "changed_bytes": 6731,
+    "ranges": 1740
+  },
+  "schema_version": 1,
+  "source_bindings": {
+    ".github/workflows/pr16-story-ayame.yml": {
+      "sha256": "9985351fe59e540f0113a04e079c4c44c77a0164695252f2b1c9ad1089103a51",
+      "size": 1096
+    },
+    "content/modernization/pr16_story_ayame_gate_development/expected.json": {
+      "sha256": "8d59d21ded03178ffce5662ed76b38431682fb54e0ad5d3c49d8795f3886689d",
+      "size": 5791
+    },
+    "scripts/pr16_story_ayame_accept.py": {
+      "sha256": "60bdce787d7c2c923a8e1d1effbda5d83c037daffcd594afa5fb2d48ba27519b",
+      "size": 11863
+    },
+    "scripts/pr16_story_ayame_chain.py": {
+      "sha256": "326aff8c6e18a17a84dbc76a5952176090af30bfa7550e94b75ca3b89320395d",
+      "size": 3628
+    },
+    "scripts/pr16_story_ayame_measure.py": {
+      "sha256": "4c3fa333237454a34d54393798f706c3e4fb53112ef99e64ec81f818d7c1fb60",
+      "size": 6802
+    },
+    "tests/test_pr16_story_ayame_accept.py": {
+      "sha256": "c511e5fad074a8cf927c021c21c51ec612a7b30ceb178d00fdcf2f3e2eced889",
+      "size": 4853
+    },
+    "tests/test_pr16_story_ayame_chain.py": {
+      "sha256": "d2c18f0d7adbfe9e2f5e5939a6ce3245aeb29b861f6cff68daf12018fead9e02",
+      "size": 3532
+    }
+  },
+  "source_head": "2577d253823bdca94bf3dfac0a67dea9776a6d8a",
+  "status": "PASS_AYAME_CHAIN_GYM_ENTRY_SAVE18_SCOPED",
+  "task": "USER-20260929-STORY-AYAME-GATE",
+  "verification": {
+    "accepted_case_reruns": 0,
+    "active_baseline_changed": false,
+    "candidate": {
+      "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5",
+      "size": 33554432
+    },
+    "captures": 0,
+    "cold_frames": 1714,
+    "cold_inputs": 23,
+    "compiles": 0,
+    "episodes": [
+      {
+        "field_return": 58,
+        "party_ui": [
+          46
+        ],
+        "start": 37,
+        "victory": 55
+      },
+      {
+        "field_return": 81,
+        "party_ui": [],
+        "start": 62,
+        "victory": 78
+      },
+      {
+        "field_return": 112,
+        "party_ui": [],
+        "start": 86,
+        "victory": 109
+      }
+    ],
+    "escapes": 0,
+    "evolution_accepted": false,
+    "final_unlocked_field": 115,
+    "full_story_accepted": false,
+    "gym_entry_accepted": true,
+    "gym_leader_victory_accepted": false,
+    "hm05_acquired_in_this_interval": false,
+    "input_save": {
+      "sha256": "6bd7a37962e31b3c3c553a882903c766b7146f016cdf00a62036273789ab6f2a",
+      "size": 131088
+    },
+    "losses": 0,
+    "national_dex_unlocked": false,
+    "natural_difficulty_accepted": false,
+    "natural_growth_accepted": false,
+    "natural_research_arrival_accepted": false,
+    "ordinary_heals": 1,
+    "ordinary_saves": 1,
+    "output_save": {
+      "sha256": "dc1f690f0616affc61b6d45632924e4c81995c91c7c1939994f37bbe8527432d",
+      "size": 131088
+    },
+    "party_ui_is_not_battle_start": true,
+    "prize_money": 568,
+    "progress_frames": 36244,
+    "progress_inputs": 381,
+    "release_ready": false,
+    "retained_outcome_is_not_victory": true,
+    "rom_changes": 0,
+    "rom_owners": {
+      "completion_value": 3,
+      "condition_value": 2,
+      "condition_variable": 16497,
+      "gym_object": {
+        "flag": 4355,
+        "local_id": 1,
+        "script": 138585184,
+        "xy": [
+          32,
+          25
+        ]
+      },
+      "map_event_root": 138585288,
+      "optional_object_battle_ids_not_counted": [
+        557,
+        558,
+        559
+      ],
+      "trainer_references": [
+        [
+          1,
+          3
+        ],
+        [
+          1200,
+          3
+        ],
+        [
+          1203,
+          3
+        ]
+      ]
+    },
+    "route": [
+      [
+        5,
+        4
+      ],
+      [
+        3,
+        1
+      ],
+      [
+        3,
+        20
+      ],
+      [
+        3,
+        11
+      ],
+      [
+        22,
+        1
+      ],
+      [
+        3,
+        11
+      ],
+      [
+        3,
+        20
+      ],
+      [
+        3,
+        1
+      ],
+      [
+        3,
+        11
+      ],
+      [
+        22,
+        1
+      ],
+      [
+        3,
+        20
+      ],
+      [
+        3,
+        1
+      ],
+      [
+        6,
+        2
+      ],
+      [
+        3,
+        1
+      ],
+      [
+        5,
+        4
+      ]
+    ],
+    "save_acceptance_claimed": false,
+    "save_counter": 18,
+    "save_structure": {
+      "all_five_bag_pockets_unchanged": true,
+      "all_save_rtc_preserved_after_continue": true,
+      "general_sector_checksum_acceptance_claimed": false,
+      "money_after": 3940,
+      "money_before": 3372,
+      "national_dex_magic": 0,
+      "observed_flag_bits": [
+        1,
+        317,
+        319
+      ],
+      "party_changed_bytes": [
+        {
+          "after": 38,
+          "before": 37,
+          "offset": 141
+        },
+        {
+          "after": 53,
+          "before": 51,
+          "offset": 341
+        }
+      ],
+      "pc_chunk13_payload_preserved_bytes": 2000,
+      "pc_full_sections_preserved": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "previous_bank_preserved_bytes": 57344,
+      "s61e": {
+        "byte_after": 11,
+        "byte_before": 3,
+        "changed_flag": 4355,
+        "changed_payload_offset": 256,
+        "crc32_and_complement_verified": true,
+        "geometry": "chunk13+0x7d0; header0x10; payload0x606",
+        "other_expanded_flags_vars_ball_coins_unchanged": true
+      },
+      "trainer_flag_id_mapping_claimed": false,
+      "unused_party_bytes_preserved": 200
+    },
+    "save_success_text_frame_captured": false,
+    "screens": 145,
+    "trainer_victories": 3,
+    "wild_battles": 0
+  }
+}

@@ -1,0 +1,319 @@
+{
+  "schema_version": 1,
+  "task": "PR-P08-7-RING-HIGH-BRANCH-ABI",
+  "source_head": "de517da291587ca23867800f1df65997e5e6034e",
+  "run_id": 35013060593,
+  "run_status_at_record": "in_progress",
+  "analysis": {
+    "classification": "HIGH_BRANCH_SIGNED_DIVISION_POINTER_UNDER_ENTRY_ASSUMPTIONS",
+    "candidate": {
+      "size": 33554432,
+      "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b",
+      "crc32": "3EB17B36"
+    },
+    "instructions_verified": 8,
+    "instruction_bytes_verified": 16,
+    "literal_bytes_verified": 12,
+    "high_input_cases": 49152,
+    "out_of_route_diagnostic_cases": 13,
+    "high_input_bounds": [
+      16384,
+      65535
+    ],
+    "boundary_thumb": 134667873,
+    "boundary_expression": "r0 = trunc(signed32(entry_r6 - 0x4000) / 8); r1 = 0x02037014",
+    "conditional_pointer_expression": "0x02037014 + ((id - 0x4000) >> 3), when entry_r6=id in [0x4000,0xffff]",
+    "computed_pointer_bounds_under_high_entry_assumption": [
+      33779732,
+      33785875
+    ],
+    "allocated_storage_extent_proven": false,
+    "local_sp_delta": 0,
+    "local_data_ram_reads": 0,
+    "local_stores": 0,
+    "prior_tail_and_epilogue_results_reused_not_executed": true,
+    "proof_assumptions_ja": [
+      "未読高域入口へentry_r6=idで到達する。ID経路は先行保存dispatchを再利用し再実行しない。",
+      "保存joinのADDと保存epilogueのr0保持を条件付きで結合。到達/stack slot保持/全callee帰還は証明しない。"
+    ],
+    "hypothetical_inherited_slot_alias": {
+      "id": 16384,
+      "pointer": 33779732,
+      "flagset_entry_sp": 33779740,
+      "saved_slot_offset": -8,
+      "observed": false
+    },
+    "old_unread_targets": [
+      134647037,
+      134647989,
+      134648233,
+      134648273,
+      135346165,
+      151613701,
+      154152717,
+      154155097,
+      154635157,
+      154635821,
+      154635823,
+      154635825,
+      154639241,
+      154639243,
+      154917233,
+      154917289,
+      154922465,
+      154922573
+    ],
+    "remaining_unread_targets": [
+      134647037,
+      134647989,
+      134648233,
+      134648273,
+      134667549,
+      135346165,
+      135346313,
+      135346425,
+      151613701,
+      154152717,
+      154155097,
+      154635157,
+      154635821,
+      154635823,
+      154635825,
+      154639241,
+      154639243,
+      154917233,
+      154917289,
+      154922465,
+      154922573
+    ],
+    "priority_unread_targets": [
+      135346313,
+      134667549,
+      135346425
+    ],
+    "callee_return_proven": false,
+    "callee_return_observed": false,
+    "saved_slot_preservation_proven": false,
+    "return_pointer_non_alias_proven": false,
+    "all_runtime_owners_excluded": false,
+    "ring_acquisition_accepted": false,
+    "release_ready": false,
+    "rom_changes": 0,
+    "new_emulator_processes": 0,
+    "candidate_reconstructions": 0,
+    "accepted_native_cases_replayed": 0
+  },
+  "source_bindings": {
+    "scripts/pr16_ring_followup_v2.py": {
+      "size": 11453,
+      "sha256": "71e33dbe40cd8988e185256821e33e6a1e06e4eddeb8ee6a3eb9047a4d3c49f7"
+    },
+    "scripts/pr16_ring_high_branch_abi.py": {
+      "size": 8407,
+      "sha256": "2661b28752996e914d1b05f413fa7c60126c1cdcdd9ddddac0fd0730a2742b5a"
+    },
+    "tests/test_pr16_ring_high_branch_abi.py": {
+      "size": 1764,
+      "sha256": "73f6c133b37f807fd9ccc9bea260d77233956654010b84037da4aaae1c1e3ab1"
+    },
+    ".github/workflows/pr16-ring-high-branch-abi.yml": {
+      "size": 1370,
+      "sha256": "70fce6fd6f0dcb723706e7429a3e486af1fe9101c522d8f78255d1360ccdb141"
+    },
+    "content/modernization/pr16_ring_high_branch_bytes.json": {
+      "size": 14310,
+      "sha256": "8fb4f5a0604393f37ee63676bf411dc4e3c230e4492bb18ff9b1333999f151eb"
+    },
+    "content/modernization/pr16_bp_chooser_checkpoint.json": {
+      "size": 9442,
+      "sha256": "853ed41b6abcfb63651aab136951a53c8c89ec635f769e8466327ba3a0c0ae41"
+    },
+    "scripts/pr16_resume.py": {
+      "size": 26649,
+      "sha256": "b0ec73bf933e46f7b254057559b0c637a2d1a9b625b08f348aa8308ea00dee5a"
+    },
+    "scripts/pr16_ring_compiled_record.py": {
+      "size": 13116,
+      "sha256": "768c94e59983d27bbf0ed46d6ba60008352a3a67e11612b18936e38b271e73ef"
+    },
+    "scripts/guard_private_files.py": {
+      "size": 5443,
+      "sha256": "143426a7403abf47396791f6ece3a3a374fa97fbf8bedc88169f636cddbcc905"
+    },
+    "content/modernization/pr16_ring_zero_abi.json": {
+      "size": 14547,
+      "sha256": "2d6d97fc1998409e2589620589eb3911d92cf979b6e1f3b30418730e5efa0f90"
+    },
+    "content/modernization/pr16_ring_common_tail_abi.json": {
+      "size": 16527,
+      "sha256": "ed344d342b1599eaf0ea51258fb61e2cf61b0defeed87b26c44fc96ec406e1e4"
+    },
+    "content/modernization/pr16_ring_epilogue_abi.json": {
+      "size": 11160,
+      "sha256": "a336594a386f5b9f69c2832e35646daad5ff8ca33f2ce4d83a219ed36207f5cc"
+    }
+  },
+  "focused_tests": {
+    "tests_run": 14,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "successful": true
+  },
+  "prior_actions_verified_without_replay": [
+    {
+      "id": 35012559981,
+      "head_sha": "fad0e881c26ec79a937be0c657d02c268809cec6",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34946969126,
+      "head_sha": "0b7497b575a3180a045f2be377386490f192a012",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "actions_observed_before_record": [
+    {
+      "id": 35013064728,
+      "name": "source-validation",
+      "head_sha": "de517da291587ca23867800f1df65997e5e6034e",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35013064740,
+      "name": "p03-forgetting-ci",
+      "head_sha": "de517da291587ca23867800f1df65997e5e6034e",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35013060593,
+      "name": "保存高域8命令のABI検証記録・非force push",
+      "head_sha": "de517da291587ca23867800f1df65997e5e6034e",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35013060388,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "de517da291587ca23867800f1df65997e5e6034e",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35013060325,
+      "name": "p03-forgetting-ci",
+      "head_sha": "de517da291587ca23867800f1df65997e5e6034e",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35013060457,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "de517da291587ca23867800f1df65997e5e6034e",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35013060549,
+      "name": "source-validation",
+      "head_sha": "de517da291587ca23867800f1df65997e5e6034e",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35012719796,
+      "name": "source-validation",
+      "head_sha": "dec0a27ac693547ef1df06e66d5e97f5f22dde26",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35012719696,
+      "name": "p03-forgetting-ci",
+      "head_sha": "dec0a27ac693547ef1df06e66d5e97f5f22dde26",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35012563135,
+      "name": "p03-forgetting-ci",
+      "head_sha": "fad0e881c26ec79a937be0c657d02c268809cec6",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "id": 35012563138,
+      "name": "source-validation",
+      "head_sha": "fad0e881c26ec79a937be0c657d02c268809cec6",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35012559864,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "fad0e881c26ec79a937be0c657d02c268809cec6",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35012559921,
+      "name": "p03-forgetting-ci",
+      "head_sha": "fad0e881c26ec79a937be0c657d02c268809cec6",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "id": 35012559897,
+      "name": "source-validation",
+      "head_sha": "fad0e881c26ec79a937be0c657d02c268809cec6",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35012559843,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "fad0e881c26ec79a937be0c657d02c268809cec6",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35012559981,
+      "name": "未読高域分岐1根の採取検証記録・非force push",
+      "head_sha": "fad0e881c26ec79a937be0c657d02c268809cec6",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35012415707,
+      "name": "source-validation",
+      "head_sha": "cc8e3bb00db195df3498668371669aa62123ce84",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35012415755,
+      "name": "p03-forgetting-ci",
+      "head_sha": "cc8e3bb00db195df3498668371669aa62123ce84",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35012344013,
+      "name": "p03-forgetting-ci",
+      "head_sha": "c87afbb7619897cb840b1a3388f7f060e4b10acb",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "id": 35012344120,
+      "name": "source-validation",
+      "head_sha": "c87afbb7619897cb840b1a3388f7f060e4b10acb",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ]
+}

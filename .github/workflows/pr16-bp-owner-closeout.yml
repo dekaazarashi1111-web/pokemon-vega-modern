@@ -1,0 +1,90 @@
+name: pr16-bp-owner-closeout
+run-name: Record repaired source audit without claiming native loss return
+on:
+  workflow_dispatch:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-bp-owner-closeout.yml
+      - scripts/pr16_bp_owner_closeout.py
+      - tests/test_pr16_bp_owner_closeout.py
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: pr16-bp-owner-closeout
+  cancel-in-progress: false
+jobs:
+  record-owner:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: Retain verified text and update the same handoff and logs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-owner-closeout
+          mkdir -p "$out"
+          python3 scripts/pr16_bp_owner_closeout.py retain > "$out/retention.stdout" 2> "$out/retention.stderr"
+          python3 -m unittest tests.test_pr16_bp_loss_return_owner tests.test_pr16_restore_cfru_snapshot tests.test_pr16_bp_owner_closeout tests.test_pr16_resume -v > "$out/unit.stdout" 2> "$out/unit.stderr"
+          python3 scripts/pr16_resume.py check > "$out/resume-check.json"
+          python3 scripts/validate_task_graph.py > "$out/task-graph.txt"
+          python3 scripts/pr16_bp_owner_closeout.py logs > "$out/logs.stdout"
+          python3 scripts/pr16_bp_owner_closeout.py stage_and_guard > "$out/guard-first.stdout" 2> "$out/guard-first.stderr"
+          python3 scripts/pr16_bp_owner_closeout.py stage_and_guard > "$out/guard-final.stdout" 2> "$out/guard-final.stderr"
+          git diff --cached --check
+          python3 scripts/pr16_resume.py check > "$out/final-resume-check.json"
+      - name: Commit and non-force push only if current HEAD still matches
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-owner-closeout
+          branch=codex/modernization-followup-20260908
+          test "$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/$branch" --jq .object.sha)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20260913-BP-LOSS-RETURN-OWNER: source gate修復と原本・固定引継ぎ・両ログ同期; native帰還未完'
+          python3 - <<'PY'
+          import pathlib,subprocess
+          changed=subprocess.check_output(['git','diff','--name-only','HEAD^','HEAD','-z']).decode().split('\0')
+          for name in filter(None,changed):
+              assert subprocess.check_output(['git','show','HEAD:'+name])==pathlib.Path(name).read_bytes(),name
+          PY
+          test "$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/$branch" --jq .object.sha)" = "$GITHUB_SHA"
+          git push origin "HEAD:refs/heads/$branch"
+          git rev-parse HEAD > "$out/final-head.txt"
+          test "$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/$branch" --jq .object.sha)" = "$(cat "$out/final-head.txt")"
+          cp content/modernization/pr16_bp_loss_return_owner.json "$out/record.json"
+      - name: Guard text-only closeout artifact
+        id: artifact_guard
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib,json,pathlib,re
+          out=pathlib.Path('.local/pr16-bp-owner-closeout');members={}
+          for p in out.iterdir():
+              assert p.is_file() and not p.is_symlink() and p.suffix in {'.json','.txt','.stdout','.stderr'}
+              raw=p.read_bytes();raw.decode('utf-8');assert b'\0' not in raw and len(raw)<16000000
+              assert not re.search(rb'gh[pousr]_[A-Za-z0-9]{36,}|github_pat_[A-Za-z0-9_]{60,}',raw)
+              members[p.name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+          (out/'members.json').write_text(json.dumps(members,sort_keys=True,indent=2)+'\n')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.artifact_guard.outcome == 'success'
+        with:
+          name: pr16-bp-owner-closeout
+          path: .local/pr16-bp-owner-closeout/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90

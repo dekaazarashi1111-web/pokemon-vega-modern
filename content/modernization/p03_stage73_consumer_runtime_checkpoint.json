@@ -1,0 +1,76 @@
+{
+  "allocation_sha256": "f8dab8da8dadd9163f0b8249b59672d91c4b52a26a472e8392fd508c8934173a",
+  "bps": {
+    "path": "build/patches/stage72-to-stage73-modernization-p03-consumer-runtime.bps",
+    "round_trip": true,
+    "sha256": "8b901363aedff24d13fa60530dcb1512e02317b6da675e96586ac2dd83af6a61",
+    "size": 36300,
+    "source_sha256": "f27411a2dcef2ec2c1f3c06de624b24838683f5e77017fafa9bf445edc00d059",
+    "target_sha256": "25329a1d5dd71a4f3c0adff8b337af1c4b3496e0aae64439ed2adebe338ce26a"
+  },
+  "changed_bytes": 36585,
+  "completion_claim": "FIVE_GROUP_CONSUMER_BOUNDARY_CHECKPOINT_NOT_FULL_P03",
+  "conditional_breeding_existing_owner_evidence": {
+    "canonical_species": 24,
+    "instruction_evidence": {
+      "canonical_species_compare": {
+        "address": "0x090EAA74",
+        "hex": "069b182b46d0",
+        "instructions": "ldr r3,[sp,#24]; cmp r3,#24; beq conditional block"
+      },
+      "egg_species_load": {
+        "address": "0x090EA946",
+        "hex": "048c",
+        "instruction": "ldrh r4,[r0,#32]"
+      },
+      "egg_species_stack_store": {
+        "address": "0x090EA94E",
+        "hex": "0694",
+        "instruction": "str r4,[sp,#24]"
+      },
+      "light_ball_compares": [
+        {
+          "address": "0x090EAB14",
+          "hex": "ca2807d0",
+          "instruction": "cmp r0,#202; beq"
+        },
+        {
+          "address": "0x090EAB24",
+          "hex": "ca28a8d1",
+          "instruction": "cmp r0,#202; bne exit"
+        }
+      ],
+      "volt_tackle_build": {
+        "address": "0x090EAB28",
+        "hex": "ac21124b05984900",
+        "immediate": 172,
+        "instructions": "movs r1,#172; lsls r1,r1,#1",
+        "result": 344,
+        "shift": 1
+      }
+    },
+    "light_ball_item": 202,
+    "parent_function_entry": "0x090EA930",
+    "runtime_owner": "PARENT_BUILD_EGG_MOVESET",
+    "source_route_count": 1,
+    "volt_tackle_move": 344
+  },
+  "consumer_boundary_accounted_routes": 40570,
+  "done": false,
+  "mgba": "DEFERRED_TO_ROOT_FINAL_CUMULATIVE_ONCE",
+  "new_runtime_materialized_routes": 5363,
+  "output_crc32": "b4907165",
+  "output_path": "build/stages/73_modernization_p03_consumer_runtime.gba",
+  "output_sha256": "25329a1d5dd71a4f3c0adff8b337af1c4b3496e0aae64439ed2adebe338ce26a",
+  "output_size": 33554432,
+  "parent_commit": "bbab6b2e943186cf437a6dca90712c01f0319ded",
+  "parent_sha256": "f27411a2dcef2ec2c1f3c06de624b24838683f5e77017fafa9bf445edc00d059",
+  "payload_sha256": "aff0b17e3b1c243d084c3a412ccac9a74d2fa599600d6efe70b3f652f66e0f45",
+  "release_candidate": false,
+  "remaining_full_p03_routes": 26648,
+  "route_audit_sha256": "d3af91e38635c12e0f985ab8f1f2467d81cb1acd8e2716c5dd285eda98044275",
+  "schema_version": 1,
+  "stage": 73,
+  "status": "CHECKPOINT_FIVE_CONSUMER_BOUNDARY_CONNECTED_SUPPLY_DEPENDENCIES_REMAIN",
+  "task": "USER-MODERNIZATION-P03-STAGE73-CONSUMER-RUNTIME"
+}

@@ -1,0 +1,36 @@
+name: stage79-runtime-probe
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/stage79-runtime-probe.yml
+      - .github/scripts/stage79_runtime_probe.py
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        domain: [p02, floette, battle_policy]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Install pinned toolchain
+        run: bash infra/setup_github_actions.sh --install
+      - name: Trace without changing limits or acceptance expectations
+        env:
+          DOMAIN: ${{ matrix.domain }}
+        run: python3 .github/scripts/stage79_runtime_probe.py "$DOMAIN"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage79-runtime-probe-${{ matrix.domain }}
+          path: .local/stage79-runtime-probe/${{ matrix.domain }}
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14

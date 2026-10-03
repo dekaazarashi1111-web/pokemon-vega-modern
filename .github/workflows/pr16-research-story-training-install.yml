@@ -1,0 +1,85 @@
+name: pr16-research-story-training-install
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-research-story-training-install.yml]
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+jobs:
+  install:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Verify and store new UTF8 source and already measured originals without replay
+        run: |
+          python3 -B - <<'PY'
+          import base64,hashlib,json,lzma,subprocess,sys
+          from pathlib import Path,PurePosixPath
+          assert subprocess.check_output(['git','rev-parse','HEAD^']).decode().strip()=='3277344d825a92c0931d2e414fe74f4cff737276'
+          parts=[f'.github/pr16-story-training-source-{i}.txt' for i in range(1,5)]
+          data=base64.b64decode(''.join(Path(p).read_text() for p in parts),validate=True)
+          assert len(data)==24288 and hashlib.sha256(data).hexdigest()=='49616d24c3261f5d95310be5637f84d355e3491104ea9609d00c4db0aaeacdb4'
+          dec=lzma.LZMADecompressor(memlimit=128*1024*1024)
+          raw=dec.decompress(data,max_length=127167)
+          assert dec.eof and not dec.unused_data and len(raw)==127166
+          def unique(pairs):
+              obj={}
+              for k,v in pairs:
+                  assert k not in obj
+                  obj[k]=v
+              return obj
+          files=json.loads(raw.decode('utf-8'),object_pairs_hook=unique)
+          dev='content/modernization/pr16_research_story_training_development/'
+          names={'scripts/pr16_research_story_training.py','scripts/pr16_research_story_training_actions.py','tests/test_pr16_research_story_training.py','docs/PR16_RESEARCH_STORY_TRAINING_JA.md'}
+          names|={dev+n for n in ('commands.txt','continue-commands.txt','continue.stderr.txt','continue.stdout.txt','diagnostic.json','progress.stderr.txt','progress.stdout.txt','result.json','unit.stderr.txt','unit.stdout.txt','verification.json','visual-review.json')}
+          assert set(files)==names and len(files)==16
+          for name,text in files.items():
+              p=Path(name);rel=PurePosixPath(name)
+              assert not rel.is_absolute() and '..' not in rel.parts and not p.exists() and not p.is_symlink()
+              assert isinstance(text,str) and '\0' not in text
+              p.parent.mkdir(parents=True,exist_ok=True)
+              p.write_bytes(text.encode('utf-8'))
+          sys.path[:0]=['scripts','.']
+          import pr16_research_story_training_actions as a
+          a.checkpoint_source(names,'.github/workflows/pr16-research-story-training-install.yml')
+          state=a.d.read(a.ROOT/a.d.STATE)
+          for p in parts:state['source_bindings'][p]=a.m.identity(Path(p).read_bytes())
+          a.publish_resume(state)
+          print('PASS: 16 new UTF8 sources/originals; 86 existing new-test originals verified; native/unit/compile replay=0')
+          PY
+      - name: Fixed resume task graph and scoped final index
+        run: |
+          python3 -B scripts/pr16_resume.py check
+          python3 -B scripts/validate_task_graph.py
+          mapfile -t paths < <(python3 -B scripts/pr16_research_story_training_actions.py paths)
+          git add -- "${paths[@]}"
+          python3 -B scripts/pr16_research_story_training_actions.py guard
+      - name: Non-force source checkpoint commit
+        run: |
+          test "$(git ls-remote origin "$GITHUB_REF" | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m "USER-20260928-RESEARCH-STORY-TRAINING: 新86検査とLv7習得原本・回復不成立を保存 run=$GITHUB_RUN_ID"
+          git push origin "HEAD:$GITHUB_REF"
+          test "$(git ls-remote origin "$GITHUB_REF" | cut -f1)" = "$(git rev-parse HEAD)"
+          git rev-parse HEAD > .local/pr16-story-training-run/completion-head.txt
+          printf 'RESULT=DONE TASK=USER-20260928-RESEARCH-STORY-TRAINING VERIFY=SOURCE_CHECKPOINT_PASS COMMIT=%s\n' "$(git rev-parse HEAD)"
+      - name: Preserve committed text readback
+        run: python3 -B scripts/pr16_research_story_training_actions.py snapshot
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-research-story-training-installed-text
+          path: .local/pr16-story-training-run
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90

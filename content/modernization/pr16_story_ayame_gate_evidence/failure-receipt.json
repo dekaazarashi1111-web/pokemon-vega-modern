@@ -1,0 +1,98 @@
+{
+  "accepted_old_case_reruns": 0,
+  "cold_diagnostic": {
+    "final_save": {
+      "sha256": "4583da84e2ddfb6e3f8e86072431156d2fafe19a64d9eb57b47c12bbb93c8083",
+      "size": 131088
+    },
+    "initial_save": {
+      "sha256": "451ea209cb23593026bf4e8e99f6cea45ed9e13309a379666a94d6b7e5d300a6",
+      "size": 131088
+    },
+    "native_end": {
+      "end": "STORY_INPUT_CHECKPOINT",
+      "fixture_calls": 0,
+      "frames": 1634,
+      "guarded_host_writes": 0,
+      "host_write_barriers": 7,
+      "inputs": 16,
+      "natural_research_arrival_accepted": false,
+      "warnings_errors": 0
+    },
+    "observations": 1,
+    "returncode": 0
+  },
+  "corrected_extra_frames": 600,
+  "development_failed_native": 2,
+  "development_native_processes": 4,
+  "exact_prefix": {
+    "sha256": "c8141e9d38e661e33ba8596eadc4bb9be2022efb848eb0a4f9c3d8542a5312b1",
+    "size": 95617
+  },
+  "explanation_ja": "保存書込み中counter17/lock1で開発harnessを早期終了。診断coldは古いSave17へfallback。失敗2processを保存し、未受入の新区間のみ正確な観測prefix一致で1回再実行。600frame待機を追加しcounter18/lock0と独立Continueで完了。旧WIPのHM05受領は継承しない。",
+  "failed_cold_counter": 17,
+  "failed_cold_saved": false,
+  "failed_commands": {
+    "sha256": "d1606992b875a4bdae345c5a50b0c7e9f3220114c6ba6e9734932db2406b52c7",
+    "size": 4930
+  },
+  "failed_new_interval_replayed_once": true,
+  "failed_progress_end_line": "{\"end\":\"STORY_INPUT_CHECKPOINT\",\"frames\":35644,\"inputs\":380,\"warnings_errors\":0,\"host_write_barriers\":7,\"guarded_host_writes\":0,\"fixture_calls\":0,\"natural_research_arrival_accepted\":false}\n",
+  "failed_stdout": {
+    "sha256": "33ea4014d3f4e661e5326dd7e5a890112923cded979e98494597b064554115c9",
+    "size": 95806
+  },
+  "first_execution": {
+    "final_save": {
+      "sha256": "451ea209cb23593026bf4e8e99f6cea45ed9e13309a379666a94d6b7e5d300a6",
+      "size": 131088
+    },
+    "initial_save": {
+      "sha256": "6bd7a37962e31b3c3c553a882903c766b7146f016cdf00a62036273789ab6f2a",
+      "size": 131088
+    },
+    "native_end": {
+      "end": "STORY_INPUT_CHECKPOINT",
+      "fixture_calls": 0,
+      "frames": 35644,
+      "guarded_host_writes": 0,
+      "host_write_barriers": 7,
+      "inputs": 380,
+      "natural_research_arrival_accepted": false,
+      "warnings_errors": 0
+    },
+    "observations": 139,
+    "returncode": 0
+  },
+  "last_observation": {
+    "battle_flags": 12,
+    "battle_outcome": 1,
+    "callback2": 134569589,
+    "facing": 2,
+    "field": false,
+    "flash_sha256": "201222b68c94adf497ac58eedc5ba67700ec8a67ee05c96c4b9a6a1d71fba995",
+    "frame": 35644,
+    "ledger_sha256": "847e0b99bded52ce70fbcab4f13accf1ef41ab98a728f4679cff6baeb79aaebb",
+    "live_xy": [
+      14,
+      11
+    ],
+    "lock": 1,
+    "map": [
+      5,
+      4
+    ],
+    "observe": 138,
+    "party_count": 4,
+    "party_sha256": "3385eede5f229e69f3aa73f289f3af0d1827c2c1570b07ce6e6b0f0eb3234cc8",
+    "rp": 0,
+    "save_counter": 17,
+    "xy": [
+      7,
+      4
+    ]
+  },
+  "old_wip_20260929_0308_recoverable": false,
+  "save18_accepted": false,
+  "status": "REJECTED_PREMATURE_QUIT_DURING_SAVE_WRITE"
+}

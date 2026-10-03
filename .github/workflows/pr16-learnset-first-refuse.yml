@@ -1,0 +1,104 @@
+name: pr16-learnset-first-refuse
+# 記録限定。受入成功後はexecute/unit/native/host/ARMを呼ばない。
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-learnset-first-refuse.yml]
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-learnset-first-refuse
+  cancel-in-progress: false
+jobs:
+  complete-first-refuse:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+      GITHUB_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: 受入済みsourceと開始時保全対象の差分を検査（再実行なし）
+        run: |
+          set -euo pipefail
+          python3 -B - <<'PY'
+          import sys
+          sys.path.insert(0,'scripts')
+          import pr16_first_refuse_jp as j
+          f=j.f;v=f.load(f.ROOT/f.CP)
+          f.need(v['run_id']==36071876126 and v['source_head']=='f99b97530b25e11e71ee5d89363d33ca585a8af8','accepted exact source run')
+          for path,binding in (v['source_bindings']|v['compiled_sources']).items():
+              if path!=f.WF:f.need(f.identity((f.ROOT/path).read_bytes())==binding,'accepted source changed '+path)
+          f.need(v['inherited_boundary_checkpoint']['identity']==f.identity((f.ROOT/f.OLD_CP).read_bytes()),'old four checkpoint unchanged')
+          print('SOURCE_BINDINGS=PASS ACCEPTED_NATIVE_RERUNS=0 UNIT_RERUNS=0 HOST_COMPILES=0 ARM_COMPILES=0')
+          PY
+          git diff --exit-code c29827adf1af21cfe1424830a22af8db42b1bfbe HEAD -- AGENTS.md CHATGPT_RESUME.md config/active_play_baseline.json design/active_play_baseline.md content/modernization/pr16_bp_chooser_checkpoint.json content/modernization/p08_remaining_work.json content/modernization/pr16_learnset_boundaries_checkpoint.json docs/PR16_LEARNSET_BOUNDARIES_JA.md tools/mgba_pr16_learnset_boundaries.c scripts/pr16_learnset_boundaries.py
+      - name: native成功run終端・push・artifact・原本を照合し完了記録
+        run: python3 -B scripts/pr16_first_refuse_jp.py complete
+      - name: 最新Actionsを限定結果と分離してtext記録・最終index検査
+        run: |
+          set -euo pipefail
+          python3 -B - <<'PY'
+          import os,sys
+          sys.path.insert(0,'scripts')
+          import pr16_first_refuse_jp as j
+          from pr16_wiki_reconcile import fetch
+          f=j.f;r=fetch('actions/runs?branch=codex%2Fmodernization-followup-20260908&per_page=20')
+          v={'observed_at_source_head':os.environ['GITHUB_SHA'],'observer_run_id':int(os.environ['GITHUB_RUN_ID']),'note_ja':'一般CIのaction_required/in_progressを成功へ昇格しない。今回の終端証拠はCP.completed_actions。記録run自身の終端はpush/upload後にremoteで照合。','runs':[{k:x[k] for k in ('id','name','head_sha','path','status','conclusion')} for x in r['workflow_runs']]}
+          dest=f.ROOT/f.EVIDENCE/os.environ['GITHUB_RUN_ID']
+          dest.mkdir(parents=True,exist_ok=True)
+          f.write(dest/'actions-observation.json',v)
+          f.write(f.PROOF/'actions-observation.json',v)
+          failure={'run_id':36072151730,'source_head':'761ab3fc0beab4dffa3469456f4024a4102b7383','conclusion':'failure','reason':'actions-observation.json parent directory was not created','native_source_terminal_verification':'passed','push_performed':False,'native_runs':0,'unit_runs':0,'host_compiles':0,'repair':'Create the scoped evidence directory before write; do not rerun accepted native/unit.'}
+          f.write(dest/'completion-record-repair.json',failure)
+          f.write(f.PROOF/'completion-record-repair.json',failure)
+          for name in ('design/run_log.md','design/version_log.md'):
+              with (f.ROOT/name).open('a') as out:out.write('- Completion record repair: run36072151730はnative成功原本の終端照合後、補助JSONの親directory未作成でpush前停止。保存先作成を修正し、記録だけ再開。成功native/unit/host/ARMの再実行0。\n')
+          PY
+          python3 -B scripts/pr16_resume.py check
+          python3 -B scripts/validate_task_graph.py
+          python3 -B scripts/pr16_first_refuse_jp.py paths | tr '\n' '\0' >.local/pr16-learnset-first-refuse/paths.z
+          git add --pathspec-from-file=.local/pr16-learnset-first-refuse/paths.z --pathspec-file-nul
+          python3 -B scripts/pr16_first_refuse_jp.py guard
+      - name: 完了記録を同branchへ非force commit/push・remote照合
+        run: |
+          set -euo pipefail
+          branch='codex/modernization-followup-20260908'
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20260925-LEARNSET-FIRST-REFUSE: 拒否1caseのActions終端受入・再実行0・固定引継ぎ確定'
+          git push origin "HEAD:$branch"
+          sha=$(git rev-parse HEAD)
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$sha"
+          echo "$sha" | tee .local/pr16-learnset-first-refuse/proof/reflected-head.txt
+          echo "RESULT=DONE TASK=USER-20260925-LEARNSET-FIRST-REFUSE VERIFY=PASS COMMIT=$sha"
+      - name: 最終確認用text写しと差分一覧（tracked追加なし）
+        run: |
+          python3 -B - <<'PY'
+          import json,pathlib,shutil,subprocess,sys
+          sys.path.insert(0,'scripts')
+          import pr16_first_refuse_jp as j
+          f=j.f
+          for path,leaf in ((f.CP,'final-checkpoint.json'),(f.x.m.STATE,'final-resume.json'),(f.x.m.DOC,'final-handoff.md'),(f.GUIDE,'final-guide.md')):shutil.copyfile(path,f.PROOF/leaf)
+          changed=subprocess.check_output(['git','diff','--name-only','c29827adf1af21cfe1424830a22af8db42b1bfbe','HEAD']).decode().splitlines()
+          f.write(f.PROOF/'final-scope.json',{'head':subprocess.check_output(['git','rev-parse','HEAD']).decode().strip(),'changed_paths':changed,'files':{p:f.identity(pathlib.Path(p).read_bytes()) for p in changed},'accepted_native_reruns':0,'completion_native_runs':0,'completion_unit_runs':0,'completion_host_compiles':0,'arm_compiles':0})
+          for path in ('design/run_log.md','design/version_log.md'):
+              data=pathlib.Path(path).read_text().splitlines()
+              (f.PROOF/(pathlib.Path(path).stem+'-tail.txt')).write_text('\n'.join(data[-75:])+'\n')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-first-refuse-completion-proof
+          path: .local/pr16-learnset-first-refuse/proof/
+          retention-days: 30
+          if-no-files-found: error

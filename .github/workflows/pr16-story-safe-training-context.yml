@@ -1,0 +1,55 @@
+name: pr16-story-safe-training-context
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-story-safe-training-context.yml]
+permissions:
+  contents: read
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-story-safe-training-context
+  cancel-in-progress: false
+jobs:
+  context:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Export exact scoped tracked text and live Actions metadata; no native or accepted tests
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-story-safe-training-context
+          python3 -B - <<'PY'
+          import fnmatch, hashlib, json, os, pathlib, subprocess, zipfile
+          root=pathlib.Path('.')
+          paths=subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
+          exact={'AGENTS.md','CHATGPT_RESUME.md','docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md','content/modernization/pr16_native_supply_resume_20260913.json','content/modernization/pr16_bp_chooser_checkpoint.json','content/modernization/p08_remaining_work.json','docs/PR16_STORY_AFTER_HOME_JA.md','design/run_log.md','design/version_log.md','scripts/pr16_learnset_compact_record.py','scripts/pr16_resume.py','scripts/validate_task_graph.py','scripts/private_file_guard.py','config/active_play_baseline.json','design/active_play_baseline.md','scripts/pr16_learnset_runtime_native_record.py'}
+          patterns=['*/AGENTS.md','scripts/pr16_story_after_home*.py','scripts/pr16_home_recovery*.py','scripts/pr16_research_story*.py','scripts/pr16_research_save_impact*.py','tests/test_pr16_story_after_home.py','content/modernization/pr16_story_after_home*.json','content/modernization/pr16_story_after_home_development/*','content/modernization/pr16_home_recovery_native_checkpoint.json','.github/workflows/pr16-story-after-home*.yml']
+          chosen=sorted(p for p in paths if p and (p in exact or any(fnmatch.fnmatchcase(p,pat) for pat in patterns)))
+          manifest={'source_head':os.environ['GITHUB_SHA'],'base_head':subprocess.check_output(['git','rev-parse','HEAD^']).decode().strip(),'files':{}}
+          assert manifest['base_head']=='6df52767eb86287bbad57c7bc91ae779a8c1e846'
+          with zipfile.ZipFile('.local/pr16-story-safe-training-context/source.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for p in chosen:
+                  raw=(root/p).read_bytes(); raw.decode('utf-8')
+                  manifest['files'][p]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+                  z.writestr(p,raw)
+          pathlib.Path('.local/pr16-story-safe-training-context/manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n')
+          print('Scoped tracked text files:',len(chosen),'native/test runs: 0')
+          PY
+          gh api repos/${{ github.repository }}/pulls/16 --jq '{number,state,draft,merged,head:{ref:.head.ref,sha:.head.sha,repo:.head.repo.full_name},base:{ref:.base.ref,sha:.base.sha}}' > .local/pr16-story-safe-training-context/pr.json
+          gh api --paginate 'repos/${{ github.repository }}/actions/runs?branch=codex%2Fmodernization-followup-20260908&per_page=100&created=%3E%3D2026-09-28T02%3A30%3A00Z' --jq '.workflow_runs[] | {id,name,head_sha,event,status,conclusion,created_at,updated_at,run_attempt}' > .local/pr16-story-safe-training-context/actions.jsonl
+          test -z "$(git status --porcelain --untracked-files=no)"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr16-story-safe-training-context
+          path: .local/pr16-story-safe-training-context
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90

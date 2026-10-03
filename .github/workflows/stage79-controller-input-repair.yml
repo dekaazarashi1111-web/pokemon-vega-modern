@@ -1,0 +1,89 @@
+name: stage79-controller-input-repair
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/stage79-controller-input-repair.yml
+      - .github/scripts/stage79_controller_input_repair.py
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: write
+concurrency:
+  group: stage79-controller-input-repair-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  repair:
+    if: github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pinned toolchain
+        run: bash infra/setup_github_actions.sh --install
+      - name: Reproduce dropped input against the original C predicate
+        run: |
+          set -euo pipefail
+          mkdir -p .local/stage79-controller-input-repair
+          if ! grep -q POLICY_RAID_SELECTION_RETRY_INTERVAL tools/mgba_battle_policy_smoke.c; then
+            status=0
+            python3 -m unittest tests.test_modernization_stage79_controller_input.ControllerInputTest.test_latched_selection_retries_after_deadline -v > .local/stage79-controller-input-repair/before.log 2>&1 || status=$?
+            cat .local/stage79-controller-input-repair/before.log
+            test "$status" = 1
+            grep -q 'dropped input must be retried' .local/stage79-controller-input-repair/before.log
+          fi
+      - name: Apply bounded physical-input retry and refresh unexecuted gate hashes
+        run: python3 .github/scripts/stage79_controller_input_repair.py > .local/stage79-controller-input-repair/apply.json
+      - name: Require new and existing regressions and real runner compilation
+        run: |
+          set -euo pipefail
+          python3 -m unittest tests.test_modernization_stage79_controller_input tests.test_modernization_stage79_factory_map tests.test_modernization_stage79_github_domain tests.test_modernization_stage79_cumulative_mgba -v > .local/stage79-controller-input-repair/after.log 2>&1
+          cat .local/stage79-controller-input-repair/after.log
+          python3 scripts/run_modernization_stage79_github_domain.py plan > .local/stage79-controller-input-repair/plan.json
+          cc -std=c11 -O2 -Wall -Wextra -Werror -Itools tools/mgba_battle_policy_smoke.c -lmgba -o .local/stage79-controller-input-repair/runner
+          git diff --check
+      - name: Commit only validated source and READY_NOT_RUN descriptors
+        env:
+          EXPECTED_SHA: ${{ github.sha }}
+          HEAD_REF: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+          test "$(git ls-remote origin "refs/heads/$HEAD_REF" | cut -f1)" = "$EXPECTED_SHA"
+          python3 - <<'PY'
+          import hashlib, json, pathlib, subprocess
+          config = json.loads(pathlib.Path('config/modernization_stage79_cumulative_mgba.json').read_text())
+          rom = config['input_identity']['rom']
+          assert hashlib.sha256(pathlib.Path(rom['path']).read_bytes()).hexdigest() == rom['sha256']
+          gate = json.loads(pathlib.Path(config['execution']['runtime_gate']).read_text())
+          assert gate['status'] == 'READY_NOT_RUN' and gate['not_yet_executed'] is True
+          assert gate['execution']['evidenced_domain_runs'] == 0
+          targets = {'tools/mgba_battle_policy_smoke.c', 'config/modernization_stage79_cumulative_mgba.json', config['execution']['runtime_gate']}
+          changed = set(subprocess.check_output(['git', 'diff', '--name-only'], text=True).splitlines())
+          untracked = set(subprocess.check_output(['git', 'ls-files', '--others', '--exclude-standard'], text=True).splitlines())
+          assert changed <= targets and not untracked, (changed, untracked)
+          subprocess.run(['git', 'add', '--', *sorted(targets)], check=True)
+          PY
+          git diff --cached > .local/stage79-controller-input-repair/validated.patch
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          if ! git diff --cached --quiet; then
+            git commit -m 'fix(stage79): retry ignored physical controller selection inputs within the existing frame bound'
+            git push origin "HEAD:refs/heads/$HEAD_REF"
+          fi
+          git rev-parse HEAD > .local/stage79-controller-input-repair/committed-head.txt
+      - name: Revalidate all seven domains on committed HEAD
+        env:
+          GH_TOKEN: ${{ github.token }}
+          HEAD_REF: ${{ github.ref_name }}
+        run: gh workflow run modernization-stage79-mgba.yml --ref "$HEAD_REF" -f domain=all
+      - name: Keep only diagnostic text evidence
+        if: always()
+        run: rm -f .local/stage79-controller-input-repair/runner
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage79-controller-input-repair
+          path: .local/stage79-controller-input-repair
+          include-hidden-files: true
+          retention-days: 14
+          if-no-files-found: error

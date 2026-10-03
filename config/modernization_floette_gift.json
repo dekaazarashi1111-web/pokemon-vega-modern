@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "task": "USER-MODERNIZATION-FLOETTE-ETERNAL-GIFT",
+  "stage": 69,
+  "inputs": {
+    "parent_rom": {
+      "path": "build/stages/68_modernization_mega_shop.gba",
+      "size": 33554432,
+      "sha256": "1ff9103becdeff8a22b5ffd45d3487b87d23bc7656415d660652d8a413da9639"
+    },
+    "parent_metadata": {
+      "path": "build/stages/68_modernization_mega_shop.json",
+      "sha256": "f2d046b20ba93ed745823cf73da467ad0c886ce1e94a984213e9aa4d536db75e"
+    },
+    "parent_allocation": {
+      "path": "build/stages/68_modernization_mega_shop_allocation.json",
+      "sha256": "f5e1745c9ebd9a12e7b84c02fb7d2ae6972b94e90f7c355f8e11f6dc22585d4b"
+    },
+    "parent_runtime_gate": {
+      "path": "content/modernization/mega_shop_mgba_runtime_gate.json",
+      "size": 4318,
+      "sha256": "5b7b499ccb5af5777033aad1b1d234b2ec49c785d5fe02f818f9312715f8f03c"
+    },
+    "stage67_species_rom": {
+      "path": "build/stages/67_modernization_p02_p03_consumers.gba",
+      "size": 33554432,
+      "sha256": "13e4ecb6f2bc72eeb5d7ffb5b5e5a7a2ae2876391bf37ec93cb6548587265111"
+    },
+    "stage26_acquisition_metadata": {
+      "path": "build/stages/26_acquisition_events.json",
+      "sha256": "0f901534a04efb54f07a5773a91d4dc738a681e854328d0eec4d330da708fe31"
+    },
+    "species_manifest": {
+      "path": "manifests/species_ids.csv",
+      "sha256": "4e7cd7ef13761214f506e8ad58611c3dc36a0843b8b6647368677a73613f9366"
+    },
+    "flags_manifest": {
+      "path": "manifests/flags.csv",
+      "sha256": "9bbaf18e36b41bede706cf55564bb70a7fcf0313a0e5f4ce8c2430070775fbb6"
+    },
+    "legacy_collection_model": {
+      "path": "content/collection_supply_v1/canonical_model.json",
+      "sha256": "fb8066c0a8140da079b1e947cdfb6c76e987cf0c2514456a86868ec554f061d0"
+    },
+    "collection_ledger_manifest": {
+      "path": "vendor/vega_acquisition/manifests/collection_ledger_bits.csv"
+    }
+  },
+  "gift": {
+    "species_key": "SPECIES_KEY_FLOETTE_ETERNAL",
+    "species_id": 1029,
+    "base_species_key": "SPECIES_KEY_FLOETTE",
+    "base_species_id": 959,
+    "canonical_national_dex": 670,
+    "canonical_collection_bit": 850,
+    "level": 50,
+    "unlock_item_key": "ITEM_KEY_MEGA_RING",
+    "unlock_item_id": 580,
+    "claim_flag_key": "FLAG_KEY_STAGE69_FLOETTE_ETERNAL_GIFT",
+    "claim_flag": "0x14CD",
+    "claim_flag_source_of_truth": "config/modernization_floette_gift.json + Stage69 checkpoint",
+    "repeatability": "ONCE_PER_SAVE"
+  },
+  "map": {
+    "group": 96,
+    "map": 5,
+    "local_id": 15,
+    "x": 25,
+    "y": 19,
+    "clone_local_id": 14,
+    "expected_metatile_entry": "0x3010",
+    "expected_collision": 0
+  },
+  "species_runtime_contract": {
+    "canonical_species_count": 1621,
+    "base_stats": {
+      "root": "0x09600000",
+      "stride": 32,
+      "row_address": "0x096080A0",
+      "row_sha256": "756d566678094767a7891522748d72a258a3a26f644fe0f6d237bc30a5bec91c",
+      "stats": [74, 65, 67, 92, 125, 128],
+      "types": [23, 23],
+      "abilities": [167, 0, 181]
+    },
+    "front_sprite": {
+      "root": "0x09F50000", "stride": 8, "row_address": "0x09F52028",
+      "row_sha256": "15bd508b78da4a43a6c021272b8a11480ecce343f0abe36739a414e972bacefb",
+      "pointer": "0x09851DC4", "decoded_size": 2048,
+      "decoded_sha256": "d6e879a875401efed9d69bbe3f8887e3c0d4044ea516c53d859cbeece0ffee2c"
+    },
+    "back_sprite": {
+      "root": "0x09F532A8", "stride": 8, "row_address": "0x09F552D0",
+      "row_sha256": "eee24e8167c913efa6c06ffe4f206a25617ac8d89c7cfdc217799e6f2a0f6c03",
+      "pointer": "0x0970F8D0", "decoded_size": 2048,
+      "decoded_sha256": "8f4537e7a9879e447b14372bdc7d919db2a860bd32f498ca9df8f6840b72dd7b"
+    },
+    "normal_palette": {
+      "root": "0x09F56550", "stride": 8, "row_address": "0x09F58578",
+      "row_sha256": "7abda6040be865e0daa2ea14be9f27db26b1c08b3fcbbdba4c5ddc7cbb15796c",
+      "pointer": "0x09852108", "decoded_size": 32,
+      "decoded_sha256": "3c0b2ec6e18ee0fa29ccb15d14818a5d4082bccb6baa5518820407c2b9cf8a34"
+    },
+    "shiny_palette": {
+      "root": "0x09F597F8", "stride": 8, "row_address": "0x09F5B820",
+      "row_sha256": "5c8398dbe2b0ccd6acbd7ac0761241d626bf17eeb81fe6590bd357a663d37781",
+      "pointer": "0x0970FC24", "decoded_size": 32,
+      "decoded_sha256": "ee669761fd9c528891524bd6756a785fdbba1e7d7fd881cacbc0ccdb5dd3d25e"
+    },
+    "icon": {
+      "root": "0x09F5CAA0", "stride": 4, "row_address": "0x09F5DAB4",
+      "row_sha256": "1c473c10d5fca505c3686f9ea5244f35016f984d57b82724f8c8f910b458d7df",
+      "pointer": "0x099C07F0", "decoded_size": 1024,
+      "decoded_sha256": "482fd9813ed2c482e5079ff7e7c2b95c4e459e7e6f308eb11286ca31421c4ec1"
+    },
+    "icon_palette": {
+      "root": "0x09F5E3F4", "stride": 1, "row_address": "0x09F5E7F9",
+      "row_sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d",
+      "palette_index": 0
+    },
+    "name": {
+      "root": "0x09FD2730", "stride": 11, "row_address": "0x09FD5367",
+      "row_sha256": "33b14721ea0f5dc525af5cae915eebca6ecb478e746727fc656af250355bac48",
+      "encoded_hex": "6c7754a063ff", "decoded": "フラエッテ"
+    },
+    "level_up": {
+      "root_pointer_site": "0x0004346C", "root": "0x093A4CAC", "stride": 4,
+      "row_address": "0x093A5CC0", "row_sha256": "881026b1b207979aaa4428611a859f03b3c21a20a13f8db9f538480b65fdc7ef",
+      "pointer": "0x0939F9FD", "decoded_size": 51,
+      "decoded_sha256": "31ac497522e7662bac949da022e61f89070042ace02e9d6e737f163dba21c59e"
+    },
+    "tm_compatibility": {
+      "root_pointer_site": "0x000432B4", "root": "0x0944BD00", "stride": 16,
+      "row_address": "0x0944FD50", "row_sha256": "4be76c601bea52271dedbda25cb73a7a5d048c229e95c1f4d74940267a6ab691"
+    },
+    "tutor_compatibility": {
+      "root_pointer_site": "0x00121420", "root": "0x093B1B28", "stride": 16,
+      "row_address": "0x093B5B78", "row_sha256": "2e44b8bc113b0c79fd5e5690867e30290837453fab55e9462586a7d82cf96327",
+      "catalog_pointer_site": "0x001213D4", "catalog_root": "0x0944BC80"
+    }
+  },
+  "outputs": {
+    "rom": "build/stages/69_modernization_floette_gift.gba",
+    "metadata": "build/stages/69_modernization_floette_gift.json",
+    "allocation": "build/stages/69_modernization_floette_gift_allocation.json",
+    "bps": "build/stages/69_modernization_floette_gift.bps",
+    "runtime_bin": "generated/runtime/modernization_floette_gift.bin",
+    "runtime_symbols": "generated/runtime/modernization_floette_gift_symbols.json",
+    "contract": "content/modernization/floette_gift_contract.json",
+    "checkpoint": "content/modernization/floette_gift_checkpoint.json",
+    "runtime_gate": "content/modernization/floette_gift_mgba_runtime_gate.json"
+  }
+}

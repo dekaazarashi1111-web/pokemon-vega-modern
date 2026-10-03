@@ -1,0 +1,56 @@
+name: pr16-bp-exchange-identity-record
+run-name: 交換個体境界の成功原本を固定引継ぎ・両ログへ記録（native再実行なし）
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-bp-exchange-identity-record.yml
+      - scripts/pr16_bp_exchange_identity_record.py
+      - tests/test_pr16_bp_exchange_identity_record.py
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: pr16-bp-exchange-identity-record
+  cancel-in-progress: false
+jobs:
+  record:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: 成功原本・83source・生成C・7barrier・同一prefixを照合して記録
+        run: |
+          set -euo pipefail
+          sha256sum -c <<'PINS'
+          41ed4a562b25df54cb598a17e506327ab253b5e473cfb457f5a392c79ba5ccdc  scripts/pr16_bp_exchange_identity_record.py
+          728aa04ae7376f8a0d2f495acaa5340b6dac0f7b5566659dd6d68c2896536dec  tests/test_pr16_bp_exchange_identity_record.py
+          PINS
+          python3 scripts/pr16_bp_exchange_identity_record.py record
+      - name: 記録6tests・固定引継ぎ18tests・source-only checks
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-exchange-identity-record
+          python3 -m unittest discover -s tests -p test_pr16_bp_exchange_identity_record.py -v 2>&1 | tee "$out/record-tests.txt"
+          python3 -m unittest discover -s tests -p test_pr16_resume.py -v 2>&1 | tee "$out/resume-tests.txt"
+          python3 scripts/pr16_bp_exchange_identity_record.py check
+          python3 scripts/pr16_resume.py check | tee "$out/resume-check.json"
+          python3 scripts/validate_task_graph.py | tee "$out/task-graph.txt"
+          git diff --check
+      - name: 最終index guard差分・非force commit/push・remote読戻し
+        run: python3 scripts/pr16_bp_exchange_identity_record.py publish
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-bp-exchange-identity-record
+          path: .local/pr16-bp-exchange-identity-record/
+          include-hidden-files: true
+          retention-days: 90
+          if-no-files-found: error

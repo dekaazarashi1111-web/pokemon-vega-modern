@@ -1,0 +1,82 @@
+name: pr16-story-save12-terminal
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-story-save12-terminal.yml]
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-story-save12-terminal
+  cancel-in-progress: false
+jobs:
+  terminal:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      GH_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Completed originals only, no native or test replay
+        run: |
+          test "$GITHUB_RUN_ATTEMPT" = 1
+          python3 -B scripts/pr16_resume.py check
+          python3 -B scripts/pr16_story_save12_actions.py terminal
+          python3 -B - <<'PYCODE'
+          import sys
+          from pathlib import Path
+          sys.path.insert(0,'scripts')
+          import pr16_story_save12_actions as a
+          from pr16_learnset_compact_record import publish_resume
+          state=a.d.read(a.ROOT/a.d.STATE);work=a.d.read(a.ROOT/a.WORK)
+          work['notes_ja']='正式Actions終端確認済み。'+state['next_action']['goal_ja']
+          a.write(a.ROOT/a.WORK,work)
+          state['source_bindings'][a.WORK]=a.m.identity((a.ROOT/a.WORK).read_bytes())
+          publish_resume(state)
+          PYCODE
+      - name: Task graph and scoped final index
+        run: |
+          python3 -B scripts/validate_task_graph.py --check
+          python3 -B scripts/pr16_story_save12_actions.py guard
+      - name: Non-force terminal commit and remote readback
+        run: |
+          set -euo pipefail
+          branch=codex/modernization-followup-20260908
+          test "$(git ls-remote origin refs/heads/$branch | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m "USER-20260928-STORY-SAVE12: 2体回復・69検査・Save12のActions終端確定、固定引継ぎと両ログを同期 run=$GITHUB_RUN_ID"
+          git push origin HEAD:refs/heads/$branch
+          test "$(git ls-remote origin refs/heads/$branch | cut -f1)" = "$(git rev-parse HEAD)"
+          python3 -B scripts/pr16_story_save12_actions.py snapshot
+          echo "RESULT=DONE TASK=USER-20260928-STORY-SAVE12 VERIFY=PASS COMMIT=$(git rev-parse HEAD)"
+      - name: Compact committed text context for next resume
+        run: |
+          python3 -B - <<'PY'
+          import fnmatch,hashlib,json,pathlib,subprocess,zipfile
+          root=pathlib.Path.cwd();out=root/'.local/pr16-story-save12/checkpoint'
+          exact={'AGENTS.md','CHATGPT_RESUME.md','scripts/pr16_resume.py','scripts/pr16_learnset_compact_record.py','scripts/pr16_learnset_runtime_record.py','scripts/guard_private_files.py','scripts/validate_task_graph.py','config/active_play_baseline.json','design/active_play_baseline.md','content/modernization/pr16_native_supply_resume_20260913.json','docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md','content/modernization/pr16_bp_chooser_checkpoint.json','content/modernization/p08_remaining_work.json'}
+          patterns=['scripts/pr16_story*.py','scripts/pr16_safe_training*.py','scripts/pr16_research_story*.py','scripts/pr16_research_lifecycle*.py','scripts/pr16_research_bag*.py','scripts/pr16_research_save*.py','scripts/pr16_home_recovery*.py','tests/test_pr16_story*.py','tests/test_pr16_safe_training*.py','content/modernization/pr16_story*checkpoint.json','content/modernization/pr16_story_save12_working.json','content/modernization/pr16_story_save12_terminal.json','content/modernization/pr16_story_save12_development/*','docs/PR16_STORY*.md','.github/workflows/pr16-story-save12*.yml']
+          paths=[p for p in subprocess.check_output(['git','ls-files','-z']).decode().split('\0') if p and (p in exact or any(fnmatch.fnmatch(p,g) for g in patterns))]
+          manifest={'source_head':subprocess.check_output(['git','rev-parse','HEAD']).decode().strip(),'files':{}}
+          with zipfile.ZipFile(out/'context.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for name in sorted(paths):
+                  raw=subprocess.check_output(['git','show','HEAD:'+name]);raw.decode('utf-8');assert b'\0' not in raw
+                  z.writestr(name,raw);manifest['files'][name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+              z.writestr('context-manifest.json',json.dumps(manifest,ensure_ascii=False,indent=2)+'\n')
+          print('COMPACT_COMMITTED_TEXT_CONTEXT',len(paths))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-story-save12-terminal
+          path: .local/pr16-story-save12/checkpoint
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90

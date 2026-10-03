@@ -1,0 +1,45 @@
+name: PR16 Circus Drought native symbol boundary
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-circus-drought-calls.yml
+      - scripts/pr16_circus_drought_calls.py
+      - tests/test_pr16_circus_drought_calls.py
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: pr16-circus-three-win
+  cancel-in-progress: false
+jobs:
+  circus-native-calls:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: 最新失敗原本と実関数境界修復を検証して非force保存
+        id: prepare
+        run: python3 scripts/pr16_circus_drought_calls.py prepare
+      - name: 新しい独立2linkと生成ARMを検査し未完continuationを実行
+        run: python3 scripts/pr16_circus_drought_calls.py pipeline
+      - name: 成否原本と固定引継ぎと両ログを非force保存
+        if: always() && steps.prepare.outcome == 'success'
+        run: python3 scripts/pr16_circus_drought_calls.py finish
+      - name: ROMとsaveを除外して証跡を保存
+        if: always() && steps.prepare.outcome == 'success'
+        run: python3 scripts/pr16_circus_drought_calls.py pack
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.prepare.outcome == 'success'
+        with:
+          name: pr16-circus-drought-calls
+          path: .local/pr16-circus-finish-evidence/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

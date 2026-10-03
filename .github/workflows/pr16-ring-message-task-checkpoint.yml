@@ -1,0 +1,43 @@
+name: pr16-ring-message-task-checkpoint
+run-name: 成功1231条件の軽量再開checkpointを再実行なしで記録
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-ring-message-task-checkpoint.yml
+      - scripts/pr16_ring_message_task_checkpoint.py
+      - tests/test_pr16_ring_message_task_checkpoint.py
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-ring-message-task-checkpoint
+  cancel-in-progress: false
+jobs:
+  focused:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: 保存成功原本の軽量checkpointと固定再開点を同branchへ記録
+        run: python3 scripts/pr16_ring_message_task_checkpoint.py run
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-ring-message-task-checkpoint
+          path: |
+            .local/pr16-ring-message-task-checkpoint/analysis.json
+            .local/pr16-ring-message-task-checkpoint/tests.json
+            .local/pr16-ring-message-task-checkpoint/tests.txt
+            .local/pr16-ring-message-task-checkpoint/recorded-result.json
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90

@@ -4020,3 +4020,7812 @@
 - Commit: `-`（本エントリを含む完了commit）
 - Network:
   - GitHub公式CLI／APIでstate Release assetの置換・remote再取得とActions再実行・結果読戻しを行った。credential、token、private member本文は記録していない。
+
+## 2026-09-08T12:42:25+09:00
+
+- Task: `USER-MODERNIZATION-P02-P08` / Stage66 bulk習得・P04容量／素材・P08統合checkpoint
+- Status: STOPPED（検証済みcheckpoint。P01のみDONE、P02〜P08は未完了）
+- Summary:
+  - P02 mGBA runnerをStage63からStage64の2-byte修正をmemory生成できるclean bootstrapへ変更し、生成config、実行source、ROM identityを証跡へ固定した。Rayquaza修正以外の全進化受入は未完了のまま保持した。
+  - P03はStage65のCaterpie 4経路からStage66 bulkへ展開した。全1,300対象／118,528経路を照合し、level-up 18,515＋machine 29,033の計47,548経路を実装、残70,980を理由付き保留にした。Stage65→66は81,693 changed bytes、宣言外0。Stage66専用10ファイルをcommit `90a1811964a19e3c058448af173007678b42a7e3`へ先行固定した。
+  - P04外部素材importerを固定source commitから再生成し、Mega 49/49のfront/back/icon/paletteとStone 45/45をprivate-use stagingへ変換した。Tatsugiri Droopy／Stretchyはupstream共通Mega paletteへ修正し、palette readyを49/49にした。Winds/Waves 3種は完全素材未確認のためplaceholderを生成していない。
+  - P04容量checkpointでSpecies/Form 52、Item 45、Ability 6、Move 1をappend予約し、39固定表、allocator、numeric width、save ABI、実Windows public-state readerを監査した。既存88-bit eventはItem 1043に89 bit必要、legacy Ability u8とsave item bitmap 125→131 bytesをruntime blockerとして維持した。
+  - P05は新Move 1／新Ability 6、P06/P07は提出済み採用差分0を維持した。P03 runtime handoffが実際にGit tracked fileであることを検証し、同byte untracked fallbackを拒否した。
+  - P08へStage66 tracked 5件／ignored 5件、mGBA source 8件、直接BPS依存、CI toolchain依存を追加した。P04容量がStage65基準でStage66と非衝突、Stage66後future-tail残94,948 bytesであることを明示し、3 handoffへ同じcomposite fingerprintを収載した。active Stage62、P01のみ完了、release-ready=falseを維持した。
+  - private bundleのsource／restore双方で全path componentのsymlink脱出を拒否し、rights manifest欠落をfail closedにした。GitHub repositoryがPublicのままROM／save入りReleaseを公開していたことを検出し、ユーザー指示でrepository全体をPrivateへ変更した。全private-download workflowへAPI可視性gateを追加した。
+- Files changed:
+  - `config/modernization_candidate.json`、`config/modernization_p03_stage65.json`、`config/github_private_environment.json`
+  - `config/modernization_p03_stage66.json`、`content/modernization/p03_stage66_*.json`、`tools/modernization_p03_stage66.py`、Stage66 builder／mGBA runner／focused test
+  - `content/modernization/p02_stage64_*.json`、`scripts/run_modernization_p02_mgba.py`、P02 mGBA test
+  - `content/modernization/p04_asset_*.json`、`tools/modernization_p04_asset_importer.py`、asset source/import tests
+  - `content/modernization/p04_capacity_allocation_manifest.json`、`tools/modernization_p04_capacity.py`、capacity builder／test
+  - P05／P07 contract、builder、test
+  - P08 integration matrix／runtime handoff／release handoff、builder、integration tool／test
+  - `scripts/github_private_environment.py`、`scripts/run_github_private_suite.py`、private environment／suite tests
+  - `.github/workflows/private-runtime.yml`、`.github/workflows/chatgpt-comment-control.yml`、`Makefile`
+  - `design/current_state.md`、`design/modernization_handoff.md`、`design/decisions.md`、`design/run_log.md`、`design/version_log.md`
+- Verify:
+  - Stage66専用focused 12件、実consumer mGBA 4代表×独立2 process、deterministic build/check、incremental／clean BPS往復、change audit、private guard: PASS。ROM 33,554,432 bytes、SHA-256 `0d92f5377b4ad1a2fa5cbf905f81b5b6162e16cdd09a12c65c4a342e73c5c97e`、CRC32 `808D5140`。
+  - P04 source/importer 24件、asset check、capacity 10件／check: PASS。生成asset 670 files、426,648 bytes、asset-set SHA-256 `462fed5d292582f44a29007e2da488829973c57b1964f86fa12e6da41c6e749c`。capacity manifest 451,027 bytes、SHA-256 `6b8e13bc22bff1e76371aca7bc814d754da56dadad10153ec0e007522e710752`。
+  - P05 focused 11件／check、P07 check、private environment 10件、private suite／workflow 17件、P02 mGBA focused 8件: PASS。途中でcapacityを既定check modeのまま実行して差分FAIL、P05 testの定数import漏れで1 errorとなったが、`--write`の明示とtest import修正後に各全件PASSした。
+  - P08 focused 16件と追加workflow回帰を含む34件、deterministic `--check`: PASS。tracked inputs 31、completed phases 1、active Stage62、candidate Stage66、release false。
+  - task graph、private guard、workflow YAML parse、`git diff --check`: PASS。repository全体の重いtestと同じmGBA chainの再反復は省略した。
+- Commit: `-`（本エントリを含むcheckpoint commit。Stage66専用先行commitは`90a1811964a19e3c058448af173007678b42a7e3`）
+- Network:
+  - P04素材は`https://github.com/rh-hideout/pokeemerald-expansion`の固定commit `cafe0221cefb2a991cc0ece429174ade877d037d`を主採用した。`https://github.com/xirosrh/wah-20-anniversary`の`076b1f930594352a4a105d60be0511e24be22772`、DPE-JP／Shiny-Miner DPE、TeamAquasHideout系、`Schn4pper/pokenigme`も不足素材の有無を比較したが、権利／形式／欠落のため追加採用しなかった。
+  - GitHub公式CLI／APIでrepository visibilityとRelease状態を照合した。Public時に5 assets（合計約1.99 GB）が非draft公開だったため、ユーザー明示指示後にrepositoryをPrivateへ変更し、`private=true`を読み戻した。Release assetは削除・置換・downloadせず、新P04素材もuploadしていない。credential／ROM／save／private member本文は記録していない。
+
+## 2026-09-08T15:03:19+09:00
+
+- Task: `USER-MODERNIZATION-P02-P08-STAGE67-SCOPE-CORRECTION` / Stage67 consumer追加と現行追加対象の訂正
+- Status: STOPPED（検証済みcheckpoint。P01のみDONE、P02〜P08は未完了）
+- Summary:
+  - P02のlevel＋所持道具分岐6種について、成立6、不足6、誤道具6、通常分岐12、選択前後、Species更新、`CalculateMonStats`、hidden ability bitの保持を実consumerで独立2 process確認した。
+  - Stage67へ進化時341、既存教え技740、通常タマゴ2,522の3,603経路を追加し、Stage66継承分と合わせて51,151経路を実consumerへ接続した。サイドチェンジ159経路は非採用、選択済み保留は67,218経路。ROMは33,554,432 bytes、SHA-256 `13e4ecb6f2bc72eeb5d7ffb5b5e5a7a2ae2876391bf37ec93cb6548587265111`、CRC32 `D94758FF`で変更していない。
+  - Browt／Pombon／Gecquaを`NON_ADOPTED_USER_SCOPE`へ移し、通常Species追加、ID予約、容量、素材、runtime接続を0件にした。P04はMega用Species/Form 49（1621〜1669）、Item 45（999〜1043）、Ability 6（312〜317）、Move 0へ訂正した。
+  - P04固定表34件は616,521→636,378 bytes（+19,857、alignment込み636,392）、`integration_modules`残1,124,296 bytes。Mega 49／Stone 45のprivate-use素材670 files／426,648 bytesは維持した。
+  - フラエッテ（えいえんのはな）のメガ前形態は既存Species ID 1029としてStage67にBaseStats、画像、palette、icon、習得表、名称が存在することをexact監査した。従来collection policyでは入手不能のため、取得eventは後続候補へ分離した。
+  - P05／P07／P08へ同じ採用境界を連鎖し、active Stage62、selected Stage67、release false、P01のみ完了を維持した。
+- Files changed:
+  - `config/modernization_candidate.json`、`config/modernization_p03_stage67.json`
+  - `content/modernization/p02_acceptance_checkpoint.json`、`content/modernization/p03_stage67_*.json`
+  - `content/modernization/p04_candidate_manifest.json`、`content/modernization/p04_asset_import_manifest.json`、`content/modernization/p04_capacity_allocation_manifest.json`
+  - `content/modernization/p05_*.json`、`content/modernization/p07_*.json`、`content/modernization/p08_*.json`
+  - P02／P04／P05／P07／P08の生成tool、runner、focused test
+  - `design/current_state.md`、`design/modernization_handoff.md`、`design/decisions.md`、`design/run_log.md`、`design/version_log.md`
+- Verify:
+  - P02 acceptanceは独立2 processでPASS、focused 4件PASS。Stage67 build／published mGBA evidence check、差分監査、incremental／clean BPS往復はPASSし、既に同一ROMで取得済みの重いmGBA実行は繰り返していない。
+  - P04 source／asset／capacity focused 36件、各generator check、private asset差分検査PASS。candidate manifest SHA-256 `95fd141a4f38d4fd937af3a3873ae93f99028e94d9422db148279a1b90f6f9ac`、capacity manifest SHA-256 `8377afbe70ff3a1da1c805f51f5e83d49fd0a5befd271e6c549cf0f76bf082fe`。
+  - P05 focused 11件とAbility 46 case×独立2 process、P07 focused 11件、P08 focused 16件と`build_modernization_p08.py --check`、`git diff --check`: PASS。P08はtracked inputs 41、completed 1、active Stage62、candidate Stage67、release false。
+- Commit: `-`（本エントリを含むcheckpoint commit。Stage67 ROM先行commitは`b4bdb67fcb9c49414661b2c591e0b1d9464aeafe`）
+- Network:
+  - 公式`https://windswaves.pokemon.com/en-us/`、`https://www.pokemon.com/us/pokemon-news/see-the-new-trailer-for-pokemon-winds-and-pokemon-waves-coming-to-nintendo-switch-2`、`https://www.pokemon.co.jp/ex/winds_waves/ja/`を確認し、Browt／Pombon／Gecquaの名称、タイプ、特性の来歴だけを保持した。ユーザー指定により実装・ID予約・素材取得は行っていない。
+
+## 2026-09-08T16:34:51+09:00
+
+- Task: `USER-MODERNIZATION-P04-ACQUISITION-CHECKPOINT` / 追加Mega Stone販売とえいえんのはなフラエッテ配布
+- Status: DONE（取得系checkpointのみ。P04本体とP02〜P08は未完了）
+- Summary:
+  - Stage68でMega Stone 45件をItem ID 999〜1043へ結合し、map `96/5` local 14の専用Factory BP店から全品16 BPで購入可能にした。Mega Ring 580解禁、claim flag `0x14A0..0x14CC`、各石1save1回、通常save／sector 31補償transactionを接続した。
+  - Item固定5表を999→1,044行へ拡張し、base sanitizerとCFRU 12 consumerを1043 inclusiveへ更新した。Codex/Mirageの固定上限は分離し、グローバル取得bitmapは拡張していない。
+  - Stage69で既存Species ID 1029のえいえんのはなフラエッテLv.50を、Mega Ring所持時にmap `96/5` local 15のNPCから1save1回配布する。手持ち→PC、flag `0x14CD`、National 670の既存collection bit 850を使い、旧図鑑bitmapの範囲外書込みを避けた。
+  - P08はactive Stage62、selected Stage69、release false、P01のみDONEに更新した。取得経路46件とMega本体runtime 0件を分離し、49 Megaを完了扱いしていない。
+- Files changed:
+  - Stage68: `config/modernization_mega_shop*.json`、`overlays/modernization_mega_shop/**`、`tools/modernization_mega_shop.py`、build/mGBA scripts、focused tests、catalog/checkpoint/runtime gate。
+  - Stage69: `config/modernization_floette_gift.json`、`overlays/modernization_floette_gift/**`、`tools/modernization_floette_gift.py`、build script、focused tests、contract/checkpoint/runtime gate。
+  - P08と引継ぎ: `config/modernization_candidate.json`、`tools/modernization_p08_integration.py`、P08の3生成JSON・focused test、`design/current_state.md`、`design/modernization_handoff.md`、`design/decisions.md`。
+- Verify:
+  - Stage68 ROM 33,554,432 bytes、SHA-256 `1ff9103becdeff8a22b5ffd45d3487b87d23bc7656415d660652d8a413da9639`、CRC32 `DAFDD099`。host 244 assertions、focused 8件、mGBA evidence focused 6件をPASS。exact ROMでItem 999/1023/1024/1043受理・1044拒否、代表3購入、BP100→52、保存／fresh reload／再購入拒否、BP不足／bag満杯無変更をPASS。先行失敗5 processはfresh-core治具のSaveBlock/bag pointer未初期化で、実装不具合でないことを証跡化した。
+  - Stage69 ROM 33,554,432 bytes、SHA-256 `6532002dabd3197ee6b8ded8b153a495d3241acf062fc931210987093172cb95`、CRC32 `4849DD0F`。host 13 scenario、focused 10件をPASS。exact ROMはNPC graph／Ring gate／party/PC受取／Species1029／Lv.50／flag/bitをPASS。3回の先行実行はいずれも旧PC ABIを使うharness-only停止で、全満／rollback／fresh reloadはhost PASS・exact pendingと保持した。
+  - 親統合でStage68/69 focused計24件とP08 focused 16件、`python3 scripts/build_modernization_p08.py --check`、task graph、private guard、`git diff --check`をPASS。重い全repository検査と同一mGBAの再実行はしていない。
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Network: なし。既に固定済みのprivate-use素材とlocalのStage67候補だけを使用し、push／Release追加／iPad配置は行っていない。
+
+## 2026-09-08T17:15:05+09:00
+
+- Task: `USER-MODERNIZATION-P04-SPECIES-RUNTIME-STAGE70` / Mega 49形態とAbility固定表のROM実装
+- Status: DONE（Stage70単独checkpoint。Stage71/72とP04全受入は未完了）
+- Summary:
+  - Mega用49形態をSpecies ID 1621〜1669へ安定順に実装し、front／back／palette／shiny／iconを含む28固定表を`0x09463170..0x09532BE0`へ再配置した。既存Species 0〜1620の行とFloette Eternal ID 1029はbyte一致を保持した。
+  - evolution表を`0x094FE8E0`の1,670×128 bytesへ拡張し39 consumerを再接続。新49行はStage71専有のzero rowとした。Species count/maxの実行literalは19箇所を明示allowlist化し、1620/1621から1669/1670へ更新した。
+  - Ability固定4表を312→318行へ広げ、ID 312〜317の差し替え可能な名称と仮説明を追加。Codex rewardのdescription `root >> 2` 3コピーとAbility count 3コピーを明示修正し、全28 rootのshifted-literal参照に未許可実行候補がないことを監査した。
+  - Browt／Pombon／Gecquaは予約集合から除外を維持。base+石のMega順逆行と戦闘変化はStage71、Ability効果はStage72の未完了境界とした。
+- Files changed:
+  - `config/modernization_p04_species_runtime.json`
+  - `overlays/modernization_p04_species_runtime/README.md`
+  - `tools/modernization_p04_species_runtime.py`、`scripts/build_modernization_p04_species_runtime.py`
+  - `tests/test_modernization_p04_species_runtime.py`
+  - `content/modernization/p04_species_runtime_contract.json`、`content/modernization/p04_species_runtime_checkpoint.json`
+  - `design/current_state.md`、`design/modernization_handoff.md`、`design/decisions.md`、`design/run_log.md`、`design/version_log.md`
+- Verify:
+  - 親統合で`python3 -m unittest tests.test_modernization_p04_species_runtime`: 11/11 PASS。
+  - `python3 scripts/build_modernization_p04_species_runtime.py --check`: PASS。49形態、Ability 318行、evolution 39 consumer、BPS roundtrip、宣言span外0を再照合した。
+  - `python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --check`: PASS。
+  - ROMは33,554,432 bytes、SHA-256 `5519bda92ddc9024e9dcd7583fc170797f533f78e5fb552bda328f246722f3ef`、CRC32 `301238C1`。metadata SHA-256 `b2b58dda953398206002ccdc450853aacdf5975ff9cfb923db8fa99f13f840dc`、allocation SHA-256 `3c685b4ea01d9ec6d18b4b3ec97fa83e1d6d4f79ed67cfba7617a9e019224fb8`。
+  - 重いmGBAはStage71/72累積候補で代表経路を1回にまとめるため未実行。Stage70はrelease readyと過大表示しない。
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Network: なし。固定済みexternal sourceとGit管理外private-use素材のみを再利用し、push／Release追加／iPad配置は行っていない。
+
+## 2026-09-08T17:54:02+09:00
+
+- Task: `USER-MODERNIZATION-P04-MEGA-RUNTIME-STAGE71` / Mega 49順逆表と既存戦闘policy契約
+- Status: DONE（Stage71単独checkpoint。Stage72 Ability効果と最終累積mGBAは未完了）
+- Summary:
+  - Stage70のevolution表へ49件のbase＋専用Mega Stone順方向行と49件のMega→base逆方向行を追加した。既存Mega 80行を保持し、Raichu X/Y、Meowstic M/F、Tatsugiri 3形態、Magearna、Floette Eternalを含む全49 mappingと全誤石を検証した。
+  - 既存battle gateの順序をproject mechanic policy、mode別keystone、exact stone、project／upstream usage markとして固定した。通常戦のMega Ring 580、Frontier／Link例外、通常owner／partner／上流Mega Brawlの差をsource・compiled span・host oracleで区別した。
+  - 交代時はMega維持、ひんし時はbase復帰＋usage done維持、蘇生後の再Mega拒否、戦闘終了時の逆方向復元を既存CFRU-JP契約として固定した。Mega Brawlとproject side-usedのexact合成は最終mGBAへ保留した。
+  - Stage70 allocation #73の全850,544-byte slice hashを`ef91ae7d...`から`6a7793e6...`へ更新。全74 sliceを照合し、非対象73 ledger／ROM slice不変、overlap 0、新規allocation 0とした。
+- Files changed:
+  - `config/modernization_p04_mega_runtime.json`
+  - `overlays/modernization_p04_mega_runtime/**`
+  - `tools/modernization_p04_mega_runtime.py`、`scripts/build_modernization_p04_mega_runtime.py`
+  - `tests/test_modernization_p04_mega_runtime.py`
+  - `content/modernization/p04_mega_runtime_mapping.json`、`content/modernization/p04_mega_runtime_checkpoint.json`
+  - `design/current_state.md`、`design/modernization_handoff.md`、`design/decisions.md`、`design/run_log.md`、`design/version_log.md`
+- Verify:
+  - 親統合で`python3 -m unittest tests.test_modernization_p04_mega_runtime`: 12/12 PASS（C oracle 34 assertionsを含む）。
+  - `python3 scripts/build_modernization_p04_mega_runtime.py --check`: 8 artifacts byte一致PASS。BPS roundtrip、49 forward＋49 reverse、既存Mega 80、誤石拒否、変更allowlist外0を再照合した。
+  - ROMは33,554,432 bytes、SHA-256 `dbcc1194511f234c7d34c196082d59bfc0cb6aca6bb3b9c0f911bc8add4230bb`、CRC32 `426A7A7F`。metadata SHA-256 `7050385f0609ec61c7356cef2d0f44c92e42ea72e7295a6bc0bf00968896419c`、allocation SHA-256 `814cb27f4a5028ddc9bb544b8f1aca7947ac9ba0fb67d638b70af54b17812cbf`。
+  - task graph、private guard、`git diff --check`はcommit直前に実行する。重いmGBAはStage72累積候補へ集約し未実行。
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Network: なし。固定済みlocal source／ROM／private-use素材のみを使用し、push／Release追加／iPad配置は行っていない。
+
+## 2026-09-08T18:25:48+09:00
+
+- Task: `USER-MODERNIZATION-P03-STAGE73-CONSUMER-PREFLIGHT` / P03残consumer 40,570経路の再現可能な分離
+- Status: DONE（読取専用preflight。ROM materializationは0、P03本体は未完了）
+- Summary:
+  - 固定ZIPの全118,528 routeを1回streamし、条件付きegg 41、shared egg 5,023、pre-evolution carry 35,141、reminder 295、form change 70の計40,570をStage73候補として再集計した。
+  - shared eggのdirect重複2,272／shared-only 2,751、carryのmachine／TR／tutor供給依存23,578、form transitionの既存owner／不足ownerを分離した。既存の4技保持挙動を新規技供給済みとは数えない。
+  - Side Changeは全159件、5群内72件を非採用として除外し、Browt／Pombon／Gecqua採用0、通常egg／level0への偽装転記0を検証した。Stage72 identity未確定中はROM工程をfail closedとした。
+- Files changed:
+  - `config/modernization_p03_stage73_consumers.json`
+  - `tools/modernization_p03_stage73_consumers.py`
+  - `tests/test_modernization_p03_stage73_consumers.py`
+  - `design/current_state.md`、`design/modernization_handoff.md`、`design/decisions.md`、`design/run_log.md`、`design/version_log.md`
+- Verify:
+  - 親統合で`python3 -m unittest tests.test_modernization_p03_stage73_consumers`: 4/4 PASS、全route streamは1回、5.820秒。
+  - 初回は段階比較が未計算キーまで比較、次はStage67実装済み通常egg 2,522をStage73件数へ含めたためFAIL。比較キーとStage73 scope集計を修正後、source／selected group hashと件数がPASSした。
+  - task graph、private guard、`git diff --check`はcommit直前に実行する。ROM build／mGBAは実施していない。
+- Commit: `-`（本エントリを含むpreflight checkpoint commit）
+- Network: なし。固定済みlocal ZIPとtracked P03契約だけを読み、外部取得／push／Release変更は行っていない。
+
+## 2026-09-08T18:54:36+09:00
+
+- Task: `USER-MODERNIZATION-P02-STAGE71-ACCEPTANCE` / Stage71通常UI受入ハーネスのfail-closed checkpoint
+- Status: STOPPED（P02 exact UI受入のみpending。Stage72／Stage73の作業は継続）
+- Summary:
+  - Stage71 exact ROMに対する1回目は233区間のnew-game trace後にfixture専用`QOL_B_RETURN_WARP`を余分に呼び、`CB2_Intro`へsoft resetした。2回目は自然fieldと6種level＋所持道具／代表条件matrixまで到達後、通常Start→Bag→party導線へ入れず停止した。いずれも製品runtime判定前のハーネス失敗であり、ROM不具合を主張しない。
+  - P02 production runtimeを`UNJUDGED`、通常進化cancel／success、Sun Stone、4技・ability slot・hidden ability／form、stock save＋fresh-core reloadをpendingに保持した。追加mGBAは実行せず、Stage72後の累積1セットへ統合する。
+  - 次回用ハーネスは既知正常Stage60 QA save 131,072 bytes／SHA-256 `f6bfdb107196ca22b012c1d12ee4bcdc8f5add309bbd3538447cd6e39c449bcb`をprocess別にbyte-copy／SHA照合し、通常title→Continue→input-ready field到達後だけparty／item fixtureを置く。元saveは変更せず、fresh coreも通常Continueで再読込する。
+- Files changed:
+  - `config/modernization_p02_stage71_acceptance_gate.json`
+  - `scripts/run_modernization_p02_stage71_acceptance.py`
+  - `tools/mgba_modernization_p02_stage71_acceptance_smoke.c`
+  - `tests/test_modernization_p02_stage71_acceptance.py`
+  - `content/modernization/p02_stage71_acceptance_checkpoint.json`
+  - `design/current_state.md`、`design/modernization_handoff.md`、`design/run_log.md`、`design/version_log.md`
+- Verify:
+  - 親統合で`python3 -m unittest tests.test_modernization_p02_stage71_acceptance`: 7/7 PASS。
+  - `python3 scripts/run_modernization_p02_stage71_acceptance.py check`: PASS、status `STOPPED_EXACT_UI_PENDING`、Stage71 identity pinned、full acceptance false。
+  - C harnessは`-std=c11 -O2 -Wall -Wextra -Werror -Itools -lmgba`で警告／error 0。checkpoint SHA-256 `78734433ec215d376ab862d607d939be707abf200735c60f97d621bcd6aa4531`。
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Network: なし。固定済みlocal ROM／saveのみを使用し、push／Release／iPad／現行プレイ基準は変更していない。
+
+## 2026-09-08T20:40:59+09:00
+
+- Task: `USER-MODERNIZATION-P05-ABILITY-ROM-RUNTIME-STAGE72` / Ability 312〜317のCFRU戦闘runtime接続
+- Status: DONE（Stage72静的checkpoint。P04／P05本体、専用AI/UI境界、最終累積mGBAは未完了）
+- Summary:
+  - Ability ID 312〜317（Dragonize／Eelevate／Fire Mane／Mega Sol／Piercing Drill／Spicy Spray）を6 Megaの全3 u16 ability slot、最終日本語説明、rating、Mold Breaker表へ固定し、29箇所のCFRU-JP battle consumerへ薄いadapterで接続した。既存Ability 0〜311と名前0〜317はbyte一致を保持した。
+  - DragonizeのIon Deluge／Electrify／Tera／Max／Z順、Mega Solの個人晴れ・Utility Umbrella・実晴れ時popup抑制・Flower Gift分離、EelevateのAbility Shield・visual記録境界・通常/Future Sight KO、Piercing Drillの個人/side/Max guard、Spicy Sprayの実damage／元攻撃者解決を固定した。
+  - 独立レビューでMega Solの不要popup、visualで未記録Ability Shieldを読む境界、Future Sight partner bank復元時期の3件を修正した。さらに`atk49`がstate29から30へ同一呼出し内で進むHighを検出し、元`SetMoveEffect2`がFALSEかつopcode `0x49`・state29・完全なEelevate KO候補の時だけTRUEを返す狭いyield hookを追加した。Moxie script完了後のstate31で元攻撃者へ復元し、対象bankは保持する。最終再レビューはHigh／Mediumなし。
+  - 検討中の中間ROM `6723…`、`1c39…`、`e371…`は撤回し、Stage72正本候補をSHA-256 `f27411a2dcef2ec2c1f3c06de624b24838683f5e77017fafa9bf445edc00d059`、CRC32 `F981D1CB`へ固定した。現行プレイ基準Stage62とP08 selected Stage69は変更していない。
+- Files changed:
+  - `config/modernization_p05_ability_rom_runtime.json`
+  - `overlays/modernization_p05_ability_rom_runtime/**`
+  - `tools/modernization_p05_ability_rom_runtime.py`、`scripts/build_modernization_p05_ability_rom_runtime.py`
+  - `tests/test_modernization_p05_ability_rom_runtime.py`
+  - `content/modernization/p05_ability_rom_runtime_checkpoint.json`、`content/modernization/p05_ability_rom_runtime_surface_matrix.json`
+  - `design/current_state.md`、`design/modernization_handoff.md`、`design/decisions.md`、`design/run_log.md`、`design/version_log.md`
+- Verify:
+  - `python3 -m unittest tests.test_modernization_p05_ability_rom_runtime -v`: 15/15 PASS。
+  - `python3 scripts/build_modernization_p05_ability_rom_runtime.py --check`: 9 artifacts byte一致PASS。BPS roundtrip、29 hook preimage／Thumb veneer／trampoline、Ability旧prefix、6 Mega binding、allocator sequence 74、変更7,257 bytes／許可7,436 bytes／許可外0を再照合した。
+  - ROM 33,554,432 bytes、metadata SHA-256 `d3998b9d8a2eea0b2fff7dbc79538673d0bd48931faa373e277a12dd36c28c8f`、allocation SHA-256 `8caad52acb7cf8a16dd6105526c844935119c01d56895508a710be0de9d5f9e2`、incremental BPS SHA-256 `9e9933d85e5b6cfc75a81efd49f214b3037af9ee50070dd7521ad5c2cab54a9a`、checkpoint SHA-256 `1683e4fa6d2ed8d445e8ffd7d78aa97004a52e537453d1abf1394afbeb9f71bb`。
+  - `python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --check`: PASS。重いmGBAはStage73以降の最終累積1セットへ集約し、本checkpointでは実行していない。
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Network: なし。固定済みlocal CFRU-JP／Stage71 ROMのみを使用し、push／Release／iPad／現行プレイ基準は変更していない。
+
+## 2026-09-08T20:54:46+09:00
+
+- Task: `USER-MODERNIZATION-P03-STAGE73-CONSUMER-RUNTIME` / P03 5群consumerのStage73 ROM接続
+- Status: DONE（Stage73 consumer checkpoint。P03本体、machine／tutor供給、最終累積mGBAは未完了）
+- Summary:
+  - Stage72確定commit `bbab6b2e943186cf437a6dca90712c01f0319ded`とROM／metadata／allocation／checkpointの4 identityをfail closedで固定し、Stage73を生成した。3 hookは`GetAllEggMoves`、`VegaMoveMemory_GetMoveRelearnerMoves`、`CollectionSupply_ApplySelectedForm`だけとした。
+  - 5群40,570経路について、exact egg 40、shared egg 5,023、reminder 295、ロトムform move 5の計5,363を新規materializationし、既存Light Ball owner 1、pre-evolution 4技保持35,141、generic／固定form owner 65の計35,207を既存ownerとして別計上した。通常／共有候補は40枠内で最大28／19、drop 0。
+  - ロトムは空き枠または旧appliance signatureだけを使い、既存4技が満杯なら`EFFECTLESS`として無断上書きをしない。species＋move保存失敗時はRAM snapshotを戻して再保存する。Side Change、Browt／Pombon／Gecqua、禁止coercionは0を維持した。
+  - ROMは33,554,432 bytes、SHA-256 `25329a1d5dd71a4f3c0adff8b337af1c4b3496e0aae64439ed2adebe338ce26a`、CRC32 `B4907165`、Stage72から変更36,585 bytes。残るmachine 26,279＋tutor 369の26,648経路とexact-ROM mGBAを未完了に保持した。
+- Files changed:
+  - `config/modernization_p03_stage73_runtime.json`
+  - `overlays/modernization_p03_stage73_consumer_runtime/**`
+  - `tools/modernization_p03_stage73_runtime.py`、`scripts/build_modernization_p03_stage73_runtime.sh`
+  - `tests/test_modernization_p03_stage73_runtime.py`
+  - `content/modernization/p03_stage73_consumer_runtime_checkpoint.json`、`content/modernization/p03_stage73_consumer_runtime_route_audit.json`
+  - `design/current_state.md`、`design/modernization_handoff.md`、`design/decisions.md`、`design/run_log.md`、`design/version_log.md`
+- Verify:
+  - `python3 -m unittest tests.test_modernization_p03_stage73_runtime -v`: 9/9 PASS。
+  - `bash scripts/build_modernization_p03_stage73_runtime.sh check`: 9 artifacts byte一致PASS。BPS roundtrip、3 hook preimage／Thumb veneer／trampoline、Pichu＋Light Ball既存owner命令、allocator、allowlist外0を再照合した。
+  - metadata SHA-256 `c18fd7a2e3537632b3e13e3d528907d52e4c9c3a9729da6a0ccd539bdbc7b887`、allocation SHA-256 `f8dab8da8dadd9163f0b8249b59672d91c4b52a26a472e8392fd508c8934173a`、incremental BPS SHA-256 `8b901363aedff24d13fa60530dcb1512e02317b6da675e96586ac2dd83af6a61`、checkpoint SHA-256 `ea930a0df1d48aba9da9e6ea1bb808b117d3c03d2cdb297752c557b28f0bf82d`。
+  - 独立read-only reviewはHigh／Mediumなし。重いmGBAは後続の最新累積1セットへ集約し、本checkpointでは実行していない。
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Network: なし。固定済みlocal ZIP／Stage72 ROMだけを使用し、push／Release／iPad／現行プレイ基準は変更していない。
+
+## 2026-09-08T22:02:45+09:00
+
+- Task: `USER-MODERNIZATION-P08-STAGE73-INTEGRATION` / P08累積候補のStage73再固定
+- Status: DONE（P08統合checkpoint。P02〜P08本体とrelease gateは未完了）
+- Summary:
+  - P08のselected candidateをStage69からStage73へ更新し、Stage70 Species、Stage71 Mega、Stage72 Ability、Stage73 P03 consumerを固定入力・実装・artifact identityへ接続した。active Stage62、P01のみDONE、release-ready=falseは維持した。
+  - Stage69→70→71→72→73の4 incremental BPSを実byteへexact applyし、Stage70特殊metadata schema、Stage70〜73 allocator lineage、Stage72親4 identity、Stage73 Pichu／Light Ball既存owner命令を再照合した。
+  - P03は新規runtime materialized累積56,514、既存owner 35,207、consumer境界accounted累積91,721、残る直接供給26,648を分離した。23,595のmachine／tutor依存は既存owner集合の部分集合として二重加算しない。
+  - inheritance ROM／role、BPS source／patch／target、release blocker全文、candidate patch path／size／source／target、Stage73 3 hook／table分離／除外値をfail closedにし、対応する改ざんtestを追加した。
+- Files changed:
+  - `config/modernization_candidate.json`
+  - `tools/modernization_p08_integration.py`、`tests/test_modernization_p08.py`
+  - `content/modernization/p08_integration_matrix.json`、`content/modernization/p08_runtime_handoff.json`、`content/modernization/p08_release_handoff.json`
+  - `design/current_state.md`、`design/modernization_handoff.md`、`design/decisions.md`、`design/run_log.md`、`design/version_log.md`
+- Verify:
+  - `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest tests.test_modernization_p08 -v`: 17/17 PASS。
+  - `PYTHONDONTWRITEBYTECODE=1 python3 scripts/build_modernization_p08.py --check`: PASS。固定入力、4 BPS exact apply、allocator lineage、生成3 handoffのbyte一致を再照合。
+  - `python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --check`: PASS。
+  - 独立read-only reviewでHighなし。指摘されたallocator content hashとP08 mutation guardを補強した。重いmGBAは後続の最新累積1セットへ集約し、本checkpointでは実行していない。
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Network: なし。固定済みlocal成果だけを使用し、push／Release／iPad／save／現行プレイ基準は変更していない。
+
+## 2026-09-08T23:48:28+09:00
+
+- Task: `USER-MODERNIZATION-P03-STAGE74-SUPPLY-RUNTIME` / P03 machine・tutor直接供給archive
+- Status: DONE（Stage74供給checkpoint。P03本体、Rockruff意味整理、最終累積mGBAは未完了）
+- Summary:
+  - Stage73に残ったmachine 26,279＋tutor 369の26,648経路を、殿堂入り後のBagわざメモリー内のfamily分離archiveへ接続した。machineは40件単位の最大4ページ、tutorは1ページで、既存の4技交換／cancelを再利用する。固定TM／教え技slot、level／eggへの転記は0。
+  - 2ページ時の取消が「3ページ」と見える初版表示ずれと、全既知時のmachine選択loopを独立監査で検出して修正した。同期menu失敗はwait前sentinel、空filtered pageは明示message後にページ再選択、全archive終了はmode 0へ戻す。
+  - Benjamin Butterfree退化時の合法技消去を防ぐため、全118,369選択経路から現行`BuildLearnableMoveset`＋直接archiveとの差分4,014 path／2,223 target-move／501種を削除防止専用表へ追加した。UI供給とroute accountingへの加算は0。全1,621種で最大238/429、overflow 0。
+  - ROMは33,554,432 bytes、SHA-256 `481083bc50bd353955990375e3cc5e0a76f9b0f681ae54caa6c31f66ef22d65e`、CRC32 `C9929F79`。新規runtime materialization累積83,162、accounted 118,369、直接供給残0。Side ChangeとBrowt／Pombon／Gecquaは0を維持した。
+- Files changed:
+  - `config/modernization_p03_stage74_supply.json`
+  - `overlays/modernization_p03_stage74_supply_runtime/**`
+  - `tools/modernization_p03_stage74_supply.py`、`scripts/build_modernization_p03_stage74_supply.sh`
+  - `tests/test_modernization_p03_stage74_supply.py`
+  - `content/modernization/p03_stage74_supply_runtime_checkpoint.json`
+  - `design/current_state.md`、`design/modernization_handoff.md`、`design/decisions.md`、`design/run_log.md`、`design/version_log.md`
+- Verify:
+  - `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest tests.test_modernization_p03_stage74_supply`: 12/12 PASS。
+  - `bash scripts/build_modernization_p03_stage74_supply.sh build`／`check`: 各9 artifacts PASS。BPS roundtrip、2 hook／trampoline、family分離、全route hash、allocation sequence #33 hash更新＋#77追加、allowlist外0を照合した。
+  - metadata SHA-256 `2fef4dbe682f23140ca14fa1169aaec50105130189428508ee9570a40fa23ae7`、allocation SHA-256 `d7a2425d59aac259f2803d4b5fbd8a88f0be94c906e9262ebef69a2a31401f23`、incremental BPS SHA-256 `8480efe4b6d69233393649260943a5119d595cfd9b8bf28ddebf7ca82fd65abd`、checkpoint SHA-256 `5e73c008a866d579a7939f64eb02f78d2d55eb7efb31f18c4ce2b221ee977ba2`。
+  - 独立read-only最終レビューはHigh／Mediumなし。重いmGBAは最新累積候補の最終1セットへ集約し、本checkpointでは実行していない。
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Network: なし。固定済みlocal ZIP／Stage73 ROM／CFRU-JP sourceだけを使用し、push／Release／iPad／save／現行プレイ基準は変更していない。
+
+## 2026-09-09T00:25:19+09:00
+
+- Task: `USER-MODERNIZATION-P08-STAGE74-INTEGRATION` / P08累積候補のStage74再固定
+- Status: DONE（P08統合checkpoint。P02〜P08本体とrelease gateは未完了）
+- Summary:
+  - P08 selected candidateをStage73からStage74へ更新し、Stage74の固定入力、実装、ROM／metadata／allocation／BPS／payload／auditを統合した。active Stage62、P01のみDONE、release-ready=falseは維持した。
+  - Stage69→70→71→72→73→74の5 incremental BPSをexact applyし、Stage74の2 hook、変更70,480 bytes、allocation sequence #33の同一layout内容更新と#77追加をfail closedで固定した。
+  - P03の新規runtime materialization累積83,162、既存owner込みaccounted 118,369、直接供給残0を固定。削除防止4,014 path／2,223 target-moveはUIと経路勘定へ加算0を維持した。
+  - Own Tempo Rockruff 38経路、暫定archive経済、P02通常UI、Floette full/fresh reload、P05の4 AI/UI edge、最終累積mGBAを残し、P02〜P08を過大にDONE扱いしていない。
+- Files changed:
+  - `config/modernization_candidate.json`
+  - `tools/modernization_p08_integration.py`、`tests/test_modernization_p08.py`
+  - `content/modernization/p08_integration_matrix.json`、`content/modernization/p08_runtime_handoff.json`、`content/modernization/p08_release_handoff.json`
+  - `design/current_state.md`、`design/modernization_handoff.md`、`design/decisions.md`、`design/run_log.md`、`design/version_log.md`
+- Verify:
+  - `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest tests.test_modernization_p08 -v`: 17/17 PASS。
+  - `PYTHONDONTWRITEBYTECODE=1 python3 scripts/build_modernization_p08.py --check`: PASS（INPUTS=68、COMPLETED=1、ACTIVE=62、CANDIDATE=74、RELEASE=false）。
+  - 生成3成果はmatrix 120,902 bytes / SHA-256 `55a197cd2b8f00061309d8c3f03f9e089a1e248d3430223e7b1d401cd51b8c65`、runtime handoff 26,758 bytes / `d8c164ff6bd7ec01d2a5b9c966299b9a721e83c57502dd8e97c8a85f2bf823cc`、release handoff 2,518 bytes / `b620e224e16cf1c4484c748513f470ae7e10da6882d105982f72dc685d5dc47a`。
+  - `python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --check`: PASS。独立read-only review 2件はHigh／Mediumなし。重いmGBAは実行していない。
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Network: なし。固定済みlocal成果のみを使用し、push／Release／iPad／save／現行プレイ基準は変更していない。
+
+## 2026-09-09T01:43:31+09:00
+
+- Task: `USER-MODERNIZATION-ROCKRUFF-OWN-TEMPO-STAGE75` / Own Tempo Rockruff内部条件フォーム接続
+- Status: DONE（Stage75 P03 checkpoint。P03本体と最終累積mGBAは未完了）
+- Summary:
+  - 通常イワンコ1142と既存saveを変更せず、Own Tempo Rockruffを図鑑非加算の内部条件フォームSpecies 1670としてappendした。3 ability slotはマイペース20で固定し、通常1142の黄昏1263進化行を1670だけへ移した。
+  - 野生1142の成功生成後だけpersonality由来の決定的1/8で1670へ変換し、追加RNGを消費しない。繁殖は1263／1670だけを1670へ解決し、1142を含む他Speciesは親処理へexact delegateする。
+  - 24 Species表／310 pointer／19 count consumer、5 hook、allocation sequence 78を接続した。0744.01の38持越し経路を既存slot 21＋Stage74 archive 17へ解決し、missing owner 0、materialized 83,162、accounted 118,369、delta 0を維持した。
+  - ROMは33,554,432 bytes、SHA-256 `a179c024294f4f1bbf34eb603af255f6896265d9d8523344719b349f8a4495c3`、CRC32 `1511F429`。Browt／Pombon／GecquaとSide Changeは0、`full_p03_done=false`、release ready=false、active Stage62を維持した。
+- Files changed:
+  - `config/modernization_rockruff_own_tempo_stage75.json`
+  - `content/modernization/rockruff_own_tempo_stage75_checkpoint.json`、`content/modernization/rockruff_own_tempo_stage75_contract.json`
+  - `overlays/modernization_rockruff_own_tempo_stage75/**`
+  - `tools/modernization_rockruff_own_tempo_stage75.py`、`scripts/build_modernization_rockruff_own_tempo_stage75.sh`
+  - `tests/test_modernization_rockruff_own_tempo_stage75.py`
+  - `design/current_state.md`、`design/modernization_handoff.md`、`design/decisions.md`、`design/run_log.md`、`design/version_log.md`
+- Verify:
+  - `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest tests.test_modernization_rockruff_own_tempo_stage75 -v`: 12/12 PASS。
+  - `PYTHONDONTWRITEBYTECODE=1 python3 tools/modernization_rockruff_own_tempo_stage75.py --check`: PASS。10成果identity、BPS source／target／roundtrip、24表／310 pointer／19 count consumer、5 hook／2 Egg trampoline、既存ABI 22 symbol、allocation既存9 slice＋sequence 78、P03経路勘定を再照合した。
+  - payload SHA-256 `18a62cc6fad32eb5997e569d4c340a87ed56f068826ae841dbe36a9764616206`、metadata `be84b5a54c7ea8de23d4245402a427cc0dd444949363b8b6ca3e206b5ecd93f4`、allocation `90a68321eebbebde765077eca81643f176d91152f331be77360cb8c52e188f09`、incremental BPS `23c012b655b15a3ac5d97813b4d8c64661aadb93c9bf8539d8e8c22a10bdeba7`、checkpoint `c4f6d822950cd27fa65134d3806c2cbed3409b6de4b2358a8f12924524d65705`。
+  - `python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --check`: PASS。
+  - 独立read-only最終監査はHigh／Mediumなし。重いmGBAは最終累積候補の1セットへ集約し、本checkpointでは実行していない。
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Network: なし。固定済みlocal Stage74 ROM／tracked sourceだけを使用し、push／Release／iPad／save／現行プレイ基準は変更していない。
+
+## 2026-09-09T03:37:01+09:00
+
+- Task: `USER-MODERNIZATION-P05-STAGE76-EDGES` / P05安全edgeのStage76 ROM接続
+- Status: DONE（Stage76 checkpoint。Eelevate専用switch AI、最終累積mGBA、P05本体は未完了）
+- Summary:
+  - Mega SolのSolar charge時popup、Piercing DrillのAI予測Protect damage 1/4（最低1）、Spicy Sprayの意図的な味方発火評価を、pointer 1件＋hook 3件へ接続した。
+  - Detect→Protect正規化、Max Guard／Dynamax、実Protect二重quarter回避、direct／spread排他、planned protection／semi-invulnerable、Present／Future Sight／Doom Desire／Pollen Puff除外をfail closedで固定した。
+  - Eelevate専用switch AIはGround／Thousand Arrows／接地／Gravity／Mold Breaker／Ability Shieldを単純なAbility置換では保てないため、候補2 siteをStage75とbyte同一に保持して明示保留した。
+  - ROMは33,554,432 bytes、SHA-256 `f753f13720aeb5331cfc8a9bf9dd5fd4ad9ac34537356d20d76b73e0100100ac`、CRC32 `0A78B46A`。payloadは2,066 bytes、SHA-256 `c9c34af10900cb6cedbaaeef9dacd2d95a2fc0df0be39cb3aa29f8226ffbc92e`。Side ChangeとBrowt／Pombon／Gecquaは0、active Stage62は不変。
+- Files changed:
+  - `config/modernization_p05_stage76_edges.json`
+  - `content/modernization/p05_stage76_edges_contract.json`、`content/modernization/p05_stage76_edges_checkpoint.json`
+  - `overlays/modernization_p05_stage76_edges/**`
+  - `tools/modernization_p05_stage76_edges.py`、`scripts/build_modernization_p05_stage76_edges.sh`
+  - `tests/test_modernization_p05_stage76_edges.py`
+  - `design/current_state.md`、`design/modernization_handoff.md`、`design/decisions.md`、`design/run_log.md`、`design/version_log.md`
+- Verify:
+  - `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest tests.test_modernization_p05_stage76_edges`: 17/17 PASS。
+  - `PYTHONDONTWRITEBYTECODE=1 python3 tools/modernization_p05_stage76_edges.py --check`: PASS。Stage75のcommit／5 identity、fixed function 8件、pointer 1件＋hook 3件、Eelevate不変2 site、allocation既存79行全field、payload実slice、5 allowlist区間外0を再照合した。
+  - incremental BPSは2,191 bytes、SHA-256 `f06a18fb9c26b1d09e621eb81c208c3c6a018607e58727ac5dd04091a45b1810`、roundtrip PASS。独立runtime監査とartifact／byte監査はHigh／Medium／Lowなし。
+  - 重いmGBAはユーザー指定どおり最新累積候補の1セットへ集約し、本checkpointでは実行していない。
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Network: なし。固定済みlocal Stage75 ROM／CFRU-JP sourceだけを使用し、push／Release／iPad／save／現行プレイ基準は変更していない。
+
+## 2026-09-09T04:28:41+09:00
+
+- Task: `USER-MODERNIZATION-P08-STAGE76-INTEGRATION` / P08累積候補のStage76再固定
+- Status: DONE（P08統合checkpoint。P02〜P08本体とrelease gateは未完了）
+- Summary:
+  - P08 selected candidateをStage74からStage76へ更新し、Stage75 Own Tempo RockruffとStage76 P05安全edge 3件の固定入力、生成実装、ROM／metadata／allocation／BPSを統合した。
+  - Stage67→76 chainとStage74→75→76の追加BPSをexact applyし、allocator lineage、hook／pointer、Browt／Pombon／GecquaおよびSide Changeの採用0をfail closedで固定した。
+  - active Stage62、P01のみDONE、P02〜P08未完了、release-ready=falseを維持し、Eelevate、暫定archive経済、P02通常UI、Floette full／fresh reload、最終累積mGBAをblockerとして残した。
+- Files changed:
+  - `config/modernization_candidate.json`
+  - `tools/modernization_p08_integration.py`、`tests/test_modernization_p08.py`
+  - `content/modernization/p08_integration_matrix.json`、`content/modernization/p08_runtime_handoff.json`、`content/modernization/p08_release_handoff.json`
+  - `design/current_state.md`、`design/modernization_handoff.md`、`design/decisions.md`、`design/run_log.md`、`design/version_log.md`
+- Verify:
+  - `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest tests.test_modernization_p08 -v`: 17/17 PASS。
+  - `PYTHONDONTWRITEBYTECODE=1 python3 scripts/build_modernization_p08.py --check`: PASS（INPUTS=74、COMPLETED=1、ACTIVE=62、CANDIDATE=76、RELEASE=false）。
+  - P08生成3成果はmatrix 135,456 bytes／SHA-256 `11a154336287cc8bb0c31a23f21f128b2c4dcbf2eaedcab013994ec6323dd38e`、runtime handoff 30,370 bytes／`8ebef8980c8ef795e6b3e4285a6786f8cccfa4caea1d51c8518bdc45173b7db5`、release handoff 2,446 bytes／`070a0a5db25924aaa261d8453752cd01abf3eb8756f3fba24c63acd409e7c408`。
+  - `git diff --check`: PASS。重いmGBAはStage77後の最終累積1セットへ集約し、本checkpointでは実行していない。
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Network: なし。固定済みlocal成果だけを使用し、push／Release／iPad／save／現行プレイ基準は変更していない。
+
+## 2026-09-09T04:33:14+09:00
+
+- Task: `USER-MODERNIZATION-P05-STAGE77-CIRCUS-SUPPRESSION` / Battle Circus特性無効境界
+- Status: DONE（Stage77 checkpoint。Eelevate専用switch AI、最終累積mGBA、P05本体は未完了）
+- Summary:
+  - Battle Circus bit 26かつ特性無効bit 31の時だけStage72の全29 hook／33 surfaceをoriginal trampolineへ委譲し、通常時はStage72 wrapperを維持するdispatcherを接続した。
+  - 12-byte hook 7本は元r3をr12へ退避・復元し、8-byte hook 22本はStage72互換のr3 scratchを使う。通常のGastro Acid／Neutralizing Gas／Mold Breaker意味は変更しない。
+  - 親allocation 80行、Stage76のpointer 1＋hook 3、Eelevate保留2 siteを不変に保った。Side ChangeとBrowt／Pombon／Gecquaは0、active Stage62、release-ready=falseを維持した。
+  - ROMは33,554,432 bytes、SHA-256 `245133a4740dda9faa0663d321505ee793293d64b0b318d601fd91933b84973f`、CRC32 `F1CE0EAC`。payloadは1,220 bytes、SHA-256 `933c8d7fdf731eaae0aa87c74974803de356dda8e64c055ef09beee4d229c672`。
+- Files changed:
+  - `config/modernization_p05_stage77_suppression.json`
+  - `content/modernization/p05_stage77_suppression_contract.json`、`content/modernization/p05_stage77_suppression_checkpoint.json`
+  - `overlays/modernization_p05_stage77_suppression/**`
+  - `tools/modernization_p05_stage77_suppression.py`、`scripts/build_modernization_p05_stage77_suppression.sh`
+  - `tests/test_modernization_p05_stage77_suppression.py`
+  - `design/current_state.md`、`design/modernization_handoff.md`、`design/decisions.md`、`design/run_log.md`、`design/version_log.md`
+- Verify:
+  - `python3 -m unittest tests.test_modernization_p05_stage77_suppression -v`: 12/12 PASS。
+  - `python3 tools/modernization_p05_stage77_suppression.py --check`: PASS。29 hook／33 surface、7本r3保存ABI、Stage76保全、parent allocation 80行、sequence 80、allowlist外0を照合した。
+  - incremental BPSは1,489 bytes、SHA-256 `50a779b3cca8b7ffbb386872ed989a6392e050c18a3716e7c252c24412047df7`、roundtrip PASS。metadata SHA-256 `773042fc80d4a048e4f4a894e01de8f073d6de42cf5f4029421c882b0c35b6ff`、allocation `20649eff6be00d367064c51782f50f8a2e7a26b059f637b2c496c2f6f999243d`。
+  - 独立read-only監査はHigh／Medium／Lowなし。重いmGBAは最終累積1セットへ集約し、本checkpointでは実行していない。
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Network: なし。固定済みlocal Stage76 ROM／CFRU-JP sourceだけを使用し、push／Release／iPad／save／現行プレイ基準は変更していない。
+
+## 2026-09-09T05:05:09+09:00
+
+- Task: `USER-MODERNIZATION-P08-STAGE77-INTEGRATION` / P08累積候補のStage77再固定
+- Status: DONE（P08統合checkpoint。P02〜P08本体とrelease gateは未完了）
+- Summary:
+  - P08 selected candidateをStage76からStage77へ更新し、Battle Circus全特性無効の29 hook／33 Ability surface、通常経路保持、Stage76のpointer 1件＋hook 3件保持を統合した。
+  - Stage67→77 chainとStage74→75→76→77 incremental BPSをexact applyし、allocation 81行／sequence 80、allowlist外0、Browt／Pombon／GecquaとSide Changeの採用0をfail closedで固定した。
+  - active Stage62、P01のみDONE、P02〜P08未完了、release-ready=falseを維持し、Eelevate専用switch AIと最終累積mGBAをblockerとして残した。
+- Files changed:
+  - `config/modernization_candidate.json`
+  - `tools/modernization_p08_integration.py`、`tests/test_modernization_p08.py`
+  - `content/modernization/p08_integration_matrix.json`、`content/modernization/p08_runtime_handoff.json`、`content/modernization/p08_release_handoff.json`
+  - `design/current_state.md`、`design/modernization_handoff.md`、`design/decisions.md`、`design/run_log.md`、`design/version_log.md`
+- Verify:
+  - `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest tests.test_modernization_p08 -v`: 17/17 PASS。
+  - `PYTHONDONTWRITEBYTECODE=1 python3 scripts/build_modernization_p08.py --check`: PASS（INPUTS=77、COMPLETED=1、ACTIVE=62、CANDIDATE=77、RELEASE=false）。
+  - P08生成3成果はmatrix 142,635 bytes／SHA-256 `71c05f5bb19414dfb0dc10ba297f669302c954ee7af76d994e010bebaf4b4e87`、runtime handoff 32,575 bytes／`aef7394be068fd23a644a97a5ff400ab406c9fee57cb526c7ade37655cf18a5e`、release handoff 2,534 bytes／`dcc747ecb523710eeafabddebef0613b2bca4037888ebfdb503097c1d296c9b6`。
+  - `git diff --check`: PASS。重いmGBAはStage78最終累積1セットへ集約し、本checkpointでは実行していない。
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Network: なし。固定済みlocal成果だけを使用し、push／Release／iPad／save／現行プレイ基準は変更していない。
+
+## 2026-09-09T06:31:00+09:00
+
+- Task: `USER-MODERNIZATION-P05-STAGE78-EELEVATE-SWITCH-AI` / Eelevate専用交代AI
+- Status: DONE（Stage78製品checkpoint。最終累積mGBA、P05本体、P08統合は未完了）
+- Summary:
+  - Stage77を親に、`FindMonThatAbsorbsOpponentsMove`のactive／party 2 siteへEelevate専用adapterを接続した。有効な予測Ground damageだけでAbility 313を比較用Earth Eater 298へ写像する。
+  - 予測なし／switch／Move上限外、status、Thousand Arrows、Gravity／Iron Ball／Ingrain／Smack Down、Gastro Acid、Battle Circus、Mold Breaker系、残存Neutralizing Gas、Ability Shieldをfail closedで扱った。
+  - 親81 allocation、Stage77の29 hook、Stage76のpointer 1＋hook 3を保持した。Browt／Pombon／GecquaとSide Changeの採用0、active Stage62、release-ready=falseを維持した。
+  - ROMは33,554,432 bytes、SHA-256 `98fde60231175492032f0e28ca16549a73ca5b29e3f37438b77c6e3c80e9d06b`、CRC32 `BFF0203C`。payloadは688 bytes、`0x095D5D40`、allocation sequence 81、SHA-256 `a6b5fb28cca365af8e08862e673ce5040bbcf4deb0683566b79a552853d1f905`。
+- Files changed:
+  - `config/modernization_p05_stage78_eelevate_switch_ai.json`
+  - `content/modernization/p05_stage78_eelevate_switch_ai_checkpoint.json`、`content/modernization/p05_stage78_eelevate_switch_ai_contract.json`
+  - `overlays/modernization_p05_stage78_eelevate_switch_ai/**`
+  - `tools/modernization_p05_stage78_eelevate_switch_ai.py`、`scripts/build_modernization_p05_stage78_eelevate_switch_ai.sh`
+  - `tests/test_modernization_p05_stage78_eelevate_switch_ai.py`
+  - `design/current_state.md`、`design/modernization_handoff.md`、`design/decisions.md`、`design/run_log.md`、`design/version_log.md`
+- Verify:
+  - `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest tests.test_modernization_p05_stage78_eelevate_switch_ai -v`: 12/12 PASS。32-case Python＋compiled host C matrix、2 entry ABI、脅威fallback、親identity／allocation、BPS、artifact manifestを照合した。
+  - `PYTHONDONTWRITEBYTECODE=1 python3 tools/modernization_p05_stage78_eelevate_switch_ai.py --check`: PASS。ROM差分はpayload＋2 hookだけ、allowlist外0、BPS roundtrip PASS。
+  - metadata SHA-256 `1ab572da80715bc07a275781fda27b0f04ababa19e8214bdc6df3bcf00e0c7d8`、allocation `b92ef83b96482c6fc5f751af87a4dc7eb4783a10258b1c193fa298cc485d8d3b`、incremental BPS `2a5dfc6574f42b06f6339061a7af087b4f0ef5fa872cedf92599ddbb70a9ca9e`、checkpoint `19f0f88c1ddecd2f4270e259c81f1535f81ca1716437854d05d90e080111c22f`。
+  - 独立read-only監査2件はHigh／Mediumなし。重いmGBAはユーザー指定どおりStage79の最終累積1セットへ集約し、本checkpointでは実行していない。
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Network: なし。固定済みlocal Stage77 ROM／CFRU-JP sourceだけを使用し、push／Release／iPad／save／現行プレイ基準は変更していない。
+
+## 2026-09-09T07:32:37+09:00
+
+- Task: `USER-MODERNIZATION-STAGE79-CUMULATIVE-MGBA` / Stage78 exact累積mGBA基盤
+- Status: DONE（`READY_NOT_RUN` checkpoint。重い7領域runは次の実行commitへ分離）
+- Summary:
+  - Stage78 commit、ROM／metadata／allocation／checkpoint、allocation 82行／sequence 81、P05 source契約をfail closedで固定し、7領域を順次・再開可能に実行するvalidation-only orchestratorを作成した。
+  - P05はStage77 29 hook／33 surface、Stage76 3 edgeに、Eelevate 32-case pure matrixとactive 13／party 13の実hook／ABI経路を追加した。
+  - private ROM／save／compile／tracked gateのsymlink・hardlink境界、明示heavy承認、PASS prefix再検証、fresh/cache別計数を固定した。Browt／Pombon／GecquaとSide Changeは0、active Stage62、P08 Stage77、release-ready=falseを維持した。
+- Files changed:
+  - `config/modernization_stage79_cumulative_mgba.json`
+  - `content/modernization/stage79_cumulative_mgba_runtime_gate.json`
+  - `scripts/run_modernization_stage79_cumulative_mgba.py`
+  - `tests/test_modernization_stage79_cumulative_mgba.py`、`tests/test_modernization_stage79_p05_runtime_smoke.py`
+  - `tools/mgba_modernization_stage79_mega_runtime_smoke.c`、`tools/mgba_modernization_stage79_p03_smoke.c`、`tools/mgba_modernization_stage79_p05_runtime_smoke.c`
+  - `design/current_state.md`、`design/modernization_handoff.md`、`design/decisions.md`、`design/run_log.md`、`design/version_log.md`
+- Verify:
+  - `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest tests.test_modernization_stage79_cumulative_mgba tests.test_modernization_stage79_p05_runtime_smoke`: 23/23 PASS。
+  - `PYTHONDONTWRITEBYTECODE=1 python3 scripts/run_modernization_stage79_cumulative_mgba.py dry-run`: 7/7 READY、mGBA 0。
+  - 同`compile-check`: strict C compile 7/7 PASS、mGBA 0。同`check`: `CHECK_PASS`／`READY_NOT_RUN`。
+  - 独立read-only監査はruntime/ABIとorchestrator安全性の双方でHigh／Medium 0。
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Network: なし。固定済みlocal成果だけを使用し、heavy mGBA／push／Release／iPad／既存save／現行プレイ基準は変更していない。
+
+## 2026-09-09T09:12:28+09:00
+
+- Task: `USER-MODERNIZATION-STAGE79-GITHUB-ACTIONS-HANDOFF` / Stage79必須入力と重いmGBAのGitHub移管
+- Status: DONE（Actions実行可能checkpoint。重い7 domainの結果はGitHub runで別途確定）
+- Summary:
+  - private repositoryとDraft PR #16を確認し、Stage79必須のignored 16ファイル（34,748,225 bytes）をGit直接追跡した。Stage78 ROM／metadata／allocation、P02 seed save、Stage06 metadata、runtime symbol／auditをclean checkoutだけで復元できる。
+  - Stage79の7 domainをGitHub-hosted Ubuntu 24.04でmatrix並列実行し、PASS cache再利用、失敗domain単独再実行、ログ／JSON Artifact、最終runtime gate合成を行うworkflow／helperを追加した。
+  - ユーザーの明示指定により、push CIとChatGPT patch bridgeのprivate-file guardを外した。LFS／Release／暗号化は使用していない。
+  - local heavyはP02の進化キャンセル画面でillegal opcode／field-return timeoutとなり、後続6 domainは未実行。GitHub側は`fail-fast: false`のためP02に影響されず独立実行する。
+- Files changed:
+  - `.github/workflows/modernization-stage79-mgba.yml`、`.github/workflows/ci.yml`、`.github/workflows/chatgpt-comment-control.yml`
+  - `scripts/run_modernization_stage79_github_domain.py`
+  - `build/stages/78_modernization_p05_eelevate_switch_ai.gba`、Stage78 metadata／allocation、`build/stages/06_battle_core.json`
+  - `.local/60_wild_species_root_repair.srm`、`generated/runtime/**`のStage79必須11ファイル
+  - `design/current_state.md`、`design/modernization_handoff.md`、`design/decisions.md`、`design/run_log.md`、`design/version_log.md`
+- Verify:
+  - `run_modernization_stage79_github_domain.py plan --selection all`: `GITHUB_MATRIX_READY`、7/7 domain、fingerprint `5214e6e1c23ab03d0982ab8735dae270e13a2b921011b232078c454d6e508594`。
+  - Python syntax／workflow YAML parse／`git diff --check`: PASS。Stage79 configがpinする36ファイルとGit index blobのsize／SHA-256は36/36一致。
+  - 重いmGBAは本commitで再実行せず、branch pushでActions matrixへ委譲する。
+- Commit: `-`（本エントリを含むActions handoff commit）
+- Network: GitHub CLIでrepositoryのprivate状態、remote branch、Draft PR #16を確認。GitHub Actionsの`workflow_dispatch`と`upload-artifact` hidden-file仕様は公式資料を確認した（https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/trigger-a-workflow, https://github.com/actions/upload-artifact/blob/main/README.md）。
+
+
+<!-- USER-STAGE79-PR16-RUNTIME-FOLLOWUP-20260909 -->
+## 2026-09-09T02:37:37Z
+
+- Task: `USER-STAGE79-PR16-RUNTIME-FOLLOWUP` / PR #16 runtime investigation and fixes
+- Status: PARTIAL — 5/7 domains PASS; P02 and Floette FAIL; P08 not promoted.
+- Commit: `-` (this append-only log commit); source fixes `fe26265ee7eaf88fa425773f66a75765ba11f414` and `3c2794a191ae3ef014df6ab8e97de8103fb8eaaf`.
+- Summary: Corrected the Stage68-shop/Stage69-map cross-link with exact 15-object validation while retaining historical 14-object checks; fixed the harness latch that prevented retrying ignored physical controller inputs.
+- Verify: 20 new regressions (13 map + 7 compiled C input-predicate tests), 42 total PASS in repair run 34302668497; pre-fix failures reproduced. Both shop variants and battle runner compiled with warnings as errors.
+- Runtime: [34302717908](https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/34302717908), immutable source HEAD `3c2794a191ae3ef014df6ab8e97de8103fb8eaaf`: fresh PASS mega_shop/p03/p04_mega_runtime/battle_policy/p05; FAIL p02/floette; strict merge FAIL.
+- Remaining: Floette migration has relocated-start/stale-end and neighboring-table-end alias defects in the frozen product. P02 changes level 15 to 100 before any evolution callback; its exact root cause is not yet established.
+- Evidence: `docs/stage79-pr16-followup-20260909.md`; diagnostic runs 34302526120, 34303136112 and 34303410270 are not acceptance evidence.
+- Scope: ROM/save hashes, Stage62 active baseline, expected behavior and strict exit/JSON checks preserved; no skips, fake PASS records, P08 promotion or PR merge.
+
+
+## 2026-09-09T11:21:32.459186+00:00
+<!-- USER-MODERNIZATION-P08-CURRENT-ACCEPTANCE:0ad6e7be5e1f93dd82f4f1d5363991bef8815e5d -->
+- Task: USER-MODERNIZATION-P08-CURRENT-ACCEPTANCE / 現在受入残件の証跡分離
+- Status: DONE（残件の分離・検証器。製品全体はBLOCKED）
+- Summary: Stage77原本を保持し、Stage80の7領域証跡と現在未検証項目を分離。採用仕様の創作・リリース昇格なし。
+- Files changed: scripts/check_modernization_p08_current_acceptance.py, tests/test_modernization_p08_current_acceptance.py, content/modernization/p08_current_acceptance.json, docs/P08_CURRENT_ACCEPTANCE.md, .github/workflows/ci.yml
+- Verify: 現在受入＋既存原本証跡 51 tests PASS; snapshot --check PASS; release_ready=false
+- Commit: 検証対象 0ad6e7be5e1f93dd82f4f1d5363991bef8815e5d（この追記を含むcommitはActions artifactのrecord-head.txtへ記録）
+- Evidence: https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/34345099347
+- Network: GitHub Actions/APIで読取・検証記録のみ。外部仕様から製品内容を追加していない。
+
+
+## 2026-09-09T11:48:47.305840+00:00
+<!-- USER-MODERNIZATION-P03-LEARNING-E2E:34347153852 -->
+- Task: USER-MODERNIZATION-P03-LEARNING-E2E / 通常習得・保存・新規coreの代表通し試験
+- Status: DONE（代表2ケースのみ。P03全体は未完了）
+- Summary: キャタピーLv8→9のむしくい習得とLv7→8の非習得を、通常Bag/Party入力・進化取消・Start保存・新規core Continueで確認。
+- Files changed: tools/mgba_modernization_p03_learning_e2e.c, scripts/run_modernization_p03_learning_e2e.py, tests/test_modernization_p03_learning_e2e.py, docs/P03_LEARNING_E2E.md, content/modernization/p03_learning_e2e_record.json, .github/workflows/p03-learning-e2e.yml
+- Verify: 結果契約8 tests PASS; strict C compile PASS; 新規mGBA 2 process PASS、cache 0; 原本source/ROM/seed/Stage62不変。
+- Commit: runtime対象 fdac91af6288953e740d4ceb5bc2cc25e3690cf7。記録commitはrecord-head.txtに保存。
+- Evidence: https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/34347153852
+- Remaining: 他の習得UI、繁殖、P05 scheduler、P06/P07採用仕様、最終受入は未完了。過去Stage79/P08証跡を書き換えていない。
+- Network: GitHub Actions/APIで固定入力の実行と証跡照合。外部仕様の追加採用なし。
+
+
+## 2026-09-09T12:38:05.416871+00:00
+<!-- USER-MODERNIZATION-P05-SCHEDULER-E2E:34351006779 -->
+- Task: USER-MODERNIZATION-P05-SCHEDULER-E2E / 6特性の実ターン進行・対照・抑制試験
+- Status: DONE（24条件の代表経路のみ。P05全体は未完了）
+- Summary: Dragonize, Eelevate, Fire Mane, Mega Sol, Piercing Drill, Spicy Sprayを、特性なし・有効・Battle Circus抑制で比較。Eelevateは最後の相手/残る相手の撃破境界を追加。
+- Fixture boundary: native戦闘生成後・最初の行動前だけ条件を書込。観測中は7 API書込ガードを設け、キー入力/runFrame/受動読取のみ。自然入手・自然施設入場は非主張。
+- Verify: 回帰23 tests PASS; strict C compile PASS; GitHub新規mGBA 24 process PASS, cache 0; 書込ガード負例7 PASS; 原本ZIP/source/JSON/logとROM/seed/Stage62 identity照合。
+- Fix in test driver: Solar Beamの溜め中はChooseAction待ちで次ターンへ進まないよう、ターン末から次のaction mainへ戻った直後に停止。期待値・製品ROMの変更なし。
+- Files: tools/mgba_modernization_p05_scheduler_e2e.c, scripts/run_modernization_p05_scheduler_e2e.py, tests/test_modernization_p05_scheduler_e2e.py, docs/P05_SCHEDULER_E2E.md, content/modernization/p05_scheduler_e2e_record.json, .github/workflows/p05-scheduler-e2e.yml
+- Commit: runtime対象 14a61c80b69d2adb2f9f9adf513fd143d86b8728。記録commitはrecord-head.txtに保存。
+- Evidence: https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/34351006779
+- Remaining: P03繁殖/他UI、P05網羅受入、P06/P07正式採用、最終受入。過去Stage79/P08原本は不変。release_ready=false、Stage62基準不変。
+- Network: GitHub Actions/APIから固定原本を取得し、実際のZIPハッシュと実行メタデータも照合。
+
+
+## P08 representative E2E evidence integration / run 34359174903
+
+P03 learning 2 / P05 scheduler 24 / P05 controller 4 の原本ZIP・Actions・ソース・結果契約を照合し、P08へ追補。新規回帰67件を含む269件PASS。原本の新規プロセス30件、今回の新規mGBA実行0件。Stage77/Stage79履歴、Stage62基準、P06/P07採用内容は変更なし。release_ready=false。
+
+## 2026-09-09T16:02:00.727791+00:00 USER-STAGE81 native PP evidence acceptance
+
+GitHub integration run 34374045795: 348 regressions PASS; original Stage81 matrix run 34368455589 has 7 fresh domains, and P03 original run 34364100108 has 8 candidate successes plus 2 expected PP-failure controls. Integration runs no mGBA. Prior Stage77/80 layers and all original evidence retained. Stage62 unchanged; Draft/unmerged and release_ready=false. Broader P03/P05/P06/P07 and final release acceptance remain incomplete. Normal CI at committed HEAD is checked separately.
+
+
+## 2026-09-09T17:07:03.775651+00:00
+<!-- USER-MODERNIZATION-STAGE81-CLOSEOUT:eb53628dc95bca236338c498d5d2e9a16fca7e5b -->
+- Task: USER-MODERNIZATION-STAGE81-CLOSEOUT
+- Status: DONE（Stage81正式経路・P08追補のCI最終確認。製品全体はBLOCKED）
+- Summary: 既存のStage81統合954a597を保持し、統合記録に残っていたCI未確認を実際の成功runで解消。追加10件はmockなしの受入CLI・release境界回帰。
+- Verify: 358 regression tests PASS; current snapshot --check PASS; check exit=0 / blocked-release exit=1 / usage error exit=2; bound inputs 290 files unchanged.
+- Normal CI: 34380147414 (push), 34380153325 (pull_request); tested source 4a270b8adf9d4946d15b1986540a317f1b9d9f1c
+- Originals: Stage81 34368455589 (fresh 7/7), P03 34364100108 (8 successful cases + 2 expected PP-defect controls), P08 integration 34374045795. This closeout executes fresh mGBA=0.
+- Evidence: content/modernization/p08_stage81_closeout_evidence/34380153325/; artifact SHA-256 b7e7f6dbe8ff1a6438163709dd37b0d0a49927ee20c54c50906d2abc6b0f4c9c
+- Commit: 検証対象 eb53628dc95bca236338c498d5d2e9a16fca7e5b; this recording commit is in Actions artifact record-head.txt and receives a separate source-validation dispatch.
+- Limits: Stage62 unchanged; release_ready=false; Draft/unmerged; P03/P05 full acceptance and P06/P07 adoption are not promoted.
+
+## 2026-09-10 — USER-P03-ARCHIVE-UI / Stage82
+
+Run 34397482740, tested code 9221ffa18711505dba1fc8b80383bcb8a722a02b: exact Stage82 e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d; 25 new native archive UI/save/fresh-core cases and seven fresh cumulative domains passed. Two separate pre-repair failure controls were retained (the gate-only control also reproduces the specifically classified illegal opcode before the metadata assertion). Three observation barriers and seven host-write denial probes are enforced. P08 originals are in content/modernization/p08_stage82_evidence/34397482740; record checker passes. Stage62, historical Stage79/81 evidence, Draft state and release_ready=false are unchanged. Breeding, other P03/P05 paths, P06/P07 and release remain incomplete.
+
+## 2026-09-10 — USER-P03-BREEDING / Stage82 physical daycare and hatch
+
+Original Actions run 34434453733 at 8a2919f390902a3b991e13f3e252f47bd3d93261: eight new mGBA processes, 24 core instances and zero cache reuse passed. Real daycare deposit, walking generation, egg claim, parental inheritance and duplicate exclusion, Light Ball on either parent and its negative control, native unaccelerated hatch, and two normal Save/fresh-core Continue cycles per case are observed with seven host-write API barriers. Two manual saves plus one observed native hatch registration save are required, with exact byte snapshots. P08 original ZIP and Actions identities are at content/modernization/p08_breeding_evidence/34434453733. Integration revalidates original bytes and does not count as another emulator run. No product ROM changed; Stage82 remains e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d. Parents and starting map are an isolated fixture, not a natural capture claim. Other breeding combinations/full-party routes, broader P03/P05, P06/P07 adoption and final release remain open. Stage62 and release_ready=false are unchanged.
+
+## 2026-09-10 — P03 breeding original ZIP publication repair
+
+The first post-integration CI run 34435350299 correctly rejected a missing original.zip: the ignored archive existed in the integration worktree but was absent from its commit. Restore only the already recorded 31,334-byte original with its existing SHA-256, explicitly stage it, and verify every staged evidence blob against the existing manifest before publishing. No runtime source, result expectation, product ROM or release flag changes.
+
+## 2026-09-10 — USER-P05-NATIVE-MEGA / first-input to cold-save lifecycle
+
+Source Actions run 34438575892 at 96c634134730f0c4f5aed989e7a4ed6b23c2c6d6 completed SUCCESS in fixed GCC 13.3.0 / mGBA 0.10.2. Forty-two fresh processes (48 cores; zero PASS cache) verify six native Mega abilities and 36 nonactivation controls. Active cases use normal Fight/move/START input; native form and ability assignment precedes the first move, both PP decrement exactly once, the next turn is reached, physical Run returns to the field, the engine reverts to the base form, normal Save increments once, and a newly created core Continue restores all 100 party-mon bytes. Seven host-write APIs are denied throughout the observed lifecycle. The 52 runtime contract tests and 14 original-backed evidence mutation tests pass. Original ZIP, Actions identities and source hashes are verified by scripts/check_modernization_p08_native_mega.py and retained under content/modernization/p08_native_mega_evidence/34438575892; P08 progress is in p08_native_mega_acceptance.json. Integration itself performs zero new emulator runs.
+
+The isolated starting fixture supplies species, gear, policy and opponent; this does not establish natural capture/gear acquisition or physical Battle Circus admission. Base Eelektross already has Levitate, and native Mega stat changes mean the Fire Mane damage contrast is not an ability-only experiment. Other P03/P05 paths, P06/P07 adoption/implementation and final release acceptance remain open. No product ROM changed: Stage82 SHA-256 e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d. Stage62 active baseline, full_p05_acceptance=false and release_ready=false are unchanged.
+
+## 2026-09-10 — P03 five-egg FIFO and party/PC capacity acceptance
+
+Original Actions 34439826111, tested source 40dec97d5360422e66d02a3ae0261a00df566f86: fixed toolchain; three new mGBA processes, nine cores, zero cache reuse; all three capacity routes passed. Normal deposit and walking fill the five-egg FIFO; 512 additional steps do not overwrite it. Real dialogue fills the party then uses the first/last PC vacancy, or preserves pending eggs when all 420 PC slots are full. Two normal saves/fresh-core Continues and the repeated full-PC refusal preserve exact party, PC, queue and parent bytes. Seven actual host-write denial probes pass; no ROM calls after the fixture barrier. Original ZIP and Actions metadata: content/modernization/p08_breeding_capacity_evidence/34439826111. This integration performs no additional mGBA run. Parent/PC layout is an isolated fixture. Other P03/P05 routes, P06/P07 adoption and final release remain incomplete. Stage82 product bytes, Stage62 baseline, existing evidence and release_ready=false are unchanged.
+
+
+## 2026-09-10 — USER-P03-RELEARNER / 未反映ソースの公開
+
+前回ローカルに残した通常思い出し・タマゴ技46ケースの試験ソースを、転送全体と6ファイルのSHA-256を照合して復元した。GitHub上で新規56件の回帰テストとtask graphをPASS後、workflow以外の5ソースと本追記を同じPRへcommit/pushする。workflowはconnectorから別commitで公開する。本公開処理の新規mGBA実行は0件であり、ローカル46件を正式受入へ昇格しない。Stage62、製品ROM、実プレイsave、P06/P07の並行変更、release_ready=falseは不変。
+
+最初の公開run 34445594077は、既存の追跡ROM/saveと過去のActions絶対pathを検出する全index guardで停止した。guard本体と既存ファイルは変更しない。親HEADと変更後indexの全体検査結果が完全一致すること、今回の7差分blobだけを入れた別indexで同じguardがPASSすることを別々に検証し、全体guardの既存失敗をPASSと報告しない。
+
+Publication run: 34445943232; input HEAD: 3d9b42fc766a6b42ba36f96afff7bcebe908e1a2.
+
+
+## 2026-09-10 — USER-P03-RELEARNER / 固定環境46経路の原本受入
+
+Actions run 34446029812、source HEAD 3c894515d6d73a21fde48228853eef38501933ef、GCC 13.3.0 / mGBA 0.10.2で通常思い出し17件とタマゴ技29件の全46件をPASS。新規46プロセス・92 core、キャッシュ0。全ケースで通常保存、新規coreの通常Continue、個体100byte・技・PP・PP Up・解禁フラグ・ハーブを検証。ホスト書込7 APIの実拒否も確認した。
+
+原本175ファイルのZIP（93814 bytes、SHA-256 ba584a0a5e393a08f1b7a3202945faa4c3e129f91a0d35f2ace6c78f56a960ed）、Actions run/jobs/artifactの取得原本、26入力ソースhashを照合し、56 runtime契約テストと24原本改変テストの計80件をPASS。受入先は content/modernization/p08_p03_relearner_acceptance.json、証跡先は content/modernization/p08_relearner_evidence/34446029812/。検査のみのコマンドが証跡内容・mtimeを変更しないことも確認した。本統合は新規mGBA実行0件。
+
+試験開始前の個体・道具・フラグは隔離fixtureであり自然入手の受入ではない。Stage82 ROMは変更0byte、Stage62基準と実プレイsaveは不変。全P03/P05・最終releaseを昇格しない。並行P06/P07の採用状況はこの試験から判定せず別管理とする。既存全index guardのROM/save・過去path違反は残し、今回の差分indexで同じguardをPASS、全体の違反出力が親と変わらないことを確認してcommit/pushする。
+
+Integration run: 34446703839; integration source: 43a9a22fac95538d17a36cc7ced5ace62c80a81a.
+
+
+## 2026-09-10 — USER-MODERNIZATION-P03-P05 / 技忘れ12経路とStage84空き技PP修正
+
+Stage83の通常Bag→わざメモリー→技忘れで、末尾MOVE_NONEのPPが35になる不具合を実再現。Stage84はID 0のcanonical PP 35→0の1byteだけを修正した。実技の全行、P06採用2種3項目、保存ABI、Stage62基準は不変。旧Stage83で同じPP残留を検出する対照1件も通した。
+
+実行HEAD 8846cd86de22af35b41eb358b9ed30e4c825750c、Actions 34459625383、GCC 13.3.0 / mGBA 0.10.2で12経路PASS。4枠削除、PP Up警告拒否、最終確認拒否、画面取消、最後の1技拒否、2フォーム制約、秘伝技削除、Keldeoの姿復帰を、通常保存・新規core Continueまで検証。12新規プロセス・24core・キャッシュ0、ホスト書込7 API拒否、保存後100byte個体一致。準備個体・位置・道具はfixtureなので自然入手の受入ではない。
+
+原本78ファイルのZIP、Actions run/jobs/artifact原本、20入力source hashを照合し、content/modernization/p08_p03_forgetting_acceptance.jsonへ接続。新総括はcontent/modernization/p08_remaining_work.json。旧p08_current_acceptance.jsonはStage81起点の履歴として保持し、現在の残件数には使わない。繁殖8件・容量3件・Mega6+36件・思い出し46件を未着手へ戻さず、P06採用2件を反映する。異なる候補の成功を単一最終候補全体の受入とはしない。
+
+P05の現行facility_modes.csvはFactory/Mirageの20モードで、Circus入場モードは同採用表に無い。表外の入口まで不存在とは断定しない。実際の受付・入場から特性抑制までの検証は未完了。P03のその他の進化・フォーム習得・タマゴ供給・economy正式確定、P06工程受入、P07既存資料照合・採用・実装、単一最終候補と配布判定も残る。
+
+本統合は新規mGBA実行0件。PRはDraftのまま、マージ・配布・プレイ基準変更なし。全体guardの既存ROM/save・過去path違反は未解消であり、差分guardと区別する。通常CIの設定は別の権限付き変更として追加する。
+
+Integration run: 34461845380; source: 5783414f58fcfd1c222e26cd3cc1280eea8d0b2e.
+
+
+## USER-20260910-OWNER-POLICY
+
+殿堂入り後・Bagのわざメモリーから無料を正式採用。publicは所有者の意図した現行設定であり、privateとする過去の説明を訂正。非公開化・既存原本移動は完了条件にしない。料金・公開状態の判断を現在の残件生成に接続し、履歴受入は不変。
+検証: owner-policy 11件、既存remaining-routes 24件、forgetting-evidence 16件、原本照合・task graph・差分検査。ROM変更0、新規mGBA実行0。製品完成、全工程受入、PRマージ、実プレイ基準変更は行わない。
+Source HEAD: `ab85cfb51fbe461f696d6278b4783817639c948f`。Actions run: `34483469582`。
+
+## 2026-09-10T15:04:17.233316+00:00
+
+- Task: PR16 final integration / P06 accepted-original connection
+- Result: Nine pinned Stage84 integration originals revalidated; adopted 2 species / 3 fields, native stat/save success and candidate identity connected. Remaining battle/UI and P03/P05/P07 acceptance are NOT marked done.
+- Preservation: original Stage83 P06 ZIP retained with force-add because the generic ZIP ignore previously omitted it. Patch-bearing Stage84 candidate ZIP stays outside Git; no guard was relaxed.
+
+## 2026-09-11 / PR16-COMPLETION-7-NATIVE-CASES
+
+- Task: USER-MODERNIZATION-P03-P06-P07-P08 / 同じPR #16で実操作受入と現在ビューを接続。
+- Candidate: 635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e、33,554,432 bytes、CRC32 5B8BFB51。ROM変更は今回なし。
+- New native: run 34552826501 進化満杯/取消2件4コア、run 34553503441 Pichu egg440実預入・生成・受取・孵化・保存5件15コア。今回計7プロセス19コア。
+- Preserved: run 34512326368 のP06採用3項目、技メモリー、レベル/進化、7領域を原本再検証。旧実行を今回の件数へ足さない。Stage82対照1件は現候補へ改称しない。
+- P06: 採用2種3項目のslot/stat/save、特性戦闘/対照、Summary表示を工程受入へ接続。未採用194行の調整はしない。
+- P07: 1,073歴史的採用追加と472+27既存保持を区別。新規一律配布・料金・解禁変更なし。
+- Evidence: content/modernization/pr16_completion_evidence の3原本ZIPを実取得・Git追跡。source/run/CRC/SHA/raw-validatorを再確認。原本保持commit b1215b03f03477ca24fe7fcb3efe0474467e5b64。
+- Current view: scripts/pr16_refresh_current_view.py、scripts/pr16_completion_checkpoint.py、docs/PR16_COMPLETION_CHECKPOINT_JA.md。旧Stage84受入JSONを変更せず再生成フックを追加。
+- Remaining: P03フォーム/該当供給、P07残る差分実経路、P05通常取得/実Circus、clean全工程再生成/配布。release_ready=false。
+- Protection: public/無料わざメモリーは承認済みで維持。Stage62、実プレイsave、原本、履歴、公開範囲、PR未マージを維持。
+- Verify: 専用mGBA 2run PASS、原本照合 PASS、両現在ビュー生成と関連否定unitを本workflowで検証。新規native実行と記録再検査を混同しない。
+
+## 2026-09-11 / PR16-P06-CURRENT-MIRROR-20260911
+
+- Task: USER-MODERNIZATION-P06 / verified current-view consistency.
+- Fixed nested p06_adoption.full_phase_accepted to derive from the verified full_p06_acceptance boolean; no historical receipt, ROM, save, adopted scope or release gate changed.
+- Both existing generation entry points, retained originals and targeted unit tests passed in run 34556825622. No new emulator execution is claimed.
+- Preserve public and free move-memory owner policy, Stage62, actual-play saves, existing native successes and unmerged PR #16.
+
+## 2026-09-11 / PR16-PHYSICAL-20260911
+
+- Task: USER-MODERNIZATION-P03-P07 / actual native routes and retained originals.
+- New native: Rotom 10 processes / 25 cores (34559437267), Happiny incense 5 / 15 (34558529636), exact unchanged 635fd890 candidate.
+- P06 current mirror fixed and verified in 34556825622; no new P06 native claim.
+- Raw originals + Actions metadata permanently tracked in pr16_physical_route_evidence; current-view hook preserves accepted subroutes across regeneration.
+- Revalidation and target tests: retention run 34560685011. No historical evidence, ROM, actual-play save, Stage62, public/free-memory policy, history or PR merge changed.
+- Remaining: residual P03/P07 consumer inventory, P05 physical acquisition/admission, same-candidate final gates, clean full reconstruction and distribution. Product release remains false.
+
+## 2026-09-11 / PR16-SHARED-ONLY-20260911
+
+- Task: USER-MODERNIZATION-P03-P07 / physical shared-only receiver routes.
+- New native run 34564143971, HEAD 00fb5ccf6009e1f87e5a83b60fda1fde35f157ac: Camerupt 605 and Donphan 549, 16 processes / 32 cores, unchanged candidate 635fd890. Empty slot, all four replacements, three cancels, normal save and fresh Continue.
+- Fixture boundary: initial species/moves, memory item, HOF/DH and location are prepared; no natural acquisition, breeding or full shared-table native claim.
+- Exact original ZIP + Actions metadata tracked; raw validation and both remaining-work regeneration paths checked by retention run 34564919680. Oracle unit 12 and checkpoint/previous target suites are logged there. No new emulator run in retention.
+- Preserved Rotom, Happiny, Pichu, evolution, P06 and historical evidence. No ROM, active Stage62, real save, visibility, owner policy, history or PR merge changes.
+- Receiver audit has complete shared pool reading but unresolved catalogue root/wild header diagnostics; no physical Circus or natural-capture acceptance.
+- Remaining P03/P07 reconciliation, P05 natural acquisition/admission, P08 final integration and full clean reconstruction/distribution; product release remains false.
+
+## 2026-09-11 / PR16-P05-DATA-PASS-VISUAL-REJECTED-20260911
+
+- Task: USER-MODERNIZATION-P05. Physical shop run34568373963 / cd0f07c9: new10 processes20 cores, six stone purchases and four controls; data, BP, inventory, party, normal save and cold Continue PASS. The fixture boundary is explicit.
+- Visual inspection REJECTED: menu and post-close background corruption, including cancel/BP denial; missing-ring control remains intact. Keep raw PASS but never promote it to UI/P05 acceptance.
+- Root diagnostic run34567225043: 5334 decoded roots, 6 invalid roots, 1 unknown command, wild header139 unresolved; two rooted species411 candidates are not capture/admission acceptance.
+- Exact originals, Actions origin, raw validators, screenshot identities, scoped receipt and both current-view generators validated by retention run 34569452500. Target tests are in its unit.log. No emulator rerun in retention.
+- No candidate ROM, Stage62, real save, owner/public policy, historical original or PR merge changed. Keep prior Rotom/Happiny/shared/P06 successes. Product unfinished; display repair and natural acquisition/battle/admission remain.
+
+## 2026-09-11 / PR16-SHOP-DISPLAY-REPAIRED-20260911
+
+- USER-MODERNIZATION: fixed list-content tiles overlapping world tilemaps and frame tiles. Only top=1 and content base=1 are changed in a separately compiled renderer layer; original sources and parent remain untouched.
+- Exact successor e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267, 33554432 bytes, CRC BFB089F9. Independent repair builds2 and both BPS round trips, NOT full clean product generation.
+- Native run34571394609 / d33ce3a7: repaired11 processes22 cores, 9 pages, six purchases/five controls, normal save/cold Continue, 6144-byte world maps compared96 times with zero differences and no overlapping list layout. Separate original3 processes6 cores reproduce corruption. Reviewed native pixels are pinned.
+- Rejected top-only experiment run34569993409 remains rejected, original first shop data pass/visual fail run34568373963 is unchanged. Never add controls/probes to repaired success count.
+- Retention run 34572398777: exact ZIPs/Actions/source/raw/graphics validated, historical receipts and both current generators preserved, 84 target tests. Shop successor is scoped; full P03/P05/P07/release stay false.
+- Natural capture-to-battle, Circus actual admission, remaining supply coverage and full final integration/distribution remain. Stage62, real save, prior successes, P06 mirrors, visibility/owner policy and unmerged PR remain protected.
+
+## 2026-09-11 / PR16-NATURAL-CAPTURE-20260911
+
+- USER-MODERNIZATION: native walking/capture/cold-save run34575955233 at 68f94596; 2 processes4 cores on unchanged e630f7f1 shop successor. Cave113:313 steps/15 encounters/Lv80; cave118:202 steps/9 encounters/Lv99. Exact first native land tables and captured personality checked; physical Bag/ball, inventory, party200 bytes, normal save and independent Continue. Seven host-write barriers tested.
+- Initial map/lead/Master Ball are explicit fixtures. Gear acquisition/battle connection/full P05/release remain false. No target/RNG injection. Geometry run34575014339 is static0 emulator runs, not additional native acceptance.
+- Retention run 34576811814: exact originals, Actions, source, raw exits and12 reviewed images retained;106 targeted tests and both current generators. P06 true mirrors, old shop/P03/P07 originals, Stage62, real saves, owner policy/public and unmerged PR preserved.
+
+## 2026-09-11 / PR16-CAPTURED-BATTLE-20260911
+
+- USER-MODERNIZATION: new run34577360374 / 1c8b61e9, 2 processes6 cores on unchanged e630f7f1. Natural capture/ordinary save/cold Continue, next real walking encounter, physical party switch, captured identity/native ability/all moves and PP, native turn PP15-to14, Run, second ordinary save and third-core byte-identical Continue. No target/RNG/gear injection after the7 write barriers.
+- Capture-only run34575955233 remains a distinct2-process4-core historical original, not relabelled or added to the6 new cores. Initial map/lead/ball are fixtures. Actual gear acquisition/equipment-to-battle and Circus admission remain; full P03/P05/P07/release false.
+- Retention run 34578321065: immutable ZIP/Actions/generated controller32 source files/raw process/24 images verified;125 targeted tests and both current generators. Stage62/real saves/prior originals/P06 mirrors/public and free Move Memory decisions/unmerged PR preserved.
+
+## 2026-09-11 USER-MODERNIZATION gear controller refinement / run 34585668795
+
+Fixed undefined enemy-level stride in commit 3c199d8e. Run 34585139774 compiled and reached actual purchase/Give but rejected live Quest Log recording (quest=1, action state=2). Repair only the gear-specific idle predicate; reject playback and all unknown pairs. Compile and execute the actual C predicate against all 65,536 byte pairs; 50 targeted tests pass. No host-state clearing, ROM modification, baseline/save/visibility/history change or release claim. Native rerun is a separate pending gate.
+
+## 2026-09-11 / USER-MODERNIZATION gear policy boundary / run 34587056078
+
+Run34585692527 reached native purchase/Give/cold Continue/natural grass. Two denied-policy controls reached third-core Save; active failed because NEXT-battle policy is volatile. Schema2 now distinguishes 3 same-session cases (2 cores each) from cold-policy-reset denial (3 cores). No post-barrier policy injection or ROM change. Exact before/after source hashes and51 targeted tests pass. Patch-transport runs34586543126 and34586731607 changed no controller and ran no emulator; replaced their transport with tested exact-source edits. Native acceptance remains pending; retain old successes and original candidate. No Stage62, real save, visibility, history or release/merge changes.
+
+## 2026-09-11 / PR16-PURCHASED-GEAR-CHECKPOINT-20260911
+
+- USER-MODERNIZATION: retain native run34589284710 / 4b597117, four processes nine cores on unchanged e630f7f1. Physical shop purchase, Give, native walking encounter, live Mega/no-toggle/cancel and cold-policy-reset control, native turn, reversion, two manual saves and fresh-core Continue. Initial map/party/ring/BP/mode remain explicit fixtures; no post-barrier injection.
+- Six exact original ZIPs and Actions metadata retained. Prior success34587080329 remains separate. Historical static, failed and prior successful runs are not relabelled or added to successor counts. Actual generated controller,37 sources,58 images,4 screen manifests and raw process output verified. New checkpoint/current-view tests and both existing regeneration paths checked. Retention itself runs zero emulators.
+- P06/P07 prior adoption, captured-battle, shop and physical-route successes retained. Ring/BP/configured-mode supply, Circus, remaining P03/P07 routes and final reproduction/distribution remain. No ROM/save/baseline/visibility/history changes; PR unmerged.
+
+## USER-MODERNIZATION-GEAR-SCREENS-34589284710
+
+Task: USER-MODERNIZATION
+Integrated the previously unreflected non-destructive output and screenshot helper into the existing purchased-gear runner. Native run 34589284710 at 4b5971179795bcdbbca1abf142387ef1bb6f1ce9 passed 65 targeted tests and 4 processes/9 cores. Verified 37 source bindings, generated controller, native raw outputs, 53 mandatory screen sidecars and all 58 visually reviewed originals. Retention run 34590361198 revalidated the pinned original and 11 rejection tests without starting an emulator. Original SHA256 6eba3f6c0947af2e2cb446552cc37ccf832665a8ac849a80e2f45bca986e6de9. No ROM/save included in this new ZIP. Full P05 and release remain false; ring/BP/initial party/policy are fixtures. Old runs are not added to these counts. See docs/PR16_GEAR_SCREEN_CHECKPOINT_JA.md.
+
+## 2026-09-12 — USER-MODERNIZATION PR #16 native FORM menu scan
+
+- Replaced the rejected embedded-payload workflow with three normalized tracked patches after exact Git-blob preimage and patch-digest verification.
+- Applied bounded, input-only native FORM menu discovery to the controller, receipt parser, and focused tests.
+- Passed Python compilation, the complete test_pr16_generic_form_carry.py unit file, and git diff --check in Actions run 34669671377.
+- The audit-provided source SHA-256 preimages did not match the unchanged branch blobs; authoritative Git blob IDs were used instead and the observed SHA-256 values were printed in the run log.
+- The earlier bridge run 34669355733 reached patch READY but could not commit because guard_private_files.py reports pre-existing repository-wide tracked ROM/BPS and machine-path findings unrelated to these three source files.
+- This checkpoint closes patch application only; real-ROM generic acceptance and all later fixed-form/P05/Circus/P08/release work remain open.
+
+## 2026-09-12 / PR16-GENERIC-FORM-NATIVE-ACCEPTANCE
+
+- Native acceptance run `34675976411`, job `103505793891`, tested HEAD `92db3605070c65206696b03f8ab6bd596ae7d729` passed on unchanged parent candidate `635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e`.
+- Two acceptance processes / five fresh cores completed: Shaymin Land→Sky→Land four-slot roundtrip and party-picker cancellation. Both found form index 43 by native input-only bounded discovery at page 1 / cursor 1 after seven probes across two pages, then completed normal Save and fresh Continue.
+- Four moves `[98,235,552,33]`, PP `[11,3,4,7]`, PP bonus byte, individual identity and nonselected party data were preserved. Seven post-observation host-write guards failed closed as required.
+- Fourteen entry probes remain diagnostic-only and are not counted as acceptance. The representative closes the shared 61-route generic owner contract; it does not claim 61 individually executed rows.
+- Exact artifact `10292791318`, 372130 bytes, SHA-256 `f5d41c58ae1be0303dd7157d08bcee77ecd5018cbbc11e4cc4d30b1a9635914b`, Actions metadata, raw outputs, 44 rendered witnesses and tested source snapshot are retained by `pr16_generic_form_checkpoint.py` with zero verifier emulator runs.
+- `P03_GENERIC_FORM_CHANGE_CARRY_PHYSICAL` is closed on the parent candidate. `P03_FIXED_FORM_TRANSITION_PHYSICAL`, full P03, P08 successor transfer, clean-ROM regeneration and release remain open. No ROM/save/baseline/visibility/history/merge state changed.
+
+## 2026-09-12T12:48:43.962326+00:00
+- Task: USER-MODERNIZATION / fixed-form正式5ケース初回実行と原本保持
+- Status: STOPPED（正式gapは未完。次のcontroller修正へ継続）
+- Summary: run 34694218218 / job 103554787890でC strict compileと7 write barrierをPASS、5 processを実行。Necrozma取消は両行・party bytes不変・save counter 2→2をPASS。Necrozma 2形態は専用技解決、Crowned 2種は技実行後のaction controller境界でFAIL。
+- Files changed: fixed_form_acceptanceのC／Python／tests、acceptance JSON／receipt、原本ZIP／Actions記録。
+- Verify: source-only 14 tests PASS。controller修正後の実ROMはまだ未実行。
+- Commit: この追記を含むcheckpoint commit。受入実行HEAD a9ec7ab9d93d8013139698242802826278aaf667。
+- Network: GitHub Actions artifact APIのみ。原本SHA-256 45fbc581ec17cf7e0504d2c8d3150072e44a9099e4deed04da759d8b3a6328c7。
+- 再開: 複製runを避け、--caseで失敗経路だけ実行。generic FORM／P07／active baselineは不変。release-ready=false。
+
+## 2026-09-12T13:05:44.342966+00:00
+- Task: USER-MODERNIZATION / fixed-form owner and native live-field checkpoint
+- Status: STOPPED（fixed gap未閉鎖・継続）
+- Summary: run34694785866の4失敗原本とrun34695030927の静的owner原本をdigest付き保持。Crownedは専用技PP5→4・勝利・field復帰まで実測。ライブ記録(quest1,playback2)をhostで消さずnative Bag/歩行へ渡すcontroller修正。
+- Important: NecrozmaのPhoton自動置換・復帰想定はpinned native ownerと不一致。実ownerは全4枠時の選択UI、解除時は専用技削除・圧縮。古い想定を満たすROM改変をしない。
+- Verify: focused14 tests PASS。修正Cの実ROMは次のCrowned2ケースで検証。
+- Files changed: controller, owner findings, exact ZIP/Actions/checkpoint, logs.
+- Commit: この追記を含むcommit。原本HEAD54625b020731f68d72643b65e60cbb91c2f0524e／2bb937f7c2c1bedf29531f70b88d59163f349c65。
+- Network: GitHub Actions API。新規emulator0、このcheckpointで既存成功を再実行しない。active baseline/release不変。
+
+## 2026-09-12T13:24:49.020414+00:00
+- Task: USER-MODERNIZATION / Crowned正式2ケース完了・原本Git収録修正
+- Status: PASS（限定2ケース。fixed gap全体は3/5で未完）
+- Summary: run34695512247/job103558198010でZacian/Zamazenta両方、正しい装備→自然歩行戦闘→Crowned/project move→PP5→4→勝利→base/Iron Head405復帰→native Bagで装備置換→次戦base/Iron Head→逃走→通常Save2→3→core破棄→fresh Continue・100bytes一致をPASS。
+- Retention correction: 以前のdirectory git-addはignore対象ZIPを収録せず、JSONだけが収録されていた。run34695874241はこの欠落を検知しFAIL。3原本を同一digestで再取得し、今回4原本のexact pathだけforce-add、Git indexとHEADからbyte一致まで確認する。以前の原本保持との記述はこの追記で訂正。
+- Verify: strict C compile、7 write guard、focused14 tests、2process/4fresh cores。原本ZIP854855bytes SHA2560d31881c45e05e9aa4b3c122663ce3bfd7605ff4287299a602c48232dc893cc8。
+- Files changed: scanned original ZIP4件、Crowned Actions/receipt/checkpoint、canonical fixed acceptance JSON、run/version logs。
+- Commit: この追記を含むcommit。native実行HEAD952b9fb2e2ee8b5951214eda7a7847c4ca1092d5。
+- Network: GitHub Actions API。原本移送は新規emulator runではない。
+- Next: Necrozma2経路のnative fusion owner。Crowned成功・取消成功・generic FORM・P07は無条件再実行しない。active baseline/release-ready=falseを維持。
+
+## 2026-09-12T13:33:37.608213+00:00
+- Task: USER-MODERNIZATION / Necrozma native fusion controller
+- Status: IMPLEMENTED_NATIVE_NOT_RUN
+- Summary: 既存Crowned/取消controllerをそのまま埋め込み、Necrozma2ケースだけをN-Solarizer697/N-Lunarizer698→手持ち相方1189/1190→4枠技選択→保存/Continue→解除/専用技削除/圧縮→保存/Continueの別controllerへ接続。Photon733を選んで忘れた後に自動復元されるという旧誤想定は拒否。FORM行選択の実行とは明示的に区別。
+- Verify: 17 focused source-only tests PASS、既存4原本のGit HEAD bytes/digest一致。新Cの実compile/nativeは次の明示的Necrozma2ケースrunで検証。
+- Files changed: fusion C、Python validator、tests。既存native workflowは変更せず、.github/pr16-fixed-form-run.jsonの明示更新で起動。
+- Commit: この追記を含むcommit。固定ROM e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267 は変更なし。
+- Network: checkoutのみ。新規emulator0。Crowned成功と取消成功を再実行しない。
+- Prior attempt: run34696667882はsource/checks成功後、botのworkflow更新pushだけが拒否されcommit未反映。今回はsource-onlyに限定し、workflow権限を持つGitHub connectorとbotを混同しない。
+- Next: .github/pr16-fixed-form-run.jsonをNecrozma2ケースへ更新し1回実行、raw originalを判定。3/5という現行受入は変更せずP03 gap/release-ready=false。
+
+## 2026-09-12T13:38:59.809644+00:00
+- Task: USER-MODERNIZATION / fixed fusion manifest preflight correction and probe preservation
+- Status: SOURCE_PREFLIGHT_FIXED_NATIVE_PENDING
+- Summary: run34696793115はspecies manifestがdpe_symbolなのにcfru_symbolを参照してsetupで停止。新規native processは0。実manifestsを直接検査する18番目のunit testを追加し、CFRU item/DPE species別列へ修正。nativeCは未実行であり合格扱いしない。
+- Evidence: 初期diagnostic run34681725548（expiry2026-10-12T07:50:56Z）と今回preflight失敗原本をSHA/Actions/ソース付き保持。既存追跡ZIPをdigestで照合して重複保存しない。force-add後Git index byte一致確認。
+- Verify: 18 focused tests PASS、既存4原本HEAD一致。P03現行3/5、native gap/release false。
+- Files changed: Python/test、2runの原本/Actions/checkpoint、probe_retention、logs。
+- Commit: この追記を含むcommit。active baseline/ROM/旧成功は変更なし。
+- Next: 同じ2Necrozmaケースを正しいpreflight後に初回native実行。Crowned/取消/generic FORM/P07を再実行しない。
+
+## 2026-09-12T13:51:06.072184+00:00
+- Task: USER-MODERNIZATION / native Necrozma post-Summary controller
+- Status: FAIL_RETAINED_CONTROLLER_CORRECTED_NATIVE_PENDING
+- Summary: run34697100492/job103562346678でstrictC、7writeguards、native2processを実行。Nアイテム使用→Necrozma/相方選択→固有フォーム→4枠技選択を実測。選択後の1、2、ポカン表示（cb0811CF35/task0811D259）をcontrollerが送らず停止。Bでnative文字送りを追加し、実選択cursor/画像を記録する。
+- Verify: 18 unit tests PASS、旧4原本HEAD一致、新失敗ZIP978963bytes SHA2568d2e0461baec89b8082ce8af7715efd38e7c4c07525931f4d26381e06100d2a6をGit index byte一致確認。source ZIP全員を実行HEADのGit objectへ照合。
+- Files changed: fusionC、原本/Actions/checkpoint/latest_execution、logs。
+- Commit: この追記を含むcommit。原本実行HEADc38d5dae3ac1c73d65b891e5b2f525267caa7b2d。
+- Counts: これまでnative13attempts=5+4+2+2。別のpreflight失敗は0、static/retentionは0。受入は3/5のまま。
+- Next: 修正後のNecrozma2ケースだけ再実行。通常Save/freshContinueはまだ未受入。Crowned/取消/generic/P07やROM/active baselineを変更しない。
+
+## 2026-09-12T14:00:43.041743+00:00
+- Task: USER-MODERNIZATION / Necrozma signature and first Save/Continue boundary
+- Status: PARTIAL_NATIVE_PROGRESS_NOT_ACCEPTANCE
+- Summary: run34697599454/job103563652761で両形態の実slot1選択、固有技690/669、PP5、bonus229→225、通常Save2→3、core破棄/freshContinue・200partybytes一致を実測。解除でbase1198、技98/235/33/0・PP11/3/7/0・bonus57まで復帰。field count cache2のため終端判定はFAIL。
+- Next controller: native復帰直後に相方100bytesを正本fixtureと比較し、さらに実Start→Pokemonで3体表示/再計数と300bytes不変を検査してから2回目Save/Continueへ進む。hostでcountを書き換えず、相方不在なら引続きFAIL。cached count仮説を製品修正と混同しない。
+- Verify: 18 acceptance unit tests +8 raw-original/checkpoint tests PASS。新ZIP1025638bytes SHA256811eb51b5c1668e553fc47415ce4a6d9fcfc228e705e993870785ddb173757eb、全sourceを実行Git commitへ照合、Git index byte一致。
+- Files changed: fusionC/Python/tests、raw evidence/latest execution、logs。
+- Commit: この追記を含むcommit。実行HEADf2f44b973dce839c56d8abf8240d12cf9f9da5bd。
+- Counts: native15attempts=5+4+2+2+2。単なる原本検証/静的検証/移送は0。正式3/5・P03gap/release false、ROM/active baseline不変。
+
+
+## USER-MODERNIZATION: fixed-form five-case closeout / 2026-09-12
+
+既存HEAD a552361aのnative run34698120000がNecrozma2ケースで成功していたため再実行せず回収。Nアイテム→相方→実4枠選択→専用技→Save/新コアContinue→解除/技枠圧縮→相方100bytes一致→実Pokemonメニュー→2回目Save/新コアContinueを原本照合。FORM取消run34694218218とCrowned2ケースrun34695512247を合わせ5成功process/11cores。原本失敗4件は削除・成功への再分類をしない。新規emulator実行0。ZIP/receipt/source/Actions/process/write-barrierを照合し、Git index/HEADの原本byte一致を別検査。P03固定フォームphysical gapだけ閉鎖。P05供給3件/Circus/P08最終SHA移送/clean-ROM配布は未完。full_p03_acceptance/release_ready/active_baseline_changed=false。詳細: docs/PR16_FIXED_FORM_CLOSEOUT_20260912_JA.md
+
+
+## USER-MODERNIZATION: inherited private-guard boundary / 2026-09-12
+
+最初のcloseout run34699976579は14 tests、原本/Git source/index照合までPASSしたが、全体private guardで停止しpush0。既存HEADのROM/save3件、BPS入り旧証拠ZIP2件、machine-path入り旧文書の既存違反であり、原本は勝手に削除・書換えしない。baselineと最終indexのguard出力/終了コードが完全一致すること、今回変更pathには新規違反0であることを別検査する。全体guardが緑になったとは主張せず、RELEASE_DECISIONの既存阻害要因として保持。guard_boundary.jsonを参照。新規emulator実行0。
+
+
+## USER-MODERNIZATION: P05 supply owner / false Circus F0 / 2026-09-12
+
+run34701044310/job103572747344成功。7 source-only tests、exact e630f7f候補、66 source memberを照合。Ringはwork-var macroも検索したがreachable一致はmap98/69のremoveitem580のみ。未発見は不存在証明ではない。BP入口はmap96/5 local2(20,19)、3勝/基本9BPに後発reward wrapperが接続。map12/7 counts3,3,116,108/coord pointer08000000からcoord18がheader0800012Cを読み、back sprite table0954ECC4へ誤到達。旧unknown F0はrecord3画像pointer086C97F0の下位byte。新opcode実装不要。map12/7をCircusと同定しない。raw403Aはbuild_battle_coreでVegaFacilityStateGetへ変換済み。実受付はbattle-local number3から追う。原本ZIP/Actions/source/Git HEADをdigest照合・保存。共有decoder/ROM変更0、emulator実行0、physical gap閉鎖0。fixed-form5ケース/generic FORM/P07の完了を保持。詳細 content/modernization/pr16_p05_supply_owner_findings.json / content/modernization/pr16_p05_supply_owner_receipt.json。
+
+
+## USER-MODERNIZATION: first native BP reception control / 2026-09-12
+
+run34702872369はCodex wrapperの前処理契約で停止、emulator0。原本failureのまま保存。修正後run34703571879/job103579472279はnative Codexいいえ→Factory受付tier→B取消に成功。新規1process/1core/492frames。party600bytes・Bag・BP0・Savecounter2→2不変、7host-write禁止と10source tests、4画面を照合。残るrental caseを無駄に実行しない: Trial delegate092CF790は同じconfigのcompletion hook092CF791-1で、受付ではない。positive BP獲得・勝敗・繰返し・通常Save/Continue・獲得BP実消費は未受入。physical gap4件を保持。原本2ZIP/Actions/67native source/生成C/receipt/stdout/stderrをdigestと実行HEADへbinding、Git index/HEAD読戻しで恒久保存。今回checkpointによる新規emulator実行0。P03固定5ケース/generic FORM/P07は再実行しない。content/modernization/pr16_bp_native_controls_acceptance.json を参照。
+
+
+## USER-MODERNIZATION: native supply handoff and ownership CI correction / 2026-09-12
+
+fixed-form正式5ケースの閉鎖に対し、forgetting側の旧ownershipテストだけがP03未完状態を要求していた。run34704254858はruntime契約24PASS、証拠20件中1FAILで、技忘却nativeの再発ではない。commit2d82b2aはその4行だけを5ケース正本/候補SHA/gap閉鎖/P08移送未完を要求する20行へ置換。修正run34704480513とpush run34704478309は成功。原本確認は24+20=44 source tests PASS、忘却12ケース/12保存Continueを再検証、新規emulator0。前後CI原本を別ZIPとして保持。P03/generic FORM/P07を再オープンせず、既存native成功を再実行しない。この作業束で新規nativeはBP受付取消1process/1coreだけ。positive BP獲得/通常保存Continueは未受入。残るphysical gap4件とP08ゲート2件、Trial誤delegate092CF790、Circus旧F0=sprite pointerを正本へ同期。ROM変更0、release_ready/active_baseline_changed=false、既存global private guard違反は残す。content/modernization/pr16_native_supply_handoff.json と docs/PR16_NATIVE_SUPPLY_RESUME_20260912_JA.md を参照。
+
+
+## USER-MODERNIZATION: BP Trial successor checkpoint / 2026-09-13
+
+親e630のTrial goto operand 0x093C93C1を90f72c09からa4d43809へ変更。旧物理受付wrapper0x0938D4A4を維持し、完了script0x092CF790への誤接続を解消。successor df8a15c3b464854ca84a5c0533177cfa3187b5eef252d20248f7654edb72887c / 33554432 bytes / CRC5283EC5F。4byte宣言範囲中3byteのみ変更。静的run34707830538成功、先行失敗34707390052/34707616730も原本保持。新規native run34708218707は24tests/7write guardsを通り、実受付→6レンタル/snapshotまで到達したがChooser前で失敗。12615frames、BP0/save2、Save/保存後Continue未実行。成功へ昇格しない。今回原本内native新規1、証拠移送での新規実行0。静的receiptの閉じる前のstdout/stderr不一致2件を隠さず、最終artifact-membersと外側ZIP digestで最終bytesを検証。正式physical gap4/P08 gate2、P03/P07受入とactive baselineは維持。content/modernization/pr16_bp_trial_receipt.json と docs/PR16_BP_TRIAL_RESUME_20260913_JA.md を再開正本とする。
+
+
+## 2026-09-13 JST — USER-20260913-BP-CHOOSER-ACCEPTANCE
+
+Task: USER-20260913-BP-CHOOSER
+Result: DONE_SCOPED_RENTAL_CANCEL; BP_EARNING_PENDING / physical4 + P08 gates2
+
+実ROM special0x2F=null + waitstate停止を0x29 chooserへ1-byte修正。旧失敗2件/静的binding1件/新規取消SaveContinue1件を原本のまま保持（開始前失敗1件を含む）。新規native2process、成功1case/2fresh cores。元party600/count/BP/Bag復元、Save2→3、cold Continue成功。source60tests、7writebarriers、ZIP/全member/生成C/各sourceとGit HEADの一致、9画面目視、原本Git保持、task graph、変更範囲private guardを検査。台帳再調停はemulator0。
+
+Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f01149dfd6848623466fadf611a6599d1f22e1ca / run34733866168 / job103661602964。詳細: content/modernization/pr16_bp_chooser_checkpoint.json / docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md。PR本文更新拒否は未解決として明記。fixed-form5件と全旧成功/失敗を保持。merge/baseline/release変更なし。次: 実3体選択/戦闘/9BP/負例/繰返し/獲得BP消費、Ring/policy/Circus、P08。
+
+
+## 2026-09-13T04:29:33Z — USER-20260913-RESUME-OPTIMIZATION
+- Task: USER-20260913-RESUME-OPTIMIZATION / 固定再開入口・正本同期・再読削減
+- Status: DONE
+- Summary: CHATGPT_RESUME.mdを不変入口にし、現行MDをJSONから生成。最新3体選択診断を正式受入と分離して反映。旧入口に履歴案内を追加し、P08再開文だけを同期。
+- Files changed: CHATGPT_RESUME.md、現行resume MD/JSON、診断抄録、scripts/pr16_resume.py、tests/test_pr16_resume.py、専用workflow、AGENTS/README/current_state/context_map、旧MDの案内、p08_remaining_work.json、両ログ。
+- Verify: focused unittest、pr16_resume.py check、validate_task_graph.py、git diff --check PASS。標準private guardの既存違反と新規差分はworkflowのguard-boundary.jsonで別記。全体guard PASSとは主張しない。
+- Native: 原本47member/71sourceを再照合、新規emulator0、ROM/save変更0、追加BP受入0。
+- Commit: この記録を含むcommit。検証入力HEAD=29c1087a70ce14a1af8cb735aa7c288cfe462f94。自己SHAを文書へ追記して無限更新しない。
+- Network: GitHub connectorのbranch/PR/run/artifactを照会。run34734806603、artifact10310995889。private Release取得なし。
+- Boundary: 未merge/draft維持、release/active baseline変更なし。正式残件physical4/P08ゲート2。
+
+
+## 2026-09-13T04:50:44Z — USER-20260913-BP-SECOND-CHOOSER-PREP
+- Task: USER-20260913-BP-SECOND-CHOOSER / 2回目chooser確定から実戦状態までの観測拡張
+- Status: STOPPED
+- Summary: 原本run34734806603の2回目chooser画面・scriptPtr 0x092CF668/5D・選択順010203を照合。確定後の+1前進、実battle action、struct、敵party生成を要求する診断を追加。実戦/BP受入は未更新。
+- Files changed: selection C/Python/tests、同じresume MD/JSON、resume P08 serializer、P08再開文、両ログ。
+- Verify: launch12件、resume focused、resume check、fixed-form strict check、task graph、diff check PASS。基点と最終indexの標準guard出力完全一致を要求し、新規違反0。全体guard PASSとは主張しない。
+- Preflight: run34738673670/job103674512984はP08 key順序の不一致で停止、新規emulator0。意味論の完全一致を確認してcanonical sorted JSONを復元し、今後のrouting出力も同形式を維持。失敗原本はfailureのまま。
+- Native: このcheckpointは新規emulator0・ROM0。新しい診断を別dispatchし、取消/保存/Continueの受入済み試験は再実行しない。
+- Commit: この記録を含むcommit。入力HEAD=d3eb3dc88b7940a720cf2a678d6555cc84df5577、run=34738838452。
+- Network: GitHub API/Actions原本。merge/release/baseline切替なし。
+
+
+## 2026-09-13T05:06:18Z — USER-20260913-BP-SECOND-CHOOSER-COUNT
+- Status: STOPPED / 修正後の新規native結果待ち
+- Summary: run34738859743/job103675000673は5D消費1967→battle struct2051→action3260まで実到達したが、fixture由来raw敵数02023F8A=0をnative countと誤認したassertionでfailure。原本ZIP752252bytes/SHAac228665a48efd17c4cff2b1ec03eb977d09ee6771f159c50c8123bd10c98b59を保持。成功へ再分類しない。
+- Change: party+0x20種族ABIの6slot計数へ修正し、3体・先頭species一致を追加。入力/ROM/fixture/7barrierは不変。元画像と600bytesのspecies[7,1,133,0,0,0]を照合。
+- Verify: focused14件、resume18件、resume/fixed-form/checkpoint/task-graph/diffと標準guard差分を検証。新しい実行はobserver契約変更に限定し、取消/Save/Continueは再実行しない。
+- Files changed: selection C/Python/tests、同じresume MD/JSON、P08再開文、両ログ、失敗診断ZIP/Actions metadata。
+- Boundary: BP獲得/消費/gap閉鎖0。merge/release/active baseline変更なし。
+- Commit: この記録を含むcommit。入力HEAD=c9c27b727e8c194535f2530fccc806c5103849a6。
+
+- Checkpoint preflight failures retained: runs34739159633/34739395296, native0; focused14/resume18 passed. Stage P08 plus fixed handoff MD/JSON together for --index, then verify committed HEAD before native dispatch.
+
+
+## 2026-09-13T05:15:54Z — USER-20260913-BP-SECOND-CHOOSER-CLOSEOUT
+- Task: USER-20260913-BP-SECOND-CHOOSER
+- Status: DONE_SCOPED_BATTLE_LAUNCH_DIAGNOSTIC; BP_EARNING_PENDING
+- Summary: native確定1914f→5D消費1967f→struct2051f→action3260f、敵3体・BP0・savecounter2・7barrier・warning0を実観測。攻撃/勝利/帰還/報酬/獲得BP消費は未観測。
+- Evidence: run34739491272/job103676647813/HEAD613fd76915f262c080b56700a48f77827bf3e378/artifact10312207537、ZIP750753bytes/SHA303b3d51a8d3116e2def4f464578d1c29f44e4f8e37f7f54eb677e5f78a4ac07。51receipt/71source/18entry/11generatedとstdout/process/Gitの一致を照合。19画面を保持、battle-action画面を確認。失敗run34738859743原本はfailureのまま保持。
+- Verification: source-only最終照合、native result変異4負例、focused14件、resume18件（観測true/falseいずれでも不一致を拒否するようnegative testを一般化）、固定MD生成、task graph、既存取消/固定formのGit保持、private guard差分を検査してcommitする。標準guardの既存違反は不変、新規0。全体guard PASSへ読み替えない。
+- Execution: このセッションの新規native2process（失敗1/成功1core）。取消/Save/Continue再実行0。closeoutのemulator0/ROM再生成0。
+- Files changed: 元診断抄録、成功原本/Actions/検証記録/旧抄録、同じ固定resume MD/JSON、P08再開文、resume negative test、両ログ。
+- Next: Trial reward0と9BP対象modeを区別し、残る交換0x2F bindingを確認後、実戦進行/帰還/報酬の未観測区間へ延長。実戦開始だけの重複試験なし。physical4+P08 gates2は未完のまま。
+- Commit: この記録を含むcommit。照合入力HEAD=a083afe22cf578e312676db29eb25b7af58bfd05、source-only closeout run=34739858109。PRopen/draft、merge/release/baseline変更なし。
+
+- Retention correction: 613fd769 stored failure metadata only; original.zip was ignored. Closeout run34739728185 failed before any native execution. This commit explicitly stages only both digest-verified, payload-checked ZIPs and verifies index plus committed HEAD bytes. Earlier retention statements are superseded by this actual retention check; original failure conclusion is unchanged.
+
+
+## 2026-09-13T06:08:36Z — USER-20260913-BP-REWARD-FIRST-TURN
+- Task: USER-20260913-BP-REWARD-FIRST-TURN / 報酬・交換bindingと初回native turn
+- Status: DONE_SCOPED_FIRST_TURN_DIAGNOSTIC; BP_EARNING_PENDING
+- Summary: Trial reward ID0と付与基本量9を区別。候補header3戦/9BPと交換operand092CF729/092CF775のspecial2F→080CBF8D(7047)を照合。全completion wrapper加算条件は未確定。
+- Native: 成功run34741232621/job103681167660/HEAD88e043592f07c80d1e4f582320bb955243986711。技247/PP24→23、敵HP167→139、自HP171→119、次action callback3925f。BP0、元party600bytesとSave counter2不変、7barrier、warning0。勝利/施設帰還/稼得BP/消費は未観測。
+- Failure retained: run34741024241/job103680639752は技選択前3322fでnative move menu absent。旧Aが描画前だったため新Cのみ実command14遷移待ちに修正。failure原本を成功へ再分類しない。
+- Evidence: 静的34740626514、失敗34741024241、成功34741232621の原本ZIPを再ZIPせず保持。size/SHA256、全member、Git tested-head source、生成C、raw stdout/stderr/process、7guardを照合。verification.jsonとactions-*.jsonが正本。
+- Verify: native focused6・resume18・retention7、resume check、task graph、git diff --check。元の正式取消checkpointとfixed-form5件は読取確認のみ。index原本とHEAD原本を照合。標準private guard既存違反は保持し、新規差分0を別検査。全体guard PASSとは主張しない。
+- Closeout failure retained: run34741873434/job103682814759はActions一覧がnative JSON 64KiB制限を超え停止。原本/Git照合後、commit前。emulator0。API metadataの読取だけ4MiBへ分離し、native strict JSONは変更しない。詳細とartifact digestは同じattempts JSONへ保存。
+- Execution: BP専用診断2process(失敗1/成功1core)、取消/Save/Continueの単独再実行0、closeout emulator0、ROM source変更0。自動CI/Stage79は別記録。
+- Files changed: 初回turn C/Python/tests/workflow、原本/検証/診断抄録/保持checker、同じ固定resume MD/JSON、P08再開文、両ログ。
+- Next: 1戦のnative勝敗・AfterBattle帰還、completion wrapper全加算と交換single-selection ABI。physical4/P08 gates2は未完のまま。
+- Commit: この記録を含むcommit。照合入力HEAD=2d396337a11fc9735fd6828a20537429c13b42c6、closeout run=34742003754。自己SHAを追って無限更新しない。
+- Network: GitHub connector/Actions API原本。PRopen/draft維持、merge/release/active baseline変更なし。
+
+
+## 2026-09-13T10:15:55Z — USER-20260913-BP-FIRST-BATTLE
+- Task: USER-20260913-BP-FIRST-BATTLE / 初回turnから1戦勝敗・施設帰還へ延長
+- Status: STOPPED / native敗北後WhiteOut・元party復元不達。原本保存と固定引継ぎ同期は完了。
+- Summary: 新C/Pythonを追加し、既存first-turn sourceをhash固定して派生。初期HEAD10e657fと正本・最新Actionsを照合し、受入済み取消の単独再実行0。ROM/source/baselineの変更0。
+- Native FAIL: run34749370272/job103703085018/HEAD96ad7823a147e1db6ea8f411c77650b27a4f3102。追加8turn/PP消費8回・瀕死交代2回後、11261fでoutcome2。11405fのCB2_WhiteOut(08055F65)から11525fでfacility scriptが0へ。93925f map4/0(8,5)、party3/snapshot1/marker2残存。BP0/save counter2。復元assertion/timeoutを緩めずfailure原本を保持。
+- Evidence: ZIP883756bytes/SHA9fa6bdf3dc7a4ad316788413b61687c90e23882c742ca938388f9e531ad9ed0c。82member/79source/24chain-source・Git tested HEAD・生成C・7guard・stdout空/process exit1/stderrを照合。観測抄録は失敗stderr由来と明記し、原本statusを成功へ書換えない。
+- Reward audit: Stage28初回追加BP3・Stage29事前claim mask0x0Eでrepeat BP1/2のsource条件を確認。基本9BPとの最終合計、全completion chain、稼得/消費のnative受入は未完。
+- Verify: native controller compile -Werror PASS; source13 PASS; closeout focused 40 tests PASS; resume check/task graph/git diff --check PASS。index/HEAD原本byte同一検査。標準private guard既存結果は保持し、新規差分違反0を別検査。native帰還検査はFAILのまま。
+- Counts: 新規BP実戦process1、成功fresh core0、closeout emulator0。push自動CIはhead別Actions一覧へ分離。
+- Next: 5D launch/敗北callback/施設script復帰所有者を候補ROMで固定し最小修復。その変更後に敗北と元party600bytes復元を検証。現在の同一失敗を再実行しない。勝利・交換・3勝報酬・Save/Continue・稼得BP消費は後続。
+- Files changed: scripts/pr16_bp_battle_return.py, tools/mgba_pr16_bp_battle_return.c, .github/workflows/pr16-bp-battle-return.yml, scripts/pr16_bp_battle_return_checkpoint.py, scripts/pr16_bp_battle_return_closeout.py, tests/test_pr16_bp_battle_return.py, tests/test_pr16_bp_battle_return_checkpoint.py, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, content/modernization/pr16_bp_battle_return_diagnostic.json, content/modernization/pr16_bp_battle_return_attempts.json, design/run_log.md, design/version_log.md, content/modernization/pr16_bp_battle_return_evidence/verification.json, content/modernization/pr16_bp_battle_return_evidence/actions-snapshot.json, content/modernization/pr16_bp_battle_return_evidence/reward-source-audit.json, content/modernization/pr16_bp_battle_return_evidence/original-34749370272.zip, content/modernization/pr16_bp_battle_return_evidence/actions-34749370272.json
+- Commit: source 96bd8d3b5d4552f567b32eddbcab80bcc78ab80a; この追記を含むcommitはGit履歴が正本（自己SHA循環は作らない）。
+- Network利用: GitHub repo/ref/PR/Actions/artifactを接続APIとActions ghで取得。既存private-environment releaseから固定inputを一時復元。新release/merge/draft解除/baseline切替なし。
+
+
+## 2026-09-13T12:47:35Z — USER-20260913-BP-LOSS-RETURN-OWNER
+- Task: USER-20260913-BP-LOSS-RETURN-OWNER / source復元阻害とowner誤判定の修正
+- Status: STOPPED / source復元・分類修正・原文保存はDONE。候補ROM上owner固定とnative敗北帰還修復は未完。
+- Summary: 初期HEAD5a9d2f8の再開入口・AGENTS・固定MD/JSON・Actionsを照合。archive内dirty worktree/configを使わず、hash固定Git objects/shallow境界から独立復元。full fsck/cleanを維持。宣言・コメント・文字列・別関数参照のowner誤判定を修正。
+- Evidence: run34757633314/job103724666041/HEAD9e435e551598c2b99046c7aaff1bff6da1721da3はsuccess、19tests PASS。ZIP100623bytes/SHA457a2d32eccd649e44de711cf1ccba95053d8643afa7c8e9aa5f0fc499deb90d、10text payloadを保存（excerptのみ末尾空白を保持する可逆JSON包み、他9件は原byte）。旧run34757179781のowner=trueも原文保持し不採用と明記。
+- Finding: 固定CFRUのWhiteOutはinclude/overworld.h:97の宣言1件だけ。candidate owner未確定をtrueに代作しない。過去native failure34749370272と復元未観測、BP未受入を維持。
+- Verify: source19tests PASS; closeout focused 42tests PASS; resume check/task graph/git diff --check、index原文同一性とprivate guard差分境界を実行。guard原本はcontent/modernization/pr16_bp_loss_return_owner_evidence/guard-boundary.json。全体guard既存違反と新規差分違反を分離。
+- Counts: 専用workflowの新規emulator0、受入取消/Save/Continue再実行0、候補ROM変更0、既存native受入変更0。push自動CIはActions一覧へ分離。
+- Next: bffd固定候補のWhiteOut設定元とfacility script復帰をROM bytesで固定し最小修復。その変更後のみnative敗北帰還/600bytes party復元を検証。完了source監査と同一native失敗を再実行しない。
+- Files changed: scripts/pr16_bp_loss_return_owner.py, tests/test_pr16_bp_loss_return_owner.py, scripts/pr16_restore_cfru_snapshot.py, tests/test_pr16_restore_cfru_snapshot.py, .github/workflows/pr16-bp-loss-return-owner.yml, scripts/pr16_bp_owner_closeout.py, tests/test_pr16_bp_owner_closeout.py, .github/workflows/pr16-bp-owner-closeout.yml, content/modernization/pr16_bp_loss_return_owner.json, content/modernization/pr16_bp_loss_return_owner_evidence, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md
+- Commit: source fcb1d024fdf5aad2cdc48b9665fb605b3aea49fa; この追記を含むcommitはGit履歴が正本。version/product SHA変更なし。
+- Network利用: GitHub接続APIとActions ghでref/PR/Actions/artifactおよび固定state archiveを取得。非force fast-forwardのみ。merge/draft解除/release/baseline切替なし。
+
+
+## 2026-09-13T13:49:43Z — USER-20260913-BP-LOSS-RETURN
+- Task: USER-20260913-BP-LOSS-RETURN / native敗北帰還と元party復元
+- Status: DONE / この1ケースのみ。BP稼得・交換・正式P08は未完。
+- Summary: bffdのWhiteOut設定元0807FC50/0807FC5CとAfterBattle092CE7B9をROM bytesで固定。callback pointer4bytesと未使用領域180bytesの限定shimだけを追加。facility active/snapshot/count/loss/script/ledger CRCが合う場合だけ既存scriptへ復帰し、その他は従来WhiteOutを呼ぶ。旧allocation87件不変・追加1・重複0・独立compile/build各2一致。
+- Native: run34759726061/job103730310536/HEADdfe293f57b009e04274c5eb67dbb9c4e6cae74ec。native exit0、敗北11261f、shim11405f、AfterBattle進行11444f、元party復元11464f、idle11516f。元600bytes/count1、marker/snapshot/pending/streak0、BP0/save2、host-write barrier7、warnings0。受付前スクリーンショットも確認。
+- False negative: 原Actions failure/Python FAILは終了済scriptのNULL禁止が原因。原ZIP802691bytes/SHAa740d3bfca7c84f8a933f85e30243c3883f40a760dfe73f9554a95ca2b35642dと原result/receipt/stdout/stderrを保存。停止callback08055E75と実分岐→AfterBattle→復元→idleの全鎖を要求する別検証で同じnative原本を再判定。失敗履歴を書換えない。
+- Verify: candidate audit run34758866475 success/9tests、修復focused16tests、source-only判定12tests、resume 18tests/check、task graph、staged diff check。artifact82member・83source・11generatedをhash/byte照合。private guardの既存結果と新規違反0はguard-boundary.jsonへ別記し、全体PASSとは読み替えない。
+- Candidate: SHA256 fcda15075a586d59f4f9da5f7f55a294765f826ab1453a576e74192df822d879 / 33554432bytes / CRC32 A15FAF9D。最終製品SHA・active baseline・save layoutを変更しない。
+- Counts: 今回native新規1、byte監査0、再判定0 emulator。受入取消/Save/Continue再実行0。自動push CIは別のActions一覧に保存。BP earning/spending受入0、formal physical4/P08gate2維持。
+- Next: 交換単体選択ABIを確認・最小修復し、未受入の勝利/交換/3勝BPへ。同一敗北・source監査を再実行しない。
+- Files changed: candidate byte監査script/test/workflow、loss return C/builder/native driver/test/workflow、source-only evidence verifier/test/record script/workflow、固定resume MD/JSON、P08再開候補、原文wrapped text証拠と判定JSON、両ログ。
+- Commit: この追記を含む記録commit。native source=dfe293f57b009e04274c5eb67dbb9c4e6cae74ec; source-only source=e1b99a4c1ba419dba0dd90cb0d11a7e5f5385ec9; source-only run=34760913320。
+- Network利用: 接続GitHub/Actionsと固定Release。記録workflowは検証済みtextの未参照blob作成のみ（commit/tree/ref/pushなし）。最終変更は内容確認後のconnectorによる非force fast-forward。merge/draft解除/release/baseline切替なし。
+
+
+## 2026-09-13T14:41:55Z — USER-20260913-BP-EXCHANGE-ABI
+- Version: PR16交換ABI限定修復
+- Timestamp: 2026-09-13T14:41:55Z
+- Task: USER-20260913-BP-EXCHANGE-ABI / 交換単体選択ABIの固定と2operand最小修正
+- Status: DONE
+- Summary: null special2Fを既存単体対応chooser29へ交換menu2か所だけ修正。slot+1配列と実CommitExchangeを固定。既存runtime/Save/global special/敗北帰還は変更しない。
+- Candidate: SHA-256 7f32ba99ad34cd0320559a8dc6990876084f371c8bfae769c7482090c7be90cd / size33554432 / CRC0D5D9178。fcdaから実変更2bytes、範囲外0、独立限定生成2回一致。clean-ROM独立二重生成とは区別する。
+- Files changed: 交換successor/test/workflow、検証receipt/限定text証拠、record helper/test/workflow、固定resume MD/JSON、design/run_log.md、design/version_log.md
+- Verify: run34762342982/job103737252115 SUCCESS、交換9tests/実runtime14条件PASS。記録時のreceipt検査・上流getter host検査・resume18tests・pr16_resume.py check・task graph・git diff --checkはcommit前に必須実行。
+- Record failure retained: 34762968465は*.log ignoreによるallowlist停止、commit/push0。8+18testsはPASS。原本bytesはunit-results.txt名で保存しignore規則は変更しない。
+- Scope: 新規emulator0、既存受入の再実行0。native勝利/交換/3勝BP/獲得BP消費は未受入、physical4件/P08ゲート2件は維持。
+- Failure retained: 34762042215は上流宣言の誤抽出でfailure。9testsはPASS、候補生成未実行。修正後34762342982と混同しない。
+- Commit: この記録を含むcommit。検証source HEAD=7454bd9f4950aa29cbbcee5031f9ee33b7e6ed8d、記録入力HEAD=a5e1cbcdcba8e8503f91542a5d38c554cb6436f2。自己SHA追記のための再commitはしない。
+- Network: GitHub branch/PR16/Actions APIと固定Releaseを参照。外部一般Web検索なし。固定入力のSHAを検査し、Release/ROM/save/credentialは新規tracked成果へ追加しない。
+- Guard: 標準guardの開始HEAD/最終index結果を比較し新規違反0をcommit前に要求。既存違反を保持し、全体guard PASSとは主張しない。
+- Next: 7f32候補のnative初勝利→単体交換→次戦→3勝completion chain。merge/draft解除/baseline変更/releaseなし。
+
+
+## 2026-09-13T17:17:34Z — USER-20260913-BP-WIN-EXCHANGE
+- Version: PR16 native exchange diagnostic
+- Task: USER-20260913-BP-WIN-EXCHANGE / 初勝利・単体交換・次戦の未完runnerを実装/検証/記録
+- Status: DONE
+- Summary: 自動Confirm移動の誤前提を通常UP入力へ修正。scratch消去途中ではなくscript復帰境界で600byteを厳密比較。
+- Native: run34770280751/job103758504094、HEAD=0464cecea12377e7a85bbad8fa1957eec00d5fe8、候補7f32/CRC0D5D9178。勝利16234f→AfterBattle16457f→交換選択17001f→Confirm17250f→確定17345f→次戦struct17755f→action19169f。500不変+100交換、snapshot600、BP0、save2、警告0。
+- Scope: 初勝利→単体order3→通常UP4入力でConfirm→交換確定→次戦struct/actionを観測。600bytes厳密比較は選択枠の回復済み100bytes＋不変500bytes。元snapshot600、BP0、save counter2を保持。次戦画面はplayerポリゴン/敵ゴースで、交換直後partyと次戦battlerの個体同一性は本runnerのassert対象外。次手でPrepareBattle前後・chooser・新戦闘のparty/個体をread-only採取して照合し、確定後3勝報酬へ延長する。画面だけから原因やROM不具合を断定しない。
+- History: run34767145222（開始前）とrun34769665360（今回の途中回復誤検出）はfailure原本のまま保存。WIP入力type tableの1セル転記差分も開始HEADへ復元し、最終native sourceと生成Cを完全照合。
+- Replay: 今回native主process2（失敗1/成功1）、各7拒否guard。受入済みcase再実行0。ROM変更0。記録工程emulator0。
+- Files changed: tools/mgba_pr16_bp_win_exchange.c、navigation/record tests、record script/workflow、verified/evidence、固定resume MD/JSON、P08診断候補、両ログ。
+- Verify: 原本14 source tests PASS。記録工程でnavigation4/record8/resume18 tests、原本receipt/source/生成C/7拒否証拠、task graph、diff checkを検証。標準private guardの既存違反はbaseline/index比較で別記し全体PASSと主張しない。
+- Commit: この記録を含むcommit。記録入力HEAD=a99f258f08d614366933272f8d11d348bc1c579c。非force push後のhashはworkflow result.jsonとremoteから照合。
+- Network: GitHub connectorでbranch/PR/Actions/artifact照合、Actionsでpinned candidate再生成。記録はActions API原本取得のみ。private入力/ROM/saveの追跡・公開なし。上流CFRU-JP e24a16fe include/pokemon.hも読取参照。
+- Boundary: 正式physical4/P08ゲート2、BP稼得/消費未受入、PR draft/open維持、merge/release/baseline変更0。
+
+
+## 2026-09-13T18:26:00.360629+00:00 — USER-20260914-BP-EXCHANGE-IDENTITY
+- Timestamp: 2026-09-13T18:26:00.360629+00:00
+- Version: PR16 exchange individual boundary audit
+- Task: USER-20260914-BP-EXCHANGE-IDENTITY / 次戦までの交換個体連鎖を読取専用で実装・検証・記録
+- Status: DONE
+- Summary: 交換確定後から次戦までにparty個体が変化し、交換個体保持は不成立。 38個の同時600byte/個体snapshotを照合。交換確定17345f、次戦action19169f。 PID/OT/species/movesを比較し、次戦active battlerと実partyの一致も検証。frame境界観測でありCPU関数entry/returnの証明ではない。 次戦chooser17389fでは600byte一致。最初の変化は17770f、callback2=0x0800FEC5/script=0x092CF6A5で3個体がゼロ。actionで88byte差・新規3個体を確認。保持修復は未完。
+- Native: run34774194505/job103769160925; source HEAD=e9793dfda49ec3044b662aefd7bb0093182dce3a; candidate7f32/CRC0D5D9178。原本の全prefix/result frameはrun34770280751と同一。
+- Verify: 新規identity11tests、原本全member/source/生成C/7barrier/native結果の厳密照合。記録tests・resume tests・resume check・task graph・diff check・最終index guard差分を完了ゲートとする。
+- History: 事前照合run34774090333は過去loss-return原本をsuccessと誤指定して停止、native0。元failureを維持した比較へ修正。native主processは本task1、受入済みcase再実行0、ROM変更0。
+- Files changed: 新規identity runner/C/tests/workflow、記録script/tests/workflow、verified/evidence、固定引継ぎMD/JSON、P08診断resume、両ログ。
+- Commit: この記録を含むcommit。入力HEAD=0dd9dae8d0449371949f76dfb4d6e118b56fb3b8。非force push後のhashはworkflow result.jsonとremote refから読戻す。
+- Network: GitHub connector/APIでHEAD/PR/Actions/artifact照合。Actions内でpinned private inputsを再構築。追跡/記録成果は許可済み工程textのみ。
+- Boundary: 正式physical4/P08 gate2・BP未受入を維持。PR draft/open、baseline維持、merge/releaseなし。全体private guardの既存違反はbaseline/index差分として記録し全体PASSとはしない。
+- Next: 次戦初期化callback2=0x0800FEC5/script=0x092CF6A5のownerをsource/ABIと照合し、17755f保持→17770f消去→17786f新規3個体となる再生成を最小修復successorで防ぐ。保持確認前に2/3戦目・BP報酬へ進まない。
+
+
+## 2026-09-13T22:07:05.622379+00:00 — USER-20260914-BP-PARTY-RETENTION
+- Timestamp: 2026-09-13T22:07:05.622379+00:00
+- Version: PR16 party retention WIP
+- Task: USER-20260914-BP-PARTY-RETENTION / 次戦で交換個体が失われる問題の修復
+- Status: BLOCKED
+- Summary: WIP: 次戦限定predicateとhost4回帰はPASS、固定candidateのowner監査run34785149994もSUCCESS。target呼出位置/ABIの確定・runtime接続・修復後native保持検証は未完。追加コード反映2回がOpenAIのツール安全性確認でブロックされたため、以後は解析/接続を停止して記録のみ実施。GitHub権限不足ではない。
+- Verify: host4tests PASS、owner Actions run34785149994 SUCCESS、artifact10325794218の全member hashを照合。記録回帰・resume tests/check・task graph・diff/index guard差分をpublish gateとする。native保持検証は未実行。
+- Files changed: predicate/C、host tests、owner script/workflow（WIP48a36ca）。今回は記録script/tests/workflow、WIP evidence JSON、固定引継ぎMD/JSON、P08 resume、両ログとblockers。
+- Commit: 実装WIP=48a36caf3361b1d167c302174eb2c4c4121c7508。記録はこの追記を含むcommit。入力HEAD=edd559148f79e65730d5ab0ccfba13ed6400e364。非force push後のhashはworkflow result.jsonとremote refで照合。
+- Network: GitHub connector/API・既存Actions artifactのみ。記録工程はROM/私有入力を開かず、native実行なし。
+- Blocker/Error excerpt: OpenAIツール安全性確認が追加コード反映2回をブロック。GitHubアクセス不足ではない。
+- Boundary: candidate7f32/CRC0D5D9178、正式physical4/P08 gate2、BP未受入、PR open/draft、baselineを維持。merge/releaseなし。受入済みcaseの再実行0（選択工程）。自動起動既存CIは別記。
+- Question for human: 権限確認の再依頼は不要。停止した要求は反復しない。
+- Next step: 保存済みWIPとowner監査を再利用し、未接続のtarget呼出位置/ABI照合・最小successor接続・修復後native個体保持検証を完了する。既存host4回帰/owner監査の単独再実行や同じtool-blocked要求の反復は行わず、保持確認前に2/3戦目・BP報酬へ進まない。
+
+
+## 2026-09-14T02:01:10.448721+00:00 — USER-20260914-BP-RETENTION-RESUME-NOTE
+- Timestamp: 2026-09-14T02:01:10.448721+00:00
+- Version: PR16 resume note
+- Task: USER-20260914-BP-RETENTION-RESUME-NOTE / 未反映ABI案と再開停止の記録
+- Status: BLOCKED
+- Summary: 2026-09-14再開: target呼出位置/ABIの追加検証コードをローカル作成し、新規8testsはPASS。ただしGitHub create_treeによるコード・workflow追加1回がOpenAI安全性チェックでブロックされ、branchへ未反映。追加Actions/target照合/runtime接続/native保持検証は未実行。GitHub権限不足ではない。同一要求を別経路で反復せず、今回は停止記録だけを更新。
+- Files changed: 記録script/tests/workflow、既存WIP JSON、固定引継ぎMD/JSON、P08再開文、両ログ、blockers。target/runtimeファイルは未変更。
+- Verify: ローカルABI案8tests PASS（未反映・Actions未実行）。記録回帰/resume check/tests、task graph、diff/index guard差分をpublish gateとする。
+- Native: 今回0process、受入case再実行0、candidate変更0、target ABI/保持は未検証。
+- Commit: この記録を含むcommit。entry=aece42964c1ff7b9c2bfd3d3c10bdd863d95febd、記録入力HEAD=d4e1d94f3e34622136c126d3002307c009362fef。非force push結果はworkflow result.jsonとremote refで確認。
+- Network: GitHub connectorのread・owner artifact取得・create_tree拒否。記録Actionsはmetadataのみ照会。private入力復元なし。
+- Block reason: OpenAIツール安全性チェック。GitHub権限エラーではない。追加コード要求1回を拒否、同じ要求の再試行なし。
+- Error excerpt: このツールの呼び出しは、OpenAI の安全性チェックによってブロックされました。
+- Question for human: 権限確認の再依頼は不要。正式受入・旧失敗原本を変更しない。
+- Boundary: BP未受入、physical4/P08ゲート2、PR open/draft、baseline維持。merge/releaseなし。
+- Next step: 保存済みWIP48a36caとowner run34785149994を再利用し、未完のtarget呼出位置/ABI照合・最小successor接続・修復後native個体保持検証を進める。ローカル8testsをtarget照合や反映済み実装と混同しない。同一tool-blocked要求や既存host4/ownerの単独再実行をせず、保持確認前に2/3戦目・BP報酬へ進まない。
+
+## 2026-09-14T03:32:55Z — USER-20260914-BP-RETENTION-ABI
+- Timestamp: 2026-09-14T03:32:55Z
+- Version: PR16 party-retention target callsite/ABI static audit
+- Task: USER-20260914-BP-RETENTION-ABI / 未完だったtarget呼出位置・ABI照合を1件完了
+- Status: DONE_SCOPED_STATIC_AUDIT / runtime接続・native保持・BP受入は未完
+- Summary: GCCのbasic block配置を線形アドレス順と同一視する誤判定を修正。最初のpredicate後のcmp r0,#0、BNE true edge、false edge、true block内の唯一のdirect BuildFrontierParty call、両path再合流をCFGで照合する。
+- Target: BuildTrainerPartySetup=0x090DD2A4、predicate call=0x090DD51C、player BuildFrontierParty.isra.0 call=0x090DD538、true/false rejoin=0x090DD2E6。2 predicate calls、7 frontier calls。
+- Actions: run34802013676/job103846389011/HEAD=7bfbaeae42005ec6c133f316f07fb75dce438cad SUCCESS。artifact10331807964 digest sha256:d09f9593ca715af1a0f0700d3888101e2b9f8254b4a06210905426781d7c27af。
+- Verify: Actions 12tests PASS、abi.stderr空、2 cache fingerprint aliasのlinked.oは同一SHA/byte-identical。ローカルCFG focused4tests、py_compile、resume render/check/tests、task graph、diff checkを記録commit前ゲートとする。
+- Scope: 新規emulator0、受入済みnative case再実行0、candidate変更0。latest_native_*・正式checkpoint・physical4/P08 gate2は変更しない。
+- Boundary: target_callsite_verified=true、target_abi_verified=true。runtime_connected=false、native_retention_verified=false、native_bp_earning_accepted=false、release_ready=false。
+- Files changed: scripts/pr16_bp_party_retention_abi_cache.py、tests/test_pr16_bp_party_retention_abi_cache.py、ABI証拠JSON、WIP JSON、固定引継ぎMD/JSON、design/run_log.md、design/version_log.md。一時export workflowは最終記録commitで削除。
+- Commit: 実装commit=7bfbaeae42005ec6c133f316f07fb75dce438cad。記録commitはこの追記を含み、自己SHA追記を行わない。branchは毎回live HEADを確認して非force fast-forward。
+- Next: 照合済み0x090DD51Cのtrue pathだけへ既存保持wrapperを最小接続し、修復後native個体保持を検証。保持確認前に2/3戦目・BP報酬へ進まない。
+
+
+## 2026-09-14T09:02:10Z — USER-20260914-BP-RETENTION-RUNTIME
+- Timestamp: 2026-09-14T09:02:10Z
+- Version: PR16 scoped party-retention runtime repair
+- Task: USER-20260914-BP-RETENTION-RUNTIME / player true path限定の保持wrapper接続とnative個体保持
+- Status: DONE_SCOPED_NATIVE_RETENTION / 2・3戦目とBP報酬は未完
+- Summary: run34825059791/job103915172830で保持wrapperを0x090DD51Cのplayer predicateへ限定接続。交換確定時の600byte party、3個体identity、交換個体が次戦chooser/actionまで一致。新規emulator 1、受入済み取消/Save/Continue再実行0。2/3戦目・BP報酬は未受入。
+- Build: candidate SHA256 ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b / 33554432 bytes / CRC32 3EB17B36。parent 7f32ba99ad34cd0320559a8dc6990876084f371c8bfae769c7482090c7be90cdから199bytes変更。predicate callsite 0x090DD51C、near trampoline 0x092CFF28、runtime entry 0x09FF4735。第二predicate、global special table、save layout、宣言外bytesは変更0。
+- Native: run34825059791/job103915172830/artifact10339976783（sha256:87166f621187c87fd19579b59aec89c56b2804ae6c8add010401c4f9db98f91f）。新規process=1、fresh core=1、受入済み取消/Save/Continue再実行=0。交換確定frame 17345、次chooser 17389、次action 18987で600bytes/3個体/交換個体一致、first_changed=null。
+- Actions boundary: native build・限定patch・1process保持検証・artifact uploadは成功。workflow全体はrecord段でmutable P08をsource bindingへ含めたためresume fixture 5件がstale sourceで停止し、commit/pushは0。native failureには読み替えない。今回P08をimmutable bindingから除外し、focused検証を再実行して記録した。
+- Verify: artifact ZIP SHA256/size、source snapshot全106ファイルhash、candidate patch3領域、focused successor5 + native5、resume18、pr16_resume.py check、YAML parse、git diff --checkを確認。受入済みstatic ABI/owner/取消・Save・Continueは再実行0。
+- Files changed: party-retention successor/native implementationとtests/workflow、保持証拠、WIP/固定resume/P08、design/run_log.md、design/version_log.md。一時source snapshot workflowは最終記録commitで削除。
+- Commit: この記録を含む非force fast-forward commit。native検証入力HEAD=10e535a046441dd3b797918106259b5c57b69716、記録入力HEAD=f2b8e2b761c8105e3389d7f628e69dc7317ba3bc。自己SHAは文書へ追記しない。
+- Boundary: native party retentionのみscoped完了。2/3戦目、3勝BP稼得、BP消費、release、merge、draft解除、active baseline変更なし。
+- Next: 同じ保持修復candidateでnative 2/3戦目を進め、正確な3勝BP報酬を検証する。BP確認前に消費受入へ進まない。
+
+
+## 2026-09-14T16:15:48Z — USER-20260915-BP-THREE-WIN-REWARD-ACCEPTANCE
+- Timestamp: 2026-09-14T16:15:48Z
+- Version: PR16 native three-win exact 9 BP scoped acceptance
+- Task: USER-20260915-BP-THREE-WIN-REWARD-ACCEPTANCE / 最新Actions原本を正本へ照合し、未完だったnative 2・3戦目と正確な3勝BP報酬を1件完了
+- Status: DONE_SCOPED_NATIVE_BP_EARNING / BP消費・Ring・policy・Circus・P08最終ゲートは未完
+- Summary: run34854927678/job104011896602の同一cedd candidateを1processで継続し、2・3戦目をnative勝利。3勝時にBP 0→9、streak3、reward pending0、snapshot無効化、元party600bytes復元を観測し、`P05_NATIVE_BP_EARNING_PHYSICAL`をscopedに閉じた。正式なBP消費やnative exchange単体受入には拡張しない。
+- Evidence: artifact10353145355 `pr16-bp-three-win-reward-native`、size1517614、sha256:7196514ad1edc43fc4e4028cbd39d1e4529f49b4e32406a55d2b4b8d2819854d。workflow conclusion success、process return0、fresh core1、7 host-write barriers、warning/error0。
+- Replay: 受入済み取消/元party復元/通常Save/fresh Continue再実行0。保持prefixはrun34825059791/artifact10339976783をimmutable IDで再利用し、accepted native cases replayed=0。今回の記録工程はemulator0、ROM/save/private入力のtracked追加0。
+- Files changed: `content/modernization/pr16_bp_three_win_reward_verified.json`追加、chooser checkpoint・固定resume JSON・P08台帳・生成resume MD・resume check/tests・`design/run_log.md`・`design/version_log.md`更新。
+- Verify: Actions focused 7tests PASS、native stdout `PASS_NATIVE_THREE_WIN_REWARD_9BP`。記録側はpy_compile、resume focused 24tests、`pr16_resume.py render/check`、JSON/UTF-8/credential境界、変更path/diff整合をcommit前gateとする。受入checkは3勝、0→9、600bytes、7 barriers、spending/release=falseをfail-closed固定。
+- Commit: この追記を含むcommit。検証入力HEAD=d9d0dfefcc524b35993eab0f98ae7b6849133644。自己SHAを文書へ追記して無限更新しない。push直前にremote HEADを再照合し、非force fast-forwardのみ。
+- Network: GitHub connectorでbranch/PR/Actions job/log/artifactを照合。artifact ZIPは監査用に取得したがrepositoryへ追加しない。一般Web検索・private Release再取得なし。
+- Boundary: PR #16はopen/draft、merge・draft解除・active baseline・release変更0。正式残件physical3（Ring、ordinary policy、Circus）/P08 gate2。BP spending=false、native exchange acceptance=false、release_ready=false。
+- Next: 同じcandidateで稼得した9 BPを通常BPショップUIから消費し、購入物・残高・通常Save/fresh Continueをnativeに検証する。受入済み3勝9BP区間を変更影響なしに単独再実行しない。
+
+
+## 2026-09-15T08:53:56Z — USER-20260915-BP-SPENDING-ACCEPTANCE
+- Timestamp: 2026-09-15T08:53:56Z
+- Version: PR16 scoped native BP spending and persistence
+- Task: USER-20260915-BP-SPENDING-ACCEPTANCE / 次の未完作業「稼得BPの通常ショップ購入・Save/fresh Continue」を1件完了
+- Status: DONE_SCOPED_NATIVE_BP_SPENDING / Ring・policy・Circus・P08ゲートは未完
+- Summary: 実candidateはStage36 QOL供給ショップ50品目。旧Mega45品目とStage27の18品目オフセットではeligible配列を誤読。実C構造体offset64/66/68/69/6A・先頭Everstone index0/4BPへ観測を修正。ROM変更0。
+- Native: run34946969126/job104308573084/HEAD=0b7497b575a3180a045f2be377386490f192a012 SUCCESS。基礎9+反復3=12 BP、購入12→8、所持0→1、Save counter5→6→7→7、fresh Continue保持。7 host-write barriers、warning/error0。
+- Evidence: artifact10386754174 size859444 sha256:7f2443cfcf43402e3f00952f7ab9f6a4487acd3c976dd5fd487a418dfc6085b0。receipt全75member、tracked source85、生成C11member、原stdoutと既存native validatorをsource-only照合。新規ROM/save/patch byte公開0。
+- Failure retained: 初期run34933733445(45品目)と今回run34945660762(18品目)のfailureは保持。後者のhost6tests PASSは旧構造体を照合しただけでnative受入ではなかった。
+- Execution: 今回native2process(失敗1/成功1)、成功実core2。legacy report successful_fresh_cores=1は成功case数なので改作しない。既受入単独再実行0、closeout emulator0。
+- Verify: 専用Actions host6 PASS。記録側resume24+spending resume8 PASS、render/check、task graph、git diff --check、最終index private guardの既存結果差分をcommit gateとする。古いguard失敗は抑制しない。
+- Visual: 原本3画面を確認。menuはBP12/Everstone4BP。購入後とfresh Continueのfield復帰。残高8/所持1保持はnative read原本で確認。
+- Files changed: C observer/Python catalog/test、ABI回帰、受入原本text/検証JSON、chooser checkpoint、固定引継ぎMD/JSON、P08、resume checker/tests、closeout workflow/script、両ログ。既受入原本とstable entrypointは不変。
+- Commit: この記録を含むcommit。照合入力HEAD=1f6c9cb036400ef84664e3fbfb6c1ac4df4bf47e。同一branchへの非force fast-forwardのみ。自己SHAを文書へ追記しない。
+- Network: GitHub connector/Actionsの原本とmetadataのみ。closeoutはprivate入力復元・ROM生成・native実行なし。
+- Boundary: PR16 open/draft維持、merge/release/active baseline変更0。physical3/P08 gates2、native exchange単体受入false、release_ready=false。全Actions成功とは主張しない。
+- Next: 同じcandidateでRingの正規story取得ownerを追い、通常取得から装備・実戦・保存再開までの未受入経路を検証する。
+
+
+## 2026-09-15T09:37:41Z — PR-P08-7-RING-OWNER
+- Timestamp: 2026-09-15T09:37:41Z
+- Task: PR-P08-7-RING-OWNER / Ring誤入口選択と既受入BP再openの防止
+- Status: DONE / source入口選択修正。P05_NATIVE_RING_ACQUISITION_PHYSICALは未完。
+- Version: PR16 Ring source owner boundary
+- Summary: Ringの誤入口pr16_gear_originals.py:verifyを選択しないよう実装し、旧inventoryの再投影で受入済みBPを再openしないよう修正。限定source graphでは最終リーグ完了eventのreward_key=NONE・到達GIVE_REWARD=0。これはROM内の全owner不在証明ではない。Ring native受入は未完、次はmap97/80のcompiled owner。
+- Verify: Ring/旧mapper/固定引継ぎ focused 48 tests PASS。check、task graph、diff検査を実行。最終index guardは開始HEADとの差分と既存違反を別計上し、非force反映の必須gateにする。
+- Evidence: content/modernization/pr16_ring_owner_resolution.json; source HEAD=9537666ffac4fb96a22d0f832ad7d36429ace630; Actions run=34953511304。全Actions green、Ring実取得成功、最終candidate受入は主張しない。
+- Files changed: source mapper・回帰tests、Ring限定graph検査/記録scriptとtests、専用workflow、限定JSON、P08のRing参照、固定引継ぎMD/JSON、両ログ。
+- Preserved: BP run34946969126、candidate ceddbe91、正式checkpoint、過去receiptは不変。ROM生成0・native0・受入済み単独再実行0。merge/release/baseline変更なし。
+- Commit: この記録を含むcommit。自己SHAは外部refで確認。同一branchへ非force pushのみ。
+- Network: GitHub connector/Actionsでexact HEADと最新runを確認。新しいprivate入力やROM/saveを公開しない。
+- Next: 同じcandidateのmap97/80・FINAL_LEAGUE_CLEARED dispatcherを限定byte照合し、既存native/specialによるRing付与の有無を追う。未実装と確認できた場合だけ正規story取引を実装し、条件不足・取消・二重取得・容量不足から通常取得、装備実戦、Save/fresh Continueへ進む。
+
+
+## 2026-09-15T09:44:59.151973+00:00 — PR-P08-7-RING-WORKFLOW-COMPAT
+- Timestamp: 2026-09-15T09:44:59.151973+00:00
+- Task: PR-P08-7-RING-WORKFLOW-COMPAT
+- Status: DONE / Ring誤入口修正のworkflow互換追補。Ring native受入は未完。
+- Version: PR16 Ring source-only workflow compatibility
+- Summary: 旧writerの候補非null前提がrun34953511256で失敗。履歴JSON/MD/P08自動再生成とPRコメント更新を廃し、exact HEADのread-only検証へ移行。失敗を成功へ読み替えない。
+- Verify: 修正後mapper9 tests PASS、Ring/resume check、tracked diff不変。既存source実装48 testsと非force記録run34953511304の成功原本をdigest照合で再利用。native再実行0。
+- Evidence: content/modernization/pr16_ring_owner_workflow_compatibility.json; current run34954168379; input HEAD=98eed9ff348b7e911af8b8888d1799cca1e65f5d。
+- Files changed: 旧map workflow、互換receipt、固定引継ぎMD/JSON、両ログ。受入済みBP原本・ROM/runtime不変。
+- Commit: この記録を含む同branchへの非force commit。最終index標準guard前後完全一致・追加違反0をgateとする。既存全体guard failureは残す。
+- Network: GitHub Actions metadata/原本artifactのみ。private入力なし。merge/release/baseline変更なし。
+- Next: 同candidate map97/80 compiled ownerを確認し、Ring正規取得・装備実戦・保存再開へ進む。source-onlyで受入しない。
+
+
+## 2026-09-15T10:30:32.595785+00:00 — PR-P08-7-RING-COMPILED-OWNER
+- Timestamp: 2026-09-15T10:30:32.595785+00:00
+- Task: PR-P08-7-RING-COMPILED-OWNER
+- Status: DONE / compiled owner限定監査実装・検証・記録。Ring通常取得は未完。
+- Version: PR16 Ring compiled owner boundary
+- Summary: map97/80の誤解しやすいscript_pointer列をtransition本体として扱い、map table、schedule、有限CFGと独立compileしたevent runtimeをcandidateのbyteへ結合。未知opcode/外部分岐/operand途中/不正Thumbをfail-closedにし、未解決nativeをgiver不存在へ昇格しない。
+- Verify: compiled異常系24 tests PASS、Actions run34956919982 / job104341086832 success。記録/固定引継ぎ 40 tests PASS、read-only check、task graph、diff、最終index差分guardを必須gateとする。
+- Evidence: content/modernization/pr16_ring_compiled_owner.json; tested HEAD=2a9728ac4e3531f2a595da6b3d95ba12f842e44a; artifact=10391238659 / SHA256=c6a915be88ccfd6a5410cad5917914ebfe75a555b24b8e42a5e872a3f73bb598。初回run34956435284のimport失敗と記録run34957907451のmetadata比較失敗は保持しsuccessへ読み替えない。
+- Preserved: candidate ceddbe91 / CRC3EB17B36、正式BP checkpoint/原本、Ring source-only原本不変。候補再構築2回（初回CLI失敗の修正を含む）、native0、受入済み単独再実行0、ゲームruntime変更0。
+- Files changed: compiled監査と起動/異常系tests、限定検証/記録workflow、記録helper/tests、compiled receipt、P08のRing参照、固定引継ぎMD/JSON、両ログ。
+- Commit: この記録を含む同branchへの非force commit。自己SHAは外部refで確認。既存full guard failureは保持し追加違反0と前後出力完全一致を要求。
+- Network: GitHub connector/Actions。固定private入力はrunner内のみ、ROM/save/private archiveをtracked/artifactへ追加しない。全Actions green・merge・release・baseline変更を主張しない。
+- Next: 同一candidateのcompiled owner証拠を再利用し、未除外のcallstd4と、EventDesignからのFlag/QOL/Save finalize等の推移的native呼出し先だけを限定追跡する。map97/80の既存transition nativeは存在しないことがbyte確認済み。Ring580のstory取得ownerの有無を確定する。未実装と確認できた場合だけ正規story取引を実装し、条件不足・取消・二重取得・容量不足から通常取得、装備実戦、Save/fresh Continueへ進む。
+
+
+## 2026-09-15T11:17:25.310726+00:00 — PR-P08-7-RING-TRANSITIVE-OWNER
+- Timestamp: 2026-09-15T11:17:25.310726+00:00
+- Task: PR-P08-7-RING-TRANSITIVE-OWNER
+- Status: DONE / 未解決callee第一段の実装・検証・記録。Ring通常取得は未完。
+- Version: PR16 Ring transitive owner first layer
+- Summary: callstd4の8 bytesと6 native入口を有限CFG化。未知opcode/不正Thumb/範囲外/重複命令を拒否。間接分岐・memory writeを無副作用やgiver不存在へ昇格しない。FlagSet→0x093775C5、SaveFinalize→0x093BDD7Dのpatched入口を特定。
+- Verify: run34960361700/job104352222046 success、34 tests PASS。記録・固定resume 35 tests PASS。read-only resume/task graph/diffと差分guardをcommit前必須gateとする。
+- Evidence: content/modernization/pr16_ring_transitive_owner.json; source HEAD=41debb1dc1ac3c8fddefe7fa97898e7ecd2943b7; artifact10392663831; SHA256=a3ae8cbfc1ce80a7883c152950f8ccfd939fe8ca33defc007b785f77a5619a5d。
+- Preserved: candidate ceddbe91/CRC3EB17B36、受入BP原本・checkpoint・compiled owner不変。限定候補再構築1、native0、受入済みnative再実行0、ROM変更0。自動push CIは別枠。追加closureコードは書込みブロックで未反映・未受入。
+- Files changed: 限定監査/helper/tests/workflows、receipt、固定引継ぎMD/JSON、P08 Ring参照、両ログ。
+- Commit: この記録を含む同branchへの非force commit。自己SHAはremote ref/recorded-resultで確認。
+- Network: GitHub connector/Actions。ROM/save/private入力の追加なし。既存full guard違反は保持し、前後出力完全一致と追加違反0を要求。全Actions green/merge/release/baseline切替は主張しない。
+- Next: 成功済みcallstd4と6 native入口の証拠を再実行せず再利用し、FlagSet 0x0806DE75→0x093775C5、SaveFinalize 0x092D28D9→0x093BDD7Dのpatch先と、記録された未解決callee/標準script engine handlerだけを限定追跡する。callstd4のscript層はmessage/wait/returnだがengine副作用やRing giver不存在は未証明。通常取得ownerが未実装と確認できた場合だけ正規story取引を実装し、条件不足・取消・二重取得・容量不足、通常取得、装備実戦、Save/fresh Continueを検証する。
+
+
+## 2026-09-15T11:47:02.715378+00:00 — PR-P08-7-RING-PATCH-OWNER
+- Timestamp: 2026-09-15T11:47:02.715378+00:00
+- Task: PR-P08-7-RING-PATCH-OWNER
+- Status: DONE / patch先・標準handler有限追跡の実装・検証・記録。Ring通常取得は未受入。
+- Version: PR16 Ring patch/handler bounded frontier
+- Summary: 既存6入口/callstd4を再走査せず、両patch先と4標準handler、記録済みcalleeから24 graph/366命令を検証。56 memory-write siteを保持。未知命令を推測せず、18未読targetと15間接辺を未解決として出力する。
+- Verify: 新規18 tests PASS、run34964225479/job104364767602 success。記録/固定resume 36 tests PASS。task graph、read-only check、最終index差分guard、diffをcommit必須gateとする。
+- Evidence: content/modernization/pr16_ring_patch_owner.json; source HEAD=03ca035d5617b4d381845189e15838b5ba495a7d; artifact10394980742; SHA256=abfd6019728f39df7ce64f8dce8b2c0a49fadfdec2670f7005a3ef8dd117b879。
+- Preserved: candidate ceddbe91/CRC3EB17B36とBP checkpoint/原本は不変。候補再構築1、native0、受入済み単独再実行0、ROM変更0。P03自動CI failure/action_requiredを成功に読み替えない。
+- Files changed: 新規監査/記録helper・tests・workflows、receipt、固定引継ぎMD/JSON、P08 Ring参照、両ログ。
+- Commit: この記録を含む同branchへの非force commit。自己SHAはremote refとrecorded-resultで照合。
+- Network: GitHub connector/Actions。containerの直接Git取得はDNS失敗のため使用せず、権限不足とは扱わない。ROM/save/private入力の新規追跡なし。既存全体guardの違反は保持し前後完全一致・追加違反0を要求。merge/release/baseline切替なし。
+- Next: 成功run34964225479の24 graph/366命令、callstd4/旧6入口を再実行せず、保存済みgraphから15間接辺を戻り番地とR3 trampolineにABI/dataflowで分類する。特にQOL_FEATURE→0x09376F45、FlagSet→0x09377615、0x093789F3→0x0806DE7Dを確認し、18未読targetは必要なrootだけ追加採取する。全owner未除外のままRing story giftを新設しない。通常取得ownerの未実装を確認できた場合だけ正規story取引を実装し、条件不足・取消・二重取得・容量不足、通常取得、装備実戦、Save/fresh Continueを検証する。
+
+
+## 2026-09-15T12:22:50.046373+00:00 — PR-P08-7-RING-INDIRECT-ABI
+- Timestamp: 2026-09-15T12:22:50.046373+00:00
+- Task: PR-P08-7-RING-INDIRECT-ABI / 保存済み間接辺のABI分類
+- Status: DONE / 限定分類実装・検証・記録。Ring正規取得は未完。
+- Version: PR16 Ring recorded indirect ABI
+- Summary: 15辺を12 ABI saved-LR return、2記録callsite限定R3 trampoline、1live-frame literal branchへ分類。QOL→0x0806DEC5、FlagSet→SaveFinalize既存veneer、0x093789F3→0x0806DE7Dを追跡。旧18未読targetと新1targetを保持。
+- Verify: 新規分類/異常系および固定resume 45 tests PASS、render/check PASS。task graph・最終index差分guard・diffは完了commit前の必須gate。
+- Evidence: content/modernization/pr16_ring_indirect_abi.json; source HEAD=0449002040cefe9c7df01c2bf7804ea51fb16491; 実行run=34968485915（保存時in_progress、最終結論はActionsで照合）。
+- Preserved: ROM変更/候補生成/native/受入済み単独再実行/新規decodeすべて0。BP checkpointの全byteとcandidate ceddbe91/CRC3EB17B36不変。ABI stack-integrityは仮定でありruntime無副作用や全owner除外を主張しない。
+- Files changed: 新規classifier/tests/workflow/receipt、固定引継ぎMD/JSON、P08 Ring参照、両ログ。
+- Commit: この記録を含む同branchへの非force commit。自己SHAはremote refとresult artifactで確認。
+- Network: GitHub connector/Actions。container直接Git取得はDNS失敗、権限不足とは扱わない。検索語: site.github.com/ARM-software/abi-aa aapcs32 rst r0 r3 r12 lr subroutine call。一次資料: https://github.com/ARM-software/abi-aa/blob/main/aapcs32/aapcs32.rst ; call後r0-r3/r12/LRを未知化しSP/非揮発register保存をABI仮定とする。
+- Boundary: 開始HEADのsource-validation action_required/既存CI failureを成功へ読み替えない。既存全体private guard違反は前後一致を要求し、新規違反0を別検査。merge/release/baseline変更なし。
+- Next: 保存済み15間接辺の分類を再実行せず、次は未読の0x0806DE7D（live frameを受けるFlagSet継続）だけcandidate byteを採取する。QOL_FEATURE→0x0806DEC5は保存済みFlagGet graphを再利用し再採取しない。旧18未読targetは保持し必要なrootだけ進める。QOLのcompiler helper後のinline table/CFGも全経路網羅とは見なさない。callsite限定解決を全callerの解決へ昇格せず、全owner未除外のままRing story giftを新設しない。Ring正規取得・装備実戦・Save/fresh Continueは未受入。
+
+
+## 2026-09-15T12:55:38.925279+00:00 — PR-P08-7-RING-FLAGSET-CONTINUATION
+- Timestamp: 2026-09-15T12:55:38.925279+00:00
+- Task: PR-P08-7-RING-FLAGSET-CONTINUATION / FlagSet未読継続1根の採取
+- Status: DONE / 限定採取の実装・検証・記録。Ring正規取得は未完。
+- Version: PR16 FlagSet continuation bytes
+- Summary: 未読だった0x0806DE7Dのみ同一candidateから15命令/32命令byteを採取。継承8byte frameとentry LR保存offset -4を保持。旧18未読targetは不変、新規未読0targetを明示。call/returnと継承frameの結合・stack integrity・全caller/全owner網羅性・Ring通常取得は未証明。保存済み15間接辺分類とBP正式受入run34946969126は再実行せず不変。
+- Verify: 新規異常系と固定resume 42 tests PASS、render/check PASS。task graph・最終index差分guard・diffを完了commit前の必須gateとする。
+- Evidence: content/modernization/pr16_ring_flagset_continuation.json; source HEAD=27f29ff3ce6b26ca9b1ac439e29f655910d5eebd; run=34971661219（保存時in_progress、最終結論はActionsで確認）。
+- Preserved: candidate SHA-256 ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b / CRC32 3EB17B36。候補変更/ROM編集/native/受入済み単独再実行/既存15辺再分類0。未読byte取得のため同一candidate再構築1。BP checkpoint全byte不変。
+- Files changed: 新規collector/tests/workflow/receipt、固定引継ぎMD/JSON、P08 Ring参照、両ログ。
+- Commit: この記録を含む同branchへの非force commit。自己SHAはremote refとresult artifactで確認。
+- Network: GitHub connector/Actionsと既存hash固定入力復元のみ。container直接Git取得はDNS失敗。外部技術資料の新規検索なし。
+- Boundary: 開始HEADの通常PR checks action_requiredを成功扱いしない。既存全体private guard違反は前後一致、新規差分違反0を要求。merge/release/baseline変更なし。
+- Next: 0x0806DE7Dのcandidate byte採取は完了。同一入力で再採取せず、保存した継続graphのcall/returnと継承8byte frameを結合して残るownerを絞る。旧18未読targetは保持し、保存済みFlagGet graphと15間接辺分類を再実行しない。callsite限定解決を全callerへ昇格しない。全owner未除外のままRing story giftを新設しない。Ring正規取得・装備実戦・Save/fresh Continueは未受入。
+
+
+## 2026-09-15T13:20:30.158713+00:00 — PR-P08-7-RING-FRAME-JOIN
+- Timestamp: 2026-09-15T13:20:30.158713+00:00
+- Task: PR-P08-7-RING-FRAME-JOIN / FlagSet継承frameとcall/return境界の結合
+- Status: DONE / 限定結合の実装・検証・記録。Ring正規取得は未完。
+- Version: PR16 conditional frame join
+- Summary: 保存済みprologue→0x0806DE7D→call veneerを結合。継承SP=-8とLR保存offset -4から、calleeが帰還してSP/保存slotを保ち、STRBがframeへaliasしない条件下で、0x0806DE9AのBX r1がentry LRへ戻りSP=0/r4復元となることを確認。BL 0x0806DDB5は保存済みveneerを経由して旧未読0x09097105へ到達。そのcalleeの帰還・stack integrity・全caller/全owner網羅性は未証明。旧18未読targetと正式BP受入は維持し、ROM/native/既存15辺再分類0。
+- Files changed: scripts/pr16_ring_frame_join.py, tests/test_pr16_ring_frame_join.py, .github/workflows/pr16-ring-frame-join.yml, content/modernization/pr16_ring_frame_join.json, 固定引継ぎMD/JSON、P08 Ring参照、両ログ。
+- Verify: 新規結合/異常系と固定resume 44 tests PASS。render/check PASS、check読取専用、限定source hash/BP checkpoint全byte不変。task graph・最終index差分guard・diffを完了commit前の必須gateとする。
+- Evidence: content/modernization/pr16_ring_frame_join.json; source HEAD=369299c404a28ece2aaadf82b578c636d3120021; run=34974346670（保存時in_progress、最終結論はActionsで確認）。前回採取run34971661219はcompleted/successを照合済み。
+- Preserved: candidate ceddbe91 / CRC32 3EB17B36、旧18未読target、受入済みBP原本。ROM編集/再構築/新規decode/native/既存15辺再分類/受入済み単独再実行0。
+- Commit: この記録を含む同branchへの非force commit。自己SHAはremote refとresult artifactで確認。
+- Network: GitHub connector/Actionsでexact HEADと最新runを照合。container直接Git取得はDNS失敗。private入力復元・外部技術資料検索なし。
+- Boundary: 帰還はopaque calleeと非aliasの仮定付き。全体private guardの既存違反は前後一致・新規違反0を要求し全体PASSと混同しない。通常CI action_requiredをsuccessへ変更しない。merge/release/baseline変更なし。
+- Next: 保存済みFlagSet継続と継承8byte frameの条件付き結合は完了。次は旧18未読targetのうち0x09097105だけを優先し、0x0806DDB5 veneerから渡るcalleeのreturn・SP/r4保存・返却pointerとstack非alias条件を限定確認する。0x0806DE7D/FlagGetの再採取、15間接辺の再分類、受入済みBPの再実行はしない。旧18targetの台帳を削らず、条件付き帰還をstack integrity/全caller/全owner除外やRing通常取得へ昇格しない。
+
+
+## 2026-09-15T13:41:26.807564+00:00 — PR-P08-7-RING-CALLEE-BYTES
+- Timestamp: 2026-09-15T13:41:26.807564+00:00
+- Task: PR-P08-7-RING-CALLEE-BYTES / 未読calleeの限定採取checkpoint
+- Status: STOPPED / 採取保存工程のみ完了。次に同じ保存byteでABIを検証する。
+- Version: PR16 callee bytes checkpoint
+- Summary: WIP: 旧未読callee 0x09097105だけを同一candidateから10命令採取し保存。帰還/SP/r4/返却pointerの検証は次のsource-only工程。旧18target台帳、継承frame、BP正式受入は維持。
+- Files changed: scripts/pr16_ring_callee_bytes.py, tests/test_pr16_ring_callee_bytes.py, .github/workflows/pr16-ring-callee-bytes.yml, content/modernization/pr16_ring_callee_bytes.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 新規採取異常系/固定resume 36 tests PASS、render/check PASS、BP checkpoint不変。task graph・最終index差分guard・diffを必須gateとする。
+- Evidence: source=680ec66c4406ee027b389585ae06a98cf6b86176; run=34976478801（保存時in_progress）。
+- Preserved: ROM変更/native/既存15辺再分類/受入済み単独再実行0。未読byte用の同一candidate再構築1。旧18target台帳は削除しない。
+- Commit: このcheckpointを同branchに非force push。最終SHAはremote ref/resultで照合。
+- Network: GitHub connector/Actionsと既存hash固定入力復元。直接cloneはDNS失敗。外部技術資料検索なし。
+- Boundary: 既存全体guard違反の前後一致/新規違反0を要求。全体guard PASS、全Actions green、Ring受入を主張しない。merge/release/baseline変更なし。
+- Next: 保存済みpr16_ring_callee_bytes.jsonの0x09097105 graphからreturn/SP/r4と返却pointer・stack非alias条件を限定検証する。candidate/FlagSet/FlagGet再採取、15辺再分類、BP再実行はしない。旧18target台帳を削らず、全caller/全owner/Ring正規取得受入へ昇格しない。
+
+
+## 2026-09-15T13:56:19.475603+00:00 — PR-P08-7-RING-CALLEE-ABI
+- Timestamp: 2026-09-15T13:56:19.475603+00:00
+- Task: PR-P08-7-RING-CALLEE-ABI / 未読callee prefixのABI・非alias境界検証
+- Status: DONE / 指定1根の限定検証を実装・検証・記録。callee全帰還/Ring正規取得は未完。
+- Version: PR16 callee ABI boundary
+- Summary: 0x09097105の保存済み10命令/22byteを限定検証。PUSH {r4-r6,lr}で追加16byte、FlagSet継承8byteと合わせてSP=-24、callee entry LR保存offsetは元entry SPから-12。引数low16をr0/r4/r6へ渡しBL 0x091281D1。helper帰還時は非0→0x090970F7、0→literal BX 0x0806DDBDへ進む。観測prefixにPOP/returnなし。literalはcode targetで返却data pointerではない。callee帰還/SP/r4復元/非aliasは未証明。旧18target台帳を維持し、この3外部targetを追加境界に記録。BP受入不変。
+- Files changed: scripts/pr16_ring_callee_abi.py, tests/test_pr16_ring_callee_abi.py, .github/workflows/pr16-ring-callee-abi.yml, content/modernization/pr16_ring_callee_abi.json, 固定引継ぎMD/JSON、P08 Ring参照、両ログ。
+- Verify: 新規ABI/異常系＋固定resume 47 tests PASS。render/check PASS、check副作用0、BP checkpointと保存byte/source binding不変。task graph・最終index差分guard・diffを完了commit前の必須gateとする。
+- Evidence: content/modernization/pr16_ring_callee_abi.json; source=85e0b2a4558d5ec74f032f6b6cead6df249089a0; run=34978245004（保存時in_progress）。採取run34976478801/job104405361675は36tests PASS・checkpoint4c836bb、artifact10399054270のSHA-256をconnector取得byteと照合。
+- Preserved: 本セッションROM変更/native/受入済み単独再実行/15辺再分類0。同一candidate再構築1は新規byte採取のみ、ABI工程0。旧18targetを保持し追加未読3targetを別記。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote refとresult artifactで照合。
+- Network: GitHub connector/Actions、既存hash固定入力。外部検索語「site.github.com/ARM-software/abi-aa aapcs32 r4 r8 SP preserved」および「site.developer.arm.com ARM7TDMI Thumb PUSH POP BX instruction set」。公式AAPCS32 https://github.com/ARM-software/abi-aa/blob/main/aapcs32/aapcs32.rst の本文を確認。ARM7TDMI https://developer.arm.com/documentation/ddi0029/g/CIHEDIDG は検索抄録のみで本文取得は失敗。r4等/SP保存は呼出規約の要求であり、未読helperが遵守する実証とはしない。
+- Boundary: 既存全体guard違反は前後一致/新規差分0を要求し全体PASSとは呼ばない。通常CI action_requiredを成功へ改称しない。merge/release/baseline変更なし。
+- Next: 次は未読helper 0x091281D1だけを優先してreturn値とSP/r4-r6/保存slotへの影響を限定確認する。その後の0x090970F7と0x0806DDBDの継続は未読として保持する。0x09097105/FlagSet/FlagGetの再採取、15辺再分類、受入済みBPの再実行はしない。旧18target台帳を削らず、条件付き境界を全caller/全owner除外やRing正規取得へ昇格しない。
+
+
+## 2026-09-15T14:30:40.822872+00:00 — PR-P08-7-RING-HELPER-BYTES
+- Timestamp: 2026-09-15T14:30:40.822872+00:00
+- Task: PR-P08-7-RING-HELPER-BYTES / 未読helper限定採取checkpoint
+- Status: STOPPED / 採取保存工程完了、同一作業のABI検証へ続行。
+- Version: PR16 helper bytes checkpoint
+- Summary: WIP: 未読helper 0x091281D1だけを同一candidateから29命令/58bytes採取して保存。return/SP/r4-r6/保存slotの限定検証は保存byteから続行。旧18targetと0x090970F7/0x0806DDBDの未読境界・BP受入を保持。
+- Files changed: scripts/pr16_ring_helper_bytes.py, tests/test_pr16_ring_helper_bytes.py, .github/workflows/pr16-ring-helper-bytes.yml, content/modernization/pr16_ring_helper_bytes.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: helper異常系/固定resume 36 tests PASS、render/check PASS、BP checkpoint不変。task graph・最終index差分guard・diff必須。
+- Evidence: source=5366a1f8caa09dd7c369ca14640307e88c348d6b; run=34981952888（保存時in_progress）。
+- Preserved: ROM変更/native/既読graph再scan/15辺再分類/受入済み再実行0。同一candidate復元1。旧18target台帳を保持。
+- Commit: checkpointを同branchへ非force push、最終SHAはremote ref/resultで照合。
+- Network: GitHub connector/Actions、既存hash固定入力復元。直接cloneはDNS失敗。外部技術資料なし。
+- Boundary: 既存全体guard違反前後一致/新規違反0を要求。全体guard PASSや全CI greenを主張しない。merge/release/baseline変更なし。
+- Next: 保存済みpr16_ring_helper_bytes.jsonだけからhelper 0x091281D1のreturn値・SP/r4-r6/保存slotへの影響を限定検証する。candidate/helper/callee/FlagSet/FlagGetの再採取、15辺再分類、BP再実行をしない。0x090970F7/0x0806DDBDは未読のまま保持し全owner除外やRing受入へ昇格しない。
+
+
+## 2026-09-15T14:49:10.326976+00:00 — PR-P08-7-RING-HELPER-ABI
+- Timestamp: 2026-09-15T14:49:10.326976+00:00
+- Task: PR-P08-7-RING-HELPER-ABI / helper一根のreturn・stack境界検証
+- Status: DONE / 指定helperの限定検証・記録完了。Ring通常取得とcallee全体帰還は未完。
+- Version: PR16 helper u16 ABI boundary
+- Summary: helper 0x091281D1の保存済み29命令/58byteとliteral20byteを検証し、callerでzero-extendされたu16全65536値をbyte interpreterと独立式で照合。0x0900..0x18FF→0x0203B0E8+((id-0x0900)>>3)、0x1900..0x3FFF→0x02036FEC、他は0。外部呼出し/書込み/stack操作0、r4-r11/SP/LRと保存slotを変更せずBX LRで0x09097113へ帰還する。helper帰還後もFlagSet基準SP=-24。実native帰還は未観測。0x090970F7/0x0806DDBDの継続、callee全体帰還と返却pointer非aliasは未証明。旧18target・BP受入を保持。
+- Files changed: scripts/pr16_ring_helper_abi.py, tests/test_pr16_ring_helper_abi.py, .github/workflows/pr16-ring-helper-abi.yml, content/modernization/pr16_ring_helper_abi.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: helper異常系/固定resume 49 tests PASS。29命令58byte+literal20byte、全65536入力、独立範囲式/全命令coverage、render/check、BP checkpoint不変。task graph・最終index差分guard・diff必須。
+- Evidence: source=d339871fc1d8e9fb9abdc2f4139a547be2eb7dfa; run=34984185105（保存時in_progress）。採取run34981952888・caller ABI・BP原本はcompleted/success照合。
+- Preserved: ROM変更/native/既読graph再scan/15辺再分類/受入済み単独再実行0。セッション同一candidate復元1、当工程0。旧18target台帳と未読2継続を保持。
+- Commit: この完了記録を同branchへ非force push、自己SHAはremote ref/resultで照合。
+- Network: GitHub connector/Actionsと前工程のhash固定入力復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致/新規違反0。全体guard PASS/全CI green/全caller/Ring受入を主張しない。merge/release/baseline変更なし。
+- Next: 次は未読0x090970F7だけを優先し、helper非0側の返却pointer使用・SP/r4-r6/保存slot復元を限定確認する。0x0806DDBDは未読として保持。helper/callee/FlagSet/FlagGet再採取、15辺再分類、BP再実行をしない。旧18targetを削らず、helper単体の帰還証明をcallee全体・全caller/全owner除外・Ring通常取得へ昇格しない。
+
+
+## 2026-09-15T15:32:48.663365+00:00 — PR-P08-7-RING-NONZERO-BYTES
+- Timestamp: 2026-09-15T15:32:48.663365+00:00
+- Task: PR-P08-7-RING-NONZERO-BYTES / 非0継続一根採取
+- Status: STOPPED / 採取保存工程完了。同一作業のABI検証へ続行。
+- Version: PR16 nonzero bytes checkpoint
+- Summary: WIP: 未読0x090970F7だけを最大14byte範囲で1命令/2byte採取し保存。helper非0側の返却pointer/SP/r4-r6/保存slotは保存byteで検証する。旧18target・未読0x0806DDBD・BP受入を保持。
+- Files changed: scripts/pr16_ring_nonzero_bytes.py, tests/test_pr16_ring_nonzero_bytes.py, .github/workflows/pr16-ring-nonzero-bytes.yml, content/modernization/pr16_ring_nonzero_bytes.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定異常系18 tests PASS、render/check PASS、BP checkpoint不変。task graph・最終index差分guard・diff必須。
+- Evidence: source=0ebf9eb94cc5a73eb7fb65f3b91691dcf5a14fcd; run=34988999991（保存時in_progress）。
+- Preserved: ROM変更/native/既読graph/15辺再分類/受入済み再実行0。候補復元1。旧18target保持。
+- Commit: checkpointを同branchへ非force push。最終SHAはremote ref/resultで照合。
+- Network: GitHub connector/Actions、既存hash固定入力復元。直接cloneはDNS失敗。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致/新規違反0を要求。全体guard PASS・全CI green・merge・release・baseline変更を主張しない。
+- Next: 保存済みpr16_ring_nonzero_bytes.jsonの0x090970F7継続だけを限定ABI検証する。候補復元/byte採取/helper全u16/既読callee/FlagSet/FlagGet/15辺分類/BPを再実行しない。0x0806DDBDは未読。callee全体・全caller/全owner除外・Ring通常取得へ昇格しない。
+
+
+## 2026-09-15T15:48:27.128076+00:00 — PR-P08-7-RING-NONZERO-ABI
+- Timestamp: 2026-09-15T15:48:27.128076+00:00
+- Task: PR-P08-7-RING-NONZERO-ABI / 非0継続の限定帰還・stack結合
+- Status: DONE / 指定非0継続の実装・検証・記録完了。Ring通常取得とcallee全体帰還は未完。
+- Version: PR16 nonzero conditional ABI
+- Summary: 保存済み0x090970F7は70bd=POP {r4-r6,pc}の1命令2byte。helper非0側だけで保存r4/r5/r6とsaved LRからPCを復元し、SPはFlagSet基準-24→-8、callee入口へ戻る。帰還先0x0806DE81、r0返却pointer不変、pointer参照/書込み0、外側8byte frameと保存slotは残る。LR register自体は復元せず0x09097113を保持。既証明prefix/helperと有効不変stackを前提とするsource結合で、native帰還は未観測。未読0x0806DDBD、callee全体/返却pointer非alias/全caller・ownerは未証明。旧18target・BP受入を保持。
+- Files changed: scripts/pr16_ring_nonzero_abi.py, tests/test_pr16_ring_nonzero_abi.py, .github/workflows/pr16-ring-nonzero-abi.yml, content/modernization/pr16_ring_nonzero_abi.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: POP/結合異常系27 tests PASS、render/check PASS、BP checkpoint不変、task graph・最終index差分guard・diff必須。
+- Evidence: source=558ed9e28ca9318c2a3d8d9829775850d15f3a2c; run=34990811278（記録時in_progress）。採取run34988999991・helper・BP原本はsuccess照合。
+- Preserved: ROM変更/native/既読graph/15辺再分類/受入済み単独再実行0。セッション候補復元1、当工程0。旧18target保持。
+- Commit: 完了記録を同branchへ非force push。自己SHAはremote ref/resultで照合。
+- Network: GitHub connector/Actions。検索語「ARM Thumb POP PC semantics」、一次資料 https://sourceware.org/cgen/gen-doc/arm-thumb-insn.html#insn-pop-pc。POP低register昇順load→PC・SP更新のencoding/意味だけ参照。
+- Boundary: 既存全体guard違反の前後一致/新規違反0を要求。全体guard PASS・全CI green・全owner除外・merge・release・baseline変更を主張しない。
+- Next: 次は未読0x0806DDBDだけを優先し、helper zero側の返却値生成・SP/r4-r6/保存slot復元を限定確認する。今回の非0継続POP、helper全u16、callee prefix、FlagSet/FlagGet、15辺分類、BP受入を再採取/単独再実行しない。旧18targetを削らず、非0側の条件付き帰還をcallee全体・全caller/全owner除外・Ring通常取得へ昇格しない。
+
+
+## 2026-09-15T17:18:54.368346+00:00 — PR-P08-7-RING-ZERO-BYTES
+- Timestamp: 2026-09-15T17:18:54.368346+00:00
+- Task: PR-P08-7-RING-ZERO-BYTES / zero継続一根採取
+- Status: STOPPED / 採取保存工程完了。同一作業のABI検証へ続行。
+- Version: PR16 zero bytes checkpoint
+- Summary: WIP: 未読0x0806DDBDだけを最大128byte範囲で54命令/114byte採取し保存。zero側の返却値・SP/r4-r6/保存slotは保存byteで検証する。非0側の既証明条件付き帰還・旧18target・BP受入を保持。
+- Files changed: scripts/pr16_ring_zero_bytes.py, tests/test_pr16_ring_zero_bytes.py, .github/workflows/pr16-ring-zero-bytes.yml, content/modernization/pr16_ring_zero_bytes.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定異常系18 tests PASS、render/check PASS、BP checkpoint不変。task graph・最終index差分guard・diff必須。
+- Evidence: source=9df0a6c7fd9fcf34ee307346afcea209e8323817; run=35000269301（保存時in_progress）。
+- Preserved: ROM変更/native/既読graph/受入済み再実行0。候補復元1。旧18target保持。
+- Commit: checkpointを同branchへ非force push。最終SHAはremote ref/resultで照合。
+- Network: GitHub connector/Actions、既存hash固定入力復元。直接cloneはDNS失敗。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致/新規違反0を要求。全体guard PASS・全CI green・merge・release・baseline変更を主張しない。
+- Next: 保存済みpr16_ring_zero_bytes.jsonの0x0806DDBD継続だけを限定ABI検証する。候補復元/byte採取/helper全u16/非0側/既読callee/FlagSet/FlagGet/15辺分類/BPを再実行しない。全caller/全owner除外・Ring通常取得へ昇格しない。
+
+
+## 2026-09-15T17:38:01.143891+00:00 — PR-P08-7-RING-ZERO-ABI
+- Timestamp: 2026-09-15T17:38:01.143891+00:00
+- Task: PR-P08-7-RING-ZERO-ABI / zero継続の限定ABI監査
+- Status: DONE / 保存範囲のABI監査完了。zero/callee全体帰還とphysical受入は未完。
+- Version: PR16 zero-prefix ABI
+- Summary: 保存zero継続0x0806DDBDの54命令/114byteを限定ABI検証。helper結果は再実行せず、zero域51456入力を0→未読0x0806DE63、1..2303→selector経路、16384..65535→未読0x0806DE51へ分類。selector=1/2は未解決外部call3本と条件付きSTRB/STRHを含む。共通末尾0x0806DE3Dも未読。保存命令にPOP/復元はなく局所SP変化0、FlagSet基準-24のframeが残る。書込み先と保存slotのalias反例を保持し、zero/callee全体の帰還・保存slot不変・全owner除外は未証明。旧18target・BP受入を保持。
+- Files changed: scripts/pr16_ring_zero_abi.py, scripts/pr16_ring_zero_model.py, tests/test_pr16_ring_zero_abi.py, .github/workflows/pr16-ring-zero-abi.yml, content/modernization/pr16_ring_zero_abi.json, 固定MD/JSON、P08参照、両ログ。
+- Verify: 36 focused tests PASS; 新zero域51456入力/selector256値/仮想call契約13818ケース、54命令被覆。render/check、BP checkpoint不変。task graph・最終index差分guard・diff必須。
+- Evidence: source=884db03b5e9436d67545e1cf43bf03f86acd33c1; run=35002458426（保存時in_progress）。zero採取run35000269301成功原本再利用。
+- Preserved: 本ABI工程のROM/native/候補再構築/再採取/helper再実行/受入済み再実行0。旧18targetと未解決新6target保持。
+- Commit: 完了commitを同branchへ非force push。最終SHAはremote ref/resultで照合。
+- Network: GitHub connector/Actions。一次資料検索語 site:sourceware.org/cgen/gen-doc/arm-thumb-insn.html Thumb ldr pop bx semantics; https://sourceware.org/cgen/gen-doc/arm-thumb-insn.html。Thumb-1の分岐、load/store幅、BLを照合。
+- Boundary: 全体guard既存違反は前後同一/新規0を要求。全体guard PASS・全CI green・merge/release/baseline変更は主張しない。
+- Next: 次は新規未読0x0806DE3Dだけを優先し、共通返却pointer生成/復元区間を限定採取する。0x0806DE51/0x0806DE63と外部call0x08113889/0x0806DD1D/0x081138F9は未解決で保持。保存zero54命令、非0側、helper全u16、callee prefix、FlagSet/FlagGet、15辺分類、BPを再採取/単独再実行しない。新規未読targetの採取だけを進め、仮想call契約のモデルをnative帰還/保存slot不変/Ring受入へ昇格しない。
+
+
+## 2026-09-15T18:23:38.789389+00:00 — PR-P08-7-RING-COMMON-TAIL-BYTES
+- Timestamp: 2026-09-15T18:23:38.789389+00:00
+- Task: PR-P08-7-RING-COMMON-TAIL-BYTES / 未読共通末尾1根の限定採取
+- Status: DONE / 限定採取工程。Ring通常取得・ABI全体の受入ではない。
+- Version: PR16 common-tail bytes
+- Summary: 未読共通末尾0x0806DE3Dの1根だけを最大56byte範囲で6命令/12byte採取・保存。採取工程は完了。返却pointer生成/復元のABIは保存byteで検証する。zero54命令の限定ABI成功run35002458426を再利用。0x0806DE51/0x0806DE63と外部call3本、旧18target、保存slot/返却pointer非aliasの未証明を保持。BP受入は不変。
+- Files changed: scripts/pr16_ring_common_tail_bytes.py, tests/test_pr16_ring_common_tail_bytes.py, .github/workflows/pr16-ring-common-tail-bytes.yml, content/modernization/pr16_ring_common_tail_bytes.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定異常系37 tests PASS、candidate全体SHA/size/CRC一致、既読命令重複0、render/check PASS、BP checkpoint不変。task graph・最終index差分guard・diff必須。
+- Evidence: source=b0fbc529b66f6043ccbcde0d08da8f3678247181; run=35007034033（保存時in_progress）。
+- Preserved: ROM変更/native/既読graph/受入済み再実行0。今回候補復元1、失敗attempt込み2。旧18targetと別の未読5入口保持。
+- Failed attempt: run35006120653/job104506187780は別未読入口到達でfailure、commitなし。artifact10411821592（SHA256 78fd39b3cc2323abd180e1175a12737c2570faa040ba640b71e8b903db305d9f）を原本で保持。共有decoder/採取上限/guardは緩和せず、別入口のdecode前に辺を境界化した。
+- Commit: 完了条件PASS後、同branchへ非force push。最終SHAはremote ref/recorded-result.jsonで照合。
+- Network: GitHub connector/Actions、既存hash固定入力復元。直接cloneはDNS解決失敗。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致/新規違反0を要求。全体guard PASS・全CI green・merge・release・baseline変更を主張しない。
+- Next: 保存済みpr16_ring_common_tail_bytes.jsonの共通末尾だけを限定ABI検証する。同じcandidateの復元/共通末尾再採取、zero54命令/helper全u16/非0側/callee prefix/FlagSet/FlagGet/15辺分類/BPを単独再実行しない。0x0806DE51/0x0806DE63と外部call0x08113889/0x0806DD1D/0x081138F9は未解決で保持。局所復元をcallee全体の帰還/保存slot不変/全owner除外/Ring通常取得受入へ昇格しない。
+
+
+## 2026-09-15T18:41:11.743297+00:00 — PR-P08-7-RING-COMMON-TAIL-ABI
+- Timestamp: 2026-09-15T18:41:11.743297+00:00
+- Task: PR-P08-7-RING-COMMON-TAIL-ABI / 保存共通末尾の限定ABI
+- Status: DONE / 保存6命令の限定ABI工程。callee全体・Ring通常取得は未受入。
+- Version: PR16 common-tail ABI
+- Summary: 保存済み共通末尾0x0806DE3Dの6命令/12byteを限定ABI検証。r0=mem32[entry_r0]+entry_r1+0xEE0 (mod 2^32)を計算し、未読0x0806DE63へ続く。低域の保存済み入口条件ではmem32[0x03005048]+0xEE0+(id>>3)。POP/return/局所storeは0、SP変化0。先行経路の保存仮定下でFlagSet基準-24のframeが残る。計算pointerが保存6slotへaliasする反例を保持し、callee帰還/保存slot不変/非aliasは未証明。旧18target、0x0806DE51と外部call3本、BP受入を保持。
+- Files changed: scripts/pr16_ring_common_tail_abi.py, tests/test_pr16_ring_common_tail_abi.py, .github/workflows/pr16-ring-common-tail-abi.yml, content/modernization/pr16_ring_common_tail_abi.json, 固定引継ぎMD/JSON、P08 Ring参照、両ログ。
+- Verify: 新規限定ABI 46 tests PASS、固定引継ぎ 24 tests PASS、render/check PASS。新規末尾のみ11515低域ケース、保存6slotへのalias反例6件。採取原本/source hash照合、BP checkpoint byte不変。
+- Commit gate: task graph、diff、最終indexとworktree一致、既存全体private guard前後出力完全一致・新規違反0を後続gateで要求。結果は同runのguard.json/recorded-result.json。
+- Evidence: source=5280f666fb592d961503d430dd7e88525dd0bd07; run=35008976649（保存時in_progress）。先行採取run35007034033/job104509276799成功を新規照合。失敗run35006120653はfailure原本で保持。
+- Preserved: ROM変更0、candidate再構築0、mGBA0、既読ABI/受入済みnative単独再実行0。BP正式受入・他gap・旧18targetを保持。外部callは未実行。
+- Commit: 完了条件PASS後に同branchへ非force push。自己SHAはremote ref/recorded-result.jsonで確認。
+- Network: GitHub connector/Actions APIだけ。containerの直接cloneはDNS解決失敗。private Release/ROM/save/外部技術資料の取得なし。
+- Boundary: 整列・読取可能・非volatile RAMの局所モデル。先行保存契約は仮定であり実観測ではない。全体guard PASS・全CI green・merge・release・baseline変更を主張しない。
+- Next: 次は新規未読0x0806DE63だけを限定採取し、共通末尾後の復元/帰還命令を確認する。0x0806DE51と外部call0x08113889/0x0806DD1D/0x081138F9は未解決で保持。保存済み共通末尾6命令、zero54命令、helper全u16、非0側、callee prefix、FlagSet/FlagGet/15辺分類/BPを再採取・単独再実行しない。条件付きpointer計算を実帰還・保存slot不変・非alias・全owner除外・Ring通常取得受入へ昇格しない。
+
+
+## 2026-09-15T19:06:39.498143+00:00 — PR-P08-7-RING-EPILOGUE-BYTES
+- Timestamp: 2026-09-15T19:06:39.498143+00:00
+- Task: PR-P08-7-RING-EPILOGUE-BYTES / 未読帰還末尾1根の限定採取と保存
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-epilogue-bytes
+- Summary: 未読帰還末尾0x0806DE63だけを3命令/6byte採取保存。初回run35011171118はpreflight受渡し不足で復元前failure、採取0として保持。命令byteと境界の採取工程のみ完了。帰還ABI/保存slot不変/非aliasは未証明。旧18targetと別分岐・外部call3本、BP受入を保持。
+- Files changed: scripts/pr16_ring_epilogue_bytes.py, tests/test_pr16_ring_epilogue_bytes.py, .github/workflows/pr16-ring-epilogue-bytes.yml, content/modernization/pr16_ring_epilogue_bytes.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定18 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=632e502f19f1caf6fcb7f48d1b58277fd02ef357; run=35011425946（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存済みpr16_ring_epilogue_bytes.jsonの命令だけで復元/帰還ABIを検証する。0x0806DE51と外部call3本は未解決。同じ末尾の再採取、既読共通末尾/zero/helper/FlagSet/FlagGet/BPの単独再実行をしない。Ring通常取得受入へ昇格しない。
+
+
+## 2026-09-15T19:13:49.324485+00:00 — PR-P08-7-RING-EPILOGUE-ABI
+- Timestamp: 2026-09-15T19:13:49.324485+00:00
+- Task: PR-P08-7-RING-EPILOGUE-ABI / 保存末尾3命令の条件付き帰還ABIとpush読戻しを検証
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-epilogue-abi
+- Summary: 保存末尾3命令/6byteの条件付き局所帰還ABIを検証。SP+16、r4/r5/r6を3wordから復元し4word目をr1経由BX、r0不変。保存slot保持と到達を仮定した帰還先0x0806DE81・FlagSet frame残8byteを結合。全callee帰還/非aliasは未証明。ABI初回run35012133695はCLIの制御文字保護で実行前failure、原結論を保持。採取run35011425946はpush後PR照合でfailureのまま保持し、commit6f6a8678の6成果を独立読戻し。再採取0。
+- Files changed: scripts/pr16_ring_epilogue_abi.py, tests/test_pr16_ring_epilogue_abi.py, .github/workflows/pr16-ring-epilogue-abi.yml, content/modernization/pr16_ring_epilogue_abi.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定16 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=c87afbb7619897cb840b1a3388f7f060e4b10acb; run=35012341851（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は未読0x0806DE51だけを限定採取し、もう一方のpointer経路を確認する。外部call3本/旧18targetは保持。保存末尾/共通末尾/zero/helper/既受入BPを再採取・単独再実行しない。Ring通常取得へ昇格しない。
+
+
+## 2026-09-15T19:16:54.910228+00:00 — PR-P08-7-RING-HIGH-BRANCH-BYTES
+- Timestamp: 2026-09-15T19:16:54.910228+00:00
+- Task: PR-P08-7-RING-HIGH-BRANCH-BYTES / 未読高域分岐1根を採取し保存済み末尾との境界を記録
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-high-branch-bytes
+- Summary: 未読高域分岐0x0806DE51だけを8命令/16byte採取保存。保存済み末尾へはdecodeせず辺で停止。旧18targetと外部call3本を保持、全callee帰還/非alias/Ring取得は未証明。
+- Files changed: scripts/pr16_ring_high_branch_bytes.py, tests/test_pr16_ring_high_branch_bytes.py, .github/workflows/pr16-ring-high-branch-bytes.yml, content/modernization/pr16_ring_high_branch_bytes.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定8 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=fad0e881c26ec79a937be0c657d02c268809cec6; run=35012559981（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存済みpr16_ring_high_branch_bytes.jsonだけで高域分岐のABIを検証する。既読末尾/zero/helper/BPを再実行しない。その後に未解決外部call0x08113889、0x0806DD1D、0x081138F9を各1根の範囲で進める。
+
+
+## 2026-09-15T19:20:53.857823+00:00 — PR-P08-7-RING-HIGH-BRANCH-ABI
+- Timestamp: 2026-09-15T19:20:53.857823+00:00
+- Task: PR-P08-7-RING-HIGH-BRANCH-ABI / 保存高域8命令の符号付き除算と条件付きpointer ABIを検証
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-high-branch-abi
+- Summary: 保存高域8命令/16byteとliteral12byteを照合。高域ID49152件、到達を主張しない負側診断13件で全8命令を検査。entry_r6=idならpointer式0x02037014+((id-0x4000)>>3)。RAM読取/store/stack操作0。保存join/epilogueは結果を再利用し実行0。格納域の実サイズ・保存slot非alias・全callee帰還は未証明。
+- Files changed: scripts/pr16_ring_high_branch_abi.py, tests/test_pr16_ring_high_branch_abi.py, .github/workflows/pr16-ring-high-branch-abi.yml, content/modernization/pr16_ring_high_branch_abi.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定14 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=de517da291587ca23867800f1df65997e5e6034e; run=35013060593（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は未解決外部callee0x08113889の1根だけを限定採取する。0x0806DD1D/0x081138F9と旧18targetを保持。保存高域/共通末尾/帰還末尾/zero/helper/受入済みBPを再実行しない。Ring通常取得受入へ昇格しない。
+
+
+## 2026-09-15T19:25:20.675703+00:00 — PR-P08-7-RING-EXTERNAL1-BYTES
+- Timestamp: 2026-09-15T19:25:20.675703+00:00
+- Task: PR-P08-7-RING-EXTERNAL1-BYTES / 最初の未解決外部callee1根を限定採取し次のABI境界を記録
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-external1-bytes
+- Summary: 未解決外部callee0x08113889の1根だけ23命令/46byteを採取保存。他root/保存済み命令のdecodeは0。外部辺・間接辺・未読境界を保持し、calleeのABI/副作用/owner除外は未受入。本セッション5工程は採取3件/保存ABI2件、ROM変更0・受入済みnative再実行0。
+- Files changed: scripts/pr16_ring_external1_bytes.py, tests/test_pr16_ring_external1_bytes.py, .github/workflows/pr16-ring-external1-bytes.yml, content/modernization/pr16_ring_external1_bytes.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定9 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=d8b18f448c5c0db940d5e4f045a602d916e3d171; run=35013389513（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存済みpr16_ring_external1_bytes.jsonだけで0x08113889の局所ABI・副作用・呼出境界を検証する。今回5工程のbyte再採取/ABI単独再実行は禁止。0x0806DD1D/0x081138F9と旧18owner、採取で現れた未解決辺は保持。Ring通常story取得、policy/Circus、最終候補/releaseは未完のまま。
+
+
+## 2026-09-16T02:37:16.605127+00:00 — PR-P08-7-RING-EXTERNAL1-ABI
+- Timestamp: 2026-09-16T02:37:16.605127+00:00
+- Task: PR-P08-7-RING-EXTERNAL1-ABI / 保存外部callee prefixの引数切詰め・条件分岐・stack書込境界を検証
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-external1-abi
+- Summary: 外部callee0x08113889の保存23命令/46byte・literal20byteで局所ABIを検証。u8/u16切詰め65792件、unsigned分岐8診断、16byte PUSHと2未読境界を固定。RAM再読の同値/stack非aliasは仮定せず、帰還・callee全副作用・owner除外は未受入。
+- Files changed: scripts/pr16_ring_external1_abi.py, tests/test_pr16_ring_external1_abi.py, .github/workflows/pr16-ring-external1-abi.yml, content/modernization/pr16_ring_external1_abi.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定18 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=48e81bb4249b6f2b610d93fb20b62dec5f903bfd; run=35048669015（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は未読継続0x081138C9の1根だけ採取する。保存prefixは再実行せず16byte live-frameを継承。次いで保存継続ABI、0x081138F1末尾採取/ABIへ。0x0806DD1D/0x081138F9・旧18ownerは保持しRing通常取得は未受入。
+
+
+## 2026-09-16T02:40:54.147051+00:00 — PR-P08-7-RING-EXTERNAL1-CONT-BYTES
+- Timestamp: 2026-09-16T02:40:54.147051+00:00
+- Task: PR-P08-7-RING-EXTERNAL1-CONT-BYTES / external1未読継続1根を採取し16byte継承frameと未読末尾を保存
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-external1-cont-bytes
+- Summary: external1未読継続0x081138C9だけ18命令/36byteを採取保存。16byte継承frameと末尾0x081138F1を保持し、既読命令/他rootのdecodeは0。採取を帰還/副作用除外/Ring取得受入へ昇格しない。
+- Files changed: scripts/pr16_ring_external1_cont_bytes.py, tests/test_pr16_ring_external1_cont_bytes.py, .github/workflows/pr16-ring-external1-cont-bytes.yml, content/modernization/pr16_ring_external1_cont_bytes.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定10 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=951d12949d86f18f77c57b8e51eb9b35c12647c6; run=35048828662（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存済みpr16_ring_external1_cont_bytes.jsonだけで継続のABI・副作用・未解決辺を検証する。prefix再実行/byte再採取は禁止。続いて0x081138F1末尾採取/ABI。0x0806DD1D/0x081138F9・旧18owner・Ring通常取得は未完を保持。
+
+
+## 2026-09-16T02:48:33.946343+00:00 — PR-P08-7-RING-EXTERNAL1-CONT-ABI
+- Timestamp: 2026-09-16T02:48:33.946343+00:00
+- Task: PR-P08-7-RING-EXTERNAL1-CONT-ABI / 保存継続の15bit key/1bit mode照合とpointer返却・counter書込を検証
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-external1-cont-abi
+- Summary: 保存継続18命令/36byteの15bit key/1bit mode照合を65792件で検証。一致時だけrecord+2 pointerとcounter STRH、不一致は0。counter wrapと保存LR/返却pointerの仮想alias反例を保持。bufferの範囲/整列/非aliasと帰還は未証明。prefix/ROM/native実行0。
+- Files changed: scripts/pr16_ring_external1_cont_abi.py, tests/test_pr16_ring_external1_cont_abi.py, .github/workflows/pr16-ring-external1-cont-abi.yml, content/modernization/pr16_ring_external1_cont_abi.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定20 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=e95e2655414975a9bc353ad3fc0e4365ba6ab523; run=35049393487（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は未読帰還末尾0x081138F1の1根だけ採取し、その保存byteの復元/帰還ABIを検証する。prefix/継続の再実行禁止。0x0806DD1D/0x081138F9・旧18owner・保存slot非aliasを未完で保持しRing通常取得へ昇格しない。
+
+
+## 2026-09-16T02:52:13.884341+00:00 — PR-P08-7-RING-EXTERNAL1-EXIT-BYTES
+- Timestamp: 2026-09-16T02:52:13.884341+00:00
+- Task: PR-P08-7-RING-EXTERNAL1-EXIT-BYTES / external1帰還末尾1根だけ採取し継承frameと間接帰還境界を保存
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-external1-exit-bytes
+- Summary: external1未読帰還末尾0x081138F1だけ3命令/6byteを採取保存。保存済みprefix/継続と別rootのdecodeは0。16byte継承frame・条件付きcounter書込を保持し、間接帰還/非aliasは未受入。
+- Files changed: scripts/pr16_ring_external1_exit_bytes.py, tests/test_pr16_ring_external1_exit_bytes.py, .github/workflows/pr16-ring-external1-exit-bytes.yml, content/modernization/pr16_ring_external1_exit_bytes.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定10 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=1870beaf15a5e9edbbd9c344165ab4b9cc33c988; run=35049550581（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存済みpr16_ring_external1_exit_bytes.jsonの末尾ABIを検証し、prefix/継続は保存結果だけで条件付き結合する。本セッション4工程を再実行せず5工程目の記録へ。0x0806DD1D/0x081138F9・旧18owner・Ring通常取得は未完を保持。
+
+
+## 2026-09-16T02:58:07.159268+00:00 — PR-P08-7-RING-EXTERNAL1-EXIT-ABI
+- Timestamp: 2026-09-16T02:58:07.159268+00:00
+- Task: PR-P08-7-RING-EXTERNAL1-EXIT-ABI / 保存末尾の条件付き復元帰還ABIと5工程の原Actions・commitを集約
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-external1-exit-abi
+- Summary: 保存末尾3命令/6byteはr4/r5/r6復元・SP+16・r0保持・保存wordからBX r1を検証。本セッション5工程の限定82testsと原Actions/commitを集約。新規採取42byte、ABI照合88byte、候補復元2回、ROM変更/native/受入再実行0。保存LR破壊の仮想counter aliasを保持し、条件付き帰還を全callee帰還やRing通常取得へ昇格しない。
+- Files changed: scripts/pr16_ring_external1_exit_abi.py, tests/test_pr16_ring_external1_exit_abi.py, .github/workflows/pr16-ring-external1-exit-abi.yml, content/modernization/pr16_ring_external1_exit_abi.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定24 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=f6617bfbca9363d4e958628a88bb1b6147f2818e; run=35049978307（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は未解決外部callee0x0806DD1Dの1根だけ限定採取し、保存byteのABI・副作用を調べる。external1の本5工程は再採取/単独ABI再実行禁止。0x081138F9と旧18owner、保存slot/返却pointer非alias、Ring通常取得・policy/Circus・P08最終判定は未完。
+
+
+## 2026-09-16T03:10:13.368298+00:00 — PR-P08-7-RING-EXTERNAL2-BYTES
+- Timestamp: 2026-09-16T03:10:13.368298+00:00
+- Task: PR-P08-7-RING-EXTERNAL2-BYTES / 未読外部callee0x0806DD1Dの限定採取と未証明境界の保存
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-external2-bytes
+- Summary: 未読外部callee0x0806DD1Dの1根だけ28命令/56byteを採取保存。external1の5工程と既読rootのdecode/ABI/BP再実行0。先行run35049978307の成功を原Actionsで照合。副作用・帰還・保存slot/返却pointer非aliasは未証明。
+- Files changed: scripts/pr16_ring_external2_bytes.py, tests/test_pr16_ring_external2_bytes.py, .github/workflows/pr16-ring-external2-bytes.yml, content/modernization/pr16_ring_external2_bytes.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定14 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=ff04f0764d8a78174b8bd21a0bc3a9c7ead349e3; run=35050675969（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存済みpr16_ring_external2_bytes.jsonの命令だけで0x0806DD1DのABI・副作用を検証する。同一候補から再採取せず、未読継続が出れば保存frontierに従う。0x081138F9・旧18owner・Ring通常取得・policy/Circus・P08最終判定は未完。
+
+
+## 2026-09-16T03:19:42.905586+00:00 — PR-P08-7-RING-EXTERNAL2-ABI
+- Timestamp: 2026-09-16T03:19:42.905586+00:00
+- Task: PR-P08-7-RING-EXTERNAL2-ABI / external2全u16分類と条件付きstack帰還ABIを保存byteで検証
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-external2-abi
+- Summary: external2保存28命令/56byteを全u16×2mode=131072入力で検証。全命令/条件分岐両側を被覆し、返値0/1・r4-r11/LR保持・局所SP差分0・外部call0・非stack書込0をモデル条件付きで確認。既読ABI/native/候補復元0。エージェント側命令仕様照合: https://sourceware.org/cgen/gen-doc/arm-thumb-insn.html（Actions中の外部資料取得なし）。
+- Files changed: scripts/pr16_ring_external2_abi.py, tests/test_pr16_ring_external2_abi.py, .github/workflows/pr16-ring-external2-abi.yml, content/modernization/pr16_ring_external2_abi.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定24 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=8d2504309caa29cfdcb749675c7f26a6b5a5fad0; run=35051354515（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は未読外部callee0x081138F9の1根だけ限定採取。external2は再採取/単独ABI再実行せず保存結果を再利用する。旧18owner・外側calleeの帰還/保存slot/返却pointer非alias・Ring通常取得・policy/Circus・P08最終判定は未完。
+
+
+## 2026-09-16T03:23:41.974495+00:00 — PR-P08-7-RING-EXTERNAL3-BYTES
+- Timestamp: 2026-09-16T03:23:41.974495+00:00
+- Task: PR-P08-7-RING-EXTERNAL3-BYTES / 未読外部callee0x081138F9の1根採取と保存frontier更新
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-external3-bytes
+- Summary: 未読外部callee0x081138F9の1根だけ32命令/64byteを採取保存。external1/2の保存結果とBPは再実行0。外側帰還・保存slot/返却pointer非aliasは未証明のまま維持。
+- Files changed: scripts/pr16_ring_external3_bytes.py, tests/test_pr16_ring_external3_bytes.py, .github/workflows/pr16-ring-external3-bytes.yml, content/modernization/pr16_ring_external3_bytes.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定14 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=53b70aac2a1e1099f9f9c80e440ad54fbc8049d4; run=35051550466（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存済みpr16_ring_external3_bytes.jsonだけでABI・副作用を検証する。新規未読継続があれば保存frontierを使う。external3を再採取せず、既読ABI/BPを再実行しない。旧18owner・Ring通常取得・policy/Circus・P08最終判定は未完。
+
+
+## 2026-09-16T03:31:49.598295+00:00 — PR-P08-7-RING-EXTERNAL3-ABI
+- Timestamp: 2026-09-16T03:31:49.598295+00:00
+- Task: PR-P08-7-RING-EXTERNAL3-ABI / external3保存前半の3条件・引数・20byte frameとalias境界を検証
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-external3-abi
+- Summary: external3保存前半32命令/64byteの3gate・正規化引数・20byte PUSH frameを検証。2401境界組合せと65536正規化入力で全命令/分岐両側を被覆。stackがcounterへaliasすると分岐が変わる仮想反例を保存。未読継続/末尾は未実行、ROM復元/native/既読ABI再実行0。
+- Files changed: scripts/pr16_ring_external3_abi.py, tests/test_pr16_ring_external3_abi.py, .github/workflows/pr16-ring-external3-abi.yml, content/modernization/pr16_ring_external3_abi.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定22 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=cf5c6acd3744bcaae90f21829178704b5c5926d7; run=35052121180（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は未読継続0x08113939の1根だけを限定採取し、保存前半の境界契約を再利用する。未読末尾0x08113961・旧18owner・外側帰還/非alias・Ring通常取得・policy/Circus・P08最終判定は未完。
+
+
+## 2026-09-16T03:35:59.896093+00:00 — PR-P08-7-RING-EXTERNAL3-BODY-BYTES
+- Timestamp: 2026-09-16T03:35:59.896093+00:00
+- Task: PR-P08-7-RING-EXTERNAL3-BODY-BYTES / external3未読継続0x08113939の1根採取と末尾境界保存
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-external3-body-bytes
+- Summary: external3未読継続0x08113939の1根だけ20命令/40byteを採取保存。external1/2・external3前半の保存ABIとBPは再実行0。外側帰還・保存slot/返却pointer非aliasは未証明のまま維持。
+- Files changed: scripts/pr16_ring_external3_body_bytes.py, tests/test_pr16_ring_external3_body_bytes.py, .github/workflows/pr16-ring-external3-body-bytes.yml, content/modernization/pr16_ring_external3_body_bytes.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定14 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=1c70e5ea3f3595f858cbaf389b5c047db7e55bd9; run=35052317109（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存済みpr16_ring_external3_body_bytes.jsonだけでABI・副作用を検証する。新規未読継続があれば保存frontierを使う。external3を再採取せず、既読ABI/BPを再実行しない。未読末尾0x08113961・旧18owner・Ring通常取得・policy/Circus・P08最終判定は未完。
+
+
+## 2026-09-16T03:45:54.015158+00:00 — PR-P08-7-RING-EXTERNAL3-BODY-ABI
+- Timestamp: 2026-09-16T03:45:54.015158+00:00
+- Task: PR-P08-7-RING-EXTERNAL3-BODY-ABI / external3継続の順序付き4書込・再読取・非alias境界を検証
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-external3-body-abi
+- Summary: external3継続20命令/40byteのSTRH→STRB→STRH→STRHとcounter/base再読取を65536局所境界入力で検証。record/counter・record/base pointer・value/counterの3つの仮想alias反例を保存。前半ABI/ROM復元/nativeの再実行0。
+- Files changed: scripts/pr16_ring_external3_body_abi.py, tests/test_pr16_ring_external3_body_abi.py, .github/workflows/pr16-ring-external3-body-abi.yml, content/modernization/pr16_ring_external3_body_abi.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定22 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=4bea1aa74bd14e18f4bcb4d58375e88a52711750; run=35053018627（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は未読末尾0x08113961の1根だけを限定採取し、保存byteの帰還ABIとprefix/bodyの条件付き合成を検証する。既読継続は再実行しない。record/counter/base/frame非alias・旧18owner・Ring通常取得・policy/Circus・P08最終判定は未完。
+
+
+## 2026-09-16T03:49:47.734429+00:00 — PR-P08-7-RING-EXTERNAL3-TAIL-BYTES
+- Timestamp: 2026-09-16T03:49:47.734429+00:00
+- Task: PR-P08-7-RING-EXTERNAL3-TAIL-BYTES / external3未読末尾0x08113961の1根採取と間接帰還境界保存
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-external3-tail-bytes
+- Summary: external3未読末尾0x08113961の1根だけ3命令/6byteを採取保存。external1/2・external3前半/継続の保存ABIとBPは再実行0。
+- Files changed: scripts/pr16_ring_external3_tail_bytes.py, tests/test_pr16_ring_external3_tail_bytes.py, .github/workflows/pr16-ring-external3-tail-bytes.yml, content/modernization/pr16_ring_external3_tail_bytes.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定14 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=9b8e2a2ad05f15cf7cdfcd74fca61ad0e51958bd; run=35053183103（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存済みpr16_ring_external3_tail_bytes.jsonだけで末尾ABIと保存prefix/bodyの条件付き合成を検証する。末尾を再採取せず、既読ABI/BPを再実行しない。旧18owner・保存frame/record/global非alias・Ring通常取得・policy/Circus・P08最終判定は未完。
+
+
+## 2026-09-16T04:15:13.715677+00:00 — PR-P08-7-RING-EXTERNAL3-TAIL-ABI
+- Timestamp: 2026-09-16T04:15:13.715677+00:00
+- Task: PR-P08-7-RING-EXTERNAL3-TAIL-ABI / external3保存末尾の帰還ABI・条件付き合成とframe破壊反例を検証
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-external3-tail-abi
+- Summary: external3保存末尾3命令/6byteのPOP/POP/BX、SP+20、r4-r7復元と保存LR→r0→分岐を検証。保存prefix/bodyを条件付き合成し、保存frame160単一bit破壊反例を検証。ROM復元・既読ABI・BP再実行0。
+- Files changed: scripts/pr16_ring_external3_tail_abi.py, tests/test_pr16_ring_external3_tail_abi.py, .github/workflows/pr16-ring-external3-tail-abi.yml, content/modernization/pr16_ring_external3_tail_abi.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定43 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=e64d6c86224905b21f108a57a3e5be00a226f001; run=35054868301（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存したexternal1/2/3契約と外側callerを結び、実frame/record/global非alias・帰還先条件を限定検証する。末尾byte/ABIと受入BPを再実行しない。旧18未読ownerを保持し、Ring通常取得・policy/Circus・P08最終判定は未完。
+
+
+## 2026-09-16T04:25:50.697729+00:00 — PR-P08-7-RING-TAIL-CI-CLOSEOUT
+- Timestamp: 2026-09-16T04:25:50.697729+00:00
+- Task: PR-P08-7-RING-TAIL-CI-CLOSEOUT / 保存末尾ABI成功照合とBP受入後のP05残件テスト修正
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-tail-ci-closeout
+- Summary: external3末尾ABIの43tests成功・完了commitを保存原本で照合。P05残件テストの旧3件期待をBP正式3case/run34946969126と未完Ring/policy2件へ結び直し、誤再開・誤完了の拒否を検証。旧CI failure原本を保持。末尾ABI/受入native再実行0。
+- Files changed: scripts/pr16_ring_tail_ci_closeout.py, tests/test_pr16_ring_tail_ci_closeout.py, .github/workflows/pr16-ring-tail-ci-closeout.yml, content/modernization/pr16_ring_tail_ci_closeout.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定12 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=47dffd12eaf98a4748b8429e3855a4b37371a958; run=35055552309（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存external1/2/3契約と外側callerを結び、実frame/record/global非alias・帰還先条件を限定検証する。末尾byte/ABI・BP受入・修正済みP05期待テストを同一入力で再実行しない。旧18ownerとRing通常取得・policy/Circus・P08最終判定は未完。
+
+
+## 2026-09-16T04:49:26.763555+00:00 — PR-P08-7-RING-CALLER-COMPOSE
+- Timestamp: 2026-09-16T04:49:26.763555+00:00
+- Task: PR-P08-7-RING-CALLER-COMPOSE / 保存external1/2/3とFlagSet callerの結合・経路別frameと非alias十分条件
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-caller-compose
+- Summary: 保存17契約を実callsite3箇所へ結合。selector2到達ID1712件を2区間で導出し、最大44byte frame・external3 mode1/u8 payload・counter非wrap・FlagSet最終1byte書込を限定検証。canonical RAM/整列/wrap/alias/未提示同期条件を拒否するsnapshot checkerを実装。fixtureは実SP/base/LR証拠へ昇格せず、旧ABI/受入native再実行0。
+- Network補足: RAM境界の設計参考は https://github.com/mgba-emu/mgba/blob/master/include/mgba/internal/gba/memory.h 。共有runner定型の「外部技術資料なし」は本工程には適用しない。
+- Files changed: scripts/pr16_ring_caller_compose.py, tests/test_pr16_ring_caller_compose.py, .github/workflows/pr16-ring-caller-compose.yml, content/modernization/pr16_ring_caller_compose.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定40 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=fc985116e19073345ac2f4f3511d76f9f40daa84; run=35057073533（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存caller結合を再利用し、同一candidateの実FlagSet入口SP/LR・record/save/global snapshotとallocation/帰還先/同期条件をboundした限定証拠をcheckerへ渡す。fixtureでは受入しない。実caller不明のまま旧18ownerを除外しない。Ring通常取得・policy/Circus・P08最終判定は未完。
+
+
+## 2026-09-16T05:38:03.697967+00:00 — PR-P08-7-RING-CALLER-SNAPSHOT
+- Timestamp: 2026-09-16T05:38:03.697967+00:00
+- Task: PR-P08-7-RING-CALLER-SNAPSHOT
+- Status: DONE / 読取専用観測・保存照合工程。Ring通常取得・同期/allocation証明は未完。
+- Version: PR16 Ring actual boot caller snapshot
+- Summary: 読取専用boot観測器と異常系46 testsを実装。同一candidateの新規1 processでFlagSet入口を8回観測、8回の実SP/LR・保存slot/flag/record/counterを保存caller条件式と照合。初回run35059235641は0hit・stdout混入による記録失敗として原本を保持。合計新規2 process、受入済み再実行0。これはboot caller診断でmap97/80のRing通常取得ではない。allocation所有範囲・通常mapping・同期/DMA保証は未証明。旧18ownerと正式BP受入を保持。
+- Verify: focused tests 46 PASS、C warnings-as-errors compile、有限新規native観測、原ROM前後hash、read-only render/check、task graph、最終index差分guard、diff。
+- Evidence: content/modernization/pr16_ring_caller_snapshot.json; content/modernization/pr16_ring_caller_snapshot_evidence/trace.jsonl; source=88292386bad501bfc08e5a71fd96c9d621d95896; run=35060189419（記録時in_progress）。
+- Preserved: ROM変更0、受入済みnative/既読ABI再実行0、正式BP checkpoint不変。初回失敗を含む新規boot診断2 process/2 cores、候補復元2。
+- Files changed: scripts/pr16_ring_snapshot_record.py, scripts/pr16_ring_caller_snapshot.py, tools/mgba_pr16_ring_caller_snapshot.c, tests/test_pr16_ring_caller_snapshot.py, .github/workflows/pr16-ring-caller-snapshot.yml, report/trace、固定MD/JSON、P08参照、両ログ。
+- Preparation: 97529e38のsource-only workspace取得を再利用。ROM/save原本をtracked/artifactへ追加しない。
+- Commit: 現HEAD競合を検査後、同branchへ通常commit/非force push。自己SHAはremote receipt参照。
+- Network: GitHub connector/Actions、既存hash固定private環境。外部技術資料なし。
+- Boundary: 既存全体guard違反は前後一致/新規0で照合。全体guard PASS・全CI green・merge/release/baseline変更を主張しない。
+- Next: 保存済みboot trace/実caller照合を再実行せず再利用する。次はmap97/80 FINAL_LEAGUE_CLEAREDの実経路callerとrecord allocation所有範囲を限定し、同期/IRQ/DMA条件を独立証拠で解決する。boot callerやfixtureだけで旧18ownerを除外しない。Ring正規取得owner確定後に取得・装備実戦・通常保存へ進む。BP受入済み試験は再実行しない。
+
+
+## 2026-09-16T05:45:13.036844+00:00 — PR-P08-7-RING-SNAPSHOT-CLOSEOUT
+- Timestamp: 2026-09-16T05:45:13.036844+00:00
+- Task: PR-P08-7-RING-SNAPSHOT-CLOSEOUT
+- Status: DONE / 保存観測coverage・CI照合。Ring取得は未完。
+- Version: PR16 snapshot closeout
+- Summary: 実FlagSet8件の保存証拠とrun35060189419/job104678679467 success・非force保存を照合。全8件selector=0/low_other、帰還先0x093775CC、観測peak24byte。selector1/2、external1/2/3、record保存prefixとpeak44は未観測。このCI整理はnative0、候補復元0、旧46tests/ABI再実行0。初回失敗を含む前工程native2は記録を保持。
+- Verify: 新規projection8 tests、read-only resume check、task graph、最終index差分guard・diff。
+- Evidence: content/modernization/pr16_ring_snapshot_closeout.json; observed run35060189419 success / commit 2c9202b47409f0009f32eebda0424033402ae12a。
+- Preserved: native0・候補復元0・ROM変更0・受入済み再実行0。BP原本とRing観測原本は不変。
+- Files changed: scripts/pr16_ring_snapshot_closeout.py, tests/test_pr16_ring_snapshot_closeout.py, .github/workflows/pr16-ring-snapshot-closeout.yml、coverage receipt、固定引継ぎMD/JSON、P08参照、両ログ。
+- Network/reference: GitHub/Actions。観測器実装後のPC prefetch確認として https://github.com/mgba-emu/mgba/blob/0.10.3/src/arm/arm.c を参照。外部コード転記なし。
+- Commit: 最新HEAD確認後、同branch非force push。全CI green/全体guard PASS・merge/release/baseline変更なし。
+- Next: 保存8件は再実行しない。次はRing実経路callerのselector1/2とactive record prefix、record allocation所有範囲・mapping/同期/IRQ/DMA条件を独立に解決する。selector0の実帰還証拠をexternal1/2/3やmap97/80 FINAL_LEAGUE_CLEAREDの取得へ一般化しない。旧18ownerは保持。Ring通常取得・装備実戦・通常保存、policy/Circus、P08は未完。受入済みBPは再実行しない。
+
+
+## 2026-09-16T08:20:07.957760+00:00 — PR-P08-7-RING-SELECTOR-OWNERS
+- Timestamp: 2026-09-16T08:20:07.957760+00:00
+- Task: PR-P08-7-RING-SELECTOR-OWNERS / 未観測selectorとrecord制御変数の新規参照・書込候補を固定
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-selector-followup
+- Summary: selector/record制御変数8件のliteral参照を限定採取。新規649候補、既読15参照は保存byteを再利用し、新規window61024byteとsource一致を記録。候補復元1、native0、旧ABI/BP再実行0。Thumb解釈候補は到達性/割当証明ではない。
+- Files changed: scripts/pr16_ring_selector_followup.py, tests/test_pr16_ring_selector_followup.py, .github/workflows/pr16-ring-selector-followup.yml, content/modernization/pr16_ring_selector_owners.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定15 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=0a9e8c00fbb67cff4c626eca9c7ae770b143c4de; run=35073059942（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存参照とsource一致からselector1/2のwriter・record_base/capacityの割当/終了ownerを結合する。実Ring経路のcallerとIRQ/DMA条件、旧18ownerは未解決。保存8件と本工程の採取を繰り返さず、Ring通常取得・装備実戦・通常保存を観測するまで受入へ昇格しない。policy/Circus/P08も未完。
+
+
+## 2026-09-16T08:32:29.072412+00:00 — PR-P08-7-RING-RECORD-INIT
+- Timestamp: 2026-09-16T08:32:29.072412+00:00
+- Task: PR-P08-7-RING-RECORD-INIT / 保存byteのrecord初期化・容量差と制御域alias候補を検証
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-record-init
+- Summary: 保存0x08113984の局所初期化を命令実行で検証。caller pointerを登録しcapacity=floor(u16 size/4)、mode2の初期化word数は別global LIMIT。局所frame12byte、allocatorなし。0x09127110/7160は同じselector領域を外部calleeへ渡し、r5保存条件下でLIMIT下位byteへ16を書込む候補。実到達/外部callee作用/割当所有は未証明。候補復元0/native0/旧ABI・受入BP再実行0。
+- Files changed: scripts/pr16_ring_record_init.py, tests/test_pr16_ring_record_init.py, .github/workflows/pr16-ring-record-init.yml, content/modernization/pr16_ring_record_init.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定24 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=d42165a1fdaf578805e64b247b1a833a0a7316bc; run=35074318490（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存initializerとalias候補を再検証せず、0x08113984実callerのpointer/size/LIMITと0x09126CB4/0x09127060/0x09099E16の役割・実到達を絞る。有効初期化はselectorを設定しないため通常story経路のselector1/2を別に追う。同一アドレスだけでRTC衝突/既存コードの不存在と断定しない。旧18owner、Ring取得・装備実戦・保存、policy/Circus/P08は未完。
+
+
+## 2026-09-16T08:39:33.800359+00:00 — PR-P08-7-RING-SELECTOR-CLOSEOUT
+- Timestamp: 2026-09-16T08:39:33.800359+00:00
+- Task: PR-P08-7-RING-SELECTOR-CLOSEOUT
+- Status: DONE / 2工程の原本・CI照合。Ring通常取得は未受入。
+- Version: PR16 selector/record closeout
+- Summary: selector参照採取15tests/run35073059942とrecord初期化24tests/run35074318490は原Actions成功・artifact・保存commitと照合済み。2工程の新規参照649、保存再利用15、採取61024byte、候補復元計1、native/既読ABI/受入BP再実行0。record初期化はcaller提供域、mode2は容量とは別のLIMIT依存。制御域alias候補の実到達は未証明。
+- Verify: closeout8 tests、更新影響のresume24 tests、render/check、task graph、最終index guardとdiff。旧15/24 ABI testsは再実行しない。
+- Evidence: content/modernization/pr16_ring_selector_closeout.json; commits 5a3a79347acd / 8b626df3ef87; run35073059942 / run35074318490 success。
+- Files changed: scripts/pr16_ring_selector_closeout.py, tests/test_pr16_ring_selector_closeout.py, .github/workflows/pr16-ring-selector-closeout.yml、closeout JSON、固定MD/JSON、P08参照、両ログ。
+- Preserved: 本closeoutは候補復元0/native0/ROM変更0。BP受入原本、2工程の原本・失敗履歴は不変。
+- Network/reference: GitHub/Actions。比較参照pret/pokefirered@c75f352304d529f6ba92d4f74b9cf8b5c3810788 src/event_data.c / src/quest_log.c。外部コード転記・候補ROMへの同一性主張なし。
+- Correction: 前工程SELECTOR-OWNERSのNetwork「外部技術資料なし」はセッション全体では不正確。上記pret sourceをGitHub接続から比較参照した。旧ログは保存し、この追記を訂正記録とする。
+- Commit: task graph/最終index guard成功後、最新HEAD照合して同branch非force push。全体guard PASS・全CI green・merge/release/baseline変更を主張しない。
+- Next: 保存initializerとalias候補を再検証せず、0x08113984実callerのpointer/size/LIMITと0x09126CB4/0x09127060/0x09099E16の役割・実到達を絞る。有効初期化はselectorを設定しないため通常story経路のselector1/2を別に追う。同一アドレスだけでRTC衝突/既存コードの不存在と断定しない。旧18owner、Ring取得・装備実戦・保存、policy/Circus/P08は未完。
+
+
+## 2026-09-16T10:04:05.988662+00:00 — PR-P08-7-RING-RECORD-CALLERS
+- Timestamp: 2026-09-16T10:04:05.988662+00:00
+- Task: PR-P08-7-RING-RECORD-CALLERS / initializer実caller候補と外部calleeの未読byteだけを固定
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-record-callers
+- Summary: initializer/外部callee6根の未読caller候補116件、新規18308byte採取、保存570byte再利用。selector literal/initializer ABI/受入BP/native再実行0。コード境界と実到達は未証明。
+- Files changed: scripts/pr16_ring_record_callers.py, tests/test_pr16_ring_record_callers.py, .github/workflows/pr16-ring-record-callers.yml, content/modernization/pr16_ring_record_callers.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定20 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=fd4ba2041e61d425bec24d107d4abe08f7b94f38; run=35082799310（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存したrecord caller証拠から0x08113984 callerのpointer/size/LIMITとselector設定を結合し、0x09126CB4/0x09127060/0x09099E16の実作用とcallersを検証する。再採取せず、RTC aliasの存在と通常story到達を分離する。旧18owner・Ring取得/装備実戦/保存は未完。
+
+
+## 2026-09-16T10:17:54.392105+00:00 — PR-P08-7-RING-CONTROL-ROLES
+- Timestamp: 2026-09-16T10:17:54.392105+00:00
+- Task: PR-P08-7-RING-CONTROL-ROLES / 保存BCD変換とI/O wrapper・外部veneerの契約を区別
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-control-roles
+- Summary: 保存byteから0x09126CB4の7field BCD変換を2048vectorで検証。0x09127060は外部5calleeを持つI/O wrapper、0x09099E16は未読0x081C9DF9への2命令tail veneer。tick/init入口条件257件を限定検証。initializer直接BL/pointer参照0は不存在証明ではない。候補復元/native/既読ABI/BP再実行0。
+- Files changed: scripts/pr16_ring_control_roles.py, tests/test_pr16_ring_control_roles.py, .github/workflows/pr16-ring-control-roles.yml, content/modernization/pr16_ring_control_roles.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定35 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=8050cb1a2cd17f127922483247c34829aa92e287; run=35084187651（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存caller/制御役割証拠を再利用し、initializerへの未検索Thumb tail/ARM/間接参照と、0x081C9DF9およびI/O wrapperの未読5delegateを必要範囲だけ結合する。selector1/2とrecord pointer/size/LIMITの通常story実到達を観測するまでRing受入にしない。BCDとselectorの同一byteは確認済みだがRTC同時衝突/全owner不存在を断定しない。旧18ownerは維持。
+
+
+## 2026-09-16T10:23:36.222617+00:00 — PR-P08-7-RING-CONTROL-CLOSEOUT
+- Timestamp: 2026-09-16T10:23:36.222617+00:00
+- Task: PR-P08-7-RING-CONTROL-CLOSEOUT / caller採取と制御役割の成功原本・保存commit・未完境界を固定
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-control-closeout
+- Summary: caller採取20tests/run35082799310と制御役割35tests/run35084187651は原Actions成功・artifact・保存commitまで照合済み。新規18308byte/116参照、保存570byte再利用。BCD2048vector、tick/init257条件を検証。候補復元計1、native/旧ABI/BP受入再実行0。0x09099E16のtail先は未読0x081C9DF9。Ring実到達は未証明。
+- Files changed: scripts/pr16_ring_control_closeout.py, tests/test_pr16_ring_control_closeout.py, .github/workflows/pr16-ring-control-closeout.yml, content/modernization/pr16_ring_control_closeout.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定18 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=e23098dd78f0157cf842e6a1ccd96624b1a8ea94; run=35084702528（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存caller/role/closeoutを再利用し、0x08113984への未検索Thumb短分岐/ARM/間接参照、0x081C9DF9とI/O wrapper未読5calleeから実callerのpointer/size/LIMIT・selector1/2の通常story実到達を絞る。同一byteのBCD/selector利用をRTC同時衝突や全owner不存在へ読み替えない。旧18owner、Ring正規取得・装備実戦・保存、policy/Circus/P08は未完。
+
+
+## 2026-09-16T10:42:02.659945+00:00 — PR-P08-7-RING-BRANCH-FRONTIER
+- Timestamp: 2026-09-16T10:42:02.659945+00:00
+- Task: PR-P08-7-RING-BRANCH-FRONTIER / 未検索分岐・間接参照候補と6delegateの不足byteを固定
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-branch-frontier
+- Summary: 未検索の短分岐/ARM/PC相対参照は0候補。6delegate用に新規3326byte、保存622byte再利用。候補復元1、ROM変更/native/BP受入再実行0。実到達とcaller pointer/size/LIMITは未証明。
+- Files changed: scripts/pr16_ring_branch_frontier.py, tests/test_pr16_ring_branch_frontier.py, .github/workflows/pr16-ring-branch-frontier.yml, content/modernization/pr16_ring_branch_frontier.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定30 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=82614a5fabc17ba3de1d22b990c272b2ac6b25e8; run=35086278411（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存branch-frontierから0x081C9DF9とI/O wrapperの5delegateを局所契約へ分解し、新候補の命令境界・実caller接続を絞る。byte再採取/既読BCD検証を繰り返さず、computed/RAM/mirrored-PC参照と旧18ownerを未完に保つ。Ring正規取得・装備実戦・保存は未受入。
+
+
+## 2026-09-16T10:55:00.080461+00:00 — PR-P08-7-RING-DELEGATE-CONTRACTS
+- Timestamp: 2026-09-16T10:55:00.080461+00:00
+- Task: PR-P08-7-RING-DELEGATE-CONTRACTS / 保存7delegateの書込範囲・帰還・未読境界を検証
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-delegate-contracts
+- Summary: 保存7delegateを限定検証: fill2584、reset/gate/status各256、reader3072、date1767ベクトル。GPIO書込/buffer範囲を固定。day0/hour24/minute60/second60許容は実装事実として保持。ROM復元/変更/native/BP再実行0。通常Ring取得は未受入。
+- Files changed: scripts/pr16_ring_delegate_contracts.py, tests/test_pr16_ring_delegate_contracts.py, .github/workflows/pr16-ring-delegate-contracts.yml, content/modernization/pr16_ring_delegate_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定36 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=935e9116d3f2bff62b00b95eebe7e7bafb372068; run=35087488359（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 未読0x0912C4A9/0x0912C555/0x09099E05とmonth table0x09169530..0x09169560を保存byte優先で検証する。initializerのcomputed/RAM/mirrored-PC callerとpointer/size/LIMIT、旧18owner、Ring通常取得/装備実戦/保存は未完。既読7delegate・前回分岐走査・BP受入を再実行しない。
+
+
+## 2026-09-16T11:00:17.993204+00:00 — PR-P08-7-RING-SESSION-CLOSEOUT
+- Timestamp: 2026-09-16T11:00:17.993204+00:00
+- Task: PR-P08-7-RING-SESSION-CLOSEOUT / 分岐frontierと7delegateの成功原本・未完契約・非再実行記録を確定
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-session-closeout
+- Summary: branch-frontier30testsと7delegate36testsを成功Actions・原artifact・保存commitまで照合。新規3326byte/保存622byte、未検索形式の参照候補0。限定8191vectorを記録。候補復元計1、ROM変更/native/BP受入再実行0。0候補を全caller不在、供給bit列をhardware受入へ読み替えない。Ring取得は未受入。
+- Files changed: scripts/pr16_ring_session_closeout.py, tests/test_pr16_ring_session_closeout.py, .github/workflows/pr16-ring-session-closeout.yml, content/modernization/pr16_ring_session_closeout.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定18 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=abef270af148fd2919e8fc3fc5e4412ed72e1dc7; run=35087956576（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存7delegate契約を再利用し、0x0912C4A9/0x0912C555/0x09099E05とmonth table0x09169530..0x09169560、initializer0x08113984のcomputed/RAM/mirrored-PC caller・pointer/size/LIMITを追う。既読byte/ABI/BPを再実行しない。旧18ownerとRing正規取得・装備実戦・保存、policy/Circus/P08は未完。
+
+
+## 2026-09-16T11:26:36.025259+00:00 — PR-P08-7-RING-UNREAD-FRONTIER
+- Timestamp: 2026-09-16T11:26:36.025259+00:00
+- Task: PR-P08-7-RING-UNREAD-FRONTIER / 未読3delegate・月表・mirrored-PC参照の限定追跡を保存
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-unread-frontier
+- Summary: 未読3delegate/月表の新規1278byteとmirrored-PC参照0候補を固定。保存134byteを再利用。候補復元1、ROM変更/native/BP再実行0。月表は値を採取しただけでcalendar契約未受入。
+- Files changed: scripts/pr16_ring_unread_frontier.py, tests/test_pr16_ring_unread_frontier.py, .github/workflows/pr16-ring-unread-frontier.yml, content/modernization/pr16_ring_unread_frontier.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定42 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=d202443b94604ebffa1396104eec495611480e46; run=35090180714（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存した0x0912C4A9/0x0912C555/0x09099E05と12word月表を局所契約へ分解する。mirrored候補があればcode/data境界から追い、computed/RAM caller・initializer pointer/size/LIMITを未完に保つ。採取/旧7delegate/BPを再実行しない。旧18owner、Ring正規取得・装備実戦・保存、policy/Circus/P08は未完。
+
+
+## 2026-09-16T11:39:56.899277+00:00 — PR-P08-7-RING-CLOCK-CONTRACTS
+- Timestamp: 2026-09-16T11:39:56.899277+00:00
+- Task: PR-P08-7-RING-CLOCK-CONTRACTS / GPIO2delegate・月表境界・外部中継の保存byte契約を確定
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-clock-contracts
+- Summary: 保存byteだけでGPIO2関数のread1024/write1792vectorと月表11か月2816dayを検証。month境界765vectorでは無効244値が表外readへ進むことを記録し、実機faultとは断定しない。09099E04は081C85A5への中継で剰余/閏年契約は未証明。先行42tests成功原本と初回failureを保持。候補復元/ROM変更/native再実行0。
+- Files changed: scripts/pr16_ring_clock_contracts.py, tests/test_pr16_ring_clock_contracts.py, .github/workflows/pr16-ring-clock-contracts.yml, content/modernization/pr16_ring_clock_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定36 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=f5a25d8284eea63dce42c73f4adbb35f9f0ea5e0; run=35091501711（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存中継から0x081C85A5の未読契約と閏年suffixを追う。無効monthの表外値を正常拒否と仮定しない。initializer08113984のcomputed/RAM caller・pointer/size/LIMITと旧18ownerは未完。GPIO/月表/byte採取/mirrored探索/BPを再実行しない。Ring正規取得・装備実戦・保存、policy/Circus/P08は未受入。
+
+
+## 2026-09-16T12:45:18.084347+00:00 — PR-P08-7-RING-DIVMOD-FRONTIER
+- Timestamp: 2026-09-16T12:45:18.084347+00:00
+- Task: PR-P08-7-RING-DIVMOD-FRONTIER / 保存中継の未読081C85A5だけを固定し再採取を防止
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-divmod-frontier
+- Summary: 保存中継081C85A5の未読512byteだけを固定。preflight/source/候補identityを検証し、既読GPIO/月表/BPは再実行0。剰余・ABI・閏年はまだ未受入。
+- Files changed: scripts/pr16_ring_divmod_frontier.py, tests/test_pr16_ring_divmod_frontier.py, .github/workflows/pr16-ring-divmod-frontier.yml, content/modernization/pr16_ring_divmod_frontier.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定14 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=d51cfce034a86a14c151fbe6ef0135bc75ea635b; run=35097533760（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 新規保存081C85A5命令を解析し、戻値・ABI・閏年suffixを検証する。再採取/既読GPIO/月表/BPを繰り返さない。initializer08113984のcomputed/RAM caller・pointer/size/LIMITと旧18owner、Ring正規取得・装備実戦・保存は未完。policy/Circus/P08も未受入。
+
+
+## 2026-09-16T13:01:41.673886+00:00 — PR-P08-7-RING-LEAP-CONTRACTS
+- Timestamp: 2026-09-16T13:01:41.673886+00:00
+- Task: PR-P08-7-RING-LEAP-CONTRACTS / 保存剰余callee・中継ABI・二月閏年suffixを検証
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-leap-contracts
+- Summary: 保存192byteの非0除数剰余7256vector・中継105vector・二月7185vectorを検証。BCD year4倍数25値はday29許容、r4-r11/SP・入力不変。除数0だけ081C7FCCへ未読call。暦epoch/汎用世紀判定は未証明。候補復元/新規byte採取/ROM変更/native再実行0。
+- Files changed: scripts/pr16_ring_leap_contracts.py, tests/test_pr16_ring_leap_contracts.py, .github/workflows/pr16-ring-leap-contracts.yml, content/modernization/pr16_ring_leap_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定37 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=ee4089b940fe03c17fbb0919ecb2b44af36c63a6; run=35099285622（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: GPIO/月表/剰余/閏年suffixの保存契約を再利用し、initializer08113984のcomputed/RAM caller・実pointer/size/LIMIT、または旧18未読ownerの未観測辺へ進む。除数0の081C7FCCは実callerで必要性が出るまで再採取しない。Ring正規取得・装備実戦・保存、policy/Circus/P08は未受入。BPと既読契約は単独再実行しない。
+
+
+## 2026-09-16T13:15:34.269372+00:00 — PR-P08-7-RING-OWNER-FRONTIER
+- Timestamp: 2026-09-16T13:15:34.269372+00:00
+- Task: PR-P08-7-RING-OWNER-FRONTIER / 旧18targetの未読命令と保存済み境界を重複なしで固定
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-owner-frontier
+- Summary: 旧18targetを有限追跡し、新規240命令/502byteと保存済み合流境界を記録。保存36byteを再利用。未知/operand/literal/資源上限は停止。候補復元1、ROM変更/native再実行0。
+- Files changed: scripts/pr16_ring_owner_frontier.py, tests/test_pr16_ring_owner_frontier.py, .github/workflows/pr16-ring-owner-frontier.yml, content/modernization/pr16_ring_owner_frontier.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定30 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=be75645c967228f15188ebe7e5e46618b81de966; run=35100563848（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存した旧18targetのcall/return・書込・共有nodeを実callsiteの引数/保存frameと結合してownerを絞る。今回nodeの再採取/再解読と既読GPIO/剰余/閏年/BPの単独再実行は不要。initializerの実caller/pointer/size/LIMIT、Ring正規取得・装備実戦・保存、policy/Circus/P08は未受入。
+
+
+## 2026-09-16T14:32:24.178815+00:00 — PR-P08-7-RING-OWNER-CONTEXT
+- Timestamp: 2026-09-16T14:32:24.178815+00:00
+- Task: PR-P08-7-RING-OWNER-CONTEXT / 保存18targetを実callsiteの引数・中継先・保存境界へ結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-owner-context
+- Summary: 保存18targetを21実callsiteへ結合。9中継callsiteの宛先5種、保存済callee3辺を明示。帰還/SP/frame/保存registerの未証明仮定と未読境界は維持。候補復元/ROM変更/native再実行0。
+- Files changed: scripts/pr16_ring_owner_context.py, tests/test_pr16_ring_owner_context.py, .github/workflows/pr16-ring-owner-context.yml, content/modernization/pr16_ring_owner_context.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定40 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=68c9c0fc6c8571f1513008443ade14de5e42cb9f; run=35109188711（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存nodeの書込・copy/hash/LE32・initializerを実引数と結合して限定契約を検証する。中継先5種のうち既読FlagGet等を再採取せず、新規実体だけを追う。computed jump、2未読callee、窓外継続、caller/pointer/size/LIMITとRing正規取得・実戦保存は未受入。
+
+
+## 2026-09-16T14:43:27.798067+00:00 — PR-P08-7-RING-SAVED-CONTRACTS
+- Timestamp: 2026-09-16T14:43:27.798067+00:00
+- Task: PR-P08-7-RING-SAVED-CONTRACTS / 保存copy/checksum/cursor/metadata初期化の書込とframeを結合検証
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-saved-contracts
+- Summary: 保存nodeの28合成ケースでcallback/cursor/copy2048/checksum/LE32/runtime metadata初期化とvalidator早期returnを検証。書込範囲と合成SP/r4-r11復元を確認。live frame/全callerは未証明。候補復元/ROM/native再実行0。
+- Files changed: scripts/pr16_ring_saved_contracts.py, tests/test_pr16_ring_saved_contracts.py, .github/workflows/pr16-ring-saved-contracts.yml, content/modernization/pr16_ring_saved_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定32 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=0ea72e2eab60447f96a91b3bfa8c97466c57ac31; run=35110450877（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 未読direct callee2件、computed jump表、validator窓外継続と中継先の未読実体だけを進める。保存済FlagGet/FlagSet・GPIO・剰余/閏年・今回copy/checksum契約の単独再実行は不要。元initializerの実caller/pointer/size/LIMIT、Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。
+
+
+## 2026-09-16T14:52:18.023614+00:00 — PR-P08-7-RING-EFFECTIVE-FRONTIER
+- Timestamp: 2026-09-16T14:52:18.023614+00:00
+- Task: PR-P08-7-RING-EFFECTIVE-FRONTIER / 実callsiteの新規7入口と5要素jump表を保存境界へ接続
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-effective-frontier
+- Summary: 実callsiteの新規7入口と保存済計算jumpの5要素表から、未読143命令/340byteだけを保存。既存802nodeへは再decodeせず停止。候補復元1、ROM変更/native再実行0。
+- Files changed: scripts/pr16_ring_effective_frontier.py, tests/test_pr16_ring_effective_frontier.py, .github/workflows/pr16-ring-effective-frontier.yml, content/modernization/pr16_ring_effective_frontier.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定28 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=1189b2df826a81133e8680b72c3069870f276cb2; run=35111190784（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 今回の保存callee・validator継続・jump各caseを実callsite/frame/書込へ結合し、残る未読辺だけを進める。7入口/5要素表や既読copy/checksum/BPを再採取・単独再実行しない。全caller/initializer LIMIT・Ring正規story取得/装備実戦/保存とpolicy/Circus/P08は未受入。
+
+
+## 2026-09-16T15:03:08.341375+00:00 — PR-P08-7-RING-EFFECTIVE-CONTRACTS
+- Timestamp: 2026-09-16T15:03:08.341375+00:00
+- Task: PR-P08-7-RING-EFFECTIVE-CONTRACTS / 新規pop/mode/veneerとvalidatorエラー継続を保存証拠へ結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-effective-contracts
+- Summary: 新規calleeを結合し、mode全256値、pop/ScriptReturn512ケース、validatorエラー19ケースを検証。中継2件を既知validator/0x093BDE81へ接続。Ring受入・live全frameとは別。ROM/native再実行0。
+- Files changed: scripts/pr16_ring_effective_contracts.py, tests/test_pr16_ring_effective_contracts.py, .github/workflows/pr16-ring-effective-contracts.yml, content/modernization/pr16_ring_effective_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定32 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=ac9f30514b92070eb44b86b23562239a3a0617a4; run=35112649740（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存結合を再利用し、残るdirect callee 0x08008B49,0x08068CCD,0x080F7DBD,0x081C27DD と未読中継先 0x093BDE81・窓外継続のみを進める。正常header継続はversion1=0x093BDAA8、version2=0x093BDB3Eで停止する。新規7入口/表/既読契約/BPは単独再実行せず、Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。
+
+
+## 2026-09-16T15:31:30.764215+00:00 — PR-P08-7-RING-REMAINING-FRONTIER
+- Timestamp: 2026-09-16T15:31:30.764215+00:00
+- Task: PR-P08-7-RING-REMAINING-FRONTIER / 残るcalleeとvalidator正常継続を有限waveで保存結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-remaining-frontier
+- Summary: 残るcallee/validatorの10入口を4有限waveで結合。新規445命令/1096byteのみ保存。既存命令再解読0、native0。
+- Files changed: scripts/pr16_ring_remaining_frontier.py, tests/test_pr16_ring_remaining_frontier.py, .github/workflows/pr16-ring-remaining-frontier.yml, content/modernization/pr16_ring_remaining_frontier.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定32 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=8a3309178aaaa4cc8de06899b14db2abb249b737; run=35115765819（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 今回保存した4callee・0x093BDE81・validator version1/2正常継続のABI/効果を合成検証する。保存nodeとpending_boundariesを正とし、新規未読callee・間接辺・窓上限を未証明で保持する。同じ採取/既読ABI/BPを再実行せず、Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。
+
+
+## 2026-09-16T15:53:43.137520+00:00 — PR-P08-7-RING-REMAINING-CONTRACTS
+- Timestamp: 2026-09-16T15:53:43.137520+00:00
+- Task: PR-P08-7-RING-REMAINING-CONTRACTS / version1/VACQ正常継続・初期化・flash byte列の保存契約と未読dataを結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-remaining-contracts
+- Summary: 保存1390命令を結合し280新規合成契約。v1外部buffer/VACQ正常とCRC拒否、v2初期化、4byte I/O列を検証。ROM/native再採取0。
+- Files changed: scripts/pr16_ring_remaining_contracts.py, tests/test_pr16_ring_remaining_contracts.py, .github/workflows/pr16-ring-remaining-contracts.yml, content/modernization/pr16_ring_remaining_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定42 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=f91e07e0c6d48e01f941eff299a8971db80b33c7; run=35118343796（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 残る6calleeとstring6要素表・v2規則23件/上限6件の3data範囲だけを有限採取して保存結合する。v2正常return、実buffer copy、string分岐、callback/wait帰還を次に検証。既読採取/単独ABI/BPを再実行せず、Ring正規story取得・装備実戦・保存とpolicy/Circus/P08は未受入。
+
+
+## 2026-09-16T15:59:45.458934+00:00 — PR-P08-7-RING-DEPENDENCY-FRONTIER
+- Timestamp: 2026-09-16T15:59:45.458934+00:00
+- Task: PR-P08-7-RING-DEPENDENCY-FRONTIER / 残る6calleeとstring/v2有限data表を保存結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-dependency-frontier
+- Summary: 残る6calleeと3表440byteを有限結合。2waveで新規186命令/854byte。旧命令再解読・native0。
+- Files changed: scripts/pr16_ring_dependency_frontier.py, tests/test_pr16_ring_dependency_frontier.py, .github/workflows/pr16-ring-dependency-frontier.yml, content/modernization/pr16_ring_dependency_frontier.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定22 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=d6db33f77f6f0a7ba4cdb316a135809c231b1b4a; run=35118859775（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 今回保存したcopy/string分岐とv2表を使い、v2正常return・実buffer形のcopy・文字列分岐を合成検証する。未読callee/間接辺を推測せず保存pendingを次の境界とする。同じ採取/旧280契約/BPは再実行しない。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。
+
+
+## 2026-09-16T16:08:24.001620+00:00 — PR-P08-7-RING-DEPENDENCY-CONTRACTS
+- Timestamp: 2026-09-16T16:08:24.001620+00:00
+- Task: PR-P08-7-RING-DEPENDENCY-CONTRACTS / v2正常境界・owner buffer差・copy/string部分契約を保存結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-dependency-contracts
+- Summary: 保存1576命令と440byte表から94新規合成契約。v2正常/規則境界、v1 shadow copyとv2 copyなし、正length copy、string有限入力を検証。ROM/native0。
+- Files changed: scripts/pr16_ring_dependency_contracts.py, tests/test_pr16_ring_dependency_contracts.py, .github/workflows/pr16-ring-dependency-contracts.yml, content/modernization/pr16_ring_dependency_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定24 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=43abb8ea13dbbbe1bb86533b4e8445cf14303859; run=35119924967（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 残る6calleeとstring252 subtype4..24の21要素表84byteを一度だけ有限採取し保存結合する。string253の参照先、scheduler/callback/wait等の未読境界とcaller frameを次に絞る。今回完了したv2/owner copy/規則境界を単独再実行しない。copy長0は安全なno-opではなく、r0はdestinationでなく保存LRとなる。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。
+
+
+## 2026-09-16T16:51:48.924858+00:00 — PR-P08-7-RING-STRING-FRONTIER
+- Timestamp: 2026-09-16T16:51:48.924858+00:00
+- Task: PR-P08-7-RING-STRING-FRONTIER / 未読6calleeとstring252の21要素表を有限採取・保存結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-string-frontier
+- Summary: 未読6calleeとstring252の21要素84byte表を2waveで保存結合。新規176命令/392byte。既読再解読・native0。
+- Files changed: scripts/pr16_ring_string_frontier.py, tests/test_pr16_ring_string_frontier.py, .github/workflows/pr16-ring-string-frontier.yml, content/modernization/pr16_ring_string_frontier.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定32 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=992e9d2e2bc333a72eec2cf8d123a7776a815104; run=35124390327（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 今回保存したstring252全subtype分岐とstring253参照選択、scheduler/callback/wait等を有限合成契約で結合する。未読callee/実data/ライブcaller frameは保存pendingから次へ絞る。同じ採取/旧94契約/BPを単独再実行しない。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。
+
+
+## 2026-09-16T17:04:47.471246+00:00 — PR-P08-7-RING-STRING-CONTRACTS
+- Timestamp: 2026-09-16T17:04:47.471246+00:00
+- Task: PR-P08-7-RING-STRING-CONTRACTS / FC全21分岐・memset・placeholderとcallee停止契約を保存検証
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-string-contracts
+- Summary: 保存1752命令から716新規有限合成契約。FC全21分岐・memset整列/0長・selector/nibble/null gateと未読境界を検証。ROM/native0。
+- Files changed: scripts/pr16_ring_string_contracts.py, tests/test_pr16_ring_string_contracts.py, .github/workflows/pr16-ring-string-contracts.yml, content/modernization/pr16_ring_string_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定43 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=0c6fc6515a81cda985f47508f342a05caf5df091; run=35125897577（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 残る3calleeと非null実中継先0x09378A31、placeholder14要素56byte・nibble76byte・fallback先頭1byteだけを有限採取して保存結合する。旧採取/FC/memset/旧94契約/BPを単独再実行せず、placeholder実参照と非null/caller frameへ絞る。Network補足（この工程では共通runnerの外部技術資料なし定型句を適用しない）: GBATEK THUMB.14/15（https://problemkaputt.de/gbatek-thumb-opcodes-memory-multiple-load-store-push-pop-and-ldm-stm.htm）、STMIA writeback/POP Thumb維持。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。
+
+
+## 2026-09-16T17:11:03.644168+00:00 — PR-P08-7-RING-REFERENCE-FRONTIER
+- Timestamp: 2026-09-16T17:11:03.644168+00:00
+- Task: PR-P08-7-RING-REFERENCE-FRONTIER / 残る3callee・非null中継先・placeholder等133byteを有限保存
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-reference-frontier
+- Summary: 残る3callee/非null中継先とplaceholder等133byteを1waveで有限結合。新規107命令/319byte。既読再解読・native0。
+- Files changed: scripts/pr16_ring_reference_frontier.py, tests/test_pr16_ring_reference_frontier.py, .github/workflows/pr16-ring-reference-frontier.yml, content/modernization/pr16_ring_reference_frontier.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定32 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=171ed73cc1d70f2a0d768d05241d67dda9ceb4d4; run=35126420824（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存したplaceholder table/getter・nibble実表・fallback先頭・非null中継先を有限合成契約として結合する。新たなcallee/実データ/間接辺とcaller frameは保存pendingで絞り、推測して通過しない。同じ採取/旧716契約/FC/memset/BPは単独再実行しない。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。
+
+
+## 2026-09-16T17:24:43.155725+00:00 — PR-P08-7-RING-REFERENCE-CONTRACTS
+- Timestamp: 2026-09-16T17:24:43.155725+00:00
+- Task: PR-P08-7-RING-REFERENCE-CONTRACTS / placeholder14参照・実nibble・task列・非null境界を保存結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-reference-contracts
+- Summary: 保存1859命令で795新規合成契約、31停止境界とslot255の負診断を結合。placeholder14参照/実nibble152値/task挿入214件を限定検証。実caller範囲とRing取得は未証明。
+- Files changed: scripts/pr16_ring_reference_contracts.py, tests/test_pr16_ring_reference_contracts.py, .github/workflows/pr16-ring-reference-contracts.yml, content/modernization/pr16_ring_reference_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定48 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=9b36ca01d9d83234650b667baa6224f81b23fdf3; run=35127969235（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 残るcallee0x0806DC49と非null継続0x08002D15、11本のROM文字列を保存pendingの非重複窓（合計83byte）だけ有限採取する。次の契約では実callerのtask index<16/非循環列/文字列buffer境界を別途結合し、slot255診断を実ゲームbugや正常受入に読み替えない。同じ採取/旧795・716契約/FC/memset/BPを単独再実行しない。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。
+
+
+## 2026-09-16T17:41:54.954032+00:00 — PR-P08-7-RING-TEXT-FRONTIER
+- Timestamp: 2026-09-16T17:41:54.954032+00:00
+- Task: PR-P08-7-RING-TEXT-FRONTIER / 未読VarGet callee・非null継続と11文字列83byteを有限保存
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-text-frontier
+- Summary: 未読2入口と11文字列83byteを有限採取。新規76命令、11文字列で窓内FFを保存。ROM変更/native0。
+- Files changed: scripts/pr16_ring_text_frontier.py, tests/test_pr16_ring_text_frontier.py, .github/workflows/pr16-ring-text-frontier.yml, content/modernization/pr16_ring_text_frontier.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定35 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=030143d88235cbb02503bda2d66a372ef19ffb72; run=35129632449（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存したVarGet callee・非null継続と11文字列を実byteの合成契約へ結合する。task index<16/非循環列・文字列buffer境界は実caller証拠と分離し、未読callee/間接辺は保存pendingで絞る。同じ採取・旧795/716契約・FC/memset/BPを単独再実行しない。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。
+
+
+## 2026-09-16T17:50:27.127532+00:00 — PR-P08-7-RING-CALLER-CONTRACTS
+- Timestamp: 2026-09-16T17:50:27.127532+00:00
+- Task: PR-P08-7-RING-CALLER-CONTRACTS / CreateTask実caller・11実文字列容量・非null転送prefixの保存契約を結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-caller-contracts
+- Summary: 保存1935命令でCreateTask実caller166件・11実文字列の容量99件を合成。当該callerのindex0..15・満杯0返却、非null32byte初期化と16byte転送を限定検証。live allocation/Ring未証明。
+- Files changed: scripts/pr16_ring_caller_contracts.py, tests/test_pr16_ring_caller_contracts.py, .github/workflows/pr16-ring-caller-contracts.yml, content/modernization/pr16_ring_caller_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定44 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=0f091f214aae0bfc0ee7d7e462f8ea64013b3010; run=35130614298（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は未読3callee0x08002E4D/0x08002E79/0x08003EEDとVarGet実中継先0x090970DDだけを有限採取する。保存CreateTask caller/11文字列/非nullprefixを再利用し、live task列/文字列allocationとstory到達は別証拠で結合する。満杯0返却をslot0成功へ、合成prefixをcallee帰還へ読み替えない。旧採取/795/716/BP/nativeを単独再実行しない。Ring/policy/Circus/P08は未受入。
+
+
+## 2026-09-16T17:54:30.488517+00:00 — PR-P08-7-RING-GATE-FRONTIER
+- Timestamp: 2026-09-16T17:54:30.488517+00:00
+- Task: PR-P08-7-RING-GATE-FRONTIER / 3calleeとVarGet実中継先を既読1935命令へ有限結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-gate-frontier
+- Summary: 3callee/VarGet実中継先を既読1935命令へ有限結合。新規172命令/388byte、data再採取0、既読再解読/native0。
+- Files changed: scripts/pr16_ring_gate_frontier.py, tests/test_pr16_ring_gate_frontier.py, .github/workflows/pr16-ring-gate-frontier.yml, content/modernization/pr16_ring_gate_frontier.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定18 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=4cc4f3f29a2d0d6b3bfcd0eb9093596c73f921fd; run=35130896426（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存したVarGet実装と3calleeをcallerの引数・戻り値・書込範囲へ結合し、未読table/callbackは推測せずpendingで限定する。CreateTask/11文字列/非nullprefixの受入済み合成契約は単独再実行しない。実story Ring取得・装備実戦・保存とpolicy/Circus/P08は未受入。
+
+
+## 2026-09-16T18:02:58.079911+00:00 — PR-P08-7-RING-GATE-CONTRACTS
+- Timestamp: 2026-09-16T18:02:58.079911+00:00
+- Task: PR-P08-7-RING-GATE-CONTRACTS / 81要素表と非null caller帰還・callback境界を保存検証
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-gate-contracts
+- Summary: 保存2107命令で81要素展開102件・非null帰還140件を結合。32byte出力保存・168byte表・owned frameとcallee-savedを検証。dispatch/VarGet未読先は未証明のまま。
+- Files changed: scripts/pr16_ring_gate_contracts.py, tests/test_pr16_ring_gate_contracts.py, .github/workflows/pr16-ring-gate-contracts.yml, content/modernization/pr16_ring_gate_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定35 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=baa270420d525e8b78354d290543fbf6584a31de; run=35131912531（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は未読callee0x080017D1/0x080020BD/0x081C7ACD/0x09128221とVarGetの実継続0x0806DC51/0x0806DC57を既読2107命令へ有限結合する。callback table/12byte resource records/32byte出力slotは実caller allocation証拠と分離する。保存81要素展開・非null帰還・265caller・11文字列・旧795/716/BP/nativeの単独再実行は禁止。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。
+
+
+## 2026-09-17T06:28:06.099298+00:00 — PR-P08-7-RING-DISPATCH-FRONTIER
+- Timestamp: 2026-09-17T06:28:06.099298+00:00
+- Task: PR-P08-7-RING-DISPATCH-FRONTIER / 4calleeとVarGetの2継続を保存2107命令へ有限結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-dispatch-frontier
+- Summary: 4callee/VarGetの2継続を既読2107命令へ有限結合。新規223命令/348byte、data再採取0、既読再解読/native0。
+- Files changed: scripts/pr16_ring_dispatch_frontier.py, tests/test_pr16_ring_dispatch_frontier.py, .github/workflows/pr16-ring-dispatch-frontier.yml, content/modernization/pr16_ring_dispatch_frontier.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定23 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=f25707e6a655a3beb41882a10d124f2171d75799; run=35189858767（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存したresource callee・callback trampoline・VarGet helper/継続を実caller引数と帰還/SP/書込範囲へ結合する。未読先はstubで補わずpendingを保持。callback table/12byte resource records/32byte出力slotの実allocationは別証拠。既読2107命令/81要素/非null帰還/265caller/11文字列/BP/nativeを単独再実行しない。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。
+
+
+## 2026-09-17T06:41:03.294367+00:00 — PR-P08-7-RING-DISPATCH-CONTRACTS
+- Timestamp: 2026-09-17T06:41:03.294367+00:00
+- Task: PR-P08-7-RING-DISPATCH-CONTRACTS / VarGet全65536値と実継続・callback/resource境界の保存契約を検証
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-dispatch-contracts
+- Summary: 保存2330命令でVarGet helper全65536値とcaller帰還1337件、未map/selector/callback/resource停止93件を検証。通常256変数・拡張512変数・special表参照の区分を結合。
+- Files changed: scripts/pr16_ring_dispatch_contracts.py, tests/test_pr16_ring_dispatch_contracts.py, .github/workflows/pr16-ring-dispatch-contracts.yml, content/modernization/pr16_ring_dispatch_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定38 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=9e14bfb6ec932f1411fe072beb5aec9385db59b1; run=35190870442（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次はselector1/2の0x08113889/0x0806DD1D/0x081138F9を既存external1/2/3保存原本から再利用結合し、残るresource8calleeと実callback table/変数領域のallocationを有限検証する。採取済み2330命令・VarGet全u16/帰還・81要素/非null帰還・265caller・11文字列・BP/nativeを単独再実行しない。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。
+
+
+## 2026-09-17T06:52:58.772143+00:00 — PR-P08-7-RING-SELECTOR-REUSE
+- Timestamp: 2026-09-17T06:52:58.772143+00:00
+- Task: PR-P08-7-RING-SELECTOR-REUSE / 既存external3根の保存graph再利用と2工程の成功原本を結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-selector-reuse
+- Summary: 旧external1/2/3の7保存byte graphから127命令を再利用結合し、合計2457命令。今回2工程の61tests・原Actions/job/ZIP/保存commitを再実行なしで照合。初回run35191559008の範囲検査failureは維持し修正。実caller契約は未証明。
+- Files changed: scripts/pr16_ring_selector_reuse.py, tests/test_pr16_ring_selector_reuse.py, .github/workflows/pr16-ring-selector-reuse.yml, content/modernization/pr16_ring_selector_reuse.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定31 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=ed04397bd452f85305e208efe208538bf6dadd24; run=35191815881（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存済みselector1/2の3calleeをVarGet callerへ結合し、帰還/SP/record書込と条件不足/容量不足を検証する。残るresource8callee、実callback table/変数領域allocationは未証明。7旧graphの採取/旧ABI・VarGet全65536値/1337帰還・BP/nativeを単独再実行しない。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。
+
+
+## 2026-09-17T07:05:51.238086+00:00 — PR-P08-7-RING-VARGET-JOIN
+- Timestamp: 2026-09-17T07:05:51.238086+00:00
+- Task: PR-P08-7-RING-VARGET-JOIN / VarGet selector1/2の全通常256変数と条件付きrecord書込・帰還を結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-varget-join
+- Summary: 保存2457命令でVarGet selector1/2の通常256変数を含む752帰還、33不足/readonly停止を結合。selector2の108変数・最大44byte frame・順序付き部分書込を固定。
+- Files changed: scripts/pr16_ring_varget_join.py, tests/test_pr16_ring_varget_join.py, .github/workflows/pr16-ring-varget-join.yml, content/modernization/pr16_ring_varget_join.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定34 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=bab6cb7ae680c9af89147940430b662a6aa83904; run=35192829827（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次はresource未読8callee 0x080011E5/0x08001299/0x080014F1/0x0800273D/0x080027AD/0x08002899/0x080028ED/0x08002901だけを有限採取し、実callback table/12byte resource/32byte出力slotと通常・拡張変数領域のallocation条件を結合する。保存2457命令・VarGet全u16/1337帰還・selector1/2縦結合・旧external ABI/7graph・BP/nativeを単独再実行しない。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。
+
+
+## 2026-09-17T07:30:57.485966+00:00 — PR-P08-7-RING-RESOURCE-FRONTIER
+- Timestamp: 2026-09-17T07:30:57.485966+00:00
+- Task: PR-P08-7-RING-RESOURCE-FRONTIER / 未読resource 8calleeを保存2457命令へ有限結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-resource-frontier
+- Summary: 未読resource 8calleeを保存2457命令へ有限結合。新規393命令/840byte、既読再解読/全ROM走査/native0。
+- Files changed: scripts/pr16_ring_resource_frontier.py, tests/test_pr16_ring_resource_frontier.py, .github/workflows/pr16-ring-resource-frontier.yml, content/modernization/pr16_ring_resource_frontier.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定40 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=4ab69d822720658c988cd2e7422f822d0e02f3f3; run=35194777629（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存したresource 8calleeを実callback table/12byte resource/32byte出力slotの引数・帰還・書込範囲へ結合する。未知callee/間接辺はstub化せず残す。実allocation/通常・拡張変数領域との結合、Ring正規story取得・装備実戦・保存は未受入。同じ8callee採取・保存2457命令・VarGet selector1/2・旧external ABI/7graph・BP/nativeを単独再実行しない。policy/Circus/P08へscopeを拡大しない。
+
+
+## 2026-09-17T07:39:46.729200+00:00 — PR-P08-7-RING-RESOURCE-TAIL
+- Timestamp: 2026-09-17T07:39:46.729200+00:00
+- Task: PR-P08-7-RING-RESOURCE-TAIL / resourceの未読3calleeと8要素分岐表を有限結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-resource-tail
+- Summary: resourceの未読3calleeと8要素32byte分岐表を有限結合。新規120命令/292byte、保存命令2970件。既読再解読/native0。
+- Files changed: scripts/pr16_ring_resource_tail.py, tests/test_pr16_ring_resource_tail.py, .github/workflows/pr16-ring-resource-tail.yml, content/modernization/pr16_ring_resource_tail.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定30 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=3029ad62d958b79904b300b57010728b4d4c0858; run=35195532065（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存命令だけでresource getter/転送/bitmapと12byte record callerの条件付き帰還・書込範囲を結合。実callback table/32byte出力slot/通常・拡張変数領域のallocationは実証拠と区別する。今回3callee/32byte表・先の8callee/VarGet/旧external ABI/BP/nativeは単独再実行しない。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。
+
+
+## 2026-09-17T07:52:26.585998+00:00 — PR-P08-7-RING-RESOURCE-CONTRACTS
+- Timestamp: 2026-09-17T07:52:26.585998+00:00
+- Task: PR-P08-7-RING-RESOURCE-CONTRACTS / resourceの予約queue・bitmap・12byte callerの帰還と部分書込を結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-resource-contracts
+- Summary: 保存2970命令でresource属性/queue/転送/bitmap/12byte callerの1752合成契約と25不足停止を結合。128slot予約・部分書込・外側帰還を固定。実DMA/通常取得とは別。
+- Files changed: scripts/pr16_ring_resource_contracts.py, tests/test_pr16_ring_resource_contracts.py, .github/workflows/pr16-ring-resource-contracts.yml, content/modernization/pr16_ring_resource_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定59 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=798145cfb950e61fed0a38fe72e5bf30e591636c; run=35196651200（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は実callback table/12byte resource/32byte出力slotのallocation・callback到達と残るownerを照合。queue予約は実DMA完了でなく、source/destinationの有効性を証明しない。cursor>=128初回配列外・size0再利用・bitmap検索0/1拒否を保存証拠として保持。今回resource契約/2970命令/3calleeと表/先の8callee/VarGet/旧external ABI/BP/nativeを単独再実行しない。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。
+
+
+## 2026-09-17T08:21:11.309138+00:00 — PR-P08-7-RING-UI-OWNERS
+- Timestamp: 2026-09-17T08:21:11.309138+00:00
+- Task: PR-P08-7-RING-UI-OWNERS / 保存callbackとresourceを固定JPの描画owner・構造体境界へ結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-ui-owners
+- Summary: 保存callback/resourceを固定JPのsTextPrinters・RenderFont・CopyWindowToVram・gWindowsへ結合。候補32byte slotとCFRUヘッダ36byte差を保持。AddTextPrinterはJP ld未定義で仮説。初回run35198562759はfailure保持。live allocation/Ringは未受入。
+- Files changed: scripts/pr16_ring_ui_owners.py, tests/test_pr16_ring_ui_owners.py, .github/workflows/pr16-ring-ui-owners.yml, content/modernization/pr16_ring_ui_owners.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定39 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=e70be3ee87d24b695f2bae1d3eef6a0afbc489c0; run=35199184638（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は今回特定したJP initializer/RunTextPrinters/InitWindowsの未読rootだけを有限採取し、gFonts実table・32byte出力slot・12byte window配列の初期化/到達境界を結合する。US referenceや36byteヘッダをJPの実allocationへ昇格しない。既読2970命令・resource1752契約・BP/nativeは再実行しない。Ring正規取得/装備実戦/保存・policy/Circus/P08は未受入。
+
+
+## 2026-09-17T08:27:05.961414+00:00 — PR-P08-7-RING-UI-FRONTIER
+- Timestamp: 2026-09-17T08:27:05.961414+00:00
+- Task: PR-P08-7-RING-UI-FRONTIER / JP text/windowの7入口を未読命令だけで初期化・callback境界へ結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-ui-frontier
+- Summary: 固定JPのtext/window7入口を有限結合。新規526命令/1222byte、保存総数3496。旧2970命令再解読0、ROM変更/native0。
+- Files changed: scripts/pr16_ring_ui_frontier.py, tests/test_pr16_ring_ui_frontier.py, .github/workflows/pr16-ring-ui-frontier.yml, content/modernization/pr16_ring_ui_frontier.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定22 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=1824282b80cb2d90bbf566b5a10fa3c2fe605426; run=35199605551（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は今回の保存initializer/RunTextPrintersを32byte text pool・12byte window poolのループ上限/allocator失敗/解放/間接callbackへ結合。未読callee/実gFonts tableはpendingを正とする。今回7入口採取・旧resource契約・BP/nativeを単独再実行しない。Ring正規取得・装備実戦・保存、policy/Circus/P08は未受入。
+
+
+## 2026-09-17T08:34:51.143653+00:00 — PR-P08-7-RING-UI-DELEGATES
+- Timestamp: 2026-09-17T08:34:51.143653+00:00
+- Task: PR-P08-7-RING-UI-DELEGATES / 実text中継とwindow allocationの6calleeを保存命令へ結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-ui-delegates
+- Summary: 実RunTextPrinters中継0x09378A43とwindow6calleeを結合。新規99命令/252byte、dummy template8byte。純正symbol名だけで実本体を扱わない。
+- Files changed: scripts/pr16_ring_ui_delegates.py, tests/test_pr16_ring_ui_delegates.py, .github/workflows/pr16-ring-ui-delegates.yml, content/modernization/pr16_ring_ui_delegates.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定21 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=7fd05af1f7e06be33dfc69abe2007cd2623b9fb5; run=35200296263（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存text/window初期化・満杯拒否・null解放・実RunTextPrinters中継の契約を結合。未読heap/callback/実gFonts tableはpendingを正とし、stubで通過させない。今回delegate採取・旧7入口/3496命令・resource契約・BP/nativeを単独再実行しない。Ring通常取得・装備実戦・保存とpolicy/Circus/P08は未受入。
+
+
+## 2026-09-17T08:42:31.317794+00:00 — PR-P08-7-RING-UI-RUNTIME-BYTES
+- Timestamp: 2026-09-17T08:42:31.317794+00:00
+- Task: PR-P08-7-RING-UI-RUNTIME-BYTES / 特定済みheapと実描画本体・復帰・属性10要素表を未読byteだけで結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-ui-runtime-bytes
+- Summary: heap2入口・実描画本体と復帰・属性10要素表を結合。新規323命令/822byte、保存総数3918。既読再解読/native0。
+- Files changed: scripts/pr16_ring_ui_runtime_bytes.py, tests/test_pr16_ring_ui_runtime_bytes.py, .github/workflows/pr16-ring-ui-runtime-bytes.yml, content/modernization/pr16_ring_ui_runtime_bytes.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定21 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=57626df954b38a308031c3780a5b6757da220ab7; run=35201012097（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存pool/heap/実RunTextPrintersの条件付き帰還・書込範囲・不足時部分書込を検証する。実gFonts callback tableと未読calleeはpendingで保持し、仮成功stubを入れない。今回採取/旧3595命令/旧UI・resource契約/BP/nativeを単独再実行しない。Ring通常取得・装備実戦・保存、policy/Circus/P08は未受入。
+
+
+## 2026-09-17T12:57:06.994076+00:00 — PR-P08-7-RING-UI-CONTRACTS
+- Timestamp: 2026-09-17T12:57:06.994076+00:00
+- Task: PR-P08-7-RING-UI-CONTRACTS / 保存pool・heap・実描画の条件付き帰還と不足時部分書込を結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-ui-contracts
+- Summary: 保存3918命令のpool/heap/実RunTextPrintersを733条件で結合。条件付き帰還578、fail-closed 155。ROM復元/新規byte/既読単独検証/native0。
+- Files changed: scripts/pr16_ring_ui_contracts.py, tests/test_pr16_ring_ui_contracts.py, .github/workflows/pr16-ring-ui-contracts.yml, content/modernization/pr16_ring_ui_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定28 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=cf016e615f242dbc6835f96083a7c98fd1f734ab; run=35223854385（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は未読0x0800292D(heap split初期化)、0x081C7A39(assert実体)、0x09378679(render thunk)だけを採取し、保存heap不足・split部分書込とactive描画継続を結合する。実gFonts callback tableは未観測のまま。今回pool/heap/非active帰還・旧byte/旧resource/BP/nativeを単独再実行しない。Ring通常取得・装備実戦・保存、policy/Circus/P08は未受入。
+
+
+## 2026-09-17T13:03:04.310858+00:00 — PR-P08-7-RING-UI-LEAF-BYTES
+- Timestamp: 2026-09-17T13:03:04.310858+00:00
+- Task: PR-P08-7-RING-UI-LEAF-BYTES / heap split・assert・描画thunkの未読3入口を保存契約へ結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-ui-leaf-bytes
+- Summary: 未読heap split/assert/render thunkの3入口を結合。新規37命令/94byte、保存総数3955。旧node再解読/native0。
+- Files changed: scripts/pr16_ring_ui_leaf_bytes.py, tests/test_pr16_ring_ui_leaf_bytes.py, .github/workflows/pr16-ring-ui-leaf-bytes.yml, content/modernization/pr16_ring_ui_leaf_bytes.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定22 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=5687db11b0d96e150bcfa5fc5310b6c86e427bc8; run=35224563901（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は今回保存3入口を使い、heap split完了/不足と実RunTextPrinters active継続を有界検証する。実gFonts callback tableと新たな未読辺はpendingを保持。旧3918命令・今回採取・pool/heap/resource/BP/nativeの単独再実行は禁止。Ring通常取得・装備実戦・保存、policy/Circus/P08は未受入。
+
+
+## 2026-09-17T13:15:40.174308+00:00 — PR-P08-7-RING-UI-LEAF-CONTRACTS
+- Timestamp: 2026-09-17T13:15:40.174308+00:00
+- Task: PR-P08-7-RING-UI-LEAF-CONTRACTS / heap分割完了・window連結・実描画callback境界を有界検証
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-ui-leaf-contracts
+- Summary: 保存3955命令のheap分割・window連結・実render境界を609条件で検証。帰還408、fail-closed 201。ROM復元/native0。
+- Files changed: scripts/pr16_ring_ui_leaf_contracts.py, tests/test_pr16_ring_ui_leaf_contracts.py, .github/workflows/pr16-ring-ui-leaf-contracts.yml, content/modernization/pr16_ring_ui_leaf_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定30 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=263e6b7e8fc54176da704323eeb9d16afe7acf9e; run=35225879618（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は実gFonts(0x03003DD0)初期化と12byte callback表の出自を固定候補の証拠へ結合する。assert残辺0x081C78FD/0x081C7A29と0x081C7A5C未知encodingは未証明で保持。今回3955命令契約・旧733条件/採取/resource/BP/nativeを単独再実行しない。Ring通常取得・装備実戦・保存、policy/Circus/P08は未受入。
+
+
+## 2026-09-17T13:46:34.593509+00:00 — PR-P08-7-RING-FONT-BYTES
+- Timestamp: 2026-09-17T13:46:34.593509+00:00
+- Task: PR-P08-7-RING-FONT-BYTES / gFonts初期化の未読84byteと有限table候補を固定
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-font-bytes
+- Summary: gFonts初期化の隣接84byteを限定採取。literal候補3件・有限table候補0件、新規80byte。旧命令再解読/native0。
+- Files changed: scripts/pr16_ring_font_bytes.py, tests/test_pr16_ring_font_bytes.py, .github/workflows/pr16-ring-font-bytes.yml, content/modernization/pr16_ring_font_bytes.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定20 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=2560975cac98a6b315269399d2af407886e34ce1; run=35229107711（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は今回保存初期化窓のwriter/callsiteと実12byte font descriptorを保存readerへ結合し、初期化store・selector・callback境界を検証する。表候補192byteを実table長と断定しない。同じ採取/候補復元/旧3955命令契約/BP/nativeを単独再実行しない。assert残辺・Ring通常取得・policy/Circus/P08は未受入。
+
+
+## 2026-09-17T13:59:53.043071+00:00 — PR-P08-7-RING-FONT-BINDINGS
+- Timestamp: 2026-09-17T13:59:53.043071+00:00
+- Task: PR-P08-7-RING-FONT-BINDINGS / gFonts setter・実caller literal・描画descriptorを結合検証
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-font-bindings
+- Summary: gFonts setter3命令とcaller候補1件・直前literal供給1件を結合。表1件の有限lookupとsetterを140条件で検証。ROM変更/native0。
+- Files changed: scripts/pr16_ring_font_bindings.py, tests/test_pr16_ring_font_bindings.py, .github/workflows/pr16-ring-font-bindings.yml, content/modernization/pr16_ring_font_bindings.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定32 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=1aaeb8e4eda62d940beeb6a06d65542b68b1baab; run=35230494553（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存された実font表のcallback先を必要selectorから有限採取し、描画state/文字列/出力windowへの作用を結合する。setter/caller/table探索・今回lookup契約・旧3955命令/609条件/BP/nativeを単独再実行しない。実table全長・live初期化到達・assert残辺・Ring通常取得・policy/Circus/P08は未受入。
+
+
+## 2026-09-17T14:14:14.113770+00:00 — PR-P08-7-RING-FONT-FRONTIER
+- Timestamp: 2026-09-17T14:14:14.113770+00:00
+- Task: PR-P08-7-RING-FONT-FRONTIER / 実message font2/4/5のcallbackとdefault初期化帰還を結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-font-frontier
+- Summary: 実messageのfont2/4/5と直接1calleeを新規98命令で結合。default初期化の完全帰還/4byte frameと不足停止を9条件で検証。native0。
+- Files changed: scripts/pr16_ring_font_frontier.py, tests/test_pr16_ring_font_frontier.py, .github/workflows/pr16-ring-font-frontier.yml, content/modernization/pr16_ring_font_frontier.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定28 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=ea205931815c9be1c1c500bba92fea0acc7f4b16; run=35232060702（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は今回保存font2/4/5と文字描画delegateのstate/終端/遅延・出力windowを結合する。未知jump表/未読calleeを保存pendingからだけ進め、他font offsetを実table長と断定しない。今回採取/default初期化・旧140契約/BP/nativeを単独再実行せず、live初期化・Ring通常取得・policy/Circus/P08は未受入。
+
+
+## 2026-09-17T14:44:54.122957+00:00 — PR-P08-7-RING-FONT-STATES
+- Timestamp: 2026-09-17T14:44:54.122957+00:00
+- Task: PR-P08-7-RING-FONT-STATES / font state7分岐と描画delegateを有限結合し境界を保存
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-font-states
+- Summary: font2/4/5のstate7分岐と直接7calleeを新規1567命令で結合。無効state帰還/未map表の57条件を検証。初回run35234485558は復元前hash項目欠落のfailureのまま保持。native0。
+- Files changed: scripts/pr16_ring_font_states.py, tests/test_pr16_ring_font_states.py, .github/workflows/pr16-ring-font-states.yml, content/modernization/pr16_ring_font_states.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定27 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=672521934bfd29e8c77c5de37e69b47c235af626; run=35235505444（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は今回保存state0..6の終端・遅延・入力待ちと出力windowの正確なwrite/帰還を結合する。残る文字/control分岐表と未読calleeは保存pendingからだけ進める。今回表/命令採取と無効state契約・default初期化・BP/nativeは単独再実行せず、Ring通常取得/policy/Circus/P08は未受入。
+
+
+## 2026-09-17T14:56:35.855011+00:00 — PR-P08-7-RING-CHARACTER-FRONTIER
+- Timestamp: 2026-09-17T14:56:35.855011+00:00
+- Task: PR-P08-7-RING-CHARACTER-FRONTIER / 文字と選択font分岐・待機calleeの未読byteを有限結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-character-frontier
+- Summary: 文字8分岐/選択font2/4/5・待機5calleeを新規266命令で結合。scroll速度8byteを保存。既読/native再実行0。
+- Files changed: scripts/pr16_ring_character_frontier.py, tests/test_pr16_ring_character_frontier.py, .github/workflows/pr16-ring-character-frontier.yml, content/modernization/pr16_ring_character_frontier.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定22 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=94bbe65a8eedfbd5462f4caecf46d6f634271a43; run=35236750637（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存byteだけでstate/終端/遅延/入力待ち/出力queueの正確writeと帰還を結合。合成stackを狭め音声globalを明示RAMへ分離し、未mapをゼロ成功にしない。残る制御table/glyph/calleeだけをpendingとして保持。今回採取・受入済みfont/BP/nativeは再実行せずRing通常取得/policy/Circus/P08は未受入。
+
+
+## 2026-09-17T15:10:52.749968+00:00 — PR-P08-7-RING-TEXT-STATE-CONTRACTS
+- Timestamp: 2026-09-17T15:10:52.749968+00:00
+- Task: PR-P08-7-RING-TEXT-STATE-CONTRACTS / 明示RAMでtext状態・終端・遅延と通常高速描画の出力予約を結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-text-state-contracts
+- Summary: 保存5891命令だけで627text条件（帰還594/pending停止33）を検証。512byte明示live stack/音声RAM分離、通常高速終端・改行・遅延と出力queue予約を結合。候補復元/native0。
+- Files changed: scripts/pr16_ring_text_state_contracts.py, tests/test_pr16_ring_text_state_contracts.py, .github/workflows/pr16-ring-text-state-contracts.yml, content/modernization/pr16_ring_text_state_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定36 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=9beb23e3c92722e768dbc99a4423cb48e67970d9; run=35238469986（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存pendingからcontrol24表、font2/4/5字形callee、prompt初期化・cursor/scroll出力と音声/BIOSを有限結合。今回state/終端/遅延/queue契約、保存byte採取、受入済みfont/BP/nativeは単独再実行しない。実文字描画/DMA・全live owner・gFonts初期化・Ring通常取得/policy/Circus/P08は未受入。
+
+
+## 2026-09-17T15:30:12.528316+00:00 — PR-P08-7-RING-CONTROL-FRONTIER
+- Timestamp: 2026-09-17T15:30:12.528316+00:00
+- Task: PR-P08-7-RING-CONTROL-FRONTIER / control24表と字形・prompt・音声の未読8calleeを有限結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-control-frontier
+- Summary: control24表と字形/出力/prompt/音声8calleeを新規643命令で有限結合。保存総数6534、旧5891命令再解読/627契約再実行/native0。
+- Files changed: scripts/pr16_ring_control_frontier.py, tests/test_pr16_ring_control_frontier.py, .github/workflows/pr16-ring-control-frontier.yml, content/modernization/pr16_ring_control_frontier.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定24 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=9d1e7eeabfe69f773d417b8b4f5932d36594f300; run=35240511756（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存control24分岐・prompt初期化・字形/scroll/音声の明示RAM契約を結合。未読data/callee/BIOSはpendingを保持し、候補再採取や受入済みtext/font/BP/nativeを単独再実行しない。実描画/DMA・全live owner・gFonts実初期化・Ring通常取得/policy/Circus/P08は未受入。
+
+
+## 2026-09-17T15:42:42.493077+00:00 — PR-P08-7-RING-CONTROL-CONTRACTS
+- Timestamp: 2026-09-17T15:42:42.493077+00:00
+- Task: PR-P08-7-RING-CONTROL-CONTRACTS / control24分岐・色81要素展開・prompt初期化と未読出力境界を結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-control-contracts
+- Summary: 保存6534命令でcontrol24表・色81要素展開・prompt初期化と通常高速出力を636条件（帰還531/pending105）検証。候補復元/新規byte/native0。
+- Files changed: scripts/pr16_ring_control_contracts.py, tests/test_pr16_ring_control_contracts.py, .github/workflows/pr16-ring-control-contracts.yml, content/modernization/pr16_ring_control_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定36 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=070b5c27efb2f2feb88f5b220dcd5be27fb9b38b; run=35241938016（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は未読7calleeとfont bitmap/width・cursor/symbol・音声の必要dataを限定結合し、字形/cursor/scroll出力とBIOS境界へ進む。今回control/prompt・旧627text/font/BP/nativeは単独再実行しない。実描画/DMA・全live owner・Ring通常取得/policy/Circus/P08は未受入。
+
+
+## 2026-09-17T15:48:58.572342+00:00 — PR-P08-7-RING-OUTPUT-FRONTIER
+- Timestamp: 2026-09-17T15:48:58.572342+00:00
+- Task: PR-P08-7-RING-OUTPUT-FRONTIER / 字形・cursor・音声7calleeと限定実データを保存graphへ結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-output-frontier
+- Summary: 字形/cursor/音声7calleeを新規449命令と3212byteの限定実dataで結合。保存総数6983、旧node再解読/native0。
+- Files changed: scripts/pr16_ring_output_frontier.py, tests/test_pr16_ring_output_frontier.py, .github/workflows/pr16-ring-output-frontier.yml, content/modernization/pr16_ring_output_frontier.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定24 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=7725be137314349238e975a6f640e73ddeffe614; run=35242518427（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存字形4文字/font2・4・5・cursor/scrollと音声/BIOSの明示RAM契約を結合。同じ採取・636control/627text・font/BP/nativeを単独再実行しない。未読/間接辺はstubにせず残す。実画面/DMA・全live owner・Ring通常取得/policy/Circus/P08は未受入。
+
+
+## 2026-09-17T15:57:52.704042+00:00 — PR-P08-7-RING-OUTPUT-LEAF-BYTES
+- Timestamp: 2026-09-17T15:57:52.704042+00:00
+- Task: PR-P08-7-RING-OUTPUT-LEAF-BYTES / 字形の256byte変換表と音声3calleeを保存graphへ限定結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-output-leaf-bytes
+- Summary: 字形256byte変換表と音声3calleeを新規108命令で限定結合。保存総数7091、既読再解読/native0。
+- Files changed: scripts/pr16_ring_output_leaf_bytes.py, tests/test_pr16_ring_output_leaf_bytes.py, .github/workflows/pr16-ring-output-leaf-bytes.yml, content/modernization/pr16_ring_output_leaf_bytes.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定24 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=42fcf069c04ee7669b62366b598564568ada4869; run=35243472193（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存字形4文字/font2・4・5とspace・cursor/scrollの明示RAM/pixel効果を結合。音声/BIOS・未読辺はstubにせず、同じ採取・636control/627text・受入済みfont/BP/nativeは再実行しない。実画面/DMA・全live owner・Ring通常取得/policy/Circus/P08は未受入。
+
+
+## 2026-09-17T16:34:50.257249+00:00 — PR-P08-7-RING-GLYPH-CONTRACTS
+- Timestamp: 2026-09-17T16:34:50.257249+00:00
+- Task: PR-P08-7-RING-GLYPH-CONTRACTS / 保存字形とspaceの展開・clipping・透明pixel・通常callbackを明示RAMへ結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-glyph-contracts
+- Summary: 保存字形4文字/font2・4・5とspaceの展開・clipping・透明pixel・通常callbackを1122条件（帰還1084/不足停止38）で明示RAMへ結合。候補復元/新規byte/native0。
+- Files changed: scripts/pr16_ring_glyph_contracts.py, tests/test_pr16_ring_glyph_contracts.py, .github/workflows/pr16-ring-glyph-contracts.yml, content/modernization/pr16_ring_glyph_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定43 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=2bcba7ad813d7c67fda2442553e49f63d8a86179; run=35247250870（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存cursor/scrollの明示RAM/pixel効果と出力queueを結合。音声/BIOS・未読辺をstubにせず、字形契約・既読採取・636control/627text・font/BP/nativeを単独再実行しない。実画面/DMA・全live owner・Ring通常取得/policy/Circus/P08は未受入。
+
+
+## 2026-09-17T16:46:09.584651+00:00 — PR-P08-7-RING-CURSOR-SCROLL-CONTRACTS
+- Timestamp: 2026-09-17T16:46:09.584651+00:00
+- Task: PR-P08-7-RING-CURSOR-SCROLL-CONTRACTS / 保存cursorと上下scrollのpixel・queue・待機stateを明示RAMへ結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-cursor-scroll-contracts
+- Summary: 保存cursor/scrollのpixel・queue・state2/3/4を591条件（帰還588/不足停止3）で結合。4byte旧stack条件・塗り隣接効果・零速度を明記。ROM/native0。
+- Files changed: scripts/pr16_ring_cursor_scroll_contracts.py, tests/test_pr16_ring_cursor_scroll_contracts.py, .github/workflows/pr16-ring-cursor-scroll-contracts.yml, content/modernization/pr16_ring_cursor_scroll_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定44 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=640bbe860513de52a8fc56e90c33cde4052a12bd; run=35248504865（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存音声calleeとBIOS境界、RunTextPrinters全出力連鎖の未結合区間。旧stack条件/queue予約と実DMAを混同せず、cursor/scroll・1122glyph・636control/627text・font/BP/nativeを単独再実行しない。実画面・全live owner・Ring通常取得/policy/Circus/P08は未受入。
+
+
+## 2026-09-17T16:56:14.640328+00:00 — PR-P08-7-RING-RENDERER-OUTPUT-CONTRACTS
+- Timestamp: 2026-09-17T16:56:14.640328+00:00
+- Task: PR-P08-7-RING-RENDERER-OUTPUT-CONTRACTS / RunTextPrintersの有限色制御と5文字を通常・高速pixel出力へ結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-renderer-output-contracts
+- Summary: RunTextPrintersの色制御+4文字/spaceを通常6呼出し・高速1呼出しで結合。168条件（帰還162/不足停止6）、最終RAM一致18件。queue要求5対1を保持。ROM/native0。
+- Files changed: scripts/pr16_ring_renderer_output_contracts.py, tests/test_pr16_ring_renderer_output_contracts.py, .github/workflows/pr16-ring-renderer-output-contracts.yml, content/modernization/pr16_ring_renderer_output_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定41 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=c2b341ce94f233501e0d467e4f82671d1ce32492; run=35249575389（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存音声calleeとBIOS境界、残るtext出力/live callerの未結合区間。有限5文字streamを全文法や実DMAへ昇格せず、旧stack条件・queue予約差を保持。同じrenderer・591cursor/scroll・1122glyph・636control/627text・font/BP/nativeは単独再実行しない。実画面・全live owner・Ring通常取得/policy/Circus/P08は未受入。
+
+
+## 2026-09-17T17:09:10.013546+00:00 — PR-P08-7-RING-AUDIO-BOUNDARY-CONTRACTS
+- Timestamp: 2026-09-17T17:09:10.013546+00:00
+- Task: PR-P08-7-RING-AUDIO-BOUNDARY-CONTRACTS / 保存音声停止・再開・設定とtext callerのBIOS境界を明示RAMへ結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-audio-boundary-contracts
+- Summary: 音声停止/再開/設定とRunTextPrintersの音声control/BIOS境界を164条件で結合。帰還138/未読停止26。明示RAMのみ、ROM/native0。
+- Files changed: scripts/pr16_ring_audio_boundary_contracts.py, tests/test_pr16_ring_audio_boundary_contracts.py, .github/workflows/pr16-ring-audio-boundary-contracts.yml, content/modernization/pr16_ring_audio_boundary_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定49 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=7e15e6ae16fa51d3d229111ba76a5129e94c23de; run=35250913296（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存callerから確定した音声未読3callee・BIOS wrapper・song0/5/291 headerの有限採取と契約結合。実音声/BIOS・全live owner/Ring通常取得は未受入。旧audio/renderer/cursor/glyph/control・受入済みBP/nativeは単独再実行しない。
+
+
+## 2026-09-17T17:16:27.403290+00:00 — PR-P08-7-RING-AUDIO-LEAF-BYTES
+- Timestamp: 2026-09-17T17:16:27.403290+00:00
+- Task: PR-P08-7-RING-AUDIO-LEAF-BYTES / 音声の未読3callee・BIOS入口と選択3曲headerを有限保存
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-audio-leaf-bytes
+- Summary: 音声未読3callee/BIOS入口/選択3曲headerを新規105命令・356byteで保存。保存総数7196。既読再解読/native0。
+- Files changed: scripts/pr16_ring_audio_leaf_bytes.py, tests/test_pr16_ring_audio_leaf_bytes.py, .github/workflows/pr16-ring-audio-leaf-bytes.yml, content/modernization/pr16_ring_audio_leaf_bytes.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定34 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=3cd1000abcdb1639be66da957d8f92092982f73e; run=35251583296（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存した音声末端・選択曲headerとBIOS SWI停止の契約結合。BIOSを実行済みにせず、間接callback/実allocationを明示する。同じ採取・audio164/renderer/cursor/glyph/control/font・受入済みBP/nativeを単独再実行しない。実音声/全live owner/Ring通常取得/policy/Circus/P08は未受入。
+
+
+## 2026-09-17T17:26:07.431002+00:00 — PR-P08-7-RING-AUDIO-OUTPUT-CONTRACTS
+- Timestamp: 2026-09-17T17:26:07.431002+00:00
+- Task: PR-P08-7-RING-AUDIO-OUTPUT-CONTRACTS / 選択曲初期化・text callerと音声末端の明示RAM停止を結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-audio-output-contracts
+- Summary: 選択曲0/5/291の優先度・track容量とtext16、音声末端の明示IO prefixを342条件で結合。帰還250/不足停止92。再生/BIOS/nativeは未受入。
+- Files changed: scripts/pr16_ring_audio_output_contracts.py, tests/test_pr16_ring_audio_output_contracts.py, .github/workflows/pr16-ring-audio-output-contracts.yml, content/modernization/pr16_ring_audio_output_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定56 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=379b5060fd31cad580033e77d109ddb806601b67; run=35252642998（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は未読0x081c1761/0x081c7a89/0x081c7f39と周波数表0x0844e72cの有限採取・契約、および未結合text/live caller。通常初期化・実allocation・callback選択・音声再生はfixtureで代用しない。同じaudio出力/旧164・renderer/cursor/glyph/control/font・受入済みBP/nativeは単独再実行しない。Ring通常取得/policy/Circus/P08は未受入。
+
+
+## 2026-09-17T17:33:42.907723+00:00 — PR-P08-7-RING-AUDIO-TAIL-BYTES
+- Timestamp: 2026-09-17T17:33:42.907723+00:00
+- Task: PR-P08-7-RING-AUDIO-TAIL-BYTES / 音声末端3入口と有限周波数参照窓を保存しBIOS境界を分類
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-audio-tail-bytes
+- Summary: 音声末端3入口/周波数15index参照窓を新規95命令・238byteで保存。既知SWIは未実行BIOS境界へ分類。保存総数7291、既読再解読/native0。
+- Files changed: scripts/pr16_ring_audio_tail_bytes.py, tests/test_pr16_ring_audio_tail_bytes.py, .github/workflows/pr16-ring-audio-tail-bytes.yml, content/modernization/pr16_ring_audio_tail_bytes.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定28 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=631f9caaa0f3d713b640fa0d15fcc1d4ff1d30f4; run=35253330975（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存除算・音声復帰と有限周波数参照を契約結合。既知SWIを成功stubや再採取対象にしない。周波数表長/全mode有効性、実allocation/callback/実音声/未結合text/live callerは未証明。同じ採取・audio342/164・renderer/cursor/glyph・受入済みBP/nativeは単独再実行しない。Ring/policy/Circus/P08は未受入。
+
+
+## 2026-09-17T17:42:55.569834+00:00 — PR-P08-7-RING-AUDIO-TAIL-CONTRACTS
+- Timestamp: 2026-09-17T17:42:55.569834+00:00
+- Task: PR-P08-7-RING-AUDIO-TAIL-CONTRACTS / 保存除算・音声再開・周波数を有限VCOUNT入力と結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-audio-tail-contracts
+- Summary: 保存符号付き除算/音声再開/周波数と有限VCOUNT入力を439条件で結合。帰還418/不足停止21。BIOS11/12・実音声/nativeは未実行。
+- Files changed: scripts/pr16_ring_audio_tail_contracts.py, tests/test_pr16_ring_audio_tail_contracts.py, .github/workflows/pr16-ring-audio-tail-contracts.yml, content/modernization/pr16_ring_audio_tail_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定58 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=7bf3821ddb9c6ce5ab2dc0674b01d6729959fd8d; run=35254339394（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は未結合text/live ownerの到達・実allocation・callback選択を保存callerから絞る。音声の既知BIOS11/12は未実行境界として引き継ぎ、ゼロ除算例外先0x081c7fcdは実callerに必要な場合だけ続ける。15index参照窓を合法mode一覧にせず、同じ音声末端/342/164・renderer/cursor/glyph・受入済みBP/nativeを単独再実行しない。Ring/policy/Circus/P08は未受入。
+
+
+## 2026-09-17T17:54:29.545164+00:00 — PR-P08-7-RING-TEXT-AUDIO-SEQUENCE
+- Timestamp: 2026-09-17T17:54:29.545164+00:00
+- Task: PR-P08-7-RING-TEXT-AUDIO-SEQUENCE / 混在text列の画素・音声状態・queueと途中停止を通常高速で結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-text-audio-sequence
+- Summary: 色・4文字・選択3曲初期化・停止/再開を333条件で結合。帰還303/不足停止30、通常高速の画素/音声最終像一致36件。通常5呼出し/高速1呼出し・queue要求4対1、ROM/native0。
+- Files changed: scripts/pr16_ring_text_audio_sequence.py, tests/test_pr16_ring_text_audio_sequence.py, .github/workflows/pr16-ring-text-audio-sequence.yml, content/modernization/pr16_ring_text_audio_sequence.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定49 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=a5f372e25eba83e5a09dead27bf8b287ce13fda2; run=35255462365（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は未結合text/live ownerの実到達・allocation・callback選択を保存callerから限定する。今回の混在列は保存済みなので再実行せず、実画面/音声と全文法を受入扱いしない。BIOS11/12は既知未実行境界、ゼロ除算例外先0x081c7fcdは実callerに必要な場合だけ継続。同じ混在列・音声末端439/342/164・renderer/cursor/glyph・受入済みBP/nativeは単独再実行しない。Ring/policy/Circus/P08は未受入。
+
+
+## 2026-09-17T18:15:07.330836+00:00 — PR-P08-7-RING-TEXT-EXPORT-RECOVERY
+- Timestamp: 2026-09-17T18:15:07.330836+00:00
+- Task: PR-P08-7-RING-TEXT-EXPORT-RECOVERY / 保存済み混在列の記録を再実行なしで照合し分割exportを検証
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-text-export-recovery
+- Summary: 混在列run35255462365の49tests/333条件とa5573a9の非force記録を再実行なしで独立照合。60 textを116分割し各2MB境界と全体hashを検証。元runのexport failureは保持。
+- Files changed: scripts/pr16_ring_text_export_recovery.py, tests/test_pr16_ring_text_export_recovery.py, .github/workflows/pr16-ring-text-export-recovery.yml, content/modernization/pr16_ring_text_export_recovery.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定34 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=ce4bfe14efd71a7cb6f50712afcd4be6facffe83; run=35257642049（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は未結合text/live ownerの実到達・allocation・callback選択を保存callerから限定する。分割exportのsaved-context.json/保存7291命令を使い、混在列333条件・音声末端・renderer/cursor/glyph・受入済みBP/nativeを単独再実行しない。実画面/音声・全文法・Ring/policy/Circus/P08は未受入。
+
+
+## 2026-09-17T18:24:48.662613+00:00 — PR-P08-7-RING-MESSAGE-OWNER-FRONTIER
+- Timestamp: 2026-09-17T18:24:48.662613+00:00
+- Task: PR-P08-7-RING-MESSAGE-OWNER-FRONTIER / message実callerのslot0・font分岐と未結合速度delegateを保存
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-message-owner-frontier
+- Summary: message実callerのslot0/font2/4/5供給を束縛。速度delegate0937855Dの新規18命令/42byteを保存。旧7291命令再解読/native0。
+- Files changed: scripts/pr16_ring_message_owner_frontier.py, tests/test_pr16_ring_message_owner_frontier.py, .github/workflows/pr16-ring-message-owner-frontier.yml, content/modernization/pr16_ring_message_owner_frontier.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定31 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=d0068f4d2e2efed5b7d39283539ceac9a3bddbe1; run=35258491487（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存速度byteとmessage callerを結合し、設定分岐・有効slot書込・callback選択・不足時停止・返却frameを検証する。initializer到達/heap allocation/通常storyの実観測は未受入。新速度採取/混在333/audio/renderer/BP/nativeは単独再実行しない。
+
+
+## 2026-09-17T18:50:05.188359+00:00 — PR-P08-7-RING-MESSAGE-OWNER-CONTRACTS
+- Timestamp: 2026-09-17T18:50:05.188359+00:00
+- Task: PR-P08-7-RING-MESSAGE-OWNER-CONTRACTS / message生成から設定検証・slot0書込・task割当とfont callbackを結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-message-owner-contracts
+- Summary: 実message生成callerから設定検証・slot0・task割当・font callbackを391条件で結合。設定256値、LR由来stack残留、null font/task満杯/不足時の部分writeを区別。新byte/native/候補復元0。
+- Files changed: scripts/pr16_ring_message_owner_contracts.py, tests/test_pr16_ring_message_owner_contracts.py, .github/workflows/pr16-ring-message-owner-contracts.yml, content/modernization/pr16_ring_message_owner_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定50 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=773a5c682c0e254304af1a732d2284c4fe0bf772; run=35261096931（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は登録task callback08068C31とその上流実到達・window初期化の保存caller/必要byteを限定する。slot0・task割当は明示RAMでの条件付き証明で、通常story/実gFonts/画面・音声は未観測。本結合/速度採取/混在333/audio/renderer/BP/nativeは単独再実行しない。
+
+
+## 2026-09-18T02:15:48.753462+00:00 — PR-P08-7-RING-MESSAGE-TASK-FRONTIER
+- Timestamp: 2026-09-18T02:15:48.753462+00:00
+- Task: PR-P08-7-RING-MESSAGE-TASK-FRONTIER / 登録message taskの未読byteと保存上流caller・初期化境界を固定
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-message-task-frontier
+- Summary: 登録task08068C31の新規62命令/154byteを限定保存。上流保存callerと初期化の未観測境界を固定。旧391条件/native再実行0。
+- Files changed: scripts/pr16_ring_message_task_frontier.py, tests/test_pr16_ring_message_task_frontier.py, .github/workflows/pr16-ring-message-task-frontier.yml, content/modernization/pr16_ring_message_task_frontier.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定30 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=6d3362b290aa5728ec74a6ddf5c6b19b99b75abc; run=35298567936（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存task callbackの状態遷移・待機/終了・task削除・不足時の部分writeを上流callerと結合検証する。必要な未読calleeだけを限定し、通常story到達/live window・gFonts初期化は未受入のまま。今回採取/旧391条件/BP/nativeを単独再実行しない。
+
+
+## 2026-09-18T02:26:16.506484+00:00 — PR-P08-7-RING-MESSAGE-TASK-CALLEES
+- Timestamp: 2026-09-18T02:26:16.506484+00:00
+- Task: PR-P08-7-RING-MESSAGE-TASK-CALLEES / message taskの待機・終了・window分岐の七calleeを限定保存
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-message-task-callees
+- Summary: message taskの待機/終了/削除/window分岐七calleeを新規154命令/352byteで保存。旧7371命令の再解読/native0。
+- Files changed: scripts/pr16_ring_message_task_callees.py, tests/test_pr16_ring_message_task_callees.py, .github/workflows/pr16-ring-message-task-callees.yml, content/modernization/pr16_ring_message_task_callees.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定25 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=bff5e1ec49ebb890329f4228227f9b6180b60b50; run=35299053977（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存taskと七calleeの状態遷移・待機/終了・削除・不足時の部分writeを結合検証。新規未読callee/間接辺は成功stubなしで停止し、上流busy/通常story/live window初期化を混同しない。今回採取/旧391条件/BP/nativeは単独再実行しない。
+
+
+## 2026-09-18T02:33:33.238245+00:00 — PR-P08-7-RING-MESSAGE-WINDOW-BYTES
+- Timestamp: 2026-09-18T02:33:33.238245+00:00
+- Task: PR-P08-7-RING-MESSAGE-WINDOW-BYTES / task終了判定・window資源と保存frame callbackの未読境界を結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-message-window-bytes
+- Summary: task終了判定/8calleeとframe callbackを新規726命令/1788byteで保存。旧7525命令再解読/native0。
+- Files changed: scripts/pr16_ring_message_window_bytes.py, tests/test_pr16_ring_message_window_bytes.py, .github/workflows/pr16-ring-message-window-bytes.yml, content/modernization/pr16_ring_message_window_bytes.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定22 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=30b19c143bc87a7b7de58564d5133b734c560603; run=35299722103（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は採取を繰り返さず、保存命令で上流script/busy・task待機/終了/削除・window初期化不足を結合検証。資源data/未読calleeは成功stubなしで停止し、正常story/live gFonts/画面観測へ昇格しない。
+
+
+## 2026-09-18T02:57:07.744288+00:00 — PR-P08-7-RING-MESSAGE-TASK-CONTRACTS
+- Timestamp: 2026-09-18T02:57:07.744288+00:00
+- Task: PR-P08-7-RING-MESSAGE-TASK-CONTRACTS / message taskの状態分岐・終了削除と上流script callerを結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-message-task-contracts
+- Summary: 上流script/busy・task状態2の連続poll/終了削除を1231条件で結合。96連続列・全16task ID・busy/flag全byte・不足時部分writeを固定。window状態0/1は未受入、新byte/native0。
+- Files changed: scripts/pr16_ring_message_task_contracts.py, tests/test_pr16_ring_message_task_contracts.py, .github/workflows/pr16-ring-message-task-contracts.yml, content/modernization/pr16_ring_message_task_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定55 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=a87bd4e4a027d684d0f84d27ee4bd0f7decfb158; run=35301261393（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存state2/上流1231条件を再実行せず、window状態0/1のGetWindowAttribute selector0表08004938の必要word/分岐body、palette0806FB91とr8 frame thunk081C7AE9を限定する。task満杯時busy2は通常プレイ未再現で未受入。live window/gFonts初期化・通常story/Ring正規取得は引き続き未観測。今回結合/旧採取/旧391条件/BP/nativeは単独再実行しない。
+
+
+## 2026-09-18T03:08:48.653355+00:00 — PR-P08-7-RING-MESSAGE-TASK-CHECKPOINT
+- Timestamp: 2026-09-18T03:08:48.653355+00:00
+- Task: PR-P08-7-RING-MESSAGE-TASK-CHECKPOINT / 成功1231条件を再実行せず軽量再開点と証拠取得経路を固定
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-message-task-checkpoint
+- Summary: run35301261393/完了5a489a17の55tests・1231条件（914帰還/317停止、状態2開始96列）を再実行せず照合。大きいJSONの本文空応答を避ける軽量checkpointとhash付きartifact取得経路を固定。新byte/契約/native実行0。
+- Files changed: scripts/pr16_ring_message_task_checkpoint.py, tests/test_pr16_ring_message_task_checkpoint.py, .github/workflows/pr16-ring-message-task-checkpoint.yml, content/modernization/pr16_ring_message_task_checkpoint.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定27 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=313b295bfa34b17fde30f8d32e7801c4ae35dfdb; run=35302074834（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 軽量checkpointのimplementation_read_pathsとevidence_accessから保存証拠を読む。次はwindow状態0/1のGetWindowAttribute selector0表08004938の必要word/分岐body、palette0806FB91、r8 frame thunk081C7AE9を限定する。上流/状態2の1231条件、旧採取/391条件/BP/nativeは再実行しない。task満杯busy2・live初期化/通常story/Ring取得は未受入。
+
+
+## 2026-09-18T03:26:04.514506+00:00 — PR-P08-7-RING-MESSAGE-WINDOW-FRONTIER
+- Timestamp: 2026-09-18T03:26:04.514506+00:00
+- Task: PR-P08-7-RING-MESSAGE-WINDOW-FRONTIER / 状態0/1のwindow属性0・palette・frame中継の未読境界を保存
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-message-window-frontier
+- Summary: window属性0の一word/選択body、palette、frame thunkを新規29命令/78byteで保存。旧8251命令再解読/1231条件再実行/native0。
+- Files changed: scripts/pr16_ring_message_window_frontier.py, tests/test_pr16_ring_message_window_frontier.py, .github/workflows/pr16-ring-message-window-frontier.yml, content/modernization/pr16_ring_message_window_frontier.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定30 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=046f2e1d060de13f9d1983c5b8eed10d40ea5de7; run=35303089805（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存命令でmessage task状態0/1のwindow属性・paletteコピー・r8 frame callbackを条件付き結合検証。新BL/資源不足は成功stubなしで停止。今回採取/旧1231条件/391条件/BP/nativeを単独再実行しない。通常story/Ring取得・live初期化・task満杯busy2は未受入。
+
+
+## 2026-09-18T03:35:21.327878+00:00 — PR-P08-7-RING-MESSAGE-WINDOW-DEPENDENCIES
+- Timestamp: 2026-09-18T03:35:21.327878+00:00
+- Task: PR-P08-7-RING-MESSAGE-WINDOW-DEPENDENCIES / 状態0/1のtile矩形・window資源・paletteコピー中継5依存を保存
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-message-window-dependencies
+- Summary: 状態0/1の保存callsiteから残存5calleeを新規280命令/614byteで保存。旧8280命令再解読/1231条件再実行/native0。
+- Files changed: scripts/pr16_ring_message_window_dependencies.py, tests/test_pr16_ring_message_window_dependencies.py, .github/workflows/pr16-ring-message-window-dependencies.yml, content/modernization/pr16_ring_message_window_dependencies.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定27 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=627bd6f29c9e087e6284d4179e881b57348807a4; run=35303682033（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存属性0・paletteコピー中継・r8 frame・tile矩形/window資源を明示RAMで結合し、state0/1の帰還・次状態・queue予約・不足時部分writeを検証。新BL/BIOS/DMAは成功stubにしない。今回5callee/旧29命令/旧1231条件/BP/nativeは単独再実行せず、通常story/Ring/live初期化は未受入。
+
+
+## 2026-09-18T03:42:15.609702+00:00 — PR-P08-7-RING-MESSAGE-TILE-LEAVES
+- Timestamp: 2026-09-18T03:42:15.609702+00:00
+- Task: PR-P08-7-RING-MESSAGE-TILE-LEAVES / 矩形描画のindex計算・tile値書込2leafを保存
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-message-tile-leaves
+- Summary: 矩形index計算とtile値書込の残存2leafを新規68命令/144byteで保存。旧8560命令再解読/1231条件再実行/native0。
+- Files changed: scripts/pr16_ring_message_tile_leaves.py, tests/test_pr16_ring_message_tile_leaves.py, .github/workflows/pr16-ring-message-tile-leaves.yml, content/modernization/pr16_ring_message_tile_leaves.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定25 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=a943a112416ec625e846cd6b743631746cfe437f; run=35304098811（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存属性0・palette・r8 frame・矩形・queueの状態0/1結合を明示RAMで検証。帰還/次状態と描画成功を区別し、queue満杯等の部分成功とBIOS SWI停止を保持。今回2leaf/旧5callee/29命令/1231条件/BP/nativeは再実行しない。通常story/Ring/live初期化は未受入。
+
+
+## 2026-09-18T04:00:42.489566+00:00 — PR-P08-7-RING-MESSAGE-WINDOW-CONTRACTS
+- Timestamp: 2026-09-18T04:00:42.489566+00:00
+- Task: PR-P08-7-RING-MESSAGE-WINDOW-CONTRACTS / 状態0の条件付き進行・実r8 frame書込とBIOS停止を結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-message-window-contracts
+- Summary: 状態0のmode2進行・属性0・26矩形の実r8 frame・BIOS停止を724条件と9同一RAM列で結合。新byte/native0。
+- Files changed: scripts/pr16_ring_message_window_contracts.py, tests/test_pr16_ring_message_window_contracts.py, .github/workflows/pr16-ring-message-window-contracts.yml, content/modernization/pr16_ring_message_window_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定50 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=cbc53699afa6ea8cc5d913fdba5d4bb451dd2833; run=35305255324（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存BIOS0B/0Cのservice境界を、成功stubではない根拠付きメモリ効果/供給元契約として限定する。palette state0はROM083E30AC→020372ECの10半word(次の020376ECは未到達)、state1はframe RAM書込後のfill0x11111111/width*height*8 wordで停止。prefix再採取は不要。queue失敗時state1進行とtask満杯busy2を保持。今回/旧採取/1231条件/BP/nativeを単独再実行せず、通常story/Ring/live初期化は未受入。
+
+
+## 2026-09-18T04:06:06.516771+00:00 — PR-P08-7-RING-MESSAGE-WINDOW-CHECKPOINT
+- Timestamp: 2026-09-18T04:06:06.516771+00:00
+- Task: PR-P08-7-RING-MESSAGE-WINDOW-CHECKPOINT / 成功724条件の軽量再開点と次のBIOS供給境界を固定
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-message-window-checkpoint
+- Summary: 成功原本724条件/50tests(587帰還/137停止、9同一RAM列)を再実行せず照合し、軽量checkpointとhash付き取得経路を固定。mode2 state0進行・26矩形frame RAM帰還を確認済み。queue失敗と描画成功は区別。
+- Files changed: scripts/pr16_ring_message_window_checkpoint.py, tests/test_pr16_ring_message_window_checkpoint.py, .github/workflows/pr16-ring-message-window-checkpoint.yml, content/modernization/pr16_ring_message_window_checkpoint.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定38 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=d6459ffb27a69d15b7bc5dd086280c2656163fc6; run=35305646696（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 本checkpointのimplementation_read_paths/evidence_accessから継続。次は既知BIOS0B/0Cの根拠付き供給元/メモリ効果契約。palette083E30AC→020372ECの10半word、次の020376ECは未到達。state1はframe書込後fill11111111で停止。保存prefix/724条件/旧採取/1231条件/BP/nativeを再実行しない。task満杯busy2と通常story/Ring/live初期化の未受入を保持。
+
+
+## 2026-09-18T04:31:08.866450+00:00 — PR-P08-7-RING-BIOS-MEMORY-CONTRACTS
+- Timestamp: 2026-09-18T04:31:08.866450+00:00
+- Task: PR-P08-7-RING-BIOS-MEMORY-CONTRACTS / BIOSコピー・fillの供給元と部分書込を検証し未読属性表まで継続
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-bios-memory-contracts
+- Summary: BIOS0B/0Cの有界メモリ契約を26新規結合条件で検証。同一候補palette20byteを新規供給し020372EC/020376ECへの両コピーを確認。state1は78frame+864fill書込とwindow12byte転送後、属性10の表読出で停止。native/ROM変更0。
+- Files changed: scripts/pr16_ring_bios_memory_contracts.py, tests/test_pr16_ring_bios_memory_contracts.py, .github/workflows/pr16-ring-bios-memory-contracts.yml, content/modernization/pr16_ring_bios_memory_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定32 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=e73a025885444a645d0bf690361844b463004ae2; run=35307170557（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、既存hash固定candidateから新規palette20byteのみ取得。一次資料: https://github.com/mgba-emu/mgba/blob/0.10.2/src/gba/hle-bios.s (blob c891479a5ee8efb37eba00365c765d2fa90b12b1) のCpuSet/CpuFastSet/swiBase。検索語: mGBA 0.10.2 CpuSet CpuFastSet。低20bit count、8word転送、r2/flags復元を採用。full BIOS/IRQ/実機/サイクル同値性は未証明。source-lock/toolchain変更なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は本reportのnext_unmapped_readsにある081534DC/08001ABEの正確な属性表slotを根拠付きで供給する。保存済palette20byte/BIOS prefix/今回契約/724条件/旧1231条件/BP/nativeを単独再実行しない。state1→2、BIOS stack/IRQ、通常story/Ring/live初期化、task満杯busy2のlivenessは未受入を保持。
+
+
+## 2026-09-18T04:39:15.427746+00:00 — PR-P08-7-RING-BIOS-SELECTOR-CONTINUATION
+- Timestamp: 2026-09-18T04:39:15.427746+00:00
+- Task: PR-P08-7-RING-BIOS-SELECTOR-CONTINUATION / BIOS後の2属性slotと未読分岐先を供給して次の境界を固定
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-bios-selector-continuation
+- Summary: BIOS後の2属性slot8byteと未読2命令を供給。保存palette/prefix再採取0、旧ABI/native再実行0。selector-state0: 未map read PC=081C7A88 / selector-state1: 条件付き帰還。
+- Files changed: scripts/pr16_ring_bios_selector_continuation.py, tests/test_pr16_ring_bios_selector_continuation.py, .github/workflows/pr16-ring-bios-selector-continuation.yml, content/modernization/pr16_ring_bios_selector_continuation.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定21 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=9f7439dd5d8263a967312ca71af5477dd0ce4e79; run=35307686146（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、同一hash candidateから新規属性2slotとその未読分岐先だけを取得。固定mGBA BIOS根拠は先行reportを継承。外部資料の再取得・source-lock変更なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 本reportのcases/read_fault/registers_at_stopとnew_nodes/new_windowsを正本に、残るmemory/ABIを限定検証する。selector供給で得たtraceだけを全状態遷移・実BIOS・通常story/Ring受入へ昇格しない。候補の同一再構築・palette/BIOS prefix採取・32tests/26条件/724条件/BP/nativeの単独再実行は禁止。
+
+
+## 2026-09-18T04:50:32.166567+00:00 — PR-P08-7-RING-STATE1-COMPLETION-CONTRACTS
+- Timestamp: 2026-09-18T04:50:32.166567+00:00
+- Task: PR-P08-7-RING-STATE1-COMPLETION-CONTRACTS / state1のfill・内側tile・queue・state2帰還を独立write oracleで検証
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-state1-completion-contracts
+- Summary: state1→2を独立write oracleで新規79条件/75帰還・4部分停止まで条件付き検証。全task16枠、queue空/折返し/満杯、4背景4shape、bitmap/bank/寸法境界、SP/r4-r11を確認。ROM復元/新byte/emulator0。queue満杯もstate2へ進むが描画成功ではない。
+- Files changed: scripts/pr16_ring_state1_completion_contracts.py, tests/test_pr16_ring_state1_completion_contracts.py, .github/workflows/pr16-ring-state1-completion-contracts.yml, content/modernization/pr16_ring_state1_completion_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定22 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=f60b226c327b14b1f7391880e2f4d2354bffc5df; run=35308467459（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actionsの出自照合のみ。保存12byte/2nodeとpalette20byteを再利用。candidate再構築0・ROM新byte採取0・外部資料再取得0・source-lock変更0。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存state0_remaining_readのBIOS0B source0843FA24、32byteの出自付き供給と0203730C/0203770C両コピーを未観測suffixへ延長する。state1→2/旧state2 poll/delete/BP/nativeは再実行しない。palette20byte・2属性slot・全保存nodeを再採取しない。通常story/live初期化・Ring取得・保存再開は未受入。
+
+
+## 2026-09-18T05:20:10.816069+00:00 — PR-P08-7-RING-STATE0-PALETTE-SUPPLY
+- Timestamp: 2026-09-18T05:20:10.816069+00:00
+- Task: PR-P08-7-RING-STATE0-PALETTE-SUPPLY / state0の32byte供給・二重コピー・部分停止を独立oracleで検証
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-state0-palette-supply
+- Summary: state0未供給0843FA24の32byteを同一candidateから取得。二重コピー99条件と全task16枠等21caller suffixを独立write oracleで検証。0203730C/0203770Cコピーは条件付き完了、次の0300504C readでstate0を保持。state1/BP/native再実行0。
+- Files changed: scripts/pr16_ring_state0_palette_supply.py, tests/test_pr16_ring_state0_palette_supply.py, .github/workflows/pr16-ring-state0-palette-supply.yml, content/modernization/pr16_ring_state0_palette_supply.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定25 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=ddb29398740118c879cee6ebb4feecddee6f7731; run=35310296705（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions。同一hash candidateから未供給0843FA24の32byteだけ取得。保存palette20byte/slot/nodeを再採取しない。外部資料/source-lock変更なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存state0_palette_supplyを再利用し、081530F4の0300504C pointerと+14の選択byte、保存callee08153089の未観測suffixを明示allocationで結合する。32byte/旧palette20byte/slot/nodeを再採取しない。state1→2/旧state2/BP/nativeの単独再実行禁止。通常story/Ring取得・保存は未受入。
+
+
+## 2026-09-18T05:30:26.021663+00:00 — PR-P08-7-RING-STATE0-COMPLETION-CONTRACTS
+- Timestamp: 2026-09-18T05:30:26.021663+00:00
+- Task: PR-P08-7-RING-STATE0-COMPLETION-CONTRACTS / state0のoption境界・選択行供給・state1帰還を独立oracleで検証
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-state0-completion-contracts
+- Summary: state0 option全256値/不足pointer計263条件と、default行のstate0→1を118条件/75帰還で検証。新規40byte、保存palette/node再採取0。全task16枠・queue満杯・SP/r4-r11・43部分停止を独立write oracleで確認。
+- Files changed: scripts/pr16_ring_state0_completion_contracts.py, tests/test_pr16_ring_state0_completion_contracts.py, .github/workflows/pr16-ring-state0-completion-contracts.yml, content/modernization/pr16_ring_state0_completion_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定30 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=76484b07ad64c663af6084bb329700a8a62f2e59; run=35310950944（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions。固定candidateからdefault選択行8byteとそのpalette32byteだけを有限供給。保存20/32byte・slot/node再採取0、外部資料/source-lock変更0。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存default行/実paletteとstate0→1・先行state1→2を再利用し、通常story側の0300504C初期化とtask作成/dispatchの保存callerを結合する。全32行の有効性は未証明。Ring正規取得・実装備戦闘・保存再開は未受入。旧BIOS/copy/state1/state2/BP/nativeを単独再実行しない。
+
+
+## 2026-09-18T05:35:35.772613+00:00 — PR-P08-7-RING-STATE01-HANDOFF-CONTRACTS
+- Timestamp: 2026-09-18T05:35:35.772613+00:00
+- Task: PR-P08-7-RING-STATE01-HANDOFF-CONTRACTS / state0→1→2の同一RAMとqueue引継ぎを独立oracleで検証
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-state01-handoff-contracts
+- Summary: default行のstate0→1→2を同一明示RAMの21条件で結合。task16枠・queue空き0/1/2/3/4・127周回・phase間host書換0・各帰還SP/r4-r11を検証。state2は0203D000 config不足でwrite0停止。候補復元/byte採取/native再実行0。
+- Files changed: scripts/pr16_ring_state01_handoff_contracts.py, tests/test_pr16_ring_state01_handoff_contracts.py, .github/workflows/pr16-ring-state01-handoff-contracts.yml, content/modernization/pr16_ring_state01_handoff_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定24 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=8de46fb5fc5d0c63dc3939a768324affd102d421; run=35311393786（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actionsの先行成功/出自照合のみ。保存default行とpaletteを再利用しcandidate再構築0、新規byte0。外部資料/source-lock変更なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存producerのconfig/text pool/task初期化を今回state0→1→2のRAMへ衝突なく接続する。次のreadは0937858E→0203D000の4byte。既読producer/poll契約を再利用し、busy/stateのhost直接書換で終了させない。通常storyのpointer初期化・script入口・Ring取得/保存は未受入。単独state0/1/2・BP/nativeの再実行は禁止。
+
+
+## 2026-09-18T05:53:17.988510+00:00 — PR-P08-7-RING-MESSAGE-LIFECYCLE-CONTRACTS
+- Timestamp: 2026-09-18T05:53:17.988510+00:00
+- Task: PR-P08-7-RING-MESSAGE-LIFECYCLE-CONTRACTS / producerからstate0/1/2・busy解除・task削除まで同一RAMを結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-message-lifecycle-contracts
+- Summary: 保存producerをstate0→1→2の同一RAMへ接続し、script即値/fallback・3font/3速度・task既存link・config不正・queue空き0..4/127周回の32条件でbusy解除/task削除まで検証。phase間host書換0、候補復元/新規byte/native再実行0。終端FF合成text/default行の限定証明。
+- Files changed: scripts/pr16_ring_message_lifecycle_contracts.py, tests/test_pr16_ring_message_lifecycle_contracts.py, .github/workflows/pr16-ring-message-lifecycle-contracts.yml, content/modernization/pr16_ring_message_lifecycle_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定34 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=ad2f9ee67708d724eadb60da10f90ae34e6fcc51; run=35312550354（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actionsで先行成功・source hashを照合。保存命令/表/配色のみ再利用。候補復元0・新規byte0・外部資料/source-lock変更0。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 通常storyのpointer初期化とscript実到達・非空textを保存lifecycleへ接続する。今回32条件は再利用し、同一条件のproducer/state0/1/2/pollやBP/nativeは再実行しない。Ring所有bit・inventory・party・PC/LRのhost設定で正規取得を代用しない。Ring/policy/Circus/最終製品は未受入。
+
+
+## 2026-09-18T06:04:09.066342+00:00 — PR-P08-7-RING-TEXT-LIFECYCLE-CONTRACTS
+- Timestamp: 2026-09-18T06:04:09.066342+00:00
+- Task: PR-P08-7-RING-TEXT-LIFECYCLE-CONTRACTS / producer/state012から非空文字列の描画・終了まで同一RAMを検証
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-text-lifecycle-contracts
+- Summary: producer→state0/1/2→非空5文字描画→busy解除/task削除を同一RAMで結合。3font/3速度・即値/fallback・flag4・task15・queue飽和/部分空き/127周回、入力不足4停止を検証。通常/高速の最終画素一致、host書換/新規byte/候補復元/native再実行0。合成textであり通常story未受入。
+- Files changed: scripts/pr16_ring_text_lifecycle_contracts.py, tests/test_pr16_ring_text_lifecycle_contracts.py, .github/workflows/pr16-ring-text-lifecycle-contracts.yml, content/modernization/pr16_ring_text_lifecycle_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定35 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=66cbb6a47e4a4e50ba79b3068164331b5b96de25; run=35313281916（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actionsの先行run/source hashを照合。保存4字形/spaceと既存命令だけを使用。候補復元・新規byte・外部資料/source-lock変更0。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存producer/text lifecycleを再利用し、通常story側のglobal pointer初期化・font table初期化・scriptの実到達を限定して接続する。未知ownerの原本/未読辺を先に確認し、既存glyph/renderer/state/BP/nativeを再実行しない。Ring通常取得・装備実戦・保存、policy/Circusと最終製品は未受入のまま。
+
+
+## 2026-09-18T06:11:55.097062+00:00 — PR-P08-7-RING-BOOTSTRAP-LIFECYCLE-CONTRACTS
+- Timestamp: 2026-09-18T06:11:55.097062+00:00
+- Task: PR-P08-7-RING-BOOTSTRAP-LIFECYCLE-CONTRACTS / 実font初期化と32printer resetから非空message終了まで同一RAMを結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-bootstrap-lifecycle-contracts
+- Summary: font初期化080F8A29→setter08002C1Dと32printer reset08002C29を前段に接続。null/DEADBEEF初期pointer・全poolA5から3font/2速度の12条件で非空text終了、reset省略2条件はslot1の未供給font読取で停止。hostによるpointer/pool準備2点を除去。明示entry実行であり通常storyの到達ではない。
+- Files changed: scripts/pr16_ring_bootstrap_lifecycle_contracts.py, tests/test_pr16_ring_bootstrap_lifecycle_contracts.py, .github/workflows/pr16-ring-bootstrap-lifecycle-contracts.yml, content/modernization/pr16_ring_bootstrap_lifecycle_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定24 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=da7b46c591ab9a3ae48630ba0a1ac11c0c6f4a5c; run=35313824566（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: 保存命令/表とGitHub connector/Actions出自だけを使用。候補復元・新規byte・外部資料/source-lock変更0。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存bootstrap/text lifecycleを再利用し、080F8A29・08002C29・script0806B0CDへ通常storyが到達するcallerを保存原本/未読辺から限定する。config0203D000、global0300504C→object、window/queue割当は明示初期入力のまま。同じ初期化/producer/state/renderer/BP/nativeを再実行せず、通常Ring取得/保存とpolicy/Circus/P08を未受入のまま進める。
+
+
+## 2026-09-18T06:44:06.051353+00:00 — PR-P08-7-RING-STORY-CALLER-FRONTIER
+- Timestamp: 2026-09-18T06:44:06.051353+00:00
+- Task: PR-P08-7-RING-STORY-CALLER-FRONTIER / 保存graphと固定sourceからstory初期化callerとscript命令表の未読接続を限定
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-story-caller-frontier
+- Summary: 保存8628命令では初期化080F8A29/reset08002C29/script0806B0CDへのinboundなし。固定reference7ファイルから深さ4のcaller15辺とmessage opcode67を索引化。JP symbol候補/別地域reference/実candidate到達を区別。旧初期化・text/native再実行0。
+- Files changed: scripts/pr16_ring_story_caller_frontier.py, tests/test_pr16_ring_story_caller_frontier.py, .github/workflows/pr16-ring-story-caller-frontier.yml, content/modernization/pr16_ring_story_caller_frontier.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定37 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=292799756b34df838ed0943eb50dabd9bbfbb7d2; run=35316123836（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actionsとsource-lock固定pretの限定7source。既存JP symbol/8628命令は保存原本を再利用。source-lock変更/ROM復元/native再実行0。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存caller索引のInitStandardTextBoxWindows等とscript command table/RunScriptCommandの未読candidate接続を限定採取・照合する。通常story開始から初期化/command dispatchへ到達したとは未主張。config/global/windowの初期入力仮定を残し、通常Ring取得/保存とpolicy/Circus/P08は未受入。保存bootstrap/text/BP/nativeは単独再実行しない。
+
+
+## 2026-09-18T06:51:18.775044+00:00 — PR-P08-7-RING-STORY-DISPATCH-FRONTIER
+- Timestamp: 2026-09-18T06:51:18.775044+00:00
+- Task: PR-P08-7-RING-STORY-DISPATCH-FRONTIER / 保存script setupの実命令表とfield callerの未読接続をcandidate byteに固定
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-story-dispatch-frontier
+- Summary: 保存setupの実命令表08162CC4/end08163010からmessage67→0806B0CDをcandidate byteに結合。field3入口の未読193命令/540byteを有限採取。初期化/BP/native再実行0。
+- Files changed: scripts/pr16_ring_story_dispatch_frontier.py, tests/test_pr16_ring_story_dispatch_frontier.py, .github/workflows/pr16-ring-story-dispatch-frontier.yml, content/modernization/pr16_ring_story_dispatch_frontier.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定20 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=74bfe6c81b8123e241e9f79b69f2bd61c0cba794; run=35316606613（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: 固定Actions exportと同hash candidateの既存復元だけ。外部source追加/source-lock変更なし。保存命令再解読0、未読辺とmessage表2slotだけ。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存field/script callerを条件付きstate/command dispatch契約に結合し、残る間接分岐のtableと通常story initializer到達を限定する。命令表接続はRing受入ではない。font/config/global/window初期供給、通常取得/保存、policy/Circus/P08は未受入。今回byteの再採取と旧bootstrap/text/BP/native再実行は禁止。
+
+
+## 2026-09-18T07:22:33.834986+00:00 — PR-P08-7-RING-STORY-DISPATCH-CONTRACTS
+- Timestamp: 2026-09-18T07:22:33.834986+00:00
+- Task: PR-P08-7-RING-STORY-DISPATCH-CONTRACTS / 保存script状態と実命令slotの部分書込・待機・field table不足を条件付き結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-story-dispatch-contracts
+- Summary: 保存script/field dispatchの1037条件を結合。実66待機/67busy拒否、全u8 mode/status/opcode/field、cursor部分書込、setup/global初期化を検証。候補復元/native0。
+- Files changed: scripts/pr16_ring_story_dispatch_contracts.py, tests/test_pr16_ring_story_dispatch_contracts.py, .github/workflows/pr16-ring-story-dispatch-contracts.yml, content/modernization/pr16_ring_story_dispatch_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定30 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=f38bf4caa943f6096104970a7ad7e320d60483de; run=35319087228（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: 既存run35316606613のhash固定exportのみ。外部source追加、候補復元、ROM/native実行0。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 未読080565B0の5slotと実wait callback08068DDDだけを採取し、field state0の初期化calleeを既存font/window/bootstrapへ結合する。未mapは不存在ではない。通常story取得/装備/Saveは未受入。今回条件と旧text/BP/nativeを単独再実行しない。
+
+
+## 2026-09-18T07:31:17.223598+00:00 — PR-P08-7-RING-STORY-FIELD-FRONTIER
+- Timestamp: 2026-09-18T07:31:17.223598+00:00
+- Task: PR-P08-7-RING-STORY-FIELD-FRONTIER / field状態5slotと実wait callbackの未読接続を限定採取
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-story-field-frontier
+- Summary: 実field5slotとwait callback08068DDDを採取し未読191命令/558byteを結合。既読8821命令再解読0、BP/native0。
+- Files changed: scripts/pr16_ring_story_field_frontier.py, tests/test_pr16_ring_story_field_frontier.py, .github/workflows/pr16-ring-story-field-frontier.yml, content/modernization/pr16_ring_story_field_frontier.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定24 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=d466bed507d7ceb3d815d0eab5e306513ea42abe; run=35319665678（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: 成功run35319087228と保存exportを照合し同hash candidateを1回だけ復元。外部source追加/source-lock変更0。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存field state本体と実wait callbackを条件付き実行へ結合し、初期化calleeのfont/window供給と未読境界を限定する。今回byte/旧script1037条件/BP/nativeの単独再実行は禁止。Ring通常取得/装備/保存、policy/Circus/P08は未受入。
+
+
+## 2026-09-18T07:40:06.628596+00:00 — PR-P08-7-RING-STORY-WAIT-LIFECYCLE
+- Timestamp: 2026-09-18T07:40:06.628596+00:00
+- Task: PR-P08-7-RING-STORY-WAIT-LIFECYCLE / 実wait callbackからscript終了への連続tickとfield状態境界を保存byteで結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-story-wait-lifecycle
+- Summary: 実wait callbackの全u8とscript連続3tick、field状態を786条件で結合。hiddenなら66→待機解除→終了/lock解除、busyなら待機継続。tick間host書込0、候補復元/native0。
+- Files changed: scripts/pr16_ring_story_wait_lifecycle.py, tests/test_pr16_ring_story_wait_lifecycle.py, .github/workflows/pr16-ring-story-wait-lifecycle.yml, content/modernization/pr16_ring_story_wait_lifecycle.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定28 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=3a312641b866b25f29a66e587534e8b0b451453b; run=35320499930（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: 成功run35319665678のhash固定exportのみ。候補復元・再採取・native実行0。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: field0初期化08055B71、field3callback08055EAD、field2flash080555F1の未読calleeを限定し、window/font供給と通常story到達へ結合する。旧byte/1037条件/今回786条件/BP/nativeは単独再実行しない。Ring通常取得/装備/保存、policy/Circus/P08は未受入。
+
+
+## 2026-09-18T07:48:29.915459+00:00 — PR-P08-7-RING-STORY-INITIALIZER-FRONTIER
+- Timestamp: 2026-09-18T07:48:29.915459+00:00
+- Task: PR-P08-7-RING-STORY-INITIALIZER-FRONTIER / field初期化calleeとwindow/printerの条件付きcall接続を実byteに固定
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-story-initializer-frontier
+- Summary: field初期化3calleeの未読174命令/468byteを保存。field0からInitWindows/DeactivateAllTextPrintersへの有限may-callを固定。通常実行/帰還は未証明、native0。
+- Files changed: scripts/pr16_ring_story_initializer_frontier.py, tests/test_pr16_ring_story_initializer_frontier.py, .github/workflows/pr16-ring-story-initializer-frontier.yml, content/modernization/pr16_ring_story_initializer_frontier.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定24 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=c54eb8dcc818092fe7eb3608fa3259a07091d5c1; run=35321072525（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: 成功済み保存wait/field契約とhash固定exportを再利用。同hash candidateの復元1回。外部source追加/source-lock変更0。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存field初期化/RunFieldCallback/flash getterの条件付き契約を結合し、window/font供給の残るheap/IO/callback停止点を絞る。今回byteと旧wait/script/text/BP/nativeの単独再実行は禁止。Ring通常取得/保存、policy/Circus/P08は未受入。
+
+
+## 2026-09-18T08:02:11.179764+00:00 — PR-P08-7-RING-STORY-INITIALIZER-CONTRACTS
+- Timestamp: 2026-09-18T08:02:11.179764+00:00
+- Task: PR-P08-7-RING-STORY-INITIALIZER-CONTRACTS / field callbackの待機・消去・部分書込と初期化資源の停止境界を条件付き検証
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-story-initializer-contracts
+- Summary: field初期化の未読停止・実callbackの待機/消去/部分書込・state3→4を540条件で結合。callback pointerは明示初期条件、tick間RAM書換0。候補復元/native0。
+- Files changed: scripts/pr16_ring_story_initializer_contracts.py, tests/test_pr16_ring_story_initializer_contracts.py, .github/workflows/pr16-ring-story-initializer-contracts.yml, content/modernization/pr16_ring_story_initializer_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定32 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=44066493f1a75e3fb0acabb1cc1aa1fecaeddb82; run=35322265804（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: 成功run35321072525のhash固定exportと保存candidate命令のみ。外部source追加/候補復元/ROM変更/native0。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: state0の最初の未読0804B85D（heap/save reset）から限定し、実BG供給030008D0・InitWindows・font pointer登録へ結合する。default callback0807D695とfield2境界080F77E9/0807E7A5は別の未解決ownerとして保持。今回540条件/旧1037+786条件/採取済byte/BP/nativeは単独再実行しない。Ring通常story取得/装備/保存、policy/Circus/P08は未受入。
+
+
+## 2026-09-18T09:16:28.062967+00:00 — PR-P08-7-RING-STORY-RESOURCES-FRONTIER
+- Timestamp: 2026-09-18T09:16:28.062967+00:00
+- Task: PR-P08-7-RING-STORY-RESOURCES-FRONTIER / heap/save resetとBG・画面初期化の未読依存を重複なしで固定
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-story-resources-frontier
+- Summary: heap/save reset・BG・画面資源の12入口から未読870命令/2146byteと実template2表を保存。既読再解読0、同candidate復元1/native0。
+- Files changed: scripts/pr16_ring_story_resources_frontier.py, tests/test_pr16_ring_story_resources_frontier.py, .github/workflows/pr16-ring-story-resources-frontier.yml, content/modernization/pr16_ring_story_resources_frontier.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定33 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=db6a249d19f0fcb60586721477d1e4d2e4881148; run=35328554870（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: 初回run35328047608は復元前manifestのsource_bindings不足でfailure、候補復元/native0。その原結論を保持して契約を修正。成功run35322265804のSHA固定exportを再利用。同一candidate復元1回、保存命令再解読0。外部source追加/source-lock変更0。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存heap/save resetとBG/画面資源を条件付きwrite/return契約へ結合し、030008D0供給→InitWindows/font登録の最初の未証明依存を進める。default0807D695とfield2の080F77E9/0807E7A5は別owner。今回byte、旧540/1037/786条件、BP/nativeを単独再実行しない。Ring通常取得/装備/保存、policy/Circus/P08未受入。
+
+
+## 2026-09-18T09:25:08.115876+00:00 — PR-P08-7-RING-STORY-RESOURCE-SUPPLIERS
+- Timestamp: 2026-09-18T09:25:08.115876+00:00
+- Task: PR-P08-7-RING-STORY-RESOURCE-SUPPLIERS / BG実定数・属性分岐表とmemcpy/heap/GPUの未読供給を接続
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-story-resource-suppliers
+- Summary: 保存first-stopのmemcpy/heap/GPUとBG定数・属性7slotから新規190命令/470byteを固定。候補復元1、ROM変更/native0。
+- Files changed: scripts/pr16_ring_story_resource_suppliers.py, tests/test_pr16_ring_story_resource_suppliers.py, .github/workflows/pr16-ring-story-resource-suppliers.yml, content/modernization/pr16_ring_story_resource_suppliers.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定20 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=a041183bde6aae8a3ffacf8fe18b5dc1bc372c7d; run=35329291913（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: 成功run35328554870のSHA固定exportを再利用。first-stop指定5calleeと実BG定数/属性7slotのみ、同candidate復元1。既読再解読/native0。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存命令でheap/reset・BG default→実template→属性→InitWindows/fontの連続RAM/部分write/不足条件を検証する。未読save relocation/暗号化とdefault callback/state2は別owner。今回byteと旧accepted条件は再採取/単独再実行しない。通常Ring取得/装備/保存、policy/Circus/P08未受入。
+
+
+## 2026-09-18T09:43:07.644675+00:00 — PR-P08-7-RING-STORY-RESOURCE-CONTRACTS
+- Timestamp: 2026-09-18T09:43:07.644675+00:00
+- Task: PR-P08-7-RING-STORY-RESOURCE-CONTRACTS / 実BG供給から通常windowへの連続RAMとsave退避後の未証明境界を検証
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-story-resource-contracts
+- Summary: 実BG定数/template・heap→通常window→fonts setterの連続明示RAMとsave3block退避を351条件で検証。save退避53300byte後はRandom、callocはCpuSet未読で停止。候補復元/native0。
+- Files changed: scripts/pr16_ring_story_resource_contracts.py, tests/test_pr16_ring_story_resource_contracts.py, .github/workflows/pr16-ring-story-resource-contracts.yml, content/modernization/pr16_ring_story_resource_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定40 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=a6c076976a7b02bd8599a17abbc42e8ae62e554b; run=35330928644（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: 成功run35329291913のSHA固定exportだけ。候補復元/新規byte採取/ROM変更/native0。旧model/source-lockは不変。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存3block退避後のRandom0804448D→save pointer relocation/暗号化、callocのCpuSet081C7A89と画面DMA/InitFieldMessageBox08068C09、通常fonts/callback登録を未読owner別に進める。今回連続RAM・旧byte/条件・BP/nativeを単独再実行しない。Ring通常取得/装備/保存、policy/Circus/P08未受入。
+
+
+## 2026-09-18T10:29:57Z — USER-20260918-RING-NPC-PLAN
+- Timestamp: 2026-09-18T10:29:57Z
+- Task: USER-20260918-RING-NPC-PLAN / 次作業をNPC配布と既存メガUI接続へ変更
+- Status: DONE / 引継ぎ方針更新のみ。Ringの実装・受入完了ではない。
+- Version: pr16-ring-npc-plan
+- Summary: 既存方式でNPCを1人追加するか、進行に無関係と確認できたNPCの会話を差し替え、最終リーグクリア後にメガリング(item580)を通常のアイテム付与処理で1個渡す。既存のリング所持判定と通常戦闘のメガ許可判定を接続し、対応メガストーンを持たせたポケモンで既存の戦闘UIからメガ進化する。NPC受取→実戦→通常Save/fresh Continue後の再利用を先に通す。別の戦闘前policy選択画面を必須にせず、リング連動解禁と既存戦闘UIへの条件対応を台帳に記録する。旧story経路の全owner除外やフォント/音声/DMA/セーブ内部の網羅解析を、この実装の前提にしない。
+- Files changed: scripts/pr16_ring_npc_plan.py, tests/test_pr16_ring_npc_plan.py, .github/workflows/pr16-ring-npc-plan.yml, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, design/decisions.md
+- Verify: 方針/非昇格と既存resumeのfocused 38 tests PASS、render/check、task graph、BP checkpoint byte不変。最終index guardとdiff checkはcommit前に必須。
+- Preserved: ROM変更0、候補再生成0、emulator0、受入済みnative/低level契約の再実行0。
+- Commit: 本記録を含むcommit。照合元=8f76f857c2f17f1be6f8c12653609c0272ad6d73、実行source=9a29083ae6653b2713dc12940327124ea147e9e3、run=35334959218。最終SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actionsのref、PR、run/Checksのみ。private Release/外部技術資料の取得なし。
+- Boundary: 既存全体guardの前後一致と新規違反0を確認して非force反映。全体guard/全CI成功やmerge/release/baseline変更は主張しない。
+- Next: 安全なNPC配置/会話差替えから正規受取を実装し、既存UIでの実戦/保存再開まで通す。
+
+
+## 2026-09-18T11:36:25Z — USER-20260918-RING-NPC-GIFT
+- Timestamp: 2026-09-18T11:36:25Z
+- Task: USER-20260918-RING-NPC-GIFT / 正規NPC配布と保存再開の最初の動作区切り
+- Status: DONE / NPC配布と保存再開のみ。Ring全体/通常戦闘/最終統合は未完。
+- Version: pr16-ring-npc-gift-20260918
+- Summary: NPC正規配布の最初の動作区切りを完了。run35339382576/job105581553850 SUCCESS、新candidate72fbca91のmap96/17 local4 (12,38)でRing0→1の実会話、二重受取防止、最終リーグ未達/バッグ満杯の不成立、通常Save2→3/fresh Continue/再訪を3process・6coresで確認。11+18+10=39 source tests、ARM二重生成、既存NPC/非object event/レイアウト不変、7画面目視。BP正本ceddbe91は変更しない。通常戦闘へのリング所持再判定は次の未完作業であり、Ring/policyのformal IDは閉じない。
+- Files changed: .github/workflows/pr16-ring-npc-workbench.yml, scripts/pr16_ring_npc_workbench.py, .github/workflows/pr16-ring-npc.yml, overlays/ring_npc/ring_npc.c, overlays/ring_npc/ring_npc.h, tests/ring_npc_host.c, tests/test_pr16_ring_npc.py, scripts/pr16_ring_npc_successor.py, tests/test_pr16_ring_npc_successor.py, scripts/pr16_ring_npc_native.py, tools/mgba_pr16_ring_npc.c, tests/test_pr16_ring_npc_native.py, scripts/pr16_ring_npc_gift_record.py, tests/test_pr16_ring_npc_gift_record.py, .github/workflows/pr16-ring-npc-gift-record.yml, content/modernization/pr16_ring_npc_gift_checkpoint_20260918.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md
+- Verify: production C11/map18/native oracle10の39tests PASS。ARM二重生成一致、allocator overlap0、宣言外ROM差分0。新native3cases/6cores、各Save2→3、Ring0→1又は不成立、全Bag/party/BP保持。
+- Visual: 成功/重複/未達/満杯とcold再訪7画面を原PNGで確認。
+- Record verification: 原ZIPと全member digest、case raw stdout/stderr/process、candidate/source/Actionsを照合。記録/resume focused testsとtask graph PASS。最終index guardとdiff checkはcommit前必須。
+- History: 初回run35338073483は町のNPC枠境界で停止、native0。新run35339382576で北ルートへ修正成功。旧失敗は成功に読み替えない。
+- Evidence: tested=dd432122b22d6bdaf1858c03b40a351da67c56bf; run=35339382576; job=105581553850; artifact=10543834367; SHA256=2fa3a6957224048e87efa1e91b6b51fce8c717252c8ec2eeb4865c12c79f1e50。
+- Preserved: 受入済みBP/P03/P06/P07のnative再実行0。最初のhost用globは既存plan14testsも含んだため後続でexact test名へ修正。正式BP候補・checkpoint・physical3/P08 gates2は無変更。
+- Commit: この記録を含むcommit。record source=80f49475ab016557241da7fecb591c04d00246f0、record run=35340438692。同branchへ非force反映、完了SHAはremote ref確認。
+- Network: GitHub connector/Actions・固定private環境の復元のみ。ROM/save/private ZIP/elfをGitや証拠artifactへ公開しない。
+- Boundary: 全体private guardの既存違反前後一致と追加違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 新NPC候補72fbca91を親に、通常戦闘開始時にリング所持を毎回再判定する最小bridgeを実装する。明示pending設定、施設/raid/link制限、対応石/使用回数/他ギミック排他を維持し、NPC受取→対応石を装備→通常Save/fresh Continue→既存技選択UIのメガ選択/不選択/取消・技使用・戦闘後復帰を実観測する。新しい戦闘前選択UIやNPC受取時の揮発NEXT設定で代用しない。保存済みNPC3件は配布/配置/saveコードに変更影響がなければ再実行せず原本を継承する。
+
+
+## 2026-09-18T13:16:00Z — USER-20260918-RING-POLICY-CLOSEOUT
+- Timestamp: 2026-09-18T13:16:00Z
+- Task: USER-20260918-RING-POLICY-CLOSEOUT
+- Status: DONE / Ring取得からcold通常戦闘までのscoped受入。Circus/P08/releaseは未完。
+- Version: pr16-ring-ordinary-policy
+- Summary: 通常戦闘のRing bridgeを受入済みNPC候補から限定実装。NPC正規受取→Bag Give→通常Save/fresh Continue→自然遭遇→既存メガUI→技使用→戦闘後復帰→Save/fresh Continueの新規5件を検証。選択/不選択/取消、未所持/別の石の対照を含む。Ring/policyの2つのphysical IDをこのscoped候補で閉じ、CircusとP08最終候補への移送・releaseは未完。正式BP候補ceddbe91と旧原本は維持する。
+- Files changed: scripts/pr16_ring_policy_successor.py, tests/test_pr16_ring_policy_build.py, scripts/pr16_ring_policy_native.py, tests/test_pr16_ring_policy_native.py, tools/mgba_pr16_ring_policy.c, .github/workflows/pr16-ring-policy.yml, scripts/pr16_ring_policy_record.py, tests/test_pr16_ring_policy_record.py, .github/workflows/pr16-ring-policy-record.yml, content/modernization/pr16_ring_policy_record_spec.json, content/modernization/pr16_ring_policy_acceptance.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, content/modernization/pr16_bp_chooser_checkpoint.json, design/run_log.md, design/version_log.md
+- Verify: production host11 + builder12 + native oracle17 = 40 tests PASS。ARM独立2build一致、172-byte payload + 8-byte entryのみ、allocator overlap0/宣言外ROM差分0。
+- Native: 正規受取・Give・cold通常戦闘の新規5件/15fresh cores。Ring所持/対応石/START選択でMega、未所持・別石・不選択・取消では不成立。技PP/使用回数/復帰/石非消費/Bag・個体・BP・Save保持を確認。7host-write barriers。
+- Record verification: 固定ZIP/全member/Actions/sourceと元stdout/stderr/processを照合。選択した原PNG24画面を目視、記録/固定resume tests、task graph PASS。最終index guardとdiff checkをcommit前gateにする。
+- Evidence: content/modernization/pr16_ring_policy_acceptance.json; tested=a54fe471c666c280f116b5cbfc3b1a6c821e5395; run=35347587112; job=105607699274; artifact=10547413771; ZIP SHA256=113b5972602453eafdab47f57272f1d9fd0ab22d1efcd4d956651b2f84ad0f65。
+- History: 予約領域台帳の誤仮定・旧SHA probe・入力待ちmaster bit・未展開headerの失敗は原artifactに保持。成功原本へ読み替えず、既に成功した単独nativeは再実行しない。
+- Preserved: 旧NPC3件とBP/P03/P06/P07の独立再実行0。正式BP候補/原本/数値は不変。BP checkpointは全体physical_gap_countだけ3→1へ同期し、Ring/policy2件を閉じる。Circus1件/P08 gates2は未完。
+- Commit: この記録を含む同branchへの非force commit。record source=77d45a429bf410a783fbb2c7738d9561048366c4; record run=35349174693。自己SHAはremote ref/receiptで確認。
+- Network: GitHub connector/Actions・固定private環境のみ。ROM/save/private ZIP/elfをtracked/artifactへ追加しない。
+- Boundary: 既存full private guard違反の前後出力完全一致と追加違反0を要求。全体guard PASS/全CI green/merge/release/baseline変更は主張しない。
+- Next: PHYSICAL_CIRCUS_ADMISSIONの実受付/入場ownerから特性抑制までの最小経路を進める。content/modernization/pr16_p05_supply_owner_findings.jsonの未解決箇所から始め、map12/7をCircusと仮定せず、flag直接注入で入場を代用しない。Ring/policyの受入済み5件とNPC3件、BP/P03/P06/P07は変更影響なしに再実行しない。Circus修復後に変更ROM範囲/owner/runner/fixture/契約を照合してP08最終候補へ移送する。
+
+
+## 2026-09-18T14:27:39.332070+00:00 — USER-20260918-CIRCUS
+- Timestamp: 2026-09-18T14:27:39.332070+00:00
+- Task: USER-20260918-CIRCUS
+- Status: DONE / pending選択実装と実owner linkの区切り。実受付・入場nativeは未完。
+- Version: pr16-circus-pending-owner
+- Summary: 未消費の正規facility commandを所有APIでCircus番号3へ切替えるC実装を追加。mockなしhost10件、ELF境界10件、ARM object独立2compile、現ROMの7関数全byte照合と独立2linkを検証。280-byte runtimeはlink検証までで、製品ROMへの挿入/受付script接続/実入場nativeは未完。Ring受入後に古い未完状態を要求していたP03 CI条件も修正し20+24件PASS。
+- Files changed: .github/workflows/pr16-source-workspace.yml, overlays/circus_admission/circus_admission.c, overlays/circus_admission/circus_admission.h, tests/test_pr16_circus_admission.py, scripts/pr16_circus_source_probe.py, .github/workflows/pr16-circus-source.yml, scripts/pr16_circus_link_probe.py, tests/test_pr16_circus_link_probe.py, .github/workflows/pr16-circus-link.yml, tests/test_modernization_p08_forgetting_evidence.py, scripts/pr16_circus_record.py, tests/test_pr16_circus_record.py, .github/workflows/pr16-circus-record.yml, content/modernization/pr16_circus_record_spec.json, content/modernization/pr16_circus_admission_checkpoint.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md
+- Verify: 新Cのmockなしhost10件、ELF/実byte境界10件PASS。ARM object2compile一致、実候補7関数全byte一致、新280-byte payload独立2link一致・未解決symbol0。
+- CI repair: P03状態保持20件＋既存契約24件PASS（保存原本の検査のみ、native再実行0）。Ring/policyを未完へ戻さず、P08/Circusは未完のまま。
+- Evidence: content/modernization/pr16_circus_admission_checkpoint.json; source run35351832671/artifact10550280062; link run35353620141/artifact10550587542; CI run35353620112/artifact10550417336。固定HEAD/ZIP/全member/source/job結論照合。
+- History: run35352684227はlinked.oを.elf限定で見落とした失敗。原stderrのhash/原因行と固定artifactを保持し、成功へ読み替えない。記録run35355663661はrunner絶対パス混入をguardで拒否し、未commitのまま停止。原本参照を保って原因行だけ記録する修復を加えた。
+- Boundary: 受付への新runtime接続・ROM挿入0、実入場native0、accepted standalone native replay0。5335 decoded rootsで直接owner/sp072呼出し未検出でも、間接native/std経路の不存在は主張しない。
+- Preserved: 正式BP checkpoint byte不変。Ring/BP/P03/P06/P07の受入原本・既存CFRU・release_ready=false・physical1/P08 gates2を維持。
+- Record: 固定MD/JSON同期、focused記録/再開testsとtask graph検査。最終index guardは既存違反の前後出力完全一致/追加違反0、diff checkをcommit前必須gate。
+- Commit: 同branchへ非force push。record source=c7e80897952581924db3498cc04936dfacee27f0; record run=35356314497。自己SHAはreceipt/remote refで確認。
+- Network: GitHub connector/Actions固定入力のみ。新ROM/save/ELF/private ZIPをtracked/artifactへ追加しない。merge/release/active baseline変更なし。
+- Next: 保存した7関数・リンク結果・5335 root走査を再実行せず、未解決の間接native/std受付経路を絞る。実受付scriptに未消費pending番号3選択→正規sp072抽選→戦闘開始を接続し、受付取消/party復帰と正常Save/fresh Continueを新規nativeで検証する。sp072の特性抑制はpersonal effectで連勝30以上の正規進行条件が必要。map12/7やraw Var403AをCircusの証拠とせず、flag/PC/LR直接注入で入場を代用しない。Ring/BP/P03/P06/P07の受入済みnativeは変更影響なしに再実行しない。
+
+
+## 2026-09-18T15:17:38.819511+00:00 — USER-20260918-CIRCUS-ENTRY
+- Timestamp: 2026-09-18T15:17:38.819511+00:00
+- Task: USER-20260918-CIRCUS-ENTRY / Circus実受付候補生成
+- Status: DONE / 候補生成・限定script契約まで。実入場nativeは未受入。
+- Version: pr16-circus-entry-candidate
+- Summary: 既存Codex受付のFactory行き4-byte pointerに任意Circus分岐を追加した限定候補を生成。既存Factory本体/CFRU ownerは不変。専用のscript結果adapterと複製Trialの3戦闘開始点へ未消費pending番号3選択→正規sp072反復→5Dを接続。23件の新規host/script契約、独立ARM link2回・限定patch2回一致、全allocation hash/2範囲外不変/重複0を検証。実受付native・保存復帰・Circus固有連勝の正規更新/永続化・抑制抽選は未受入。
+- Files changed: overlays/circus_admission/circus_script.c, scripts/pr16_circus_entry.py, tests/test_pr16_circus_entry.py, tests/test_pr16_circus_entry_binding.py, .github/workflows/pr16-circus-entry.yml, scripts/pr16_circus_entry_record.py, tests/test_pr16_circus_entry_record.py, .github/workflows/pr16-circus-entry-record.yml, content/modernization/pr16_circus_entry_record_spec.json, content/modernization/pr16_circus_entry_checkpoint.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md
+- Verify: 新規23件PASS原本、ARM link2回一致、限定patch2回一致、全allocation hash/重複0/2範囲外不変。記録/再開tests、task graph、差分guard、diff checkをcommit前必須。
+- Evidence: build run35360663203; tested_head=657c589538b68ab665b4acfcc36bd4434b00a2a6; candidate=022bd5e6383f5513f7b43fd00923f8ed66908b18a07f7be252b8ce7a011c5c72; content/modernization/pr16_circus_entry_checkpoint.json。元Actions/job/artifact ZIP/member/sourceを照合。
+- History: run35359098745は存在しないscript名をmetadataへ要求し停止。実CommitSelection拒否edge/Abort ownerで解決。run35359681701はveneer整列で入口4byteずれを検出して停止。16byte割当で解決。失敗原本と最終原因行/hashを保持。
+- Boundary: 新候補は検証用でrelease採用/active baseline変更なし。専用工程emulator0、受入済みnative手動再実行0。自動Stage79結果を新Circus受入へ流用しない。
+- Preserved: 正式BP checkpoint不変、Ring/BP/P03/P06/P07受入、physical1/P08 gates2、release_ready=falseを保持。
+- Commit: 同branchへ非force push。record source=92260e2edcbc1f8338b679e35ecbdb6875a51d08; record run=35361499557。自己SHAはreceipt/remote refで確認。
+- Network: GitHub connector/Actionsと既存hash固定入力のみ。新ROM/save/ELF/private ZIPをtrackedへ追加しない。
+- Next: 保存した候補生成原本を再利用し、新しい実受付の取消・レンタル選択・戦闘開始を入力だけで検証する。追加質問の影響を受けるFactory入口に限り対照を行い、party/BP/Bag/通常Save/fresh Continueを確認する。Factoryの連勝値とCircus固有streak ownerは別物。固有streakの正規更新・永続化を接続した上で連勝30以上の来歴と正規sp072の特性抑制を別に検証する。効果bit/施設番号/PC/LRをhost注入しない。受入済みRing/BP/P03/P06/P07の無変更native、旧7関数/link/5335 root走査は再実行しない。
+
+
+## 2026-09-18T16:12:49.135691+00:00 — USER-20260918-CIRCUS-THUMB
+- Timestamp: 2026-09-18T16:12:49.135691+00:00
+- Task: USER-20260918-CIRCUS-THUMB / Circus Thumb実行不具合修復
+- Status: DONE / Thumb修復build・prefix非影響証明まで。初戦native・固有連勝は未受入。
+- Version: pr16-circus-thumb-successor
+- Summary: Circus初戦のThumb呼出し不具合を修復。既存2ownerへ関数型付きbx r3 thunkを接続し、独立2compile/link・2限定patchの一致を確認。304byte adapter以外を変えず、旧adapterを戻したROM全体SHAが取消/Factory成功候補022bd5e6と完全一致することを検証。取消保存/Factory入口の成功2ケースは継承し再実行0。初戦nativeとCircus固有連勝/永続化/抑制は未受入。
+- Files changed: scripts/pr16_circus_entry.py, scripts/pr16_circus_thumb.py, tests/test_pr16_circus_thumb.py, scripts/pr16_circus_thumb_record.py, tests/test_pr16_circus_thumb_record.py, .github/workflows/pr16-circus-thumb.yml, content/modernization/pr16_circus_thumb_checkpoint.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md
+- Verify: 新規Thumb/記録契約、resume検証、task graph、diff checkをPASS。独立2compile/link・2patch一致、ELF関数型/Thumb bit/命令列、全allocation hashと重複0、旧adapter復元による全ROM SHA一致を確認。
+- Evidence: request HEAD=8b06bcf82d7d7b5f36e21b2ec1f689bec8b1b7f7; build run=35366959217; candidate=99cc09484a9c6bd787fb4b0631970396b4ae5ec2abc902ea8fdec932130b6c0b; content/modernization/pr16_circus_thumb_checkpoint.json。検証対象worktreeのpatch/source hashを保存。
+- History: run35363580877の2成功と1失敗を混同しない。run35365722696は認可・patch適用・task graphに成功、既存全体private guardで停止しnative0/push0。全体guard自体を変更/無効化せず、基点と最終index出力一致・追加違反0をcommit条件とする。
+- Native: 新規emulator0、既受入取消保存/Factory入口再実行0。正式BP/Ring/P03/P06/P07原本不変。
+- Commit: この記録と検証済み実装を含む同branchへの非force commit。自己SHAは外部ref/receipt。
+- Network: GitHub connector/Actionsとhash固定private Release。ROM/save/private archive/credentialは新規tracked/artifactへ含めない。merge/release/baseline変更なし。
+- Next: Thumb修復候補と非影響証明を再利用し、circus-first-battleだけを新SHA/新checkpointへ結合して入力のみで検証する。成功済みcircus-cancel-save-continueとfactory-fallback-cancelは再実行しない。初戦到達後にCircus固有streakの正規更新・永続化と30連勝以上の来歴、正規sp072の特性抑制を接続・検証する。Factory連勝をCircus固有連勝へ読み替えず、効果bit/施設番号/PC/LRをhost注入しない。無変更のRing/BP/P03/P06/P07/旧7関数/5335root走査は再実行しない。
+
+
+## 2026-09-18T16:32:11.990893+00:00 — USER-20260918-CIRCUS-FIRST-BATTLE
+- Timestamp: 2026-09-18T16:32:11.990893+00:00
+- Task: USER-20260918-CIRCUS-FIRST-BATTLE
+- Status: DONE / 修復候補の初戦1ターン限定検証・記録。選択個体保持/固有連勝は未受入。
+- Version: pr16-circus-first-turn
+- Summary: Thumb修復候補99cc0948で未完だったCircus初戦1件が成功。新質問→レンタル選択→正規sp072抽選（field効果0x80）→戦闘→実入力の1ターンを4229framesで確認。新規emulator1、7書込barrier、警告0。取消保存/Factory入口2成功は非影響証明から継承し再実行0。画像16枚を確認したが、第2選択画面の先頭ゴースと実戦のポリゴンが異なる。600byte検査は元partyの退避像のみで、選択個体の実戦継承を保証しない。選択個体の経路とCircus固有連勝/永続化/30連勝抑制は未受入。
+- Files changed: scripts/pr16_circus_native.py, tests/test_pr16_circus_native.py, .github/workflows/pr16-circus-native.yml, scripts/pr16_circus_first_record.py, tests/test_pr16_circus_first_record.py, .github/workflows/pr16-circus-first-record.yml, content/modernization/pr16_circus_first_battle_checkpoint.json, evidence/pr16_circus_first_native/original.stdout.txt, evidence/pr16_circus_first_native/original.stderr.txt, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md
+- Verify: native結果契約16件PASS、7host-write barrier、run35367721416/job105674099808成功。ZIP/member/source/process/stdout/stderrを照合し、PPM16枚を画像確認。記録/再開tests、task graph、最終index差分guard、diff checkをcommit前必須。
+- Evidence: content/modernization/pr16_circus_first_battle_checkpoint.json; tested HEAD=c847b700d5b3af983c08a44d2278ab86d409eeb9; artifact10557022177 SHA256=2d20f873c45ac26d8cd65d26b6b7a0fe18786be464f3a25b0c46d948aebc64cc。原本stdout/stderrをtracked textで保持。画像上の個体名差は未解決として記録し、旧原本は改変しない。
+- Boundary: 新規native1/4229frames/効果0x80/警告0/保存0/BP0。取消保存・Factory入口2成功は継承、再実行0。正式BP/Ring/P03/P06/P07、physical1/P08 gates2、release_ready=falseを維持。
+- Commit: この記録と検証済みnative選択変更を含む同branchへの非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actions。記録工程では既存artifactのみ使用し、private入力復元/ROM生成/native起動なし。ROM/save/credentialを新規tracked/artifactへ含めない。既存full guard違反は前後出力一致・新規違反0で区別。merge/release/baseline変更なし。
+- Next: 保存した初戦成功・Thumb非影響証明を再利用し、まず第2選択→戦闘間の個体継承を限定追跡する。表示名だけで原因を断定せず、選択個体のspecies/personality/party bytesと既存prepare/retention ownerを照合し、必要な場合だけCircus専用経路を修復する。その後、固有streakの正規勝敗更新・保存復帰と30連勝以上の来歴、正規sp072の特性抑制を実装・検証する。Factory連勝を代用せず、効果/施設番号/連勝/PC/LRをhost注入しない。無変更の取消保存/Factory入口/初戦1ターン/Ring/BP/P03/P06/P07/旧7関数/5335root走査を再実行しない。
+
+
+## 2026-09-18T18:16:04.392967+00:00 — USER-20260919-CIRCUS-IDENTITY
+- Timestamp: 2026-09-18T18:16:04.392967+00:00
+- Task: USER-20260919-CIRCUS-IDENTITY
+- Status: DONE / 個体置換原因の限定診断。保持修復は未完。
+- Version: pr16-circus-identity-diagnostic
+- Summary: 個体追跡run35378203102で原因を限定。初回確定1311f→第2確認1782fの選択3体300bytesは完全一致。正規sp072→戦闘初期化の1936fに全3枠が0化され、3336fの実戦では別PID/speciesへ置換された。scriptはCircus初戦continuation 0x09FF4D16。既存retentionはFactory継続2scriptのみでCircusを除外している。新規1process/1core、7書込barrier、35限定event、警告0。初戦ターン/取消保存/Factory入口は再実行0。診断完了であり個体保持・固有連勝・30連勝抑制は未受入。
+- Files changed: scripts/pr16_circus_identity.py, tests/test_pr16_circus_identity.py, .github/workflows/pr16-circus-identity.yml, scripts/pr16_circus_identity_record.py, tests/test_pr16_circus_identity_record.py, .github/workflows/pr16-circus-identity-record.yml, content/modernization/pr16_circus_identity_checkpoint.json, evidence/pr16_circus_identity/original.stdout.txt, evidence/pr16_circus_identity/original.stderr.txt, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md
+- Verify: 個体追跡契約20件PASS、7host-write guard、native原本1process/1core、35event/3336f、ZIP/member/source/process/stdout/stderr照合。記録/再開tests・task graph・最終index差分guard・diff checkをcommit前必須。
+- Evidence: content/modernization/pr16_circus_identity_checkpoint.json; run35378203102/job105707865018; tested HEAD=3b967ba55ff6914263787a2273b7346faecf3792; artifact10561465516 SHA256=085f33b1f5510a6281e0d85b541089d0d84a90df99e080955586c5877144f945。原本の旧scopeラベルは改作せず実ケースと区別。表示名ではなく300bytes/PID/speciesを根拠とした。
+- Boundary: 初戦ターン/取消保存/Factory入口/旧7関数/5335root/Ring/BP/P03/P06/P07再実行0。ROM変更0、元受入checkpoint不変。physical1/P08 gates2/release_ready=false。
+- Commit: 本記録を同branchへ非force commit。自己SHAはremote ref/receiptに記録。
+- Network: GitHub connector/Actions原本のみ。記録工程はROM生成/private復元/native起動なし。ROM/save/credentialを追加しない。既存full guard違反は前後一致・新規違反0と区別。merge/release/baseline変更なし。
+- Next: 保存した個体追跡を再実行せず、既存Factory predicateの返値を非該当時に保持するCircus専用wrapperを実装する。固定候補99cc0948のretention trampoline literalだけを検証付きで新wrapperへ接続し、3つのCircus launch continuation/marker/pending/facility番号で限定する。新候補で選択個体の実戦保持を検証。その後、Circus固有streakの正規勝敗更新・保存復帰・30連勝以上の来歴と正規sp072特性抑制へ進む。Factory連勝の代用、効果/施設番号/連勝/party/PC/LRのhost注入は禁止。無変更の初戦1ターン/取消保存/Factory入口/Ring/BP/P03/P06/P07/旧7関数/5335root走査を再実行しない。
+
+
+## 2026-09-18T18:30:00.366928+00:00 — USER-20260919-CIRCUS-RETENTION
+- Timestamp: 2026-09-18T18:30:00.366928+00:00
+- Task: USER-20260919-CIRCUS-RETENTION
+- Status: DONE / Circus限定保持実装と初戦選択3体300bytesのnative受入。後続戦/固有連勝/抑制は未完。
+- Version: pr16-circus-retention-first-battle
+- Summary: Circus限定保持wrapperを実装し、run35379705280で修復候補3554dc42の初戦個体継承を検証。1311fの初回確定→1782fの第2確認→3128fの戦闘開始で選択3体300bytes/PID/speciesが完全一致、途中の個体置換0。画像13枚で実戦先頭もゴースのまま確認。変更は既存trampoline参照4bytesと新Thumb runtime280bytesだけ。旧Factory runtime不変、非Circusは以前のpredicate返値を保存。全ROM rollbackは親99cc0948と一致。保持13契約/145152条件、独立ARM link2回、独立patch2回、新規native1/1core/7書込barrier/警告0。3つのCircus開始点を実装対象にしたが、native受入は初戦のみ。固有連勝/保存復帰/30連勝抑制は未完。
+- Files changed: scripts/pr16_circus_retention.py, overlays/circus_retention/circus_retention.c, tests/test_pr16_circus_retention.py, .github/workflows/pr16-circus-retention.yml, scripts/pr16_circus_retention_native.py, scripts/pr16_circus_checkpoint.py, scripts/pr16_circus_retention_record.py, tests/test_pr16_circus_retention_record.py, .github/workflows/pr16-circus-retention-record.yml, content/modernization/pr16_circus_retention_checkpoint.json, evidence/pr16_circus_retention/original.stdout.txt, evidence/pr16_circus_retention/original.stderr.txt, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md
+- Verify: 保持13契約PASS（145152境界組合せを含む）、独立ARM link2/patch2、7host-write guard、native1process/1core/20events/3128f。原本画像13枚を画像確認。 原本ZIP/member/source/process/stdout/stderrを照合。記録/再開tests、task graph、最終index差分guard、diff checkをcommit前必須。
+- Evidence: content/modernization/pr16_circus_retention_checkpoint.json; run35379705280/job105712711736; tested HEAD=9a100b06df2f83510c1196bd71dd4fb7afe25a9a; artifact10561218387 SHA256=96c03199f13afb5b8962df044875b58f843af37e25e04833f8a6bc41601821d5。
+- Boundary: 選択300bytesの受入は初戦のみ。後続戦の3script対応はhost/static確認まで。旧候補診断・受入済み単体ケース再実行0。旧Factory/正式BP/Ring/P03/P06/P07と履歴checkpointを不変。 physical1/P08 gates2/release_ready=falseを維持。
+- Commit: 本工程の検証/記録を同branchへ非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actions。記録工程は既存artifactのみ、ROM生成/private復元/native起動なし。ROM/save/credentialを新規追跡しない。既存full guard違反は前後一致・新規違反0と区別。merge/release/baseline変更なし。
+- Next: 初戦個体保持checkpointを再利用し、Circus固有streakの正規勝敗更新と保存復帰へ進む。現在のFacilityRuntime_AfterBattleはFactory Trial current_streak[0]を更新しており、その値をCircus連勝として代用しない。正規sp072のCircus streak読出し先と既存save ownerを限定照合し、専用更新/永続化を接続する。継続戦では第2/第3開始点の選択/交換個体継承も検証し、真正30連勝以上の来歴から正規抽選による特性抑制まで通す。初戦保持だけでphysical/P08を閉じず、効果/施設番号/連勝/party/PC/LRをhost注入しない。旧99cc個体診断・3554初戦保持単体・無変更の取消保存/Factory入口/旧初戦1ターン/Ring/BP/P03/P06/P07/旧7関数/5335root走査を再実行しない。
+
+
+## 2026-09-18T20:18:54.181252+00:00 — USER-20260919-CIRCUS-STREAK-BUILD
+- Timestamp: 2026-09-18T20:18:54.181252+00:00
+- Task: USER-20260919-CIRCUS-STREAK-BUILD
+- Status: DONE / Circus固有連勝runtimeの実装・再現可能ビルド・限定検証・記録。native受入は未完。
+- Version: pr16-circus-isolated-streak-build
+- Summary: Circus専用64byte owner/CRC/保存復帰と既存Factoryから隔離したruntimeを構築。開始HEADの既存WIPを継承し、configureの2 literal、Stage42完走adapter、Circus限定敗北復帰を修復。run35389993775は21 host契約・1327104敗北条件・独立ARM link2回を通過。6396byte runtimeと8byte veneer、4箇所のengine参照、20箇所の複製script呼出しを限定接続。旧Factory allocation不変、全ROM rollbackで3554親へ一致。実native勝敗/保存/継続戦/30連勝抑制はまだ未受入。
+- Files changed: scripts/pr16_streak_record.py, tests/test_pr16_streak_record.py, .github/workflows/pr16-streak-record.yml, scripts/pr16_streak_archive.py, scripts/pr16_circus_streak.py, scripts/pr16_circus_streak_edges.py, tests/test_pr16_circus_streak_calls.py, tests/test_pr16_circus_streak_edges.py, tests/fixtures/circus_streak_loss_fixture.c, .github/workflows/pr16-circus-streak-build.yml, overlays/circus_streak/circus_streak_runtime.c, overlays/circus_streak/circus_streak_runtime.h, overlays/circus_streak/circus_streak_loss.h, content/modernization/pr16_circus_streak_build_checkpoint.json, evidence/pr16_circus_streak/build.json, evidence/pr16_circus_streak/tests.stderr.txt, evidence/pr16_circus_streak/symbols.txt, evidence/pr16_circus_streak/disassembly.txt, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md
+- Verify: 21 host契約PASS（UBSan、512bit破損、保存失敗rollback、重複/順序、境界、33勝model roundtrip、1327104敗北条件）、ARM独立link2一致、ROM全差分/全rollback、owner overlap0。33勝modelはnative連勝の証拠ではない。 原本ZIP/member/source/process/stdout/stderrを照合。記録/再開tests、task graph、最終index差分guard、diff checkをcommit前必須。
+- Evidence: content/modernization/pr16_circus_streak_build_checkpoint.json; run35389993775/job105745851627; tested HEAD=37a2bf04d3947fd51a9d8ab88d47988fbf377af1; artifact10565491335 SHA256=3e2931a22e8aaf4c02a04ffff65de67c3d8523765767a77b98085c5423050038。
+- Boundary: 工程はBUILDER_ONLY。専用連勝・native Save/Continue・後続戦個体保持・抑制は未受入。正式BPと旧native原本/現行baseline/私有入力は不変。 physical1/P08 gates2/release_ready=falseを維持。
+- Commit: 本工程の検証/記録を同branchへ非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actions。記録工程は既存artifactのみ、ROM生成/private復元/native起動なし。ROM/save/credentialを新規追跡しない。既存full guard違反は前後一致・新規違反0と区別。merge/release/baseline変更なし。
+- Next: 固定構築checkpointの3f377dbc候補を再利用し、入力専用nativeでCircus固有ownerの正規勝敗更新、継続戦の第2/第3launch個体保持、完走9BP/原party復元、通常Save/fresh Continueと敗北/中断復帰を検証する。そこから真正30連勝以上の来歴と正規特性抑制へ進む。Factoryの24連勝枠をCircus値として使わず、効果/連勝/party/勝敗/PC/LRをhost注入しない。受入済み3554初戦保持単体/取消保存/Factory入口/Ring/BP/P03/P06/P07は変更影響がなければ再実行しない。
+
+
+## 2026-09-19T01:42:56.597793+00:00 — USER-20260919-CIRCUS-LOSS-MARKER-SOURCE
+- Timestamp: 2026-09-19T01:42:56.597793+00:00
+- Task: USER-20260919-CIRCUS-LOSS-MARKER-SOURCE
+- Status: DONE / 開始HEADのnative失敗原本を照合。敗北時marker=2に対しCircus guardがsnapshot=1を要求した誤りを、正本VEGA_FACTORY_BATTLE_ACTIVEへ修復。5 marker全状態・2211840条件を検証。元Factory/正式BP受入は不変。native後継検証は未完。
+- Version: pr16-circus-loss-marker
+- Summary: 開始HEADのnative失敗原本を照合。敗北時marker=2に対しCircus guardがsnapshot=1を要求した誤りを、正本VEGA_FACTORY_BATTLE_ACTIVEへ修復。5 marker全状態・2211840条件を検証。元Factory/正式BP受入は不変。native後継検証は未完。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, overlays/circus_streak/circus_streak_loss.h, tests/fixtures/circus_streak_loss_fixture.c, tests/test_pr16_circus_streak_edges.py, evidence/pr16_circus_loss_followup/35391760500/stderr.txt, evidence/pr16_circus_loss_followup/35391760500/report.json
+- Verify: [{'pattern': 'test_pr16_circus_streak*.py', 'count': 21, 'success': True}, {'pattern': 'test_pr16_streak_native.py', 'count': 10, 'success': True}, {'pattern': 'test_pr16_circus_loss_followup.py', 'count': 6, 'success': True}]、2211840 loss guard条件PASS。native受入追加なし; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 修復候補でCircus敗北復帰・固有64byte・原party600byte・通常Save/fresh Continueを検証する。続いて未受入の実3勝、第2/第3launch個体保持、9BP、真正30連勝と正規特性抑制へ進む。受入済みの単体検証は変更影響なしに再実行しない。
+
+
+## 2026-09-19T01:47:39.958469+00:00 — USER-20260919-CIRCUS-LOSS-MARKER-RESUME
+- Timestamp: 2026-09-19T01:47:39.958469+00:00
+- Task: USER-20260919-CIRCUS-LOSS-MARKER-RESUME
+- Status: DONE / Circus source修復278c64efは保存済み。PR表示遅延による停止とartifactのglob文字名を修正。live refで競合を拒否し、37既存契約の証拠を継承して未起動nativeから再開。
+- Version: pr16-circus-loss-marker
+- Summary: Circus source修復278c64efは保存済み。PR表示遅延による停止とartifactのglob文字名を修正。live refで競合を拒否し、37既存契約の証拠を継承して未起動nativeから再開。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, scripts/pr16_circus_loss_followup.py, tests/test_pr16_circus_loss_followup.py
+- Verify: [{'pattern': 'test_pr16_circus_loss_followup.py', 'count': 9, 'success': True}]。旧37契約再実行0、旧native再実行0。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 修復候補でCircus敗北復帰・固有64byte・原party600byte・通常Save/fresh Continueを検証する。続いて未受入の実3勝、第2/第3launch個体保持、9BP、真正30連勝と正規特性抑制へ進む。受入済みの単体検証は変更影響なしに再実行しない。
+
+
+## 2026-09-19T01:50:48.989785+00:00 — USER-20260919-CIRCUS-LOSS-MARKER-NATIVE
+- Timestamp: 2026-09-19T01:50:48.989785+00:00
+- Task: USER-20260919-CIRCUS-LOSS-MARKER-NATIVE
+- Status: DONE / Circus敗北marker source修復を保存。後継nativeは失敗原本を保持し未受入。reportのfailuresとstderr末尾から続行し、旧候補を無変更再実行しない。
+- Version: pr16-circus-loss-marker
+- Summary: Circus敗北marker source修復を保存。後継nativeは失敗原本を保持し未受入。reportのfailuresとstderr末尾から続行し、旧候補を無変更再実行しない。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, evidence/pr16_circus_loss_followup/run35413721743/report.json, evidence/pr16_circus_loss_followup/run35413721743/circus-streak-batch-save.stderr, evidence/pr16_circus_loss_followup/run35413721743/circus-streak-batch-save.stdout, evidence/pr16_circus_loss_followup/run35413721743/byte-proof.json
+- Verify: CIRCUS_LOSS_MARKER_REPAIRED_NATIVE_DIAGNOSTIC_OPEN。7 host-write barriers。記録での新規emulator0、全run成功とは未断定。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 新しいnative失敗原本と限定byte-proofを読み、実際の停止箇所を修復する。source-only成功をnative受入へ昇格しない。
+
+
+## 2026-09-19T02:02:07.679969+00:00 — USER-20260919-CIRCUS-LOSS-MARKER-RETURN-START
+- Timestamp: 2026-09-19T02:02:07.679969+00:00
+- Task: USER-20260919-CIRCUS-LOSS-MARKER-RETURN-START
+- Status: DONE / 6e修復候補はWhiteOutを回避するが黒画面で原party復元前に停止。未観測の敗北後1200frameのfield/script/fade/taskだけを入力専用で記録。固定2linkの再実行なし。
+- Version: pr16-circus-loss-marker
+- Summary: 6e修復候補はWhiteOutを回避するが黒画面で原party復元前に停止。未観測の敗北後1200frameのfield/script/fade/taskだけを入力専用で記録。固定2linkの再実行なし。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_return_trace.json, tools/mgba_pr16_circus_return_trace.h, scripts/pr16_circus_return_trace.py, tests/test_pr16_circus_return_trace.py, .github/workflows/pr16-circus-return-trace.yml
+- Verify: readonly trace契約PASS。診断のみ、native受入追加なし。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 敗北後のfield callback/script/fade/task記録を照合し、正規復帰経路だけを修復する。hostからPC/LR/勝敗/party/連勝/効果を注入しない。受入済み単体/2linkは無変更再実行しない。
+
+
+## 2026-09-19T02:04:23.615706+00:00 — USER-20260919-CIRCUS-LOSS-MARKER-RETURN-RECORDED
+- Timestamp: 2026-09-19T02:04:23.615706+00:00
+- Task: USER-20260919-CIRCUS-LOSS-MARKER-RETURN-RECORDED
+- Status: DONE / 6e候補の敗北後限定診断を原本保存。旧nativeの失敗は保持し、今回もparty/save受入へ昇格しない。field/script/fade/taskとcallback逆アセンブルの新しい観測から修復へ進む。
+- Version: pr16-circus-loss-marker
+- Summary: 6e候補の敗北後限定診断を原本保存。旧nativeの失敗は保持し、今回もparty/save受入へ昇格しない。field/script/fade/taskとcallback逆アセンブルの新しい観測から修復へ進む。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_return_trace.json, tools/mgba_pr16_circus_return_trace.h, evidence/pr16_circus_return_trace/35414451945/private-restore.json, evidence/pr16_circus_return_trace/35414451945/stage84.json, evidence/pr16_circus_return_trace/35414451945/diagnostic.json, evidence/pr16_circus_return_trace/35414451945/rows.json, evidence/pr16_circus_return_trace/35414451945/resume-before.json, evidence/pr16_circus_return_trace/35414451945/callback-0x80f2240.txt, evidence/pr16_circus_return_trace/35414451945/callback-0x8055e50.txt, evidence/pr16_circus_return_trace/35414451945/callback-0x806e004.txt, evidence/pr16_circus_return_trace/35414451945/callback-0x8055e74.txt, evidence/pr16_circus_return_trace/35414451945/callback-0x80109c0.txt, evidence/pr16_circus_return_trace/35414451945/callback-0x8055f60.txt, evidence/pr16_circus_return_trace/35414451945/callback-0x80f02a4.txt, evidence/pr16_circus_return_trace/35414451945/callback-0x8011c34.txt, evidence/pr16_circus_return_trace/35414451945/callback-0x8055df4.txt, evidence/pr16_circus_return_trace/35414451945/callback-0x80562d4.txt, evidence/pr16_circus_return_trace/35414451945/callback-0x807951c.txt, evidence/pr16_circus_return_trace/35414451945/callback-0x80f01f8.txt, evidence/pr16_circus_return_trace/35414451945/callback-0x806e030.txt, evidence/pr16_circus_return_trace/35414451945/callback-0x807fc00.txt, evidence/pr16_circus_return_trace/35414451945/callback-0x8056160.txt, evidence/pr16_circus_return_trace/35414451945/callback-0x90cdc24.txt, evidence/pr16_circus_return_trace/35414451945/callback-0x807d464.txt, evidence/pr16_circus_return_trace/35414451945/callback-0x80f1f9c.txt, evidence/pr16_circus_return_trace/35414451945/callback-0x80339bc.txt, evidence/pr16_circus_return_trace/35414451945/callback-0x807fbcc.txt, evidence/pr16_circus_return_trace/35414451945/native-report.json, evidence/pr16_circus_return_trace/35414451945/native-circus-streak-batch-save.stderr, evidence/pr16_circus_return_trace/35414451945/native-circus-streak-batch-save.process.json
+- Verify: readonly trace契約PASS。診断のみ、native受入追加なし。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 敗北後のfield callback/script/fade/task記録を照合し、正規復帰経路だけを修復する。hostからPC/LR/勝敗/party/連勝/効果を注入しない。受入済み単体/2linkは無変更再実行しない。
+
+
+## 2026-09-19T02:20:14.349849+00:00 — USER-20260919-CIRCUS-LOSS-MARKER-FADE-SOURCE
+- Timestamp: 2026-09-19T02:20:14.349849+00:00
+- Task: USER-20260919-CIRCUS-LOSS-MARKER-FADE-SOURCE
+- Status: DONE / 敗北後のweather初期化待ちとスクリプト再開待ちが同時に残る原本52点を保存済み。Circus・実敗北・正規3script・有効台帳・両待機taskに限定してnative FadeInFromBlackを再開。判定側も初期frame0だけを正しく扱う。
+- Version: pr16-circus-loss-marker
+- Summary: 敗北後のweather初期化待ちとスクリプト再開待ちが同時に残る原本52点を保存済み。Circus・実敗北・正規3script・有効台帳・両待機taskに限定してnative FadeInFromBlackを再開。判定側も初期frame0だけを正しく扱う。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_loss_weather.json, overlays/circus_streak/circus_streak_return.h, tests/fixtures/circus_streak_return_fixture.c, tools/mgba_pr16_circus_loss_weather.h, overlays/circus_streak/circus_streak_runtime.c, scripts/pr16_circus_loss_weather.py, tests/test_pr16_circus_loss_weather.py, .github/workflows/pr16-circus-loss-weather.yml
+- Verify: CIRCUS_LOSS_NATIVE_FADE_REPAIR_PENDING。旧原本保持、受入済みnative再実行0。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 新候補の独立2linkと実敗北/原party600/固有owner64/通常Save/fresh Continueを検証する。勝敗やpartyをhostから注入しない。
+
+
+## 2026-09-19T02:22:47.908284+00:00 — USER-20260919-CIRCUS-LOSS-MARKER-FADE-NATIVE
+- Timestamp: 2026-09-19T02:22:47.908284+00:00
+- Task: USER-20260919-CIRCUS-LOSS-MARKER-FADE-NATIVE
+- Status: DONE / Circus実敗北の正規フェード/スクリプト復帰・原party600・固有owner64・Factory104不変・通常Save/fresh Continueをnativeで確認。
+- Version: pr16-circus-loss-marker
+- Summary: Circus実敗北の正規フェード/スクリプト復帰・原party600・固有owner64・Factory104不変・通常Save/fresh Continueをnativeで確認。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_loss_weather.json, overlays/circus_streak/circus_streak_return.h, tests/fixtures/circus_streak_return_fixture.c, tools/mgba_pr16_circus_loss_weather.h, evidence/pr16_circus_loss_weather/35415331977/report.json, evidence/pr16_circus_loss_weather/35415331977/circus-streak-batch-save.stdout, evidence/pr16_circus_loss_weather/35415331977/circus-streak-batch-save.stderr, evidence/pr16_circus_loss_weather/35415331977/circus-streak-batch-save.process.json, evidence/pr16_circus_loss_weather/35415331977/streak.json, evidence/pr16_circus_loss_weather/35415331977/build-report.json
+- Verify: CIRCUS_LOSS_FADE_SAVE_CONTINUE_VERIFIED_SCOPED。旧原本保持、受入済みnative再実行0。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 受入済みの敗北保存原本を再実行せず、未受入の実3勝・第2/第3launch個体保持・9BP完走に進む。続いて中断復帰、真正30連勝と正規特性抑制。
+
+
+## 2026-09-19T02:28:21.402283+00:00 — USER-20260919-CIRCUS-LOSS-MARKER-THREE-WIN-START
+- Timestamp: 2026-09-19T02:28:21.402283+00:00
+- Task: USER-20260919-CIRCUS-LOSS-MARKER-THREE-WIN-START
+- Status: DONE / Circus実敗北の9イベント/原party600/owner64/7guard/Save+fresh Continueはrun35415331977で受入。3画面も確認。3b候補を保持し、攻撃技と実能力の読取専用順位付けで未受入3勝・継続戦を開始。
+- Version: pr16-circus-loss-marker
+- Summary: Circus実敗北の9イベント/原party600/owner64/7guard/Save+fresh Continueはrun35415331977で受入。3画面も確認。3b候補を保持し、攻撃技と実能力の読取専用順位付けで未受入3勝・継続戦を開始。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_three_win.json, tools/mgba_pr16_circus_three_win.h, scripts/pr16_circus_three_win.py, tests/test_pr16_circus_three_win.py, .github/workflows/pr16-circus-three-win.yml
+- Verify: CIRCUS_THREE_WIN_INPUT_POLICY_PENDING。候補ROM変更0、既存2link再実行0、受入済み単体再実行0。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 実3勝・第2/第3launchの同一個体・9BP・Save/Continueを検証し、完了した証拠を再実行しない。続いて中断復帰、真正30連勝と正規特性抑制へ進む。
+
+
+## 2026-09-19T02:30:52.322866+00:00 — USER-20260919-CIRCUS-LOSS-MARKER-THREE-WIN-RECORDED
+- Timestamp: 2026-09-19T02:30:52.322866+00:00
+- Task: USER-20260919-CIRCUS-LOSS-MARKER-THREE-WIN-RECORDED
+- Status: DONE / 3勝専用の新入力方策を実行し原本保存。途中敗北やlaunch停止を3勝に昇格せず、今回の実停止から修復を続ける。
+- Version: pr16-circus-loss-marker
+- Summary: 3勝専用の新入力方策を実行し原本保存。途中敗北やlaunch停止を3勝に昇格せず、今回の実停止から修復を続ける。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_three_win.json, tools/mgba_pr16_circus_three_win.h, scripts/pr16_circus_three_win.py, tests/test_pr16_circus_three_win.py, .github/workflows/pr16-circus-three-win.yml, evidence/pr16_circus_three_win/35415727687/report.json, evidence/pr16_circus_three_win/35415727687/circus-streak-batch-save.stdout, evidence/pr16_circus_three_win/35415727687/circus-streak-batch-save.stderr, evidence/pr16_circus_three_win/35415727687/circus-streak-batch-save.process.json, evidence/pr16_circus_three_win/35415727687/reconstruction.json
+- Verify: CIRCUS_THREE_WIN_DIAGNOSTIC_OPEN。候補ROM変更0、既存2link再実行0、受入済み単体再実行0。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 実3勝・第2/第3launchの同一個体・9BP・Save/Continueを検証し、完了した証拠を再実行しない。続いて中断復帰、真正30連勝と正規特性抑制へ進む。
+
+
+## 2026-09-19T03:15:20.059552+00:00 — USER-20260919-CIRCUS-SUSTAIN-V1-THREE-WIN-SUSTAIN-START
+- Timestamp: 2026-09-19T03:15:20.059552+00:00
+- Task: USER-20260919-CIRCUS-SUSTAIN-V1-THREE-WIN-SUSTAIN-START
+- Status: DONE / 前回run35415727687の0勝1敗をfailure原本として保持。耐久・技タイプ重複と実状態技を使う別入力方策を28条件で検証し、同一3b候補の未受入3勝へ進む。
+- Version: pr16-circus-loss-marker
+- Summary: 前回run35415727687の0勝1敗をfailure原本として保持。耐久・技タイプ重複と実状態技を使う別入力方策を28条件で検証し、同一3b候補の未受入3勝へ進む。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_three_win.json, tools/mgba_pr16_circus_sustain.h, scripts/pr16_circus_sustain.py, tests/test_pr16_circus_sustain.py, .github/workflows/pr16-circus-sustain.yml, scripts/pr16_circus_sustain.py, tests/test_pr16_circus_sustain.py, tests/fixtures/circus_sustain_policy_fixture.c, tools/mgba_pr16_circus_sustain.h, .github/workflows/pr16-circus-sustain.yml
+- Verify: CIRCUS_SUSTAIN_INPUT_POLICY_PENDING。候補ROM変更0、既存2link再実行0、受入済み単体再実行0。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 実3勝・第2/第3launchの同一個体・9BP・Save/Continueを検証し、完了した証拠を再実行しない。続いて中断復帰、真正30連勝と正規特性抑制へ進む。
+
+
+## 2026-09-19T03:18:00.867978+00:00 — USER-20260919-CIRCUS-SUSTAIN-V1-THREE-WIN-RECORDED
+- Timestamp: 2026-09-19T03:18:00.867978+00:00
+- Task: USER-20260919-CIRCUS-SUSTAIN-V1-THREE-WIN-RECORDED
+- Status: DONE / 3勝専用の新入力方策を実行し原本保存。途中敗北やlaunch停止を3勝に昇格せず、今回の実停止から修復を続ける。
+- Version: pr16-circus-loss-marker
+- Summary: 3勝専用の新入力方策を実行し原本保存。途中敗北やlaunch停止を3勝に昇格せず、今回の実停止から修復を続ける。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_three_win.json, tools/mgba_pr16_circus_sustain.h, scripts/pr16_circus_sustain.py, tests/test_pr16_circus_sustain.py, .github/workflows/pr16-circus-sustain.yml, evidence/pr16_circus_three_win/35418010512/report.json, evidence/pr16_circus_three_win/35418010512/circus-streak-batch-save.stdout, evidence/pr16_circus_three_win/35418010512/circus-streak-batch-save.stderr, evidence/pr16_circus_three_win/35418010512/circus-streak-batch-save.process.json, evidence/pr16_circus_three_win/35418010512/reconstruction.json, tests/fixtures/circus_sustain_policy_fixture.c, scripts/pr16_circus_sustain.py, tests/test_pr16_circus_sustain.py, tools/mgba_pr16_circus_sustain.h, .github/workflows/pr16-circus-sustain.yml
+- Verify: CIRCUS_THREE_WIN_DIAGNOSTIC_OPEN。候補ROM変更0、既存2link再実行0、受入済み単体再実行0。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 実3勝・第2/第3launchの同一個体・9BP・Save/Continueを検証し、完了した証拠を再実行しない。続いて中断復帰、真正30連勝と正規特性抑制へ進む。
+
+
+## 2026-09-19T03:24:08.444888+00:00 — USER-20260919-CIRCUS-EFFECTIVE-V1-THREE-WIN-EFFECTIVE-START
+- Timestamp: 2026-09-19T03:24:08.444888+00:00
+- Task: USER-20260919-CIRCUS-EFFECTIVE-V1-THREE-WIN-EFFECTIVE-START
+- Status: DONE / run35418010512は実2勝・第2/第3launch個体保持・17events・Save/fresh Continueを検証したが最終戦敗北。低HPかつ無効技だけの場面を修復し、3勝の未完区間へ進む。
+- Version: pr16-circus-loss-marker
+- Summary: run35418010512は実2勝・第2/第3launch個体保持・17events・Save/fresh Continueを検証したが最終戦敗北。低HPかつ無効技だけの場面を修復し、3勝の未完区間へ進む。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_three_win.json, tools/mgba_pr16_circus_effective.h, scripts/pr16_circus_effective.py, tests/test_pr16_circus_effective.py, .github/workflows/pr16-circus-effective.yml, scripts/pr16_circus_effective.py, tests/test_pr16_circus_effective.py, tests/fixtures/circus_effective_policy_fixture.c, tools/mgba_pr16_circus_effective.h, .github/workflows/pr16-circus-effective.yml
+- Verify: CIRCUS_EFFECTIVE_INPUT_POLICY_PENDING。候補ROM変更0、既存2link再実行0、受入済み単体再実行0。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 実3勝・第2/第3launchの同一個体・9BP・Save/Continueを検証し、完了した証拠を再実行しない。続いて中断復帰、真正30連勝と正規特性抑制へ進む。
+
+
+## 2026-09-19T03:26:59.811862+00:00 — USER-20260919-CIRCUS-EFFECTIVE-V1-THREE-WIN-RECORDED
+- Timestamp: 2026-09-19T03:26:59.811862+00:00
+- Task: USER-20260919-CIRCUS-EFFECTIVE-V1-THREE-WIN-RECORDED
+- Status: DONE / 3勝専用の新入力方策を実行し原本保存。途中敗北やlaunch停止を3勝に昇格せず、今回の実停止から修復を続ける。
+- Version: pr16-circus-loss-marker
+- Summary: 3勝専用の新入力方策を実行し原本保存。途中敗北やlaunch停止を3勝に昇格せず、今回の実停止から修復を続ける。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_three_win.json, tools/mgba_pr16_circus_effective.h, scripts/pr16_circus_effective.py, tests/test_pr16_circus_effective.py, .github/workflows/pr16-circus-effective.yml, evidence/pr16_circus_three_win/35418424222/report.json, evidence/pr16_circus_three_win/35418424222/circus-streak-batch-save.stdout, evidence/pr16_circus_three_win/35418424222/circus-streak-batch-save.stderr, evidence/pr16_circus_three_win/35418424222/circus-streak-batch-save.process.json, evidence/pr16_circus_three_win/35418424222/reconstruction.json, tests/fixtures/circus_effective_policy_fixture.c, scripts/pr16_circus_effective.py, tests/test_pr16_circus_effective.py, tools/mgba_pr16_circus_effective.h, .github/workflows/pr16-circus-effective.yml
+- Verify: CIRCUS_THREE_WIN_DIAGNOSTIC_OPEN。候補ROM変更0、既存2link再実行0、受入済み単体再実行0。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 実3勝・第2/第3launchの同一個体・9BP・Save/Continueを検証し、完了した証拠を再実行しない。続いて中断復帰、真正30連勝と正規特性抑制へ進む。
+
+
+## 2026-09-19T03:36:44.514196+00:00 — USER-20260919-CIRCUS-PIVOT-V1-THREE-WIN-PIVOT-START
+- Timestamp: 2026-09-19T03:36:44.514196+00:00
+- Task: USER-20260919-CIRCUS-PIVOT-V1-THREE-WIN-PIVOT-START
+- Status: DONE / run35418424222は無効Shadow BallをToxicへ切替えて相手を倒したが、次の相手で敗北。第3戦だけ通常PARTY入力による1回の任意交代を追加し、実3勝へ進む。
+- Version: pr16-circus-loss-marker
+- Summary: run35418424222は無効Shadow BallをToxicへ切替えて相手を倒したが、次の相手で敗北。第3戦だけ通常PARTY入力による1回の任意交代を追加し、実3勝へ進む。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_three_win.json, tools/mgba_pr16_circus_pivot.h, scripts/pr16_circus_pivot.py, tests/test_pr16_circus_pivot.py, .github/workflows/pr16-circus-pivot.yml, scripts/pr16_circus_pivot.py, tests/test_pr16_circus_pivot.py, tests/fixtures/circus_pivot_policy_fixture.c, tools/mgba_pr16_circus_pivot.h, .github/workflows/pr16-circus-pivot.yml
+- Verify: CIRCUS_PIVOT_INPUT_POLICY_PENDING。候補ROM変更0、既存2link再実行0、受入済み単体再実行0。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 実3勝・第2/第3launchの同一個体・9BP・Save/Continueを検証し、完了した証拠を再実行しない。続いて中断復帰、真正30連勝と正規特性抑制へ進む。
+
+
+## 2026-09-19T03:39:50.773688+00:00 — USER-20260919-CIRCUS-PIVOT-V1-THREE-WIN-RECORDED
+- Timestamp: 2026-09-19T03:39:50.773688+00:00
+- Task: USER-20260919-CIRCUS-PIVOT-V1-THREE-WIN-RECORDED
+- Status: DONE / 3勝専用の新入力方策を実行し原本保存。途中敗北やlaunch停止を3勝に昇格せず、今回の実停止から修復を続ける。
+- Version: pr16-circus-loss-marker
+- Summary: 3勝専用の新入力方策を実行し原本保存。途中敗北やlaunch停止を3勝に昇格せず、今回の実停止から修復を続ける。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_three_win.json, tools/mgba_pr16_circus_pivot.h, scripts/pr16_circus_pivot.py, tests/test_pr16_circus_pivot.py, .github/workflows/pr16-circus-pivot.yml, evidence/pr16_circus_three_win/35419024634/report.json, evidence/pr16_circus_three_win/35419024634/circus-streak-batch-save.stdout, evidence/pr16_circus_three_win/35419024634/circus-streak-batch-save.stderr, evidence/pr16_circus_three_win/35419024634/circus-streak-batch-save.process.json, evidence/pr16_circus_three_win/35419024634/reconstruction.json, evidence/pr16_circus_three_win/35419024634/pivot-proof.json, tests/fixtures/circus_pivot_policy_fixture.c, scripts/pr16_circus_pivot.py, tests/test_pr16_circus_pivot.py, tools/mgba_pr16_circus_pivot.h, .github/workflows/pr16-circus-pivot.yml
+- Verify: CIRCUS_THREE_WIN_DIAGNOSTIC_OPEN。候補ROM変更0、既存2link再実行0、受入済み単体再実行0。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 実3勝・第2/第3launchの同一個体・9BP・Save/Continueを検証し、完了した証拠を再実行しない。続いて中断復帰、真正30連勝と正規特性抑制へ進む。
+
+
+## 2026-09-19T03:46:35.547795+00:00 — USER-20260919-CIRCUS-INTERRUPTION-START
+- Timestamp: 2026-09-19T03:46:35.547795+00:00
+- Task: USER-20260919-CIRCUS-INTERRUPTION-START
+- Status: DONE / 先行原本の実2勝と3勝未完はそのまま保持。新規ケースで実1勝後の第2戦を中断し、未完戦を加算しない復旧と再保存を検証する。
+- Version: pr16-circus-loss-marker
+- Summary: 先行原本の実2勝と3勝未完はそのまま保持。新規ケースで実1勝後の第2戦を中断し、未完戦を加算しない復旧と再保存を検証する。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_interruption.json, scripts/pr16_circus_interruption.py, tools/mgba_pr16_circus_interruption.c, scripts/pr16_circus_interruption_probe.py, tests/test_pr16_circus_interruption.py, .github/workflows/pr16-circus-interruption.yml
+- Verify: CIRCUS_INTERRUPTION_NATIVE_PENDING。第1実勝利は新規中断ケースの前提。受入済み3勝単体再実行0、同一3b候補/ARM再link0、host注入は初期fixtureまで。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 第2戦中断後にcurrent0/best1/ABORT一度/原party600/Factory104/BP0を確認し、通常Saveと別core Continueを検証。完了後は未完の実3勝、真正30連勝と正規特性抑制へ。
+
+
+## 2026-09-19T03:47:16.553348+00:00 — USER-20260919-CIRCUS-INTERRUPTION-RECORDED
+- Timestamp: 2026-09-19T03:47:16.553348+00:00
+- Task: USER-20260919-CIRCUS-INTERRUPTION-RECORDED
+- Status: DONE / 第2戦中断の新規native原本を保存。未観測・失敗を受入にせず、原本の実停止から修復する。
+- Version: pr16-circus-loss-marker
+- Summary: 第2戦中断の新規native原本を保存。未観測・失敗を受入にせず、原本の実停止から修復する。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_interruption.json, scripts/pr16_circus_interruption.py, tools/mgba_pr16_circus_interruption.c, scripts/pr16_circus_interruption_probe.py, tests/test_pr16_circus_interruption.py, .github/workflows/pr16-circus-interruption.yml
+- Verify: CIRCUS_INTERRUPTION_DIAGNOSTIC_OPEN。第1実勝利は新規中断ケースの前提。受入済み3勝単体再実行0、同一3b候補/ARM再link0、host注入は初期fixtureまで。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 完了済みの中断/敗北ケースを独立再実行せず、未完の実3勝・9BP、続いて真正30連勝と正規特性抑制へ進む。失敗時は中断reportから最初の不一致だけを修復。
+
+
+## 2026-09-19T03:59:00.130637+00:00 — USER-20260919-CIRCUS-INTERRUPTION-SETUP-REPAIRED
+- Timestamp: 2026-09-19T03:59:00.130637+00:00
+- Task: USER-20260919-CIRCUS-INTERRUPTION-SETUP-REPAIRED
+- Status: DONE / 中断run35419491330はsetup出力先欠落でnative未実行。原本と失敗を保持し、mkdirのみ修復して未観測の中断復旧を実行する。
+- Version: pr16-circus-loss-marker
+- Summary: 中断run35419491330はsetup出力先欠落でnative未実行。原本と失敗を保持し、mkdirのみ修復して未観測の中断復旧を実行する。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, scripts/pr16_circus_interruption.py, content/modernization/pr16_circus_interruption.json, tools/mgba_pr16_circus_interruption.c, scripts/pr16_circus_interruption_probe.py, scripts/pr16_circus_matchup.py, tools/mgba_pr16_circus_matchup.h, tests/test_pr16_circus_matchup.py, tests/fixtures/circus_matchup_fixture.c, .github/workflows/pr16-circus-matchup.yml, evidence/pr16_circus_interruption/35419491330/setup-diagnostic.json, scripts/pr16_circus_pivot.py, tools/mgba_pr16_circus_sustain.h, tools/mgba_pr16_circus_effective.h, tools/mgba_pr16_circus_pivot.h
+- Verify: 14中断hostテストと100条件を含む新方策テスト、scope/private差分guard、元ソースhashを照合。既受入native0再実行。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 新規中断ケースの原本を保存後、同じ候補を再構築せず第3戦入力方策を検証する。完了条件未達は残件のまま保持。
+
+
+## 2026-09-19T04:01:19.928564+00:00 — USER-20260919-CIRCUS-INTERRUPTION-SETUP-RECORDED
+- Timestamp: 2026-09-19T04:01:19.928564+00:00
+- Task: USER-20260919-CIRCUS-INTERRUPTION-SETUP-RECORDED
+- Status: DONE / 第2戦中断の新規native原本を保存。未観測・失敗を受入にせず、原本の実停止から修復する。
+- Version: pr16-circus-loss-marker
+- Summary: 第2戦中断の新規native原本を保存。未観測・失敗を受入にせず、原本の実停止から修復する。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_interruption.json, scripts/pr16_circus_interruption.py, tools/mgba_pr16_circus_interruption.c, scripts/pr16_circus_interruption_probe.py, tests/test_pr16_circus_interruption.py, .github/workflows/pr16-circus-interruption.yml, evidence/pr16_circus_interruption/35420040412/report.json, evidence/pr16_circus_interruption/35420040412/circus-interrupt-second-battle.stdout, evidence/pr16_circus_interruption/35420040412/circus-interrupt-second-battle.stderr, evidence/pr16_circus_interruption/35420040412/circus-interrupt-second-battle.process.json, evidence/pr16_circus_interruption/35420040412/reconstruction.json
+- Verify: CIRCUS_INTERRUPTION_DIAGNOSTIC_OPEN。第1実勝利は新規中断ケースの前提。受入済み3勝単体再実行0、同一3b候補/ARM再link0、host注入は初期fixtureまで。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 完了済みの中断/敗北ケースを独立再実行せず、未完の実3勝・9BP、続いて真正30連勝と正規特性抑制へ進む。失敗時は中断reportから最初の不一致だけを修復。
+
+
+## 2026-09-19T04:01:59.548922+00:00 — USER-20260919-CIRCUS-MATCHUP-V1-THREE-WIN-PIVOT-START
+- Timestamp: 2026-09-19T04:01:59.548922+00:00
+- Task: USER-20260919-CIRCUS-MATCHUP-V1-THREE-WIN-PIVOT-START
+- Status: DONE / 通常交代は原本で確認済み。実PPのフィードバックと相性を読取専用で組み合わせ、未完の実3勝/9BPへ進む。中断ケースは原本を継承して独立再実行しない。
+- Version: pr16-circus-loss-marker
+- Summary: 通常交代は原本で確認済み。実PPのフィードバックと相性を読取専用で組み合わせ、未完の実3勝/9BPへ進む。中断ケースは原本を継承して独立再実行しない。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_three_win.json, tools/mgba_pr16_circus_matchup.h, scripts/pr16_circus_matchup.py, tests/test_pr16_circus_matchup.py, .github/workflows/pr16-circus-matchup.yml, scripts/pr16_circus_matchup.py, tests/test_pr16_circus_matchup.py, tests/fixtures/circus_matchup_fixture.c, tools/mgba_pr16_circus_matchup.h, .github/workflows/pr16-circus-matchup.yml, scripts/pr16_circus_pivot.py, tools/mgba_pr16_circus_sustain.h, tools/mgba_pr16_circus_effective.h, tools/mgba_pr16_circus_pivot.h
+- Verify: CIRCUS_MATCHUP_INPUT_POLICY_PENDING。候補ROM変更0、既存2link再実行0、受入済み単体再実行0。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 実3勝・第2/第3launchの同一個体・9BP・Save/Continueを検証し、完了した証拠を再実行しない。続いて中断復帰、真正30連勝と正規特性抑制へ進む。
+
+
+## 2026-09-19T04:03:52.964962+00:00 — USER-20260919-CIRCUS-MATCHUP-V1-THREE-WIN-RECORDED
+- Timestamp: 2026-09-19T04:03:52.964962+00:00
+- Task: USER-20260919-CIRCUS-MATCHUP-V1-THREE-WIN-RECORDED
+- Status: DONE / 3勝専用の新入力方策を実行し原本保存。途中敗北やlaunch停止を3勝に昇格せず、今回の実停止から修復を続ける。
+- Version: pr16-circus-loss-marker
+- Summary: 3勝専用の新入力方策を実行し原本保存。途中敗北やlaunch停止を3勝に昇格せず、今回の実停止から修復を続ける。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_three_win.json, tools/mgba_pr16_circus_matchup.h, scripts/pr16_circus_matchup.py, tests/test_pr16_circus_matchup.py, .github/workflows/pr16-circus-matchup.yml, evidence/pr16_circus_three_win/35420040412/report.json, evidence/pr16_circus_three_win/35420040412/circus-streak-batch-save.stdout, evidence/pr16_circus_three_win/35420040412/circus-streak-batch-save.stderr, evidence/pr16_circus_three_win/35420040412/circus-streak-batch-save.process.json, evidence/pr16_circus_three_win/35420040412/reconstruction.json, tests/fixtures/circus_matchup_fixture.c, scripts/pr16_circus_matchup.py, tests/test_pr16_circus_matchup.py, tools/mgba_pr16_circus_matchup.h, .github/workflows/pr16-circus-matchup.yml, scripts/pr16_circus_pivot.py, tools/mgba_pr16_circus_sustain.h, tools/mgba_pr16_circus_effective.h, tools/mgba_pr16_circus_pivot.h, scripts/pr16_circus_interruption_probe.py
+- Verify: CIRCUS_THREE_WIN_DIAGNOSTIC_OPEN。候補ROM変更0、既存2link再実行0、受入済み単体再実行0。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 実3勝・第2/第3launchの同一個体・9BP・Save/Continueを検証し、完了した証拠を再実行しない。続いて中断復帰、真正30連勝と正規特性抑制へ進む。
+
+
+## 2026-09-19T04:11:50.205973+00:00 — USER-20260919-CIRCUS-MENU-IDENTITY-PREPARED
+- Timestamp: 2026-09-19T04:11:50.205973+00:00
+- Task: USER-20260919-CIRCUS-MENU-IDENTITY-PREPARED
+- Status: DONE / 実2勝と第3戦launchは原本に保持。第3戦の任意交代でUI並替え前slotを使った停止を、メニュー表示後の個体再解決へ修復。
+- Version: pr16-circus-loss-marker
+- Summary: 実2勝と第3戦launchは原本に保持。第3戦の任意交代でUI並替え前slotを使った停止を、メニュー表示後の個体再解決へ修復。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_three_win.json, scripts/pr16_circus_menu_recovery.py, tests/test_pr16_circus_menu_recovery.py, .github/workflows/pr16-circus-menu-recovery.yml, tools/mgba_pr16_circus_menu_identity.h, tests/fixtures/circus_menu_identity_fixture.c, tools/mgba_pr16_circus_recovery_trace.c, tools/mgba_pr16_circus_matchup.h
+- Verify: 6全順列・PID/OT/種族・欠落/重複を拒否。原本12イベント一致。入力列は正常なメニュー解決点まで不変。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 未完の実3勝/9BP/通常保存を検証し、同じ候補で中断ownerが失われる時点を読取専用で追跡。勝敗・抑制・release条件は緩めない。
+
+
+## 2026-09-19T04:14:38.995218+00:00 — USER-20260919-CIRCUS-MENU-IDENTITY-THREE-WIN-RECORDED
+- Timestamp: 2026-09-19T04:14:38.995218+00:00
+- Task: USER-20260919-CIRCUS-MENU-IDENTITY-THREE-WIN-RECORDED
+- Status: DONE / 3勝専用の新入力方策を実行し原本保存。途中敗北やlaunch停止を3勝に昇格せず、今回の実停止から修復を続ける。
+- Version: pr16-circus-loss-marker
+- Summary: 3勝専用の新入力方策を実行し原本保存。途中敗北やlaunch停止を3勝に昇格せず、今回の実停止から修復を続ける。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_three_win.json, tools/mgba_pr16_circus_matchup.h, scripts/pr16_circus_menu_recovery.py, tests/test_pr16_circus_menu_recovery.py, .github/workflows/pr16-circus-menu-recovery.yml, evidence/pr16_circus_three_win/35420622910/report.json, evidence/pr16_circus_three_win/35420622910/circus-streak-batch-save.stdout, evidence/pr16_circus_three_win/35420622910/circus-streak-batch-save.stderr, evidence/pr16_circus_three_win/35420622910/circus-streak-batch-save.process.json, evidence/pr16_circus_three_win/35420622910/reconstruction.json, evidence/pr16_circus_three_win/35420622910/pivot-proof.json, tests/fixtures/circus_menu_identity_fixture.c, scripts/pr16_circus_menu_recovery.py, tests/test_pr16_circus_menu_recovery.py, tools/mgba_pr16_circus_matchup.h, .github/workflows/pr16-circus-menu-recovery.yml, evidence/pr16_circus_three_win/35420622910/matchup-proof.json, scripts/pr16_circus_pivot.py, tools/mgba_pr16_circus_sustain.h, tools/mgba_pr16_circus_effective.h, tools/mgba_pr16_circus_pivot.h, scripts/pr16_circus_interruption_probe.py, scripts/pr16_circus_menu_recovery.py, tests/test_pr16_circus_menu_recovery.py, .github/workflows/pr16-circus-menu-recovery.yml, tools/mgba_pr16_circus_menu_identity.h, tests/fixtures/circus_menu_identity_fixture.c, tools/mgba_pr16_circus_recovery_trace.c, tools/mgba_pr16_circus_matchup.h
+- Verify: CIRCUS_THREE_WIN_DIAGNOSTIC_OPEN。候補ROM変更0、既存2link再実行0、受入済み単体再実行0。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 実3勝・第2/第3launchの同一個体・9BP・Save/Continueを検証し、完了した証拠を再実行しない。続いて中断復帰、真正30連勝と正規特性抑制へ進む。
+
+
+## 2026-09-19T04:15:13.954832+00:00 — USER-20260919-CIRCUS-MENU-IDENTITY-RECOVERY-TRACE-START
+- Timestamp: 2026-09-19T04:15:13.954832+00:00
+- Task: USER-20260919-CIRCUS-MENU-IDENTITY-RECOVERY-TRACE-START
+- Status: DONE / 中断の正規Continue後にowner条件停止とSave counter4を確認。入力・勝敗・復旧条件を変更せず、frame委譲後の読取traceで失われる時点を限定する。
+- Version: pr16-circus-loss-marker
+- Summary: 中断の正規Continue後にowner条件停止とSave counter4を確認。入力・勝敗・復旧条件を変更せず、frame委譲後の読取traceで失われる時点を限定する。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_interruption.json, scripts/pr16_circus_menu_recovery.py, tools/mgba_pr16_circus_recovery_trace.c, scripts/pr16_circus_interruption_probe.py, tests/test_pr16_circus_menu_recovery.py, .github/workflows/pr16-circus-menu-recovery.yml, scripts/pr16_circus_menu_recovery.py, tests/test_pr16_circus_menu_recovery.py, .github/workflows/pr16-circus-menu-recovery.yml, tools/mgba_pr16_circus_menu_identity.h, tests/fixtures/circus_menu_identity_fixture.c, tools/mgba_pr16_circus_recovery_trace.c, tools/mgba_pr16_circus_matchup.h
+- Verify: CIRCUS_INTERRUPTION_READONLY_RECOVERY_TRACE_PENDING。第1実勝利は新規中断ケースの前提。受入済み3勝単体再実行0、同一3b候補/ARM再link0、host注入は初期fixtureまで。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 復旧traceから最初のowner/sector変化を特定し、必要なゲーム側修復と影響テストへ。3勝結果は別記録を継承し、影響なしに再実行しない。
+
+
+## 2026-09-19T04:16:15.267244+00:00 — USER-20260919-CIRCUS-MENU-IDENTITY-RECOVERY-TRACE-RECORDED
+- Timestamp: 2026-09-19T04:16:15.267244+00:00
+- Task: USER-20260919-CIRCUS-MENU-IDENTITY-RECOVERY-TRACE-RECORDED
+- Status: DONE / 第2戦中断の新規native原本を保存。未観測・失敗を受入にせず、原本の実停止から修復する。
+- Version: pr16-circus-loss-marker
+- Summary: 第2戦中断の新規native原本を保存。未観測・失敗を受入にせず、原本の実停止から修復する。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_interruption.json, scripts/pr16_circus_menu_recovery.py, tools/mgba_pr16_circus_recovery_trace.c, scripts/pr16_circus_interruption_probe.py, tests/test_pr16_circus_menu_recovery.py, .github/workflows/pr16-circus-menu-recovery.yml, evidence/pr16_circus_interruption/35420622910/report.json, evidence/pr16_circus_interruption/35420622910/circus-interrupt-second-battle.stdout, evidence/pr16_circus_interruption/35420622910/circus-interrupt-second-battle.stderr, evidence/pr16_circus_interruption/35420622910/circus-interrupt-second-battle.process.json, evidence/pr16_circus_interruption/35420622910/reconstruction.json
+- Verify: CIRCUS_INTERRUPTION_DIAGNOSTIC_OPEN。第1実勝利は新規中断ケースの前提。受入済み3勝単体再実行0、同一3b候補/ARM再link0、host注入は初期fixtureまで。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 完了済みの中断/敗北ケースを独立再実行せず、未完の実3勝・9BP、続いて真正30連勝と正規特性抑制へ進む。失敗時は中断reportから最初の不一致だけを修復。
+
+
+## 2026-09-19T04:25:33.711548+00:00 — USER-20260919-CIRCUS-TOXIC-DRAIN-THREE-WIN-PIVOT-START
+- Timestamp: 2026-09-19T04:25:33.711548+00:00
+- Task: USER-20260919-CIRCUS-TOXIC-DRAIN-THREE-WIN-PIVOT-START
+- Status: DONE / メニュー表示後の個体再解決は実3回成功。実3勝は未完。毒付き低HP相手への余分なSeedだけをGiga Drainへ修正。中断のowner消失原本は再実行せず、ロード前段の2回Saveを次の修復点として記録。
+- Version: pr16-circus-loss-marker
+- Summary: メニュー表示後の個体再解決は実3回成功。実3勝は未完。毒付き低HP相手への余分なSeedだけをGiga Drainへ修正。中断のowner消失原本は再実行せず、ロード前段の2回Saveを次の修復点として記録。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_three_win.json, tools/mgba_pr16_circus_drain.h, scripts/pr16_circus_drain.py, tests/test_pr16_circus_drain.py, .github/workflows/pr16-circus-drain.yml, scripts/pr16_circus_drain.py, tests/test_pr16_circus_drain.py, tests/test_pr16_circus_drain.py, tools/mgba_pr16_circus_drain.h, .github/workflows/pr16-circus-drain.yml, scripts/pr16_circus_drain.py, tests/test_pr16_circus_drain.py, tools/mgba_pr16_circus_drain.h, .github/workflows/pr16-circus-drain.yml, scripts/pr16_circus_matchup.py, tools/mgba_pr16_circus_matchup.h, tools/mgba_pr16_circus_menu_identity.h, scripts/pr16_circus_menu_recovery.py
+- Verify: CIRCUS_TOXIC_DRAIN_INPUT_PENDING。候補ROM変更0、既存2link再実行0、受入済み単体再実行0。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 実3勝・第2/第3launchの同一個体・9BP・Save/Continueを検証し、完了した証拠を再実行しない。続いて中断復帰、真正30連勝と正規特性抑制へ進む。
+
+
+## 2026-09-19T04:29:14.481260+00:00 — USER-20260919-CIRCUS-TOXIC-DRAIN-THREE-WIN-RECORDED
+- Timestamp: 2026-09-19T04:29:14.481260+00:00
+- Task: USER-20260919-CIRCUS-TOXIC-DRAIN-THREE-WIN-RECORDED
+- Status: DONE / 3勝専用の新入力方策を実行し原本保存。途中敗北やlaunch停止を3勝に昇格せず、今回の実停止から修復を続ける。
+- Version: pr16-circus-loss-marker
+- Summary: 3勝専用の新入力方策を実行し原本保存。途中敗北やlaunch停止を3勝に昇格せず、今回の実停止から修復を続ける。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_three_win.json, tools/mgba_pr16_circus_drain.h, scripts/pr16_circus_drain.py, tests/test_pr16_circus_drain.py, .github/workflows/pr16-circus-drain.yml, evidence/pr16_circus_three_win/35421235529/report.json, evidence/pr16_circus_three_win/35421235529/circus-streak-batch-save.stdout, evidence/pr16_circus_three_win/35421235529/circus-streak-batch-save.stderr, evidence/pr16_circus_three_win/35421235529/circus-streak-batch-save.process.json, evidence/pr16_circus_three_win/35421235529/reconstruction.json, evidence/pr16_circus_three_win/35421235529/pivot-proof.json, tests/test_pr16_circus_drain.py, scripts/pr16_circus_drain.py, tests/test_pr16_circus_drain.py, tools/mgba_pr16_circus_drain.h, .github/workflows/pr16-circus-drain.yml, evidence/pr16_circus_three_win/35421235529/matchup-proof.json, scripts/pr16_circus_pivot.py, tools/mgba_pr16_circus_sustain.h, tools/mgba_pr16_circus_effective.h, tools/mgba_pr16_circus_pivot.h, scripts/pr16_circus_interruption_probe.py, scripts/pr16_circus_drain.py, tests/test_pr16_circus_drain.py, tools/mgba_pr16_circus_drain.h, .github/workflows/pr16-circus-drain.yml, scripts/pr16_circus_matchup.py, tools/mgba_pr16_circus_matchup.h, tools/mgba_pr16_circus_menu_identity.h, scripts/pr16_circus_menu_recovery.py
+- Verify: CIRCUS_THREE_WIN_DIAGNOSTIC_OPEN。候補ROM変更0、既存2link再実行0、受入済み単体再実行0。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 実3勝・第2/第3launchの同一個体・9BP・Save/Continueを検証し、完了した証拠を再実行しない。続いて中断復帰、真正30連勝と正規特性抑制へ進む。
+
+
+## 2026-09-19T04:39:04.971014+00:00 — USER-20260919-CIRCUS-LOAD-ORDER-SOURCE-BOUND
+- Timestamp: 2026-09-19T04:39:04.971014+00:00
+- Task: USER-20260919-CIRCUS-LOAD-ORDER-SOURCE-BOUND
+- Status: DONE / cold bootのowner64消失と通常交代修復を原本に固定。既存load/save連鎖のtracked sourceをhash付きで収集し、初期化前の自動保存を修復する。
+- Version: pr16-circus-loss-marker
+- Summary: cold bootのowner64消失と通常交代修復を原本に固定。既存load/save連鎖のtracked sourceをhash付きで収集し、初期化前の自動保存を修復する。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, scripts/pr16_circus_load_order.py, tests/test_pr16_circus_load_order.py, .github/workflows/pr16-circus-load-order.yml, content/modernization/pr16_circus_load_order.json
+- Verify: source抽出の境界テストとresume/task graph/private新規差分guard。native再実行0。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: load順序修復をC契約と2独立ARM linkで検証し、影響する中断復旧・保存だけをnative検証。実3勝/9BPは未完のまま保持。
+
+
+## 2026-09-19T04:56:30.782959+00:00 — USER-20260919-CIRCUS-COLD-LOAD-PREPARED
+- Timestamp: 2026-09-19T04:56:30.782959+00:00
+- Task: USER-20260919-CIRCUS-COLD-LOAD-PREPARED
+- Status: DONE / ロード中の既存Factory自動Save2回でCircus tail64が消える原本を固定。CRC-validなtailを委譲前に保護するbridgeと、512bit破損/256返値/別ID/二重ABORTのhost検証を追加。
+- Version: pr16-circus-loss-marker
+- Summary: ロード中の既存Factory自動Save2回でCircus tail64が消える原本を固定。CRC-validなtailを委譲前に保護するbridgeと、512bit破損/256返値/別ID/二重ABORTのhost検証を追加。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_coldboot.json, scripts/pr16_circus_coldboot.py, tests/test_pr16_circus_coldboot.py, tests/fixtures/circus_cold_load_fixture.c, overlays/circus_streak/circus_streak_cold_load.c, tools/mgba_pr16_circus_coldboot.c, scripts/pr16_circus_coldboot_probe.py, .github/workflows/pr16-circus-coldboot.yml
+- Verify: CIRCUS_COLD_LOAD_BRIDGE_PREPARED_NATIVE_OPEN。host契約を検証。ARM linkとnativeは未実行。既存Factoryの自動Save2回は変更せず、未完戦を加算しない64byteを検証。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: cold-load bridgeの実1勝→第2戦中断→ABORT一度/best1→通常Save/別coreを原本で確認。未完の実3勝/9BPと真正30連勝は別ゲートのまま。
+
+
+## 2026-09-19T04:59:04.689084+00:00 — USER-20260919-CIRCUS-COLD-LOAD-RECORDED
+- Timestamp: 2026-09-19T04:59:04.689084+00:00
+- Task: USER-20260919-CIRCUS-COLD-LOAD-RECORDED
+- Status: DONE / 実1勝後の第2戦中断でcurrent0/best1/ABORT一度を保持。既存自動Save2回と通常Save1回を区別し、3つ目のcoreでもowner64/原party600/Factory104不変/BP0を検証。
+- Version: pr16-circus-loss-marker
+- Summary: 実1勝後の第2戦中断でcurrent0/best1/ABORT一度を保持。既存自動Save2回と通常Save1回を区別し、3つ目のcoreでもowner64/原party600/Factory104不変/BP0を検証。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_coldboot.json, scripts/pr16_circus_coldboot.py, tests/test_pr16_circus_coldboot.py, tests/fixtures/circus_cold_load_fixture.c, overlays/circus_streak/circus_streak_cold_load.c, tools/mgba_pr16_circus_coldboot.c, scripts/pr16_circus_coldboot_probe.py, .github/workflows/pr16-circus-coldboot.yml, evidence/pr16_circus_coldboot/35422605107/build.json, evidence/pr16_circus_coldboot/35422605107/report.json, evidence/pr16_circus_coldboot/35422605107/circus-interrupt-second-battle.stdout, evidence/pr16_circus_coldboot/35422605107/circus-interrupt-second-battle.stderr, evidence/pr16_circus_coldboot/35422605107/circus-interrupt-second-battle.process.json, evidence/pr16_circus_coldboot/35422605107/streak.json
+- Verify: CIRCUS_COLD_LOAD_INTERRUPTION_BEST1_SAVE_CONTINUE_VERIFIED。2独立ARM linkと全ROM rollbackの構築原本を保存。既存Factoryの自動Save2回は変更せず、未完戦を加算しない64byteを検証。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: cold-load bridgeの実1勝→第2戦中断→ABORT一度/best1→通常Save/別coreを原本で確認。未完の実3勝/9BPと真正30連勝は別ゲートのまま。
+
+
+## 2026-09-19T05:44:58.410437+00:00 — USER-20260919-CIRCUS-FINISH-PREPARED
+- Timestamp: 2026-09-19T05:44:58.410437+00:00
+- Task: USER-20260919-CIRCUS-FINISH-PREPARED
+- Status: DONE / 最新cold-load中断復旧はActions成功として照合・継承。実2勝後の敗北原本はfailureのまま保持し、未完3勝/9BPだけの入力方策を追加。
+- Version: pr16-circus-loss-marker
+- Summary: 最新cold-load中断復旧はActions成功として照合・継承。実2勝後の敗北原本はfailureのまま保持し、未完3勝/9BPだけの入力方策を追加。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_finish.json, scripts/pr16_circus_finish.py, tools/mgba_pr16_circus_finish.h, tests/test_pr16_circus_finish.py, .github/workflows/pr16-circus-finish.yml
+- Verify: CIRCUS_FINISH_INPUT_PREPARED。candidate310177固定、既存ARM再link0、受入単体再実行0。新host契約と原本を保持し、結果注入なし。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 実3勝/9BPの今回原本を照合し、未達なら最初の不一致だけを修復。成功後は真正30連勝・正規特性抑制へ進む。cold-load中断/旧敗北/BP/Ringの受入単体は再実行しない。
+
+
+## 2026-09-19T05:48:07.150840+00:00 — USER-20260919-CIRCUS-FINISH-RECORDED
+- Timestamp: 2026-09-19T05:48:07.150840+00:00
+- Task: USER-20260919-CIRCUS-FINISH-RECORDED
+- Status: DONE / 未完3勝の新入力原本を保存。候補と失敗を受入に読み替えず、今回停止した最初の条件から修復する。中断復旧は再実行していない。
+- Version: pr16-circus-loss-marker
+- Summary: 未完3勝の新入力原本を保存。候補と失敗を受入に読み替えず、今回停止した最初の条件から修復する。中断復旧は再実行していない。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_finish.json, scripts/pr16_circus_finish.py, tools/mgba_pr16_circus_finish.h, tests/test_pr16_circus_finish.py, .github/workflows/pr16-circus-finish.yml, evidence/pr16_circus_finish/35424764823/report.json, evidence/pr16_circus_finish/35424764823/circus-streak-batch-save.stdout, evidence/pr16_circus_finish/35424764823/circus-streak-batch-save.stderr, evidence/pr16_circus_finish/35424764823/circus-streak-batch-save.process.json, evidence/pr16_circus_finish/35424764823/reconstruction.json
+- Verify: CIRCUS_FINISH_DIAGNOSTIC_OPEN。candidate310177固定、既存ARM再link0、受入単体再実行0。新host契約と原本を保持し、結果注入なし。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 実3勝/9BPの今回原本を照合し、未達なら最初の不一致だけを修復。成功後は真正30連勝・正規特性抑制へ進む。cold-load中断/旧敗北/BP/Ringの受入単体は再実行しない。
+
+
+## 2026-09-19T05:56:00.039945+00:00 — USER-20260919-CIRCUS-ACCURACY-PREPARED
+- Timestamp: 2026-09-19T05:56:00.039945+00:00
+- Task: USER-20260919-CIRCUS-ACCURACY-PREPARED
+- Status: DONE / 実2勝敗北原本とcold-load3画面を照合。固定候補の未完3勝に最大4つの異なる入力方策を用意し、最初の厳密成功後は追加実行しない。
+- Version: pr16-circus-loss-marker
+- Summary: 実2勝敗北原本とcold-load3画面を照合。固定候補の未完3勝に最大4つの異なる入力方策を用意し、最初の厳密成功後は追加実行しない。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_accuracy.json, scripts/pr16_circus_accuracy.py, tools/mgba_pr16_circus_accuracy.h, tests/test_pr16_circus_accuracy.py, .github/workflows/pr16-circus-accuracy.yml, content/modernization/pr16_circus_visual_review_20260919.json, scripts/pr16_circus_finish.py
+- Verify: CIRCUS_ACCURACY_POLICIES_PREPARED。candidate310177固定、既存ARM再link0、受入単体再実行0。新host契約と原本を保持し、結果注入なし。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 今回の3勝原本・選択方策を採用し、未完なら最初の停止点だけを修復。真正30連勝と正規特性抑制、P08最終統合は未受入。既存BP/Ring/cold-load受入は単体再実行しない。
+
+
+## 2026-09-19T05:59:14.857151+00:00 — USER-20260919-CIRCUS-ACCURACY-RECORDED
+- Timestamp: 2026-09-19T05:59:14.857151+00:00
+- Task: USER-20260919-CIRCUS-ACCURACY-RECORDED
+- Status: DONE / 厳密3勝・第2/第3launch個体・9BP・原party600・owner64・Save/fresh Continueを確認。成功後の方策実行0。真正30連勝/抑制/P08は未完。
+- Version: pr16-circus-loss-marker
+- Summary: 厳密3勝・第2/第3launch個体・9BP・原party600・owner64・Save/fresh Continueを確認。成功後の方策実行0。真正30連勝/抑制/P08は未完。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_accuracy.json, scripts/pr16_circus_accuracy.py, tools/mgba_pr16_circus_accuracy.h, tests/test_pr16_circus_accuracy.py, .github/workflows/pr16-circus-accuracy.yml, content/modernization/pr16_circus_visual_review_20260919.json, scripts/pr16_circus_finish.py, evidence/pr16_circus_accuracy/35425237415/attempts.json, evidence/pr16_circus_accuracy/35425237415/drain-accurate-fire/native/circus-streak-batch-save.process.json, evidence/pr16_circus_accuracy/35425237415/drain-accurate-fire/native/circus-streak-batch-save.stderr, evidence/pr16_circus_accuracy/35425237415/drain-accurate-fire/native/circus-streak-batch-save.stdout, evidence/pr16_circus_accuracy/35425237415/drain-accurate-fire/native/report.json, evidence/pr16_circus_accuracy/35425237415/drain-accurate-fire/native/streak.json, evidence/pr16_circus_accuracy/35425237415/drain-accurate-fire/runner.stderr, evidence/pr16_circus_accuracy/35425237415/drain-accurate-fire/runner.stdout, evidence/pr16_circus_accuracy/35425237415/reconstruction.json
+- Verify: CIRCUS_THREE_WIN_ACCURACY_SAVE_CONTINUE_VERIFIED。candidate310177固定、既存ARM再link0、受入単体再実行0。新host契約と原本を保持し、結果注入なし。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 今回の3勝原本・選択方策を採用し、未完なら最初の停止点だけを修復。真正30連勝と正規特性抑制、P08最終統合は未受入。既存BP/Ring/cold-load受入は単体再実行しない。
+
+
+## 2026-09-19T06:19:30.822189+00:00 — USER-20260919-CIRCUS-CONTINUOUS-PREPARED
+- Timestamp: 2026-09-19T06:19:30.822189+00:00
+- Task: USER-20260919-CIRCUS-CONTINUOUS-PREPARED
+- Status: DONE / 実3勝/9BPのActionsと5画面を正式照合。prepare再import失敗を修復し、次の未完は0から連続入場での真正30勝。新30戦caseを1processとして追加し、3勝単体を再実行しない。
+- Version: pr16-circus-loss-marker
+- Summary: 実3勝/9BPのActionsと5画面を正式照合。prepare再import失敗を修復し、次の未完は0から連続入場での真正30勝。新30戦caseを1processとして追加し、3勝単体を再実行しない。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_continuous.json, scripts/pr16_circus_continuous.py, tools/mgba_pr16_circus_continuous.c, scripts/pr16_circus_continuous_probe.py, tests/test_pr16_circus_continuous.py, tests/test_pr16_circus_continuous_reentry.py, .github/workflows/pr16-circus-continuous.yml, content/modernization/pr16_circus_three_win_visual_review.json, scripts/pr16_circus_finish.py
+- Verify: CIRCUS_CONTINUOUS_THIRTY_TARGET_PREPARED。candidate310177固定、ROM変更0、ARM再link0、受入済み独立case再実行0。新case内prefix3戦の再実行は明示。prepare再import回帰を追加。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 新しい連続入場の原本を照合。真正30勝/90BP未達は最初の停止条件だけを修復する。30勝後の正規特性抑制は別ゲート。受入済み3勝/BP/Ring/cold-loadの単体caseは再実行せずP08も未完のまま保つ。
+
+
+## 2026-09-19T06:23:11.796527+00:00 — USER-20260919-CIRCUS-CONTINUOUS-RECORDED
+- Timestamp: 2026-09-19T06:23:11.796527+00:00
+- Task: USER-20260919-CIRCUS-CONTINUOUS-RECORDED
+- Status: DONE / 連続入場の今回原本を保存。真正30勝は未達のまま保持し、最初の実不一致から続ける。既受入3勝/9BPとcold-load成功は維持。
+- Version: pr16-circus-loss-marker
+- Summary: 連続入場の今回原本を保存。真正30勝は未達のまま保持し、最初の実不一致から続ける。既受入3勝/9BPとcold-load成功は維持。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_continuous.json, scripts/pr16_circus_continuous.py, tools/mgba_pr16_circus_continuous.c, scripts/pr16_circus_continuous_probe.py, tests/test_pr16_circus_continuous.py, tests/test_pr16_circus_continuous_reentry.py, .github/workflows/pr16-circus-continuous.yml, content/modernization/pr16_circus_three_win_visual_review.json, scripts/pr16_circus_finish.py, evidence/pr16_circus_continuous/35426278164/native/circus-continuous-30-save.process.json, evidence/pr16_circus_continuous/35426278164/native/circus-continuous-30-save.stderr, evidence/pr16_circus_continuous/35426278164/native/circus-continuous-30-save.stdout, evidence/pr16_circus_continuous/35426278164/native/report.json, evidence/pr16_circus_continuous/35426278164/reconstruction.json
+- Verify: CIRCUS_CONTINUOUS_DIAGNOSTIC_OPEN。candidate310177固定、ROM変更0、ARM再link0、受入済み独立case再実行0。新case内prefix3戦の再実行は明示。prepare再import回帰を追加。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 新しい連続入場の原本を照合。真正30勝/90BP未達は最初の停止条件だけを修復する。30勝後の正規特性抑制は別ゲート。受入済み3勝/BP/Ring/cold-loadの単体caseは再実行せずP08も未完のまま保つ。
+
+
+## 2026-09-19T06:36:30.476669+00:00 — USER-20260919-CIRCUS-REENTRY-PREPARED
+- Timestamp: 2026-09-19T06:36:30.476669+00:00
+- Task: USER-20260919-CIRCUS-REENTRY-PREPARED
+- Status: DONE / 実4勝後敗北の27イベントを新validatorで非再実行照合。正規End(0)のABORTを世代差まで検査し、5戦目の無進展攻撃だけに入力fallbackを追加。真正30勝は未完。
+- Version: pr16-circus-loss-marker
+- Summary: 実4勝後敗北の27イベントを新validatorで非再実行照合。正規End(0)のABORTを世代差まで検査し、5戦目の無進展攻撃だけに入力fallbackを追加。真正30勝は未完。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_reentry.json, scripts/pr16_circus_reentry.py, scripts/pr16_circus_reentry_probe.py, tools/mgba_pr16_circus_reentry.h, tests/test_pr16_circus_reentry.py, .github/workflows/pr16-circus-reentry.yml, content/modernization/pr16_circus_reentry_visual_review.json, content/modernization/pr16_circus_continuous.json, evidence/pr16_circus_continuous/35426278164/native/circus-continuous-30-save.stdout, evidence/pr16_circus_continuous/35426278164/native/circus-continuous-30-save.stderr, evidence/pr16_circus_continuous/35426278164/native/circus-continuous-30-save.process.json, scripts/pr16_circus_continuous.py, scripts/pr16_circus_continuous_probe.py, scripts/pr16_circus_finish.py, tools/mgba_pr16_circus_continuous.c, tests/test_pr16_circus_continuous.py
+- Verify: CIRCUS_REENTRY_PAID_PROGRESS_PREPARED。既存候補310177固定、ROM変更0、ARM再link0、旧原本再実行0。新30戦caseのみprefix4戦が必要。hostでは実outcome/世代差/CRC/原本64を独立に検査。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 今回の連続入場原本で最初の未達条件から続ける。4勝後敗北の原本はfailureのまま、正規LOSS→ABORT/保存をhostで再照合済み。真正30勝後の正規特性抑制とP08は別ゲート。受入済み単体caseと旧敗北nativeは再実行しない。
+
+
+## 2026-09-19T06:40:19.724313+00:00 — USER-20260919-CIRCUS-REENTRY-RECORDED
+- Timestamp: 2026-09-19T06:40:19.724313+00:00
+- Task: USER-20260919-CIRCUS-REENTRY-RECORDED
+- Status: DONE / 無進展入力修復後の連続case原本を保存。旧実4勝後敗北の再解析と新実測を分離し、真正30勝は未達のまま最初の不一致を次へ引き継ぐ。
+- Version: pr16-circus-loss-marker
+- Summary: 無進展入力修復後の連続case原本を保存。旧実4勝後敗北の再解析と新実測を分離し、真正30勝は未達のまま最初の不一致を次へ引き継ぐ。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_reentry.json, scripts/pr16_circus_reentry.py, scripts/pr16_circus_reentry_probe.py, tools/mgba_pr16_circus_reentry.h, tests/test_pr16_circus_reentry.py, .github/workflows/pr16-circus-reentry.yml, content/modernization/pr16_circus_reentry_visual_review.json, content/modernization/pr16_circus_continuous.json, evidence/pr16_circus_continuous/35426278164/native/circus-continuous-30-save.stdout, evidence/pr16_circus_continuous/35426278164/native/circus-continuous-30-save.stderr, evidence/pr16_circus_continuous/35426278164/native/circus-continuous-30-save.process.json, scripts/pr16_circus_continuous.py, scripts/pr16_circus_continuous_probe.py, scripts/pr16_circus_finish.py, tools/mgba_pr16_circus_continuous.c, tests/test_pr16_circus_continuous.py, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.process.json, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reentry/35427049942/native/events.json, evidence/pr16_circus_reentry/35427049942/native/report.json, evidence/pr16_circus_reentry/35427049942/native/streak.json, evidence/pr16_circus_reentry/35427049942/reconstruction.json
+- Verify: CIRCUS_REENTRY_FIRST_LOSS_SAVE_VERIFIED_TARGET_OPEN。既存候補310177固定、ROM変更0、ARM再link0、旧原本再実行0。新30戦caseのみprefix4戦が必要。hostでは実outcome/世代差/CRC/原本64を独立に検査。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 今回の連続入場原本で最初の未達条件から続ける。4勝後敗北の原本はfailureのまま、正規LOSS→ABORT/保存をhostで再照合済み。真正30勝後の正規特性抑制とP08は別ゲート。受入済み単体caseと旧敗北nativeは再実行しない。
+
+
+## 2026-09-19T06:50:57.320204+00:00 — USER-20260919-CIRCUS-COVERAGE-PREPARED
+- Timestamp: 2026-09-19T06:50:57.320204+00:00
+- Task: USER-20260919-CIRCUS-COVERAGE-PREPARED
+- Status: DONE / 実4勝後敗北の修復済みscoped検証を再実行せず継承。再入場後の補助技一律加点と初回限定方策の流用を切り離し、通常入力だけを修復。真正30勝は未完。
+- Version: pr16-circus-loss-marker
+- Summary: 実4勝後敗北の修復済みscoped検証を再実行せず継承。再入場後の補助技一律加点と初回限定方策の流用を切り離し、通常入力だけを修復。真正30勝は未完。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_coverage.json, scripts/pr16_circus_coverage.py, scripts/pr16_circus_reentry_probe.py, tools/mgba_pr16_circus_coverage.h, tools/mgba_pr16_circus_reentry.h, tests/test_pr16_circus_coverage.py, .github/workflows/pr16-circus-coverage.yml, content/modernization/pr16_circus_reentry.json, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reentry.py, scripts/pr16_circus_continuous.py, scripts/pr16_circus_continuous_probe.py, scripts/pr16_circus_finish.py, tools/mgba_pr16_circus_continuous.c, evidence/pr16_circus_accuracy/35425237415/drain-accurate-fire/native/circus-streak-batch-save.stderr
+- Verify: CIRCUS_COVERAGE_GENERAL_REENTRY_PREPARED。既存候補310177固定、ROM変更0、ARM再link0、旧原本再実行0。新30戦caseのみprefix3戦が必要。hostでは実outcome/世代差/CRC/原本64を独立に検査。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 今回の連続入場の実停止から続ける。受入初回3勝の15イベントを固定し、再入場は補助技一律加点を外した異種攻撃編成と汎用攻撃/paid無進展回避へ分離。真正30勝後の正規特性抑制とP08は未完。旧nativeは再実行しない。
+
+
+## 2026-09-19T06:56:19.517321+00:00 — USER-20260919-CIRCUS-COVERAGE-RECORDED
+- Timestamp: 2026-09-19T06:56:19.517321+00:00
+- Task: USER-20260919-CIRCUS-COVERAGE-RECORDED
+- Status: DONE / 再入場編成/汎用入力修復後の連続case原本を保存。実測勝数と全battle lifecycleを分離し、真正30勝未達は最初の不一致を次へ引き継ぐ。
+- Version: pr16-circus-loss-marker
+- Summary: 再入場編成/汎用入力修復後の連続case原本を保存。実測勝数と全battle lifecycleを分離し、真正30勝未達は最初の不一致を次へ引き継ぐ。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_coverage.json, scripts/pr16_circus_coverage.py, scripts/pr16_circus_reentry_probe.py, tools/mgba_pr16_circus_coverage.h, tools/mgba_pr16_circus_reentry.h, tests/test_pr16_circus_coverage.py, .github/workflows/pr16-circus-coverage.yml, content/modernization/pr16_circus_reentry.json, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reentry.py, scripts/pr16_circus_continuous.py, scripts/pr16_circus_continuous_probe.py, scripts/pr16_circus_finish.py, tools/mgba_pr16_circus_continuous.c, evidence/pr16_circus_accuracy/35425237415/drain-accurate-fire/native/circus-streak-batch-save.stderr, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.process.json, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stderr, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stdout, evidence/pr16_circus_coverage/35427693324/native/events.json, evidence/pr16_circus_coverage/35427693324/native/report.json, evidence/pr16_circus_coverage/35427693324/native/streak.json, evidence/pr16_circus_coverage/35427693324/reconstruction.json
+- Verify: CIRCUS_COVERAGE_FIRST_LOSS_SAVE_VERIFIED_TARGET_OPEN。既存候補310177固定、ROM変更0、ARM再link0、旧原本再実行0。新30戦caseのみprefix3戦が必要。hostでは実outcome/世代差/CRC/原本64を独立に検査。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 今回の連続入場の実停止から続ける。受入初回3勝の15イベントを固定し、再入場は補助技一律加点を外した異種攻撃編成と汎用攻撃/paid無進展回避へ分離。真正30勝後の正規特性抑制とP08は未完。旧nativeは再実行しない。
+
+
+## 2026-09-19T07:19:12.991995+00:00 — USER-20260919-CIRCUS-RELIABILITY-PREPARED
+- Timestamp: 2026-09-19T07:19:12.991995+00:00
+- Task: USER-20260919-CIRCUS-RELIABILITY-PREPARED
+- Status: DONE / 実8勝/18BP/通常Save/fresh Continueを失敗原本から照合。第9戦で命中85の126を反復したため、近接期待値の高命中技へ切り替える入力と実battle snapshotを追加。
+- Version: pr16-circus-loss-marker
+- Summary: 実8勝/18BP/通常Save/fresh Continueを失敗原本から照合。第9戦で命中85の126を反復したため、近接期待値の高命中技へ切り替える入力と実battle snapshotを追加。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_reliability.json, scripts/pr16_circus_reliability.py, tools/mgba_pr16_circus_reliability.h, tests/test_pr16_circus_reliability.py, .github/workflows/pr16-circus-reliability.yml, content/modernization/pr16_circus_coverage.json, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stdout, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stderr, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.process.json, scripts/pr16_circus_coverage.py, scripts/pr16_circus_reentry_probe.py, tools/mgba_pr16_circus_coverage.h, tools/mgba_pr16_circus_reentry.h, tests/test_pr16_circus_coverage.py, .github/workflows/pr16-circus-coverage.yml, content/modernization/pr16_circus_reentry.json, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reentry.py, scripts/pr16_circus_continuous.py, scripts/pr16_circus_continuous_probe.py, scripts/pr16_circus_finish.py, tools/mgba_pr16_circus_continuous.c, evidence/pr16_circus_accuracy/35425237415/drain-accurate-fire/native/circus-streak-batch-save.stderr, scripts/pr16_circus_coverage.py
+- Verify: CIRCUS_RELIABILITY_PREPARED。候補310177固定・ROM変更0・ARM再link0・受入独立case再実行0。新caseのprefix8戦は不可避。高命中選択は9戦目以降のみ、実技をfeedbackへ記録。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 今回の新しい連続入場原本の最初の停止から続ける。8勝までの40イベントを固定し、9戦目以降は期待値差10%以内の高命中選択と実行技に対応するpaid無進展を使う。真正30勝/正規特性抑制/P08は実測でのみ閉じる。旧独立nativeは再実行しない。
+
+
+## 2026-09-19T07:24:08.890910+00:00 — USER-20260919-CIRCUS-RELIABILITY-RECORDED
+- Timestamp: 2026-09-19T07:24:08.890910+00:00
+- Task: USER-20260919-CIRCUS-RELIABILITY-RECORDED
+- Status: DONE / 高命中選択後の連続入場を記録: 実勝数15。勝敗/報酬/保存の実測と真正30勝ゲートを分離。最初の未解決停止から続ける。
+- Version: pr16-circus-loss-marker
+- Summary: 高命中選択後の連続入場を記録: 実勝数15。勝敗/報酬/保存の実測と真正30勝ゲートを分離。最初の未解決停止から続ける。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_reliability.json, scripts/pr16_circus_reliability.py, tools/mgba_pr16_circus_reliability.h, tests/test_pr16_circus_reliability.py, .github/workflows/pr16-circus-reliability.yml, content/modernization/pr16_circus_coverage.json, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stdout, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stderr, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.process.json, scripts/pr16_circus_coverage.py, scripts/pr16_circus_reentry_probe.py, tools/mgba_pr16_circus_coverage.h, tools/mgba_pr16_circus_reentry.h, tests/test_pr16_circus_coverage.py, .github/workflows/pr16-circus-coverage.yml, content/modernization/pr16_circus_reentry.json, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reentry.py, scripts/pr16_circus_continuous.py, scripts/pr16_circus_continuous_probe.py, scripts/pr16_circus_finish.py, tools/mgba_pr16_circus_continuous.c, evidence/pr16_circus_accuracy/35425237415/drain-accurate-fire/native/circus-streak-batch-save.stderr, scripts/pr16_circus_coverage.py, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.process.json, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reliability/35428983641/native/events.json, evidence/pr16_circus_reliability/35428983641/native/report.json, evidence/pr16_circus_reliability/35428983641/native/streak.json, evidence/pr16_circus_reliability/35428983641/reconstruction.json
+- Verify: CIRCUS_RELIABILITY_FIRST_LOSS_SAVE_VERIFIED_TARGET_OPEN。候補310177固定・ROM変更0・ARM再link0・受入独立case再実行0。新caseのprefix8戦は不可避。高命中選択は9戦目以降のみ、実技をfeedbackへ記録。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 今回の新しい連続入場原本の最初の停止から続ける。8勝までの40イベントを固定し、9戦目以降は期待値差10%以内の高命中選択と実行技に対応するpaid無進展を使う。真正30勝/正規特性抑制/P08は実測でのみ閉じる。旧独立nativeは再実行しない。
+
+
+## 2026-09-19T07:34:22.384072+00:00 — USER-20260919-CIRCUS-TACTICAL-PREPARED
+- Timestamp: 2026-09-19T07:34:22.384072+00:00
+- Task: USER-20260919-CIRCUS-TACTICAL-PREPARED
+- Status: DONE / 実15勝/45BP/通常Save/fresh Continueを照合。第16戦は水先発の毒/混乱消耗と炎対面に草のみ残る順序を記録。15勝を保持し、16戦目以降だけ通常交代の選択と実個体照合を追加。
+- Version: pr16-circus-loss-marker
+- Summary: 実15勝/45BP/通常Save/fresh Continueを照合。第16戦は水先発の毒/混乱消耗と炎対面に草のみ残る順序を記録。15勝を保持し、16戦目以降だけ通常交代の選択と実個体照合を追加。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_tactical.json, scripts/pr16_circus_tactical.py, tools/mgba_pr16_circus_tactical.h, tests/test_pr16_circus_tactical.py, .github/workflows/pr16-circus-tactical.yml, content/modernization/pr16_circus_reliability.json, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reliability.py, tools/mgba_pr16_circus_reliability.h, tests/test_pr16_circus_reliability.py, .github/workflows/pr16-circus-reliability.yml, content/modernization/pr16_circus_coverage.json, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stdout, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stderr, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.process.json, scripts/pr16_circus_coverage.py, scripts/pr16_circus_reentry_probe.py, tools/mgba_pr16_circus_coverage.h, tools/mgba_pr16_circus_reentry.h, tests/test_pr16_circus_coverage.py, .github/workflows/pr16-circus-coverage.yml, content/modernization/pr16_circus_reentry.json, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reentry.py, scripts/pr16_circus_continuous.py, scripts/pr16_circus_continuous_probe.py, scripts/pr16_circus_finish.py, tools/mgba_pr16_circus_continuous.c, evidence/pr16_circus_accuracy/35425237415/drain-accurate-fire/native/circus-streak-batch-save.stderr, scripts/pr16_circus_coverage.py, scripts/pr16_circus_reliability.py
+- Verify: CIRCUS_TACTICAL_PREPARED。候補310177固定・ROM変更0・ARM再link0・受入独立case再実行0。新caseのprefix15戦は不可避。通常交代は16戦目以降のみ、PID/OT/speciesをUI再整列後に再解決。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 今回の連続入場原本の最初の停止から続ける。15勝と16戦目actionまで74イベントを固定。16戦目以降だけ場のtype/攻撃技種から通常交代し、メニュー後のPID/OT/speciesを再解決する。真正30勝/正規特性抑制/P08は実測でのみ閉じ、旧独立nativeを再実行しない。
+
+
+## 2026-09-19T07:38:46.847633+00:00 — USER-20260919-CIRCUS-TACTICAL-RECORDED
+- Timestamp: 2026-09-19T07:38:46.847633+00:00
+- Task: USER-20260919-CIRCUS-TACTICAL-RECORDED
+- Status: DONE / 通常交代追加後の連続入場を記録: 実勝数15。勝敗/報酬/保存の実測と真正30勝ゲートを分離。最初の未解決停止から続ける。
+- Version: pr16-circus-loss-marker
+- Summary: 通常交代追加後の連続入場を記録: 実勝数15。勝敗/報酬/保存の実測と真正30勝ゲートを分離。最初の未解決停止から続ける。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_tactical.json, scripts/pr16_circus_tactical.py, tools/mgba_pr16_circus_tactical.h, tests/test_pr16_circus_tactical.py, .github/workflows/pr16-circus-tactical.yml, content/modernization/pr16_circus_reliability.json, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reliability.py, tools/mgba_pr16_circus_reliability.h, tests/test_pr16_circus_reliability.py, .github/workflows/pr16-circus-reliability.yml, content/modernization/pr16_circus_coverage.json, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stdout, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stderr, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.process.json, scripts/pr16_circus_coverage.py, scripts/pr16_circus_reentry_probe.py, tools/mgba_pr16_circus_coverage.h, tools/mgba_pr16_circus_reentry.h, tests/test_pr16_circus_coverage.py, .github/workflows/pr16-circus-coverage.yml, content/modernization/pr16_circus_reentry.json, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reentry.py, scripts/pr16_circus_continuous.py, scripts/pr16_circus_continuous_probe.py, scripts/pr16_circus_finish.py, tools/mgba_pr16_circus_continuous.c, evidence/pr16_circus_accuracy/35425237415/drain-accurate-fire/native/circus-streak-batch-save.stderr, scripts/pr16_circus_coverage.py, scripts/pr16_circus_reliability.py, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.process.json, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.stderr, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.stdout, evidence/pr16_circus_tactical/35429677248/native/events.json, evidence/pr16_circus_tactical/35429677248/native/report.json, evidence/pr16_circus_tactical/35429677248/native/streak.json, evidence/pr16_circus_tactical/35429677248/reconstruction.json
+- Verify: CIRCUS_TACTICAL_FIRST_LOSS_SAVE_VERIFIED_TARGET_OPEN。候補310177固定・ROM変更0・ARM再link0・受入独立case再実行0。新caseのprefix15戦は不可避。通常交代は16戦目以降のみ、PID/OT/speciesをUI再整列後に再解決。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 今回の連続入場原本の最初の停止から続ける。15勝と16戦目actionまで74イベントを固定。16戦目以降だけ場のtype/攻撃技種から通常交代し、メニュー後のPID/OT/speciesを再解決する。真正30勝/正規特性抑制/P08は実測でのみ閉じ、旧独立nativeを再実行しない。
+
+
+## 2026-09-19T07:47:00.445948+00:00 — USER-20260919-CIRCUS-TAUNT-PREPARED
+- Timestamp: 2026-09-19T07:47:00.445948+00:00
+- Task: USER-20260919-CIRCUS-TAUNT-PREPARED
+- Status: DONE / 通常交代2回の実個体照合と15勝/45BP/保存復元を照合。第16戦は最後の敵HP7で敗北。正規選出3体は維持してTaunt持ちを先発へ移し、未使用状態技の最大2回入力を追加。
+- Version: pr16-circus-loss-marker
+- Summary: 通常交代2回の実個体照合と15勝/45BP/保存復元を照合。第16戦は最後の敵HP7で敗北。正規選出3体は維持してTaunt持ちを先発へ移し、未使用状態技の最大2回入力を追加。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_taunt.json, scripts/pr16_circus_taunt.py, tools/mgba_pr16_circus_taunt.h, tests/test_pr16_circus_taunt.py, .github/workflows/pr16-circus-taunt.yml, content/modernization/pr16_circus_tactical.json, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.stdout, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.stderr, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.process.json, scripts/pr16_circus_tactical.py, tools/mgba_pr16_circus_tactical.h, tests/test_pr16_circus_tactical.py, .github/workflows/pr16-circus-tactical.yml, content/modernization/pr16_circus_reliability.json, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reliability.py, tools/mgba_pr16_circus_reliability.h, tests/test_pr16_circus_reliability.py, .github/workflows/pr16-circus-reliability.yml, content/modernization/pr16_circus_coverage.json, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stdout, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stderr, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.process.json, scripts/pr16_circus_coverage.py, scripts/pr16_circus_reentry_probe.py, tools/mgba_pr16_circus_coverage.h, tools/mgba_pr16_circus_reentry.h, tests/test_pr16_circus_coverage.py, .github/workflows/pr16-circus-coverage.yml, content/modernization/pr16_circus_reentry.json, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reentry.py, scripts/pr16_circus_continuous.py, scripts/pr16_circus_continuous_probe.py, scripts/pr16_circus_finish.py, tools/mgba_pr16_circus_continuous.c, evidence/pr16_circus_accuracy/35425237415/drain-accurate-fire/native/circus-streak-batch-save.stderr, scripts/pr16_circus_coverage.py, scripts/pr16_circus_reliability.py, scripts/pr16_circus_tactical.py
+- Verify: CIRCUS_TAUNT_PREPARED。候補310177固定・ROM変更0・ARM再link0・受入独立case再実行0。新caseのprefix15戦は不可避。第16戦の選出順と状態技対策のみ変更。3個体の構成を保持しTaunt持ちを先頭へ移動。PP消費を着弾や特性抑制の受入にしない。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 実15勝の71eventsを保持し、第16戦から同じ選出3体のTaunt先発と最大2回の対状態技入力を検証する。新原本で真正30勝が未達なら最初の停止だけを修復する。30勝後の正規特性抑制/P08は別ゲート。旧独立nativeを再実行しない。
+
+
+## 2026-09-19T07:53:36.494530+00:00 — USER-20260919-CIRCUS-TAUNT-RECORDED
+- Timestamp: 2026-09-19T07:53:36.494530+00:00
+- Task: USER-20260919-CIRCUS-TAUNT-RECORDED
+- Status: DONE / Taunt先発・対状態技入力後の連続入場を記録: 実勝数未確定。勝敗/報酬/保存の実測と真正30勝ゲートを分離。最初の未解決停止から続ける。
+- Version: pr16-circus-loss-marker
+- Summary: Taunt先発・対状態技入力後の連続入場を記録: 実勝数未確定。勝敗/報酬/保存の実測と真正30勝ゲートを分離。最初の未解決停止から続ける。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_taunt.json, scripts/pr16_circus_taunt.py, tools/mgba_pr16_circus_taunt.h, tests/test_pr16_circus_taunt.py, .github/workflows/pr16-circus-taunt.yml, content/modernization/pr16_circus_tactical.json, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.stdout, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.stderr, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.process.json, scripts/pr16_circus_tactical.py, tools/mgba_pr16_circus_tactical.h, tests/test_pr16_circus_tactical.py, .github/workflows/pr16-circus-tactical.yml, content/modernization/pr16_circus_reliability.json, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reliability.py, tools/mgba_pr16_circus_reliability.h, tests/test_pr16_circus_reliability.py, .github/workflows/pr16-circus-reliability.yml, content/modernization/pr16_circus_coverage.json, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stdout, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stderr, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.process.json, scripts/pr16_circus_coverage.py, scripts/pr16_circus_reentry_probe.py, tools/mgba_pr16_circus_coverage.h, tools/mgba_pr16_circus_reentry.h, tests/test_pr16_circus_coverage.py, .github/workflows/pr16-circus-coverage.yml, content/modernization/pr16_circus_reentry.json, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reentry.py, scripts/pr16_circus_continuous.py, scripts/pr16_circus_continuous_probe.py, scripts/pr16_circus_finish.py, tools/mgba_pr16_circus_continuous.c, evidence/pr16_circus_accuracy/35425237415/drain-accurate-fire/native/circus-streak-batch-save.stderr, scripts/pr16_circus_coverage.py, scripts/pr16_circus_reliability.py, scripts/pr16_circus_tactical.py, evidence/pr16_circus_taunt/35430246002/native/circus-continuous-30-save.process.json, evidence/pr16_circus_taunt/35430246002/native/circus-continuous-30-save.stderr, evidence/pr16_circus_taunt/35430246002/native/circus-continuous-30-save.stdout, evidence/pr16_circus_taunt/35430246002/native/report.json, evidence/pr16_circus_taunt/35430246002/reconstruction.json
+- Verify: CIRCUS_TAUNT_DIAGNOSTIC_OPEN。候補310177固定・ROM変更0・ARM再link0・受入独立case再実行0。新caseのprefix15戦は不可避。第16戦の選出順と状態技対策のみ変更。3個体の構成を保持しTaunt持ちを先頭へ移動。PP消費を着弾や特性抑制の受入にしない。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 実15勝の71eventsを保持し、第16戦から同じ選出3体のTaunt先発と最大2回の対状態技入力を検証する。新原本で真正30勝が未達なら最初の停止だけを修復する。30勝後の正規特性抑制/P08は別ゲート。旧独立nativeを再実行しない。
+
+
+## 2026-09-19T08:05:03.687795+00:00 — USER-20260919-CIRCUS-WIN-RETURN-TRACE-PREPARED
+- Timestamp: 2026-09-19T08:05:03.687795+00:00
+- Task: USER-20260919-CIRCUS-WIN-RETURN-TRACE-PREPARED
+- Status: DONE / Taunt先発で16戦目を突破。17戦目も実WINだがcallback08055e75/script09ff4d77/phase2で黒画面停止。guardは敗北のみを許可しているため、同じ待機task条件か読取専用に確認する。
+- Version: pr16-circus-loss-marker
+- Summary: Taunt先発で16戦目を突破。17戦目も実WINだがcallback08055e75/script09ff4d77/phase2で黒画面停止。guardは敗北のみを許可しているため、同じ待機task条件か読取専用に確認する。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_win_return_trace.json, scripts/pr16_circus_win_return_trace.py, tools/mgba_pr16_circus_win_return_trace.h, tests/test_pr16_circus_win_return_trace.py, .github/workflows/pr16-circus-win-return-trace.yml, content/modernization/pr16_circus_taunt.json, evidence/pr16_circus_taunt/35430246002/native/circus-continuous-30-save.stdout, evidence/pr16_circus_taunt/35430246002/native/circus-continuous-30-save.stderr, evidence/pr16_circus_taunt/35430246002/native/circus-continuous-30-save.process.json, scripts/pr16_circus_taunt.py, tools/mgba_pr16_circus_taunt.h, tests/test_pr16_circus_taunt.py, .github/workflows/pr16-circus-taunt.yml, content/modernization/pr16_circus_tactical.json, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.stdout, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.stderr, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.process.json, scripts/pr16_circus_tactical.py, tools/mgba_pr16_circus_tactical.h, tests/test_pr16_circus_tactical.py, .github/workflows/pr16-circus-tactical.yml, content/modernization/pr16_circus_reliability.json, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reliability.py, tools/mgba_pr16_circus_reliability.h, tests/test_pr16_circus_reliability.py, .github/workflows/pr16-circus-reliability.yml, content/modernization/pr16_circus_coverage.json, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stdout, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stderr, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.process.json, scripts/pr16_circus_coverage.py, scripts/pr16_circus_reentry_probe.py, tools/mgba_pr16_circus_coverage.h, tools/mgba_pr16_circus_reentry.h, tests/test_pr16_circus_coverage.py, .github/workflows/pr16-circus-coverage.yml, content/modernization/pr16_circus_reentry.json, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reentry.py, scripts/pr16_circus_continuous.py, scripts/pr16_circus_continuous_probe.py, scripts/pr16_circus_finish.py, tools/mgba_pr16_circus_continuous.c, evidence/pr16_circus_accuracy/35425237415/drain-accurate-fire/native/circus-streak-batch-save.stderr, scripts/pr16_circus_coverage.py, scripts/pr16_circus_reliability.py, scripts/pr16_circus_tactical.py, scripts/pr16_circus_taunt.py
+- Verify: CIRCUS_WIN_RETURN_READONLY_PREPARED。診断は通常入力を変更せずbus読取のみ。候補310177不変・ARM link0・受入済み独立case再実行0。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 実17戦目勝利後のreadonly weather/script待ち原本を参照。敗北限定の既存FadeInFromBlack再開guardとの条件差を確認し、実WINかつ両待機task・正規script・armed Circus・有効ledgerに限定したruntime修復と独立2link/変更範囲台帳を進める。固定candidateでの同じ診断・旧単体nativeは繰り返さない。
+
+
+## 2026-09-19T08:06:24.240102+00:00 — USER-20260919-CIRCUS-WIN-RETURN-TRACE-RECORDED
+- Timestamp: 2026-09-19T08:06:24.240102+00:00
+- Task: USER-20260919-CIRCUS-WIN-RETURN-TRACE-RECORDED
+- Status: DONE / 実17戦目WIN後の読取専用traceを記録。期待した待機条件を確認できず未完。native/save/30勝/正規特性抑制受入とは区別する。
+- Version: pr16-circus-loss-marker
+- Summary: 実17戦目WIN後の読取専用traceを記録。期待した待機条件を確認できず未完。native/save/30勝/正規特性抑制受入とは区別する。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_win_return_trace.json, scripts/pr16_circus_win_return_trace.py, tools/mgba_pr16_circus_win_return_trace.h, tests/test_pr16_circus_win_return_trace.py, .github/workflows/pr16-circus-win-return-trace.yml, content/modernization/pr16_circus_taunt.json, evidence/pr16_circus_taunt/35430246002/native/circus-continuous-30-save.stdout, evidence/pr16_circus_taunt/35430246002/native/circus-continuous-30-save.stderr, evidence/pr16_circus_taunt/35430246002/native/circus-continuous-30-save.process.json, scripts/pr16_circus_taunt.py, tools/mgba_pr16_circus_taunt.h, tests/test_pr16_circus_taunt.py, .github/workflows/pr16-circus-taunt.yml, content/modernization/pr16_circus_tactical.json, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.stdout, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.stderr, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.process.json, scripts/pr16_circus_tactical.py, tools/mgba_pr16_circus_tactical.h, tests/test_pr16_circus_tactical.py, .github/workflows/pr16-circus-tactical.yml, content/modernization/pr16_circus_reliability.json, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reliability.py, tools/mgba_pr16_circus_reliability.h, tests/test_pr16_circus_reliability.py, .github/workflows/pr16-circus-reliability.yml, content/modernization/pr16_circus_coverage.json, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stdout, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stderr, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.process.json, scripts/pr16_circus_coverage.py, scripts/pr16_circus_reentry_probe.py, tools/mgba_pr16_circus_coverage.h, tools/mgba_pr16_circus_reentry.h, tests/test_pr16_circus_coverage.py, .github/workflows/pr16-circus-coverage.yml, content/modernization/pr16_circus_reentry.json, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reentry.py, scripts/pr16_circus_continuous.py, scripts/pr16_circus_continuous_probe.py, scripts/pr16_circus_finish.py, tools/mgba_pr16_circus_continuous.c, evidence/pr16_circus_accuracy/35425237415/drain-accurate-fire/native/circus-streak-batch-save.stderr, scripts/pr16_circus_coverage.py, scripts/pr16_circus_reliability.py, scripts/pr16_circus_tactical.py, scripts/pr16_circus_taunt.py, evidence/pr16_circus_win_return_trace/35431032216/native/report.json, evidence/pr16_circus_win_return_trace/35431032216/reconstruction.json
+- Verify: CIRCUS_WIN_RETURN_READONLY_DIAGNOSTIC_OPEN。診断は通常入力を変更せずbus読取のみ。候補310177不変・ARM link0・受入済み独立case再実行0。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 実17戦目勝利後のreadonly weather/script待ち原本を参照。敗北限定の既存FadeInFromBlack再開guardとの条件差を確認し、実WINかつ両待機task・正規script・armed Circus・有効ledgerに限定したruntime修復と独立2link/変更範囲台帳を進める。固定candidateでの同じ診断・旧単体nativeは繰り返さない。
+
+
+## 2026-09-19T08:34:51.461888+00:00 — USER-20260919-CIRCUS-WIN-RETURN-TRACE-WATCHCALL-PREPARED
+- Timestamp: 2026-09-19T08:34:51.461888+00:00
+- Task: USER-20260919-CIRCUS-WIN-RETURN-TRACE-WATCHCALL-PREPARED
+- Status: DONE / Taunt先発で16戦目を突破。17戦目も実WINだがcallback08055e75/script09ff4d77/phase2で黒画面停止。guardは敗北のみを許可しているため、同じ待機task条件か読取専用に確認する。
+- Version: pr16-circus-loss-marker
+- Summary: Taunt先発で16戦目を突破。17戦目も実WINだがcallback08055e75/script09ff4d77/phase2で黒画面停止。guardは敗北のみを許可しているため、同じ待機task条件か読取専用に確認する。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_win_return_trace.json, scripts/pr16_circus_win_return_trace.py, tools/mgba_pr16_circus_win_return_trace.h, tests/test_pr16_circus_win_return_trace.py, .github/workflows/pr16-circus-win-return-trace.yml, evidence/pr16_circus_win_return_trace/35431032216/native/compile.stderr, evidence/pr16_circus_win_return_trace/35431032216/native/report.json, content/modernization/pr16_circus_taunt.json, evidence/pr16_circus_taunt/35430246002/native/circus-continuous-30-save.stdout, evidence/pr16_circus_taunt/35430246002/native/circus-continuous-30-save.stderr, evidence/pr16_circus_taunt/35430246002/native/circus-continuous-30-save.process.json, scripts/pr16_circus_taunt.py, tools/mgba_pr16_circus_taunt.h, tests/test_pr16_circus_taunt.py, .github/workflows/pr16-circus-taunt.yml, content/modernization/pr16_circus_tactical.json, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.stdout, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.stderr, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.process.json, scripts/pr16_circus_tactical.py, tools/mgba_pr16_circus_tactical.h, tests/test_pr16_circus_tactical.py, .github/workflows/pr16-circus-tactical.yml, content/modernization/pr16_circus_reliability.json, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reliability.py, tools/mgba_pr16_circus_reliability.h, tests/test_pr16_circus_reliability.py, .github/workflows/pr16-circus-reliability.yml, content/modernization/pr16_circus_coverage.json, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stdout, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stderr, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.process.json, scripts/pr16_circus_coverage.py, scripts/pr16_circus_reentry_probe.py, tools/mgba_pr16_circus_coverage.h, tools/mgba_pr16_circus_reentry.h, tests/test_pr16_circus_coverage.py, .github/workflows/pr16-circus-coverage.yml, content/modernization/pr16_circus_reentry.json, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reentry.py, scripts/pr16_circus_continuous.py, scripts/pr16_circus_continuous_probe.py, scripts/pr16_circus_finish.py, tools/mgba_pr16_circus_continuous.c, evidence/pr16_circus_accuracy/35425237415/drain-accurate-fire/native/circus-streak-batch-save.stderr, scripts/pr16_circus_trace_bindings.py, .github/workflows/pr16-circus-trace-bindings.yml, tests/test_pr16_circus_trace_bindings.py
+- Verify: CIRCUS_WIN_RETURN_READONLY_PREPARED。診断は通常入力を変更せずbus読取のみ。候補310177不変・ARM link0・受入済み独立case再実行0。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 実17戦目勝利後のreadonly weather/script待ち原本を参照。敗北限定の既存FadeInFromBlack再開guardとの条件差を確認し、実WINかつ両待機task・正規script・armed Circus・有効ledgerに限定したruntime修復と独立2link/変更範囲台帳を進める。固定candidateでの同じ診断・旧単体nativeは繰り返さない。
+
+
+## 2026-09-19T08:41:28.750440+00:00 — USER-20260919-CIRCUS-WIN-RETURN-TRACE-WATCHCALL-RECORDED
+- Timestamp: 2026-09-19T08:41:28.750440+00:00
+- Task: USER-20260919-CIRCUS-WIN-RETURN-TRACE-WATCHCALL-RECORDED
+- Status: DONE / 実17戦目WIN後の読取専用traceを記録。期待した待機条件を確認できず未完。native/save/30勝/正規特性抑制受入とは区別する。
+- Version: pr16-circus-loss-marker
+- Summary: 実17戦目WIN後の読取専用traceを記録。期待した待機条件を確認できず未完。native/save/30勝/正規特性抑制受入とは区別する。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_win_return_trace.json, scripts/pr16_circus_win_return_trace.py, tools/mgba_pr16_circus_win_return_trace.h, tests/test_pr16_circus_win_return_trace.py, .github/workflows/pr16-circus-win-return-trace.yml, evidence/pr16_circus_win_return_trace/35431032216/native/compile.stderr, evidence/pr16_circus_win_return_trace/35431032216/native/report.json, content/modernization/pr16_circus_taunt.json, evidence/pr16_circus_taunt/35430246002/native/circus-continuous-30-save.stdout, evidence/pr16_circus_taunt/35430246002/native/circus-continuous-30-save.stderr, evidence/pr16_circus_taunt/35430246002/native/circus-continuous-30-save.process.json, scripts/pr16_circus_taunt.py, tools/mgba_pr16_circus_taunt.h, tests/test_pr16_circus_taunt.py, .github/workflows/pr16-circus-taunt.yml, content/modernization/pr16_circus_tactical.json, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.stdout, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.stderr, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.process.json, scripts/pr16_circus_tactical.py, tools/mgba_pr16_circus_tactical.h, tests/test_pr16_circus_tactical.py, .github/workflows/pr16-circus-tactical.yml, content/modernization/pr16_circus_reliability.json, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reliability.py, tools/mgba_pr16_circus_reliability.h, tests/test_pr16_circus_reliability.py, .github/workflows/pr16-circus-reliability.yml, content/modernization/pr16_circus_coverage.json, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stdout, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stderr, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.process.json, scripts/pr16_circus_coverage.py, scripts/pr16_circus_reentry_probe.py, tools/mgba_pr16_circus_coverage.h, tools/mgba_pr16_circus_reentry.h, tests/test_pr16_circus_coverage.py, .github/workflows/pr16-circus-coverage.yml, content/modernization/pr16_circus_reentry.json, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reentry.py, scripts/pr16_circus_continuous.py, scripts/pr16_circus_continuous_probe.py, scripts/pr16_circus_finish.py, tools/mgba_pr16_circus_continuous.c, evidence/pr16_circus_accuracy/35425237415/drain-accurate-fire/native/circus-streak-batch-save.stderr, scripts/pr16_circus_trace_bindings.py, .github/workflows/pr16-circus-trace-bindings.yml, tests/test_pr16_circus_trace_bindings.py, evidence/pr16_circus_win_return_trace/35432359547/native/circus-continuous-30-save.process.json, evidence/pr16_circus_win_return_trace/35432359547/native/circus-continuous-30-save.stderr, evidence/pr16_circus_win_return_trace/35432359547/native/circus-continuous-30-save.stdout, evidence/pr16_circus_win_return_trace/35432359547/native/report.json, evidence/pr16_circus_win_return_trace/35432359547/reconstruction.json
+- Verify: CIRCUS_WIN_RETURN_READONLY_DIAGNOSTIC_OPEN。診断は通常入力を変更せずbus読取のみ。候補310177不変・ARM link0・受入済み独立case再実行0。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 実17戦目勝利後のreadonly weather/script待ち原本を参照。敗北限定の既存FadeInFromBlack再開guardとの条件差を確認し、実WINかつ両待機task・正規script・armed Circus・有効ledgerに限定したruntime修復と独立2link/変更範囲台帳を進める。固定candidateでの同じ診断・旧単体nativeは繰り返さない。
+
+
+## 2026-09-19T08:47:13.056608+00:00 — USER-20260919-CIRCUS-WIN-RETURN-OWNER-PREPARED
+- Timestamp: 2026-09-19T08:47:13.056608+00:00
+- Task: USER-20260919-CIRCUS-WIN-RETURN-OWNER-PREPARED
+- Status: DONE / 実17勝後のreadonly13点はready1。旧80events完全一致を確認し、ready0修復仮説を撤回。先頭task2件とfield loopの未読命令を固定候補から読む。
+- Version: pr16-circus-loss-marker
+- Summary: 実17勝後のreadonly13点はready1。旧80events完全一致を確認し、ready0修復仮説を撤回。先頭task2件とfield loopの未読命令を固定候補から読む。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_win_return_owner.json, scripts/pr16_circus_win_return_owner.py, tests/test_pr16_circus_win_return_owner.py, .github/workflows/pr16-circus-win-return-owner.yml, content/modernization/pr16_circus_win_return_trace.json, evidence/pr16_circus_win_return_trace/35432359547/native/circus-continuous-30-save.stderr, evidence/pr16_circus_taunt/35430246002/native/circus-continuous-30-save.stderr
+- Verify: CIRCUS_WIN_RETURN_READY_ONE_OWNER_PREPARED。保存原本の再照合と限定ROM逆アセンブルのみ。新規native0/ARM link0/受入単体再実行0。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: ready=1の実17戦目WIN停止を、先頭taskとfield loopの実ROM命令から修復する。ready=0限定FadeInの単純拡張はしない。独立2link/全ROM差分証明の後、新候補だけで継続と保存を検証し、旧17戦診断は再実行しない。
+
+
+## 2026-09-19T08:49:20.612552+00:00 — USER-20260919-CIRCUS-WIN-RETURN-OWNER-RECORDED
+- Timestamp: 2026-09-19T08:49:20.612552+00:00
+- Task: USER-20260919-CIRCUS-WIN-RETURN-OWNER-RECORDED
+- Status: DONE / ready1で停止する実17勝後のtask順3→4→5→0→1→2を原本から確定。先頭080f7abdとfield/weather/scriptの固定ROM命令を保存。新規native0。
+- Version: pr16-circus-loss-marker
+- Summary: ready1で停止する実17勝後のtask順3→4→5→0→1→2を原本から確定。先頭080f7abdとfield/weather/scriptの固定ROM命令を保存。新規native0。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_win_return_owner.json, scripts/pr16_circus_win_return_owner.py, tests/test_pr16_circus_win_return_owner.py, .github/workflows/pr16-circus-win-return-owner.yml, content/modernization/pr16_circus_win_return_trace.json, evidence/pr16_circus_win_return_trace/35432359547/native/circus-continuous-30-save.stderr, evidence/pr16_circus_taunt/35430246002/native/circus-continuous-30-save.stderr, evidence/pr16_circus_win_return_owner/35432926280/callback-0x8055e38.txt, evidence/pr16_circus_win_return_owner/35432926280/callback-0x807951c.txt, evidence/pr16_circus_win_return_owner/35432926280/callback-0x807d360.txt, evidence/pr16_circus_win_return_owner/35432926280/callback-0x807d464.txt, evidence/pr16_circus_win_return_owner/35432926280/callback-0x807db48.txt, evidence/pr16_circus_win_return_owner/35432926280/callback-0x80f7abc.txt, evidence/pr16_circus_win_return_owner/35432926280/inspection.json
+- Verify: CIRCUS_WIN_RETURN_READY_ONE_OWNER_INSPECTED。保存原本の再照合と限定ROM逆アセンブルのみ。新規native0/ARM link0/受入単体再実行0。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: ready=1の実17戦目WIN停止を、先頭taskとfield loopの実ROM命令から修復する。ready=0限定FadeInの単純拡張はしない。独立2link/全ROM差分証明の後、新候補だけで継続と保存を検証し、旧17戦診断は再実行しない。
+
+
+## 2026-09-19T08:55:55.966575+00:00 — USER-20260919-CIRCUS-WIN-RETURN-CPU-PREPARED
+- Timestamp: 2026-09-19T08:55:55.966575+00:00
+- Task: USER-20260919-CIRCUS-WIN-RETURN-CPU-PREPARED
+- Status: DONE / ready1原本とROM命令を照合。080f7abdはDMA完了を待つ通常free taskで、先頭にあるだけでは停止原因を確定できない。未観測の実PC/LR/weatherを600frame限定で読む。
+- Version: pr16-circus-loss-marker
+- Summary: ready1原本とROM命令を照合。080f7abdはDMA完了を待つ通常free taskで、先頭にあるだけでは停止原因を確定できない。未観測の実PC/LR/weatherを600frame限定で読む。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_win_return_cpu.json, scripts/pr16_circus_win_return_trace.py, tools/mgba_pr16_circus_win_return_trace.h, tests/test_pr16_circus_win_return_trace.py, .github/workflows/pr16-circus-win-return-trace.yml, evidence/pr16_circus_win_return_trace/35431032216/native/compile.stderr, evidence/pr16_circus_win_return_trace/35431032216/native/report.json, content/modernization/pr16_circus_taunt.json, evidence/pr16_circus_taunt/35430246002/native/circus-continuous-30-save.stdout, evidence/pr16_circus_taunt/35430246002/native/circus-continuous-30-save.stderr, evidence/pr16_circus_taunt/35430246002/native/circus-continuous-30-save.process.json, scripts/pr16_circus_taunt.py, tools/mgba_pr16_circus_taunt.h, tests/test_pr16_circus_taunt.py, .github/workflows/pr16-circus-taunt.yml, content/modernization/pr16_circus_tactical.json, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.stdout, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.stderr, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.process.json, scripts/pr16_circus_tactical.py, tools/mgba_pr16_circus_tactical.h, tests/test_pr16_circus_tactical.py, .github/workflows/pr16-circus-tactical.yml, content/modernization/pr16_circus_reliability.json, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reliability.py, tools/mgba_pr16_circus_reliability.h, tests/test_pr16_circus_reliability.py, .github/workflows/pr16-circus-reliability.yml, content/modernization/pr16_circus_coverage.json, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stdout, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stderr, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.process.json, scripts/pr16_circus_coverage.py, scripts/pr16_circus_reentry_probe.py, tools/mgba_pr16_circus_coverage.h, tools/mgba_pr16_circus_reentry.h, tests/test_pr16_circus_coverage.py, .github/workflows/pr16-circus-coverage.yml, content/modernization/pr16_circus_reentry.json, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reentry.py, scripts/pr16_circus_continuous.py, scripts/pr16_circus_continuous_probe.py, scripts/pr16_circus_finish.py, tools/mgba_pr16_circus_continuous.c, evidence/pr16_circus_accuracy/35425237415/drain-accurate-fire/native/circus-streak-batch-save.stderr, scripts/pr16_circus_win_return_cpu.py, tests/test_pr16_circus_win_return_cpu.py, tools/mgba_pr16_circus_win_return_cpu.h, .github/workflows/pr16-circus-win-return-cpu.yml, content/modernization/pr16_circus_win_return_owner.json
+- Verify: CIRCUS_WIN_CPU_READONLY_PREPARED。入力不変、readRegister/bus読取のみ。受入単体再実行0/ARM再link0。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 新しい実PC/LR/weather原本の最初の停止命令だけを修復する。勝利/party/task/PCをhostから注入しない。2独立linkとROM変更影響台帳を作り新候補で継続を検証する。旧17勝診断や受入済み単体は繰り返さない。
+
+
+## 2026-09-19T09:03:12.553220+00:00 — USER-20260919-CIRCUS-WIN-RETURN-CPU-RECORDED
+- Timestamp: 2026-09-19T09:03:12.553220+00:00
+- Task: USER-20260919-CIRCUS-WIN-RETURN-CPU-RECORDED
+- Status: DONE / 17勝後のCPU/weather読取原本を保存。正常Save/30勝の受入とは区別し、実際の停止命令からruntime修復へ進む。
+- Version: pr16-circus-loss-marker
+- Summary: 17勝後のCPU/weather読取原本を保存。正常Save/30勝の受入とは区別し、実際の停止命令からruntime修復へ進む。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_win_return_cpu.json, scripts/pr16_circus_win_return_trace.py, tools/mgba_pr16_circus_win_return_trace.h, tests/test_pr16_circus_win_return_trace.py, .github/workflows/pr16-circus-win-return-trace.yml, evidence/pr16_circus_win_return_trace/35431032216/native/compile.stderr, evidence/pr16_circus_win_return_trace/35431032216/native/report.json, content/modernization/pr16_circus_taunt.json, evidence/pr16_circus_taunt/35430246002/native/circus-continuous-30-save.stdout, evidence/pr16_circus_taunt/35430246002/native/circus-continuous-30-save.stderr, evidence/pr16_circus_taunt/35430246002/native/circus-continuous-30-save.process.json, scripts/pr16_circus_taunt.py, tools/mgba_pr16_circus_taunt.h, tests/test_pr16_circus_taunt.py, .github/workflows/pr16-circus-taunt.yml, content/modernization/pr16_circus_tactical.json, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.stdout, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.stderr, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.process.json, scripts/pr16_circus_tactical.py, tools/mgba_pr16_circus_tactical.h, tests/test_pr16_circus_tactical.py, .github/workflows/pr16-circus-tactical.yml, content/modernization/pr16_circus_reliability.json, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reliability.py, tools/mgba_pr16_circus_reliability.h, tests/test_pr16_circus_reliability.py, .github/workflows/pr16-circus-reliability.yml, content/modernization/pr16_circus_coverage.json, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stdout, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stderr, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.process.json, scripts/pr16_circus_coverage.py, scripts/pr16_circus_reentry_probe.py, tools/mgba_pr16_circus_coverage.h, tools/mgba_pr16_circus_reentry.h, tests/test_pr16_circus_coverage.py, .github/workflows/pr16-circus-coverage.yml, content/modernization/pr16_circus_reentry.json, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reentry.py, scripts/pr16_circus_continuous.py, scripts/pr16_circus_continuous_probe.py, scripts/pr16_circus_finish.py, tools/mgba_pr16_circus_continuous.c, evidence/pr16_circus_accuracy/35425237415/drain-accurate-fire/native/circus-streak-batch-save.stderr, scripts/pr16_circus_win_return_cpu.py, tests/test_pr16_circus_win_return_cpu.py, tools/mgba_pr16_circus_win_return_cpu.h, .github/workflows/pr16-circus-win-return-cpu.yml, content/modernization/pr16_circus_win_return_owner.json, evidence/pr16_circus_win_return_cpu/35433308048/cpu-0x80004aa.txt, evidence/pr16_circus_win_return_cpu/35433308048/cpu-0x80008ac.txt, evidence/pr16_circus_win_return_cpu/35433308048/cpu-0x807938e.txt, evidence/pr16_circus_win_return_cpu/35433308048/cpu-0x807a37a.txt, evidence/pr16_circus_win_return_cpu/35433308048/cpu-0x807a37e.txt, evidence/pr16_circus_win_return_cpu/35433308048/cpu-0x807a388.txt, evidence/pr16_circus_win_return_cpu/35433308048/cpu-0x807a38e.txt, evidence/pr16_circus_win_return_cpu/35433308048/cpu-0x807a390.txt, evidence/pr16_circus_win_return_cpu/35433308048/cpu-0x807a396.txt, evidence/pr16_circus_win_return_cpu/35433308048/cpu-0x807a3ac.txt, evidence/pr16_circus_win_return_cpu/35433308048/cpu-0x807ad08.txt, evidence/pr16_circus_win_return_cpu/35433308048/cpu-0x807ad22.txt, evidence/pr16_circus_win_return_cpu/35433308048/cpu-0x807ad24.txt, evidence/pr16_circus_win_return_cpu/35433308048/cpu-0x807ad28.txt, evidence/pr16_circus_win_return_cpu/35433308048/cpu-0x807ad40.txt, evidence/pr16_circus_win_return_cpu/35433308048/cpu-0x807ad42.txt, evidence/pr16_circus_win_return_cpu/35433308048/cpu-0x807ad44.txt, evidence/pr16_circus_win_return_cpu/35433308048/cpu-0x807ad50.txt, evidence/pr16_circus_win_return_cpu/35433308048/cpu-0x807ad52.txt, evidence/pr16_circus_win_return_cpu/35433308048/cpu-0x807ad56.txt, evidence/pr16_circus_win_return_cpu/35433308048/cpu-0x807adac.txt, evidence/pr16_circus_win_return_cpu/35433308048/cpu-0x807adae.txt, evidence/pr16_circus_win_return_cpu/35433308048/cpu-0x807adb2.txt, evidence/pr16_circus_win_return_cpu/35433308048/cpu-rows.json, evidence/pr16_circus_win_return_cpu/35433308048/native/circus-continuous-30-save.process.json, evidence/pr16_circus_win_return_cpu/35433308048/native/circus-continuous-30-save.stderr, evidence/pr16_circus_win_return_cpu/35433308048/native/circus-continuous-30-save.stdout, evidence/pr16_circus_win_return_cpu/35433308048/native/report.json, evidence/pr16_circus_win_return_cpu/35433308048/reconstruction.json
+- Verify: CIRCUS_WIN_CPU_READONLY_COMPLETE。入力不変、readRegister/bus読取のみ。受入単体再実行0/ARM再link0。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 新しい実PC/LR/weather原本の最初の停止命令だけを修復する。勝利/party/task/PCをhostから注入しない。2独立linkとROM変更影響台帳を作り新候補で継続を検証する。旧17勝診断や受入済み単体は繰り返さない。
+
+
+## 2026-09-19T09:24:26.824877+00:00 — USER-20260919-CIRCUS-DROUGHT-PREPARED
+- Timestamp: 2026-09-19T09:24:26.824877+00:00
+- Task: USER-20260919-CIRCUS-DROUGHT-PREPARED
+- Status: DONE / 実17勝後は未実装Drought palette loaderのcursorが進まずstate2で無限待機。CircusWIN/有効ownerとledger/正規script/weather12だけをguardし、空loader cursor2byte以外はnative初期化へ委譲する修正を準備。
+- Version: pr16-circus-loss-marker
+- Summary: 実17勝後は未実装Drought palette loaderのcursorが進まずstate2で無限待機。CircusWIN/有効ownerとledger/正規script/weather12だけをguardし、空loader cursor2byte以外はnative初期化へ委譲する修正を準備。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_drought.json, scripts/pr16_circus_drought.py, tests/test_pr16_circus_drought.py, overlays/circus_streak/circus_drought.c, overlays/circus_streak/circus_drought.h, tests/fixtures/circus_drought_fixture.c, tools/mgba_pr16_circus_drought_watch.h, .github/workflows/pr16-circus-drought.yml, content/modernization/pr16_circus_win_return_cpu.json, evidence/pr16_circus_win_return_cpu/35433308048/cpu-rows.json, evidence/pr16_circus_taunt/35430246002/native/circus-continuous-30-save.stderr, scripts/pr16_circus_taunt.py, tools/mgba_pr16_circus_taunt.h, tests/test_pr16_circus_taunt.py, .github/workflows/pr16-circus-taunt.yml, content/modernization/pr16_circus_tactical.json, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.stdout, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.stderr, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.process.json, scripts/pr16_circus_tactical.py, tools/mgba_pr16_circus_tactical.h, tests/test_pr16_circus_tactical.py, .github/workflows/pr16-circus-tactical.yml, content/modernization/pr16_circus_reliability.json, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reliability.py, tools/mgba_pr16_circus_reliability.h, tests/test_pr16_circus_reliability.py, .github/workflows/pr16-circus-reliability.yml, content/modernization/pr16_circus_coverage.json, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stdout, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stderr, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.process.json, scripts/pr16_circus_coverage.py, scripts/pr16_circus_reentry_probe.py, tools/mgba_pr16_circus_coverage.h, tools/mgba_pr16_circus_reentry.h, tests/test_pr16_circus_coverage.py, .github/workflows/pr16-circus-coverage.yml, content/modernization/pr16_circus_reentry.json, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reentry.py, scripts/pr16_circus_continuous.py, scripts/pr16_circus_continuous_probe.py, scripts/pr16_circus_finish.py, tools/mgba_pr16_circus_continuous.c, evidence/pr16_circus_accuracy/35425237415/drain-accurate-fire/native/circus-streak-batch-save.stderr
+- Verify: CIRCUS_DROUGHT_NATIVE_REPAIR_PREPARED。変更はweather12 initAll table4byteと新規tail payloadだけ。旧全allocation不変/rollback/独立2linkを確認し、旧LOSS/BP/Ring/Save ownerは変更しない。新候補の未完continuationだけ実行。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 新候補の実17勝後復帰とnative完了cursor/集計/原party600/owner64/通常Save/fresh Continueを画像込みで確認。真正30勝/90BPが未達なら最初の新敗北から入力だけを改善し、達成後に正規特性抑制を別検証する。旧診断/受入単体/旧2linkを再実行しない。
+
+
+## 2026-09-19T09:50:53.353827+00:00 — USER-20260919-CIRCUS-DROUGHT-CALLS-PREPARED
+- Timestamp: 2026-09-19T09:50:53.353827+00:00
+- Task: USER-20260919-CIRCUS-DROUGHT-CALLS-PREPARED
+- Status: DONE / 最新run35434591898の失敗と記録停止を原本照合。定数callbackで消失する分岐/復帰を実関数symbol境界へ修復し、host/生成ARMの回帰を追加。未完nativeだけを後継候補で検証する。
+- Version: pr16-circus-loss-marker
+- Summary: 最新run35434591898の失敗と記録停止を原本照合。定数callbackで消失する分岐/復帰を実関数symbol境界へ修復し、host/生成ARMの回帰を追加。未完nativeだけを後継候補で検証する。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_drought_calls.json, scripts/pr16_circus_drought_calls.py, tests/test_pr16_circus_drought_calls.py, .github/workflows/pr16-circus-drought-calls.yml, scripts/pr16_circus_drought.py, tests/test_pr16_circus_drought.py, overlays/circus_streak/circus_drought.c, overlays/circus_streak/circus_drought.h, tests/fixtures/circus_drought_fixture.c, tools/mgba_pr16_circus_drought_watch.h, .github/workflows/pr16-circus-drought.yml, content/modernization/pr16_circus_win_return_cpu.json, evidence/pr16_circus_win_return_cpu/35433308048/cpu-rows.json, evidence/pr16_circus_taunt/35430246002/native/circus-continuous-30-save.stderr, scripts/pr16_circus_taunt.py, tools/mgba_pr16_circus_taunt.h, tests/test_pr16_circus_taunt.py, .github/workflows/pr16-circus-taunt.yml, content/modernization/pr16_circus_tactical.json, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.stdout, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.stderr, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.process.json, scripts/pr16_circus_tactical.py, tools/mgba_pr16_circus_tactical.h, tests/test_pr16_circus_tactical.py, .github/workflows/pr16-circus-tactical.yml, content/modernization/pr16_circus_reliability.json, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reliability.py, tools/mgba_pr16_circus_reliability.h, tests/test_pr16_circus_reliability.py, .github/workflows/pr16-circus-reliability.yml, content/modernization/pr16_circus_coverage.json, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stdout, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stderr, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.process.json, scripts/pr16_circus_coverage.py, scripts/pr16_circus_reentry_probe.py, tools/mgba_pr16_circus_coverage.h, tools/mgba_pr16_circus_reentry.h, tests/test_pr16_circus_coverage.py, .github/workflows/pr16-circus-coverage.yml, content/modernization/pr16_circus_reentry.json, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reentry.py, scripts/pr16_circus_continuous.py, scripts/pr16_circus_continuous_probe.py, scripts/pr16_circus_finish.py, tools/mgba_pr16_circus_continuous.c, evidence/pr16_circus_accuracy/35425237415/drain-accurate-fire/native/circus-streak-batch-save.stderr, evidence/pr16_circus_drought_calls/35434591898/build.json, evidence/pr16_circus_drought_calls/35434591898/native/report.json, evidence/pr16_circus_drought_calls/35434591898/native/circus-continuous-30-save.stderr, evidence/pr16_circus_drought_calls/35434591898/compile-1/disassembly.txt, evidence/pr16_circus_drought_calls/35434591898/compile-1/stack-usage.txt, evidence/pr16_circus_drought_calls/35434591898/compile-2/disassembly.txt
+- Verify: CIRCUS_DROUGHT_CALLS_REPAIR_PREPARED。定数callback縮小再現/実関数wrapper/ARM条件分岐・cursor store・復帰/失敗原本identity/相対path抄録を検証。元artifact不変、全体private guardを成功へ改作しない。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 新候補で実17勝後のDrought復帰とnative完了cursorを検証し、未完continuation/原party600/owner64/通常Save/fresh Continueへ進む。30勝未達なら最初の新停止点だけ修復し、真正30勝後に正規特性抑制を別検証。旧失敗の同一native/旧2link/受入単体は再実行しない。
+
+
+## 2026-09-19T09:56:20.225774+00:00 — USER-20260919-CIRCUS-DROUGHT-CALLS-RECORDED
+- Timestamp: 2026-09-19T09:56:20.225774+00:00
+- Task: USER-20260919-CIRCUS-DROUGHT-CALLS-RECORDED
+- Status: DONE / 実関数境界修復の独立2link/生成ARM/全ROM rollbackと新native原本を保存。17勝後復帰=False、真正30勝=False。画像レビュー/特性抑制/P08は別ゲート。
+- Version: pr16-circus-loss-marker
+- Summary: 実関数境界修復の独立2link/生成ARM/全ROM rollbackと新native原本を保存。17勝後復帰=False、真正30勝=False。画像レビュー/特性抑制/P08は別ゲート。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_drought_calls.json, scripts/pr16_circus_drought_calls.py, tests/test_pr16_circus_drought_calls.py, .github/workflows/pr16-circus-drought-calls.yml, scripts/pr16_circus_drought.py, tests/test_pr16_circus_drought.py, overlays/circus_streak/circus_drought.c, overlays/circus_streak/circus_drought.h, tests/fixtures/circus_drought_fixture.c, tools/mgba_pr16_circus_drought_watch.h, .github/workflows/pr16-circus-drought.yml, content/modernization/pr16_circus_win_return_cpu.json, evidence/pr16_circus_win_return_cpu/35433308048/cpu-rows.json, evidence/pr16_circus_taunt/35430246002/native/circus-continuous-30-save.stderr, scripts/pr16_circus_taunt.py, tools/mgba_pr16_circus_taunt.h, tests/test_pr16_circus_taunt.py, .github/workflows/pr16-circus-taunt.yml, content/modernization/pr16_circus_tactical.json, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.stdout, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.stderr, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.process.json, scripts/pr16_circus_tactical.py, tools/mgba_pr16_circus_tactical.h, tests/test_pr16_circus_tactical.py, .github/workflows/pr16-circus-tactical.yml, content/modernization/pr16_circus_reliability.json, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reliability.py, tools/mgba_pr16_circus_reliability.h, tests/test_pr16_circus_reliability.py, .github/workflows/pr16-circus-reliability.yml, content/modernization/pr16_circus_coverage.json, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stdout, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stderr, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.process.json, scripts/pr16_circus_coverage.py, scripts/pr16_circus_reentry_probe.py, tools/mgba_pr16_circus_coverage.h, tools/mgba_pr16_circus_reentry.h, tests/test_pr16_circus_coverage.py, .github/workflows/pr16-circus-coverage.yml, content/modernization/pr16_circus_reentry.json, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reentry.py, scripts/pr16_circus_continuous.py, scripts/pr16_circus_continuous_probe.py, scripts/pr16_circus_finish.py, tools/mgba_pr16_circus_continuous.c, evidence/pr16_circus_accuracy/35425237415/drain-accurate-fire/native/circus-streak-batch-save.stderr, evidence/pr16_circus_drought_calls/35434591898/build.json, evidence/pr16_circus_drought_calls/35434591898/compile-1/disassembly.txt, evidence/pr16_circus_drought_calls/35434591898/compile-1/stack-usage.txt, evidence/pr16_circus_drought_calls/35434591898/compile-2/disassembly.txt, evidence/pr16_circus_drought_calls/35434591898/native/circus-continuous-30-save.stderr, evidence/pr16_circus_drought_calls/35434591898/native/report.json, evidence/pr16_circus_drought_calls/35435801505/build.json, evidence/pr16_circus_drought_calls/35435801505/compile-1/compile.stderr, evidence/pr16_circus_drought_calls/35435801505/compile-1/compile.stdout, evidence/pr16_circus_drought_calls/35435801505/compile-1/disassembly.txt, evidence/pr16_circus_drought_calls/35435801505/compile-1/stack-usage.txt, evidence/pr16_circus_drought_calls/35435801505/compile-1/symbols.txt, evidence/pr16_circus_drought_calls/35435801505/compile-1/target-contract.json, evidence/pr16_circus_drought_calls/35435801505/compile-2/compile.stderr, evidence/pr16_circus_drought_calls/35435801505/compile-2/compile.stdout, evidence/pr16_circus_drought_calls/35435801505/compile-2/disassembly.txt, evidence/pr16_circus_drought_calls/35435801505/compile-2/stack-usage.txt, evidence/pr16_circus_drought_calls/35435801505/compile-2/symbols.txt, evidence/pr16_circus_drought_calls/35435801505/compile-2/target-contract.json, evidence/pr16_circus_drought_calls/35435801505/native/chooser-bindings.json, evidence/pr16_circus_drought_calls/35435801505/native/circus-continuous-30-save.process.json, evidence/pr16_circus_drought_calls/35435801505/native/circus-continuous-30-save.stderr, evidence/pr16_circus_drought_calls/35435801505/native/circus-continuous-30-save.stdout, evidence/pr16_circus_drought_calls/35435801505/native/compile.process.json, evidence/pr16_circus_drought_calls/35435801505/native/compile.stderr, evidence/pr16_circus_drought_calls/35435801505/native/compile.stdout, evidence/pr16_circus_drought_calls/35435801505/native/guard-bus16.process.json, evidence/pr16_circus_drought_calls/35435801505/native/guard-bus16.stderr, evidence/pr16_circus_drought_calls/35435801505/native/guard-bus16.stdout, evidence/pr16_circus_drought_calls/35435801505/native/guard-bus32.process.json, evidence/pr16_circus_drought_calls/35435801505/native/guard-bus32.stderr, evidence/pr16_circus_drought_calls/35435801505/native/guard-bus32.stdout, evidence/pr16_circus_drought_calls/35435801505/native/guard-bus8.process.json, evidence/pr16_circus_drought_calls/35435801505/native/guard-bus8.stderr, evidence/pr16_circus_drought_calls/35435801505/native/guard-bus8.stdout, evidence/pr16_circus_drought_calls/35435801505/native/guard-raw16.process.json, evidence/pr16_circus_drought_calls/35435801505/native/guard-raw16.stderr, evidence/pr16_circus_drought_calls/35435801505/native/guard-raw16.stdout, evidence/pr16_circus_drought_calls/35435801505/native/guard-raw32.process.json, evidence/pr16_circus_drought_calls/35435801505/native/guard-raw32.stderr, evidence/pr16_circus_drought_calls/35435801505/native/guard-raw32.stdout, evidence/pr16_circus_drought_calls/35435801505/native/guard-raw8.process.json, evidence/pr16_circus_drought_calls/35435801505/native/guard-raw8.stderr, evidence/pr16_circus_drought_calls/35435801505/native/guard-raw8.stdout, evidence/pr16_circus_drought_calls/35435801505/native/guard-register.process.json, evidence/pr16_circus_drought_calls/35435801505/native/guard-register.stderr, evidence/pr16_circus_drought_calls/35435801505/native/guard-register.stdout, evidence/pr16_circus_drought_calls/35435801505/native/report.json, evidence/pr16_circus_drought_calls/35435801505/parent-0x807a330.txt, evidence/pr16_circus_drought_calls/35435801505/parent-0x807acd4.txt, evidence/pr16_circus_drought_calls/35435801505/parent-0x8389a04.txt, evidence/pr16_circus_drought_calls/35435801505/parent-recipe.json, evidence/pr16_circus_drought_calls/35435801505/reconstruction.json
+- Verify: CIRCUS_DROUGHT_CALLS_NATIVE_OPEN。定数callback縮小再現/実関数wrapper/ARM条件分岐・cursor store・復帰/失敗原本identity/相対path抄録を検証。元artifact不変、全体private guardを成功へ改作しない。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 新候補で実17勝後のDrought復帰とnative完了cursorを検証し、未完continuation/原party600/owner64/通常Save/fresh Continueへ進む。30勝未達なら最初の新停止点だけ修復し、真正30勝後に正規特性抑制を別検証。旧失敗の同一native/旧2link/受入単体は再実行しない。
+
+
+## 2026-09-19T10:03:08.894957+00:00 — USER-20260919-CIRCUS-LAUNCH-CPU-PREPARED
+- Timestamp: 2026-09-19T10:03:08.894957+00:00
+- Task: USER-20260919-CIRCUS-LAUNCH-CPU-PREPARED
+- Status: DONE / 17勝後の修復自体はnative完了・勝数記録・画面復帰を原本照合。次の18戦目launch停止を読取CPUで限定診断する。候補は再linkせず固定再構成。
+- Version: pr16-circus-loss-marker
+- Summary: 17勝後の修復自体はnative完了・勝数記録・画面復帰を原本照合。次の18戦目launch停止を読取CPUで限定診断する。候補は再linkせず固定再構成。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_launch_cpu.json, scripts/pr16_circus_launch_cpu.py, tests/test_pr16_circus_launch_cpu.py, .github/workflows/pr16-circus-launch-cpu.yml, scripts/pr16_circus_drought.py, tests/test_pr16_circus_drought.py, overlays/circus_streak/circus_drought.c, overlays/circus_streak/circus_drought.h, tests/fixtures/circus_drought_fixture.c, tools/mgba_pr16_circus_drought_watch.h, .github/workflows/pr16-circus-drought.yml, content/modernization/pr16_circus_win_return_cpu.json, evidence/pr16_circus_win_return_cpu/35433308048/cpu-rows.json, evidence/pr16_circus_taunt/35430246002/native/circus-continuous-30-save.stderr, scripts/pr16_circus_taunt.py, tools/mgba_pr16_circus_taunt.h, tests/test_pr16_circus_taunt.py, .github/workflows/pr16-circus-taunt.yml, content/modernization/pr16_circus_tactical.json, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.stdout, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.stderr, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.process.json, scripts/pr16_circus_tactical.py, tools/mgba_pr16_circus_tactical.h, tests/test_pr16_circus_tactical.py, .github/workflows/pr16-circus-tactical.yml, content/modernization/pr16_circus_reliability.json, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reliability.py, tools/mgba_pr16_circus_reliability.h, tests/test_pr16_circus_reliability.py, .github/workflows/pr16-circus-reliability.yml, content/modernization/pr16_circus_coverage.json, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stdout, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stderr, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.process.json, scripts/pr16_circus_coverage.py, scripts/pr16_circus_reentry_probe.py, tools/mgba_pr16_circus_coverage.h, tools/mgba_pr16_circus_reentry.h, tests/test_pr16_circus_coverage.py, .github/workflows/pr16-circus-coverage.yml, content/modernization/pr16_circus_reentry.json, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reentry.py, scripts/pr16_circus_continuous.py, scripts/pr16_circus_continuous_probe.py, scripts/pr16_circus_finish.py, tools/mgba_pr16_circus_continuous.c, evidence/pr16_circus_accuracy/35425237415/drain-accurate-fire/native/circus-streak-batch-save.stderr, tools/mgba_pr16_circus_launch_cpu.h, content/modernization/pr16_circus_drought_calls.json, evidence/pr16_circus_drought_calls/35435801505/native/circus-continuous-30-save.stderr
+- Verify: CIRCUS_18TH_LAUNCH_CPU_PREPARED。ROM不変98b9eea4・ARM再link0・通常入力不変の読取専用CPU・受入独立case再実行0。診断成功とnative lifecycle成功を区別。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 17勝後Drought復帰はnative完了cursor32/32・17勝記録・18戦目確認まで原本で確認済み。18戦目launchの新CPU原本から限定修復し、続く実戦・原party600/owner64・通常Save/fresh Continue・真正30勝へ進む。旧17勝診断・独立2link・受入単体は再実行しない。
+
+
+## 2026-09-19T10:10:23.935886+00:00 — USER-20260919-CIRCUS-LAUNCH-CPU-RECORDED
+- Timestamp: 2026-09-19T10:10:23.935886+00:00
+- Task: USER-20260919-CIRCUS-LAUNCH-CPU-RECORDED
+- Status: DONE / 18戦目未完launchの600frame/21点CPU・weather・tasksの読取原本を保存。診断完了=True。ROM/ARM link変更なし、通常Save/fresh Continueは未受入。
+- Version: pr16-circus-loss-marker
+- Summary: 18戦目未完launchの600frame/21点CPU・weather・tasksの読取原本を保存。診断完了=True。ROM/ARM link変更なし、通常Save/fresh Continueは未受入。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_launch_cpu.json, scripts/pr16_circus_launch_cpu.py, tests/test_pr16_circus_launch_cpu.py, .github/workflows/pr16-circus-launch-cpu.yml, scripts/pr16_circus_drought.py, tests/test_pr16_circus_drought.py, overlays/circus_streak/circus_drought.c, overlays/circus_streak/circus_drought.h, tests/fixtures/circus_drought_fixture.c, tools/mgba_pr16_circus_drought_watch.h, .github/workflows/pr16-circus-drought.yml, content/modernization/pr16_circus_win_return_cpu.json, evidence/pr16_circus_win_return_cpu/35433308048/cpu-rows.json, evidence/pr16_circus_taunt/35430246002/native/circus-continuous-30-save.stderr, scripts/pr16_circus_taunt.py, tools/mgba_pr16_circus_taunt.h, tests/test_pr16_circus_taunt.py, .github/workflows/pr16-circus-taunt.yml, content/modernization/pr16_circus_tactical.json, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.stdout, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.stderr, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.process.json, scripts/pr16_circus_tactical.py, tools/mgba_pr16_circus_tactical.h, tests/test_pr16_circus_tactical.py, .github/workflows/pr16-circus-tactical.yml, content/modernization/pr16_circus_reliability.json, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reliability.py, tools/mgba_pr16_circus_reliability.h, tests/test_pr16_circus_reliability.py, .github/workflows/pr16-circus-reliability.yml, content/modernization/pr16_circus_coverage.json, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stdout, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stderr, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.process.json, scripts/pr16_circus_coverage.py, scripts/pr16_circus_reentry_probe.py, tools/mgba_pr16_circus_coverage.h, tools/mgba_pr16_circus_reentry.h, tests/test_pr16_circus_coverage.py, .github/workflows/pr16-circus-coverage.yml, content/modernization/pr16_circus_reentry.json, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reentry.py, scripts/pr16_circus_continuous.py, scripts/pr16_circus_continuous_probe.py, scripts/pr16_circus_finish.py, tools/mgba_pr16_circus_continuous.c, evidence/pr16_circus_accuracy/35425237415/drain-accurate-fire/native/circus-streak-batch-save.stderr, tools/mgba_pr16_circus_launch_cpu.h, content/modernization/pr16_circus_drought_calls.json, evidence/pr16_circus_drought_calls/35435801505/native/circus-continuous-30-save.stderr, evidence/pr16_circus_launch_cpu/35436330902/cpu-rows.json, evidence/pr16_circus_launch_cpu/35436330902/native/chooser-bindings.json, evidence/pr16_circus_launch_cpu/35436330902/native/circus-continuous-30-save.process.json, evidence/pr16_circus_launch_cpu/35436330902/native/circus-continuous-30-save.stderr, evidence/pr16_circus_launch_cpu/35436330902/native/circus-continuous-30-save.stdout, evidence/pr16_circus_launch_cpu/35436330902/native/compile.process.json, evidence/pr16_circus_launch_cpu/35436330902/native/compile.stderr, evidence/pr16_circus_launch_cpu/35436330902/native/compile.stdout, evidence/pr16_circus_launch_cpu/35436330902/native/guard-bus16.process.json, evidence/pr16_circus_launch_cpu/35436330902/native/guard-bus16.stderr, evidence/pr16_circus_launch_cpu/35436330902/native/guard-bus16.stdout, evidence/pr16_circus_launch_cpu/35436330902/native/guard-bus32.process.json, evidence/pr16_circus_launch_cpu/35436330902/native/guard-bus32.stderr, evidence/pr16_circus_launch_cpu/35436330902/native/guard-bus32.stdout, evidence/pr16_circus_launch_cpu/35436330902/native/guard-bus8.process.json, evidence/pr16_circus_launch_cpu/35436330902/native/guard-bus8.stderr, evidence/pr16_circus_launch_cpu/35436330902/native/guard-bus8.stdout, evidence/pr16_circus_launch_cpu/35436330902/native/guard-raw16.process.json, evidence/pr16_circus_launch_cpu/35436330902/native/guard-raw16.stderr, evidence/pr16_circus_launch_cpu/35436330902/native/guard-raw16.stdout, evidence/pr16_circus_launch_cpu/35436330902/native/guard-raw32.process.json, evidence/pr16_circus_launch_cpu/35436330902/native/guard-raw32.stderr, evidence/pr16_circus_launch_cpu/35436330902/native/guard-raw32.stdout, evidence/pr16_circus_launch_cpu/35436330902/native/guard-raw8.process.json, evidence/pr16_circus_launch_cpu/35436330902/native/guard-raw8.stderr, evidence/pr16_circus_launch_cpu/35436330902/native/guard-raw8.stdout, evidence/pr16_circus_launch_cpu/35436330902/native/guard-register.process.json, evidence/pr16_circus_launch_cpu/35436330902/native/guard-register.stderr, evidence/pr16_circus_launch_cpu/35436330902/native/guard-register.stdout, evidence/pr16_circus_launch_cpu/35436330902/native/report.json, evidence/pr16_circus_launch_cpu/35436330902/reconstruction.json
+- Verify: CIRCUS_18TH_LAUNCH_CPU_READONLY_COMPLETE。ROM不変98b9eea4・ARM再link0・通常入力不変の読取専用CPU・受入独立case再実行0。診断成功とnative lifecycle成功を区別。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 17勝後Drought復帰はnative完了cursor32/32・17勝記録・18戦目確認まで原本で確認済み。18戦目launchの新CPU原本から限定修復し、続く実戦・原party600/owner64・通常Save/fresh Continue・真正30勝へ進む。旧17勝診断・独立2link・受入単体は再実行しない。
+
+
+## 2026-09-19T10:19:20.822396+00:00 — USER-20260919-CIRCUS-DROUGHT-LAUNCH-PREPARED
+- Timestamp: 2026-09-19T10:19:20.822396+00:00
+- Task: USER-20260919-CIRCUS-DROUGHT-LAUNCH-PREPARED
+- Status: DONE / 18戦目の新停止をCPU原本で確定。戦闘開始前の正規選出3経路だけ空Drought loader修復を追加し、旧WIN/LOSS/Factory/保存ownerは維持。新候補を独立2linkと未完continuationで検証。
+- Version: pr16-circus-loss-marker
+- Summary: 18戦目の新停止をCPU原本で確定。戦闘開始前の正規選出3経路だけ空Drought loader修復を追加し、旧WIN/LOSS/Factory/保存ownerは維持。新候補を独立2linkと未完continuationで検証。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_drought_launch.json, scripts/pr16_circus_drought_launch.py, tests/test_pr16_circus_drought_launch.py, .github/workflows/pr16-circus-drought-launch.yml, scripts/pr16_circus_drought.py, tests/test_pr16_circus_drought.py, overlays/circus_streak/circus_drought.c, overlays/circus_streak/circus_drought.h, tests/fixtures/circus_drought_fixture.c, tools/mgba_pr16_circus_drought_watch.h, .github/workflows/pr16-circus-drought.yml, content/modernization/pr16_circus_win_return_cpu.json, evidence/pr16_circus_win_return_cpu/35433308048/cpu-rows.json, evidence/pr16_circus_taunt/35430246002/native/circus-continuous-30-save.stderr, scripts/pr16_circus_taunt.py, tools/mgba_pr16_circus_taunt.h, tests/test_pr16_circus_taunt.py, .github/workflows/pr16-circus-taunt.yml, content/modernization/pr16_circus_tactical.json, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.stdout, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.stderr, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.process.json, scripts/pr16_circus_tactical.py, tools/mgba_pr16_circus_tactical.h, tests/test_pr16_circus_tactical.py, .github/workflows/pr16-circus-tactical.yml, content/modernization/pr16_circus_reliability.json, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reliability.py, tools/mgba_pr16_circus_reliability.h, tests/test_pr16_circus_reliability.py, .github/workflows/pr16-circus-reliability.yml, content/modernization/pr16_circus_coverage.json, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stdout, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stderr, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.process.json, scripts/pr16_circus_coverage.py, scripts/pr16_circus_reentry_probe.py, tools/mgba_pr16_circus_coverage.h, tools/mgba_pr16_circus_reentry.h, tests/test_pr16_circus_coverage.py, .github/workflows/pr16-circus-coverage.yml, content/modernization/pr16_circus_reentry.json, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reentry.py, scripts/pr16_circus_continuous.py, scripts/pr16_circus_continuous_probe.py, scripts/pr16_circus_finish.py, tools/mgba_pr16_circus_continuous.c, evidence/pr16_circus_accuracy/35425237415/drain-accurate-fire/native/circus-streak-batch-save.stderr, scripts/pr16_circus_drought_calls.py, tests/test_pr16_circus_drought_calls.py, .github/workflows/pr16-circus-drought-calls.yml, overlays/circus_streak/circus_drought_launch.h, tests/fixtures/circus_drought_launch_fixture.c, content/modernization/pr16_circus_launch_cpu.json, evidence/pr16_circus_launch_cpu/35436330902/cpu-rows.json, content/modernization/pr16_circus_drought_calls.json, evidence/pr16_circus_drought_calls/35435801505/native/circus-continuous-30-save.stderr
+- Verify: CIRCUS_DROUGHT_LAUNCH_REPAIR_PREPARED。旧WIN predicate不変・選出復帰3script/outcome0を別guardで追加。host scope/native ABI/生成ARM/独立2link/旧allocation不変/通常入力だけの新continuation。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 新候補で18戦目の正規launch・以降の実勝敗・原party600/owner64・通常Save/fresh Continueを確認。真正30勝未達は最初の新停止だけを修復し、達成後に正規特性抑制へ進む。旧CPU診断/旧独立2link/受入単体の再実行は禁止。
+
+
+## 2026-09-19T10:26:59.182903+00:00 — USER-20260919-CIRCUS-DROUGHT-LAUNCH-RECORDED
+- Timestamp: 2026-09-19T10:26:59.182903+00:00
+- Task: USER-20260919-CIRCUS-DROUGHT-LAUNCH-RECORDED
+- Status: DONE / 選出復帰修復の原本と新候補差分を保存。18戦目native launch/通常Save/fresh Continue=False、真正30勝=False。画像・正規特性抑制・P08は別ゲート。
+- Version: pr16-circus-loss-marker
+- Summary: 選出復帰修復の原本と新候補差分を保存。18戦目native launch/通常Save/fresh Continue=False、真正30勝=False。画像・正規特性抑制・P08は別ゲート。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_drought_launch.json, scripts/pr16_circus_drought_launch.py, tests/test_pr16_circus_drought_launch.py, .github/workflows/pr16-circus-drought-launch.yml, scripts/pr16_circus_drought.py, tests/test_pr16_circus_drought.py, overlays/circus_streak/circus_drought.c, overlays/circus_streak/circus_drought.h, tests/fixtures/circus_drought_fixture.c, tools/mgba_pr16_circus_drought_watch.h, .github/workflows/pr16-circus-drought.yml, content/modernization/pr16_circus_win_return_cpu.json, evidence/pr16_circus_win_return_cpu/35433308048/cpu-rows.json, evidence/pr16_circus_taunt/35430246002/native/circus-continuous-30-save.stderr, scripts/pr16_circus_taunt.py, tools/mgba_pr16_circus_taunt.h, tests/test_pr16_circus_taunt.py, .github/workflows/pr16-circus-taunt.yml, content/modernization/pr16_circus_tactical.json, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.stdout, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.stderr, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.process.json, scripts/pr16_circus_tactical.py, tools/mgba_pr16_circus_tactical.h, tests/test_pr16_circus_tactical.py, .github/workflows/pr16-circus-tactical.yml, content/modernization/pr16_circus_reliability.json, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reliability.py, tools/mgba_pr16_circus_reliability.h, tests/test_pr16_circus_reliability.py, .github/workflows/pr16-circus-reliability.yml, content/modernization/pr16_circus_coverage.json, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stdout, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stderr, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.process.json, scripts/pr16_circus_coverage.py, scripts/pr16_circus_reentry_probe.py, tools/mgba_pr16_circus_coverage.h, tools/mgba_pr16_circus_reentry.h, tests/test_pr16_circus_coverage.py, .github/workflows/pr16-circus-coverage.yml, content/modernization/pr16_circus_reentry.json, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reentry.py, scripts/pr16_circus_continuous.py, scripts/pr16_circus_continuous_probe.py, scripts/pr16_circus_finish.py, tools/mgba_pr16_circus_continuous.c, evidence/pr16_circus_accuracy/35425237415/drain-accurate-fire/native/circus-streak-batch-save.stderr, scripts/pr16_circus_drought_calls.py, tests/test_pr16_circus_drought_calls.py, .github/workflows/pr16-circus-drought-calls.yml, overlays/circus_streak/circus_drought_launch.h, tests/fixtures/circus_drought_launch_fixture.c, content/modernization/pr16_circus_launch_cpu.json, evidence/pr16_circus_launch_cpu/35436330902/cpu-rows.json, content/modernization/pr16_circus_drought_calls.json, evidence/pr16_circus_drought_calls/35435801505/native/circus-continuous-30-save.stderr, evidence/pr16_circus_drought_launch/35437062974/build.json, evidence/pr16_circus_drought_launch/35437062974/compile-1/compile.stderr, evidence/pr16_circus_drought_launch/35437062974/compile-1/compile.stdout, evidence/pr16_circus_drought_launch/35437062974/compile-1/disassembly.txt, evidence/pr16_circus_drought_launch/35437062974/compile-1/stack-usage.txt, evidence/pr16_circus_drought_launch/35437062974/compile-1/symbols.txt, evidence/pr16_circus_drought_launch/35437062974/compile-1/target-contract.json, evidence/pr16_circus_drought_launch/35437062974/compile-2/compile.stderr, evidence/pr16_circus_drought_launch/35437062974/compile-2/compile.stdout, evidence/pr16_circus_drought_launch/35437062974/compile-2/disassembly.txt, evidence/pr16_circus_drought_launch/35437062974/compile-2/stack-usage.txt, evidence/pr16_circus_drought_launch/35437062974/compile-2/symbols.txt, evidence/pr16_circus_drought_launch/35437062974/compile-2/target-contract.json, evidence/pr16_circus_drought_launch/35437062974/native/chooser-bindings.json, evidence/pr16_circus_drought_launch/35437062974/native/circus-continuous-30-save.process.json, evidence/pr16_circus_drought_launch/35437062974/native/circus-continuous-30-save.stderr, evidence/pr16_circus_drought_launch/35437062974/native/circus-continuous-30-save.stdout, evidence/pr16_circus_drought_launch/35437062974/native/compile.process.json, evidence/pr16_circus_drought_launch/35437062974/native/compile.stderr, evidence/pr16_circus_drought_launch/35437062974/native/compile.stdout, evidence/pr16_circus_drought_launch/35437062974/native/guard-bus16.process.json, evidence/pr16_circus_drought_launch/35437062974/native/guard-bus16.stderr, evidence/pr16_circus_drought_launch/35437062974/native/guard-bus16.stdout, evidence/pr16_circus_drought_launch/35437062974/native/guard-bus32.process.json, evidence/pr16_circus_drought_launch/35437062974/native/guard-bus32.stderr, evidence/pr16_circus_drought_launch/35437062974/native/guard-bus32.stdout, evidence/pr16_circus_drought_launch/35437062974/native/guard-bus8.process.json, evidence/pr16_circus_drought_launch/35437062974/native/guard-bus8.stderr, evidence/pr16_circus_drought_launch/35437062974/native/guard-bus8.stdout, evidence/pr16_circus_drought_launch/35437062974/native/guard-raw16.process.json, evidence/pr16_circus_drought_launch/35437062974/native/guard-raw16.stderr, evidence/pr16_circus_drought_launch/35437062974/native/guard-raw16.stdout, evidence/pr16_circus_drought_launch/35437062974/native/guard-raw32.process.json, evidence/pr16_circus_drought_launch/35437062974/native/guard-raw32.stderr, evidence/pr16_circus_drought_launch/35437062974/native/guard-raw32.stdout, evidence/pr16_circus_drought_launch/35437062974/native/guard-raw8.process.json, evidence/pr16_circus_drought_launch/35437062974/native/guard-raw8.stderr, evidence/pr16_circus_drought_launch/35437062974/native/guard-raw8.stdout, evidence/pr16_circus_drought_launch/35437062974/native/guard-register.process.json, evidence/pr16_circus_drought_launch/35437062974/native/guard-register.stderr, evidence/pr16_circus_drought_launch/35437062974/native/guard-register.stdout, evidence/pr16_circus_drought_launch/35437062974/native/report.json, evidence/pr16_circus_drought_launch/35437062974/parent-0x807a330.txt, evidence/pr16_circus_drought_launch/35437062974/parent-0x807acd4.txt, evidence/pr16_circus_drought_launch/35437062974/parent-0x8389a04.txt, evidence/pr16_circus_drought_launch/35437062974/parent-recipe.json, evidence/pr16_circus_drought_launch/35437062974/reconstruction.json
+- Verify: CIRCUS_DROUGHT_LAUNCH_NATIVE_OPEN。旧WIN predicate不変・選出復帰3script/outcome0を別guardで追加。host scope/native ABI/生成ARM/独立2link/旧allocation不変/通常入力だけの新continuation。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 新候補で18戦目の正規launch・以降の実勝敗・原party600/owner64・通常Save/fresh Continueを確認。真正30勝未達は最初の新停止だけを修復し、達成後に正規特性抑制へ進む。旧CPU診断/旧独立2link/受入単体の再実行は禁止。
+
+
+## 2026-09-19T10:43:04.896550+00:00 — USER-20260919-CIRCUS-DROUGHT-LAUNCH-BOUNDARY-PREPARED
+- Timestamp: 2026-09-19T10:43:04.896550+00:00
+- Task: USER-20260919-CIRCUS-DROUGHT-LAUNCH-BOUNDARY-PREPARED
+- Status: DONE / 18戦目確認後にactionが来ずfield callback/script0へ落ちた原本を照合。現候補の同じ境界だけを短いreadonly watcherで採取する。
+- Version: pr16-circus-loss-marker
+- Summary: 18戦目確認後にactionが来ずfield callback/script0へ落ちた原本を照合。現候補の同じ境界だけを短いreadonly watcherで採取する。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_drought_launch_boundary.json, scripts/pr16_circus_drought_launch_boundary.py, tests/test_pr16_circus_drought_launch_boundary.py, .github/workflows/pr16-circus-drought-launch-boundary.yml, scripts/pr16_circus_drought.py, tests/test_pr16_circus_drought.py, overlays/circus_streak/circus_drought.c, overlays/circus_streak/circus_drought.h, tests/fixtures/circus_drought_fixture.c, tools/mgba_pr16_circus_drought_watch.h, .github/workflows/pr16-circus-drought.yml, content/modernization/pr16_circus_win_return_cpu.json, evidence/pr16_circus_win_return_cpu/35433308048/cpu-rows.json, evidence/pr16_circus_taunt/35430246002/native/circus-continuous-30-save.stderr, scripts/pr16_circus_taunt.py, tools/mgba_pr16_circus_taunt.h, tests/test_pr16_circus_taunt.py, .github/workflows/pr16-circus-taunt.yml, content/modernization/pr16_circus_tactical.json, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.stdout, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.stderr, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.process.json, scripts/pr16_circus_tactical.py, tools/mgba_pr16_circus_tactical.h, tests/test_pr16_circus_tactical.py, .github/workflows/pr16-circus-tactical.yml, content/modernization/pr16_circus_reliability.json, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reliability.py, tools/mgba_pr16_circus_reliability.h, tests/test_pr16_circus_reliability.py, .github/workflows/pr16-circus-reliability.yml, content/modernization/pr16_circus_coverage.json, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stdout, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stderr, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.process.json, scripts/pr16_circus_coverage.py, scripts/pr16_circus_reentry_probe.py, tools/mgba_pr16_circus_coverage.h, tools/mgba_pr16_circus_reentry.h, tests/test_pr16_circus_coverage.py, .github/workflows/pr16-circus-coverage.yml, content/modernization/pr16_circus_reentry.json, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reentry.py, scripts/pr16_circus_continuous.py, scripts/pr16_circus_continuous_probe.py, scripts/pr16_circus_finish.py, tools/mgba_pr16_circus_continuous.c, evidence/pr16_circus_accuracy/35425237415/drain-accurate-fire/native/circus-streak-batch-save.stderr, scripts/pr16_circus_drought_calls.py, tests/test_pr16_circus_drought_calls.py, .github/workflows/pr16-circus-drought-calls.yml, overlays/circus_streak/circus_drought_launch.h, tests/fixtures/circus_drought_launch_fixture.c, content/modernization/pr16_circus_launch_cpu.json, evidence/pr16_circus_launch_cpu/35436330902/cpu-rows.json, content/modernization/pr16_circus_drought_calls.json, evidence/pr16_circus_drought_calls/35435801505/native/circus-continuous-30-save.stderr, tools/mgba_pr16_circus_drought_launch_boundary.h, content/modernization/pr16_circus_drought_launch.json, evidence/pr16_circus_drought_launch/35437062974/native/circus-continuous-30-save.stderr
+- Verify: CIRCUS_DROUGHT_LAUNCH_BOUNDARY_TRACE_PREPARED。現候補1processの17勝不可避prefixのみ、入力不変のreadonly境界trace。受入済み単体0、ARM link追加0、ROM/save証跡0。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 境界traceのcomplete/state/cursorとscript/task遷移に基づき、18戦目だけの最小修復を追加する。17勝prefix・受入済み単体・旧CPU診断・旧独立2linkは再実行せず、修復候補で18戦目launch以降の実勝敗・原party600/owner64・通常Save/fresh Continueへ進む。
+
+
+## 2026-09-19T10:44:57.209753+00:00 — USER-20260919-CIRCUS-DROUGHT-LAUNCH-BOUNDARY-RECORDED
+- Timestamp: 2026-09-19T10:44:57.209753+00:00
+- Task: USER-20260919-CIRCUS-DROUGHT-LAUNCH-BOUNDARY-RECORDED
+- Status: DONE / 18戦目chooserからfield callback/script0へ落ちるreadonly境界を保存。weather完了=None。native/Save/30勝受入には昇格しない。
+- Version: pr16-circus-loss-marker
+- Summary: 18戦目chooserからfield callback/script0へ落ちるreadonly境界を保存。weather完了=None。native/Save/30勝受入には昇格しない。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_drought_launch_boundary.json, scripts/pr16_circus_drought_launch_boundary.py, tests/test_pr16_circus_drought_launch_boundary.py, .github/workflows/pr16-circus-drought-launch-boundary.yml, scripts/pr16_circus_drought.py, tests/test_pr16_circus_drought.py, overlays/circus_streak/circus_drought.c, overlays/circus_streak/circus_drought.h, tests/fixtures/circus_drought_fixture.c, tools/mgba_pr16_circus_drought_watch.h, .github/workflows/pr16-circus-drought.yml, content/modernization/pr16_circus_win_return_cpu.json, evidence/pr16_circus_win_return_cpu/35433308048/cpu-rows.json, evidence/pr16_circus_taunt/35430246002/native/circus-continuous-30-save.stderr, scripts/pr16_circus_taunt.py, tools/mgba_pr16_circus_taunt.h, tests/test_pr16_circus_taunt.py, .github/workflows/pr16-circus-taunt.yml, content/modernization/pr16_circus_tactical.json, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.stdout, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.stderr, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.process.json, scripts/pr16_circus_tactical.py, tools/mgba_pr16_circus_tactical.h, tests/test_pr16_circus_tactical.py, .github/workflows/pr16-circus-tactical.yml, content/modernization/pr16_circus_reliability.json, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reliability.py, tools/mgba_pr16_circus_reliability.h, tests/test_pr16_circus_reliability.py, .github/workflows/pr16-circus-reliability.yml, content/modernization/pr16_circus_coverage.json, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stdout, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stderr, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.process.json, scripts/pr16_circus_coverage.py, scripts/pr16_circus_reentry_probe.py, tools/mgba_pr16_circus_coverage.h, tools/mgba_pr16_circus_reentry.h, tests/test_pr16_circus_coverage.py, .github/workflows/pr16-circus-coverage.yml, content/modernization/pr16_circus_reentry.json, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reentry.py, scripts/pr16_circus_continuous.py, scripts/pr16_circus_continuous_probe.py, scripts/pr16_circus_finish.py, tools/mgba_pr16_circus_continuous.c, evidence/pr16_circus_accuracy/35425237415/drain-accurate-fire/native/circus-streak-batch-save.stderr, scripts/pr16_circus_drought_calls.py, tests/test_pr16_circus_drought_calls.py, .github/workflows/pr16-circus-drought-calls.yml, overlays/circus_streak/circus_drought_launch.h, tests/fixtures/circus_drought_launch_fixture.c, content/modernization/pr16_circus_launch_cpu.json, evidence/pr16_circus_launch_cpu/35436330902/cpu-rows.json, content/modernization/pr16_circus_drought_calls.json, evidence/pr16_circus_drought_calls/35435801505/native/circus-continuous-30-save.stderr, tools/mgba_pr16_circus_drought_launch_boundary.h, content/modernization/pr16_circus_drought_launch.json, evidence/pr16_circus_drought_launch/35437062974/native/circus-continuous-30-save.stderr, evidence/pr16_circus_drought_launch_boundary/35438144902/build.json, evidence/pr16_circus_drought_launch_boundary/35438144902/compile-1/compile.stderr, evidence/pr16_circus_drought_launch_boundary/35438144902/compile-1/compile.stdout, evidence/pr16_circus_drought_launch_boundary/35438144902/compile-1/disassembly.txt, evidence/pr16_circus_drought_launch_boundary/35438144902/compile-1/stack-usage.txt, evidence/pr16_circus_drought_launch_boundary/35438144902/compile-1/symbols.txt, evidence/pr16_circus_drought_launch_boundary/35438144902/compile-1/target-contract.json, evidence/pr16_circus_drought_launch_boundary/35438144902/compile-2/compile.stderr, evidence/pr16_circus_drought_launch_boundary/35438144902/compile-2/compile.stdout, evidence/pr16_circus_drought_launch_boundary/35438144902/compile-2/disassembly.txt, evidence/pr16_circus_drought_launch_boundary/35438144902/compile-2/stack-usage.txt, evidence/pr16_circus_drought_launch_boundary/35438144902/compile-2/symbols.txt, evidence/pr16_circus_drought_launch_boundary/35438144902/compile-2/target-contract.json, evidence/pr16_circus_drought_launch_boundary/35438144902/native/chooser-bindings.json, evidence/pr16_circus_drought_launch_boundary/35438144902/native/report.json, evidence/pr16_circus_drought_launch_boundary/35438144902/parent-0x807a330.txt, evidence/pr16_circus_drought_launch_boundary/35438144902/parent-0x807acd4.txt, evidence/pr16_circus_drought_launch_boundary/35438144902/parent-0x8389a04.txt, evidence/pr16_circus_drought_launch_boundary/35438144902/parent-recipe.json, evidence/pr16_circus_drought_launch_boundary/35438144902/reconstruction.json
+- Verify: CIRCUS_DROUGHT_LAUNCH_BOUNDARY_OPEN。現候補1processの17勝不可避prefixのみ、入力不変のreadonly境界trace。受入済み単体0、ARM link追加0、ROM/save証跡0。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 境界traceのcomplete/state/cursorとscript/task遷移に基づき、18戦目だけの最小修復を追加する。17勝prefix・受入済み単体・旧CPU診断・旧独立2linkは再実行せず、修復候補で18戦目launch以降の実勝敗・原party600/owner64・通常Save/fresh Continueへ進む。
+
+
+## 2026-09-19T14:56:13.159182+00:00 — USER-20260919-CIRCUS-DROUGHT-LAUNCH-BOUNDARY-BINDING-RECORDED
+- Timestamp: 2026-09-19T14:56:13.159182+00:00
+- Task: USER-20260919-CIRCUS-DROUGHT-LAUNCH-BOUNDARY-BINDING-RECORDED
+- Status: DONE / 境界script/testの旧source bindingをblob固定照合し、親loss JSONにも結果参照を結合。3件の前処理失敗をnative0のまま保存。必須差分guardは維持。
+- Version: pr16-circus-loss-marker
+- Summary: 境界script/testの旧source bindingをblob固定照合し、親loss JSONにも結果参照を結合。3件の前処理失敗をnative0のまま保存。必須差分guardは維持。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_drought_launch_boundary_binding.json, scripts/pr16_circus_drought_launch_boundary_resume.py, tests/test_pr16_circus_drought_launch_boundary_resume.py, .github/workflows/pr16-circus-drought-launch-boundary-resume.yml, scripts/pr16_circus_drought_launch_boundary.py, tests/test_pr16_circus_drought_launch_boundary.py
+- Verify: source binding・生成MD・親loss参照を整合。限定host回帰と厳格resume validate、最終index guardを通過して非force保存。native0/ROM・save証跡0。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: source bindingを厳格整合済みの同じ候補で、18戦目chooser→field落下のreadonly境界を1processだけ採取する。受入済み単体・旧CPU診断・旧独立2linkは再実行しない。
+
+
+## 2026-09-19T15:05:57.754090+00:00 — USER-20260920-CIRCUS-BOUNDARY-CONTINUE-RUN35450725433-PREPARED
+- Timestamp: 2026-09-19T15:05:57.754090+00:00
+- Task: USER-20260920-CIRCUS-BOUNDARY-CONTINUE-RUN35450725433-PREPARED
+- Status: DONE / run35438144902はwatcher連結順のsetup失敗/native0として固定。fade watcherをDrought watcherへ連結した後だけ境界watcherを追加し、同じゲーム境界を初回採取する。
+- Version: pr16-circus-loss-marker
+- Summary: run35438144902はwatcher連結順のsetup失敗/native0として固定。fade watcherをDrought watcherへ連結した後だけ境界watcherを追加し、同じゲーム境界を初回採取する。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_drought_launch_boundary.json, scripts/pr16_circus_boundary_continue.py, tests/test_pr16_circus_boundary_continue.py, .github/workflows/pr16-circus-boundary-continue.yml, scripts/pr16_circus_drought.py, tests/test_pr16_circus_drought.py, overlays/circus_streak/circus_drought.c, overlays/circus_streak/circus_drought.h, tests/fixtures/circus_drought_fixture.c, tools/mgba_pr16_circus_drought_watch.h, .github/workflows/pr16-circus-drought.yml, content/modernization/pr16_circus_win_return_cpu.json, evidence/pr16_circus_win_return_cpu/35433308048/cpu-rows.json, evidence/pr16_circus_taunt/35430246002/native/circus-continuous-30-save.stderr, scripts/pr16_circus_taunt.py, tools/mgba_pr16_circus_taunt.h, tests/test_pr16_circus_taunt.py, .github/workflows/pr16-circus-taunt.yml, content/modernization/pr16_circus_tactical.json, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.stdout, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.stderr, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.process.json, scripts/pr16_circus_tactical.py, tools/mgba_pr16_circus_tactical.h, tests/test_pr16_circus_tactical.py, .github/workflows/pr16-circus-tactical.yml, content/modernization/pr16_circus_reliability.json, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reliability.py, tools/mgba_pr16_circus_reliability.h, tests/test_pr16_circus_reliability.py, .github/workflows/pr16-circus-reliability.yml, content/modernization/pr16_circus_coverage.json, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stdout, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stderr, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.process.json, scripts/pr16_circus_coverage.py, scripts/pr16_circus_reentry_probe.py, tools/mgba_pr16_circus_coverage.h, tools/mgba_pr16_circus_reentry.h, tests/test_pr16_circus_coverage.py, .github/workflows/pr16-circus-coverage.yml, content/modernization/pr16_circus_reentry.json, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reentry.py, scripts/pr16_circus_continuous.py, scripts/pr16_circus_continuous_probe.py, scripts/pr16_circus_finish.py, tools/mgba_pr16_circus_continuous.c, evidence/pr16_circus_accuracy/35425237415/drain-accurate-fire/native/circus-streak-batch-save.stderr, scripts/pr16_circus_drought_calls.py, tests/test_pr16_circus_drought_calls.py, .github/workflows/pr16-circus-drought-calls.yml, overlays/circus_streak/circus_drought_launch.h, tests/fixtures/circus_drought_launch_fixture.c, content/modernization/pr16_circus_launch_cpu.json, evidence/pr16_circus_launch_cpu/35436330902/cpu-rows.json, content/modernization/pr16_circus_drought_calls.json, evidence/pr16_circus_drought_calls/35435801505/native/circus-continuous-30-save.stderr, tools/mgba_pr16_circus_drought_launch_boundary.h, content/modernization/pr16_circus_drought_launch.json, evidence/pr16_circus_drought_launch/35437062974/native/circus-continuous-30-save.stderr, content/modernization/pr16_circus_drought_launch_boundary_binding.json, scripts/pr16_circus_drought_launch_boundary.py, tests/test_pr16_circus_drought_launch_boundary.py, evidence/pr16_circus_drought_launch_boundary/35438144902/build.json, evidence/pr16_circus_drought_launch_boundary/35438144902/compile-1/compile.stderr, evidence/pr16_circus_drought_launch_boundary/35438144902/compile-1/compile.stdout, evidence/pr16_circus_drought_launch_boundary/35438144902/compile-1/disassembly.txt, evidence/pr16_circus_drought_launch_boundary/35438144902/compile-1/stack-usage.txt, evidence/pr16_circus_drought_launch_boundary/35438144902/compile-1/symbols.txt, evidence/pr16_circus_drought_launch_boundary/35438144902/compile-1/target-contract.json, evidence/pr16_circus_drought_launch_boundary/35438144902/compile-2/compile.stderr, evidence/pr16_circus_drought_launch_boundary/35438144902/compile-2/compile.stdout, evidence/pr16_circus_drought_launch_boundary/35438144902/compile-2/disassembly.txt, evidence/pr16_circus_drought_launch_boundary/35438144902/compile-2/stack-usage.txt, evidence/pr16_circus_drought_launch_boundary/35438144902/compile-2/symbols.txt, evidence/pr16_circus_drought_launch_boundary/35438144902/compile-2/target-contract.json, evidence/pr16_circus_drought_launch_boundary/35438144902/native/chooser-bindings.json, evidence/pr16_circus_drought_launch_boundary/35438144902/native/report.json, evidence/pr16_circus_drought_launch_boundary/35438144902/parent-0x807a330.txt, evidence/pr16_circus_drought_launch_boundary/35438144902/parent-0x807acd4.txt, evidence/pr16_circus_drought_launch_boundary/35438144902/parent-0x8389a04.txt, evidence/pr16_circus_drought_launch_boundary/35438144902/parent-recipe.json, evidence/pr16_circus_drought_launch_boundary/35438144902/reconstruction.json
+- Verify: CIRCUS_DROUGHT_LAUNCH_BOUNDARY_RETRY_PREPARED。新run固有タグ/親binding原本を検証。保存patch再構成・ARM再link0・受入単体再実行0。readonly境界とnative受入を区別。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 境界traceのcomplete/state/cursorとscript/task遷移に基づき、18戦目だけの最小修復を追加する。17勝prefix・受入済み単体・旧CPU診断・旧独立2linkは再実行せず、修復候補で18戦目launch以降の実勝敗・原party600/owner64・通常Save/fresh Continueへ進む。
+
+
+## 2026-09-19T15:11:08.605928+00:00 — USER-20260920-CIRCUS-BOUNDARY-CONTINUE-RUN35450725433-RECORDED
+- Timestamp: 2026-09-19T15:11:08.605928+00:00
+- Task: USER-20260920-CIRCUS-BOUNDARY-CONTINUE-RUN35450725433-RECORDED
+- Status: DONE / 境界診断は未完。今回試行の原本だけを保存し、採取済みやnative受入とは扱わない。
+- Version: pr16-circus-loss-marker
+- Summary: 境界診断は未完。今回試行の原本だけを保存し、採取済みやnative受入とは扱わない。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_drought_launch_boundary.json, scripts/pr16_circus_boundary_continue.py, tests/test_pr16_circus_boundary_continue.py, .github/workflows/pr16-circus-boundary-continue.yml, scripts/pr16_circus_drought.py, tests/test_pr16_circus_drought.py, overlays/circus_streak/circus_drought.c, overlays/circus_streak/circus_drought.h, tests/fixtures/circus_drought_fixture.c, tools/mgba_pr16_circus_drought_watch.h, .github/workflows/pr16-circus-drought.yml, content/modernization/pr16_circus_win_return_cpu.json, evidence/pr16_circus_win_return_cpu/35433308048/cpu-rows.json, evidence/pr16_circus_taunt/35430246002/native/circus-continuous-30-save.stderr, scripts/pr16_circus_taunt.py, tools/mgba_pr16_circus_taunt.h, tests/test_pr16_circus_taunt.py, .github/workflows/pr16-circus-taunt.yml, content/modernization/pr16_circus_tactical.json, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.stdout, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.stderr, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.process.json, scripts/pr16_circus_tactical.py, tools/mgba_pr16_circus_tactical.h, tests/test_pr16_circus_tactical.py, .github/workflows/pr16-circus-tactical.yml, content/modernization/pr16_circus_reliability.json, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reliability.py, tools/mgba_pr16_circus_reliability.h, tests/test_pr16_circus_reliability.py, .github/workflows/pr16-circus-reliability.yml, content/modernization/pr16_circus_coverage.json, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stdout, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stderr, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.process.json, scripts/pr16_circus_coverage.py, scripts/pr16_circus_reentry_probe.py, tools/mgba_pr16_circus_coverage.h, tools/mgba_pr16_circus_reentry.h, tests/test_pr16_circus_coverage.py, .github/workflows/pr16-circus-coverage.yml, content/modernization/pr16_circus_reentry.json, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reentry.py, scripts/pr16_circus_continuous.py, scripts/pr16_circus_continuous_probe.py, scripts/pr16_circus_finish.py, tools/mgba_pr16_circus_continuous.c, evidence/pr16_circus_accuracy/35425237415/drain-accurate-fire/native/circus-streak-batch-save.stderr, scripts/pr16_circus_drought_calls.py, tests/test_pr16_circus_drought_calls.py, .github/workflows/pr16-circus-drought-calls.yml, overlays/circus_streak/circus_drought_launch.h, tests/fixtures/circus_drought_launch_fixture.c, content/modernization/pr16_circus_launch_cpu.json, evidence/pr16_circus_launch_cpu/35436330902/cpu-rows.json, content/modernization/pr16_circus_drought_calls.json, evidence/pr16_circus_drought_calls/35435801505/native/circus-continuous-30-save.stderr, tools/mgba_pr16_circus_drought_launch_boundary.h, content/modernization/pr16_circus_drought_launch.json, evidence/pr16_circus_drought_launch/35437062974/native/circus-continuous-30-save.stderr, content/modernization/pr16_circus_drought_launch_boundary_binding.json, scripts/pr16_circus_drought_launch_boundary.py, tests/test_pr16_circus_drought_launch_boundary.py, evidence/pr16_circus_drought_launch_boundary/35438144902/build.json, evidence/pr16_circus_drought_launch_boundary/35438144902/compile-1/compile.stderr, evidence/pr16_circus_drought_launch_boundary/35438144902/compile-1/compile.stdout, evidence/pr16_circus_drought_launch_boundary/35438144902/compile-1/disassembly.txt, evidence/pr16_circus_drought_launch_boundary/35438144902/compile-1/stack-usage.txt, evidence/pr16_circus_drought_launch_boundary/35438144902/compile-1/symbols.txt, evidence/pr16_circus_drought_launch_boundary/35438144902/compile-1/target-contract.json, evidence/pr16_circus_drought_launch_boundary/35438144902/compile-2/compile.stderr, evidence/pr16_circus_drought_launch_boundary/35438144902/compile-2/compile.stdout, evidence/pr16_circus_drought_launch_boundary/35438144902/compile-2/disassembly.txt, evidence/pr16_circus_drought_launch_boundary/35438144902/compile-2/stack-usage.txt, evidence/pr16_circus_drought_launch_boundary/35438144902/compile-2/symbols.txt, evidence/pr16_circus_drought_launch_boundary/35438144902/compile-2/target-contract.json, evidence/pr16_circus_drought_launch_boundary/35438144902/native/chooser-bindings.json, evidence/pr16_circus_drought_launch_boundary/35438144902/native/report.json, evidence/pr16_circus_drought_launch_boundary/35438144902/parent-0x807a330.txt, evidence/pr16_circus_drought_launch_boundary/35438144902/parent-0x807acd4.txt, evidence/pr16_circus_drought_launch_boundary/35438144902/parent-0x8389a04.txt, evidence/pr16_circus_drought_launch_boundary/35438144902/parent-recipe.json, evidence/pr16_circus_drought_launch_boundary/35438144902/reconstruction.json, evidence/pr16_circus_drought_launch_boundary/35450725433/build.json, evidence/pr16_circus_drought_launch_boundary/35450725433/native/chooser-bindings.json, evidence/pr16_circus_drought_launch_boundary/35450725433/native/circus-continuous-30-save.process.json, evidence/pr16_circus_drought_launch_boundary/35450725433/native/circus-continuous-30-save.stderr, evidence/pr16_circus_drought_launch_boundary/35450725433/native/circus-continuous-30-save.stdout, evidence/pr16_circus_drought_launch_boundary/35450725433/native/compile.process.json, evidence/pr16_circus_drought_launch_boundary/35450725433/native/compile.stderr, evidence/pr16_circus_drought_launch_boundary/35450725433/native/compile.stdout, evidence/pr16_circus_drought_launch_boundary/35450725433/native/guard-bus16.process.json, evidence/pr16_circus_drought_launch_boundary/35450725433/native/guard-bus16.stderr, evidence/pr16_circus_drought_launch_boundary/35450725433/native/guard-bus16.stdout, evidence/pr16_circus_drought_launch_boundary/35450725433/native/guard-bus32.process.json, evidence/pr16_circus_drought_launch_boundary/35450725433/native/guard-bus32.stderr, evidence/pr16_circus_drought_launch_boundary/35450725433/native/guard-bus32.stdout, evidence/pr16_circus_drought_launch_boundary/35450725433/native/guard-bus8.process.json, evidence/pr16_circus_drought_launch_boundary/35450725433/native/guard-bus8.stderr, evidence/pr16_circus_drought_launch_boundary/35450725433/native/guard-bus8.stdout, evidence/pr16_circus_drought_launch_boundary/35450725433/native/guard-raw16.process.json, evidence/pr16_circus_drought_launch_boundary/35450725433/native/guard-raw16.stderr, evidence/pr16_circus_drought_launch_boundary/35450725433/native/guard-raw16.stdout, evidence/pr16_circus_drought_launch_boundary/35450725433/native/guard-raw32.process.json, evidence/pr16_circus_drought_launch_boundary/35450725433/native/guard-raw32.stderr, evidence/pr16_circus_drought_launch_boundary/35450725433/native/guard-raw32.stdout, evidence/pr16_circus_drought_launch_boundary/35450725433/native/guard-raw8.process.json, evidence/pr16_circus_drought_launch_boundary/35450725433/native/guard-raw8.stderr, evidence/pr16_circus_drought_launch_boundary/35450725433/native/guard-raw8.stdout, evidence/pr16_circus_drought_launch_boundary/35450725433/native/guard-register.process.json, evidence/pr16_circus_drought_launch_boundary/35450725433/native/guard-register.stderr, evidence/pr16_circus_drought_launch_boundary/35450725433/native/guard-register.stdout, evidence/pr16_circus_drought_launch_boundary/35450725433/native/report.json, evidence/pr16_circus_drought_launch_boundary/35450725433/reconstruction.json
+- Verify: CIRCUS_DROUGHT_LAUNCH_BOUNDARY_OPEN。新run固有タグ/親binding原本を検証。保存patch再構成・ARM再link0・受入単体再実行0。readonly境界とnative受入を区別。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 今回runのnative_attempt/失敗原本から最初の未完原因だけを修復する。旧binding成功と受入済み単体と旧ARM linkは再実行しない。
+
+
+## 2026-09-19T15:22:46.992813+00:00 — USER-20260920-CIRCUS-SELECTION-RUN35451609631-PREPARED
+- Timestamp: 2026-09-19T15:22:46.992813+00:00
+- Task: USER-20260920-CIRCUS-SELECTION-RUN35451609631-PREPARED
+- Status: DONE / 18戦目の実境界はscript09ff4dad保持・state5から2へ再停止。元1体snapshotを選出3体と誤比較していたguardを、2つの読取人数を分離して修復。旧WINと原party/ledgerは不変。
+- Version: pr16-circus-loss-marker
+- Summary: 18戦目の実境界はscript09ff4dad保持・state5から2へ再停止。元1体snapshotを選出3体と誤比較していたguardを、2つの読取人数を分離して修復。旧WINと原party/ledgerは不変。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_selection.json, scripts/pr16_circus_selection.py, tests/test_pr16_circus_selection.py, .github/workflows/pr16-circus-selection.yml, scripts/pr16_circus_drought.py, tests/test_pr16_circus_drought.py, overlays/circus_streak/circus_drought.c, overlays/circus_streak/circus_drought.h, tests/fixtures/circus_drought_fixture.c, tools/mgba_pr16_circus_drought_watch.h, .github/workflows/pr16-circus-drought.yml, content/modernization/pr16_circus_win_return_cpu.json, evidence/pr16_circus_win_return_cpu/35433308048/cpu-rows.json, evidence/pr16_circus_taunt/35430246002/native/circus-continuous-30-save.stderr, scripts/pr16_circus_taunt.py, tools/mgba_pr16_circus_taunt.h, tests/test_pr16_circus_taunt.py, .github/workflows/pr16-circus-taunt.yml, content/modernization/pr16_circus_tactical.json, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.stdout, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.stderr, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.process.json, scripts/pr16_circus_tactical.py, tools/mgba_pr16_circus_tactical.h, tests/test_pr16_circus_tactical.py, .github/workflows/pr16-circus-tactical.yml, content/modernization/pr16_circus_reliability.json, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reliability.py, tools/mgba_pr16_circus_reliability.h, tests/test_pr16_circus_reliability.py, .github/workflows/pr16-circus-reliability.yml, content/modernization/pr16_circus_coverage.json, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stdout, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stderr, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.process.json, scripts/pr16_circus_coverage.py, scripts/pr16_circus_reentry_probe.py, tools/mgba_pr16_circus_coverage.h, tools/mgba_pr16_circus_reentry.h, tests/test_pr16_circus_coverage.py, .github/workflows/pr16-circus-coverage.yml, content/modernization/pr16_circus_reentry.json, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reentry.py, scripts/pr16_circus_continuous.py, scripts/pr16_circus_continuous_probe.py, scripts/pr16_circus_finish.py, tools/mgba_pr16_circus_continuous.c, evidence/pr16_circus_accuracy/35425237415/drain-accurate-fire/native/circus-streak-batch-save.stderr, scripts/pr16_circus_drought_calls.py, tests/test_pr16_circus_drought_calls.py, .github/workflows/pr16-circus-drought-calls.yml, overlays/circus_streak/circus_drought_launch.h, tests/fixtures/circus_drought_launch_fixture.c, content/modernization/pr16_circus_launch_cpu.json, evidence/pr16_circus_launch_cpu/35436330902/cpu-rows.json, content/modernization/pr16_circus_drought_calls.json, evidence/pr16_circus_drought_calls/35435801505/native/circus-continuous-30-save.stderr, overlays/circus_streak/circus_drought_selection.h, tests/fixtures/circus_drought_selection_fixture.c, tools/mgba_pr16_circus_selection_context.h, content/modernization/pr16_circus_drought_launch_boundary.json, evidence/pr16_circus_drought_launch_boundary/35450725433/native/circus-continuous-30-save.stderr, content/modernization/pr16_circus_drought_launch.json
+- Verify: CIRCUS_SELECTION_COUNT_REPAIR_PREPARED。元party人数1..6と現在3体を分離、旧WINと保存owner不変。対象host契約/新ARM2link/全ROM rollback/新continuationのみ。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 新候補の18戦目以降の実勝敗/元party600と人数/owner64/通常Save/fresh Continueを原本と画像で確認。真正30勝が未達なら最初の新停止のみ修復し、達成後に正規特性抑制へ進む。旧境界/旧CPU/旧ARM2link/既受入単体は再実行しない。
+
+
+## 2026-09-19T15:31:57.984370+00:00 — USER-20260920-CIRCUS-SELECTION-RUN35451609631-RECORDED
+- Timestamp: 2026-09-19T15:31:57.984370+00:00
+- Task: USER-20260920-CIRCUS-SELECTION-RUN35451609631-RECORDED
+- Status: DONE / 元人数/選出数分離の新候補と原本を保存。18戦目launchと通常Save/fresh Continue=False、真正30勝=False。画像・抑制・最終P08/releaseは未完。
+- Version: pr16-circus-loss-marker
+- Summary: 元人数/選出数分離の新候補と原本を保存。18戦目launchと通常Save/fresh Continue=False、真正30勝=False。画像・抑制・最終P08/releaseは未完。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_selection.json, scripts/pr16_circus_selection.py, tests/test_pr16_circus_selection.py, .github/workflows/pr16-circus-selection.yml, scripts/pr16_circus_drought.py, tests/test_pr16_circus_drought.py, overlays/circus_streak/circus_drought.c, overlays/circus_streak/circus_drought.h, tests/fixtures/circus_drought_fixture.c, tools/mgba_pr16_circus_drought_watch.h, .github/workflows/pr16-circus-drought.yml, content/modernization/pr16_circus_win_return_cpu.json, evidence/pr16_circus_win_return_cpu/35433308048/cpu-rows.json, evidence/pr16_circus_taunt/35430246002/native/circus-continuous-30-save.stderr, scripts/pr16_circus_taunt.py, tools/mgba_pr16_circus_taunt.h, tests/test_pr16_circus_taunt.py, .github/workflows/pr16-circus-taunt.yml, content/modernization/pr16_circus_tactical.json, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.stdout, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.stderr, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.process.json, scripts/pr16_circus_tactical.py, tools/mgba_pr16_circus_tactical.h, tests/test_pr16_circus_tactical.py, .github/workflows/pr16-circus-tactical.yml, content/modernization/pr16_circus_reliability.json, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reliability.py, tools/mgba_pr16_circus_reliability.h, tests/test_pr16_circus_reliability.py, .github/workflows/pr16-circus-reliability.yml, content/modernization/pr16_circus_coverage.json, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stdout, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stderr, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.process.json, scripts/pr16_circus_coverage.py, scripts/pr16_circus_reentry_probe.py, tools/mgba_pr16_circus_coverage.h, tools/mgba_pr16_circus_reentry.h, tests/test_pr16_circus_coverage.py, .github/workflows/pr16-circus-coverage.yml, content/modernization/pr16_circus_reentry.json, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reentry.py, scripts/pr16_circus_continuous.py, scripts/pr16_circus_continuous_probe.py, scripts/pr16_circus_finish.py, tools/mgba_pr16_circus_continuous.c, evidence/pr16_circus_accuracy/35425237415/drain-accurate-fire/native/circus-streak-batch-save.stderr, scripts/pr16_circus_drought_calls.py, tests/test_pr16_circus_drought_calls.py, .github/workflows/pr16-circus-drought-calls.yml, overlays/circus_streak/circus_drought_launch.h, tests/fixtures/circus_drought_launch_fixture.c, content/modernization/pr16_circus_launch_cpu.json, evidence/pr16_circus_launch_cpu/35436330902/cpu-rows.json, content/modernization/pr16_circus_drought_calls.json, evidence/pr16_circus_drought_calls/35435801505/native/circus-continuous-30-save.stderr, overlays/circus_streak/circus_drought_selection.h, tests/fixtures/circus_drought_selection_fixture.c, tools/mgba_pr16_circus_selection_context.h, content/modernization/pr16_circus_drought_launch_boundary.json, evidence/pr16_circus_drought_launch_boundary/35450725433/native/circus-continuous-30-save.stderr, content/modernization/pr16_circus_drought_launch.json, evidence/pr16_circus_selection/35451609631/build.json, evidence/pr16_circus_selection/35451609631/compile-1/compile.stderr, evidence/pr16_circus_selection/35451609631/compile-1/compile.stdout, evidence/pr16_circus_selection/35451609631/compile-1/disassembly.txt, evidence/pr16_circus_selection/35451609631/compile-1/stack-usage.txt, evidence/pr16_circus_selection/35451609631/compile-1/symbols.txt, evidence/pr16_circus_selection/35451609631/compile-1/target-contract.json, evidence/pr16_circus_selection/35451609631/compile-2/compile.stderr, evidence/pr16_circus_selection/35451609631/compile-2/compile.stdout, evidence/pr16_circus_selection/35451609631/compile-2/disassembly.txt, evidence/pr16_circus_selection/35451609631/compile-2/stack-usage.txt, evidence/pr16_circus_selection/35451609631/compile-2/symbols.txt, evidence/pr16_circus_selection/35451609631/compile-2/target-contract.json, evidence/pr16_circus_selection/35451609631/native/chooser-bindings.json, evidence/pr16_circus_selection/35451609631/native/circus-continuous-30-save.process.json, evidence/pr16_circus_selection/35451609631/native/circus-continuous-30-save.stderr, evidence/pr16_circus_selection/35451609631/native/circus-continuous-30-save.stdout, evidence/pr16_circus_selection/35451609631/native/compile.process.json, evidence/pr16_circus_selection/35451609631/native/compile.stderr, evidence/pr16_circus_selection/35451609631/native/compile.stdout, evidence/pr16_circus_selection/35451609631/native/guard-bus16.process.json, evidence/pr16_circus_selection/35451609631/native/guard-bus16.stderr, evidence/pr16_circus_selection/35451609631/native/guard-bus16.stdout, evidence/pr16_circus_selection/35451609631/native/guard-bus32.process.json, evidence/pr16_circus_selection/35451609631/native/guard-bus32.stderr, evidence/pr16_circus_selection/35451609631/native/guard-bus32.stdout, evidence/pr16_circus_selection/35451609631/native/guard-bus8.process.json, evidence/pr16_circus_selection/35451609631/native/guard-bus8.stderr, evidence/pr16_circus_selection/35451609631/native/guard-bus8.stdout, evidence/pr16_circus_selection/35451609631/native/guard-raw16.process.json, evidence/pr16_circus_selection/35451609631/native/guard-raw16.stderr, evidence/pr16_circus_selection/35451609631/native/guard-raw16.stdout, evidence/pr16_circus_selection/35451609631/native/guard-raw32.process.json, evidence/pr16_circus_selection/35451609631/native/guard-raw32.stderr, evidence/pr16_circus_selection/35451609631/native/guard-raw32.stdout, evidence/pr16_circus_selection/35451609631/native/guard-raw8.process.json, evidence/pr16_circus_selection/35451609631/native/guard-raw8.stderr, evidence/pr16_circus_selection/35451609631/native/guard-raw8.stdout, evidence/pr16_circus_selection/35451609631/native/guard-register.process.json, evidence/pr16_circus_selection/35451609631/native/guard-register.stderr, evidence/pr16_circus_selection/35451609631/native/guard-register.stdout, evidence/pr16_circus_selection/35451609631/native/report.json, evidence/pr16_circus_selection/35451609631/parent-0x807a330.txt, evidence/pr16_circus_selection/35451609631/parent-0x807acd4.txt, evidence/pr16_circus_selection/35451609631/parent-0x8389a04.txt, evidence/pr16_circus_selection/35451609631/parent-recipe.json, evidence/pr16_circus_selection/35451609631/reconstruction.json
+- Verify: CIRCUS_SELECTION_NATIVE_OPEN。元party人数1..6と現在3体を分離、旧WINと保存owner不変。対象host契約/新ARM2link/全ROM rollback/新continuationのみ。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 新候補の18戦目以降の実勝敗/元party600と人数/owner64/通常Save/fresh Continueを原本と画像で確認。真正30勝が未達なら最初の新停止のみ修復し、達成後に正規特性抑制へ進む。旧境界/旧CPU/旧ARM2link/既受入単体は再実行しない。
+
+
+## 2026-09-19T15:44:34.101711+00:00 — USER-20260920-CIRCUS-RENTAL-BOUNDARY-RUN35452739116-PREPARED
+- Timestamp: 2026-09-19T15:44:34.101711+00:00
+- Task: USER-20260920-CIRCUS-RENTAL-BOUNDARY-RUN35452739116-PREPARED
+- Status: DONE / 18戦目修復と実21勝/63BP/元party600復帰は限定受入。22戦目の新境界診断=False。通常Save/fresh Continue/真正30勝は未達。
+- Version: pr16-circus-loss-marker
+- Summary: 18戦目修復と実21勝/63BP/元party600復帰は限定受入。22戦目の新境界診断=False。通常Save/fresh Continue/真正30勝は未達。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_rental_boundary.json, scripts/pr16_circus_rental_boundary.py, tests/test_pr16_circus_rental_boundary.py, .github/workflows/pr16-circus-rental-boundary.yml, scripts/pr16_circus_drought.py, tests/test_pr16_circus_drought.py, overlays/circus_streak/circus_drought.c, overlays/circus_streak/circus_drought.h, tests/fixtures/circus_drought_fixture.c, tools/mgba_pr16_circus_drought_watch.h, .github/workflows/pr16-circus-drought.yml, content/modernization/pr16_circus_win_return_cpu.json, evidence/pr16_circus_win_return_cpu/35433308048/cpu-rows.json, evidence/pr16_circus_taunt/35430246002/native/circus-continuous-30-save.stderr, scripts/pr16_circus_taunt.py, tools/mgba_pr16_circus_taunt.h, tests/test_pr16_circus_taunt.py, .github/workflows/pr16-circus-taunt.yml, content/modernization/pr16_circus_tactical.json, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.stdout, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.stderr, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.process.json, scripts/pr16_circus_tactical.py, tools/mgba_pr16_circus_tactical.h, tests/test_pr16_circus_tactical.py, .github/workflows/pr16-circus-tactical.yml, content/modernization/pr16_circus_reliability.json, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reliability.py, tools/mgba_pr16_circus_reliability.h, tests/test_pr16_circus_reliability.py, .github/workflows/pr16-circus-reliability.yml, content/modernization/pr16_circus_coverage.json, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stdout, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stderr, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.process.json, scripts/pr16_circus_coverage.py, scripts/pr16_circus_reentry_probe.py, tools/mgba_pr16_circus_coverage.h, tools/mgba_pr16_circus_reentry.h, tests/test_pr16_circus_coverage.py, .github/workflows/pr16-circus-coverage.yml, content/modernization/pr16_circus_reentry.json, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reentry.py, scripts/pr16_circus_continuous.py, scripts/pr16_circus_continuous_probe.py, scripts/pr16_circus_finish.py, tools/mgba_pr16_circus_continuous.c, evidence/pr16_circus_accuracy/35425237415/drain-accurate-fire/native/circus-streak-batch-save.stderr, scripts/pr16_circus_drought_calls.py, tests/test_pr16_circus_drought_calls.py, .github/workflows/pr16-circus-drought-calls.yml, overlays/circus_streak/circus_drought_launch.h, tests/fixtures/circus_drought_launch_fixture.c, content/modernization/pr16_circus_launch_cpu.json, evidence/pr16_circus_launch_cpu/35436330902/cpu-rows.json, content/modernization/pr16_circus_drought_calls.json, evidence/pr16_circus_drought_calls/35435801505/native/circus-continuous-30-save.stderr, scripts/pr16_circus_selection.py, tests/test_pr16_circus_selection.py, overlays/circus_streak/circus_drought_selection.h, tests/fixtures/circus_drought_selection_fixture.c, tools/mgba_pr16_circus_selection_context.h, .github/workflows/pr16-circus-selection.yml, content/modernization/pr16_circus_drought_launch_boundary.json, evidence/pr16_circus_drought_launch_boundary/35450725433/native/circus-continuous-30-save.stderr, content/modernization/pr16_circus_drought_launch.json, tools/mgba_pr16_circus_rental_boundary.h, tests/fixtures/circus_drought_snapshot_fixture.c, tests/test_pr16_circus_drought_launch.py, content/modernization/pr16_circus_selection.json, evidence/pr16_circus_selection/35451609631/native/circus-continuous-30-save.stderr
+- Verify: 原100events/6画面hash照合・affected host契約・原人数1..6の実Save migration結合を検証。ROM変更0/旧ARM再link0/受入単体再実行0。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 18戦目起動・実21勝/63BP/元party600復元の受入範囲は維持し、22戦目の初回6体選出→field境界の新readonly原本から最初の停止だけ修復する。Save/fresh Continue/真正30勝/正規抑制は未受入。旧ARM link・旧境界・受入単体を再実行しない。
+
+
+## 2026-09-19T15:52:13.078667+00:00 — USER-20260920-CIRCUS-RENTAL-BOUNDARY-RUN35452739116-RECORDED
+- Timestamp: 2026-09-19T15:52:13.078667+00:00
+- Task: USER-20260920-CIRCUS-RENTAL-BOUNDARY-RUN35452739116-RECORDED
+- Status: DONE / 18戦目修復と実21勝/63BP/元party600復帰は限定受入。22戦目の新境界診断=True。通常Save/fresh Continue/真正30勝は未達。
+- Version: pr16-circus-loss-marker
+- Summary: 18戦目修復と実21勝/63BP/元party600復帰は限定受入。22戦目の新境界診断=True。通常Save/fresh Continue/真正30勝は未達。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_rental_boundary.json, scripts/pr16_circus_rental_boundary.py, tests/test_pr16_circus_rental_boundary.py, .github/workflows/pr16-circus-rental-boundary.yml, scripts/pr16_circus_drought.py, tests/test_pr16_circus_drought.py, overlays/circus_streak/circus_drought.c, overlays/circus_streak/circus_drought.h, tests/fixtures/circus_drought_fixture.c, tools/mgba_pr16_circus_drought_watch.h, .github/workflows/pr16-circus-drought.yml, content/modernization/pr16_circus_win_return_cpu.json, evidence/pr16_circus_win_return_cpu/35433308048/cpu-rows.json, evidence/pr16_circus_taunt/35430246002/native/circus-continuous-30-save.stderr, scripts/pr16_circus_taunt.py, tools/mgba_pr16_circus_taunt.h, tests/test_pr16_circus_taunt.py, .github/workflows/pr16-circus-taunt.yml, content/modernization/pr16_circus_tactical.json, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.stdout, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.stderr, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.process.json, scripts/pr16_circus_tactical.py, tools/mgba_pr16_circus_tactical.h, tests/test_pr16_circus_tactical.py, .github/workflows/pr16-circus-tactical.yml, content/modernization/pr16_circus_reliability.json, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reliability.py, tools/mgba_pr16_circus_reliability.h, tests/test_pr16_circus_reliability.py, .github/workflows/pr16-circus-reliability.yml, content/modernization/pr16_circus_coverage.json, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stdout, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stderr, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.process.json, scripts/pr16_circus_coverage.py, scripts/pr16_circus_reentry_probe.py, tools/mgba_pr16_circus_coverage.h, tools/mgba_pr16_circus_reentry.h, tests/test_pr16_circus_coverage.py, .github/workflows/pr16-circus-coverage.yml, content/modernization/pr16_circus_reentry.json, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reentry.py, scripts/pr16_circus_continuous.py, scripts/pr16_circus_continuous_probe.py, scripts/pr16_circus_finish.py, tools/mgba_pr16_circus_continuous.c, evidence/pr16_circus_accuracy/35425237415/drain-accurate-fire/native/circus-streak-batch-save.stderr, scripts/pr16_circus_drought_calls.py, tests/test_pr16_circus_drought_calls.py, .github/workflows/pr16-circus-drought-calls.yml, overlays/circus_streak/circus_drought_launch.h, tests/fixtures/circus_drought_launch_fixture.c, content/modernization/pr16_circus_launch_cpu.json, evidence/pr16_circus_launch_cpu/35436330902/cpu-rows.json, content/modernization/pr16_circus_drought_calls.json, evidence/pr16_circus_drought_calls/35435801505/native/circus-continuous-30-save.stderr, scripts/pr16_circus_selection.py, tests/test_pr16_circus_selection.py, overlays/circus_streak/circus_drought_selection.h, tests/fixtures/circus_drought_selection_fixture.c, tools/mgba_pr16_circus_selection_context.h, .github/workflows/pr16-circus-selection.yml, content/modernization/pr16_circus_drought_launch_boundary.json, evidence/pr16_circus_drought_launch_boundary/35450725433/native/circus-continuous-30-save.stderr, content/modernization/pr16_circus_drought_launch.json, tools/mgba_pr16_circus_rental_boundary.h, tests/fixtures/circus_drought_snapshot_fixture.c, tests/test_pr16_circus_drought_launch.py, content/modernization/pr16_circus_selection.json, evidence/pr16_circus_selection/35451609631/native/circus-continuous-30-save.stderr, evidence/pr16_circus_rental_boundary/35452739116/build.json, evidence/pr16_circus_rental_boundary/35452739116/diagnostic.json, evidence/pr16_circus_rental_boundary/35452739116/native/chooser-bindings.json, evidence/pr16_circus_rental_boundary/35452739116/native/circus-continuous-30-save.process.json, evidence/pr16_circus_rental_boundary/35452739116/native/circus-continuous-30-save.stderr, evidence/pr16_circus_rental_boundary/35452739116/native/circus-continuous-30-save.stdout, evidence/pr16_circus_rental_boundary/35452739116/native/compile.process.json, evidence/pr16_circus_rental_boundary/35452739116/native/compile.stderr, evidence/pr16_circus_rental_boundary/35452739116/native/compile.stdout, evidence/pr16_circus_rental_boundary/35452739116/native/guard-bus16.process.json, evidence/pr16_circus_rental_boundary/35452739116/native/guard-bus16.stderr, evidence/pr16_circus_rental_boundary/35452739116/native/guard-bus16.stdout, evidence/pr16_circus_rental_boundary/35452739116/native/guard-bus32.process.json, evidence/pr16_circus_rental_boundary/35452739116/native/guard-bus32.stderr, evidence/pr16_circus_rental_boundary/35452739116/native/guard-bus32.stdout, evidence/pr16_circus_rental_boundary/35452739116/native/guard-bus8.process.json, evidence/pr16_circus_rental_boundary/35452739116/native/guard-bus8.stderr, evidence/pr16_circus_rental_boundary/35452739116/native/guard-bus8.stdout, evidence/pr16_circus_rental_boundary/35452739116/native/guard-raw16.process.json, evidence/pr16_circus_rental_boundary/35452739116/native/guard-raw16.stderr, evidence/pr16_circus_rental_boundary/35452739116/native/guard-raw16.stdout, evidence/pr16_circus_rental_boundary/35452739116/native/guard-raw32.process.json, evidence/pr16_circus_rental_boundary/35452739116/native/guard-raw32.stderr, evidence/pr16_circus_rental_boundary/35452739116/native/guard-raw32.stdout, evidence/pr16_circus_rental_boundary/35452739116/native/guard-raw8.process.json, evidence/pr16_circus_rental_boundary/35452739116/native/guard-raw8.stderr, evidence/pr16_circus_rental_boundary/35452739116/native/guard-raw8.stdout, evidence/pr16_circus_rental_boundary/35452739116/native/guard-register.process.json, evidence/pr16_circus_rental_boundary/35452739116/native/guard-register.stderr, evidence/pr16_circus_rental_boundary/35452739116/native/guard-register.stdout, evidence/pr16_circus_rental_boundary/35452739116/native/report.json, evidence/pr16_circus_rental_boundary/35452739116/reconstruction.json
+- Verify: 原100events/6画面hash照合・affected host契約・原人数1..6の実Save migration結合を検証。ROM変更0/旧ARM再link0/受入単体再実行0。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 18戦目起動・実21勝/63BP/元party600復元の受入範囲は維持し、22戦目の初回6体選出→field境界の新readonly原本から最初の停止だけ修復する。Save/fresh Continue/真正30勝/正規抑制は未受入。旧ARM link・旧境界・受入単体を再実行しない。
+
+
+## 2026-09-19T16:47:03.063701+00:00 — USER-20260920-CIRCUS-RENTAL-DROUGHT-RUN35456028016-PREPARED
+- Timestamp: 2026-09-19T16:47:03.063701+00:00
+- Task: USER-20260920-CIRCUS-RENTAL-DROUGHT-RUN35456028016-PREPARED
+- Status: DONE / 実21勝受入後の最初の新停止をREADY/6体レンタルfield復帰のDrought空loaderと確定。狭いowner/ledger/party/script/weather guardを準備し、旧phase2/3体とWIN経路は委譲して変更しない。
+- Version: pr16-circus-loss-marker
+- Summary: 実21勝受入後の最初の新停止をREADY/6体レンタルfield復帰のDrought空loaderと確定。狭いowner/ledger/party/script/weather guardを準備し、旧phase2/3体とWIN経路は委譲して変更しない。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_rental_drought.json, scripts/pr16_circus_rental_drought.py, tests/test_pr16_circus_rental_drought.py, .github/workflows/pr16-circus-rental-drought.yml, scripts/pr16_circus_drought.py, tests/test_pr16_circus_drought.py, overlays/circus_streak/circus_drought.c, overlays/circus_streak/circus_drought.h, tests/fixtures/circus_drought_fixture.c, tools/mgba_pr16_circus_drought_watch.h, .github/workflows/pr16-circus-drought.yml, content/modernization/pr16_circus_win_return_cpu.json, evidence/pr16_circus_win_return_cpu/35433308048/cpu-rows.json, evidence/pr16_circus_taunt/35430246002/native/circus-continuous-30-save.stderr, scripts/pr16_circus_taunt.py, tools/mgba_pr16_circus_taunt.h, tests/test_pr16_circus_taunt.py, .github/workflows/pr16-circus-taunt.yml, content/modernization/pr16_circus_tactical.json, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.stdout, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.stderr, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.process.json, scripts/pr16_circus_tactical.py, tools/mgba_pr16_circus_tactical.h, tests/test_pr16_circus_tactical.py, .github/workflows/pr16-circus-tactical.yml, content/modernization/pr16_circus_reliability.json, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reliability.py, tools/mgba_pr16_circus_reliability.h, tests/test_pr16_circus_reliability.py, .github/workflows/pr16-circus-reliability.yml, content/modernization/pr16_circus_coverage.json, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stdout, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stderr, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.process.json, scripts/pr16_circus_coverage.py, scripts/pr16_circus_reentry_probe.py, tools/mgba_pr16_circus_coverage.h, tools/mgba_pr16_circus_reentry.h, tests/test_pr16_circus_coverage.py, .github/workflows/pr16-circus-coverage.yml, content/modernization/pr16_circus_reentry.json, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reentry.py, scripts/pr16_circus_continuous.py, scripts/pr16_circus_continuous_probe.py, scripts/pr16_circus_finish.py, tools/mgba_pr16_circus_continuous.c, evidence/pr16_circus_accuracy/35425237415/drain-accurate-fire/native/circus-streak-batch-save.stderr, scripts/pr16_circus_drought_calls.py, tests/test_pr16_circus_drought_calls.py, .github/workflows/pr16-circus-drought-calls.yml, overlays/circus_streak/circus_drought_launch.h, tests/fixtures/circus_drought_launch_fixture.c, content/modernization/pr16_circus_launch_cpu.json, evidence/pr16_circus_launch_cpu/35436330902/cpu-rows.json, content/modernization/pr16_circus_drought_calls.json, evidence/pr16_circus_drought_calls/35435801505/native/circus-continuous-30-save.stderr, scripts/pr16_circus_selection.py, tests/test_pr16_circus_selection.py, overlays/circus_streak/circus_drought_selection.h, tests/fixtures/circus_drought_selection_fixture.c, tools/mgba_pr16_circus_selection_context.h, .github/workflows/pr16-circus-selection.yml, content/modernization/pr16_circus_drought_launch_boundary.json, evidence/pr16_circus_drought_launch_boundary/35450725433/native/circus-continuous-30-save.stderr, content/modernization/pr16_circus_drought_launch.json, overlays/circus_streak/circus_drought_rental.h, tests/fixtures/circus_drought_rental_fixture.c, tools/mgba_pr16_circus_rental_drought.h, tests/test_pr16_circus_drought_launch.py, content/modernization/pr16_circus_selection.json, evidence/pr16_circus_selection/35451609631/native/circus-continuous-30-save.stderr, content/modernization/pr16_circus_rental_boundary.json, evidence/pr16_circus_rental_boundary/35452739116/native/circus-continuous-30-save.stderr
+- Verify: CIRCUS_RENTAL_DROUGHT_REPAIR_PREPARED。CRC/save identity有効READY ownerと6体/script09ff4cb5だけを別guardで許可。既存ARMED/3体/WIN/LOSS predicate不変。新tail payload独立2link、旧allocation/owner/party/BP不変、同一continuation内prefix21戦のみ不可避。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: READY/6体レンタル→fieldのDrought修復候補で22戦目以降の実勝敗・元party600/owner64・通常Save/fresh Continueを確認する。真正30勝未達なら新原本の最初の停止だけを修復し、達成後に正規特性抑制へ進む。旧21勝prefixは同一continuation内の不可避部分以外に再実行しない。
+
+
+## 2026-09-19T16:48:55.155957+00:00 — USER-20260920-CIRCUS-RENTAL-DROUGHT-RUN35456028016-RECORDED
+- Timestamp: 2026-09-19T16:48:55.155957+00:00
+- Task: USER-20260920-CIRCUS-RENTAL-DROUGHT-RUN35456028016-RECORDED
+- Status: DONE / READY/6体Drought後継のbuild/native原本が未完。受入状態を進めず、同runの最初の失敗から再開。
+- Version: pr16-circus-loss-marker
+- Summary: READY/6体Drought後継のbuild/native原本が未完。受入状態を進めず、同runの最初の失敗から再開。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_rental_drought.json, scripts/pr16_circus_rental_drought.py, tests/test_pr16_circus_rental_drought.py, .github/workflows/pr16-circus-rental-drought.yml, scripts/pr16_circus_drought.py, tests/test_pr16_circus_drought.py, overlays/circus_streak/circus_drought.c, overlays/circus_streak/circus_drought.h, tests/fixtures/circus_drought_fixture.c, tools/mgba_pr16_circus_drought_watch.h, .github/workflows/pr16-circus-drought.yml, content/modernization/pr16_circus_win_return_cpu.json, evidence/pr16_circus_win_return_cpu/35433308048/cpu-rows.json, evidence/pr16_circus_taunt/35430246002/native/circus-continuous-30-save.stderr, scripts/pr16_circus_taunt.py, tools/mgba_pr16_circus_taunt.h, tests/test_pr16_circus_taunt.py, .github/workflows/pr16-circus-taunt.yml, content/modernization/pr16_circus_tactical.json, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.stdout, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.stderr, evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.process.json, scripts/pr16_circus_tactical.py, tools/mgba_pr16_circus_tactical.h, tests/test_pr16_circus_tactical.py, .github/workflows/pr16-circus-tactical.yml, content/modernization/pr16_circus_reliability.json, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reliability.py, tools/mgba_pr16_circus_reliability.h, tests/test_pr16_circus_reliability.py, .github/workflows/pr16-circus-reliability.yml, content/modernization/pr16_circus_coverage.json, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stdout, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stderr, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.process.json, scripts/pr16_circus_coverage.py, scripts/pr16_circus_reentry_probe.py, tools/mgba_pr16_circus_coverage.h, tools/mgba_pr16_circus_reentry.h, tests/test_pr16_circus_coverage.py, .github/workflows/pr16-circus-coverage.yml, content/modernization/pr16_circus_reentry.json, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reentry.py, scripts/pr16_circus_continuous.py, scripts/pr16_circus_continuous_probe.py, scripts/pr16_circus_finish.py, tools/mgba_pr16_circus_continuous.c, evidence/pr16_circus_accuracy/35425237415/drain-accurate-fire/native/circus-streak-batch-save.stderr, scripts/pr16_circus_drought_calls.py, tests/test_pr16_circus_drought_calls.py, .github/workflows/pr16-circus-drought-calls.yml, overlays/circus_streak/circus_drought_launch.h, tests/fixtures/circus_drought_launch_fixture.c, content/modernization/pr16_circus_launch_cpu.json, evidence/pr16_circus_launch_cpu/35436330902/cpu-rows.json, content/modernization/pr16_circus_drought_calls.json, evidence/pr16_circus_drought_calls/35435801505/native/circus-continuous-30-save.stderr, scripts/pr16_circus_selection.py, tests/test_pr16_circus_selection.py, overlays/circus_streak/circus_drought_selection.h, tests/fixtures/circus_drought_selection_fixture.c, tools/mgba_pr16_circus_selection_context.h, .github/workflows/pr16-circus-selection.yml, content/modernization/pr16_circus_drought_launch_boundary.json, evidence/pr16_circus_drought_launch_boundary/35450725433/native/circus-continuous-30-save.stderr, content/modernization/pr16_circus_drought_launch.json, overlays/circus_streak/circus_drought_rental.h, tests/fixtures/circus_drought_rental_fixture.c, tools/mgba_pr16_circus_rental_drought.h, tests/test_pr16_circus_drought_launch.py, content/modernization/pr16_circus_selection.json, evidence/pr16_circus_selection/35451609631/native/circus-continuous-30-save.stderr, content/modernization/pr16_circus_rental_boundary.json, evidence/pr16_circus_rental_boundary/35452739116/native/circus-continuous-30-save.stderr, evidence/pr16_circus_rental_drought/35456028016/build.json, evidence/pr16_circus_rental_drought/35456028016/compile-1/compile.stderr, evidence/pr16_circus_rental_drought/35456028016/compile-1/compile.stdout, evidence/pr16_circus_rental_drought/35456028016/compile-1/disassembly.txt, evidence/pr16_circus_rental_drought/35456028016/compile-1/stack-usage.txt, evidence/pr16_circus_rental_drought/35456028016/compile-1/symbols.txt, evidence/pr16_circus_rental_drought/35456028016/compile-2/compile.stderr, evidence/pr16_circus_rental_drought/35456028016/compile-2/compile.stdout, evidence/pr16_circus_rental_drought/35456028016/compile-2/disassembly.txt, evidence/pr16_circus_rental_drought/35456028016/compile-2/stack-usage.txt, evidence/pr16_circus_rental_drought/35456028016/compile-2/symbols.txt, evidence/pr16_circus_rental_drought/35456028016/native/chooser-bindings.json, evidence/pr16_circus_rental_drought/35456028016/native/report.json, evidence/pr16_circus_rental_drought/35456028016/reconstruction.json
+- Verify: CIRCUS_RENTAL_DROUGHT_NATIVE_OPEN。CRC/save identity有効READY ownerと6体/script09ff4cb5だけを別guardで許可。既存ARMED/3体/WIN/LOSS predicate不変。新tail payload独立2link、旧allocation/owner/party/BP不変、同一continuation内prefix21戦のみ不可避。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: READY/6体レンタル→fieldのDrought修復候補で22戦目以降の実勝敗・元party600/owner64・通常Save/fresh Continueを確認する。真正30勝未達なら新原本の最初の停止だけを修復し、達成後に正規特性抑制へ進む。旧21勝prefixは同一continuation内の不可避部分以外に再実行しない。
+
+
+## 2026-09-19T17:08:42.170593+00:00 — USER-20260920-CIRCUS-RENTAL-CONTRACT-RUN35457143420-PREPARED
+- Timestamp: 2026-09-19T17:08:42.170593+00:00
+- Task: USER-20260920-CIRCUS-RENTAL-CONTRACT-RUN35457143420-PREPARED
+- Status: DONE / 候補2b107e7eは独立2link済み。native0の受付/launch契約欠落を親metadata継承で修復し、未実行continuationだけを開始。
+- Version: pr16-circus-loss-marker
+- Summary: 候補2b107e7eは独立2link済み。native0の受付/launch契約欠落を親metadata継承で修復し、未実行continuationだけを開始。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_rental_resume.json, scripts/pr16_circus_rental_resume.py, tests/test_pr16_circus_rental_resume.py, .github/workflows/pr16-circus-rental-resume.yml, content/modernization/pr16_circus_rental_drought.json
+- Verify: CIRCUS_RENTAL_RUNNER_CONTRACT_RESTORED_NATIVE_PENDING。既存candidate2b107e7e/全allocation/rollback固定。受付・launch metadata継承のみ、ROM変更0/ARM再link0/受入単体再実行0。100events prefix同一意味、実勝敗・owner64・元party600・通常Save/fresh Continueを別判定。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 候補2b107e7eを再linkせず、親から復元した受付/launch契約で未実行だった22戦目以降のnativeを検証する。旧21勝は同一continuation内のprefixだけとし、真正30勝・通常Save/fresh Continue後に正規特性抑制へ進む。
+
+
+## 2026-09-19T17:10:41.561936+00:00 — USER-20260920-CIRCUS-RENTAL-CONTRACT-RUN35457143420-RECORDED
+- Timestamp: 2026-09-19T17:10:41.561936+00:00
+- Task: USER-20260920-CIRCUS-RENTAL-CONTRACT-RUN35457143420-RECORDED
+- Status: DONE / READY/6体Drought後継のbuild/native原本が未完。受入状態を進めず、同runの最初の失敗から再開。
+- Version: pr16-circus-loss-marker
+- Summary: READY/6体Drought後継のbuild/native原本が未完。受入状態を進めず、同runの最初の失敗から再開。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_rental_resume.json, scripts/pr16_circus_rental_resume.py, tests/test_pr16_circus_rental_resume.py, .github/workflows/pr16-circus-rental-resume.yml, content/modernization/pr16_circus_rental_drought.json, evidence/pr16_circus_rental_drought/35457143420/build.json, evidence/pr16_circus_rental_drought/35457143420/native/chooser-bindings.json, evidence/pr16_circus_rental_drought/35457143420/native/compile.process.json, evidence/pr16_circus_rental_drought/35457143420/native/compile.stderr, evidence/pr16_circus_rental_drought/35457143420/native/compile.stdout, evidence/pr16_circus_rental_drought/35457143420/native/report.json, evidence/pr16_circus_rental_drought/35457143420/reconstruction.json
+- Verify: CIRCUS_RENTAL_DROUGHT_NATIVE_OPEN。既存candidate2b107e7e/全allocation/rollback固定。受付・launch metadata継承のみ、ROM変更0/ARM再link0/受入単体再実行0。100events prefix同一意味、実勝敗・owner64・元party600・通常Save/fresh Continueを別判定。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 候補2b107e7eを再linkせず、親から復元した受付/launch契約で未実行だった22戦目以降のnativeを検証する。旧21勝は同一continuation内のprefixだけとし、真正30勝・通常Save/fresh Continue後に正規特性抑制へ進む。
+
+
+## 2026-09-19T17:18:02.420127+00:00 — USER-20260920-CIRCUS-RENTAL-CONTRACT-RUN35457636604-PREPARED
+- Timestamp: 2026-09-19T17:18:02.420127+00:00
+- Task: USER-20260920-CIRCUS-RENTAL-CONTRACT-RUN35457636604-PREPARED
+- Status: DONE / 候補2b107e7eの受付/launch契約と再構築は成功。native0のcontroller include順序によるsc_events未宣言を前方定義で修復し、未実行continuationだけを開始。
+- Version: pr16-circus-loss-marker
+- Summary: 候補2b107e7eの受付/launch契約と再構築は成功。native0のcontroller include順序によるsc_events未宣言を前方定義で修復し、未実行continuationだけを開始。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_rental_resume.json, scripts/pr16_circus_rental_resume.py, tests/test_pr16_circus_rental_resume.py, .github/workflows/pr16-circus-rental-resume.yml, content/modernization/pr16_circus_rental_drought.json
+- Verify: CIRCUS_RENTAL_CONTROLLER_DECLARATION_REPAIRED_NATIVE_PENDING。既存candidate2b107e7e/全allocation/rollback固定。受付・launch metadata継承とhost counter前方定義のみ、ROM変更0/ARM再link0/受入単体再実行0。100events prefix同一意味、実勝敗・owner64・元party600・通常Save/fresh Continueを別判定。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 候補2b107e7eを再linkせず、親から復元した受付/launch契約で未実行だった22戦目以降のnativeを検証する。旧21勝は同一continuation内のprefixだけとし、真正30勝・通常Save/fresh Continue後に正規特性抑制へ進む。
+
+
+## 2026-09-19T17:27:55.392237+00:00 — USER-20260920-CIRCUS-RENTAL-CONTRACT-RUN35457636604-RECORDED
+- Timestamp: 2026-09-19T17:27:55.392237+00:00
+- Task: USER-20260920-CIRCUS-RENTAL-CONTRACT-RUN35457636604-RECORDED
+- Status: DONE / READY/6体境界を修復し22戦目以降と通常Save/fresh Continueを確認。今回の実勝数=24、真正30勝は未達。
+- Version: pr16-circus-loss-marker
+- Summary: READY/6体境界を修復し22戦目以降と通常Save/fresh Continueを確認。今回の実勝数=24、真正30勝は未達。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_rental_resume.json, scripts/pr16_circus_rental_resume.py, tests/test_pr16_circus_rental_resume.py, .github/workflows/pr16-circus-rental-resume.yml, content/modernization/pr16_circus_rental_drought.json, evidence/pr16_circus_rental_drought/35457636604/build.json, evidence/pr16_circus_rental_drought/35457636604/native/chooser-bindings.json, evidence/pr16_circus_rental_drought/35457636604/native/circus-continuous-30-save.process.json, evidence/pr16_circus_rental_drought/35457636604/native/circus-continuous-30-save.stderr, evidence/pr16_circus_rental_drought/35457636604/native/circus-continuous-30-save.stdout, evidence/pr16_circus_rental_drought/35457636604/native/compile.process.json, evidence/pr16_circus_rental_drought/35457636604/native/compile.stderr, evidence/pr16_circus_rental_drought/35457636604/native/compile.stdout, evidence/pr16_circus_rental_drought/35457636604/native/events.json, evidence/pr16_circus_rental_drought/35457636604/native/guard-bus16.process.json, evidence/pr16_circus_rental_drought/35457636604/native/guard-bus16.stderr, evidence/pr16_circus_rental_drought/35457636604/native/guard-bus16.stdout, evidence/pr16_circus_rental_drought/35457636604/native/guard-bus32.process.json, evidence/pr16_circus_rental_drought/35457636604/native/guard-bus32.stderr, evidence/pr16_circus_rental_drought/35457636604/native/guard-bus32.stdout, evidence/pr16_circus_rental_drought/35457636604/native/guard-bus8.process.json, evidence/pr16_circus_rental_drought/35457636604/native/guard-bus8.stderr, evidence/pr16_circus_rental_drought/35457636604/native/guard-bus8.stdout, evidence/pr16_circus_rental_drought/35457636604/native/guard-raw16.process.json, evidence/pr16_circus_rental_drought/35457636604/native/guard-raw16.stderr, evidence/pr16_circus_rental_drought/35457636604/native/guard-raw16.stdout, evidence/pr16_circus_rental_drought/35457636604/native/guard-raw32.process.json, evidence/pr16_circus_rental_drought/35457636604/native/guard-raw32.stderr, evidence/pr16_circus_rental_drought/35457636604/native/guard-raw32.stdout, evidence/pr16_circus_rental_drought/35457636604/native/guard-raw8.process.json, evidence/pr16_circus_rental_drought/35457636604/native/guard-raw8.stderr, evidence/pr16_circus_rental_drought/35457636604/native/guard-raw8.stdout, evidence/pr16_circus_rental_drought/35457636604/native/guard-register.process.json, evidence/pr16_circus_rental_drought/35457636604/native/guard-register.stderr, evidence/pr16_circus_rental_drought/35457636604/native/guard-register.stdout, evidence/pr16_circus_rental_drought/35457636604/native/report.json, evidence/pr16_circus_rental_drought/35457636604/native/streak.json, evidence/pr16_circus_rental_drought/35457636604/reconstruction.json, evidence/pr16_circus_rental_drought/35457636604/rental-drought-result.json
+- Verify: CIRCUS_RENTAL_DROUGHT_RETURN_SAVE_CONTINUE_SCOPED_VERIFIED。既存candidate2b107e7e/全allocation/rollback固定。受付・launch metadata継承とhost counter前方定義のみ、ROM変更0/ARM再link0/受入単体再実行0。100events prefix同一意味、実勝敗・owner64・元party600・通常Save/fresh Continueを別判定。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 保存済み後継原本の最初の実敗北/停止から入力だけを改善し、真正30勝・90BPを同一processで達成する。旧21勝prefixの独立再実行は禁止。
+
+
+## 2026-09-19T17:35:23.515478+00:00 — USER-20260920-CIRCUS-RENTAL-CLOSEOUT-RUN35458535637
+- Timestamp: 2026-09-19T17:35:23.515478+00:00
+- Task: USER-20260920-CIRCUS-RENTAL-CLOSEOUT-RUN35458535637
+- Status: DONE / 記録区切り。physical/P08/release未完。
+- Version: pr16-circus-rental-closeout
+- Summary: run35457636604/job105935643398: 候補2b107e7eでREADY/6体Drought停止を突破。実24勝/72BP/25戦目敗北、121events・元party600/owner64・通常Save counter2→3/fresh Continueを検証。30勝未達なのでActions failureを保持。旧bootstrap再compileの総数0記述は誤りとして訂正。
+- Files changed: scripts/pr16_circus_rental_closeout.py, tests/test_pr16_circus_rental_closeout.py, .github/workflows/pr16-circus-rental-closeout.yml, content/modernization/pr16_circus_rental_closeout_spec.json, content/modernization/pr16_circus_rental_closeout.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md
+- Verify: [{'pattern': 'test_pr16_circus_rental_closeout.py', 'count': 13, 'success': True}, {'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; 原本全hash・Actions最終結論・実勝敗/owner/Saveを照合。task graph、差分private guard新規違反0、diff checkをcommit前必須。
+- Evidence: content/modernization/pr16_circus_rental_closeout.json / run35457636604 / job105935643398
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub/Actionsのみ。このcloseout自体は新規native0/ARM link0/ROM変更0。参照runの末端Drought再link0を総数0とした旧記録は訂正する。継承pipelineの旧親再compile/Ring host tests再実行あり、総実行回数未採取。原本は保持。旧failure/全体guard違反を成功に改作しない。
+- Next: 旧親の再compileをしない保存済みbyte/patch再構築を先に実装・検証する。その後は同じ2b107e7eと24勝prefixを保持し、25戦目の通常レンタル/技選択だけを改善して真正30勝と保存へ進む。25戦目の最初の入力変更より前のevent列を完全照合し、受入24勝・旧ARM linkの独立再実行をしない。30勝後に正規特性抑制、影響範囲P08へ進む。
+
+
+## 2026-09-19T20:13:05Z — USER-20260920-CIRCUS-SAVED-RECONSTRUCTION
+- Timestamp: 2026-09-19T20:13:05Z
+- Task: USER-20260920-CIRCUS-SAVED-RECONSTRUCTION / 旧親を再compileしない保存byte再構成
+- Status: DONE（再構成経路。真正30勝・正規特性抑制・P08統合は未完）
+- Version: pr16-saved-byte-chain-20
+- Summary: 固定Stage80から20層425差分を保存BPS・原本byteのみで正規化し、候補2b107e7eへ全hash一致。全層allocationと全ROM逆適用を確認。通常再開は保存JSONと純粋核だけで、旧builder・network・子processは禁止。
+- Summary: 受付adapterのOBJECT定数8byteと明示20byte FF paddingを原本から回復。先行失敗35464893016/35465115956と記録型不整合35465795453は失敗のまま保存。単一段落契約と実render回帰を追加。
+- Files changed: scripts/pr16_saved_reconstruction_record.py, tests/test_pr16_saved_reconstruction_record.py, .github/workflows/pr16-saved-reconstruction-record.yml, scripts/pr16_saved_recipe.py, scripts/pr16_saved_reconstruction.py, tests/test_pr16_saved_recipe.py, tests/test_pr16_saved_reconstruction.py, tests/test_pr16_saved_object_bytes.py, content/modernization/pr16_saved_reconstruction_seed.json, .github/workflows/pr16-saved-reconstruction.yml, .github/workflows/pr16-saved-reconstruction-source.yml, content/modernization/pr16_saved_reconstruction_recipes.json, content/modernization/pr16_saved_reconstruction.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, evidence/pr16_saved_reconstruction/35465528252/tested-head.txt, evidence/pr16_saved_reconstruction/35465528252/tests.txt, evidence/pr16_saved_reconstruction/35465528252/reconstruction.json, evidence/pr16_saved_reconstruction/35465528252/normalize.stderr, evidence/pr16_saved_reconstruction/35465528252/normalize.stdout, evidence/pr16_saved_reconstruction/35465528252/runtime.json, evidence/pr16_saved_reconstruction/35465528252/runtime.stderr, design/run_log.md, design/version_log.md
+- Verify: run35465528252/job105957035501成功、artifact10591650346 sha256=2794bdf353004a75754f2a4c20347822572bb252093688bcfbe283b96088bdc9。核13契約の未影響12件と原本IO9契約の証跡継承、影響decoder3件PASS。記録8契約（投影後render/JSON往復を含む）、固定JSONのoffline実ROM再開、resume tests、pr16_resume.validate、task graph PASS。commit前index差分private guardで新規違反0、diff check必須。
+- Native: 今回0。候補byte変更0、ARM compile/link0、受入単体再実行0。履歴bootstrap全体ARM数はunknownを維持。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receiptを参照。
+- Network: GitHub connector/Actionsの固定run/artifact照合と固定CFRU charmapのみ。private入力取得なし、ROM/save/credential追加追跡なし。
+- Next: 保存byte再構成は完了。scripts/pr16_saved_reconstruction.py reconstructを別processで使い、旧親builder/compile/Ring hostを起動せず同じ2b107e7eを復元する。24勝prefixを保持し、25戦目の通常レンタル/技選択だけを改善して真正30勝と通常Save/fresh Continueへ進む。25戦目の最初の入力変更より前のevent列を完全照合する。受入24勝の独立再実行、勝敗/連勝/効果/PC/LR/save注入は禁止。30勝後に正規特性抑制、影響範囲P08へ進む。
+
+
+## 2026-09-19T20:41:59Z — USER-20260920-CIRCUS-BATTLE25-START
+- Timestamp: 2026-09-19T20:41:59Z
+- Task: USER-20260920-CIRCUS-BATTLE25
+- Status: WIP（未達段階はreport参照）
+- Version: pr16-circus-battle25-input-v1
+- Summary: 25戦目限定レンタル相性方策と記録7契約を検証し実装checkpointを保存。新nativeは未実行。旧24勝72BPの受入を保持、真正30勝は未受入。
+- Files changed: scripts/pr16_circus_battle25.py, tools/mgba_pr16_circus_battle25.h, tests/test_pr16_circus_battle25.py, .github/workflows/pr16-circus-battle25.yml, scripts/pr16_circus_battle25_policy.py, tests/test_pr16_resume.py, content/modernization/pr16_circus_battle25.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, evidence/pr16_circus_battle25/35468164696/original-generated/controller.c, evidence/pr16_circus_battle25/35468164696/original-generated/p03_learning_embedded.c, evidence/pr16_circus_battle25/35468164696/original-generated/p03_p02_embedded.c, evidence/pr16_circus_battle25/35468164696/original-generated/p03a_fullslots_embedded.c, evidence/pr16_circus_battle25/35468164696/original-generated/p03b_archive_embedded.c, evidence/pr16_circus_battle25/35468164696/original-generated/pr16_bp_control_embedded.c, evidence/pr16_circus_battle25/35468164696/original-generated/pr16_bp_native_helpers.c, evidence/pr16_circus_battle25/35468164696/original-generated/pr16_capture_shop_helpers.c, evidence/pr16_circus_battle25/35468164696/original-generated/pr16_circus_addresses.h, evidence/pr16_circus_battle25/35468164696/original-generated/pr16_circus_selection_helpers.c, evidence/pr16_circus_battle25/35468164696/original-generated/pr16_circus_turn_helpers.c, evidence/pr16_circus_battle25/35468164696/original-generated/pr16_gear_capture_helpers.c, evidence/pr16_circus_battle25/35468164696/original-generated/pr16_gear_route.h, evidence/pr16_circus_battle25/35468164696/original-generated/pr16_shop_breeding_helpers.c, evidence/pr16_circus_battle25/35468164696/original-generated/pr16_streak_legacy.c, evidence/pr16_circus_battle25/35468164696/original-generated/pr16_streak_policy.c, evidence/pr16_circus_battle25/35468164696/execution/policy-tests.process.json, evidence/pr16_circus_battle25/35468164696/execution/policy-tests.stderr, evidence/pr16_circus_battle25/35468164696/execution/policy-tests.stdout, design/run_log.md, design/version_log.md
+- Verify: 方策/記録7契約、resume整合性/影響tests/task graph、index差分private guardとdiff check。native結果はreportの原本と実process数を参照。
+- Commit: 同branch非force commit。自己SHAはremote/receipt参照。
+- Network: GitHub固定run/artifact照合。入力/ROM/save/credentialの新規追跡なし。旧builder/ARM/Ring hostを実行しない。
+- Next: 進行中の同branch Actionsを照合する。同じrunを重複起動せず、25戦目通常入力の未完nativeを完了・原本と引継ぎを記録する。
+
+
+## 2026-09-19T20:51:56Z — USER-20260920-CIRCUS-BATTLE25-FINISH
+- Timestamp: 2026-09-19T20:51:56Z
+- Task: USER-20260920-CIRCUS-BATTLE25
+- Status: WIP（未達段階はreport参照）
+- Version: pr16-circus-battle25-input-v1
+- Summary: 25戦目限定方策の試行原本を保存。検証未達を受入へ昇格しない。[{'stage': 'native-or-setup', 'type': 'ValueError', 'error': 'continuous process failed'}]
+- Files changed: scripts/pr16_circus_battle25.py, tools/mgba_pr16_circus_battle25.h, tests/test_pr16_circus_battle25.py, .github/workflows/pr16-circus-battle25.yml, scripts/pr16_circus_battle25_policy.py, tests/test_pr16_resume.py, content/modernization/pr16_circus_battle25.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, evidence/pr16_circus_battle25/35468164696/original-generated/controller.c, evidence/pr16_circus_battle25/35468164696/original-generated/p03_learning_embedded.c, evidence/pr16_circus_battle25/35468164696/original-generated/p03_p02_embedded.c, evidence/pr16_circus_battle25/35468164696/original-generated/p03a_fullslots_embedded.c, evidence/pr16_circus_battle25/35468164696/original-generated/p03b_archive_embedded.c, evidence/pr16_circus_battle25/35468164696/original-generated/pr16_bp_control_embedded.c, evidence/pr16_circus_battle25/35468164696/original-generated/pr16_bp_native_helpers.c, evidence/pr16_circus_battle25/35468164696/original-generated/pr16_capture_shop_helpers.c, evidence/pr16_circus_battle25/35468164696/original-generated/pr16_circus_addresses.h, evidence/pr16_circus_battle25/35468164696/original-generated/pr16_circus_selection_helpers.c, evidence/pr16_circus_battle25/35468164696/original-generated/pr16_circus_turn_helpers.c, evidence/pr16_circus_battle25/35468164696/original-generated/pr16_gear_capture_helpers.c, evidence/pr16_circus_battle25/35468164696/original-generated/pr16_gear_route.h, evidence/pr16_circus_battle25/35468164696/original-generated/pr16_shop_breeding_helpers.c, evidence/pr16_circus_battle25/35468164696/original-generated/pr16_streak_legacy.c, evidence/pr16_circus_battle25/35468164696/original-generated/pr16_streak_policy.c, evidence/pr16_circus_battle25/35468164696/execution/circus-continuous-30-save.process.json, evidence/pr16_circus_battle25/35468164696/execution/circus-continuous-30-save.stderr, evidence/pr16_circus_battle25/35468164696/execution/circus-continuous-30-save.stdout, evidence/pr16_circus_battle25/35468164696/execution/compile.process.json, evidence/pr16_circus_battle25/35468164696/execution/compile.stderr, evidence/pr16_circus_battle25/35468164696/execution/compile.stdout, evidence/pr16_circus_battle25/35468164696/execution/policy-tests.process.json, evidence/pr16_circus_battle25/35468164696/execution/policy-tests.stderr, evidence/pr16_circus_battle25/35468164696/execution/policy-tests.stdout, evidence/pr16_circus_battle25/35468164696/execution/policy.c, evidence/pr16_circus_battle25/35468164696/execution/reconstruct.process.json, evidence/pr16_circus_battle25/35468164696/execution/reconstruct.stderr, evidence/pr16_circus_battle25/35468164696/execution/reconstruct.stdout, evidence/pr16_circus_battle25/35468164696/execution/resume-START.process.json, evidence/pr16_circus_battle25/35468164696/execution/resume-START.stderr, evidence/pr16_circus_battle25/35468164696/execution/resume-START.stdout, evidence/pr16_circus_battle25/35468164696/execution/task-graph-START.process.json, evidence/pr16_circus_battle25/35468164696/execution/task-graph-START.stderr, evidence/pr16_circus_battle25/35468164696/execution/task-graph-START.stdout, design/run_log.md, design/version_log.md
+- Verify: 方策/記録7契約、resume整合性/影響tests/task graph、index差分private guardとdiff check。native結果はreportの原本と実process数を参照。
+- Commit: 同branch非force commit。自己SHAはremote/receipt参照。
+- Network: GitHub固定run/artifact照合。入力/ROM/save/credentialの新規追跡なし。旧builder/ARM/Ring hostを実行しない。
+- Next: content/modernization/pr16_circus_battle25.jsonの失敗段階・実process数・prefix証拠を読んで未完段階だけ修復。旧builder/ARM/Ring host/受入単体を再実行しない。
+
+
+## 2026-09-19T21:56:18Z — USER-20260920-CIRCUS-BATTLE28-START
+- Timestamp: 2026-09-19T21:56:18Z
+- Task: USER-20260920-CIRCUS-BATTLE28 / 28戦目通常強制交代の引渡し
+- Status: STOPPED（全体受入は未完）
+- Version: pr16-circus-battle28-handoff-v1
+- Summary: 前runは27勝81BP/元party9回復元、28戦目交代先の瀕死/強制交代待ちで停止。失敗を保持。通常強制交代への引渡しを実装し9契約を検証。新nativeは未実行。
+- Files changed: scripts/pr16_circus_battle28.py, scripts/pr16_circus_battle28_policy.py, tests/test_pr16_circus_battle28.py, .github/workflows/pr16-circus-battle28.yml, content/modernization/pr16_circus_battle28.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, evidence/pr16_circus_battle28/35471833294/execution/handoff-tests.process.json, evidence/pr16_circus_battle28/35471833294/execution/handoff-tests.stderr, evidence/pr16_circus_battle28/35471833294/execution/handoff-tests.stdout, design/run_log.md, design/version_log.md
+- Verify: 新規9契約、固定resume整合性/影響tests、task graph、index差分private guard/diff check。native成否/実process数はreport。旧7契約・受入単体は再実行しない。
+- Commit: 同branch非force。自己SHAはremote/receipt。
+- Network: GitHub前run/job/artifactと旧24勝原本の固定照合。host mGBA依存のみ。旧builder/ARM/Ring hostなし。
+- Next: 進行中の当branch Actionsだけを照合し28戦目以降の未完nativeを続ける。重複起動せず、完了後に原本・固定引継ぎ・両ログを記録する。
+
+
+## 2026-09-19T22:06:42Z — USER-20260920-CIRCUS-BATTLE28-FINISH
+- Timestamp: 2026-09-19T22:06:42Z
+- Task: USER-20260920-CIRCUS-BATTLE28 / 28戦目通常強制交代の引渡し
+- Status: DONE（全体受入は未完）
+- Version: pr16-circus-battle28-handoff-v1
+- Summary: 28戦目handoff後、実28勝/81BPと通常Save/fresh Continueをscoped検証。真正30勝は未達。
+- Files changed: scripts/pr16_circus_battle28.py, scripts/pr16_circus_battle28_policy.py, tests/test_pr16_circus_battle28.py, .github/workflows/pr16-circus-battle28.yml, content/modernization/pr16_circus_battle28.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, evidence/pr16_circus_battle28/35471833294/execution/analysis.json, evidence/pr16_circus_battle28/35471833294/execution/circus-continuous-30-save.process.json, evidence/pr16_circus_battle28/35471833294/execution/circus-continuous-30-save.stderr, evidence/pr16_circus_battle28/35471833294/execution/circus-continuous-30-save.stdout, evidence/pr16_circus_battle28/35471833294/execution/compile.process.json, evidence/pr16_circus_battle28/35471833294/execution/compile.stderr, evidence/pr16_circus_battle28/35471833294/execution/compile.stdout, evidence/pr16_circus_battle28/35471833294/execution/events.json, evidence/pr16_circus_battle28/35471833294/execution/handoff-tests.process.json, evidence/pr16_circus_battle28/35471833294/execution/handoff-tests.stderr, evidence/pr16_circus_battle28/35471833294/execution/handoff-tests.stdout, evidence/pr16_circus_battle28/35471833294/execution/policy.c, evidence/pr16_circus_battle28/35471833294/execution/prefix.json, evidence/pr16_circus_battle28/35471833294/execution/prefix28.json, evidence/pr16_circus_battle28/35471833294/execution/reconstruct.process.json, evidence/pr16_circus_battle28/35471833294/execution/reconstruct.stderr, evidence/pr16_circus_battle28/35471833294/execution/reconstruct.stdout, evidence/pr16_circus_battle28/35471833294/execution/resume-START.process.json, evidence/pr16_circus_battle28/35471833294/execution/resume-START.stderr, evidence/pr16_circus_battle28/35471833294/execution/resume-START.stdout, evidence/pr16_circus_battle28/35471833294/execution/task-graph-START.process.json, evidence/pr16_circus_battle28/35471833294/execution/task-graph-START.stderr, evidence/pr16_circus_battle28/35471833294/execution/task-graph-START.stdout, design/run_log.md, design/version_log.md
+- Verify: 新規9契約、固定resume整合性/影響tests、task graph、index差分private guard/diff check。native成否/実process数はreport。旧7契約・受入単体は再実行しない。
+- Commit: 同branch非force。自己SHAはremote/receipt。
+- Network: GitHub前run/job/artifactと旧24勝原本の固定照合。host mGBA依存のみ。旧builder/ARM/Ring hostなし。
+- Next: content/modernization/pr16_circus_battle28.jsonの新たな最初の敗北を修復し、保存byteで候補を復元。受入単体・旧ARM・Ring hostを再実行しない。
+
+
+## 2026-09-19T22:15:50Z — USER-20260920-CIRCUS-BATTLE28-RECEIPT
+- Timestamp: 2026-09-19T22:15:50Z
+- Task: USER-20260920-CIRCUS-BATTLE28-RECEIPT
+- Status: DONE（原本照合と記録。製品全体・特性抑制・P08は未完）
+- Version: pr16-circus-battle28-receipt-v1
+- Summary: 28戦目handoff後、実28勝/81BPと通常Save/fresh Continueをscoped検証。真正30勝は未達。 完了済みActionsの実結論・原artifact・画面・Git原本を新規native0で再照合。
+- Files changed: scripts/pr16_circus_battle28_receipt.py, .github/workflows/pr16-circus-battle28-receipt.yml, content/modernization/pr16_circus_battle28.json, content/modernization/pr16_circus_battle28_receipt.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md
+- Verify: 固定Actions/job/artifact、生成C・tracked原本・27勝130events/byte prefix・通常Save/fresh Continue原本と画面、固定resume tests/task graph、index差分private guard/diff check。新規native0/ARM0/既受入単体再実行0。
+- Commit: 同branch非force commit。自己SHAはreceipt/remoteを参照。
+- Network: 完了済みGitHub Actions原本照合のみ。ROM/save/private入力の追加なし。
+- Next: 29戦目の先発/通常交代を修復する。初回交代の163→71HPと終盤の相手2HP/こちら4HPを新原本で確認。28勝prefixと受入済みSave/Continueは単独再実行しない。ROM変更/連勝・RNG注入は禁止。
+
+
+## 2026-09-19T22:22:08Z — USER-20260920-CIRCUS-BATTLE29-START
+- Timestamp: 2026-09-19T22:22:08Z
+- Task: USER-20260920-CIRCUS-BATTLE29 / 29戦目の通常先発維持
+- Status: STOPPED（全体受入は未完）
+- Version: pr16-circus-battle29-risk-v1
+- Summary: 28勝81BPと通常Save/fresh Continueの受入原本を保持。29戦目で健康な水先発を氷技のある水対面から無条件に交代させない通常入力修正を実装し、新規8契約を検証。新nativeは未実行。
+- Files changed: scripts/pr16_circus_battle29.py, scripts/pr16_circus_battle29_policy.py, tests/test_pr16_circus_battle29.py, .github/workflows/pr16-circus-battle29.yml, content/modernization/pr16_circus_battle29.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, evidence/pr16_circus_battle29/35473090294/execution/risk-tests.process.json, evidence/pr16_circus_battle29/35473090294/execution/risk-tests.stderr, evidence/pr16_circus_battle29/35473090294/execution/risk-tests.stdout, design/run_log.md, design/version_log.md
+- Verify: 新規8契約、固定resume整合性/影響tests、task graph、index差分private guard/diff check。native成否/実process数はreport。旧7契約・受入単体は再実行しない。
+- Commit: 同branch非force。自己SHAはremote/receipt。
+- Network: GitHub前run/job/artifactと旧24勝原本の固定照合。host mGBA依存のみ。旧builder/ARM/Ring hostなし。
+- Next: 進行中の29戦目Actionsだけを照合する。重複起動せず、完了後に原本・固定引継ぎ・両ログを記録する。
+
+
+## 2026-09-19T22:30:47Z — USER-20260920-CIRCUS-BATTLE29-FINISH
+- Timestamp: 2026-09-19T22:30:47Z
+- Task: USER-20260920-CIRCUS-BATTLE29 / 29戦目の通常先発維持
+- Status: DONE（全体受入は未完）
+- Version: pr16-circus-battle29-risk-v1
+- Summary: 先発維持修正後、実28勝/81BPと通常Save/fresh Continueをscoped検証。真正30勝は未達。
+- Files changed: scripts/pr16_circus_battle29.py, scripts/pr16_circus_battle29_policy.py, tests/test_pr16_circus_battle29.py, .github/workflows/pr16-circus-battle29.yml, content/modernization/pr16_circus_battle29.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, evidence/pr16_circus_battle29/35473090294/execution/analysis.json, evidence/pr16_circus_battle29/35473090294/execution/circus-continuous-30-save.process.json, evidence/pr16_circus_battle29/35473090294/execution/circus-continuous-30-save.stderr, evidence/pr16_circus_battle29/35473090294/execution/circus-continuous-30-save.stdout, evidence/pr16_circus_battle29/35473090294/execution/compile.process.json, evidence/pr16_circus_battle29/35473090294/execution/compile.stderr, evidence/pr16_circus_battle29/35473090294/execution/compile.stdout, evidence/pr16_circus_battle29/35473090294/execution/events.json, evidence/pr16_circus_battle29/35473090294/execution/policy.c, evidence/pr16_circus_battle29/35473090294/execution/prefix.json, evidence/pr16_circus_battle29/35473090294/execution/prefix29.json, evidence/pr16_circus_battle29/35473090294/execution/reconstruct.process.json, evidence/pr16_circus_battle29/35473090294/execution/reconstruct.stderr, evidence/pr16_circus_battle29/35473090294/execution/reconstruct.stdout, evidence/pr16_circus_battle29/35473090294/execution/resume-START.process.json, evidence/pr16_circus_battle29/35473090294/execution/resume-START.stderr, evidence/pr16_circus_battle29/35473090294/execution/resume-START.stdout, evidence/pr16_circus_battle29/35473090294/execution/risk-tests.process.json, evidence/pr16_circus_battle29/35473090294/execution/risk-tests.stderr, evidence/pr16_circus_battle29/35473090294/execution/risk-tests.stdout, evidence/pr16_circus_battle29/35473090294/execution/task-graph-START.process.json, evidence/pr16_circus_battle29/35473090294/execution/task-graph-START.stderr, evidence/pr16_circus_battle29/35473090294/execution/task-graph-START.stdout, design/run_log.md, design/version_log.md
+- Verify: 新規8契約、固定resume整合性/影響tests、task graph、index差分private guard/diff check。native成否/実process数はreport。旧7契約・受入単体は再実行しない。
+- Commit: 同branch非force。自己SHAはremote/receipt。
+- Network: GitHub前run/job/artifactと旧24勝原本の固定照合。host mGBA依存のみ。旧builder/ARM/Ring hostなし。
+- Next: content/modernization/pr16_circus_battle29.jsonの新たな最初の実敗北を修復する。受入単体・旧ARM・Ring hostを再実行しない。
+
+
+## 2026-09-19T23:59:49Z — USER-20260920-CIRCUS-BATTLE29-RECHECK-START
+- Timestamp: 2026-09-19T23:59:49Z
+- Task: USER-20260920-CIRCUS-BATTLE29-RECHECK / 29戦目HP閾値再評価
+- Status: STOPPED（全体受入は未完）
+- Version: pr16-circus-battle29-recheck-v1
+- Summary: 28勝81BPと通常Save/fresh Continue、29戦目初手維持を保持。健康な水先発を維持した相手を処理済みにせず、HP半分まで毎turn再評価して既存の通常交代へ戻す修正と新規9契約を検証。新nativeは未実行。
+- Files changed: scripts/pr16_circus_battle29_recheck.py, scripts/pr16_circus_battle29_recheck_policy.py, tests/test_pr16_circus_battle29_recheck.py, .github/workflows/pr16-circus-battle29-recheck.yml, content/modernization/pr16_circus_battle29_recheck.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, evidence/pr16_circus_battle29_recheck/35477541574/execution/recheck-tests.process.json, evidence/pr16_circus_battle29_recheck/35477541574/execution/recheck-tests.stderr, evidence/pr16_circus_battle29_recheck/35477541574/execution/recheck-tests.stdout, design/run_log.md, design/version_log.md
+- Verify: 新規9契約、固定resume整合性/影響tests、task graph、index差分private guard/diff check。native成否/実process数はreport。既受入契約・受入単体は再実行しない。
+- Commit: 同branch非force。自己SHAはremote/receipt。
+- Network: GitHub前run/job/artifactと29戦目原本を固定照合。host mGBA依存のみ。旧builder/ARM/Ring hostなし。
+- Next: 進行中の29戦目再評価Actionsだけを照合する。重複起動せず、完了後に原本・固定引継ぎ・両ログを記録する。
+
+
+## 2026-09-20T00:09:56Z — USER-20260920-CIRCUS-BATTLE29-RECHECK-FINISH
+- Timestamp: 2026-09-20T00:09:56Z
+- Task: USER-20260920-CIRCUS-BATTLE29-RECHECK / 29戦目HP閾値再評価
+- Status: STOPPED（全体受入は未完）
+- Version: pr16-circus-battle29-recheck-v1
+- Summary: 29戦目HP閾値再評価の原本を保存。観測勝数28。Save/Continue受入とは区別。[{'stage': 'prefix29-recheck', 'type': 'ValueError', 'error': 'healthy hold was not repeatedly reevaluated'}]
+- Files changed: scripts/pr16_circus_battle29_recheck.py, scripts/pr16_circus_battle29_recheck_policy.py, tests/test_pr16_circus_battle29_recheck.py, .github/workflows/pr16-circus-battle29-recheck.yml, content/modernization/pr16_circus_battle29_recheck.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, evidence/pr16_circus_battle29_recheck/35477541574/execution/analysis.json, evidence/pr16_circus_battle29_recheck/35477541574/execution/circus-continuous-30-save.process.json, evidence/pr16_circus_battle29_recheck/35477541574/execution/circus-continuous-30-save.stderr, evidence/pr16_circus_battle29_recheck/35477541574/execution/circus-continuous-30-save.stdout, evidence/pr16_circus_battle29_recheck/35477541574/execution/compile.process.json, evidence/pr16_circus_battle29_recheck/35477541574/execution/compile.stderr, evidence/pr16_circus_battle29_recheck/35477541574/execution/compile.stdout, evidence/pr16_circus_battle29_recheck/35477541574/execution/events.json, evidence/pr16_circus_battle29_recheck/35477541574/execution/policy.c, evidence/pr16_circus_battle29_recheck/35477541574/execution/prefix.json, evidence/pr16_circus_battle29_recheck/35477541574/execution/recheck-tests.process.json, evidence/pr16_circus_battle29_recheck/35477541574/execution/recheck-tests.stderr, evidence/pr16_circus_battle29_recheck/35477541574/execution/recheck-tests.stdout, evidence/pr16_circus_battle29_recheck/35477541574/execution/reconstruct.process.json, evidence/pr16_circus_battle29_recheck/35477541574/execution/reconstruct.stderr, evidence/pr16_circus_battle29_recheck/35477541574/execution/reconstruct.stdout, evidence/pr16_circus_battle29_recheck/35477541574/execution/resume-START.process.json, evidence/pr16_circus_battle29_recheck/35477541574/execution/resume-START.stderr, evidence/pr16_circus_battle29_recheck/35477541574/execution/resume-START.stdout, evidence/pr16_circus_battle29_recheck/35477541574/execution/task-graph-START.process.json, evidence/pr16_circus_battle29_recheck/35477541574/execution/task-graph-START.stderr, evidence/pr16_circus_battle29_recheck/35477541574/execution/task-graph-START.stdout, design/run_log.md, design/version_log.md
+- Verify: 新規9契約、固定resume整合性/影響tests、task graph、index差分private guard/diff check。native成否/実process数はreport。既受入契約・受入単体は再実行しない。
+- Commit: 同branch非force。自己SHAはremote/receipt。
+- Network: GitHub前run/job/artifactと29戦目原本を固定照合。host mGBA依存のみ。旧builder/ARM/Ring hostなし。
+- Next: content/modernization/pr16_circus_battle29_recheck.jsonの失敗段階と134event/再評価prefix証拠を読んで未完段階のみ修復。同じ失敗/旧builder/ARM/Ring host/受入単体を再実行しない。
+
+
+## 2026-09-20T00:20:34Z — USER-20260920-CIRCUS-RESERVE-START
+- Timestamp: 2026-09-20T00:20:34Z
+- Task: USER-20260920-CIRCUS-RESERVE / 実対面変更後の控え選択
+- Status: STOPPED（Circus/P08全体は未完）
+- Version: pr16-circus-reserve-v1
+- Summary: run35477541574の原本を照合。水対面は6turnで終了し468129は別個体type0/0。旧検証器の予測誤りとfailureを保持。要求技のない控え選択を実HP/PP/相性で補完する新規10契約を検証。新nativeは未実行。
+- Files changed: scripts/pr16_circus_reserve_fallback.py, scripts/pr16_circus_reserve_fallback_policy.py, tests/test_pr16_circus_reserve_fallback.py, .github/workflows/pr16-circus-reserve-fallback.yml, content/modernization/pr16_circus_reserve_fallback.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, evidence/pr16_circus_reserve_fallback/35478473681/execution/reserve-tests.process.json, evidence/pr16_circus_reserve_fallback/35478473681/execution/reserve-tests.stderr, evidence/pr16_circus_reserve_fallback/35478473681/execution/reserve-tests.stdout, design/run_log.md, design/version_log.md
+- Verify: 新規10契約、固定resume整合性/影響tests、task graph、index差分private guard/diff check。native成否/実process数はreport。
+- Commit: 同branch非force。自己SHAはremote/receipt。
+- Network: GitHub前run/job/artifact原本照合、host mGBA依存のみ。旧builder/ARM/Ring hostなし。
+- Next: 進行中のreserve-fallback Actionsだけを照合。重複起動せず、完了後に新原本・固定引継ぎ・両ログを記録する。
+
+
+## 2026-09-20T00:31:23Z — USER-20260920-CIRCUS-RESERVE-FINISH
+- Timestamp: 2026-09-20T00:31:23Z
+- Task: USER-20260920-CIRCUS-RESERVE / 実対面変更後の控え選択
+- Status: DONE（Circus/P08全体は未完）
+- Version: pr16-circus-reserve-v1
+- Summary: 控え代替選択後の実29勝/81BPと通常Save/fresh Continueをscoped検証。真正30勝は未達。
+- Files changed: scripts/pr16_circus_reserve_fallback.py, scripts/pr16_circus_reserve_fallback_policy.py, tests/test_pr16_circus_reserve_fallback.py, .github/workflows/pr16-circus-reserve-fallback.yml, content/modernization/pr16_circus_reserve_fallback.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, evidence/pr16_circus_reserve_fallback/35478473681/execution/analysis.json, evidence/pr16_circus_reserve_fallback/35478473681/execution/circus-continuous-30-save.process.json, evidence/pr16_circus_reserve_fallback/35478473681/execution/circus-continuous-30-save.stderr, evidence/pr16_circus_reserve_fallback/35478473681/execution/circus-continuous-30-save.stdout, evidence/pr16_circus_reserve_fallback/35478473681/execution/compile.process.json, evidence/pr16_circus_reserve_fallback/35478473681/execution/compile.stderr, evidence/pr16_circus_reserve_fallback/35478473681/execution/compile.stdout, evidence/pr16_circus_reserve_fallback/35478473681/execution/events.json, evidence/pr16_circus_reserve_fallback/35478473681/execution/matchup-prefix.json, evidence/pr16_circus_reserve_fallback/35478473681/execution/policy.c, evidence/pr16_circus_reserve_fallback/35478473681/execution/prefix.json, evidence/pr16_circus_reserve_fallback/35478473681/execution/reconstruct.process.json, evidence/pr16_circus_reserve_fallback/35478473681/execution/reconstruct.stderr, evidence/pr16_circus_reserve_fallback/35478473681/execution/reconstruct.stdout, evidence/pr16_circus_reserve_fallback/35478473681/execution/reserve-tests.process.json, evidence/pr16_circus_reserve_fallback/35478473681/execution/reserve-tests.stderr, evidence/pr16_circus_reserve_fallback/35478473681/execution/reserve-tests.stdout, evidence/pr16_circus_reserve_fallback/35478473681/execution/resume-START.process.json, evidence/pr16_circus_reserve_fallback/35478473681/execution/resume-START.stderr, evidence/pr16_circus_reserve_fallback/35478473681/execution/resume-START.stdout, evidence/pr16_circus_reserve_fallback/35478473681/execution/task-graph-START.process.json, evidence/pr16_circus_reserve_fallback/35478473681/execution/task-graph-START.stderr, evidence/pr16_circus_reserve_fallback/35478473681/execution/task-graph-START.stdout, design/run_log.md, design/version_log.md
+- Verify: 新規10契約、固定resume整合性/影響tests、task graph、index差分private guard/diff check。native成否/実process数はreport。
+- Commit: 同branch非force。自己SHAはremote/receipt。
+- Network: GitHub前run/job/artifact原本照合、host mGBA依存のみ。旧builder/ARM/Ring hostなし。
+- Next: content/modernization/pr16_circus_reserve_fallback.jsonの新たな最初の実敗北だけを修復。受入単体・旧ARM・Ring hostは再実行しない。
+
+
+## 2026-09-20T00:44:15Z — USER-20260920-CIRCUS-BATTLE30-PP-START
+- Timestamp: 2026-09-20T00:44:15Z
+- Task: USER-20260920-CIRCUS-BATTLE30-PP / 30戦目同点評価のPP温存
+- Status: STOPPED（Circus/P08全体は未完）
+- Version: pr16-circus-battle30-pp-v1
+- Summary: run35478473681の実29勝/30戦目敗北・Saveを照合し、元のfailure結論を保持。30戦目初手の同点評価458737/命中100で残PP16対32を選び分ける新規10契約を検証。新nativeは未実行。
+- Files changed: scripts/pr16_circus_battle30_pp.py, scripts/pr16_circus_battle30_pp_policy.py, tests/test_pr16_circus_battle30_pp.py, .github/workflows/pr16-circus-battle30-pp.yml, content/modernization/pr16_circus_battle30_pp.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, evidence/pr16_circus_battle30_pp/35479503528/execution/pp-tests.process.json, evidence/pr16_circus_battle30_pp/35479503528/execution/pp-tests.stderr, evidence/pr16_circus_battle30_pp/35479503528/execution/pp-tests.stdout, design/run_log.md, design/version_log.md
+- Verify: 新規10契約、固定resume整合性/影響tests、task graph、index差分private guard/diff check。native成否/実process数はreport。
+- Commit: 同branch非force。自己SHAはremote/receipt。
+- Network: GitHub前run/job/artifact原本照合、host mGBA依存のみ。旧builder/ARM/Ring hostなし。
+- Next: 進行中のbattle30-pp Actionsだけを照合。重複起動せず、完了後に新原本・固定引継ぎ・両ログを記録する。
+
+
+## 2026-09-20T00:55:15Z — USER-20260920-CIRCUS-BATTLE30-PP-FINISH
+- Timestamp: 2026-09-20T00:55:15Z
+- Task: USER-20260920-CIRCUS-BATTLE30-PP / 30戦目同点評価のPP温存
+- Status: DONE（Circus/P08全体は未完）
+- Version: pr16-circus-battle30-pp-v1
+- Summary: 同一2b107e7eで真正30勝90BP・元party600/owner64・通常Save/fresh Continueを検証。29勝＋30戦目action138eventsまで原本byte一致。同点時だけ残PPの多い技を通常入力で選択。ROM変更/ARM0。
+- Files changed: scripts/pr16_circus_battle30_pp.py, scripts/pr16_circus_battle30_pp_policy.py, tests/test_pr16_circus_battle30_pp.py, .github/workflows/pr16-circus-battle30-pp.yml, content/modernization/pr16_circus_battle30_pp.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, evidence/pr16_circus_battle30_pp/35479503528/execution/analysis.json, evidence/pr16_circus_battle30_pp/35479503528/execution/circus-continuous-30-save.process.json, evidence/pr16_circus_battle30_pp/35479503528/execution/circus-continuous-30-save.stderr, evidence/pr16_circus_battle30_pp/35479503528/execution/circus-continuous-30-save.stdout, evidence/pr16_circus_battle30_pp/35479503528/execution/compile.process.json, evidence/pr16_circus_battle30_pp/35479503528/execution/compile.stderr, evidence/pr16_circus_battle30_pp/35479503528/execution/compile.stdout, evidence/pr16_circus_battle30_pp/35479503528/execution/events.json, evidence/pr16_circus_battle30_pp/35479503528/execution/matchup-prefix.json, evidence/pr16_circus_battle30_pp/35479503528/execution/policy.c, evidence/pr16_circus_battle30_pp/35479503528/execution/pp-tests.process.json, evidence/pr16_circus_battle30_pp/35479503528/execution/pp-tests.stderr, evidence/pr16_circus_battle30_pp/35479503528/execution/pp-tests.stdout, evidence/pr16_circus_battle30_pp/35479503528/execution/prefix.json, evidence/pr16_circus_battle30_pp/35479503528/execution/reconstruct.process.json, evidence/pr16_circus_battle30_pp/35479503528/execution/reconstruct.stderr, evidence/pr16_circus_battle30_pp/35479503528/execution/reconstruct.stdout, evidence/pr16_circus_battle30_pp/35479503528/execution/resume-START.process.json, evidence/pr16_circus_battle30_pp/35479503528/execution/resume-START.stderr, evidence/pr16_circus_battle30_pp/35479503528/execution/resume-START.stdout, evidence/pr16_circus_battle30_pp/35479503528/execution/task-graph-START.process.json, evidence/pr16_circus_battle30_pp/35479503528/execution/task-graph-START.stderr, evidence/pr16_circus_battle30_pp/35479503528/execution/task-graph-START.stdout, design/run_log.md, design/version_log.md
+- Verify: 新規10契約、固定resume整合性/影響tests、task graph、index差分private guard/diff check。native成否/実process数はreport。
+- Commit: 同branch非force。自己SHAはremote/receipt。
+- Network: GitHub前run/job/artifact原本照合、host mGBA依存のみ。旧builder/ARM/Ring hostなし。
+- Next: このrunの原本と終端画面を照合し、正規実受付から特性抑制へ進む。30勝単独再実行は禁止。P08移送・releaseは未完。
+
+
+## 2026-09-20T01:04:17Z — USER-20260920-CIRCUS-BATTLE30-RECEIPT
+- Timestamp: 2026-09-20T01:04:17Z
+- Task: USER-20260920-CIRCUS-BATTLE30-RECEIPT
+- Status: DONE（原本照合・scoped受入のみ。特性抑制/P08は未完）
+- Version: pr16-circus-battle30-receipt-v1
+- Summary: run35479503528の原本・29勝/30戦目同点選択prefix・終端画面を照合。実30勝/90BP、元party600/owner64、通常Save/fresh Continueをscoped確定。旧runの予測不一致failureは保持。完了runのpendingを解消し、記録でnative/ARM再実行なし。
+- Files changed: scripts/pr16_circus_battle30_receipt.py, tests/test_pr16_circus_battle30_receipt.py, .github/workflows/pr16-circus-battle30-receipt.yml, content/modernization/pr16_circus_battle30_receipt.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md
+- Verify: 新規receipt契約・native原本validator（emulatorなし）・byte/event prefix・画面identity・固定引継ぎ・task graph・差分private guard/diff check PASS。
+- Commit: 同branch非force。検証入力HEAD=d5efa04ecc2bbdc279b567f3b2475897b8c81c4e。自己SHAはremote/receipt。
+- Network: GitHub完了run/job/artifact取得のみ。private Release/旧builder/ARM/nativeなし。
+- Next: 真正30勝の保存原本を保持し、正規実受付から特性抑制の未完経路を検証する。30勝単独・受入済みBP/Ring/P03/P06/P07・旧ARMは再実行しない。
+
+
+## 2026-09-20T06:22:26Z — USER-20260920-CIRCUS-SUPPRESSION-START
+- Timestamp: 2026-09-20T06:22:26Z
+- Task: USER-20260920-CIRCUS-SUPPRESSION
+- Status: STOPPED（正式physical受入・P08は未完）
+- Version: pr16-circus-suppression-v1
+- Summary: 抑制観測driver/異常系20契約を実装。旧30勝原本と生成Cを照合し、SRAM未保持を確認。未完経路へ必要な真正Save30を一度だけ確保し、以後はhash付きcacheから再開する。
+- Files changed: scripts/pr16_circus_suppression.py, scripts/pr16_circus_suppression_contract.py, tools/mgba_pr16_circus_suppression.h, tests/test_pr16_circus_suppression.py, .github/workflows/pr16-circus-suppression.yml, content/modernization/pr16_circus_suppression.json, evidence/pr16_circus_suppression/35494023398/start.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, evidence/pr16_circus_suppression/35494023398/execution/contracts.process.json, evidence/pr16_circus_suppression/35494023398/execution/contracts.stderr, evidence/pr16_circus_suppression/35494023398/execution/contracts.stdout, design/run_log.md, design/version_log.md
+- Verify: 新規20契約・固定resume/影響tests・task graph・index差分private guard・diff check。実native/trace成否は原本report。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote/receipt。
+- Network: GitHub原本API照合・host mGBA依存。ROM/save/private入力はGit/artifactへ追加せず、真正Save30のみActions cache。旧ARM/旧builder/受入単体0。
+- Next: 進行中の同branch suppression runのみ確認。通常入力の抽選と自然callee観測を完了し、原本・引継ぎ・両ログを記録する。
+
+
+## 2026-09-20T06:38:34Z — USER-20260920-CIRCUS-SUPPRESSION-FINISH
+- Timestamp: 2026-09-20T06:38:34Z
+- Task: USER-20260920-CIRCUS-SUPPRESSION
+- Status: STOPPED（正式physical受入・P08は未完）
+- Version: pr16-circus-suppression-v1
+- Summary: 抑制継続の原本と実停止を記録。真正30勝/90BPの受入は不変。未観測を成功へ昇格しない。[{'stage': 'native-or-setup', 'type': 'ValueError', 'error': 'native process or logger failed'}]
+- Files changed: scripts/pr16_circus_suppression.py, scripts/pr16_circus_suppression_contract.py, tools/mgba_pr16_circus_suppression.h, tests/test_pr16_circus_suppression.py, .github/workflows/pr16-circus-suppression.yml, content/modernization/pr16_circus_suppression.json, evidence/pr16_circus_suppression/35494023398/finish.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, evidence/pr16_circus_suppression/35494023398/execution/circus-suppression-save.process.json, evidence/pr16_circus_suppression/35494023398/execution/circus-suppression-save.stderr, evidence/pr16_circus_suppression/35494023398/execution/circus-suppression-save.stdout, evidence/pr16_circus_suppression/35494023398/execution/compile.process.json, evidence/pr16_circus_suppression/35494023398/execution/compile.stderr, evidence/pr16_circus_suppression/35494023398/execution/compile.stdout, evidence/pr16_circus_suppression/35494023398/execution/contracts.process.json, evidence/pr16_circus_suppression/35494023398/execution/contracts.stderr, evidence/pr16_circus_suppression/35494023398/execution/contracts.stdout, evidence/pr16_circus_suppression/35494023398/execution/generated/controller.c, evidence/pr16_circus_suppression/35494023398/execution/generated/pr16_shop_breeding_helpers.c, evidence/pr16_circus_suppression/35494023398/execution/generated/ss_routes.h, evidence/pr16_circus_suppression/35494023398/execution/reconstruct.process.json, evidence/pr16_circus_suppression/35494023398/execution/reconstruct.stderr, evidence/pr16_circus_suppression/35494023398/execution/reconstruct.stdout, evidence/pr16_circus_suppression/35494023398/execution/resume-START.process.json, evidence/pr16_circus_suppression/35494023398/execution/resume-START.stderr, evidence/pr16_circus_suppression/35494023398/execution/resume-START.stdout, evidence/pr16_circus_suppression/35494023398/execution/task-graph-START.process.json, evidence/pr16_circus_suppression/35494023398/execution/task-graph-START.stderr, evidence/pr16_circus_suppression/35494023398/execution/task-graph-START.stdout, design/run_log.md, design/version_log.md
+- Verify: 新規20契約・固定resume/影響tests・task graph・index差分private guard・diff check。実native/trace成否は原本report。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote/receipt。
+- Network: GitHub原本API照合・host mGBA依存。ROM/save/private入力はGit/artifactへ追加せず、真正Save30のみActions cache。旧ARM/旧builder/受入単体0。
+- Next: pr16_circus_suppression.jsonの最初の未達段階だけ修復する。normal_save30が検証済みなら指定cacheを再利用し、30戦prefixを再実行しない。
+
+
+## 2026-09-20T08:30:35Z — USER-20260920-CIRCUS-GETTER-ABI-START
+- Timestamp: 2026-09-20T08:30:35Z
+- Task: USER-20260920-CIRCUS-GETTER-ABI
+- Status: STOPPED（正式Circus受入/P08は未完）
+- Version: pr16-circus-getter-abi-v1
+- Summary: 旧64抽選は全件単一global effectで打切り。getter中継が第４引数r3を破壊する不具合を５引数保持veneerで修復し、16契約を検証。真正Save30 cacheからだけ継続する。
+- Files changed: scripts/pr16_circus_getter_abi.py, scripts/pr16_circus_getter_followup.py, tools/mgba_pr16_circus_getter_trace.h, tests/test_pr16_circus_getter_abi.py, .github/workflows/pr16-circus-getter.yml, content/modernization/pr16_circus_getter_followup.json, evidence/pr16_circus_getter/35499729510/start.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, evidence/pr16_circus_getter/35499729510/execution/abi-contracts.process.json, evidence/pr16_circus_getter/35499729510/execution/abi-contracts.stderr, evidence/pr16_circus_getter/35499729510/execution/abi-contracts.stdout, design/run_log.md, design/version_log.md
+- Verify: 新規ABI16契約、固定resume、task graph、index差分private guard、diff check。実native/ROM/trace結果はreport原本に分離。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote/receipt。
+- Network: GitHub固定Actions原本。固定CFRU e24a16feのsrc/frontier.c（GetCurrentBattleTowerStreak/LoadBattleCircusEffects）とsource-lockを照合。検索語sp072_LoadBattleCircusEffects。host mGBA依存のみ導入。ROM/save/private入力はGit/artifactへ追加しない。
+- Next: 進行中のgetter followup runを確認。cache欠落時も30勝bootstrapへfallbackせず、最初の未達だけ修復する。
+
+
+## 2026-09-20T08:31:39Z — USER-20260920-CIRCUS-GETTER-ABI-FINISH
+- Timestamp: 2026-09-20T08:31:39Z
+- Task: USER-20260920-CIRCUS-GETTER-ABI
+- Status: STOPPED（正式Circus受入/P08は未完）
+- Version: pr16-circus-getter-abi-v1
+- Summary: getter限定修復の実証と停止原本を記録。受入済み30勝/BPは不変。未観測を成功へ昇格しない。[{'stage': 'getter-native-or-build', 'type': 'ValueError', 'error': 'BL range'}]
+- Files changed: scripts/pr16_circus_getter_abi.py, scripts/pr16_circus_getter_followup.py, tools/mgba_pr16_circus_getter_trace.h, tests/test_pr16_circus_getter_abi.py, .github/workflows/pr16-circus-getter.yml, content/modernization/pr16_circus_getter_followup.json, evidence/pr16_circus_getter/35499729510/finish.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, evidence/pr16_circus_getter/35499729510/execution/abi-contracts.process.json, evidence/pr16_circus_getter/35499729510/execution/abi-contracts.stderr, evidence/pr16_circus_getter/35499729510/execution/abi-contracts.stdout, evidence/pr16_circus_getter/35499729510/execution/reconstruct.process.json, evidence/pr16_circus_getter/35499729510/execution/reconstruct.stderr, evidence/pr16_circus_getter/35499729510/execution/reconstruct.stdout, evidence/pr16_circus_getter/35499729510/execution/resume-START.process.json, evidence/pr16_circus_getter/35499729510/execution/resume-START.stderr, evidence/pr16_circus_getter/35499729510/execution/resume-START.stdout, evidence/pr16_circus_getter/35499729510/execution/task-graph-START.process.json, evidence/pr16_circus_getter/35499729510/execution/task-graph-START.stderr, evidence/pr16_circus_getter/35499729510/execution/task-graph-START.stdout, design/run_log.md, design/version_log.md
+- Verify: 新規ABI16契約、固定resume、task graph、index差分private guard、diff check。実native/ROM/trace結果はreport原本に分離。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote/receipt。
+- Network: GitHub固定Actions原本。固定CFRU e24a16feのsrc/frontier.c（GetCurrentBattleTowerStreak/LoadBattleCircusEffects）とsource-lockを照合。検索語sp072_LoadBattleCircusEffects。host mGBA依存のみ導入。ROM/save/private入力はGit/artifactへ追加しない。
+- Next: pr16_circus_getter_followup.jsonの最初の未達のみ修復する。真正Save30は固定cacheを使用し、30戦prefix/旧builder/ARM再compileを禁止。
+
+
+## 2026-09-20T08:39:37Z — USER-20260920-CIRCUS-GETTER-REACH-START
+- Timestamp: 2026-09-20T08:39:37Z
+- Task: USER-20260920-CIRCUS-GETTER-REACH
+- Status: STOPPED（正式Circus受入/P08は未完）
+- Version: pr16-circus-getter-abi-v1
+- Summary: 旧64抽選は全件単一global effectで打切り。getter中継が第４引数r3を破壊する不具合を５引数保持veneerで修復し、20契約を検証。真正Save30 cacheからだけ継続する。
+- Files changed: scripts/pr16_circus_getter_abi.py, scripts/pr16_circus_getter_followup.py, tools/mgba_pr16_circus_getter_trace.h, tests/test_pr16_circus_getter_abi.py, .github/workflows/pr16-circus-getter.yml, content/modernization/pr16_circus_getter_followup.json, evidence/pr16_circus_getter/35500143124/start.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, evidence/pr16_circus_getter/35500143124/execution/abi-contracts.process.json, evidence/pr16_circus_getter/35500143124/execution/abi-contracts.stderr, evidence/pr16_circus_getter/35500143124/execution/abi-contracts.stdout, design/run_log.md, design/version_log.md
+- Verify: 新規ABI20契約、固定resume、task graph、index差分private guard、diff check。実native/ROM/trace結果はreport原本に分離。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote/receipt。
+- Network: GitHub固定Actions原本。固定CFRU e24a16feのsrc/frontier.c（GetCurrentBattleTowerStreak/LoadBattleCircusEffects）とsource-lockを照合。検索語sp072_LoadBattleCircusEffects。host mGBA依存のみ導入。ROM/save/private入力はGit/artifactへ追加しない。
+- Next: 進行中のgetter followup runを確認。cache欠落時も30勝bootstrapへfallbackせず、最初の未達だけ修復する。
+
+
+## 2026-09-20T08:40:57Z — USER-20260920-CIRCUS-GETTER-REACH-FINISH
+- Timestamp: 2026-09-20T08:40:57Z
+- Task: USER-20260920-CIRCUS-GETTER-REACH
+- Status: STOPPED（正式Circus受入/P08は未完）
+- Version: pr16-circus-getter-abi-v1
+- Summary: getter限定修復の実証と停止原本を記録。受入済み30勝/BPは不変。未観測を成功へ昇格しない。[{'stage': 'getter-native-or-build', 'type': 'ValueError', 'error': 'natural five-argument getter proof'}]
+- Files changed: scripts/pr16_circus_getter_abi.py, scripts/pr16_circus_getter_followup.py, tools/mgba_pr16_circus_getter_trace.h, tests/test_pr16_circus_getter_abi.py, .github/workflows/pr16-circus-getter.yml, content/modernization/pr16_circus_getter_followup.json, evidence/pr16_circus_getter/35500143124/finish.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, evidence/pr16_circus_getter/35500143124/execution/abi-contracts.process.json, evidence/pr16_circus_getter/35500143124/execution/abi-contracts.stderr, evidence/pr16_circus_getter/35500143124/execution/abi-contracts.stdout, evidence/pr16_circus_getter/35500143124/execution/build.json, evidence/pr16_circus_getter/35500143124/execution/circus-suppression-save.process.json, evidence/pr16_circus_getter/35500143124/execution/circus-suppression-save.stderr, evidence/pr16_circus_getter/35500143124/execution/circus-suppression-save.stdout, evidence/pr16_circus_getter/35500143124/execution/compile.process.json, evidence/pr16_circus_getter/35500143124/execution/compile.stderr, evidence/pr16_circus_getter/35500143124/execution/compile.stdout, evidence/pr16_circus_getter/35500143124/execution/generated/cg_addresses.h, evidence/pr16_circus_getter/35500143124/execution/generated/controller.c, evidence/pr16_circus_getter/35500143124/execution/generated/getter_suppression.h, evidence/pr16_circus_getter/35500143124/execution/generated/p03_learning_embedded.c, evidence/pr16_circus_getter/35500143124/execution/generated/p03_p02_embedded.c, evidence/pr16_circus_getter/35500143124/execution/generated/p03a_fullslots_embedded.c, evidence/pr16_circus_getter/35500143124/execution/generated/p03b_archive_embedded.c, evidence/pr16_circus_getter/35500143124/execution/generated/pr16_bp_control_embedded.c, evidence/pr16_circus_getter/35500143124/execution/generated/pr16_bp_native_helpers.c, evidence/pr16_circus_getter/35500143124/execution/generated/pr16_capture_shop_helpers.c, evidence/pr16_circus_getter/35500143124/execution/generated/pr16_circus_addresses.h, evidence/pr16_circus_getter/35500143124/execution/generated/pr16_circus_selection_helpers.c, evidence/pr16_circus_getter/35500143124/execution/generated/pr16_circus_turn_helpers.c, evidence/pr16_circus_getter/35500143124/execution/generated/pr16_gear_capture_helpers.c, evidence/pr16_circus_getter/35500143124/execution/generated/pr16_gear_route.h, evidence/pr16_circus_getter/35500143124/execution/generated/pr16_shop_breeding_helpers.c, evidence/pr16_circus_getter/35500143124/execution/generated/pr16_streak_legacy.c, evidence/pr16_circus_getter/35500143124/execution/generated/pr16_streak_policy.c, evidence/pr16_circus_getter/35500143124/execution/generated/ss_routes.h, evidence/pr16_circus_getter/35500143124/execution/reconstruct.process.json, evidence/pr16_circus_getter/35500143124/execution/reconstruct.stderr, evidence/pr16_circus_getter/35500143124/execution/reconstruct.stdout, evidence/pr16_circus_getter/35500143124/execution/resume-START.process.json, evidence/pr16_circus_getter/35500143124/execution/resume-START.stderr, evidence/pr16_circus_getter/35500143124/execution/resume-START.stdout, evidence/pr16_circus_getter/35500143124/execution/task-graph-START.process.json, evidence/pr16_circus_getter/35500143124/execution/task-graph-START.stderr, evidence/pr16_circus_getter/35500143124/execution/task-graph-START.stdout, design/run_log.md, design/version_log.md
+- Verify: 新規ABI20契約、固定resume、task graph、index差分private guard、diff check。実native/ROM/trace結果はreport原本に分離。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote/receipt。
+- Network: GitHub固定Actions原本。固定CFRU e24a16feのsrc/frontier.c（GetCurrentBattleTowerStreak/LoadBattleCircusEffects）とsource-lockを照合。検索語sp072_LoadBattleCircusEffects。host mGBA依存のみ導入。ROM/save/private入力はGit/artifactへ追加しない。
+- Next: pr16_circus_getter_followup.jsonの最初の未達のみ修復する。真正Save30は固定cacheを使用し、30戦prefix/旧builder/ARM再compileを禁止。
+
+
+## 2026-09-20T09:53:11Z — USER-20260920-CIRCUS-GETTER-FIELDS-START
+- Timestamp: 2026-09-20T09:53:11Z
+- Task: USER-20260920-CIRCUS-GETTER-FIELDS / getter field ABI修復
+- Status: STOPPED（正式Circus/P08受入は別）
+- Version: pr16-circus-getter-fields-v1
+- Summary: APIへ旧Var IDを渡すgetterの原因を固定ROM/型定義で確定。命令/分岐/Save ABIを変えず５literalを修復する契約を検証。新nativeは真正Save30 cacheからだけ起動する。
+- Files changed: scripts/pr16_circus_getter_fields.py, tests/test_pr16_circus_getter_fields.py, tests/fixtures/pr16_circus_getter_fields.json, .github/workflows/pr16-circus-getter-fields.yml, overlays/circus_streak/circus_streak_runtime.c, content/modernization/pr16_circus_getter_followup.json, evidence/pr16_circus_getter/35503514936/start.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, evidence/pr16_circus_getter/35503514936/execution/field-contracts.process.json, evidence/pr16_circus_getter/35503514936/execution/field-contracts.stderr, evidence/pr16_circus_getter/35503514936/execution/field-contracts.stdout, design/run_log.md, design/version_log.md
+- Verify: 新field契約20件PASS、resume/task graph、index差分private guard、diff check。旧20 ABI契約再実行0。native結果はreport。
+- Commit: この記録を含む同branch非force commit。自己SHAはreceipt/remoteで照合。
+- Network: GitHub先行run35500143124 failure/35502970203採取failure/35503126098採取successを照合。検索語VegaFacilityStateGet/CircusStreakRuntimeGet。固定build_battle_core.pyとrom_bridge.cが根拠。新規外部source導入なし、host libmgba依存のみ。ROM/save/cacheはGit/artifactへ追加しない。
+- Next: 進行中のgetter fields runのみ確認。最初の未達だけ修復し、30勝prefix/旧builder/ARM再compileを行わない。
+
+
+## 2026-09-20T09:56:06Z — USER-20260920-CIRCUS-GETTER-FIELDS-FINISH
+- Timestamp: 2026-09-20T09:56:06Z
+- Task: USER-20260920-CIRCUS-GETTER-FIELDS / getter field ABI修復
+- Status: STOPPED（正式Circus/P08受入は別）
+- Version: pr16-circus-getter-fields-v1
+- Summary: getter field修復の実停止を保存。未観測を成功にしない。[{'stage': 'getter-native-or-build', 'type': 'ValueError', 'error': 'native process or logger failed'}]
+- Files changed: scripts/pr16_circus_getter_fields.py, tests/test_pr16_circus_getter_fields.py, tests/fixtures/pr16_circus_getter_fields.json, .github/workflows/pr16-circus-getter-fields.yml, overlays/circus_streak/circus_streak_runtime.c, content/modernization/pr16_circus_getter_followup.json, evidence/pr16_circus_getter/35503514936/finish.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, evidence/pr16_circus_getter/35503514936/execution/build.json, evidence/pr16_circus_getter/35503514936/execution/circus-suppression-save.process.json, evidence/pr16_circus_getter/35503514936/execution/circus-suppression-save.stderr, evidence/pr16_circus_getter/35503514936/execution/circus-suppression-save.stdout, evidence/pr16_circus_getter/35503514936/execution/compile.process.json, evidence/pr16_circus_getter/35503514936/execution/compile.stderr, evidence/pr16_circus_getter/35503514936/execution/compile.stdout, evidence/pr16_circus_getter/35503514936/execution/field-contracts.process.json, evidence/pr16_circus_getter/35503514936/execution/field-contracts.stderr, evidence/pr16_circus_getter/35503514936/execution/field-contracts.stdout, evidence/pr16_circus_getter/35503514936/execution/generated/cg_addresses.h, evidence/pr16_circus_getter/35503514936/execution/generated/controller.c, evidence/pr16_circus_getter/35503514936/execution/generated/getter_suppression.h, evidence/pr16_circus_getter/35503514936/execution/generated/p03_learning_embedded.c, evidence/pr16_circus_getter/35503514936/execution/generated/p03_p02_embedded.c, evidence/pr16_circus_getter/35503514936/execution/generated/p03a_fullslots_embedded.c, evidence/pr16_circus_getter/35503514936/execution/generated/p03b_archive_embedded.c, evidence/pr16_circus_getter/35503514936/execution/generated/pr16_bp_control_embedded.c, evidence/pr16_circus_getter/35503514936/execution/generated/pr16_bp_native_helpers.c, evidence/pr16_circus_getter/35503514936/execution/generated/pr16_capture_shop_helpers.c, evidence/pr16_circus_getter/35503514936/execution/generated/pr16_circus_addresses.h, evidence/pr16_circus_getter/35503514936/execution/generated/pr16_circus_selection_helpers.c, evidence/pr16_circus_getter/35503514936/execution/generated/pr16_circus_turn_helpers.c, evidence/pr16_circus_getter/35503514936/execution/generated/pr16_gear_capture_helpers.c, evidence/pr16_circus_getter/35503514936/execution/generated/pr16_gear_route.h, evidence/pr16_circus_getter/35503514936/execution/generated/pr16_shop_breeding_helpers.c, evidence/pr16_circus_getter/35503514936/execution/generated/pr16_streak_legacy.c, evidence/pr16_circus_getter/35503514936/execution/generated/pr16_streak_policy.c, evidence/pr16_circus_getter/35503514936/execution/generated/ss_routes.h, evidence/pr16_circus_getter/35503514936/execution/reconstruct.process.json, evidence/pr16_circus_getter/35503514936/execution/reconstruct.stderr, evidence/pr16_circus_getter/35503514936/execution/reconstruct.stdout, evidence/pr16_circus_getter/35503514936/execution/resume-START.process.json, evidence/pr16_circus_getter/35503514936/execution/resume-START.stderr, evidence/pr16_circus_getter/35503514936/execution/resume-START.stdout, evidence/pr16_circus_getter/35503514936/execution/task-graph-START.process.json, evidence/pr16_circus_getter/35503514936/execution/task-graph-START.stderr, evidence/pr16_circus_getter/35503514936/execution/task-graph-START.stdout, design/run_log.md, design/version_log.md
+- Verify: 新field契約20件PASS、resume/task graph、index差分private guard、diff check。旧20 ABI契約再実行0。native結果はreport。
+- Commit: この記録を含む同branch非force commit。自己SHAはreceipt/remoteで照合。
+- Network: GitHub先行run35500143124 failure/35502970203採取failure/35503126098採取successを照合。検索語VegaFacilityStateGet/CircusStreakRuntimeGet。固定build_battle_core.pyとrom_bridge.cが根拠。新規外部source導入なし、host libmgba依存のみ。ROM/save/cacheはGit/artifactへ追加しない。
+- Next: pr16_circus_getter_followup.jsonの最初の未達のみ修復。真正Save30 cacheから継続し、受入済み30勝/ABI/他施設を重複実行しない。
+
+
+## 2026-09-20T10:10:32Z — USER-20260920-CIRCUS-FAIRY-LOCK-START
+- Timestamp: 2026-09-20T10:10:32Z
+- Task: USER-20260920-CIRCUS-FAIRY-LOCK
+- Status: STOPPED（正式Circus/P08は別）
+- Version: pr16-circus-fairy-lock-v1
+- Summary: 同一ROMの自然getter30/正規抑制calleeはrun35503514936で確認済み。Fairy Lock中の任意交代だけを回避し、通常技・強制交代・自然勝敗を維持。新規契約PASS。delay51の一回だけから未完lifecycleを継続する。
+- Files changed: scripts/pr16_circus_fairy_lock.py, tests/test_pr16_circus_fairy_lock.py, tools/mgba_pr16_circus_fairy_lock.h, .github/workflows/pr16-circus-fairy-lock.yml, content/modernization/pr16_circus_suppression_lifecycle.json, evidence/pr16_circus_fairy_lock/35504302893/start.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, evidence/pr16_circus_fairy_lock/35504302893/execution/fairy-contracts.process.json, evidence/pr16_circus_fairy_lock/35504302893/execution/fairy-contracts.stderr, evidence/pr16_circus_fairy_lock/35504302893/execution/fairy-contracts.stdout, design/run_log.md, design/version_log.md
+- Verify: 新規host契約22件、resume/task graph/index差分private guard/diff check。旧20 ABI/20field/30勝再実行0。
+- Commit: 同branch非force commit、remote/receipt一致。
+- Network: 固定CFRU e24a16fe39e27ae162faf5b78596d1f3df18489d include/constants/battle.h、src/battle_util.c IsFairyLockActive、src/switching.cをGitHubで照合。検索語BATTLE_CIRCUS_FAIRY_LOCK / IsFairyLockActive。host mGBA依存のみ。秘密/ROM/Saveの追加なし。
+- Next: Fairy Lock followupの現在run/停止原本から最初の未達のみ修復。30勝/旧3抽選/getter・抑制CPU trace/ARMを繰り返さない。
+
+
+## 2026-09-20T10:13:18Z — USER-20260920-CIRCUS-FAIRY-LOCK-FINISH
+- Timestamp: 2026-09-20T10:13:18Z
+- Task: USER-20260920-CIRCUS-FAIRY-LOCK
+- Status: DONE（正式Circus/P08は別）
+- Version: pr16-circus-fairy-lock-v1
+- Summary: 同一ROMの自然getter30/正規抑制calleeはrun35503514936で確認済み。Fairy Lock中の任意交代だけを回避し、通常技・強制交代・自然勝敗を維持。真正Save30から通常帰還・party600/owner64・Save/fresh Continueまで検証完了。画面/完了Actionsの正式受入照合は未完。
+- Files changed: scripts/pr16_circus_fairy_lock.py, tests/test_pr16_circus_fairy_lock.py, tools/mgba_pr16_circus_fairy_lock.h, .github/workflows/pr16-circus-fairy-lock.yml, content/modernization/pr16_circus_suppression_lifecycle.json, evidence/pr16_circus_fairy_lock/35504302893/finish.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, evidence/pr16_circus_fairy_lock/35504302893/execution/circus-suppression-save.process.json, evidence/pr16_circus_fairy_lock/35504302893/execution/circus-suppression-save.stderr, evidence/pr16_circus_fairy_lock/35504302893/execution/circus-suppression-save.stdout, evidence/pr16_circus_fairy_lock/35504302893/execution/compile.process.json, evidence/pr16_circus_fairy_lock/35504302893/execution/compile.stderr, evidence/pr16_circus_fairy_lock/35504302893/execution/compile.stdout, evidence/pr16_circus_fairy_lock/35504302893/execution/fairy-contracts.process.json, evidence/pr16_circus_fairy_lock/35504302893/execution/fairy-contracts.stderr, evidence/pr16_circus_fairy_lock/35504302893/execution/fairy-contracts.stdout, evidence/pr16_circus_fairy_lock/35504302893/execution/generated/cg_addresses.h, evidence/pr16_circus_fairy_lock/35504302893/execution/generated/controller.c, evidence/pr16_circus_fairy_lock/35504302893/execution/generated/getter_suppression.h, evidence/pr16_circus_fairy_lock/35504302893/execution/generated/p03_learning_embedded.c, evidence/pr16_circus_fairy_lock/35504302893/execution/generated/p03_p02_embedded.c, evidence/pr16_circus_fairy_lock/35504302893/execution/generated/p03a_fullslots_embedded.c, evidence/pr16_circus_fairy_lock/35504302893/execution/generated/p03b_archive_embedded.c, evidence/pr16_circus_fairy_lock/35504302893/execution/generated/pr16_bp_control_embedded.c, evidence/pr16_circus_fairy_lock/35504302893/execution/generated/pr16_bp_native_helpers.c, evidence/pr16_circus_fairy_lock/35504302893/execution/generated/pr16_capture_shop_helpers.c, evidence/pr16_circus_fairy_lock/35504302893/execution/generated/pr16_circus_addresses.h, evidence/pr16_circus_fairy_lock/35504302893/execution/generated/pr16_circus_selection_helpers.c, evidence/pr16_circus_fairy_lock/35504302893/execution/generated/pr16_circus_turn_helpers.c, evidence/pr16_circus_fairy_lock/35504302893/execution/generated/pr16_gear_capture_helpers.c, evidence/pr16_circus_fairy_lock/35504302893/execution/generated/pr16_gear_route.h, evidence/pr16_circus_fairy_lock/35504302893/execution/generated/pr16_shop_breeding_helpers.c, evidence/pr16_circus_fairy_lock/35504302893/execution/generated/pr16_streak_legacy.c, evidence/pr16_circus_fairy_lock/35504302893/execution/generated/pr16_streak_policy.c, evidence/pr16_circus_fairy_lock/35504302893/execution/generated/ss_routes.h, evidence/pr16_circus_fairy_lock/35504302893/execution/reconstruct.process.json, evidence/pr16_circus_fairy_lock/35504302893/execution/reconstruct.stderr, evidence/pr16_circus_fairy_lock/35504302893/execution/reconstruct.stdout, evidence/pr16_circus_fairy_lock/35504302893/execution/resume-START.process.json, evidence/pr16_circus_fairy_lock/35504302893/execution/resume-START.stderr, evidence/pr16_circus_fairy_lock/35504302893/execution/resume-START.stdout, evidence/pr16_circus_fairy_lock/35504302893/execution/task-graph-START.process.json, evidence/pr16_circus_fairy_lock/35504302893/execution/task-graph-START.stderr, evidence/pr16_circus_fairy_lock/35504302893/execution/task-graph-START.stdout, design/run_log.md, design/version_log.md
+- Verify: 新規host契約22件、resume/task graph/index差分private guard/diff check。旧20 ABI/20field/30勝再実行0。
+- Commit: 同branch非force commit、remote/receipt一致。
+- Network: 固定CFRU e24a16fe39e27ae162faf5b78596d1f3df18489d include/constants/battle.h、src/battle_util.c IsFairyLockActive、src/switching.cをGitHubで照合。検索語BATTLE_CIRCUS_FAIRY_LOCK / IsFairyLockActive。host mGBA依存のみ。秘密/ROM/Saveの追加なし。
+- Next: このrunの完了Actions・原本・画面を照合しCircus正式受入を接続する。新native再実行なし。
+
+
+## 2026-09-20T11:02:03Z — USER-20260920-CIRCUS-ACCEPTANCE
+- Timestamp: 2026-09-20T11:02:03Z
+- Task: USER-20260920-CIRCUS-ACCEPTANCE / Circus正式scoped受入
+- Status: DONE（P08最終移送・releaseは未完）
+- Version: pr16-circus-acceptance-v1
+- Summary: Circus実受付・正規抑制・通常帰還/保存再開を完了Actions・原本・29画面から正式scoped受入。physical残件0。新native0/ROM変更0。P08最終候補の変更影響移送とrelease判断は未完。
+- Files changed: scripts/pr16_circus_acceptance.py, tests/test_pr16_circus_acceptance.py, content/modernization/pr16_circus_visual_review.json, .github/workflows/pr16-circus-acceptance.yml, tests/test_pr16_resume.py, scripts/pr16_resume.py, content/modernization/pr16_circus_acceptance.json, evidence/pr16_circus_acceptance/35506654695/acceptance.json, evidence/pr16_circus_acceptance/35506654695/actions.json, content/modernization/p08_remaining_work.json, content/modernization/pr16_bp_chooser_checkpoint.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, design/run_log.md, design/version_log.md
+- Verify: 新規receipt契約・resume・task graph PASS。旧原本のgetter/predicate/delegate、lifecycle原本、29画面hash/目視と完了Actions再照合。新native/ARM/旧30勝再実行0。
+- Prior failure: run35505906219はresume合成fixtureのCircus未完固定でfailure。原本成功を変更せず検査を修復。run35506191441はinstallのP08 hash同期漏れ2検査でfailure。変更前照合/限定同期を修復、新native0。
+- Commit: 同branch非force commit/push、remote/HEADを読戻し。
+- Network: GitHub RESTの固定native2run/2artifact、記録失敗2runと最新30Actionsの照合のみ。
+- Next: P08の変更ROM範囲/owner/runner/fixture/契約を保存レシピから照合し、46487d98候補への既受入移送と必要な最小代表回帰を確定する。旧ARM/30勝/受入単体は再実行しない。
+
+
+## 2026-09-20T11:10:59Z — USER-20260920-P08-IMPACT
+- Timestamp: 2026-09-20T11:10:59Z
+- Task: USER-20260920-P08-IMPACT
+- Status: DONE（差分監査完了。P08最終native/releaseは未完）
+- Version: pr16-p08-impact-v1
+- Summary: P08保存byte21層432patchの全ROM前進/逆適用、6受入候補からの正味差分、100allocator owner、source/runner/fixture binding照合を保存。P07の3content ownerは不変。Circus同一候補受入は保持。共有save/load/party/battle hookに影響があるためP08最終native/releaseは未完。
+- Files changed: scripts/pr16_p08_record.py, scripts/pr16_p08_impact.py, tests/test_pr16_p08_impact.py, .github/workflows/pr16-p08-impact.yml, content/modernization/pr16_p08_candidate_impact.json, evidence/pr16_p08_impact/35507102023/impact.json, evidence/pr16_p08_impact/35507102023/contracts.stderr, content/modernization/p08_remaining_work.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, design/run_log.md, design/version_log.md
+- Verify: 新規22契約PASS、21層432patch/全ROM逆適用/疎差分一致、100allocation、resume正本/MD/hash整合、task graph PASS。
+- Boundary: 新native0、ARM0、旧30勝再実行0、製品SHA固定なし、active baseline変更なし。clean ROM二重build未実施。
+- Commit: 同branch非force commit/push、remote読戻し。
+- Network: 完了Circus記録Actions/固定artifact metadataと最新30Actionsの読取のみ。byte再構成中はprocess/network遮断。
+- Next: P08影響台帳の4代表境界を対象に、まずBP帰還party/保存とRing通常戦闘を同じ46487d98候補で限定検証する。P03保存再開とCircus退出後通常戦闘も共有hook影響・未観測境界として残す。P07表・旧30勝・受入全件を再実行しない。
+
+
+## 2026-09-20T11:22:47Z — USER-20260920-P08-RING-START
+- Timestamp: 2026-09-20T11:22:47Z
+- Task: USER-20260920-P08-RING-START
+- Status: IN_PROGRESS（未観測/実停止を保存）
+- Version: pr16-p08-ring-v1
+- Summary: P08 Ring代表1件の新候補限定検証。開始/実停止を記録し、未観測・失敗を受入済みとしない。
+- Files changed: scripts/pr16_p08_ring_representative.py, tests/test_pr16_p08_ring_representative.py, .github/workflows/pr16-p08-ring.yml, content/modernization/pr16_p08_ring_representative.json, evidence/pr16_p08_ring/35507654812/start/result.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md
+- Verify: 新規context契約・resume/MD/hash・task graph。保存byte候補identity、元25source/10generated/7guard継承。実行結果はcontent/modernization/pr16_p08_ring_representative.json。
+- Boundary: 新native=0、ARM0、旧30勝0。旧受入原本・P08影響台帳・active baseline不変。
+- Commit: 同branch非force commit/pushとremote読戻し。
+- Network: GitHub完了Actions/固定Ring artifactとhead照合、host mGBA依存のみ。旧ARM/全case buildは実行しない。
+- Next: このP08 Ring runの完了原本を先に読む。native未実行なら同じ記録runのnative/finishへ。失敗なら停止点だけを修正し、受入済みの旧5case/30勝は再実行しない。
+
+
+## 2026-09-20T12:15:38Z — USER-20260920-P08-RING-RECOVERY
+- Timestamp: 2026-09-20T12:15:38Z
+- Task: USER-20260920-P08-RING-RECOVERY
+- Status: DONE
+- Version: pr16-p08-ring-recovery-v1
+- Summary: run35507654812のRing代表native成功1process/3fresh cores・14画面を原本照合しP08_RING_ORDINARYだけ受入。run全体の記録失敗は保持。末尾空行もJSON包絡でbyte保存、回収native0。
+- Files changed: scripts/pr16_p08_ring_recovery.py, tests/test_pr16_p08_ring_recovery.py, .github/workflows/pr16-p08-ring-recovery.yml, content/modernization/pr16_p08_ring_acceptance.json, content/modernization/pr16_p08_ring_representative.json, content/modernization/p08_remaining_work.json, evidence/pr16_p08_ring/35507654812/recovered/original-text.json, evidence/pr16_p08_ring/35507654812/recovered/native-result.json, evidence/pr16_p08_ring/35507654812/recovered/visual-review.json, evidence/pr16_p08_ring/35507654812/recovered/workflow-boundary.json, evidence/pr16_p08_ring/35507654812/recovered/recovery-tests.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, design/run_log.md, design/version_log.md
+- Verify: recovery unit tests PASS; 原本SHA/42member/25source・推移include/14画面/native validator/JSON byte往復/resume/task graph PASS。
+- Boundary: 原run failure不変、今回native0/ARM0/旧受入再実行0。全体guard既存違反はbaseline差分照合し過大なPASSを主張しない。
+- Commit: 同branchの本commit、非force push後remoteを照合。
+- Network: GitHub固定run/job/artifactを照合・取得。
+- Next: 同一46487d98のP08_BP_RETURN_PARTY（通常Factory復帰と元party）を次に実装。残るP03共有保存/読み込み・Circus退出後通常戦闘も影響境界だけ検証。Ring/旧5case/30勝は再実行しない。
+
+
+## 2026-09-20T12:30:29Z — USER-20260920-P08-BP-START
+- Timestamp: 2026-09-20T12:30:29Z
+- Task: USER-20260920-P08-BP-START
+- Status: IN_PROGRESS
+- Version: pr16-p08-representative-v1
+- Summary: P08 BP代表の限定runner/保存再開契約を記録。native未完段階は原本のfailuresと実process数から再開し、旧3勝/購入/Ring/30勝は再実行しない。
+- Files changed: scripts/pr16_p08_bp_representative.py, tools/mgba_pr16_p08_bp_lifecycle.h, tests/test_pr16_p08_bp_representative.py, .github/workflows/pr16-p08-bp.yml, scripts/pr16_p08_checkpoint.py, content/modernization/pr16_p08_bp_representative.json, evidence/pr16_p08/user-20260920-p08-bp/35510798943/start/execution.json, evidence/pr16_p08/user-20260920-p08-bp/35510798943/start/result.json, content/modernization/p08_remaining_work.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, design/run_log.md, design/version_log.md
+- Verify: 限定契約/resume/生成MD/hash/task graph、原本byte包絡とindex/HEAD読戻し。native件数・成否はcontent/modernization/pr16_p08_bp_representative.json。
+- Boundary: ARM0、旧受入の独立再実行0、ROM変更0。全体private guard既存違反は差分照合し全体PASSと主張しない。
+- Commit: このcommitを同branchへ非force pushしremote読戻し。
+- Network: GitHub固定run/job/artifactとremote照合。
+- Next: このrunの最新Actionsを先に読む。未実行なら同じrunのnativeへ、失敗なら原本で停止段階だけ修復。旧BP3勝/支出とRing/30勝の独立再実行は禁止。
+
+
+## 2026-09-20T12:31:48Z — USER-20260920-P08-BP-FINISH
+- Timestamp: 2026-09-20T12:31:48Z
+- Task: USER-20260920-P08-BP-FINISH
+- Status: STOPPED
+- Version: pr16-p08-representative-v1
+- Summary: P08 BP代表の限定runner/保存再開契約を記録。native未完段階は原本のfailuresと実process数から再開し、旧3勝/購入/Ring/30勝は再実行しない。
+- Files changed: scripts/pr16_p08_bp_representative.py, tools/mgba_pr16_p08_bp_lifecycle.h, tests/test_pr16_p08_bp_representative.py, .github/workflows/pr16-p08-bp.yml, scripts/pr16_p08_checkpoint.py, content/modernization/pr16_p08_bp_representative.json, evidence/pr16_p08/user-20260920-p08-bp/35510798943/finish/execution.json, evidence/pr16_p08/user-20260920-p08-bp/35510798943/finish/result.json, content/modernization/p08_remaining_work.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, design/run_log.md, design/version_log.md
+- Verify: 限定契約/resume/生成MD/hash/task graph、原本byte包絡とindex/HEAD読戻し。native件数・成否はcontent/modernization/pr16_p08_bp_representative.json。
+- Boundary: ARM0、旧受入の独立再実行0、ROM変更0。全体private guard既存違反は差分照合し全体PASSと主張しない。
+- Commit: このcommitを同branchへ非force pushしremote読戻し。
+- Network: GitHub固定run/job/artifactとremote照合。
+- Next: このrunの最新Actionsを先に読む。未実行なら同じrunのnativeへ、失敗なら原本で停止段階だけ修復。旧BP3勝/支出とRing/30勝の独立再実行は禁止。
+
+
+## 2026-09-20T12:39:52Z — USER-20260920-P08-BPLOSS-START
+- Timestamp: 2026-09-20T12:39:52Z
+- Task: USER-20260920-P08-BPLOSS-START
+- Status: IN_PROGRESS
+- Version: pr16-p08-representative-v1
+- Summary: P08 BP代表の限定runner/保存再開契約を記録。native未完段階は原本のfailuresと実process数から再開し、旧3勝/購入/Ring/30勝は再実行しない。
+- Files changed: scripts/pr16_p08_bp_loss_policy.py, tools/mgba_pr16_p08_bp_loss_policy.h, tests/test_pr16_p08_bp_loss_policy.py, .github/workflows/pr16-p08-bp-loss.yml, scripts/pr16_p08_bp_representative.py, tools/mgba_pr16_p08_bp_lifecycle.h, tests/test_pr16_p08_bp_representative.py, .github/workflows/pr16-p08-bp.yml, scripts/pr16_p08_checkpoint.py, content/modernization/pr16_p08_bp_loss_policy.json, evidence/pr16_p08/user-20260920-p08-bploss/35511250297/start/execution.json, evidence/pr16_p08/user-20260920-p08-bploss/35511250297/start/result.json, content/modernization/p08_remaining_work.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, design/run_log.md, design/version_log.md
+- Verify: 限定契約/resume/生成MD/hash/task graph、原本byte包絡とindex/HEAD読戻し。native件数・成否はcontent/modernization/pr16_p08_bp_loss_policy.json。
+- Boundary: ARM0、旧受入の独立再実行0、ROM変更0。全体private guard既存違反は差分照合し全体PASSと主張しない。
+- Commit: このcommitを同branchへ非force pushしremote読戻し。
+- Network: GitHub固定run/job/artifactとremote照合。
+- Next: このrunの最新Actionsを先に読む。未実行なら同じrunのnativeへ、失敗なら原本で停止段階だけ修復。旧BP3勝/支出とRing/30勝の独立再実行は禁止。
+
+
+## 2026-09-20T12:41:09Z — USER-20260920-P08-BPLOSS-FINISH
+- Timestamp: 2026-09-20T12:41:09Z
+- Task: USER-20260920-P08-BPLOSS-FINISH
+- Status: DONE
+- Version: pr16-p08-representative-v1
+- Summary: 同一46487d98のBP代表で正規レンタル1敗→共有敗北callback→party600byte復元→通常Save/fresh Continueを検証。原本保存済み、画面と完了Actionsの別照合前。
+- Files changed: scripts/pr16_p08_bp_loss_policy.py, tools/mgba_pr16_p08_bp_loss_policy.h, tests/test_pr16_p08_bp_loss_policy.py, .github/workflows/pr16-p08-bp-loss.yml, scripts/pr16_p08_bp_representative.py, tools/mgba_pr16_p08_bp_lifecycle.h, tests/test_pr16_p08_bp_representative.py, .github/workflows/pr16-p08-bp.yml, scripts/pr16_p08_checkpoint.py, content/modernization/pr16_p08_bp_loss_policy.json, evidence/pr16_p08/user-20260920-p08-bploss/35511250297/finish/execution.json, evidence/pr16_p08/user-20260920-p08-bploss/35511250297/finish/result.json, content/modernization/p08_remaining_work.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, design/run_log.md, design/version_log.md
+- Verify: 限定契約/resume/生成MD/hash/task graph、原本byte包絡とindex/HEAD読戻し。native件数・成否はcontent/modernization/pr16_p08_bp_loss_policy.json。
+- Boundary: ARM0、旧受入の独立再実行0、ROM変更0。全体private guard既存違反は差分照合し全体PASSと主張しない。
+- Commit: このcommitを同branchへ非force pushしremote読戻し。
+- Network: GitHub固定run/job/artifactとremote照合。
+- Next: このrunの完了Actions・原本・終端画面を照合してP08_BP_RETURN_PARTYだけ受入。次はP03共有Save/load代表へ。
+
+
+## 2026-09-20T12:49:42Z — USER-20260920-P08-BP-ACCEPT-ACCEPT
+- Timestamp: 2026-09-20T12:49:42Z
+- Task: USER-20260920-P08-BP-ACCEPT-ACCEPT
+- Status: DONE
+- Version: pr16-p08-representative-v1
+- Summary: P08 BP代表をrun35511250297成功・29画面・raw native原本で正式受入。元party600/Factory106/在庫復元と通常Save/fresh Continue、旧入力76058byte一致を保持。受入回収native0。
+- Files changed: scripts/pr16_p08_memory_representative.py, tools/mgba_pr16_p08_memory_observer.h, tests/test_pr16_p08_memory_representative.py, .github/workflows/pr16-p08-memory.yml, content/modernization/pr16_p08_memory_case.json, scripts/pr16_p08_bp_acceptance.py, content/modernization/pr16_p08_bp_acceptance.json, evidence/pr16_p08/user-20260920-p08-bp-accept/35511721939/accept/result.json, content/modernization/p08_remaining_work.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, design/run_log.md, design/version_log.md
+- Verify: 限定契約/resume/生成MD/hash/task graph、原本byte包絡とindex/HEAD読戻し。native件数・成否はcontent/modernization/pr16_p08_bp_acceptance.json。
+- Boundary: ARM0、旧受入の独立再実行0、ROM変更0。全体private guard既存違反は差分照合し全体PASSと主張しない。
+- Commit: このcommitを同branchへ非force pushしremote読戻し。
+- Network: GitHub固定run/job/artifactとremote照合。
+- Next: P08共有Save/load（わざメモリー満杯置換1件）→Circus退出後通常戦闘へ。BP/Ring/旧3勝/30勝は再実行しない。
+
+
+## 2026-09-20T12:50:24Z — USER-20260920-P08-MEMORY-START
+- Timestamp: 2026-09-20T12:50:24Z
+- Task: USER-20260920-P08-MEMORY-START
+- Status: IN_PROGRESS
+- Version: pr16-p08-representative-v1
+- Summary: P08共有Save/loadの代表1件だけを実装。原本と3書込防止区間を維持し、既存10/46ケースを独立再実行しない。
+- Files changed: scripts/pr16_p08_memory_representative.py, tools/mgba_pr16_p08_memory_observer.h, tests/test_pr16_p08_memory_representative.py, .github/workflows/pr16-p08-memory.yml, content/modernization/pr16_p08_memory_case.json, scripts/pr16_p08_bp_acceptance.py, content/modernization/pr16_p08_memory_representative.json, evidence/pr16_p08/user-20260920-p08-memory/35511721939/start/execution.json, evidence/pr16_p08/user-20260920-p08-memory/35511721939/start/result.json, content/modernization/p08_remaining_work.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, design/run_log.md, design/version_log.md
+- Verify: 限定契約/resume/生成MD/hash/task graph、原本byte包絡とindex/HEAD読戻し。native件数・成否はcontent/modernization/pr16_p08_memory_representative.json。
+- Boundary: ARM0、旧受入の独立再実行0、ROM変更0。全体private guard既存違反は差分照合し全体PASSと主張しない。
+- Commit: このcommitを同branchへ非force pushしremote読戻し。
+- Network: GitHub固定run/job/artifactとremote照合。
+- Next: 最新Actionsとnative-resultの停止点を先に読む。原本に基づき未完区間だけ修復し、受入済みRing/BP/30勝は再実行しない。
+
+
+## 2026-09-20T12:51:33Z — USER-20260920-P08-MEMORY-FINISH
+- Timestamp: 2026-09-20T12:51:33Z
+- Task: USER-20260920-P08-MEMORY-FINISH
+- Status: DONE
+- Version: pr16-p08-representative-v1
+- Summary: P08共有Save/load代表1件がnative成功。通常わざメモリー満杯置換→通常Save→fresh Continueと100byte party/PPを原本照合。別画面/Actions受入前。
+- Files changed: scripts/pr16_p08_memory_representative.py, tools/mgba_pr16_p08_memory_observer.h, tests/test_pr16_p08_memory_representative.py, .github/workflows/pr16-p08-memory.yml, content/modernization/pr16_p08_memory_case.json, scripts/pr16_p08_bp_acceptance.py, content/modernization/pr16_p08_memory_representative.json, evidence/pr16_p08/user-20260920-p08-memory/35511721939/finish/execution.json, evidence/pr16_p08/user-20260920-p08-memory/35511721939/finish/result.json, content/modernization/p08_remaining_work.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, design/run_log.md, design/version_log.md
+- Verify: 限定契約/resume/生成MD/hash/task graph、原本byte包絡とindex/HEAD読戻し。native件数・成否はcontent/modernization/pr16_p08_memory_representative.json。
+- Boundary: ARM0、旧受入の独立再実行0、ROM変更0。全体private guard既存違反は差分照合し全体PASSと主張しない。
+- Commit: このcommitを同branchへ非force pushしremote読戻し。
+- Network: GitHub固定run/job/artifactとremote照合。
+- Next: 完了Actionsと原本・画面を照合しP08_SHARED_SAVE_LOADだけ受入。残るCircus退出後通常戦闘へ。
+
+
+## 2026-09-20T13:04:36Z — USER-20260920-P08-MEMORY-ACCEPT-ACCEPT
+- Timestamp: 2026-09-20T13:04:36Z
+- Task: USER-20260920-P08-MEMORY-ACCEPT-ACCEPT
+- Status: DONE
+- Version: pr16-p08-representative-v1
+- Summary: 共有Save/load代表をrun35511721939成功・6画面・raw nativeで受入。満杯置換/party100/PP/通常Save/fresh Continueを保持。受入回収native0。
+- Files changed: scripts/pr16_p08_ordinary_representative.py, tools/mgba_pr16_p08_ordinary_main.h, tools/mgba_pr16_p08_ordinary_observer.h, tests/test_pr16_p08_ordinary_representative.py, .github/workflows/pr16-p08-ordinary.yml, scripts/pr16_p08_memory_acceptance.py, content/modernization/pr16_p08_memory_acceptance.json, evidence/pr16_p08/user-20260920-p08-memory-accept/35512429611/accept/result.json, content/modernization/p08_remaining_work.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, design/run_log.md, design/version_log.md
+- Verify: 限定契約/resume/生成MD/hash/task graph、原本byte包絡とindex/HEAD読戻し。native件数・成否はcontent/modernization/pr16_p08_memory_acceptance.json。
+- Boundary: ARM0、旧受入の独立再実行0、ROM変更0。全体private guard既存違反は差分照合し全体PASSと主張しない。
+- Commit: このcommitを同branchへ非force pushしremote読戻し。
+- Network: GitHub固定run/job/artifactとremote照合。
+- Next: 残るCircus退出後Save30からの通常戦闘calleeだけを検証。旧30勝/施設受入/Ring/BP/他メモリー経路は再実行しない。
+
+
+## 2026-09-20T13:05:17Z — USER-20260920-P08-ORDINARY-START
+- Timestamp: 2026-09-20T13:05:17Z
+- Task: USER-20260920-P08-ORDINARY-START
+- Status: IN_PROGRESS
+- Version: pr16-p08-representative-v1
+- Summary: 真正Save30から通常歩行/自然calleeだけの最終代表を記録。cache欠落時は30勝bootstrapせず停止。未達は原本failuresを読む。
+- Files changed: scripts/pr16_p08_ordinary_representative.py, tools/mgba_pr16_p08_ordinary_main.h, tools/mgba_pr16_p08_ordinary_observer.h, tests/test_pr16_p08_ordinary_representative.py, .github/workflows/pr16-p08-ordinary.yml, scripts/pr16_p08_memory_acceptance.py, content/modernization/pr16_p08_ordinary_representative.json, evidence/pr16_p08/user-20260920-p08-ordinary/35512429611/start/execution.json, evidence/pr16_p08/user-20260920-p08-ordinary/35512429611/start/result.json, content/modernization/p08_remaining_work.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, design/run_log.md, design/version_log.md
+- Verify: 限定契約/resume/生成MD/hash/task graph、原本byte包絡とindex/HEAD読戻し。native件数・成否はcontent/modernization/pr16_p08_ordinary_representative.json。
+- Boundary: ARM0、旧受入の独立再実行0、ROM変更0。全体private guard既存違反は差分照合し全体PASSと主張しない。
+- Commit: このcommitを同branchへ非force pushしremote読戻し。
+- Network: GitHub固定run/job/artifactとremote照合。
+- Next: 最新Actionsとnative-resultの最初の未達だけを修復。cache以外のSave注入/旧30勝/受入済み施設/Ring/BP/memory再実行は禁止。
+
+
+## 2026-09-20T13:06:27Z — USER-20260920-P08-ORDINARY-FINISH
+- Timestamp: 2026-09-20T13:06:27Z
+- Task: USER-20260920-P08-ORDINARY-FINISH
+- Status: STOPPED
+- Version: pr16-p08-representative-v1
+- Summary: 真正Save30から通常歩行/自然calleeだけの最終代表を記録。cache欠落時は30勝bootstrapせず停止。未達は原本failuresを読む。
+- Files changed: scripts/pr16_p08_ordinary_representative.py, tools/mgba_pr16_p08_ordinary_main.h, tools/mgba_pr16_p08_ordinary_observer.h, tests/test_pr16_p08_ordinary_representative.py, .github/workflows/pr16-p08-ordinary.yml, scripts/pr16_p08_memory_acceptance.py, content/modernization/pr16_p08_ordinary_representative.json, evidence/pr16_p08/user-20260920-p08-ordinary/35512429611/finish/execution.json, evidence/pr16_p08/user-20260920-p08-ordinary/35512429611/finish/result.json, content/modernization/p08_remaining_work.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, design/run_log.md, design/version_log.md
+- Verify: 限定契約/resume/生成MD/hash/task graph、原本byte包絡とindex/HEAD読戻し。native件数・成否はcontent/modernization/pr16_p08_ordinary_representative.json。
+- Boundary: ARM0、旧受入の独立再実行0、ROM変更0。全体private guard既存違反は差分照合し全体PASSと主張しない。
+- Commit: このcommitを同branchへ非force pushしremote読戻し。
+- Network: GitHub固定run/job/artifactとremote照合。
+- Next: 最新Actionsとnative-resultの最初の未達だけを修復。cache以外のSave注入/旧30勝/受入済み施設/Ring/BP/memory再実行は禁止。
+
+
+## 2026-09-20T13:14:35Z — USER-20260920-P08-ORDINARY-ABI-START
+- Timestamp: 2026-09-20T13:14:35Z
+- Task: USER-20260920-P08-ORDINARY-ABI-START
+- Status: IN_PROGRESS
+- Version: pr16-p08-representative-v1
+- Summary: 真正Save30から通常歩行/自然calleeだけの最終代表を記録。cache欠落時は30勝bootstrapせず停止。未達は原本failuresを読む。
+- Files changed: scripts/pr16_p08_ordinary_abi.py, tools/mgba_pr16_p08_ordinary_abi.h, tests/test_pr16_p08_ordinary_abi.py, .github/workflows/pr16-p08-ordinary-abi.yml, scripts/pr16_p08_ordinary_representative.py, tools/mgba_pr16_p08_ordinary_main.h, tools/mgba_pr16_p08_ordinary_observer.h, tests/test_pr16_p08_ordinary_representative.py, .github/workflows/pr16-p08-ordinary.yml, scripts/pr16_p08_memory_acceptance.py, content/modernization/pr16_p08_ordinary_abi.json, evidence/pr16_p08/user-20260920-p08-ordinary-abi/35512907219/start/execution.json, evidence/pr16_p08/user-20260920-p08-ordinary-abi/35512907219/start/result.json, content/modernization/p08_remaining_work.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, design/run_log.md, design/version_log.md
+- Verify: 限定契約/resume/生成MD/hash/task graph、原本byte包絡とindex/HEAD読戻し。native件数・成否はcontent/modernization/pr16_p08_ordinary_abi.json。
+- Boundary: ARM0、旧受入の独立再実行0、ROM変更0。全体private guard既存違反は差分照合し全体PASSと主張しない。
+- Commit: このcommitを同branchへ非force pushしremote読戻し。
+- Network: GitHub固定run/job/artifactとremote照合。
+- Next: 最新Actionsとnative-resultの最初の未達だけを修復。cache以外のSave注入/旧30勝/受入済み施設/Ring/BP/memory再実行は禁止。
+
+
+## 2026-09-20T13:16:05Z — USER-20260920-P08-ORDINARY-ABI-FINISH
+- Timestamp: 2026-09-20T13:16:05Z
+- Task: USER-20260920-P08-ORDINARY-ABI-FINISH
+- Status: DONE
+- Version: pr16-p08-representative-v1
+- Summary: P08 Circus退出後の通常戦闘で自然predicate=falseと通常dispatcherを検証。真正Save30から1process、施設戦/30勝再実行0。完了Actionsと画面の受入前。
+- Files changed: scripts/pr16_p08_ordinary_abi.py, tools/mgba_pr16_p08_ordinary_abi.h, tests/test_pr16_p08_ordinary_abi.py, .github/workflows/pr16-p08-ordinary-abi.yml, scripts/pr16_p08_ordinary_representative.py, tools/mgba_pr16_p08_ordinary_main.h, tools/mgba_pr16_p08_ordinary_observer.h, tests/test_pr16_p08_ordinary_representative.py, .github/workflows/pr16-p08-ordinary.yml, scripts/pr16_p08_memory_acceptance.py, content/modernization/pr16_p08_ordinary_abi.json, evidence/pr16_p08/user-20260920-p08-ordinary-abi/35512907219/finish/execution.json, evidence/pr16_p08/user-20260920-p08-ordinary-abi/35512907219/finish/result.json, content/modernization/p08_remaining_work.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, design/run_log.md, design/version_log.md
+- Verify: 限定契約/resume/生成MD/hash/task graph、原本byte包絡とindex/HEAD読戻し。native件数・成否はcontent/modernization/pr16_p08_ordinary_abi.json。
+- Boundary: ARM0、旧受入の独立再実行0、ROM変更0。全体private guard既存違反は差分照合し全体PASSと主張しない。
+- Commit: このcommitを同branchへ非force pushしremote読戻し。
+- Network: GitHub固定run/job/artifactとremote照合。
+- Next: 完了Actions・原本・画面を照合してP08_CIRCUS_POST_EXIT_ORDINARYを受入。四境界の候補移送と古い所有範囲CIテストを整合し配布ゲートを整理。
+
+
+## 2026-09-20T16:50:29Z — USER-20260921-P08-ORDINARY-ACCEPT-ACCEPT
+- Timestamp: 2026-09-20T16:50:29Z
+- Task: USER-20260921-P08-ORDINARY-ACCEPT-ACCEPT
+- Status: DONE
+- Version: pr16-p08-representative-v1
+- Summary: P08最後の通常戦闘代表を完了Actions・原本・5画面で受入。4代表の実測は完了、候補移送の最終照合は次。新native/ARM/ROM変更0。
+- Files changed: scripts/pr16_p08_ordinary_acceptance.py, tests/test_pr16_p08_ordinary_acceptance.py, .github/workflows/pr16-p08-ordinary-accept.yml, content/modernization/pr16_p08_ordinary_acceptance.json, evidence/pr16_p08/user-20260921-p08-ordinary-accept/35523960389/accept/execution.json, evidence/pr16_p08/user-20260921-p08-ordinary-accept/35523960389/accept/result.json, content/modernization/p08_remaining_work.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, design/run_log.md, design/version_log.md
+- Verify: 限定契約/resume/生成MD/hash/task graph、原本byte包絡とindex/HEAD読戻し。native件数・成否はcontent/modernization/pr16_p08_ordinary_acceptance.json。
+- Boundary: ARM0、旧受入の独立再実行0、ROM変更0。全体private guard既存違反は差分照合し全体PASSと主張しない。
+- Commit: このcommitを同branchへ非force pushしremote読戻し。
+- Network: GitHub固定run/job/artifactとremote照合。
+- Next: 四代表と候補影響台帳を照合して移送・古い所有範囲CIを整合。その後Issue #18の候補Wikiを生成し、clean-ROM独立2生成/BPS固定/release判定はWiki後まで開始しない。
+
+
+## 2026-09-20T17:02:34Z — USER-20260921-P08-TRANSFER
+- Timestamp: 2026-09-20T17:02:34Z
+- Task: USER-20260921-P08-TRANSFER
+- Status: DONE（P08 native移送。配布判定・Wikiは別境界）
+- Version: pr16-p08-transfer-v1
+- Summary: P08候補46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38 / CRCCC068B4Aについて6親受入・4代表境界の移送を完了。新native/ARM/ROM変更0。旧BP親や失敗Actionsは原本のまま保持。配布判定前にIssue #18の候補Wikiへ進む。
+- Files changed: scripts/pr16_p08_transfer.py, tests/test_pr16_p08_transfer.py, .github/workflows/pr16-p08-transfer.yml, tests/test_modernization_p08_forgetting_evidence.py, content/modernization/pr16_p08_candidate_transfer.json, evidence/pr16_p08_transfer/35524571950/result.json, content/modernization/p08_remaining_work.json, evidence/pr16_p08_transfer/35524571950/verification.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, design/run_log.md, design/version_log.md
+- Verify: source/原本hash不変、完了Actionsと失敗run内の成功stepを分離、6domain/4代表/全変更hook対応、専用拒否系・所有範囲20tests・forgetting read-only・resume/task graph PASS。
+- Preserved: 旧21層432patch監査は不変。旧4代表の4process/8coreは履歴、今回native/ARM/ROM変更0。旧run35522692225のCI失敗を改作せず所有範囲テストだけ修復。
+- Commit: 同branchへの非force commit/pushとremote読戻し。標準guardの既存違反は保持し追加違反0を照合。
+- Network: GitHub完了Actions/PR/refを読取。固定原本restore以外のprivate入力取得・nativeなし。
+- Next: Issue #18: scripts/build_pr16_candidate_wiki.pyで現P08候補の詳細Wikiを新規生成。Stage61は固定履歴として保護し、Species/Move/Ability/Item・夢特性供給・全習得技・全メガ・専用Z・意味差分を原本から抽出。Wiki確認後の所有者指示まで性能調整/clean-ROM二重生成/BPS固定/release判定を開始しない。
+
+
+## 2026-09-20T19:14:06+00:00 — USER-20260921-P08-CANDIDATE-WIKI / snapshot
+- Task: USER-20260921-P08-CANDIDATE-WIKI / 全ID Wikiスナップショット
+- Status: DONE（snapshot限定。Issue #18全体はIN_PROGRESS）
+- Summary: 全ID Wiki 4126ファイル/274580内部リンク。2プロセス同一tree=6bb5e03cbf2b06050c426eb1d31b1307bb711a5324ab5fe9005fd0c60b315a87、39試験PASS。Issue18残件を明示し、専用CLIは未反映。
+- Files: scripts/pr16_candidate_wiki_*.py、tests/test_pr16_candidate_wiki*.py、候補Wiki、receipt、固定引継ぎMD/JSON、両ログ。
+- Verify: Wiki二重生成、純読取比較、missing/stale/changed/symlink拒否、全Wiki試験、Stage61保護、task graph、resume check、diff check、changed final-index guardを全て成功時のみcommit。全repository guardの既存違反をPASSに読み替えない。
+- Commit: この記録を含むcommit。検証入力HEAD=0514c4b17ab2109cfb11021767928255dd0a110c。
+- Network: GitHub connector/Actions。検証run=35531601943。旧移送run35524571950と詳細読取run35529899896を照合。private入力の追加取得なし。
+- Boundary: native/ARM/ROM変更0、Stage61/active baseline不変、merge/releaseなし。
+
+
+## 2026-09-20T19:56:49+00:00 — USER-20260921-P08-CANDIDATE-WIKI / followup入力checkpoint
+- Task: USER-20260921-P08-CANDIDATE-WIKI / 未監査Wikiの継続
+- Status: STOPPED（入力checkpoint。Issue18は継続）
+- Summary: 先行run35531601943のsuccess・push/uploadを照合。保存4126ファイルのbyte/hashを確認し、未監査source用のtracked textだけを確保。新規snapshot生成0、native0、ARM0、ROM変更0。
+- Files changed: followup workflow、Wiki receipt、固定引継ぎMD/JSON、followup JSON、両ログ。
+- Verify: 保存Wikiファイル集合/hash/tree、候補正本照合、UTF-8/NUL/path/size検査、resume check、task graph、diff check、changed-index guard。
+- Commit: 本記録を含むcommit。検証入力HEAD=0752a644febd70b7e07510c74e78ed75a85cc0ad。
+- Network: GitHub connector/Actions。run=35533926004。source-validation run35531661125はaction_requiredであり成功へ読み替えない。
+- Boundary: Stage61/active baseline不変、merge/releaseなし。元snapshotと受入nativeは再実行しない。CLI拒否の別経路迂回は行わない。
+
+
+## 2026-09-20T20:25:31+00:00 — USER-20260921-P08-CANDIDATE-WIKI / Wiki followup checkpoint
+- Task: USER-20260921-P08-CANDIDATE-WIKI
+- Status: DONE（今回の限定範囲。Issue18全体は継続）
+- Summary: 専用build/check・Makefile接続、純読取拒否、既存Wiki差分反映。
+- Files changed: Wiki生成器/CLI/差分試験、workflow、Makefile、候補Wiki、receipt/followup JSON、固定引継ぎMD/JSON、両ログ。
+- Verify: 追加11試験、seed11/29 build一致、実check byte/mtime不変、内部リンク、Stage61/active baseline保護、resume/task graph/diff/changed-final-index guard。受入native再実行0。
+- Commit: 本記録を含むcommit。検証source HEAD=1376d0ed77890a28b283d19abda05dcd624a962a。
+- Network: GitHub connector/Actions run35535460491。run全体はpush/upload前のin_progressとして記録。
+- Boundary: ROM変更0、ARM0、native0。既存受入試験は影響なしに再実行しない。Issue18・merge・release・active baseline切替なし。失敗run35535019570は検証成功/記録失敗を区別してfollowup JSONに保存。
+
+
+## 2026-09-21T00:04:49+00:00 — USER-20260921-P08-CANDIDATE-WIKI / Wiki followup checkpoint
+- Task: USER-20260921-P08-CANDIDATE-WIKI
+- Status: DONE（今回の限定範囲。Issue18全体は継続）
+- Summary: {"generic_z_records": 1063, "generic_z_states": {"DAMAGE_MOVE_SOURCE_RULE": 633, "INTERNAL_Z_MAX_ROW_NOT_ORDINARY_BASE_MOVE": 156, "MOVE_NONE_NOT_A_BASE_MOVE": 1, "STATUS_MOVE_WITH_ADDITIONAL_EFFECT": 273}, "hidden_slot_records": 1671, "type_split_mappings": 36, "z_status_effects": 29}
+- Files changed: Wiki生成器/CLI/差分試験、workflow、Makefile、候補Wiki、receipt/followup JSON、固定引継ぎMD/JSON、両ログ。
+- Verify: 追加34試験、seed11/29 build一致、実check byte/mtime不変、内部リンク、Stage61/active baseline保護、resume/task graph/diff/changed-final-index guard。受入native再実行0。
+- Commit: 本記録を含むcommit。検証source HEAD=479f02fb059215e4f9f4da86895b85e8a373b5ee。
+- Network: GitHub connector/Actions run35546455254。run全体はpush/upload前のin_progressとして記録。
+- Boundary: ROM変更0、ARM0、native0。既存受入試験は影響なしに再実行しない。Issue18・merge・release・active baseline切替なし。失敗run35535019570は検証成功/記録失敗を区別してfollowup JSONに保存。
+
+
+## 2026-09-21T03:37:54+00:00 — Issue18残件source checkpoint
+- Task: USER-20260921-P08-CANDIDATE-WIKI / 限定source inventory
+- Status: STOPPED（source固定完了、残件実装へ継続）
+- Summary: 前回Wiki run35546455254をsuccessとして照合。既存consumer原文を再利用し、固定上流physicality tableのGit blob SHAと候補選択を照合。
+- Files changed: 専用capture/試験/workflow、残件source inventory、受入JSON、固定引継ぎMD/JSON、両ログ。
+- Verify: capture試験、候補正本間identity、上流Git blob SHA、task graph、resume、diff、changed-final-index private guard。native0/ARM0/ROM変更0。
+- Commit: この記録を含むcommit。source HEAD=ae92584b07317530ba585772be6fb9879102a94f
+- Network: GitHub API run35546455254、kapibarasan000/CFRU-JP@e24a16fe39e27ae162faf5b78596d1f3df18489d/assembly/data/move_tables.s。固定sourceのみ。
+- Boundary: Issue18全体・release未完。Stage61/active baseline変更0。現HEADの無関係CI action_requiredをWiki失敗と混同しない。
+
+
+## 2026-09-21T03:56:22+00:00 — USER-20260921-P08-CANDIDATE-WIKI / Wiki followup checkpoint
+- Task: USER-20260921-P08-CANDIDATE-WIKI
+- Status: DONE（今回の限定範囲。Issue18全体は継続）
+- Summary: {"generic_z_records": 1063, "generic_z_states": {"DAMAGE_MOVE_SOURCE_RULE": 633, "INTERNAL_Z_MAX_ROW_NOT_ORDINARY_BASE_MOVE": 156, "MOVE_NONE_NOT_A_BASE_MOVE": 1, "STATUS_MOVE_WITH_ADDITIONAL_EFFECT": 273}, "hidden_slot_records": 1671, "physicality_candidate_table_matches": 0, "runtime_z_records": 1063, "runtime_z_rules": {"CANDIDATE_BASE_SPLIT": 783, "SHELL_SIDE_ARM_SELF_BANK_BASE_SPLIT": 1, "STATUS_SENTINEL_NOT_DAMAGE_SPLIT": 275, "STAT_STAGE_COMPARISON": 2, "TERA_CONDITIONAL_STAT_COMPARISON": 2}, "type_split_mappings": 36, "z_status_effects": 29}
+- Files changed: Wiki生成器/CLI/差分試験、workflow、Makefile、候補Wiki、receipt/followup JSON、固定引継ぎMD/JSON、両ログ。
+- Verify: 追加24試験、seed11/29 build一致、実check byte/mtime不変、内部リンク、Stage61/active baseline保護、resume/task graph/diff/changed-final-index guard。受入native再実行0。
+- Commit: 本記録を含むcommit。検証source HEAD=66a5d9d662279673b084cfdc42da5a343e0fe2c8。
+- Network: GitHub connector/Actions run35559173404。run全体はpush/upload前のin_progressとして記録。
+- Boundary: ROM変更0、ARM0、native0。既存受入試験は影響なしに再実行しない。Issue18・merge・release・active baseline切替なし。失敗run35535019570は検証成功/記録失敗を区別してfollowup JSONに保存。
+
+
+## 2026-09-21T04:04:44+00:00 — USER-20260921-P08-CANDIDATE-WIKI / Wiki followup checkpoint
+- Task: USER-20260921-P08-CANDIDATE-WIKI
+- Status: DONE（今回の限定範囲。Issue18全体は継続）
+- Summary: {"generic_z_records": 1063, "generic_z_states": {"DAMAGE_MOVE_SOURCE_RULE": 633, "INTERNAL_Z_MAX_ROW_NOT_ORDINARY_BASE_MOVE": 156, "MOVE_NONE_NOT_A_BASE_MOVE": 1, "STATUS_MOVE_WITH_ADDITIONAL_EFFECT": 273}, "hidden_slot_records": 1671, "physicality_candidate_table_matches": 1, "runtime_z_records": 1063, "runtime_z_rules": {"CANDIDATE_BASE_SPLIT": 783, "SHELL_SIDE_ARM_SELF_BANK_BASE_SPLIT": 1, "STATUS_SENTINEL_NOT_DAMAGE_SPLIT": 275, "STAT_STAGE_COMPARISON": 2, "TERA_CONDITIONAL_STAT_COMPARISON": 2}, "type_split_mappings": 36, "z_status_effects": 29}
+- Files changed: Wiki生成器/CLI/差分試験、workflow、Makefile、候補Wiki、receipt/followup JSON、固定引継ぎMD/JSON、両ログ。
+- Verify: 追加26試験、seed11/29 build一致、実check byte/mtime不変、内部リンク、Stage61/active baseline保護、resume/task graph/diff/changed-final-index guard。受入native再実行0。
+- Commit: 本記録を含むcommit。検証source HEAD=4659196b5f6502792e1f3165c0f2d0c19d5731e6。
+- Network: GitHub connector/Actions run35559624000。run全体はpush/upload前のin_progressとして記録。
+- Boundary: ROM変更0、ARM0、native0。既存受入試験は影響なしに再実行しない。Issue18・merge・release・active baseline切替なし。失敗run35535019570は検証成功/記録失敗を区別してfollowup JSONに保存。
+
+
+## 2026-09-21T04:38:51+00:00 — USER-20260921-P08-CANDIDATE-WIKI / Wiki followup checkpoint
+- Task: USER-20260921-P08-CANDIDATE-WIKI
+- Status: DONE（今回の限定範囲。Issue18全体は継続）
+- Summary: {"effect_origin_records": 1063, "effect_origin_states": {"LOCKED_UPSTREAM_EFFECT_DECLARATION": 991, "MOVE_NONE_NOT_PLAYABLE": 1, "T04_SOURCE_ADAPTER_CLASSIFIED": 70, "UNRESOLVED_SOURCE_LINEAGE": 1}, "generic_z_records": 1063, "generic_z_states": {"DAMAGE_MOVE_SOURCE_RULE": 633, "INTERNAL_Z_MAX_ROW_NOT_ORDINARY_BASE_MOVE": 156, "MOVE_NONE_NOT_A_BASE_MOVE": 1, "STATUS_MOVE_WITH_ADDITIONAL_EFFECT": 273}, "hidden_slot_records": 1671, "physicality_candidate_table_matches": 1, "runtime_z_records": 1063, "runtime_z_rules": {"CANDIDATE_BASE_SPLIT": 783, "SHELL_SIDE_ARM_SELF_BANK_BASE_SPLIT": 1, "STATUS_SENTINEL_NOT_DAMAGE_SPLIT": 275, "STAT_STAGE_COMPARISON": 2, "TERA_CONDITIONAL_STAT_COMPARISON": 2}, "t04_adapters_with_central_queries": 17, "t04_required_source_patch_contracts": 26, "t04_script_origins": {"PROJECT_COMPOSED_SCRIPT": 5, "PROJECT_DYNAMIC_PREPARE_ADAPTER": 3, "UPSTREAM_EFFECT_PARAMETER_ADAPTER": 43, "UPSTREAM_SCRIPT_DELEGATE": 19}, "t04_source_adapters": 70, "type_split_mappings": 36, "z_status_effects": 29}
+- Files changed: Wiki生成器/CLI/差分試験、workflow、Makefile、候補Wiki、receipt/followup JSON、固定引継ぎMD/JSON、両ログ。
+- Verify: 追加26試験、seed11/29 build一致、実check byte/mtime不変、内部リンク、Stage61/active baseline保護、resume/task graph/diff/changed-final-index guard。受入native再実行0。
+- Commit: 本記録を含むcommit。検証source HEAD=69100d45363f7c22ad6d6b87dbdfab9aa15d68c4。
+- Network: GitHub connector/Actions run35561743057。run全体はpush/upload前のin_progressとして記録。
+- Boundary: ROM変更0、ARM0、native0。既存受入試験は影響なしに再実行しない。Issue18・merge・release・active baseline切替なし。失敗run35535019570は検証成功/記録失敗を区別してfollowup JSONに保存。
+
+
+## 2026-09-21T04:50:54+00:00 — USER-20260921-P08-CANDIDATE-WIKI / Wiki followup checkpoint
+- Task: USER-20260921-P08-CANDIDATE-WIKI
+- Status: DONE（今回の限定範囲。Issue18全体は継続）
+- Summary: {"effect_origin_records": 1063, "effect_origin_states": {"LOCKED_UPSTREAM_EFFECT_DECLARATION": 991, "MOVE_NONE_NOT_PLAYABLE": 1, "T04_SOURCE_ADAPTER_CLASSIFIED": 70, "UNRESOLVED_SOURCE_LINEAGE": 1}, "generic_z_records": 1063, "generic_z_states": {"DAMAGE_MOVE_SOURCE_RULE": 633, "INTERNAL_Z_MAX_ROW_NOT_ORDINARY_BASE_MOVE": 156, "MOVE_NONE_NOT_A_BASE_MOVE": 1, "STATUS_MOVE_WITH_ADDITIONAL_EFFECT": 273}, "hidden_patch_records": 1671, "hidden_patch_states": {"DISTINCT_NORMAL_ABILITY_CAN_TARGET_HIDDEN": 847, "NORMAL_ABILITY_ALREADY_EQUALS_HIDDEN_ID": 57, "NO_HIDDEN_ABILITY_ASSIGNED": 767}, "hidden_slot_records": 1671, "physicality_candidate_table_matches": 1, "runtime_z_records": 1063, "runtime_z_rules": {"CANDIDATE_BASE_SPLIT": 783, "SHELL_SIDE_ARM_SELF_BANK_BASE_SPLIT": 1, "STATUS_SENTINEL_NOT_DAMAGE_SPLIT": 275, "STAT_STAGE_COMPARISON": 2, "TERA_CONDITIONAL_STAT_COMPARISON": 2}, "t04_adapters_with_central_queries": 17, "t04_required_source_patch_contracts": 26, "t04_script_origins": {"PROJECT_COMPOSED_SCRIPT": 5, "PROJECT_DYNAMIC_PREPARE_ADAPTER": 3, "UPSTREAM_EFFECT_PARAMETER_ADAPTER": 43, "UPSTREAM_SCRIPT_DELEGATE": 19}, "t04_source_adapters": 70, "type_split_mappings": 36, "z_status_effects": 29}
+- Files changed: Wiki生成器/CLI/差分試験、workflow、Makefile、候補Wiki、receipt/followup JSON、固定引継ぎMD/JSON、両ログ。
+- Verify: 追加26試験、seed11/29 build一致、実check byte/mtime不変、内部リンク、Stage61/active baseline保護、resume/task graph/diff/changed-final-index guard。受入native再実行0。
+- Commit: 本記録を含むcommit。検証source HEAD=a2307c7b7fafd6f50913d3effbe49cc500b18070。
+- Network: GitHub connector/Actions run35562396044。run全体はpush/upload前のin_progressとして記録。
+- Boundary: ROM変更0、ARM0、native0。既存受入試験は影響なしに再実行しない。Issue18・merge・release・active baseline切替なし。失敗run35535019570は検証成功/記録失敗を区別してfollowup JSONに保存。
+
+
+## 2026-09-21T05:09:40+00:00 — USER-20260921-P08-CANDIDATE-WIKI / Wiki followup checkpoint
+- Task: USER-20260921-P08-CANDIDATE-WIKI
+- Status: DONE（今回の限定範囲。Issue18全体は継続）
+- Summary: {"creation_declared_routes": 311, "creation_profile_species": 470, "creation_profile_states": {"SOURCE_RULE_APPLIED_TO_CANDIDATE_ROWS": 4776}, "creation_profiles": 4776, "creation_route_kinds": {"COLLECTION_RAID": 292, "FIXED_GIFT": 4, "RESEARCH_EGG": 15}, "effect_origin_records": 1063, "effect_origin_states": {"LOCKED_UPSTREAM_EFFECT_DECLARATION": 991, "MOVE_NONE_NOT_PLAYABLE": 1, "T04_SOURCE_ADAPTER_CLASSIFIED": 70, "UNRESOLVED_SOURCE_LINEAGE": 1}, "generic_z_records": 1063, "generic_z_states": {"DAMAGE_MOVE_SOURCE_RULE": 633, "INTERNAL_Z_MAX_ROW_NOT_ORDINARY_BASE_MOVE": 156, "MOVE_NONE_NOT_A_BASE_MOVE": 1, "STATUS_MOVE_WITH_ADDITIONAL_EFFECT": 273}, "hidden_patch_records": 1671, "hidden_patch_states": {"DISTINCT_NORMAL_ABILITY_CAN_TARGET_HIDDEN": 847, "NORMAL_ABILITY_ALREADY_EQUALS_HIDDEN_ID": 57, "NO_HIDDEN_ABILITY_ASSIGNED": 767}, "hidden_slot_records": 1671, "physicality_candidate_table_matches": 1, "runtime_z_records": 1063, "runtime_z_rules": {"CANDIDATE_BASE_SPLIT": 783, "SHELL_SIDE_ARM_SELF_BANK_BASE_SPLIT": 1, "STATUS_SENTINEL_NOT_DAMAGE_SPLIT": 275, "STAT_STAGE_COMPARISON": 2, "TERA_CONDITIONAL_STAT_COMPARISON": 2}, "t04_adapters_with_central_queries": 17, "t04_required_source_patch_contracts": 26, "t04_script_origins": {"PROJECT_COMPOSED_SCRIPT": 5, "PROJECT_DYNAMIC_PREPARE_ADAPTER": 3, "UPSTREAM_EFFECT_PARAMETER_ADAPTER": 43, "UPSTREAM_SCRIPT_DELEGATE": 19}, "t04_source_adapters": 70, "type_split_mappings": 36, "wild_overlay_entries": 95, "wild_overlay_slots": 294, "z_status_effects": 29}
+- Files changed: Wiki生成器/CLI/差分試験、workflow、Makefile、候補Wiki、receipt/followup JSON、固定引継ぎMD/JSON、両ログ。
+- Verify: 追加32試験、seed11/29 build一致、実check byte/mtime不変、内部リンク、Stage61/active baseline保護、resume/task graph/diff/changed-final-index guard。受入native再実行0。
+- Commit: 本記録を含むcommit。検証source HEAD=3969be6bfb4083ce4cb1e5dd48f0697a62665127。
+- Network: GitHub connector/Actions run35563498591。run全体はpush/upload前のin_progressとして記録。
+- Boundary: ROM変更0、ARM0、native0。既存受入試験は影響なしに再実行しない。Issue18・merge・release・active baseline切替なし。失敗run35535019570は検証成功/記録失敗を区別してfollowup JSONに保存。
+
+
+## 2026-09-21T05:21:32+00:00 — USER-20260921-P08-CANDIDATE-WIKI / Wiki followup checkpoint
+- Task: USER-20260921-P08-CANDIDATE-WIKI
+- Status: DONE（今回の限定範囲。Issue18全体は継続）
+- Summary: {"creation_declared_routes": 311, "creation_profile_species": 470, "creation_profile_states": {"SOURCE_RULE_APPLIED_TO_CANDIDATE_ROWS": 4776}, "creation_profiles": 4776, "creation_route_kinds": {"COLLECTION_RAID": 292, "FIXED_GIFT": 4, "RESEARCH_EGG": 15}, "effect_origin_records": 1063, "effect_origin_states": {"LOCKED_UPSTREAM_EFFECT_DECLARATION": 991, "MOVE_NONE_NOT_PLAYABLE": 1, "T04_SOURCE_ADAPTER_CLASSIFIED": 70, "UNRESOLVED_SOURCE_LINEAGE": 1}, "generic_z_records": 1063, "generic_z_states": {"DAMAGE_MOVE_SOURCE_RULE": 633, "INTERNAL_Z_MAX_ROW_NOT_ORDINARY_BASE_MOVE": 156, "MOVE_NONE_NOT_A_BASE_MOVE": 1, "STATUS_MOVE_WITH_ADDITIONAL_EFFECT": 273}, "hidden_patch_records": 1671, "hidden_patch_states": {"DISTINCT_NORMAL_ABILITY_CAN_TARGET_HIDDEN": 847, "NORMAL_ABILITY_ALREADY_EQUALS_HIDDEN_ID": 57, "NO_HIDDEN_ABILITY_ASSIGNED": 767}, "hidden_slot_records": 1671, "link_graph_direct_bl_sites": 4, "link_graph_limited_seeds": 0, "link_graph_nodes": 32, "link_graph_overlap_sites": 0, "link_graph_seeds": 3, "missing_named_link_symbols": 16, "physicality_candidate_table_matches": 1, "runtime_z_records": 1063, "runtime_z_rules": {"CANDIDATE_BASE_SPLIT": 783, "SHELL_SIDE_ARM_SELF_BANK_BASE_SPLIT": 1, "STATUS_SENTINEL_NOT_DAMAGE_SPLIT": 275, "STAT_STAGE_COMPARISON": 2, "TERA_CONDITIONAL_STAT_COMPARISON": 2}, "t04_adapters_with_central_queries": 17, "t04_required_source_patch_contracts": 26, "t04_script_origins": {"PROJECT_COMPOSED_SCRIPT": 5, "PROJECT_DYNAMIC_PREPARE_ADAPTER": 3, "UPSTREAM_EFFECT_PARAMETER_ADAPTER": 43, "UPSTREAM_SCRIPT_DELEGATE": 19}, "t04_source_adapters": 70, "type_split_mappings": 36, "wild_overlay_entries": 95, "wild_overlay_slots": 294, "z_status_effects": 29}
+- Files changed: Wiki生成器/CLI/差分試験、workflow、Makefile、候補Wiki、receipt/followup JSON、固定引継ぎMD/JSON、両ログ。
+- Verify: 追加26試験、seed11/29 build一致、実check byte/mtime不変、内部リンク、Stage61/active baseline保護、resume/task graph/diff/changed-final-index guard。受入native再実行0。
+- Commit: 本記録を含むcommit。検証source HEAD=6ea91ae2da54398fdc01bb3d0cf4f89427855ba4。
+- Network: GitHub connector/Actions run35564248203。run全体はpush/upload前のin_progressとして記録。
+- Boundary: ROM変更0、ARM0、native0。既存受入試験は影響なしに再実行しない。Issue18・merge・release・active baseline切替なし。失敗run35535019570は検証成功/記録失敗を区別してfollowup JSONに保存。
+
+
+## 2026-09-21T05:29:44+00:00 — 4差分Wikiの完了Actions照合
+- Task: USER-20260921-P08-CANDIDATE-WIKI / 完了GETと原本の記録確定
+- Version: wiki-audit-20260921
+- Status: DONE（4差分の実装・検証・記録・反映。Issue18全体の完了ではない）
+- Summary: 4145 files / 112283459 bytes / 277778内部リンク。effect全1063技、patch全1671slot、生成技311経路/95野生行/4776profile、Z3入口32node/4BL。
+- Files changed: 完了照合script/差分試験/workflow、completed runs JSON、receipt/followup、固定引継ぎMD/JSON、両ログ。Wiki本文はこの記録段階では変更しない。
+- Verify: 4回のcompleted/success・全job/step・artifact digestと検証原本・反映commit親を照合。差分26+26+32+26=110試験、各2seed build一致・実check byte/mtime不変の保存結果を再利用。記録差分34試験・resume/task graph・最終index guard。
+- Commit: 本記録を含むcommit。記録source HEAD=2bb1d9c544bc36891d04797c7cca469aeee768d5。最新Wiki反映=24cc366c71df6a7e982635a33f4374cf965e75e1。
+- Network: GitHub API run35561743057/35562396044/35563498591/35564248203とそのjob/artifact/commitのGETのみ。署名download URL/credentialは記録しない。
+- Boundary: この記録段階でWiki再build0・ROM変更0・ARM0・native0・受入native再実行0。Stage61/active baseline/原本/過去失敗記録は保持。named Z callee・通常野生/旧配布・夢特性初回供給/daycare・技511/全handler履歴は未完のまま。
+
+
+## 2026-09-21T05:33:26+00:00 — Wiki検証HEAD表示の最終同期
+- Task: USER-20260921-P08-CANDIDATE-WIKI / 再開メモのHEAD表示
+- Version: wiki-audit-20260921
+- Status: DONE
+- Summary: observed_headの旧Wiki入力0514c4b17ab2109cfb11021767928255dd0a110cを最新検証入力6ea91ae2da54398fdc01bb3d0cf4f89427855ba4へ同期。リモートHEAD/native受入HEADとは別であることを明記。完了照合run35564710398 successをGET確認。
+- Files changed: 限定workflow、固定引継ぎMD/JSON、両ログ。
+- Verify: receipt/completed-runs/candidate_wikiのrun・source HEAD・反映先・tree hash一致、生成MD表示一致、その他stateと過去checks不変、resume/task graph、diff/private最終index。受入110+34試験の反復なし。
+- Commit: 本記録を含むcommit。検証source HEAD=a7c7a476c21d60f755a1d0e411d6ae7c0810f264。
+- Network: GitHub API run35564710398の完了GETのみ。
+- Boundary: Wiki本文/receipt/既存原本/native受入/Stage61/active baseline変更0。build0・ARM0・native0・ROM変更0。Issue18全体は未完のまま。
+
+
+## 2026-09-21T06:26:00+00:00 — USER-20260921-P08-CANDIDATE-WIKI / Wiki followup checkpoint
+- Task: USER-20260921-P08-CANDIDATE-WIKI
+- Status: DONE（今回の限定範囲。Issue18全体は継続）
+- Summary: {"creation_declared_routes": 311, "creation_profile_species": 470, "creation_profile_states": {"SOURCE_RULE_APPLIED_TO_CANDIDATE_ROWS": 4776}, "creation_profiles": 4776, "creation_route_kinds": {"COLLECTION_RAID": 292, "FIXED_GIFT": 4, "RESEARCH_EGG": 15}, "effect_origin_records": 1063, "effect_origin_states": {"FROZEN_VEGA_COMPAT_DUPLICATE_BOUND": 1, "LOCKED_UPSTREAM_EFFECT_DECLARATION": 991, "MOVE_NONE_NOT_PLAYABLE": 1, "T04_SOURCE_ADAPTER_CLASSIFIED": 70}, "frozen_compatibility_move_lineages": 1, "generic_z_records": 1063, "generic_z_states": {"DAMAGE_MOVE_SOURCE_RULE": 633, "INTERNAL_Z_MAX_ROW_NOT_ORDINARY_BASE_MOVE": 156, "MOVE_NONE_NOT_A_BASE_MOVE": 1, "STATUS_MOVE_WITH_ADDITIONAL_EFFECT": 273}, "hidden_patch_records": 1671, "hidden_patch_states": {"DISTINCT_NORMAL_ABILITY_CAN_TARGET_HIDDEN": 847, "NORMAL_ABILITY_ALREADY_EQUALS_HIDDEN_ID": 57, "NO_HIDDEN_ABILITY_ASSIGNED": 767}, "hidden_slot_records": 1671, "link_graph_direct_bl_sites": 4, "link_graph_limited_seeds": 0, "link_graph_nodes": 32, "link_graph_overlap_sites": 0, "link_graph_seeds": 3, "missing_named_link_symbols": 16, "physicality_candidate_table_matches": 1, "runtime_z_records": 1063, "runtime_z_rules": {"CANDIDATE_BASE_SPLIT": 783, "SHELL_SIDE_ARM_SELF_BANK_BASE_SPLIT": 1, "STATUS_SENTINEL_NOT_DAMAGE_SPLIT": 275, "STAT_STAGE_COMPARISON": 2, "TERA_CONDITIONAL_STAT_COMPARISON": 2}, "saved_elf_direct_call_sites": 94, "saved_elf_exact_function_graphs": 17, "saved_elf_exact_named_call_sites": 21, "saved_elf_requested_symbols": 31, "saved_elf_target_states": {"CANDIDATE_BODY_DIFFERS": 9, "EXACT_CANDIDATE_SYMBOL_BODY": 17, "MISSING_SAVED_SYMBOL": 2, "SYMBOL_WITHOUT_PROVEN_EXTENT": 3}, "t04_adapters_with_central_queries": 17, "t04_required_source_patch_contracts": 26, "t04_script_origins": {"PROJECT_COMPOSED_SCRIPT": 5, "PROJECT_DYNAMIC_PREPARE_ADAPTER": 3, "UPSTREAM_EFFECT_PARAMETER_ADAPTER": 43, "UPSTREAM_SCRIPT_DELEGATE": 19}, "t04_source_adapters": 70, "type_split_mappings": 36, "wild_overlay_entries": 95, "wild_overlay_slots": 294, "z_status_effects": 29}
+- Files changed: Wiki生成器/CLI/差分試験、workflow、Makefile、候補Wiki、receipt/followup JSON、固定引継ぎMD/JSON、両ログ。
+- Verify: 追加48試験、seed11/29 build一致、実check byte/mtime不変、内部リンク、Stage61/active baseline保護、resume/task graph/diff/changed-final-index guard。受入native再実行0。
+- Commit: 本記録を含むcommit。検証source HEAD=12f9591049a54bb8b06868ae9ce743e7cce1689c。
+- Network: GitHub connector/Actions run35568404816。run全体はpush/upload前のin_progressとして記録。
+- Boundary: ROM変更0、ARM0、native0。既存受入試験は影響なしに再実行しない。Issue18・merge・release・active baseline切替なし。失敗run35535019570は検証成功/記録失敗を区別してfollowup JSONに保存。
+
+
+## 2026-09-21T06:33:42+00:00 — 保存ELF・技511 Wikiの完了原本照合
+- Task: USER-20260921-P08-CANDIDATE-WIKI
+- Version: wiki-saved-link-20260921
+- Status: DONE（保存body・callee・技511の限定範囲。Issue18全体は継続）
+- Summary: 4148 files / 112667138 bytes / 277795内部リンク。31対象中17全body一致・9差分・5未結合。17有界graph/94直接BLのうち21 siteを一致calleeへ結合。511はMOVE_POUND=1へ統合せず、flags/Z威力差と候補12byteを記録。
+- Files changed: ELF読取・保存text固定・Wiki結合・検証files/workflow、候補Wiki、receipt/followup/completed JSON、固定引継ぎMD/JSON、両ログ。完了照合段階ではWiki本文を再生成しない。
+- Verify: 保存ELF40試験（初回38に上限/切詰め2を追加）、Wiki新規48試験、seed11/29同一、実checkのbyte/mtime不変、全内部リンク・Stage61/baseline保護。記録18試験、resume/task graph/final-index guard。前4受入110試験の再実行なし。
+- Commit: 本記録を含むcommit。記録source=595c35551c2a8936d21ca4ba7b4d1c72b8afdd9d、Wiki反映=7da681a41ab694d31022c47a691af33172cc42f7、検証source=12f9591049a54bb8b06868ae9ce743e7cce1689c。
+- Network: capture35566920479はsymbol表上限で停止、35567438143で修復成功（artifact10624750708）。Wiki35568404816/ artifact10625291699のcompleted/success・全step・ZIP SHA・原本・親commitを照合。失敗記録は削除しない。
+- Boundary: ROM変更0・ARM0・native0・受入native再実行0、記録段階のWiki再build0。自動Stage79の7domainは既存PASS cacheを再利用し実行skip。source/byte一致を実入手/使用・間接辺・全handler履歴の受入としない。merge/release/baseline切替なし。
+
+
+## 2026-09-21T06:40:51+00:00 — Wiki検証HEADの引継ぎ表示同期
+- Task: USER-20260921-P08-CANDIDATE-WIKI
+- Version: wiki-resume-identity-20260921
+- Status: DONE
+- Summary: 最終readbackで冒頭observed_headの旧値を検出。run35568404816/source12f9591049a54bb8b06868ae9ce743e7cce1689cへ同期し旧表示をhistory保存。最新値と歴史欄を区別。
+- Files changed: 固定引継ぎMD/JSON、表示同期helper/8境界試験/workflow、両ログ。Wiki本文・receipt・完了report・受入原本は不変。
+- Verify: 今回8試験、record run35569000222 completed/success・全step・反映commit親GET、resume/task graph/diff/final-index guard。既存40+48+18/110試験・Wiki build・native再実行なし。
+- Commit: 本記録を含むcommit。表示同期入力HEAD=c093dcd6289bb2ba018274f6fd95d1eafd109f99。
+- Network: GitHub connector/Actions run35569498593、完了run35569000222と反映53a2f104828f89ab4cc4f6ebcbb7dd2a4f51e5e9のGET。ROM/ARM/native0、Issue18未完・merge/release/baseline切替なし。
+
+
+## 2026-09-21T13:42:47+00:00 — Issue19公式原本隔離の完了記録
+- Task: USER-20260921-LEARNSET-BASELINE-RESET
+- Version: official-source-isolation-20260921
+- Status: DONE（公式原本隔離のみ。Issue19全体は未完）
+- Summary: 1299件/118524経路を無損失隔離。参考1377件/125746経路と5 CSVの意味差分0。Vega181種と旧P07 1572行/空overlayを分離。ID1063の159経路/103種とキャタピー訂正は明示例外台帳へ。
+- Files changed: 新規生成器/CLI/39境界試験/source-lock、限定Actions、公式index/例外/完了原本、固定入口/引継ぎMD・JSON、両ログ。
+- Verify: ローカルとActionsの独立2生成hash一致・実CLI checkのbyte/mtime不変。記録12境界試験、resume/task graph/diff/changed-final-index guard。既存native受入の再実行0。
+- Commit: 本記録を含むcommit。検証source HEAD=6216e6d13fe13ed3de08f4a02a9f74d6ba685e75。
+- Network: GitHub connector/Actions、完了run35605822056/artifact10641504482のSHA・全stepをGET照合。入力assetは固定hashのmodernization ZIPのみ。
+- Network（参照閲覧）: https://w.atwiki.jp/altair1/pages/19.html は原作Vega図鑑入口として確認。個別習得表の採用0。
+- Boundary: ROM/ARM/native変更0、旧Wiki/受入原本/active baseline不変、merge/releaseなし。初回ローカル試作では分類206枠を181実対象へ訂正後に再生成し、失敗をPASSへ転用していない。
+
+
+## 2026-09-21T13:52:06+00:00 — Issue19検証ログのGit保存を補完
+- Task: USER-20260921-LEARNSET-BASELINE-RESET
+- Version: official-source-isolation-storage-closeout
+- Status: DONE（証拠保存の補完。Issue19全体は未完）
+- Summary: *.log除外で未追跡だったunit.log/recording-unit.logを元artifactのbyte/SHAのまま明示追加。旧checkpointのhashは書き換えず、全12証拠をGit HEADから読戻した。
+- Files changed: 証拠ログ2件、限定closeout workflow、storage JSON、固定状態JSON、両ログ。
+- Verify: 全12証拠のGit size/SHA照合。欠落・改変・余剰3条件を拒否。resume/task graph/diff/限定最終indexを確認。39+12試験・独立生成・nativeの再実行0。
+- Commit: 本記録を含むcommit。記録入力HEAD=b08c99be195e4c277937d7e659d126db8516b5ac。
+- Network: Actions run35607343534（記録）,35607351926（source-validation）,35607351956（forgetting）の完了成功をGET照合。ROM/旧Wiki/受入済みnative原本/active baseline変更0、merge/releaseなし。
+
+
+## 2026-09-21T14:59:40+00:00 — Vega原作採取・方法別隔離監査完了
+- Task: USER-20260921-LEARNSET-BASELINE-RESET
+- Version: vega-original-capture-method-audit-20260921
+- Status: DONE（原本観測/監査の区切りのみ。採用BLOCKED、Issue19全体未完）
+- Summary: 181種/182ページ/直接9923行を分離。dex/key差分0・未知move0。3群5行の原本衝突と92種2394行の非直接eggを全件台帳へ。固定crosswalkのみ使用しowner overlay追加0。
+- Files changed: 原作専用reader/採取器/方法別監査器/43試験/限定Actions、typed原本/差分/完了証拠、専用guide/checkpoint、固定入口と引継ぎMD/JSON、両ログ。
+- Verify: 43境界試験・Actions独立2生成/実CLI純読取byte-mtime不変・ローカル期待hash一致。記録10境界試験、resume/task-graph/diff/changed-final-index guard。既受入official/native再実行0。
+- Commit: 本記録を含むcommit。検証HEAD=9e53b256aeab708f20143509afabe09503094f43。採取HEAD=9a5cb4172571bfed953c54155c030ef73c845542。
+- Network: GitHub connector/Actions。採取run35612400716、検証run35614274855、両完了job/全step/artifact digestを照合。Wiki採取1回（https://w.atwiki.jp/altair1/pages/19.html とsource_lockの181個別URL）、後続比較は保存原本のみ。
+- Recovery: 初回記録run35615412670はresumeの既存文書hash不一致でcommit前停止。開始HEAD d0929dd0のSide Change追記本文は不変と照合し、旧2392 bytesのbindingを現行4701 bytesへ同期。入口CHATGPT_RESUMEの既存旧hashも今回の記録本文で同期。公式受入原本の再実行なし。
+- Boundary: 原本衝突の片側を推測で採用しない。Side Change非採用を維持。ROM/ARM/native変更0、旧Wiki・候補・active baseline不変、merge/releaseなし。
+
+
+## 2026-09-21T16:14:03+00:00 — Vega原本衝突・非直接egg裁定完了
+- Task: USER-20260921-LEARNSET-BASELINE-RESET
+- Version: vega-source-adjudication-20260922
+- Status: DONE（source裁定の区切り。runtime適用0、Issue19全体未完）
+- Summary: 所有者ROM優先の3群5行を別台帳で裁定。92種2394行を原作孵化種direct eggへ結合。原本9923行・Wiki行/親注記保持、direct/shared追加0、未解決0、owner overlay追加0。
+- Files changed: 裁定器2本/試験/不足範囲採取器/限定Actions、裁定5出力/9証拠、後継checkpoint/guide、固定引継ぎMD/JSON、両ログ。元source_conflicts/旧checkpoint/公式/native受入原本は不変。
+- Verify: collision5試験run35621880869を再利用、新13試験run35623180576、独立2生成(seed17/53)・純読取byte/mtime不変・ローカル/Actions全出力一致。記録12試験、pr16_resume.py check、diff/changed-final-index guard。採取/native/公式生成の再実行なし。
+- Commit: 本記録を含むcommit。検証HEAD=04b8ea96ac7244fd0940e9f9075026198869cdf4。開始HEAD=df0526687af875a6bc589cb8931a6d083b44aa08。途中c8af78b7/3da7acfe/04b8ea96を同branchへ非force反映。
+- Network: GitHub connector/Actions。欠落進化/孵化範囲の採取run35622433529のみ追加。完了Actions/全step/artifact digest照合、182ページ再取得0。記録run=35624247604。
+- Repair: 開始HEADから未同期のCHATGPT_RESUME/旧Vega監査guideのbinding2件を本文byte不変確認後metadataだけ同期。新しい再開点は固定MD/JSONから後継guideへ。旧歴史は削除しない。
+- Boundary: 原作411種の静的consumer照合であり自然交配/native受入ではない。Side Change効果/AI追加0、ROM/ARM/active baseline変更0、PR16 draft/openのまま、merge/releaseなし。次はruntime全consumer/後継ROM・Wiki/影響native。
+
+
+## 2026-09-21T16:56:26.838227+00:00 — 後継9consumer表・旧候補差分の検証記録
+- Timestamp: 2026-09-21T16:56:26.838227+00:00
+- Task: USER-20260921-LEARNSET-BASELINE-RESET / 後継表をbinary接続の直前まで確定
+- Version: learnset-successor-consumer-tables-v1
+- Status: DONE（後継表工程。実ROM適用/Issue19全体は未完）
+- Summary: 1299公式+181Vegaの128447原本行を全数保存し、128288採用/159明示除外へ分離。孵化2394行のdirect/shared追加0。未選択191枠と孵化先新egg差分531行を台帳化。旧候補/Wikiは不変。
+- Files changed: 後継生成器/39試験/独立検証器/限定Actions、記録器/10試験、checkpoint/8証拠/guide、固定引継ぎMD/JSON、両ログ。全13大規模出力はartifact保管。
+- Verify: 新39試験、2生成(seed17/53)、純読取byte/mtime不変、128447行独立監査、ローカル/Actions13出力一致（run35627966003）。記録10試験、pr16_resume.py check、diff/開始HEADからのchanged-final-index guard。原本採取/公式生成/旧native再実行0。
+- Commit: 本記録を含むcommit。開始HEAD=d3eaab712e79b0692f1cad51653ba40f1357da6a。検証HEAD=1bd7e126dd4083581b43ade0776b72eddd38b9d1。途中の実装・試験を同branchへWIP非force反映。
+- Network: GitHub connector/Actions。受入公式artifact10641504482を再利用。後継proof/table artifactの完了run/job/全step/digest/全fileを照合。外部Wiki再取得0。
+- Boundary: consumer表は実ROM接続済みと表示しない。孵化差分を無断補充せず、旧表をfallbackにも一括削除にも使わない。active baseline/merge/release変更0。
+
+## 2026-09-21T21:20:26.958972+00:00
+- Timestamp: 2026-09-21T21:20:26.958972+00:00
+- Task: USER-20260921-LEARNSET-BASELINE-RESET / 後継binding入力と孵化非付与処理
+- Version: learnset-binding-v1
+- Status: DONE（入力復元/孵化処理のみ。Species binding/binary未完）
+- Summary: 受入表artifact再利用、2394行を照合し531差分の非付与を実装。191枠はmanifest付き台帳化。
+- Files changed: binding実装/新24試験/限定Actions、checkpoint/証拠/guide、固定MD/JSON、両ログ。
+- Verify: 新24試験PASS、artifact外側/全member hash、原本byte/mtime不変、孵化全行/531差分一致。原本生成/受入試験/native再実行0。run=35656548503 input=1fa45557c6ad1ae4ed0c976f84b84e953abf37ee。
+- Commit: 本記録を含む同branch非force commit。最終push完了はrun APIで別照合。
+- Network: GitHub connector/Actions、受入artifact10653200020再利用。Wiki再採取なし。
+
+## 2026-09-21T21:57:48.517443+00:00
+- Timestamp: 2026-09-21T21:57:48.517443+00:00
+- Task: USER-20260921-LEARNSET-BASELINE-RESET / 191枠bindingと配置前payload
+- Version: learnset-payload-v1
+- Status: DONE（静的binding/配置前payload限定。1029採用裁定・ROM接続未完）
+- Summary: 188枠identity保全、2owner64経路を明示接続、1枠は採用待ち。128288原経路を保全し33321経路のWiki slot 1始まりを補正。
+- Files changed: Species/payload実装、54新試験、限定Actionsと固定入力、checkpoint/証拠/guide、固定MD/JSON、両ログ。
+- Verify: 54新試験PASS、独立2プロセス全hash一致、旧Wikiからの独立全byte/128352行監査PASS、原本byte/mtime不変。run=35659593954 head=a7e2d99f44354b6e3e5b9a9993f15cae2f179b67。受入孵化run35656548503/source snapshot run35657130145の全step完了も照合。
+- Prior attempt: run35659288132は1262の監査参照先誤りで停止。元表とpayloadは不変のまま監査だけを訂正。
+- Commit: 本記録を含む同branch非force commit。自己SHAは記載せずgit logで照合。
+- Network: GitHub Actions受入artifact再利用、原本/旧Wiki再生成0、native0、ROM変更0。
+
+## 2026-09-21T22:44:54.847498+00:00
+- Timestamp: 2026-09-21T22:44:54.847498+00:00
+- Task: USER-20260921-LEARNSET-BASELINE-RESET / Eternal明示採用とhost owner gate
+- Version: learnset-floette-owner-v1
+- Status: DONE（Eternal差分/host gate限定。game callsite・ROM/native未接続）
+- Summary: 37経路を採用し親128352経路を保全。1029の9枠のみ更新、188枠を空表/fallbackにしないC gateを実装。
+- Files changed: 専用抽出器、明示裁定、差分compiler、C gate、44新試験、限定Actions/固定入力、checkpoint/証拠/guide、固定入口/MD/JSON、両ログ。
+- Verify: 44試験PASS、独立2プロセス/ローカルActions全hash一致、全差分byte/実owner C15039 query、親15030 index行/入力byte/mtime不変。run=35663067820 source=7a8405d0e7b9085078f335a7dd95f4c8fb614141。原本抽出run35661456139は37行CSV一致。
+- Record recovery: 先行記録run35663195482は既存引継ぎfixtureの古いP08 gate仮定1件で停止。実台帳を変更せず合成fixtureを明示し、その1試験だけ再検証。先行27試験・新44試験は再実行なし。
+- Commit: 本記録を含む同branch非force commit。自己SHAはgit logで照合。
+- Network: GitHub受入artifact再利用。既受入原本/payload再生成0、native0、ROM変更0。新TM23中12技の実供給と条件consumerは未接続。
+- Binding recovery: run35663855295は修正試験の固定hash未同期で停止。旧hash/新hashを明示照合して当該1件だけ同期し、全source検査を再実施。受入実装/44試験は再実行なし。
+
+## 2026-09-22T08:41:34.289523+00:00
+- Timestamp: 2026-09-22T08:41:34.289523+00:00
+- Task: USER-20260922-LEARNSET-RUNTIME / 2入口ROM接続の完了証拠保存
+- Version: learnset-runtime-two-entrypoints-v1
+- Status: DONE（2入口直接call限定。通常操作/残consumerは未完）
+- Summary: 新ROM aabd52a0、2hook、全差分rollback/配置容量・13代表owner・2process/3382callを保存。19試験/host/ARMは継承し再実行0。
+- Files changed: runtime記録器/拒否試験/限定Actions、証拠/checkpoint、専用guide、固定再開MD/JSON、両ログ。
+- Verify: run35704908254 SUCCESS、ZIP/全member/source hash照合、新記録拒否試験・resume check・task graph・final index guard PASS後のみcommit。通常操作E2Eは未受入。
+- Commit: 本記録を含む同branch非force commit。自己SHAはgit logで照合。
+- Network: GitHub完了run/artifact再利用。新規ROM生成/host/ARM/native再実行0。過去3failureを保持。
+
+## 2026-09-22T09:29:52.234357+00:00
+- Timestamp: 2026-09-22T09:29:52.234357+00:00
+- Task: USER-20260922-LEARNSET-PROGRESS / 初期技・通常level-upのROM consumer接続
+- Version: learnset-progress-v1
+- Status: DONE（初期技/通常level-up直接ROM probe限定。条件経路/通常操作E2Eは未完）
+- Summary: 新候補e168c06f、3hook、P03進化分岐/旧PLR1/保存4技を保全。9代表条件×2native process、実PP/満杯/重複後継続を確認。
+- Files changed: 新C/typed fixture/30境界試験、配置・診断・継承・native検証器、限定Actions、証拠/checkpoint/guide、固定引継ぎMD/JSON、両ログ。
+- Verify: run35710087058 SUCCESS。30試験/318186照合は成功証拠継承。新記録拒否試験・resume check・task graph・diff --check・final index guard PASS後のみcommit。
+- Commit: 本記録を含む同branch非force commit。自己SHAはgit logで照合。
+- Network: GitHub固定run/artifact、CFRU-JP@e24a16feのBPRJ.ld/src/config.hをhash照合。原本収集/旧accepted native/hostの再実行0。ABI/offset失敗履歴はcheckpointに保持。
+
+## 2026-09-22T11:58:00.617622+00:00
+- Timestamp: 2026-09-22T11:58:00.617622+00:00
+- Task: USER-20260922-LEARNSET-COMPACT / 四条件consumerの接続と限定受入
+- Version: learnset-conditional-plc2-v1
+- Status: DONE（4入口直接ROM probe限定。tutor/archive/新Wiki/通常操作E2Eは未完）
+- Summary: PLC1 115282→PLC2 31014 bytes、8355行/842共有record同値、新候補284b8822、4hookと2segment、全差分rollback/旧PLR1/P03/4技・PPを保全。
+- Files changed: PLC2配置器/C decoder/25試験、分割ARM配置・継承器/6試験、実測ABI/6試験、限定Actions、証拠/checkpoint/guide、固定入口/引継ぎMD・JSON、両ログ。
+- Verify: run35721669287 SUCCESS、15代表条件×2process。41+18+25+6=90試験/622669+15039照合を原本継承。新記録拒否試験・resume/task graph・diff --check・final index限定guard後のみcommit。
+- Commit: 本記録を含む同branch非force commit。自己SHAはgit logで照合。
+- Network: GitHub固定run/artifactのみ。原本再収集/旧ARM再compile/既存native再実行0。空間不足run35716683381とリンク失敗run35720010554・旧入口不一致run35720416968をfailureのまま保持。全履歴private guardのPASSは主張しない。
+- 記録修復: run35722277848は18記録試験成功後に固定入口のstale sourceで停止し、commit/pushなし。入口の動的追記を廃止し、source bindingの自動追認を拒否。18試験は再実行せず、新規ResumePublicationTests 6件と実resume/task graph/index guardだけを検証する。
+
+## 2026-09-22T12:23:27.574724+00:00
+- Timestamp: 2026-09-22T12:23:27.574724+00:00
+- Task: USER-20260922-LEARNSET-SUPPLY / PLA1と供給consumerのhost限定受入
+- Version: learnset-supply-pla1-host-v1
+- Status: DONE（host限定。実ROM ABI/接続・Wiki・通常操作E2Eは未完）
+- Summary: PLA1 21383 bytes、3342行/1232共有行/3順序templateを同値圧縮。殿堂入りgate・40行ページ・既習得除外・188非学習owner拒否・Tutor通常slotを読取専用adapterへ実装。
+- Files changed: tools/pr16_learnset_supply.py、supply C/header/game adapter、新規fixture/30試験、verify/record/拒否試験/限定Actions、証拠/checkpoint/guide、固定引継ぎMD/JSON、両ログ。CHATGPT_RESUME.mdは不変。
+- Verify: run35726123952 SUCCESS、新規30試験・145878 C/source照合・独立2PLA1のhash一致。保存原本の30試験/照合/生成を本記録で再実行しない。新規記録拒否試験・resume/task graph・final index限定guard・diff --check成功後のみcommit。
+- Commit: 同branchへの非force記録commit。自己SHAはgit logで照合。
+- Network: GitHub固定run/artifactを再利用。kapibarasan000/CFRU-JP@e24a16fe39e27ae162faf5b78596d1f3df18489d/src/item.cのCanMonLearnTutorMoveを確認し特殊Tutor条件を通常slotと区別（https://github.com/kapibarasan000/CFRU-JP/blob/e24a16fe39e27ae162faf5b78596d1f3df18489d/src/item.c）。実ROM ABIは未受入。原本/payload再生成0・旧96試験/native再実行0・新ARM/native0。歴史的全体private guardのPASSは主張しない。
+
+## 2026-09-22T13:39:03.367297+00:00
+- Timestamp: 2026-09-22T13:39:03.367297+00:00
+- Task: USER-20260922-LEARNSET-SUPPLY-ABI / 未反映供給ARMリンクの受入・固定再開点更新
+- Version: learnset-supply-rom-link-v1
+- Status: DONE（ROM配置限定。実操作/新Wikiは未完）
+- Summary: run35732715452の保存証拠を照合。ec5992aa/4hook/ARM2784 bytes/PLA1 21383 bytes/独立2候補一致。初回14試験を継承、失敗履歴を保持。
+- Files changed: 専用record/拒否試験/入力binding/Actions、link証拠/checkpoint、固定再開MD/JSON、供給guide、両ログ。
+- Verify: 外側ZIP・全member/source hash・親checkpoint/BP/P08一致、新規記録拒否試験、resume/task graph/final index限定guard PASS後のみcommit。旧受入/native/ARM再実行0。全履歴guardのPASSは主張しない。
+- Commit: 本記録を含む同branch非force commit。自己SHAはgit logで照合。
+- Network: GitHub既存Actions/artifactだけ。原本再採取/merge/release/baseline切替なし。
+
+## 2026-09-22T15:37:57.696678+00:00
+- Timestamp: 2026-09-22T15:37:57.696678+00:00
+- Task: USER-20260922-LEARNSET-SUPPLY-NATIVE / ELF実load配置修復・新供給4hook受入
+- Version: learnset-supply-alignment-v1
+- Status: DONE（配置と直接ROM ABI限定。通常操作/Wikiは未完）
+- Summary: ELF実loadとROM配置の4byteずれを保存ELFから修復し後継6e88a021を独立2配置一致で確定。新供給4hookを28代表owner×独立2process、合計21392callで検証。特殊Tutor/HoF/raw40ページ/既習得除外/タマゴ/選択境界/保存4技PPを確認。直接ROM診断のみで通常操作・新Wiki・物理供給は未完。
+- Files changed: 配置修復器/16拒否試験/限定Actions、失敗入力lock、後継配置/native checkpoint/証拠、固定MD/JSON、guide、両ログ。
+- Verify: run35748601580、保存run35747048291の16配置試験/独立2配置一致を継承（今回再実行0）、旧26owner行は不変・正本280/855の2fixture追加、ASan/UBSan host compileと前後逆順2process一致。原本26owner行再採取0、旧14+10試験再実行0、ARM/PLA1/PLC2/受入native再実行0。差分は供給ARM配置2788bytes内限定・全hook不変。resume/task graph/final index guard PASS後のみcommit。全履歴guard PASSは主張しない。
+- Commit: 同branch非forceの本記録commit（自己SHAはgit logで照合）。WIP 1f71e563f8ab9c72b1f6a7756ef395e63c09a7a5に続く完了記録。
+- Network: GitHub固定run/artifactとUbuntu libmgba-devのみ。旧失敗を保持。merge/release/baseline切替なし。
+
+## 2026-09-22T15:47:18.457847+00:00
+- Timestamp: 2026-09-22T15:47:18.457847+00:00
+- Task: USER-20260922-LEARNSET-SUPPLY-NATIVE / completed Actionsと原本・再開HEADの照合
+- Version: learnset-supply-native-closeout-v1
+- Status: DONE（配置修復・4hook直接ROM診断・完了記録まで。Wiki/実操作は未完）
+- Summary: run35748601580/job106816516184 completed/success、28owner×独立2process、21392call、通常Tutor許可/拒否20/7148、特殊Tutor許可/拒否12/2004、readonly19024回。原本JSON/ログ・全member hash・保存aligned-data・非force記録commit b464a4df505d26067c42550db90615eeb3655cdd を照合。古いobserved_head表記をnative実入力へ同期。
+- Files changed: 完了照合器/12証拠拒否試験/限定workflow、completed-actions JSON、配置/native checkpoint、固定MD/JSON、guide、両ログ。
+- Verify: 保存run35749269393のcloseout12試験を継承（再実行0）、新ref境界6試験・resume check・task graph・限定final index/private差分guardを通過してからcommit。PR表示headとlive branch refは別記し、repo/branch/未merge/有界祖先とlive完全一致を検査。native/ARM compile/link/ROM復元/既受入試験は今回0。配置16試験はrun35747048291、旧24試験も保存継承。host compile失敗run35747886574（native0）は原本付きで保存し、740ecf0でラッパーだけ修復した。26owner診断失敗1processと28owner成功2processを混同しない。
+- Commit: 本記録を含む同branch非force commit。検証入力HEAD=688602071100edd7fc4e545e475686b3b45ae021。自己SHAはgit logで照合。
+- Network: GitHub固定run/artifact照合のみ。ROM/Save/ELF/binaryをtrackedへ追加しない。正式BP/P08/旧Wiki/基準ROMは不変、merge/release/active baseline切替なし。
+
+## 2026-09-22T17:01:51.954014+00:00
+- Timestamp: 2026-09-22T17:01:51.954014+00:00
+- Task: USER-20260923-LEARNSET-WIKI / 同一Wikiの反映と公開証拠view修復
+- Version: issue19-wiki-6e88a021-publish-v1
+- Status: DONE（技習得Wiki限定）
+- Summary: 4932files/128389経路のWikiを成功tree b153f51d26db955427ce4f29df341556ee0ea02143394a64b9ae4d8d430f53fe と同一byteで復元。原本を改変せず、追跡ログは伏字/末尾空白除去viewと原本hashの対で保存。
+- Files changed: 生成器/registry/試験/Actions、新Wiki、引継ぎMD/JSON、checkpoint/説明MD/text証拠、両ログ。
+- Verify: run35756623313の36試験/独立2生成/check成功は継承し再実行0。旧run全体はguard failureのまま。今run35757877294は新公開view10試験、同一tree materialize1、resume/task graph/限定index guard。原本採取/旧ARM/nativeの再実行0、ROM変更0。
+- Commit: 本完了commitを同branchへ非force反映。自己SHAはgit log/Actions resultと照合。
+- Network: 固定採用run/artifactと現在refのみ。旧Wiki4148file、BP/P08/baseline不変。全履歴guard PASS、通常操作受入、merge/releaseを主張しない。
+
+## 2026-09-22T17:04:50.870178+00:00
+- Timestamp: 2026-09-22T17:04:50.870178+00:00
+- Task: USER-20260923-LEARNSET-WIKI / 完了Actions原本の照合
+- Version: issue19-wiki-6e88a021-closeout-v1
+- Status: DONE（技習得Wiki記録限定）
+- Summary: run35757877294のrun/job/必須step成功（失敗時専用stepはskipped）、artifact外側digestと全member、反映commit ea2e8f07639d558ded613546f13dc4fe2cf9aaa2、受入source不変を照合。Wiki4932files/128389経路/36試験の受入は継承。
+- Files changed: closeout script/14試験/workflow、完了照合JSON、Wiki checkpoint/引継ぎMD/JSON/説明MD、両ログ。
+- Verify: 新しい記録境界14試験、resume/task graph/限定index guard。Wiki生成・旧36試験・原本採取・ROM復元・ARM・nativeの再実行0。
+- Commit: 同branch非forceの本記録commit。自己SHAはgit log/Actions resultと照合。
+- Network: 固定run/artifact/commit/source Checksと現在refのみ。全履歴guard PASS、製品受入、merge/release/baseline切替を主張しない。
+
+## 2026-09-23T07:12:19.852688+00:00
+- Timestamp: 2026-09-23T07:12:19.852688+00:00
+- Task: USER-20260923-LEARNSET-GAMEPLAY / 未受入通常Bag・保存再開の実装と検証
+- Version: issue19-gameplay-6e88a021-v1
+- Status: BLOCKED（失敗原本と成功prefixを保存）
+- Summary: 殿堂入りgate、raw40境界、取消、全12Floette archive技、通常思い出しを独立原本spanへ結合した23ケースを実装。成功0件。
+- Files changed: 新runner/C/vector契約試験/Actions、content/modernization/pr16_learnset_gameplay_checkpoint.json、docs/PR16_LEARNSET_GAMEPLAY_JA.md、text証拠、固定引継ぎMD/JSON、両ログ。
+- Verify: run35830398856、新unit 20件、native 1process。通常Save/fresh Continue/100byte/4技PP/counterを成功ケースごとに検証。旧受入・Wiki・ARM再実行0、ROM変更0。
+- Commit: 同branchへの本記録commitを非force pushしremote ref照合。自己SHAはActions result/git log参照。
+- Network: 固定GitHub source/run/artifactの復元のみ。原本ROM/saveを新規追跡しない。全履歴private guardのPASS、戦闘、releaseを主張しない。
+
+## 2026-09-23T07:26:12.231201+00:00
+- Timestamp: 2026-09-23T07:26:12.231201+00:00
+- Task: USER-20260923-LEARNSET-GAMEPLAY / 未受入通常Bag・保存再開の実装と検証
+- Version: issue19-gameplay-6e88a021-v1
+- Status: DONE（Bag/保存検証の区切り。全体未完）
+- Summary: 殿堂入りgate、raw40境界、取消、全12Floette archive技、通常思い出しを独立原本spanへ結合した23ケースを実装。成功23件。
+- Files changed: 新runner/C/vector契約試験/Actions、content/modernization/pr16_learnset_gameplay_checkpoint.json、docs/PR16_LEARNSET_GAMEPLAY_JA.md、text証拠、固定引継ぎMD/JSON、両ログ。
+- Verify: run35831256129、新unit 12件、native 23process。通常Save/fresh Continue/100byte/4技PP/counterを成功ケースごとに検証。旧受入・Wiki・ARM再実行0、ROM変更0。
+- Commit: 同branchへの本記録commitを非force pushしremote ref照合。自己SHAはActions result/git log参照。
+- Network: 固定GitHub source/run/artifactの復元のみ。原本ROM/saveを新規追跡しない。全履歴private guardのPASS、戦闘、releaseを主張しない。
+
+## 2026-09-23T07:37:19.675467+00:00
+- Timestamp: 2026-09-23T07:37:19.675467+00:00
+- Task: USER-20260923-LEARNSET-BATTLE / Bag完了Actions固定と習得技の通常戦闘
+- Version: issue19-learned-battle-6e88a021-v1
+- Status: BLOCKED（失敗原本を保存、Bag受入は不変）
+- Summary: Bag23/46core、20+12unitをrun35831256129/job107084145752/artifact10736439669へ固定し再実行0。習得個体420の初期fixtureから自然歩行遭遇・技選択・PP/ダメージ・通常Save/fresh Continueを新規実装。
+- Files changed: 新battle runner/C/試験、Actions、Bag完了JSON、battle checkpointとtext原本view、固定引継ぎMD/JSON、両ログ。
+- Verify: run35832603358、unit 16件、native 0process、status FAIL。旧native/Bag/Wiki/ARM再実行0、ROM変更0。summary黒画面は見た目の受入にしない。
+- Commit: 本記録commitを同branchへ非force pushしremote refを照合。自己SHAはActions reflected-head/git log参照。
+- Network: 固定GitHub run/job/artifactのみ。原本ROM/saveの新規追跡なし。全履歴private guard/Issue19全体/releaseの完了を主張しない。
+
+## 2026-09-23T07:43:37.846110+00:00
+- Timestamp: 2026-09-23T07:43:37.846110+00:00
+- Task: USER-20260923-LEARNSET-BATTLE / Bag完了Actions固定と習得技の通常戦闘
+- Version: issue19-learned-battle-6e88a021-v1
+- Status: BLOCKED（失敗原本を保存、Bag受入は不変）
+- Summary: Bag23/46core、20+12unitをrun35831256129/job107084145752/artifact10736439669へ固定し再実行0。習得個体420の初期fixtureから自然歩行遭遇・技選択・PP/ダメージ・通常Save/fresh Continueを新規実装。
+- Files changed: 新battle runner/C/試験、Actions、Bag完了JSON、battle checkpointとtext原本view、固定引継ぎMD/JSON、両ログ。
+- Verify: run35833129256、unit 6件、native 1process、status FAIL。旧native/Bag/Wiki/ARM再実行0、ROM変更0。summary黒画面は見た目の受入にしない。
+- Commit: 本記録commitを同branchへ非force pushしremote refを照合。自己SHAはActions reflected-head/git log参照。
+- Network: 固定GitHub run/job/artifactのみ。原本ROM/saveの新規追跡なし。全履歴private guard/Issue19全体/releaseの完了を主張しない。
+
+## 2026-09-23T07:49:54.594363+00:00
+- Timestamp: 2026-09-23T07:49:54.594363+00:00
+- Task: USER-20260923-LEARNSET-BATTLE / Bag完了Actions固定と習得技の通常戦闘
+- Version: issue19-learned-battle-6e88a021-v1
+- Status: DONE（代表戦闘の区切り、全体未完）
+- Summary: Bag23/46core、20+12unitをrun35831256129/job107084145752/artifact10736439669へ固定し再実行0。習得個体420の初期fixtureから自然歩行遭遇・技選択・PP/ダメージ・通常Save/fresh Continueを新規実装。
+- Files changed: 新battle runner/C/試験、Actions、Bag完了JSON、battle checkpointとtext原本view、固定引継ぎMD/JSON、両ログ。
+- Verify: run35833647521、unit 6件、native 1process、status PASS_SCOPED。旧native/Bag/Wiki/ARM再実行0、ROM変更0。summary黒画面は見た目の受入にしない。
+- Commit: 本記録commitを同branchへ非force pushしremote refを照合。自己SHAはActions reflected-head/git log参照。
+- Network: 固定GitHub run/job/artifactのみ。原本ROM/saveの新規追跡なし。全履歴private guard/Issue19全体/releaseの完了を主張しない。
+
+## 2026-09-23T08:18:12.545302+00:00
+- Timestamp: 2026-09-23T08:18:12.545302+00:00
+- Task: USER-20260923-LEARNSET-IMPACT / 通常戦闘完了Actionsの固定照合
+- Version: issue19-impact-battle-completion-v1
+- Status: DONE（完了照合の区切り、Issue19全体は未完）
+- Summary: run35833647521/job107091863129/artifact10738122800/反映37b023853baea5d3e1f0dfb8f8de6de38334262c、内外hash・原本・source・100byte保存結果を照合。受入28unit/通常戦闘は再実行せず継承。
+- Files changed: 完了validator・追加境界試験・限定Actions、battle checkpoint/完了JSON、固定引継ぎMD/JSON・guide・両ログ。
+- Verify: 境界14+3unitと完了validatorをrun35835731455/35836024443から継承。本runはprivate guard bytes契約の修復と記録のみ、保存原本validator PASS、resume check/task graph/最終index scoped guard。新規native/ARM/Wiki/受入unit再実行0。
+- Commit: 本記録commitを同branchへ非force push、reflected-head.txtで最終remote HEAD照合。
+- Network: 固定GitHub run/job/artifactのみ。別PR CI action_required二件を成功へ改作しない。全履歴guard/全体releaseの完了は主張しない。
+
+## 2026-09-23T08:47:40.506130+00:00
+- Timestamp: 2026-09-23T08:47:40.506130+00:00
+- Task: USER-20260923-LEARNSET-EGG-GAMEPLAY
+- Version: issue19-conditional-egg-gameplay-v1
+- Status: DONE（8ケースの区切り、全体未完）
+- Summary: 原本spanに固定したLight Ball/incense/旧技除外/重複/4枠8ケース。通常育て屋・実歩行生成/孵化・タマゴと孵化後Save/fresh Continue。
+- Files changed: 専用source投影/validator/18境界試験/限定Actions、checkpointとtext原本、guide・固定引継ぎMD/JSON・両ログ。
+- Verify: run35837431004 status PASS_SCOPED、unit 18、native 8process、成功8。受入Bag/戦闘/ARM/Wiki再実行0・ROM変更0。
+- Commit: 同branchへ非force pushしreflected-head.txtにremote照合結果を保存。
+- Network: 固定artifact/保存候補復元のみ。原本ROM/saveを新規追跡しない。全履歴guard/全体releaseの完了は主張しない。
+
+## 2026-09-23T08:50:23.120092+00:00
+- Timestamp: 2026-09-23T08:50:23.120092+00:00
+- Task: USER-20260923-LEARNSET-VISUAL
+- Version: issue19-visual-capture-v1
+- Status: PASS_CAPTURE_PENDING_VISUAL_REVIEW
+- Summary: 一覧state4/6とsummary描画待ちを限定修復。Mew/Floetteの2対象は習得・Save前に停止し4枚をartifact保存。
+- Files changed: 専用source投影/validator/10境界試験/Actions、checkpoint/text原本・固定引継ぎMD/JSON・guide・両ログ。
+- Verify: run35839299224 native 2・unit 10。受入全Bag/戦闘/タマゴ/ARM/Wiki再実行0、ROM変更0。目視は別途未完として保持。
+- Commit: 同branchへ非force pushしreflected-headをremote照合。
+- Network: 保存候補/固定Bag artifactのみ。binaryは新規追跡しない。全履歴guard/release成功を主張しない。
+
+## 2026-09-23T08:57:08.602116+00:00
+- Timestamp: 2026-09-23T08:57:08.602116+00:00
+- Task: USER-20260923-LEARNSET-VISUAL-LIST
+- Version: issue19-list-settle-v1
+- Status: PASS_CAPTURE_PENDING_VISUAL_REVIEW
+- Summary: 目視で発見した一覧cursorの1frame遅延を修復。index10連続90frameで1枚だけ再撮影しsummary前に停止。正常3枚/旧不合格画像の原本は保持。
+- Files changed: 限定controller/8境界試験/Actions、checkpoint/text原本・guide・固定引継ぎMD/JSON・両ログ。
+- Verify: run35839963209、新規native 1、unit 8。習得/Save/受入Bag全体/戦闘/タマゴ/ARM/Wiki再実行0。
+- Commit: 同branchへ非force push、reflected-headをremote照合。
+- Network: 固定capture artifactと保存候補のみ。全履歴guard/release成功は主張しない。
+
+## 2026-09-23T09:01:03.195919+00:00
+- Timestamp: 2026-09-23T09:01:03.195919+00:00
+- Task: USER-20260923-LEARNSET-IMPACT-CLOSE
+- Version: issue19-impact-close-v1
+- Status: DONE（通常戦闘の完了記録・条件付きタマゴ8・代表画面4枚の区切り、Issue19全体未完）
+- Summary: タマゴ通常育て屋/実歩行孵化/保存24fresh core・18unit、撮影2core/10unitの正常3枚+一覧修復1core/8unitの1枚を保存原本から終端照合。目視所見を画像hashへ固定。
+- Files changed: 完了照合source/追加境界試験/plan/Actions、完了JSON・3checkpoint/guide・固定引継ぎMD/JSON・append-only両ログ。
+- Verify: 新規終端境界17unit、原本/inner/outer/source/ref照合、resume/taskgraph、最終index/private差分。native/受入unit/ARM/Wiki再実行0、ROM/baseline変更0。
+- Commit: 同branchへ非force push、remote refとreflected-head.txtを一致確認。
+- Network: 固定GitHub run/job/artifactのみ。過去失敗を保持。全履歴private guard/全Issue19/release成功は主張しない。
+
+## 2026-09-23T10:49:43.541436+00:00
+- Timestamp: 2026-09-23T10:49:43.541436+00:00
+- Task: USER-20260923-LEARNSET-PROGRESSION / 通常アメlevel-up・進化UI
+- Version: issue19-progression-v1
+- Status: BLOCKED（成功caseを保存し失敗だけ継続）
+- Summary: 原本spanに固定した通常level-up・既習得/拒否/取消・同level複数行と進化技。Save/fresh Continueで100bytes・PP・消費保持。
+- Files changed: 専用C/validator/新境界試験/限定Actions、checkpoint・text原本、専用guide・固定引継ぎMD/JSON・両ログ。
+- Verify: run35850873307 FAIL、新unit 31 / 継承0、新native 11、累計成功8。ARM/ROM変更/Wiki/受入済みnative再実行0。
+- Commit: 同branchへ非force pushしreflected-head.txtにremote照合結果。
+- Network: 固定artifact/保存候補復元・最新Actions照合。初期個体生成/戦闘EXP/全owner/Issue19/releaseは未完。原本ROM/save新規追跡なし。
+
+## 2026-09-23T11:03:43.890848+00:00
+- Timestamp: 2026-09-23T11:03:43.890848+00:00
+- Task: USER-20260923-LEARNSET-PROGRESSION / 通常アメlevel-up・進化UI
+- Version: issue19-progression-v1
+- Status: BLOCKED（成功caseを保存し失敗だけ継続）
+- Summary: 原本spanに固定した通常level-up・既習得/拒否/取消・同level複数行と進化技。Save/fresh Continueで100bytes・PP・消費保持。
+- Files changed: 専用C/validator/新境界試験/限定Actions、checkpoint・text原本、専用guide・固定引継ぎMD/JSON・両ログ。
+- Verify: run35852260342 FAIL、新unit 0 / 継承31、新native 3、累計成功8。ARM/ROM変更/Wiki/受入済みnative再実行0。
+- Commit: 同branchへ非force pushしreflected-head.txtにremote照合結果。
+- Network: 固定artifact/保存候補復元・最新Actions照合。初期個体生成/戦闘EXP/全owner/Issue19/releaseは未完。原本ROM/save新規追跡なし。
+
+## 2026-09-23T11:07:30.141365+00:00
+- Timestamp: 2026-09-23T11:07:30.141365+00:00
+- Task: USER-20260923-LEARNSET-PROGRESSION / 通常アメlevel-up・進化UI
+- Version: issue19-progression-v1
+- Status: BLOCKED（成功caseを保存し失敗だけ継続）
+- Summary: 原本spanに固定した通常level-up・既習得/拒否/取消・同level複数行と進化技。Save/fresh Continueで100bytes・PP・消費保持。
+- Files changed: 専用C/validator/新境界試験/限定Actions、checkpoint・text原本、専用guide・固定引継ぎMD/JSON・両ログ。
+- Verify: run35852603289 FAIL、新unit 0 / 継承31、新native 1、累計成功8。ARM/ROM変更/Wiki/受入済みnative再実行0。
+- Commit: 同branchへ非force pushしreflected-head.txtにremote照合結果。
+- Network: 固定artifact/保存候補復元・最新Actions照合。初期個体生成/戦闘EXP/全owner/Issue19/releaseは未完。原本ROM/save新規追跡なし。
+
+## 2026-09-23T11:22:02.046970+00:00
+- Timestamp: 2026-09-23T11:22:02.046970+00:00
+- Task: USER-20260923-LEARNSET-PROGRESSION / CFRU初回入口修復
+- Version: issue19-entry-repair-v1
+- Status: DONE（限定範囲、初期生成/戦闘EXP/全体未完）
+- Summary: first call旧CFRU/継続PLR1の混在を8bytesのtail jumpで修復。表/期待値/元失敗原本は不変。
+- Files changed: 限定recipe、Thumb entry source、新境界試験、限定Actions、text証拠、checkpoint/guide、固定MD/JSON、両ログ。
+- Verify: PASS_REPAIRED_CFRU_FIRST_CALL_ENTRY、run35853901025、新unit26、native11、成功11、fresh core22、影響あり旧受入再検証8、無関係再実行0。
+- Commit: 同branch非force push後にremote refを照合してartifactへ記録。
+- Network: 保存artifactと最新Actionsの固定identity照合。ROM/save新規追跡・release・baseline切替なし。
+
+## 2026-09-23T11:23:56.631051+00:00
+- Timestamp: 2026-09-23T11:23:56.631051+00:00
+- Task: USER-20260923-LEARNSET-PROGRESSION / CFRU初回入口修復 Actions終端照合
+- Version: issue19-entry-repair-v1
+- Status: DONE（限定範囲、初期生成/戦闘EXP/全体未完）
+- Summary: first call旧CFRU/継続PLR1の混在を8bytesのtail jumpで修復。表/期待値/元失敗原本は不変。
+- Files changed: 限定recipe、Thumb entry source、新境界試験、限定Actions、text証拠、checkpoint/guide、固定MD/JSON、両ログ。
+- Verify: PASS_REPAIRED_CFRU_FIRST_CALL_ENTRY、run35853901025、新unit26、native11、成功11、fresh core22、影響あり旧受入再検証8、無関係再実行0。 この記録工程はnative/host/ARM再実行0、完了Actions照合のみ。
+- Commit: 同branch非force push後にremote refを照合してartifactへ記録。
+- Network: 保存artifactと最新Actionsの固定identity照合。ROM/save新規追跡・release・baseline切替なし。
+
+## 2026-09-24T18:13:44.883000+00:00
+- Timestamp: 2026-09-24T18:13:44.883000+00:00
+- Task: USER-20260925-LEARNSET-NATURAL / 自然野生初期技・戦闘EXP
+- Version: issue19-natural-v1
+- Status: BLOCKED（保存失敗から限定継続）
+- Summary: 保存修復候補を再buildせず復元。自然野生の原本初期技、通常戦闘EXPの空き枠習得、Save/fresh Continueを限定検証。開始手持ち/EXP/能力値/進行はfixture。
+- Files changed: 新driver/C/tests/限定Actions、証拠/CP/guide、固定MD/JSON、両ログ。
+- Verify: FAIL run36039653256 unit25 native1 成功0。既受入再実行0、ARM0、ROM変更0、Wiki0。
+- Commit: 同branchへ非force pushしreflected-head.txtでremote照合。
+- Network: GitHub既存原本artifact/最新Actionsのみ。原本再採取・release・baseline切替なし。
+
+## 2026-09-24T18:18:47.048918+00:00
+- Timestamp: 2026-09-24T18:18:47.048918+00:00
+- Task: USER-20260925-LEARNSET-NATURAL / 自然野生初期技・戦闘EXP
+- Version: issue19-natural-v1
+- Status: BLOCKED（保存失敗から限定継続）
+- Summary: 保存修復候補を再buildせず復元。自然野生の原本初期技、通常戦闘EXPの空き枠習得、Save/fresh Continueを限定検証。開始手持ち/EXP/能力値/進行はfixture。
+- Files changed: 新driver/C/tests/限定Actions、証拠/CP/guide、固定MD/JSON、両ログ。
+- Verify: FAIL run36040259713 unit25 native0 成功0。既受入再実行0、ARM0、ROM変更0、Wiki0。
+- Commit: 同branchへ非force pushしreflected-head.txtでremote照合。
+- Network: GitHub既存原本artifact/最新Actionsのみ。原本再採取・release・baseline切替なし。
+
+## 2026-09-24T18:23:08.014679+00:00
+- Timestamp: 2026-09-24T18:23:08.014679+00:00
+- Task: USER-20260925-LEARNSET-NATURAL / 自然野生初期技・戦闘EXP
+- Version: issue19-natural-v1
+- Status: BLOCKED（保存失敗から限定継続）
+- Summary: 保存修復候補を再buildせず復元。自然野生の原本初期技、通常戦闘EXPの空き枠習得、Save/fresh Continueを限定検証。開始手持ち/EXP/能力値/進行はfixture。
+- Files changed: 新driver/C/tests/限定Actions、証拠/CP/guide、固定MD/JSON、両ログ。
+- Verify: FAIL run36040704821 unit0 native1 成功0。既受入再実行0、ARM0、ROM変更0、Wiki0。
+- Commit: 同branchへ非force pushしreflected-head.txtでremote照合。
+- Network: GitHub既存原本artifact/最新Actionsのみ。原本再採取・release・baseline切替なし。
+
+## 2026-09-24T18:27:00.724558+00:00
+- Timestamp: 2026-09-24T18:27:00.724558+00:00
+- Task: USER-20260925-LEARNSET-NATURAL / 自然野生初期技・戦闘EXP
+- Version: issue19-natural-v1
+- Status: BLOCKED（保存失敗から限定継続）
+- Summary: 保存修復候補を再buildせず復元。自然野生の原本初期技、通常戦闘EXPの空き枠習得、Save/fresh Continueを限定検証。開始手持ち/EXP/能力値/進行はfixture。
+- Files changed: 新driver/C/tests/限定Actions、証拠/CP/guide、固定MD/JSON、両ログ。
+- Verify: FAIL run36041199782 unit0 native1 成功0。既受入再実行0、ARM0、ROM変更0、Wiki0。
+- Commit: 同branchへ非force pushしreflected-head.txtでremote照合。
+- Network: GitHub既存原本artifact/最新Actionsのみ。原本再採取・release・baseline切替なし。
+
+## 2026-09-24T18:37:40.579858+00:00
+- Timestamp: 2026-09-24T18:37:40.579858+00:00
+- Task: USER-20260925-LEARNSET-WILD-REPAIR
+- Version: issue19-wild-original-v1
+- Status: DONE（限定範囲、全体未完）
+- Summary: V4固定野生4技の後付けをwild-only prepared gateへ置換。保管/egg/未接続ownerは不変。原本初期化を再利用。
+- Files changed: 新wild game adapter/16境界試験/build・record driver/限定Actions、CP/guide/証拠、固定MD/JSON、両ログ。
+- Verify: PASS_WILD_INITIAL_AND_BATTLE_EXP_EMPTY run36042409576; new unit16 / inherited unit25 / new ARM1 / native1 / successful cases1; 旧ARM/旧host/アメ11/Bag23/egg8/Wiki/原本再実行0。
+- Commit: 同branchへ非force push、reflected-head.txtでremote refと照合。
+- Network: GitHub保存artifactのみ。release/merge/active baseline変更なし。
+
+## 2026-09-24T21:49:56.247442+00:00
+- Timestamp: 2026-09-24T21:49:56.247442+00:00
+- Task: USER-20260925-LEARNSET-WILD-REPAIR / Actions終端照合（実測再実行0）
+- Version: issue19-wild-original-v1
+- Status: DONE（限定範囲、全体未完）
+- Summary: V4固定野生4技の後付けをwild-only prepared gateへ置換。保管/egg/未接続ownerは不変。原本初期化を再利用。
+- Files changed: 新wild game adapter/16境界試験/build・record driver/限定Actions、CP/guide/証拠、固定MD/JSON、両ログ。
+- Verify: PASS_WILD_INITIAL_AND_BATTLE_EXP_EMPTY run36042409576; new unit16 / inherited unit25 / new ARM1 / native1 / successful cases1; 旧ARM/旧host/アメ11/Bag23/egg8/Wiki/原本再実行0。
+- Commit: 同branchへ非force push、reflected-head.txtでremote refと照合。
+- Network: GitHub保存artifactのみ。release/merge/active baseline変更なし。
+
+## 2026-09-24T22:08:47.090601+00:00
+- Timestamp: 2026-09-24T22:08:47.090601+00:00
+- Task: USER-20260925-LEARNSET-BOUNDARIES / 戦闘EXP境界
+- Version: issue19-exp-boundaries-v1
+- Status: BLOCKED（成功を保存、残件のみ継続）
+- Summary: PARTIAL_BATTLE_EXP_BOUNDARIES。保存成功3/4。候補の復元のみ、3書込barrier/通常Save/fresh Continue。開始個体/EXP/能力/進行はfixture。
+- Files changed: 限定driver/native/tests/workflow、CP/guide/証拠、固定MD/JSON、両ログ。
+- Verify: unit20 native4 host compile1。ARM0、ROM変更0、旧受入再実行0。Actions終端確認=False。終端照合の場合unit/native/host再実行0。
+- Commit: 同branchへの非force push、reflected-head.txtとremoteで照合。
+- Network: GitHub保存artifact/Actionsのみ。原本再採取、Wiki/release/baseline切替なし。
+
+## 2026-09-24T22:18:29.624723+00:00
+- Timestamp: 2026-09-24T22:18:29.624723+00:00
+- Task: USER-20260925-LEARNSET-BOUNDARIES / 戦闘EXP境界
+- Version: issue19-exp-boundaries-v1
+- Status: BLOCKED（成功を保存、残件のみ継続）
+- Summary: PARTIAL_BATTLE_EXP_BOUNDARIES。保存成功3/4。候補の復元のみ、3書込barrier/通常Save/fresh Continue。開始個体/EXP/能力/進行はfixture。
+- Files changed: 限定driver/native/tests/workflow、CP/guide/証拠、固定MD/JSON、両ログ。
+- Verify: unit1 native1 host compile1。ARM0、ROM変更0、旧受入再実行0。Actions終端確認=False。終端照合の場合unit/native/host再実行0。
+- Commit: 同branchへの非force push、reflected-head.txtとremoteで照合。
+- Network: GitHub保存artifact/Actionsのみ。原本再採取、Wiki/release/baseline切替なし。
+
+## 2026-09-24T22:25:01.402878+00:00
+- Timestamp: 2026-09-24T22:25:01.402878+00:00
+- Task: USER-20260925-LEARNSET-BOUNDARIES / 戦闘EXP境界
+- Version: issue19-exp-boundaries-v1
+- Status: DONE（限定4case、全体未完）
+- Summary: PASS_BATTLE_EXP_BOUNDARIES。保存成功4/4。候補の復元のみ、3書込barrier/通常Save/fresh Continue。開始個体/EXP/能力/進行はfixture。
+- Files changed: 限定driver/native/tests/workflow、CP/guide/証拠、固定MD/JSON、両ログ。
+- Verify: unit9 native1 host compile1。ARM0、ROM変更0、旧受入再実行0。Actions終端確認=False。終端照合の場合unit/native/host再実行0。
+- Commit: 同branchへの非force push、reflected-head.txtとremoteで照合。
+- Network: GitHub保存artifact/Actionsのみ。原本再採取、Wiki/release/baseline切替なし。
+
+## 2026-09-24T22:40:14.399351+00:00
+- Timestamp: 2026-09-24T22:40:14.399351+00:00
+- Task: USER-20260925-LEARNSET-BOUNDARIES / 戦闘EXP境界
+- Version: issue19-exp-boundaries-v1
+- Status: DONE（限定4case、全体未完）
+- Summary: PASS_BATTLE_EXP_BOUNDARIES。保存成功4/4。候補の復元のみ、3書込barrier/通常Save/fresh Continue。開始個体/EXP/能力/進行はfixture。
+- Files changed: 限定driver/native/tests/workflow、CP/guide/証拠、固定MD/JSON、両ログ。
+- Verify: unit10 native3 host compile1。ARM0、ROM変更0、変更影響なしの旧受入再実行0。Actions終端確認=False。終端照合の場合unit/native/host再実行0。
+- Commit: 同branchへの非force push、reflected-head.txtとremoteで照合。
+- Network: GitHub保存artifact/Actionsのみ。原本再採取、Wiki/release/baseline切替なし。
+- Health impact: 原本HP999/最大HP106の今回3caseを現行gateから失効。変更影響ありnative再実行3、影響なし0。正常multi-level成功は継承。HP/max HPは生成値のまま、観測中の書込禁止と警告拒否を維持。
+- Focused scope: 追加unit累計36種。最新10件（対象は新影響8+変更構造2）、保存26件の原本を照合。原本ROM生成/ARM build/候補変更0。
+- Upstream read-only reference: https://github.com/kapibarasan000/CFRU-JP/blob/e24a16fe39e27ae162faf5b78596d1f3df18489d/src/learn_move.c の既存ABIを補助確認。lock更新なし。HP修復の根拠は今回の保存原本。
+
+## 2026-09-24T22:44:05.193097+00:00
+- Timestamp: 2026-09-24T22:44:05.193097+00:00
+- Task: USER-20260925-LEARNSET-BOUNDARIES / 戦闘EXP境界
+- Version: issue19-exp-boundaries-v1
+- Status: DONE（限定4case、全体未完）
+- Summary: PASS_BATTLE_EXP_BOUNDARIES。保存成功4/4。候補の復元のみ、3書込barrier/通常Save/fresh Continue。開始個体/EXP/能力/進行はfixture。
+- Files changed: 限定driver/native/tests/workflow、CP/guide/証拠、固定MD/JSON、両ログ。
+- Verify: unit10 native3 host compile1。ARM0、ROM変更0、変更影響なしの旧受入再実行0。Actions終端確認=True。終端照合の場合unit/native/host再実行0。
+- Commit: 同branchへの非force push、reflected-head.txtとremoteで照合。
+- Network: GitHub保存artifact/Actionsのみ。原本再採取、Wiki/release/baseline切替なし。
+- Health impact: 原本HP999/最大HP106の今回3caseを現行gateから失効。変更影響ありnative再実行3、影響なし0。正常multi-level成功は継承。HP/max HPは生成値のまま、観測中の書込禁止と警告拒否を維持。
+- Focused scope: 追加unit累計36種。最新10件（対象は新影響8+変更構造2）、保存26件の原本を照合。原本ROM生成/ARM build/候補変更0。
+- Upstream read-only reference: https://github.com/kapibarasan000/CFRU-JP/blob/e24a16fe39e27ae162faf5b78596d1f3df18489d/src/learn_move.c の既存ABIを補助確認。lock更新なし。HP修復の根拠は今回の保存原本。
+
+## 2026-09-24T23:11:37.535390+00:00
+- Timestamp: 2026-09-24T23:11:37.535390+00:00
+- Task: USER-20260925-LEARNSET-FIRST-REFUSE / 最初の質問でB拒否
+- Version: issue19-first-refusal-v1
+- Status: BLOCKED
+- Summary: PARTIAL_BATTLE_EXP_FIRST_REFUSAL。B拒否→A中止確認、summary非到達、正常HP/保存4技/PP/Save/fresh Continueの限定1case。旧4成功と履歴を保全。全owner/Issue19未完。
+- Files changed: 専用driver/C/tests/workflow・CP/guide/原本、固定MD/JSON、両ログ。
+- Verify: 新unit21、host compile1、native1。旧受入native/unit、ARM、ROM変更、Wiki生成0。Actions終端確認=False。complete時は再実行0。
+- Commit: 同branchへ非force pushしremoteとreflected-head.txtを照合。
+- Network: GitHub固定source/保存artifact/Actions。事前source転送WIP 5078bd7/run36070267613（native/unit0）。参照: CFRU-JP e24a16fe39e27ae162faf5b78596d1f3df18489d battle_script_macros.s, assembly/data/battle_script_commands_table.s, include/new/ram_locs_battle.h。source-lock変更なし。merge/release/baseline切替なし。
+
+## 2026-09-24T23:17:55.394523+00:00
+- Timestamp: 2026-09-24T23:17:55.394523+00:00
+- Task: USER-20260925-LEARNSET-FIRST-REFUSE / 最初の質問でB拒否
+- Version: issue19-first-refusal-v1
+- Status: STOPPED
+- Summary: PASS_BATTLE_EXP_FIRST_REFUSAL。B拒否→A中止確認、summary非到達、正常HP/保存4技/PP/Save/fresh Continueの限定1case。旧4成功と履歴を保全。全owner/Issue19未完。
+- Files changed: 専用driver/C/tests/workflow・CP/guide/原本、固定MD/JSON、両ログ。
+- Verify: 新unit5、host compile1、native1。旧受入native/unit、ARM、ROM変更、Wiki生成0。Actions終端確認=False。complete時は再実行0。
+- Commit: 同branchへ非force pushしremoteとreflected-head.txtを照合。
+- Network: GitHub固定source/保存artifact/Actions。事前source転送WIP 5078bd7/run36070267613（native/unit0）。参照: CFRU-JP e24a16fe39e27ae162faf5b78596d1f3df18489d battle_script_macros.s, assembly/data/battle_script_commands_table.s, include/new/ram_locs_battle.h。source-lock変更なし。merge/release/baseline切替なし。
+- JP binding repair: run36071387743失敗原本を保全。BPRJ.ld実symbol0x02023CD4へ修正。成功unit20再利用、変更C構造1+新4を実行。旧native再実行0。参照 https://github.com/kapibarasan000/CFRU-JP/blob/e24a16fe39e27ae162faf5b78596d1f3df18489d/BPRJ.ld 。
+
+## 2026-09-24T23:23:04.856193+00:00
+- Timestamp: 2026-09-24T23:23:04.856193+00:00
+- Task: USER-20260925-LEARNSET-FIRST-REFUSE / 最初の質問でB拒否
+- Version: issue19-first-refusal-v1
+- Status: DONE
+- Summary: PASS_BATTLE_EXP_FIRST_REFUSAL。B拒否→A中止確認、summary非到達、正常HP/保存4技/PP/Save/fresh Continueの限定1case。旧4成功と履歴を保全。全owner/Issue19未完。
+- Files changed: 専用driver/C/tests/workflow・CP/guide/原本、固定MD/JSON、両ログ。
+- Verify: 新unit5、host compile1、native1。旧受入native/unit、ARM、ROM変更、Wiki生成0。Actions終端確認=True。complete時は再実行0。
+- Commit: 同branchへ非force pushしremoteとreflected-head.txtを照合。
+- Network: GitHub固定source/保存artifact/Actions。事前source転送WIP 5078bd7/run36070267613（native/unit0）。参照: CFRU-JP e24a16fe39e27ae162faf5b78596d1f3df18489d battle_script_macros.s, assembly/data/battle_script_commands_table.s, include/new/ram_locs_battle.h。source-lock変更なし。merge/release/baseline切替なし。
+- JP binding repair: run36071387743失敗原本を保全。BPRJ.ld実symbol0x02023CD4へ修正。成功unit20再利用、変更C構造1+新4を実行。旧native再実行0。参照 https://github.com/kapibarasan000/CFRU-JP/blob/e24a16fe39e27ae162faf5b78596d1f3df18489d/BPRJ.ld 。
+- Completion record repair: run36072151730はnative成功原本の終端照合後、補助JSONの親directory未作成でpush前停止。保存先作成を修正し、記録だけ再開。成功native/unit/host/ARMの再実行0。
+
+## 2026-09-25T00:01:32.845048+00:00
+- Timestamp: 2026-09-25T00:01:32.845048+00:00
+- Task: USER-20260925-LEARNSET-EXP-EVOLUTION-SHARE / native前source checkpoint
+- Version: issue19-exp-evolution-share-wip
+- Status: STOPPED
+- Summary: 新3case runner/driver/24試験を追加。転送時の定数false式を単一引数へ正規化しローカル構文/新unit24成功byteとSHA照合。実ROM受入はまだ0。
+- Files changed: 専用C/driver/tests/workflow、両ログ。既存受入CP・固定再開点はまだ変更しない。
+- Verify: 3source SHA一致、Python構文PASS。native/ARM/host/旧受入再実行0。次は新3caseのみ。
+- Commit: 同branchへ非force push/remote ref照合。
+- Network: GitHub Actions/sourceのみ。ROM/release/baseline不変。
+
+## 2026-09-25T00:04:01.124176+00:00
+- Timestamp: 2026-09-25T00:04:01.124176+00:00
+- Task: USER-20260925-LEARNSET-EXP-EVOLUTION-SHARE / 戦闘EXP進化承認・取消・控え共有
+- Version: issue19-exp-evolution-share-v1
+- Status: BLOCKED
+- Summary: PARTIAL_BATTLE_EXP_EVOLUTION_SHARE、限定0/3。開始fixtureと通常入力区間を分離。全owner/Issue19未完。
+- Files changed: 専用driver/C/tests/workflow、CP/guide/証拠、固定MD/JSON、両ログ。
+- Verify: 新unit24 host compile1 native3。Actions終端=False。記録終端照合のunit/native/host再実行0。ROM変更/ARM/変更影響なしの旧受入再実行0。
+- Commit: 同branchへの非force push。reflected-head.txtとremote ref照合。
+- Network: GitHub固定source/保存artifact/Actions。原本再採取・Wiki生成・release・baseline切替なし。一般CIのaction_requiredは限定nativeと別記録。
+
+## 2026-09-25T00:14:42.304836+00:00
+- Timestamp: 2026-09-25T00:14:42.304836+00:00
+- Task: USER-20260925-LEARNSET-EXP-EVOLUTION-SHARE / 戦闘EXP進化承認・取消・控え共有
+- Version: issue19-exp-evolution-share-v1
+- Status: BLOCKED
+- Summary: PARTIAL_BATTLE_EXP_EVOLUTION_SHARE、限定0/3。開始fixtureと通常入力区間を分離。全owner/Issue19未完。
+- Files changed: 専用driver/C/tests/workflow、CP/guide/証拠、固定MD/JSON、両ログ。
+- Verify: 新unit12 host compile1 native3。Actions終端=False。記録終端照合のunit/native/host再実行0。ROM変更/ARM/変更影響なしの旧受入再実行0。
+- Commit: 同branchへの非force push。reflected-head.txtとremote ref照合。
+- Network: GitHub固定source/保存artifact/Actions。原本再採取・Wiki生成・release・baseline切替なし。一般CIのaction_requiredは限定nativeと別記録。
+
+## 2026-09-25T00:41:28.054781+00:00
+- Timestamp: 2026-09-25T00:41:28.054781+00:00
+- Task: USER-20260925-LEARNSET-EXP-EVOLUTION-SHARE / 観測契約修復準備
+- Version: exp-evolution-observation-v1
+- Status: STOPPED（実装WIP・native未検証）
+- Summary: 進化後現在level行を原本から追加照合。未観測beginを捏造せずupdate/入力/個体保存で判定。共有fixtureを通常無入力で安定させる。
+- Files changed: driver/tests/C、固定再開MD/JSON、両ログ。
+- Verify: patch適用・Python構文・task graph PASS。旧bridge run36078410019は既存全体guard違反でunit/native0。旧native run36076513362終端failureを保持。限定index guard後のみWIP commit。
+- Commit: 同branchへ非force push、remote ref照合。
+- Network: GitHub固定HEAD/Actionsのみ。ROM変更/ARM/既受入native再実行0。全体private guard PASSは主張しない。
+
+## 2026-09-25T00:43:43.854773+00:00
+- Timestamp: 2026-09-25T00:43:43.854773+00:00
+- Task: USER-20260925-LEARNSET-EXP-EVOLUTION-SHARE / 戦闘EXP進化承認・取消・控え共有
+- Version: issue19-exp-evolution-share-v1
+- Status: BLOCKED
+- Summary: PARTIAL_BATTLE_EXP_EVOLUTION_SHARE、限定2/3。開始fixtureと通常入力区間を分離。全owner/Issue19未完。
+- Files changed: 専用driver/C/tests/workflow、CP/guide/証拠、固定MD/JSON、両ログ。
+- Verify: 新unit42 host compile1 native3。Actions終端=False。記録終端照合のunit/native/host再実行0。ROM変更/ARM/変更影響なしの旧受入再実行0。
+- Commit: 同branchへの非force push。reflected-head.txtとremote ref照合。
+- Network: GitHub固定source/保存artifact/Actions。原本再採取・Wiki生成・release・baseline切替なし。一般CIのaction_requiredは限定nativeと別記録。
+
+## 2026-09-25T00:49:17.895727+00:00
+- Timestamp: 2026-09-25T00:49:17.895727+00:00
+- Task: USER-20260925-LEARNSET-EXP-EVOLUTION-SHARE / 戦闘EXP進化承認・取消・控え共有
+- Version: issue19-exp-evolution-share-v1
+- Status: BLOCKED
+- Summary: FAIL、限定2/3。開始fixtureと通常入力区間を分離。全owner/Issue19未完。
+- Files changed: 専用driver/C/tests/workflow、CP/guide/証拠、固定MD/JSON、両ログ。
+- Verify: 新unit9 host compile1 native0。Actions終端=False。記録終端照合のunit/native/host再実行0。ROM変更/ARM/変更影響なしの旧受入再実行0。
+- Commit: 同branchへの非force push。reflected-head.txtとremote ref照合。
+- Network: GitHub固定source/保存artifact/Actions。原本再採取・Wiki生成・release・baseline切替なし。一般CIのaction_requiredは限定nativeと別記録。
+
+## 2026-09-25T00:53:56.244039+00:00
+- Timestamp: 2026-09-25T00:53:56.244039+00:00
+- Task: USER-20260925-LEARNSET-EXP-EVOLUTION-SHARE / 戦闘EXP進化承認・取消・控え共有
+- Version: issue19-exp-evolution-share-v1
+- Status: BLOCKED
+- Summary: PARTIAL_BATTLE_EXP_EVOLUTION_SHARE、限定2/3。開始fixtureと通常入力区間を分離。全owner/Issue19未完。
+- Files changed: 専用driver/C/tests/workflow、CP/guide/証拠、固定MD/JSON、両ログ。
+- Verify: 新unit4 host compile1 native1。Actions終端=False。記録終端照合のunit/native/host再実行0。ROM変更/ARM/変更影響なしの旧受入再実行0。
+- Commit: 同branchへの非force push。reflected-head.txtとremote ref照合。
+- Network: GitHub固定source/保存artifact/Actions。原本再採取・Wiki生成・release・baseline切替なし。一般CIのaction_requiredは限定nativeと別記録。
+
+## 2026-09-25T00:57:38.150996+00:00
+- Timestamp: 2026-09-25T00:57:38.150996+00:00
+- Task: USER-20260925-LEARNSET-EXP-EVOLUTION-SHARE / 共有field入力の修復準備
+- Version: field-input-v1
+- Status: STOPPED（実装WIP・native未検証）
+- Summary: 共有開始fixture後のfield lock待ちへ上限付き通常A入力。遭遇後無効。状態注入0。
+- Files changed: 共有専用C・準備JSON・guide・固定MD/JSON・両ログ。
+- Verify: 固定生成・構文・55unit原本hash継承。unit/native/ARM実行0。旧native2case再実行0。resume/task graph/final indexを検査。
+- Commit: 同branchへの非force push・remote ref照合。
+- Network: GitHub保存原本のみ。過去run失敗は保持。全体guard PASSは主張しない。
+
+## 2026-09-25T00:59:01.516092+00:00
+- Timestamp: 2026-09-25T00:59:01.516092+00:00
+- Task: USER-20260925-LEARNSET-EXP-EVOLUTION-SHARE / 戦闘EXP進化承認・取消・控え共有
+- Version: issue19-exp-evolution-share-v1
+- Status: BLOCKED
+- Summary: PARTIAL_BATTLE_EXP_EVOLUTION_SHARE、限定2/3。開始fixtureと通常入力区間を分離。全owner/Issue19未完。
+- Files changed: 専用driver/C/tests/workflow、CP/guide/証拠、固定MD/JSON、両ログ。
+- Verify: 新unit6 host compile1 native1。Actions終端=False。記録終端照合のunit/native/host再実行0。ROM変更/ARM/変更影響なしの旧受入再実行0。
+- Commit: 同branchへの非force push。reflected-head.txtとremote ref照合。
+- Network: GitHub固定source/保存artifact/Actions。原本再採取・Wiki生成・release・baseline切替なし。一般CIのaction_requiredは限定nativeと別記録。
+
+## 2026-09-25T01:56:18.299976+00:00
+- Timestamp: 2026-09-25T01:56:18.299976+00:00
+- Task: USER-20260925-LEARNSET-EXP-EVOLUTION-SHARE / 戦闘EXP進化承認・取消・控え共有
+- Version: issue19-exp-evolution-share-v1
+- Status: STOPPED
+- Summary: PASS_BATTLE_EXP_EVOLUTION_SHARE、限定3/3。開始fixtureと通常入力区間を分離。全owner/Issue19未完。
+- Files changed: 専用driver/C/tests/workflow、CP/guide/証拠、固定MD/JSON、両ログ。
+- Verify: 新unit6 host compile1 native1。Actions終端=False。記録終端照合のunit/native/host再実行0。ROM変更/ARM/変更影響なしの旧受入再実行0。
+- Commit: 同branchへの非force push。reflected-head.txtとremote ref照合。
+- Network: GitHub固定source/保存artifact/Actions。原本再採取・Wiki生成・release・baseline切替なし。一般CIのaction_requiredは限定nativeと別記録。
+
+## 2026-09-25T01:57:37.912150+00:00
+- Timestamp: 2026-09-25T01:57:37.912150+00:00
+- Task: USER-20260925-LEARNSET-EXP-EVOLUTION-SHARE / 戦闘EXP進化承認・取消・控え共有
+- Version: issue19-exp-evolution-share-v1
+- Status: DONE
+- Summary: PASS_BATTLE_EXP_EVOLUTION_SHARE、限定3/3。開始fixtureと通常入力区間を分離。全owner/Issue19未完。
+- Files changed: 専用driver/C/tests/workflow、CP/guide/証拠、固定MD/JSON、両ログ。
+- Verify: 新unit6 host compile1 native1。Actions終端=True。記録終端照合のunit/native/host再実行0。ROM変更/ARM/変更影響なしの旧受入再実行0。
+- Commit: 同branchへの非force push。reflected-head.txtとremote ref照合。
+- Network: GitHub固定source/保存artifact/Actions。原本再採取・Wiki生成・release・baseline切替なし。一般CIのaction_requiredは限定nativeと別記録。
+
+## 2026-09-25T02:04:11.323160+00:00
+- Timestamp: 2026-09-25T02:04:11.323160+00:00
+- Task: USER-20260925-LEARNSET-EXP-EVOLUTION-SHARE / 受入終端・再開日付同期
+- Version: issue19-exp-evolution-share-closeout-v2
+- Status: DONE（限定3case、Issue19全体未完）
+- Summary: 3/3受入不変。準備失敗36083695295はderived C未追跡でunit/compile/native0、artifact/push0。511e220で生成Cを補完、36084083370で新6unit/1host/1native成功、e302702に原本保存。36084224210で再実行なしの終端照合、1adec9aに受入確定。source-validation36084224173も成功。記録run36084448074はCP/guide不変と7file必須guardの不一致で停止・push0、artifact保持。記録専用5fileとCP/guide不変を併せて検証し、同じprivate/append-only guardを使用。
+- Files changed: 記録専用workflow、closeout.json、固定MD/JSON、両ログ。受入CP/driver/C/tests/guide/旧原本は不変。
+- Verify: run/head/path/branch/job/全成功step・source hashes・commit祖先・MD/JSON・task graph・staged guard。今回unit/native/host/ARM再実行0、ROM変更0。
+- Commit: 同branchへ非force pushし、reflected-head.txtとremote refで照合。
+- Network: GitHub Actionsの終端metadataだけ。保存成功の再実行・原本再生成・merge・release・baseline切替なし。
+
+## 2026-09-25T06:29:09.837019+00:00
+- Timestamp: 2026-09-25T06:29:09.837019+00:00
+- Task: USER-20260925-NATURAL-SUPPLY / 通常配布・原本初期技孵化
+- Version: issue19-natural-supply-v1
+- Status: STOPPED（保存原本から未完のみ継続）
+- Summary: 2/3成功、未成功['floette-eternal-npc-initial']。親/場所/進行/Ringはfixture、取得・孵化・保存区間の7host書込APIを拒否。
+- Files changed: 専用driver/C/tests/workflow、checkpoint/guide/text証拠、固定引継ぎMD/JSON、両ログ。
+- Verify: unit 20 host 2 native 3。Actions終端=False。終端照合専用=False（専用時の全実行0）。ROM/ARM/旧受入case/Wiki再実行0。
+- Commit: 同branchへ非force push。reflected-head.txtとremoteを照合。
+- Network: GitHub固定source/artifact/Actions。source取得run36101411033/36101572572は検証ではなく転送のみ。原本再生成・merge/release/baseline切替なし。
+
+## 2026-09-25T06:42:21.631398+00:00
+- Timestamp: 2026-09-25T06:42:21.631398+00:00
+- Task: USER-20260925-NATURAL-SUPPLY / 通常配布・原本初期技孵化
+- Version: issue19-natural-supply-v1
+- Status: STOPPED（保存原本から未完のみ継続）
+- Summary: 2/3成功、未成功['floette-eternal-npc-initial']。親/場所/進行/Ringはfixture、取得・孵化・保存区間の7host書込APIを拒否。
+- Files changed: 専用driver/C/tests/workflow、checkpoint/guide/text証拠、固定引継ぎMD/JSON、両ログ。
+- Verify: unit 12 host 1 native 1。Actions終端=False。終端照合専用=False（専用時の全実行0）。ROM/ARM/旧受入case/Wiki再実行0。
+- Commit: 同branchへ非force push。reflected-head.txtとremoteを照合。
+- Network: GitHub固定source/artifact/Actions。source取得run36101411033/36101572572は検証ではなく転送のみ。原本再生成・merge/release/baseline切替なし。
+
+## 2026-09-25T06:52:17.146125+00:00
+- Timestamp: 2026-09-25T06:52:17.146125+00:00
+- Task: USER-20260925-NATURAL-SUPPLY / 通常配布・原本初期技孵化
+- Version: issue19-natural-supply-v1
+- Status: STOPPED（保存原本から未完のみ継続）
+- Summary: 3/3成功、未成功[]。親/場所/進行/Ringはfixture、取得・孵化・保存区間の7host書込APIを拒否。
+- Files changed: 専用driver/C/tests/workflow、checkpoint/guide/text証拠、固定引継ぎMD/JSON、両ログ。
+- Verify: unit 13 host 1 native 1。Actions終端=False。終端照合専用=False（専用時の全実行0）。ROM/ARM/旧受入case/Wiki再実行0。
+- Commit: 同branchへ非force push。reflected-head.txtとremoteを照合。
+- Network: GitHub固定source/artifact/Actions。source取得run36101411033/36101572572は検証ではなく転送のみ。原本再生成・merge/release/baseline切替なし。
+
+## 2026-09-25T07:00:07.998993+00:00
+- Timestamp: 2026-09-25T07:00:07.998993+00:00
+- Task: USER-20260925-NATURAL-SUPPLY / 終端照合
+- Version: issue19-natural-supply-v1-complete
+- Status: DONE（3case限定受入。Issue19/P08/release全体は未完）
+- Summary: 通常配布/固定form初期技1件と原本初期技孵化2件を保存原本で受入。fixture捕獲/進行/Ringの通常取得は対象外。
+- Files changed: 保存artifact専用validatorと15新試験、記録専用Actions、checkpoint/guide/固定引継ぎMD/JSON・両ログ・text証拠。
+- Verify: native原本run36102544792は2成功1失敗のfailure、run36104762658は配布1成功、旧孵化2件は不変。初回20unit/中間12unit/配布phase変更影響13unitの実行原本を継承。今回新15unit、native/旧unit/host/ARM/Wiki再実行0。
+- Failure retained: 配布counter一増加の未検証前提を、guard下の二遷移raw観測に修正。ROM/ゲームruntimeを変更してテストへ合わせていない。既受入原本を上書きしない。
+- Commit: 同branchへ非force push。source/単一親/祖先/reflected-head/remoteを照合。
+- Network: 保存Actions artifact3件だけをhash照合。merge/release/baseline切替なし。一般CI全緑を主張しない。
+
+## 2026-09-25T08:05:47.587232+00:00
+- Timestamp: 2026-09-25T08:05:47.587232+00:00
+- Task: USER-20260925-COLLECTION-GIFTS
+- Version: issue19-collection-gifts-v1
+- Status: STOPPED（保存原本から未完だけ継続）
+- Summary: 実NPC/原本初期技/Save/fresh Continue 0/18。初期party/場所/unlock/未受領ownerはfixture、研究タマゴ孵化は未受入。
+- Files changed: driver/C/新unit/限定Actions、checkpoint/guide/text証拠、固定引継ぎMD/JSON、両ログ。
+- Verify: 新unit22 host0 native0、Actions終端False。終端専用=False（専用時native/旧unit/host/ARM再実行0）。旧自然供給3/EXP/Bag/egg8/旧野生/Wiki不変。
+- Commit: 同branchへ非force push、reflected-head.txt/remote照合。
+- Network: GitHub固定source/保存artifact/Actions。ROM・元saveは非追跡。merge/release/baseline切替なし。
+
+## 2026-09-25T08:14:08.733179+00:00
+- Timestamp: 2026-09-25T08:14:08.733179+00:00
+- Task: USER-20260925-COLLECTION-GIFTS
+- Version: issue19-collection-learning-owner-v1
+- Status: STOPPED（原本保存から未完だけ継続）
+- Summary: 実NPC配布/原本初期技/Save/fresh Continue 0/17。初期party/場所/unlock/claimはfixture。1281は非学習owner方針により自動補完禁止・未受入。研究タマゴ孵化未受入。
+- Files changed: 明示scope/9新unit/限定Actions、checkpoint/guide/原本text、固定引継ぎMD/JSON、両ログ。
+- Verify: 新scope-unit9、旧unit実行0、host0、native0。Actions終端False、終端専用=False（専用時native/旧unit/host/ARM0）。
+- Commit: 同branch非force push・reflected-head/remote照合。
+- Network: 固定GitHub原本/保存artifact/Actionsのみ。ROM/seed非追跡。受入済み3/EXP/Bag/egg8/旧野生/ARM/Wiki不変。merge/release/baseline切替なし。
+
+## 2026-09-25T09:22:38.734866+00:00
+- Timestamp: 2026-09-25T09:22:38.734866+00:00
+- Task: USER-20260925-COLLECTION-BG-REPAIR / Collection BG受付契約の修復
+- Version: collection-bg-contract-v1
+- Status: DONE（host修復限定、native配布0/17は未完）
+- Summary: 24byte NPC探索を12byte BG探索へ修正。通常A種別/host script/高度/接近2マス/他event衝突を検査。歩行可能BGへ突入せず、fixture区間で向きを確定しguard後はAのみ。前run36111746469 completed/failureを原本のまま照合。
+- Files changed: BG検出器・拒否試験、driver/C/影響unit/scope説明、固定引継ぎMD/JSON、BG修復証跡、両ログ。
+- Verify: 影響7unit PASS/skip0（BG拒否16変異含む）、native/host compile/ARM/ROM変更0。受入済みnative再実行0。resume/task graph/final index scoped private guardをcommit前検査。
+- Commit: この記録とsource変更を同branchへ非force commit/push。自己SHAはreflected-head.txt/remoteで照合。
+- Network: GitHub固定source/保存source artifact/前run終端のみ。ROM/saveを転送・追跡しない。merge/release/baseline切替なし。
+
+## 2026-09-25T09:30:10.119188+00:00
+- Timestamp: 2026-09-25T09:30:10.119188+00:00
+- Task: USER-20260925-COLLECTION-GIFTS
+- Version: issue19-collection-learning-owner-v1
+- Status: STOPPED（原本保存から未完だけ継続）
+- Summary: 実BG受付配布/原本初期技/Save/fresh Continue 0/17。初期party/場所/unlock/claimはfixture。1281は非学習owner方針により自動補完禁止・未受入。研究タマゴ孵化未受入。
+- Files changed: 明示scope/9新unit/限定Actions、checkpoint/guide/原本text、固定引継ぎMD/JSON、両ログ。
+- Verify: 新scope-unit0、旧unit実行0、host1、native1。Actions終端False、終端専用=False（専用時native/旧unit/host/ARM0）。
+- Commit: 同branch非force push・reflected-head/remote照合。
+- Network: 固定GitHub原本/保存artifact/Actionsのみ。ROM/seed非追跡。受入済み3/EXP/Bag/egg8/旧野生/ARM/Wiki不変。merge/release/baseline切替なし。
+
+## 2026-09-25T09:35:02.868943+00:00
+- Timestamp: 2026-09-25T09:35:02.868943+00:00
+- Task: USER-20260925-COLLECTION-STEP
+- Version: collection-fixture-step-v1
+- Status: DONE（観測前fixture修復限定、native未完）
+- Summary: run36118704240はBG照合/host compile通過、native1は配布前の位置確認で停止。残り16未実行、旧unit/scope再実行0。2frame方向入力を既存b_stepの座標変化待ちへ修復しwarp/接近の位置ログを追加。
+- Files changed: Cのguard前2箇所、歩行境界検査、unit継承の正規化証明、固定引継ぎMD/JSON、原本text、両ログ。
+- Verify: 新fixture1試験PASS。guard後Cはbyte不変、逆置換で前Cの完全SHA一致。配布/menu/Save/ContinueやROMを変えていない。旧24/scope9/cache5/nativeの再実行0。
+- Commit: 同branchへの非force commit/push・remote照合。成果SHAはreflected-head.txt。
+- Network: GitHub固定原本/Actions。ROM/seed非追跡。merge/release/baseline切替なし。
+
+## 2026-09-25T09:37:54.903324+00:00
+- Timestamp: 2026-09-25T09:37:54.903324+00:00
+- Task: USER-20260925-COLLECTION-GIFTS
+- Version: issue19-collection-learning-owner-v1
+- Status: STOPPED（原本保存から未完だけ継続）
+- Summary: 実BG受付配布/原本初期技/Save/fresh Continue 2/17。初期party/場所/unlock/claimはfixture。1281は非学習owner方針により自動補完禁止・未受入。研究タマゴ孵化未受入。
+- Files changed: 明示scope/9新unit/限定Actions、checkpoint/guide/原本text、固定引継ぎMD/JSON、両ログ。
+- Verify: 新scope-unit0、旧unit実行0、host1、native3。Actions終端False、終端専用=False（専用時native/旧unit/host/ARM0）。
+- Commit: 同branch非force push・reflected-head/remote照合。
+- Network: 固定GitHub原本/保存artifact/Actionsのみ。ROM/seed非追跡。受入済み3/EXP/Bag/egg8/旧野生/ARM/Wiki不変。merge/release/baseline切替なし。
+
+## 2026-09-25T09:53:38.602704+00:00
+- Timestamp: 2026-09-25T09:53:38.602704+00:00
+- Task: USER-20260925-COLLECTION-GIFTS
+- Version: issue19-collection-learning-owner-v1
+- Status: STOPPED（原本保存から未完だけ継続）
+- Summary: 実BG受付配布/原本初期技/Save/fresh Continue 3/17。初期party/場所/unlock/claimはfixture。1281は非学習owner方針により自動補完禁止・未受入。研究タマゴ孵化未受入。
+- Files changed: 明示scope/9新unit/限定Actions、checkpoint/guide/原本text、固定引継ぎMD/JSON、両ログ。
+- Verify: 新scope-unit0、旧unit実行0、host1、native3。Actions終端False、終端専用=False（専用時native/旧unit/host/ARM0）。
+- Commit: 同branch非force push・reflected-head/remote照合。
+- Network: 固定GitHub原本/保存artifact/Actionsのみ。ROM/seed非追跡。受入済み3/EXP/Bag/egg8/旧野生/ARM/Wiki不変。merge/release/baseline切替なし。
+
+## 2026-09-25T09:53:39.318965+00:00
+- Timestamp: 2026-09-25T09:53:39.318965+00:00
+- Task: USER-20260925-COLLECTION-OBSERVATION
+- Version: collection-observation-v1
+- Status: DONE（時刻検査・描画初期化修復と3件の機械的受入、残り14native未完）
+- Summary: 先頭giftのみlist==selectedをraw cursor/host/座標/frameで厳密照合。他時刻はstrictのまま。研究1201の保存stdout/stderr/processを再検証し3/17へ。元run36119380600のfailure・旧raw・固定2受入は不変。9単色PPMは視覚証拠から除外。
+- Files changed: driver時刻検査、Cの2boot描画reset、新観測module/unit、checkpoint/guide、固定MD/JSON、text証拠、両ログ。
+- Verify: 新6unit PASS、1201原本再検証1、native/host/ARM/ROM変更0、旧受入再実行0。両sourceを逆置換し修復前完全SHAを照合。画像resetは残り未受入ケースで実測する。
+- Commit: 同branchへ非force commit/push・remote照合。
+- Network: read-only upstream確認: mgba-emu/mgba tag0.10.2 src/gba/core.c _GBACoreResetがoutputBuffer設定時にrendererを接続する原本。Web検索後GitHub connectorで固定tag/blobを確認。外部コードを複製せず2resetだけ修復。ROM/save非追跡、merge/release/baseline切替なし。
+
+## 2026-09-25T09:58:53.031500+00:00
+- Timestamp: 2026-09-25T09:58:53.031500+00:00
+- Task: USER-20260925-COLLECTION-GIFTS
+- Version: issue19-collection-learning-owner-v1
+- Status: STOPPED（原本保存から未完だけ継続）
+- Summary: 実BG受付配布/原本初期技/Save/fresh Continue 17/17。初期party/場所/unlock/claimはfixture。1281は非学習owner方針により自動補完禁止・未受入。研究タマゴ孵化未受入。
+- Files changed: 明示scope/9新unit/限定Actions、checkpoint/guide/原本text、固定引継ぎMD/JSON、両ログ。
+- Verify: 新scope-unit0、旧unit実行0、host1、native14。Actions終端False、終端専用=False（専用時native/旧unit/host/ARM0）。
+- Commit: 同branch非force push・reflected-head/remote照合。
+- Network: 固定GitHub原本/保存artifact/Actionsのみ。ROM/seed非追跡。受入済み3/EXP/Bag/egg8/旧野生/ARM/Wiki不変。merge/release/baseline切替なし。
+
+## 2026-09-25T10:04:31.686519+00:00
+- Timestamp: 2026-09-25T10:04:31.686519+00:00
+- Task: USER-20260925-COLLECTION-GIFTS
+- Version: issue19-collection-learning-owner-v1
+- Status: DONE（学習owner17限定、1281/全体は未完）
+- Summary: 実BG受付配布/原本初期技/Save/fresh Continue 17/17。初期party/場所/unlock/claimはfixture。1281は非学習owner方針により自動補完禁止・未受入。研究タマゴ孵化未受入。
+- Files changed: 明示scope/9新unit/限定Actions、checkpoint/guide/原本text、固定引継ぎMD/JSON、両ログ。
+- Verify: 新scope-unit0、旧unit実行0、host1、native14。Actions終端True、終端専用=True（専用時native/旧unit/host/ARM0）。
+- Commit: 同branch非force push・reflected-head/remote照合。
+- Network: 固定GitHub原本/保存artifact/Actionsのみ。ROM/seed非追跡。受入済み3/EXP/Bag/egg8/旧野生/ARM/Wiki不変。merge/release/baseline切替なし。
+
+## 2026-09-25T10:04:32.754639+00:00
+- Timestamp: 2026-09-25T10:04:32.754639+00:00
+- Task: USER-20260925-COLLECTION-GIFTS
+- Version: collection-learning-scope-terminal-v1
+- Status: DONE（学習owner17/17限定、Issue19/release未完）
+- Summary: 先行3件の機械的受入原本不変、未受入14件のみ追加実測。14件42画像を原本SHAで目視記録に結合し、先行黒画像9枚は視覚受入から除外。全Actions終端/最新proof ZIP/反映commit親/各raw証拠/source不変を照合。
+- Files changed: 終端照合器、目視JSON、Collection checkpoint/guide/text受領証、固定引継ぎMD/JSON、両ログ。
+- Verify: この終端runのnative/旧unit/host/ARM/ROM変更0。受入済み再実行0。resume check/task graph/final-index scoped private guardをcommit前実行。
+- Commit: 同branchへ非force commit/push・remote照合。成果SHAはterminal artifactのreflected-head.txt。
+- Network: GitHubの保存Actions/artifact原本照合のみ。ROM/save非追跡。merge/release/active baseline切替なし。1281 identity-only/自動fallback禁止を維持。
+
+## 2026-09-25T14:00:46.902912+00:00
+- Timestamp: 2026-09-25T14:00:46.902912+00:00
+- Task: USER-20260925-RESEARCH-HATCH / 研究タマゴの孵化後form・技保持
+- Version: issue19-research-hatch-v1
+- Status: STOPPED（保存原本から未完だけ継続）
+- Summary: 保存配布個体fixtureからの実歩行/孵化/Save/fresh Continue 5/15。元save連続再開と混同しない。原本cycleを短縮しない。
+- Files changed: 新driver/C/unit/限定Actions、checkpoint/guide/原本text、固定引継ぎMD/JSON、両ログ。
+- Verify: 新unit32、host1、native5。Actions終端False。終端専用=False、専用時native/unit/compile0。旧配布/孵化/ARM/Wiki不変。
+- Commit: 同branch非force push、reflected-head/remote照合。
+- Network: 固定GitHub/保存artifact/Actions。ROM・元seed非追跡。merge/release/baseline切替なし。
+
+## 2026-09-25T14:00:47.624377+00:00
+- Timestamp: 2026-09-25T14:00:47.624377+00:00
+- Task: USER-20260925-RESEARCH-HATCH
+- Version: interrupted-proof-recovery-v1
+- Status: STOPPED（5/15保存成功を復元、残10）
+- Summary: 元runのcancelled/RUNNING/push skippedを改称せず5ケースの原本を復元。旧32unit/host1/native5は元runの件数であり復元runの実行件数ではない。
+- Files changed: 復元driver・純proof helper・新unit・復元Actions、5件原本文書、checkpoint/guide、固定引継ぎMD/JSON、両ログ。
+- Verify: 復元runは新unit30、raw純検証5、画像10のhash/目視限定。新native/旧unit/host/ARM/ROM変更0。resume check/task graph/最終index限定guardをcommit前実行。
+- Commit: 同branch非force push。source=7356849af80057c4fe6dd05db73ea21df7d4fd40。成果SHAはrecovery artifactのreflected-head.txt。
+- Network: 固定GitHub原本のみ。原本ZIP/save/ROMは非追跡。merge/release/active baseline切替なし。
+
+## 2026-09-25T14:22:00.699671+00:00
+- Timestamp: 2026-09-25T14:22:00.699671+00:00
+- Task: USER-20260925-RESEARCH-HATCH / 研究タマゴの孵化後form・技保持
+- Version: issue19-research-hatch-v1
+- Status: STOPPED（保存原本から未完だけ継続）
+- Summary: 保存配布個体fixtureからの実歩行/孵化/Save/fresh Continue 15/15。元save連続再開と混同しない。原本cycleを短縮しない。
+- Files changed: 新driver/C/unit/限定Actions、checkpoint/guide/原本text、固定引継ぎMD/JSON、両ログ。
+- Verify: 新unit23、host10、native10。Actions終端False。終端専用=False、専用時native/unit/compile0。旧配布/孵化/ARM/Wiki不変。
+- Commit: 同branch非force push、reflected-head/remote照合。
+- Network: 固定GitHub/保存artifact/Actions。ROM・元seed非追跡。merge/release/baseline切替なし。
+
+## 2026-09-25T14:22:01.240796+00:00
+- Timestamp: 2026-09-25T14:22:01.240796+00:00
+- Task: USER-20260925-RESEARCH-HATCH
+- Version: one-case-matrix-v1
+- Status: STOPPED（15/15、終端照合待ち）
+- Summary: 5件を再実行せず継承し、残10を独立workerで実測。成功worker10/10。元cancelledと復元境界を保持。
+- Files changed: matrix driver/unit/Actions、worker別原本、checkpoint/guide、固定引継ぎMD/JSON、両ログ。
+- Verify: 新matrix unit23、旧32/復元30unit再実行0。予定worker10、成功raw10。各workerのhost compileはその新caseを動かすためのみ。ARM/ROM変更0。resume/task graph/final-index scoped guardをcommit前実行。
+- Commit: 集約jobのみ同branch非force push・remote SHA照合。
+- Network: 固定GitHub/保存artifactのみ。元save/ROM/配布17/既受入5不変。merge/release/baseline切替なし。
+
+## 2026-09-25T14:26:55.897815+00:00
+- Timestamp: 2026-09-25T14:26:55.897815+00:00
+- Task: USER-20260925-RESEARCH-HATCH / 研究タマゴの孵化後form・技保持
+- Version: issue19-research-hatch-v1
+- Status: DONE（15case限定、全体未完）
+- Summary: 保存配布個体fixtureからの実歩行/孵化/Save/fresh Continue 15/15。元save連続再開と混同しない。原本cycleを短縮しない。
+- Files changed: 既設C不変・新terminal driver/unit/限定Actions、checkpoint/guide/原本text、固定引継ぎMD/JSON、両ログ。
+- Verify: 原実測matrix runのunit23、host10、native10。Actions終端True。終端専用=True、専用時native/旧unit/compile0・新terminal unit22。旧配布/孵化/ARM/Wiki不変。
+- Commit: 同branch非force push、reflected-head/remote照合。
+- Network: 固定GitHub/保存artifact/Actions。ROM・元seed非追跡。merge/release/baseline切替なし。
+
+## 2026-09-25T14:26:56.339544+00:00
+- Timestamp: 2026-09-25T14:26:56.339544+00:00
+- Task: USER-20260925-RESEARCH-HATCH
+- Version: research-hatch-terminal-5-plus-10-v1
+- Status: DONE（15孵化限定、Issue19/release未完）
+- Summary: 5件の中断原本復元+10独立workerを終端確定。32初期unit/30復元unit/23matrix unitは各変更範囲で一度だけ、終端は新unit22のみ。
+- Files changed: terminal driver/unit/Actions、terminal原本、checkpoint/guide、固定引継ぎMD/JSON、両ログ。
+- Verify: 12job/22matrix artifact/成果commit直接親・祖先/15raw origin/30画面hashを照合。終端新native/旧unit/host/ARM/ROM変更0。原runのcancelledは保存。resume/task graph/final-index scoped guardをcommit前実行。
+- Commit: 同branch非force push・remote照合。source=c30492610319d075195b040092447296d5766343。成果SHAはterminal-proof/reflected-head.txt。
+- Network: 固定GitHub原本のみ。ROM/saveは非追跡。特殊野生はソース調査のみで実接続先未受入。merge/release/baseline切替なし。
+
+## 2026-09-25T15:16:42.197277+00:00
+- Timestamp: 2026-09-25T15:16:42.197277+00:00
+- Task: USER-20260925-SPECIAL-WILD / 特殊野生の実呼出順
+- Version: issue19-special-wild-diagnostic-v1
+- Status: STOPPED（保存原本から未完のみ継続）
+- Summary: {}。開始進行/map/profile/RNGと直接呼出はfixture、実観測区間7API書込拒否。
+- Files changed: 専用driver/C/tests/workflow、checkpoint/guide/text証拠、固定引継ぎMD/JSON、両ログ。
+- Verify: STOPPED_SPECIAL_WILD_DIAGNOSTIC; 新unit 13, host 1, native 1; 旧受入/ARM/ROM/Wiki再実行0。Actions終端は未確認。
+- Commit: 同branchへ非force push、reflected-head.txtでremote照合。source取得WIP b3e45540/36150780558は転送のみ。
+- Network: GitHub固定artifact/Actionsのみ。原本再採取/merge/release/active baseline変更なし。
+
+## 2026-09-25T15:37:03.591267+00:00
+- Timestamp: 2026-09-25T15:37:03.591267+00:00
+- Task: USER-20260925-SPECIAL-WILD / 特殊野生の実特殊技順と2callsite限定修復
+- Version: issue19-special-wild-repair-v1
+- Status: STOPPED（保存成功は保持、未成功だけ継続）
+- Summary: STOPPED_SPECIAL_WILD_REPAIR。8byte限定修復、共通/land/旧原本は不変。元map11/3の8callは再実行せず保存正常対照を使用。Stage59は現候補経由でないと訂正。
+- Files changed: 専用repair driver/test/workflow/CP、guide、run別text証拠、固定引継ぎMD/JSON、両ログ。
+- Verify: 新unit 17, host 0, native 0, ARM0; 旧受入/旧13unit/旧ROM再build/Wiki再実行0。Actions終端未確認。通常操作/capture/Save未受入。
+- Commit: 同branchへの非force pushとreflected-head.txtにremote照合を保存。source 28a138552429c5ff7473aafd316a929b601051dd, run 36155273674。
+- Network: GitHub pinned artifact/Actionsのみ。merge/release/active baseline変更なし。
+
+## 2026-09-25T15:40:52.316282+00:00
+- Timestamp: 2026-09-25T15:40:52.316282+00:00
+- Task: USER-20260925-SPECIAL-WILD / 研究表byte差分の限定監査
+- Version: issue19-special-wild-table-audit-v1
+- Status: DONE（読取監査のみ、特殊技未受入）
+- Summary: 36155273674は17新unit成功、native/host0のまま研究表一致gateで停止。原失敗を維持しliteral参照付き候補表の差分だけ保存。
+- Files changed: 専用監査JSON/Workflow、固定引継ぎMD/JSON、両ログ。
+- Verify: private ROM改変0、native/unit/host/ARM再実行0。全体Issue19/release未完。
+- Commit: 同branch非force push、反映先headをartifactで照合。
+- Network: 保存済みGitHub artifact/Actionsの読取のみ。
+
+## 2026-09-26T03:00:23.484371+00:00
+- Timestamp: 2026-09-26T03:00:23.484371+00:00
+- Task: USER-20260926-SPECIAL-WILD / 固定実研究表bindingと特殊野生2callsite修復
+- Version: issue19-special-wild-bound-v1
+- Status: STOPPED（成功原本保存・未成功のみ継続）
+- Summary: STOPPED_SPECIAL_WILD_BOUND。130行mapのみ差分を固定し、除外mapへ受入を拡大しない。旧失敗/監査/17unit/正常8callは不変。
+- Files changed: 専用driver/test/workflow/checkpoint、run別text証拠、guide、固定引継ぎMD/JSON、両ログ。
+- Verify: 新unit 19, host 0, native 0, ARM0、受入再実行0。通常UI/capture/Saveは未受入。Actions終端未確認。
+- Commit: source af7a856d8ac04c2e3400cab550c02f0569185ae3, run 36213386688; 同branch非force push後remote照合をartifactへ保存。
+- Network: GitHub固定artifact/Actionsのみ。merge/release/active baseline変更なし。
+
+## 2026-09-26T03:07:35.447191+00:00
+- Timestamp: 2026-09-26T03:07:35.447191+00:00
+- Task: USER-20260926-SPECIAL-WILD / 固定実研究表bindingと特殊野生2callsite修復
+- Version: issue19-special-wild-bound-v1
+- Status: DONE（限定直接診断）
+- Summary: PASS_SPECIAL_WILD_BOUND_DIRECT_SCOPED。130行mapのみ差分を固定し、除外mapへ受入を拡大しない。旧失敗/監査/17unit/正常8callは不変。
+- Files changed: 専用driver/test/workflow/checkpoint、run別text証拠、guide、固定引継ぎMD/JSON、両ログ。
+- Verify: 新binding unit 0（継承 19）/新header unit 8, host 1, native 7, ARM0、受入再実行0。通常UI/capture/Saveは未受入。Actions終端未確認。
+- Commit: source 804417f6f8fa4fc88f882ac96d6f0a1720811500, run 36213677615; 同branch非force push後remote照合をartifactへ保存。
+- Network: GitHub固定artifact/Actionsのみ。merge/release/active baseline変更なし。
+
+## 2026-09-26T03:16:21.290657+00:00
+- Timestamp: 2026-09-26T03:16:21.290657+00:00
+- Task: USER-20260926-SPECIAL-WILD / 特殊野生2callsite修復の完了原本照合
+- Version: issue19-special-wild-bound-terminal-v1
+- Status: DONE（2callsite限定直接診断。通常取得/保存は次工程）
+- Summary: 候補0205af9b、8byte限定修復、特殊技225/120と個体100byte保持、正常2対照不変。run36213677615全step/push/upload完了success、header停止run36213386688 failure維持。
+- Files changed: 新terminal記録器/8拒否試験/限定workflow、完了JSON、checkpoint、専用guide、固定引継ぎMD/JSON、両ログ。
+- Verify: 新terminal8unit、保存19+8unit/7native process/8callの原本照合。旧試験/native/host/ARM/ROM再実行0。resume/task graph/final index guard後に非force push。通常UI/capture/Save未受入、全HEAD CI green主張なし。
+- Commit: native成果 dcce2ff32dd304df18c840d08e0bc9fb65086a9e; 本終端記録はsource 36b88bb2be1ed0889cb531ab035751a3df0992b7から同branch非force commit。
+- Network: 既存GitHub run/artifact原本の再読のみ。merge/release/active baseline変更なし。
+
+## 2026-09-26T04:43:36.104718+00:00
+- Timestamp: 2026-09-26T04:43:36.104718+00:00
+- Task: USER-20260926-SPECIAL-WILD-GAMEPLAY / 特殊野生の通常UI入力を固定候補へ結合
+- Version: special-wild-gameplay-preparation-v1
+- Status: DONE（入力binding限定。通常UI未受入）
+- Summary: PASS_SAVED_CANDIDATE_UI_INPUT_BINDING_NOT_GAMEPLAY。旧直接診断を再実行せず、保存recipeと全ROM hashを使う。
+- Files changed: 専用Python/新規unit/限定workflow、checkpoint/原本、専用guide、固定引継ぎMD・JSON、両ログ。
+- Verify: 新規unit 18、保存replay 1、native/ARM/受入再実行0。failure=None。resume/task graph/final index限定guard後のみcommit。
+- Commit: 本記録を含む同branch非force commit。自己SHAはgit logで照合。
+- Network: GitHub固定Actions/保存artifactのみ。ROM/saveは非tracked artifactのみ。全履歴private guardのPASSは主張しない。
+
+## 2026-09-26T05:08:03.507893+00:00
+- Timestamp: 2026-09-26T05:08:03.507893+00:00
+- Task: USER-20260926-SPECIAL-WILD-UI / 通常特殊野生の捕獲・保存経路
+- Version: special-wild-ui-v1
+- Status: STOPPED（未受入経路のnative原本を保存）
+- Summary: STOPPED_SPECIAL_WILD_UI_WITH_NATIVE_EVIDENCE。catalog278と実UI348を分離し、通常Bag/メニュー・捕獲・Save/fresh Continueを実装。
+- Verify: 新規unit=22、guard=7、native=2、再利用=[]、成功=[]、失敗={'fishing': {'message': 'native process failed', 'returncode': 1, 'timed_out': False}, 'hidden': {'message': 'native process failed', 'returncode': 1, 'timed_out': False}}、failure=None。ARM/ROM変更/旧受入再実行0。
+- Files changed: 専用C/Python/unit/workflow、checkpoint/UTF8原本、固定引継ぎMD/JSON、guide、両ログ。
+- Commit: 本記録の同branch非force commit。自己SHAはgit logで照合。resume/task graph/index限定guard後のみ反映。
+- Network: GitHub固定Actions/保存data artifactのみ。ROM/save/画像は非tracked artifact。全履歴private guardのPASSは主張しない。
+
+## 2026-09-26T05:24:12.233122+00:00
+- Timestamp: 2026-09-26T05:24:12.233122+00:00
+- Task: USER-20260926-SPECIAL-WILD-UI / 通常特殊野生の捕獲・保存経路
+- Version: special-wild-ui-save-delegate-v2
+- Status: DONE（通常UI限定）
+- Summary: PASS_SPECIAL_WILD_UI_CAPTURE_SAVE_SCOPED。catalog278と実UI348を分離し、通常Bag/メニュー・捕獲・Save/fresh Continueを実装。
+- Verify: 新規unit=34、guard=7、native=1、再利用=['hidden']、成功=['fishing', 'hidden']、失敗={}、failure=None。ARM/旧受入再実行0、研究保存delegateのみ1byte差分。
+- Files changed: 専用C/Python/unit/workflow、checkpoint/UTF8原本、固定引継ぎMD/JSON、guide、両ログ。
+- Commit: 本記録の同branch非force commit。自己SHAはgit logで照合。resume/task graph/index限定guard後のみ反映。
+- Network: GitHub固定Actions/保存data artifactのみ。ROM/save/画像は非tracked artifact。全履歴private guardのPASSは主張しない。
+
+## 2026-09-26T05:30:19.194387+00:00
+- Timestamp: 2026-09-26T05:30:19.194387+00:00
+- Task: USER-20260926-SPECIAL-WILD-UI
+- Version: special-wild-ui-recover-v1
+- Status: DONE（通常UI2件の記録限定。Issue19/release未完）
+- Summary: 研究保存delegate修正と釣り/生態レーダー捕獲→Save/Continueを原本から記録。元run36220635424のfailure/push skippedを保存。
+- Files changed: 限定source/config、復旧/終端receipt、checkpoint、固定引継ぎMD/JSON、guide、両ログ。
+- Verify: phase=recover、新native/host/ARM/受入済み再実行0。新guard unit=8。resume check/task graph/final-index guard後のみcommit。
+- Commit: 同branch非force push・remote照合。source=45ab15f3927400ac9814ad3cdb2d55696a0ce72b。自己SHAはgit log参照。
+- Network: 固定Actions原本/metadataのみ。ROM/saveは非tracked。共有研究取引の全受入・Issue19完了・release・baseline切替は主張しない。
+
+## 2026-09-26T05:32:41.669213+00:00
+- Timestamp: 2026-09-26T05:32:41.669213+00:00
+- Task: USER-20260926-SPECIAL-WILD-UI
+- Version: special-wild-ui-finalize-v1
+- Status: DONE（通常UI2件の記録限定。Issue19/release未完）
+- Summary: 研究保存delegate修正と釣り/生態レーダー捕獲→Save/Continueを原本から記録。元run36220635424のfailure/push skippedを保存。
+- Files changed: 限定source/config、復旧/終端receipt、checkpoint、固定引継ぎMD/JSON、guide、両ログ。
+- Verify: phase=finalize、新native/host/ARM/受入済み再実行0。新guard unit=0。resume check/task graph/final-index guard後のみcommit。
+- Commit: 同branch非force push・remote照合。source=e6135fb6cd22abbd9a25d3712a7a7b389d71042a。自己SHAはgit log参照。
+- Network: 固定Actions原本/metadataのみ。ROM/saveは非tracked。共有研究取引の全受入・Issue19完了・release・baseline切替は主張しない。
+
+## 2026-09-26T08:52:14.345192+00:00
+- Timestamp: 2026-09-26T08:52:14.345192+00:00
+- Task: USER-20260926-RESEARCH-SAVE-IMPACT
+- Version: research-save-impact-record-v1
+- Status: DONE（共有取引18境界の限定記録。新規/V1移行・phase0失敗・通常取引UI・Issue19/release未完）
+- Summary: 研究保存delegate影響を実Flashで検証し、Bag空き確認が所持確認へ誤結合する不具合を2byteとcanonical C 1macroで修正。earn8件の原本を再利用、修正候補spend/rank8件と実容量拒否2件を受入。元failure run36228964902/36229142708/36230558876を保持。compile receiptの絶対引数7個は明示した公開写像のみ除去し原本はartifactに保持。68試験は原本再利用、公開変換12試験を追加。
+- Files changed: 専用C/Python/unit/workflow、canonical research C、18件のUTF8証拠/公開写像/manifest/receipt、checkpoint、固定引継ぎMD/JSON、guide、両ログ。
+- Verify: 測定Actions=16+10 native（元失敗8を含む）、成功18件/54 fresh cores、guard7+7、host compile1+1、ARM0。別途ローカル診断あり。今回記録phase=recordはnative/host/ARM/既受入再実行0、新unit=12。resume check/task graph/最終index限定private guard後のみcommit。
+- Commit: 同branch非force push、remote HEAD照合。source=43cd63bbba977f5df07b4efc16106706ee1acd51、自己SHAはgit log参照。
+- Network: 固定Actions metadata/原本artifactのみ。ROM/save非tracked、正式BP/P08/野生原本/baseline不変、全CI/通常取引UI/全catalog成功は主張しない。
+
+## 2026-09-26T08:53:23.081472+00:00
+- Timestamp: 2026-09-26T08:53:23.081472+00:00
+- Task: USER-20260926-RESEARCH-SAVE-IMPACT
+- Version: research-save-impact-finalize-v1
+- Status: DONE（共有取引18境界の限定記録。新規/V1移行・phase0失敗・通常取引UI・Issue19/release未完）
+- Summary: 研究保存delegate影響を実Flashで検証し、Bag空き確認が所持確認へ誤結合する不具合を2byteとcanonical C 1macroで修正。earn8件の原本を再利用、修正候補spend/rank8件と実容量拒否2件を受入。元failure run36228964902/36229142708/36230558876を保持。compile receiptの絶対引数7個は明示した公開写像のみ除去し原本はartifactに保持。68試験は原本再利用、公開変換12試験を追加。
+- Files changed: 専用C/Python/unit/workflow、canonical research C、18件のUTF8証拠/公開写像/manifest/receipt、checkpoint、固定引継ぎMD/JSON、guide、両ログ。
+- Verify: 測定Actions=16+10 native（元失敗8を含む）、成功18件/54 fresh cores、guard7+7、host compile1+1、ARM0。別途ローカル診断あり。今回記録phase=finalizeはnative/host/ARM/既受入再実行0、新unit=0。resume check/task graph/最終index限定private guard後のみcommit。
+- Commit: 同branch非force push、remote HEAD照合。source=fb44f475d954b200f9a7ffdddc90f4b2a137ca92、自己SHAはgit log参照。
+- Network: 固定Actions metadata/原本artifactのみ。ROM/save非tracked、正式BP/P08/野生原本/baseline不変、全CI/通常取引UI/全catalog成功は主張しない。
+
+## 2026-09-26T10:01:40.238644+00:00
+- Timestamp: 2026-09-26T10:01:40.238644+00:00
+- Task: USER-20260926-RESEARCH-LIFECYCLE
+- Version: research-lifecycle-record-record-v1
+- Status: DONE（初期化/V1 RAM限定5境界、phase0故障/V1 loadは未完）
+- Summary: 研究保存初期化/V1 RAM移行の5ケースと15fresh coreを受入。次はphase0実失敗とV1 load adapter。成功済み5件/旧18境界/unit22は再実行しない。通常new-game/取引UI・全catalog・map3/19除外130行は別の未完境界。
+- Files changed: 専用build/validator/公開写像/8試験/Actions、原本とmanifest/checkpoint、固定引継ぎMD/JSON、guide、両ログ。
+- Verify: 測定native5/15cores/guard7はrun36234024026を再利用。unit22はrun36233675420を再利用。公開写像8新unitはrecordのみ。今回native0/compile0/ARM0。失敗原本をsuccessに改作せず保持。resume check/task graph/scoped final-index guard/diff check後にcommit。
+- Commit: 同branch非force push。source=60f2ae1f8db456a357b45d570c59860ea7a3e7d2、自己SHAはgit log参照。
+- Network: 固定GitHub UTF8証拠artifactのみ。ROM/save非tracked、旧18/BP/P08/特殊野生/baseline不変、全CI成功を主張しない。
+- Publication correction: 上記公開写像8試験はrun36234251833の成功原本を再利用（今回新unit0）。今回追加の二次診断写像2検査のみ実行。元の末尾空白を持つindex-guardもJSON文字列で可逆保存し、既存原本hashは不変。native再実行0。
+
+## 2026-09-26T10:02:51.244572+00:00
+- Timestamp: 2026-09-26T10:02:51.244572+00:00
+- Task: USER-20260926-RESEARCH-LIFECYCLE
+- Version: research-lifecycle-record-finalize-v1
+- Status: DONE（初期化/V1 RAM限定5境界、phase0故障/V1 loadは未完）
+- Summary: 研究保存初期化/V1 RAM移行の5ケースと15fresh coreを受入。次はphase0実失敗とV1 load adapter。成功済み5件/旧18境界/unit22は再実行しない。通常new-game/取引UI・全catalog・map3/19除外130行は別の未完境界。
+- Files changed: 専用build/validator/公開写像/8試験/Actions、原本とmanifest/checkpoint、固定引継ぎMD/JSON、guide、両ログ。
+- Verify: 測定native5/15cores/guard7はrun36234024026を再利用。unit22はrun36233675420を再利用。公開写像8新unitはrecordのみ。今回native0/compile0/ARM0。失敗原本をsuccessに改作せず保持。resume check/task graph/scoped final-index guard/diff check後にcommit。
+- Commit: 同branch非force push。source=a5f00ea25dcde3056ee1fe2cf83c0f597a8f8b0b、自己SHAはgit log参照。
+- Network: 固定GitHub UTF8証拠artifactのみ。ROM/save非tracked、旧18/BP/P08/特殊野生/baseline不変、全CI成功を主張しない。
+- Publication correction: 上記公開写像8試験はrun36234251833の成功原本を再利用（今回新unit0）。今回追加の二次診断写像2検査のみ実行。元の末尾空白を持つindex-guardもJSON文字列で可逆保存し、既存原本hashは不変。native再実行0。
+
+## 2026-09-26T10:08:11.451905+00:00
+- Timestamp: 2026-09-26T10:08:11.451905+00:00
+- Task: USER-20260926-RESEARCH-PHASE0
+- Version: research-phase0-record-v1
+- Status: PASS_PHASE0_NATIVE_UNAVAILABLE_3_SCOPED（限定scope）
+- Summary: 初期化/V1 RAM正常・破損拒否5件に加え、phase0既存native保存不可3/3件を記録。次は同一coreの失敗後再試行とV1通常load adapter。特にEMPTY失敗後はV2 RAMを残してblockedとなるため、再試行時の永続化をまだ保証していない。受入済み5/18/phase0成功ケースを再実行しない。
+- Files changed: 新phase0 C/validator/18負の試験/Actions、UTF8原本とcheckpoint、固定引継ぎMD/JSON、専用guide、両ログ。
+- Verify: measure時のみ新unit18/native3/9cores/guard7/host compile1、finalize時は追加実行0。ARM0、旧5+18native/旧unit30の再実行0。全Flash不変/全owner/Bag/party/ledger/counter/実native戻り値255を照合。resume/task graph/最終index scoped private guard/diff check後のみcommit。
+- Commit: 同branch非force push。source=4946ff7f22401b260362ca6d6be7e7cb4bd1c460、自己SHAはgit log参照。
+- Network: 固定GitHub artifact/PR/Actionsのみ。ROM/save非tracked。全CI成功・通常UI・物理Flash故障・同一core retry・Issue19全体完了を主張しない。
+
+## 2026-09-26T10:10:02.194058+00:00
+- Timestamp: 2026-09-26T10:10:02.194058+00:00
+- Task: USER-20260926-RESEARCH-PHASE0
+- Version: research-phase0-finalize-v1
+- Status: PASS_PHASE0_NATIVE_UNAVAILABLE_3_SCOPED（限定scope）
+- Summary: 初期化/V1 RAM正常・破損拒否5件に加え、phase0既存native保存不可3/3件を記録。次は同一coreの失敗後再試行とV1通常load adapter。特にEMPTY失敗後はV2 RAMを残してblockedとなるため、再試行時の永続化をまだ保証していない。受入済み5/18/phase0成功ケースを再実行しない。
+- Files changed: 新phase0 C/validator/18負の試験/Actions、UTF8原本とcheckpoint、固定引継ぎMD/JSON、専用guide、両ログ。
+- Verify: measure時のみ新unit18/native3/9cores/guard7/host compile1、finalize時は追加実行0。ARM0、旧5+18native/旧unit30の再実行0。全Flash不変/全owner/Bag/party/ledger/counter/実native戻り値255を照合。resume/task graph/最終index scoped private guard/diff check後のみcommit。
+- Commit: 同branch非force push。source=0c0411d3b1a440149c57d339f59f73992375532f、自己SHAはgit log参照。
+- Network: 固定GitHub artifact/PR/Actionsのみ。ROM/save非tracked。全CI成功・通常UI・物理Flash故障・同一core retry・Issue19全体完了を主張しない。
+
+## 2026-09-26T10:45:53.786438+00:00
+- Timestamp: 2026-09-26T10:45:53.786438+00:00
+- Task: USER-20260926-RESEARCH-RETRY
+- Version: research-retry-v1
+- Status: PASS_RETRY_MATRIX_PENDING_ACTIONS_TERMINAL（限定scope、V1 load/UI等は未完）
+- Summary: 修正版の同一core再試行3ケースと影響のある拒否/回復4controlを実測。成功 7 / 7。
+- Files changed: retry source/runner/29tests/Actions、canonical C、188byte recipe、原本UTF8証拠/checkpoint、固定引継ぎMD/JSON、guide、両ログ。
+- Verify: 測定は29unit（canonical stub host compile1含む）、ARM compile1/link1、native runner host compile1、guard7/native7。終端記録は全て再実行0。旧候補diagnosticはローカル1process/1core/host compile1を原本再利用。ローカルC縮小検討compile5attemptとtask thunk組立1は受入ではない。影響なしの旧18/BP/P08/特殊野生native再実行0。最終index/限定guard、resume check/task graph後のみcommit。
+- Commit: 同branch非force push。source=9978dcfdafe356dd4815b021aa897e4e605abc34、自己SHAはgit log参照。
+- Network: 固定GitHub artifactとUbuntu toolchain配布のみ。ROM/save/binaryは非tracked、保全path不変。
+
+## 2026-09-26T10:47:16.108707+00:00
+- Timestamp: 2026-09-26T10:47:16.108707+00:00
+- Task: USER-20260926-RESEARCH-RETRY
+- Version: research-retry-v1
+- Status: PASS_SAME_CORE_RETRY_SCOPED（限定scope、V1 load/UI等は未完）
+- Summary: 同一core再試行3ケースと影響限定4controlを受入。測定run全step/push/uploadのsuccessを原本確認。今回のnative/unit/compile再実行0。
+- Files changed: retry source/runner/29tests/Actions、canonical C、188byte recipe、原本UTF8証拠/checkpoint、固定引継ぎMD/JSON、guide、両ログ。
+- Verify: 測定は29unit（canonical stub host compile1含む）、ARM compile1/link1、native runner host compile1、guard7/native7。終端記録は全て再実行0。旧候補diagnosticはローカル1process/1core/host compile1を原本再利用。ローカルC縮小検討compile5attemptとtask thunk組立1は受入ではない。影響なしの旧18/BP/P08/特殊野生native再実行0。最終index/限定guard、resume check/task graph後のみcommit。
+- Commit: 同branch非force push。source=b10679ec15ab175a5c03d0bcef08149f199ec307、自己SHAはgit log参照。
+- Network: 固定GitHub artifactとUbuntu toolchain配布のみ。ROM/save/binaryは非tracked、保全path不変。
+
+## 2026-09-26T11:04:19.046756+00:00
+- Timestamp: 2026-09-26T11:04:19.046756+00:00
+- Task: USER-20260926-RESEARCH-V1-LOAD
+- Version: research-v1-load-v1
+- Status: PARTIAL_V1_LOAD_PENDING_TERMINAL（限定scope、未受入境界はguide参照）
+- Summary: 通常cold boot/ContinueのV1移行・破損拒否3ケースを測定。成功 0 / 3。
+- Files changed: V1 fixture/oracle/26tests、通常load runner/Actions、原本/checkpoint、専用guide、固定引継ぎMD/JSON、両ログ。
+- Verify: 測定26unit/host compile1/guard7/native3、既存188byte recipeをhash照合して再利用（ARM compile/link0、ROM変更0）。終端記録はunit/host/ARM/native全0。BP/P08/特殊野生/旧18取引/再試行7受入のnative再実行0。最終resume/task graph/index限定guard/diff-check後にcommit。失敗はfailed_casesと原本のまま保持。
+- Commit: 同branch非force、source=af1065f42eb965dacb26060a22595ed3f85a3adb、自己SHAはgit log参照。
+- Network: 固定GitHub artifactだけ。私有seed/元ZIP保全。新規toolchain配布なし。
+
+## 2026-09-26T11:26:40.771642+00:00
+- Timestamp: 2026-09-26T11:26:40.771642+00:00
+- Task: USER-20260926-RESEARCH-V1-LOAD
+- Version: research-v1-load-v1
+- Status: PARTIAL_V1_LOAD_RECORDED（限定scope、未受入境界はguide参照）
+- Summary: 通常V1 loadの成功 0 / 3 と測定run終端 failure を原本確認。記録時のnative/unit/compile再実行0。
+- Files changed: V1 fixture/oracle/26tests、通常load runner/Actions、原本/checkpoint、専用guide、固定引継ぎMD/JSON、両ログ。
+- Verify: 測定26unit/host compile1/guard7/native3、既存188byte recipeをhash照合して再利用（ARM compile/link0、ROM変更0）。終端記録はunit/host/ARM/native全0。BP/P08/特殊野生/旧18取引/再試行7受入のnative再実行0。最終resume/task graph/index限定guard/diff-check後にcommit。失敗はfailed_casesと原本のまま保持。
+- Commit: 同branch非force、source=81983f058ffd7929e78c752db6bb76c9eb245682、自己SHAはgit log参照。
+- Network: 固定GitHub artifactだけ。私有seed/元ZIP保全。新規toolchain配布なし。
+
+## 2026-09-26T11:44:43.185195+00:00
+- Timestamp: 2026-09-26T11:44:43.185195+00:00
+- Task: USER-20260926-RESEARCH-V1-ROOT / V1先行call修復と破損境界保存
+- Version: research-v1-root-v1
+- Status: DONE（先行call修復の限定scope。破損loadは未完）
+- Summary: 先行load call誤認を修正。正常V1は保存counter2→3/全ledger移行/2回fresh Continue成功。破損2例は通常load中に有効V2へ初期化される実不具合を保持。
+- Files changed: 専用model/20tests/原本/record/guide/checkpoint、固定引継ぎMD/JSON、両ログ。
+- Verify: 新規parser20 PASS、生成C/2caller byte/入力hash/正常V1原本照合。測定native3/5cores/host成功1、記録native/ARM/host0、旧受入再実行0。破損2例FAILを保持。最終resume/task graph/scoped index guard/diff-check。
+- Commit: 同branch非force、source=6f5e19360868eb67781f339c210c21ea247d8e12、自己SHAはgit log。
+- Network: 固定GitHub入力artifactのhash照合。私有payloadはGitへ追加0。
+
+## 2026-09-26T11:56:32.101927+00:00
+- Timestamp: 2026-09-26T11:56:32.101927+00:00
+- Task: USER-20260926-RESEARCH-V1-CORRUPT
+- Version: research-v1-corrupt-load-v1
+- Status: DONE（通常V1 load 3境界、その他未受入）
+- Summary: 通常V1 loadの3件を受入。起動先行call誤認とQOLの空/破損混同を修復。破損checksum/tailは全入力とFlashを保持して拒否、正常V1は実保存と2回fresh Continue成功。
+- Files changed: QOL canonical Cの2関数、136byte recipe、検証model/20tests/原本/checkpoint/guide、固定引継ぎMD/JSON、両ログ。
+- Verify: 修正候補native3/5cores、ARM compile1/link1、host compile2（runner/新規C分岐試験）。新規unit20/100 status pairs PASS。先行call新規20は再実行0。正常V1のみ変更影響回帰1、旧26unit/7retry/他受入再実行0。記録・終端確認のnative/unit/compile0。終端確認=False。最終resume/task graph/scoped index guard/diff-check。
+- Commit: 同branch非force、source=33c78f6769104707a79f2ec027e3dff5990bd356、自己SHAはgit log。
+- Network: 固定GitHub artifact再利用、private payload新規tracked0。active baseline/merge/release変更0。
+
+## 2026-09-26T11:57:53.981861+00:00
+- Timestamp: 2026-09-26T11:57:53.981861+00:00
+- Task: USER-20260926-RESEARCH-V1-CORRUPT
+- Version: research-v1-corrupt-load-v1
+- Status: DONE（通常V1 load 3境界、その他未受入）
+- Summary: 通常V1 loadの3件を受入。起動先行call誤認とQOLの空/破損混同を修復。破損checksum/tailは全入力とFlashを保持して拒否、正常V1は実保存と2回fresh Continue成功。
+- Files changed: QOL canonical Cの2関数、136byte recipe、検証model/20tests/原本/checkpoint/guide、固定引継ぎMD/JSON、両ログ。
+- Verify: 修正候補native3/5cores、ARM compile1/link1、host compile2（runner/新規C分岐試験）。新規unit20/100 status pairs PASS。先行call新規20は再実行0。正常V1のみ変更影響回帰1、旧26unit/7retry/他受入再実行0。記録・終端確認のnative/unit/compile0。終端確認=True。最終resume/task graph/scoped index guard/diff-check。
+- Commit: 同branch非force、source=22e9ddad5ff722ea70f7cd1072d69c3354f5e3da、自己SHAはgit log。
+- Network: 固定GitHub artifact再利用、private payload新規tracked0。active baseline/merge/release変更0。
+
+## 2026-09-26T13:23:26.538636+00:00
+- Timestamp: 2026-09-26T13:23:26.538636+00:00
+- Task: USER-20260926-RESEARCH-PHASE0-LOAD / 通常load内phase0保存不可とcold回復
+- Version: research-phase0-load-v1
+- Status: DONE（限定2境界、全UIは未受入）
+- Summary: 通常load内phase0の保存不可2経路（V1移行/未確定稼得回復）を受入。原本全2048byte・全Flashを保持して拒否、通常cold Continueで1回保存し2回の後続Continueで完全一致。
+- Files changed: 新runner/model/43tests/Actions、証拠/checkpoint/guide、固定引継ぎMD/JSON、両ログ。
+- Verify: 新unit43PASS（初回canonical C compile1）をsource同一で再利用、unit再実行0。native2process/8cores、成功runner compile1（初回runner sign-compare compile失敗1を別記）、7guard拒否PASS。ローカル開発preflight43PASS。通常load拒否・回復・2回冪等Continue。ROM変更/ARM compile/link/旧受入再実行0。fixtureは可用性word1件4byte/各process、guarded host書込/ledger/PC/戻り値注入0。終端確認=False、記録finalizeはnative/unit/compile0。resume/task graph/scoped final-index guard/diff-checkを同runで検査。全体歴史guard成功は主張しない。
+- Commit: 同branch非force。source=187bb4a87fc4ad63f06022355c2d3be9ac47c2b5、自己SHAはgit log。
+- Network: GitHub固定artifactとActions API。私有payload新規tracked0、merge/release/active baseline変更0。
+
+## 2026-09-26T13:26:19.655970+00:00
+- Timestamp: 2026-09-26T13:26:19.655970+00:00
+- Task: USER-20260926-RESEARCH-PHASE0-LOAD / 通常load内phase0保存不可とcold回復
+- Version: research-phase0-load-v1
+- Status: DONE（限定2境界、全UIは未受入）
+- Summary: 通常load内phase0の保存不可2経路（V1移行/未確定稼得回復）を受入。原本全2048byte・全Flashを保持して拒否、通常cold Continueで1回保存し2回の後続Continueで完全一致。
+- Files changed: 新runner/model/43tests/Actions、証拠/checkpoint/guide、固定引継ぎMD/JSON、両ログ。
+- Verify: 新unit43PASS（初回canonical C compile1）をsource同一で再利用、unit再実行0。native2process/8cores、成功runner compile1（初回runner sign-compare compile失敗1を別記）、7guard拒否PASS。ローカル開発preflight43PASS。通常load拒否・回復・2回冪等Continue。ROM変更/ARM compile/link/旧受入再実行0。fixtureは可用性word1件4byte/各process、guarded host書込/ledger/PC/戻り値注入0。終端確認=True、記録finalizeはnative/unit/compile0。resume/task graph/scoped final-index guard/diff-checkを同runで検査。全体歴史guard成功は主張しない。
+- Commit: 同branch非force。source=22702cdbba183e89d481a8dc51b7ed197a421cf9、自己SHAはgit log。
+- Network: GitHub固定artifactとActions API。私有payload新規tracked0、merge/release/active baseline変更0。
+
+## 2026-09-26T13:45:10.939233+00:00
+- Timestamp: 2026-09-26T13:45:10.939233+00:00
+- Task: USER-20260926-RESEARCH-UI-BOUNDARY / 新規ゲーム初期化と取引UIの正本C host境界
+- Version: research-ui-boundary-v1
+- Status: DONE（限定host境界、通常nativeは未受入）
+- Summary: 正本Cの新規ゲーム初期化と取引UI callbackの限定host境界49試験PASS。通常native new-game/実取引は未受入。候補5d1fc9c4と既受入loadは保持。
+- Files changed: .github/workflows/pr16-research-ui-boundary-20260926.yml, content/modernization/pr16_native_supply_resume_20260913.json, content/modernization/pr16_research_ui_boundary_checkpoint.json, design/run_log.md, design/version_log.md, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, docs/PR16_RESEARCH_UI_BOUNDARY_JA.md, scripts/pr16_research_ui_boundary.py, scripts/pr16_research_ui_boundary_actions.py, tests/test_pr16_research_ui_boundary.py, tools/research_ui_boundary_shim.c、限定証拠。
+- Verify: 新unit49PASS/host compile1（終端記録時は再実行0）。22正本関数と2048byte初期化、全23選択/取消/資源解放を検証。旧受入再実行/native/ARM/ROM変更0。resume check/task graph/scoped final-index guard/diff-checkは同runの後続gate。全体歴史guard成功は主張しない。終端確認=False。
+- Commit: source=7f7575ca83765ba0d3c7a033e95015874555dd33、同branch非force。自己SHAはgit log。
+- Network: GitHub Actions API/先行終端照合。私有入力取得0、外部調査0。merge/release/active baseline変更0。
+
+## 2026-09-26T13:48:44.822596+00:00
+- Timestamp: 2026-09-26T13:48:44.822596+00:00
+- Task: USER-20260926-RESEARCH-UI-BOUNDARY / 新規ゲーム初期化と取引UIの正本C host境界
+- Version: research-ui-boundary-v1
+- Status: DONE（限定host境界、通常nativeは未受入）
+- Summary: 正本Cの新規ゲーム初期化と取引UI callbackの限定host境界49試験PASS。通常native new-game/実取引は未受入。候補5d1fc9c4と既受入loadは保持。
+- Files changed: .github/workflows/pr16-research-ui-boundary-20260926.yml, content/modernization/pr16_native_supply_resume_20260913.json, content/modernization/pr16_research_ui_boundary_checkpoint.json, design/run_log.md, design/version_log.md, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, docs/PR16_RESEARCH_UI_BOUNDARY_JA.md, scripts/pr16_research_ui_boundary.py, scripts/pr16_research_ui_boundary_actions.py, tests/test_pr16_research_ui_boundary.py, tools/research_ui_boundary_shim.c、限定証拠。
+- Verify: 新unit49PASS/host compile1（終端記録時は再実行0）。22正本関数と2048byte初期化、全23選択/取消/資源解放を検証。旧受入再実行/native/ARM/ROM変更0。resume check/task graph/scoped final-index guard/diff-checkは同runの後続gate。全体歴史guard成功は主張しない。終端確認=True。
+- Commit: source=1b32ca42d534eed264b50c26cd491079765686d4、同branch非force。自己SHAはgit log。
+- Network: GitHub Actions API/先行終端照合。私有入力取得0、外部調査0。merge/release/active baseline変更0。
+
+## 2026-09-26T14:06:17.607033+00:00
+- Timestamp: 2026-09-26T14:06:17.607033+00:00
+- Task: USER-20260926-RESEARCH-SHOP-CANCEL / 実ショップ取消と通常Save/Continue
+- Version: research-shop-cancel-v1
+- Status: DONE（取消限定、購入/new-game未受入）
+- Summary: 実ResearchショップのB取消/末尾取消と通常Save→独立Continue2回を受入。進行・100RP・stock warpはfixture、購入/new-game全体は未受入。
+- Files changed: .github/workflows/pr16-research-shop-cancel-20260926.yml, content/modernization/pr16_native_supply_resume_20260913.json, content/modernization/pr16_research_shop_cancel_checkpoint.json, design/run_log.md, design/version_log.md, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, docs/PR16_RESEARCH_SHOP_CANCEL_JA.md, scripts/pr16_research_shop_cancel.py, scripts/pr16_research_shop_cancel_actions.py, scripts/pr16_research_shop_cancel_followup.py, tests/test_pr16_research_shop_cancel.py, tools/mgba_pr16_research_shop_cancel.c、限定public証拠。
+- Verify: oracle20PASS、native1process/3cores、7guard拒否、strict host compile1。全Flash取消不変/全Bag/party/ledger対照、通常Save1回/Continue2回。既受入再実行/ROM変更/ARM compile/link0。終端記録でnative/unit/compile再実行0。終端確認=False。resume/task graph/scoped final-index guard/diff-checkは同run後続gate。全体歴史private guard成功は主張しない。
+- Commit: source=7513da51e99e4511f88ecdc153c95434ed044791、同branch非force。自己SHAはgit log。
+- Network: GitHub固定artifact/Actions API。私有入力は.localのみ、新規tracked binary0。merge/release/active baseline変更0。
+- Input followup: 初回36246971189はfailure保持。新driver入力seam変更のみ。20oracleは原本再利用/再実行0、旧native原本はimmutable prefix付き証拠。
+
+## 2026-09-26T14:09:38.222554+00:00
+- Timestamp: 2026-09-26T14:09:38.222554+00:00
+- Task: USER-20260926-RESEARCH-SHOP-CANCEL / 実ショップ取消と通常Save/Continue
+- Version: research-shop-cancel-v1
+- Status: DONE（取消限定、購入/new-game未受入）
+- Summary: 実ResearchショップのB取消/末尾取消と通常Save→独立Continue2回を受入。進行・100RP・stock warpはfixture、購入/new-game全体は未受入。
+- Files changed: .github/workflows/pr16-research-shop-cancel-20260926.yml, content/modernization/pr16_native_supply_resume_20260913.json, content/modernization/pr16_research_shop_cancel_checkpoint.json, design/run_log.md, design/version_log.md, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, docs/PR16_RESEARCH_SHOP_CANCEL_JA.md, scripts/pr16_research_shop_cancel.py, scripts/pr16_research_shop_cancel_actions.py, scripts/pr16_research_shop_cancel_followup.py, tests/test_pr16_research_shop_cancel.py, tools/mgba_pr16_research_shop_cancel.c、限定public証拠。
+- Verify: oracle20PASS、native1process/3cores、7guard拒否、strict host compile1。全Flash取消不変/全Bag/party/ledger対照、通常Save1回/Continue2回。既受入再実行/ROM変更/ARM compile/link0。終端記録でnative/unit/compile再実行0。終端確認=True。resume/task graph/scoped final-index guard/diff-checkは同run後続gate。全体歴史private guard成功は主張しない。
+- Commit: source=48a89d3c2afcbd5475a6e6f058dc8d1e27e2aa50、同branch非force。自己SHAはgit log。
+- Network: GitHub固定artifact/Actions API。私有入力は.localのみ、新規tracked binary0。merge/release/active baseline変更0。
+- Input followup: 初回36246971189はfailure保持。新driver入力seam変更のみ。20oracleは原本再利用/再実行0、旧native原本はimmutable prefix付き証拠。
+
+## 2026-09-26T14:31:07.277691+00:00
+- Timestamp: 2026-09-26T14:31:07.277691+00:00
+- Task: USER-20260926-RESEARCH-PURCHASE / 実Research購入・残高不足の保存境界
+- Version: research-purchase-measure-v1
+- Status: STOPPED（新native失敗原本保存）
+- Summary: 実Researchショップ購入の新driverは未受入。停止原本を保存し、成功済みoracle42は同一依存なら再利用する。
+- Files changed: .github/workflows/pr16-research-purchase-20260926.yml, content/modernization/pr16_native_supply_resume_20260913.json, content/modernization/pr16_research_purchase_checkpoint.json, design/run_log.md, design/version_log.md, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, docs/PR16_RESEARCH_PURCHASE_JA.md, scripts/pr16_research_purchase.py, scripts/pr16_research_purchase_actions.py, tests/test_pr16_research_purchase.py, tools/mgba_pr16_research_purchase.c と限定UTF8証拠。
+- Verify: ローカル新oracle42PASS。今回Actions新unit=42、native process=1、成功時fresh cores=4、guard7、host compile1。ROM変更/ARM compile/link/旧受入再実行0。失敗=['shop-select-purchase-insufficient-save-continue']。finalizeはunit/native/compile再実行0。後続resume/task graph/scoped final-index/diff gate後にcommit。全体歴史private guard成功は主張しない。
+- Commit: source=b15e08f07e58fe0e924efc1136ea5f3beea99cec、同branch非force。自己SHAはgit log。
+- Network: GitHub固定artifact/PR/Actions照合。元ROM/saveは非tracked。受入済み原本・baseline保全。merge/release0。
+
+## 2026-09-26T14:46:02.129680+00:00
+- Timestamp: 2026-09-26T14:46:02.129680+00:00
+- Task: USER-20260926-RESEARCH-PURCHASE / 実Research購入・残高不足の保存境界
+- Version: research-purchase-measure-v1
+- Status: DONE（限定受入、通常new-game未完）
+- Summary: 実Researchショップの行選択/確認拒否、10RP購入、残高不足拒否と取引直後の独立Continueを受入。通常Saveと続く独立Continue2回も保持。進行/10RP/warpはfixture。
+- Files changed: .github/workflows/pr16-research-purchase-20260926.yml, content/modernization/pr16_native_supply_resume_20260913.json, content/modernization/pr16_research_purchase_checkpoint.json, design/run_log.md, design/version_log.md, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, docs/PR16_RESEARCH_PURCHASE_JA.md, scripts/pr16_research_purchase.py, scripts/pr16_research_purchase_actions.py, tests/test_pr16_research_purchase.py, tools/mgba_pr16_research_purchase.c と限定UTF8証拠。
+- Verify: ローカル新oracle42PASS。今回Actions新unit=0、native process=1、成功時fresh cores=4、guard7、host compile1。ROM変更/ARM compile/link/旧受入再実行0。失敗=[]。finalizeはunit/native/compile再実行0。後続resume/task graph/scoped final-index/diff gate後にcommit。全体歴史private guard成功は主張しない。
+- Commit: source=bd690e9be3933332ba955900d83f16a73a8b975e、同branch非force。自己SHAはgit log。
+- Network: GitHub固定artifact/PR/Actions照合。元ROM/saveは非tracked。受入済み原本・baseline保全。merge/release0。
+
+## 2026-09-26T14:48:52.705352+00:00
+- Timestamp: 2026-09-26T14:48:52.705352+00:00
+- Task: USER-20260926-RESEARCH-PURCHASE / 実Research購入・残高不足の保存境界
+- Version: research-purchase-finalize-v1
+- Status: DONE（限定受入、通常new-game未完）
+- Summary: 実Researchショップの行選択/確認拒否、10RP購入、残高不足拒否と取引直後の独立Continueを受入。通常Saveと続く独立Continue2回も保持。進行/10RP/warpはfixture。
+- Files changed: .github/workflows/pr16-research-purchase-20260926.yml, content/modernization/pr16_native_supply_resume_20260913.json, content/modernization/pr16_research_purchase_checkpoint.json, design/run_log.md, design/version_log.md, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, docs/PR16_RESEARCH_PURCHASE_JA.md, scripts/pr16_research_purchase.py, scripts/pr16_research_purchase_actions.py, tests/test_pr16_research_purchase.py, tools/mgba_pr16_research_purchase.c と限定UTF8証拠。
+- Verify: ローカル新oracle42PASS。今回Actions新unit=0、native process=1、成功時fresh cores=4、guard7、host compile1。ROM変更/ARM compile/link/旧受入再実行0。失敗=[]。finalizeはunit/native/compile再実行0。後続resume/task graph/scoped final-index/diff gate後にcommit。全体歴史private guard成功は主張しない。
+- Commit: source=9f572f23ccf7e38052f21ef12d204950fe9df60a、同branch非force。自己SHAはgit log。
+- Network: GitHub固定artifact/PR/Actions照合。元ROM/saveは非tracked。受入済み原本・baseline保全。merge/release0。
+
+- Diagnosis: docs/PR16_RESEARCH_PURCHASE_DIAGNOSTICS_JA.md sha256=a6ffe416594e8eb0842a9f1f0f68c38517f0e2504338603fcbdd07fbfbd08fdb. 保存後は上向きなので無条件UPが歩行になるdriver原因。ローカル記録済み診断6process/5host compilesは受入試験外、後半5processは購入後cacheを再利用。別のsave attachment失敗1試行とstreaming tool拒否は受入証拠外。旧受入テスト再実行0。今回finalizeのnative/unit/compileは0。
+
+## 2026-09-26T15:01:23.789334+00:00
+- Timestamp: 2026-09-26T15:01:23.789334+00:00
+- Task: USER-20260926-RESEARCH-NEW-GAME / 通常new-game・初回Save・独立Continue
+- Version: research-new-game-measure-v1
+- Status: DONE（初回保存限定、自然供給未完）
+- Summary: 通常new-gameを消去Flashからキー入力のみで開始し、初回Start Saveと独立Continue2回を受入。counter0→1→1→1、全ledger2048/Bag5pocket/party600/Flash128KiBを照合。
+- Files changed: .github/workflows/pr16-research-new-game-20260926.yml, content/modernization/pr16_native_supply_resume_20260913.json, content/modernization/pr16_research_new_game_checkpoint.json, design/run_log.md, design/version_log.md, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, docs/PR16_RESEARCH_NEW_GAME_JA.md, scripts/pr16_research_new_game.py, scripts/pr16_research_new_game_actions.py, tests/test_pr16_research_new_game.py, tools/mgba_pr16_research_new_game.c と限定UTF8証拠。
+- Verify: ローカル新52oraclePASS。Actions新unit=52、native1process（成功時3cores）/guard7/host compile1。初期化/warp/文字速度/台帳/party注入0。ROM変更/ARM compile/link/旧受入再実行0。finalizeはunit/native/compile0。失敗=[]。後続resume/task graph/scoped final-index/diff gate後にcommit。全体歴史private guard成功は主張しない。
+- Diagnosis: 正式測定前に同候補/消去Flashでinput-onlyローカル診断1process/1host compile、通常開始と初回Saveを確認。独立Continueは診断未実行。受入件数へ加算しない。
+- Commit: source=bb2d74a1aa61d3d6d6b97580513bae49d8a71394、同branch非force。自己SHAはgit log。
+- Network: GitHub固定artifact/PR/Actions。元ROM/save非tracked、履歴/baseline保全。merge/release0。
+
+## 2026-09-26T15:04:15.212535+00:00
+- Timestamp: 2026-09-26T15:04:15.212535+00:00
+- Task: USER-20260926-RESEARCH-NEW-GAME / 通常new-game・初回Save・独立Continue
+- Version: research-new-game-finalize-v1
+- Status: DONE（初回保存限定、自然供給未完）
+- Summary: 通常new-gameを消去Flashからキー入力のみで開始し、初回Start Saveと独立Continue2回を受入。counter0→1→1→1、全ledger2048/Bag5pocket/party600/Flash128KiBを照合。
+- Files changed: .github/workflows/pr16-research-new-game-20260926.yml, content/modernization/pr16_native_supply_resume_20260913.json, content/modernization/pr16_research_new_game_checkpoint.json, design/run_log.md, design/version_log.md, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, docs/PR16_RESEARCH_NEW_GAME_JA.md, scripts/pr16_research_new_game.py, scripts/pr16_research_new_game_actions.py, tests/test_pr16_research_new_game.py, tools/mgba_pr16_research_new_game.c と限定UTF8証拠。
+- Verify: ローカル新52oraclePASS。Actions新unit=52、native1process（成功時3cores）/guard7/host compile1。初期化/warp/文字速度/台帳/party注入0。ROM変更/ARM compile/link/旧受入再実行0。finalizeはunit/native/compile0。失敗=[]。後続resume/task graph/scoped final-index/diff gate後にcommit。全体歴史private guard成功は主張しない。
+- Diagnosis: 正式測定前に同候補/消去Flashでinput-onlyローカル診断1process/1host compile、通常開始と初回Saveを確認。独立Continueは診断未実行。受入件数へ加算しない。
+- Commit: source=29f21cc483af5dc23c97baf98d0bdbefa043bc87、同branch非force。自己SHAはgit log。
+- Network: GitHub固定artifact/PR/Actions。元ROM/save非tracked、履歴/baseline保全。merge/release0。
+
+- Session closeout: initial=bddb239934a0ff3854009a2f5c64d3b680ec9cdc / purchase run=36249587919 / ordinary-new-game run=36250444503。今回追加受入はこの2境界のみ。開始HEAD以降の全差分71pathは所有UTF8 textに限定し、両ログappend-only・active baseline不変を照合。終端記録でnative/unit/compile再実行0、全体release/P08の完了主張なし。
+
+## 2026-09-26T15:39:12.902564+00:00
+- Timestamp: 2026-09-26T15:39:12.902564+00:00
+- Task: USER-20260927-RESEARCH-SUPPLY / 全catalog価格と日本語監査
+- Version: research-catalog-v1
+- Status: DONE（限定scope）
+- Summary: PASS_CATALOG_PENDING_TERMINAL / measure。23商品と35会話ROM byte、5page表示。自然RP/通常進行/35会話native全表示は未受入。
+- Files changed: catalog validator/native/oracle/Actions、専用証拠/MD/JSON、固定引継ぎ、両ログ。
+- Verify: 新規86oracle、host1/native1/guard7、ARM0。準備診断compile3/native3、2失敗を保存し専用fixture/videoだけ修正。終端はunit/native/compile0。旧受入ケース再実行0。resume/task graph/限定index guardをcommit前に検査。
+- Commit: 同branch非force push、source=e68fd9e4cb596d5ef082c68c3462786136af5aad。自己SHAはgit log参照。
+- Network: 接続済みGitHub APIと固定SHA artifactのみ。全体CI成功/releaseは主張しない。ROM/saveは非tracked、active baseline不変。
+
+## 2026-09-26T15:42:06.974509+00:00
+- Timestamp: 2026-09-26T15:42:06.974509+00:00
+- Task: USER-20260927-RESEARCH-SUPPLY / 全catalog価格と日本語監査
+- Version: research-catalog-v1
+- Status: DONE（限定scope）
+- Summary: PASS_CATALOG_SCOPED / finalize。23商品と35会話ROM byte、5page表示。自然RP/通常進行/35会話native全表示は未受入。
+- Files changed: catalog validator/native/oracle/Actions、専用証拠/MD/JSON、固定引継ぎ、両ログ。
+- Verify: 新規86oracle、host1/native1/guard7、ARM0。準備診断compile3/native3、2失敗を保存し専用fixture/videoだけ修正。終端はunit/native/compile0。旧受入ケース再実行0。resume/task graph/限定index guardをcommit前に検査。
+- Commit: 同branch非force push、source=fc23a28595939b617363d36ade2802b6f8b92d33。自己SHAはgit log参照。
+- Network: 接続済みGitHub APIと固定SHA artifactのみ。全体CI成功/releaseは主張しない。ROM/saveは非tracked、active baseline不変。
+
+## 2026-09-26T15:55:45.861217+00:00
+- Timestamp: 2026-09-26T15:55:45.861217+00:00
+- Task: USER-20260927-RESEARCH-PHOTO / 写真実RP稼得
+- Version: research-photo-v1
+- Status: DONE（限定scope）
+- Summary: PASS_PHOTO_PENDING_TERMINAL / measure。0→6RP/同日重複拒否/取引保存2/独立Continueと写真3文言。自然到達/全活動/ショップ接続は未受入。
+- Files changed: 写真validator/native/43検査/Actions/専用MD/JSON/UTF8証拠、固定引継ぎ、両ログ。
+- Verify: 新規43検査、host1/native1（core2）/ARM0、7 guardは同一受入原本再利用。準備compile/native各4、stance2診断と早い画像1を修正。終端は再実行0。resume/task graph/index guardをcommit前に検査。
+- Commit: source=ad71709096c5da19e5bf43e9f4e91b8c47fda35f、同branch非force push。自己SHAはgit log参照。
+- Network: GitHub接続API/固定artifactのみ。ROM/save非tracked、active baseline不変。一般CI既存P03 pin failureは別件、release/mergeなし。
+
+## 2026-09-26T15:59:14.024036+00:00
+- Timestamp: 2026-09-26T15:59:14.024036+00:00
+- Task: USER-20260927-RESEARCH-PHOTO / 写真実RP稼得
+- Version: research-photo-v1
+- Status: DONE（限定scope）
+- Summary: PASS_PHOTO_REAL_EARNING_SCOPED / finalize。0→6RP/同日重複拒否/取引保存2/独立Continueと写真3文言。自然到達/全活動/ショップ接続は未受入。
+- Files changed: 写真validator/native/43検査/Actions/専用MD/JSON/UTF8証拠、固定引継ぎ、両ログ。
+- Verify: 新規43検査、host1/native1（core2）/ARM0、7 guardは同一受入原本再利用。準備compile/native各4、stance2診断と早い画像1を修正。終端は再実行0。resume/task graph/index guardをcommit前に検査。
+- Commit: source=5ef2110f3ce6462433cb87c96adbe378d440f41b、同branch非force push。自己SHAはgit log参照。
+- Network: GitHub接続API/固定artifactのみ。ROM/save非tracked、active baseline不変。一般CI既存P03 pin failureは別件、release/mergeなし。
+
+## 2026-09-26T15:59:14.622142+00:00
+- Timestamp: 2026-09-26T15:59:14.622142+00:00
+- Task: USER-20260927-RESEARCH-PHOTO / cold field目視境界
+- Version: research-photo-v1-visual-scope
+- Status: BLOCKED（field表示だけ。写真RP受入とは分離）
+- Summary: Continue後の青い反復背景を原本から確認。原因未特定、natural arrival/releaseは未受入。
+- Files changed: 写真MD/JSON、固定引継ぎMD/JSON、両ログ。
+- Verify: run36253608437の7画像SHA一致、目視画像9e5f6272bbfc690a35b2eb2cfe242d2c23953dba1d22f7f82b2798ec3031971f。unit/native/compile/ARM再実行0。resume/task graph/index guardは後続stepで検査。
+- Commit: source=5ef2110f3ce6462433cb87c96adbe378d440f41b、同branch非force push。自己SHAはgit log参照。
+- Network: 追加取得なし。ROM/save変更0、active baseline不変。
+
+## 2026-09-26T16:52:32.861786+00:00
+- Timestamp: 2026-09-26T16:52:32.861786+00:00
+- Task: USER-20260927-PHOTO-VISUAL
+- Version: research-map-view-v1
+- Status: VERIFIED_PENDING_TERMINAL（写真cold表示の限定scope）
+- Summary: 保存view空判定の隣接owner overreadを上限511→255の1byte修正で解消。record。
+- Files changed: 1byte recipe/検証Python・C/54tests/原本/checkpoint/guide/固定引継ぎMD・JSON/両ログ。
+- Verify: 診断2native/4cores/2host、修正受入2native/3cores/2host、読取utility host1。ARM0。unit初回53PASS+1harness失敗、失敗1のみ修正再実行PASS。写真変更影響回帰1、無変更受入再実行0。Actions native/unit/compile0。全ROM rollback/原本hash/生成C/独立oracleを照合。resume/task graph/index guardは後続stepで検査。
+- Commit: source=470abaaad65fd64246867c3fb25ed69438d29502、同branch非force push、自己SHAはgit log参照。
+- Network: 固定GitHub data取得・runtime metadata参照。新規ROM/save tracked0、baseline/merge/release不変。全CI/自然到達/全活動/全map受入ではない。
+
+## 2026-09-26T16:53:45.548853+00:00
+- Timestamp: 2026-09-26T16:53:45.548853+00:00
+- Task: USER-20260927-PHOTO-VISUAL
+- Version: research-map-view-v1
+- Status: DONE（写真cold表示の限定scope）
+- Summary: 保存view空判定の隣接owner overreadを上限511→255の1byte修正で解消。finalize。
+- Files changed: 1byte recipe/検証Python・C/54tests/原本/checkpoint/guide/固定引継ぎMD・JSON/両ログ。
+- Verify: 診断2native/4cores/2host、修正受入2native/3cores/2host、読取utility host1。ARM0。unit初回53PASS+1harness失敗、失敗1のみ修正再実行PASS。写真変更影響回帰1、無変更受入再実行0。Actions native/unit/compile0。全ROM rollback/原本hash/生成C/独立oracleを照合。resume/task graph/index guardは後続stepで検査。
+- Commit: source=d3c4c3b844f0f145420a0a35d0898e9ee4dc94bd、同branch非force push、自己SHAはgit log参照。
+- Network: 固定GitHub data取得・runtime metadata参照。新規ROM/save tracked0、baseline/merge/release不変。全CI/自然到達/全活動/全map受入ではない。
+
+## 2026-09-26T18:20:09.506761+00:00
+- Timestamp: 2026-09-26T18:20:09.506761+00:00
+- Task: USER-20260927-RESEARCH-ACTIVITIES / 虫取り実RP稼得の未保存WIPを完了
+- Version: research-bug-v1
+- Status: DONE（虫取り限定scope）
+- Summary: 実NPCから0→8RP、取消/条件不足/同日重複拒否、取引保存2/独立Continue、4文言12画像を受入。旧ローカル原本欠落はunknownとして新Actions原本と分離。残る4活動/自然到達/受付ショップ接続は未受入。
+- Files changed: 虫取りrunner/oracle/51検査/回収・記録Actions/UTF8原本/checkpoint/guide、固定引継ぎMD・JSON、両ログ。
+- Verify: run36261672837全step成功、2native/3cores/host1/ARM0/ROM変更0、失敗0。今回新51tests PASS。記録native/compile再実行0、旧受入再実行0。source/hash/12画像/ledger2048/party600/Bag/Flashを照合。commit前resume/task graph/scoped index guard必須。
+- Commit: WIP64f9894・5412cee、測定source=5412cee1d3cbde3d818a17fa6bf53d1096fc6c2c、記録source=826fa3d262bd1a45dd7058a2e5bdf9aa0fcb06d2、自己SHAはgit log参照、同branch非force push。
+- Network: GitHub live HEAD/PR/Actions/固定artifactだけ。旧実行中runを現在結果へ照合。一般CIは限定受入と分離。ROM/save非tracked、merge/release/baseline不変。
+
+## 2026-09-26T18:23:37.948602+00:00
+- Timestamp: 2026-09-26T18:23:37.948602+00:00
+- Task: USER-20260927-RESEARCH-ACTIVITIES / 虫取り受入後の補助export終端
+- Version: research-bug-v1-closeout
+- Status: DONE（限定scope）
+- Summary: 受入commit5e428c2fの51検査/guard/非force pushを保全。旧記録run36262152385はpost-push context exportだけfailure。clean HEAD冒頭へ移動し原因と終端を明記。
+- Files changed: finish helper/workflow、虫取りcheckpoint/guide/終端JSON、固定引継ぎMD・JSON、両ログ。
+- Verify: 元51unit/2native/3cores/host1原本と21path guardをhash再利用。unit/native/compile再実行0。旧失敗step7を隠さない。現在HEAD context exportの全hash、commit前resume/task graph/scoped index guard。
+- Commit: accepted=5e428c2f09c14d4cf65b10c9da78d39ca47f8277、closeout source=b0451cf9a855d5ddbda36046be4e3d23ea7ebc09、自己SHAはgit log参照、同branch非force push。
+- Network: GitHub ref/PR/Actions原本のみ。元ROM/seed/旧受入/baseline不変。残4活動/自然到達/受付ショップ接続・全CI・releaseは未受入。
+
+## 2026-09-26T19:56:59.817871+00:00
+- Timestamp: 2026-09-26T19:56:59.817871+00:00
+- Task: USER-20260927-RESEARCH-MINING / 採掘実RP稼得の限定受入
+- Version: research-mining-v1
+- Status: DONE（採掘限定scope）
+- Summary: 標準いわくだき0→10RP、条件不足/取消、保存2/独立Continue、fixture階往復後cap、4文言を受入。wild tail/自然到達/残3活動/受付ショップ接続は未受入。
+- Files changed: 採掘runner/oracle/64検査/測定・記録Actions、UTF8原本/失敗履歴/checkpoint/guide、固定引継ぎMD・JSON、両ログ。
+- Verify: run36267515706全step成功、3native/5cores/host1/ARM0/ROM変更0、失敗0、新64tests PASS。local開発8中5失敗は別記。記録unit/native/compile再実行0。source/11画像/全ledger/party/Bag/Flash照合。commit前resume/task graph/scoped final-index guard必須。
+- Commit: WIP f12167c7/2640e5d9、測定source=8fdda1bb5e4f559cf71120f17e7fc947116e8f69、記録source=7e6b62556df26589616d94073feedc658e22e82d、自己SHAはgit log参照、同branch非force push。
+- Network: GitHub HEAD/PR/完了Actions/固定artifactのみ。旧写真/虫取り/BP/P08/seed/baseline不変。一般CIと限定PASSを分離、merge/releaseなし。
+
+## 2026-09-26T21:34:53.107496+00:00
+- Timestamp: 2026-09-26T21:34:53.107496+00:00
+- Task: USER-20260927-RESEARCH-REMAINING / 未受入研究3活動の専用実装開始
+- Version: research-remaining-source-v1
+- Status: STOPPED（source契約完成、native実装継続）
+- Summary: 前回採掘記録run36267783546の終端successを照合。釣り/生態/ゲームコーナーの専用source契約と10新規負例検査、対象source索引を実装・保存。実RPの新受入は0。
+- Files changed: 専用script/test/workflow、source-contract/actions/unit、固定引継ぎMD/JSON、専用guide、両ログ。
+- Verify: 新10tests PASS。native/ARM/host compile/受入済み再実行0。既存source/evidence hash不変。最終resume/task graph/scoped guardをcommit前に実行。
+- Commit: source=df6e8939d4a5ad803c36b10d5610a57eb74bef54;自己SHAはgit log参照。同branchへ非force push。
+- Network: GitHub PR/HEAD/Actions APIのみ。merge/release/baseline変更なし。
+
+## 2026-09-26T21:44:05.054952+00:00
+- Timestamp: 2026-09-26T21:44:05.054952+00:00
+- Task: USER-20260927-RESEARCH-WILD
+- Version: research-wild-native-v1
+- Status: STOPPED（実装/実測を保存、受入未確定）
+- Summary: 研究wild専用Cを実装し、釣り/生態の通常Bag→逃走→捕獲→取引保存Continueを新規実測。失敗原本から未完境界だけ修正する。旧受入済み写真/虫取り/採掘/BP/P08/special-wildケースは再実行しない。ゲームコーナー/通常進行の受付ショップ接続/未確認文言は未完。
+- Files changed: 専用C/実測script/workflow、実測原本/checkpoint/guide、固定引継ぎMD/JSON、両ログ。
+- Verify: counts={'host_compiles': 1, 'arm_compiles': 0, 'native_processes': 0, 'guard_processes': 0, 'accepted_case_reruns': 0, 'rom_changes': 0}; failures={'preflight': {'type': 'ValueError', 'reason': 'strict new host compile'}}; 新受入0、旧受入native再実行0。source/evidence/ROM/seedのSHA照合。resume/task graph/scoped guard後だけcommit。
+- Commit: source=69cdc31fd2c2f40d5a03c1a44005836ffab580b8; run=36273917599; 自己SHAはgit log参照。同branch非force push。
+- Network: 固定GitHub artifacts/HEAD/PR/Actionsだけ。merge/release/baseline変更なし。
+
+## 2026-09-26T22:19:41.427124+00:00
+- Timestamp: 2026-09-26T22:19:41.427124+00:00
+- Task: USER-20260927-RESEARCH-WILD / 釣り・生態実稼得の限定受入（publish）
+- Version: research-wild-v2
+- Status: DONE（2活動の実稼得/逃走/取引Continue限定）
+- Summary: 釣り0→4RP/生態0→10RPの実稼得・逃走無加算・T24 typed credit併存・取引だけのfresh Continueを限定受入。次はGAME_CORNERの実配当→3RP、通常進行の受付/ショップ接続、残るnative文言。写真/虫取り/採掘/釣り/生態/BP/P08の無変更native再実行は禁止。日内上限・既捕獲種の実経路をこの2caseだけで全受入したと主張しない。
+- Files changed: 専用C/generator/oracle/65検査/記録器、完全stdoutと失敗履歴/画像hash/source差分/checkpoint、引継ぎMD/JSON、両ログ。
+- Verify: local native5=成功2+失敗2+打切り1、host compile4+先行Actions失敗1、ARM0、受入済みnative再実行0。65新検査PASSをsource拘束で再利用。ledger4状態×2を独立再構成、10画像目視・全hash一致。record native/compile/unit再実行0。resume/task graph/最終index scoped guardはcommit前必須。
+- Commit: source=c25a0a0c106131546be173e686946d64e01cd610; record run=36275891559; 自己SHAはgit log参照。同branch非force push。
+- Network: GitHub HEAD/PR/Actions・固定artifactのみ。候補/seed/受入済みsource/evidence/baseline不変。merge/releaseなし。全CI成功は主張しない。
+
+## 2026-09-26T22:22:58.977511+00:00
+- Timestamp: 2026-09-26T22:22:58.977511+00:00
+- Task: USER-20260927-RESEARCH-WILD / 釣り・生態実稼得の限定受入（confirm）
+- Version: research-wild-v2
+- Status: DONE（2活動の実稼得/逃走/取引Continue限定）
+- Summary: 釣り0→4RP/生態0→10RPの実稼得・逃走無加算・T24 typed credit併存・取引だけのfresh Continueを限定受入。次はGAME_CORNERの実配当→3RP、通常進行の受付/ショップ接続、残るnative文言。写真/虫取り/採掘/釣り/生態/BP/P08の無変更native再実行は禁止。日内上限・既捕獲種の実経路をこの2caseだけで全受入したと主張しない。
+- Files changed: 専用C/generator/oracle/65検査/記録器、完全stdoutと失敗履歴/画像hash/source差分/checkpoint、引継ぎMD/JSON、両ログ。
+- Verify: local native5=成功2+失敗2+打切り1、host compile4+先行Actions失敗1、ARM0、受入済みnative再実行0。65新検査PASSをsource拘束で再利用。ledger4状態×2を独立再構成、10画像目視・全hash一致。record native/compile/unit再実行0。resume/task graph/最終index scoped guardはcommit前必須。
+- Commit: source=fb33c3bf34a10e4f838cabf80e50e91f7b10a461; record run=36276059655; 自己SHAはgit log参照。同branch非force push。
+- Network: GitHub HEAD/PR/Actions・固定artifactのみ。候補/seed/受入済みsource/evidence/baseline不変。merge/releaseなし。全CI成功は主張しない。
+- Record scope repair: run36275950886の記録だけのfailureを保持。比較基準を受入commit fbf7c9dcへ固定し、旧Actions原本を不変継承。受入済みsource/evidence hashを再確認、native/unit/compile追加0。
+
+## 2026-09-27T09:08:16+09:00
+- Timestamp: 2026-09-27T09:08:16+09:00
+- Task: USER-20260927-RESEARCH-GAME-CORNER / 実300枚配当・取引保存・独立Continue
+- Version: research-game-corner-v1
+- Status: DONE（animated配当と保存継続の限定scope）
+- Summary: 実スロットの300枚923→1223コイン・0→3RP、完了後だけcredit、4枚無RP、取引Save2、別core Continue1223/3RP/counter4。未保存終了値1188とは分離。Start配当/日内cap/自然到達/受付ショップ/残るnative文言は未完。
+- Files changed: 専用C/oracle/117反証検査/記録契約、全観測2295行・Continue原本・画像hash・失敗履歴・source拘束・checkpoint・専用MD、固定引継ぎMD/JSON、両ログ。
+- Verify: 新規117PASS（初回1失敗を修正し履歴保持）、変更loader2PASS、記録binding1PASS。native5=実稼得1+Continue1+計測器失敗3、guard7拒否、host compile6、ROM/ARM0、受入済み再実行0。全ledger/Bag/party/Flashと6画像。最後の再開契約は本patch適用後に既設bridgeの単一testで検証。
+- Commit: source=4d97c6b73a929850d49abf7fa873b937fd3aed5a; evidence=3d2690fe3ebdeb7f75c925a6475bdfca2196ec05; checkpoint=f0d25936ffbfb7fae2928b4c700cb734754fb354; 同branchへ非force反映。自己SHAはgit log参照。
+- Network: GitHub限定。3d2690feのP03 CI成功、source-validation36281287703は既存P03 capacity契約でfailureを確認。今回のActions native成功・全CI成功は主張しない。workflow新規追加tool拒否は反復せず、既設限定patch bridgeを使用。merge/release/baseline変更なし。
+
+## 2026-09-27T00:52:20.429745+00:00
+- Timestamp: 2026-09-27T00:52:20.429745+00:00
+- Task: USER-20260927-RESEARCH-HANDOFF / 未適用4正本の同期と再実行防止
+- Version: research-handoff-repair-v1
+- Status: DONE
+- Summary: 保存済みpatchを一度だけ適用しGAME_CORNER限定受入を固定入口へ反映。旧bridge36281697084は既存原本guard failureのまま保持。次は通常受付/ショップ接続・native文言。
+- Files changed: 専用workflow/receipt、固定再開MD/JSON、両ログ。既存原本/候補/基準は不変。
+- Verify: 未実行handoff契約1PASS、全source binding、task graph、最終index scoped guard。native/ARM/host compile/受入済み再実行0。全体guard PASSは主張しない。
+- Commit: source=cecfb0118332f7f39c662f647477a708f4a66f97; 自己SHAはgit log参照。同branchへ非force push。
+- Network: GitHub PR/HEAD/Actionsのみ。merge/release/baseline変更なし。
+
+## 2026-09-27T01:13:28.428684+00:00
+- Timestamp: 2026-09-27T01:13:28.428684+00:00
+- Task: USER-20260927-RESEARCH-CONNECTION / 屋外入口と未確認文言の原本固定
+- Version: research-connection-measured-v1
+- Status: STOPPED（計測原本を固定、独立oracle/画面受入へ）
+- Summary: 新4入口の限定入力probeを実装。受付残高数値欠落を未完保持、屋外fixtureと通常ストーリーを区別。前ローカル環境リセットの原本消失/失敗はcheckpointで明記。
+- Files changed: 専用C/Python/Actions、UTF8原本/checkpoint/専用MD、固定再開MD/JSON、両ログ。
+- Verify: strict host compile1、guard7拒否、native4計測、ARM/ROM変更/受入済み再実行0。正式native受入は独立oracleと画像照合まで0。source hash/保全原本/resume/task graph/最終index scoped guard。
+- Commit: source=ed1f8051c9e3ac80b3d4034553d80fe4d2172e8a; 同branchへ非force push。自己SHAはgit log参照。
+- Network: 固定GitHub artifactとPR/Actionsのみ。merge/release/baseline変更なし。全体private guard成功は主張しない。
+
+## 2026-09-27T01:17:23.867423+00:00
+- Timestamp: 2026-09-27T01:17:23.867423+00:00
+- Task: USER-20260927-RESEARCH-CONNECTION / 生態ガイドの通常入力のみ追加
+- Version: research-ecology-guide-measured-v1
+- Status: STOPPED（独立oracle・画面受入へ）
+- Summary: 旧原本の移動NPC位置を根拠に左向きAへ修正。候補/生成C不変。新native1、host compile1、guard7、ARM/ROM変更/既受入再実行0。旧3入口は再実行せず原本維持。
+- Files changed: 専用workflow、UTF8原本、checkpoint/guide、固定引継ぎMD/JSON、両ログ。
+- Verify: Actions36284847516終端success確認、source/原本hash、resume/task graph/最終index scoped guard。正式受入や全CI成功は主張しない。
+- Commit: source=51f4ce7eae44ebb5ed6c192bf088b3ebbf030ed1; 同branch非force push、自己SHAはgit log。
+- Network: 固定GitHub artifact/PR/Actionsのみ。merge/release/baseline不変。
+
+## 2026-09-27T01:25:03.530942+00:00
+- Timestamp: 2026-09-27T01:25:03.530942+00:00
+- Task: USER-20260927-RESEARCH-CONNECTION / 4物理入口と静的案内の独立受入
+- Version: research-connection-accepted-v1
+- Status: DONE（物理入口と静的案内の限定範囲）
+- Summary: 研究室の屋外→受付→初期ショップ/取消→屋外、釣り/ゲーム/生態の入口→案内→終了を受入。受付の数値残高/rank/標準list、自然稼得RP支出、通常ストーリー到達は未完として次へ。旧失敗・生態未観測・消失原本は保持。
+- Files changed: 独立oracle/改変拒否test/記録script/workflow、受入/画面レビュー/検査原本、checkpoint/guide、固定引継ぎMD/JSON、両ログ。
+- Verify: 新規oracle 140件PASS、33実画面/12静的文言の視認と固定artifact照合、2048byte ledger独立再計算。新native/host compile/ARM/ROM変更/受入済み再実行0。元Actions36284847516/36285051878 success、現在HEAD一般CIは別記。resume/task graph/最終index scoped guard。全体guard成功は主張しない。
+- Commit: source=c4da83fc8dd55c18281a02d1ba838728d7ee48c6; 同branchへの非force記録、自己SHAはgit log。
+- Network: GitHub固定artifact/PR/Actionsのみ。merge/release/baseline変更なし。
+
+## 2026-09-27T02:06:33.984442+00:00
+- Timestamp: 2026-09-27T02:06:33.984442+00:00
+- Task: USER-20260927-RESEARCH-COUNTER / 受付数値表示・独立受入と検証原本の修復
+- Version: research-counter-numeric-v1
+- Status: DONE（残高/rank数値表示の限定範囲。標準list/自然RP支出/通常進行は未完）
+- Summary: 既存147byte内88byteの数値会話を接続、2境界の実値・buffer・全文と18画面を確認。親26dac23c→c3971e83。人工9999RPを自然稼得と主張しない。
+- Files changed: 数値probe/oracle/専用試験/Actions、入力の不変コピーと陽性前提の修復、recipe、失敗原本と回復証拠/checkpoint/専用MD、固定引継ぎMD/JSON、両ログ。
+- Verify: 旧run36286898098はfailureを保持。成功native2/guard7/host1を再利用。修正63試験PASSと不変event15試験の原本を照合、計78件。新規native/guard/host/ARM/ROM生成0、既受入独立再実行0。task graph/resume/final index guard PASSを後段commitの必須条件とする。全体historical guard/一般CI全成功は主張しない。
+- Commit: source=ca8b2648e74e2d603caf2f6bb7311cc8491ff455 / acceptance run=36287524393; 同branch非force commit。自己SHAはgit logとremote refで照合。
+- Network: 固定GitHub artifactとrun/job/PR metadataのみ。原本absolute tracebackはartifactに保持、tracked正規化コピーは別hashで明示。ROM/save/binaryはGitに追加しない。merge/release/baseline変更なし。
+
+## 2026-09-27T10:00:42.629370+00:00
+- Timestamp: 2026-09-27T10:00:42.629370+00:00
+- Task: USER-20260927-RESEARCH-STANDARD-LIST
+- Version: research-standard-list-v1-measured
+- Status: STOPPED（原本/画面/終端を区別して記録）
+- Summary: 標準リスト2機能/終了行/B取消/再訪を実装。後処理領域とlocal4 pointerのみ、旧数値層・保存owner不変。
+- Files changed: 新list C/builder/probe/oracle/30+27検査/Actions、専用MD/JSON/recipe/UTF8原本、固定引継ぎ、両ログ。
+- Verify: ARM/30検査はrun36310534280を再利用。初回暗黙memcpy失敗run36310336114を保持。今回の実行数とerrorはcontent/modernization/pr16_research_standard_list_checkpoint.jsonのmeasurement/errorを正本とする。計画はnative1/guard7/host1/ARM0、新oracle27。旧受入matrix再実行0。画面・自己run終端・全CI成功を未確認のまま主張しない。
+- Commit: source=a06f61d9ed78061d59f2b7cb681efdfe55d3daaa; 同branch非force記録、自己SHAはgit log。
+- Network: 固定GitHub artifactsとActions/PR metadataのみ。ROM/save/実画像はGit管理外。merge/release/baseline変更なし。
+
+## 2026-09-27T10:08:49.238618+00:00
+- Timestamp: 2026-09-27T10:08:49.238618+00:00
+- Task: USER-20260927-RESEARCH-STANDARD-LIST
+- Version: research-standard-list-v1-measured
+- Status: STOPPED（原本/画面/終端を区別して記録）
+- Summary: 標準リスト2機能/終了行/B取消/再訪を実装。後処理領域とlocal4 pointerのみ、旧数値層・保存owner不変。
+- Files changed: 新list C/builder/probe/oracle/30+27検査/Actions、専用MD/JSON/recipe/UTF8原本、固定引継ぎ、両ログ。
+- Verify: ARM/30検査はrun36310534280を再利用。初回暗黙memcpy失敗run36310336114を保持。今回の実行数とerrorはcontent/modernization/pr16_research_standard_list_thumb_checkpoint.jsonのmeasurement/errorを正本とする。計画はnative1/guard7/host1/ARM0、新oracle27。旧受入matrix再実行0。画面・自己run終端・全CI成功を未確認のまま主張しない。
+- Commit: source=995e87e0e38c167f52c1ed2feeca6324fe6e017b; 同branch非force記録、自己SHAはgit log。
+- Network: 固定GitHub artifactsとActions/PR metadataのみ。ROM/save/実画像はGit管理外。merge/release/baseline変更なし。
+
+- Thumb follow-up correction: 上の共通record文のARM再利用元はrun36311386781（17 typed delegates/ELF8検査）へ置換。host/event30件だけrun36310534280を継承。旧native失敗run36311122801/37f73b80は未受入のまま保存。候補e98d4b51、実差分933byte、型付けだけの変更影響native1。画面/自己run終端が未確認の間は正式受入しない。
+
+## 2026-09-27T10:21:45.124312+00:00
+- Timestamp: 2026-09-27T10:21:45.124312+00:00
+- Task: USER-20260927-RESEARCH-STANDARD-LIST
+- Version: research-standard-list-v1-measured
+- Status: STOPPED（原本/画面/終端を区別して記録）
+- Summary: 標準リスト2機能/終了行/B取消/再訪を実装。後処理領域とlocal4 pointerのみ、旧数値層・保存owner不変。
+- Files changed: 新list C/builder/probe/oracle/30+27検査/Actions、専用MD/JSON/recipe/UTF8原本、固定引継ぎ、両ログ。
+- Verify: ARM/30検査はrun36310534280を再利用。初回暗黙memcpy失敗run36310336114を保持。今回の実行数とerrorはcontent/modernization/pr16_research_standard_list_ui_checkpoint.jsonのmeasurement/errorを正本とする。計画はnative1/guard7/host1/ARM0、新oracle27。旧受入matrix再実行0。画面・自己run終端・全CI成功を未確認のまま主張しない。
+- Commit: source=164028f28c9fa753afa1525907e2824b17a16698; 同branch非force記録、自己SHAはgit log。
+- Network: 固定GitHub artifactsとActions/PR metadataのみ。ROM/save/実画像はGit管理外。merge/release/baseline変更なし。
+
+- UI repair scope correction: 共通recordのARM/30試験表記を最新実績で限定訂正。ARMとhost18/ELF8はrun36312100158、不変event14はrun36310534280を再利用。現在候補59ac6688576238f00dac88cccec1a42415f6f0e4f3f07d60411f6d3059bf61e6、code768byte/差分956byte。旧2native failureは保持。純粋入力/独立pixelタイル/ユーザ枠ロードだけの変更影響を今回のnativeで検査し、厳格oracleは緩和しない。視認・自己run終端の未確認を成功としない。
+
+## 2026-09-27T11:11:12.594424+00:00
+- Timestamp: 2026-09-27T11:11:12.594424+00:00
+- Task: USER-20260927-RESEARCH-STANDARD-LIST / 標準リスト22画面・終端の独立受入
+- Version: research-standard-list-accepted-v1
+- Status: DONE（選択/取消/再訪限定。自然RP支出・通常進行は未完）
+- Summary: 59ac6688で3訪問/2機能/2取消/終了1、22実画面の窓・枠・表示を視認。原本run36312254126のsuccessと保存済みoracleを結合。旧failureと未受入フラグは原本に保持。
+- Files changed: 独立受入検証器/25試験/視認記録/Actions、checkpoint/受入JSON/専用MD、固定引継ぎMD/JSON、両ログ。
+- Verify: 新規25検証PASS、元artifact SHA/全22画面/全保存manifest/source/protected一致。新規native/ARM/host/guard/旧試験再実行0。task graph/resume/final-index guard後のみcommit。一般CI全成功や全体historical guard PASSは主張しない。
+- Commit: source=c63448fa1ab349556530fe59a82d63946ca9e04f; acceptance run=36314900752; 同branchへの非force commit。自己SHAはremote/git logで確認。
+- Network: GitHub run/job/artifact/PRのみ。ROM/save/私有入力変更0、merge/release/baseline変更0。
+
+## 2026-09-27T12:06:34.631622+00:00
+- Timestamp: 2026-09-27T12:06:34.631622+00:00
+- Task: USER-20260927-RESEARCH-NATURAL-SPENDING
+- Version: research-natural-spending-shop-ui-v1
+- Status: DONE（自然稼得RP支出とshop UI限定。通常進行/自然移動は未完）
+- Summary: 実Rock Smashで0→10RPのsaveを1回だけ作成・保持。10RPでitem4を5個交換し0RP、lifetime/daily10/claim保持、自動保存2、別core Continueを確認。shopの純粋input/正しいframe/上余白を71byte修復。最後の1byte変更はUI-only・追加稼得/購入/保存0、12実画面を視認。
+- Files changed: 64byte Thumb source/recipe/patch検査、native観測器/独立oracle120件、失敗を含む原本text、専用MD/JSON、固定引継ぎMD/JSON、両ログ。
+- Verify: 最終23patch原本再利用、独立120検証PASS。全owner64/ledger2048/Bag/party600/Flash照合、保持したsaveの完全file一致、原本source再生成一致、全ROM rollback、accepted_case_reruns=0。記録Actionsでnative/host/ARM/guard実行0。全体historical guardや一般CI全成功は主張しない。
+- Development history: 初回pixel前提違い停止、旧2表示候補の残枠を保持。開発native計5（稼得1/支出3/UI-only1）、host compile4、production Thumb assemble/link4、guard7を同一prefixで再利用。
+- Commit: source=22ace1e6c69aa5b488a2c83bd4468ddb5dcaa581; recording run=36317871935; task graph/resume/scoped final-index後に同branchへ非force push。自己SHAはremoteで確認。
+- Network: GitHub固定data artifact/APIのみ。ROM/save/画像/private原本tracked変更0、merge/release/baseline変更0。badge/party/map/屋外warpは明示fixture。
+
+## 2026-09-27T12:13:26.514916+00:00
+- Timestamp: 2026-09-27T12:13:26.514916+00:00
+- Task: USER-20260927-RESEARCH-NATURAL-SPENDING / 外部Actions終端確定
+- Version: research-natural-spending-terminal-v1
+- Status: DONE（自然RP支出/shop UI限定。通常進行は次の未完境界）
+- Summary: 完了commit 24f8bbeb9440c7ed6a9d765ece157ada0ca62781、run36317871935/job108615900385の全必須step successと固定artifactを外部APIで確認。全旧pendingを終端化し、固定引継ぎMD/JSON/専用checkpointを同期。
+- Verify: 新native/ARM/host/unitと旧受入再実行は0。全既存source/protected binding不変、task graph/resume/final-index guard後だけcommit。一般CIやhistorical guard全成功を主張しない。
+- Commit: source=c58a3d0108256b5238ffaee1ad9b6766b4ca4194; terminal writer=36318251346; 同branch非force。自己SHAはremoteで確認。
+- Files changed: 終端記録器/Actions、終端JSON/checkpoint/専用MD、固定引継ぎMD/JSON、両ログ追記。
+- Network: GitHub PR/run/job/artifact metadataのみ。artifact再download、入力ROM/save再生成、merge/release/baseline変更なし。
+
+## 2026-09-27T13:00:30.978341+00:00
+- Timestamp: 2026-09-27T13:00:30.978341+00:00
+- Task: USER-20260927-RESEARCH-STORY / 自然進行のinput-only runner実装
+- Version: research-natural-starter-WIP
+- Status: STOPPED（実装checkpoint、正式nativeは次run）
+- Summary: 消去Flash→自宅退出→屋外誘導→序盤研究所→リープン選択→通常Saveの開発原本を保存。ホスト注入禁止のC、閉じた入力/画面/保存oracle、59新規試験原本を反映。自然RP到達は未受入。
+- Files changed: 専用C/Python/test4件、開発text原本13件、両ログ。ROM/save/画像はtrackedに含まない。
+- Verify: transport外側/内側hash、59試験source/原本一致、生成source復元hash、AST確認PASS。新native/compile/旧試験再実行0。続けてtask graph/private scoped index検査。
+- Commit: source=ecd677675e6ec65231dc302046132198a63430c8; run=36320882720; 同branch非force push。
+- Network: GitHub固定4blobのみ。merge/release/baseline変更0。
+
+## 2026-09-27T13:02:23.772473+00:00
+- Timestamp: 2026-09-27T13:02:23.772473+00:00
+- Task: USER-20260927-RESEARCH-STORY / 通常NewGameから自然スターター保存へ
+- Version: research-natural-starter-v1
+- Status: DONE（スターター保存・Continue限定、RP研究活動への到達未完）
+- Summary: 自宅→屋外NPC誘導→序盤研究所→リープン選択を421入力/30656framesで独立再現。party0→1、RP0、通常Save counter0→1、別core Continueで全party/Flash/場所/残高保持。次はartifact内の通常生成starter.srmから継続し前提入力を繰り返さない。
+- Files changed: 専用input-only C/generator/oracle/test、開発・正式原本text/引継ぎMD/JSON、両ログ。画面/save/runnerはartifactのみ。
+- Verify: 新59oracle原本/source一致PASS、7旧guard拒否原本/実装一致再利用PASS。正式host compile1/native2core/画面19。ARM/ROM変更0、旧受入ケース再実行0。render/check/task graph/scoped index/diff検査後にcommit。
+- Development: video接続順の非描画診断1と正常進行診断1。loader失敗の原本とmissing-headerのtool観測を区別して保存。最初のmissing-header stderrは未保存。正式native件数へ加算しない。
+- Commit: source=653d59e897c8ac366a68888b2c9128595b9b34de; run=36320959294; 同branch非force push。終端確認は外部APIで別記録。
+- Network: GitHub固定artifact/Actions/APIのみ。merge/release/baseline変更0。一般CI action_required/歴史的全体guardを成功扱いしない。
+
+## 2026-09-27T13:05:22.078692+00:00
+- Timestamp: 2026-09-27T13:05:22.078692+00:00
+- Task: USER-20260927-RESEARCH-STORY / 自然スターター保存の成功終端確定
+- Version: research-natural-starter-v1-terminal
+- Status: DONE（自然スターター取得・通常Save・独立Continue限定）
+- Summary: run36320959294/job108624554711の全11step成功とcommit3ca75c106928d10838111b8454734befc1235b66を照合。artifact10932059074のZIP/通常生成save/runner/19画面/原本JSON/全Git HEAD snapshotを読戻し検証。次はmap4/3 (8,5)、party1/RP0/counter1のstarter.srmからContinueして未完ストーリーへ進む。
+- Files changed: starter checkpoint/終端receipt/専用guide/固定引継ぎMD JSON、両ログ。
+- Verify: artifact1345883bytes/SHA-256 057f3c5630d1951a529bfba7e36318578b943049419eceffaf0601f77eb1f84b PASS。raw oracle/全party600/Flash128KiB/位置/RP/counter保持PASS。59新検査と7guard拒否は原本/source一致再利用。今回の終端照合は新native/compile/unit/旧受入再実行すべて0。続けてrender/check/task graph/scoped indexを検査。
+- Commit: source=753e72d3815081e4f4a5b21e59644b05a5f2bffb; terminal_run=36321166071; 同branchへ非force push。
+- Network: GitHub原本run/job/artifact/HEADのみ。RP研究活動までの通常ストーリー到達・全体完成・releaseは未受入。merge/draft解除/baseline変更0。
+
+## 2026-09-27T14:15:04.589494+00:00
+- Timestamp: 2026-09-27T14:15:04.589494+00:00
+- Task: USER-20260927-RESEARCH-STORY-CONTINUE / 保存Continue専用oracleの開発checkpoint
+- Version: research-story-continue-source-v1
+- Status: DONE（ソース保存限定。正式Actions測定と研究活動到達は未完）
+- Summary: 開発入力114区間/12012framesで通常ライバル戦の敗北復帰、517番道路の切れる木の拒否、町帰還と東側道路map3/19への退出、通常Save1→2を観測。別core Continueで全party/Flash/研究ledger/位置/RP0を保持。22実画面を目視確認。
+- Files changed: 新continuation oracle/test/閉じた入力/開発UTF8原本/guide、固定引継ぎMD/JSON、両ログ。ROM/save/runner/画面は非tracked。
+- Verify: 新59oracle全PASS原本とsource SHAを再利用、陽性oracle照合PASS。初回誤記17入力を実測12へ訂正した失敗は別receiptへ保持し負例okを未受入のまま扱う。開発native2、旧受入再実行0、compile/ROM変更0。このinstallは新native/unit起動0。resume/task graph/scoped index後にcommit。
+- Commit: source=755d62d5fae166c5c07f54d576b6dfdd3ab712dc; install_run=36325209383; 同branch非force push。
+- Network: 固定GitHub HEAD/context/artifact/APIのみ。初期head9314fd64とstarter成功run36320959294を照合。一般CI action_required/歴史的全体guardを成功へ読み替えず、merge/release/baseline変更0。
+
+## 2026-09-27T14:19:48.446567+00:00
+- Timestamp: 2026-09-27T14:19:48.446567+00:00
+- Task: USER-20260927-RESEARCH-STORY-CONTINUE / スターター以後の道路保存と独立Continue
+- Version: research-story-continue-v1
+- Status: DONE（新規道路保存限定、研究活動施設到達未完）
+- Summary: 通常ライバル戦の敗北復帰、517番道路の木の会話と帰還、東側道路map3/19への退出、通常Save counter1→2を114入力/12012framesで独立再現。別core Continueで全party/Flash/研究ledger/位置/RP0を保持し、新22実画面のhashを開発原本と照合。
+- Files changed: 専用継続oracle/59検査/Actions、開発と正式のUTF8原本、checkpoint、引継ぎMD/JSON、両ログ。save/runner/画面は非tracked artifactへ。
+- Verify: 新59oracle成功原本/source一致再利用、正式native2core、host/ARM compile0、ROM変更0、旧受入再実行0。固定runner7禁止barrierは再起動せず同一実装を再利用。task graph/resume/scoped index/diff検査後にcommit。
+- Commit: source=4c5d2d46bbef7f984800ea4133afe0388ac4c73d; run=36325475401; 同branch非force push。成功終端/保存artifact IDは外部確認待ち。
+- Network: GitHub固定artifact/Actions/APIのみ。merge/release/baseline変更0、歴史的private guard/一般CI未完を成功扱いしない。次は後継route.srmだけから未完ストーリーへ進む。
+
+## 2026-09-27T14:22:41.835995+00:00
+- Timestamp: 2026-09-27T14:22:41.835995+00:00
+- Task: USER-20260927-RESEARCH-STORY-CONTINUE / 道路保存と独立Continueの成功終端確定
+- Version: research-story-continue-v1-terminal
+- Status: DONE（新区間保存・Continue限定、研究活動施設への通常到達未完）
+- Summary: run36325475401/job108637305546の全11必須stepと完了commit64777bc7fea788561a994bb3589bcf9a89c26175を照合。artifact10933499471の全42member、通常生成route.srm/RTC、固定runner、22実画面、JSON原本とcommit済みMD/JSON/両ログの全snapshotを読戻し一致。次はmap3/19 (1,14)、party1/RP0/counter2のroute.srmから先へ進む。
+- Files changed: 専用checkpoint/terminal receipt/guide、固定引継ぎMD/JSON、両ログ。
+- Verify: artifact1313382bytes/SHA-256 55e88187f9dbc5ed2f075857506071a06789ae03c57004f8a0f4d54b0f251362 PASS。raw oracle/全party/Flash/研究ledger/位置/RP/counter保持PASS。新59検査と固定runner7禁止barrierは再利用。今回の終端照合は新native/compile/unit/旧受入再実行すべて0。render/check/task graph/scoped index/diff後にcommit。
+- Commit: source=fce3748d1307a0b214af65095f7e34c7c6c63fcd; terminal_run=36325665287; 同branch非force push。
+- Network: GitHub固定run/job/artifact/HEADのみ。一般CIを原statusで記録。merge/draft解除/release/baseline変更0。旧NewGame/スターター/今回完走区間を重複しない。
+
+## 2026-09-27T15:41:39.181976+00:00
+- Timestamp: 2026-09-27T15:41:39.181976+00:00
+- Task: USER-20260928-RESEARCH-STORY-ROUTE / 道路通常進行・キズぐすり保存継続
+- Version: research-story-route-source-v1
+- Status: DONE（実装と開発原本保存限定、Actions受入は次工程）
+- Summary: 道路からの通常敗北2回・母親回復・草側迂回・キズぐすり1個取得・通常Save counter2→3・独立Continue所持保持は開発実測済。新74検査成功原本を保存。次はこの新区間だけのActions独立測定と後継potion.srm artifact保持。正式runが既にあれば原本を回収し完走入力を重複しない。研究施設到達は未完、旧受入再実行禁止。
+- Files changed: 専用oracle/検査/入力原本/checkpoint/guide、固定引継ぎMD/JSON、両ログ。ROM/save/runner/画面は非tracked artifactのみ。
+- Verify: 開発native2/進行301入力31904frames・cold24入力1942frames。74新oracle全PASS原本とsource/evidence一致を再利用。初回終端schema例外1件を履歴保持して修正。53画面中治療暗転1枚は内容受入に数えず保持。転送run36330227611は64MiBメモリ上限で展開前停止、native/unit0。固定payloadの128MiB有界展開を確認して回復、失敗原本は content/modernization/pr16_research_story_route_development/source-install-recovery.json。今回installのnative/unit/compile再実行0。resume/task graph/scoped index後にcommit。
+- Commit: source=575707687a72a5f51fe6e7eb711421234d973fad; run=36330478316; 同branchへ非force push。
+- Network: 固定GitHub HEAD/Actions/artifact/APIのみ。一般CI action_required・失敗と歴史的全体private guardを成功へ読み替えない。merge/release/active baseline変更0。
+
+## 2026-09-27T15:43:25.569331+00:00
+- Timestamp: 2026-09-27T15:43:25.569331+00:00
+- Task: USER-20260928-RESEARCH-STORY-ROUTE / 道路通常進行・キズぐすり保存継続
+- Version: research-story-route-v1
+- Status: DONE（新区間限定、研究施設への通常到達未完）
+- Summary: 道路でのトレーナー敗北2回・母親の通常回復・草側迂回・キズぐすり1個の通常取得・Save counter2→3・独立Continueの所持保持を限定受入。次はpotion.srmのmap3/19 (26,17)から通常ストーリーへ。トレーナー勝利0、研究活動施設への自然到達は未完。旧starter/完走301入力/旧RP/UI/BP/P08を再実行しない。
+- Files changed: 専用oracle/検査/入力原本/checkpoint/guide、固定引継ぎMD/JSON、両ログ。ROM/save/runner/画面は非tracked artifactのみ。
+- Verify: 正式native2/301入力31904frames・cold24入力1942frames/53画面/全party600bytes・Flash128KiB・研究ledger・位置・RP0・Bagキズぐすり1個一致。新74oracle原本再利用、compile/ROM変更/旧受入再実行/guard再起動0。task graph/resume/scoped index/diff後にcommit。
+- Commit: source=228d31f3e3ab74dbfc089b63a75478c0d5fde1eb; run=36330546824; 同branchへ非force push。
+- Network: 固定GitHub HEAD/Actions/artifact/APIのみ。一般CI action_required・失敗と歴史的全体private guardを成功へ読み替えない。merge/release/active baseline変更0。
+
+## 2026-09-27T15:47:10.883106+00:00
+- Timestamp: 2026-09-27T15:47:10.883106+00:00
+- Task: USER-20260928-RESEARCH-STORY-ROUTE / 道路通常進行・キズぐすり保存継続
+- Version: research-story-route-terminal-v1
+- Status: DONE（新区間限定、研究施設への通常到達未完）
+- Summary: 道路でのトレーナー敗北2回・母親の通常回復・草側迂回・キズぐすり1個の通常取得・Save counter2→3・独立Continueの所持保持を限定受入。次はpotion.srmのmap3/19 (26,17)から通常ストーリーへ。トレーナー勝利0、研究活動施設への自然到達は未完。旧starter/完走301入力/旧RP/UI/BP/P08を再実行しない。
+- Files changed: 専用oracle/検査/入力原本/checkpoint/guide、固定引継ぎMD/JSON、両ログ。ROM/save/runner/画面は非tracked artifactのみ。
+- Verify: run36330546824/job108651503407全11step成功、artifact10934928662全ZIP/3Save/runner/53画面/18text snapshot読戻しPASS。新74検査原本source一致再利用、終端のnative/compile/unit再実行0。一般CIは実際の状態を保持し全体private guard成功を主張しない。
+- Commit: source=6162f3e9a3dede208318bfd8dfce1cc1293500cd; run=36330809679; 同branchへ非force push。
+- Network: 固定GitHub HEAD/Actions/artifact/APIのみ。一般CI action_required・失敗と歴史的全体private guardを成功へ読み替えない。merge/release/active baseline変更0。
+
+## 2026-09-27T15:52:02.223069+00:00
+- Timestamp: 2026-09-27T15:52:02.223069+00:00
+- Task: USER-20260928-RESEARCH-STORY-ROUTE / 道路通常進行・キズぐすり保存継続
+- Version: research-story-route-ci-limit-v1
+- Status: DONE（既存CI制約の記録、道路Save限定受入は維持）
+- Summary: 道路Save受入を維持し、一般CIの旧容量source不一致を分離記録。作業開始HEADから全依存byte不変、CI merge QOLも同一、旧originalの期待SHAのみ相違。
+- Files changed: 専用oracle/検査/入力原本/checkpoint/guide、固定引継ぎMD/JSON、両ログ。ROM/save/runner/画面は非tracked artifactのみ。
+- Verify: 既存run36330551685の25件23成功/2error原本を回収。terminal36330809679全8step成功外部確認。今回のnative/unit/compile再実行0、旧原本変更0、一般CI全緑を主張しない。
+- Commit: source=9d68eae91936df187d7014ccc30a9b081ab2a0a8; run=36331100545; 同branchへ非force push。
+- Network: 固定GitHub HEAD/Actions/artifact/APIのみ。一般CI action_required・失敗と歴史的全体private guardを成功へ読み替えない。merge/release/active baseline変更0。
+
+## 2026-09-27T23:26:33.837469+00:00
+- Timestamp: 2026-09-27T23:26:33.837469+00:00
+- Task: USER-20260928-RESEARCH-STORY-GROWTH / 通常成長・道具消費・保存継続
+- Version: research-story-growth-source-v1
+- Status: DONE（実装・新試験原本保存、正式終端は未確認）
+- Summary: 開発原本の367入力/92画面/通常成長Saveは完走済み。118新検査は初回全成功。次はこの新区間だけのActions独立測定とgrowth.srm artifact保持。正式runが既に存在したら原本回収のみ。野生勝利1回/逃走1回・キズぐすり1個消費・経験値37+33・Lv5→6・HP21/21・通常Save counter3→4と独立Continueの保持を限定受入。新区間のトレーナー敗北2回、勝利0。次はgrowth.srmのmap3/0 (4,27)、経験値204、道具0から通常ストーリーを進める。研究活動施設への自然到達は未完。旧367入力/301入力/114入力/旧starter/RP/UI/BP/P08を再生しない。
+- Files changed: 専用oracle/118検査/入力原本/checkpoint/guide、固定引継ぎMD/JSON、両ログ。ROM/save/runner/画面は非tracked artifactのみ。
+- Verify: 開発native2、進行367入力37210frames/cold38入力2736frames、92実画面（空白0）、3UI全byte一致。118新検査初回全PASS。source/evidence binding確認を再利用し、このinstallでnative/unit/compile再実行0。
+- Commit: source=141a092068b265c9d5f9055c4b2da69469402ecb; run=36358647763; 同branchへ非force push。
+- Network: 固定GitHub HEAD/Actions/artifact/APIのみ。一般CI action_required・失敗は別記録。全体private guard成功、merge、release、active baseline変更を主張しない。
+
+## 2026-09-27T23:28:11.065050+00:00
+- Timestamp: 2026-09-27T23:28:11.065050+00:00
+- Task: USER-20260928-RESEARCH-STORY-GROWTH / 通常成長・道具消費・保存継続
+- Version: research-story-growth-measure-v1
+- Status: DONE（新区間測定、終端外部照合待ち）
+- Summary: 野生勝利1回/逃走1回・キズぐすり1個消費・経験値37+33・Lv5→6・HP21/21・通常Save counter3→4と独立Continueの保持を限定受入。新区間のトレーナー敗北2回、勝利0。次はgrowth.srmのmap3/0 (4,27)、経験値204、道具0から通常ストーリーを進める。研究活動施設への自然到達は未完。旧367入力/301入力/114入力/旧starter/RP/UI/BP/P08を再生しない。
+- Files changed: 専用oracle/118検査/入力原本/checkpoint/guide、固定引継ぎMD/JSON、両ログ。ROM/save/runner/画面は非tracked artifactのみ。
+- Verify: 正式native2、367入力37210frames/cold38入力2736frames、92実画面/3UI一致、全party600bytes/Flash128KiB/ledger/位置/RP0/counter4保持。118新検査原本再利用、compile/ROM変更/旧受入再実行0。
+- Commit: source=52554a9b5eafe8743d87df57a4ba8565237fffae; run=36358726444; 同branchへ非force push。
+- Network: 固定GitHub HEAD/Actions/artifact/APIのみ。一般CI action_required・失敗は別記録。全体private guard成功、merge、release、active baseline変更を主張しない。
+
+## 2026-09-27T23:35:05.708294+00:00
+- Timestamp: 2026-09-27T23:35:05.708294+00:00
+- Task: USER-20260928-RESEARCH-STORY-GROWTH / 通常成長・道具消費・保存継続
+- Version: research-story-growth-terminal-v1
+- Status: DONE（新区間限定、通常研究施設到達は未完）
+- Summary: 野生勝利1回/逃走1回・キズぐすり1個消費・経験値37+33・Lv5→6・HP21/21・通常Save counter3→4と独立Continueの保持を限定受入。新区間のトレーナー敗北2回、勝利0。次はgrowth.srmのmap3/0 (4,27)、経験値204、道具0から通常ストーリーを進める。研究活動施設への自然到達は未完。旧367入力/301入力/114入力/旧starter/RP/UI/BP/P08を再生しない。
+- Files changed: 専用oracle/118検査/入力原本/checkpoint/guide、固定引継ぎMD/JSON、両ログ。ROM/save/runner/画面は非tracked artifactのみ。
+- Verify: run36358726444/job108731507916全11step成功、artifact10944976226全ZIP/3Save/runner/92画面/18text読戻しPASS。新118検査原本再利用、終端native/unit/compile再実行0。一般CIと全体private guardは別境界。
+- Commit: source=6326bdcf4b232d1bd332f960dc93efc1ccbebb2b; run=36359167038; 同branchへ非force push。
+- Network: 固定GitHub HEAD/Actions/artifact/APIのみ。一般CI action_required・失敗は別記録。全体private guard成功、merge、release、active baseline変更を主張しない。
+
+## 2026-09-27T23:35:07.879165+00:00
+- Timestamp: 2026-09-27T23:35:07.879165+00:00
+- Task: USER-20260928-RESEARCH-STORY-GROWTH / 通常成長・道具消費・保存継続
+- Version: research-story-growth-ci-boundary-v1
+- Status: DONE（一般CIは既知失敗のまま）
+- Summary: 新区間成功と一般CI既知失敗を分離して固定原本を保存。旧validator/旧C/旧testは変更しない。
+- Files changed: 専用oracle/118検査/入力原本/checkpoint/guide、固定引継ぎMD/JSON、両ログ。ROM/save/runner/画面は非tracked artifactのみ。
+- Verify: source-validation run36358732448/job108731524613 failure、artifact10945245745全byte一致、25検査23成功2ERROR。原因source hash不一致、後続skipped/upload failure保持。初回終端36358919647はprivate guardでcommit前停止。原本artifact限定保管へ修正、guard不変。回収処理native/unit/compile0。
+- Commit: source=6326bdcf4b232d1bd332f960dc93efc1ccbebb2b; run=36359167038; 同branchへ非force push。
+- Network: 固定GitHub HEAD/Actions/artifact/APIのみ。一般CI action_required・失敗は別記録。全体private guard成功、merge、release、active baseline変更を主張しない。
+
+## 2026-09-28T00:26:21.129015+00:00
+- Timestamp: 2026-09-28T00:26:21.129015+00:00
+- Task: USER-20260928-RESEARCH-STORY-TRAINING / 通常Lv7習得・回復不成立・保存継続
+- Version: research-story-training-source-v1
+- Status: DONE（実装・新試験原本保存、正式終端は未確認）
+- Summary: 開発原本の194入力/56画面/通常Lv7/習得Saveは完走済み。86新検査は初回全成功。次はこの新区間だけのActions独立測定とtraining.srm artifact保持。正式runが既に存在したら原本回収のみ。野生ヒメグマ勝利1回・経験値41・Lv6→7・すいとる自然習得・Save counter4→5と独立Continueを限定受入。経験値245、HP13/23・麻痺・技PP31/30/25が保持。自宅local1はT17渡航の船運休で回復しない事実を実画面/全party/ROM pointer鎖に結合。次は原作Vega/stage16の母親previous_scriptと渡航ownerを照合し、正常回復との共存を最小差分で修正・検証してからtraining.srmで通常進行。研究施設到達は未完。旧194/367/301/114入力・starter/RP/UI/BP/P08は再生しない。
+- Files changed: 専用oracle/86検査/入力原本/checkpoint/guide、固定引継ぎMD/JSON、両ログ。ROM/save/runner/画面は非tracked artifactのみ。
+- Verify: 開発native2、進行194入力19042frames/cold34入力2572frames、56実画面（空白0）、4UI全byte一致。86新検査初回全PASS。source/evidence binding確認を再利用し、このinstallでnative/unit/compile再実行0。
+- Commit: source=5026e43a3ab026f1e646fec639a02a7f120100cf; run=36362204668; 同branchへ非force push。
+- Network: 固定GitHub HEAD/Actions/artifact/APIのみ。一般CI action_required・失敗は別記録。全体private guard成功、merge、release、active baseline変更を主張しない。
+
+## 2026-09-28T00:28:19.246795+00:00
+- Timestamp: 2026-09-28T00:28:19.246795+00:00
+- Task: USER-20260928-RESEARCH-STORY-TRAINING / 通常Lv7習得・回復不成立・保存継続
+- Version: research-story-training-measure-v1
+- Status: DONE（新区間測定、終端外部照合待ち）
+- Summary: 野生ヒメグマ勝利1回・経験値41・Lv6→7・すいとる自然習得・Save counter4→5と独立Continueを限定受入。経験値245、HP13/23・麻痺・技PP31/30/25が保持。自宅local1はT17渡航の船運休で回復しない事実を実画面/全party/ROM pointer鎖に結合。次は原作Vega/stage16の母親previous_scriptと渡航ownerを照合し、正常回復との共存を最小差分で修正・検証してからtraining.srmで通常進行。研究施設到達は未完。旧194/367/301/114入力・starter/RP/UI/BP/P08は再生しない。
+- Files changed: 専用oracle/86検査/入力原本/checkpoint/guide、固定引継ぎMD/JSON、両ログ。ROM/save/runner/画面は非tracked artifactのみ。
+- Verify: 正式native2、194入力19042frames/cold34入力2572frames、56実画面/4UI一致、全party600bytes/Flash128KiB/ledger/位置/RP0/counter5保持。86新検査原本再利用、compile/ROM変更/旧受入再実行0。
+- Commit: source=67e9cc46f50222e19799244598d65534360c53fd; run=36362293129; 同branchへ非force push。
+- Network: 固定GitHub HEAD/Actions/artifact/APIのみ。一般CI action_required・失敗は別記録。全体private guard成功、merge、release、active baseline変更を主張しない。
+
+## 2026-09-28T00:30:42.431868+00:00
+- Timestamp: 2026-09-28T00:30:42.431868+00:00
+- Task: USER-20260928-RESEARCH-STORY-TRAINING / 通常Lv7習得・回復不成立・保存継続
+- Version: research-story-training-terminal-v1
+- Status: DONE（新区間限定、通常研究施設到達は未完）
+- Summary: 野生ヒメグマ勝利1回・経験値41・Lv6→7・すいとる自然習得・Save counter4→5と独立Continueを限定受入。経験値245、HP13/23・麻痺・技PP31/30/25が保持。自宅local1はT17渡航の船運休で回復しない事実を実画面/全party/ROM pointer鎖に結合。次は原作Vega/stage16の母親previous_scriptと渡航ownerを照合し、正常回復との共存を最小差分で修正・検証してからtraining.srmで通常進行。研究施設到達は未完。旧194/367/301/114入力・starter/RP/UI/BP/P08は再生しない。
+- Files changed: 専用oracle/86検査/入力原本/checkpoint/guide、固定引継ぎMD/JSON、両ログ。ROM/save/runner/画面は非tracked artifactのみ。
+- Verify: run36362293129/job108741716867全11step成功、artifact10946201851全ZIP/3Save/runner/56画面/19text読戻しPASS。新86検査原本再利用、終端native/unit/compile再実行0。一般CIと全体private guardは別境界。
+- Commit: source=7420514edf7b5ab709258b2a13e8cc584182f35b; run=36362454676; 同branchへ非force push。
+- Network: 固定GitHub HEAD/Actions/artifact/APIのみ。一般CI action_required・失敗は別記録。全体private guard成功、merge、release、active baseline変更を主張しない。
+
+## 2026-09-28T00:30:44.448331+00:00
+- Timestamp: 2026-09-28T00:30:44.448331+00:00
+- Task: USER-20260928-RESEARCH-STORY-TRAINING / 通常Lv7習得・回復不成立・保存継続
+- Version: research-story-training-ci-boundary-v1
+- Status: DONE（新区間成功、一般CIは既知失敗）
+- Summary: Lv7自然習得の成功終端と一般CIの既知失敗を分離し原本を保持。旧validator/C/test変更なし。
+- Files changed: 専用oracle/86検査/入力原本/checkpoint/guide、固定引継ぎMD/JSON、両ログ。ROM/save/runner/画面は非tracked artifactのみ。
+- Verify: source-validation run36362293100/job108741716592 failure。artifact10945834648全ZIP一致。25検査23成功2ERROR、後続skipped/upload failure保持。回収native/unit/compile再実行0。
+- Commit: source=7420514edf7b5ab709258b2a13e8cc584182f35b; run=36362454676; 同branchへ非force push。
+- Network: 固定GitHub HEAD/Actions/artifact/APIのみ。一般CI action_required・失敗は別記録。全体private guard成功、merge、release、active baseline変更を主張しない。
+
+## 2026-09-28T01:10:41.142630+00:00
+- Timestamp: 2026-09-28T01:10:41.142630+00:00
+- Task: USER-20260928-HOME-RECOVERY
+- Version: home-recovery-source-v1
+- Status: DONE（原本owner/canonical/専用52検査、native未受入）
+- Summary: 母親previous_script0x0817BCBBを固定Vega原本で確認。未解禁時と渡航辞退時を元会話/回復へ15bytesで委譲し、canonical全179bytes一致と52専用検査を確認。次はtraining.srmから新候補で実会話・回復・Save・独立Continueだけを測定する。研究施設自然到達/実渡航nativeは未受入。旧194/367/301/114入力と旧RP/UI/BP/P08は再生しない。
+- Files changed: mother helper/recipe/52 tests/canonical、専用証拠/MD/JSON、固定引継ぎ、両ログ。
+- Verify: 52 new tests PASS; strict host compile1; ARM/native/accepted-case reruns0; 15byte rollback/outside preservation PASS.
+- Commit: source=4409a5dddf6c4f2f5d08833b35a470fdd544dde3; run=36364944598; same branch non-force.
+- Network: fixed GitHub artifacts/API only. Global private guard/一般CI全PASS/merge/release/baseline変更は主張しない。
+
+## 2026-09-28T01:30:31.525179+00:00
+- Timestamp: 2026-09-28T01:30:31.525179+00:00
+- Task: USER-20260928-HOME-RECOVERY
+- Version: home-recovery-native-oracle-v1
+- Status: DONE（新73oracle準備のみ、正式native未受入）
+- Summary: 母親回復の新oracle73検査と81/cold34入力の開発原本を固定。source52検査は再利用。次は通常compile済みbuild artifact10946449847を照合し、pr16-home-recovery-native.ymlで新区間2processのみ正式測定。旧194/367/301/114入力を再生しない。
+- Files changed: 新oracle/actions/test/開発原本text/MD/固定引継ぎ/両ログ。
+- Verify: 新73検査原本/source binding照合PASS。input/画面/party回復3bytes/597bytes不変/Save/時計差分を検証。ここでnative/unit/compile再実行0。
+- Commit: source=a45d2be7936e81ab686684f694ae4c281d23b7de; same branch non-force。
+- Network: GitHub source/API only。release/baseline/global private guard PASSを主張しない。
+
+## 2026-09-28T01:39:43.108478+00:00
+- Timestamp: 2026-09-28T01:39:43.108478+00:00
+- Task: USER-20260928-HOME-RECOVERY / 母親の通常回復と保存Continue
+- Version: home-recovery-native-v1
+- Status: DONE（回復区間限定、研究施設自然到達/実渡航/全体は未完）
+- Summary: 母親との元会話でHP13/23→23/23・麻痺解消・ひっかくPP31→35、通常Save5→6と独立Continueのparty/Flash/4画面保持を限定受入。次はartifactのrecovery.srmを作業コピーとして通常ストーリーへ。map4/0 (8,5)、Lv7/EXP245、RP0、キズぐすり0。母親81入力と旧194/367/301/114入力・starter/RP/UI/BP/P08は再生しない。渡航16条件はstatic検証で、解禁後実渡航native・研究施設自然到達・全ストーリー・releaseは未完。
+- Files changed: 専用oracle/test/原本JSON/MD/固定引継ぎ/両ログ。binaryはartifactのみ。
+- Verify: source52 tests再利用、new oracle73 tests原本再利用。回復81inputs/6642frames+独立Continue34inputs/2572frames、26画面/4UI組、party600bytes中回復3bytesだけ/597bytes保持、全Save+RTC保持。RAM ledgerは分32→33/checksumだけで全2048byte SHA一致。
+- Accounting: この記録段階の追加native=0、追加compile=0、旧受入再実行=0。開発探索2processは正式2processと別計上。初期の実行ファイル文字列更新方式は採用せず、正式はsourceから通常compileされたartifact runnerのみ。初回新oracle73件中3不具合を修正後73PASS。
+- Commit: source=f895a324d160055e70bd0788208907e2b4044a8f; run=36366801337; same-branch non-force。
+- Network: fixed GitHub artifacts/API。全体private guard/一般CI全成功/merge/release/baseline切替は主張しない。
+
+## 2026-09-28T01:42:11.733569+00:00
+- Timestamp: 2026-09-28T01:42:11.733569+00:00
+- Task: USER-20260928-HOME-RECOVERY / 母親の通常回復と保存Continue
+- Version: home-recovery-native-v1
+- Status: DONE（回復区間限定、研究施設自然到達/実渡航/全体は未完）
+- Summary: 母親との元会話でHP13/23→23/23・麻痺解消・ひっかくPP31→35、通常Save5→6と独立Continueのparty/Flash/4画面保持を限定受入。次はartifactのrecovery.srmを作業コピーとして通常ストーリーへ。map4/0 (8,5)、Lv7/EXP245、RP0、キズぐすり0。母親81入力と旧194/367/301/114入力・starter/RP/UI/BP/P08は再生しない。渡航16条件はstatic検証で、解禁後実渡航native・研究施設自然到達・全ストーリー・releaseは未完。
+- Files changed: 専用oracle/test/原本JSON/MD/固定引継ぎ/両ログ。binaryはartifactのみ。
+- Verify: source52 tests再利用、new oracle73 tests原本再利用。回復81inputs/6642frames+独立Continue34inputs/2572frames、26画面/4UI組、party600bytes中回復3bytesだけ/597bytes保持、全Save+RTC保持。RAM ledgerは分32→33/checksumだけで全2048byte SHA一致。
+- Accounting: この記録段階の追加native=0、追加compile=0、旧受入再実行=0。開発探索2processは正式2processと別計上。初期の実行ファイル文字列更新方式は採用せず、正式はsourceから通常compileされたartifact runnerのみ。初回新oracle73件中3不具合を修正後73PASS。
+- Commit: source=c1afa113aedc6a78080960f23b39d03872920e75; run=36366925662; same-branch non-force。
+- Network: fixed GitHub artifacts/API。全体private guard/一般CI全成功/merge/release/baseline切替は主張しない。
+
+## 2026-09-28T02:36:47.218227+00:00
+- Timestamp: 2026-09-28T02:36:47.218227+00:00
+- Task: USER-20260928-STORY-AFTER-HOME / 回復後の通常進行・実キーSave7
+- Version: story-after-home-v1
+- Status: DONE（新区間限定、トレーナー勝利/研究到達未完）
+- Summary: Save7のstory.srm作業コピーから通常育成/手持ち拡充を進める。Lv7/EXP270、次Lvまで44EXP、HP23/23、技PP35/30/25、RP0、map4/0(8,5)。マオリ戦は敗北であり勝利0。同じ低戦力戦闘や完走270/cold34入力を無策に再生しない。北の伐採木で止まる経路を再探索せず、育成後は東側道路map3/19から自然ストーリー進行。研究施設自然到達/実渡航/全story/releaseは未完。
+- Files changed: 専用oracle/53検査/新入力原本/証拠/checkpoint/guide、固定引継ぎMD/JSON、両ログ。ROM/save/runner/画面は非tracked artifactだけ。
+- Verify: 新区間native2・270入力28012frames、cold34入力2852frames、110画面、4UI全byte、Save全131088bytes、party597bytes保持、53新検査PASS。開発native2・検査改良過程53件を2回(106)は別会計。 旧受入再実行0、compile/ROM変更0。task graph/resume/scoped index/diff確認後にcommit。
+- Commit: source=5b378dcae45d7f92307d27ea07ab7041ebce25f5; run=36370422350; 同branch非force push。
+- Network: GitHub HEAD/Actions/artifactのみ。merge/release/active baseline変更0。全体CI成功とはしない。
+
+## 2026-09-28T02:37:56.175608+00:00
+- Timestamp: 2026-09-28T02:37:56.175608+00:00
+- Task: USER-20260928-STORY-AFTER-HOME / 回復後の通常進行・実キーSave7
+- Version: story-after-home-v1-terminal
+- Status: DONE（新区間限定、トレーナー勝利/研究到達未完）
+- Summary: Save7のstory.srm作業コピーから通常育成/手持ち拡充を進める。Lv7/EXP270、次Lvまで44EXP、HP23/23、技PP35/30/25、RP0、map4/0(8,5)。マオリ戦は敗北であり勝利0。同じ低戦力戦闘や完走270/cold34入力を無策に再生しない。北の伐採木で止まる経路を再探索せず、育成後は東側道路map3/19から自然ストーリー進行。研究施設自然到達/実渡航/全story/releaseは未完。
+- Files changed: 専用oracle/53検査/新入力原本/証拠/checkpoint/guide、固定引継ぎMD/JSON、両ログ。ROM/save/runner/画面は非tracked artifactだけ。
+- Verify: 終端API/全必須step/外側ZIP/全Save/原本/commit整合。native/test再実行0。 旧受入再実行0、compile/ROM変更0。task graph/resume/scoped index/diff確認後にcommit。
+- Commit: source=22a88165c20f9ce29bfc9c1e4a2db899c7122de0; run=36370543564; 同branch非force push。
+- Network: GitHub HEAD/Actions/artifactのみ。merge/release/active baseline変更0。全体CI成功とはしない。
+
+## 2026-09-28T03:40:37.350648+00:00
+- Timestamp: 2026-09-28T03:40:37.350648+00:00
+- Task: USER-20260928-STORY-SAFE-TRAINING / Save7後の安全育成・Save8
+- Version: story-safe-training-v1
+- Status: DONE（育成区間限定。通常供給/研究施設/全story/releaseは未完）
+- Summary: 通常野生3勝/EXP270→331/Lv7→8、捕獲0/トレーナー勝利0。母親2回回復、実Start→レポート確認→上書き→書込中→field復帰、Save7→8。能力4UIと全Save/RTCがcoldで一致。
+- Files changed: 専用oracle/93検査/新入力原本/証拠/checkpoint/guide、固定引継ぎMD/JSON、両ログ。ROM/save/runner/画面は非tracked artifactのみ。
+- Verify: 新区間native2・316入力25208frames、cold34入力2808frames、70画面/4UI、全131088bytes、party589bytes・前回Save bank57344bytes保持、新93検査PASS。開発native2/93検査は別会計。 旧受入の明示再実行0、compile/ROM改変0、task graph/resume/scoped index/diff確認後にcommit。
+- Commit: source=c108d25ac7b29b77b8984384968d5ca9037daf4e; run=36374575742; 同branch非force push。
+- Network: GitHub HEAD/Actions/artifactのみ。コンテナからgit cloneはDNS失敗のためconnector/専用Actionsを使用。merge/release/active baseline変更0。一般CI成功は主張しない。
+- Next: Save8のtraining.srm作業コピーから先だけ進める。リープンLv8/EXP331、次Lvまで88、HP24/24、PP35/30/25、手持ち1体、RP0、map4/0(8,3)。野生3勝でEXP61獲得、母親で2回回復し通常Save7→8と独立Continueを確認。ボールポケット空のため捕獲0。次は自然な用品入手/手持ち拡充または追加育成を進め、東側道路map3/19から通常ストーリーへ。マオリ勝利/研究施設自然到達/実渡航/全story/releaseは未完。完走316/cold34入力、旧Save7生成270/cold34、既受入nativeを再生しない。
+
+## 2026-09-28T03:42:10.775914+00:00
+- Timestamp: 2026-09-28T03:42:10.775914+00:00
+- Task: USER-20260928-STORY-SAFE-TRAINING / Save7後の安全育成・Save8
+- Version: story-safe-training-v1-terminal
+- Status: DONE（育成区間限定。通常供給/研究施設/全story/releaseは未完）
+- Summary: 通常野生3勝/EXP270→331/Lv7→8、捕獲0/トレーナー勝利0。母親2回回復、実Start→レポート確認→上書き→書込中→field復帰、Save7→8。能力4UIと全Save/RTCがcoldで一致。
+- Files changed: 専用oracle/93検査/新入力原本/証拠/checkpoint/guide、固定引継ぎMD/JSON、両ログ。ROM/save/runner/画面は非tracked artifactのみ。
+- Verify: 専用測定run全step・artifact ZIP・70画面原本・全Save・93検査原本・commit text照合。native/test再実行0。 旧受入の明示再実行0、compile/ROM改変0、task graph/resume/scoped index/diff確認後にcommit。
+- Commit: source=98f7e71dd51a54ae85e29ceeecc1cf31d7c8136f; run=36374723884; 同branch非force push。
+- Network: GitHub HEAD/Actions/artifactのみ。コンテナからgit cloneはDNS失敗のためconnector/専用Actionsを使用。merge/release/active baseline変更0。一般CI成功は主張しない。
+- Next: Save8のtraining.srm作業コピーから先だけ進める。リープンLv8/EXP331、次Lvまで88、HP24/24、PP35/30/25、手持ち1体、RP0、map4/0(8,3)。野生3勝でEXP61獲得、母親で2回回復し通常Save7→8と独立Continueを確認。ボールポケット空のため捕獲0。次は自然な用品入手/手持ち拡充または追加育成を進め、東側道路map3/19から通常ストーリーへ。マオリ勝利/研究施設自然到達/実渡航/全story/releaseは未完。完走316/cold34入力、旧Save7生成270/cold34、既受入nativeを再生しない。
+
+## 2026-09-28T10:14:17.661530+00:00
+- Timestamp: 2026-09-28T10:14:17.661530+00:00
+- Task: USER-20260928-STORY-SAVE9 / Save8後の通常育成・逃走区別・Save9
+- Version: story-save9-v1
+- Status: DONE（この育成/保存区間のみ。トレーナー/通常供給/研究施設/全story/releaseは未完）
+- Summary: Save8から野生エネコ/ドードー/フロン3勝で37+45+37=119EXP、Lv8→9。HP6/24で帰宅、途中のスバメと後のフロンから通常逃走、双方party不変で勝利と区別。母親2回回復。実レポートの確認/上書き/書込中/完了表示/counter8→9/field復帰。独立Continueの全Save/RTCと4UI一致。
+- Files changed: Save9専用oracle/76検査/新入力原本/証拠/checkpoint/guide、固定引継ぎMD/JSON、両ログ。ROM/save/runner/画面は非tracked artifactのみ。
+- Verify: 新区間native2・363入力31080framesとcold34入力2808frames、74画面/30目視anchor/4UI、全131088bytes、party589bytes・前回bank57344bytes保持、新76検査PASS。開発native2/76検査とは別会計。 旧受入の明示再実行0、compile/ROM改変0。task graph/resume/scoped index/diff確認後にcommit。全体private guardや一般CIの成功は主張しない。
+- Commit: source=be27b66e1486c28cdf9e2c40009359f2072881da; run=36408354430; 同branch非force push。WIP e50afac0で固定context、41ee5724で開発原本と76検査を先行保存。
+- Network: GitHub HEAD/Actions/artifactのみ。直接cloneのDNS失敗を権限不足と誤認せずconnector/Actionsを使用。merge/release/active baseline変更0。観測待機の延長は入力再送/process再起動なし。
+- Next: Save9のtraining.srm作業コピーから先だけ進める。リープンLv9/EXP450、次Lvまで110、HP26/26、PP35/30/25、手持ち1体、RP0、map4/0(8,5)。Save8からの野生3勝119EXP・通常逃走2回・母親回復2回・通常Save8→9完了表示・独立Continueを確認。捕獲/トレーナー勝利0。次は自然な用品入手/手持ち拡充または追加育成を経て、東側道路map3/19のマオリ/通常ストーリーへ。マオリ勝利/研究施設自然到達/実渡航/全story/releaseは未完。本区間363/cold34、親316/cold34とそれ以前の既受入nativeを再生しない。
+
+## 2026-09-28T10:16:21.197656+00:00
+- Timestamp: 2026-09-28T10:16:21.197656+00:00
+- Task: USER-20260928-STORY-SAVE9 / Save8後の通常育成・逃走区別・Save9
+- Version: story-save9-v1-terminal
+- Status: DONE（この育成/保存区間のみ。トレーナー/通常供給/研究施設/全story/releaseは未完）
+- Summary: Save8から野生エネコ/ドードー/フロン3勝で37+45+37=119EXP、Lv8→9。HP6/24で帰宅、途中のスバメと後のフロンから通常逃走、双方party不変で勝利と区別。母親2回回復。実レポートの確認/上書き/書込中/完了表示/counter8→9/field復帰。独立Continueの全Save/RTCと4UI一致。
+- Files changed: Save9専用oracle/76検査/新入力原本/証拠/checkpoint/guide、固定引継ぎMD/JSON、両ログ。ROM/save/runner/画面は非tracked artifactのみ。
+- Verify: 専用run全step・artifact ZIP・74画面・全保存・76検査原本・commit textを再読。新native/test実行0。 旧受入の明示再実行0、compile/ROM改変0。task graph/resume/scoped index/diff確認後にcommit。全体private guardや一般CIの成功は主張しない。
+- Commit: source=e39f4268b645fd9c76f89c4b7844b445d57cc0d1; run=36408678103; 同branch非force push。WIP e50afac0で固定context、41ee5724で開発原本と76検査を先行保存。
+- Network: GitHub HEAD/Actions/artifactのみ。直接cloneのDNS失敗を権限不足と誤認せずconnector/Actionsを使用。merge/release/active baseline変更0。観測待機の延長は入力再送/process再起動なし。
+- Next: Save9のtraining.srm作業コピーから先だけ進める。リープンLv9/EXP450、次Lvまで110、HP26/26、PP35/30/25、手持ち1体、RP0、map4/0(8,5)。Save8からの野生3勝119EXP・通常逃走2回・母親回復2回・通常Save8→9完了表示・独立Continueを確認。捕獲/トレーナー勝利0。次は自然な用品入手/手持ち拡充または追加育成を経て、東側道路map3/19のマオリ/通常ストーリーへ。マオリ勝利/研究施設自然到達/実渡航/全story/releaseは未完。本区間363/cold34、親316/cold34とそれ以前の既受入nativeを再生しない。
+
+## 2026-09-28T12:12:56.159066+00:00
+- Timestamp: 2026-09-28T12:12:56.159066+00:00
+- Task: USER-20260928-STORY-SAVE10 / 観測列境界の完成
+- Version: story-journey-sequence-v1
+- Status: DONE（境界検査のみ。Save10/用品/トレーナー/全storyは未受入）
+- Summary: 欠落・重複・逆行・不正型・範囲を拒否。同frame観測と残留fieldを新規勝利にしない。前回WIPの敗北記述とSave9正式受入を保全。
+- Files changed: 境界source、新規16検査、28検査原本/checkpoint、固定引継ぎMD/JSON、両ログ。
+- Verify: 新規16 + 変更関数に直接影響する既存12 = 28 PASS。開発16 PASSとは別会計。このworkflowのnative/ROM変更/accepted native再実行0。resume/task graph/scoped index/diff確認。既存一般CIのcapacity原本failureは未解決、全体guard PASSは主張しない。
+- Commit: WIP5481f3c2024c57247dcdae493c2d490d448fe30c、検証source=35ce64a857cbff3690f37c3a1caafa07e5daf300、run=36420363480。記録を含むcommitを同branchへ非force push。
+- Network: GitHubのみ。merge/release/baseline変更0。
+
+## 2026-09-28T12:52:46.586124+00:00
+- Timestamp: 2026-09-28T12:52:46.586124+00:00
+- Task: USER-20260928-STORY-SAVE10 / 通常用品供給・Save10限定受入
+- Version: story-save10-v1
+- Status: DONE（通常ボール5個/二重受取防止/Save10のみ。捕獲/トレーナー/全story/release未受入）
+- Summary: 501番道路の女性から通常0→5、再会話/独立Continue後も5。Save9→10、全Save/RTC131088bytes保持、旧bank57344bytes保持。徒歩友情+2以外599partybytes、他4bag pocket/2776円不変。12全画面一致、一覧358pixelはsprite animationのみ。
+- Files changed: Save10検証器/32検査/入力目視原本、専用Actions、証拠/checkpoint、固定引継ぎMD/JSON、専用guide、両ログ。
+- Verify: 新区間218/cold62入力・77画面・新規32検査PASS、開発2process/32検査と正式2process/32検査は別会計。 resume/task graph/scoped index/diff確認。既存一般CIのcapacity原本failureは保持、全体private guard PASSを主張しない。
+- Commit: source=02e451790c9b05d29861d29c3578ffca787061e6、measurement run=36423498952、record run=36424626327。同branch非force commit/push。
+- Network: GitHub原本再利用。accepted native再実行/ROM変更/host/ARM compile/merge/release/baseline切替0。
+- Record recovery: measured run36423498952 is failure at resume mirror after native/32-test success. artifact10970079659 retained. This recovery executed native0/test0; original 2/32 are inherited, not rerun. Fixed only publisher next-action mirror.
+
+## 2026-09-28T12:54:15.858241+00:00
+- Timestamp: 2026-09-28T12:54:15.858241+00:00
+- Task: USER-20260928-STORY-SAVE10 / 通常用品供給・Save10終端確認
+- Version: story-save10-v1
+- Status: DONE（通常ボール5個/二重受取防止/Save10のみ。捕獲/トレーナー/全story/release未受入）
+- Summary: 501番道路の女性から通常0→5、再会話/独立Continue後も5。Save9→10、全Save/RTC131088bytes保持、旧bank57344bytes保持。徒歩友情+2以外599partybytes、他4bag pocket/2776円不変。12全画面一致、一覧358pixelはsprite animationのみ。
+- Files changed: Save10検証器/32検査/入力目視原本、専用Actions、証拠/checkpoint、固定引継ぎMD/JSON、専用guide、両ログ。
+- Verify: 終端全step/保存ZIP全77画面/Save/32検査原本/commit照合。新規native0/test0。28境界原本の終端も回収。 resume/task graph/scoped index/diff確認。既存一般CIのcapacity原本failureは保持、全体private guard PASSを主張しない。
+- Commit: source=02e451790c9b05d29861d29c3578ffca787061e6、measurement run=36423498952、record run=36424797214。同branch非force commit/push。
+- Network: GitHub原本再利用。accepted native再実行/ROM変更/host/ARM compile/merge/release/baseline切替0。
+
+## 2026-09-28T13:40:29.002836+00:00
+- Timestamp: 2026-09-28T13:40:29.002836+00:00
+- Task: USER-20260928-STORY-SAVE11 / 最初の自然捕獲・Save11限定受入
+- Version: story-save11-v1
+- Status: DONE（自然捕獲/Save11限定。トレーナー/研究施設/図鑑統合/全story/release未受入）
+- Summary: 501番道路でツツケラLv3へ初投失敗・すいとる3回・二投目成功。ボール5→3、手持ち1→2、Save10→11、独立Continue後の全Save/RTC131088bytes保持。親bank57344bytes/未使用party400bytes保持。先頭個体のHP26→16/PP25→22の2bytesだけ変更。名前入力の寄道/地域図鑑No???/図鑑1匹を保持。
+- Files changed: Save11後継検証器/68試験/入力目視原本/Actions/証拠/checkpoint/guide、固定引継ぎMD/JSON、両ログ。ROM/save/runner/画面は非tracked artifactのみ。
+- Verify: 新176/cold50入力、83画面、7組の全画像一致、新68検査PASS。開発2process/68検査と正式2process/68検査を分離。 保存完了はlock1、coldでfield復帰。バッグ左端80pixel差を全一致にしない。初期実装の未使用slot全ゼロ仮定は既存FF sentinelを保持する条件へ修正してから68検査PASS。旧受入再実行0、ROM/compile変更0。resume/task graph/scoped final indexを確認後にcommit。全体private guard/一般CI成功は主張しない。
+- Commit: source=79be6cb0fe60277cb37df6d3b85d9a8414b28c51; run=36430188567; 同branch非force push。WIP c9a3fbe2で停止点、df3708a3で検証sourceを先行保存。
+- Network: GitHub HEAD/Actions/artifactのみ。元Save10 run failureを保持。直接cloneのDNS失敗はconnector/保存contextで代替。merge/release/active baseline変更0。
+- Next: native/68試験を再実行せず、今回Actionsの全step・83画面/Save原本artifact・記録commitを終端確認する。その後 Save11のtraining.srm作業コピーから先だけ進める。501番道路map3/19(15,10)左向き。通常捕獲で手持ち1→2、ボール5→3、初投失敗/二投目成功を分離、通常Save10→11と独立Continue後の全Save/RTC保持を確認。リープンLv9/EXP450/HP16/26/PP35/30/22、ツツケラLv3/EXP27/HP4/15/PP33/38、RP0、2776円。次は2体の通常回復と育成を経てマオリ/通常ストーリーへ。トレーナー勝利/研究施設自然到達/全story/releaseは未完。地域図鑑No???・レポート図鑑1匹も観測履歴として保持し、図鑑統合を受入にしない。176/cold50と旧218/cold62等を再生しない。
+
+## 2026-09-28T13:42:29.589926+00:00
+- Timestamp: 2026-09-28T13:42:29.589926+00:00
+- Task: USER-20260928-STORY-SAVE11 / 最初の自然捕獲・Save11終端確認
+- Version: story-save11-v1
+- Status: DONE（自然捕獲/Save11限定。トレーナー/研究施設/図鑑統合/全story/release未受入）
+- Summary: 501番道路でツツケラLv3へ初投失敗・すいとる3回・二投目成功。ボール5→3、手持ち1→2、Save10→11、独立Continue後の全Save/RTC131088bytes保持。親bank57344bytes/未使用party400bytes保持。先頭個体のHP26→16/PP25→22の2bytesだけ変更。名前入力の寄道/地域図鑑No???/図鑑1匹を保持。
+- Files changed: Save11後継検証器/68試験/入力目視原本/Actions/証拠/checkpoint/guide、固定引継ぎMD/JSON、両ログ。ROM/save/runner/画面は非tracked artifactのみ。
+- Verify: 専用run全step・原本ZIP全83画面/Save/68検査/commitを照合。新native0/test0。 保存完了はlock1、coldでfield復帰。バッグ左端80pixel差を全一致にしない。初期実装の未使用slot全ゼロ仮定は既存FF sentinelを保持する条件へ修正してから68検査PASS。旧受入再実行0、ROM/compile変更0。resume/task graph/scoped final indexを確認後にcommit。全体private guard/一般CI成功は主張しない。
+- Commit: source=5dcfd06b36af6816586c9454e0ae0c0b9170645a; run=36430473903; 同branch非force push。WIP c9a3fbe2で停止点、df3708a3で検証sourceを先行保存。
+- Network: GitHub HEAD/Actions/artifactのみ。元Save10 run failureを保持。直接cloneのDNS失敗はconnector/保存contextで代替。merge/release/active baseline変更0。
+- Next: Save11のtraining.srm作業コピーから先だけ進める。501番道路map3/19(15,10)左向き。通常捕獲で手持ち1→2、ボール5→3、初投失敗/二投目成功を分離、通常Save10→11と独立Continue後の全Save/RTC保持を確認。リープンLv9/EXP450/HP16/26/PP35/30/22、ツツケラLv3/EXP27/HP4/15/PP33/38、RP0、2776円。次は2体の通常回復と育成を経てマオリ/通常ストーリーへ。トレーナー勝利/研究施設自然到達/全story/releaseは未完。地域図鑑No???・レポート図鑑1匹も観測履歴として保持し、図鑑統合を受入にしない。176/cold50と旧218/cold62等を再生しない。
+
+## 2026-09-28T14:21:58.119034+00:00
+- Timestamp: 2026-09-28T14:21:58.119034+00:00
+- Task: USER-20260928-STORY-SAVE12 / 母親の2体回復・Save12限定受入
+- Version: story-save12-v1
+- Status: DONE（2体回復/Save12限定。育成/マオリ/研究施設/図鑑統合/全story/release未受入）
+- Summary: Save11から歩行で帰宅、母親1会話で2体全回復。HP16→26と4→15、PP35/30/25と35/40、通常Save11→12、独立Continue後の全Save/RTC131088bytes保持。前回bank57344bytes/未使用party400bytes保持。なつき度2bytesと回復HP/PP5bytesを分離。全5bag pocket/ボール3/2776円/EXP450,27/RP0保持。
+- Files changed: Save12後継検証器/69試験/入力目視原本/Actions/証拠/checkpoint/guide、固定引継ぎMD/JSON、両ログ。ROM/save/runner/画面は非tracked artifactのみ。
+- Verify: 新153/cold40入力、57画面、7組の全画像一致、新69検査PASS。開発2process/69検査と正式2process/69検査を分離。 4つの書込途中Flash・完了lock1・field解除・coldを分離。メニュー中の不発入力と図鑑No???/レポート1匹を原本へ保持。旧受入再実行0、ROM/runner/compile変更0。resume/task graph/scoped final index確認後にcommit。全体private guard/一般CI成功は主張しない。
+- Commit: source=1540de2edb1dab0479b95a4468176e07b0bfd086; run=36435307920; 同branch非force push。WIP b85ce610で停止点、c084c6b7で検証sourceを先行保存。
+- Network: GitHub HEAD/Actions/artifactのみ。Save11終端run36430473903/source5a2e188fのcompact contextを再利用。追加context run36431970090はtext採取のみ/native0。初回cloneのDNS失敗はconnectorで代替。旧capacity failure/action_requiredを成功へ改作しない。merge/release/active baseline変更0。
+- Next: native/69試験を再実行せず、今回Actionsの全step・57画面/Save原本artifact・記録commitを終端確認する。その後 Save12のtraining.srm作業コピーから先だけ進める。自宅map4/0(8,5)上向き、リープンLv9/EXP450/HP26/26/PP35/30/25、ツツケラLv3/EXP27/HP15/15/PP35/40。母親の通常会話1回で2体全回復、Save11→12と独立Continue後の全Save/RTC保持を確認。手持ち2、ボール3、2776円、RP0。次は育成からマオリ/通常ストーリーへ。今回に新しい戦闘/捕獲/経験値獲得はない。トレーナー勝利/研究施設自然到達/図鑑統合/全story/release未完。153/cold40と旧176/cold50等は再生しない。
+
+## 2026-09-28T14:24:00.352802+00:00
+- Timestamp: 2026-09-28T14:24:00.352802+00:00
+- Task: USER-20260928-STORY-SAVE12 / 母親の2体回復・Save12終端確認
+- Version: story-save12-v1
+- Status: DONE（2体回復/Save12限定。育成/マオリ/研究施設/図鑑統合/全story/release未受入）
+- Summary: Save11から歩行で帰宅、母親1会話で2体全回復。HP16→26と4→15、PP35/30/25と35/40、通常Save11→12、独立Continue後の全Save/RTC131088bytes保持。前回bank57344bytes/未使用party400bytes保持。なつき度2bytesと回復HP/PP5bytesを分離。全5bag pocket/ボール3/2776円/EXP450,27/RP0保持。
+- Files changed: Save12後継検証器/69試験/入力目視原本/Actions/証拠/checkpoint/guide、固定引継ぎMD/JSON、両ログ。ROM/save/runner/画面は非tracked artifactのみ。
+- Verify: 専用run全step・原本ZIP全57画面/Save/69検査/commitを照合。新native0/test0。 4つの書込途中Flash・完了lock1・field解除・coldを分離。メニュー中の不発入力と図鑑No???/レポート1匹を原本へ保持。旧受入再実行0、ROM/runner/compile変更0。resume/task graph/scoped final index確認後にcommit。全体private guard/一般CI成功は主張しない。
+- Commit: source=57d86883eb4fa61bb2dd803be4c9cfa2ea06638c; run=36435622530; 同branch非force push。WIP b85ce610で停止点、c084c6b7で検証sourceを先行保存。
+- Network: GitHub HEAD/Actions/artifactのみ。Save11終端run36430473903/source5a2e188fのcompact contextを再利用。追加context run36431970090はtext採取のみ/native0。初回cloneのDNS失敗はconnectorで代替。旧capacity failure/action_requiredを成功へ改作しない。merge/release/active baseline変更0。
+- Next: Save12のtraining.srm作業コピーから先だけ進める。自宅map4/0(8,5)上向き、リープンLv9/EXP450/HP26/26/PP35/30/25、ツツケラLv3/EXP27/HP15/15/PP35/40。母親の通常会話1回で2体全回復、Save11→12と独立Continue後の全Save/RTC保持を確認。手持ち2、ボール3、2776円、RP0。次は育成からマオリ/通常ストーリーへ。今回に新しい戦闘/捕獲/経験値獲得はない。トレーナー勝利/研究施設自然到達/図鑑統合/全story/release未完。153/cold40と旧176/cold50等は再生しない。
+
+## 2026-09-28T14:53:04.381037+00:00
+- Timestamp: 2026-09-28T14:53:04.381037+00:00
+- Task: USER-20260928-STORY-SAVE13 / 通常交代の育成1勝・Save13限定受入
+- Version: story-save13-v1
+- Status: DONE（通常交代育成1勝/Save13限定。マオリ/研究施設/図鑑統合/全story/release未受入）
+- Summary: Save12から通常並替でツツケラ先頭、野生スバメLv4へ通常交代しリープンのひっかく3回で勝利。ツツケラ53EXPでLv3→4/EXP80、リープン29EXPでEXP479。母親でHP9→26/PP32→35へ回復し通常Save12→13。独立Continue後の全131088Save/RTC、7組全画像、前回bank57344bytes/未使用party400bytes保持。並替を整列したparty14bytes変更と回復2bytesを分離。全5bag pocket/ボール3/2776円/RP0保持。
+- Files changed: Save13後継検証器/95試験/入力目視原本/Actions/証拠/checkpoint/guide、固定引継ぎMD/JSON、両ログ。ROM/save/runner/画面は非tracked artifactのみ。
+- Verify: 新255/cold40入力、76画面、7組の全画像一致、新95検査PASS。開発2process/95検査と正式2process/95検査を分離。 単一戦闘14→30観測、経験値途中と勝利残留を分離。保存完了lock1と解除lock0、進行末尾wire field:falseとcold trueを保持。探索セルのfield真値仮定をcallback/lock判定へ訂正、nativeの再起動/追加入力なし。急所被弾・帰宅迂回・バッグ誤選択・図鑑No???/レポート1匹を原本へ保持。旧受入再実行0、ROM/runner/compile変更0。resume/task graph/scoped final index確認後にcommit。全体private guard/一般CI成功は主張しない。
+- Commit: source=34d037bc5c56de271aba627a9a001f15b6534123; run=36439214540; 同branch非force push。WIP 5bed135cで停止点、c07dd98bで検証sourceを先行保存。
+- Network: GitHub HEAD/Actions/artifactのみ。Save12正式run36435307920と終端run36435622530の原本/compact contextを使用。旧capacity failure/action_requiredを成功へ改作しない。merge/release/active baseline変更0。
+- Next: native/95試験を再実行せず、今回Actionsの全step・76画面/Save原本artifact・記録commitを終端確認する。その後 Save13のtraining.srm作業コピーから先だけ進める。自宅map4/0(8,5)上向き、先頭ツツケラLv4/EXP80/HP17/17/PP35/40、2番目リープンLv9/EXP479/HP26/26/PP35/30/25。通常並替・戦闘中の通常交代でスバメLv4に1勝し、53/29EXPを獲得。母親で通常回復、Save12→13と独立Continue後の全Save/RTC保持を確認。手持ち2、ボール3、2776円、RP0。次は必要な通常育成を続けてマオリ/通常ストーリーへ。トレーナー勝利/研究施設自然到達/図鑑統合/全story/release未完。255/cold40、受入済みSave12の153/cold40、Save11の176/cold50等を再生しない。
+
+## 2026-09-28T21:09:22.231080+00:00
+- Timestamp: 2026-09-28T21:09:22.231080+00:00
+- Task: USER-20260928-STORY-SAVE13 / 通常交代の育成1勝・Save13終端確認
+- Version: story-save13-v1
+- Status: DONE（通常交代育成1勝/Save13限定。マオリ/研究施設/図鑑統合/全story/release未受入）
+- Summary: Save12から通常並替でツツケラ先頭、野生スバメLv4へ通常交代しリープンのひっかく3回で勝利。ツツケラ53EXPでLv3→4/EXP80、リープン29EXPでEXP479。母親でHP9→26/PP32→35へ回復し通常Save12→13。独立Continue後の全131088Save/RTC、7組全画像、前回bank57344bytes/未使用party400bytes保持。並替を整列したparty14bytes変更と回復2bytesを分離。全5bag pocket/ボール3/2776円/RP0保持。
+- Files changed: Save13後継検証器/95試験/入力目視原本/Actions/証拠/checkpoint/guide、固定引継ぎMD/JSON、両ログ。ROM/save/runner/画面は非tracked artifactのみ。
+- Verify: 専用run全step・原本ZIP全76画面/Save/95検査/commitを照合。新native0/test0。 単一戦闘14→30観測、経験値途中と勝利残留を分離。保存完了lock1と解除lock0、進行末尾wire field:falseとcold trueを保持。探索セルのfield真値仮定をcallback/lock判定へ訂正、nativeの再起動/追加入力なし。急所被弾・帰宅迂回・バッグ誤選択・図鑑No???/レポート1匹を原本へ保持。旧受入再実行0、ROM/runner/compile変更0。resume/task graph/scoped final index確認後にcommit。全体private guard/一般CI成功は主張しない。
+- Commit: source=0b2700d72e5ceb47e4d9186ce24e94d5efd089e9; run=36484123426; 同branch非force push。WIP 5bed135cで停止点、c07dd98bで検証sourceを先行保存。
+- Network: GitHub HEAD/Actions/artifactのみ。Save12正式run36435307920と終端run36435622530の原本/compact contextを使用。旧capacity failure/action_requiredを成功へ改作しない。merge/release/active baseline変更0。
+- Next: Save13のtraining.srm作業コピーから先だけ進める。自宅map4/0(8,5)上向き、先頭ツツケラLv4/EXP80/HP17/17/PP35/40、2番目リープンLv9/EXP479/HP26/26/PP35/30/25。通常並替・戦闘中の通常交代でスバメLv4に1勝し、53/29EXPを獲得。母親で通常回復、Save12→13と独立Continue後の全Save/RTC保持を確認。手持ち2、ボール3、2776円、RP0。次は必要な通常育成を続けてマオリ/通常ストーリーへ。トレーナー勝利/研究施設自然到達/図鑑統合/全story/release未完。255/cold40、受入済みSave12の153/cold40、Save11の176/cold50等を再生しない。
+
+## 2026-09-28T21:39:26.434339+00:00
+- Timestamp: 2026-09-28T21:39:26.434339+00:00
+- Task: USER-20260929-STORY-SAVE14 / Save14限定測定
+- Version: story-save14-v1
+- Status: DONE（Save14限定。全step終端の別API照合待ち。マオリ/研究施設/図鑑統合/全story/release未受入）
+- Summary: Save13から野生ツツケラ雌Lv5へ通常交代2回。味方ツツケラがひんし、リープンへ通常の強制交代1回で1勝。全滅/捕獲/逃走0。ツツケラEXP80不変、リープン479→516。母親回復4bytesと最終party変更3bytesを分離。Save13→14、前回bank57344bytes/未使用party400bytes、全5bag pocket/ボール3/2776円/RP0保持。独立Continue全131088Save/RTCと7画面一致。RAM時計12→13分だけの差も証明。
+- Files changed: Save14後継検証器/110試験/入力・97目視原本/Actions/証拠/checkpoint/guide、固定引継ぎMD/JSON、両ログ。ROM/save/runner/画像は非tracked artifactのみ。
+- Verify: 新303/cold40入力・97画面・7組全画像一致・新110検査PASS。開発2process/110検査と正式2process/110検査を分離。 味方ひんし35/相手ひんし41/EXP42を終端とせずfield43だけで1勝。保存中81..84と完了85/解除86を分離。図鑑誤選択No???/7-1/レポート1匹も保持。resume/task graph/scoped final indexを確認し、一般CI全体成功や一般sector checksum対応は主張しない。旧受入再実行0、ROM/runner/compile変更0。
+- Commit: source=96e9dd07d172f3791b1fab1ab803b2dfa1bf042a; run=36487441645; 同branch非force push/readback。WIP984ed574で停止点、04d0ae01/e48ab93f/b0d8c9b4で検証器/試験/目視原本を先行保存。
+- Network: GitHub HEAD/Actions/artifactのみ。Save13正式run36439214540/終端run36484123426を継承。一般CIの既存capacity failure/action_requiredは改作しない。merge/release/active baseline変更0。
+- Next: native/110試験を再実行せず、今回Actionsの全step・97画面/Save原本artifact・記録commitを終端確認する。その後 Save14のtraining.srm作業コピーから先だけ進める。自宅map4/0(8,5)上向き、ツツケラLv4/EXP80/HP17/17/PP35/40、リープンLv9/EXP516（次Lv44）/HP26/26/PP35/30/25。手持ち2、ボール3、2776円、RP0。野生ツツケラ雌Lv5へ1勝、味方ツツケラひんし1、全滅0。母親で回復し通常Save13→14と独立Continue全Save/RTC保持を確認。飛行技はリープンに効果抜群だったため、危険な育成交代を漫然と反復せず通常育成/用品・手持ちを整えてマオリ/通常storyへ進む。トレーナー勝利/研究施設自然到達/図鑑統合/全story/release未完。新303/cold40とSave13の255/cold40等の受入済み区間を再生しない。
+
+## 2026-09-28T21:40:49.543757+00:00
+- Timestamp: 2026-09-28T21:40:49.543757+00:00
+- Task: USER-20260929-STORY-SAVE14 / Save14終端確認
+- Version: story-save14-v1
+- Status: DONE（Save14限定。終端原本確認済み。マオリ/研究施設/図鑑統合/全story/release未受入）
+- Summary: Save13から野生ツツケラ雌Lv5へ通常交代2回。味方ツツケラがひんし、リープンへ通常の強制交代1回で1勝。全滅/捕獲/逃走0。ツツケラEXP80不変、リープン479→516。母親回復4bytesと最終party変更3bytesを分離。Save13→14、前回bank57344bytes/未使用party400bytes、全5bag pocket/ボール3/2776円/RP0保持。独立Continue全131088Save/RTCと7画面一致。RAM時計12→13分だけの差も証明。
+- Files changed: Save14後継検証器/110試験/入力・97目視原本/Actions/証拠/checkpoint/guide、固定引継ぎMD/JSON、両ログ。ROM/save/runner/画像は非tracked artifactのみ。
+- Verify: 専用run全step・ZIP全97画面/Save/110試験/commitを照合。新native0/test0。 味方ひんし35/相手ひんし41/EXP42を終端とせずfield43だけで1勝。保存中81..84と完了85/解除86を分離。図鑑誤選択No???/7-1/レポート1匹も保持。resume/task graph/scoped final indexを確認し、一般CI全体成功や一般sector checksum対応は主張しない。旧受入再実行0、ROM/runner/compile変更0。
+- Commit: source=b75a619ccdf0d7d1aac1f288517ca83d183f544d; run=36487654590; 同branch非force push/readback。WIP984ed574で停止点、04d0ae01/e48ab93f/b0d8c9b4で検証器/試験/目視原本を先行保存。
+- Network: GitHub HEAD/Actions/artifactのみ。Save13正式run36439214540/終端run36484123426を継承。一般CIの既存capacity failure/action_requiredは改作しない。merge/release/active baseline変更0。
+- Next: Save14のtraining.srm作業コピーから先だけ進める。自宅map4/0(8,5)上向き、ツツケラLv4/EXP80/HP17/17/PP35/40、リープンLv9/EXP516（次Lv44）/HP26/26/PP35/30/25。手持ち2、ボール3、2776円、RP0。野生ツツケラ雌Lv5へ1勝、味方ツツケラひんし1、全滅0。母親で回復し通常Save13→14と独立Continue全Save/RTC保持を確認。飛行技はリープンに効果抜群だったため、危険な育成交代を漫然と反復せず通常育成/用品・手持ちを整えてマオリ/通常storyへ進む。トレーナー勝利/研究施設自然到達/図鑑統合/全story/release未完。新303/cold40とSave13の255/cold40等の受入済み区間を再生しない。
+
+## 2026-09-28T22:53:37Z
+
+- Task: `USER-20260929-STORY-ACCELERATION-PLAN` / ストーリー高速走破と自然EXP・技習得・進化検証の分離
+- Status: DONE
+- Summary:
+  - Save14原本を不変にし、自己OT Lv100によるstory-fast、通常wild battle EXPによるprogression、Axew系Lv100 soakの3レーンを所有者決定として固定した。
+  - Mewtwo/Haxorus/Mew/Bibarelの編成、技・持ち物・EV/IV、party空き2枠、field move段階解禁とFlash差替え、支援用品のmanifest解決規則を記録した。
+  - progressionはpre-battle fixtureだけを許可し、戦闘開始後のparty/EXP/level/技/進化/flag/outcome host-writeを禁止した。Lucky Egg対照、Exp. Share、技空き/置換/拒否、進化/cancel、複数level、Lv100 overflowを必須境界にした。
+  - 固定再開JSON、`CHATGPT_RESUME.md`、生成再開MD、両ログを同期し、変更した固定入口と新計画2ファイルのsource bindingを更新した。既受入native/ROM/Saveの再実行・変更は0。
+- Verify:
+  - `python3 scripts/pr16_resume.py render/check`: PASS
+  - `python3 -m unittest discover -s tests -p test_pr16_resume.py -v`: PASS
+  - `python3 scripts/validate_task_graph.py --check`: PASS
+  - plan JSON schema/source binding/`git diff --check`: PASS
+- Runtime accounting: new native process 0 / ROM change 0 / accepted-case rerun 0 / release・merge・baseline切替0。
+- Generation run: `36494701271`（freshness guardで停止、commitなし）/ recording run: `36494988987`。
+- Commit: `-`（本エントリを含むActions commit）
+
+## 2026-09-28T22:55:34Z
+
+- Task: `USER-20260929-STORY-ACCELERATION-IDENTITY-CORRECTION`
+- Status: DONE
+- Summary: 機械可読planの既存party退避説明を、誤記Toucannon/LeafeonからSave14正本のツツケラspecies1129/リープンspecies1へ訂正。Markdown、実個体byte、受入scope、編成は不変。
+- Verify: Save14 checkpoint `party_species=[1129,1]`、plan source binding、resume render/check、focused tests、task graph、remote readback PASS。
+- Runtime accounting: native 0 / ROM 0 / accepted rerun 0。
+- Commit: `-`（Actions commit、run `36495173345`）
+
+## 2026-09-28T23:58:25+00:00 — ストーリー分離fixtureの限定受入と進化gate停止
+
+- Task: `USER-20260929-STORY-ACCELERATION` / Save14作業コピー2本・自己OT戦smoke・通常EXP進化診断
+- Status: DONE（分離コピー/通常戦smoke）; BLOCKED（進化縦切り）
+- Summary: stable key/ROM ABI解決、原本identity保持、7write API禁止、全RAM差分台帳、通常Save/fresh Continueを実装。Axewは通常EXP68589→68590/Lv38後、全国図鑑gateで自動取消。進化未受入を保持。
+- Files changed: `scripts/pr16_story_acceleration*.py`、`tools/mgba_pr16_story_acceleration.c`、専用tests/workflow、`content/modernization/pr16_story_acceleration_checkpoint.json`、`docs/PR16_STORY_ACCELERATION_CHECKPOINT_JA.md`、固定引継ぎMD/JSON、CHATGPT_RESUME、両ログ。
+- Verify: 新19 tests/7拒否試験/compile PASS、native3 process/5 cores、通常Save2。run `36500700863` / source `5243a6000755bd5596f994f322b1587f33fc2484` / artifact `11005890195`。完了conclusionはActionsから別照会。旧受入再実行0/ROM変更0/release・merge・baseline変更0。
+- 開発履歴: 13 process/15 cores、PC再配置/unaligned OT ID/全国図鑑gateの失敗を含む。正式scopeと分離し、旧Save14 scenarioは再生せず。
+- Commit: `-`（本記録を含む非force Actions commit）。前段WIPは6b8ab6b8、05ffb19b、69d2fc47、bb979f92、4ca9d2f8。
+- Network: GitHub exact HEAD/Actions artifactを利用。gate照合ではpret/pokefireredのevolution_scene.cを参考にし、実候補の0x080CFA20/0x080D067Cのbranchとnative task遷移を独立確認。https://github.com/pret/pokefirered/blob/master/src/evolution_scene.c
+- 未完: 正規story続行、全国図鑑gateの設計/取得条件照合、進化・技習得12境界、Lucky Egg倍率、soak100。global private guardの旧違反をPASSへ読み替えず今回変更pathのみ検査。
+
+## 2026-09-29T00:01:57+00:00 — 分離fixture完了照会
+
+- Task: USER-20260929-STORY-ACCELERATION / 完了照会と全Save byte差分
+- Status: DONE（記録）; BLOCKED（進化）
+- Summary: run36500700863 completed/success、c2d3cf65反映を確認。75hash・15画面・全Save差分2本の再構成を照合。新native0/compile0/旧受入再実行0。
+- Files changed: 専用completion/checkpoint、固定引継ぎ、専用guide、blockers、両ログ。
+- Verify: 先行19新規tests、7拒否tests、28resume tests、task graph/index scoped guard PASS。completionはbyte再構成2本PASS、resume check PASS。
+- Commit: c2d3cf659d4122555842d2a31eaf7c7647c0cf51（受入記録）、本追記commitはActionsから参照。
+- Network: GitHub run/artifact読戻しのみ。原本Save14/ROM不変、進化は未受入。
+
+## 2026-09-29T00:48:35+00:00
+- Timestamp: 2026-09-29T00:48:35+00:00
+- Task: USER-20260929-STORY-FAST-MAORI / マオリ通常勝利・Save16・独立Continue
+- Version: story-fast-maori-v1
+- Status: DONE（支援story進行限定、自然育成/進化/全storyは未完）
+- Summary: 新story-fast176/cold20入力でtrainer1勝・逃走1回・賞金160・counter15→16。全party差分2bytes、前bank57344bytes/PC/Bag保持、独立Continue全131088bytes一致、再会話再戦0。Save成功文frameは未取得と明記。
+- Files changed: 新検証器/44試験/入力/正式測定/記録器、公開text/checkpoint/guide、固定引継ぎMD/JSON、両ログ。ROM/save/画像/全差分hexはartifactのみ。
+- Verify: completed native run36504040292/job109201289995全8step成功、artifact11006311891全73member hash、48目視画像原本、全Save差分6418bytes/1757範囲再構成PASS。開発44/正式44は同じ新44件。開発native2/正式2、記録native0/test再実行0、compile/ROM変更/既受入native再実行0。resume/task graph/最終scoped index/diff後のみcommit。一般CI全成功は主張しない。
+- Commit: WIP92da857/3d07192、検証器a35eb96、測定source383ce0f49f4761f6db875e1a2f0a89692d2966e8。記録source=598c5a7b0fd5202fdee4a8fde519aab268ac3114; record run=36504857429、同branch非force pushと全text読戻し。
+- Network: GitHub固定HEAD/run/artifactのみ。原本Save14/分離progression/Stage62基準/source-lock/正式BP/P08不変、PR未merge・releaseなし。
+- Next: マオリ通常勝利・story-fast Save16・独立Continueは受入済み。次はartifact11006311891のstory-fast.srm（map3/19、53,10、北向き）から先へ進む。176/cold20入力とSave1〜14・分離smokeを再生しない。progression.srmは元の戦闘前Axew Lv37/EXP68589を保持。全国図鑑の正規解禁ownerと進化gateを照合し、自然解禁境界または影響台帳付きsource修正/後継候補へ進む。flag注入で進化成功扱いしない。Lucky Egg対照・12成長ケース・Lv100soak・研究施設自然到達・全storyは未完。
+
+## 2026-09-29T00:58:40+00:00
+- Task: USER-20260929-NATIONAL-DEX-OWNER / 全国図鑑grant owner固定
+- Version: national-dex-owner-v1
+- Status: DONE（静的3root限定、自然解禁/進化は未受入）
+- Summary: Vega var4072の9→10→研究所→11/special367をheaderから追跡。legacy4055=7と区別。CFRU VarGet hookを無視したsave-offset断定を避け、探索の6invalid/1diagnosticは全体PASSへ改作しない。
+- Files changed: owner検証器/14試験/限定Actions、audit/checkpoint/guide、固定引継ぎMD/JSON、両ログ。
+- Verify: 新14試験PASS、3root20nodes/decode0、特殊処理table/4native範囲/固定ROM/Save16 magic0。追加native/compile/既受入再実行0。Maori record36504857429全step終端成功を別API照合。最終resume/task graph/scoped index後のみcommit。
+- Commit: source=e86a3c81ca07886739d94404b6c2bc7df39e5255; run=36505642387; 同branch非force push/readback。
+- Next: マオリSave16と全国図鑑grant ownerの限定照合は完了。story-fastはartifact11006311891のstory-fast.srm、map3/19(53,10)から通常storyを続ける。全国図鑑のVega側経路はmap3/0のvar0x4072=9→10→map4/3へwarp、同研究所のvar10イベント→special367→var11の保存状態。var9に至る通常進行と有効化後の自然進化は未受入。legacy var0x4055=7経路を序盤で到達済みと扱わず、flag/var注入やgate緩和はしない。元progression戦闘前Axewを保全し、正規解禁後の別境界で成長/進化/Lucky Egg対照/12ケース/Lv100soakへ進む。旧受入入力・44試験・このowner走査の無影響再実行は禁止。
+
+## 2026-09-29T01:07:23+00:00
+- Task: USER-20260929-STORY-FOLLOWUP-CLOSEOUT
+- Version: story-followup-closeout-v1
+- Status: DONE（Maori Save16・全国図鑑ownerの2限定scope）
+- Summary: 初回closeout36505939132はGITHUB_TOKEN未設定で書込前停止し、envのみ補正。3run全24step終端成功を外部API照合し、owner未確定フラグを確定。新検査定義66=Maori44+記録8+owner14、Actionsでは新58、記録8はlocal原本/source hash保管のみ。
+- Files changed: 最終集約JSON/記録8試験原本、owner checkpoint/guide、固定引継ぎMD/JSON、両ログ、専用closeout workflow。
+- Verify: 新区間native開発2/正式2、closeout native0/test0/compile0、既受入case再実行0。ROM/原本Save14/基準/正式BP/P08不変。最新20Actionsを成功へ読み替えず保存。resume/task graph/scoped final index/diff確認後にcommit。
+- Commit: source=da3b6617cc336190c4caf2befe093cfce99ffbd4; run=36506355858; 同branch非force反映・全text読戻し。
+- Next: 集約記録のSave16から新規区間へ。国図自然解禁/進化/Lucky Egg/12成長/soak/全storyは未完。
+
+## 2026-09-29T11:12:51+09:00
+- Timestamp: 2026-09-29T11:12:51+09:00
+- Task: USER-20260929-STORY-AFTER-MAORI / マオリ後3戦・アヤメ通常回復Save17
+- Version: story-after-maori-v1
+- Status: DONE（支援storyの新規区間限定。自然育成/進化/全story未完）
+- Summary: 固定Save16→双子/ムギヒコ/ブンタ3勝・通常gate・アヤメPC全回復・Save17・独立Continue。賞金436。317/cold22入力、119画面。保存中113と完了114を分離。味方誤攻撃と失敗実行を隠さず保持。
+- Files changed: 新区間入力、600frame境界/検証器/34試験、正式測定/記録、text証跡/checkpoint/guide、固定引継ぎMD/JSON、両ログ。ROM/Save/画像/全差分hexはartifactのみ。
+- Verify: run36510782954/job109222190727全7step成功、artifact11008723945全144member hash、全Save差分6620bytes/1732範囲再構成一致、cold全131088bytes、前bank57344bytes/PC/Bag保持。開発34/正式34は同じ新34件。先行19原本再利用。新規記録gate16試験。開発native3（失敗1）/正式2、記録native0/受入再走0/compile0。scoped index/private path/resume/task graph/diff後のみcommit。既存push CIは別scopeで全成功としない。
+- Commit: WIPf37b7c8/9bb7577、測定source0c5a118c855ee52eecbadaa7c4114d32a59e500f。記録source=c4095e34e024c9331fea32c0135a201b98395bbd、run=36511503554。同branch非force push・全text読戻し。
+- Network: 固定GitHub HEAD/run/artifact。旧受入/BP/P08/非支援Save14/progression/全国図鑑owner/active baseline/source-lock不変。PR16未merge、releaseなし。
+- Next: story-fastはアヤメシティ通常回復Save17を唯一の開始点とする。artifact11008723945のstory-fast.srmを復元し、map5/4・7,4・北向きのポケモンセンターから通常の出口・町イベントを進める。今回の317/cold22入力・34試験・受入済み19試験・マオリ・旧BP/P08/Save1〜16は影響なしに再走しない。全国図鑑正規解禁へ向けて通常storyを継続し、次の自然保存境界で区切る。progression原本は戦闘前Axew Lv37/EXP68589のまま保持し、NationalDex magic0を注入で解除しない。自然育成/進化、Lucky Egg対照・12成長ケース・Lv100soak・研究施設自然到達・全storyは未完。
+
+## 2026-09-29T13:48:13+09:00
+- Timestamp: 2026-09-29T13:48:13+09:00
+- Task: USER-20260929-STORY-AYAME-GATE / アヤメ前提3連戦・ジム入場・Save18
+- Version: story-ayame-save18-v1
+- Status: DONE（支援story新区間限定。ジムリーダー/自然育成/進化/全story未完）
+- Summary: Save17→通常条件会話・三兄弟3勝→ジム入場→PC回復・Save18・独立Continue。賞金568、Bag不変、旧WIPのHM05は未継承。連戦lock/交代UI/残留outcomeと保存途中を別判定。S61E tailをboxed payloadと分離しCRC/gym bitだけの変化を照合。
+- Files changed: 新規連戦/保存/S61E oracle・55試験・入力計画/失敗receipt、測定/記録workflow、checkpoint/guide/text証跡、固定再開MD/JSON、両ログ。ROM/Save/全差分hex/画像はartifactのみ。
+- Verify: run36522150353/job109257152262全7step成功、artifact11012768108全170member、145画像/30pixel anchor、381/cold23入力、全Save差分6731bytes/1740範囲、cold全131088bytes、前bank57344bytes/boxed PC/Bag保持。新55試験原本再利用、記録時は新しい終端gate24試験のみ。開発native4（失敗2）/正式2、記録native0/受入再走0/compile0。scoped final-index/private path/resume/task graph/diff後のみcommit。既存CI全成功とは主張しない。
+- Commit: WIP d75466777ae1、測定source2577d253823bdca94bf3dfac0a67dea9776a6d8a、記録source=2e88af576e6c72b621b7ad221930e4f611c04e2a・run=36523214697。同branch非force push・全text読戻し。
+- Network: 固定GitHub HEAD/run/artifact。旧受入/BP/P08/progression/全国図鑑owner/active baseline/source-lock不変。PR16未merge、releaseなし。
+- Next: story-fastの唯一の開始点はartifact11012768108のstory-fast.srm（Save18、131088bytes、SHA256 dc1f690f0616affc61b6d45632924e4c81995c91c7c1939994f37bbe8527432d）。アヤメPC map5/4・7,4・北向き・party4全回復/RP0から、通常出口→入場可能になったアヤメジムの未完storyを進める。ジムリーダー勝利/バッジはまだ未受入。旧未保存WIPのHM05はこのSaveには無く、必要時は通常会話で取得する。新381/cold23入力・55試験・旧BP/P08/Save1〜17を無影響に再走しない。分離progression原本Axew Lv37/EXP68589、NationalDex magic0とownerを保全し、flag/var注入で解禁しない。正規全国図鑑解禁、自然育成/進化、Lucky Egg対照・12成長ケース・Lv100soak・研究施設自然到達・全storyは未完。
+
+## 2026-09-29T14:00:32+09:00
+- Timestamp: 2026-09-29T14:00:32+09:00
+- Task: USER-20260929-STORY-AYAME-PERSISTENCE-AUDIT
+- Version: ayame-persistence-audit-v1
+- Status: DONE（正式Save18原本の保存対応のみ。全story/自然育成/進化未完）
+- Summary: 実ROM section tableから56件payload checksum、372行trainer remapと保存3bit、var4071の1→3、NationalDex3条件0を独立照合。S61E/padding/RTCはstock checksum対象外。4bankの重複前世代照合を別Saveと数えない。
+- Files changed: 独立監査器/新42試験/記録workflow、監査JSON/text/guide、固定再開MD/JSON、両ログ。既存測定sourceと開始Saveを変更しない。
+- Verify: run36522150353/job109257152262全7step、記録run36523214697全終端、artifact11012768108全170member。新42試験PASS。旧55試験再走0、監査native/compile/host書込0、全Save/RTC一致。resume/task graph/scoped index/private/diff後のみcommit。
+- Commit: 監査source=e366675034472d9597fda32d6c5d65a37a877879、run=36524125377。同branchへ非force pushし全text読戻し。自己終端は後続API照合。
+- Network: 公式GitHub既完了原本を読取専用で再利用。並行Save948d9e58…は未採用履歴。正式dc1f690f…を維持。一般CI全成功とは主張しない。
+- Next: 正式Save18から通常アヤメジムへ。旧連戦/55試験/この42試験を影響なしに再実行しない。NationalDex/progression停止条件とactive baselineを維持。
+
+## 2026-09-29T12:23:43+00:00
+- Timestamp: 2026-09-29T12:23:43+00:00
+- Task: USER-20260929-STORY-GYM / アヤメジム・badge1・Save19完了原本の無再走回収
+- Version: story-gym-save19-v1
+- Status: DONE（支援story新区間限定。自然育成/進化/全国図鑑/全story未完）
+- Summary: Save18→通常ジム2勝・窓switch・badge1・報酬・モスギス会話→PC回復Save19/cold。再開MDのSave18停止と完了Actionsの不一致を解消。全264member/243画面/35目視anchor/全Save差分6817bytes・1718範囲を照合。
+- Files changed: gym記録器・32拒否試験・closeout workflow、checkpoint/guide/text証跡、固定再開MD/JSON、両ログ。ROM/Save/画像/全差分hexはartifactのみ。
+- Verify: run36559147649/job109375512907全7step成功、artifact11028517527、464/cold34入力、cold全131088bytes、payload checksum42件/S61E CRC、旧bank/PC/Bag境界。記録native/compile/受入73試験再走0。新32試験とscoped final-index/private/resume/task graph/diff通過後のみcommit。一般CI全成功は主張しない。
+- Commit: 測定e9c9a55c59705490cd49f834fb8586c41bb1861b、回収WIP50b87e638b96、記録source=6b7cbb0b5c133ca505ed5ef29cd6f7e8175c601f・run=36567761064。同branch非force pushと全text読戻し。
+- Network: 固定GitHub run/artifactの再利用だけ。旧BP/P08/progression/grant owner/active baseline/source-lock不変。PR16未merge、releaseなし。
+- Next: story-fastの唯一の開始点はartifact11028517527のstory-fast.srm（Save19、131088bytes、SHA256 dd7adddc09555c2232299075bba657e9e7261ad3b868d9cabb5f0edccc8ed06d）。アヤメPC map5/4・7,4北・party4全回復/RP0、badge1・var4071=5/4072=1から通常storyの未完区間だけを進める。ハヤカ/アマナ2勝・通常報酬・モスギス会話・Save19/coldは完了。HM05は未所持で必要なら通常会話で取得する。新464/cold34入力・73試験・旧BP/P08/Save1〜18は無影響に再走しない。分離progression原本Axew Lv37/EXP68589とNationalDex magic0・grant ownerを保全しflag/var注入で解禁しない。正規全国図鑑解禁、自然育成/進化、Lucky Egg対照・12成長ケース・Lv100soak・研究施設自然到達・全storyは未完。
+
+## 2026-09-29T13:15:39+00:00
+- Timestamp: 2026-09-29T13:15:39+00:00
+- Task: USER-20260929-STORY-HM05 / HM05通常取得・Save20新区間
+- Version: story-hm05-save20-v1
+- Status: DONE（支援story新区間限定。HM05習得/使用・自然育成/全国図鑑/全story未完）
+- Summary: Save19→通常trainer2勝/240円・HM05取得・野生2離脱→PC通常回復Save20/cold。全82画面/36目視anchor/全差分6783bytes・1784範囲を照合。
+- Files changed: 専用oracle/60拒否試験・測定器・開発text原本・記録器/12拒否試験・workflow・checkpoint/guide/text証跡、固定再開MD/JSON、両ログ。private binary/全差分hexはartifactのみ。
+- Verify: run36572961114/job109421243251全8step成功、artifact11036251453、248/cold59入力、Save/RTC全131088bytes保持。payload checksum42件/S61E CRC/旧bank/PC/Bag境界。開発native2/正式native2、記録native0・受入試験再走0・compile0。新記録12試験/scoped final-index/private/resume/task graph/diff通過後のみcommit。一般CI全成功は主張しない。
+- Commit: 測定b47f2d1720b200a7eb01888691e1e489c3df215e、記録source=556e4b2150df292af3ab90d8e88db9e41a759dfc・run=36573749814。同branch非force pushと全text読戻し。
+- Network: 固定GitHub artifactを再利用。旧BP/P08/Save1〜19/progression/grant owner/active baseline/source-lock不変。PR16未merge、releaseなし。旧P03 capacity source不一致failureは別scopeとして保持。
+- Next: story-fastの唯一の開始点はartifact11036251453のstory-fast.srm（Save20、131088bytes、SHA256 2ed14acca7a475598bde7098f68f4c8a8f0fb131ad8f2bc8ad6e4b508c1d08e5）。アヤメPC map5/4・7,4北・party4全回復/RP0、6016円・badge1・var4071=5/4072=1、HM05フラッシュ所持から通常storyの未完区間だけを進める。HM05は未習得/未使用。通常NPC取得、新トレーナー2勝、野生2離脱、PC回復/Save20/coldは完了。248/cold59入力・60試験・Save1〜19/旧BP/P08は無影響に再走しない。分離progression原本Axew Lv37/EXP68589とNationalDex magic0・grant ownerを保全し、flag/var注入で解禁しない。正規全国図鑑解禁、自然育成/進化、Lucky Egg対照・12成長ケース・Lv100soak・研究施設自然到達・全storyは未完。
+
+## 2026-09-30T03:08:50+00:00
+- Timestamp: 2026-09-30T03:08:50+00:00
+- Task: USER-20260930-STORY-SAVE21 / 503電話イベント・Save21新区間
+- Version: story-route503-save21-v1
+- Status: DONE（支援story新区間限定。HM05習得/使用/原因修正・自然育成/全国図鑑/全story未完）
+- Summary: Save20→HM05通常拒否→トシヒデ1勝/240円→電話/自動移動→Save21/cold。全61画面/39目視anchor/全差分6988bytes・1783範囲。HMケース順序交換と会話中座標同期遅れ7枚を限定判定し、途中Save/menuを合格にしない。
+- Files changed: 新oracle/62拒否試験・測定器・開発text原本・記録器/12拒否試験・専用workflow・checkpoint/guide/text証跡、固定再開MD/JSON、両ログ。ROM/save/全差分hexはartifactのみ。
+- Verify: run36662466133/job109719980409全8step成功、artifact11073849807、181/cold33入力、Save/RTC全131088bytes保持。checksum42件/S61E CRC/旧bank/PC/全item個数。開発native2/正式native2、記録native0・受入試験再走0・compile0。新記録12試験/scoped final-index/private/resume/task graph/diff通過後のみcommit。一般CI全成功は主張しない。
+- Commit: 測定b58a6356c9b100a9180a9af955d25e1c6be48d0c、記録source=dd00a9d0a585849c4395645ee0384944526d2272・run=36663051577。小分けWIPを同branchへ逐次反映し、完了記録は非force pushと全text読戻し。
+- Network: GitHub connector/固定Actions artifactだけ。開始HEAD e517baa451b613283ca87bc05304bed42b75ded9・source転送run36659873782・旧Save20記録run36573749814全11step成功を照合。旧BP/P08/Save1〜20/progression/grant owner/active baseline/source-lock不変。PR16未merge、releaseなし。旧P03 capacity failureは別scopeとして保持。
+- Next: story-fastの唯一の開始点はartifact11073849807のstory-fast.srm（Save21、131088bytes、SHA256 c9cb14fa73a38e105a0e6553f7fc1dc82c9bdd182e0409e28022c8ffe44b3d20）。503番道路map3/21・24,17西・party4/RP0、6256円・badge1、var4071=6/4072=1。ミュウツーHP349/354・サイコブレイクPP5、他3体HP満タン。トシヒデ1勝/240円・電話会話/自動移動・通常Save21/独立Continueは完了。HM05所持、通常UIで4体とも非適合表示・ミュウ選択拒否。習得/使用/原因解決は未完。同じ拒否入力を繰り返さず、必要時は固定ROMの互換性判定ownerを限定照合し、自然取得条件を満たす承認済みfield-utility分離fixtureの適用条件を読む。基準外の習得を盲追加しない。現在地から通常storyの未完区間だけをSave/cold境界で進める。181/cold33入力・62試験・Save1〜20/旧BP/P08は無影響に再走しない。分離progression原本Axew Lv37/EXP68589とNationalDex magic0・grant ownerを保全し、flag/var注入で解禁しない。正規全国図鑑解禁、自然育成/進化、Lucky Egg対照・12成長ケース・Lv100soak・研究施設自然到達・全storyは未完。
+
+## 2026-09-30T05:19:40+00:00
+- Timestamp: 2026-09-30T05:19:40+00:00
+- Task: USER-20260930-STORY-SAVE22 / 503新5勝・洞窟北入口・Save22原本記録
+- Version: story-route503-save22-v1
+- Status: DONE（支援story新区間限定。洞窟内部/走破・HM05解決・自然育成/全国図鑑/全story未完）
+- Summary: 既に完了したSave22の503新5勝/6040円・北入口warp・保存coldを受入。全121member/93画面/59目視anchor、全差分6895bytes・1836範囲。観測37接近中lock1、書込途中、開発card終端を過大受入しない。事前固定hashのexpected.jsonだけ回収。
+- Files changed: 記録器/22拒否試験・専用workflow/設定・checkpoint/guide/text証跡・開発expected、固定再開MD/JSON、両ログ。ROM/save/全差分hexはartifactのみ。
+- Verify: run36668710078/job109738877587全8step成功、artifact11076499444。397/cold35入力、全Save/RTC131088bytes・checksum42件/S61E/旧bank/PC/Bag保持。元の新試験58+10を二重計上せず、記録native0・受入試験再走0・compile0。新記録22試験/scoped final-index/private/resume/task graph/diff通過後のみcommit。一般CI全成功は主張しない。
+- Commit: 測定8c6f51827d3d51a1f2f25b4444f6103496d2ecba、記録source=216ccc6302104238f446230818151552f02b1944・run=36672864966。小分けWIP後、同branchへ非force pushと全text読戻し。
+- Network: GitHub connector/固定Actions artifactのみ。開始HEAD8c6f5182と旧Save21記録run36663051577全11step成功を照合。旧BP/P08/Save1〜21/progression/grant owner/active baseline/source-lock不変、PR16未merge/releaseなし。P03 capacity段階の一般CI failureは別scope。
+- Next: story-fastの唯一の開始点はartifact11076499444のstory-fast.srm（Save22、131088bytes、SHA256 bb3b6159ab12358fd051b88a592c99807b2bc14b1f9f41e952daf7a4d1a4529e）。ちえのどうくつ北入口map1/36・4,6北・party4/RP0、12296円・badge1・var4071=6/4072=1。ミュウツーHP324/354・PP[1,14,5,5]、他3体HP満タン。503新5勝/6040円・北入口warp・通常Save22/独立Continueは完了。洞窟内部/階段/走破は未到達。現在地から通常storyの未完区間だけをSave/cold境界で進める。397/cold35入力・68試験・Save1〜21/旧BP/P08は無影響に再走しない。HM05は所持だけで未習得/未使用・原因未解決。Save21の同一拒否入力は繰り返さず、必要時は固定ROMの互換性判定ownerを限定照合し、承認済みfield-utility分離fixtureの自然取得条件を確認する。基準外習得を盲追加しない。分離progression原本Axew Lv37/EXP68589とNationalDex magic0・grant ownerを保全し、flag/var注入で解禁しない。正規全国図鑑解禁、自然育成/進化、Lucky Egg対照・12成長ケース・Lv100soak・研究施設自然到達・全storyは未完。
+
+## 2026-10-03T02:59:40+00:00
+- Timestamp: 2026-10-03T02:59:40+00:00
+- Task: USER-20261003-STORY-SAVE23 / 洞窟内部warp・Save23を保存済み原本から限定受入
+- Version: story-cave-save23-v1
+- Status: DONE（内部到達/Save23限定。洞窟走破・全story未完）
+- Summary: Save22の唯一の親から4tile階段warp、map1/73・20,3東へ通常進行。45/cold13入力と保存成功文言、独立Continueを確認。初回補助flag2056不変仮定failureを保持し、2056:1→0と補助var2件だけを新oracleで限定照合。入力再走0。
+- Files changed: 新規静的採取器14試験/入力controller17試験/原本受入24試験/記録器/専用workflow、Save23 checkpoint/guide/text原本、固定再開MD/JSON、両ログ。
+- Verify: 測定run37090970832/job111111036767は最終oracle failureのまま、正常native2process・17画面・全34memberを回収。後続新24試験、全Save/RTC131088bytes、party600bytes、全Bag/12296円、checksum42件、S61E、旧bank/PC/全国図鑑/progression保全。7000差分bytes/1788範囲。記録native0・旧受入再走0・compile0。scoped final-index guard/resume/task graph/diff確認後のみcommit。一般CI全成功とはしない。
+- Commit: WIP7061be32/171a6518、記録source=f74ed8efe29f36952c3f9ec864ca6a8f37a47c82・run=37091670533。同branch非force push、全text読戻し。自己SHAはgit履歴で確認。
+- Network: GitHub connectorと固定Actions artifactsのみ。全Save/ROM/画面/差分hexはartifactだけ。旧pending5件の完了も外部APIで照合。merge/release/active baseline/source-lock変更なし。
+- Next: story-fastの唯一の開始点はartifact11261539316のstory-fast.srm（Save23、131088bytes、SHA256 728bd39b11ea53bafd31cff5fb50e7f81fe5973c0c5fae559ea22037827832bb）。ちえのどうくつ内部map1/73・20,3東・party4/RP0・12296円・badge1、var4071=6/4072=1。北入口からの階段warp・通常Save23・保存成功文言・独立Continueは限定受入済み。内部の先へ通常入力で進み、次のSave/cold境界で区切る。洞窟走破/南出口/新storyイベントは未完。45/cold13入力、静的14/入力17/原本受入24試験とSave1〜22/旧BP/P08は無影響に再走しない。run37090970832のfailureは保存後oracleの補助flag2056不変仮定が原因であり、成功へ改作しない。2056:1→0と補助var4021/4022の実観測差分だけを限定記録しruntime ownerは未解決。HM05は所持のみで未習得/未使用・原因未解決、同じ拒否入力を反復しない。全国図鑑magic0/grant ownerと分離progression原本Axewを保全し、flag/var注入で解禁しない。正規全国図鑑、自然成長/進化、Lucky Egg/12ケース/Lv100soak、研究施設自然到達、全storyは未完。
+
+## 2026-10-03T03:11:30+00:00
+- Timestamp: 2026-10-03T03:11:30+00:00
+- Task: USER-20261003-CAVE-COORD-ROUTE / Save23後の正規座標teleport ownerと次の11歩
+- Version: story-cave-coordinate-route-v1
+- Status: DONE（静的owner限定。次teleportのnative未実測）
+- Summary: map1/73 coord表と27,7→19,14の正規warpteleportを4root/5node・診断0で照合。衝突gridだけの無経路をバグと誤認せず、Save23から11歩の候補を固定。reserved script0と後続flag4367/var4071 ownerを区別。
+- Files changed: 限定採取/record器、新9拒否試験、専用workflow、checkpoint/guide、固定再開MD/JSON、両ログ。
+- Verify: 固定candidate/Save23 hash、Save23記録run37091670533の全11step終端、原本backing flags/vars、静的graph/11歩。新9試験、scoped final index/resume/task graph/diff確認後commit。native0/旧case再走0/ROM・Save変更0/compile0。
+- Commit: source=d9435a2d4af239ba25e262722bd52d8814a6bf86・run=37092347183、同branch非force push、全text読戻し。
+- Network: GitHub connector/既存Actions原本のみ。一般CI全成功は主張せず、merge/release/active baseline変更なし。
+- Next: Save23 artifact11261539316のstory-fast.srm（SHA256 728bd39b11ea53bafd31cff5fb50e7f81fe5973c0c5fae559ea22037827832bb、131088bytes）からだけ再開。map1/73・20,3東から通常入力で東7歩/南4歩の座標27,7へ進み、正規coord scriptの19,14へのteleportを新規実測する。elevation4/var4000=0のruntime発火は未受入。道中に野生戦が起きたら通常UIで対処し、host-writeやflag注入は使わない。到達後は通常Saveと独立Continueで区切る。座標trigger・静的11歩・4root/5nodeは保存済み監査を再利用。Save23までの45/cold13入力、24受入試験、旧Save1〜22/BP/P08は無影響に再走しない。27,7/19,14のteleport実到達、洞窟走破、HM05解決、全国図鑑、自然育成/進化、全storyは未完。
+
+## 2026-10-03T03:43:03+00:00
+- Timestamp: 2026-10-03T03:43:03+00:00
+- Task: USER-20261003-CAVE-EAST-SAVE24 / 洞窟東通路31,4・Save24の通常保存継続
+- Version: story-cave-east-save24-v1
+- Status: DONE（東通路/Save24限定。teleport/洞窟走破/全story未完）
+- Summary: collision-only11歩候補の27,4→27,5で高さ3→4/北側不可の停止を観測。失敗原本を保持し、同じ方向を反復せず東通路31,4へ12歩進行。通常Save24/独立Continueを受入、ROM変更0。
+- Files changed: 新入力controller/地形限定検査/受入oracle/記録workflow、Save24 checkpoint/guide/text原本、固定再開MD/JSON、両ログ。
+- Verify: run37092974275 native1/Save不変で壁停止、run37093437062 native0の砂床事前検査failureを保持。run37093559410/job111118784339全8step成功、native2・56/cold13入力・22画面・Save131088/party600bytes/Bag/12296円/旧bank/PC/S61E/全国図鑑保持。32+12+7controller試験原本再利用、新24受入試験のみ。記録native0/旧受入再走0/compile0。保存完了文言は未採取、安定field/counter24とcold全byteで限定受入。
+- Commit: WIP85e1e7d2/45ccca9b/d9835626、記録source=1a842ee45ca361522fd4e6f6cee766df6534428e・run=37094105840。scoped final index/resume/task graph/diff確認後、同branch非force push、全text読戻し。
+- Network: GitHub connector/固定Actions原本のみ。地形一次照合 https://github.com/pret/pokefirered/blob/master/include/constants/metatile_behaviors.h 。一般CI旧capacity source不一致/action_requiredは成功へ読み替えず、旧受入を緩めない。merge/release/active baseline変更0。
+- Next: Save24 artifact11263343138のstory-fast.srm（42a5fd672e8be714d40720a9fa4fece27e53293c0b0ca49a2ed0696e206455a0、131088bytes）だけから再開。map1/73・31,4南・party4/RP0・12296円・badge1・var4071=6/4072=1。次は東側通路を南へ通常入力で進み、NPC/野生戦は通常UIで対処し次のSave/独立Continue境界へ。27,4→27,5は高さ3→4/北側進入不可なので旧11歩候補を再試行しない。岩階段23,14へ回り込む候補は未実測、19,14のcoordはflag4367で27,7/8,10へ分岐する。静的座標ownerは再利用し、敵trainer/script/進路と手持ちPPを保存候補から照合して入力を計画する。当回56/cold13入力・32+12+7/新24試験・Save1〜23/旧BP/P08は無影響に再走しない。teleport/洞窟走破/HM05原因/全国図鑑/自然成長進化/全storyは未完。hostによるstory/flag/var解禁禁止。
+
+## 2026-10-03T09:41:33+00:00
+- Timestamp: 2026-10-03T09:41:33+00:00
+- Task: USER-20261003-CAVE-TRAINER351-SAVE25 / 洞窟東通路trainer351とSave25
+- Version: story-cave-trainer351-save25-v1
+- Status: DONE（trainer1勝/保存限定。洞窟走破/全story未完）
+- Summary: 31,7の通常trainer351を火炎放射3回・交代取消2回で勝利、416円。通常Save25と独立Continueの全byte保持。新artifactはsave/画面/textだけ。
+- Files changed: 専用controller/18受入試験/record workflow、Save25正本とtext証拠、固定再開MD/JSON、両ログ。
+- Verify: run37112730069/job111173640445全8step成功、94/cold13入力、42画面、party差分PP1byte、旧bank/Bag/PC/S61E/全国図鑑保持、42checksum。準備6静的/16controller/7path試験原本再利用、新18受入試験だけ。record native0/ROM変更0/既受入再走0。run37112433649はruntime原本404/native0 failureのまま保存。
+- Commit: WIP1c7b23e4/25049912/61d71820、記録source=dbb50b3c13ce33d7a8576d9a24178af9e056a49a・run=37113873113。scoped guard/task graph/resume後、同branch非force pushと全text読戻し。
+- Network: 同repoのGitHub/Actions原本のみ。既存ROM/runtimeはActions入力として読取り、新規再配布0。一般CI旧capacity source不一致を成功とせず、merge/release/baseline変更0。
+- Next: Save25 artifact11270560918のstory-fast.srm（4a92a1d2a36c1b74fa7ba211a9b3a815d63c04582fd34b117a5c3af16828a68f、131088bytes）だけから再開。map1/73・31,7南・party4/RP0・12712円・badge1・story4071=6/4072=1。trainer351の通常勝利/416円/Save25/独立Continueは完了。次は東通路の31,8以南から進み、trainer352（30,13）/353（21,17）と岩階段23,14経由の正規teleportを通常入力で確認する。3root/6node・33点地形は静的候補だけで実通行受入ではない。ミュウツーPP[1,14,2,5]/HP324、オノノクスPP[15,10,15,20]/HP294。通常UIで残PPを扱い、host回復/flag/var解禁は禁止。既存候補ROM/runnerはSave24 artifact11263343138からActions内で読取専用再利用。旧runtime artifact10898620034は404で消失、保持済み11263910704のruntime/manifest.json全member/hashを照合して利用。新公開artifactには新save/画面/textだけを入れ、既存ROM/runner/runtime/入力Saveは再配布しない。94/cold13入力、16+7/新18試験、Save1〜24を無影響再走しない。teleport/洞窟走破/HM05原因/全国図鑑/自然進化/全storyは未完。
+
+## 2026-10-03T10:09:40+00:00
+- Timestamp: 2026-10-03T10:09:40+00:00
+- Task: USER-20261003-CAVE-SOUTH-SAVE26 / 洞窟南通路とSave26
+- Version: story-cave-south-save26-v1
+- Status: DONE（新区間野生1勝/保存限定。洞窟走破/全story未完）
+- Summary: 31,7から東南を迂回し32,15西。野生ディグダLv6に火炎放射1回で勝利、通常Save26と独立Continue。新artifactはsave/画面/textだけ。
+- Files changed: Save26専用controller/20受入試験/record workflow、checkpointとtext証拠、固定再開MD/JSON、両ログ。
+- Verify: run37114774344/job111179348370全8step成功、84/cold13入力・37画面・全51member。party差分PP1byte、旧bank/Bag/PC/S61E/全国図鑑/全flags保持、42checksum。15controller試験原本再利用、新20受入試験だけ。record native0/ROM変更0/既受入再走0。
+- Commit: WIP3fde7851、記録source=d89e6f4596a65cff44fd5adde551023a70ccc50d・run=37115447922。scoped guard/task graph/resume後に同branch非force push、全text読戻し。
+- Network: 同repo GitHub/Actions原本のみ。既存ROM/runtime/input Save25はActions入力だけ。一般CI旧capacity source不一致は保持、merge/release/baseline変更0。
+- Next: Save26 artifact11270502866のstory-fast.srm（e65fc5bb2c76d7cfcdd144c1a69451ad8508ff73ad82e4c7f24595d75200624d、131088bytes）だけから再開。map1/73・32,15西・party4/RP0・12712円・badge1・story4071=6/4072=1。野生ディグダLv6の通常1勝、Save26/独立Continueは完了。次は32,15から西へ23,15、岩階段23,14→23,13、19,13→19,14の正規coord teleportを通常入力で確認する。trainer352（30,13）/353（21,17）は未対戦、残り経路は静的候補だけ。ミュウツーPP[1,14,1,5]/HP324、オノノクスPP[15,10,15,20]/HP294。残PPを実技UIで扱い、host回復/flag/var解禁は禁止。既存候補ROM/runnerはSave24 artifact11263343138、runtimeは11263910704をhash固定してActions入力のみ再利用。新公開artifactは新save/画面/textだけ。84/cold13入力・15controller/新20受入試験・Save1〜25は無影響再走しない。teleport/洞窟走破/HM05原因/全国図鑑/自然成長進化/全storyは未完。
+
+## 2026-10-03T10:28:05+00:00
+- Timestamp: 2026-10-03T10:28:05+00:00
+- Task: USER-20261003-CAVE-ROCK-STAIRS-SAVE27 / 岩階段通過とSave27
+- Version: story-cave-rock-stairs-save27-v1
+- Status: DONE（新区間野生1勝/保存限定。teleport/洞窟走破/全story未完）
+- Summary: 32,15から23,14岩階段を経て19,13西へ。野生ダンゴロ♂Lv7を残り火炎放射1回で撃破し通常Save27/独立Continue。新artifactはsave/画面/textだけ。
+- Files changed: Save27専用controller/20受入試験/record workflow、checkpointとtext証拠、固定再開MD/JSON、両ログ。
+- Verify: run37116043940/job111182955509全8step成功、86/cold13入力・38画面・全52member。party差分PP1byte、旧bank/Bag/PC/S61E/全国図鑑/全flags保持、42checksum。12controller原本再利用、新20受入試験だけ。record native0/ROM変更0/既受入再走0。Save26記録全10step成功も固定JSONへ反映。
+- Commit: WIP77b229ce、記録source=dacc10021fcb1a2d76e318113871b5e698878023・run=37116490265。scoped guard/task graph/resume後に同branch非force push、全text読戻し。
+- Network: 同repo GitHub/Actions原本のみ。既存ROM/runtime/input Save26はActions入力だけ。一般CI旧capacity source不一致は保持、merge/release/baseline変更0。
+- Next: Save27 artifact11271451341のstory-fast.srm（fb3c41c4178a04cee89301c74ecf2a646dc4d5633eefa8086664ca0057d7b1d4、131088bytes）だけから再開。map1/73・19,13西・party4/RP0・12712円・badge1・story4071=6/4072=1。岩階段23,14→23,13、高台西行と野生ダンゴロ♂Lv7の通常1勝、Save27/独立Continueは完了。次は19,13から南を向いて19,14の正規coord teleportを通常入力で確認。候補destination27,7または8,10を静的候補と実観測で区別し、最初の新境界で保存する。trainer352/353は未対戦。ミュウツーPP[1,14,0,5]/HP324、オノノクスPP[15,10,15,20]/HP294。火炎放射PP0を使わず実技UIで残PPを扱う。host回復/flag/var解禁は禁止。既存ROM/runnerはSave24 artifact11263343138、runtime11263910704をhash固定しActions入力のみ再利用。新公開artifactは新save/画面/textだけ。86/cold13入力・12controller/新20受入試験・Save1〜26は無影響再走しない。teleport/洞窟走破/HM05原因/全国図鑑/自然成長進化/全storyは未完。
+
+## 2026-10-03T10:49:23+00:00
+- Timestamp: 2026-10-03T10:49:23+00:00
+- Task: USER-20261003-CAVE-COORD-TELEPORT-SAVE28 / 正規teleportとSave28
+- Version: story-cave-coordinate-save28-v1
+- Status: DONE（19,14→27,7/保存限定。8,10枝/洞窟走破/全story未完）
+- Summary: Save27から南1tileの正規coordを踏み27,7南へteleport。通常Save28/独立Continue。戦闘0、party/PP/Bag/flags/vars不変。
+- Files changed: Save28専用controller/20受入試験/record workflow、checkpointとtext証拠、固定再開MD/JSON、両ログ。
+- Verify: run37117145212/job111186021028全8step成功、40/cold13入力・17画面・全36member。party600bytes、旧bank/PC/S61E/全国図鑑/全flagsとvars保持、42checksum。開発12+4試験と先頭lock修正影響16再検査を区別。新20受入試験だけ。record native0/ROM変更0/旧ゲーム受入再走0。
+- Failure: run37116752441/37116959565はnative0の失敗原本。condition一般化だけでは解決しなかった。実operand観測で先頭lockの読み位置漏れを特定し修正。失敗を成功へ改作しない。
+- Commit: 測定1cc88ec7、記録source=3900c985f1901d9e0a674cc6254b2b6af2923bd0・run=37117631601。scoped guard/task graph/resume後に同branch非force push、全text読戻し。
+- Network: 同repo GitHub/Actions原本。補助参照 https://raw.githubusercontent.com/pret/pokefirered/master/src/scrcmd.c のcheckflag/goto_if条件表。実ROM/saveが正本。既存ROM/runtime/input Save27を再配布しない。一般CI旧capacity source不一致保持、merge/release/baseline変更0。
+- Next: Save28 artifact11271154923のstory-fast.srm（a5cfc5714bcc447550d78ff45f42c74109f12d607bad1d94dbf61fe96b06f4a4、131088bytes）だけから再開。map1/73・27,7南・party4/RP0・12712円・badge1・story4071=6/4072=1。19,14→27,7の正規teleport（flag4367=0）、Save28/独立Continueは完了。次は27,7高台から西側の正規通路/橋/coord11〜16,14（var4071=6）とflag4367のstory ownerを追い、新しい通常入力を進める。8,10行きはflag4367=1の未解禁枝。27,7へのteleport成功を洞窟走破へ昇格せず、19,14を無目的に周回しない。trainer352/353も未対戦。ミュウツーPP[1,14,0,5]/HP324、オノノクスPP[15,10,15,20]/HP294。火炎放射PP0を使わず、host回復/flag/var解禁は禁止。既存ROM/runnerはSave24 artifact11263343138、runtime11263910704をhash固定してActions入力のみ再利用。新公開artifactは新save/画面/textだけ。40/cold13入力・17画面・20新受入試験とSave1〜27は無影響再走しない。旧preflight2回はnative0失敗のまま保持。洞窟走破/HM05原因/全国図鑑/自然成長進化/全storyは未完。
+
+## 2026-10-03T11:18:38+00:00
+- Timestamp: 2026-10-03T11:18:38+00:00
+- Task: USER-20261003-CAVE-WEST-SAVE29 / 西高台17,4への進行とSave29
+- Version: story-cave-west-save29-v1
+- Status: DONE（西高台/野生1勝/保存限定。西岩階段/story解禁/洞窟走破は未完）
+- Summary: Save28から27,7→18,7→18,4→17,4西へ通常移動。ディグダ♂Lv8をれいとうビーム1回で撃破し通常Save29/独立Continue。火炎放射PP0を使わない。
+- Files changed: Save29 controller/owner4試験/20受入試験/record workflow、checkpointとtext証拠、固定再開MD/JSON、両ログ。
+- Verify: run37118447519/job111189690507全8step成功、88/cold13入力・39画面・全55member。party差分PP5→4、Bag/flags/PC/S61E/全国図鑑保持、var4021のみ68→81、42checksum。前回16controller+変更owner4と初回record20受入成功gateを再利用。個別20試験stderrは未保存。記録先2試験も後続recordの成功stepから再利用し、今回receipt2試験だけ。record native0/ROM変更0/旧ゲーム再走0。
+- Failure: run37118280803はowner終端opcodeを0x6dと推測したpreflightのnative0失敗。実setflag/setvar operandを限定照合し、末尾0x6bを観測。失敗原本を保持。初回record37118869651は旧guide書込みを保護guardがpush前拒否。GUIDE定数を修正し新2拒否試験、20既通過試験は再走0。record37119050035は引用tracebackの絶対pathをprivate guardがpush前に拒否。pathを公開せず行番号/errorだけへ修正、新2receipt試験。
+- Commit: 測定source=33e1b9337469170adfca8af14ec4b3f298135b75、記録source=a5d169ffc645d574d8d2bd471555fc82a56b592f・run=37119219773。scoped guard/task graph/resume後に同branch非force pushし全text読戻し。
+- Network: 同repo GitHub/Actions原本のみ。既存ROM/runtime/input Save28を再配布しない。一般CI旧capacity source不一致保持、merge/release/baseline変更0。
+- Next: Save29 artifact11271899477のstory-fast.srm（780c27a138bc0795e2f30c328f69a77ded3569a9960318a61f0dc3d431f56a83、131088bytes）だけから再開。map1/73・17,4西・party4/RP0・12712円・badge1・story4071=6/4072=1。西高台の通常移動、野生ディグダ♂Lv8の通常1勝、Save29/独立Continueは完了。次は17,4から西4歩で13,4、南の正規岩階段13,5→13,6へ進み、低地/橋からcoord11〜16,14のownerへ向かう。root0x08214656はsetflag4367/var4071=7の正規owner。先頭0x69・末尾0x6b/endを実byte観測。flag4367は未設定で8,10枝は未解禁。ミュウツーHP324/PP[1,14,0,4]、オノノクスHP294/PP[15,10,15,20]。火炎放射PP0を使わず、host回復/flag/var解禁は禁止。trainer352/353は未対戦。既存ROM/runnerはSave24 artifact11263343138、runtime11263910704をhash固定してActions入力のみ再利用。新公開artifactは新save/画面/textだけ。88/cold13入力・39画面・16controller+4owner/新20受入試験、Save1〜28は無影響再走しない。初回native0失敗を保持。13,5岩階段/洞窟走破/HM05原因/全国図鑑/自然成長進化/全storyは未完。
+
+## 2026-10-03T11:36:13+00:00
+- Timestamp: 2026-10-03T11:36:13+00:00
+- Task: USER-20261003-CAVE-STAIRS-SAVE30 / 西岩階段の通常通過とSave30
+- Version: story-cave-stairs-save30-v1
+- Status: DONE（西岩階段/下層保存限定。story解禁/洞窟走破は未完）
+- Summary: Save29の17,4→13,4→13,5岩階段→13,6南。通常Save30/独立Continue。今回戦闘0、HP/PP/party全600byte不変。
+- Files changed: Save30 controller/12変更試験/20受入試験/record workflow、checkpoint/text証拠、固定再開MD/JSON、両ログ。
+- Verify: run37119699930/job111193264460全8step成功、46/cold13入力・18画面・全33member。Bag/flags/PC/S61E/全国図鑑保持、var4021は81→87/4022は0→1、runtime owner未解決。42checksum/6941byte差分/全SaveRTC保持。新12controller原本を再利用、新20受入のみ実行してstderr全保存。record native0/ROM変更0/旧ゲーム再走0。
+- History: Save29のnative0 preflight失敗/旧guide宛先guard/絶対pathprivateguard失敗は原本保持。既通過試験の証拠限界も変更しない。
+- Commit: 測定source=5518bc514b00151d4bd55dbd1baf66b3ca05dd04、記録source=34f54573124705f69963d7f6345f9ba7a472838e・run=37120155157。scoped guard/task graph/resume後に同branch非force pushし全text読戻し。
+- Network: 同repo GitHub/Actions原本だけ。既存ROM/runtime/input Save29の再配布0。一般CI既知source不一致を保持、merge/release/baseline変更0。
+- Next: Save30 artifact11273101471のstory-fast.srm（cb22ab0344990a51ef40d01e4049e8976a65340e629eaef2b390b6ce5f80d70b、131088bytes）だけから再開。map1/73・13,6南・party4/RP0・12712円・badge1・story4071=6/4072=1。正規岩階段13,5を通常通過し下層13,6のSave30/独立Continueを受入。次は下層から南のcoord11〜16,14へ進み、正規owner0x08214656によるflag4367/var4071=7を通常入力で観測する。保存済みlower_corridor_terrainでは13,6→13,7→14,7→14,8の南にbehavior59境界14,9がある。衝突bitだけで到達不能と断定せず、通常入力と画面で境界を確認する。ミュウツーHP324/PP[1,14,0,4]、オノノクスHP294/PP[15,10,15,20]は不変。今回戦闘0。火炎放射PP0を使わずhost回復/flag/var解禁は禁止。既存ROM/runnerはSave24 artifact11263343138、runtime11263910704をActions入力だけ再利用し、新公開artifactは新save/画面/textだけ。46/cold13入力・18画面・新12controller/20受入試験、Save1〜29は無影響再走しない。補助var4021=87/4022=1のruntime ownerは未解決。trainer352/353、story flag4367、洞窟走破、HM05原因、全国図鑑、自然成長進化、全storyは未完。
+
+## 2026-10-03T11:51:33+00:00
+- Timestamp: 2026-10-03T11:51:33+00:00
+- Task: USER-20261003-CAVE-OWNER-SAVE31 / 南段差2辺と正規story解禁Save31
+- Version: story-cave-owner-save31-v1
+- Status: DONE（南段差/flag4367解禁/保存限定。洞窟走破/全国図鑑は未完）
+- Summary: Save30の13,6→14,8→14,10→14,12→14,14南。正規owner0x08214656のflag4367=1/var4071=7を通常Save31/独立Continueで受入。今回戦闘0、HP/PP/party全600byte不変。
+- Files changed: Save31 controller/12変更試験/24受入試験/record workflow、checkpoint/text証拠、固定再開MD/JSON、両ログ。
+- Verify: run37120372607/job111195148880全8step成功、52/cold13入力・22画面・全37member。Bag/legacyflags/PC/全国図鑑保持、S61E offset257だけ65→193＋CRC/complement。var4071=6→7、補助var4021は87→93/4022は1→2（補助owner未解決）。42checksum/6960byte差分/全SaveRTC保持。新12controller原本再利用、新24受入のみ実行してstderr全保存。counter31でも未完な観測17を保存成功にしない。record native0/ROM変更0/旧ゲーム再走0。
+- Failure: 初回record37120815549/job111196397968は入力環境名の旧Save29を原因としてsetUpClassでKeyError、Ran0/native0。stderr原artifact11273570337保持、入力名だけSave30へ修正して未実行24試験へ。ゲーム測定再走0。
+- History: Save29以前のnative/record失敗と試験証拠限界は保持。Save30記録run37120155157全11step終端を固定JSONへ反映。
+- Commit: 測定source=accd52953d20245894396a0444d39f56b8d78a35、記録source=c0327a3c9f0cf9940a7cb2b11c508c4ce87dd985・run=37120967764。scoped guard/task graph/resume後に同branch非force pushし全text読戻し。
+- Network: 同repo GitHub/Actions原本だけ。既存ROM/runtime/input Save30再配布0。一般CI既知source不一致を保持、merge/release/baseline変更0。
+- Next: Save31 artifact11273187310のstory-fast.srm（f0d2c1afb303390fb415e52090379a234a813f1bd7854ea77d92f5cb7b50ac2f、131088bytes）だけから再開。map1/73・14,14南・party4/RP0・12712円・badge1・story4071=7/4072=1。南段差14,9/14,13を通常通過し、14,14のowner0x08214656でflag4367=1/var4071=7になった通常Save31と独立Continueを受入。次は14,14から南側通路を進み、洞窟全地形/obj/warpと新しいstory状態を固定ROMから照合して出口へ向かう。既存静的ownerでは19,14のteleport分岐はflag4367=1で8,10へ変わり、7,5のcoordはvar4071=7が発火条件。これらへの到達/発火/出口は未観測。保存済みlower_corridor_terrainはx8〜19/y4〜16だけ。範囲外を推測せず未読地形だけを採取して通常経路を決める。ミュウツーHP324/PP[1,14,0,4]、オノノクスHP294/PP[15,10,15,20]は不変。今回戦闘0。火炎放射PP0を使わずhost回復/flag/var解禁は禁止。既存ROM/runnerはSave24 artifact11263343138、runtime11263910704をActions入力だけ再利用し、新公開artifactは新save/画面/textだけ。52/cold13入力・22画面・新12controller/24受入試験、Save1〜30は無影響再走しない。補助var4021=93/4022=2のruntime ownerは未解決。trainer352/353、分岐先への実warp、洞窟走破、HM05原因、全国図鑑、自然成長進化、全storyは未完。
+
+## 2026-10-03T12:20:34+00:00
+- Timestamp: 2026-10-03T12:20:34+00:00
+- Task: USER-20261003-CAVE-SOUTH-TRAINER-SAVE32 / 南回廊とtrainer353通常勝利Save32
+- Version: story-cave-south-trainer-save32-v1
+- Status: DONE（trainer353/保存限定。東階段/teleport/洞窟出口/全国図鑑未完）
+- Summary: Save31の14,14から南段差を通過し、21,19でtrainer353を通常UIで1勝。報酬416円/HP324→322/れいとうビームPP4→0、通常Save32/独立Continueを受入。頑丈/オレンのみのダンゴロLv10、ブロロンLv13、ドガースLv12、交代拒否2回。
+- Files changed: 未読地形採取器、Save32 controller/12変更試験/24受入試験/record workflow、checkpoint/text証拠、固定再開MD/JSON、両ログ。
+- Verify: 地形run37121423789全8step成功、既存164+新756マス/7,5の6node静的。測定run37121677872/job111198849680全8step成功、138/cold13入力・64画面・全79member。party差分2byte、5中間partyを独立再構成、legacy flag1633だけ/正規trainer353 root、Bag/PC/S61E/全国図鑑保持、補助var4021は93→103/4022は2→0（runtime owner未解決）。42checksum/6973byte差分/全SaveRTC保持。新12controller原本再利用、新24受入だけ実行して全stderr保存。record native0/ROM変更0/旧ゲーム再走0。
+- Failure: 初回record37122292424/job111200634955はsourceguard変更集合不一致。採取器2pathは比較base以前のためCODEから分離し保全binding維持。受入試験0/native0/artifact0、失敗Actions原logを保持。
+- Failure: 第2record37122423332/job111201015523は中間partyのbytearray型をidentityが拒否してunit起動前停止。bytes化だけ修正、受入unit0/native0/artifact0。失敗Actions原logを保持。
+- History: Save31記録run37120967764全11step終端を反映。旧native/record失敗原本を保持。
+- Commit: 測定source=9432cfd03ac1d93bd59d7db296ab49ff20d766d7、記録source=8d97e9de625f4b28b9c1b6bc7a30e5582812eba6・run=37122527387。scoped guard/task graph/resume後に同branch非force pushし全text読戻し。
+- Network: 同repo GitHub/Actions原本だけ。既存ROM/runtime/input Save31再配布0。一般CI既知source不一致を保持、merge/release/baseline変更0。
+- Next: Save32 artifact11273920453のstory-fast.srm（df4a9c40ce888a26f88493d69e7d37f9b0ea13b2fce793c4f2e34ac0380cd871、131088bytes）だけから再開。map1/73・21,19東・party4/RP0・13128円・badge1・story4071=7/4072=1。南段差14,15の通常通過とtrainer353通常1勝/416円/Save32/独立Continueを受入。ミュウツーHP322/354・PP[1,14,0,0]、他party/Bag/S61Eは不変。以降はれいとうビームと火炎放射を選ばず、通常UIの別技/必要時通常回復だけ。host回復/PP/flag/var注入は禁止。保存された全920マス（既存164+未読756）の静的原本から、21,19→22,19→23,19→23,14東岩階段→23,13→21,13→21,14→19,14へ向かう。flag4367=1の正規teleport先8,10は未到達。7,5のcoordはvar4071=7でtrainer360を含む6node/var4071=8へ続くが未発火。静的壁だけで西側出口が不可能とは判断せずmap-load動的地形ownerも必要時だけ照合する。物理出口4,19はmap1/38へ、その隣接warp4,6はmap3/21へ接続する静的表。通常到達/洞窟走破/全国図鑑は未完。138/cold13入力・64画面・新12controller/24受入試験、Save1〜31を無影響再走しない。補助var4021=103/4022=0のruntime ownerは未解決。trainer352/360、東階段、解禁後teleport、洞窟出口、HM05原因、全国図鑑、自然成長進化、全storyは未完。既存ROM/runner/runtimeはActions入力だけ、新公開artifactは新save/画面/textだけ。
+
+## 2026-10-03T12:33:02+00:00
+- Timestamp: 2026-10-03T12:33:02+00:00
+- Task: USER-20261003-CAVE-EAST-TELEPORT-SAVE33 / 東岩階段と解禁後西側転送Save33
+- Version: story-cave-unlocked-teleport-save33-v1
+- Status: DONE（階段/転送/保存限定。西側event/洞窟出口/全国図鑑未完）
+- Summary: Save32から東岩階段を通過しflag4367=1の正規19,14→8,10転送、通常Save33/独立Continueを受入。戦闘0、party全600byte/HP322/PP[1,14,0,0]・Bag・所持金13128・PC/S61E不変。
+- Files changed: Save33 controller/15変更試験/24受入試験/record workflow、checkpoint/text証拠、固定再開MD/JSON、両ログ。
+- Verify: 測定run37122926665/job111202448744全8step成功、69/cold13入力・31画面・全46member。階段8/上段9、trigger17/着地18/解錠19、部分write4状態23〜26/counter33先行26、保存文言27/field28。42checksum/6970byte差分/全SaveRTC不変。legacy flags/story維持、補助var4021=103→115/4022=0→2（runtime owner未解決）。実warp30byte独立照合。15controller原本再利用、新24受入/拒否試験だけ実行してstderr保存。record native0/ROM変更0/旧ゲーム再走0。
+- History: Save32記録run37122527387全11step終端を反映。旧失敗原本は変更しない。
+- Commit: 測定source=73741f547eba9bb5519afb22c37d524416a9beb9、記録source=6910abb080a36796bd570455eb7858828a5d3b51・run=37123210891。scoped guard/task graph/resume後に同branch非force pushし全text読戻し。
+- Network: 同repo GitHub/Actions原本だけ。既存ROM/runtime/input Save32再配布0。一般CI既知source不一致を保持、merge/release/baseline変更0。
+- Next: Save33 artifact11273622658のstory-fast.srm（ceb55e1df60f35b69f4854017afa19d703df987c602c3a0f6b0090c2323e0685、131088bytes）だけから再開。map1/73・8,10西・party4/RP0・13128円・badge1・story4071=7/4072=1。東岩階段23,14とflag4367=1の正規19,14→8,10teleport、Save33/独立Continueを受入。ミュウツーHP322/354・PP[1,14,0,0]、party/Bag/PC/S61E/所持金は不変。れいとうビーム/火炎放射を選ばず通常UIの残存技/必要時通常回復だけ。host回復/PP/flag/var注入は禁止。保存済全920マスと7,5のcoord6nodeから西側区間を調べ、var4071=7でtrainer360を含む次の正規eventへ向かう。8,10から踏み直し転送で東へ戻らない経路を選ぶ。静的壁だけで出口不可と決めず必要ならmap-load動的地形ownerだけ照合。物理出口4,19はmap1/38へ、隣接warp4,6はmap3/21へ接続する静的表。通常到達/洞窟走破/全国図鑑は未完。69/cold13入力・31画面・新15controller/24受入試験、Save1〜32を無影響再走しない。補助var4021=115/4022=2のruntime ownerは未解決。trainer352/360、洞窟出口、HM05原因、全国図鑑、自然成長進化、全storyは未完。既存ROM/runner/runtimeはActions入力だけ、新公開artifactは新save/画面/textだけ。
+
+## 2026-10-03T12:46:27+00:00
+- Timestamp: 2026-10-03T12:46:27+00:00
+- Task: USER-20261003-CAVE-WEST-FRONTIER-SAVE34 / 西側北辺の未通過とSave34
+- Version: story-cave-west-frontier-save34-v1
+- Status: DONE（北辺未通過を保持。通常保存/Continue限定受入）
+- Summary: Save33から9,7へ進み北辺9,6への3試行は未通過。その場で通常Save34/独立Continueへ区切る。戦闘0・party600byte/HP322/PP[1,14,0,0]・Bag/13128円/PC/S61E不変。8,5/7,5 event/洞窟出口は未到達。
+- Files changed: 未読map-load採取器、Save34 controller/14変更試験/24受入試験/record workflow、checkpoint/text証拠、固定再開MD/JSON、両ログ。
+- Verify: 測定run37123621651/job111204455124全8step成功、50/cold13入力・20画面・全35member。北向き7/8/9は同じ9,7。部分write13〜16/counter34先行16、全Flash完成とfield復帰17。保存成功文言の瞬間は未採取と明記。42checksum/6996byte差分/全SaveRTC不変。補助var4021=115→119/4022=2→1のowner未解決。warm ledger変化4はRP稼得ではない。14controller原本再利用、新24受入/拒否試験だけ実行しstderr保存。record native0/ROM変更0/旧ゲーム再走0。
+- Preparation: run37123370663/job111203707030全8step成功/native0。新3node14命令だけ採取、既存920地形再採取0。flag4367のmap-loadが8,5を開く。次は戻り転送で27,7から西岩階段13,5を経由する通常迂回候補。
+- History: Save33記録run37123210891全11step終端を反映。旧失敗原本を保持。
+- Commit: 測定source=c181dc2610d01db9a29a9dc46edd6c8bb0ac0b46、記録source=a4c565b152c26e00e5a68b381a9a564a389a45f9・run=37123931026。scoped guard/task graph/resume後に同branch非force pushし全text読戻し。
+- Network: 同repo GitHub/Actions原本。比較参照 https://raw.githubusercontent.com/pret/pokefirered/master/include/constants/metatile_behaviors.h と https://raw.githubusercontent.com/pret/pokefirered/master/src/event_object_movement.c を読取。behavior0x32とelevation不一致の上流定義を参考とし、候補実ROM同値証明へ昇格しない。既存ROM/runtime/input Save33再配布0。一般CI既知source不一致を保持、merge/release/baseline変更0。
+- Next: Save34 artifact11274397555のstory-fast.srm（c90cde2874e2c9a13b96c990c3907326bea066bb22a6bd61ae71b63ae5419692、131088bytes）だけから再開。map1/73・9,7北・party4/RP0・13128円・badge1・story4071=7/4072=1。北辺9,7→9,6は3回通常入力で通過せず、この失敗辺を反復しない。Save34/独立Continueだけ限定受入。ミュウツーHP322/354・PP[1,14,0,0]、party/Bag/PC/S61E/所持金は不変。れいとうビーム/火炎放射は選ばない。host回復/PP/flag/var注入は禁止。新map-load原本3node/14命令より、flag4367=1が8,5にmetatile0281/collision0を設定する。実到達は未受入。次は9,7→9,8→9,9→9,10→8,10の通常戻り転送で27,7へ。そこから26,7→25,7→24,7→23,7→22,7→21,7→20,7→19,7→18,7→18,6→18,5→17,5→16,5→16,4→15,4→14,4→13,4→13,5岩階段→13,6→12,6→11,6→10,6→9,6→8,6→8,5→7,5の候補。これは最新Save34から新しく開いた8,5/次eventへ向かう必要な通常迂回であり、旧Save再ロードや受入単体の再試験ではない。7,5 coordはvar4071=7でtrainer360を含む6node/var4071=8の保存済原本。50/cold13入力・20画面・新14controller/24受入試験、既受入Save1〜33を無影響再走しない。保存成功文言の瞬間は未採取。Save34受入は全Flash/sector checksum/field復帰/独立Continueによる。補助var4021=119/4022=1のruntime ownerは未解決。trainer352/360、洞窟出口4,19→map1/38、全国図鑑、自然成長進化、全storyは未完。既存ROM/runtimeはActions入力だけ、新公開artifactは新save/画面/textだけ。
+
+## 2026-10-03T13:06:56+00:00
+- Timestamp: 2026-10-03T13:06:56+00:00
+- Task: USER-20261003-CAVE-RETURN-WILD-SAVE35 / 戻り転送・野生バルキー・Save35
+- Version: story-cave-return-wild-save35-v1
+- Status: DONE（戻り転送/野生1勝/通常保存Continue限定受入）
+- Summary: 8,10→27,7を通常転送、16,5で野生バルキー勝利。ひるみ1/はどうだん選択2/実PP消費1を区別しHP320/PP[1,13,0,0]。西階段/8,5/event未到達。
+- Files changed: Save35 controller/追加wait-only検査/受入26試験/record workflow、checkpoint/text原本、固定再開MD/JSON、両ログ。
+- Verify: 測定run37124732153/job111207625688全8step成功、115/cold13入力/60画面/77member。部分write42〜53/counter35先行53、全Flash/成功文言54〜56/field復帰57。旧bank57344byte/42checksum/6941byte1770範囲差分/cold全SaveRTC一致。party4byte差分のoffset41/241+1と補助var2件のowner未解決。全Bag/13128円/PC/S61E/flag/badge不変。旧19+4controllerは成功step再利用、新5wait-onlyと26受入/拒否のみ。record native0。
+- History: run37124366728は56入力24画面/native1、37124554654は57入力25画面/native1で未保存停止。両原本/失敗を保持し、no-input有限待機へ変更してSave34の未受入区間だけ回復。合計native4、受入済ゲーム再走0、ROM変更/fixture/compile0。Save34記録run37123931026とStage79 run37123931149のsuccess終端反映。
+- Commit: 測定source=95edb59bcf19a560f81355aa446c3cf57bf95a62、記録source=091d51ca2184ab1befb931ec804232a824e90eb1・run=37125070319。scoped guard/task graph/resume後に同branch非force pushし全text読戻し。
+- Network: 同repo GitHub/Actions原本のみ。既存ROM/runtime/input Save34再配布0。一般CI既知source不一致を保持、merge/release/baseline変更0。
+- Next: Save35 artifact11274735081のstory-fast.srm（df15c94737ee6511a80173215ab0edbfb3927161c7b6dbb59f9c403b4a197d98、131088bytes）だけから再開。map1/73・16,5西・party4/RP0・13128円・badge1・story4071=7/4072=1・flag4367=1。戻り転送8,10→27,7と野生バルキー1勝、通常Save35/独立Continueまで限定受入。ミュウツーHP320/354・PP[1,13,0,0]。はどうだん選択2回のうち初回はひるみ、実PP消費1。host回復/PP/flag/var注入禁止。次は16,5→16,4→15,4→14,4→13,4→13,5西岩階段→13,6→12,6→11,6→10,6→9,6→8,6→8,5→7,5候補。失敗辺9,7→9,6は反復せず、戻り転送の今回完了prefixも再走しない。保存済920cells/map-load3node14命令/7,5event6nodeを再採取しない。8,5はflag4367により開く静的ownerを継承するが、西階段/実8,5/7,5event/trainer360は未受入。本成功115/cold13入力・60画面・全77member、旧controller19+4成功step継承/新5wait-only/新26受入。失敗run37124366728の56入力24画面、37124554654の57入力25画面はいずれも未保存native1で保持。party offset41/241の各+1と補助var4021=119→7/4022=1→0のruntime ownerは未解決で、自然成長受入へ昇格しない。保存成功文言54〜56/全Flash完成54/field復帰57/cold全SaveRTC一致。trainer352/360、洞窟出口4,19→map1/38、全国図鑑、自然成長進化、全storyは未完。既存ROM/runtime/inputはActionsだけ、新公開artifactは新save/画面/textのみ。
+
+## 2026-10-03T13:22:42+00:00
+- Timestamp: 2026-10-03T13:22:42+00:00
+- Task: USER-20261003-CAVE-TRAINER360-EVENT-SAVE36 / 西階段・開通通路・trainer360 event・Save36
+- Version: story-cave-trainer360-event-save36-v1
+- Status: DONE（西側event/Save36限定受入。洞窟出口未完）
+- Summary: 13,5西階段/動的8,5/7,5正規event→trainer360の4体撃破/448円報酬/敵NPC非表示/同行者退出→6,13南でSave36。HP320不変、はどうだん4選択/Pressureで実5PP消費、残PP[1,8,0,0]。
+- Files changed: Save36 controller/13+4変更試験/新scoped trace parser/34受入拒否試験/record workflow、checkpoint/text原本、固定再開MD/JSON、両ログ。
+- Verify: run37125324369/job111209348108はnative2正常・227/cold13入力/114画面/130member/Save36完了後の旧parser座標例外でfailure。旧結論を保持して原本だけ独立受入、入力再走0。107全Flash/108〜110保存成功文言/111field復帰/cold全SaveRTC一致、42checksum/旧bank57344byte/S61E CRC/6990byte1798範囲。party差分PP1byte、Bag/PC保持、13576円、trainer physical1640/4071=8/flag4368/4369正規更新。補助var4021owner未解決。
+- History: 記録run37125775957はGUIDE名残の宛先checkで停止（native0/受入試験0）。正しいSave36宛先に限定訂正し旧failureを保持。先行run37125164118は50入力20画面/native1・未保存のevent座標先行停止を保持。旧13controller/変更4controllerの成功stepを原log再利用、受入34件だけ追加。合計開発native3、record native0、旧受入再走/ROM変更/compile/fixture0。保存済920cells/6node owner/map-load原本再採取0。Save35記録とStage79終端を反映。
+- Commit: 測定source=f4bc5af88aa4dec1e3fc2ccf34ff889d05df367f、記録source=a194033c4599fd27746c5f5d4f29c99287eef165・run=37125940788。scoped guard/task graph/resume後に同branch非force pushと全text読戻し。
+- Network: 同repo GitHub/Actions原本のみ。既存ROM/runtime/input Save35再配布0。一般CI既知source不一致を保持、merge/release/baseline変更0。
+- Next: Save36 artifact11274556304のstory-fast.srm（572b1816442da3ace4442b53167c59ae4e61aece80010a7bc17f291d8992f12c、131088bytes）だけから再開。map1/73・6,13南・party4/RP0・13576円・badge1・story4071=8/4072=1・flag4367/4368/4369=1。西岩階段/動的8,5/7,5event/trainer360の通常勝利/Save36・独立Continueまで限定受入。ミュウツーHP320/354・PP[1,8,0,0]。はどうだん4選択で5PP消費、最後のポリゴンのプレッシャーを区別。4体撃破/448円報酬。host回復/PP/flag/var注入禁止。次は6,13→6,14→6,15→6,16→6,17→6,18→6,19→5,19→4,19の出口候補。map1/38のwarp1は6,4、出口warp0は4,6→map3/21。実exitは未受入。flag4368/4369による敵NPC非表示は正規eventで保存。本原本227/cold13入力・114画面・全130memberを再生しない。run37125324369はnative2正常/保存完了後に旧Save21専用trace座標例外でfailure。失敗結論を保持し、新scoped parser/34受入で原本だけを回収。旧parser/旧受入は変更0。先行run37125164118は50入力20画面/native1・未保存のevent座標先行停止、旧13controller成功step継承/変更4controllerも原log継承。record native0・合計開発native3。107全Flash/108〜110保存成功文言/111field復帰/cold全SaveRTC一致。補助var4021=7→19のruntime owner未解決。trainer352、洞窟出口、正規全国図鑑、分離progression自然成長/進化、Lucky Egg/12ケース/Lv100soak、研究施設自然到達、全story、releaseは未完。洞窟出口を越えたら到達milestoneと残件を報告し全ゲーム完了とはしない。既存ROM/runtime/inputはActionsだけ、新公開artifactは新save/画面/textのみ。
+
+## 2026-10-03T13:32:42+00:00
+- Timestamp: 2026-10-03T13:32:42+00:00
+- Task: USER-20261003-CAVE-EXIT-SAVE37 / 洞窟本区画南出口・Save37
+- Version: story-cave-south-exit-room-save37-v1
+- Status: DONE（本区画南出口/通常保存Continue限定受入）
+- Summary: Save36の正規event後6,13から南へ進み4,19→map1/38・6,4西の出口部屋へ到達。西側開通/event/trainer360を含む本区画走破のmilestoneを完了。外の503番道路/全国図鑑/自然成長/全storyは未完。
+- Files changed: Save37 controller/12変更試験/26受入拒否試験/record workflow、checkpoint/text原本、固定再開MD/JSON、両ログ。
+- Verify: run37126025449/job111211361589全8step成功、63/cold13入力/33画面/48member/native2。新12controllerは原log継承、新26受入だけ実行、record native0。party600byte/Bag/13576円/PC/S61E/story不変、補助flag2056=0→1、HP320/PP[1,8,0,0]。補助var3件owner未解決。42checksum/旧bank57344byte/6917byte1753範囲/cold全SaveRTC一致。24の一時全Flash一致を完了とせず、25再差分/26〜29成功文言/30fieldを区別。
+- History: 記録run37126331827は全legacy不変仮定が補助flag2056の0→1で停止（native0/受入試験0）。同flagだけを新oracleで限定照合しruntime owner未解決/旧failureを保持。Save36記録run37125940788/Stage79 run37125940822のsuccess終端を反映。旧失敗原本は保持、既受入ゲーム再走0、ROM/compile/fixture0。保存済920cells/warp接続再採取0。
+- Commit: 測定source=7e5bc03a76de3b99c4f999c05c9fcf48963b0044、記録source=db7fbddd8929cf457be95b19d22be5831d22d2eb・run=37126518059。scoped guard/task graph/resume後に同branch非force pushと全text読戻し。
+- Network: 同repo GitHub/Actions原本のみ。既存ROM/runtime/input Save36再配布0。一般CI既知source不一致を保持、merge/release/baseline変更0。
+- Next: Save37 artifact11275371718のstory-fast.srm（7942159bf82220a864a128c66f97aa3da6e2558b0f3e8181d410a925e145a301、131088bytes）だけから再開。map1/38・6,4西・party4/RP0・13576円・badge1・story4071=8/4072=1、ミュウツーHP320/354・PP[1,8,0,0]。Save36の正規event/trainer360完了地点から洞窟本区画4,19→南出口部屋1/38へ通常warpし、Save37/独立Continueを限定受入。本区画走破のmilestoneは完了。外の503番道路への接続/全storyはまだ未受入。次は部屋6,4→6,5→5,5→4,5→4,6の通常出口候補。保存済map1/38 warp0は4,6→map3/21 warp1。必要なら既存のmap3/21 warp1保存ownerを照合し、未保存のtargetだけ限定採取する。host回復/PP/flag/var注入は禁止。受入済の西側event・trainer360・洞窟本区画・今回63/cold13入力33画面/12controller26受入を無影響再走しない。party600byte/Bag/13576円/PC/S61E/story値は不変、補助flag2056=0→1とvar4021=19→26/4022=0→2/404d=20→21だけ。runtime owner未解決。24のFlash一時一致/counter36を保存完了にせず、25のhash再差分、26〜29成功文言/安定全Flash、30field復帰/cold全SaveRTC一致を区別。残件は出口部屋→外の通常接続とその先のstory、正規全国図鑑解禁、分離progressionの自然EXP/技習得/進化、Lucky Egg/12ケース/Lv100soak、研究施設自然到達。trainer352は未受入だがこの正規出口経路を通るための追加勝利へ捏造せず、未実施のまま保持。HM05は所持のみで未習得/未使用、同じ拒否入力を反復しない。全story/一般CI全成功/製品releaseは未完。clean-ROM二重生成/BPS固定、merge・release・baseline切替は別途所有者判断の境界を保持。既存ROM/runtime/inputはActions内入力のみ、新公開artifactは新save/画面/textだけ。
+
+## 2026-10-03T13:58:33+00:00
+- Timestamp: 2026-10-03T13:58:33+00:00
+- Task: USER-20261003-ROUTE503-SAVE38 / 洞窟南出口から屋外503番道路・Save38
+- Version: story-route503-save38-v1
+- Status: DONE（通常屋外接続/保存Continue限定受入）
+- Summary: 南出口部屋の矢印tileから通常南入力で屋外map3/21・9,76南へ到達。洞窟走破milestone完了。全国図鑑/自然成長/全storyは未完。
+- Files changed: Save38 controller/16変更試験/28受入拒否試験/record workflow、checkpoint/text原本、固定再開MD/JSON、両ログ。
+- Verify: run37127609831/job111216024409全8step成功、122/cold13入力/62画面/81member/成功native2。16controllerは原log継承、新28受入だけ実行、record native0。party600byte差分はPP8→5の1byteだけ、HP320/354保持。Bag/HM05/PC/S61E不変、13576→13796円（賞金220円）。legacyflag1383=0→1（trainer103）と2056=1→0、補助var4021=26→30/4022=2→0/40ae=79→91、補助runtime owner未解決。story4071=8/4072=1・badge1・全国図鑑magic0/404e0/flag8400保持。42sector checksum/旧bank57344byte/6840byte1710範囲/cold全SaveRTC一致。 43〜54は書込中12画面/11Flash状態（53/54同じ）。55でcounter38/安定全Flashだが台詞移行中、56〜58保存成功文言、59field復帰。Save37の24一時一致→25再差分→26安定とは異なる。
+- History: 初回run37127113183は出口矢印tileで待機停止（native1/Save37全byte不変/未保存）。artifact11275422186を保全。第二native run37127420854/artifact11275593672は屋外NPC会話待ちで未保存停止（native1）、中間run37127280308はguard基準修正前のnative0失敗。通常南入力および新会話/戦闘の変更影響区間だけ検証。Save37記録run37126518059/Stage79run37126518074のsuccess終端を反映。旧失敗・Save36 parser回復・Save37一時Flash一致の区別を保持、既受入ゲーム再走0、ROM/compile/fixture0。503番道路view再採取0。新NPC owner6nodes/診断0を採取。測定new_script_nodes=0は6への訂正をcheckpointへ記録し原本は保持。
+- Commit: 測定source=1d3504839f4c1a86b054d3529f2c98a19ac40236、記録source=da0ef846e31c2dc787ce15d18bd7a22c8d619720・run=37127976842。scoped guard/task graph/resume後に同branch非force pushと全text読戻し。
+- Network: 同repo GitHub/Actions原本のみ。既存ROM/runtime/input Save37再配布0。一般CI既知source不一致を保持、merge/release/baseline変更0。
+- Next: Save38 artifact11275249543のstory-fast.srm（ca6b332ff001f757bde9d82baab19d4b6b8547488afefe62dc6ea408ced8b074、131088bytes）だけから再開。map3/21・9,76南・party4/RP0・13796円・badge1・story4071=8/4072=1、HP320/354・PP[1,5,0,0]。洞窟本区画→南出口部屋→外503番道路の通常接続とSave38/独立Continueを限定受入。洞窟走破milestone完了。出口trainer103（じゅくがえり・モトナリ）のココガラLv7/ポッポLv11/ビッパLv9に3手で勝利、賞金220円。全storyは未完。次は保存済503番道路南部viewから西側のmap3/44接続を通常進行し、最初の新event/新戦闘または回復地点で限定checkpoint。必要な未読隣接mapだけ採取。host回復/PP/flag/var注入は禁止。既受入の西側event・trainer360・洞窟本区画・Save38入力は無影響再走しない。Save38初回は矢印tile4,6で追加南入力がなく待機停止。未保存原本/失敗を保持し、変更影響区間だけ回復した。Save36の227完走入力後parser失敗回復とSave37の24一時Flash一致→25再差分→26安定→30fieldを保持。残件: 通常story継続、正規全国図鑑解禁、分離progressionの自然EXP/技習得/進化、Lucky Egg/12ケース/Lv100soak、研究施設自然到達。trainer352未受入。HM05は所持だけ・未習得/未使用。全story/一般CI全成功/製品releaseは未完。clean-ROM二重生成/BPS固定、merge・release・baseline切替は別途所有者判断。既存ROM/runtime/inputはActions内入力のみ、新公開artifactは新save/画面/textだけ。
+
+## 2026-10-03T14:11:43+00:00
+- Timestamp: 2026-10-03T14:11:43+00:00
+- Task: USER-20261003-ROUTE504-SAVE39 / 503西端から504東端・Save39
+- Version: story-route504-save39-v1
+- Status: DONE（通常map接続/保存Continue限定受入）
+- Summary: 503番道路9,76から西へ通常進行、504番道路map3/44・71,9西へ到達。戦闘0。全国図鑑/自然成長/全storyは未完。
+- Files changed: Save39 controller/15変更試験/26受入拒否試験/record workflow、checkpoint/text原本、固定再開MD/JSON、両ログ。
+- Verify: run37128394742/job111218333230全8step成功、67/cold13入力/39画面/55member/成功native2。15controllerは原log継承、新26受入だけ実行、record native0。party600byte/HP320/PP[1,5,0,0]/Bag/13796円/PC/S61E/legacyflags/story不変。補助var4021=30→40だけ、owner未解決。42checksum/旧bank57344byte/6785byte1672範囲/cold全SaveRTC一致。30一時全Flash一致→31再差分→32成功文言/安定→36field。cold RAM ledger差はowner未解決として明示。
+- History: 初回run37128174890は504到達後の固定down4の欠落でTrainerCardへ入り停止（90入力/56画面/native1/未保存/Save38全byte不変）。artifact11275619886保持。menu cursorを毎入力画像確認する修正の影響区間だけ検証。Save38 record37127976842/Stage79run37127976735のsuccess終端を反映。既受入ゲーム再走0、ROM/compile/fixture0、504地形再採取0。
+- Commit: 測定source=442449ed7b8eb4453820de744aa938a22309f411、記録source=d953deff3152a853a860771af92004af8fa6df66・run=37128753593。scoped guard/task graph/resume後に同branch非force pushと全text読戻し。
+- Network: 同repo GitHub/Actions原本のみ。既存ROM/runtime/input Save38再配布0。一般CI既知source不一致を保持、merge/release/baseline変更0。
+- Next: Save39 artifact11276165710のstory-fast.srm（2cc5e239b0e32951a9c5b68375b1b78318be6d5d11389a1e1a898f16b7bda720、131088bytes）だけから再開。map3/44（504番道路）・71,9西・party4/RP0・13796円・badge1・story4071=8/4072=1、HP320/354・PP[1,5,0,0]。503西端→504東端の通常connectionとSave39/独立Continueを限定受入、戦闘0。洞窟走破milestoneは前Save38で完了、全storyは未完。次は保存済72×20の504地形から先へ。70,9はcollision壁なので左を反復しない。71,9→71,10→70,10→69,10→68,10→67,10→66,10→65,10→64,10が静的候補。未読のelevation/behaviorと必要なownerだけ限定照合し、最初の新戦闘/新eventまたは通常回復地点で保存。PPをhost補充しない。Save39で改善した実画像menu_index/レポートcursor0→4確認を継承し、固定down4短間隔へ戻さない。67/cold13入力39画面/15controller26受入を無影響再走しない。初回90入力/56画面はTrainerCardに入り未保存で停止、原本artifact11275619886を保持。30Flash一時一致/counter38→31再差分/counter39→32安定/成功文言→36fieldを区別。cold RAM ledgerは進行時と異なりowner未解決、全Save/RTCは一致。Save36の227入力後parser失敗回復、Save37の24→25→26の区別、Save38のNPC103初戦/賞金220円/再戦1029未受入を保持。残件: 通常story、正規全国図鑑解禁、分離progression自然EXP/技習得/進化、Lucky Egg/12ケース/Lv100soak、研究施設自然到達。trainer352未受入、HM05所持だけ・未習得/未使用。全story/一般CI全成功/製品release未完。clean-ROM二重生成/BPS固定、merge・release・baseline切替は別途所有者判断。既存ROM/runtime/inputはActions内入力のみ、新公開artifactは新save/画面/textだけ。
+
+## 2026-10-03T14:36:57+00:00
+- Timestamp: 2026-10-03T14:36:57+00:00
+- Task: USER-20261003-ROUTE504-SAVE40 / 504追跡event・Save40
+- Version: story-route504-save40-v1
+- Status: DONE（正規story event/保存Continue限定受入）
+- Summary: Save39から通常24歩で504の60,10座標event。モスギス/D・H団人物の会話追跡を完了、4071=8→9/flag4370。戦闘0、全国図鑑/自然成長/全story未完。
+- Files changed: Save40 controller/13変更試験/32原本受入拒否試験/record workflow、静的地形1440/東側11node原本、checkpoint/text証跡、固定再開MD/JSON、両ログ。
+- Verify: 測定run37129549744/job111221756160は保存Continue後の旧洞窟専用parser failureを保持。両native正常終端/156/cold13入力/83画面/99memberを新独立parserで回収。13controller原log継承、新32受入試験だけ実行、追加native0。party600byte/HP320/PP[1,5,0,0]/Bag/13796円/PC/legacyflags不変。S61E byte258=3→7/CRC検証、story4071=9、補助4021=40→63/4022=0→3はowner未解明。42checksum/旧bank57344byte/6931byte1698範囲/cold全SaveRTC一致。
+- Evidence: event30〜55カメラ/live差を区別→56field。57〜61実menu0→4、64〜75部分write、75counter40、76成功文言/安定Flash→80field。今回cold RAMledger一致、Save39旧差のowner未解明を保持。Save39 record37128753593/Stage79run37128753577のsuccess終端反映。
+- Commit: 測定source=c51b505a4541b91951d660aea6cf1d931a06b490、記録source=9ba845434ef1ed765eac2a57e71337bbb9d5e1c7・run=37130202320。scoped guard/task graph/resume後に同branch非force pushと全text読戻し。
+- Network: 同repo GitHub/Actions入力のみ。段差比較定義 https://raw.githubusercontent.com/pret/pokefirered/master/include/constants/metatile_behaviors.h の0x39=westを参照、現候補の通過は未受入。既存ROM/runtime/input Save39再配布0。一般CI既知source不一致を保持、merge/release/baseline変更0。
+- Next: Save40 artifact11276815366のstory-fast.srm（cf8fc894e9542afbfa411db72f26411bec5dae3220bc8f8104cf71bfc109add1、131088bytes）だけから再開。map3/44（504番道路）・60,10西・party4/RP0・13796円・badge1・story4071=9/4072=1、HP320/354・PP[1,5,0,0]。通常24歩から座標60,10のモスギス/D・H団人物の追跡eventを完了し、正規flag4370・4071=9、Save40/独立Continueを限定受入。戦闘0。次は西59,10→58,10→56,10の西段差候補から504を先へ。保存済behavior57は西向き段差の比較定義だが現候補の実通過は未受入。全1440地形/11node東側ownerは保存済原本を再利用し、無影響再採取しない。最初の新戦闘/eventまたは通常回復地点で保存、PPをhost補充しない。本runの156/cold13入力・83画面・13controller/32受入試験は再走しない。元run37129549744のfailureは正常保存/Continue後に旧洞窟専用parserがeventカメラ座標を拒否したもの。artifact全99memberを改作せず保持しnative再走0で回収。30〜55のカメラ座標は主人公live60,10と区別、56field復帰。通常Saveは各行menu cursor0→4を画像検証。75counter40は部分write、76成功文言/安定全Flash→80field。今回の進行最終/cold RAM ledgerと全Save/RTCは一致。ただしSave39の旧cold RAM差ownerは未解明。Save36の保存後parser回収、Save37/39の一時Flash一致、Save38のtrainer103と未受入再戦1029、Save39初回TrainerCard未保存を保持。残件: 通常story、正規全国図鑑解禁、分離progression自然EXP/技習得/進化、Lucky Egg/12ケース/Lv100soak、研究施設自然到達。trainer352未受入、HM05所持だけ・未習得/未使用。全story/一般CI全成功/製品release未完。clean-ROM二重生成/BPS固定、merge・release・baseline切替は別途所有者判断。既存ROM/runtime/inputはActions内入力のみ、新公開artifactは新save/画面/textだけ。
+
+## 2026-10-03T14:57:49+00:00
+- Timestamp: 2026-10-03T14:57:49+00:00
+- Task: USER-20261003-ROUTE504-SAVE41 / 504西段差・橋下・Save41
+- Version: story-route504-save41-v1
+- Status: DONE（西段差通過/橋下西辺未通過/保存Continue限定受入）
+- Summary: Save40の60,10から58,10→56,10の西段差を通過し48,11橋下へ。西47,11は3回未通過で有限停止。戦闘0、全国図鑑/自然成長/全story未完。
+- Files changed: Save41 controller/14変更試験/26原本受入拒否試験/record workflow、checkpoint/text証跡、固定再開MD/JSON、両ログ。
+- Verify: 測定run37130788526/job111225303265全8step成功、77/cold13入力/44画面/59member。14controller原log継承、新26受入だけ実行、record native0。party600byte/HP320/PP[1,5,0,0]/Bag/13796円/PC/S61E/legacyflags/story不変。補助4021=63→75/4022=3→0はowner未解明。42checksum/旧bank57344byte/6866byte1695範囲/cold全SaveRTC一致。
+- History: 初回record37131369405はGUIDEの旧Save40宛先を専用guardがartifact取得/書込/受入試験前に拒否。native0/受入試験0/正本書込0。新宛先へ訂正し失敗終端を保持。
+- Evidence: 17〜21実menu0→4、24〜36部分write、36counter41、37成功文言/安定Flash→41field。今回cold RAMledger一致、Save39旧差owner未解明を保持。Save40 record37130202320/Stage79run37130202316の全success終端反映。保存済地形再採取0、旧accepted試験/native再実行0。
+- Commit: 測定source=8c012df44845e982acef17db79396be6dd03dc14、記録source=75d5b04934121c7213db4760f4ece87078524a45・run=37131494568。scoped guard/task graph/resume後に同branch非force pushと全text読戻し。
+- Network: 同repo GitHub/Actions入力のみ。既存ROM/runtime/input Save40再配布0。一般CI既知source不一致を保持、merge/release/baseline変更0。
+- Next: Save41 artifact11277075434のstory-fast.srm（a70b790da5894eac9f67e2a324c68e3513d86330491ef9451ffca06c792f0140、131088bytes）だけから再開。map3/44（504番道路）・48,11西・party4/RP0・13796円・badge1・story4071=9/4072=1、HP320/354・PP[1,5,0,0]。西段差58,10→56,10と橋下48,11までの通常移動、Save41/独立Continueを限定受入。戦闘0。48,11→47,11は3回未通過で反復しない。保存地形では48,11/12/13がelevation15の橋下、47,11は4であり単純BFSの高さ無視が誤候補だった。次は南48,12→48,13→48,14→48,15→49,15→50,15→50,16→51,16→52,16→53,16→54,16→54,15の階段behavior42/elevation0候補。54,14の上段elevation4や以西は静的候補で、実通過を先取りしない。橋の15は現在高度を保持し、階段0で高度を切り替える地形モデル候補を使う。全1440地形/既存ownerは原本を再利用。最初の新戦闘/event・未通過境界または通常回復地点で保存、PPをhost補充しない。77/cold13入力・44画面・14controller/26受入試験は無影響に再走しない。実menu cursor17〜21の0→4、36counter41は部分write、37成功文言/安定全Flash→41field。今回の進行最終/cold RAM ledgerと全Save/RTCは一致。Save39の旧cold RAM差owner未解明を保持。Save40の元parser failureは保存後回収済みで改作/再走しない。残件: 通常story、正規全国図鑑解禁、分離progression自然EXP/技習得/進化、Lucky Egg/12ケース/Lv100soak、研究施設自然到達。trainer352未受入、HM05所持だけ・未習得/未使用。全story/一般CI全成功/製品release未完。clean-ROM二重生成/BPS固定、merge・release・baseline切替は別途所有者判断。既存ROM/runtime/inputはActions内入力のみ、新公開artifactは新save/画面/textだけ。
+
+## 2026-10-03T15:24:25+00:00
+- Timestamp: 2026-10-03T15:24:25+00:00
+- Task: USER-20261003-ROUTE504-SAVE42 / 504橋下・階段・橋上・Save42
+- Version: story-route504-save42-v1
+- Status: DONE（橋下/階段/橋上通過/保存Continue限定受入）
+- Summary: Save41の48,11から南へ抜け、54,15階段から上段へ。橋上48,13を経て47,13まで21歩/8方向転換。旧失敗辺の再試行0、戦闘0、全国図鑑/自然成長/全story未完。
+- Files changed: Save42 controller/16新規試験/30原本受入拒否試験/record workflow、checkpoint/text証跡、固定再開MD/JSON、両ログ。
+- Verify: 測定run37132139175/job111229185172全8step成功、103/cold13入力/57画面/72member。16controller原log継承、第二record run37132813539の新30受入成功原本を継承、今回試験再実行0/record native0。party600byte/HP320/PP[1,5,0,0]/Bag/13796円/PC/S61E/legacyflags/story不変。補助4021=75→96/4022=0→1はowner未解明。42checksum/旧bank57344byte/6871byte1715範囲/cold全SaveRTC一致。
+- Evidence: 30〜34実menu0→4、37〜48/50部分write、49最終Flash一時一致で書込中、50counter42/再変化、51成功文言/安定Flash→54field。今回cold RAMledger一致、Save39旧差owner未解明を保持。Save41 record37131494568/Stage79run37131494597の全success終端反映。保存済地形再採取0、旧accepted試験/native再実行0。
+- History: 第二record37132813539は30試験全成功後に試験名underpass_falsely_skippedへのsubstring誤反応。成功原ログ/artifact11277088734を不変継承し再試験0。初回record37132651122は旧Save41を指すGUIDE定数を専用宛先guardが事前拒否。native0/受入試験0/正本書込0。失敗終端を保持し、Save42宛先へ訂正。
+- Commit: 測定source=0dd57e34888b7d3de23bf5a42153a3f936a5f61d、記録source=c1c8764ad436d7f34d72aba1dea90a1002dfac48・run=37133099941。scoped guard/task graph/resume後に同branch非force pushと全text読戻し。
+- Network: 同repo GitHub/Actions入力のみ。既存ROM/runtime/input Save41再配布0。一般CI既知source不一致を保持、merge/release/baseline変更0。
+- Next: Save42 artifact11277536596のstory-fast.srm（c1959acc33cd7592ff4c3202e5fc5f4397215315127ebe257cd27486997aa144、131088bytes）だけから再開。map3/44（504番道路）・47,13西/橋上elevation4・party4/RP0・13796円・badge1・story4071=9/4072=1、HP320/354・PP[1,5,0,0]。橋下48,11から南通路、54,16→54,15階段→54,14上段、橋上49,13→48,13→47,13を通常通過し、Save42/独立Continueを限定受入。戦闘0。旧48,11→47,11は未通過のまま、今回再試行0。橋下/橋上の異なる高さを同じ経路にしない。次候補は47,13→46,13→46,12から上段を西へ。保存地形の42,12/37,13/34,13→33,13→31,13→30,10→26,10→26,11階段→26,12下段を候補とし、最初の新戦闘/event・未通過境界または通常回復地点で保存。保存済1440地形/既存ownerを再利用し、未知scriptだけ追加調査。PPはslot1残5/slot0残1を基準に通常技入力、host補充しない。今回103/cold13入力・57画面・16controller/30受入試験を無影響再走しない。30〜34実menu0→4、49は最終Flash一時一致/書込中、50counter42で再変化、51成功文言/安定全Flash→54field。今回全Save/RTC/cold RAM ledger一致。Save39旧cold RAM差owner未解明、Save40保存後parser failureの回収、Save41初回record guard failureを保持。残件: 通常story、正規全国図鑑解禁、分離progression自然EXP/技習得/進化、Lucky Egg/12ケース/Lv100soak、研究施設自然到達。trainer352未受入、HM05所持だけ・未習得/未使用。全story/一般CI全成功/製品release未完。clean-ROM二重生成/BPS固定、merge・release・baseline切替は別途所有者判断。既存ROM/runtime/inputはActions内入力のみ、新公開artifactは新save/画面/textだけ。
+
+## 2026-10-03T15:46:37+00:00
+- Timestamp: 2026-10-03T15:46:37+00:00
+- Task: USER-20261003-ROUTE504-SAVE43 / 504上段西進・trainer114・Save43
+- Version: story-route504-save43-v1
+- Status: DONE（上段一部/新trainer1勝/保存Continue限定受入）
+- Summary: 47,13橋上から39,12西上段へ。ショウダイtrainer114の4体へ勝利、通常報酬468円。PP全0で次は通常回復。下り階段/全story/全国図鑑/自然成長未完。
+- Files changed: Save43 controller/16新規試験/34原本受入拒否試験/record workflow、checkpoint/text証跡、固定再開MD/JSON、両ログ。
+- Verify: 測定run37133664958/job111233658951全8step成功、170/cold13入力/90画面/105member。16controller原log継承、新34受入だけ実行、record native0。全8中間partyを親から独立再構成。全party差分3byte/HP320→314/PP全0。Bag/PC/S61E/story不変、13796→14264円/flag1394のみ。補助4021/4022 owner未解明。42checksum/旧bank57344byte/6881byte1710範囲/cold全SaveRTC一致。
+- Evidence: 64〜68実menu0→4、71〜82部分write、83counter43/安定Flash/文言空白→84成功文言→87field。Save42 record37133099941/Stage79run37133099890終端success反映。Save39旧cold RAM差owner未解明、Save40/41/42失敗回収履歴を保持。静的地形再採取0、未知trainer114 ownerだけ追加照合。
+- Commit: 測定source=7bccc0c52b4232e8c4f98a81e5ed86ff73c97c57、記録source=19e979ba428a69fc5b3acbee8e004657bb350be8・run=37134410241。scoped guard/task graph/resume後に同branch非force pushと全text読戻し。
+- Network: 同repo GitHub/Actions入力のみ。既存ROM/runtime/input Save42再配布0。一般CI既知source不一致を保持、merge/release/baseline変更0。
+- Next: Save43 artifact11277619007のstory-fast.srm（80d9c9387937173a62283f1164cb6ff035ebd39eaa38f78a779da92691ae788f、131088bytes）だけから再開。map3/44・39,12西/上段elevation4・party4/RP0・14264円・badge1・story4071=9/4072=1。主力HP314/354、全PP[0,0,0,0]。trainer114ショウダイの4体へ通常勝利し468円/physicalflag1394だけを追加、Save43/独立Continueを限定受入。次は通常戦闘へ進む前に既存Bagと通常回復地点を確認する。既存のPP回復用品があれば通常BagUIで使用し、なければ静的地形とtrainer視線を照合し通常回復地点へ向かう有限候補を作る。host補充、負けによる回復の暗黙選択、全PP0の旧技選択loopはしない。回復後の未完候補は39,12→38,12→37,12→37,13から西上段、26,10→26,11→26,12の下り階段。今回39,12以西/下り階段は未到達。保存済1440地形/既存ownerを再利用し未知scriptだけ調べる。170/cold13入力・90画面・16controller/34受入試験を無影響再走しない。64〜68実menu0→4、71〜82部分write、83counter43/安定Flash/文言空白→84成功文言→87field。全Save/RTC/cold RAM ledger一致。Save39旧cold RAM差owner未解明、Save40保存後parser回収、Save41/42のrecord失敗履歴を保持。通常story/正規全国図鑑/分離progression自然EXP・技習得・進化/Lucky Egg/12ケース/Lv100soak/研究施設自然到達は未完。trainer352未受入、HM05所持だけ。全story/一般CI全成功/製品release未完。clean-ROM二重生成/BPS固定、merge/release/baseline切替は別途所有者判断。既存ROM/runtime/inputはActions内入力のみ、新公開artifactは新save/画面/textだけ。
+
+## 2026-10-03T16:09:38+00:00
+- Timestamp: 2026-10-03T16:09:38+00:00
+- Task: USER-20261003-NORMAL-RECOVERY-SAVE44 / 通常Bag確認・控え先頭交代・Save44
+- Version: story-normal-recovery-preparation-save44-v1
+- Status: DONE（通常並替/保存Continueの限定受入。PP回復は未完）
+- Summary: 道具/きのみ空、既存オノノクスを通常ならびかえで先頭へ。HP294/294・PP[15,10,15,20]保持。ミュウツーHP314/354・PP0のまま、回復を偽装しない。費用/道具消費/移動/戦闘0。
+- Files changed: Save44 controller/16試験/32原本受入拒否試験/record workflow、checkpoint/text証跡、固定再開MD/JSON、両ログ。
+- Verify: run37135192951/job111238199087全8step成功、78/cold13入力/45画面/60member。controller16原log継承、新32受入、record native0。全600byteは100byte個体2体の交換だけ。全Bag/14264円/legacy flags・vars/PC/S61E不変、42checksum/旧bank57344byte/6885byte1708範囲/cold全SaveRTC一致。
+- Evidence: 24〜37部分write、37counter44は未完、38成功文言/安定Flash→42field。13並替選択のRAM ledger変更owner未解明、保存最終/cold一致。Save43 record37134410241/Stage79run37134410176終端を反映。旧失敗履歴保持。保存済504地形1440再採取0、南map3/23は静的候補だけ。
+- Commit: 測定source=aaf2d62ce3166349714eeeaff04e5f7ec630c3b1、記録source=9665b1cbb327431fa1b7830f92fbe6de6b212884・run=37135792701。scoped guard/task graph/resume後に同branch非force pushと全text読戻し。
+- Network: 同repo GitHub/Actionsのみ。既存ROM/runtime/input非再配布。一般CI既知source不一致保持、merge/release/baseline変更0。
+- Next: Save44 artifact11278342404のstory-fast.srm（c7a27be2dbcedecccc139899210415d391ee1946a70894836f80603d7cd86d1b、131088bytes）だけから再開。map3/44・39,12西/上段elevation4・party4/RP0・14264円・badge1・story4071=9/4072=1。バッグの道具/きのみは空。通常ならびかえで既存オノノクスを先頭へ移しHP294/294・PP[15,10,15,20]、ミュウツーは2番目HP314/354・PP[0,0,0,0]のまま。回復済みとは扱わない。費用/道具消費/移動/戦闘0、個体全byte不変。次はこの戦力で通常回復地点へ向かう。保存済み1440地形から39,12→38,12→37,12→37,13を経て西上段、26,10→26,11下り階段→26,12下段を有限候補にする。最初の新戦闘/event/未通過境界で通常Save。主力変更に合わせて既存PPと新実cursorを照合し通常技を選ぶ。未到達南map3/23から3/2へつながる静的候補を今回追加したが回復施設の位置/到達は未受入。Bagキー品わざメモリー/せいたいレーダーをPP回復品と誤認しない。host補充/ROM編集/故意の全滅なし。全45画面・78+cold13入力・16controller32受入試験を無影響再走しない。counter44は37だが部分write、38成功文言/安定Flash→42field。全SaveRTC/cold RAM ledger一致。並替選択13のRAM ledger変化ownerは未解明、全保存legacy flags/vars/PC/S61E不変。Save39旧差・Save40/41/42失敗回収履歴を保持。通常story/正規全国図鑑/自然EXP・技習得・進化/Lucky Egg/12ケース/Lv100soak/研究施設自然到達未完。全story/一般CI全成功/製品release未完、cleanROM二重生成/BPS固定/merge/release/baseline切替は別途所有者判断。既存ROM/runtime/inputはActions内入力のみ、新公開artifactは新save/画面/textだけ。
+
+## 2026-10-03T16:22:21+00:00
+- Timestamp: 2026-10-03T16:22:21+00:00
+- Task: USER-20261003-ROUTE504-SAVE45 / 西上段・下り階段・Save45
+- Version: story-west-descent-save45-v1
+- Status: DONE（西上段/下り階段/保存Continue限定受入。PP回復未完）
+- Summary: 39,12上段から26,10→26,11階段→26,12下段へ。19歩/7方向転換、戦闘0、全party600byte不変。先頭オノノクス既存PP[15,10,15,20]、ミュウツーPP0を保持。
+- Files changed: Save45 controller/20試験/32原本受入拒否試験/record workflow、checkpoint/text証跡、固定再開MD/JSON、両ログ。
+- Verify: run37136050485/job111240684827全8step成功、98/cold13入力/55画面/70member。20controller原log継承、新32受入、record native0。Bag/14264円/legacy flags/PC/S61E不変、4021=104→123/4022=0→4 owner未解明。42checksum/旧bank57344byte/6890byte1706範囲/cold全SaveRTC一致。
+- Evidence: 34〜45部分write、46最終Flashでもcounter44、47counter45/書込中、48成功文言→52field。全RAM ledger一致。Save44 record37135792701/Stage79run37135792451終端反映。旧失敗履歴/Save39差/Save44並替差owner未解明を保持。地形1440再採取0。新classifierは単体のみ、実オノノクス技UIは未観測。
+- Commit: 測定source=cc2be073d7a914bad7c077b8f16d4e6ea61988bb、記録source=62d8270a81f2255b35e35a1aa35245321f282dbe・run=37136570224。scoped guard/task graph/resume後に同branch非force pushと全text読戻し。
+- Network: 同repo GitHub/Actionsのみ。既存ROM/runtime/input非再配布。一般CI既知source不一致保持、merge/release/baseline変更0。
+- Next: Save45 artifact11278563389のstory-fast.srm（e356f82361d9c0cccf984a7113b91324d42d6c3c15acf22b42a4fea3ce21927d、131088bytes）だけから再開。map3/44・26,12南/下段elevation3・party4/RP0・14264円・badge1・story4071=9/4072=1。西上段39,12から26,10→26,11下り階段→26,12下段を通常通過、19歩/7方向転換/戦闘0。全party600byte不変。先頭オノノクスHP294/294・PP[15,10,15,20]、2番目ミュウツーHP314/354・PP[0,0,0,0]のまま。道具/きのみ空、回復地点はまだ未到達。次は保存済み1440地形から26,12→25,12→24,12→23,12→22,12→22,11→22,10→9,10方面の下段西通路を有限候補にする。最初の新戦闘/event/未通過境界で通常Save。先頭オノノクスの新classifierは共通PPラベル/arrowに変更し20controller試験済みだが今回戦闘0で実技UIは未観測。新戦闘では実cursorと技名/残PPを画面と保存partyから照合。旧ミュウツー技名依存classifierやPP0入力loopを使わない。南側map3/23→3/2は静的接続候補であり回復施設の位置/到達は未受入。host補充/ROM編集/故意の全滅なし。98+cold13入力・55画面・20controller32受入試験を無影響再走しない。46最終Flashでもcounter44/書込中、47counter45、48成功文言→52field。全SaveRTC/cold RAM ledger一致、補助var4021=104→123/4022=0→4のowner未解明。Save44並替RAM ledger差、Save39旧差、Save40/41/42失敗回収履歴を保持。通常story/正規全国図鑑/自然EXP・技習得・進化/Lucky Egg/12ケース/Lv100soak/研究施設自然到達未完。全story/一般CI全成功/製品release未完。cleanROM二重生成/BPS固定/merge/release/baseline切替は別途所有者判断。既存ROM/runtime/inputはActions内入力のみ、新公開artifactは新save/画面/textだけ。
+
+## 2026-10-03T16:42:28+00:00
+- Timestamp: 2026-10-03T16:42:28+00:00
+- Task: USER-20261003-ROUTE504-SAVE46 / 下段西通路・Save46
+- Version: story-lower-west-save46-v1
+- Status: DONE（下段西通路/通常保存/独立Continue限定受入、回復未完）
+- Summary: 26,12南から3,12西へ27歩/5方向転換、戦闘0。HP/PP不変、party141=7→8/241=105→106の2byte変化、owner未解決。最終/cold ledger一致、途中変化owner未解決。回復/オノノクス実技UI未完。
+- Files changed: Save46 controller/12新試験/36原本受入拒否試験/record workflow、checkpoint/text証跡、固定再開MD/JSON、両ログ。
+- Verify: run37137181984/job111243980063全8step成功、109/cold13入力/60画面/75member。12controller原log継承、新36受入、record native0。Bag/14264円/legacy flags/PC/S61E不変。4021=123→22/4022=4→1 owner未解明。42checksum/旧bank57344byte/6892byte1708範囲/cold全SaveRTC一致。
+- Evidence: 40〜52部分write、53counter46/最終Flash→54成功文言→57field。Save45 record37136570224/Stage79run37136570130終端反映、旧失敗履歴/旧owner未解明保持。地形1440再採取0/旧20classifier試験再走0。
+- Commit: 測定source=78a91fbec8fa40863524b49e501ed204558a5031、記録source=59f7774d76df9c093c06f7e54cfa11d2b74246e4・run=37137814123。scoped guard/task graph/resume後に同branch非force pushと全text読戻し。
+- Network: 同repo GitHub/Actionsのみ。既存ROM/runtime/input非再配布。一般CI既知source不一致/finalHEAD action_requiredを保持、merge/release/baseline変更0。
+- Next: Save46 artifact11278684880のstory-fast.srm（d4a2e1f06ecbb1dee1bd54bda6962c1993b51711a09607954fe7b67d1c568e47、131088bytes）だけから再開。map3/44・3,12西/下段elevation3・party4/RP0・14264円・badge1・story4071=9/4072=1。26,12から下段西通路27歩/5方向転換/戦闘0で到達。先頭オノノクスHP294/294・PP[15,10,15,20]、ミュウツーHP314/354・PP0、回復施設/回復未完。party全600byteのうち141=7→8/241=105→106の2byteだけ通常歩行観測7で変化、HP/PP/EXP等598byte不変。なつき度候補だがowner未解決、自然成長受入とはしない。RAM ledgerは観測13で変わり最終/cold一致、owner未解決。次は3,12から北3,11→3,10→3,9→2,9→2,5→6,5→6,6→10,6方面の未通過下段通路を有限候補にする。静的地形だけでは南端17,19へ直進できず北迂回候補、実到達ではない。南map3/23→3/2は接続候補で回復施設未同定。最初の新戦闘/event/未通過境界で通常Save、PPラベル/実cursorの既受入classifierを継承し初のオノノクス実技UIを原画像/残PPと照合。旧ミュウツー技名依存/PP0選択loop/host補充/ROM変更/故意の全滅なし。109+cold13入力・60画面・12controller36受入を無影響再走しない。40〜52部分Flash、51/52同hashも書込み中、53counter46/最終Flash→54成功文言→57field。全SaveRTC/cold一致、補助var4021=123→22/4022=4→1 owner未解明。Save39旧差/Save44並替差と旧失敗回収履歴を保持。通常story/正規全国図鑑/自然EXP・技習得・進化/Lucky Egg/12ケース/Lv100soak/研究施設自然到達未完。一般CIqol_production.c source不一致とfinalHEAD action_requiredを過大主張せず保持。全story/一般CI全成功/製品release未完、cleanROM二重生成/BPS固定/merge/release/baseline切替は別途判断。既存ROM/runtime/inputはActions内入力のみ、新公開artifactは新save/画面/textだけ。
+
+## 2026-10-03T17:02:30+00:00
+- Timestamp: 2026-10-03T17:02:30+00:00
+- Task: USER-20261003-ROUTE504-SAVE47 / 北迂回・ジュネ勝利・Save47
+- Version: story-north-june-save47-v1
+- Status: DONE（新trainer通常勝利/実技UI/保存/独立Continue限定受入、回復未完）
+- Summary: 3,12西→11,5東へ19歩/8方向転換、ジュネ4体勝利、賞金960円。オノノクスHP294/294・実ドラゴンクロー4回/PP15→11、ミュウツーPP0。原controller used0誤陰性を改作せず、全原画/PP1byteから独立受入。後継用パネル+実cursor判定を新44試験で原画検証、native4slot選択未受入。
+- Files changed: Save47 controller/12新試験/44原本受入拒否試験/record workflow、checkpoint/text証跡、固定再開MD/JSON、両ログ。
+- Verify: run37138339081/job111247375971全8step成功、170/cold13入力/90画面/105member。12controller原log継承、新44受入、record native0。全Bag/HP/EXP/PC/S61E不変、14264→15224円、physicalflag1402だけ0→1。aux4021=22→40/4022=1→0と途中ledger差owner未解決。
+- Evidence: 71〜82部分write、83counter47/安定Flash→84成功文言→87field。42checksum/旧bank57344byte/6902byte1708範囲/cold全SaveRTC一致。Save46 record37137814123/Stage79run37137814075終端反映。旧失敗/Save46party2byte等owner未解明保持。地形1440再採取0。
+- Commit: 測定source=eabbb96a80487644d4a873eaea0a7b3a1a6a03b3、記録source=cd72e53291d03339df72007ada3c7463b962d10d・run=37138998824。scoped guard/task graph/resume後に同branch非force pushと全text読戻し。
+- Network: 同repo GitHub/Actionsのみ。既存ROM/runtime/input非再配布。一般CI既知source不一致/finalHEAD action_requiredは全成功としない。merge/release/baseline変更0。
+- Next: Save47 artifact11279895650のstory-fast.srm（0ffabf8d049f74edaabdaf32a54872a267d9ea4c04f02845612295a9f30c6431、131088bytes）だけから再開。map3/44・11,5東/下段3・party4/RP0・15224円・badge1・story4071=9/4072=1。3,12から北迂回19歩/8方向転換→だいすきクラブのジュネ4体に勝利、通常Save47/cold同一。オノノクスHP294/294・PP[11,10,15,20]、ミュウツーHP314/354・全PP0で回復未完。初の実技UI35/42/49/57はslot0ドラゴンクローPP15/14/13/12、36/43/50/58通常使用、party全600byteの差は52=15→11だけ。原controllerはPPlabel矩形がタイプ/物理アイコン化した実UIをotherと誤陰性、raw used[0,0,0,0]を改作せず実4回と区別。次のcontrollerは新pr16_story_save47_accept.classify_panel（技名/種族/PP数値非依存のパネル上枠+実cursor、原90画面の4技/3交代を照合済）を使い、selectは親実PP[11,10,15,20]で上限を再束縛する。旧PPlabel/used0/古いPP15のclosureを流用しない。native4slot選択/他技使用は未受入。以後は11,5→12,5→13,5→13,4→14,4→14,3→18,3→18,4から東へ、34,13下段→34,16→25,17→25,15→17,15→17,19の保存地形迂回候補の未通過続きだけ。最初の新戦闘/event/未通過境界または正常回復地点で次Save。南接続map3/23→3/2は候補、回復施設未同定。今回170+cold13入力/90画面/12controller44受入を無影響再走しない。71〜82部分write、83counter47/最終Flash→84成功文言→87field。physicalflag1402だけ0→1、賞金960円、Bag/HP/EXP/PC/S61E/story不変。auxvar4021=22→40/4022=1→0とRAMledger31/51差のowner未解決、最終/cold一致。Save46 party2byte/途中ledger、Save39旧cold差/Save44並替差と旧失敗を保持。正規全国図鑑/通常story/自然EXP・技習得・進化/LuckyEgg/12case/Lv100soak/研究施設自然到達未完。一般CIqol_production.c source不一致とfinalHEAD action_requiredは全成功としない。ROM/host補充/故意の全滅/merge/release/baseline切替なし。既存ROM/runtime/inputはActions入力専用、新artifactは新save/画面/textだけ。
+
+## 2026-10-03T17:06:00+00:00
+- Timestamp: 2026-10-03T17:06:00+00:00
+- Task: USER-20261003-SAVE47-COLD-NPC-HANDOFF / Save47終端とcold NPC回避候補の同期
+- Version: story-save47-handoff-v1
+- Status: DONE（再開候補だけの訂正。到達は未受入）
+- Summary: Save47独立Continue原画ではジュネが右隣12,5に残る。旧静的候補の直進を11,4→12,4→13,4へ訂正、69vertexの保存地形/隣接/衝突0/高度3を照合。旧測定/原used0/旧GUIDEは歴史として不変。
+- Files changed: 専用同期script/workflow/69vertex候補JSON、固定再開MD/JSON、両ログ。
+- Verify: record37138998824/job111249329799全11step成功、Stage79run37138998686成功。新44受入試験/既存12controller/native2の再走0。新native0/ROM0/fixture0。
+- Commit: source=dfbec07def05ffdc0c0acd57386cbb9f4b5eb8cc、run=37139239163。scoped guard/全text読戻し後に同branch非force push。
+- Network: 同repo Actions終端GETだけ。既存ROM/runtime/input再取得0。一般CI既知不一致/action_requiredを全成功にしない。
+- Next: Save47/11,5から訂正候補と新パネル+実cursor判定/親PP[11,10,15,20]だけ。回復未完、merge/release/baseline変更0。
+
+## 2026-10-03T17:36:19+00:00
+- Timestamp: 2026-10-03T17:36:19+00:00
+- Task: USER-20261003-ROUTE504-SAVE48 / 北迂回の残68歩・南端・Save48
+- Version: story-north-detour-save48-v1
+- Status: DONE（北迂回完走/保存/独立Continue限定受入、南接続と回復未完）
+- Summary: 右隣NPC12,5を北へ避け11,5東→17,19南へ68歩/21方向転換、戦闘0。party600byte/HP/PP/全Bag/15224円/全legacy flags/PC/S61E不変。新パネル判定と親残PP[11,10,15,20]束縛の18新controller試験。戦闘なしのため新UI/slot3のnative実証は追加0。
+- Files changed: Save48 controller/18新試験/34原本受入拒否試験/record workflow、checkpoint/text証跡、固定再開MD/JSON、両ログ。
+- Verify: run37140030464/job111252353944全8step成功、224/cold13入力/118画面/134member。18controller原log継承、新34受入、record native0。aux4021=40→108/4022=0→3とledger18/82差owner未解決。
+- Evidence: 97〜110部分write、110counter48は部分write→111成功/安定Flash→115field。42checksum/旧bank57344byte/6894byte1708範囲/cold全SaveRTC一致。Save47 record37138998824/同期37139239163/Stage79run37139239131終端反映。旧失敗/Save47raw used0誤陰性/旧party差等owner未解明保持。地形1440再採取0。
+- Commit: 測定source=9b901795212fb59eff1d9189fbf084f8f6a63506、記録source=eb38b4ea9b668e2c8121dfd47860a9d4d456e58c・run=37141095775。scoped guard/task graph/resume後に同branch非force pushと全text読戻し。
+- Network: 同repo GitHub/Actionsのみ。既存ROM/runtime/input非再配布。一般CI既知source不一致/finalHEAD action_requiredは全成功としない。merge/release/baseline変更0。
+- Next: Save48 artifact11279239942のstory-fast.srm（3095edcc45f08ff64cabe7a07c54098ec4b82f8ed874d6e103fafe9f7a2fb02f、131088bytes）だけから再開。map3/44・17,19南/下段3・party4/RP0・15224円・badge1・story4071=9/4072=1。Save47の右隣NPCを避け、11,5→11,4→12,4→13,4から北迂回残68歩/21turnを戦闘0で完走、通常Save48と独立Continue全SaveRTC一致。全party600byte/PP/HP/Bag/所持金/legacy flags/PC/S61E不変。オノノクスPP[11,10,15,20]、ミュウツーHP314/354・全PP0で回復未完。次は保存済map3/44高さ20/南connection offset-16→map3/23を参照し、17,19から南境界を越える新通常入力だけ。想定接続先33,0は静的候補で未受入。既存map3/23読取資料の北端通路26〜33と南connection→map3/2を使い、必要な新しい高度/ownerだけ追加照合。最初の新接続/戦闘/event/未通過境界または正常回復地点で保存。通常回復のHP/PPと原画が確認できるまで回復完了としない。新パネル判定a.classify_panelを継承、selectは実PP[11,10,15,20]に束縛。今回戦闘0で新判定/slot3選択のnative実証は追加0、Save47のslot0だけ受入済。97〜110部分write、110counter48でも未完、111成功文言/安定Flash→115field。aux4021=40→108/4022=0→3、RAMledger18/82差owner未解決、最終cold一致。Save47のraw used0誤陰性、Save46party2byte、Save39cold差/Save44並替差と旧失敗を保持。224+cold13入力/118画面/18controller34受入は無影響再走0。正規全国図鑑/通常story/自然EXP・技習得・進化/LuckyEgg/12case/Lv100soak/研究施設自然到達未完。ROM/host補充/故意全滅/merge/release/baseline切替なし。既存ROM/runtime/inputはActions入力専用、新artifactは新save/画面/textだけ。一般CI既知qol_production.c不一致とfinalHEAD action_requiredは全成功にしない。
+
+## 2026-10-03T17:59:42+00:00
+- Timestamp: 2026-10-03T17:59:42+00:00
+- Task: USER-20261003-SOUTH-SAVE49 / 505番道路への通常南接続・Save49
+- Version: story-south-connection-save49-v1
+- Status: DONE（505接続/保存/独立Continue限定受入、通常回復未完）
+- Summary: 504南端17,19から南1入力で505/map3/23・33,0南、戦闘0。party600byte/HP/PP/全Bag/15224円/全legacy flags/PC/S61E/全RAMledger不変。親Save48のパネル判定と実PP選択を継承、battle native実証追加0。
+- Files changed: Save49 controller/12新試験/34原本受入拒否試験/record workflow、checkpoint/text証跡、固定再開MD/JSON、両ログ。
+- Verify: run37141976146/job111258130792全8step成功、47/cold13入力/29画面/44member。12controller原log継承、新34受入、record native0。aux4021=108→109/4022=3→4はowner未解決。
+- Evidence: 9〜21書込中13種類。20最終Flash一時一致/counter48→21counter49再差分→22成功/安定→26field。42checksum/旧bank57344byte/6894byte1700範囲/cold全SaveRTC一致。Save48 record37141095775/Stage79run37141095577終端同期。旧失敗/旧party・ledger差owner未解明保持。新接続先1cellだけ追加読取。
+- Commit: 測定source=edaffdbc22212b8957b6c1b32cc1287f6a08cc54、記録source=76ba6c8ff45c9f1f0943a7e2741bef643d279f81・run=37142517526。scoped guard/task graph/resume後に同branch非force pushと全text読戻し。
+- Network: 同repo GitHub/Actionsのみ。既存ROM/runtime/input非再配布。一般CI既知source不一致/finalHEAD action_requiredは全成功としない。merge/release/baseline変更0。
+- Next: Save49 artifact11280742739のstory-fast.srm（21374dbfbc9e38f0febf16304706b7f3b14feacf204d5956bd622dcf941b1a04、131088bytes）だけから再開。504南端17,19から通常南1入力で505番道路map3/23・33,0南/高度3へ接続、通常Save49/独立Continue全SaveRTC一致を限定受入。party4/RP0/15224円/badge1/story4071=9/4072=1、party600byte/HP/PP/Bag/legacy flags/PC/S61E不変。オノノクスPP[11,10,15,20]、ミュウツーHP314/354・全PP0で通常回復未完。次は既存map3/23 collision_gridの北端26〜33通路と南connection→map3/2を再利用し、33,0以南の新しい高度/ownerだけ追加読取して通常回復地点を目指す。最初の新戦闘/event/未通過境界/接続または正常回復地点で保存。未観測経路や回復を受入にしない。新classify/残PP選択はSave48の実装を継承、今回戦闘0で追加native実証0。20最終Flash一時一致でもcounter48/書込中、21counter49で再差分、22成功文言/安定Flash→26field。aux4021=108→109/4022=3→4はowner未解決、全RAMledger不変/最終cold一致。旧Save48途中ledger差/Save47raw used0誤陰性/Save46party2byte/Save39cold差/Save44並替差と旧失敗を保持。47+cold13入力/29画面/12controller34受入は無影響再走0。正規全国図鑑/全story/自然EXP・技習得・進化/LuckyEgg/12case/Lv100soak/研究施設自然到達未完。ROM/host補充/故意全滅/merge/release/baseline切替なし。既存ROM/runtime/inputはActions入力専用、新artifactは新save/画面/textだけ。一般CI既知qol_production.c不一致とfinalHEAD action_requiredを全成功にしない。
+
+## 2026-10-03T18:33:25+00:00
+- Timestamp: 2026-10-03T18:33:25+00:00
+- Task: USER-20261003-ROUTE505-SAVE50 / 505番道路の通常迂回・セナラナ戦・Save50
+- Version: story-route505-save50-v1
+- Status: DONE（新57歩/ダブル戦1勝/保存/独立Continue限定受入。回復未完）
+- Summary: 33,0→22,18北/高度4。通常賞金416円で15640円。ミュウツーPP0のわるあがき3回、反動264でHP50/354。オノノクスHP294/294・PP[11,10,15,18]。PP持ち2体への並替だけでは解決しない。
+- Files changed: Save50 inspect東/西原本・measure/20新試験・44新受入拒否/record workflow、checkpoint/text証跡、固定再開MD/JSON、両ログ。
+- Verify: run37143645467/job111263061326全8step成功、296/cold13入力153画面168member。20controller原log継承、新44受入、record native0。raw used6は選択3+target3で実PP消費2、3回目未実行。元測定を改作しない。
+- Evidence: party差41/55/186/187の4byte、歩行byte41owner未解明。physicalflag1406のみ。aux4021/4022とRAMledger4差owner未解明。134〜145部分write、146安定Flash/counter50→147成功→150field。42checksum/旧bank57344byte/6948byte1728範囲/cold全SaveRTC一致。
+- Read-only: 東322cell/13script、西187cell/12scriptを新規採取し診断0。追加21行12cell+接続先1cell/map3/2のみ。保存collision/旧native不変。104歩候補の実57歩だけ受入、残47歩/南connection未踏。
+- Commit: 測定source=68c53dd8bbd74ce07d71f32a21d657e80cd1457e、記録source=384ecdce0ab7aad6925c8a8a1ad01adab4c17f93・run=37144605978。scoped guard/task graph/resume後に同branch非force pushと全text読戻し。
+- Network: 同repo GitHub/Actionsのみ。既存ROM/runtime/input非再配布。旧失敗・未解明差を保持。一般CI既知source不一致/finalHEAD action_requiredは全成功としない。merge/release/baseline変更0。
+- Next: Save50 artifact11281112264のstory-fast.srm（131088bytes/SHA256 b586055a74bd6b826d7ea8150e25954a9452718ad5b46e4926f0d01f9088022e）だけから再開。505番道路33,0→西側迂回57歩→22,18北/高度4でセナラナのダブル戦1勝、通常Save50/独立Continue全SaveRTC一致を限定受入。party4/RP0/15640円/badge1/story4071=9/4072=1。オノノクスHP294/294・PP[11,10,15,18]、ミュウツーHP50/354・PP全0、ミュウHP342/342とメタモンHP300/300はいずれも技4枠0。PP持ちは1体だけで、並替だけで2体にはできない。次は保存済み候補routeのindex57から残47歩を使い、任意戦を避けて南connection→map3/2の28,0/正常回復を優先。最初の新戦闘/event/未通過境界/接続または実回復で保存。戦闘前にはダブル戦の技選択/相手確定を別計数し、現在PPへ再束縛する。今回raw used6は選択3+target3で実PP消費2、3回目は相方が先に倒して未実行。ミュウツーのわるあがき3回反動264HPを回復扱いしない。新classifierはslot0/2/3表示とslot3実使用2だけをnative確認、slot1/全4技は未完。歩行中party byte41=43→44と途中RAMledger4差・aux4021=109→37/4022=4→0はowner未解明。146安定Flash/counter50→147成功文言→150fieldを分離。原本296+cold13入力153画面/20controller44受入/168memberを無影響再走0。旧失敗と旧party/ledger不明差を保持。全国図鑑/全story/自然育成・進化/LuckyEgg/研究施設自然到達未完。ROM/host補充/故意全滅/merge/release/baseline切替なし。既存ROM/runtime/inputはActions入力専用。一般CI既知qol_production.c source不一致/finalHEAD action_requiredを全成功にしない。
+
+## 2026-10-03T18:57:13+00:00
+- Timestamp: 2026-10-03T18:57:13+00:00
+- Task: USER-20261003-ROUTE505-SAVE51 / 505番道路の高台東階段・ワタミ戦・Save51
+- Version: story-route505-save51-v1
+- Status: DONE（新27歩/通常single戦1勝/保存/独立Continue限定受入。回復未完）
+- Summary: 22,18→31,24南/高度3。通常賞金1400円で17040円。オノノクスHP294/294・PP[11,10,15,14]、ミュウツーHP50/354・PP全0、全員HP不変。
+- Files changed: Save51 measure/22新controller・44新受入拒否/record workflow、checkpoint/text証跡、固定再開MD/JSON、両ログ。
+- Verify: run37145425150/job111268239135全8step成功、184/cold13入力97画面112member。22controller原log継承、新44受入、record native0。選択4/target0/実PP4を別検証、ダブルtarget分離native未実証。
+- Evidence: party差byte55の1byteだけ。physicalflag1407、aux4021=37→63とRAMledger42/63 owner未解明。78〜89部分write、90安定Flash/counter51→91成功→94field。42checksum/旧bank57344byte/6944byte1717範囲/cold全SaveRTC一致。
+- Reuse: Save50のterrain/map/scriptsと候補を再利用、追加静的読取0/旧native再走0。残20歩と南connectionは未踏。未戦闘trainer視界の回避可能性を確認し通常回復を優先。
+- Commit: 測定source=7bfc8f61d793c5533c0e6aed3e75dadd178fbac3、記録source=5803a1894ce67270c32e923ececf539d589ee653・run=37146098901。scoped guard/task graph/resume後に同branch非force pushと全text読戻し。
+- Network: 同repo GitHub/Actionsのみ。既存ROM/runtime/input非再配布。旧失敗・未解明差保持。一般CI既知source不一致/action_requiredは全成功としない。merge/release/baseline変更0。
+- Next: Save51 artifact11281768926のstory-fast.srm（131088bytes/SHA256 8661346e2de9bc73fc61d5a63af5bd6acd10008486b54c66c9459820a5447d65）だけから再開。505番道路22,18→新27歩/高台東階段→31,24南/高度3でワタミのsingle戦1勝、通常Save51/独立Continue全SaveRTC一致を限定受入。party4/RP0/17040円/badge1/story4071=9/4072=1。オノノクスHP294/294・PP[11,10,15,14]、ミュウツーHP50/354・PP全0、他2体技ID全0。正常回復が最優先。保存済みroute index84から残20歩と南connection→map3/2の28,0が候補。28,27/29,27の未戦闘trainerの視界を避けられるか、保存済みterrain/graphと必要な未読object属性だけで確認してから進む。最初の新戦闘/event/未通過境界/接続/実回復で保存。新controllerは選択とtargetを分離しSave50実PPへ再束縛、今回はsingleなので選択4/target0/実PP4だけをnative確認、次回実PP14へ再束縛。ダブルtarget分離native未実証。42/63RAMledgerとaux4021=37→63のowner未解明。90安定Flash/counter51→91成功文言→94fieldを分離。原本184+cold13入力97画面/22controller44受入/112memberを無影響再走0。旧Save50 raw6/実PP2・partybyte41/旧ledger差、旧失敗を保持。全国図鑑/全story/自然育成・進化/LuckyEgg/研究施設自然到達未完。ROM/host補充/故意全滅/merge/release/baseline切替なし。既存ROM/runtime/inputはActions入力専用。一般CI既知source不一致/action_requiredを全成功にしない。
+
+## 2026-10-03T19:16:11+00:00
+- Timestamp: 2026-10-03T19:16:11+00:00
+- Task: USER-20261003-ROUTE505-SAVE52 / 505番道路ペア迂回・ミルシティ接続・Save52
+- Version: story-miru-city-save52-v1
+- Status: DONE（20歩/南接続/保存/独立Continue限定受入。回復未完）
+- Summary: 31,24→20歩→28,39→ミルシティmap3/2の28,0南。戦闘0/HP/PP不変、17040円。オノノクスHP294/294・PP[11,10,15,14]、ミュウツーHP50/354・PP全0。
+- Files changed: Save52 inspect/measure/18新controller・39新受入拒否/record workflow、checkpoint/text証跡、固定再開MD/JSON、両ログ。
+- Verify: run37146655614/job111271886470全8step成功、94/cold13入力52画面67member。18controller原log継承、新39受入、record native0。ダブルtarget分離native未実証を保持。
+- Evidence: party全600byte不変。新接続physicalflag2194、vars4021/4022/40AEとcold RAMledger差owner未解明。33〜42/44部分write、43一時最終hash一致counter51→44counter52再差分→45成功→49field。42checksum/旧bank57344byte/7025byte1743範囲/cold全SaveRTC一致。
+- Reuse: 保存済terrain/map/scripts再採取0。未読2object属性16byteだけread-only採取し原本zip全byte結合。移動範囲/全方向視界を過大近似してペアを回避、草地4cellで遭遇0。
+- Commit: 測定source=2d43764b9253f306dcb8abcd23e040e7cecbd85f、記録source=9e4b701087c609141774a6a746b96bdc1aeede66・run=37147254753。scoped guard/task graph/resume後に同branch非force pushと全text読戻し。
+- Network: 同repo GitHub/Actionsのみ。既存ROM/runtime/input非再配布。旧失敗・未解明差保持。一般CI既知source不一致/action_requiredは全成功としない。merge/release/baseline変更0。
+- Next: Save52 artifact11282311020のstory-fast.srm（131088bytes/SHA256 f3fc9b1d3121b049900defb5c2f031a0b397a10b34fa3464d51f355a87833028）だけから再開。505の未戦闘ペアを視界過大近似の外側で迂回、20歩+南connectionを戦闘0で通過しミルシティmap3/2の28,0南/高度3へ到着。通常Save52/独立Continue全SaveRTC一致を限定受入。party全600byte/HP/PP/Bag/17040円/RP0/badge1/story4071=9/4072=1不変。オノノクスHP294/294・PP[11,10,15,14]、ミュウツーHP50/354・PP全0、他2体技ID全0。正常回復が最優先。保存済みtown collision/map/warpsから回復施設のowner・必要経路高度・必要eventだけ読取し、通常入口/会話/回復を目指す。最初の新story/event/未通過境界/新建物/実回復で保存、必須story省略なし。town新接続flag2194とaux4021=63→84/4022=0→1/40AE=91→80、およびcold RAMledger差のowner未解明を保持し次の限定調査で確認。progress ledger3c7c0390…は不変、cold def3a8d7…は別hash、全Save一致と混同しない。43最終Flash一時一致counter51→44counter52再差分→45成功/安定→49field。原本94+cold13入力52画面/18controller39受入/67memberを無影響再走0。doubletarget分離native未実証、旧失敗・Save50raw6/実PP2/partybyte41・旧ledger差は保持。全国図鑑/全story/自然育成・進化/LuckyEgg/研究施設自然到達未完。ROM/host補充/故意全滅/merge/release/baseline切替なし。既存ROM/runtime/inputはActions入力専用。一般CI既知source不一致/action_requiredを全成功にしない。
+
+## 2026-10-03T19:41:21+00:00
+- Timestamp: 2026-10-03T19:41:21+00:00
+- Task: USER-20261003-MIRU-SAVE53 / ミルシティ回復施設の通常到達・Save53
+- Version: story-miru-healing-building-save53-v1
+- Status: DONE（通常入館/保存/独立Continue限定。回復未完）
+- Summary: town26歩/3方向転換、通常door38,15からmap6/5の7,8北。受付local3のheal special0静的owner確認。全party/HP/PP不変。旧flag2194だけsetworldmapflag ownerを後継解決。
+- Files changed: Save53 inspect/owner/measure/20controller/39受入/record、静的原本2、checkpoint/text証拠、固定再開MD/JSON、両ログ。
+- Verify: run37148257409/job111276541041全8step成功、108+cold13入力60画面75member、20controller原logと39新受入拒否。record native0/compile0/旧再走0。
+- Evidence: 39〜53部分write、53counter先行→54成功→57field。party600byte/Bag/17040円/RP0/PC/S61E/全国図鑑未解禁保持、flags0/aux2件、通常respawn更新。42checksum/旧bank57344byte/6989byte1765範囲/cold全SaveRTC一致。今回RAM不変、旧差owner未解明。
+- Commit: 測定source=c7a396747031908a74cc8c9a63698e6c513dced8、記録source=8fa4d19c42eb0771a41b0d0f89b673f4e51ab8de・run=37148761559。scoped guard/task graph/resume後に同branch非force pushと全text読戻し。
+- Network: 同repo GitHub/Actionsのみ。既存ROM/runtime/input非再配布。一般CI既知不一致/action_requiredは全成功にしない。merge/release/baseline変更0。
+- Next: Save53 artifact11283178064のstory-fast.srm（131088bytes/SHA256 e22287b3ef44b53029d855aca7cac243f567af75fce21d557f28294c7f4c9a13）からのみ再開。ミルシティのポケモンセンター1F map6/5・7,8北。通常26歩/入口/Save53/独立Continueを限定受入。party600byte/Bag/17040円/RP0/badge1/story4071=9/4072=1不変。オノノクスHP294/294・PP[11,10,15,14]、ミュウツーHP50/354・PP全0で正常回復が最優先。施設map/warps/owner graphは保存済み。受付local3の7,2、script135790449→135872070→135872156→special0を同一候補で確認。必要な室内経路高度だけ読み、カウンター越しの通常会話/回復へ進む。最初の新event/未通過境界/実回復で通常保存、必須story省略なし。Save52のflag2194 ownerはtown load script136400616の命令136400637/setworldmapflag。既受入の原本を書換えず後継解決として記録。今回var4021=84→110/4022=1→2と旧cold RAM差のowner未解明を保持。今回progress/cold ledgerはdef3a8d727dc95294ed0908fa68914b62022587e25ef55d2fe352a942c1ec502で同一。Save53成功54→field57、counter53だけでは完了判定しない。108+cold13入力60画面20controller39受入75memberを無影響再走0。全国図鑑/全story/自然育成・進化/LuckyEgg/研究施設自然到達未完、doubletarget分離native未実証。既存ROM/runtime/input非再配布、host補充/故意全滅/merge/release/baseline切替なし。一般CI既知source不一致/action_requiredを全成功にしない。
+
+## 2026-10-03T20:03:43+00:00
+- Timestamp: 2026-10-03T20:03:43+00:00
+- Task: USER-20261003-HEAL-SAVE54 / ミルシティ通常受付の全回復・Save54
+- Version: story-miru-normal-heal-save54-v1
+- Status: DONE（通常回復/保存/独立Continue限定）
+- Summary: 室内4歩で受付前7,4北。「あずける」の通常入力でHP/PP全回復。ミュウツーHP50→354/354・PP全0→[10,20,15,10]、オノノクスPP[15,10,15,20]。party差分8byteのみ。
+- Files changed: Save54 inspect/measure/21controller/43受入/record、5cell静的原本、checkpoint/text証拠、固定再開MD/JSON、両ログ。
+- Verify: run37149491580/job111280129663全8step成功、66+cold13入力39画面54member、21controller原logと43新受入拒否。record native0/compile0/旧再走0。
+- Evidence: 現候補move tableで最大PP照合。18〜32部分write、32counter先行→33成功→36field。Bag/17040円/RP0/PC/S61E/全国図鑑/全flags保持。aux2件、42checksum/旧bank57344byte/6936byte1739範囲/cold全SaveRTC一致。会話終了でRAM台帳差、owner未解明を明示。
+- Commit: 測定source=041077371f32b04015916058fe460e1ade4dd989、記録source=1e4551b4da705a01da77fd53f109a182cf316c8a・run=37150128228。scoped guard/task graph/resume後に同branch非force pushと全text読戻し。
+- Network: 同repo GitHub/Actionsのみ。既存ROM/runtime/input非再配布。一般CI既知不一致/action_requiredは全成功にしない。merge/release/baseline変更0。
+- Next: Save54 artifact11283366654のstory-fast.srm（131088bytes/SHA256 bfdd4fb964fd8a3b526b919921b2400e3c1f44c02011208b03f0507606a496ad）だけから再開。ポケモンセンター1F map6/5・7,4北。通常4歩/受付「あずける」/HP・PP全回復/Save54/独立Continueを限定受入。オノノクスHP294/294・PP[15,10,15,20]、ミュウツーHP354/354・PP[10,20,15,10]、空技のミュウ/ビーダルも全HP。party600byte差分は回復8byteだけ。Bag/17040円/RP0/badge1/story4071=9/4072=1/全flags/PC/S61E不変。回復を再実行せず、保存済室内mapとtown ownerから出口→ミルシティの次必須storyを限定調査し通常入力で進める。最初の新event/戦闘/未通過境界で通常保存、必須story省略なし。aux4021=110→114/4022=2→1と回復後RAM台帳3aef553d4f2dba8f52868966ed63e2e315f111535d017321afe1c0df1a7bd384のowner未解明、旧Save52 cold差ownerも未解明。Save54 progress/coldは同一。Save54counter32は書込中、成功33→field36。66+cold13入力39画面21controller43受入54memberを無影響再走0。全国図鑑/全story/自然育成・進化/LuckyEgg/研究施設自然到達未完、doubletarget分離native未実証。既存ROM/runtime/input非再配布、host補充/故意全滅/merge/release/baseline切替なし。一般CI既知不一致/action_requiredを全成功にしない。

@@ -1,0 +1,44 @@
+name: pr16-ring-message-task-callees
+run-name: message taskの七calleeを限定保存
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-ring-message-task-callees.yml
+      - scripts/pr16_ring_message_task_callees.py
+      - tests/test_pr16_ring_message_task_callees.py
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-ring-message-task-callees
+  cancel-in-progress: false
+jobs:
+  focused:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: task七calleeの未読命令だけを採取し同branchへ記録
+        run: python3 scripts/pr16_ring_message_task_callees.py run
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-ring-message-task-callees
+          path: |
+            .local/pr16-ring-message-task-callees/export/
+            .local/pr16-ring-message-task-callees/analysis.json
+            .local/pr16-ring-message-task-callees/tests.json
+            .local/pr16-ring-message-task-callees/tests.txt
+            .local/pr16-ring-message-task-callees/recorded-result.json
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90

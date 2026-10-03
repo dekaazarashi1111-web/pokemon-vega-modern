@@ -1,0 +1,32 @@
+name: PR16 Ring NPC scoped workbench
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-ring-npc-workbench.yml
+      - scripts/pr16_ring_npc_workbench.py
+permissions:
+  contents: read
+concurrency:
+  group: pr16-ring-npc-workbench
+  cancel-in-progress: false
+jobs:
+  source:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Exact HEADの必要tracked textだけを取得
+        run: python3 scripts/pr16_ring_npc_workbench.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-ring-npc-workbench
+          path: .local/pr16-ring-npc-workbench/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

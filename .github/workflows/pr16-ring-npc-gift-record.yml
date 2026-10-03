@@ -1,0 +1,37 @@
+name: PR16 Ring NPC gift checkpoint record
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-ring-npc-gift-record.yml
+      - scripts/pr16_ring_npc_gift_record.py
+      - tests/test_pr16_ring_npc_gift_record.py
+permissions:
+  contents: write
+  pull-requests: read
+  actions: read
+concurrency:
+  group: pr16-ring-npc-gift-record
+  cancel-in-progress: false
+jobs:
+  record:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: Verify retained native originals and nonforce record
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/pr16_ring_npc_gift_record.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-ring-npc-gift-record
+          path: .local/pr16-ring-npc-gift-record/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

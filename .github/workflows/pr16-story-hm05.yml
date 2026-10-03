@@ -1,0 +1,43 @@
+name: pr16-story-hm05
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-story-hm05.yml]
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: pr16-story-hm05
+  cancel-in-progress: false
+defaults:
+  run:
+    shell: bash
+jobs:
+  continuation:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 8
+      - name: Scoped source guard before native
+        run: |
+          set -euo pipefail
+          python3 -B -c "import sys; sys.path.insert(0,'scripts'); import pr16_story_hm05_measure as m; import pr16_learnset_runtime_record as g; g.START='9fabe39b4d3b9bf60ead5af3981bed2547fe8fd7'; g.CODE=m.CODE; g.OWNED=set(); g.guard()"
+      - name: New HM05 Save20 interval and independent Continue only
+        run: python3 -B scripts/pr16_story_hm05_measure.py
+      - name: Lightweight task graph
+        run: python3 -B scripts/validate_task_graph.py --check
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-story-hm05-checkpoint
+          path: .local/pr16-story-hm05/artifact
+          include-hidden-files: true
+          retention-days: 90
+          if-no-files-found: error

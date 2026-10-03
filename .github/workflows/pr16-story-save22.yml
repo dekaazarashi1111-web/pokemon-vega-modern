@@ -1,0 +1,45 @@
+name: pr16-story-save22
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-story-save22.yml]
+permissions:
+  contents: read
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-story-save22
+  cancel-in-progress: false
+defaults:
+  run:
+    shell: bash
+jobs:
+  continuation:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.run_attempt == 1
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 24
+      - name: Scoped source guard before native
+        run: |
+          set -euo pipefail
+          printf '%s\n' 'efa3efb09b34b28efb148c14ae8660f6884c01bac27b343e6c2e61fd0465e2c6  scripts/pr16_story_save22_measure.py' 'f451a53e45374f0b30ce775a0ebe3e61f2710bd6b44f79b5ba4f1cec2f8e66e5  tests/test_pr16_story_save22_transport.py' | sha256sum --check
+          python3 -B -c "import sys; sys.path.insert(0,'scripts'); import pr16_story_save22_measure as m; import pr16_learnset_runtime_record as g; g.START='98052e7f7671e401124628591e98ea10e91c722e'; g.CODE=m.CODE|{'.github/workflows/pr16-story-save22-context.yml'}; g.OWNED=set(); g.guard()"
+      - name: New five trainers cave entrance Save22 and independent Continue only
+        run: python3 -B scripts/pr16_story_save22_measure.py
+      - name: Lightweight task graph
+        run: python3 -B scripts/validate_task_graph.py --check
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-story-save22-checkpoint
+          path: .local/pr16-story-save22/artifact
+          include-hidden-files: true
+          retention-days: 90
+          if-no-files-found: error

@@ -1,0 +1,83 @@
+{
+  "edits": [
+    {
+      "after_sha256": "8519a785d67710d79b3c3512c1218fdf4a36cce695f98cb079529037d3c1ac83",
+      "before_sha256": "c0ca5517dcd73b0f1c185a14d01e91fe7f5441fdb21b52d12c050603217f51e8",
+      "path": "tools/pr16_research_standard_list.c",
+      "replacements": [
+        [
+          "extern void SL_ClearFrame(u8, u8);",
+          "extern void SL_ClearFrame(u8, u8);\nextern void SL_LoadFrame(u8, u16, u8);"
+        ],
+        [
+          "    w.base = SL_BaseTile();",
+          "    /* 0x214..0x21c are frame tiles, not menu pixel storage. */\n    w.base = 0x280;"
+        ],
+        [
+          "    SL_FillWindow((u8)window, 0x11);",
+          "    SL_LoadFrame((u8)window, SL_BaseTile(), 0xe0);\n    SL_FillWindow((u8)window, 0x11);"
+        ]
+      ]
+    },
+    {
+      "after_sha256": "471f6f41a72ab43c36dd313e568705d85c30c981721df070aa331a56e981bb4e",
+      "before_sha256": "68bdfe4fab1d80bd11b55865bfd9bc848164d261cc302997eb4dd23166b453b2",
+      "path": "scripts/pr16_research_standard_list.py",
+      "replacements": [
+        [
+          "'SL_Cursor':0x0811030D, 'SL_Input':0x08110BF9,",
+          "'SL_Cursor':0x0811030D, 'SL_Input':0x08110539, 'SL_LoadFrame':0x081530E1,"
+        ],
+        [
+          "all 17 typed Thumb delegates",
+          "all typed Thumb delegates"
+        ]
+      ]
+    },
+    {
+      "after_sha256": "7165d617b672885425535ecbd55ecc301b1cdbd9e0f2c35a75c49225ca0fb840",
+      "before_sha256": "a4c9200caf1b7557e81eb44d00f748222c0d24641d9a586b41282c4b9eb4fd12",
+      "path": "tests/test_pr16_research_standard_list.py",
+      "replacements": [
+        [
+          "sound_count,bad_abi;",
+          "sound_count,bad_abi,loaded;"
+        ],
+        [
+          "w->base!=300",
+          "w->base!=640"
+        ],
+        [
+          "void SL_DrawFrame(u8 n,u8 c){if(n!=3||c)bad_abi++;}",
+          "void SL_LoadFrame(u8 n,u16 tile,u8 palette){if(n!=3||tile!=300||palette!=0xe0)bad_abi++;loaded++;}\nvoid SL_DrawFrame(u8 n,u8 c){if(n!=3||c||loaded!=created)bad_abi++;}"
+        ],
+        [
+          "sound_count=bad_abi=0;",
+          "sound_count=bad_abi=loaded=0;"
+        ],
+        [
+          "case 12:return sl_tasks[0].data[1];default:",
+          "case 12:return sl_tasks[0].data[1];case 13:return loaded;default:"
+        ],
+        [
+          "    def test_invalid_task_id_is_noop(self):",
+          "    def test_frame_loaded_only_after_window_allocation(self):\n        self.lib.settings(0,255,-2);self.lib.SL_Open();self.assertEqual(self.v(13),0)\n    def test_each_owned_window_loads_user_frame_once(self):\n        self.select(0);self.open();self.assertEqual([self.v(13),self.v(10)],[2,0])\n    def test_invalid_task_id_is_noop(self):"
+        ]
+      ]
+    },
+    {
+      "after_sha256": "3c6140e32bccc950f162a61356d1c5cd9c36c467c7d58cc7fca59df66e34f272",
+      "before_sha256": "88d4b7528809428cedd031eb24e4f1c064e9ac27682a1bbfc6b2159aa2765fd2",
+      "path": "tests/test_pr16_research_standard_list_thumb.py",
+      "replacements": [
+        [
+          "len(s.audit_thumb_symbols(fixture())),17",
+          "len(s.audit_thumb_symbols(fixture())),18"
+        ]
+      ]
+    }
+  ],
+  "non_force_push_confirmed": true,
+  "source_head": "ad9b61026eeec84431c43d5cdd493e421ce3cc83",
+  "workflow_head": "597673e7f4163a063593a1157a8f51a4236c3cdd"
+}

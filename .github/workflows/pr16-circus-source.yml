@@ -1,0 +1,68 @@
+name: PR16 Circus pending owner implementation
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-circus-source.yml
+      - scripts/pr16_circus_source_probe.py
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: pr16-circus-source
+  cancel-in-progress: false
+jobs:
+  source:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: 新しいCircus pending実装だけを現行CFRU APIと検証
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-circus-source
+          python3 -m unittest discover -s tests -p test_pr16_circus_admission.py -v > .local/pr16-circus-source/host.stdout 2> .local/pr16-circus-source/host.stderr
+          python3 scripts/pr16_resume.py check > .local/pr16-circus-source/resume.json
+      - name: 固定compilerを検証し新コードを独立compile
+        run: bash infra/setup_github_actions.sh --install > .local/pr16-circus-source/toolchain.log 2>&1
+      - name: 固定sourceとlink metadataだけを採取
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-circus-inputs
+          tag=$(python3 -c 'import json; print(json.load(open("config/github_private_environment.json"))["release"]["tag"])')
+          gh release download "$tag" --pattern pokemon-vega-private-env-v1-state.zip --dir .local/pr16-circus-inputs
+          python3 scripts/pr16_circus_source_probe.py --archive .local/pr16-circus-inputs/pokemon-vega-private-env-v1-state.zip > .local/pr16-circus-source/run.stdout 2> .local/pr16-circus-source/run.stderr
+      - name: textだけをhash付き証跡へ保持
+        if: always()
+        run: |
+          python3 - <<'PY'
+          import hashlib,json,pathlib,re
+          source=pathlib.Path('.local/pr16-circus-source')
+          out=pathlib.Path('.local/pr16-circus-source-evidence');out.mkdir(parents=True,exist_ok=True)
+          members={}
+          for p in sorted(source.rglob('*')):
+              if p.is_dir():continue
+              if p.suffix not in {'.c','.h','.py','.json','.txt','.stdout','.stderr','.log','.yml','.ld'}:continue
+              assert p.is_file() and not p.is_symlink()
+              raw=p.read_bytes();raw.decode('utf-8-sig')
+              assert len(raw)<=2000000 and b'\0' not in raw
+              assert not re.search(rb'gh[pousr]_[A-Za-z0-9]{36,}|github_pat_[A-Za-z0-9_]{60,}',raw)
+              name=p.relative_to(source).as_posix();dest=out/name
+              dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(raw)
+              members[name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+          (out/'members.json').write_text(json.dumps(members,indent=2)+'\n')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-circus-source
+          path: .local/pr16-circus-source-evidence/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

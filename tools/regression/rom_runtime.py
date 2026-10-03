@@ -29,6 +29,7 @@ from tools.map_import.full_kanto_import import (
     source_object_role,
 )
 from tools.rom_allocator import GBA_ROM_BASE, build_allocation_report_from_csv
+from tools.regression.home_recovery import original_mother_script, fallback as mother_fallback
 
 
 TASK = "T17"
@@ -1023,7 +1024,7 @@ def _progression_scripts(root: Path, blob: _Blob, trainer_ids: Mapping[str, int]
 
 
 def _script_main(root: Path, blob: _Blob, qol_probe: str,
-                 portal_warp: str, return_warp: str) -> None:
+                 portal_warp: str, return_warp: str, mother_script: int) -> None:
     mapping, tokens = _charmap(root)
     blob.add("text_portal_prompt", _encode_text("カントーは レベル68いじょうです！\nわたりますか？", mapping, tokens), 1)
     blob.add("text_portal_locked", _encode_text("まだ ふねは うごいていません", mapping, tokens), 1)
@@ -1044,12 +1045,12 @@ def _script_main(root: Path, blob: _Blob, qol_probe: str,
     blob.pointer(portal_offset + 30, "script_portal_locked")
     blob.pointer(portal_offset + 35, "script_portal_prompt")
 
-    locked = bytearray([0x0F, 0x00]) + bytes(4) + bytes([0x09, 0x04, 0x6C, 0x02])
-    locked_offset = blob.add("script_portal_locked", bytes(locked), 4)
-    blob.pointer(locked_offset + 2, "text_portal_locked")
+    # 未解禁時は元の母親へ。旧10byte幅と後続symbolの配置を保持する。
+    blob.add("script_portal_locked", mother_fallback(mother_script, reserved=5), 4)
     prompt = bytearray([0x0F, 0x00]) + bytes(4) + bytes([0x09, 0x05])
     prompt += bytes([0x21]) + struct.pack("<HH", 0x800D, 1)
-    prompt += bytes([0x06, 0x01]) + bytes(4) + bytes([0x6C, 0x02])
+    # 渡航を断ると元会話・回復へ。旧release/endと直後3byte paddingだけを使う。
+    prompt += bytes([0x06, 0x01]) + bytes(4) + mother_fallback(mother_script)
     prompt_offset = blob.add("script_portal_prompt", bytes(prompt), 4)
     blob.pointer(prompt_offset + 2, "text_portal_prompt")
     blob.pointer(prompt_offset + 15, "script_portal_travel")
@@ -1223,7 +1224,8 @@ def _build_blob(root: Path, stage: bytes, clean: bytes, payload_offset: int) -> 
             raise RuntimeBuildError(f"QOL-B symbol outside binary: {name}")
         blob.labels[f"qol::{name}"] = qol_offset + relative
     _script_main(root, blob, "qol::QolB_RuntimeProbe",
-                 "qol::QolB_PortalWarp", "qol::QolB_ReturnWarp")
+                 "qol::QolB_PortalWarp", "qol::QolB_ReturnWarp",
+                 original_mother_script(stage, _find_portal_object(stage)[1]))
     _install_safe_world_scripts(root, blob)
     trainer_meta = _trainer_runtime(root, blob, stage)
     trainer_ids, _, _ = _trainer_party_rows(root)
@@ -2007,7 +2009,7 @@ def build_runtime_outputs(root: Path) -> dict[str, bytes]:
     _patch_expected(
         output, portal_object + 0x10, struct.pack("<I", old_script),
         struct.pack("<I", runtime["symbols"]["script_portal"]),
-        "Hakuji research object local-id 1 portal script", patches,
+        "Vega mother local-id 1: original recovery and gated travel", patches,
     )
 
     output_raw = bytes(output)

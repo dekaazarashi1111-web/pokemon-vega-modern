@@ -1,0 +1,2216 @@
+[
+  {
+    "name": "normal-replace-0",
+    "family": 0,
+    "species": 649,
+    "level": 9,
+    "action": 0,
+    "slot": 0,
+    "index": 0,
+    "dh": 0,
+    "hof": 0,
+    "herb": 0,
+    "known": [
+      33,
+      81,
+      45,
+      52
+    ],
+    "pp_before": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_before": 229,
+    "candidates": [
+      535
+    ],
+    "expected": 535,
+    "canonical_pp": 20,
+    "after": [
+      535,
+      81,
+      45,
+      52
+    ],
+    "pp_after": [
+      20,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_after": 228,
+    "denial_text": 0
+  },
+  {
+    "name": "normal-replace-1",
+    "family": 0,
+    "species": 649,
+    "level": 9,
+    "action": 0,
+    "slot": 1,
+    "index": 0,
+    "dh": 0,
+    "hof": 0,
+    "herb": 0,
+    "known": [
+      33,
+      81,
+      45,
+      52
+    ],
+    "pp_before": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_before": 229,
+    "candidates": [
+      535
+    ],
+    "expected": 535,
+    "canonical_pp": 20,
+    "after": [
+      33,
+      535,
+      45,
+      52
+    ],
+    "pp_after": [
+      7,
+      20,
+      9,
+      10
+    ],
+    "pp_bonuses_after": 225,
+    "denial_text": 0
+  },
+  {
+    "name": "normal-replace-2",
+    "family": 0,
+    "species": 649,
+    "level": 9,
+    "action": 0,
+    "slot": 2,
+    "index": 0,
+    "dh": 0,
+    "hof": 0,
+    "herb": 0,
+    "known": [
+      33,
+      81,
+      45,
+      52
+    ],
+    "pp_before": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_before": 229,
+    "candidates": [
+      535
+    ],
+    "expected": 535,
+    "canonical_pp": 20,
+    "after": [
+      33,
+      81,
+      535,
+      52
+    ],
+    "pp_after": [
+      7,
+      8,
+      20,
+      10
+    ],
+    "pp_bonuses_after": 197,
+    "denial_text": 0
+  },
+  {
+    "name": "normal-replace-3",
+    "family": 0,
+    "species": 649,
+    "level": 9,
+    "action": 0,
+    "slot": 3,
+    "index": 0,
+    "dh": 0,
+    "hof": 0,
+    "herb": 0,
+    "known": [
+      33,
+      81,
+      45,
+      52
+    ],
+    "pp_before": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_before": 229,
+    "candidates": [
+      535
+    ],
+    "expected": 535,
+    "canonical_pp": 20,
+    "after": [
+      33,
+      81,
+      45,
+      535
+    ],
+    "pp_after": [
+      7,
+      8,
+      9,
+      20
+    ],
+    "pp_bonuses_after": 37,
+    "denial_text": 0
+  },
+  {
+    "name": "normal-empty-1",
+    "family": 0,
+    "species": 649,
+    "level": 9,
+    "action": 1,
+    "slot": 1,
+    "index": 0,
+    "dh": 0,
+    "hof": 0,
+    "herb": 0,
+    "known": [
+      33,
+      0,
+      0,
+      0
+    ],
+    "pp_before": [
+      7,
+      0,
+      0,
+      0
+    ],
+    "pp_bonuses_before": 1,
+    "candidates": [
+      81,
+      535
+    ],
+    "expected": 81,
+    "canonical_pp": 40,
+    "after": [
+      33,
+      81,
+      0,
+      0
+    ],
+    "pp_after": [
+      7,
+      40,
+      0,
+      0
+    ],
+    "pp_bonuses_after": 1,
+    "denial_text": 0
+  },
+  {
+    "name": "normal-empty-2",
+    "family": 0,
+    "species": 649,
+    "level": 9,
+    "action": 1,
+    "slot": 2,
+    "index": 0,
+    "dh": 0,
+    "hof": 0,
+    "herb": 0,
+    "known": [
+      33,
+      81,
+      0,
+      0
+    ],
+    "pp_before": [
+      7,
+      8,
+      0,
+      0
+    ],
+    "pp_bonuses_before": 5,
+    "candidates": [
+      535
+    ],
+    "expected": 535,
+    "canonical_pp": 20,
+    "after": [
+      33,
+      81,
+      535,
+      0
+    ],
+    "pp_after": [
+      7,
+      8,
+      20,
+      0
+    ],
+    "pp_bonuses_after": 5,
+    "denial_text": 0
+  },
+  {
+    "name": "normal-empty-3",
+    "family": 0,
+    "species": 649,
+    "level": 9,
+    "action": 1,
+    "slot": 3,
+    "index": 0,
+    "dh": 0,
+    "hof": 0,
+    "herb": 0,
+    "known": [
+      33,
+      81,
+      45,
+      0
+    ],
+    "pp_before": [
+      7,
+      8,
+      9,
+      0
+    ],
+    "pp_bonuses_before": 37,
+    "candidates": [
+      535
+    ],
+    "expected": 535,
+    "canonical_pp": 20,
+    "after": [
+      33,
+      81,
+      45,
+      535
+    ],
+    "pp_after": [
+      7,
+      8,
+      9,
+      20
+    ],
+    "pp_bonuses_after": 37,
+    "denial_text": 0
+  },
+  {
+    "name": "normal-refuse",
+    "family": 0,
+    "species": 649,
+    "level": 9,
+    "action": 2,
+    "slot": 0,
+    "index": 0,
+    "dh": 0,
+    "hof": 0,
+    "herb": 0,
+    "known": [
+      33,
+      81,
+      45,
+      52
+    ],
+    "pp_before": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_before": 229,
+    "candidates": [
+      535
+    ],
+    "expected": 535,
+    "canonical_pp": 0,
+    "after": [
+      33,
+      81,
+      45,
+      52
+    ],
+    "pp_after": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_after": 229,
+    "denial_text": 0
+  },
+  {
+    "name": "normal-cancel-summary",
+    "family": 0,
+    "species": 649,
+    "level": 9,
+    "action": 3,
+    "slot": 0,
+    "index": 0,
+    "dh": 0,
+    "hof": 0,
+    "herb": 0,
+    "known": [
+      33,
+      81,
+      45,
+      52
+    ],
+    "pp_before": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_before": 229,
+    "candidates": [
+      535
+    ],
+    "expected": 535,
+    "canonical_pp": 0,
+    "after": [
+      33,
+      81,
+      45,
+      52
+    ],
+    "pp_after": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_after": 229,
+    "denial_text": 0
+  },
+  {
+    "name": "normal-cancel-list",
+    "family": 0,
+    "species": 649,
+    "level": 9,
+    "action": 4,
+    "slot": 0,
+    "index": 0,
+    "dh": 0,
+    "hof": 0,
+    "herb": 0,
+    "known": [
+      33,
+      81,
+      45,
+      52
+    ],
+    "pp_before": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_before": 229,
+    "candidates": [
+      535
+    ],
+    "expected": 535,
+    "canonical_pp": 0,
+    "after": [
+      33,
+      81,
+      45,
+      52
+    ],
+    "pp_after": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_after": 229,
+    "denial_text": 0
+  },
+  {
+    "name": "normal-before-level",
+    "family": 0,
+    "species": 649,
+    "level": 8,
+    "action": 8,
+    "slot": 0,
+    "index": 0,
+    "dh": 0,
+    "hof": 0,
+    "herb": 0,
+    "known": [
+      33,
+      81,
+      45,
+      52
+    ],
+    "pp_before": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_before": 229,
+    "candidates": [],
+    "expected": 0,
+    "canonical_pp": 0,
+    "after": [
+      33,
+      81,
+      45,
+      52
+    ],
+    "pp_after": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_after": 229,
+    "denial_text": 153945736
+  },
+  {
+    "name": "normal-known-filter",
+    "family": 0,
+    "species": 649,
+    "level": 9,
+    "action": 8,
+    "slot": 0,
+    "index": 0,
+    "dh": 0,
+    "hof": 0,
+    "herb": 0,
+    "known": [
+      33,
+      81,
+      535,
+      52
+    ],
+    "pp_before": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_before": 229,
+    "candidates": [],
+    "expected": 0,
+    "canonical_pp": 0,
+    "after": [
+      33,
+      81,
+      535,
+      52
+    ],
+    "pp_after": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_after": 229,
+    "denial_text": 153945736
+  },
+  {
+    "name": "reminder-spore",
+    "family": 0,
+    "species": 250,
+    "level": 1,
+    "action": 0,
+    "slot": 0,
+    "index": 7,
+    "dh": 0,
+    "hof": 0,
+    "herb": 0,
+    "known": [
+      33,
+      81,
+      45,
+      52
+    ],
+    "pp_before": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_before": 229,
+    "candidates": [
+      183,
+      71,
+      73,
+      74,
+      77,
+      78,
+      92,
+      147
+    ],
+    "expected": 147,
+    "canonical_pp": 15,
+    "after": [
+      147,
+      81,
+      45,
+      52
+    ],
+    "pp_after": [
+      15,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_after": 228,
+    "denial_text": 0
+  },
+  {
+    "name": "reminder-explosion",
+    "family": 0,
+    "species": 129,
+    "level": 1,
+    "action": 0,
+    "slot": 0,
+    "index": 4,
+    "dh": 0,
+    "hof": 0,
+    "herb": 0,
+    "known": [
+      33,
+      81,
+      45,
+      52
+    ],
+    "pp_before": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_before": 229,
+    "candidates": [
+      362,
+      93,
+      232,
+      388,
+      153,
+      498
+    ],
+    "expected": 153,
+    "canonical_pp": 5,
+    "after": [
+      153,
+      81,
+      45,
+      52
+    ],
+    "pp_after": [
+      5,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_after": 228,
+    "denial_text": 0
+  },
+  {
+    "name": "reminder-growth",
+    "family": 0,
+    "species": 67,
+    "level": 1,
+    "action": 0,
+    "slot": 0,
+    "index": 18,
+    "dh": 0,
+    "hof": 0,
+    "herb": 0,
+    "known": [
+      33,
+      81,
+      45,
+      52
+    ],
+    "pp_before": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_before": 229,
+    "candidates": [
+      23,
+      71,
+      72,
+      73,
+      76,
+      93,
+      95,
+      115,
+      202,
+      235,
+      253,
+      326,
+      331,
+      557,
+      372,
+      401,
+      410,
+      579,
+      74
+    ],
+    "expected": 74,
+    "canonical_pp": 20,
+    "after": [
+      74,
+      81,
+      45,
+      52
+    ],
+    "pp_after": [
+      20,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_after": 228,
+    "denial_text": 0
+  },
+  {
+    "name": "reminder-misty-terrain",
+    "family": 0,
+    "species": 426,
+    "level": 1,
+    "action": 0,
+    "slot": 0,
+    "index": 19,
+    "dh": 0,
+    "hof": 0,
+    "herb": 0,
+    "known": [
+      33,
+      81,
+      45,
+      52
+    ],
+    "pp_before": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_before": 229,
+    "candidates": [
+      118,
+      309,
+      546,
+      778,
+      1,
+      47,
+      111,
+      150,
+      186,
+      204,
+      227,
+      236,
+      266,
+      322,
+      716,
+      552,
+      539,
+      740,
+      563,
+      549
+    ],
+    "expected": 549,
+    "canonical_pp": 15,
+    "after": [
+      549,
+      81,
+      45,
+      52
+    ],
+    "pp_after": [
+      15,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_after": 228,
+    "denial_text": 0
+  },
+  {
+    "name": "normal-post-hof",
+    "family": 0,
+    "species": 649,
+    "level": 9,
+    "action": 0,
+    "slot": 3,
+    "index": 0,
+    "dh": 1,
+    "hof": 1,
+    "herb": 0,
+    "known": [
+      33,
+      81,
+      45,
+      52
+    ],
+    "pp_before": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_before": 229,
+    "candidates": [
+      535
+    ],
+    "expected": 535,
+    "canonical_pp": 20,
+    "after": [
+      33,
+      81,
+      45,
+      535
+    ],
+    "pp_after": [
+      7,
+      8,
+      9,
+      20
+    ],
+    "pp_bonuses_after": 37,
+    "denial_text": 0
+  },
+  {
+    "name": "egg-203-first",
+    "family": 2,
+    "species": 203,
+    "level": 10,
+    "action": 0,
+    "slot": 0,
+    "index": 0,
+    "dh": 1,
+    "hof": 1,
+    "herb": 0,
+    "known": [
+      33,
+      81,
+      45,
+      52
+    ],
+    "pp_before": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_before": 229,
+    "candidates": [
+      174,
+      283
+    ],
+    "expected": 174,
+    "canonical_pp": 10,
+    "after": [
+      174,
+      81,
+      45,
+      52
+    ],
+    "pp_after": [
+      10,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_after": 228,
+    "denial_text": 0
+  },
+  {
+    "name": "egg-203-last",
+    "family": 2,
+    "species": 203,
+    "level": 10,
+    "action": 0,
+    "slot": 3,
+    "index": 1,
+    "dh": 1,
+    "hof": 1,
+    "herb": 0,
+    "known": [
+      33,
+      81,
+      45,
+      52
+    ],
+    "pp_before": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_before": 229,
+    "candidates": [
+      174,
+      283
+    ],
+    "expected": 283,
+    "canonical_pp": 5,
+    "after": [
+      33,
+      81,
+      45,
+      283
+    ],
+    "pp_after": [
+      7,
+      8,
+      9,
+      5
+    ],
+    "pp_bonuses_after": 37,
+    "denial_text": 0
+  },
+  {
+    "name": "egg-324-first",
+    "family": 2,
+    "species": 324,
+    "level": 10,
+    "action": 0,
+    "slot": 0,
+    "index": 0,
+    "dh": 1,
+    "hof": 1,
+    "herb": 0,
+    "known": [
+      33,
+      81,
+      45,
+      52
+    ],
+    "pp_before": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_before": 229,
+    "candidates": [
+      32,
+      90,
+      174,
+      246,
+      321,
+      578,
+      683
+    ],
+    "expected": 32,
+    "canonical_pp": 5,
+    "after": [
+      32,
+      81,
+      45,
+      52
+    ],
+    "pp_after": [
+      5,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_after": 228,
+    "denial_text": 0
+  },
+  {
+    "name": "egg-324-last",
+    "family": 2,
+    "species": 324,
+    "level": 10,
+    "action": 0,
+    "slot": 3,
+    "index": 6,
+    "dh": 1,
+    "hof": 1,
+    "herb": 0,
+    "known": [
+      33,
+      81,
+      45,
+      52
+    ],
+    "pp_before": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_before": 229,
+    "candidates": [
+      32,
+      90,
+      174,
+      246,
+      321,
+      578,
+      683
+    ],
+    "expected": 683,
+    "canonical_pp": 10,
+    "after": [
+      33,
+      81,
+      45,
+      683
+    ],
+    "pp_after": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_after": 37,
+    "denial_text": 0
+  },
+  {
+    "name": "egg-364-first",
+    "family": 2,
+    "species": 364,
+    "level": 10,
+    "action": 0,
+    "slot": 0,
+    "index": 0,
+    "dh": 1,
+    "hof": 1,
+    "herb": 0,
+    "known": [
+      33,
+      81,
+      45,
+      52
+    ],
+    "pp_before": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_before": 229,
+    "candidates": [
+      69,
+      215,
+      217,
+      716
+    ],
+    "expected": 69,
+    "canonical_pp": 20,
+    "after": [
+      69,
+      81,
+      45,
+      52
+    ],
+    "pp_after": [
+      20,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_after": 228,
+    "denial_text": 0
+  },
+  {
+    "name": "egg-364-last",
+    "family": 2,
+    "species": 364,
+    "level": 10,
+    "action": 0,
+    "slot": 3,
+    "index": 3,
+    "dh": 1,
+    "hof": 1,
+    "herb": 0,
+    "known": [
+      33,
+      81,
+      45,
+      52
+    ],
+    "pp_before": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_before": 229,
+    "candidates": [
+      69,
+      215,
+      217,
+      716
+    ],
+    "expected": 716,
+    "canonical_pp": 5,
+    "after": [
+      33,
+      81,
+      45,
+      716
+    ],
+    "pp_after": [
+      7,
+      8,
+      9,
+      5
+    ],
+    "pp_bonuses_after": 37,
+    "denial_text": 0
+  },
+  {
+    "name": "egg-608-first",
+    "family": 2,
+    "species": 608,
+    "level": 10,
+    "action": 0,
+    "slot": 0,
+    "index": 0,
+    "dh": 1,
+    "hof": 1,
+    "herb": 0,
+    "known": [
+      33,
+      81,
+      45,
+      52
+    ],
+    "pp_before": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_before": 229,
+    "candidates": [
+      47,
+      48,
+      187,
+      195,
+      217,
+      321,
+      539,
+      411,
+      727
+    ],
+    "expected": 47,
+    "canonical_pp": 15,
+    "after": [
+      47,
+      81,
+      45,
+      52
+    ],
+    "pp_after": [
+      15,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_after": 228,
+    "denial_text": 0
+  },
+  {
+    "name": "egg-608-last",
+    "family": 2,
+    "species": 608,
+    "level": 10,
+    "action": 0,
+    "slot": 3,
+    "index": 8,
+    "dh": 1,
+    "hof": 1,
+    "herb": 0,
+    "known": [
+      33,
+      81,
+      45,
+      52
+    ],
+    "pp_before": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_before": 229,
+    "candidates": [
+      47,
+      48,
+      187,
+      195,
+      217,
+      321,
+      539,
+      411,
+      727
+    ],
+    "expected": 727,
+    "canonical_pp": 20,
+    "after": [
+      33,
+      81,
+      45,
+      727
+    ],
+    "pp_after": [
+      7,
+      8,
+      9,
+      20
+    ],
+    "pp_bonuses_after": 37,
+    "denial_text": 0
+  },
+  {
+    "name": "egg-719-first",
+    "family": 2,
+    "species": 719,
+    "level": 10,
+    "action": 0,
+    "slot": 0,
+    "index": 0,
+    "dh": 1,
+    "hof": 1,
+    "herb": 0,
+    "known": [
+      33,
+      81,
+      45,
+      52
+    ],
+    "pp_before": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_before": 229,
+    "candidates": [
+      50,
+      95,
+      105,
+      174,
+      273,
+      278,
+      322
+    ],
+    "expected": 50,
+    "canonical_pp": 20,
+    "after": [
+      50,
+      81,
+      45,
+      52
+    ],
+    "pp_after": [
+      20,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_after": 228,
+    "denial_text": 0
+  },
+  {
+    "name": "egg-719-last",
+    "family": 2,
+    "species": 719,
+    "level": 10,
+    "action": 0,
+    "slot": 3,
+    "index": 6,
+    "dh": 1,
+    "hof": 1,
+    "herb": 0,
+    "known": [
+      33,
+      81,
+      45,
+      52
+    ],
+    "pp_before": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_before": 229,
+    "candidates": [
+      50,
+      95,
+      105,
+      174,
+      273,
+      278,
+      322
+    ],
+    "expected": 322,
+    "canonical_pp": 20,
+    "after": [
+      33,
+      81,
+      45,
+      322
+    ],
+    "pp_after": [
+      7,
+      8,
+      9,
+      20
+    ],
+    "pp_bonuses_after": 37,
+    "denial_text": 0
+  },
+  {
+    "name": "egg-724-first",
+    "family": 2,
+    "species": 724,
+    "level": 10,
+    "action": 0,
+    "slot": 0,
+    "index": 0,
+    "dh": 1,
+    "hof": 1,
+    "herb": 0,
+    "known": [
+      33,
+      81,
+      45,
+      52
+    ],
+    "pp_before": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_before": 229,
+    "candidates": [
+      29,
+      106,
+      111,
+      174,
+      205,
+      367
+    ],
+    "expected": 29,
+    "canonical_pp": 15,
+    "after": [
+      29,
+      81,
+      45,
+      52
+    ],
+    "pp_after": [
+      15,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_after": 228,
+    "denial_text": 0
+  },
+  {
+    "name": "egg-724-last",
+    "family": 2,
+    "species": 724,
+    "level": 10,
+    "action": 0,
+    "slot": 3,
+    "index": 5,
+    "dh": 1,
+    "hof": 1,
+    "herb": 0,
+    "known": [
+      33,
+      81,
+      45,
+      52
+    ],
+    "pp_before": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_before": 229,
+    "candidates": [
+      29,
+      106,
+      111,
+      174,
+      205,
+      367
+    ],
+    "expected": 367,
+    "canonical_pp": 20,
+    "after": [
+      33,
+      81,
+      45,
+      367
+    ],
+    "pp_after": [
+      7,
+      8,
+      9,
+      20
+    ],
+    "pp_bonuses_after": 37,
+    "denial_text": 0
+  },
+  {
+    "name": "egg-727-first",
+    "family": 2,
+    "species": 727,
+    "level": 10,
+    "action": 0,
+    "slot": 0,
+    "index": 0,
+    "dh": 1,
+    "hof": 1,
+    "herb": 0,
+    "known": [
+      33,
+      81,
+      45,
+      52
+    ],
+    "pp_before": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_before": 229,
+    "candidates": [
+      38,
+      68,
+      90,
+      174,
+      712
+    ],
+    "expected": 38,
+    "canonical_pp": 15,
+    "after": [
+      38,
+      81,
+      45,
+      52
+    ],
+    "pp_after": [
+      15,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_after": 228,
+    "denial_text": 0
+  },
+  {
+    "name": "egg-727-last",
+    "family": 2,
+    "species": 727,
+    "level": 10,
+    "action": 0,
+    "slot": 3,
+    "index": 4,
+    "dh": 1,
+    "hof": 1,
+    "herb": 0,
+    "known": [
+      33,
+      81,
+      45,
+      52
+    ],
+    "pp_before": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_before": 229,
+    "candidates": [
+      38,
+      68,
+      90,
+      174,
+      712
+    ],
+    "expected": 712,
+    "canonical_pp": 10,
+    "after": [
+      33,
+      81,
+      45,
+      712
+    ],
+    "pp_after": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_after": 37,
+    "denial_text": 0
+  },
+  {
+    "name": "egg-replace-1",
+    "family": 2,
+    "species": 324,
+    "level": 10,
+    "action": 0,
+    "slot": 1,
+    "index": 0,
+    "dh": 1,
+    "hof": 1,
+    "herb": 0,
+    "known": [
+      33,
+      81,
+      45,
+      52
+    ],
+    "pp_before": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_before": 229,
+    "candidates": [
+      32,
+      90,
+      174,
+      246,
+      321,
+      578,
+      683
+    ],
+    "expected": 32,
+    "canonical_pp": 5,
+    "after": [
+      33,
+      32,
+      45,
+      52
+    ],
+    "pp_after": [
+      7,
+      5,
+      9,
+      10
+    ],
+    "pp_bonuses_after": 225,
+    "denial_text": 0
+  },
+  {
+    "name": "egg-replace-2",
+    "family": 2,
+    "species": 324,
+    "level": 10,
+    "action": 0,
+    "slot": 2,
+    "index": 0,
+    "dh": 1,
+    "hof": 1,
+    "herb": 0,
+    "known": [
+      33,
+      81,
+      45,
+      52
+    ],
+    "pp_before": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_before": 229,
+    "candidates": [
+      32,
+      90,
+      174,
+      246,
+      321,
+      578,
+      683
+    ],
+    "expected": 32,
+    "canonical_pp": 5,
+    "after": [
+      33,
+      81,
+      32,
+      52
+    ],
+    "pp_after": [
+      7,
+      8,
+      5,
+      10
+    ],
+    "pp_bonuses_after": 197,
+    "denial_text": 0
+  },
+  {
+    "name": "egg-refuse",
+    "family": 2,
+    "species": 324,
+    "level": 10,
+    "action": 2,
+    "slot": 0,
+    "index": 0,
+    "dh": 1,
+    "hof": 1,
+    "herb": 0,
+    "known": [
+      33,
+      81,
+      45,
+      52
+    ],
+    "pp_before": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_before": 229,
+    "candidates": [
+      32,
+      90,
+      174,
+      246,
+      321,
+      578,
+      683
+    ],
+    "expected": 32,
+    "canonical_pp": 0,
+    "after": [
+      33,
+      81,
+      45,
+      52
+    ],
+    "pp_after": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_after": 229,
+    "denial_text": 0
+  },
+  {
+    "name": "egg-cancel-summary",
+    "family": 2,
+    "species": 324,
+    "level": 10,
+    "action": 3,
+    "slot": 0,
+    "index": 0,
+    "dh": 1,
+    "hof": 1,
+    "herb": 0,
+    "known": [
+      33,
+      81,
+      45,
+      52
+    ],
+    "pp_before": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_before": 229,
+    "candidates": [
+      32,
+      90,
+      174,
+      246,
+      321,
+      578,
+      683
+    ],
+    "expected": 32,
+    "canonical_pp": 0,
+    "after": [
+      33,
+      81,
+      45,
+      52
+    ],
+    "pp_after": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_after": 229,
+    "denial_text": 0
+  },
+  {
+    "name": "egg-cancel-list",
+    "family": 2,
+    "species": 324,
+    "level": 10,
+    "action": 4,
+    "slot": 0,
+    "index": 0,
+    "dh": 1,
+    "hof": 1,
+    "herb": 0,
+    "known": [
+      33,
+      81,
+      45,
+      52
+    ],
+    "pp_before": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_before": 229,
+    "candidates": [
+      32,
+      90,
+      174,
+      246,
+      321,
+      578,
+      683
+    ],
+    "expected": 32,
+    "canonical_pp": 0,
+    "after": [
+      33,
+      81,
+      45,
+      52
+    ],
+    "pp_after": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_after": 229,
+    "denial_text": 0
+  },
+  {
+    "name": "egg-herb-empty-1",
+    "family": 2,
+    "species": 324,
+    "level": 10,
+    "action": 1,
+    "slot": 1,
+    "index": 0,
+    "dh": 1,
+    "hof": 0,
+    "herb": 1,
+    "known": [
+      33,
+      0,
+      0,
+      0
+    ],
+    "pp_before": [
+      7,
+      0,
+      0,
+      0
+    ],
+    "pp_bonuses_before": 1,
+    "candidates": [
+      32,
+      90,
+      174,
+      246,
+      321,
+      578,
+      683
+    ],
+    "expected": 32,
+    "canonical_pp": 5,
+    "after": [
+      33,
+      32,
+      0,
+      0
+    ],
+    "pp_after": [
+      7,
+      5,
+      0,
+      0
+    ],
+    "pp_bonuses_after": 1,
+    "denial_text": 0
+  },
+  {
+    "name": "egg-herb-empty-2",
+    "family": 2,
+    "species": 324,
+    "level": 10,
+    "action": 1,
+    "slot": 2,
+    "index": 0,
+    "dh": 1,
+    "hof": 0,
+    "herb": 1,
+    "known": [
+      33,
+      81,
+      0,
+      0
+    ],
+    "pp_before": [
+      7,
+      8,
+      0,
+      0
+    ],
+    "pp_bonuses_before": 5,
+    "candidates": [
+      32,
+      90,
+      174,
+      246,
+      321,
+      578,
+      683
+    ],
+    "expected": 32,
+    "canonical_pp": 5,
+    "after": [
+      33,
+      81,
+      32,
+      0
+    ],
+    "pp_after": [
+      7,
+      8,
+      5,
+      0
+    ],
+    "pp_bonuses_after": 5,
+    "denial_text": 0
+  },
+  {
+    "name": "egg-herb-empty-3",
+    "family": 2,
+    "species": 324,
+    "level": 10,
+    "action": 1,
+    "slot": 3,
+    "index": 0,
+    "dh": 1,
+    "hof": 0,
+    "herb": 1,
+    "known": [
+      33,
+      81,
+      45,
+      0
+    ],
+    "pp_before": [
+      7,
+      8,
+      9,
+      0
+    ],
+    "pp_bonuses_before": 37,
+    "candidates": [
+      32,
+      90,
+      174,
+      246,
+      321,
+      578,
+      683
+    ],
+    "expected": 32,
+    "canonical_pp": 5,
+    "after": [
+      33,
+      81,
+      45,
+      32
+    ],
+    "pp_after": [
+      7,
+      8,
+      9,
+      5
+    ],
+    "pp_bonuses_after": 37,
+    "denial_text": 0
+  },
+  {
+    "name": "egg-herb-not-consumed-post-hof",
+    "family": 2,
+    "species": 324,
+    "level": 10,
+    "action": 0,
+    "slot": 0,
+    "index": 0,
+    "dh": 1,
+    "hof": 1,
+    "herb": 1,
+    "known": [
+      33,
+      81,
+      45,
+      52
+    ],
+    "pp_before": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_before": 229,
+    "candidates": [
+      32,
+      90,
+      174,
+      246,
+      321,
+      578,
+      683
+    ],
+    "expected": 32,
+    "canonical_pp": 5,
+    "after": [
+      32,
+      81,
+      45,
+      52
+    ],
+    "pp_after": [
+      5,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_after": 228,
+    "denial_text": 0
+  },
+  {
+    "name": "egg-known-filter",
+    "family": 2,
+    "species": 324,
+    "level": 10,
+    "action": 0,
+    "slot": 0,
+    "index": 0,
+    "dh": 1,
+    "hof": 1,
+    "herb": 0,
+    "known": [
+      32,
+      90,
+      174,
+      246
+    ],
+    "pp_before": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_before": 229,
+    "candidates": [
+      321,
+      578,
+      683
+    ],
+    "expected": 321,
+    "canonical_pp": 20,
+    "after": [
+      321,
+      90,
+      174,
+      246
+    ],
+    "pp_after": [
+      20,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_after": 228,
+    "denial_text": 0
+  },
+  {
+    "name": "egg-locked-dh0-hof0",
+    "family": 2,
+    "species": 324,
+    "level": 10,
+    "action": 8,
+    "slot": 0,
+    "index": 0,
+    "dh": 0,
+    "hof": 0,
+    "herb": 1,
+    "known": [
+      33,
+      81,
+      45,
+      52
+    ],
+    "pp_before": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_before": 229,
+    "candidates": [
+      32,
+      90,
+      174,
+      246,
+      321,
+      578,
+      683
+    ],
+    "expected": 32,
+    "canonical_pp": 0,
+    "after": [
+      33,
+      81,
+      45,
+      52
+    ],
+    "pp_after": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_after": 229,
+    "denial_text": 153945765
+  },
+  {
+    "name": "egg-locked-dh0-hof1",
+    "family": 2,
+    "species": 324,
+    "level": 10,
+    "action": 8,
+    "slot": 0,
+    "index": 0,
+    "dh": 0,
+    "hof": 1,
+    "herb": 1,
+    "known": [
+      33,
+      81,
+      45,
+      52
+    ],
+    "pp_before": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_before": 229,
+    "candidates": [
+      32,
+      90,
+      174,
+      246,
+      321,
+      578,
+      683
+    ],
+    "expected": 32,
+    "canonical_pp": 0,
+    "after": [
+      33,
+      81,
+      45,
+      52
+    ],
+    "pp_after": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_after": 229,
+    "denial_text": 153945765
+  },
+  {
+    "name": "egg-needs-herb",
+    "family": 2,
+    "species": 324,
+    "level": 10,
+    "action": 8,
+    "slot": 0,
+    "index": 0,
+    "dh": 1,
+    "hof": 0,
+    "herb": 0,
+    "known": [
+      33,
+      81,
+      45,
+      52
+    ],
+    "pp_before": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_before": 229,
+    "candidates": [
+      32,
+      90,
+      174,
+      246,
+      321,
+      578,
+      683
+    ],
+    "expected": 32,
+    "canonical_pp": 0,
+    "after": [
+      33,
+      81,
+      45,
+      52
+    ],
+    "pp_after": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_after": 229,
+    "denial_text": 153945782
+  },
+  {
+    "name": "egg-needs-empty",
+    "family": 2,
+    "species": 324,
+    "level": 10,
+    "action": 8,
+    "slot": 0,
+    "index": 0,
+    "dh": 1,
+    "hof": 0,
+    "herb": 1,
+    "known": [
+      33,
+      81,
+      45,
+      52
+    ],
+    "pp_before": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_before": 229,
+    "candidates": [
+      32,
+      90,
+      174,
+      246,
+      321,
+      578,
+      683
+    ],
+    "expected": 32,
+    "canonical_pp": 0,
+    "after": [
+      33,
+      81,
+      45,
+      52
+    ],
+    "pp_after": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_after": 229,
+    "denial_text": 153945798
+  },
+  {
+    "name": "egg-no-candidates",
+    "family": 2,
+    "species": 649,
+    "level": 9,
+    "action": 8,
+    "slot": 0,
+    "index": 0,
+    "dh": 1,
+    "hof": 1,
+    "herb": 0,
+    "known": [
+      33,
+      81,
+      45,
+      52
+    ],
+    "pp_before": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_before": 229,
+    "candidates": [],
+    "expected": 0,
+    "canonical_pp": 0,
+    "after": [
+      33,
+      81,
+      45,
+      52
+    ],
+    "pp_after": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "pp_bonuses_after": 229,
+    "denial_text": 153945736
+  }
+]

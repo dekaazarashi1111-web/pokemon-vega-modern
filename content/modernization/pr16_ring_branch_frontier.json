@@ -1,0 +1,432 @@
+{
+  "schema_version": 1,
+  "task": "PR-P08-7-RING-BRANCH-FRONTIER",
+  "source_head": "82614a5fabc17ba3de1d22b990c272b2ac6b25e8",
+  "run_id": 35086278411,
+  "run_status_at_record": "in_progress",
+  "analysis": {
+    "classification": "NEW_BRANCH_FORMS_AND_DELEGATE_BYTES_NOT_NATIVE_ACCEPTANCE",
+    "candidate": {
+      "size": 33554432,
+      "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b",
+      "crc32": "3EB17B36"
+    },
+    "target": 135346564,
+    "references": [],
+    "searched_forms": [
+      "Thumb B/Bcond",
+      "Thumb ADR",
+      "ARM B/BL",
+      "ARM immediate ADR",
+      "Thumb/ARM PC-relative literal pointers"
+    ],
+    "scan_execution_address_scope": "canonical 0x08000000..0x09FFFFFF; literal values normalize ROM aliases only",
+    "unsearched_forms": [
+      "register-computed/table-dispatched targets",
+      "nonliteral loads",
+      "execution from RAM",
+      "execution at mirrored PC addresses"
+    ],
+    "unread_delegates_sampled": [
+      136093177,
+      152225277,
+      152225773,
+      152225329,
+      152225381,
+      152203005
+    ],
+    "focus_ranges": [
+      [
+        136093176,
+        136094200
+      ],
+      [
+        152225276,
+        152226300
+      ],
+      [
+        152225772,
+        152226796
+      ],
+      [
+        152225328,
+        152226352
+      ],
+      [
+        152225380,
+        152226404
+      ],
+      [
+        152203004,
+        152204028
+      ],
+      [
+        135346500,
+        135346820
+      ]
+    ],
+    "new_windows": [
+      {
+        "start": 135346534,
+        "end": 135346552,
+        "hex": "000010af0302dc5e000396af030230200003",
+        "identity": {
+          "size": 18,
+          "sha256": "c2d2e5a5b04730a37d567b3be77ecd7752be98886702a014a2ef419f46ee9829"
+        }
+      },
+      {
+        "start": 135346714,
+        "end": 135346820,
+        "hex": "084798af0302c06d410830b50006050e0c4c2078ff2810d00021f0f6f8fc2078f0f623fb002d03d02078291cf0f651fa2078f0f6dcf9ff20207030bc01bc0047000098af0302f0b557464e464546e0b482b00006000e82460321f0f652ff0006060e50460421f0f64cff",
+        "identity": {
+          "size": 106,
+          "sha256": "adb3a56274659394f2b282e9e37d9a43ab47c980dedc3b05f029abc03104e2ea"
+        }
+      },
+      {
+        "start": 136093176,
+        "end": 136094200,
+        "hex": "30b5051c0c1c2b1c032a1cd903202840002818d1291cff20044023022343180403430f2a09d908c108c108c108c1103a0f2af8d801e008c1043a032afbd80b1c01e01c700133101c013a0028f9d1281c30bd000030b5021c0b1c18430321084000281ad111681868814216d1044d054c1168481988432040002805d0002015e0fffefefe8080808004320433116818688142edd001e0013201331078002802d019788842f7d012781b78d01a30bd000070b5061c331c0a1c101c304303210840002811d11168024d48198843014c08e0fffefefe8080808001ca01c311684819884320400028f7d0107818700006013201330028f8d1301c70bd000030b596b06c46002582239b00a38100900490064802900590054800681590684600f052f800990d7016b030bdffffff7fd0f6030210b50c1ca168002906d0211c02f066fa0021a160616001e06160002010bd000030b51b4ca544051c686d15906b4603204042ac89204000249881e889d881e8690790686a099016a8009004908020c000029005900694684600f01cf8041c002c06db684602f002f8002801d0012464426946402089890840002803d04020a9890843a881201c8b23db009d4430bd0000a8fbffff30b5041c0d1c131c606d211c2a1c00f001f830bdf0b557464e464546e0b4174ca54477907891141c9a4602f071fb00687e90002174a801607899486d002802d10f4800684865789a516d886b002802d1081c02f089f80820789989890840002803d0789a106900280cd1789801f034f8002807d00120404200f074ffe0fdffffd0f603021a207899898908400a280bd1789a0e21505e002806db101c211c5246fff774ff00f05eff799407a90aad079500208860486000227c928946e62464006c448594e820400068448690799988462a4800682a490b68869a00928599799a02f01afe041c002c09dd79980019799073a800682528ebd1799901397991799a4046161a002e16d028606e6049468868801988600835486801304860072807dd7898fff723ff002801d000f011ff0aad7c9a92197c92002c01dc00f0fdfe799c0134799400207b900021829100227d92012676420b4868440270799800787a907999013179917a982038582800d958e3800005494018006887460000d0f60302d4f60302c901000048a11c08aca21c08dea71c08dea71c08c4a21c08dea71c08dea71c08dea71c08dea71c08dea71c08dea71c08c8a21c08e2a21c08dea71c08dea21c08f0a21c08dea71c0850a31c0854a31c0854a31c0854a31c0854a31c0854a31c0854a31c0854a31c0854a31c0854a31c08dea71c08dea71c08dea71c08dea71c08dea71c08dea71c08dea71c08dea71c08dea71c08dea71c08bea31c0810a41c08dea71c0810a41c08dea71c08dea71c08dea71c08dea71c08",
+        "identity": {
+          "size": 1024,
+          "sha256": "6177477e8e002a8b28699fef573423854f9bcd8965436c8714232a45a0c84aef"
+        }
+      },
+      {
+        "start": 152203004,
+        "end": 152203360,
+        "hex": "f8b5c379da09050052015b0601d410231a432b789f2b00d992e00f211940092900d98de01b099e00f618760076186b78af789f2b4ed80f21194009294ad81b099800c3185b005b18181e45d00c2b43dc14009f2f44d98022520022431204ff27140c022847d03e4a013b9b009b58bb4250db2b799f2b55d80f211940092951d81b099a00d3185b005b18182b4adc6b799f2b4fd80f21194009294bd81b099a00d3185b005b183c2b44dcab799f2b0ad80f211940092906d81b099a00d3185b005b183c2b04dd80231b0123431b041c0c2000f8bdff20ff23802414439f2f33d80f2139400929b6d83a099700bf187f007f180228b7d11c21b30709d13000483172f702ff73425e414b1e994131431c318f42aedd80235b0023431b041c0c2b799f2ba9d980239b0023431b041c0c6b799f2bafd98023db0023431b041c0cb4e74023ff261a4372e7c024ff2764001443013b034a9b009b58bb4200db89e7d9e730951609",
+        "identity": {
+          "size": 356,
+          "sha256": "585bca349893446b98ae29c53ef52a48803da3363e4cd0d4104c774a3f1a7cc5"
+        }
+      },
+      {
+        "start": 152203766,
+        "end": 152203828,
+        "hex": "16d01249e8e7137c01331b0650741b0e3b2b12d9d38901331b041b0c1074d381fa2292009342bdd30a4b00f014f8b9e7074908689842cfd1b4e71374b2e7",
+        "identity": {
+          "size": 62,
+          "sha256": "26887508d18986a95b6884bd7439243bb178770c7e5f9f4af9e22bf1985d7bf3"
+        }
+      },
+      {
+        "start": 152203848,
+        "end": 152204028,
+        "hex": "994105081847c0460b8803804b8843800b7b03734b7b43738b7b83738b888380cb88c3800b8903814b894381cb7bc3730b7c03744b7c43748b7c8374cb7cc3740b7d03754b7d43758b7d8375cb7dc3750b7e03764b7e43768b7e83767047c046052804d82a23c3400120184070470020fce7c046052805d82a23c340db07db17184070470020fce7002808d0002303704370837003718371c3704371c3717047002817d0052915d8012a01d9052911d000238370",
+        "identity": {
+          "size": 180,
+          "sha256": "62862ec6f9b294c24ba646c40ddd01739f22f75fc601048013ce4c2ae2d68bc7"
+        }
+      },
+      {
+        "start": 152225276,
+        "end": 152226796,
+        "hex": "0122034b1a800022024b1a707047c046c8000008d1df030210b5054b1b78012b03d04020fff798ff10bd0020fce7c046d1df030210b5044b1b78012b02d0fff735ff10bd0020fce7d1df030210b5054b1b78012b03d0c079fff77eff10bd0020fce7c046d1df0302f0b5ce46474680b52b4b98461b788146012b4ed0012307216527012604250524264a138004331380254b19803b000b4133405b0018002343284300041b04000c1b0c10801080108013800139eed205221b4b1a8007234b444f469c4604240526164a0825002314801480148014801480168011884908c9015b080b43013d1b0629061b0e0d0e0029edd13b700137bc45e7d14b4619797f230b4049460b71012313801380434601201d70c0bcb946b046f0bd0020f9e7c046d1df0302c4000008c6000008f0b5ce46474680b52b4b9c461b788146012b4fd0012307216727012604250524264a138004331380254b19803b000b4133405b0018002343284300041b04000c1b0c10801080108013800139eed205221b4b1a804b461f1d07234b44984604240526164a0825002314801480148014801480168011884908c9015b080b43013d1b0629061b0e0d0e0029edd13b700137b845e7d14b4619797f230b4049460b71012313801380634601201d70c0bcb946b046f0bd0020f9e7d1df0302c4000008c600000830b51c4d2b7885b0012b12d001a8fff755fe00280dd06b46db7a5b060cd42b78012b06d04020fff79ffe002801d0012403e0002005b030bd002401a8fff77eff6b469b7a7f2b05d80123200118430006000eefe72b78012b08d04020fff784fe002803d001342406240eede72007000ee0e7c046d1df030270b5faf769fc434bdb8d5a062bd41a060ad4102214001c401a422bd03e4c2578002d48d0002070bd05203c4b00f0f8f901203b4b00f0f4f93a4c3b4b207000f0eff90028eed1394b00f0eaf90028e9d12178374a525c374b9200d0580221364b00f0def9dee705202c4b00f0d9f901204042dee79a060fd4da0733d40a221a42d0d02e4b00f0ccf92d4b00f0c9f92d4b00f0c6f90120c6e71f4d2b78012bc1d11e4b052000f0bcf91e4b274a1c70274b2c701a60b6e72648264e00f0b4f90028b0d0254800f0aff90028abd0134b052000f0a6f9134b1d7001231b4a23701b4b1a609fe70d4b052000f09af91b4b00f097f9002896d00b480d490078095c0d4bc9005b18114a5b6b1360154b00f088f988e7c04630310003ccdf0302711a07083904110828700302d9080c0815b911082a700302389b1609653b11080de70608f9890f0845f60608c9c91209247003021e090000c5de060829080000bdeb060889eb060810b5074b00f05af90121064b00f056f9054b00f053f9054b054a00201a6010bd9d890f08fd7f0f08a9890f08247003022dcc120970b5022184b01c481c4b00f03df9002802d1002004b070bd194d00f037f9194c23780293184b1b7801930f230022009302210023154e00f02af9154b207000f023f9002809d000f021f9124b012100f01bf9114b114a1a60dbe7114b00f014f90128f0d021780f4a525c0f4b9200d0580e4b00f009f9e6e73470030239e706089d890f0828700302297003020d031108d9080c08ed3e00082470030265c8120915b911082a700302389b1609d5890f08002370b54f4c23704f4b00f0e5f8002803d04e4b00f0e0f870bd4d4b00f0dcf8002803d04b4b00f0d7f8f5e74a4b00f0d3f800282dd1494e3378012b46d04848484d00f0cbf8002866d1474c474800f0c5f800285cd1464800f0c0f8002853d0444800f0bbf800284ad0434800f0b6f8002841d0052000f0b0f83378002b04d13e4800f0abf800284bd1062000f0a5f8c2e70720344c00f0a0f83148314d00f09df800284ad1314800f098f8002841d1022000f092f8032000f08ff8052000f08cf8264b1b78002bdfd1d9e720702b48244c00f082f8002804d1234c0b2000f07cf899e71e4800f078f80028f5d009201d4c00f072f8f1e7043000f06ef8b9e7033000f06af8b0e7023000f066f8a7e7012000f062f89ee70020134c00f05df894e70f4800f05af80028aed00a2000f054f871e7012000f050f8b9e7002000f0",
+        "identity": {
+          "size": 1520,
+          "sha256": "95d0f96593dfd774b138611e8de92faecebd529853551fd975e07e91e97972b3"
+        }
+      },
+      {
+        "start": 152226800,
+        "end": 152226860,
+        "hex": "29700302ed5c050829e6060815b911084de6060865210a08ccdf030229080000c5de060889e50608280800001b0900001c0900001d0900001e090000",
+        "identity": {
+          "size": 60,
+          "sha256": "949d7a4011474931604b01bef3d8cfbe0aaec912daa0bae0fd337c05da1cd031"
+        }
+      }
+    ],
+    "new_window_bytes": 3326,
+    "saved_byte_ranges_reused": [
+      [
+        135346500,
+        135346534
+      ],
+      [
+        135346552,
+        135346714
+      ],
+      [
+        152203360,
+        152203766
+      ],
+      [
+        152203828,
+        152203848
+      ]
+    ],
+    "saved_bytes_reused": 622,
+    "reused_reports": [
+      "content/modernization/pr16_ring_selector_owners.json",
+      "content/modernization/pr16_ring_record_callers.json",
+      "content/modernization/pr16_ring_control_roles.json",
+      "content/modernization/pr16_ring_control_closeout.json"
+    ],
+    "old_unread_targets": [
+      134647037,
+      134647989,
+      134648233,
+      134648273,
+      135346165,
+      151613701,
+      154152717,
+      154155097,
+      154635157,
+      154635821,
+      154635823,
+      154635825,
+      154639241,
+      154639243,
+      154917233,
+      154917289,
+      154922465,
+      154922573
+    ],
+    "old_frontier_removed": false,
+    "all_callers_resolved": false,
+    "all_runtime_owners_excluded": false,
+    "caller_pointer_size_limit_proven": false,
+    "selector1_runtime_observed": false,
+    "selector2_runtime_observed": false,
+    "ring_acquisition_accepted": false,
+    "release_ready": false,
+    "rom_changes": 0,
+    "new_emulator_processes": 0,
+    "accepted_native_cases_replayed": 0,
+    "prior_abi_classifications_replayed": 0,
+    "candidate_reconstructions": 1,
+    "boundary_ja": "全ROM走査でも列挙した命令形式のbyte候補だけ。0候補はcaller不在証明ではない。"
+  },
+  "source_bindings": {
+    "scripts/pr16_ring_followup_v2.py": {
+      "size": 11453,
+      "sha256": "71e33dbe40cd8988e185256821e33e6a1e06e4eddeb8ee6a3eb9047a4d3c49f7"
+    },
+    "scripts/pr16_ring_branch_frontier.py": {
+      "size": 10233,
+      "sha256": "9fe8b6d2697127d0dcefa4afecd1b0365bdc51f3a3638b03acc63ea0987c3aff"
+    },
+    "tests/test_pr16_ring_branch_frontier.py": {
+      "size": 5781,
+      "sha256": "baf3acccd603b211acab6ebb7df030b483ee28c95db56cf12f64e1148bf4d0e7"
+    },
+    ".github/workflows/pr16-ring-branch-frontier.yml": {
+      "size": 1933,
+      "sha256": "179be319de32bec6ca2fa3c3ac403a299fe98733e3b09adb7b5bba7d23c4dcd8"
+    },
+    "content/modernization/pr16_ring_control_closeout.json": {
+      "size": 29311,
+      "sha256": "8c2a726d17b771c1c3ba1543268d79c93795d64cc65518a15432830900fdf99c"
+    },
+    "content/modernization/pr16_bp_chooser_checkpoint.json": {
+      "size": 9442,
+      "sha256": "853ed41b6abcfb63651aab136951a53c8c89ec635f769e8466327ba3a0c0ae41"
+    },
+    "scripts/pr16_resume.py": {
+      "size": 26649,
+      "sha256": "b0ec73bf933e46f7b254057559b0c637a2d1a9b625b08f348aa8308ea00dee5a"
+    },
+    "scripts/pr16_ring_compiled_record.py": {
+      "size": 13116,
+      "sha256": "768c94e59983d27bbf0ed46d6ba60008352a3a67e11612b18936e38b271e73ef"
+    },
+    "scripts/guard_private_files.py": {
+      "size": 5443,
+      "sha256": "143426a7403abf47396791f6ece3a3a374fa97fbf8bedc88169f636cddbcc905"
+    },
+    "content/modernization/pr16_ring_control_roles.json": {
+      "size": 24319,
+      "sha256": "72245471b63633804ef0361d22a5897ecf65ae1562164cf47e9071946466530d"
+    },
+    "content/modernization/pr16_ring_record_callers.json": {
+      "size": 102561,
+      "sha256": "622b9d69ef96fc0d975fc4e1bec5e08c4d07e85ee0ddea5a4f8fe538fa65d77a"
+    },
+    "content/modernization/pr16_ring_selector_owners.json": {
+      "size": 1704471,
+      "sha256": "64e746c4b085f85afb180bbf03299c84ae7efebd1e72964f5f0195e97d553727"
+    },
+    "scripts/pr16_ring_record_callers.py": {
+      "size": 9264,
+      "sha256": "d30434a3ea9abdcd48c73c5265feafb268069dac8c7abf0e5117ad43e215bbfd"
+    },
+    "scripts/pr16_ring_selector_followup.py": {
+      "size": 10439,
+      "sha256": "84af72842589073fe5ba369ce07b91bbf314844c0dc0ea5aceaab32f73d33e79"
+    },
+    "scripts/pr16_ring_zero_bytes.py": {
+      "size": 16741,
+      "sha256": "ef6255772fdc3153ec4518888af94df1c27f15d028283d81f901e1b5b2e87998"
+    },
+    ".github/workflows/pr16-ring-callee-bytes.yml": {
+      "size": 6742,
+      "sha256": "f8bab211f28662062bff281c538487d4bc2f06ff1c71e2d078da9bbe52977d3d"
+    }
+  },
+  "focused_tests": {
+    "tests_run": 30,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "successful": true
+  },
+  "prior_actions_verified_without_replay": [
+    {
+      "id": 35084702528,
+      "head_sha": "e23098dd78f0157cf842e6a1ccd96624b1a8ea94",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34946969126,
+      "head_sha": "0b7497b575a3180a045f2be377386490f192a012",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "actions_observed_before_record": [
+    {
+      "id": 35086282494,
+      "name": "source-validation",
+      "head_sha": "82614a5fabc17ba3de1d22b990c272b2ac6b25e8",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35086282481,
+      "name": "p03-forgetting-ci",
+      "head_sha": "82614a5fabc17ba3de1d22b990c272b2ac6b25e8",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35086278468,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "82614a5fabc17ba3de1d22b990c272b2ac6b25e8",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35086278411,
+      "name": "未検索分岐と6delegateの限定採取・記録",
+      "head_sha": "82614a5fabc17ba3de1d22b990c272b2ac6b25e8",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35086278380,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "82614a5fabc17ba3de1d22b990c272b2ac6b25e8",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35086278335,
+      "name": "source-validation",
+      "head_sha": "82614a5fabc17ba3de1d22b990c272b2ac6b25e8",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35086278424,
+      "name": "p03-forgetting-ci",
+      "head_sha": "82614a5fabc17ba3de1d22b990c272b2ac6b25e8",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35084775436,
+      "name": "p03-forgetting-ci",
+      "head_sha": "37e57f61bc891c5b8fb862b1b556a51276b957ea",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35084775435,
+      "name": "source-validation",
+      "head_sha": "37e57f61bc891c5b8fb862b1b556a51276b957ea",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35084707578,
+      "name": "source-validation",
+      "head_sha": "e23098dd78f0157cf842e6a1ccd96624b1a8ea94",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35084707529,
+      "name": "p03-forgetting-ci",
+      "head_sha": "e23098dd78f0157cf842e6a1ccd96624b1a8ea94",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35084702388,
+      "name": "p03-forgetting-ci",
+      "head_sha": "e23098dd78f0157cf842e6a1ccd96624b1a8ea94",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35084702393,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "e23098dd78f0157cf842e6a1ccd96624b1a8ea94",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35084702528,
+      "name": "caller・制御役割の成功原本と再開点を固定（native非実行）",
+      "head_sha": "e23098dd78f0157cf842e6a1ccd96624b1a8ea94",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35084702273,
+      "name": "source-validation",
+      "head_sha": "e23098dd78f0157cf842e6a1ccd96624b1a8ea94",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35084702391,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "e23098dd78f0157cf842e6a1ccd96624b1a8ea94",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35084253764,
+      "name": "p03-forgetting-ci",
+      "head_sha": "314c49d97312ebdc56fb3cfd608719b784a84b88",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35084253845,
+      "name": "source-validation",
+      "head_sha": "314c49d97312ebdc56fb3cfd608719b784a84b88",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35084191981,
+      "name": "p03-forgetting-ci",
+      "head_sha": "8050cb1a2cd17f127922483247c34829aa92e287",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35084191988,
+      "name": "source-validation",
+      "head_sha": "8050cb1a2cd17f127922483247c34829aa92e287",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ]
+}

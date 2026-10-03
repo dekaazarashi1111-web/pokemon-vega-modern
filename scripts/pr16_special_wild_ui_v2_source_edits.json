@@ -1,0 +1,47 @@
+{
+  "tools/mgba_pr16_special_wild_gameplay.c": {
+    "before": "c1d7f1a8760a056698c041bd689d5795bb50a861428cc18cd29bc2b43e9f5436",
+    "after": "5ec4ed2fd3c66ffe46429d8da9a6cc0da7ff2349adb8f2cc8ea81c119c018024",
+    "edits": [
+      [11,12,"#define SW_ROM \"23d584095f7bc0691e1582da447d6cd9a389d8698e061ea2de9f6eac03b63f48\"\n"],
+      [82,84," unsigned idle=0;\n for(unsigned f=0;f<3000 && !lb_action(c);++f){\n  bool task=false;for(unsigned i=0;i<16;++i){unsigned t=QOL_TASKS+i*QOL_TASK_SIZE;if(read8(c,t+4) && read32(c,t)==0x0805CBC1U)task=true;}\n  if(f>120 && !task && !sw_entries[0] && !read32(c,ADDR_NEW_BATTLE_STRUCT_POINTER) && lb_field(c)){if(++idle>=120)return false;}else idle=0;\n"],
+      [135,136," sw_need(c,read16(c,ADDR_ENEMY_PARTY+50)==sw_move,\"special slot was overwritten\");sw_encounter_frame=sw_frames;unsigned pid=read32(c,ADDR_ENEMY_PARTY),species=read16(c,ADDR_ENEMY_PARTY+32);uint8_t moves[12];sw_copy(c,ADDR_ENEMY_PARTY+44,moves,12);unsigned bonus=read8(c,ADDR_ENEMY_PARTY+40);\n"],
+      [137,139," uint8_t captured_moves[12];sw_copy(c,QOL_PLAYER_PARTY+144,captured_moves,12);sw_need(c,!memcmp(moves,captured_moves,12) && read8(c,QOL_PLAYER_PARTY+140)==bonus,\"capture moves/PP changed\");g_inventory(c,got);sw_need(c,!memcmp(expected,got,sizeof(got)),\"unrelated inventory changed\");sw_mon(c,QOL_PLAYER_PARTY+100,\"captured\");sw_shot(\"captured\");\n counter=read32(c,P03_SAVE_COUNTER);uint8_t party[200],loaded[200];sw_copy(c,QOL_PLAYER_PARTY,party,200);lb_resume_x=read16(c,lb_save1(c));lb_resume_y=read16(c,lb_save1(c)+2);\n"]
+    ]
+  },
+  "scripts/pr16_special_wild_gameplay_native.py": {
+    "before": "d2e99d7dac787753557061cfb7070fbde10f5592b736c02b1551e8867506343e",
+    "after": "320a17a9e22e1004d24fbc133ef39638b887d60f1b60f3f049ff3f95a9ea344d",
+    "edits": [
+      [18,18,"import pr16_research_save_delegate as repair\nCANDIDATE = repair.CANDIDATE\nLOCAL = prep.BASE+\"pr16_special_wild_ui_local_evidence/20260926-hidden\"\n"],
+      [24,25,"CODE = {SELF, C, TEST, WF, \"scripts/pr16_research_save_delegate.py\", \"tests/test_pr16_research_save_delegate.py\"}\n"],
+      [42,43,"NEXT = 'Issue19: candidate23d58409の共有研究保存delegateにより影響する他の取引は旧受入を自動継承しない。通常UI2件が揃えばActions終端照合と設定・recipe bindingを確定し、同じnativeは再実行しない。特殊野生が未成功ならそのcaseだけ続行する。map3/19除外130行は変更しない。'\n"],
+      [60,61,"    need(identity(rom) == CANDIDATE, 'UI candidate')\n"],
+      [87,87,"    # Recording 1/2 is ordinary gameplay, not playback 2/3. The original\n    # helper admitted only stopped 0/0. Do not mutate either live RAM state.\n    old_field='&& !read8(c,P02S_QUEST_LOG_STATE) && !read8(c,P02S_QUEST_LOG_PLAYBACK_STATE) && id<16'\n    new_field='&& ((!read8(c,P02S_QUEST_LOG_STATE) && !read8(c,P02S_QUEST_LOG_PLAYBACK_STATE)) || (read8(c,P02S_QUEST_LOG_STATE)==1U && read8(c,P02S_QUEST_LOG_PLAYBACK_STATE)==2U)) && id<16'\n    need(text.count(old_field)==1,'field recording condition boundary')\n    text=text.replace(old_field,new_field)\n"],
+      [112,113,"    need(r['status']=='PASS' and r['scope']==SCOPE and r['method']==method and r['candidate_sha256']==CANDIDATE['sha256'], 'native result identity')\n"],
+      [124,125,"    need(enemy[:4]==captured[:4] and enemy[32:34]==captured[32:34] and enemy[40]==captured[40] and enemy[44:56]==captured[44:56], 'generated special identity/slots/PP')\n"],
+      [139,140,"    v={'schema_version':1,'task':TASK,'source_head':head,'run_id':int(os.environ['GITHUB_RUN_ID']), 'candidate':CANDIDATE,\n"],
+      [152,153,"        _,err,rc,timed=command([sys.executable,'-B','-m','unittest','discover','-s','tests','-p','test_pr16_*gameplay_native.py','-v'],'new-unit')\n"],
+      [157,157,"        data['candidate.gba'],v['repair']=repair.apply(data['candidate.gba'])\n        v['rom_changes']=1\n"],
+      [158,158,"        write(PROOF/'repair.json',v['repair'])\n"],
+      [165,165,"            if method=='hidden':\n                receipt=load(ROOT/LOCAL/'receipt.json')\n                need(receipt['candidate']==CANDIDATE and receipt['seed']==SEED and receipt['method']==method,'local witness inputs')\n                for path,binding in receipt['source_bindings'].items():\n                    need(identity((ROOT/path).read_bytes())==binding,'local accepted source changed: '+path)\n                for path,binding in receipt['generated_bindings'].items():\n                    need(identity((WORK/path).read_bytes())==binding,'local accepted helper changed: '+path)\n                for suffix in ('.stdout.txt','.stderr.txt','.process.json'):\n                    name=method+suffix;raw=(ROOT/LOCAL/name).read_bytes()\n                    need(identity(raw)==receipt['proof_bindings'][name],'local accepted raw changed')\n                    (PROOF/name).write_bytes(raw)\n                process=load(PROOF/(method+'.process.json'))\n                need(process=={'returncode':0,'timed_out':False},'local native process termination')\n                v['results'][method]=native_result((PROOF/(method+'.stdout.txt')).read_bytes(),method)\n                v['reused_cases'].append(method)\n                v['local_receipt']=receipt\n                continue\n"],
+      [181,182,"        need(identity((WORK/'candidate.gba').read_bytes())==CANDIDATE,'ROM changed')\n"],
+      [193,194,"    paths=set(CODE)|{CP,prep.STATE,prep.DOC,GUIDE,repair.CONFIG,'design/run_log.md','design/version_log.md'}\n"],
+      [201,202,"    v=load(PROOF/'verification.json')\n    if v.get('repair'):\n        raw=(ROOT/repair.CONFIG).read_bytes();fixed=repair.correct_config(raw);(ROOT/repair.CONFIG).write_bytes(fixed)\n        v['canonical_config_binding']=identity(fixed)\n        v['source_bindings'][repair.CONFIG]=identity(fixed)\n    evidence=prep.BASE+'pr16_special_wild_ui_evidence/'+str(v['run_id'])\n"],
+      [216,216,"    state['special_wild_ui']['repair']=v.get('repair')\n"],
+      [224,225,"    log=f\"\\n## {stamp}\\n- Timestamp: {stamp}\\n- Task: {TASK} / 通常特殊野生の捕獲・保存経路\\n- Version: special-wild-ui-save-delegate-v2\\n\"\n"],
+      [227,228,"    log+=f\"- Verify: 新規unit={v['new_unit_tests']}、guard={v['guard_processes']}、native={v['native_processes']}、再利用={v['reused_cases']}、成功={sorted(v['results'])}、失敗={v['failures']}、failure={v['failure']}。ARM/旧受入再実行0、研究保存delegateのみ1byte差分。\\n\"\n"],
+      [241,242,"    paths=owned()|CODE|HELPERS|{LOCAL+'/'+n for n in ('receipt.json','hidden.stdout.txt','hidden.stderr.txt','hidden.process.json')}|{'overlays/wild_overlay/wild_overlay.c','overlays/wild_overlay/wild_overlay.h',repair.CONFIG}\n"]
+    ]
+  },
+  "tests/test_pr16_special_wild_gameplay_native.py": {
+    "before": "bf7e72c9bcd43beae31e50eb425d763bc620e55c9ece1a3e1d4442deb3c05d6d",
+    "after": "863d761a8ff1e1cb2f0b9418b6fb68e427a30f44c03cd61a8f354f377d7bb126",
+    "edits": [
+      [20,21,"        events += [dict(status='PASS',scope=m.SCOPE,method=method,candidate_sha256=m.CANDIDATE['sha256'],\n"],
+      [84,84,"    def test_capture_metadata_is_not_move_pp(self):\n        ev=self.events()\n        for e in ev:\n            if e.get('event') in ('captured','saved','reloaded'):\n                raw=bytearray.fromhex(e['party']);raw[42]=4;e['party']=raw.hex()\n        self.run_events(ev)\n    def test_capture_pp_bonus_change(self):\n        ev=self.events()\n        for e in ev:\n            if e.get('event') in ('captured','saved','reloaded'):\n                raw=bytearray.fromhex(e['party']);raw[40]+=1;e['party']=raw.hex()\n        with self.assertRaises(ValueError):self.run_events(ev)\n"],
+      [92,93,"        with patch.object(m,'identity',return_value=m.CANDIDATE):\n"],
+      [98,98,"from test_pr16_research_save_delegate import SaveDelegateTests\n\n"]
+    ]
+  }
+}

@@ -1,0 +1,76 @@
+name: pr16-learnset-progression-diagnose
+# Address-derived offsets; exclude local data masquerading as nearby Thumb BL.
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-learnset-progression-diagnose.yml]
+permissions:
+  contents: read
+  actions: read
+  pull-requests: read
+jobs:
+  diagnose:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: 逆アセンブラのみ導入
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends binutils-arm-none-eabi
+      - name: CFRU関数先頭と離れたcallerを読取
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY'
+          import array,json,os,pathlib,struct,subprocess,sys
+          sys.path[:0]=['scripts','.']
+          import pr16_learnset_battle as b
+          import pr16_learnset_gameplay as m
+          from pr16_learnset_wiki_actions import current
+          BASE=0x08000000;head=current();root=pathlib.Path('.local/pr16-learnset-progression-diagnose');root.mkdir()
+          proof=root/'proof';proof.mkdir();m.PROOF=proof;b.WORK=root/'restore-root';b.WORK.mkdir()
+          cp=m.load(m.ROOT/'content/modernization/pr16_learnset_progression_checkpoint.json')
+          m.need(cp['run_id']==35852603289 and cp['status']=='FAIL' and len(cp['results'])==8,'preserved trace checkpoint changed')
+          rom=b.restore();m.need(m.identity(rom)==m.CANDIDATE,'candidate changed')
+          refs=[];words=array.array('H',rom)
+          if sys.byteorder!='little':words.byteswap()
+          for i,h in enumerate(words[:-1]):
+              if h&0xf800!=0xf000:continue
+              lo=words[i+1]
+              if lo&0xf800!=0xf800:continue
+              hi=h&0x7ff
+              if hi&0x400:hi-=0x800
+              target=BASE+i*2+4+(hi<<12)+((lo&0x7ff)<<1)
+              if 0x09113e00<=target<0x09114058 and abs(BASE+i*2-target)>4096:
+                  refs.append({'kind':'thumb-bl','offset':i*2,'target':target})
+          targets={r['target'] for r in refs}
+          for target in targets:
+              at=rom.find(struct.pack('<I',target|1))
+              while at>=0:
+                  refs.append({'kind':'literal','offset':at,'target':target});at=rom.find(struct.pack('<I',target|1),at+4)
+          m.need(1<=len(refs)<=128,'caller count')
+          ranges={(r['offset']&~63)-64 for r in refs};ranges.add(0x09113f00-BASE)
+          manifest={'source_head':head,'run_id':int(os.environ['GITHUB_RUN_ID']),'candidate':m.CANDIDATE,'native_processes':0,'arm_compiles':0,'old_test_reruns':0,'trace_run':35852603289,'supersedes_wrong_prefix_offset_run':35852887304,'xrefs':refs,'ranges':[]}
+          for start in sorted(ranges):
+              end=start+512;m.need(0<=start<end<=len(rom),'bounded entry/caller span')
+              name='unhooked-'+hex(start+BASE);raw=rom[start:end];tmp=root/(name+'.bin');tmp.write_bytes(raw)
+              cmd=['arm-none-eabi-objdump','-D','-b','binary','-m','arm','-M','force-thumb','--adjust-vma='+str(start+BASE),str(tmp)]
+              (proof/(name+'.asm.txt')).write_text(subprocess.check_output(cmd).decode().replace(str(tmp),name))
+              manifest['ranges'].append({'name':name,'address':hex(start+BASE),'bytes':m.identity(raw),'hex':raw.hex()})
+          (proof/'diagnosis.json').write_text(json.dumps(manifest,sort_keys=True,indent=2)+'\n')
+          print('READONLY_UNHOOKED_ENTRY',len(refs),'native=0 ARM=0 accepted-reruns=0')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-learnset-progression-diagnosis
+          path: .local/pr16-learnset-progression-diagnose/proof/
+          retention-days: 30
+          if-no-files-found: error

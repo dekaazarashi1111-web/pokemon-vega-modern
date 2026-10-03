@@ -1,0 +1,30 @@
+
+<build>/build/shop.elf:	file format elf32-littlearm
+
+Disassembly of section .text:
+
+09f4b000 <RS_DrawFrame>:
+ 9f4b000: b570         	push	{r4, r5, r6, lr}
+ 9f4b002: 0004         	movs	r4, r0
+ 9f4b004: 000d         	movs	r5, r1
+ 9f4b006: 2000         	movs	r0, #0x0
+ 9f4b008: 2100         	movs	r1, #0x0
+ 9f4b00a: 4b09         	ldr	r3, [pc, #0x24]         @ 0x9f4b030 <RS_DrawFrame+0x30>
+ 9f4b00c: f000 f80f    	bl	0x9f4b02e <RS_DrawFrame+0x2e> @ imm = #0x1e
+ 9f4b010: 4b08         	ldr	r3, [pc, #0x20]         @ 0x9f4b034 <RS_DrawFrame+0x34>
+ 9f4b012: f000 f80c    	bl	0x9f4b02e <RS_DrawFrame+0x2e> @ imm = #0x18
+ 9f4b016: 0001         	movs	r1, r0
+ 9f4b018: 0020         	movs	r0, r4
+ 9f4b01a: 22f0         	movs	r2, #0xf0
+ 9f4b01c: 4b06         	ldr	r3, [pc, #0x18]         @ 0x9f4b038 <RS_DrawFrame+0x38>
+ 9f4b01e: f000 f806    	bl	0x9f4b02e <RS_DrawFrame+0x2e> @ imm = #0xc
+ 9f4b022: 0020         	movs	r0, r4
+ 9f4b024: 0029         	movs	r1, r5
+ 9f4b026: 4b05         	ldr	r3, [pc, #0x14]         @ 0x9f4b03c <RS_DrawFrame+0x3c>
+ 9f4b028: f000 f801    	bl	0x9f4b02e <RS_DrawFrame+0x2e> @ imm = #0x2
+ 9f4b02c: bd70         	pop	{r4, r5, r6, pc}
+ 9f4b02e: 4718         	bx	r3
+ 9f4b030: b5 7f 0f 08  	.word	0x080f7fb5
+ 9f4b034: cd 89 0f 08  	.word	0x080f89cd
+ 9f4b038: e1 30 15 08  	.word	0x081530e1
+ 9f4b03c: 7d 7f 0f 08  	.word	0x080f7f7d

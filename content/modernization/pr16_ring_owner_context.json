@@ -1,0 +1,1269 @@
+{
+  "schema_version": 1,
+  "task": "PR-P08-7-RING-OWNER-CONTEXT",
+  "source_head": "68c9c0fc6c8571f1513008443ade14de5e42cb9f",
+  "run_id": 35109188711,
+  "run_status_at_record": "in_progress",
+  "analysis": {
+    "rows": [
+      {
+        "entry": 134647037,
+        "saved_node_count": 16,
+        "callsite_bindings": [
+          {
+            "owner": 134656205,
+            "site": 134656218,
+            "arguments": {
+              "r0": "UNKNOWN",
+              "r1": "UNKNOWN",
+              "r2": "UNKNOWN",
+              "r3": "UNKNOWN"
+            },
+            "branch_register": null,
+            "resolved_target": null,
+            "binding_basis": "SAVED_CFG_REGISTER_FLOW_WITH_EXPLICIT_ABI_PRECONDITIONS",
+            "required_unproven_abi": [
+              "callee@0x0806B0D0: returns/SP/frame/r4-r11 preservation NOT PROVEN"
+            ],
+            "runtime_reachable": false,
+            "callee_abi_proven": false
+          }
+        ],
+        "trampoline_register": null,
+        "memory_write_sites": [
+          134647036,
+          134647056
+        ],
+        "boundaries_retained": [
+          {
+            "site": 134647050,
+            "kind": "unread_call",
+            "target": 134647177
+          },
+          {
+            "site": 134647070,
+            "kind": "revisited_node_boundary",
+            "target": 134647071
+          },
+          {
+            "site": 134647074,
+            "kind": "indirect_boundary",
+            "register": 1
+          }
+        ],
+        "return_opcode_is_not_frame_proof": true,
+        "side_effects_excluded": false
+      },
+      {
+        "entry": 134647989,
+        "saved_node_count": 4,
+        "callsite_bindings": [
+          {
+            "owner": 134656313,
+            "site": 134656316,
+            "arguments": {
+              "r0": "('entry', 0)",
+              "r1": "0x08068DDD",
+              "r2": "('entry', 2)",
+              "r3": "('entry', 3)"
+            },
+            "branch_register": null,
+            "resolved_target": null,
+            "binding_basis": "SAVED_CFG_REGISTER_FLOW_WITH_EXPLICIT_ABI_PRECONDITIONS",
+            "required_unproven_abi": [],
+            "runtime_reachable": false,
+            "callee_abi_proven": false
+          },
+          {
+            "owner": 134656765,
+            "site": 134656802,
+            "arguments": {
+              "r0": "('entry', 0)",
+              "r1": "0x0806B159",
+              "r2": "UNKNOWN",
+              "r3": "UNKNOWN"
+            },
+            "branch_register": null,
+            "resolved_target": null,
+            "binding_basis": "SAVED_CFG_REGISTER_FLOW_WITH_EXPLICIT_ABI_PRECONDITIONS",
+            "required_unproven_abi": [
+              "callee@0x0806B304: returns/SP/frame/r4-r11 preservation NOT PROVEN"
+            ],
+            "runtime_reachable": false,
+            "callee_abi_proven": false
+          }
+        ],
+        "trampoline_register": null,
+        "memory_write_sites": [
+          134647990,
+          134647992
+        ],
+        "boundaries_retained": [
+          {
+            "site": 134647994,
+            "kind": "return_opcode_not_abi_proof"
+          }
+        ],
+        "return_opcode_is_not_frame_proof": true,
+        "side_effects_excluded": false
+      },
+      {
+        "entry": 134648233,
+        "saved_node_count": 7,
+        "callsite_bindings": [
+          {
+            "owner": 134649993,
+            "site": 134649994,
+            "arguments": {
+              "r0": "('entry', 0)",
+              "r1": "('entry', 1)",
+              "r2": "('entry', 2)",
+              "r3": "('entry', 3)"
+            },
+            "branch_register": null,
+            "resolved_target": null,
+            "binding_basis": "SAVED_CFG_REGISTER_FLOW_WITH_EXPLICIT_ABI_PRECONDITIONS",
+            "required_unproven_abi": [],
+            "runtime_reachable": false,
+            "callee_abi_proven": false
+          }
+        ],
+        "trampoline_register": null,
+        "memory_write_sites": [
+          134648232,
+          134648240
+        ],
+        "boundaries_retained": [
+          {
+            "site": 134648236,
+            "kind": "unread_call",
+            "target": 134648173
+          },
+          {
+            "site": 134648246,
+            "kind": "indirect_boundary",
+            "register": 0
+          }
+        ],
+        "return_opcode_is_not_frame_proof": true,
+        "side_effects_excluded": false
+      },
+      {
+        "entry": 134648273,
+        "saved_node_count": 24,
+        "callsite_bindings": [
+          {
+            "owner": 134656205,
+            "site": 134656208,
+            "arguments": {
+              "r0": "('entry', 0)",
+              "r1": "('entry', 1)",
+              "r2": "('entry', 2)",
+              "r3": "('entry', 3)"
+            },
+            "branch_register": null,
+            "resolved_target": null,
+            "binding_basis": "SAVED_CFG_REGISTER_FLOW_WITH_EXPLICIT_ABI_PRECONDITIONS",
+            "required_unproven_abi": [],
+            "runtime_reachable": false,
+            "callee_abi_proven": false
+          }
+        ],
+        "trampoline_register": null,
+        "memory_write_sites": [
+          134648272,
+          134648282,
+          134648288,
+          134648294,
+          134648300
+        ],
+        "boundaries_retained": [
+          {
+            "site": 134648318,
+            "kind": "indirect_boundary",
+            "register": 1
+          }
+        ],
+        "return_opcode_is_not_frame_proof": true,
+        "side_effects_excluded": false
+      },
+      {
+        "entry": 135346165,
+        "saved_node_count": 14,
+        "callsite_bindings": [
+          {
+            "owner": 134656765,
+            "site": 134656772,
+            "arguments": {
+              "r0": "0x030050B0",
+              "r1": "('entry', 1)",
+              "r2": "('entry', 2)",
+              "r3": "('entry', 3)"
+            },
+            "branch_register": null,
+            "resolved_target": null,
+            "binding_basis": "SAVED_CFG_REGISTER_FLOW_WITH_EXPLICIT_ABI_PRECONDITIONS",
+            "required_unproven_abi": [],
+            "runtime_reachable": false,
+            "callee_abi_proven": false
+          }
+        ],
+        "trampoline_register": null,
+        "memory_write_sites": [
+          135346164
+        ],
+        "boundaries_retained": [
+          {
+            "site": 135346182,
+            "kind": "indirect_boundary",
+            "register": 0
+          },
+          {
+            "site": 135346224,
+            "kind": "indirect_boundary",
+            "register": 1
+          }
+        ],
+        "return_opcode_is_not_frame_proof": true,
+        "side_effects_excluded": false
+      },
+      {
+        "entry": 151613701,
+        "saved_node_count": 0,
+        "callsite_bindings": [],
+        "trampoline_register": null,
+        "memory_write_sites": [],
+        "boundaries_retained": [
+          {
+            "site": 151613700,
+            "kind": "saved_node_boundary",
+            "target": 151613701
+          }
+        ],
+        "return_opcode_is_not_frame_proof": true,
+        "side_effects_excluded": false
+      },
+      {
+        "entry": 154152717,
+        "saved_node_count": 1,
+        "callsite_bindings": [
+          {
+            "owner": 154152685,
+            "site": 154152702,
+            "arguments": {
+              "r0": "('call_result', 154152696)",
+              "r1": "UNKNOWN",
+              "r2": "UNKNOWN",
+              "r3": "0x0806DEC5"
+            },
+            "branch_register": 3,
+            "resolved_target": 134667973,
+            "binding_basis": "SAVED_CFG_REGISTER_FLOW_WITH_EXPLICIT_ABI_PRECONDITIONS",
+            "required_unproven_abi": [
+              "callee@0x09302EF8: returns/SP/frame/r4-r11 preservation NOT PROVEN"
+            ],
+            "runtime_reachable": false,
+            "callee_abi_proven": false
+          }
+        ],
+        "trampoline_register": 3,
+        "memory_write_sites": [],
+        "boundaries_retained": [
+          {
+            "site": 154152716,
+            "kind": "indirect_boundary",
+            "register": 3
+          }
+        ],
+        "return_opcode_is_not_frame_proof": true,
+        "side_effects_excluded": false
+      },
+      {
+        "entry": 154155097,
+        "saved_node_count": 42,
+        "callsite_bindings": [
+          {
+            "owner": 154152685,
+            "site": 154152696,
+            "arguments": {
+              "r0": "('lsr', ('lsl', ('add', ('entry', 0), 1280), 16), 16)",
+              "r1": "('entry', 1)",
+              "r2": "('entry', 2)",
+              "r3": "0x00000500"
+            },
+            "branch_register": null,
+            "resolved_target": null,
+            "binding_basis": "SAVED_CFG_REGISTER_FLOW_WITH_EXPLICIT_ABI_PRECONDITIONS",
+            "required_unproven_abi": [],
+            "runtime_reachable": false,
+            "callee_abi_proven": false
+          }
+        ],
+        "trampoline_register": null,
+        "memory_write_sites": [
+          154155096
+        ],
+        "boundaries_retained": [
+          {
+            "site": 154155106,
+            "kind": "revisited_node_boundary",
+            "target": 154155107
+          },
+          {
+            "site": 154155106,
+            "kind": "revisited_node_boundary",
+            "target": 154155107
+          },
+          {
+            "site": 154155144,
+            "kind": "revisited_node_boundary",
+            "target": 154155145
+          },
+          {
+            "site": 154155144,
+            "kind": "revisited_node_boundary",
+            "target": 154155145
+          },
+          {
+            "site": 154155148,
+            "kind": "indirect_boundary",
+            "register": 1
+          }
+        ],
+        "return_opcode_is_not_frame_proof": true,
+        "side_effects_excluded": false
+      },
+      {
+        "entry": 154635157,
+        "saved_node_count": 10,
+        "callsite_bindings": [
+          {
+            "owner": 154635693,
+            "site": 154635750,
+            "arguments": {
+              "r0": "0x0203D000",
+              "r1": "0x02039A14",
+              "r2": "0x00000800",
+              "r3": "UNKNOWN"
+            },
+            "branch_register": null,
+            "resolved_target": null,
+            "binding_basis": "SAVED_CFG_REGISTER_FLOW_WITH_EXPLICIT_ABI_PRECONDITIONS",
+            "required_unproven_abi": [
+              "callee@0x09378DB6: returns/SP/frame/r4-r11 preservation NOT PROVEN",
+              "callee@0x09378DCC: returns/SP/frame/r4-r11 preservation NOT PROVEN",
+              "callee@0x09378DD6: returns/SP/frame/r4-r11 preservation NOT PROVEN"
+            ],
+            "runtime_reachable": false,
+            "callee_abi_proven": false
+          }
+        ],
+        "trampoline_register": null,
+        "memory_write_sites": [
+          154635158,
+          154635162
+        ],
+        "boundaries_retained": [
+          {
+            "site": 154635160,
+            "kind": "revisited_node_boundary",
+            "target": 154635161
+          },
+          {
+            "site": 154635174,
+            "kind": "indirect_boundary",
+            "register": 0
+          }
+        ],
+        "return_opcode_is_not_frame_proof": true,
+        "side_effects_excluded": false
+      },
+      {
+        "entry": 154635821,
+        "saved_node_count": 1,
+        "callsite_bindings": [
+          {
+            "owner": 154635693,
+            "site": 154635774,
+            "arguments": {
+              "r0": "0x00000820",
+              "r1": "UNKNOWN",
+              "r2": "UNKNOWN",
+              "r3": "0x0806DEC5"
+            },
+            "branch_register": 3,
+            "resolved_target": 134667973,
+            "binding_basis": "SAVED_CFG_REGISTER_FLOW_WITH_EXPLICIT_ABI_PRECONDITIONS",
+            "required_unproven_abi": [
+              "callee@0x09378DB6: returns/SP/frame/r4-r11 preservation NOT PROVEN",
+              "callee@0x09378DCC: returns/SP/frame/r4-r11 preservation NOT PROVEN",
+              "callee@0x09378DD6: returns/SP/frame/r4-r11 preservation NOT PROVEN"
+            ],
+            "runtime_reachable": false,
+            "callee_abi_proven": false
+          },
+          {
+            "owner": 154635693,
+            "site": 154635784,
+            "arguments": {
+              "r0": "0x0203D000",
+              "r1": "('call_result', 154635774)",
+              "r2": "UNKNOWN",
+              "r3": "0x092D2979"
+            },
+            "branch_register": 3,
+            "resolved_target": 153954681,
+            "binding_basis": "SAVED_CFG_REGISTER_FLOW_WITH_EXPLICIT_ABI_PRECONDITIONS",
+            "required_unproven_abi": [
+              "callee@0x09378DB6: returns/SP/frame/r4-r11 preservation NOT PROVEN",
+              "callee@0x09378DCC: returns/SP/frame/r4-r11 preservation NOT PROVEN",
+              "callee@0x09378DD6: returns/SP/frame/r4-r11 preservation NOT PROVEN",
+              "callee@0x09378DFE: returns/SP/frame/r4-r11 preservation NOT PROVEN"
+            ],
+            "runtime_reachable": false,
+            "callee_abi_proven": false
+          }
+        ],
+        "trampoline_register": 3,
+        "memory_write_sites": [],
+        "boundaries_retained": [
+          {
+            "site": 154635820,
+            "kind": "indirect_boundary",
+            "register": 3
+          }
+        ],
+        "return_opcode_is_not_frame_proof": true,
+        "side_effects_excluded": false
+      },
+      {
+        "entry": 154635823,
+        "saved_node_count": 1,
+        "callsite_bindings": [
+          {
+            "owner": 154635693,
+            "site": 154635702,
+            "arguments": {
+              "r0": "0x0203D000",
+              "r1": "0x00000800",
+              "r2": "('entry', 2)",
+              "r3": "('entry', 3)"
+            },
+            "branch_register": 5,
+            "resolved_target": 153948897,
+            "binding_basis": "SAVED_CFG_REGISTER_FLOW_WITH_EXPLICIT_ABI_PRECONDITIONS",
+            "required_unproven_abi": [],
+            "runtime_reachable": false,
+            "callee_abi_proven": false
+          },
+          {
+            "owner": 154635693,
+            "site": 154635734,
+            "arguments": {
+              "r0": "0x02039A14",
+              "r1": "0x00000800",
+              "r2": "UNKNOWN",
+              "r3": "UNKNOWN"
+            },
+            "branch_register": 5,
+            "resolved_target": 153948897,
+            "binding_basis": "SAVED_CFG_REGISTER_FLOW_WITH_EXPLICIT_ABI_PRECONDITIONS",
+            "required_unproven_abi": [
+              "callee@0x09378DB6: returns/SP/frame/r4-r11 preservation NOT PROVEN",
+              "callee@0x09378DCC: returns/SP/frame/r4-r11 preservation NOT PROVEN"
+            ],
+            "runtime_reachable": false,
+            "callee_abi_proven": false
+          }
+        ],
+        "trampoline_register": 5,
+        "memory_write_sites": [],
+        "boundaries_retained": [
+          {
+            "site": 154635822,
+            "kind": "indirect_boundary",
+            "register": 5
+          }
+        ],
+        "return_opcode_is_not_frame_proof": true,
+        "side_effects_excluded": false
+      },
+      {
+        "entry": 154635825,
+        "saved_node_count": 1,
+        "callsite_bindings": [
+          {
+            "owner": 154635693,
+            "site": 154635724,
+            "arguments": {
+              "r0": "0x0000001F",
+              "r1": "0x00000000",
+              "r2": "0x020399B0",
+              "r3": "0x00001000"
+            },
+            "branch_register": 6,
+            "resolved_target": 136063573,
+            "binding_basis": "SAVED_CFG_REGISTER_FLOW_WITH_EXPLICIT_ABI_PRECONDITIONS",
+            "required_unproven_abi": [
+              "callee@0x09378DB6: returns/SP/frame/r4-r11 preservation NOT PROVEN"
+            ],
+            "runtime_reachable": false,
+            "callee_abi_proven": false
+          }
+        ],
+        "trampoline_register": 6,
+        "memory_write_sites": [],
+        "boundaries_retained": [
+          {
+            "site": 154635824,
+            "kind": "indirect_boundary",
+            "register": 6
+          }
+        ],
+        "return_opcode_is_not_frame_proof": true,
+        "side_effects_excluded": false
+      },
+      {
+        "entry": 154639241,
+        "saved_node_count": 1,
+        "callsite_bindings": [
+          {
+            "owner": 154639157,
+            "site": 154639198,
+            "arguments": {
+              "r0": "0x0203D000",
+              "r1": "UNKNOWN",
+              "r2": "UNKNOWN",
+              "r3": "0x092D28D9"
+            },
+            "branch_register": 3,
+            "resolved_target": 153954521,
+            "binding_basis": "SAVED_CFG_REGISTER_FLOW_WITH_EXPLICIT_ABI_PRECONDITIONS",
+            "required_unproven_abi": [
+              "callee@0x09379B3C: returns/SP/frame/r4-r11 preservation NOT PROVEN",
+              "callee@0x09379B46: returns/SP/frame/r4-r11 preservation NOT PROVEN",
+              "callee@0x09379B4E: returns/SP/frame/r4-r11 preservation NOT PROVEN"
+            ],
+            "runtime_reachable": false,
+            "callee_abi_proven": false
+          }
+        ],
+        "trampoline_register": 3,
+        "memory_write_sites": [],
+        "boundaries_retained": [
+          {
+            "site": 154639240,
+            "kind": "indirect_boundary",
+            "register": 3
+          }
+        ],
+        "return_opcode_is_not_frame_proof": true,
+        "side_effects_excluded": false
+      },
+      {
+        "entry": 154639243,
+        "saved_node_count": 1,
+        "callsite_bindings": [
+          {
+            "owner": 154639157,
+            "site": 154639164,
+            "arguments": {
+              "r0": "0x00000820",
+              "r1": "('entry', 1)",
+              "r2": "('entry', 2)",
+              "r3": "('entry', 3)"
+            },
+            "branch_register": 4,
+            "resolved_target": 134667973,
+            "binding_basis": "SAVED_CFG_REGISTER_FLOW_WITH_EXPLICIT_ABI_PRECONDITIONS",
+            "required_unproven_abi": [],
+            "runtime_reachable": false,
+            "callee_abi_proven": false
+          },
+          {
+            "owner": 154639157,
+            "site": 154639174,
+            "arguments": {
+              "r0": "0x000012FD",
+              "r1": "UNKNOWN",
+              "r2": "UNKNOWN",
+              "r3": "UNKNOWN"
+            },
+            "branch_register": 4,
+            "resolved_target": 134667973,
+            "binding_basis": "SAVED_CFG_REGISTER_FLOW_WITH_EXPLICIT_ABI_PRECONDITIONS",
+            "required_unproven_abi": [
+              "callee@0x09379B3C: returns/SP/frame/r4-r11 preservation NOT PROVEN"
+            ],
+            "runtime_reachable": false,
+            "callee_abi_proven": false
+          }
+        ],
+        "trampoline_register": 4,
+        "memory_write_sites": [],
+        "boundaries_retained": [
+          {
+            "site": 154639242,
+            "kind": "indirect_boundary",
+            "register": 4
+          }
+        ],
+        "return_opcode_is_not_frame_proof": true,
+        "side_effects_excluded": false
+      },
+      {
+        "entry": 154917233,
+        "saved_node_count": 24,
+        "callsite_bindings": [
+          {
+            "owner": 154918269,
+            "site": 154918446,
+            "arguments": {
+              "r0": "('entry', 0)",
+              "r1": "UNKNOWN",
+              "r2": "0x00000008",
+              "r3": "0x00000000"
+            },
+            "branch_register": null,
+            "resolved_target": null,
+            "binding_basis": "SAVED_CFG_REGISTER_FLOW_WITH_EXPLICIT_ABI_PRECONDITIONS",
+            "required_unproven_abi": [
+              "callee@0x093BDD8E: returns/SP/frame/r4-r11 preservation NOT PROVEN",
+              "callee@0x093BDDB4: returns/SP/frame/r4-r11 preservation NOT PROVEN",
+              "callee@0x093BDDBC: returns/SP/frame/r4-r11 preservation NOT PROVEN",
+              "callee@0x093BDDD2: returns/SP/frame/r4-r11 preservation NOT PROVEN",
+              "callee@0x093BDE42: returns/SP/frame/r4-r11 preservation NOT PROVEN"
+            ],
+            "runtime_reachable": false,
+            "callee_abi_proven": false
+          }
+        ],
+        "trampoline_register": null,
+        "memory_write_sites": [
+          154917234
+        ],
+        "boundaries_retained": [
+          {
+            "site": 154917250,
+            "kind": "revisited_node_boundary",
+            "target": 154917251
+          },
+          {
+            "site": 154917264,
+            "kind": "revisited_node_boundary",
+            "target": 154917265
+          },
+          {
+            "site": 154917274,
+            "kind": "revisited_node_boundary",
+            "target": 154917275
+          },
+          {
+            "site": 154917278,
+            "kind": "indirect_boundary",
+            "register": 1
+          }
+        ],
+        "return_opcode_is_not_frame_proof": true,
+        "side_effects_excluded": false
+      },
+      {
+        "entry": 154917289,
+        "saved_node_count": 62,
+        "callsite_bindings": [
+          {
+            "owner": 154918269,
+            "site": 154918466,
+            "arguments": {
+              "r0": "('entry', 0)",
+              "r1": "('asr', ('lsl', ('or', ('lsl', ('load', 154918298, 8, ('add', ('entry', 0), 7)), 8), ('load', 154918296, 8, ('add', ('entry', 0), 6))), 16), 16)",
+              "r2": "UNKNOWN",
+              "r3": "0x0203D000"
+            },
+            "branch_register": null,
+            "resolved_target": null,
+            "binding_basis": "SAVED_CFG_REGISTER_FLOW_WITH_EXPLICIT_ABI_PRECONDITIONS",
+            "required_unproven_abi": [
+              "callee@0x093BDD8E: returns/SP/frame/r4-r11 preservation NOT PROVEN",
+              "callee@0x093BDDB4: returns/SP/frame/r4-r11 preservation NOT PROVEN",
+              "callee@0x093BDDBC: returns/SP/frame/r4-r11 preservation NOT PROVEN"
+            ],
+            "runtime_reachable": false,
+            "callee_abi_proven": false
+          }
+        ],
+        "trampoline_register": null,
+        "memory_write_sites": [
+          154917288,
+          154917320
+        ],
+        "boundaries_retained": [
+          {
+            "site": 154917312,
+            "kind": "revisited_node_boundary",
+            "target": 154917313
+          },
+          {
+            "site": 154917312,
+            "kind": "unread_call",
+            "target": 154922617
+          },
+          {
+            "site": 154917322,
+            "kind": "revisited_node_boundary",
+            "target": 154917323
+          },
+          {
+            "site": 154917332,
+            "kind": "revisited_node_boundary",
+            "target": 154917333
+          },
+          {
+            "site": 154917332,
+            "kind": "revisited_node_boundary",
+            "target": 154917333
+          },
+          {
+            "site": 154917332,
+            "kind": "revisited_node_boundary",
+            "target": 154917333
+          },
+          {
+            "site": 154917338,
+            "kind": "indirect_boundary",
+            "register": 1
+          },
+          {
+            "site": 154917352,
+            "kind": "revisited_node_boundary",
+            "target": 154917353
+          },
+          {
+            "site": 154917364,
+            "kind": "revisited_node_boundary",
+            "target": 154917365
+          },
+          {
+            "site": 154917380,
+            "kind": "revisited_node_boundary",
+            "target": 154917381
+          },
+          {
+            "site": 154917398,
+            "kind": "unread_call",
+            "target": 154922437
+          },
+          {
+            "site": 154917416,
+            "kind": "window_boundary",
+            "target": 154917417
+          }
+        ],
+        "return_opcode_is_not_frame_proof": true,
+        "side_effects_excluded": false
+      },
+      {
+        "entry": 154922465,
+        "saved_node_count": 14,
+        "callsite_bindings": [
+          {
+            "owner": 154918269,
+            "site": 154918456,
+            "arguments": {
+              "r0": "('add', ('entry', 0), 8)",
+              "r1": "('call_result', 154918446)",
+              "r2": "UNKNOWN",
+              "r3": "UNKNOWN"
+            },
+            "branch_register": null,
+            "resolved_target": null,
+            "binding_basis": "SAVED_CFG_REGISTER_FLOW_WITH_EXPLICIT_ABI_PRECONDITIONS",
+            "required_unproven_abi": [
+              "callee@0x093BDD8E: returns/SP/frame/r4-r11 preservation NOT PROVEN",
+              "callee@0x093BDDB4: returns/SP/frame/r4-r11 preservation NOT PROVEN",
+              "callee@0x093BDDBC: returns/SP/frame/r4-r11 preservation NOT PROVEN",
+              "callee@0x093BDDD2: returns/SP/frame/r4-r11 preservation NOT PROVEN",
+              "callee@0x093BDE2E: returns/SP/frame/r4-r11 preservation NOT PROVEN",
+              "callee@0x093BDE42: returns/SP/frame/r4-r11 preservation NOT PROVEN"
+            ],
+            "runtime_reachable": false,
+            "callee_abi_proven": false
+          }
+        ],
+        "trampoline_register": null,
+        "memory_write_sites": [
+          154922468,
+          154922476,
+          154922486,
+          154922488
+        ],
+        "boundaries_retained": [
+          {
+            "site": 154922490,
+            "kind": "return_opcode_not_abi_proof"
+          }
+        ],
+        "return_opcode_is_not_frame_proof": true,
+        "side_effects_excluded": false
+      },
+      {
+        "entry": 154922573,
+        "saved_node_count": 17,
+        "callsite_bindings": [
+          {
+            "owner": 154922617,
+            "site": 154922628,
+            "arguments": {
+              "r0": "('entry', 0)",
+              "r1": "('entry', 1)",
+              "r2": "('load', 154922618, 32, 33812640)",
+              "r3": "0x31564552"
+            },
+            "branch_register": null,
+            "resolved_target": null,
+            "binding_basis": "SAVED_CFG_REGISTER_FLOW_WITH_EXPLICIT_ABI_PRECONDITIONS",
+            "required_unproven_abi": [],
+            "runtime_reachable": false,
+            "callee_abi_proven": false
+          }
+        ],
+        "trampoline_register": null,
+        "memory_write_sites": [
+          154922572,
+          154922586,
+          154922594,
+          154922596,
+          154922598,
+          154922600
+        ],
+        "boundaries_retained": [
+          {
+            "site": 154922580,
+            "kind": "unread_call",
+            "target": 154922493
+          },
+          {
+            "site": 154922606,
+            "kind": "indirect_boundary",
+            "register": 0
+          }
+        ],
+        "return_opcode_is_not_frame_proof": true,
+        "side_effects_excluded": false
+      }
+    ],
+    "old_target_count": 18,
+    "bound_callsite_count": 21,
+    "trampoline_callsite_count": 9,
+    "resolved_trampoline_targets": [
+      134667973,
+      136063573,
+      153948897,
+      153954521,
+      153954681
+    ],
+    "saved_callee_links": [
+      {
+        "root": 154917289,
+        "site": 154917312,
+        "target": 154922617,
+        "saved_graph_reused": true,
+        "callee_contract_proven": false
+      },
+      {
+        "root": 154917289,
+        "site": 154917398,
+        "target": 154922437,
+        "saved_graph_reused": true,
+        "callee_contract_proven": false
+      },
+      {
+        "root": 154922573,
+        "site": 154922580,
+        "target": 154922493,
+        "saved_graph_reused": true,
+        "callee_contract_proven": false
+      }
+    ],
+    "origin_missing_targets": [
+      151613701
+    ],
+    "owner_cfg_stops": {
+      "154629573": [
+        {
+          "site": 154629620,
+          "kind": "indirect"
+        }
+      ],
+      "154918269": [
+        {
+          "site": 154918478,
+          "kind": "indirect"
+        }
+      ],
+      "134649993": [
+        {
+          "site": 134650002,
+          "kind": "indirect"
+        }
+      ],
+      "134656313": [
+        {
+          "site": 134656324,
+          "kind": "indirect"
+        }
+      ],
+      "134656205": [
+        {
+          "site": 134656228,
+          "kind": "indirect"
+        }
+      ],
+      "134656765": [
+        {
+          "site": 134656812,
+          "kind": "indirect"
+        }
+      ],
+      "134667701": [
+        {
+          "site": 134667702,
+          "kind": "indirect"
+        }
+      ],
+      "134648505": [
+        {
+          "site": 134648510,
+          "kind": "return"
+        }
+      ],
+      "134648457": [
+        {
+          "site": 134648462,
+          "kind": "return"
+        }
+      ],
+      "134648369": [
+        {
+          "site": 134648374,
+          "kind": "return"
+        }
+      ],
+      "134647917": [
+        {
+          "site": 134647972,
+          "kind": "indirect"
+        }
+      ],
+      "134647977": [
+        {
+          "site": 134647984,
+          "kind": "return"
+        }
+      ],
+      "134648321": [
+        {
+          "site": 134648326,
+          "kind": "return"
+        }
+      ],
+      "154648393": [
+        {
+          "site": 154648408,
+          "kind": "return"
+        }
+      ],
+      "154627909": [
+        {
+          "site": 154627908,
+          "kind": "indirect"
+        }
+      ],
+      "154152685": [
+        {
+          "site": 154152710,
+          "kind": "indirect"
+        }
+      ],
+      "154634739": [
+        {
+          "site": 154634748,
+          "kind": "indirect"
+        }
+      ],
+      "154635693": [
+        {
+          "site": 154635760,
+          "kind": "indirect"
+        }
+      ],
+      "154629653": [
+        {
+          "site": 154629652,
+          "kind": "indirect"
+        }
+      ],
+      "154639157": [
+        {
+          "site": 154639218,
+          "kind": "indirect"
+        }
+      ],
+      "154922437": [
+        {
+          "site": 154922462,
+          "kind": "indirect"
+        }
+      ],
+      "154922531": [
+        {
+          "site": 154922546,
+          "kind": "return"
+        }
+      ],
+      "154922617": [
+        {
+          "site": 154922636,
+          "kind": "indirect"
+        }
+      ],
+      "154922493": [
+        {
+          "site": 154922504,
+          "kind": "return"
+        }
+      ]
+    },
+    "branch_feasibility_proven": false,
+    "all_callers_resolved": false,
+    "all_runtime_owners_excluded": false,
+    "caller_pointer_size_limit_proven": false,
+    "ring_acquisition_accepted": false,
+    "release_ready": false,
+    "rom_changes": 0,
+    "new_emulator_processes": 0,
+    "accepted_native_cases_replayed": 0,
+    "candidate_reconstructions": 0,
+    "new_byte_samples": 0,
+    "prior_graph_decoders_replayed": 0,
+    "candidate": {
+      "size": 33554432,
+      "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b",
+      "crc32": "3EB17B36"
+    },
+    "classification": "SAVED_OWNER_CALLSITE_BINDINGS_NOT_NATIVE_OR_UNCONDITIONAL_ABI_ACCEPTANCE"
+  },
+  "source_bindings": {
+    "scripts/pr16_ring_followup_v2.py": {
+      "size": 11453,
+      "sha256": "71e33dbe40cd8988e185256821e33e6a1e06e4eddeb8ee6a3eb9047a4d3c49f7"
+    },
+    "scripts/pr16_ring_owner_context.py": {
+      "size": 13828,
+      "sha256": "e4ceb839cb6f9e3676b50549471512ae18698b9d4a4428f5577992758e38c1f0"
+    },
+    "tests/test_pr16_ring_owner_context.py": {
+      "size": 6958,
+      "sha256": "74432a95301c1e55874b795e4721ec8782ed683fa3af350e30d908ef57fcafcc"
+    },
+    ".github/workflows/pr16-ring-owner-context.yml": {
+      "size": 1934,
+      "sha256": "08bc6716a16ee57fc3afe658ee97f3640892c5f52a746f069c0ce862ef50da51"
+    },
+    "content/modernization/pr16_ring_owner_frontier.json": {
+      "size": 73322,
+      "sha256": "4260abb358c4ea4c93f0b28d18b91a8ca242a061681cdca52ddd36842dff4ccf"
+    },
+    "content/modernization/pr16_bp_chooser_checkpoint.json": {
+      "size": 9442,
+      "sha256": "853ed41b6abcfb63651aab136951a53c8c89ec635f769e8466327ba3a0c0ae41"
+    },
+    "scripts/pr16_resume.py": {
+      "size": 26649,
+      "sha256": "b0ec73bf933e46f7b254057559b0c637a2d1a9b625b08f348aa8308ea00dee5a"
+    },
+    "scripts/pr16_ring_compiled_record.py": {
+      "size": 13116,
+      "sha256": "768c94e59983d27bbf0ed46d6ba60008352a3a67e11612b18936e38b271e73ef"
+    },
+    "scripts/guard_private_files.py": {
+      "size": 5443,
+      "sha256": "143426a7403abf47396791f6ece3a3a374fa97fbf8bedc88169f636cddbcc905"
+    },
+    "content/modernization/pr16_ring_patch_owner.json": {
+      "size": 125662,
+      "sha256": "fb396fd19040d954ebc10c5296a35293575284e24f53bb6a0e23b440eb1a8746"
+    },
+    "content/modernization/pr16_ring_leap_contracts.json": {
+      "size": 13384,
+      "sha256": "a13f5936b97164358a7a16b13e1b81f83a646561208d19127b0a1c6876b597b4"
+    },
+    "scripts/pr16_ring_flagset_continuation.py": {
+      "size": 19471,
+      "sha256": "10f6aa42d04f81385e42ff1987ca325c6a1bab52264c6591c9de7e8841f10e33"
+    }
+  },
+  "focused_tests": {
+    "tests_run": 40,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "successful": true
+  },
+  "prior_actions_verified_without_replay": [
+    {
+      "id": 35100563848,
+      "head_sha": "be75645c967228f15188ebe7e5e46618b81de966",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34946969126,
+      "head_sha": "0b7497b575a3180a045f2be377386490f192a012",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "actions_observed_before_record": [
+    {
+      "id": 35109194166,
+      "name": "source-validation",
+      "head_sha": "68c9c0fc6c8571f1513008443ade14de5e42cb9f",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35109194146,
+      "name": "p03-forgetting-ci",
+      "head_sha": "68c9c0fc6c8571f1513008443ade14de5e42cb9f",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35109188729,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "68c9c0fc6c8571f1513008443ade14de5e42cb9f",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35109188393,
+      "name": "source-validation",
+      "head_sha": "68c9c0fc6c8571f1513008443ade14de5e42cb9f",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35109188222,
+      "name": "p03-forgetting-ci",
+      "head_sha": "68c9c0fc6c8571f1513008443ade14de5e42cb9f",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35109188191,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "68c9c0fc6c8571f1513008443ade14de5e42cb9f",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35109188711,
+      "name": "保存18ownerの実callsite結合と未証明境界の記録",
+      "head_sha": "68c9c0fc6c8571f1513008443ade14de5e42cb9f",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35100819891,
+      "name": "source-validation",
+      "head_sha": "1656ebba8d9237f9fbe5a1c1980a73a796326ea4",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35100819932,
+      "name": "p03-forgetting-ci",
+      "head_sha": "1656ebba8d9237f9fbe5a1c1980a73a796326ea4",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35100569090,
+      "name": "source-validation",
+      "head_sha": "be75645c967228f15188ebe7e5e46618b81de966",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35100569233,
+      "name": "p03-forgetting-ci",
+      "head_sha": "be75645c967228f15188ebe7e5e46618b81de966",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35100563848,
+      "name": "旧18ownerの未読境界だけを保存",
+      "head_sha": "be75645c967228f15188ebe7e5e46618b81de966",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35100563876,
+      "name": "source-validation",
+      "head_sha": "be75645c967228f15188ebe7e5e46618b81de966",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35100563800,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "be75645c967228f15188ebe7e5e46618b81de966",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35100563855,
+      "name": "p03-forgetting-ci",
+      "head_sha": "be75645c967228f15188ebe7e5e46618b81de966",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35100563801,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "be75645c967228f15188ebe7e5e46618b81de966",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35099373886,
+      "name": "p03-forgetting-ci",
+      "head_sha": "67958790201608adc840959b146c9bc9cafc7597",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35099373814,
+      "name": "source-validation",
+      "head_sha": "67958790201608adc840959b146c9bc9cafc7597",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35099290714,
+      "name": "source-validation",
+      "head_sha": "ee4089b940fe03c17fbb0919ecb2b44af36c63a6",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35099290694,
+      "name": "p03-forgetting-ci",
+      "head_sha": "ee4089b940fe03c17fbb0919ecb2b44af36c63a6",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+name: pr16-research-ecology-guide-20260927
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-research-ecology-guide-20260927.yml]
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+jobs:
+  ecology-only:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: 保存sourceを再利用・未観測の生態ガイド1ケースだけ測定して原本保存
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B - <<'PY'
+          import datetime,os,subprocess,sys
+          from pathlib import Path
+          sys.path[:0]=['scripts','.']
+          import pr16_research_connection_actions as a
+          import pr16_research_connection as m
+          import pr16_research_lifecycle_actions as d
+          from pr16_learnset_compact_record import publish_resume
+          d.current();cp=d.read(a.CP)
+          d.need('ecology_followup' not in cp,'recorded followup must not rerun')
+          d.need(cp['run_id']==36284847516 and not cp['accepted_native_cases'],'preserve first measurement, no acceptance invented')
+          prior=d.inputs.api('actions/runs/36284847516')
+          d.need(prior['conclusion']=='success' and prior['status']=='completed' and prior['head_sha']==cp['source_head'],'first record terminal')
+          d.need(d.bindings(set(cp['source_bindings']))==cp['source_bindings'],'original measured source unchanged')
+          before=d.bindings(a.PROTECTED)
+          olddir=Path(cp['measurement']).parent
+          a.OUT=Path('.local/pr16-research-ecology-guide').resolve();a.PUBLIC=a.OUT/'public';a.PUBLIC.mkdir(parents=True)
+          runtime,seed,candidate,rom,fixture=a.restore()
+          generated=(olddir/'generated.c.txt').read_bytes()
+          d.need(m.identity(generated)==d.read(olddir/'compile.json')['source'],'exact inherited compiled translation unit')
+          src=a.OUT/'generated.c';src.write_bytes(generated);exe=a.OUT/'probe'
+          cmd=['cc','-std=c11','-O2','-Wall','-Wextra','-Werror','-Wno-misleading-indentation','-Itools','-I.','-I'+str(runtime/'include'),str(src),'-L'+str(runtime/'lib'),'-lmgba','-lm','-Wl,--allow-shlib-undefined','-o',str(exe)]
+          p=subprocess.run(cmd,capture_output=True,timeout=150)
+          (a.PUBLIC/'compile.stdout.txt').write_bytes(p.stdout);(a.PUBLIC/'compile.stderr.txt').write_bytes(p.stderr)
+          d.write(a.PUBLIC/'compile.json',dict(returncode=p.returncode,source=m.identity(generated),compiler=subprocess.check_output(['cc','--version']).decode(),executable=m.identity(exe.read_bytes()) if exe.exists() else None,host_compiles=1,arm_compiles=0))
+          d.need(p.returncode==0 and not p.stderr,'same-source strict host compile')
+          prefix=[str(runtime/'ld.so'),'--library-path',str(runtime/'lib'),str(exe)]
+          guards={}
+          for method in ('bus8','bus16','bus32','raw8','raw16','raw32','register'):
+              p=subprocess.run(prefix+['--guard-check',method],capture_output=True,timeout=15)
+              guards[method]=dict(returncode=p.returncode,stdout=m.identity(p.stdout),stderr=m.identity(p.stderr))
+              d.need(p.returncode==1 and not p.stdout and p.stderr==b'research-save-impact: host write after observation barrier\n','new executable write guard')
+          d.write(a.PUBLIC/'guards.json',guards)
+          # At old frame1264 player=(3,5), moving local1=(2,5). Turn left, not up.
+          sequence=m.PROGRAMS['ecology'][:6]+[(32,2,'step'),(1,2,'step'),(0,120,'guide_message'),(1,2,'step'),(0,120,'guide_cap'),(1,2,'step'),(0,60,'end')]
+          commands=''.join(f'{k} {n} {label}\n' for k,n,label in sequence).encode()
+          d.need(m.identity(commands)['sha256']=='7bd5e7a21909fd81053c08f5692b11d7a76f9e63eefe523da39209b5f52c8c91','fixed read-evidence-derived command sequence')
+          (a.PUBLIC/'commands.txt').write_bytes(commands)
+          save=a.OUT/'ecology.srm';save.write_bytes(fixture)
+          p=subprocess.run(prefix+[str(rom),str(save),'3'],input=commands,capture_output=True,timeout=150,cwd=a.PUBLIC)
+          (a.PUBLIC/'stdout.txt').write_bytes(p.stdout);(a.PUBLIC/'stderr.txt').write_bytes(p.stderr)
+          result=dict(returncode=p.returncode,stdout=m.identity(p.stdout),stderr=m.identity(p.stderr),commands=m.identity(commands),native_processes=1,guard_processes=7,host_compiles=1,arm_compiles=0,accepted_case_reruns=0,screens={q.name:m.identity(q.read_bytes()) for q in sorted(a.PUBLIC.glob('*.ppm'))},previous_run=d.run_summary(prior),source_head=os.environ['GITHUB_SHA'],run_id=int(os.environ['GITHUB_RUN_ID']))
+          try:
+              d.need(p.returncode==0 and not p.stderr,'clean terminal')
+              result['observation']=m.inspect(p.stdout,'ecology',d.read(olddir/'candidate-audit.json'))
+          except Exception as e:result['observation_error']={'type':type(e).__name__,'reason':str(e)}
+          d.write(a.PUBLIC/'measurement.json',result)
+          d.need(d.bindings(a.PROTECTED)==before,'originals unchanged')
+          newdir=Path(a.BASE)/os.environ['GITHUB_RUN_ID'];newdir.mkdir()
+          evidence={}
+          for q in sorted(a.PUBLIC.iterdir()):
+              if q.suffix not in ('.json','.txt'):continue
+              b=q.read_bytes();b.decode('utf-8');d.need(b'\0' not in b,'UTF8 evidence only')
+              target=newdir/q.name;target.write_bytes(b);evidence[str(target)]=m.identity(b)
+          d.write(newdir/'manifest.json',evidence)
+          cp['ecology_followup']={'measurement':str(newdir/'measurement.json'),'manifest':str(newdir/'manifest.json'),'source_head':os.environ['GITHUB_SHA'],'run_id':result['run_id'],'native_processes':1,'observed_complete':result.get('observation',{}).get('complete',False),'independent_oracle_accepted':False}
+          cp['actions_completion_confirmed']=True;cp['terminal_run']=d.run_summary(prior)
+          d.write(a.CP,cp)
+          goal='研究室/釣り/ゲームコーナーの計測原本を再実行せず、生態ガイドの追加1件と合わせて独立oracle・画像レビューを完了する。受付の数値残高/ランク表示欠落は実装未完、自然稼得RP→ショップ支出/通常ストーリー到達は未受入。'
+          with Path(a.GUIDE).open('a',encoding='utf-8') as f:f.write('\n## 生態ガイドの限定後続\n\n'+goal+'\n\n'+str(cp['ecology_followup'])+'\n移動NPCの現在位置を旧原本で確認し、player(3,5)からlocal1(2,5)へ左を向いて通常A。NPC座標/乱数/文言の書換えなし。旧3入口を再実行しない。\n')
+          state=d.read(d.STATE);state['bp']['next_step']=goal;state['next_action']['goal_ja']=goal
+          state['research_connection']['ecology_followup']=cp['ecology_followup'];state['research_connection']['first_actions_completion_confirmed']=True
+          wf='.github/workflows/pr16-research-ecology-guide-20260927.yml'
+          for q in (a.CP,a.GUIDE,wf):state['source_bindings'][q]=m.identity(Path(q).read_bytes())
+          state['observed_head']=os.environ['GITHUB_SHA'];state['observed_head_checks']={'scope_head':os.environ['GITHUB_SHA'],'runs':[d.run_summary(prior),{'id':result['run_id'],'head_sha':os.environ['GITHUB_SHA'],'status':'in_progress','conclusion':None}], 'reason_ja':'前4入口記録Actions成功を確認。旧生態未観測を保持し、追加1件の計測のみ。独立oracle/画面/自己run終端/全CI成功は未確定。'}
+          publish_resume(state)
+          now=datetime.datetime.now(datetime.timezone.utc).isoformat()
+          log=f'\n## {now}\n- Timestamp: {now}\n- Task: USER-20260927-RESEARCH-CONNECTION / 生態ガイドの通常入力のみ追加\n- Version: research-ecology-guide-measured-v1\n- Status: STOPPED（独立oracle・画面受入へ）\n- Summary: 旧原本の移動NPC位置を根拠に左向きAへ修正。候補/生成C不変。新native1、host compile1、guard7、ARM/ROM変更/既受入再実行0。旧3入口は再実行せず原本維持。\n- Files changed: 専用workflow、UTF8原本、checkpoint/guide、固定引継ぎMD/JSON、両ログ。\n- Verify: Actions36284847516終端success確認、source/原本hash、resume/task graph/最終index scoped guard。正式受入や全CI成功は主張しない。\n- Commit: source={os.environ["GITHUB_SHA"]}; 同branch非force push、自己SHAはgit log。\n- Network: 固定GitHub artifact/PR/Actionsのみ。merge/release/baseline不変。\n'
+          for q in d.LOGS:
+              with Path(q).open('a',encoding='utf-8') as f:f.write(log)
+          owned=set(evidence)|{str(newdir/'manifest.json'),a.CP,a.GUIDE,d.STATE,d.DOC}|d.LOGS
+          subprocess.run(['git','add','--',*sorted(owned)],check=True)
+          import pr16_resume,pr16_learnset_runtime_record as g
+          pr16_resume.validate(Path('.').resolve())
+          g.START='d2aedc20ecfa3aad1a0faa6823d7a5ee4c42b713';g.CODE={wf};g.OWNED=owned;g.guard()
+          subprocess.run(['git','diff','--cached','--check'],check=True)
+          PY
+          python3 -B scripts/validate_task_graph.py
+      - name: 現HEAD一致・検証済み原本を非force記録
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git ls-remote origin "$GITHUB_REF" | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m "USER-20260927-RESEARCH-CONNECTION: 生態ガイドの移動NPC通常会話を原本固定"
+          git push origin HEAD:refs/heads/codex/modernization-followup-20260908
+          echo "RESULT=STOPPED TASK=USER-20260927-RESEARCH-CONNECTION VERIFY=PASS COMMIT=$(git rev-parse HEAD)"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-research-ecology-guide
+          path: .local/pr16-research-ecology-guide/public/
+          retention-days: 14
+          if-no-files-found: warn

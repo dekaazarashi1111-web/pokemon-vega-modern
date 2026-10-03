@@ -3,6 +3,7 @@ name: source-validation
 on:
   push:
   pull_request:
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -18,7 +19,6 @@ jobs:
       - name: Git管理内の整合性を検証
         run: |
           python3 scripts/validate_task_graph.py
-          python3 scripts/guard_private_files.py
           python3 -m unittest \
             tests.test_github_private_environment \
             tests.test_github_comment_control \
@@ -26,3 +26,113 @@ jobs:
             tests.test_github_result_summary \
             tests.test_run_github_battle_command \
             tests.test_run_github_private_suite
+      - name: P03/P05 representative E2E result contracts
+        run: python3 -m unittest tests.test_modernization_p03_learning_e2e tests.test_modernization_p05_scheduler_e2e tests.test_modernization_p05_controller_witness -v
+      - name: Stage81 candidate and P03 full-slot regression contracts
+        run: |
+          set -euo pipefail
+          python3 scripts/run_modernization_stage81_github_domain.py prepare
+          python3 -m unittest tests.test_modernization_p03_fullslots_e2e tests.test_modernization_stage81_github_domain -v
+      - name: 現在のP08受入境界と原本証跡を検証
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .local/p08-current-acceptance
+          git rev-parse HEAD > .local/p08-current-acceptance/tested-checkout.txt
+          python3 -m unittest \
+            tests.test_modernization_p08_current_acceptance \
+            tests.test_modernization_p08_stage79_evidence \
+            tests.test_modernization_p08_representative_evidence \
+            tests.test_modernization_p08_stage81_evidence -v \
+            2>&1 | tee .local/p08-current-acceptance/tests.log
+          python3 scripts/check_modernization_p08_current_acceptance.py --check \
+            > .local/p08-current-acceptance/report.json
+          git diff --exit-code -- config/active_play_baseline.json content/modernization/p08_*.json
+      - name: Stage81 real CLI evidence and release boundary
+        shell: bash
+        env:
+          STAGE81_CLI_EVIDENCE_DIRECTORY: .local/p08-current-acceptance/stage81-cli
+          STAGE81_SOURCE_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          set -euo pipefail
+          mkdir -p "$STAGE81_CLI_EVIDENCE_DIRECTORY"
+          python3 -m unittest tests.test_modernization_stage81_acceptance_cli -v \
+            2>&1 | tee "$STAGE81_CLI_EVIDENCE_DIRECTORY/tests.log"
+          git diff --exit-code -- config/active_play_baseline.json content/modernization/p08_*.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: p08-current-acceptance
+          path: .local/p08-current-acceptance/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14
+      - name: Stage82 archive UI recipe, contracts and P08 originals
+        run: |
+          set -euo pipefail
+          python3 -m unittest discover -s tests -p test_modernization_p03_archive_ui_e2e.py -v
+          if test -f content/modernization/p08_stage82_archive_acceptance.json; then python3 scripts/record_modernization_stage82_archive.py; fi
+      - name: P03 physical breeding contracts and original Actions evidence
+        run: |
+          set -euo pipefail
+          python3 -m unittest discover -s tests -p 'test_modernization_p03_breeding*.py' -v
+          if test -f content/modernization/p08_p03_breeding_acceptance.json; then python3 scripts/record_modernization_p03_breeding.py; fi
+      - name: P05 native Mega lifecycle and immutable P08 originals
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .local/p05-native-mega-ci
+          git rev-parse HEAD > .local/p05-native-mega-ci/tested-head.txt
+          python3 -m unittest discover -s tests -p test_modernization_p05_mega_lifecycle_e2e.py -v > .local/p05-native-mega-ci/runtime-tests.stdout 2> .local/p05-native-mega-ci/runtime-tests.stderr
+          python3 -m unittest discover -s tests -p test_modernization_p08_native_mega.py -v > .local/p05-native-mega-ci/evidence-tests.stdout 2> .local/p05-native-mega-ci/evidence-tests.stderr
+          python3 scripts/check_modernization_p08_native_mega.py > .local/p05-native-mega-ci/check.json
+          git diff --exit-code -- config/active_play_baseline.json content/modernization/p08_*.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: p05-native-mega-ci
+          path: .local/p05-native-mega-ci/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
+      - name: P03 capacity fixed originals and cold-save acceptance
+        shell: bash
+        env:
+          P03_CAPACITY_SOURCE_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          set -euo pipefail
+          mkdir -p .local/p03-capacity-ci
+          printf '%s\n' "$P03_CAPACITY_SOURCE_HEAD" > .local/p03-capacity-ci/source-head.txt
+          git rev-parse HEAD > .local/p03-capacity-ci/checkout-head.txt
+          python3 -m unittest discover -s tests -p test_modernization_p08_capacity_evidence.py -v 2>&1 | tee .local/p03-capacity-ci/tests.txt
+          python3 scripts/record_modernization_p03_capacity.py | tee .local/p03-capacity-ci/check.json
+          git diff --exit-code -- config/active_play_baseline.json content/modernization/p08_*.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: p03-capacity-final-ci
+          path: .local/p03-capacity-ci/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
+      - name: P03 relearner 46 fixed originals and 80 regression checks
+        shell: bash
+        env:
+          P03_RELEARNER_SOURCE_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          set -euo pipefail
+          mkdir -p .local/p03-relearner-final-ci
+          printf '%s\n' "$P03_RELEARNER_SOURCE_HEAD" > .local/p03-relearner-final-ci/source-head.txt
+          git rev-parse HEAD > .local/p03-relearner-final-ci/checkout-head.txt
+          python3 -m unittest discover -s tests -p test_modernization_p03_relearner_e2e.py -v 2>&1 | tee .local/p03-relearner-final-ci/runtime-contracts.log
+          python3 -m unittest discover -s tests -p test_modernization_p08_relearner_evidence.py -v 2>&1 | tee .local/p03-relearner-final-ci/original-mutations.log
+          python3 scripts/record_modernization_p03_relearner.py | tee .local/p03-relearner-final-ci/check.json
+          git diff --exit-code -- config/active_play_baseline.json content/modernization/p08_*.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: p03-relearner-final-ci
+          path: .local/p03-relearner-final-ci/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

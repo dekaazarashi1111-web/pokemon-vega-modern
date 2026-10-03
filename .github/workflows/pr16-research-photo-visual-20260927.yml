@@ -1,0 +1,64 @@
+name: pr16-research-photo-visual-20260927
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-research-photo-visual-20260927.yml]
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-research-photo-visual-20260927
+  cancel-in-progress: false
+jobs:
+  visual:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+      MAP_VIEW_PHASE: finalize
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: 保存原本と固定候補の照合（native・unit・compile再実行0）
+        run: python3 -B scripts/pr16_research_map_view_actions.py "$MAP_VIEW_PHASE"
+      - name: 固定引継ぎとtask graphの整合
+        run: |
+          python3 -B scripts/pr16_resume.py check
+          python3 -B scripts/validate_task_graph.py
+      - name: 今回publishとtask開始HEADからの全差分を二重guard
+        run: |
+          python3 -B scripts/pr16_research_map_view_actions.py guard
+          python3 -B - <<'PY'
+          import sys
+          sys.path[:0]=['scripts','.']
+          import pr16_research_map_view_actions as a
+          import pr16_learnset_runtime_record as g
+          cp=a.d.read(a.CP)
+          g.START=a.d.read(a.RAW)['start_head']
+          g.CODE=a.SOURCES
+          g.OWNED={a.CP,a.GUIDE,a.d.STATE,a.d.DOC,cp['manifest']}|a.d.LOGS|set(a.d.read(cp['manifest']))
+          g.guard()
+          PY
+          git diff --cached --check
+      - name: 最新HEAD再確認・commit・同branch非force push
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git ls-remote origin "$GITHUB_REF" | cut -f1)" = "$GITHUB_SHA"
+          python3 -B -c 'import sys;sys.path[:0]=["scripts","."];import pr16_research_lifecycle_actions as d;d.current()'
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m "USER-20260927-PHOTO-VISUAL: 保存view修復の${MAP_VIEW_PHASE}・固定引継ぎ/両ログ同期"
+          git push origin HEAD:refs/heads/codex/modernization-followup-20260908
+          echo "RESULT=PASS TASK=USER-20260927-PHOTO-VISUAL VERIFY=${MAP_VIEW_PHASE}+source+recipe+oracle+resume+taskgraph+full-task-index COMMIT=$(git rev-parse HEAD)"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-research-map-view-${{ env.MAP_VIEW_PHASE }}
+          path: .local/pr16-research-lifecycle/public/
+          retention-days: 14
+          if-no-files-found: error

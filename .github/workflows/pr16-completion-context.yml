@@ -1,0 +1,56 @@
+name: pr16-completion-context
+run-name: Exact PR16 completion sources (not native acceptance)
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-completion-context.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-context:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Collect tracked source only, with exact per-file identities
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib,json,pathlib,subprocess,zipfile
+          root=pathlib.Path('.');out=root/'.local/pr16-completion-context';out.mkdir(parents=True,exist_ok=True)
+          names=subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
+          allowed={'.py','.c','.h','.s','.json','.csv','.md','.yml','.sh'}
+          exact={'README.md','infra/setup_github_actions.sh','infra/toolchain_manifest.json','config/active_play_baseline.json','config/github_private_environment.json','config/rom_regions.csv','design/current_state.md','design/active_play_baseline.md','design/agent_context_map.md','design/tasks_next.md','design/run_log.md','design/version_log.md','docs/FINAL_INTEGRATION_HANDOFF_JA.md'}
+          def selected(n):
+              if n in exact:return True
+              return (n.startswith(('scripts/','tools/','overlays/','content/modernization/','content/move_distribution_v4/','manifests/','build/stages/')) or n.startswith(('tests/test_pr16','tests/test_modernization','config/modernization','docs/PR16','.github/workflows/pr16')))
+          bindings={};skipped=[];total=0
+          with zipfile.ZipFile(out/'sources.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for n in sorted(filter(None,names)):
+                  p=root/n
+                  if not selected(n) or p.suffix.lower() not in allowed:continue
+                  if p.is_symlink() or not p.is_file():raise ValueError('nonregular source: '+n)
+                  raw=p.read_bytes()
+                  if b'\0' in raw:raise ValueError('binary in text source: '+n)
+                  raw.decode('utf8');total+=len(raw)
+                  if len(raw)>20000000 or total>250000000:raise ValueError('source context exceeds bound')
+                  z.writestr(n,raw);bindings[n]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+          head=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
+          report={'schema_version':1,'tested_head':head,'purpose':'bounded source context, not acceptance','bindings':bindings,'files':len(bindings),'bytes':total,'rom_or_save_included':False,'release_ready':False}
+          (out/'bindings.json').write_text(json.dumps(report,sort_keys=True,indent=2)+'\n')
+          (out/'tracked-paths.txt').write_text('\n'.join(sorted(filter(None,names)))+'\n')
+          print(json.dumps({k:v for k,v in report.items() if k!='bindings'}))
+          PY
+          git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr16-completion-source-context
+          path: .local/pr16-completion-context/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

@@ -1,0 +1,1394 @@
+{
+  "schema_version": 1,
+  "task": "PR-P08-7-RING-TRANSITIVE-OWNER",
+  "classification": "TRANSITIVE_CALLEE_BOUNDARY_NOT_NATIVE_ACCEPTANCE",
+  "candidate": {
+    "size": 33554432,
+    "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b",
+    "crc32": "3EB17B36"
+  },
+  "reused_compiled_owner": {
+    "path": "content/modernization/pr16_ring_compiled_owner.json",
+    "source_head": "2a9728ac4e3531f2a595da6b3d95ba12f842e44a",
+    "run_id": 34956919982,
+    "artifact": {
+      "id": 10391238659,
+      "run_id": 34956919982,
+      "head_sha": "2a9728ac4e3531f2a595da6b3d95ba12f842e44a",
+      "sha256": "c6a915be88ccfd6a5410cad5917914ebfe75a555b24b8e42a5e872a3f73bb598",
+      "size": 43778
+    },
+    "compiled_runtime": {
+      "size": 3490,
+      "sha256": "34b203e3d93aef05c4c80343c99c0a2668143d32caec67dc2191023aaad60cfe"
+    },
+    "recompiled": false,
+    "map_graph_rescanned": false
+  },
+  "standard_script": {
+    "table": 135673688,
+    "index": 4,
+    "record": 135673704,
+    "target": 135867813,
+    "pointer_hex": "a52d1908",
+    "nodes": [
+      {
+        "address": 135867813,
+        "opcode": 103,
+        "command": "message",
+        "hex": "6700000000",
+        "text_owner": "caller_loadword0"
+      },
+      {
+        "address": 135867818,
+        "opcode": 102,
+        "command": "waitmessage",
+        "hex": "66"
+      },
+      {
+        "address": 135867819,
+        "opcode": 109,
+        "command": "waitbuttonpress",
+        "hex": "6d"
+      },
+      {
+        "address": 135867820,
+        "opcode": 3,
+        "command": "return",
+        "hex": "03"
+      }
+    ],
+    "bytes": {
+      "size": 8,
+      "sha256": "f740301a394637a38744ce56918c9b5334c317b0e3ac36424549fef8b66166db"
+    },
+    "script_layer_gift_or_native_commands": [],
+    "scope": "MESSAGE_SCRIPT_VOCABULARY_ONLY_ENGINE_HANDLERS_NOT_EXCLUDED"
+  },
+  "header_values": {
+    "EVENT_DESIGN_QOL_FEATURE_ADDRESS": 154627633,
+    "EVENT_DESIGN_QOL_DISPATCH_ADDRESS": 154634137,
+    "EVENT_DESIGN_TRAINER_DEFEATED_ADDRESS": 154152373,
+    "EVENT_DESIGN_SAVE_FINALIZE_ADDRESS": 153954521,
+    "EVENT_DESIGN_STATE_DAYCARE_COMPLETE": 25,
+    "EVENT_DESIGN_STATE_KANTO_LEAGUE_CLEAR": 74,
+    "EVENT_DESIGN_STATE_FINAL_LEAGUE_CLEARED": 79
+  },
+  "pruned": [
+    {
+      "owner": "QOL_DISPATCH",
+      "only_guard": "STATE_DAYCARE_COMPLETE",
+      "guard_value": 25,
+      "actual_setstate_inputs": [
+        74,
+        79
+      ],
+      "scope": "SetState daycare branch only; QOL_FEATURE is not excluded"
+    }
+  ],
+  "native_owners": {
+    "FlagGet": {
+      "entry": 134667973,
+      "window": 1024,
+      "window_identity": {
+        "size": 1024,
+        "sha256": "7f098facc09273a522153e8ccaed13b84e31ff125e45037eab4a214f0388fd9f"
+      },
+      "nodes": [
+        {
+          "address": 134667972,
+          "size": 2,
+          "hex": "10b5",
+          "kind": "ordinary",
+          "memory_write": true,
+          "successors": [
+            134667974
+          ]
+        },
+        {
+          "address": 134667974,
+          "size": 2,
+          "hex": "0004",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            134667976
+          ]
+        },
+        {
+          "address": 134667976,
+          "size": 2,
+          "hex": "040c",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            134667978
+          ]
+        },
+        {
+          "address": 134667978,
+          "size": 2,
+          "hex": "201c",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            134667980
+          ]
+        },
+        {
+          "address": 134667980,
+          "size": 4,
+          "hex": "fff772ff",
+          "kind": "call",
+          "target": 134667700,
+          "memory_write": false,
+          "successors": [
+            134667984
+          ]
+        },
+        {
+          "address": 134667984,
+          "size": 2,
+          "hex": "0028",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            134667986
+          ]
+        },
+        {
+          "address": 134667986,
+          "size": 2,
+          "hex": "09d0",
+          "kind": "conditional",
+          "target": 134668008,
+          "memory_write": false,
+          "successors": [
+            134667988,
+            134668008
+          ]
+        },
+        {
+          "address": 134667988,
+          "size": 2,
+          "hex": "0078",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            134667990
+          ]
+        },
+        {
+          "address": 134667990,
+          "size": 2,
+          "hex": "0721",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            134667992
+          ]
+        },
+        {
+          "address": 134667992,
+          "size": 2,
+          "hex": "2140",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            134667994
+          ]
+        },
+        {
+          "address": 134667994,
+          "size": 2,
+          "hex": "0841",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            134667996
+          ]
+        },
+        {
+          "address": 134667996,
+          "size": 2,
+          "hex": "0121",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            134667998
+          ]
+        },
+        {
+          "address": 134667998,
+          "size": 2,
+          "hex": "0840",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            134668000
+          ]
+        },
+        {
+          "address": 134668000,
+          "size": 2,
+          "hex": "0028",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            134668002
+          ]
+        },
+        {
+          "address": 134668002,
+          "size": 2,
+          "hex": "01d0",
+          "kind": "conditional",
+          "target": 134668008,
+          "memory_write": false,
+          "successors": [
+            134668004,
+            134668008
+          ]
+        },
+        {
+          "address": 134668004,
+          "size": 2,
+          "hex": "0120",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            134668006
+          ]
+        },
+        {
+          "address": 134668006,
+          "size": 2,
+          "hex": "00e0",
+          "kind": "jump",
+          "target": 134668010,
+          "memory_write": false,
+          "successors": [
+            134668010
+          ]
+        },
+        {
+          "address": 134668008,
+          "size": 2,
+          "hex": "0020",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            134668010
+          ]
+        },
+        {
+          "address": 134668010,
+          "size": 2,
+          "hex": "10bc",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            134668012
+          ]
+        },
+        {
+          "address": 134668012,
+          "size": 2,
+          "hex": "02bc",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            134668014
+          ]
+        },
+        {
+          "address": 134668014,
+          "size": 2,
+          "hex": "0847",
+          "kind": "indirect",
+          "register": 1,
+          "memory_write": false,
+          "successors": []
+        }
+      ],
+      "external_edges": [
+        {
+          "site": 134667980,
+          "kind": "call",
+          "target": 134667701,
+          "resolved_to_code_address_only": true
+        },
+        {
+          "site": 134668014,
+          "kind": "indirect",
+          "register": 1,
+          "target": null
+        }
+      ],
+      "memory_write_sites": [
+        134667972
+      ],
+      "side_effects_excluded": false
+    },
+    "FlagSet": {
+      "entry": 134667893,
+      "window": 1024,
+      "window_identity": {
+        "size": 1024,
+        "sha256": "71a36c1bb64a3a913eb8a77f2558851ffbe9af148579018f3ba9fad2bea72667"
+      },
+      "nodes": [
+        {
+          "address": 134667892,
+          "size": 2,
+          "hex": "004b",
+          "kind": "ordinary",
+          "literal_address": 134667896,
+          "literal_value": 154629573,
+          "memory_write": false,
+          "successors": [
+            134667894
+          ]
+        },
+        {
+          "address": 134667894,
+          "size": 2,
+          "hex": "1847",
+          "kind": "indirect",
+          "register": 3,
+          "memory_write": false,
+          "successors": []
+        }
+      ],
+      "external_edges": [
+        {
+          "site": 134667894,
+          "kind": "indirect",
+          "register": 3,
+          "target": null
+        }
+      ],
+      "memory_write_sites": [],
+      "side_effects_excluded": false
+    },
+    "ScriptContextSetup": {
+      "entry": 134648741,
+      "window": 1024,
+      "window_identity": {
+        "size": 1024,
+        "sha256": "bde75a01d568848bf316865cdebc6da5da78acceaddc1e3e2056d9f59b2409c1"
+      },
+      "nodes": [
+        {
+          "address": 134648740,
+          "size": 2,
+          "hex": "30b5",
+          "kind": "ordinary",
+          "memory_write": true,
+          "successors": [
+            134648742
+          ]
+        },
+        {
+          "address": 134648742,
+          "size": 2,
+          "hex": "051c",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            134648744
+          ]
+        },
+        {
+          "address": 134648744,
+          "size": 4,
+          "hex": "fff786ff",
+          "kind": "call",
+          "target": 134648504,
+          "memory_write": false,
+          "successors": [
+            134648748
+          ]
+        },
+        {
+          "address": 134648748,
+          "size": 4,
+          "hex": "fff76cff",
+          "kind": "call",
+          "target": 134648456,
+          "memory_write": false,
+          "successors": [
+            134648752
+          ]
+        },
+        {
+          "address": 134648752,
+          "size": 4,
+          "hex": "fff73eff",
+          "kind": "call",
+          "target": 134648368,
+          "memory_write": false,
+          "successors": [
+            134648756
+          ]
+        },
+        {
+          "address": 134648756,
+          "size": 2,
+          "hex": "084c",
+          "kind": "ordinary",
+          "literal_address": 134648792,
+          "literal_value": 50335408,
+          "memory_write": false,
+          "successors": [
+            134648758
+          ]
+        },
+        {
+          "address": 134648758,
+          "size": 2,
+          "hex": "0949",
+          "kind": "ordinary",
+          "literal_address": 134648796,
+          "literal_value": 135670980,
+          "memory_write": false,
+          "successors": [
+            134648760
+          ]
+        },
+        {
+          "address": 134648760,
+          "size": 2,
+          "hex": "094a",
+          "kind": "ordinary",
+          "literal_address": 134648800,
+          "literal_value": 135671824,
+          "memory_write": false,
+          "successors": [
+            134648762
+          ]
+        },
+        {
+          "address": 134648762,
+          "size": 2,
+          "hex": "201c",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            134648764
+          ]
+        },
+        {
+          "address": 134648764,
+          "size": 4,
+          "hex": "fff756fe",
+          "kind": "call",
+          "target": 134647916,
+          "memory_write": false,
+          "successors": [
+            134648768
+          ]
+        },
+        {
+          "address": 134648768,
+          "size": 2,
+          "hex": "201c",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            134648770
+          ]
+        },
+        {
+          "address": 134648770,
+          "size": 2,
+          "hex": "291c",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            134648772
+          ]
+        },
+        {
+          "address": 134648772,
+          "size": 4,
+          "hex": "fff770fe",
+          "kind": "call",
+          "target": 134647976,
+          "memory_write": false,
+          "successors": [
+            134648776
+          ]
+        },
+        {
+          "address": 134648776,
+          "size": 4,
+          "hex": "fff71aff",
+          "kind": "call",
+          "target": 134648320,
+          "memory_write": false,
+          "successors": [
+            134648780
+          ]
+        },
+        {
+          "address": 134648780,
+          "size": 2,
+          "hex": "0549",
+          "kind": "ordinary",
+          "literal_address": 134648804,
+          "literal_value": 50335400,
+          "memory_write": false,
+          "successors": [
+            134648782
+          ]
+        },
+        {
+          "address": 134648782,
+          "size": 2,
+          "hex": "0020",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            134648784
+          ]
+        },
+        {
+          "address": 134648784,
+          "size": 2,
+          "hex": "0870",
+          "kind": "ordinary",
+          "memory_write": true,
+          "successors": [
+            134648786
+          ]
+        },
+        {
+          "address": 134648786,
+          "size": 2,
+          "hex": "30bc",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            134648788
+          ]
+        },
+        {
+          "address": 134648788,
+          "size": 2,
+          "hex": "01bc",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            134648790
+          ]
+        },
+        {
+          "address": 134648790,
+          "size": 2,
+          "hex": "0047",
+          "kind": "indirect",
+          "register": 0,
+          "memory_write": false,
+          "successors": []
+        }
+      ],
+      "external_edges": [
+        {
+          "site": 134648744,
+          "kind": "call",
+          "target": 134648505,
+          "resolved_to_code_address_only": true
+        },
+        {
+          "site": 134648748,
+          "kind": "call",
+          "target": 134648457,
+          "resolved_to_code_address_only": true
+        },
+        {
+          "site": 134648752,
+          "kind": "call",
+          "target": 134648369,
+          "resolved_to_code_address_only": true
+        },
+        {
+          "site": 134648764,
+          "kind": "call",
+          "target": 134647917,
+          "resolved_to_code_address_only": true
+        },
+        {
+          "site": 134648772,
+          "kind": "call",
+          "target": 134647977,
+          "resolved_to_code_address_only": true
+        },
+        {
+          "site": 134648776,
+          "kind": "call",
+          "target": 134648321,
+          "resolved_to_code_address_only": true
+        },
+        {
+          "site": 134648790,
+          "kind": "indirect",
+          "register": 0,
+          "target": null
+        }
+      ],
+      "memory_write_sites": [
+        134648740,
+        134648784
+      ],
+      "side_effects_excluded": false
+    },
+    "QOL_FEATURE": {
+      "entry": 154627633,
+      "window": 1024,
+      "window_identity": {
+        "size": 1024,
+        "sha256": "5e64c3255cc9c782c8063076966b78a17ef65d9bfac64e9945c5454e491d4857"
+      },
+      "nodes": [
+        {
+          "address": 154627632,
+          "size": 2,
+          "hex": "f8b5",
+          "kind": "ordinary",
+          "memory_write": true,
+          "successors": [
+            154627634
+          ]
+        },
+        {
+          "address": 154627634,
+          "size": 2,
+          "hex": "0300",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            154627636
+          ]
+        },
+        {
+          "address": 154627636,
+          "size": 2,
+          "hex": "0020",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            154627638
+          ]
+        },
+        {
+          "address": 154627638,
+          "size": 2,
+          "hex": "222b",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            154627640
+          ]
+        },
+        {
+          "address": 154627640,
+          "size": 2,
+          "hex": "20d8",
+          "kind": "conditional",
+          "target": 154627708,
+          "memory_write": false,
+          "successors": [
+            154627642,
+            154627708
+          ]
+        },
+        {
+          "address": 154627642,
+          "size": 2,
+          "hex": "1b06",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            154627644
+          ]
+        },
+        {
+          "address": 154627644,
+          "size": 2,
+          "hex": "1b0e",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            154627646
+          ]
+        },
+        {
+          "address": 154627646,
+          "size": 2,
+          "hex": "043b",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            154627648
+          ]
+        },
+        {
+          "address": 154627648,
+          "size": 2,
+          "hex": "0130",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            154627650
+          ]
+        },
+        {
+          "address": 154627650,
+          "size": 2,
+          "hex": "1e2b",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            154627652
+          ]
+        },
+        {
+          "address": 154627652,
+          "size": 2,
+          "hex": "1ad8",
+          "kind": "conditional",
+          "target": 154627708,
+          "memory_write": false,
+          "successors": [
+            154627654,
+            154627708
+          ]
+        },
+        {
+          "address": 154627654,
+          "size": 2,
+          "hex": "1800",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            154627656
+          ]
+        },
+        {
+          "address": 154627656,
+          "size": 4,
+          "hex": "05f07ef8",
+          "kind": "call",
+          "target": 154648392,
+          "memory_write": false,
+          "successors": [
+            154627660
+          ]
+        },
+        {
+          "address": 154627660,
+          "size": 2,
+          "hex": "1010",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            154627662
+          ]
+        },
+        {
+          "address": 154627662,
+          "size": 2,
+          "hex": "1016",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            154627664
+          ]
+        },
+        {
+          "address": 154627664,
+          "size": 2,
+          "hex": "101b",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            154627666
+          ]
+        },
+        {
+          "address": 154627666,
+          "size": 2,
+          "hex": "1d1d",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            154627668
+          ]
+        },
+        {
+          "address": 154627668,
+          "size": 2,
+          "hex": "1d1d",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            154627670
+          ]
+        },
+        {
+          "address": 154627670,
+          "size": 2,
+          "hex": "1d1d",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            154627672
+          ]
+        },
+        {
+          "address": 154627672,
+          "size": 2,
+          "hex": "1d1f",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            154627674
+          ]
+        },
+        {
+          "address": 154627674,
+          "size": 2,
+          "hex": "1f22",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            154627676
+          ]
+        },
+        {
+          "address": 154627676,
+          "size": 2,
+          "hex": "4042",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            154627678
+          ]
+        },
+        {
+          "address": 154627678,
+          "size": 2,
+          "hex": "4446",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            154627680
+          ]
+        },
+        {
+          "address": 154627680,
+          "size": 2,
+          "hex": "4646",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            154627682
+          ]
+        },
+        {
+          "address": 154627682,
+          "size": 2,
+          "hex": "4848",
+          "kind": "ordinary",
+          "literal_address": 154627972,
+          "literal_value": 3891152914,
+          "memory_write": false,
+          "successors": [
+            154627684
+          ]
+        },
+        {
+          "address": 154627684,
+          "size": 2,
+          "hex": "4848",
+          "kind": "ordinary",
+          "literal_address": 154627976,
+          "literal_value": 3891021842,
+          "memory_write": false,
+          "successors": [
+            154627686
+          ]
+        },
+        {
+          "address": 154627686,
+          "size": 2,
+          "hex": "4b4b",
+          "kind": "ordinary",
+          "literal_address": 154627988,
+          "literal_value": 3505144451,
+          "memory_write": false,
+          "successors": [
+            154627688
+          ]
+        },
+        {
+          "address": 154627688,
+          "size": 2,
+          "hex": "6262",
+          "kind": "ordinary",
+          "memory_write": true,
+          "successors": [
+            154627690
+          ]
+        },
+        {
+          "address": 154627690,
+          "size": 2,
+          "hex": "6200",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            154627692
+          ]
+        },
+        {
+          "address": 154627692,
+          "size": 2,
+          "hex": "8220",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            154627694
+          ]
+        },
+        {
+          "address": 154627694,
+          "size": 2,
+          "hex": "0001",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            154627696
+          ]
+        },
+        {
+          "address": 154627696,
+          "size": 2,
+          "hex": "294b",
+          "kind": "ordinary",
+          "literal_address": 154627864,
+          "literal_value": 134667973,
+          "memory_write": false,
+          "successors": [
+            154627698
+          ]
+        },
+        {
+          "address": 154627698,
+          "size": 4,
+          "hex": "00f067f8",
+          "kind": "call",
+          "target": 154627908,
+          "memory_write": false,
+          "successors": [
+            154627702
+          ]
+        },
+        {
+          "address": 154627702,
+          "size": 2,
+          "hex": "01e0",
+          "kind": "jump",
+          "target": 154627708,
+          "memory_write": false,
+          "successors": [
+            154627708
+          ]
+        },
+        {
+          "address": 154627708,
+          "size": 2,
+          "hex": "f8bc",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            154627710
+          ]
+        },
+        {
+          "address": 154627710,
+          "size": 2,
+          "hex": "02bc",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            154627712
+          ]
+        },
+        {
+          "address": 154627712,
+          "size": 2,
+          "hex": "0847",
+          "kind": "indirect",
+          "register": 1,
+          "memory_write": false,
+          "successors": []
+        }
+      ],
+      "external_edges": [
+        {
+          "site": 154627656,
+          "kind": "call",
+          "target": 154648393,
+          "resolved_to_code_address_only": true
+        },
+        {
+          "site": 154627698,
+          "kind": "call",
+          "target": 154627909,
+          "resolved_to_code_address_only": true
+        },
+        {
+          "site": 154627712,
+          "kind": "indirect",
+          "register": 1,
+          "target": null
+        }
+      ],
+      "memory_write_sites": [
+        154627632,
+        154627688
+      ],
+      "side_effects_excluded": false
+    },
+    "TRAINER_DEFEATED": {
+      "entry": 154152373,
+      "window": 1024,
+      "window_identity": {
+        "size": 1024,
+        "sha256": "0b4f8a79fdc0036f83aeb32b522545a46177d05666c86b099c5b1eb3b73c82ba"
+      },
+      "nodes": [
+        {
+          "address": 154152372,
+          "size": 2,
+          "hex": "10b5",
+          "kind": "ordinary",
+          "memory_write": true,
+          "successors": [
+            154152374
+          ]
+        },
+        {
+          "address": 154152374,
+          "size": 4,
+          "hex": "00f099f8",
+          "kind": "call",
+          "target": 154152684,
+          "memory_write": false,
+          "successors": [
+            154152378
+          ]
+        },
+        {
+          "address": 154152378,
+          "size": 2,
+          "hex": "10bc",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            154152380
+          ]
+        },
+        {
+          "address": 154152380,
+          "size": 2,
+          "hex": "02bc",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            154152382
+          ]
+        },
+        {
+          "address": 154152382,
+          "size": 2,
+          "hex": "0847",
+          "kind": "indirect",
+          "register": 1,
+          "memory_write": false,
+          "successors": []
+        }
+      ],
+      "external_edges": [
+        {
+          "site": 154152374,
+          "kind": "call",
+          "target": 154152685,
+          "resolved_to_code_address_only": true
+        },
+        {
+          "site": 154152382,
+          "kind": "indirect",
+          "register": 1,
+          "target": null
+        }
+      ],
+      "memory_write_sites": [
+        154152372
+      ],
+      "side_effects_excluded": false
+    },
+    "SAVE_FINALIZE": {
+      "entry": 153954521,
+      "window": 1024,
+      "window_identity": {
+        "size": 1024,
+        "sha256": "ca8f2f1ead9262b2369edd6478c7e1561d35fe2e7dd736169b0976ef993a2e2c"
+      },
+      "nodes": [
+        {
+          "address": 153954520,
+          "size": 2,
+          "hex": "004b",
+          "kind": "ordinary",
+          "literal_address": 153954524,
+          "literal_value": 154918269,
+          "memory_write": false,
+          "successors": [
+            153954522
+          ]
+        },
+        {
+          "address": 153954522,
+          "size": 2,
+          "hex": "1847",
+          "kind": "indirect",
+          "register": 3,
+          "memory_write": false,
+          "successors": []
+        }
+      ],
+      "external_edges": [
+        {
+          "site": 153954522,
+          "kind": "indirect",
+          "register": 3,
+          "target": null
+        }
+      ],
+      "memory_write_sites": [],
+      "side_effects_excluded": false
+    }
+  },
+  "all_runtime_owners_excluded": false,
+  "ring_acquisition_accepted": false,
+  "release_ready": false,
+  "new_emulator_processes": 0,
+  "accepted_native_cases_replayed": 0,
+  "rom_changes": 0,
+  "candidate_reconstructions": 1,
+  "compiled_owner_recompilations": 0,
+  "source_head": "41debb1dc1ac3c8fddefe7fa97898e7ecd2943b7",
+  "source_bindings": {
+    "scripts/pr16_ring_transitive_owner.py": {
+      "size": 15717,
+      "sha256": "4d934acefe35ae818ed998282e3e783c4c5550e8da699a8e629557d4d82508dc"
+    },
+    "tests/test_pr16_ring_transitive_owner.py": {
+      "size": 8243,
+      "sha256": "e3c3fbee8f7a85ccbd14969f6ddb7d585d3619f6c2bcbbad960757f12877014f"
+    },
+    ".github/workflows/pr16-ring-transitive-owner.yml": {
+      "size": 8012,
+      "sha256": "e0a774bca385b07997290cee0c4c1b8d01182b2ce1d43c67236c3baf545043b8"
+    },
+    "content/modernization/pr16_ring_compiled_owner.json": {
+      "size": 22345,
+      "sha256": "37e57ffefe6df07ccb5fd3df2730e7199f9b7e7af067139cabcca4f0e45a8ec4"
+    },
+    "overlays/save_migration/save_migration.c": {
+      "size": 25098,
+      "sha256": "78e6a74c05ecf652d82e43c1e7ce196de3f6694731bbbabeeead76eef27b6320"
+    },
+    "overlays/save_migration/save_migration.h": {
+      "size": 12497,
+      "sha256": "e266c4ec10a3244654837c0f3009b449ccf0e203fe0bfc1c11b319132baadf67"
+    },
+    "tools/stage61_interaction_oracle.py": {
+      "size": 2062397,
+      "sha256": "00496eca56765961f62e0733d5d08f9999b5f1d4acfafccca253e9190a1cae1f"
+    }
+  },
+  "verification": {
+    "run": {
+      "id": 34960361700,
+      "head_sha": "41debb1dc1ac3c8fddefe7fa97898e7ecd2943b7",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    "job": {
+      "id": 104352222046,
+      "run_id": 34960361700,
+      "status": "completed",
+      "conclusion": "success"
+    },
+    "artifact": {
+      "id": 10392663831,
+      "run_id": 34960361700,
+      "head_sha": "41debb1dc1ac3c8fddefe7fa97898e7ecd2943b7",
+      "sha256": "a3ae8cbfc1ce80a7883c152950f8ccfd939fe8ca33defc007b785f77a5619a5d",
+      "size": 42421
+    },
+    "focused_tests": {
+      "tests_run": 34,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "successful": true
+    }
+  },
+  "actions_observed_before_record": [
+    {
+      "id": 34962470572,
+      "name": "source-validation",
+      "head_sha": "c66dc05ed0119dfb5528908ab3b615c1bcfd9edd",
+      "status": "queued",
+      "conclusion": null
+    },
+    {
+      "id": 34962470633,
+      "name": "p03-forgetting-ci",
+      "head_sha": "c66dc05ed0119dfb5528908ab3b615c1bcfd9edd",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 34962466581,
+      "name": "source-validation",
+      "head_sha": "c66dc05ed0119dfb5528908ab3b615c1bcfd9edd",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 34962466594,
+      "name": "p03-forgetting-ci",
+      "head_sha": "c66dc05ed0119dfb5528908ab3b615c1bcfd9edd",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 34962466596,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "c66dc05ed0119dfb5528908ab3b615c1bcfd9edd",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 34962466611,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "c66dc05ed0119dfb5528908ab3b615c1bcfd9edd",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 34962466625,
+      "name": "Ring第一段の成功証拠を固定記録・再build/nativeなし",
+      "head_sha": "c66dc05ed0119dfb5528908ab3b615c1bcfd9edd",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 34960366652,
+      "name": "p03-forgetting-ci",
+      "head_sha": "41debb1dc1ac3c8fddefe7fa97898e7ecd2943b7",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "id": 34960366637,
+      "name": "source-validation",
+      "head_sha": "41debb1dc1ac3c8fddefe7fa97898e7ecd2943b7",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34960361658,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "41debb1dc1ac3c8fddefe7fa97898e7ecd2943b7",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34960361567,
+      "name": "p03-forgetting-ci",
+      "head_sha": "41debb1dc1ac3c8fddefe7fa97898e7ecd2943b7",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "id": 34960361566,
+      "name": "source-validation",
+      "head_sha": "41debb1dc1ac3c8fddefe7fa97898e7ecd2943b7",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34960361700,
+      "name": "Ring callstd4・推移的native限定byte検証・既受入再実行なし",
+      "head_sha": "41debb1dc1ac3c8fddefe7fa97898e7ecd2943b7",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34960361573,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "41debb1dc1ac3c8fddefe7fa97898e7ecd2943b7",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34959148725,
+      "name": "source-validation",
+      "head_sha": "1f34d45e3ff49ab5a505e9624442a28fe37277be",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34959148827,
+      "name": "p03-forgetting-ci",
+      "head_sha": "1f34d45e3ff49ab5a505e9624442a28fe37277be",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "id": 34959144870,
+      "name": "source-validation",
+      "head_sha": "1f34d45e3ff49ab5a505e9624442a28fe37277be",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34959144857,
+      "name": "p03-forgetting-ci",
+      "head_sha": "1f34d45e3ff49ab5a505e9624442a28fe37277be",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "id": 34959144883,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "1f34d45e3ff49ab5a505e9624442a28fe37277be",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34959145061,
+      "name": "Ring未解決callee限定検証・既受入native再実行なし",
+      "head_sha": "1f34d45e3ff49ab5a505e9624442a28fe37277be",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ]
+}

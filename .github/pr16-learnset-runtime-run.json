@@ -1,0 +1,88 @@
+{
+  "task": "USER-20260922-LEARNSET-RUNTIME",
+  "mode": "native-only-from-link-checkpoint",
+  "previous_run": 35703376221,
+  "previous_head": "015c87effcdd61bb27cab8df7835ac6d6bd882f1",
+  "proof_artifact": {
+    "id": 10683571641,
+    "name": "pr16-learnset-runtime-proof",
+    "size_in_bytes": 1386,
+    "digest": "sha256:f867ef83dd9e5e5b3b67bfb6fb20cbac1bfaa9ed97793853ff62437a4ce5895c"
+  },
+  "members": {
+    "build11.txt": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "build29.txt": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "host-audit.json": {
+      "size": 336,
+      "sha256": "64f8f59a6a21ef51d9e7ae6cce1246e24d60daee97214f731ba8e78ce1c6c084"
+    },
+    "native-compile.txt": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "native11.txt": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "unit.txt": {
+      "size": 2217,
+      "sha256": "4f476de537b9d2aa0e5b8077ec6e822af3fcab3c3baac4200993b702d2dadfde"
+    }
+  },
+  "reason_ja": "run35703851133でASanがmGBA core->deinit後のfree(core)二重解放を特定。全13代表owner呼出し後の終了処理のみ修正。既存host証拠と独立ARM配置checkpointを再利用し、unit/host/ARM再実行0でnative終了まで確認する。",
+  "link_checkpoint": {
+    "run_id": 35703851133,
+    "source_head": "0f4c304350a2a097f5f6abef65c52602f0fddd25",
+    "artifact": {
+      "id": 10683691464,
+      "name": "pr16-learnset-runtime-link-checkpoint",
+      "size_in_bytes": 253286,
+      "digest": "sha256:73570e4cb83eb357395363877d2986ac3897e31b9da017994c787726405166b3"
+    },
+    "members": {
+      "checkpoint.json": {
+        "size": 4280,
+        "sha256": "ff527ec19ef76dae4cade9254153142d2c0070244118ad8965901ec79c5b3df3"
+      },
+      "entrypoints.jsonl": {
+        "size": 564686,
+        "sha256": "87e28392b3961009dbdd10ca55063cab8cda7f9ef98cd3a81e088d2ea93ba519"
+      },
+      "disassembly.txt": {
+        "size": 18647,
+        "sha256": "c2e2ff5d4b19cf4226cc97d22543890572f1777ce68eb0cf4ba333e2e28005ac"
+      },
+      "link.json": {
+        "size": 45856,
+        "sha256": "d85fecf5e3b91e52cae447d0dd908a3b313eb03e3f21e03fd4de3f65d68b5606"
+      },
+      "pr16_learnset_samples.h": {
+        "size": 1215,
+        "sha256": "a6827b74b5847d89e23c3ab263af3ffd889a6710c33b2fffa188a3b630887974"
+      },
+      "receipt.json": {
+        "size": 1743,
+        "sha256": "26a9c1b704635cddb38302a3e625b029720e978b06dccdbcd46de4a511d8c2ee"
+      },
+      "runtime-bundle.bin": {
+        "size": 108904,
+        "sha256": "a61d933f52a785088b5dc8dac81d0bc96f3eb9850d07929e9e4fc460a747992c"
+      },
+      "runtime-image.bin": {
+        "size": 108008,
+        "sha256": "5ebbc35c546370bc1c87d48d5d147dc93a6aba2739d9ab9d0825bbf8f307450c"
+      }
+    }
+  },
+  "restore_contract_repair": {
+    "failed_run_id": 35704666433,
+    "native_processes": 0,
+    "change": "immutable bytes for saved.identity; bundle/runtime unchanged"
+  }
+}

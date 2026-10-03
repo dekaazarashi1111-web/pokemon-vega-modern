@@ -1,0 +1,73 @@
+name: p06-decided-adjustments-e2e
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/p06-decided-e2e.yml
+      - tools/modernization_p06_decided_adjustments.py
+      - tools/mgba_modernization_p06_decided_e2e.c
+      - scripts/run_modernization_p06_decided_e2e.py
+      - tests/test_modernization_p06_decided_e2e.py
+      - tests/fixtures/p06_decided_native_template.json
+      - content/modernization/p06_decided_adjustments.json
+      - design/imported/p06_decided_20260904/**
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  decided-slots-and-native-stat-recalculation:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Fixed toolchain
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .local/p06-decided
+          bash infra/setup_github_actions.sh --install 2>&1 | tee .local/p06-decided/fixed-toolchain.log
+      - name: Regression and deterministic parent
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m unittest discover -s tests -p test_modernization_p06_decided_e2e.py -v > .local/p06-decided/unittest.stdout 2> .local/p06-decided/unittest.stderr
+          python3 scripts/run_modernization_stage82_github_domain.py prepare > .local/p06-decided/prepare.json
+          git rev-parse HEAD > .local/p06-decided/tested-head.txt
+      - name: Native existing and new mons, eight fresh processes
+        shell: bash
+        run: |
+          set -uo pipefail
+          python3 scripts/run_modernization_p06_decided_e2e.py > .local/p06-decided/job.stdout.json 2> .local/p06-decided/job.stderr.log
+          rc=$?
+          printf '%s\n' "$rc" > .local/p06-decided/native-exit-code.txt
+          exit "$rc"
+      - name: Preserve exact sources and workflow
+        if: always()
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import hashlib,json,pathlib
+          root=pathlib.Path('.')
+          out=root/'.local/p06-decided'
+          result=out/'result.json'
+          names=set(json.loads(result.read_text())['source_bindings']) if result.exists() else set()
+          names.update(['tools/modernization_p06_decided_adjustments.py','tools/mgba_modernization_p06_decided_e2e.c','scripts/run_modernization_p06_decided_e2e.py','tests/test_modernization_p06_decided_e2e.py','.github/workflows/p06-decided-e2e.yml','content/modernization/p06_decided_adjustments.json'])
+          bindings={}
+          for name in sorted(names):
+              data=(root/name).read_bytes()
+              target=out/'sources'/name
+              target.parent.mkdir(parents=True,exist_ok=True)
+              target.write_bytes(data)
+              bindings[name]={'size':len(data),'sha256':hashlib.sha256(data).hexdigest()}
+          (out/'source-archive.json').write_text(json.dumps(bindings,sort_keys=True,indent=2)+'\n')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: p06-decided-adjustments
+          path: .local/p06-decided/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

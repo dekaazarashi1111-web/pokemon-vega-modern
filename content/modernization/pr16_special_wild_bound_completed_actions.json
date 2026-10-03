@@ -1,0 +1,150 @@
+{
+  "accepted_case_reruns": 0,
+  "active_baseline_changed": false,
+  "all_current_head_checks_green_claimed": false,
+  "arm_compiles": 0,
+  "candidate": {
+    "sha256": "0205af9bd2d92b1b3303195ab0cc84e5ea0f3de390ade15d9f8ce42a6dcdd1a0",
+    "size": 33554432
+  },
+  "checkpoint_before": {
+    "sha256": "e486a3d46a13ab278211adec18d2b309f390b5e52d00f85ca3f6529f422d3dd5",
+    "size": 57315
+  },
+  "gameplay_accepted": false,
+  "host_compiles": 0,
+  "inherited_binding_unit_tests": 19,
+  "inherited_header_unit_tests": 8,
+  "inherited_native_calls": 8,
+  "inherited_native_processes": 7,
+  "issue19_complete": false,
+  "native_artifacts": {
+    "pr16-special-wild-bound-context": {
+      "digest": "sha256:89358e3a94590dcdc80961b82d997a939d60ec907dc895682381825aa65cd4ae",
+      "id": 10895939265,
+      "size_in_bytes": 739731
+    },
+    "pr16-special-wild-bound-proof": {
+      "digest": "sha256:1e93b7dd0ca5769fa565d82e6ee876c8ea0a915391cabaf0f0a9e39b306f7ac8",
+      "id": 10895594651,
+      "size_in_bytes": 32079
+    }
+  },
+  "native_cases": [
+    "control-fishing-no-rule",
+    "control-hidden-parent",
+    "control-hidden-repaired",
+    "parent-fishing",
+    "parent-hidden",
+    "repaired-fishing",
+    "repaired-hidden"
+  ],
+  "native_job": {
+    "conclusion": "success",
+    "head_sha": "804417f6f8fa4fc88f882ac96d6f0a1720811500",
+    "id": 108325263253,
+    "name": "special-wild-repair",
+    "run_id": 36213677615,
+    "status": "completed"
+  },
+  "native_reflected_head": "dcce2ff32dd304df18c840d08e0bc9fb65086a9e",
+  "native_run": {
+    "conclusion": "success",
+    "head_sha": "804417f6f8fa4fc88f882ac96d6f0a1720811500",
+    "id": 36213677615,
+    "path": ".github/workflows/pr16-special-wild-bound-20260926.yml",
+    "status": "completed"
+  },
+  "new_native_processes": 0,
+  "new_terminal_unit_tests": 8,
+  "observed_head_runs": [
+    {
+      "conclusion": null,
+      "head_sha": "36b88bb2be1ed0889cb531ab035751a3df0992b7",
+      "id": 36214277327,
+      "name": "source-validation",
+      "status": "in_progress"
+    },
+    {
+      "conclusion": null,
+      "head_sha": "36b88bb2be1ed0889cb531ab035751a3df0992b7",
+      "id": 36214277251,
+      "name": "p03-forgetting-ci",
+      "status": "in_progress"
+    },
+    {
+      "conclusion": null,
+      "head_sha": "36b88bb2be1ed0889cb531ab035751a3df0992b7",
+      "id": 36214273219,
+      "name": "pr16-special-wild-bound-terminal-20260926",
+      "status": "in_progress"
+    },
+    {
+      "conclusion": null,
+      "head_sha": "36b88bb2be1ed0889cb531ab035751a3df0992b7",
+      "id": 36214273200,
+      "name": "source-validation",
+      "status": "in_progress"
+    },
+    {
+      "conclusion": null,
+      "head_sha": "36b88bb2be1ed0889cb531ab035751a3df0992b7",
+      "id": 36214273204,
+      "name": "Stage79 runtime boundary audit",
+      "status": "in_progress"
+    },
+    {
+      "conclusion": null,
+      "head_sha": "36b88bb2be1ed0889cb531ab035751a3df0992b7",
+      "id": 36214273228,
+      "name": "Stage79 mGBA (all)",
+      "status": "in_progress"
+    },
+    {
+      "conclusion": null,
+      "head_sha": "36b88bb2be1ed0889cb531ab035751a3df0992b7",
+      "id": 36214273202,
+      "name": "p03-forgetting-ci",
+      "status": "in_progress"
+    }
+  ],
+  "previous_failed_run": {
+    "conclusion": "failure",
+    "head_sha": "af7a856d8ac04c2e3400cab550c02f0569185ae3",
+    "id": 36213386688,
+    "path": ".github/workflows/pr16-special-wild-bound-20260926.yml",
+    "status": "completed"
+  },
+  "record_source_bindings": {
+    ".github/workflows/pr16-special-wild-bound-terminal-20260926.yml": {
+      "sha256": "67b7f72005350ce5a0da0006e4da44fcb66cabe2286df3fdda39d2a5ada0b536",
+      "size": 4296
+    },
+    "scripts/pr16_special_wild_bound_terminal.py": {
+      "sha256": "3b3760bab0b92f8e71998ff56d85f8d8efa2cf2499f1e213eca06d34553159a9",
+      "size": 16499
+    },
+    "tests/test_pr16_special_wild_bound_terminal.py": {
+      "sha256": "dae1d55cf6bc04f564bcf4ef615f951c2831ca436bdb70c02dca5df701824566",
+      "size": 3672
+    }
+  },
+  "release_ready": false,
+  "rom_changes": 0,
+  "run_id": 36214273219,
+  "save_continue_accepted": false,
+  "schema_version": 1,
+  "source_head": "36b88bb2be1ed0889cb531ab035751a3df0992b7",
+  "status": "PASS_SPECIAL_WILD_2CALLSITE_TERMINAL",
+  "task": "USER-20260926-SPECIAL-WILD",
+  "unit_bindings": {
+    "terminal-unit.stderr.txt": {
+      "sha256": "b8ddcc6a839c48f34f9c9a815dae8075b26e788474484163b89701703821dbe8",
+      "size": 1324
+    },
+    "terminal-unit.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    }
+  }
+}

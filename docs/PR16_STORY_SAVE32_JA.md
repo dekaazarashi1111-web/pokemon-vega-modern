@@ -1,0 +1,11 @@
+# 南回廊・trainer353・Save32 限定受入
+
+`PASS_CAVE_SOUTH_TRAINER353_SAVE32_SCOPED`。Save31の14,14から南段差14,15を通過し、21,19でlocal7の視線戦に入った。D・H団したっぱ/trainer353を通常UIで1勝、報酬416円、通常Save32と独立Continueを受入。東岩階段/teleport/洞窟出口は未到達。
+
+source `9432cfd03ac1d93bd59d7db296ab49ff20d766d7` / run `37121677872` / job `111198849680` 全8step成功。artifact `11273920453` / 323646bytes / SHA256 `41b44ca50c8e92d6cb8bb037c89708a6aa1b44c43b1f4f3148735d55a1878cec`。全79member、138/cold13入力、64画面。接触14、battle17、勝利outcome50、field復帰53、保存成功文言60、安定field61。通常Save中の3部分writeとcounter32を区別。独立Continue0/1ではbattle残留値0。
+
+ダンゴロLv10の頑丈/オレンのみで2回、ブロロンLv13とドガースLv12に各1回のれいとうビーム。交代質問は2回とも拒否。HP324→322、PP4→0。全600byte party差分はoffset55の4→0とoffset86の68→66だけ。保存親から5中間partyを独立再構成し画面/RAM hashと一致。Bag/HM05/全PC/S61E payload不変、12712→13128円、legacy flag1633=1280+353だけ0→1。正規NPC root0x093709A0を独立decodeしてtrainer353へ結合。story4071=7/4072=1・flag4367=1・badge1保持。補助var4021=93→103/4022=2→0のruntime ownerは未解決。42sector checksum/S61E CRC・旧Save31bank57344byte・全Save/RTC cold同一、6973byte/1782範囲差分。
+
+未読地形採取run37121423789/job111198130088は全8step成功、native0。既存164マスを再利用して未読756マスだけ追加し、全920マスを固定。3隣接map/7,5 coordの6nodeは静的だけ。新12controller原logを保持して再走0、新24受入/拒否試験を1回実行して全stderr保存。初回record37122292424はstrict sourceguardの変更集合不一致で停止、受入試験0/native0。比較base以前の採取器2pathをCODEから保全専用bindingへ分離し、失敗log/APIを保持。第2record37122423332は中間party bytearrayをstrict bytes identityへ渡してunit前停止。bytes化1箇所だけ修正、受入unit0/native0。旧failure原本保持、ROM変更0/compile0/fixture0/既受入再走0。Save31記録run37120967764の全11step終端を固定JSONへ反映。一般CI全成功/releaseは主張しない。
+
+次: Save32 artifact11273920453のstory-fast.srm（df4a9c40ce888a26f88493d69e7d37f9b0ea13b2fce793c4f2e34ac0380cd871、131088bytes）だけから再開。map1/73・21,19東・party4/RP0・13128円・badge1・story4071=7/4072=1。南段差14,15の通常通過とtrainer353通常1勝/416円/Save32/独立Continueを受入。ミュウツーHP322/354・PP[1,14,0,0]、他party/Bag/S61Eは不変。以降はれいとうビームと火炎放射を選ばず、通常UIの別技/必要時通常回復だけ。host回復/PP/flag/var注入は禁止。保存された全920マス（既存164+未読756）の静的原本から、21,19→22,19→23,19→23,14東岩階段→23,13→21,13→21,14→19,14へ向かう。flag4367=1の正規teleport先8,10は未到達。7,5のcoordはvar4071=7でtrainer360を含む6node/var4071=8へ続くが未発火。静的壁だけで西側出口が不可能とは判断せずmap-load動的地形ownerも必要時だけ照合する。物理出口4,19はmap1/38へ、その隣接warp4,6はmap3/21へ接続する静的表。通常到達/洞窟走破/全国図鑑は未完。138/cold13入力・64画面・新12controller/24受入試験、Save1〜31を無影響再走しない。補助var4021=103/4022=0のruntime ownerは未解決。trainer352/360、東階段、解禁後teleport、洞窟出口、HM05原因、全国図鑑、自然成長進化、全storyは未完。既存ROM/runner/runtimeはActions入力だけ、新公開artifactは新save/画面/textだけ。

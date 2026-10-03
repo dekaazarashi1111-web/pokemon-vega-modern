@@ -1,0 +1,45 @@
+
+<user-path>     file format binary
+
+
+Disassembly of section .data:
+
+093bea68 <.data>:
+ 93bea68:	b570      	push	{r4, r5, r6, lr}
+ 93bea6a:	0004      	movs	r4, r0
+ 93bea6c:	000d      	movs	r5, r1
+ 93bea6e:	f000 fbfb 	bl	0x93bf268
+ 93bea72:	0020      	movs	r0, r4
+ 93bea74:	0029      	movs	r1, r5
+ 93bea76:	4b06      	ldr	r3, [pc, #24]	@ (0x93bea90)
+ 93bea78:	f000 f80c 	bl	0x93bea94
+ 93bea7c:	1e04      	subs	r4, r0, #0
+ 93bea7e:	d002      	beq.n	0x93bea86
+ 93bea80:	2000      	movs	r0, #0
+ 93bea82:	f000 fc01 	bl	0x93bf288
+ 93bea86:	0020      	movs	r0, r4
+ 93bea88:	bc70      	pop	{r4, r5, r6}
+ 93bea8a:	bc02      	pop	{r1}
+ 93bea8c:	4708      	bx	r1
+ 93bea8e:	46c0      	nop			@ (mov r8, r8)
+ 93bea90:	2715      	movs	r7, #21
+ 93bea92:	0939      	lsrs	r1, r7, #4
+ 93bea94:	4718      	bx	r3
+ 93bea96:	46c0      	nop			@ (mov r8, r8)
+ 93bea98:	b510      	push	{r4, lr}
+ 93bea9a:	f000 fbe5 	bl	0x93bf268
+ 93bea9e:	4b06      	ldr	r3, [pc, #24]	@ (0x93beab8)
+ 93beaa0:	f000 f80c 	bl	0x93beabc
+ 93beaa4:	1e04      	subs	r4, r0, #0
+ 93beaa6:	d002      	beq.n	0x93beaae
+ 93beaa8:	2001      	movs	r0, #1
+ 93beaaa:	f000 fbed 	bl	0x93bf288
+ 93beaae:	0020      	movs	r0, r4
+ 93beab0:	bc10      	pop	{r4}
+ 93beab2:	bc02      	pop	{r1}
+ 93beab4:	4708      	bx	r1
+ 93beab6:	46c0      	nop			@ (mov r8, r8)
+ 93beab8:	273d      	movs	r7, #61	@ 0x3d
+ 93beaba:	0939      	lsrs	r1, r7, #4
+ 93beabc:	4718      	bx	r3
+ 93beabe:	46c0      	nop			@ (mov r8, r8)

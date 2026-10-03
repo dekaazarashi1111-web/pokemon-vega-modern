@@ -1,0 +1,47 @@
+name: PR16 Circus pivot input
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-circus-pivot.yml
+      - scripts/pr16_circus_pivot.py
+      - tools/mgba_pr16_circus_pivot.h
+      - tests/test_pr16_circus_pivot.py
+      - tests/fixtures/circus_pivot_policy_fixture.c
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: pr16-circus-three-win
+  cancel-in-progress: false
+jobs:
+  circus-pivot:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: 2勝原本と通常交代56条件を記録
+        id: prepare
+        run: python3 scripts/pr16_circus_pivot.py prepare
+      - name: 同一ROMで実3勝と継続保存を検証
+        run: python3 scripts/pr16_circus_pivot.py pipeline
+      - name: 成否原本と固定引継ぎを非force保存
+        if: always() && steps.prepare.outcome == 'success'
+        run: python3 scripts/pr16_circus_pivot.py finish
+      - name: ROMとsaveを除いた証拠を保存
+        if: always() && steps.prepare.outcome == 'success'
+        run: python3 scripts/pr16_circus_pivot.py pack
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.prepare.outcome == 'success'
+        with:
+          name: pr16-circus-pivot
+          path: .local/pr16-three-win-evidence/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

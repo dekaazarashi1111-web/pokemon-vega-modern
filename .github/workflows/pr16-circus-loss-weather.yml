@@ -1,0 +1,66 @@
+name: PR16 Circus loss fade repair
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-circus-loss-weather.yml
+      - scripts/pr16_circus_loss_weather.py
+      - tests/test_pr16_circus_loss_weather.py
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: pr16-circus-loss-weather
+  cancel-in-progress: false
+jobs:
+  circus-loss-weather:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: 限定runtime修復と18契約を先行保存
+        id: prepare
+        run: python3 scripts/pr16_circus_loss_weather.py prepare
+      - name: hash固定の既存setupを再利用し独立2linkと未受入nativeを実行
+        run: python3 scripts/pr16_circus_loss_weather.py pipeline
+      - name: native原本と引継ぎを非force保存
+        if: always() && steps.prepare.outcome == 'success'
+        run: python3 scripts/pr16_circus_loss_weather.py finish
+      - name: ROM save credentialを除外して証跡を保存
+        if: always()
+        run: |
+          python3 - <<'PY'
+          import hashlib,json,pathlib,re
+          root=pathlib.Path('.');out=root/'.local/pr16-weather-evidence';out.mkdir(parents=True,exist_ok=True);members={}
+          paths=[]
+          for prefix in ('pr16-circus-loss-weather','pr16-circus-loss-followup','pr16-circus-streak-build','pr16-streak-native','pr16-streak-input'):
+              paths.extend((prefix+'/'+p.relative_to(root/'.local'/prefix).as_posix(),p) for p in sorted((root/'.local'/prefix).rglob('*')) if p.is_file() and p.suffix in {'.json','.txt','.stdout','.stderr','.log','.c','.h','.sh','.ppm'})
+          names=['scripts/pr16_circus_loss_weather.py','tests/test_pr16_circus_loss_weather.py','overlays/circus_streak/circus_streak_runtime.c',
+              'overlays/circus_streak/circus_streak_return.h','tests/fixtures/circus_streak_return_fixture.c','tools/mgba_pr16_circus_loss_weather.h',
+              'content/modernization/pr16_circus_loss_weather.json','content/modernization/pr16_circus_loss_followup.json',
+              'content/modernization/pr16_native_supply_resume_20260913.json','docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md','content/modernization/p08_remaining_work.json']
+          paths.extend(('source/'+n,root/n) for n in names if (root/n).exists())
+          for name,p in paths:
+              assert not p.is_symlink();raw=p.read_bytes()
+              if p.suffix=='.ppm':assert raw.startswith(b'P6\n240 160\n255\n') and len(raw)==115215
+              else:
+                  raw.decode('utf-8');assert len(raw)<3000000 and b'\0' not in raw
+                  assert not re.search(rb'gh[pousr]_[A-Za-z0-9]{36,}|github_pat_[A-Za-z0-9_]{60,}|-----BEGIN (?:RSA |OPENSSH |EC )?PRIVATE KEY-----',raw)
+              dst=out/name;dst.parent.mkdir(parents=True,exist_ok=True);dst.write_bytes(raw)
+              members[name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+          (out/'members.json').write_text(json.dumps(members,indent=2)+'\n')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-circus-loss-weather
+          path: .local/pr16-weather-evidence/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

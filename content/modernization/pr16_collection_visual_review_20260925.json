@@ -1,0 +1,44 @@
+{
+  "all_routes_visual_acceptance": false,
+  "artifact": {
+    "digest": "sha256:d3d10036f2593b73e425a97caaa846f5176f2870589d11744f30648c0d06d13f",
+    "id": 10857621846,
+    "size_in_bytes": 201785
+  },
+  "case_labels": {
+    "research-egg-1204": "02 サンド",
+    "research-egg-1206": "03 ロコン",
+    "research-egg-1208": "04 ディグダ",
+    "research-egg-1210": "05 ニャース",
+    "research-egg-1212": "06 イシツブテ",
+    "research-egg-1215": "07 ベトベター",
+    "research-egg-1394": "11 ポニータ",
+    "research-egg-1396": "12 ヤドン",
+    "research-egg-1407": "13 ジグザグマ",
+    "research-egg-1410": "14 ダルマッカ",
+    "research-egg-1414": "15 マッギョ",
+    "research-egg-1415": "16 ガーディ",
+    "research-egg-1417": "17 ビリリダマ",
+    "research-egg-1425": "18 ゾロア"
+  },
+  "excluded_blank_frames": 9,
+  "exclusions_ja": "run36119380600の固定1254/1390と研究1201の黒画像9枚は視覚証拠から除外。3件の機械的受入は保存原本のまま継承し、画像を埋めるための再実行はしない。1281はidentity-onlyとして未受入。",
+  "mechanical_cases": 17,
+  "method_ja": "保存PPM原本42枚を240x160から整数2倍のnearest-neighborで配置した3枚の比較シートとして全件目視。OCR/生成画像/ROM再実行は使用しない。ZIP全体SHAと各フレームSHAを終端処理で照合する。",
+  "observations_ja": [
+    "selected全14枚に一覧と選択矢印が描画され、上記番号・日本語ラベルを確認した。第1〜第4ページの選択位置を含む。",
+    "received/continued各14枚に洞窟フィールドと同じ受付付近のプレイヤーが描画され、メニューは閉じている。黒一色・欠落フレームではない。",
+    "これらは技/PPの画面表示、party画面、メッセージ全文、ストーリー到達、研究ランク獲得、孵化の視覚受入ではない。初期4技/PP・party/owner・Save/Continueは別のraw/native証拠で受入済み。"
+  ],
+  "rendered_cases": 14,
+  "reviewed_frames": 42,
+  "run_id": 36121122707,
+  "schema_version": 1,
+  "source_head": "cc160e5b9127a0acd32ddd65def74438c9b6a852",
+  "stages": [
+    "selected",
+    "received",
+    "continued"
+  ],
+  "task": "USER-20260925-COLLECTION-GIFTS"
+}

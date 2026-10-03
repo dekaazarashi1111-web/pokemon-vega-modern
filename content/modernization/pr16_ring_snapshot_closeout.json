@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "task": "PR-P08-7-RING-SNAPSHOT-CLOSEOUT",
+  "source_head": "4b5005efaef33aa1bed77c6d30208d88fdc839d0",
+  "run_id": 35060759252,
+  "classification": "SAVED_OBSERVATION_COVERAGE_AND_CI_NOT_NEW_NATIVE_ACCEPTANCE",
+  "coverage": {
+    "observed_calls": 8,
+    "selectors": [
+      0
+    ],
+    "routes": [
+      "low_other"
+    ],
+    "return_targets": [
+      154629580
+    ],
+    "entry_sp_values": [
+      50363852,
+      50363880
+    ],
+    "flag_ids": [
+      2104,
+      1153,
+      1154,
+      1076,
+      1070,
+      1071,
+      1072,
+      1073
+    ],
+    "observed_instructions": 648,
+    "observed_peak_frame_bytes": 24,
+    "external1_calls_observed": 0,
+    "external2_calls_observed": 0,
+    "external3_calls_observed": 0,
+    "active_record_prefix_observed": false,
+    "selector2_peak44_observed": false,
+    "normal_mapping_proven": false,
+    "synchrony_proven": false,
+    "allocated_storage_extent_proven": false,
+    "all_runtime_owners_excluded": false,
+    "ring_acquisition_accepted": false,
+    "release_ready": false
+  },
+  "observed_run": {
+    "id": 35060189419,
+    "head_sha": "88292386bad501bfc08e5a71fd96c9d621d95896",
+    "status": "completed",
+    "conclusion": "success"
+  },
+  "observed_job_id": 104678679467,
+  "observation_commit": "2c9202b47409f0009f32eebda0424033402ae12a",
+  "observation_artifact_id": 10431249360,
+  "observation_archive": {
+    "size": 36647,
+    "sha256": "49511c95fa064c87755203cd65c5b16e4c50ef5c949627aa38c5a7dc69fa3caa"
+  },
+  "observation_receipt": {
+    "status": "PASS_RECORDED_NONFORCE_PUSHED",
+    "commit": "2c9202b47409f0009f32eebda0424033402ae12a",
+    "source_head": "88292386bad501bfc08e5a71fd96c9d621d95896",
+    "run_id": 35060189419,
+    "tests": {
+      "tests_run": 46,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "observed_calls": 8,
+    "bound_calls": 8,
+    "new_emulator_processes": 1,
+    "session_new_emulator_processes": 2,
+    "first_failed_run": 35059235641,
+    "accepted_native_cases_replayed": 0,
+    "ring_acquisition_accepted": false,
+    "release_ready": false
+  },
+  "observation_guard": {
+    "base": "97529e38a046ae6d9a76db7660172db5defb254f",
+    "changed_paths": [
+      ".github/workflows/pr16-ring-caller-snapshot.yml",
+      "content/modernization/p08_remaining_work.json",
+      "content/modernization/pr16_native_supply_resume_20260913.json",
+      "content/modernization/pr16_ring_caller_snapshot.json",
+      "content/modernization/pr16_ring_caller_snapshot_evidence/attempt1-stdout.txt",
+      "content/modernization/pr16_ring_caller_snapshot_evidence/attempt1.json",
+      "content/modernization/pr16_ring_caller_snapshot_evidence/trace.jsonl",
+      "design/run_log.md",
+      "design/version_log.md",
+      "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
+      "scripts/pr16_ring_caller_snapshot.py",
+      "scripts/pr16_ring_snapshot_record.py",
+      "tests/test_pr16_ring_caller_snapshot.py",
+      "tools/mgba_pr16_ring_caller_snapshot.c"
+    ],
+    "new_violations": 0,
+    "full_guard_before": 1,
+    "full_guard_after": 1,
+    "exact_output_match": true,
+    "full_guard_pass_claimed": false
+  },
+  "source_bindings": {
+    "scripts/pr16_ring_snapshot_closeout.py": {
+      "size": 11763,
+      "sha256": "e88be8ae3205df0b299727c9fdc1cc8d06910ea71e22d7860abe6a18c6bf55f5"
+    },
+    "tests/test_pr16_ring_snapshot_closeout.py": {
+      "size": 2401,
+      "sha256": "b7503ad20186809e0c45f80769c4b8920a5b50872cb4df45ffea16bb844fe6ef"
+    },
+    ".github/workflows/pr16-ring-snapshot-closeout.yml": {
+      "size": 1915,
+      "sha256": "94a8da89d608c91312b070b3309b3ce3c0de8009a289639b482b52a0b8d1e9ab"
+    },
+    "content/modernization/pr16_ring_caller_snapshot.json": {
+      "size": 21166,
+      "sha256": "6f6debec3f86545332adcd2dedcb9c1f1a68ace264e74095586077dca089aaaf"
+    },
+    "content/modernization/pr16_ring_caller_snapshot_evidence/trace.jsonl": {
+      "size": 58670,
+      "sha256": "111e79f54cf721458ba1f5ec2bbdc5d40fe049fb7cef03345678326a2cabb861"
+    },
+    "content/modernization/pr16_ring_caller_snapshot_evidence/attempt1.json": {
+      "size": 2438,
+      "sha256": "c18871aead41d467f646631dd3fbdda86c594c2b52d98e15e0ba8ed16d60ce0b"
+    },
+    "content/modernization/pr16_ring_caller_snapshot_evidence/attempt1-stdout.txt": {
+      "size": 673936,
+      "sha256": "eb8e2f9a552192b8435a40236d57fee0283a013a0ede78aa6584dd3a6e5dda83"
+    }
+  },
+  "focused_tests": {
+    "tests_run": 8,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "new_emulator_processes": 0,
+  "accepted_native_cases_replayed": 0,
+  "candidate_reconstructions": 0,
+  "previous_session_native_processes": 2,
+  "rom_changes": 0,
+  "ring_acquisition_accepted": false,
+  "release_ready": false,
+  "actions_observed_at_observation_commit": [
+    {
+      "id": 35060318477,
+      "name": "source-validation",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35060318482,
+      "name": "p03-forgetting-ci",
+      "status": "completed",
+      "conclusion": "action_required"
+    }
+  ],
+  "external_reference_consulted_after_observer_implementation": "https://github.com/mgba-emu/mgba/blob/0.10.3/src/arm/arm.c"
+}

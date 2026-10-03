@@ -1,0 +1,41 @@
+{
+  "class_source": {
+    "sha256": "80ab61d42589f8742afa362d6d613f728125cebbaf5e8222c9ae42052eaabf85",
+    "size": 3425
+  },
+  "methods": [
+    "test_booleans_are_not_integers",
+    "test_display_values_closed",
+    "test_duplicate_json_rejected",
+    "test_failure_branches_preserve_result",
+    "test_fixture_indices_closed",
+    "test_format_is_two_native_placeholders",
+    "test_getters_cannot_be_replaced_with_other_calls",
+    "test_independent_physical_input",
+    "test_missing_release_rejected",
+    "test_nonfinite_json_rejected",
+    "test_normal_event",
+    "test_outside_jump_rejected",
+    "test_result_not_restore_detected",
+    "test_reversed_slots_detected",
+    "test_truncated_event_rejected"
+  ],
+  "old_negative_tests_accepted": 0,
+  "old_positive_tests_accepted": 0,
+  "original_unit": {
+    "expected_tests": 76,
+    "module": "tests/test_pr16_research_counter_numeric.py",
+    "passed_tests": 75,
+    "returncode": 1,
+    "stderr": {
+      "sha256": "4ddc29524e6480a086d0e5364a6541d57225476663954af2b34132e62ac49ffe",
+      "size": 9877
+    },
+    "stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    }
+  },
+  "reason_ja": "旧positiveは誤ったpost-close入力で失敗。旧negative60件の見かけのPASSは証拠にせず修正後の陽性前提付き試験で置換する。",
+  "reused_tests": 15
+}

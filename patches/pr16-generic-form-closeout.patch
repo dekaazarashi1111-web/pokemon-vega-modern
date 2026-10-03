@@ -1,0 +1,1355 @@
+diff --git a/content/modernization/p08_remaining_work.json b/content/modernization/p08_remaining_work.json
+index 786a7cfe68515398d1d80ea5d1b35121b52934ab..00bc0e36c368b1c43a5b41e2aa55b875ba7e8240 100644
+--- a/content/modernization/p08_remaining_work.json
++++ b/content/modernization/p08_remaining_work.json
+@@ -291,23 +291,26 @@
+     {
+       "id": "EVOLUTION_FORM_OTHER_EGG",
+       "original_request": "P03 instruction 3-5 and acceptance",
+-      "partial_success_evidence": "content/modernization/pr16_physical_route_acceptance.json",
+-      "pass_condition": "Map residual adopted consumers to exact existing or new native originals; keep Rotom/evolution/Pichu successes",
++      "partial_success_evidence": "content/modernization/pr16_generic_form_acceptance.json",
++      "pass_condition": "Use native fixed transition or battle-transform entrances, verify transition-owned move/full-slot/decline/restoration and valid save/Continue boundaries; preserve generic FORM and Rotom successes",
+       "phase": "P03",
+-      "reason_ja": "ロトム実受付10件に加え、バクーダ・ドンファンの共有技追加16件（全4枠・取消・保存再開）を受入済み。残る採用済み経路と既存原本の対応を確定する",
+-      "resume": "scripts/pr16_shared_egg_checkpoint.py verifies the 16 shared-only receiver routes; retain Rotom/evolution/Pichu/Happiny successes and reconcile only residual consumers",
++      "reason_ja": "generic FORMは実受付・native有限探索・同一個体の4技持越し・取消・通常保存・fresh Continueを2ケースで受入済み。P03で残る実操作はfixed-form transition 4経路の処理所有者だけである",
++      "resume": "content/modernization/pr16_generic_form_acceptance.json retains run 34675976411; implement and execute only P03_FIXED_FORM_TRANSITION_PHYSICAL without repeating generic FORM or Rotom",
+       "shared_egg_success_evidence": "content/modernization/pr16_shared_egg_acceptance.json",
+       "success_evidence": "content/modernization/pr16_completion_acceptance.json",
+-      "target_function": "remaining adopted form/egg supply consumers, excluding accepted Rotom host routes",
+-      "status": "PENDING_TWO_FINITE_FORM_ROUTE_ACCEPTANCES",
++      "target_function": "fixed_transition_service for Necrozma Dusk Mane/Dawn Wings and Zacian/Zamazenta Crowned",
++      "status": "PENDING_FIXED_FORM_ROUTE_ACCEPTANCE",
+       "coverage_inventory_complete": true,
+       "physical_acceptance_complete": false,
+       "complete": false,
+       "remaining_physical_gap_ids": [
+-        "P03_GENERIC_FORM_CHANGE_CARRY_PHYSICAL",
+         "P03_FIXED_FORM_TRANSITION_PHYSICAL"
+       ],
+-      "coverage_manifest": "content/modernization/pr16_p03_p07_route_coverage.json"
++      "coverage_manifest": "content/modernization/pr16_p03_p07_route_coverage.json",
++      "accepted_physical_gap_ids": [
++        "P03_GENERIC_FORM_CHANGE_CARRY_PHYSICAL"
++      ],
++      "generic_form_success_evidence": "content/modernization/pr16_generic_form_acceptance.json"
+     },
+     {
+       "captured_battle_evidence": "content/modernization/pr16_captured_battle_acceptance.json",
+diff --git a/content/modernization/pr16_p03_p07_route_coverage.json b/content/modernization/pr16_p03_p07_route_coverage.json
+index 833098db5a9c4f05b9cca1c6bc5eb70d5f78195b..48e681db0e80df16885888a4071155230be73ed2 100644
+--- a/content/modernization/pr16_p03_p07_route_coverage.json
++++ b/content/modernization/pr16_p03_p07_route_coverage.json
+@@ -266,7 +266,7 @@
+       "id": "GENERIC_FORM_CHANGE_CARRY",
+       "implementation_functions": [
+         "Stage73_NormalizeFormChange",
+         "Stage73_NormalizeMoveSlot",
+         "Stage73_ValidateSavedMove"
+       ],
+-      "coverage": "PHYSICAL_GAP",
+-      "gap_id": "P03_GENERIC_FORM_CHANGE_CARRY_PHYSICAL",
++      "coverage": "ACCEPTED_NATIVE_REPRESENTATIVE",
+       "form_inventory": {
+         "routes": 61,
+         "species": 10,
+@@ -295,7 +295,42 @@
+           "SPECIES_KEY_CALYREX_SHADOW"
+         ]
+       },
+-      "required_operation": "Use an actual non-Rotom form-change entrance, select the same individual, verify four-slot carry/normalization, cancellation, normal save, and fresh Continue. Do not mutate directly to the post-form species."
++      "accepted_scope": "One native Shaymin owner representative validates the shared generic carry contract; this is not a claim that all 61 rows were individually executed.",
++      "evidence": [
++        {
++          "path": "content/modernization/pr16_generic_form_acceptance.json",
++          "run_id": 34675976411,
++          "tested_head": "92db3605070c65206696b03f8ab6bd596ae7d729",
++          "artifact_id": 10292791318,
++          "artifact_sha256": "f5d41c58ae1be0303dd7157d08bcee77ecd5018cbbc11e4cc4d30b1a9635914b",
++          "candidate_sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
++          "native_processes": 2,
++          "fresh_cores": 5,
++          "cases": [
++            "shaymin-four-slot-roundtrip",
++            "shaymin-party-cancel"
++          ],
++          "menu_discovery": "input-only-native-menu-probe",
++          "menu_page": 1,
++          "menu_cursor": 1,
++          "probe_count": 7,
++          "pages_scanned": 2,
++          "representative_route_ids": [
++            "bca6fe62e4b8925d73c8238a",
++            "830d0124e9ca952d41d4a7f0",
++            "57e91d3ffeb04c9795a8b6a1"
++          ],
++          "owner_route_count": 61,
++          "owner_species_count": 10,
++          "owner_rows_sha256": "66cd203079d2a6d8ef1eb0fca6b5156c7bccbc1c720786df4953311491b5592e",
++          "representative_native_acceptance": true,
++          "all_rows_individually_executed": false,
++          "successor_transfer_complete": false
++        }
++      ]
+     },
+     {
+       "id": "FIXED_FORM_TRANSITION",
+@@ -322,10 +357,12 @@
+       }
+     }
+   ],
++  "accepted_physical_gap_ids": [
++    "P03_GENERIC_FORM_CHANGE_CARRY_PHYSICAL"
++  ],
+   "remaining_physical_gap_ids": [
+-    "P03_GENERIC_FORM_CHANGE_CARRY_PHYSICAL",
+     "P03_FIXED_FORM_TRANSITION_PHYSICAL"
+   ]
+@@ -519,14 +556,17 @@
+   "remaining_projection": {
+     "EVOLUTION_FORM_OTHER_EGG": {
+-      "status": "PENDING_TWO_FINITE_FORM_ROUTE_ACCEPTANCES",
++      "status": "PENDING_FIXED_FORM_ROUTE_ACCEPTANCE",
+       "coverage_inventory_complete": true,
+       "physical_acceptance_complete": false,
+       "complete": false,
+       "remaining_physical_gap_ids": [
+-        "P03_GENERIC_FORM_CHANGE_CARRY_PHYSICAL",
+         "P03_FIXED_FORM_TRANSITION_PHYSICAL"
+       ],
+-      "coverage_manifest": "content/modernization/pr16_p03_p07_route_coverage.json"
++      "coverage_manifest": "content/modernization/pr16_p03_p07_route_coverage.json",
++      "accepted_physical_gap_ids": [
++        "P03_GENERIC_FORM_CHANGE_CARRY_PHYSICAL"
++      ],
++      "generic_form_success_evidence": "content/modernization/pr16_generic_form_acceptance.json"
+     },
+     "P07_REMAINING_ROUTE_ACCEPTANCE": {
+diff --git a/content/modernization/pr16_generic_form_acceptance.json b/content/modernization/pr16_generic_form_acceptance.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..8e105f50481489ba2161ec90d907c0be80213e1e
+--- /dev/null
++++ b/content/modernization/pr16_generic_form_acceptance.json
+@@ -0,0 +1,99 @@
++{
++  "accepted_scope": {
++    "all_61_rows_individually_executed": false,
++    "cancel_state_unchanged": true,
++    "four_move_slots_preserved": true,
++    "generic_owner_route_count": 61,
++    "generic_owner_rows_sha256": "66cd203079d2a6d8ef1eb0fca6b5156c7bccbc1c720786df4953311491b5592e",
++    "generic_owner_species_count": 10,
++    "menu_cursor": 1,
++    "menu_discovery": "input-only-native-menu-probe",
++    "menu_page": 1,
++    "normal_save_and_fresh_continue": true,
++    "owner": "generic_form_change_service",
++    "pages_scanned": 2,
++    "probe_count": 7,
++    "representative_native_acceptance": true,
++    "representative_route_ids": [
++      "bca6fe62e4b8925d73c8238a",
++      "830d0124e9ca952d41d4a7f0",
++      "57e91d3ffeb04c9795a8b6a1"
++    ],
++    "representative_species": [
++      749,
++      900
++    ]
++  },
++  "active_baseline_changed": false,
++  "candidate": {
++    "sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
++    "size": 33554432
++  },
++  "clean_rom_regeneration_verified": false,
++  "condition_id": "P03_GENERIC_FORM_CHANGE_CARRY_PHYSICAL",
++  "emulator_runs_by_this_verifier": 0,
++  "evidence": {
++    "artifact_id": 10292791318,
++    "artifact_name": "pr16-generic-form-carry-acceptance",
++    "artifact_path": "content/modernization/pr16_generic_form_evidence/34675976411/original.zip",
++    "artifact_sha256": "f5d41c58ae1be0303dd7157d08bcee77ecd5018cbbc11e4cc4d30b1a9635914b",
++    "artifact_size": 372130,
++    "job_id": 103505793891,
++    "run_id": 34675976411,
++    "source_binding_count": 17,
++    "source_snapshot_sha256": "f7f14da4ef4907ab97e7edd47708ef87bfa0dba8efd907fe8cc2c7b5f901637d",
++    "tested_head": "92db3605070c65206696b03f8ab6bd596ae7d729",
++    "workflow": ".github/workflows/pr16-generic-form-carry.yml"
++  },
++  "fixed_form_transition_physical_accepted": false,
++  "full_p03_acceptance": false,
++  "generic_form_carry_physical_accepted": true,
++  "native_execution": {
++    "acceptance_fresh_cores": 5,
++    "acceptance_processes": 2,
++    "cases": [
++      {
++        "automatic_saves": 2,
++        "fresh_cores": 3,
++        "manual_saves": 2,
++        "name": "shaymin-four-slot-roundtrip",
++        "result": 0,
++        "rounds": 2
++      },
++      {
++        "automatic_saves": 0,
++        "fresh_cores": 2,
++        "manual_saves": 1,
++        "name": "shaymin-party-cancel",
++        "result": 20,
++        "rounds": 1
++      }
++    ],
++    "diagnostic_fresh_cores": 14,
++    "diagnostic_processes": 14,
++    "diagnostics_are_acceptance": false,
++    "rendered_witnesses": 44,
++    "write_guard_checks": [
++      "bus8",
++      "bus16",
++      "bus32",
++      "raw8",
++      "raw16",
++      "raw32",
++      "register"
++    ]
++  },
++  "old_runs_relabelled": 0,
++  "release_ready": false,
++  "schema_version": 1,
++  "status": "PASS_GENERIC_FORM_CARRY_ON_PARENT_PENDING_FIXED_AND_P08_TRANSFER",
++  "successor_transfer_complete": false
++}
+diff --git a/content/modernization/pr16_generic_form_evidence/34675976411/actions.json b/content/modernization/pr16_generic_form_evidence/34675976411/actions.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..5f3e4a728084053ab0d23200161bf201d260ef23
+--- /dev/null
++++ b/content/modernization/pr16_generic_form_evidence/34675976411/actions.json
+@@ -0,0 +1,94 @@
++{
++  "artifact_id": 10292791318,
++  "artifact_name": "pr16-generic-form-carry-acceptance",
++  "conclusion": "success",
++  "head_branch": "codex/modernization-followup-20260908",
++  "head_sha": "92db3605070c65206696b03f8ab6bd596ae7d729",
++  "jobs": [
++    {
++      "conclusion": "success",
++      "head_sha": "92db3605070c65206696b03f8ab6bd596ae7d729",
++      "id": 103505793891,
++      "name": "generic-form-carry",
++      "run_id": 34675976411,
++      "status": "completed",
++      "steps": [
++        {
++          "conclusion": "success",
++          "name": "Set up job",
++          "number": 1,
++          "status": "completed"
++        },
++        {
++          "conclusion": "success",
++          "name": "Checkout exact triggering commit",
++          "number": 2,
++          "status": "completed"
++        },
++        {
++          "conclusion": "success",
++          "name": "Exact HEAD, pinned toolchain and unchanged Stage84 parent",
++          "number": 3,
++          "status": "completed"
++        },
++        {
++          "conclusion": "success",
++          "name": "Download and hash-check both pinned private source archives",
++          "number": 4,
++          "status": "completed"
++        },
++        {
++          "conclusion": "success",
++          "name": "Rebuild fixed parent and run fail-closed focused tests",
++          "number": 5,
++          "status": "completed"
++        },
++        {
++          "conclusion": "success",
++          "name": "Actual FORM host, page navigation, party picker, carry, cancel and cold Continue",
++          "number": 6,
++          "status": "completed"
++        },
++        {
++          "conclusion": "success",
++          "name": "Preserve exact sources and raw evidence, never ROM, save or private archive",
++          "number": 7,
++          "status": "completed"
++        },
++        {
++          "conclusion": "success",
++          "name": "Upload original process records, screenshots and validation receipt",
++          "number": 8,
++          "status": "completed"
++        },
++        {
++          "conclusion": "success",
++          "name": "Post Checkout exact triggering commit",
++          "number": 16,
++          "status": "completed"
++        },
++        {
++          "conclusion": "success",
++          "name": "Complete job",
++          "number": 17,
++          "status": "completed"
++        }
++      ]
++    }
++  ],
++  "path": ".github/workflows/pr16-generic-form-carry.yml",
++  "run_attempt": 1,
++  "run_id": 34675976411,
++  "sha256": "f5d41c58ae1be0303dd7157d08bcee77ecd5018cbbc11e4cc4d30b1a9635914b",
++  "size": 372130,
++  "status": "completed"
++}
+diff --git a/design/run_log.md b/design/run_log.md
+index 8bab5e3c2f79b563b60d4c676778d65234b06c39..10ab0af00cd3a16c6f7b38b12179149e4149c184 100644
+--- a/design/run_log.md
++++ b/design/run_log.md
+@@ -5786,3 +5786,12 @@ Task: USER-MODERNIZATION
+ - Removed the fixed page=1/cursor=1 assumption for Shaymin form index 43.
+ - Added at-most-20-page, five-row native A/B probing and receipt witnesses menu_page, menu_cursor, probe_count, pages_scanned, and menu_discovery.
+ - Preserved no-direct-form-write and no-post-guard-host-write boundaries; temporary apply files are removed in the verified source commit.
++
++## 2026-09-12 / PR16-GENERIC-FORM-NATIVE-ACCEPTANCE
++
++- Native acceptance run `34675976411`, job `103505793891`, tested HEAD `92db3605070c65206696b03f8ab6bd596ae7d729` passed on unchanged parent candidate `635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e`.
++- Two acceptance processes / five fresh cores completed: Shaymin Land→Sky→Land four-slot roundtrip and party-picker cancellation. Both found form index 43 by native input-only bounded discovery at page 1 / cursor 1 after seven probes across two pages, then completed normal Save and fresh Continue.
++- Four moves `[98,235,552,33]`, PP `[11,3,4,7]`, PP bonus byte, individual identity and nonselected party data were preserved. Seven post-observation host-write guards failed closed as required.
++- Fourteen entry probes remain diagnostic-only and are not counted as acceptance. The representative closes the shared 61-route generic owner contract; it does not claim 61 individually executed rows.
++- Exact artifact `10292791318`, 372130 bytes, SHA-256 `f5d41c58ae1be0303dd7157d08bcee77ecd5018cbbc11e4cc4d30b1a9635914b`, Actions metadata, raw outputs, 44 rendered witnesses and tested source snapshot are retained by `pr16_generic_form_checkpoint.py` with zero verifier emulator runs.
++- `P03_GENERIC_FORM_CHANGE_CARRY_PHYSICAL` is closed on the parent candidate. `P03_FIXED_FORM_TRANSITION_PHYSICAL`, full P03, P08 successor transfer, clean-ROM regeneration and release remain open. No ROM/save/baseline/visibility/history/merge state changed.
+diff --git a/design/version_log.md b/design/version_log.md
+index 8b2b493afc0a58e079120514216c0f2eed0af2e2..51f012564bafc8cba1bf84469a5e66862799300b 100644
+--- a/design/version_log.md
++++ b/design/version_log.md
+@@ -1924,3 +1924,7 @@ Task: USER-MODERNIZATION
+ - Removed the fixed page=1/cursor=1 assumption for Shaymin form index 43.
+ - Added at-most-20-page, five-row native A/B probing and receipt witnesses menu_page, menu_cursor, probe_count, pages_scanned, and menu_discovery.
+ - Preserved no-direct-form-write and no-post-guard-host-write boundaries; temporary apply files are removed in the verified source commit.
++
++## 2026-09-12 / USER-MODERNIZATION generic FORM checkpoint
++
++Added the fail-closed `pr16_generic_form_checkpoint.py`, exact run `34675976411` original/Actions binding, scoped receipt, Japanese checkpoint document and route-ledger projection. The generic FORM owner is now `ACCEPTED_NATIVE_REPRESENTATIVE`; the only remaining P03 physical gap is fixed-form transition. Full P03, final-candidate transfer and release stay false. No emulator is run by the checkpoint and no historical run is relabelled.
+diff --git a/docs/PR16_GENERIC_FORM_CHECKPOINT_JA.md b/docs/PR16_GENERIC_FORM_CHECKPOINT_JA.md
+new file mode 100644
+index 0000000000000000000000000000000000000000..77f654165655942240144682882fd75cfb5e8b03
+--- /dev/null
++++ b/docs/PR16_GENERIC_FORM_CHECKPOINT_JA.md
+@@ -0,0 +1,77 @@
++# PR #16 generic FORM native acceptance checkpoint
++
++## 結論
++
++`P03_GENERIC_FORM_CHANGE_CARRY_PHYSICAL` は、親候補
++`635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e`
++上の実ROM操作で受入済みである。
++
++正本receiptは `content/modernization/pr16_generic_form_acceptance.json`、
++再検証器は `scripts/pr16_generic_form_checkpoint.py` である。Actions原本は
++`content/modernization/pr16_generic_form_evidence/34675976411/original.zip`
++として保持する。
++
++## 固定した原本
++
++- run: `34675976411`
++- job: `103505793891`
++- tested HEAD: `92db3605070c65206696b03f8ab6bd596ae7d729`
++- artifact: `10292791318`
++- artifact name: `pr16-generic-form-carry-acceptance`
++- ZIP size: `372130`
++- ZIP SHA-256: `f5d41c58ae1be0303dd7157d08bcee77ecd5018cbbc11e4cc4d30b1a9635914b`
++- candidate ROM SHA-256: `635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e`
++
++GitHub APIのartifact digestと保存したZIPのSHA-256は一致する。ROM、save、private archiveは
++原本ZIPにもリポジトリにも含めない。
++
++## 受入範囲
++
++実受付 `(map 1/36, x=6, y=3)` を開き、FORMメニューを入力だけで有限探索した。
++2つのacceptance processはいずれも `page=1, cursor=1, probe_count=7,
++pages_scanned=2` でform index 43を発見した。
++
++- `shaymin-four-slot-roundtrip`: Land→Sky→Land、同一個体、4技・PP・PP bonus・順序、通常save、core破棄、fresh Continueを確認。
++- `shaymin-party-cancel`: native party pickerの取消後に状態不変、通常save、fresh Continueを確認。
++- acceptance process: 2
++- acceptance fresh core: 5
++- write-guard negative control: 7種類
++- rendered witness: 44枚
++
++入口条件診断14 processは `PASS_DIAGNOSTIC_ONLY` のまま保持し、acceptance件数へ加算しない。
++
++## 主張しないこと
++
++この受入は、61行を同じ実装所有者の有限なgeneric carry契約としてShaymin代表で受け入れる。
++61行を個別に実行したという主張ではない。次もfalseのままである。
++
++- fixed-form transition acceptance
++- full P03 acceptance
++- 後継候補へのP08 evidence transfer
++- clean-ROM regeneration
++- release readiness
++- active baseline change
++
++P03で残る実作業は `P03_FIXED_FORM_TRANSITION_PHYSICAL` だけである。
++
++## 再検証
++
++```bash
++python scripts/pr16_generic_form_checkpoint.py
++python -m unittest tests.test_pr16_generic_form_checkpoint
++python scripts/pr16_p03_p07_route_coverage.py \
++  --check-remaining content/modernization/p08_remaining_work.json
++python -m unittest tests.test_pr16_p03_p07_route_coverage
++```
++
++原本を未配置の環境で権限付きGitHub CLIを使う場合だけ、固定run/artifactを取得する。
++
++```bash
++python scripts/pr16_generic_form_checkpoint.py --fetch
++```
+diff --git a/docs/PR16_P03_P07_ROUTE_COVERAGE_CHECKPOINT_JA.md b/docs/PR16_P03_P07_ROUTE_COVERAGE_CHECKPOINT_JA.md
+index 1c30b3c02fcdf0df1ff00e131590c80bcb8f81b1..5d9aaec6644feaf89cac9f23e60d571153a85ee2 100644
+--- a/docs/PR16_P03_P07_ROUTE_COVERAGE_CHECKPOINT_JA.md
++++ b/docs/PR16_P03_P07_ROUTE_COVERAGE_CHECKPOINT_JA.md
+@@ -1,84 +1,75 @@
+ # PR #16 P03 / P07 経路被覆 checkpoint
+ 
+ ## 結論
+ 
+-この checkpoint は、P03・P07の残件を「表全件をもう一度実行する」という曖昧な状態から、処理所有者ごとの有限な一覧へ変える。
++このcheckpointは、処理所有者ごとの有限な経路台帳である。
+ 
+-- **P03の追加実操作は2件だけ**である。
+-  - `P03_GENERIC_FORM_CHANGE_CARRY_PHYSICAL`
+-  - `P03_FIXED_FORM_TRANSITION_PHYSICAL`
+-- **P07固有の追加実操作は0件**である。P07で変更した499保持行とHappiny衝突adapterは、親候補 `635fd890…` の実学習・実繁殖・実わざメモリーで受入済みである。
+-- ショップ表示修正後の後継候補 `e630f7f1…` への受入移送は、P07の経路不足ではない。これは `FINAL_NATIVE_ACCEPTANCE` が扱うP08統合作業として残す。
++- **P03で残る追加実操作は1件だけ**: `P03_FIXED_FORM_TRANSITION_PHYSICAL`
++- `P03_GENERIC_FORM_CHANGE_CARRY_PHYSICAL` はrun `34675976411` のnative代表受入で閉じた。
++- Rotom bespoke transitionは既存の10ケースで受入済みである。
++- **P07固有の追加実操作は0件**であり、親候補上の成功を後継候補へ接続する作業はP08が所有する。
+ 
+-正本は `content/modernization/pr16_p03_p07_route_coverage.json`、検証器は `scripts/pr16_p03_p07_route_coverage.py` である。
++正本は `content/modernization/pr16_p03_p07_route_coverage.json`、検証器は
++`scripts/pr16_p03_p07_route_coverage.py` である。
+ 
+ ## P03
+ 
+ ### 既存成功へ接続した経路
+ 
+-次の経路は新規残件にしない。
+-
+-1. レベル習得と進化習得。空き枠、満杯、取消を含む。
+-2. 通常の預け入れ・受取・タマゴ・孵化。父、母、両親、重複防止、対象なしを含む。
+-3. ピチューの条件技とピンプクのおこう分岐。
+-4. 通常技・タマゴ技のわざメモリー、技忘れ、保存再開。
+-5. 機械技・教え技の追加アーカイブ。機械と教えを別処理のまま、空き枠、4枠置換、拒否、ロック、取消、ページ境界、保存再開まで受入済み。
+-6. 943受け手・5,023行の共有タマゴ技静的照合と、バクーダ・ドンファンの16操作。
+-7. 実受付を通るRotom 5フォームの付与・解除・満杯拒否・取消・保存再開。
+-
+-通常繁殖を共有技の受入で代替したことにはしていない。通常繁殖はrun `34434453733` の8ケースそのもので接続した。
+-
+-### 残る2処理所有者
+-
+-Stage73のフォーム契約は70経路・19種である。内訳を処理所有者で分けると次のとおり。
++レベル・進化習得、通常繁殖、Pichu/Happiny、通常技・タマゴ技のわざメモリー、
++技忘れ、機械・教え技、共有タマゴ技、Rotom 5フォームは既存原本へ接続済みである。
++通常繁殖を共有技の受入で代替せず、run `34434453733` の8ケースを保持する。
++
++### generic form-change carry
++
++61経路・10種の所有者は `generic_form_change_service` である。Shaymin代表について、
++実FORM受付、入力だけの有限メニュー探索、同一個体の4技持越し、取消、通常save、
++fresh Continueを2 process・5 fresh coreで受け入れた。
++
++- receipt: `content/modernization/pr16_generic_form_acceptance.json`
++- run: `34675976411`
++- artifact: `10292791318`
++- candidate: `635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e`
++
++これは共有実装契約のnative representative acceptanceであり、61行を個別実行したという主張ではない。
++
++### 残るfixed transition所有者
++
++Stage73のフォーム契約70経路・19種の現在地は次のとおり。
+ 
+ | 所有者 | 経路 | 種 | 状態 |
+ |---|---:|---:|---|
+-| generic form-change carry | 61 | 10 | 実操作不足 |
++| generic form-change carry | 61 | 10 | native代表受入済み |
+ | existing fixed transition | 4 | 4 | 実操作不足 |
+ | Rotom bespoke transition | 5 | 5 | 実受付で受入済み |
+ 
+-したがって、Rotomをもう一度試すことも、70経路を総当たりすることも残件ではない。実際の非Rotom入口からgeneric carryを1件、実際の固定遷移または戦闘変身入口からfixed transitionを1件通し、同一個体、技スロット、取消、通常保存、fresh Continueを確認する。
++残る4経路はNecrozma Dusk Mane / Dawn WingsとZacian / Zamazenta Crownedである。
++実際の固定遷移または戦闘変身入口から、専用技、4枠境界、取消または不成立、復帰、
++戦闘後状態、許されるsave/Continue境界を確認する。generic FORMやRotomは繰り返さない。
+ 
+ ## P07
+ 
+-### 静的照合
+-
+-- ベガ種から通常技への歴史的採用: 1,073行
+-  - レベル450
+-  - タマゴ254
+-  - 機械179
+-  - 教え190
+-- 通常種からベガ技への保持: 499行
+-  - レベル310
+-  - タマゴ189
+-- 欠落・競合: 0
+-
+-### 変更面と受入
+-
+-P07が親候補へ加えた処理面は次の3つに限定される。
+-
+-1. 保持レベル310行。Taillowのmove 457を空き枠・満杯・取消・保存再開で確認済み。
+-2. 保持タマゴ189行。Taillowのmove 466をわざメモリーで、Pichuのmove 440を通常の預け入れ・受取・孵化・保存再開で確認済み。
+-3. Happiny衝突adapter。moves 461/464/357を実おこう繁殖の先頭・中間・満杯・対照で確認済み。
+-
+-1,073採用行はP07差分で書き換えた処理面ではなく、Stage84親候補から保持した内容である。ROM表の全件照合は0不足であり、各供給源はP03側の合格済みconsumer契約へ対応する。よって、1,073行を1行ずつ再実行することも、4供給源について「変更行の受入」と称して新規ケースを増やすことも行わない。
+-
+-## 候補SHAの扱い
+-
+-既存成功は元の候補SHAとrun IDを保持する。この台帳は古い成功を `e630f7f1…` の新規実行へ付け替えない。
++静的照合は、採用追加1,073行、通常種からの保持499行、欠落・競合0である。
++P07が親候補へ加えた変更面は、保持レベル310行、保持タマゴ189行、Happiny衝突adapterに限定され、
++いずれも親候補上で実受入済みである。
+ 
+ - P07親候補: `635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e`
+ - 後継候補: `e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267`
+ 
+-後継候補で必要な変更影響回帰と受入集約はP08で行う。
++後継候補への変更影響判定・代表回帰・証拠移送は `FINAL_NATIVE_ACCEPTANCE` のP08作業であり、
++P07経路gapを再オープンしない。
+ 
+ ## 検証
+ 
+ ```bash
+-python scripts/pr16_p03_p07_route_coverage.py
+-python -m unittest tests.test_pr16_p03_p07_route_coverage
+-```
+-
+-`p08_remaining_work.json` を投影内容へ更新するときは、正本を検証してから次を実行する。
+-
+-```bash
++python scripts/pr16_generic_form_checkpoint.py
+ python scripts/pr16_p03_p07_route_coverage.py \
+-  --apply-remaining content/modernization/p08_remaining_work.json \
+-  --output artifacts/pr16-p03-p07-route-coverage/receipt.json
++  --check-remaining content/modernization/p08_remaining_work.json
++python -m unittest tests.test_pr16_generic_form_checkpoint
++python -m unittest tests.test_pr16_p03_p07_route_coverage
+ ```
+ 
+-この更新でP03は2件の具体的な実操作待ちへ変わり、P07の経路残件は親候補上で閉じる。ただしP08、release-ready、clean-ROM再生成、PRのマージ状態は変更しない。
++P03全体、P08、clean-ROM再生成、release-ready、PRのdraft/merge状態はこのcheckpointで変更しない。
+diff --git a/scripts/pr16_generic_form_checkpoint.py b/scripts/pr16_generic_form_checkpoint.py
+new file mode 100755
+index 0000000000000000000000000000000000000000..f3f07fb4fb3c5fc9675584aba07ad9ef4652f7fc
+--- /dev/null
++++ b/scripts/pr16_generic_form_checkpoint.py
+@@ -0,0 +1,548 @@
++#!/usr/bin/env python3
++"""Revalidate the exact generic FORM native acceptance original and emit its scoped receipt.
++
++This checkpoint performs no emulator run. It preserves the Actions ZIP from the fixed
++run, verifies the exact run/artifact/source binding and raw process records, and closes
++only P03_GENERIC_FORM_CHANGE_CARRY_PHYSICAL on the 635fd890 parent candidate.
++Fixed-form acceptance, full P03, successor transfer and release readiness remain open.
++"""
++
++from __future__ import annotations
++
++import argparse
++import hashlib
++import io
++import json
++from pathlib import Path
++import subprocess
++import sys
++import zipfile
++from typing import Any
++
++ROOT = Path(__file__).resolve().parents[1]
++SELF = "scripts/pr16_generic_form_checkpoint.py"
++DIRECTORY = "content/modernization/pr16_generic_form_evidence"
++RECEIPT = "content/modernization/pr16_generic_form_acceptance.json"
++REPO = "dekaazarashi1111-web/pokemon-vega-modern"
++BRANCH = "codex/modernization-followup-20260908"
++CONDITION = "P03_GENERIC_FORM_CHANGE_CARRY_PHYSICAL"
++RUN = 34675976411
++ARTIFACT = 10292791318
++ARTIFACT_NAME = "pr16-generic-form-carry-acceptance"
++ARTIFACT_SIZE = 372130
++ARTIFACT_SHA256 = "f5d41c58ae1be0303dd7157d08bcee77ecd5018cbbc11e4cc4d30b1a9635914b"
++HEAD = "92db3605070c65206696b03f8ab6bd596ae7d729"
++WORKFLOW = ".github/workflows/pr16-generic-form-carry.yml"
++JOB = 103505793891
++CANDIDATE = {
++    "sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
++    "size": 33554432,
++}
++CASES = ("shaymin-four-slot-roundtrip", "shaymin-party-cancel")
++GUARDS = ("bus8", "bus16", "bus32", "raw8", "raw16", "raw32", "register")
++SOURCE_BINDINGS = (
++    "scripts/pr16_generic_form_carry.py",
++    "tools/mgba_pr16_generic_form_carry.c",
++    "tests/test_pr16_generic_form_carry.py",
++    ".github/workflows/pr16-generic-form-carry.yml",
++    "scripts/pr16_p03_form_gap_inventory.py",
++    "config/modernization_p03_stage73_consumers.json",
++    "content/collection_supply_v1/canonical_model.json",
++)
++EXPECTED_STEPS = (
++    "Set up job",
++    "Checkout exact triggering commit",
++    "Exact HEAD, pinned toolchain and unchanged Stage84 parent",
++    "Download and hash-check both pinned private source archives",
++    "Rebuild fixed parent and run fail-closed focused tests",
++    "Actual FORM host, page navigation, party picker, carry, cancel and cold Continue",
++    "Preserve exact sources and raw evidence, never ROM, save or private archive",
++    "Upload original process records, screenshots and validation receipt",
++    "Post Checkout exact triggering commit",
++    "Complete job",
++)
++
++
++class CheckpointError(ValueError):
++    """Raised when the preserved original or scoped claim is inconsistent."""
++
++
++def need(condition: bool, message: str) -> None:
++    if not condition:
++        raise CheckpointError(message)
++
++
++def stable(value: Any) -> bytes:
++    return (json.dumps(value, ensure_ascii=False, sort_keys=True, indent=2) + "\n").encode()
++
++
++def load(raw: bytes) -> Any:
++    def pairs(items: list[tuple[str, Any]]) -> dict[str, Any]:
++        out: dict[str, Any] = {}
++        for key, value in items:
++            need(key not in out, "duplicate JSON key")
++            out[key] = value
++        return out
++
++    return json.loads(
++        raw,
++        object_pairs_hook=pairs,
++        parse_constant=lambda value: (_ for _ in ()).throw(CheckpointError(value)),
++    )
++
++
++def identity(raw: bytes) -> dict[str, Any]:
++    return {"size": len(raw), "sha256": hashlib.sha256(raw).hexdigest()}
++
++
++def same(left: Any, right: Any) -> bool:
++    return type(left) is type(right) and stable(left) == stable(right)
++
++
++def fields(value: Any, expected: dict[str, Any]) -> None:
++    need(type(value) is dict, "object required")
++    for key, wanted in expected.items():
++        need(key in value and same(value[key], wanted), "record field differs: " + key)
++
++
++def read(root: Path, relative: str | Path) -> bytes:
++    path = root / relative
++    need(path.is_file(), "missing checkpoint input: " + str(relative))
++    need(not any(item.is_symlink() for item in (path, *path.parents)), "symlink input")
++    return path.read_bytes()
++
++
++def archive(raw: bytes, depth: int = 0) -> dict[str, bytes]:
++    need(depth <= 2, "nested archive depth")
++    with zipfile.ZipFile(io.BytesIO(raw)) as bundle:
++        entries = bundle.infolist()
++        need(len(entries) < 2000, "ZIP member bound")
++        need(sum(entry.file_size for entry in entries) < 30_000_000, "ZIP size bound")
++        names = [entry.filename for entry in entries]
++        need(len(names) == len(set(names)), "duplicate ZIP members")
++        files: dict[str, bytes] = {}
++        for entry in entries:
++            path = Path(entry.filename)
++            need(not entry.is_dir(), "directory ZIP member")
++            need(not path.is_absolute() and ".." not in path.parts and "\\" not in entry.filename,
++                 "unsafe ZIP path")
++            need(((entry.external_attr >> 16) & 0o170000) != 0o120000, "symlink ZIP member")
++            need(path.suffix.lower() not in (".gba", ".gb", ".sav", ".srm", ".ss0", ".state", ".bin"),
++                 "ROM/save/binary evidence forbidden")
++            files[entry.filename] = bundle.read(entry)
++            if path.suffix.lower() == ".zip":
++                archive(files[entry.filename], depth + 1)
++        return files
++
++
++def process(files: dict[str, bytes], stem: str, expected_code: int) -> dict[str, Any]:
++    value = load(files[stem + ".process.json"])
++    fields(value, {
++        "schema_version": 1,
++        "returncode": expected_code,
++        "timed_out": False,
++        "spawn_error": None,
++    })
++    return value
++
++
++def metadata(value: Any) -> None:
++    fields(value, {
++        "run_id": RUN,
++        "head_sha": HEAD,
++        "head_branch": BRANCH,
++        "run_attempt": 1,
++        "path": WORKFLOW,
++        "status": "completed",
++        "conclusion": "success",
++        "artifact_id": ARTIFACT,
++        "artifact_name": ARTIFACT_NAME,
++        "size": ARTIFACT_SIZE,
++        "sha256": ARTIFACT_SHA256,
++    })
++    jobs = value.get("jobs")
++    need(type(jobs) is list and len(jobs) == 1, "one successful native job required")
++    job = jobs[0]
++    fields(job, {
++        "id": JOB,
++        "name": "generic-form-carry",
++        "run_id": RUN,
++        "head_sha": HEAD,
++        "status": "completed",
++        "conclusion": "success",
++    })
++    steps = job.get("steps")
++    need(type(steps) is list and [step.get("name") for step in steps] == list(EXPECTED_STEPS),
++         "native job step sequence differs")
++    need(all(step.get("status") == "completed" and step.get("conclusion") == "success" for step in steps),
++         "failed/skipped/pending native step")
++
++
++def _validate_case(files: dict[str, bytes], aggregate: dict[str, Any], name: str) -> dict[str, Any]:
++    prefix = "pr16-generic-form-carry/" + name
++    process(files, prefix, 0)
++    need(b"mGBA[" not in files[prefix + ".stderr"], "emulator warning in " + name)
++    row = load(files[prefix + ".stdout"])
++    expected_row = next(item["result"] for item in aggregate["results"] if item["name"] == name)
++    need(same(row, expected_row), "aggregate/raw case mismatch: " + name)
++    common = {
++        "schema_version": 1,
++        "status": "PASS",
++        "scope": "PR16_P03_GENERIC_FORM_CARRY_PHYSICAL",
++        "case": name,
++        "rom_sha256": CANDIDATE["sha256"],
++        "form_index": 43,
++        "eligible_ordinal": 6,
++        "menu_page": 1,
++        "menu_cursor": 1,
++        "probe_count": 7,
++        "pages_scanned": 2,
++        "menu_discovery": "input-only-native-menu-probe",
++        "base_species": 749,
++        "target_species": 900,
++        "final_species": 749,
++        "moves": [98, 235, 552, 33],
++        "pp": [11, 3, 4, 7],
++        "pp_bonuses": 229,
++        "representative_route_ids": [
++            "bca6fe62e4b8925d73c8238a",
++            "830d0124e9ca952d41d4a7f0",
++            "57e91d3ffeb04c9795a8b6a1",
++        ],
++        "generic_owner_rows_sha256": "66cd203079d2a6d8ef1eb0fca6b5156c7bccbc1c720786df4953311491b5592e",
++        "physical_host": [1, 36, 6, 3],
++        "host_index": 3,
++        "host_write_barriers": 7,
++        "rtc_flash_bytes_preserved": 131072,
++        "test_mode": False,
++        "party_byte_preserved_on_reload": True,
++        "four_move_slots_preserved": True,
++        "nonselected_preserved": True,
++        "starting_progress_individual_map_are_fixtures": True,
++        "native_acceptance_claimed_for_all_61_individual_rows": False,
++        "generic_owner_representative_accepted": True,
++        "release_ready": False,
++        "warnings_errors": 0,
++    }
++    fields(row, common)
++    roundtrip = name == CASES[0]
++    fields(row, {
++        "result": 0 if roundtrip else 20,
++        "rounds": 2 if roundtrip else 1,
++        "fresh_cores": 3 if roundtrip else 2,
++        "automatic_saves": 2 if roundtrip else 0,
++        "manual_saves": 2 if roundtrip else 1,
++        "selected_party_slot": 1 if roundtrip else 6,
++    })
++    traces = row.get("traces")
++    need(type(traces) is list and len(traces) == row["rounds"], "case trace count differs")
++    need([trace["species_after"] for trace in traces] == ([900, 749] if roundtrip else [749]),
++         "case species trace differs")
++    for trace in traces:
++        need([trace[key] for key in ("menu_page", "menu_cursor", "probe_count", "pages_scanned")] == [1, 1, 7, 2],
++             "native menu witness differs")
++        need(trace["interaction"] < trace["root"] < trace["service"] < trace["page"] < trace["party"],
++             "native input sequence differs")
++        need(trace["returned"] < trace["saved"] < trace["reloaded"], "save/Continue sequence differs")
++    return row
++
++
++def _validate_diagnostics(files: dict[str, bytes], aggregate: dict[str, Any]) -> dict[str, Any]:
++    report = load(files["pr16-generic-form-carry/entry-diagnostic.json"])
++    fields(report, {
++        "schema_version": 1,
++        "status": "PASS_DIAGNOSTIC_ONLY",
++        "scope": "PR16_P03_GENERIC_FORM_ENTRY_DIAGNOSTIC",
++        "candidate": CANDIDATE,
++        "failures": [],
++        "actual_new_processes": 14,
++        "successful_fresh_cores": 14,
++        "root_open_cases": [
++            "entry-hof-mirror-host-pre-once",
++            "entry-legacy-host-pre-once",
++            "entry-hof-legacy-host-pre-once",
++        ],
++        "acceptance_claimed": False,
++        "release_ready": False,
++    })
++    observations = report.get("observations")
++    need(type(observations) is list and len(observations) == 14, "diagnostic observation count differs")
++    need(aggregate["entry_diagnostic_processes"] == 14
++         and aggregate["entry_diagnostic_successful_fresh_cores"] == 14,
++         "aggregate diagnostic count differs")
++    for observation in observations:
++        name = observation["name"]
++        prefix = "pr16-generic-form-carry/" + name
++        process(files, prefix, 0)
++        need(b"mGBA[" not in files[prefix + ".stderr"], "diagnostic emulator warning")
++        need(same(load(files[prefix + ".stdout"]), observation["result"]),
++             "diagnostic aggregate/raw mismatch: " + name)
++        need(observation["result"]["acceptance_claimed"] is False, "diagnostic promoted to acceptance")
++    return report
++
++
++def _validate_sources(root: Path, files: dict[str, bytes]) -> dict[str, Any]:
++    bindings = load(files["pr16-generic-form-evidence/source-bindings.json"])
++    snapshot = archive(files["pr16-generic-form-evidence/sources.zip"])
++    need(set(bindings) == set(snapshot), "source snapshot/binding inventory differs")
++    for name, wanted in bindings.items():
++        need(identity(snapshot[name]) == wanted, "source snapshot digest differs: " + name)
++    for name in SOURCE_BINDINGS:
++        need(name in snapshot, "executed source missing from snapshot: " + name)
++        need(read(root, name) == snapshot[name], "executed source changed since native run: " + name)
++    return bindings
++
++
++def build(root: Path = ROOT) -> dict[str, Any]:
++    directory = Path(DIRECTORY) / str(RUN)
++    metadata(load(read(root, directory / "actions.json")))
++    raw = read(root, directory / "original.zip")
++    need(identity(raw) == {"size": ARTIFACT_SIZE, "sha256": ARTIFACT_SHA256}, "original artifact differs")
++    files = archive(raw)
++    need(files["pr16-generic-form-evidence/tested-head.txt"].decode().strip() == HEAD, "tested HEAD differs")
++    bindings = _validate_sources(root, files)
++    process(files, "pr16-generic-form-carry/compile", 0)
++    aggregate = load(files["pr16-generic-form-carry/result.json"])
++    fields(aggregate, {
++        "schema_version": 1,
++        "status": "PASS",
++        "scope": "PR16_P03_GENERIC_FORM_CARRY_PHYSICAL",
++        "candidate": CANDIDATE,
++        "failures": [],
++        "diagnostic_failures": [],
++        "guard_checks": list(GUARDS),
++        "actual_new_processes": 2,
++        "successful_fresh_cores": 5,
++        "generic_form_carry_physical_accepted": True,
++        "fixed_form_transition_physical_accepted": False,
++        "full_p03_acceptance": False,
++        "release_ready": False,
++        "old_runs_relabelled": 0,
++        "entry_diagnostic_status": "PASS_DIAGNOSTIC_ONLY",
++    })
++    need([item["name"] for item in aggregate["results"]] == list(CASES), "acceptance case inventory differs")
++    cases = [_validate_case(files, aggregate, name) for name in CASES]
++    diagnostics = _validate_diagnostics(files, aggregate)
++    for guard in GUARDS:
++        prefix = "pr16-generic-form-carry/guard-" + guard
++        process(files, prefix, 1)
++        need(files[prefix + ".stdout"] == b"", "guard stdout differs")
++        need(files[prefix + ".stderr"] == b"P03 archive: host write after observation barrier\n",
++             "guard failure differs: " + guard)
++    picture_names = [name for name, value in files.items() if name.endswith(".ppm")]
++    need(len(picture_names) == 44, "rendered witness count differs")
++    for name in picture_names:
++        picture = files[name]
++        need(len(picture) == 115215 and picture.startswith(b"P6\n240 160\n255\n"),
++             "rendered witness differs: " + name)
++    return {
++        "schema_version": 1,
++        "status": "PASS_GENERIC_FORM_CARRY_ON_PARENT_PENDING_FIXED_AND_P08_TRANSFER",
++        "condition_id": CONDITION,
++        "candidate": CANDIDATE,
++        "evidence": {
++            "run_id": RUN,
++            "tested_head": HEAD,
++            "workflow": WORKFLOW,
++            "job_id": JOB,
++            "artifact_id": ARTIFACT,
++            "artifact_name": ARTIFACT_NAME,
++            "artifact_path": str(directory / "original.zip"),
++            "artifact_size": ARTIFACT_SIZE,
++            "artifact_sha256": ARTIFACT_SHA256,
++            "source_snapshot_sha256": identity(files["pr16-generic-form-evidence/sources.zip"])["sha256"],
++            "source_binding_count": len(bindings),
++        },
++        "accepted_scope": {
++            "owner": "generic_form_change_service",
++            "representative_species": [749, 900],
++            "representative_route_ids": cases[0]["representative_route_ids"],
++            "generic_owner_route_count": 61,
++            "generic_owner_species_count": 10,
++            "generic_owner_rows_sha256": cases[0]["generic_owner_rows_sha256"],
++            "representative_native_acceptance": True,
++            "all_61_rows_individually_executed": False,
++            "menu_discovery": "input-only-native-menu-probe",
++            "menu_page": 1,
++            "menu_cursor": 1,
++            "probe_count": 7,
++            "pages_scanned": 2,
++            "four_move_slots_preserved": True,
++            "cancel_state_unchanged": True,
++            "normal_save_and_fresh_continue": True,
++        },
++        "native_execution": {
++            "acceptance_processes": 2,
++            "acceptance_fresh_cores": 5,
++            "diagnostic_processes": diagnostics["actual_new_processes"],
++            "diagnostic_fresh_cores": diagnostics["successful_fresh_cores"],
++            "diagnostics_are_acceptance": False,
++            "cases": [
++                {
++                    "name": row["case"],
++                    "result": row["result"],
++                    "rounds": row["rounds"],
++                    "fresh_cores": row["fresh_cores"],
++                    "automatic_saves": row["automatic_saves"],
++                    "manual_saves": row["manual_saves"],
++                }
++                for row in cases
++            ],
++            "write_guard_checks": list(GUARDS),
++            "rendered_witnesses": len(picture_names),
++        },
++        "generic_form_carry_physical_accepted": True,
++        "fixed_form_transition_physical_accepted": False,
++        "full_p03_acceptance": False,
++        "successor_transfer_complete": False,
++        "clean_rom_regeneration_verified": False,
++        "release_ready": False,
++        "active_baseline_changed": False,
++        "old_runs_relabelled": 0,
++        "emulator_runs_by_this_verifier": 0,
++    }
++
++
++def fetch(root: Path = ROOT) -> None:
++    def api(path: str) -> bytes:
++        return subprocess.check_output(["gh", "api", "repos/" + REPO + "/" + path])
++
++    run = load(api(f"actions/runs/{RUN}"))
++    jobs_document = load(api(f"actions/runs/{RUN}/jobs?per_page=100"))
++    artifact = load(api(f"actions/artifacts/{ARTIFACT}"))
++    fields(artifact["workflow_run"], {"id": RUN, "head_sha": HEAD})
++    need(artifact["digest"] == "sha256:" + ARTIFACT_SHA256, "artifact API digest differs")
++    need(jobs_document["total_count"] == len(jobs_document["jobs"]) == 1, "job listing differs")
++    job = jobs_document["jobs"][0]
++    actions = {
++        "artifact_id": artifact["id"],
++        "artifact_name": artifact["name"],
++        "conclusion": run["conclusion"],
++        "head_branch": run["head_branch"],
++        "head_sha": run["head_sha"],
++        "jobs": [{
++            "conclusion": job["conclusion"],
++            "head_sha": job["head_sha"],
++            "id": job["id"],
++            "name": job["name"],
++            "run_id": job["run_id"],
++            "status": job["status"],
++            "steps": [
++                {key: step[key] for key in ("name", "number", "status", "conclusion")}
++                for step in job["steps"]
++            ],
++        }],
++        "path": run["path"],
++        "run_attempt": run["run_attempt"],
++        "run_id": run["id"],
++        "sha256": ARTIFACT_SHA256,
++        "size": artifact["size_in_bytes"],
++        "status": run["status"],
++    }
++    metadata(actions)
++    raw = api(f"actions/artifacts/{ARTIFACT}/zip")
++    need(identity(raw) == {"size": ARTIFACT_SIZE, "sha256": ARTIFACT_SHA256}, "downloaded artifact differs")
++    archive(raw)
++    directory = root / DIRECTORY / str(RUN)
++    directory.mkdir(parents=True, exist_ok=True)
++    for name, value in (("original.zip", raw), ("actions.json", stable(actions))):
++        target = directory / name
++        if target.exists():
++            need(target.read_bytes() == value, "refuse original overwrite: " + str(target))
++        else:
++            target.write_bytes(value)
++
++
++def main(argv: list[str] | None = None) -> int:
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument("--fetch", action="store_true")
++    parser.add_argument("--write", action="store_true")
++    args = parser.parse_args(argv)
++    try:
++        if args.fetch:
++            fetch()
++        value = build()
++        path = ROOT / RECEIPT
++        if args.write:
++            if path.exists():
++                need(same(load(path.read_bytes()), value), "refuse receipt replacement")
++            else:
++                path.write_bytes(stable(value))
++        else:
++            need(same(load(path.read_bytes()), value), "stored generic FORM receipt differs")
++        print(json.dumps({
++            "status": "PASS",
++            "condition_id": CONDITION,
++            "candidate_sha256": CANDIDATE["sha256"],
++            "original_run_id": RUN,
++            "new_emulator_runs": 0,
++            "full_p03_acceptance": False,
++            "release_ready": False,
++        }, ensure_ascii=False))
++        return 0
++    except (CheckpointError, KeyError, TypeError, OSError, json.JSONDecodeError,
++            zipfile.BadZipFile, subprocess.CalledProcessError) as exc:
++        print(str(exc), file=sys.stderr)
++        return 1
++
++
++if __name__ == "__main__":
++    raise SystemExit(main())
+diff --git a/scripts/pr16_p03_p07_route_coverage.py b/scripts/pr16_p03_p07_route_coverage.py
+index b0b7220ac297b6236c16b06bb99be65f88375cf9..e90af0c6f61ba4a8d09287c4a745541934cb0b65 100755
+--- a/scripts/pr16_p03_p07_route_coverage.py
++++ b/scripts/pr16_p03_p07_route_coverage.py
+@@ -19,10 +19,19 @@
+ from typing import Any, Iterable
+ 
+ SCHEMA = "pr16_p03_p07_route_coverage.v1"
+-P03_GAPS = [
+-    "P03_GENERIC_FORM_CHANGE_CARRY_PHYSICAL",
+-    "P03_FIXED_FORM_TRANSITION_PHYSICAL",
++P03_ACCEPTED = ["P03_GENERIC_FORM_CHANGE_CARRY_PHYSICAL"]
++P03_GAPS = ["P03_FIXED_FORM_TRANSITION_PHYSICAL"]
++GENERIC_RECEIPT = "content/modernization/pr16_generic_form_acceptance.json"
++GENERIC_RUN = 34675976411
++GENERIC_ARTIFACT = 10292791318
++GENERIC_ARTIFACT_SHA256 = "f5d41c58ae1be0303dd7157d08bcee77ecd5018cbbc11e4cc4d30b1a9635914b"
++GENERIC_HEAD = "92db3605070c65206696b03f8ab6bd596ae7d729"
++GENERIC_ROWS_SHA256 = "66cd203079d2a6d8ef1eb0fca6b5156c7bccbc1c720786df4953311491b5592e"
++GENERIC_ROUTE_IDS = [
++    "bca6fe62e4b8925d73c8238a",
++    "830d0124e9ca952d41d4a7f0",
++    "57e91d3ffeb04c9795a8b6a1",
+ ]
+ P07_PARENT = "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e"
+ P08_SUCCESSOR = "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267"
+@@ -67,9 +76,12 @@
+     p03 = manifest["p03"]
+     _require(p03["condition_id"] == "EVOLUTION_FORM_OTHER_EGG", "wrong P03 condition id")
+     _require(p03["coverage_inventory_complete"] is True, "P03 inventory must be finite")
+-    _require(p03["physical_acceptance_complete"] is False, "P03 must stay open until two physical gaps pass")
++    _require(p03["physical_acceptance_complete"] is False, "P03 must stay open until fixed-form acceptance passes")
+     _require(p03["complete"] is False, "P03 must not be marked complete")
+-    _require(p03["remaining_physical_gap_ids"] == P03_GAPS, "P03 gap list must be exactly the two non-Rotom form owners")
++    _require(p03["accepted_physical_gap_ids"] == P03_ACCEPTED,
++             "generic FORM must be the only closed former P03 gap")
++    _require(p03["remaining_physical_gap_ids"] == P03_GAPS,
++             "fixed transition must be the only remaining P03 gap")
+ 
+     form = p03["form_inventory"]
+     _require(form["generic_carry_routes"] + form["fixed_transition_routes"] + form["rotom_routes"] == form["routes"] == 70,
+@@ -94,7 +106,7 @@
+ 
+     physical_gap_routes = [route for route in routes.values() if route["coverage"] == "PHYSICAL_GAP"]
+     _require([route["gap_id"] for route in physical_gap_routes] == P03_GAPS,
+-             "only the generic and fixed non-Rotom form owners may remain as P03 physical gaps")
++             "only the fixed non-Rotom transition owner may remain as a P03 physical gap")
+     for route in routes.values():
+         if route["coverage"] != "PHYSICAL_GAP":
+             _require("gap_id" not in route, f"accepted route unexpectedly has a gap id: {route['id']}")
+@@ -116,12 +128,45 @@
+     _require(machine["static_route_counts"]["machine"] + machine["static_route_counts"]["tutor"] == 26648,
+              "machine/tutor route total changed")
+ 
+-    generic = routes["GENERIC_FORM_CHANGE_CARRY"]["form_inventory"]
++    generic_route = routes["GENERIC_FORM_CHANGE_CARRY"]
++    generic = generic_route["form_inventory"]
+     fixed = routes["FIXED_FORM_TRANSITION"]["form_inventory"]
+     rotom = routes["ROTOM_BESPOKE_FORM_TRANSITION"]["form_inventory"]
+     _require(generic["routes"] == 61 and generic["species"] == 10, "generic form inventory changed")
+     _require(sum(generic["methods"].values()) == 61, "generic form method counts must sum to 61")
+     _require(len(set(generic["species_keys"])) == 10, "generic form species list must contain 10 unique species")
++    _require(generic_route["coverage"] == "ACCEPTED_NATIVE_REPRESENTATIVE",
++             "generic form owner must retain scoped native representative acceptance")
++    _require("gap_id" not in generic_route, "accepted generic form owner must not retain a gap id")
++    generic_evidence = generic_route["evidence"]
++    _require(type(generic_evidence) is list and len(generic_evidence) == 1,
++             "generic form owner must bind exactly one acceptance original")
++    evidence = generic_evidence[0]
++    expected_generic_evidence = {
++        "path": GENERIC_RECEIPT,
++        "run_id": GENERIC_RUN,
++        "tested_head": GENERIC_HEAD,
++        "artifact_id": GENERIC_ARTIFACT,
++        "artifact_sha256": GENERIC_ARTIFACT_SHA256,
++        "candidate_sha256": P07_PARENT,
++        "native_processes": 2,
++        "fresh_cores": 5,
++        "cases": ["shaymin-four-slot-roundtrip", "shaymin-party-cancel"],
++        "menu_discovery": "input-only-native-menu-probe",
++        "menu_page": 1,
++        "menu_cursor": 1,
++        "probe_count": 7,
++        "pages_scanned": 2,
++        "representative_route_ids": GENERIC_ROUTE_IDS,
++        "owner_route_count": 61,
++        "owner_species_count": 10,
++        "owner_rows_sha256": GENERIC_ROWS_SHA256,
++        "representative_native_acceptance": True,
++        "all_rows_individually_executed": False,
++        "successor_transfer_complete": False,
++    }
++    _require(evidence == expected_generic_evidence, "generic form acceptance binding changed")
+     _require(fixed["routes"] == 4 and len(set(fixed["species_keys"])) == 4, "fixed transition inventory changed")
+     _require(rotom["routes"] == 5 and rotom["species"] == 5, "Rotom route inventory changed")
+@@ -163,8 +208,15 @@
+     _require(all(item["static_exact"] is True for item in unchanged), "every unchanged adopted family must remain statically exact")
+ 
+     projection = manifest["remaining_projection"]
+-    _require(projection["EVOLUTION_FORM_OTHER_EGG"]["remaining_physical_gap_ids"] == P03_GAPS,
++    p03_projection = projection["EVOLUTION_FORM_OTHER_EGG"]
++    _require(p03_projection["status"] == "PENDING_FIXED_FORM_ROUTE_ACCEPTANCE",
++             "P03 projection status must identify the one remaining owner")
++    _require(p03_projection["accepted_physical_gap_ids"] == P03_ACCEPTED,
++             "P03 accepted projection diverged from ledger")
++    _require(p03_projection["remaining_physical_gap_ids"] == P03_GAPS,
+              "P03 remaining projection diverged from ledger")
++    _require(p03_projection["generic_form_success_evidence"] == GENERIC_RECEIPT,
++             "P03 projection lost generic form acceptance receipt")
+     _require(projection["P07_REMAINING_ROUTE_ACCEPTANCE"]["remaining_physical_gap_ids"] == [],
+              "P07 remaining projection must have no route gaps")
+     _require(projection["P07_REMAINING_ROUTE_ACCEPTANCE"]["accepted_candidate_sha256"] == P07_PARENT,
+@@ -173,7 +225,9 @@
+     return {
+         "status": "PASS",
+         "schema": SCHEMA,
++        "p03_accepted_physical_gap_ids": list(P03_ACCEPTED),
+         "p03_remaining_physical_gap_ids": list(P03_GAPS),
++        "generic_form_success_evidence": GENERIC_RECEIPT,
+         "p07_remaining_physical_gap_ids": [],
+         "p07_parent_candidate_sha256": P07_PARENT,
+         "p08_successor_candidate_sha256": P08_SUCCESSOR,
+diff --git a/tests/test_pr16_generic_form_checkpoint.py b/tests/test_pr16_generic_form_checkpoint.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..cd26c25c1c3989e9a3e9ac5dca3ed02cb4db21f6
+--- /dev/null
++++ b/tests/test_pr16_generic_form_checkpoint.py
+@@ -0,0 +1,117 @@
++"""Fail-closed tests for the preserved generic FORM native acceptance original."""
++
++from __future__ import annotations
++
++from copy import deepcopy
++import importlib.util
++from pathlib import Path
++import tempfile
++import unittest
++
++ROOT = Path(__file__).resolve().parents[1]
++SCRIPT = ROOT / "scripts" / "pr16_generic_form_checkpoint.py"
++spec = importlib.util.spec_from_file_location("pr16_generic_form_checkpoint", SCRIPT)
++assert spec and spec.loader
++checkpoint = importlib.util.module_from_spec(spec)
++spec.loader.exec_module(checkpoint)
++
++
++class GenericFormCheckpointTests(unittest.TestCase):
++    @classmethod
++    def setUpClass(cls) -> None:
++        directory = ROOT / checkpoint.DIRECTORY / str(checkpoint.RUN)
++        cls.raw = (directory / "original.zip").read_bytes()
++        cls.files = checkpoint.archive(cls.raw)
++        cls.actions = checkpoint.load((directory / "actions.json").read_bytes())
++        cls.aggregate = checkpoint.load(
++            cls.files["pr16-generic-form-carry/result.json"]
++        )
++
++    def test_exact_original_builds_scoped_nonrelease_receipt(self) -> None:
++        value = checkpoint.build(ROOT)
++        self.assertTrue(value["generic_form_carry_physical_accepted"])
++        self.assertFalse(value["fixed_form_transition_physical_accepted"])
++        self.assertFalse(value["full_p03_acceptance"])
++        self.assertFalse(value["successor_transfer_complete"])
++        self.assertFalse(value["release_ready"])
++        self.assertEqual(value["native_execution"]["acceptance_processes"], 2)
++        self.assertEqual(value["native_execution"]["acceptance_fresh_cores"], 5)
++        self.assertEqual(value["native_execution"]["diagnostic_processes"], 14)
++        self.assertFalse(value["native_execution"]["diagnostics_are_acceptance"])
++        self.assertFalse(value["accepted_scope"]["all_61_rows_individually_executed"])
++        self.assertEqual(value["emulator_runs_by_this_verifier"], 0)
++
++    def test_stored_receipt_is_exact_rebuild(self) -> None:
++        stored = checkpoint.load((ROOT / checkpoint.RECEIPT).read_bytes())
++        self.assertTrue(checkpoint.same(stored, checkpoint.build(ROOT)))
++
++    def test_metadata_rejects_promoted_or_wrong_original(self) -> None:
++        checkpoint.metadata(self.actions)
++        for key, value in (
++            ("head_sha", "0" * 40),
++            ("run_attempt", 2),
++            ("conclusion", "failure"),
++            ("artifact_id", 0),
++            ("sha256", "0" * 64),
++        ):
++            with self.subTest(key=key):
++                altered = deepcopy(self.actions)
++                altered[key] = value
++                with self.assertRaises(checkpoint.CheckpointError):
++                    checkpoint.metadata(altered)
++
++    def test_raw_case_cannot_be_promoted_or_detached_from_aggregate(self) -> None:
++        checkpoint._validate_case(self.files, self.aggregate, checkpoint.CASES[0])
++        files = dict(self.files)
++        path = "pr16-generic-form-carry/shaymin-four-slot-roundtrip.stdout"
++        row = checkpoint.load(files[path])
++        row["native_acceptance_claimed_for_all_61_individual_rows"] = True
++        files[path] = checkpoint.stable(row)
++        with self.assertRaises(checkpoint.CheckpointError):
++            checkpoint._validate_case(files, self.aggregate, checkpoint.CASES[0])
++
++    def test_guard_must_be_real_nonzero_host_write_failure(self) -> None:
++        stem = "pr16-generic-form-carry/guard-bus8"
++        checkpoint.process(self.files, stem, 1)
++        self.assertEqual(
++            self.files[stem + ".stderr"],
++            b"P03 archive: host write after observation barrier\n",
++        )
++        files = dict(self.files)
++        files[stem + ".stderr"] = b"PASS\n"
++        self.assertNotEqual(
++            files[stem + ".stderr"],
++            b"P03 archive: host write after observation barrier\n",
++        )
++
++    def test_executed_source_binding_is_not_transferable_after_change(self) -> None:
++        with tempfile.TemporaryDirectory() as temp:
++            root = Path(temp)
++            snapshot = checkpoint.archive(
++                self.files["pr16-generic-form-evidence/sources.zip"]
++            )
++            for name in checkpoint.SOURCE_BINDINGS:
++                path = root / name
++                path.parent.mkdir(parents=True, exist_ok=True)
++                path.write_bytes(snapshot[name])
++            checkpoint._validate_sources(root, self.files)
++            changed = root / checkpoint.SOURCE_BINDINGS[0]
++            changed.write_bytes(changed.read_bytes() + b"\n")
++            with self.assertRaises(checkpoint.CheckpointError):
++                checkpoint._validate_sources(root, self.files)
++
++    def test_diagnostics_remain_diagnostic_only(self) -> None:
++        report = checkpoint._validate_diagnostics(self.files, self.aggregate)
++        self.assertEqual(report["status"], "PASS_DIAGNOSTIC_ONLY")
++        self.assertFalse(report["acceptance_claimed"])
++        self.assertEqual(report["successful_fresh_cores"], 14)
++
++
++if __name__ == "__main__":
++    unittest.main()
+diff --git a/tests/test_pr16_p03_p07_route_coverage.py b/tests/test_pr16_p03_p07_route_coverage.py
+index c64792635753172485dd7774005e6904cab9c85e..5f91b8f639b08a389df68384c528b5cbc06d0738 100644
+--- a/tests/test_pr16_p03_p07_route_coverage.py
++++ b/tests/test_pr16_p03_p07_route_coverage.py
+@@ -25,10 +25,16 @@
+         self.assertEqual(receipt["status"], "PASS")
+         self.assertEqual(
+-            receipt["p03_remaining_physical_gap_ids"],
+-            [
+-                "P03_GENERIC_FORM_CHANGE_CARRY_PHYSICAL",
+-                "P03_FIXED_FORM_TRANSITION_PHYSICAL",
+-            ],
++            receipt["p03_accepted_physical_gap_ids"],
++            ["P03_GENERIC_FORM_CHANGE_CARRY_PHYSICAL"],
++        )
++        self.assertEqual(
++            receipt["p03_remaining_physical_gap_ids"],
++            ["P03_FIXED_FORM_TRANSITION_PHYSICAL"],
++        )
++        self.assertEqual(
++            receipt["generic_form_success_evidence"],
++            "content/modernization/pr16_generic_form_acceptance.json",
+         )
+         self.assertEqual(receipt["p07_remaining_physical_gap_ids"], [])
+ 
+@@ -51,6 +57,37 @@
+         self.assertEqual(ordinary["evidence"][0]["case_count"], 8)
+ 
++
++    def test_generic_form_is_closed_only_as_native_representative(self) -> None:
++        generic = next(
++            route
++            for route in self.manifest["p03"]["route_groups"]
++            if route["id"] == "GENERIC_FORM_CHANGE_CARRY"
++        )
++        self.assertEqual(generic["coverage"], "ACCEPTED_NATIVE_REPRESENTATIVE")
++        self.assertNotIn("gap_id", generic)
++        evidence = generic["evidence"][0]
++        self.assertEqual(evidence["run_id"], 34675976411)
++        self.assertEqual(evidence["artifact_id"], 10292791318)
++        self.assertEqual(evidence["native_processes"], 2)
++        self.assertEqual(evidence["fresh_cores"], 5)
++        self.assertTrue(evidence["representative_native_acceptance"])
++        self.assertFalse(evidence["all_rows_individually_executed"])
++        self.assertFalse(evidence["successor_transfer_complete"])
++
++    def test_fixed_form_is_the_only_remaining_p03_gap(self) -> None:
++        self.assertEqual(
++            self.manifest["p03"]["remaining_physical_gap_ids"],
++            ["P03_FIXED_FORM_TRANSITION_PHYSICAL"],
++        )
++        gaps = [
++            route["gap_id"]
++            for route in self.manifest["p03"]["route_groups"]
++            if route["coverage"] == "PHYSICAL_GAP"
++        ]
++        self.assertEqual(gaps, ["P03_FIXED_FORM_TRANSITION_PHYSICAL"])
++
+     def test_p07_changed_surface_has_no_gap(self) -> None:
+         p07 = self.manifest["p07"]
+         self.assertEqual(p07["remaining_physical_gap_ids"], [])

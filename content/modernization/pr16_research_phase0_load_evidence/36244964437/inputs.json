@@ -1,0 +1,111 @@
+{
+  "arm_compiles": 0,
+  "arm_links": 0,
+  "artifacts": [
+    {
+      "digest": "sha256:a6aeccb72fa15411d956b418ca5f030aa5020a466303a25e0f8814ba2eeb5c4d",
+      "id": 10898620034,
+      "name": "pr16-special-wild-gameplay-runtime",
+      "size_in_bytes": 102586759,
+      "workflow_run": {
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_repository_id": 1358127462,
+        "head_sha": "8660fe70f4354333cf7647186663cacafa04451b",
+        "id": 36218655601,
+        "repository_id": 1358127462
+      }
+    },
+    {
+      "digest": "sha256:7d3de78d4e852583eb35551076021630c1343aa623e91fe1529d73f4cf1471ed",
+      "id": 10898510128,
+      "name": "pr16-special-wild-gameplay-data",
+      "size_in_bytes": 17366330,
+      "workflow_run": {
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_repository_id": 1358127462,
+        "head_sha": "8660fe70f4354333cf7647186663cacafa04451b",
+        "id": 36218655601,
+        "repository_id": 1358127462
+      }
+    }
+  ],
+  "candidate": {
+    "sha256": "5d1fc9c47225ae8c0a369514b899a062af3699fa3c9a2f617e94ffd5f7dcc1ab",
+    "size": 33554432
+  },
+  "generated_source": {
+    "sha256": "d514a6a6354dae68676f8184287c4b9e1be0e243764c8bec211dcffb2a4c47cf",
+    "size": 40648
+  },
+  "rom_changes": 0,
+  "seed": {
+    "sha256": "f6bfdb107196ca22b012c1d12ee4bcdc8f5add309bbd3538447cd6e39c449bcb",
+    "size": 131072
+  },
+  "source_bindings": {
+    ".github/workflows/pr16-research-phase0-load-20260926.yml": {
+      "sha256": "a518e3bc52efdb49168b2a9a30c80343dba85be5fe8aebfbb902fd4adf719cb9",
+      "size": 3239
+    },
+    "content/modernization/pr16_research_retry_recipe.json": {
+      "sha256": "b5416ee17f702e4c220b9db34174fed571add9920bb58e12e6b691c6c0d60f5f",
+      "size": 3444
+    },
+    "content/modernization/pr16_research_v1_corrupt_load_recipe.json": {
+      "sha256": "763c64de7023dfa4b04bdda8f35bd0a41e71e757ac8475f648cb82cd331c79b4",
+      "size": 3306
+    },
+    "overlays/research_economy_v1/research_economy_v1.c": {
+      "sha256": "08375e4c9c65f698358b92c4eb1c8439fe5e70e7d7ddd9d17854edce4b58abda",
+      "size": 63636
+    },
+    "scripts/pr16_research_phase0_load.py": {
+      "sha256": "29d9e9de9e23e4b86d4a89059d77986875c887fac5ac77b34b1231d7b7d57e63",
+      "size": 10182
+    },
+    "scripts/pr16_research_phase0_load_actions.py": {
+      "sha256": "952040d2b95fd91cf39e81f39b0af973511ef31702512a4191f6e35d8a80af78",
+      "size": 18138
+    },
+    "scripts/pr16_research_phase0_load_preflight.py": {
+      "sha256": "9ae52ce34a1a1a69bca22e255ea5a38f52381057e57a93e5b07890d1b328e269",
+      "size": 2741
+    },
+    "scripts/pr16_research_v1_corrupt_load.py": {
+      "sha256": "8c8e041170638626a2d261a39596e954ac7b58dc2afc380ae61814c0a8f5f030",
+      "size": 5491
+    },
+    "scripts/pr16_research_v1_load_followup.py": {
+      "sha256": "08f4587aa3598f2be8bc2a1d16e4f44b247029a29b943841995a962b0dc735ca",
+      "size": 3391
+    },
+    "tests/test_pr16_research_phase0_load.py": {
+      "sha256": "edea5de718a5475f869810d22461b79dd15b906df6619781cb29bd08e4e37d5a",
+      "size": 13592
+    },
+    "tests/test_pr16_research_v1_corrupt_load.py": {
+      "sha256": "0341b313aec8755390a7c6d79482faee471c345c66ac4e333bde1b7c5ce78b44",
+      "size": 5810
+    },
+    "tools/mgba_ai_fixture_runner.c": {
+      "sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f",
+      "size": 36272
+    },
+    "tools/mgba_battle_core_smoke.c": {
+      "sha256": "ed9875695ca60c61960685ac2f8e810a183c8eedd703e56545d67bde3df5cf24",
+      "size": 94688
+    },
+    "tools/mgba_pr16_research_phase0_load.c": {
+      "sha256": "17bf7f80906585fb13484af96c35711639dd0b8f7ddecea12fc6c19073222ce6",
+      "size": 9319
+    },
+    "tools/mgba_pr16_research_v1_load.c": {
+      "sha256": "b227a92258a59d1f4261b8872b80d3f27f359bc2a42ca391c76a11fcddcec0d2",
+      "size": 7553
+    },
+    "tools/mgba_qol_production_smoke.c": {
+      "sha256": "2c4b9f065f4dce84e48f2be9afe2e2f9f666865088770ee8b068a908a0527b85",
+      "size": 149046
+    }
+  }
+}

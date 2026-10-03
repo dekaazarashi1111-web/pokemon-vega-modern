@@ -1,0 +1,82 @@
+{
+  "schema_version": 2,
+  "config_fingerprint": "8e1577d1b96b6c167ea284c21e0698271a658b6331221ee4d24eb4f333d692cf",
+  "inputs": {
+    "clean_rom": {
+      "path": "inputs/private/FireRed_JPN_Rev0_clean.gba",
+      "configured_path": "inputs/private/FireRed_JPN_Rev0_clean.gba",
+      "size": 16777216,
+      "crc32": "3b2056e9",
+      "md5": "47596db5a16556c60027e7bf372ec917",
+      "sha1": "04139887b6cd8f53269aca098295b006ddba6cfe",
+      "sha256": "1e4af44b0c75cc8649bfb8649dc4ae5850bf5358bd6b9cd0bf779c99f9db1486",
+      "read_only": true
+    },
+    "vega_ips": {
+      "path": "inputs/private/Vega_20180223.ips",
+      "configured_path": "inputs/private/Vega_20180223.ips",
+      "size": 3720110,
+      "crc32": "d9730345",
+      "md5": "4ecf24d13cd700376d2a61dad0aa4172",
+      "sha1": "db9bde4f4d58717b546db26d81919ba5b3c7e1fd",
+      "sha256": "94955c5830888c69a7dee3696abda3b88f69184af67f28a9fb77a8e8abd77f5b",
+      "read_only": true
+    },
+    "factory_ups": {
+      "path": "inputs/private/factory_test_20260524.ups",
+      "configured_path": "inputs/private/factory_test_20260524.ups",
+      "size": 16012506,
+      "crc32": "2144df1c",
+      "md5": "d19c073477c2298d16c763230a7e1111",
+      "sha1": "d7fff33f070775d24b7622f3b99b3abb515b25e9",
+      "sha256": "46ef4b008b7c68a94f919d037a0bba31853b32af3f50895e722e39deea336358",
+      "read_only": true
+    },
+    "audit_zip": {
+      "path": "inputs/reference/vega_cfru_integration_audit.zip",
+      "configured_path": "inputs/reference/vega_cfru_integration_audit.zip",
+      "size": 55244,
+      "crc32": "f229f60e",
+      "md5": "55a093b0fca1f5e3667bd74fbd82b458",
+      "sha1": "bf55081c8640656d9307ee540a887d50586e61bc",
+      "sha256": "5b009797b037c597aac8371140d21d3731bc5329d8addd2356b9756a5e679459",
+      "read_only": true
+    }
+  },
+  "sources": [
+    {
+      "name": "cfru",
+      "path": "vendor/upstream/CFRU-JP",
+      "configured_commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "repository": "https://github.com/kapibarasan000/CFRU-JP.git",
+      "provenance": "git",
+      "actual_commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "resolved_commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "configured_commit_verified": true
+    },
+    {
+      "name": "dpe",
+      "path": "vendor/upstream/DPE-JP",
+      "configured_commit": "10ff98c85ebf37ab5cb39a41b6e9b50f06efb19e",
+      "repository": "https://github.com/kapibarasan000/DPE-JP.git",
+      "provenance": "git",
+      "actual_commit": "10ff98c85ebf37ab5cb39a41b6e9b50f06efb19e",
+      "resolved_commit": "10ff98c85ebf37ab5cb39a41b6e9b50f06efb19e",
+      "configured_commit_verified": true
+    },
+    {
+      "name": "pokefirered",
+      "path": "vendor/upstream/pokefirered",
+      "configured_commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "repository": "https://github.com/pret/pokefirered.git",
+      "provenance": "git",
+      "actual_commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "resolved_commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "configured_commit_verified": true
+    }
+  ],
+  "tools": {
+    "python": "3.12.3",
+    "git": "git version 2.43.0"
+  }
+}

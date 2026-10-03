@@ -1,0 +1,5191 @@
+{
+  "schema_version": 1,
+  "task": "PR-P08-7-RING-FONT-BINDINGS",
+  "source_head": "1aaeb8e4eda62d940beeb6a06d65542b68b1baab",
+  "run_id": 35230494553,
+  "run_status_at_record": "in_progress",
+  "analysis": {
+    "classification": "SAVED_FONT_SETTER_CALLER_TABLE_AND_RENDER_LOOKUP_NOT_NATIVE_ACCEPTANCE",
+    "candidate": {
+      "size": 33554432,
+      "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b",
+      "crc32": "3EB17B36"
+    },
+    "setter_entry": 134229021,
+    "setter_nodes": [
+      {
+        "address": 134229020,
+        "size": 2,
+        "hex": "0149",
+        "kind": "ordinary",
+        "literal_address": 134229028,
+        "literal_value": 50347472,
+        "memory_write": false
+      },
+      {
+        "address": 134229022,
+        "size": 2,
+        "hex": "0860",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134229024,
+        "size": 2,
+        "hex": "7047",
+        "kind": "return",
+        "register": 14,
+        "memory_write": false
+      }
+    ],
+    "new_nodes": [
+      {
+        "address": 134229020,
+        "size": 2,
+        "hex": "0149",
+        "kind": "ordinary",
+        "literal_address": 134229028,
+        "literal_value": 50347472,
+        "memory_write": false
+      },
+      {
+        "address": 134229022,
+        "size": 2,
+        "hex": "0860",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134229024,
+        "size": 2,
+        "hex": "7047",
+        "kind": "return",
+        "register": 14,
+        "memory_write": false
+      }
+    ],
+    "saved_node_count": 3958,
+    "new_node_count": 3,
+    "new_windows": [
+      {
+        "start": 135236124,
+        "end": 135236152,
+        "hex": "e0225af05ffb01bc0047000000b502480af7f6f801bc0047e8303e08",
+        "identity": {
+          "size": 28,
+          "sha256": "bc2b76252d3b0711eb751b434c639fe4e54b9506be44abe147a3ac314e198916"
+        }
+      },
+      {
+        "start": 138293480,
+        "end": 138293672,
+        "hex": "49530008080c0002203100007d530008080c000220310000b55300080a0c000220310000ed5300080a0c010220310000255400080a0c0000203100005d5400080a0c0000203100004d2915080810000220310000000000000808000010f20000080c0810060c060c060c060c081000000001000100020001000100020002000280008000000100010002000200040004ff2fdb7b934b0e3ba535ab3ef836322e8d25d9635673ef666b520846de7fa414ff2fde7f893d5a6b0000000000000000",
+        "identity": {
+          "size": 192,
+          "sha256": "6e8b3370f070a2b7a5277305207881bfbf71618c6361dbdbf9c254b126b793ae"
+        }
+      }
+    ],
+    "new_window_bytes": 220,
+    "saved_bytes_reused": 0,
+    "references": [
+      {
+        "site": 135236140,
+        "target": 134229020,
+        "kind": "thumb_bl_candidate",
+        "encoded": "0af7f6f8",
+        "runtime_reachable": false,
+        "code_data_boundary_proven": false
+      }
+    ],
+    "caller_prefixes": [
+      {
+        "site": 135236140,
+        "supplier": {
+          "address": 135236138,
+          "size": 2,
+          "hex": "0248",
+          "kind": "ordinary",
+          "literal_address": 135236148,
+          "literal_value": 138293480,
+          "memory_write": false
+        },
+        "call": {
+          "address": 135236140,
+          "size": 4,
+          "hex": "0af7f6f8",
+          "kind": "call",
+          "target": 134229020,
+          "memory_write": false
+        },
+        "value": 138293480,
+        "binding": "IMMEDIATE_LDR_R0_BL_DATAFLOW_CONDITIONAL_ON_ENTRY",
+        "runtime_reachable": false
+      }
+    ],
+    "unresolved_callers": [],
+    "tables": [
+      {
+        "address": 138293480,
+        "size": 192,
+        "hex": "49530008080c0002203100007d530008080c000220310000b55300080a0c000220310000ed5300080a0c010220310000255400080a0c0000203100005d5400080a0c0000203100004d2915080810000220310000000000000808000010f20000080c0810060c060c060c060c081000000001000100020001000100020002000280008000000100010002000200040004ff2fdb7b934b0e3ba535ab3ef836322e8d25d9635673ef666b520846de7fa414ff2fde7f893d5a6b0000000000000000",
+        "identity": {
+          "size": 192,
+          "sha256": "6e8b3370f070a2b7a5277305207881bfbf71618c6361dbdbf9c254b126b793ae"
+        },
+        "supplier_callsites": [
+          135236140
+        ],
+        "sampled_records": 16,
+        "record_stride": 12,
+        "actual_table_length_proven": false,
+        "initializer_runtime_observed": false
+      }
+    ],
+    "groups": {
+      "setter": [
+        {
+          "case": "setter-0",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "ba3a3c175c96598b2dbeb87ae6b30fc5064c7511016b2bd77377d3879265471a",
+          "final_object_sha256": "2c406504e88ff074fd47129784ae445ba6ec11328595775634b45021bca44d37",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-1",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "2f3b8b93fdf52d0038e6ce4081dcff7a3cfef52db9441c89b15565d98f482634",
+          "final_object_sha256": "56a24b5f34a01ca5e98e216b9bcb3f495b00d3cb129ee50d06aa7205ee10d0e6",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-2",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "789f22e35b2b84161827249b800e7bd0ad66461e4fa3a2c57a9d1a68b0705ef5",
+          "final_object_sha256": "3d1038bc9bc6d0c64096cc3a7d8b15ac3a58d38ae244eb0d612453759d8a4d1f",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-4",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "5e00e22323754412fedf53ed83de890381a1fbde091a25af99cd89e10a1649bf",
+          "final_object_sha256": "acb83019d23475f67b735c1b6776ecf79f3a0dfdbb703ffd3d48135001575a63",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-8",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "ba55707f19e012b3b3dc835e0152225564855d0c5af21ef447f25ed9b93cff03",
+          "final_object_sha256": "99b7ede66ef979bf0c4b3f6252caa87ab18a77bb90b0109f50bd7af59d5dd29d",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-16",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "329c15a0cca4af474da0bf126b110da136dbf463f017ff15f912d016ff75e743",
+          "final_object_sha256": "617f3b12f7f1fb255cf0eba621d0f744cfd52228cdb9b294c593d7b5d416fc5f",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-32",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "37353c1b6e9062fed86c0d14099b146c351fb368d4d20b70173380d6a3dd62e3",
+          "final_object_sha256": "aa5e9a3d5687a3da01442cb6ccd1aafea9d5283c600b76264d368c4410d7b0d4",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-64",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "3fecba2e6cf393ae5a5ed2dc8d2c7d22475ae1d453895267ef8883ac13dd8413",
+          "final_object_sha256": "781b4d66ac2c069518490558ed8075dc86d83937b6596fd77547d21c857f146c",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-128",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "78ddc86590ed75c73402ff3af5944007f7625682f3780f451deba9a0083c450a",
+          "final_object_sha256": "4b97195a0ddc9189ff23209829e3b42c72b6806df64305fa6584b7578ea9b4a8",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-256",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "5b2bc648e2be3fb64c3ea6ded933153c93a2f5707a7bdf467f7cd5e54c0215e9",
+          "final_object_sha256": "511c14603b69c5fcfe4edfeebb6780668a9f2250de83470202f939c6915e287a",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-512",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "4a2f7e10aa7c85067d922494a992600012149c27972ca296194b1de91966fe22",
+          "final_object_sha256": "684fcc7288eab1f14e30aa0ecb78151d5221a8c71ded43c5d82a1824fe636e95",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-1024",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "e771f9ffe39114688060c7b49fa49ced9d2e72eb48677e3fcba7b7697aeedc70",
+          "final_object_sha256": "c324b13a63953c188281fad3d7ff7a91d2d3508205b2a9d1a78e1bd2459e61b0",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-2048",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "be6c27cf1b057765fa8a8cad892da69a5b07e79c658bdbd3d32010a17c3e69f3",
+          "final_object_sha256": "b0fe7584810c79cec5624c42fa8a45983cfa30a0866548d9bc8fa8a22e04ffae",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-4096",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "4f63d625cf3774e367c69a4831ca6a3ebdbd7a188d246a9aa21927a8a96240c1",
+          "final_object_sha256": "8744c637688da74771745216e09a335a48204831718b9fde676bdf27a2596953",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-8192",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "2de417a443f7653b27f89c621dba917cf74ce6d7f56e9a6e9e6b3c611fab6f2c",
+          "final_object_sha256": "00b001eeee715899d13e4eb7d464cd8350ebf108b99ff41286b3a229131d4890",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-16384",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "9b61d76eb1c563d633c6535162e5c142c9dd4e8b492bde7e2e6e4290c10dda53",
+          "final_object_sha256": "e1954622d64ae5c01f3b3adc99099327f8a9584efab8f2e7163b2bba0a041baf",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-32768",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "d69230cc6c700e04634c94c0d1843fe9fef59b8937a9609cef86ea2a3d9901b1",
+          "final_object_sha256": "fe9f03183641f11134598bbeee43e939314b0e2719cdb917cae6402f216d567b",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-65536",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "00edfe71fd4cc9ab7faaf1834957e0477f8b8648d91656e4ef9afd33c5081acc",
+          "final_object_sha256": "3c1a2733a11b867c49f6a9468e0013d58d5e72cf0fd0121390e941e97e586b3d",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-131072",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "ef49696e00ac51410e1e22da1578b0469c73611df416753f6fc068069d789835",
+          "final_object_sha256": "ce1f4aacf7585c855d38aaa57189adcdc0b23b52b4bb756266dd5a17e0079b7d",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-262144",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "bbc30aa5869d00a09fbe5a7a48825a4c7d938a7fec0458e965daa9ac4ccd3369",
+          "final_object_sha256": "e33c04be06f8d0c1c62195881ae50f0c11c846f39de18ab8413d87db8a1e06c1",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-524288",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "60b2d7cd5ef7118be1d81066c767a41797e408ef04deda1742f41de27ad10614",
+          "final_object_sha256": "68fd656661d4f2f4582b61d64994b9a806207ee1fb6e8248b909d186bffc5a0b",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-1048576",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "c9eaba46d3b2ddce4a8763405ed4d2581393173736b5965bf0664bf5f2002fa2",
+          "final_object_sha256": "834c596702feb6d88136b0e759ab7db4e02b75a7eca3e043d50a2a8e55f487d0",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-2097152",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "687114d11e3187d127d37fbe5beb9d6a22f239609fbea1a2af81fb3610ffdbfb",
+          "final_object_sha256": "b9c8d9eeb21dd407cc3d0378bd433b3b95fb644e5e175ee8418c3eb1eb017371",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-4194304",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "22fe4b5110171808843027baf44071eafce71c939bec8a2740388a736e0766cb",
+          "final_object_sha256": "327978304cb776f332d116162be83a28fb3b0125c2e125fd1064a689addc3349",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-8388608",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "f19fc84145a07cb4c50429f20cf620fd319d9a2529c2e2b75f86f4aee9c64f3f",
+          "final_object_sha256": "895429a7665cc895a23ec305384fbfa5ed2e6dc1846f8cc4548f31b057e99f02",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-16777216",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "284e8efb1532f72766131188b118a9889d2f4e56ad997f63e3806fa27f291ec8",
+          "final_object_sha256": "f8db375c8b38fc928f0bcbbfb7c64188a94ae285ceaa534b0949c427620064fa",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-33554432",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "114e1db78a4d99c2fa3d52b0e67534a8c3750a6532e39071c3427ce23bdc4d31",
+          "final_object_sha256": "4255a97020375f6f16850a33161edb5ab9573dc6828b104e320b389f7761f6a2",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-33562624",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "b26a960bd672755b5d50580eda45ee1cda4382bc026eeaaf580c7c65f777b21d",
+          "final_object_sha256": "38319a8dc3332cb61ad49139e6d988ad2e1bb874d1f51636bf3028d93a84f4f1",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-50347472",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "8f4c8a1314fd4b28a4c24ffc883129fef8b2c9009dbb54c9fafd89f91c3bdcc8",
+          "final_object_sha256": "80d3f3719c716700392f3e7343abb627104a0430b8b4796f7184264e4dba7632",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-67108864",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "a40e09bfba090caf4272dddfb92e0d4214e643877d039ca1d25d05a1c7fceb4d",
+          "final_object_sha256": "8df6a67e46872cbadd79df38caa39abbd183ede5cc6b11d0a86cd4739e00e2ad",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-134217728",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "f0fb83eff8fbff35334603b79c2f96849ccc00798608b1e5bd5ae95985cefb27",
+          "final_object_sha256": "0df67ad5400bed75ee47939828203f817ea5f0201ebca702011b874f282dd214",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-268435456",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "cbb49aa15bc877bebfa2a06e7c8cba561a5e9dc153a102c06a6806a30eb92e42",
+          "final_object_sha256": "49145e88a02b8ab85e8896da33b39000b56080f9def8698b16d39b79586f0336",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-536870912",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "103c45d1c2f1278b80f4ef72530c5ee38b9327b26f00a3037c3450fdee6b9388",
+          "final_object_sha256": "8002936d15ce101cf3beb8d3762169d89f037b99fd300252b14e6c8b13227b6d",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-1073741824",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "d6f18f10753adc9077dcd4971a8047fce5f9992a496cd5ba150da6b6f3e3c5d1",
+          "final_object_sha256": "a33170e6671ecddcd764e106a34f518ddbca776200eecec1b7e775a8e91681c0",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-2147483647",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "f6b0c8ecc7554801edf5dfb034abf89c311386cf728e7383942fd0f27d24d7fd",
+          "final_object_sha256": "23edd61236d906c125e2b167ddaf6c536afe34b6a8a4f67a2d8f6c7692441ccf",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-2147483648",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "de5ae5e954e25e60825a2b4fd46a68accb8972bacb3fac49eb3ad41ea4073b35",
+          "final_object_sha256": "6a09fc34a16ec3e13f8c31cf2a67e981104f417fb8c26e56cfad0cbf33a9c1f8",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-3221225471",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "bc63d4e43c2995fef0ef46cbd379605b07deba1b4cad55a119d000932635d2c5",
+          "final_object_sha256": "9c7d0e3ee3ddefa3e69fe362aca0a1c28ce7eb46fbb962a28056a6aec28cc3a2",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-3758096383",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "4437a0a1067cf96550d287954922f0e8906e55f4c5cc256f4f70828576bd57de",
+          "final_object_sha256": "cdea335b3dd83036da05f517f94ca4b15cd025ef874e78ea1d4af29608f84cdf",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-4026531839",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "7347190855b9fec1ae939369259ac5c61a4016ac948ef61c278cf14a46748f57",
+          "final_object_sha256": "7ff2b73a90f3916de87f2cbe8cbdd11d31a788f31c4b2ce4b7b722825ddab094",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-4160749567",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "47c70eb6aeba65cc5c0549829a3fd78f3debbc2867a5ec0da1f9bdd3a44dd6bf",
+          "final_object_sha256": "a66d88a5ead762009c0983ad8be09f704b1cfe1ee9ab6102ffe0a8f20dd2c468",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-4227858431",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "eb5cc71331614add28cd978c3267b26063e64fe91db797cafcebe721a33ff451",
+          "final_object_sha256": "563260dbaef85647cf9849d287e30e25829f74f1fd7480bafc116279940caa11",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-4261412863",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "3827f770a238d337f870578fbe76969d941665cc96c6928d95b02c666d5a9dbb",
+          "final_object_sha256": "97937a5c7f47fa03a5670910d4d4c367bfef0c9055d2b7e14fbab2fe16e8d0df",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-4278190079",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "ed790f8e5116b6546b460ce99a71652bca9227be21a96b3a1fc5aee6f9fdec0c",
+          "final_object_sha256": "8f6a36f28960a0d3daf9fd8e728ccee49e7efc04bf9a5f5177ce4b5699e74b73",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-4286578687",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "71763bb481494015681784db014b826aa3e1aceefaf8f7166704ff06e17baa9b",
+          "final_object_sha256": "32c27fb15da829db7d74198da63be7800c105ea4def9b9365235548a3d583e6e",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-4290772991",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "57b9131536d3408ce42551aa467972c2170a4e1a59a3943c02a6b7050e670510",
+          "final_object_sha256": "23ee7af60e61ba43e53722d4c67653da52727f259115890281ead6396c1f2a6c",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-4292870143",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "e40f357edad787a24b3cc4e9c3b543b26a3981ca701547e534d86e93b0ca4f04",
+          "final_object_sha256": "0be0b83248c7a20eae37c5a9d0ac2b300967edc3eb840417d5ec24fcb06f93f0",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-4293918719",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "0620ec6d4be215ed55a8f33e4e593f1e073a0f302a6bfd4ef37d994fb68b82d6",
+          "final_object_sha256": "a489402f6307e93fa3ae04fedc9b4fc7cd3188d02fc292e744800faa3b68d5e7",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-4294443007",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "949d5ad632f6c0cb38e6c38d9e05cc9fde91dea00636d8aa19e5d4f7ca66c2ae",
+          "final_object_sha256": "1ce46a45e66397d11355ba0eeeb8fbc5999df64fc33c18ca7513a6c88ebc258e",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-4294705151",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "d8e84cfa20c0e53566980ac3e02216aa76dd6cb7bec80ff785755b8bd95e80c1",
+          "final_object_sha256": "b2eb2cc2fcef7418d012a21005913294b845e963c8285e901499c7a00644715b",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-4294836223",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "7fe62b91d4d4ee176b1bfea9f808a1cf581e090d455640ccd3387a82a8426680",
+          "final_object_sha256": "4d5efff8b4b9641331529b8396785ad2d966602f32b9fc9d9c6eadcdc39d6004",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-4294901759",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "98bc038ad41012c21aa8ed959197be53f8d0641cf3fc92d464a36b7fceaa00d5",
+          "final_object_sha256": "5c17aee1f9ed2861ad89e6b4a1accea956d7253c73bf01861d376d837b8c853d",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-4294934527",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "6dc350bf052360d002f2452745bd194a164c6a97ddb095c8e4e7f6afed98e3d8",
+          "final_object_sha256": "000db23fe58f1e44e0cbc5ac000b1b45ab28447b743ca2a50caf4ce374b2a552",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-4294950911",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "7ccee6f53c1e7ca8cef58b1a05d8261dda2dfb971529af72ac8c25ebc49e01fb",
+          "final_object_sha256": "f43452d2526c4679f1da8184d2c4ef50e044a058cbd76ffc97badfbe52794990",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-4294959103",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "92e3ceebf9f9361d2729398f57a324dee0c1b2395e334f6dbe6c6785734abf8f",
+          "final_object_sha256": "d46b109d66c9d5dcc7b2cb67b1aa472f8f088720d4db95a446c33ebc0ab3f838",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-4294963199",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "1a44256efe468ec01bef305dadf79edd892ad4300ad9856add746fa56f00c0fc",
+          "final_object_sha256": "faf7bc32d11a76f486e8b0ccd6801fdecb882a70cc5d9a5ff44bed91f0869a6e",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-4294965247",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "449a971bd34cf1a4c9d813be23841b0c0fd38519e758df924bd2993e07c947ed",
+          "final_object_sha256": "2f1a4353907bbc380ba79d79633d3371d841a18644ca65e90e1541105d9e2308",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-4294966271",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "eaaeb93646537b844b25e4a6b0e0ff5079fce5d51e501f857e3c3f511adb0dc8",
+          "final_object_sha256": "4958cc1b4bc861ba914307e19f7b0c2478fed166a0539643458bded3cdf13163",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-4294966783",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "60be750f5203dcb203c9bc4dc687068cd4ae1c664e791f3618513d3fa39503d6",
+          "final_object_sha256": "c79e9605e63452f5213e98c969cf0546e96903dedd623e77a57c2984c0118588",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-4294967039",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "6725830bee009d98fab2d11a110f482f8247f9df57ab61bf99a6780ff458e99c",
+          "final_object_sha256": "498c439c44960e6cf33926422e7618128a57f62fdf9b481035d75e53171b9ade",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-4294967167",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "e95affa2a8905e2a4ed2302b553f2d299393d53eaec0bd459b3c2b534acd874c",
+          "final_object_sha256": "6c70278f9b813601f5faaeb8ee6e8050b998c05520146ea0434fa6994b8592c8",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-4294967231",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "2f57b42b13b17807b1895f92492180b46d029c2b01b334fdd4a29950e0803aa7",
+          "final_object_sha256": "f6aaf698e8aade3de4b2d09c7fcdfae575926a425b9cbb7f79971cc593518355",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-4294967263",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "408695e265f80a47a2ad0ee210b758f3d9d2c4a8af1bb4d954f51bfae04f8900",
+          "final_object_sha256": "d0829dd21396b27ff1ed4c17c4a9fcf7371846095ed7d485dea620147160176d",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-4294967279",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "94abc50604eab113dadb9eecdbe00e02efbb7a03a1f5028da2312f04b209fa3c",
+          "final_object_sha256": "f87e410abdeea7d68d369df7eed8cba894efaeab8d8cc2460e305ab23a767125",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-4294967287",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "99edaa6dd8fe867acdd5127db902427a4ac11680eed154551570e49a1930fa45",
+          "final_object_sha256": "19a634406fa85c1c7a57af1379ec5536d6d3c13a940e73b3b5acb14e4404810f",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-4294967291",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "452ac34248bf605aac63eb9086d9e3bb9bf669b862777e568ee7613516a00da0",
+          "final_object_sha256": "35889396daa905525f5da3857fe2741d6b372e298f199ff682d848b38cc6f7e2",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-4294967293",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "ed2e2bb5737b96ba3e0052197dc45384f556b9d79f5f9d95a3fad0672a9a47fd",
+          "final_object_sha256": "5953719a9346c6a553b212e119b3e0ed37ad8b3db719798999d4540e3bbe395b",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-4294967294",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "bde8cdb2d7b587e9bbb6e9093b6a64575773a590f742670f35d2f4d98d1caced",
+          "final_object_sha256": "727dd2e94ef9ce0d4202fa802d418fb7f3f6bf3dfe2a34d6ae336d3c33d90ea4",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-4294967295",
+          "returned": true,
+          "stop": null,
+          "steps": 3,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "cfcfac629a3cdb7749d6d0a318b61e2964bc31cda6f063fde3b329ec1d8d8a0a",
+          "final_object_sha256": "7f0e1d0c573d05987ac9e6089dff6df9e0f26030c78749ec37b82f79844082c0",
+          "return_sp_r4_r11_proven": true,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-short-0",
+          "returned": false,
+          "stop": [
+            "未許可 write",
+            134229022
+          ],
+          "steps": 2,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-short-1",
+          "returned": false,
+          "stop": [
+            "未許可 write",
+            134229022
+          ],
+          "steps": 2,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "5cbf64f24a1a51624bb2d1984652cccd8d776dd239624aa962127c3783828ae3",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-short-2",
+          "returned": false,
+          "stop": [
+            "未許可 write",
+            134229022
+          ],
+          "steps": 2,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "ca7799e620077d5c7c091dad408e3ee71e67878a4790a85b5a6f816aed4ed916",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-short-3",
+          "returned": false,
+          "stop": [
+            "未許可 write",
+            134229022
+          ],
+          "steps": 2,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "4f389a9f4b6e76753bbd060de91ca9ea134d2fceb6cc8d55905dfc73dab77bb8",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": []
+        },
+        {
+          "case": "setter-readonly",
+          "returned": false,
+          "stop": [
+            "未許可 write",
+            134229022
+          ],
+          "steps": 2,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "2c406504e88ff074fd47129784ae445ba6ec11328595775634b45021bca44d37",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": []
+        }
+      ],
+      "caller_prefix": [
+        {
+          "case": "caller-135236140",
+          "returned": false,
+          "stop": [
+            "保存node境界で停止",
+            135236144
+          ],
+          "steps": 6,
+          "maximum_stack_bytes": 0,
+          "nonstack_write_count": 1,
+          "write_sha256": "fce1f58183589fc5146db7f75b4d16fd3dd6f03278e804e7b362860f818fbc91",
+          "final_object_sha256": "f86c70d67d6ea55bd74dd8bb8685b9eb87be6fc021d33e0fcf61c07e1e5396a3",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 135236140,
+              "target": 134229021,
+              "args": [
+                138293480,
+                2684354817,
+                2684355074,
+                2684355331
+              ],
+              "sp": 50364160
+            }
+          ],
+          "scope_boundary_not_callee_failure": true,
+          "stored_pointer": 138293480
+        }
+      ],
+      "render_lookup": [
+        {
+          "case": "font-138293480-0-0-0",
+          "returned": false,
+          "stop": [
+            "保存node境界で停止",
+            134239048
+          ],
+          "steps": 45,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "80710a99287be260673d07421d6759c14cd31ae0f678fa7e429ab98d2986392b",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633730,
+              "target": 154633849,
+              "args": [
+                33685552,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33685552,
+                134239049,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 0,
+          "callback": 134239049,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "CALLBACK_ENTRY_SCOPE"
+        },
+        {
+          "case": "font-138293480-0-0-1",
+          "returned": false,
+          "stop": [
+            "保存node境界で停止",
+            134239048
+          ],
+          "steps": 38,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "22900d57164270c5c0a75d3e05c7914ac005adc7d2862f24b44d216c959b42e5",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633650,
+              "target": 154633849,
+              "args": [
+                33685552,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33685552,
+                134239049,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 0,
+          "callback": 134239049,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "CALLBACK_ENTRY_SCOPE"
+        },
+        {
+          "case": "font-138293480-0-31-0",
+          "returned": false,
+          "stop": [
+            "保存node境界で停止",
+            134239048
+          ],
+          "steps": 262,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "f80bd68eccf8ae17ee3333490b70b81de1b73148061dd8ba756b89be98061b05",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633730,
+              "target": 154633849,
+              "args": [
+                33686544,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33686544,
+                134239049,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 0,
+          "callback": 134239049,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "CALLBACK_ENTRY_SCOPE"
+        },
+        {
+          "case": "font-138293480-0-31-1",
+          "returned": false,
+          "stop": [
+            "保存node境界で停止",
+            134239048
+          ],
+          "steps": 255,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "b2edc3b3850d0bae470830db5a8324304224406f8f7e3d6e9837aebba6278ac3",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633650,
+              "target": 154633849,
+              "args": [
+                33686544,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33686544,
+                134239049,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 0,
+          "callback": 134239049,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "CALLBACK_ENTRY_SCOPE"
+        },
+        {
+          "case": "font-138293480-1-0-0",
+          "returned": false,
+          "stop": [
+            "保存node境界で停止",
+            134239100
+          ],
+          "steps": 45,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "4ed2f9669da72fb9d554c56e09c747fe307f4a86666122ff6b6f83d60644766f",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633730,
+              "target": 154633849,
+              "args": [
+                33685552,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33685552,
+                134239101,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 1,
+          "callback": 134239101,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "CALLBACK_ENTRY_SCOPE"
+        },
+        {
+          "case": "font-138293480-1-0-1",
+          "returned": false,
+          "stop": [
+            "保存node境界で停止",
+            134239100
+          ],
+          "steps": 38,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "010261274060b4321fc389ff9b6e978cee2394de7c543621a6c1748b9e3538bd",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633650,
+              "target": 154633849,
+              "args": [
+                33685552,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33685552,
+                134239101,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 1,
+          "callback": 134239101,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "CALLBACK_ENTRY_SCOPE"
+        },
+        {
+          "case": "font-138293480-1-31-0",
+          "returned": false,
+          "stop": [
+            "保存node境界で停止",
+            134239100
+          ],
+          "steps": 262,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "e5f2a509012120b65dda21ccb3c5e9698421bf791e4bcb08ee6fd4dc58164736",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633730,
+              "target": 154633849,
+              "args": [
+                33686544,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33686544,
+                134239101,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 1,
+          "callback": 134239101,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "CALLBACK_ENTRY_SCOPE"
+        },
+        {
+          "case": "font-138293480-1-31-1",
+          "returned": false,
+          "stop": [
+            "保存node境界で停止",
+            134239100
+          ],
+          "steps": 255,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "90d42b3fcbd326fa0d91b5b5155b2a224a6f424190343ba78a1a77029ae8382e",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633650,
+              "target": 154633849,
+              "args": [
+                33686544,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33686544,
+                134239101,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 1,
+          "callback": 134239101,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "CALLBACK_ENTRY_SCOPE"
+        },
+        {
+          "case": "font-138293480-2-0-0",
+          "returned": false,
+          "stop": [
+            "保存node境界で停止",
+            134239156
+          ],
+          "steps": 45,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "f23738bc0ce04ce8cb4143817ab61443b6d65e06e546e97100953e6cafef0b0f",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633730,
+              "target": 154633849,
+              "args": [
+                33685552,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33685552,
+                134239157,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 2,
+          "callback": 134239157,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "CALLBACK_ENTRY_SCOPE"
+        },
+        {
+          "case": "font-138293480-2-0-1",
+          "returned": false,
+          "stop": [
+            "保存node境界で停止",
+            134239156
+          ],
+          "steps": 38,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "7817eeb0c5dd5150ab4a6e643fa37e1b6b74bb8127f3fbf267aba83af5e35fbd",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633650,
+              "target": 154633849,
+              "args": [
+                33685552,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33685552,
+                134239157,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 2,
+          "callback": 134239157,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "CALLBACK_ENTRY_SCOPE"
+        },
+        {
+          "case": "font-138293480-2-31-0",
+          "returned": false,
+          "stop": [
+            "保存node境界で停止",
+            134239156
+          ],
+          "steps": 262,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "bc316fef74cc9700fbd924e52ab883143525710e9ef18bbf2a36fd99ca1b332a",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633730,
+              "target": 154633849,
+              "args": [
+                33686544,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33686544,
+                134239157,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 2,
+          "callback": 134239157,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "CALLBACK_ENTRY_SCOPE"
+        },
+        {
+          "case": "font-138293480-2-31-1",
+          "returned": false,
+          "stop": [
+            "保存node境界で停止",
+            134239156
+          ],
+          "steps": 255,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "2fb2b67eb87a72e757e096a0ef7f005c7416d204417f2f21ed43f89a69341578",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633650,
+              "target": 154633849,
+              "args": [
+                33686544,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33686544,
+                134239157,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 2,
+          "callback": 134239157,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "CALLBACK_ENTRY_SCOPE"
+        },
+        {
+          "case": "font-138293480-3-0-0",
+          "returned": false,
+          "stop": [
+            "保存node境界で停止",
+            134239212
+          ],
+          "steps": 45,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "d6ef19c6f55a45c2ae1c35e0d836d8c43c12a02e0ccb56ddc1a82d512fd8cd72",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633730,
+              "target": 154633849,
+              "args": [
+                33685552,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33685552,
+                134239213,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 3,
+          "callback": 134239213,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "CALLBACK_ENTRY_SCOPE"
+        },
+        {
+          "case": "font-138293480-3-0-1",
+          "returned": false,
+          "stop": [
+            "保存node境界で停止",
+            134239212
+          ],
+          "steps": 38,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "3f7bbdb52dd85202262d5602334e2c5deb750e835351eee86ccbcd7f69b3884e",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633650,
+              "target": 154633849,
+              "args": [
+                33685552,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33685552,
+                134239213,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 3,
+          "callback": 134239213,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "CALLBACK_ENTRY_SCOPE"
+        },
+        {
+          "case": "font-138293480-3-31-0",
+          "returned": false,
+          "stop": [
+            "保存node境界で停止",
+            134239212
+          ],
+          "steps": 262,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "c1c8f1bd610a981dc04e0c29d0396ebaf803e4896951158ecbb2adfb599aec27",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633730,
+              "target": 154633849,
+              "args": [
+                33686544,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33686544,
+                134239213,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 3,
+          "callback": 134239213,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "CALLBACK_ENTRY_SCOPE"
+        },
+        {
+          "case": "font-138293480-3-31-1",
+          "returned": false,
+          "stop": [
+            "保存node境界で停止",
+            134239212
+          ],
+          "steps": 255,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "e9e3eb4a4d1f5635cde5ac4e36e130e52337a2da5523ebf92163f85fca8438aa",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633650,
+              "target": 154633849,
+              "args": [
+                33686544,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33686544,
+                134239213,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 3,
+          "callback": 134239213,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "CALLBACK_ENTRY_SCOPE"
+        },
+        {
+          "case": "font-138293480-4-0-0",
+          "returned": false,
+          "stop": [
+            "保存node境界で停止",
+            134239268
+          ],
+          "steps": 45,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "2e3273459daa709afa2f9ef653bc9091b72db4eeb949bbedd86b0f7f0da762ac",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633730,
+              "target": 154633849,
+              "args": [
+                33685552,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33685552,
+                134239269,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 4,
+          "callback": 134239269,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "CALLBACK_ENTRY_SCOPE"
+        },
+        {
+          "case": "font-138293480-4-0-1",
+          "returned": false,
+          "stop": [
+            "保存node境界で停止",
+            134239268
+          ],
+          "steps": 38,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "83fc1725c9fe90c02ad12533bf4c0e37ac7c9593b757d2fb628f821a3b22e311",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633650,
+              "target": 154633849,
+              "args": [
+                33685552,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33685552,
+                134239269,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 4,
+          "callback": 134239269,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "CALLBACK_ENTRY_SCOPE"
+        },
+        {
+          "case": "font-138293480-4-31-0",
+          "returned": false,
+          "stop": [
+            "保存node境界で停止",
+            134239268
+          ],
+          "steps": 262,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "f5fd5bf16c48cbeabc4695456ef5d139c0cec8c576c001662408bde8fab0bc02",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633730,
+              "target": 154633849,
+              "args": [
+                33686544,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33686544,
+                134239269,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 4,
+          "callback": 134239269,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "CALLBACK_ENTRY_SCOPE"
+        },
+        {
+          "case": "font-138293480-4-31-1",
+          "returned": false,
+          "stop": [
+            "保存node境界で停止",
+            134239268
+          ],
+          "steps": 255,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "8bd4fab366cba6bc075c1bb58aafc74cd53013313617a73d990e5f6e22a4386c",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633650,
+              "target": 154633849,
+              "args": [
+                33686544,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33686544,
+                134239269,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 4,
+          "callback": 134239269,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "CALLBACK_ENTRY_SCOPE"
+        },
+        {
+          "case": "font-138293480-5-0-0",
+          "returned": false,
+          "stop": [
+            "保存node境界で停止",
+            134239324
+          ],
+          "steps": 45,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "cd6fc1765bb79fcd54706090d92cdbf64a9c4ad7079b41cfaa38893896b3bea4",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633730,
+              "target": 154633849,
+              "args": [
+                33685552,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33685552,
+                134239325,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 5,
+          "callback": 134239325,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "CALLBACK_ENTRY_SCOPE"
+        },
+        {
+          "case": "font-138293480-5-0-1",
+          "returned": false,
+          "stop": [
+            "保存node境界で停止",
+            134239324
+          ],
+          "steps": 38,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "fe704b833fb739d99b25dae89081cf3807292bc85bdf553c34ed7b9f267fdcce",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633650,
+              "target": 154633849,
+              "args": [
+                33685552,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33685552,
+                134239325,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 5,
+          "callback": 134239325,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "CALLBACK_ENTRY_SCOPE"
+        },
+        {
+          "case": "font-138293480-5-31-0",
+          "returned": false,
+          "stop": [
+            "保存node境界で停止",
+            134239324
+          ],
+          "steps": 262,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "cef2433d36de8752804bd12d187c2f8f9f517ad52995d17e62229e6d90d4c130",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633730,
+              "target": 154633849,
+              "args": [
+                33686544,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33686544,
+                134239325,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 5,
+          "callback": 134239325,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "CALLBACK_ENTRY_SCOPE"
+        },
+        {
+          "case": "font-138293480-5-31-1",
+          "returned": false,
+          "stop": [
+            "保存node境界で停止",
+            134239324
+          ],
+          "steps": 255,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "ee1aa6677e77e26b21917118e9391cb4aa2416e8a526caf7c24eadb42d21dc81",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633650,
+              "target": 154633849,
+              "args": [
+                33686544,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33686544,
+                134239325,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 5,
+          "callback": 134239325,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "CALLBACK_ENTRY_SCOPE"
+        },
+        {
+          "case": "font-138293480-6-0-0",
+          "returned": false,
+          "stop": [
+            "保存node境界で停止",
+            135604556
+          ],
+          "steps": 45,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "625b871e44ceab489e40c1bd157cfaa0fd7f136e470262dbfb74c613f0558c59",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633730,
+              "target": 154633849,
+              "args": [
+                33685552,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33685552,
+                135604557,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 6,
+          "callback": 135604557,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "CALLBACK_ENTRY_SCOPE"
+        },
+        {
+          "case": "font-138293480-6-0-1",
+          "returned": false,
+          "stop": [
+            "保存node境界で停止",
+            135604556
+          ],
+          "steps": 38,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "66ae884a8fd57db01ca5a219640daddcb34694b5bb6e474a1b7ae47e64045c07",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633650,
+              "target": 154633849,
+              "args": [
+                33685552,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33685552,
+                135604557,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 6,
+          "callback": 135604557,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "CALLBACK_ENTRY_SCOPE"
+        },
+        {
+          "case": "font-138293480-6-31-0",
+          "returned": false,
+          "stop": [
+            "保存node境界で停止",
+            135604556
+          ],
+          "steps": 262,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "7b3c3f79249cd9e9ba0d32f2a55d58feec55d54293d03214c251082d044f869b",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633730,
+              "target": 154633849,
+              "args": [
+                33686544,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33686544,
+                135604557,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 6,
+          "callback": 135604557,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "CALLBACK_ENTRY_SCOPE"
+        },
+        {
+          "case": "font-138293480-6-31-1",
+          "returned": false,
+          "stop": [
+            "保存node境界で停止",
+            135604556
+          ],
+          "steps": 255,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "f5a157c89000e3478f96fb4ac87bace6530659f5a8491100feec28600988fb10",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633650,
+              "target": 154633849,
+              "args": [
+                33686544,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33686544,
+                135604557,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 6,
+          "callback": 135604557,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "CALLBACK_ENTRY_SCOPE"
+        },
+        {
+          "case": "font-138293480-7-0-0",
+          "returned": false,
+          "stop": [
+            "ARM state未対応",
+            136084172
+          ],
+          "steps": 44,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "31271ef112bdc27153bd2cb5d6e13eb7c9865560c6a24e8ddf2d2247085bc697",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633730,
+              "target": 154633849,
+              "args": [
+                33685552,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33685552,
+                0,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 7,
+          "callback": 0,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "ARM_STATE_REJECTED"
+        },
+        {
+          "case": "font-138293480-7-0-1",
+          "returned": false,
+          "stop": [
+            "ARM state未対応",
+            136084172
+          ],
+          "steps": 37,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "0fc43da7ba251cee2e824906fa7a2b0663230061c67b4e5808ac7716d08e60db",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633650,
+              "target": 154633849,
+              "args": [
+                33685552,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33685552,
+                0,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 7,
+          "callback": 0,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "ARM_STATE_REJECTED"
+        },
+        {
+          "case": "font-138293480-7-31-0",
+          "returned": false,
+          "stop": [
+            "ARM state未対応",
+            136084172
+          ],
+          "steps": 261,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "45dc11e5bfa5963791803048f20f9f620f2ce64050b2ef2592b9148d8e8eba05",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633730,
+              "target": 154633849,
+              "args": [
+                33686544,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33686544,
+                0,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 7,
+          "callback": 0,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "ARM_STATE_REJECTED"
+        },
+        {
+          "case": "font-138293480-7-31-1",
+          "returned": false,
+          "stop": [
+            "ARM state未対応",
+            136084172
+          ],
+          "steps": 254,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "b8c076a8ddd2bf6924d08647795e0e309aeedc775c6db6da17a1815c14464d30",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633650,
+              "target": 154633849,
+              "args": [
+                33686544,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33686544,
+                0,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 7,
+          "callback": 0,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "ARM_STATE_REJECTED"
+        },
+        {
+          "case": "font-138293480-8-0-0",
+          "returned": false,
+          "stop": [
+            "ARM state未対応",
+            136084172
+          ],
+          "steps": 44,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "5b102bc2256e92279e547ab635296a88aa0932509eb08d0e0d0e13cc9bac8388",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633730,
+              "target": 154633849,
+              "args": [
+                33685552,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33685552,
+                268962824,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 8,
+          "callback": 268962824,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "ARM_STATE_REJECTED"
+        },
+        {
+          "case": "font-138293480-8-0-1",
+          "returned": false,
+          "stop": [
+            "ARM state未対応",
+            136084172
+          ],
+          "steps": 37,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "d07518ce26c2b67af85eb97dd5b7b6fc1778217ad602657a77fdca5981706509",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633650,
+              "target": 154633849,
+              "args": [
+                33685552,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33685552,
+                268962824,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 8,
+          "callback": 268962824,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "ARM_STATE_REJECTED"
+        },
+        {
+          "case": "font-138293480-8-31-0",
+          "returned": false,
+          "stop": [
+            "ARM state未対応",
+            136084172
+          ],
+          "steps": 261,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "d63b19800ccf5462f53a74017188c153cb9d112820054c01dff09f7fefb129ba",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633730,
+              "target": 154633849,
+              "args": [
+                33686544,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33686544,
+                268962824,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 8,
+          "callback": 268962824,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "ARM_STATE_REJECTED"
+        },
+        {
+          "case": "font-138293480-8-31-1",
+          "returned": false,
+          "stop": [
+            "ARM state未対応",
+            136084172
+          ],
+          "steps": 254,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "d31df34a76751c33172c3e4a1046bd99ab014a24b515af3523adb994a3c74267",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633650,
+              "target": 154633849,
+              "args": [
+                33686544,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33686544,
+                268962824,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 8,
+          "callback": 268962824,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "ARM_STATE_REJECTED"
+        },
+        {
+          "case": "font-138293480-9-0-0",
+          "returned": false,
+          "stop": [
+            "ARM state未対応",
+            136084172
+          ],
+          "steps": 44,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "32063114ec00e23bd0a946a2ed9dcefd5c484c2875c5e4ed75c217c98ff0d722",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633730,
+              "target": 154633849,
+              "args": [
+                33685552,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33685552,
+                4104,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 9,
+          "callback": 4104,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "ARM_STATE_REJECTED"
+        },
+        {
+          "case": "font-138293480-9-0-1",
+          "returned": false,
+          "stop": [
+            "ARM state未対応",
+            136084172
+          ],
+          "steps": 37,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "845cc9a2242e1d77b4076dd2f010c0eed7d747f30884c5129aad285daa0dd3e7",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633650,
+              "target": 154633849,
+              "args": [
+                33685552,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33685552,
+                4104,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 9,
+          "callback": 4104,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "ARM_STATE_REJECTED"
+        },
+        {
+          "case": "font-138293480-9-31-0",
+          "returned": false,
+          "stop": [
+            "ARM state未対応",
+            136084172
+          ],
+          "steps": 261,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "8c48cc0ad026956b6fc1727732b4e5dc05b3a55cce4313b2c7eb8f40ef4ebfd8",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633730,
+              "target": 154633849,
+              "args": [
+                33686544,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33686544,
+                4104,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 9,
+          "callback": 4104,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "ARM_STATE_REJECTED"
+        },
+        {
+          "case": "font-138293480-9-31-1",
+          "returned": false,
+          "stop": [
+            "ARM state未対応",
+            136084172
+          ],
+          "steps": 254,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "f76aa0214d01165222dd2b94c8ff77c07a36f3fab3a5358973f1409b4f8f41d7",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633650,
+              "target": 154633849,
+              "args": [
+                33686544,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33686544,
+                4104,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 9,
+          "callback": 4104,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "ARM_STATE_REJECTED"
+        },
+        {
+          "case": "font-138293480-10-0-0",
+          "returned": false,
+          "stop": [
+            "ARM state未対応",
+            136084172
+          ],
+          "steps": 44,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "b5d6c5982f8eb573dcb75460c66fc510209cff54a922b4944be6d86048b525f6",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633730,
+              "target": 154633849,
+              "args": [
+                33685552,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33685552,
+                33554688,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 10,
+          "callback": 33554688,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "ARM_STATE_REJECTED"
+        },
+        {
+          "case": "font-138293480-10-0-1",
+          "returned": false,
+          "stop": [
+            "ARM state未対応",
+            136084172
+          ],
+          "steps": 37,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "a8e07d60dae4faf5fc0fd27e23e8df134d3821f47394f5702f8aa9a47caafed7",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633650,
+              "target": 154633849,
+              "args": [
+                33685552,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33685552,
+                33554688,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 10,
+          "callback": 33554688,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "ARM_STATE_REJECTED"
+        },
+        {
+          "case": "font-138293480-10-31-0",
+          "returned": false,
+          "stop": [
+            "ARM state未対応",
+            136084172
+          ],
+          "steps": 261,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "030b8a7dd2ade14ae28158216c17acfd947d4963b42e0dfd29092f6e4b965a2d",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633730,
+              "target": 154633849,
+              "args": [
+                33686544,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33686544,
+                33554688,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 10,
+          "callback": 33554688,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "ARM_STATE_REJECTED"
+        },
+        {
+          "case": "font-138293480-10-31-1",
+          "returned": false,
+          "stop": [
+            "ARM state未対応",
+            136084172
+          ],
+          "steps": 254,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "0a2c80d1b1222557207d00529c53aad200760ea1b41b6cdd931718f8f68f366f",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633650,
+              "target": 154633849,
+              "args": [
+                33686544,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33686544,
+                33554688,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 10,
+          "callback": 33554688,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "ARM_STATE_REJECTED"
+        },
+        {
+          "case": "font-138293480-11-0-0",
+          "returned": false,
+          "stop": [
+            "ARM state未対応",
+            136084172
+          ],
+          "steps": 44,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "7b5554e064356e879e4c3f8f48a02de41c114fbf25d2478335769ac08bb83414",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633730,
+              "target": 154633849,
+              "args": [
+                33685552,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33685552,
+                16777472,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 11,
+          "callback": 16777472,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "ARM_STATE_REJECTED"
+        },
+        {
+          "case": "font-138293480-11-0-1",
+          "returned": false,
+          "stop": [
+            "ARM state未対応",
+            136084172
+          ],
+          "steps": 37,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "412f18f07632e8b1df2627712664ef2de3da00cb19718095f82f89580122f974",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633650,
+              "target": 154633849,
+              "args": [
+                33685552,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33685552,
+                16777472,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 11,
+          "callback": 16777472,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "ARM_STATE_REJECTED"
+        },
+        {
+          "case": "font-138293480-11-31-0",
+          "returned": false,
+          "stop": [
+            "ARM state未対応",
+            136084172
+          ],
+          "steps": 261,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "30a1a4d64a271bd4594205aca29d62b1d764f9887ff5a09c4b2352e1fae780fd",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633730,
+              "target": 154633849,
+              "args": [
+                33686544,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33686544,
+                16777472,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 11,
+          "callback": 16777472,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "ARM_STATE_REJECTED"
+        },
+        {
+          "case": "font-138293480-11-31-1",
+          "returned": false,
+          "stop": [
+            "ARM state未対応",
+            136084172
+          ],
+          "steps": 254,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "c58edc8bf5629a21d45cc9d43a7b3e5519363fd70c44e3be79c87d5aa7bcb1b8",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633650,
+              "target": 154633849,
+              "args": [
+                33686544,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33686544,
+                16777472,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 11,
+          "callback": 16777472,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "ARM_STATE_REJECTED"
+        },
+        {
+          "case": "font-138293480-12-0-0",
+          "returned": false,
+          "stop": [
+            "保存node境界で停止",
+            2077962238
+          ],
+          "steps": 45,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "4be6c2acbef3b1a5ba189671eb2bfce41596129d0d562275f1cf1ff4ec1662ce",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633730,
+              "target": 154633849,
+              "args": [
+                33685552,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33685552,
+                2077962239,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 12,
+          "callback": 2077962239,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "CALLBACK_ENTRY_SCOPE"
+        },
+        {
+          "case": "font-138293480-12-0-1",
+          "returned": false,
+          "stop": [
+            "保存node境界で停止",
+            2077962238
+          ],
+          "steps": 38,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "20537b1ea936f3bbe1edef11557524383f3660a223d8baf1ab324cc76be1116b",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633650,
+              "target": 154633849,
+              "args": [
+                33685552,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33685552,
+                2077962239,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 12,
+          "callback": 2077962239,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "CALLBACK_ENTRY_SCOPE"
+        },
+        {
+          "case": "font-138293480-12-31-0",
+          "returned": false,
+          "stop": [
+            "保存node境界で停止",
+            2077962238
+          ],
+          "steps": 262,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "6382fba0fb09cf00d9aed77868bb003288b29db9e7d4e6deb5ef932b397db5fc",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633730,
+              "target": 154633849,
+              "args": [
+                33686544,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33686544,
+                2077962239,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 12,
+          "callback": 2077962239,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "CALLBACK_ENTRY_SCOPE"
+        },
+        {
+          "case": "font-138293480-12-31-1",
+          "returned": false,
+          "stop": [
+            "保存node境界で停止",
+            2077962238
+          ],
+          "steps": 255,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "3371ae3e4ef627a0c7e0d2889acab68d1ee43573659824e6365ac68e2f3a9ed2",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633650,
+              "target": 154633849,
+              "args": [
+                33686544,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33686544,
+                2077962239,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 12,
+          "callback": 2077962239,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "CALLBACK_ENTRY_SCOPE"
+        },
+        {
+          "case": "font-138293480-13-0-0",
+          "returned": false,
+          "stop": [
+            "ARM state未対応",
+            136084172
+          ],
+          "steps": 44,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "0f55072718c202a9502cea9f2df53f607ae97534c5636255b1126683e374e5f3",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633730,
+              "target": 154633849,
+              "args": [
+                33685552,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33685552,
+                775042808,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 13,
+          "callback": 775042808,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "ARM_STATE_REJECTED"
+        },
+        {
+          "case": "font-138293480-13-0-1",
+          "returned": false,
+          "stop": [
+            "ARM state未対応",
+            136084172
+          ],
+          "steps": 37,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "fa67f3758b3f90e5b852f80b0f49ed968cbb095cd67f40ce9589353fd56ea1bf",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633650,
+              "target": 154633849,
+              "args": [
+                33685552,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33685552,
+                775042808,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 13,
+          "callback": 775042808,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "ARM_STATE_REJECTED"
+        },
+        {
+          "case": "font-138293480-13-31-0",
+          "returned": false,
+          "stop": [
+            "ARM state未対応",
+            136084172
+          ],
+          "steps": 261,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "b377c0ac2cfe4aae1f599ece1b47ed16f863d2be7a77be663f6dcc19d5ecf172",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633730,
+              "target": 154633849,
+              "args": [
+                33686544,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33686544,
+                775042808,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 13,
+          "callback": 775042808,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "ARM_STATE_REJECTED"
+        },
+        {
+          "case": "font-138293480-13-31-1",
+          "returned": false,
+          "stop": [
+            "ARM state未対応",
+            136084172
+          ],
+          "steps": 254,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "ebf426c9aa48115b51e0fcf5985954d7364f45465ec4e7ee142dd2c1298ea41e",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633650,
+              "target": 154633849,
+              "args": [
+                33686544,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33686544,
+                775042808,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 13,
+          "callback": 775042808,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "ARM_STATE_REJECTED"
+        },
+        {
+          "case": "font-138293480-14-0-0",
+          "returned": false,
+          "stop": [
+            "保存node境界で停止",
+            1174950506
+          ],
+          "steps": 45,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "ec782a40c49d627c4afd7dbdbc5cd30f081b7f69ddb10bce01cc4f460dbb8242",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633730,
+              "target": 154633849,
+              "args": [
+                33685552,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33685552,
+                1174950507,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 14,
+          "callback": 1174950507,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "CALLBACK_ENTRY_SCOPE"
+        },
+        {
+          "case": "font-138293480-14-0-1",
+          "returned": false,
+          "stop": [
+            "保存node境界で停止",
+            1174950506
+          ],
+          "steps": 38,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "37cd2725e21345a9746b916ea38d84ea0bf78dcbfecd111d878d47dd81fd887a",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633650,
+              "target": 154633849,
+              "args": [
+                33685552,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33685552,
+                1174950507,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 14,
+          "callback": 1174950507,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "CALLBACK_ENTRY_SCOPE"
+        },
+        {
+          "case": "font-138293480-14-31-0",
+          "returned": false,
+          "stop": [
+            "保存node境界で停止",
+            1174950506
+          ],
+          "steps": 262,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "0a5a54402728406f2ca96150b670ceaffb213726be14496e36b8f7af971a459d",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633730,
+              "target": 154633849,
+              "args": [
+                33686544,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33686544,
+                1174950507,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 14,
+          "callback": 1174950507,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "CALLBACK_ENTRY_SCOPE"
+        },
+        {
+          "case": "font-138293480-14-31-1",
+          "returned": false,
+          "stop": [
+            "保存node境界で停止",
+            1174950506
+          ],
+          "steps": 255,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "5a70a20390f82f6f79e5333d6950d1072abe2adef72a8c0777ab2c13c19164a0",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633650,
+              "target": 154633849,
+              "args": [
+                33686544,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33686544,
+                1174950507,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 14,
+          "callback": 1174950507,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "CALLBACK_ENTRY_SCOPE"
+        },
+        {
+          "case": "font-138293480-15-0-0",
+          "returned": false,
+          "stop": [
+            "保存node境界で停止",
+            1801076104
+          ],
+          "steps": 45,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "dbd72201fce90beb5646df826d06b7c8edefa84a07f190fd2b48c61d835139bd",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633730,
+              "target": 154633849,
+              "args": [
+                33685552,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33685552,
+                1801076105,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 15,
+          "callback": 1801076105,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "CALLBACK_ENTRY_SCOPE"
+        },
+        {
+          "case": "font-138293480-15-0-1",
+          "returned": false,
+          "stop": [
+            "保存node境界で停止",
+            1801076104
+          ],
+          "steps": 38,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "de9b77d8734bd4cb542f10def05b4de081393a2b9d6f2f285134043689fb0893",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633650,
+              "target": 154633849,
+              "args": [
+                33685552,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33685552,
+                1801076105,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 15,
+          "callback": 1801076105,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "CALLBACK_ENTRY_SCOPE"
+        },
+        {
+          "case": "font-138293480-15-31-0",
+          "returned": false,
+          "stop": [
+            "保存node境界で停止",
+            1801076104
+          ],
+          "steps": 262,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "c359b91f2fc135a54b9e1571019f40dc2b5dd5fdb85a34f63ad7a5a9f9415774",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633730,
+              "target": 154633849,
+              "args": [
+                33686544,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33686544,
+                1801076105,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 15,
+          "callback": 1801076105,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "CALLBACK_ENTRY_SCOPE"
+        },
+        {
+          "case": "font-138293480-15-31-1",
+          "returned": false,
+          "stop": [
+            "保存node境界で停止",
+            1801076104
+          ],
+          "steps": 255,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "74076807ed65084108458d6024a21bb1bb7b585521d40174fe3a95c9fbbc7d87",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": null,
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633650,
+              "target": 154633849,
+              "args": [
+                33686544,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            },
+            {
+              "site": 134229602,
+              "target": 136084173,
+              "args": [
+                33686544,
+                1801076105,
+                138293480,
+                134229581
+              ],
+              "sp": 50364100
+            }
+          ],
+          "selector": 15,
+          "callback": 1801076105,
+          "table": 138293480,
+          "valid_font_id_claimed": false,
+          "callback_execution_claimed": false,
+          "boundary": "CALLBACK_ENTRY_SCOPE"
+        },
+        {
+          "case": "font-sample-end-138293480-16",
+          "returned": false,
+          "stop": [
+            "未map read",
+            134229598
+          ],
+          "steps": 258,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "ca321894a78247c0a7a6807f92e4f5e09b7181e434ecd470bc115649275d3c74",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": {
+            "address": 138293672,
+            "size": 4,
+            "site": 134229598
+          },
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633730,
+              "target": 154633849,
+              "args": [
+                33686544,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            }
+          ],
+          "selector": 16,
+          "table": 138293480,
+          "boundary": "SAMPLE_END_NOT_REAL_TABLE_LENGTH",
+          "valid_font_id_claimed": false
+        },
+        {
+          "case": "font-sample-end-138293480-255",
+          "returned": false,
+          "stop": [
+            "未map read",
+            134229598
+          ],
+          "steps": 258,
+          "maximum_stack_bytes": 60,
+          "nonstack_write_count": 0,
+          "write_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "final_object_sha256": "eb768bad1fe23ebad896bf9ad002f3a5f7ffbb0bfbf38c94b682147476bd6115",
+          "return_sp_r4_r11_proven": false,
+          "read_fault": {
+            "address": 138296540,
+            "size": 4,
+            "site": 134229598
+          },
+          "calls": [
+            {
+              "site": 154634818,
+              "target": 154633609,
+              "args": [
+                2684354560,
+                2684354817,
+                2684355074,
+                154634819
+              ],
+              "sp": 50364140
+            },
+            {
+              "site": 154633730,
+              "target": 154633849,
+              "args": [
+                33686544,
+                827541334,
+                827541334,
+                134229581
+              ],
+              "sp": 50364108
+            }
+          ],
+          "selector": 255,
+          "table": 138293480,
+          "boundary": "SAMPLE_END_NOT_REAL_TABLE_LENGTH",
+          "valid_font_id_claimed": false
+        }
+      ]
+    },
+    "contract_cases": 140,
+    "conditional_return_cases": 68,
+    "candidate_font_pointer_suppliers_bound": true,
+    "candidate_font_descriptor_lookup_bound": true,
+    "pending_font_callback_targets": [
+      134239049,
+      134239101,
+      134239157,
+      134239213,
+      134239269,
+      134239325,
+      135604557
+    ],
+    "pending_direct_callees": [
+      136083709,
+      136084009
+    ],
+    "pending_decoder_rejections": [
+      {
+        "root": 136084025,
+        "site": 136084060,
+        "kind": "decoder_rejection",
+        "encoded": "ffef",
+        "reason": "unknown Thumb-1 encoding 0xEFFF at 0x081C7A5C"
+      }
+    ],
+    "actual_callback_table_observed": false,
+    "initializer_runtime_observed": false,
+    "actual_font_table_length_proven": false,
+    "all_live_slot_bounds_proven": false,
+    "all_callers_resolved": false,
+    "all_dispatch_returns_proven": false,
+    "all_live_frames_proven": false,
+    "all_runtime_owners_excluded": false,
+    "caller_pointer_size_limit_proven": false,
+    "ring_acquisition_accepted": false,
+    "release_ready": false,
+    "rom_changes": 0,
+    "new_emulator_processes": 0,
+    "candidate_reconstructions": 1,
+    "accepted_native_cases_replayed": 0,
+    "accepted_standalone_contracts_replayed": 0,
+    "full_rom_scans": 1,
+    "reference_scan_scope": "NEW_TARGET_08002C1C_CANONICAL_THUMB_BL_AND_ALIGNED_POINTER_ONLY",
+    "saved_nodes_redecoded": 0,
+    "new_instructions_decoded": 3,
+    "assumptions_ja": [
+      "初期化setterに入力pointer検査はない。全u32へ無条件storeする3命令の局所契約。",
+      "canonical BL候補と直前LDR r0だけを結合。computed/ARM/mirrored callerと実到達は未証明。",
+      "表の有限192byteを16個の有効fontとは同一視しない。各offsetでlookupされた値と失敗境界だけを保存。",
+      "描画は合成slot入力から実hook/readerへの結合。callback本体は明示停止し、帰還/実描画を成功stubにしない。"
+    ]
+  },
+  "source_bindings": {
+    "scripts/pr16_ring_followup_v2.py": {
+      "size": 11453,
+      "sha256": "71e33dbe40cd8988e185256821e33e6a1e06e4eddeb8ee6a3eb9047a4d3c49f7"
+    },
+    "scripts/pr16_ring_font_bindings.py": {
+      "size": 13242,
+      "sha256": "6693f5bd5fd8d8a070965fc77a66b676b6cf4e7f5e78c04cb0d9a137e2d00983"
+    },
+    "tests/test_pr16_ring_font_bindings.py": {
+      "size": 7759,
+      "sha256": "38b340beaf9098cb48e994939aef9fb21ee4c32b3c3b84e3729a90207175e3f8"
+    },
+    ".github/workflows/pr16-ring-font-bindings.yml": {
+      "size": 1904,
+      "sha256": "83436ad6190ebc5f838372f62f125b8921485d9b6f870353fcde0bdc531dc039"
+    },
+    "content/modernization/pr16_ring_font_bytes.json": {
+      "size": 13650,
+      "sha256": "20e817bff426d9f5d040ded3cedb7343fce1cef122c357cdba210d49fd70b9e9"
+    },
+    "content/modernization/pr16_bp_chooser_checkpoint.json": {
+      "size": 9442,
+      "sha256": "853ed41b6abcfb63651aab136951a53c8c89ec635f769e8466327ba3a0c0ae41"
+    },
+    "scripts/pr16_resume.py": {
+      "size": 26649,
+      "sha256": "b0ec73bf933e46f7b254057559b0c637a2d1a9b625b08f348aa8308ea00dee5a"
+    },
+    "scripts/pr16_ring_compiled_record.py": {
+      "size": 13116,
+      "sha256": "768c94e59983d27bbf0ed46d6ba60008352a3a67e11612b18936e38b271e73ef"
+    },
+    "scripts/guard_private_files.py": {
+      "size": 5443,
+      "sha256": "143426a7403abf47396791f6ece3a3a374fa97fbf8bedc88169f636cddbcc905"
+    },
+    "scripts/pr16_ring_font_bytes.py": {
+      "size": 7719,
+      "sha256": "c00b87bd69d6f47cb5c05089b85793b020857955b8ce95965ccef7842cf35e2f"
+    },
+    "scripts/pr16_ring_ui_leaf_contracts.py": {
+      "size": 15732,
+      "sha256": "2ae5cd8caadc44c4ad0b077ee78e564c44d31f13c6600f443a4c6a7ccc23475c"
+    },
+    "scripts/pr16_ring_ui_leaf_bytes.py": {
+      "size": 7112,
+      "sha256": "a0e190b7ac55f3a3e682b5d22b51133a87cc0feb1786f29262b08196df53d2a7"
+    },
+    "scripts/pr16_ring_ui_contracts.py": {
+      "size": 21972,
+      "sha256": "fb1625164a039e270da8b02d3be2081b304c3a98ab533a6043aff7e14eda0529"
+    },
+    "scripts/pr16_ring_ui_runtime_bytes.py": {
+      "size": 7582,
+      "sha256": "dceebb0c07beb1f1248ee710f1d035c01b19237c4fc77123e75e99424627cf8b"
+    },
+    "scripts/pr16_ring_ui_delegates.py": {
+      "size": 8013,
+      "sha256": "df322f8e399d7babccd486072b0c6b02542e868bbae29602e0c6c73da5f18db5"
+    },
+    "scripts/pr16_ring_ui_frontier.py": {
+      "size": 8819,
+      "sha256": "527db74169fb6c50d649898552dfd2ec6301392128d2ea8b482733ae39beee1f"
+    },
+    "scripts/pr16_ring_ui_owners.py": {
+      "size": 12961,
+      "sha256": "6bb82a9057e01845ef1f4efcce8e41d77856f1cf74c5fe601af9b9b509566bbf"
+    },
+    "scripts/pr16_ring_resource_tail.py": {
+      "size": 7535,
+      "sha256": "f4988540601c2eaa63876d6ee981a362e8614d0aaa11ca4a791e68f2b6100b81"
+    },
+    "content/modernization/pr16_ring_resource_tail.json": {
+      "size": 53805,
+      "sha256": "dc74f564a59f4b72a39f7c4a1a6fab0251b6c225ccd4f326b28123407cb618a3"
+    },
+    "scripts/pr16_ring_resource_frontier.py": {
+      "size": 8691,
+      "sha256": "12bad41bba1c269433134d204f4bae896f79b417900b6c70ea56893fa58e4d88"
+    },
+    "scripts/pr16_ring_remaining_frontier.py": {
+      "size": 12375,
+      "sha256": "3aa490bc6a4615a447f996df72e2ea678f41ed585076d3e2ddc3d572cd6f94bd"
+    },
+    "scripts/pr16_ring_owner_frontier.py": {
+      "size": 12711,
+      "sha256": "e7505577537eba4df7a5ee641836b56f212706473eb99ef139a60d22141b9e65"
+    },
+    "scripts/pr16_ring_effective_frontier.py": {
+      "size": 10560,
+      "sha256": "31303cea8148726c922f40f41231aa588b249796c08e04d9b41225150f25759e"
+    },
+    "scripts/pr16_ring_branch_frontier.py": {
+      "size": 10233,
+      "sha256": "9fe8b6d2697127d0dcefa4afecd1b0365bdc51f3a3638b03acc63ea0987c3aff"
+    },
+    "scripts/pr16_ring_zero_bytes.py": {
+      "size": 16741,
+      "sha256": "ef6255772fdc3153ec4518888af94df1c27f15d028283d81f901e1b5b2e87998"
+    },
+    "scripts/pr16_ring_transitive_owner.py": {
+      "size": 15717,
+      "sha256": "4d934acefe35ae818ed998282e3e783c4c5550e8da699a8e629557d4d82508dc"
+    },
+    "scripts/pr16_ring_flagset_continuation.py": {
+      "size": 19471,
+      "sha256": "10f6aa42d04f81385e42ff1987ca325c6a1bab52264c6591c9de7e8841f10e33"
+    },
+    ".github/workflows/pr16-ring-callee-bytes.yml": {
+      "size": 6742,
+      "sha256": "f8bab211f28662062bff281c538487d4bc2f06ff1c71e2d078da9bbe52977d3d"
+    },
+    "scripts/pr16_ring_resource_contracts.py": {
+      "size": 20140,
+      "sha256": "c575f1a803acd3c138092487957239e95d9587f20209b5668ed23f293381e700"
+    },
+    "scripts/pr16_ring_dispatch_contracts.py": {
+      "size": 14635,
+      "sha256": "55a743873e6c3409e65813d4a2a474f194827ccb440587595c86bda291d6b2f1"
+    },
+    "scripts/pr16_ring_gate_contracts.py": {
+      "size": 15264,
+      "sha256": "681de11dd4404608122b3069321c60f2f6331b0f04c18d75d87aef208ac383a7"
+    },
+    "scripts/pr16_ring_caller_contracts.py": {
+      "size": 17412,
+      "sha256": "bde459691a9b1fdf1fa239a4df1f12c1ae3e3d16f8405634d46bd88e2290907f"
+    },
+    "scripts/pr16_ring_string_machine.py": {
+      "size": 2000,
+      "sha256": "1db71b3632a95a5a676a4315ccac2dae51ba6a3d80a9d4be42916145703a6581"
+    },
+    "scripts/pr16_ring_contract_machine.py": {
+      "size": 8710,
+      "sha256": "e48dfc6e12913c93efc9ee54d26117fc3082cf7aeb304df90bbae2438a83775b"
+    },
+    "scripts/pr16_ring_saved_contracts.py": {
+      "size": 15079,
+      "sha256": "1fe5c750ebc8be8faf46915f0e172706a35bd4313bb05bfec621af3760e50620"
+    },
+    "scripts/pr16_ring_owner_context.py": {
+      "size": 13828,
+      "sha256": "e4ceb839cb6f9e3676b50549471512ae18698b9d4a4428f5577992758e38c1f0"
+    },
+    "scripts/pr16_ring_record_callers.py": {
+      "size": 9264,
+      "sha256": "d30434a3ea9abdcd48c73c5265feafb268069dac8c7abf0e5117ad43e215bbfd"
+    }
+  },
+  "focused_tests": {
+    "tests_run": 32,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "successful": true
+  },
+  "prior_actions_verified_without_replay": [
+    {
+      "id": 35229107711,
+      "head_sha": "2560975cac98a6b315269399d2af407886e34ce1",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34946969126,
+      "head_sha": "0b7497b575a3180a045f2be377386490f192a012",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "actions_observed_before_record": [
+    {
+      "id": 35230498673,
+      "name": "p03-forgetting-ci",
+      "head_sha": "1aaeb8e4eda62d940beeb6a06d65542b68b1baab",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35230498729,
+      "name": "source-validation",
+      "head_sha": "1aaeb8e4eda62d940beeb6a06d65542b68b1baab",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35230494503,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "1aaeb8e4eda62d940beeb6a06d65542b68b1baab",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35230494343,
+      "name": "source-validation",
+      "head_sha": "1aaeb8e4eda62d940beeb6a06d65542b68b1baab",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35230494384,
+      "name": "p03-forgetting-ci",
+      "head_sha": "1aaeb8e4eda62d940beeb6a06d65542b68b1baab",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35230494553,
+      "name": "gFonts setter・caller・実descriptor lookup",
+      "head_sha": "1aaeb8e4eda62d940beeb6a06d65542b68b1baab",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35230494370,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "1aaeb8e4eda62d940beeb6a06d65542b68b1baab",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35229269728,
+      "name": "source-validation",
+      "head_sha": "cad642b13f4099b0b4f17b35190f7af986d322f1",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35229269743,
+      "name": "p03-forgetting-ci",
+      "head_sha": "cad642b13f4099b0b4f17b35190f7af986d322f1",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35229112267,
+      "name": "source-validation",
+      "head_sha": "2560975cac98a6b315269399d2af407886e34ce1",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35229112423,
+      "name": "p03-forgetting-ci",
+      "head_sha": "2560975cac98a6b315269399d2af407886e34ce1",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35229107588,
+      "name": "source-validation",
+      "head_sha": "2560975cac98a6b315269399d2af407886e34ce1",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35229107711,
+      "name": "gFonts初期化84byteと有限table候補",
+      "head_sha": "2560975cac98a6b315269399d2af407886e34ce1",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35229107557,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "2560975cac98a6b315269399d2af407886e34ce1",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35229107572,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "2560975cac98a6b315269399d2af407886e34ce1",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35229107501,
+      "name": "p03-forgetting-ci",
+      "head_sha": "2560975cac98a6b315269399d2af407886e34ce1",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35226016407,
+      "name": "p03-forgetting-ci",
+      "head_sha": "f8cf7d8836830527b3515c5affc1cd9360b8d06d",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35226016433,
+      "name": "source-validation",
+      "head_sha": "f8cf7d8836830527b3515c5affc1cd9360b8d06d",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35225886918,
+      "name": "p03-forgetting-ci",
+      "head_sha": "263e6b7e8fc54176da704323eeb9d16afe7acf9e",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35225886877,
+      "name": "source-validation",
+      "head_sha": "263e6b7e8fc54176da704323eeb9d16afe7acf9e",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ]
+}

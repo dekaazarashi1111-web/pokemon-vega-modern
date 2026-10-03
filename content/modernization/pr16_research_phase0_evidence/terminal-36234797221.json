@@ -1,0 +1,124 @@
+{
+  "jobs": [
+    {
+      "check_run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/check-runs/108384503454",
+      "completed_at": "2026-09-26T10:08:19Z",
+      "conclusion": "success",
+      "created_at": "2026-09-26T10:06:49Z",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "4946ff7f22401b260362ca6d6be7e7cb4bd1c460",
+      "html_url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/36234797221/job/108384503454",
+      "id": 108384503454,
+      "labels": [
+        "ubuntu-24.04"
+      ],
+      "name": "phase0",
+      "node_id": "CR_kwDOUPNhZs8AAAAZPDhGng",
+      "run_attempt": 1,
+      "run_id": 36234797221,
+      "run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/36234797221",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions",
+      "runner_id": 1000015512,
+      "runner_name": "GitHub Actions 1000015512",
+      "started_at": "2026-09-26T10:07:27Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completed_at": "2026-09-26T10:07:29Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "started_at": "2026-09-26T10:07:28Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-26T10:07:41Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 2,
+          "started_at": "2026-09-26T10:07:29Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-26T10:08:11Z",
+          "conclusion": "success",
+          "name": "phase0の限定境界と原本記録",
+          "number": 3,
+          "started_at": "2026-09-26T10:07:41Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-26T10:08:11Z",
+          "conclusion": "success",
+          "name": "引継ぎとtask graphを照合",
+          "number": 4,
+          "started_at": "2026-09-26T10:08:11Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-26T10:08:13Z",
+          "conclusion": "success",
+          "name": "最終index限定private guardと差分検査",
+          "number": 5,
+          "started_at": "2026-09-26T10:08:11Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-26T10:08:15Z",
+          "conclusion": "success",
+          "name": "同branchへcommitと非force push",
+          "number": 6,
+          "started_at": "2026-09-26T10:08:13Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-26T10:08:15Z",
+          "conclusion": "success",
+          "name": "失敗を成功扱いしない",
+          "number": 7,
+          "started_at": "2026-09-26T10:08:15Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-26T10:08:17Z",
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@v4",
+          "number": 8,
+          "started_at": "2026-09-26T10:08:15Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-26T10:08:17Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 16,
+          "started_at": "2026-09-26T10:08:17Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-26T10:08:17Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 17,
+          "started_at": "2026-09-26T10:08:17Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/jobs/108384503454",
+      "workflow_name": "pr16-research-phase0-20260926"
+    }
+  ],
+  "new_compiles": 0,
+  "new_native_processes": 0,
+  "new_unit_tests": 0,
+  "run": {
+    "conclusion": "success",
+    "head_branch": "codex/modernization-followup-20260908",
+    "head_sha": "4946ff7f22401b260362ca6d6be7e7cb4bd1c460",
+    "id": 36234797221,
+    "path": ".github/workflows/pr16-research-phase0-20260926.yml",
+    "run_attempt": 1,
+    "status": "completed"
+  }
+}

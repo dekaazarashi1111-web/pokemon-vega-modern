@@ -1,0 +1,394 @@
+{
+  "accepted_case_rerun_reason": "observed HP > max HP in immutable previous Save/Continue",
+  "candidate_changes": 0,
+  "retained": {
+    "butterfree-exp-multilevel": {
+      "phases": {
+        "continued": {
+          "hp": 45,
+          "level": 16,
+          "maximum_hp": 45
+        },
+        "fixture": {
+          "hp": 32,
+          "level": 10,
+          "maximum_hp": 32
+        },
+        "returned": {
+          "hp": 45,
+          "level": 16,
+          "maximum_hp": 45
+        },
+        "saved": {
+          "hp": 45,
+          "level": 16,
+          "maximum_hp": 45
+        }
+      },
+      "source": {
+        "sha256": "260b14b6cd6173f67a3f7a40e3f0ecc5a8dea6cb7c4a6fd34bf30a2478b8a4af",
+        "size": 4087
+      },
+      "status": "PASS"
+    }
+  },
+  "retired": {
+    "butterfree-exp-known": {
+      "observed_health": {
+        "phases": {
+          "continued": {
+            "hp": 999,
+            "level": 44,
+            "maximum_hp": 106
+          },
+          "fixture": {
+            "hp": 999,
+            "level": 43,
+            "maximum_hp": 999
+          },
+          "returned": {
+            "hp": 999,
+            "level": 44,
+            "maximum_hp": 106
+          },
+          "saved": {
+            "hp": 999,
+            "level": 44,
+            "maximum_hp": 106
+          }
+        },
+        "source": {
+          "sha256": "57fa3f0842174ea004905de1e59899112eeaaef48b9374742cbec09ec0da2ec5",
+          "size": 2033
+        },
+        "status": "INVALID_HP_FIXTURE"
+      },
+      "prior_acceptance": {
+        "result": {
+          "all_owners_accepted": false,
+          "boundary": 863,
+          "candidate_sha256": "b7790902733a638445129c388d65ab3c199bceb92a41338e0069221b556b9f91",
+          "case": "butterfree-exp-known",
+          "denied_host_write_apis": 7,
+          "eligible_original_moves": [
+            497
+          ],
+          "encounter": 1963,
+          "enemy_hp_before": 193,
+          "enemy_hp_min": 0,
+          "enemy_level": 76,
+          "enemy_species": 838,
+          "fixture": {
+            "level": 43,
+            "min_delta": 1,
+            "mode": 0,
+            "moves": [
+              53,
+              89,
+              497,
+              0
+            ],
+            "name": "butterfree-exp-known",
+            "points": [
+              15,
+              8,
+              9,
+              0
+            ],
+            "slot": 1
+          },
+          "fresh_cores": 2,
+          "guarded_phases": 3,
+          "initial_party": {
+            "sha256": "ab31c4616a7339b144580e3bd67d2d137b4df4d5091c32ac46a7421188279709",
+            "size": 100
+          },
+          "initial_party_exp_stats_progress_are_fixtures": true,
+          "issue19_complete": false,
+          "level_after": 44,
+          "level_before": 43,
+          "level_frame": 2675,
+          "moves_after": [
+            53,
+            89,
+            497,
+            0
+          ],
+          "outcome": 1,
+          "party_preserved_bytes": 100,
+          "persisted_party": {
+            "sha256": "83cb65d13073a259f66cc71b0f9855d906dadf18b63bfd71fbf7521a56c6c364",
+            "size": 100
+          },
+          "pp_after": [
+            14,
+            8,
+            9,
+            0
+          ],
+          "pp_spent": 2289,
+          "release_ready": false,
+          "returned": 3096,
+          "save_counters": [
+            2,
+            3,
+            3
+          ],
+          "schema_version": 1,
+          "selection_frame": 0,
+          "selections": 0,
+          "status": "PASS",
+          "summaries": 0,
+          "summary_frame": 0,
+          "turns": 1,
+          "walking_steps": 48,
+          "warnings_errors": 0,
+          "xp_after": 86720,
+          "xp_before": 85183,
+          "xp_threshold": 85184
+        },
+        "run_id": 36065509607,
+        "source_head": "3121b03c779207cc120fb5dc83ac219d965106ea"
+      },
+      "reason_ja": "今回保存3caseの帰還/Save/ContinueがHP999>最大HP106。HP保存整合性gate追加の変更影響が原本で確定。旧moves/PP証拠は不変の履歴として保持。"
+    },
+    "butterfree-exp-replace": {
+      "observed_health": {
+        "phases": {
+          "continued": {
+            "hp": 999,
+            "level": 44,
+            "maximum_hp": 106
+          },
+          "fixture": {
+            "hp": 999,
+            "level": 43,
+            "maximum_hp": 999
+          },
+          "returned": {
+            "hp": 999,
+            "level": 44,
+            "maximum_hp": 106
+          },
+          "saved": {
+            "hp": 999,
+            "level": 44,
+            "maximum_hp": 106
+          }
+        },
+        "source": {
+          "sha256": "ebc04447019e8f555ba1b80d674e58811143feb422c80b89eef6dd8b9cdf47aa",
+          "size": 2334
+        },
+        "status": "INVALID_HP_FIXTURE"
+      },
+      "prior_acceptance": {
+        "result": {
+          "all_owners_accepted": false,
+          "boundary": 863,
+          "candidate_sha256": "b7790902733a638445129c388d65ab3c199bceb92a41338e0069221b556b9f91",
+          "case": "butterfree-exp-replace",
+          "denied_host_write_apis": 7,
+          "eligible_original_moves": [
+            497
+          ],
+          "encounter": 1964,
+          "enemy_hp_before": 193,
+          "enemy_hp_min": 0,
+          "enemy_level": 76,
+          "enemy_species": 838,
+          "fixture": {
+            "level": 43,
+            "min_delta": 1,
+            "mode": 0,
+            "moves": [
+              53,
+              89,
+              33,
+              45
+            ],
+            "name": "butterfree-exp-replace",
+            "points": [
+              15,
+              8,
+              9,
+              10
+            ],
+            "slot": 1
+          },
+          "fresh_cores": 2,
+          "guarded_phases": 3,
+          "initial_party": {
+            "sha256": "c92b31cd9f428f1e7d4ca727997ba444ab59abdcdf92f05c8fb7d233cff46e99",
+            "size": 100
+          },
+          "initial_party_exp_stats_progress_are_fixtures": true,
+          "issue19_complete": false,
+          "level_after": 44,
+          "level_before": 43,
+          "level_frame": 2436,
+          "moves_after": [
+            53,
+            497,
+            33,
+            45
+          ],
+          "outcome": 1,
+          "party_preserved_bytes": 100,
+          "persisted_party": {
+            "sha256": "c551e4d6914a644c15eb2bda3e915d4e70e5445303818703654a3d2296186472",
+            "size": 100
+          },
+          "pp_after": [
+            14,
+            20,
+            9,
+            10
+          ],
+          "pp_spent": 2045,
+          "release_ready": false,
+          "returned": 3517,
+          "save_counters": [
+            2,
+            3,
+            3
+          ],
+          "schema_version": 1,
+          "selection_frame": 2927,
+          "selections": 1,
+          "status": "PASS",
+          "summaries": 1,
+          "summary_frame": 2867,
+          "turns": 1,
+          "walking_steps": 48,
+          "warnings_errors": 0,
+          "xp_after": 86720,
+          "xp_before": 85183,
+          "xp_threshold": 85184
+        },
+        "run_id": 36065509607,
+        "source_head": "3121b03c779207cc120fb5dc83ac219d965106ea"
+      },
+      "reason_ja": "今回保存3caseの帰還/Save/ContinueがHP999>最大HP106。HP保存整合性gate追加の変更影響が原本で確定。旧moves/PP証拠は不変の履歴として保持。"
+    },
+    "butterfree-exp-summary-refuse": {
+      "observed_health": {
+        "phases": {
+          "continued": {
+            "hp": 999,
+            "level": 44,
+            "maximum_hp": 106
+          },
+          "fixture": {
+            "hp": 999,
+            "level": 43,
+            "maximum_hp": 999
+          },
+          "returned": {
+            "hp": 999,
+            "level": 44,
+            "maximum_hp": 106
+          },
+          "saved": {
+            "hp": 999,
+            "level": 44,
+            "maximum_hp": 106
+          }
+        },
+        "source": {
+          "sha256": "7ecb11160c68ef720b1eb4b2efe03d09c9224db4af40a48d420af3cfd5f1c181",
+          "size": 2326
+        },
+        "status": "INVALID_HP_FIXTURE"
+      },
+      "prior_acceptance": {
+        "result": {
+          "all_owners_accepted": false,
+          "boundary": 863,
+          "candidate_sha256": "b7790902733a638445129c388d65ab3c199bceb92a41338e0069221b556b9f91",
+          "case": "butterfree-exp-summary-refuse",
+          "denied_host_write_apis": 7,
+          "eligible_original_moves": [
+            497
+          ],
+          "encounter": 1964,
+          "enemy_hp_before": 193,
+          "enemy_hp_min": 0,
+          "enemy_level": 76,
+          "enemy_species": 838,
+          "fixture": {
+            "level": 43,
+            "min_delta": 1,
+            "mode": 1,
+            "moves": [
+              53,
+              89,
+              33,
+              45
+            ],
+            "name": "butterfree-exp-summary-refuse",
+            "points": [
+              15,
+              8,
+              9,
+              10
+            ],
+            "slot": 1
+          },
+          "fresh_cores": 2,
+          "guarded_phases": 3,
+          "initial_party": {
+            "sha256": "c92b31cd9f428f1e7d4ca727997ba444ab59abdcdf92f05c8fb7d233cff46e99",
+            "size": 100
+          },
+          "initial_party_exp_stats_progress_are_fixtures": true,
+          "issue19_complete": false,
+          "level_after": 44,
+          "level_before": 43,
+          "level_frame": 2436,
+          "moves_after": [
+            53,
+            89,
+            33,
+            45
+          ],
+          "outcome": 1,
+          "party_preserved_bytes": 100,
+          "persisted_party": {
+            "sha256": "2bc9d2b56354dc67f1541bf9aed542a0f590f4cd1cf87cefbb16ad444e168d39",
+            "size": 100
+          },
+          "pp_after": [
+            14,
+            8,
+            9,
+            10
+          ],
+          "pp_spent": 2045,
+          "release_ready": false,
+          "returned": 3249,
+          "save_counters": [
+            2,
+            3,
+            3
+          ],
+          "schema_version": 1,
+          "selection_frame": 2897,
+          "selections": 1,
+          "status": "PASS",
+          "summaries": 1,
+          "summary_frame": 2867,
+          "turns": 1,
+          "walking_steps": 48,
+          "warnings_errors": 0,
+          "xp_after": 86720,
+          "xp_before": 85183,
+          "xp_threshold": 85184
+        },
+        "run_id": 36065509607,
+        "source_head": "3121b03c779207cc120fb5dc83ac219d965106ea"
+      },
+      "reason_ja": "今回保存3caseの帰還/Save/ContinueがHP999>最大HP106。HP保存整合性gate追加の変更影響が原本で確定。旧moves/PP証拠は不変の履歴として保持。"
+    }
+  }
+}

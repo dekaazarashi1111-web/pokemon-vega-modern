@@ -1,0 +1,30 @@
+{
+  "command": [
+    "cc",
+    "-std=c11",
+    "-O2",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-Wno-misleading-indentation",
+    "-Itools",
+    "-I.",
+    "-I.local/pr16-research-lifecycle/runtime/include",
+    ".local/pr16-research-lifecycle/purchase.c",
+    "-L.local/pr16-research-lifecycle/runtime/lib",
+    "-lmgba",
+    "-lm",
+    "-Wl,--allow-shlib-undefined",
+    "-o",
+    ".local/pr16-research-lifecycle/purchase"
+  ],
+  "executable": {
+    "sha256": "fa00cf0c7a03b61759b53421a12524a25c271e4ac75bb5d6caf43498f79ab1a1",
+    "size": 77960
+  },
+  "generated": {
+    "sha256": "0005f0982f36fed7d49d633d00d20c72064cfb21f650f0b0d0f5cd995e5e73e8",
+    "size": 39222
+  },
+  "returncode": 0
+}

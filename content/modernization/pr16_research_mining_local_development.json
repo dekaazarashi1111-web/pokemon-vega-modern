@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "environment": "local development, not GitHub Actions",
+  "task": "USER-20260927-RESEARCH-MINING",
+  "native_processes": 8,
+  "failed_native_processes": 5,
+  "successful_native_processes": 3,
+  "accepted_case_reruns": 0,
+  "arm_compiles": 0,
+  "notes_ja": "初期失敗を成功へ読み替えない。stdoutは全体identityとJSON行数を保存し、stderrは原文。全stdout原本は作業containerの各measurement.json。正式source固定原本は後続Actionsから別途記録する。",
+  "attempts": {
+    "mining-earn-cold-cap-1": {
+      "returncode": 1,
+      "timeout": false,
+      "stderr": "research-save-impact: all party bytes unchanged\n",
+      "elapsed_seconds": 5.249357891999921,
+      "source": {"size": 64857, "sha256": "5878f90e1a55eb698e33dcebd04ba0efb76b40e0c58efe62e4f183168b4460c9"},
+      "stdout_identity": {"size": 2350, "sha256": "61debd1834bcb9b875c8349433e1aa1a31778e285f5d042f5dd0a5ef5d1f2ee2"},
+      "stdout_lines": 11,
+      "original_measurement": {"size": 3674, "sha256": "d2747c0e27d0b3b4f5e0bc78682e1245b5a57507c977e652eb5ee4d5cd76ac36"}
+    },
+    "mining-earn-cold-cap-2": {
+      "returncode": 1,
+      "timeout": false,
+      "stderr": "party diff 41 46 -> 41\nparty diff 52 23 -> 0f\nparty diff 53 19 -> 23\nparty diff 54 14 -> 23\nparty diff 55 28 -> 23\nresearch-save-impact: all party bytes unchanged\n",
+      "elapsed_seconds": 5.358909304999997,
+      "source": {"size": 65011, "sha256": "dec47d60cbe3a073d332ba9ab269800614afa932702010823bb2314efb7bad5f"},
+      "stdout_identity": {"size": 2350, "sha256": "61debd1834bcb9b875c8349433e1aa1a31778e285f5d042f5dd0a5ef5d1f2ee2"},
+      "stdout_lines": 11,
+      "original_measurement": {"size": 3794, "sha256": "80b9939a55fadfeb94ed72cc733a94b66dc75eefa22aa0b047dad8548bbfbeff"}
+    },
+    "mining-earn-cold-cap-3": {
+      "returncode": 1,
+      "timeout": false,
+      "stderr": "research-save-impact: rock present before physical A\n",
+      "elapsed_seconds": 4.541694968000002,
+      "source": {"size": 65480, "sha256": "3999f2c4affef4dfe081bbc1e65c710d0411b6783fa483d372b1dc96410b55cb"},
+      "stdout_identity": {"size": 4010, "sha256": "fc40b2aeadfd3a8d813413b950436deda3d9f14c3c7ab9ee51e961e0c9d930b5"},
+      "stdout_lines": 16,
+      "original_measurement": {"size": 5598, "sha256": "4b42df9955aa7f797dd028158cce0bf3d2544c4be669a0afb4b7bc97af728f58"}
+    },
+    "mining-earn-cold-cap-4": {
+      "returncode": 0,
+      "timeout": false,
+      "stderr": "",
+      "elapsed_seconds": 8.015594170999975,
+      "source": {"size": 66650, "sha256": "e878b1e3e050aa4ca5f03f5efefb1bfdd935e40360dc85e95f6a291069ef4c98"},
+      "stdout_identity": {"size": 6336, "sha256": "d15a0cf7df28b868f007f3f1196ea2ba03ac16ce503c5f3747aa4e97f9450ad1"},
+      "stdout_lines": 25,
+      "original_measurement": {"size": 8346, "sha256": "24b2f47bd359752212497734173cf3e03e5968e32e2912fb7d17b461d1497aa3"}
+    },
+    "mining-missing-badge-1": {
+      "returncode": 1,
+      "timeout": false,
+      "stderr": "research-save-impact: actual mining physical root\n",
+      "elapsed_seconds": 1.2238128669999924,
+      "source": {"size": 64824, "sha256": "94fdca3b4e50d45f4925ec7fc58cd5f6ca84f4eba8b3163a37d62f99d04b9052"},
+      "stdout_identity": {"size": 0, "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+      "stdout_lines": 0,
+      "original_measurement": {"size": 548, "sha256": "e0e30ac2de32e7a3cbcc21c823f25361f4cf2c887860e06d1ad245f8e1597329"}
+    },
+    "mining-missing-badge-2": {
+      "returncode": 1,
+      "timeout": false,
+      "stderr": "mGBA[GBA][0x04] pc=08000006: Illegal opcode: 0000ea00\nmGBA[GBA][0x04] pc=08000006: Illegal opcode: 0000ea00\nmGBA[GBA][0x04] pc=08000006: Illegal opcode: 0000ea00\nmGBA[GBA][0x04] pc=08000006: Illegal opcode: 0000ea00\nmGBA[GBA][0x04] pc=08000006: Illegal opcode: 0000ea00\nmGBA[GBA][0x04] pc=08000006: Illegal opcode: 0000ea00\nmGBA[GBA][0x04] pc=08000006: Illegal opcode: 0000ea00\nmGBA[GBA][0x04] pc=08000006: Illegal opcode: 0000ea00\nmGBA[GBA][0x04] pc=08000006: Illegal opcode: 0000ea00\nmGBA[GBA][0x04] pc=08000006: Illegal opcode: 0000ea00\nmGBA[GBA][0x04] pc=08000006: Illegal opcode: 0000ea00\nmGBA[GBA][0x04] pc=08000006: Illegal opcode: 0000ea00\nmgba-ai-fixture: ROM call instruction limit function=0x08054c4d pc=0x03002c74\nmgba-ai-fixture: ROM call instruction limit exceeded\n",
+      "elapsed_seconds": 2.4769843519999313,
+      "source": {"size": 64825, "sha256": "901289e646a24ab410f54dc948f923ee4153a0ae3b9b79815ae5a92ec2aa97e9"},
+      "stdout_identity": {"size": 163, "sha256": "7784982cfc7315ef214b23c70b9d12d2fefa2ff2501b33231512fcc029a37f82"},
+      "stdout_lines": 1,
+      "original_measurement": {"size": 1474, "sha256": "9b9304ca4432ec241ebe75790a2cadafb9df65b8b28cb29169eab78227832e37"}
+    },
+    "mining-missing-badge-3": {
+      "returncode": 0,
+      "timeout": false,
+      "stderr": "",
+      "elapsed_seconds": 2.1587728560000414,
+      "source": {"size": 64857, "sha256": "5878f90e1a55eb698e33dcebd04ba0efb76b40e0c58efe62e4f183168b4460c9"},
+      "stdout_identity": {"size": 2351, "sha256": "3e7f04ad7449d9cfac944829e4a29738863d18e7f46f21dd94f038628ca46e6d"},
+      "stdout_lines": 9,
+      "original_measurement": {"size": 3331, "sha256": "50efe7e54224bc34a408275459d298745710425ac0d371a6893f904bb19f9d8d"}
+    },
+    "mining-missing-move-1": {
+      "returncode": 0,
+      "timeout": false,
+      "stderr": "",
+      "elapsed_seconds": 2.0588712699999405,
+      "source": {"size": 64857, "sha256": "5878f90e1a55eb698e33dcebd04ba0efb76b40e0c58efe62e4f183168b4460c9"},
+      "stdout_identity": {"size": 2349, "sha256": "dd31f7e6b97fc61f0ab39e303326d507679ff11ae6fe9d468c69f656b778a73c"},
+      "stdout_lines": 9,
+      "original_measurement": {"size": 3329, "sha256": "5381a91dbb8d27de504b962f04ee2a8a27520b23eb349b18def717011838e190"}
+    }
+  },
+  "new_unit": {
+    "command": "python -B -m unittest discover -s tests -p test_pr16_research_mining.py -v",
+    "returncode": 0,
+    "passed": 64,
+    "native_processes": 0,
+    "stdout_identity": {"size": 0, "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+    "stderr_identity": {"size": 6099, "sha256": "9020efd17fa27a18f6c61e6ee7332ed4182be64d18aa97211342621efe4a64c5"}
+  },
+  "candidate": {"size": 33554432, "sha256": "26dac23cfdbc02c3c25e357b79dcdf3d247c10d893f54a4f6d6b1227bf5624da"},
+  "fixture": {"size": 131072, "sha256": "434076d0db74c4c5bf1b63e3aa4cc336d17e1f2dbb894160e840c721aa337a38"},
+  "compile_history": {"preflight_failure": 1, "successful_host_compiles": 6, "arm_compiles": 0, "notes_ja": "生成先directory未作成のため最初の生成/ccは失敗。compile2〜7は成功。"},
+  "oracle_preflight": {"failures": 1, "reason": "AttributeError: pr16_research_photo.FIXTURE does not exist", "fix_ja": "独立fixtureの固定size/SHA256へ訂正。native再実行なし。以後3原本の全台帳再構成と新unit64成功。"}
+}

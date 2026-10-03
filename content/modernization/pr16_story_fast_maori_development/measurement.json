@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "status": "MEASURED_NOT_YET_ACCEPTED",
+  "task": "USER-20260929-STORY-FAST-MAORI",
+  "source_head": "92da85796fce625ac4443a3511bba750d5dd7399",
+  "parent_run": 36500700863,
+  "parent_artifact_id": 11005890195,
+  "candidate": {"size": 33554432, "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"},
+  "runner": {"size": 73792, "sha256": "9c62d9664d50ea58a150b59b1c2d5465e6a50f5b0824ce4728f92656331ee14d"},
+  "input_save": {"size": 131088, "sha256": "fa2bb585eeeec1c81f0b8498438001b72d010ead2b9091f8f2b87744be1c6e97"},
+  "output_save": {"size": 131088, "sha256": "5c4a03b9d92f7be54250d565162b03b5b85a2f221c3873d26d894b74b76778ce"},
+  "measurements": {
+    "progress": {"end": "STORY_INPUT_CHECKPOINT", "frames": 15106, "inputs": 176, "warnings_errors": 0, "host_write_barriers": 7, "guarded_host_writes": 0, "fixture_calls": 0, "natural_research_arrival_accepted": false},
+    "continue": {"end": "STORY_INPUT_CHECKPOINT", "frames": 1848, "inputs": 20, "warnings_errors": 0, "host_write_barriers": 7, "guarded_host_writes": 0, "fixture_calls": 0, "natural_research_arrival_accepted": false}
+  },
+  "files": {
+    "commands.txt": {"size": 2024, "sha256": "8607ce50ef3e719e89db3263a17d60f807c65ef978da19cdd3bb1f2a9d6c98c5"},
+    "continue-commands.txt": {"size": 107, "sha256": "47f99a27da17c99fe62b0cd7d4b1af585a7b9bb62b99cde80a0c113da69d0593"},
+    "progress.stdout.txt": {"size": 33151, "sha256": "f482252fd6710dbb895cbe6d67bfd30653cb327ad52a0620042b0b7fe40cd579"},
+    "continue.stdout.txt": {"size": 3530, "sha256": "f1b16675293b471ef63a270cbfbb6d041178767eaa25dffad540aac0701c6582"}
+  },
+  "claims": {"trainer_victories": 1, "trainer_ja": "じゅくがえりマオリ", "prize_money": 160, "wild_escapes": 1, "wild_victories": 0, "losses": 0, "captures": 0, "ordinary_saves": 1, "save_counter": 16, "fresh_continue_all_save_rtc_equal": true, "afterbattle_npc_dialogue_no_rebattle": true, "natural_difficulty": false, "natural_growth": false, "full_story": false, "release_ready": false},
+  "review": {
+    "method": "DIRECT_PIXEL_REVIEW_NO_OCR", "progress_screens": 44, "continue_screens": 4,
+    "anchors": {
+      "progress/13": "エネコ雌Lv2から通常逃走。outcome4は勝利ではない。",
+      "progress/18": "じゅくがえりマオリの戦闘開始。", "progress/19": "パモ雌Lv4。", "progress/25": "パピモッチ雌Lv6。", "progress/30": "コフキムシ雄Lv8。",
+      "progress/33": "マオリとのしょうぶにかった。", "progress/35": "賞金160円。",
+      "progress/36": "勝利後field復帰、lock0。wire field:falseは残留battle_flags12のため。",
+      "progress/41": "通常Save書込中、counter15の途中。", "progress/42": "counter16とfield復帰。",
+      "continue/0": "独立Continue、party600/Flash全体保持。", "continue/1": "戦闘後台詞1。", "continue/2": "戦闘後台詞2。", "continue/3": "会話終了field。再戦0。"
+    },
+    "save_success_text_frame_captured": false
+  },
+  "development_native_processes": 2, "host_compiles": 0, "arm_compiles": 0, "rom_changes": 0, "accepted_case_reruns": 0,
+  "next": "限定byte oracleとnegative testsを実装し、初回Actions測定で固定入力の再現/原本保管/引継ぎ記録を完了する。正式受入前WIP。"
+}

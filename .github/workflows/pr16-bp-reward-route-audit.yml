@@ -1,0 +1,182 @@
+name: pr16-bp-reward-route-audit
+run-name: PR16 Trial reward ID versus BP amount and remaining exchange bindings; zero native replay
+on:
+  workflow_dispatch:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-bp-reward-route-audit.yml]
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: pr16-bp-reward-route-audit
+  cancel-in-progress: false
+jobs:
+  reward-route:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Record current Actions and exact source checkpoint without replay
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-bp-reward-route
+          out=.local/pr16-bp-reward-route
+          gh api --method GET "repos/$GITHUB_REPOSITORY/actions/runs" -f branch=codex/modernization-followup-20260908 -f per_page=100 --jq '[.workflow_runs[] | {id,name,path,head_sha,event,status,conclusion,created_at,updated_at,workflow_id}]' > "$out/latest-actions.json"
+          python3 - <<'PY'
+          import hashlib,json,pathlib,subprocess,zipfile
+          root=pathlib.Path('.');out=root/'.local/pr16-bp-reward-route'
+          names={'AGENTS.md','CHATGPT_RESUME.md','scripts/pr16_resume.py','tests/test_pr16_resume.py','scripts/pr16_bp_chooser_checkpoint.py','scripts/build_facility_runtime.py','scripts/build_factory_high_modes_v2.py','config/factory_high_modes_v2.json','config/active_play_baseline.json','design/active_play_baseline.md','content/modernization/pr16_bp_chooser_checkpoint.json','content/modernization/pr16_bp_selection_diagnostic.json','content/modernization/pr16_native_supply_resume_20260913.json','content/modernization/p08_remaining_work.json','docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md','.github/workflows/pr16-bp-reward-route-audit.yml','.github/workflows/pr16-bp-selection-native.yml'}
+          for pattern in ('overlays/facility_runtime/*.[ch]','overlays/factory_high_modes_v2/*.[ch]','overlays/factory_shiny*/*.[ch]','overlays/research_economy/*.[ch]','scripts/build_factory_shiny*.py','scripts/build_research_economy.py','config/factory_shiny*.json','config/research_economy.json','content/factory_high_modes_v2/*.json','scripts/pr16_bp*.py','tests/test_pr16_bp*.py'):
+              names.update(str(p) for p in root.glob(pattern) if p.is_file())
+          assert len(names)<160
+          bound={}
+          with zipfile.ZipFile(out/'sources.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for name in sorted(names):
+                  p=root/name;assert p.is_file() and not p.is_symlink()
+                  data=p.read_bytes();data.decode('utf-8');assert b'\0' not in data and len(data)<2000000
+                  z.writestr(name,data);bound[name]={'size':len(data),'sha256':hashlib.sha256(data).hexdigest()}
+          (out/'source-bindings.json').write_text(json.dumps(bound,sort_keys=True,indent=2)+'\n')
+          (out/'tested-head.txt').write_text(subprocess.check_output(['git','rev-parse','HEAD'],text=True))
+          for name in ('run_log','version_log'):
+              text=(root/'design'/f'{name}.md').read_text()
+              (out/f'{name}-tail.txt').write_text('\n'.join(text.splitlines()[-110:])+'\n')
+          PY
+          python3 scripts/pr16_resume.py check > "$out/resume-check.json"
+          python3 scripts/pr16_bp_chooser_checkpoint.py > "$out/accepted-cancel-retained.json"
+          python3 scripts/validate_task_graph.py > "$out/task-graph.txt"
+      - name: Restore pinned toolchain and Stage84 input
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-reward-route
+          bash infra/setup_github_actions.sh --install > "$out/toolchain.log" 2>&1
+          python3 scripts/modernization_final_integration.py prepare > "$out/stage84.json" 2> "$out/stage84.stderr"
+      - name: Restore checked build inputs without publishing private files
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-reward-route
+          assets=.local/pr16-bp-trial-native-inputs
+          mkdir -p "$assets"
+          tag=$(python3 -c 'import json; print(json.load(open("config/github_private_environment.json"))["release"]["tag"])')
+          gh release download "$tag" --pattern pokemon-vega-private-env-v1-inputs.zip --pattern pokemon-vega-private-env-v1-modernization-inputs.zip --pattern pokemon-vega-private-env-v1-state.zip --dir "$assets"
+          python3 scripts/github_private_environment.py restore --archive-dir "$assets" --archive pokemon-vega-private-env-v1-inputs.zip --archive pokemon-vega-private-env-v1-modernization-inputs.zip > "$out/private-restore.json"
+          python3 - <<'PY'
+          import hashlib,json,pathlib,zipfile
+          root=pathlib.Path('.');out=root/'.local/pr16-bp-reward-route'
+          cfg=json.loads((root/'config/github_private_environment.json').read_bytes());name='pokemon-vega-private-env-v1-state.zip'
+          bound=next(a for a in cfg['archives'] if a['name']==name);archive=root/'.local/pr16-bp-trial-native-inputs'/name;raw=archive.read_bytes()
+          assert len(raw)==bound['size'] and hashlib.sha256(raw).hexdigest()==bound['sha256']
+          member='vendor/upstream/CFRU-JP/charmap.tbl'
+          with zipfile.ZipFile(archive) as z:
+              data=z.read(member)
+              retained={}
+              for n in ('build/stages/20_facility_runtime.json','generated/runtime/facility_runtime_symbols.json','build/stages/42_factory_high_modes_v2.json'):
+                  if n in z.namelist():
+                      value=z.read(n);value.decode('utf-8');assert len(value)<2000000 and b'\0' not in value
+                      retained[n]=json.loads(value)
+              (out/'historical-build-metadata.json').write_text(json.dumps(retained,sort_keys=True,indent=2)+'\n')
+          p=root/member;assert not any(q.is_symlink() for q in (p,*p.parents))
+          if p.exists():assert p.read_bytes()==data
+          else:p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(data);p.chmod(0o444)
+          (out/'charmap-binding.json').write_text(json.dumps({'archive_sha256':bound['sha256'],'member':member,'size':len(data),'sha256':hashlib.sha256(data).hexdigest()},sort_keys=True)+'\n')
+          PY
+      - name: Rebuild unchanged engineering candidate and inspect reward and exchange graph only
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-reward-route
+          python3 scripts/pr16_p07_preserved_layer.py > "$out/p07.stdout" 2> "$out/p07.stderr"
+          python3 scripts/pr16_evolution_learning_repair.py > "$out/repair.stdout" 2> "$out/repair.stderr"
+          python3 scripts/pr16_bp_chooser_successor.py > "$out/candidate.stdout" 2> "$out/candidate.stderr"
+          python3 - <<'PY'
+          import hashlib,json,pathlib,struct,subprocess,sys,tempfile,zlib
+          root=pathlib.Path('.');out=root/'.local/pr16-bp-reward-route';sys.path[:0]=['scripts','.']
+          import pr16_bp_trial_route as route
+          raw=(root/'.local/pr16-bp-chooser-successor/candidate.gba').read_bytes();BASE=0x08000000
+          assert len(raw)==33554432 and hashlib.sha256(raw).hexdigest()=='bffd0b83e3724c2fba216052a3ff45afd3ab194ca2168244874746ce0e4a9e92'
+          def u32(a):
+              assert BASE<=a<=BASE+len(raw)-4
+              return struct.unpack_from('<I',raw,a-BASE)[0]
+          at=raw.find(b'VEGAF20\0');assert at>=0 and raw.find(b'VEGAF20\0',at+1)<0
+          header=struct.unpack_from('<12I',raw,at+8)
+          assert header[0]==1 and tuple(header[3:8])==(3,6,3,9,100)
+          npc=header[9];trial=route.graph(raw,[npc]);high=route.graph(raw,[0x093C9390])
+          nulls=[];targets=set()
+          for node in trial:
+              for i,row in enumerate(node['instructions']):
+                  if 'native' in row:targets.add(row['native'])
+                  if row.get('special')==0x2F:
+                      following=node['instructions'][i+1:i+3]
+                      assert len(following)==2 and following[0]['opcode']==0x27 and 'native' in following[1]
+                      nulls.append({'script_address':row['address'],'operand_address':row['address']+1,'bytes':row['bytes'],'next':following})
+          assert len(nulls)==2
+          assert u32(0x08163068+4*0x2F)==0x080CBF8D and raw[0xCBF8C:0xCBF8E]==bytes.fromhex('7047')
+          assert u32(0x08163068+4*0x29)==0x080A160D
+          assert raw[0x12CF628:0x12CF62C]==bytes.fromhex('25290027')
+          # Actual completion script is already rebound to the High adapter. The
+          # literal delegate and legacy Complete must be distinguished from it.
+          actual_complete=u32(0x092CF791);targets.update((actual_complete,0x092DE351))
+          metadata=json.loads((out/'historical-build-metadata.json').read_bytes())
+          legacy=metadata.get('build/stages/20_facility_runtime.json',{}).get('entrypoints',{}).get('FacilityRuntime_Complete')
+          if legacy is not None:targets.add(legacy)
+          spans={};disassembly=[]
+          with tempfile.TemporaryDirectory(dir='.local') as d:
+              for ptr in sorted(targets):
+                  assert ptr&1 and BASE<=ptr<BASE+len(raw)-384
+                  a=ptr&~1;data=raw[a-BASE:a-BASE+384]
+                  spans[f'{ptr:08X}']={'address':a,'size':len(data),'sha256':hashlib.sha256(data).hexdigest(),'hex':data.hex()}
+                  p=pathlib.Path(d)/'code.bin';p.write_bytes(data)
+                  text=subprocess.check_output(['arm-none-eabi-objdump','-D','-b','binary','-m','arm','-M','force-thumb','--adjust-vma='+str(a),str(p)],text=True)
+                  disassembly.append(text.replace(str(p),'bounded-code-excerpt'))
+          report={'schema_version':1,'status':'PASS_STATIC_REWARD_ROUTE_EXCHANGE_REVIEW_REQUIRED','tested_head':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'candidate':{'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest(),'crc32':f'{zlib.crc32(raw)&0xffffffff:08X}'},'facility_header':{'address':BASE+at,'values':header,'battle_count':header[3],'reward_bp_amount':header[6],'npc':npc},'trial_graph':trial,'high_graph':high,'remaining_trial_null_specials':nulls,'special_binding':{'table':0x08163068,'special47_target':u32(0x08163068+4*0x2F),'special41_target':u32(0x08163068+4*0x29),'special47_immediate_return':True},'actual_completion_adapter':actual_complete,'legacy_completion_from_historical_metadata':legacy,'native_code':spans,'new_emulator_processes':0,'rom_changes':0,'native_bp_earning_accepted':False,'release_ready':False}
+          (out/'audit.json').write_text(json.dumps(report,sort_keys=True,indent=2)+'\n')
+          (out/'disassembly.txt').write_text('\n'.join(disassembly))
+          print(json.dumps({'status':report['status'],'header_reward_bp':header[6],'remaining_trial_exchange_null_specials':nulls,'actual_completion_adapter':actual_complete,'new_emulator_processes':0},sort_keys=True))
+          PY
+          git diff --exit-code
+      - name: Reject private and executable artifacts and bind output members
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib,json,pathlib,stat,zipfile
+          root=pathlib.Path('.local/pr16-bp-reward-route');bound={}
+          for p in root.iterdir():
+              assert p.is_file() and not p.is_symlink()
+              assert p.suffix in {'.json','.txt','.log','.stdout','.stderr','.zip'}
+              data=p.read_bytes()
+              if p.suffix=='.zip':
+                  assert p.name=='sources.zip'
+                  with zipfile.ZipFile(p) as z:
+                      assert len(z.namelist())==len(set(z.namelist()))<160
+                      assert sum(i.file_size for i in z.infolist())<32000000
+                      for i in z.infolist():
+                          q=pathlib.PurePosixPath(i.filename)
+                          assert not q.is_absolute() and '..' not in q.parts and '\\' not in i.filename and not stat.S_ISLNK(i.external_attr>>16)
+                          assert q.suffix in {'.py','.c','.h','.json','.yml','.md'}
+                          value=z.read(i);value.decode('utf-8');assert b'\0' not in value
+              else:data.decode('utf-8');assert b'\0' not in data and len(data)<16000000
+              bound[p.name]={'size':len(data),'sha256':hashlib.sha256(data).hexdigest()}
+          (root/'members.json').write_text(json.dumps(bound,sort_keys=True,indent=2)+'\n')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-bp-reward-route-audit
+          path: .local/pr16-bp-reward-route/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90

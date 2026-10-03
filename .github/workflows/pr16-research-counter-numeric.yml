@@ -1,0 +1,78 @@
+name: pr16-research-counter-numeric
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-research-counter-numeric.yml]
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-research-counter-numeric
+  cancel-in-progress: false
+jobs:
+  numeric:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Source transfer identity
+        id: source
+        shell: python
+        run: |
+          import hashlib,pathlib
+          expected={
+            'scripts/pr16_research_counter_actions.py':'a5595d164a635b8c98800c8cff203abd39df86effa80cb700e94aadd3a07fba2',
+            'scripts/pr16_research_counter_numeric.py':'be73b67399ea583c3480491fd1acf2fb178f9372fc8d3fda568c9636dba5e52f',
+            'scripts/pr16_research_counter_oracle.py':'a0cd8b48f5ef71ae426d08c5136ecbedf1470c87decf97663d7891e1e23f9919',
+            'scripts/pr16_research_counter_probe.py':'685c2c7e3f06f226f6b8ded672456ac2a92461fe0b243fee19d194c60c55c751',
+            'tests/test_pr16_research_counter_numeric.py':'e4d8f80e2eb50e55d0837002ae6ef764ea6a3318f525cf2925b54108105e8feb',
+            'tools/mgba_pr16_research_counter_numeric.c':'c38e50f1bc1809b297ff70ade35c88676d507297f9c07f17c886bd87778cb152'}
+          for name,digest in expected.items():
+              assert hashlib.sha256(pathlib.Path(name).read_bytes()).hexdigest()==digest,name
+          print('PASS: six transferred source identities')
+      - name: New counter numeric boundaries only
+        id: measure
+        run: python3 -B scripts/pr16_research_counter_actions.py measure
+      - name: Preserve measurement and handoff
+        id: record
+        if: always() && steps.source.outcome == 'success' && hashFiles('.local/pr16-research-counter/public/invocation.json') != ''
+        run: python3 -B scripts/pr16_research_counter_actions.py record
+      - name: Task graph and exact scoped final index
+        id: guard
+        if: always() && steps.record.outcome == 'success'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B scripts/validate_task_graph.py
+          mapfile -t owned < <(python3 -B scripts/pr16_research_counter_actions.py paths)
+          git add -- "${owned[@]}"
+          python3 -B scripts/pr16_research_counter_actions.py guard
+      - name: Non-force evidence checkpoint
+        if: always() && steps.guard.outcome == 'success'
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git ls-remote origin "$GITHUB_REF" | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20260927-RESEARCH-COUNTER: 数値受付の限定原本・引継ぎを保存'
+          git push origin HEAD:refs/heads/codex/modernization-followup-20260908
+          test "$(git ls-remote origin "$GITHUB_REF" | cut -f1)" = "$(git rev-parse HEAD)"
+          echo "RESULT=STOPPED TASK=USER-20260927-RESEARCH-COUNTER VERIFY=SKIP COMMIT=$(git rev-parse HEAD)"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-research-counter-numeric
+          path: |
+            .local/pr16-research-counter/public/
+            content/modernization/pr16_research_counter_checkpoint.json
+          include-hidden-files: true
+          retention-days: 14
+          if-no-files-found: error

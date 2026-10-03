@@ -1,0 +1,85 @@
+name: pr16-capture-geometry
+run-name: PR16 exact natural-capture geometry, no capture acceptance claim
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-capture-geometry.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: pr16-capture-geometry
+  cancel-in-progress: false
+jobs:
+  geometry:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Bind tracked development sources, excluding binaries and private inputs
+        run: |
+          python3 - <<'PY'
+          import hashlib,json,pathlib,subprocess,zipfile
+          root=pathlib.Path('.');out=root/'.local/pr16-capture-geometry-evidence';out.mkdir(parents=True,exist_ok=True)
+          (out/'tested-head.txt').write_text(subprocess.check_output(['git','rev-parse','HEAD'],text=True))
+          names=subprocess.check_output(['git','ls-files','-z']).decode().split('\0');bindings={}
+          prefixes=('scripts/','tools/','tests/','overlays/','content/modernization/','docs/PR16_')
+          exact={'AGENTS.md','README.md','design/current_state.md','design/agent_context_map.md','design/tasks_next.md','config/rom_regions.csv','.github/workflows/pr16-capture-geometry.yml'}
+          with zipfile.ZipFile(out/'tracked-sources.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for name in sorted(n for n in names if n and (n.startswith(prefixes) or n in exact)):
+                  p=root/name
+                  if p.suffix not in ('.py','.c','.h','.json','.md','.csv','.yml') or p.is_symlink():continue
+                  raw=p.read_bytes();raw.decode('utf8');assert b'\0' not in raw
+                  z.writestr(name,raw);bindings[name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+          (out/'source-bindings.json').write_text(json.dumps(bindings,sort_keys=True,indent=2)+'\n')
+          PY
+      - name: Restore exact parent and compiler without touching baseline
+        run: |
+          set -euo pipefail
+          out=.local/pr16-capture-geometry-evidence
+          bash infra/setup_github_actions.sh --install > "$out/toolchain.log" 2>&1
+          python3 scripts/modernization_final_integration.py prepare > "$out/stage84.json"
+      - name: Fixed adopted V4 and original character map
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-inputs
+          gh release download private-environment-v1 --pattern pokemon-vega-private-env-v1-inputs.zip --pattern pokemon-vega-private-env-v1-state.zip --dir .local/pr16-inputs
+          python3 - <<'PY'
+          import hashlib,json,pathlib,zipfile
+          root=pathlib.Path('.');cfg=json.loads((root/'config/github_private_environment.json').read_bytes());bindings={}
+          for archive,member,digest in (('pokemon-vega-private-env-v1-inputs.zip','userfile/imports/Pokemon-Vega_MOVE-DISTRIBUTION-V4_IMPLEMENTATION-READY.zip','4022cd6e1358f58dffc5ebc38b756166f0a1072f948af6934298f65bd82678b2'),('pokemon-vega-private-env-v1-state.zip','vendor/upstream/CFRU-JP/charmap.tbl',None)):
+              model=next(a for a in cfg['archives'] if a['name']==archive);raw=(root/'.local/pr16-inputs'/archive).read_bytes()
+              assert len(raw)==model['size'] and hashlib.sha256(raw).hexdigest()==model['sha256']
+              with zipfile.ZipFile(root/'.local/pr16-inputs'/archive) as z:data=z.read(member)
+              if digest:assert hashlib.sha256(data).hexdigest()==digest
+              target=root/member;assert not any(p.is_symlink() for p in (target,*target.parents))
+              if target.exists():assert target.read_bytes()==data
+              else:target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(data);target.chmod(0o444)
+              bindings[member]={'archive':archive,'archive_sha256':model['sha256'],'size':len(data),'sha256':hashlib.sha256(data).hexdigest()}
+          (root/'.local/pr16-capture-geometry-evidence/input-bindings.json').write_text(json.dumps(bindings,sort_keys=True,indent=2)+'\n')
+          PY
+      - name: Build exact parent and inspect rooted walking geometry
+        run: |
+          set -euo pipefail
+          out=.local/pr16-capture-geometry-evidence
+          python3 scripts/pr16_p07_preserved_layer.py > "$out/p07.stdout" 2> "$out/p07.stderr"
+          python3 scripts/pr16_evolution_learning_repair.py > "$out/evolution.stdout" 2> "$out/evolution.stderr"
+          python3 scripts/pr16_capture_geometry.py > "$out/geometry.stdout" 2> "$out/geometry.stderr"
+          git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-capture-geometry
+          path: |
+            .local/pr16-capture-geometry/
+            .local/pr16-capture-geometry-evidence/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
