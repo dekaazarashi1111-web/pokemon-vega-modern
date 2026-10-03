@@ -17,9 +17,83 @@ CP='content/modernization/pr16_story_save56_checkpoint.json'
 GUIDE='docs/PR16_STORY_SAVE56_JA.md'
 EVIDENCE='content/modernization/pr16_story_save56_evidence'
 VISUAL='content/modernization/pr16_story_save56_visual_review.json'
-shared=m.a.shared;transport=m.a.transport;parent=m.a.parent;trace=m.a.trace
+shared=m.a.shared;transport=m.a.transport;parent=m.a.parent
 ROUTE=[[16,20],[15,20]]+m.INTERIOR_ROUTE
 FLASH_PHASES=['cfd408ce397c65ffd33eedcc6a5153eadb9a4e9b7fbf54f0840e4c3617541023', 'e3544e55e2b488c4eae3a03e9acb3e638253de605e67b2193817aab82cf15722', '2c9509be5e1fc76d1b3c7696f15a528e1d6280b9f3167d80464b6f7428509480', 'd65a2111e544338862332a91c4316b057f8902346f60123c30413603e1eac50f', 'cee9199677b72e28e94566645ac9e5f8814d9bd93e058c53ff9ee1bef8827f32', '91125dbdb69a8031794185295dba6c9806e4e98bb73a64a89f098b386bce7e38', '11fec72de2efbf33b04fe51593883eadaac45827dbb0855dda116b6d626b1f3a', 'f222d727917ea51b47bf694124e41c5117c53881cf114a4657d8ca2dbae879d6', '53454d59f37c46c7902302b7a97f79f572182ea82cb4a047fce7ed878427e919', '559b470236485de7703030c21fcd9e12def054fea21c8163bbcc9ea2a611a043', '2ab44170c62f32e5553fb0673c53a52a729eaf0c9590960152714246934d58ac', 'd4c94975ac367ab15605e500dd2867245984070e3d5c300759c94c5fb1f3dbab', 'd4c94975ac367ab15605e500dd2867245984070e3d5c300759c94c5fb1f3dbab', 'eafa0d22872d08f7813862f077b1ceeb43d68a9e5fbb69754b7f6903ff3b813e']
+from pr16_story_save21_accept import load,integer,digest,commands,screen_bytes,BOOT,OBS_INTS,OBS_HASH,OBS_KEYS,END_KEYS
+CANDIDATE=shared.plan.CANDIDATE
+
+def coordinate_boundary(o,seed):
+    if o['live_xy']==[v+7 for v in o['xy']]:return
+    need(seed==m.a.OUTPUT and o['observe']==4 and o['frame']==1614 and o['map']==[1,59]and o['xy']==[20,33]and o['live_xy']==[0,0]and o['facing']==0 and o['callback2']==134569997 and o['field']is False and o['lock']==0 and o['save_counter']==55 and o['party_count']==4 and o['rp']==o['battle_flags']==o['battle_outcome']==0 and o['party_sha256']==PARTY and o['flash_sha256']==m.a.FLASH and o['ledger_sha256']==LEDGER,'Save55入力から館warp直後の有限transientだけ')
+
+def trace_rows(raw, command, seed):
+    """保存helperを使わず入力↔JSONLを一対一照合。旧field判定を書換えない。"""
+    need(type(seed) is dict and set(seed) == {'size','sha256'} and type(seed['size']) is int and seed['size'] == 131088 and digest(seed['sha256']) and type(raw) is bytes and 0 < len(raw) < 400000 and raw.endswith(b'\n'), '原本/種別')
+    lines = commands(command)
+    rows = [load(x) for x in raw.splitlines()]
+    need(all(type(r) is dict for r in rows) and len(rows) >= 16, '行object/schema')
+    start = rows[0]
+    expected_seed = seed
+    need(set(start) == {'begin','candidate_sha256','initial_save_sha256','host_write_barriers'} and
+         start['begin'] == 'INDEPENDENT_CONTINUE' and start['candidate_sha256'] == CANDIDATE['sha256'] and
+         start['initial_save_sha256'] == expected_seed['sha256'] and
+         type(start['host_write_barriers']) is int and start['host_write_barriers'] == 7, '開始境界')
+    cursor, frame, input_count = 1, 0, 0
+    observations, screens = [], []
+
+    def take_key(key, frames):
+        nonlocal cursor, frame, input_count
+        need(cursor < len(rows), '入力行欠落')
+        r = rows[cursor]
+        need(set(r) == {'input','frame','key','frames'} and all(integer(v) for v in r.values()) and
+             r == dict(input=input_count, frame=frame, key=key, frames=frames), '実入力/frame原本不一致')
+        frame += frames; input_count += 1; cursor += 1
+        need(frame <= 1800000, 'frame上限')
+
+    def take_observe(n):
+        nonlocal cursor
+        need(cursor+1 < len(rows), '画面対欠落')
+        r,screen = rows[cursor:cursor+2]
+        need(set(r) == OBS_KEYS and all(integer(r[k], high=0xffffffff) for k in OBS_INTS) and
+             all(digest(r[k]) for k in OBS_HASH) and type(r['field']) is bool, '観測schema')
+        for k in ('map','xy','live_xy'):
+            need(type(r[k]) is list and len(r[k]) == 2 and all(integer(v,high=65535) for v in r[k]), '座標schema')
+        need(r['observe'] == n and r['frame'] == frame and r['lock'] in (0,1) and r['party_count'] <= 6,
+             '観測frame/lock/party')
+        coordinate_boundary(r,seed)
+        need(set(screen) == {'screen','frame','sha256'} and type(screen['screen']) is int and
+             type(screen['frame']) is int and screen['screen'] == n and screen['frame'] == frame and
+             digest(screen['sha256']), '画面と観測の同frame')
+        observations.append(r); screens.append(screen); cursor += 2
+
+    for k,f in BOOT:
+        take_key(k,f)
+    take_observe(0)
+    for line in lines[:-1]:
+        p = line.split()
+        if p[0] == 'key':
+            take_key(int(p[1]),int(p[2]))
+        else:
+            take_observe(int(p[1]))
+    need(cursor == len(rows)-1, '余剰行/隠し保存')
+    end = rows[cursor]
+    need(set(end) == END_KEYS and end['end'] == 'STORY_INPUT_CHECKPOINT' and
+         all(integer(end[k]) for k in END_KEYS-{'end','natural_research_arrival_accepted'}) and
+         end['frames'] == frame and end['inputs'] == input_count and end['host_write_barriers'] == 7 and
+         end['warnings_errors'] == end['guarded_host_writes'] == end['fixture_calls'] == 0 and
+         end['natural_research_arrival_accepted'] is False, '終端/書込禁止/過大受入')
+    return dict(start=start, observations=observations, screens=screens, end=end)
+
+
+
+def trace(folder,seed):
+    folder=Path(folder);parsed=trace_rows((folder/'stdout.txt').read_bytes(),(folder/'commands.txt').read_bytes(),seed)
+    need(not(folder/'stderr.txt').read_bytes(),'native stderr')
+    need({p.name for p in folder.glob('screen-*.ppm')}=={f"screen-{v['screen']:04d}.ppm"for v in parsed['screens']},'全画面集合')
+    for v in parsed['screens']:screen_bytes((folder/f"screen-{v['screen']:04d}.ppm").read_bytes(),v,blank_allowed=(seed==m.a.OUTPUT and v['screen']==4))
+    return parsed
+
 def motion(i):
     if i<6:return [([16,20],1),([16,20],3),([15,20],3),([15,20],2),([20,33],0),([20,33],2)][i]
     return([20,max(25,38-i)],2)

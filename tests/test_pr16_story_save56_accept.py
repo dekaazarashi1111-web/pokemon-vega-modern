@@ -30,6 +30,13 @@ class Acceptance(unittest.TestCase):
         r=a.semantics(self.pa,self.pb);self.assertFalse(r['party_byte41_runtime_owner_resolved']);self.assertFalse(r['old_save52_cold_difference_owner_resolved']);self.assertFalse(r['healing_ram_ledger_owner_resolved'])
     def test_flash_match_is_not_completion(self):self.assertEqual(a.FLASH_PHASES[11:13],[a.FLASH,a.FLASH]);self.assertNotEqual(a.FLASH_PHASES[13],a.FLASH)
     def test_all_field_frame_bytes_identical(self):self.assertEqual((self.root/'progress/screen-0038.ppm').read_bytes(),(self.root/'continue/screen-0001.ppm').read_bytes())
+    def test_trace_all_original_rows(self):
+        parsed=a.trace_rows((self.root/'progress/stdout.txt').read_bytes(),(self.root/'progress/commands.txt').read_bytes(),a.m.a.OUTPUT);self.assertEqual(len(parsed['observations']),39)
+    def test_actual_entry_transient(self):a.coordinate_boundary(self.pa['observations'][4],a.m.a.OUTPUT)
+    def test_cold_seed_cannot_use_transient(self):
+        with self.assertRaises(ValueError):a.coordinate_boundary(self.pa['observations'][4],a.OUTPUT)
+    def test_trace_extra_hidden_row(self):
+        with self.assertRaises(ValueError):a.trace_rows((self.root/'progress/stdout.txt').read_bytes()+b'{}\n',(self.root/'progress/commands.txt').read_bytes(),a.m.a.OUTPUT)
     def rejected(self,lane,index,key,value):
         p,q=copy.deepcopy(self.pa),copy.deepcopy(self.pb);(p if lane=='progress'else q)['observations'][index][key]=value
         with self.assertRaises(ValueError):a.semantics(p,q)
@@ -45,4 +52,10 @@ CASES={
  'cold_xy':('continue',0,'xy',[20,33]),'cold_facing':('continue',0,'facing',1),'cold_counter':('continue',0,'save_counter',55),'cold_party':('continue',1,'party_sha256','0'*64),
  'cold_flash':('continue',1,'flash_sha256','0'*64),'cold_ledger':('continue',1,'ledger_sha256','0'*64),'cold_victory':('continue',1,'battle_outcome',1),'cold_battle':('continue',1,'battle_flags',12)}
 for name,args in CASES.items():setattr(Acceptance,'test_reject_'+name,case(*args))
+def transient_case(key,value):
+    def test(self):
+        o=copy.deepcopy(self.pa['observations'][4]);o[key]=value
+        with self.assertRaises(ValueError):a.coordinate_boundary(o,a.m.a.OUTPUT)
+    return test
+for key,value in [('observe',5),('frame',1794),('map',[3,2]),('xy',[20,32]),('live_xy',[1,0]),('facing',2),('callback2',a.m.m.FIELD),('field',True),('save_counter',56),('lock',1),('party_sha256','0'*64),('flash_sha256','0'*64),('ledger_sha256','0'*64),('party_count',3),('rp',1)]:setattr(Acceptance,'test_reject_transient_'+key,transient_case(key,value))
 if __name__=='__main__':unittest.main()

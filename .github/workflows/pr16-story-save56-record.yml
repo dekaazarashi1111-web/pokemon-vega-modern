@@ -29,7 +29,7 @@ jobs:
       - name: Exact new acceptance source guard
         run: |
           python3 -B -c "import sys; sys.path.insert(0,'scripts'); import pr16_story_save56_record as m; import pr16_learnset_runtime_record as g; g.START=m.BASE; g.CODE=m.CODE; g.OWNED=set(); g.guard()"
-      - name: Forty-six new acceptance tests and exact terminal parser
+      - name: Sixty-five new acceptance tests and exact terminal parser
         run: python3 -B scripts/pr16_story_save56_record.py record
       - name: Scoped final index private guard and fixed resume
         run: python3 -B scripts/pr16_story_save56_record.py guard
@@ -58,3 +58,5 @@ jobs:
           retention-days: 90
           if-no-files-found: warn
 
+
+# Save56専用の有限warp transition parser。native再走なし。
