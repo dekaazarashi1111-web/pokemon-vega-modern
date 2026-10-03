@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "504番道路3,12西/下段へ27歩・Save46独立Continue受入。戦闘0/回復未完。party2byteと途中RAM ledger差のowner未解決。",
+    "current_stop": "504番道路11,5東/下段へ19歩→ジュネ通常勝利、初オノノクス実技slot0とSave47独立Continueを限定受入。原controller used0誤陰性を保持。回復未完。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "Save46 artifact11278684880のstory-fast.srm（d4a2e1f06ecbb1dee1bd54bda6962c1993b51711a09607954fe7b67d1c568e47、131088bytes）だけから再開。map3/44・3,12西/下段elevation3・party4/RP0・14264円・badge1・story4071=9/4072=1。26,12から下段西通路27歩/5方向転換/戦闘0で到達。先頭オノノクスHP294/294・PP[15,10,15,20]、ミュウツーHP314/354・PP0、回復施設/回復未完。party全600byteのうち141=7→8/241=105→106の2byteだけ通常歩行観測7で変化、HP/PP/EXP等598byte不変。なつき度候補だがowner未解決、自然成長受入とはしない。RAM ledgerは観測13で変わり最終/cold一致、owner未解決。次は3,12から北3,11→3,10→3,9→2,9→2,5→6,5→6,6→10,6方面の未通過下段通路を有限候補にする。静的地形だけでは南端17,19へ直進できず北迂回候補、実到達ではない。南map3/23→3/2は接続候補で回復施設未同定。最初の新戦闘/event/未通過境界で通常Save、PPラベル/実cursorの既受入classifierを継承し初のオノノクス実技UIを原画像/残PPと照合。旧ミュウツー技名依存/PP0選択loop/host補充/ROM変更/故意の全滅なし。109+cold13入力・60画面・12controller36受入を無影響再走しない。40〜52部分Flash、51/52同hashも書込み中、53counter46/最終Flash→54成功文言→57field。全SaveRTC/cold一致、補助var4021=123→22/4022=4→1 owner未解明。Save39旧差/Save44並替差と旧失敗回収履歴を保持。通常story/正規全国図鑑/自然EXP・技習得・進化/Lucky Egg/12ケース/Lv100soak/研究施設自然到達未完。一般CIqol_production.c source不一致とfinalHEAD action_requiredを過大主張せず保持。全story/一般CI全成功/製品release未完、cleanROM二重生成/BPS固定/merge/release/baseline切替は別途判断。既存ROM/runtime/inputはActions内入力のみ、新公開artifactは新save/画面/textだけ。",
+    "next_step": "Save47 artifact11279895650のstory-fast.srm（0ffabf8d049f74edaabdaf32a54872a267d9ea4c04f02845612295a9f30c6431、131088bytes）だけから再開。map3/44・11,5東/下段3・party4/RP0・15224円・badge1・story4071=9/4072=1。3,12から北迂回19歩/8方向転換→だいすきクラブのジュネ4体に勝利、通常Save47/cold同一。オノノクスHP294/294・PP[11,10,15,20]、ミュウツーHP314/354・全PP0で回復未完。初の実技UI35/42/49/57はslot0ドラゴンクローPP15/14/13/12、36/43/50/58通常使用、party全600byteの差は52=15→11だけ。原controllerはPPlabel矩形がタイプ/物理アイコン化した実UIをotherと誤陰性、raw used[0,0,0,0]を改作せず実4回と区別。次のcontrollerは新pr16_story_save47_accept.classify_panel（技名/種族/PP数値非依存のパネル上枠+実cursor、原90画面の4技/3交代を照合済）を使い、selectは親実PP[11,10,15,20]で上限を再束縛する。旧PPlabel/used0/古いPP15のclosureを流用しない。native4slot選択/他技使用は未受入。以後は11,5→12,5→13,5→13,4→14,4→14,3→18,3→18,4から東へ、34,13下段→34,16→25,17→25,15→17,15→17,19の保存地形迂回候補の未通過続きだけ。最初の新戦闘/event/未通過境界または正常回復地点で次Save。南接続map3/23→3/2は候補、回復施設未同定。今回170+cold13入力/90画面/12controller44受入を無影響再走しない。71〜82部分write、83counter47/最終Flash→84成功文言→87field。physicalflag1402だけ0→1、賞金960円、Bag/HP/EXP/PC/S61E/story不変。auxvar4021=22→40/4022=1→0とRAMledger31/51差のowner未解決、最終/cold一致。Save46 party2byte/途中ledger、Save39旧cold差/Save44並替差と旧失敗を保持。正規全国図鑑/通常story/自然EXP・技習得・進化/LuckyEgg/12case/Lv100soak/研究施設自然到達未完。一般CIqol_production.c source不一致とfinalHEAD action_requiredは全成功としない。ROM/host補充/故意の全滅/merge/release/baseline切替なし。既存ROM/runtime/inputはActions入力専用、新artifactは新save/画面/textだけ。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -1100,7 +1100,8 @@
     "Save43の170/cold13入力90画面/16controller34受入を無影響再走しない。39,12でtrainer114の4体へ1勝/468円/flag1394のみ。全PP0、次は通常回復優先。64〜68実menu0→4、71〜82部分write→83counter43/安定Flash/空白→84成功文言→87field。全SaveRTC/cold ledger一致。38,12以西/下り階段未到達。",
     "Save44の78/cold13入力45画面・16controller32受入を無影響再走しない。通常並替だけで費用/道具消費/移動/戦闘0。オノノクスPP[15,10,15,20]、ミュウツーPP0保持。37counter44は部分write、38成功文言/安定Flash→42field。全SaveRTC/最終cold ledger一致。13並替選択のRAM ledger owner未解明。",
     "Save45の98/cold13入力55画面・20controller32受入を無影響再走しない。19歩/7方向転換・26,11下り階段/26,12下段、戦闘0。party/Bag/14264円不変。46最終Flashはcounter44/書込中、47counter45→48成功文言→52field。全SaveRTC/全RAM ledger一致。新オノノクス実技UI未観測、PP回復未完。",
-    "Save46の109/cold13入力60画面・12controller36受入を無影響再走しない。27歩/5方向転換/戦闘0。HP/PP/Bag/14264円不変だがparty141=7→8/241=105→106と途中RAM ledger差を保持。40〜52部分write、53counter46/最終Flash→54成功文言→57field。回復/オノノクス実技UI未完。"
+    "Save46の109/cold13入力60画面・12controller36受入を無影響再走しない。27歩/5方向転換/戦闘0。HP/PP/Bag/14264円不変だがparty141=7→8/241=105→106と途中RAM ledger差を保持。40〜52部分write、53counter46/最終Flash→54成功文言→57field。回復/オノノクス実技UI未完。",
+    "Save47の170/cold13入力90画面・12controller44受入を無影響再走しない。北迂回19歩/8turn、ジュネ4体勝利、960円、slot0ドラゴンクロー4回/PP15→11。原controller used0は誤陰性で改作しない。71〜82部分write、83counter47/安定Flash→84成功文言→87field。実技UI4画面検証済、4slot native/回復は未受入。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -4281,30 +4282,30 @@
     "status": "PASS_NATIONAL_DEX_GRANT_OWNER_SCOPED"
   },
   "next_action": {
-    "goal_ja": "Save46 artifact11278684880のstory-fast.srm（d4a2e1f06ecbb1dee1bd54bda6962c1993b51711a09607954fe7b67d1c568e47、131088bytes）だけから再開。map3/44・3,12西/下段elevation3・party4/RP0・14264円・badge1・story4071=9/4072=1。26,12から下段西通路27歩/5方向転換/戦闘0で到達。先頭オノノクスHP294/294・PP[15,10,15,20]、ミュウツーHP314/354・PP0、回復施設/回復未完。party全600byteのうち141=7→8/241=105→106の2byteだけ通常歩行観測7で変化、HP/PP/EXP等598byte不変。なつき度候補だがowner未解決、自然成長受入とはしない。RAM ledgerは観測13で変わり最終/cold一致、owner未解決。次は3,12から北3,11→3,10→3,9→2,9→2,5→6,5→6,6→10,6方面の未通過下段通路を有限候補にする。静的地形だけでは南端17,19へ直進できず北迂回候補、実到達ではない。南map3/23→3/2は接続候補で回復施設未同定。最初の新戦闘/event/未通過境界で通常Save、PPラベル/実cursorの既受入classifierを継承し初のオノノクス実技UIを原画像/残PPと照合。旧ミュウツー技名依存/PP0選択loop/host補充/ROM変更/故意の全滅なし。109+cold13入力・60画面・12controller36受入を無影響再走しない。40〜52部分Flash、51/52同hashも書込み中、53counter46/最終Flash→54成功文言→57field。全SaveRTC/cold一致、補助var4021=123→22/4022=4→1 owner未解明。Save39旧差/Save44並替差と旧失敗回収履歴を保持。通常story/正規全国図鑑/自然EXP・技習得・進化/Lucky Egg/12ケース/Lv100soak/研究施設自然到達未完。一般CIqol_production.c source不一致とfinalHEAD action_requiredを過大主張せず保持。全story/一般CI全成功/製品release未完、cleanROM二重生成/BPS固定/merge/release/baseline切替は別途判断。既存ROM/runtime/inputはActions内入力のみ、新公開artifactは新save/画面/textだけ。",
+    "goal_ja": "Save47 artifact11279895650のstory-fast.srm（0ffabf8d049f74edaabdaf32a54872a267d9ea4c04f02845612295a9f30c6431、131088bytes）だけから再開。map3/44・11,5東/下段3・party4/RP0・15224円・badge1・story4071=9/4072=1。3,12から北迂回19歩/8方向転換→だいすきクラブのジュネ4体に勝利、通常Save47/cold同一。オノノクスHP294/294・PP[11,10,15,20]、ミュウツーHP314/354・全PP0で回復未完。初の実技UI35/42/49/57はslot0ドラゴンクローPP15/14/13/12、36/43/50/58通常使用、party全600byteの差は52=15→11だけ。原controllerはPPlabel矩形がタイプ/物理アイコン化した実UIをotherと誤陰性、raw used[0,0,0,0]を改作せず実4回と区別。次のcontrollerは新pr16_story_save47_accept.classify_panel（技名/種族/PP数値非依存のパネル上枠+実cursor、原90画面の4技/3交代を照合済）を使い、selectは親実PP[11,10,15,20]で上限を再束縛する。旧PPlabel/used0/古いPP15のclosureを流用しない。native4slot選択/他技使用は未受入。以後は11,5→12,5→13,5→13,4→14,4→14,3→18,3→18,4から東へ、34,13下段→34,16→25,17→25,15→17,15→17,19の保存地形迂回候補の未通過続きだけ。最初の新戦闘/event/未通過境界または正常回復地点で次Save。南接続map3/23→3/2は候補、回復施設未同定。今回170+cold13入力/90画面/12controller44受入を無影響再走しない。71〜82部分write、83counter47/最終Flash→84成功文言→87field。physicalflag1402だけ0→1、賞金960円、Bag/HP/EXP/PC/S61E/story不変。auxvar4021=22→40/4022=1→0とRAMledger31/51差のowner未解決、最終/cold一致。Save46 party2byte/途中ledger、Save39旧cold差/Save44並替差と旧失敗を保持。正規全国図鑑/通常story/自然EXP・技習得・進化/LuckyEgg/12case/Lv100soak/研究施設自然到達未完。一般CIqol_production.c source不一致とfinalHEAD action_requiredは全成功としない。ROM/host補充/故意の全滅/merge/release/baseline切替なし。既存ROM/runtime/inputはActions入力専用、新artifactは新save/画面/textだけ。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。Save14は作業コピーだけを使用する。自己OT party、manifest解決済み通常支援用品、EXP境界、safe opponentはpre-battle fixtureとして全byteを台帳化してよい。badge/key item/story flag/money/RPをfixture付与せず、戦闘開始後は通常入力とゲーム内処理だけを使う。",
-    "id": "STORY_NORMAL_RECOVERY_TRAVEL_FROM_SAVE46",
+    "id": "STORY_NORMAL_RECOVERY_TRAVEL_FROM_SAVE47",
     "read_paths": [
-      "docs/PR16_STORY_SAVE46_JA.md",
-      "content/modernization/pr16_story_save46_checkpoint.json",
-      "content/modernization/pr16_story_save46_visual_review.json",
-      "scripts/pr16_story_save46_accept.py",
-      "scripts/pr16_story_save46_measure.py",
+      "docs/PR16_STORY_SAVE47_JA.md",
+      "content/modernization/pr16_story_save47_checkpoint.json",
+      "content/modernization/pr16_story_save47_visual_review.json",
+      "scripts/pr16_story_save47_accept.py",
+      "scripts/pr16_story_save47_measure.py",
       "content/modernization/pr16_story_save44_evidence/inspection.json",
       "content/modernization/pr16_story_save40_preparation.json"
     ],
-    "stop_rule_ja": "Save46から未通過北側迂回候補だけ。最初の新戦闘/event/未通過境界で通常Save。回復未完/実技UI未観測/party2byteとledgerのowner未解決を保持、旧PP0 loop/host補充/故意の全滅なし。"
+    "stop_rule_ja": "Save47の11,5から先の北迂回残りだけ。新パネル+実cursor判定/親PP11を使用、最初の新戦闘/event/未通過境界で保存。回復未完、原used0誤陰性/ledger差owner未解決を保持。"
   },
   "observed_date_jst": "2026-10-04",
-  "observed_head": "78a91fbec8fa40863524b49e501ed204558a5031",
+  "observed_head": "eabbb96a80487644d4a873eaea0a7b3a1a6a03b3",
   "observed_head_checks": {
     "reason_ja": "新区間専用Actionsと一般CIを分離。未完/action_required/失敗を成功にしない。",
     "runs": [
       {
         "conclusion": "success",
         "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "78a91fbec8fa40863524b49e501ed204558a5031",
-        "id": 37137186963,
+        "head_sha": "eabbb96a80487644d4a873eaea0a7b3a1a6a03b3",
+        "id": 37138344530,
         "path": ".github/workflows/p03-forgetting-ci.yml",
         "run_attempt": 1,
         "status": "completed"
@@ -4312,8 +4313,8 @@
       {
         "conclusion": "failure",
         "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "78a91fbec8fa40863524b49e501ed204558a5031",
-        "id": 37137186949,
+        "head_sha": "eabbb96a80487644d4a873eaea0a7b3a1a6a03b3",
+        "id": 37138344478,
         "path": ".github/workflows/ci.yml",
         "run_attempt": 1,
         "status": "completed"
@@ -4321,26 +4322,26 @@
       {
         "conclusion": "success",
         "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "78a91fbec8fa40863524b49e501ed204558a5031",
-        "id": 37137181951,
+        "head_sha": "eabbb96a80487644d4a873eaea0a7b3a1a6a03b3",
+        "id": 37138338928,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "run_attempt": 1,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "eabbb96a80487644d4a873eaea0a7b3a1a6a03b3",
+        "id": 37138338936,
         "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
         "run_attempt": 1,
         "status": "completed"
       },
       {
-        "conclusion": "success",
-        "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "78a91fbec8fa40863524b49e501ed204558a5031",
-        "id": 37137181918,
-        "path": ".github/workflows/p03-forgetting-ci.yml",
-        "run_attempt": 1,
-        "status": "completed"
-      },
-      {
         "conclusion": "failure",
         "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "78a91fbec8fa40863524b49e501ed204558a5031",
-        "id": 37137181988,
+        "head_sha": "eabbb96a80487644d4a873eaea0a7b3a1a6a03b3",
+        "id": 37138338918,
         "path": ".github/workflows/ci.yml",
         "run_attempt": 1,
         "status": "completed"
@@ -4348,23 +4349,23 @@
       {
         "conclusion": "success",
         "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "78a91fbec8fa40863524b49e501ed204558a5031",
-        "id": 37137181984,
-        "path": ".github/workflows/pr16-story-save46.yml",
+        "head_sha": "eabbb96a80487644d4a873eaea0a7b3a1a6a03b3",
+        "id": 37138339081,
+        "path": ".github/workflows/pr16-story-save47.yml",
         "run_attempt": 1,
         "status": "completed"
       },
       {
         "conclusion": "success",
         "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "78a91fbec8fa40863524b49e501ed204558a5031",
-        "id": 37137181980,
+        "head_sha": "eabbb96a80487644d4a873eaea0a7b3a1a6a03b3",
+        "id": 37138338966,
         "path": ".github/workflows/modernization-stage79-mgba.yml",
         "run_attempt": 1,
         "status": "completed"
       }
     ],
-    "scope_head": "78a91fbec8fa40863524b49e501ed204558a5031"
+    "scope_head": "eabbb96a80487644d4a873eaea0a7b3a1a6a03b3"
   },
   "observed_head_history": [
     {
@@ -8190,9 +8191,83 @@
       "head": "cc2be073d7a914bad7c077b8f16d4e6ea61988bb",
       "reason_ja": "下段西通路Save46を限定受入。戦闘0/PP回復未完。party2byteと途中RAM ledger差を保持。",
       "semantics": "504の39,12上段から26,12下段まで通常通過/Save45測定source。戦闘0、PP回復/回復地点未完。"
+    },
+    {
+      "checks": {
+        "reason_ja": "新区間専用Actionsと一般CIを分離。未完/action_required/失敗を成功にしない。",
+        "runs": [
+          {
+            "conclusion": "success",
+            "head_branch": "codex/modernization-followup-20260908",
+            "head_sha": "78a91fbec8fa40863524b49e501ed204558a5031",
+            "id": 37137186963,
+            "path": ".github/workflows/p03-forgetting-ci.yml",
+            "run_attempt": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "failure",
+            "head_branch": "codex/modernization-followup-20260908",
+            "head_sha": "78a91fbec8fa40863524b49e501ed204558a5031",
+            "id": 37137186949,
+            "path": ".github/workflows/ci.yml",
+            "run_attempt": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "head_branch": "codex/modernization-followup-20260908",
+            "head_sha": "78a91fbec8fa40863524b49e501ed204558a5031",
+            "id": 37137181951,
+            "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+            "run_attempt": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "head_branch": "codex/modernization-followup-20260908",
+            "head_sha": "78a91fbec8fa40863524b49e501ed204558a5031",
+            "id": 37137181918,
+            "path": ".github/workflows/p03-forgetting-ci.yml",
+            "run_attempt": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "failure",
+            "head_branch": "codex/modernization-followup-20260908",
+            "head_sha": "78a91fbec8fa40863524b49e501ed204558a5031",
+            "id": 37137181988,
+            "path": ".github/workflows/ci.yml",
+            "run_attempt": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "head_branch": "codex/modernization-followup-20260908",
+            "head_sha": "78a91fbec8fa40863524b49e501ed204558a5031",
+            "id": 37137181984,
+            "path": ".github/workflows/pr16-story-save46.yml",
+            "run_attempt": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "head_branch": "codex/modernization-followup-20260908",
+            "head_sha": "78a91fbec8fa40863524b49e501ed204558a5031",
+            "id": 37137181980,
+            "path": ".github/workflows/modernization-stage79-mgba.yml",
+            "run_attempt": 1,
+            "status": "completed"
+          }
+        ],
+        "scope_head": "78a91fbec8fa40863524b49e501ed204558a5031"
+      },
+      "head": "78a91fbec8fa40863524b49e501ed204558a5031",
+      "reason_ja": "北迂回/ジュネ通常勝利/初オノノクス実技UI/Save47を限定受入。controller誤陰性原本と回復未完を保持。",
+      "semantics": "504の26,12下段から3,12西へ通常通過/Save46測定source。戦闘0、PP回復/回復地点未完。party2byteと途中RAM ledger差のowner未解決。"
     }
   ],
-  "observed_head_semantics": "504の26,12下段から3,12西へ通常通過/Save46測定source。戦闘0、PP回復/回復地点未完。party2byteと途中RAM ledger差のowner未解決。",
+  "observed_head_semantics": "504の北迂回19歩→ジュネ4体に勝利/Save47測定source。実技slot0PP15→11、原controller used0誤陰性を改作しない。回復未完。",
   "p08_candidate_impact": {
     "candidate": {
       "crc32": "CC068B4A",
@@ -8316,9 +8391,9 @@
   },
   "pending_runs": [
     {
-      "run_id": 37137814123,
+      "run_id": 37138998824,
       "status": "in_progress",
-      "tested_head": "59f7774d76df9c093c06f7e54cfa11d2b74246e4"
+      "tested_head": "cd72e53291d03339df72007ada3c7463b962d10d"
     }
   ],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
@@ -11442,6 +11517,14 @@
     ".github/workflows/pr16-story-save46.yml": {
       "sha256": "5992d8870d897017ef5befbd5076eacebc91e5be1e030a2391c9dad17cf7cbbd",
       "size": 1609
+    },
+    ".github/workflows/pr16-story-save47-record.yml": {
+      "sha256": "1d238ec219de9490b7d338707b0d82e25e2301f20251ebd3dac2aa7c35be90b2",
+      "size": 2399
+    },
+    ".github/workflows/pr16-story-save47.yml": {
+      "sha256": "da83a1d2d617daaf2e45f78b4ab72e2ed5dbe81a14eaa160512e1b6ede585290",
+      "size": 1605
     },
     ".github/workflows/pr16-story-save8-context.yml": {
       "sha256": "5405678c5cdb6a81612b212b099b37bc42038ce2c00c5c564ab5fcf6c7287c27",
@@ -17099,6 +17182,78 @@
       "sha256": "6ed90a7f28ad75c5722b9e7bc033635bcccd7cb6bf611b9ea5d50929eb1147c1",
       "size": 7656
     },
+    "content/modernization/pr16_story_save47_checkpoint.json": {
+      "sha256": "4d60e10da0493de6818d032fdf2770e49703492bc98123e4e9dfaa0b7b59dd16",
+      "size": 12800
+    },
+    "content/modernization/pr16_story_save47_evidence/continue/commands.txt": {
+      "sha256": "5aa3363ef7287a5fe371442e67ec861616823326b1d70e16730c34c4baab07a3",
+      "size": 25
+    },
+    "content/modernization/pr16_story_save47_evidence/continue/execution.json": {
+      "sha256": "30e1452c15051ec73a6d058eb2c320a57f9beaffe5bc6755fd3129e9e6880169",
+      "size": 548
+    },
+    "content/modernization/pr16_story_save47_evidence/continue/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_story_save47_evidence/continue/stdout.txt": {
+      "sha256": "55c75f7e3c06918d5c8585384650b316f8c1465ab9a4ec3424af538051e042b1",
+      "size": 2101
+    },
+    "content/modernization/pr16_story_save47_evidence/controller-test-receipt.json": {
+      "sha256": "9dd5b4fd3f921b1685b65a9fc55814c5e479721151e20a0690e02cf78319f003",
+      "size": 1307
+    },
+    "content/modernization/pr16_story_save47_evidence/inspection.json": {
+      "sha256": "ae1d72b5c6ebba6bb8f906fc1af7e693ef2d681dc7ed3a82f6e12d55ad480063",
+      "size": 14657
+    },
+    "content/modernization/pr16_story_save47_evidence/manifest.json": {
+      "sha256": "feb1c0a44438ef5f1398d054f29d19a40c0e612615b739ffea902f8506708040",
+      "size": 14384
+    },
+    "content/modernization/pr16_story_save47_evidence/measurement.json": {
+      "sha256": "e117865beada6f9985de14f65ef74652f152bc017161d99a07c56f951a46df11",
+      "size": 21820
+    },
+    "content/modernization/pr16_story_save47_evidence/progress/commands.txt": {
+      "sha256": "e396b3031b9e82fd67ab112a6c5dc1b2d7be54e6927c1b61d666dbc2670c019d",
+      "size": 2378
+    },
+    "content/modernization/pr16_story_save47_evidence/progress/execution.json": {
+      "sha256": "a1f8ce953f6039e3b9aae674b96efc8f68aa803011a2191b2437d480b8a06ca4",
+      "size": 551
+    },
+    "content/modernization/pr16_story_save47_evidence/progress/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_story_save47_evidence/progress/stdout.txt": {
+      "sha256": "4fb7fd65f3ac11af06fbbd2b208c147e13a8ce3769c774c21328dfcf226ff683",
+      "size": 57072
+    },
+    "content/modernization/pr16_story_save47_evidence/save46-record-terminal.json": {
+      "sha256": "da2a1c7e324d9a0f22ffe97c5cd68fbde0ed56bba2d79036bf82f8656479cbd5",
+      "size": 4177
+    },
+    "content/modernization/pr16_story_save47_evidence/terminal.json": {
+      "sha256": "e109a5dade8be4991ec947f08f2e9854835f763d323bde9c0388460f0e7b67ec",
+      "size": 3432
+    },
+    "content/modernization/pr16_story_save47_evidence/unit.stderr.txt": {
+      "sha256": "81c8cfccdb60338e0793ab0dd724555030cf8c6385c55eaa29cc806725cd49e6",
+      "size": 4603
+    },
+    "content/modernization/pr16_story_save47_evidence/verification.json": {
+      "sha256": "54d7a84f8488f7062be698a10452ab3b0ed4607b18580712aa0fd1058bd74d2d",
+      "size": 4291
+    },
+    "content/modernization/pr16_story_save47_visual_review.json": {
+      "sha256": "c556922c74d886a4a4f43bb4c236d454c0441ddf6628a6712095a42aa5c22107",
+      "size": 10865
+    },
     "content/modernization/pr16_story_save9_checkpoint.json": {
       "sha256": "cf658c2fa47ba238672704713ea5ad3b1baf6abbe8a56ec769bf2de3964d0463",
       "size": 5672
@@ -17686,6 +17841,10 @@
     "docs/PR16_STORY_SAVE46_JA.md": {
       "sha256": "eaa0304a5d2f7f2199bae34e9b4ad451ba01535f9676d48c03f992b85a62e039",
       "size": 4438
+    },
+    "docs/PR16_STORY_SAVE47_JA.md": {
+      "sha256": "1ce62879f6707dea57b53ccfdf3b8d79f67c699b48777ee8025d1937d215c73b",
+      "size": 5225
     },
     "docs/PR16_STORY_SAVE9_JA.md": {
       "sha256": "61734b028e912a8cb8952376730c67ba598bb5f00056f4351bf0296626041e44",
@@ -23539,6 +23698,18 @@
       "sha256": "1419c7ad2d642d44a9fa591d10bf4247e82ee741d3ed305f24746a57832e8af9",
       "size": 17101
     },
+    "scripts/pr16_story_save47_accept.py": {
+      "sha256": "c7983643ba5edb3fad6bf57dc580f0c61c7242b12adc7fcd64e2ade9c34e49f3",
+      "size": 12461
+    },
+    "scripts/pr16_story_save47_measure.py": {
+      "sha256": "a98e7fd2d5d922250b7ed201d402c83df6b8d2a31d42b60369a19ffba0009c86",
+      "size": 14607
+    },
+    "scripts/pr16_story_save47_record.py": {
+      "sha256": "4d1d6cdb4cab9a9b411b506a7f1122443fa885f6928c1712b7e0538a22effca5",
+      "size": 18593
+    },
     "scripts/pr16_story_save9.py": {
       "sha256": "e8522d25e6623c7bb37aa850656564ca4a95066d3a2a75674cb7966ef95bc9d8",
       "size": 11276
@@ -25378,6 +25549,14 @@
     "tests/test_pr16_story_save46_measure.py": {
       "sha256": "771e4951eacf47ad9ac651d31106d8adcce3900868faa4fedbe6bd738789ceff",
       "size": 1549
+    },
+    "tests/test_pr16_story_save47_accept.py": {
+      "sha256": "051216be10d8a0b30d581abd48f0d3c850e957cb49f74531a4b0f58afd6f876e",
+      "size": 5179
+    },
+    "tests/test_pr16_story_save47_measure.py": {
+      "sha256": "3b857d8da39cea5b66e351fb3bfd59cf643664267a406081045670173c0053b5",
+      "size": 1554
     },
     "tests/test_pr16_story_save9.py": {
       "sha256": "9057edecab9630badaa96577b8564918afbfa8f64e8a1f9859963f46e9536a11",
@@ -31111,10 +31290,144 @@
     "party_change_owner_resolved": false,
     "pp_recovery_accepted": false,
     "ram_ledger_change_owner_resolved": false,
+    "record_completion": {
+      "job": {
+        "check_run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/check-runs/111245821131",
+        "completed_at": "2026-10-03T16:42:35Z",
+        "conclusion": "success",
+        "created_at": "2026-10-03T16:42:02Z",
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "59f7774d76df9c093c06f7e54cfa11d2b74246e4",
+        "html_url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/37137814123/job/111245821131",
+        "id": 111245821131,
+        "labels": [
+          "ubuntu-24.04"
+        ],
+        "name": "record",
+        "node_id": "CR_kwDOUPNhZs8AAAAZ5sSEyw",
+        "run_attempt": 1,
+        "run_id": 37137814123,
+        "run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/37137814123",
+        "runner_group_id": 0,
+        "runner_group_name": "GitHub Actions",
+        "runner_id": 1000019874,
+        "runner_name": "GitHub Actions 1000019874",
+        "started_at": "2026-10-03T16:42:04Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completed_at": "2026-10-03T16:42:05Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "started_at": "2026-10-03T16:42:05Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-03T16:42:18Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "started_at": "2026-10-03T16:42:05Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-03T16:42:18Z",
+            "conclusion": "success",
+            "name": "Exact new acceptance source guard",
+            "number": 3,
+            "started_at": "2026-10-03T16:42:18Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-03T16:42:28Z",
+            "conclusion": "success",
+            "name": "Thirty-six new acceptance tests and exact terminal parser",
+            "number": 4,
+            "started_at": "2026-10-03T16:42:18Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-03T16:42:30Z",
+            "conclusion": "success",
+            "name": "Scoped final index private guard and fixed resume",
+            "number": 5,
+            "started_at": "2026-10-03T16:42:28Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-03T16:42:30Z",
+            "conclusion": "success",
+            "name": "Lightweight task graph",
+            "number": 6,
+            "started_at": "2026-10-03T16:42:30Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-03T16:42:32Z",
+            "conclusion": "success",
+            "name": "Commit and nonforce push same branch",
+            "number": 7,
+            "started_at": "2026-10-03T16:42:30Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-03T16:42:32Z",
+            "conclusion": "success",
+            "name": "Exact committed text readback",
+            "number": 8,
+            "started_at": "2026-10-03T16:42:32Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-03T16:42:33Z",
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@v4",
+            "number": 9,
+            "started_at": "2026-10-03T16:42:32Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-03T16:42:33Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 18,
+            "started_at": "2026-10-03T16:42:33Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-03T16:42:33Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 19,
+            "started_at": "2026-10-03T16:42:33Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/jobs/111245821131",
+        "workflow_name": "pr16-story-save46-record"
+      },
+      "run": {
+        "conclusion": "success",
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "59f7774d76df9c093c06f7e54cfa11d2b74246e4",
+        "id": 37137814123,
+        "path": ".github/workflows/pr16-story-save46-record.yml",
+        "run_attempt": 1,
+        "status": "completed"
+      }
+    },
     "record_native_processes": 0,
     "record_run_id": 37137814123,
     "rp": 0,
     "run_id": 37137181984,
+    "stage79_completion": {
+      "conclusion": "success",
+      "head_sha": "59f7774d76df9c093c06f7e54cfa11d2b74246e4",
+      "html_url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/37137814075",
+      "id": 37137814075,
+      "status": "completed"
+    },
     "status": "PASS_ROUTE504_LOWER_WEST_SAVE46_SCOPED",
     "story_fast_save": {
       "sha256": "d4a2e1f06ecbb1dee1bd54bda6962c1993b51711a09607954fe7b67d1c568e47",
@@ -31127,6 +31440,88 @@
     "xy": [
       3,
       12
+    ]
+  },
+  "story_save47": {
+    "artifact_id": 11279895650,
+    "badge_count": 1,
+    "cave_crossing_complete": true,
+    "checkpoint": "content/modernization/pr16_story_save47_checkpoint.json",
+    "elevation": 3,
+    "facing": 4,
+    "guide": "docs/PR16_STORY_SAVE47_JA.md",
+    "haxorus_all_four_slots_native_accepted": false,
+    "haxorus_move_ui_native_accepted": true,
+    "healing_site_reached": false,
+    "hm05_owned": true,
+    "hm05_taught_or_used": false,
+    "job_id": 111247375971,
+    "lead_hp": [
+      294,
+      294
+    ],
+    "lead_pp": [
+      11,
+      10,
+      15,
+      20
+    ],
+    "lead_species": 850,
+    "map": [
+      3,
+      44
+    ],
+    "mewtwo_hp": [
+      314,
+      354
+    ],
+    "mewtwo_pp": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "money": 15224,
+    "next_goal_ja": "Save47 artifact11279895650のstory-fast.srm（0ffabf8d049f74edaabdaf32a54872a267d9ea4c04f02845612295a9f30c6431、131088bytes）だけから再開。map3/44・11,5東/下段3・party4/RP0・15224円・badge1・story4071=9/4072=1。3,12から北迂回19歩/8方向転換→だいすきクラブのジュネ4体に勝利、通常Save47/cold同一。オノノクスHP294/294・PP[11,10,15,20]、ミュウツーHP314/354・全PP0で回復未完。初の実技UI35/42/49/57はslot0ドラゴンクローPP15/14/13/12、36/43/50/58通常使用、party全600byteの差は52=15→11だけ。原controllerはPPlabel矩形がタイプ/物理アイコン化した実UIをotherと誤陰性、raw used[0,0,0,0]を改作せず実4回と区別。次のcontrollerは新pr16_story_save47_accept.classify_panel（技名/種族/PP数値非依存のパネル上枠+実cursor、原90画面の4技/3交代を照合済）を使い、selectは親実PP[11,10,15,20]で上限を再束縛する。旧PPlabel/used0/古いPP15のclosureを流用しない。native4slot選択/他技使用は未受入。以後は11,5→12,5→13,5→13,4→14,4→14,3→18,3→18,4から東へ、34,13下段→34,16→25,17→25,15→17,15→17,19の保存地形迂回候補の未通過続きだけ。最初の新戦闘/event/未通過境界または正常回復地点で次Save。南接続map3/23→3/2は候補、回復施設未同定。今回170+cold13入力/90画面/12controller44受入を無影響再走しない。71〜82部分write、83counter47/最終Flash→84成功文言→87field。physicalflag1402だけ0→1、賞金960円、Bag/HP/EXP/PC/S61E/story不変。auxvar4021=22→40/4022=1→0とRAMledger31/51差のowner未解決、最終/cold一致。Save46 party2byte/途中ledger、Save39旧cold差/Save44並替差と旧失敗を保持。正規全国図鑑/通常story/自然EXP・技習得・進化/LuckyEgg/12case/Lv100soak/研究施設自然到達未完。一般CIqol_production.c source不一致とfinalHEAD action_requiredは全成功としない。ROM/host補充/故意の全滅/merge/release/baseline切替なし。既存ROM/runtime/inputはActions入力専用、新artifactは新save/画面/textだけ。",
+    "normal_recovery_required": true,
+    "north_detour_partial_accepted": true,
+    "party_byte_deltas": [
+      [
+        52,
+        15,
+        11
+      ]
+    ],
+    "party_change_owner_resolved": true,
+    "physical_flag_deltas": [
+      [
+        1402,
+        0,
+        1
+      ]
+    ],
+    "pp_recovery_accepted": false,
+    "ram_ledger_change_owner_resolved": false,
+    "raw_controller_false_negative_preserved": true,
+    "record_native_processes": 0,
+    "record_run_id": 37138998824,
+    "repaired_classifier_offline_only": true,
+    "rp": 0,
+    "run_id": 37138339081,
+    "status": "PASS_ROUTE504_JUNE_SAVE47_SCOPED",
+    "story_fast_save": {
+      "sha256": "0ffabf8d049f74edaabdaf32a54872a267d9ea4c04f02845612295a9f30c6431",
+      "size": 131088
+    },
+    "story_vars": {
+      "4071": 9,
+      "4072": 1
+    },
+    "trainer_name_ja": "だいすきクラブのジュネ",
+    "trainer_victories": 1,
+    "xy": [
+      11,
+      5
     ]
   },
   "story_save9": {

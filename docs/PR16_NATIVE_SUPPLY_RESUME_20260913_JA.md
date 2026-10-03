@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-504番道路3,12西/下段へ27歩・Save46独立Continue受入。戦闘0/回復未完。party2byteと途中RAM ledger差のowner未解決。
+504番道路11,5東/下段へ19歩→ジュネ通常勝利、初オノノクス実技slot0とSave47独立Continueを限定受入。原controller used0誤陰性を保持。回復未完。
 
-**次: Save46 artifact11278684880のstory-fast.srm（d4a2e1f06ecbb1dee1bd54bda6962c1993b51711a09607954fe7b67d1c568e47、131088bytes）だけから再開。map3/44・3,12西/下段elevation3・party4/RP0・14264円・badge1・story4071=9/4072=1。26,12から下段西通路27歩/5方向転換/戦闘0で到達。先頭オノノクスHP294/294・PP[15,10,15,20]、ミュウツーHP314/354・PP0、回復施設/回復未完。party全600byteのうち141=7→8/241=105→106の2byteだけ通常歩行観測7で変化、HP/PP/EXP等598byte不変。なつき度候補だがowner未解決、自然成長受入とはしない。RAM ledgerは観測13で変わり最終/cold一致、owner未解決。次は3,12から北3,11→3,10→3,9→2,9→2,5→6,5→6,6→10,6方面の未通過下段通路を有限候補にする。静的地形だけでは南端17,19へ直進できず北迂回候補、実到達ではない。南map3/23→3/2は接続候補で回復施設未同定。最初の新戦闘/event/未通過境界で通常Save、PPラベル/実cursorの既受入classifierを継承し初のオノノクス実技UIを原画像/残PPと照合。旧ミュウツー技名依存/PP0選択loop/host補充/ROM変更/故意の全滅なし。109+cold13入力・60画面・12controller36受入を無影響再走しない。40〜52部分Flash、51/52同hashも書込み中、53counter46/最終Flash→54成功文言→57field。全SaveRTC/cold一致、補助var4021=123→22/4022=4→1 owner未解明。Save39旧差/Save44並替差と旧失敗回収履歴を保持。通常story/正規全国図鑑/自然EXP・技習得・進化/Lucky Egg/12ケース/Lv100soak/研究施設自然到達未完。一般CIqol_production.c source不一致とfinalHEAD action_requiredを過大主張せず保持。全story/一般CI全成功/製品release未完、cleanROM二重生成/BPS固定/merge/release/baseline切替は別途判断。既存ROM/runtime/inputはActions内入力のみ、新公開artifactは新save/画面/textだけ。**
+**次: Save47 artifact11279895650のstory-fast.srm（0ffabf8d049f74edaabdaf32a54872a267d9ea4c04f02845612295a9f30c6431、131088bytes）だけから再開。map3/44・11,5東/下段3・party4/RP0・15224円・badge1・story4071=9/4072=1。3,12から北迂回19歩/8方向転換→だいすきクラブのジュネ4体に勝利、通常Save47/cold同一。オノノクスHP294/294・PP[11,10,15,20]、ミュウツーHP314/354・全PP0で回復未完。初の実技UI35/42/49/57はslot0ドラゴンクローPP15/14/13/12、36/43/50/58通常使用、party全600byteの差は52=15→11だけ。原controllerはPPlabel矩形がタイプ/物理アイコン化した実UIをotherと誤陰性、raw used[0,0,0,0]を改作せず実4回と区別。次のcontrollerは新pr16_story_save47_accept.classify_panel（技名/種族/PP数値非依存のパネル上枠+実cursor、原90画面の4技/3交代を照合済）を使い、selectは親実PP[11,10,15,20]で上限を再束縛する。旧PPlabel/used0/古いPP15のclosureを流用しない。native4slot選択/他技使用は未受入。以後は11,5→12,5→13,5→13,4→14,4→14,3→18,3→18,4から東へ、34,13下段→34,16→25,17→25,15→17,15→17,19の保存地形迂回候補の未通過続きだけ。最初の新戦闘/event/未通過境界または正常回復地点で次Save。南接続map3/23→3/2は候補、回復施設未同定。今回170+cold13入力/90画面/12controller44受入を無影響再走しない。71〜82部分write、83counter47/最終Flash→84成功文言→87field。physicalflag1402だけ0→1、賞金960円、Bag/HP/EXP/PC/S61E/story不変。auxvar4021=22→40/4022=1→0とRAMledger31/51差のowner未解決、最終/cold一致。Save46 party2byte/途中ledger、Save39旧cold差/Save44並替差と旧失敗を保持。正規全国図鑑/通常story/自然EXP・技習得・進化/LuckyEgg/12case/Lv100soak/研究施設自然到達未完。一般CIqol_production.c source不一致とfinalHEAD action_requiredは全成功としない。ROM/host補充/故意の全滅/merge/release/baseline切替なし。既存ROM/runtime/inputはActions入力専用、新artifactは新save/画面/textだけ。**
 
-Save46から未通過北側迂回候補だけ。最初の新戦闘/event/未通過境界で通常Save。回復未完/実技UI未観測/party2byteとledgerのowner未解決を保持、旧PP0 loop/host補充/故意の全滅なし。
+Save47の11,5から先の北迂回残りだけ。新パネル+実cursor判定/親PP11を使用、最初の新戦闘/event/未通過境界で保存。回復未完、原used0誤陰性/ledger差owner未解決を保持。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `78a91fbec8fa40863524b49e501ed204558a5031`。
-504の26,12下段から3,12西へ通常通過/Save46測定source。戦闘0、PP回復/回復地点未完。party2byteと途中RAM ledger差のowner未解決。
+証拠のsource HEAD: `eabbb96a80487644d4a873eaea0a7b3a1a6a03b3`。
+504の北迂回19歩→ジュネ4体に勝利/Save47測定source。実技slot0PP15→11、原controller used0誤陰性を改作しない。回復未完。
 
 ## 最短の再開手順
 
@@ -25,11 +25,11 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_STORY_SAVE46_JA.md`
-- `content/modernization/pr16_story_save46_checkpoint.json`
-- `content/modernization/pr16_story_save46_visual_review.json`
-- `scripts/pr16_story_save46_accept.py`
-- `scripts/pr16_story_save46_measure.py`
+- `docs/PR16_STORY_SAVE47_JA.md`
+- `content/modernization/pr16_story_save47_checkpoint.json`
+- `content/modernization/pr16_story_save47_visual_review.json`
+- `scripts/pr16_story_save47_accept.py`
+- `scripts/pr16_story_save47_measure.py`
 - `content/modernization/pr16_story_save44_evidence/inspection.json`
 - `content/modernization/pr16_story_save40_preparation.json`
 
@@ -373,6 +373,7 @@ P08ゲート:
 - Save44の78/cold13入力45画面・16controller32受入を無影響再走しない。通常並替だけで費用/道具消費/移動/戦闘0。オノノクスPP[15,10,15,20]、ミュウツーPP0保持。37counter44は部分write、38成功文言/安定Flash→42field。全SaveRTC/最終cold ledger一致。13並替選択のRAM ledger owner未解明。
 - Save45の98/cold13入力55画面・20controller32受入を無影響再走しない。19歩/7方向転換・26,11下り階段/26,12下段、戦闘0。party/Bag/14264円不変。46最終Flashはcounter44/書込中、47counter45→48成功文言→52field。全SaveRTC/全RAM ledger一致。新オノノクス実技UI未観測、PP回復未完。
 - Save46の109/cold13入力60画面・12controller36受入を無影響再走しない。27歩/5方向転換/戦闘0。HP/PP/Bag/14264円不変だがparty141=7→8/241=105→106と途中RAM ledger差を保持。40〜52部分write、53counter46/最終Flash→54成功文言→57field。回復/オノノクス実技UI未完。
+- Save47の170/cold13入力90画面・12controller44受入を無影響再走しない。北迂回19歩/8turn、ジュネ4体勝利、960円、slot0ドラゴンクロー4回/PP15→11。原controller used0は誤陰性で改作しない。71〜82部分write、83counter47/安定Flash→84成功文言→87field。実技UI4画面検証済、4slot native/回復は未受入。
 
 ## 次セッションへ残す更新手順
 
