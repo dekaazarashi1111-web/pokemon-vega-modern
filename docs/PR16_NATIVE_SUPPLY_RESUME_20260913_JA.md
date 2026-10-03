@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-東岩階段と解禁後19,14→8,10転送、Save33/独立Continue受入。戦闘0、13128円/party4/RP0/badge1・HP322/PP[1,14,0,0]。西側event/洞窟出口未完。
+西側9,7北で9,6への3試行は未通過。Save34/独立Continue受入。戦闘0/13128円/HP322/PP[1,14,0,0]。戻り転送→西岩階段→動的8,5の迂回候補。
 
-**次: Save33 artifact11273622658のstory-fast.srm（ceb55e1df60f35b69f4854017afa19d703df987c602c3a0f6b0090c2323e0685、131088bytes）だけから再開。map1/73・8,10西・party4/RP0・13128円・badge1・story4071=7/4072=1。東岩階段23,14とflag4367=1の正規19,14→8,10teleport、Save33/独立Continueを受入。ミュウツーHP322/354・PP[1,14,0,0]、party/Bag/PC/S61E/所持金は不変。れいとうビーム/火炎放射を選ばず通常UIの残存技/必要時通常回復だけ。host回復/PP/flag/var注入は禁止。保存済全920マスと7,5のcoord6nodeから西側区間を調べ、var4071=7でtrainer360を含む次の正規eventへ向かう。8,10から踏み直し転送で東へ戻らない経路を選ぶ。静的壁だけで出口不可と決めず必要ならmap-load動的地形ownerだけ照合。物理出口4,19はmap1/38へ、隣接warp4,6はmap3/21へ接続する静的表。通常到達/洞窟走破/全国図鑑は未完。69/cold13入力・31画面・新15controller/24受入試験、Save1〜32を無影響再走しない。補助var4021=115/4022=2のruntime ownerは未解決。trainer352/360、洞窟出口、HM05原因、全国図鑑、自然成長進化、全storyは未完。既存ROM/runner/runtimeはActions入力だけ、新公開artifactは新save/画面/textだけ。**
+**次: Save34 artifact11274397555のstory-fast.srm（c90cde2874e2c9a13b96c990c3907326bea066bb22a6bd61ae71b63ae5419692、131088bytes）だけから再開。map1/73・9,7北・party4/RP0・13128円・badge1・story4071=7/4072=1。北辺9,7→9,6は3回通常入力で通過せず、この失敗辺を反復しない。Save34/独立Continueだけ限定受入。ミュウツーHP322/354・PP[1,14,0,0]、party/Bag/PC/S61E/所持金は不変。れいとうビーム/火炎放射は選ばない。host回復/PP/flag/var注入は禁止。新map-load原本3node/14命令より、flag4367=1が8,5にmetatile0281/collision0を設定する。実到達は未受入。次は9,7→9,8→9,9→9,10→8,10の通常戻り転送で27,7へ。そこから26,7→25,7→24,7→23,7→22,7→21,7→20,7→19,7→18,7→18,6→18,5→17,5→16,5→16,4→15,4→14,4→13,4→13,5岩階段→13,6→12,6→11,6→10,6→9,6→8,6→8,5→7,5の候補。これは最新Save34から新しく開いた8,5/次eventへ向かう必要な通常迂回であり、旧Save再ロードや受入単体の再試験ではない。7,5 coordはvar4071=7でtrainer360を含む6node/var4071=8の保存済原本。50/cold13入力・20画面・新14controller/24受入試験、既受入Save1〜33を無影響再走しない。保存成功文言の瞬間は未採取。Save34受入は全Flash/sector checksum/field復帰/独立Continueによる。補助var4021=119/4022=1のruntime ownerは未解決。trainer352/360、洞窟出口4,19→map1/38、全国図鑑、自然成長進化、全storyは未完。既存ROM/runtimeはActions入力だけ、新公開artifactは新save/画面/textだけ。**
 
-Save33の8,10西から先だけ。PP[1,14,0,0]、正規UIだけで西側eventへ。既受入東階段/転送を再走しない。
+Save34の9,7北から通常迂回。9,7→9,6の失敗辺は反復しない。PP[1,14,0,0]、正規UIだけで動的8,5/7,5eventへ。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `73741f547eba9bb5519afb22c37d524416a9beb9`。
-東岩階段/解禁後19,14→8,10/Save33測定source。洞窟出口/全story/製品SHAではない。
+証拠のsource HEAD: `c181dc2610d01db9a29a9dc46edd6c8bb0ac0b46`。
+西側9,7/北辺9,6未通過/Save34測定source。8,5/7,5 event/洞窟出口/全story未完。
 
 ## 最短の再開手順
 
@@ -25,13 +25,13 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_STORY_SAVE33_JA.md`
-- `content/modernization/pr16_story_save33_checkpoint.json`
-- `content/modernization/pr16_story_save33_visual_review.json`
-- `scripts/pr16_story_save33_measure.py`
+- `docs/PR16_STORY_SAVE34_JA.md`
+- `content/modernization/pr16_story_save34_checkpoint.json`
+- `content/modernization/pr16_story_save34_visual_review.json`
+- `scripts/pr16_story_save34_measure.py`
+- `content/modernization/pr16_story_save34_preparation.json`
 - `content/modernization/pr16_story_save32_preparation.json`
 - `content/modernization/pr16_story_cave_route_checkpoint.json`
-- `docs/PR16_NATIONAL_DEX_OWNER_JA.md`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -360,6 +360,7 @@ P08ゲート:
 - Save31の52/cold13入力・22画面・新12controller/24受入試験を無影響再走しない。全37memberと既存失敗原本を保持。flag4367解禁を洞窟走破/全国図鑑へ昇格しない。
 - Save32の138/cold13入力・64画面・新12controller/24受入試験を無影響再走しない。全79memberと既存失敗原本を保持。trainer353勝利を東階段/teleport/洞窟走破へ昇格しない。
 - Save33の69/cold13入力・31画面・新15controller/24受入試験を無影響再走しない。全46memberを保持。解禁後teleportを次event/洞窟走破へ昇格しない。
+- Save34の50/cold13入力・20画面・新14controller/24受入試験を無影響再走しない。北辺9,7→9,6の3回未通過を保持し反復しない。保存文言は未採取。全35member/独立Continueを保持。
 
 ## 次セッションへ残す更新手順
 
