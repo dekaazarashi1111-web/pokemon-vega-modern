@@ -29,7 +29,7 @@ jobs:
       - name: Scoped source guard before saved Save31 acceptance
         run: |
           python3 -B -c "import sys; sys.path.insert(0,'scripts'); import pr16_story_save31_record as m; import pr16_learnset_runtime_record as g; g.START=m.BASE; g.CODE=m.CODE; g.OWNED=set(); g.guard()"
-      - name: Record Save31 and twenty-four new acceptance checks with retained stderr
+      - name: Record Save31 after exact input-name repair; preserve Ran0 failure receipt
         run: python3 -B scripts/pr16_story_save31_record.py record
       - name: Scoped final index private guard and fixed resume
         run: python3 -B scripts/pr16_story_save31_record.py guard

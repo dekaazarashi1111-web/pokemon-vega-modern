@@ -51,7 +51,16 @@ def record():
     for n,digest in visual['screen_anchors'].items():need(identity((original/n).read_bytes())['sha256']==digest,'目視原本 '+n)
     result=a.verify(original,before,rom)
     assets=OUT/'private-inputs';assets.mkdir();(assets/'input.srm').write_bytes(before);(assets/'candidate.gba').write_bytes(rom)
-    env=dict(os.environ,PR16_SAVE31_ORIGINAL=str(original),PR16_SAVE29_INPUT=str(assets/'input.srm'),PR16_SAVE31_ROM=str(assets/'candidate.gba'))
+    env=dict(os.environ,PR16_SAVE31_ORIGINAL=str(original),PR16_SAVE30_INPUT=str(assets/'input.srm'),PR16_SAVE31_ROM=str(assets/'candidate.gba'))
+    need(all(env.get(k) for k in ('PR16_SAVE31_ORIGINAL','PR16_SAVE30_INPUT','PR16_SAVE31_ROM')),'今回の受入環境3入力')
+    failed=h.d.inputs.api('actions/runs/37120815549');failedjob=h.d.inputs.api('actions/jobs/111196397968')
+    need(failed['head_sha']=='16f0ac178612f1dfd292c3fea2de17bad156ae70' and failed['status']=='completed' and failed['conclusion']=='failure' and failedjob['conclusion']=='failure','初回record失敗終端')
+    _,z=a.transport.archive(11273570337,37120815549,dict(size=576,sha256='229c9c5ccb5b43949afb6b4ab43abda2ef850712b4b26ea7ba340abe87344651'),'16f0ac178612f1dfd292c3fea2de17bad156ae70')
+    with z:
+        need(set(z.namelist())=={'unit.stdout.txt','unit.stderr.txt'} and z.read('unit.stdout.txt')==b'','失敗test原本全member')
+        stderr=z.read('unit.stderr.txt');need(b"KeyError: 'PR16_SAVE30_INPUT'"in stderr and b'Ran 0 tests in 'in stderr and b'FAILED (errors=1)'in stderr,'native0/test0の環境名誤り')
+    failure_receipt=dict(run=h.d.run_summary(failed),job=failedjob,artifact_id=11273570337,archive=dict(size=576,sha256='229c9c5ccb5b43949afb6b4ab43abda2ef850712b4b26ea7ba340abe87344651'),test_stderr=identity(stderr),native_processes=0,tests_executed=0,error="KeyError: 'PR16_SAVE30_INPUT'",absolute_paths_published_in_tracked_text=False,
+        explanation_ja='初回recordのsubprocess環境へ旧Save29 input名を渡し、setUpClassで停止。24試験は未実行。入力名をSave30へ修正しゲーム測定は再走しない。元stderr全体はActions原artifactに保持し、tracked textには絶対pathを複写しない。')
     unit=subprocess.run([sys.executable,'-B','-m','unittest','discover','-s','tests','-p','test_pr16_story_save31_accept.py','-v'],capture_output=True,timeout=120,env=env)
     (receipts/'unit.stdout.txt').write_bytes(unit.stdout);(receipts/'unit.stderr.txt').write_bytes(unit.stderr)
     need(unit.returncode==0 and not unit.stdout and unit.stderr.count(b' ... ok\n')==24 and b'\nOK\n'in unit.stderr and b'skipped'not in unit.stderr,'新24受入/拒否試験')
@@ -60,6 +69,7 @@ def record():
         raw=(original/name).read_bytes();raw.decode();need(b'\0'not in raw,'tracked textだけ')
         dest=evidence/name;dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(raw)
     (evidence/'unit.stderr.txt').write_bytes(unit.stderr)
+    write(evidence/'failed-record-terminal.json',failure_receipt)
     write(evidence/'verification.json',result);write(evidence/'terminal.json',done)
     write(evidence/'controller-test-receipt.json',dict(job=a.JOB,passed_tests=12,test_lines=tests,replayed_tests=0))
     paths={p.relative_to(ROOT).as_posix()for p in evidence.rglob('*')if p.is_file()}
@@ -77,7 +87,7 @@ def record():
       artifact={k:meta[k]for k in ('id','name','size_in_bytes','digest','workflow_run','expires_at')},verification=result,
       record_source=os.environ['GITHUB_SHA'],record_run_id=int(os.environ['GITHUB_RUN_ID']),save31_accepted=True,south_ledges_accepted=True,
       visual_review=a.VISUAL,source_bindings=h.d.bindings(CODE|a.m.CODE),evidence_bindings=h.d.bindings(paths),
-      new_controller_tests=12,new_acceptance_tests=24,record_native_processes=0,next_goal_ja=goal,
+      new_controller_tests=12,new_acceptance_tests=24,failed_record_run=37120815549,failed_record_tests_executed=0,record_native_processes=0,next_goal_ja=goal,
       release_ready=False,active_baseline_changed=False,general_ci_all_success_claimed=False)
     write(ROOT/a.CP,cp)
     (ROOT/a.GUIDE).write_text(f'''# 洞窟南段差・正規story owner・Save31 限定受入
@@ -88,7 +98,7 @@ source `{a.SOURCE}` / run `{a.RUN}` / job `{a.JOB}` 全8step成功。artifact `{
 
 Save31 `{a.OUTPUT['sha256']}` / 131088bytes。party全600byte、HP/PP/EXP/種族/4技/道具/OT、Bag/HM05、12712円、legacy全flagsを保持。S61E payload差分はoffset257の65→193だけでflag4367の1bit。CRC/complement8byte更新と他payload不変を独立照合。var4071は正規ownerと一致して6→7、補助var4021は87→93/4022は1→2で補助2件のruntime ownerは未解決。旧Save30bank57344bytes、PC payload、42stock checksums/S61E CRC、全国図鑑magic0/404e0/flag8400、story4072=1/badge1を保持。全Save/RTCはcold同一、6960byte/1775範囲差分。
 
-新12controller原logを保持して再走0。新24受入/拒否試験は今回だけ実行し全stderr保存。flag欠落、別flag追加と再計算済CRC、CRC破損を拒否。既存失敗原本と試験証拠を改作しない。record native0/ROM変更0/compile0/fixture0/既受入再走0。Save30記録run37120155157全11step終端を固定JSONへ反映。一般CI全成功/releaseは主張しない。
+新12controller原logを保持して再走0。初回record37120815549は入力環境名誤りでsetUpClass停止、Ran0/native0。失敗stderr原本artifact11273570337を保持し名前だけ修正。未実行だった新24受入/拒否試験を今回だけ実行し全stderr保存。flag欠落、別flag追加と再計算済CRC、CRC破損を拒否。既存失敗原本と試験証拠を改作しない。record native0/ROM変更0/compile0/fixture0/既受入再走0。Save30記録run37120155157全11step終端を固定JSONへ反映。一般CI全成功/releaseは主張しない。
 
 次: {goal}
 ''',encoding='utf-8')
@@ -116,6 +126,7 @@ Save31 `{a.OUTPUT['sha256']}` / 131088bytes。party全600byte、HP/PP/EXP/種族
 - Summary: Save30の13,6→14,8→14,10→14,12→14,14南。正規owner0x08214656のflag4367=1/var4071=7を通常Save31/独立Continueで受入。今回戦闘0、HP/PP/party全600byte不変。
 - Files changed: Save31 controller/12変更試験/24受入試験/record workflow、checkpoint/text証拠、固定再開MD/JSON、両ログ。
 - Verify: run{a.RUN}/job{a.JOB}全8step成功、52/cold13入力・22画面・全37member。Bag/legacyflags/PC/全国図鑑保持、S61E offset257だけ65→193＋CRC/complement。var4071=6→7、補助var4021は87→93/4022は1→2（補助owner未解決）。42checksum/6960byte差分/全SaveRTC保持。新12controller原本再利用、新24受入のみ実行してstderr全保存。counter31でも未完な観測17を保存成功にしない。record native0/ROM変更0/旧ゲーム再走0。
+- Failure: 初回record37120815549/job111196397968は入力環境名の旧Save29を原因としてsetUpClassでKeyError、Ran0/native0。stderr原artifact11273570337保持、入力名だけSave30へ修正して未実行24試験へ。ゲーム測定再走0。
 - History: Save29以前のnative/record失敗と試験証拠限界は保持。Save30記録run37120155157全11step終端を固定JSONへ反映。
 - Commit: 測定source={a.SOURCE}、記録source={os.environ['GITHUB_SHA']}・run={os.environ['GITHUB_RUN_ID']}。scoped guard/task graph/resume後に同branch非force pushし全text読戻し。
 - Network: 同repo GitHub/Actions原本だけ。既存ROM/runtime/input Save30再配布0。一般CI既知source不一致を保持、merge/release/baseline変更0。
