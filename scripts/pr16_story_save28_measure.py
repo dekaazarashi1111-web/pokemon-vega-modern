@@ -12,19 +12,20 @@ from pr16_story_after_maori_session import Session
 m=a.m.m;h=m.h
 BASE='a3e55510d6695e6252950154473d68cfeceab49f'
 OUT=ROOT/'.local/pr16-story-save28';ART=OUT/'artifact';ASSETS=OUT/'private-inputs'
-CODE={'scripts/pr16_story_save28_measure.py','tests/test_pr16_story_save28_measure.py','.github/workflows/pr16-story-save28.yml'}
+CODE={'scripts/pr16_story_save28_measure.py','tests/test_pr16_story_save28_measure.py','tests/test_pr16_story_save28_branch.py','.github/workflows/pr16-story-save28.yml'}
 START=[19,13];TRIGGER=[19,14];ROOT_ADDRESS=0x08214661
 
 def decode(raw,flag):
     need(type(raw)is bytes and len(raw)==30 and type(flag)is int and flag in (0,1),'正規30byte/flag値')
-    need(raw[:4]==bytes([0x2b,0x0f,0x11,0x06]) and raw[4]==1 and struct.unpack_from('<I',raw,5)[0]==ROOT_ADDRESS+20,'checkflag4367/true分岐')
+    need(raw[:4]==bytes([0x2b,0x0f,0x11,0x06]) and raw[4] in (0,1) and struct.unpack_from('<I',raw,5)[0]==ROOT_ADDRESS+20,'checkflag4367/boolean条件分岐')
     need(raw[9]==0x69 and raw[18:20]==bytes([0x6d,2]),'false側lock/release/end')
     def dest(i):
         op,bank,number,warp,x,y,release,end=struct.unpack_from('<BBBBHHBB',raw,i)
         need((op,bank,number,warp,release,end)==(0x3d,1,73,0x99,0x6d,2),'同洞窟の正規warpteleportだけ')
         need([x,y]in ([27,7],[8,10]),'既知destinationだけ');return [x,y]
-    no,yes=dest(10),dest(20);need(no!=yes,'2枝を混同しない')
-    return dict(root=ROOT_ADDRESS,flag_id=4367,flag_value=flag,false_destination=no,true_destination=yes,expected_destination=yes if flag else no)
+    fallthrough,branch=dest(10),dest(20);need(fallthrough!=branch,'2枝を混同しない')
+    taken=flag==raw[4]
+    return dict(root=ROOT_ADDRESS,flag_id=4367,flag_value=flag,condition=raw[4],branch_taken=taken,fallthrough_destination=fallthrough,branch_destination=branch,expected_destination=branch if taken else fallthrough)
 
 def scope(o):
     need(o['map']==[1,73] and o['xy']in (START,TRIGGER,[27,7],[8,10]) and o['save_counter']==27 and o['party_count']==4 and o['rp']==0 and o['party_sha256']==a.PARTY and o['flash_sha256']==a.FLASH and o['battle_flags']==o['battle_outcome']==0,'teleport限定/戦闘やhost変更なし')
@@ -83,10 +84,18 @@ def main():
     ART.mkdir(parents=True);sessions=[]
     try:
         write(ART/'save27-record-terminal.json',inherited.terminal(37116490265,'dacc10021fcb1a2d76e318113871b5e698878023',111184208479,['success']*10))
+        _,failed=a.transport.archive(11272325461,37116752441,dict(size=1619,sha256='722ead457c6c00ff33367961190411c68f4697d8c874087940bf4a3b34e840a2'),'02266ff46e26bca0a2a40ed784c45a9b2ca03fe6')
+        with failed:
+            fm=json.loads(failed.read('manifest.json'));need(set(fm)=={'failure.json','save27-record-terminal.json'},'前回native前だけ')
+            for name,binding in fm.items():need(identity(failed.read(name))==binding,'前回失敗member')
+            failure=json.loads(failed.read('failure.json'));need(failure['native_processes']==0 and failure['message']=='checkflag4367/true分岐','native0失敗の境界')
+            (ART/'preflight-failure.json').write_bytes(failed.read('failure.json'))
         runtime=restore();seed=(ASSETS/'input.srm').read_bytes();rom=(ASSETS/'candidate.gba').read_bytes()
         bank,_=a.parent.sectors.bank(seed,0xe000,27,a.parent.sectors.LAYOUT)
         ext=a.parent.s61e_record(seed[bank[13]+0x7d0:bank[13]+0xde6]);flag=(ext[(4367-2304)//8]>>((4367-2304)%8))&1
-        owner=decode(rom[ROOT_ADDRESS-0x8000000:ROOT_ADDRESS-0x8000000+30],flag);write(ART/'coord-owner.json',owner)
+        raw=rom[ROOT_ADDRESS-0x8000000:ROOT_ADDRESS-0x8000000+30]
+        write(ART/'coord-operands.json',dict(root=ROOT_ADDRESS,checkflag_opcode=raw[0],flag_operand=struct.unpack_from('<H',raw,1)[0],branch_opcode=raw[3],condition=raw[4],branch_target=struct.unpack_from('<I',raw,5)[0],lock=raw[9],flag_value=flag))
+        owner=decode(raw,flag);write(ART/'coord-owner.json',owner)
         s=Session(runtime,ASSETS/'candidate.gba',ASSETS/'runner',seed,ART/'progress');sessions.append(s)
         teleport=progress(s,owner['expected_destination']);final=save(s);result=s.quit();saved=s.save.read_bytes();(ART/'story-fast.srm').write_bytes(saved)
         c=Session(runtime,ASSETS/'candidate.gba',ASSETS/'runner',saved,ART/'continue');sessions.append(c)
