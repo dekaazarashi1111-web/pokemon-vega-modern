@@ -11483,3 +11483,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 測定source=33e1b9337469170adfca8af14ec4b3f298135b75、記録source=a5d169ffc645d574d8d2bd471555fc82a56b592f・run=37119219773。scoped guard/task graph/resume後に同branch非force pushし全text読戻し。
 - Network: 同repo GitHub/Actions原本のみ。既存ROM/runtime/input Save28を再配布しない。一般CI旧capacity source不一致保持、merge/release/baseline変更0。
 - Next: Save29 artifact11271899477のstory-fast.srm（780c27a138bc0795e2f30c328f69a77ded3569a9960318a61f0dc3d431f56a83、131088bytes）だけから再開。map1/73・17,4西・party4/RP0・12712円・badge1・story4071=6/4072=1。西高台の通常移動、野生ディグダ♂Lv8の通常1勝、Save29/独立Continueは完了。次は17,4から西4歩で13,4、南の正規岩階段13,5→13,6へ進み、低地/橋からcoord11〜16,14のownerへ向かう。root0x08214656はsetflag4367/var4071=7の正規owner。先頭0x69・末尾0x6b/endを実byte観測。flag4367は未設定で8,10枝は未解禁。ミュウツーHP324/PP[1,14,0,4]、オノノクスHP294/PP[15,10,15,20]。火炎放射PP0を使わず、host回復/flag/var解禁は禁止。trainer352/353は未対戦。既存ROM/runnerはSave24 artifact11263343138、runtime11263910704をhash固定してActions入力のみ再利用。新公開artifactは新save/画面/textだけ。88/cold13入力・39画面・16controller+4owner/新20受入試験、Save1〜28は無影響再走しない。初回native0失敗を保持。13,5岩階段/洞窟走破/HM05原因/全国図鑑/自然成長進化/全storyは未完。
+
+## 2026-10-03T11:36:13+00:00
+- Timestamp: 2026-10-03T11:36:13+00:00
+- Task: USER-20261003-CAVE-STAIRS-SAVE30 / 西岩階段の通常通過とSave30
+- Version: story-cave-stairs-save30-v1
+- Status: DONE（西岩階段/下層保存限定。story解禁/洞窟走破は未完）
+- Summary: Save29の17,4→13,4→13,5岩階段→13,6南。通常Save30/独立Continue。今回戦闘0、HP/PP/party全600byte不変。
+- Files changed: Save30 controller/12変更試験/20受入試験/record workflow、checkpoint/text証拠、固定再開MD/JSON、両ログ。
+- Verify: run37119699930/job111193264460全8step成功、46/cold13入力・18画面・全33member。Bag/flags/PC/S61E/全国図鑑保持、var4021は81→87/4022は0→1、runtime owner未解決。42checksum/6941byte差分/全SaveRTC保持。新12controller原本を再利用、新20受入のみ実行してstderr全保存。record native0/ROM変更0/旧ゲーム再走0。
+- History: Save29のnative0 preflight失敗/旧guide宛先guard/絶対pathprivateguard失敗は原本保持。既通過試験の証拠限界も変更しない。
+- Commit: 測定source=5518bc514b00151d4bd55dbd1baf66b3ca05dd04、記録source=34f54573124705f69963d7f6345f9ba7a472838e・run=37120155157。scoped guard/task graph/resume後に同branch非force pushし全text読戻し。
+- Network: 同repo GitHub/Actions原本だけ。既存ROM/runtime/input Save29の再配布0。一般CI既知source不一致を保持、merge/release/baseline変更0。
+- Next: Save30 artifact11273101471のstory-fast.srm（cb22ab0344990a51ef40d01e4049e8976a65340e629eaef2b390b6ce5f80d70b、131088bytes）だけから再開。map1/73・13,6南・party4/RP0・12712円・badge1・story4071=6/4072=1。正規岩階段13,5を通常通過し下層13,6のSave30/独立Continueを受入。次は下層から南のcoord11〜16,14へ進み、正規owner0x08214656によるflag4367/var4071=7を通常入力で観測する。保存済みlower_corridor_terrainでは13,6→13,7→14,7→14,8の南にbehavior59境界14,9がある。衝突bitだけで到達不能と断定せず、通常入力と画面で境界を確認する。ミュウツーHP324/PP[1,14,0,4]、オノノクスHP294/PP[15,10,15,20]は不変。今回戦闘0。火炎放射PP0を使わずhost回復/flag/var解禁は禁止。既存ROM/runnerはSave24 artifact11263343138、runtime11263910704をActions入力だけ再利用し、新公開artifactは新save/画面/textだけ。46/cold13入力・18画面・新12controller/20受入試験、Save1〜29は無影響再走しない。補助var4021=87/4022=1のruntime ownerは未解決。trainer352/353、story flag4367、洞窟走破、HM05原因、全国図鑑、自然成長進化、全storyは未完。
