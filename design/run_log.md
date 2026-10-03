@@ -11843,3 +11843,18 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 測定source=3439daa92e993a3edb89f89d3a37a9bcbdba3e99、記録source=3238addb62097be451dbc10e653dba5946070312・run=37152018112。scoped guard/task graph/resume後に同branch非force pushと全text読戻し。
 - Network: 同repo GitHub/Actionsのみ。既存ROM/runtime/input非再配布。一般CI既知不一致/action_requiredは全成功にしない。merge/release/baseline変更0。
 - Next: Save55 artifact11284146293のstory-fast.srm（131088bytes/SHA256 f9f9638a49aa4b0f0553c3bfcbaeb736f49d4ae42e5b5ca2509c8aaad9f515a2）だけから再開。map3/2・16,20南、こころのやかた前。通常出口/市内30歩、レンジャー331の6体へ1勝/864円/がくしゅうそうち182を1個通常取得、離脱flag4381、Save55/独立Continue全SaveRTC一致を限定受入。オノノクス288/294・PP[15,10,15,14]、ミュウツー354/354・PP[10,20,15,10]、所持金17904円/RP0/badge1/story4071=9/4072=1。次はNPC実台詞「こころのやかた奥のどうぞうの裏の紙」を調べる必須導線。保存済town warp15,19→map1/59・warp1から、未読室内owner/必要地形だけ調査し通常入力で入館・最初の新event/戦闘/未通過境界を保存する。任意TM21民家map39/0をgymと誤認しない。がくしゅうそうちは取得のみ、装備/自然成長受入なし。RAM台帳4差分/仲間offset41三件/aux2件と40ac=16のowner未解明を保持。最終/cold台帳77ccaa1d7ceee4a641d1094ab5b8f5caf44668ea125287542f3e2bed65a80e57。Save55counter131は部分write、132安定でも保存中→133成功→136field。268+cold13入力139画面21controller47受入154memberを無影響再走0。全国図鑑/全story/自然育成・進化/LuckyEgg/研究施設自然到達未完、doubletarget分離native未実証。既存ROM/runtime/input非再配布、host補充/回復再走/故意全滅/merge/release/baseline切替なし。一般CI既知不一致/action_requiredを全成功にしない。
+
+## 2026-10-03T21:04:22+00:00
+- Timestamp: 2026-10-03T21:04:22+00:00
+- Task: USER-20261003-MANSION-SAVE56 / こころのやかた新廊下とSave56
+- Version: story-heart-mansion-entry-save56-v1
+- Status: DONE（通常入館/新廊下/保存/独立Continue限定）
+- Summary: Save55からtown2歩/warpと新廊下8歩。20,25北、次warp20,24の未読階層手前。戦闘0/紙未調査/Flash0。party/HP/PP/Bag/17904円/RP0を保持。
+- Files changed: Save56 inspect/measure/23controller/65受入/record、17node1330cell静的原本、checkpoint/text証拠、固定再開MD/JSON、両ログ。
+- Verify: run37152942259/job111290374509全8step成功。70+cold13入力41画面57member。controller22原log+影響3件、65新受入拒否試験。record native0/compile0/既受入再走0。
+- Prior failure: run37152779196/job111289893097の21入力6画面/native1は入口20,32推測をguardが拒否、実20,33で未保存停止。原本artifact11285040773と全Save55不変を保持。
+- Prior record failure: run37153604849/job111292323853はSave40専用座標guardで新試験実行前に停止。native0/新受入試験0。専用parserの実観測4だけを許容し追加19検査。
+- Evidence: party600byte/PC/S61E保持、2221map-script owner照合、2056/aux3var owner未解明。32/33最終似hashでも34再変化→35成功→38field。旧bank57344byte、42checksum/6874byte1708範囲/cold全SaveRTC・全fieldframe一致。
+- Commit: 測定source=e622b26e0c00a1572e4d879c7ea0bb5c17ed0c01、記録source=73261d17c77f56ad4e2fcc80a8cac30d9af21e6e・run=37153775936。scoped guard/task graph/resume後に同branch非force pushと全text読戻し。
+- Network: 同repo GitHub/Actionsのみ。既存ROM/runtime/input非再配布。一般CIの既知不一致/action_requiredは全成功にしない。merge/release/baseline変更0。
+- Next: Save56 artifact11284293358のstory-fast.srm（131088bytes/SHA256 cf11b02c2152e238bf0f56fd2dadc3b30038ea6c45b105ca616ad4dc2ce93386）だけから再開。map1/59・20,25北、こころのやかた入口階の未読階層手前。通常入館2歩/warpと館内8歩/戦闘0/Save56/独立Continueを限定受入。party600byteとHP288/294・PP[15,10,15,14]、ミュウツー全HP/PP、Bag/17904円/RP0/badge1/story4071=9/4072=1保持。次は北20,24の既読warp8→map1/60・warp5。未読map1/60と必要owner/最小地形を限定調査し、NPC依頼「奥のどうぞうの裏の紙」を目標に最初の新event/戦闘/未通過境界まで通常入力で進める。紙は未調査、Flash未使用/未習得、がくしゅうそうち未装備。2056flagのruntime ownerとaux4021/4022/404d未解明、2221は館map3 script setworldmapflag照合。過去RAM台帳/仲間offset41/40ac=16のowner未解明も保持。Save56のRAM台帳は全観測/cold77ccaa1d7ceee4a641d1094ab5b8f5caf44668ea125287542f3e2bed65a80e57。32/33最終似hashでも旧counter55/保存中→34counter56でhash再変化→35成功→38fieldを区別。70+cold13入力41画面57member/65新受入を無影響再走しない。初回20,32推測は実20,33で未保存停止した21入力6画面/native1を原本保持し、3影響試験だけ訂正。全国図鑑/全story/自然育成・進化/LuckyEgg/研究施設自然到達未完。既存ROM/runtime/input非再配布、host補充/回復再走/故意全滅/merge/release/baseline切替なし。一般CIの既知不一致とaction_requiredを全成功にしない。
