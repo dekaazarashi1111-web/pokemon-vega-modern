@@ -65,19 +65,29 @@ def record():
     old_lines=[v for v in prior_stderr.decode().splitlines()if v.startswith('test_')]
     names=['test_reject_event_field','test_reject_event_lock']
     need(len(old_lines)==58 and sum(v.endswith(' ... ok')for v in old_lines)==56 and sorted(v.split(' ',1)[0]for v in old_lines if v.endswith(' ... FAIL'))==names and re.search(rb'\nRan 58 tests in [0-9.]+s\n\nFAILED \(failures=2\)\n\Z',prior_stderr),'初回56成功/2誤mutationの正確な終端')
-    env['PYTHONPATH']=str(ROOT/'tests')
-    unit=subprocess.run([sys.executable,'-B','-m','unittest',*['test_pr16_story_save65_accept.Acceptance.'+n for n in names],'-v'],capture_output=True,timeout=120,env=env)
-    unit_stdout,unit_stderr=unit.stdout,unit.stderr
+    correction_source='d4c47eb938eb0ccb323fa864a2299536b5a08353'
+    for name in ['scripts/pr16_story_save65_accept.py','tests/test_pr16_story_save65_accept.py']:
+        need(h.d.git('show',correction_source+':'+name)==(ROOT/name).read_bytes(),'訂正済oracleと全test不変 '+name)
+    correction_jobs=h.d.inputs.api('actions/runs/37162104134/jobs?per_page=100')['jobs']
+    need(len(correction_jobs)==1 and correction_jobs[0]['id']==111317487034 and correction_jobs[0]['conclusion']=='failure','旧guard failureを保持')
+    need(any(s['name']=='Reuse 56 passing cases and run only two corrected event-index cases'and s['status']=='completed'and s['conclusion']=='success'for s in correction_jobs[0]['steps']),'訂正2caseの成功stepだけ継承')
+    _,corrected_zip=a.transport.archive(11287772807,37162104134,dict(size=384,sha256='2a95e5e8eaa8ed7b75e05137dd36282a425d4a7749dd63458943a922b6b63b70'),correction_source)
+    with corrected_zip:
+        need(set(corrected_zip.namelist())=={'unit.stdout.txt','unit.stderr.txt'},'訂正2case原本')
+        unit_stdout,unit_stderr=corrected_zip.read('unit.stdout.txt'),corrected_zip.read('unit.stderr.txt')
     (receipts/'unit.stdout.txt').write_bytes(unit_stdout);(receipts/'unit.stderr.txt').write_bytes(unit_stderr)
     test_lines=[line for line in unit_stderr.decode().splitlines()if line.startswith('test_')]
-    need(unit.returncode==0 and not unit_stdout and len(test_lines)==2 and all(line.endswith(' ... ok')for line in test_lines)and sorted(v.split(' ',1)[0]for v in test_lines)==names and re.search(rb'\nRan 2 tests in [0-9.]+s\n\nOK\n\Z',unit_stderr),'訂正2caseだけ成功。初回成功56case再走0')
+    need(not unit_stdout and len(test_lines)==2 and all(line.endswith(' ... ok')for line in test_lines)and sorted(v.split(' ',1)[0]for v in test_lines)==names and re.search(rb'\nRan 2 tests in [0-9.]+s\n\nOK\n\Z',unit_stderr),'訂正2caseだけ成功。初回成功56case再走0')
     recovery=dict(prior_run_id=37161916477,prior_job_id=111316948030,prior_source=failed_source,prior_conclusion='failure',prior_artifact_id=11287926896,prior_successful_tests=56,prior_failed_mutations=names,corrected_case_executions=2,reused_successful_cases=56,replayed_successful_cases=0,unique_accepted_tests=58,total_executions=60,unit_code_change_ja='会話の観測indexだけ0→1。oracle変更0。native再走0。')
+    recovery.update(correction_run_id=37162104134,correction_job_id=111317487034,correction_source=correction_source,correction_artifact_id=11287772807,correction_step_conclusion='success',correction_run_conclusion='failure',guard_failure_preserved=True,current_record_test_executions=0,raw_failure_log_not_tracked=True)
     evidence=ROOT/a.EVIDENCE;evidence.mkdir()
     for name in ['measurement.json','manifest.json','save64-record-terminal.json','inspection.json','progress/commands.txt','progress/stdout.txt','progress/stderr.txt','progress/execution.json','continue/commands.txt','continue/stdout.txt','continue/stderr.txt','continue/execution.json']:
         raw=(original/name).read_bytes();raw.decode();need(b'\0'not in raw,'tracked textだけ')
         dest=evidence/name;dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(raw)
     (evidence/'unit.stderr.txt').write_bytes(unit_stderr)
-    (evidence/'prior-unit.stderr.txt').write_bytes(prior_stderr)
+    # 絶対path付きraw failureは元artifactだけに保存。tracked証拠は検査行/終端の抄録。
+    prior_summary='\n'.join(old_lines)+ '\n\nRan 58 tests; FAILED (failures=2). Original full stderr remains in artifact11287926896.\n'
+    (evidence/'prior-unit-summary.txt').write_text(prior_summary,encoding='utf-8')
     write(evidence/'acceptance-recovery.json',recovery)
     write(evidence/'verification.json',result);write(evidence/'terminal.json',done)
     write(evidence/'controller-test-receipt.json',test_receipts)
@@ -90,7 +100,7 @@ def record():
 
 `{result['status']}`。Save64の26,6西からA1回で西隣NPCと会話。りかけいのおとこカケル（trainer155）に新1勝、通常保存・独立Continue。歩行0、穴と像の紙は未到達。
 
-source `{a.SOURCE}` / run `{a.RUN}` / job `{a.JOB}`全8step成功。artifact `{a.ARTIFACT}` / {a.ARCHIVE['size']}bytes / SHA256 `{a.ARCHIVE['sha256']}`。70member/55画面/99+cold13入力。新controller27case、58新受入拒否試験（初回56成功・誤mutation2件、観測indexを訂正して2件だけ成功。成功56件の再走0、計60実行）。native2/record0/旧受入再走0/ROM変更0。
+source `{a.SOURCE}` / run `{a.RUN}` / job `{a.JOB}`全8step成功。artifact `{a.ARTIFACT}` / {a.ARCHIVE['size']}bytes / SHA256 `{a.ARCHIVE['sha256']}`。70member/55画面/99+cold13入力。新controller27case、58新受入拒否試験（初回56成功・誤mutation2件、観測indexを訂正して2件だけ成功。成功56件の再走0、計60実行）。native2/record0/旧受入再走0/ROM変更0。訂正2case成功後の記録runはraw失敗log内の絶対pathをguardが拒否。raw原本は元artifactに保持し、tracked証拠は検査行/終端の要約へ限定した。再検査0で成功58件を継承する。
 
 ## 会話・trainer戦と保存
 
@@ -129,6 +139,7 @@ party600byte中PP55の5→2だけ、残り599byte/HP288/294・ミュウツー全
 - Summary: 上階26,6西からA1回。りかけいカケル155/敵3体に新1勝、PP5→2、交代拒否2、賞金360円/1435bit。歩行0/HP288/294/party残り599byte/Bag/RP0/全vars保持、19104円。
 - Files changed: Save65 measure/27controller/58受入/record、checkpoint/text証拠/北迂回静的経路、固定再開MD/JSON、両ログ。
 - Verify: run{a.RUN}/job{a.JOB}全8step成功。99+cold13入力55画面70member。新27controller原log継承/58新受入拒否試験（初回56成功・誤mutation2件、観測indexを訂正して2件だけ成功。成功56件の再走0、計60実行）。record native0/compile0/既受入再走0。
+- Record repair: 初回run37161916477の誤index2caseと、訂正2case成功後run37162104134のprivate-path guard failureを保持。成功56+訂正2の原本を継承、今記録のunit/native再走0。絶対path入りrawlogは元artifactだけに置きtracked要約へ限定。
 - Evidence: 47counter65部分write→48成功→52field。全SaveRTC/field画面一致。RAM台帳6/27変化owner未解明。旧bank57344byte/42checksum/6856byte1665範囲。静的trainer155命令と1435remap照合。次の28歩はNPC25,6を除外した未通過北迂回、穴/紙は未実測。
 - Commit: 測定source={a.SOURCE}、記録source={os.environ['GITHUB_SHA']}・run={os.environ['GITHUB_RUN_ID']}。scoped guard/task graph/resume後に同branch非force pushと全text読戻し。
 - Network: 同repo GitHub/Actionsのみ。既存ROM/runtime/input非再配布。一般CI既知不一致/action_requiredは全成功にしない。merge/release/baseline変更0。
