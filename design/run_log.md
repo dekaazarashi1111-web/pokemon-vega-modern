@@ -11470,3 +11470,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 測定1cc88ec7、記録source=3900c985f1901d9e0a674cc6254b2b6af2923bd0・run=37117631601。scoped guard/task graph/resume後に同branch非force push、全text読戻し。
 - Network: 同repo GitHub/Actions原本。補助参照 https://raw.githubusercontent.com/pret/pokefirered/master/src/scrcmd.c のcheckflag/goto_if条件表。実ROM/saveが正本。既存ROM/runtime/input Save27を再配布しない。一般CI旧capacity source不一致保持、merge/release/baseline変更0。
 - Next: Save28 artifact11271154923のstory-fast.srm（a5cfc5714bcc447550d78ff45f42c74109f12d607bad1d94dbf61fe96b06f4a4、131088bytes）だけから再開。map1/73・27,7南・party4/RP0・12712円・badge1・story4071=6/4072=1。19,14→27,7の正規teleport（flag4367=0）、Save28/独立Continueは完了。次は27,7高台から西側の正規通路/橋/coord11〜16,14（var4071=6）とflag4367のstory ownerを追い、新しい通常入力を進める。8,10行きはflag4367=1の未解禁枝。27,7へのteleport成功を洞窟走破へ昇格せず、19,14を無目的に周回しない。trainer352/353も未対戦。ミュウツーPP[1,14,0,5]/HP324、オノノクスPP[15,10,15,20]/HP294。火炎放射PP0を使わず、host回復/flag/var解禁は禁止。既存ROM/runnerはSave24 artifact11263343138、runtime11263910704をhash固定してActions入力のみ再利用。新公開artifactは新save/画面/textだけ。40/cold13入力・17画面・20新受入試験とSave1〜27は無影響再走しない。旧preflight2回はnative0失敗のまま保持。洞窟走破/HM05原因/全国図鑑/自然成長進化/全storyは未完。
+
+## 2026-10-03T11:18:38+00:00
+- Timestamp: 2026-10-03T11:18:38+00:00
+- Task: USER-20261003-CAVE-WEST-SAVE29 / 西高台17,4への進行とSave29
+- Version: story-cave-west-save29-v1
+- Status: DONE（西高台/野生1勝/保存限定。西岩階段/story解禁/洞窟走破は未完）
+- Summary: Save28から27,7→18,7→18,4→17,4西へ通常移動。ディグダ♂Lv8をれいとうビーム1回で撃破し通常Save29/独立Continue。火炎放射PP0を使わない。
+- Files changed: Save29 controller/owner4試験/20受入試験/record workflow、checkpointとtext証拠、固定再開MD/JSON、両ログ。
+- Verify: run37118447519/job111189690507全8step成功、88/cold13入力・39画面・全55member。party差分PP5→4、Bag/flags/PC/S61E/全国図鑑保持、var4021のみ68→81、42checksum。前回16controller+変更owner4と初回record20受入成功gateを再利用。個別20試験stderrは未保存。記録先2試験も後続recordの成功stepから再利用し、今回receipt2試験だけ。record native0/ROM変更0/旧ゲーム再走0。
+- Failure: run37118280803はowner終端opcodeを0x6dと推測したpreflightのnative0失敗。実setflag/setvar operandを限定照合し、末尾0x6bを観測。失敗原本を保持。初回record37118869651は旧guide書込みを保護guardがpush前拒否。GUIDE定数を修正し新2拒否試験、20既通過試験は再走0。record37119050035は引用tracebackの絶対pathをprivate guardがpush前に拒否。pathを公開せず行番号/errorだけへ修正、新2receipt試験。
+- Commit: 測定source=33e1b9337469170adfca8af14ec4b3f298135b75、記録source=a5d169ffc645d574d8d2bd471555fc82a56b592f・run=37119219773。scoped guard/task graph/resume後に同branch非force pushし全text読戻し。
+- Network: 同repo GitHub/Actions原本のみ。既存ROM/runtime/input Save28を再配布しない。一般CI旧capacity source不一致保持、merge/release/baseline変更0。
+- Next: Save29 artifact11271899477のstory-fast.srm（780c27a138bc0795e2f30c328f69a77ded3569a9960318a61f0dc3d431f56a83、131088bytes）だけから再開。map1/73・17,4西・party4/RP0・12712円・badge1・story4071=6/4072=1。西高台の通常移動、野生ディグダ♂Lv8の通常1勝、Save29/独立Continueは完了。次は17,4から西4歩で13,4、南の正規岩階段13,5→13,6へ進み、低地/橋からcoord11〜16,14のownerへ向かう。root0x08214656はsetflag4367/var4071=7の正規owner。先頭0x69・末尾0x6b/endを実byte観測。flag4367は未設定で8,10枝は未解禁。ミュウツーHP324/PP[1,14,0,4]、オノノクスHP294/PP[15,10,15,20]。火炎放射PP0を使わず、host回復/flag/var解禁は禁止。trainer352/353は未対戦。既存ROM/runnerはSave24 artifact11263343138、runtime11263910704をhash固定してActions入力のみ再利用。新公開artifactは新save/画面/textだけ。88/cold13入力・39画面・16controller+4owner/新20受入試験、Save1〜28は無影響再走しない。初回native0失敗を保持。13,5岩階段/洞窟走破/HM05原因/全国図鑑/自然成長進化/全storyは未完。
