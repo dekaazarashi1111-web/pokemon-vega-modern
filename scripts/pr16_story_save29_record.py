@@ -13,12 +13,15 @@ h=a.m.h
 BASE=a.SOURCE
 TASK='USER-20261003-CAVE-WEST-SAVE29'
 OUT=ROOT/'.local/pr16-story-save29-record'
-CODE={'scripts/pr16_story_save29_accept.py','scripts/pr16_story_save29_record.py','tests/test_pr16_story_save29_accept.py',a.VISUAL,'.github/workflows/pr16-story-save29-record.yml'}
+CODE={'scripts/pr16_story_save29_accept.py','scripts/pr16_story_save29_record.py','tests/test_pr16_story_save29_accept.py','tests/test_pr16_story_save29_record_targets.py',a.VISUAL,'.github/workflows/pr16-story-save29-record.yml'}
 
+def targets(protected,guide=a.GUIDE):
+    need(guide=='docs/PR16_STORY_SAVE29_JA.md' and a.CP=='content/modernization/pr16_story_save29_checkpoint.json','今回専用の記録先')
+    need({guide,a.CP}.isdisjoint(protected) and not any(p.startswith(a.EVIDENCE+'/')for p in protected),'既受入pathへ書かない')
 def record():
     os.chdir(ROOT);h.d.current();need(os.environ['GITHUB_RUN_ATTEMPT']=='1' and not OUT.exists() and not (ROOT/a.CP).exists(),'新規記録1回だけ')
     state=h.source_check();protected=h.d.bindings(set(state['source_bindings'])|h.d.PROTECTED)
-    OUT.mkdir()
+    targets(protected);OUT.mkdir()
     for name in a.m.CODE:need(h.d.git('show',a.SOURCE+':'+name)==(ROOT/name).read_bytes(),'測定source不変 '+name)
     done=inherited.terminal(a.RUN,a.SOURCE,a.JOB,['success']*8)
     prior_done=inherited.terminal(37117631601,'3900c985f1901d9e0a674cc6254b2b6af2923bd0',111187403209,['success']*10)
@@ -54,15 +57,30 @@ def record():
     need(set(visual['screen_anchors'])=={n for n in manifest if n.endswith('.ppm')},'全39画面anchor完全')
     result=a.verify(original,before,rom)
     assets=OUT/'private-inputs';assets.mkdir();(assets/'input.srm').write_bytes(before);(assets/'candidate.gba').write_bytes(rom)
-    os.environ.update(PR16_SAVE29_ORIGINAL=str(original),PR16_SAVE28_INPUT=str(assets/'input.srm'),PR16_SAVE29_ROM=str(assets/'candidate.gba'))
-    unit=subprocess.run([sys.executable,'-B','-m','unittest','discover','-s','tests','-p','test_pr16_story_save29_accept.py','-v'],capture_output=True,timeout=120)
-    need(unit.returncode==0 and not unit.stdout and unit.stderr.count(b' ... ok\n')==20 and b'\nOK\n' in unit.stderr and b'skipped' not in unit.stderr,'新20受入/拒否試験のみ')
+    prior_source='d046957e193d9188b17a945bfec8e12c7c4fe7d9'
+    prior_run=h.d.inputs.api('actions/runs/37118869651');prior_job=h.d.inputs.api('actions/jobs/111190896283')
+    prior_log=h.d.inputs.api('actions/jobs/111190896283/logs',True).decode()
+    need(prior_run['head_sha']==prior_source and prior_run['status']=='completed' and prior_run['conclusion']=='failure' and prior_job['conclusion']=='failure','初回recordの終端保持')
+    old_accept=h.d.git('show',prior_source+':scripts/pr16_story_save29_accept.py').decode()
+    need(old_accept.replace('PR16_STORY_SAVE27_JA.md','PR16_STORY_SAVE29_JA.md')==(ROOT/'scripts/pr16_story_save29_accept.py').read_text(),'受入器はguide path1件だけ修正')
+    need(h.d.git('show',prior_source+':tests/test_pr16_story_save29_accept.py')==(ROOT/'tests/test_pr16_story_save29_accept.py').read_bytes(),'通過した20試験は不変')
+    old_record=h.d.git('show',prior_source+':scripts/pr16_story_save29_record.py').decode()
+    gate="need(unit.returncode==0 and not unit.stdout and unit.stderr.count(b' ... ok\\n')==20 and b'\\nOK\\n' in unit.stderr and b'skipped' not in unit.stderr,'新20受入/拒否試験のみ')"
+    need(gate in old_record and old_record.index(gate)<old_record.index("need(h.d.bindings(protected)==protected"),'20成功を要求した原source')
+    need('line 95, in record' in prior_log and 'ValueError: 既存受入正本/入力不変' in prior_log,'20試験成功gateの後で保護guard停止。試験stderrは未保存')
+    reused=dict(run_id=37118869651,job_id=111190896283,source=prior_source,passed_tests=20,replayed_tests=0,native_processes=0,
+      evidence_type='SOURCE_CONTROL_FLOW_AND_JOB_TRACEBACK',individual_test_output_retained=False,
+      caveat_ja='20試験のreturncode/件数/OKゲート後、旧Save27 guide書込みを保護guardが拒否。旧guide変更はpushされず。個別stderrはartifact未保存であり、成功件数は固定source制御フローと停止行から確認。',
+      required_gate=gate,terminal=h.d.run_summary(prior_run),job=prior_job,
+      traceback_lines=[v for v in prior_log.splitlines()if 'line 95, in record'in v or 'ValueError: 既存受入正本/入力不変'in v])
+    unit=subprocess.run([sys.executable,'-B','-m','unittest','discover','-s','tests','-p','test_pr16_story_save29_record_targets.py','-v'],capture_output=True,timeout=120)
+    need(unit.returncode==0 and not unit.stdout and unit.stderr.count(b' ... ok\n')==2 and b'\nOK\n' in unit.stderr,'変更記録先2試験だけ')
     evidence=ROOT/a.EVIDENCE;evidence.mkdir()
     for name in ['measurement.json','manifest.json','save28-record-terminal.json','preflight-failure.json','inspection.json','progress/commands.txt','progress/stdout.txt','progress/stderr.txt','progress/execution.json','continue/commands.txt','continue/stdout.txt','continue/stderr.txt','continue/execution.json']:
         raw=(original/name).read_bytes();raw.decode();need(b'\0' not in raw,'tracked textだけ')
         dest=evidence/name;dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(raw)
     (evidence/'unit.stderr.txt').write_bytes(unit.stderr)
-    write(evidence/'verification.json',result);write(evidence/'terminal.json',done)
+    write(evidence/'acceptance-test-reused-receipt.json',reused);write(evidence/'verification.json',result);write(evidence/'terminal.json',done)
     write(evidence/'controller-test-receipt.json',dict(passed_tests=20,receipts=receipts,replayed_tests=0));write(evidence/'failed-preflight-terminal.json',dict(run=h.d.run_summary(failed),job=failedjob,native_processes=0))
     paths={p.relative_to(ROOT).as_posix()for p in evidence.rglob('*')if p.is_file()}
     goal=(f'Save29 artifact{a.ARTIFACT}のstory-fast.srm（{a.OUTPUT["sha256"]}、131088bytes）だけから再開。'
@@ -77,7 +95,7 @@ def record():
         artifact={k:meta[k]for k in ('id','name','size_in_bytes','digest','workflow_run','expires_at')},verification=result,
         record_source=os.environ['GITHUB_SHA'],record_run_id=int(os.environ['GITHUB_RUN_ID']),save29_accepted=True,teleport_accepted=False,
         visual_review=a.VISUAL,source_bindings=h.d.bindings(CODE|a.m.CODE),evidence_bindings=h.d.bindings(paths),
-        prior_controller_tests=20,controller_test_split=[16,4],failed_preflight_run=37118280803,new_acceptance_tests=20,record_native_processes=0,next_goal_ja=goal,
+        prior_controller_tests=20,controller_test_split=[16,4],failed_preflight_run=37118280803,new_acceptance_tests=20,acceptance_tests_this_record_run=0,new_record_target_tests=2,record_native_processes=0,next_goal_ja=goal,
         release_ready=False,active_baseline_changed=False,general_ci_all_success_claimed=False)
     write(ROOT/a.CP,cp)
     (ROOT/a.GUIDE).write_text(f'''# 洞窟西高台・Save29 限定受入
@@ -88,7 +106,7 @@ source `{a.SOURCE}` / run `{a.RUN}` / job `{a.JOB}` 全8step成功。artifact `{
 
 Save29 `{a.OUTPUT['sha256']}` / 131088bytes。party600byte差分はれいとうビームPP5→4のみ。HP/EXP/種族/4技/道具/OT、Bag/HM05、12712円、全trainer/story flagsを保持。補助var4021だけ68→81、runtime ownerは未解決。旧Save28bank57344bytes、PC/S61E全payload、42stock checksums/S61E CRC、全国図鑑magic0/404e0/flag8400、story4071=6/4072=1/badge1。全Save/RTCはcoldと同一、6949byte/1760範囲差分。
 
-正規owner0x08214656のsetflag4367/setvar4071=7を照合。末尾opcodeは0x6b。初回run37118280803は0x6dと推測したpreflightがnative0で失敗した原本を保持。変更4owner試験を追加し、旧16controllerは再走0。今回新20受入/拒否試験、record native0、旧ゲーム受入再走0、ROM/compile/fixture0。Save28記録run37117631601全10step終端を固定JSONへ反映。一般CI全成功/releaseは主張しない。
+正規owner0x08214656のsetflag4367/setvar4071=7を照合。末尾opcodeは0x6b。初回run37118280803は0x6dと推測したpreflightがnative0で失敗した原本を保持。変更4owner試験を追加し、旧16controllerは再走0。20受入/拒否試験は初回recordの成功gateから再利用（個別stderrは未保存）。旧guide書込みはguardでpush前に拒否され、新2記録先試験だけ追加。record native0、旧ゲーム受入再走0、ROM/compile/fixture0。Save28記録run37117631601全10step終端を固定JSONへ反映。一般CI全成功/releaseは主張しない。
 
 次: {goal}
 ''',encoding='utf-8')
@@ -116,8 +134,8 @@ Save29 `{a.OUTPUT['sha256']}` / 131088bytes。party600byte差分はれいとう�
 - Status: DONE（西高台/野生1勝/保存限定。西岩階段/story解禁/洞窟走破は未完）
 - Summary: Save28から27,7→18,7→18,4→17,4西へ通常移動。ディグダ♂Lv8をれいとうビーム1回で撃破し通常Save29/独立Continue。火炎放射PP0を使わない。
 - Files changed: Save29 controller/owner4試験/20受入試験/record workflow、checkpointとtext証拠、固定再開MD/JSON、両ログ。
-- Verify: run{a.RUN}/job{a.JOB}全8step成功、88/cold13入力・39画面・全55member。party差分PP5→4、Bag/flags/PC/S61E/全国図鑑保持、var4021のみ68→81、42checksum。前回16controllerと変更owner4を原本再利用、新20受入のみ。record native0/ROM変更0/旧ゲーム再走0。
-- Failure: run37118280803はowner終端opcodeを0x6dと推測したpreflightのnative0失敗。実setflag/setvar operandを限定照合し、末尾0x6bを観測。失敗原本を保持。
+- Verify: run{a.RUN}/job{a.JOB}全8step成功、88/cold13入力・39画面・全55member。party差分PP5→4、Bag/flags/PC/S61E/全国図鑑保持、var4021のみ68→81、42checksum。前回16controller+変更owner4と初回record20受入成功gateを再利用。個別20試験stderrは未保存。今回記録先2試験だけ。record native0/ROM変更0/旧ゲーム再走0。
+- Failure: run37118280803はowner終端opcodeを0x6dと推測したpreflightのnative0失敗。実setflag/setvar operandを限定照合し、末尾0x6bを観測。失敗原本を保持。初回record37118869651は旧guide書込みを保護guardがpush前拒否。GUIDE定数を修正し新2拒否試験、20既通過試験は再走0。
 - Commit: 測定source={a.SOURCE}、記録source={os.environ['GITHUB_SHA']}・run={os.environ['GITHUB_RUN_ID']}。scoped guard/task graph/resume後に同branch非force pushし全text読戻し。
 - Network: 同repo GitHub/Actions原本のみ。既存ROM/runtime/input Save28を再配布しない。一般CI旧capacity source不一致保持、merge/release/baseline変更0。
 - Next: {goal}
