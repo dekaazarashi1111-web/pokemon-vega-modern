@@ -21,6 +21,7 @@ def record():
     for name in a.m.CODE:need(h.d.git('show',a.SOURCE+':'+name)==(ROOT/name).read_bytes(),'測定source不変 '+name)
     done=inherited.terminal(a.RUN,a.SOURCE,a.JOB,['success']*8)
     prior_done=inherited.terminal(37130202320,'9ba845434ef1ed765eac2a57e71337bbb9d5e1c7',111223633347,['success']*11)
+    failed_record_done=inherited.terminal(37131369405,'c0e24078cef9de77e1dc961fe3b4188d67a7f68a',111226984760,['success','success','success','failure','skipped','skipped','skipped','skipped','success','success','success'])
     test_receipts=[]
     for job,suite,count in [(a.JOB,'test_pr16_story_save41_measure.',14)]:
         log=h.d.inputs.api('actions/jobs/'+str(job)+'/logs',True).decode().splitlines()
@@ -61,6 +62,7 @@ def record():
     (evidence/'unit.stderr.txt').write_bytes(unit.stderr)
     write(evidence/'verification.json',result);write(evidence/'terminal.json',done)
     write(evidence/'controller-test-receipt.json',test_receipts)
+    write(evidence/'first-record-failure.json',dict(terminal=failed_record_done,native_processes=0,acceptance_tests_run=0,reason_ja='GUIDE宛先が旧Save40のままだったため、専用宛先guardがartifact取得/書込/受入試験より前に拒否。新Save41専用pathに訂正し旧正本を保全。'))
     paths={p.relative_to(ROOT).as_posix()for p in evidence.rglob('*')if p.is_file()}
     goal=(f'Save41 artifact{a.ARTIFACT}のstory-fast.srm（{a.OUTPUT["sha256"]}、131088bytes）だけから再開。'
       'map3/44（504番道路）・48,11西・party4/RP0・13796円・badge1・story4071=9/4072=1、HP320/354・PP[1,5,0,0]。'
@@ -77,13 +79,13 @@ def record():
       artifact={k:meta[k]for k in ('id','name','size_in_bytes','digest','workflow_run','expires_at')},verification=result,
       record_source=os.environ['GITHUB_SHA'],record_run_id=int(os.environ['GITHUB_RUN_ID']),save41_accepted=True,west_ledge_accepted=True,bridge_west_edge_passed=False,cave_crossing_complete=True,
       visual_review=a.VISUAL,source_bindings=h.d.bindings(CODE|a.m.CODE),evidence_bindings=h.d.bindings(paths),
-      new_controller_tests=14,new_acceptance_tests=26,successful_native_processes=2,record_native_processes=0,next_goal_ja=goal,release_ready=False,active_baseline_changed=False,general_ci_all_success_claimed=False)
+      new_controller_tests=14,new_acceptance_tests=26,successful_native_processes=2,record_native_processes=0,first_record_failure_run=37131369405,next_goal_ja=goal,release_ready=False,active_baseline_changed=False,general_ci_all_success_claimed=False)
     write(ROOT/a.CP,cp)
     (ROOT/a.GUIDE).write_text(f'''# 504西段差と橋下・Save41 限定受入
 
 `{result['status']}`。Save40の60,10から西へ進み、58,10→56,10の西段差を通常入力で通過し48,11の橋下に到達。48,11→47,11は3回未通過として保存し反復しない。通常Save41/独立Continueを限定受入。新戦闘0、正規story4071=9/4370は前Save40の受入を継承。全story・全国図鑑・自然成長は未完。
 
-source `{a.SOURCE}` / run `{a.RUN}` / job `{a.JOB}` 全8step成功。artifact `{a.ARTIFACT}` / {a.ARCHIVE['size']}bytes / SHA256 `{a.ARCHIVE['sha256']}`。全59member/44画面/77+cold13入力。新14controllerの成功logを継承、新26原本受入/拒否試験、native2/record0。ROM/fixture/compile/既受入再走0。測定receiptを独立episode解析前に保存する構成へ改め、前回の保存後parser failureでreceiptが欠けた問題を避けた。旧parserや旧受入条件は変更していない。
+source `{a.SOURCE}` / run `{a.RUN}` / job `{a.JOB}` 全8step成功。artifact `{a.ARTIFACT}` / {a.ARCHIVE['size']}bytes / SHA256 `{a.ARCHIVE['sha256']}`。全59member/44画面/77+cold13入力。新14controllerの成功logを継承、新26原本受入/拒否試験、native2/record0。ROM/fixture/compile/既受入再走0。測定receiptを独立episode解析前に保存する構成へ改め、前回の保存後parser failureでreceiptが欠けた問題を避けた。旧parserや旧受入条件は変更していない。初回record run37131369405はGUIDE宛先の旧名を専用宛先guardが事前拒否し、native/受入試験/正本書込0。新Save41宛先へ訂正して原本から記録。
 
 party600byte/HP320/PP[1,5,0,0]/全Bag/HM05/13796円/PC/S61E/legacy flag/story4071=9/4072=1・badge1不変。補助var4021=63→75/4022=3→0だけでruntime ownerは未解明。42sector checksum/旧Save40bank57344byte/6866byte1695範囲/cold全SaveRTC一致。全国図鑑magic0/404e0/flag8400を保持。
 
@@ -120,6 +122,7 @@ party600byte/HP320/PP[1,5,0,0]/全Bag/HM05/13796円/PC/S61E/legacy flag/story407
 - Summary: Save40の60,10から58,10→56,10の西段差を通過し48,11橋下へ。西47,11は3回未通過で有限停止。戦闘0、全国図鑑/自然成長/全story未完。
 - Files changed: Save41 controller/14変更試験/26原本受入拒否試験/record workflow、checkpoint/text証跡、固定再開MD/JSON、両ログ。
 - Verify: 測定run{a.RUN}/job{a.JOB}全8step成功、77/cold13入力/44画面/59member。14controller原log継承、新26受入だけ実行、record native0。party600byte/HP320/PP[1,5,0,0]/Bag/13796円/PC/S61E/legacyflags/story不変。補助4021=63→75/4022=3→0はowner未解明。42checksum/旧bank57344byte/6866byte1695範囲/cold全SaveRTC一致。
+- History: 初回record37131369405はGUIDEの旧Save40宛先を専用guardがartifact取得/書込/受入試験前に拒否。native0/受入試験0/正本書込0。新宛先へ訂正し失敗終端を保持。
 - Evidence: 17〜21実menu0→4、24〜36部分write、36counter41、37成功文言/安定Flash→41field。今回cold RAMledger一致、Save39旧差owner未解明を保持。Save40 record37130202320/Stage79run37130202316の全success終端反映。保存済地形再採取0、旧accepted試験/native再実行0。
 - Commit: 測定source={a.SOURCE}、記録source={os.environ['GITHUB_SHA']}・run={os.environ['GITHUB_RUN_ID']}。scoped guard/task graph/resume後に同branch非force pushと全text読戻し。
 - Network: 同repo GitHub/Actions入力のみ。既存ROM/runtime/input Save40再配布0。一般CI既知source不一致を保持、merge/release/baseline変更0。
