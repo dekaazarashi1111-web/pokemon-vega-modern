@@ -13,12 +13,15 @@ import pr16_story_save25_measure as m
 h=m.h
 BASE='80b95391eb2783ab0598f8639e9931a339d2088e'
 OUT=ROOT/'.local/pr16-story-save35';ART=OUT/'artifact';ASSETS=OUT/'private-inputs'
-CODE={'scripts/pr16_story_save35_measure.py','tests/test_pr16_story_save35_measure.py','tests/test_pr16_story_save35_transition.py','.github/workflows/pr16-story-save35.yml'}
+CODE={'scripts/pr16_story_save35_measure.py','tests/test_pr16_story_save35_measure.py','tests/test_pr16_story_save35_transition.py','tests/test_pr16_story_save35_transition_wait.py','.github/workflows/pr16-story-save35.yml'}
 PP=[1,14,0,0]
 TRANSITION=134569577 # 失敗原本の16,5で観測した野生戦直前callbackだけ
 def event_input(o):
-    need(o['callback2']in(m.FIELD,TRANSITION),'未知callbackを広く許可しない')
-    return ((0,60),)if o['callback2']==TRANSITION else ((1,2),(0,180))
+    cb=o['callback2']
+    if cb==m.FIELD:return ((1,2),(0,180))
+    if cb==TRANSITION:return ((0,60),)
+    need(cb!=m.BATTLE and cb&1 and 0x08000000<=cb<0x0a000000 and o.get('lock')==1,'ROM内の待機callbackだけ・未知UIへ決定入力しない')
+    return ((0,60),)
 PREP='content/modernization/pr16_story_save34_preparation.json'
 TERRAIN='content/modernization/pr16_story_save32_preparation.json'
 ROUTE=[[9, 7], [9, 8], [9, 9], [9, 10], [8, 10], [27, 7], [26, 7], [25, 7], [24, 7], [23, 7], [22, 7], [21, 7], [20, 7], [19, 7], [18, 7], [18, 6], [18, 5], [17, 5], [16, 5], [16, 4], [15, 4], [14, 4], [13, 4], [13, 5], [13, 6], [12, 6], [11, 6], [10, 6], [9, 6], [8, 6], [8, 5], [7, 5]]
@@ -104,7 +107,7 @@ def progress(s):
                     if o['callback2']==m.BATTLE:return route,battle(s),dict(kind='new_battle',trigger=target),teleports
                     if o['callback2']==m.FIELD and o['lock']==0:
                         m.idle(o,34);return route,None,dict(kind='story_event',trigger=target,xy=o['xy'],observation=len(s.observations)-1),teleports
-                    need(o['callback2']in(m.FIELD,TRANSITION) and o['map']==[1,73] and 0<=o['xy'][0]<40 and 0<=o['xy'][1]<23,'洞窟scriptの有限UIだけ')
+                    need(o['map']==[1,73] and o['save_counter']==34 and o['rp']==0 and o['party_count']==4 and 0<=o['xy'][0]<40 and 0<=o['xy'][1]<23,'洞窟scriptの有限UIだけ')
                     o=s.step(*event_input(o))
                 raise ValueError('新eventの有限待ち上限。無条件再走しない')
             m.idle(o,34)
@@ -163,6 +166,18 @@ def failed_original():
     need(len(tests)==19 and any('Ran 19 tests in 'in x for x in log),'不変19controller成功step原本継承')
     return dict(run_id=37124366728,job_id=111206585603,source_head='f98a120aea81a8f333a0449a66f0700103e3313f',artifact_id=11273509448,conclusion='failure',native_processes=1,inputs=56,screen_count=24,save_completed=False,controller_tests_passed=19,controller_tests_replayed=0,failed_callback=TRANSITION,recovery='CHANGED_TRANSITION_CONTROLLER_FROM_UNCHANGED_SAVE34_ONLY',failure=failure,test_lines=tests)
 
+def second_failed_original():
+    _,z=a.transport.archive(11274580176,37124554654,dict(size=151237,sha256='2326501b2606d2ec5e838130ab18ceba16605ef4a312d8aa676e5843e35ab85f'),'f1f7817adaf7c0c8500616522425433ea17359c7')
+    with z:
+        manifest=json.loads(z.read('manifest.json'));need(len(manifest)==33 and set(z.namelist())==set(manifest)|{'manifest.json'},'第2失敗34member保全')
+        for n,b in manifest.items():need(identity(z.read(n))==b,'第2失敗member '+n)
+        trace=[json.loads(x)for x in z.read('progress/stdout.txt').decode().splitlines()];obs=[x for x in trace if 'observe'in x]
+        need(len(obs)==25 and obs[-1]['xy']==[16,5] and obs[-1]['callback2']==134282949 and obs[-1]['battle_flags']==4,'黒画面の野生戦初期化callback原本')
+        need(all(x['flash_sha256']==a.FLASH and x['save_counter']==34 for x in obs) and trace[-1]['inputs']==57 and not any(n.endswith('.srm')for n in manifest),'第2失敗にも新保存なし')
+    log=h.d.inputs.api('actions/jobs/111207120544/logs',True).decode().splitlines();tests=[x.split('Z ',1)[-1]for x in log if ' ... ok'in x and 'test_pr16_story_save35_transition.'in x]
+    need(len(tests)==4 and any('Ran 4 tests in 'in x for x in log),'4transition成功step継承')
+    return dict(run_id=37124554654,job_id=111207120544,source_head='f1f7817adaf7c0c8500616522425433ea17359c7',artifact_id=11274580176,conclusion='failure',native_processes=1,inputs=57,screen_count=25,save_completed=False,controller_tests_passed=4,controller_tests_replayed=0,test_lines=tests)
+
 def main():
     h.d.current();state=h.source_check();need(os.environ['GITHUB_RUN_ATTEMPT']=='1' and not OUT.exists(),'新区間初回のみ')
     protected=h.d.bindings(set(state['source_bindings'])|h.d.PROTECTED|CODE)
@@ -170,7 +185,7 @@ def main():
     try:
         write(ART/'save34-record-terminal.json',inherited.terminal(37123931026,'a4c565b152c26e00e5a68b381a9a564a389a45f9',111205330968,['success']*11))
         need(state['story_save34']['story_fast_save']==a.OUTPUT,'正式Save34親')
-        write(ART/'failed-original.json',failed_original())
+        write(ART/'failed-original.json',failed_original());write(ART/'second-failed-original.json',second_failed_original())
         runtime=restore();seed=(ASSETS/'input.srm').read_bytes()
         inspection=inspect((ASSETS/'candidate.gba').read_bytes(),seed);write(ART/'inspection.json',inspection)
         s=Session(runtime,ASSETS/'candidate.gba',ASSETS/'runner',seed,ART/'progress');sessions.append(s)
