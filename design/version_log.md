@@ -9168,3 +9168,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 測定source=782cf85e25dc2bb3e73134af027431be9724e084、記録source=7e495ef303475b948b6cf0f913e0ead8176d9fa9・run=37158672170。scoped guard/task graph/resume後に同branch非force pushと全text読戻し。
 - Network: 同repo GitHub/Actionsのみ。既存ROM/runtime/input非再配布。一般CI既知不一致/action_requiredは全成功にしない。merge/release/baseline変更0。
 - Next: Save60 artifact11286820207のstory-fast.srm（131088bytes/SHA256 40d65e6b41a49a59d295667ea30a88496da25c641ac8896059ed4d1fce196b0f）だけから再開。map1/59・14,6東。新10歩を限定受入、15,6への東入力3回は不通で停止。新戦闘0、全party600byte/HP288/294・PP15,10,15,11・ミュウツー全HP/PP・Bag/17904円/RP0/badge1/story4071=9/4072=1/RAM台帳保持。近傍移動NPCを実画面で観測、local6初期14,4/script141180503は静的候補でruntime同定/不通因果は未確定。次はcold画面の東隣NPCへの通常A会話を有限入力で確認するか、保存済通行可床14,5→15,5→16,5→16,6へ最小北迂回して未通過接尾辞を進める。目標はbehavior108階段30,10→map1/60warp2。最初の新event/戦闘/不通境界で保存。旧14,6→15,6東3回や旧20,24着地点不発を盲目的に再走しない。上階/紙未到達、紙ownerはmap1/60背景16,28/item274/flag4383と静的照合済み。26新controller/51新受入、75+cold13入力44画面59member/native2を無影響再走0。35で最終Flash一致でもcounter59/保存中、36counter60でも部分write、37成功→41field。全SaveRTC同一、progress/cold画面は近傍NPC211pixel/bbox129,58,143,80だけ異なり全画面同一としない。旧RAM/offset41/2056/aux4021/4022/404d/40ac未解明保持。Flash未使用/未習得、がくしゅうそうち未装備。全国図鑑/全story/自然育成・進化/LuckyEgg/研究施設自然到達未完。既存ROM/runtime/input非再配布、host補充/回復再走/故意全滅/merge/release/baseline切替なし。一般CI既知不一致/action_requiredを全成功にしない。
+
+## 2026-10-03T22:48:16+00:00
+- Timestamp: 2026-10-03T22:48:16+00:00
+- Task: USER-20261003-MANSION-NORTH-DETOUR-SAVE61 / 館の北迂回13歩とプレッシャー野生1勝Save61
+- Version: story-mansion-north-detour-save61-v1
+- Status: DONE（新13歩/野生1勝/保存/独立Continue限定）
+- Summary: Save60東不通から通常北迂回13歩、25,6東。ハクタクン♂Lv9新野生1勝、プレッシャー表示とつばめがえし選択1/実PP11→9を区別。party残り599byte/HP288/294/Bag/17904円/RP0保持。上階/有効階段/紙未到達。
+- Files changed: Save61 measure/27controller/55受入/record、checkpoint/text証拠、固定再開MD/JSON、両ログ。
+- Verify: run37159098533/job111308580642全8step成功。101+cold13入力57画面72member。新27controller原log継承/55新受入拒否試験。record native0/compile0/既受入再走0。
+- Evidence: 49counter61部分write→50成功→54field。全SaveRTC/field画面同一。RAM台帳は25技menuで変化、aux4021=76→89owner未解明。旧bank57344byte/42checksum/6974byte1716範囲。NPC同定/旧不通因果は未確定。
+- Commit: 測定source=2bed90a568f9e7f650bc47739db51af97a5ab296、記録source=39d198614105804285f070ac94f63a7867a9f0a6・run=37159642405。scoped guard/task graph/resume後に同branch非force pushと全text読戻し。
+- Network: 同repo GitHub/Actionsのみ。既存ROM/runtime/input非再配布。一般CI既知不一致/action_requiredは全成功にしない。merge/release/baseline変更0。
+- Next: Save61 artifact11286499716のstory-fast.srm（131088bytes/SHA256 4bb9bb7761d2983164e0aa48687d0dae1ed893248b312af4f9ee36dbd873a092）だけから再開。map1/59・25,6東。新北迂回13歩とハクタクン♂Lv9野生1勝を限定受入。旧14,6→15,6不通辺は再走せず、14,5→15,5→16,5→16,6で通過。つばめがえし1コマンド/実PP11→9を区別し、相手プレッシャーpopup/文言と整合。HP288/294・PP15,10,15,9、ミュウツー全HP/PP、party残り599byte/Bag/17904円/RP0/badge1/story4071=9/4072=1保持。次は保存済未通過接尾辞25,6→26,6→27,6→28,6→28,7→28,8→28,9→28,10→29,10→30,10（behavior108階段）からmap1/60warp2へ。最初の新event/戦闘/不通境界で保存。上階/紙未到達、紙ownerはmap1/60背景16,28/item274/flag4383。27新controller/55新受入、101+cold13入力57画面72member/native2。49counter61でも部分write、50成功→54field。全SaveRTC/field画面同一。RAM台帳は観測25の技menuで変化しowner未解明。旧offset41/2056/aux4021/4022/404d/40ac未解明保持。Flash未使用/未習得、がくしゅうそうち未装備。旧迂回/戦闘/保存や旧20,24着地点不発を無影響再走しない。全国図鑑/全story/自然育成・進化/LuckyEgg/研究施設自然到達未完。既存ROM/runtime/input非再配布、host補充/回復再走/故意全滅/merge/release/baseline切替なし。一般CI既知不一致/action_requiredを全成功にしない。
