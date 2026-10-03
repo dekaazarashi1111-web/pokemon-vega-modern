@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-504番道路26,12南/下段へ通常通過・Save45独立Continue受入。19歩/7方向転換/戦闘0。回復地点・ミュウツーPP回復未完。
+504番道路3,12西/下段へ27歩・Save46独立Continue受入。戦闘0/回復未完。party2byteと途中RAM ledger差のowner未解決。
 
-**次: Save45 artifact11278563389のstory-fast.srm（e356f82361d9c0cccf984a7113b91324d42d6c3c15acf22b42a4fea3ce21927d、131088bytes）だけから再開。map3/44・26,12南/下段elevation3・party4/RP0・14264円・badge1・story4071=9/4072=1。西上段39,12から26,10→26,11下り階段→26,12下段を通常通過、19歩/7方向転換/戦闘0。全party600byte不変。先頭オノノクスHP294/294・PP[15,10,15,20]、2番目ミュウツーHP314/354・PP[0,0,0,0]のまま。道具/きのみ空、回復地点はまだ未到達。次は保存済み1440地形から26,12→25,12→24,12→23,12→22,12→22,11→22,10→9,10方面の下段西通路を有限候補にする。最初の新戦闘/event/未通過境界で通常Save。先頭オノノクスの新classifierは共通PPラベル/arrowに変更し20controller試験済みだが今回戦闘0で実技UIは未観測。新戦闘では実cursorと技名/残PPを画面と保存partyから照合。旧ミュウツー技名依存classifierやPP0入力loopを使わない。南側map3/23→3/2は静的接続候補であり回復施設の位置/到達は未受入。host補充/ROM編集/故意の全滅なし。98+cold13入力・55画面・20controller32受入試験を無影響再走しない。46最終Flashでもcounter44/書込中、47counter45、48成功文言→52field。全SaveRTC/cold RAM ledger一致、補助var4021=104→123/4022=0→4のowner未解明。Save44並替RAM ledger差、Save39旧差、Save40/41/42失敗回収履歴を保持。通常story/正規全国図鑑/自然EXP・技習得・進化/Lucky Egg/12ケース/Lv100soak/研究施設自然到達未完。全story/一般CI全成功/製品release未完。cleanROM二重生成/BPS固定/merge/release/baseline切替は別途所有者判断。既存ROM/runtime/inputはActions内入力のみ、新公開artifactは新save/画面/textだけ。**
+**次: Save46 artifact11278684880のstory-fast.srm（d4a2e1f06ecbb1dee1bd54bda6962c1993b51711a09607954fe7b67d1c568e47、131088bytes）だけから再開。map3/44・3,12西/下段elevation3・party4/RP0・14264円・badge1・story4071=9/4072=1。26,12から下段西通路27歩/5方向転換/戦闘0で到達。先頭オノノクスHP294/294・PP[15,10,15,20]、ミュウツーHP314/354・PP0、回復施設/回復未完。party全600byteのうち141=7→8/241=105→106の2byteだけ通常歩行観測7で変化、HP/PP/EXP等598byte不変。なつき度候補だがowner未解決、自然成長受入とはしない。RAM ledgerは観測13で変わり最終/cold一致、owner未解決。次は3,12から北3,11→3,10→3,9→2,9→2,5→6,5→6,6→10,6方面の未通過下段通路を有限候補にする。静的地形だけでは南端17,19へ直進できず北迂回候補、実到達ではない。南map3/23→3/2は接続候補で回復施設未同定。最初の新戦闘/event/未通過境界で通常Save、PPラベル/実cursorの既受入classifierを継承し初のオノノクス実技UIを原画像/残PPと照合。旧ミュウツー技名依存/PP0選択loop/host補充/ROM変更/故意の全滅なし。109+cold13入力・60画面・12controller36受入を無影響再走しない。40〜52部分Flash、51/52同hashも書込み中、53counter46/最終Flash→54成功文言→57field。全SaveRTC/cold一致、補助var4021=123→22/4022=4→1 owner未解明。Save39旧差/Save44並替差と旧失敗回収履歴を保持。通常story/正規全国図鑑/自然EXP・技習得・進化/Lucky Egg/12ケース/Lv100soak/研究施設自然到達未完。一般CIqol_production.c source不一致とfinalHEAD action_requiredを過大主張せず保持。全story/一般CI全成功/製品release未完、cleanROM二重生成/BPS固定/merge/release/baseline切替は別途判断。既存ROM/runtime/inputはActions内入力のみ、新公開artifactは新save/画面/textだけ。**
 
-先頭オノノクスで下段西通路の新しい区間だけ。最初の新戦闘/event/未通過境界で保存。回復未完、実技UI未観測を保持し、旧PP0選択loop/host補充/故意の全滅なし。
+Save46から未通過北側迂回候補だけ。最初の新戦闘/event/未通過境界で通常Save。回復未完/実技UI未観測/party2byteとledgerのowner未解決を保持、旧PP0 loop/host補充/故意の全滅なし。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `cc2be073d7a914bad7c077b8f16d4e6ea61988bb`。
-504の39,12上段から26,12下段まで通常通過/Save45測定source。戦闘0、PP回復/回復地点未完。
+証拠のsource HEAD: `78a91fbec8fa40863524b49e501ed204558a5031`。
+504の26,12下段から3,12西へ通常通過/Save46測定source。戦闘0、PP回復/回復地点未完。party2byteと途中RAM ledger差のowner未解決。
 
 ## 最短の再開手順
 
@@ -25,11 +25,11 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_STORY_SAVE45_JA.md`
-- `content/modernization/pr16_story_save45_checkpoint.json`
-- `content/modernization/pr16_story_save45_visual_review.json`
-- `scripts/pr16_story_save45_accept.py`
-- `scripts/pr16_story_save45_measure.py`
+- `docs/PR16_STORY_SAVE46_JA.md`
+- `content/modernization/pr16_story_save46_checkpoint.json`
+- `content/modernization/pr16_story_save46_visual_review.json`
+- `scripts/pr16_story_save46_accept.py`
+- `scripts/pr16_story_save46_measure.py`
 - `content/modernization/pr16_story_save44_evidence/inspection.json`
 - `content/modernization/pr16_story_save40_preparation.json`
 
@@ -372,6 +372,7 @@ P08ゲート:
 - Save43の170/cold13入力90画面/16controller34受入を無影響再走しない。39,12でtrainer114の4体へ1勝/468円/flag1394のみ。全PP0、次は通常回復優先。64〜68実menu0→4、71〜82部分write→83counter43/安定Flash/空白→84成功文言→87field。全SaveRTC/cold ledger一致。38,12以西/下り階段未到達。
 - Save44の78/cold13入力45画面・16controller32受入を無影響再走しない。通常並替だけで費用/道具消費/移動/戦闘0。オノノクスPP[15,10,15,20]、ミュウツーPP0保持。37counter44は部分write、38成功文言/安定Flash→42field。全SaveRTC/最終cold ledger一致。13並替選択のRAM ledger owner未解明。
 - Save45の98/cold13入力55画面・20controller32受入を無影響再走しない。19歩/7方向転換・26,11下り階段/26,12下段、戦闘0。party/Bag/14264円不変。46最終Flashはcounter44/書込中、47counter45→48成功文言→52field。全SaveRTC/全RAM ledger一致。新オノノクス実技UI未観測、PP回復未完。
+- Save46の109/cold13入力60画面・12controller36受入を無影響再走しない。27歩/5方向転換/戦闘0。HP/PP/Bag/14264円不変だがparty141=7→8/241=105→106と途中RAM ledger差を保持。40〜52部分write、53counter46/最終Flash→54成功文言→57field。回復/オノノクス実技UI未完。
 
 ## 次セッションへ残す更新手順
 
