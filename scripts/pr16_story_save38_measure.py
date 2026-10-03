@@ -13,7 +13,7 @@ import pr16_story_save25_measure as m
 h=m.h
 BASE='0d952edaa33d312c21137e1c83432775d182d3ca'
 OUT=ROOT/'.local/pr16-story-save38';ART=OUT/'artifact';ASSETS=OUT/'private-inputs'
-CODE={'scripts/pr16_story_save38_measure.py','tests/test_pr16_story_save38_measure.py','.github/workflows/pr16-story-save38.yml','tests/test_pr16_story_save38_door.py','content/modernization/pr16_story_save38_preparation.json'}
+CODE={'scripts/pr16_story_save38_measure.py','tests/test_pr16_story_save38_measure.py','.github/workflows/pr16-story-save38.yml','tests/test_pr16_story_save38_door.py','content/modernization/pr16_story_save38_preparation.json','tests/test_pr16_story_save38_event.py'}
 PP=[1,8,0,0]
 TRANSITION=134569577 # 失敗原本の16,5で観測した野生戦直前callbackだけ
 def event_input(o):
@@ -29,7 +29,7 @@ JUMPS=set()
 ORIGIN=[1,38]
 DESTINATION=[3,21]
 def idle(o,counter):
-    need(o['map']in(ORIGIN,DESTINATION)and o['callback2']==m.FIELD and o['lock']==0 and o['party_count']==4 and o['rp']==0 and o['save_counter']==counter and o['live_xy']==[x+7 for x in o['xy']]and o['battle_outcome']==0,'南出口部屋または503番道路の操作可能field')
+    need(o['map']in(ORIGIN,DESTINATION)and o['callback2']==m.FIELD and o['lock']==0 and o['party_count']==4 and o['rp']==0 and o['save_counter']==counter and o['live_xy']==[x+7 for x in o['xy']]and o['battle_outcome']in(0,1),'南出口部屋または503番道路の操作可能field')
 def inspect(raw,seed):
     need(identity(raw)==a.shared.plan.CANDIDATE and identity(seed)==a.OUTPUT,'Save37/同一candidateだけ')
     prep_path=ROOT/'content/modernization/pr16_story_save38_preparation.json'
@@ -37,7 +37,11 @@ def inspect(raw,seed):
     need(room['map']==ORIGIN and dest['map']==DESTINATION and prep['route']==ROUTE,'失敗原本の保存済接続owner')
     need(warp['xy']==[4,6]and warp['target_map']==DESTINATION and warp['target_warp']==1,'通常南出口warp')
     need(all(room['collision_grid'][y][x]in '.W' for x,y in ROUTE),'保存済部屋候補')
-    return dict(status='STATIC_ROUTE503_CONNECTION_CANDIDATE_ONLY',preparation=identity(prep_path.read_bytes()),route=ROUTE,origin=room,exit_warp=warp,destination=dest,destination_source=prep['destination_source'],new_map_views=0,new_script_nodes=0,native_exit_accepted=False,door_exit_input=dict(from_xy=[4,6],direction='south',key=128))
+    from tools.t02.rom_inventory import RomImage,ScriptWalker,ScriptRoot
+    npc=[o for o in dest['objects']if o['local_id']==10 and o['xy']==[13,76]]
+    need(len(npc)==1,'出口正面NPC10の固定owner')
+    walker=ScriptWalker(RomImage('route503-exit-npc',raw));walker.add_root(ScriptRoot(npc[0]['script'],'route503_npc10','object'));graph=walker.walk()
+    return dict(status='STATIC_ROUTE503_CONNECTION_CANDIDATE_ONLY',exit_npc=npc[0],exit_npc_graph=graph,preparation=identity(prep_path.read_bytes()),route=ROUTE,origin=room,exit_warp=warp,destination=dest,destination_source=prep['destination_source'],new_map_views=0,new_script_nodes=0,native_exit_accepted=False,door_exit_input=dict(from_xy=[4,6],direction='south',key=128))
 def door_input(o):
     idle(o,37);need(o['map']==ORIGIN and o['xy']==[4,6]and o['facing']==1,'実出口矢印tileから南へ1回だけ');return ((128,8),(0,300))
 
@@ -55,6 +59,32 @@ def direction(before,after):
 
 def start(o):
     idle(o,37);need(o['xy']==ROUTE[0] and o['facing']==3 and o['party_sha256']==a.PARTY and o['flash_sha256']==a.FLASH,'Save37唯一の親')
+def battle(s):
+    first=len(s.observations)-1;used=[0]*4;decisions=[]
+    need(s.last['callback2']==m.BATTLE,'新battle開始を観測してからだけ')
+    for _ in range(120):
+        o=s.last
+        need(o['map']==DESTINATION and o['save_counter']==37 and o['rp']==0 and o['party_count']==4,'新戦闘scope')
+        if o['callback2']==m.FIELD and o['lock']==0:
+            need(o['battle_outcome']==1,'通常勝利1のみ');idle(o,37)
+            return dict(start=first,finish=len(s.observations)-1,trainer=bool(o['battle_flags']&8),outcome=1,used=used,decisions=decisions)
+        need(o['battle_outcome'] in (0,1),'敗北等は停止')
+        if o['callback2']==m.BATTLE:
+            kind,cursor=m.classify(m.screen(s))
+            if kind=='moves':
+                slot=select(used)
+                for key in m.navigation(cursor,slot):s.step((key,1),(0,12))
+                need(m.classify(m.screen(s))==('moves',slot),'実技cursor')
+                decisions.append(dict(observation=len(s.observations)-1,move_slot=slot))
+                s.step((1,2),(0,240));used[slot]+=1;continue
+            if kind=='shift':
+                decisions.append(dict(observation=len(s.observations)-1,keep_current=True));s.step((2,2),(0,180));continue
+        need(o['callback2'] in (m.FIELD,m.BATTLE,TRANSITION),'未知callbackは停止')
+        s.step(*(((0,60),)if o['callback2']==TRANSITION else ((1,2),(0,180))))
+    raise ValueError('有限戦闘上限。無条件再走禁止')
+def exit_event_input(o):
+    need(o['map']==DESTINATION and o['xy']==[9,76]and o['save_counter']==37 and o['party_count']==4 and o['rp']==0,'503出口NPC会話の範囲')
+    return event_input(o)
 def progress(s):
     start(s.last);route=[ROUTE[0]]
     for before,target in zip(ROUTE,ROUTE[1:]):
@@ -62,14 +92,16 @@ def progress(s):
         for attempt in range(3):
             o=s.step((direction(before,target),8),(0,300 if target==ROUTE[-1]else 48))
             if target==ROUTE[-1]and(o['map']==DESTINATION or o['xy']==target):
-                if o['map']==ORIGIN and o['callback2']==m.FIELD and o['lock']==0:
-                    o=s.step(*door_input(o))
-                for _ in range(16):
+                if o['map']==ORIGIN and o['callback2']==m.FIELD and o['lock']==0:o=s.step(*door_input(o))
+                for _ in range(100):
+                    if o['map']==DESTINATION and o['callback2']==m.BATTLE:
+                        episode=battle(s);idle(s.last,37)
+                        return route+[target],episode,dict(kind='route503_exit_trainer',trigger=target,map=s.last['map'],xy=s.last['xy'],observation=len(s.observations)-1),[]
                     if o['map']==DESTINATION and o['callback2']==m.FIELD and o['lock']==0:
                         idle(o,37);return route+[target],None,dict(kind='route503_exit',trigger=target,map=o['map'],xy=o['xy'],observation=len(s.observations)-1),[]
-                    need(o['map']in(ORIGIN,DESTINATION)and o['callback2']!=m.BATTLE,'通常出口warpの有限待機だけ')
-                    o=s.step((0,60))
-                raise ValueError('出口warp待機上限。無条件再走しない')
+                    need(o['map']in(ORIGIN,DESTINATION),'通常出口とそのNPCだけ')
+                    o=s.step(*(exit_event_input(o)if o['map']==DESTINATION else((0,60),)))
+                raise ValueError('出口NPCイベント有限上限。無条件再走しない')
             need(o['map']==ORIGIN and o['xy']in(before,target),'通常部屋内の固定辺');idle(o,37)
             if o['xy']==target:route.append(target);break
         else:raise ValueError('通常部屋歩行の未通過辺。繰返さず原本を保持')
@@ -133,11 +165,24 @@ def failed_original():
         need(json.loads(z.read('inspection.json'))==json.loads((ROOT/'content/modernization/pr16_story_save38_preparation.json').read_bytes()),'新地形は既採取原本を利用')
     return dict(terminal=terminal,artifact=11275422186,failure=failure,execution=execution,reason_ja='南出口矢印tileは待機で遷移せず、南への通常入力が必要。未保存区間の変更影響に限る回復。',native_processes=1,accepted_case_reruns=0,accepted_test_reruns=0)
 
+def second_failed_original():
+    terminal=inherited.terminal(37127420854,'6440c70c8dd20442d67f5de89e0c9d93f12acafc',111215461690,['success','success','success','failure','skipped','success','success','success'])
+    _,z=a.transport.archive(11275593672,37127420854,dict(size=151666,sha256='c9beb864b9a8a0962414918ec231abf744eaf46c2241d339b999f254904bf544'),'6440c70c8dd20442d67f5de89e0c9d93f12acafc')
+    with z:
+        manifest=json.loads(z.read('manifest.json'));need(len(manifest)==35 and set(z.namelist())==set(manifest)|{'manifest.json'},'第二失敗全35member')
+        for n,b in manifest.items():need(identity(z.read(n))==b,'第二失敗原本全byte '+n)
+        failure=json.loads(z.read('failure.json'));execution=json.loads(z.read('progress/execution.json'))
+        need(failure['native_processes']==1 and execution['initial_save']==execution['final_save']==a.OUTPUT,'未保存・Save37全byte保持')
+        obs=[json.loads(l)for l in z.read('progress/stdout.txt').decode().splitlines()if '"observe"'in l]
+        need(len(obs)==25 and all(o['map']==DESTINATION and o['xy']==[9,76]and o['lock']==1 and o['save_counter']==37 for o in obs[8:]),'出口到達後のNPC会話待ち・未保存')
+    return dict(terminal=terminal,artifact=11275593672,failure=failure,execution=execution,reason_ja='追加南入力で屋外到達したが出口NPC会話で停止。正規会話/戦闘を含む変更影響区間だけ回復。',native_processes=1,accepted_case_reruns=0,accepted_test_reruns=0)
+
 def main():
     h.d.current();state=h.source_check();need(os.environ['GITHUB_RUN_ATTEMPT']=='1' and not OUT.exists(),'新区間初回のみ')
     protected=h.d.bindings(set(state['source_bindings'])|h.d.PROTECTED|CODE)
     ART.mkdir(parents=True);sessions=[]
     try:
+        write(ART/'second-failed-original.json',second_failed_original())
         write(ART/'first-failed-original.json',failed_original())
         write(ART/'preflight-failure.json',inherited.terminal(37127280308,'de044e9f81d4506d36c7398a840252edb62fb327',111215039388,['success','success','failure','skipped','skipped','failure','success','success']))
         write(ART/'controller-receipts.json',controller_receipts())
