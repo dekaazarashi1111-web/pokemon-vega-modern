@@ -1,0 +1,140 @@
+{
+  "terminal": {
+    "run": {
+      "id": 37127113183,
+      "head_sha": "096b25e970312a189d5bb45e439a70cdfca73ca4",
+      "head_branch": "codex/modernization-followup-20260908",
+      "path": ".github/workflows/pr16-story-save38.yml",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1
+    },
+    "job": {
+      "id": 111214539355,
+      "run_id": 37127113183,
+      "workflow_name": "pr16-story-save38",
+      "head_branch": "codex/modernization-followup-20260908",
+      "run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/37127113183",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOUPNhZs8AAAAZ5OcyWw",
+      "head_sha": "096b25e970312a189d5bb45e439a70cdfca73ca4",
+      "url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/jobs/111214539355",
+      "html_url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/37127113183/job/111214539355",
+      "status": "completed",
+      "conclusion": "failure",
+      "created_at": "2026-10-03T13:42:50Z",
+      "started_at": "2026-10-03T13:42:51Z",
+      "completed_at": "2026-10-03T13:43:25Z",
+      "name": "continuation",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-03T13:42:52Z",
+          "completed_at": "2026-10-03T13:42:53Z"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-03T13:42:53Z",
+          "completed_at": "2026-10-03T13:43:06Z"
+        },
+        {
+          "name": "Ten changed outdoor-exit controller checks",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-03T13:43:06Z",
+          "completed_at": "2026-10-03T13:43:07Z"
+        },
+        {
+          "name": "New south room to outdoor connection and independent Continue",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 4,
+          "started_at": "2026-10-03T13:43:07Z",
+          "completed_at": "2026-10-03T13:43:22Z"
+        },
+        {
+          "name": "Lightweight task graph",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 5,
+          "started_at": "2026-10-03T13:43:22Z",
+          "completed_at": "2026-10-03T13:43:22Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-03T13:43:22Z",
+          "completed_at": "2026-10-03T13:43:23Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-10-03T13:43:23Z",
+          "completed_at": "2026-10-03T13:43:23Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-10-03T13:43:23Z",
+          "completed_at": "2026-10-03T13:43:23Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/check-runs/111214539355",
+      "labels": [
+        "ubuntu-24.04"
+      ],
+      "runner_id": 1000019501,
+      "runner_name": "GitHub Actions 1000019501",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    }
+  },
+  "artifact": 11275422186,
+  "failure": {
+    "status": "NOT_ACCEPTED_PRESERVE_NO_AUTOMATIC_REPLAY",
+    "type": "ValueError",
+    "message": "出口warp待機上限。無条件再走しない",
+    "native_processes": 1,
+    "source_head": "096b25e970312a189d5bb45e439a70cdfca73ca4",
+    "run_id": 37127113183
+  },
+  "execution": {
+    "returncode": 0,
+    "initial_save": {
+      "size": 131088,
+      "sha256": "7942159bf82220a864a128c66f97aa3da6e2558b0f3e8181d410a925e145a301"
+    },
+    "final_save": {
+      "size": 131088,
+      "sha256": "7942159bf82220a864a128c66f97aa3da6e2558b0f3e8181d410a925e145a301"
+    },
+    "native_end": {
+      "end": "STORY_INPUT_CHECKPOINT",
+      "frames": 3246,
+      "inputs": 42,
+      "warnings_errors": 0,
+      "host_write_barriers": 7,
+      "guarded_host_writes": 0,
+      "fixture_calls": 0,
+      "natural_research_arrival_accepted": false
+    },
+    "observations": 24
+  },
+  "reason_ja": "南出口矢印tileは待機で遷移せず、南への通常入力が必要。未保存区間の変更影響に限る回復。",
+  "native_processes": 1,
+  "accepted_case_reruns": 0,
+  "accepted_test_reruns": 0
+}

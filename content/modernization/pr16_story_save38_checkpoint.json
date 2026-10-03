@@ -1,0 +1,321 @@
+{
+  "schema_version": 1,
+  "task": "USER-20261003-ROUTE503-SAVE38",
+  "status": "PASS_CAVE_OUTSIDE_ROUTE503_TRAINER103_SAVE38_SCOPED",
+  "measurement_source": "1d3504839f4c1a86b054d3529f2c98a19ac40236",
+  "run_id": 37127609831,
+  "job_id": 111216024409,
+  "artifact": {
+    "id": 11275249543,
+    "name": "pr16-story-save38-checkpoint",
+    "size_in_bytes": 347936,
+    "digest": "sha256:1d35ef01905047e71d8777cd491b3209e9dfc5f83508e23fd09f48e352915c6a",
+    "workflow_run": {
+      "id": 37127609831,
+      "repository_id": 1358127462,
+      "head_repository_id": 1358127462,
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "1d3504839f4c1a86b054d3529f2c98a19ac40236"
+    },
+    "expires_at": "2027-01-01T13:51:29Z"
+  },
+  "verification": {
+    "status": "PASS_CAVE_OUTSIDE_ROUTE503_TRAINER103_SAVE38_SCOPED",
+    "trainer_victories": 1,
+    "trainer_id": 103,
+    "wild_victories": 0,
+    "escapes": 0,
+    "captures": 0,
+    "ordinary_saves": 1,
+    "save_counter": 38,
+    "map": [
+      3,
+      21
+    ],
+    "xy": [
+      9,
+      76
+    ],
+    "facing": 1,
+    "party_count": 4,
+    "rp": 0,
+    "cave_interior_crossing_complete": true,
+    "outside_route503_reached": true,
+    "cave_crossing_complete": true,
+    "trainer103_accepted": true,
+    "reward": 220,
+    "move_selections": 3,
+    "actual_pp_consumed": 3,
+    "save_success_text_observation": 56,
+    "save_success_wording_observed": true,
+    "stable_full_flash_observation": 55,
+    "stable_field_observation": 59,
+    "partial_write_observations": [
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54
+    ],
+    "progress_inputs": 122,
+    "continue_inputs": 13,
+    "screen_count": 62,
+    "native_processes": 2,
+    "prior_failed_native_processes": 2,
+    "total_development_native_processes": 4,
+    "preflight_failed_native_processes": 0,
+    "record_native_processes": 0,
+    "accepted_case_reruns": 0,
+    "accepted_test_reruns": 0,
+    "compiles": 0,
+    "rom_changes": 0,
+    "fixture_writes": 0,
+    "hm05_taught_or_used": false,
+    "trainer352_accepted": false,
+    "national_dex_unlocked": false,
+    "natural_growth_accepted": false,
+    "natural_evolution_accepted": false,
+    "full_story_accepted": false,
+    "release_ready": false,
+    "inspection_node_count_correction": {
+      "measurement_declared_new_nodes": 0,
+      "actual_new_nodes": 6,
+      "reason_ja": "測定メタデータの0は継承値。保存graph6nodeが実採取。原本を改作せず訂正。"
+    },
+    "boundary": {
+      "party_changes": [
+        [
+          53,
+          8,
+          5
+        ]
+      ],
+      "pp": [
+        1,
+        5,
+        0,
+        0
+      ],
+      "hp": [
+        320,
+        354
+      ],
+      "bag_unchanged": true,
+      "hm05_owned": true,
+      "money_before": 13576,
+      "money_after": 13796,
+      "reward": 220,
+      "physical_flag_deltas": [
+        [
+          1383,
+          0,
+          1
+        ],
+        [
+          2056,
+          1,
+          0
+        ]
+      ],
+      "auxiliary_flag2056_owner_resolved": false,
+      "variable_deltas": [
+        [
+          16417,
+          26,
+          30
+        ],
+        [
+          16418,
+          2,
+          0
+        ],
+        [
+          16558,
+          79,
+          91
+        ]
+      ],
+      "auxiliary_runtime_owners_resolved": false,
+      "flag4367": 1,
+      "old_bank_preserved_bytes": 57344,
+      "pc_s61e_preserved": true,
+      "s61e_crc_verified": true,
+      "sector_checksum_checks": 42,
+      "national_dex_magic": 0,
+      "national_var404e": 0,
+      "national_flag840": 0,
+      "story_vars": {
+        "4071": 8,
+        "4072": 1
+      },
+      "badge_count": 1,
+      "all_save_rtc_cold_identical": true,
+      "changed_bytes": 6840,
+      "changed_ranges": 1710
+    },
+    "input_save": {
+      "size": 131088,
+      "sha256": "7942159bf82220a864a128c66f97aa3da6e2558b0f3e8181d410a925e145a301"
+    },
+    "output_save": {
+      "size": 131088,
+      "sha256": "ca6b332ff001f757bde9d82baab19d4b6b8547488afefe62dc6ea408ced8b074"
+    },
+    "candidate": {
+      "size": 33554432,
+      "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+    }
+  },
+  "record_source": "da0ef846e31c2dc787ce15d18bd7a22c8d619720",
+  "record_run_id": 37127976842,
+  "save38_accepted": true,
+  "cave_interior_crossing_complete": true,
+  "outside_route503_reached": true,
+  "cave_crossing_complete": true,
+  "visual_review": "content/modernization/pr16_story_save38_visual_review.json",
+  "source_bindings": {
+    ".github/workflows/pr16-story-save38-record.yml": {
+      "size": 2417,
+      "sha256": "3dcc419735340630fecd3daeb0c3b460bf05fb00c5ad19f20d735df0f6766879"
+    },
+    ".github/workflows/pr16-story-save38.yml": {
+      "size": 1758,
+      "sha256": "1980d06dfde09c287330254281484b005c664f8e5494b7d32f257c86847b56fe"
+    },
+    "content/modernization/pr16_story_save38_preparation.json": {
+      "size": 8480,
+      "sha256": "c5f41016c7d829795234506dea6eb8ad8c0f66ed004e1f4e81ffe5faf6eb4ca1"
+    },
+    "content/modernization/pr16_story_save38_visual_review.json": {
+      "size": 7953,
+      "sha256": "72c27223fd2d7e325f76d93c9d83218bc71ffb4bdb5851afea72952e5b3a56a7"
+    },
+    "scripts/pr16_story_save38_accept.py": {
+      "size": 10495,
+      "sha256": "ebd2135e1773629243426975476ef42c564446d50287ea4e3e069c62ef190895"
+    },
+    "scripts/pr16_story_save38_measure.py": {
+      "size": 17703,
+      "sha256": "4a546930e872b730c4ea8c57e74a807b1436329e2a7bfbc77829d78df261a9ac"
+    },
+    "scripts/pr16_story_save38_record.py": {
+      "size": 17305,
+      "sha256": "666e7d9f8c5179d664e19f475095e5bde14848ee99b65ebc54ec69e6ca55fe30"
+    },
+    "tests/test_pr16_story_save38_accept.py": {
+      "size": 3799,
+      "sha256": "53dd0b471a60e18a231a83bbd4036bda2b8bb8227f37cd5a6da2103fb04cdfce"
+    },
+    "tests/test_pr16_story_save38_door.py": {
+      "size": 865,
+      "sha256": "f149d2f2c0547cc50fb331dd4d347bb4c60bc5788f3b3bc6d6a5e41a3d45e769"
+    },
+    "tests/test_pr16_story_save38_event.py": {
+      "size": 768,
+      "sha256": "6652a7d2baec8cb03bcaa2b99b3debd2662c4f7672080da87f0bfb91bc37ed92"
+    },
+    "tests/test_pr16_story_save38_measure.py": {
+      "size": 1348,
+      "sha256": "5ab40402553e958c95be30fa5ba72ebf3615231d7dd164005f9ab03f1d274231"
+    }
+  },
+  "evidence_bindings": {
+    "content/modernization/pr16_story_save38_evidence/continue/commands.txt": {
+      "size": 25,
+      "sha256": "5aa3363ef7287a5fe371442e67ec861616823326b1d70e16730c34c4baab07a3"
+    },
+    "content/modernization/pr16_story_save38_evidence/continue/execution.json": {
+      "size": 548,
+      "sha256": "a2b2213f80e49aca2735721766f02869e976cfe84fe8e7a14ea1c269e28274c9"
+    },
+    "content/modernization/pr16_story_save38_evidence/continue/stderr.txt": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "content/modernization/pr16_story_save38_evidence/continue/stdout.txt": {
+      "size": 2101,
+      "sha256": "f962f58b0267f3dcdeca3f6114b25af7cc1ce201265f9106dee4b2e9f5ef4b2b"
+    },
+    "content/modernization/pr16_story_save38_evidence/controller-receipts.json": {
+      "size": 1463,
+      "sha256": "14f009defcb126796b04ce36be1aa3db57a5bccacbf601f3da03e741a30dcc41"
+    },
+    "content/modernization/pr16_story_save38_evidence/controller-test-receipt.json": {
+      "size": 1717,
+      "sha256": "56d76418b4e5aed91aa39267aa0cae4ca87ca29da641e9c4cb9e64eb5e531b69"
+    },
+    "content/modernization/pr16_story_save38_evidence/first-failed-original.json": {
+      "size": 4797,
+      "sha256": "7b449f687a42ca6d52c5783ac853ec87ed9e7cf50d3edabf9a98b05ae910c43e"
+    },
+    "content/modernization/pr16_story_save38_evidence/inspection.json": {
+      "size": 11670,
+      "sha256": "b269d41c9ae9086ed9f26562929e7adca50ba3c44be598b17de70d6a6bca9db5"
+    },
+    "content/modernization/pr16_story_save38_evidence/manifest.json": {
+      "size": 11067,
+      "sha256": "18cecbdceb9888bda66d8d33876d0a1a5e2724cdea54575f18f8a9e186dfb292"
+    },
+    "content/modernization/pr16_story_save38_evidence/measurement.json": {
+      "size": 17032,
+      "sha256": "3c5c0c4874ede9c840548e19d1b6c1f65355e3eb0d8fe0ec1b20fd20092ecc05"
+    },
+    "content/modernization/pr16_story_save38_evidence/preflight-failure.json": {
+      "size": 3439,
+      "sha256": "8b85c4d918781515f672289bde6439f3bed77da722247a3ca45bbf5ff69873a0"
+    },
+    "content/modernization/pr16_story_save38_evidence/progress/commands.txt": {
+      "size": 1640,
+      "sha256": "c6362276341e95104b47ca0b39e8d8fce574987dab1b15b3c61a5ba284f9bb47"
+    },
+    "content/modernization/pr16_story_save38_evidence/progress/execution.json": {
+      "size": 550,
+      "sha256": "9179a0ee86e90da56d7326b24455d6bbfadabdd18dbff050f7dbb5dba5c2f2ca"
+    },
+    "content/modernization/pr16_story_save38_evidence/progress/stderr.txt": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "content/modernization/pr16_story_save38_evidence/progress/stdout.txt": {
+      "size": 39292,
+      "sha256": "0d344ffac42b5c0b0b861e24dc30454b353364bac4c6d097307393ca7ee12885"
+    },
+    "content/modernization/pr16_story_save38_evidence/save37-record-terminal.json": {
+      "size": 4189,
+      "sha256": "1ab547c1b784aea6824347b90b24f20eff05664eab2186f248cb1bc91049c67b"
+    },
+    "content/modernization/pr16_story_save38_evidence/second-failed-original.json": {
+      "size": 4822,
+      "sha256": "688ca174ba33120700719a9debaa0ab51b9ea833e4f66d9744e2aa8d496aa11b"
+    },
+    "content/modernization/pr16_story_save38_evidence/terminal.json": {
+      "size": 3449,
+      "sha256": "88199b15f5b47400fd0c339fe62956dc3b457c669e08fa8e131b0b862b3c7107"
+    },
+    "content/modernization/pr16_story_save38_evidence/unit.stderr.txt": {
+      "size": 2985,
+      "sha256": "0e3eeb11feb04db5357a9aba8f080a55173089b394886b694ac1c36cd918267e"
+    },
+    "content/modernization/pr16_story_save38_evidence/verification.json": {
+      "size": 3193,
+      "sha256": "12ed1766079990f524b0c6e5a1cf457d20e6cb4ce94cbc5b256f351e47807a71"
+    }
+  },
+  "new_controller_tests": 16,
+  "new_acceptance_tests": 28,
+  "prior_failed_native_processes": 2,
+  "total_development_native_processes": 4,
+  "preflight_failed_native_processes": 0,
+  "record_native_processes": 0,
+  "next_goal_ja": "Save38 artifact11275249543のstory-fast.srm（ca6b332ff001f757bde9d82baab19d4b6b8547488afefe62dc6ea408ced8b074、131088bytes）だけから再開。map3/21・9,76南・party4/RP0・13796円・badge1・story4071=8/4072=1、HP320/354・PP[1,5,0,0]。洞窟本区画→南出口部屋→外503番道路の通常接続とSave38/独立Continueを限定受入。洞窟走破milestone完了。出口trainer103（じゅくがえり・モトナリ）のココガラLv7/ポッポLv11/ビッパLv9に3手で勝利、賞金220円。全storyは未完。次は保存済503番道路南部viewから西側のmap3/44接続を通常進行し、最初の新event/新戦闘または回復地点で限定checkpoint。必要な未読隣接mapだけ採取。host回復/PP/flag/var注入は禁止。既受入の西側event・trainer360・洞窟本区画・Save38入力は無影響再走しない。Save38初回は矢印tile4,6で追加南入力がなく待機停止。未保存原本/失敗を保持し、変更影響区間だけ回復した。Save36の227完走入力後parser失敗回復とSave37の24一時Flash一致→25再差分→26安定→30fieldを保持。残件: 通常story継続、正規全国図鑑解禁、分離progressionの自然EXP/技習得/進化、Lucky Egg/12ケース/Lv100soak、研究施設自然到達。trainer352未受入。HM05は所持だけ・未習得/未使用。全story/一般CI全成功/製品releaseは未完。clean-ROM二重生成/BPS固定、merge・release・baseline切替は別途所有者判断。既存ROM/runtime/inputはActions内入力のみ、新公開artifactは新save/画面/textだけ。",
+  "release_ready": false,
+  "active_baseline_changed": false,
+  "general_ci_all_success_claimed": false
+}
