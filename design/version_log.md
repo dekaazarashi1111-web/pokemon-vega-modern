@@ -8782,3 +8782,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 測定source=9432cfd03ac1d93bd59d7db296ab49ff20d766d7、記録source=8d97e9de625f4b28b9c1b6bc7a30e5582812eba6・run=37122527387。scoped guard/task graph/resume後に同branch非force pushし全text読戻し。
 - Network: 同repo GitHub/Actions原本だけ。既存ROM/runtime/input Save31再配布0。一般CI既知source不一致を保持、merge/release/baseline変更0。
 - Next: Save32 artifact11273920453のstory-fast.srm（df4a9c40ce888a26f88493d69e7d37f9b0ea13b2fce793c4f2e34ac0380cd871、131088bytes）だけから再開。map1/73・21,19東・party4/RP0・13128円・badge1・story4071=7/4072=1。南段差14,15の通常通過とtrainer353通常1勝/416円/Save32/独立Continueを受入。ミュウツーHP322/354・PP[1,14,0,0]、他party/Bag/S61Eは不変。以降はれいとうビームと火炎放射を選ばず、通常UIの別技/必要時通常回復だけ。host回復/PP/flag/var注入は禁止。保存された全920マス（既存164+未読756）の静的原本から、21,19→22,19→23,19→23,14東岩階段→23,13→21,13→21,14→19,14へ向かう。flag4367=1の正規teleport先8,10は未到達。7,5のcoordはvar4071=7でtrainer360を含む6node/var4071=8へ続くが未発火。静的壁だけで西側出口が不可能とは判断せずmap-load動的地形ownerも必要時だけ照合する。物理出口4,19はmap1/38へ、その隣接warp4,6はmap3/21へ接続する静的表。通常到達/洞窟走破/全国図鑑は未完。138/cold13入力・64画面・新12controller/24受入試験、Save1〜31を無影響再走しない。補助var4021=103/4022=0のruntime ownerは未解決。trainer352/360、東階段、解禁後teleport、洞窟出口、HM05原因、全国図鑑、自然成長進化、全storyは未完。既存ROM/runner/runtimeはActions入力だけ、新公開artifactは新save/画面/textだけ。
+
+## 2026-10-03T12:33:02+00:00
+- Timestamp: 2026-10-03T12:33:02+00:00
+- Task: USER-20261003-CAVE-EAST-TELEPORT-SAVE33 / 東岩階段と解禁後西側転送Save33
+- Version: story-cave-unlocked-teleport-save33-v1
+- Status: DONE（階段/転送/保存限定。西側event/洞窟出口/全国図鑑未完）
+- Summary: Save32から東岩階段を通過しflag4367=1の正規19,14→8,10転送、通常Save33/独立Continueを受入。戦闘0、party全600byte/HP322/PP[1,14,0,0]・Bag・所持金13128・PC/S61E不変。
+- Files changed: Save33 controller/15変更試験/24受入試験/record workflow、checkpoint/text証拠、固定再開MD/JSON、両ログ。
+- Verify: 測定run37122926665/job111202448744全8step成功、69/cold13入力・31画面・全46member。階段8/上段9、trigger17/着地18/解錠19、部分write4状態23〜26/counter33先行26、保存文言27/field28。42checksum/6970byte差分/全SaveRTC不変。legacy flags/story維持、補助var4021=103→115/4022=0→2（runtime owner未解決）。実warp30byte独立照合。15controller原本再利用、新24受入/拒否試験だけ実行してstderr保存。record native0/ROM変更0/旧ゲーム再走0。
+- History: Save32記録run37122527387全11step終端を反映。旧失敗原本は変更しない。
+- Commit: 測定source=73741f547eba9bb5519afb22c37d524416a9beb9、記録source=6910abb080a36796bd570455eb7858828a5d3b51・run=37123210891。scoped guard/task graph/resume後に同branch非force pushし全text読戻し。
+- Network: 同repo GitHub/Actions原本だけ。既存ROM/runtime/input Save32再配布0。一般CI既知source不一致を保持、merge/release/baseline変更0。
+- Next: Save33 artifact11273622658のstory-fast.srm（ceb55e1df60f35b69f4854017afa19d703df987c602c3a0f6b0090c2323e0685、131088bytes）だけから再開。map1/73・8,10西・party4/RP0・13128円・badge1・story4071=7/4072=1。東岩階段23,14とflag4367=1の正規19,14→8,10teleport、Save33/独立Continueを受入。ミュウツーHP322/354・PP[1,14,0,0]、party/Bag/PC/S61E/所持金は不変。れいとうビーム/火炎放射を選ばず通常UIの残存技/必要時通常回復だけ。host回復/PP/flag/var注入は禁止。保存済全920マスと7,5のcoord6nodeから西側区間を調べ、var4071=7でtrainer360を含む次の正規eventへ向かう。8,10から踏み直し転送で東へ戻らない経路を選ぶ。静的壁だけで出口不可と決めず必要ならmap-load動的地形ownerだけ照合。物理出口4,19はmap1/38へ、隣接warp4,6はmap3/21へ接続する静的表。通常到達/洞窟走破/全国図鑑は未完。69/cold13入力・31画面・新15controller/24受入試験、Save1〜32を無影響再走しない。補助var4021=115/4022=2のruntime ownerは未解決。trainer352/360、洞窟出口、HM05原因、全国図鑑、自然成長進化、全storyは未完。既存ROM/runner/runtimeはActions入力だけ、新公開artifactは新save/画面/textだけ。
