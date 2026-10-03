@@ -9,11 +9,11 @@ import pr16_story_save24_accept as a
 from pr16_story_after_maori import need,identity,write
 from pr16_story_after_maori_session import Session
 h=a.d.m.h
-BASE='1c7b23e4a6a5708cebdb2713c97f553b47ac616b'
+BASE='25049912ce5828ba55f9cda5a60c494ae1cabb45'
 OUT=ROOT/'.local/pr16-story-save25'
 ART=OUT/'artifact'
 ASSETS=OUT/'private-inputs'
-CODE={'scripts/pr16_story_save25_measure.py','tests/test_pr16_story_save25_measure.py','.github/workflows/pr16-story-save25.yml'}
+CODE={'scripts/pr16_story_save25_measure.py','tests/test_pr16_story_save25_runtime.py','.github/workflows/pr16-story-save25.yml'}
 FIELD,BATTLE=a.d.m.prior.parent.FIELD,a.d.m.prior.parent.BATTLE
 BOXES=[[8,124,15,133],[80,124,87,133],[8,140,15,149],[80,140,87,149]]
 ARROW='22ab531022beb9a9b67dd304093319ca979fb20a328514d93cb777cd5d943571'
@@ -98,6 +98,12 @@ def save(s):
         if o['save_counter']==25 and o['callback2']==FIELD and o['lock']==0:break
     idle(o,25);need(o['flash_sha256']!=a.FLASH,'通常保存完了')
     return o
+def runtime_member(name):
+    need(type(name) is str and name.startswith('runtime/'),'固定runtime prefix')
+    name=name[len('runtime/'):]
+    need(not name.startswith('/') and '..' not in name.split('/') and chr(92) not in name,'安全なmember path')
+    need(name=='ld.so' or name.startswith('lib/'),'runtime実ファイルだけ')
+    return name
 def restore():
     ASSETS.mkdir()
     _,z=a.d.m.transport.archive(a.ARTIFACT,a.RUN,a.ARCHIVE,a.SOURCE)
@@ -108,11 +114,14 @@ def restore():
             raw=z.read(n);need(identity(raw)==b,'固定親 '+n);(ASSETS/dest).write_bytes(raw)
             (ASSETS/dest).chmod(0o555 if n=='runner' else 0o444)
     runtime=OUT/'runtime';runtime.mkdir()
-    _,z=a.d.m.transport.archive(10898620034,36218655601,dict(size=102586759,sha256='a6aeccb72fa15411d956b418ca5f030aa5020a466303a25e0f8814ba2eeb5c4d'))
+    _,z=a.d.m.transport.archive(11263910704,37094769974,dict(size=102440293,sha256='661ad2b88d25607d81ac46141f85cd42f2fcf88db4f306e1601257f3277e099f'),'1c7b23e4a6a5708cebdb2713c97f553b47ac616b')
     with z:
-        for n in z.namelist():
-            if n=='ld.so' or n.startswith('lib/'):
-                p=runtime/n;p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(z.read(n))
+        bindings=json.loads(z.read('runtime/manifest.json'))
+        need(len(bindings)>5,'保持されたruntime全member一覧')
+        for n,b in bindings.items():
+            name=runtime_member('runtime/'+n);raw=z.read('runtime/'+name)
+            need(identity(raw)==b,'runtime全member byte '+name)
+            p=runtime/name;p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(raw)
     (runtime/'ld.so').chmod(0o755);(runtime/'lib/libmgba.so.0.10').symlink_to('libmgba.so')
     need(identity((runtime/'lib/libmgba.so').read_bytes())==dict(size=1968536,sha256='0c87a12341640e6a2d325e59e76eb4b002947771ad4d8814b216e3b99817d68d'),'固定mGBA')
     return runtime
