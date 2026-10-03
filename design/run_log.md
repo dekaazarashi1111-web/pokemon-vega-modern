@@ -11977,3 +11977,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 測定source=edc783a132db676ca3ddda135b6cc570e1340a20、記録source=cab051cd8556e87b2a360207d36c92d47de2bf25・run=37162209164。scoped guard/task graph/resume後に同branch非force pushと全text読戻し。
 - Network: 同repo GitHub/Actionsのみ。既存ROM/runtime/input非再配布。一般CI既知不一致/action_requiredは全成功にしない。merge/release/baseline変更0。
 - Next: Save65 artifact11287846702のstory-fast.srm（131088bytes/SHA256 c3d67760ba4c452c48abddbf423ea9bd5a052e38227fee85e47e299a60a45dda）だけから再開。上階map1/60・26,6西。A1回で隣接カケル/りかけい155に新1勝、敵3体・つばめがえし3選択/実PP5→2・交代拒否2・賞金360円/physical1435を限定受入。歩行0、通常Save65/独立Continue。HP288/294・PP15,10,15,2、party残り599byte/Bag/RP0/badge1/story4071=9/4072=1/全legacy vars/PC保持、19104円。次はNPC25,6を避ける保存済静的28歩候補:26,6→26,5→25,5→24,5→23,5→23,6→23,11→25,11→25,16→31,16→穴31,21。最初の新event/戦闘/不通境界で保存。穴→入口31,22/南東階段→紙側は未実測。つばめがえし残2PP、host補充なし、残量に応じて通常技を選ぶ。27新controller/58新受入（56継承+訂正2、計60実行、成功例再走0）、99+cold13入力55画面70member/native2。47counter65部分write、48成功→52field、全SaveRTC/field画面同一。RAM台帳6/27変化のruntime owner未解明。旧offset41/2056/aux/40ac未解明保持。Flash未使用/がくしゅうそうち未装備。既受入階段/経路/野生戦/隣接会話trainer戦/保存は無影響再走しない。全国図鑑/全story/自然成長・進化/LuckyEgg/研究施設自然到達未完。既存ROM/runtime/input非再配布、回復再走/故意全滅/merge/release/baseline切替なし。一般CI既知不一致/action_requiredを全成功にしない。
+
+## 2026-10-03T23:52:23+00:00
+- Timestamp: 2026-10-03T23:52:23+00:00
+- Task: USER-20261003-MANSION-NORTH-DETOUR-SAVE66 / NPC北迂回新13歩・オタクン1勝Save66
+- Version: story-mansion-north-detour-save66-v1
+- Status: DONE（新13歩/野生1勝/通常保存/独立Continue限定）
+- Summary: 上階25,12南、NPC北迂回新13歩/転換5。オタクン♂Lv10、DragonClaw実PP15→14、つばめがえし2温存。party残599byte/HP288/294/Bag19104円/RP0/全flags/PC保持。
+- Files changed: Save66 measure/27controller/55受入/record/checkpoint/text証拠/次15歩、固定再開MD/JSON、両ログ。
+- Verify: run37162621003/job111319019754全8step成功。97+cold13入力55画面70member。新controller27原log継承/新受入55。record native0/compile0/旧受入再走0。
+- Evidence: 46最終hash一致でも保存中、47counter66で再変化、48成功→52field。全SaveRTC/field全pixel一致。aux4021:111→124 owner未解明、RAM台帳保持。42checksum/6860byte1673範囲。穴/紙未到達。
+- Commit: 測定source=0c826eac9f4385d5187a2e14a1825c5960ba1770、記録source=48fd554eb7f6b4adae8b2d56b751df38439cfa1b・run=37163116203。scoped guard/task graph/resume後に同branch非force push/全text読戻し。
+- Network: 同repo GitHub/Actionsだけ、ROM/runtime/input非再配布。一般CI既知不一致/action_requiredを全成功にしない。merge/release/baseline変更0。
+- Next: Save66 artifact11288387069のstory-fast.srm（131088bytes/SHA256 5c415ce0cac66346d10309f6ec7b783fade9cdfb5902a5bf2c19845c930d50a5）だけから再開。NPC25,6を北迂回する新13歩/転換5、上階map1/60・25,12南でオタクン♂Lv10に野生1勝。ドラゴンクロー1選択/実PP15→14、通常Save66/独立Continue。HP288/294・PP14,10,15,2でつばめがえし2は温存、party残り599byte/Bag/19104円/RP0/badge1/story4071=9/4072=1/全flags/PC保持。次は保存済経路の未通過15歩:25,12→25,16→31,16→穴31,21。最初の新event/戦闘/不通境界で通常保存。穴→入口31,22/南東階段30,29→上階33,29→紙側16,27は未実測。選択コマンドと実PPを分け、通常技のみ/host補充なし。27新controller/55新受入、97+cold13入力55画面70member/native2/旧受入再走0。46Flash最終hash一致でも保存中、47counter66で再変化、48成功→52field。全SaveRTC/field画面同一。aux4021:111→124のruntime owner未解明、RAM台帳不変。旧offset41/2056/aux/40acの未解明は保持。Flash未使用/がくしゅうそうち未装備。全国図鑑/全story/自然成長・進化/LuckyEgg/研究施設自然到達未完。既存ROM/runtime/input非再配布、回復再走/故意全滅/merge/release/baseline変更なし。一般CI既知qol_production.c不一致/action_requiredを全成功にしない。
