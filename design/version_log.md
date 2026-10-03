@@ -8642,3 +8642,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 測定8c6f51827d3d51a1f2f25b4444f6103496d2ecba、記録source=216ccc6302104238f446230818151552f02b1944・run=36672864966。小分けWIP後、同branchへ非force pushと全text読戻し。
 - Network: GitHub connector/固定Actions artifactのみ。開始HEAD8c6f5182と旧Save21記録run36663051577全11step成功を照合。旧BP/P08/Save1〜21/progression/grant owner/active baseline/source-lock不変、PR16未merge/releaseなし。P03 capacity段階の一般CI failureは別scope。
 - Next: story-fastの唯一の開始点はartifact11076499444のstory-fast.srm（Save22、131088bytes、SHA256 bb3b6159ab12358fd051b88a592c99807b2bc14b1f9f41e952daf7a4d1a4529e）。ちえのどうくつ北入口map1/36・4,6北・party4/RP0、12296円・badge1・var4071=6/4072=1。ミュウツーHP324/354・PP[1,14,5,5]、他3体HP満タン。503新5勝/6040円・北入口warp・通常Save22/独立Continueは完了。洞窟内部/階段/走破は未到達。現在地から通常storyの未完区間だけをSave/cold境界で進める。397/cold35入力・68試験・Save1〜21/旧BP/P08は無影響に再走しない。HM05は所持だけで未習得/未使用・原因未解決。Save21の同一拒否入力は繰り返さず、必要時は固定ROMの互換性判定ownerを限定照合し、承認済みfield-utility分離fixtureの自然取得条件を確認する。基準外習得を盲追加しない。分離progression原本Axew Lv37/EXP68589とNationalDex magic0・grant ownerを保全し、flag/var注入で解禁しない。正規全国図鑑解禁、自然育成/進化、Lucky Egg対照・12成長ケース・Lv100soak・研究施設自然到達・全storyは未完。
+
+## 2026-10-03T02:59:40+00:00
+- Timestamp: 2026-10-03T02:59:40+00:00
+- Task: USER-20261003-STORY-SAVE23 / 洞窟内部warp・Save23を保存済み原本から限定受入
+- Version: story-cave-save23-v1
+- Status: DONE（内部到達/Save23限定。洞窟走破・全story未完）
+- Summary: Save22の唯一の親から4tile階段warp、map1/73・20,3東へ通常進行。45/cold13入力と保存成功文言、独立Continueを確認。初回補助flag2056不変仮定failureを保持し、2056:1→0と補助var2件だけを新oracleで限定照合。入力再走0。
+- Files changed: 新規静的採取器14試験/入力controller17試験/原本受入24試験/記録器/専用workflow、Save23 checkpoint/guide/text原本、固定再開MD/JSON、両ログ。
+- Verify: 測定run37090970832/job111111036767は最終oracle failureのまま、正常native2process・17画面・全34memberを回収。後続新24試験、全Save/RTC131088bytes、party600bytes、全Bag/12296円、checksum42件、S61E、旧bank/PC/全国図鑑/progression保全。7000差分bytes/1788範囲。記録native0・旧受入再走0・compile0。scoped final-index guard/resume/task graph/diff確認後のみcommit。一般CI全成功とはしない。
+- Commit: WIP7061be32/171a6518、記録source=f74ed8efe29f36952c3f9ec864ca6a8f37a47c82・run=37091670533。同branch非force push、全text読戻し。自己SHAはgit履歴で確認。
+- Network: GitHub connectorと固定Actions artifactsのみ。全Save/ROM/画面/差分hexはartifactだけ。旧pending5件の完了も外部APIで照合。merge/release/active baseline/source-lock変更なし。
+- Next: story-fastの唯一の開始点はartifact11261539316のstory-fast.srm（Save23、131088bytes、SHA256 728bd39b11ea53bafd31cff5fb50e7f81fe5973c0c5fae559ea22037827832bb）。ちえのどうくつ内部map1/73・20,3東・party4/RP0・12296円・badge1、var4071=6/4072=1。北入口からの階段warp・通常Save23・保存成功文言・独立Continueは限定受入済み。内部の先へ通常入力で進み、次のSave/cold境界で区切る。洞窟走破/南出口/新storyイベントは未完。45/cold13入力、静的14/入力17/原本受入24試験とSave1〜22/旧BP/P08は無影響に再走しない。run37090970832のfailureは保存後oracleの補助flag2056不変仮定が原因であり、成功へ改作しない。2056:1→0と補助var4021/4022の実観測差分だけを限定記録しruntime ownerは未解決。HM05は所持のみで未習得/未使用・原因未解決、同じ拒否入力を反復しない。全国図鑑magic0/grant ownerと分離progression原本Axewを保全し、flag/var注入で解禁しない。正規全国図鑑、自然成長/進化、Lucky Egg/12ケース/Lv100soak、研究施設自然到達、全storyは未完。
