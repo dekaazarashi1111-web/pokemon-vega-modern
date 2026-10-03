@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-こころのやかた北迂回13歩・野生ハクタクン1勝でSave61。25,6東、プレッシャー表示/PP11→9。上階/像の紙未到達。
+こころのやかたヒサテル新1勝でSave62。26,6東、PP9→6/賞金840円。紙への二階層3接続を静的整理、上階/紙未到達。
 
-**次: Save61 artifact11286499716のstory-fast.srm（131088bytes/SHA256 4bb9bb7761d2983164e0aa48687d0dae1ed893248b312af4f9ee36dbd873a092）だけから再開。map1/59・25,6東。新北迂回13歩とハクタクン♂Lv9野生1勝を限定受入。旧14,6→15,6不通辺は再走せず、14,5→15,5→16,5→16,6で通過。つばめがえし1コマンド/実PP11→9を区別し、相手プレッシャーpopup/文言と整合。HP288/294・PP15,10,15,9、ミュウツー全HP/PP、party残り599byte/Bag/17904円/RP0/badge1/story4071=9/4072=1保持。次は保存済未通過接尾辞25,6→26,6→27,6→28,6→28,7→28,8→28,9→28,10→29,10→30,10（behavior108階段）からmap1/60warp2へ。最初の新event/戦闘/不通境界で保存。上階/紙未到達、紙ownerはmap1/60背景16,28/item274/flag4383。27新controller/55新受入、101+cold13入力57画面72member/native2。49counter61でも部分write、50成功→54field。全SaveRTC/field画面同一。RAM台帳は観測25の技menuで変化しowner未解明。旧offset41/2056/aux4021/4022/404d/40ac未解明保持。Flash未使用/未習得、がくしゅうそうち未装備。旧迂回/戦闘/保存や旧20,24着地点不発を無影響再走しない。全国図鑑/全story/自然育成・進化/LuckyEgg/研究施設自然到達未完。既存ROM/runtime/input非再配布、host補充/回復再走/故意全滅/merge/release/baseline切替なし。一般CI既知不一致/action_requiredを全成功にしない。**
+**次: Save62 artifact11286961947のstory-fast.srm（131088bytes/SHA256 6526b5a8cf179800096fda0721f2e1770818170c83e9b76da39957166d86e356）だけから再開。map1/59・26,6東。Save61から新1歩でヒサテル/コレクター210の新1勝、敵3体・つばめがえし3選択/実PP9→6・交代拒否2回・賞金840円、physical1490=0→1を限定受入。HP288/294・PP15,10,15,6、ミュウツー全HP/PP、party残り599byte/Bag/RP0/badge1/story4071=9/4072=1/全legacy vars保持、所持金18744。次は未通過8歩26,6→27,6→28,6→28,7→28,8→28,9→28,10→29,10→30,10（behavior108階段）からmap1/60warp2へ。最初の新event/戦闘/不通境界で保存。上階/紙未到達。紙までの静的候補は専用route-plan.jsonの89tile+3層間接続（92edges）。上階32,10側から紙16,28側へ直接歩けず、上階31,21のbehavior102穴→入口階31,22→入口階30,29の階段→上階33,29→紙背面16,27が候補。穴/階段/動的通行は未実測、旧20,24着地点不発は再走しない。27新controller/58新受入、101+cold13入力56画面71member/native2。48counter62でも部分write、49成功→53field。全SaveRTC/field画面同一。RAM台帳は観測17の2体目撃破で変化しowner未解明。旧offset41/2056/aux4021/4022/404d/40ac未解明保持。Flash未使用/未習得、がくしゅうそうち未装備。旧迂回/野生戦/本trainer戦/保存を無影響再走しない。全国図鑑/全story/自然育成・進化/LuckyEgg/研究施設自然到達未完。既存ROM/runtime/input非再配布、host補充/回復再走/故意全滅/merge/release/baseline切替なし。一般CI既知不一致/action_requiredを全成功にしない。**
 
-Save61の25,6東から階段30,10へ未通過接尾辞。最初の新event/戦闘/未通過境界で保存。旧北迂回/野生1勝は再走しない。
+Save62の26,6東から階段30,10へ未通過8歩。最初の新event/戦闘/未通過境界で保存。紙へは別領域間の3接続候補を使い、旧受入区間/着地点不発は再走しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `2bed90a568f9e7f650bc47739db51af97a5ab296`。
-館の北迂回13歩/25,6東/ハクタクン野生1勝/Save61。プレッシャー表示・選択1/実PP2。上階/紙未到達。
+証拠のsource HEAD: `ec04bdcf827896ce22d2d0d39aaa9e3f63d88d20`。
+館の新1歩/26,6東/コレクターヒサテル新1勝/Save62。敵3体・PP3消費・840円・flag1490。上階/紙未到達。
 
 ## 最短の再開手順
 
@@ -25,12 +25,13 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_STORY_SAVE61_JA.md`
-- `content/modernization/pr16_story_save61_checkpoint.json`
-- `content/modernization/pr16_story_save61_visual_review.json`
-- `scripts/pr16_story_save61_accept.py`
-- `scripts/pr16_story_save61_measure.py`
-- `content/modernization/pr16_story_save61_evidence/inspection.json`
+- `docs/PR16_STORY_SAVE62_JA.md`
+- `content/modernization/pr16_story_save62_checkpoint.json`
+- `content/modernization/pr16_story_save62_visual_review.json`
+- `scripts/pr16_story_save62_accept.py`
+- `scripts/pr16_story_save62_measure.py`
+- `content/modernization/pr16_story_save62_evidence/inspection.json`
+- `content/modernization/pr16_story_save62_evidence/route-plan.json`
 - `content/modernization/pr16_story_save57_preparation.json`
 - `content/modernization/pr16_story_save56_preparation.json`
 
@@ -390,6 +391,7 @@ P08ゲート:
 - Save59の95/cold13入力54画面69member/26controller/51受入を無影響再走しない。新14歩/オタクン♂Lv9へ1勝/PP12→11、46counter部分write→47成功→51field。上階/紙未到達、RAM台帳保存menu観測27/aux4021owner未解明。
 - Save60の75/cold13入力44画面59member/26controller/51受入を無影響再走しない。新10歩/新戦闘0/全party不変。15,6東3回は不通、同じ入力の盲目的再生をしない。35最終hash一致だが保存中→36counter部分write→37成功→41field。coldのNPC211pixel差/aux4021owner未解明。
 - Save61の101/cold13入力57画面72member/27controller/55受入を無影響再走しない。北迂回13歩/野生1勝/選択1と実PP2を区別。49counter61部分write→50成功→54field、全SaveRTC/field画面同一。RAM台帳観測25変化/aux4021owner未解明。
+- Save62の101/cold13入力56画面71member/27controller/58受入を無影響再走しない。新1歩/コレクター210新1勝/敵3体/PP3/840円/1490bitだけ。48counter62部分write→49成功→53field、全SaveRTC/field画面同一。RAM台帳観測17変化owner未解明。静的92edgeをnative受入にしない。
 
 ## 次セッションへ残す更新手順
 
