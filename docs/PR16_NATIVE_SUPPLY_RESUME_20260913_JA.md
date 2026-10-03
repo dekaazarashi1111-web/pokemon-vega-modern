@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-通常南1接続で505番道路33,0南へ到達しSave49独立Continueを限定受入。回復は未完。
+通常57歩とセナラナのダブル戦1勝、505番道路22,18北でSave50/独立Continueを限定受入。ミュウツーHP50/全PP0、回復未完。
 
-**次: Save49 artifact11280742739のstory-fast.srm（21374dbfbc9e38f0febf16304706b7f3b14feacf204d5956bd622dcf941b1a04、131088bytes）だけから再開。504南端17,19から通常南1入力で505番道路map3/23・33,0南/高度3へ接続、通常Save49/独立Continue全SaveRTC一致を限定受入。party4/RP0/15224円/badge1/story4071=9/4072=1、party600byte/HP/PP/Bag/legacy flags/PC/S61E不変。オノノクスPP[11,10,15,20]、ミュウツーHP314/354・全PP0で通常回復未完。次は既存map3/23 collision_gridの北端26〜33通路と南connection→map3/2を再利用し、33,0以南の新しい高度/ownerだけ追加読取して通常回復地点を目指す。最初の新戦闘/event/未通過境界/接続または正常回復地点で保存。未観測経路や回復を受入にしない。新classify/残PP選択はSave48の実装を継承、今回戦闘0で追加native実証0。20最終Flash一時一致でもcounter48/書込中、21counter49で再差分、22成功文言/安定Flash→26field。aux4021=108→109/4022=3→4はowner未解決、全RAMledger不変/最終cold一致。旧Save48途中ledger差/Save47raw used0誤陰性/Save46party2byte/Save39cold差/Save44並替差と旧失敗を保持。47+cold13入力/29画面/12controller34受入は無影響再走0。正規全国図鑑/全story/自然EXP・技習得・進化/LuckyEgg/12case/Lv100soak/研究施設自然到達未完。ROM/host補充/故意全滅/merge/release/baseline切替なし。既存ROM/runtime/inputはActions入力専用、新artifactは新save/画面/textだけ。一般CI既知qol_production.c不一致とfinalHEAD action_requiredを全成功にしない。**
+**次: Save50 artifact11281112264のstory-fast.srm（131088bytes/SHA256 b586055a74bd6b826d7ea8150e25954a9452718ad5b46e4926f0d01f9088022e）だけから再開。505番道路33,0→西側迂回57歩→22,18北/高度4でセナラナのダブル戦1勝、通常Save50/独立Continue全SaveRTC一致を限定受入。party4/RP0/15640円/badge1/story4071=9/4072=1。オノノクスHP294/294・PP[11,10,15,18]、ミュウツーHP50/354・PP全0、ミュウHP342/342とメタモンHP300/300はいずれも技4枠0。PP持ちは1体だけで、並替だけで2体にはできない。次は保存済み候補routeのindex57から残47歩を使い、任意戦を避けて南connection→map3/2の28,0/正常回復を優先。最初の新戦闘/event/未通過境界/接続または実回復で保存。戦闘前にはダブル戦の技選択/相手確定を別計数し、現在PPへ再束縛する。今回raw used6は選択3+target3で実PP消費2、3回目は相方が先に倒して未実行。ミュウツーのわるあがき3回反動264HPを回復扱いしない。新classifierはslot0/2/3表示とslot3実使用2だけをnative確認、slot1/全4技は未完。歩行中party byte41=43→44と途中RAMledger4差・aux4021=109→37/4022=4→0はowner未解明。146安定Flash/counter50→147成功文言→150fieldを分離。原本296+cold13入力153画面/20controller44受入/168memberを無影響再走0。旧失敗と旧party/ledger不明差を保持。全国図鑑/全story/自然育成・進化/LuckyEgg/研究施設自然到達未完。ROM/host補充/故意全滅/merge/release/baseline切替なし。既存ROM/runtime/inputはActions入力専用。一般CI既知qol_production.c source不一致/finalHEAD action_requiredを全成功にしない。**
 
-Save49/map3/23の33,0南から先だけ。既存地形資料を使い必要な高度/ownerだけ追加読取。最初の新戦闘/event/未通過境界/接続または正常回復地点で保存。回復未完。
+Save50/22,18北から残47歩の保存候補だけ。任意戦を避けて通常回復を優先。次battle前にtarget二重計数を分離し実PPへ束縛。最初の新戦闘/event/未通過境界/接続/実回復で保存。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `edaffdbc22212b8957b6c1b32cc1287f6a08cc54`。
-505番道路への新南接続と33,0/Save49測定source。戦闘0・party/PP不変。回復未完。
+証拠のsource HEAD: `68c53dd8bbd74ce07d71f32a21d657e80cd1457e`。
+505の通常迂回57歩、セナラナのダブル戦とSave50測定source。正常回復未完。
 
 ## 最短の再開手順
 
@@ -25,12 +25,14 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_STORY_SAVE49_JA.md`
-- `content/modernization/pr16_story_save49_checkpoint.json`
-- `content/modernization/pr16_story_save49_visual_review.json`
-- `scripts/pr16_story_save49_accept.py`
-- `scripts/pr16_story_save49_measure.py`
-- `content/modernization/pr16_story_save44_evidence/inspection.json`
+- `docs/PR16_STORY_SAVE50_JA.md`
+- `content/modernization/pr16_story_save50_checkpoint.json`
+- `content/modernization/pr16_story_save50_visual_review.json`
+- `scripts/pr16_story_save50_accept.py`
+- `scripts/pr16_story_save50_measure.py`
+- `content/modernization/pr16_story_save50_evidence/inspection.json`
+- `content/modernization/pr16_story_save50_preparation.json`
+- `content/modernization/pr16_story_save50_west_preparation.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -376,6 +378,7 @@ P08ゲート:
 - Save47 cold原画の右隣NPC12,5へ直進しない。次は11,5→11,4→12,4→13,4で北迂回へ合流。69vertexの静的候補であり到達未証明。47測定170/cold13と12+44成功試験は再走0。
 - Save48の224/cold13入力118画面・18controller34受入を無影響再走しない。北迂回68歩/21turnで17,19南、戦闘0/party不変。97〜110部分write、110counter48は未完→111成功/安定→115field。南接続/回復と新classifierのbattle実証は未完。
 - Save49の47/cold13入力29画面・12controller34受入を無影響再走しない。504から505へ南1接続で33,0南、戦闘0/party/ledger不変。20Flash一時一致/counter48→21counter49再差分→22成功/安定→26field。回復と新classifierのbattle実証は未完。
+- Save50の296/cold13入力153画面・20controller44受入を無影響再走しない。57歩/セナラナ1勝/Save50、raw used6は実PP2+選択targetの限界を保持。party byte41/ledger owner未解明、反動HP314→50を回復としない。146安定/counter→147成功→150field。
 
 ## 次セッションへ残す更新手順
 
