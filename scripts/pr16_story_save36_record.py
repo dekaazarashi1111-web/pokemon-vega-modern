@@ -56,6 +56,7 @@ def record():
         raw=(original/name).read_bytes();raw.decode();need(b'\0'not in raw,'tracked textだけ')
         dest=evidence/name;dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(raw)
     (evidence/'unit.stderr.txt').write_bytes(unit.stderr)
+    write(evidence/'record-preflight-failure.json',inherited.terminal(37125775957,'dc8a90c62bf675887503b7cca4c6a22505e8e251',111210655527,['success','success','success','failure','skipped','skipped','skipped','skipped','success','success','success']))
     write(evidence/'verification.json',result);write(evidence/'terminal.json',done)
     write(evidence/'controller-test-receipt.json',dict(job=a.JOB,passed_tests=4,test_lines=tests,replayed_tests=0))
     paths={p.relative_to(ROOT).as_posix()for p in evidence.rglob('*')if p.is_file()}
@@ -71,7 +72,7 @@ def record():
       artifact={k:meta[k]for k in ('id','name','size_in_bytes','digest','workflow_run','expires_at')},verification=result,
       record_source=os.environ['GITHUB_SHA'],record_run_id=int(os.environ['GITHUB_RUN_ID']),save36_accepted=True,west_stair_accepted=True,dynamic8_5_native_arrival=True,trainer360_accepted=True,measurement_conclusion="failure",
       visual_review=a.VISUAL,source_bindings=h.d.bindings(CODE|a.m.CODE),evidence_bindings=h.d.bindings(paths),
-      new_controller_tests=4,inherited_controller_tests=13,new_acceptance_tests=34,prior_failed_native_processes=1,total_development_native_processes=3,record_native_processes=0,next_goal_ja=goal,release_ready=False,active_baseline_changed=False,general_ci_all_success_claimed=False)
+      new_controller_tests=4,inherited_controller_tests=13,new_acceptance_tests=34,prior_failed_native_processes=1,total_development_native_processes=3,record_native_processes=0,record_preflight_failure=dict(run_id=37125775957,reason="GUIDE専用pathの旧Save35名残",native_processes=0,acceptance_tests_run=0),next_goal_ja=goal,release_ready=False,active_baseline_changed=False,general_ci_all_success_claimed=False)
     write(ROOT/a.CP,cp)
     (ROOT/a.GUIDE).write_text(f'''# 西側通路・trainer360 event・Save36 限定受入
 
@@ -114,7 +115,7 @@ party600byteはPP欄1byteだけ、全Bag/HM05・旧Save35bank57344byte・PC維�
 - Summary: 13,5西階段/動的8,5/7,5正規event→trainer360の4体撃破/448円報酬/敵NPC非表示/同行者退出→6,13南でSave36。HP320不変、はどうだん4選択/Pressureで実5PP消費、残PP[1,8,0,0]。
 - Files changed: Save36 controller/13+4変更試験/新scoped trace parser/34受入拒否試験/record workflow、checkpoint/text原本、固定再開MD/JSON、両ログ。
 - Verify: run{a.RUN}/job{a.JOB}はnative2正常・227/cold13入力/114画面/130member/Save36完了後の旧parser座標例外でfailure。旧結論を保持して原本だけ独立受入、入力再走0。107全Flash/108〜110保存成功文言/111field復帰/cold全SaveRTC一致、42checksum/旧bank57344byte/S61E CRC/6990byte1798範囲。party差分PP1byte、Bag/PC保持、13576円、trainer physical1640/4071=8/flag4368/4369正規更新。補助var4021owner未解決。
-- History: 先行run37125164118は50入力20画面/native1・未保存のevent座標先行停止を保持。旧13controller/変更4controllerの成功stepを原log再利用、受入34件だけ追加。合計開発native3、record native0、旧受入再走/ROM変更/compile/fixture0。保存済920cells/6node owner/map-load原本再採取0。Save35記録とStage79終端を反映。
+- History: 記録run37125775957はGUIDE名残の宛先checkで停止（native0/受入試験0）。正しいSave36宛先に限定訂正し旧failureを保持。先行run37125164118は50入力20画面/native1・未保存のevent座標先行停止を保持。旧13controller/変更4controllerの成功stepを原log再利用、受入34件だけ追加。合計開発native3、record native0、旧受入再走/ROM変更/compile/fixture0。保存済920cells/6node owner/map-load原本再採取0。Save35記録とStage79終端を反映。
 - Commit: 測定source={a.SOURCE}、記録source={os.environ['GITHUB_SHA']}・run={os.environ['GITHUB_RUN_ID']}。scoped guard/task graph/resume後に同branch非force pushと全text読戻し。
 - Network: 同repo GitHub/Actions原本のみ。既存ROM/runtime/input Save35再配布0。一般CI既知source不一致を保持、merge/release/baseline変更0。
 - Next: {goal}
