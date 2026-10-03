@@ -11,9 +11,9 @@ from pr16_story_after_maori import need,identity,write,map_view,unpack
 from pr16_story_after_maori_session import Session
 import pr16_story_save25_measure as m
 h=m.h
-BASE='0d952edaa33d312c21137e1c83432775d182d3ca'
+BASE='096b25e970312a189d5bb45e439a70cdfca73ca4'
 OUT=ROOT/'.local/pr16-story-save38';ART=OUT/'artifact';ASSETS=OUT/'private-inputs'
-CODE={'scripts/pr16_story_save38_measure.py','tests/test_pr16_story_save38_measure.py','.github/workflows/pr16-story-save38.yml'}
+CODE={'scripts/pr16_story_save38_measure.py','tests/test_pr16_story_save38_measure.py','.github/workflows/pr16-story-save38.yml','tests/test_pr16_story_save38_door.py','content/modernization/pr16_story_save38_preparation.json'}
 PP=[1,8,0,0]
 TRANSITION=134569577 # 失敗原本の16,5で観測した野生戦直前callbackだけ
 def event_input(o):
@@ -32,28 +32,14 @@ def idle(o,counter):
     need(o['map']in(ORIGIN,DESTINATION)and o['callback2']==m.FIELD and o['lock']==0 and o['party_count']==4 and o['rp']==0 and o['save_counter']==counter and o['live_xy']==[x+7 for x in o['xy']]and o['battle_outcome']==0,'南出口部屋または503番道路の操作可能field')
 def inspect(raw,seed):
     need(identity(raw)==a.shared.plan.CANDIDATE and identity(seed)==a.OUTPUT,'Save37/同一candidateだけ')
-    prep=json.loads((ROOT/TERRAIN).read_bytes());room=[x for x in prep['adjacent_maps']if x['map']==ORIGIN][0]
-    need(all(room['collision_grid'][y][x]in '.W' for x,y in ROUTE),'保存済部屋地形の出口候補・再採取0')
-    warp=[w for w in room['warps']if w['xy']==ROUTE[-1]]
-    need(len(warp)==1 and warp[0]['target_map']==DESTINATION and warp[0]['target_warp']==1,'保存済出口warp owner')
-    found=[]
-    def scan(v,path):
-        if isinstance(v,dict):
-            if v.get('map')==DESTINATION and all(k in v for k in ('header','warps','collision_grid')):found.append((path,v))
-            for child in v.values():scan(child,path)
-        elif isinstance(v,list):
-            for child in v:scan(child,path)
-    base=ROOT/'content/modernization'
-    for path in sorted(set(base.glob('pr16_story*_preparation.json'))|set(base.glob('pr16_story*_evidence/inspection.json'))):
-        scan(json.loads(path.read_bytes()),path.relative_to(ROOT).as_posix())
-    if found:
-        dest=found[0][1];need(all(x[1]==dest for x in found),'既存503番道路view一致');source=dict(path=found[0][0],identity=identity((ROOT/found[0][0]).read_bytes()));new_maps=0
-    else:
-        from tools.t02.rom_inventory import MAP_GROUPS_POINTER_SITE
-        groups,=unpack(raw,MAP_GROUPS_POINTER_SITE,'I');dest=map_view(raw,groups,*DESTINATION);source=dict(candidate=identity(raw));new_maps=1
-    target=[w for w in dest['warps']if w['id']==1]
-    need(len(target)==1 and target[0]['target_map']==ORIGIN and target[0]['target_warp']==0,'南出口と503番道路の相互warp owner')
-    return dict(status='STATIC_ROUTE503_CONNECTION_CANDIDATE_ONLY',preparation=identity((ROOT/TERRAIN).read_bytes()),route=ROUTE,origin=room,exit_warp=warp[0],destination=dest,destination_source=source,new_map_views=new_maps,new_script_nodes=0,native_exit_accepted=False)
+    prep_path=ROOT/'content/modernization/pr16_story_save38_preparation.json'
+    prep=json.loads(prep_path.read_bytes());room=prep['origin'];dest=prep['destination'];warp=prep['exit_warp']
+    need(room['map']==ORIGIN and dest['map']==DESTINATION and prep['route']==ROUTE,'失敗原本の保存済接続owner')
+    need(warp['xy']==[4,6]and warp['target_map']==DESTINATION and warp['target_warp']==1,'通常南出口warp')
+    need(all(room['collision_grid'][y][x]in '.W' for x,y in ROUTE),'保存済部屋候補')
+    return dict(status='STATIC_ROUTE503_CONNECTION_CANDIDATE_ONLY',preparation=identity(prep_path.read_bytes()),route=ROUTE,origin=room,exit_warp=warp,destination=dest,destination_source=prep['destination_source'],new_map_views=0,new_script_nodes=0,native_exit_accepted=False,door_exit_input=dict(from_xy=[4,6],direction='south',key=128))
+def door_input(o):
+    idle(o,37);need(o['map']==ORIGIN and o['xy']==[4,6]and o['facing']==1,'実出口矢印tileから南へ1回だけ');return ((128,8),(0,300))
 
 def select(used):
     need(len(used)==4 and all(type(n)is int and 0<=n<=PP[i]for i,n in enumerate(used)),'Save37実PPの範囲')
@@ -76,6 +62,8 @@ def progress(s):
         for attempt in range(3):
             o=s.step((direction(before,target),8),(0,300 if target==ROUTE[-1]else 48))
             if target==ROUTE[-1]and(o['map']==DESTINATION or o['xy']==target):
+                if o['map']==ORIGIN and o['callback2']==m.FIELD and o['lock']==0:
+                    o=s.step(*door_input(o))
                 for _ in range(16):
                     if o['map']==DESTINATION and o['callback2']==m.FIELD and o['lock']==0:
                         idle(o,37);return route+[target],None,dict(kind='route503_exit',trigger=target,map=o['map'],xy=o['xy'],observation=len(s.observations)-1),[]
@@ -122,11 +110,25 @@ def restore():
     need(identity((runtime/'lib/libmgba.so').read_bytes())==dict(size=1968536,sha256='0c87a12341640e6a2d325e59e76eb4b002947771ad4d8814b216e3b99817d68d'),'同一mGBA')
     return runtime
 
+def failed_original():
+    terminal=inherited.terminal(37127113183,'096b25e970312a189d5bb45e439a70cdfca73ca4',111214539355,['success','success','success','failure','skipped','success','success','success'])
+    _,z=a.transport.archive(11275422186,37127113183,dict(size=99253,sha256='b7d8eb05a146d394d66a00232b20fceae72886238e8a0842ce70418ce1f037e8'),'096b25e970312a189d5bb45e439a70cdfca73ca4')
+    with z:
+        manifest=json.loads(z.read('manifest.json'));need(len(manifest)==31 and set(z.namelist())==set(manifest)|{'manifest.json'},'失敗全31member')
+        for n,b in manifest.items():need(identity(z.read(n))==b,'失敗原本全byte '+n)
+        failure=json.loads(z.read('failure.json'));execution=json.loads(z.read('progress/execution.json'))
+        need(failure['native_processes']==1 and execution['initial_save']==execution['final_save']==a.OUTPUT,'未保存の初回だけ・Save37親を保持')
+        obs=[json.loads(l)for l in z.read('progress/stdout.txt').decode().splitlines()if '"observe"'in l]
+        need(len(obs)==24 and all(o['map']==ORIGIN and o['xy']==[4,6]and o['lock']==0 and o['save_counter']==37 for o in obs[7:]),'矢印出口tileで待機しただけ・外未到達')
+        need(json.loads(z.read('inspection.json'))==json.loads((ROOT/'content/modernization/pr16_story_save38_preparation.json').read_bytes()),'新地形は既採取原本を利用')
+    return dict(terminal=terminal,artifact=11275422186,failure=failure,execution=execution,reason_ja='南出口矢印tileは待機で遷移せず、南への通常入力が必要。未保存区間の変更影響に限る回復。',native_processes=1,accepted_case_reruns=0,accepted_test_reruns=0)
+
 def main():
     h.d.current();state=h.source_check();need(os.environ['GITHUB_RUN_ATTEMPT']=='1' and not OUT.exists(),'新区間初回のみ')
     protected=h.d.bindings(set(state['source_bindings'])|h.d.PROTECTED|CODE)
     ART.mkdir(parents=True);sessions=[]
     try:
+        write(ART/'first-failed-original.json',failed_original())
         write(ART/'save37-record-terminal.json',inherited.terminal(37126518059,'db7fbddd8929cf457be95b19d22be5831d22d2eb',111212777875,['success']*11))
         need(state['story_save37']['story_fast_save']==a.OUTPUT,'正式Save37親')
         runtime=restore();seed=(ASSETS/'input.srm').read_bytes()
