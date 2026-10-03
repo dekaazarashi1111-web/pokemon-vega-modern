@@ -13,7 +13,8 @@ h=a.m.h
 BASE=a.SOURCE
 TASK='USER-20261003-CAVE-SOUTH-TRAINER-SAVE32'
 OUT=ROOT/'.local/pr16-story-save32-record'
-CODE={'scripts/pr16_story_save32_inspect.py','.github/workflows/pr16-story-save32-inspect.yml','scripts/pr16_story_save32_accept.py','scripts/pr16_story_save32_record.py','tests/test_pr16_story_save32_accept.py',a.VISUAL,'.github/workflows/pr16-story-save32-record.yml'}
+PREPARATION_CODE={'scripts/pr16_story_save32_inspect.py','.github/workflows/pr16-story-save32-inspect.yml'}
+CODE={'scripts/pr16_story_save32_accept.py','scripts/pr16_story_save32_record.py','tests/test_pr16_story_save32_accept.py',a.VISUAL,'.github/workflows/pr16-story-save32-record.yml'}
 
 def record():
     os.chdir(ROOT);h.d.current();need(os.environ['GITHUB_RUN_ATTEMPT']=='1' and not OUT.exists() and not (ROOT/a.CP).exists(),'新規記録1回だけ')
@@ -25,6 +26,9 @@ def record():
     done=inherited.terminal(a.RUN,a.SOURCE,a.JOB,['success']*8)
     preparation_done=inherited.terminal(37121423789,'e8b5e13b4775188258420edbb5754ed919823458',111198130088,['success']*8)
     prior_done=inherited.terminal(37120967764,'c0327a3c9f0cf9940a7cb2b11c508c4ce87dd985',111196833683,['success']*11)
+    failedrun=h.d.inputs.api('actions/runs/37122292424');failedjob=h.d.inputs.api('actions/jobs/111200634955')
+    need(failedrun['head_sha']=='730146ee64b35f6e7feac264680cedf4d46a6033' and failedrun['status']=='completed' and failedrun['conclusion']=='failure' and failedjob['steps'][2]['conclusion']=='failure' and failedjob['steps'][3]['conclusion']=='skipped','初回record sourceguard失敗終端')
+    failed=dict(run=h.d.run_summary(failedrun),job=failedjob,native_processes=0,tests_executed=0,artifact_count=0,reason_ja='strict guardのCODEへ比較base以前に追加済みの採取器2pathを含め、変更集合不一致で停止。CODEは実差分5pathへ限定し、採取器の保全bindingは別PREPARATION_CODEへ分離。入力/ROM/測定/旧試験を再走しない。')
     log=h.d.inputs.api('actions/jobs/'+str(a.JOB)+'/logs',True).decode().splitlines()
     tests=[v.split('Z ',1)[-1]for v in log if ' ... ok' in v and 'test_pr16_story_save32_measure.' in v]
     need(len(tests)==12 and any('Ran 12 tests in 'in v for v in log) and any(v.endswith(' OK')for v in log),'変更12controller試験原本')
@@ -61,7 +65,7 @@ def record():
         raw=(original/name).read_bytes();raw.decode();need(b'\0'not in raw,'tracked textだけ')
         dest=evidence/name;dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(raw)
     (evidence/'unit.stderr.txt').write_bytes(unit.stderr)
-    write(evidence/'verification.json',result);write(evidence/'terminal.json',done);write(evidence/'preparation-terminal.json',preparation_done)
+    write(evidence/'failed-record-terminal.json',failed);write(evidence/'verification.json',result);write(evidence/'terminal.json',done);write(evidence/'preparation-terminal.json',preparation_done)
     write(evidence/'controller-test-receipt.json',dict(job=a.JOB,passed_tests=12,test_lines=tests,replayed_tests=0))
     paths={p.relative_to(ROOT).as_posix()for p in evidence.rglob('*')if p.is_file()}
     goal=(f'Save32 artifact{a.ARTIFACT}のstory-fast.srm（{a.OUTPUT["sha256"]}、131088bytes）だけから再開。'
@@ -76,8 +80,8 @@ def record():
     cp=dict(schema_version=1,task=TASK,status=result['status'],measurement_source=a.SOURCE,run_id=a.RUN,job_id=a.JOB,
       artifact={k:meta[k]for k in ('id','name','size_in_bytes','digest','workflow_run','expires_at')},verification=result,
       record_source=os.environ['GITHUB_SHA'],record_run_id=int(os.environ['GITHUB_RUN_ID']),save32_accepted=True,trainer353_accepted=True,
-      visual_review=a.VISUAL,source_bindings=h.d.bindings(CODE|a.m.CODE),evidence_bindings=h.d.bindings(paths),
-      new_controller_tests=12,new_acceptance_tests=24,record_native_processes=0,next_goal_ja=goal,
+      visual_review=a.VISUAL,source_bindings=h.d.bindings(CODE|a.m.CODE|PREPARATION_CODE),evidence_bindings=h.d.bindings(paths),
+      new_controller_tests=12,new_acceptance_tests=24,record_native_processes=0,failed_record_run=37122292424,failed_record_tests_executed=0,next_goal_ja=goal,
       release_ready=False,active_baseline_changed=False,general_ci_all_success_claimed=False)
     write(ROOT/a.CP,cp)
     (ROOT/a.GUIDE).write_text(f'''# 南回廊・trainer353・Save32 限定受入
@@ -88,7 +92,7 @@ source `{a.SOURCE}` / run `{a.RUN}` / job `{a.JOB}` 全8step成功。artifact `{
 
 ダンゴロLv10の頑丈/オレンのみで2回、ブロロンLv13とドガースLv12に各1回のれいとうビーム。交代質問は2回とも拒否。HP324→322、PP4→0。全600byte party差分はoffset55の4→0とoffset86の68→66だけ。保存親から5中間partyを独立再構成し画面/RAM hashと一致。Bag/HM05/全PC/S61E payload不変、12712→13128円、legacy flag1633=1280+353だけ0→1。正規NPC root0x093709A0を独立decodeしてtrainer353へ結合。story4071=7/4072=1・flag4367=1・badge1保持。補助var4021=93→103/4022=2→0のruntime ownerは未解決。42sector checksum/S61E CRC・旧Save31bank57344byte・全Save/RTC cold同一、6973byte/1782範囲差分。
 
-未読地形採取run37121423789/job111198130088は全8step成功、native0。既存164マスを再利用して未読756マスだけ追加し、全920マスを固定。3隣接map/7,5 coordの6nodeは静的だけ。新12controller原logを保持して再走0、新24受入/拒否試験を1回実行して全stderr保存。旧failure原本保持、ROM変更0/compile0/fixture0/既受入再走0。Save31記録run37120967764の全11step終端を固定JSONへ反映。一般CI全成功/releaseは主張しない。
+未読地形採取run37121423789/job111198130088は全8step成功、native0。既存164マスを再利用して未読756マスだけ追加し、全920マスを固定。3隣接map/7,5 coordの6nodeは静的だけ。新12controller原logを保持して再走0、新24受入/拒否試験を1回実行して全stderr保存。初回record37122292424はstrict sourceguardの変更集合不一致で停止、受入試験0/native0。比較base以前の採取器2pathをCODEから保全専用bindingへ分離し、失敗log/APIを保持。旧failure原本保持、ROM変更0/compile0/fixture0/既受入再走0。Save31記録run37120967764の全11step終端を固定JSONへ反映。一般CI全成功/releaseは主張しない。
 
 次: {goal}
 ''',encoding='utf-8')
@@ -107,7 +111,7 @@ source `{a.SOURCE}` / run `{a.RUN}` / job `{a.JOB}` 全8step成功。artifact `{
     state['bp']['next_step']=goal;state['bp']['current_stop']='南回廊→21,19東でtrainer353通常1勝/416円。Save32/独立Continue受入。13128円/party4/RP0/badge1、HP322/PP[1,14,0,0]。東階段/teleport/洞窟出口は未完。'
     state['do_not_repeat'].append('Save32の138/cold13入力・64画面・新12controller/24受入試験を無影響再走しない。全79memberと既存失敗原本を保持。trainer353勝利を東階段/teleport/洞窟走破へ昇格しない。')
     owned={a.CP,a.GUIDE,h.d.STATE,h.d.DOC,*h.d.LOGS}|paths
-    state['source_bindings'].update(h.d.bindings((owned|CODE|a.m.CODE)-{h.d.STATE,h.d.DOC,*h.d.LOGS}));publish_resume(state)
+    state['source_bindings'].update(h.d.bindings((owned|CODE|a.m.CODE|PREPARATION_CODE)-{h.d.STATE,h.d.DOC,*h.d.LOGS}));publish_resume(state)
     stamp=datetime.datetime.now(datetime.timezone.utc).isoformat(timespec='seconds')
     entry=f'''\n## {stamp}
 - Timestamp: {stamp}
@@ -117,6 +121,7 @@ source `{a.SOURCE}` / run `{a.RUN}` / job `{a.JOB}` 全8step成功。artifact `{
 - Summary: Save31の14,14から南段差を通過し、21,19でtrainer353を通常UIで1勝。報酬416円/HP324→322/れいとうビームPP4→0、通常Save32/独立Continueを受入。頑丈/オレンのみのダンゴロLv10、ブロロンLv13、ドガースLv12、交代拒否2回。
 - Files changed: 未読地形採取器、Save32 controller/12変更試験/24受入試験/record workflow、checkpoint/text証拠、固定再開MD/JSON、両ログ。
 - Verify: 地形run37121423789全8step成功、既存164+新756マス/7,5の6node静的。測定run{a.RUN}/job{a.JOB}全8step成功、138/cold13入力・64画面・全79member。party差分2byte、5中間partyを独立再構成、legacy flag1633だけ/正規trainer353 root、Bag/PC/S61E/全国図鑑保持、補助var4021は93→103/4022は2→0（runtime owner未解決）。42checksum/6973byte差分/全SaveRTC保持。新12controller原本再利用、新24受入だけ実行して全stderr保存。record native0/ROM変更0/旧ゲーム再走0。
+- Failure: 初回record37122292424/job111200634955はsourceguard変更集合不一致。採取器2pathは比較base以前のためCODEから分離し保全binding維持。受入試験0/native0/artifact0、失敗Actions原logを保持。
 - History: Save31記録run37120967764全11step終端を反映。旧native/record失敗原本を保持。
 - Commit: 測定source={a.SOURCE}、記録source={os.environ['GITHUB_SHA']}・run={os.environ['GITHUB_RUN_ID']}。scoped guard/task graph/resume後に同branch非force pushし全text読戻し。
 - Network: 同repo GitHub/Actions原本だけ。既存ROM/runtime/input Save31再配布0。一般CI既知source不一致を保持、merge/release/baseline変更0。
