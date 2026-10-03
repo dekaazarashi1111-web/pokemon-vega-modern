@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-ミルシティ回復施設map6/5の7,8北、Save53。HP/PP不変、受付会話/回復が次。
+通常受付で全HP/PP回復しSave54。map6/5・7,4北。次はミルシティ必須story。
 
-**次: Save53 artifact11283178064のstory-fast.srm（131088bytes/SHA256 e22287b3ef44b53029d855aca7cac243f567af75fce21d557f28294c7f4c9a13）からのみ再開。ミルシティのポケモンセンター1F map6/5・7,8北。通常26歩/入口/Save53/独立Continueを限定受入。party600byte/Bag/17040円/RP0/badge1/story4071=9/4072=1不変。オノノクスHP294/294・PP[11,10,15,14]、ミュウツーHP50/354・PP全0で正常回復が最優先。施設map/warps/owner graphは保存済み。受付local3の7,2、script135790449→135872070→135872156→special0を同一候補で確認。必要な室内経路高度だけ読み、カウンター越しの通常会話/回復へ進む。最初の新event/未通過境界/実回復で通常保存、必須story省略なし。Save52のflag2194 ownerはtown load script136400616の命令136400637/setworldmapflag。既受入の原本を書換えず後継解決として記録。今回var4021=84→110/4022=1→2と旧cold RAM差のowner未解明を保持。今回progress/cold ledgerはdef3a8d727dc95294ed0908fa68914b62022587e25ef55d2fe352a942c1ec502で同一。Save53成功54→field57、counter53だけでは完了判定しない。108+cold13入力60画面20controller39受入75memberを無影響再走0。全国図鑑/全story/自然育成・進化/LuckyEgg/研究施設自然到達未完、doubletarget分離native未実証。既存ROM/runtime/input非再配布、host補充/故意全滅/merge/release/baseline切替なし。一般CI既知source不一致/action_requiredを全成功にしない。**
+**次: Save54 artifact11283366654のstory-fast.srm（131088bytes/SHA256 bfdd4fb964fd8a3b526b919921b2400e3c1f44c02011208b03f0507606a496ad）だけから再開。ポケモンセンター1F map6/5・7,4北。通常4歩/受付「あずける」/HP・PP全回復/Save54/独立Continueを限定受入。オノノクスHP294/294・PP[15,10,15,20]、ミュウツーHP354/354・PP[10,20,15,10]、空技のミュウ/ビーダルも全HP。party600byte差分は回復8byteだけ。Bag/17040円/RP0/badge1/story4071=9/4072=1/全flags/PC/S61E不変。回復を再実行せず、保存済室内mapとtown ownerから出口→ミルシティの次必須storyを限定調査し通常入力で進める。最初の新event/戦闘/未通過境界で通常保存、必須story省略なし。aux4021=110→114/4022=2→1と回復後RAM台帳3aef553d4f2dba8f52868966ed63e2e315f111535d017321afe1c0df1a7bd384のowner未解明、旧Save52 cold差ownerも未解明。Save54 progress/coldは同一。Save54counter32は書込中、成功33→field36。66+cold13入力39画面21controller43受入54memberを無影響再走0。全国図鑑/全story/自然育成・進化/LuckyEgg/研究施設自然到達未完、doubletarget分離native未実証。既存ROM/runtime/input非再配布、host補充/故意全滅/merge/release/baseline切替なし。一般CI既知不一致/action_requiredを全成功にしない。**
 
-Save53室内7,8北から必要な経路だけ静的確認し、受付local3との通常会話/回復へ。最初の新event/未通過境界/実回復で通常保存。旧cold RAM差/aux owner未解明を保持、host補充なし。
+Save54回復済から、保存済map/ownerを使い出口→ミルシティ必須storyを限定確認。最初の新event/戦闘/未通過境界で通常保存。回復再走/host補充なし。RAM台帳差owner未解明を保持。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `c7a396747031908a74cc8c9a63698e6c513dced8`。
-ミルシティ26歩/通常入館Save53。回復は未完。
+証拠のsource HEAD: `041077371f32b04015916058fe460e1ade4dd989`。
+通常受付でHP・PP全回復/Save54。次はミルシティ必須story。
 
 ## 最短の再開手順
 
@@ -25,12 +25,12 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_STORY_SAVE53_JA.md`
-- `content/modernization/pr16_story_save53_checkpoint.json`
-- `content/modernization/pr16_story_save53_visual_review.json`
-- `scripts/pr16_story_save53_accept.py`
-- `scripts/pr16_story_save53_measure.py`
-- `content/modernization/pr16_story_save53_evidence/inspection.json`
+- `docs/PR16_STORY_SAVE54_JA.md`
+- `content/modernization/pr16_story_save54_checkpoint.json`
+- `content/modernization/pr16_story_save54_visual_review.json`
+- `scripts/pr16_story_save54_accept.py`
+- `scripts/pr16_story_save54_measure.py`
+- `content/modernization/pr16_story_save54_evidence/inspection.json`
 - `content/modernization/pr16_story_save53_owner.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
@@ -381,6 +381,7 @@ P08ゲート:
 - Save51の184/cold13入力97画面・22controller44受入を無影響再走しない。27歩/ワタミ1勝/Save51、選択4/target0/実PP4。ダブルtarget分離native未実証。RAMledger42/63とaux4021owner未解明。90安定/counter→91成功→94field。
 - Save52の94/cold13入力52画面・18controller39受入を無影響再走しない。20歩+ミルシティ接続、戦闘0。party/HP/PP不変。新接続flag2194/vars3件とcold RAMledger差owner未解明。43一時Flash一致→44counter/再差分→45成功→49field。
 - Save53の108/cold13入力60画面・20controller39受入を無影響再走しない。26歩/通常入館、戦闘0。全party不変。今回RAM台帳不変、旧Save52 cold差ownerは未解明のまま。新flag0/aux2件、respawn通常更新。
+- Save54の66/cold13入力39画面・21controller43受入を無影響再走しない。室内4歩/通常受付/回復、戦闘0。party回復8byteのみ。RAM台帳は会話終了で変化しowner未解明、保存S61E不変。旧Save52 cold差ownerも未解明。
 
 ## 次セッションへ残す更新手順
 

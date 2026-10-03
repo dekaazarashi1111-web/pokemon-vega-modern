@@ -9073,3 +9073,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 測定source=c7a396747031908a74cc8c9a63698e6c513dced8、記録source=8fa4d19c42eb0771a41b0d0f89b673f4e51ab8de・run=37148761559。scoped guard/task graph/resume後に同branch非force pushと全text読戻し。
 - Network: 同repo GitHub/Actionsのみ。既存ROM/runtime/input非再配布。一般CI既知不一致/action_requiredは全成功にしない。merge/release/baseline変更0。
 - Next: Save53 artifact11283178064のstory-fast.srm（131088bytes/SHA256 e22287b3ef44b53029d855aca7cac243f567af75fce21d557f28294c7f4c9a13）からのみ再開。ミルシティのポケモンセンター1F map6/5・7,8北。通常26歩/入口/Save53/独立Continueを限定受入。party600byte/Bag/17040円/RP0/badge1/story4071=9/4072=1不変。オノノクスHP294/294・PP[11,10,15,14]、ミュウツーHP50/354・PP全0で正常回復が最優先。施設map/warps/owner graphは保存済み。受付local3の7,2、script135790449→135872070→135872156→special0を同一候補で確認。必要な室内経路高度だけ読み、カウンター越しの通常会話/回復へ進む。最初の新event/未通過境界/実回復で通常保存、必須story省略なし。Save52のflag2194 ownerはtown load script136400616の命令136400637/setworldmapflag。既受入の原本を書換えず後継解決として記録。今回var4021=84→110/4022=1→2と旧cold RAM差のowner未解明を保持。今回progress/cold ledgerはdef3a8d727dc95294ed0908fa68914b62022587e25ef55d2fe352a942c1ec502で同一。Save53成功54→field57、counter53だけでは完了判定しない。108+cold13入力60画面20controller39受入75memberを無影響再走0。全国図鑑/全story/自然育成・進化/LuckyEgg/研究施設自然到達未完、doubletarget分離native未実証。既存ROM/runtime/input非再配布、host補充/故意全滅/merge/release/baseline切替なし。一般CI既知source不一致/action_requiredを全成功にしない。
+
+## 2026-10-03T20:03:43+00:00
+- Timestamp: 2026-10-03T20:03:43+00:00
+- Task: USER-20261003-HEAL-SAVE54 / ミルシティ通常受付の全回復・Save54
+- Version: story-miru-normal-heal-save54-v1
+- Status: DONE（通常回復/保存/独立Continue限定）
+- Summary: 室内4歩で受付前7,4北。「あずける」の通常入力でHP/PP全回復。ミュウツーHP50→354/354・PP全0→[10,20,15,10]、オノノクスPP[15,10,15,20]。party差分8byteのみ。
+- Files changed: Save54 inspect/measure/21controller/43受入/record、5cell静的原本、checkpoint/text証拠、固定再開MD/JSON、両ログ。
+- Verify: run37149491580/job111280129663全8step成功、66+cold13入力39画面54member、21controller原logと43新受入拒否。record native0/compile0/旧再走0。
+- Evidence: 現候補move tableで最大PP照合。18〜32部分write、32counter先行→33成功→36field。Bag/17040円/RP0/PC/S61E/全国図鑑/全flags保持。aux2件、42checksum/旧bank57344byte/6936byte1739範囲/cold全SaveRTC一致。会話終了でRAM台帳差、owner未解明を明示。
+- Commit: 測定source=041077371f32b04015916058fe460e1ade4dd989、記録source=1e4551b4da705a01da77fd53f109a182cf316c8a・run=37150128228。scoped guard/task graph/resume後に同branch非force pushと全text読戻し。
+- Network: 同repo GitHub/Actionsのみ。既存ROM/runtime/input非再配布。一般CI既知不一致/action_requiredは全成功にしない。merge/release/baseline変更0。
+- Next: Save54 artifact11283366654のstory-fast.srm（131088bytes/SHA256 bfdd4fb964fd8a3b526b919921b2400e3c1f44c02011208b03f0507606a496ad）だけから再開。ポケモンセンター1F map6/5・7,4北。通常4歩/受付「あずける」/HP・PP全回復/Save54/独立Continueを限定受入。オノノクスHP294/294・PP[15,10,15,20]、ミュウツーHP354/354・PP[10,20,15,10]、空技のミュウ/ビーダルも全HP。party600byte差分は回復8byteだけ。Bag/17040円/RP0/badge1/story4071=9/4072=1/全flags/PC/S61E不変。回復を再実行せず、保存済室内mapとtown ownerから出口→ミルシティの次必須storyを限定調査し通常入力で進める。最初の新event/戦闘/未通過境界で通常保存、必須story省略なし。aux4021=110→114/4022=2→1と回復後RAM台帳3aef553d4f2dba8f52868966ed63e2e315f111535d017321afe1c0df1a7bd384のowner未解明、旧Save52 cold差ownerも未解明。Save54 progress/coldは同一。Save54counter32は書込中、成功33→field36。66+cold13入力39画面21controller43受入54memberを無影響再走0。全国図鑑/全story/自然育成・進化/LuckyEgg/研究施設自然到達未完、doubletarget分離native未実証。既存ROM/runtime/input非再配布、host補充/故意全滅/merge/release/baseline切替なし。一般CI既知不一致/action_requiredを全成功にしない。
