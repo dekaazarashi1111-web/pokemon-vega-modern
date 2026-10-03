@@ -19,6 +19,11 @@ class Acceptance(unittest.TestCase):
     def rejected(self,lane,index,key,value):
         pa,pb=copy.deepcopy(self.pa),copy.deepcopy(self.pb);(pa if lane=='progress'else pb)['observations'][index][key]=value
         with self.assertRaises(ValueError):a.semantics(pa,pb)
+    def test_missing_flag2056_rejected(self):
+        with self.assertRaises(ValueError):a.flags_delta(bytes(0x120),bytes(0x120))
+    def test_extra_flag_rejected(self):
+        before=bytes(0x120);after=bytearray(before);after[2056//8]|=1<<(2056%8);after[0]|=1
+        with self.assertRaises(ValueError):a.flags_delta(before,bytes(after))
 def case(lane,index,key,value):return lambda self:self.rejected(lane,index,key,value)
 for name,args in {
  'wrong_exit_map':('progress', 9, 'map', [1, 73]),

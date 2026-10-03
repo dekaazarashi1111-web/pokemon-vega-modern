@@ -38,6 +38,11 @@ def semantics(pa,pb):
         m.idle(o,37);need(o['map']==[1,38]and o['xy']==[6,4]and o['facing']==3 and o['field']is True and o['battle_flags']==o['battle_outcome']==0 and o['party_sha256']==PARTY and o['flash_sha256']==FLASH and o['ledger_sha256']==LEDGER,'独立Continue全状態')
     return dict(status='PASS_CAVE_SOUTH_EXIT_ROOM_SAVE37_SCOPED',trainer_victories=0,wild_victories=0,escapes=0,captures=0,ordinary_saves=1,save_counter=37,map=[1,38],xy=[6,4],facing=3,party_count=4,rp=0,cave_interior_exit_accepted=True,cave_interior_crossing_complete=True,south_exit_room_reached=True,outside_route503_reached=False,cave_crossing_complete=False,save_success_text_observation=26,save_success_wording_observed=True,transient_final_hash_observation=24,transient_hash_reverted_observation=25,stable_full_flash_observation=26,stable_field_observation=30,partial_write_observations=list(range(13,24))+[25],progress_inputs=63,continue_inputs=13,screen_count=33,native_processes=2,record_native_processes=0,accepted_case_reruns=0,accepted_test_reruns=0,compiles=0,rom_changes=0,fixture_writes=0,hm05_taught_or_used=False,trainer352_accepted=False,national_dex_unlocked=False,natural_growth_accepted=False,natural_evolution_accepted=False,full_story_accepted=False,release_ready=False)
 
+def flags_delta(fa,fb):
+    fd=[(i*8+bit,(u>>bit)&1,(v>>bit)&1)for i,(u,v)in enumerate(zip(fa,fb))for bit in range(8)if(u^v)&(1<<bit)]
+    need(len(fa)==len(fb)==0x120 and fd==[(2056,0,1)],'出口部屋の補助flag2056だけ・runtime owner未解決')
+    return fd
+
 def boundary(before,after,cold,rom):
     s=parent.sectors;need(identity(before)==m.a.OUTPUT and identity(after)==OUTPUT and after==cold,'固定Save36/37とcold全Save/RTC');need(identity(rom)==shared.plan.CANDIDATE,'候補ROM不変')
     old,ra=s.bank(before,0,36,s.LAYOUT);new,rb=s.bank(after,0xe000,37,s.LAYOUT);_,rc=s.bank(after,0,36,s.LAYOUT)
@@ -47,7 +52,7 @@ def boundary(before,after,cold,rom):
     bag_a,money_a=parent.shared.bag(before,old);bag_b,money_b=parent.shared.bag(after,new);need(bag_a==bag_b and money_a==money_b==13576,'全Bag/HM05/所持金')
     for sid in range(5,14):need(before[old[sid]:old[sid]+0xff4]==after[new[sid]:new[sid]+0xff4],'PC/S61E全payload')
     ext=parent.s61e_record(after[new[13]+0x7d0:new[13]+0xde6]);flag=(ext[(4367-2304)//8]>>((4367-2304)%8))&1;need(flag==1,'正規解禁flag4367保持')
-    fa,va=s.legacy_state(before,old);fb,vb=s.legacy_state(after,new);need(fa==fb,'全trainer/story flags不変')
+    fa,va=s.legacy_state(before,old);fb,vb=s.legacy_state(after,new);fd=flags_delta(fa,fb)
     vd=[(0x4000+i,u,v)for i,(u,v)in enumerate(zip(va,vb))if u!=v];need(vd==[(0x4021,19,26),(0x4022,0,2),(0x404d,20,21)],'補助var3件だけ・runtime owner未解決')
     need(before[old[0]+0x1b]==after[new[0]+0x1b]==va[0x4e]==0 and not(fa[0x840//8]&1) and va[0x71]==vb[0x71]==8 and va[0x72]==vb[0x72]==1,'全国図鑑/story未解禁')
     need(sum(bool(fb[i//8]&(1<<(i%8)))for i in range(2080,2088))==1,'badge1')
@@ -56,7 +61,7 @@ def boundary(before,after,cold,rom):
         if ranges and i==ranges[-1][1]:ranges[-1][1]+=1
         else:ranges.append([i,i+1])
     need((len(changed),len(ranges))==(6917,1753),'全Save差分会計')
-    return dict(party_unchanged_bytes=600,pp=[1,8,0,0],hp=[320,354],bag_unchanged=True,hm05_owned=True,money_before=money_a,money_after=money_b,physical_flag_deltas=[],variable_deltas=vd,auxiliary_runtime_owners_resolved=False,flag4367=flag,old_bank_preserved_bytes=57344,pc_s61e_preserved=True,s61e_crc_verified=True,sector_checksum_checks=len(ra)+len(rb)+len(rc),national_dex_magic=0,national_var404e=0,national_flag840=0,story_vars={'4071':8,'4072':1},badge_count=1,all_save_rtc_cold_identical=True,changed_bytes=len(changed),changed_ranges=len(ranges))
+    return dict(party_unchanged_bytes=600,pp=[1,8,0,0],hp=[320,354],bag_unchanged=True,hm05_owned=True,money_before=money_a,money_after=money_b,physical_flag_deltas=fd,auxiliary_flag2056_owner_resolved=False,variable_deltas=vd,auxiliary_runtime_owners_resolved=False,flag4367=flag,old_bank_preserved_bytes=57344,pc_s61e_preserved=True,s61e_crc_verified=True,sector_checksum_checks=len(ra)+len(rb)+len(rc),national_dex_magic=0,national_var404e=0,national_flag840=0,story_vars={'4071':8,'4072':1},badge_count=1,all_save_rtc_cold_identical=True,changed_bytes=len(changed),changed_ranges=len(ranges))
 
 def verify(folder,before,rom):
     folder=Path(folder);need(not(folder/'failure.json').exists(),'成功原本だけ')
