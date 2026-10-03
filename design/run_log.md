@@ -11397,3 +11397,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: WIP7061be32/171a6518、記録source=f74ed8efe29f36952c3f9ec864ca6a8f37a47c82・run=37091670533。同branch非force push、全text読戻し。自己SHAはgit履歴で確認。
 - Network: GitHub connectorと固定Actions artifactsのみ。全Save/ROM/画面/差分hexはartifactだけ。旧pending5件の完了も外部APIで照合。merge/release/active baseline/source-lock変更なし。
 - Next: story-fastの唯一の開始点はartifact11261539316のstory-fast.srm（Save23、131088bytes、SHA256 728bd39b11ea53bafd31cff5fb50e7f81fe5973c0c5fae559ea22037827832bb）。ちえのどうくつ内部map1/73・20,3東・party4/RP0・12296円・badge1、var4071=6/4072=1。北入口からの階段warp・通常Save23・保存成功文言・独立Continueは限定受入済み。内部の先へ通常入力で進み、次のSave/cold境界で区切る。洞窟走破/南出口/新storyイベントは未完。45/cold13入力、静的14/入力17/原本受入24試験とSave1〜22/旧BP/P08は無影響に再走しない。run37090970832のfailureは保存後oracleの補助flag2056不変仮定が原因であり、成功へ改作しない。2056:1→0と補助var4021/4022の実観測差分だけを限定記録しruntime ownerは未解決。HM05は所持のみで未習得/未使用・原因未解決、同じ拒否入力を反復しない。全国図鑑magic0/grant ownerと分離progression原本Axewを保全し、flag/var注入で解禁しない。正規全国図鑑、自然成長/進化、Lucky Egg/12ケース/Lv100soak、研究施設自然到達、全storyは未完。
+
+## 2026-10-03T03:11:30+00:00
+- Timestamp: 2026-10-03T03:11:30+00:00
+- Task: USER-20261003-CAVE-COORD-ROUTE / Save23後の正規座標teleport ownerと次の11歩
+- Version: story-cave-coordinate-route-v1
+- Status: DONE（静的owner限定。次teleportのnative未実測）
+- Summary: map1/73 coord表と27,7→19,14の正規warpteleportを4root/5node・診断0で照合。衝突gridだけの無経路をバグと誤認せず、Save23から11歩の候補を固定。reserved script0と後続flag4367/var4071 ownerを区別。
+- Files changed: 限定採取/record器、新9拒否試験、専用workflow、checkpoint/guide、固定再開MD/JSON、両ログ。
+- Verify: 固定candidate/Save23 hash、Save23記録run37091670533の全11step終端、原本backing flags/vars、静的graph/11歩。新9試験、scoped final index/resume/task graph/diff確認後commit。native0/旧case再走0/ROM・Save変更0/compile0。
+- Commit: source=d9435a2d4af239ba25e262722bd52d8814a6bf86・run=37092347183、同branch非force push、全text読戻し。
+- Network: GitHub connector/既存Actions原本のみ。一般CI全成功は主張せず、merge/release/active baseline変更なし。
+- Next: Save23 artifact11261539316のstory-fast.srm（SHA256 728bd39b11ea53bafd31cff5fb50e7f81fe5973c0c5fae559ea22037827832bb、131088bytes）からだけ再開。map1/73・20,3東から通常入力で東7歩/南4歩の座標27,7へ進み、正規coord scriptの19,14へのteleportを新規実測する。elevation4/var4000=0のruntime発火は未受入。道中に野生戦が起きたら通常UIで対処し、host-writeやflag注入は使わない。到達後は通常Saveと独立Continueで区切る。座標trigger・静的11歩・4root/5nodeは保存済み監査を再利用。Save23までの45/cold13入力、24受入試験、旧Save1〜22/BP/P08は無影響に再走しない。27,7/19,14のteleport実到達、洞窟走破、HM05解決、全国図鑑、自然育成/進化、全storyは未完。

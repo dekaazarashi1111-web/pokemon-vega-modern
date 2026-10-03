@@ -8,9 +8,9 @@
 
 支援story-fastは洞窟内部map1/73・20,3東へ進行、通常Save23と独立Continueを限定受入。party4/RP0・12296円・badge1。旧oracle failureを保持し原本だけで回収。洞窟走破/全国図鑑/自然成長/全story未完。
 
-**次: story-fastの唯一の開始点はartifact11261539316のstory-fast.srm（Save23、131088bytes、SHA256 728bd39b11ea53bafd31cff5fb50e7f81fe5973c0c5fae559ea22037827832bb）。ちえのどうくつ内部map1/73・20,3東・party4/RP0・12296円・badge1、var4071=6/4072=1。北入口からの階段warp・通常Save23・保存成功文言・独立Continueは限定受入済み。内部の先へ通常入力で進み、次のSave/cold境界で区切る。洞窟走破/南出口/新storyイベントは未完。45/cold13入力、静的14/入力17/原本受入24試験とSave1〜22/旧BP/P08は無影響に再走しない。run37090970832のfailureは保存後oracleの補助flag2056不変仮定が原因であり、成功へ改作しない。2056:1→0と補助var4021/4022の実観測差分だけを限定記録しruntime ownerは未解決。HM05は所持のみで未習得/未使用・原因未解決、同じ拒否入力を反復しない。全国図鑑magic0/grant ownerと分離progression原本Axewを保全し、flag/var注入で解禁しない。正規全国図鑑、自然成長/進化、Lucky Egg/12ケース/Lv100soak、研究施設自然到達、全storyは未完。**
+**次: Save23 artifact11261539316のstory-fast.srm（SHA256 728bd39b11ea53bafd31cff5fb50e7f81fe5973c0c5fae559ea22037827832bb、131088bytes）からだけ再開。map1/73・20,3東から通常入力で東7歩/南4歩の座標27,7へ進み、正規coord scriptの19,14へのteleportを新規実測する。elevation4/var4000=0のruntime発火は未受入。道中に野生戦が起きたら通常UIで対処し、host-writeやflag注入は使わない。到達後は通常Saveと独立Continueで区切る。座標trigger・静的11歩・4root/5nodeは保存済み監査を再利用。Save23までの45/cold13入力、24受入試験、旧Save1〜22/BP/P08は無影響に再走しない。27,7/19,14のteleport実到達、洞窟走破、HM05解決、全国図鑑、自然育成/進化、全storyは未完。**
 
-Save23内部から先だけ。Save1〜22/今回の45+13入力/完了済み試験は無影響に再走しない。旧failureと補助owner未解決を保持。HM05盲修正/flag注入解禁は禁止。
+Save23から先の未観測coord teleportだけ。静的監査/旧入力を再走しない。所持HM05を習得済みとしない。全国図鑑/bridge/story flagのhost注入は禁止。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
@@ -25,12 +25,12 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `docs/PR16_STORY_CAVE_ROUTE_JA.md`
+- `content/modernization/pr16_story_cave_route_checkpoint.json`
 - `docs/PR16_STORY_SAVE23_JA.md`
 - `content/modernization/pr16_story_save23_checkpoint.json`
-- `content/modernization/pr16_story_save23_evidence/inspection.json`
+- `scripts/pr16_story_cave_route.py`
 - `docs/PR16_NATIONAL_DEX_OWNER_JA.md`
-- `content/modernization/pr16_story_acceleration_checkpoint.json`
-- `scripts/pr16_story_save23_accept.py`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -348,6 +348,7 @@ P08ゲート:
 - Save21 run36662466133の181/cold33入力・62試験・HM05拒否観測/トシヒデ1勝/電話イベント/保存Continueは記録済み。無影響の再走禁止。Save20以前も不変。
 - Save22 run36668710078の397/cold35入力・58+10試験・503新5勝/6040円/洞窟北入口/保存Continueは記録済み。無影響の再走禁止。Save21以前も不変。
 - Save23の45/cold13入力・内部warp/保存/Continueは原本から限定受入。run37090970832 failureを保持しnative再走0で回収。静的14/入力17/原本24試験は無影響に反復しない。
+- Save23後の座標teleport静的owner4root/5node・11歩候補はpr16_story_cave_route_checkpoint.jsonから再利用。native到達へ昇格しない。
 
 ## 次セッションへ残す更新手順
 

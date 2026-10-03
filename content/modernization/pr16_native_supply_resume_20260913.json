@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "story-fastの唯一の開始点はartifact11261539316のstory-fast.srm（Save23、131088bytes、SHA256 728bd39b11ea53bafd31cff5fb50e7f81fe5973c0c5fae559ea22037827832bb）。ちえのどうくつ内部map1/73・20,3東・party4/RP0・12296円・badge1、var4071=6/4072=1。北入口からの階段warp・通常Save23・保存成功文言・独立Continueは限定受入済み。内部の先へ通常入力で進み、次のSave/cold境界で区切る。洞窟走破/南出口/新storyイベントは未完。45/cold13入力、静的14/入力17/原本受入24試験とSave1〜22/旧BP/P08は無影響に再走しない。run37090970832のfailureは保存後oracleの補助flag2056不変仮定が原因であり、成功へ改作しない。2056:1→0と補助var4021/4022の実観測差分だけを限定記録しruntime ownerは未解決。HM05は所持のみで未習得/未使用・原因未解決、同じ拒否入力を反復しない。全国図鑑magic0/grant ownerと分離progression原本Axewを保全し、flag/var注入で解禁しない。正規全国図鑑、自然成長/進化、Lucky Egg/12ケース/Lv100soak、研究施設自然到達、全storyは未完。",
+    "next_step": "Save23 artifact11261539316のstory-fast.srm（SHA256 728bd39b11ea53bafd31cff5fb50e7f81fe5973c0c5fae559ea22037827832bb、131088bytes）からだけ再開。map1/73・20,3東から通常入力で東7歩/南4歩の座標27,7へ進み、正規coord scriptの19,14へのteleportを新規実測する。elevation4/var4000=0のruntime発火は未受入。道中に野生戦が起きたら通常UIで対処し、host-writeやflag注入は使わない。到達後は通常Saveと独立Continueで区切る。座標trigger・静的11歩・4root/5nodeは保存済み監査を再利用。Save23までの45/cold13入力、24受入試験、旧Save1〜22/BP/P08は無影響に再走しない。27,7/19,14のteleport実到達、洞窟走破、HM05解決、全国図鑑、自然育成/進化、全storyは未完。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -1076,7 +1076,8 @@
     "Save20 run36572961114の248/cold59入力・60試験・通常HM05/2勝/2離脱/PC回復/保存Continueは受入済み。無影響の再走禁止。Save19以前も不変。",
     "Save21 run36662466133の181/cold33入力・62試験・HM05拒否観測/トシヒデ1勝/電話イベント/保存Continueは記録済み。無影響の再走禁止。Save20以前も不変。",
     "Save22 run36668710078の397/cold35入力・58+10試験・503新5勝/6040円/洞窟北入口/保存Continueは記録済み。無影響の再走禁止。Save21以前も不変。",
-    "Save23の45/cold13入力・内部warp/保存/Continueは原本から限定受入。run37090970832 failureを保持しnative再走0で回収。静的14/入力17/原本24試験は無影響に反復しない。"
+    "Save23の45/cold13入力・内部warp/保存/Continueは原本から限定受入。run37090970832 failureを保持しnative再走0で回収。静的14/入力17/原本24試験は無影響に反復しない。",
+    "Save23後の座標teleport静的owner4root/5node・11歩候補はpr16_story_cave_route_checkpoint.jsonから再利用。native到達へ昇格しない。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -4257,18 +4258,18 @@
     "status": "PASS_NATIONAL_DEX_GRANT_OWNER_SCOPED"
   },
   "next_action": {
-    "goal_ja": "story-fastの唯一の開始点はartifact11261539316のstory-fast.srm（Save23、131088bytes、SHA256 728bd39b11ea53bafd31cff5fb50e7f81fe5973c0c5fae559ea22037827832bb）。ちえのどうくつ内部map1/73・20,3東・party4/RP0・12296円・badge1、var4071=6/4072=1。北入口からの階段warp・通常Save23・保存成功文言・独立Continueは限定受入済み。内部の先へ通常入力で進み、次のSave/cold境界で区切る。洞窟走破/南出口/新storyイベントは未完。45/cold13入力、静的14/入力17/原本受入24試験とSave1〜22/旧BP/P08は無影響に再走しない。run37090970832のfailureは保存後oracleの補助flag2056不変仮定が原因であり、成功へ改作しない。2056:1→0と補助var4021/4022の実観測差分だけを限定記録しruntime ownerは未解決。HM05は所持のみで未習得/未使用・原因未解決、同じ拒否入力を反復しない。全国図鑑magic0/grant ownerと分離progression原本Axewを保全し、flag/var注入で解禁しない。正規全国図鑑、自然成長/進化、Lucky Egg/12ケース/Lv100soak、研究施設自然到達、全storyは未完。",
+    "goal_ja": "Save23 artifact11261539316のstory-fast.srm（SHA256 728bd39b11ea53bafd31cff5fb50e7f81fe5973c0c5fae559ea22037827832bb、131088bytes）からだけ再開。map1/73・20,3東から通常入力で東7歩/南4歩の座標27,7へ進み、正規coord scriptの19,14へのteleportを新規実測する。elevation4/var4000=0のruntime発火は未受入。道中に野生戦が起きたら通常UIで対処し、host-writeやflag注入は使わない。到達後は通常Saveと独立Continueで区切る。座標trigger・静的11歩・4root/5nodeは保存済み監査を再利用。Save23までの45/cold13入力、24受入試験、旧Save1〜22/BP/P08は無影響に再走しない。27,7/19,14のteleport実到達、洞窟走破、HM05解決、全国図鑑、自然育成/進化、全storyは未完。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。Save14は作業コピーだけを使用する。自己OT party、manifest解決済み通常支援用品、EXP境界、safe opponentはpre-battle fixtureとして全byteを台帳化してよい。badge/key item/story flag/money/RPをfixture付与せず、戦闘開始後は通常入力とゲーム内処理だけを使う。",
-    "id": "STORY_AFTER_CHIE_INTERIOR_SAVE23",
+    "id": "STORY_CAVE_COORD27_FROM_SAVE23",
     "read_paths": [
+      "docs/PR16_STORY_CAVE_ROUTE_JA.md",
+      "content/modernization/pr16_story_cave_route_checkpoint.json",
       "docs/PR16_STORY_SAVE23_JA.md",
       "content/modernization/pr16_story_save23_checkpoint.json",
-      "content/modernization/pr16_story_save23_evidence/inspection.json",
-      "docs/PR16_NATIONAL_DEX_OWNER_JA.md",
-      "content/modernization/pr16_story_acceleration_checkpoint.json",
-      "scripts/pr16_story_save23_accept.py"
+      "scripts/pr16_story_cave_route.py",
+      "docs/PR16_NATIONAL_DEX_OWNER_JA.md"
     ],
-    "stop_rule_ja": "Save23内部から先だけ。Save1〜22/今回の45+13入力/完了済み試験は無影響に再走しない。旧failureと補助owner未解決を保持。HM05盲修正/flag注入解禁は禁止。"
+    "stop_rule_ja": "Save23から先の未観測coord teleportだけ。静的監査/旧入力を再走しない。所持HM05を習得済みとしない。全国図鑑/bridge/story flagのhost注入は禁止。"
   },
   "observed_date_jst": "2026-10-03",
   "observed_head": "171a6518751659d66523924b9469045019814fb7",
@@ -6589,9 +6590,9 @@
   },
   "pending_runs": [
     {
-      "run_id": 37091670533,
+      "run_id": 37092347183,
       "status": "in_progress",
-      "tested_head": "f74ed8efe29f36952c3f9ec864ca6a8f37a47c82"
+      "tested_head": "d9435a2d4af239ba25e262722bd52d8814a6bf86"
     }
   ],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
@@ -9391,6 +9392,10 @@
     ".github/workflows/pr16-story-ayame.yml": {
       "sha256": "9985351fe59e540f0113a04e079c4c44c77a0164695252f2b1c9ad1089103a51",
       "size": 1096
+    },
+    ".github/workflows/pr16-story-cave-route.yml": {
+      "sha256": "73ee681657254d1899a0c5fa8cc39afb7397f86d6fdb1588c62eaf7c6c46382a",
+      "size": 2595
     },
     ".github/workflows/pr16-story-fast-maori-record.yml": {
       "sha256": "2b9a9cb92edcd169c7a80097ab8ecad07877aefe82a05358562f3e9be89aef99",
@@ -12200,6 +12205,10 @@
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
+    "content/modernization/pr16_story_cave_route_checkpoint.json": {
+      "sha256": "0795a7903b5e8bd7fc23475e291ed74f94a0da28c9a8318038257707068aeded",
+      "size": 14326
+    },
     "content/modernization/pr16_story_fast_maori_checkpoint.json": {
       "sha256": "b146d0e679270e10872331535965c6ba42fa47749de7014564d539ae8705c12d",
       "size": 11918
@@ -13791,6 +13800,10 @@
     "docs/PR16_STORY_AYAME_PERSISTENCE_AUDIT_JA.md": {
       "sha256": "b728810d961665912cbecf8926272be52a923bb2b4269a84c885fda5febd6bbb",
       "size": 2913
+    },
+    "docs/PR16_STORY_CAVE_ROUTE_JA.md": {
+      "sha256": "087bccc49345e5128005a2862c376521a321a00bb7a2d52f49f5e051f42c9ea4",
+      "size": 2325
     },
     "docs/PR16_STORY_FAST_MAORI_JA.md": {
       "sha256": "a938f700a0eb9d97e83250687c4e74a0c80e81143efc07d6455c428b522f4fab",
@@ -19268,6 +19281,10 @@
       "sha256": "65d2e633ffb598bab2f7e687e04660cd37ac83f6635b39f9902045f0e71e84ae",
       "size": 18481
     },
+    "scripts/pr16_story_cave_route.py": {
+      "sha256": "d122cc50e34d6cb54c1d61f55b9c1b266a6fe5a40f7a61aaa6988c920615478c",
+      "size": 12979
+    },
     "scripts/pr16_story_fast_maori.py": {
       "sha256": "3add6d4ff7d2a0840085a398cfa3164bc4c11d11ceb5ef92caa26ab11c4bfa80",
       "size": 12364
@@ -20916,6 +20933,10 @@
       "sha256": "e6153a7795b1a4695e2f5093ac9c2fb56209db287622fbc6ccba10a0e416a4a2",
       "size": 4709
     },
+    "tests/test_pr16_story_cave_route.py": {
+      "sha256": "5888e66fa5b8c9dcf5761fbfd5514dc9e031655dd883e1b3a8113ae786031849",
+      "size": 1221
+    },
     "tests/test_pr16_story_fast_maori.py": {
       "sha256": "020fd8cbe7d465949740fa200dfcfee20aefa3587ce2b744c07816f5bb203f8b",
       "size": 8337
@@ -21664,6 +21685,23 @@
     "native_processes": 0,
     "parent_artifact_id": 11012768108,
     "status": "PASS_AYAME_SAVE18_PERSISTENCE_AUDIT"
+  },
+  "story_cave_route": {
+    "checkpoint": "content/modernization/pr16_story_cave_route_checkpoint.json",
+    "expected_teleport_xy": [
+      19,
+      14
+    ],
+    "from_save": 23,
+    "guide": "docs/PR16_STORY_CAVE_ROUTE_JA.md",
+    "native_accepted": false,
+    "run_id": 37092347183,
+    "static_steps": 11,
+    "status": "PASS_CAVE_COORDINATE_ROUTE_OWNER_STATIC_ONLY",
+    "target_coord": [
+      27,
+      7
+    ]
   },
   "story_fast_maori": {
     "actions_completion_confirmed": true,
@@ -22506,6 +22544,134 @@
       }
     ],
     "original_run_conclusion": "failure",
+    "record_completion": {
+      "job": {
+        "check_run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/check-runs/111113139437",
+        "completed_at": "2026-10-03T02:59:51Z",
+        "conclusion": "success",
+        "created_at": "2026-10-03T02:59:12Z",
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "f74ed8efe29f36952c3f9ec864ca6a8f37a47c82",
+        "html_url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/37091670533/job/111113139437",
+        "id": 111113139437,
+        "labels": [
+          "ubuntu-24.04"
+        ],
+        "name": "record",
+        "node_id": "CR_kwDOUPNhZs8AAAAZ3tv07Q",
+        "run_attempt": 1,
+        "run_id": 37091670533,
+        "run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/37091670533",
+        "runner_group_id": 0,
+        "runner_group_name": "GitHub Actions",
+        "runner_id": 1000018765,
+        "runner_name": "GitHub Actions 1000018765",
+        "started_at": "2026-10-03T02:59:15Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completed_at": "2026-10-03T02:59:17Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "started_at": "2026-10-03T02:59:16Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-03T02:59:30Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "started_at": "2026-10-03T02:59:17Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-03T02:59:30Z",
+            "conclusion": "success",
+            "name": "Scoped source guard before original-only recovery",
+            "number": 3,
+            "started_at": "2026-10-03T02:59:30Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-03T02:59:41Z",
+            "conclusion": "success",
+            "name": "Verify preserved Save23 and record without native replay",
+            "number": 4,
+            "started_at": "2026-10-03T02:59:30Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-03T02:59:45Z",
+            "conclusion": "success",
+            "name": "Scoped final index private guard and fixed resume",
+            "number": 5,
+            "started_at": "2026-10-03T02:59:41Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-03T02:59:45Z",
+            "conclusion": "success",
+            "name": "Lightweight task graph",
+            "number": 6,
+            "started_at": "2026-10-03T02:59:45Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-03T02:59:46Z",
+            "conclusion": "success",
+            "name": "Commit and nonforce push same branch",
+            "number": 7,
+            "started_at": "2026-10-03T02:59:45Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-03T02:59:47Z",
+            "conclusion": "success",
+            "name": "Exact committed text readback",
+            "number": 8,
+            "started_at": "2026-10-03T02:59:46Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-03T02:59:49Z",
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@v4",
+            "number": 9,
+            "started_at": "2026-10-03T02:59:47Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-03T02:59:49Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 18,
+            "started_at": "2026-10-03T02:59:49Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-03T02:59:49Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 19,
+            "started_at": "2026-10-03T02:59:49Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/jobs/111113139437",
+        "workflow_name": "pr16-story-save23-record"
+      },
+      "reflected_head": "46cbf4bc3e2d303c7178377e3882ecc874dba8ed",
+      "run": {
+        "conclusion": "success",
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "f74ed8efe29f36952c3f9ec864ca6a8f37a47c82",
+        "id": 37091670533,
+        "path": ".github/workflows/pr16-story-save23-record.yml",
+        "run_attempt": 1,
+        "status": "completed"
+      }
+    },
     "record_native_processes": 0,
     "record_run_id": 37091670533,
     "rp": 0,
