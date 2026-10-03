@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-こころのやかた北西廊下14歩/新野生1勝でSave59。5,7北。次は有効階段30,10へ残り30歩。上階/像の紙未到達。
+こころのやかた北廊下10歩でSave60。14,6東、不通15,6と近傍NPC移動。上階/像の紙未到達。
 
-**次: Save59 artifact11286447464のstory-fast.srm（131088bytes/SHA256 b1acf753876e54805a82c8f23aeacd0e9d69824da50c5f0d504720227f0f4552）だけから再開。map1/59・5,7北。未通過接尾辞14歩と新野生オタクン♂Lv9へ1勝、つばめがえし1回/PP12→11、HP288/294・ミュウツー全HP/PP・Bag/17904円/RP0/badge1/story4071=9/4072=1保持、Save59/独立Continueを限定受入。上階/有効階段/像の紙は未到達。次は保存済pr16_story_save59_measure.ROUTEの5,7からの接尾辞30歩、北5,6→東28,6→南28,10→東30,10のbehavior108階段warp5→map1/60warp2へ通常入力。最初の新event/戦闘/未通過境界で保存。到着候補32,10/33,10は未測定。旧20,24warp8は床behavior8上の着地点で不発、未保存失敗16入力3画面/native1のSave57原本を保持し同じ北歩行を繰り返さない。紙ownerはmap1/60背景16,28/script149012422・item274/flag4383と静的照合済みだが未取得。26新controller/51新受入、95+cold13入力54画面69member/native2を無影響再走0。RAMledgerは保存menu開始観測27でfd17077e18b3f159f176b300578a7a563adeb077729226917b9d0b2ac9a238c8へ変化しowner未解明、全coldSaveRTC/全暗所field画面同一。46counter59でも部分write、47成功→51field。旧RAM/offset41/2056/aux4021/4022/404d/40ac未解明保持。Flash未使用/未習得、がくしゅうそうち未装備。全国図鑑/全story/自然育成・進化/LuckyEgg/研究施設自然到達未完。既存ROM/runtime/input非再配布、host補充/回復再走/故意全滅/merge/release/baseline切替なし。一般CI既知不一致/action_requiredを全成功にしない。**
+**次: Save60 artifact11286820207のstory-fast.srm（131088bytes/SHA256 40d65e6b41a49a59d295667ea30a88496da25c641ac8896059ed4d1fce196b0f）だけから再開。map1/59・14,6東。新10歩を限定受入、15,6への東入力3回は不通で停止。新戦闘0、全party600byte/HP288/294・PP15,10,15,11・ミュウツー全HP/PP・Bag/17904円/RP0/badge1/story4071=9/4072=1/RAM台帳保持。近傍移動NPCを実画面で観測、local6初期14,4/script141180503は静的候補でruntime同定/不通因果は未確定。次はcold画面の東隣NPCへの通常A会話を有限入力で確認するか、保存済通行可床14,5→15,5→16,5→16,6へ最小北迂回して未通過接尾辞を進める。目標はbehavior108階段30,10→map1/60warp2。最初の新event/戦闘/不通境界で保存。旧14,6→15,6東3回や旧20,24着地点不発を盲目的に再走しない。上階/紙未到達、紙ownerはmap1/60背景16,28/item274/flag4383と静的照合済み。26新controller/51新受入、75+cold13入力44画面59member/native2を無影響再走0。35で最終Flash一致でもcounter59/保存中、36counter60でも部分write、37成功→41field。全SaveRTC同一、progress/cold画面は近傍NPC211pixel/bbox129,58,143,80だけ異なり全画面同一としない。旧RAM/offset41/2056/aux4021/4022/404d/40ac未解明保持。Flash未使用/未習得、がくしゅうそうち未装備。全国図鑑/全story/自然育成・進化/LuckyEgg/研究施設自然到達未完。既存ROM/runtime/input非再配布、host補充/回復再走/故意全滅/merge/release/baseline切替なし。一般CI既知不一致/action_requiredを全成功にしない。**
 
-Save59の5,7以降の接尾辞30歩だけ。新野生1勝/旧14歩を再走しない。次の新event/戦闘/未通過境界で保存。20,24着地点を発火warpとしない。
+Save60の14,6東から新しい通常会話または最小北迂回。東3回不通を無条件再走せず、最初の新event/戦闘/未通過境界で保存。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `22dfe546decd1240c897e53c6dfd0cf49375cdeb`。
-館の北西廊下14歩/新野生1勝/Save59。5,7北。次は有効階段30,10への残り30歩。上階/紙未到達。
+証拠のsource HEAD: `782cf85e25dc2bb3e73134af027431be9724e084`。
+館の北廊下10歩/14,6東の動的境界/Save60。15,6東3回不通と近傍NPC移動を観測。上階/紙未到達。
 
 ## 最短の再開手順
 
@@ -25,12 +25,12 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_STORY_SAVE59_JA.md`
-- `content/modernization/pr16_story_save59_checkpoint.json`
-- `content/modernization/pr16_story_save59_visual_review.json`
-- `scripts/pr16_story_save59_accept.py`
-- `scripts/pr16_story_save59_measure.py`
-- `content/modernization/pr16_story_save59_evidence/inspection.json`
+- `docs/PR16_STORY_SAVE60_JA.md`
+- `content/modernization/pr16_story_save60_checkpoint.json`
+- `content/modernization/pr16_story_save60_visual_review.json`
+- `scripts/pr16_story_save60_accept.py`
+- `scripts/pr16_story_save60_measure.py`
+- `content/modernization/pr16_story_save60_evidence/inspection.json`
 - `content/modernization/pr16_story_save57_preparation.json`
 - `content/modernization/pr16_story_save56_preparation.json`
 
@@ -388,6 +388,7 @@ P08ゲート:
 - Save57の93/cold13入力53画面69member/51受入を無影響再走しない。warp8の誤仮定は未保存16入力3画面/native1、影響3試験だけ訂正。野生1勝/PP14→13、45counter部分write→46成功→50field。紙/上階未到達、RAM台帳/aux owner未解明。
 - Save58の95/cold13入力54画面69member/26controller/51受入を無影響再走しない。新14歩/バーニン♂Lv12へ1勝/PP13→12、46counter部分write→47成功→51field。上階/紙未到達、RAM台帳観測19/aux4021owner未解明。
 - Save59の95/cold13入力54画面69member/26controller/51受入を無影響再走しない。新14歩/オタクン♂Lv9へ1勝/PP12→11、46counter部分write→47成功→51field。上階/紙未到達、RAM台帳保存menu観測27/aux4021owner未解明。
+- Save60の75/cold13入力44画面59member/26controller/51受入を無影響再走しない。新10歩/新戦闘0/全party不変。15,6東3回は不通、同じ入力の盲目的再生をしない。35最終hash一致だが保存中→36counter部分write→37成功→41field。coldのNPC211pixel差/aux4021owner未解明。
 
 ## 次セッションへ残す更新手順
 
