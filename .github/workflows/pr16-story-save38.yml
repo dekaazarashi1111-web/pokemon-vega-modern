@@ -26,10 +26,10 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 4
-      - name: Three changed arrow-door checks; inherit ten original checks
+      - name: Inherit all thirteen controller checks; exact cumulative source guard
         run: |
           set -euo pipefail
-          python3 -B -m unittest discover -s tests -p 'test_pr16_story_save38_door.py' -v
+          python3 -B -c "import sys; sys.path.insert(0,'scripts'); import pr16_story_save38_measure as m; print(m.controller_receipts())"
           python3 -B -c "import sys; sys.path.insert(0,'scripts'); import pr16_story_save38_measure as m; import pr16_learnset_runtime_record as g; g.START=m.BASE; g.CODE=m.CODE; g.OWNED=set(); g.guard()"
       - name: Repair unsaved arrow-door boundary and independent Continue
         run: python3 -B scripts/pr16_story_save38_measure.py

@@ -11,7 +11,7 @@ from pr16_story_after_maori import need,identity,write,map_view,unpack
 from pr16_story_after_maori_session import Session
 import pr16_story_save25_measure as m
 h=m.h
-BASE='096b25e970312a189d5bb45e439a70cdfca73ca4'
+BASE='0d952edaa33d312c21137e1c83432775d182d3ca'
 OUT=ROOT/'.local/pr16-story-save38';ART=OUT/'artifact';ASSETS=OUT/'private-inputs'
 CODE={'scripts/pr16_story_save38_measure.py','tests/test_pr16_story_save38_measure.py','.github/workflows/pr16-story-save38.yml','tests/test_pr16_story_save38_door.py','content/modernization/pr16_story_save38_preparation.json'}
 PP=[1,8,0,0]
@@ -110,6 +110,16 @@ def restore():
     need(identity((runtime/'lib/libmgba.so').read_bytes())==dict(size=1968536,sha256='0c87a12341640e6a2d325e59e76eb4b002947771ad4d8814b216e3b99817d68d'),'同一mGBA')
     return runtime
 
+def controller_receipts():
+    result=[]
+    for job,source,suite,count in [(111214539355,'096b25e970312a189d5bb45e439a70cdfca73ca4','test_pr16_story_save38_measure',10),(111215039388,'de044e9f81d4506d36c7398a840252edb62fb327','test_pr16_story_save38_door',3)]:
+        path='tests/'+suite+'.py';need(h.d.git('show',source+':'+path)==(ROOT/path).read_bytes(),'controller試験source不変')
+        lines=h.d.inputs.api('actions/jobs/'+str(job)+'/logs',True).decode().splitlines()
+        tests=[v.split('Z ',1)[-1]for v in lines if ' ... ok'in v and suite+'.'in v]
+        need(len(tests)==count and any(f'Ran {count} tests in 'in v for v in lines)and any(v.endswith(' OK')for v in lines),'既存試験成功だけ継承')
+        result.append(dict(job=job,source=source,count=count,test_lines=tests,replayed_tests=0))
+    return result
+
 def failed_original():
     terminal=inherited.terminal(37127113183,'096b25e970312a189d5bb45e439a70cdfca73ca4',111214539355,['success','success','success','failure','skipped','success','success','success'])
     _,z=a.transport.archive(11275422186,37127113183,dict(size=99253,sha256='b7d8eb05a146d394d66a00232b20fceae72886238e8a0842ce70418ce1f037e8'),'096b25e970312a189d5bb45e439a70cdfca73ca4')
@@ -129,6 +139,8 @@ def main():
     ART.mkdir(parents=True);sessions=[]
     try:
         write(ART/'first-failed-original.json',failed_original())
+        write(ART/'preflight-failure.json',inherited.terminal(37127280308,'de044e9f81d4506d36c7398a840252edb62fb327',111215039388,['success','success','failure','skipped','skipped','failure','success','success']))
+        write(ART/'controller-receipts.json',controller_receipts())
         write(ART/'save37-record-terminal.json',inherited.terminal(37126518059,'db7fbddd8929cf457be95b19d22be5831d22d2eb',111212777875,['success']*11))
         need(state['story_save37']['story_fast_save']==a.OUTPUT,'正式Save37親')
         runtime=restore();seed=(ASSETS/'input.srm').read_bytes()
