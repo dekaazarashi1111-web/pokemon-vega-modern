@@ -7,13 +7,15 @@ class Controller(unittest.TestCase):
     def test_parent(self):self.assertEqual(m.a.ARTIFACT,11284146293)
     def test_start(self):m.start(self.base())
     def test_entry_route(self):self.assertEqual(m.ROUTE,[[16,20],[15,20],[15,19]])
-    def test_frontier(self):self.assertEqual((m.INTERIOR_ROUTE[0],m.INTERIOR_ROUTE[-1]),([20,32],[20,25]))
+    def test_frontier(self):self.assertEqual((m.INTERIOR_ROUTE[0],m.INTERIOR_ROUTE[-1]),([20,33],[20,25]))
+    def test_entry_spawn(self):
+        p=json.loads((ROOT/m.PREP).read_bytes());self.assertEqual(next(w for w in p['interior']['warps']if w['id']==1)['xy'],m.INTERIOR_ROUTE[0])
     def test_adjacent(self):self.assertTrue(all(m.direction(a,b)==64 for a,b in zip(m.INTERIOR_ROUTE,m.INTERIOR_ROUTE[1:])))
     def test_pp(self):self.assertEqual(m.PP,[15,10,15,14]);self.assertEqual(m.select([0,0,0,14]),0)
     def test_entry(self):
         p=json.loads((ROOT/m.PREP).read_bytes());self.assertEqual(next(w for w in p['town']['warps']if w['xy']==[15,19])['target_map'],[1,59])
     def test_wild_terrain(self):
-        p=json.loads((ROOT/m.PREP).read_bytes());self.assertTrue(all(t['behavior']==8 and t['collision']==0 for t in p['terrain']if t['xy']in m.INTERIOR_ROUTE))
+        p=json.loads((ROOT/m.PREP).read_bytes());self.assertTrue(all(t['behavior']==(101 if t['xy']==[20,33]else 8) and t['collision']==0 for t in p['terrain']if t['xy']in m.INTERIOR_ROUTE))
     def test_ledger(self):self.assertEqual(m.a.COLD_LEDGER,'77ccaa1d7ceee4a641d1094ab5b8f5caf44668ea125287542f3e2bed65a80e57')
     def test_unread_floor(self):
         p=json.loads((ROOT/m.PREP).read_bytes());self.assertEqual(next(w for w in p['interior']['warps']if w['xy']==[20,24])['target_map'],[1,60])

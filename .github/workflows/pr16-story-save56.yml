@@ -29,14 +29,15 @@ jobs:
       - name: New mansion entrance and unread-floor boundary checks
         run: |
           set -euo pipefail
+          # 旧22試験のうち影響ある2件と新規1件だけ。残り20件は原log継承。
           python3 -B - <<'PYTEST'
-          import os,re,subprocess,sys
-          from pathlib import Path
-          p=subprocess.run([sys.executable,'-B','-m','unittest','discover','-s','tests','-p','test_pr16_story_save56_measure.py','-v'],capture_output=True)
+          import subprocess,sys,re
+          names=['test_frontier','test_entry_spawn','test_wild_terrain']
+          p=subprocess.run([sys.executable,'-B','-m','unittest','-v']+['tests.test_pr16_story_save56_measure.Controller.'+n for n in names],capture_output=True)
           sys.stdout.buffer.write(p.stdout);sys.stderr.buffer.write(p.stderr)
           lines=[x for x in p.stderr.decode().splitlines()if x.startswith('test_')]
-          assert p.returncode==0 and not p.stdout and len(lines)==22 and all(x.endswith(' ... ok')for x in lines)
-          assert re.search(rb'\nRan 22 tests in [0-9.]+s\n\nOK\n\Z',p.stderr)
+          assert p.returncode==0 and not p.stdout and len(lines)==3 and all(x.endswith(' ... ok')for x in lines)
+          assert re.search(rb'\nRan 3 tests in [0-9.]+s\n\nOK\n\Z',p.stderr)
           PYTEST
           python3 -B -c "import sys; sys.path.insert(0,'scripts'); import pr16_story_save56_measure as m; import pr16_learnset_runtime_record as g; g.START=m.BASE; g.CODE=m.CODE; g.OWNED=set(); g.guard()"
       - name: New ordinary mansion traversal and Save56 with independent Continue

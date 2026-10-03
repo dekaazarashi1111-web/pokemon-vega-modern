@@ -47,7 +47,7 @@ def start(o):
     idle(o,55);need(o['map']==ORIGIN and o['xy']==START and o['facing']==1 and o['party_sha256']==a.PARTY and o['flash_sha256']==a.FLASH and o['ledger_sha256']==a.COLD_LEDGER,'Save55唯一の親')
 
 ROUTE=[[16,20],[15,20],[15,19]]
-INTERIOR_ROUTE=[[20,y]for y in range(32,24,-1)]
+INTERIOR_ROUTE=[[20,y]for y in range(33,24,-1)]
 def inspect(raw,seed):
     need(identity(raw)==a.shared.plan.CANDIDATE and identity(seed)==a.OUTPUT,'正式Save55/同一候補')
     p=json.loads((ROOT/PREP).read_bytes());old=json.loads((ROOT/'content/modernization/pr16_story_save53_owner.json').read_bytes())
@@ -57,7 +57,7 @@ def inspect(raw,seed):
         t=cells[tuple(xy)];need(t['elevation']==3 and t['collision']==0 and t['behavior']==(96 if xy==[15,19]else 0),'保存済館入口3tileだけ')
     inside={tuple(c['xy']):c for c in p['terrain']}
     for xy in INTERIOR_ROUTE:
-        t=inside[tuple(xy)];need(t['map']==DESTINATION and t['elevation']==3 and t['collision']==0 and t['behavior']==8,'暗い館の保存済廊下だけ')
+        t=inside[tuple(xy)];need(t['map']==DESTINATION and t['elevation']==3 and t['collision']==0 and t['behavior']==(101 if xy==[20,33]else 8),'暗い館の保存済廊下だけ')
     entry=next(w for w in p['town']['warps']if w['xy']==[15,19]);need(entry['target_map']==DESTINATION and entry['target_warp']==1,'実入口warp')
     frontier=next(w for w in p['interior']['warps']if w['xy']==[20,24]);need(frontier['target_map']==[1,60]and frontier['target_warp']==5,'次階層は未読、踏む前に止める')
     tab,_=a.parent.sectors.bank(seed,0xe000,55,a.parent.sectors.LAYOUT);party=seed[tab[1]+56:tab[1]+656]
@@ -138,7 +138,7 @@ def progress(s,inspection):
             need(o['xy']==[15,19],'入口door位置');s.step((64,8),(0,180))
         else:s.step((0,180))
     else:raise ValueError('有限entry warp上限')
-    o=s.last;idle(o,55);need(o['map']==DESTINATION and o['xy']==[20,32],'館warp1入口だけ');route.append(o['xy'])
+    o=s.last;idle(o,55);need(o['map']==DESTINATION and o['xy']==[20,33],'実観測warp1入口だけ');route.append(o['xy'])
     for before,target in zip(INTERIOR_ROUTE,INTERIOR_ROUTE[1:]):
         need(s.last['xy']==before and s.last['map']==DESTINATION,'直前館廊下位置')
         for attempt in range(3):
@@ -197,6 +197,19 @@ def restore():
     need(identity((runtime/'lib/libmgba.so').read_bytes())==dict(size=1968536,sha256='0c87a12341640e6a2d325e59e76eb4b002947771ad4d8814b216e3b99817d68d'),'同一mGBA')
     return runtime
 
+def prior_entry_failure():
+    done=inherited.terminal(37152779196,'5bad5bee97dc0059e901984c7f35d936e65c0351',111289893097,['success','success','success','failure','skipped','success','success','success'])
+    _,z=a.transport.archive(11285040773,37152779196,dict(size=22439,sha256='f9858e046713149ace288c6f1ad1fdbadec6d0db401ee5ae5dfe17501796f235'),'5bad5bee97dc0059e901984c7f35d936e65c0351')
+    with z:
+        manifest=json.loads(z.read('manifest.json'));need(len(manifest)==13 and set(z.namelist())==set(manifest)|{'manifest.json'},'失敗原本13member')
+        for n,b in manifest.items():need(identity(z.read(n))==b,'失敗member '+n)
+        receipt=json.loads(z.read('progress/execution.json'));need(receipt['final_save']==receipt['initial_save']==a.OUTPUT and receipt['observations']==6 and receipt['native_end']['inputs']==21,'保存せず入口で停止した21入力だけ')
+        failure=json.loads(z.read('failure.json'));need(failure['message']=='館warp1入口だけ'and failure['native_processes']==1,'座標推測だけを訂正')
+        observations=[json.loads(line)for line in z.read('progress/stdout.txt').decode().splitlines()if '"observe"'in line]
+        need(observations[-1]['map']==[1,59]and observations[-1]['xy']==[20,33]and observations[-1]['field']is True,'実到着座標を根拠に1tile訂正')
+    result=dict(terminal=done,artifact_id=11285040773,archive=dict(size=22439,sha256='f9858e046713149ace288c6f1ad1fdbadec6d0db401ee5ae5dfe17501796f235'),failure=failure,execution=receipt,reason_ja='warp1から自動1歩進む推測を置いたが実際は20,33の出口arrowで停止。初期21入力/6画面の未保存失敗を保持し、実観測位置から8歩の新廊下へ修正。回復/レンジャー/受入済native再走なし。',accepted_case_reruns=0)
+    write(ART/'prior-entry-failure.json',result);return result
+
 def main():
     h.d.current();state=h.source_check();need(os.environ['GITHUB_RUN_ATTEMPT']=='1' and not OUT.exists(),'新区間初回のみ')
     protected=h.d.bindings(set(state['source_bindings'])|h.d.PROTECTED|CODE)
@@ -204,6 +217,7 @@ def main():
     try:
         write(ART/'save55-record-terminal.json',inherited.terminal(37152018112,'3238addb62097be451dbc10e653dba5946070312',111287669292,['success']*11))
         need(state['story_save55']['story_fast_save']==a.OUTPUT,'正式Save55親')
+        prior_entry_failure()
         runtime=restore();seed=(ASSETS/'input.srm').read_bytes()
         inspection=inspect((ASSETS/'candidate.gba').read_bytes(),seed);write(ART/'inspection.json',inspection)
         s=Session(runtime,ASSETS/'candidate.gba',ASSETS/'runner',seed,ART/'progress');sessions.append(s)
