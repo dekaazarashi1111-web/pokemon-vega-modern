@@ -13,9 +13,14 @@ import pr16_story_save25_measure as m
 h=m.h
 BASE='1ef950e14fdef75b2ca15a2986d7e59be2f6f616'
 OUT=ROOT/'.local/pr16-story-save29';ART=OUT/'artifact';ASSETS=OUT/'private-inputs'
-CODE={'scripts/pr16_story_save29_measure.py','tests/test_pr16_story_save29_measure.py','.github/workflows/pr16-story-save29.yml'}
+CODE={'scripts/pr16_story_save29_measure.py','tests/test_pr16_story_save29_measure.py','tests/test_pr16_story_save29_owner.py','.github/workflows/pr16-story-save29.yml'}
 PP=[1,14,0,5]
 ROUTE=[[x,7]for x in range(27,17,-1)]+[[18,6],[18,5],[18,4]]+[[x,4]for x in range(17,12,-1)]+[[13,5],[13,6]]
+def owner_operands(values):
+    need(len(values)==8 and all(type(v)is int for v in values),'8つの実operand')
+    op0,op1,flag,op2,var,value,release,end=values
+    need((op1,flag,op2,var,value,end)==(0x29,4367,0x16,0x4071,7,2),'setflag4367/setvar4071=7/endの独立byte')
+    return dict(first_opcode=op0,setflag_opcode=op1,flag=flag,setvar_opcode=op2,variable=var,value=value,release_opcode=release,end_opcode=end)
 def inspect(raw,seed):
     from pr16_story_after_maori import unpack
     import pr16_story_cave_route as owner
@@ -25,8 +30,7 @@ def inspect(raw,seed):
     need(rows==checkpoint['coordinate_events'],'保存済みcoord原本を再利用')
     roots=rows[3:9]
     need(all(r['script']==0x08214656 and r['trigger_var']==0x4071 and r['trigger_value']==6 and r['elevation']==3 for r in roots),'西側story owner')
-    op0,op1,flag,op2,var,value,release,end=unpack(raw,0x08214656,'BBHBHHBB')
-    need((op0,op1,flag,op2,var,value,release,end)==(0x69,0x29,4367,0x16,0x4071,7,0x6d,2),'正規lock/setflag/setvar/release/end')
+    operands=owner_operands(unpack(raw,0x08214656,'BBHBHHBB'))
     bank,_=a.parent.sectors.bank(seed,0,28,a.parent.sectors.LAYOUT)
     flags,variables=a.parent.sectors.legacy_state(seed,bank)
     ext=a.parent.s61e_record(seed[bank[13]+0x7d0:bank[13]+0xde6])
@@ -41,7 +45,7 @@ def inspect(raw,seed):
     need(all(t['collision']==0 for t in terrain) and [t['elevation']for t in terrain]==[4]*18+[0,3],'西高台→岩階段→下層の新経路')
     need(terrain[-2]['behavior']==42,'高さ0の正規岩階段')
     need([r['xy']for r in rows if r['xy']in ROUTE]==[[27,7]],'開始点以外にcoord再踏なし')
-    return dict(status='NEW_WEST_ROUTE_PREFLIGHT',route=ROUTE,terrain=terrain,story_owner=dict(root=0x08214656,coords=[r['xy']for r in roots],flag=4367,variable=0x4071,value=7),runtime_story_unlock_accepted=False)
+    return dict(status='NEW_WEST_ROUTE_PREFLIGHT',owner_operands=operands,route=ROUTE,terrain=terrain,story_owner=dict(root=0x08214656,coords=[r['xy']for r in roots],flag=4367,variable=0x4071,value=7),runtime_story_unlock_accepted=False)
 
 def select(used):
     need(len(used)==4 and all(type(n)is int and 0<=n<=PP[i]for i,n in enumerate(used)),'Save28実PPの範囲')
@@ -135,6 +139,12 @@ def main():
     try:
         write(ART/'save28-record-terminal.json',inherited.terminal(37117631601,'3900c985f1901d9e0a674cc6254b2b6af2923bd0',111187403209,['success']*10))
         need(state['story_save28']['story_fast_save']==a.OUTPUT,'正式Save28親')
+        _,failed=a.transport.archive(11272197339,37118280803,dict(size=1626,sha256='bbda0747f8f9046a52f5f1eae7346f8be74c229dddf52f534e4341129ca2a398'),'4fe06a3b1a7a09279c591fe4619e6328c8f55ac4')
+        with failed:
+            fm=json.loads(failed.read('manifest.json'));need(set(fm)=={'failure.json','save28-record-terminal.json'},'前回native前だけ')
+            for name,binding in fm.items():need(identity(failed.read(name))==binding,'前回失敗member')
+            f=json.loads(failed.read('failure.json'));need(f['native_processes']==0 and f['message']=='正規lock/setflag/setvar/release/end','先頭/末尾opcodeを未観測で仮定した失敗')
+            write(ART/'preflight-failure.json',f)
         runtime=restore();seed=(ASSETS/'input.srm').read_bytes()
         inspection=inspect((ASSETS/'candidate.gba').read_bytes(),seed);write(ART/'inspection.json',inspection)
         s=Session(runtime,ASSETS/'candidate.gba',ASSETS/'runner',seed,ART/'progress');sessions.append(s)
