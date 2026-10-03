@@ -8690,3 +8690,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: WIP1c7b23e4/25049912/61d71820、記録source=dbb50b3c13ce33d7a8576d9a24178af9e056a49a・run=37113873113。scoped guard/task graph/resume後、同branch非force pushと全text読戻し。
 - Network: 同repoのGitHub/Actions原本のみ。既存ROM/runtimeはActions入力として読取り、新規再配布0。一般CI旧capacity source不一致を成功とせず、merge/release/baseline変更0。
 - Next: Save25 artifact11270560918のstory-fast.srm（4a92a1d2a36c1b74fa7ba211a9b3a815d63c04582fd34b117a5c3af16828a68f、131088bytes）だけから再開。map1/73・31,7南・party4/RP0・12712円・badge1・story4071=6/4072=1。trainer351の通常勝利/416円/Save25/独立Continueは完了。次は東通路の31,8以南から進み、trainer352（30,13）/353（21,17）と岩階段23,14経由の正規teleportを通常入力で確認する。3root/6node・33点地形は静的候補だけで実通行受入ではない。ミュウツーPP[1,14,2,5]/HP324、オノノクスPP[15,10,15,20]/HP294。通常UIで残PPを扱い、host回復/flag/var解禁は禁止。既存候補ROM/runnerはSave24 artifact11263343138からActions内で読取専用再利用。旧runtime artifact10898620034は404で消失、保持済み11263910704のruntime/manifest.json全member/hashを照合して利用。新公開artifactには新save/画面/textだけを入れ、既存ROM/runner/runtime/入力Saveは再配布しない。94/cold13入力、16+7/新18試験、Save1〜24を無影響再走しない。teleport/洞窟走破/HM05原因/全国図鑑/自然進化/全storyは未完。
+
+## 2026-10-03T10:09:40+00:00
+- Timestamp: 2026-10-03T10:09:40+00:00
+- Task: USER-20261003-CAVE-SOUTH-SAVE26 / 洞窟南通路とSave26
+- Version: story-cave-south-save26-v1
+- Status: DONE（新区間野生1勝/保存限定。洞窟走破/全story未完）
+- Summary: 31,7から東南を迂回し32,15西。野生ディグダLv6に火炎放射1回で勝利、通常Save26と独立Continue。新artifactはsave/画面/textだけ。
+- Files changed: Save26専用controller/20受入試験/record workflow、checkpointとtext証拠、固定再開MD/JSON、両ログ。
+- Verify: run37114774344/job111179348370全8step成功、84/cold13入力・37画面・全51member。party差分PP1byte、旧bank/Bag/PC/S61E/全国図鑑/全flags保持、42checksum。15controller試験原本再利用、新20受入試験だけ。record native0/ROM変更0/既受入再走0。
+- Commit: WIP3fde7851、記録source=d89e6f4596a65cff44fd5adde551023a70ccc50d・run=37115447922。scoped guard/task graph/resume後に同branch非force push、全text読戻し。
+- Network: 同repo GitHub/Actions原本のみ。既存ROM/runtime/input Save25はActions入力だけ。一般CI旧capacity source不一致は保持、merge/release/baseline変更0。
+- Next: Save26 artifact11270502866のstory-fast.srm（e65fc5bb2c76d7cfcdd144c1a69451ad8508ff73ad82e4c7f24595d75200624d、131088bytes）だけから再開。map1/73・32,15西・party4/RP0・12712円・badge1・story4071=6/4072=1。野生ディグダLv6の通常1勝、Save26/独立Continueは完了。次は32,15から西へ23,15、岩階段23,14→23,13、19,13→19,14の正規coord teleportを通常入力で確認する。trainer352（30,13）/353（21,17）は未対戦、残り経路は静的候補だけ。ミュウツーPP[1,14,1,5]/HP324、オノノクスPP[15,10,15,20]/HP294。残PPを実技UIで扱い、host回復/flag/var解禁は禁止。既存候補ROM/runnerはSave24 artifact11263343138、runtimeは11263910704をhash固定してActions入力のみ再利用。新公開artifactは新save/画面/textだけ。84/cold13入力・15controller/新20受入試験・Save1〜25は無影響再走しない。teleport/洞窟走破/HM05原因/全国図鑑/自然成長進化/全storyは未完。

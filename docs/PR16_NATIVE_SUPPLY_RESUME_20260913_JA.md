@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-洞窟trainer351の通常勝利/416円と31,7南のSave25・独立Continue受入。party4/RP0・12712円・badge1。teleport/洞窟走破/全国図鑑/自然成長/全story未完。
+洞窟南通路32,15西で野生ディグダLv6を通常1勝、Save26/独立Continue受入。12712円/party4/RP0/badge1。残PP[1,14,1,5]。trainer352/353/teleport/洞窟走破は未完。
 
-**次: Save25 artifact11270560918のstory-fast.srm（4a92a1d2a36c1b74fa7ba211a9b3a815d63c04582fd34b117a5c3af16828a68f、131088bytes）だけから再開。map1/73・31,7南・party4/RP0・12712円・badge1・story4071=6/4072=1。trainer351の通常勝利/416円/Save25/独立Continueは完了。次は東通路の31,8以南から進み、trainer352（30,13）/353（21,17）と岩階段23,14経由の正規teleportを通常入力で確認する。3root/6node・33点地形は静的候補だけで実通行受入ではない。ミュウツーPP[1,14,2,5]/HP324、オノノクスPP[15,10,15,20]/HP294。通常UIで残PPを扱い、host回復/flag/var解禁は禁止。既存候補ROM/runnerはSave24 artifact11263343138からActions内で読取専用再利用。旧runtime artifact10898620034は404で消失、保持済み11263910704のruntime/manifest.json全member/hashを照合して利用。新公開artifactには新save/画面/textだけを入れ、既存ROM/runner/runtime/入力Saveは再配布しない。94/cold13入力、16+7/新18試験、Save1〜24を無影響再走しない。teleport/洞窟走破/HM05原因/全国図鑑/自然進化/全storyは未完。**
+**次: Save26 artifact11270502866のstory-fast.srm（e65fc5bb2c76d7cfcdd144c1a69451ad8508ff73ad82e4c7f24595d75200624d、131088bytes）だけから再開。map1/73・32,15西・party4/RP0・12712円・badge1・story4071=6/4072=1。野生ディグダLv6の通常1勝、Save26/独立Continueは完了。次は32,15から西へ23,15、岩階段23,14→23,13、19,13→19,14の正規coord teleportを通常入力で確認する。trainer352（30,13）/353（21,17）は未対戦、残り経路は静的候補だけ。ミュウツーPP[1,14,1,5]/HP324、オノノクスPP[15,10,15,20]/HP294。残PPを実技UIで扱い、host回復/flag/var解禁は禁止。既存候補ROM/runnerはSave24 artifact11263343138、runtimeは11263910704をhash固定してActions入力のみ再利用。新公開artifactは新save/画面/textだけ。84/cold13入力・15controller/新20受入試験・Save1〜25は無影響再走しない。teleport/洞窟走破/HM05原因/全国図鑑/自然成長進化/全storyは未完。**
 
-Save25以南だけ。trainer351勝利・旧入力は再走しない。静的経路を実到達に昇格せず、全国図鑑/story flag注入禁止。
+Save26の32,15西から先だけ。野生1勝/保存済み入力を再走しない。未到達trainer/teleportを受入へ昇格しない。host解禁禁止。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `61d71820e6df2bc2a16f4fa9102f4aed18c1edaa`。
-trainer351/Save25測定source。全story/製品SHAではない。
+証拠のsource HEAD: `3fde7851bff63efd661b0e5b9f6c6b488272fbb5`。
+洞窟南通路/野生1勝/Save26測定source。全story/製品SHAではない。
 
 ## 最短の再開手順
 
@@ -25,11 +25,11 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_STORY_SAVE25_JA.md`
-- `content/modernization/pr16_story_save25_checkpoint.json`
+- `docs/PR16_STORY_SAVE26_JA.md`
+- `content/modernization/pr16_story_save26_checkpoint.json`
+- `content/modernization/pr16_story_save26_visual_review.json`
+- `scripts/pr16_story_save26_measure.py`
 - `content/modernization/pr16_story_save25_preparation.json`
-- `content/modernization/pr16_story_save25_visual_review.json`
-- `scripts/pr16_story_save25_measure.py`
 - `docs/PR16_NATIONAL_DEX_OWNER_JA.md`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
@@ -351,6 +351,7 @@ P08ゲート:
 - Save23後の座標teleport静的owner4root/5node・11歩候補はpr16_story_cave_route_checkpoint.jsonから再利用。native到達へ昇格しない。
 - Save24の56/cold13入力・32+12+7/新24試験は原本を継承。27,4→27,5の壁3試行と旧11歩候補を反復せず、31,4から先だけ。
 - Save25の94/cold13入力・16+7/新18試験を無影響再走しない。準備3root6node/33点は静的だけ。runtime404のnative0 failureを成功へ改作しない。
+- Save26の84/cold13入力・15controller/新20受入試験を無影響再走しない。37画面/全51memberを保持。野生1勝をtrainer勝利や自然成長へ昇格しない。
 
 ## 次セッションへ残す更新手順
 
