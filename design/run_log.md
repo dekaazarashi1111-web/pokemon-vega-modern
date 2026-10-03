@@ -11409,3 +11409,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: source=d9435a2d4af239ba25e262722bd52d8814a6bf86・run=37092347183、同branch非force push、全text読戻し。
 - Network: GitHub connector/既存Actions原本のみ。一般CI全成功は主張せず、merge/release/active baseline変更なし。
 - Next: Save23 artifact11261539316のstory-fast.srm（SHA256 728bd39b11ea53bafd31cff5fb50e7f81fe5973c0c5fae559ea22037827832bb、131088bytes）からだけ再開。map1/73・20,3東から通常入力で東7歩/南4歩の座標27,7へ進み、正規coord scriptの19,14へのteleportを新規実測する。elevation4/var4000=0のruntime発火は未受入。道中に野生戦が起きたら通常UIで対処し、host-writeやflag注入は使わない。到達後は通常Saveと独立Continueで区切る。座標trigger・静的11歩・4root/5nodeは保存済み監査を再利用。Save23までの45/cold13入力、24受入試験、旧Save1〜22/BP/P08は無影響に再走しない。27,7/19,14のteleport実到達、洞窟走破、HM05解決、全国図鑑、自然育成/進化、全storyは未完。
+
+## 2026-10-03T03:43:03+00:00
+- Timestamp: 2026-10-03T03:43:03+00:00
+- Task: USER-20261003-CAVE-EAST-SAVE24 / 洞窟東通路31,4・Save24の通常保存継続
+- Version: story-cave-east-save24-v1
+- Status: DONE（東通路/Save24限定。teleport/洞窟走破/全story未完）
+- Summary: collision-only11歩候補の27,4→27,5で高さ3→4/北側不可の停止を観測。失敗原本を保持し、同じ方向を反復せず東通路31,4へ12歩進行。通常Save24/独立Continueを受入、ROM変更0。
+- Files changed: 新入力controller/地形限定検査/受入oracle/記録workflow、Save24 checkpoint/guide/text原本、固定再開MD/JSON、両ログ。
+- Verify: run37092974275 native1/Save不変で壁停止、run37093437062 native0の砂床事前検査failureを保持。run37093559410/job111118784339全8step成功、native2・56/cold13入力・22画面・Save131088/party600bytes/Bag/12296円/旧bank/PC/S61E/全国図鑑保持。32+12+7controller試験原本再利用、新24受入試験のみ。記録native0/旧受入再走0/compile0。保存完了文言は未採取、安定field/counter24とcold全byteで限定受入。
+- Commit: WIP85e1e7d2/45ccca9b/d9835626、記録source=1a842ee45ca361522fd4e6f6cee766df6534428e・run=37094105840。scoped final index/resume/task graph/diff確認後、同branch非force push、全text読戻し。
+- Network: GitHub connector/固定Actions原本のみ。地形一次照合 https://github.com/pret/pokefirered/blob/master/include/constants/metatile_behaviors.h 。一般CI旧capacity source不一致/action_requiredは成功へ読み替えず、旧受入を緩めない。merge/release/active baseline変更0。
+- Next: Save24 artifact11263343138のstory-fast.srm（42a5fd672e8be714d40720a9fa4fece27e53293c0b0ca49a2ed0696e206455a0、131088bytes）だけから再開。map1/73・31,4南・party4/RP0・12296円・badge1・var4071=6/4072=1。次は東側通路を南へ通常入力で進み、NPC/野生戦は通常UIで対処し次のSave/独立Continue境界へ。27,4→27,5は高さ3→4/北側進入不可なので旧11歩候補を再試行しない。岩階段23,14へ回り込む候補は未実測、19,14のcoordはflag4367で27,7/8,10へ分岐する。静的座標ownerは再利用し、敵trainer/script/進路と手持ちPPを保存候補から照合して入力を計画する。当回56/cold13入力・32+12+7/新24試験・Save1〜23/旧BP/P08は無影響に再走しない。teleport/洞窟走破/HM05原因/全国図鑑/自然成長進化/全storyは未完。hostによるstory/flag/var解禁禁止。

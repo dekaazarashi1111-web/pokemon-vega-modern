@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "支援story-fastは洞窟内部map1/73・20,3東へ進行、通常Save23と独立Continueを限定受入。party4/RP0・12296円・badge1。旧oracle failureを保持し原本だけで回収。洞窟走破/全国図鑑/自然成長/全story未完。",
+    "current_stop": "洞窟東通路map1/73・31,4南へ通常進行、Save24/独立Continueを受入。party4/RP0・12296円・badge1。旧11歩は高さ境界で停止、失敗2件を保全。teleport/洞窟走破/全国図鑑/自然成長/全story未完。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "Save23 artifact11261539316のstory-fast.srm（SHA256 728bd39b11ea53bafd31cff5fb50e7f81fe5973c0c5fae559ea22037827832bb、131088bytes）からだけ再開。map1/73・20,3東から通常入力で東7歩/南4歩の座標27,7へ進み、正規coord scriptの19,14へのteleportを新規実測する。elevation4/var4000=0のruntime発火は未受入。道中に野生戦が起きたら通常UIで対処し、host-writeやflag注入は使わない。到達後は通常Saveと独立Continueで区切る。座標trigger・静的11歩・4root/5nodeは保存済み監査を再利用。Save23までの45/cold13入力、24受入試験、旧Save1〜22/BP/P08は無影響に再走しない。27,7/19,14のteleport実到達、洞窟走破、HM05解決、全国図鑑、自然育成/進化、全storyは未完。",
+    "next_step": "Save24 artifact11263343138のstory-fast.srm（42a5fd672e8be714d40720a9fa4fece27e53293c0b0ca49a2ed0696e206455a0、131088bytes）だけから再開。map1/73・31,4南・party4/RP0・12296円・badge1・var4071=6/4072=1。次は東側通路を南へ通常入力で進み、NPC/野生戦は通常UIで対処し次のSave/独立Continue境界へ。27,4→27,5は高さ3→4/北側進入不可なので旧11歩候補を再試行しない。岩階段23,14へ回り込む候補は未実測、19,14のcoordはflag4367で27,7/8,10へ分岐する。静的座標ownerは再利用し、敵trainer/script/進路と手持ちPPを保存候補から照合して入力を計画する。当回56/cold13入力・32+12+7/新24試験・Save1〜23/旧BP/P08は無影響に再走しない。teleport/洞窟走破/HM05原因/全国図鑑/自然成長進化/全storyは未完。hostによるstory/flag/var解禁禁止。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -1077,7 +1077,8 @@
     "Save21 run36662466133の181/cold33入力・62試験・HM05拒否観測/トシヒデ1勝/電話イベント/保存Continueは記録済み。無影響の再走禁止。Save20以前も不変。",
     "Save22 run36668710078の397/cold35入力・58+10試験・503新5勝/6040円/洞窟北入口/保存Continueは記録済み。無影響の再走禁止。Save21以前も不変。",
     "Save23の45/cold13入力・内部warp/保存/Continueは原本から限定受入。run37090970832 failureを保持しnative再走0で回収。静的14/入力17/原本24試験は無影響に反復しない。",
-    "Save23後の座標teleport静的owner4root/5node・11歩候補はpr16_story_cave_route_checkpoint.jsonから再利用。native到達へ昇格しない。"
+    "Save23後の座標teleport静的owner4root/5node・11歩候補はpr16_story_cave_route_checkpoint.jsonから再利用。native到達へ昇格しない。",
+    "Save24の56/cold13入力・32+12+7/新24試験は原本を継承。27,4→27,5の壁3試行と旧11歩候補を反復せず、31,4から先だけ。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -4258,29 +4259,29 @@
     "status": "PASS_NATIONAL_DEX_GRANT_OWNER_SCOPED"
   },
   "next_action": {
-    "goal_ja": "Save23 artifact11261539316のstory-fast.srm（SHA256 728bd39b11ea53bafd31cff5fb50e7f81fe5973c0c5fae559ea22037827832bb、131088bytes）からだけ再開。map1/73・20,3東から通常入力で東7歩/南4歩の座標27,7へ進み、正規coord scriptの19,14へのteleportを新規実測する。elevation4/var4000=0のruntime発火は未受入。道中に野生戦が起きたら通常UIで対処し、host-writeやflag注入は使わない。到達後は通常Saveと独立Continueで区切る。座標trigger・静的11歩・4root/5nodeは保存済み監査を再利用。Save23までの45/cold13入力、24受入試験、旧Save1〜22/BP/P08は無影響に再走しない。27,7/19,14のteleport実到達、洞窟走破、HM05解決、全国図鑑、自然育成/進化、全storyは未完。",
+    "goal_ja": "Save24 artifact11263343138のstory-fast.srm（42a5fd672e8be714d40720a9fa4fece27e53293c0b0ca49a2ed0696e206455a0、131088bytes）だけから再開。map1/73・31,4南・party4/RP0・12296円・badge1・var4071=6/4072=1。次は東側通路を南へ通常入力で進み、NPC/野生戦は通常UIで対処し次のSave/独立Continue境界へ。27,4→27,5は高さ3→4/北側進入不可なので旧11歩候補を再試行しない。岩階段23,14へ回り込む候補は未実測、19,14のcoordはflag4367で27,7/8,10へ分岐する。静的座標ownerは再利用し、敵trainer/script/進路と手持ちPPを保存候補から照合して入力を計画する。当回56/cold13入力・32+12+7/新24試験・Save1〜23/旧BP/P08は無影響に再走しない。teleport/洞窟走破/HM05原因/全国図鑑/自然成長進化/全storyは未完。hostによるstory/flag/var解禁禁止。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。Save14は作業コピーだけを使用する。自己OT party、manifest解決済み通常支援用品、EXP境界、safe opponentはpre-battle fixtureとして全byteを台帳化してよい。badge/key item/story flag/money/RPをfixture付与せず、戦闘開始後は通常入力とゲーム内処理だけを使う。",
-    "id": "STORY_CAVE_COORD27_FROM_SAVE23",
+    "id": "STORY_CAVE_EAST_FROM_SAVE24",
     "read_paths": [
+      "docs/PR16_STORY_SAVE24_JA.md",
+      "content/modernization/pr16_story_save24_checkpoint.json",
+      "content/modernization/pr16_story_save24_evidence/terrain.json",
       "docs/PR16_STORY_CAVE_ROUTE_JA.md",
-      "content/modernization/pr16_story_cave_route_checkpoint.json",
-      "docs/PR16_STORY_SAVE23_JA.md",
-      "content/modernization/pr16_story_save23_checkpoint.json",
-      "scripts/pr16_story_cave_route.py",
+      "scripts/pr16_story_save24_accept.py",
       "docs/PR16_NATIONAL_DEX_OWNER_JA.md"
     ],
-    "stop_rule_ja": "Save23から先の未観測coord teleportだけ。静的監査/旧入力を再走しない。所持HM05を習得済みとしない。全国図鑑/bridge/story flagのhost注入は禁止。"
+    "stop_rule_ja": "Save24から先だけ。旧11歩の壁を反復せず、静的ownerをruntimeへ昇格しない。全国図鑑/story flag注入は禁止。"
   },
   "observed_date_jst": "2026-10-03",
-  "observed_head": "171a6518751659d66523924b9469045019814fb7",
+  "observed_head": "d983562695f17ecac20e1ede1a6916dc04392468",
   "observed_head_checks": {
-    "reason_ja": "元測定failureを保持。専用後続検証と一般CIのscopeを分離。",
+    "reason_ja": "新区間専用Actionsと一般CIを分離。未完/action_required/失敗を成功にしない。",
     "runs": [
       {
         "conclusion": "success",
         "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "171a6518751659d66523924b9469045019814fb7",
-        "id": 37090975056,
+        "head_sha": "d983562695f17ecac20e1ede1a6916dc04392468",
+        "id": 37093564620,
         "path": ".github/workflows/p03-forgetting-ci.yml",
         "run_attempt": 1,
         "status": "completed"
@@ -4288,8 +4289,8 @@
       {
         "conclusion": "failure",
         "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "171a6518751659d66523924b9469045019814fb7",
-        "id": 37090975053,
+        "head_sha": "d983562695f17ecac20e1ede1a6916dc04392468",
+        "id": 37093564604,
         "path": ".github/workflows/ci.yml",
         "run_attempt": 1,
         "status": "completed"
@@ -4297,35 +4298,35 @@
       {
         "conclusion": "success",
         "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "171a6518751659d66523924b9469045019814fb7",
-        "id": 37090970770,
+        "head_sha": "d983562695f17ecac20e1ede1a6916dc04392468",
+        "id": 37093559417,
         "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
         "run_attempt": 1,
         "status": "completed"
       },
       {
-        "conclusion": "failure",
+        "conclusion": "success",
         "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "171a6518751659d66523924b9469045019814fb7",
-        "id": 37090970832,
-        "path": ".github/workflows/pr16-story-save23.yml",
+        "head_sha": "d983562695f17ecac20e1ede1a6916dc04392468",
+        "id": 37093559486,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
         "run_attempt": 1,
         "status": "completed"
       },
       {
         "conclusion": "success",
         "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "171a6518751659d66523924b9469045019814fb7",
-        "id": 37090970620,
-        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "head_sha": "d983562695f17ecac20e1ede1a6916dc04392468",
+        "id": 37093559410,
+        "path": ".github/workflows/pr16-story-save24-detour.yml",
         "run_attempt": 1,
         "status": "completed"
       },
       {
         "conclusion": "failure",
         "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "171a6518751659d66523924b9469045019814fb7",
-        "id": 37090970709,
+        "head_sha": "d983562695f17ecac20e1ede1a6916dc04392468",
+        "id": 37093559481,
         "path": ".github/workflows/ci.yml",
         "run_attempt": 1,
         "status": "completed"
@@ -4333,14 +4334,14 @@
       {
         "conclusion": "success",
         "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "171a6518751659d66523924b9469045019814fb7",
-        "id": 37090970599,
+        "head_sha": "d983562695f17ecac20e1ede1a6916dc04392468",
+        "id": 37093559490,
         "path": ".github/workflows/modernization-stage79-mgba.yml",
         "run_attempt": 1,
         "status": "completed"
       }
     ],
-    "scope_head": "171a6518751659d66523924b9469045019814fb7"
+    "scope_head": "d983562695f17ecac20e1ede1a6916dc04392468"
   },
   "observed_head_history": [
     {
@@ -6464,9 +6465,83 @@
       "head": "8c6f51827d3d51a1f2f25b4444f6103496d2ecba",
       "reason_ja": "Save22以降の洞窟内部warpとSave23だけを保存済み原本から限定受入。",
       "semantics": "503新5勝/6040円・ちえのどうくつ北入口・Save22測定source。洞窟内部/全story/自然育成/全国図鑑/HM05解決/記録commit/active baselineではない。"
+    },
+    {
+      "checks": {
+        "reason_ja": "元測定failureを保持。専用後続検証と一般CIのscopeを分離。",
+        "runs": [
+          {
+            "conclusion": "success",
+            "head_branch": "codex/modernization-followup-20260908",
+            "head_sha": "171a6518751659d66523924b9469045019814fb7",
+            "id": 37090975056,
+            "path": ".github/workflows/p03-forgetting-ci.yml",
+            "run_attempt": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "failure",
+            "head_branch": "codex/modernization-followup-20260908",
+            "head_sha": "171a6518751659d66523924b9469045019814fb7",
+            "id": 37090975053,
+            "path": ".github/workflows/ci.yml",
+            "run_attempt": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "head_branch": "codex/modernization-followup-20260908",
+            "head_sha": "171a6518751659d66523924b9469045019814fb7",
+            "id": 37090970770,
+            "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+            "run_attempt": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "failure",
+            "head_branch": "codex/modernization-followup-20260908",
+            "head_sha": "171a6518751659d66523924b9469045019814fb7",
+            "id": 37090970832,
+            "path": ".github/workflows/pr16-story-save23.yml",
+            "run_attempt": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "head_branch": "codex/modernization-followup-20260908",
+            "head_sha": "171a6518751659d66523924b9469045019814fb7",
+            "id": 37090970620,
+            "path": ".github/workflows/p03-forgetting-ci.yml",
+            "run_attempt": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "failure",
+            "head_branch": "codex/modernization-followup-20260908",
+            "head_sha": "171a6518751659d66523924b9469045019814fb7",
+            "id": 37090970709,
+            "path": ".github/workflows/ci.yml",
+            "run_attempt": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "head_branch": "codex/modernization-followup-20260908",
+            "head_sha": "171a6518751659d66523924b9469045019814fb7",
+            "id": 37090970599,
+            "path": ".github/workflows/modernization-stage79-mgba.yml",
+            "run_attempt": 1,
+            "status": "completed"
+          }
+        ],
+        "scope_head": "171a6518751659d66523924b9469045019814fb7"
+      },
+      "head": "171a6518751659d66523924b9469045019814fb7",
+      "reason_ja": "洞窟東通路の新Save24と独立Continue限定受入。旧failureは保全。",
+      "semantics": "Save23の階段warp・通常Save・独立Continue測定source。runは最終補助flag oracle failureを保持、後続原本検査で限定受入。全story/製品SHAではない。"
     }
   ],
-  "observed_head_semantics": "Save23の階段warp・通常Save・独立Continue測定source。runは最終補助flag oracle failureを保持、後続原本検査で限定受入。全story/製品SHAではない。",
+  "observed_head_semantics": "Save24東通路31,4の通常Save/独立Continue測定source。teleport/洞窟走破/製品SHAではない。",
   "p08_candidate_impact": {
     "candidate": {
       "crc32": "CC068B4A",
@@ -6590,9 +6665,9 @@
   },
   "pending_runs": [
     {
-      "run_id": 37092347183,
+      "run_id": 37094105840,
       "status": "in_progress",
-      "tested_head": "d9435a2d4af239ba25e262722bd52d8814a6bf86"
+      "tested_head": "1a842ee45ca361522fd4e6f6cee766df6534428e"
     }
   ],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
@@ -9520,6 +9595,18 @@
     ".github/workflows/pr16-story-save23.yml": {
       "sha256": "8adec26a624042abc820a6ad12afb6f250e909d209f72500d8fc4d9222f28905",
       "size": 1587
+    },
+    ".github/workflows/pr16-story-save24-detour.yml": {
+      "sha256": "82ebf44e2dd11a1be097aca4a346e42b8af18a2f6c186d540a4741593373f1aa",
+      "size": 1623
+    },
+    ".github/workflows/pr16-story-save24-record.yml": {
+      "sha256": "df9d8e95c51150908f75ceb1c1f656b2f79838ed41ba0361b7b0889dfae94972",
+      "size": 2554
+    },
+    ".github/workflows/pr16-story-save24.yml": {
+      "sha256": "6040506ab8380825aa78e2a498eaaaa17271f95b43ad892125fb7de05b6dcaa0",
+      "size": 1609
     },
     ".github/workflows/pr16-story-save8-context.yml": {
       "sha256": "5405678c5cdb6a81612b212b099b37bc42038ce2c00c5c564ab5fcf6c7287c27",
@@ -13357,6 +13444,118 @@
       "sha256": "0bdb418a6a5e69fb9cd9ea7e195a8ff17dc1d688d5e4ac6fded0147ae2865a9c",
       "size": 2501
     },
+    "content/modernization/pr16_story_save24_checkpoint.json": {
+      "sha256": "19969b9ddd6bab1f13b47dbe8e18f21508ff468927f404421a016039617767b9",
+      "size": 12331
+    },
+    "content/modernization/pr16_story_save24_evidence/cave-route-terminal.json": {
+      "sha256": "8f37c4b3e9f10cc7aecd4088aeadd5bf7d458cc73d72ca8ac3bea1563ea07bb4",
+      "size": 4175
+    },
+    "content/modernization/pr16_story_save24_evidence/continue/commands.txt": {
+      "sha256": "5aa3363ef7287a5fe371442e67ec861616823326b1d70e16730c34c4baab07a3",
+      "size": 25
+    },
+    "content/modernization/pr16_story_save24_evidence/continue/execution.json": {
+      "sha256": "222bb25c23d491f42357ef8c8e0c3ad2eadebf7264f1909026477a695873b441",
+      "size": 548
+    },
+    "content/modernization/pr16_story_save24_evidence/continue/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_story_save24_evidence/continue/stdout.txt": {
+      "sha256": "5f4072f8d50131cf8fd5c1aee253ff6e105bd8007dbe4cf38a0fdf0f39e081da",
+      "size": 2101
+    },
+    "content/modernization/pr16_story_save24_evidence/controller-test-receipts.json": {
+      "sha256": "a7935b46f9c4065eb6a00891b3fae3bdf547271607526506a19aca6f6cb2e221",
+      "size": 5363
+    },
+    "content/modernization/pr16_story_save24_evidence/failed-attempt-receipt.json": {
+      "sha256": "143724b94cb2b9cada1a80bc14fd942e251a6a97084c60970d40c92ee9552877",
+      "size": 4386
+    },
+    "content/modernization/pr16_story_save24_evidence/failed-attempt/failure.json": {
+      "sha256": "03dc8b55de900c44995dbbac0831809eafc09e9393610fb222d7cd076aafc342",
+      "size": 205
+    },
+    "content/modernization/pr16_story_save24_evidence/failed-attempt/manifest.json": {
+      "sha256": "6c36fbd5e3076133fab21a351788ab650ea53545f0ae7b3287c9311e14ab25f1",
+      "size": 3070
+    },
+    "content/modernization/pr16_story_save24_evidence/failed-attempt/progress/commands.txt": {
+      "sha256": "5376b6ee1ddf36a9d2a772980ec64dbbd41c0695700825dc0d727318b660650c",
+      "size": 349
+    },
+    "content/modernization/pr16_story_save24_evidence/failed-attempt/progress/execution.json": {
+      "sha256": "6be737eab77e7be5207632ccc0effaaafdd112745e02e1be10d1855fb34be339",
+      "size": 549
+    },
+    "content/modernization/pr16_story_save24_evidence/failed-attempt/progress/stdout.txt": {
+      "sha256": "6d1e2a7ba3afa0dbff3386252054856f16575a5085503c7cee1a0181ffdd433c",
+      "size": 9230
+    },
+    "content/modernization/pr16_story_save24_evidence/manifest.json": {
+      "sha256": "77ab2fb2676d9103f488377c6abfb221f35d002f6cc8f5854ded940f8f0d266e",
+      "size": 6343
+    },
+    "content/modernization/pr16_story_save24_evidence/measurement.json": {
+      "sha256": "02b04516e74cf3dd7a6714b09e00b21dd179c3fe458d7e8d2b77b600376d1033",
+      "size": 15600
+    },
+    "content/modernization/pr16_story_save24_evidence/parent.json": {
+      "sha256": "0317af36682d58fdc4148c34648d4144235cd526bcbb4fa3e5b84c11173e0fdc",
+      "size": 460
+    },
+    "content/modernization/pr16_story_save24_evidence/preflight-failure.json": {
+      "sha256": "4cfa880edfd7c04c527e36ff3e8cc8f2cba34b2b8ac417bd415951fc45b145ea",
+      "size": 4654
+    },
+    "content/modernization/pr16_story_save24_evidence/progress/commands.txt": {
+      "sha256": "7030303ee36a784b39eabad35a3d0880eaff016e423f4e2f90a1cd3134e231ba",
+      "size": 602
+    },
+    "content/modernization/pr16_story_save24_evidence/progress/execution.json": {
+      "sha256": "7a48868cd995ee418f072de791af613ac735ec4bdcca35048d414e35bd8be48f",
+      "size": 549
+    },
+    "content/modernization/pr16_story_save24_evidence/progress/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_story_save24_evidence/progress/stdout.txt": {
+      "sha256": "db50ae253d42d5307b9a6bb0c9557d396723c45033b8a91965f67ed8cc4e8086",
+      "size": 14022
+    },
+    "content/modernization/pr16_story_save24_evidence/terminal.json": {
+      "sha256": "88dbb9a08673f172c2e90a1c4e643a74ea08104b8c6b81e0bab4ef6673860c0a",
+      "size": 3435
+    },
+    "content/modernization/pr16_story_save24_evidence/terrain.json": {
+      "sha256": "e24bf7b622cbd66f863befb55b76a49c9a16137cd88815500f59f0762dc728de",
+      "size": 2784
+    },
+    "content/modernization/pr16_story_save24_evidence/unit.stderr.txt": {
+      "sha256": "0ae9a16acbeff972d9e36e294de224acca5d308ae6a78a72ab65e5743012b0f2",
+      "size": 2151
+    },
+    "content/modernization/pr16_story_save24_evidence/unit.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_story_save24_evidence/verification.json": {
+      "sha256": "13c735fa610f5130ddfa8c9d95c2918960b6ff5fe273180205a5927954433f79",
+      "size": 2418
+    },
+    "content/modernization/pr16_story_save24_evidence/visual-review.json": {
+      "sha256": "58d3a2a19c531332e391f56c66b43f95f9ca6b18159adb9be950ee9a95adbfd4",
+      "size": 2001
+    },
+    "content/modernization/pr16_story_save24_visual_review.json": {
+      "sha256": "58d3a2a19c531332e391f56c66b43f95f9ca6b18159adb9be950ee9a95adbfd4",
+      "size": 2001
+    },
     "content/modernization/pr16_story_save9_checkpoint.json": {
       "sha256": "cf658c2fa47ba238672704713ea5ad3b1baf6abbe8a56ec769bf2de3964d0463",
       "size": 5672
@@ -13852,6 +14051,10 @@
     "docs/PR16_STORY_SAVE23_JA.md": {
       "sha256": "75ccf915387d6d7e1c78aa8bfaf9c33a6575b412a98cf9d1752dea64244dad98",
       "size": 3288
+    },
+    "docs/PR16_STORY_SAVE24_JA.md": {
+      "sha256": "fa3889067c15617696eafde15950c77b41219621ed394761f020706e0223660c",
+      "size": 3426
     },
     "docs/PR16_STORY_SAVE9_JA.md": {
       "sha256": "61734b028e912a8cb8952376730c67ba598bb5f00056f4351bf0296626041e44",
@@ -19417,6 +19620,22 @@
       "sha256": "53806b1928467bba4a0ab1886082b8b4ba79b44a4adb381b8772a5045367f1c3",
       "size": 16648
     },
+    "scripts/pr16_story_save24_accept.py": {
+      "sha256": "0edf007cf67bd6058afe497ad171759641e38944a51d28021b65571a6682b247",
+      "size": 5704
+    },
+    "scripts/pr16_story_save24_detour.py": {
+      "sha256": "464acb08be8703de45f6efc24974f320010cacff88634705528c0d672dad54f3",
+      "size": 9633
+    },
+    "scripts/pr16_story_save24_measure.py": {
+      "sha256": "fcc24825cfbfcbbf139df4621df2992158a198e3235c58350510fe9067fb6df1",
+      "size": 12999
+    },
+    "scripts/pr16_story_save24_record.py": {
+      "sha256": "bdb63bd33322e33bedbe79ee451fdc50f9852d95c7fdb7809a9b34c1e1518382",
+      "size": 17866
+    },
     "scripts/pr16_story_save9.py": {
       "sha256": "e8522d25e6623c7bb37aa850656564ca4a95066d3a2a75674cb7966ef95bc9d8",
       "size": 11276
@@ -21025,6 +21244,22 @@
       "sha256": "3ae2aeeb6a70e8b9999725f73ff789c13d45b3c298d58657ffa92b0e428db2f6",
       "size": 2840
     },
+    "tests/test_pr16_story_save24_accept.py": {
+      "sha256": "18545275427a9cc5d947d78e2744a3c6b756665e1d3b20aa0923146dc12d94b6",
+      "size": 2944
+    },
+    "tests/test_pr16_story_save24_detour.py": {
+      "sha256": "84f3a90b1ac152a9bf29800c95270f3dad9e7ba51e399712abff4ac7362e59f6",
+      "size": 1911
+    },
+    "tests/test_pr16_story_save24_measure.py": {
+      "sha256": "6e0c6a402bd39f2fa117dd8c2822fad0ff3f84f848e760edec62e48748f0c7cd",
+      "size": 4812
+    },
+    "tests/test_pr16_story_save24_terrain.py": {
+      "sha256": "9a901ac9e80652c8e87a97611a9efba363a171ed6ebf7b4fe2e27039dc64dfaa",
+      "size": 1029
+    },
     "tests/test_pr16_story_save9.py": {
       "sha256": "9057edecab9630badaa96577b8564918afbfa8f64e8a1f9859963f46e9536a11",
       "size": 10047
@@ -21695,7 +21930,149 @@
     "from_save": 23,
     "guide": "docs/PR16_STORY_CAVE_ROUTE_JA.md",
     "native_accepted": false,
+    "record_completion": {
+      "job": {
+        "check_run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/check-runs/111115153621",
+        "completed_at": "2026-10-03T03:11:39Z",
+        "conclusion": "success",
+        "created_at": "2026-10-03T03:11:08Z",
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "d9435a2d4af239ba25e262722bd52d8814a6bf86",
+        "html_url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/37092347183/job/111115153621",
+        "id": 111115153621,
+        "labels": [
+          "ubuntu-24.04"
+        ],
+        "name": "route",
+        "node_id": "CR_kwDOUPNhZs8AAAAZ3vqw1Q",
+        "run_attempt": 1,
+        "run_id": 37092347183,
+        "run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/37092347183",
+        "runner_group_id": 0,
+        "runner_group_name": "GitHub Actions",
+        "runner_id": 1000018782,
+        "runner_name": "GitHub Actions 1000018782",
+        "started_at": "2026-10-03T03:11:10Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completed_at": "2026-10-03T03:11:11Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "started_at": "2026-10-03T03:11:11Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-03T03:11:24Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "started_at": "2026-10-03T03:11:11Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-03T03:11:24Z",
+            "conclusion": "success",
+            "name": "Nine new decoder tests and scoped source guard",
+            "number": 3,
+            "started_at": "2026-10-03T03:11:24Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-03T03:11:30Z",
+            "conclusion": "success",
+            "name": "Record new coordinate owner without native replay",
+            "number": 4,
+            "started_at": "2026-10-03T03:11:24Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-03T03:11:34Z",
+            "conclusion": "success",
+            "name": "Scoped final index private guard and fixed resume",
+            "number": 5,
+            "started_at": "2026-10-03T03:11:30Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-03T03:11:34Z",
+            "conclusion": "success",
+            "name": "Lightweight task graph",
+            "number": 6,
+            "started_at": "2026-10-03T03:11:34Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-03T03:11:36Z",
+            "conclusion": "success",
+            "name": "Commit and nonforce push same branch",
+            "number": 7,
+            "started_at": "2026-10-03T03:11:34Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-03T03:11:36Z",
+            "conclusion": "success",
+            "name": "Exact committed text readback",
+            "number": 8,
+            "started_at": "2026-10-03T03:11:36Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-03T03:11:37Z",
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@v4",
+            "number": 9,
+            "started_at": "2026-10-03T03:11:36Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-03T03:11:37Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 18,
+            "started_at": "2026-10-03T03:11:37Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-03T03:11:38Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 19,
+            "started_at": "2026-10-03T03:11:37Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/jobs/111115153621",
+        "workflow_name": "pr16-story-cave-route"
+      },
+      "run": {
+        "conclusion": "success",
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "d9435a2d4af239ba25e262722bd52d8814a6bf86",
+        "id": 37092347183,
+        "path": ".github/workflows/pr16-story-cave-route.yml",
+        "run_attempt": 1,
+        "status": "completed"
+      }
+    },
     "run_id": 37092347183,
+    "runtime_rejected_direct_route": {
+      "blocked_edge": [
+        [
+          27,
+          4
+        ],
+        [
+          27,
+          5
+        ]
+      ],
+      "new_checkpoint": "content/modernization/pr16_story_save24_checkpoint.json",
+      "reason_ja": "collision-only候補が高さ3→4/北側進入不可を含んだ。静的script ownerは不変。",
+      "run_id": 37092974275
+    },
     "static_steps": 11,
     "status": "PASS_CAVE_COORDINATE_ROUTE_OWNER_STATIC_ONLY",
     "target_coord": [
@@ -22688,6 +23065,42 @@
     "xy": [
       20,
       3
+    ]
+  },
+  "story_save24": {
+    "artifact_id": 11263343138,
+    "badge_count": 1,
+    "cave_crossing_complete": false,
+    "checkpoint": "content/modernization/pr16_story_save24_checkpoint.json",
+    "facing": 1,
+    "guide": "docs/PR16_STORY_SAVE24_JA.md",
+    "hm05_owned": true,
+    "hm05_taught_or_used": false,
+    "job_id": 111118784339,
+    "map": [
+      1,
+      73
+    ],
+    "measurement_conclusion": "success",
+    "money": 12296,
+    "next_goal_ja": "Save24 artifact11263343138のstory-fast.srm（42a5fd672e8be714d40720a9fa4fece27e53293c0b0ca49a2ed0696e206455a0、131088bytes）だけから再開。map1/73・31,4南・party4/RP0・12296円・badge1・var4071=6/4072=1。次は東側通路を南へ通常入力で進み、NPC/野生戦は通常UIで対処し次のSave/独立Continue境界へ。27,4→27,5は高さ3→4/北側進入不可なので旧11歩候補を再試行しない。岩階段23,14へ回り込む候補は未実測、19,14のcoordはflag4367で27,7/8,10へ分岐する。静的座標ownerは再利用し、敵trainer/script/進路と手持ちPPを保存候補から照合して入力を計画する。当回56/cold13入力・32+12+7/新24試験・Save1〜23/旧BP/P08は無影響に再走しない。teleport/洞窟走破/HM05原因/全国図鑑/自然成長進化/全storyは未完。hostによるstory/flag/var解禁禁止。",
+    "record_native_processes": 0,
+    "record_run_id": 37094105840,
+    "rp": 0,
+    "run_id": 37093559410,
+    "status": "PASS_EAST_CORRIDOR_SAVE24_PERSISTENCE_SCOPED",
+    "story_fast_save": {
+      "sha256": "42a5fd672e8be714d40720a9fa4fece27e53293c0b0ca49a2ed0696e206455a0",
+      "size": 131088
+    },
+    "story_vars": {
+      "4071": 6,
+      "4072": 1
+    },
+    "teleport_accepted": false,
+    "xy": [
+      31,
+      4
     ]
   },
   "story_save9": {

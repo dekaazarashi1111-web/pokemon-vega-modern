@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-支援story-fastは洞窟内部map1/73・20,3東へ進行、通常Save23と独立Continueを限定受入。party4/RP0・12296円・badge1。旧oracle failureを保持し原本だけで回収。洞窟走破/全国図鑑/自然成長/全story未完。
+洞窟東通路map1/73・31,4南へ通常進行、Save24/独立Continueを受入。party4/RP0・12296円・badge1。旧11歩は高さ境界で停止、失敗2件を保全。teleport/洞窟走破/全国図鑑/自然成長/全story未完。
 
-**次: Save23 artifact11261539316のstory-fast.srm（SHA256 728bd39b11ea53bafd31cff5fb50e7f81fe5973c0c5fae559ea22037827832bb、131088bytes）からだけ再開。map1/73・20,3東から通常入力で東7歩/南4歩の座標27,7へ進み、正規coord scriptの19,14へのteleportを新規実測する。elevation4/var4000=0のruntime発火は未受入。道中に野生戦が起きたら通常UIで対処し、host-writeやflag注入は使わない。到達後は通常Saveと独立Continueで区切る。座標trigger・静的11歩・4root/5nodeは保存済み監査を再利用。Save23までの45/cold13入力、24受入試験、旧Save1〜22/BP/P08は無影響に再走しない。27,7/19,14のteleport実到達、洞窟走破、HM05解決、全国図鑑、自然育成/進化、全storyは未完。**
+**次: Save24 artifact11263343138のstory-fast.srm（42a5fd672e8be714d40720a9fa4fece27e53293c0b0ca49a2ed0696e206455a0、131088bytes）だけから再開。map1/73・31,4南・party4/RP0・12296円・badge1・var4071=6/4072=1。次は東側通路を南へ通常入力で進み、NPC/野生戦は通常UIで対処し次のSave/独立Continue境界へ。27,4→27,5は高さ3→4/北側進入不可なので旧11歩候補を再試行しない。岩階段23,14へ回り込む候補は未実測、19,14のcoordはflag4367で27,7/8,10へ分岐する。静的座標ownerは再利用し、敵trainer/script/進路と手持ちPPを保存候補から照合して入力を計画する。当回56/cold13入力・32+12+7/新24試験・Save1〜23/旧BP/P08は無影響に再走しない。teleport/洞窟走破/HM05原因/全国図鑑/自然成長進化/全storyは未完。hostによるstory/flag/var解禁禁止。**
 
-Save23から先の未観測coord teleportだけ。静的監査/旧入力を再走しない。所持HM05を習得済みとしない。全国図鑑/bridge/story flagのhost注入は禁止。
+Save24から先だけ。旧11歩の壁を反復せず、静的ownerをruntimeへ昇格しない。全国図鑑/story flag注入は禁止。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `171a6518751659d66523924b9469045019814fb7`。
-Save23の階段warp・通常Save・独立Continue測定source。runは最終補助flag oracle failureを保持、後続原本検査で限定受入。全story/製品SHAではない。
+証拠のsource HEAD: `d983562695f17ecac20e1ede1a6916dc04392468`。
+Save24東通路31,4の通常Save/独立Continue測定source。teleport/洞窟走破/製品SHAではない。
 
 ## 最短の再開手順
 
@@ -25,11 +25,11 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `docs/PR16_STORY_SAVE24_JA.md`
+- `content/modernization/pr16_story_save24_checkpoint.json`
+- `content/modernization/pr16_story_save24_evidence/terrain.json`
 - `docs/PR16_STORY_CAVE_ROUTE_JA.md`
-- `content/modernization/pr16_story_cave_route_checkpoint.json`
-- `docs/PR16_STORY_SAVE23_JA.md`
-- `content/modernization/pr16_story_save23_checkpoint.json`
-- `scripts/pr16_story_cave_route.py`
+- `scripts/pr16_story_save24_accept.py`
 - `docs/PR16_NATIONAL_DEX_OWNER_JA.md`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
@@ -349,6 +349,7 @@ P08ゲート:
 - Save22 run36668710078の397/cold35入力・58+10試験・503新5勝/6040円/洞窟北入口/保存Continueは記録済み。無影響の再走禁止。Save21以前も不変。
 - Save23の45/cold13入力・内部warp/保存/Continueは原本から限定受入。run37090970832 failureを保持しnative再走0で回収。静的14/入力17/原本24試験は無影響に反復しない。
 - Save23後の座標teleport静的owner4root/5node・11歩候補はpr16_story_cave_route_checkpoint.jsonから再利用。native到達へ昇格しない。
+- Save24の56/cold13入力・32+12+7/新24試験は原本を継承。27,4→27,5の壁3試行と旧11歩候補を反復せず、31,4から先だけ。
 
 ## 次セッションへ残す更新手順
 
@@ -378,6 +379,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-元測定failureを保持。専用後続検証と一般CIのscopeを分離。
+新区間専用Actionsと一般CIを分離。未完/action_required/失敗を成功にしない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
