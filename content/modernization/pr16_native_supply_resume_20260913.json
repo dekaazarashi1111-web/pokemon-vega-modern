@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "Save47 artifact11279895650のstory-fast.srm（0ffabf8d049f74edaabdaf32a54872a267d9ea4c04f02845612295a9f30c6431、131088bytes）だけから再開。map3/44・11,5東/下段3・party4/RP0・15224円・badge1・story4071=9/4072=1。3,12から北迂回19歩/8方向転換→だいすきクラブのジュネ4体に勝利、通常Save47/cold同一。オノノクスHP294/294・PP[11,10,15,20]、ミュウツーHP314/354・全PP0で回復未完。初の実技UI35/42/49/57はslot0ドラゴンクローPP15/14/13/12、36/43/50/58通常使用、party全600byteの差は52=15→11だけ。原controllerはPPlabel矩形がタイプ/物理アイコン化した実UIをotherと誤陰性、raw used[0,0,0,0]を改作せず実4回と区別。次のcontrollerは新pr16_story_save47_accept.classify_panel（技名/種族/PP数値非依存のパネル上枠+実cursor、原90画面の4技/3交代を照合済）を使い、selectは親実PP[11,10,15,20]で上限を再束縛する。旧PPlabel/used0/古いPP15のclosureを流用しない。native4slot選択/他技使用は未受入。以後は11,5→12,5→13,5→13,4→14,4→14,3→18,3→18,4から東へ、34,13下段→34,16→25,17→25,15→17,15→17,19の保存地形迂回候補の未通過続きだけ。最初の新戦闘/event/未通過境界または正常回復地点で次Save。南接続map3/23→3/2は候補、回復施設未同定。今回170+cold13入力/90画面/12controller44受入を無影響再走しない。71〜82部分write、83counter47/最終Flash→84成功文言→87field。physicalflag1402だけ0→1、賞金960円、Bag/HP/EXP/PC/S61E/story不変。auxvar4021=22→40/4022=1→0とRAMledger31/51差のowner未解決、最終/cold一致。Save46 party2byte/途中ledger、Save39旧cold差/Save44並替差と旧失敗を保持。正規全国図鑑/通常story/自然EXP・技習得・進化/LuckyEgg/12case/Lv100soak/研究施設自然到達未完。一般CIqol_production.c source不一致とfinalHEAD action_requiredは全成功としない。ROM/host補充/故意の全滅/merge/release/baseline切替なし。既存ROM/runtime/inputはActions入力専用、新artifactは新save/画面/textだけ。",
+    "next_step": "Save47 artifact11279895650のstory-fast.srm（0ffabf8d049f74edaabdaf32a54872a267d9ea4c04f02845612295a9f30c6431、131088bytes）だけから再開。map3/44・11,5東/下段3・party4/RP0・15224円・badge1・story4071=9/4072=1。3,12から北迂回19歩/8方向転換→だいすきクラブのジュネ4体に勝利、通常Save47/cold同一。オノノクスHP294/294・PP[11,10,15,20]、ミュウツーHP314/354・全PP0で回復未完。初の実技UI35/42/49/57はslot0ドラゴンクローPP15/14/13/12、36/43/50/58通常使用、party全600byteの差は52=15→11だけ。原controllerはPPlabel矩形がタイプ/物理アイコン化した実UIをotherと誤陰性、raw used[0,0,0,0]を改作せず実4回と区別。次のcontrollerは新pr16_story_save47_accept.classify_panel（技名/種族/PP数値非依存のパネル上枠+実cursor、原90画面の4技/3交代を照合済）を使い、selectは親実PP[11,10,15,20]で上限を再束縛する。旧PPlabel/used0/古いPP15のclosureを流用しない。native4slot選択/他技使用は未受入。以後は11,5→11,4→12,4→13,4→14,4→14,3→18,3→18,4から東へ、34,13下段→34,16→25,17→25,15→17,15→17,19の保存地形迂回候補の未通過続きだけ。最初の新戦闘/event/未通過境界または正常回復地点で次Save。南接続map3/23→3/2は候補、回復施設未同定。今回170+cold13入力/90画面/12controller44受入を無影響再走しない。71〜82部分write、83counter47/最終Flash→84成功文言→87field。physicalflag1402だけ0→1、賞金960円、Bag/HP/EXP/PC/S61E/story不変。auxvar4021=22→40/4022=1→0とRAMledger31/51差のowner未解決、最終/cold一致。Save46 party2byte/途中ledger、Save39旧cold差/Save44並替差と旧失敗を保持。正規全国図鑑/通常story/自然EXP・技習得・進化/LuckyEgg/12case/Lv100soak/研究施設自然到達未完。一般CIqol_production.c source不一致とfinalHEAD action_requiredは全成功としない。ROM/host補充/故意の全滅/merge/release/baseline切替なし。既存ROM/runtime/inputはActions入力専用、新artifactは新save/画面/textだけ。 Save47独立Continue原画でもジュネが右隣12,5に残るため直進しない。新候補69vertexはcontent/modernization/pr16_story_save47_next_route.jsonを使用。旧測定と旧GUIDEの提案経路は履歴のまま保持。記録run37138998824/job111249329799全11step成功、新44試験成功済みで再走しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -1101,7 +1101,8 @@
     "Save44の78/cold13入力45画面・16controller32受入を無影響再走しない。通常並替だけで費用/道具消費/移動/戦闘0。オノノクスPP[15,10,15,20]、ミュウツーPP0保持。37counter44は部分write、38成功文言/安定Flash→42field。全SaveRTC/最終cold ledger一致。13並替選択のRAM ledger owner未解明。",
     "Save45の98/cold13入力55画面・20controller32受入を無影響再走しない。19歩/7方向転換・26,11下り階段/26,12下段、戦闘0。party/Bag/14264円不変。46最終Flashはcounter44/書込中、47counter45→48成功文言→52field。全SaveRTC/全RAM ledger一致。新オノノクス実技UI未観測、PP回復未完。",
     "Save46の109/cold13入力60画面・12controller36受入を無影響再走しない。27歩/5方向転換/戦闘0。HP/PP/Bag/14264円不変だがparty141=7→8/241=105→106と途中RAM ledger差を保持。40〜52部分write、53counter46/最終Flash→54成功文言→57field。回復/オノノクス実技UI未完。",
-    "Save47の170/cold13入力90画面・12controller44受入を無影響再走しない。北迂回19歩/8turn、ジュネ4体勝利、960円、slot0ドラゴンクロー4回/PP15→11。原controller used0は誤陰性で改作しない。71〜82部分write、83counter47/安定Flash→84成功文言→87field。実技UI4画面検証済、4slot native/回復は未受入。"
+    "Save47の170/cold13入力90画面・12controller44受入を無影響再走しない。北迂回19歩/8turn、ジュネ4体勝利、960円、slot0ドラゴンクロー4回/PP15→11。原controller used0は誤陰性で改作しない。71〜82部分write、83counter47/安定Flash→84成功文言→87field。実技UI4画面検証済、4slot native/回復は未受入。",
+    "Save47 cold原画の右隣NPC12,5へ直進しない。次は11,5→11,4→12,4→13,4で北迂回へ合流。69vertexの静的候補であり到達未証明。47測定170/cold13と12+44成功試験は再走0。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -4282,10 +4283,11 @@
     "status": "PASS_NATIONAL_DEX_GRANT_OWNER_SCOPED"
   },
   "next_action": {
-    "goal_ja": "Save47 artifact11279895650のstory-fast.srm（0ffabf8d049f74edaabdaf32a54872a267d9ea4c04f02845612295a9f30c6431、131088bytes）だけから再開。map3/44・11,5東/下段3・party4/RP0・15224円・badge1・story4071=9/4072=1。3,12から北迂回19歩/8方向転換→だいすきクラブのジュネ4体に勝利、通常Save47/cold同一。オノノクスHP294/294・PP[11,10,15,20]、ミュウツーHP314/354・全PP0で回復未完。初の実技UI35/42/49/57はslot0ドラゴンクローPP15/14/13/12、36/43/50/58通常使用、party全600byteの差は52=15→11だけ。原controllerはPPlabel矩形がタイプ/物理アイコン化した実UIをotherと誤陰性、raw used[0,0,0,0]を改作せず実4回と区別。次のcontrollerは新pr16_story_save47_accept.classify_panel（技名/種族/PP数値非依存のパネル上枠+実cursor、原90画面の4技/3交代を照合済）を使い、selectは親実PP[11,10,15,20]で上限を再束縛する。旧PPlabel/used0/古いPP15のclosureを流用しない。native4slot選択/他技使用は未受入。以後は11,5→12,5→13,5→13,4→14,4→14,3→18,3→18,4から東へ、34,13下段→34,16→25,17→25,15→17,15→17,19の保存地形迂回候補の未通過続きだけ。最初の新戦闘/event/未通過境界または正常回復地点で次Save。南接続map3/23→3/2は候補、回復施設未同定。今回170+cold13入力/90画面/12controller44受入を無影響再走しない。71〜82部分write、83counter47/最終Flash→84成功文言→87field。physicalflag1402だけ0→1、賞金960円、Bag/HP/EXP/PC/S61E/story不変。auxvar4021=22→40/4022=1→0とRAMledger31/51差のowner未解決、最終/cold一致。Save46 party2byte/途中ledger、Save39旧cold差/Save44並替差と旧失敗を保持。正規全国図鑑/通常story/自然EXP・技習得・進化/LuckyEgg/12case/Lv100soak/研究施設自然到達未完。一般CIqol_production.c source不一致とfinalHEAD action_requiredは全成功としない。ROM/host補充/故意の全滅/merge/release/baseline切替なし。既存ROM/runtime/inputはActions入力専用、新artifactは新save/画面/textだけ。",
+    "goal_ja": "Save47 artifact11279895650のstory-fast.srm（0ffabf8d049f74edaabdaf32a54872a267d9ea4c04f02845612295a9f30c6431、131088bytes）だけから再開。map3/44・11,5東/下段3・party4/RP0・15224円・badge1・story4071=9/4072=1。3,12から北迂回19歩/8方向転換→だいすきクラブのジュネ4体に勝利、通常Save47/cold同一。オノノクスHP294/294・PP[11,10,15,20]、ミュウツーHP314/354・全PP0で回復未完。初の実技UI35/42/49/57はslot0ドラゴンクローPP15/14/13/12、36/43/50/58通常使用、party全600byteの差は52=15→11だけ。原controllerはPPlabel矩形がタイプ/物理アイコン化した実UIをotherと誤陰性、raw used[0,0,0,0]を改作せず実4回と区別。次のcontrollerは新pr16_story_save47_accept.classify_panel（技名/種族/PP数値非依存のパネル上枠+実cursor、原90画面の4技/3交代を照合済）を使い、selectは親実PP[11,10,15,20]で上限を再束縛する。旧PPlabel/used0/古いPP15のclosureを流用しない。native4slot選択/他技使用は未受入。以後は11,5→11,4→12,4→13,4→14,4→14,3→18,3→18,4から東へ、34,13下段→34,16→25,17→25,15→17,15→17,19の保存地形迂回候補の未通過続きだけ。最初の新戦闘/event/未通過境界または正常回復地点で次Save。南接続map3/23→3/2は候補、回復施設未同定。今回170+cold13入力/90画面/12controller44受入を無影響再走しない。71〜82部分write、83counter47/最終Flash→84成功文言→87field。physicalflag1402だけ0→1、賞金960円、Bag/HP/EXP/PC/S61E/story不変。auxvar4021=22→40/4022=1→0とRAMledger31/51差のowner未解決、最終/cold一致。Save46 party2byte/途中ledger、Save39旧cold差/Save44並替差と旧失敗を保持。正規全国図鑑/通常story/自然EXP・技習得・進化/LuckyEgg/12case/Lv100soak/研究施設自然到達未完。一般CIqol_production.c source不一致とfinalHEAD action_requiredは全成功としない。ROM/host補充/故意の全滅/merge/release/baseline切替なし。既存ROM/runtime/inputはActions入力専用、新artifactは新save/画面/textだけ。 Save47独立Continue原画でもジュネが右隣12,5に残るため直進しない。新候補69vertexはcontent/modernization/pr16_story_save47_next_route.jsonを使用。旧測定と旧GUIDEの提案経路は履歴のまま保持。記録run37138998824/job111249329799全11step成功、新44試験成功済みで再走しない。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。Save14は作業コピーだけを使用する。自己OT party、manifest解決済み通常支援用品、EXP境界、safe opponentはpre-battle fixtureとして全byteを台帳化してよい。badge/key item/story flag/money/RPをfixture付与せず、戦闘開始後は通常入力とゲーム内処理だけを使う。",
     "id": "STORY_NORMAL_RECOVERY_TRAVEL_FROM_SAVE47",
     "read_paths": [
+      "content/modernization/pr16_story_save47_next_route.json",
       "docs/PR16_STORY_SAVE47_JA.md",
       "content/modernization/pr16_story_save47_checkpoint.json",
       "content/modernization/pr16_story_save47_visual_review.json",
@@ -8391,9 +8393,10 @@
   },
   "pending_runs": [
     {
-      "run_id": 37138998824,
+      "run_id": 37139239163,
+      "scope": "handoff_text_only_no_native",
       "status": "in_progress",
-      "tested_head": "cd72e53291d03339df72007ada3c7463b962d10d"
+      "tested_head": "dfbec07def05ffdc0c0acd57386cbb9f4b5eb8cc"
     }
   ],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
@@ -11517,6 +11520,10 @@
     ".github/workflows/pr16-story-save46.yml": {
       "sha256": "5992d8870d897017ef5befbd5076eacebc91e5be1e030a2391c9dad17cf7cbbd",
       "size": 1609
+    },
+    ".github/workflows/pr16-story-save47-handoff.yml": {
+      "sha256": "91e5040821b3e0c6e81ddd0a61090a1912a12c3dbc51bd5f2aa251399f19c897",
+      "size": 2123
     },
     ".github/workflows/pr16-story-save47-record.yml": {
       "sha256": "1d238ec219de9490b7d338707b0d82e25e2301f20251ebd3dac2aa7c35be90b2",
@@ -17249,6 +17256,10 @@
     "content/modernization/pr16_story_save47_evidence/verification.json": {
       "sha256": "54d7a84f8488f7062be698a10452ab3b0ed4607b18580712aa0fd1058bd74d2d",
       "size": 4291
+    },
+    "content/modernization/pr16_story_save47_next_route.json": {
+      "sha256": "82e3528263b27210ac20eef771697c6d33c931ace702b090909afb841665a54b",
+      "size": 5717
     },
     "content/modernization/pr16_story_save47_visual_review.json": {
       "sha256": "c556922c74d886a4a4f43bb4c236d454c0441ddf6628a6712095a42aa5c22107",
@@ -23701,6 +23712,10 @@
     "scripts/pr16_story_save47_accept.py": {
       "sha256": "c7983643ba5edb3fad6bf57dc580f0c61c7242b12adc7fcd64e2ade9c34e49f3",
       "size": 12461
+    },
+    "scripts/pr16_story_save47_handoff.py": {
+      "sha256": "c13f9704223e1566029199d7f65970b17925aa9e171167385a22ed0186f2a16d",
+      "size": 5909
     },
     "scripts/pr16_story_save47_measure.py": {
       "sha256": "a98e7fd2d5d922250b7ed201d402c83df6b8d2a31d42b60369a19ffba0009c86",
@@ -31447,6 +31462,33 @@
     "badge_count": 1,
     "cave_crossing_complete": true,
     "checkpoint": "content/modernization/pr16_story_save47_checkpoint.json",
+    "cold_npc_route_correction": {
+      "accepted_test_reruns": 0,
+      "avoid": [
+        12,
+        5
+      ],
+      "cold_screen_anchor": "fa3f9891b6b1674dc74e1dfedfb8eb76b8a863253649d95ddb4c71bc5046a1b4",
+      "first_steps": [
+        [
+          11,
+          5
+        ],
+        [
+          11,
+          4
+        ],
+        [
+          12,
+          4
+        ],
+        [
+          13,
+          4
+        ]
+      ],
+      "native_processes": 0
+    },
     "elevation": 3,
     "facing": 4,
     "guide": "docs/PR16_STORY_SAVE47_JA.md",
@@ -31482,7 +31524,8 @@
       0
     ],
     "money": 15224,
-    "next_goal_ja": "Save47 artifact11279895650のstory-fast.srm（0ffabf8d049f74edaabdaf32a54872a267d9ea4c04f02845612295a9f30c6431、131088bytes）だけから再開。map3/44・11,5東/下段3・party4/RP0・15224円・badge1・story4071=9/4072=1。3,12から北迂回19歩/8方向転換→だいすきクラブのジュネ4体に勝利、通常Save47/cold同一。オノノクスHP294/294・PP[11,10,15,20]、ミュウツーHP314/354・全PP0で回復未完。初の実技UI35/42/49/57はslot0ドラゴンクローPP15/14/13/12、36/43/50/58通常使用、party全600byteの差は52=15→11だけ。原controllerはPPlabel矩形がタイプ/物理アイコン化した実UIをotherと誤陰性、raw used[0,0,0,0]を改作せず実4回と区別。次のcontrollerは新pr16_story_save47_accept.classify_panel（技名/種族/PP数値非依存のパネル上枠+実cursor、原90画面の4技/3交代を照合済）を使い、selectは親実PP[11,10,15,20]で上限を再束縛する。旧PPlabel/used0/古いPP15のclosureを流用しない。native4slot選択/他技使用は未受入。以後は11,5→12,5→13,5→13,4→14,4→14,3→18,3→18,4から東へ、34,13下段→34,16→25,17→25,15→17,15→17,19の保存地形迂回候補の未通過続きだけ。最初の新戦闘/event/未通過境界または正常回復地点で次Save。南接続map3/23→3/2は候補、回復施設未同定。今回170+cold13入力/90画面/12controller44受入を無影響再走しない。71〜82部分write、83counter47/最終Flash→84成功文言→87field。physicalflag1402だけ0→1、賞金960円、Bag/HP/EXP/PC/S61E/story不変。auxvar4021=22→40/4022=1→0とRAMledger31/51差のowner未解決、最終/cold一致。Save46 party2byte/途中ledger、Save39旧cold差/Save44並替差と旧失敗を保持。正規全国図鑑/通常story/自然EXP・技習得・進化/LuckyEgg/12case/Lv100soak/研究施設自然到達未完。一般CIqol_production.c source不一致とfinalHEAD action_requiredは全成功としない。ROM/host補充/故意の全滅/merge/release/baseline切替なし。既存ROM/runtime/inputはActions入力専用、新artifactは新save/画面/textだけ。",
+    "next_goal_ja": "Save47 artifact11279895650のstory-fast.srm（0ffabf8d049f74edaabdaf32a54872a267d9ea4c04f02845612295a9f30c6431、131088bytes）だけから再開。map3/44・11,5東/下段3・party4/RP0・15224円・badge1・story4071=9/4072=1。3,12から北迂回19歩/8方向転換→だいすきクラブのジュネ4体に勝利、通常Save47/cold同一。オノノクスHP294/294・PP[11,10,15,20]、ミュウツーHP314/354・全PP0で回復未完。初の実技UI35/42/49/57はslot0ドラゴンクローPP15/14/13/12、36/43/50/58通常使用、party全600byteの差は52=15→11だけ。原controllerはPPlabel矩形がタイプ/物理アイコン化した実UIをotherと誤陰性、raw used[0,0,0,0]を改作せず実4回と区別。次のcontrollerは新pr16_story_save47_accept.classify_panel（技名/種族/PP数値非依存のパネル上枠+実cursor、原90画面の4技/3交代を照合済）を使い、selectは親実PP[11,10,15,20]で上限を再束縛する。旧PPlabel/used0/古いPP15のclosureを流用しない。native4slot選択/他技使用は未受入。以後は11,5→11,4→12,4→13,4→14,4→14,3→18,3→18,4から東へ、34,13下段→34,16→25,17→25,15→17,15→17,19の保存地形迂回候補の未通過続きだけ。最初の新戦闘/event/未通過境界または正常回復地点で次Save。南接続map3/23→3/2は候補、回復施設未同定。今回170+cold13入力/90画面/12controller44受入を無影響再走しない。71〜82部分write、83counter47/最終Flash→84成功文言→87field。physicalflag1402だけ0→1、賞金960円、Bag/HP/EXP/PC/S61E/story不変。auxvar4021=22→40/4022=1→0とRAMledger31/51差のowner未解決、最終/cold一致。Save46 party2byte/途中ledger、Save39旧cold差/Save44並替差と旧失敗を保持。正規全国図鑑/通常story/自然EXP・技習得・進化/LuckyEgg/12case/Lv100soak/研究施設自然到達未完。一般CIqol_production.c source不一致とfinalHEAD action_requiredは全成功としない。ROM/host補充/故意の全滅/merge/release/baseline切替なし。既存ROM/runtime/inputはActions入力専用、新artifactは新save/画面/textだけ。 Save47独立Continue原画でもジュネが右隣12,5に残るため直進しない。新候補69vertexはcontent/modernization/pr16_story_save47_next_route.jsonを使用。旧測定と旧GUIDEの提案経路は履歴のまま保持。記録run37138998824/job111249329799全11step成功、新44試験成功済みで再走しない。",
+    "next_route": "content/modernization/pr16_story_save47_next_route.json",
     "normal_recovery_required": true,
     "north_detour_partial_accepted": true,
     "party_byte_deltas": [
@@ -31503,11 +31546,145 @@
     "pp_recovery_accepted": false,
     "ram_ledger_change_owner_resolved": false,
     "raw_controller_false_negative_preserved": true,
+    "record_completion": {
+      "job": {
+        "check_run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/check-runs/111249329799",
+        "completed_at": "2026-10-03T17:02:39Z",
+        "conclusion": "success",
+        "created_at": "2026-10-03T17:01:30Z",
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "cd72e53291d03339df72007ada3c7463b962d10d",
+        "html_url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/37138998824/job/111249329799",
+        "id": 111249329799,
+        "labels": [
+          "ubuntu-24.04"
+        ],
+        "name": "record",
+        "node_id": "CR_kwDOUPNhZs8AAAAZ5voOhw",
+        "run_attempt": 1,
+        "run_id": 37138998824,
+        "run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/37138998824",
+        "runner_group_id": 0,
+        "runner_group_name": "GitHub Actions",
+        "runner_id": 1000019907,
+        "runner_name": "GitHub Actions 1000019907",
+        "started_at": "2026-10-03T17:02:08Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completed_at": "2026-10-03T17:02:09Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "started_at": "2026-10-03T17:02:08Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-03T17:02:22Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "started_at": "2026-10-03T17:02:09Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-03T17:02:23Z",
+            "conclusion": "success",
+            "name": "Exact new acceptance source guard",
+            "number": 3,
+            "started_at": "2026-10-03T17:02:22Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-03T17:02:31Z",
+            "conclusion": "success",
+            "name": "Forty-four new acceptance tests and exact terminal parser",
+            "number": 4,
+            "started_at": "2026-10-03T17:02:23Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-03T17:02:35Z",
+            "conclusion": "success",
+            "name": "Scoped final index private guard and fixed resume",
+            "number": 5,
+            "started_at": "2026-10-03T17:02:31Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-03T17:02:35Z",
+            "conclusion": "success",
+            "name": "Lightweight task graph",
+            "number": 6,
+            "started_at": "2026-10-03T17:02:35Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-03T17:02:37Z",
+            "conclusion": "success",
+            "name": "Commit and nonforce push same branch",
+            "number": 7,
+            "started_at": "2026-10-03T17:02:35Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-03T17:02:37Z",
+            "conclusion": "success",
+            "name": "Exact committed text readback",
+            "number": 8,
+            "started_at": "2026-10-03T17:02:37Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-03T17:02:38Z",
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@v4",
+            "number": 9,
+            "started_at": "2026-10-03T17:02:37Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-03T17:02:38Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 18,
+            "started_at": "2026-10-03T17:02:38Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-03T17:02:38Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 19,
+            "started_at": "2026-10-03T17:02:38Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/jobs/111249329799",
+        "workflow_name": "pr16-story-save47-record"
+      },
+      "run": {
+        "conclusion": "success",
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "cd72e53291d03339df72007ada3c7463b962d10d",
+        "id": 37138998824,
+        "path": ".github/workflows/pr16-story-save47-record.yml",
+        "run_attempt": 1,
+        "status": "completed"
+      }
+    },
     "record_native_processes": 0,
     "record_run_id": 37138998824,
     "repaired_classifier_offline_only": true,
     "rp": 0,
     "run_id": 37138339081,
+    "stage79_completion": {
+      "conclusion": "success",
+      "head_sha": "cd72e53291d03339df72007ada3c7463b962d10d",
+      "html_url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/37138998686",
+      "id": 37138998686,
+      "status": "completed"
+    },
     "status": "PASS_ROUTE504_JUNE_SAVE47_SCOPED",
     "story_fast_save": {
       "sha256": "0ffabf8d049f74edaabdaf32a54872a267d9ea4c04f02845612295a9f30c6431",

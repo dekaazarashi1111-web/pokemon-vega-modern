@@ -11723,3 +11723,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 測定source=eabbb96a80487644d4a873eaea0a7b3a1a6a03b3、記録source=cd72e53291d03339df72007ada3c7463b962d10d・run=37138998824。scoped guard/task graph/resume後に同branch非force pushと全text読戻し。
 - Network: 同repo GitHub/Actionsのみ。既存ROM/runtime/input非再配布。一般CI既知source不一致/finalHEAD action_requiredは全成功としない。merge/release/baseline変更0。
 - Next: Save47 artifact11279895650のstory-fast.srm（0ffabf8d049f74edaabdaf32a54872a267d9ea4c04f02845612295a9f30c6431、131088bytes）だけから再開。map3/44・11,5東/下段3・party4/RP0・15224円・badge1・story4071=9/4072=1。3,12から北迂回19歩/8方向転換→だいすきクラブのジュネ4体に勝利、通常Save47/cold同一。オノノクスHP294/294・PP[11,10,15,20]、ミュウツーHP314/354・全PP0で回復未完。初の実技UI35/42/49/57はslot0ドラゴンクローPP15/14/13/12、36/43/50/58通常使用、party全600byteの差は52=15→11だけ。原controllerはPPlabel矩形がタイプ/物理アイコン化した実UIをotherと誤陰性、raw used[0,0,0,0]を改作せず実4回と区別。次のcontrollerは新pr16_story_save47_accept.classify_panel（技名/種族/PP数値非依存のパネル上枠+実cursor、原90画面の4技/3交代を照合済）を使い、selectは親実PP[11,10,15,20]で上限を再束縛する。旧PPlabel/used0/古いPP15のclosureを流用しない。native4slot選択/他技使用は未受入。以後は11,5→12,5→13,5→13,4→14,4→14,3→18,3→18,4から東へ、34,13下段→34,16→25,17→25,15→17,15→17,19の保存地形迂回候補の未通過続きだけ。最初の新戦闘/event/未通過境界または正常回復地点で次Save。南接続map3/23→3/2は候補、回復施設未同定。今回170+cold13入力/90画面/12controller44受入を無影響再走しない。71〜82部分write、83counter47/最終Flash→84成功文言→87field。physicalflag1402だけ0→1、賞金960円、Bag/HP/EXP/PC/S61E/story不変。auxvar4021=22→40/4022=1→0とRAMledger31/51差のowner未解決、最終/cold一致。Save46 party2byte/途中ledger、Save39旧cold差/Save44並替差と旧失敗を保持。正規全国図鑑/通常story/自然EXP・技習得・進化/LuckyEgg/12case/Lv100soak/研究施設自然到達未完。一般CIqol_production.c source不一致とfinalHEAD action_requiredは全成功としない。ROM/host補充/故意の全滅/merge/release/baseline切替なし。既存ROM/runtime/inputはActions入力専用、新artifactは新save/画面/textだけ。
+
+## 2026-10-03T17:06:00+00:00
+- Timestamp: 2026-10-03T17:06:00+00:00
+- Task: USER-20261003-SAVE47-COLD-NPC-HANDOFF / Save47終端とcold NPC回避候補の同期
+- Version: story-save47-handoff-v1
+- Status: DONE（再開候補だけの訂正。到達は未受入）
+- Summary: Save47独立Continue原画ではジュネが右隣12,5に残る。旧静的候補の直進を11,4→12,4→13,4へ訂正、69vertexの保存地形/隣接/衝突0/高度3を照合。旧測定/原used0/旧GUIDEは歴史として不変。
+- Files changed: 専用同期script/workflow/69vertex候補JSON、固定再開MD/JSON、両ログ。
+- Verify: record37138998824/job111249329799全11step成功、Stage79run37138998686成功。新44受入試験/既存12controller/native2の再走0。新native0/ROM0/fixture0。
+- Commit: source=dfbec07def05ffdc0c0acd57386cbb9f4b5eb8cc、run=37139239163。scoped guard/全text読戻し後に同branch非force push。
+- Network: 同repo Actions終端GETだけ。既存ROM/runtime/input再取得0。一般CI既知不一致/action_requiredを全成功にしない。
+- Next: Save47/11,5から訂正候補と新パネル+実cursor判定/親PP[11,10,15,20]だけ。回復未完、merge/release/baseline変更0。
