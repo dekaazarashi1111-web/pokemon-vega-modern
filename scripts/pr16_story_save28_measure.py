@@ -17,15 +17,15 @@ START=[19,13];TRIGGER=[19,14];ROOT_ADDRESS=0x08214661
 
 def decode(raw,flag):
     need(type(raw)is bytes and len(raw)==30 and type(flag)is int and flag in (0,1),'正規30byte/flag値')
-    need(raw[:4]==bytes([0x2b,0x0f,0x11,0x06]) and raw[4] in (0,1) and struct.unpack_from('<I',raw,5)[0]==ROOT_ADDRESS+20,'checkflag4367/boolean条件分岐')
-    need(raw[9]==0x69 and raw[18:20]==bytes([0x6d,2]),'false側lock/release/end')
+    need(raw[:5]==bytes([0x69,0x2b,0x0f,0x11,0x06]) and raw[5] in (0,1) and struct.unpack_from('<I',raw,6)[0]==ROOT_ADDRESS+20,'checkflag4367/boolean条件分岐')
+    need(raw[0]==0x69 and raw[18:20]==bytes([0x6d,2]),'false側lock/release/end')
     def dest(i):
         op,bank,number,warp,x,y,release,end=struct.unpack_from('<BBBBHHBB',raw,i)
         need((op,bank,number,warp,release,end)==(0x3d,1,73,0x99,0x6d,2),'同洞窟の正規warpteleportだけ')
         need([x,y]in ([27,7],[8,10]),'既知destinationだけ');return [x,y]
     fallthrough,branch=dest(10),dest(20);need(fallthrough!=branch,'2枝を混同しない')
-    taken=flag==raw[4]
-    return dict(root=ROOT_ADDRESS,flag_id=4367,flag_value=flag,condition=raw[4],branch_taken=taken,fallthrough_destination=fallthrough,branch_destination=branch,expected_destination=branch if taken else fallthrough)
+    taken=flag==raw[5]
+    return dict(root=ROOT_ADDRESS,flag_id=4367,flag_value=flag,condition=raw[5],branch_taken=taken,fallthrough_destination=fallthrough,branch_destination=branch,expected_destination=branch if taken else fallthrough)
 
 def scope(o):
     need(o['map']==[1,73] and o['xy']in (START,TRIGGER,[27,7],[8,10]) and o['save_counter']==27 and o['party_count']==4 and o['rp']==0 and o['party_sha256']==a.PARTY and o['flash_sha256']==a.FLASH and o['battle_flags']==o['battle_outcome']==0,'teleport限定/戦闘やhost変更なし')
@@ -90,11 +90,18 @@ def main():
             for name,binding in fm.items():need(identity(failed.read(name))==binding,'前回失敗member')
             failure=json.loads(failed.read('failure.json'));need(failure['native_processes']==0 and failure['message']=='checkflag4367/true分岐','native0失敗の境界')
             (ART/'preflight-failure.json').write_bytes(failed.read('failure.json'))
+        _,failed2=a.transport.archive(11272061698,37116959565,dict(size=2330,sha256='b67fb0af6d2f75e550263b966e15e6c250be39b65346b23a9efae91c26d9d5f6'),'f202f9f7779efa8e5b278c58ef21514025410b73')
+        with failed2:
+            fm=json.loads(failed2.read('manifest.json'));need(set(fm)=={'failure.json','save27-record-terminal.json','preflight-failure.json','coord-operands.json'},'2回目もnative前だけ')
+            for name,binding in fm.items():need(identity(failed2.read(name))==binding,'2回目失敗member')
+            failure=json.loads(failed2.read('failure.json'));need(failure['native_processes']==0,'2回目native0')
+            (ART/'preflight-failure-2.json').write_bytes(failed2.read('failure.json'))
+            (ART/'preflight-misaligned-operands.json').write_bytes(failed2.read('coord-operands.json'))
         runtime=restore();seed=(ASSETS/'input.srm').read_bytes();rom=(ASSETS/'candidate.gba').read_bytes()
         bank,_=a.parent.sectors.bank(seed,0xe000,27,a.parent.sectors.LAYOUT)
         ext=a.parent.s61e_record(seed[bank[13]+0x7d0:bank[13]+0xde6]);flag=(ext[(4367-2304)//8]>>((4367-2304)%8))&1
         raw=rom[ROOT_ADDRESS-0x8000000:ROOT_ADDRESS-0x8000000+30]
-        write(ART/'coord-operands.json',dict(root=ROOT_ADDRESS,checkflag_opcode=raw[0],flag_operand=struct.unpack_from('<H',raw,1)[0],branch_opcode=raw[3],condition=raw[4],branch_target=struct.unpack_from('<I',raw,5)[0],lock=raw[9],flag_value=flag))
+        write(ART/'coord-operands.json',dict(root=ROOT_ADDRESS,checkflag_opcode=raw[1],flag_operand=struct.unpack_from('<H',raw,2)[0],branch_opcode=raw[4],condition=raw[5],branch_target=struct.unpack_from('<I',raw,6)[0],lock=raw[0],flag_value=flag))
         owner=decode(raw,flag);write(ART/'coord-owner.json',owner)
         s=Session(runtime,ASSETS/'candidate.gba',ASSETS/'runner',seed,ART/'progress');sessions.append(s)
         teleport=progress(s,owner['expected_destination']);final=save(s);result=s.quit();saved=s.save.read_bytes();(ART/'story-fast.srm').write_bytes(saved)
@@ -102,7 +109,7 @@ def main():
         m.idle(c.last,28);need(c.last['xy']==final['xy'] and c.last['party_sha256']==a.PARTY,'cold位置/party')
         c.step((0,120));cold=c.quit();(ART/'cold.srm').write_bytes(c.save.read_bytes());need(saved==c.save.read_bytes(),'全Save/RTC')
         pa=a.shared.trace(ART/'progress',a.OUTPUT);pb=a.shared.trace(ART/'continue',identity(saved));need(h.d.bindings(protected)==protected,'受入source不変')
-        report=dict(status='MEASURED_COORD_TELEPORT_SAVE28_AWAITING_ACCEPTANCE',source_head=os.environ['GITHUB_SHA'],run_id=int(os.environ['GITHUB_RUN_ID']),input_save=a.OUTPUT,output_save=identity(saved),owner=owner,teleport=teleport,final=final,continued=c.last,progress=result,independent_continue=cold,screen_count=len(pa['screens'])+len(pb['screens']),native_processes=2,accepted_case_reruns=0,accepted_test_reruns=0,compiles=0,rom_changes=0,fixture_writes=0,ordinary_saves=1,wild_victories=0,trainer_victories=0,cave_crossing_complete=False,full_story_accepted=False,release_ready=False,artifact_excludes=['existing ROM','runner','runtime','input Save27'])
+        report=dict(status='MEASURED_COORD_TELEPORT_SAVE28_AWAITING_ACCEPTANCE',source_head=os.environ['GITHUB_SHA'],run_id=int(os.environ['GITHUB_RUN_ID']),input_save=a.OUTPUT,output_save=identity(saved),owner=owner,teleport=teleport,final=final,continued=c.last,progress=result,independent_continue=cold,screen_count=len(pa['screens'])+len(pb['screens']),native_processes=2,accepted_case_reruns=0,accepted_test_reruns=0,development_controller_rechecks=16,compiles=0,rom_changes=0,fixture_writes=0,ordinary_saves=1,wild_victories=0,trainer_victories=0,cave_crossing_complete=False,full_story_accepted=False,release_ready=False,artifact_excludes=['existing ROM','runner','runtime','input Save27'])
         write(ART/'measurement.json',report);print(json.dumps(report,ensure_ascii=False,indent=2))
     except Exception as e:
         for s in sessions:
