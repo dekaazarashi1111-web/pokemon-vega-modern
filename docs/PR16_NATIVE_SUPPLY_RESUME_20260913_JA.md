@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-505の未戦闘ペアを避け20歩+南接続、ミルシティ28,0南でSave52/独立Continueを限定受入。HP/PP不変、通常回復未完。
+ミルシティ回復施設map6/5の7,8北、Save53。HP/PP不変、受付会話/回復が次。
 
-**次: Save52 artifact11282311020のstory-fast.srm（131088bytes/SHA256 f3fc9b1d3121b049900defb5c2f031a0b397a10b34fa3464d51f355a87833028）だけから再開。505の未戦闘ペアを視界過大近似の外側で迂回、20歩+南connectionを戦闘0で通過しミルシティmap3/2の28,0南/高度3へ到着。通常Save52/独立Continue全SaveRTC一致を限定受入。party全600byte/HP/PP/Bag/17040円/RP0/badge1/story4071=9/4072=1不変。オノノクスHP294/294・PP[11,10,15,14]、ミュウツーHP50/354・PP全0、他2体技ID全0。正常回復が最優先。保存済みtown collision/map/warpsから回復施設のowner・必要経路高度・必要eventだけ読取し、通常入口/会話/回復を目指す。最初の新story/event/未通過境界/新建物/実回復で保存、必須story省略なし。town新接続flag2194とaux4021=63→84/4022=0→1/40AE=91→80、およびcold RAMledger差のowner未解明を保持し次の限定調査で確認。progress ledger3c7c0390…は不変、cold def3a8d7…は別hash、全Save一致と混同しない。43最終Flash一時一致counter51→44counter52再差分→45成功/安定→49field。原本94+cold13入力52画面/18controller39受入/67memberを無影響再走0。doubletarget分離native未実証、旧失敗・Save50raw6/実PP2/partybyte41・旧ledger差は保持。全国図鑑/全story/自然育成・進化/LuckyEgg/研究施設自然到達未完。ROM/host補充/故意全滅/merge/release/baseline切替なし。既存ROM/runtime/inputはActions入力専用。一般CI既知source不一致/action_requiredを全成功にしない。**
+**次: Save53 artifact11283178064のstory-fast.srm（131088bytes/SHA256 e22287b3ef44b53029d855aca7cac243f567af75fce21d557f28294c7f4c9a13）からのみ再開。ミルシティのポケモンセンター1F map6/5・7,8北。通常26歩/入口/Save53/独立Continueを限定受入。party600byte/Bag/17040円/RP0/badge1/story4071=9/4072=1不変。オノノクスHP294/294・PP[11,10,15,14]、ミュウツーHP50/354・PP全0で正常回復が最優先。施設map/warps/owner graphは保存済み。受付local3の7,2、script135790449→135872070→135872156→special0を同一候補で確認。必要な室内経路高度だけ読み、カウンター越しの通常会話/回復へ進む。最初の新event/未通過境界/実回復で通常保存、必須story省略なし。Save52のflag2194 ownerはtown load script136400616の命令136400637/setworldmapflag。既受入の原本を書換えず後継解決として記録。今回var4021=84→110/4022=1→2と旧cold RAM差のowner未解明を保持。今回progress/cold ledgerはdef3a8d727dc95294ed0908fa68914b62022587e25ef55d2fe352a942c1ec502で同一。Save53成功54→field57、counter53だけでは完了判定しない。108+cold13入力60画面20controller39受入75memberを無影響再走0。全国図鑑/全story/自然育成・進化/LuckyEgg/研究施設自然到達未完、doubletarget分離native未実証。既存ROM/runtime/input非再配布、host補充/故意全滅/merge/release/baseline切替なし。一般CI既知source不一致/action_requiredを全成功にしない。**
 
-Save52/ミルシティ28,0南から必要な回復施設owner/経路高度/eventだけ静的確認し通常入力。最初の新story/event/未通過境界/新建物/実回復で保存。cold RAM差・新接続flag/varsは未解明として保持。必須story省略・host補充なし。
+Save53室内7,8北から必要な経路だけ静的確認し、受付local3との通常会話/回復へ。最初の新event/未通過境界/実回復で通常保存。旧cold RAM差/aux owner未解明を保持、host補充なし。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `2d43764b9253f306dcb8abcd23e040e7cecbd85f`。
-505のペア迂回20歩とミルシティ接続、Save52測定source。正常回復未完。
+証拠のsource HEAD: `c7a396747031908a74cc8c9a63698e6c513dced8`。
+ミルシティ26歩/通常入館Save53。回復は未完。
 
 ## 最短の再開手順
 
@@ -25,13 +25,13 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_STORY_SAVE52_JA.md`
-- `content/modernization/pr16_story_save52_checkpoint.json`
-- `content/modernization/pr16_story_save52_visual_review.json`
-- `scripts/pr16_story_save52_accept.py`
-- `scripts/pr16_story_save52_measure.py`
-- `content/modernization/pr16_story_save52_evidence/inspection.json`
-- `content/modernization/pr16_story_save52_preparation.json`
+- `docs/PR16_STORY_SAVE53_JA.md`
+- `content/modernization/pr16_story_save53_checkpoint.json`
+- `content/modernization/pr16_story_save53_visual_review.json`
+- `scripts/pr16_story_save53_accept.py`
+- `scripts/pr16_story_save53_measure.py`
+- `content/modernization/pr16_story_save53_evidence/inspection.json`
+- `content/modernization/pr16_story_save53_owner.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -380,6 +380,7 @@ P08ゲート:
 - Save50の296/cold13入力153画面・20controller44受入を無影響再走しない。57歩/セナラナ1勝/Save50、raw used6は実PP2+選択targetの限界を保持。party byte41/ledger owner未解明、反動HP314→50を回復としない。146安定/counter→147成功→150field。
 - Save51の184/cold13入力97画面・22controller44受入を無影響再走しない。27歩/ワタミ1勝/Save51、選択4/target0/実PP4。ダブルtarget分離native未実証。RAMledger42/63とaux4021owner未解明。90安定/counter→91成功→94field。
 - Save52の94/cold13入力52画面・18controller39受入を無影響再走しない。20歩+ミルシティ接続、戦闘0。party/HP/PP不変。新接続flag2194/vars3件とcold RAMledger差owner未解明。43一時Flash一致→44counter/再差分→45成功→49field。
+- Save53の108/cold13入力60画面・20controller39受入を無影響再走しない。26歩/通常入館、戦闘0。全party不変。今回RAM台帳不変、旧Save52 cold差ownerは未解明のまま。新flag0/aux2件、respawn通常更新。
 
 ## 次セッションへ残す更新手順
 
