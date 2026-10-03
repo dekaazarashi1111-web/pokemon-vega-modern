@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """504橋下/階段/橋上のSave42原本を受入し、固定再開正本へ記録。native再走0。"""
 from __future__ import annotations
-import datetime,json,os,subprocess,sys
+import datetime,json,os,re,sys
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1];sys.path[:0]=[str(ROOT/'scripts'),str(ROOT)]
 import pr16_story_save42_accept as a
@@ -22,6 +22,7 @@ def record():
     done=inherited.terminal(a.RUN,a.SOURCE,a.JOB,['success']*8)
     prior_done=inherited.terminal(37131494568,'75d5b04934121c7213db4760f4ece87078524a45',111227343260,['success']*11)
     failed_record_done=inherited.terminal(37132651122,'2e66e9ad0c2c21c856e042d186a2fe0671fac868',111230669206,['success','success','success','failure','skipped','skipped','skipped','skipped','success','success','success'])
+    second_record_done=inherited.terminal(37132813539,'a5dedfd0b2dbbc6777a25f2b84744b85733d1a9d',111231147495,['success','success','success','failure','skipped','skipped','skipped','skipped','success','success','success'])
     test_receipts=[]
     for job,suite,count in [(a.JOB,'test_pr16_story_save42_measure.',16)]:
         log=h.d.inputs.api('actions/jobs/'+str(job)+'/logs',True).decode().splitlines()
@@ -50,19 +51,26 @@ def record():
     need(set(visual['screen_anchors'])=={n for n in manifest if n.endswith('.ppm')},'全Save42画面anchor')
     for n,digest in visual['screen_anchors'].items():need(identity((original/n).read_bytes())['sha256']==digest,'目視原本 '+n)
     result=a.verify(original,before,rom)
-    assets=OUT/'private-inputs';assets.mkdir();(assets/'input.srm').write_bytes(before);(assets/'candidate.gba').write_bytes(rom)
-    env=dict(os.environ,PR16_SAVE42_ORIGINAL=str(original),PR16_SAVE41_INPUT=str(assets/'input.srm'),PR16_SAVE42_ROM=str(assets/'candidate.gba'))
-    unit=subprocess.run([sys.executable,'-B','-m','unittest','discover','-s','tests','-p','test_pr16_story_save42_accept.py','-v'],capture_output=True,timeout=120,env=env)
-    (receipts/'unit.stdout.txt').write_bytes(unit.stdout);(receipts/'unit.stderr.txt').write_bytes(unit.stderr)
-    need(unit.returncode==0 and not unit.stdout and unit.stderr.count(b' ... ok\n')==30 and b'\nOK\n'in unit.stderr and b'skipped'not in unit.stderr,'新Save42受入/拒否試験')
+    # 30試験は失敗run内で全件成功済み。誤ったsubstring guardだけを訂正し、試験再走0。
+    for name in ['scripts/pr16_story_save42_accept.py','tests/test_pr16_story_save42_accept.py',a.VISUAL]:
+        need(h.d.git('show','a5dedfd0b2dbbc6777a25f2b84744b85733d1a9d:'+name)==(ROOT/name).read_bytes(),'成功試験source不変 '+name)
+    _,z=a.transport.archive(11277088734,37132813539,dict(size=705,sha256='6e56acca0cad2d6024c9d3601543b02ed45006cc184406d7c6202d8a83aba986'),'a5dedfd0b2dbbc6777a25f2b84744b85733d1a9d')
+    with z:
+        need(set(z.namelist())=={'unit.stdout.txt','unit.stderr.txt'},'二回目record試験原本2memberだけ')
+        unit_stdout=z.read('unit.stdout.txt');unit_stderr=z.read('unit.stderr.txt')
+    need(not unit_stdout and len(unit_stderr)==3133 and len(unit_stderr.splitlines())==35,'全試験原本のsize/行数')
+    test_lines=[line for line in unit_stderr.decode().splitlines()if line.startswith('test_')]
+    need(len(test_lines)==30 and all(line.endswith(' ... ok')for line in test_lines)and re.search(rb'\nRan 30 tests in [0-9.]+s\n\nOK\n\Z',unit_stderr),'30成功行と正確なunittest終端')
+    (receipts/'unit.stdout.txt').write_bytes(unit_stdout);(receipts/'unit.stderr.txt').write_bytes(unit_stderr)
     evidence=ROOT/a.EVIDENCE;evidence.mkdir()
     for name in ['measurement.json','manifest.json','save41-record-terminal.json','inspection.json','progress/commands.txt','progress/stdout.txt','progress/stderr.txt','progress/execution.json','continue/commands.txt','continue/stdout.txt','continue/stderr.txt','continue/execution.json']:
         raw=(original/name).read_bytes();raw.decode();need(b'\0'not in raw,'tracked textだけ')
         dest=evidence/name;dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(raw)
-    (evidence/'unit.stderr.txt').write_bytes(unit.stderr)
+    (evidence/'unit.stderr.txt').write_bytes(unit_stderr)
     write(evidence/'verification.json',result);write(evidence/'terminal.json',done)
     write(evidence/'controller-test-receipt.json',test_receipts)
     write(evidence/'first-record-failure.json',dict(terminal=failed_record_done,native_processes=0,acceptance_tests_run=0,tracked_writes=0,reason_ja='新parserのGUIDE定数が旧Save41を指したため、専用宛先guardがartifact取得/受入試験/正本書込前に拒否。Save42専用宛先へ訂正し原本から記録。'))
+    write(evidence/'second-record-failure.json',dict(terminal=second_record_done,artifact_id=11277088734,native_processes=0,accepted_tests_passed=30,replayed_tests=0,tracked_writes=0,reason_ja='30試験は全件ok/OK。成功した試験名underpass_falsely_skippedに含まれるskippedへsubstring guardが誤反応した。成功原本を不変で継承し、正確なunittest終端/全行okだけで照合。元run結論failureを保持。'))
     paths={p.relative_to(ROOT).as_posix()for p in evidence.rglob('*')if p.is_file()}
     goal=(f'Save42 artifact{a.ARTIFACT}のstory-fast.srm（{a.OUTPUT["sha256"]}、131088bytes）だけから再開。'
       'map3/44（504番道路）・47,13西/橋上elevation4・party4/RP0・13796円・badge1・story4071=9/4072=1、HP320/354・PP[1,5,0,0]。'
@@ -78,21 +86,30 @@ def record():
       artifact={k:meta[k]for k in ('id','name','size_in_bytes','digest','workflow_run','expires_at')},verification=result,
       record_source=os.environ['GITHUB_SHA'],record_run_id=int(os.environ['GITHUB_RUN_ID']),save42_accepted=True,underpass_south_accepted=True,stairs_accepted=True,upper_bridge_west_crossing_accepted=True,earlier_unpassed_edge_retried=False,cave_crossing_complete=True,
       visual_review=a.VISUAL,source_bindings=h.d.bindings(CODE|a.m.CODE),evidence_bindings=h.d.bindings(paths),
-      new_controller_tests=16,new_acceptance_tests=30,successful_native_processes=2,record_native_processes=0,first_record_failure_run=37132651122,next_goal_ja=goal,release_ready=False,active_baseline_changed=False,general_ci_all_success_claimed=False)
+      new_controller_tests=16,new_acceptance_tests=30,successful_native_processes=2,record_native_processes=0,first_record_failure_run=37132651122,second_record_failure_run=37132813539,acceptance_test_source_run=37132813539,acceptance_tests_executed_in_record=0,next_goal_ja=goal,release_ready=False,active_baseline_changed=False,general_ci_all_success_claimed=False)
     write(ROOT/a.CP,cp)
     (ROOT/a.GUIDE).write_text(f'''# 504橋下・階段・橋上・Save42 限定受入
 
 `{result['status']}`。Save41の橋下48,11から南へ抜け、54,15の階段で上段へ。橋上48,13から47,13西へ通常通過、Save42/独立Continueを限定受入。21歩/8方向転換、戦闘0。旧48,11→47,11は未通過のままで再試行0。全story・全国図鑑・自然成長は未完。
 
-source `{a.SOURCE}` / run `{a.RUN}` / job `{a.JOB}` 全8step成功。artifact `{a.ARTIFACT}` / {a.ARCHIVE['size']}bytes / SHA256 `{a.ARCHIVE['sha256']}`。全72member/57画面/103+cold13入力。新16controller成功logを継承、新30原本受入/拒否試験、native2/record0。ROM/fixture/compile/既受入再走0。
+source `{a.SOURCE}` / run `{a.RUN}` / job `{a.JOB}` 全8step成功。artifact `{a.ARTIFACT}` / {a.ARCHIVE['size']}bytes / SHA256 `{a.ARCHIVE['sha256']}`。全72member/57画面/103+cold13入力。新16controller成功logを継承、二回目record run37132813539の新30原本受入/拒否試験成功logを継承、記録時試験再実行0、native2/record0。ROM/fixture/compile/既受入再走0。
 
 party600byte/HP320/PP[1,5,0,0]/全Bag/HM05/13796円/PC/S61E/legacy flag/story4071=9/4072=1・badge1不変。補助var4021=75→96/4022=0→1だけでruntime owner未解明。42sector checksum/旧Save41bank57344byte/6871byte1715範囲/cold全SaveRTC一致。全国図鑑magic0/404e0/flag8400を保持。
 
 30〜34の通常menu cursor0→4を実画像確認。37〜48と50は13部分write。49は最終Flashと一時一致するが書込中/counter41であり完了とはしない。50でcounter42/Flash再変化、51〜53成功文言/安定全Flash、54field。cold0/1も橋上47,13西。全57画面を確認。進行最終/cold ledger `{a.LEDGER}` は一致するがSave39旧差owner未解明を維持。
 
-初回record run37132651122はGUIDE定数の旧Save41宛先を専用guardがartifact取得/受入試験/正本書込前に拒否。native0/試験0/正本書込0。Save42宛先へ訂正し、失敗終端を保持して記録。
+初回record run37132651122はGUIDE定数の旧Save41宛先を専用guardがartifact取得/受入試験/正本書込前に拒否。native0/試験0/正本書込0。Save42宛先へ訂正し、失敗終端を保持して記録。第二record run37132813539は30試験全成功後、成功した試験名のskippedへ粗いsubstring判定が誤反応。原試験log/705byte artifact11277088734を不変継承し、成功行と正確な終端を検査する。旧run結論はfailureのまま、試験/nativeを再走しない。
 
 保存地形1440cell/11nodeの再採取0。橋tileのelevation15は進入した高さを保持し、54,15のelevation0階段から上段へ進める候補を今回の通常通過で限定裏付けた。すべての橋/階段の一般的到達保証にはしない。22vertexの今回候補全部を通過、以西は次の未受入区間。
+
+## 次のcheckpointをActionsへ送る前のローカル確認
+
+1. 新counterを1つ定め、ASTで全Pythonの構文と定数を照合する。importするmeasure/accept、CP/JSON、GUIDE/MD、EVIDENCE、VISUAL、OUT、workflow名、CODE列挙、test名が同じ新counterであること。文字列一括置換の小文字/大文字漏れを個別に検出する。
+2. 環境変数は受入試験が読む新counterのORIGINAL/ROMと、実入力である親counterのINPUTの3名をrecord側定義と集合比較する。親artifact/run/source/save SHA、Save counter、bank世代、manifest件数を実原本と照合し、親を新counterへ一括置換しない。
+3. 送信予定tree/staged pathsの全一覧を表示し、意図した新規text pathだけか、既存受入source/旧GUIDE/旧checkpointとの交差が0か確認する。CP/GUIDE/EVIDENCE専用宛先guardと既存private/source guardは弱めず保持する。
+4. 新試験名/件数と成功原logの一致を確認する。unittestの成否はreturncodeと全成功行/正確な終端で判定し、試験名内のskipped等へのsubstring判定を使わない。既に成功した試験を記録器だけの失敗で再走しない。失敗runはそのまま保存し、以後は原本再利用で回収する。
+
+本Save42のGUIDE旧名漏れと試験名substring誤判定は両方とも履歴へ保持した。次workerは上の4点をpush前に済ませ、既存の専用宛先/private/source guardを引き続き使用する。
 
 次: {goal}
 ''',encoding='utf-8')
@@ -122,9 +139,9 @@ party600byte/HP320/PP[1,5,0,0]/全Bag/HM05/13796円/PC/S61E/legacy flag/story407
 - Status: DONE（橋下/階段/橋上通過/保存Continue限定受入）
 - Summary: Save41の48,11から南へ抜け、54,15階段から上段へ。橋上48,13を経て47,13まで21歩/8方向転換。旧失敗辺の再試行0、戦闘0、全国図鑑/自然成長/全story未完。
 - Files changed: Save42 controller/16新規試験/30原本受入拒否試験/record workflow、checkpoint/text証跡、固定再開MD/JSON、両ログ。
-- Verify: 測定run{a.RUN}/job{a.JOB}全8step成功、103/cold13入力/57画面/72member。16controller原log継承、新30受入だけ実行、record native0。party600byte/HP320/PP[1,5,0,0]/Bag/13796円/PC/S61E/legacyflags/story不変。補助4021=75→96/4022=0→1はowner未解明。42checksum/旧bank57344byte/6871byte1715範囲/cold全SaveRTC一致。
+- Verify: 測定run{a.RUN}/job{a.JOB}全8step成功、103/cold13入力/57画面/72member。16controller原log継承、第二record run37132813539の新30受入成功原本を継承、今回試験再実行0/record native0。party600byte/HP320/PP[1,5,0,0]/Bag/13796円/PC/S61E/legacyflags/story不変。補助4021=75→96/4022=0→1はowner未解明。42checksum/旧bank57344byte/6871byte1715範囲/cold全SaveRTC一致。
 - Evidence: 30〜34実menu0→4、37〜48/50部分write、49最終Flash一時一致で書込中、50counter42/再変化、51成功文言/安定Flash→54field。今回cold RAMledger一致、Save39旧差owner未解明を保持。Save41 record37131494568/Stage79run37131494597の全success終端反映。保存済地形再採取0、旧accepted試験/native再実行0。
-- History: 初回record37132651122は旧Save41を指すGUIDE定数を専用宛先guardが事前拒否。native0/受入試験0/正本書込0。失敗終端を保持し、Save42宛先へ訂正。
+- History: 第二record37132813539は30試験全成功後に試験名underpass_falsely_skippedへのsubstring誤反応。成功原ログ/artifact11277088734を不変継承し再試験0。初回record37132651122は旧Save41を指すGUIDE定数を専用宛先guardが事前拒否。native0/受入試験0/正本書込0。失敗終端を保持し、Save42宛先へ訂正。
 - Commit: 測定source={a.SOURCE}、記録source={os.environ['GITHUB_SHA']}・run={os.environ['GITHUB_RUN_ID']}。scoped guard/task graph/resume後に同branch非force pushと全text読戻し。
 - Network: 同repo GitHub/Actions入力のみ。既存ROM/runtime/input Save41再配布0。一般CI既知source不一致を保持、merge/release/baseline変更0。
 - Next: {goal}
