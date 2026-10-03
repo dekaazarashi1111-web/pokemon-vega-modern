@@ -16,7 +16,7 @@ TASK='USER-20261003-CAVE-EAST-SAVE24'
 OUT=ROOT/'.local/pr16-story-save24-detour'
 ART=OUT/'artifact'
 CODE={'scripts/pr16_story_save24_detour.py','tests/test_pr16_story_save24_detour.py',
-      '.github/workflows/pr16-story-save24-detour.yml'}
+      '.github/workflows/pr16-story-save24-detour.yml','tests/test_pr16_story_save24_terrain.py'}
 ROUTE=[[x,3] for x in range(20,32)]+[[31,4]]
 TARGET=[31,4]
 FAILED_RUN=37092974275
@@ -55,6 +55,10 @@ def recover_failed():
     return receipt
 
 
+def floor_allowed(row):
+    return row['collision']==0 and row['elevation']==3 and row['behavior'] in (0,8,0x2b,0x61)
+
+
 def terrain(raw):
     need(identity(raw)==m.shared.plan.CANDIDATE,'固定候補')
     width,height,_,blocks,primary,secondary=unpack(raw,137190172,'IIIIII')
@@ -67,7 +71,7 @@ def terrain(raw):
         attrptr=(unpack(raw,primary+20,'I')[0]+tile*4) if tile<0x280 else attrs+(tile-0x280)*4
         attr=unpack(raw,attrptr,'I')[0]
         rows.append(dict(xy=xy,elevation=cell>>12,collision=(cell>>10)&3,metatile=tile,behavior=attr&0x1ff))
-    need(all(x['collision']==0 and x['elevation']==3 and x['behavior'] in (0,8,0x61) for x in rows[:len(ROUTE)]),
+    need(all(floor_allowed(x) for x in rows[:len(ROUTE)]),
          '新経路は同じ高さ3の通常floorだけ')
     need(rows[-3]==dict(xy=[27,4],elevation=3,collision=0,metatile=0x305,behavior=8) and
          rows[-2]==dict(xy=[27,5],elevation=4,collision=0,metatile=0x289,behavior=0x32) and
@@ -147,7 +151,7 @@ def main():
         raise
     finally:
         write(ART/'manifest.json',{p.relative_to(ART).as_posix():identity(p.read_bytes()) for p in sorted(ART.rglob('*'))
-            if p.is_file() and p.name!='manifest.json'})
+            if p.is_file() and p.relative_to(ART).as_posix()!='manifest.json'})
 
 
 if __name__=='__main__':main()
