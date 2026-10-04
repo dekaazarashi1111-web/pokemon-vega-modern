@@ -256,7 +256,19 @@ def link(folder):
     raw=final.read_bytes();actual=[s for s in elf_sections(raw)if s['flags']&2 and s['size']]
     reserved={s['name']:s for s in assigned}
     need(all(s['address']==reserved[s['name']]['address']and s['size']<=reserved[s['name']]['size']for s in actual),'strict bounded final section placement')
-    symbols=placement.parse_symbols(run(['arm-none-eabi-nm','-n','-S','--defined-only',str(final)]))
+    symbols={}
+    for line in run(['arm-none-eabi-nm','-n','-S','--defined-only',str(final)]).splitlines():
+        fields=line.split()
+        if len(fields)!=4:continue
+        address,size,kind,name=fields
+        need(kind not in 'BbCcDdGgSs','no mutable scheduler symbol')
+        key=name
+        if key in symbols:
+            need(kind=='t' and name.endswith('_veneer'),'only local repeated linker veneers may share names')
+            key=name+'@'+address
+        need(key not in symbols,'unique symbol identity by name and address')
+        symbols[key]=dict(address=int(address,16),size=int(size,16),kind=kind)
+    need(all(name in symbols and symbols[name]['kind']=='T'for name in ('DexImpl_'+x for x in EXPORTS)),'all unique eight save implementations')
     patches=[(s['address'],raw[s['offset']:s['offset']+s['size']])for s in actual]
     for name in EXPORTS:
         target=symbols['DexImpl_'+name]['address']|1
