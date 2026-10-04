@@ -9954,3 +9954,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Boundary: 全consumer/全save mode/実失敗UI未完。authorityなしinvalid-live返値255→stock mask0成功→QOL sector31保存の可能性、およびSaveFailed mask0成功を発見。次工程で両方を同時修復。
 - Commit: record source=51506e34ea552cd55a52ac311b92f47218f008fd; 同branch非force push。
 - Network: 同repoActions/既存入力/公式Ubuntu toolchain。公開はsourceとaddress-size-SHA/textだけ。ROM/入力save/runtime/runner/credentials非公開。
+
+## 2026-10-04T21:44:02.554266+00:00
+- Timestamp: 2026-10-04T21:44:02.554266+00:00
+- Task: USER-20261004-DEX-SAVE-FAILURE / invalid-live非破壊保存エラー
+- Version: dex-save-failure-v2
+- Status: DONE（invalid-live限定。valid失敗/全mode/残consumerは未完）
+- Summary: stockの返値255→mask0誤成功とQOL sector31後処理を遮断。invalid-liveでは衝突する専用SaveFailedへ入らず通常エラー第一頁→改ページA→最終頁→復帰A→fieldへ返す。TryWipeもinvalidを非破壊拒否。新160byte/111owner、元110owner全byte保持。
+- Files changed: failure gate/source/署名窓/native/negative UI、guide/CP/evidence、固定MDJSON、両ログ。
+- Verify: isolated152case原本、変更gate48＋追加oracle60=108case/1656480instructions、actual error UI run37236898977、CRC1byte例外/7barrier/4画面/改ページAと復帰A/MDX522不変/保存commit0/FlashRTC131088全byte不変。全3受入workflow10step成功。記録native0。
+- Correction: SaveFailedの16KiB tiles DMAがMDX/QOL/CFRU owner、video-stateがResearchへ重なる。run37235631389でDMA7/2byte/MDX先頭を検出、rawPCをDMA要求元にしない。失敗原本とUI driver timeoutを保持。
+- Boundary: 実UIはSave101 authorityありの明示CRC fixture。authorityなしは隔離全writer/mode拒否だけ。valid wipe成功retry、valid-live専用画面owner衝突、HOF/overwrite固有副作用、全consumer/正式進行は未受入。正式ROM/Save101不変。
+- Commit: record source=4ede9c47c6bf8dc9b5ff9441b3daeeff5656e20e; 同branch非force push。
+- Network: 同repoActions/既存入力/固定一次source/公式Ubuntu compiler。公開はsource/address-size-SHA/text/screensのみ、ROM/入力save/runtime/runner/credential非公開。
