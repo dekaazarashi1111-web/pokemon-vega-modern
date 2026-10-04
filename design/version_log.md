@@ -9837,3 +9837,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: terminal/source bindings/resume/task graph/index guard PASS。host再試験0/ARM0/native0/ROM変更0/Save変更0。
 - Commit: closeout source=61c07bda6f6ff085d944c0f142d8643597662cd2; 同branch非force push。
 - Network: 同repoActions終端・小さい公開text receiptの読取。旧9月18日queueを操作しない。一般CI既知QOL source不一致は残件。
+
+## 2026-10-04T17:29:26.899144+00:00
+- Timestamp: 2026-10-04T17:29:26.899144+00:00
+- Task: USER-20261004-DEX-CAPACITY / 図鑑lookup圧縮・ARM容量・退役owner契約
+- Version: dex-capacity-v1
+- Status: STOPPED（容量工程PASS。実配置と全保存/consumer接続は未完）
+- Summary: mapping7597→1801byte、元adapterを保全してcompact版生成。全API ARM4638byteを実測。Stage39退役T09 pointer表6484byteを全候補35件/新5root/間接8/旧DATA・6sentinel/1621終端/20sourceからhash固定。公開guard失敗時upload可能だった経路を閉じた。
+- Files changed: compact専用source/51tests、ARM測定workflow、lease契約/validator/25tests、checkpoint/evidence、固定MDJSON、両ログ。
+- Verify: run37219630045/job111487163702全10step成功の51host・262144入力比較・ARM4compile/1linkを再利用。新25lease試験PASS。今回記録compact再試験0/ARM0/native0/ROM・Save変更0。
+- Next: 正式Save101は不変。PR16_DEX_COMPACT_CAPACITY_JA.mdとpr16_dex_capacity_checkpoint.jsonから再開。compact mapping1801byte、新codec/typed adapter/lookup/save bridgeの全API ARMv4T footprint4638byteを51host/262144入力比較/4compileで確認。Stage39退役T09 pointer owner6484byteは全35疑似pointer型・5root・8間接参照・旧DATA/6sentinel参照・全1621終端と20sourceを照合し、25lease試験PASS。実allocator移譲/実配置addressでの再link/stub/veneer/ROM patch/nativeは未実施。Stage61全12568byteを空きへcloneする容量証明ではない。既存owner内置換・export/callsite到達性を固定し全save mode/CRC bank fallback/partial-write/復旧Save前MDX load、全SID喪失前consumer/Bag count/reward clear/Factory-Codex rollbackへ接続。候補全diff/影響learnsetと保存ABI限定native・通常Save/独立cold Continue受入まで正式基準/trainer戦闘を変えない。受入後Save101からシオウPokecenter通常回復へ。雑魚戦ごとのSaveは作らない。
+- Commit: source=3073f0e038c2659491889ac41521fbaf10205adb; 同branch非force push。
+- Network: 同repoActions/source、採用pinのpret/CFRU型定義。公開はhash/address/size/sourceと検査済textのみ。一般CI既知QOL source不一致、Stage79 cacheは別扱い。
