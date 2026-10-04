@@ -1,8 +1,6 @@
 name: pr16-dex-save-failure-record
 on:
-  push:
-    branches: [codex/modernization-followup-20260908]
-    paths: [.github/workflows/pr16-dex-save-failure-record.yml]
+  workflow_dispatch:
 permissions:
   contents: write
   actions: read
