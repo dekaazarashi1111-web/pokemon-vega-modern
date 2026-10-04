@@ -1,0 +1,18 @@
+{
+  "artifact_id": 11302405444,
+  "archive": {
+    "size": 1636,
+    "sha256": "d0a587c415309941fb2d27aebb6fa1d2eed16a680e7bdac914afe8a8ec973d44"
+  },
+  "failure": {
+    "status": "NOT_ACCEPTED_PRESERVE_NO_AUTOMATIC_REPLAY",
+    "type": "ValueError",
+    "message": "親dynamic計画exact binding",
+    "native_processes": 0,
+    "source_head": "aa8b788fd93ee5c3481ec8298ec3ecc6ea8221e3",
+    "run_id": 37198607755
+  },
+  "normalization_used": false,
+  "parent_fixture_unchanged": true,
+  "reason_ja": "正本末尾改行込みのbyteは10384byte。ローカル転送写しだけに末尾改行1個が加わり10385byteとなった。正本や検査を緩和せず期待bindingを正本へ訂正。38成功controllerは再走せず、新規exact binding1検査のみ。"
+}
