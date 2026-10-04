@@ -264,7 +264,7 @@ def link(folder):
         need(kind not in 'BbCcDdGgSs','no mutable scheduler symbol')
         key=name
         if key in symbols:
-            need(kind=='t' and name.endswith('_veneer'),'only local repeated linker veneers may share names')
+            need(kind=='t' and symbols[key]['kind']=='t','only local text symbols may share names: '+name)
             key=name+'@'+address
         need(key not in symbols,'unique symbol identity by name and address')
         symbols[key]=dict(address=int(address,16),size=int(size,16),kind=kind)
