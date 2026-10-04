@@ -9589,3 +9589,17 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 測定source=50150f7670e8bd7095066d6ff302d3da7bd40b75、記録source=636f5f15f23a7bdc2b3400675f40286434e256b4・run=37186524023。scoped guard/task graph/resume後に同branch非force push/全text読戻し。
 - Network: 同repo GitHub/Actionsだけ。既存ROM/runtime/input非再配布。一般CI既知不一致/action_requiredを全成功にしない。merge/release/baseline変更0。
 - Next: Save91 artifact11295979806のstory-fast.srm（131088bytes/SHA256 e61573b32ff8f319ee36fe0d4e29981a4d213ea764078bd290bf92fed622278b）だけから再開。ジム退出の新10歩/旋回2/warp1を完了、ミルシティ3/2・20,11南。町type3map-scriptが4372〜4378をclearし今回4372/4374/4378が1→0。バッジ2/leader417勝利/TM37/紙274一個/23164円、全party600byte/HP277/294/PP3,9,8,2・今回RAM保持。次は南11東3南4西4北1の新23歩で博物館入口19,25へ。最初のmap6/0到着後だけ保存。静的target14,9/自動北1歩14,8はnative未確認。2階local2への紙引渡しは別区間で未完。旧switch/leader/勝利trainer再走0、未知NPC/境界/戦闘は縮小停止。全39画面/69+cold13入力/native2/原33controller継承+新binding2/新受入63。初回LF参照hash誤差はnative前失敗/入力0を保持。21〜29部分hash、30/31最終hashでも保存中文字/counter90、32counter91空欄→33成功文言→36field。全SaveRTC一致。NPC/花animationで全pixel異なるが主人公/ジム背景9216pixel一致。physical2056clearと4021/40aa/40ac/40ad/40aeの5vars、過去Save89RAM14/Save87raw41/RAM等runtime owner未解明。紙引渡し/全国図鑑/自然成長進化/LuckyEgg/研究施設自然到達/全story未受入。がくしゅうそうち未装備/Flash未使用、host補充/ROM変更/入力ROMruntime再配布/故意全滅/merge/release/baseline変更0。一般CI既知qol_production.c不一致/action_requiredを全成功にしない。
+
+## 2026-10-04T08:02:32.487391+00:00
+- Version: PR16-STORY-SAVE92
+- Timestamp: 2026-10-04T08:02:32.487406+00:00
+- Task: USER-20261004-MUSEUM-ENTRY-SAVE92 / 博物館入場とSave92
+- Status: DONE（新入場warp/通常保存/独立Continue限定）
+- Summary: 新23歩/旋回3/warp1、博物館6/0・14,9北Save92。自動北1歩なし。party600byte/HP277/PP3,9,8,2/Bag/紙/バッジ2/23164円/S61E保持。2階/紙引渡し未完。
+- Files changed: Save92 preparation/measure/controller36/受入63/record/checkpoint/text証拠/次route、固定再開MD/JSON、両ログ。
+- Verify: run37187019619/job111390998562全8step成功。98+cold13入力55画面70member。controller36原logを継承、新受入63。record native0/compile0/旧成功再走0。
+- Evidence: 35〜47部分hash/保存中、46/47途中同hash/counter91。48最終hash/counter92/成功文言→52field。全SaveRTC/party/S61E/38400pixel保持。42checksum/7105byte1806範囲。
+- Discovery: 町20,16観測5でprogress RAM差分。coldは新ledger保持。physical2056:0→1と4021/4022/404dの3変数、過去Save91vars/Save89RAM/Save87raw41等runtime owner未解明。次は北4西6南3の新13歩で2階階段。Save91記録run37186524023全11step終端を同期。
+- Commit: 測定source=afe866267733b0b48d0f971f52b971d03aa6f2bc、記録source=82f22a40ecc60f5f26468531d10ca25b0db3ee7c・run=37187614083。scoped guard/task graph/resume後に同branch非force push/全text読戻し。
+- Network: 同repo GitHub/Actionsだけ。既存ROM/runtime/input非再配布。一般CI既知不一致を全成功にしない。merge/release/baseline変更0。
+- Next: Save92 artifact11297164221のstory-fast.srm（131088bytes/SHA256 79864ff24d80a3b1cee73166bffb95f5795e2450f54582bad67ac6c024e2f9bf）だけから再開。新23歩/旋回3/warp1で博物館1階6/0・14,9北、通常保存/独立Continueを完了。自動北1歩は起きず14,9が実到着。次は北4西6南3の新13歩で階段8,8へ、最初の2階6/1到着直後だけ保存。静的target11,8/自動歩行はnative未確認。2階local2への紙引渡しはさらに別区間。紙274一個/4383/未引渡し4382/バッジ2/23164円/全party600byte/HP277/294/PP3,9,8,2保持。町20,16の観測5でprogress RAM差分、coldは新ledger保持。physical2056:0→1とlegacy4021:49→71/4022:1→3/404d:33→7のowner未解明。過去Save91の5vars/Save89RAM14/Save87raw41等も未解明のまま。全55画面/98+cold13入力/native2/新controller36/新受入63、旧受入再走0。35〜47保存中、46/47途中同hashでもcounter91/保存中文字、48最終hash/counter92/成功文言→52field。全SaveRTC/全38400pixel一致、S61E全payload保持。がくしゅうそうち未装備、Flash未使用、紙引渡し/全国図鑑/自然成長進化/全story/release未受入。入力ROM/runtime再配布・host補充・ROM変更・merge/release/baseline変更0。一般CI既知qol_production.c不一致を全成功にしない。
