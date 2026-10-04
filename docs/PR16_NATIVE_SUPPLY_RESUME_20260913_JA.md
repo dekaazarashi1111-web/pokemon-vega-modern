@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-博物館入場Save92/6/0・14,9北。新23歩/旋回3/warp1、自動北1歩なし。party/紙/HP277/PP3,9,8,2保持。町20,16のRAM差分と2056/3varsのowner未解明。次は2階への新13歩、紙引渡しは後続。
+博物館50円受付Save93/6/0・14,5東。23114円/4061=1、party/紙/HP277/PP3,9,8,2/今回RAM保持。次は西6南3の新9歩で2階。紙引渡しは後続。
 
-**次: Save92 artifact11297164221のstory-fast.srm（131088bytes/SHA256 79864ff24d80a3b1cee73166bffb95f5795e2450f54582bad67ac6c024e2f9bf）だけから再開。新23歩/旋回3/warp1で博物館1階6/0・14,9北、通常保存/独立Continueを完了。自動北1歩は起きず14,9が実到着。次は北4西6南3の新13歩で階段8,8へ、最初の2階6/1到着直後だけ保存。静的target11,8/自動歩行はnative未確認。2階local2への紙引渡しはさらに別区間。紙274一個/4383/未引渡し4382/バッジ2/23164円/全party600byte/HP277/294/PP3,9,8,2保持。町20,16の観測5でprogress RAM差分、coldは新ledger保持。physical2056:0→1とlegacy4021:49→71/4022:1→3/404d:33→7のowner未解明。過去Save91の5vars/Save89RAM14/Save87raw41等も未解明のまま。全55画面/98+cold13入力/native2/新controller36/新受入63、旧受入再走0。35〜47保存中、46/47途中同hashでもcounter91/保存中文字、48最終hash/counter92/成功文言→52field。全SaveRTC/全38400pixel一致、S61E全payload保持。がくしゅうそうち未装備、Flash未使用、紙引渡し/全国図鑑/自然成長進化/全story/release未受入。入力ROM/runtime再配布・host補充・ROM変更・merge/release/baseline変更0。一般CI既知qol_production.c不一致を全成功にしない。**
+**次: Save93 artifact11298425525のstory-fast.srm（131088bytes/SHA256 93cdaccd2cd5cb969a9d4bc78187b25b62fd0f9b05924f2c2bd0ad26ed73d255）だけから再開。博物館1階6/0・14,5東、通常50円受付/Save93/独立Continueを完了。所持金23114円、var4061=1。次は西6南3の新9歩で階段8,8へ、最初の2階6/1到着直後だけ保存。到着はwarp11,8と通行可能な隣接11,7/11,9/12,8のいずれか、実到着/自動歩行未確認。旧北4歩/受付を再走しない。local2への紙引渡しは後続別区間。紙274一個/4383/未引渡し4382/バッジ2/全party600byte/HP277/294/PP3,9,8,2保持。今回全RAM/legacy flags/S61E/PC保持。4001:0→2と4061:0→1は受付ROM ownerと一致、4021:71→74/4022:3→1のowner未解明。過去Save92RAM観測5/2056/3vars、Save91の5vars/Save89RAM14/Save87raw41等は未解明のまま。全36画面/60+cold13入力、成功native2と初回未保存失敗native1。原38controllerと新影響15、新受入63、旧成功再走0。28最終hash先行でも保存中/counter92→29counter93別hash→30成功文言/最終hash→33field。全SaveRTC/全38400pixel一致。2階/紙引渡し/全国図鑑/自然成長進化/全story/release未受入。入力ROM/runtime非再配布・host補充・ROM変更・merge/release/baseline変更0。一般CI既知qol_production.c不一致を全成功にしない。**
 
-Save92/博物館1階14,9北から北4西6南3の新13歩で階段8,8へ。最初のmap6/1到着後だけ保存。local2紙引渡しは後続別区間。未知NPC/境界/戦闘は縮小停止。旧23歩/ジム再走0。
+Save93/1階14,5東から西6南3の新9歩、4061=1確認。最初の2階6/1到着後だけ保存。旧北4歩/50円受付再走0。local2紙引渡しは後続別区間。未知NPC/境界/戦闘は縮小停止。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `afe866267733b0b48d0f971f52b971d03aa6f2bc`。
-博物館入場の新23歩/旋回3/warp1。Save92/6/0・14,9北、55画面。自動北1歩なし。party/HP277/PP3,9,8,2/紙/バッジ2/23164円保持。町20,16のRAM差分とphysical2056/3vars、過去raw41/RAM/auxのowner未解明。2階/紙引渡し未完。
+証拠のsource HEAD: `2718151982e8cdd82768c720b05c852ccdbb7d1b`。
+博物館50円受付Save93/6/0・14,5東。23114円/4061=1、36画面、全party/HP277/PP3,9,8,2/紙/バッジ2/今回RAM保持。4001/4061 owner一致、4021/4022と過去RAM/raw41/2056等未解明。次は2階9歩、紙引渡し未完。
 
 ## 最短の再開手順
 
@@ -25,15 +25,15 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_STORY_SAVE92_JA.md`
-- `content/modernization/pr16_story_save92_checkpoint.json`
-- `content/modernization/pr16_story_save92_visual_review.json`
-- `scripts/pr16_story_save92_accept.py`
-- `scripts/pr16_story_save92_measure.py`
-- `content/modernization/pr16_story_save92_evidence/inspection.json`
-- `content/modernization/pr16_story_save92_evidence/next-route.json`
-- `content/modernization/pr16_story_save92_preparation.json`
-- `content/modernization/pr16_story_save92_next_route.json`
+- `docs/PR16_STORY_SAVE93_JA.md`
+- `content/modernization/pr16_story_save93_checkpoint.json`
+- `content/modernization/pr16_story_save93_visual_review.json`
+- `scripts/pr16_story_save93_accept.py`
+- `scripts/pr16_story_save93_admission_measure.py`
+- `content/modernization/pr16_story_save93_evidence/inspection.json`
+- `content/modernization/pr16_story_save93_evidence/next-route.json`
+- `content/modernization/pr16_story_save93_admission_owner.json`
+- `content/modernization/pr16_story_save93_next_route.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -422,6 +422,7 @@ P08ゲート:
 - Save90の48/cold13入力28画面43member/31controller/62受入を無影響再走しない。第11local8で4372/4374set・4375clear。11〜19部分hash、20最終hashでも保存中/counter89、21counter90空欄→22成功文言→25field。全SaveRTC/全pixel/party600byte/今回RAM/全legacy変数保持。過去Save89RAM14やraw41/aux差分owner未解明。次はジム退出の新10歩。
 - Save91の69/cold13入力39画面55member/原33controller+binding2/63受入を無影響再走しない。初回pre-native hash失敗はnative0。新10歩/旋回2/warp1。町type3でジム4372〜4378clear。30/31最終hash保存中、32counter91空欄→33成功文言→36field。全SaveRTC/party600byte/今回RAM/9216pixel保持、全pixelはNPC花animationで異なる。physical2056/5varsと過去raw41/RAM/aux差分owner未解明。次は博物館入口の新23歩。
 - Save92の98/cold13入力55画面70member/controller36/受入63を無影響再走しない。新23歩/旋回3/warp1、6/0・14,9北で自動北1歩なし。35〜47保存中/46,47途中同hash、48最終hashと成功文言、52field。全SaveRTC/party600byte/S61E/全38400pixel保持。町20,16観測5のRAM差分とphysical2056/3vars、過去raw41/RAM等owner未解明。次は2階への新13歩。
+- Save93の60/cold13入力36画面52member/原38controller+新影響15/受入63を無影響再走しない。50円受付/4061=1/23114円、全party/今回RAM/S61E/legacyflags保持。28最終hash先行、29counter別hash、30成功→33field。初回未保存失敗native1をfailureのまま保持。4001/4061 owner一致、4021/4022と過去差分owner未解明。次は2階への新9歩。
 
 ## 次セッションへ残す更新手順
 
