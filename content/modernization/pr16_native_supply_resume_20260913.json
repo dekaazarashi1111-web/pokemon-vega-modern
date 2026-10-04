@@ -12382,13 +12382,7 @@
     "status": "NATIVE_PARTY_RETENTION_ACCEPTED_BP_PENDING",
     "tested_head": "10e535a046441dd3b797918106259b5c57b69716"
   },
-  "pending_runs": [
-    {
-      "run_id": 37211680551,
-      "status": "in_progress",
-      "tested_head": "96ae45bfc5e3297fe5071500f8822f0ab452606a"
-    }
-  ],
+  "pending_runs": [],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
   "pr_draft": true,
   "pr_merged": false,
@@ -16018,6 +16012,10 @@
     ".github/workflows/pr16-story-save99.yml": {
       "sha256": "21a8e578a4402eee02f8ad484a17596535f51a9729fec96bb9f468f220a27045",
       "size": 1620
+    },
+    ".github/workflows/pr16-story-trainer-closeout.yml": {
+      "sha256": "e81f9f6330f816684c1164e2e32d57300b02a4272b65a487e711c228930eae35",
+      "size": 2437
     },
     ".github/workflows/pr16-story-trainer-record.yml": {
       "sha256": "c48ab6b527c248f4171f300ae7f6fbb566c02bf158729a0eb94352b38c3d0b56",
@@ -34374,6 +34372,10 @@
     "scripts/pr16_story_trainer_adapter.py": {
       "sha256": "1998df0490c519696fe509de0c0dbf5ff6780d28fbee7c043165ee1d86dc436c",
       "size": 6624
+    },
+    "scripts/pr16_story_trainer_closeout.py": {
+      "sha256": "f8a581f834ee385f437355c8676ec22220eee24c7e68c06f73bf70537a32ec05",
+      "size": 5429
     },
     "scripts/pr16_story_trainer_probe.py": {
       "sha256": "afe2a7d90058aaf3199ed09222d097a88e930e6da8505b89220d89f4a57c9e62",
@@ -67323,6 +67325,29 @@
     "last_run": 37210491215,
     "measurement_source": "4ddcdc44aabb704f542f4e37bf2f58cbfaca7573",
     "milestone_reached": false,
+    "recording": {
+      "accepted_tests_reruns": 0,
+      "all12_steps_success": true,
+      "first_closeout_failure": {
+        "commit_created": false,
+        "job": 111464938788,
+        "native_processes": 0,
+        "reason": "scoped index expected generated MD to change although render remained identical",
+        "run": 37212012404
+      },
+      "missing_reason": "historical record workflow used public-story-route-record-receipts while export wrote public-story-trainer-record-receipts",
+      "native_reruns": 0,
+      "original_receipt_artifact_missing": true,
+      "record_compiles": 0,
+      "record_completion": "f79a3b5e32be3960d16c74f137d1d819b5c4a809",
+      "record_job": 111463968925,
+      "record_native_processes": 0,
+      "record_run": 37211680551,
+      "record_source": "96ae45bfc5e3297fe5071500f8822f0ab452606a",
+      "recovery_run": 37212160952,
+      "recovery_source": "455712808577bbe84cc2679e465590b92ec43445",
+      "rom_fragments_in_receipt": false
+    },
     "repair_plan": "content/modernization/pr16_story_dex_seen_repair_plan.json",
     "status": "PASS_TRAINER131_ENTRY_BLOCKED_UNSAFE_DEX_STORAGE",
     "trainer_entry_accepted": true,

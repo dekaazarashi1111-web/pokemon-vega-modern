@@ -12524,3 +12524,13 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 正式再開はSave101 artifact11303305200/story-fast.srm（131088bytes、SHA256814a8e31ce20d720a1f1bddc08caa9cdd3d86b5bbb874738b9cb859653552149）、Route506 3/24(53,13)西。未保存trainer131 entry原本run37210491215/artifact11306222294は再利用し、新たな技入力を送らない。固定ROMのlegacy seen setter0x0810586cは全国963/749で非図鑑fieldへ書くため、pr16_story_dex_guard.pyの停止を解除する前に、現stable-keyの図鑑namespaceとversion/CRC/保存先を明示した専用late-stage修復を実装し、全getter/setter/clear/save/Continue/consumer限定回帰を行う。DPE/CFRUの旧Bag衝突パッチ再適用や無宣言reserved利用は不可。受入済みtrainer接近/会話/entry・旧wild/clock等は影響なしに再走しない。修復候補の正式受入後だけSave101の未保存失敗区間を再開し、trainer131/128/1065、506→519→シオウPokecenter7/3で通常回復・Save・cold Continueへ進む。全雑魚戦Save方針を復活させない。trainer勝利/賞金、シオウ回復、NationalDex解禁、自然成長は未完。merge/release/baseline切替なし。
 - Commit: native source=4ddcdc44aabb704f542f4e37bf2f58cbfaca7573; record source=96ae45bfc5e3297fe5071500f8822f0ab452606a; 同branch非forcepush。
 - Network: 同repoGitHub/Actions/保存artifactおよび固定upstream一次source読取。ROM/runtime/inputSave再配布0、ROM切替0、host戦闘書込0、高national seen破壊の実行0、trainer勝利/賞金受入0、merge/release/baseline切替0。一般CI既知QOL source不一致は残件。
+
+## 2026-10-04T15:13:12.953826+00:00
+- Timestamp: 2026-10-04T15:13:12.953826+00:00
+- Task: USER-20261004-STORY-TRAINER / 記録終端とreceipt回復
+- Status: DONE（記録終端・補助receipt回復。図鑑保存ABI本修復は未完）
+- Summary: record run37211680551/job111463968925の全12step成功とcommitf79a3b5e32be3960d16c74f137d1d819b5c4a809を確認。upload先の旧名残留により補助artifact0を記録し、正しい専用dirへhash/text receiptだけを別工程で出力。固定resume pending_runsを空へ。
+- Files changed: 専用closeout、固定resumeJSON/生成MD、両ログ。旧測定・記録sourceは凍結。
+- Verify: 固定source全hash/生成MD/task graph/index guard、正常terminal12step。native0/compile0/受入済み検証再走0。正式Save101不変、未保存trainer勝利0。
+- Commit: source=455712808577bbe84cc2679e465590b92ec43445; 同branch非forcepush。
+- Network: 同repoActions終端読取と同branch更新のみ。ROM/Save/runtime/credential/ROM断片の再公開なし。一般CI既知QOL source不一致は未解決。
