@@ -12771,3 +12771,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Boundary: 次は非START通知と非破壊SaveFailed/HOF payload/重複副作用、全mode/残typed consumer。早期sector31故障/単bank原子性未受入。trainer131後半0。一般CI既知QOL不一致/Stage79cache/旧9月18日queueを別扱い。
 - Commit: closeout source=9f5f9bc9170d6fe7194e4b3d18d866e451ff5dd0; 同branch非force push。
 - Network: 同repoActionsと既存text receiptのみ。ROM/入力save/runtime/runner/credentials追加公開0。
+
+## 2026-10-04T23:45:08.098312+00:00
+- Timestamp: 2026-10-04T23:45:08.098312+00:00
+- Task: USER-20261004-DEX-MYSTERY-FAILURE / Mystery Gift保存の正しい成否通知
+- Version: dex-mystery-v1
+- Status: DONE（Mystery Gift通知とUI-only縦切り。全非START未完）
+- Summary: state2表示8byteとresult入口8byteを128byteのimmutable suffixへ接続。attempt1だけ成功、非1は元window内2行error。署名済inner/outer stack callerだけ旧SaveFailed回避、bit31はouter実結果まで保持。
+- Files changed: mystery ASM/bindings/generator/native/host/workflow、guide/CP/evidence、固定MDJSON、両ログ。
+- Verify: isolated37243703968全10step/816case1296call、UI37244619223全10step/6process15画像。UI fixtureは9+2byte限定、register0、7barrier、全他RAM保持。main故障101/outer故障102/正常102、MDX522/party/Bag/故障後20248owner/各coldを照合。112owner/overlap0、codec5022/他111owner/全未宣言ROM保持/逆変換。記録ARM0/native0。
+- Correction: UI診断37244205003はInitWindowsの動的baseBlockを固定template8byteと誤比較しsetup後native1/save0で停止。2byte動的欄だけ正規bitmap/範囲/非重複を検証する後継へ。未実行menu待機oracleもstate2→1へ訂正。失敗原本不変。
+- Boundary: 11byte UI-only入口/parent17であり自然通信/受信/削除/正規transition/heap無漏洩/field帰還は未受入。UnionRoomChat/HOF/全mode/残consumer/早期sector31原子性未完。正式ROM/Save101不変、trainer131後半0。
+- Commit: record source=ef4ebc421d1981ef5f6e853b1bc9c61a4b29f91e; 同branch非force push。
+- Network: 同repoActions/既存入力/固定pret source/公式Ubuntu。公開source/address-size-SHA/text/screensのみ。ROM断片/rawhex/runtime/入力save/runner/credentials追加公開0。
