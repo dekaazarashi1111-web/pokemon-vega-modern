@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "紙のconsumer/badge gateを同定。新ミルジム入場でSave76/6,18北。全party/HP/PP/紙保持、次は初ディグダ。",
+    "current_stop": "初ディグダlocal5消失と2台詞、Save77/6,15北。全party/紙保持、cold1 RAM差分だけ未解明。次はlocal6。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "Save76 artifact11291861689のstory-fast.srm（131088bytes/SHA256 10c7d4b96e2b36db13158ba3a8d8929caabac28275e98e01a93c586b0315d836）だけから再開。紙274のconsumerは博物館2階map6/1・local2/4,9、badge0x823確認後check/removeitem274→flag4382。現badge1/0x823未setで引渡し未解禁。先にナギナタのミルジム10/16へ新通常入場、6,18北でSave76/独立Continueを受入。次は保存済gym-owner/routeから初ディグダlocal5/6,14の初期4372〜4378と台詞/配置変更を照合し、6,15まで新北3歩＋通常A。最初の新event/battleで通常保存。紙1個/flag4383・全party600byte/HP288/294・PP9,10,15,2/Bag19416円/PC/S61E/全RAM台帳保持。28新controller/50新受入、77+cold13入力43画面58member/native2。34最終hash先行counter75→35counter76/別一時hashでも保存中→36成功→40field。全SaveRTC/ジムfield全pixel一致。physical2056:0→1/aux4021:71→85/4022:3→2/404d:44→33のruntime owner未解明。ジム攻略後に博物館研究者へ紙引渡し→505道路レンジャー。紙引渡し/ジム攻略/全story/全国図鑑/自然成長・進化/LuckyEgg/研究施設自然到達未完。Flash未使用/がくしゅうそうち未装備、host補充/ROM変更/既存ROMruntimeinput再配布/故意全滅/merge/release/baseline変更なし。一般CI既知qol_production.c不一致/action_requiredを全成功にしない。",
+    "next_step": "Save77 artifact11291697564のstory-fast.srm（131088bytes/SHA256 11632f541a4c8b6a7782c32b5e30b0c4c9414a8cc4323da0e263e6454cc867e6）だけから再開。ミルジム10/16・6,15北。新北3歩と初ディグダlocal5への通常Aで4372/4378 set・local5消失、2台詞と通常Save77/独立Continueを受入。次は保存next-routeの開いた6,14へ北2歩→左2歩4,13→北旋回を確認→local6/4,12へA。4372=true分岐は4375 set/remove9→4372 clear/add5。最初の新event/battle後通常保存。全party600byte/HP288/294・PP9,10,15,2/Bag19416円/紙274一個/PC保持、S61E payload258:7→23/259:160→164の2flagだけ。54+cold13入力31画面46member/native2、26新controller/51新受入。23最終hash先行counter76→24counter77/別一時hashでも保存中→25成功→28field。全SaveRTC/field全pixel一致。progressとcold0のRAM台帳6270e896保持、cold1だけ60276271へ変化しruntime owner未解明。全RAM不変としない。aux4021:85→88/4022:2→0のowner未解明。紙consumerは博物館2階local2・badge0x823必須、現badge1で引渡し未解禁。ジム突破→紙引渡し→505道路レンジャーは未完。全story/全国図鑑/自然成長進化/LuckyEgg/研究施設自然到達も未完。Flash未使用/がくしゅうそうち未装備、host補充/ROM変更/入力ROMruntime再配布/故意全滅/merge/release/baseline変更なし。一般CI既知qol_production.c不一致/action_requiredを全成功にしない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -1131,7 +1131,8 @@
     "Save73の53/cold13入力32画面47member/32controller/62受入を無影響再走しない。像の紙274/flag4383は取得済み。新戦闘/歩行0、全party/他Bag/19416円/PC/legacy flags-vars/RAM台帳保持。24一時最終hash→25counterも保存中→26成功→29field。全SaveRTC/field5画像一致。次は新しい復路/hole下降だけ。",
     "Save74の78/cold13入力46画面61member/30controller/60受入を無影響再走しない。紙274/flag4383保持の新9歩/転換6/上階hole5→下階warp8。新戦闘0、全party/Bag19416円/PC/S61E/RAM保持。2056/aux2変数owner未解明。37一時最終hash→38counterも保存中→39成功→43field。全SaveRTC/最終field3画像一致。次は南9歩と館退出だけ。",
     "Save75の63/cold13入力36画面51member/31controller/63受入を無影響再走しない。新南9歩+出口南1入力、ミルシティ15,20自動南1歩。新戦闘0、全party/Bag19416円/PC/S61E/紙274/flag4383保持。2056解除/aux2変数/40ac解除/RAM7変化owner未解明。27/28部分hash安定→29counter/最終hashも文言未完→30成功→33field。全SaveRTC/player建物crop一致、NPC/水面差あり。次は紙の後続consumer限定照合。",
-    "Save76の77/cold13入力43画面58member/28controller/50受入を無影響再走しない。封書consumer博物館2階local2/required badge0x823、現1badgeで未解禁。新ジム6,18北/紙/全party/全RAM保持。34最終hash先行→35counter76別hashも保存中→36成功→40field。全SaveRTC/全pixel一致。次は北3歩/初ディグダ。ROM-rooted紙consumer参照indexと選択ownerは再採取不要。"
+    "Save76の77/cold13入力43画面58member/28controller/50受入を無影響再走しない。封書consumer博物館2階local2/required badge0x823、現1badgeで未解禁。新ジム6,18北/紙/全party/全RAM保持。34最終hash先行→35counter76別hashも保存中→36成功→40field。全SaveRTC/全pixel一致。次は北3歩/初ディグダ。ROM-rooted紙consumer参照indexと選択ownerは再採取不要。",
+    "Save77の54/cold13入力31画面46member/26controller/51受入を無影響再走しない。初local5で4372/4378 set、紙/全party保持。23最終hash先行→24counter77別hashも保存中→25成功→28field。全SaveRTC/全pixel一致だがcold1のRAM hash変化owner未解明。次はlocal6へ新4歩。旧gym graphを再採取しない。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -4312,32 +4313,32 @@
     "status": "PASS_NATIONAL_DEX_GRANT_OWNER_SCOPED"
   },
   "next_action": {
-    "goal_ja": "Save76 artifact11291861689のstory-fast.srm（131088bytes/SHA256 10c7d4b96e2b36db13158ba3a8d8929caabac28275e98e01a93c586b0315d836）だけから再開。紙274のconsumerは博物館2階map6/1・local2/4,9、badge0x823確認後check/removeitem274→flag4382。現badge1/0x823未setで引渡し未解禁。先にナギナタのミルジム10/16へ新通常入場、6,18北でSave76/独立Continueを受入。次は保存済gym-owner/routeから初ディグダlocal5/6,14の初期4372〜4378と台詞/配置変更を照合し、6,15まで新北3歩＋通常A。最初の新event/battleで通常保存。紙1個/flag4383・全party600byte/HP288/294・PP9,10,15,2/Bag19416円/PC/S61E/全RAM台帳保持。28新controller/50新受入、77+cold13入力43画面58member/native2。34最終hash先行counter75→35counter76/別一時hashでも保存中→36成功→40field。全SaveRTC/ジムfield全pixel一致。physical2056:0→1/aux4021:71→85/4022:3→2/404d:44→33のruntime owner未解明。ジム攻略後に博物館研究者へ紙引渡し→505道路レンジャー。紙引渡し/ジム攻略/全story/全国図鑑/自然成長・進化/LuckyEgg/研究施設自然到達未完。Flash未使用/がくしゅうそうち未装備、host補充/ROM変更/既存ROMruntimeinput再配布/故意全滅/merge/release/baseline変更なし。一般CI既知qol_production.c不一致/action_requiredを全成功にしない。",
+    "goal_ja": "Save77 artifact11291697564のstory-fast.srm（131088bytes/SHA256 11632f541a4c8b6a7782c32b5e30b0c4c9414a8cc4323da0e263e6454cc867e6）だけから再開。ミルジム10/16・6,15北。新北3歩と初ディグダlocal5への通常Aで4372/4378 set・local5消失、2台詞と通常Save77/独立Continueを受入。次は保存next-routeの開いた6,14へ北2歩→左2歩4,13→北旋回を確認→local6/4,12へA。4372=true分岐は4375 set/remove9→4372 clear/add5。最初の新event/battle後通常保存。全party600byte/HP288/294・PP9,10,15,2/Bag19416円/紙274一個/PC保持、S61E payload258:7→23/259:160→164の2flagだけ。54+cold13入力31画面46member/native2、26新controller/51新受入。23最終hash先行counter76→24counter77/別一時hashでも保存中→25成功→28field。全SaveRTC/field全pixel一致。progressとcold0のRAM台帳6270e896保持、cold1だけ60276271へ変化しruntime owner未解明。全RAM不変としない。aux4021:85→88/4022:2→0のowner未解明。紙consumerは博物館2階local2・badge0x823必須、現badge1で引渡し未解禁。ジム突破→紙引渡し→505道路レンジャーは未完。全story/全国図鑑/自然成長進化/LuckyEgg/研究施設自然到達も未完。Flash未使用/がくしゅうそうち未装備、host補充/ROM変更/入力ROMruntime再配布/故意全滅/merge/release/baseline変更なし。一般CI既知qol_production.c不一致/action_requiredを全成功にしない。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。Save14は作業コピーだけを使用する。自己OT party、manifest解決済み通常支援用品、EXP境界、safe opponentはpre-battle fixtureとして全byteを台帳化してよい。badge/key item/story flag/money/RPをfixture付与せず、戦闘開始後は通常入力とゲーム内処理だけを使う。",
-    "id": "STORY_GYM_FIRST_DIGLETT_FROM_SAVE76",
+    "id": "STORY_GYM_SECOND_DIGLETT_FROM_SAVE77",
     "read_paths": [
-      "docs/PR16_STORY_SAVE76_JA.md",
-      "content/modernization/pr16_story_save76_checkpoint.json",
-      "content/modernization/pr16_story_save76_visual_review.json",
-      "scripts/pr16_story_save76_accept.py",
-      "scripts/pr16_story_save76_measure.py",
-      "content/modernization/pr16_story_save76_evidence/inspection.json",
-      "content/modernization/pr16_story_save76_evidence/next-route.json",
-      "content/modernization/pr16_story_save76_preparation.json",
-      "content/modernization/pr16_story_save76_gym_route.json"
+      "docs/PR16_STORY_SAVE77_JA.md",
+      "content/modernization/pr16_story_save77_checkpoint.json",
+      "content/modernization/pr16_story_save77_visual_review.json",
+      "scripts/pr16_story_save77_accept.py",
+      "scripts/pr16_story_save77_measure.py",
+      "content/modernization/pr16_story_save77_evidence/inspection.json",
+      "content/modernization/pr16_story_save77_evidence/next-route.json",
+      "content/modernization/pr16_story_save77_preparation.json",
+      "content/modernization/pr16_story_save77_next_route.json"
     ],
-    "stop_rule_ja": "Save76/ジム6,18北だけから開始。初ディグダlocal5のownerと保存flagsを照合して北3歩＋A。最初の新境界で通常保存。badge/紙引渡しを捏造せず、旧入場/館/町区間を再走しない。"
+    "stop_rule_ja": "Save77/ジム6,15北だけから開始。開いた6,14から北2歩/左2歩/北旋回→local6へA。4372/4375配置変更owner照合。最初の新境界で通常保存。初local5/旧入場を再走せず、badge/紙引渡しを捏造しない。"
   },
   "observed_date_jst": "2026-10-04",
-  "observed_head": "3f7692f280ac745d17f810bb9c46abed5324c789",
+  "observed_head": "4f11ebcc0481013051cf83c092fabc7737915b2f",
   "observed_head_checks": {
     "reason_ja": "新区間専用Actionsと一般CIを分離。未完/action_required/失敗を成功にしない。",
     "runs": [
       {
         "conclusion": "success",
         "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "3f7692f280ac745d17f810bb9c46abed5324c789",
-        "id": 37171289702,
+        "head_sha": "4f11ebcc0481013051cf83c092fabc7737915b2f",
+        "id": 37172411477,
         "path": ".github/workflows/p03-forgetting-ci.yml",
         "run_attempt": 1,
         "status": "completed"
@@ -4345,8 +4346,8 @@
       {
         "conclusion": "failure",
         "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "3f7692f280ac745d17f810bb9c46abed5324c789",
-        "id": 37171289699,
+        "head_sha": "4f11ebcc0481013051cf83c092fabc7737915b2f",
+        "id": 37172411463,
         "path": ".github/workflows/ci.yml",
         "run_attempt": 1,
         "status": "completed"
@@ -4354,8 +4355,8 @@
       {
         "conclusion": "success",
         "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "3f7692f280ac745d17f810bb9c46abed5324c789",
-        "id": 37171285026,
+        "head_sha": "4f11ebcc0481013051cf83c092fabc7737915b2f",
+        "id": 37172406765,
         "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
         "run_attempt": 1,
         "status": "completed"
@@ -4363,41 +4364,41 @@
       {
         "conclusion": "success",
         "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "3f7692f280ac745d17f810bb9c46abed5324c789",
-        "id": 37171285056,
-        "path": ".github/workflows/pr16-story-save76.yml",
+        "head_sha": "4f11ebcc0481013051cf83c092fabc7737915b2f",
+        "id": 37172406731,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
         "run_attempt": 1,
         "status": "completed"
       },
       {
         "conclusion": "success",
         "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "3f7692f280ac745d17f810bb9c46abed5324c789",
-        "id": 37171285064,
-        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "head_sha": "4f11ebcc0481013051cf83c092fabc7737915b2f",
+        "id": 37172406819,
+        "path": ".github/workflows/pr16-story-save77.yml",
+        "run_attempt": 1,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "4f11ebcc0481013051cf83c092fabc7737915b2f",
+        "id": 37172406732,
+        "path": ".github/workflows/modernization-stage79-mgba.yml",
         "run_attempt": 1,
         "status": "completed"
       },
       {
         "conclusion": "failure",
         "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "3f7692f280ac745d17f810bb9c46abed5324c789",
-        "id": 37171285019,
+        "head_sha": "4f11ebcc0481013051cf83c092fabc7737915b2f",
+        "id": 37172406754,
         "path": ".github/workflows/ci.yml",
-        "run_attempt": 1,
-        "status": "completed"
-      },
-      {
-        "conclusion": "success",
-        "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "3f7692f280ac745d17f810bb9c46abed5324c789",
-        "id": 37171285048,
-        "path": ".github/workflows/modernization-stage79-mgba.yml",
         "run_attempt": 1,
         "status": "completed"
       }
     ],
-    "scope_head": "3f7692f280ac745d17f810bb9c46abed5324c789"
+    "scope_head": "4f11ebcc0481013051cf83c092fabc7737915b2f"
   },
   "observed_head_history": [
     {
@@ -10443,9 +10444,83 @@
       "head": "0845c4282b2ad508dd7046b6d61d6cf139a59fd7",
       "reason_ja": "封書badge gateと新ジム入口Save76。",
       "semantics": "紙保持の新南9歩/館退出でミルシティ15,20南へSave75。全party/HP/PP保持。次は紙の後続consumerを限定照合。"
+    },
+    {
+      "checks": {
+        "reason_ja": "新区間専用Actionsと一般CIを分離。未完/action_required/失敗を成功にしない。",
+        "runs": [
+          {
+            "conclusion": "success",
+            "head_branch": "codex/modernization-followup-20260908",
+            "head_sha": "3f7692f280ac745d17f810bb9c46abed5324c789",
+            "id": 37171289702,
+            "path": ".github/workflows/p03-forgetting-ci.yml",
+            "run_attempt": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "failure",
+            "head_branch": "codex/modernization-followup-20260908",
+            "head_sha": "3f7692f280ac745d17f810bb9c46abed5324c789",
+            "id": 37171289699,
+            "path": ".github/workflows/ci.yml",
+            "run_attempt": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "head_branch": "codex/modernization-followup-20260908",
+            "head_sha": "3f7692f280ac745d17f810bb9c46abed5324c789",
+            "id": 37171285026,
+            "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+            "run_attempt": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "head_branch": "codex/modernization-followup-20260908",
+            "head_sha": "3f7692f280ac745d17f810bb9c46abed5324c789",
+            "id": 37171285056,
+            "path": ".github/workflows/pr16-story-save76.yml",
+            "run_attempt": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "head_branch": "codex/modernization-followup-20260908",
+            "head_sha": "3f7692f280ac745d17f810bb9c46abed5324c789",
+            "id": 37171285064,
+            "path": ".github/workflows/p03-forgetting-ci.yml",
+            "run_attempt": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "failure",
+            "head_branch": "codex/modernization-followup-20260908",
+            "head_sha": "3f7692f280ac745d17f810bb9c46abed5324c789",
+            "id": 37171285019,
+            "path": ".github/workflows/ci.yml",
+            "run_attempt": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "head_branch": "codex/modernization-followup-20260908",
+            "head_sha": "3f7692f280ac745d17f810bb9c46abed5324c789",
+            "id": 37171285048,
+            "path": ".github/workflows/modernization-stage79-mgba.yml",
+            "run_attempt": 1,
+            "status": "completed"
+          }
+        ],
+        "scope_head": "3f7692f280ac745d17f810bb9c46abed5324c789"
+      },
+      "head": "3f7692f280ac745d17f810bb9c46abed5324c789",
+      "reason_ja": "初ディグダ通常配置変更とSave77。",
+      "semantics": "紙consumerを博物館2階local2/required badge0x823へ同定。未取得のため新ミルジム入場Save76/6,18北。全party/紙保持。"
     }
   ],
-  "observed_head_semantics": "紙consumerを博物館2階local2/required badge0x823へ同定。未取得のため新ミルジム入場Save76/6,18北。全party/紙保持。",
+  "observed_head_semantics": "初ディグダlocal5の4372/4378 setと消失/2台詞、Save77/6,15北。全SaveRTC/field全pixel一致、cold1 RAM hash差分は未解明。",
   "p08_candidate_impact": {
     "candidate": {
       "crc32": "CC068B4A",
@@ -10569,9 +10644,9 @@
   },
   "pending_runs": [
     {
-      "run_id": 37171837232,
+      "run_id": 37172987395,
       "status": "in_progress",
-      "tested_head": "201e7bca1b2c041a7324f1aa5da0b6e80f77fff0"
+      "tested_head": "6a72ef07d7726f15325af74aa6a367e2d2375f7e"
     }
   ],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
@@ -13975,6 +14050,14 @@
     ".github/workflows/pr16-story-save76.yml": {
       "sha256": "de57180477ee448d5097e4d7797b20a9423cde9e8d784d9d4d6af7696a2e249e",
       "size": 1603
+    },
+    ".github/workflows/pr16-story-save77-record.yml": {
+      "sha256": "2fc176102e7361d846336168cb3acb9a4bb4a7ce19dc03a1ddd30116e974299a",
+      "size": 2405
+    },
+    ".github/workflows/pr16-story-save77.yml": {
+      "sha256": "81d19da95ef4529cbfa602618c13bc8850357944191d0fa18d63158598ab4657",
+      "size": 1581
     },
     ".github/workflows/pr16-story-save8-context.yml": {
       "sha256": "5405678c5cdb6a81612b212b099b37bc42038ce2c00c5c564ab5fcf6c7287c27",
@@ -21956,6 +22039,90 @@
       "sha256": "7d0ef3afc8b7c01fe536faf424b1d19ab734862f63de036ae0e32e8516a6602d",
       "size": 5855
     },
+    "content/modernization/pr16_story_save77_checkpoint.json": {
+      "sha256": "75b886976d3d36397b9932cef962824e049e10214efbe43ec3691bd43a92f389",
+      "size": 13753
+    },
+    "content/modernization/pr16_story_save77_evidence/continue/commands.txt": {
+      "sha256": "5aa3363ef7287a5fe371442e67ec861616823326b1d70e16730c34c4baab07a3",
+      "size": 25
+    },
+    "content/modernization/pr16_story_save77_evidence/continue/execution.json": {
+      "sha256": "f073acf5a47eb2240d4e85973bd4cc681f6eb158a8874a8ba84735ca1683127b",
+      "size": 548
+    },
+    "content/modernization/pr16_story_save77_evidence/continue/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_story_save77_evidence/continue/stdout.txt": {
+      "sha256": "e05d528231d17dc02e753120962c820fb2b4010443c1f2e8b31a010f81281250",
+      "size": 2103
+    },
+    "content/modernization/pr16_story_save77_evidence/controller-test-receipt.json": {
+      "sha256": "0cd6d78c1fed3fd4d0f1be3d7ce982d632642854b458c4327d089a951eea3dec",
+      "size": 2745
+    },
+    "content/modernization/pr16_story_save77_evidence/inspection.json": {
+      "sha256": "1e73e4630f9a409775e3e5155c07fa7709eec9a7930a7e0f0839967240d7c6c4",
+      "size": 1785
+    },
+    "content/modernization/pr16_story_save77_evidence/manifest.json": {
+      "sha256": "93ca5e23799702c4facd69834ced1c41e93fe91baeee4327a77fabffc3f868f7",
+      "size": 6239
+    },
+    "content/modernization/pr16_story_save77_evidence/measurement.json": {
+      "sha256": "91b72e09020627537f166560838ac5f216536dd84055bb2f0af8cb2264ad0ac5",
+      "size": 6342
+    },
+    "content/modernization/pr16_story_save77_evidence/next-route.json": {
+      "sha256": "fc4586d5eb077b72f84350a00ed4447069bcb6ba39ff04b3228720f7f0f01f0d",
+      "size": 34673
+    },
+    "content/modernization/pr16_story_save77_evidence/progress/commands.txt": {
+      "sha256": "6fc8fb2e30b88f886ea8d5111828613d6f704c27a3fcf3c179f03dd46b0b808f",
+      "size": 682
+    },
+    "content/modernization/pr16_story_save77_evidence/progress/execution.json": {
+      "sha256": "265c4e9810e0fd781efe27430e53f1d24ef5f196f7db650ecbd40425b605dc92",
+      "size": 549
+    },
+    "content/modernization/pr16_story_save77_evidence/progress/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_story_save77_evidence/progress/stdout.txt": {
+      "sha256": "2f45b8eb16d27973e4c6eaabc893e61708ee521bdd43d302e1292e900b9d9c75",
+      "size": 18953
+    },
+    "content/modernization/pr16_story_save77_evidence/save76-record-terminal.json": {
+      "sha256": "c569577a4c96adc7189f64546801aab8f9abf193c19e66cabb5bc95adc06a902",
+      "size": 4172
+    },
+    "content/modernization/pr16_story_save77_evidence/terminal.json": {
+      "sha256": "f8a17d86d1d451f95579e3a0c9b8fbf265545d2f470da7fc6c4f8b1338002388",
+      "size": 3408
+    },
+    "content/modernization/pr16_story_save77_evidence/unit.stderr.txt": {
+      "sha256": "3e0f6b766561ff4080412cd415826c0f5060a40ab87084cbeee80b4ea4a95d90",
+      "size": 5129
+    },
+    "content/modernization/pr16_story_save77_evidence/verification.json": {
+      "sha256": "fa0c500ff357e775c4c8cef35055b0b5d655529158a35239a033b93518f6e17d",
+      "size": 5331
+    },
+    "content/modernization/pr16_story_save77_next_route.json": {
+      "sha256": "fc4586d5eb077b72f84350a00ed4447069bcb6ba39ff04b3228720f7f0f01f0d",
+      "size": 34673
+    },
+    "content/modernization/pr16_story_save77_preparation.json": {
+      "sha256": "d97cdbb24201f74045492997d429052196dd63e4ba42266376d936ade68f8c11",
+      "size": 6321
+    },
+    "content/modernization/pr16_story_save77_visual_review.json": {
+      "sha256": "a2b436604d05eb68969f09d09576e45124e04d657c50478ead958b0c198349d0",
+      "size": 4350
+    },
     "content/modernization/pr16_story_save9_checkpoint.json": {
       "sha256": "cf658c2fa47ba238672704713ea5ad3b1baf6abbe8a56ec769bf2de3964d0463",
       "size": 5672
@@ -22663,6 +22830,10 @@
     "docs/PR16_STORY_SAVE76_JA.md": {
       "sha256": "f52e281fb5f880ce76619bb8f41a4b458ec9a4ecc71c042d2dba5dd84c3386ac",
       "size": 3817
+    },
+    "docs/PR16_STORY_SAVE77_JA.md": {
+      "sha256": "0a49169e6656e97e77c0c91f8eb6312025f61ca59d65e473a3e959b1f20d481b",
+      "size": 3252
     },
     "docs/PR16_STORY_SAVE9_JA.md": {
       "sha256": "61734b028e912a8cb8952376730c67ba598bb5f00056f4351bf0296626041e44",
@@ -28916,6 +29087,18 @@
       "sha256": "1c2933ca5718797ee24c205f70aa702673bd7183bf77309c7b8f7d6b1f17af26",
       "size": 16429
     },
+    "scripts/pr16_story_save77_accept.py": {
+      "sha256": "e2151e71de935e9796a9ce030f3f628469f5f3fd216488bc7a42032c1bf2f6d2",
+      "size": 13246
+    },
+    "scripts/pr16_story_save77_measure.py": {
+      "sha256": "0ec98766da98f7f3337a47c97d20c7f135c07f23b32df32b6ca0fedd9e7f19c3",
+      "size": 15959
+    },
+    "scripts/pr16_story_save77_record.py": {
+      "sha256": "24f3295d76a7f32f9560a27f7dac4283ff87888f89208d4f771be72129f34a03",
+      "size": 15721
+    },
     "scripts/pr16_story_save9.py": {
       "sha256": "e8522d25e6623c7bb37aa850656564ca4a95066d3a2a75674cb7966ef95bc9d8",
       "size": 11276
@@ -30995,6 +31178,14 @@
     "tests/test_pr16_story_save76_measure.py": {
       "sha256": "a618b160caa112903c0a0f64bc1594479407d3e04edb4d3cab826fd2f90290f7",
       "size": 4935
+    },
+    "tests/test_pr16_story_save77_accept.py": {
+      "sha256": "4f355dccc3e79a803c48747b270a88bf13f959c90269b02a3bfcd880b102f48d",
+      "size": 6138
+    },
+    "tests/test_pr16_story_save77_measure.py": {
+      "sha256": "d6cb7dbf6bbc1259f7d8f90ece5816eaf62d3baea61201c273b60557ebe288df",
+      "size": 4492
     },
     "tests/test_pr16_story_save9.py": {
       "sha256": "9057edecab9630badaa96577b8564918afbfa8f64e8a1f9859963f46e9536a11",
@@ -49136,6 +49327,133 @@
     "paper_flag4383": true,
     "paper_item_id": 274,
     "paper_quantity": 1,
+    "record_completion": {
+      "job": {
+        "check_run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/check-runs/111346187377",
+        "completed_at": "2026-10-04T02:42:23Z",
+        "conclusion": "success",
+        "created_at": "2026-10-04T02:41:41Z",
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "201e7bca1b2c041a7324f1aa5da0b6e80f77fff0",
+        "html_url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/37171837232/job/111346187377",
+        "id": 111346187377,
+        "labels": [
+          "ubuntu-24.04"
+        ],
+        "name": "record",
+        "node_id": "CR_kwDOUPNhZs8AAAAZ7L_8cQ",
+        "run_attempt": 1,
+        "run_id": 37171837232,
+        "run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/37171837232",
+        "runner_group_id": 0,
+        "runner_group_name": "GitHub Actions",
+        "runner_id": 1000021015,
+        "runner_name": "GitHub Actions 1000021015",
+        "started_at": "2026-10-04T02:41:43Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completed_at": "2026-10-04T02:41:45Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "started_at": "2026-10-04T02:41:44Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-04T02:42:01Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "started_at": "2026-10-04T02:41:45Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-04T02:42:02Z",
+            "conclusion": "success",
+            "name": "Exact new acceptance source guard",
+            "number": 3,
+            "started_at": "2026-10-04T02:42:01Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-04T02:42:13Z",
+            "conclusion": "success",
+            "name": "Fifty new acceptance tests and exact terminal parser",
+            "number": 4,
+            "started_at": "2026-10-04T02:42:02Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-04T02:42:17Z",
+            "conclusion": "success",
+            "name": "Scoped final index private guard and fixed resume",
+            "number": 5,
+            "started_at": "2026-10-04T02:42:13Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-04T02:42:17Z",
+            "conclusion": "success",
+            "name": "Lightweight task graph",
+            "number": 6,
+            "started_at": "2026-10-04T02:42:17Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-04T02:42:20Z",
+            "conclusion": "success",
+            "name": "Commit and nonforce push same branch",
+            "number": 7,
+            "started_at": "2026-10-04T02:42:17Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-04T02:42:20Z",
+            "conclusion": "success",
+            "name": "Exact committed text readback",
+            "number": 8,
+            "started_at": "2026-10-04T02:42:20Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-04T02:42:21Z",
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@v4",
+            "number": 9,
+            "started_at": "2026-10-04T02:42:20Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-04T02:42:21Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 18,
+            "started_at": "2026-10-04T02:42:21Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-04T02:42:21Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 19,
+            "started_at": "2026-10-04T02:42:21Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/jobs/111346187377",
+        "workflow_name": "pr16-story-save76-record"
+      },
+      "run": {
+        "conclusion": "success",
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "201e7bca1b2c041a7324f1aa5da0b6e80f77fff0",
+        "id": 37171837232,
+        "path": ".github/workflows/pr16-story-save76-record.yml",
+        "run_attempt": 1,
+        "status": "completed"
+      }
+    },
     "record_native_processes": 0,
     "record_run_id": 37171837232,
     "required_badge_flag": 2083,
@@ -49386,6 +49704,321 @@
     "xy": [
       6,
       18
+    ]
+  },
+  "story_save77": {
+    "artifact_id": 11291697564,
+    "badge_count": 1,
+    "checkpoint": "content/modernization/pr16_story_save77_checkpoint.json",
+    "facing": 2,
+    "first_diglett_event_accepted": true,
+    "guide": "docs/PR16_STORY_SAVE77_JA.md",
+    "gym_puzzle_completed": false,
+    "job_id": 111347883827,
+    "lead_hp": [
+      288,
+      294
+    ],
+    "lead_pp": [
+      9,
+      10,
+      15,
+      2
+    ],
+    "letter_consumer_resolved": true,
+    "map": [
+      10,
+      16
+    ],
+    "mewtwo_hp": [
+      354,
+      354
+    ],
+    "mewtwo_pp": [
+      10,
+      20,
+      15,
+      10
+    ],
+    "money": 19416,
+    "next_goal_ja": "Save77 artifact11291697564のstory-fast.srm（131088bytes/SHA256 11632f541a4c8b6a7782c32b5e30b0c4c9414a8cc4323da0e263e6454cc867e6）だけから再開。ミルジム10/16・6,15北。新北3歩と初ディグダlocal5への通常Aで4372/4378 set・local5消失、2台詞と通常Save77/独立Continueを受入。次は保存next-routeの開いた6,14へ北2歩→左2歩4,13→北旋回を確認→local6/4,12へA。4372=true分岐は4375 set/remove9→4372 clear/add5。最初の新event/battle後通常保存。全party600byte/HP288/294・PP9,10,15,2/Bag19416円/紙274一個/PC保持、S61E payload258:7→23/259:160→164の2flagだけ。54+cold13入力31画面46member/native2、26新controller/51新受入。23最終hash先行counter76→24counter77/別一時hashでも保存中→25成功→28field。全SaveRTC/field全pixel一致。progressとcold0のRAM台帳6270e896保持、cold1だけ60276271へ変化しruntime owner未解明。全RAM不変としない。aux4021:85→88/4022:2→0のowner未解明。紙consumerは博物館2階local2・badge0x823必須、現badge1で引渡し未解禁。ジム突破→紙引渡し→505道路レンジャーは未完。全story/全国図鑑/自然成長進化/LuckyEgg/研究施設自然到達も未完。Flash未使用/がくしゅうそうち未装備、host補充/ROM変更/入力ROMruntime再配布/故意全滅/merge/release/baseline変更なし。一般CI既知qol_production.c不一致/action_requiredを全成功にしない。",
+    "paper_consumed_or_delivered": false,
+    "paper_flag4383": true,
+    "paper_item_id": 274,
+    "paper_quantity": 1,
+    "record_native_processes": 0,
+    "record_run_id": 37172987395,
+    "required_badge_flag": 2083,
+    "required_badge_present": false,
+    "rp": 0,
+    "run_id": 37172406819,
+    "static_route_plan": "content/modernization/pr16_story_save77_evidence/next-route.json",
+    "status": "PASS_FIRST_DIGLETT_EVENT_SAVE77_SCOPED",
+    "story_fast_save": {
+      "sha256": "11632f541a4c8b6a7782c32b5e30b0c4c9414a8cc4323da0e263e6454cc867e6",
+      "size": 131088
+    },
+    "story_vars": {
+      "4071": 9,
+      "4072": 1
+    },
+    "verification": {
+      "accepted_case_reruns": 0,
+      "accepted_test_reruns": 0,
+      "aerial_ace_pp_preserved": 2,
+      "boundary": {
+        "all_save_rtc_cold_identical": true,
+        "auxiliary_runtime_owners_resolved": false,
+        "badge_count": 1,
+        "bag_unchanged": true,
+        "changed_bytes": 7112,
+        "changed_ranges": 1787,
+        "expanded_flag_deltas": [
+          [
+            4372,
+            0,
+            1
+          ],
+          [
+            4378,
+            0,
+            1
+          ]
+        ],
+        "expanded_flags": {
+          "4372": 1,
+          "4373": 0,
+          "4374": 0,
+          "4375": 0,
+          "4376": 0,
+          "4377": 0,
+          "4378": 1
+        },
+        "hp": [
+          288,
+          294
+        ],
+        "last_heal_location": [
+          3,
+          2,
+          255,
+          0,
+          38,
+          0,
+          16,
+          0
+        ],
+        "lead_exp_unchanged": true,
+        "mewtwo_hp": [
+          354,
+          354
+        ],
+        "mewtwo_pp": [
+          10,
+          20,
+          15,
+          10
+        ],
+        "money_after": 19416,
+        "money_before": 19416,
+        "national_dex_magic": 0,
+        "national_flag840": 0,
+        "national_var404e": 0,
+        "old_bank_preserved_bytes": 57344,
+        "paper_flag4383_preserved": true,
+        "paper_quantity": 1,
+        "party_byte_deltas": [],
+        "party_preserved_bytes": 600,
+        "pc_preserved": true,
+        "physical_flag_deltas": [],
+        "pp": [
+          9,
+          10,
+          15,
+          2
+        ],
+        "s61e_crc_verified": true,
+        "s61e_payload_deltas": [
+          [
+            258,
+            7,
+            23
+          ],
+          [
+            259,
+            160,
+            164
+          ]
+        ],
+        "sector_checksum_checks": 42,
+        "story_vars": {
+          "4071": 9,
+          "4072": 1
+        },
+        "var40ac": 0,
+        "var40ac_before": 0,
+        "var40ac_runtime_owner_resolved": false,
+        "variable_deltas": [
+          [
+            16417,
+            85,
+            88
+          ],
+          [
+            16418,
+            2,
+            0
+          ]
+        ]
+      },
+      "candidate": {
+        "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5",
+        "size": 33554432
+      },
+      "captures": 0,
+      "cold_field_all_pixels_identical": true,
+      "cold_initial_ram_ledger": "6270e89696f6f9772615bafcb7f2c84ad3d0d37b78444c099e04d139a4e244b0",
+      "cold_ram_difference_owner_resolved": false,
+      "cold_settled_ram_ledger": "6027627107d4372b8f105caf2e5afbeafe1fe86b6d34bfb2a1931e0e3628f5bf",
+      "compiles": 0,
+      "continue_inputs": 13,
+      "counter_change_not_save_completion": true,
+      "double_target_separation_native_exercised": false,
+      "early_final_hash_observation": 23,
+      "escapes": 0,
+      "exp_share_equipped_or_growth_accepted": false,
+      "exp_share_obtained": true,
+      "facing": 2,
+      "first_diglett_event_accepted": true,
+      "first_diglett_hidden": true,
+      "first_diglett_local_id": 5,
+      "fixture_writes": 0,
+      "full_story_accepted": false,
+      "gym_entry_previously_accepted": true,
+      "gym_leader_defeated": false,
+      "gym_puzzle_completed": false,
+      "healing_ram_ledger_owner_resolved": false,
+      "hm05_taught_or_used": false,
+      "input_save": {
+        "sha256": "10c7d4b96e2b36db13158ba3a8d8929caabac28275e98e01a93c586b0315d836",
+        "size": 131088
+      },
+      "lead_hp": [
+        288,
+        294
+      ],
+      "lead_pp": [
+        9,
+        10,
+        15,
+        2
+      ],
+      "lead_species": 850,
+      "letter_consumer_resolved": true,
+      "letter_delivered_flag4382": false,
+      "letter_handoff_requires_badge": true,
+      "map": [
+        10,
+        16
+      ],
+      "map_name_ja": "ミルジム",
+      "mewtwo_hp": [
+        354,
+        354
+      ],
+      "mewtwo_pp": [
+        10,
+        20,
+        15,
+        10
+      ],
+      "move_commands": 0,
+      "national_dex_unlocked": false,
+      "native_processes": 2,
+      "natural_evolution_accepted": false,
+      "natural_growth_accepted": false,
+      "normal_recovery_repeated": false,
+      "normal_recovery_required": false,
+      "observed_move_uses": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "observed_pp_consumption": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "old_save52_cold_difference_owner_resolved": false,
+      "ordinary_saves": 1,
+      "output_save": {
+        "sha256": "11632f541a4c8b6a7782c32b5e30b0c4c9414a8cc4323da0e263e6454cc867e6",
+        "size": 131088
+      },
+      "paper_consumed_or_delivered": false,
+      "paper_expanded_flag": 4383,
+      "paper_item_id": 274,
+      "paper_item_quantity": 1,
+      "paper_obtained": true,
+      "partial_write_observations": [
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24
+      ],
+      "party_byte41_runtime_owner_resolved": false,
+      "party_count": 4,
+      "party_unchanged": true,
+      "pp_recovery_accepted": true,
+      "prior_failed_native_processes": 0,
+      "progress_inputs": 54,
+      "progress_ram_ledger": "6270e89696f6f9772615bafcb7f2c84ad3d0d37b78444c099e04d139a4e244b0",
+      "progress_ram_ledger_unchanged": true,
+      "ram_ledger_changed_observations": [
+        {
+          "lane": "continue",
+          "observation": 1
+        }
+      ],
+      "ram_ledger_unchanged": false,
+      "record_native_processes": 0,
+      "release_ready": false,
+      "required_badge_flag": 2083,
+      "required_badge_present": false,
+      "rom_changes": 0,
+      "rp": 0,
+      "save_counter": 77,
+      "save_counter_changed_observation": 24,
+      "save_success_text_observation": 25,
+      "save_success_wording_observed": true,
+      "screen_count": 31,
+      "stable_field_observation": 28,
+      "stable_hash_not_alone_save_completion": true,
+      "status": "PASS_FIRST_DIGLETT_EVENT_SAVE77_SCOPED",
+      "target_confirmations": 0,
+      "total_new_native_processes": 2,
+      "trainer_victories": 0,
+      "transient_after_counter_observation": 24,
+      "travel_steps": 3,
+      "turns": 0,
+      "wild_victories": 0,
+      "xy": [
+        6,
+        15
+      ]
+    },
+    "xy": [
+      6,
+      15
     ]
   },
   "story_save9": {
