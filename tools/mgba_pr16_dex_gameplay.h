@@ -1,5 +1,7 @@
 /* 観測専用。MDXの新RAM ownerと保存bankの一致を読む。emulator書込は無い。 */
 #include "overlays/dex_owner/dex_owner.h"
+static uint8_t dx_prior_stock[0x1000];
+static unsigned dx_prior_size;
 static void dx_observe(struct mCore*c,unsigned index,unsigned frame)
 {
  uint8_t live[522],flash[131072],stock[0x1000],legacy[208];char sha[65],legacy_sha[65],stable_sha[65],bag_sha[65];uint16_t seen=0,caught=0;
@@ -20,5 +22,8 @@ static void dx_observe(struct mCore*c,unsigned index,unsigned frame)
   uint32_t counter=s[0xFFC]|(s[0xFFD]<<8)|(s[0xFFE]<<16)|((uint32_t)s[0xFFF]<<24);
   if(id==13&&signature==0x08012025&&counter==read32(c,SI_COUNTER)&&!memcmp(s+0xDE6,live,522))matching++;
  }
- printf("{\"mdx\":%u,\"frame\":%u,\"valid\":%s,\"legacy_snapshot\":%u,\"seen_count\":%u,\"caught_count\":%u,\"live_sha256\":\"%s\",\"legacy_sha256\":\"%s\",\"stock_flags_vars_sha256\":\"%s\",\"bag_sha256\":\"%s\",\"legacy_snapshot_matches_current_stock\":%s,\"physical_matches_current_generation\":%u,\"save_file_status\":%u}\n",index,frame,valid?"true":"false",live[10]&1,seen,caught,sha,legacy_sha,stable_sha,bag_sha,!memcmp(live+314,legacy,208)?"true":"false",matching,read16(c,0x030053F0));
+ printf("{\"mdx\":%u,\"frame\":%u,\"valid\":%s,\"legacy_snapshot\":%u,\"seen_count\":%u,\"caught_count\":%u,\"live_sha256\":\"%s\",\"legacy_sha256\":\"%s\",\"stock_flags_vars_sha256\":\"%s\",\"bag_sha256\":\"%s\",\"legacy_snapshot_matches_current_stock\":%s,\"physical_matches_current_generation\":%u,\"save_file_status\":%u,\"stock_byte_deltas\":[",index,frame,valid?"true":"false",live[10]&1,seen,caught,sha,legacy_sha,stable_sha,bag_sha,!memcmp(live+314,legacy,208)?"true":"false",matching,read16(c,0x030053F0));
+ unsigned differences=0;
+ if(dx_prior_size){si_need(dx_prior_size==pos,"fixed stock observation size");for(unsigned i=0;i<pos;i++){if(stock[i]!=dx_prior_stock[i]){si_need(differences<128,"bounded stock diagnostic deltas");printf("%s[%u,%u,%u]",differences?",":"",i,dx_prior_stock[i],stock[i]);differences++;}}}
+ memcpy(dx_prior_stock,stock,pos);dx_prior_size=pos;printf("]}\n");
 }
