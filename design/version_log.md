@@ -10041,3 +10041,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Boundary: 11byte UI-only入口/parent17であり自然通信/受信/削除/正規transition/heap無漏洩/field帰還は未受入。UnionRoomChat/HOF/全mode/残consumer/早期sector31原子性未完。正式ROM/Save101不変、trainer131後半0。
 - Commit: record source=ef4ebc421d1981ef5f6e853b1bc9c61a4b29f91e; 同branch非force push。
 - Network: 同repoActions/既存入力/固定pret source/公式Ubuntu。公開source/address-size-SHA/text/screensのみ。ROM断片/rawhex/runtime/入力save/runner/credentials追加公開0。
+
+## 2026-10-04T23:47:37.809073+00:00
+- Timestamp: 2026-10-04T23:47:37.809073+00:00
+- Task: USER-20261004-DEX-MYSTERY-FAILURE / Mystery Gift通知記録の終端
+- Version: dex-mystery-closeout
+- Status: STOPPED（安全な限定候補受入点。HOF/全非START/全mode/残consumer未完）
+- Summary: record run37244853233/job111560603883全12step成功とartifact11318114441のcheckpoint全文一致を確認しpending解除。成功済native/recordはmanual-onlyへ。
+- Files changed: closeout source/workflow、record起動条件、固定MDJSONと両ログ。
+- Verify: 全source/evidence/fixed resume/index/task graph PASS、host再試験0/ARM0/native0。原本はisolated816case1296call、UI-only main故障/outer末尾故障/正常と各cold6process15画像。候補3bb4c51b、正式ROM/Save101不変。
+- Boundary: UI入口11byte fixtureを自然通信/受信/削除/正規transitionやHOFへ昇格しない。次はUnionRoomChat成功文/SE_SAVE、HOF副作用/SaveFailed scratch/authority wipe、全mode/残typed consumer。早期sector31故障/原子性未受入。trainer131後半0。一般CI既知QOL不一致/Stage79cache/旧9月18日queueを別扱い。
+- Commit: closeout source=db3e64140fb77b74cdd53d0c410dcd9638c52893; 同branch非force push。
+- Network: 同repoActionsと既存text receiptのみ。ROM/入力save/runtime/runner/credentials追加公開0。

@@ -4366,6 +4366,7 @@
   "observed_date_jst": "2026-10-04",
   "observed_head": "ef4ebc421d1981ef5f6e853b1bc9c61a4b29f91e",
   "observed_head_checks": {
+    "all12_record_steps_success": true,
     "all_nonstart_notifications_accepted": false,
     "all_save_modes_accepted": false,
     "both_all10_steps_success": true,
@@ -4374,11 +4375,14 @@
     "isolated_run": 37243703968,
     "new_accepted_native_processes": 7,
     "reason_ja": "正式ROM/Save101保持。Mystery Giftの非START誤成功通知だけ候補修復、既存windowエラー/正常/A待ち/menu帰還/各coldをUI限定受入。HOF/UnionRoomChat/全mode/残consumerは未完。",
+    "record_job": 111560603883,
+    "record_run": 37244853233,
     "scope_head": "fd268ac336d3886ba1efb1768d5979e2e18bfdc1",
     "stage79_cached_not_new_native": true,
     "ui_fixture_bytes_per_process": 11,
     "ui_job": 111559928588,
-    "ui_run": 37244619223
+    "ui_run": 37244619223,
+    "whole_receipt_equals_checkpoint": true
   },
   "observed_head_history": [
     {
@@ -12389,13 +12393,7 @@
     "status": "NATIVE_PARTY_RETENTION_ACCEPTED_BP_PENDING",
     "tested_head": "10e535a046441dd3b797918106259b5c57b69716"
   },
-  "pending_runs": [
-    {
-      "run_id": 37244853233,
-      "status": "in_progress",
-      "tested_head": "ef4ebc421d1981ef5f6e853b1bc9c61a4b29f91e"
-    }
-  ],
+  "pending_runs": [],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
   "pr_draft": true,
   "pr_merged": false,
@@ -14210,13 +14208,17 @@
       "sha256": "2792cf4abf5e57b15e5bb90f1e69163f4ccf4d28d24e21ce24efea23dc77f099",
       "size": 1496
     },
+    ".github/workflows/pr16-dex-mystery-closeout.yml": {
+      "sha256": "d5b373d0005aec408ab52e4273842a99c7649cee64e856bffaa4f297361d21a8",
+      "size": 2406
+    },
     ".github/workflows/pr16-dex-mystery-failure.yml": {
       "sha256": "36cde9c270eb6ec7587d050d69697a9ba3d8e7416a7b3b18d9e765a988d6a09b",
       "size": 1664
     },
     ".github/workflows/pr16-dex-mystery-record.yml": {
-      "sha256": "62de4309a6ea0d03ec91ec7d90a2f4f2ca1c276704e726f82858cc84969a1389",
-      "size": 2371
+      "sha256": "70092264b5aaf8926e75693b12a78ef59ed3eb11f0c3a03f01a9900ed3431e76",
+      "size": 2271
     },
     ".github/workflows/pr16-dex-mystery-ui.yml": {
       "sha256": "a6c496004e5e49ee8beff731c8ff5bd767705788e9d7acf8b39f99ece34005a4",
@@ -32962,6 +32964,10 @@
       "sha256": "1c148294a55ec45fdeec2f3e3b0594544f8c8f09d660a67508e20b93230ca3a5",
       "size": 9484
     },
+    "scripts/pr16_dex_mystery_closeout.py": {
+      "sha256": "797533f1c47c94236cd8f7c4a9c4a91bcae5aa69b08788426c69408bb87ab7d5",
+      "size": 8788
+    },
     "scripts/pr16_dex_mystery_failure.py": {
       "sha256": "2f136b5a48bdb9263ed0aa6c6e56d13ecc981b28c2fb39fa47a088f249b92266",
       "size": 5439
@@ -39025,6 +39031,30 @@
         "mystery_failure_notification_accepted": true,
         "mystery_ui_fixture_only": true,
         "record_run": 37244853233,
+        "recording": {
+          "all12_record_steps_success": true,
+          "arm_compiles": 0,
+          "checkpoint": "content/modernization/pr16_dex_mystery_checkpoint.json",
+          "checkpoint_identity": {
+            "sha256": "7ef45a2acd84f9475da88b97a9dcb9f96348ec883b18a05417535fa0964a90d1",
+            "size": 111385
+          },
+          "closeout_run": 37244990420,
+          "closeout_source": "db3e64140fb77b74cdd53d0c410dcd9638c52893",
+          "formal_rom_changed": false,
+          "formal_save_changed": false,
+          "host_tests_rerun": 0,
+          "native_processes": 0,
+          "record_archive_sha256": "1a3156589c3865f6d022d6df127da1af680fb9abd27d2e6deb73d367b8220955",
+          "record_archive_size": 22552,
+          "record_artifact": 11318114441,
+          "record_completion": "f636c34a247ab23c30313f22dd4f109d502b3bae",
+          "record_job": 111560603883,
+          "record_receipt_equals_checkpoint": true,
+          "record_run": 37244853233,
+          "record_source": "ef4ebc421d1981ef5f6e853b1bc9c61a4b29f91e",
+          "status": "PASS_TERMINAL_MYSTERY_FAILURE_RECORD"
+        },
         "status": "PASS_CANDIDATE_MYSTERY_FAILURE_NOTIFICATION_UI_ONLY",
         "ui_run": 37244619223
       },
