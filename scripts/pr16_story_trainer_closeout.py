@@ -25,19 +25,21 @@ def close():
     need(api.api('actions/runs/37211680551/artifacts')['total_count']==0,'record receipt path warning has no artifact')
     need(state['pending_runs']==[dict(run_id=37211680551,status='in_progress',tested_head=r['head_sha'])],'only the completed run pending')
     state['pending_runs']=[]
-    receipt=dict(record_run=37211680551,record_job=111463968925,record_source=r['head_sha'],record_completion=BASE,all12_steps_success=True,record_native_processes=0,record_compiles=0,original_receipt_artifact_missing=True,missing_reason='historical record workflow used public-story-route-record-receipts while export wrote public-story-trainer-record-receipts',recovery_source=os.environ['GITHUB_SHA'],recovery_run=int(os.environ['GITHUB_RUN_ID']),native_reruns=0,accepted_tests_reruns=0,rom_fragments_in_receipt=False)
+    receipt=dict(record_run=37211680551,record_job=111463968925,record_source=r['head_sha'],record_completion=BASE,all12_steps_success=True,record_native_processes=0,record_compiles=0,original_receipt_artifact_missing=True,first_closeout_failure=dict(run=37212012404,job=111464938788,native_processes=0,commit_created=False,reason='scoped index expected generated MD to change although render remained identical'),missing_reason='historical record workflow used public-story-route-record-receipts while export wrote public-story-trainer-record-receipts',recovery_source=os.environ['GITHUB_SHA'],recovery_run=int(os.environ['GITHUB_RUN_ID']),native_reruns=0,accepted_tests_reruns=0,rom_fragments_in_receipt=False)
     state['story_trainer_adapter']['recording']=receipt
-    state['source_bindings'].update({p:identity((ROOT/p).read_bytes())for p in CODE});publish_resume(state);pr16_resume.validate(ROOT)
+    old_doc=(ROOT/DOC).read_bytes();state['source_bindings'].update({p:identity((ROOT/p).read_bytes())for p in CODE});publish_resume(state);need((ROOT/DOC).read_bytes()==old_doc,'closeout render correctly remains identical');pr16_resume.validate(ROOT)
     stamp=datetime.datetime.now(datetime.timezone.utc).isoformat();entry=f'\n## {stamp}\n- Timestamp: {stamp}\n- Task: USER-20261004-STORY-TRAINER / 記録終端とreceipt回復\n- Status: DONE（記録終端・補助receipt回復。図鑑保存ABI本修復は未完）\n- Summary: record run37211680551/job111463968925の全12step成功とcommit{BASE}を確認。upload先の旧名残留により補助artifact0を記録し、正しい専用dirへhash/text receiptだけを別工程で出力。固定resume pending_runsを空へ。\n- Files changed: 専用closeout、固定resumeJSON/生成MD、両ログ。旧測定・記録sourceは凍結。\n- Verify: 固定source全hash/生成MD/task graph/index guard、正常terminal12step。native0/compile0/受入済み検証再走0。正式Save101不変、未保存trainer勝利0。\n- Commit: source={os.environ["GITHUB_SHA"]}; 同branch非forcepush。\n- Network: 同repoActions終端読取と同branch更新のみ。ROM/Save/runtime/credential/ROM断片の再公開なし。一般CI既知QOL source不一致は未解決。\n'
     for p in LOGS:
         with(ROOT/p).open('a')as f:f.write(entry)
     need(all(identity((ROOT/p).read_bytes())==b for p,b in protected.items()),'unchanged accepted sources after closeout')
-    write(OUT/'receipt/record-completion.json',receipt);publication.export_evidence(OUT/'receipt',ROOT/'public-story-trainer-closeout-receipts');write(OUT/'owned.json',sorted({STATE,DOC,*LOGS}));git('add','--',STATE,DOC,*sorted(LOGS))
+    write(OUT/'receipt/record-completion.json',receipt);write(OUT/'owned.json',sorted({STATE,*LOGS}));git('add','--',STATE,DOC,*sorted(LOGS))
 def guard():
     import pr16_resume,pr16_learnset_runtime_record as g
     current();pr16_resume.validate(ROOT);g.START=os.environ['GITHUB_SHA'];g.CODE=set();g.OWNED=set(json.loads((OUT/'owned.json').read_bytes()));g.guard();git('diff','--cached','--check')
+def export():
+    publication.export_evidence(OUT/'receipt',ROOT/'public-story-trainer-closeout-receipts')
 def snapshot():
     for p in json.loads((OUT/'owned.json').read_bytes()):need(git('show','HEAD:'+p)==(ROOT/p).read_bytes(),'exact committed closeout bytes')
     print('RESULT=STOPPED TASK=USER-20261004-STORY-TRAINER VERIFY=PASS COMMIT='+git('rev-parse','HEAD').decode().strip())
 if __name__=='__main__':
-    actions=dict(close=close,guard=guard,snapshot=snapshot);need(len(sys.argv)==2 and sys.argv[1]in actions,'bounded closeout action');actions[sys.argv[1]]()
+    actions=dict(close=close,guard=guard,snapshot=snapshot,export=export);need(len(sys.argv)==2 and sys.argv[1]in actions,'bounded closeout action');actions[sys.argv[1]]()

@@ -45,6 +45,8 @@ jobs:
           test "$(git ls-remote origin refs/heads/codex/modernization-followup-20260908 | cut -f1)" = "$(git rev-parse HEAD)"
       - name: Exact committed bytes
         run: python3 -B scripts/pr16_story_trainer_closeout.py snapshot
+      - name: Publish validated receipt after final index guard
+        run: python3 -B scripts/pr16_story_trainer_closeout.py export
       - uses: actions/upload-artifact@v4
         with:
           name: pr16-story-trainer-closeout-receipts
