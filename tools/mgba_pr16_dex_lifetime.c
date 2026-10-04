@@ -8,7 +8,7 @@
 #include <mgba/internal/arm/arm.h>
 #include <mgba/internal/gba/savedata.h>
 #include <mgba-util/vfs.h>
-#include "overlays/dex_owner/dex_owner.c"
+#include "overlays/dex_owner/dex_owner.h"
 #define DX_ROM "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
 #define DX_SAVE "814a8e31ce20d720a1f1bddc08caa9cdd3d86b5bbb874738b9cb859653552149"
 static color_t dx_video[240*160];

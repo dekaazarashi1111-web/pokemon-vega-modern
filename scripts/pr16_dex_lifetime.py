@@ -76,7 +76,7 @@ def main():
     guard();need(not OUT.exists(),'one fresh execution');ART.mkdir(parents=True);results=[];processes=0
     try:
         retained.OUT=OUT;runtime,private,seed=retained.restore()
-        exe=OUT/'runner';cmd=['cc','-std=c11','-O2','-Wall','-Wextra','-Werror','-Wno-misleading-indentation','-I'+str(ROOT/'tools'),'-I'+str(ROOT),'-I'+str(runtime/'include'),str(ROOT/C),'-L'+str(runtime/'lib'),'-lmgba','-lm','-Wl,--allow-shlib-undefined','-o',str(exe)]
+        exe=OUT/'runner';cmd=['cc','-std=c11','-O2','-Wall','-Wextra','-Werror','-Wno-misleading-indentation','-I'+str(ROOT/'tools'),'-I'+str(ROOT),'-I'+str(runtime/'include'),str(ROOT/C),str(ROOT/'overlays/dex_owner/dex_owner.c'),'-L'+str(runtime/'lib'),'-lmgba','-lm','-Wl,--allow-shlib-undefined','-o',str(exe)]
         p=subprocess.run(cmd,cwd=ROOT,capture_output=True,timeout=120);(ART/'compile.stdout.txt').write_bytes(p.stdout);(ART/'compile.stderr.txt').write_bytes(p.stderr)
         write(ART/'compile.json',dict(returncode=p.returncode,source=identity((ROOT/C).read_bytes()),host_compiles=1,arm_compiles=0))
         need(p.returncode==0 and not p.stdout and not p.stderr,'strict new lifetime C compile')
