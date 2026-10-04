@@ -12205,3 +12205,17 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 測定source=e98ad40624e04de8842dc19f5601ce28f125749e、記録source=b63c6e1f383406ec4e1b1f35d9b8504fa82335fc・run=37177151335。scoped guard/task graph/resume後に同branch非force push/全text読戻し。
 - Network: 同repo GitHub/Actionsだけ。既存ROM/runtime/input非再配布。一般CI既知不一致/action_requiredを全成功にしない。merge/release/baseline変更0。
 - Next: Save82 artifact11292834696のstory-fast.srm（131088bytes/SHA256 ba090d0e6efe1f7d3effba4991973bd956574f18780fa7843ccf4910748ec8e9）だけから再開。ミルジム10/16・6,7北。新北2歩でlocal1/trainer132ヤスハルに通常1勝、敵4体/賞金864円/physical1412set。次は東5歩11,7・北4歩11,3の新9歩、local11/10,3へ西旋回して通常A。4376=true分岐は4374set/remove8・4376clear/add10、local11自体は残る。最初の新event/battle後通常保存、予期しない境界は縮小停止。旧5switch/勝利trainer132再走0。HP288/294・PP6,10,14,2、Bag20280円・紙274一個/PC/S61E保持。118+cold13入力63画面78member/native2、新controller36/新受入66。55counter82でも保存中/部分write→56最終hash/成功→60field。全SaveRTC/field全pixel/coldRAM保持。今回RAM13/34変化・aux4021:110→111/4022:2→0と過去RAM差分のruntime owner未解明。紙consumer博物館2階local2はbadge0x823必須、現badge1で引渡し未解禁。ジム突破→紙引渡し→505道路レンジャー、全story/全国図鑑/自然成長進化/LuckyEgg/研究施設自然到達は未完。Flash未使用/がくしゅうそうち未装備、host補充/ROM変更/入力ROMruntime再配布/故意全滅/merge/release/baseline変更なし。一般CI既知qol_production.c不一致/action_requiredを全成功にしない。
+
+## 2026-10-04T04:49:04+00:00
+- Timestamp: 2026-10-04T04:49:04+00:00
+- Task: USER-20261004-GYM-TRAINER160-SAVE83 / ミルジムtrainer160通常勝利・Save83
+- Version: story-gym-trainer160-save83-v1
+- Status: DONE（trainer160新1勝/通常保存/独立Continue限定）
+- Summary: 新東5歩でlocal3トラジ視線発火。敵4体/通常1勝384円/physical1440set。11,7東Save83、全party597byte保持、PP6→4・14→12/HP288→287だけ、Bag20664円/紙/PC/S61E保持。
+- Files changed: Save83 preparation/measure/31controller/67受入/record/checkpoint/text証拠/次第6local11 owner、固定再開MD/JSON、両ログ。
+- Verify: run37177597798/job111363381549全8step成功。132+cold13入力70画面85member。新controller31原log継承/新受入67。record native0/compile0/旧成功再走0。
+- Evidence: 53〜62保存中、62counter83でも部分write→63最終hash/成功→67field。全SaveRTC/field全pixel/coldRAM保持。42checksum/7168byte1847範囲。今回RAM17/38とaux4021/過去差分runtime owner未解明、紙引渡し/ジム攻略未受入。
+- Discovery: 保存済gym graphの第6local11限定39命令を再利用。4376true分岐は4374set/remove8・4376clear/add10。次は残り新北4歩11,3へ。全map再scan0。Save82記録run37177151335全11step終端を同期。
+- Commit: 測定source=73ed1d12284202767179653e77e642a92c2dbaf6、記録source=c8d4175bb8dc16c0208256a13edecba1265c29f2・run=37178063036。scoped guard/task graph/resume後に同branch非force push/全text読戻し。
+- Network: 同repo GitHub/Actionsだけ。既存ROM/runtime/input非再配布。一般CI既知不一致/action_requiredを全成功にしない。merge/release/baseline変更0。
+- Next: Save83 artifact11293763616のstory-fast.srm（131088bytes/SHA256 157a945e7bdb3287b519c235ef95c12ddcefb14a62d479cf3a5f753e4f009523）だけから再開。ミルジム10/16・11,7東。新東5歩でlocal3/trainer160トラジに通常1勝、敵4体/賞金384円/physical1440set。次は新北4歩11,3、西のlocal11/10,3へ旋回して通常A。4376=true分岐は4374set/remove8・4376clear/add10、local11自体は残る。最初の新event/battle後通常保存、予期しない境界は縮小停止。旧5switch/勝利trainer132/160再走0。HP287/294・PP4,10,12,2、Bag20664円・紙274一個/PC/S61E保持。132+cold13入力70画面85member/native2、新controller31/新受入67。62counter83でも保存中/部分write→63最終hash/成功→67field。全SaveRTC/field全pixel/coldRAM保持。今回RAM17/38変化・aux4021:111→115と過去RAM差分のruntime owner未解明。紙consumer博物館2階local2はbadge0x823必須、現badge1で引渡し未解禁。ジム突破→紙引渡し→505道路レンジャー、全story/全国図鑑/自然成長進化/LuckyEgg/研究施設自然到達は未完。Flash未使用/がくしゅうそうち未装備、host補充/ROM変更/入力ROMruntime再配布/故意全滅/merge/release/baseline変更なし。一般CI既知qol_production.c不一致/action_requiredを全成功にしない。
