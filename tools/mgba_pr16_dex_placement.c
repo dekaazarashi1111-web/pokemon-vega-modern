@@ -1,4 +1,5 @@
 /* Isolated linked ARMv4T API/veneer tests. No boot, battle, save or game hook. */
+#define _POSIX_C_SOURCE 200809L
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
