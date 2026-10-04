@@ -12557,3 +12557,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: terminal/source bindings/resume/task graph/index guard PASS。host再試験0/ARM0/native0/ROM変更0/Save変更0。
 - Commit: closeout source=10fe0dd510887cfc4d2948e27ffd695000cbf0fb; 同branch非force push。
 - Network: 同repoActions終端・小さい公開text receiptの読取。旧9月18日queueを操作しない。一般CI既知QOL source不一致は残件。
+
+## 2026-10-04T16:48:51.078778+00:00
+- Timestamp: 2026-10-04T16:48:51.078778+00:00
+- Task: USER-20261004-DEX-RUNTIME / 図鑑未保存RAM寿命とtyped consumer・companion bridge
+- Version: dex-runtime-foundation-v2
+- Status: STOPPED（5UI寿命とhost実装受入。ROM保存/consumer接続未完）
+- Summary: Bag/summary/図鑑/PC/box-nameで522byte保持、CPU/DMA/STM未所有write0、party/PC/全Save101保持を実証。新SID/公式count・Factory/Codex rollback・sector bridge実装。独立レビューでStage75 SID1670漏れを補いowner925へ束縛。
+- Files changed: 専用fixture/adapter/bridge/102検査、checkpoint/guide、固定resumeMD/JSON、両ログ。
+- Verify: 新102host PASS（C compile2）、native run37217077790/job111479655834全9step成功の原本5UI/27画面を再照合。失敗compile native0、失敗Summary2を履歴として保持。今回記録ARM0/native0/ROM変更0/通常Save0。
+- Next: 正式Save101は不変。PR16_DEX_RUNTIME_INTEGRATION_JA.mdとpr16_dex_runtime_checkpoint.jsonから再開。MDX522の5UI寿命はnative受入、SID/公式count/Factory-Codex rollback/companion bridgeは102host検査済みだがROM未接続。固定候補の未割当は3151byteのみで大窓1704/1240byte。Stage61全体再リンクを押し込まず、compact namespace/既存owner内置換を署名・到達性・allocationで設計する。Stage75 SID1670→base1142/owner925を含む1671slotを使い、旧1670slot上限をruntime全体へ誤適用しない。全save mode/CRC bank fallback/partial-write、外側復旧Saveより前のMDX load、全SID喪失前consumer/direct count-clear/transactionを接続。保存ABI限定nativeと通常Save/独立cold Continue受入まではtrainer戦闘・候補基準切替をしない。受入後だけSave101からtrainer131/128/1065経由でシオウPokecenter回復・Save・cold Continueへ。雑魚戦ごとのSaveは作らない。
+- Commit: source=ada18f7e1fb9da89bb737517b8c2cc29b28ac24c; 同branch非force push。
+- Network: 同repoGitHub source/Actions原本、mGBA0.10.2公式ARM memory/DMA sourceを参照。公開はsourceと検査済text/screensのみ、ROM断片/runtime/inputSaveを含めない。一般CI QOL source不一致は未解決、Stage79はcache再利用。

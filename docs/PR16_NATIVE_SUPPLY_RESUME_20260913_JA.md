@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-正式Save101保持。1206-owner namespace/522byte codecを40host試験。ROM未接続、PC保持と全consumer/save接続が未完。
+正式Save101保持。MDX522の5UI寿命をnative確認。SID/公式/rollback/保存bridgeは102host検査済み、ROM未接続。未割当3151byteの容量設計が次。
 
-**次: 正式Save101は不変。図鑑修復の1206-owner stable namespaceと522byte MDX codecは40host試験済み、ROM未接続。pr16_dex_owner_checkpoint.jsonとPR16_DEX_OWNER_IMPLEMENTATION_JA.mdから再開し、まずRAM候補の未保存bitをPC/summary/bag/naming/図鑑往復で保持するlifetimeを実証し、退避ownerまたは保全経路を確定する。main logical13末尾companionの全save mode/CRC bank fallback、SID喪失前consumer、direct count/clear、memorial/Codex snapshotを署名付きlate-stageへ統合。旧52byteやVACQから曖昧なbitを複製しない。保存ABI/consumer限定native、通常Save/独立cold Continueを受入するまではtrainer戦闘を再開しない。受入後だけSave101未保存失敗区間からtrainer131/128/1065を進め、シオウPokecenter通常回復・Save・cold Continueへ。全雑魚戦checkpoint、未検証ROM基準切替、merge/releaseは禁止。**
+**次: 正式Save101は不変。PR16_DEX_RUNTIME_INTEGRATION_JA.mdとpr16_dex_runtime_checkpoint.jsonから再開。MDX522の5UI寿命はnative受入、SID/公式count/Factory-Codex rollback/companion bridgeは102host検査済みだがROM未接続。固定候補の未割当は3151byteのみで大窓1704/1240byte。Stage61全体再リンクを押し込まず、compact namespace/既存owner内置換を署名・到達性・allocationで設計する。Stage75 SID1670→base1142/owner925を含む1671slotを使い、旧1670slot上限をruntime全体へ誤適用しない。全save mode/CRC bank fallback/partial-write、外側復旧Saveより前のMDX load、全SID喪失前consumer/direct count-clear/transactionを接続。保存ABI限定nativeと通常Save/独立cold Continue受入まではtrainer戦闘・候補基準切替をしない。受入後だけSave101からtrainer131/128/1065経由でシオウPokecenter回復・Save・cold Continueへ。雑魚戦ごとのSaveは作らない。**
 
 通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `d1230b07103cd1790849ba6fb390ede089052a1f`。
-図鑑ownerのhost実装checkpoint source。新native/ROM/Saveなし。正式進行Save101、trainer entry証拠は既存原本を継承。
+証拠のsource HEAD: `ada18f7e1fb9da89bb737517b8c2cc29b28ac24c`。
+5UI寿命の原本を受入しhost接続APIを記録したsource。新ROM/ARM/通常Saveなし。全保存/consumer nativeとシオウ到達は未完。
 
 ## 最短の再開手順
 
@@ -25,11 +25,11 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_DEX_OWNER_IMPLEMENTATION_JA.md`
-- `content/modernization/pr16_dex_owner_checkpoint.json`
-- `content/modernization/pr16_dex_consumer_audit.json`
+- `docs/PR16_DEX_RUNTIME_INTEGRATION_JA.md`
+- `content/modernization/pr16_dex_runtime_checkpoint.json`
+- `content/modernization/pr16_dex_placement_audit.json`
+- `docs/PR16_DEX_CONSUMERS_JA.md`
 - `content/modernization/pr16_dex_storage_audit.json`
-- `docs/PR16_DEX_SEEN_REPAIR_JA.md`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -431,6 +431,7 @@ P08ゲート:
 - route adapter原本5run/80host証拠は保持。正式Save101以前を再走せず、新しい未保存失敗区間だけ変更影響に応じて再開。時計/再暗号化/seen/QOL provenanceを全byte免除にしない。通常戦ごとのSaveを復活させない。
 - trainer131原本2run/48hostを保持。正式Save101と未保存entryを区別。seen高nationalをtrainerRematches/FameChecker等の許可差分にしない。固定ROMの保存ABIを修復・限定回帰する前にtrainer戦闘を続けない。DPE/CFRUのBag衝突パッチを直貼りせず、通常戦ごとのSaveも復活させない。
 - 図鑑owner namespace1206/slot1670と522byte codecのhost証拠を再利用。runtime未接続を修復済みにしない。旧bit、VACQ、別field破壊を根拠なしに昇格しない。PC未保存RAM保持と全save/consumer接続から続ける。
+- MDX候補RAMの5UI寿命はrun37217077790の原本から再利用（Bagは37216583954から再利用）。正式Save101不変。Stage75 internal1670は明示adapterでbase1142/owner925へ結合し、namespace owner数1206は不変。全save/consumer未接続とROM空き容量3151byteを隠さず先に解決。
 
 ## 次セッションへ残す更新手順
 
