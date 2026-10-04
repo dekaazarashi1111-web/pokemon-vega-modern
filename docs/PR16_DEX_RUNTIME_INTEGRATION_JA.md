@@ -70,6 +70,8 @@ owner1206の意味・順序・保存version・基礎namespace原本は変更し�
 
 ## late-stageの容量制約
 
+署名付きの40空き窓・21入口・Stage75根拠は `content/modernization/pr16_dex_placement_audit.json`。size8は関数全体でなくpatch前確認窓の大きさ。
+
 最終107-owner allocationと固定candidateの未割当40窓を照合した結果、未割当は合計3151byte。
 大きい2窓はROM offset0x015FF958..0x01600000の1704byteと0x01FFFB28..0x02000000の1240byteで、残る207byteは1..14byteの断片である。
 4KiB以上の連続leaseはない。Stage61全体を新payloadへ単純再リンクする案はこの容量に収まらない。
