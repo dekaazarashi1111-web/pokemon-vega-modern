@@ -1,0 +1,58 @@
+{
+  "status": "PASS_HOST_ONLY_CLOSED_TIME_AND_WALK_ADAPTER",
+  "tests": 41,
+  "passed": 41,
+  "stdout": "",
+  "stderr": "test_friendship_wrap (test_pr16_story_clock.ClockTests.test_friendship_wrap) ... ok\ntest_ledger_day (test_pr16_story_clock.ClockTests.test_ledger_day) ... ok\ntest_ledger_day_serial_wrap (test_pr16_story_clock.ClockTests.test_ledger_day_serial_wrap) ... ok\ntest_ledger_minute (test_pr16_story_clock.ClockTests.test_ledger_minute) ... ok\ntest_ledger_no_rollover (test_pr16_story_clock.ClockTests.test_ledger_no_rollover) ... ok\ntest_ledger_only_daily_resets (test_pr16_story_clock.ClockTests.test_ledger_only_daily_resets) ... ok\ntest_normal_120_ticks (test_pr16_story_clock.ClockTests.test_normal_120_ticks) ... ok\ntest_reject_clock_backwards (test_pr16_story_clock.ClockTests.test_reject_clock_backwards) ... ok\ntest_reject_clock_bad_minute (test_pr16_story_clock.ClockTests.test_reject_clock_bad_minute) ... ok\ntest_reject_clock_bool_frames (test_pr16_story_clock.ClockTests.test_reject_clock_bool_frames) ... ok\ntest_reject_clock_saturation (test_pr16_story_clock.ClockTests.test_reject_clock_saturation) ... ok\ntest_reject_clock_short (test_pr16_story_clock.ClockTests.test_reject_clock_short) ... ok\ntest_reject_clock_too_fast (test_pr16_story_clock.ClockTests.test_reject_clock_too_fast) ... ok\ntest_reject_clock_unrelated_byte (test_pr16_story_clock.ClockTests.test_reject_clock_unrelated_byte) ... ok\ntest_reject_clock_zero_frames (test_pr16_story_clock.ClockTests.test_reject_clock_zero_frames) ... ok\ntest_reject_walk_bad_ledger_checksum (test_pr16_story_clock.ClockTests.test_reject_walk_bad_ledger_checksum) ... ok\ntest_reject_walk_callback (test_pr16_story_clock.ClockTests.test_reject_walk_callback) ... ok\ntest_reject_walk_coins (test_pr16_story_clock.ClockTests.test_reject_walk_coins) ... ok\ntest_reject_walk_counter (test_pr16_story_clock.ClockTests.test_reject_walk_counter) ... ok\ntest_reject_walk_expanded_flag (test_pr16_story_clock.ClockTests.test_reject_walk_expanded_flag) ... ok\ntest_reject_walk_flag (test_pr16_story_clock.ClockTests.test_reject_walk_flag) ... ok\ntest_reject_walk_flash (test_pr16_story_clock.ClockTests.test_reject_walk_flash) ... ok\ntest_reject_walk_friendship_without_wrap (test_pr16_story_clock.ClockTests.test_reject_walk_friendship_without_wrap) ... ok\ntest_reject_walk_hp (test_pr16_story_clock.ClockTests.test_reject_walk_hp) ... ok\ntest_reject_walk_lock (test_pr16_story_clock.ClockTests.test_reject_walk_lock) ... ok\ntest_reject_walk_map (test_pr16_story_clock.ClockTests.test_reject_walk_map) ... ok\ntest_reject_walk_money (test_pr16_story_clock.ClockTests.test_reject_walk_money) ... ok\ntest_reject_walk_position (test_pr16_story_clock.ClockTests.test_reject_walk_position) ... ok\ntest_reject_walk_save (test_pr16_story_clock.ClockTests.test_reject_walk_save) ... ok\ntest_reject_walk_save2_tail (test_pr16_story_clock.ClockTests.test_reject_walk_save2_tail) ... ok\ntest_reject_walk_storyvar (test_pr16_story_clock.ClockTests.test_reject_walk_storyvar) ... ok\ntest_reject_walk_unchecked_save1_tail (test_pr16_story_clock.ClockTests.test_reject_walk_unchecked_save1_tail) ... ok\ntest_rollover_hour (test_pr16_story_clock.ClockTests.test_rollover_hour) ... ok\ntest_rollover_minute (test_pr16_story_clock.ClockTests.test_rollover_minute) ... ok\ntest_rollover_second (test_pr16_story_clock.ClockTests.test_rollover_second) ... ok\ntest_rotation (test_pr16_story_clock.ClockTests.test_rotation) ... ok\ntest_route_reader_readonly (test_pr16_story_clock.ClockTests.test_route_reader_readonly) ... ok\ntest_route_reader_reject_write (test_pr16_story_clock.ClockTests.test_route_reader_reject_write) ... ok\ntest_sampling_phase_bound (test_pr16_story_clock.ClockTests.test_sampling_phase_bound) ... ok\ntest_stopped_time (test_pr16_story_clock.ClockTests.test_stopped_time) ... ok\ntest_walk_step (test_pr16_story_clock.ClockTests.test_walk_step) ... ok\n\n----------------------------------------------------------------------\nRan 41 tests in 0.022s\n\nOK\n",
+  "source_bindings": {
+    ".github/workflows/pr16-story-route-adapter.yml": {
+      "size": 1433,
+      "sha256": "4470c7735709ce7baa5d42e97602f731e6a2ea2efaaf3c2623d37ddb57b027c2"
+    },
+    "content/modernization/pr16_story_route_owners.json": {
+      "size": 56963,
+      "sha256": "ced9e20cec9f7e35e19a7ab8f4b241738bff72efdbddd74ffa1664def672d748"
+    },
+    "docs/PR16_STORY_ROUTE_ADAPTER_JA.md": {
+      "size": 2481,
+      "sha256": "5032e200d73cf274831179591e562eb3a249e5bddc4be5239d00931c8a9161bb"
+    },
+    "scripts/pr16_story_clock.py": {
+      "size": 5456,
+      "sha256": "af6c36a067f82f3376cd9782283635b0134809ca419e424e27578a1d87e1cb0f"
+    },
+    "scripts/pr16_story_route_owners.py": {
+      "size": 7212,
+      "sha256": "513ed4bb2fb011c5a4ea28e833265dd7ba2580a3abb7780fe62d9c893628e7fa"
+    },
+    "scripts/pr16_story_route_probe.py": {
+      "size": 6543,
+      "sha256": "c63fb0b01cb7556341fd1b7138e4a81e5a3937ceb40e798532ffc303f1da88e0"
+    },
+    "scripts/pr16_story_route_session.py": {
+      "size": 2952,
+      "sha256": "b061fb536b7b26250445170f87b0a31f24a16e6772ee03ff6784336f13ded176"
+    },
+    "tests/test_pr16_story_clock.py": {
+      "size": 6959,
+      "sha256": "fe40962ddbf299942541f5fe30cb5adbf9af64ebd9f39d66ab2c12dbf48ab2ef"
+    },
+    "tools/mgba_pr16_story_route_observer.h": {
+      "size": 1093,
+      "sha256": "f5b20d53afb690457fa1a1d024cb374ca09d4d32a8b905844974e49d6bb79739"
+    }
+  },
+  "saved_native_original": {
+    "run_id": 37203041912,
+    "artifact_id": 11303576858,
+    "measurement": "7f879dd653b5833d4c5050f22b96ab4bd8c15685",
+    "clock": {
+      "ticks": 120,
+      "minute_rollovers": 0,
+      "frame_budget": 120
+    },
+    "native_reruns": 0
+  },
+  "runtime_battle_accepted": false,
+  "milestone_reached": false
+}
