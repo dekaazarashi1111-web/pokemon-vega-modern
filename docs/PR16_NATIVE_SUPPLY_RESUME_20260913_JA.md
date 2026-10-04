@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-紙保持の新復路9歩/通常下降でSave74。入口階20,24南、全party・HP288/PP9,10,15,2保持。次は中央廊下南9歩/館退出候補。
+紙保持の新南9歩/館退出でSave75。ミルシティ15,20南、全party/HP288/PP9,10,15,2保持。次は紙の後続consumerを限定照合。
 
-**次: Save74 artifact11290343975のstory-fast.srm（131088bytes/SHA256 34a689de13a412f4d81f396aef0ec90291050ff3334fec2b048b203f3a8bd76b）だけから再開。上階の新復路9歩/転換6とhole5→入口階warp8の通常下降を受入、現在map1/59・20,24南。紙274一個/flag4383、全party600byte・HP288/294・PP9,10,15,2、Bag19416円/PC/RAM台帳を保持。次は入口階中央廊下20,24→20,33の新南9歩と南出口behavior101/warp1→ミルシティmap3/2 warp7・15,19へ通常退出する候補。door自動南1歩なら15,20もあり得るが未観測。最初の新戦闘/event/退出境界で止め通常保存する。旧像取得/上階復路/穴下降を成功caseとして再走しない。30新controller/60新受入、78+cold13入力46画面61member/native2。37最終Flash一時一致→38counter74も保存中/再変化→39成功→43field。全SaveRTC/最終field3画像全pixel一致、到着16はbannerあり別画面。physical2056:0→1/aux4021:54→62/4022:1→4のowner未解明。館退出/紙使用・引渡しは未受入、Flash未使用/がくしゅうそうち未装備、全国図鑑/全story/自然成長・進化/LuckyEgg/研究施設自然到達未完。host補充/ROM変更/既存ROMruntimeinput再配布/故意全滅/merge/release/baseline変更なし。一般CI既知qol_production.c不一致/action_requiredを全成功にしない。**
+**次: Save75 artifact11290759615のstory-fast.srm（131088bytes/SHA256 6554c5f872f710b4dbef5a2db06fbf3d2b91ab3a2984008be53c7ce1ecf4ffb2）だけから再開。入口階20,24から新南9歩/出口追加南1入力で館退出、ミルシティmap3/2・15,20南への自動南1歩と通常Save75/独立Continueを受入。紙274一個/flag4383・全party600byte/HP288/294・PP9,10,15,2/Bag19416円/PC/S61E保持。次は保存済script graph/tableからitem274/flag4383のcheck/remove/clearとstory4071=9/4072=1の後続入口を限定照合し、未読consumerだけ同一候補ROMで読む。受取人/次目的地を推測せず、正規イベントownerと歩行経路を固定してからSave75以降の最初の新戦闘/event/退出境界へ進み通常保存する。旧像取得/館内/退出は再走しない。31新controller/63新受入、63+cold13入力36画面51member/native2。27/28部分hash安定→29counter75/最終Flashでも文言未完→30成功→33field。全SaveRTC一致、町のNPC/水面は画面差あり、player/館外観112x89crop全pixel一致。physical2056:1→0/aux4021:62→71/4022:4→3/40ac:16→0、RAM台帳は7/20,31で変化、owner未解明。紙使用/引渡し、全国図鑑/全story/自然成長・進化/LuckyEgg/研究施設自然到達未完。Flash未使用/がくしゅうそうち未装備。host補充/ROM変更/既存ROMruntimeinput再配布/故意全滅/merge/release/baseline変更なし。一般CI既知qol_production.c不一致/action_requiredを全成功にしない。**
 
-Save74入口階20,24南から新南9歩/20,33の出口101→ミルシティmap3/2 warp7候補だけ。最初の新戦闘/event/退出で通常保存。紙274/flag4383保持、PP9,10,15,2、host補充なし。像取得/上階復路/下降の受入済み入力を再走しない。
+Save75町15,20南だけから再開。紙274/flag4383と後続story入口を限定照合してから新native経路を決める。受取人/次目的地を推測しない。最初の新境界で通常保存。紙/PP保持、host補充なし。旧像/館内/退出は再走しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `cd43872bf7177dd63cc1b9f3ff0a74d4b7b0a1ef`。
-紙保持の新復路9歩/通常下降で入口階20,24南へSave74。全party・HP・PP保持。次は中央廊下南9歩/館退出候補。
+証拠のsource HEAD: `0845c4282b2ad508dd7046b6d61d6cf139a59fd7`。
+紙保持の新南9歩/館退出でミルシティ15,20南へSave75。全party/HP/PP保持。次は紙の後続consumerを限定照合。
 
 ## 最短の再開手順
 
@@ -25,13 +25,13 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_STORY_SAVE74_JA.md`
-- `content/modernization/pr16_story_save74_checkpoint.json`
-- `content/modernization/pr16_story_save74_visual_review.json`
-- `scripts/pr16_story_save74_accept.py`
-- `scripts/pr16_story_save74_measure.py`
-- `content/modernization/pr16_story_save74_evidence/inspection.json`
-- `content/modernization/pr16_story_save74_evidence/next-route.json`
+- `docs/PR16_STORY_SAVE75_JA.md`
+- `content/modernization/pr16_story_save75_checkpoint.json`
+- `content/modernization/pr16_story_save75_visual_review.json`
+- `scripts/pr16_story_save75_accept.py`
+- `scripts/pr16_story_save75_measure.py`
+- `content/modernization/pr16_story_save75_evidence/inspection.json`
+- `content/modernization/pr16_story_save75_evidence/next-route.json`
 - `content/modernization/pr16_story_save62_evidence/route-plan.json`
 - `content/modernization/pr16_story_save57_preparation.json`
 
@@ -404,6 +404,7 @@ P08ゲート:
 - Save72の73/cold13入力43画面58member/29controller/55受入を無影響再走しない。残り新11歩/転換2で像北隣16,27西に初到着、新戦闘0/全party600byte・HP288/PP9,10,15,2/Bag19416円保持。legacy flag不変/aux2変数/RAM10変化owner未解明。35counter72も部分write→36成功→40field。全SaveRTC/像側field4画像一致。像は見えるが紙を調べる操作/取得未完。
 - Save73の53/cold13入力32画面47member/32controller/62受入を無影響再走しない。像の紙274/flag4383は取得済み。新戦闘/歩行0、全party/他Bag/19416円/PC/legacy flags-vars/RAM台帳保持。24一時最終hash→25counterも保存中→26成功→29field。全SaveRTC/field5画像一致。次は新しい復路/hole下降だけ。
 - Save74の78/cold13入力46画面61member/30controller/60受入を無影響再走しない。紙274/flag4383保持の新9歩/転換6/上階hole5→下階warp8。新戦闘0、全party/Bag19416円/PC/S61E/RAM保持。2056/aux2変数owner未解明。37一時最終hash→38counterも保存中→39成功→43field。全SaveRTC/最終field3画像一致。次は南9歩と館退出だけ。
+- Save75の63/cold13入力36画面51member/31controller/63受入を無影響再走しない。新南9歩+出口南1入力、ミルシティ15,20自動南1歩。新戦闘0、全party/Bag19416円/PC/S61E/紙274/flag4383保持。2056解除/aux2変数/40ac解除/RAM7変化owner未解明。27/28部分hash安定→29counter/最終hashも文言未完→30成功→33field。全SaveRTC/player建物crop一致、NPC/水面差あり。次は紙の後続consumer限定照合。
 
 ## 次セッションへ残す更新手順
 
