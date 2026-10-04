@@ -62,7 +62,7 @@ class Controller(unittest.TestCase):
         s=self.fake(mode='need_south_press');step=s.step
         def bad(*keys):
             o=step(*keys)
-            if len(s.observations)==13:o['xy']=[13,8];o['live_xy']=[20,15]
+            if len(s.observations)==13:o['xy']=[12,9];o['live_xy']=[19,16]
             return o
         s.step=bad
         with self.assertRaises(ValueError):m.progress(s,{})

@@ -18,6 +18,7 @@ PP=[3,9,8,2]
 TRANSITION=134569577 # 失敗原本の16,5で観測した野生戦直前callbackだけ
 PREP='content/modernization/pr16_story_save97_preparation.json'
 CODE.add(PREP)
+CODE.add('content/modernization/pr16_story_save97_controller_failure.json')
 TERRAIN='content/modernization/pr16_story_save50_preparation.json'
 ORIGIN=[6,0]
 DESTINATION=[3,2]
