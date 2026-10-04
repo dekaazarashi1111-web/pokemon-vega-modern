@@ -9791,3 +9791,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 固定source全hash/生成MD/task graph/index guard、正常terminal12step。native0/compile0/受入済み検証再走0。正式Save101不変、未保存trainer勝利0。
 - Commit: source=455712808577bbe84cc2679e465590b92ec43445; 同branch非forcepush。
 - Network: 同repoActions終端読取と同branch更新のみ。ROM/Save/runtime/credential/ROM断片の再公開なし。一般CI既知QOL source不一致は未解決。
+
+## 2026-10-04T15:48:20.588501+00:00
+- Timestamp: 2026-10-04T15:48:20.588501+00:00
+- Task: USER-20261004-DEX-OWNER / 図鑑owner保存codecの実装
+- Version: dex-owner-foundation-v1
+- Status: STOPPED（host基盤完成、ROM接続/native保存受入は未完）
+- Summary: 1670slotを既存1206ownerへstable-key結合。旧番号衝突277群/分裂52群を低開示metadataで確認。522byte codecは旧4鏡208byteを保持し、CRC/version/範囲/出力aliasを拒否。独立レビュー4件を修復。
+- Files changed: 専用namespace/codec/40試験/alias・保存・consumer監査/guide/checkpoint、固定resumeMD/JSON、両ログ。
+- Verify: final40 host試験PASS、host C compile1、namespace exact bytes、既受入source全hash保持。ARM0/native0/ROM変更0/Save変更0。
+- Next: 正式Save101は不変。図鑑修復の1206-owner stable namespaceと522byte MDX codecは40host試験済み、ROM未接続。pr16_dex_owner_checkpoint.jsonとPR16_DEX_OWNER_IMPLEMENTATION_JA.mdから再開し、まずRAM候補の未保存bitをPC/summary/bag/naming/図鑑往復で保持するlifetimeを実証し、退避ownerまたは保全経路を確定する。main logical13末尾companionの全save mode/CRC bank fallback、SID喪失前consumer、direct count/clear、memorial/Codex snapshotを署名付きlate-stageへ統合。旧52byteやVACQから曖昧なbitを複製しない。保存ABI/consumer限定native、通常Save/独立cold Continueを受入するまではtrainer戦闘を再開しない。受入後だけSave101未保存失敗区間からtrainer131/128/1065を進め、シオウPokecenter通常回復・Save・cold Continueへ。全雑魚戦checkpoint、未検証ROM基準切替、merge/releaseは禁止。
+- Commit: source=d1230b07103cd1790849ba6fb390ede089052a1f; 同branch非force push。
+- Network: 同repoGitHub読取と記録。ROM断片/raw hex/encoded name bytes/runtime/inputSaveの公開なし。一般CI既知QOL source不一致とStage79 cache区別は維持。
