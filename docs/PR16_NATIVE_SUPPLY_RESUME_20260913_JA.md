@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-上階残り11歩で像北隣16,27西へ初到着しSave72。新戦闘0/HP288/294・PP9,10,15,2/19416円保持。次は南を向き像の紙を調べる新event。
+像を初めて調べ、だいじなふうしょ274/flag4383を取得しSave73。上階16,27南、全party・HP288/PP9,10,15,2保持。次は紙取得後の新9歩/hole下降候補。
 
-**次: Save72 artifact11289800679のstory-fast.srm（131088bytes/SHA256 851c87f8a8006eaecdcb6ea28ee9f097fbcab4ba0c7f5b626afb6edbec40fa49）だけから再開。上階23,31西から残り新11歩/転換2で像北隣16,27西へ初到着、通常Save72/独立Continueを限定受入。新戦闘0、全party600byte・HP288/294・PP9,10,15,2/Bag19416円/PC/S61E保持、RP0/badge1/story4071=9/4072=1。legacy flag差分0、aux4021:43→54/4022:0→1とRAM台帳10変化のowner未解明。次は同map1/60・16,27西から通常南入力で向き1を確認して像16,28をAで調べる最初の新eventだけ。保存済background script149012422、compare800C=1/checkflag4383/checkspace274/additem274/setflag4383を静的照合、紙（item274だいじなふうしょ）の取得は未実測。通常dialog完了/取得/最初の新event境界で保存し、実Bag/expanded flag/画面/独立Continueで確認。29新controller/55新受入、73+cold13入力43画面58member/native2、旧成功再走0。35counter72も部分write→36成功→40field。全SaveRTC/像側field4画面全pixel一致。旧offset41/2056/aux/40acのruntime owner未解明を保持。Flash未使用/がくしゅうそうち未装備。全国図鑑/全story/自然成長・進化/LuckyEgg/研究施設自然到達未完。host補充/ROM変更/既存ROMruntimeinput再配布/故意全滅/merge/release/baseline変更なし。一般CI既知qol_production.c不一致/action_requiredを全成功にしない。**
+**次: Save73 artifact11290362029のstory-fast.srm（131088bytes/SHA256 1790277ae4ff1fbb3242a3e58578dfbc66aa98b9e274e42d9811ffb438eb22bb）だけから再開。上階map1/60・16,27南。通常南向き1回→像を初めて調べ、実画面でだいじなふうしょ取得、key_items slot4にitem274が0→1、expanded4383が0→1。通常Save73/独立Continueを限定受入。新戦闘/歩行0、全party600byte・HP288/294・PP9,10,15,2/他Bag・19416円/PC保持、legacy全flags/vars/RAM台帳保持、S61E payload259が32→160だけでCRC正常。次は紙取得後の新復路9歩、16,27→17,27→17,26→17,25→18,25→18,24→18,23→19,23→20,23→20,24の上階hole behavior102/warp5から下階map1/59・warp8/20,24へ通常南入力で降りる候補。最初の新戦闘/event/下降境界で保存する。下階warp8は旧不発着地点、上階holeとは別。像取得や旧routeを成功caseとして再走しない。32新controller/62新受入、53+cold13入力32画面47member/native2、旧成功再走0。24最終Flash一時一致→25counter73も保存中→26成功→29field。全SaveRTC/field5画像全pixel一致。紙の使用/引渡し・hole下降/館退出は未受入。旧offset41/2056/aux/40acのruntime owner未解明、Flash未使用/がくしゅうそうち未装備、全国図鑑/全story/自然成長・進化/LuckyEgg/研究施設自然到達未完。host補充/ROM変更/既存ROMruntimeinput再配布/故意全滅/merge/release/baseline変更なし。一般CI既知qol_production.c不一致/action_requiredを全成功にしない。**
 
-Save72上階16,27西から通常南入力で向き1を確認し、南隣16,28の像をAで調べる新eventだけ。dialog/取得/最初の新event境界で通常保存。紙/item274/flag4383は未取得として実画面と保存値で確認。PP9,10,15,2、host補充なし。旧11歩/野生戦/階段/保存は再走しない。
+Save73上階16,27南から紙取得後の新復路9歩/上階20,24のhole102→下階1/59の20,24候補だけ。最初の新戦闘/event/下降で通常保存。紙274/flag4383保持、PP9,10,15,2、host補充なし。像の取得event/受入済み入力を再走しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `bca05f1af107d3e479b869dae961402eb6c8ed0a`。
-上階残り11歩で像北隣16,27西へ初到着しSave72。新戦闘0/全party・HP・PP保持。次は南を向き像の紙を調べる最初のevent。
+証拠のsource HEAD: `b8f41b6a86eb0f818500efcd371865416d47dd64`。
+像を初めて調べ、だいじなふうしょ274とflag4383を通常取得しSave73。全party・HP・PP保持。次は紙取得後の新9歩/hole下降候補。
 
 ## 最短の再開手順
 
@@ -25,13 +25,13 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_STORY_SAVE72_JA.md`
-- `content/modernization/pr16_story_save72_checkpoint.json`
-- `content/modernization/pr16_story_save72_visual_review.json`
-- `scripts/pr16_story_save72_accept.py`
-- `scripts/pr16_story_save72_measure.py`
-- `content/modernization/pr16_story_save72_evidence/inspection.json`
-- `content/modernization/pr16_story_save72_evidence/next-route.json`
+- `docs/PR16_STORY_SAVE73_JA.md`
+- `content/modernization/pr16_story_save73_checkpoint.json`
+- `content/modernization/pr16_story_save73_visual_review.json`
+- `scripts/pr16_story_save73_accept.py`
+- `scripts/pr16_story_save73_measure.py`
+- `content/modernization/pr16_story_save73_evidence/inspection.json`
+- `content/modernization/pr16_story_save73_evidence/next-route.json`
 - `content/modernization/pr16_story_save62_evidence/route-plan.json`
 - `content/modernization/pr16_story_save57_preparation.json`
 
@@ -402,6 +402,7 @@ P08ゲート:
 - Save70の77/cold13入力45画面60member/27controller/59受入を無影響再走しない。南隣NPC迂回新9歩/転換5/南東階段初接続で上階33,29東。戦闘0/全party600byte・HP・PP10,10,15,2/Bag19416円保持。physical2056反転/aux2変数/RAM22owner未解明。37counter70も部分write→38成功→42field。全SaveRTC/最終field画像一致、到着15のみbannerあり。紙未到達。
 - Save71の93/cold13入力53画面68member/29controller/62受入を無影響再走しない。上階南側新14歩/転換2/野生バーニン♂Lv13新1勝。23,31西/HP288保持/PP9,10,15,2/Bag19416円保持。legacy flag不変/aux2変数owner未解明/RAM台帳不変。44最終hashでも保存中→45counter71/部分write→46成功→50field。全SaveRTC/field4画像一致、勝利残留/wire falseを追加勝利や未復帰にしない。紙未到達。
 - Save72の73/cold13入力43画面58member/29controller/55受入を無影響再走しない。残り新11歩/転換2で像北隣16,27西に初到着、新戦闘0/全party600byte・HP288/PP9,10,15,2/Bag19416円保持。legacy flag不変/aux2変数/RAM10変化owner未解明。35counter72も部分write→36成功→40field。全SaveRTC/像側field4画像一致。像は見えるが紙を調べる操作/取得未完。
+- Save73の53/cold13入力32画面47member/32controller/62受入を無影響再走しない。像の紙274/flag4383は取得済み。新戦闘/歩行0、全party/他Bag/19416円/PC/legacy flags-vars/RAM台帳保持。24一時最終hash→25counterも保存中→26成功→29field。全SaveRTC/field5画像一致。次は新しい復路/hole下降だけ。
 
 ## 次セッションへ残す更新手順
 
