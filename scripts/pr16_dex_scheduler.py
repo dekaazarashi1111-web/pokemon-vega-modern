@@ -5,7 +5,7 @@ Original source/data and non-save code are immutable. This generator produces
 an isolated candidate, never the formal story ROM or any input save.
 """
 from __future__ import annotations
-import hashlib,json,re,struct,subprocess,sys
+import functools,hashlib,json,re,struct,subprocess,sys
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 sys.path[:0]=[str(ROOT/'scripts'),str(ROOT)]
@@ -112,7 +112,7 @@ static __attribute__((noinline)) u8 stage61_dex_fail_live(void)
     u32 counter = G_SAVE_COUNTER;
     u16 first = G_FIRST_SAVE_SECTOR;
     u8 base = 0xFFu;
-    u16 target = 0u;
+    u16 target = 0xFFFFu;
     if (stage61_save_build_live_descriptors(chunks)) {
         (void)stage61_save_select_generation(chunks, &base);
         if (base != 0xFFu) {
@@ -123,6 +123,7 @@ static __attribute__((noinline)) u8 stage61_dex_fail_live(void)
     }
     G_SAVE_COUNTER = counter;
     G_FIRST_SAVE_SECTOR = first;
+    if (target == 0xFFFFu) return STAGE61_SAVE_STATUS_ERROR;
     return stage61_save_fail_with_sector(target);
 }
 """
@@ -145,6 +146,7 @@ def windows():
         start=row['address'];size=row['size']
         if name in EXPORTS:start+=16;size-=16
         if size>0:out.append((start,start+size))
+    out.append((placement.BASE+5024,placement.lease.BASE+placement.lease.END))
     return out
 
 def elf_sections(raw):
@@ -158,18 +160,35 @@ def elf_sections(raw):
     return result
 
 def assign_sections(sections,free):
-    result=[];free=list(free)
-    for sec in sorted(sections,key=lambda s:(-s['size'],s['name'])):
-        candidates=[]
-        for i,(lo,hi)in enumerate(free):
-            at=(lo+sec['alignment']-1)&-sec['alignment']
-            if at+sec['size']<=hi:candidates.append((hi-at-sec['size'],at,i))
-        need(candidates,'existing save-owner capacity exhausted at '+sec['name']+' size='+str(sec['size'])+' free='+str(sum(b-a for a,b in free)))
-        _,at,i=min(candidates);lo,hi=free.pop(i)
-        if lo<at:free.append((lo,at))
-        if at+sec['size']<hi:free.append((at+sec['size'],hi))
-        result.append(dict(sec,address=at))
-    return sorted(result,key=lambda x:x['address']),free
+    rows=sorted(sections,key=lambda x:(-x['size'],x['name']))
+    calls=0
+    @functools.lru_cache(None)
+    def solve(i,ends):
+        nonlocal calls
+        calls+=1;need(calls<=2000000,'bounded exact section packing')
+        if i==len(rows):return ()
+        x=rows[i];candidates=[]
+        for b,(lo,hi)in enumerate(ends):
+            at=(lo+x['alignment']-1)&-x['alignment']
+            if at+x['size']<=hi:candidates.append((hi-at-x['size'],b,at))
+        seen=set()
+        for _,b,at in sorted(candidates):
+            key=(ends[b][0]%8,ends[b][1]-ends[b][0])
+            if key in seen:continue
+            seen.add(key);n=list(ends);n[b]=(at+x['size'],n[b][1]);result=solve(i+1,tuple(n))
+            if result is not None:return ((i,at),)+result
+        return None
+    result=solve(0,tuple(free));need(result is not None,'save windows and already-owned codec reserve cannot fit '+str(sum(s['size']for s in rows))+' bytes')
+    assigned=sorted([dict(rows[i],address=a)for i,a in result],key=lambda x:x['address'])
+    remainder=[]
+    for lo,hi in free:
+        at=lo
+        for x in assigned:
+            if lo<=x['address']<hi:
+                if at<x['address']:remainder.append((at,x['address']))
+                at=x['address']+x['size']
+        if at<hi:remainder.append((at,hi))
+    return assigned,remainder
 
 def link(folder):
     need(not folder.exists(),'fresh scheduler link');folder.mkdir(parents=True)
@@ -202,12 +221,27 @@ def link(folder):
     live=[s for s in elf_sections(elf.read_bytes())if s['flags']&2 and s['size']]
     need(all(s['name'].startswith(('.text','.rodata'))for s in live),'no synthetic unowned link sections')
     (folder/'link-diagnostic.json').write_text(json.dumps(dict(live_sections=live,available_bytes=sum(b-a for a,b in windows()),required_bytes=sum(x['size']for x in live)),indent=2)+'\n')
-    assigned,free=assign_sections(live,windows())
-    ld=folder/'scheduler.ld';ld.write_text(common+'SECTIONS { '+''.join(s['name']+' '+hex(s['address'])+' : { KEEP(*('+s['name']+')) }\n'for s in assigned)+discard+' }\n')
-    final=folder/'scheduler.elf';run([*args,'-Wl,-T,'+str(ld),str(obj),str(import_obj),'-lgcc','-o',str(final)])
+    final=folder/'scheduler.elf';ld=folder/'scheduler.ld'
+    # Far Thumb calls acquire link stubs when a helper uses the already-owned
+    # codec suffix. Probe their exact growth, then perform a normal strict link.
+    for attempt in range(8):
+        assigned,free=assign_sections(live,windows())
+        ld.write_text(common+'SECTIONS { '+''.join(s['name']+' '+hex(s['address'])+' : { KEEP(*('+s['name']+')) }\n'for s in assigned)+discard+' }\n')
+        run([*args,'-Wl,--no-check-sections','-Wl,-T,'+str(ld),str(obj),str(import_obj),'-lgcc','-o',str(final)])
+        raw=final.read_bytes();actual=[s for s in elf_sections(raw)if s['flags']&2 and s['size']]
+        need({s['name']for s in actual}=={s['name']for s in assigned},'no unexpected allocated sections')
+        grow=False;previous={s['name']:s for s in live}
+        for sec in actual:
+            old=previous[sec['name']]
+            if sec['size']>old['size']or sec['alignment']>old['alignment']:
+                old['size']=max(old['size'],sec['size']);old['alignment']=max(old['alignment'],sec['alignment']);grow=True
+        if not grow:break
+    else:raise ValueError('far-call section placement did not stabilize')
+    run([*args,'-Wl,-T,'+str(ld),str(obj),str(import_obj),'-lgcc','-o',str(final)])
     need(not run(['arm-none-eabi-nm','-u',str(final)]),'no undefined scheduler symbols')
     raw=final.read_bytes();actual=[s for s in elf_sections(raw)if s['flags']&2 and s['size']]
-    need([(s['name'],s['address'],s['size'])for s in actual]==[(s['name'],s['address'],s['size'])for s in assigned],'exact packed sections with no linker growth')
+    reserved={s['name']:s for s in assigned}
+    need(all(s['address']==reserved[s['name']]['address']and s['size']<=reserved[s['name']]['size']for s in actual),'strict bounded final section placement')
     symbols=placement.parse_symbols(run(['arm-none-eabi-nm','-n','-S','--defined-only',str(final)]))
     patches=[(s['address'],raw[s['offset']:s['offset']+s['size']])for s in actual]
     for name in EXPORTS:
@@ -227,5 +261,6 @@ def apply(before,patches):
     for x in p['symbols']:
         if x['name'].startswith(('Stage61State_','stage61_save_','stage61_state_'))and x['name']not in RETAIN:continue
         at=x['address']-0x08000000;need(after[at:at+x['size']]==before[at:at+x['size']],'retained original symbol '+x['name'])
-    need(after[:start]==before[:start]and after[end:]==before[end:],'all other owners including next hotfix exact')
+    reserve=placement.BASE+5024-0x08000000;reserve_end=placement.lease.END
+    need(after[:start]==before[:start]and after[end:reserve]==before[end:reserve]and after[reserve_end:]==before[reserve_end:],'all other owners including next hotfix and accepted codec exact')
     return bytes(after)
