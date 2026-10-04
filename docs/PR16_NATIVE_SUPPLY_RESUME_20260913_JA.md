@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-第4local9除去・local5/8復帰、Save80/3,9西。全party/紙保持。次はlocal10。menu19のRAM台帳差分owner未解明。
+第5local10除去/local9復帰、Save81/6,9北。全party/紙/RAM保持。次は新北2歩でlocal1/trainer132視線候補。
 
-**次: Save80 artifact11292349565のstory-fast.srm（131088bytes/SHA256 6083038273bdf89de7563800c91a215c861552e7fc4da71af7c4a3c3237580dc）だけから再開。ミルジム10/16・3,9西。local9通常Aで4375 set・4372/4374 clear、local9消失・local5/8復帰を保存ownerで受入。local5全体は画面下端で見えない。次は保存next-routeの東3歩で6,9、北旋回→local10/6,8へA。4372/4373/4374=false・4375=true分岐は4376 set/remove10・4375 clear/add9。最初の新event/battle後通常保存。全party600byte/HP288/294・PP9,10,15,2/Bag19416円/紙274一個/PC保持、S61E payload258:87→135の3flagだけ。74+cold13入力41画面56member/native2、新controller31（初回30成功/1失敗、修正1のみ成功。計32実行）/56新受入。34counter80でも保存中/最終hash未達→35最終hash/成功文言→38field。全SaveRTC/field全pixel一致。progress19menuでRAM台帳60276271→e9f829d5、以後/cold保持。今回/過去RAMとaux4021:97→107のowner未解明。紙consumerは博物館2階local2・badge0x823必須、現badge1で引渡し未解禁。ジム突破→紙引渡し→505道路レンジャー、全story/全国図鑑/自然成長進化/LuckyEgg/研究施設自然到達は未完。Flash未使用/がくしゅうそうち未装備、host補充/ROM変更/入力ROMruntime再配布/故意全滅/merge/release/baseline変更なし。一般CI既知qol_production.c不一致/action_requiredを全成功にしない。**
+**次: Save81 artifact11293356282のstory-fast.srm（131088bytes/SHA256 3beb00ee134983ae76b2e41bdc9d5cdbf76e2d031d3f42d3a07fadb164a07633）だけから再開。ミルジム10/16・6,9北。第5local10通常Aで4376 set/remove10・4375 clear/add9を受入。次は開いたlocal10跡6,8を通って新北2歩6,7へ。local1/3,7のtrainer132・視線距離3・movement10の新event候補で、最初の新戦闘/新境界の後だけ通常保存。発火しなければ6,7で縮小停止し画面確認。旧switchの入力再走0。全party600byte/HP288/294・PP9,10,15,2/Bag19416円/紙274一個/PC保持、S61E2flagsだけ。58+cold13入力33画面48member/native2、新controller31/新受入56。25最終hashでも保存中/counter80→26counter81/成功文言→30field。全SaveRTC/field全pixel/RAM台帳保持。過去Save77/78/80等RAM差分と今回aux4021:107→110・4022:4→2のruntime owner未解明。紙consumerは博物館2階local2・badge0x823必須、現badge1で引渡し未解禁。ジム突破→紙引渡し→505道路レンジャー、全story/全国図鑑/自然成長進化/LuckyEgg/研究施設自然到達は未完。Flash未使用/がくしゅうそうち未装備、host補充/ROM変更/入力ROMruntime再配布/故意全滅/merge/release/baseline変更なし。一般CI既知qol_production.c不一致/action_requiredを全成功にしない。**
 
-Save80/ジム3,9西だけから開始。東旋回/新東3歩で6,9、北旋回→local10へA。最初の新境界で通常保存。local5/6/8/9の旧入力再走0。badge/紙引渡しを捏造しない。
+Save81/6,9北だけから新北2歩6,7。最初の新event/battle後通常保存。視線発火しなければ6,7で縮小停止/目視。旧switch入力再走0。badge/紙引渡しを捏造しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `f508187e5b698a598eaffe0916a9d83c2a21753c`。
-第4local9で4375 set・4372/4374 clear、Save80/3,9西。全SaveRTC/field全pixel保持。menu19のRAM差分/aux4021 owner未解明。
+証拠のsource HEAD: `2b152a0e2e63717ded440febee87a6bb277744bd`。
+第5local10で4376 set・4375 clear、Save81/6,9北。全SaveRTC/field全pixel/RAM台帳保持。過去RAM差分/今回aux4021・4022 owner未解明。
 
 ## 最短の再開手順
 
@@ -25,15 +25,15 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_STORY_SAVE80_JA.md`
-- `content/modernization/pr16_story_save80_checkpoint.json`
-- `content/modernization/pr16_story_save80_visual_review.json`
-- `scripts/pr16_story_save80_accept.py`
-- `scripts/pr16_story_save80_measure.py`
-- `content/modernization/pr16_story_save80_evidence/inspection.json`
-- `content/modernization/pr16_story_save80_evidence/next-route.json`
-- `content/modernization/pr16_story_save80_preparation.json`
-- `content/modernization/pr16_story_save80_next_route.json`
+- `docs/PR16_STORY_SAVE81_JA.md`
+- `content/modernization/pr16_story_save81_checkpoint.json`
+- `content/modernization/pr16_story_save81_visual_review.json`
+- `scripts/pr16_story_save81_accept.py`
+- `scripts/pr16_story_save81_measure.py`
+- `content/modernization/pr16_story_save81_evidence/inspection.json`
+- `content/modernization/pr16_story_save81_evidence/next-route.json`
+- `content/modernization/pr16_story_save81_preparation.json`
+- `content/modernization/pr16_story_save81_next_route.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -410,6 +410,7 @@ P08ゲート:
 - Save78の60/cold13入力34画面49member/29controller/56受入を無影響再走しない。local6で4372 clear/4375 set、紙/全party保持。27counter78/最終hash/成功→31field。全SaveRTC/全pixel一致だがprogress2のRAM hash変化owner未解明。Save78 cold0は60276271。次はlocal8へ東5歩。旧gym graphを再採取しない。
 - Save79の62/cold13入力35画面50member/29controller/56受入を無影響再走しない。local8で4372/4374 set・4375 clear、紙/全party保持。27最終hashはcounter78/保存中→28counter79/成功→32field。全SaveRTC/全pixel/今回RAM台帳保持。過去RAM差分owner未解明。次はlocal9へ新10歩。旧gym graph再採取0。
 - Save80の74/cold13入力41画面56member/31controller計32実行/56受入を無影響再走しない。local9で4375 set・4372/4374 clear。34counter80でも保存中/未finalhash→35最終hash/成功→38field。全SaveRTC/全pixel/全party保持。menu19RAM台帳差分owner未解明。初回native0/30成功1失敗→失敗1件だけ再検証、既成功30再走0。次はlocal10へ新東3歩。旧gym graph再採取0。
+- Save81の58/cold13入力33画面48member/31controller/56受入を無影響再走しない。local10で4376 set・4375 clear。25最終hashでも保存中/counter80→26counter81/成功→30field。全SaveRTC/全pixel/全party/RAM保持。過去RAM差分ownerは未解明。次は北2歩6,7のlocal1/trainer132視線候補。旧gym graph再採取0。
 
 ## 次セッションへ残す更新手順
 
