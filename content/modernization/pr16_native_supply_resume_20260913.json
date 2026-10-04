@@ -4383,8 +4383,31 @@
         "run": 37208042999
       }
     ],
+    "completion_head_checks": [
+      {
+        "conclusion": "action_required",
+        "id": 37208633089,
+        "jobs": 0,
+        "name": "p03-forgetting-ci",
+        "status": "completed"
+      },
+      {
+        "conclusion": "action_required",
+        "id": 37208633064,
+        "jobs": 0,
+        "name": "source-validation",
+        "status": "completed"
+      }
+    ],
     "general_ci_known_source_mismatch_not_resolved": true,
     "reason_ja": "新区間専用5runは各8step成功。正式milestone未達、wild1戦の保存なし継続だけ限定受入。一般CIの既知QOL source不一致は未解決。Stage79は7domain cache再利用/native再走0。",
+    "recording_terminal": {
+      "all_steps": 12,
+      "completion_head": "000f326541d2999668f3e1be8bf89b859914b27f",
+      "conclusion": "success",
+      "job_id": 111454880493,
+      "run_id": 37208579061
+    },
     "scope_head": "28261b8982f70b8482cd10af25f6ee32ed0e0c53"
   },
   "observed_head_history": [
@@ -12396,13 +12419,7 @@
     "status": "NATIVE_PARTY_RETENTION_ACCEPTED_BP_PENDING",
     "tested_head": "10e535a046441dd3b797918106259b5c57b69716"
   },
-  "pending_runs": [
-    {
-      "run_id": 37208579061,
-      "status": "in_progress",
-      "tested_head": "0029829cb7a0bcab341c3d105b3e4780a9d93bd9"
-    }
-  ],
+  "pending_runs": [],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
   "pr_draft": true,
   "pr_merged": false,
@@ -37764,6 +37781,17 @@
     "milestone_reached": false,
     "native_multi_battle_accepted": false,
     "native_postbattle_adapter_accepted": true,
+    "recording": {
+      "all_steps": 12,
+      "artifact_id": 11305718292,
+      "completion_head": "000f326541d2999668f3e1be8bf89b859914b27f",
+      "conclusion": "success",
+      "job_id": 111454880493,
+      "record_compiles": 0,
+      "record_native_processes": 0,
+      "run_id": 37208579061,
+      "source_head": "0029829cb7a0bcab341c3d105b3e4780a9d93bd9"
+    },
     "status": "PASS_SCOPED_FIRST_WILD_CONTINUATION_WITH_TRAINER_DIAGNOSTIC"
   },
   "story_safe_training": {

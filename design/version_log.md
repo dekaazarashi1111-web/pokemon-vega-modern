@@ -9761,3 +9761,11 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 正式再開はSave101 artifact11303305200/story-fast.srm（131088bytes、SHA256814a8e31ce20d720a1f1bddc08caa9cdd3d86b5bbb874738b9cb859653552149）、506番道路3/24(53,13)西。最新未保存診断はrun37208042999/artifact11305787045、50歩目3/24(38,6)でtrainer131の視線/lock1。残留battle flags4/outcome1は直前wild1勝であり、trainerの新勝利ではない。Save101のHP277/294/PP3,9,8,2から、first wild後はPP3,8,8,2。新adapterはそのwild32/Lv13の通常Earthquake1回、全state/field復帰/次歩を受入済みだが、multi-battle/シオウ回復施設未達。次はtrainer131の接近・会話・actual4体・物理flag1411/賞金448/UIと後続128（flag1408/1700）、1065（physical1416/504）を明示ownerへ接続。原本source_bindingsと未保存の失敗区間を保持して、対応済通常戦はcompact ledger後に継続し、雑魚戦ごとのSaveを作らない。最終milestoneは506→519→シオウPokecenter7/3、町door22,19、counter7,3、nurse7,2、対面7,4北で通常回復/Save/fresh Continue。未知callback/event/UI/warp/owner/資源不足は診断停止。次もpublic artifactは事前検査した非hidden専用dirの.json/.txt/.ppmだけ。NationalDex4072=9→10/研究所special367/var11、その後の自然EXP/進化/LuckyEgg/12境界/Lv100soakは未完。既知一般CI期待hash変更・flag注入・進化gate回避・newbalance・merge/release/baseline切替なし。
 - Commit: source=28261b8982f70b8482cd10af25f6ee32ed0e0c53; record source=0029829cb7a0bcab341c3d105b3e4780a9d93bd9; 同branch非forcepush。
 - Network: 同repoActions/保存artifacts/固定upstream読取のみ。入力ROM/Save/runtime/runner再配布0、host戦闘書込0、flag注入/進化gate回避/newbalance/merge/release/baseline切替0。一般CI既知QOL不一致は未解決。
+
+## 2026-10-04T14:17:38Z
+- Task: USER-20261004-STORY-ROUTE / 記録完了照合
+- Status: DONE（記録のみ。正式Save101、シオウ施設未達）
+- Verify: record run37208579061/job111454880493、全12step成功。生成commit000f326541d2999668f3e1be8bf89b859914b27fをremote確認。receipt artifact11305718292、849bytes/SHA256003615061ff381fdf6f446f6807f34dba5aa6e238a53247636baf294806f1cb8。固定resume check/final index guard/全commit byte読戻し成功、記録native0/compile0。
+- Checks: 記録生成HEADのrun37208633089/37208633064はaction_required・各jobs0。成功と扱わない。既知一般CIのQOL source不一致は未解決。測定sourceのStage79は7domain cache再利用/native再走0。
+- Boundary: 初wild1勝の通常field復帰と保存しない次歩だけ限定受入。未保存trainer131視線(38,6)からの後続adapter/複数戦/シオウ回復Save/Continueは未完。正式再開は保存済みSave101だけ。
+- Next: 固定再開MD/JSONを優先し、未保存milestone区間の必要な変更影響だけ検証する。一般公開物は事前検査したtext/screensに限定、hidden一括収集なし。
