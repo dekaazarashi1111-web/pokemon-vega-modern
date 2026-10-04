@@ -1,0 +1,23 @@
+# PR16 Mystery Gift保存の失敗通知
+
+正式ROM/Save101は保持。outerQOL候補40a7f38aを継承し、返値を無視する非START callerのうちMystery Giftだけを閉じる。HOFやUnionRoomChatを含む全非STARTの完了ではない。
+
+## 最小修正
+
+SaveOnMysteryGiftMenuのstate2は元々無条件に完了表示をしていた。0x08143288の8byteをspecial tailへ置換し、gSaveAttemptStatusの16bit値が1の場合だけ元success text、それ以外では既存gText_SaveFailed（2行、page wait/placeholderなし）を元window1に表示する。元r4/textState pointer、SP、state3のA/B新規入力待ちとstate4のclear/TRUE返却を保持する。
+
+内側TrySavingData result入口の前段は、mode0かつ元SP+8=0x0937767B、元SP+16=0x08143287という署名済みQOL12+8byte frame連鎖だけを認識する。main失敗を旧破壊的SaveFailedへ渡さず255へ返す。main0かつdamaged bit31単独のみ外側の実write/readbackへ進め、mask自体は消さない。それ以外のcallerは以前のgateへそのまま委譲する。START/HOFをcallback名だけで誤同定しない。
+
+新コードは既存codec reservationの未使用suffixにだけ置く。先頭5022byte codec、以前のSaveFailed gate、outerQOL、他111owner、全未宣言ROM byteは保持し、全ROM逆変換を確認する。新mutable owner、retry latch、暗黙wipe、偽damaged bitはない。
+
+## 検証境界
+
+隔離実ARMでは元menu state machineとQOL/inner callchainを動かし、ensure早期拒否/Flash不在/main255/mask-main/main成功後outer失敗/成功/残bit31再試行を確認する。元printerと物理保存driverはstubであり、実画面・本物の保存・通信・受信/削除transactionの受入とは分ける。
+
+parent17は受信後だけでなくニュース送信reward後にも使われる。parent25はRAM上の削除を済ませてから保存し、通知後parent26の捨てました文へ進む。元callerの終了契約を保持し、rollbackや自動再保存を導入しない。
+
+## 残る危険
+
+UnionRoomChatは保存返値を無視して完了文とSE_SAVEへ進む。HOFは回数stat10増分→gDecompressionBufferのpayloadをsector28/29保存→main保存の順。旧SaveFailedはtiles16KiB/video-stateで拡張ownerを破壊し、同decompression bufferを描画scratchに使った後に保存modeを再実行するため、HOF payload再書込/回数増分/モード4・5eraseを重ね得る。
+
+共通安全化は一度だけ行う準備と再実行可能な物理writeを分ける必要がある。stale selector時authority wipe、sector31早期故障/原子性、全mode/残typed consumerは未完。正式ROM切替・trainer131後半へは進まず、最終milestoneはシオウPokecenter通常回復/Save/独立coldContinueを維持する。

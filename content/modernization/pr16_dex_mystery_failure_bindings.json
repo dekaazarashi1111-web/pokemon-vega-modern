@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "status": "SIGNED_MYSTERY_GIFT_FAILURE_BOUNDARY_NOT_ACCEPTED",
+  "formal_candidate": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  },
+  "source_ref": "6e12c55b2fa1acbc100816849b93f5f36aeec52c",
+  "windows": [
+    {
+      "id": "mystery_save_state_machine",
+      "address": 135541320,
+      "size": 120,
+      "sha256": "27d331dbda2da318d2207311e3b9fe0435b60ef16b45451ddaa146b7f532bcba"
+    },
+    {
+      "id": "mystery_message_patch",
+      "address": 135541384,
+      "size": 8,
+      "sha256": "f308c224ccaefddd3b3b7d689406c08b9ffa30e96f2b334aa1950d02dc2c084a"
+    },
+    {
+      "id": "mystery_window_printer",
+      "address": 135539720,
+      "size": 92,
+      "sha256": "b1a0654f0e4fa84756ca49a11978c23524c761fcfbd7e17c0b27c828f3ef33b6"
+    },
+    {
+      "id": "mystery_parent_save17",
+      "address": 135543190,
+      "size": 26,
+      "sha256": "a7609af13d2ab8a9f217aeaa28e3aea33e597a82fb3bd0a60636cb72c2ac90f5"
+    },
+    {
+      "id": "mystery_parent_save25",
+      "address": 135543522,
+      "size": 26,
+      "sha256": "8243867b51a4b99b1b640c5f00217270ffa0135814cfb5d4ffa474a727804864"
+    },
+    {
+      "id": "outer_adapter_before_tail",
+      "address": 154629728,
+      "size": 34,
+      "sha256": "81160c052c4d89fdb528952d47d8a503ed9667e2f254dcbc899610271ef38b36"
+    },
+    {
+      "id": "inner_original_save_trampoline",
+      "address": 154634724,
+      "size": 14,
+      "sha256": "f94d67d2051fc69848060afd272db5fcaf8a98b4e122f9627e7a0d4f20678b10"
+    }
+  ],
+  "retained_codec": {
+    "size": 5022,
+    "sha256": "0541f69c476c5d4faf8fb62fcfa923395d7ba70925844d928a9594869feaeda9"
+  },
+  "error_text": {
+    "address": 138282075,
+    "size": 23,
+    "sha256": "e026676824d6095409bc28fb3fff98beb9dd31e7df44367b90660e1a64f8139c",
+    "meaning_ja": "レポートの かきこみに／しっぱい しました‥",
+    "lines": 2,
+    "source": "pret/pokefirered@c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/strings.c"
+  },
+  "mystery_menu": {
+    "entry": 135541320,
+    "save_call": 135541378,
+    "message_patch": 135541384,
+    "increment": 135541408,
+    "clear": 135539812,
+    "printer": 135539720,
+    "success_text": 138610508,
+    "new_keys": 50344286
+  },
+  "stack_contract": {
+    "mode": 0,
+    "inner_return_offset": 8,
+    "inner_return": 154629755,
+    "outer_return_offset": 16,
+    "outer_return": 135541383
+  },
+  "scope_ja": "MG state2だけattempt1を成功表示。非1は既存window内の2行エラー。旧A/B待ち/clear/parent復帰を保持。署名済み実caller連鎖でのみ破壊的SaveFailedを抑止し、他callerは既存gateへ。HOF/全非START/UI実画面の受入は別。"
+}
