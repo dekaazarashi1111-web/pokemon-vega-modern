@@ -19,6 +19,7 @@ CODE={'scripts/pr16_story_save98_measure.py','tests/test_pr16_story_save98_measu
 PP=[3,9,8,2];TRANSITION=134569577
 PARTY_AFTER_WALK='a889748859f118b98c42e9ef5f0fd2847466d07383f5743946453c961261580d'
 RECOVERY='content/modernization/pr16_story_save98_party_recovery.json';CODE.add(RECOVERY)
+CODE.add('content/modernization/pr16_story_save98_preflight_failure.json')
 ORIGIN=[3,2];DESTINATION=[3,23];START=[19,26];EDGE=[28,0];ARRIVAL=[28,39]
 classify=a.m.classify
 direction=a.m.direction
@@ -50,7 +51,7 @@ def inspect(raw,seed):
     recovery=json.loads((ROOT/RECOVERY).read_bytes());derived=bytearray(party)
     for offset,before,after in recovery['diagnostic_exact_preimage_deltas']:
         need(derived[offset]==before,'診断preimage before');derived[offset]=after
-    need(identity(derived)['sha256']==PARTY_AFTER_WALK==recovery['observed_party_sha256']and recovery['runtime_owner_resolved']is False,'600bytes exact preimage。診断だけでfixture書込みしない')
+    need(identity(bytes(derived))['sha256']==PARTY_AFTER_WALK==recovery['observed_party_sha256']and recovery['runtime_owner_resolved']is False,'600bytes exact preimage。診断だけでfixture書込みしない')
     return dict(status='STATIC_SAVE98_TOWN_NORTH_CONNECTION_ONLY',preparation=identity((ROOT/PREP).read_bytes()),route=ROUTE,terrain=planned['terrain'],connection_owner=owner,binding_count=len(planned['bindings']),native_route_accepted=False)
 
 def scope(o):

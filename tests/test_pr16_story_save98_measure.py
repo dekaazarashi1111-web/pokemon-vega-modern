@@ -72,6 +72,10 @@ class Controller(unittest.TestCase):
     def test_party_phase_too_early(self):
         o=dict(self.base(),xy=[23,25],live_xy=[30,32],party_sha256=m.PARTY_AFTER_WALK)
         with self.assertRaises(ValueError):m.scope(o)
+    def test_preimage_identity_bytes_contract(self):
+        source=(ROOT/'scripts/pr16_story_save98_measure.py').read_text();self.assertIn("identity(bytes(derived))",source);self.assertNotIn("identity(derived)",source)
+        with self.assertRaises(ValueError):m.identity(bytearray(b'123'))
+        self.assertEqual(m.identity(bytes(bytearray(b'123'))),m.identity(b'123'))
     def test_failed_input_preserved(self):
         p=json.loads((ROOT/m.RECOVERY).read_bytes());self.assertEqual(p['failed_execution']['initial_save'],p['failed_execution']['final_save']);self.assertEqual(p['diagnostic_exact_preimage_deltas'],[[41,48,49],[141,13,14],[241,111,112]]);self.assertFalse(p['runtime_owner_resolved']);self.assertEqual((p['inputs'],p['observations'],p['ordinary_saves']),(28,9,0))
     def test_history_import_limit(self):self.assertGreaterEqual(sys.getrecursionlimit(),1500)
