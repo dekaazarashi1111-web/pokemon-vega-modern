@@ -1,0 +1,2562 @@
+{
+  "schema_version": 1,
+  "status": "READ_ONLY_AUDIT_NOT_NATIVE_ACCEPTANCE",
+  "candidate": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  },
+  "source_commit": "1c71d539e245d6a9fe83650b8a19ff3282e66c94",
+  "publication_policy": "Only address/size/SHA256, semantic descriptions and source links; no ROM fragments or encoded names",
+  "important_function_bindings": [
+    {
+      "address": "0x08088A50",
+      "size": 24,
+      "sha256": "835fa515c414a3158b1baa66605e66525748357ccf4e1e998d19f9ece6cfe869",
+      "meaning_ja": "legacy number wrapper",
+      "reachability_status": "ACTIVE_ROOT_CONFIRMED",
+      "source_path": "pret/pokefirered:src/pokedex.c"
+    },
+    {
+      "address": "0x0810586C",
+      "size": 268,
+      "sha256": "c8fb287f289da8f5ecc5bdb685e618b37757ff3ca0341b31307fe470815ca6d6",
+      "meaning_ja": "indexIsSpecies dispatcher and old four-mode bitmap owner",
+      "reachability_status": "ACTIVE_ROOT_CONFIRMED",
+      "source_path": "pret/pokefirered:src/pokedex_screen.c"
+    },
+    {
+      "address": "0x08054270",
+      "size": 40,
+      "sha256": "7ade40f3d8e93ee90639641960a953d6b649b13f4d507eae5e943f709afa6954",
+      "meaning_ja": "new-game owned/seen direct clear",
+      "reachability_status": "SOURCE_MATCHED_STATIC_CALLERS_PRESENT_REACHABILITY_NOT_FULLY_PROVEN",
+      "source_path": "pret/pokefirered:src/new_game.c"
+    },
+    {
+      "address": "0x09131158",
+      "size": 64,
+      "sha256": "deb210eda4850050d30be894574fc3bab22b3747bf7ce7c3d6230fc6a1caa926",
+      "meaning_ja": "CFRU count directly reads live Bag at Save1+0x310/+0x3A6",
+      "reachability_status": "SOURCE_MATCHED_STATIC_CALLERS_PRESENT_REACHABILITY_NOT_FULLY_PROVEN",
+      "source_path": "kapibarasan000/CFRU-JP:src/util.c"
+    },
+    {
+      "address": "0x09131100",
+      "size": 88,
+      "sha256": "ec4cc598448ea69c705f139c2e7acbf7ad29c54367970ae095bdc745bf1e23f1",
+      "meaning_ja": "CFRU mon pointer registration retains raw SID at entry",
+      "reachability_status": "SOURCE_MATCHED_STATIC_CALLERS_PRESENT_REACHABILITY_NOT_FULLY_PROVEN",
+      "source_path": "kapibarasan000/CFRU-JP:src/util.c"
+    },
+    {
+      "address": "0x091310A8",
+      "size": 88,
+      "sha256": "c7bd78d71918d91d5a224aba58a6fbf7c678f0455a6be6305ac1fd70ba464438",
+      "meaning_ja": "CFRU personality helper already receives lossy national number",
+      "reachability_status": "SOURCE_MATCHED_STATIC_CALLERS_PRESENT_REACHABILITY_NOT_FULLY_PROVEN",
+      "source_path": "kapibarasan000/CFRU-JP:src/util.c"
+    },
+    {
+      "address": "0x090DE8BC",
+      "size": 152,
+      "sha256": "33b0b5603b746b7079314352322a250fd702aaa3b62476c8f9b3a6de15df9bf9",
+      "meaning_ja": "active F1 capture handler raw SID from target mon",
+      "reachability_status": "ACTIVE_ROOT_CONFIRMED",
+      "source_path": "kapibarasan000/CFRU-JP:src/catching.c"
+    },
+    {
+      "address": "0x093BF238",
+      "size": 48,
+      "sha256": "1af0ebc784a2112eb157b2ab2a8bc0dd4325acdf2d1399037668792c5884d9f1",
+      "meaning_ja": "research SID-to-national caught read",
+      "reachability_status": "SOURCE_MATCHED_STATIC_CALLERS_PRESENT_REACHABILITY_NOT_FULLY_PROVEN",
+      "source_path": "overlays/research_economy_v1/research_economy_v1.c"
+    },
+    {
+      "address": "0x093C18A0",
+      "size": 96,
+      "sha256": "f94b2cfe39f52347769de763a90053f4ad59d780cc37fbf1a0cc769755a0de22",
+      "meaning_ja": "reward pool SID-to-national caught read",
+      "reachability_status": "SOURCE_MATCHED_STATIC_CALLERS_PRESENT_REACHABILITY_NOT_FULLY_PROVEN",
+      "source_path": "overlays/reward_encounters_v2/reward_encounters_v2.c"
+    },
+    {
+      "address": "0x093C1900",
+      "size": 80,
+      "sha256": "e00c88d1b7380ad679a4df86dadbd6a9e2d12a9743ce5f070f9f38f2d22b56b4",
+      "meaning_ja": "reward SID-to-national caught read",
+      "reachability_status": "SOURCE_MATCHED_STATIC_CALLERS_PRESENT_REACHABILITY_NOT_FULLY_PROVEN",
+      "source_path": "overlays/reward_encounters_v2/reward_encounters_v2.c"
+    },
+    {
+      "address": "0x093C1B7C",
+      "size": 100,
+      "sha256": "fadc33395f95eb569189b66fee755a9de7bc62b565e3085e373074e2a596910f",
+      "meaning_ja": "reward rollback direct Save2 owned bit clear",
+      "reachability_status": "SOURCE_MATCHED_STATIC_CALLERS_PRESENT_REACHABILITY_NOT_FULLY_PROVEN",
+      "source_path": "overlays/reward_encounters_v2/reward_encounters_v2.c"
+    },
+    {
+      "address": "0x092D1C30",
+      "size": 148,
+      "sha256": "ac2a3dbd4a66d384d103fe9a8cb04c87d9aae16012438c331bb4596fffa6c571",
+      "meaning_ja": "acquisition direct_registered",
+      "reachability_status": "SOURCE_MATCHED_STATIC_CALLERS_PRESENT_REACHABILITY_NOT_FULLY_PROVEN",
+      "source_path": "overlays/acquisition_runtime/acquisition_engine_adapter_rom.c"
+    },
+    {
+      "address": "0x092D2010",
+      "size": 108,
+      "sha256": "abbf093e380408d9f8773cadd37b411622726ac96d7ac595c7a6ac45e2589d39",
+      "meaning_ja": "acquisition SetSpeciesRegistered",
+      "reachability_status": "SOURCE_MATCHED_STATIC_CALLERS_PRESENT_REACHABILITY_NOT_FULLY_PROVEN",
+      "source_path": "overlays/acquisition_runtime/acquisition_engine_adapter_rom.c"
+    },
+    {
+      "address": "0x092DE5C4",
+      "size": 360,
+      "sha256": "87903fedca1aee7591d2531c44072cf73438813a6e7108db8853a1b190df7657",
+      "meaning_ja": "memorial commit_staged and direct bitmap snapshot/rollback",
+      "reachability_status": "SOURCE_MATCHED_STATIC_CALLERS_PRESENT_REACHABILITY_NOT_FULLY_PROVEN",
+      "source_path": "overlays/factory_shiny_memorial_runtime/factory_shiny_memorial_runtime.c"
+    },
+    {
+      "address": "0x093C5798",
+      "size": 68,
+      "sha256": "a579bcb3d2dc15d363a826c1aa558a0383f925eb5e82d6a803b2c6b03b879ccd",
+      "meaning_ja": "factory high modes mon seen",
+      "reachability_status": "SOURCE_MATCHED_STATIC_CALLERS_PRESENT_REACHABILITY_NOT_FULLY_PROVEN",
+      "source_path": "overlays/factory_high_modes_v2/factory_high_modes_v2.c"
+    },
+    {
+      "address": "0x092CEBA8",
+      "size": 56,
+      "sha256": "ed569235d2fddada4a78739233d5e77fed139c690d572899557a100b687de470",
+      "meaning_ja": "facility old mark_seen",
+      "reachability_status": "SOURCE_MATCHED_STATIC_CALLERS_PRESENT_REACHABILITY_NOT_FULLY_PROVEN",
+      "source_path": "overlays/facility_runtime/facility_runtime.c"
+    },
+    {
+      "address": "0x09FF5B70",
+      "size": 56,
+      "sha256": "ed569235d2fddada4a78739233d5e77fed139c690d572899557a100b687de470",
+      "meaning_ja": "facility relocated mark_seen",
+      "reachability_status": "SOURCE_MATCHED_STATIC_CALLERS_PRESENT_REACHABILITY_NOT_FULLY_PROVEN",
+      "source_path": "overlays/facility_runtime/facility_runtime.c"
+    },
+    {
+      "address": "0x08012A5E",
+      "size": 14,
+      "sha256": "304c3441792fbcc605fed09b0ab6ec8f0f141b300c1d1182e55f2de1e6d10191",
+      "meaning_ja": "battle initial seen SID-loss window 1",
+      "reachability_status": "SOURCE_MATCHED_STATIC_CALLERS_PRESENT_REACHABILITY_NOT_FULLY_PROVEN",
+      "source_path": "pret/pokefirered:src/battle_main.c"
+    },
+    {
+      "address": "0x08012AB6",
+      "size": 14,
+      "sha256": "53cd05b0fd242c616eb8b813792548beb4d5670437af81ab9e7b77cb7a9812be",
+      "meaning_ja": "battle initial seen SID-loss window 2",
+      "reachability_status": "SOURCE_MATCHED_STATIC_CALLERS_PRESENT_REACHABILITY_NOT_FULLY_PROVEN",
+      "source_path": "pret/pokefirered:src/battle_main.c"
+    },
+    {
+      "address": "0x08012AD6",
+      "size": 14,
+      "sha256": "938b5f130243b57b707f3c1730df63f9de8bf1d1bbbaa3e368f09ba5d845095d",
+      "meaning_ja": "battle initial seen SID-loss window 3",
+      "reachability_status": "SOURCE_MATCHED_STATIC_CALLERS_PRESENT_REACHABILITY_NOT_FULLY_PROVEN",
+      "source_path": "pret/pokefirered:src/battle_main.c"
+    },
+    {
+      "address": "0x08012E96",
+      "size": 14,
+      "sha256": "daabbe660f6dedc26b0b786394a756b9df531d5fb32d1b98e48fca7033949bb5",
+      "meaning_ja": "BattleIntroRecordMonsToDex SID-loss window",
+      "reachability_status": "SOURCE_MATCHED_STATIC_CALLERS_PRESENT_REACHABILITY_NOT_FULLY_PROVEN",
+      "source_path": "pret/pokefirered:src/battle_main.c"
+    },
+    {
+      "address": "0x08023912",
+      "size": 14,
+      "sha256": "9c8a154e83fdea8b6299d766d560e4befe3ec49da4f0775aa96e2ed040c0210b",
+      "meaning_ja": "active switch-in seen SID-loss window",
+      "reachability_status": "ACTIVE_ROOT_CONFIRMED",
+      "source_path": "pret/pokefirered:src/battle_script_commands.c"
+    },
+    {
+      "address": "0x0903F588",
+      "size": 4,
+      "sha256": "104fe77b2c0980efec778fc8208c2d7534910c02c30fa3c6916f914ebf3ca084",
+      "meaning_ja": "active battle opcode4E ->0x080238D5",
+      "reachability_status": "ACTIVE_ROOT_CONFIRMED",
+      "source_path": "pret/pokefirered:src/battle_script_commands.c"
+    },
+    {
+      "address": "0x0903F814",
+      "size": 4,
+      "sha256": "2fbe15cf960d38be43a47e5e089de8c42e570301f28bf6fcb40d86a47db4f35a",
+      "meaning_ja": "active battle opcodeF1 ->0x090DE8BD",
+      "reachability_status": "ACTIVE_ROOT_CONFIRMED",
+      "source_path": "kapibarasan000/CFRU-JP:src/catching.c"
+    },
+    {
+      "address": "0x093CB45A",
+      "size": 12,
+      "sha256": "2fa1c5910329b864637e49d1d26ba15c41c6f8c62b453cfc9bbbfdf3609fb5c6",
+      "meaning_ja": "Stage58 snapshot hook",
+      "reachability_status": "SOURCE_MATCHED_STATIC_CALLERS_PRESENT_REACHABILITY_NOT_FULLY_PROVEN",
+      "source_path": "overlays/stage58_qol_world_convenience/stage58_qol_item_adapter.c"
+    },
+    {
+      "address": "0x093CD66A",
+      "size": 18,
+      "sha256": "ff93cf329d2e7b083fa1898a5801cd86d986b4922e1d0695f3152e0aeb33b349",
+      "meaning_ja": "Stage58 restore hook",
+      "reachability_status": "SOURCE_MATCHED_STATIC_CALLERS_PRESENT_REACHABILITY_NOT_FULLY_PROVEN",
+      "source_path": "overlays/stage58_qol_world_convenience/stage58_qol_item_adapter.c"
+    },
+    {
+      "address": "0x093CCEAC",
+      "size": 22,
+      "sha256": "8d25d5ff5100f046adb6b106478671b484809479f37ff828a7945b3b9b194e39",
+      "meaning_ja": "Stage58 Continue hash hook",
+      "reachability_status": "SOURCE_MATCHED_STATIC_CALLERS_PRESENT_REACHABILITY_NOT_FULLY_PROVEN",
+      "source_path": "overlays/stage58_qol_world_convenience/stage58_qol_item_adapter.c"
+    }
+  ],
+  "direct_thumb_bl_inventory": [
+    {
+      "address": "0x08012A5E",
+      "size": 4,
+      "sha256": "b1643d00c2b03a2d4b1beefc76f5d97011ba30f2f835fb6e280adfb98f20c08b",
+      "target": "0x08042988",
+      "target_symbol": "SpeciesToNationalPokedexNum",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x08012A68",
+      "size": 4,
+      "sha256": "68bc1632d6d64cdae64027ad2d2e07bd5273da78f3e89f8333a0c6a5bf2baee8",
+      "target": "0x08088A50",
+      "target_symbol": "GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x08012AB6",
+      "size": 4,
+      "sha256": "dd5bad511f1f17e4a74b4958fe7c1391d5fcf16f1fbaffb9abe60a0dd40483f0",
+      "target": "0x08042988",
+      "target_symbol": "SpeciesToNationalPokedexNum",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x08012AC0",
+      "size": 4,
+      "sha256": "115e00259704c7109eda30feeee4d795bbe6a64d3a917cda9749fd45d94c5145",
+      "target": "0x08088A50",
+      "target_symbol": "GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x08012AD6",
+      "size": 4,
+      "sha256": "8976697be522d36b0043a1b0cf65f892b4c076b4eb701f72d5e267077ee37911",
+      "target": "0x08042988",
+      "target_symbol": "SpeciesToNationalPokedexNum",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x08012AE0",
+      "size": 4,
+      "sha256": "0113cec69c95ab682f8b5ed3af9a2c21e3de5b6d52dcd608450ff2c35a4975b0",
+      "target": "0x08088A50",
+      "target_symbol": "GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x08012E96",
+      "size": 4,
+      "sha256": "8204bcd30a8740b0e407cd7b5997131e7fc291a851e69b475cffae8080abe963",
+      "target": "0x08042988",
+      "target_symbol": "SpeciesToNationalPokedexNum",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x08012EA0",
+      "size": 4,
+      "sha256": "8b954764139c1fa0f9202f37db4f60b0992257692122d8176512fbde72c02567",
+      "target": "0x08088A50",
+      "target_symbol": "GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x08023912",
+      "size": 4,
+      "sha256": "7757d626b41f6d3fd219fd43704d9b67abd671d4bf2e2ae473dbde713e0d0f9d",
+      "target": "0x08042988",
+      "target_symbol": "SpeciesToNationalPokedexNum",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x0802391C",
+      "size": 4,
+      "sha256": "f214bf1a8997852707aa502b815a8e3ec987c45c1307f1791e173eb144cee9d9",
+      "target": "0x08088A50",
+      "target_symbol": "GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x0802C0CC",
+      "size": 4,
+      "sha256": "dd3996ed40d37ced57adcca3b12c444fbefff45dcde9040689081be763b405af",
+      "target": "0x08042988",
+      "target_symbol": "SpeciesToNationalPokedexNum",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x0802CDBE",
+      "size": 4,
+      "sha256": "64a6b1464ba6495ad179e8f9384b3ce2f5617ae156d56c5aa001b2972754c279",
+      "target": "0x08042988",
+      "target_symbol": "SpeciesToNationalPokedexNum",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x0802CDC8",
+      "size": 4,
+      "sha256": "1138f017d92b2788ebaa774b608087c8ce0489ca67011c81a622326b7ff4041f",
+      "target": "0x08088A50",
+      "target_symbol": "GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x0802D148",
+      "size": 4,
+      "sha256": "2d2ab3f8bb222992f24a3d47abcfd00c3427eaa30cee800faacf39986a5a31d5",
+      "target": "0x08042988",
+      "target_symbol": "SpeciesToNationalPokedexNum",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x0802D152",
+      "size": 4,
+      "sha256": "025614de1506d00ca45b8a1caa36278e84aa69ccfebf27f9ba301463bedd2d07",
+      "target": "0x08088A50",
+      "target_symbol": "GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x0802D182",
+      "size": 4,
+      "sha256": "78b605f1bd4eeb3d64c1f6ccb061fc409990f295b7c9e94316bf053b1aa0705d",
+      "target": "0x08042988",
+      "target_symbol": "SpeciesToNationalPokedexNum",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x0802D18C",
+      "size": 4,
+      "sha256": "1815f285f15d7d1ae6e5822c4bb4aa5820cd7a9375d83121ca86fa01c1667e38",
+      "target": "0x08088A50",
+      "target_symbol": "GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x080435E4",
+      "size": 4,
+      "sha256": "b8af749768b073e348f0d23e36c255cd55eabe8f29a1b9343a4bce802638bcfb",
+      "target": "0x08042988",
+      "target_symbol": "SpeciesToNationalPokedexNum",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x08046338",
+      "size": 4,
+      "sha256": "9ce29ec748cb0642986a503e2b6b70b088ec87fa64f443beabbb1049af7a89a6",
+      "target": "0x08042988",
+      "target_symbol": "SpeciesToNationalPokedexNum",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x08046346",
+      "size": 4,
+      "sha256": "c8c23d3e48ce0371e1237466cba2cfa3d038aeebe5fde0f0ef6582ea2c447896",
+      "target": "0x08088A50",
+      "target_symbol": "GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x0804634E",
+      "size": 4,
+      "sha256": "65d810cdba85a63342f56bd343a91106f2164ff53ccbe10a479e8391a7228157",
+      "target": "0x08088A50",
+      "target_symbol": "GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x0804902A",
+      "size": 4,
+      "sha256": "1050238fd673b350cbf028ab069116f56b2fcae5a0bf9c51beb84fa1cc2107db",
+      "target": "0x08042988",
+      "target_symbol": "SpeciesToNationalPokedexNum",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x08049034",
+      "size": 4,
+      "sha256": "02d17d010b30e9b49e08e5e549b87cb6e08f9a7f4aab3887c63ddb4d2026d7ff",
+      "target": "0x08088A50",
+      "target_symbol": "GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x08050098",
+      "size": 4,
+      "sha256": "851395113fa6fd0d6d7a2ffbe035037416b7997abd17f468e1267a9f07ead712",
+      "target": "0x08042988",
+      "target_symbol": "SpeciesToNationalPokedexNum",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x080500A6",
+      "size": 4,
+      "sha256": "36c59c7de51071cc89401271ef3a57f9eb5cfece715035dd7f9c6381cbe8d7af",
+      "target": "0x08088A50",
+      "target_symbol": "GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x080500AE",
+      "size": 4,
+      "sha256": "b04916ad6a305419e984d85c374f2c259eea2295a31757fe4b3cd448dc772fef",
+      "target": "0x08088A50",
+      "target_symbol": "GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x08054384",
+      "size": 4,
+      "sha256": "7ffe4459ac3b8cd35d40fb95c35960de0d3075b7196183af295c33a9ff7add16",
+      "target": "0x08054270",
+      "target_symbol": "ClearPokedexFlags",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x08088A5C",
+      "size": 4,
+      "sha256": "4d7f41d19ae10252f1cb60200202ac964a9d2f728136d892276c596756315394",
+      "target": "0x0810586C",
+      "target_symbol": "DexScreen_GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x08088A96",
+      "size": 4,
+      "sha256": "4143b5fa4ab154c097243ee56b75adfcc0210110f66c02ff4ab4523133ef2e73",
+      "target": "0x08088A50",
+      "target_symbol": "GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x08088AE0",
+      "size": 4,
+      "sha256": "0f13d339f562b633dab25cd031209f85ba68f0b36faa6cdb5fdaa5526e5fadf7",
+      "target": "0x08088A50",
+      "target_symbol": "GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x08088B16",
+      "size": 4,
+      "sha256": "a636b40d98715f6a478b615dbe0999b6476f5417eba0b421db49ef369945e3fe",
+      "target": "0x08088A50",
+      "target_symbol": "GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x08088B42",
+      "size": 4,
+      "sha256": "e6723d7ad6cca2c8a18ccc376c84a0028c5e2737fdf20ebf93ce43ce9f3f4534",
+      "target": "0x08088A50",
+      "target_symbol": "GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x08088B6E",
+      "size": 4,
+      "sha256": "a7ba24d708a542d47a01b110d84dfce9662da14256337e5a59a2f472b7cc532a",
+      "target": "0x08088A50",
+      "target_symbol": "GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x08088B8A",
+      "size": 4,
+      "sha256": "c8223dae273b709ad12cdf3c563e95a5f5d1b1fb580f6c06cdaf548aa5b7e2ec",
+      "target": "0x08088A50",
+      "target_symbol": "GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x08088BA8",
+      "size": 4,
+      "sha256": "42d4e6e8ac5b9292063a1d946484f1aaa1664371a6b04a7e72971505555ac0b4",
+      "target": "0x08088A50",
+      "target_symbol": "GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x080A144E",
+      "size": 4,
+      "sha256": "b47a5ba26c8a2ae7be2c531151435a0405fdc66b49cf05f23e01fb860c66f1c3",
+      "target": "0x08042988",
+      "target_symbol": "SpeciesToNationalPokedexNum",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x080A1462",
+      "size": 4,
+      "sha256": "8f1bc533431fbc5335efbed687d4bf916099ec194d75ae8fe1f94cc56b12e116",
+      "target": "0x08088A50",
+      "target_symbol": "GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x080A146A",
+      "size": 4,
+      "sha256": "a6e1fea8d23faa9705b5896a2114423d8fb9e5f3fc227f28042ca4474caeb547",
+      "target": "0x08088A50",
+      "target_symbol": "GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x080A1A56",
+      "size": 4,
+      "sha256": "458b9d88a12ae2cf728ca265cde6786cf8ce965623e8ccedd30d781cce064670",
+      "target": "0x08042988",
+      "target_symbol": "SpeciesToNationalPokedexNum",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x080BEFB4",
+      "size": 4,
+      "sha256": "95c2d4a3734642566f20d88b13ee812abdac6eea7b10610eab4913d177267db1",
+      "target": "0x08042988",
+      "target_symbol": "SpeciesToNationalPokedexNum",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x080BEFBE",
+      "size": 4,
+      "sha256": "d20ec445903a50279caafd7d8cee5aecab67578de82bcb7c1666ee6addc773ff",
+      "target": "0x08088A50",
+      "target_symbol": "GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x080BF5E2",
+      "size": 4,
+      "sha256": "9f38f555b2d1d3c5505f12a3475ef8dc0e5bce15c9aae81ee72628b69ee36696",
+      "target": "0x08042988",
+      "target_symbol": "SpeciesToNationalPokedexNum",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x080BF5EC",
+      "size": 4,
+      "sha256": "75709d4555007b81e55f069671d0a0507295f4c2e8624fdea1896278cc578c79",
+      "target": "0x08088A50",
+      "target_symbol": "GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x080BF602",
+      "size": 4,
+      "sha256": "107d8f37a98a30d25afc6b025c1592cdbf13cc4f4aefb81016aba91144fdaeea",
+      "target": "0x08042988",
+      "target_symbol": "SpeciesToNationalPokedexNum",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x080BF60C",
+      "size": 4,
+      "sha256": "e51dad3b8c435211eb57a738df6fd096633e898ad1972581988a0bb6e506a755",
+      "target": "0x08088A50",
+      "target_symbol": "GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x080CB6AE",
+      "size": 4,
+      "sha256": "464e16fa0a3f46a920a2881ab8ff278defae8f5b03edf830a02b863bdd860400",
+      "target": "0x08042988",
+      "target_symbol": "SpeciesToNationalPokedexNum",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x080CB6B8",
+      "size": 4,
+      "sha256": "fcfafdc2823c8145d009a90643b34bf5125282a7ede99efe6b52055607294aa2",
+      "target": "0x08088A50",
+      "target_symbol": "GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x080CC30A",
+      "size": 4,
+      "sha256": "87b53661a16ab09f274dadaff804e65a29d18ac20a140a80ca70725758b90c13",
+      "target": "0x08042988",
+      "target_symbol": "SpeciesToNationalPokedexNum",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x080CC314",
+      "size": 4,
+      "sha256": "56134248999335e51120a42cd0618687bd826285b392ff437a9458ca39b0fa4a",
+      "target": "0x08088A50",
+      "target_symbol": "GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x080CC344",
+      "size": 4,
+      "sha256": "e51a171ff09846afc4211ba5823bc1e0b65bde66b3b0f22ea43eb5a4ab4a589f",
+      "target": "0x08042988",
+      "target_symbol": "SpeciesToNationalPokedexNum",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x080CC34E",
+      "size": 4,
+      "sha256": "5cb9170d97c789706e10df747146ace4f96844c019c98fb7a931f6f5a124bc81",
+      "target": "0x08088A50",
+      "target_symbol": "GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x080CCF62",
+      "size": 4,
+      "sha256": "20a1baee3b5b6c95a7dd8af5970859af49848fa715e4ba783bbb27e3f35c5f0c",
+      "target": "0x08042988",
+      "target_symbol": "SpeciesToNationalPokedexNum",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x080CCF6C",
+      "size": 4,
+      "sha256": "983f2b3bd34d258f8795b31ae7d6b1638474a29bb930f6c22eefeb99b3e09ec4",
+      "target": "0x08088A50",
+      "target_symbol": "GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x080CF9B8",
+      "size": 4,
+      "sha256": "5a68335da107916bece26b14cbe289aeb0126f607fa6bf5186706f052a3f92aa",
+      "target": "0x08042988",
+      "target_symbol": "SpeciesToNationalPokedexNum",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x080CF9C2",
+      "size": 4,
+      "sha256": "c1022350fcb1524fbe2e05a118103c7f06a84da230aa5f6bb181009b660a2496",
+      "target": "0x08088A50",
+      "target_symbol": "GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x080CF9C8",
+      "size": 4,
+      "sha256": "1f9c072dc3a5b5fa6f2f7f67236e96c02d77b32232223a135d91e1fb5babbcd8",
+      "target": "0x08042988",
+      "target_symbol": "SpeciesToNationalPokedexNum",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x080CF9D2",
+      "size": 4,
+      "sha256": "87ecad0ac1d3ce5d837ce3066ce66ec2f56e7bbda3549df52799c051a287f71f",
+      "target": "0x08088A50",
+      "target_symbol": "GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x080CFE9C",
+      "size": 4,
+      "sha256": "9f3282bcac234c7ce1b555c15b29ebef47296058d1970df5f5c588737b3ba5fe",
+      "target": "0x08042988",
+      "target_symbol": "SpeciesToNationalPokedexNum",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x080CFEA6",
+      "size": 4,
+      "sha256": "5118b94ff43de091305c7d25751f041fe9fec3303e20f7816c66454cb1870877",
+      "target": "0x08088A50",
+      "target_symbol": "GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x080CFEAC",
+      "size": 4,
+      "sha256": "d9d4befeb8578607a98c544d4dfd5185a736a10ee39b18e81b740458a2499318",
+      "target": "0x08042988",
+      "target_symbol": "SpeciesToNationalPokedexNum",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x080CFEB6",
+      "size": 4,
+      "sha256": "87216aee0ffdf7b5438fa47b63652a820993891b0d236c357cb4e54bae9c411f",
+      "target": "0x08088A50",
+      "target_symbol": "GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x080D0A0A",
+      "size": 4,
+      "sha256": "329eb41e2ed25e43f7fcf12778df589ca1a6d1481cbf0f15a00ad66c16ea764c",
+      "target": "0x08042988",
+      "target_symbol": "SpeciesToNationalPokedexNum",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x080D0A14",
+      "size": 4,
+      "sha256": "ce497b4af5f6dd1a5ef098436234e0a9d6beba67683e656915b388797c41ca95",
+      "target": "0x08088A50",
+      "target_symbol": "GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x080D0A1A",
+      "size": 4,
+      "sha256": "c108f96ef2ede4bc58f91b82df8054624cf4189aa4bd0926de9885bcd4a8a404",
+      "target": "0x08042988",
+      "target_symbol": "SpeciesToNationalPokedexNum",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x080D0A24",
+      "size": 4,
+      "sha256": "bc5fbb3acabc328d277880d98f5accbf3a9e81c78c951ba02ca6db960285fc21",
+      "target": "0x08088A50",
+      "target_symbol": "GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x080DBC0C",
+      "size": 4,
+      "sha256": "2365a6038128dc5028da5b837df029fd18d4a31f10562953ced7b5bd180b9b73",
+      "target": "0x08042988",
+      "target_symbol": "SpeciesToNationalPokedexNum",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x080DBC1A",
+      "size": 4,
+      "sha256": "bb5e9da7762f617e4ff7d1794275ec174b45996c8b9cf349d4af0385c649670d",
+      "target": "0x08088A50",
+      "target_symbol": "GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x080DBC22",
+      "size": 4,
+      "sha256": "2d039e37205d7847842b16deaba84d9fd2e44632327377b22a5b5ad53e8d325c",
+      "target": "0x08088A50",
+      "target_symbol": "GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x080E7478",
+      "size": 4,
+      "sha256": "0b1cdd508f6d66963bac078c8b0dd12d4b94abb7f1d8c33fbb3af661013d5c33",
+      "target": "0x08042988",
+      "target_symbol": "SpeciesToNationalPokedexNum",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x080E7482",
+      "size": 4,
+      "sha256": "977e5f8b2d65854dfd80dfb26fdcd1300f09bc5ccb77763fb47bb636a40e56cd",
+      "target": "0x08088A50",
+      "target_symbol": "GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x08104326",
+      "size": 4,
+      "sha256": "721b553e720c148c6fc4316545514371166eaf014c0087139cf4e984b4cc38f2",
+      "target": "0x0810586C",
+      "target_symbol": "DexScreen_GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x08104334",
+      "size": 4,
+      "sha256": "3cf0fdf0c39f5165e8f109cc693e162621e4a4ca4b842c0df97b0864db6acc48",
+      "target": "0x0810586C",
+      "target_symbol": "DexScreen_GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x081043D2",
+      "size": 4,
+      "sha256": "d2479f8cd2ebbebab16764d4c5e5f82e351f14f6c32188f6499bb6b31dc0f710",
+      "target": "0x0810586C",
+      "target_symbol": "DexScreen_GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x081043E0",
+      "size": 4,
+      "sha256": "2d2ce2b5d75cc137ace4428f0a25d1a30464f3b9c6cf59ab7021b243f9c6c776",
+      "target": "0x0810586C",
+      "target_symbol": "DexScreen_GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x08104462",
+      "size": 4,
+      "sha256": "43b768df9a2356cc08e07eddf0a8baaa12d7305c69b0cd5fd3351799c0efc764",
+      "target": "0x08042988",
+      "target_symbol": "SpeciesToNationalPokedexNum",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x08104476",
+      "size": 4,
+      "sha256": "20cc95702a87f949687f77383a0701892ee90652fb0cb9fd6ca3c9f736bcfd53",
+      "target": "0x0810586C",
+      "target_symbol": "DexScreen_GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x08104484",
+      "size": 4,
+      "sha256": "313df740f41c6432c496b8e2e4b45e3741253cf55bc21ba880b556a2fb4d9546",
+      "target": "0x0810586C",
+      "target_symbol": "DexScreen_GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x08104512",
+      "size": 4,
+      "sha256": "b269bb0a7148918a87263b75a763c345d9ad1502b8fb4e9ed1fc7e5dd1946d06",
+      "target": "0x0810586C",
+      "target_symbol": "DexScreen_GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x08104520",
+      "size": 4,
+      "sha256": "25395f3ad15d03828a33088e2510889d5716165fb2c9959e950c352d9b735ccf",
+      "target": "0x0810586C",
+      "target_symbol": "DexScreen_GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x081045AE",
+      "size": 4,
+      "sha256": "772397fe9b9dcd0f9bb718d001c42dd86c5b672062cddea3892c171e0d947441",
+      "target": "0x0810586C",
+      "target_symbol": "DexScreen_GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x081045BC",
+      "size": 4,
+      "sha256": "08ed24af48470ac62533cd04644c0b149518dc7bffc2044cf628848933cf5854",
+      "target": "0x0810586C",
+      "target_symbol": "DexScreen_GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x0810463E",
+      "size": 4,
+      "sha256": "f776ff39220192804b8e7a0f0c905de10e968832314ff98129ea88034bec04d5",
+      "target": "0x0810586C",
+      "target_symbol": "DexScreen_GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x0810464C",
+      "size": 4,
+      "sha256": "6c17f1cfcbc75328ba96bcebb1e84e2dcaa20c837fc14841f0f9f2505006a40a",
+      "target": "0x0810586C",
+      "target_symbol": "DexScreen_GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x08104A8E",
+      "size": 4,
+      "sha256": "978a46ea6776014761a3d3fda4fa7fceeac0cf93faeb83cac4d046ec7860ae12",
+      "target": "0x0810586C",
+      "target_symbol": "DexScreen_GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x08105822",
+      "size": 4,
+      "sha256": "37c42319371e95e61545d178147d1253787bfc8fb183604b2238ec44576212f5",
+      "target": "0x08042988",
+      "target_symbol": "SpeciesToNationalPokedexNum",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x08105880",
+      "size": 4,
+      "sha256": "f1e824d0f0af0f12ccf919096ae5db2c8d39c7ef708f20449293ce7dc93180fc",
+      "target": "0x08042988",
+      "target_symbol": "SpeciesToNationalPokedexNum",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x0810599C",
+      "size": 4,
+      "sha256": "253ca4107359814ef8d77a16f2734f74d87fe7480de7e32340b343fa70a5b956",
+      "target": "0x0810586C",
+      "target_symbol": "DexScreen_GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x081059C4",
+      "size": 4,
+      "sha256": "42d4e6e8ac5b9292063a1d946484f1aaa1664371a6b04a7e72971505555ac0b4",
+      "target": "0x0810586C",
+      "target_symbol": "DexScreen_GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x08105BD2",
+      "size": 4,
+      "sha256": "640ad8617aac320083fb265bba2061bdf87f77216fc4651baefb0fead3e8c301",
+      "target": "0x0810586C",
+      "target_symbol": "DexScreen_GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x08106630",
+      "size": 4,
+      "sha256": "db2a0a39e923934e457dab513801822257ba59e972852d86c0f47b01f5ec8ca1",
+      "target": "0x08042988",
+      "target_symbol": "SpeciesToNationalPokedexNum",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x08106644",
+      "size": 4,
+      "sha256": "49ec24cdc80ca03be3e662992d9f2769c445e9c60dd52dd3d674032a5fca43e6",
+      "target": "0x0810586C",
+      "target_symbol": "DexScreen_GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x081066F6",
+      "size": 4,
+      "sha256": "9bcc5e935cb9b38e351b851a2860aac6dd3c8231d87806858e9b77d8c2248222",
+      "target": "0x08042988",
+      "target_symbol": "SpeciesToNationalPokedexNum",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x0810673E",
+      "size": 4,
+      "sha256": "fe1f26737aa04dfa4fa2225c20af23b6bc024ec1407611f31fecf3e3c0ea18a5",
+      "target": "0x0810586C",
+      "target_symbol": "DexScreen_GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x0810686A",
+      "size": 4,
+      "sha256": "4f6c38ebf15889a3810bf41423655b29482f03fbbdbb3bba282fc4be9d94b132",
+      "target": "0x08042988",
+      "target_symbol": "SpeciesToNationalPokedexNum",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x08106876",
+      "size": 4,
+      "sha256": "51de33b6b22389d187a4899bee77822c7ed0609d31c6cb74fc0dffb474960842",
+      "target": "0x0810586C",
+      "target_symbol": "DexScreen_GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x08106928",
+      "size": 4,
+      "sha256": "70a77b096c194bdb105bb2a95eec460a8bec54c84d0acb68c7f6e478c05a9624",
+      "target": "0x0810586C",
+      "target_symbol": "DexScreen_GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x08106BFA",
+      "size": 4,
+      "sha256": "27b07bc1332377e2fdab8629b0c139ae43668f3e1e0cc968734c2ac2957ba16a",
+      "target": "0x08042988",
+      "target_symbol": "SpeciesToNationalPokedexNum",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x08106C0A",
+      "size": 4,
+      "sha256": "016e81462013da48d0e870e5f8658962ae707b56947b60d94a06c6829f4f6c36",
+      "target": "0x0810586C",
+      "target_symbol": "DexScreen_GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x08107378",
+      "size": 4,
+      "sha256": "fc05e0334a31142db9ce781e0f92673e0ff5edaeb7cfa21ed31ca35109017c06",
+      "target": "0x08042988",
+      "target_symbol": "SpeciesToNationalPokedexNum",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x081073D2",
+      "size": 4,
+      "sha256": "5046a71d2cb23bebb0db6e7cdc15ac4516256415bb49c8e3b386c83127fcc1cb",
+      "target": "0x0810586C",
+      "target_symbol": "DexScreen_GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x081074A6",
+      "size": 4,
+      "sha256": "71190f4d9524de1f8d99951808bc78db2bab3805e2fe5dce8253be7c846df22e",
+      "target": "0x0810586C",
+      "target_symbol": "DexScreen_GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x0810760C",
+      "size": 4,
+      "sha256": "6e94a4c6311640423beaa34edb303bc1559c38d17ca071cd6cbf1d85b69e4662",
+      "target": "0x0810586C",
+      "target_symbol": "DexScreen_GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x081076C4",
+      "size": 4,
+      "sha256": "a161756890eabf767317c0bb52b7acfba0d1b9d704686bcf4843d613e6c8cddd",
+      "target": "0x0810586C",
+      "target_symbol": "DexScreen_GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x081076CE",
+      "size": 4,
+      "sha256": "d1dfaf8b868f3202b49a727d5eee3c30019805474605c3d7c40ec039cb81eaaa",
+      "target": "0x0810586C",
+      "target_symbol": "DexScreen_GetSetPokedexFlag_legacy",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x081076DC",
+      "size": 4,
+      "sha256": "1b0a0fcff43b3e311603495f590379b0fca9ac4ee09809287ec73423a9ca183b",
+      "target": "0x08042988",
+      "target_symbol": "SpeciesToNationalPokedexNum",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x090D9DA0",
+      "size": 4,
+      "sha256": "647355e6a04ed6c62628308e544c666efc9b00e38d10a0b5d6c5496d793081df",
+      "target": "0x09131100",
+      "target_symbol": "CFRU_SetMonPokedexFlags",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x090DA0E6",
+      "size": 4,
+      "sha256": "59257c4d508f87fc0d76fce6804a93fb47ae04d3ffd1ff21d84ba620a466a37e",
+      "target": "0x09131100",
+      "target_symbol": "CFRU_SetMonPokedexFlags",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x090DA202",
+      "size": 4,
+      "sha256": "79ec3fd7be89e436094d2fdf080d09f424428e25302ed85697249287930f943c",
+      "target": "0x09131100",
+      "target_symbol": "CFRU_SetMonPokedexFlags",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x090DD140",
+      "size": 4,
+      "sha256": "85eef9f05475851ecf057bc87bf28995a630ef99b0be7518f57ed872fc0c0e76",
+      "target": "0x09131100",
+      "target_symbol": "CFRU_SetMonPokedexFlags",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x090DE3C8",
+      "size": 4,
+      "sha256": "a552b677b0ed450e1e8438d221e32684d36e5b465aade5385ae989d911189221",
+      "target": "0x09131158",
+      "target_symbol": "CFRU_GetNationalPokedexCount",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x090DE4CA",
+      "size": 4,
+      "sha256": "17c31056da8958a1af4a975a584c08bc23eac315058627c704dd226015c7140f",
+      "target": "0x09131158",
+      "target_symbol": "CFRU_GetNationalPokedexCount",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x090DE934",
+      "size": 4,
+      "sha256": "9dbc8e3d0402acfbe14558e9cbc9b5e982d53277ebb77a6f3c6b829a47e07187",
+      "target": "0x091310A8",
+      "target_symbol": "CFRU_HandleSetPokedexFlag",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "address": "0x09131146",
+      "size": 4,
+      "sha256": "abe89c65d9b0c850465168634036e3ef3b55d0d20065ea0d8411bbca39efad7f",
+      "target": "0x091310A8",
+      "target_symbol": "CFRU_HandleSetPokedexFlag",
+      "reachability_status": "STATIC_DIRECT_CALL_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    }
+  ],
+  "literal_load_inventory": [
+    {
+      "target": "0x8088a51",
+      "literal": "0x90de080",
+      "size": 4,
+      "sha256": "38efae337b81a577464671cb038c599e6a3eb22de85df99c6af31eccb0a85979",
+      "refs": [
+        {
+          "address": "0x90ddf42",
+          "size": 12,
+          "sha256": "35637312b00907517126170bcb3483dfe230a51fbb91f898b9dd85ab1d610157"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8088a51",
+      "literal": "0x90de94c",
+      "size": 4,
+      "sha256": "38efae337b81a577464671cb038c599e6a3eb22de85df99c6af31eccb0a85979",
+      "refs": [
+        {
+          "address": "0x90de904",
+          "size": 12,
+          "sha256": "f16b7cca737b50b7c62a66f482cf313fae8cbfd4a9c17a018a894f494d385d1a"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8088a51",
+      "literal": "0x90ec758",
+      "size": 4,
+      "sha256": "38efae337b81a577464671cb038c599e6a3eb22de85df99c6af31eccb0a85979",
+      "refs": [
+        {
+          "address": "0x90ec614",
+          "size": 12,
+          "sha256": "489b178f2306128213f76fa226f0d023e80f236c59f3a6b79e5a9b54eb4f5fab"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8088a51",
+      "literal": "0x90ec7ec",
+      "size": 4,
+      "sha256": "38efae337b81a577464671cb038c599e6a3eb22de85df99c6af31eccb0a85979",
+      "refs": [
+        {
+          "address": "0x90ec78a",
+          "size": 12,
+          "sha256": "76db91ef0d6355826b9e03debc1a5047a051c2ef1f701a68a4e6fc6b8eacf2f9"
+        },
+        {
+          "address": "0x90ec7b8",
+          "size": 12,
+          "sha256": "f27ea70dcf0d0b9ff73ca0072b6b20970daf0404764a2f0004cc5c55b9068e34"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8088a51",
+      "literal": "0x90ec888",
+      "size": 4,
+      "sha256": "38efae337b81a577464671cb038c599e6a3eb22de85df99c6af31eccb0a85979",
+      "refs": [
+        {
+          "address": "0x90ec808",
+          "size": 12,
+          "sha256": "ed4a0ccf63f7c7f85f32d21f452188a890667e94618c991b2c94eea269962e4c"
+        },
+        {
+          "address": "0x90ec876",
+          "size": 12,
+          "sha256": "b24fe4a04a245270f791ec29686680913d013f5b5959810f8f69778d971bf13b"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8088a51",
+      "literal": "0x90ed914",
+      "size": 4,
+      "sha256": "38efae337b81a577464671cb038c599e6a3eb22de85df99c6af31eccb0a85979",
+      "refs": [
+        {
+          "address": "0x90ed7ea",
+          "size": 12,
+          "sha256": "af25aa2e725b25ba2a43a9593bae626a4638d77169650604895109d18347a4fc"
+        },
+        {
+          "address": "0x90ed86a",
+          "size": 12,
+          "sha256": "866a4b245e1d273b514c3b54d46b6a559c2492657603379bfeeae66e83716978"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8088a51",
+      "literal": "0x90ee79c",
+      "size": 4,
+      "sha256": "38efae337b81a577464671cb038c599e6a3eb22de85df99c6af31eccb0a85979",
+      "refs": [
+        {
+          "address": "0x90ee6d6",
+          "size": 12,
+          "sha256": "ac0607b33f8fce71bf5fcf7ca4da78c7283a62508062dbe8e2b0a2c867d4f8e0"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8088a51",
+      "literal": "0x90ee9dc",
+      "size": 4,
+      "sha256": "38efae337b81a577464671cb038c599e6a3eb22de85df99c6af31eccb0a85979",
+      "refs": [
+        {
+          "address": "0x90ee878",
+          "size": 12,
+          "sha256": "2e32043cfe3fddc61ba88c40870b360c8ea4527d5e94ac723c8c14c1f31c6e4c"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8088a51",
+      "literal": "0x90ef108",
+      "size": 4,
+      "sha256": "38efae337b81a577464671cb038c599e6a3eb22de85df99c6af31eccb0a85979",
+      "refs": [
+        {
+          "address": "0x90eee58",
+          "size": 12,
+          "sha256": "7aec8ec4dcacf80d555ba528f8e4b0b57028d528dc20a365594cab08e922a9a2"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8088a51",
+      "literal": "0x90ef44c",
+      "size": 4,
+      "sha256": "38efae337b81a577464671cb038c599e6a3eb22de85df99c6af31eccb0a85979",
+      "refs": [
+        {
+          "address": "0x90ef26a",
+          "size": 12,
+          "sha256": "acaaa354aae4c0850f1607fca269933e6b75e715764a2de56ea68f419ba95f49"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8088a51",
+      "literal": "0x90fc048",
+      "size": 4,
+      "sha256": "38efae337b81a577464671cb038c599e6a3eb22de85df99c6af31eccb0a85979",
+      "refs": [
+        {
+          "address": "0x90fc002",
+          "size": 12,
+          "sha256": "b3fd7cd870c6901fcc20904856aba8eb0dc2059dcd8b93920f2423c71628d97d"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8088a51",
+      "literal": "0x91310f4",
+      "size": 4,
+      "sha256": "38efae337b81a577464671cb038c599e6a3eb22de85df99c6af31eccb0a85979",
+      "refs": [
+        {
+          "address": "0x91310b2",
+          "size": 12,
+          "sha256": "d4011a8d0ecda12ab92b4d92276435f93a4401cc41493e7b6aa7d2db18fadff0"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8088a51",
+      "literal": "0x9131154",
+      "size": 4,
+      "sha256": "38efae337b81a577464671cb038c599e6a3eb22de85df99c6af31eccb0a85979",
+      "refs": [
+        {
+          "address": "0x913113a",
+          "size": 12,
+          "sha256": "6113c5addc78eb9eb99f5921d841b923a21be24a8c872188a04a8acd99c66986"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8088a51",
+      "literal": "0x92cebd8",
+      "size": 4,
+      "sha256": "38efae337b81a577464671cb038c599e6a3eb22de85df99c6af31eccb0a85979",
+      "refs": [
+        {
+          "address": "0x92cebc8",
+          "size": 12,
+          "sha256": "505f1d1751d6cc83b3a60449afb4e871b88beb152cae9d9e5662f9be9cb1139f"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8088a51",
+      "literal": "0x92d1cbc",
+      "size": 4,
+      "sha256": "38efae337b81a577464671cb038c599e6a3eb22de85df99c6af31eccb0a85979",
+      "refs": [
+        {
+          "address": "0x92d1c80",
+          "size": 12,
+          "sha256": "2bc068db2d2f89cbaa89937154d4e0c1ff6be01272ab66fd48938b98dc3d988b"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8088a51",
+      "literal": "0x92d1f64",
+      "size": 4,
+      "sha256": "38efae337b81a577464671cb038c599e6a3eb22de85df99c6af31eccb0a85979",
+      "refs": [
+        {
+          "address": "0x92d1dde",
+          "size": 12,
+          "sha256": "72ef2a7ec0338f29bac74028ad53f3beb246e853698bcd98730d7533933318c0"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8088a51",
+      "literal": "0x92d2074",
+      "size": 4,
+      "sha256": "38efae337b81a577464671cb038c599e6a3eb22de85df99c6af31eccb0a85979",
+      "refs": [
+        {
+          "address": "0x92d204e",
+          "size": 12,
+          "sha256": "f187254c28d10932b4078ec433785f48e194bd0b239b81260b8eee3157a926fe"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8088a51",
+      "literal": "0x92de71c",
+      "size": 4,
+      "sha256": "38efae337b81a577464671cb038c599e6a3eb22de85df99c6af31eccb0a85979",
+      "refs": [
+        {
+          "address": "0x92de678",
+          "size": 12,
+          "sha256": "babb4d8f16b9c9dac96dc1a1ecf949fd15c4097a5078f43205d7260d87c36eb2"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8088a51",
+      "literal": "0x9376f2c",
+      "size": 4,
+      "sha256": "38efae337b81a577464671cb038c599e6a3eb22de85df99c6af31eccb0a85979",
+      "refs": [
+        {
+          "address": "0x9376ea6",
+          "size": 12,
+          "sha256": "ce08698b5560bffe7845a42d2f33e7204166a351a681961caf1b091f53004046"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8088a51",
+      "literal": "0x93bf260",
+      "size": 4,
+      "sha256": "38efae337b81a577464671cb038c599e6a3eb22de85df99c6af31eccb0a85979",
+      "refs": [
+        {
+          "address": "0x93bf252",
+          "size": 12,
+          "sha256": "d00a36728af39f613e1e75d0376f5115b1e49c3f63ff22286baabdf42a0990d2"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8088a51",
+      "literal": "0x93c18f8",
+      "size": 4,
+      "sha256": "38efae337b81a577464671cb038c599e6a3eb22de85df99c6af31eccb0a85979",
+      "refs": [
+        {
+          "address": "0x93c18d4",
+          "size": 12,
+          "sha256": "4f48e569ac3242c38c28801016c7a8d964548ad4e3f72e0db2e42180f8ef01fd"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8088a51",
+      "literal": "0x93c1948",
+      "size": 4,
+      "sha256": "38efae337b81a577464671cb038c599e6a3eb22de85df99c6af31eccb0a85979",
+      "refs": [
+        {
+          "address": "0x93c192c",
+          "size": 12,
+          "sha256": "9aef18be88db9f7e3926fb6185959cc28e2940b2698f5636b1a5e129bdb7b2b0"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8088a51",
+      "literal": "0x93c57d4",
+      "size": 4,
+      "sha256": "38efae337b81a577464671cb038c599e6a3eb22de85df99c6af31eccb0a85979",
+      "refs": [
+        {
+          "address": "0x93c57be",
+          "size": 12,
+          "sha256": "5c868652bbb41baf12e68159f2944f6d79719002466df1fcea0b0de41a417b99"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8088a51",
+      "literal": "0x960cbec",
+      "size": 4,
+      "sha256": "38efae337b81a577464671cb038c599e6a3eb22de85df99c6af31eccb0a85979",
+      "refs": [
+        {
+          "address": "0x960cbc6",
+          "size": 12,
+          "sha256": "5e4e26065497401e9add541c343de0c416624baf2375c947985de8583ea12644"
+        }
+      ],
+      "reachability_status": "ORPHAN_CANDIDATE_STOCK_HOOK_ABSENT"
+    },
+    {
+      "target": "0x8088a51",
+      "literal": "0x960cc30",
+      "size": 4,
+      "sha256": "38efae337b81a577464671cb038c599e6a3eb22de85df99c6af31eccb0a85979",
+      "refs": [
+        {
+          "address": "0x960cc10",
+          "size": 12,
+          "sha256": "2c5fb974190957aaf209e86bb6307b00cb6c2037fb985ca41f88715f27a164d5"
+        }
+      ],
+      "reachability_status": "ORPHAN_CANDIDATE_STOCK_HOOK_ABSENT"
+    },
+    {
+      "target": "0x8088a51",
+      "literal": "0x960cc70",
+      "size": 4,
+      "sha256": "38efae337b81a577464671cb038c599e6a3eb22de85df99c6af31eccb0a85979",
+      "refs": [
+        {
+          "address": "0x960cc52",
+          "size": 12,
+          "sha256": "d46e715de3e949f0f197c8684dcdad478ccc606fe5964d03c741b1bc7e20dddb"
+        }
+      ],
+      "reachability_status": "ORPHAN_CANDIDATE_STOCK_HOOK_ABSENT"
+    },
+    {
+      "target": "0x8088a51",
+      "literal": "0x960cc98",
+      "size": 4,
+      "sha256": "38efae337b81a577464671cb038c599e6a3eb22de85df99c6af31eccb0a85979",
+      "refs": [
+        {
+          "address": "0x960cc7a",
+          "size": 12,
+          "sha256": "c8891b6be54d55a441e3f26aceaf88a60f563721351f4b92c3600c0121bb34d7"
+        }
+      ],
+      "reachability_status": "ORPHAN_CANDIDATE_STOCK_HOOK_ABSENT"
+    },
+    {
+      "target": "0x8088a51",
+      "literal": "0x9ff5ba0",
+      "size": 4,
+      "sha256": "38efae337b81a577464671cb038c599e6a3eb22de85df99c6af31eccb0a85979",
+      "refs": [
+        {
+          "address": "0x9ff5b90",
+          "size": 12,
+          "sha256": "505f1d1751d6cc83b3a60449afb4e871b88beb152cae9d9e5662f9be9cb1139f"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x810586d",
+      "literal": "0x960cb98",
+      "size": 4,
+      "sha256": "56d4aadb0e133b167f43b8ce14a2dd2796381217e344b5ae82d8b29e5b17908f",
+      "refs": [
+        {
+          "address": "0x960cb46",
+          "size": 12,
+          "sha256": "3cf9ef70e7718aaf31f34fd1c1c83c28ccf7a59966240994d94ab2f1b6b24b64"
+        },
+        {
+          "address": "0x960cb70",
+          "size": 12,
+          "sha256": "fb4a3a335e46378fe6adda8063584488a1dc2da4df54edfb8a1d951f953654c5"
+        }
+      ],
+      "reachability_status": "ORPHAN_CANDIDATE_STOCK_HOOK_ABSENT"
+    },
+    {
+      "target": "0x810586d",
+      "literal": "0x960ce68",
+      "size": 4,
+      "sha256": "56d4aadb0e133b167f43b8ce14a2dd2796381217e344b5ae82d8b29e5b17908f",
+      "refs": [
+        {
+          "address": "0x960cd54",
+          "size": 12,
+          "sha256": "420c9f8906de01a16266cb600351582f33626a2ad5e3c4093effbae6f9bd001c"
+        },
+        {
+          "address": "0x960cdba",
+          "size": 12,
+          "sha256": "909d5520b25ca49d7e4195f17ddf5000b9674181025603dd8de5f678649206d4"
+        }
+      ],
+      "reachability_status": "ORPHAN_CANDIDATE_STOCK_HOOK_ABSENT"
+    },
+    {
+      "target": "0x8042989",
+      "literal": "0x90971ec",
+      "size": 4,
+      "sha256": "17b94144a81398be7ca35bf340ce279a353eb1505a4f3ded3a1d1715985c035a",
+      "refs": [
+        {
+          "address": "0x90971a4",
+          "size": 12,
+          "sha256": "82164fea8578b1180f9d18bc1ecaae739a1e3b4915c05c49db6b1c95250c15ca"
+        },
+        {
+          "address": "0x90971b4",
+          "size": 12,
+          "sha256": "a69fe6733c75fe22291c9e88b4dc46783e533c4ec5cf1e084160f68e262cd6d8"
+        },
+        {
+          "address": "0x90971ce",
+          "size": 12,
+          "sha256": "8f9f3efe3999ca634f006e9194a0699b8f3ad378726c09c9b25338bda328462d"
+        },
+        {
+          "address": "0x90971de",
+          "size": 12,
+          "sha256": "a4afa550da2d9c11316526ef80b0d1aa9509c0ba3b74a33b003415eda1944e0e"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8042989",
+      "literal": "0x90b9284",
+      "size": 4,
+      "sha256": "17b94144a81398be7ca35bf340ce279a353eb1505a4f3ded3a1d1715985c035a",
+      "refs": [
+        {
+          "address": "0x90b91a8",
+          "size": 12,
+          "sha256": "9162f3c08f55ca41e8fdcbea742c6f831b2f406e8877db56693225ad5b7d3875"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8042989",
+      "literal": "0x90c27fc",
+      "size": 4,
+      "sha256": "17b94144a81398be7ca35bf340ce279a353eb1505a4f3ded3a1d1715985c035a",
+      "refs": [
+        {
+          "address": "0x90c27cc",
+          "size": 12,
+          "sha256": "758cd38f53dec6357037ecf383d789855d4efa7b4d3096624a1349501375d04d"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8042989",
+      "literal": "0x90cd278",
+      "size": 4,
+      "sha256": "17b94144a81398be7ca35bf340ce279a353eb1505a4f3ded3a1d1715985c035a",
+      "refs": [
+        {
+          "address": "0x90cd25a",
+          "size": 12,
+          "sha256": "45e29b73bbf33cf89799391b8c1f413acdabbffd7fe8aa8c8dac906ef161c85b"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8042989",
+      "literal": "0x90d5944",
+      "size": 4,
+      "sha256": "17b94144a81398be7ca35bf340ce279a353eb1505a4f3ded3a1d1715985c035a",
+      "refs": [
+        {
+          "address": "0x90d582a",
+          "size": 12,
+          "sha256": "31db45697ee24603783642f8f3c7d99f87a2234987938785bb3163cf3d84e2e2"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8042989",
+      "literal": "0x90d8600",
+      "size": 4,
+      "sha256": "17b94144a81398be7ca35bf340ce279a353eb1505a4f3ded3a1d1715985c035a",
+      "refs": [
+        {
+          "address": "0x90d85e6",
+          "size": 12,
+          "sha256": "79bea4d6e81b760f2e8b124b7928dad406c3049ca4f4a07e013d159576f64aa8"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8042989",
+      "literal": "0x90d88d0",
+      "size": 4,
+      "sha256": "17b94144a81398be7ca35bf340ce279a353eb1505a4f3ded3a1d1715985c035a",
+      "refs": [
+        {
+          "address": "0x90d886a",
+          "size": 12,
+          "sha256": "5a1df1699df5a5788945424ed5f64d0688dd6f1bc48f907267ad0649d6898d52"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8042989",
+      "literal": "0x90d8d28",
+      "size": 4,
+      "sha256": "17b94144a81398be7ca35bf340ce279a353eb1505a4f3ded3a1d1715985c035a",
+      "refs": [
+        {
+          "address": "0x90d8c3e",
+          "size": 12,
+          "sha256": "b44637c71653ce892a34828f46cf03a44816f8edb4eb01089041879ba8ffef83"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8042989",
+      "literal": "0x90d9b58",
+      "size": 4,
+      "sha256": "17b94144a81398be7ca35bf340ce279a353eb1505a4f3ded3a1d1715985c035a",
+      "refs": [
+        {
+          "address": "0x90d97f6",
+          "size": 12,
+          "sha256": "19f3b02a937b20670991fb371d0a8888adb433c4c8dd94df7ff583d9022797b4"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8042989",
+      "literal": "0x90da6a0",
+      "size": 4,
+      "sha256": "17b94144a81398be7ca35bf340ce279a353eb1505a4f3ded3a1d1715985c035a",
+      "refs": [
+        {
+          "address": "0x90da420",
+          "size": 12,
+          "sha256": "2cc0016e79daf2becb2a5f81e8d7c0230b292274adff74d06bc36ad9733f0763"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8042989",
+      "literal": "0x90de074",
+      "size": 4,
+      "sha256": "17b94144a81398be7ca35bf340ce279a353eb1505a4f3ded3a1d1715985c035a",
+      "refs": [
+        {
+          "address": "0x90dde56",
+          "size": 12,
+          "sha256": "ff97866bd965a6cb0ea6ed9bf98dce3da957986a01f00c2519e2e91717f95bf5"
+        },
+        {
+          "address": "0x90ddeec",
+          "size": 12,
+          "sha256": "4d6404a4a6549f3448c231c6b9daf498dae86bb40002d1a8c6f7612e109d33c7"
+        },
+        {
+          "address": "0x90ddf3a",
+          "size": 12,
+          "sha256": "223dcc0b4dba512fb61feb1e12ed8624164d56ee391dab5855070138dced8cfc"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8042989",
+      "literal": "0x90de948",
+      "size": 4,
+      "sha256": "17b94144a81398be7ca35bf340ce279a353eb1505a4f3ded3a1d1715985c035a",
+      "refs": [
+        {
+          "address": "0x90de8fa",
+          "size": 12,
+          "sha256": "a8224dabd02c2c9b6dfbdd0945043bd7e34f7df5d612c55b424146ad4765855e"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8042989",
+      "literal": "0x90e34a0",
+      "size": 4,
+      "sha256": "17b94144a81398be7ca35bf340ce279a353eb1505a4f3ded3a1d1715985c035a",
+      "refs": [
+        {
+          "address": "0x90e33ba",
+          "size": 12,
+          "sha256": "46ac7de50374075f370f0c454b4aa80b88a6a35d2c22b89221659f9771e69bfc"
+        },
+        {
+          "address": "0x90e3406",
+          "size": 12,
+          "sha256": "511e3044516926eec023097cdf226b8cb0316fc5d815fe61ecf35143077c70c8"
+        },
+        {
+          "address": "0x90e346a",
+          "size": 12,
+          "sha256": "0927e04fe4dd64d3b1b82ed67893b422aac51f03d526357aff024795a0e34b70"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8042989",
+      "literal": "0x90e3798",
+      "size": 4,
+      "sha256": "17b94144a81398be7ca35bf340ce279a353eb1505a4f3ded3a1d1715985c035a",
+      "refs": [
+        {
+          "address": "0x90e34ac",
+          "size": 12,
+          "sha256": "240714ceb20e0806b2fccedba937351411d588eb85978dd8e75ba0cee9299d1b"
+        },
+        {
+          "address": "0x90e34fc",
+          "size": 12,
+          "sha256": "b9a5bbaa14f21a2d1a19e13cfdfcea17bdec71245d4ec8b470be66b684e32c78"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8042989",
+      "literal": "0x90e3aac",
+      "size": 4,
+      "sha256": "17b94144a81398be7ca35bf340ce279a353eb1505a4f3ded3a1d1715985c035a",
+      "refs": [
+        {
+          "address": "0x90e3a3c",
+          "size": 12,
+          "sha256": "30992318ee7642fe5e1826df064f3b4582eac981175a6db4827a12a9ce5195cc"
+        },
+        {
+          "address": "0x90e3a64",
+          "size": 12,
+          "sha256": "9f1f5a8301abb6dd3f0817d1f363059e575d45ae04edce89f8449f391053dc05"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8042989",
+      "literal": "0x90e4714",
+      "size": 4,
+      "sha256": "17b94144a81398be7ca35bf340ce279a353eb1505a4f3ded3a1d1715985c035a",
+      "refs": [
+        {
+          "address": "0x90e468e",
+          "size": 12,
+          "sha256": "7ab20904236b638e875fb3d8d4549f30b907ddf08fcfa69f0ffcda3b60fbd14c"
+        },
+        {
+          "address": "0x90e46a6",
+          "size": 12,
+          "sha256": "f66c160ac5b3c15536aba3304e740e127b0434945f83abb9e4756147584a0295"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8042989",
+      "literal": "0x90e71a4",
+      "size": 4,
+      "sha256": "17b94144a81398be7ca35bf340ce279a353eb1505a4f3ded3a1d1715985c035a",
+      "refs": [
+        {
+          "address": "0x90e7126",
+          "size": 12,
+          "sha256": "c0a75851d12c263d55f8089400f03e5d78edb2bfa739053d27946c0e10bfc979"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8042989",
+      "literal": "0x90e8e04",
+      "size": 4,
+      "sha256": "17b94144a81398be7ca35bf340ce279a353eb1505a4f3ded3a1d1715985c035a",
+      "refs": [
+        {
+          "address": "0x90e8cb4",
+          "size": 12,
+          "sha256": "86a55cbd3e8c241a6fb5ce2c0a2499c3de225ae2968758ab26516b555e7edbd3"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8042989",
+      "literal": "0x90eb010",
+      "size": 4,
+      "sha256": "17b94144a81398be7ca35bf340ce279a353eb1505a4f3ded3a1d1715985c035a",
+      "refs": [
+        {
+          "address": "0x90ead3e",
+          "size": 12,
+          "sha256": "4828c5ad10605de93230f38d9b44925c86ac2d0b054322e9edac17b21630e093"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8042989",
+      "literal": "0x90eb938",
+      "size": 4,
+      "sha256": "17b94144a81398be7ca35bf340ce279a353eb1505a4f3ded3a1d1715985c035a",
+      "refs": [
+        {
+          "address": "0x90eb8e4",
+          "size": 12,
+          "sha256": "4261fe91ce27990f9942b85cb46ea92c5b126b4ed53a85a9cb4e214914645505"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8042989",
+      "literal": "0x90ebaec",
+      "size": 4,
+      "sha256": "17b94144a81398be7ca35bf340ce279a353eb1505a4f3ded3a1d1715985c035a",
+      "refs": [
+        {
+          "address": "0x90eb9ba",
+          "size": 12,
+          "sha256": "9479b10a77c34dd0e4f15ce64d618fe53a52e8c6bb7524c33eceecbaa8b7b300"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8042989",
+      "literal": "0x90ec754",
+      "size": 4,
+      "sha256": "17b94144a81398be7ca35bf340ce279a353eb1505a4f3ded3a1d1715985c035a",
+      "refs": [
+        {
+          "address": "0x90ec608",
+          "size": 12,
+          "sha256": "c8d5bcfc2227c6c05229af398d27a5cef132d2e87f7b57e4f79a2ea6eed1d04b"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8042989",
+      "literal": "0x90ec7e8",
+      "size": 4,
+      "sha256": "17b94144a81398be7ca35bf340ce279a353eb1505a4f3ded3a1d1715985c035a",
+      "refs": [
+        {
+          "address": "0x90ec784",
+          "size": 12,
+          "sha256": "2da9a6752e9f9f0597ab6e53d860d69a27799d91cb0d06b5fb048ba7b69f8727"
+        },
+        {
+          "address": "0x90ec7b6",
+          "size": 12,
+          "sha256": "12b7bc09bb3c6849686ae9dd74b31510e8e8b602102fc42529741820227bdda3"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8042989",
+      "literal": "0x90ec884",
+      "size": 4,
+      "sha256": "17b94144a81398be7ca35bf340ce279a353eb1505a4f3ded3a1d1715985c035a",
+      "refs": [
+        {
+          "address": "0x90ec800",
+          "size": 12,
+          "sha256": "b9ae18abd03d0ac4a058f3ba8fc8cd5f9501c5027c8fb3df97872bf60cd16a3a"
+        },
+        {
+          "address": "0x90ec86e",
+          "size": 12,
+          "sha256": "0d37c61a869b8d00d08621fd5323ba5de447bd9884b89553b80ffe1c03c4e034"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8042989",
+      "literal": "0x90ed02c",
+      "size": 4,
+      "sha256": "17b94144a81398be7ca35bf340ce279a353eb1505a4f3ded3a1d1715985c035a",
+      "refs": [
+        {
+          "address": "0x90eceb2",
+          "size": 12,
+          "sha256": "cb1b3ac60c34776164ad2952d2aa691e40f7dc80fd25dec79523f9777246c8b7"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8042989",
+      "literal": "0x90ed900",
+      "size": 4,
+      "sha256": "17b94144a81398be7ca35bf340ce279a353eb1505a4f3ded3a1d1715985c035a",
+      "refs": [
+        {
+          "address": "0x90ed6ce",
+          "size": 12,
+          "sha256": "22ca433e31f6ce6337cd20e4721b4f66f012e9cf3a83334b0a03c462dfc2ff05"
+        },
+        {
+          "address": "0x90ed7e0",
+          "size": 12,
+          "sha256": "a4f0d1a9fd4d4cdfecf5a7ca32cf8a24e28164b12e4c7ef6126f55db5732e20d"
+        },
+        {
+          "address": "0x90ed860",
+          "size": 12,
+          "sha256": "278a762dae1ea42f8680d7e5e838401f864fcff892514706b01775465751bca0"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8042989",
+      "literal": "0x90ee798",
+      "size": 4,
+      "sha256": "17b94144a81398be7ca35bf340ce279a353eb1505a4f3ded3a1d1715985c035a",
+      "refs": [
+        {
+          "address": "0x90ee6ce",
+          "size": 12,
+          "sha256": "73df6db7654d44b5f83ff767e28837fbd64249a918d6fd6681391ca45fc66cc8"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8042989",
+      "literal": "0x90ee9d8",
+      "size": 4,
+      "sha256": "17b94144a81398be7ca35bf340ce279a353eb1505a4f3ded3a1d1715985c035a",
+      "refs": [
+        {
+          "address": "0x90ee870",
+          "size": 12,
+          "sha256": "99425edc7a8e1c51b65bf6111e320ababb827f68b5ef643c93ef89cea7294122"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8042989",
+      "literal": "0x90ef43c",
+      "size": 4,
+      "sha256": "17b94144a81398be7ca35bf340ce279a353eb1505a4f3ded3a1d1715985c035a",
+      "refs": [
+        {
+          "address": "0x90ef1e0",
+          "size": 12,
+          "sha256": "3fca39ce9f5e51d7221ed6fcae302c9b38f5f0689cbb8236a1f9c00296e482ff"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8042989",
+      "literal": "0x90f1de4",
+      "size": 4,
+      "sha256": "17b94144a81398be7ca35bf340ce279a353eb1505a4f3ded3a1d1715985c035a",
+      "refs": [
+        {
+          "address": "0x90f1d48",
+          "size": 12,
+          "sha256": "0135d2514f04fa29880334395e054c2b9ea7dd6438e6babf820998cd4f935494"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8042989",
+      "literal": "0x90f3fd8",
+      "size": 4,
+      "sha256": "17b94144a81398be7ca35bf340ce279a353eb1505a4f3ded3a1d1715985c035a",
+      "refs": [
+        {
+          "address": "0x90f3db4",
+          "size": 12,
+          "sha256": "663432a9c68baf0656e01911a561d591883b56b62ff10a131f2e24c388ae92c1"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8042989",
+      "literal": "0x90fbd98",
+      "size": 4,
+      "sha256": "17b94144a81398be7ca35bf340ce279a353eb1505a4f3ded3a1d1715985c035a",
+      "refs": [
+        {
+          "address": "0x90fbd70",
+          "size": 12,
+          "sha256": "51b0dc7c4eecdc6d6b09285449cb2d0dec620466e1b8c48bf8f2e3fdea8cab8d"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8042989",
+      "literal": "0x90fbe6c",
+      "size": 4,
+      "sha256": "17b94144a81398be7ca35bf340ce279a353eb1505a4f3ded3a1d1715985c035a",
+      "refs": [
+        {
+          "address": "0x90fbdb6",
+          "size": 12,
+          "sha256": "494fad8b499b6c91e5840214ac89b92ce42046aed54a87e4d30933cfeb911078"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8042989",
+      "literal": "0x90fc044",
+      "size": 4,
+      "sha256": "17b94144a81398be7ca35bf340ce279a353eb1505a4f3ded3a1d1715985c035a",
+      "refs": [
+        {
+          "address": "0x90fbff8",
+          "size": 12,
+          "sha256": "d5e9ca62e61d99fa20b9945e1c3fbcfe2e1498ff670d0b4e11970025c94ad7b3"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8042989",
+      "literal": "0x9110388",
+      "size": 4,
+      "sha256": "17b94144a81398be7ca35bf340ce279a353eb1505a4f3ded3a1d1715985c035a",
+      "refs": [
+        {
+          "address": "0x9110294",
+          "size": 12,
+          "sha256": "f2a8b93343d414752f65d569f9358b843f91888fb76638bd5275af7ec2571441"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8042989",
+      "literal": "0x9114470",
+      "size": 4,
+      "sha256": "17b94144a81398be7ca35bf340ce279a353eb1505a4f3ded3a1d1715985c035a",
+      "refs": [
+        {
+          "address": "0x91143d4",
+          "size": 12,
+          "sha256": "3568fd12988765a0e33003aa299ff0693e39c3d0afbebe63e6afb2c3a64a22fe"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8042989",
+      "literal": "0x9114534",
+      "size": 4,
+      "sha256": "17b94144a81398be7ca35bf340ce279a353eb1505a4f3ded3a1d1715985c035a",
+      "refs": [
+        {
+          "address": "0x91144dc",
+          "size": 12,
+          "sha256": "d4da765e9876b348dc264b0fd4b230a9f4db8ad42a92dcd19607a2274e58e855"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8042989",
+      "literal": "0x9128ed8",
+      "size": 4,
+      "sha256": "17b94144a81398be7ca35bf340ce279a353eb1505a4f3ded3a1d1715985c035a",
+      "refs": [
+        {
+          "address": "0x9128eb4",
+          "size": 12,
+          "sha256": "d149447948a61c2bddc5fa4fa3dd5f732e22f8bb4430343cca66a3294e53990e"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8042989",
+      "literal": "0x9128f34",
+      "size": 4,
+      "sha256": "17b94144a81398be7ca35bf340ce279a353eb1505a4f3ded3a1d1715985c035a",
+      "refs": [
+        {
+          "address": "0x9128efc",
+          "size": 12,
+          "sha256": "49aa6b022e430b1aae71b5e8c11a293a3a158bb02f9cff913f011b77e53e1f74"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8042989",
+      "literal": "0x9131150",
+      "size": 4,
+      "sha256": "17b94144a81398be7ca35bf340ce279a353eb1505a4f3ded3a1d1715985c035a",
+      "refs": [
+        {
+          "address": "0x9131120",
+          "size": 12,
+          "sha256": "6da9c97b180da81191cf64fa476b0e0571258ee204e3aea7b51846c1eee51545"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8042989",
+      "literal": "0x91311e8",
+      "size": 4,
+      "sha256": "17b94144a81398be7ca35bf340ce279a353eb1505a4f3ded3a1d1715985c035a",
+      "refs": [
+        {
+          "address": "0x91311a4",
+          "size": 12,
+          "sha256": "60d78bec3cb7b074a0da0ce604fa9c0d8ec266208e728ac8891674554d140c53"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8042989",
+      "literal": "0x92cebd4",
+      "size": 4,
+      "sha256": "17b94144a81398be7ca35bf340ce279a353eb1505a4f3ded3a1d1715985c035a",
+      "refs": [
+        {
+          "address": "0x92cebb2",
+          "size": 12,
+          "sha256": "fb557430a2e70666d520c74fb08390b3da79a17daaebd8060f4410d56f0fc634"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8042989",
+      "literal": "0x92d1774",
+      "size": 4,
+      "sha256": "17b94144a81398be7ca35bf340ce279a353eb1505a4f3ded3a1d1715985c035a",
+      "refs": [
+        {
+          "address": "0x92d1762",
+          "size": 12,
+          "sha256": "6e228268e6588c25be6a9a6c114fe1963bdc159b3fd777486dde7ed25ceaecbe"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8042989",
+      "literal": "0x93bf25c",
+      "size": 4,
+      "sha256": "17b94144a81398be7ca35bf340ce279a353eb1505a4f3ded3a1d1715985c035a",
+      "refs": [
+        {
+          "address": "0x93bf246",
+          "size": 12,
+          "sha256": "7ea98bfc3dc84fc77a0fbf47b57b74948fb92177fed51eedc0639f733d854c81"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8042989",
+      "literal": "0x93c18f4",
+      "size": 4,
+      "sha256": "17b94144a81398be7ca35bf340ce279a353eb1505a4f3ded3a1d1715985c035a",
+      "refs": [
+        {
+          "address": "0x93c18ca",
+          "size": 12,
+          "sha256": "d07b2db290684d6926e1d2e554eb669e3eb5a72dd26f25302b91cfe032cfe441"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8042989",
+      "literal": "0x93c1944",
+      "size": 4,
+      "sha256": "17b94144a81398be7ca35bf340ce279a353eb1505a4f3ded3a1d1715985c035a",
+      "refs": [
+        {
+          "address": "0x93c191e",
+          "size": 12,
+          "sha256": "13cb16058d05e601827d2eb4426554149b0033864b01c3cb9ebda157101cda11"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8042989",
+      "literal": "0x93c1bd4",
+      "size": 4,
+      "sha256": "17b94144a81398be7ca35bf340ce279a353eb1505a4f3ded3a1d1715985c035a",
+      "refs": [
+        {
+          "address": "0x93c1ba0",
+          "size": 12,
+          "sha256": "6bde92e4ee61d5ead677b6e71634ad4e8fa470642796313794ef064798917253"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8042989",
+      "literal": "0x93c57d0",
+      "size": 4,
+      "sha256": "17b94144a81398be7ca35bf340ce279a353eb1505a4f3ded3a1d1715985c035a",
+      "refs": [
+        {
+          "address": "0x93c57a6",
+          "size": 12,
+          "sha256": "4734fbecbcb5041b7093d1f1f3e8fba4e5d08c4bc3e9043c11ce2102d5e86018"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x8042989",
+      "literal": "0x960cb94",
+      "size": 4,
+      "sha256": "17b94144a81398be7ca35bf340ce279a353eb1505a4f3ded3a1d1715985c035a",
+      "refs": [
+        {
+          "address": "0x960cb3c",
+          "size": 12,
+          "sha256": "d6c32ab7e16a6df6a0112795d62b3a756063746fd5b582b3024ff23e2ba308df"
+        }
+      ],
+      "reachability_status": "ORPHAN_CANDIDATE_STOCK_HOOK_ABSENT"
+    },
+    {
+      "target": "0x8042989",
+      "literal": "0x960cbe8",
+      "size": 4,
+      "sha256": "17b94144a81398be7ca35bf340ce279a353eb1505a4f3ded3a1d1715985c035a",
+      "refs": [
+        {
+          "address": "0x960cbbe",
+          "size": 12,
+          "sha256": "87f7680d55037d5bb3aca7c589528e766b42390a5c7fdf6eb9ba18306d3c552d"
+        }
+      ],
+      "reachability_status": "ORPHAN_CANDIDATE_STOCK_HOOK_ABSENT"
+    },
+    {
+      "target": "0x8042989",
+      "literal": "0x960cc2c",
+      "size": 4,
+      "sha256": "17b94144a81398be7ca35bf340ce279a353eb1505a4f3ded3a1d1715985c035a",
+      "refs": [
+        {
+          "address": "0x960cc08",
+          "size": 12,
+          "sha256": "5e10fce41ac81ef5cd8ac43fc17b065e5c46b301f93e21a4e3b65fd5840d5740"
+        }
+      ],
+      "reachability_status": "ORPHAN_CANDIDATE_STOCK_HOOK_ABSENT"
+    },
+    {
+      "target": "0x8042989",
+      "literal": "0x960cc6c",
+      "size": 4,
+      "sha256": "17b94144a81398be7ca35bf340ce279a353eb1505a4f3ded3a1d1715985c035a",
+      "refs": [
+        {
+          "address": "0x960cc4a",
+          "size": 12,
+          "sha256": "8110aa85e92f0e16502ac80cab9bc942f3d8bf4e1915af68db6cb0b54223f116"
+        }
+      ],
+      "reachability_status": "ORPHAN_CANDIDATE_STOCK_HOOK_ABSENT"
+    },
+    {
+      "target": "0x8042989",
+      "literal": "0x9ff5b9c",
+      "size": 4,
+      "sha256": "17b94144a81398be7ca35bf340ce279a353eb1505a4f3ded3a1d1715985c035a",
+      "refs": [
+        {
+          "address": "0x9ff5b7a",
+          "size": 12,
+          "sha256": "fb557430a2e70666d520c74fb08390b3da79a17daaebd8060f4410d56f0fc634"
+        }
+      ],
+      "reachability_status": "STATIC_LITERAL_LOAD_INVENTORY_NOT_RUNTIME_REACHABILITY_PROOF"
+    },
+    {
+      "target": "0x9131101",
+      "literal": "0x842936b",
+      "size": 4,
+      "sha256": "f97eaa20d5b84e93bd46494bf05d26e107f7c0026cab4212d9e99a6898c99bd5",
+      "refs": [],
+      "reachability_status": "BYTE_MATCH_ONLY_NO_PC_RELATIVE_CODE_LOAD_CONFIRMED"
+    },
+    {
+      "target": "0x9131101",
+      "literal": "0x8e50c6b",
+      "size": 4,
+      "sha256": "f97eaa20d5b84e93bd46494bf05d26e107f7c0026cab4212d9e99a6898c99bd5",
+      "refs": [],
+      "reachability_status": "BYTE_MATCH_ONLY_NO_PC_RELATIVE_CODE_LOAD_CONFIRMED"
+    }
+  ],
+  "limitations": [
+    "Direct-BL and literal scanning is an inventory, not a proof every matching range is runtime reachable.",
+    "DPE code at0x0960CB24 onward has no ordinary incoming BL or aligned pointer found and its documented stock entry hooks are absent; classify as orphan candidate rather than active.",
+    "Full persistent Save/Continue ABI and approved owner allocation are delegated to parent/storage audit.",
+    "No native run, tracked modification, commit, push or Actions dispatch performed."
+  ],
+  "source_audit": {
+    "main_overlays": {
+      "commit": "1c71d539e245d6a9fe83650b8a19ff3282e66c94",
+      "scope": "all overlay .c/.h/.S paths from pinned tree",
+      "matched_files": [
+        {
+          "path": "overlays/acquisition_runtime/acquisition_engine_adapter_rom.c",
+          "lines": [
+            149,
+            219,
+            387,
+            461,
+            683,
+            684
+          ],
+          "reachability_status": "SOURCE_REFERENCE_PRESENT_FIXED_ROM_MAPPING_IN_CHECKLIST"
+        },
+        {
+          "path": "overlays/facility_runtime/facility_runtime.c",
+          "lines": [
+            46,
+            213
+          ],
+          "reachability_status": "SOURCE_REFERENCE_PRESENT_FIXED_ROM_MAPPING_IN_CHECKLIST"
+        },
+        {
+          "path": "overlays/factory_high_modes_v2/factory_high_modes_v2.c",
+          "lines": [
+            254,
+            302,
+            838
+          ],
+          "reachability_status": "SOURCE_REFERENCE_PRESENT_FIXED_ROM_MAPPING_IN_CHECKLIST"
+        },
+        {
+          "path": "overlays/factory_shiny_memorial_runtime/factory_shiny_memorial_runtime.c",
+          "lines": [
+            89,
+            91,
+            92,
+            102,
+            136,
+            499,
+            500,
+            525
+          ],
+          "reachability_status": "SOURCE_REFERENCE_PRESENT_FIXED_ROM_MAPPING_IN_CHECKLIST"
+        },
+        {
+          "path": "overlays/qol_production/qol_production.c",
+          "lines": [
+            219,
+            393,
+            730
+          ],
+          "reachability_status": "SOURCE_REFERENCE_PRESENT_FIXED_ROM_MAPPING_IN_CHECKLIST"
+        },
+        {
+          "path": "overlays/reward_encounters_v2/reward_encounters_v2.c",
+          "lines": [
+            81,
+            197,
+            240,
+            427,
+            438,
+            828
+          ],
+          "reachability_status": "SOURCE_REFERENCE_PRESENT_FIXED_ROM_MAPPING_IN_CHECKLIST"
+        },
+        {
+          "path": "overlays/research_economy_v1/research_economy_v1.c",
+          "lines": [
+            246,
+            297,
+            1618
+          ],
+          "reachability_status": "SOURCE_REFERENCE_PRESENT_FIXED_ROM_MAPPING_IN_CHECKLIST"
+        },
+        {
+          "path": "overlays/stage58_qol_world_convenience/stage58_qol_item_adapter.c",
+          "lines": [
+            113
+          ],
+          "reachability_status": "SOURCE_REFERENCE_PRESENT_FIXED_ROM_MAPPING_IN_CHECKLIST"
+        }
+      ]
+    },
+    "cfru_top_level_src": {
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "scope": "all top-level src/*.c paths from pinned tree",
+      "matched_files": [
+        {
+          "path": "src/catching.c",
+          "lines": [
+            295,
+            669
+          ],
+          "reachability_status": "SOURCE_REFERENCE_PRESENT_FIXED_ROM_MAPPING_IN_CHECKLIST"
+        },
+        {
+          "path": "src/dexnav.c",
+          "lines": [
+            1419,
+            1882,
+            2012,
+            2022,
+            2055,
+            2068,
+            2084,
+            2305,
+            2756,
+            2797,
+            3515,
+            3574
+          ],
+          "reachability_status": "SOURCE_REFERENCE_PRESENT_FIXED_ROM_MAPPING_IN_CHECKLIST"
+        },
+        {
+          "path": "src/evolution.c",
+          "lines": [
+            700,
+            701
+          ],
+          "reachability_status": "SOURCE_REFERENCE_PRESENT_FIXED_ROM_MAPPING_IN_CHECKLIST"
+        },
+        {
+          "path": "src/util.c",
+          "lines": [
+            144,
+            146,
+            148,
+            150,
+            160,
+            174,
+            178
+          ],
+          "reachability_status": "SOURCE_REFERENCE_PRESENT_FIXED_ROM_MAPPING_IN_CHECKLIST"
+        }
+      ]
+    }
+  },
+  "artifact_validation": {
+    "rom_hash_matches": true,
+    "all_recorded_region_sha256_revalidated": true,
+    "raw_rom_fragments_included": false,
+    "native_validation_performed": false
+  }
+}
