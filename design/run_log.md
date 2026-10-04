@@ -12710,3 +12710,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Boundary: 実UIはSave101 authorityありの明示CRC fixture。authorityなしは隔離全writer/mode拒否だけ。valid wipe成功retry、valid-live専用画面owner衝突、HOF/overwrite固有副作用、全consumer/正式進行は未受入。正式ROM/Save101不変。
 - Commit: record source=4ede9c47c6bf8dc9b5ff9441b3daeeff5656e20e; 同branch非force push。
 - Network: 同repoActions/既存入力/固定一次source/公式Ubuntu compiler。公開はsource/address-size-SHA/text/screensのみ、ROM/入力save/runtime/runner/credential非公開。
+
+## 2026-10-04T21:48:47.342775+00:00
+- Timestamp: 2026-10-04T21:48:47.342775+00:00
+- Task: USER-20261004-DEX-CONSUMERS / 図鑑consumerと保存拒否記録終端
+- Version: dex-consumers-save-failure-closeout
+- Status: STOPPED（安全な候補限定受入点、全consumer/全modeは未完）
+- Summary: 保存失敗record run37237246747/job111538731599全12stepとartifact11316201657のCP全byte一致を確認しpending解除。完了したconsumer/failure recordをmanual-onlyへ。
+- Files changed: closeout source/workflow、2record起動条件、固定MDJSON、両ログ。
+- Verify: 固定state/source binding/全evidence/index/task graph PASS、host再試験0/ARM0/native0。source差分ごとのconsumer180/初期失敗152/変更gate＋oracle108/実UI1を記録済み。画像第一頁は同候補先行原本を再利用し追加native0。
+- Boundary: 正式ROM/Save101不変。次はvalid-live専用SaveFailedのtiles/video-state owner衝突、全mode固有副作用/実retryと残typed consumer。通常story/trainer131後半はまだ進めない。一般CI既知QOL source不一致、Stage79cache、旧9月18日queue非操作を保持。
+- Commit: closeout source=b63d524919be8b6f9a42d091dcb192d2f759333e; 同branch非force push。
+- Network: 同repoActions/既存text artifactとcommitのみ。ROM/save/runtime/runner/credentials追加公開0。

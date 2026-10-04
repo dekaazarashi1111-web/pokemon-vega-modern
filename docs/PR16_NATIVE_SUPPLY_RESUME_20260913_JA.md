@@ -466,6 +466,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-候補限定のload/newgame接続、隔離ARM52case、通常Save101移行とNewGame初回Save/独立coldを受入。受入4processのうち原本3再利用＋新cold1、記録native0。画像6枚正常と追加無入力4画面、全SaveRTC保持を確認。record全12stepとartifact/commit checkpointを全byte照合。正式ROM/Save101不変。全consumer、全mode固有副作用、実失敗UIは未完。一般CI既知QOL source不一致、Stage79 cacheは新nativeではない。
+candidate-only battle seen5/公式countとinvalid-live非破壊通常エラーを限定受入。旧SaveFailedのtiles/video-state衝突を原本保持し、valid-live失敗/全mode/残consumerは未完。UIの第一頁画像だけ同候補先行原本を再利用、最終頁/fieldは成功原本。全FlashRTC不変、record12step/receiptCP全byte一致。正式ROM/Save101保持。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
