@@ -4361,12 +4361,13 @@
   "observed_head": "5860c3d2c5fcd8edb98f999178fc690e9775140a",
   "observed_head_checks": {
     "all12_record_steps_success": true,
-    "gameplay_accepted": false,
+    "all_consumers_wired": false,
+    "gameplay_accepted": true,
     "general_ci_known_source_mismatch_not_resolved": true,
-    "reason_ja": "保存scheduler候補は全10step、18generator/20host/19隔離ARM/36calls、EWRAM non-ownerとSP/r4-r11を限定受入。record全12stepとartifact/commit checkpointの全byteを照合。正式ROM/Save101不変。通常保存・新規ゲーム・外側load gate・全consumerは未完。一般CI既知QOL source不一致、Stage79 cacheは新nativeではない。",
-    "record_run": 37228900963,
-    "scheduler_run": 37228557062,
-    "scope_head": "b65b53e70895c124e9d00709f47fc0c66a7b07d5"
+    "lifecycle_run": 37231996230,
+    "reason_ja": "候補限定のload/newgame接続、隔離ARM52case、通常Save101移行とNewGame初回Save/独立coldを受入。受入4processのうち原本3再利用＋新cold1、記録native0。画像6枚正常と追加無入力4画面、全SaveRTC保持を確認。record全12stepとartifact/commit checkpointを全byte照合。正式ROM/Save101不変。全consumer、全mode固有副作用、実失敗UIは未完。一般CI既知QOL source不一致、Stage79 cacheは新nativeではない。",
+    "record_run": 37232613702,
+    "scope_head": "5860c3d2c5fcd8edb98f999178fc690e9775140a"
   },
   "observed_head_history": [
     {
@@ -12377,13 +12378,7 @@
     "status": "NATIVE_PARTY_RETENTION_ACCEPTED_BP_PENDING",
     "tested_head": "10e535a046441dd3b797918106259b5c57b69716"
   },
-  "pending_runs": [
-    {
-      "run_id": 37232613702,
-      "status": "in_progress",
-      "tested_head": "5860c3d2c5fcd8edb98f999178fc690e9775140a"
-    }
-  ],
+  "pending_runs": [],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
   "pr_draft": true,
   "pr_merged": false,
@@ -14174,9 +14169,13 @@
       "sha256": "3a046bfda0815f2aa8e8d738171ce03c5e952f3afa4349611990c7ede6403666",
       "size": 1986
     },
+    ".github/workflows/pr16-dex-lifecycle-closeout.yml": {
+      "sha256": "410d423551a822b34d96f8671cc98acce0ba0c66d6ca5aabf2d2fc23a9e38183",
+      "size": 2430
+    },
     ".github/workflows/pr16-dex-lifecycle-record.yml": {
-      "sha256": "cb36de9921526e754587af3fe0153a79eb7278d0e3a893f8d0dd19e2cbbaa3f7",
-      "size": 2408
+      "sha256": "dc5126e354d5d150e2a6d39ade6ee27a0d36eba05149da597e605da03ae69f99",
+      "size": 2306
     },
     ".github/workflows/pr16-dex-lifecycle.yml": {
       "sha256": "f14307f02eb84df931f704d2b030562da89251732a5cd654fae5f7025f894357",
@@ -32358,6 +32357,10 @@
       "sha256": "6f9ebb33d3dd7b420dbf1ab9e414b9242cdf137f595d67a308a1db3f2835d050",
       "size": 6414
     },
+    "scripts/pr16_dex_lifecycle_closeout.py": {
+      "sha256": "394faef8a31da547bd42f07a99c9710c383110f85e0f1cd88ed8bdc494166fc4",
+      "size": 7757
+    },
     "scripts/pr16_dex_lifecycle_record.py": {
       "sha256": "372ba8db74bc395fd9d39eab37e9fe95e95e3103941875014dae8ec1a8a15957",
       "size": 15261
@@ -38217,6 +38220,30 @@
         "ordinary_save_continue_accepted": true,
         "outer_load_guard_wired": true,
         "record_run": 37232613702,
+        "recording": {
+          "all12_steps_success": true,
+          "archive_sha256": "7ed5885de00d2ca3dbd2b87975dd34b80dec45cc44517bd49796583a1d8060ae",
+          "archive_size": 21306,
+          "arm_compiles": 0,
+          "artifact": 11313869049,
+          "artifact_equals_committed_checkpoint": true,
+          "checkpoint": "content/modernization/pr16_dex_lifecycle_checkpoint.json",
+          "checkpoint_identity": {
+            "sha256": "e8d31e99f75b36d0789a8c3123afc0bbdaeb35093b312afc6306d8cbbec9ec8d",
+            "size": 104461
+          },
+          "closeout_run": 37232759039,
+          "closeout_source": "56ac8c45ba382ed70b5b5b60e75650e75198b83b",
+          "completion": "b67ecf975da589f36f50943a14fb718058a88f20",
+          "formal_rom_changed": false,
+          "formal_save_changed": false,
+          "host_tests_rerun": 0,
+          "job": 111525319786,
+          "native_processes": 0,
+          "run": 37232613702,
+          "source": "5860c3d2c5fcd8edb98f999178fc690e9775140a",
+          "status": "PASS_TERMINAL_RECORD_AND_WHOLE_ARTIFACT_READBACK"
+        },
         "status": "PASS_CANDIDATE_ORDINARY_DEX_SAVE_CONTINUE_NEWGAME"
       },
       "native_lifetime_run": 37217077790,

@@ -9930,3 +9930,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Boundary: 正式ROM/Save101不変。初回STARTのflag83E/1bitのみsource/ROM窓で同定し、保存原本から逆変換で全進行hashを復元。NewGame初回はtype4、Save101はtype0。全consumer、高ownerの自然登録、全save mode、authorityなし保存失敗UIは未受入。初回run37230632321はcompile診断/native0、run37231227293と37231607258はNewGame差分診断failureのまま保持。
 - Commit: record source=5860c3d2c5fcd8edb98f999178fc690e9775140a; 同branch非force push。
 - Network: 同repoGitHub/Actions/既存入力と公式Ubuntu toolchain。公開はsource/最小address-size-SHA/text/screens/承認済の新候補saveのみ。入力save/ROM/runtime/runner非公開。
+
+## 2026-10-04T20:37:02.912490+00:00
+- Timestamp: 2026-10-04T20:37:02.912490+00:00
+- Task: USER-20261004-DEX-LIFECYCLE / 図鑑load/newgame保存記録終端
+- Version: dex-lifecycle-v1-closeout
+- Status: DONE（候補通常lifecycleの記録終端。全consumer等は次工程）
+- Summary: record run37232613702/job111525319786全12step成功。artifact11313869049のreceiptとcommit checkpointを全byte照合し、pendingを解除。完了記録はmanual-onlyへ移す。
+- Files changed: closeout source/workflow、record起動条件、固定MDJSON、両ログ。
+- Verify: artifact/固定state/source binding/index/task graph PASS。host再試験0/ARM0/native0/正式ROM・Save変更0。元scheduler/codec/44export保持、追加wrapper188byte、allocator109owner/overlap0。正常fallback維持/無効MDXはglobal2でContinue遮断、newgame tailを接続。
+- Commit: closeout source=56ac8c45ba382ed70b5b5b60e75650e75198b83b; 同branch非force push。
+- Network: 同repoActions/commit/既存text artifactのみ。一般CI既知QOL不一致、Stage79 cache、旧9月18日queue非操作を保持。

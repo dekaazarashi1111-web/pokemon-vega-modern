@@ -464,6 +464,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-保存scheduler候補は全10step、18generator/20host/19隔離ARM/36calls、EWRAM non-ownerとSP/r4-r11を限定受入。record全12stepとartifact/commit checkpointの全byteを照合。正式ROM/Save101不変。通常保存・新規ゲーム・外側load gate・全consumerは未完。一般CI既知QOL source不一致、Stage79 cacheは新nativeではない。
+候補限定のload/newgame接続、隔離ARM52case、通常Save101移行とNewGame初回Save/独立coldを受入。受入4processのうち原本3再利用＋新cold1、記録native0。画像6枚正常と追加無入力4画面、全SaveRTC保持を確認。record全12stepとartifact/commit checkpointを全byte照合。正式ROM/Save101不変。全consumer、全mode固有副作用、実失敗UIは未完。一般CI既知QOL source不一致、Stage79 cacheは新nativeではない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
