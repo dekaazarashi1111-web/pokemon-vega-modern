@@ -1,0 +1,54 @@
+name: pr16-dex-gameplay
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - scripts/pr16_dex_gameplay.py
+      - scripts/pr16_dex_gameplay_actions.py
+      - tools/mgba_pr16_dex_gameplay.h
+      - tests/test_pr16_dex_gameplay.py
+      - .github/workflows/pr16-dex-gameplay.yml
+permissions:
+  contents: read
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-dex-gameplay
+  cancel-in-progress: false
+defaults:
+  run:
+    shell: bash
+jobs:
+  lifecycle:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.run_attempt == 1
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 24
+      - name: Exact candidate gameplay scope and source guard
+        run: python3 -B scripts/pr16_dex_gameplay_actions.py guard
+      - name: Official Ubuntu ARM compiler
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-dev libmgba-dev
+      - name: Ordinary Save101 migration, newgame, Save and independent cold Continue
+        run: python3 -B scripts/pr16_dex_gameplay_actions.py run
+      - name: Lightweight task graph
+        run: python3 -B scripts/validate_task_graph.py --check
+      - name: Strict declared text, screen and new-save publication guard
+        id: publication_guard
+        if: always()
+        run: python3 -B scripts/pr16_dex_gameplay_actions.py export
+      - uses: actions/upload-artifact@v4
+        if: ${{ always() && steps.publication_guard.outcome == 'success' }}
+        with:
+          name: pr16-dex-gameplay-candidate-evidence
+          path: public-dex-gameplay
+          retention-days: 90
+          if-no-files-found: warn
