@@ -34,6 +34,7 @@ def run():
   need(identity(before)==placement.lease.CANDIDATE,'exact formal ROM source')
   payload,codec=placement.link(OUT/'codec');need(codec['payload']==dict(size=5022,sha256='0541f69c476c5d4faf8fb62fcfa923395d7ba70925844d928a9594869feaeda9'),'unchanged accepted codec reconstruction')
   placed,old=placement.place(before,payload,codec['symbols']);after=scheduler.apply(placed,patches)
+  allocator=scheduler.update_allocation(placed,after,old['allocation'])
   candidate=OUT/'scheduler-candidate.gba';candidate.write_bytes(after)
   package=subprocess.check_output(['dpkg-query','-W','-f=${Version}','libmgba-dev'],text=True).strip()
   need(package=='0.10.2+dfsg-1.1build3','fixed mGBA package')
@@ -47,7 +48,7 @@ def run():
   rows=[json.loads(x)for x in tested.stdout.splitlines()];native=rows[-1]
   need(rows[:-1]==[dict(case=i)for i in range(1,20)]and native['cases']==19 and native['status']=='PASS_ISOLATED_ARM_SCHEDULER_SYNTHETIC_FLASH','all19 native scheduler cases')
   need(candidate.read_bytes()==after,'private candidate unchanged by harness');write(PUBLIC/'native.json',native)
-  write(PUBLIC/'build.json',dict(status='PASS_ISOLATED_SAVE_SCHEDULER_CANDIDATE',source_head=os.environ['GITHUB_SHA'],run_id=int(os.environ['GITHUB_RUN_ID']),link=linked,candidate=identity(after),formal_candidate=identity(before),codec_native_reruns=0,native_processes=1,native=native,formal_rom_changed=False,formal_save_changed=False,gameplay_accepted=False,remaining=['outer sector31 load ordering','newgame init','save mode fault matrix','all consumers'],source_bindings={p:identity((ROOT/p).read_bytes())for p in sorted(CODE)}))
+  write(PUBLIC/'build.json',dict(status='PASS_ISOLATED_SAVE_SCHEDULER_CANDIDATE',source_head=os.environ['GITHUB_SHA'],run_id=int(os.environ['GITHUB_RUN_ID']),link=linked,allocation=allocator,candidate=identity(after),formal_candidate=identity(before),codec_native_reruns=0,native_processes=1,native=native,formal_rom_changed=False,formal_save_changed=False,gameplay_accepted=False,remaining=['outer sector31 load ordering','newgame init','save mode fault matrix','all consumers'],source_bindings={p:identity((ROOT/p).read_bytes())for p in sorted(CODE)}))
  except Exception as e:
   diagnostic=OUT/'scheduler/link-diagnostic.json'
   if diagnostic.exists():(PUBLIC/'link-diagnostic.json').write_bytes(diagnostic.read_bytes())

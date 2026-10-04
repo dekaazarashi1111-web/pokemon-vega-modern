@@ -5,7 +5,7 @@ Original source/data and non-save code are immutable. This generator produces
 an isolated candidate, never the formal story ROM or any input save.
 """
 from __future__ import annotations
-import functools,hashlib,json,re,struct,subprocess,sys
+import copy,functools,hashlib,json,re,struct,subprocess,sys
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 sys.path[:0]=[str(ROOT/'scripts'),str(ROOT)]
@@ -14,11 +14,7 @@ need,identity=placement.need,placement.identity
 SOURCE='overlays/stage61_display_npc_event_audit/stage61_display_npc_event_audit.c'
 PROOF='content/modernization/pr16_dex_stage61_relink_inputs.json'
 EXPORTS=tuple(x['name'] for x in json.loads((ROOT/PROOF).read_bytes())['symbols'] if x['name'].startswith('Stage61State_'))
-RETAIN=('stage61_read32','stage61_crc_byte','stage61_state_crc','stage61_state_record_byte',
- 'stage61_save_expected_chunk_data','stage61_save_chunk_descriptor_is_valid',
- 'stage61_save_all_descriptors_are_valid','stage61_save_validations_match',
- 'stage61_save_physical_sector_for_id','stage61_save_section_crc32',
- 'stage61_save_reject_written_target_sector','stage61_save_mark_damaged','stage61_save_clear_damaged')
+RETAIN=('stage61_read32',)
 
 def proof():return json.loads((ROOT/PROOF).read_bytes())
 def function_span(source,name):
@@ -130,11 +126,8 @@ static __attribute__((noinline)) u8 stage61_dex_fail_live(void)
     # Shared original helpers/data retain their physical addresses and bytes.
     for name in (() if host else RETAIN):
         a,b,c=function_span(source,name)
-        decl=' '.join(source[a:b].replace('static ','',1).strip().split())
-        ret,params=decl.split(name,1)
-        address=next(x['address']for x in p['symbols']if x['name']==name)|1
-        macro='#define '+name+' (('+ret.strip()+' (*)'+params+') (uintptr_t)'+hex(address)+'u)'
-        source=source[:a]+macro+source[c:]
+        decl=source[a:b].replace('static ','',1).strip()+';'
+        source=source[:a]+decl+source[c:]
     for name in (() if host else ('sStage61SaveChunkOffsets','sStage61SaveChunkSizes')):
         pattern=r'static const u16 '+name+r'\[STAGE61_SAVE_SLOT_SECTORS\] = \{.*?\};'
         source,n=re.subn(pattern,'extern const u16 '+name+'[STAGE61_SAVE_SLOT_SECTORS];',source,flags=re.S);need(n==1,'exact retained data '+name)
@@ -145,7 +138,7 @@ def windows():
     rows=proof()['symbols'];out=[]
     for row in rows:
         name=row['name']
-        if name in RETAIN or not name.startswith(('Stage61State_','stage61_save_','stage61_state_')):continue
+        if name in RETAIN or not name.startswith(('Stage61State_','stage61_save_','stage61_state_','stage61_crc_')):continue
         start=row['address'];size=row['size']
         if name in EXPORTS:start+=16;size-=16
         if size>0:out.append((start,start+size))
@@ -263,8 +256,22 @@ def apply(before,patches):
         covered=set(range(address,address+len(data)));need(not covered&occupied,'nonoverlapping patch');occupied|=covered
         at=address-0x08000000;after[at:at+len(data)]=data
     for x in p['symbols']:
-        if x['name'].startswith(('Stage61State_','stage61_save_','stage61_state_'))and x['name']not in RETAIN:continue
+        if x['name'].startswith(('Stage61State_','stage61_save_','stage61_state_','stage61_crc_'))and x['name']not in RETAIN:continue
         at=x['address']-0x08000000;need(after[at:at+x['size']]==before[at:at+x['size']],'retained original symbol '+x['name'])
     reserve=placement.BASE+5024-0x08000000;reserve_end=placement.lease.END
     need(after[:start]==before[:start]and after[end:reserve]==before[end:reserve]and after[reserve_end:]==before[reserve_end:],'all other owners including next hotfix and accepted codec exact')
     return bytes(after)
+
+
+def update_allocation(before,after,allocation):
+    out=copy.deepcopy(allocation);changed=[]
+    for row in out['allocations']:
+        lo,hi=row['start'],row['end_exclusive']
+        if before[lo:hi]==after[lo:hi]:continue
+        need(row['name']in('display_npc_event_audit_stage61_payload',placement.NAME),'only Stage61 and transferred codec owner')
+        need(hashlib.sha256(before[lo:hi]).hexdigest()==row['content_sha256'],'whole prior allocator content identity')
+        row['content_sha256']=hashlib.sha256(after[lo:hi]).hexdigest();changed.append(row['name'])
+    need(set(changed)=={'display_npc_event_audit_stage61_payload',placement.NAME},'exact two existing owner content updates')
+    rebuilt=placement.rebuild_allocation(out)
+    need(rebuilt==out and rebuilt['summaries']==allocation['summaries'],'canonical allocator and all ownership bounds unchanged')
+    return out

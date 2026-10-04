@@ -24,6 +24,9 @@ static color_t video[240*160];
 static uint8_t flash_bytes[32][4096],live[522],backup[14*4096];
 static unsigned reads,erases,programs,stock_calls,checks,calls;
 static uint64_t steps;
+static uint8_t ram_before[262144];
+static int owns(uint32_t a)
+{ return (a>=SB1&&a<SB1+0x3D40)||(a>=SB2&&a<SB2+0xF24)||(a>=PCBOX&&a<PCBOX+0x83D0)||(a>=BUFFER&&a<BUFFER+4096)||(a>=LIVE&&a<LIVE+522)||(a>=0x0203B0E8&&a<0x0203B6E8)||(a>=0x0203B6EC&&a<0x0203B6EE)||(a>=0x0203B78C&&a<0x0203B790); }
 static int fail_after=-1,lie_after=-1;
 static const uint16_t sizes[]={0xF24,0xF80,0xF80,0xF80,0xEC0,0xF80,0xF80,0xF80,0xF80,0xF80,0xF80,0xF80,0xF80,0x7D0};
 static const uint16_t offsets[]={0,0,0xF80,0x1F00,0x2E80,0,0xF80,0x1F00,0x2E80,0x3E00,0x4D80,0x5D00,0x6C80,0x7C00};
@@ -51,7 +54,7 @@ static int callback(void)
 }
 static uint32_t call(uint32_t address,uint32_t a,uint32_t b)
 {
- calls++;set("cpsr",0xDF);set("sp",STACK);set("lr",0x08000001);
+ get(0x02000000,ram_before,262144);calls++;set("cpsr",0xDF);set("sp",STACK);set("lr",0x08000001);
  for(unsigned i=0;i<12;i++){char n[8];snprintf(n,sizeof(n),"r%u",i);set(n,i==0?a:i==1?b:0x77000000+i);}
  set("cpsr",0xFF);set("pc",address|1u);
  for(unsigned i=0;;i++){
@@ -59,6 +62,7 @@ static uint32_t call(uint32_t address,uint32_t a,uint32_t b)
   if(!callback()){c->step(c);steps++;}
  }
  need(reg("sp")==STACK,"stack retained");for(unsigned i=4;i<12;i++){char n[8];snprintf(n,sizeof(n),"r%u",i);need(reg(n)==0x77000000+i,"callee saved register retained");}
+ for(unsigned i=0;i<262144;i++)if(!owns(0x02000000+i))need(c->busRead8(c,0x02000000+i)==ram_before[i],"non-owner EWRAM unchanged");
  return reg("r0");
 }
 static void reset(void)
@@ -96,5 +100,5 @@ int main(int argc,char **argv)
  need(call(Stage61State_EnsureBackupGeneration,CHUNKS,0)==1&&r32(COUNTER)==1,"backup keeps selector");need(!memcmp(flash_bytes[at-14]+0xDE6,old,522),"backup exact old MDX");count();
  need(call(Stage61State_UpdateRecordOnly,CHUNKS,0)==1&&r32(COUNTER)==2,"record only commit");get(LIVE,live,522);need(!memcmp(flash_bytes[at-14],old_pc,sizeof(old_pc))&&!memcmp(flash_bytes[at-14]+0xDE6,live,522),"record only PC unchanged MDX current");count();
  for(unsigned f=0;f<2;f++){reset();saved();memcpy(backup,flash_bytes+14,sizeof(backup));access(1000,2);if(f==0)fail_after=programs+522;else lie_after=programs+0xDE7;need(call(Stage61State_HandleSavingData,0,0)==255&&r32(COUNTER)==1&&!memcmp(backup,flash_bytes+14,sizeof(backup)),"torn or lying write preserves source");count();}
- printf("{\"status\":\"PASS_ISOLATED_ARM_SCHEDULER_SYNTHETIC_FLASH\",\"cases\":%u,\"calls\":%u,\"steps\":%llu,\"native_processes\":1,\"game_boots\":0,\"ordinary_saves\":0,\"formal_save_changed\":false}\n",checks,calls,(unsigned long long)steps);fflush(stdout);mCoreConfigDeinit(&c->config);c->deinit(c);return 0;
+ printf("{\"status\":\"PASS_ISOLATED_ARM_SCHEDULER_SYNTHETIC_FLASH\",\"cases\":%u,\"calls\":%u,\"steps\":%llu,\"native_processes\":1,\"ewram_bytes_checked_per_call\":262144,\"game_boots\":0,\"ordinary_saves\":0,\"formal_save_changed\":false}\n",checks,calls,(unsigned long long)steps);fflush(stdout);mCoreConfigDeinit(&c->config);c->deinit(c);return 0;
 }
