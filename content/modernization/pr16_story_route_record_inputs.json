@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "runs": [
+    {
+      "run": 37205259977,
+      "job": 111445017742,
+      "source": "933249c02e55bc7f71c1d3e0586e2605f0a631f8",
+      "artifact": 11304301923,
+      "archive": {
+        "size": 28032,
+        "sha256": "c71ba57f19d9600a01c10b4f9c4ceb5bfa52c6868b054ffa4339dc1f547043bf"
+      },
+      "reason": "unowned_walking_save1"
+    },
+    {
+      "run": 37205641114,
+      "job": 111446144048,
+      "source": "fc4dc8bee0a10d105abd28b21fed656e0002e993",
+      "artifact": 11304159006,
+      "archive": {
+        "size": 461241,
+        "sha256": "5e61d622016e1f24f601429ec9b01134f0f9abb58757d7cb2eb37afb21264224"
+      },
+      "reason": "new_route_event_observation"
+    },
+    {
+      "run": 37206318654,
+      "job": 111448134583,
+      "source": "da0624bc098904c785a346f5531cf9847e6b0aa0",
+      "artifact": 11305345112,
+      "archive": {
+        "size": 469071,
+        "sha256": "77acfa83bbce04a210c02fa3b1de2fc868a7010e479ba92a1679a25e76480b91"
+      },
+      "reason": "battle_entry_ui_observed_without_command"
+    },
+    {
+      "run": 37207201375,
+      "job": 111450759151,
+      "source": "cf93d4cd70963aa587802ac7e305830029ff802e",
+      "artifact": 11305616098,
+      "archive": {
+        "size": 585893,
+        "sha256": "e534eca67b4ffa648dd6a082454aa84c2303d1a3e0a827e140ae5ca128a1b1d8"
+      },
+      "reason": "ordinary_wild_ui_scope"
+    },
+    {
+      "run": 37208042999,
+      "job": 111453278820,
+      "source": "28261b8982f70b8482cd10af25f6ee32ed0e0c53",
+      "artifact": 11305787045,
+      "archive": {
+        "size": 730200,
+        "sha256": "477376641094b45aa5315e2fb5f45f0aaf42e747140edd947bfeacdb78eac084"
+      },
+      "reason": "new_route_event_observation"
+    }
+  ],
+  "summary_ja": "正式Save101は変更せず、固定ROMの時計5byte/research minute/歩数/空daycare/friendship/暗号化統計を閉じて検証。現在trainer131/128/1065の各4体・物理flag・実reward hookを解決。通常wildニドラン♂32/Lv13で実Fight→Earthquake89、勝利1、PP9→8、HP277/294、全party残byte/全persistent平文・再暗号化・seen・QOL cleanupを確認。観測68で通常field lock0/画面clear、その後9歩を保存せず継続し、50歩目(38,6)のtrainer131視線で未保存停止。最新164入力/83画面、walking ledger49歩/15旋回、battle ledger1。総5新native/5compileは未保存の変更影響診断で、旧Save101以前再走0。80host（clock47/battle29/publication4）と全原本を照合。初回daycare1byte差/旧field fade停止を失敗原本として保持。公開物は98個の明示text/screens、hidden収集/ROM/inputSave/runtime/runner0。一般CI QOL source不一致は既存残件、Stage79の7domainは同入力cacheを再利用/native再走0。",
+  "next_goal_ja": "正式再開はSave101 artifact11303305200/story-fast.srm（131088bytes、SHA256814a8e31ce20d720a1f1bddc08caa9cdd3d86b5bbb874738b9cb859653552149）、506番道路3/24(53,13)西。最新未保存診断はrun37208042999/artifact11305787045、50歩目3/24(38,6)でtrainer131の視線/lock1。残留battle flags4/outcome1は直前wild1勝であり、trainerの新勝利ではない。Save101のHP277/294/PP3,9,8,2から、first wild後はPP3,8,8,2。新adapterはそのwild32/Lv13の通常Earthquake1回、全state/field復帰/次歩を受入済みだが、multi-battle/シオウ回復施設未達。次はtrainer131の接近・会話・actual4体・物理flag1411/賞金448/UIと後続128（flag1408/1700）、1065（physical1416/504）を明示ownerへ接続。原本source_bindingsと未保存の失敗区間を保持して、対応済通常戦はcompact ledger後に継続し、雑魚戦ごとのSaveを作らない。最終milestoneは506→519→シオウPokecenter7/3、町door22,19、counter7,3、nurse7,2、対面7,4北で通常回復/Save/fresh Continue。未知callback/event/UI/warp/owner/資源不足は診断停止。次もpublic artifactは事前検査した非hidden専用dirの.json/.txt/.ppmだけ。NationalDex4072=9→10/研究所special367/var11、その後の自然EXP/進化/LuckyEgg/12境界/Lv100soakは未完。既知一般CI期待hash変更・flag注入・進化gate回避・newbalance・merge/release/baseline切替なし。",
+  "visual_review": {
+    "reviewed": true,
+    "scope": "Selected same-frame original screens; all screenshot bytes verified, not all pixels manually reviewed",
+    "run": 37208042999,
+    "screen_indices": [
+      0,
+      51,
+      52,
+      58,
+      59,
+      60,
+      61,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      76,
+      80,
+      81,
+      82
+    ],
+    "findings": [
+      "current Save101 field",
+      "Nidoran male level13 intro",
+      "actual Fight and Earthquake cursor/9PP",
+      "Earthquake animation and foe fainted",
+      "postbattle dark fade then clear field68",
+      "normal walking beyond one wild battle",
+      "trainer131 sight exclamation at38,6"
+    ],
+    "all_original_screens_manually_reviewed": false,
+    "save_or_facility_completion_claimed": false
+  },
+  "ci": {
+    "source": "28261b8982f70b8482cd10af25f6ee32ed0e0c53",
+    "general": {
+      "run": 37208042977,
+      "job": 111453278579,
+      "status": "failure",
+      "error": "tested source changed: overlays/qol_production/qol_production.c",
+      "known_prior_debt": true
+    },
+    "stage79": {
+      "run": 37208042984,
+      "all_seven_domains_cache_reused": true,
+      "new_native_domain_runs": 0
+    }
+  }
+}
