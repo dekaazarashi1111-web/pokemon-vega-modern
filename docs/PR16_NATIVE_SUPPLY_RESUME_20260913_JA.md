@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-Save100/ミルシティ4,17北。Ranger実正面会話/ダグトリオ解放完了、4072=3/4380set/全party保持。次は西connection候補へ。
+Save101/506番道路53,13西。解放後の地域接続milestone受入。次は506→519→シオウPokecenter通常回復。
 
-**次: Save100 artifact11302156714のstory-fast.srm（131088bytes/SHA256 9a4185c74f4906eb05de0167f082fa70de166caf42c5aa6bf7a9fe85bfee77ff）だけから再開。ミルシティ3/2・4,17北。実Ranger20,29の正面20,28南から通常会話、warp5,16→自動2歩→ダグトリオ解放→最初fieldでSave100/Continueを限定受入。4072=3/4380set、4352最終set、4382/4383/紙0/4061=1/23114円/バッジ2/全party600byte/HP277/294/PP3,9,8,2保持。回復分岐なし/新戦闘0/プレイヤー捕獲0。次は西へ4歩、通常西connection3/24・53,13候補を固定床behavior0/offset4/逆offset-4/実画面で確認し、最初の新fieldでSave101/独立Continue。Ranger/解放scene/博物館/接近61歩を再走しない。4021=93/4022=3、通常2歩だけ加算でscript自動2歩は加算なし、次friendship周期35歩。progress RAM454211fdとcold1a34e64cは別hash、owner未解明。過去RAM53/42/2056も保持。95+cold13入力/54画面、45最終Flash一致でもcounter99/保存中、46counter100で別途中hash、47安定hash/成功、51clearfield。cold全SaveRTC保持、pixel差564/408/588は花animation11tileだけ。39controller=初回38成功＋訂正1、新62受入、native成功2/失敗0/事前失敗1/記録native0/旧成功再走0。初回run37198607755は正本写しの末尾改行hash差でnative0停止し原本不変。JSON/text fixtureのSHAはGit正本の最終改行を含むbyte列から算出し、次commitをbranchへ反映する前にremote blob全byteを送信元と一致確認。改行正規化で差分を消さず、失敗原本は保持。受入済みunit/nativeは再走しない。 Save99記録run37197809471全11step終端同期。ROM/runtime非再配布、ROM変更/host補充/merge/release/baseline変更0。全国図鑑/自然成長進化/全story/release未受入。一般CI既知qol_production.c不一致を全成功としない。warp-tableの座標だけで発火可能と判断しない。毎回固定ROMのtile behaviorと必要方向を確認し、通常着地/矢印/方向階段/境界connectionを区別する。実画面の出口は裏付け。無入力自動歩行は実測まで未確認。**
+**次: Save101 artifact11303305200のstory-fast.srm（131088bytes/SHA256 814a8e31ce20d720a1f1bddc08caa9cdd3d86b5bbb874738b9cb859653552149）だけから再開。506番道路3/24・53,13西。解放後の町から通常西接続、5歩/1旋回/新戦闘0、通常Save101/独立Continueを地域milestoneとして受入。HP277/294・PP3,9,8,2、全party600byte/Bag/23114円/2badge/4072=3/4352・4380・4382・4383保持。4021=98/4022=3、friendship周期まで30歩。次の意味ある到達点は506→519→シオウシティのPokecenter7/3で通常回復/Save/fresh Continue。相互connection3/24→3/37→3/3、町door22,19→7/3 warp0、nurse7,2/counter7,3/対面候補7,4北を固定ROMから照合。全tile経路・trainer視線・野生/資源observer・counter会話ownerは実行前に解決。西出口登録だけで通行可としない。対応済通常戦はcompact ledgerへ記録して宣言済milestoneへ継続、全雑魚戦ごとのSaveを作らない。未知callback/event/warp/owner/UI/観測差/資源不足は診断停止し、milestone達成とは呼ばない。下流はシオウジム11/3・キリtrainer418・badge2084のmajor milestone。正常4072=9→10/研究所special367/var11の全国図鑑、その後の別progression自然EXP/進化/LuckyEgg/12境界/Lv100soakは未完。Save25〜100証拠、RAM53/42/Save100差/2056未解明を保持。汎用継続host検査を連戦native受入にしない。58+cold13入力35画面/新63controller/47受入/native2/記録native0/旧成功再走0。一般CI既知QOL source不一致やfinalHEAD action_requiredを全成功としない。ROM/runtime再公開/flag注入/進化回避/新balance/merge/release/baseline切替0。**
 
-Save100の4,17北から西connectionへ。最初の新fieldでSave101/独立Continue。解放済Ranger/町scene/61歩接近を再走しない。warp-tableの座標だけで発火可能と判断しない。毎回固定ROMのtile behaviorと必要方向を確認し、通常着地/矢印/方向階段/境界connectionを区別する。実画面の出口は裏付け。無入力自動歩行は実測まで未確認。 JSON/text fixtureのSHAはGit正本の最終改行を含むbyte列から算出し、次commitをbranchへ反映する前にremote blob全byteを送信元と一致確認。改行正規化で差分を消さず、失敗原本は保持。受入済みunit/nativeは再走しない。
+通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `b83dcb3d7a0a5465606be442eb431c9d53e0acfe`。
-Save100/ミルシティ4,17北。動的Ranger20,29へ実正面A→町の解放scene→4072=3/4380set。全party600byte/HP277/PP3,9,8,2/23114円保持。95+cold13入力/54画面。通常2歩+自動2歩、歩数93/3。cold RAM差owner未解明。
+証拠のsource HEAD: `b7e2946492948914f1bbd1079df195790d96a9e3`。
+Save101/506番道路53,13西。通常西connection5歩/1旋回/58+cold13入力/35画面/全party・資源保持。次シオウPokecenter。
 
 ## 最短の再開手順
 
@@ -25,16 +25,14 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_STORY_SAVE100_JA.md`
-- `content/modernization/pr16_story_save100_checkpoint.json`
-- `content/modernization/pr16_story_save100_visual_review.json`
-- `scripts/pr16_story_save100_accept.py`
-- `scripts/pr16_story_save100_measure.py`
-- `content/modernization/pr16_story_save100_evidence/inspection.json`
-- `content/modernization/pr16_story_save100_evidence/next-route.json`
-- `content/modernization/pr16_story_save100_preparation.json`
-- `content/modernization/pr16_story_save100_next_route.json`
-- `content/modernization/pr16_story_save100_pre_dispatch.json`
+- `docs/PR16_STORY_ACCELERATED_ACCEPTANCE_PLAN_JA.md`
+- `docs/PR16_STORY_MILESTONE_CONTRACT_JA.md`
+- `docs/PR16_STORY_SAVE101_JA.md`
+- `content/modernization/pr16_story_save101_checkpoint.json`
+- `content/modernization/pr16_story_save101_visual_review.json`
+- `scripts/pr16_story_milestones.py`
+- `scripts/pr16_story_save101_accept.py`
+- `content/modernization/pr16_story_save101_next_milestone.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -431,6 +429,7 @@ P08ゲート:
 - Save98の128/cold13入力69画面84member、新35歩/6旋回/通常北connection、controller最終46case/59成功、新受入79を無影響再走しない。partyguard失敗1/9画面/Save97保持とpreflight型失敗1/native0を保存。歩行friendship/4021/4022共通機構はSave98 walk_ownerを参照。旧原本は保持。warp-tableの座標だけで発火可能と判断しない。毎回固定ROMのtile behaviorと必要方向を確認し、通常着地/矢印/方向階段/境界connectionを区別する。実画面の出口は裏付け。無入力自動歩行は実測まで未確認。
 - Save99の197/cold13入力104画面119member、61歩15旋回/ROCK_STAIRS2か所、40controller/67新受入を無影響再走しない。会話未達で動的Rangerの位置を次回確認。ROM/runtime非再配布。warp-tableの座標だけで発火可能と判断しない。毎回固定ROMのtile behaviorと必要方向を確認し、通常着地/矢印/方向階段/境界connectionを区別する。実画面の出口は裏付け。無入力自動歩行は実測まで未確認。
 - Save100の95/cold13入力54画面69member、動的Ranger正面A/町解放/通常2歩/自動2歩、39controller/62新受入を無影響再走しない。初回binding失敗原本はnative0。JSON/text fixtureのSHAはGit正本の最終改行を含むbyte列から算出し、次commitをbranchへ反映する前にremote blob全byteを送信元と一致確認。改行正規化で差分を消さず、失敗原本は保持。受入済みunit/nativeは再走しない。
+- Save101の58/cold13入力35画面50member/63controller/47受入/native2を無影響再走しない。Save25〜100証拠は保持し、当時のfirst-battle stopを一般方針にしない。
 
 ## 次セッションへ残す更新手順
 
