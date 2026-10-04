@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-正式ROM/Save101保持。Stage61保存schedulerの候補配置と隔離ARM19caseまで受入。newgame、外側load失敗gate、全consumer、通常Save/coldContinueは未完。
+正式ROM/Save101保持。図鑑候補のload/newgame接続と通常Save/独立coldContinueを受入。全consumer、全save mode/失敗UI、正式進行復帰は未完。
 
-**次: 正式ROM/Save101は不変。PR16_DEX_SAVE_SCHEDULER_JA.mdとpr16_dex_scheduler_checkpoint.jsonから再開。Stage61保存8入口の固定veneerと全44export/元non-save保持、同世代MDX、LinkFull署名前再読、CRC fallback/clone/record-onlyを候補内へ接続し隔離ARM19caseを受入。次はloadchain監査のMirage literal0x09391114にpost-QOL MDX gateを、CFRU literal0x09097178にwipe後InitNew tail wrapperを接続。現sector31復元はlegacy2048byteでMDXに重ならないがstockは内側load返値を捨てる。HOF-only load=3を除外し、復旧Save前に失敗遮断する。authority不明のinvalid-liveでは仮damaged sectorを付けず、上位の非破壊的失敗伝播を実装。全save mode固有副作用、全SID喪失前consumer/Bag count/reward clear/Factory-Codex rollback、候補限定通常Save/独立cold Continueを受入後だけ正式進行。最終はシオウPokecenter通常回復/Save/coldContinue。雑魚戦ごとのSaveは作らない。**
+**次: 正式ROM/Save101は保持。PR16_DEX_LIFECYCLE_JA.mdとpr16_dex_lifecycle_checkpoint.jsonから再開。候補限定でpost-QOL load gateとCFRU wipe後InitNew、正常fallback保持/MDX無効時global2、Save101のlegacy移行→通常Save→独立coldContinue、新規ゲーム→初回Save→独立coldContinueまで受入。次はSID喪失前の全consumerを新ownerへ接続する。battle entry/switch、active捕獲/授受/孵化/進化、UI/native count、CFRU Bag誤読count、reward clear、Factory memorial/Codex seen rollback、DexNavをinventory順に対象scopeへ分ける。authority不明invalid-liveの非破壊的保存失敗伝播、HOF/overwrite等全save mode固有副作用と実失敗画面も未受入。旧stock mirrorを大量拡張せず新namespace APIを使う。影響native後だけ正式ROM基準とstory再開を判断。最終はシオウPokecenter通常回復/Save/coldContinue、雑魚戦ごとのSaveなし。**
 
 通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `b65b53e70895c124e9d00709f47fc0c66a7b07d5`。
-図鑑保存scheduler候補の隔離ARM受入を記録したsource。正式ROM/Save101不変。記録ARM0/native0。
+証拠のsource HEAD: `5860c3d2c5fcd8edb98f999178fc690e9775140a`。
+候補限定の図鑑load/newgameと通常Save/独立Continueを記録したsource。正式ROM/Save101保持。記録native0。
 
 ## 最短の再開手順
 
@@ -25,10 +25,10 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_DEX_SAVE_SCHEDULER_JA.md`
-- `content/modernization/pr16_dex_scheduler_checkpoint.json`
-- `content/modernization/pr16_dex_loadchain_audit.json`
+- `docs/PR16_DEX_LIFECYCLE_JA.md`
+- `content/modernization/pr16_dex_lifecycle_checkpoint.json`
 - `docs/PR16_DEX_CONSUMERS_JA.md`
+- `content/modernization/pr16_dex_load_status_audit.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -434,6 +434,7 @@ P08ゲート:
 - 図鑑compact51host/262144比較/ARM4compileはrun37219630045の原本を再利用。旧T09 pointer表6484byteはStage39退役のhash-bound契約のみ。元DATA81885byte/sentinel6参照保持、実owner移管/ROM配置/Stage61全clone/nativeを完了扱いしない。
 - 図鑑実配置run37223181964の24API/24veneer隔離nativeを再実行しない。全107allocator中退役ownerだけ移管、payload5022/残1462。正式ROM/Save101不変。元Stage61 metadataはhash固定24macro/99sized symbol/4aliasを再利用し旧source再compile・元payload全体復元をしない。
 - 図鑑保存scheduler run37228557062の隔離ARM19caseはsource/配置不変なら再実行しない。通常game Save/ContinueとHOF/overwrite受入へ昇格しない。8つのbuild診断failureはnative0のまま保持。
+- 図鑑load/newgame隔離run37230810454の52caseと通常lifecycle run37231996230の4process/2保存をsource/候補不変で再実行しない。候補内のSave102/新規Save1を正式Save101へ昇格せず、全consumer/全mode/失敗UIの未完を保持。
 
 ## 次セッションへ残す更新手順
 

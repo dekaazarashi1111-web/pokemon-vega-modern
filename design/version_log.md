@@ -9918,3 +9918,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: artifact/固定state/source binding/index/task graph PASS。host再試験0/ARM0/native0/正式ROM・Save変更0。元44export/非保存code/dataを保持、実配置8264byte、追加lease1084byte、allocator108owner/overlap0。
 - Commit: closeout source=4f535156937c7bfa14a05f245d3891d701c7f5d2; 同branch非force push。
 - Network: 同repoActions/commit/既存text artifactのみ。一般CI既知QOL不一致、Stage79 cache、旧9月18日queue非操作を保持。
+
+## 2026-10-04T20:34:53.662108+00:00
+- Timestamp: 2026-10-04T20:34:53.662108+00:00
+- Task: USER-20261004-DEX-LIFECYCLE / 図鑑load/newgameと通常保存
+- Version: dex-lifecycle-v1
+- Status: DONE（候補lifecycle限定。全consumer等は次工程）
+- Summary: MDXのstale-valid排除、正常fallback保持、無効時global2でContinue遮断。CFRU wipe後InitNew tail188byteを追加し、既存108ownerと元schedulerを保持。
+- Files changed: lifecycle/gameplay source、候補接続/status監査、専用workflow/試験、checkpoint/evidence、固定MDJSON、両ログ。
+- Verify: isolated run37230810454/job111519848850全10step、6generator/50host、52隔離ARM、EWRAM/IWRAM全非owner。gameplay run37231996230/job111523526200全10step、6host/受入4process（原本3再利用＋新cold1）/2通常Save/2独立cold、全SaveRTC不変のcold。既受入native再走0。画像表示の疑義を原本6画面と追加無入力probe1process/4画面で解消。
+- Boundary: 正式ROM/Save101不変。初回STARTのflag83E/1bitのみsource/ROM窓で同定し、保存原本から逆変換で全進行hashを復元。NewGame初回はtype4、Save101はtype0。全consumer、高ownerの自然登録、全save mode、authorityなし保存失敗UIは未受入。初回run37230632321はcompile診断/native0、run37231227293と37231607258はNewGame差分診断failureのまま保持。
+- Commit: record source=5860c3d2c5fcd8edb98f999178fc690e9775140a; 同branch非force push。
+- Network: 同repoGitHub/Actions/既存入力と公式Ubuntu toolchain。公開はsource/最小address-size-SHA/text/screens/承認済の新候補saveのみ。入力save/ROM/runtime/runner非公開。

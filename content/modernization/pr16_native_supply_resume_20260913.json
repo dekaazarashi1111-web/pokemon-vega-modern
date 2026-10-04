@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "正式ROM/Save101保持。Stage61保存schedulerの候補配置と隔離ARM19caseまで受入。newgame、外側load失敗gate、全consumer、通常Save/coldContinueは未完。",
+    "current_stop": "正式ROM/Save101保持。図鑑候補のload/newgame接続と通常Save/独立coldContinueを受入。全consumer、全save mode/失敗UI、正式進行復帰は未完。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "正式ROM/Save101は不変。PR16_DEX_SAVE_SCHEDULER_JA.mdとpr16_dex_scheduler_checkpoint.jsonから再開。Stage61保存8入口の固定veneerと全44export/元non-save保持、同世代MDX、LinkFull署名前再読、CRC fallback/clone/record-onlyを候補内へ接続し隔離ARM19caseを受入。次はloadchain監査のMirage literal0x09391114にpost-QOL MDX gateを、CFRU literal0x09097178にwipe後InitNew tail wrapperを接続。現sector31復元はlegacy2048byteでMDXに重ならないがstockは内側load返値を捨てる。HOF-only load=3を除外し、復旧Save前に失敗遮断する。authority不明のinvalid-liveでは仮damaged sectorを付けず、上位の非破壊的失敗伝播を実装。全save mode固有副作用、全SID喪失前consumer/Bag count/reward clear/Factory-Codex rollback、候補限定通常Save/独立cold Continueを受入後だけ正式進行。最終はシオウPokecenter通常回復/Save/coldContinue。雑魚戦ごとのSaveは作らない。",
+    "next_step": "正式ROM/Save101は保持。PR16_DEX_LIFECYCLE_JA.mdとpr16_dex_lifecycle_checkpoint.jsonから再開。候補限定でpost-QOL load gateとCFRU wipe後InitNew、正常fallback保持/MDX無効時global2、Save101のlegacy移行→通常Save→独立coldContinue、新規ゲーム→初回Save→独立coldContinueまで受入。次はSID喪失前の全consumerを新ownerへ接続する。battle entry/switch、active捕獲/授受/孵化/進化、UI/native count、CFRU Bag誤読count、reward clear、Factory memorial/Codex seen rollback、DexNavをinventory順に対象scopeへ分ける。authority不明invalid-liveの非破壊的保存失敗伝播、HOF/overwrite等全save mode固有副作用と実失敗画面も未受入。旧stock mirrorを大量拡張せず新namespace APIを使う。影響native後だけ正式ROM基準とstory再開を判断。最終はシオウPokecenter通常回復/Save/coldContinue、雑魚戦ごとのSaveなし。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -1164,7 +1164,8 @@
     "MDX候補RAMの5UI寿命はrun37217077790の原本から再利用（Bagは37216583954から再利用）。正式Save101不変。Stage75 internal1670は明示adapterでbase1142/owner925へ結合し、namespace owner数1206は不変。全save/consumer未接続とROM空き容量3151byteを隠さず先に解決。",
     "図鑑compact51host/262144比較/ARM4compileはrun37219630045の原本を再利用。旧T09 pointer表6484byteはStage39退役のhash-bound契約のみ。元DATA81885byte/sentinel6参照保持、実owner移管/ROM配置/Stage61全clone/nativeを完了扱いしない。",
     "図鑑実配置run37223181964の24API/24veneer隔離nativeを再実行しない。全107allocator中退役ownerだけ移管、payload5022/残1462。正式ROM/Save101不変。元Stage61 metadataはhash固定24macro/99sized symbol/4aliasを再利用し旧source再compile・元payload全体復元をしない。",
-    "図鑑保存scheduler run37228557062の隔離ARM19caseはsource/配置不変なら再実行しない。通常game Save/ContinueとHOF/overwrite受入へ昇格しない。8つのbuild診断failureはnative0のまま保持。"
+    "図鑑保存scheduler run37228557062の隔離ARM19caseはsource/配置不変なら再実行しない。通常game Save/ContinueとHOF/overwrite受入へ昇格しない。8つのbuild診断failureはnative0のまま保持。",
+    "図鑑load/newgame隔離run37230810454の52caseと通常lifecycle run37231996230の4process/2保存をsource/候補不変で再実行しない。候補内のSave102/新規Save1を正式Save101へ昇格せず、全consumer/全mode/失敗UIの未完を保持。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -4345,19 +4346,19 @@
     "status": "PASS_NATIONAL_DEX_GRANT_OWNER_SCOPED"
   },
   "next_action": {
-    "goal_ja": "正式ROM/Save101は不変。PR16_DEX_SAVE_SCHEDULER_JA.mdとpr16_dex_scheduler_checkpoint.jsonから再開。Stage61保存8入口の固定veneerと全44export/元non-save保持、同世代MDX、LinkFull署名前再読、CRC fallback/clone/record-onlyを候補内へ接続し隔離ARM19caseを受入。次はloadchain監査のMirage literal0x09391114にpost-QOL MDX gateを、CFRU literal0x09097178にwipe後InitNew tail wrapperを接続。現sector31復元はlegacy2048byteでMDXに重ならないがstockは内側load返値を捨てる。HOF-only load=3を除外し、復旧Save前に失敗遮断する。authority不明のinvalid-liveでは仮damaged sectorを付けず、上位の非破壊的失敗伝播を実装。全save mode固有副作用、全SID喪失前consumer/Bag count/reward clear/Factory-Codex rollback、候補限定通常Save/独立cold Continueを受入後だけ正式進行。最終はシオウPokecenter通常回復/Save/coldContinue。雑魚戦ごとのSaveは作らない。",
+    "goal_ja": "正式ROM/Save101は保持。PR16_DEX_LIFECYCLE_JA.mdとpr16_dex_lifecycle_checkpoint.jsonから再開。候補限定でpost-QOL load gateとCFRU wipe後InitNew、正常fallback保持/MDX無効時global2、Save101のlegacy移行→通常Save→独立coldContinue、新規ゲーム→初回Save→独立coldContinueまで受入。次はSID喪失前の全consumerを新ownerへ接続する。battle entry/switch、active捕獲/授受/孵化/進化、UI/native count、CFRU Bag誤読count、reward clear、Factory memorial/Codex seen rollback、DexNavをinventory順に対象scopeへ分ける。authority不明invalid-liveの非破壊的保存失敗伝播、HOF/overwrite等全save mode固有副作用と実失敗画面も未受入。旧stock mirrorを大量拡張せず新namespace APIを使う。影響native後だけ正式ROM基準とstory再開を判断。最終はシオウPokecenter通常回復/Save/coldContinue、雑魚戦ごとのSaveなし。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。Save14は作業コピーだけを使用する。自己OT party、manifest解決済み通常支援用品、EXP境界、safe opponentはpre-battle fixtureとして全byteを台帳化してよい。badge/key item/story flag/money/RPをfixture付与せず、戦闘開始後は通常入力とゲーム内処理だけを使う。",
-    "id": "WIRE_DEX_LOAD_NEWGAME_AND_CONSUMERS",
+    "id": "WIRE_DEX_TYPED_CONSUMERS_AND_SAVE_FAILURES",
     "read_paths": [
-      "docs/PR16_DEX_SAVE_SCHEDULER_JA.md",
-      "content/modernization/pr16_dex_scheduler_checkpoint.json",
-      "content/modernization/pr16_dex_loadchain_audit.json",
-      "docs/PR16_DEX_CONSUMERS_JA.md"
+      "docs/PR16_DEX_LIFECYCLE_JA.md",
+      "content/modernization/pr16_dex_lifecycle_checkpoint.json",
+      "docs/PR16_DEX_CONSUMERS_JA.md",
+      "content/modernization/pr16_dex_load_status_audit.json"
     ],
     "stop_rule_ja": "通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。"
   },
   "observed_date_jst": "2026-10-04",
-  "observed_head": "b65b53e70895c124e9d00709f47fc0c66a7b07d5",
+  "observed_head": "5860c3d2c5fcd8edb98f999178fc690e9775140a",
   "observed_head_checks": {
     "all12_record_steps_success": true,
     "gameplay_accepted": false,
@@ -12254,7 +12255,7 @@
       "semantics": "Save100/ミルシティ4,17北。動的Ranger20,29へ実正面A→町の解放scene→4072=3/4380set。全party600byte/HP277/PP3,9,8,2/23114円保持。95+cold13入力/54画面。通常2歩+自動2歩、歩数93/3。cold RAM差owner未解明。"
     }
   ],
-  "observed_head_semantics": "図鑑保存scheduler候補の隔離ARM受入を記録したsource。正式ROM/Save101不変。記録ARM0/native0。",
+  "observed_head_semantics": "候補限定の図鑑load/newgameと通常Save/独立Continueを記録したsource。正式ROM/Save101保持。記録native0。",
   "p08_candidate_impact": {
     "candidate": {
       "crc32": "CC068B4A",
@@ -12376,7 +12377,13 @@
     "status": "NATIVE_PARTY_RETENTION_ACCEPTED_BP_PENDING",
     "tested_head": "10e535a046441dd3b797918106259b5c57b69716"
   },
-  "pending_runs": [],
+  "pending_runs": [
+    {
+      "run_id": 37232613702,
+      "status": "in_progress",
+      "tested_head": "5860c3d2c5fcd8edb98f999178fc690e9775140a"
+    }
+  ],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
   "pr_draft": true,
   "pr_merged": false,
@@ -14163,6 +14170,18 @@
       "sha256": "44a82327fff7de6fca8ad25cc510274313055110739e1636c992379a95499fa7",
       "size": 1590
     },
+    ".github/workflows/pr16-dex-gameplay.yml": {
+      "sha256": "3a046bfda0815f2aa8e8d738171ce03c5e952f3afa4349611990c7ede6403666",
+      "size": 1986
+    },
+    ".github/workflows/pr16-dex-lifecycle-record.yml": {
+      "sha256": "cb36de9921526e754587af3fe0153a79eb7278d0e3a893f8d0dd19e2cbbaa3f7",
+      "size": 2408
+    },
+    ".github/workflows/pr16-dex-lifecycle.yml": {
+      "sha256": "f14307f02eb84df931f704d2b030562da89251732a5cd654fae5f7025f894357",
+      "size": 2050
+    },
     ".github/workflows/pr16-dex-lifetime.yml": {
       "sha256": "2792cf4abf5e57b15e5bb90f1e69163f4ccf4d28d24e21ce24efea23dc77f099",
       "size": 1496
@@ -14206,6 +14225,10 @@
     ".github/workflows/pr16-dex-scheduler.yml": {
       "sha256": "d1be1b87dfffb84af71598181b2ee440e1b19fa68c3da32a997b95f7ae23f9bd",
       "size": 2036
+    },
+    ".github/workflows/pr16-dex-visual-probe.yml": {
+      "sha256": "a4d9be79fa5d49d803e4cc5dee8b09a3fc29c21b1b3a5244635ebb4b66392d53",
+      "size": 1784
     },
     ".github/workflows/pr16-exp-evolution-share.yml": {
       "sha256": "42d48cce1f1c9089a82e308b49837cf05aa20cab4a232c44c0be2a16fce0460b",
@@ -16546,6 +16569,118 @@
     "content/modernization/pr16_dex_consumer_audit.json": {
       "sha256": "d9c022b41c15b14a16cbdf19af322771b570a65faa2a3e5b9ca83832f4a2c123",
       "size": 92166
+    },
+    "content/modernization/pr16_dex_first_menu_audit.json": {
+      "sha256": "92e1edde14eba57fa73180d99502beb5562d087be6372c86e98266d2386fc065",
+      "size": 2268
+    },
+    "content/modernization/pr16_dex_lifecycle_checkpoint.json": {
+      "sha256": "e8d31e99f75b36d0789a8c3123afc0bbdaeb35093b312afc6306d8cbbec9ec8d",
+      "size": 104461
+    },
+    "content/modernization/pr16_dex_lifecycle_evidence/gameplay/attempts.json": {
+      "sha256": "c940815f8c88f0d595c657fafd7a7979ab0db88e01d73f33a9bd5b0bf061aa05",
+      "size": 86
+    },
+    "content/modernization/pr16_dex_lifecycle_evidence/gameplay/host-tests.txt": {
+      "sha256": "81725b291a87dcff3d17c2501663ff6349baa97c143329f98a3c94cd925beddd",
+      "size": 620
+    },
+    "content/modernization/pr16_dex_lifecycle_evidence/gameplay/measurement.json": {
+      "sha256": "d3af54ba1514a37caa89be04fe43eca2617c0744f8eb05b604ec1c295b61382a",
+      "size": 19067
+    },
+    "content/modernization/pr16_dex_lifecycle_evidence/gameplay/newgame-cold/commands.txt": {
+      "sha256": "0a7b6a054f4637f0b3077c3427e3a0491812cda612eadf6a94ccfa11398564b6",
+      "size": 5
+    },
+    "content/modernization/pr16_dex_lifecycle_evidence/gameplay/newgame-cold/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_dex_lifecycle_evidence/gameplay/newgame-cold/stdout.txt": {
+      "sha256": "4e0c926e2f2156ccc0009602f614d3ccaacdbaf1d5006364b188ee307997563b",
+      "size": 2054
+    },
+    "content/modernization/pr16_dex_lifecycle_evidence/gameplay/newgame-save/commands.txt": {
+      "sha256": "7ae5b63f8b4c342a186f0ac3123e97ff0d0174961cd324daed2ba76f2d08300c",
+      "size": 20
+    },
+    "content/modernization/pr16_dex_lifecycle_evidence/gameplay/newgame-save/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_dex_lifecycle_evidence/gameplay/newgame-save/stdout.txt": {
+      "sha256": "a21a11074266be02d4616195a8c05ed2eef933d2388f252361a88d93a0a077b6",
+      "size": 14351
+    },
+    "content/modernization/pr16_dex_lifecycle_evidence/gameplay/save101-cold/commands.txt": {
+      "sha256": "0a7b6a054f4637f0b3077c3427e3a0491812cda612eadf6a94ccfa11398564b6",
+      "size": 5
+    },
+    "content/modernization/pr16_dex_lifecycle_evidence/gameplay/save101-cold/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_dex_lifecycle_evidence/gameplay/save101-cold/stdout.txt": {
+      "sha256": "cc02c1f042eed45dc68845cb0b838ff9da80741834288dd0e36ed25066b7d8cb",
+      "size": 2036
+    },
+    "content/modernization/pr16_dex_lifecycle_evidence/gameplay/save101-save/commands.txt": {
+      "sha256": "7ae5b63f8b4c342a186f0ac3123e97ff0d0174961cd324daed2ba76f2d08300c",
+      "size": 20
+    },
+    "content/modernization/pr16_dex_lifecycle_evidence/gameplay/save101-save/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_dex_lifecycle_evidence/gameplay/save101-save/stdout.txt": {
+      "sha256": "0dc9e955b64124e5d4bfeacb90d6c9e727b47ab603d788d1feb2c98670b9e605",
+      "size": 4244
+    },
+    "content/modernization/pr16_dex_lifecycle_evidence/isolated/build.json": {
+      "sha256": "d619e651d6738b4b8a905f1d3a9e4760ad17e2ff12dcc87e273f9b266b9ac474",
+      "size": 72160
+    },
+    "content/modernization/pr16_dex_lifecycle_evidence/isolated/host-tests.txt": {
+      "sha256": "585ace42deae87fb27813b77cdd6f2b88c16f6b465e23ac4342627c1d7807d63",
+      "size": 584
+    },
+    "content/modernization/pr16_dex_lifecycle_evidence/isolated/native-attempt.json": {
+      "sha256": "31c00d295e97ff1be20ab66d5e70d82c3961e376f6b0061cb0ef6c113c23488d",
+      "size": 72
+    },
+    "content/modernization/pr16_dex_lifecycle_evidence/isolated/native.json": {
+      "sha256": "e787a5b5fa3a52ed2c2a7c7299c27003267476a1b68d09ad834a9c89caaa4a0e",
+      "size": 347
+    },
+    "content/modernization/pr16_dex_lifecycle_evidence/visual-review.json": {
+      "sha256": "8c965ba90ee60d817dac98b92478a89bf8e8ccecfd213518b0898cb1977a4b34",
+      "size": 1692
+    },
+    "content/modernization/pr16_dex_lifecycle_evidence/visual/attempt.json": {
+      "sha256": "2901dd945f5e81fa94156bdd154505af459afb799ba292a538439c20aea09763",
+      "size": 85
+    },
+    "content/modernization/pr16_dex_lifecycle_evidence/visual/commands.txt": {
+      "sha256": "381650a3b5d49880acecb6f39eaeab8d6d2323a4a8f80f8647ea5ad78a8df1f0",
+      "size": 65
+    },
+    "content/modernization/pr16_dex_lifecycle_evidence/visual/measurement.json": {
+      "sha256": "7dde1bff17ca84a51b68c3313b14e74a00a5adb92ddb3a480b84959a4fc21846",
+      "size": 1318
+    },
+    "content/modernization/pr16_dex_lifecycle_evidence/visual/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_dex_lifecycle_evidence/visual/stdout.txt": {
+      "sha256": "848c6acffaa9d331de5ddfb2ae6029df25b4468e07cb32980974e3058990052b",
+      "size": 6037
+    },
+    "content/modernization/pr16_dex_load_status_audit.json": {
+      "sha256": "6c9b3920422a6f61945a5344364d214532213e48019b64b122fc13e0d999bcd8",
+      "size": 2761
     },
     "content/modernization/pr16_dex_loadchain_audit.json": {
       "sha256": "92cb84f0fd1a26e04dec3f26d424c4b8ed5b3bbdcc412e65137dbd985e6505d6",
@@ -27347,6 +27482,10 @@
       "sha256": "cf60a3a0506690156a88877e53df2f14a742d51138ff86a9db4cbbab3e0f4286",
       "size": 12934
     },
+    "docs/PR16_DEX_LIFECYCLE_JA.md": {
+      "sha256": "8af61361a3197aeb01974de7f2065e30aaa49151ecf834e84df1920d1de2badc",
+      "size": 5703
+    },
     "docs/PR16_DEX_OWNER_IMPLEMENTATION_JA.md": {
       "sha256": "f5772f0c9e796abd584b417208ea13ec6b2b17b7f38484b950830fecf0907e44",
       "size": 6214
@@ -31559,6 +31698,14 @@
       "sha256": "3127563d5d5786ff88dfee26d376f37624d29a3936076345ba6cd14de782f901",
       "size": 8232
     },
+    "overlays/dex_owner/dex_lifecycle.c": {
+      "sha256": "161e0537c4ff48c95790784e89474ca72f43b67cea394924a4bba01bf7f7b877",
+      "size": 1693
+    },
+    "overlays/dex_owner/dex_newgame_tail.S": {
+      "sha256": "874e7ae86399f93016ebe6de20ac34e8fc13f551197326fca18876fdaf061a67",
+      "size": 717
+    },
     "overlays/dex_owner/dex_owner.c": {
       "sha256": "d3442445141d8724b6ba36d34619ce955d17923935d832d328222e0906da6bd4",
       "size": 7563
@@ -32191,9 +32338,29 @@
       "sha256": "0d3120196dc04daa18002b5a761eb7c4766912f31cf24f5b8cd47406d7c566f9",
       "size": 6551
     },
+    "scripts/pr16_dex_gameplay.py": {
+      "sha256": "c8e4589d43e5f10bbb1f4cf0a8f66c2cf592b65a31230808ba4f56bfa41eab0b",
+      "size": 6407
+    },
+    "scripts/pr16_dex_gameplay_actions.py": {
+      "sha256": "13c338b405b5803260e660fded2ba5a6749931bf28c794bbdcf103350a15c28e",
+      "size": 14844
+    },
     "scripts/pr16_dex_lease.py": {
       "sha256": "d80db50543bbaadeba2dce3fab34ce3dc2c219ca4bb4aac2f55d0271b372b4f6",
       "size": 7656
+    },
+    "scripts/pr16_dex_lifecycle.py": {
+      "sha256": "7ebfd6c18dfca286f03d5921cc06162e37a0b7791c039f1e200841cb51ac3497",
+      "size": 6366
+    },
+    "scripts/pr16_dex_lifecycle_actions.py": {
+      "sha256": "6f9ebb33d3dd7b420dbf1ab9e414b9242cdf137f595d67a308a1db3f2835d050",
+      "size": 6414
+    },
+    "scripts/pr16_dex_lifecycle_record.py": {
+      "sha256": "372ba8db74bc395fd9d39eab37e9fe95e95e3103941875014dae8ec1a8a15957",
+      "size": 15261
     },
     "scripts/pr16_dex_lifetime.py": {
       "sha256": "1c148294a55ec45fdeec2f3e3b0594544f8c8f09d660a67508e20b93230ca3a5",
@@ -32258,6 +32425,10 @@
     "scripts/pr16_dex_stage61_inputs.py": {
       "sha256": "c8e0e200ab3fe92a3eba226bf834329ea93620184c0d076c97f2d531de357c51",
       "size": 5473
+    },
+    "scripts/pr16_dex_visual_probe.py": {
+      "sha256": "37cc65ef84436ab3f11f87db3e0bbd2872563cc7ad625ba322fe4ca6e641bd51",
+      "size": 4115
     },
     "scripts/pr16_exp_evolution_observation.py": {
       "sha256": "085874d692a0a7c16137086eaf4f21ab644f08cfad94dd52c88146affe31955e",
@@ -35247,9 +35418,17 @@
       "sha256": "76efc77f27637fe71869e198f89ce064fa67551274246b9effa9f90216d1a7cc",
       "size": 4621
     },
+    "tests/test_pr16_dex_gameplay.py": {
+      "sha256": "c8b8dbcaad5c774e467d69ec0feceae7bf1b128316d3c9e2cca1b31464a0c15c",
+      "size": 1248
+    },
     "tests/test_pr16_dex_lease.py": {
       "sha256": "919fd6220bda91ed2dcfd9cafba210fa544cc3aaf5705a8fffeeea53f4d7b1ee",
       "size": 4921
+    },
+    "tests/test_pr16_dex_lifecycle.py": {
+      "sha256": "c3f724eca5238761b31715dc94f41de50765c2d7d2924f34d87b46b2ea664a5c",
+      "size": 3187
     },
     "tests/test_pr16_dex_lifetime.py": {
       "sha256": "3a598130dec556183fef0612f9b82a00fe5b8f9dfd3dabaf387c71737c9ed050",
@@ -37315,6 +37494,14 @@
       "sha256": "512b67b61590517717ebed6989c850967d276ee013791cc005aea2ef52cc2722",
       "size": 11869
     },
+    "tools/mgba_pr16_dex_gameplay.h": {
+      "sha256": "25a9a683930c233586db11c3d622543c7899a124f3140ece231dbf95f11e0209",
+      "size": 2692
+    },
+    "tools/mgba_pr16_dex_lifecycle.c": {
+      "sha256": "98d5c6b75925ad6368255865acd642a2ef613f83fead7b5de5d06e6dc1e7cd68",
+      "size": 5882
+    },
     "tools/mgba_pr16_dex_lifetime.c": {
       "sha256": "5622f1bf43afed02cde9a7e669f507085d54d702cabcc1c780dbbfed8901b6d8",
       "size": 13504
@@ -38015,6 +38202,23 @@
       "formal_story_save": 101,
       "guide": "docs/PR16_DEX_RUNTIME_INTEGRATION_JA.md",
       "host_tests": 102,
+      "load_newgame": {
+        "all_consumers_wired": false,
+        "candidate": {
+          "sha256": "71a1131dae058f568bc5537d21bb8c85dfa551c956c4ac36d9e52293eaf5915c",
+          "size": 33554432
+        },
+        "checkpoint": "content/modernization/pr16_dex_lifecycle_checkpoint.json",
+        "formal_save_changed": false,
+        "gameplay_run": 37231996230,
+        "guide": "docs/PR16_DEX_LIFECYCLE_JA.md",
+        "isolated_run": 37230810454,
+        "newgame_wired": true,
+        "ordinary_save_continue_accepted": true,
+        "outer_load_guard_wired": true,
+        "record_run": 37232613702,
+        "status": "PASS_CANDIDATE_ORDINARY_DEX_SAVE_CONTINUE_NEWGAME"
+      },
       "native_lifetime_run": 37217077790,
       "placement": {
         "actual_payload_bytes": 5022,
