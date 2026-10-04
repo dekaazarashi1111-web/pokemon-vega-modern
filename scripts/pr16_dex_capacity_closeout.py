@@ -37,7 +37,7 @@ def close():
  need(receipt['run']==RUN and receipt['source']==SOURCE and receipt['receipt_whole_bytes_verified']is True,'existing exact record receipt')
  # 既存closeoutはexport先とupload pathだけ不一致。受入・pending・checkpointは変更しない。
  write(OUT/'receipts/closeout.json',receipt)
- state['story_dex_owner']['runtime_integration']['capacity']['receipt_path_recovery']=dict(previous_closeout_run=37220882395,previous_closeout_job=111490799117,reason_ja='export先とupload pathの不一致だけを修正し既存receiptを再公開。旧試験/nativeは再実行しない。',recovery_source=os.environ['GITHUB_SHA'],recovery_run=int(os.environ['GITHUB_RUN_ID']),host_tests=0,arm_compiles=0,native_processes=0)
+ state['story_dex_owner']['runtime_integration']['capacity']['receipt_path_recovery']=dict(previous_closeout_run=37220882395,previous_closeout_job=111490799117,reason_ja='export先とupload pathの不一致を修正。初回訂正は変更のない生成MDまでindex集合へ要求して停止しcommit0。実際に変化した許可済み記録だけをstageし同receiptを再公開。旧試験/nativeは再実行しない。',recovery_source=os.environ['GITHUB_SHA'],recovery_run=int(os.environ['GITHUB_RUN_ID']),host_tests=0,arm_compiles=0,native_processes=0)
  for p in CODE:state['source_bindings'][p]=identity((ROOT/p).read_bytes())
  publish_resume(state);pr16_resume.validate(ROOT)
  stamp=datetime.datetime.now(datetime.timezone.utc).isoformat();entry=f'\n## {stamp}\n- Timestamp: {stamp}\n- Task: USER-20261004-DEX-CAPACITY / closeout receipt公開pathの訂正\n- Version: dex-capacity-v1-receipt-path\n- Status: DONE（記録receiptのみ。実ROM接続は未完）\n- Summary: 先行closeoutの全12step・固定MD/JSONは成功していたがupload pathがexport先と不一致でartifact0件だった。pathを訂正し、同じ既存receiptを検査済directoryから公開する。\n- Files changed: closeout script/workflow、固定MD/JSONのsource binding、両ログ。\n- Verify: 先行終端/既存receipt/訂正前sourceを照合。新host0/ARM0/native0/ROM・Save変更0。pendingは空のまま。\n- Commit: recovery source={os.environ["GITHUB_SHA"]}; 同branch非force push。\n- Network: 同repoActions/公開receiptのみ。\n'
@@ -45,7 +45,9 @@ def close():
   with(ROOT/p).open('a')as f:f.write(entry)
  for p,b in protected.items():
   if p not in CODE:need(identity((ROOT/p).read_bytes())==b,'all unaffected accepted source unchanged '+p)
- owned={STATE,DOC,*LOGS};write(OUT/'owned.json',sorted(owned));git('add','--',*sorted(owned))
+ owned={STATE,*LOGS}
+ if(ROOT/DOC).read_bytes()!=git('show','HEAD:'+DOC):owned.add(DOC)
+ write(OUT/'owned.json',sorted(owned));git('add','--',*sorted(owned))
 def guard():
  import pr16_resume,pr16_learnset_runtime_record as g
  current();pr16_resume.validate(ROOT);g.START=os.environ['GITHUB_SHA'];g.CODE=set();g.OWNED=set(json.loads((OUT/'owned.json').read_bytes()));g.guard();git('diff','--cached','--check')

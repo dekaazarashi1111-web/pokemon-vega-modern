@@ -28,7 +28,7 @@ jobs:
           fetch-depth: 12
       - name: Exact new source guard
         run: python3 -B scripts/pr16_dex_capacity_closeout.py source_guard
-      - name: Recover identical closeout receipt after path correction
+      - name: Recover identical receipt with exact changed-record scope
         run: python3 -B scripts/pr16_dex_capacity_closeout.py close
       - name: Scoped final index and fixed resume
         run: python3 -B scripts/pr16_dex_capacity_closeout.py guard
