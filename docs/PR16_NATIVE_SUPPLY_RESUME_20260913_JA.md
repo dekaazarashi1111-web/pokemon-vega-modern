@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-NPC北迂回を新13歩/転換5、オタクン♂Lv10野生1勝でSave66。上階25,12南、PP14,10,15,2。次は穴への未通過15歩。
+上階の新14歩/転換2、オタクン♂Lv9野生1勝でSave67。31,20南、穴まであと1歩。PP13,10,15,2。
 
-**次: Save66 artifact11288387069のstory-fast.srm（131088bytes/SHA256 5c415ce0cac66346d10309f6ec7b783fade9cdfb5902a5bf2c19845c930d50a5）だけから再開。NPC25,6を北迂回する新13歩/転換5、上階map1/60・25,12南でオタクン♂Lv10に野生1勝。ドラゴンクロー1選択/実PP15→14、通常Save66/独立Continue。HP288/294・PP14,10,15,2でつばめがえし2は温存、party残り599byte/Bag/19104円/RP0/badge1/story4071=9/4072=1/全flags/PC保持。次は保存済経路の未通過15歩:25,12→25,16→31,16→穴31,21。最初の新event/戦闘/不通境界で通常保存。穴→入口31,22/南東階段30,29→上階33,29→紙側16,27は未実測。選択コマンドと実PPを分け、通常技のみ/host補充なし。27新controller/55新受入、97+cold13入力55画面70member/native2/旧受入再走0。46Flash最終hash一致でも保存中、47counter66で再変化、48成功→52field。全SaveRTC/field画面同一。aux4021:111→124のruntime owner未解明、RAM台帳不変。旧offset41/2056/aux/40acの未解明は保持。Flash未使用/がくしゅうそうち未装備。全国図鑑/全story/自然成長・進化/LuckyEgg/研究施設自然到達未完。既存ROM/runtime/input非再配布、回復再走/故意全滅/merge/release/baseline変更なし。一般CI既知qol_production.c不一致/action_requiredを全成功にしない。**
+**次: Save67 artifact11288432849のstory-fast.srm（131088bytes/SHA256 a4543c8c8d1b47668159adc71a0aff60f2bcf58ac91139d50d6eb201bd9677f5）だけから再開。上階接尾辞新14歩/転換2、map1/60・31,20南でオタクン♂Lv9に新野生1勝。ドラゴンクロー1選択/実PP14→13、通常Save67/独立Continue、HP288/294・PP13,10,15,2。次は南へ穴31,21まで未通過1歩、落下が起きれば入口階map1/59・31,22で保存。初の新event/戦闘/不通境界で通常保存し、穴下階接続を判定。穴→南東階段30,29→上階33,29→紙側16,27は未実測。歩行中観測4で4体のoffset41/141/241/341が+1、PP1と合わせ5byte変化、残595byte保持。offset41と観測3のRAM台帳変化のruntime owner未解明。Bag/19104円/RP0/badge1/story4071=9/4072=1/全flags/PC保持、aux4021:124→10だけowner未解明。27新controller/56新受入、93+cold13入力53画面68member/native2。45counter67部分write→46成功→50field、全SaveRTC/field全pixel同一。Flash未使用/がくしゅうそうち未装備、つばめがえし2温存。全国図鑑/全story/自然成長・進化/LuckyEgg/研究施設自然到達未完。旧成功無影響再走/host補充/ROM変更/既存ROMruntimeinput再配布/故意全滅/merge/release/baseline変更なし。一般CI既知qol_production.c不一致/action_requiredを全成功にしない。**
 
-Save66上階25,12南から未通過15歩候補で穴31,21へ。最初の新event/戦闘/不通境界で保存。実PP14,10,15,2を守りhost補充なし。北迂回/野生戦/保存は再走しない。
+Save67上階31,20南から穴31,21へ未通過1歩。落下先31,22で保存、初の新event/戦闘/不通境界で停止。実PP13,10,15,2。旧経路/野生戦/保存は再走しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `0c826eac9f4385d5187a2e14a1825c5960ba1770`。
-NPCを北迂回する新13歩/転換5とオタクン野生1勝。DragonClaw PP15→14、上階25,12南でSave66。穴/紙未到達。
+証拠のsource HEAD: `f184a49f8a736ed83f5b29d208dfb72db9e50e4b`。
+上階新14歩/転換2とオタクン野生1勝。DragonClaw PP14→13、上階31,20南でSave67。穴まで残1歩、落下/紙未受入。
 
 ## 最短の再開手順
 
@@ -25,13 +25,13 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_STORY_SAVE66_JA.md`
-- `content/modernization/pr16_story_save66_checkpoint.json`
-- `content/modernization/pr16_story_save66_visual_review.json`
-- `scripts/pr16_story_save66_accept.py`
-- `scripts/pr16_story_save66_measure.py`
-- `content/modernization/pr16_story_save66_evidence/inspection.json`
-- `content/modernization/pr16_story_save66_evidence/next-route.json`
+- `docs/PR16_STORY_SAVE67_JA.md`
+- `content/modernization/pr16_story_save67_checkpoint.json`
+- `content/modernization/pr16_story_save67_visual_review.json`
+- `scripts/pr16_story_save67_accept.py`
+- `scripts/pr16_story_save67_measure.py`
+- `content/modernization/pr16_story_save67_evidence/inspection.json`
+- `content/modernization/pr16_story_save67_evidence/next-route.json`
 - `content/modernization/pr16_story_save62_evidence/route-plan.json`
 - `content/modernization/pr16_story_save57_preparation.json`
 
@@ -396,6 +396,7 @@ P08ゲート:
 - Save64の95/cold13入力54画面69member/27controller/53受入を無影響再走しない。上階新14歩/転換2/野生バーニン1勝/実PP1。46counter64部分write→47成功→51field、全SaveRTC/field画面一致。勝利残留fieldfalse/flags4/outcome1を未復帰や追加勝利にしない。隣接trainer155はstatic候補、穴/紙未到達。
 - Save65の99/cold13入力55画面70member/27controller/58受入を無影響再走しない。A1回/歩行0/りかけい155新1勝/実PP3/360円/1435bit。47counter65部分write→48成功→52field、全SaveRTC/field画面一致。RAM台帳6/27変化owner未解明。北迂回28歩は静的候補、穴/紙未到達。
 - Save66の97/cold13入力55画面70member/27controller/55受入を無影響再走しない。NPC北迂回新13歩/転換5/オタクン1勝/DragonClaw実PP1、つばめがえし残2。46最終hash一致でも保存中→47counter66で再変化→48成功→52field。全SaveRTC/field画像一致。残り15歩/穴/紙未受入。
+- Save67の93/cold13入力53画面68member/27controller/56受入を無影響再走しない。上階新14歩/転換2/オタクン1勝/DragonClaw実PP1。party4体offset41+1とRAM観測3変化owner未解明。45counter67部分write→46成功→50field。全SaveRTC/field画像一致。穴まで1歩、落下/紙未受入。
 
 ## 次セッションへ残す更新手順
 
