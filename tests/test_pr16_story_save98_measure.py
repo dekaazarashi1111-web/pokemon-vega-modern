@@ -31,7 +31,8 @@ class Controller(unittest.TestCase):
                 if mode=='event'and s.index==1:lock=1
                 if mode=='battle'and s.index==1:cb=m.m.BATTLE
                 if mode=='early_map'and s.index==1:xy=m.ARRIVAL;where=m.DESTINATION
-                s.last=dict(s.last,xy=xy,live_xy=[v+7 for v in xy],map=where,lock=lock,callback2=cb,facing=2);s.observations.append(s.last);return s.last
+                party=m.PARTY_AFTER_WALK if where==m.DESTINATION or xy in m.ROUTE[6:]else m.a.PARTY
+                s.last=dict(s.last,xy=xy,live_xy=[v+7 for v in xy],map=where,lock=lock,callback2=cb,facing=2,party_sha256=party);s.observations.append(s.last);return s.last
         return Walking()
     def test_first_field_stops(self):
         s=self.fake();route,b,f,w=m.progress(s,{})
@@ -64,6 +65,15 @@ class Controller(unittest.TestCase):
     def test_scope_battle_flags(self):
         o=self.base();o['battle_flags']=8
         with self.assertRaises(ValueError):m.scope(o)
+    def test_exact_party_phase(self):
+        o=dict(self.base(),xy=[23,24],live_xy=[30,31],party_sha256=m.PARTY_AFTER_WALK);m.scope(o)
+        o['party_sha256']=m.a.PARTY
+        with self.assertRaises(ValueError):m.scope(o)
+    def test_party_phase_too_early(self):
+        o=dict(self.base(),xy=[23,25],live_xy=[30,32],party_sha256=m.PARTY_AFTER_WALK)
+        with self.assertRaises(ValueError):m.scope(o)
+    def test_failed_input_preserved(self):
+        p=json.loads((ROOT/m.RECOVERY).read_bytes());self.assertEqual(p['failed_execution']['initial_save'],p['failed_execution']['final_save']);self.assertEqual(p['diagnostic_exact_preimage_deltas'],[[41,48,49],[141,13,14],[241,111,112]]);self.assertFalse(p['runtime_owner_resolved']);self.assertEqual((p['inputs'],p['observations'],p['ordinary_saves']),(28,9,0))
     def test_history_import_limit(self):self.assertGreaterEqual(sys.getrecursionlimit(),1500)
 def negative(key,value):
     def test(self):

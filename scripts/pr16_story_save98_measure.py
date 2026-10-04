@@ -17,6 +17,8 @@ OUT=ROOT/'.local/pr16-story-save98';ART=OUT/'artifact';ASSETS=OUT/'private-input
 PREP='content/modernization/pr16_story_save98_preparation.json'
 CODE={'scripts/pr16_story_save98_measure.py','tests/test_pr16_story_save98_measure.py','.github/workflows/pr16-story-save98.yml',PREP}
 PP=[3,9,8,2];TRANSITION=134569577
+PARTY_AFTER_WALK='a889748859f118b98c42e9ef5f0fd2847466d07383f5743946453c961261580d'
+RECOVERY='content/modernization/pr16_story_save98_party_recovery.json';CODE.add(RECOVERY)
 ORIGIN=[3,2];DESTINATION=[3,23];START=[19,26];EDGE=[28,0];ARRIVAL=[28,39]
 classify=a.m.classify
 direction=a.m.direction
@@ -45,10 +47,16 @@ def inspect(raw,seed):
     legacy,vars=a.parent.sectors.legacy_state(seed,tab);need(vars[0x61]==1 and vars[0x71]==9 and vars[0x72]==1,'4061/4071/4072保持')
     for flag in [2083,1697,1412,1440]:need(legacy[flag//8]>>(flag%8)&1,'badge/leader/trainer勝利保持')
     bag,money=a.parent.shared.bag(seed,tab);need(money==23114 and sum(q for item,q in bag['key_items']if item==274)==0,'封書引渡し済み。再会話しない')
+    recovery=json.loads((ROOT/RECOVERY).read_bytes());derived=bytearray(party)
+    for offset,before,after in recovery['diagnostic_exact_preimage_deltas']:
+        need(derived[offset]==before,'診断preimage before');derived[offset]=after
+    need(identity(derived)['sha256']==PARTY_AFTER_WALK==recovery['observed_party_sha256']and recovery['runtime_owner_resolved']is False,'600bytes exact preimage。診断だけでfixture書込みしない')
     return dict(status='STATIC_SAVE98_TOWN_NORTH_CONNECTION_ONLY',preparation=identity((ROOT/PREP).read_bytes()),route=ROUTE,terrain=planned['terrain'],connection_owner=owner,binding_count=len(planned['bindings']),native_route_accepted=False)
 
 def scope(o):
-    need(o['map']in(ORIGIN,DESTINATION)and o['save_counter']==97 and o['party_count']==4 and o['rp']==0 and o['party_sha256']==a.PARTY and o['flash_sha256']==a.FLASH,'初境界まで全partyとflash保持')
+    need(o['map']in(ORIGIN,DESTINATION)and o['save_counter']==97 and o['party_count']==4 and o['rp']==0 and o['party_sha256']in(a.PARTY,PARTY_AFTER_WALK)and o['flash_sha256']==a.FLASH,'初境界まで観測済party2種とflash保持')
+    phase=PARTY_AFTER_WALK if o['map']==DESTINATION or o['xy']in ROUTE[6:]else a.PARTY
+    need(o['party_sha256']==phase,'町23,24の6歩目以降だけ観測済3byte変化。位置限定')
     need(o['callback2']not in(m.BATTLE,TRANSITION)and o['battle_flags']==o['battle_outcome']==0,'未知戦闘は決定せず停止')
 
 def progress(s,inspection):
@@ -139,7 +147,7 @@ def main():
         idle(c.last,98);need(c.last['map']==final['map']and c.last['xy']==final['xy']and c.last['party_sha256']==final['party_sha256'],'cold位置/party')
         c.step((0,120));cold=c.quit();(ART/'cold.srm').write_bytes(c.save.read_bytes());need(saved==c.save.read_bytes(),'全Save/RTC')
         need(h.d.bindings(protected)==protected,'全受入source不変')
-        report=dict(status='MEASURED_SAVE98_AWAITING_VISUAL_AND_INDEPENDENT_ACCEPTANCE',source_head=os.environ['GITHUB_SHA'],run_id=int(os.environ['GITHUB_RUN_ID']),input_save=a.OUTPUT,output_save=identity(saved),inspection=inspection,route=route,battle=episode,teleport=teleports,frontier=frontier,final=final,continued=c.last,progress=result,independent_continue=cold,screen_count=len(s.observations)+len(c.observations),native_processes=2,accepted_case_reruns=0,accepted_test_reruns=0,compiles=0,rom_changes=0,fixture_writes=0,ordinary_saves=1,town_north_connection_observed=True,town_north_connection_accepted=False,ranger_interaction_observed=False,letter_handoff_previously_accepted=True,museum_exit_previously_accepted=True,national_dex_unlocked=False,natural_growth_accepted=False,natural_evolution_accepted=False,full_story_accepted=False,release_ready=False,artifact_excludes=['existing ROM','runner','runtime','input Save97'])
+        report=dict(status='MEASURED_SAVE98_AWAITING_VISUAL_AND_INDEPENDENT_ACCEPTANCE',source_head=os.environ['GITHUB_SHA'],run_id=int(os.environ['GITHUB_RUN_ID']),input_save=a.OUTPUT,output_save=identity(saved),inspection=inspection,route=route,battle=episode,teleport=teleports,frontier=frontier,final=final,continued=c.last,progress=result,independent_continue=cold,screen_count=len(s.observations)+len(c.observations),native_processes=2,prior_failed_native_processes=1,accepted_case_reruns=0,accepted_test_reruns=0,compiles=0,rom_changes=0,fixture_writes=0,ordinary_saves=1,town_north_connection_observed=True,town_north_connection_accepted=False,ranger_interaction_observed=False,letter_handoff_previously_accepted=True,museum_exit_previously_accepted=True,national_dex_unlocked=False,natural_growth_accepted=False,natural_evolution_accepted=False,full_story_accepted=False,release_ready=False,artifact_excludes=['existing ROM','runner','runtime','input Save97'])
         write(ART/'measurement.json',report);print(json.dumps(report,ensure_ascii=False,indent=2))
     except Exception as e:
         for s in sessions:
