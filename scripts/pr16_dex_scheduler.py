@@ -22,7 +22,7 @@ RETAIN=('stage61_read32','stage61_crc_byte','stage61_state_crc','stage61_state_r
 
 def proof():return json.loads((ROOT/PROOF).read_bytes())
 def function_span(source,name):
-    matches=list(re.finditer(r'(?m)^(?:static\s+(?:__attribute__[^\n]+\n)?)?(?:u8|u16|u32|void|volatile u8 \*)\s*'+re.escape(name)+r'\(',source))
+    matches=list(re.finditer(r'(?m)^(?:static\s+(?:__attribute__\(\(noinline\)\)\s+)?)?(?:u8|u16|u32|void|volatile u8 \*)\s*'+re.escape(name)+r'\(',source))
     need(len(matches)==1,'one source function '+name)
     start=matches[0].start();brace=source.index('{',start);level=1;i=brace+1
     # This fixed source has no braces in strings within the selected functions.
@@ -39,7 +39,7 @@ def change_function(source,name,change):
 def once(source,old,new):
     need(source.count(old)==1,'unique anchored source transform '+old[:70]);return source.replace(old,new)
 
-def generated_source():
+def generated_source(host=False):
     p=proof();source=(ROOT/SOURCE).read_text()
     need(identity(source.encode())=={k:p['source'][k]for k in ('size','sha256')},'exact original source')
     source=source[:source.index('static u8 stage61_summary_has_project_name_provenance')]
@@ -66,7 +66,7 @@ def generated_source():
         if name in ('Stage61State_HandleLoadSector','Stage61State_GetSaveValidStatus'):continue
         def gate(s):
             brace=s.index('{')
-            return s[:brace+1]+'\n    if (!stage61_dex_live_valid()) return stage61_save_fail_with_sector(31u);'+s[brace+1:]
+            return s[:brace+1]+'\n    if (!stage61_dex_live_valid()) return stage61_dex_fail_live();'+s[brace+1:]
         source=change_function(source,name,gate)
     source=change_function(source,'Stage61State_CommitSignatureByte',lambda s:once(s,
         '    stage61_save_mark_damaged(sector);',
@@ -75,12 +75,63 @@ def generated_source():
     source=change_function(source,'Stage61State_HandleLoadSector',lambda s:once(s,
         '    stage61_state_load_compatible_record(chunks);',
         '    stage61_state_load_compatible_record(chunks);\n    (void)FN_READ_FLASH_SECTION((u8)(physical_base + confirmed.physical_by_id[13]), (void *)G_FAST_SAVE_SECTION);\n    if (!stage61_dex_load(G_FAST_SAVE_SECTION, G_SAVE_BLOCK1_PTR, G_SAVE_BLOCK2_PTR, G_SAVE_COUNTER)) {\n        stage61_dex_invalidate();\n        return STAGE61_SAVE_STATUS_ERROR;\n    }'))
+    # Consolidate only the identical byte-programming bodies. Commit barriers
+    # and readback stay with their original callers.
+    for name,sector,mark in (
+        ('Stage61State_HandleReplaceSector','sector',True),
+        ('stage61_save_clone_record_sector','target_sector',True),
+        ('stage61_save_write_normal_live_sector','target_sector',False),
+        ('stage61_save_rewrite_source_record_sector','source_sector',False)):
+        def shrink(body):
+            start=body.index('    for (index = 0u; index < STAGE61_SAVE_SIGNATURE_OFFSET; ++index) {')
+            second=body.index('    for (index = STAGE61_SAVE_SIGNATURE_OFFSET + 1u;',start)
+            brace=body.index('{',second);level=1;end=brace+1
+            while level:
+                if body[end]=='{':level+=1
+                elif body[end]=='}':level-=1
+                end+=1
+            replacement='    if (!stage61_dex_program_body(program_byte, '+sector+', section)) {\n'
+            if mark:replacement+='        stage61_save_mark_damaged('+sector+');\n'
+            replacement+='        return STAGE61_SAVE_STATUS_ERROR;\n    }'
+            out=body[:start]+replacement+body[end:]
+            if out.count('index')==1:out=out.replace('    u32 index;\n','')
+            return out
+        source=change_function(source,name,shrink)
+    for name in ('stage61_save_clone_record_sector','stage61_save_write_normal_live_sector',
+                 'stage61_save_rewrite_source_record_sector','stage61_state_load_compatible_record'):
+        source=once(source,'static u8 '+name+'(' if name!='stage61_state_load_compatible_record' else 'static void '+name+'(',
+            'static __attribute__((noinline)) '+('void'if name=='stage61_state_load_compatible_record'else 'u8')+' '+name+'(')
+    # On a pre-write rejection publish damage only in the bank opposite a
+    # fully validated authority. SaveFailed must never erase an arbitrary
+    # sector31 or the sole recoverable generation just because RAM is invalid.
+    source += r"""
+static __attribute__((noinline)) u8 stage61_dex_fail_live(void)
+{
+    struct Stage61SaveBlockChunk chunks[STAGE61_SAVE_SLOT_SECTORS];
+    struct Stage61SaveSlotValidation selected;
+    u32 counter = G_SAVE_COUNTER;
+    u16 first = G_FIRST_SAVE_SECTOR;
+    u8 base = 0xFFu;
+    u16 target = 0u;
+    if (stage61_save_build_live_descriptors(chunks)) {
+        (void)stage61_save_select_generation(chunks, &base);
+        if (base != 0xFFu) {
+            stage61_save_validate_slot(base, chunks, &selected);
+            if (selected.status == STAGE61_SAVE_STATUS_OK)
+                target = (u16)((base == 0u ? 14u : 0u) + selected.physical_by_id[13]);
+        }
+    }
+    G_SAVE_COUNTER = counter;
+    G_FIRST_SAVE_SECTOR = first;
+    return stage61_save_fail_with_sector(target);
+}
+"""
     # Shared original helpers/data retain their physical addresses and bytes.
-    for name in RETAIN:
+    for name in (() if host else RETAIN):
         a,b,c=function_span(source,name)
         decl=source[a:b].replace('static ','',1).strip()+';'
         source=source[:a]+decl+source[c:]
-    for name in ('sStage61SaveChunkOffsets','sStage61SaveChunkSizes'):
+    for name in (() if host else ('sStage61SaveChunkOffsets','sStage61SaveChunkSizes')):
         pattern=r'static const u16 '+name+r'\[STAGE61_SAVE_SLOT_SECTORS\] = \{.*?\};'
         source,n=re.subn(pattern,'extern const u16 '+name+'[STAGE61_SAVE_SLOT_SECTORS];',source,flags=re.S);need(n==1,'exact retained data '+name)
     for name in EXPORTS:source=source.replace(name,'DexImpl_'+name)
@@ -129,28 +180,31 @@ def link(folder):
     flags=proof()['compile_argv_canonical'][1:]
     flags=flags[:flags.index('-c')]+['-Wno-unused-function','-Wno-unused-const-variable','-Wa,--noexecstack','-I'+str(ROOT/'overlays/dex_owner')]
     run(['arm-none-eabi-gcc',*flags,'-c',str(src),'-o',str(obj)])
-    syms={x['name']:x for x in proof()['symbols']};defs=[]
-    for name in RETAIN:defs.append(name+' = '+hex(syms[name]['address']|1)+';')
+    syms={x['name']:x for x in proof()['symbols']};defs=[];imports=['.syntax unified','.arch armv4t','.thumb']
+    for name in RETAIN:imports.extend(['.global '+name,'.type '+name+', %function','.thumb_set '+name+', '+hex(syms[name]['address']|1)])
     for name in ('sStage61SaveChunkOffsets','sStage61SaveChunkSizes'):defs.append(name+' = '+hex(syms[name]['address'])+';')
     for name in ('__aeabi_uidiv','__aeabi_uidivmod','__aeabi_idiv','__aeabi_idivmod'):
         row=syms.get(name)or next(x for x in proof()['unsized_aliases']if x['name']==name)
         defs.append(name+' = '+hex(row['address'])+';')
+    imports.append('.section .note.GNU-stack,\"\",%progbits')
+    asm=folder/'imports.S';asm.write_text('\n'.join(imports)+'\n');import_obj=folder/'imports.o'
+    run(['arm-none-eabi-gcc','-mthumb','-mcpu=arm7tdmi','-c',str(asm),'-o',str(import_obj)])
     common='\n'.join(defs)+'\n'
     discard='/DISCARD/ : { *(.comment*) *(.ARM.attributes*) *(.note*) *(.ARM.exidx*) *(.ARM.extab*) }'
     ld=folder/'probe.ld';ld.write_text(common+'SECTIONS { . = 0x09448000; .text : { KEEP(*(.text.DexImpl_Stage61State_*)) *(.text*) *(.rodata*) *(.v4_bx) *(.glue_7*) } .data : { *(.data*) *(.bss*) *(COMMON) } '+discard+' }\n')
     elf=folder/'probe.elf';args=['arm-none-eabi-gcc','-mthumb','-mcpu=arm7tdmi','-mthumb-interwork','-nostdlib','-Wl,--build-id=none','-Wl,--gc-sections','-Wl,-e,DexImpl_Stage61State_HandleSavingData']
-    run([*args,'-Wl,-T,'+str(ld),str(obj),'-lgcc','-o',str(elf)])
+    run([*args,'-Wl,-T,'+str(ld),str(obj),str(import_obj),'-lgcc','-o',str(elf)])
     # Output sections individually in a second reachability link, preserving GC.
     sect=[s for s in elf_sections(obj.read_bytes())if s['flags']&2 and s['size']]
     need(all(s['name'].startswith(('.text','.rodata'))for s in sect),'no mutable new data')
     ld.write_text(common+'SECTIONS { . = 0x09448000; '+''.join(s['name']+' : { '+('KEEP(*('+s['name']+'))'if s['name'].startswith('.text.DexImpl_Stage61State_')else '*('+s['name']+')')+' }\n'for s in sect)+discard+' }\n')
-    run([*args,'-Wl,-T,'+str(ld),str(obj),'-lgcc','-o',str(elf)])
+    run([*args,'-Wl,-T,'+str(ld),str(obj),str(import_obj),'-lgcc','-o',str(elf)])
     live=[s for s in elf_sections(elf.read_bytes())if s['flags']&2 and s['size']]
     need(all(s['name'].startswith(('.text','.rodata'))for s in live),'no synthetic unowned link sections')
     (folder/'link-diagnostic.json').write_text(json.dumps(dict(live_sections=live,available_bytes=sum(b-a for a,b in windows()),required_bytes=sum(x['size']for x in live)),indent=2)+'\n')
     assigned,free=assign_sections(live,windows())
     ld=folder/'scheduler.ld';ld.write_text(common+'SECTIONS { '+''.join(s['name']+' '+hex(s['address'])+' : { KEEP(*('+s['name']+')) }\n'for s in assigned)+discard+' }\n')
-    final=folder/'scheduler.elf';run([*args,'-Wl,-T,'+str(ld),str(obj),'-lgcc','-o',str(final)])
+    final=folder/'scheduler.elf';run([*args,'-Wl,-T,'+str(ld),str(obj),str(import_obj),'-lgcc','-o',str(final)])
     need(not run(['arm-none-eabi-nm','-u',str(final)]),'no undefined scheduler symbols')
     raw=final.read_bytes();actual=[s for s in elf_sections(raw)if s['flags']&2 and s['size']]
     need([(s['name'],s['address'],s['size'])for s in actual]==[(s['name'],s['address'],s['size'])for s in assigned],'exact packed sections with no linker growth')

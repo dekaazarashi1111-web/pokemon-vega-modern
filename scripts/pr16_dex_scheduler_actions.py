@@ -10,7 +10,7 @@ need,identity=scheduler.need,scheduler.identity
 BASE='a4463621e8f8374f74c85d90056cc64e17720d6d'
 CODE={'scripts/pr16_dex_scheduler.py','scripts/pr16_dex_scheduler_actions.py',
  'overlays/dex_owner/dex_stage61_scheduler.h','tests/test_pr16_dex_scheduler.py',
- '.github/workflows/pr16-dex-scheduler.yml'}
+ '.github/workflows/pr16-dex-scheduler.yml','scripts/pr16_dex_scheduler_host.py','tools/pr16_dex_scheduler_host.c'}
 OUT=ROOT/'.local/pr16-dex-scheduler';PUBLIC=ROOT/'public-dex-scheduler'
 def write(path,data):path.parent.mkdir(parents=True,exist_ok=True);path.write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n')
 def guard():
@@ -26,6 +26,8 @@ def run():
  try:
   test=subprocess.run([sys.executable,'-B','-m','unittest','discover','-s','tests','-p','test_pr16_dex_scheduler.py','-v'],cwd=ROOT,capture_output=True)
   need(test.returncode==0 and not test.stdout and b'\nOK\n'in test.stderr,'new scheduler generator tests');(PUBLIC/'host-tests.txt').write_bytes(test.stderr)
+  host=subprocess.run([sys.executable,'-B',str(ROOT/'scripts/pr16_dex_scheduler_host.py'),str(OUT/'host')],cwd=ROOT,capture_output=True,text=True)
+  need(host.returncode==0 and not host.stderr,'synthetic host scheduler matrix: '+host.stderr[-1000:]);write(PUBLIC/'host-runtime.json',json.loads(host.stdout))
   patches,linked=scheduler.link(OUT/'scheduler')
   z,_=transport.archive(transport.SAVE24)
   with z:before=z.read('candidate.gba')
@@ -43,7 +45,7 @@ def export():
  if not PUBLIC.exists():return
  need(PUBLIC.is_dir()and not PUBLIC.is_symlink(),'dedicated public directory')
  for p in PUBLIC.iterdir():
-  need(p.is_file()and not p.is_symlink()and p.name in {'host-tests.txt','build.json','failure.json','link-diagnostic.json'},'explicit regular text file')
-  raw=p.read_bytes();need(0<len(raw)<100000and raw.endswith(b'\n')and b'\0'not in raw,'bounded complete text');raw.decode('utf-8')
+  need(p.is_file()and not p.is_symlink()and p.name in {'host-tests.txt','build.json','failure.json','link-diagnostic.json','host-runtime.json'},'explicit regular text file')
+  raw=p.read_bytes();need(0<len(raw)<100000 and raw.endswith(b'\n')and b'\0'not in raw,'bounded complete text');raw.decode('utf-8')
   if p.suffix=='.json':json.loads(raw)
-if __name__=='__main__':need(len(sys.argv)==2and sys.argv[1]in('guard','run','export'),'bounded action');globals()[sys.argv[1]]()
+if __name__=='__main__':need(len(sys.argv)==2 and sys.argv[1]in('guard','run','export'),'bounded action');globals()[sys.argv[1]]()

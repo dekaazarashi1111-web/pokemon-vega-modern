@@ -30,3 +30,18 @@ static u8 stage61_dex_load(const volatile u8 *section,const volatile u8 *save1,
         VEGA_DEX_SECTOR_SIZE,(const uint8_t *)save1,VEGA_DEX_SAVE1_SIZE,
         (const uint8_t *)save2,VEGA_DEX_SAVE2_SIZE,counter,1u)==VEGA_DEX_OK;
 }
+/* Shared body programmer keeps signature-last semantics and reduces duplicate
+ * loops without borrowing any adjacent owner. Callers retain erase, commit,
+ * damaged-sector selection and exact readback responsibilities. */
+static __attribute__((noinline)) u8 stage61_dex_program_body(
+    ProgramFlashByteFn program_byte,u16 sector,const volatile u8 *section)
+{
+    u32 index;
+    for(index=0u;index<STAGE61_SAVE_SECTION_SIZE;++index) {
+        if(index==STAGE61_SAVE_SIGNATURE_OFFSET)continue;
+        if(program_byte(sector,index,section[index])!=0u)return 0u;
+    }
+    return 1u;
+}
+
+static __attribute__((noinline)) u8 stage61_dex_fail_live(void);

@@ -7,6 +7,8 @@ on:
       - scripts/pr16_dex_scheduler_actions.py
       - overlays/dex_owner/dex_stage61_scheduler.h
       - tests/test_pr16_dex_scheduler.py
+      - scripts/pr16_dex_scheduler_host.py
+      - tools/pr16_dex_scheduler_host.c
       - .github/workflows/pr16-dex-scheduler.yml
 permissions:
   contents: read
