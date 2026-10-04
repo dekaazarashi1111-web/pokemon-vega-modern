@@ -15,7 +15,7 @@ CODE={'scripts/pr16_story_live_observer.py','scripts/pr16_story_live_session.py'
       '.github/workflows/pr16-story-live-probe.yml','content/modernization/pr16_story_live_observer_unit.json',
       'docs/PR16_STORY_LIVE_OBSERVER_JA.md'}
 SEED=dict(size=131088,sha256='814a8e31ce20d720a1f1bddc08caa9cdd3d86b5bbb874738b9cb859653552149')
-RUNTIME=(10898620034,36218655601,102586759,'a6aeccb72fa15411d956b418ca5f030aa5020a466303a25e0f8814ba2eeb5c4d')
+RUNTIME=(11263910704,37094769974,102440293,'661ad2b88d25607d81ac46141f85cd42f2fcf88db4f306e1601257f3277e099f')
 SAVE101=(11303305200,37200922210,217263,'5b152b826e6ea90695dce99ba2744e1faa7958b4434da769e5f3a7a79f54e25b')
 SAVE24=(11263343138,37093559410,17559812,'6a0cff0cd7a5d4118fd090bd8588c9076f1525d689b7e53802cbea9bbe9d49b0')
 LAYOUT=[3876]+[3968]*3+[3776]+[3968]*8+[2000]
@@ -39,9 +39,17 @@ def restore():
     private=OUT/'private';private.mkdir();runtime=OUT/'runtime';runtime.mkdir()
     z,meta=archive(RUNTIME)
     with z:
-        need(len(z.infolist())==333 and sum(e.file_size for e in z.infolist())==240469427,'fixed full runtime/header archive')
-        for e in z.infolist():
-            p=runtime/e.filename;p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(z.read(e))
+        manifest=json.loads(z.read('runtime/manifest.json'));need(len(manifest)>5,'retained runtime members')
+        for name,binding in manifest.items():
+            need(name=='ld.so' or name.startswith('lib/'),'runtime-only restoration')
+            raw=z.read('runtime/'+name);need(identity(raw)==binding,'retained runtime member '+name)
+            p=runtime/name;p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(raw)
+    # 消失した旧artifactのheadersだけを同一Ubuntu package版から取得。
+    package=subprocess.check_output(['dpkg-query','-W','-f=${Version}','libmgba-dev'],text=True).strip()
+    need(package=='0.10.2+dfsg-1.1build3','same original header package')
+    need((Path('/usr/lib/x86_64-linux-gnu/libmgba.so')).read_bytes()==(runtime/'lib/libmgba.so').read_bytes(),'header package library equals retained runtime bytes')
+    import shutil
+    for name in ('mgba','mgba-util'):shutil.copytree(Path('/usr/include')/name,runtime/'include'/name)
     (runtime/'ld.so').chmod(0o755);(runtime/'lib/libmgba.so.0.10').symlink_to('libmgba.so')
     need(identity((runtime/'lib/libmgba.so').read_bytes())==dict(size=1968536,sha256='0c87a12341640e6a2d325e59e76eb4b002947771ad4d8814b216e3b99817d68d'),'fixed mGBA library')
     z,_=archive(SAVE24)
