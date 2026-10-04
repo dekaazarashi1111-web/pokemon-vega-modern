@@ -463,6 +463,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-図鑑実配置run37223181964は全10step成功。24entry・24API ARM/EWRAM対照を受入、正式ROM/Save101は不変。記録run37223939077全12stepと固定MDJSON/両ログを読戻し、元24macro/99sized symbol/4aliasの12testsを照合。record upload path不一致でartifact0だったため、既存commitのcheckpointをcloseoutで再公開。旧host/ARM/native再実行0。一般CI既知QOL source不一致とStage79 cacheは別扱い。
+保存scheduler候補は全10step、18generator/20host/19隔離ARM/36calls、EWRAM non-ownerとSP/r4-r11を限定受入。record全12stepとartifact/commit checkpointの全byteを照合。正式ROM/Save101不変。通常保存・新規ゲーム・外側load gate・全consumerは未完。一般CI既知QOL source不一致、Stage79 cacheは新nativeではない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

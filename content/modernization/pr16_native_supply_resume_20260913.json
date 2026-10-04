@@ -4360,12 +4360,12 @@
   "observed_head": "b65b53e70895c124e9d00709f47fc0c66a7b07d5",
   "observed_head_checks": {
     "all12_record_steps_success": true,
-    "game_hooks_installed": false,
+    "gameplay_accepted": false,
     "general_ci_known_source_mismatch_not_resolved": true,
-    "placement_run": 37223181964,
-    "reason_ja": "図鑑実配置run37223181964は全10step成功。24entry・24API ARM/EWRAM対照を受入、正式ROM/Save101は不変。記録run37223939077全12stepと固定MDJSON/両ログを読戻し、元24macro/99sized symbol/4aliasの12testsを照合。record upload path不一致でartifact0だったため、既存commitのcheckpointをcloseoutで再公開。旧host/ARM/native再実行0。一般CI既知QOL source不一致とStage79 cacheは別扱い。",
-    "record_run": 37223939077,
-    "scope_head": "8db8f096d4bdbec6c4f2388e78121e45a390ab56"
+    "reason_ja": "保存scheduler候補は全10step、18generator/20host/19隔離ARM/36calls、EWRAM non-ownerとSP/r4-r11を限定受入。record全12stepとartifact/commit checkpointの全byteを照合。正式ROM/Save101不変。通常保存・新規ゲーム・外側load gate・全consumerは未完。一般CI既知QOL source不一致、Stage79 cacheは新nativeではない。",
+    "record_run": 37228900963,
+    "scheduler_run": 37228557062,
+    "scope_head": "b65b53e70895c124e9d00709f47fc0c66a7b07d5"
   },
   "observed_head_history": [
     {
@@ -12376,13 +12376,7 @@
     "status": "NATIVE_PARTY_RETENTION_ACCEPTED_BP_PENDING",
     "tested_head": "10e535a046441dd3b797918106259b5c57b69716"
   },
-  "pending_runs": [
-    {
-      "run_id": 37228900963,
-      "status": "in_progress",
-      "tested_head": "b65b53e70895c124e9d00709f47fc0c66a7b07d5"
-    }
-  ],
+  "pending_runs": [],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
   "pr_draft": true,
   "pr_merged": false,
@@ -14201,9 +14195,13 @@
       "sha256": "16cf8bd272a6ad32226f11b46372cf81ba64c5bff3ca9a9234ee124568fd7bc3",
       "size": 2301
     },
+    ".github/workflows/pr16-dex-scheduler-closeout.yml": {
+      "sha256": "0e5cfeea103ea2bf444f80855d3f70c8687c0a69dd1f09bba3d945928c318943",
+      "size": 2430
+    },
     ".github/workflows/pr16-dex-scheduler-record.yml": {
-      "sha256": "71c25dd8a37e44edee2abbdcd1a35a12464680e969dce60a9f8a065c0fb16463",
-      "size": 2414
+      "sha256": "14121edbd48830a56dc9c675d175c3f5f3d1d3c846e6550865e63efbab8d4b81",
+      "size": 2312
     },
     ".github/workflows/pr16-dex-scheduler.yml": {
       "sha256": "d1be1b87dfffb84af71598181b2ee440e1b19fa68c3da32a997b95f7ae23f9bd",
@@ -32245,6 +32243,10 @@
       "sha256": "d6bc4365e26b89b8c9ec89dc9592fa024e933585d0ec8624ac9f366f7be23770",
       "size": 6663
     },
+    "scripts/pr16_dex_scheduler_closeout.py": {
+      "sha256": "e8523cdfea88565cc9b1a2f963502489a86e3415bb9d958e3d39d76bfec3f86e",
+      "size": 7406
+    },
     "scripts/pr16_dex_scheduler_host.py": {
       "sha256": "2a01c056d807e1e8687239b0880e8a81de3a71555de6c769f6a76057ddab209c",
       "size": 1872
@@ -38080,6 +38082,30 @@
         "newgame_wired": false,
         "outer_load_guard_wired": false,
         "record_run": 37228900963,
+        "recording": {
+          "all12_steps_success": true,
+          "archive_sha256": "974a8914a71ec3b2a15bc7ec3d8daacb6613658a3d8697e1cc6302da7b8511b2",
+          "archive_size": 19454,
+          "arm_compiles": 0,
+          "artifact": 11312448019,
+          "artifact_equals_committed_checkpoint": true,
+          "checkpoint": "content/modernization/pr16_dex_scheduler_checkpoint.json",
+          "checkpoint_identity": {
+            "sha256": "b17a4decc849843081c0f2633c62069436aece9c56f5f9f37cfa932f371e237e",
+            "size": 86021
+          },
+          "closeout_run": 37229220891,
+          "closeout_source": "4f535156937c7bfa14a05f245d3891d701c7f5d2",
+          "completion": "5674f6e89d099eafa8938d7dd04fee27451fcdb0",
+          "formal_rom_changed": false,
+          "formal_save_changed": false,
+          "host_tests_rerun": 0,
+          "job": 111514202531,
+          "native_processes": 0,
+          "run": 37228900963,
+          "source": "b65b53e70895c124e9d00709f47fc0c66a7b07d5",
+          "status": "PASS_TERMINAL_RECORD_AND_WHOLE_ARTIFACT_READBACK"
+        },
         "run": 37228557062,
         "source": "52c24cb0c2104edc2e07e259db7340d35ebc2342",
         "status": "PASS_ISOLATED_SAVE_SCHEDULER_CANDIDATE",

@@ -9907,3 +9907,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 正式ROM/Save101は不変。PR16_DEX_SAVE_SCHEDULER_JA.mdとpr16_dex_scheduler_checkpoint.jsonから再開。Stage61保存8入口の固定veneerと全44export/元non-save保持、同世代MDX、LinkFull署名前再読、CRC fallback/clone/record-onlyを候補内へ接続し隔離ARM19caseを受入。次はloadchain監査のMirage literal0x09391114にpost-QOL MDX gateを、CFRU literal0x09097178にwipe後InitNew tail wrapperを接続。現sector31復元はlegacy2048byteでMDXに重ならないがstockは内側load返値を捨てる。HOF-only load=3を除外し、復旧Save前に失敗遮断する。authority不明のinvalid-liveでは仮damaged sectorを付けず、上位の非破壊的失敗伝播を実装。全save mode固有副作用、全SID喪失前consumer/Bag count/reward clear/Factory-Codex rollback、候補限定通常Save/独立cold Continueを受入後だけ正式進行。最終はシオウPokecenter通常回復/Save/coldContinue。雑魚戦ごとのSaveは作らない。
 - Commit: record source=b65b53e70895c124e9d00709f47fc0c66a7b07d5; 同branch非force push。
 - Network: 同repoActions/既存candidate、source根拠のみ。一般CI QOL source不一致、Stage79 cacheを別記。公開はsource/address/size/hashと検査済textのみ。
+
+## 2026-10-04T19:41:37.254678+00:00
+- Timestamp: 2026-10-04T19:41:37.254678+00:00
+- Task: USER-20261004-DEX-SCHEDULER / 保存scheduler記録終端
+- Version: dex-save-scheduler-v1-closeout
+- Status: DONE（候補の隔離ARM記録終端。通常game受入は次工程）
+- Summary: record run37228900963/job111514202531全12step成功。artifact11312448019のreceiptとcommit checkpointを全byte照合し、pendingを解除。完了記録はmanual-onlyへ移す。
+- Files changed: closeout source/workflow、record起動条件、固定MDJSON、両ログ。
+- Verify: artifact/固定state/source binding/index/task graph PASS。host再試験0/ARM0/native0/正式ROM・Save変更0。元44export/非保存code/dataを保持、実配置8264byte、追加lease1084byte、allocator108owner/overlap0。
+- Commit: closeout source=4f535156937c7bfa14a05f245d3891d701c7f5d2; 同branch非force push。
+- Network: 同repoActions/commit/既存text artifactのみ。一般CI既知QOL不一致、Stage79 cache、旧9月18日queue非操作を保持。
