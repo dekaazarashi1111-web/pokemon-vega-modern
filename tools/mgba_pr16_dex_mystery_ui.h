@@ -59,7 +59,8 @@ static void mu_ready(struct mCore*c)
  unsigned count=0;for(unsigned i=0;i<16;i++){unsigned a=0x030050D0+40*i;if(read8(c,a+4)&&read32(c,a)==0x081435A9){mu_task=a;count++;}}
  si_need(count==1&&read8(c,mu_task+16)==0&&read8(c,mu_task+17)==0&&read8(c,0x0203AC70)==0,"constructor before first task/list menu call");
  for(unsigned i=0;i<4;i++)mu_allocation(c,read32(c,0x030008EC+16*i),0x800);
- const unsigned sizes[]={0x780,0xE00,0x12C0};for(unsigned i=0;i<3;i++){unsigned a=0x02020430+12*i;for(unsigned j=0;j<8;j++)si_need(read8(c,a+j)==read8(c,0x084300F8+8*i+j),"exact window template");mu_allocation(c,read32(c,a+8),sizes[i]);}
+ si_need(read32(c,0x03003DCC)==1&&((read16(c,0x04000008)>>2)&3)==2,"native MG tile autoallocator with BG0 charbase2");
+ const unsigned sizes[]={0x780,0xE00,0x12C0};unsigned bases[3],counts[3];for(unsigned i=0;i<3;i++){unsigned a=0x02020430+12*i;for(unsigned j=0;j<6;j++)si_need(read8(c,a+j)==read8(c,0x084300F8+8*i+j),"exact six immutable window template bytes");mu_allocation(c,read32(c,a+8),sizes[i]);bases[i]=read16(c,a+6);counts[i]=sizes[i]/32;si_need(bases[i]+counts[i]<=1024,"dynamic tile base bounded");for(unsigned j=0;j<counts[i];j++){unsigned tile=1024+bases[i]+j;si_need((read8(c,0x03000938+tile/8)>>(tile%8))&1,"every dynamic window tile allocator owned");}for(unsigned j=0;j<i;j++)si_need(bases[i]>=bases[j]+counts[j]||bases[j]>=bases[i]+counts[i],"all dynamic window tile spans disjoint");}
  mu_allocation(c,read32(c,mu_task+24),0x40);
  printf("{\"native_ui_setup\":true,\"frame\":%u,\"task\":%u,\"bg_allocations\":4,\"window_allocations\":3,\"client_allocation\":64,\"all_heap_extents_valid\":true,\"old_field_window_leak_not_accepted\":true}\n",st_frames,mu_task);fflush(stdout);
 }
@@ -84,7 +85,7 @@ int main(int argc,char**argv)
  unsigned text=mu_mode?0x083E045B:0x0843074C;bool eos=false;for(unsigned i=0;i<128;i++){si_need(read8(c,0x02021C88+i)==read8(c,text+i),"actual complete displayed string matches chosen result");if(read8(c,text+i)==255){eos=true;break;}}si_need(eos,"whole bounded message including terminator");
  si_need(read16(c,0x03005470)==(mu_mode?255:1)&&read32(c,SI_COUNTER)==(mu_mode==1?101:102),"correct attempt and committed generation");
  for(unsigned i=0;i<60;i++)mu_tick(c,0);si_need(read8(c,mu_task+16)==17&&read8(c,mu_task+17)==3,"real result remains until new input");mu_view(c,mu_mode?"failure_waiting":"success_waiting");
- mu_tick(c,1);mu_tick(c,0);ready=false;for(unsigned i=0;i<120;i++){mu_tick(c,0);if(read8(c,mu_task+16)==1&&read8(c,0x0203AC70)==2){ready=true;break;}}si_need(ready,"native clear and return to real mystery menu");for(unsigned i=0;i<20;i++)mu_tick(c,0);mu_view(c,"returned_to_menu");
+ mu_tick(c,1);mu_tick(c,0);ready=false;for(unsigned i=0;i<120;i++){mu_tick(c,0);if(read8(c,mu_task+16)==1&&read8(c,0x0203AC70)==1){ready=true;break;}}si_need(ready,"native clear and return to real mystery menu");for(unsigned i=0;i<20;i++)mu_tick(c,0);si_need(read32(c,BATTLE_CORE_MAIN_CALLBACK2)==0x081427B1&&read8(c,mu_task+4)&&read32(c,mu_task)==0x081435A9&&read8(c,mu_task+16)==1&&read8(c,mu_task+17)==0&&read8(c,0x0203AC70)==1,"same real menu continues stable input wait");mu_view(c,"returned_to_menu");
  uint8_t flash[131072];ng_flash(c,flash);si_need(!memcmp(flash+14*4096,mu_flash+14*4096,(mu_mode==1?18:17)*4096),"original authority bank and unrelated auxiliary sectors retained");
  if(mu_mode)si_need(mu_snapshot&&mu_faults&&mu_faults<=16,"real physical fault occurred");else si_need(!mu_snapshot&&!mu_faults,"healthy counterpart no injected failure");
  for(unsigned i=0;i<600;i++)si_need(read8(c,QOL_PLAYER_PARTY+i)==mu_party[i],"whole party unchanged");unsigned inv[2048];si_inventory(c,inv);si_need(!memcmp(inv,mu_inventory,sizeof(inv)),"normalized Bag unchanged");

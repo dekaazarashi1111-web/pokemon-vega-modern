@@ -51,7 +51,7 @@ def validate_trace(raw,folder,candidate,mode):
   else:raise ValueError('unknown UI trace row')
  need(not pending and screen==end['screens']==4 and frame==end['frames']and inputs==end['inputs']and len(setups)==1 and[f['bytes_written']for f in fixtures]==[9,2],'whole trace complete')
  need([r['mystery_stage']for r in stages]==['before_ui_fixture','native_menu_initialized','failure_waiting'if mode else'success_waiting','returned_to_menu'],'all4 observed screens')
- need(stages[2]['parent_state']==17 and stages[2]['text_state']==3 and stages[3]['parent_state']==1 and stages[3]['text_state']==0,'actual waiting and original menu return');return dict(end=end,stages=stages,fixtures=fixtures,setups=setups,screens=ui.screens(rows,folder))
+ need(stages[2]['callback']==stages[3]['callback']==0x081427B1 and stages[2]['parent_state']==17 and stages[2]['text_state']==3 and stages[3]['parent_state']==1 and stages[3]['text_state']==0,'actual waiting and original menu return');return dict(end=end,stages=stages,fixtures=fixtures,setups=setups,screens=ui.screens(rows,folder))
 def run():
  import pr16_story_live_probe as t
  import pr16_dex_mystery_failure_actions as prior
