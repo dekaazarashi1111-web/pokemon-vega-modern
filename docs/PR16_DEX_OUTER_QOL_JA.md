@@ -29,3 +29,9 @@ QOL adapterはmain保存成功後にsector31を保存する。共有helperはboo
 ## 原本配置台帳の区別
 
 最初のrun37241038917は旧Stage36 allocationのcontent_sha256を現QOL ownerのidentityと誤仮定し、全ROM構築の後、native0で停止した。既存原本を改変せず、正式ROM全体SHAと当該QOL領域69440byteの現SHAを別署名にし、旧台帳値との不一致を記録する。範囲ownerと現在byte identityを混同しない。
+
+## stale sector31故障bitの再試行
+
+run37241264916では旧配置候補1f0c3568のisolated7680caseは成功し、実STARTの末尾sector31故障も通常エラー2頁→fieldまで進んだ。しかし故障解除後の再Saveでmain103がcommitしても、前回のbit31がinner成功gateを阻み、outer helperへ到達できなかった。成功へ昇格せずnative2の診断原本を保持する。
+
+後継はSTART実DoSave callback＋mode0＋owned main結果0＋damaged maskがbit31だけの場合に限り、inner既存成功continuationから外側write/readbackへ進める。maskをclearせず、最後の外側helper結果までSave成功としない。mode4/HOF/別callback/他sector bit/結果255は元どおり拒否する。既存failure gate ownerを監査済範囲内へ明示拡張し、QOL tailを0x095FFFE0へ移す。隔離ABI7680caseに限定gate288caseと、移設したwipe gate16caseを加える。

@@ -12,7 +12,7 @@ need,identity,write=prior.need,prior.identity,prior.write
 BASE='517d45045d6030e22a3615d9bbb095f004b50c20'
 HEADER='tools/mgba_pr16_dex_outer_qol_ui.h'
 GUIDE='docs/PR16_DEX_OUTER_QOL_JA.md'
-CODE={f.SOURCE,f.BINDINGS,'scripts/pr16_dex_outer_qol.py','scripts/pr16_dex_outer_qol_actions.py','tests/test_pr16_dex_outer_qol.py','tests/test_pr16_dex_outer_qol_ui.py','tools/mgba_pr16_dex_outer_qol.h',HEADER,GUIDE,'.github/workflows/pr16-dex-outer-qol.yml'}
+CODE={f.SOURCE,f.GATE_SOURCE,f.BINDINGS,'scripts/pr16_dex_outer_qol.py','scripts/pr16_dex_outer_qol_actions.py','tests/test_pr16_dex_outer_qol.py','tests/test_pr16_dex_outer_qol_ui.py','tools/mgba_pr16_dex_outer_qol.h',HEADER,GUIDE,'.github/workflows/pr16-dex-outer-qol.yml'}
 OUT=ROOT/'.local/pr16-dex-outer-qol';PUBLIC=ROOT/'public-dex-outer-qol'
 def validate_header(source):
     s=re.sub(r'/\*.*?\*/|//[^\n]*','',source,flags=re.S)
@@ -43,7 +43,7 @@ def guard():
 def reconstruct():
     prior.OUT=OUT/'parent';prior.OUT.mkdir();_,_,before,_,_=prior.reconstruct()
     need(identity(before)==f.checkpoint()['candidate'],'old candidate whole bytes reconstructed without native')
-    payload,linked=f.link(OUT/'outer');after,placed=f.apply(before,payload,linked);path=OUT/'candidate.gba';path.write_bytes(after)
+    payload,linked=f.link(OUT/'outer');gate_payload,gate_link=f.retry_gate(OUT/'retry-gate');after,placed=f.apply(before,payload,linked,gate_payload,gate_link);path=OUT/'candidate.gba';path.write_bytes(after)
     return path,before,after,linked,placed
 
 def validate_ui(raw,folder,candidate):
@@ -102,7 +102,7 @@ def run():
         def attempt(name):attempts.append(name);write(PUBLIC/'attempts.json',dict(native_processes=len(attempts),cases=attempts))
         attempt('isolated');r=subprocess.run([str(exes['isolated']),str(candidate)],cwd=OUT,capture_output=True,text=True,timeout=300)
         (PUBLIC/'isolated-stdout.txt').write_text(r.stdout);(PUBLIC/'isolated-stderr.txt').write_text(r.stderr)
-        need(r.returncode==0 and not r.stderr,'isolated rc='+str(r.returncode)+' '+r.stderr[-1000:]);native=json.loads(r.stdout);need(native['status']=='PASS_ISOLATED_OUTER_QOL_RESULT_TAIL'and native['cases']==7680,'all7680 new result cases')
+        need(r.returncode==0 and not r.stderr,'isolated rc='+str(r.returncode)+' '+r.stderr[-1000:]);native=json.loads(r.stdout);need(native['status']=='PASS_ISOLATED_OUTER_QOL_RESULT_TAIL'and native['cases']==7984,'outer7680 plus288 retry gate and16 relocated wipe cases')
         z,_=t.archive(t.SAVE101)
         with z:seed=z.read('story-fast.srm')
         need(identity(seed)==t.SEED,'untouched formal101');expected=game.record(game.physical(seed,101)['legacy']);copy=OUT/'copy.srm';copy.write_bytes(seed);failed=OUT/'failed.srm';saved=OUT/'retry.srm';case=PUBLIC/'fault';case.mkdir();attempt('fault')
@@ -119,7 +119,7 @@ def run():
         need(copy.read_bytes()==good and candidate.read_bytes()==after,'whole runtime outputs exact')
         write(PUBLIC/'measurement.json',dict(status='PASS_OUTER_QOL_RESULT_AND_LAST_BYTE_FAULT_RETRY_COLD',source_head=os.environ['GITHUB_SHA'],run_id=int(os.environ['GITHUB_RUN_ID']),candidate=ci,parent_candidate=identity(before),link=linked,placement=placed,isolated=native,trace=trace,cold=cs,failed_save=identity(bad),retried_save=identity(good),input_save=identity(seed),native_processes=len(attempts),host_suites=6,old_native_reruns=0,formal_rom_changed=False,formal_save_changed=False,all_save_modes_accepted=False,non_start_notifications_accepted=False,early_sector31_fault_accepted=False,sector31_atomicity_accepted=False,source_bindings={p:identity((ROOT/p).read_bytes())for p in sorted(CODE)}))
     except Exception as e:
-        write(PUBLIC/'failure.json',dict(status='DIAGNOSTIC_NOT_ACCEPTED',type=type(e).__name__,message=str(e),native_processes=len(attempts),attempts=attempts));raise
+        write(PUBLIC/'failure.json',dict(status='DIAGNOSTIC_NOT_ACCEPTED',type=type(e).__name__,message=str(e).replace(str(ROOT),'.'),native_processes=len(attempts),attempts=attempts));raise
 
 def export():
     if not PUBLIC.exists():return

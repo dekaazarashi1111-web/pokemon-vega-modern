@@ -48,7 +48,7 @@
   "patch_call": 154629762,
   "helper": 154638272,
   "attempt": 50353264,
-  "base": 157286320,
+  "base": 157286368,
   "end_exclusive": 157286400,
   "scope_ja": "QOL adapter共通出口でnon1をreturn255/attempt255へ整合し、既存8byte frameから直接callerへ復帰する。ensure_save早期0も含む。main/helperの呼出回数・transaction bypass/補償・wipe/retryは変更しない。",
   "qol_owner_preimage": {
@@ -57,5 +57,13 @@
     "sha256": "b49f2716f5958287efbc9fa0b3173d105f5a41b52d30cbb55ba2dac7d9fc67ad",
     "allocation_legacy_sha256": "bf7829c7bf28844de186e0d5cb12509c3b892cba2031bd8a722695c36d42a01f",
     "reason_ja": "既存allocatorのcontent_sha256は旧Stage36生成時点。現formal全ROM SHAを固定したowner全byte署名を使う。accepted START後段の既存変更窓はQOL owner外。旧台帳を現byteの証明へ読み替えない。"
+  },
+  "retry_scope": {
+    "main_status": 0,
+    "save_mode": 0,
+    "callback": 134672689,
+    "damaged_mask": 2147483648,
+    "mask_modified": false,
+    "final_sector31_write_required": true
   }
 }
