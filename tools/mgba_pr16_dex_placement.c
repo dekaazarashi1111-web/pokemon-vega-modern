@@ -107,5 +107,5 @@ int main(int argc,char **argv) {
         ++functional_cases;++calls;
     }
     printf("{\"status\":\"PASS_PLACED_ARM_APIS_AND_VENEERS_ONLY\",\"native_processes\":1,\"fresh_cores\":1,\"api_calls\":%u,\"veneer_cases\":%u,\"functional_cases\":%u,\"steps\":%u,\"ewram_bytes_compared_per_case\":262144,\"game_boots\":0,\"ordinary_saves\":0,\"game_hooks_installed\":false,\"story_progress_accepted\":false}\n",calls,veneer_cases,functional_cases,steps);
-    fflush(stdout);c->deinit(c);free(c);return 0;
+    fflush(stdout);mCoreConfigDeinit(&c->config);c->deinit(c);return 0;
 }
