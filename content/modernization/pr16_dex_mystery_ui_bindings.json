@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "windows": [
+    {
+      "id": "set_main_callback2",
+      "address": 134219076,
+      "size": 20,
+      "sha256": "30a965366b31fe25a03b150278019185401dcdde2034a7306c5e6c184015a6a6"
+    },
+    {
+      "id": "init_mystery",
+      "address": 135539148,
+      "size": 40,
+      "sha256": "28f66be7f898a9bb5926c23a3ee75df7b08ef9d4eb6a24d2e590d7ce9c75d4da"
+    },
+    {
+      "id": "mystery_setup",
+      "address": 135538632,
+      "size": 516,
+      "sha256": "2fbd8211782c48856a80b40703a2295c213dec70a21e1c18bc162ac73c7edc0f"
+    },
+    {
+      "id": "mystery_main",
+      "address": 135538608,
+      "size": 24,
+      "sha256": "211aa2de8afee3d18fdcc141d96678c7306b0b8be233c233ed3227ff8131a8c5"
+    },
+    {
+      "id": "mystery_task_ctor",
+      "address": 135542112,
+      "size": 72,
+      "sha256": "e8d113733a1fbb5349eaaaded54ef4f41abd773fb50e0712acb85164da31d8fa"
+    },
+    {
+      "id": "window_templates",
+      "address": 138608888,
+      "size": 24,
+      "sha256": "43349424e5195a9c4b48e27e6fbf301cc49168afd4b2e88e93f00d2a91d2a4dd"
+    }
+  ],
+  "fixture_windows": [
+    {
+      "address": 50344240,
+      "size": 8,
+      "purpose": "callback1/2"
+    },
+    {
+      "address": 50345320,
+      "size": 1,
+      "purpose": "main state"
+    },
+    {
+      "owner": "sole Task_MysteryGift",
+      "offset": 16,
+      "size": 2,
+      "purpose": "parent17/text0 before initial task"
+    }
+  ],
+  "scope_ja": "UI-only entry; no gift/flags/inventory/story fixture. Field window leak is not normal-transition acceptance. Existing menu is not instantiated before parent17."
+}
