@@ -25,3 +25,7 @@ QOL adapterはmain保存成功後にsector31を保存する。共有helperはboo
 非STARTのHOF/Mystery Gift等にはreturn/attemptを見ないcallerがある。この修正だけで失敗通知の完了としない。旧専用SaveFailedはtiles16KiB/video-state/gDecompressionBufferを破壊し得る。HOF payloadと回数増分、mode4/5のsector28..31 erase、stale selector時authority wipe、LinkFull/全mode固有副作用の受入は別工程である。
 
 全typed consumerと必要modeのnativeが閉じるまで正式ROM切替・trainer131後半へ進まない。最後のmilestoneはシオウPokecenter通常回復/Save/独立coldContinueであり、通常雑魚ごとのcheckpointは作らない。
+
+## 原本配置台帳の区別
+
+最初のrun37241038917は旧Stage36 allocationのcontent_sha256を現QOL ownerのidentityと誤仮定し、全ROM構築の後、native0で停止した。既存原本を改変せず、正式ROM全体SHAと当該QOL領域69440byteの現SHAを別署名にし、旧台帳値との不一致を記録する。範囲ownerと現在byte identityを混同しない。

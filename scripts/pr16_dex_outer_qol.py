@@ -57,7 +57,9 @@ def apply(before,payload,linked):
         a,z=row['start'],row['end_exclusive']
         if before[a:z]!=after[a:z]:
             need(row['name']=='qol_production_stage36_payload'and a<=at<at+4<=z,'only exact QOL call owner')
-            need(identity(before[a:z])['sha256']==row['content_sha256'],'QOL owner exact preimage')
+            signed=proof()['qol_owner_preimage']
+            need(row['content_sha256']==signed['allocation_legacy_sha256'] and a+0x08000000==signed['address'] and z-a==signed['size'],'known historical owner container')
+            need(identity(before[a:z])==dict(size=signed['size'],sha256=signed['sha256']),'current whole-QOL signed preimage')
             row['content_sha256']=identity(after[a:z])['sha256'];changed.append(row['name'])
     need(changed==['qol_production_stage36_payload'],'one explicit old owner edit')
     allocation['allocations'].append(dict(name=NAME,region='integration_modules',start=lo,size=len(payload),alignment=4,placement='EXPLICIT',owner='USER-20261004-DEX-OUTER-QOL',purpose='Outer QOL common result tail, return and attempt propagation only',content_sha256=identity(payload)['sha256']))
@@ -66,4 +68,4 @@ def apply(before,payload,linked):
     reverse=bytearray(after)
     for a,z in windows:reverse[a:z]=before[a:z]
     need(bytes(reverse)==before,'whole ROM inverse exact')
-    return bytes(after),dict(allocation=rebuilt,patches=[dict(address=a+0x08000000,size=z-a,sha256=identity(after[a:z])['sha256'])for a,z in sorted(windows)],unchanged_owners=110,modified_owner=changed[0],changed_old_owner_bytes=4,whole_rom_rollback_exact=True,formal_rom_changed=False,formal_save_changed=False)
+    return bytes(after),dict(allocation=rebuilt,patches=[dict(address=a+0x08000000,size=z-a,sha256=identity(after[a:z])['sha256'])for a,z in sorted(windows)],unchanged_owners=110,modified_owner=changed[0],historical_owner_hash_reconciled=proof()['qol_owner_preimage'],changed_old_owner_bytes=4,whole_rom_rollback_exact=True,formal_rom_changed=False,formal_save_changed=False)

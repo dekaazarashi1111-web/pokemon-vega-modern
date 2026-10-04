@@ -32,7 +32,7 @@ jobs:
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-dev libmgba-dev
-      - name: Verify save result, non-destructive wipe guard and authorityless writer rejection
+      - name: Verify outer result tail and last-byte sector31 fault
         run: python3 -B scripts/pr16_dex_outer_qol_actions.py run
       - name: Lightweight task graph
         run: python3 -B scripts/validate_task_graph.py --check

@@ -28,10 +28,11 @@ def generate(candidate,cold=False):
         token='int main(int argc,char**argv){';need(source.count(token)==1,'one key-only parent main')
         return(source.replace(token,'int accepted_story_main_not_called(int argc,char**argv){')+'\n'+header).encode()
     helper=header[header.index('static void oq_ledger('):header.index('static void oq_view(')]
+    helper=helper.replace('struct mCore*c)', 'struct mCore*c,unsigned frame)').replace('st_frames,sha','frame,sha')
     marker='static struct mCore *st_open(';need(source.count(marker)==1,'one cold insertion')
     source=source.replace(marker,helper+'\n'+marker)
     marker='dx_observe(c,n,st_frames);st_screen(n);';need(source.count(marker)==1,'one cold ledger observation')
-    return source.replace(marker,'dx_observe(c,n,st_frames);oq_ledger(c);st_screen(n);').encode()
+    return source.replace(marker,'dx_observe(c,n,st_frames);oq_ledger(c,st_frames);st_screen(n);').encode()
 def guard():
     import pr16_story_live_probe as t
     need(os.environ['GITHUB_REPOSITORY']=='dekaazarashi1111-web/pokemon-vega-modern'and os.environ['GITHUB_REF_NAME']=='codex/modernization-followup-20260908'and os.environ['GITHUB_RUN_ATTEMPT']=='1','authorized first run')
