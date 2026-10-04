@@ -12479,3 +12479,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 測定source=b7e2946492948914f1bbd1079df195790d96a9e3、記録source=fb11edeb63278439b8a3e2192788a857a548a72f・run=37201766640。同branch非forcepush/全text読戻し。
 - Network: 同repoGitHub/Actions、読取用文字decode照合 https://raw.githubusercontent.com/pret/pokefirered/master/charmap.txt 。ROM/runtime非再配布/ROM変更/host補充/merge/release/baseline切替0。一般CI既知QOL不一致/finalHEAD action_requiredを緑にしない。
 - Next: Save101 artifact11303305200のstory-fast.srm（131088bytes/SHA256 814a8e31ce20d720a1f1bddc08caa9cdd3d86b5bbb874738b9cb859653552149）だけから再開。506番道路3/24・53,13西。解放後の町から通常西接続、5歩/1旋回/新戦闘0、通常Save101/独立Continueを地域milestoneとして受入。HP277/294・PP3,9,8,2、全party600byte/Bag/23114円/2badge/4072=3/4352・4380・4382・4383保持。4021=98/4022=3、friendship周期まで30歩。次の意味ある到達点は506→519→シオウシティのPokecenter7/3で通常回復/Save/fresh Continue。相互connection3/24→3/37→3/3、町door22,19→7/3 warp0、nurse7,2/counter7,3/対面候補7,4北を固定ROMから照合。全tile経路・trainer視線・野生/資源observer・counter会話ownerは実行前に解決。西出口登録だけで通行可としない。対応済通常戦はcompact ledgerへ記録して宣言済milestoneへ継続、全雑魚戦ごとのSaveを作らない。未知callback/event/warp/owner/UI/観測差/資源不足は診断停止し、milestone達成とは呼ばない。下流はシオウジム11/3・キリtrainer418・badge2084のmajor milestone。正常4072=9→10/研究所special367/var11の全国図鑑、その後の別progression自然EXP/進化/LuckyEgg/12境界/Lv100soakは未完。Save25〜100証拠、RAM53/42/Save100差/2056未解明を保持。汎用継続host検査を連戦native受入にしない。58+cold13入力35画面/新63controller/47受入/native2/記録native0/旧成功再走0。一般CI既知QOL source不一致やfinalHEAD action_requiredを全成功としない。ROM/runtime再公開/flag注入/進化回避/新balance/merge/release/baseline切替0。
+
+## 2026-10-04T12:52:14.972400+00:00
+- Timestamp: 2026-10-04T12:52:14.972400+00:00
+- Task: USER-20261004-STORY-LIVE / 実資源read-only observerと次施設の静的候補
+- Version: PR16-STORY-LIVE-OBSERVER-1
+- Status: DONE（実資源読取限定。戦闘後adapter/施設到達は未完）
+- Summary: Save101のHP277/294・PP3,9,8,2、party600bytes、legacy/expanded進行を同一frameのRAM/physical Save/画面へ接続。新runnerのContinueのみ。旧Save101は不変。
+- Files changed: live observer/session/probe/49host試験と原本、限定checkpoint/guide、215歩候補、固定resumeMD/JSON、両ログ。
+- Verify: run37203041912/job111438456742全8step成功、49host原本、10artifact member/2画面、compile1/native1/記録native0/旧native再走0。最初のrun37202842013は旧runtime404・compile/native0、原本保持。
+- Evidence nuance: no-input120framesでsave2[17]16→18、object2byte変化。時計と動的objectのownerを未許可story effectへ拡張しない。
+- Next: 215歩候補・草14tile、trainer131/128/1065、固定wild table、時計/friendship/報酬/戦闘UIとcounter会話を解決。通常戦ごとSaveなし。
+- Commit: measurement=7f879dd653b5833d4c5050f22b96ab4bd8c15685; record source=e20bfa381337e7a9b8ed0b4705ab801e4822d1b0; run=37203579155; 同branch非forcepush。
+- Network: 同repoGitHub/Actions/既存artifacts、元と同じ公式Ubuntu libmgba-dev packageのみ。ROM/runtime再配布・ROM変更・host補充・merge/release/baseline切替0。一般CI既知QOL不一致を成功へ変えない。
