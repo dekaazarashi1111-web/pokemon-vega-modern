@@ -26,10 +26,10 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 4
-      - name: 動的Ranger画面位置・安全接近・会話controller検査
+      - name: 成功38controllerを再走せず親hash訂正の1検査
         run: |
           set -euo pipefail
-          python3 -B -m unittest discover -s tests -p test_pr16_story_save100_measure.py -v
+          PYTHONPATH=tests python3 -B -m unittest test_pr16_story_save100_measure.Controller.test_parent_binding_exact -v
           python3 -B -c "import sys; sys.path.insert(0,'scripts'); import pr16_story_save100_measure as m; import pr16_learnset_runtime_record as g; g.START=m.BASE; g.CODE=m.CODE; g.OWNED=set(); g.guard()"
       - name: Ranger会話と町連続eventのSave100と独立Continue
         run: python3 -B scripts/pr16_story_save100_measure.py

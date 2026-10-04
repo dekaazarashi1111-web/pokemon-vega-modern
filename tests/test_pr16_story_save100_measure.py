@@ -13,6 +13,7 @@ class Controller(unittest.TestCase):
                 i=((top+y)*240+left+x)*3;data[i:i+3]=bytes(cal['colors'][0])
         return b'P6\n240 160\n255\n'+bytes(data)
     def test_parent(self):self.assertEqual((m.a.ARTIFACT,m.a.OUTPUT['sha256']),(11301562515,'18de364bd911a9470965cf571e10aab899e8f4236bcaef327586e965b3a02b6b'))
+    def test_parent_binding_exact(self):self.assertEqual(self.prep()['parent_route_binding'],m.identity((ROOT/'content/modernization/pr16_story_save99_next_route.json').read_bytes()))
     def test_start(self):m.start(self.base())
     def test_field_destination(self):m.idle(dict(self.base(),map=[3,2]),99)
     def test_no_healing_assumption(self):self.assertFalse(self.prep()['script_effects_static_only']['healing_branch_taken'])
