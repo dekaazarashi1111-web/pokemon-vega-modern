@@ -21,6 +21,7 @@
 #define OUTPUT 0x8400u
 #define STACK 0x03007E00u
 static uint8_t original[0x40000], expected[0x40000];
+static color_t video[240*160];
 static unsigned calls, steps;
 static void need(int b, const char *s) { if (!b) { fprintf(stderr,"dex-placement: %s\n",s); exit(1); } }
 static uint32_t reg(struct mCore *c, const char *n) { int32_t v=0; need(c->readRegister(c,n,&v),"read register"); return (uint32_t)v; }
@@ -81,9 +82,10 @@ int main(int argc,char **argv) {
     need(argc==2,"one private placed ROM input");
     struct mCore *c=mCoreFind(argv[1]);need(c&&c->init(c),"core initialization");
     mCoreInitConfig(c,NULL);mCoreConfigSetDefaultValue(&c->config,"idleOptimization","ignore");
-    need(mCoreLoadFile(c,argv[1]),"private candidate loaded");c->reset(c);
+    need(mCoreLoadFile(c,argv[1]),"private candidate loaded");c->setVideoBuffer(c,video,240);c->reset(c);
     unsigned veneer_cases=0,functional_cases=0;
     for(unsigned test=0;test<24;++test) {
+        printf("{\"api_start\":%u}\n",test);fflush(stdout);
         setup();
         if(test==12)need(VegaDexSnapshotSpecies(original+LIVE,522,129,original+SNAP,4)==0,"snapshot fixture");
         if(test==14)need(VegaDexSnapshotSeen(original+LIVE,522,original+SNAP,151)==0,"seen fixture");
@@ -105,5 +107,5 @@ int main(int argc,char **argv) {
         ++functional_cases;++calls;
     }
     printf("{\"status\":\"PASS_PLACED_ARM_APIS_AND_VENEERS_ONLY\",\"native_processes\":1,\"fresh_cores\":1,\"api_calls\":%u,\"veneer_cases\":%u,\"functional_cases\":%u,\"steps\":%u,\"ewram_bytes_compared_per_case\":262144,\"game_boots\":0,\"ordinary_saves\":0,\"game_hooks_installed\":false,\"story_progress_accepted\":false}\n",calls,veneer_cases,functional_cases,steps);
-    c->deinit(c);free(c);return 0;
+    fflush(stdout);c->deinit(c);free(c);return 0;
 }

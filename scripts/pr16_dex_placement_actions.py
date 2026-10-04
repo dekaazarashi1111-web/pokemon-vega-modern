@@ -48,9 +48,11 @@ def run():
         compiled=subprocess.run(cmd,cwd=ROOT,capture_output=True,text=True)
         need(compiled.returncode==0 and not compiled.stdout and not compiled.stderr,'strict isolated linked ARM harness compile: '+compiled.stderr[-2000:])
         native_processes=1;tested=subprocess.run([str(exe),str(candidate)],cwd=OUT,capture_output=True,timeout=180)
-        need(tested.returncode==0 and not tested.stderr,'linked ARM native ABI failed: '+tested.stderr.decode('utf-8')[-1000:])
-        need(len(tested.stdout)<2000 and tested.stdout.count(b'\n')==1,'one bounded native receipt')
-        native=json.loads(tested.stdout)
+        need(tested.returncode==0 and not tested.stderr,'linked ARM native ABI failed rc='+str(tested.returncode)+' progress='+tested.stdout.decode('utf-8')[-1000:]+' '+tested.stderr.decode('utf-8')[-1000:])
+        need(len(tested.stdout)<4000 and tested.stdout.count(b'\n')==25,'24 bounded API progress rows and one receipt')
+        rows=[json.loads(line)for line in tested.stdout.splitlines()]
+        need(rows[:-1]==[dict(api_start=i)for i in range(24)],'each actual API attempted once')
+        native=rows[-1]
         need(native['status']=='PASS_PLACED_ARM_APIS_AND_VENEERS_ONLY' and native['api_calls']==24 and native['veneer_cases']==24 and native['functional_cases']==24 and native['native_processes']==1 and native['fresh_cores']==1,'all24 actual linked APIs and veneers')
         need(native['ewram_bytes_compared_per_case']==262144 and native['game_boots']==native['ordinary_saves']==0 and native['game_hooks_installed'] is False and native['story_progress_accepted'] is False,'strict isolated native acceptance boundary')
         need(candidate.read_bytes()==after and private.read_bytes()==before,'private ROM copies unchanged by native')
