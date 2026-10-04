@@ -1,0 +1,40 @@
+# PR16 図鑑保存schedulerの候補境界
+
+正式ROM/Save101は変更しない。元Stage61 sourceを保ち、専用generatorがhash固定sourceから保存部分だけを生成する。全44 export位置、非保存code、共有read32、libgcc、元data、次のhotfix ownerを保全する。元source全体を単純再リンクして上書きしない。
+
+## 保存契約
+
+- MDXはlogical13の0xDE6..0xFEFにある独立522byte。S61E v1の0x616byteとCRCは不変。
+- stockの全14sector・counter・rotation・checksum検証にMDX判定を加える。全0/全FFのlegacy以外の不正recordはbank全体を拒否する。
+- prepared imageの全4096byte比較へMDXを加える。LinkFullは署名先頭0xFFのままprepareを検査し、commit前にも同じimageを再読する。署名前sectorを完全署名用bridgeへ流さない。
+- 全writer入口でinvalid-liveをflash前に拒否する。失敗maskは読取確定したnewest complete bankの反対bankだけへ付ける。sector31を便宜的に消さない。authorityなしでは適当なsectorをmarkせずERRORを返すが、stockの戻り値破棄を含む非破壊的UI失敗伝播は後続の受入対象。
+- backup cloneはold MDXをそのまま保持。record-onlyはPCの旧0x7D0byteを現在RAMで置き換えず、S61EとMDXだけを同世代へ更新する。
+- loadは選択bank stock復元、S61E、同じbankのMDXの順。legacy208byte snapshotは復元後に作る。失敗loadはInvalidateでありInitNewではない。
+
+## 配置
+
+元save専用symbolの窓へ関数sectionを詰め、8保存entryに固定veneerを置く。codecの既存予約suffixも候補に使う。必要時だけ、既に署名化されたallocatable窓0x095FF958..0x09600000から、実link後のfar-call stubを含む測定値が収まる最小4byte刻みleaseを正規allocatorで追加する。
+
+この窓への見かけのword参照1件は、DPE通常paletteのLZ10 flagとliteralだった。40byte圧縮入力→32byte復号、隣asset境界、canonical1050/DPE869のpalette row、現5consumer rootを照合する。単にFFだから使うことや、未分類参照を無視することはしない。
+
+前後sentinel、全107既存allocationの範囲・sequence、allocator重複なし、許可窓以外の全ROM差分0を検査する。新候補を正式進行へ切り替えない。
+
+## この候補の実測
+
+run37228557062 / source52c24cb0c2104edc2e07e259db7340d35ebc2342の全10stepを完了。候補SHA256は6066f9ede35ea2e244221b7a99219eee6dc239df00559311ec8feb20ee74c72c。実配置byteは8264、link stubの最大観測量を含むsection予約は9194byte。追加leaseは1084byte、0x095FF958..0x095FFD94。これは測定済みsection予約モデルに対する最小4byte刻み量で、あらゆる別配置に対する数学的な最小値を主張しない。allocatorは108owner、overlap0、残2067byte。
+
+新規隔離ARMは19case/36calls/126124517 instructions/1core。各callでEWRAM262144byteのうち宣言済RAM owner外を全照合し、SP/r4-r11を保持した。画面boot0、通常Save0。8件の先行build失敗はすべてnative0のまま保持する。
+
+## 検証の意味
+
+18 generator検査とsynthetic host保存20ケースはsourceの境界試験。isolated mGBAの直接ARM呼出しはsynthetic flash callbackを使う別の検査で、通常ゲームのSave/Continueや実flash hardwareの受入ではない。CRC fallback、legacy、invalid-live、LinkFull署名前改変、old backup、record-only PC保持、torn/lying writeを対象にする。正式受入件数とrunはcheckpointを正とする。
+
+容量不足で停止したbuildはnative0の診断として残す。一般CIの既知QOL source不一致、bot commitのaction_required/job0、Stage79のcache利用は新nativeの成功に数えない。
+
+## 次の接続
+
+現在ROMの外側load chainでは、sector31のRAM復元は旧2048byteに限られ、MDXの位置へ届かない。旧『MDX shadowが後から上書きされる』説明をそのまま前提にしない。ただしstockはHandleLoadSectorの返値を捨てるため、Mirage内0x09391114のQOL delegate直後、最初の復旧Saveより前にMDX失敗を遮断する必要がある。HOF-only load=3はこのgateのmain-bank処理から除外する。
+
+NewGameは元CFRU wipeの後、0x09097178のcontinuation literalから明示InitNewへ接続する。元28byte stack frameとr4-r11を保持し、0x0805432Dへtail branchする。通常C returnを使うと循環する。詳細の署名・ABIはloadchain監査を参照。
+
+これら、全save modeの固有副作用、SID喪失前の全consumer、Bag count、reward clear、Factory/Codex rollback、通常Save/独立cold Continueを受入してから正式進行へ戻る。最終story節目はシオウPokecenter通常回復・保存・cold Continue。雑魚戦ごとのcheckpointは作らない。
