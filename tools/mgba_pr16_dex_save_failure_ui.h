@@ -2,6 +2,23 @@
 static void (*sf_fixture_write8)(struct mCore*,uint32_t,uint8_t);
 static uint8_t sf_ram[262144],sf_iwram[32768],sf_mdx[522],sf_flash_before[131072],sf_party[600];
 static unsigned sf_inventory[2048],sf_injected,sf_seen5,sf_seen6,sf_screens;
+#include <mgba/internal/arm/arm.h>
+static struct ARMMemory sf_memory;
+static struct mCore*sf_core;
+static bool sf_touch(uint32_t a,unsigned n){unsigned x=a&0x3FFFFu,y=VEGA_DEX_OWNER_RAM&0x3FFFFu;return(a>>24)==2&&x<y+522&&x+n>y;}
+static void sf_writer(struct ARMCore*cpu,uint32_t a,unsigned width)
+{
+ unsigned changed=0,first=522;uint8_t current[522];char before[65],after[65];for(unsigned i=0;i<522;i++){current[i]=read8(sf_core,VEGA_DEX_OWNER_RAM+i);if(current[i]!=sf_mdx[i]){changed++;if(first==522)first=i;}}
+ if(!changed)return;
+ si_digest(sf_mdx,522,before);si_digest(current,522,after);unsigned dma=((struct GBA*)sf_core->board)->performingDMA;
+ printf("{\"mdx_native_writer\":true,\"frame\":%u,\"raw_cpu_pc\":%u,\"raw_lr\":%u,\"destination\":%u,\"width\":%u,\"dma\":%u,\"writer_pc_proven\":%s,\"changed_bytes\":%u,\"first_offset\":%u,\"before_sha256\":\"%s\",\"after_sha256\":\"%s\",\"state\":%u,\"active\":%u,\"attempt\":%u}\n",st_frames,(unsigned)cpu->gprs[15],(unsigned)cpu->gprs[14],a,width,dma,dma?"false":"true",changed,first,before,after,read8(sf_core,0x0203AAC8),read32(sf_core,0x03005480),read16(sf_core,0x03005470));fflush(stdout);si_die("identified native writer changed corrupted MDX");
+}
+static void sf_store8(struct ARMCore*c,uint32_t a,int8_t v,int*t){sf_memory.store8(c,a,v,t);if(sf_touch(a,1))sf_writer(c,a,1);}
+static void sf_store16(struct ARMCore*c,uint32_t a,int16_t v,int*t){sf_memory.store16(c,a,v,t);if(sf_touch(a&~1u,2))sf_writer(c,a&~1u,2);}
+static void sf_store32(struct ARMCore*c,uint32_t a,int32_t v,int*t){sf_memory.store32(c,a,v,t);if(sf_touch(a&~3u,4))sf_writer(c,a&~3u,4);}
+static uint32_t sf_store_multiple(struct ARMCore*c,uint32_t a,int mask,enum LSMDirection d,int*t){unsigned n=0;for(unsigned i=0;i<16;i++)n+=((unsigned)mask>>i)&1u;uint32_t start=a;if(d&LSM_D)start-=(n<<2)-4;if(d&LSM_B)start+=(d&LSM_D)?-4:4;uint32_t result=sf_memory.storeMultiple(c,a,mask,d,t);for(unsigned i=0;i<n;i++)if(sf_touch((start+4*i)&~3u,4)){sf_writer(c,(start+4*i)&~3u,4);break;}return result;}
+static void sf_watch(struct mCore*c){struct ARMCore*cpu=c->cpu;sf_core=c;sf_memory=cpu->memory;cpu->memory.store8=sf_store8;cpu->memory.store16=sf_store16;cpu->memory.store32=sf_store32;cpu->memory.storeMultiple=sf_store_multiple;}
+
 static void sf_read_mdx(struct mCore*c,uint8_t*out){for(unsigned i=0;i<522;i++)out[i]=read8(c,VEGA_DEX_OWNER_RAM+i);}
 static void sf_invariants(struct mCore*c,bool flash)
 {
@@ -36,7 +53,7 @@ int main(int argc,char**argv)
  si_need(!sf_injected&&sf_fixture_write8!=c->busWrite8&&si_field(c),"one explicit exception with barriers still active");unsigned old=sf_mdx[4];sf_fixture_write8(c,VEGA_DEX_OWNER_RAM+4,(uint8_t)(old^1));sf_injected=1;
  for(unsigned i=0;i<262144;i++)si_need(read8(c,0x02000000+i)==(i==VEGA_DEX_OWNER_RAM+4-0x02000000?(sf_ram[i]^1):sf_ram[i]),"only declared CRC byte changes without a frame");
  for(unsigned i=0;i<32768;i++)si_need(read8(c,0x03000000+i)==sf_iwram[i],"all IWRAM remains exact at injection");
- sf_read_mdx(c,sf_mdx);si_need(VegaDexValidate(sf_mdx,522)!=0,"fixture actually invalidates CRC");printf("{\"fixture_calls\":1,\"fixture_bytes\":1,\"address\":%u,\"old\":%u,\"new\":%u,\"register_writes\":0,\"other_host_writes\":0}\n",VEGA_DEX_OWNER_RAM+4,old,old^1);fflush(stdout);sf_view(c,"injected_at_field");
+ sf_read_mdx(c,sf_mdx);si_need(VegaDexValidate(sf_mdx,522)!=0,"fixture actually invalidates CRC");printf("{\"fixture_calls\":1,\"fixture_bytes\":1,\"address\":%u,\"old\":%u,\"new\":%u,\"register_writes\":0,\"other_host_writes\":0}\n",VEGA_DEX_OWNER_RAM+4,old,old^1);fflush(stdout);sf_view(c,"injected_at_field");sf_watch(c);
  sf_press(c,8,120);si_need(read32(c,QOL_START_MENU_CALLBACK)==QOL_START_MENU_INPUT,"ordinary START menu");unsigned count=read8(c,QOL_START_MENU_COUNT),cur=read8(c,QOL_START_MENU_CURSOR),target=99;
  si_need(count>0&&count<=10&&cur<count,"bounded menu");for(unsigned i=0;i<count;i++)if(read8(c,QOL_START_MENU_ORDER+i)==4)target=i;si_need(target<count,"SAVE action present");
  while(cur!=target){sf_press(c,128,30);cur=(cur+1)%count;}sf_press(c,1,120);

@@ -56,6 +56,7 @@ def run():
   with z:proof=json.loads(z.read('build.json'))
   need(proof['native']['cases']==152 and proof['real_save_failure_ui_accepted']is False,'isolated only, no previous real UI')
   isolated.OUT=OUT;candidate,before,after,linked,placed=isolated.reconstruct();need(identity(after)==proof['candidate']and linked==proof['link']and placed==proof['placement'],'whole candidate matches isolated gates')
+  package=subprocess.check_output(['dpkg-query','-W','-f=${Version}','libmgba-dev'],text=True).strip();library=identity(Path('/usr/lib/x86_64-linux-gnu/libmgba.so').read_bytes());need(package=='0.10.2+dfsg-1.1build3'and library==dict(size=1968536,sha256='0c87a12341640e6a2d325e59e76eb4b002947771ad4d8814b216e3b99817d68d'),'fixed verified mGBA runtime');write(PUBLIC/'runtime-identity.json',dict(package=package,library=library))
   source=OUT/'ui.c';source.write_bytes(generate(identity(after)));exe=OUT/'ui'
   cmd=['cc','-std=c11','-O2','-Wall','-Wextra','-Werror','-Wno-misleading-indentation','-I'+str(ROOT/'tools'),'-I'+str(ROOT),str(source),str(ROOT/'overlays/dex_owner/dex_owner.c'),'-lmgba','-lm','-o',str(exe)]
   compiled=subprocess.run(cmd,capture_output=True,text=True);need(compiled.returncode==0 and not compiled.stdout and not compiled.stderr,'strict negative UI build: '+compiled.stderr[-2000:])
@@ -75,7 +76,7 @@ def export():
  if not PUBLIC.exists():return
  need(PUBLIC.is_dir()and not PUBLIC.is_symlink(),'dedicated public UI directory')
  for p in PUBLIC.iterdir():
-  need(p.is_file()and not p.is_symlink()and(p.name in{'host-tests.txt','measurement.json','native-attempt.json','failure.json','stdout.txt','stderr.txt'}or re.fullmatch(r'screen-000[0-3]\.ppm',p.name)),'only explicit text/screens; never inputsave/ROM/runner')
+  need(p.is_file()and not p.is_symlink()and(p.name in{'host-tests.txt','measurement.json','native-attempt.json','failure.json','stdout.txt','stderr.txt','runtime-identity.json'}or re.fullmatch(r'screen-000[0-3]\.ppm',p.name)),'only explicit text/screens; never inputsave/ROM/runner')
   raw=p.read_bytes()
   if p.suffix=='.ppm':need(len(raw)==115215 and raw.startswith(b'P6\n240 160\n255\n'),'fixed real PPM');continue
   need(len(raw)<1500000 and b'\0'not in raw and(not raw or raw.endswith(b'\n')),'bounded complete UTF8');raw.decode('utf8')
