@@ -4366,6 +4366,7 @@
   "observed_head": "81599d97144fcf9b3a90a03c62aa154e7afd67fe",
   "observed_head_checks": {
     "all10_steps_success": true,
+    "all12_record_steps_success": true,
     "all_consumers_wired": false,
     "all_save_modes_accepted": false,
     "early_sector31_fault_accepted": false,
@@ -4376,9 +4377,12 @@
     "native_run": 37241791183,
     "non_start_notifications_accepted": false,
     "reason_ja": "正式ROM/Save101保持。候補outerQOL result/attempt整合、START mode0の末尾sector31故障・通常error・キー再Save102→103・cold102/103を受入。非START通知/破壊的SaveFailed/全mode/残consumer未完。",
+    "record_job": 111552393416,
+    "record_run": 37241991481,
     "scope_head": "feb3e148244f7202ff69e3be90cbb8ed68c8dccc",
     "sector31_atomicity_accepted": false,
-    "stage79_cached_not_new_native": true
+    "stage79_cached_not_new_native": true,
+    "whole_receipt_equals_checkpoint": true
   },
   "observed_head_history": [
     {
@@ -12389,13 +12393,7 @@
     "status": "NATIVE_PARTY_RETENTION_ACCEPTED_BP_PENDING",
     "tested_head": "10e535a046441dd3b797918106259b5c57b69716"
   },
-  "pending_runs": [
-    {
-      "run_id": 37241991481,
-      "status": "in_progress",
-      "tested_head": "81599d97144fcf9b3a90a03c62aa154e7afd67fe"
-    }
-  ],
+  "pending_runs": [],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
   "pr_draft": true,
   "pr_merged": false,
@@ -14210,9 +14208,13 @@
       "sha256": "2792cf4abf5e57b15e5bb90f1e69163f4ccf4d28d24e21ce24efea23dc77f099",
       "size": 1496
     },
+    ".github/workflows/pr16-dex-outer-qol-closeout.yml": {
+      "sha256": "8cf7d660d92f602bc41ecea71e7ba9092b6bdcd865818547ae499630ae0972cd",
+      "size": 2420
+    },
     ".github/workflows/pr16-dex-outer-qol-record.yml": {
-      "sha256": "a996ebdbabbdac15ba7c415418a25c93c8e586d895ba5b0294670bfeaf76a9f6",
-      "size": 2400
+      "sha256": "f16976fdb7eb40f08e2b9f143635581fc598ec1c58f1eb145e9bf9e295264cab",
+      "size": 2298
     },
     ".github/workflows/pr16-dex-outer-qol.yml": {
       "sha256": "95558888e447c66a7d5f65d03ac908fd488a73ba5009f4de3d34dbd6bb4b52e0",
@@ -32834,6 +32836,10 @@
       "sha256": "4e23d88a95cf9727e27a01506d68ac172cc9461477be1d17738761f378e5a8ca",
       "size": 15344
     },
+    "scripts/pr16_dex_outer_qol_closeout.py": {
+      "sha256": "20fda9210dbdd077fdff8659bb688495791ed95113342139431c0f64a1c9d423",
+      "size": 8686
+    },
     "scripts/pr16_dex_outer_qol_record.py": {
       "sha256": "025d1173846dfa9e2177da68def427880f91915003a3568c593c4e8159f83262",
       "size": 16249
@@ -38851,6 +38857,30 @@
         "non_start_notifications_accepted": false,
         "outer_result_contract_accepted": true,
         "record_run": 37241991481,
+        "recording": {
+          "all12_record_steps_success": true,
+          "arm_compiles": 0,
+          "checkpoint": "content/modernization/pr16_dex_outer_qol_checkpoint.json",
+          "checkpoint_identity": {
+            "sha256": "6c10f8a56a83349cb62b3680bafb065a7a50e99e0803c324e6176916cb8c7bb9",
+            "size": 97363
+          },
+          "closeout_run": 37242202301,
+          "closeout_source": "9f5f9bc9170d6fe7194e4b3d18d866e451ff5dd0",
+          "formal_rom_changed": false,
+          "formal_save_changed": false,
+          "host_tests_rerun": 0,
+          "native_processes": 0,
+          "record_archive_sha256": "cd79dfee3981feaf5cf078e4bfee86e6b5fbc932f9ff6ca8f81d2fa2f6a340f7",
+          "record_archive_size": 21327,
+          "record_artifact": 11317444148,
+          "record_completion": "ea160a74fdf37f0ef85faca8f4ae6910ecb39f31",
+          "record_job": 111552393416,
+          "record_receipt_equals_checkpoint": true,
+          "record_run": 37241991481,
+          "record_source": "81599d97144fcf9b3a90a03c62aa154e7afd67fe",
+          "status": "PASS_TERMINAL_OUTER_QOL_FAILURE_RECORD"
+        },
         "start_mode0_last_byte_fault_accepted": true,
         "status": "PASS_CANDIDATE_OUTER_QOL_STATUS_AND_LAST_BYTE_UI"
       },

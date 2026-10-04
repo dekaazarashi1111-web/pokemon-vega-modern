@@ -12759,3 +12759,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Boundary: 非START返値無視/HOF payload/回数/erase再試行とSaveFailed owner衝突、全mode/残consumer、sector31早期故障/単bank原子性は未完。正式ROM/Save101不変・trainer131後半0。
 - Commit: record source=81599d97144fcf9b3a90a03c62aa154e7afd67fe; 同branch非force push。
 - Network: 同repoActions/既存入力/公式Ubuntu compiler。公開source/address-size-SHA/text/screensのみ、ROM/runtime/入力save/runner/credentials追加公開0。
+
+## 2026-10-04T23:01:39.235210+00:00
+- Timestamp: 2026-10-04T23:01:39.235210+00:00
+- Task: USER-20261004-DEX-OUTER-QOL / 外側保存失敗記録の終端
+- Version: dex-outer-qol-closeout
+- Status: STOPPED（安全な限定候補受入点。非START/全mode/残consumer未完）
+- Summary: record run37241991481/job111552393416の全12step成功とartifact11317444148のcheckpoint全文一致を確認しpending解除。成功済native/recordはmanual-onlyへ。
+- Files changed: closeout source/workflow、record起動条件、固定MDJSONと両ログ。
+- Verify: 全source/evidence/fixed resume/index/task graph PASS、host再試験0/ARM0/native0。native原本はouter7680/retry288/wipe16・故障process4122frame/1425入力/5画面とcold102/103各1390frame/12入力/1画面。候補40a7f38a、正式ROM/Save101不変。
+- Boundary: 次は非START通知と非破壊SaveFailed/HOF payload/重複副作用、全mode/残typed consumer。早期sector31故障/単bank原子性未受入。trainer131後半0。一般CI既知QOL不一致/Stage79cache/旧9月18日queueを別扱い。
+- Commit: closeout source=9f5f9bc9170d6fe7194e4b3d18d866e451ff5dd0; 同branch非force push。
+- Network: 同repoActionsと既存text receiptのみ。ROM/入力save/runtime/runner/credentials追加公開0。
