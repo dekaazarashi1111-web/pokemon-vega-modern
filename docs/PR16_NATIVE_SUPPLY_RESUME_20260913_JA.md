@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-正式Save101保持。compact1801byte/ARM全API4638byte、Stage39退役owner6484byteのhash-bound leaseを検証。実配置と全save/consumer接続は未完。
+正式ROM/Save101保持。実allocator移譲と実アドレス全API/24veneer5022byteの隔離native ABI受入済み。Stage61全24macro/99symbol/4aliasを回収。ゲーム保存/consumer接続は未完。
 
-**次: 正式Save101は不変。PR16_DEX_COMPACT_CAPACITY_JA.mdとpr16_dex_capacity_checkpoint.jsonから再開。compact mapping1801byte、新codec/typed adapter/lookup/save bridgeの全API ARMv4T footprint4638byteを51host/262144入力比較/4compileで確認。Stage39退役T09 pointer owner6484byteは全35疑似pointer型・5root・8間接参照・旧DATA/6sentinel参照・全1621終端と20sourceを照合し、25lease試験PASS。実allocator移譲/実配置addressでの再link/stub/veneer/ROM patch/nativeは未実施。Stage61全12568byteを空きへcloneする容量証明ではない。既存owner内置換・export/callsite到達性を固定し全save mode/CRC bank fallback/partial-write/復旧Save前MDX load、全SID喪失前consumer/Bag count/reward clear/Factory-Codex rollbackへ接続。候補全diff/影響learnsetと保存ABI限定native・通常Save/独立cold Continue受入まで正式基準/trainer戦闘を変えない。受入後Save101からシオウPokecenter通常回復へ。雑魚戦ごとのSaveは作らない。**
+**次: 正式ROM/Save101は不変。PR16_DEX_PLACEMENT_JA.mdとpr16_dex_placement_checkpoint.jsonから再開。退役T09 owner6484byteを実allocator移譲し0x09FC0998へ全API＋24veneer5022byteを配置、残1462byteを予約。run37223181964全10stepで26host/24API実ARM・各262144byte EWRAM対照を受入。ゲームhook/保存consumerは未接続。pr16_dex_stage61_relink_inputs.jsonに元assetから24macro/99sized symbol/4unsized aliasを回収し元code12568byteを全照合。次はStage61 existing-owner内の保存拡張。全44export位置・元data・次hotfix ownerを保ち、保存8入口だけを根拠に全codeを置換しない。validate_slot/inject_tail/expected_prepared_byte/tail_matches/load/clone/record-onlyを同世代MDXへ接続。署名前LinkFullを正規signature検査へ流さず、invalid liveはflash前拒否、復旧Save前にmain-bank MDX確定。全SID喪失前consumer/Bag count/reward clear/Factory-Codex rollback、候補限定Save/coldContinue・partial-write受入後だけ正式進行へ戻る。最終はシオウPokecenter通常回復/Save/coldContinue。雑魚戦ごとのSaveは作らない。**
 
 通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `3073f0e038c2659491889ac41521fbaf10205adb`。
-図鑑compact ARM容量と退役owner契約の記録source。正式ROM/Save101不変、記録ARM0/native0。実配置/全save/consumer受入は未完。
+証拠のsource HEAD: `8db8f096d4bdbec6c4f2388e78121e45a390ab56`。
+図鑑実配置ABI受入と元Stage61入力の記録source。正式ROM/Save101不変、記録ARM0/native0。保存scheduler/全consumerは未接続。
 
 ## 最短の再開手順
 
@@ -25,11 +25,10 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_DEX_COMPACT_CAPACITY_JA.md`
-- `content/modernization/pr16_dex_capacity_checkpoint.json`
-- `content/modernization/pr16_dex_capacity_lease.json`
+- `docs/PR16_DEX_PLACEMENT_JA.md`
+- `content/modernization/pr16_dex_placement_checkpoint.json`
+- `content/modernization/pr16_dex_stage61_relink_inputs.json`
 - `docs/PR16_DEX_RUNTIME_INTEGRATION_JA.md`
-- `content/modernization/pr16_dex_runtime_checkpoint.json`
 - `docs/PR16_DEX_CONSUMERS_JA.md`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
@@ -434,6 +433,7 @@ P08ゲート:
 - 図鑑owner namespace1206/slot1670と522byte codecのhost証拠を再利用。runtime未接続を修復済みにしない。旧bit、VACQ、別field破壊を根拠なしに昇格しない。PC未保存RAM保持と全save/consumer接続から続ける。
 - MDX候補RAMの5UI寿命はrun37217077790の原本から再利用（Bagは37216583954から再利用）。正式Save101不変。Stage75 internal1670は明示adapterでbase1142/owner925へ結合し、namespace owner数1206は不変。全save/consumer未接続とROM空き容量3151byteを隠さず先に解決。
 - 図鑑compact51host/262144比較/ARM4compileはrun37219630045の原本を再利用。旧T09 pointer表6484byteはStage39退役のhash-bound契約のみ。元DATA81885byte/sentinel6参照保持、実owner移管/ROM配置/Stage61全clone/nativeを完了扱いしない。
+- 図鑑実配置run37223181964の24API/24veneer隔離nativeを再実行しない。全107allocator中退役ownerだけ移管、payload5022/残1462。正式ROM/Save101不変。元Stage61 metadataはhash固定24macro/99sized symbol/4aliasを再利用し旧source再compile・元payload全体復元をしない。
 
 ## 次セッションへ残す更新手順
 

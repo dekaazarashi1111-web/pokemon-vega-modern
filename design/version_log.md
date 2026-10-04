@@ -9872,3 +9872,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 先行終端/既存receipt/訂正前sourceを照合。新host0/ARM0/native0/ROM・Save変更0。pendingは空のまま。
 - Commit: recovery source=b0babefdb74b103e0a48ec76658514ee57c18e74; 同branch非force push。
 - Network: 同repoActions/公開receiptのみ。
+
+## 2026-10-04T18:19:06.377128+00:00
+- Timestamp: 2026-10-04T18:19:06.377128+00:00
+- Task: USER-20261004-DEX-PLACEMENT / 実allocator移管・24veneer・隔離ARM ABI
+- Version: dex-placement-v1
+- Status: STOPPED（実配置ABI受入済。ゲーム保存/全consumer接続は未完）
+- Summary: 旧T09 pointer owner6484byteのみ移管、全API/24固定veneerを0x09FC0998へ5022byte実配置、残1462byte予約。他106owner不変、4976変更byteはlease内、全ROMrollback一致。
+- Files changed: 専用placement source/harness/workflow、Stage61元macro/symbol復元proof/validator/12tests、checkpoint/evidence、固定MDJSON、両ログ。
+- Verify: run37223181964/job111497444702全10step成功。26host/1native core/24API/24veneer/各EWRAM262144bytes対照。4失敗runはfailure保持（初2native0、後2native1）、成功native1で計3attempt。記録では旧host再試験0/ARM0/native0。新Stage61 input12testsと元24macro/99sized symbol/4unsized alias/12568byte照合PASS。
+- Next: 正式ROM/Save101は不変。PR16_DEX_PLACEMENT_JA.mdとpr16_dex_placement_checkpoint.jsonから再開。退役T09 owner6484byteを実allocator移譲し0x09FC0998へ全API＋24veneer5022byteを配置、残1462byteを予約。run37223181964全10stepで26host/24API実ARM・各262144byte EWRAM対照を受入。ゲームhook/保存consumerは未接続。pr16_dex_stage61_relink_inputs.jsonに元assetから24macro/99sized symbol/4unsized aliasを回収し元code12568byteを全照合。次はStage61 existing-owner内の保存拡張。全44export位置・元data・次hotfix ownerを保ち、保存8入口だけを根拠に全codeを置換しない。validate_slot/inject_tail/expected_prepared_byte/tail_matches/load/clone/record-onlyを同世代MDXへ接続。署名前LinkFullを正規signature検査へ流さず、invalid liveはflash前拒否、復旧Save前にmain-bank MDX確定。全SID喪失前consumer/Bag count/reward clear/Factory-Codex rollback、候補限定Save/coldContinue・partial-write受入後だけ正式進行へ戻る。最終はシオウPokecenter通常回復/Save/coldContinue。雑魚戦ごとのSaveは作らない。
+- Commit: record source=8db8f096d4bdbec6c4f2388e78121e45a390ab56; 同branch非force push。
+- Network: 同repoActionsと既存private-environment-v1 archive。mGBA0.10.2 core.cのdeinitがcoreをfreeする契約を一次sourceで確認。公開はsource/address/size/SHAと検査済textのみ。一般CI既知QOL source不一致、Stage79 cacheは新native扱いしない。
