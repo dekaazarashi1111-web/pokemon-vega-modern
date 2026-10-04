@@ -36,7 +36,7 @@ class Controller(unittest.TestCase):
         self.assertEqual((b,w,f['kind'],f['map'],f['xy']),(None,[],'new_museum_second_floor',[6,1],[11,7]));self.assertEqual(len(s.inputs),18);self.assertEqual(route,m.ROUTE[:-1])
     def test_no_guessed_autostep(self):s=self.fake([11,8]);self.assertEqual(m.progress(s,{})[2]['xy'],[11,8]);self.assertEqual(len(s.inputs),18)
     def test_transition_only_wait(self):s=self.fake(mode='transition');m.progress(s,{});self.assertEqual(s.inputs[-1],(0,180));self.assertEqual(len(s.inputs),19)
-    def test_exit_press_only_at_warp(self):s=self.fake(mode='need_exit_press');m.progress(s,{});self.assertEqual(s.inputs[-2:],[(128,8),(0,180)]);self.assertEqual(len(s.inputs),20)
+    def test_directional_stair_east_input(self):s=self.fake(mode='need_exit_press');m.progress(s,{});self.assertEqual(s.inputs[-2:],[(16,8),(0,180)]);self.assertEqual(len(s.inputs),20)
     def test_blocked_edge_stops(self):s=self.fake(mode='blocked');self.assertEqual(m.progress(s,{})[2]['kind'],'unpassed_edge');self.assertEqual(len(s.inputs),6)
     def test_no_A_before_save(self):s=self.fake();m.progress(s,{});self.assertTrue(all(k in(0,16,32,64,128)for k,_ in s.inputs))
     def test_event_rejected(self):
@@ -68,6 +68,18 @@ class StaticPreparation(unittest.TestCase):
         s=Controller().fake([12,8]);self.assertEqual(m.progress(s,{})[2]['xy'],[12,8]);self.assertEqual(len(s.inputs),18)
     def test_admission_already_paid(self):
         p=json.loads((ROOT/m.PREP).read_bytes());self.assertEqual((p['admission_variable'],p['admission_value']),(0x4061,1));self.assertTrue(p['museum_admission_paid']);self.assertEqual([(r['xy'],r['variable'],r['value'])for r in p['admission_coords']],[([x,5],0x4061,0)for x in [12,13,14]])
+    def test_directional_stair_kind(self):
+        p=json.loads((ROOT/m.PREP).read_bytes());self.assertEqual(p['terrain'][9]['behavior'],0x6c);self.assertEqual(p['warp_activation']['button'],16);self.assertEqual(p['warp_activation']['direction'],4)
+    def test_directional_stair_reject_off_warp(self):
+        s=Controller().fake(mode='need_exit_press');step=s.step
+        def bad(*keys):
+            o=step(*keys)
+            if len(s.observations)==10:o['xy']=[8,9];o['live_xy']=[15,16]
+            return o
+        s.step=bad
+        with self.assertRaises(ValueError):m.progress(s,{})
+        self.assertEqual(len(s.inputs),18)
 if __name__=='__main__':unittest.main()
+
 
 

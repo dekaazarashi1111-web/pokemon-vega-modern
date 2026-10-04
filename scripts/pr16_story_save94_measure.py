@@ -73,7 +73,7 @@ def progress(s,inspection):
         o=s.last;scope(o)
         if o['map']==DESTINATION and o['callback2']==m.FIELD and o['lock']==0:break
         if o['map']==ORIGIN and o['callback2']==m.FIELD and o['lock']==0:
-            need(o['xy']==[8,8],'階段warp以外は追加入力しない');s.step((128,8),(0,180))
+            need(o['xy']==[8,8],'階段warp以外は追加入力しない');s.step((16,8),(0,180))
         else:s.step((0,180))
     else:raise ValueError('有限階段warp待機上限')
     o=s.last;idle(o,93);need(o['map']==DESTINATION and o['xy']in json.loads((ROOT/PREP).read_bytes())['arrival_candidates'],'2階warp0と通行可能な隣接tileの最初のfieldを実測')

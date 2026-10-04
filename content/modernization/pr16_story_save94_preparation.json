@@ -764,5 +764,38 @@
     "4376": 0,
     "4377": 0,
     "4378": 0
+  },
+  "warp_activation": {
+    "behavior": 108,
+    "behavior_name": "MB_UP_RIGHT_STAIR_WARP",
+    "xy": [
+      8,
+      8
+    ],
+    "direction": 4,
+    "button": 16,
+    "origin_map": [
+      6,
+      0
+    ],
+    "source_reference": {
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "path": "src/field_control_avatar.c",
+      "function": "IsDirectionalStairWarpMetatileBehavior"
+    },
+    "native_counterexample": {
+      "run": 37189493180,
+      "job": 111398525799,
+      "artifact": 11297508918,
+      "input_save_unchanged": true,
+      "ordinary_saves": 0,
+      "last_xy": [
+        8,
+        9
+      ],
+      "south_did_not_warp": true
+    },
+    "native_east_activation_accepted": false
   }
 }
