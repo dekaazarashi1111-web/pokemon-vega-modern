@@ -64,6 +64,7 @@ int main(int argc,char**argv)
   if(cb==0x0806F21D&&read8(c,0x03000FA8)==0){error=true;break;}
   sf_tick(c,(cb==0x0806F1F5||cb==0x0806F21D)?0:((i%120)<2?1:0));
  }
+ if(!error)sf_view(c,"error_callback_diagnostic");
  si_need(error&&!sf_seen5&&!sf_seen6&&read16(c,0x03005470)==255,"ordinary error without SaveFailed entry");sf_view(c,"ordinary_save_error");sf_press(c,1,2);
  bool field=false;for(unsigned i=0;i<1200;i++){if(si_field(c)){field=true;break;}sf_tick(c,0);}si_need(field,"ordinary error A returns field");for(unsigned i=0;i<180;i++)sf_tick(c,0);
  si_need(si_field(c)&&!read32(c,0x03005480)&&read8(c,0x0203AAC8)==0,"stable field after failure");sf_view(c,"field_after_failure");
