@@ -24,6 +24,7 @@ def event_input(o):
     return ((0,60),)
 PREP='content/modernization/pr16_story_save91_preparation.json'
 CODE.add(PREP)
+CODE.add('tests/test_pr16_story_save91_preparation.py')
 TERRAIN='content/modernization/pr16_story_save50_preparation.json'
 ORIGIN=[10,16]
 DESTINATION=[3,2]
@@ -132,11 +133,22 @@ def restore():
     need(identity((runtime/'lib/libmgba.so').read_bytes())==dict(size=1968536,sha256='0c87a12341640e6a2d325e59e76eb4b002947771ad4d8814b216e3b99817d68d'),'同一mGBA')
     return runtime
 
+def prior_failure():
+    # 最初の試行は追加LFの参照hashをfail-closed拒否。native開始前で入力0。
+    _,z=a.transport.archive(11296648147,37185746332,dict(size=1620,sha256='45541a055b54aac2a0f06cfcc28d4b4884565a41931203e56ebc771faa55d601'),'38c2c0f931d3c8c17e0ded5eb8192501d8857145')
+    with z:
+        mf=json.loads(z.read('manifest.json'))
+        need(set(z.namelist())==set(mf)|{'manifest.json'} and len(mf)==2,'native前失敗の全2member')
+        for n,b in mf.items():need(identity(z.read(n))==b,'失敗原本全byte '+n)
+        failure=json.loads(z.read('failure.json'));need(failure['native_processes']==0 and failure['message']=='親route exact byte','ROM入力前の明示失敗')
+        write(ART/'failed-attempt.json',dict(run_id=37185746332,job_id=111387159162,source='38c2c0f931d3c8c17e0ded5eb8192501d8857145',artifact=11296648147,failure=failure,native_inputs=0,accepted_inputs_replayed=0,repair='親route保存copyに追加されたLF1byteを除きrepo原本17553byteへ正確にbinding。native前停止のためnative再走0。'))
+
 def main():
     h.d.current();state=h.source_check();need(os.environ['GITHUB_RUN_ATTEMPT']=='1' and not OUT.exists(),'新区間初回のみ')
     protected=h.d.bindings(set(state['source_bindings'])|h.d.PROTECTED|CODE)
     ART.mkdir(parents=True);sessions=[]
     try:
+        prior_failure()
         write(ART/'save90-record-terminal.json',inherited.terminal(37185228993,'bdf57adffdbff7d35b78ae97c38e551fb3608e7e',111385654447,['success']*11))
         need(state['story_save90']['story_fast_save']==a.OUTPUT,'正式Save90親')
         runtime=restore();seed=(ASSETS/'input.srm').read_bytes()
