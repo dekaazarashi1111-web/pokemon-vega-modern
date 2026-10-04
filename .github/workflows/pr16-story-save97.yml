@@ -26,10 +26,10 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 4
-      - name: 失敗したoff-warp変異fixtureだけ修正後検査・成功45件は再走しない
+      - name: 出口behavior修正に影響する22検査だけ・他の成功case再走0
         run: |
           set -euo pipefail
-          python3 -B -m unittest discover -s tests -p test_pr16_story_save97_measure.py -k exit_reject_off_warp -v
+          PYTHONPATH=tests python3 -B -m unittest -v test_pr16_story_save97_measure.Controller.test_exact_route test_pr16_story_save97_measure.Controller.test_direction_budget test_pr16_story_save97_measure.Controller.test_warp_owner test_pr16_story_save97_measure.Controller.test_exit_terrain test_pr16_story_save97_measure.Controller.test_first_town_field_stops test_pr16_story_save97_measure.Controller.test_no_guessed_autostep test_pr16_story_save97_measure.Controller.test_transition_only_wait test_pr16_story_save97_measure.Controller.test_exit_south_input test_pr16_story_save97_measure.Controller.test_blocked_edge_stops test_pr16_story_save97_measure.Controller.test_no_A_before_save test_pr16_story_save97_measure.Controller.test_event_rejected test_pr16_story_save97_measure.Controller.test_paid_coord_event_rejected test_pr16_story_save97_measure.Controller.test_battle_rejected test_pr16_story_save97_measure.Controller.test_early_warp_rejected test_pr16_story_save97_measure.Controller.test_wrong_arrival_rejected test_pr16_story_save97_measure.Controller.test_finite_wait_limit test_pr16_story_save97_measure.Controller.test_exit_reject_off_warp test_pr16_story_save97_measure.StaticPreparation.test_static_bindings_and_unique_warp test_pr16_story_save97_measure.StaticPreparation.test_arrival_neighbor_allowlist test_pr16_story_save97_measure.StaticPreparation.test_south_arrow_activation test_pr16_story_save97_measure.StaticPreparation.test_parent_plan_preserved test_pr16_story_save97_measure.StaticPreparation.test_failed_save_unchanged
           python3 -B -c "import sys; sys.path.insert(0,'scripts'); import pr16_story_save97_measure as m; import pr16_learnset_runtime_record as g; g.START=m.BASE; g.CODE=m.CODE; g.OWNED=set(); g.guard()"
       - name: 最初の博物館退出後Save97と独立Continue
         run: python3 -B scripts/pr16_story_save97_measure.py

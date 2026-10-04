@@ -19,6 +19,7 @@ TRANSITION=134569577 # 失敗原本の16,5で観測した野生戦直前callback
 PREP='content/modernization/pr16_story_save97_preparation.json'
 CODE.add(PREP)
 CODE.add('content/modernization/pr16_story_save97_controller_failure.json')
+CODE.add('content/modernization/pr16_story_save97_exit_recovery.json')
 TERRAIN='content/modernization/pr16_story_save50_preparation.json'
 ORIGIN=[6,0]
 DESTINATION=[3,2]
@@ -36,14 +37,14 @@ def idle(o,counter):
 def start(o):
     idle(o,96);need(o['map']==ORIGIN and o['xy']==START and o['facing']==3 and o['party_sha256']==a.PARTY and o['flash_sha256']==a.FLASH and o['ledger_sha256']==a.COLD_LEDGER,'Save96唯一の親')
 
-ROUTE=[[8, 8], [8, 7], [8, 6], [8, 5], [9, 5], [10, 5], [11, 5], [12, 5], [13, 5], [13, 6], [13, 7], [13, 8], [13, 9]]
+ROUTE=[[8, 8], [8, 7], [8, 6], [8, 5], [9, 5], [10, 5], [11, 5], [12, 5], [13, 5], [14, 5], [14, 6], [14, 7], [14, 8], [14, 9]]
 def inspect(raw,seed):
     need(identity(raw)==a.shared.plan.CANDIDATE and identity(seed)==a.OUTPUT,'正式Save96/同一候補')
-    planned=json.loads((ROOT/PREP).read_bytes());need(planned['route']==ROUTE and planned['candidate']==a.shared.plan.CANDIDATE and planned['input_save']==a.OUTPUT,'封書引渡し後の退出12歩/Save96固定')
+    planned=json.loads((ROOT/PREP).read_bytes());need(planned['route']==ROUTE and planned['candidate']==a.shared.plan.CANDIDATE and planned['input_save']==a.OUTPUT,'封書引渡し後の退出13歩/Save96固定')
     canonical=(ROOT/'content/modernization/pr16_story_save96_next_route.json').read_bytes()
-    need(planned['parent_route_binding']==identity(canonical) and json.loads(canonical)['route']==ROUTE,'親route exact byte')
+    need(planned['parent_route_binding']==identity(canonical) and json.loads(canonical)['route']==planned['parent_route'],'親route exact byte')
     for row in planned['bindings']:need(raw[row['address']-0x8000000:row['address']-0x8000000+row['size']].hex()==row['hex'],'階段地形とwarp全byte')
-    need(planned['warp_owner']['source']==dict(id=0,xy=[13,9],elevation=3,target_warp=0,target_map=[3,2]) and planned['warp_owner']['target']['xy']==[19,25],'博物館1階warp0→町warp0')
+    need(planned['warp_owner']['source']==dict(id=1,xy=[14,9],elevation=3,target_warp=0,target_map=[3,2]) and planned['warp_owner']['target']['xy']==[19,25],'博物館1階warp1→町warp0')
     need(planned['interaction']is None and all(c['collision']==0 for c in planned['terrain']if c['map']==ORIGIN),'博物館退出だけ・NPCへ会話しない')
     tab,_=a.parent.sectors.bank(seed,0,96,a.parent.sectors.LAYOUT);party=seed[tab[1]+56:tab[1]+656]
     need(identity(party)['sha256']==a.PARTY and list(party[52:56])==PP,'実party/PP保持')
@@ -51,6 +52,7 @@ def inspect(raw,seed):
     need(flags==planned['initial_expanded_flags'],'町type3でジムreset済')
     need((eb[259]>>7)&1==1 and(eb[259]>>6)&1==1 and(eb[259]>>4)&1==0,'4383/4382保持、4380未完')
     need(planned['admission_coords']==[dict(xy=[x,5],variable=0x4061,value=0,script=script)for x,script in [(12,135787018),(13,135787040),(14,135787062)]],'支払済4061=1では受付coord再発火しない')
+    need(planned['warp_activation']==dict(behavior=0x65,button=128,direction=1,meaning='SOUTH_ARROW_WARP')and planned['terrain'][13]['behavior']==0x65,'南矢印behaviorと向きが必要。warp登録だけでは不可')
     blocked={tuple(o['xy'])for o in planned['museum']['objects']if not o['flag']or not flags.get(str(o['flag']),0)}
     need(not any(tuple(xy)in blocked for xy in ROUTE),'有効objectを踏まない')
     legacy,vars=a.parent.sectors.legacy_state(seed,tab);need(vars[0x61]==1,'50円支払済4061=1。受付を再走しない')
@@ -68,7 +70,7 @@ def progress(s,inspection):
         need(s.last['xy']==before and s.last['map']==ORIGIN,'直前の1階位置')
         for attempt in range(3):
             o=s.step((direction(before,target),8),(0,48));scope(o)
-            if target==[13,9] and(o['map']==DESTINATION or o['lock']or o['callback2']!=m.FIELD):break
+            if target==[14,9] and(o['map']==DESTINATION or o['lock']or o['callback2']!=m.FIELD):break
             idle(o,96);need(o['map']==ORIGIN and o['xy']in(before,target),'1tile通常移動・未指定eventなし')
             if o['xy']==target:route.append(target);break
         else:return route,None,dict(kind='unpassed_edge',before=before,target=target,attempts=3,map=o['map'],xy=o['xy'],observation=len(s.observations)-1),[]
@@ -76,11 +78,11 @@ def progress(s,inspection):
         o=s.last;scope(o)
         if o['map']==DESTINATION and o['callback2']==m.FIELD and o['lock']==0:break
         if o['map']==ORIGIN and o['callback2']==m.FIELD and o['lock']==0:
-            need(o['xy']==[13,9],'出口warp以外は追加入力しない');s.step((128,8),(0,180))
+            need(o['xy']==[14,9],'出口warp以外は追加入力しない');s.step((128,8),(0,180))
         else:s.step((0,180))
     else:raise ValueError('有限退出warp待機上限')
     o=s.last;idle(o,96);need(o['map']==DESTINATION and o['xy']in json.loads((ROOT/PREP).read_bytes())['arrival_candidates'],'町warp0と自動退出隣接tileの最初のfieldを実測')
-    return route,None,dict(kind='new_museum_exit',trigger=[13,9],map=o['map'],xy=o['xy'],facing=o['facing'],observation=len(s.observations)-1),[]
+    return route,None,dict(kind='new_museum_exit',trigger=[14,9],map=o['map'],xy=o['xy'],facing=o['facing'],observation=len(s.observations)-1),[]
 
 MENU_ARROW='7705d612f1603802f40ea0b7f47bb5bad299300872da8d93ed06212eb9a4a353'
 REPORT_LABEL='713a5de624898bc4f1fa230a1c3a4c33a1eb79c627e2394c798e46698597f5f4'
@@ -153,7 +155,7 @@ def main():
         need(h.d.bindings(protected)==protected,'全受入source不変')
         report=dict(status='MEASURED_SAVE97_AWAITING_VISUAL_AND_INDEPENDENT_ACCEPTANCE',source_head=os.environ['GITHUB_SHA'],run_id=int(os.environ['GITHUB_RUN_ID']),
             input_save=a.OUTPUT,output_save=identity(saved),inspection=inspection,route=route,battle=episode,teleport=teleports,frontier=frontier,final=final,continued=c.last,
-            progress=result,independent_continue=cold,screen_count=len(s.observations)+len(c.observations),native_processes=2,
+            progress=result,independent_continue=cold,screen_count=len(s.observations)+len(c.observations),native_processes=2,prior_failed_native_processes=1,prior_pre_native_failed_attempts=1,
             accepted_case_reruns=0,accepted_test_reruns=0,compiles=0,rom_changes=0,fixture_writes=0,ordinary_saves=1,
             cave_crossing_complete=True,outside_route503_reached=True,inner_floor_entered=True,hole_descent_observed=False,hole_descent_previously_accepted=True,mansion_exit_previously_accepted=True,gym_entry_previously_accepted=True,first_diglett_previously_accepted=True,second_diglett_previously_accepted=True,third_diglett_previously_accepted=True,fourth_diglett_previously_accepted=True,fifth_diglett_previously_accepted=True,sixth_diglett_previously_accepted=True,seventh_diglett_previously_accepted=True,trainer132_previously_accepted=True,trainer160_previously_accepted=True,eighth_diglett_previously_accepted=True,leader417_previously_accepted=True,ninth_diglett_previously_accepted=True,tenth_diglett_previously_accepted=True,eleventh_diglett_previously_accepted=True,gym_leader_defeated=True,gym_exit_observed=True,gym_exit_accepted=True,museum_entry_observed=True,museum_entry_accepted=True,museum_second_floor_observed=False,museum_second_floor_accepted=True,museum_return_first_floor_observed=False,museum_return_first_floor_accepted=True,museum_exit_observed=True,museum_exit_accepted=False,letter_handoff_previously_accepted=True,museum_admission_observed=False,museum_admission_previously_accepted=True,gym_entered=True,letter_consumer_resolved=True,letter_handoff_requires_badge=True,statue_paper_observed=True,paper_obtained=True,paper_consumed_or_delivered=True,paper_acceptance_pending=False,normal_recovery_required=False,pp_recovery_accepted=True,full_story_accepted=False,release_ready=False,
             artifact_excludes=['existing ROM','runner','runtime','input Save96'])
