@@ -4358,11 +4358,12 @@
   "observed_head": "ada18f7e1fb9da89bb737517b8c2cc29b28ac24c",
   "observed_head_checks": {
     "all12_steps_success": true,
-    "codec_record_run": 37214351222,
     "general_ci_known_source_mismatch_not_resolved": true,
-    "reason_ja": "図鑑owner専用run37214351222/job111471729086は全12step成功。1206-owner namespace/522byte codecの40host試験と記録を受入。独立レビュー4件を修復し、receipt全byte一致。ARM0/native0/ROM変更0/Save変更0。PC未保存RAM保持・全consumer/save接続・シオウ回復は未完。Stage79はcache再利用で新nativeではない。一般CI既知QOL source不一致は未解決。",
+    "host_tests": 102,
+    "reason_ja": "図鑑runtime専用run37218128470/job111482743441は全12step成功。102host試験、native5UI寿命の原本、Stage75 SID1670→owner925、ROM空き3151byteの監査を記録。receipt全byte一致。記録ARM0/native0/ROM変更0/Save変更0。全save/consumer接続とシオウ回復は未完。Stage79 cacheは新nativeではなく、一般CI QOL source不一致は未解決。",
+    "runtime_record_run": 37218128470,
     "runtime_wired": false,
-    "scope_head": "d1230b07103cd1790849ba6fb390ede089052a1f"
+    "scope_head": "ada18f7e1fb9da89bb737517b8c2cc29b28ac24c"
   },
   "observed_head_history": [
     {
@@ -12373,13 +12374,7 @@
     "status": "NATIVE_PARTY_RETENTION_ACCEPTED_BP_PENDING",
     "tested_head": "10e535a046441dd3b797918106259b5c57b69716"
   },
-  "pending_runs": [
-    {
-      "run_id": 37218128470,
-      "status": "in_progress",
-      "tested_head": "ada18f7e1fb9da89bb737517b8c2cc29b28ac24c"
-    }
-  ],
+  "pending_runs": [],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
   "pr_draft": true,
   "pr_merged": false,
@@ -14165,6 +14160,10 @@
     ".github/workflows/pr16-dex-owner-foundation.yml": {
       "sha256": "283074a142bbc3435538f554a01e69feebec9b1e754565b225260579eb838468",
       "size": 2295
+    },
+    ".github/workflows/pr16-dex-runtime-closeout.yml": {
+      "sha256": "e977288f431ce9bb4539aebde841d3d48930d8699345d75aad5f51aa25ec7167",
+      "size": 2327
     },
     ".github/workflows/pr16-dex-runtime-record.yml": {
       "sha256": "16cf8bd272a6ad32226f11b46372cf81ba64c5bff3ca9a9234ee124568fd7bc3",
@@ -32026,6 +32025,10 @@
       "sha256": "53fd66aac8419e0f6b86fc6d24676fccdd383a3a077d57128c77d2d0d2135b23",
       "size": 9477
     },
+    "scripts/pr16_dex_runtime_closeout.py": {
+      "sha256": "4916ee4230497e1d9f2a13018069dd441a3bed69aca2be710e94ff34e05f974b",
+      "size": 6274
+    },
     "scripts/pr16_dex_runtime_record.py": {
       "sha256": "5c2711dd75d2f6cb5c648f98212ed6ad1d13f79c9363ad5f771e744afbb21ad6",
       "size": 13498
@@ -37712,6 +37715,24 @@
       "host_tests": 102,
       "native_lifetime_run": 37217077790,
       "record_run": 37218128470,
+      "recording": {
+        "all12_steps_success": true,
+        "archive_sha256": "ca3a615a08dede4d9878cb4d71239e0cc347bd718a85334b2d910dfa4a6984f2",
+        "archive_size": 2952,
+        "arm_compiles": 0,
+        "artifact": 11309133222,
+        "closeout_run": 37218304015,
+        "closeout_source": "61c07bda6f6ff085d944c0f142d8643597662cd2",
+        "completion": "7e6451eec10b7cdf76aadac524ce28bdf8bf7665",
+        "host_tests_rerun": 0,
+        "job": 111482743441,
+        "native_processes": 0,
+        "receipt_whole_bytes_verified": true,
+        "rom_changed": false,
+        "run": 37218128470,
+        "save_changed": false,
+        "source": "ada18f7e1fb9da89bb737517b8c2cc29b28ac24c"
+      },
       "runtime_wired": false,
       "source_head": "ada18f7e1fb9da89bb737517b8c2cc29b28ac24c",
       "status": "PASS_FIVE_UI_LIFETIME_AND_HOST_ADAPTER_RUNTIME_UNWIRED"

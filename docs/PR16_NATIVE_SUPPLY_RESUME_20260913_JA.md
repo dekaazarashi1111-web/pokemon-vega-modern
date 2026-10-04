@@ -461,6 +461,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-図鑑owner専用run37214351222/job111471729086は全12step成功。1206-owner namespace/522byte codecの40host試験と記録を受入。独立レビュー4件を修復し、receipt全byte一致。ARM0/native0/ROM変更0/Save変更0。PC未保存RAM保持・全consumer/save接続・シオウ回復は未完。Stage79はcache再利用で新nativeではない。一般CI既知QOL source不一致は未解決。
+図鑑runtime専用run37218128470/job111482743441は全12step成功。102host試験、native5UI寿命の原本、Stage75 SID1670→owner925、ROM空き3151byteの監査を記録。receipt全byte一致。記録ARM0/native0/ROM変更0/Save変更0。全save/consumer接続とシオウ回復は未完。Stage79 cacheは新nativeではなく、一般CI QOL source不一致は未解決。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
