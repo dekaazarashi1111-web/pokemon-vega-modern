@@ -1,0 +1,48 @@
+name: pr16-dex-capacity
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-dex-capacity.yml]
+permissions:
+  contents: read
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-dex-capacity
+  cancel-in-progress: false
+defaults:
+  run:
+    shell: bash
+jobs:
+  capacity:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.run_attempt == 1
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 8
+      - name: Exact compact source and retained evidence guard
+        run: python3 -B scripts/pr16_dex_capacity.py guard
+      - name: Official Ubuntu ARMv4T compiler packages
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-dev
+      - name: Compile exact compact APIs and measure complete ARM footprint
+        run: python3 -B scripts/pr16_dex_capacity.py measure
+      - name: Lightweight task graph
+        run: python3 -B scripts/validate_task_graph.py --check
+      - name: Validate text-only output
+        if: always()
+        run: python3 -B scripts/pr16_dex_capacity.py export
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-dex-capacity-text-only
+          path: public-dex-capacity
+          retention-days: 90
+          if-no-files-found: warn

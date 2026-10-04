@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "status": "COMPACT_MAPPING_HOST_AND_ARM_REQUIRED_ROM_UNWIRED",
+  "namespace_version": 1,
+  "owner_count": 1206,
+  "species_slots": 1671,
+  "stage75_owner": 925,
+  "reference_adapter": {
+    "path": "overlays/dex_owner/dex_adapter.c",
+    "sha256": "aa4ac552bcb0b4cb768c54b840240822db4e5038e1e7577558bbc34c86c361f2"
+  },
+  "maps": {
+    "Species": {
+      "keys": 1671,
+      "records": 106,
+      "literal_values": 180,
+      "logical_bytes": 784,
+      "decoded_u16_le_sha256": "7be37cb316355c051fd12684408d6bdca983892bbc9d7388b56044acdf5fb6f5"
+    },
+    "Official": {
+      "keys": 1026,
+      "records": 114,
+      "literal_values": 149,
+      "logical_bytes": 754,
+      "decoded_u16_le_sha256": "20da2eb5ed48fd5c1053c05caf8ec3bea16b71e4029148f77a3db09e0b66b95b"
+    },
+    "Representative": {
+      "keys": 1207,
+      "records": 28,
+      "literal_values": 0,
+      "logical_bytes": 112,
+      "decoded_u16_le_sha256": "466e6cb6beacf9521f834fdd900dd51cf22b4590364398f8453e217d205fff77"
+    }
+  },
+  "mask_bytes": 151,
+  "reference_logical_bytes": 7597,
+  "compact_logical_bytes": 1801,
+  "arm_layout_padding_included": false,
+  "save_layout_changed": false,
+  "rom_wired": false
+}
