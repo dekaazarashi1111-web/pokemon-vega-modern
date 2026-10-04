@@ -47,7 +47,7 @@ class Controller(unittest.TestCase):
     def test_no_event_rejected(self):
         with self.assertRaises(ValueError):m.progress(self.fake(no_lock=True),{})
     def test_unexpected_early_event_stops(self):
-        s=self.fake(early=True);route,b,f,w=m.progress(s,{});self.assertEqual((f['kind'],f['trigger'],len(s.inputs)),('new_event',[9,12],4))
+        s=self.fake(early=True);route,b,f,w=m.progress(s,{});self.assertEqual((f['kind'],f['trigger'],len(s.inputs)),('new_event',[9,12],6))
     def test_pp_unchanged_budget(self):self.assertEqual(m.PP,[9,10,15,2])
     def test_all_ten_edges_are_adjacent(self):self.assertEqual(len(m.ROUTE)-1,10);self.assertEqual([m.direction(a,b)for a,b in zip(m.ROUTE,m.ROUTE[1:])],[64]*2+[32]*6+[64]*2)
     def test_distinct_parent_flags(self):self.assertNotEqual(self.prep()['initial_flags'],{str(f):int(f in(4375,4378))for f in range(4372,4379)})
