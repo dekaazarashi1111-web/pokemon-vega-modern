@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "status": "CANDIDATE_ONLY_MINIMUM_LINK_LEASE",
+  "candidate": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  },
+  "window": {
+    "owner": "UNALLOCATED",
+    "region": "integration_modules",
+    "address": 157284696,
+    "address_hex": "0x95ff958",
+    "file_offset": 23066968,
+    "end_exclusive": 157286400,
+    "size": 1704,
+    "sha256": "5df23267786025b42543d3c671ece2d527b1fceb822834fb5221e39614f8044a",
+    "candidate_all_ff": true
+  },
+  "before_sentinel": {
+    "address": 157284680,
+    "size": 16,
+    "sha256": "3e495783a9c009fac32fb8ee45901f350487ef03a93e3d08ace60775a92851d2"
+  },
+  "after_sentinel": {
+    "address": 157286400,
+    "size": 16,
+    "sha256": "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb"
+  },
+  "reference_audit": {
+    "status": "PASS_TYPED_REFERENCE_CLASSIFICATION",
+    "aligned32_matches": 1,
+    "thumb_bl_matches": 0,
+    "unclassified_matches": 0,
+    "apparent_reference": {
+      "address": 159741552,
+      "target": 157284864,
+      "size": 4,
+      "sha256": "f2fcd80e9421c2909124a3caecd598db525d648a8dc260cc28c1d134fefa07ab",
+      "classification": "LZ10 flag followed by three palette literal bytes, not a pointer"
+    },
+    "asset": {
+      "address": 159741548,
+      "size": 40,
+      "sha256": "e2b962373c39a2fc8b758ee980ce0e8219853fe2a1f0dbd22b65ed53dbc88fe6",
+      "decoded_size": 32,
+      "decoded_sha256": "26b9f8ee24cd9f5a24918ac11b56868e9df9883d2fc2948c084f918fcf5d47c8",
+      "next_asset_root": 159741588,
+      "owner": "DPE-JP palette LZ10",
+      "canonical_sid": 1050,
+      "dpe_sid": 869
+    },
+    "table_rows": [
+      {
+        "address": 161816168,
+        "size": 8,
+        "sha256": "987ea3329a81c06e964fbe890524acc660941b1f4a2f4ccc1e0dffea7f72155d"
+      },
+      {
+        "address": 167085600,
+        "size": 8,
+        "sha256": "f5c57474b3ee97e303a14bfdd7f709227dc77e4bde14b5da1c30b9a6d2b61e6f"
+      },
+      {
+        "address": 156582348,
+        "size": 8,
+        "sha256": "f5c57474b3ee97e303a14bfdd7f709227dc77e4bde14b5da1c30b9a6d2b61e6f"
+      }
+    ],
+    "current_palette_root": 156573948,
+    "root_sites": [
+      134218032,
+      134494036,
+      134494072,
+      134494188,
+      134755756
+    ],
+    "source_evidence": [
+      "config/species_surface.json",
+      "manifests/species_ids.csv",
+      "scripts/build_species_surface.py",
+      "content/modernization/p04_capacity_allocation_manifest.json"
+    ],
+    "limits": "aligned32 pointer values and Thumb-1 BL scan; compressed asset classified through live palette roots and exact LZ10 decode, not ignored as a coincidental number"
+  },
+  "rom_fragments_or_raw_hex_included": false,
+  "maximum_lease": 1704,
+  "lease_size_rule": "smallest 4-byte-aligned window that packs final measured ARM sections including far-call stubs",
+  "original_allocator_owners": 107,
+  "formal_rom_changed": false,
+  "formal_save_changed": false
+}

@@ -13,6 +13,10 @@ import pr16_dex_placement as placement
 need,identity=placement.need,placement.identity
 SOURCE='overlays/stage61_display_npc_event_audit/stage61_display_npc_event_audit.c'
 PROOF='content/modernization/pr16_dex_stage61_relink_inputs.json'
+EXTRA_BASE=0x095FF958
+EXTRA_MAX=1704
+EXTRA_NAME='pr16_dex_scheduler_bridge'
+EXTRA_PROOF='content/modernization/pr16_dex_scheduler_extra_lease.json'
 EXPORTS=tuple(x['name'] for x in json.loads((ROOT/PROOF).read_bytes())['symbols'] if x['name'].startswith('Stage61State_'))
 RETAIN=('stage61_read32',)
 
@@ -134,7 +138,7 @@ static __attribute__((noinline)) u8 stage61_dex_fail_live(void)
     for name in EXPORTS:source=source.replace(name,'DexImpl_'+name)
     return source
 
-def windows():
+def windows(extra_size=0):
     rows=proof()['symbols'];out=[]
     for row in rows:
         name=row['name']
@@ -143,6 +147,7 @@ def windows():
         if name in EXPORTS:start+=16;size-=16
         if size>0:out.append((start,start+size))
     out.append((placement.BASE+5024,placement.lease.BASE+placement.lease.END))
+    if extra_size:out.append((EXTRA_BASE,EXTRA_BASE+extra_size))
     return out
 
 def elf_sections(raw):
@@ -217,11 +222,23 @@ def link(folder):
     live=[s for s in elf_sections(elf.read_bytes())if s['flags']&2 and s['size']]
     need(all(s['name'].startswith(('.text','.rodata'))for s in live),'no synthetic unowned link sections')
     (folder/'link-diagnostic.json').write_text(json.dumps(dict(live_sections=live,available_bytes=sum(b-a for a,b in windows()),required_bytes=sum(x['size']for x in live)),indent=2)+'\n')
-    final=folder/'scheduler.elf';ld=folder/'scheduler.ld'
+    final=folder/'scheduler.elf';ld=folder/'scheduler.ld';extra_size=0
     # Far Thumb calls acquire link stubs when a helper uses the already-owned
     # codec suffix. Probe their exact growth, then perform a normal strict link.
     for attempt in range(8):
-        assigned,free=assign_sections(live,windows())
+        try:assigned,free=assign_sections(live,windows(extra_size))
+        except ValueError as e:
+            if 'cannot fit'not in str(e):raise
+            # Smallest four-byte-aligned explicit lease for the measured sizes.
+            upper=EXTRA_MAX//4;lower=extra_size//4
+            assign_sections(live,windows(EXTRA_MAX))
+            while lower<upper:
+                mid=(lower+upper)//2
+                try:assign_sections(live,windows(mid*4));upper=mid
+                except ValueError as e:
+                    if 'cannot fit'not in str(e):raise
+                    lower=mid+1
+            extra_size=lower*4;assigned,free=assign_sections(live,windows(extra_size))
         ld.write_text(common+'SECTIONS { '+''.join(s['name']+' '+hex(s['address'])+' : { KEEP(*('+s['name']+')) }\n'for s in assigned)+discard+' }\n')
         run([*args,'-Wl,--no-check-sections','-Wl,-T,'+str(ld),str(obj),str(import_obj),'-lgcc','-o',str(final)])
         raw=final.read_bytes();actual=[s for s in elf_sections(raw)if s['flags']&2 and s['size']]
@@ -244,12 +261,13 @@ def link(folder):
     for name in EXPORTS:
         target=symbols['DexImpl_'+name]['address']|1
         patches.append((syms[name]['address'],struct.pack('<6HI',0xB408,0x4B02,0x469C,0xBC08,0x4760,0x46C0,target)))
-    return patches,dict(status='LINKED_SAVE_ONLY',sections=[{k:s[k]for k in('name','address','size','alignment')}for s in assigned],payload_bytes=sum(s['size']for s in assigned)+len(EXPORTS)*16,free_bytes=sum(b-a for a,b in free),exports={n:syms[n]['address']for n in EXPORTS},source=identity(src.read_bytes()),symbols=symbols)
+    return patches,dict(actual_payload_bytes=sum(len(raw)for _,raw in patches),status='LINKED_SAVE_ONLY',extra_lease_size=extra_size,extra_lease_base=EXTRA_BASE,sections=[{k:s[k]for k in('name','address','size','alignment')}for s in assigned],payload_bytes=sum(s['size']for s in assigned)+len(EXPORTS)*16,free_bytes=sum(b-a for a,b in free),exports={n:syms[n]['address']for n in EXPORTS},source=identity(src.read_bytes()),symbols=symbols)
 
-def apply(before,patches):
+def apply(before,patches,extra_size):
     p=proof();start=p['original_code']['address']-0x08000000;end=start+p['original_code']['size']
     need(identity(before[start:end])==dict(size=p['original_code']['size'],sha256=p['original_code']['sha256']),'original whole Stage61 owner')
-    allowed=windows()+[(x['address'],x['address']+16)for x in p['symbols']if x['name']in EXPORTS]
+    validate_extra_lease(before,extra_size)
+    allowed=windows(extra_size)+[(x['address'],x['address']+16)for x in p['symbols']if x['name']in EXPORTS]
     after=bytearray(before);occupied=set()
     for address,data in patches:
         need(any(a<=address and address+len(data)<=b for a,b in allowed),'patch inside declared save-only subowner')
@@ -259,11 +277,12 @@ def apply(before,patches):
         if x['name'].startswith(('Stage61State_','stage61_save_','stage61_state_','stage61_crc_'))and x['name']not in RETAIN:continue
         at=x['address']-0x08000000;need(after[at:at+x['size']]==before[at:at+x['size']],'retained original symbol '+x['name'])
     reserve=placement.BASE+5024-0x08000000;reserve_end=placement.lease.END
-    need(after[:start]==before[:start]and after[end:reserve]==before[end:reserve]and after[reserve_end:]==before[reserve_end:],'all other owners including next hotfix and accepted codec exact')
+    extra=EXTRA_BASE-0x08000000
+    need(after[:start]==before[:start]and after[end:extra]==before[end:extra]and after[extra+extra_size:reserve]==before[extra+extra_size:reserve]and after[reserve_end:]==before[reserve_end:],'all other owners including next hotfix and accepted codec exact')
     return bytes(after)
 
 
-def update_allocation(before,after,allocation):
+def update_allocation(before,after,allocation,extra_size):
     out=copy.deepcopy(allocation);changed=[]
     for row in out['allocations']:
         lo,hi=row['start'],row['end_exclusive']
@@ -272,6 +291,49 @@ def update_allocation(before,after,allocation):
         need(hashlib.sha256(before[lo:hi]).hexdigest()==row['content_sha256'],'whole prior allocator content identity')
         row['content_sha256']=hashlib.sha256(after[lo:hi]).hexdigest();changed.append(row['name'])
     need(set(changed)=={'display_npc_event_audit_stage61_payload',placement.NAME},'exact two existing owner content updates')
+    validate_extra_lease(before,extra_size)
+    lo=EXTRA_BASE-0x08000000
+    out['allocations'].append(dict(name=EXTRA_NAME,region='integration_modules',size=extra_size,alignment=4,owner='USER-20261004-DEX-SCHEDULER',purpose='Bounded save scheduler bridge; all original exported addresses remain fixed',content_sha256=hashlib.sha256(after[lo:lo+extra_size]).hexdigest(),start=lo,placement='EXPLICIT'))
     rebuilt=placement.rebuild_allocation(out)
-    need(rebuilt==out and rebuilt['summaries']==allocation['summaries'],'canonical allocator and all ownership bounds unchanged')
-    return out
+    need(len(rebuilt['allocations'])==108 and rebuilt['allocations'][:-1]==out['allocations'][:-1],'all107 previous allocator boundaries/sequence retained')
+    need(rebuilt['summaries']['overlap_count']==0,'new explicit lease has no overlap')
+    return rebuilt
+
+
+def validate_extra_lease(rom,size):
+    need(0<size<=EXTRA_MAX and size%4==0,'bounded aligned additional lease')
+    spec=json.loads((ROOT/EXTRA_PROOF).read_bytes())
+    audit=json.loads((ROOT/'content/modernization/pr16_dex_placement_audit.json').read_bytes())
+    window=next(x for x in audit['unallocated_windows']if x['address']==EXTRA_BASE)
+    need(window==spec['window'],'existing allocatable gap proof unchanged')
+    at=EXTRA_BASE-0x08000000
+    need(identity(rom[at:at+EXTRA_MAX])==dict(size=EXTRA_MAX,sha256=window['sha256']),'whole signed unallocated span')
+    for x in placement.allocation_source()['allocations']:
+        need(x['end_exclusive']<=at or x['start']>=at+EXTRA_MAX,'no previous allocator owner in full gap')
+    for name in ('before_sentinel','after_sentinel'):
+        x=spec[name];offset=x['address']-0x08000000
+        need(identity(rom[offset:offset+x['size']])==dict(size=x['size'],sha256=x['sha256']),'signed neighbor sentinel '+name)
+    ref=spec['reference_audit'];need(ref['status']=='PASS_TYPED_REFERENCE_CLASSIFICATION'and ref['unclassified_matches']==0,'no unclassified apparent reference')
+    asset=ref['asset'];at=asset['address']-0x08000000;raw=rom[at:at+asset['size']]
+    need(identity(raw)==dict(size=40,sha256=asset['sha256'])and raw[0]==0x10 and int.from_bytes(raw[1:4],'little')==32,'exact palette LZ10 asset')
+    cursor=4;decoded=bytearray()
+    for group in range(4):
+        need(raw[cursor]==0,'the typed palette contains only literal groups');cursor+=1
+        decoded.extend(raw[cursor:cursor+8]);cursor+=8
+    need(cursor==40 and identity(decoded)==dict(size=32,sha256=asset['decoded_sha256'])and asset['address']+40==asset['next_asset_root'],'complete palette decoder with exact next boundary')
+    for row in ref['table_rows']:
+        at=row['address']-0x08000000;raw=rom[at:at+row['size']]
+        need(identity(raw)==dict(size=row['size'],sha256=row['sha256'])and struct.unpack_from('<I',raw)[0]==asset['address'],'typed palette table root')
+    for address in ref['root_sites']:need(struct.unpack_from('<I',rom,address-0x08000000)[0]==ref['current_palette_root'],'current palette consumer root')
+    matches=[(0x08000000+i*4,v)for i,(v,)in enumerate(struct.iter_unpack('<I',rom))if EXTRA_BASE<=v<EXTRA_BASE+EXTRA_MAX]
+    need(matches==[(ref['apparent_reference']['address'],ref['apparent_reference']['target'])],'all apparent lease word references are classified')
+    count=0
+    for i in range(0,len(rom)-3,2):
+        hi,lo=struct.unpack_from('<HH',rom,i)
+        if hi&0xF800==0xF000 and lo&0xF800==0xF800:
+            offset=((hi&0x7FF)<<12)|((lo&0x7FF)<<1)
+            if offset&(1<<22):offset-=1<<23
+            target=0x08000000+i+4+offset
+            if EXTRA_BASE<=target<EXTRA_BASE+EXTRA_MAX:count+=1
+    need(count==ref['thumb_bl_matches']==0,'no original Thumb BL targets the new lease')
+    return spec

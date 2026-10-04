@@ -10,7 +10,7 @@ need,identity=scheduler.need,scheduler.identity
 BASE='a4463621e8f8374f74c85d90056cc64e17720d6d'
 CODE={'scripts/pr16_dex_scheduler.py','scripts/pr16_dex_scheduler_actions.py',
  'overlays/dex_owner/dex_stage61_scheduler.h','tests/test_pr16_dex_scheduler.py',
- '.github/workflows/pr16-dex-scheduler.yml','scripts/pr16_dex_scheduler_host.py','tools/pr16_dex_scheduler_host.c','tools/mgba_pr16_dex_scheduler.c'}
+ '.github/workflows/pr16-dex-scheduler.yml','scripts/pr16_dex_scheduler_host.py','tools/pr16_dex_scheduler_host.c','tools/mgba_pr16_dex_scheduler.c',scheduler.EXTRA_PROOF}
 OUT=ROOT/'.local/pr16-dex-scheduler';PUBLIC=ROOT/'public-dex-scheduler'
 def write(path,data):path.parent.mkdir(parents=True,exist_ok=True);path.write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n')
 def guard():
@@ -33,8 +33,8 @@ def run():
   with z:before=z.read('candidate.gba')
   need(identity(before)==placement.lease.CANDIDATE,'exact formal ROM source')
   payload,codec=placement.link(OUT/'codec');need(codec['payload']==dict(size=5022,sha256='0541f69c476c5d4faf8fb62fcfa923395d7ba70925844d928a9594869feaeda9'),'unchanged accepted codec reconstruction')
-  placed,old=placement.place(before,payload,codec['symbols']);after=scheduler.apply(placed,patches)
-  allocator=scheduler.update_allocation(placed,after,old['allocation'])
+  placed,old=placement.place(before,payload,codec['symbols']);after=scheduler.apply(placed,patches,linked['extra_lease_size'])
+  allocator=scheduler.update_allocation(placed,after,old['allocation'],linked['extra_lease_size'])
   candidate=OUT/'scheduler-candidate.gba';candidate.write_bytes(after)
   package=subprocess.check_output(['dpkg-query','-W','-f=${Version}','libmgba-dev'],text=True).strip()
   need(package=='0.10.2+dfsg-1.1build3','fixed mGBA package')
