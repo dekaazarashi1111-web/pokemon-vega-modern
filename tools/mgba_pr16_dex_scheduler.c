@@ -79,26 +79,26 @@ static void reset(void)
  reads=erases=programs=stock_calls=0;fail_after=lie_after=-1;
 }
 static void count(void){checks++;printf("{\"case\":%u}\n",checks);fflush(stdout);}
-static void access(unsigned owner,unsigned mode){uint8_t value;get(LIVE,live,522);need(VegaDexAccess(live,522,owner,mode,&value)==0,"host fixture access");put(LIVE,live,522);}
+static void dex_fixture_access(unsigned owner,unsigned mode){uint8_t value;get(LIVE,live,522);need(VegaDexAccess(live,522,owner,mode,&value)==0,"host fixture access");put(LIVE,live,522);}
 static void saved(void){need(call(Stage61State_HandleSavingData,0,0)==0,"normal save result");need(r32(DAMAGED)==0,"normal save damage");}
 static unsigned record(void){return 14*(r32(COUNTER)&1u)+(r16(FIRST)+13)%14;}
 int main(int argc,char **argv)
 {
  need(argc==2,"one private candidate");c=mCoreFind(argv[1]);need(c&&c->init(c),"core init");mCoreInitConfig(c,NULL);mCoreConfigSetDefaultValue(&c->config,"idleOptimization","ignore");need(mCoreLoadFile(c,argv[1]),"private candidate load");c->setVideoBuffer(c,video,240);c->reset(c);
- reset();access(1205,3);saved();need(r32(COUNTER)==1&&r16(FIRST)==1,"first rotation");get(LIVE,live,522);need(!memcmp(live,flash_bytes[record()]+0xDE6,522),"normal MDX persisted");count();
- uint8_t old[522];memcpy(old,live,522);access(128,2);saved();flash_bytes[record()][0xDF2]^=1;
+ reset();dex_fixture_access(1205,3);saved();need(r32(COUNTER)==1&&r16(FIRST)==1,"first rotation");get(LIVE,live,522);need(!memcmp(live,flash_bytes[record()]+0xDE6,522),"normal MDX persisted");count();
+ uint8_t old[522];memcpy(old,live,522);dex_fixture_access(128,2);saved();flash_bytes[record()][0xDF2]^=1;
  need(call(Stage61State_GetSaveValidStatus,CHUNKS,0)==255&&r32(COUNTER)==1,"CRC fallback");count();
  memset(live,0x77,522);put(LIVE,live,522);need(call(Stage61State_HandleLoadSector,0,CHUNKS)==1,"selected load");get(LIVE,live,522);need(!memcmp(live,old,522),"same selected MDX");count();
  flash_bytes[record()][0xDF2]^=1;need(call(Stage61State_GetSaveValidStatus,CHUNKS,0)==2,"both banks invalid");(void)call(Stage61State_HandleLoadSector,0,CHUNKS);get(LIVE,live,522);for(unsigned i=0;i<522;i++)need(live[i]==0,"failed load invalidated");count();
  for(unsigned blank=0;blank<2;blank++){reset();saved();memset(flash_bytes[record()]+0xDE6,blank?255:0,522);need(call(Stage61State_GetSaveValidStatus,CHUNKS,0)==1,"legacy selected");(void)call(Stage61State_HandleLoadSector,0,CHUNKS);get(LIVE,live,522);need(VegaDexValidate(live,522)==0&&live[10]==1,"legacy initialized after stock copy");count();}
  for(unsigned mode=0;mode<6;mode++){reset();saved();memcpy(backup,flash_bytes+14,sizeof(backup));c->busWrite8(c,LIVE,0);unsigned e=erases,p=programs,s=stock_calls;need(call(Stage61State_HandleSavingData,mode,0)==255,"invalid live result");need(e==erases&&p==programs&&s==stock_calls,"invalid live no callbacks");need((r32(DAMAGED)&0xFFFFC000u)==0&&!memcmp(backup,flash_bytes+14,sizeof(backup)),"valid source protected by mask");count();}
- reset();saved();access(1205,2);need(call(Stage61State_HandleReplaceSector,13,CHUNKS)==1,"prepare LinkFull");unsigned at=record();need(flash_bytes[at][0xFF8]==255,"signature uncommitted");count();
+ reset();saved();dex_fixture_access(1205,2);need(call(Stage61State_HandleReplaceSector,13,CHUNKS)==1,"prepare LinkFull");unsigned at=record();need(flash_bytes[at][0xFF8]==255,"signature uncommitted");count();
  unsigned p=programs;flash_bytes[at][0xDE6]^=1;need(call(Stage61State_CommitSignatureByte,14,CHUNKS)==255&&p==programs&&flash_bytes[at][0xFF8]==255,"tampered prepare cannot commit");count();
  w32(DAMAGED,0);need(call(Stage61State_HandleReplaceSector,13,CHUNKS)==1,"reprepare");need(call(Stage61State_CommitSignatureByte,14,CHUNKS)==1&&flash_bytes[at][0xFF8]==0x25,"signature last commit");count();
- reset();saved();uint8_t old_pc[0x7D0];at=record();memcpy(old_pc,flash_bytes[at],sizeof(old_pc));memcpy(old,flash_bytes[at]+0xDE6,522);access(1205,3);
+ reset();saved();uint8_t old_pc[0x7D0];at=record();memcpy(old_pc,flash_bytes[at],sizeof(old_pc));memcpy(old,flash_bytes[at]+0xDE6,522);dex_fixture_access(1205,3);
  for(unsigned i=0;i<0x7D0;i++)c->busWrite8(c,PCBOX+0x7C00+i,0xE5);
  need(call(Stage61State_EnsureBackupGeneration,CHUNKS,0)==1&&r32(COUNTER)==1,"backup keeps selector");need(!memcmp(flash_bytes[at-14]+0xDE6,old,522),"backup exact old MDX");count();
  need(call(Stage61State_UpdateRecordOnly,CHUNKS,0)==1&&r32(COUNTER)==2,"record only commit");get(LIVE,live,522);need(!memcmp(flash_bytes[at-14],old_pc,sizeof(old_pc))&&!memcmp(flash_bytes[at-14]+0xDE6,live,522),"record only PC unchanged MDX current");count();
- for(unsigned f=0;f<2;f++){reset();saved();memcpy(backup,flash_bytes+14,sizeof(backup));access(1000,2);if(f==0)fail_after=programs+522;else lie_after=programs+0xDE7;need(call(Stage61State_HandleSavingData,0,0)==255&&r32(COUNTER)==1&&!memcmp(backup,flash_bytes+14,sizeof(backup)),"torn or lying write preserves source");count();}
+ for(unsigned f=0;f<2;f++){reset();saved();memcpy(backup,flash_bytes+14,sizeof(backup));dex_fixture_access(1000,2);if(f==0)fail_after=programs+522;else lie_after=programs+0xDE7;need(call(Stage61State_HandleSavingData,0,0)==255&&r32(COUNTER)==1&&!memcmp(backup,flash_bytes+14,sizeof(backup)),"torn or lying write preserves source");count();}
  printf("{\"status\":\"PASS_ISOLATED_ARM_SCHEDULER_SYNTHETIC_FLASH\",\"cases\":%u,\"calls\":%u,\"steps\":%llu,\"native_processes\":1,\"ewram_bytes_checked_per_call\":262144,\"game_boots\":0,\"ordinary_saves\":0,\"formal_save_changed\":false}\n",checks,calls,(unsigned long long)steps);fflush(stdout);mCoreConfigDeinit(&c->config);c->deinit(c);return 0;
 }
