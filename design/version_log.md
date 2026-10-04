@@ -9895,3 +9895,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: terminal/source bindings/resume/task graph/index guard PASS。host再試験0/ARM0/native0/正式ROM・Save変更0。初回nativeのsignal位置は未採取、次回は全24完了後のcore二重freeと確定して修正、失敗原本を成功へ改作しない。
 - Commit: closeout source=caa6679890832ec5554be2584fd23f20c93fc026; 同branch非force push。
 - Network: 同repoActionsとcommitのみ。cleanup一次source https://raw.githubusercontent.com/mgba-emu/mgba/0.10.2/src/gba/core.c 。旧9月18日queueは非操作、一般CIのQOL source不一致は残件。
+
+## 2026-10-04T19:36:33.994645+00:00
+- Timestamp: 2026-10-04T19:36:33.994645+00:00
+- Task: USER-20261004-DEX-SCHEDULER / Stage61同世代図鑑保存候補
+- Version: dex-save-scheduler-v1
+- Status: STOPPED（隔離ARM受入。通常保存・全consumerは未完）
+- Summary: 44export/非保存code/data/隣hotfixを保持し、元保存ownerを再配置。既存codec予約と署名済allocatable窓の最小leaseを正規allocatorで使用。MDX検証/注入/load/clone/record-onlyとLinkFull署名前再読を接続。
+- Files changed: scheduler source/harness/workflow、追加leaseとloadchain監査、checkpoint/evidence、固定MDJSON、両ログ。
+- Verify: run37228557062/job111513197041全10step成功。generator18、synthetic host20、隔離ARM19case/各EWRAM全262144byteのnon-owner対照。build診断8runはnative0 failure保持。記録では再compile/native0。
+- Next: 正式ROM/Save101は不変。PR16_DEX_SAVE_SCHEDULER_JA.mdとpr16_dex_scheduler_checkpoint.jsonから再開。Stage61保存8入口の固定veneerと全44export/元non-save保持、同世代MDX、LinkFull署名前再読、CRC fallback/clone/record-onlyを候補内へ接続し隔離ARM19caseを受入。次はloadchain監査のMirage literal0x09391114にpost-QOL MDX gateを、CFRU literal0x09097178にwipe後InitNew tail wrapperを接続。現sector31復元はlegacy2048byteでMDXに重ならないがstockは内側load返値を捨てる。HOF-only load=3を除外し、復旧Save前に失敗遮断する。authority不明のinvalid-liveでは仮damaged sectorを付けず、上位の非破壊的失敗伝播を実装。全save mode固有副作用、全SID喪失前consumer/Bag count/reward clear/Factory-Codex rollback、候補限定通常Save/独立cold Continueを受入後だけ正式進行。最終はシオウPokecenter通常回復/Save/coldContinue。雑魚戦ごとのSaveは作らない。
+- Commit: record source=b65b53e70895c124e9d00709f47fc0c66a7b07d5; 同branch非force push。
+- Network: 同repoActions/既存candidate、source根拠のみ。一般CI QOL source不一致、Stage79 cacheを別記。公開はsource/address/size/hashと検査済textのみ。

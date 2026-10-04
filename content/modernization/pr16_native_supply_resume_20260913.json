@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "正式ROM/Save101保持。実allocator移譲と実アドレス全API/24veneer5022byteの隔離native ABI受入済み。Stage61全24macro/99symbol/4aliasを回収。ゲーム保存/consumer接続は未完。",
+    "current_stop": "正式ROM/Save101保持。Stage61保存schedulerの候補配置と隔離ARM19caseまで受入。newgame、外側load失敗gate、全consumer、通常Save/coldContinueは未完。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "正式ROM/Save101は不変。PR16_DEX_PLACEMENT_JA.mdとpr16_dex_placement_checkpoint.jsonから再開。退役T09 owner6484byteを実allocator移譲し0x09FC0998へ全API＋24veneer5022byteを配置、残1462byteを予約。run37223181964全10stepで26host/24API実ARM・各262144byte EWRAM対照を受入。ゲームhook/保存consumerは未接続。pr16_dex_stage61_relink_inputs.jsonに元assetから24macro/99sized symbol/4unsized aliasを回収し元code12568byteを全照合。次はStage61 existing-owner内の保存拡張。全44export位置・元data・次hotfix ownerを保ち、保存8入口だけを根拠に全codeを置換しない。validate_slot/inject_tail/expected_prepared_byte/tail_matches/load/clone/record-onlyを同世代MDXへ接続。署名前LinkFullを正規signature検査へ流さず、invalid liveはflash前拒否、復旧Save前にmain-bank MDX確定。全SID喪失前consumer/Bag count/reward clear/Factory-Codex rollback、候補限定Save/coldContinue・partial-write受入後だけ正式進行へ戻る。最終はシオウPokecenter通常回復/Save/coldContinue。雑魚戦ごとのSaveは作らない。",
+    "next_step": "正式ROM/Save101は不変。PR16_DEX_SAVE_SCHEDULER_JA.mdとpr16_dex_scheduler_checkpoint.jsonから再開。Stage61保存8入口の固定veneerと全44export/元non-save保持、同世代MDX、LinkFull署名前再読、CRC fallback/clone/record-onlyを候補内へ接続し隔離ARM19caseを受入。次はloadchain監査のMirage literal0x09391114にpost-QOL MDX gateを、CFRU literal0x09097178にwipe後InitNew tail wrapperを接続。現sector31復元はlegacy2048byteでMDXに重ならないがstockは内側load返値を捨てる。HOF-only load=3を除外し、復旧Save前に失敗遮断する。authority不明のinvalid-liveでは仮damaged sectorを付けず、上位の非破壊的失敗伝播を実装。全save mode固有副作用、全SID喪失前consumer/Bag count/reward clear/Factory-Codex rollback、候補限定通常Save/独立cold Continueを受入後だけ正式進行。最終はシオウPokecenter通常回復/Save/coldContinue。雑魚戦ごとのSaveは作らない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -1163,7 +1163,8 @@
     "図鑑owner namespace1206/slot1670と522byte codecのhost証拠を再利用。runtime未接続を修復済みにしない。旧bit、VACQ、別field破壊を根拠なしに昇格しない。PC未保存RAM保持と全save/consumer接続から続ける。",
     "MDX候補RAMの5UI寿命はrun37217077790の原本から再利用（Bagは37216583954から再利用）。正式Save101不変。Stage75 internal1670は明示adapterでbase1142/owner925へ結合し、namespace owner数1206は不変。全save/consumer未接続とROM空き容量3151byteを隠さず先に解決。",
     "図鑑compact51host/262144比較/ARM4compileはrun37219630045の原本を再利用。旧T09 pointer表6484byteはStage39退役のhash-bound契約のみ。元DATA81885byte/sentinel6参照保持、実owner移管/ROM配置/Stage61全clone/nativeを完了扱いしない。",
-    "図鑑実配置run37223181964の24API/24veneer隔離nativeを再実行しない。全107allocator中退役ownerだけ移管、payload5022/残1462。正式ROM/Save101不変。元Stage61 metadataはhash固定24macro/99sized symbol/4aliasを再利用し旧source再compile・元payload全体復元をしない。"
+    "図鑑実配置run37223181964の24API/24veneer隔離nativeを再実行しない。全107allocator中退役ownerだけ移管、payload5022/残1462。正式ROM/Save101不変。元Stage61 metadataはhash固定24macro/99sized symbol/4aliasを再利用し旧source再compile・元payload全体復元をしない。",
+    "図鑑保存scheduler run37228557062の隔離ARM19caseはsource/配置不変なら再実行しない。通常game Save/ContinueとHOF/overwrite受入へ昇格しない。8つのbuild診断failureはnative0のまま保持。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -4344,20 +4345,19 @@
     "status": "PASS_NATIONAL_DEX_GRANT_OWNER_SCOPED"
   },
   "next_action": {
-    "goal_ja": "正式ROM/Save101は不変。PR16_DEX_PLACEMENT_JA.mdとpr16_dex_placement_checkpoint.jsonから再開。退役T09 owner6484byteを実allocator移譲し0x09FC0998へ全API＋24veneer5022byteを配置、残1462byteを予約。run37223181964全10stepで26host/24API実ARM・各262144byte EWRAM対照を受入。ゲームhook/保存consumerは未接続。pr16_dex_stage61_relink_inputs.jsonに元assetから24macro/99sized symbol/4unsized aliasを回収し元code12568byteを全照合。次はStage61 existing-owner内の保存拡張。全44export位置・元data・次hotfix ownerを保ち、保存8入口だけを根拠に全codeを置換しない。validate_slot/inject_tail/expected_prepared_byte/tail_matches/load/clone/record-onlyを同世代MDXへ接続。署名前LinkFullを正規signature検査へ流さず、invalid liveはflash前拒否、復旧Save前にmain-bank MDX確定。全SID喪失前consumer/Bag count/reward clear/Factory-Codex rollback、候補限定Save/coldContinue・partial-write受入後だけ正式進行へ戻る。最終はシオウPokecenter通常回復/Save/coldContinue。雑魚戦ごとのSaveは作らない。",
+    "goal_ja": "正式ROM/Save101は不変。PR16_DEX_SAVE_SCHEDULER_JA.mdとpr16_dex_scheduler_checkpoint.jsonから再開。Stage61保存8入口の固定veneerと全44export/元non-save保持、同世代MDX、LinkFull署名前再読、CRC fallback/clone/record-onlyを候補内へ接続し隔離ARM19caseを受入。次はloadchain監査のMirage literal0x09391114にpost-QOL MDX gateを、CFRU literal0x09097178にwipe後InitNew tail wrapperを接続。現sector31復元はlegacy2048byteでMDXに重ならないがstockは内側load返値を捨てる。HOF-only load=3を除外し、復旧Save前に失敗遮断する。authority不明のinvalid-liveでは仮damaged sectorを付けず、上位の非破壊的失敗伝播を実装。全save mode固有副作用、全SID喪失前consumer/Bag count/reward clear/Factory-Codex rollback、候補限定通常Save/独立cold Continueを受入後だけ正式進行。最終はシオウPokecenter通常回復/Save/coldContinue。雑魚戦ごとのSaveは作らない。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。Save14は作業コピーだけを使用する。自己OT party、manifest解決済み通常支援用品、EXP境界、safe opponentはpre-battle fixtureとして全byteを台帳化してよい。badge/key item/story flag/money/RPをfixture付与せず、戦闘開始後は通常入力とゲーム内処理だけを使う。",
-    "id": "REPLACE_STAGE61_OWNER_AND_WIRE_DEX_CONSUMERS",
+    "id": "WIRE_DEX_LOAD_NEWGAME_AND_CONSUMERS",
     "read_paths": [
-      "docs/PR16_DEX_PLACEMENT_JA.md",
-      "content/modernization/pr16_dex_placement_checkpoint.json",
-      "content/modernization/pr16_dex_stage61_relink_inputs.json",
-      "docs/PR16_DEX_RUNTIME_INTEGRATION_JA.md",
+      "docs/PR16_DEX_SAVE_SCHEDULER_JA.md",
+      "content/modernization/pr16_dex_scheduler_checkpoint.json",
+      "content/modernization/pr16_dex_loadchain_audit.json",
       "docs/PR16_DEX_CONSUMERS_JA.md"
     ],
     "stop_rule_ja": "通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。"
   },
   "observed_date_jst": "2026-10-04",
-  "observed_head": "8db8f096d4bdbec6c4f2388e78121e45a390ab56",
+  "observed_head": "b65b53e70895c124e9d00709f47fc0c66a7b07d5",
   "observed_head_checks": {
     "all12_record_steps_success": true,
     "game_hooks_installed": false,
@@ -12254,7 +12254,7 @@
       "semantics": "Save100/ミルシティ4,17北。動的Ranger20,29へ実正面A→町の解放scene→4072=3/4380set。全party600byte/HP277/PP3,9,8,2/23114円保持。95+cold13入力/54画面。通常2歩+自動2歩、歩数93/3。cold RAM差owner未解明。"
     }
   ],
-  "observed_head_semantics": "図鑑実配置ABI受入と元Stage61入力の記録source。正式ROM/Save101不変、記録ARM0/native0。保存scheduler/全consumerは未接続。",
+  "observed_head_semantics": "図鑑保存scheduler候補の隔離ARM受入を記録したsource。正式ROM/Save101不変。記録ARM0/native0。",
   "p08_candidate_impact": {
     "candidate": {
       "crc32": "CC068B4A",
@@ -12376,7 +12376,13 @@
     "status": "NATIVE_PARTY_RETENTION_ACCEPTED_BP_PENDING",
     "tested_head": "10e535a046441dd3b797918106259b5c57b69716"
   },
-  "pending_runs": [],
+  "pending_runs": [
+    {
+      "run_id": 37228900963,
+      "status": "in_progress",
+      "tested_head": "b65b53e70895c124e9d00709f47fc0c66a7b07d5"
+    }
+  ],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
   "pr_draft": true,
   "pr_merged": false,
@@ -14194,6 +14200,14 @@
     ".github/workflows/pr16-dex-runtime-record.yml": {
       "sha256": "16cf8bd272a6ad32226f11b46372cf81ba64c5bff3ca9a9234ee124568fd7bc3",
       "size": 2301
+    },
+    ".github/workflows/pr16-dex-scheduler-record.yml": {
+      "sha256": "71c25dd8a37e44edee2abbdcd1a35a12464680e969dce60a9f8a065c0fb16463",
+      "size": 2414
+    },
+    ".github/workflows/pr16-dex-scheduler.yml": {
+      "sha256": "d1be1b87dfffb84af71598181b2ee440e1b19fa68c3da32a997b95f7ae23f9bd",
+      "size": 2036
     },
     ".github/workflows/pr16-exp-evolution-share.yml": {
       "sha256": "42d48cce1f1c9089a82e308b49837cf05aa20cab4a232c44c0be2a16fce0460b",
@@ -16535,6 +16549,10 @@
       "sha256": "d9c022b41c15b14a16cbdf19af322771b570a65faa2a3e5b9ca83832f4a2c123",
       "size": 92166
     },
+    "content/modernization/pr16_dex_loadchain_audit.json": {
+      "sha256": "92cb84f0fd1a26e04dec3f26d424c4b8ed5b3bbdcc412e65137dbd985e6505d6",
+      "size": 31785
+    },
     "content/modernization/pr16_dex_namespace.json": {
       "sha256": "910671fa4345bc4522657a1fdebb5a7fc686c8146ad9623d5d973f3ead42d009",
       "size": 277412
@@ -16582,6 +16600,38 @@
     "content/modernization/pr16_dex_runtime_unit.json": {
       "sha256": "4ab2c54db5f2e6b9bc549a9c85729cbd9705b1f3b0e26d5f9acbb33d705a438f",
       "size": 13555
+    },
+    "content/modernization/pr16_dex_save_body_references.json": {
+      "sha256": "72847c574b048d896d35d4fae79ca83a5782df2e8ff1041670c0b511e7f4c563",
+      "size": 15359
+    },
+    "content/modernization/pr16_dex_scheduler_checkpoint.json": {
+      "sha256": "b17a4decc849843081c0f2633c62069436aece9c56f5f9f37cfa932f371e237e",
+      "size": 86021
+    },
+    "content/modernization/pr16_dex_scheduler_evidence/build.json": {
+      "sha256": "290835b60d7afc89a807bcb7bc9eaf66b03c9cd1416842fb23f7111032fa8ef3",
+      "size": 81813
+    },
+    "content/modernization/pr16_dex_scheduler_evidence/host-runtime.json": {
+      "sha256": "3f3a2fabe129bf555dc39d8f6eca0af817114b8b54fcbd0547c4110a6263e8e2",
+      "size": 93
+    },
+    "content/modernization/pr16_dex_scheduler_evidence/host-tests.txt": {
+      "sha256": "bad59c08aa24c254bc2f6f039ce04ca359367de854f99b0e6f9ee6f1de0f470a",
+      "size": 1865
+    },
+    "content/modernization/pr16_dex_scheduler_evidence/native-attempt.json": {
+      "sha256": "31c00d295e97ff1be20ab66d5e70d82c3961e376f6b0061cb0ef6c113c23488d",
+      "size": 72
+    },
+    "content/modernization/pr16_dex_scheduler_evidence/native.json": {
+      "sha256": "1e52e1cb06414351a48180a2855609ecbb4cfd3ec2438efbeb3d9bf7bd51d23e",
+      "size": 255
+    },
+    "content/modernization/pr16_dex_scheduler_extra_lease.json": {
+      "sha256": "24d8275e1d61d7e8786e5c9262d31f142a6e2b0228c09ca25c15ecc20872d58c",
+      "size": 2985
     },
     "content/modernization/pr16_dex_stage61_relink_inputs.json": {
       "sha256": "1d9aeb880c178ea05facf5aa8b4487dd83dd462054d7089f0f8dc22567a304a2",
@@ -27311,6 +27361,10 @@
       "sha256": "cce5fd5337df562f110cdba07d1a829b84abae1273d256929cb5a05fd1a30b5c",
       "size": 6815
     },
+    "docs/PR16_DEX_SAVE_SCHEDULER_JA.md": {
+      "sha256": "140541c75f38302892eb29e9d251542ad39afbae5f76cb8cdb2943d3bd3f9c90",
+      "size": 4894
+    },
     "docs/PR16_DEX_SEEN_REPAIR_JA.md": {
       "sha256": "050beb0932f2112e47283574282df0f8e1be76423d35cdc491b3d4fd7c52ac89",
       "size": 5275
@@ -31523,6 +31577,10 @@
       "sha256": "c365ee5d69958497361d59f634fd56cf647181a02336f0e2ab14dea14a887373",
       "size": 1651
     },
+    "overlays/dex_owner/dex_stage61_scheduler.h": {
+      "sha256": "c2fc2dc938a9571b5d84b010beb726c8d6a4297dc3e3f0d38a357670fd7a643d",
+      "size": 2224
+    },
     "overlays/event_design/event_design.c": {
       "sha256": "0a63e6ed04c9cb9973f6bfd5ecc659d8ff53be7bcd09badd45031da9ff1c81e7",
       "size": 9378
@@ -32178,6 +32236,22 @@
     "scripts/pr16_dex_runtime_record.py": {
       "sha256": "5c2711dd75d2f6cb5c648f98212ed6ad1d13f79c9363ad5f771e744afbb21ad6",
       "size": 13498
+    },
+    "scripts/pr16_dex_scheduler.py": {
+      "sha256": "5a099e95f45328dcaeffae7ab0d6039b581a7ba5865ac4ee5fb46358e8dcf8b2",
+      "size": 24289
+    },
+    "scripts/pr16_dex_scheduler_actions.py": {
+      "sha256": "d6bc4365e26b89b8c9ec89dc9592fa024e933585d0ec8624ac9f366f7be23770",
+      "size": 6663
+    },
+    "scripts/pr16_dex_scheduler_host.py": {
+      "sha256": "2a01c056d807e1e8687239b0880e8a81de3a71555de6c769f6a76057ddab209c",
+      "size": 1872
+    },
+    "scripts/pr16_dex_scheduler_record.py": {
+      "sha256": "0a85f41ef838d4e921e150aa9a260739acd282a55c19e1407430179bc2f81556",
+      "size": 13012
     },
     "scripts/pr16_dex_stage61_inputs.py": {
       "sha256": "c8e0e200ab3fe92a3eba226bf834329ea93620184c0d076c97f2d531de357c51",
@@ -35191,6 +35265,10 @@
       "sha256": "f821ddcd237739d015ada8fb3d072fd9b5b82829c5f47c60f96ad9350d869520",
       "size": 7575
     },
+    "tests/test_pr16_dex_scheduler.py": {
+      "sha256": "c850c36bf09058e8aa0355d9e7f8bfce4af878a5cde5c5a04af949488bb48c1b",
+      "size": 2840
+    },
     "tests/test_pr16_dex_stage61_inputs.py": {
       "sha256": "d39aeb8e6b2f4251963e6a85a6c059bca03d8e574c9f7ba5514ea470b1ecd313",
       "size": 2443
@@ -37243,6 +37321,10 @@
       "sha256": "0c23db8f0a7a2514759734c34a069a1a7a374b14f34ef7b72019f8eebae941d3",
       "size": 7704
     },
+    "tools/mgba_pr16_dex_scheduler.c": {
+      "sha256": "74469ff8dfc63f4a1a45eab0f39cdd25a2c346c3350a4b4fe5ba5f1ed6e09cb1",
+      "size": 9213
+    },
     "tools/mgba_pr16_exp_evolution_share.c": {
       "sha256": "006956a135451fb50d3a5a8ffcb4e40787d5a00d2aa831bb1144bfb0c3129b5c",
       "size": 13541
@@ -37438,6 +37520,10 @@
     "tools/mgba_stage61_progression_lifecycle_e2e.c": {
       "sha256": "605b1140a0bfd8fcfbdf18976346155ed43a8be96fdd4e75bb1014793d362fae",
       "size": 92902
+    },
+    "tools/pr16_dex_scheduler_host.c": {
+      "sha256": "3e44cf20b7f44057140e7a5a6447bfe0ee5c40a140eac53431a43beddf2fd44b",
+      "size": 7165
     },
     "tools/pr16_exp_multilevel_trace.h": {
       "sha256": "aefdffa269bba6cf5c360d2a6944f122bc423d327ceeaf4a45d59584f024eaa6",
@@ -37984,6 +38070,21 @@
         "source": "ada18f7e1fb9da89bb737517b8c2cc29b28ac24c"
       },
       "runtime_wired": false,
+      "save_scheduler": {
+        "checkpoint": "content/modernization/pr16_dex_scheduler_checkpoint.json",
+        "consumer_wired": false,
+        "formal_save_changed": false,
+        "gameplay_accepted": false,
+        "guide": "docs/PR16_DEX_SAVE_SCHEDULER_JA.md",
+        "isolated_arm_cases": 19,
+        "newgame_wired": false,
+        "outer_load_guard_wired": false,
+        "record_run": 37228900963,
+        "run": 37228557062,
+        "source": "52c24cb0c2104edc2e07e259db7340d35ebc2342",
+        "status": "PASS_ISOLATED_SAVE_SCHEDULER_CANDIDATE",
+        "synthetic_host_cases": 20
+      },
       "source_head": "ada18f7e1fb9da89bb737517b8c2cc29b28ac24c",
       "status": "PASS_FIVE_UI_LIFETIME_AND_HOST_ADAPTER_RUNTIME_UNWIRED"
     },
