@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "博物館初下降Save96/6/0・8,8西。紙274=0/4382/4383/23114円/4061/全party/HP277/PP3,9,8,2保持。今回RAM保持、physical2056set/aux2varsと過去owner未解明。次は新復路12歩で退出。",
+    "current_stop": "博物館退出Save97/町3/2・19,26南。全party/HP277/PP3,9,8,2/紙274=0/4382/4383/23114円/4061保持。RAM観測5/2056clear/aux2varsと過去owner未解明。次は町北35歩。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "Save96 artifact11299780050のstory-fast.srm（131088bytes/SHA256 1f1d30d7f8261ff8b03f0bf290aaa61d052709b6a0a1c259da13f16895cd4b81）だけから再開。封書引渡し後の新復路13歩/5旋回、西入力で博物館1階6/0・8,8西へ初下降しSave96/独立Continueを受入。次は新復路12歩で出口13,9、最初の町3/2 fieldを保存。町19,25/19,26は静的候補、自動歩行は未確認。受付4061=1のため12/13/14,5の条件4061==0は非発火。封書会話/50円受付/階段/旧入館を再走せず、505道路レンジャーは退出後。紙274=0/4382/4383/未完4380/23114円/バッジ2/全party600byte/HP277/294/PP3,9,8,2保持。今回全RAM台帳保持だがphysical2056:0→1とaux4021:96→109/4022:3→1のruntime owner未解明、過去ownerも未解明。47画面83+cold13入力。39は最終flash hashと一時一致でも保存中/counter95、40別hash/counter96、41成功文言/安定finalhash、44clearfield。cold間142pixel差はNPC1人矩形内、全画面一致とはしない。全SaveRTC/PC/S61E/旧bank保持。controller40/新独立受入72、native2/記録native0/実測失敗0。記録初回はimport再帰上限によるloader1失敗/71実試験未実行、入口1500と新1検査で72case初実行。全国図鑑/自然成長進化/全story/release未受入。ROM/runtime非再配布・host補充・ROM変更・merge/release/baseline変更0。一般CI既知qol_production.c不一致を全成功にしない。",
+    "next_step": "Save97 artifact11300361541のstory-fast.srm（131088bytes/SHA256 4871ba79e718ea8dc8bc701394846ce1b393cd41a5961564ed4d670437a52139）だけから再開。博物館退出後の町3/2・19,26南。新13歩/3旋回、14,9の0x65南矢印で退出、町warp19,25から自動南1歩を実測し通常Save97/独立Continue受入。次は保存next-routeの町北端28,0まで35歩、通常北入力でmap3/23へのconnectionを越え最初のfieldだけ保存。Ranger local9/18,27はさらに後続、4382setを条件に4072=2/4352clear/町warpへ進む静的ownerを保存したが未実行。封書会話/受付/階段/退出成功区間を再走しない。紙274=0/4382/4383/4380未完/4061=1/23114円/バッジ2/全party600byte/HP277/294/PP3,9,8,2保持。観測5でRAM台帳変更、physical2056clear、aux4021:109→122/4022:1→4と過去owner未解明。46画面80+cold13入力、38counter97でも保存中/途中hash→39成功文言/安定最終hash→43clearfield。cold差分752pixelは左端NPC/花animation内、全SaveRTC/PC/S61E/旧bank保持。controller最終48case/69実行68成功1失敗、新受入79。成功native2/退出失敗native1/記録native0。最初のfixture失敗と13,9通常床非発火の失敗原本は保持。Save96のimport連鎖154module/入口上限1500修復は不変、受入済み72再走0。全国図鑑/自然成長進化/全story/release未受入。ROM/runtime非再配布・host補充・ROM変更・merge/release/baseline変更0。一般CI既知qol_production.c不一致を全成功にしない。warp-tableの座標だけで発火可能と判断しない。毎回固定ROMのtile behaviorと必要方向を確認し、通常着地/矢印/方向階段/境界connectionを区別する。実画面の出口は裏付け。無入力自動歩行は実測まで未確認。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -1151,7 +1151,8 @@
     "Save93の60/cold13入力36画面52member/原38controller+新影響15/受入63を無影響再走しない。50円受付/4061=1/23114円、全party/今回RAM/S61E/legacyflags保持。28最終hash先行、29counter別hash、30成功→33field。初回未保存失敗native1をfailureのまま保持。4001/4061 owner一致、4021/4022と過去差分owner未解明。次は2階への新9歩。",
     "Save94の70/cold13入力41画面56member、controller最終41case/43実行42成功1失敗、受入67を無影響再走しない。西6南3+東方向階段、6/1・11,8東。34counter途中hash、35成功/最終hash、38unlockだが画像にoverlay残留。coldNPC263pixel差分を全画面一致にしない。RAM観測10/2056/3varsと過去owner未解明。初回pre-native1/未保存native1はfailure保持。次はlocal2紙引渡し。",
     "Save95の118/cold13入力66画面81member、controller39+影響9=48成功実行/最終46case、受入69を無影響再走しない。新13歩/旋回5/障害待ち1、移動local2をsprite128pixelで2回確認して封書274消費/4382set。59counter途中hash保存中→60成功最終hash→63clearfield。cold3人NPC1023pixel差/全SaveRTC保持。RAM32/aux2varsと過去owner未解明。初回未保存native1/Save94全保持はfailure。次は新復路13歩と西方向下降。",
-    "Save96の83/cold13入力47画面62member、新復路13歩/5旋回/西初下降、controller40/独立受入72を無影響再走しない。39一時finalhash保存中/counter95→40別hash/counter96→41成功最終hash→44clearfield。coldNPC1人142pixel差/全SaveRTC保持。今回RAM保持でもphysical2056set/aux2varsと過去owner未解明。次は新復路12歩で博物館退出。"
+    "Save96の83/cold13入力47画面62member、新復路13歩/5旋回/西初下降、controller40/独立受入72を無影響再走しない。39一時finalhash保存中/counter95→40別hash/counter96→41成功最終hash→44clearfield。coldNPC1人142pixel差/全SaveRTC保持。今回RAM保持でもphysical2056set/aux2varsと過去owner未解明。次は新復路12歩で博物館退出。",
+    "Save97の80/cold13入力46画面61member、新13歩/3旋回/0x65南矢印/町自動南1歩、controller最終48case(69実行68成功1失敗)/新受入79を無影響再走しない。初回controllerfixture失敗、通常床13,9の失敗native1/58入力24画面/Save96保持を歴史保存。次は町北35歩の新区間。warp-tableの座標だけで発火可能と判断しない。毎回固定ROMのtile behaviorと必要方向を確認し、通常着地/矢印/方向階段/境界connectionを区別する。実画面の出口は裏付け。無入力自動歩行は実測まで未確認。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -4332,32 +4333,33 @@
     "status": "PASS_NATIONAL_DEX_GRANT_OWNER_SCOPED"
   },
   "next_action": {
-    "goal_ja": "Save96 artifact11299780050のstory-fast.srm（131088bytes/SHA256 1f1d30d7f8261ff8b03f0bf290aaa61d052709b6a0a1c259da13f16895cd4b81）だけから再開。封書引渡し後の新復路13歩/5旋回、西入力で博物館1階6/0・8,8西へ初下降しSave96/独立Continueを受入。次は新復路12歩で出口13,9、最初の町3/2 fieldを保存。町19,25/19,26は静的候補、自動歩行は未確認。受付4061=1のため12/13/14,5の条件4061==0は非発火。封書会話/50円受付/階段/旧入館を再走せず、505道路レンジャーは退出後。紙274=0/4382/4383/未完4380/23114円/バッジ2/全party600byte/HP277/294/PP3,9,8,2保持。今回全RAM台帳保持だがphysical2056:0→1とaux4021:96→109/4022:3→1のruntime owner未解明、過去ownerも未解明。47画面83+cold13入力。39は最終flash hashと一時一致でも保存中/counter95、40別hash/counter96、41成功文言/安定finalhash、44clearfield。cold間142pixel差はNPC1人矩形内、全画面一致とはしない。全SaveRTC/PC/S61E/旧bank保持。controller40/新独立受入72、native2/記録native0/実測失敗0。記録初回はimport再帰上限によるloader1失敗/71実試験未実行、入口1500と新1検査で72case初実行。全国図鑑/自然成長進化/全story/release未受入。ROM/runtime非再配布・host補充・ROM変更・merge/release/baseline変更0。一般CI既知qol_production.c不一致を全成功にしない。",
+    "goal_ja": "Save97 artifact11300361541のstory-fast.srm（131088bytes/SHA256 4871ba79e718ea8dc8bc701394846ce1b393cd41a5961564ed4d670437a52139）だけから再開。博物館退出後の町3/2・19,26南。新13歩/3旋回、14,9の0x65南矢印で退出、町warp19,25から自動南1歩を実測し通常Save97/独立Continue受入。次は保存next-routeの町北端28,0まで35歩、通常北入力でmap3/23へのconnectionを越え最初のfieldだけ保存。Ranger local9/18,27はさらに後続、4382setを条件に4072=2/4352clear/町warpへ進む静的ownerを保存したが未実行。封書会話/受付/階段/退出成功区間を再走しない。紙274=0/4382/4383/4380未完/4061=1/23114円/バッジ2/全party600byte/HP277/294/PP3,9,8,2保持。観測5でRAM台帳変更、physical2056clear、aux4021:109→122/4022:1→4と過去owner未解明。46画面80+cold13入力、38counter97でも保存中/途中hash→39成功文言/安定最終hash→43clearfield。cold差分752pixelは左端NPC/花animation内、全SaveRTC/PC/S61E/旧bank保持。controller最終48case/69実行68成功1失敗、新受入79。成功native2/退出失敗native1/記録native0。最初のfixture失敗と13,9通常床非発火の失敗原本は保持。Save96のimport連鎖154module/入口上限1500修復は不変、受入済み72再走0。全国図鑑/自然成長進化/全story/release未受入。ROM/runtime非再配布・host補充・ROM変更・merge/release/baseline変更0。一般CI既知qol_production.c不一致を全成功にしない。warp-tableの座標だけで発火可能と判断しない。毎回固定ROMのtile behaviorと必要方向を確認し、通常着地/矢印/方向階段/境界connectionを区別する。実画面の出口は裏付け。無入力自動歩行は実測まで未確認。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。Save14は作業コピーだけを使用する。自己OT party、manifest解決済み通常支援用品、EXP境界、safe opponentはpre-battle fixtureとして全byteを台帳化してよい。badge/key item/story flag/money/RPをfixture付与せず、戦闘開始後は通常入力とゲーム内処理だけを使う。",
-    "id": "STORY_MUSEUM_EXIT_FROM_SAVE96",
+    "id": "STORY_ROUTE505_FROM_SAVE97",
     "read_paths": [
-      "docs/PR16_STORY_SAVE96_JA.md",
-      "content/modernization/pr16_story_save96_checkpoint.json",
-      "content/modernization/pr16_story_save96_visual_review.json",
-      "scripts/pr16_story_save96_accept.py",
-      "scripts/pr16_story_save96_measure.py",
-      "content/modernization/pr16_story_save96_evidence/inspection.json",
-      "content/modernization/pr16_story_save96_evidence/next-route.json",
-      "content/modernization/pr16_story_save96_preparation.json",
-      "content/modernization/pr16_story_save96_next_route.json"
+      "docs/PR16_STORY_SAVE97_JA.md",
+      "content/modernization/pr16_story_save97_checkpoint.json",
+      "content/modernization/pr16_story_save97_visual_review.json",
+      "scripts/pr16_story_save97_accept.py",
+      "scripts/pr16_story_save97_measure.py",
+      "content/modernization/pr16_story_save97_evidence/inspection.json",
+      "content/modernization/pr16_story_save97_evidence/next-route.json",
+      "content/modernization/pr16_story_save97_preparation.json",
+      "content/modernization/pr16_story_save97_exit_recovery.json",
+      "content/modernization/pr16_story_save97_next_route.json"
     ],
-    "stop_rule_ja": "Save96/1階8,8西から新復路12歩で13,9出口へ。最初の町fieldを保存。封書会話/受付/階段/旧入館再走なし。4061=1/23114円保持、未知NPC/障害/eventで縮小停止。505道路レンジャーは退出後。"
+    "stop_rule_ja": "Save97/町19,26南から北端28,0まで35歩、通常北入力でmap3/23の最初fieldだけ保存。Ranger会話は後続。未知NPC/戦闘/eventで縮小停止。封書/受付/階段/退出成功区間再走なし。warp-tableの座標だけで発火可能と判断しない。毎回固定ROMのtile behaviorと必要方向を確認し、通常着地/矢印/方向階段/境界connectionを区別する。実画面の出口は裏付け。無入力自動歩行は実測まで未確認。"
   },
   "observed_date_jst": "2026-10-04",
-  "observed_head": "eea7968c2626dc7cc6746ade93a0c9421a95c395",
+  "observed_head": "4c61d6e9eaf5fe7fa64e8d477017448342d9819a",
   "observed_head_checks": {
     "reason_ja": "新区間専用Actionsと一般CIを分離。未完/action_required/失敗を成功にしない。",
     "runs": [
       {
         "conclusion": "success",
         "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "eea7968c2626dc7cc6746ade93a0c9421a95c395",
-        "id": 37192116329,
+        "head_sha": "4c61d6e9eaf5fe7fa64e8d477017448342d9819a",
+        "id": 37193905379,
         "path": ".github/workflows/p03-forgetting-ci.yml",
         "run_attempt": 1,
         "status": "completed"
@@ -4365,8 +4367,8 @@
       {
         "conclusion": "failure",
         "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "eea7968c2626dc7cc6746ade93a0c9421a95c395",
-        "id": 37192116362,
+        "head_sha": "4c61d6e9eaf5fe7fa64e8d477017448342d9819a",
+        "id": 37193905293,
         "path": ".github/workflows/ci.yml",
         "run_attempt": 1,
         "status": "completed"
@@ -4374,8 +4376,17 @@
       {
         "conclusion": "success",
         "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "eea7968c2626dc7cc6746ade93a0c9421a95c395",
-        "id": 37192111194,
+        "head_sha": "4c61d6e9eaf5fe7fa64e8d477017448342d9819a",
+        "id": 37193900573,
+        "path": ".github/workflows/pr16-story-save97.yml",
+        "run_attempt": 1,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "4c61d6e9eaf5fe7fa64e8d477017448342d9819a",
+        "id": 37193900578,
         "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
         "run_attempt": 1,
         "status": "completed"
@@ -4383,26 +4394,17 @@
       {
         "conclusion": "success",
         "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "eea7968c2626dc7cc6746ade93a0c9421a95c395",
-        "id": 37192111281,
+        "head_sha": "4c61d6e9eaf5fe7fa64e8d477017448342d9819a",
+        "id": 37193900563,
         "path": ".github/workflows/p03-forgetting-ci.yml",
-        "run_attempt": 1,
-        "status": "completed"
-      },
-      {
-        "conclusion": "success",
-        "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "eea7968c2626dc7cc6746ade93a0c9421a95c395",
-        "id": 37192111310,
-        "path": ".github/workflows/pr16-story-save96.yml",
         "run_attempt": 1,
         "status": "completed"
       },
       {
         "conclusion": "failure",
         "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "eea7968c2626dc7cc6746ade93a0c9421a95c395",
-        "id": 37192111202,
+        "head_sha": "4c61d6e9eaf5fe7fa64e8d477017448342d9819a",
+        "id": 37193900524,
         "path": ".github/workflows/ci.yml",
         "run_attempt": 1,
         "status": "completed"
@@ -4410,14 +4412,14 @@
       {
         "conclusion": "success",
         "head_branch": "codex/modernization-followup-20260908",
-        "head_sha": "eea7968c2626dc7cc6746ade93a0c9421a95c395",
-        "id": 37192111231,
+        "head_sha": "4c61d6e9eaf5fe7fa64e8d477017448342d9819a",
+        "id": 37193900526,
         "path": ".github/workflows/modernization-stage79-mgba.yml",
         "run_attempt": 1,
         "status": "completed"
       }
     ],
-    "scope_head": "eea7968c2626dc7cc6746ade93a0c9421a95c395"
+    "scope_head": "4c61d6e9eaf5fe7fa64e8d477017448342d9819a"
   },
   "observed_head_history": [
     {
@@ -11934,9 +11936,83 @@
       "head": "c334efffedc30d4b2a0ceae7782c382dbc4e8f5c",
       "reason_ja": "封書引渡し後の新13歩、西入力初下降とSave96/独立Continue。旧受入再走0。",
       "semantics": "封書引渡しSave95/6/1・4,8南。274一個消費/4382set、party600byte/23114円/4383/4061保持。新13歩/旋回5/全66画面。59counter部分hash→60成功→63clearfield。coldNPC3人の差分を限定記録、全SaveRTC保持。RAM32/aux2vars/過去owner未解明。"
+    },
+    {
+      "checks": {
+        "reason_ja": "新区間専用Actionsと一般CIを分離。未完/action_required/失敗を成功にしない。",
+        "runs": [
+          {
+            "conclusion": "success",
+            "head_branch": "codex/modernization-followup-20260908",
+            "head_sha": "eea7968c2626dc7cc6746ade93a0c9421a95c395",
+            "id": 37192116329,
+            "path": ".github/workflows/p03-forgetting-ci.yml",
+            "run_attempt": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "failure",
+            "head_branch": "codex/modernization-followup-20260908",
+            "head_sha": "eea7968c2626dc7cc6746ade93a0c9421a95c395",
+            "id": 37192116362,
+            "path": ".github/workflows/ci.yml",
+            "run_attempt": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "head_branch": "codex/modernization-followup-20260908",
+            "head_sha": "eea7968c2626dc7cc6746ade93a0c9421a95c395",
+            "id": 37192111194,
+            "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+            "run_attempt": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "head_branch": "codex/modernization-followup-20260908",
+            "head_sha": "eea7968c2626dc7cc6746ade93a0c9421a95c395",
+            "id": 37192111281,
+            "path": ".github/workflows/p03-forgetting-ci.yml",
+            "run_attempt": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "head_branch": "codex/modernization-followup-20260908",
+            "head_sha": "eea7968c2626dc7cc6746ade93a0c9421a95c395",
+            "id": 37192111310,
+            "path": ".github/workflows/pr16-story-save96.yml",
+            "run_attempt": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "failure",
+            "head_branch": "codex/modernization-followup-20260908",
+            "head_sha": "eea7968c2626dc7cc6746ade93a0c9421a95c395",
+            "id": 37192111202,
+            "path": ".github/workflows/ci.yml",
+            "run_attempt": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "head_branch": "codex/modernization-followup-20260908",
+            "head_sha": "eea7968c2626dc7cc6746ade93a0c9421a95c395",
+            "id": 37192111231,
+            "path": ".github/workflows/modernization-stage79-mgba.yml",
+            "run_attempt": 1,
+            "status": "completed"
+          }
+        ],
+        "scope_head": "eea7968c2626dc7cc6746ade93a0c9421a95c395"
+      },
+      "head": "eea7968c2626dc7cc6746ade93a0c9421a95c395",
+      "reason_ja": "博物館退出13歩/0x65南矢印とSave97。誤static出口失敗を保持して限定回復。旧成功再走0。",
+      "semantics": "初下降Save96/6/0・8,8西。新13歩/5旋回/西階段/47画面。39一時finalhash→40別hash/counter96→41成功→44clearfield。全party/23114円/紙引渡し/4382/4383/4061/全RAM台帳保持。physical2056set/aux2vars/過去owner未解明。"
     }
   ],
-  "observed_head_semantics": "初下降Save96/6/0・8,8西。新13歩/5旋回/西階段/47画面。39一時finalhash→40別hash/counter96→41成功→44clearfield。全party/23114円/紙引渡し/4382/4383/4061/全RAM台帳保持。physical2056set/aux2vars/過去owner未解明。",
+  "observed_head_semantics": "博物館退出Save97/町3/2・19,26南。13歩/3旋回/南矢印/自動南1歩。46画面80+cold13入力。38counter97保存中→39成功→43clearfield。全party/23114円/4382/4383/4061保持。RAM観測5/2056clear/aux2varsと過去owner未解明。",
   "p08_candidate_impact": {
     "candidate": {
       "crc32": "CC068B4A",
@@ -12060,9 +12136,9 @@
   },
   "pending_runs": [
     {
-      "run_id": 37193064130,
+      "run_id": 37194679580,
       "status": "in_progress",
-      "tested_head": "2923268a967ed11823210fa044cfdf085d944ba1"
+      "tested_head": "783714626e892c2b4e11305007da811755554814"
     }
   ],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
@@ -15638,6 +15714,14 @@
     ".github/workflows/pr16-story-save96.yml": {
       "sha256": "66d89334f7dfb1416c4d5af3f7bdb630020fce08ea550547d9530ba161b1ce02",
       "size": 1608
+    },
+    ".github/workflows/pr16-story-save97-record.yml": {
+      "sha256": "4de7889cc935cfe659c8a4023a65e433b8033e32a484ae329a11e279f721155b",
+      "size": 2386
+    },
+    ".github/workflows/pr16-story-save97.yml": {
+      "sha256": "1cde4b18b02c62f2da9f2403e06cf9cc5c6451f09cc6f1f593f0e6c7d0727fd8",
+      "size": 3088
     },
     ".github/workflows/pr16-streak-record.yml": {
       "sha256": "257165114d76e6d1b9ea1c633c918a297ab4a32a6cfce9f5e7788b2b77d074be",
@@ -25399,6 +25483,146 @@
       "sha256": "10e5c05fadc5990e77a529d1245ac5a066b01e07108338a374abc67317deb349",
       "size": 6408
     },
+    "content/modernization/pr16_story_save97_checkpoint.json": {
+      "sha256": "942e7e5d39d5726d5b1c22fe3556fabac5f56904041b215e0a7c68b94a74e643",
+      "size": 19540
+    },
+    "content/modernization/pr16_story_save97_controller_failure.json": {
+      "sha256": "6fe571052393fe9e97b51cd185ca5df08c5b62609495a1f4c62390098318dabc",
+      "size": 5157
+    },
+    "content/modernization/pr16_story_save97_evidence/continue/commands.txt": {
+      "sha256": "5aa3363ef7287a5fe371442e67ec861616823326b1d70e16730c34c4baab07a3",
+      "size": 25
+    },
+    "content/modernization/pr16_story_save97_evidence/continue/execution.json": {
+      "sha256": "574fcc3aedae5f6f228745dcb4a70228927b84a621caffb94af416923c58632b",
+      "size": 548
+    },
+    "content/modernization/pr16_story_save97_evidence/continue/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_story_save97_evidence/continue/stdout.txt": {
+      "sha256": "bd78f618f80e530871df340f5067dd4e730ebda09ba0d83483ee18673b9d83b8",
+      "size": 2101
+    },
+    "content/modernization/pr16_story_save97_evidence/controller-test-receipt.json": {
+      "sha256": "8d9a4e858cadfb0903ac34789af8d3abfbddbd2afcd8f603ffe76d853bbfed8e",
+      "size": 8341
+    },
+    "content/modernization/pr16_story_save97_evidence/failed-exit-terminal.json": {
+      "sha256": "47ae12101178c1b086592222c773887643e9d2e455170cea67fd0a3fdab8ec8f",
+      "size": 3456
+    },
+    "content/modernization/pr16_story_save97_evidence/failed-exit-verification.json": {
+      "sha256": "2a8c62638a04fa57b52bcf326714c34a471e09c152cd87f9dbdd284a3643da23",
+      "size": 186
+    },
+    "content/modernization/pr16_story_save97_evidence/failed-exit/failure.json": {
+      "sha256": "47796ee83796554c7f020eb7d4765fdf9a2cfcc8c256bb1fbbc2589e80c8e446",
+      "size": 240
+    },
+    "content/modernization/pr16_story_save97_evidence/failed-exit/inspection.json": {
+      "sha256": "1fd5255c23f4fa629ecafc7596f4871349269ff917d30942dd3843b026ad0694",
+      "size": 3730
+    },
+    "content/modernization/pr16_story_save97_evidence/failed-exit/manifest.json": {
+      "sha256": "72dd031797b23fc9741a53277a35e124a40109ec999a1a5183b7e33a606086f4",
+      "size": 4230
+    },
+    "content/modernization/pr16_story_save97_evidence/failed-exit/progress/commands.txt": {
+      "sha256": "13592e5f007dd4269cdf253c897ea9d9698c348dbd371389b389be25ea1ce651",
+      "size": 684
+    },
+    "content/modernization/pr16_story_save97_evidence/failed-exit/progress/execution.json": {
+      "sha256": "31b76e85ae9ebd4801bf14a009372aa053334c31974c2e6974cf6480aa578bc6",
+      "size": 549
+    },
+    "content/modernization/pr16_story_save97_evidence/failed-exit/progress/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_story_save97_evidence/failed-exit/progress/stdout.txt": {
+      "sha256": "8e1346c4d44903b520999e4b850bf205d479628eebb55e16ab321a94e6360e17",
+      "size": 16310
+    },
+    "content/modernization/pr16_story_save97_evidence/failed-exit/save96-record-terminal.json": {
+      "sha256": "25ecb4dc59ae044cefb3352b1a191e00caa82f03d2212eb613e6dcd75dd99832",
+      "size": 4178
+    },
+    "content/modernization/pr16_story_save97_evidence/failed-record-terminal.json": {
+      "sha256": "45d94b59f258d8faba64ce3ff16756498e18c8bc2dc8bb572659b5995a2e75fa",
+      "size": 4180
+    },
+    "content/modernization/pr16_story_save97_evidence/inspection.json": {
+      "sha256": "8d130eed075ac43a085e5178a7e18de655665658326862e5ec819217c0668a37",
+      "size": 3930
+    },
+    "content/modernization/pr16_story_save97_evidence/manifest.json": {
+      "sha256": "aca29d3bad9d304be509735d494ff3729176d77a173dc83754f01811e4728248",
+      "size": 8311
+    },
+    "content/modernization/pr16_story_save97_evidence/measurement.json": {
+      "sha256": "9011861ee411ae718f72d8b977d097d1e245d6748a5da5d96cd4e50b9f4c15fa",
+      "size": 10296
+    },
+    "content/modernization/pr16_story_save97_evidence/next-route.json": {
+      "sha256": "a1a7270d296e57eec0fc154541707fd23e891ebf24b62a1b5639a3fcbfb857dd",
+      "size": 43895
+    },
+    "content/modernization/pr16_story_save97_evidence/progress/commands.txt": {
+      "sha256": "f912d13f5ff4fb5aba9564114edc148479233bd6ac64ff8155e5d899648d6533",
+      "size": 1089
+    },
+    "content/modernization/pr16_story_save97_evidence/progress/execution.json": {
+      "sha256": "330a7a51ffeca955d7bd043302f4a994d20001f7333b069e4ae344bcc987350d",
+      "size": 549
+    },
+    "content/modernization/pr16_story_save97_evidence/progress/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_story_save97_evidence/progress/stdout.txt": {
+      "sha256": "b3aa38a0e1028305f9bbb7df5fc020864066f3eb6715c8688030882dafdc9ccf",
+      "size": 28401
+    },
+    "content/modernization/pr16_story_save97_evidence/save96-record-terminal.json": {
+      "sha256": "25ecb4dc59ae044cefb3352b1a191e00caa82f03d2212eb613e6dcd75dd99832",
+      "size": 4178
+    },
+    "content/modernization/pr16_story_save97_evidence/terminal.json": {
+      "sha256": "84cc5456a9380b2d585de35ca7d62c58358f9a4adfa703f3df63acbd5200e484",
+      "size": 3445
+    },
+    "content/modernization/pr16_story_save97_evidence/unit.stderr.txt": {
+      "sha256": "ba39497dc1845b8a815381a670fa058d6bb5a8d62ba400e40e96d957a9b53672",
+      "size": 8109
+    },
+    "content/modernization/pr16_story_save97_evidence/verification.json": {
+      "sha256": "73570166fdab7b2c1685dddbc7d70f03bf6f8c5d9a1811b293e4915daa8eb992",
+      "size": 6832
+    },
+    "content/modernization/pr16_story_save97_exit_recovery.json": {
+      "sha256": "4637a024dd2ac3e32f0193302aa15989133b59c5d768e20cca4b4a8fdd93f2c6",
+      "size": 7158
+    },
+    "content/modernization/pr16_story_save97_next_route.json": {
+      "sha256": "a1a7270d296e57eec0fc154541707fd23e891ebf24b62a1b5639a3fcbfb857dd",
+      "size": 43895
+    },
+    "content/modernization/pr16_story_save97_preparation.json": {
+      "sha256": "4c51bab5ed085ed3902810c278569355e8d34b93a498924f6c06ff852f8381c1",
+      "size": 22632
+    },
+    "content/modernization/pr16_story_save97_record_failure.json": {
+      "sha256": "2a9a5a0b2fd715c3f38768ab933b80a49217bc9e9d7f18f267b9e2631c7250d1",
+      "size": 741
+    },
+    "content/modernization/pr16_story_save97_visual_review.json": {
+      "sha256": "a21f6eb8e484d4dc9710e35c623f0060b81eb784aca8280b4ec3a8145caceba5",
+      "size": 6632
+    },
     "content/modernization/pr16_story_save9_checkpoint.json": {
       "sha256": "cf658c2fa47ba238672704713ea5ad3b1baf6abbe8a56ec769bf2de3964d0463",
       "size": 5672
@@ -26186,6 +26410,10 @@
     "docs/PR16_STORY_SAVE96_JA.md": {
       "sha256": "36a87681d1e597fe56174fdae36dbd17bcfcc545d5a924bdb6426c5d31340d7a",
       "size": 3889
+    },
+    "docs/PR16_STORY_SAVE97_JA.md": {
+      "sha256": "0267466259f3a000977bd321e84cbba72254c047ebaf4f184a0f7ccdb281eacb",
+      "size": 5083
     },
     "docs/PR16_STORY_SAVE9_JA.md": {
       "sha256": "61734b028e912a8cb8952376730c67ba598bb5f00056f4351bf0296626041e44",
@@ -32687,6 +32915,18 @@
       "sha256": "de3315598eb374a0df8bed1c27cbf0dab6318b0211ca6e4d990da1e93af56dce",
       "size": 20321
     },
+    "scripts/pr16_story_save97_accept.py": {
+      "sha256": "b6c03ee3cd75c26a4c43c6d2a79153ae34cea485de86e3595a93416d4bca5fc8",
+      "size": 17099
+    },
+    "scripts/pr16_story_save97_measure.py": {
+      "sha256": "a4acbb7cfd9ea2b64da3687b46cda3a868c34a9e76aeecf64f8a3b1d5afdaef5",
+      "size": 15778
+    },
+    "scripts/pr16_story_save97_record.py": {
+      "sha256": "8d089dea065f69b272aa17d9985100ffadab3a253b6fe620d3c27700d388c171",
+      "size": 19670
+    },
     "scripts/pr16_story_save9_actions.py": {
       "sha256": "c9f5b451b484618fc831c7e325fa7872166c9f7ab640b8a01abaf576b644f61e",
       "size": 24885
@@ -34934,6 +35174,14 @@
     "tests/test_pr16_story_save96_measure.py": {
       "sha256": "e35e4bd886610865a4d33503f2276d1532780c02fce4aecd62c656270b0eb6c9",
       "size": 7125
+    },
+    "tests/test_pr16_story_save97_accept.py": {
+      "sha256": "260a538ea8768a39c92c55c9353afd11792754f049e59cef48cdd1323ab79184",
+      "size": 11504
+    },
+    "tests/test_pr16_story_save97_measure.py": {
+      "sha256": "df77fc5b08ea0245bf62ed023aa4d4fa9a0394593981b102f7ba872fa02f8efb",
+      "size": 8594
     },
     "tests/test_pr16_streak_record.py": {
       "sha256": "9a5853b9d1376cd1e7ae837c38293cf614e2b83ece15ba4da49c375ac7287e5e",
@@ -62523,6 +62771,133 @@
     "paper_flag4383": true,
     "paper_item_id": 274,
     "paper_quantity": 0,
+    "record_completion": {
+      "job": {
+        "check_run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/check-runs/111409138080",
+        "completed_at": "2026-10-04T09:44:03Z",
+        "conclusion": "success",
+        "created_at": "2026-10-04T09:43:26Z",
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "2923268a967ed11823210fa044cfdf085d944ba1",
+        "html_url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/37193064130/job/111409138080",
+        "id": 111409138080,
+        "labels": [
+          "ubuntu-24.04"
+        ],
+        "name": "record",
+        "node_id": "CR_kwDOUPNhZs8AAAAZ8ICJoA",
+        "run_attempt": 1,
+        "run_id": 37193064130,
+        "run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/37193064130",
+        "runner_group_id": 0,
+        "runner_group_name": "GitHub Actions",
+        "runner_id": 1000021711,
+        "runner_name": "GitHub Actions 1000021711",
+        "started_at": "2026-10-04T09:43:28Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completed_at": "2026-10-04T09:43:29Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "started_at": "2026-10-04T09:43:28Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-04T09:43:41Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "started_at": "2026-10-04T09:43:29Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-04T09:43:42Z",
+            "conclusion": "success",
+            "name": "Exact new acceptance source guard",
+            "number": 3,
+            "started_at": "2026-10-04T09:43:41Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-04T09:43:54Z",
+            "conclusion": "success",
+            "name": "Seventy-two new acceptance tests and exact terminal parser",
+            "number": 4,
+            "started_at": "2026-10-04T09:43:42Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-04T09:43:58Z",
+            "conclusion": "success",
+            "name": "Scoped final index private guard and fixed resume",
+            "number": 5,
+            "started_at": "2026-10-04T09:43:54Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-04T09:43:58Z",
+            "conclusion": "success",
+            "name": "Lightweight task graph",
+            "number": 6,
+            "started_at": "2026-10-04T09:43:58Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-04T09:44:00Z",
+            "conclusion": "success",
+            "name": "Commit and nonforce push same branch",
+            "number": 7,
+            "started_at": "2026-10-04T09:43:58Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-04T09:44:01Z",
+            "conclusion": "success",
+            "name": "Exact committed text readback",
+            "number": 8,
+            "started_at": "2026-10-04T09:44:00Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-04T09:44:02Z",
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@v4",
+            "number": 9,
+            "started_at": "2026-10-04T09:44:01Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-04T09:44:02Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 18,
+            "started_at": "2026-10-04T09:44:02Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-10-04T09:44:02Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 19,
+            "started_at": "2026-10-04T09:44:02Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/jobs/111409138080",
+        "workflow_name": "pr16-story-save96-record"
+      },
+      "run": {
+        "conclusion": "success",
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_sha": "2923268a967ed11823210fa044cfdf085d944ba1",
+        "id": 37193064130,
+        "path": ".github/workflows/pr16-story-save96-record.yml",
+        "run_attempt": 1,
+        "status": "completed"
+      }
+    },
     "record_native_processes": 0,
     "record_run_id": 37193064130,
     "required_badge_flag": 2083,
@@ -62840,6 +63215,385 @@
     "xy": [
       8,
       8
+    ]
+  },
+  "story_save97": {
+    "artifact_id": 11300361541,
+    "badge_count": 2,
+    "checkpoint": "content/modernization/pr16_story_save97_checkpoint.json",
+    "facing": 1,
+    "failed_exit": {
+      "frames": 3734,
+      "inputs": 58,
+      "native_processes": 1,
+      "observations": 24,
+      "ordinary_saves": 0,
+      "save_rtc_unchanged": true,
+      "status": "FAILED_EXIT_RETAINED_NOT_ACCEPTED"
+    },
+    "guide": "docs/PR16_STORY_SAVE97_JA.md",
+    "job_id": 111411662442,
+    "lead_hp": [
+      277,
+      294
+    ],
+    "lead_pp": [
+      3,
+      9,
+      8,
+      2
+    ],
+    "letter_handoff_accepted": true,
+    "map": [
+      3,
+      2
+    ],
+    "mewtwo_hp": [
+      354,
+      354
+    ],
+    "mewtwo_pp": [
+      10,
+      20,
+      15,
+      10
+    ],
+    "money": 23114,
+    "museum_admission_var4061": 1,
+    "museum_exit_accepted": true,
+    "next_goal_ja": "Save97 artifact11300361541のstory-fast.srm（131088bytes/SHA256 4871ba79e718ea8dc8bc701394846ce1b393cd41a5961564ed4d670437a52139）だけから再開。博物館退出後の町3/2・19,26南。新13歩/3旋回、14,9の0x65南矢印で退出、町warp19,25から自動南1歩を実測し通常Save97/独立Continue受入。次は保存next-routeの町北端28,0まで35歩、通常北入力でmap3/23へのconnectionを越え最初のfieldだけ保存。Ranger local9/18,27はさらに後続、4382setを条件に4072=2/4352clear/町warpへ進む静的ownerを保存したが未実行。封書会話/受付/階段/退出成功区間を再走しない。紙274=0/4382/4383/4380未完/4061=1/23114円/バッジ2/全party600byte/HP277/294/PP3,9,8,2保持。観測5でRAM台帳変更、physical2056clear、aux4021:109→122/4022:1→4と過去owner未解明。46画面80+cold13入力、38counter97でも保存中/途中hash→39成功文言/安定最終hash→43clearfield。cold差分752pixelは左端NPC/花animation内、全SaveRTC/PC/S61E/旧bank保持。controller最終48case/69実行68成功1失敗、新受入79。成功native2/退出失敗native1/記録native0。最初のfixture失敗と13,9通常床非発火の失敗原本は保持。Save96のimport連鎖154module/入口上限1500修復は不変、受入済み72再走0。全国図鑑/自然成長進化/全story/release未受入。ROM/runtime非再配布・host補充・ROM変更・merge/release/baseline変更0。一般CI既知qol_production.c不一致を全成功にしない。warp-tableの座標だけで発火可能と判断しない。毎回固定ROMのtile behaviorと必要方向を確認し、通常着地/矢印/方向階段/境界connectionを区別する。実画面の出口は裏付け。無入力自動歩行は実測まで未確認。",
+    "paper_flag4382": true,
+    "paper_flag4383": true,
+    "paper_quantity": 0,
+    "record_native_processes": 0,
+    "record_run_id": 37194679580,
+    "rp": 0,
+    "run_id": 37193900573,
+    "static_route_plan": "content/modernization/pr16_story_save97_evidence/next-route.json",
+    "status": "PASS_MUSEUM_EXIT_SAVE97_SCOPED",
+    "story_fast_save": {
+      "sha256": "4871ba79e718ea8dc8bc701394846ce1b393cd41a5961564ed4d670437a52139",
+      "size": 131088
+    },
+    "story_vars": {
+      "4071": 9,
+      "4072": 1
+    },
+    "transition_preflight_rule_ja": "warp-tableの座標だけで発火可能と判断しない。毎回固定ROMのtile behaviorと必要方向を確認し、通常着地/矢印/方向階段/境界connectionを区別する。実画面の出口は裏付け。無入力自動歩行は実測まで未確認。",
+    "verification": {
+      "accepted_case_reruns": 0,
+      "accepted_test_reruns": 0,
+      "aerial_ace_pp_preserved": 2,
+      "automatic_entry_step_observed": true,
+      "auxiliary_runtime_owners_resolved": false,
+      "blocked_movement_inputs": 0,
+      "boundary": {
+        "all_save_rtc_cold_identical": true,
+        "auxiliary_runtime_owners_resolved": false,
+        "badge_count": 2,
+        "bag_unchanged": true,
+        "changed_bytes": 7043,
+        "changed_ranges": 1752,
+        "expanded_flag_deltas": [],
+        "expanded_flags": {
+          "4372": 0,
+          "4373": 0,
+          "4374": 0,
+          "4375": 0,
+          "4376": 0,
+          "4377": 0,
+          "4378": 0
+        },
+        "flag2056_runtime_owner_resolved": false,
+        "hp": [
+          277,
+          294
+        ],
+        "last_heal_location": [
+          3,
+          2,
+          255,
+          0,
+          38,
+          0,
+          16,
+          0
+        ],
+        "lead_exp_unchanged": true,
+        "mewtwo_hp": [
+          354,
+          354
+        ],
+        "mewtwo_pp": [
+          10,
+          20,
+          15,
+          10
+        ],
+        "money_after": 23114,
+        "money_before": 23114,
+        "museum_admission_var4061": 1,
+        "museum_fee": 0,
+        "national_dex_magic": 0,
+        "national_flag840": 0,
+        "national_var404e": 0,
+        "old_bank_preserved_bytes": 57344,
+        "paper_delivered": true,
+        "paper_flag4382_preserved": true,
+        "paper_flag4383_preserved": true,
+        "paper_quantity": 0,
+        "party_byte_deltas": [],
+        "party_preserved_bytes": 600,
+        "pc_preserved": true,
+        "physical_flag_deltas": [
+          [
+            2056,
+            1,
+            0
+          ]
+        ],
+        "pp": [
+          3,
+          9,
+          8,
+          2
+        ],
+        "resolved_admission_variables": [],
+        "s61e_crc_verified": true,
+        "s61e_payload_deltas": [],
+        "sector_checksum_checks": 42,
+        "story_vars": {
+          "4071": 9,
+          "4072": 1
+        },
+        "unresolved_variable_owners": [
+          16417,
+          16418
+        ],
+        "var40ac": 0,
+        "var40ac_before": 0,
+        "var40ac_runtime_owner_resolved": false,
+        "variable_deltas": [
+          [
+            16417,
+            109,
+            122
+          ],
+          [
+            16418,
+            1,
+            4
+          ]
+        ]
+      },
+      "candidate": {
+        "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5",
+        "size": 33554432
+      },
+      "captures": 0,
+      "cold_field_all_pixels_identical": false,
+      "cold_initial_ram_ledger": "6338b56b0cf486cddb468ef4eb0bbd7525d0f8d79f9d0ca6852b5aa7aea66619",
+      "cold_ram_ledger_unchanged": true,
+      "cold_settled_ram_ledger": "6338b56b0cf486cddb468ef4eb0bbd7525d0f8d79f9d0ca6852b5aa7aea66619",
+      "compiles": 0,
+      "continue_inputs": 13,
+      "counter_change_not_save_completion": true,
+      "directional_exit_activation_inputs": 1,
+      "directional_stair_activation_inputs": 0,
+      "early_finalhash_not_completion": false,
+      "escapes": 0,
+      "exp_share_equipped_or_growth_accepted": false,
+      "exp_share_obtained": true,
+      "facing": 1,
+      "first_final_flash_observation": 39,
+      "fixture_writes": 0,
+      "flag2056_runtime_owner_resolved": false,
+      "full_story_accepted": false,
+      "gym_exit_accepted": true,
+      "gym_flags4372_to4378_all_clear": true,
+      "gym_leader_defeated": true,
+      "gym_puzzle_completed": true,
+      "hm05_taught_or_used": false,
+      "input_save": {
+        "sha256": "1f1d30d7f8261ff8b03f0bf290aaa61d052709b6a0a1c259da13f16895cd4b81",
+        "size": 131088
+      },
+      "last_partial_hash_observation": 38,
+      "lead_hp": [
+        277,
+        294
+      ],
+      "lead_pp": [
+        3,
+        9,
+        8,
+        2
+      ],
+      "lead_species": 850,
+      "letter_consumer_resolved": true,
+      "letter_delivered_flag4382": true,
+      "letter_delivered_flag4382_owner_resolved": true,
+      "letter_handoff_accepted": true,
+      "letter_handoff_requires_badge": true,
+      "map": [
+        3,
+        2
+      ],
+      "map_name_ja": "ミルシティ",
+      "mewtwo_hp": [
+        354,
+        354
+      ],
+      "mewtwo_pp": [
+        10,
+        20,
+        15,
+        10
+      ],
+      "move_commands": 0,
+      "museum_admission_accepted": true,
+      "museum_admission_var4061": 1,
+      "museum_entry_accepted": true,
+      "museum_exit_accepted": true,
+      "museum_fee": 0,
+      "museum_return_first_floor_accepted": true,
+      "museum_second_floor_accepted": true,
+      "national_dex_unlocked": false,
+      "native_processes": 2,
+      "natural_evolution_accepted": false,
+      "natural_growth_accepted": false,
+      "normal_recovery_repeated": false,
+      "normal_recovery_required": false,
+      "npc_wait_frames": 0,
+      "npc_wait_inputs": 0,
+      "observed_move_uses": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "observed_pp_consumption": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "old_save89_progress_difference_owner_resolved": false,
+      "ordinary_saves": 1,
+      "output_save": {
+        "sha256": "4871ba79e718ea8dc8bc701394846ce1b393cd41a5961564ed4d670437a52139",
+        "size": 131088
+      },
+      "paper_consumed_or_delivered": true,
+      "paper_expanded_flag": 4383,
+      "paper_item_id": 274,
+      "paper_item_quantity": 0,
+      "paper_obtained": true,
+      "partial_write_observations": [
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38
+      ],
+      "party_byte41_runtime_owner_resolved": false,
+      "party_count": 4,
+      "party_unchanged": true,
+      "pp_recovery_accepted": true,
+      "prior_failed_native_processes": 1,
+      "prior_pre_native_failed_attempts": 1,
+      "progress_field_screen_clear": true,
+      "progress_final_success_overlay_visible": false,
+      "progress_initial_ram_ledger": "92c13d3a58d260cb18732410f1e97c7ef727fbf88e0539fb6e01d332658677ad",
+      "progress_inputs": 80,
+      "progress_ram_ledger_unchanged": false,
+      "progress_settled_ram_ledger": "6338b56b0cf486cddb468ef4eb0bbd7525d0f8d79f9d0ca6852b5aa7aea66619",
+      "ram_difference_owner_resolved": false,
+      "ram_ledger_changed_observations": [
+        5
+      ],
+      "ram_ledger_unchanged": false,
+      "record_native_processes": 0,
+      "release_ready": false,
+      "required_badge_flag": 2083,
+      "required_badge_present": true,
+      "rom_changes": 0,
+      "rp": 0,
+      "save_counter": 97,
+      "save_counter_changed_observation": 38,
+      "save_in_progress_observations": [
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38
+      ],
+      "save_success_text_observation": 39,
+      "save_success_wording_observed": true,
+      "screen_comparison": {
+        "all_pixels_identical": false,
+        "animated_flower_rectangles": [
+          [
+            64,
+            137,
+            143,
+            159
+          ]
+        ],
+        "cold_changed_pixels": 752,
+        "npc_difference_rectangles": [
+          [
+            0,
+            83,
+            15,
+            102
+          ]
+        ],
+        "progress_final_success_overlay_visible": false,
+        "progress_to_cold_changed_pixels": [
+          768,
+          626
+        ]
+      },
+      "screen_count": 46,
+      "scripted_turns": 0,
+      "stable_field_observation": 43,
+      "stable_final_flash_observation": 39,
+      "stable_hash_not_alone_save_completion": true,
+      "status": "PASS_MUSEUM_EXIT_SAVE97_SCOPED",
+      "target_confirmations": 0,
+      "total_new_native_processes": 3,
+      "trainer_victories": 0,
+      "travel_steps": 13,
+      "turns": 3,
+      "warps": 1,
+      "wild_victories": 0,
+      "xy": [
+        19,
+        26
+      ]
+    },
+    "xy": [
+      19,
+      26
     ]
   },
   "win_exchange_completed": {

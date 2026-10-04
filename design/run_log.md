@@ -12402,3 +12402,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 測定source=eea7968c2626dc7cc6746ade93a0c9421a95c395、記録source=2923268a967ed11823210fa044cfdf085d944ba1・run=37193064130。scoped guard/task graph/resume後に同branch非force push/全text読戻し。
 - Network: 同repoGitHub/Actions。継承source-lockの0x6F西方向predicateを保持。入力ROM/runtime非再配布、ROM変更/merge/release/baseline変更0。一般CI既知不一致は全成功にしない。
 - Next: Save96 artifact11299780050のstory-fast.srm（131088bytes/SHA256 1f1d30d7f8261ff8b03f0bf290aaa61d052709b6a0a1c259da13f16895cd4b81）だけから再開。封書引渡し後の新復路13歩/5旋回、西入力で博物館1階6/0・8,8西へ初下降しSave96/独立Continueを受入。次は新復路12歩で出口13,9、最初の町3/2 fieldを保存。町19,25/19,26は静的候補、自動歩行は未確認。受付4061=1のため12/13/14,5の条件4061==0は非発火。封書会話/50円受付/階段/旧入館を再走せず、505道路レンジャーは退出後。紙274=0/4382/4383/未完4380/23114円/バッジ2/全party600byte/HP277/294/PP3,9,8,2保持。今回全RAM台帳保持だがphysical2056:0→1とaux4021:96→109/4022:3→1のruntime owner未解明、過去ownerも未解明。47画面83+cold13入力。39は最終flash hashと一時一致でも保存中/counter95、40別hash/counter96、41成功文言/安定finalhash、44clearfield。cold間142pixel差はNPC1人矩形内、全画面一致とはしない。全SaveRTC/PC/S61E/旧bank保持。controller40/新独立受入72、native2/記録native0/実測失敗0。記録初回はimport再帰上限によるloader1失敗/71実試験未実行、入口1500と新1検査で72case初実行。全国図鑑/自然成長進化/全story/release未受入。ROM/runtime非再配布・host補充・ROM変更・merge/release/baseline変更0。一般CI既知qol_production.c不一致を全成功にしない。
+
+## 2026-10-04T10:14:12.209913+00:00
+- Version: PR16-STORY-SAVE97
+- Timestamp: 2026-10-04T10:14:12.209913+00:00
+- Task: USER-20261004-MUSEUM-EXIT-SAVE97 / 博物館退出とSave97
+- Status: DONE（退出/保存/独立Continue限定、505道路接続とRangerは未到達）
+- Summary: 固定ROMの0x65/14,9南矢印を解決し新13歩/3旋回で退出、町19,26南で通常Save97/Continue。全party600byte/HP277/PP3,9,8,2/バッジ2/23114円/4061/4382/4383/PC/S61E保持。
+- Files changed: Save97 measure/preparation/controller/失敗原本と復旧/受入79/record/checkpoint/text証拠/次route、固定再開MD/JSON、両ログ。
+- Verify: run37193900573/job111411662442全8step成功。80+cold13入力46画面61member。controller最終48/69実行68成功1失敗、新受入79。成功native2/失敗native1/記録native0/compile0/旧成功再走0。
+- Evidence: 初回controllerfixture1失敗を1件だけ修正。旧static13,9は0x08で58入力24画面の失敗native、Save96全保持。0x65/14,9へ修正し影響22成功。38counter97でも保存中/途中hash→39成功文言/最終hash→43clearfield。cold差分752pxはNPC/花animationだけ。42checksum/7043byte1752範囲/全SaveRTC/旧bank保持。
+- Record recovery: 初回記録の旧GUIDE宛先をprotected guardで停止。旧文書書込み0/native0/77case未実行。新宛先2検査追加で79case初実行。
+- Discovery: RAM観測5、physical2056clear、aux4021:109→122/4022:1→4と過去runtime owner未解明。Save96記録run37193064130全11step終端同期。154module/有限上限1500修復と旧72受入不変。
+- Commit: 測定source=4c61d6e9eaf5fe7fa64e8d477017448342d9819a、記録source=783714626e892c2b4e11305007da811755554814・run=37194679580。scoped guard/task graph/resume後に同branch非force push/全text読戻し。
+- Network: 同repoGitHub/Actions、source-lock固定pret/pokefirered c75f3523のmetatile/field_control_avatar。入力ROM/runtime非再配布、ROM変更/merge/release/baseline変更0。一般CI既知不一致を全成功にしない。
+- Rule: warp-tableの座標だけで発火可能と判断しない。毎回固定ROMのtile behaviorと必要方向を確認し、通常着地/矢印/方向階段/境界connectionを区別する。実画面の出口は裏付け。無入力自動歩行は実測まで未確認。
+- Next: Save97 artifact11300361541のstory-fast.srm（131088bytes/SHA256 4871ba79e718ea8dc8bc701394846ce1b393cd41a5961564ed4d670437a52139）だけから再開。博物館退出後の町3/2・19,26南。新13歩/3旋回、14,9の0x65南矢印で退出、町warp19,25から自動南1歩を実測し通常Save97/独立Continue受入。次は保存next-routeの町北端28,0まで35歩、通常北入力でmap3/23へのconnectionを越え最初のfieldだけ保存。Ranger local9/18,27はさらに後続、4382setを条件に4072=2/4352clear/町warpへ進む静的ownerを保存したが未実行。封書会話/受付/階段/退出成功区間を再走しない。紙274=0/4382/4383/4380未完/4061=1/23114円/バッジ2/全party600byte/HP277/294/PP3,9,8,2保持。観測5でRAM台帳変更、physical2056clear、aux4021:109→122/4022:1→4と過去owner未解明。46画面80+cold13入力、38counter97でも保存中/途中hash→39成功文言/安定最終hash→43clearfield。cold差分752pixelは左端NPC/花animation内、全SaveRTC/PC/S61E/旧bank保持。controller最終48case/69実行68成功1失敗、新受入79。成功native2/退出失敗native1/記録native0。最初のfixture失敗と13,9通常床非発火の失敗原本は保持。Save96のimport連鎖154module/入口上限1500修復は不変、受入済み72再走0。全国図鑑/自然成長進化/全story/release未受入。ROM/runtime非再配布・host補充・ROM変更・merge/release/baseline変更0。一般CI既知qol_production.c不一致を全成功にしない。warp-tableの座標だけで発火可能と判断しない。毎回固定ROMのtile behaviorと必要方向を確認し、通常着地/矢印/方向階段/境界connectionを区別する。実画面の出口は裏付け。無入力自動歩行は実測まで未確認。

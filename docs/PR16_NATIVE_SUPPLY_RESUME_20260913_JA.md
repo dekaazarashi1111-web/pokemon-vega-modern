@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-博物館初下降Save96/6/0・8,8西。紙274=0/4382/4383/23114円/4061/全party/HP277/PP3,9,8,2保持。今回RAM保持、physical2056set/aux2varsと過去owner未解明。次は新復路12歩で退出。
+博物館退出Save97/町3/2・19,26南。全party/HP277/PP3,9,8,2/紙274=0/4382/4383/23114円/4061保持。RAM観測5/2056clear/aux2varsと過去owner未解明。次は町北35歩。
 
-**次: Save96 artifact11299780050のstory-fast.srm（131088bytes/SHA256 1f1d30d7f8261ff8b03f0bf290aaa61d052709b6a0a1c259da13f16895cd4b81）だけから再開。封書引渡し後の新復路13歩/5旋回、西入力で博物館1階6/0・8,8西へ初下降しSave96/独立Continueを受入。次は新復路12歩で出口13,9、最初の町3/2 fieldを保存。町19,25/19,26は静的候補、自動歩行は未確認。受付4061=1のため12/13/14,5の条件4061==0は非発火。封書会話/50円受付/階段/旧入館を再走せず、505道路レンジャーは退出後。紙274=0/4382/4383/未完4380/23114円/バッジ2/全party600byte/HP277/294/PP3,9,8,2保持。今回全RAM台帳保持だがphysical2056:0→1とaux4021:96→109/4022:3→1のruntime owner未解明、過去ownerも未解明。47画面83+cold13入力。39は最終flash hashと一時一致でも保存中/counter95、40別hash/counter96、41成功文言/安定finalhash、44clearfield。cold間142pixel差はNPC1人矩形内、全画面一致とはしない。全SaveRTC/PC/S61E/旧bank保持。controller40/新独立受入72、native2/記録native0/実測失敗0。記録初回はimport再帰上限によるloader1失敗/71実試験未実行、入口1500と新1検査で72case初実行。全国図鑑/自然成長進化/全story/release未受入。ROM/runtime非再配布・host補充・ROM変更・merge/release/baseline変更0。一般CI既知qol_production.c不一致を全成功にしない。**
+**次: Save97 artifact11300361541のstory-fast.srm（131088bytes/SHA256 4871ba79e718ea8dc8bc701394846ce1b393cd41a5961564ed4d670437a52139）だけから再開。博物館退出後の町3/2・19,26南。新13歩/3旋回、14,9の0x65南矢印で退出、町warp19,25から自動南1歩を実測し通常Save97/独立Continue受入。次は保存next-routeの町北端28,0まで35歩、通常北入力でmap3/23へのconnectionを越え最初のfieldだけ保存。Ranger local9/18,27はさらに後続、4382setを条件に4072=2/4352clear/町warpへ進む静的ownerを保存したが未実行。封書会話/受付/階段/退出成功区間を再走しない。紙274=0/4382/4383/4380未完/4061=1/23114円/バッジ2/全party600byte/HP277/294/PP3,9,8,2保持。観測5でRAM台帳変更、physical2056clear、aux4021:109→122/4022:1→4と過去owner未解明。46画面80+cold13入力、38counter97でも保存中/途中hash→39成功文言/安定最終hash→43clearfield。cold差分752pixelは左端NPC/花animation内、全SaveRTC/PC/S61E/旧bank保持。controller最終48case/69実行68成功1失敗、新受入79。成功native2/退出失敗native1/記録native0。最初のfixture失敗と13,9通常床非発火の失敗原本は保持。Save96のimport連鎖154module/入口上限1500修復は不変、受入済み72再走0。全国図鑑/自然成長進化/全story/release未受入。ROM/runtime非再配布・host補充・ROM変更・merge/release/baseline変更0。一般CI既知qol_production.c不一致を全成功にしない。warp-tableの座標だけで発火可能と判断しない。毎回固定ROMのtile behaviorと必要方向を確認し、通常着地/矢印/方向階段/境界connectionを区別する。実画面の出口は裏付け。無入力自動歩行は実測まで未確認。**
 
-Save96/1階8,8西から新復路12歩で13,9出口へ。最初の町fieldを保存。封書会話/受付/階段/旧入館再走なし。4061=1/23114円保持、未知NPC/障害/eventで縮小停止。505道路レンジャーは退出後。
+Save97/町19,26南から北端28,0まで35歩、通常北入力でmap3/23の最初fieldだけ保存。Ranger会話は後続。未知NPC/戦闘/eventで縮小停止。封書/受付/階段/退出成功区間再走なし。warp-tableの座標だけで発火可能と判断しない。毎回固定ROMのtile behaviorと必要方向を確認し、通常着地/矢印/方向階段/境界connectionを区別する。実画面の出口は裏付け。無入力自動歩行は実測まで未確認。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `eea7968c2626dc7cc6746ade93a0c9421a95c395`。
-初下降Save96/6/0・8,8西。新13歩/5旋回/西階段/47画面。39一時finalhash→40別hash/counter96→41成功→44clearfield。全party/23114円/紙引渡し/4382/4383/4061/全RAM台帳保持。physical2056set/aux2vars/過去owner未解明。
+証拠のsource HEAD: `4c61d6e9eaf5fe7fa64e8d477017448342d9819a`。
+博物館退出Save97/町3/2・19,26南。13歩/3旋回/南矢印/自動南1歩。46画面80+cold13入力。38counter97保存中→39成功→43clearfield。全party/23114円/4382/4383/4061保持。RAM観測5/2056clear/aux2varsと過去owner未解明。
 
 ## 最短の再開手順
 
@@ -25,15 +25,16 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_STORY_SAVE96_JA.md`
-- `content/modernization/pr16_story_save96_checkpoint.json`
-- `content/modernization/pr16_story_save96_visual_review.json`
-- `scripts/pr16_story_save96_accept.py`
-- `scripts/pr16_story_save96_measure.py`
-- `content/modernization/pr16_story_save96_evidence/inspection.json`
-- `content/modernization/pr16_story_save96_evidence/next-route.json`
-- `content/modernization/pr16_story_save96_preparation.json`
-- `content/modernization/pr16_story_save96_next_route.json`
+- `docs/PR16_STORY_SAVE97_JA.md`
+- `content/modernization/pr16_story_save97_checkpoint.json`
+- `content/modernization/pr16_story_save97_visual_review.json`
+- `scripts/pr16_story_save97_accept.py`
+- `scripts/pr16_story_save97_measure.py`
+- `content/modernization/pr16_story_save97_evidence/inspection.json`
+- `content/modernization/pr16_story_save97_evidence/next-route.json`
+- `content/modernization/pr16_story_save97_preparation.json`
+- `content/modernization/pr16_story_save97_exit_recovery.json`
+- `content/modernization/pr16_story_save97_next_route.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -426,6 +427,7 @@ P08ゲート:
 - Save94の70/cold13入力41画面56member、controller最終41case/43実行42成功1失敗、受入67を無影響再走しない。西6南3+東方向階段、6/1・11,8東。34counter途中hash、35成功/最終hash、38unlockだが画像にoverlay残留。coldNPC263pixel差分を全画面一致にしない。RAM観測10/2056/3varsと過去owner未解明。初回pre-native1/未保存native1はfailure保持。次はlocal2紙引渡し。
 - Save95の118/cold13入力66画面81member、controller39+影響9=48成功実行/最終46case、受入69を無影響再走しない。新13歩/旋回5/障害待ち1、移動local2をsprite128pixelで2回確認して封書274消費/4382set。59counter途中hash保存中→60成功最終hash→63clearfield。cold3人NPC1023pixel差/全SaveRTC保持。RAM32/aux2varsと過去owner未解明。初回未保存native1/Save94全保持はfailure。次は新復路13歩と西方向下降。
 - Save96の83/cold13入力47画面62member、新復路13歩/5旋回/西初下降、controller40/独立受入72を無影響再走しない。39一時finalhash保存中/counter95→40別hash/counter96→41成功最終hash→44clearfield。coldNPC1人142pixel差/全SaveRTC保持。今回RAM保持でもphysical2056set/aux2varsと過去owner未解明。次は新復路12歩で博物館退出。
+- Save97の80/cold13入力46画面61member、新13歩/3旋回/0x65南矢印/町自動南1歩、controller最終48case(69実行68成功1失敗)/新受入79を無影響再走しない。初回controllerfixture失敗、通常床13,9の失敗native1/58入力24画面/Save96保持を歴史保存。次は町北35歩の新区間。warp-tableの座標だけで発火可能と判断しない。毎回固定ROMのtile behaviorと必要方向を確認し、通常着地/矢印/方向階段/境界connectionを区別する。実画面の出口は裏付け。無入力自動歩行は実測まで未確認。
 
 ## 次セッションへ残す更新手順
 
