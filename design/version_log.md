@@ -9769,3 +9769,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Checks: 記録生成HEADのrun37208633089/37208633064はaction_required・各jobs0。成功と扱わない。既知一般CIのQOL source不一致は未解決。測定sourceのStage79は7domain cache再利用/native再走0。
 - Boundary: 初wild1勝の通常field復帰と保存しない次歩だけ限定受入。未保存trainer131視線(38,6)からの後続adapter/複数戦/シオウ回復Save/Continueは未完。正式再開は保存済みSave101だけ。
 - Next: 固定再開MD/JSONを優先し、未保存milestone区間の必要な変更影響だけ検証する。一般公開物は事前検査したtext/screensに限定、hidden一括収集なし。
+
+## 2026-10-04T15:05:28.475266+00:00
+- Timestamp: 2026-10-04T15:05:28.475266+00:00
+- Task: USER-20261004-STORY-TRAINER / trainer131と図鑑保存ABI境界
+- Version: PR16-STORY-TRAINER-1
+- Status: STOPPED（視線/接近/会話/entry限定受入。図鑑保存ABI修復前の安全停止）
+- Summary: 正式Save101は不変。trainer131視線の位置更新は通常歩数maintenance前、接近はlocal3 templateX34→37のみと解明。既知waitbuttonpress native/PCを確認した通常Aからbattle flags12/outcome0・実4体481/528/1537/1147を観測。2専用native各8step成功、最終167入力/85画面/7093frames、trainer戦闘入力0。全party・所持金23114円・SaveRTC保持、rekey平文比較でstat7/9各+1・毒歩数reset・時計を限定受入。初回NPC owner未対応停止は失敗原本として保持。全国963/749の旧seen setterがtrainerRematches/FameChecker等へ書くことを固定ROMで静的特定し、現在sourceの保存ABI衝突と番号namespace衝突も記録。30trainer+14dex+4公開metadataの48hostと保存原本再生で破壊前guardを検証。新ROM生成/切替、図鑑破壊実行、trainer勝利/賞金、回復/Save/fresh Continueは0。最終milestone未達、一般CI既知QOL source不一致は未解決。
+- Files changed: trainer adapter/5way observer/closed entry検査、dex破壊前guard、owner/修復計画、48host、2native原本、checkpoint、固定resumeMD/JSON、両ログ。
+- Verify: 専用2run各8step成功。30trainer+14dex+4publication host最終成功、原本全byte/全SaveRTC照合。記録native0/compile0。初回NPC template owner未対応停止を履歴保持。
+- Next: 正式再開はSave101 artifact11303305200/story-fast.srm（131088bytes、SHA256814a8e31ce20d720a1f1bddc08caa9cdd3d86b5bbb874738b9cb859653552149）、Route506 3/24(53,13)西。未保存trainer131 entry原本run37210491215/artifact11306222294は再利用し、新たな技入力を送らない。固定ROMのlegacy seen setter0x0810586cは全国963/749で非図鑑fieldへ書くため、pr16_story_dex_guard.pyの停止を解除する前に、現stable-keyの図鑑namespaceとversion/CRC/保存先を明示した専用late-stage修復を実装し、全getter/setter/clear/save/Continue/consumer限定回帰を行う。DPE/CFRUの旧Bag衝突パッチ再適用や無宣言reserved利用は不可。受入済みtrainer接近/会話/entry・旧wild/clock等は影響なしに再走しない。修復候補の正式受入後だけSave101の未保存失敗区間を再開し、trainer131/128/1065、506→519→シオウPokecenter7/3で通常回復・Save・cold Continueへ進む。全雑魚戦Save方針を復活させない。trainer勝利/賞金、シオウ回復、NationalDex解禁、自然成長は未完。merge/release/baseline切替なし。
+- Commit: native source=4ddcdc44aabb704f542f4e37bf2f58cbfaca7573; record source=96ae45bfc5e3297fe5071500f8822f0ab452606a; 同branch非forcepush。
+- Network: 同repoGitHub/Actions/保存artifactおよび固定upstream一次source読取。ROM/runtime/inputSave再配布0、ROM切替0、host戦闘書込0、高national seen破壊の実行0、trainer勝利/賞金受入0、merge/release/baseline切替0。一般CI既知QOL source不一致は残件。

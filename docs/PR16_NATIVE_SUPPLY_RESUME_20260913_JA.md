@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-正式進行Save101のまま。通常wild1勝の全state/field復帰/保存せず次歩をnative確認。trainer131視線で未保存停止、シオウ回復施設へ継続中。
+正式Save101保持。trainer131接近・会話・通常battle entryを全stateで検証。高national見た登録の別field破壊を静的特定し、戦闘コマンド前で停止。
 
-**次: 正式再開はSave101 artifact11303305200/story-fast.srm（131088bytes、SHA256814a8e31ce20d720a1f1bddc08caa9cdd3d86b5bbb874738b9cb859653552149）、506番道路3/24(53,13)西。最新未保存診断はrun37208042999/artifact11305787045、50歩目3/24(38,6)でtrainer131の視線/lock1。残留battle flags4/outcome1は直前wild1勝であり、trainerの新勝利ではない。Save101のHP277/294/PP3,9,8,2から、first wild後はPP3,8,8,2。新adapterはそのwild32/Lv13の通常Earthquake1回、全state/field復帰/次歩を受入済みだが、multi-battle/シオウ回復施設未達。次はtrainer131の接近・会話・actual4体・物理flag1411/賞金448/UIと後続128（flag1408/1700）、1065（physical1416/504）を明示ownerへ接続。原本source_bindingsと未保存の失敗区間を保持して、対応済通常戦はcompact ledger後に継続し、雑魚戦ごとのSaveを作らない。最終milestoneは506→519→シオウPokecenter7/3、町door22,19、counter7,3、nurse7,2、対面7,4北で通常回復/Save/fresh Continue。未知callback/event/UI/warp/owner/資源不足は診断停止。次もpublic artifactは事前検査した非hidden専用dirの.json/.txt/.ppmだけ。NationalDex4072=9→10/研究所special367/var11、その後の自然EXP/進化/LuckyEgg/12境界/Lv100soakは未完。既知一般CI期待hash変更・flag注入・進化gate回避・newbalance・merge/release/baseline切替なし。**
+**次: 正式再開はSave101 artifact11303305200/story-fast.srm（131088bytes、SHA256814a8e31ce20d720a1f1bddc08caa9cdd3d86b5bbb874738b9cb859653552149）、Route506 3/24(53,13)西。未保存trainer131 entry原本run37210491215/artifact11306222294は再利用し、新たな技入力を送らない。固定ROMのlegacy seen setter0x0810586cは全国963/749で非図鑑fieldへ書くため、pr16_story_dex_guard.pyの停止を解除する前に、現stable-keyの図鑑namespaceとversion/CRC/保存先を明示した専用late-stage修復を実装し、全getter/setter/clear/save/Continue/consumer限定回帰を行う。DPE/CFRUの旧Bag衝突パッチ再適用や無宣言reserved利用は不可。受入済みtrainer接近/会話/entry・旧wild/clock等は影響なしに再走しない。修復候補の正式受入後だけSave101の未保存失敗区間を再開し、trainer131/128/1065、506→519→シオウPokecenter7/3で通常回復・Save・cold Continueへ進む。全雑魚戦Save方針を復活させない。trainer勝利/賞金、シオウ回復、NationalDex解禁、自然成長は未完。merge/release/baseline切替なし。**
 
 通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `28261b8982f70b8482cd10af25f6ee32ed0e0c53`。
-変更箇所だけの未保存route adapter診断source。正式story Save101と区別。
+証拠のsource HEAD: `4ddcdc44aabb704f542f4e37bf2f58cbfaca7573`。
+未保存trainer131 entryのnative証拠source。保存ABIガードは同じ原本のsource-only再検査。正式進行はSave101。
 
 ## 最短の再開手順
 
@@ -25,13 +25,13 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_STORY_ROUTE_ADAPTER_ACCEPTANCE_JA.md`
-- `content/modernization/pr16_story_route_adapter_checkpoint.json`
-- `scripts/pr16_story_battle_adapter.py`
-- `scripts/pr16_story_clock.py`
-- `content/modernization/pr16_story_route_owners.json`
+- `docs/PR16_STORY_TRAINER_ACCEPTANCE_JA.md`
+- `content/modernization/pr16_story_trainer_checkpoint.json`
+- `docs/PR16_DEX_SEEN_REPAIR_JA.md`
+- `content/modernization/pr16_story_dex_seen_repair_plan.json`
+- `content/modernization/pr16_story_trainer_owner_diagnosis.json`
+- `scripts/pr16_story_dex_guard.py`
 - `docs/PR16_STORY_ACCELERATED_ACCEPTANCE_PLAN_JA.md`
-- `content/modernization/pr16_story_shiou_route_candidate.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -431,6 +431,7 @@ P08ゲート:
 - Save101の58/cold13入力35画面50member/63controller/47受入/native2を無影響再走しない。Save25〜100証拠は保持し、当時のfirst-battle stopを一般方針にしない。
 - run37203041912のSave101 observer probe（13入力/2画面/native1/compile1）と49host試験は原本再利用。歩行・戦闘・Saveは未実行。hash-only資源推測/全雑魚戦保存へ戻らない。
 - route adapter原本5run/80host証拠は保持。正式Save101以前を再走せず、新しい未保存失敗区間だけ変更影響に応じて再開。時計/再暗号化/seen/QOL provenanceを全byte免除にしない。通常戦ごとのSaveを復活させない。
+- trainer131原本2run/48hostを保持。正式Save101と未保存entryを区別。seen高nationalをtrainerRematches/FameChecker等の許可差分にしない。固定ROMの保存ABIを修復・限定回帰する前にtrainer戦闘を続けない。DPE/CFRUのBag衝突パッチを直貼りせず、通常戦ごとのSaveも復活させない。
 
 ## 次セッションへ残す更新手順
 
@@ -460,6 +461,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-新区間専用5runは各8step成功。正式milestone未達、wild1戦の保存なし継続だけ限定受入。一般CIの既知QOL source不一致は未解決。Stage79は7domain cache再利用/native再走0。
+trainer専用2runは各8step成功。接近/会話/通常entryだけ限定受入。高national図鑑setterの別field書込を静的検出し戦闘入力0で停止。48host、記録native0/compile0。シオウ回復未達。一般CI既知QOL source不一致は未解決。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

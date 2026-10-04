@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "正式進行Save101のまま。通常wild1勝の全state/field復帰/保存せず次歩をnative確認。trainer131視線で未保存停止、シオウ回復施設へ継続中。",
+    "current_stop": "正式Save101保持。trainer131接近・会話・通常battle entryを全stateで検証。高national見た登録の別field破壊を静的特定し、戦闘コマンド前で停止。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "正式再開はSave101 artifact11303305200/story-fast.srm（131088bytes、SHA256814a8e31ce20d720a1f1bddc08caa9cdd3d86b5bbb874738b9cb859653552149）、506番道路3/24(53,13)西。最新未保存診断はrun37208042999/artifact11305787045、50歩目3/24(38,6)でtrainer131の視線/lock1。残留battle flags4/outcome1は直前wild1勝であり、trainerの新勝利ではない。Save101のHP277/294/PP3,9,8,2から、first wild後はPP3,8,8,2。新adapterはそのwild32/Lv13の通常Earthquake1回、全state/field復帰/次歩を受入済みだが、multi-battle/シオウ回復施設未達。次はtrainer131の接近・会話・actual4体・物理flag1411/賞金448/UIと後続128（flag1408/1700）、1065（physical1416/504）を明示ownerへ接続。原本source_bindingsと未保存の失敗区間を保持して、対応済通常戦はcompact ledger後に継続し、雑魚戦ごとのSaveを作らない。最終milestoneは506→519→シオウPokecenter7/3、町door22,19、counter7,3、nurse7,2、対面7,4北で通常回復/Save/fresh Continue。未知callback/event/UI/warp/owner/資源不足は診断停止。次もpublic artifactは事前検査した非hidden専用dirの.json/.txt/.ppmだけ。NationalDex4072=9→10/研究所special367/var11、その後の自然EXP/進化/LuckyEgg/12境界/Lv100soakは未完。既知一般CI期待hash変更・flag注入・進化gate回避・newbalance・merge/release/baseline切替なし。",
+    "next_step": "正式再開はSave101 artifact11303305200/story-fast.srm（131088bytes、SHA256814a8e31ce20d720a1f1bddc08caa9cdd3d86b5bbb874738b9cb859653552149）、Route506 3/24(53,13)西。未保存trainer131 entry原本run37210491215/artifact11306222294は再利用し、新たな技入力を送らない。固定ROMのlegacy seen setter0x0810586cは全国963/749で非図鑑fieldへ書くため、pr16_story_dex_guard.pyの停止を解除する前に、現stable-keyの図鑑namespaceとversion/CRC/保存先を明示した専用late-stage修復を実装し、全getter/setter/clear/save/Continue/consumer限定回帰を行う。DPE/CFRUの旧Bag衝突パッチ再適用や無宣言reserved利用は不可。受入済みtrainer接近/会話/entry・旧wild/clock等は影響なしに再走しない。修復候補の正式受入後だけSave101の未保存失敗区間を再開し、trainer131/128/1065、506→519→シオウPokecenter7/3で通常回復・Save・cold Continueへ進む。全雑魚戦Save方針を復活させない。trainer勝利/賞金、シオウ回復、NationalDex解禁、自然成長は未完。merge/release/baseline切替なし。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -1158,7 +1158,8 @@
     "Save100の95/cold13入力54画面69member、動的Ranger正面A/町解放/通常2歩/自動2歩、39controller/62新受入を無影響再走しない。初回binding失敗原本はnative0。JSON/text fixtureのSHAはGit正本の最終改行を含むbyte列から算出し、次commitをbranchへ反映する前にremote blob全byteを送信元と一致確認。改行正規化で差分を消さず、失敗原本は保持。受入済みunit/nativeは再走しない。",
     "Save101の58/cold13入力35画面50member/63controller/47受入/native2を無影響再走しない。Save25〜100証拠は保持し、当時のfirst-battle stopを一般方針にしない。",
     "run37203041912のSave101 observer probe（13入力/2画面/native1/compile1）と49host試験は原本再利用。歩行・戦闘・Saveは未実行。hash-only資源推測/全雑魚戦保存へ戻らない。",
-    "route adapter原本5run/80host証拠は保持。正式Save101以前を再走せず、新しい未保存失敗区間だけ変更影響に応じて再開。時計/再暗号化/seen/QOL provenanceを全byte免除にしない。通常戦ごとのSaveを復活させない。"
+    "route adapter原本5run/80host証拠は保持。正式Save101以前を再走せず、新しい未保存失敗区間だけ変更影響に応じて再開。時計/再暗号化/seen/QOL provenanceを全byte免除にしない。通常戦ごとのSaveを復活させない。",
+    "trainer131原本2run/48hostを保持。正式Save101と未保存entryを区別。seen高nationalをtrainerRematches/FameChecker等の許可差分にしない。固定ROMの保存ABIを修復・限定回帰する前にtrainer戦闘を続けない。DPE/CFRUのBag衝突パッチを直貼りせず、通常戦ごとのSaveも復活させない。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -4339,76 +4340,38 @@
     "status": "PASS_NATIONAL_DEX_GRANT_OWNER_SCOPED"
   },
   "next_action": {
-    "goal_ja": "正式再開はSave101 artifact11303305200/story-fast.srm（131088bytes、SHA256814a8e31ce20d720a1f1bddc08caa9cdd3d86b5bbb874738b9cb859653552149）、506番道路3/24(53,13)西。最新未保存診断はrun37208042999/artifact11305787045、50歩目3/24(38,6)でtrainer131の視線/lock1。残留battle flags4/outcome1は直前wild1勝であり、trainerの新勝利ではない。Save101のHP277/294/PP3,9,8,2から、first wild後はPP3,8,8,2。新adapterはそのwild32/Lv13の通常Earthquake1回、全state/field復帰/次歩を受入済みだが、multi-battle/シオウ回復施設未達。次はtrainer131の接近・会話・actual4体・物理flag1411/賞金448/UIと後続128（flag1408/1700）、1065（physical1416/504）を明示ownerへ接続。原本source_bindingsと未保存の失敗区間を保持して、対応済通常戦はcompact ledger後に継続し、雑魚戦ごとのSaveを作らない。最終milestoneは506→519→シオウPokecenter7/3、町door22,19、counter7,3、nurse7,2、対面7,4北で通常回復/Save/fresh Continue。未知callback/event/UI/warp/owner/資源不足は診断停止。次もpublic artifactは事前検査した非hidden専用dirの.json/.txt/.ppmだけ。NationalDex4072=9→10/研究所special367/var11、その後の自然EXP/進化/LuckyEgg/12境界/Lv100soakは未完。既知一般CI期待hash変更・flag注入・進化gate回避・newbalance・merge/release/baseline切替なし。",
+    "goal_ja": "正式再開はSave101 artifact11303305200/story-fast.srm（131088bytes、SHA256814a8e31ce20d720a1f1bddc08caa9cdd3d86b5bbb874738b9cb859653552149）、Route506 3/24(53,13)西。未保存trainer131 entry原本run37210491215/artifact11306222294は再利用し、新たな技入力を送らない。固定ROMのlegacy seen setter0x0810586cは全国963/749で非図鑑fieldへ書くため、pr16_story_dex_guard.pyの停止を解除する前に、現stable-keyの図鑑namespaceとversion/CRC/保存先を明示した専用late-stage修復を実装し、全getter/setter/clear/save/Continue/consumer限定回帰を行う。DPE/CFRUの旧Bag衝突パッチ再適用や無宣言reserved利用は不可。受入済みtrainer接近/会話/entry・旧wild/clock等は影響なしに再走しない。修復候補の正式受入後だけSave101の未保存失敗区間を再開し、trainer131/128/1065、506→519→シオウPokecenter7/3で通常回復・Save・cold Continueへ進む。全雑魚戦Save方針を復活させない。trainer勝利/賞金、シオウ回復、NationalDex解禁、自然成長は未完。merge/release/baseline切替なし。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。Save14は作業コピーだけを使用する。自己OT party、manifest解決済み通常支援用品、EXP境界、safe opponentはpre-battle fixtureとして全byteを台帳化してよい。badge/key item/story flag/money/RPをfixture付与せず、戦闘開始後は通常入力とゲーム内処理だけを使う。",
-    "id": "STORY_MILESTONE_SHIOU_CENTER_FROM_SAVE101",
+    "id": "REPAIR_DEX_STORAGE_BEFORE_TRAINER131",
     "read_paths": [
-      "docs/PR16_STORY_ROUTE_ADAPTER_ACCEPTANCE_JA.md",
-      "content/modernization/pr16_story_route_adapter_checkpoint.json",
-      "scripts/pr16_story_battle_adapter.py",
-      "scripts/pr16_story_clock.py",
-      "content/modernization/pr16_story_route_owners.json",
-      "docs/PR16_STORY_ACCELERATED_ACCEPTANCE_PLAN_JA.md",
-      "content/modernization/pr16_story_shiou_route_candidate.json"
+      "docs/PR16_STORY_TRAINER_ACCEPTANCE_JA.md",
+      "content/modernization/pr16_story_trainer_checkpoint.json",
+      "docs/PR16_DEX_SEEN_REPAIR_JA.md",
+      "content/modernization/pr16_story_dex_seen_repair_plan.json",
+      "content/modernization/pr16_story_trainer_owner_diagnosis.json",
+      "scripts/pr16_story_dex_guard.py",
+      "docs/PR16_STORY_ACCELERATED_ACCEPTANCE_PLAN_JA.md"
     ],
     "stop_rule_ja": "通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。"
   },
   "observed_date_jst": "2026-10-04",
-  "observed_head": "28261b8982f70b8482cd10af25f6ee32ed0e0c53",
+  "observed_head": "4ddcdc44aabb704f542f4e37bf2f58cbfaca7573",
   "observed_head_checks": {
-    "adapter_runs": [
-      {
-        "milestone_reached": false,
-        "reason": "unowned_walking_save1",
-        "run": 37205259977
-      },
-      {
-        "milestone_reached": false,
-        "reason": "new_route_event_observation",
-        "run": 37205641114
-      },
-      {
-        "milestone_reached": false,
-        "reason": "battle_entry_ui_observed_without_command",
-        "run": 37206318654
-      },
-      {
-        "milestone_reached": false,
-        "reason": "ordinary_wild_ui_scope",
-        "run": 37207201375
-      },
-      {
-        "milestone_reached": false,
-        "reason": "new_route_event_observation",
-        "run": 37208042999
-      }
-    ],
-    "completion_head_checks": [
-      {
-        "conclusion": "action_required",
-        "id": 37208633089,
-        "jobs": 0,
-        "name": "p03-forgetting-ci",
-        "status": "completed"
-      },
-      {
-        "conclusion": "action_required",
-        "id": 37208633064,
-        "jobs": 0,
-        "name": "source-validation",
-        "status": "completed"
-      }
-    ],
     "general_ci_known_source_mismatch_not_resolved": true,
-    "reason_ja": "新区間専用5runは各8step成功。正式milestone未達、wild1戦の保存なし継続だけ限定受入。一般CIの既知QOL source不一致は未解決。Stage79は7domain cache再利用/native再走0。",
-    "recording_terminal": {
-      "all_steps": 12,
-      "completion_head": "000f326541d2999668f3e1be8bf89b859914b27f",
-      "conclusion": "success",
-      "job_id": 111454880493,
-      "run_id": 37208579061
-    },
-    "scope_head": "28261b8982f70b8482cd10af25f6ee32ed0e0c53"
+    "reason_ja": "trainer専用2runは各8step成功。接近/会話/通常entryだけ限定受入。高national図鑑setterの別field書込を静的検出し戦闘入力0で停止。48host、記録native0/compile0。シオウ回復未達。一般CI既知QOL source不一致は未解決。",
+    "scope_head": "4ddcdc44aabb704f542f4e37bf2f58cbfaca7573",
+    "trainer_runs": [
+      {
+        "milestone_reached": false,
+        "reason": "unowned_trainer_field_save1",
+        "run": 37210189574
+      },
+      {
+        "milestone_reached": false,
+        "reason": "trainer131_entry_observed_no_battle_input",
+        "run": 37210491215
+      }
+    ]
   },
   "observed_head_history": [
     {
@@ -12297,7 +12260,7 @@
       "semantics": "Save100/ミルシティ4,17北。動的Ranger20,29へ実正面A→町の解放scene→4072=3/4380set。全party600byte/HP277/PP3,9,8,2/23114円保持。95+cold13入力/54画面。通常2歩+自動2歩、歩数93/3。cold RAM差owner未解明。"
     }
   ],
-  "observed_head_semantics": "変更箇所だけの未保存route adapter診断source。正式story Save101と区別。",
+  "observed_head_semantics": "未保存trainer131 entryのnative証拠source。保存ABIガードは同じ原本のsource-only再検査。正式進行はSave101。",
   "p08_candidate_impact": {
     "candidate": {
       "crc32": "CC068B4A",
@@ -12419,7 +12382,13 @@
     "status": "NATIVE_PARTY_RETENTION_ACCEPTED_BP_PENDING",
     "tested_head": "10e535a046441dd3b797918106259b5c57b69716"
   },
-  "pending_runs": [],
+  "pending_runs": [
+    {
+      "run_id": 37211680551,
+      "status": "in_progress",
+      "tested_head": "96ae45bfc5e3297fe5071500f8822f0ab452606a"
+    }
+  ],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
   "pr_draft": true,
   "pr_merged": false,
@@ -16050,6 +16019,10 @@
       "sha256": "21a8e578a4402eee02f8ad484a17596535f51a9729fec96bb9f468f220a27045",
       "size": 1620
     },
+    ".github/workflows/pr16-story-trainer-record.yml": {
+      "sha256": "c48ab6b527c248f4171f300ae7f6fbb566c02bf158729a0eb94352b38c3d0b56",
+      "size": 2485
+    },
     ".github/workflows/pr16-streak-record.yml": {
       "sha256": "257165114d76e6d1b9ea1c633c918a297ab4a32a6cfce9f5e7788b2b77d074be",
       "size": 1328
@@ -18734,6 +18707,18 @@
       "sha256": "a14b1b7391de6967da68ab2a1aadbb952f3fcfe97b408660462c783df04b8f05",
       "size": 6784
     },
+    "content/modernization/pr16_story_dex_guard_unit.json": {
+      "sha256": "db24b772066ecf43f1cc1ddf27df34e5eba339a5da776c0d71386f5a4673ace9",
+      "size": 2273
+    },
+    "content/modernization/pr16_story_dex_seen_audit.json": {
+      "sha256": "6c62d99c7e835de93fe01a5bbd97162e7af18290dbadb99668a1d7086c975bff",
+      "size": 12277
+    },
+    "content/modernization/pr16_story_dex_seen_repair_plan.json": {
+      "sha256": "1d11d94f2ac8b1c5ca17da085d40be262d960cb454ffaa42fec053f80f5783a8",
+      "size": 2048
+    },
     "content/modernization/pr16_story_fast_maori_checkpoint.json": {
       "sha256": "b146d0e679270e10872331535965c6ba42fa47749de7014564d539ae8705c12d",
       "size": 11918
@@ -19061,6 +19046,10 @@
     "content/modernization/pr16_story_publication_unit.json": {
       "sha256": "48f49bea47a9337b7bc826b945b2901b344ae154c68b49b3916ea4bc9efe177d",
       "size": 1412
+    },
+    "content/modernization/pr16_story_rom_metadata_unit.json": {
+      "sha256": "3977cc1ba78f0a7852490a316c35bdba104312625d131777384e5f6d34bfb0f8",
+      "size": 1127
     },
     "content/modernization/pr16_story_route_adapter_checkpoint.json": {
       "sha256": "ff7094f278de5502b40bca5ceaccb1a29ba6776b9b5eedc5ccdcb5ea03be19c7",
@@ -26858,6 +26847,174 @@
       "sha256": "074e53db249d490c96a26ef0fceca7004d214aecac1aaf12d245c5bc1c70094c",
       "size": 52706
     },
+    "content/modernization/pr16_story_trainer_checkpoint.json": {
+      "sha256": "cbb4d825b9ee42385415b8b372b10e0c7b222d2b216a551d56e7bf3e78d17a97",
+      "size": 23519
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210189574/battle-entry.json": {
+      "sha256": "3d107548221086dde9148efedfff5f5b302e51044c5c8793204b5f3fc598152f",
+      "size": 140
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210189574/battle-ledger.json": {
+      "sha256": "2b49d706ae11681422f2916cb9b0be8a9aaf8e402e200d1c2e9c35579199d81b",
+      "size": 2086
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210189574/compile.json": {
+      "sha256": "e229a37d7b8704cf11ab7b329af73857a271bd49e1b607dfbc7ed98295d97025",
+      "size": 308
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210189574/compile.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210189574/compile.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210189574/diagnostic.json": {
+      "sha256": "1a9921690df4911a5d5e90d136276fd44f385d7aacdee76d858dbc21e9468d71",
+      "size": 504
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210189574/execution.json": {
+      "sha256": "5ff418b21445db3ad91fbb1dde07d9052257bf301a5e558bd4ce7e7db83d8731",
+      "size": 550
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210189574/manifest.json": {
+      "sha256": "54132bbb2adc236b7ffbeedff4204f289e9207acf2af3a8eca3952d30664b1da",
+      "size": 13265
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210189574/publication-policy.json": {
+      "sha256": "56f6188ef1dcfe7fd45b55e89b6a5762377d1f56945fc3f056a0e895c33b747a",
+      "size": 198
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210189574/publication-projection.json": {
+      "sha256": "7fa00c9f25b03988bfddda0a2cc02ea622cba72660d7c38b69b8d101e1708986",
+      "size": 168
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210189574/route/commands.txt": {
+      "sha256": "80aac7b52f766481b2788e90b097d1fe7277f026d322cc893686807a3850f1fe",
+      "size": 2297
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210189574/route/execution.json": {
+      "sha256": "5ff418b21445db3ad91fbb1dde07d9052257bf301a5e558bd4ce7e7db83d8731",
+      "size": 550
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210189574/route/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210189574/route/stdout.txt": {
+      "sha256": "98f362944c0796b6880b2d7a134b1250f3b5a8706b41f4241266f16bacb0fd13",
+      "size": 4838784
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210189574/terminal.json": {
+      "sha256": "fb44f6c57a2212b334341109b54cd5fae64cef85ce1f85576cf6ee3d944094d2",
+      "size": 20372
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210189574/trainer-sight.json": {
+      "sha256": "e8923e4eafa304152262bfc316c1bee8de35a3ad0ca08ea0e64db27a39bcef2d",
+      "size": 265
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210189574/verification.json": {
+      "sha256": "1e802c3b499538af373cfa167c4ea9261a80824a8958e6b702c5bb2204023457",
+      "size": 3946
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210189574/walking-ledger.json": {
+      "sha256": "ce6df6463bde805724c2920d3060482fe35837de9bed21b17d1582b5333c0364",
+      "size": 19109
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210491215/battle-entry.json": {
+      "sha256": "3d107548221086dde9148efedfff5f5b302e51044c5c8793204b5f3fc598152f",
+      "size": 140
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210491215/battle-ledger.json": {
+      "sha256": "2b49d706ae11681422f2916cb9b0be8a9aaf8e402e200d1c2e9c35579199d81b",
+      "size": 2086
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210491215/compile.json": {
+      "sha256": "135812d6cc343e3f5809a1cc119a07b32ef4a14fd833e022242c20e15b4e0a5f",
+      "size": 308
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210491215/compile.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210491215/compile.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210491215/diagnostic.json": {
+      "sha256": "4684fdcc50909321aaa079a4a59218a269e93d3500018fbeb0f4fcd49a56cb84",
+      "size": 1735
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210491215/execution.json": {
+      "sha256": "ccc8e97c4a3480f7fcb279904687f2a67580e77d6fa540a67d40266df8a26908",
+      "size": 550
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210491215/manifest.json": {
+      "sha256": "91354b7661d09c942cfcd28c2e846fe3d27cc7ef395f2f8b2a3a6514255307aa",
+      "size": 13532
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210491215/publication-policy.json": {
+      "sha256": "56f6188ef1dcfe7fd45b55e89b6a5762377d1f56945fc3f056a0e895c33b747a",
+      "size": 198
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210491215/publication-projection.json": {
+      "sha256": "7fa00c9f25b03988bfddda0a2cc02ea622cba72660d7c38b69b8d101e1708986",
+      "size": 168
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210491215/route/commands.txt": {
+      "sha256": "827ba366cc4e1dabbab185a1ee1f29a9765613f913ec625d67af371223e8b391",
+      "size": 2326
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210491215/route/execution.json": {
+      "sha256": "ccc8e97c4a3480f7fcb279904687f2a67580e77d6fa540a67d40266df8a26908",
+      "size": 550
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210491215/route/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210491215/route/stdout.txt": {
+      "sha256": "6e38609f6e224e18b16c4433fe2dae29e40bdddffc512316d3d428e02631ed53",
+      "size": 4901868
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210491215/terminal.json": {
+      "sha256": "a07cc57c666e6e8f66b6f9fab992462e6e3ad64af8a8dcfa18db4023209c86f9",
+      "size": 20375
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210491215/trainer-sight.json": {
+      "sha256": "e8923e4eafa304152262bfc316c1bee8de35a3ad0ca08ea0e64db27a39bcef2d",
+      "size": 265
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210491215/verification.json": {
+      "sha256": "4f488a86bf4629b4ce5ace10c754f9467cfb8d299fb5abe2eef6bc7a873d70db",
+      "size": 6411
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210491215/walking-ledger.json": {
+      "sha256": "ce6df6463bde805724c2920d3060482fe35837de9bed21b17d1582b5333c0364",
+      "size": 19109
+    },
+    "content/modernization/pr16_story_trainer_evidence/visual-review.json": {
+      "sha256": "5ba0fd076f857eef7c335cc2b28ebd18f4e470b71f06ff46dfb673582d6c42cf",
+      "size": 413
+    },
+    "content/modernization/pr16_story_trainer_owner_diagnosis.json": {
+      "sha256": "7e31713b110ca493eb0ea345bfa8a2b042a7951639cde4e511fff635da1124c3",
+      "size": 53365
+    },
+    "content/modernization/pr16_story_trainer_owners.json": {
+      "sha256": "1cfa82e62507853a6f7df3f8d46fca4c9c997b017e699d484570b5e411c66403",
+      "size": 3738
+    },
+    "content/modernization/pr16_story_trainer_record_inputs.json": {
+      "sha256": "24c1750bd1eb579c3faa456e4e857a8726452c25de656f8aa500f8796f284dd1",
+      "size": 3513
+    },
+    "content/modernization/pr16_story_trainer_unit.json": {
+      "sha256": "8f03d05e38f8d262cc4a9d26969b1bb0e0fb3ed72664bb2c5632839b12831719",
+      "size": 4980
+    },
     "content/modernization/pr16_vega_adjudication/adopted_vega_original_baseline.jsonl": {
       "sha256": "9daaea8c97a744c0522afc03c157392b3179b5d0a359df97de2f3b1c0da6524f",
       "size": 1744195
@@ -26993,6 +27150,10 @@
     "docs/PR16_COLLECTION_GIFTS_JA.md": {
       "sha256": "de3a89fbba784b510986b802e9497c7e559eac14948cc7054ca6b816766b8aef",
       "size": 4872
+    },
+    "docs/PR16_DEX_SEEN_REPAIR_JA.md": {
+      "sha256": "050beb0932f2112e47283574282df0f8e1be76423d35cdc491b3d4fd7c52ac89",
+      "size": 5275
     },
     "docs/PR16_EXP_EVOLUTION_SHARE_JA.md": {
       "sha256": "91bf0315d0ac20772a0caa27b4528df27916d52f1c3750f3b2acc331b41628a7",
@@ -27593,6 +27754,10 @@
     "docs/PR16_STORY_SAVE9_JA.md": {
       "sha256": "61734b028e912a8cb8952376730c67ba598bb5f00056f4351bf0296626041e44",
       "size": 3222
+    },
+    "docs/PR16_STORY_TRAINER_ACCEPTANCE_JA.md": {
+      "sha256": "a18638fa4e9bfedd53b75d91e03bc9225bcbcddd488cbcbfd30025e367ea4c3a",
+      "size": 2191
     },
     "docs/PR16_VEGA_ORIGINAL_AUDIT_JA.md": {
       "sha256": "b9ee1dd32da36d9fe3d04aa1663afa0f2e6cc37aef491437dd2443a5870fb2d4",
@@ -33030,6 +33195,10 @@
       "sha256": "6159ed842023c0adca70a81c5c641f22a8aab45f0dda11fc0f169c45f829088c",
       "size": 6766
     },
+    "scripts/pr16_story_dex_guard.py": {
+      "sha256": "dff697d560732cee593685acdf6644e59a8d6ff624f0d2630dd4244d1b1fe4a3",
+      "size": 3619
+    },
     "scripts/pr16_story_fast_maori.py": {
       "sha256": "3add6d4ff7d2a0840085a398cfa3164bc4c11d11ceb5ef92caa26ab11c4bfa80",
       "size": 12364
@@ -33089,6 +33258,10 @@
     "scripts/pr16_story_milestones.py": {
       "sha256": "81aae02a2859460db6f383d54e6b01a8819880aaccd9009f74905a668183d9cb",
       "size": 6315
+    },
+    "scripts/pr16_story_rom_metadata.py": {
+      "sha256": "178bb04d04ec831f910033fb4452e7eaa6da991c1b1ae8dc1535e18f038c056e",
+      "size": 888
     },
     "scripts/pr16_story_route_owners.py": {
       "sha256": "3cef65b0295f3cb0ab9c4515e9053854b901d74f80afa236d47337802e547afa",
@@ -34197,6 +34370,26 @@
     "scripts/pr16_story_save9_actions.py": {
       "sha256": "c9f5b451b484618fc831c7e325fa7872166c9f7ab640b8a01abaf576b644f61e",
       "size": 24885
+    },
+    "scripts/pr16_story_trainer_adapter.py": {
+      "sha256": "1998df0490c519696fe509de0c0dbf5ff6780d28fbee7c043165ee1d86dc436c",
+      "size": 6624
+    },
+    "scripts/pr16_story_trainer_probe.py": {
+      "sha256": "afe2a7d90058aaf3199ed09222d097a88e930e6da8505b89220d89f4a57c9e62",
+      "size": 6222
+    },
+    "scripts/pr16_story_trainer_record.py": {
+      "sha256": "7907195d6358b6015b12ca7bc7486e232a0698407cd58e7c4a0acfed70f0feed",
+      "size": 14844
+    },
+    "scripts/pr16_story_trainer_session.py": {
+      "sha256": "54d381829fe8c9c83716c1aea2748cfc674e665f66e6ce05b64a305e01879086",
+      "size": 2386
+    },
+    "scripts/pr16_story_trainer_trace.py": {
+      "sha256": "f007f671b7cfa4db46d94fbeafc98ed47dc4010a3cd38b60b45aca88e9a6a272",
+      "size": 3400
     },
     "scripts/pr16_streak_archive.py": {
       "sha256": "41e2d084249788a7c516c23b5713f1b07205568a619026c44cc0f3a3473f7d2d",
@@ -35718,6 +35911,10 @@
       "sha256": "c213e44c6382e1bc45dc7a3a3df63f66de7916b3dd149608863645ed0994e55f",
       "size": 8741
     },
+    "tests/test_pr16_story_dex_guard.py": {
+      "sha256": "c27c4f04b1ad5e07e17df4335fc381fdb5c899ca243a1877050c847476eacf0b",
+      "size": 2834
+    },
     "tests/test_pr16_story_fast_maori.py": {
       "sha256": "020fd8cbe7d465949740fa200dfcfee20aefa3587ce2b744c07816f5bb203f8b",
       "size": 8337
@@ -35761,6 +35958,10 @@
     "tests/test_pr16_story_publication.py": {
       "sha256": "dfbd154f87b86577964a1d7e27f57c5ed481cfae5bbf52a8ac7d80c98a59fb1c",
       "size": 1547
+    },
+    "tests/test_pr16_story_rom_metadata.py": {
+      "sha256": "701c64a7569198bedbf4ee690897e4a659724cc5420af2639737d0f6e9d419e9",
+      "size": 933
     },
     "tests/test_pr16_story_safe_training.py": {
       "sha256": "6946398f45077bca0e73a2f1833c8d8758aca1054f0e20d6fe82b9e79b821b35",
@@ -36501,6 +36702,10 @@
     "tests/test_pr16_story_save99_measure.py": {
       "sha256": "a6985ac229f7efc2d0959fbe2467a05fae3834f37c65d699a121f710188cb71a",
       "size": 6823
+    },
+    "tests/test_pr16_story_trainer_adapter.py": {
+      "sha256": "897f7bc4b420594c335b0fff2940c2a2328cb43239cff0aca5a5f7c05099ea6c",
+      "size": 6083
     },
     "tests/test_pr16_streak_record.py": {
       "sha256": "9a5853b9d1376cd1e7ae837c38293cf614e2b83ece15ba4da49c375ac7287e5e",
@@ -37762,6 +37967,7 @@
   },
   "story_milestone_policy": {
     "accepted_save25_to100_retained": true,
+    "blocked_by": "LEGACY_DEX_SEEN_STORAGE_ALIAS",
     "contract": "docs/PR16_STORY_MILESTONE_CONTRACT_JA.md",
     "diagnostic_stop_is_milestone": false,
     "live_resource_observation_accepted": true,
@@ -67107,6 +67313,20 @@
       18,
       28
     ]
+  },
+  "story_trainer_adapter": {
+    "blocked_by": "LEGACY_DEX_SEEN_STORAGE_ALIAS",
+    "checkpoint": "content/modernization/pr16_story_trainer_checkpoint.json",
+    "formal_story_save": 101,
+    "guide": "docs/PR16_STORY_TRAINER_ACCEPTANCE_JA.md",
+    "last_artifact": 11306222294,
+    "last_run": 37210491215,
+    "measurement_source": "4ddcdc44aabb704f542f4e37bf2f58cbfaca7573",
+    "milestone_reached": false,
+    "repair_plan": "content/modernization/pr16_story_dex_seen_repair_plan.json",
+    "status": "PASS_TRAINER131_ENTRY_BLOCKED_UNSAFE_DEX_STORAGE",
+    "trainer_entry_accepted": true,
+    "trainer_victory_accepted": false
   },
   "win_exchange_completed": {
     "evidence": "content/modernization/pr16_bp_win_exchange_verified.json",
