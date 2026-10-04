@@ -17,7 +17,7 @@ PARTY='565b246bde44f27bd3ae40958aaba32c96f8ed0287d5c5c053f38e9798491676'
 FLASH='c62fab36bfc00014d0fe0e10aa9e598184e5a56a23115699985ef636827726d1'
 LEDGER='6338b56b0cf486cddb468ef4eb0bbd7525d0f8d79f9d0ca6852b5aa7aea66619';COLD_LEDGER=LEDGER;SETTLED_COLD_LEDGER=LEDGER
 CP='content/modernization/pr16_story_save97_checkpoint.json'
-GUIDE='docs/PR16_STORY_SAVE96_JA.md'
+GUIDE='docs/PR16_STORY_SAVE97_JA.md'
 EVIDENCE='content/modernization/pr16_story_save97_evidence'
 VISUAL='content/modernization/pr16_story_save97_visual_review.json'
 shared=m.a.shared;transport=m.a.transport;parent=m.a.parent

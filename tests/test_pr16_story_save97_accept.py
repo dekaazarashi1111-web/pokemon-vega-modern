@@ -8,6 +8,10 @@ class Acceptance(unittest.TestCase):
         cls.root=pathlib.Path(os.environ['PR16_SAVE97_ORIGINAL']);cls.before=pathlib.Path(os.environ['PR16_SAVE96_INPUT']).read_bytes();cls.rom=pathlib.Path(os.environ['PR16_SAVE97_ROM']).read_bytes();cls.failed=pathlib.Path(os.environ['PR16_SAVE97_FAILED']);cls.pa=a.trace(cls.root/'progress',a.m.a.OUTPUT);cls.pb=a.trace(cls.root/'continue',a.OUTPUT)
     def boundary(self):
         s=(self.root/'story-fast.srm').read_bytes();return a.boundary(self.before,s,s,self.rom)
+    def test_exact_new_record_destinations(self):self.assertEqual((a.GUIDE,a.CP,a.EVIDENCE),('docs/PR16_STORY_SAVE97_JA.md','content/modernization/pr16_story_save97_checkpoint.json','content/modernization/pr16_story_save97_evidence'))
+    def test_record_failed_archive_binding(self):
+        import pr16_story_save97_record as record
+        expected=json.loads((ROOT/'content/modernization/pr16_story_save97_exit_recovery.json').read_bytes())['archive'];self.assertEqual(record.FAIL_ARCHIVE,expected);self.assertEqual(expected['sha256'],'dd8d4d38b4ec884591a441fda96b688025a1edb6e067889a86e3767cba5cc7cd')
     def test_historical_import_budget(self):self.assertGreaterEqual(sys.getrecursionlimit(),1500)
     def test_exact_original(self):self.assertTrue(a.verify(self.root,self.before,self.rom)['museum_exit_accepted'])
     def test_scope(self):
