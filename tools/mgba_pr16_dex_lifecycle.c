@@ -1,4 +1,5 @@
 /* 新規load/newgame接続だけの隔離ARM。QOL結果fixtureと実CFRU wipeを分離。 */
+#define _POSIX_C_SOURCE 200809L
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -64,7 +65,8 @@ int main(int argc,char**argv)
  }
  for(unsigned align=0;align<2;align++){
   unsigned sp=STACK+align*4;
-  for(unsigned i=0;i<262144;i++)c->busWrite8(c,0x02000000+i,(uint8_t)(i*5+29));get(0x02000000,memory,262144);
+  for(unsigned i=0;i<262144;i++){c->busWrite8(c,0x02000000+i,(uint8_t)(i*5+29));}
+  get(0x02000000,memory,262144);
   for(unsigned i=0;i<128;i++)c->busWrite8(c,sp-96+i,0xA5);
   start(0x08054324,0,sp);execute(0x0805432C,1);registers(sp-28,1);
   need(init_calls==1&&wipe_calls==1&&!qol_calls&&reg("r0")==0x0805432D,"actual root wipe-init-tail order");
