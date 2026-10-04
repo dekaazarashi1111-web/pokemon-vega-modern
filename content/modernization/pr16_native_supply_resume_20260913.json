@@ -4364,6 +4364,7 @@
   "observed_head": "01aa0c98cd4ba0367d9200bb2cbf62fc3968f4aa",
   "observed_head_checks": {
     "all10_steps_success": true,
+    "all12_record_steps_success": true,
     "all_consumers_wired": false,
     "all_save_modes_accepted": false,
     "gate_asserted_cases": 1120,
@@ -4374,8 +4375,11 @@
     "native_processes": 3,
     "native_run": 37239138134,
     "reason_ja": "正式ROM/Save101保持。candidate-only START mode0のvalid Flash故障・非破壊error・通常キー再保存・両coldを受入。outerQOL/非START専用画面/全mode/残consumerは未完。",
+    "record_job": 111545113352,
+    "record_run": 37239484032,
     "scope_head": "78b6af2fd055f492fc28f264f5b3f6bfb7cda498",
-    "stage79_cached_not_new_native": true
+    "stage79_cached_not_new_native": true,
+    "whole_receipt_equals_checkpoint": true
   },
   "observed_head_history": [
     {
@@ -12386,13 +12390,7 @@
     "status": "NATIVE_PARTY_RETENTION_ACCEPTED_BP_PENDING",
     "tested_head": "10e535a046441dd3b797918106259b5c57b69716"
   },
-  "pending_runs": [
-    {
-      "run_id": 37239484032,
-      "status": "in_progress",
-      "tested_head": "01aa0c98cd4ba0367d9200bb2cbf62fc3968f4aa"
-    }
-  ],
+  "pending_runs": [],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
   "pr_draft": true,
   "pr_merged": false,
@@ -14267,17 +14265,21 @@
       "sha256": "d1be1b87dfffb84af71598181b2ee440e1b19fa68c3da32a997b95f7ae23f9bd",
       "size": 2036
     },
+    ".github/workflows/pr16-dex-start-failure-closeout.yml": {
+      "sha256": "d4ea724ed33fcd33eac6c3ea58e8ef8298ba27b8ea861e6c3e979797d8edc738",
+      "size": 2464
+    },
     ".github/workflows/pr16-dex-start-failure-record.yml": {
-      "sha256": "cedbff9e4c268dbaac2cf57db2d446e19401897fb690a2f9fa0dbb040204b40e",
-      "size": 2446
+      "sha256": "dadd1da453dd00a6356b13015cb7764f597b516e8eaa896198b758d3d28d0938",
+      "size": 2340
     },
     ".github/workflows/pr16-dex-start-failure.yml": {
       "sha256": "3582c7777687cdacf90075e84c184ed42b8c6b21a16a411fee606ce963de38ed",
       "size": 1683
     },
     ".github/workflows/pr16-dex-start-fault-ui.yml": {
-      "sha256": "417ce101e803a65dea2398e86aac3a27f11fccb563e295445158e49d2cc72336",
-      "size": 1766
+      "sha256": "3b1ff1c11b78a7481802e7b7b765d4f9e53e272779104270dd979f4903d509fc",
+      "size": 1666
     },
     ".github/workflows/pr16-dex-visual-probe.yml": {
       "sha256": "a4d9be79fa5d49d803e4cc5dee8b09a3fc29c21b1b3a5244635ebb4b66392d53",
@@ -32787,6 +32789,10 @@
       "sha256": "b43dbaf353bf6f8f5ae17a2de108adaea589efe739a53e745ed8dc09265f5513",
       "size": 5570
     },
+    "scripts/pr16_dex_start_failure_closeout.py": {
+      "sha256": "1e1eebe7d51881e51ed3fa8307539c1ee68e9e01feb026260fbbd46c8cf67216",
+      "size": 7997
+    },
     "scripts/pr16_dex_start_failure_record.py": {
       "sha256": "97ad61aadd47172bfaa49f2e70bca947bcc0bee54193f301e6d595a480e38664",
       "size": 11880
@@ -38828,6 +38834,30 @@
         "guide": "docs/PR16_DEX_START_FAILURE_JA.md",
         "outer_qol_failure_unresolved": true,
         "record_run": 37239484032,
+        "recording": {
+          "all12_record_steps_success": true,
+          "arm_compiles": 0,
+          "checkpoint": "content/modernization/pr16_dex_start_failure_checkpoint.json",
+          "checkpoint_identity": {
+            "sha256": "766b2345cb20e67606c4d8ef718a17bc03d8d7bc92b14fde1e8b6c6386907090",
+            "size": 94751
+          },
+          "closeout_run": 37239694729,
+          "closeout_source": "f8c1009ad81454affe1e1679856fee85bc7c4db7",
+          "formal_rom_changed": false,
+          "formal_save_changed": false,
+          "host_tests_rerun": 0,
+          "native_processes": 0,
+          "record_archive_sha256": "fdde0ddc81734c2312f5b389fb1b0827aea38205dce849c73f20c44e58017d3f",
+          "record_archive_size": 20500,
+          "record_artifact": 11317305248,
+          "record_completion": "4d6243ea1863f8e15990dc9b6d0ac95552837a04",
+          "record_job": 111545113352,
+          "record_receipt_equals_checkpoint": true,
+          "record_run": 37239484032,
+          "record_source": "01aa0c98cd4ba0367d9200bb2cbf62fc3968f4aa",
+          "status": "PASS_TERMINAL_START_FAULT_RETRY_RECORD"
+        },
         "same_save_mode0_accepted": true,
         "status": "PASS_CANDIDATE_SAME_SAVE_START_FAULT_KEY_RETRY_COLD",
         "ui_job": 111544115505,

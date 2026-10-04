@@ -9991,3 +9991,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Boundary: HOF返値無視とdecompression payload衝突/重複副作用、mode4失敗後flag clear、valid MDXでもstale selectorによるauthority wipe、outerQOL sector31失敗status未伝播を独立未完として記録。正式ROM/Save101不変、trainer131後半0。
 - Commit: record source=01aa0c98cd4ba0367d9200bb2cbf62fc3968f4aa; 同branch非force push。
 - Network: 同repoActions・既存入力・固定mGBA一次source・公式Ubuntu compiler。公開source/address-size-SHA/text/screensのみ。ROM/入力save/runtime/runner/credential追加公開0。
+
+## 2026-10-04T22:21:40.746470+00:00
+- Timestamp: 2026-10-04T22:21:40.746470+00:00
+- Task: USER-20261004-DEX-START-FAILURE / valid START故障記録の終端
+- Version: dex-start-failure-closeout
+- Status: STOPPED（安全な候補限定受入点。非START/outerQOL/全mode/残consumer未完）
+- Summary: record run37239484032/job111545113352全12stepとartifact11317305248のcheckpoint全byte一致を確認しpending解除。成功したUI/recordの自動triggerをmanual-onlyへ。
+- Files changed: closeout source/workflow、2workflow起動条件、固定MDJSON、両ログ。
+- Verify: 全evidence/source/fixed resume/index/task graph PASS、host再試験0/ARM0/native0。前runのfault1/818入力/5画面＋cold16/12入力/2画面、3process原本を再利用。正式ROM/Save101不変。
+- Boundary: 次はouterQOL sector31失敗attempt伝播と非START保存失敗通知/退避/副作用契約、全modeと残typed consumer。trainer131後半は未実行。既知一般CI QOL不一致・Stage79cache・旧9月18日queueは区別。
+- Commit: closeout source=f8c1009ad81454affe1e1679856fee85bc7c4db7; 同branch非force push。
+- Network: 同repoActionsと既存text receiptのみ。ROM/入力save/runtime/runner/credential追加公開0。
