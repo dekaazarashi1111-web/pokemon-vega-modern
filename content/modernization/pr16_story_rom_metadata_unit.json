@@ -1,0 +1,18 @@
+{
+  "tests": 4,
+  "passed": 4,
+  "stdout": "",
+  "stderr": "test_audit_preserves_plain_metadata (test_pr16_story_rom_metadata.PublicMetadataTests.test_audit_preserves_plain_metadata) ... ok\ntest_binding_retains_address_hash (test_pr16_story_rom_metadata.PublicMetadataTests.test_binding_retains_address_hash) ... ok\ntest_detect_raw_nested (test_pr16_story_rom_metadata.PublicMetadataTests.test_detect_raw_nested) ... ok\ntest_nested_names_redacted (test_pr16_story_rom_metadata.PublicMetadataTests.test_nested_names_redacted) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.000s\n\nOK\n",
+  "source_bindings": {
+    "scripts/pr16_story_rom_metadata.py": {
+      "size": 888,
+      "sha256": "178bb04d04ec831f910033fb4452e7eaa6da991c1b1ae8dc1535e18f038c056e"
+    },
+    "tests/test_pr16_story_rom_metadata.py": {
+      "size": 933,
+      "sha256": "701c64a7569198bedbf4ee690897e4a659724cc5420af2639737d0f6e9d419e9"
+    }
+  },
+  "new_native_processes": 0,
+  "scope": "Final source focused tests, including no-ROM-fragments public metadata; prior accepted80 cases not rerun"
+}

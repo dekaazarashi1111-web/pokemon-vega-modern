@@ -1,0 +1,36 @@
+# PR16 図鑑seen保存ABIの修復前停止
+
+## 今回確認したこと
+
+正式進行はSave101のまま。trainer131の視線発火、NPCの接近、既知会話待ちへのA、通常battle entryは確認した。新しいtrainer勝利、賞金、シオウ回復、通常Save/fresh Continueは未受入。
+
+未保存native原本はrun37210189574とrun37210491215。後者は85画面/167入力/7093frames。観測83→84で通常battle flags12/outcome0、実4体481/528/1537/1147を観測。全party600byte、所持金23114円、Save101/RTC全byteを保持。再暗号化を平文へ戻すとstat7/9各+1、毒歩数4022→0、時計だけで説明できる。最後のchosen_move89は先行wildの残留でありtrainerの技使用ではない。戦闘コマンドは0。
+
+## 容量超過は正当なstate差分ではない
+
+固定候補SHA25606c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5の現変換rootは0x09575f68。trainer131の3体目SID1537は全国963、4体目SID1147は全国749へ変換される。現active switch-in consumerから到達するsetter0x0810586cは旧52byteの三重seen領域をそのまま使う。
+
+- 全国963: Save1+0x670のtrainerRematches[54]が0→4、Save1+0x3a90のFameCheckerが16→20、Save2+0xd4の非図鑑領域が16→20になる予測。
+- 全国749: Save1+0x655のtrainerRematches[27]が0→16。他2コピーは同bitが既setで数値不変だが、図鑑として正しい領域にはならない。
+- 元の全国番号の意味の上限386と、52byteの物理上限416は別。387〜416がbyte境界内でも拡張図鑑の意味を保証しない。0やu8 indexがwrapする2049以上も拒否する。
+
+これは固定ROMの制御フロー・命令byte・現表・原本RAMからの静的予測であり、破壊をnativeでわざと実行した結果ではない。新しいguardは実4体を監査表と照合し、戦闘コマンド前にunsafe_legacy_dex_seen_targetで停止する。同じ原本に対するsource-only再生で停止を検証した。大きな許可mask、非図鑑byteのOR容認、trainer完了扱い、セーブは追加していない。
+
+## 単純なDPE/CFRU再適用では修復できない
+
+DPE-JP固定commit10ff98c85ebf37ab5cb39a41b6e9b50f06efb19eには拡張seen/owned RAMへ向けるパッチがあるが、この候補の16箇所は旧byteのまま。CFRUのSave1+0x310/+0x3a6へ移すと現Bagを壊す。現repositoryのconfig/save_layout.csvはこれらをRETIREDと明記し、旧52byte領域をLIVEとしている。
+
+既存save_migrationの旧Dex用予約258byteはVACQ240byte・整列3byte・予約15byteへ転用済み。末尾予約129byteだけではseen/caughtの2bitmapは入らない。予約への無宣言書込はversion/loader/CRC契約にも反する。
+
+番号空間も別の問題として解決が必要。現ROMでnativeSID129と追加SID481はともにnational129だが、異なる名前・種族値・typeを参照する。容量だけ広げても同一bitへのaliasが残る。低番号の図鑑意味や過去データの完全性まで今回受入したものではない。
+
+## 次の実装順と完了ゲート
+
+1. 現manifestのstable species/form keyから図鑑owner keyを定義し、native Vegaと追加公式種の同番号衝突を全件検査する。番号を推測して既存bitを再配分しない。
+2. SaveBlock、S61E、VACQ、research、PC、Hall of Fame等の現保存ownerを照合し、seen/caughtの容量、version、CRC、RAM/flash位置、旧Save101からの移行を明示する。未使用に見えるbyteを黙って借りない。旧データの曖昧なbitを根拠なく修復・消去しない。
+3. 専用late-stageの署名照合付きpatchとして全getter/setter/clear/count/save/Continueを同じownerへ接続する。T09再リンク後にStage70が絶対literal位置をpatchする構造を壊さない。DPEパッチの直貼り、Bag領域利用、図鑑表示だけの修正は不可。
+4. host回帰は0、1、386、387、416、417、742、749、963、2048、2049、同番号2species、caught/seen整合、clear、無効mode、旧version移行、CRC破損、再暗号化、Save/Continueを含む。全非owner byteのsentinel保持を検査する。
+5. 影響consumerは初回battle entry/敵交代、wild/capture、gift/acquisition、QOL所持数、research捕獲判定、図鑑UI/count、通常保存/独立Continue。影響を受けない過去story/native証拠は再実行しない。高番号の別個体を使うisolated保存境界から先に検証し、未検証候補へ正式進行を切り替えない。
+6. 新候補の保存ABI限定受入後、保存原本Save101から未保存失敗区間だけ通常入力で再開。trainer131と後続通常戦をcompact ledgerで検査し、シオウPokecenterで回復・通常Save・cold Continueまで進む。雑魚戦ごとのSaveは作らない。
+
+恒久修復、候補ROM切替、既存Saveの移行、図鑑全機能、trainer勝利・賞金は未完。今回実装したのは接近/entryの厳密ownerと、破損を許可しない境界検査である。修復の根拠・固定URL・具体的なconsumerはcontent/modernization/pr16_story_trainer_owner_diagnosis.jsonとpr16_story_dex_seen_repair_plan.jsonに保存する。

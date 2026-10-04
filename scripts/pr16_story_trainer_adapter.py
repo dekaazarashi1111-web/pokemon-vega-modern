@@ -3,7 +3,9 @@
 from copy import deepcopy
 import struct
 from pr16_story_live_observer import FIELD,BATTLE,u16,u32
-from pr16_story_clock import no_save,time_evidence,byte_deltas
+from pr16_story_clock import no_save,time_evidence,byte_deltas,clock_delta,ledger_after_minutes
+from pr16_story_battle_adapter import rekey_image
+import pr16_story_dex_guard as dex
 from pr16_story_milestones import require,DiagnosticStop
 
 def context(live):
@@ -39,13 +41,37 @@ def field_preserved(before,after):
     if bytes(expected)!=after['save1']:raise DiagnosticStop('unowned_trainer_field_save1',dict(deltas=byte_deltas(expected,after['save1'])[:80]))
     return t
 
-def observe_approach(session):
-    start=deepcopy(session.live);decisions=[];ack=False
+def entry(before,after,owner):
+    no_save(before,after);a,b=before['observation'],after['observation']
+    require(a['map']==b['map']==[3,24] and a['xy']==b['xy']==[38,6] and a['callback2']==FIELD and a['lock']==b['lock']==1,'trainer_entry_location')
+    require(context(before)==dict(stack_depth=0,mode=2,native=0x0806B159,pc=0x08192F0E),'trainer_entry_known_intro')
+    require(b['callback2']==BATTLE and b['battle_flags']==12 and b['battle_outcome']==0 and after['route']['trainer_id']==owner['id']==131,'new_trainer131_entry_not_previous_win')
+    require(before['party']==after['party'],'trainer_entry_whole_party_preserved')
+    require(after['ui']['enemy_count']==4 and len(after['enemy_mons'])==len(owner['party'])==4,'actual_four_enemy_party')
+    for actual,expected in zip(after['enemy_mons'],owner['party']):
+        require(all(actual[k]==expected[k]for k in('species','level','item','moves')) and actual['status']==0 and actual['hp']==actual['max_hp']>0,'current_generated_enemy_identity')
+    expected1,expected2=rekey_image(before['save1'],before['save2'],u32(after['save2'],0xF20));key=u32(after['save2'],0xF20)
+    for index in (7,9):
+        at=0x1200+4*index;struct.pack_into('<I',expected1,at,min(0xFFFFFF,(u32(expected1,at)^key)+1)^key)
+    struct.pack_into('<H',expected1,0x1044,0)
+    # Only current first mon: canonical481 -> national129; all three bits are already set.
+    expected1[0x608]|=1;expected1[0x3A28]|=1;expected2[0x6C]|=1
+    if bytes(expected1)!=after['save1']:raise DiagnosticStop('unowned_trainer_entry_save1',dict(deltas=byte_deltas(expected1,after['save1'])[:80]))
+    clock=clock_delta(bytes(expected2),after['save2'],b['frame']-a['frame'])
+    require(ledger_after_minutes(before['ledger'],clock['minute_rollovers'])==after['ledger'],'trainer_entry_ledger')
+    require(before['expanded_vars']==after['expanded_vars'],'trainer_entry_expanded_vars')
+    return dict(owner='trainer131_normal_entry',actual_enemy_species=[m['species']for m in after['enemy_mons']],game_stats_incremented=[7,9],poison_step_counter_reset=True,clock=clock,rekey_plaintext_preserved=True,party_preserved=True,battle_commands_sent=0,trainer_victory_accepted=False,save_requested=False)
+
+def observe_approach(session,owner=None,audit=None):
+    start=deepcopy(session.live);decisions=[];ack=False;intro=None
     require(context(start)==dict(stack_depth=0,mode=1,native=0x08068F09,pc=0x08192DFE),'known_approach_only')
     for _ in range(12):
         o=session.last;c=context(session.live)
         if o['callback2']==BATTLE:
-            raise DiagnosticStop('trainer131_entry_observed_no_battle_input',dict(context=c,observation=o,ui=session.live['ui'],decisions=decisions,no_battle_input_sent=True))
+            require(intro is not None and owner is not None and audit is not None,'trainer_entry_audit_required')
+            result=entry(intro,session.live,owner)
+            dex.require_safe_party(session.live,audit)
+            raise DiagnosticStop('safe_trainer_battle_adapter_not_implemented',dict(entry=result,decisions=decisions,no_battle_input_sent=True))
         if o['callback2']==0x08055E69 and ack:
             decisions.append(dict(observation=o['observe'],kind='trainer_transition_no_input'));session.step((0,600));continue
         require(o['callback2']==FIELD and o['lock']==1,'trainer_approach_callback')
@@ -53,7 +79,7 @@ def observe_approach(session):
         if c==dict(stack_depth=0,mode=1,native=0x08068F09,pc=0x08192DFE):kind='approach_no_input';pairs=((0,180),)
         elif c==dict(stack_depth=0,mode=2,native=0x08068DDD,pc=0x08192F0D):kind='intro_printing_no_input';pairs=((0,180),)
         elif c==dict(stack_depth=0,mode=2,native=0x0806B159,pc=0x08192F0E):
-            require(not ack,'intro_ack_once');kind='known_intro_waitbuttonpress';pairs=((1,2),(0,180));ack=True
+            require(not ack,'intro_ack_once');intro=deepcopy(session.live);kind='known_intro_waitbuttonpress';pairs=((1,2),(0,180));ack=True
         else:raise DiagnosticStop('trainer131_unknown_field_script',dict(context=c,observation=o,decisions=decisions))
         decisions.append(dict(observation=o['observe'],kind=kind));session.step(*pairs)
     raise DiagnosticStop('trainer131_approach_budget',dict(decisions=decisions))

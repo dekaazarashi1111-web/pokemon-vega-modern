@@ -14,7 +14,21 @@ def sight():
     p=bytearray(z['save1']);struct.pack_into('<HH',p,0,38,6);z['save1']=bytes(p)
     s=bytearray(240);s[1]=1;struct.pack_into('<II',s,4,0x08068F09,0x08192DFE);z['route']=dict(trainer_id=131,script_contexts=bytes(s));z['flags']=z['save1'][0xEE0:0x1000]
     return a,z
+def trainer_entry():
+    _,a=sight();c=bytearray(a['route']['script_contexts']);c[1]=2;struct.pack_into('<II',c,4,0x0806B159,0x08192F0E);a['route']['script_contexts']=bytes(c)
+    z=deepcopy(a);z['observation'].update(observe=2,frame=1628,callback2=t.BATTLE,battle_flags=12,battle_outcome=0);z['ui']['enemy_count']=4
+    team=[dict(species=x,level=y,item=k,moves=m)for x,y,k,m in [(481,13,0,[150,33,175,0]),(528,14,139,[55,341,281,21]),(1537,15,141,[411,352,227,549]),(1147,16,139,[495,24,334,249])]]
+    owner=dict(id=131,party=team);z['enemy_mons']=[dict(**x,status=0,hp=31,max_hp=31)for x in team]
+    x,y=t.rekey_image(a['save1'],a['save2'],0x12345678)
+    for index in (7,9):
+        at=0x1200+4*index;struct.pack_into('<I',x,at,min(0xFFFFFF,(t.u32(x,at)^0x12345678)+1)^0x12345678)
+    struct.pack_into('<H',x,0x1044,0);x[0x608]|=1;x[0x3A28]|=1;y[0x6C]|=1;z['save1']=bytes(x);z['save2']=bytes(y)
+    return a,z,owner
+
 class TrainerTests(unittest.TestCase):
+    def test_entry_closed_plaintext_and_party(self):
+        a,z,o=trainer_entry();r=t.entry(a,z,o);self.assertTrue(r['rekey_plaintext_preserved']);self.assertFalse(r['trainer_victory_accepted']);self.assertEqual(r['game_stats_incremented'],[7,9])
+
     def test_same_frame_script_pc(self):
         row=dict(trainer_live=4,frame=100,schema=1,battle_script=0x09009243)
         self.assertEqual(reader.parse(row,dict(observe=4,frame=100)),row)
@@ -68,3 +82,18 @@ for n,e in {
  'ledger':lambda a,z:bytechange(z,'ledger',0x743,1)
 }.items():bad(n,e)
 if __name__=='__main__':unittest.main()
+
+def bad_entry(name,edit):
+    def test(self):
+        a,z,o=trainer_entry();edit(a,z,o)
+        with self.assertRaises(DiagnosticStop):t.entry(a,z,o)
+    setattr(TrainerTests,'test_entry_reject_'+name,test)
+for n,e in {
+ 'money':lambda a,z,o:bytechange(z,'save1',0x290,z['save1'][0x290]^1),
+ 'rematch_corruption':lambda a,z,o:bytechange(z,'save1',0x670,z['save1'][0x670]^4),
+ 'battle_tower_corruption':lambda a,z,o:bytechange(z,'save2',0xD4,z['save2'][0xD4]^4),
+ 'wrong_enemy':lambda a,z,o:z['enemy_mons'][2].update(species=963),
+ 'residual_win':lambda a,z,o:z['observation'].update(battle_outcome=1),
+ 'pp':lambda a,z,o:bytechange(z,'party',54,z['party'][54]^1),
+ 'unknown_stat':lambda a,z,o:bytechange(z,'save1',0x1228,z['save1'][0x1228]^1),
+}.items():bad_entry(n,e)

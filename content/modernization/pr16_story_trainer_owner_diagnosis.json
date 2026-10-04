@@ -1,0 +1,1323 @@
+{
+  "schema": 1,
+  "status": "STATIC_FIXED_ROM_OWNER_DIAGNOSIS_NOT_NATIVE_ACCEPTANCE",
+  "candidate": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  },
+  "trainer131": {
+    "script": 154584391,
+    "battle_mode": 0,
+    "local_id": 3,
+    "party_order": [
+      481,
+      528,
+      1537,
+      1147
+    ],
+    "physical_flag": 1411,
+    "flag_save1_offset": 3984,
+    "flag_mask": 8,
+    "ordinary_reward": 448,
+    "reward_native_accepted": false
+  },
+  "field_event": {
+    "initial": {
+      "callback2": 134569589,
+      "lock": 1,
+      "script_mode": 1,
+      "native_pointer": 134647561,
+      "script_pc": 135867902,
+      "native_pointer_is_stale": true,
+      "reason": "ScriptContext_Stop/Enable changes global status; mode1/native pointer alone is not still-native wait"
+    },
+    "approach": {
+      "script_start": 135867894,
+      "end_special": 55,
+      "task": 134750476,
+      "prepare_owner": 134749208,
+      "template": {
+        "save1_base": 2320,
+        "slot": 2,
+        "local": 3,
+        "x_offset": 2324,
+        "y_offset": 2326,
+        "movement_offset": 2329,
+        "x_before": 34,
+        "x_after": 37,
+        "y": 6,
+        "movement": 10
+      }
+    },
+    "dialogue": {
+      "intro_text": 149027897,
+      "defeat_text": 149027928,
+      "script": 135868169,
+      "waitmessage_native": 134647261,
+      "waitmessage_pc": 135868173,
+      "waitbutton_native": 134656345,
+      "waitbutton_pc": 135868174,
+      "approved_button_gate": "field callback, trainer131, script mode2, native+PC both exact, closed persistent evidence; one A edge at waitbutton only"
+    },
+    "end_script": {
+      "mode0_releaseall": 135868249,
+      "mode0_end": 135868250
+    }
+  },
+  "battle_owners": {
+    "entry_stats": {
+      "ids": [
+        7,
+        9
+      ],
+      "transform": "plaintext=min(plaintext+1,0xffffff), then encode using actual current Save2 key",
+      "save1_offsets": [
+        4636,
+        4644
+      ],
+      "no_stat10_increment": true
+    },
+    "snapshot82": {
+      "money": 23114,
+      "stats": {
+        "7": 70,
+        "8": 32,
+        "9": 38,
+        "10": 0
+      },
+      "trainer_flag_raw": 16
+    },
+    "money_multiplier": {
+      "pointer_slot": 33701704,
+      "offset": 74,
+      "size": 1,
+      "require_value": 1,
+      "read_only_pointer_bounds_required": true
+    },
+    "exit": {
+      "callback": 134740941,
+      "next_callback": 134570401,
+      "physical_flag_write": "save1[0xf90] |= 8",
+      "money": "min(old+448,999999), current key XOR",
+      "questlog_callback": 135349472,
+      "questlog_guard": "u16 at0x0203af9c!=0; currently no general owner acceptance",
+      "no_native_reward_or_exit_acceptance": true
+    }
+  },
+  "shift_ui": {
+    "owner": "battle script opcode0x67, not Player controller cmd19",
+    "function": 134370997,
+    "active_table": 151254096,
+    "table_entry": 151254508,
+    "communication": 33701346,
+    "cursor": 33701347,
+    "required_observer": {
+      "battle_script_pointer_slot": 33701076
+    },
+    "modern_script_pc": 151032387,
+    "legacy_script_pc": 136038155,
+    "scope": "PC must match bound shift-text bytecode, communication[0]==1, execution==0, ongoing single trainer battle; B sets No; unknown script/choice stops",
+    "modern_script_native_observed": false
+  },
+  "dex": {
+    "conversion_function": 134490505,
+    "conversion_root_literal": 134490528,
+    "conversion_root": 156721000,
+    "conversion_index": "(species-1)*2; return0 for species0",
+    "species": [
+      {
+        "species": 481,
+        "national": 129,
+        "index": 16,
+        "mask": 1,
+        "seen_writes": [
+          {
+            "region": "save2",
+            "offset": 108,
+            "before_at_unsaved_observation82": 1,
+            "predicted_after_SET_SEEN": 1
+          },
+          {
+            "region": "save1",
+            "offset": 1544,
+            "before_at_unsaved_observation82": 1,
+            "predicted_after_SET_SEEN": 1
+          },
+          {
+            "region": "save1",
+            "offset": 14888,
+            "before_at_unsaved_observation82": 1,
+            "predicted_after_SET_SEEN": 1
+          }
+        ],
+        "within_physical_52bytes": true,
+        "within_original_national_dex": true
+      },
+      {
+        "species": 528,
+        "national": 194,
+        "index": 24,
+        "mask": 2,
+        "seen_writes": [
+          {
+            "region": "save2",
+            "offset": 116,
+            "before_at_unsaved_observation82": 2,
+            "predicted_after_SET_SEEN": 2
+          },
+          {
+            "region": "save1",
+            "offset": 1552,
+            "before_at_unsaved_observation82": 2,
+            "predicted_after_SET_SEEN": 2
+          },
+          {
+            "region": "save1",
+            "offset": 14896,
+            "before_at_unsaved_observation82": 2,
+            "predicted_after_SET_SEEN": 2
+          }
+        ],
+        "within_physical_52bytes": true,
+        "within_original_national_dex": true
+      },
+      {
+        "species": 1537,
+        "national": 963,
+        "index": 120,
+        "mask": 4,
+        "seen_writes": [
+          {
+            "region": "save2",
+            "offset": 212,
+            "before_at_unsaved_observation82": 16,
+            "predicted_after_SET_SEEN": 20
+          },
+          {
+            "region": "save1",
+            "offset": 1648,
+            "before_at_unsaved_observation82": 0,
+            "predicted_after_SET_SEEN": 4
+          },
+          {
+            "region": "save1",
+            "offset": 14992,
+            "before_at_unsaved_observation82": 16,
+            "predicted_after_SET_SEEN": 20
+          }
+        ],
+        "within_physical_52bytes": false,
+        "within_original_national_dex": false
+      },
+      {
+        "species": 1147,
+        "national": 749,
+        "index": 93,
+        "mask": 16,
+        "seen_writes": [
+          {
+            "region": "save2",
+            "offset": 185,
+            "before_at_unsaved_observation82": 16,
+            "predicted_after_SET_SEEN": 16
+          },
+          {
+            "region": "save1",
+            "offset": 1621,
+            "before_at_unsaved_observation82": 0,
+            "predicted_after_SET_SEEN": 16
+          },
+          {
+            "region": "save1",
+            "offset": 14965,
+            "before_at_unsaved_observation82": 16,
+            "predicted_after_SET_SEEN": 16
+          }
+        ],
+        "within_physical_52bytes": false,
+        "within_original_national_dex": false
+      },
+      {
+        "species": 93,
+        "national": 93,
+        "index": 11,
+        "mask": 16,
+        "seen_writes": [
+          {
+            "region": "save2",
+            "offset": 103,
+            "before_at_unsaved_observation82": 16,
+            "predicted_after_SET_SEEN": 16
+          },
+          {
+            "region": "save1",
+            "offset": 1539,
+            "before_at_unsaved_observation82": 16,
+            "predicted_after_SET_SEEN": 16
+          },
+          {
+            "region": "save1",
+            "offset": 14883,
+            "before_at_unsaved_observation82": 16,
+            "predicted_after_SET_SEEN": 16
+          }
+        ],
+        "within_physical_52bytes": true,
+        "within_original_national_dex": true
+      },
+      {
+        "species": 1140,
+        "national": 742,
+        "index": 92,
+        "mask": 32,
+        "seen_writes": [
+          {
+            "region": "save2",
+            "offset": 184,
+            "before_at_unsaved_observation82": 32,
+            "predicted_after_SET_SEEN": 32
+          },
+          {
+            "region": "save1",
+            "offset": 1620,
+            "before_at_unsaved_observation82": 0,
+            "predicted_after_SET_SEEN": 32
+          },
+          {
+            "region": "save1",
+            "offset": 14964,
+            "before_at_unsaved_observation82": 32,
+            "predicted_after_SET_SEEN": 32
+          }
+        ],
+        "within_physical_52bytes": false,
+        "within_original_national_dex": false
+      }
+    ],
+    "setter": {
+      "entry": 135288940,
+      "wrapper": 134777424,
+      "no_high_national_guard": true,
+      "no_expanded_storage_hook": true,
+      "index_actual": "u8(((u16)(national-1))/8)",
+      "mask_actual": "1<<((national-1)&7)",
+      "cases": {
+        "0_get_seen": "S2[0x5c+i]&mask must equal S1[0x5f8+i]&mask and S1[0x3a18+i]&mask and be nonzero",
+        "1_get_caught": "S2[0x28+i]&mask must equal all three seen copies and be nonzero",
+        "2_set_seen": "OR mask into three seen copies S2[0x5c+i], S1[0x5f8+i], S1[0x3a18+i]",
+        "3_set_caught": "OR mask into S2[0x28+i] only"
+      }
+    },
+    "limits": {
+      "original_national_dex_count": 386,
+      "physical_flag_array_bytes": 52,
+      "physical_national_capacity": 416,
+      "region_1": [
+        1528,
+        1580
+      ],
+      "region_2": [
+        14872,
+        14924
+      ],
+      "region_save2_seen": [
+        92,
+        144
+      ],
+      "region_save2_owned": [
+        40,
+        92
+      ],
+      "validity": "1..386 known original semantics; 387..416 fit the existing arrays but are not proof of extension support; >=417 overflows nominal arrays;0 underflows, >2048 index wraps"
+    },
+    "aliases": [
+      {
+        "national": 963,
+        "mask": 4,
+        "save1_seen1": {
+          "offset": 1648,
+          "field": "trainerRematches[54]",
+          "status": "retained-ROM confirmed active field",
+          "before": 0,
+          "after": 4
+        },
+        "save1_seen2": {
+          "offset": 14992,
+          "field": "FameChecker row15 byte0, bit2 (flavorTextFlags bit0); retained code uses4byte stride",
+          "before": 16,
+          "after": 20
+        },
+        "save2_seen": {
+          "offset": 212,
+          "stock_schema": "BattleTowerData playerRecord offset0x24, within party[0]",
+          "cfru_schema": "box25 offset0x24",
+          "status": "both fixed schemas say non-dex; candidate field consumer not independently established",
+          "before": 16,
+          "after": 20
+        }
+      },
+      {
+        "national": 749,
+        "mask": 16,
+        "save1_seen1": {
+          "offset": 1621,
+          "field": "trainerRematches[27]",
+          "status": "retained-ROM confirmed active field",
+          "before": 0,
+          "after": 16
+        },
+        "save1_seen2": {
+          "offset": 14965,
+          "field": "FameChecker row8 byte1, bit4 (16bit bit12 / flavorTextFlags bit10);4byte retained stride",
+          "before": 16,
+          "after": 16
+        },
+        "save2_seen": {
+          "offset": 185,
+          "stock_schema": "BattleTowerData playerRecord.name[5]",
+          "cfru_schema": "box25 offset9",
+          "status": "both fixed schemas say non-dex; candidate field consumer not independently established",
+          "before": 16,
+          "after": 16
+        }
+      }
+    ],
+    "dpe_expected_patches_absent": [
+      {
+        "address": 135289020,
+        "official_dpe_size": 2,
+        "official_dpe_sha256": "3e39ed78e50103716c788d4147df413950e5eba73c6e33acd923f15865795676",
+        "actual_size": 2,
+        "actual_sha256": "e593490a360ac8104e842141c4059603e0d90b79de99e5b6b6f05afe14945659",
+        "official_patch_present": false
+      },
+      {
+        "address": 135289022,
+        "official_dpe_size": 2,
+        "official_dpe_sha256": "3e39ed78e50103716c788d4147df413950e5eba73c6e33acd923f15865795676",
+        "actual_size": 2,
+        "actual_sha256": "86f80fa2ae598a66c489b827703b248e40bb3bba20ca04ce2d1b134999ae087f",
+        "official_patch_present": false
+      },
+      {
+        "address": 135289042,
+        "official_dpe_size": 2,
+        "official_dpe_sha256": "3e39ed78e50103716c788d4147df413950e5eba73c6e33acd923f15865795676",
+        "actual_size": 2,
+        "actual_sha256": "d778a106dd710d17ead1018701237025a0d87876e6f8576084a00d4397a2f83d",
+        "official_patch_present": false
+      },
+      {
+        "address": 135289044,
+        "official_dpe_size": 2,
+        "official_dpe_sha256": "3e39ed78e50103716c788d4147df413950e5eba73c6e33acd923f15865795676",
+        "actual_size": 2,
+        "actual_sha256": "99401d2999a2957e1324680617dedcf6ee5a1c7958ebe900aab8b00d60da54fc",
+        "official_patch_present": false
+      },
+      {
+        "address": 135289046,
+        "official_dpe_size": 2,
+        "official_dpe_sha256": "3e39ed78e50103716c788d4147df413950e5eba73c6e33acd923f15865795676",
+        "actual_size": 2,
+        "actual_sha256": "a64d176801c79a6222d3104c013e037f6b13156661ce889517c9c20cd5768963",
+        "official_patch_present": false
+      },
+      {
+        "address": 135289058,
+        "official_dpe_size": 2,
+        "official_dpe_sha256": "c9ed38400a9de922f36355b1b9fcec66dc8326b4198902d705aa1560a9e45839",
+        "actual_size": 2,
+        "actual_sha256": "99401d2999a2957e1324680617dedcf6ee5a1c7958ebe900aab8b00d60da54fc",
+        "official_patch_present": false
+      },
+      {
+        "address": 135289072,
+        "official_dpe_size": 2,
+        "official_dpe_sha256": "5122e72ebe47c5e97e029659dd80fdcb98e284503976293de8ddd66a92592597",
+        "actual_size": 2,
+        "actual_sha256": "9159c3afb2d38467f9a18b993d79ba49e3fd3ac0e9f0bca618ba899aad1c157a",
+        "official_patch_present": false
+      },
+      {
+        "address": 135289126,
+        "official_dpe_size": 2,
+        "official_dpe_sha256": "387da93c57e24aca43495b2e241399d532048e038ee0ed9ca740c22a06cbce91",
+        "actual_size": 2,
+        "actual_sha256": "662fb906c0fb671022f9914d6bba12250ea6adfb12dbae81cebb353b3685083e",
+        "official_patch_present": false
+      },
+      {
+        "address": 135289128,
+        "official_dpe_size": 2,
+        "official_dpe_sha256": "3e39ed78e50103716c788d4147df413950e5eba73c6e33acd923f15865795676",
+        "actual_size": 2,
+        "actual_sha256": "146da586036684deee1acba1ae0520a79e7502da8b302dc4b683bd4f88f7c8e1",
+        "official_patch_present": false
+      },
+      {
+        "address": 135289140,
+        "official_dpe_size": 2,
+        "official_dpe_sha256": "5176b87fd14ed9b40b2dd586e3abb3765ae8f78d1a31a197135b0eb85f173e85",
+        "actual_size": 2,
+        "actual_sha256": "08a3e2cbce599d75b970e99c39d71b418e7d1e96af3cbfc300253575a28ccc8c",
+        "official_patch_present": false
+      },
+      {
+        "address": 135289182,
+        "official_dpe_size": 2,
+        "official_dpe_sha256": "387da93c57e24aca43495b2e241399d532048e038ee0ed9ca740c22a06cbce91",
+        "actual_size": 2,
+        "actual_sha256": "662fb906c0fb671022f9914d6bba12250ea6adfb12dbae81cebb353b3685083e",
+        "official_patch_present": false
+      },
+      {
+        "address": 135289184,
+        "official_dpe_size": 2,
+        "official_dpe_sha256": "3e39ed78e50103716c788d4147df413950e5eba73c6e33acd923f15865795676",
+        "actual_size": 2,
+        "actual_sha256": "eca4f5e4cd1fdce774319215745b246de95ad6c196787ce64f8f28e42980fde6",
+        "official_patch_present": false
+      },
+      {
+        "address": 135289036,
+        "official_dpe_size": 4,
+        "official_dpe_sha256": "7ba91f3398671637ce6b656037b56b655b1315221c74c70e604857a2d4ee56ff",
+        "actual_size": 4,
+        "actual_sha256": "1913480be96bee194b5411be8e45e9b51327ca13e69f68720b484aad76d44c85",
+        "official_patch_present": false
+      },
+      {
+        "address": 135289168,
+        "official_dpe_size": 4,
+        "official_dpe_sha256": "7ba91f3398671637ce6b656037b56b655b1315221c74c70e604857a2d4ee56ff",
+        "actual_size": 4,
+        "actual_sha256": "1913480be96bee194b5411be8e45e9b51327ca13e69f68720b484aad76d44c85",
+        "official_patch_present": false
+      },
+      {
+        "address": 135289112,
+        "official_dpe_size": 4,
+        "official_dpe_sha256": "9bace2c883a5ce1db1f1f33fd0266da4982ed8d99e706265a92cff28af335124",
+        "actual_size": 4,
+        "actual_sha256": "1913480be96bee194b5411be8e45e9b51327ca13e69f68720b484aad76d44c85",
+        "official_patch_present": false
+      },
+      {
+        "address": 135289204,
+        "official_dpe_size": 4,
+        "official_dpe_sha256": "9bace2c883a5ce1db1f1f33fd0266da4982ed8d99e706265a92cff28af335124",
+        "actual_size": 4,
+        "actual_sha256": "1913480be96bee194b5411be8e45e9b51327ca13e69f68720b484aad76d44c85",
+        "official_patch_present": false
+      }
+    ],
+    "cfru_storage_contract": {
+      "save1_seen": 784,
+      "save1_caught": 934,
+      "length_each": 150,
+      "national_capacity": 1200,
+      "incompatible_with_candidate": "candidate still stores186 encrypted bag quantities across0x312..0x5f8 and rekeys them; cannot apply CFRU/DPE bag-backed flag map blindly"
+    },
+    "conclusion": "SID1537/963 and1147/749 on current trainer131 take an unguarded seen-write path into independently-owned rematch/FameChecker state. Treat it as a candidate storage-ABI defect, not an acceptable owner exemption. Current getter/expanded-count consumers also use the same stock storage. A fixed function/table signature should trigger fail-closed before selecting a move that can cause first unsafe switch-in.",
+    "candidate_fix_not_attempted": true,
+    "namespace_overlap": {
+      "status": "CONFIRMED_DISTINCT_CURRENT_SPECIES_ROWS_SHARE_NATIONAL_OUTPUT",
+      "rows": [
+        {
+          "species": 129,
+          "national": 129,
+          "encoded_name_size": 8,
+          "encoded_name_sha256": "0c9a24fd71aed66dcab60fc8d0f89b791c0ccbd6a234198ce776d0e31ea543e0",
+          "base_stats": [
+            80,
+            135,
+            130,
+            70,
+            95,
+            90
+          ],
+          "types": [
+            8,
+            14
+          ]
+        },
+        {
+          "species": 481,
+          "national": 129,
+          "encoded_name_size": 8,
+          "encoded_name_sha256": "582d8e0cca8985f48f23a9d83c1395aed4e193ae2ac0cb2548eee1ccd73207f5",
+          "base_stats": [
+            20,
+            10,
+            55,
+            80,
+            15,
+            20
+          ],
+          "types": [
+            11,
+            11
+          ]
+        },
+        {
+          "species": 194,
+          "national": 194,
+          "encoded_name_size": 8,
+          "encoded_name_sha256": "97862a124b345527f9737ac1b92d15bae3bfbbe937a20c24e9f1a37cb3a9aa3b",
+          "base_stats": [
+            101,
+            80,
+            60,
+            111,
+            120,
+            57
+          ],
+          "types": [
+            14,
+            2
+          ]
+        },
+        {
+          "species": 528,
+          "national": 194,
+          "encoded_name_size": 8,
+          "encoded_name_sha256": "3015aed64532676b5d3ffae6e641a2a8c408b5429f98da0cf93863fcbb7990c4",
+          "base_stats": [
+            55,
+            45,
+            45,
+            15,
+            25,
+            25
+          ],
+          "types": [
+            11,
+            4
+          ]
+        }
+      ],
+      "examples": [
+        [
+          129,
+          481,
+          129
+        ],
+        [
+          194,
+          528,
+          194
+        ]
+      ],
+      "meaning": "Native Vega mapping is retained for1..411; canonical official additions reuse these integer national values. This is a semantic namespace collision independently of the >=417 out-of-bounds defect. Existing low-index bit equality is not evidence of a semantically correct National Dex. Names are retained encoded bytes; specific species-name interpretation is not required for this finding."
+    },
+    "migration_warning": "Do not erase or repair overlapped rematch/FameChecker bytes by guessing their pre-corruption values. The old bitmap aliases have multiple owners and are not reliable evidence for reconstructing high-national seen/caught. Establish a versioned migration policy and preserve original Save101."
+  },
+  "sources": [
+    {
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "path": "src/trainer_see.c",
+      "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/trainer_see.c"
+    },
+    {
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "path": "src/scrcmd.c",
+      "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/scrcmd.c"
+    },
+    {
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "path": "src/script.c",
+      "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/script.c"
+    },
+    {
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "path": "include/script.h",
+      "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/include/script.h"
+    },
+    {
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "path": "data/scripts/trainer_battle.inc",
+      "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/data/scripts/trainer_battle.inc"
+    },
+    {
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "path": "src/battle_setup.c",
+      "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/battle_setup.c"
+    },
+    {
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "path": "src/battle_main.c",
+      "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/battle_main.c"
+    },
+    {
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "path": "src/battle_script_commands.c",
+      "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/battle_script_commands.c"
+    },
+    {
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "path": "data/battle_scripts_1.s",
+      "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/data/battle_scripts_1.s"
+    },
+    {
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "path": "src/pokedex.c",
+      "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/pokedex.c"
+    },
+    {
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "path": "src/pokedex_screen.c",
+      "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/pokedex_screen.c"
+    },
+    {
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "path": "include/global.h",
+      "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/include/global.h"
+    },
+    {
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "path": "include/constants/pokedex.h",
+      "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/include/constants/pokedex.h"
+    },
+    {
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "path": "include/constants/game_stat.h",
+      "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/include/constants/game_stat.h"
+    },
+    {
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "path": "src/event_object_movement.c",
+      "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/event_object_movement.c"
+    },
+    {
+      "repository": "kapibarasan000/DPE-JP",
+      "commit": "10ff98c85ebf37ab5cb39a41b6e9b50f06efb19e",
+      "path": "bytereplacement",
+      "url": "https://github.com/kapibarasan000/DPE-JP/blob/10ff98c85ebf37ab5cb39a41b6e9b50f06efb19e/bytereplacement"
+    },
+    {
+      "repository": "kapibarasan000/DPE-JP",
+      "commit": "10ff98c85ebf37ab5cb39a41b6e9b50f06efb19e",
+      "path": "assembly/pokedex_hooks.s",
+      "url": "https://github.com/kapibarasan000/DPE-JP/blob/10ff98c85ebf37ab5cb39a41b6e9b50f06efb19e/assembly/pokedex_hooks.s"
+    },
+    {
+      "repository": "kapibarasan000/DPE-JP",
+      "commit": "10ff98c85ebf37ab5cb39a41b6e9b50f06efb19e",
+      "path": "hooks",
+      "url": "https://github.com/kapibarasan000/DPE-JP/blob/10ff98c85ebf37ab5cb39a41b6e9b50f06efb19e/hooks"
+    },
+    {
+      "repository": "kapibarasan000/CFRU-JP",
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "path": "include/global.h",
+      "url": "https://github.com/kapibarasan000/CFRU-JP/blob/e24a16fe39e27ae162faf5b78596d1f3df18489d/include/global.h"
+    },
+    {
+      "repository": "kapibarasan000/CFRU-JP",
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "path": "include/pokedex.h",
+      "url": "https://github.com/kapibarasan000/CFRU-JP/blob/e24a16fe39e27ae162faf5b78596d1f3df18489d/include/pokedex.h"
+    }
+  ],
+  "bindings": [
+    {
+      "address": 154584391,
+      "size": 14,
+      "sha256": "908024083a38af2705b0d14b7235835f2c6f7631adb7568e4b59f6aaa755ec3b",
+      "meaning": "trainer131 physical script mode0 id131 local0 intro/lose ptrs"
+    },
+    {
+      "address": 135867894,
+      "size": 13,
+      "sha256": "84f096c70515db08543f39ae6fe418d5bd8564038ce0dfc8fdc2a4872e89853d",
+      "meaning": "approach lock special music/endapproach waitstate goto intro"
+    },
+    {
+      "address": 135868169,
+      "size": 84,
+      "sha256": "2542d020f311630ec6a0648f8ef5484ed2f8b4fdea4f1055ce46a36ce78dc0a5",
+      "meaning": "intro waitmessage waitbutton battle end mode switch release"
+    },
+    {
+      "address": 135671388,
+      "size": 4,
+      "sha256": "ee6d19b1a4550f9a2ecc42cdfd8f92774cabb0b95f2026914d6051303ab87783",
+      "meaning": "ScrCmd waitmessage pointer"
+    },
+    {
+      "address": 135671416,
+      "size": 4,
+      "sha256": "e33490b377ec9b7af16251b1de9dff99db9d5bd249d66254c51d2cbfe70d2009",
+      "meaning": "ScrCmd waitbutton pointer"
+    },
+    {
+      "address": 134656312,
+      "size": 20,
+      "sha256": "be4dbd4a300b537b69b431026dfebca4374f5552ec33e0c8e68648173ebe9e70",
+      "meaning": "waitmessage owner"
+    },
+    {
+      "address": 134647260,
+      "size": 28,
+      "sha256": "ea1944218a7b0e25ef5db40b5cb9580605107300569f9b6adf15b01d77aef8e7",
+      "meaning": "IsFieldMessageBoxHidden"
+    },
+    {
+      "address": 134656764,
+      "size": 68,
+      "sha256": "c5e8c443560679bb511e60b71aad25d28cafe25dbc0d4755d0d5206c0334f483",
+      "meaning": "waitbutton owner"
+    },
+    {
+      "address": 134656344,
+      "size": 164,
+      "sha256": "afd2afca2e2be1ac55e2d7f91fe5cb05c7ece389f1b90833ed8f32bb40e8f4f0",
+      "meaning": "WaitForAorBPress"
+    },
+    {
+      "address": 135672120,
+      "size": 20,
+      "sha256": "d4695205faa5003528a4b312bc23e1fc81a55a026d64d87965b0a9373b9cf406",
+      "meaning": "special intro/fought/endapproach/music"
+    },
+    {
+      "address": 134741240,
+      "size": 16,
+      "sha256": "34c7194615e893dc4527e9c42311912dd542d1d04e71118f630fbb6c367c63fc",
+      "meaning": "ShowTrainerIntroSpeech"
+    },
+    {
+      "address": 134741496,
+      "size": 20,
+      "sha256": "d1da8d60683fa76e698472c8d6c6f6c4f7185e487f4088f9dd3a6f95c7bd39c9",
+      "meaning": "GetIntroSpeech"
+    },
+    {
+      "address": 134750476,
+      "size": 36,
+      "sha256": "6886ad6d461c116e42ad73a882f35fe00d1704af3093405a031e3c40d48d6a60",
+      "meaning": "EndTrainerApproach"
+    },
+    {
+      "address": 151254508,
+      "size": 4,
+      "sha256": "1263f1b4759fb0ac9e19588f3784b9a39437e1bf24890a042fc2351d5b3d8ea0",
+      "meaning": "active battle opcode yesnobox"
+    },
+    {
+      "address": 134370996,
+      "size": 220,
+      "sha256": "e7f491c013d8969d2ef0abb38d8093b7b2e6d7ae31a4f73e2cea3b979c90653a",
+      "meaning": "Cmd_yesnobox B maps to No"
+    },
+    {
+      "address": 134737808,
+      "size": 32,
+      "sha256": "34e6b1e69293f3920a8c542b6b71041c447a306796cc02d5a5397f788f8d2b88",
+      "meaning": "trainer entry stat7 stat9"
+    },
+    {
+      "address": 134490504,
+      "size": 36,
+      "sha256": "5a6799cb992c93a3bf1929d724f3ce3b92842dcc5bd3f8e4b9131f597f7d0e1a",
+      "meaning": "現SpeciesToNationalPokedexNumの全関数。root0x09575f68、SID-1のu16 table"
+    },
+    {
+      "address": 134777424,
+      "size": 24,
+      "sha256": "835fa515c414a3158b1baa66605e66525748357ccf4e1e998d19f9ece6cfe869",
+      "meaning": "GetSetPokedexFlagはindexIsSpecies=0として実setter0x0810586cへBL"
+    },
+    {
+      "address": 135288940,
+      "size": 268,
+      "sha256": "c8fb287f289da8f5ecc5bdb685e618b37757ff3ca0341b31307fe470815ca6d6",
+      "meaning": "DexScreen_GetSetPokedexFlag全4case、入口からreturnとliteral pool。hookもbounds guardもない"
+    },
+    {
+      "address": 134293688,
+      "size": 4,
+      "sha256": "f45d6ad745b50db6396d95dd8a7b2fb70ea5a29915164512d0d567c62aaec0d3",
+      "meaning": "通常battle introの次callback=0x080128c1"
+    },
+    {
+      "address": 134293696,
+      "size": 34,
+      "sha256": "e5abeb37bbcaf2795ecc45525c9b4b7b5b1f4fdcc10c83dd8af08d3e79860aab",
+      "meaning": "通常battle intro関数の入口。exec待ち後各battlerを処理"
+    },
+    {
+      "address": 134294040,
+      "size": 88,
+      "sha256": "d51d59cf247b253f05f3eaa539ac1fba462e348bdf0740eeb92034ddc2186672",
+      "meaning": "trainer intro条件分岐とactiveSID→national→SET_SEEN call"
+    },
+    {
+      "address": 151254408,
+      "size": 4,
+      "sha256": "104fe77b2c0980efec778fc8208c2d7534910c02c30fa3c6916f914ebf3ca084",
+      "meaning": "現active battle-script cmd0x4e=switchinanim pointer0x080238d5"
+    },
+    {
+      "address": 134363348,
+      "size": 172,
+      "sha256": "57487ef7b4371d9d36d4568458380a0ef5420994d984e6393ad449d3a8a8c88d",
+      "meaning": "switchinanimの全関数、opponentのSIDをnationalへ変換しstock SET_SEENへ"
+    },
+    {
+      "address": 134304904,
+      "size": 44,
+      "sha256": "51871fd493d521b0f38544b0251b874614c022b51b31cbe45bb41bc99ef4e1e4",
+      "meaning": "battle-script dispatcher、current PC/active command table roots"
+    },
+    {
+      "address": 135322496,
+      "size": 40,
+      "sha256": "9e485b239ceb3d9b20eeafbf5880a8276b9ef6a8303961fc122ffa90b7b32a80",
+      "meaning": "trainerRematches[index]の保持ROM reader: Save1+0x63a+index"
+    },
+    {
+      "address": 135322536,
+      "size": 44,
+      "sha256": "c0c76d4c3ac8105972d8309bd6df90b38b8e54a00064f627d787c202bd294564",
+      "meaning": "trainerRematches[0..99]の保持ROM clear consumer"
+    },
+    {
+      "address": 135321792,
+      "size": 40,
+      "sha256": "0a414fc7e7f925d569647d2a7454268c573a9e94437b9cf86d6aa924dda21c07",
+      "meaning": "ClearRematchStateOfLastTalked retained consumer"
+    },
+    {
+      "address": 135451960,
+      "size": 56,
+      "sha256": "61ffe2e44c7bafb3649432f8667dea39966ef57df6ab83e6ff5fd526ed993c6f",
+      "meaning": "FameChecker retained reader: Save1+0x3a54+4*index"
+    },
+    {
+      "address": 135454408,
+      "size": 88,
+      "sha256": "cf9511673249c065f77549e13cd750526c17f6e72f8e7a8462557ec6088611ef",
+      "meaning": "FameChecker flavour flags retained reader、4byte stride"
+    },
+    {
+      "address": 135454216,
+      "size": 92,
+      "sha256": "3247453e7193f77f641595d6247db5b368100dafd744e64ea605e4c65432e385",
+      "meaning": "FameChecker flavour flags retained writer"
+    },
+    {
+      "address": 134608668,
+      "size": 56,
+      "sha256": "907add7b59480a3effb3fdd37d7d563f2090552153ecba71fd3fc26c039a342d",
+      "meaning": "trainer approach persistent template XY/movement owner"
+    },
+    {
+      "address": 134749208,
+      "size": 144,
+      "sha256": "b7913cdaab841063495570233f0a85149756e31bc2886a5a3c49ea1bbd420026",
+      "meaning": "trainer approach PrepareToEngage: movement override then template XY"
+    },
+    {
+      "address": 134623004,
+      "size": 16,
+      "sha256": "67452d674f75d3eac164f7de6cffbcafcf9737bb3a550a5191796d7c9a0cd2f7",
+      "meaning": "trainer facing to movement type table root"
+    },
+    {
+      "address": 137798948,
+      "size": 5,
+      "sha256": "93561803d7b1ba45ac95027a37770037eacd48e76b7aedbe4178d53992f4e8e7",
+      "meaning": "trainer direction-to-movement types"
+    },
+    {
+      "address": 134563664,
+      "size": 168,
+      "sha256": "97436055e98035c39378b31266cd3050d8e4adfd7d3ca696fb7e8e6771623783",
+      "meaning": "stat increment/get/set key XOR and saturation0xffffff"
+    },
+    {
+      "address": 134740940,
+      "size": 172,
+      "sha256": "bf602fcf0503cd49be6c3425417c5114af7dfebdcdaf1c9409c7ed9b2a048490",
+      "meaning": "CB2_EndTrainerBattle: win returns via0x080561a1, sets logical trainerflag via active hook, calls questlog guarded owner"
+    },
+    {
+      "address": 134740764,
+      "size": 8,
+      "sha256": "bde0e7f1a646198fa1491055fae1f17ba823722e4307bdbba7be0e34c7102d82",
+      "meaning": "active trainer ScriptFlagSet hook"
+    },
+    {
+      "address": 154152360,
+      "size": 12,
+      "sha256": "b63eb8b5594260bec50f7ab5943c29b36a3be9749e73a7609f93f737f7171381",
+      "meaning": "trainer ScriptFlagSet wrapper"
+    },
+    {
+      "address": 154152648,
+      "size": 36,
+      "sha256": "534cfd137f4ea11abc14b2e5fb5b3b7505247f452700defa28cc2445c61b45b0",
+      "meaning": "GetTrainerAFlag→mapflag→global FlagSet"
+    },
+    {
+      "address": 154629572,
+      "size": 84,
+      "sha256": "425db68d12ebcd733a9789b5742d936ae48e52f88ee45a3b7a7ffb350b271605",
+      "meaning": "current global FlagSet adapter; extras only flags0x906 and0x820, not1411"
+    },
+    {
+      "address": 154634738,
+      "size": 12,
+      "sha256": "6c3155c4f9706c85f6d40109ba8f783e13647c7e401ce9c3dc877a1563df4ac4",
+      "meaning": "original FlagSet trampoline"
+    },
+    {
+      "address": 134667900,
+      "size": 32,
+      "sha256": "c279c3ac8ddc884f96161e5e5998dde1d759160b2c020d42516b6f993e8b9db9",
+      "meaning": "stock physical flag-bit writer"
+    },
+    {
+      "address": 134667700,
+      "size": 8,
+      "sha256": "1294e4aaa9ee75b1dd8919b1625dfe9e8586a5c7b0d01cbe8fd917eb9e600712",
+      "meaning": "current GetFlagPointer veneer"
+    },
+    {
+      "address": 151613700,
+      "size": 28,
+      "sha256": "c95a0d32bd84b71e1741e91567d57f3157f515697e1e2bd8ffc6159392707bc1",
+      "meaning": "expanded flag selection or fallthrough ordinary flag pointer"
+    },
+    {
+      "address": 134667832,
+      "size": 48,
+      "sha256": "a9acceeae62140de17288bb9a5bb31bb236bd3ae63d33cf4f2d3fac1b362bb80",
+      "meaning": "ordinary flag Save1+0xee0+(flag//8) branch"
+    },
+    {
+      "address": 152146534,
+      "size": 42,
+      "sha256": "71fb4f6973a925fe2aed8cf83057b52f61b90a900381a0798f0c938acf2ea56b",
+      "meaning": "current reward reads moneyMultiplier=*(u8*)(*(u32*)0x02023f48+0x4a)"
+    },
+    {
+      "address": 134872192,
+      "size": 56,
+      "sha256": "a9e69938000c9f6b3acb20429c9ac59d673cb8db94e0df653908e4341c2e8e0b",
+      "meaning": "AddMoney clamp999999 before key encoding"
+    },
+    {
+      "address": 151032378,
+      "size": 26,
+      "sha256": "70c03f58051f1b7725535ef3d970b3f4ba3d79b257b9a79f604730519d5e9379",
+      "meaning": "modern shift prompt string0x011a + setbyte communication0 + cmd67 + No branch"
+    },
+    {
+      "address": 136038146,
+      "size": 26,
+      "sha256": "d905469c7d872af4d78736e12e6513af05cae43769b49c82442d18347a055774",
+      "meaning": "retained vanilla shift prompt equivalent"
+    },
+    {
+      "address": 157338404,
+      "size": 128,
+      "sha256": "384f85023ecd17c094c2387283b372dde4d25239e0613dd5b9e4296efebe33e6",
+      "meaning": "expanded dex count consumer still calls stock getter0x0810586d; no separate storage in this reader"
+    },
+    {
+      "address": 156721960,
+      "size": 2,
+      "sha256": "9037f92bc91fdcc764a89d9144c341d887ffc83351cc8cf0530555c89920a47d",
+      "meaning": "SID481→national129 現table row"
+    },
+    {
+      "address": 156722054,
+      "size": 2,
+      "sha256": "486daed13adcd9b8e8ae5ea6429e5adfb8712fbfc35ad7ae3ec76e7320efb592",
+      "meaning": "SID528→national194 現table row"
+    },
+    {
+      "address": 156724072,
+      "size": 2,
+      "sha256": "c7c4b9010dde171587f2e443d9cf37111f066990ff8dfef0b2ed5eb4039e9773",
+      "meaning": "SID1537→national963 現table row"
+    },
+    {
+      "address": 156723292,
+      "size": 2,
+      "sha256": "158cac659cd20db51f1992ddc71e44b2dff7191af280b46680e98bd7fbeae8c9",
+      "meaning": "SID1147→national749 現table row"
+    },
+    {
+      "address": 156721184,
+      "size": 2,
+      "sha256": "b230ec74895e4131aecd468afe2723678730e6f7471bd48c3f239320587faeb7",
+      "meaning": "SID93→national93 現table row"
+    },
+    {
+      "address": 156723278,
+      "size": 2,
+      "sha256": "0d9c6f735c1abb2b61ccc4d5b91635861ae1121a758d157b38b8b3cf3579a91c",
+      "meaning": "SID1140→national742 現table row"
+    },
+    {
+      "address": 156721256,
+      "size": 2,
+      "sha256": "9037f92bc91fdcc764a89d9144c341d887ffc83351cc8cf0530555c89920a47d",
+      "meaning": "namespace overlap SID129 national row"
+    },
+    {
+      "address": 156728468,
+      "size": 32,
+      "sha256": "3ec496088764434366f94bc55e44f33da9d48a2a9a941b66b200afc029cade4e",
+      "meaning": "namespace overlap SID129 full current base-stats record"
+    },
+    {
+      "address": 156797228,
+      "size": 8,
+      "sha256": "0c9a24fd71aed66dcab60fc8d0f89b791c0ccbd6a234198ce776d0e31ea543e0",
+      "meaning": "namespace overlap SID129 full current encoded name"
+    },
+    {
+      "address": 156721960,
+      "size": 2,
+      "sha256": "9037f92bc91fdcc764a89d9144c341d887ffc83351cc8cf0530555c89920a47d",
+      "meaning": "namespace overlap SID481 national row"
+    },
+    {
+      "address": 156739732,
+      "size": 32,
+      "sha256": "d9ca26cd8baca7af4ab2940e8e0ea4b0d0ae96260ee5cfa149b8b303e69782ca",
+      "meaning": "namespace overlap SID481 full current base-stats record"
+    },
+    {
+      "address": 156800044,
+      "size": 8,
+      "sha256": "582d8e0cca8985f48f23a9d83c1395aed4e193ae2ac0cb2548eee1ccd73207f5",
+      "meaning": "namespace overlap SID481 full current encoded name"
+    },
+    {
+      "address": 156721386,
+      "size": 2,
+      "sha256": "486daed13adcd9b8e8ae5ea6429e5adfb8712fbfc35ad7ae3ec76e7320efb592",
+      "meaning": "namespace overlap SID194 national row"
+    },
+    {
+      "address": 156730548,
+      "size": 32,
+      "sha256": "088b8e92bdb0a6d589507795270cb200081daf7f20fe8645293300e09437ceb8",
+      "meaning": "namespace overlap SID194 full current base-stats record"
+    },
+    {
+      "address": 156797748,
+      "size": 8,
+      "sha256": "97862a124b345527f9737ac1b92d15bae3bfbbe937a20c24e9f1a37cb3a9aa3b",
+      "meaning": "namespace overlap SID194 full current encoded name"
+    },
+    {
+      "address": 156722054,
+      "size": 2,
+      "sha256": "486daed13adcd9b8e8ae5ea6429e5adfb8712fbfc35ad7ae3ec76e7320efb592",
+      "meaning": "namespace overlap SID528 national row"
+    },
+    {
+      "address": 156741236,
+      "size": 32,
+      "sha256": "763c0b0c4c31a93a5e674618f93d35fbf11cfa68e71570f5ec0112791151d399",
+      "meaning": "namespace overlap SID528 full current base-stats record"
+    },
+    {
+      "address": 156800420,
+      "size": 8,
+      "sha256": "3015aed64532676b5d3ffae6e641a2a8c408b5429f98da0cf93863fcbb7990c4",
+      "meaning": "namespace overlap SID528 full current encoded name"
+    },
+    {
+      "address": 135057448,
+      "size": 4,
+      "sha256": "84791998392d964241a480e186f54dac4c145359da0da05023be415234c0af6f",
+      "meaning": "current species-name table literal=0x09588524"
+    }
+  ],
+  "research_provenance": {
+    "as_of_utc": "2026-10-04T14:55:00Z",
+    "scope_ja": "本JSONを作成した読取専用調査時点の範囲。親工程・後続の実行、記録追加、commitを含まない。",
+    "method_ja": "hash固定ROMの静的逆アセンブル・byte照合、既存route-fifth artifact観測82の再読、固定GitHub source読取。",
+    "native_runs_during_this_investigation": 0,
+    "candidate_or_input_save_mutations_during_this_investigation": 0,
+    "no_new_native_acceptance_claimed": true,
+    "trace_artifact_id": 11305787045,
+    "trace_run_id": 37208042999,
+    "trace_observation": 82
+  },
+  "current_source_audit": {
+    "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+    "branch": "codex/modernization-followup-20260908",
+    "inspected_source_commit": "4ddcdc44aabb704f542f4e37bf2f58cbfaca7573",
+    "status": "SOURCE_AUDIT_COMPLETE_NO_IMPLEMENTATION",
+    "conclusion_ja": "T09は全国番号テーブルと変換経路を拡張する一方、調査したruntime・save ABIには1025番号対応seen/caught bitmap ownerが見つからない。Save1+0x310/+0x3A6は現行Bagと衝突するため再利用不可。親が実ROMで確認したstock setter越境への対処は、境界保護と永続owner/APIの設計を分けて行う必要がある。",
+    "verified_findings": [
+      {
+        "finding_ja": "CFRU由来Save1+0x310/+0x3A6の旧全国Dex宣言はRETIRED。Save1+0x310..+0x5F8の744 bytesはLIVE Bag（42 Items、30 Key Items、13 Balls、58 TMHM、43 Berries）。",
+        "source": "config/save_layout.csv"
+      },
+      {
+        "finding_ja": "現行宣言はseen三鏡をSave1+0x5F8/+0x3A18、Save2+0x5Cに各52 bytes、ownedをSave2+0x28に52 bytes。Save2+0x18の16-byte header/personalityも保全対象。",
+        "source": "config/save_layout.csv"
+      },
+      {
+        "finding_ja": "species_runtime.c/.hにseen/caught setter/getter・保存bitmap ownerは存在しない。National→Speciesはcanonical tableを走査するbounded adapter。",
+        "sources": [
+          "overlays/species_surface/species_runtime.c",
+          "overlays/species_surface/species_runtime.h"
+        ]
+      },
+      {
+        "finding_ja": "build_species_surface.py L1193–1205はnative411行を保全し、Egg0、canonical413..1620を連結するhybrid Species→National tableを生成。L1291–1318は0x429A0参照先変更、L1556–1562は0x428F0逆引きhook。stock bitmap容量拡張はこの実装に含まれない。",
+        "source": "scripts/build_species_surface.py"
+      },
+      {
+        "finding_ja": "T08旧258-byte Dex予約は現在、3-byte alignment pad、240-byte VACQ acquisition block、15-byte予約に再配分済み。末尾予約も129 bytesだけであり、1025番号seen/caughtの129 bytes×2は現行空き予約に入らない。",
+        "sources": [
+          "overlays/save_migration/save_migration.h",
+          "config/save_layout.csv"
+        ]
+      },
+      {
+        "finding_ja": "VegaModernSaveDataは0x800固定長、現行version2。予約領域非zeroはvalidatorが拒否する。既存CRC/versionとoffsetを保ったまま予約へ任意追記する方式は不適切。",
+        "source": "overlays/save_migration/save_migration.c"
+      },
+      {
+        "finding_ja": "Stage70はT09 runtime内のROM file offset 0x1FD9F94、0x1FDA050、0x1FDA13C、0x1FDA174、0x1FDA1F4を固定consumerとしてspecies count/maxを1621/1620から1670/1669へ変更する。T09 C再リンク時は後段literal位置とhashを再監査する必要がある。",
+        "source": "config/modernization_p04_species_runtime.json"
+      },
+      {
+        "finding_ja": "既存species mGBA smokeのDex5例はSpecies↔Nationalの変換検査であり、bitmap write/read境界・永続化を検査していない。",
+        "source": "tools/mgba_species_runtime_smoke.c"
+      }
+    ],
+    "repair_scope": {
+      "immediate_containment_ja": "親が実ROMで同定したstock getter/setter境界へ署名照合付きbounded処理を追加する案。高番号登録を単に抑止するだけなら全国図鑑修正の完成とは扱わない。",
+      "durable_fix_ja": "namespaceと保存ownerを明示したseen/caught API、独立versioned永続blob、および全consumerの整合が必要。現candidateへ専用late-stage patchとして追加するとT09からの全段再リンクの波及を限定できる。",
+      "if_relink_t09": [
+        "overlays/species_surface/species_runtime.c/.h",
+        "scripts/build_species_surface.py expected_symbols・4096-byte上限・compile/link・hook・metadata",
+        "config/modernization_p04_species_runtime.json count/pointer consumer固定位置",
+        "tools/modernization_p04_species_runtime.py consumer context照合",
+        "generated runtime symbol/hash、後続stage parent identity"
+      ],
+      "storage_options": [
+        {
+          "option": "独立versioned Dex永続blob",
+          "assessment_ja": "推奨設計候補。1025番号×seen/caught=258 bytesにheader/version/CRCを加える。config/save_layout.csvとram_layout.csvに独立ownerを割り当て、flash・RAMのlive重複およびlifetimeを先に監査する。",
+          "approved_address": null,
+          "constraint_ja": "既取得資料から安全な連続空間の具体アドレスは証明していない。既存sector31 ownerやRAM末尾の見かけの穴を空きと断定しない。"
+        },
+        {
+          "option": "T08 ledger version/size変更",
+          "assessment_ja": "波及が大きい代替案。0x800固定長と隣接owner、rollback領域、複数runtimeのvalidator/固定offsetを更新する必要がある。旧258-byte予約を復活させてVACQを上書きしてはならない。"
+        }
+      ],
+      "read_write_consumers_observed": [
+        {
+          "path": "overlays/acquisition_runtime/acquisition_engine_adapter_rom.c",
+          "locations": "L219, L383–392, L452–462, L671–685",
+          "role_ja": "0x08088A51をGET_CAUGHT、SET_SEEN、SET_CAUGHTとして使用。取得台帳migration、rank集計、gift/capture/hatch登録へ波及。"
+        },
+        {
+          "path": "overlays/qol_production/qol_production.c",
+          "locations": "L393, L725–733",
+          "role_ja": "まるいおまもりのofficial caught>=100判定。"
+        },
+        {
+          "path": "overlays/research_economy_v1/research_economy_v1.c",
+          "locations": "L297, L1610–1618, L1641, L1691–1695",
+          "role_ja": "Species→National→GET_CAUGHT、戦闘前後の新規捕獲判定。"
+        },
+        {
+          "path": "overlays/save_migration/save_migration.c",
+          "locations": "L189–259",
+          "role_ja": "validate/load/version migration/CRC。新Dex ownerをledgerへ含める方式なら変更必須。"
+        },
+        {
+          "path": "overlays/stage61_display_npc_event_audit/stage61_display_npc_event_audit.c",
+          "locations": "L1007–1101, L1270以降",
+          "role_ja": "S61E compact serializerはexpanded flags/vars/last-ball/coinsだけを扱う。Dexをここへ保存する設計ならversioned payload/CRC/clear/read/write全体の変更が必要。現在Dex ownerは含まれない。"
+        }
+      ],
+      "save_clear_hook_inventory_status": "NOT_EXHAUSTIVELY_AUDITED",
+      "save_clear_requirements_ja": "新規ゲーム初期化、legacy migration、通常save二slot原子更新、cold Continue、partial-save/PC復帰、clear、失敗rollback、CRC/version拒否の全境界を新owner設計へ接続する。既存hookの完全callsite一覧は本限定調査では証明していない。",
+      "preserve_ja": "全国図鑑の正規解禁magic/flag/varや進化guardは今回のbitmap越境修正の代わりに緩和しない。",
+      "migration_safety": {
+        "baseline_ja": "元Save101を不変の原本として保全し、明示的なmigration政策と新candidate identityを設ける。",
+        "forbidden_ja": "旧bitmap越境先のalias byteから高national登録履歴を推測復元したり、誤破壊したと推測するbit/byteを一律ゼロ化するmigrationは禁止。rematch・FameChecker等の正しい元値と偶然同値の図鑑書込みを識別できない。",
+        "evidence_scope_ja": "親の実ROM owner調査で示された破壊領域の復旧可否に関する注意。workerは壊れたsaveの修復可能性を実測していない。"
+      }
+    },
+    "required_regressions": [
+      "GET_SEEN/GET_CAUGHT/SET_SEEN/SET_CAUGHTと不正operation、番号0・412・413・416・417・963・1025・1026・0xFFFFの境界canary。",
+      "SID1537自然遭遇でSave1+0x670・Bag全744 bytes・Save2後続・secondary mirror後続の不変性。trainer131のrematch/event無関係stateも比較。",
+      "native地方登録とofficial全国登録のnamespace整合、同全国番号formの重複集計防止、Egg未登録、Unown/Spinda personality保全。",
+      "seen/caught別登録、通常save→cold Continue、二slot切替、save失敗/中断、PC出入、新規/旧save migration、破損/未知version fail-closed。",
+      "acquisition gift/capture/hatch、rank集計、おまもり100種閾値、research新規捕獲判定。",
+      "新owner以外のRAM/flash許可span外差分ゼロ。変更ROMでは旧candidateの受入を自動継承せず新identityを記録。",
+      "namespace具体例: nativeSID129とaddedSID481が共にnational129である現ROMを起点に、別種のseen/caught登録・読出し・地方/全国集計が互いを誤って登録しないこと。"
+    ],
+    "source_paths": [
+      "config/save_layout.csv",
+      "config/ram_layout.csv",
+      "overlays/species_surface/species_runtime.c",
+      "overlays/species_surface/species_runtime.h",
+      "scripts/build_species_surface.py",
+      "overlays/save_migration/save_migration.h",
+      "overlays/save_migration/save_migration.c",
+      "scripts/build_save_compatibility.py",
+      "tests/test_save_layout.py",
+      "config/modernization_p04_species_runtime.json",
+      "tools/modernization_p04_species_runtime.py",
+      "overlays/acquisition_runtime/acquisition_engine_adapter_rom.c",
+      "overlays/qol_production/qol_production.c",
+      "overlays/research_economy_v1/research_economy_v1.c",
+      "overlays/stage61_display_npc_event_audit/stage61_display_npc_event_audit.c",
+      "tools/mgba_species_runtime_smoke.c"
+    ],
+    "source_urls": [
+      "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/blob/4ddcdc44aabb704f542f4e37bf2f58cbfaca7573/config/save_layout.csv",
+      "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/blob/4ddcdc44aabb704f542f4e37bf2f58cbfaca7573/config/ram_layout.csv",
+      "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/blob/4ddcdc44aabb704f542f4e37bf2f58cbfaca7573/overlays/species_surface/species_runtime.c",
+      "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/blob/4ddcdc44aabb704f542f4e37bf2f58cbfaca7573/overlays/species_surface/species_runtime.h",
+      "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/blob/4ddcdc44aabb704f542f4e37bf2f58cbfaca7573/scripts/build_species_surface.py",
+      "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/blob/4ddcdc44aabb704f542f4e37bf2f58cbfaca7573/overlays/save_migration/save_migration.h",
+      "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/blob/4ddcdc44aabb704f542f4e37bf2f58cbfaca7573/overlays/save_migration/save_migration.c",
+      "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/blob/4ddcdc44aabb704f542f4e37bf2f58cbfaca7573/scripts/build_save_compatibility.py",
+      "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/blob/4ddcdc44aabb704f542f4e37bf2f58cbfaca7573/tests/test_save_layout.py",
+      "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/blob/4ddcdc44aabb704f542f4e37bf2f58cbfaca7573/config/modernization_p04_species_runtime.json",
+      "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/blob/4ddcdc44aabb704f542f4e37bf2f58cbfaca7573/tools/modernization_p04_species_runtime.py",
+      "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/blob/4ddcdc44aabb704f542f4e37bf2f58cbfaca7573/overlays/acquisition_runtime/acquisition_engine_adapter_rom.c",
+      "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/blob/4ddcdc44aabb704f542f4e37bf2f58cbfaca7573/overlays/qol_production/qol_production.c",
+      "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/blob/4ddcdc44aabb704f542f4e37bf2f58cbfaca7573/overlays/research_economy_v1/research_economy_v1.c",
+      "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/blob/4ddcdc44aabb704f542f4e37bf2f58cbfaca7573/overlays/stage61_display_npc_event_audit/stage61_display_npc_event_audit.c",
+      "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/blob/4ddcdc44aabb704f542f4e37bf2f58cbfaca7573/tools/mgba_species_runtime_smoke.c"
+    ],
+    "namespace_finding_reference": "dex.namespace_overlap and its fixed-ROM bindings are the primary evidence; current build_species_surface.py preserves native411 and appends official-national rows."
+  },
+  "publication_policy": "address/size/SHA256 and primary-source links only; ROM byte fragments and encoded names removed"
+}
