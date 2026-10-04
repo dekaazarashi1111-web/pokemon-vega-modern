@@ -1,7 +1,7 @@
 """実CのSID/公式count・取引rollbackを検証。ROM consumer接続は未受入。"""
 import ctypes as C
 from pathlib import Path
-import subprocess,tempfile,unittest,sys,json
+import subprocess,tempfile,unittest,sys,json,copy
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'scripts'))
 import pr16_dex_adapter_tables as tables
 class Adapter(unittest.TestCase):
@@ -37,7 +37,7 @@ class Adapter(unittest.TestCase):
  def test_count_invalid_mode(self):self.assertEqual(self.count(2),(10,9999));self.assertEqual(self.count(255),(10,9999))
  def test_count_output_alias(self):self.assertEqual(self.lib.VegaDexOfficialCount(self.live,522,0,self.live),1)
  def test_species_bounds(self):
-  for s in (0,412,1670,2048,2049,65535):self.assertEqual(self.flags(s,3),(9,99))
+  for s in (0,412,1671,2048,2049,65535):self.assertEqual(self.flags(s,3),(9,99))
  def test_national_bounds(self):
   for s in (0,1026,2048,2049,65535):self.assertEqual(self.flags(s,3,True),(9,99))
  def test_representatives_stable_base(self):
@@ -65,4 +65,15 @@ class Adapter(unittest.TestCase):
  def test_codex_bad_padding(self):self.seen[150]=128;self.assertEqual(self.lib.VegaDexRestoreSeen(self.live,522,self.seen,151),7)
  def test_codex_alias_rejected(self):self.assertEqual(self.lib.VegaDexSnapshotSeen(self.live,522,self.live,151),1);self.assertEqual(self.lib.VegaDexRestoreSeen(self.live,522,self.live,151),1)
  def test_codex_bad_sizes(self):self.assertEqual(self.lib.VegaDexSnapshotSeen(self.live,522,self.seen,150),2);self.assertEqual(self.lib.VegaDexRestoreSeen(self.live,522,self.seen,150),2)
+ def test_stage75_form_maps_base(self):self.flags(1670,3);self.assertEqual(self.flags(1142,1),(0,1));self.assertEqual(self.flags(744,1,True),(0,1))
+ def test_stage75_count_deduplicated(self):self.flags(1670,3);self.flags(1142,3);self.assertEqual(self.count(),(0,1))
+ def test_stage75_factory_same_owner_restore(self):self.snapshot(1670);self.flags(1142,3);self.assertEqual(self.restore(1142),0);self.assertEqual(self.flags(1670,1),(0,0))
+ def test_stage75_representative_remains_base(self):v=C.c_uint16();self.lib.VegaDexOfficialRepresentative(744,C.byref(v));self.assertEqual(v.value,1142)
+ def test_stage75_extension_owner(self):self.assertEqual(tables.extension(self.ns),dict(species_id=1670,base_species_id=1142,owner=925))
+ def test_stage75_mismatch_rejected(self):
+  a=json.loads((ROOT/tables.REFERENCES[0]).read_bytes());b=json.loads((ROOT/tables.REFERENCES[1]).read_bytes());a['identity']['normal_species_id']=1143
+  with self.assertRaises(ValueError):tables.extension(self.ns,a,b)
+ def test_stage75_unknown_count_rejected(self):
+  a=json.loads((ROOT/tables.REFERENCES[0]).read_bytes());b=json.loads((ROOT/tables.REFERENCES[1]).read_bytes());b['table_contract']['new_species_count']=1672
+  with self.assertRaises(ValueError):tables.extension(self.ns,a,b)
 if __name__=='__main__':unittest.main()

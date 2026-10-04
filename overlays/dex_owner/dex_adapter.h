@@ -1,7 +1,7 @@
 #ifndef VEGA_DEX_ADAPTER_H
 #define VEGA_DEX_ADAPTER_H
 #include "dex_owner.h"
-#define VEGA_DEX_SPECIES_SLOTS 1670u
+#define VEGA_DEX_SPECIES_SLOTS 1671u
 #define VEGA_DEX_OFFICIAL_COUNT 1025u
 #define VEGA_DEX_BIT_SNAPSHOT_SIZE 4u
 VegaDexStatus VegaDexSpeciesFlags(uint8_t *live,size_t size,uint16_t sid,uint8_t mode,uint8_t *value);

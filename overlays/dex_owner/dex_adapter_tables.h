@@ -2,7 +2,7 @@
 #ifndef VEGA_DEX_ADAPTER_TABLES_H
 #define VEGA_DEX_ADAPTER_TABLES_H
 #include <stdint.h>
-static const uint16_t sDexSpeciesOwner[1670] = {
+static const uint16_t sDexSpeciesOwner[1671] = {
     0u, 1u, 2u, 3u, 4u, 5u, 6u, 7u, 8u, 9u, 10u, 11u, 12u, 13u, 14u, 15u,
     16u, 17u, 18u, 19u, 20u, 21u, 22u, 23u, 24u, 25u, 26u, 27u, 28u, 29u, 30u, 31u,
     32u, 33u, 34u, 35u, 36u, 37u, 38u, 39u, 40u, 41u, 42u, 43u, 44u, 45u, 46u, 47u,
@@ -107,7 +107,7 @@ static const uint16_t sDexSpeciesOwner[1670] = {
     1204u, 1205u, 1205u, 1205u, 1206u, 52u, 870u, 1179u, 794u, 833u, 623u, 401u, 921u, 147u, 836u, 872u,
     469u, 961u, 386u, 704u, 734u, 1051u, 478u, 851u, 688u, 132u, 1151u, 949u, 804u, 839u, 882u, 378u,
     13u, 982u, 982u, 868u, 472u, 859u, 859u, 849u, 26u, 26u, 749u, 1133u, 350u, 28u, 635u, 62u,
-    1159u, 1159u, 1159u, 434u, 988u, 899u,
+    1159u, 1159u, 1159u, 434u, 988u, 899u, 925u,
 };
 static const uint16_t sDexOfficialOwner[1026] = {
     0u, 152u, 153u, 154u, 155u, 156u, 157u, 158u, 159u, 160u, 387u, 388u, 389u, 390u, 391u, 392u,

@@ -1,5 +1,6 @@
 #include "dex_adapter.h"
 #include "dex_adapter_tables.h"
+_Static_assert(sizeof(sDexSpeciesOwner)/sizeof(sDexSpeciesOwner[0])==VEGA_DEX_SPECIES_SLOTS,"explicit Stage75 slot included");
 static uint8_t alias(const void *a,size_t an,const void *b,size_t bn)
 {uintptr_t x=(uintptr_t)a,y=(uintptr_t)b;if(a==NULL||b==NULL||!an||!bn)return 0u;return (uint8_t)(x<=y?y-x<an:x-y<bn);}
 static uint16_t species_owner(uint16_t sid)
