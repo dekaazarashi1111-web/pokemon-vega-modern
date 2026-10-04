@@ -35,6 +35,35 @@
       "address": 135226032,
       "size": 52,
       "sha256": "fc5ced7ade458c0df9d7a5eadaf6d3c725e7ec342357f10e4cfe84346ad85fce"
+    },
+    {
+      "id": "save_failed_tiles_backup",
+      "address": 135512924,
+      "size": 28,
+      "sha256": "3a0f08bee200e5f7dbdbca78a513efd6c21a38db8fa06153c4a2dfc3db5774a8"
+    },
+    {
+      "id": "save_failed_tiles_restore",
+      "address": 135513052,
+      "size": 28,
+      "sha256": "ee31b152ebeaacee1156c3457821e08ecabe4e8e0ed49421c2e4582ffcd2d6cb"
+    },
+    {
+      "id": "save_failed_video_state",
+      "address": 135512852,
+      "size": 72,
+      "sha256": "2480f0a74d2a77688500f89c65503cde53d51e7d3b68c60b325a13e25e5ed2ca"
     }
-  ]
+  ],
+  "save_failed_owner_collision": {
+    "tiles_backup_start": 33796328,
+    "tiles_backup_size": 16384,
+    "video_state_start": 33812716,
+    "known_video_state_end_exclusive": 33812737,
+    "mdx_start": 33807168,
+    "mdx_size": 522,
+    "research_volatile_start": 33812640,
+    "research_volatile_end_exclusive": 33812736,
+    "scope_ja": "invalid-live保存拒否だけ専用SaveFailedを避け通常エラー文へ返す。valid-liveのFlash実失敗のtiles/video-state衝突は未修復・未受入。"
+  }
 }

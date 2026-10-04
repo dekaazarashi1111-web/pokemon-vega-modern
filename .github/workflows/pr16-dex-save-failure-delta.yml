@@ -1,12 +1,17 @@
-name: pr16-dex-save-failure
+name: pr16-dex-save-failure-delta
 on:
-  workflow_dispatch:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - tools/mgba_pr16_dex_save_failure_delta.h
+      - scripts/pr16_dex_save_failure_delta.py
+      - .github/workflows/pr16-dex-save-failure-delta.yml
 permissions:
   contents: read
   actions: read
   pull-requests: read
 concurrency:
-  group: pr16-dex-save-failure
+  group: pr16-dex-save-failure-delta
   cancel-in-progress: false
 defaults:
   run:
@@ -25,23 +30,23 @@ jobs:
         with:
           fetch-depth: 24
       - name: Exact failure scope and terminal consumer record guard
-        run: python3 -B scripts/pr16_dex_save_failure_actions.py guard
+        run: python3 -B scripts/pr16_dex_save_failure_delta.py guard
       - name: Official Ubuntu ARM compiler
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-dev libmgba-dev
-      - name: Verify save result, non-destructive wipe guard and authorityless writer rejection
-        run: python3 -B scripts/pr16_dex_save_failure_actions.py run
+      - name: Verify invalid-session UI bypass and sixty additional selector and dispatch oracles
+        run: python3 -B scripts/pr16_dex_save_failure_delta.py run
       - name: Lightweight task graph
         run: python3 -B scripts/validate_task_graph.py --check
       - name: Strict text-only publication guard
         id: publication_guard
         if: always()
-        run: python3 -B scripts/pr16_dex_save_failure_actions.py export
+        run: python3 -B scripts/pr16_dex_save_failure_delta.py export
       - uses: actions/upload-artifact@v4
         if: ${{ always() && steps.publication_guard.outcome == 'success' }}
         with:
-          name: pr16-dex-save-failure-text-only
-          path: public-dex-save-failure
+          name: pr16-dex-save-failure-delta-text-only
+          path: public-dex-save-failure-delta
           retention-days: 90
           if-no-files-found: warn
