@@ -8,6 +8,7 @@ import pr16_dex_lifecycle as lifecycle
 need,identity=lifecycle.need,lifecycle.identity
 CANDIDATE=dict(size=33554432,sha256='71a1131dae058f568bc5537d21bb8c85dfa551c956c4ac36d9e52293eaf5915c')
 HEADER='tools/mgba_pr16_dex_gameplay.h'
+MENU_PROOF='content/modernization/pr16_dex_first_menu_audit.json'
 LAYOUT=[0xF24]+[0xF80]*3+[0xEC0]+[0xF80]*8+[0x7D0]
 def record(legacy=None):
  out=bytearray(522);out[:4]=b'MDX1';out[8]=1
@@ -22,7 +23,9 @@ def physical(save,counter):
   need(check==((total>>16)+(total&65535))&65535,'all14 stock checksums');rows[sid]=raw
  s1=b''.join(rows[i][:LAYOUT[i]]for i in range(1,5));s2=rows[0][:LAYOUT[0]]
  legacy=s1[0x5F8:0x5F8+52]+s1[0x3A18:0x3A18+52]+s2[0x5C:0x5C+52]+s2[0x28:0x28+52]
- return dict(mdx=rows[13][0xDE6:0xFF0],legacy=legacy,party=s1[56:656],save1=s1,save2=s2)
+ tail=rows[13][0x7D0:0xDE6];magic,version,size,crc,inverse=struct.unpack_from('<4sHHII',tail)
+ need((magic,version,size)==(b'S61E',1,1542)and zlib.crc32(tail[16:])==crc and inverse==crc^0xffffffff,'same generation expanded record CRC')
+ return dict(mdx=rows[13][0xDE6:0xFF0],legacy=legacy,party=s1[56:656],save1=s1,save2=s2,expanded=tail[16:16+1536])
 def generate():
  import pr16_research_story as story
  source=story.generate().decode();pattern=r'^#define NG_ROM "[a-f0-9]{64}"$';need(len(re.findall(pattern,source,re.M))==1,'one inherited ROM identity')
@@ -58,8 +61,10 @@ def validate_trace(raw,folder,mode,initial,expected,counter,location,save_expect
   need(d['physical_matches_current_generation']==(0 if save_expected and i==0 else 1),'physical MDX appears only after ordinary Save')
  for key in ('party_sha256','map','xy','facing','party_count'):
   need(all(o[key]==observed[0][key]for o in observed),'Save retains '+key)
- for key in ('bag_sha256','stock_flags_vars_sha256'):
-  need(all(d[key]==mdx[0][key]for d in mdx),'Save preserves all '+key)
+ need(all(d['bag_sha256']==mdx[0]['bag_sha256']for d in mdx),'Save preserves normalized Bag')
+ if mode=='new-game-story':
+  need(mdx[0]['stock_byte_deltas']==[]and mdx[1]['stock_byte_deltas']==[[263,1,65]],'only first Start menu flag83E changes')
+ else:need(all(d['stock_flags_vars_sha256']==mdx[0]['stock_flags_vars_sha256']for d in mdx),'Save preserves all stock_flags_vars_sha256')
  if mode=='new-game-story':
   import pr16_research_new_game as newgame
   prefix=b''.join(struct.pack('<IH',x['frames'],x['key'])for x in inputs[:233]);need(identity(prefix)['sha256']==newgame.trace()['trace_sha256'],'exact existing introduction only')

@@ -9,9 +9,11 @@ import pr16_dex_lifecycle_actions as accepted
 life=game.lifecycle;s=life.scheduler;p=s.placement;need,identity,write=accepted.need,accepted.identity,accepted.write
 BASE='60fdfd27d08db121387becfd615a594d7a75729b'
 MEASURE=(11313494497,37230810454,17359,'1c8c7a615a613c2887f2054d66d0c9f6a1ba2546fb9ae12e22abc8174c067944')
-CODE={'scripts/pr16_dex_gameplay.py','scripts/pr16_dex_gameplay_actions.py',game.HEADER,'tests/test_pr16_dex_gameplay.py','.github/workflows/pr16-dex-gameplay.yml'}
+CODE={game.MENU_PROOF,'scripts/pr16_dex_gameplay.py','scripts/pr16_dex_gameplay_actions.py',game.HEADER,'tests/test_pr16_dex_gameplay.py','.github/workflows/pr16-dex-gameplay.yml'}
 REUSE_SOURCE='0ff7227157be8622ffee965fa5027cefa67b0b93'
 REUSE=(11314120736,37231227293,33381,'1909a59da8ea84adaf05c7a48ff309e75dd5c02df9a62c6a7b64fb301caaf65c')
+NEWGAME_SOURCE='2c42a7c9d1e4ceb41cc34c429b84465c589f919d'
+NEWGAME=(11314690728,37231607258,34520,'c3ad0f298cc58838856d13bd4703c80f7cf32540195795ae6e4993e98b57b57b')
 OUT=ROOT/'.local/pr16-dex-gameplay';PUBLIC=ROOT/'public-dex-gameplay'
 def guard():
  import pr16_story_live_probe as transport
@@ -30,6 +32,9 @@ def reconstruct():
  z,_=transport.archive(transport.SAVE24)
  with z:formal=z.read('candidate.gba')
  need(identity(formal)==p.lease.CANDIDATE,'formal original exact')
+ proof=json.loads((ROOT/game.MENU_PROOF).read_bytes());need(proof['candidate']==identity(formal),'first-menu audit input')
+ for window in proof['windows']:
+  at=int(window['address'],16)-0x08000000;need(identity(formal[at:at+window['size']])==dict(size=window['size'],sha256=window['sha256']),'signed first-menu and save-mode window')
  codec,linked=p.link(OUT/'codec');placed,old=p.place(formal,codec,linked['symbols'])
  patches,scheduler=s.link(OUT/'scheduler');parent=s.apply(placed,patches,scheduler['extra_lease_size']);need(identity(parent)==life.checkpoint()['candidate'],'scheduler exact reconstruction')
  payload,linked=life.link(OUT/'lifecycle');candidate,allocation=life.apply(parent,payload,linked);need(identity(candidate)==game.CANDIDATE and allocation==report['placement'],'unchanged accepted boundary candidate')
@@ -58,6 +63,24 @@ def reuse_save101(seed,expected):
  (PUBLIC/'save101-candidate-only.srm').write_bytes(saved)
  return dict(status='PASS_ORDINARY_SAVE_AND_INDEPENDENT_CONTINUE',fresh_processes=2,ordinary_saves=1,counter_before=101,counter_after=102,processes=processes,formal_save_changed=False,reused=True,source=REUSE_SOURCE,run=REUSE[1],artifact=REUSE[0])
 
+def reuse_newgame(expected):
+ import pr16_story_live_probe as transport
+ r=transport.api('actions/runs/'+str(NEWGAME[1]));need(r['head_sha']==NEWGAME_SOURCE and r['status']=='completed'and r['conclusion']=='failure','exact first-menu diagnostic')
+ z,_=transport.archive(NEWGAME)
+ with z:
+  failure=json.loads(z.read('failure.json'));need(failure['attempts']==['newgame-save']and failure['message']=='Save preserves all stock_flags_vars_sha256','exact remaining first-save diagnostic')
+  saved=z.read('newgame-candidate-only.srm');physical=game.physical(saved,1);need(physical['mdx']==expected,'retained newgame Save1 MDX')
+  case='newgame-save';folder=PUBLIC/case;folder.mkdir()
+  for member in z.namelist():
+   if member.startswith(case+'/'):
+    name=member.split('/')[1];need(member==case+'/'+name and name in{'stdout.txt','stderr.txt','commands.txt','screen-0000.ppm','screen-0001.ppm'},'exact reused newgame members');(folder/name).write_bytes(z.read(member))
+  need(not(folder/'stderr.txt').read_bytes(),'clean earlier first-save process')
+  initial=b'\xff'*131072;parsed=game.validate_trace((folder/'stdout.txt').read_bytes(),folder,'new-game-story',initial,expected,0,dict(map=[4,0],xy=[10,2],party_count=0),True)
+  stock=physical['save1'][0xEE0:0x1200]+physical['expanded'];need(identity(stock)['sha256']==parsed['mdx'][1]['stock_flags_vars_sha256'],'whole persisted stock/expanded progress equals observed saved state')
+  prior=bytearray(stock);need(prior[263]==65,'saved first-menu flag');prior[263]=1;need(identity(prior)['sha256']==parsed['mdx'][0]['stock_flags_vars_sha256'],'inverse exact one-byte delta reconstructs whole original progress')
+ (PUBLIC/'newgame-candidate-only.srm').write_bytes(saved)
+ return saved,dict(case=case,input=identity(initial),output=identity(saved),trace=parsed,returncode=0,reused=True,source=NEWGAME_SOURCE,run=NEWGAME[1])
+
 def run():
  import pr16_story_live_probe as transport
  need(not OUT.exists()and not PUBLIC.exists(),'new candidate-only lifecycle attempt');OUT.mkdir(parents=True);PUBLIC.mkdir();attempts=[]
@@ -75,8 +98,8 @@ def run():
   need(identity(seed)==transport.SEED,'exact Save101 original');old=game.physical(seed,101);need(old['mdx']==bytes(522),'Save101 legacy blank MDX')
   result={'save101':reuse_save101(seed,game.record(old['legacy']))}
   for name,initial,counter,location,expected in [('newgame',b'\xff'*131072,0,dict(map=[4,0],xy=[10,2],party_count=0),game.record())]:
-   process=[];saved=None
-   for cold in (False,True):
+   saved,prior=reuse_newgame(expected);process=[prior]
+   for cold in (True,):
     case=name+('-cold'if cold else '-save');folder=OUT/case;folder.mkdir();input_bytes=saved if cold else initial;save=folder/'story.srm';save.write_bytes(input_bytes)
     mode='continue-story'if cold or name=='save101'else 'new-game-story';commands='quit\n'if cold else 'save\nobserve 1\nquit\n';argv=[str(exe),str(candidate),str(save),mode]
     if mode=='continue-story':argv.append(identity(input_bytes)['sha256'])
@@ -102,7 +125,7 @@ def run():
    (PUBLIC/(name+'-candidate-only.srm')).write_bytes(saved)
    result[name]=dict(status='PASS_ORDINARY_SAVE_AND_INDEPENDENT_CONTINUE',fresh_processes=2,ordinary_saves=1,counter_before=counter,counter_after=counter+1,processes=process,formal_save_changed=False)
   need(identity(seed)==transport.SEED and identity(candidate.read_bytes())==game.CANDIDATE,'original input and candidate unchanged')
-  write(PUBLIC/'measurement.json',dict(status='PASS_CANDIDATE_ORDINARY_DEX_SAVE_CONTINUE_NEWGAME',source_head=os.environ['GITHUB_SHA'],run_id=int(os.environ['GITHUB_RUN_ID']),candidate=game.CANDIDATE,parent_run=MEASURE[1],cases=result,native_processes=2,reused_native_processes=2,accepted_native_processes=4,reused_save101=dict(source=REUSE_SOURCE,run=REUSE[1],artifact=REUSE[0]),host_compiles=1,host_tests=6,ordinary_saves=2,newgame_introductions=1,new_high_owner_gameplay_registration=False,formal_rom_changed=False,formal_save_changed=False,formal_save=101,all_consumers_wired=False,all_save_modes_accepted=False,source_bindings={path:identity((ROOT/path).read_bytes())for path in sorted(CODE)}))
+  write(PUBLIC/'measurement.json',dict(status='PASS_CANDIDATE_ORDINARY_DEX_SAVE_CONTINUE_NEWGAME',source_head=os.environ['GITHUB_SHA'],run_id=int(os.environ['GITHUB_RUN_ID']),candidate=game.CANDIDATE,parent_run=MEASURE[1],cases=result,new_ordinary_saves=0,reused_ordinary_saves=2,native_processes=1,reused_native_processes=3,accepted_native_processes=4,reused_newgame=dict(source=NEWGAME_SOURCE,run=NEWGAME[1],artifact=NEWGAME[0]),reused_save101=dict(source=REUSE_SOURCE,run=REUSE[1],artifact=REUSE[0]),host_compiles=1,host_tests=6,ordinary_saves=2,newgame_introductions=1,new_high_owner_gameplay_registration=False,formal_rom_changed=False,formal_save_changed=False,formal_save=101,all_consumers_wired=False,all_save_modes_accepted=False,source_bindings={path:identity((ROOT/path).read_bytes())for path in sorted(CODE)}))
  except Exception as e:
   write(PUBLIC/'failure.json',dict(status='DIAGNOSTIC_NOT_ACCEPTED',type=type(e).__name__,message=str(e),native_processes=len(attempts),attempts=attempts,formal_rom_changed=False,formal_save_changed=False));raise
 
