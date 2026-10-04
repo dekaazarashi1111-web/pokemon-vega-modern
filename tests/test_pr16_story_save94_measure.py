@@ -56,7 +56,7 @@ def negative(key,value):
 for name,key,value in [('counter','save_counter',89),('map','map',[10,16]),('xy','xy',[6,7]),('ledger','ledger_sha256','0'*64),('flash','flash_sha256','0'*64),('party','party_sha256','0'*64),('rp','rp',1),('count','party_count',3),('lock','lock',1),('face','facing',1),('callback','callback2',m.m.BATTLE),('live','live_xy',[9,11])]:setattr(Controller,'test_reject_'+name,negative(key,value))
 class StaticPreparation(unittest.TestCase):
     def test_exact_parent_route(self):
-        raw=(ROOT/'content/modernization/pr16_story_save93_next_route.json').read_bytes();p=json.loads((ROOT/m.PREP).read_bytes());self.assertEqual(p['parent_route_binding'],m.identity(raw));self.assertEqual(len(raw),11999);self.assertNotEqual(p['parent_route_binding'],m.identity(raw+b'\n'))
+        raw=(ROOT/'content/modernization/pr16_story_save93_next_route.json').read_bytes();p=json.loads((ROOT/m.PREP).read_bytes());self.assertEqual(p['parent_route_binding'],m.identity(raw));self.assertEqual(len(raw),11998);self.assertNotEqual(p['parent_route_binding'],m.identity(raw+b'\n'))
     def test_no_story_claim(self):
         p=json.loads((ROOT/m.PREP).read_bytes());self.assertFalse(p['letter_handoff_accepted']);self.assertFalse(p['paper_delivered']);self.assertEqual(p['consumer']['map'],[6,1])
     def test_static_bindings_and_unique_warp(self):

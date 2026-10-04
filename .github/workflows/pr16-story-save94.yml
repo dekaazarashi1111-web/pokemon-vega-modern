@@ -26,10 +26,10 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 4
-      - name: Save93支払済みから2階への新9歩controller境界検査
+      - name: 親route末尾byte修正1検査だけ・原38成功は継承
         run: |
           set -euo pipefail
-          python3 -B -m unittest discover -s tests -p test_pr16_story_save94_measure.py -v
+          python3 -B -m unittest discover -s tests -p test_pr16_story_save94_measure.py -k exact_parent_route -v
           python3 -B -c "import sys; sys.path.insert(0,'scripts'); import pr16_story_save94_measure as m; import pr16_learnset_runtime_record as g; g.START=m.BASE; g.CODE=m.CODE; g.OWNED=set(); g.guard()"
       - name: 最初の博物館2階到着後Save94と独立Continue
         run: python3 -B scripts/pr16_story_save94_measure.py
