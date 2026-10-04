@@ -9979,3 +9979,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Boundary: 正式ROM/Save101不変。次はvalid-live専用SaveFailedのtiles/video-state owner衝突、全mode固有副作用/実retryと残typed consumer。通常story/trainer131後半はまだ進めない。一般CI既知QOL source不一致、Stage79cache、旧9月18日queue非操作を保持。
 - Commit: closeout source=b63d524919be8b6f9a42d091dcb192d2f759333e; 同branch非force push。
 - Network: 同repoActions/既存text artifactとcommitのみ。ROM/save/runtime/runner/credentials追加公開0。
+
+## 2026-10-04T22:18:22.311331+00:00
+- Timestamp: 2026-10-04T22:18:22.311331+00:00
+- Task: USER-20261004-DEX-START-FAILURE / valid START main保存故障と通常キー再試行
+- Version: dex-start-failure-v1
+- Status: DONE（same-save mode0限定。全mode/非START/outerQOL未完）
+- Summary: 実START callback＋mode0/4だけ通常errorへ返す192byte gate。元110owner全byte、111allocation/overlap0。valid MDXでFlash PROGRAM1address/XOR1故障をCPUが検出し、old SaveFailedを避ける。
+- Files changed: START gate/source/署名/native、fault driver、guide/CP/evidence、固定MDJSON、両ログ。
+- Verify: gate1120case必須assert成功、upload path誤記でraw原本なしを明記。run37239138134/job111544115505全10step・3process・7画像・RAM/register fixture0・20248byte拡張owner保持・source bank/aux保全・エラー2頁/別A復帰・キー再Save101→102・失敗cold101/再保存cold102のFlashRTC全byte保持。記録native0。
+- Boundary: HOF返値無視とdecompression payload衝突/重複副作用、mode4失敗後flag clear、valid MDXでもstale selectorによるauthority wipe、outerQOL sector31失敗status未伝播を独立未完として記録。正式ROM/Save101不変、trainer131後半0。
+- Commit: record source=01aa0c98cd4ba0367d9200bb2cbf62fc3968f4aa; 同branch非force push。
+- Network: 同repoActions・既存入力・固定mGBA一次source・公式Ubuntu compiler。公開source/address-size-SHA/text/screensのみ。ROM/入力save/runtime/runner/credential追加公開0。

@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-正式ROM/Save101保持。battle seen/公式countとinvalid-liveの非破壊通常エラーを候補限定受入。valid保存失敗owner衝突、全mode、残consumerは未完。
+正式ROM/Save101保持。candidate-only START mode0のvalid Flash故障・非破壊error・通常キー再保存・両coldを受入。outerQOL/非START専用画面/全mode/残consumerは未完。
 
-**次: 正式ROM/Save101は保持。候補d3dcb55aではbattle seen5窓/公式count、invalid-live保存拒否の非破壊通常エラーUIを限定受入。元110ownerとscheduler/codec保持。次はvalid-liveの実保存失敗で旧SaveFailedのtiles16KiB＋video-stateが拡張ownerを破壊する経路を安全化し、HOF/overwrite/default等全save mode固有副作用/実retry/cold fallbackを区別して受入する。続いてactive capture/SetMonPokedexFlags、native授受/孵化/進化、UI/native count、acquisition/research/reward、reward clear、Factory memorial/Codex rollback、DexNavの残consumerをSID喪失前に接続する。authorityなし隔離writer拒否と、authorityありCRC1byte fixtureの実UIを混同しない。全consumerと必要な影響native前に正式ROM切替やtrainer131後半へ進めない。最終はシオウPokecenter通常回復/Save/coldContinue、雑魚毎のSaveなし。**
+**次: 正式ROM/Save101保持。候補d69a1d3cはSTART実callback限定のvalid-live main Flash故障→通常エラー2頁→field→通常キー再Save101→102と失敗cold101/再保存cold102を受入。次は外側QOL sector31失敗のgSaveAttemptStatus伝播と、START以外のSaveFailedでtiles16KiB/video-state/gDecompressionBufferを破壊せず失敗を通知する契約。HOF payload/回数増分、mode4/5の28..31erase、stale selector時authority wipe、mode1/2/default/LinkFullを別々に受入する。続いてactive capture/SetMonPokedexFlags、native授受/孵化/進化、UI/native count、acquisition/research/reward、reward clear、Factory memorial/Codex rollback、DexNavをSID喪失前に接続。全consumer/必要な全modeと影響native前に正式ROM切替・trainer131後半へ進めない。最終はシオウPokecenter通常回復/Save/coldContinue、雑魚毎Saveなし。**
 
 通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `4ede9c47c6bf8dc9b5ff9441b3daeeff5656e20e`。
-candidate-only invalid-live非破壊保存エラーとconsumer部分接続の記録source。正式ROM/Save101不変。
+証拠のsource HEAD: `01aa0c98cd4ba0367d9200bb2cbf62fc3968f4aa`。
+candidate-only START valid Flash fault/retry/cold記録source。正式ROM/Save101不変。
 
 ## 最短の再開手順
 
@@ -25,9 +25,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `docs/PR16_DEX_START_FAILURE_JA.md`
+- `content/modernization/pr16_dex_start_failure_checkpoint.json`
 - `docs/PR16_DEX_SAVE_FAILURE_JA.md`
-- `content/modernization/pr16_dex_save_failure_checkpoint.json`
-- `docs/PR16_DEX_BATTLE_CONSUMERS_JA.md`
 - `docs/PR16_DEX_CONSUMERS_JA.md`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
@@ -437,6 +437,7 @@ P08ゲート:
 - 図鑑load/newgame隔離run37230810454の52caseと通常lifecycle run37231996230の4process/2保存をsource/候補不変で再実行しない。候補内のSave102/新規Save1を正式Save101へ昇格せず、全consumer/全mode/失敗UIの未完を保持。
 - 図鑑battle consumer run37233960024のhost6suite/隔離ARM180callはsourceと候補不変で再実行しない。初回run37233754843はActions成功でもscheduler配置衝突により候補不受入。保存/通常battle/全consumerへ昇格しない。
 - 保存失敗: old152case run37234821383、新gate48＋追加oracle60 run37235903199、実通常エラーUI run37236898977の原本を使用。候補/源不変でnative再走しない。DMA破壊とUI driver診断failureを保持。valid-live専用SaveFailedのowner衝突/全mode/全consumerへ受入拡張禁止。
+- START valid失敗: gate run37238699272は1120case必須assert成功だがupload path誤記によりraw measurementなし。原本欠落を隠さず再走0。run37239138134の192byte gate全再構成/同candidate、1Flash故障/818入力/5画面とcold101の16入力/cold102の12入力、計3process7画面を無変更再走しない。全mode/outerQOL/非STARTへ受入拡張しない。
 
 ## 次セッションへ残す更新手順
 
@@ -466,6 +467,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-candidate-only battle seen5/公式countとinvalid-live非破壊通常エラーを限定受入。旧SaveFailedのtiles/video-state衝突を原本保持し、valid-live失敗/全mode/残consumerは未完。UIの第一頁画像だけ同候補先行原本を再利用、最終頁/fieldは成功原本。全FlashRTC不変、record12step/receiptCP全byte一致。正式ROM/Save101保持。
+正式ROM/Save101保持。candidate-only START mode0のvalid Flash故障・非破壊error・通常キー再保存・両coldを受入。outerQOL/非START専用画面/全mode/残consumerは未完。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
