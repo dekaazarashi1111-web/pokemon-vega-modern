@@ -9941,3 +9941,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: artifact/固定state/source binding/index/task graph PASS。host再試験0/ARM0/native0/正式ROM・Save変更0。元scheduler/codec/44export保持、追加wrapper188byte、allocator109owner/overlap0。正常fallback維持/無効MDXはglobal2でContinue遮断、newgame tailを接続。
 - Commit: closeout source=56ac8c45ba382ed70b5b5b60e75650e75198b83b; 同branch非force push。
 - Network: 同repoActions/commit/既存text artifactのみ。一般CI既知QOL不一致、Stage79 cache、旧9月18日queue非操作を保持。
+
+## 2026-10-04T21:01:21.337361+00:00
+- Timestamp: 2026-10-04T21:01:21.337361+00:00
+- Task: USER-20261004-DEX-CONSUMERS / 図鑑battle seenと公式count
+- Version: dex-battle-consumers-v1
+- Status: DONE（候補consumer縦切り限定。残consumer/保存失敗は次工程）
+- Summary: raw SIDを失う前の5seen窓とCFRU公式1025countを接続。旧Bag誤読を停止。160byteを0x095FFE50へ新lease配置し全109旧owner/codec/scheduler/load/newgameを保持。
+- Files changed: consumer C/ASM、generator/native/host/workflow、署名窓、専用guide/CP/evidence、固定MDJSONと両ログ。
+- Verify: run37233960024/job111529277202全10step成功、host6suite/全1670SID、ARM180call/12101624instructions、全EWRAM/IWRAM非owner・SP/callee保持、allocator110owner/overlap0、全ROMrollback。通常battle0/Save0。
+- Correction: run37233754843は隔離180call成功でもcodec suffixへscheduler clone上書きのため候補不受入。正式入力不変。独立レビューで検出し配置変更＋既存owner全byte guardと回帰試験を追加。新配置の実アドレス変更を再検証し、旧successを保存健全性へ昇格しない。
+- Boundary: 全consumer/全save mode/実失敗UI未完。authorityなしinvalid-live返値255→stock mask0成功→QOL sector31保存の可能性、およびSaveFailed mask0成功を発見。次工程で両方を同時修復。
+- Commit: record source=51506e34ea552cd55a52ac311b92f47218f008fd; 同branch非force push。
+- Network: 同repoActions/既存入力/公式Ubuntu toolchain。公開はsourceとaddress-size-SHA/textだけ。ROM/入力save/runtime/runner/credentials非公開。

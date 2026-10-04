@@ -1,0 +1,28 @@
+{
+  "run": 37233754843,
+  "source": "9217ffb215923e1794d064037f5c40fd86ac6538",
+  "artifact": 11315031009,
+  "archive_size": 17471,
+  "archive_sha256": "a32f53170bbc0c3c61754f9c09cfc67fa478d81723a2a40a53b13169d947d346",
+  "candidate": {
+    "size": 33554432,
+    "sha256": "721bb28834b1374c017672987aa6a535426df8de5d05519613ff07df86e1ef0c"
+  },
+  "native": {
+    "status": "PASS_ISOLATED_ARM_BATTLE_SEEN_AND_OFFICIAL_COUNT",
+    "cases": 180,
+    "calls": 180,
+    "seen_cases": 140,
+    "count_cases": 40,
+    "steps": 12101624,
+    "native_processes": 1,
+    "ewram_bytes_checked_per_call": 262144,
+    "iwram_bytes_checked_per_call": 32768,
+    "ordinary_battles": 0,
+    "ordinary_saves": 0,
+    "formal_save_changed": false
+  },
+  "actions_conclusion": "success",
+  "candidate_accepted": false,
+  "reason_ja": "隔離consumer180call成功だけでは保存配置を証明しない。codec suffixはscheduler clone等が使用済みで、同一owner内部の上書きを旧guardが見逃した。正式ROM/Save101不変。後継は監査済の別spanと全既存owner byte一致guardへ修正。"
+}
