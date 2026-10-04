@@ -3,6 +3,9 @@
 from __future__ import annotations
 import json,struct,sys
 from pathlib import Path
+# 旧受入sourceを変えず154固有moduleの歴史連鎖を読むための、この検証入口だけの有限上限。
+# 既定1000はPython3.12のunittest fresh import時だけ不足。native呼出し/旧試験再走はない。
+sys.setrecursionlimit(max(sys.getrecursionlimit(),1500))
 ROOT=Path(__file__).resolve().parents[1];sys.path[:0]=[str(ROOT/'scripts'),str(ROOT)]
 import pr16_story_save96_measure as m
 from pr16_story_after_maori import need,identity

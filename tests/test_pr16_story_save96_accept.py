@@ -8,6 +8,7 @@ class Acceptance(unittest.TestCase):
         cls.root=pathlib.Path(os.environ['PR16_SAVE96_ORIGINAL']);cls.before=pathlib.Path(os.environ['PR16_SAVE95_INPUT']).read_bytes();cls.rom=pathlib.Path(os.environ['PR16_SAVE96_ROM']).read_bytes();cls.pa=a.trace(cls.root/'progress',a.m.a.OUTPUT);cls.pb=a.trace(cls.root/'continue',a.OUTPUT)
     def boundary(self):
         s=(self.root/'story-fast.srm').read_bytes();return a.boundary(self.before,s,s,self.rom)
+    def test_historical_import_budget(self):self.assertGreaterEqual(sys.getrecursionlimit(),1500)
     def test_exact_original(self):self.assertTrue(a.verify(self.root,self.before,self.rom)['museum_return_first_floor_accepted'])
     def test_scope(self):
         r=a.semantics(self.pa,self.pb);self.assertEqual((r['travel_steps'],r['turns'],r['warps'],r['trainer_victories'],r['wild_victories']),(13,5,1,0,0));self.assertTrue(r['gym_leader_defeated']);self.assertTrue(r['paper_consumed_or_delivered']);self.assertTrue(r['museum_return_first_floor_accepted']);self.assertFalse(r['full_story_accepted']);self.assertFalse(r['automatic_entry_step_observed'])
