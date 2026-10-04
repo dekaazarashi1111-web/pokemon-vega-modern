@@ -9312,3 +9312,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 測定source=deed3d77e27ed77136e4d34ffd355304ddc0953c、記録source=74abc6a55dc2bae04c8ed2955b51b254374f3ce1・run=37166790901。scoped guard/task graph/resume後に同branch非force push/全text読戻し。
 - Network: 同repo GitHub/Actionsだけ。既存ROM/runtime/input非再配布。一般CI既知不一致/action_requiredを全成功にしない。merge/release/baseline変更0。
 - Next: Save71 artifact11289573274のstory-fast.srm（131088bytes/SHA256 87f67074b6d470df8260e15d2bd58566f949a6297318a1e7a9ee3d9b80cbb6fd）だけから再開。上階33,29東から新14歩/転換2、23,31で野生バーニン♂Lv13をドラゴンクロー1回で撃破し通常Save71/独立Continueを限定受入。HP288/294保持・PP9,10,15,2、全party599byte/Bag19416円/PC/S61E保持、RP0/badge1/story4071=9/4072=1。legacy flag差分0、aux4021:29→43/4022:4→0のowner未解明、全RAM台帳不変。次は同map1/60・23,31西から残り未通過11歩23,31→17,31→17,27→紙側16,27。初の新event/戦闘/不通境界、または紙側到着で通常保存。紙/像16,28/item274/flag4383は静的ownerのみ、取得未完。29新controller/62新受入、93+cold13入力53画面68member/native2、旧成功再走0。44は最終hash先行一致だが保存中、45counter71でも部分write→46成功→50field。勝利残留flags4/outcome1/wire field:falseを追加勝利や未復帰にしない。全SaveRTC/field4画面全pixel一致。旧offset41/2056/aux/40acのruntime owner未解明を保持。Flash未使用/がくしゅうそうち未装備。全国図鑑/全story/自然成長・進化/LuckyEgg/研究施設自然到達未完。host補充/ROM変更/既存ROMruntimeinput再配布/故意全滅/merge/release/baseline変更なし。一般CI既知qol_production.c不一致/action_requiredを全成功にしない。
+
+## 2026-10-04T01:14:28+00:00
+- Timestamp: 2026-10-04T01:14:28+00:00
+- Task: USER-20261004-MANSION-PAPER-SIDE-SAVE72 / 上階残り11歩・像北隣初到着Save72
+- Version: story-mansion-paper-side-save72-v1
+- Status: DONE（新11歩/像北隣初到着/通常保存/独立Continue限定）
+- Summary: 上階23,31西から残り新11歩/転換2、像北隣16,27西へ初到着。新戦闘0/全party600byte・HP288/294・PP9,10,15,2/Bag19416円/PC/S61E保持。legacy flag0差分/aux2変数とRAM10変化owner未解明。
+- Files changed: Save72 measure/29controller/55受入/record/checkpoint/text証拠/像event静的操作候補、固定再開MD/JSON、両ログ。
+- Verify: run37166930840/job111331674186全8step成功。73+cold13入力43画面58member。新controller29原log継承/新受入55。record native0/compile0/旧成功再走0。
+- Evidence: 35counter72も部分write→36成功→40field。全SaveRTC/像側field4画面全pixel一致。42checksum/6843byte1666範囲。紙の取得は未完。
+- Commit: 測定source=bca05f1af107d3e479b869dae961402eb6c8ed0a、記録source=1a42d3433d5a1382c50cc305c88613328186b5d2・run=37167376758。scoped guard/task graph/resume後に同branch非force push/全text読戻し。
+- Network: 同repo GitHub/Actionsだけ。既存ROM/runtime/input非再配布。一般CI既知不一致/action_requiredを全成功にしない。merge/release/baseline変更0。
+- Next: Save72 artifact11289800679のstory-fast.srm（131088bytes/SHA256 851c87f8a8006eaecdcb6ea28ee9f097fbcab4ba0c7f5b626afb6edbec40fa49）だけから再開。上階23,31西から残り新11歩/転換2で像北隣16,27西へ初到着、通常Save72/独立Continueを限定受入。新戦闘0、全party600byte・HP288/294・PP9,10,15,2/Bag19416円/PC/S61E保持、RP0/badge1/story4071=9/4072=1。legacy flag差分0、aux4021:43→54/4022:0→1とRAM台帳10変化のowner未解明。次は同map1/60・16,27西から通常南入力で向き1を確認して像16,28をAで調べる最初の新eventだけ。保存済background script149012422、compare800C=1/checkflag4383/checkspace274/additem274/setflag4383を静的照合、紙（item274だいじなふうしょ）の取得は未実測。通常dialog完了/取得/最初の新event境界で保存し、実Bag/expanded flag/画面/独立Continueで確認。29新controller/55新受入、73+cold13入力43画面58member/native2、旧成功再走0。35counter72も部分write→36成功→40field。全SaveRTC/像側field4画面全pixel一致。旧offset41/2056/aux/40acのruntime owner未解明を保持。Flash未使用/がくしゅうそうち未装備。全国図鑑/全story/自然成長・進化/LuckyEgg/研究施設自然到達未完。host補充/ROM変更/既存ROMruntimeinput再配布/故意全滅/merge/release/baseline変更なし。一般CI既知qol_production.c不一致/action_requiredを全成功にしない。
