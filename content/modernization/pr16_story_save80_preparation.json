@@ -1,0 +1,627 @@
+{
+  "status": "STATIC_FOURTH_DIGLETT_FROM_SAVE79_NOT_NATIVE",
+  "candidate": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  },
+  "input_save": {
+    "size": 131088,
+    "sha256": "88040caadde36a1cbad95bb8e558650089d868d742bba16809a3a32f8ae7553b"
+  },
+  "parent_route_binding": {
+    "size": 37091,
+    "sha256": "6b0ca7b90c418c32ee80e4bbd896dd30eeb6a1c2cd0d07eb6f209f3368aba18b"
+  },
+  "map": [
+    10,
+    16
+  ],
+  "start": [
+    9,
+    13
+  ],
+  "route": [
+    [
+      9,
+      13
+    ],
+    [
+      9,
+      12
+    ],
+    [
+      9,
+      11
+    ],
+    [
+      8,
+      11
+    ],
+    [
+      7,
+      11
+    ],
+    [
+      6,
+      11
+    ],
+    [
+      5,
+      11
+    ],
+    [
+      4,
+      11
+    ],
+    [
+      3,
+      11
+    ],
+    [
+      3,
+      10
+    ],
+    [
+      3,
+      9
+    ]
+  ],
+  "interaction": {
+    "local_id": 9,
+    "target": [
+      2,
+      9
+    ],
+    "from_xy": [
+      3,
+      9
+    ],
+    "facing": 3,
+    "script": 141220736,
+    "visibility_flag": 4375,
+    "button": "A"
+  },
+  "terrain": [
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        9,
+        13
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        9,
+        12
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        9,
+        11
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        8,
+        11
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        7,
+        11
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        6,
+        11
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        5,
+        11
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        4,
+        11
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        3,
+        11
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        3,
+        10
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        3,
+        9
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        2,
+        9
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    }
+  ],
+  "initial_flags": {
+    "4372": 1,
+    "4373": 0,
+    "4374": 1,
+    "4375": 0,
+    "4376": 0,
+    "4377": 0,
+    "4378": 1
+  },
+  "expected_flag_changes": [
+    [
+      4372,
+      1,
+      0
+    ],
+    [
+      4374,
+      1,
+      0
+    ],
+    [
+      4375,
+      0,
+      1
+    ]
+  ],
+  "expected_object_changes": [
+    {
+      "local_id": 9,
+      "operation": "removeobject"
+    },
+    {
+      "local_id": 5,
+      "operation": "addobject"
+    },
+    {
+      "local_id": 8,
+      "operation": "addobject"
+    }
+  ],
+  "instructions": [
+    {
+      "address": 136400176,
+      "opcode": 161,
+      "size": 5,
+      "hex": "a110000200",
+      "node": 136400176
+    },
+    {
+      "address": 136400181,
+      "opcode": 151,
+      "size": 2,
+      "hex": "9701",
+      "node": 136400176
+    },
+    {
+      "address": 136400183,
+      "opcode": 91,
+      "size": 4,
+      "hex": "5b050001",
+      "node": 136400176
+    },
+    {
+      "address": 136400187,
+      "opcode": 91,
+      "size": 4,
+      "hex": "5b060001",
+      "node": 136400176
+    },
+    {
+      "address": 136400191,
+      "opcode": 91,
+      "size": 4,
+      "hex": "5b080001",
+      "node": 136400176
+    },
+    {
+      "address": 136400195,
+      "opcode": 91,
+      "size": 4,
+      "hex": "5b090001",
+      "node": 136400176
+    },
+    {
+      "address": 136400199,
+      "opcode": 91,
+      "size": 4,
+      "hex": "5b0a0001",
+      "node": 136400176
+    },
+    {
+      "address": 136400203,
+      "opcode": 91,
+      "size": 4,
+      "hex": "5b0b0001",
+      "node": 136400176
+    },
+    {
+      "address": 136400207,
+      "opcode": 3,
+      "size": 1,
+      "hex": "03",
+      "node": 136400176
+    },
+    {
+      "address": 141219312,
+      "opcode": 106,
+      "size": 1,
+      "hex": "6a",
+      "node": 141219312
+    },
+    {
+      "address": 141219313,
+      "opcode": 15,
+      "size": 6,
+      "hex": "0f00084f2108",
+      "node": 141219312
+    },
+    {
+      "address": 141219319,
+      "opcode": 9,
+      "size": 2,
+      "hex": "0902",
+      "node": 141219312
+    },
+    {
+      "address": 141219321,
+      "opcode": 4,
+      "size": 5,
+      "hex": "04304d2108",
+      "node": 141219312
+    },
+    {
+      "address": 141219326,
+      "opcode": 3,
+      "size": 1,
+      "hex": "03",
+      "node": 141219312
+    },
+    {
+      "address": 141219331,
+      "opcode": 151,
+      "size": 2,
+      "hex": "9700",
+      "node": 141219331
+    },
+    {
+      "address": 141219333,
+      "opcode": 15,
+      "size": 6,
+      "hex": "0f00214f2108",
+      "node": 141219331
+    },
+    {
+      "address": 141219339,
+      "opcode": 9,
+      "size": 2,
+      "hex": "0906",
+      "node": 141219331
+    },
+    {
+      "address": 141219341,
+      "opcode": 108,
+      "size": 1,
+      "hex": "6c",
+      "node": 141219331
+    },
+    {
+      "address": 141219342,
+      "opcode": 2,
+      "size": 1,
+      "hex": "02",
+      "node": 141219331
+    },
+    {
+      "address": 141219848,
+      "opcode": 41,
+      "size": 3,
+      "hex": "291711",
+      "node": 141219848
+    },
+    {
+      "address": 141219851,
+      "opcode": 83,
+      "size": 3,
+      "hex": "530900",
+      "node": 141219848
+    },
+    {
+      "address": 141219854,
+      "opcode": 42,
+      "size": 3,
+      "hex": "2a1411",
+      "node": 141219848
+    },
+    {
+      "address": 141219857,
+      "opcode": 85,
+      "size": 3,
+      "hex": "550500",
+      "node": 141219848
+    },
+    {
+      "address": 141219860,
+      "opcode": 42,
+      "size": 3,
+      "hex": "2a1611",
+      "node": 141219848
+    },
+    {
+      "address": 141219863,
+      "opcode": 85,
+      "size": 3,
+      "hex": "550800",
+      "node": 141219848
+    },
+    {
+      "address": 141219866,
+      "opcode": 3,
+      "size": 1,
+      "hex": "03",
+      "node": 141219848
+    },
+    {
+      "address": 141220736,
+      "opcode": 106,
+      "size": 1,
+      "hex": "6a",
+      "node": 141220736
+    },
+    {
+      "address": 141220737,
+      "opcode": 4,
+      "size": 5,
+      "hex": "04f0d56a08",
+      "node": 141220736
+    },
+    {
+      "address": 141220742,
+      "opcode": 43,
+      "size": 3,
+      "hex": "2b1411",
+      "node": 141220736
+    },
+    {
+      "address": 141220745,
+      "opcode": 6,
+      "size": 6,
+      "hex": "0601c0db6a08",
+      "node": 141220736
+    },
+    {
+      "address": 141220751,
+      "opcode": 43,
+      "size": 3,
+      "hex": "2b1511",
+      "node": 141220736
+    },
+    {
+      "address": 141220754,
+      "opcode": 6,
+      "size": 6,
+      "hex": "060100dc6a08",
+      "node": 141220736
+    },
+    {
+      "address": 141220760,
+      "opcode": 43,
+      "size": 3,
+      "hex": "2b1611",
+      "node": 141220736
+    },
+    {
+      "address": 141220763,
+      "opcode": 6,
+      "size": 6,
+      "hex": "060128dc6a08",
+      "node": 141220736
+    },
+    {
+      "address": 141220769,
+      "opcode": 43,
+      "size": 3,
+      "hex": "2b1811",
+      "node": 141220736
+    },
+    {
+      "address": 141220772,
+      "opcode": 7,
+      "size": 6,
+      "hex": "070150dc6a08",
+      "node": 141220736
+    },
+    {
+      "address": 141220778,
+      "opcode": 43,
+      "size": 3,
+      "hex": "2b1911",
+      "node": 141220736
+    },
+    {
+      "address": 141220781,
+      "opcode": 7,
+      "size": 6,
+      "hex": "070158dc6a08",
+      "node": 141220736
+    },
+    {
+      "address": 141220787,
+      "opcode": 5,
+      "size": 5,
+      "hex": "0503d66a08",
+      "node": 141220736
+    },
+    {
+      "address": 141220800,
+      "opcode": 43,
+      "size": 3,
+      "hex": "2b1611",
+      "node": 141220800
+    },
+    {
+      "address": 141220803,
+      "opcode": 6,
+      "size": 6,
+      "hex": "0601e0db6a08",
+      "node": 141220800
+    },
+    {
+      "address": 141220809,
+      "opcode": 43,
+      "size": 3,
+      "hex": "2b1811",
+      "node": 141220800
+    },
+    {
+      "address": 141220812,
+      "opcode": 6,
+      "size": 6,
+      "hex": "0601f0db6a08",
+      "node": 141220800
+    },
+    {
+      "address": 141220818,
+      "opcode": 4,
+      "size": 5,
+      "hex": "04d8d76a08",
+      "node": 141220800
+    },
+    {
+      "address": 141220823,
+      "opcode": 5,
+      "size": 5,
+      "hex": "0503d66a08",
+      "node": 141220800
+    },
+    {
+      "address": 141220832,
+      "opcode": 4,
+      "size": 5,
+      "hex": "0408d86a08",
+      "node": 141220832
+    },
+    {
+      "address": 141220837,
+      "opcode": 5,
+      "size": 5,
+      "hex": "0503d66a08",
+      "node": 141220832
+    }
+  ],
+  "texts": {
+    "136400648": {
+      "hex": "fd011a0022191f0419fe9480899116001a150c00060910ff",
+      "decoded": "<fd>あは めのまえの\\nディグダに はなし かけた"
+    },
+    "136400673": {
+      "hex": "152e14abfe9480899119001a021137001d2e060c10ff",
+      "decoded": "なんと！\\nディグダの はいちが へんかした"
+    }
+  },
+  "source_graph_reused": true,
+  "full_gym_puzzle_accepted": false,
+  "native_route_accepted": false,
+  "source_notes_ja": "保存済gym graphのlocal9/4372・4374=true分岐。4375 set/remove9・4372 clear/add5・4374 clear/add8。local5/6/8の受入済入力再走0。"
+}
