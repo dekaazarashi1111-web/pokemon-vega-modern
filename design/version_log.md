@@ -10003,3 +10003,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Boundary: 次はouterQOL sector31失敗attempt伝播と非START保存失敗通知/退避/副作用契約、全modeと残typed consumer。trainer131後半は未実行。既知一般CI QOL不一致・Stage79cache・旧9月18日queueは区別。
 - Commit: closeout source=f8c1009ad81454affe1e1679856fee85bc7c4db7; 同branch非force push。
 - Network: 同repoActionsと既存text receiptのみ。ROM/入力save/runtime/runner/credential追加公開0。
+
+## 2026-10-04T22:58:22.126566+00:00
+- Timestamp: 2026-10-04T22:58:22.126566+00:00
+- Task: USER-20261004-DEX-OUTER-QOL / 外側sector31保存の失敗伝播
+- Version: dex-outer-qol-v1
+- Status: DONE（共通statusとSTART mode0末尾故障だけ。非START/全mode未完）
+- Summary: QOL共通epilogue4byteを特殊tailへ接続しnon1→return255/attempt255。ensure早期拒否も整合。START mode0/main0/bit31単独だけmaskを消さずouter再writeへ到達。既存8byte frame/calleeを保持、共有helper/transaction bypass全byte不変。
+- Files changed: outer ASM/generator/署名/native/host/workflow、guide/CP/evidence、固定MDJSON、両ログ。
+- Verify: run37241791183/job111551805055全10step、隔離outer7680＋retry288＋移設wipe16case、START last-byte故障と通常エラー2頁/field/キー再Save102→103/独立cold102/103、計4process7画像。MDX522/拡張RAM20248/QOL ledger2048/sector31payload4080保持。112owner/overlap0、他109ownerと全未宣言ROM byte保持/全逆変換。記録ARM0/native0。
+- Correction: run37241038917は旧Stage36 allocationcontent_shaと現QOL69440byteの混同でnative0停止。formal全ROMから現領域SHAを独立固定し旧台帳と区別、failure原本維持。未実行cold helperのframe前方参照も明示引数へ訂正。run37241264916はisolated7680成功/実error2頁からのretry未完でnative2のfailure維持。後継でinnerのstale bit31遮断を修復。
+- Boundary: 非START返値無視/HOF payload/回数/erase再試行とSaveFailed owner衝突、全mode/残consumer、sector31早期故障/単bank原子性は未完。正式ROM/Save101不変・trainer131後半0。
+- Commit: record source=81599d97144fcf9b3a90a03c62aa154e7afd67fe; 同branch非force push。
+- Network: 同repoActions/既存入力/公式Ubuntu compiler。公開source/address-size-SHA/text/screensのみ、ROM/runtime/入力save/runner/credentials追加公開0。
