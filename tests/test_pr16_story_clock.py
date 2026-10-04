@@ -16,7 +16,7 @@ def ledger(minute=20,day=3):
     b[o:o+2]=bytes([1,64]);b[o+6]=1;b[o+7]=minute;struct.pack_into('<H',b,o+8,day);b[o+36]=1
     struct.pack_into('<I',b,8,c.ledger_checksum(b));return bytes(b)
 def sample():
-    areas={k:bytes(v)for k,v in l.SIZES.items()};areas['save2']=clock(3*216000+20*3600+16*60+50);areas['ledger']=ledger()
+    areas={k:bytes(v)for k,v in l.SIZES.items()};v=bytearray(1024);v[768:776]=bytes.fromhex('4c4f5051b3b0afae');areas['expanded_vars']=bytes(v);areas['save2']=clock(3*216000+20*3600+16*60+50);areas['ledger']=ledger()
     b=bytearray(areas['save1']);struct.pack_into('<HH',b,0,53,13);struct.pack_into('<HH',b,0x1042,98,3);areas['save1']=bytes(b)
     p=bytearray(600)
     for i in range(4):
@@ -55,6 +55,22 @@ class ClockTests(unittest.TestCase):
     def test_empty_daycare_counter_wrap(self):
         a,b=walking();bytechange(a,'save1',0x309A,255);bytechange(b,'save1',0x309A,0)
         self.assertEqual(c.walking_evidence(a,b,[52,13])['walking_steps'],1)
+    def test_observed_transition_step(self):
+        a,b=walking()
+        for live,xy in [(a,[32,11]),(b,[32,10])]:
+            live['observation']['xy']=xy;p=bytearray(live['save1']);struct.pack_into('<HH',p,0,*xy);live['save1']=bytes(p)
+        enemy=bytearray(600);struct.pack_into('<I',enemy,0,0x12345678);struct.pack_into('<H',enemy,32,32);enemy[84]=13;struct.pack_into('<4H',enemy,44,40,43,64,116);b['enemy_party']=bytes(enemy)
+        v=bytearray(b['expanded_vars']);v[858]=1;struct.pack_into('<II',v,860,0x12345678,0x12345678);b['expanded_vars']=bytes(v)
+        v=bytearray(b['save1']);struct.pack_into('<II',v,0x121c,1,1);b['save1']=bytes(v)
+        b['observation'].update(callback2=0x08055E69,lock=1,battle_flags=0,battle_outcome=0);b['route']=dict(trainer_id=0)
+        self.assertEqual(c.walking_evidence(a,b,[32,10],observed_transition=True)['walking_steps'],1)
+        b['route']['trainer_id']=131
+        with self.assertRaises(DiagnosticStop):c.walking_evidence(a,b,[32,10],observed_transition=True)
+    def test_unowned_transition_rejected(self):
+        a,b=walking()
+        with self.assertRaises(DiagnosticStop):c.walking_evidence(a,b,[52,13],observed_transition=True)
+    def test_cannot_supply_arbitrary_save2_exemption(self):
+        with self.assertRaises(TypeError):c.clock_delta(clock(1),clock(2),1,extra_save2={20:1})
     def test_route_reader_readonly(self):r.source_check((r.ROOT/'tools/mgba_pr16_story_route_observer.h').read_text())
     def test_route_reader_reject_write(self):
         with self.assertRaises(ValueError):r.source_check((r.ROOT/'tools/mgba_pr16_story_route_observer.h').read_text()+'write32(c,0,0);')

@@ -25,7 +25,7 @@ def guard():
     for p,b in state['source_bindings'].items():need(identity((ROOT/p).read_bytes())==b,'frozen accepted source '+p)
     unit=json.loads((ROOT/'content/modernization/pr16_story_clock_unit.json').read_bytes())
     for p,b in unit['source_bindings'].items():need(identity((ROOT/p).read_bytes())==b,'new unit exact bytes '+p)
-    need(unit['tests']==44 and unit['passed']==44 and unit['stderr'].count(' ... ok\n')==44 and '\nOK\n'in unit['stderr'],'new44 host test original no rerun')
+    need(unit['tests']==47 and unit['passed']==47 and unit['stderr'].count(' ... ok\n')==47 and '\nOK\n'in unit['stderr'],'new47 host test original no rerun')
 
 def direction(a,b):
     need(a[:2]==b[:2],'connection needs separate live owner')
@@ -39,6 +39,13 @@ def walk(session,route):
         for attempt in range(3):
             prior=session.live;o=session.step((direction(before,target),8),(0,48))
             if o['callback2']!=0x08055E75 or o['lock']!=0:
+                if index==39 and target==[3,24,32,10]:
+                    evidence=clock.walking_evidence(prior,session.live,target[2:],observed_transition=True)
+                    rows.append(dict(index=index,attempt=attempt,observation=o['observe'],**evidence));write(ART/'walking-ledger.json',rows)
+                    # Previously observed closed grass transition: no A, B or direction.
+                    entry=session.step((0,600))
+                    need(entry['map']==[3,24] and entry['xy']==[32,10] and entry['save_counter']==101 and entry['flash_sha256']==o['flash_sha256'],'bounded entry preserves region/save')
+                    raise DiagnosticStop('battle_entry_ui_observed_without_command',dict(index=index,target=target,observation=entry,live_ui=session.live['ui'],trainer=session.live['route']['trainer_id'],no_event_input_sent=True))
                 raise DiagnosticStop('new_route_event_observation',dict(index=index,target=target,observation=o,live_ui=session.live['ui'],trainer=session.live['route']['trainer_id'],no_event_input_sent=True))
             evidence=clock.walking_evidence(prior,session.live,target[2:]);rows.append(dict(index=index,attempt=attempt,observation=o['observe'],**evidence))
             write(ART/'walking-ledger.json',rows)
@@ -61,7 +68,7 @@ def main():
         route=json.loads((ROOT/'content/modernization/pr16_story_shiou_route_candidate.json').read_bytes())['route']
         walk(session,route)
     except DiagnosticStop as e:
-        report=e.report;report.update(source_head=os.environ['GITHUB_SHA'],run_id=int(os.environ['GITHUB_RUN_ID']),native_processes=int(session is not None),host_tests_reused=44,new_compiles=int(session is not None),accepted_case_reruns=0,ordinary_saves=0,native_multi_battle_accepted=False)
+        report=e.report;report.update(source_head=os.environ['GITHUB_SHA'],run_id=int(os.environ['GITHUB_RUN_ID']),native_processes=int(session is not None),host_tests_reused=47,new_compiles=int(session is not None),accepted_case_reruns=0,ordinary_saves=0,native_multi_battle_accepted=False)
         write(ART/'diagnostic.json',report);print(json.dumps(report,ensure_ascii=False,indent=2))
     except Exception as e:
         write(ART/'failure.json',dict(status='NOT_ACCEPTED_FAILURE',type=type(e).__name__,message=str(e),source_head=os.environ['GITHUB_SHA'],run_id=int(os.environ['GITHUB_RUN_ID']),native_processes=int(session is not None),milestone_reached=False));raise

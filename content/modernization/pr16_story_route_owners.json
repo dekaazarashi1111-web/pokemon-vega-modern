@@ -852,6 +852,24 @@
       "meaning": "SaveFinalize entry"
     },
     {
+      "address": 154630492,
+      "size": 96,
+      "hex": "10b501f039f900220d4b11000d4800f025f800230c4a14780c499c4203d0cb6d1b1a5c4263410a4c2370002308661370084a1370084b00f011f810bc01bc0047b1f403088c3f020241b60302e8b5030242b603023db603021d3413091847c046",
+      "meaning": "QOL standard wild identity consumer"
+    },
+    {
+      "address": 154630272,
+      "size": 68,
+      "hex": "f8b504000e001700002501f0a3f90a4b20001d703a003100084b00f011f80400a84204d0280003f023fc01f0f9fd2000f8bc02bc0847c04641b60302650022091847c046",
+      "meaning": "QOL land generation wrapper"
+    },
+    {
+      "address": 154637472,
+      "size": 60,
+      "hex": "10b5fff797fb0022064b1100064800f00ff80122054bd86559331a7010bc01bc0047c046b1f403088c3f0202e8b503021847c046f8b506000f000025",
+      "meaning": "QOL wild-token producer"
+    },
+    {
       "address": 134663928,
       "size": 8,
       "hex": "004b1847678a3709",
@@ -2389,6 +2407,7 @@
   },
   "sources": [
     "overlays/research_economy_v1/research_economy_v1.c",
+    "overlays/qol_production/qol_production.c",
     "overlays/trainer_changekit_final_runtime/trainer_changekit_final_runtime.c",
     "content/modernization/pr16_story_save98_walk_owner.json"
   ],

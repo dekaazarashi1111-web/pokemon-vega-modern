@@ -13,16 +13,13 @@ def clock_value(raw):
     require(h<=999 and m<60 and s<60 and v<60, 'clock_fields_range')
     return h*216000+m*3600+s*60+v
 
-def clock_delta(before, after, frames, *, extra_save2=None):
+def clock_delta(before, after, frames):
     require(type(frames) is int and 0<frames<=120000, 'clock_frame_budget')
     first,last=clock_value(before),clock_value(after)
     require(first<CLOCK_MAX and last<CLOCK_MAX, 'clock_saturation_needs_separate_owner')
     # One main loop per VBlank; a sample can straddle its update by one frame.
     require(0<=last-first<=frames+1, 'clock_nonmonotone_or_excessive')
     expected=bytearray(before); expected[14:19]=after[14:19]
-    for at,value in (extra_save2 or {}).items():
-        require(type(at) is int and 0<=at<len(before) and not 14<=at<19 and type(value) is int and 0<=value<256,'clock_extra_byte_geometry')
-        expected[at]=value
     require(bytes(expected)==after, 'unowned_save2_change')
     return dict(ticks=last-first,minute_rollovers=last//3600-first//3600,frame_budget=frames)
 
@@ -49,26 +46,38 @@ def ledger_after_minutes(raw, minutes):
         struct.pack_into('<I',out,8,ledger_checksum(out))
     return bytes(out)
 
-def time_evidence(before, after, *, extra_save2=None):
+def time_evidence(before, after):
     b,a=before['observation'],after['observation']
     require(a['observe']>b['observe'],'time_observation_order')
-    clock=clock_delta(before['save2'],after['save2'],a['frame']-b['frame'],extra_save2=extra_save2)
+    clock=clock_delta(before['save2'],after['save2'],a['frame']-b['frame'])
     require(ledger_after_minutes(before['ledger'],clock['minute_rollovers'])==after['ledger'],'unowned_research_ledger_change')
     return clock
 
 def no_save(before,after):
     b,a=before['observation'],after['observation']
     require(a['save_counter']==b['save_counter']==101 and a['flash_sha256']==b['flash_sha256'] and a['rp']==b['rp']==0 and a['party_count']==b['party_count']==4,'unexpected_save_or_scope')
-    require(all(before[k]==after[k]for k in('last_ball','coins','expanded_flags','expanded_vars')),'unowned_expansion_change')
+    require(all(before[k]==after[k]for k in('last_ball','coins','expanded_flags')),'unowned_expansion_change')
 
 def byte_deltas(before,after):
     require(type(before)in(bytes,bytearray) and type(after)in(bytes,bytearray) and len(before)==len(after),'delta_geometry')
     return [[i,x,y]for i,(x,y)in enumerate(zip(before,after))if x!=y]
 
-def walking_evidence(before,after,target):
+def walking_evidence(before,after,target,*,observed_transition=False):
     """Same-map one-tile or rotation. Map transitions use a separate owner."""
     no_save(before,after);b,a=before['observation'],after['observation']
-    require(b['callback2']==a['callback2']==0x08055E75 and b['lock']==a['lock']==0 and b['map']==a['map'],'walking_field_scope')
+    require(type(observed_transition)is bool,'transition_boolean')
+    if observed_transition:
+        require(b['callback2']==0x08055E75 and b['lock']==0 and a['callback2']==0x08055E69 and a['lock']==1 and a['map']==b['map']==[3,24] and a['xy']==target==[32,10] and a.get('battle_flags')==a.get('battle_outcome')==0 and after.get('route',{}).get('trainer_id')==0 and after['ui']['enemy_count']==0,'unmatched_observed_transition')
+    else:
+        require(b['callback2']==a['callback2']==0x08055E75 and b['lock']==a['lock']==0 and b['map']==a['map'],'walking_field_scope')
+    expanded=bytearray(before['expanded_vars'])
+    if observed_transition:
+        enemy=after['enemy_party'];mon=__import__('pr16_story_live_observer').mon(enemy[:100]);pid=u32(enemy,0)
+        require(enemy[100:]==before['enemy_party'][100:] and mon['species']==32 and mon['level']==13 and mon['moves']==[40,43,64,116] and pid!=0,'observed_wild_enemy_owner')
+        require(expanded[768:776]==bytes.fromhex('4c4f5051b3b0afae') and expanded[853]==0 and expanded[857]==0,'qol_state_idle_preimage')
+        expanded[858]=1
+        struct.pack_into('<II',expanded,860,pid,pid)
+    require(bytes(expanded)==after['expanded_vars'],'unowned_expansion_change')
     require(type(target)is list and len(target)==2 and sum(abs(x-y)for x,y in zip(b['xy'],target))==1,'one_tile_target')
     require(a['xy']in(b['xy'],target),'walking_position')
     count=int(a['xy']==target);expected=bytearray(before['save1'])
@@ -83,6 +92,8 @@ def walking_evidence(before,after,target):
     key=u32(before['save2'],0xF20)
     steps=u32(before['save1'],0x1214)^key
     struct.pack_into('<I',expected,0x1214,min(0xFFFFFF,steps+count)^key)
+    if observed_transition:
+        for i in (7,8):struct.pack_into('<I',expected,0x1200+4*i,min(0xFFFFFF,(u32(before['save1'],0x1200+4*i)^key)+1)^key)
     if bytes(expected)!=after['save1']:
         raise DiagnosticStop('unowned_walking_save1',dict(deltas=byte_deltas(expected,after['save1'])[:80]))
     wrap=count and before['variables'][0x21]==127

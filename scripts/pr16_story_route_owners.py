@@ -8,6 +8,7 @@ CANDIDATE=dict(size=33554432,sha256='06c5e85cf8cf86eacb369347896154d33594e7a42b3
 RANGES=[(0x800049e,12,'main loop time/music/VBlank'),(0x837be9c,8,'active main-loop veneer'),
  (0x93be9f8,72,'research time adapter'),(0x80540d8,232,'play time reset/start/stop/update/max'),
  (0x93be0a0,188,'minute/day owner'),(0x93bdd7c,104,'SaveFinalize entry'),
+ (0x937795c,96,'QOL standard wild identity consumer'),(0x9377880,68,'QOL land generation wrapper'),(0x93794a0,60,'QOL wild-token producer'),
  (0x806cef8,8,'egg-step hook'),(0x9378a66,12,'egg-step hook adapter'),(0x9377db8,240,'QOL daycare wrapper'),(0x804594c,68,'original ShouldEggHatch'),(0x8045858,148,'empty daycare counter increment'),
  (0x806c32c,34,'step counter and maintenance calls'),(0x8054750,196,'game stat increment/get/set'),
  (0x807fb44,8,'active trainer fought hook'),(0x807fb5c,8,'active trainer win hook'),
@@ -74,7 +75,7 @@ def inspect(rom):
         clock=dict(save2_offsets=[14,15,16,17,18],original_update=0x8054130,state_address=0x03000E7C,main_hook=0x800049e,adapter=0x93be9f8,minute_tick=0x93be0a0,ledger_minute_offset=0x746,ledger_checksum='FNV1A32_ZERO_BYTES8_TO11',max_clock_ticks_per_sample='elapsed_frames+1; no saturation',whole_save2_ignored=False,whole_ledger_ignored=False),
         trainers=trainers,wild=wild,terrain_count=len(terrain),walking_steps=len(terrain)-1,bindings=bindings,
         route_candidate='content/modernization/pr16_story_shiou_route_candidate.json',route_candidate_identity=identity((ROOT/'content/modernization/pr16_story_shiou_route_candidate.json').read_bytes()),
-        sources=['overlays/research_economy_v1/research_economy_v1.c','overlays/trainer_changekit_final_runtime/trainer_changekit_final_runtime.c','content/modernization/pr16_story_save98_walk_owner.json'],
+        sources=['overlays/research_economy_v1/research_economy_v1.c','overlays/qol_production/qol_production.c','overlays/trainer_changekit_final_runtime/trainer_changekit_final_runtime.c','content/modernization/pr16_story_save98_walk_owner.json'],
         upstream=dict(repository='pret/pokefirered',commit='c75f352304d529f6ba92d4f74b9cf8b5c3810788',paths=['src/play_time.c','src/main.c','include/global.h','src/field_control_avatar.c','src/daycare.c','src/battle_script_commands.c']),
         milestone_id='SHIOU_POKEMON_CENTER_NORMAL_RECOVERY',ordinary_battle_checkpoint=False,native_multi_battle_accepted=False,milestone_reached=False,runtime_route_authorized=False,
         remaining=['actual battle UI/controller and dialogue owner','dex/gameStats and postbattle persistent owner','map transitions and nurse interaction','normal recovery/save/fresh Continue'])
