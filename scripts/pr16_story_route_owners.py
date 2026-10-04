@@ -5,7 +5,8 @@ from pathlib import Path
 from pr16_story_after_maori import need,identity,map_view,unpack
 ROOT=Path(__file__).resolve().parents[1]
 CANDIDATE=dict(size=33554432,sha256='06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5')
-RANGES=[(0x800049e,12,'main loop time/music/VBlank'),(0x837be9c,8,'active main-loop veneer'),
+RANGES=[(0x800f758,12,'battle init rekey caller'),(0x804b85c,228,'saveblock relocation/rekey owner'),(0x804bd24,136,'word/half rekey and complete dispatch'),(0x807ed92,36,'battle transition poison reset caller'),(0x806cf7c,20,'poison counter reset'),(0x802fd90,22,'known printstring completion controller'),(0x802dc14,8,'known Fight-input owner'),(0x802e1ec,8,'known move-input owner'),
+ (0x800049e,12,'main loop time/music/VBlank'),(0x837be9c,8,'active main-loop veneer'),
  (0x93be9f8,72,'research time adapter'),(0x80540d8,232,'play time reset/start/stop/update/max'),
  (0x93be0a0,188,'minute/day owner'),(0x93bdd7c,104,'SaveFinalize entry'),
  (0x937795c,96,'QOL standard wild identity consumer'),(0x9377880,68,'QOL land generation wrapper'),(0x93794a0,60,'QOL wild-token producer'),
@@ -76,7 +77,7 @@ def inspect(rom):
         trainers=trainers,wild=wild,terrain_count=len(terrain),walking_steps=len(terrain)-1,bindings=bindings,
         route_candidate='content/modernization/pr16_story_shiou_route_candidate.json',route_candidate_identity=identity((ROOT/'content/modernization/pr16_story_shiou_route_candidate.json').read_bytes()),
         sources=['overlays/research_economy_v1/research_economy_v1.c','overlays/qol_production/qol_production.c','overlays/trainer_changekit_final_runtime/trainer_changekit_final_runtime.c','content/modernization/pr16_story_save98_walk_owner.json'],
-        upstream=dict(repository='pret/pokefirered',commit='c75f352304d529f6ba92d4f74b9cf8b5c3810788',paths=['src/play_time.c','src/main.c','include/global.h','src/field_control_avatar.c','src/daycare.c','src/battle_script_commands.c']),
+        upstream=dict(repository='pret/pokefirered',commit='c75f352304d529f6ba92d4f74b9cf8b5c3810788',paths=['src/play_time.c','src/main.c','include/global.h','src/field_control_avatar.c','src/daycare.c','src/load_save.c','src/battle_controller_player.c','src/battle_main.c','src/battle_setup.c','src/battle_script_commands.c']),
         milestone_id='SHIOU_POKEMON_CENTER_NORMAL_RECOVERY',ordinary_battle_checkpoint=False,native_multi_battle_accepted=False,milestone_reached=False,runtime_route_authorized=False,
         remaining=['actual battle UI/controller and dialogue owner','dex/gameStats and postbattle persistent owner','map transitions and nurse interaction','normal recovery/save/fresh Continue'])
 if __name__=='__main__':

@@ -1,0 +1,68 @@
+{
+  "status": "PASS_HOST_ONLY_BATTLE_ADAPTER",
+  "tests": 26,
+  "passed": 26,
+  "stderr": "test_catch_command_stops (test_pr16_story_battle_adapter.BattleTests.test_catch_command_stops) ... ok\ntest_current_resource_move (test_pr16_story_battle_adapter.BattleTests.test_current_resource_move) ... ok\ntest_entry_641_rekey_bytes_and_seen (test_pr16_story_battle_adapter.BattleTests.test_entry_641_rekey_bytes_and_seen) ... ok\ntest_navigation (test_pr16_story_battle_adapter.BattleTests.test_navigation) ... ok\ntest_no_save_on_victory (test_pr16_story_battle_adapter.BattleTests.test_no_save_on_victory) ... ok\ntest_reject_bag_item (test_pr16_story_battle_adapter.BattleTests.test_reject_bag_item) ... ok\ntest_reject_bag_quantity (test_pr16_story_battle_adapter.BattleTests.test_reject_bag_quantity) ... ok\ntest_reject_berry_powder (test_pr16_story_battle_adapter.BattleTests.test_reject_berry_powder) ... ok\ntest_reject_expanded_qol (test_pr16_story_battle_adapter.BattleTests.test_reject_expanded_qol) ... ok\ntest_reject_identity (test_pr16_story_battle_adapter.BattleTests.test_reject_identity) ... ok\ntest_reject_money (test_pr16_story_battle_adapter.BattleTests.test_reject_money) ... ok\ntest_reject_party_change (test_pr16_story_battle_adapter.BattleTests.test_reject_party_change) ... ok\ntest_reject_rp_ledger (test_pr16_story_battle_adapter.BattleTests.test_reject_rp_ledger) ... ok\ntest_reject_seen_wrong_species (test_pr16_story_battle_adapter.BattleTests.test_reject_seen_wrong_species) ... ok\ntest_reject_unexpected_save (test_pr16_story_battle_adapter.BattleTests.test_reject_unexpected_save) ... ok\ntest_reject_unknown_flag (test_pr16_story_battle_adapter.BattleTests.test_reject_unknown_flag) ... ok\ntest_reject_unknown_tail (test_pr16_story_battle_adapter.BattleTests.test_reject_unknown_tail) ... ok\ntest_reject_wrong_enemy (test_pr16_story_battle_adapter.BattleTests.test_reject_wrong_enemy) ... ok\ntest_rekey_roundtrip (test_pr16_story_battle_adapter.BattleTests.test_rekey_roundtrip) ... ok\ntest_ui_action_owner (test_pr16_story_battle_adapter.BattleTests.test_ui_action_owner) ... ok\ntest_ui_move_owner (test_pr16_story_battle_adapter.BattleTests.test_ui_move_owner) ... ok\ntest_ui_no_pending_player_command (test_pr16_story_battle_adapter.BattleTests.test_ui_no_pending_player_command) ... ok\ntest_ui_noninteractive_command (test_pr16_story_battle_adapter.BattleTests.test_ui_noninteractive_command) ... ok\ntest_ui_text_owner (test_pr16_story_battle_adapter.BattleTests.test_ui_text_owner) ... ok\ntest_unknown_text_controller_stops (test_pr16_story_battle_adapter.BattleTests.test_unknown_text_controller_stops) ... ok\ntest_unknown_yesno_stops (test_pr16_story_battle_adapter.BattleTests.test_unknown_yesno_stops) ... ok\n\n----------------------------------------------------------------------\nRan 26 tests in 0.023s\n\nOK\n",
+  "stdout": "",
+  "source_bindings": {
+    ".github/workflows/pr16-story-route-adapter.yml": {
+      "size": 1684,
+      "sha256": "45db990de5af384474c8e4d59b6874a577864496f8fd09b2ccd7a0c75f702e4e"
+    },
+    "content/modernization/pr16_story_route_owners.json": {
+      "size": 61457,
+      "sha256": "74ff9ed43c84b3e222ab3819279d6fc40f7849a2978534717c9dcc27c2403e9b"
+    },
+    "docs/PR16_STORY_ROUTE_ADAPTER_JA.md": {
+      "size": 6301,
+      "sha256": "f406cde05bf505272bac5fe0cb38d739f46beb5852052ea3ca0d20da9584b6e4"
+    },
+    "scripts/pr16_story_battle_adapter.py": {
+      "size": 6951,
+      "sha256": "9670942199d001e6ac96e693ae45a7eab0257825eea2f3d92e31a631c06fbfe0"
+    },
+    "scripts/pr16_story_clock.py": {
+      "size": 6766,
+      "sha256": "6159ed842023c0adca70a81c5c641f22a8aab45f0dda11fc0f169c45f829088c"
+    },
+    "scripts/pr16_story_route_owners.py": {
+      "size": 8084,
+      "sha256": "56c4a2c48882a78ca2cb41bf143c68cbcfcab2cfbb447cbd3f6979d2da8c4032"
+    },
+    "scripts/pr16_story_route_probe.py": {
+      "size": 8411,
+      "sha256": "2eb9c857c5394b1a2ab12142e53e7d7ba3b02dac6ff818f0a4b11979e04480cd"
+    },
+    "scripts/pr16_story_route_session.py": {
+      "size": 2952,
+      "sha256": "b061fb536b7b26250445170f87b0a31f24a16e6772ee03ff6784336f13ded176"
+    },
+    "tests/test_pr16_story_battle_adapter.py": {
+      "size": 4907,
+      "sha256": "4cb3212b1b47b84515b7e31abd00e5bbe8d834588766f176a51ffdd54fb12337"
+    },
+    "tests/test_pr16_story_clock.py": {
+      "size": 8741,
+      "sha256": "c213e44c6382e1bc45dc7a3a3df63f66de7916b3dd149608863645ed0994e55f"
+    },
+    "tools/mgba_pr16_story_route_observer.h": {
+      "size": 1093,
+      "sha256": "f5b20d53afb690457fa1a1d024cb374ca09d4d32a8b905844974e49d6bb79739"
+    }
+  },
+  "retained_entry_evidence": {
+    "clock": {
+      "ticks": 581,
+      "minute_rollovers": 0,
+      "frame_budget": 600
+    },
+    "rekeyed": true,
+    "plaintext_preserved": true
+  },
+  "retained_entry": {
+    "run": 37206318654,
+    "artifact": 11305345112
+  },
+  "prior_host_tests_reused": 47,
+  "new_native_reruns": 0
+}

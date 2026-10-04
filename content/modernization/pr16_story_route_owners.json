@@ -816,6 +816,54 @@
   "walking_steps": 215,
   "bindings": [
     {
+      "address": 134281048,
+      "size": 12,
+      "hex": "10b53cf07ff81ef06bf823f0",
+      "meaning": "battle init rekey caller"
+    },
+    {
+      "address": 134527068,
+      "size": 228,
+      "hex": "f0b557464e464546e0b482b02c4ce0680090216901910020e06020612062294d2948016829488146281c4a467ef186fa27498a460968f527bf0126483a1c7ef17dfa254e316825488046254842467ef175fafff7afff1c490868291c4a467ef16dfa514608681b493a1c7ef167fa30681b4942467ef162fae0214902281cb7f751f9019820610099e160f8f7d1fd041cf8f7cefd24040004000c2418201c00f02ffa09490868f22109014018046002b038bc9846a146aa46f0bc01bc0047000030310003000000024c500003240f000048500003240f000250500003d0830000644c0002",
+      "meaning": "saveblock relocation/rekey owner"
+    },
+    {
+      "address": 134528292,
+      "size": 136,
+      "hex": "054a1268f2231b01d218126803885a404a400280704700004c500003054a1368f22212019b1802681b685a404a400260704700004c50000330b5041c104d286810494018211cfff7e9ff201c08f042fd201c4df063fd201c16f1fef92868a42189004018211cfff7d9ff2868a52189004018211cfff7c4ff30bc01bc0047000048500003383d0000",
+      "meaning": "word/half rekey and complete dispatch"
+    },
+    {
+      "address": 134737298,
+      "size": 36,
+      "hex": "acf079ffd6f78bff064881f7d2fbeef71cf9eef7eaf8281cf7f779ff30bc01bc004759f7",
+      "meaning": "battle transition poison reset caller"
+    },
+    {
+      "address": 134664060,
+      "size": 20,
+      "hex": "00b50348002100f0f9fe01bc0047000022400000",
+      "meaning": "poison counter reset"
+    },
+    {
+      "address": 134413712,
+      "size": 22,
+      "hex": "00b50020d3f752f80004002801d1fdf7bbfe01bc0047",
+      "meaning": "known printstring completion controller"
+    },
+    {
+      "address": 134405140,
+      "size": 8,
+      "hex": "004b1847d17a3709",
+      "meaning": "known Fight-input owner"
+    },
+    {
+      "address": 134406636,
+      "size": 8,
+      "hex": "004b1847417b3709",
+      "meaning": "known move-input owner"
+    },
+    {
       "address": 134218910,
       "size": 12,
       "hex": "7bf3fdfc70f025fe00f0f3f9",
@@ -2420,6 +2468,10 @@
       "include/global.h",
       "src/field_control_avatar.c",
       "src/daycare.c",
+      "src/load_save.c",
+      "src/battle_controller_player.c",
+      "src/battle_main.c",
+      "src/battle_setup.c",
       "src/battle_script_commands.c"
     ]
   },

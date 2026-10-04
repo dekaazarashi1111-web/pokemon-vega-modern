@@ -25,7 +25,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 4
+          fetch-depth: 8
       - name: Restore identical official headers
         run: |
           sudo apt-get update -qq
@@ -44,3 +44,4 @@ jobs:
           if-no-files-found: error
 # owner repair: empty daycare step counter only; first diagnostic retained.
 # changed interval: observe600 no-input frames at the exact unaccepted grass transition.
+# continuation impact: exact first-wild commands and closed rekey/postbattle adapter.
