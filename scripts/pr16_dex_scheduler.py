@@ -130,8 +130,11 @@ static __attribute__((noinline)) u8 stage61_dex_fail_live(void)
     # Shared original helpers/data retain their physical addresses and bytes.
     for name in (() if host else RETAIN):
         a,b,c=function_span(source,name)
-        decl=source[a:b].replace('static ','',1).strip()+';'
-        source=source[:a]+decl+source[c:]
+        decl=' '.join(source[a:b].replace('static ','',1).strip().split())
+        ret,params=decl.split(name,1)
+        address=next(x['address']for x in p['symbols']if x['name']==name)|1
+        macro='#define '+name+' (('+ret.strip()+' (*)'+params+') (uintptr_t)'+hex(address)+'u)'
+        source=source[:a]+macro+source[c:]
     for name in (() if host else ('sStage61SaveChunkOffsets','sStage61SaveChunkSizes')):
         pattern=r'static const u16 '+name+r'\[STAGE61_SAVE_SLOT_SECTORS\] = \{.*?\};'
         source,n=re.subn(pattern,'extern const u16 '+name+'[STAGE61_SAVE_SLOT_SECTORS];',source,flags=re.S);need(n==1,'exact retained data '+name)
@@ -235,6 +238,7 @@ def link(folder):
             old=previous[sec['name']]
             if sec['size']>old['size']or sec['alignment']>old['alignment']:
                 old['size']=max(old['size'],sec['size']);old['alignment']=max(old['alignment'],sec['alignment']);grow=True
+        (folder/'link-diagnostic.json').write_text(json.dumps(dict(live_sections=live,available_bytes=sum(b-a for a,b in windows()),required_bytes=sum(x['size']for x in live),sizing_attempt=attempt),indent=2)+'\n')
         if not grow:break
     else:raise ValueError('far-call section placement did not stabilize')
     run([*args,'-Wl,-T,'+str(ld),str(obj),str(import_obj),'-lgcc','-o',str(final)])

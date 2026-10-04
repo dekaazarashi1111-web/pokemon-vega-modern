@@ -9,6 +9,7 @@ on:
       - tests/test_pr16_dex_scheduler.py
       - scripts/pr16_dex_scheduler_host.py
       - tools/pr16_dex_scheduler_host.c
+      - tools/mgba_pr16_dex_scheduler.c
       - .github/workflows/pr16-dex-scheduler.yml
 permissions:
   contents: read
@@ -38,7 +39,7 @@ jobs:
       - name: Official Ubuntu ARM compiler
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y --no-install-recommends gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-dev
+          sudo apt-get install -y --no-install-recommends gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-dev libmgba-dev
       - name: Build save-only candidate with fixed exports and original non-save bytes
         run: python3 -B scripts/pr16_dex_scheduler_actions.py run
       - name: Lightweight task graph
