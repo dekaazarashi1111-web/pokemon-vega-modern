@@ -3,6 +3,7 @@ on:
   push:
     branches: [codex/modernization-followup-20260908]
     paths:
+      - content/modernization/pr16_dex_save_error_text_audit.json
       - tools/mgba_pr16_dex_save_failure_ui.h
       - scripts/pr16_dex_save_failure_ui.py
       - tests/test_pr16_dex_save_failure_ui.py

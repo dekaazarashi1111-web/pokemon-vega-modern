@@ -57,17 +57,20 @@ int main(int argc,char**argv)
  sf_press(c,8,120);si_need(read32(c,QOL_START_MENU_CALLBACK)==QOL_START_MENU_INPUT,"ordinary START menu");unsigned count=read8(c,QOL_START_MENU_COUNT),cur=read8(c,QOL_START_MENU_CURSOR),target=99;
  si_need(count>0&&count<=10&&cur<count,"bounded menu");for(unsigned i=0;i<count;i++)if(read8(c,QOL_START_MENU_ORDER+i)==4)target=i;si_need(target<count,"SAVE action present");
  while(cur!=target){sf_press(c,128,30);cur=(cur+1)%count;}sf_press(c,1,120);
- bool error=false;
+ bool error=false,page_done=false;
  for(unsigned i=0;i<6000;i++){
   unsigned cb=read32(c,0x03000FA4);
   si_need(!read32(c,0x03005480)&&read8(c,0x0203AAC8)==0,"invalid owner must bypass destructive SaveFailed");
+  if(cb==0x0806F1F5&&read16(c,0x03005470)==255&&read8(c,0x0202004B)&&read8(c,0x0202004C)==2){
+   si_need(!page_done,"one source-proven error page break");sf_view(c,"ordinary_error_first_page");sf_press(c,1,2);page_done=true;continue;
+  }
   if(cb==0x0806F21D&&read8(c,0x03000FA8)==0){error=true;break;}
   sf_tick(c,(cb==0x0806F1F5||cb==0x0806F21D)?0:((i%120)<2?1:0));
  }
  if(!error)sf_view(c,"error_callback_diagnostic");
- si_need(error&&!sf_seen5&&!sf_seen6&&read16(c,0x03005470)==255,"ordinary error without SaveFailed entry");sf_view(c,"ordinary_save_error");sf_press(c,1,2);
+ si_need(error&&page_done&&!sf_seen5&&!sf_seen6&&read16(c,0x03005470)==255,"ordinary error without SaveFailed entry");sf_view(c,"ordinary_save_error");sf_press(c,1,2);
  bool field=false;for(unsigned i=0;i<1200;i++){if(si_field(c)){field=true;break;}sf_tick(c,0);}si_need(field,"ordinary error A returns field");for(unsigned i=0;i<180;i++)sf_tick(c,0);
  si_need(si_field(c)&&!read32(c,0x03005480)&&read8(c,0x0203AAC8)==0,"stable field after failure");sf_view(c,"field_after_failure");
  si_need(read8(c,sb1+4)==3&&read8(c,sb1+5)==24&&read16(c,sb1)==53&&read16(c,sb1+2)==13,"location retained");for(unsigned i=0;i<600;i++)si_need(sf_party[i]==read8(c,QOL_PLAYER_PARTY+i),"entire party retained");unsigned inventory[2048];si_inventory(c,inventory);si_need(!memcmp(inventory,sf_inventory,sizeof(inventory)),"normalized Bag retained");
- si_need(!log_problem_count&&sf_injected==1,"clean negative process");printf("{\"end\":\"PASS_EXPLICIT_CRC_FIXTURE_SAVE_FAILURE_UI\",\"frames\":%u,\"inputs\":%u,\"screens\":%u,\"fixture_calls\":1,\"fixture_bytes\":1,\"host_write_barriers\":7,\"other_host_writes\":0,\"register_writes\":0,\"save_attempts\":1,\"save_commits\":0,\"counter\":101,\"all_flash_unchanged\":true,\"authority_present\":true,\"story_progress_accepted\":false,\"destructive_save_failed_entered\":false}\n",st_frames,st_inputs,sf_screens);fflush(stdout);qol_close(c);return 0;
+ si_need(!log_problem_count&&sf_injected==1,"clean negative process");printf("{\"end\":\"PASS_EXPLICIT_CRC_FIXTURE_SAVE_FAILURE_UI\",\"frames\":%u,\"inputs\":%u,\"screens\":%u,\"fixture_calls\":1,\"fixture_bytes\":1,\"host_write_barriers\":7,\"other_host_writes\":0,\"register_writes\":0,\"save_attempts\":1,\"save_commits\":0,\"counter\":101,\"all_flash_unchanged\":true,\"authority_present\":true,\"story_progress_accepted\":false,\"destructive_save_failed_entered\":false,\"error_page_advances\":1}\n",st_frames,st_inputs,sf_screens);fflush(stdout);qol_close(c);return 0;
 }

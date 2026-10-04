@@ -10,7 +10,8 @@ need,identity,write=isolated.need,isolated.identity,isolated.write
 BASE='82912f7db7b805ffb8af04785c0ae397a8df6bbf'
 MEASURE=(11315776017,37235903199,17586,'210866095da2dabe37cfa41fa50ba790298ca0690f8bcb0a2aaaafbefe44c0f7')
 HEADER='tools/mgba_pr16_dex_save_failure_ui.h'
-CODE={HEADER,'scripts/pr16_dex_save_failure_ui.py','tests/test_pr16_dex_save_failure_ui.py','.github/workflows/pr16-dex-save-failure-ui.yml'}
+TEXT_AUDIT='content/modernization/pr16_dex_save_error_text_audit.json'
+CODE={TEXT_AUDIT,HEADER,'scripts/pr16_dex_save_failure_ui.py','tests/test_pr16_dex_save_failure_ui.py','.github/workflows/pr16-dex-save-failure-ui.yml'}
 OUT=ROOT/'.local/pr16-dex-save-failure-ui';PUBLIC=ROOT/'public-dex-save-failure-ui'
 def validate_header(source):
  stripped=re.sub(r'/\*.*?\*/|//[^\n]*','',source,flags=re.S)
@@ -35,7 +36,7 @@ def guard():
  for path in isolated.CODE:need((ROOT/path).read_bytes()==subprocess.check_output(['git','show',BASE+':'+path],cwd=ROOT),'isolated gates retained')
 def validate(raw,folder,expected_candidate):
  rows=[json.loads(x)for x in raw.splitlines()];end=rows[-1]
- need(set(end)=={'end','frames','inputs','screens','fixture_calls','fixture_bytes','host_write_barriers','other_host_writes','register_writes','save_attempts','save_commits','counter','all_flash_unchanged','authority_present','story_progress_accepted','destructive_save_failed_entered'}and end['save_attempts']==1,'closed terminal schema')
+ need(set(end)=={'end','frames','inputs','screens','fixture_calls','fixture_bytes','host_write_barriers','other_host_writes','register_writes','save_attempts','save_commits','counter','all_flash_unchanged','authority_present','story_progress_accepted','destructive_save_failed_entered','error_page_advances'}and end['error_page_advances']==1 and end['save_attempts']==1,'closed terminal schema')
  need(end['end']=='PASS_EXPLICIT_CRC_FIXTURE_SAVE_FAILURE_UI'and end['fixture_calls']==1 and end['fixture_bytes']==1 and end['host_write_barriers']==7 and end['other_host_writes']==end['register_writes']==end['save_commits']==0 and end['counter']==101 and end['all_flash_unchanged']is True and end['authority_present']is True and end['story_progress_accepted']is False,'exact negative terminal')
  begin=rows[0];need(set(begin)=={'begin','candidate_sha256','host_write_barriers','formal_save_changed'}and begin['begin']=='EXPLICIT_CRC_NEGATIVE_SAVE_FAILURE_UI'and re.fullmatch('[a-f0-9]{64}',begin['candidate_sha256'])and begin['candidate_sha256']==expected_candidate and begin['host_write_barriers']==7 and begin['formal_save_changed']is False,'closed begin schema')
  frame=0;inputs=0;pending=False;screen_index=0;fixture_count=0
@@ -49,9 +50,9 @@ def validate(raw,folder,expected_candidate):
   elif 'failure_ui_stage'in row:
    need(not pending and fixture_count==1 and set(row)=={'failure_ui_stage','frame','active','state','attempt','callback','delay','counter','damaged_mask'}and row['frame']==frame and row['counter']==101 and row['active']==0 and row['state']==0,'paired non-destructive real UI stage');pending=True
   else:raise ValueError('unexpected negative trace row')
- need(not pending and frame==end['frames']and inputs==end['inputs']and screen_index==3 and fixture_count==1,'complete bounded negative trace')
- stages=[r for r in rows if 'failure_ui_stage'in r];need([r['failure_ui_stage']for r in stages]==['injected_at_field','ordinary_save_error','field_after_failure'],'three ordered non-destructive UI stages')
- need(stages[1]['state']==0 and stages[1]['active']==0 and stages[1]['attempt']==255 and stages[1]['callback']==0x0806F21D and stages[1]['delay']==0 and stages[2]['active']==0 and stages[2]['state']==0,'ordinary error and one-A field recovery')
+ need(not pending and frame==end['frames']and inputs==end['inputs']and screen_index==4 and fixture_count==1,'complete bounded negative trace')
+ stages=[r for r in rows if 'failure_ui_stage'in r];need([r['failure_ui_stage']for r in stages]==['injected_at_field','ordinary_error_first_page','ordinary_save_error','field_after_failure'],'four ordered error-page and field UI stages')
+ need(stages[1]['callback']==0x0806F1F5 and stages[1]['attempt']==255 and stages[2]['callback']==0x0806F21D and stages[2]['delay']==0 and stages[3]['active']==0 and stages[3]['state']==0,'page advance and separate error A field recovery')
  states=[r['save_failed_state']for r in rows if 'save_failed_state'in r];need(states==[]and end['destructive_save_failed_entered']is False,'unsafe SaveFailed never entered')
  fixtures=[r for r in rows if 'fixture_calls'in r and 'address'in r];need(len(fixtures)==1 and fixtures[0]['address']==0x0203DB44 and fixtures[0]['new']==fixtures[0]['old']^1,'exact one-byte CRC fixture')
  screens=[]
@@ -59,7 +60,7 @@ def validate(raw,folder,expected_candidate):
   if 'screen'not in row:continue
   image=(folder/('screen-'+str(row['screen']).zfill(4)+'.ppm')).read_bytes();need(len(image)==115215 and image.startswith(b'P6\n240 160\n255\n')and identity(image)['sha256']==row['sha256'],'complete original screen')
   px=image[15:];colors=len(set(px[i:i+3]for i in range(0,len(px),3)));need(colors>1,'nonblank actual renderer');screens.append(dict(**row,colors=colors))
- need(len(screens)==end['screens']==3,'all3 screens');return dict(end=end,stages=stages,fixture=fixtures[0],screens=screens)
+ need(len(screens)==end['screens']==4,'all4 screens');return dict(end=end,stages=stages,fixture=fixtures[0],screens=screens)
 def run():
  import pr16_story_live_probe as t
  need(not OUT.exists()and not PUBLIC.exists(),'fresh UI negative run');OUT.mkdir(parents=True);PUBLIC.mkdir()
@@ -71,6 +72,9 @@ def run():
   need(proof['native']['cases']==108 and proof['native']['new_result_gate_cases']==48,'modified result gate and extra oracle measurement')
   isolated.OUT=OUT;candidate,before,after,linked,placed=isolated.reconstruct();need(identity(after)==proof['candidate']and linked==proof['link']and placed==proof['placement'],'whole candidate matches isolated gates')
   package=subprocess.check_output(['dpkg-query','-W','-f=${Version}','libmgba-dev'],text=True).strip();library=identity(Path('/usr/lib/x86_64-linux-gnu/libmgba.so').read_bytes());need(package=='0.10.2+dfsg-1.1build3'and library==dict(size=1968536,sha256='0c87a12341640e6a2d325e59e76eb4b002947771ad4d8814b216e3b99817d68d'),'fixed verified mGBA runtime');write(PUBLIC/'runtime-identity.json',dict(package=package,library=library))
+  audit=json.loads((ROOT/TEXT_AUDIT).read_bytes())
+  for window in audit['windows']:
+   at=window['address']-0x08000000;need(identity(after[at:at+window['size']])==dict(size=window['size'],sha256=window['sha256']),'signed error text and printer ABI')
   source=OUT/'ui.c';source.write_bytes(generate(identity(after)));exe=OUT/'ui'
   cmd=['cc','-std=c11','-O2','-Wall','-Wextra','-Werror','-Wno-misleading-indentation','-I'+str(ROOT/'tools'),'-I'+str(ROOT),str(source),str(ROOT/'overlays/dex_owner/dex_owner.c'),'-lmgba','-lm','-o',str(exe)]
   compiled=subprocess.run(cmd,capture_output=True,text=True);need(compiled.returncode==0 and not compiled.stdout and not compiled.stderr,'strict negative UI build: '+compiled.stderr[-2000:])

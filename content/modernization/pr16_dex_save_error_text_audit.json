@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "status": "SIGNED_ERROR_MESSAGE_PAGE_BREAK_AND_PRINTER_ABI",
+  "windows": [
+    {
+      "id": "error_text",
+      "address": 138270611,
+      "size": 41,
+      "sha256": "50b17fc891156a2aa95b562ab3e63f8d1d4e571ef8ac122602a32b578caa6c03"
+    },
+    {
+      "id": "error_result_owner",
+      "address": 134672748,
+      "size": 52,
+      "sha256": "43321aefa8dac571b5a625da54c930ea288fe31478af5cb3e2b575dcf973f0d2"
+    },
+    {
+      "id": "error_wait_owner",
+      "address": 134672884,
+      "size": 64,
+      "sha256": "281131709bab63616c7dee07f2eb44825ce9fada2b9a16c1e9af434553043ef3"
+    },
+    {
+      "id": "printer_active_owner",
+      "address": 134229564,
+      "size": 32,
+      "sha256": "d2d3e3019fb0961cb345af2e0b5e2cb832493fe4497e04d2d7eb0373de1f71d3"
+    }
+  ],
+  "error_page_break_offset": 14,
+  "error_text_size": 41,
+  "printer0": {
+    "base": 33685552,
+    "active": 33685579,
+    "state": 33685580,
+    "clear_wait": 2
+  },
+  "first_page_callback": 134672885,
+  "final_page_callback": 134672925,
+  "scope_ja": "通常エラー文内の入力待ち改ページと最終復帰を別々の通常Aで処理。ROM文字列/encoded nameを公開せずaddress-size-SHAと意味だけ。"
+}
