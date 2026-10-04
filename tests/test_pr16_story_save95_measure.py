@@ -39,10 +39,10 @@ class Controller(unittest.TestCase):
                 s.last=o;s.observations.append(o);return o
         return Walking()
     def run_fake(self,s):
-        with patch.object(m.m,'screen',return_value=b'P6\n240 160\n255\n'):return m.progress(s,{})
-    def test_first_event_stops(self):
-        s=self.fake();route,b,f,w=self.run_fake(s);self.assertEqual((route,b,w,f['kind'],f['xy'],f['facing']),(m.ROUTE,None,[],'new_letter_handoff_event',[4,8],1));self.assertEqual(len(s.inputs),34);self.assertEqual(s.pages,4)
-    def test_dialogue_observations(self):s=self.fake();f=self.run_fake(s)[2];self.assertEqual(f['dialogue_observations'],[14,15,16]);self.assertEqual(f['observation'],17)
+        with patch.object(m.m,'screen',return_value=b'P6\n240 160\n255\n'),patch.object(m,'npc_in_front',return_value=True):return m.progress(s,{})
+    def test_npc_visual_first_event_stops(self):
+        s=self.fake();route,b,f,w=self.run_fake(s);self.assertEqual((route,b,w,f['kind'],f['xy'],f['facing']),(m.ROUTE,None,[],'new_letter_handoff_event',[4,8],1));self.assertEqual(len(s.inputs),35);self.assertEqual(s.pages,4)
+    def test_npc_visual_dialogue_observations(self):s=self.fake();f=self.run_fake(s)[2];self.assertEqual(f['dialogue_observations'],[15,16,17]);self.assertEqual(f['observation'],18)
     def test_blocked_no_save_or_A(self):s=self.fake('blocked');self.assertEqual(self.run_fake(s)[2]['kind'],'unpassed_edge');self.assertEqual(s.inputs,[(64,8),(0,48)]*3)
     def test_no_A_during_route(self):s=self.fake();self.run_fake(s);self.assertTrue(all(k in(0,16,32,64,128)for k,_ in s.inputs[:26]))
     def test_dialogue_budget(self):
@@ -55,6 +55,28 @@ class Controller(unittest.TestCase):
         with patch.object(m.m,'screen',return_value=b'bad'):
             with self.assertRaises(ValueError):m.progress(self.fake(),{})
     def test_pp_preserved(self):self.assertEqual(m.PP,[3,9,8,2])
+    def visual_ppm(self,mirror=False):
+        raw=bytearray(b'P6\n240 160\n255\n'+b'\x00'*(240*160*3));v=json.loads((ROOT/m.NPC_VISUAL).read_bytes())
+        for x,y,rgb in v['sparse_pixels']:
+            at=15+3*((80+y)*240+112+(15-x if mirror else x));raw[at:at+3]=bytes(rgb)
+        return bytes(raw)
+    def test_npc_visual_direct(self):self.assertTrue(m.npc_in_front(self.visual_ppm()))
+    def test_npc_visual_mirrored(self):self.assertTrue(m.npc_in_front(self.visual_ppm(True)))
+    def test_npc_visual_empty_rejected(self):self.assertFalse(m.npc_in_front(b'P6\n240 160\n255\n'+b'\x00'*(240*160*3)))
+    def test_npc_visual_pixel_mutation(self):
+        raw=bytearray(self.visual_ppm());x,y,_=json.loads((ROOT/m.NPC_VISUAL).read_bytes())['sparse_pixels'][0];at=15+3*((80+y)*240+112+x);raw[at]^=1;self.assertFalse(m.npc_in_front(bytes(raw)))
+    def test_npc_visual_wait_stable_twice(self):
+        s=self.fake();s.last.update(xy=[4,8],live_xy=[11,15],facing=1)
+        with patch.object(m.m,'screen',return_value=b''),patch.object(m,'npc_in_front',side_effect=[False,True,False,True,True]):waits=m.wait_for_npc(s)
+        self.assertEqual(waits,[0,1,2,3]);self.assertEqual(s.inputs,[(0,30)]*4)
+    def test_npc_visual_timeout_no_A(self):
+        s=self.fake();s.last.update(xy=[4,8],live_xy=[11,15],facing=1)
+        with patch.object(m.m,'screen',return_value=b''),patch.object(m,'npc_in_front',return_value=False):
+            with self.assertRaises(ValueError):m.wait_for_npc(s)
+        self.assertEqual(s.inputs,[(0,30)]*240)
+    def test_npc_visual_rom_movement(self):
+        p=self.prep();row=next(x for x in p['bindings']if x['address']==0x837df04);obj=bytes.fromhex(row['hex'])[24:48];self.assertEqual((obj[0],obj[9],obj[10]),(2,5,0x21))
+
 def negative(key,value):
     def test(self):
         o=self.base();o[key]=value

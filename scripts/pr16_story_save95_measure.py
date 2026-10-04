@@ -18,6 +18,7 @@ PP=[3,9,8,2]
 TRANSITION=134569577 # 失敗原本の16,5で観測した野生戦直前callbackだけ
 PREP='content/modernization/pr16_story_save95_preparation.json'
 CODE.add(PREP)
+NPC_VISUAL='content/modernization/pr16_story_save95_npc_visual.json';CODE.add(NPC_VISUAL)
 TERRAIN='content/modernization/pr16_story_save50_preparation.json'
 ORIGIN=[6,1]
 DESTINATION=[6,1]
@@ -64,6 +65,26 @@ def scope(o):
 def event_scope(o):
     scope(o);need(o['xy']==[4,8] and o['live_xy']==[11,15] and o['facing']==1,'local2北隣/南向きだけ')
 
+def npc_in_front(raw):
+    need(raw[:15]==b'P6\n240 160\n255\n' and len(raw)==115215,'既存240x160実PPMだけ')
+    v=json.loads((ROOT/NPC_VISUAL).read_bytes());need(v['target_origin']==[112,80] and v['shape']==[16,24] and len(v['sparse_pixels'])==128,'原画由来local2内部128pixel')
+    ox,oy=v['target_origin']
+    def matches(mirror):
+        for x,y,rgb in v['sparse_pixels']:
+            px=ox+(15-x if mirror else x);at=15+3*((oy+y)*240+px)
+            if raw[at:at+3]!=bytes(rgb):return False
+        return True
+    return matches(False) or matches(True)
+
+def wait_for_npc(s):
+    waited=[];stable=0
+    for _ in range(240):
+        event_scope(s.last);need(s.last['lock']==0,'会話前fieldのみ')
+        matched=npc_in_front(m.screen(s));stable=stable+1 if matched else 0
+        if stable==2:return waited
+        waited.append(len(s.observations)-1);s.step((0,30))
+    raise ValueError('local2の正面spriteを連続確認できないため停止。盲目的Aなし')
+
 def progress(s,inspection):
     start(s.last);route=[START]
     for before,target in zip(ROUTE,ROUTE[1:]):
@@ -74,13 +95,14 @@ def progress(s,inspection):
             if o['xy']==target:route.append(target);break
         else:return route,None,dict(kind='unpassed_edge',before=before,target=target,attempts=3,map=o['map'],xy=o['xy'],observation=len(s.observations)-1),[]
     event_scope(s.last);need(s.last['lock']==0,'南向き確認後だけ通常会話')
+    npc_wait=wait_for_npc(s)
     o=s.step((1,2),(0,180));event_scope(o);need(o['lock']==1,'最初のlocal2会話を観測')
     dialogue=[]
     for _ in range(40):
         event_scope(o)
         if o['lock']==0:
             idle(o,94)
-            return route,None,dict(kind='new_letter_handoff_event',map=ORIGIN,xy=[4,8],facing=1,dialogue_observations=dialogue,observation=len(s.observations)-1),[]
+            return route,None,dict(kind='new_letter_handoff_event',map=ORIGIN,xy=[4,8],facing=1,npc_wait_observations=npc_wait,dialogue_observations=dialogue,observation=len(s.observations)-1),[]
         need(o['lock']==1 and m.screen(s).startswith(b'P6\n240 160\n255\n'),'固定message scriptの実画面/lock確認後だけ1ページ進める')
         dialogue.append(len(s.observations)-1);o=s.step((1,2),(0,180))
     raise ValueError('40ページ有限上限。未知UIへ継続入力/自動再走しない')

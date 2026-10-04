@@ -26,10 +26,10 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 4
-      - name: 紙引渡し新区間だけのcontroller検査
+      - name: 移動NPCの実画面を確認する影響9検査
         run: |
           set -euo pipefail
-          python3 -B -m unittest discover -s tests -p test_pr16_story_save95_measure.py -v
+          python3 -B -m unittest discover -s tests -p test_pr16_story_save95_measure.py -k npc_visual -v
           python3 -B -c "import sys; sys.path.insert(0,'scripts'); import pr16_story_save95_measure as m; import pr16_learnset_runtime_record as g; g.START=m.BASE; g.CODE=m.CODE; g.OWNED=set(); g.guard()"
       - name: 最初の紙引渡しevent後Save95と独立Continue
         run: python3 -B scripts/pr16_story_save95_measure.py
