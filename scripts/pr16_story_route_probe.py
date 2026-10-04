@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """New-route observation boundary. Unsupported events stop without saving."""
 from __future__ import annotations
-import json,os,subprocess,sys
+import json,os,shutil,subprocess,sys
 from pathlib import Path
 sys.setrecursionlimit(max(sys.getrecursionlimit(),1500))
 ROOT=Path(__file__).resolve().parents[1];sys.path[:0]=[str(ROOT/'scripts'),str(ROOT)]
@@ -14,7 +14,7 @@ from pr16_story_after_maori import need,identity,write
 from pr16_story_milestones import DiagnosticStop
 BASE='635fe8fab84d13f3dc9ad32dc50129436203d0f7'
 OUT=ROOT/'.local/pr16-story-route-adapter';ART=OUT/'artifact'
-CODE={'scripts/pr16_story_battle_adapter.py','tests/test_pr16_story_battle_adapter.py','content/modernization/pr16_story_battle_unit.json','scripts/pr16_story_clock.py','scripts/pr16_story_route_session.py','scripts/pr16_story_route_owners.py','scripts/pr16_story_route_probe.py',
+CODE={'tests/test_pr16_story_publication.py','content/modernization/pr16_story_publication_unit.json','scripts/pr16_story_battle_adapter.py','tests/test_pr16_story_battle_adapter.py','content/modernization/pr16_story_battle_unit.json','scripts/pr16_story_clock.py','scripts/pr16_story_route_session.py','scripts/pr16_story_route_owners.py','scripts/pr16_story_route_probe.py',
       'tools/mgba_pr16_story_route_observer.h','tests/test_pr16_story_clock.py','content/modernization/pr16_story_route_owners.json',
       'content/modernization/pr16_story_clock_unit.json','docs/PR16_STORY_ROUTE_ADAPTER_JA.md','.github/workflows/pr16-story-route-adapter.yml'}
 
@@ -31,8 +31,11 @@ def guard():
     for path in ('scripts/pr16_story_clock.py','scripts/pr16_story_route_session.py','tests/test_pr16_story_clock.py','tools/mgba_pr16_story_route_observer.h'):
         need(identity((ROOT/path).read_bytes())==unit['source_bindings'][path],'unchanged47-test dependency '+path)
     current=json.loads((ROOT/'content/modernization/pr16_story_battle_unit.json').read_bytes())
-    need(current['tests']==current['passed']==26 and current['stderr'].count(' ... ok\n')==26 and '\nOK\n'in current['stderr'],'26 new battle host tests')
+    need(current['tests']==current['passed']==29 and current['stderr'].count(' ... ok\n')==29 and '\nOK\n'in current['stderr'],'29 new battle host tests')
     for path,binding in current['source_bindings'].items():need(identity((ROOT/path).read_bytes())==binding,'new battle unit exact bytes '+path)
+    public=json.loads((ROOT/'content/modernization/pr16_story_publication_unit.json').read_bytes())
+    need(public['tests']==public['passed']==4 and public['stderr'].count(' ... ok\n')==4,'four explicit publication tests')
+    for path,binding in public['source_bindings'].items():need(identity((ROOT/path).read_bytes())==binding,'publication exact bytes '+path)
     need(unit['tests']==47 and unit['passed']==47 and unit['stderr'].count(' ... ok\n')==47 and '\nOK\n'in unit['stderr'],'new47 host test original no rerun')
 
 def direction(a,b):
@@ -63,6 +66,27 @@ def walk(session,route):
         else:raise DiagnosticStop('unpassed_route_tile',dict(index=index,target=target))
     raise DiagnosticStop('facility_adapter_pending')
 
+def export_evidence(source,destination):
+    """Prevalidate an extension/structure allowlist before copying any public file."""
+    source,destination=Path(source),Path(destination);selected=[]
+    need(not destination.exists() and source.is_dir() and not source.is_symlink(),'fresh dedicated public directory')
+    for path in sorted(source.rglob('*')):
+        relative=path.relative_to(source)
+        need(not path.is_symlink() and all(not x.startswith('.')for x in relative.parts),'no symlink or hidden evidence')
+        if path.is_dir():continue
+        need(path.is_file() and path.suffix in{'.json','.txt','.ppm'},'public text/screenshot allowlist')
+        raw=path.read_bytes();need(len(raw)<=16000000,'bounded evidence size')
+        if path.suffix=='.ppm':need(len(raw)==115215 and raw.startswith(b'P6\n240 160\n255\n'),'native screenshot structure')
+        else:
+            text=raw.decode('utf-8');need('\0'not in text,'text evidence only')
+            if path.suffix=='.json':json.loads(text)
+        selected.append((relative,raw))
+    need(bool(selected),'nonempty public evidence');destination.mkdir()
+    for relative,raw in selected:
+        out=destination/relative;out.parent.mkdir(parents=True,exist_ok=True);out.write_bytes(raw)
+        need(identity(out.read_bytes())==identity(raw),'exact public evidence copy')
+    return [relative.as_posix()for relative,_ in selected]
+
 def main():
     guard();need(not OUT.exists(),'no implicit retry');ART.mkdir(parents=True);session=None;execution=None
     try:
@@ -78,7 +102,7 @@ def main():
         route=json.loads((ROOT/'content/modernization/pr16_story_shiou_route_candidate.json').read_bytes())['route']
         walk(session,route)
     except DiagnosticStop as e:
-        report=e.report;report.update(source_head=os.environ['GITHUB_SHA'],run_id=int(os.environ['GITHUB_RUN_ID']),native_processes=int(session is not None),host_tests_reused=73,new_compiles=int(session is not None),accepted_case_reruns=0,ordinary_saves=0,native_multi_battle_accepted=False)
+        report=e.report;report.update(source_head=os.environ['GITHUB_SHA'],run_id=int(os.environ['GITHUB_RUN_ID']),native_processes=int(session is not None),host_tests_reused=80,new_compiles=int(session is not None),accepted_case_reruns=0,ordinary_saves=0,native_multi_battle_accepted=False)
         write(ART/'diagnostic.json',report);print(json.dumps(report,ensure_ascii=False,indent=2))
     except Exception as e:
         write(ART/'failure.json',dict(status='NOT_ACCEPTED_FAILURE',type=type(e).__name__,message=str(e),source_head=os.environ['GITHUB_SHA'],run_id=int(os.environ['GITHUB_RUN_ID']),native_processes=int(session is not None),milestone_reached=False));raise
@@ -89,5 +113,7 @@ def main():
         for p in ART.rglob('*.srm'):
             need(identity(p.read_bytes())==retained.SEED,'no unrequested save publication');p.unlink()
         need(all(p.suffix in{'.ppm','.json','.txt'}for p in ART.rglob('*')if p.is_file()),'text/screen evidence only')
+        write(ART/'publication-policy.json',dict(status='TEXT_SCREENSHOT_ALLOWLIST',hidden_files=False,allowed_extensions=['.json','.txt','.ppm'],rom_input_save_runtime_runner_credentials_excluded=True))
         write(ART/'manifest.json',{p.relative_to(ART).as_posix():identity(p.read_bytes())for p in sorted(ART.rglob('*'))if p.is_file()and p.name!='manifest.json'})
+        published=export_evidence(ART,ROOT/'public-story-route-evidence');print(json.dumps(dict(public_evidence_files=len(published),hidden_files=False)))
 if __name__=='__main__':main()

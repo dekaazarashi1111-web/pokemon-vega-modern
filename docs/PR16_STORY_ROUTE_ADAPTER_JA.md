@@ -39,3 +39,9 @@ run37206318654/source da0624bc098904c785a346f5531cf9847e6b0aa0、全8step成功�
 通常battle initはSaveBlock relocationと再暗号化を行い、raw SaveBlock1は641byte変化した。0x0800F758→0x0804B85C→0x0804BD5Cを確認。新旧keyを使いmoney/coins/186 Bag数量/64 stats/TrainerTower bestTime/berry powderの平文保存を全byte比較し、data変更を許可しない。さらに通常entryの4022=0、固定相手national32のseen bitをSave2とSave1両コピーへ正確に反映して、残る全byteを検査する。任意byte除外は導入しない。
 
 次はこの実wild32/Lv13に通常Earthquakeを1回選ぶ限定adapter。実battle HP/PP/species/types/party indexを確認し、既知printstringだけA、既知Fight/move controllerだけcursor操作、選択を伴わないcommandは無入力待機。未知UI・別相手・2ターン必要・異常差は未保存停止。勝利/field/全persistent平文/PP1消費が一致すればcompact ledgerに書いて宣言済みシオウ施設へ継続する。通常戦を独立Save milestoneにしない。26新host試験と既存47試験を分離し、47の原本は改作/再走しない。
+
+## 初wildの勝利outcomeとfield fade
+
+run37207201375/sourcecf93d4cd70963aa587802ac7e305830029ff802e、全8step成功。実Fight→move UIを確認してEarthquake89を1回選択。PP9→8、HP277/294と残りparty全byte保持、通常outcome1を観測した。field callback復帰時のlock1/暗転中を未対応UIとして止めたため、通常field復帰完了・継続は未受入。135入力/68画面、Save101全byte保持。artifact11305616098/585893bytes/SHA256 e534eca67b4ffa648dd6a082454aa84c2303d1a3e0a827e140ae5ca128a1b1d8。
+
+保存原本だけでpostbattle全平文/rekey/時計/QOL token clear/PP1消費を照合済み。次はfield callback/outcome1/同座標/全persistent ownerが既に一致するlock1に限り、無入力60framesを最大6回。解除後だけledger確定し次tileへ継続。別callback/結果/party差や解除失敗は診断停止。26→29host checksはこの変更影響、47旧clock試験は再走しない。

@@ -40,6 +40,15 @@ class BattleTests(unittest.TestCase):
         _,z=entry();p=bytearray(352);struct.pack_into('<H',p,0,850);struct.pack_into('<4H',p,12,337,89,280,332);struct.pack_into('<H',p,40,277);p[36:40]=bytes([3,9,8,2]);struct.pack_into('<H',p,88,32);struct.pack_into('<H',p,128,36);p[130]=13;p[121:123]=bytes([3,3]);z['route'].update(battle_mons=bytes(p),party_indexes=bytes(8));self.assertEqual(b.move_plan(z),1)
         p[37]=0;z['route']['battle_mons']=bytes(p)
         with self.assertRaises(DiagnosticStop):b.move_plan(z)
+    def test_full_field_fade_guard(self):
+        a,z=finish();z['observation']['lock']=1;self.assertTrue(b.settling(a,z)['plaintext_preserved'])
+        with self.assertRaises(DiagnosticStop):b.finished(a,z)
+    def test_fade_other_outcome_rejected(self):
+        a,z=finish();z['observation'].update(lock=1,battle_outcome=7)
+        with self.assertRaises(DiagnosticStop):b.settling(a,z)
+    def test_fade_hp_mutation_rejected(self):
+        a,z=finish();z['observation']['lock']=1;bytechange(z,'party',86,1)
+        with self.assertRaises(DiagnosticStop):b.settling(a,z)
     def test_navigation(self):self.assertEqual(b.navigation(0,1),[16]);self.assertEqual(b.navigation(3,0),[64,32])
 
 def bad(name,edit):

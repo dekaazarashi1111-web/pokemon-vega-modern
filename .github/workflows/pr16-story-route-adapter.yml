@@ -38,10 +38,12 @@ jobs:
         if: always()
         with:
           name: pr16-story-route-adapter-save101
-          path: .local/pr16-story-route-adapter/artifact
-          include-hidden-files: true
+          path: public-story-route-evidence
           retention-days: 90
           if-no-files-found: error
 # owner repair: empty daycare step counter only; first diagnostic retained.
 # changed interval: observe600 no-input frames at the exact unaccepted grass transition.
 # continuation impact: exact first-wild commands and closed rekey/postbattle adapter.
+# bounded post-victory field fade: complete state guard before each no-input wait.
+# Only prevalidated .json/.txt/.ppm are copied into this non-hidden public directory.
+# ROM/input saves/runtime/runner stay outside it; no hidden-file collection.

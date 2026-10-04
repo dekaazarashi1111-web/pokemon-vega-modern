@@ -72,11 +72,16 @@ def move_plan(live):
     require(list(p[36:40])==[3,9,8,2],'actual_current_battle_pp')
     return 1
 
-def finished(before,after):
-    o=after['observation'];require(o['callback2']==FIELD and o['lock']==0 and o['battle_flags']==4 and o['battle_outcome']==1,'ordinary_wild_victory_field')
+def settling(before,after):
+    o=after['observation'];require(o['callback2']==FIELD and o['lock']in(0,1) and o['battle_flags']==4 and o['battle_outcome']==1,'ordinary_wild_victory_settling')
     result=persistent(before,after,clear_tokens=True)
     party=bytearray(before['party']);require(party[53]==9,'one bounded earthquake');party[53]=8
     require(bytes(party)==after['party'],'postbattle_only_owned_pp')
+    return result
+
+def finished(before,after):
+    require(after['observation']['lock']==0,'ordinary_wild_victory_field')
+    result=settling(before,after)
     return dict(owner='route506_land_species32_level13',field_return=True,owners_resolved=True,observation_match=True,resources=resources(after),pp_used=[0,1,0,0],persistent=result,milestone_reached=False,save_requested=False,continuation='CONTINUE_TO_DECLARED_MILESTONE')
 
 def navigation(current,target):
@@ -86,11 +91,14 @@ def navigation(current,target):
     return keys
 
 def play(session):
-    before=deepcopy(session.live);decisions=[];sent=False
+    before=deepcopy(session.live);decisions=[];sent=False;settles=0
     for _ in range(100):
         o=session.last
         if o['callback2']==FIELD and o['lock']==0:
             require(sent,'victory_without_selected_move');row=finished(before,session.live);row['decisions']=decisions;return row
+        if o['callback2']==FIELD and o['lock']==1:
+            require(sent and settles<6,'field_settling_budget');settling(before,session.live);settles+=1
+            decisions.append(dict(observation=o['observe'],kind='verified_postbattle_fade_no_input',cursor=None));session.step((0,60));continue
         kind,cursor=ui(session.live);decisions.append(dict(observation=o['observe'],kind=kind,cursor=cursor))
         if kind=='text':session.step((1,2),(0,60))
         elif kind=='automatic':session.step((0,60))

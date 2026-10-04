@@ -5,7 +5,7 @@ from pathlib import Path
 from pr16_story_after_maori import need,identity,map_view,unpack
 ROOT=Path(__file__).resolve().parents[1]
 CANDIDATE=dict(size=33554432,sha256='06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5')
-RANGES=[(0x800f758,12,'battle init rekey caller'),(0x804b85c,228,'saveblock relocation/rekey owner'),(0x804bd24,136,'word/half rekey and complete dispatch'),(0x807ed92,36,'battle transition poison reset caller'),(0x806cf7c,20,'poison counter reset'),(0x802fd90,22,'known printstring completion controller'),(0x802dc14,8,'known Fight-input owner'),(0x802e1ec,8,'known move-input owner'),
+RANGES=[(0x8055e38,112,'field callback and normal fade return'),(0x800f758,12,'battle init rekey caller'),(0x804b85c,228,'saveblock relocation/rekey owner'),(0x804bd24,136,'word/half rekey and complete dispatch'),(0x807ed92,36,'battle transition poison reset caller'),(0x806cf7c,20,'poison counter reset'),(0x802fd90,22,'known printstring completion controller'),(0x802dc14,8,'known Fight-input owner'),(0x802e1ec,8,'known move-input owner'),
  (0x800049e,12,'main loop time/music/VBlank'),(0x837be9c,8,'active main-loop veneer'),
  (0x93be9f8,72,'research time adapter'),(0x80540d8,232,'play time reset/start/stop/update/max'),
  (0x93be0a0,188,'minute/day owner'),(0x93bdd7c,104,'SaveFinalize entry'),
