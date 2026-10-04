@@ -12592,3 +12592,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 正式Save101は不変。PR16_DEX_COMPACT_CAPACITY_JA.mdとpr16_dex_capacity_checkpoint.jsonから再開。compact mapping1801byte、新codec/typed adapter/lookup/save bridgeの全API ARMv4T footprint4638byteを51host/262144入力比較/4compileで確認。Stage39退役T09 pointer owner6484byteは全35疑似pointer型・5root・8間接参照・旧DATA/6sentinel参照・全1621終端と20sourceを照合し、25lease試験PASS。実allocator移譲/実配置addressでの再link/stub/veneer/ROM patch/nativeは未実施。Stage61全12568byteを空きへcloneする容量証明ではない。既存owner内置換・export/callsite到達性を固定し全save mode/CRC bank fallback/partial-write/復旧Save前MDX load、全SID喪失前consumer/Bag count/reward clear/Factory-Codex rollbackへ接続。候補全diff/影響learnsetと保存ABI限定native・通常Save/独立cold Continue受入まで正式基準/trainer戦闘を変えない。受入後Save101からシオウPokecenter通常回復へ。雑魚戦ごとのSaveは作らない。
 - Commit: source=3073f0e038c2659491889ac41521fbaf10205adb; 同branch非force push。
 - Network: 同repoActions/source、採用pinのpret/CFRU型定義。公開はhash/address/size/sourceと検査済textのみ。一般CI既知QOL source不一致、Stage79 cacheは別扱い。
+
+## 2026-10-04T17:32:34.880676+00:00
+- Timestamp: 2026-10-04T17:32:34.880676+00:00
+- Task: USER-20261004-DEX-CAPACITY / compact ARM容量と退役owner契約の記録終端
+- Version: dex-capacity-v1-closeout
+- Status: DONE（容量工程の記録終端。ROM接続/native受入は未完）
+- Summary: run37220657694/job111490144652全12step成功、記録commitc004de44d7a1ab8ecbbef79521397b3bc3afc144、artifact11310395589の外側SHAとcheckpoint receipt全byteを照合してpendingを解除。
+- Files changed: 専用closeout、固定MD/JSON、両ログ。
+- Verify: terminal/source bindings/resume/task graph/index guard PASS。再host0/ARM0/native0/ROM・Save変更0。51compact＋25lease試験、ARM4compile/1linkの原本を保持。
+- Next: 署名付きowner移譲と実配置relink、Stage61既存owner内置換と全save/consumer接続、保存ABI限定native後にシオウ回復へ。未割当FF借用や正式ROM基準切替をしない。
+- Commit: closeout source=89ca1ca6fdb8d0c38949d9bea74227c3bc09082c; 同branch非force push。
+- Network: 同repoActions終端と検査済text receiptのみ。既知一般CI QOL source不一致、Stage79 cache、旧9月18日queueは別扱い。

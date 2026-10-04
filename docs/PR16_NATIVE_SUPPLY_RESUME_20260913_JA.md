@@ -463,6 +463,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-図鑑runtime専用run37218128470/job111482743441は全12step成功。102host試験、native5UI寿命の原本、Stage75 SID1670→owner925、ROM空き3151byteの監査を記録。receipt全byte一致。記録ARM0/native0/ROM変更0/Save変更0。全save/consumer接続とシオウ回復は未完。Stage79 cacheは新nativeではなく、一般CI QOL source不一致は未解決。
+図鑑compact ARM4638byteとStage39退役owner6484byteのhash-bound契約を専用記録run全12step成功で固定。receipt全byte一致。allocator実移管/実配置/Stage61保存と全consumer/native保存は未完。正式Save101保持。Stage79 cacheを新nativeに数えず、一般CI QOL source不一致も未解決。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

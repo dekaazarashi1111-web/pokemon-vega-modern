@@ -4360,12 +4360,18 @@
   "observed_head": "3073f0e038c2659491889ac41521fbaf10205adb",
   "observed_head_checks": {
     "all12_steps_success": true,
+    "c_mapping_comparisons": 262144,
+    "capacity_measurement_run": 37219630045,
+    "capacity_record_run": 37220657694,
+    "compact_tests": 51,
     "general_ci_known_source_mismatch_not_resolved": true,
-    "host_tests": 102,
-    "reason_ja": "図鑑runtime専用run37218128470/job111482743441は全12step成功。102host試験、native5UI寿命の原本、Stage75 SID1670→owner925、ROM空き3151byteの監査を記録。receipt全byte一致。記録ARM0/native0/ROM変更0/Save変更0。全save/consumer接続とシオウ回復は未完。Stage79 cacheは新nativeではなく、一般CI QOL source不一致は未解決。",
-    "runtime_record_run": 37218128470,
+    "lease_tests": 25,
+    "measurement_arm_translation_units": 4,
+    "reason_ja": "図鑑compact ARM4638byteとStage39退役owner6484byteのhash-bound契約を専用記録run全12step成功で固定。receipt全byte一致。allocator実移管/実配置/Stage61保存と全consumer/native保存は未完。正式Save101保持。Stage79 cacheを新nativeに数えず、一般CI QOL source不一致も未解決。",
+    "record_arm_compiles": 0,
+    "record_native_processes": 0,
     "runtime_wired": false,
-    "scope_head": "ada18f7e1fb9da89bb737517b8c2cc29b28ac24c"
+    "scope_head": "3073f0e038c2659491889ac41521fbaf10205adb"
   },
   "observed_head_history": [
     {
@@ -12376,13 +12382,7 @@
     "status": "NATIVE_PARTY_RETENTION_ACCEPTED_BP_PENDING",
     "tested_head": "10e535a046441dd3b797918106259b5c57b69716"
   },
-  "pending_runs": [
-    {
-      "run_id": 37220657694,
-      "status": "in_progress",
-      "tested_head": "3073f0e038c2659491889ac41521fbaf10205adb"
-    }
-  ],
+  "pending_runs": [],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
   "pr_draft": true,
   "pr_merged": false,
@@ -14156,6 +14156,10 @@
     ".github/workflows/pr16-counter-source-context.yml": {
       "sha256": "00260954c833f5ae6a496fd686302e1484863190441ca946f5dc7a2e9f307b94",
       "size": 2500
+    },
+    ".github/workflows/pr16-dex-capacity-closeout.yml": {
+      "sha256": "64408837a8316314258d12b21587d741c6216e23108aeb90bf64e5255e88e385",
+      "size": 2399
     },
     ".github/workflows/pr16-dex-capacity-record.yml": {
       "sha256": "9fbdb6b7d22033e8a9ee3fb710a715350a3f996a1addaa921f639abba0013fba",
@@ -32081,6 +32085,10 @@
       "sha256": "bb17a9d961c6d14209b5c77e397b9759e312e2a3432576039a80b29dc4d78fb9",
       "size": 6379
     },
+    "scripts/pr16_dex_capacity_closeout.py": {
+      "sha256": "8ac908e328bd327387faa760bb2f436950590cb6c69a3134bbfd5a845825ff73",
+      "size": 6344
+    },
     "scripts/pr16_dex_capacity_record.py": {
       "sha256": "ee6045e8e391501ea8ff98f1c9555e04c93775e7ff05c57433be157016c41f88",
       "size": 12339
@@ -37813,6 +37821,24 @@
         "measurement_run": 37219630045,
         "measurement_source": "8822a20ba6233bce79d23c54c499461ec0e8fd44",
         "record_run": 37220657694,
+        "recording": {
+          "all12_steps_success": true,
+          "archive_sha256": "54583d349005fab1130a2b04a772b972220f4635206d6c65ea31e595ccf5344b",
+          "archive_size": 2531,
+          "arm_compiles": 0,
+          "artifact": 11310395589,
+          "closeout_run": 37220882395,
+          "closeout_source": "89ca1ca6fdb8d0c38949d9bea74227c3bc09082c",
+          "completion": "c004de44d7a1ab8ecbbef79521397b3bc3afc144",
+          "host_tests_rerun": 0,
+          "job": 111490144652,
+          "native_processes": 0,
+          "receipt_whole_bytes_verified": true,
+          "rom_changed": false,
+          "run": 37220657694,
+          "save_changed": false,
+          "source": "3073f0e038c2659491889ac41521fbaf10205adb"
+        },
         "runtime_wired": false,
         "source_head": "3073f0e038c2659491889ac41521fbaf10205adb",
         "status": "PASS_COMPACT_ARM_AND_HASH_BOUND_RETIRED_OWNER_CONTRACT_PLACEMENT_PENDING"
