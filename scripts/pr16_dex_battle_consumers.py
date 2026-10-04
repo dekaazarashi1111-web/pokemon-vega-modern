@@ -9,8 +9,8 @@ p=lifecycle.placement;need,identity=lifecycle.need,lifecycle.identity
 CP='content/modernization/pr16_dex_lifecycle_checkpoint.json'
 BINDINGS='content/modernization/pr16_dex_battle_bindings.json'
 SOURCES=['overlays/dex_owner/dex_battle_consumers.c','overlays/dex_owner/dex_battle_consumers.S']
-BASE=p.BASE+5024
-END=p.lease.BASE+p.lease.END
+BASE=lifecycle.BASE+188
+END=lifecycle.END
 EXPORTS=('VegaDexBattleSeen','VegaDexBattleOfficialCount')
 def checkpoint():return json.loads((ROOT/CP).read_bytes())
 def proof():return json.loads((ROOT/BINDINGS).read_bytes())
@@ -36,18 +36,24 @@ def link(folder):
     elf=folder/'consumer.elf';run(['arm-none-eabi-gcc','-mthumb','-mcpu=arm7tdmi','-mthumb-interwork','-nostdlib','-Wl,--build-id=none','-Wl,--gc-sections','-Wl,-e,VegaDexBattleSeen','-Wl,-T,'+str(ld),*map(str,objects),'-lgcc','-o',str(elf)])
     need(not run(['arm-none-eabi-nm','-u',str(elf)]),'no unresolved consumers')
     sections=[s for s in lifecycle.scheduler.elf_sections(elf.read_bytes())if s['flags']&2 and s['size']]
-    need(len(sections)==1 and sections[0]['name']=='.text'and sections[0]['address']==BASE,'one immutable existing reserved owner suffix')
+    need(len(sections)==1 and sections[0]['name']=='.text'and sections[0]['address']==BASE,'one immutable new consumer owner')
     symbols=p.parse_symbols(run(['arm-none-eabi-nm','-n','-S','--defined-only',str(elf)]))
     raw=elf.read_bytes();sec=sections[0];payload=raw[sec['offset']:sec['offset']+sec['size']]
     need(0<len(payload)<=END-BASE and len(payload)%4==0,'bounded aligned payload')
     exports={n:symbols[n]['address']|1 for n in EXPORTS}
     need(all(BASE<=a-1<BASE+len(payload)for a in exports.values()),'all exports owned')
     return payload,dict(base=BASE,payload=identity(payload),symbols=symbols,exports=exports,compile_units=2,arm_links=1,new_mutable_owners=0)
+def preserve_allocated_owners(before,after,allocation):
+    for row in allocation['allocations']:
+        a,z=row['start'],row['end_exclusive']
+        need(before[a:z]==after[a:z],'every existing allocated owner retained: '+row['name'])
 def apply(before,payload,linked):
     cp=checkpoint();audit=proof();need(identity(before)==cp['candidate']==audit['parent_candidate'],'exact accepted lifecycle candidate')
     need(cp['isolated']['placement']['allocation']['summaries']['allocation_count']==109,'accepted full allocation')
     need(0<len(payload)<=END-BASE and len(payload)%4==0,'bounded consumer payload')
-    after=bytearray(before);lo=BASE-0x08000000;after[lo:lo+len(payload)]=payload
+    lo=BASE-0x08000000
+    need(before[lo:END-0x08000000]==b'\xff'*(END-BASE),'whole audited unallocated suffix remains blank')
+    after=bytearray(before);after[lo:lo+len(payload)]=payload
     changed=[(lo,lo+len(payload))]
     for w in audit['windows']:
         a=w['address'];at=a-0x08000000
@@ -58,16 +64,12 @@ def apply(before,payload,linked):
     cursor=0
     for a,b in sorted(changed):need(before[cursor:a]==after[cursor:a],'all non-patch ROM bytes retained');cursor=b
     need(before[cursor:]==after[cursor:],'whole ROM suffix retained')
-    allocation=copy.deepcopy(cp['isolated']['placement']['allocation']);owners=[]
-    for row in allocation['allocations']:
-        a,b=row['start'],row['end_exclusive']
-        if before[a:b]!=after[a:b]:
-            need(row['name']==p.NAME and identity(before[a:b])['sha256']==row['content_sha256'],'only reserved codec suffix owner changed')
-            need(a<=lo<lo+len(payload)<=b and before[a:lo]==after[a:lo]and before[lo+len(payload):b]==after[lo+len(payload):b],'codec and reserved rest remain exact')
-            row['content_sha256']=identity(after[a:b])['sha256'];owners.append(row['name'])
-    need(owners==[p.NAME],'one existing owner suffix used')
-    result=p.rebuild_allocation(allocation);need(result==allocation,'all owner ranges and allocation totals preserved')
+    allocation=copy.deepcopy(cp['isolated']['placement']['allocation'])
+    preserve_allocated_owners(before,after,allocation)
+    allocation['allocations'].append(dict(name='pr16_dex_battle_consumers',region='integration_modules',size=len(payload),alignment=4,owner='USER-20261004-DEX-CONSUMERS',purpose='Raw SID battle seen and CFRU official count gateways',content_sha256=identity(payload)['sha256'],start=lo,placement='EXPLICIT'))
+    result=p.rebuild_allocation(allocation)
+    need(len(result['allocations'])==110 and result['allocations'][:-1]==allocation['allocations'][:-1]and result['summaries']['overlap_count']==0,'all109 existing owner ranges/order and bytes retained')
     reverse=bytearray(after)
     for a,b in changed:reverse[a:b]=before[a:b]
     need(bytes(reverse)==before,'entire ROM rollback exact')
-    return bytes(after),dict(allocation=result,changed_existing_owners=owners,patches=[dict(address=a+0x08000000,size=b-a,sha256=identity(after[a:b])['sha256'])for a,b in sorted(changed)],whole_rom_rollback_exact=True,codec_unchanged=True,save_scheduler_unchanged=True,load_newgame_unchanged=True,battle_seen_sites_wired=5,cfru_official_count_wired=True,all_consumers_wired=False,formal_rom_changed=False,formal_save_changed=False)
+    return bytes(after),dict(allocation=result,changed_existing_owners=[],patches=[dict(address=a+0x08000000,size=b-a,sha256=identity(after[a:b])['sha256'])for a,b in sorted(changed)],whole_rom_rollback_exact=True,codec_unchanged=True,save_scheduler_unchanged=True,load_newgame_unchanged=True,battle_seen_sites_wired=5,cfru_official_count_wired=True,all_consumers_wired=False,formal_rom_changed=False,formal_save_changed=False)

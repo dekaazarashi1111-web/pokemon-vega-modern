@@ -34,10 +34,17 @@ class Consumers(unittest.TestCase):
   before=bytes(self.live)
   for mode,expected in [(0,1025),(1,1025),(2,0),(3,0),(255,0)]:self.assertEqual(self.lib.VegaDexBattleOfficialCountC(mode),expected);self.assertEqual(bytes(self.live),before)
   self.live[4]^=1;before=bytes(self.live);self.assertEqual(self.lib.VegaDexBattleOfficialCountC(1),0);self.assertEqual(bytes(self.live),before)
+ def test_same_owner_suffix_is_not_free_space(self):
+  before=bytes(range(128));after=bytearray(before);allocation={'allocations':[dict(name='codec_and_scheduler',start=8,end_exclusive=112)]}
+  b.preserve_allocated_owners(before,after,allocation)
+  after[96]^=1
+  with self.assertRaises(ValueError):b.preserve_allocated_owners(before,after,allocation)
  def test_inline_continuation_and_lease_bounds(self):
   windows=[w for w in b.proof()['windows']if w['id'].startswith('battle_')];self.assertEqual(len(windows),5)
   for w in windows:
    a=w['address'];patch=b.seen_patch(a,b.BASE+1);self.assertEqual(len(patch),14)
    ins=struct.unpack('<5HI',patch);self.assertEqual(((a+4)&~3)+(ins[0]&255)*4+1,a+15);self.assertEqual(((a+8)&~3)+(ins[2]&255)*4,a+10);self.assertEqual(ins[-1],b.BASE+1)
-  self.assertEqual(len(b.tail_patch(0x09131158,b.BASE+1)),8);self.assertEqual(b.BASE-b.p.BASE,5024);self.assertEqual(b.END-b.BASE,1460)
+  self.assertEqual(len(b.tail_patch(0x09131158,b.BASE+1)),8);self.assertEqual(b.BASE,0x095FFE50);self.assertEqual(b.END-b.BASE,432)
+  old=b.checkpoint()['isolated']['placement']['allocation']['allocations']
+  self.assertTrue(all(not(row['gba_start']<=b.BASE<row['gba_end_exclusive'])for row in old))
 if __name__=='__main__':unittest.main()

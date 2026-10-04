@@ -21,7 +21,7 @@ def run():
  need(not OUT.exists()and not PUBLIC.exists(),'fresh consumer attempt');OUT.mkdir(parents=True);PUBLIC.mkdir()
  try:
   unit=subprocess.run([sys.executable,'-B','-m','unittest','discover','-s','tests','-p','test_pr16_dex_battle_consumers.py','-v'],cwd=ROOT,capture_output=True)
-  need(unit.returncode==0 and not unit.stdout and unit.stderr.count(b' ... ok\n')==5 and b'\nOK\n'in unit.stderr,'five new host suites with full1670 namespace sweep');(PUBLIC/'host-tests.txt').write_bytes(unit.stderr)
+  need(unit.returncode==0 and not unit.stdout and unit.stderr.count(b' ... ok\n')==6 and b'\nOK\n'in unit.stderr,'six new host suites with full1670 namespace sweep');(PUBLIC/'host-tests.txt').write_bytes(unit.stderr)
   # unchanged parent source reconstruction; its accepted native tests are not run.
   parent.OUT=OUT/'parent';parent.OUT.mkdir();before_path=parent.reconstruct();before=before_path.read_bytes()
   payload,linked=b.link(OUT/'consumer');after,placed=b.apply(before,payload,linked);candidate=OUT/'candidate.gba';candidate.write_bytes(after)
@@ -37,7 +37,7 @@ def run():
   need(result.returncode==0 and not result.stderr,'native rc='+str(result.returncode)+' '+result.stdout[-500:]+' '+result.stderr[-1000:])
   rows=[json.loads(x)for x in result.stdout.splitlines()];native=rows[-1];need(rows[:-1]==[dict(case=i)for i in range(1,181)]and native['status']=='PASS_ISOLATED_ARM_BATTLE_SEEN_AND_OFFICIAL_COUNT'and native['cases']==180,'all180 consumer ARM cases')
   need(candidate.read_bytes()==after and before_path.read_bytes()==before,'candidate and parent unchanged');write(PUBLIC/'native.json',native)
-  write(PUBLIC/'build.json',dict(status='PASS_BATTLE_SEEN_AND_OFFICIAL_COUNT_CANDIDATE',source_head=os.environ['GITHUB_SHA'],run_id=int(os.environ['GITHUB_RUN_ID']),candidate=identity(after),parent_candidate=identity(before),link=linked,placement=placed,host_suites=5,host_raw_species_cases=1670,native=native,old_native_reruns=0,formal_rom_changed=False,formal_save_changed=False,ordinary_battle_accepted=False,all_consumers_wired=False,all_save_modes_accepted=False,source_bindings={path:identity((ROOT/path).read_bytes())for path in sorted(CODE)}))
+  write(PUBLIC/'build.json',dict(status='PASS_BATTLE_SEEN_AND_OFFICIAL_COUNT_CANDIDATE',source_head=os.environ['GITHUB_SHA'],run_id=int(os.environ['GITHUB_RUN_ID']),candidate=identity(after),parent_candidate=identity(before),link=linked,placement=placed,host_suites=6,host_raw_species_cases=1670,native=native,old_native_reruns=0,formal_rom_changed=False,formal_save_changed=False,ordinary_battle_accepted=False,all_consumers_wired=False,all_save_modes_accepted=False,source_bindings={path:identity((ROOT/path).read_bytes())for path in sorted(CODE)}))
  except Exception as e:
   write(PUBLIC/'failure.json',dict(status='DIAGNOSTIC_NOT_ACCEPTED',type=type(e).__name__,message=str(e),native_processes=int((PUBLIC/'native-attempt.json').exists()),formal_rom_changed=False,formal_save_changed=False));raise
 
