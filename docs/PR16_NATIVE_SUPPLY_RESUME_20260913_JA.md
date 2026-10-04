@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-入口階新11歩で26,28へ、リオン/trainer165に1勝しSave69。HP288/294・PP10,10,15,2/19416円。次は南隣NPCを避ける未通過9歩で南東階段へ。
+新9歩NPC迂回で南東階段を初接続し上階33,29東でSave70。戦闘0/HP288/294・PP10,10,15,2/19416円保持。次は上階南側の未通過25歩で紙側へ。
 
-**次: Save69 artifact11289196478のstory-fast.srm（131088bytes/SHA256 9f17464ffd3b805b2d7b493298abbc1830b905b1cf0cef009feb5aa19e3c64a2）だけから再開。入口階31,22→26,28の新11歩でりかけいのおとこリオン/trainer165に通常1勝、ココガラLv10・ビッパLv12・ファマーLv13をDragonClaw3回、交代取消2/賞金312円。通常Save69/独立Continueを限定受入。HP288/294、PP10,10,15,2、money19416、RP0/badge1/story4071=9/4072=1。party600byte中slot0PP1byteだけ、physical1445:0→1、aux4021:10→20、全Bag/PC/S61E保持。RAM台帳は5/31で変化、owner未解明。戦後/Save後/cold全field画面同一、南隣NPC26,29が見えるため直進を避ける。次は新9歩候補26,28→25,28→25,30→27,30→27,29→南東階段30,29、上階33,29または自動東1歩34,29へ初到着したら通常保存。初の新event/戦闘/不通境界で停止。南東階段/紙側16,27は未実測。27新controller/62新受入、127+cold13入力69画面84member/native2、旧成功再走0。61counter69でも部分write/保存中、62成功→66field、全SaveRTC一致。旧offset41/2056/aux/40acのruntime owner未解明を保持。Flash未使用/がくしゅうそうち未装備。全国図鑑/全story/自然成長・進化/LuckyEgg/研究施設自然到達未完。host補充/ROM変更/既存ROMruntimeinput再配布/故意全滅/merge/release/baseline変更なし。一般CI既知qol_production.c不一致/action_requiredを全成功にしない。**
+**次: Save70 artifact11288833014のstory-fast.srm（131088bytes/SHA256 94fd92a46700adcf4b5b1f8ddb811ad54ee080f488e60e844a08fe475139411a）だけから再開。下階26,28の南隣NPCを迂回する新9歩/転換5で南東階段30,29へ。通常東8frame+待機で上階map1/60・33,29東へ初到着、通常Save70/独立Continueを限定受入。戦闘0、全party600byte/HP288/294・PP10,10,15,2/Bag19416円/PC/S61E保持、RP0/badge1/story4071=9/4072=1。physical2056:1→0、aux4021:20→29/4022:0→4、RAM台帳22変化owner未解明。次は上階南側の未通過25歩33,29→34,29→34,31→17,31→17,27→紙側16,27。初の新event/戦闘/不通境界、または紙側到着で通常保存。紙・像16,28/item274/flag4383は静的ownerのみ、取得未完。27新controller/59新受入、77+cold13入力45画面60member/native2、旧成功再走0。37counter70でも部分write/保存中、38成功→42field。全SaveRTC/最終field全pixel一致、到着15のみbannerあり。旧offset41/2056/aux/40acのruntime owner未解明を保持。Flash未使用/がくしゅうそうち未装備。全国図鑑/全story/自然成長・進化/LuckyEgg/研究施設自然到達未完。host補充/ROM変更/既存ROMruntimeinput再配布/故意全滅/merge/release/baseline変更なし。一般CI既知qol_production.c不一致/action_requiredを全成功にしない。**
 
-Save69入口階26,28南から南隣NPC26,29を避けて未通過9歩で南東階段30,29へ。初の新event/戦闘/不通境界、または上階33,29/自動東1tile34,29へ初到着したら通常保存。PP10,10,15,2、host補充なし。旧11歩/リオン戦/保存は再走しない。
+Save70上階33,29東から上階南側の未通過25歩で紙側16,27へ。初の新event/戦闘/不通境界、または紙側へ初到着したら通常保存。PP10,10,15,2、host補充なし。旧リオン戦/NPC迂回/南東階段/保存は再走しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `33a239e90364383b14f2e46e3aedd21f93251514`。
-入口階新11歩で26,28へ。リオン/trainer165に1勝、DragonClaw3回/賞金312円/Save69。南隣NPCを迂回して南東階段へ。
+証拠のsource HEAD: `6f4a3adcfe115f28851bd9f9b9dd2209a37dc36d`。
+新9歩NPC迂回で南東階段を初接続、上階33,29東でSave70。戦闘0/全party・HP・PP保持。次は上階南側25歩で紙側へ。
 
 ## 最短の再開手順
 
@@ -25,13 +25,13 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_STORY_SAVE69_JA.md`
-- `content/modernization/pr16_story_save69_checkpoint.json`
-- `content/modernization/pr16_story_save69_visual_review.json`
-- `scripts/pr16_story_save69_accept.py`
-- `scripts/pr16_story_save69_measure.py`
-- `content/modernization/pr16_story_save69_evidence/inspection.json`
-- `content/modernization/pr16_story_save69_evidence/next-route.json`
+- `docs/PR16_STORY_SAVE70_JA.md`
+- `content/modernization/pr16_story_save70_checkpoint.json`
+- `content/modernization/pr16_story_save70_visual_review.json`
+- `scripts/pr16_story_save70_accept.py`
+- `scripts/pr16_story_save70_measure.py`
+- `content/modernization/pr16_story_save70_evidence/inspection.json`
+- `content/modernization/pr16_story_save70_evidence/next-route.json`
 - `content/modernization/pr16_story_save62_evidence/route-plan.json`
 - `content/modernization/pr16_story_save57_preparation.json`
 
@@ -399,6 +399,7 @@ P08ゲート:
 - Save67の93/cold13入力53画面68member/27controller/56受入を無影響再走しない。上階新14歩/転換2/オタクン1勝/DragonClaw実PP1。party4体offset41+1とRAM観測3変化owner未解明。45counter67部分write→46成功→50field。全SaveRTC/field画像一致。穴まで1歩、落下/紙未受入。
 - Save68の47/cold13入力29画面44member/27controller/53受入を無影響再走しない。上階31,20→穴31,21へ新1歩/入口階31,22へ通常落下。戦闘0/party600byte/全PP/RAM保持。physical2056:0→1 owner未解明。21最終hash一時一致→22counter68再変化→23成功→26field。全SaveRTC/最終field画像一致。南東階段/紙未受入。
 - Save69の127/cold13入力69画面84member/27controller/62受入を無影響再走しない。入口階新11歩/転換2/リオンtrainer165に1勝、DragonClaw3回/交代取消2/賞金312円。slot0PPだけ13→10、physical1445/aux4021差。RAM5/31owner未解明。61counter69も部分write→62成功→66field。全SaveRTC/全field画像一致。南隣NPC迂回/南東階段/紙未受入。
+- Save70の77/cold13入力45画面60member/27controller/59受入を無影響再走しない。南隣NPC迂回新9歩/転換5/南東階段初接続で上階33,29東。戦闘0/全party600byte・HP・PP10,10,15,2/Bag19416円保持。physical2056反転/aux2変数/RAM22owner未解明。37counter70も部分write→38成功→42field。全SaveRTC/最終field画像一致、到着15のみbannerあり。紙未到達。
 
 ## 次セッションへ残す更新手順
 
