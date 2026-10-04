@@ -12,7 +12,7 @@
 #define DX_ROM "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
 #define DX_SAVE "814a8e31ce20d720a1f1bddc08caa9cdd3d86b5bbb874738b9cb859653552149"
 static color_t dx_video[240*160];
-static uint8_t dx_expected[VEGA_DEX_OWNER_SIZE], dx_flash[131072];
+static uint8_t dx_expected[VEGA_DEX_OWNER_SIZE], dx_flash[131072], dx_tail[2], dx_pc_before[0x83D0], dx_party_before[600];
 static unsigned dx_frames,dx_inputs,dx_screens,dx_fixture_calls,dx_checked;
 static bool dx_active;
 static struct mCore *dx_core;
@@ -33,6 +33,7 @@ static void dx_check(struct mCore*c){
  if(!dx_active)return;
  for(unsigned i=0;i<sizeof(dx_expected);++i)if(read8(c,VEGA_DEX_OWNER_RAM+i)!=dx_expected[i]){
   printf("{\"clobber\":true,\"frame\":%u,\"offset\":%u,\"callback\":%u,\"observed_pc\":%u,\"observed_lr\":%u,\"writer_pc_proven\":false}\n",dx_frames,i,read32(c,BATTLE_CORE_MAIN_CALLBACK2),(unsigned)read_register(c,"pc"),(unsigned)read_register(c,"lr"));fflush(stdout);dx_die("unsaved MDX changed");}
+ for(unsigned i=0;i<2;++i)dx_need(read8(c,VEGA_DEX_OWNER_RAM+522+i)==dx_tail[i],"MDX alignment tail guard changed");
  ++dx_checked;
  struct GBASavedata*s=&((struct GBA*)c->board)->memory.savedata;
  dx_need(s->type==SAVEDATA_FLASH1M && s->data && !memcmp(s->data,dx_flash,sizeof(dx_flash)),"all flash unchanged");
@@ -45,16 +46,16 @@ static bool dx_touches(uint32_t a,unsigned n){
 }
 static void dx_store_check(struct ARMCore*cpu,uint32_t address,unsigned width){
  ++dx_owner_store_calls;
- for(unsigned i=0;i<522;++i)if(read8(dx_core,VEGA_DEX_OWNER_RAM+i)!=dx_expected[i]){
-  unsigned dma=((struct GBA*)dx_core->board)->performingDMA;
-  printf("{\"clobber\":true,\"frame\":%u,\"offset\":%u,\"writer_pc\":%u,\"writer_lr\":%u,\"destination\":%u,\"width\":%u,\"dma\":%u,\"writer_pc_proven\":%s}\n",dx_frames,i,(unsigned)cpu->gprs[15],(unsigned)cpu->gprs[14],address,width,dma,dma?"false":"true");fflush(stdout);dx_die("observed native store changed unsaved MDX");}
+ unsigned dma=((struct GBA*)dx_core->board)->performingDMA;
+ printf("{\"unowned_store\":true,\"frame\":%u,\"raw_cpu_pc\":%u,\"raw_lr\":%u,\"destination\":%u,\"width\":%u,\"dma\":%u,\"writer_pc_proven\":%s}\n",dx_frames,(unsigned)cpu->gprs[15],(unsigned)cpu->gprs[14],address,width,dma,dma?"false":"true");fflush(stdout);dx_die("native store into unwired MDX reservation");
 }
-static void dx_store8(struct ARMCore*c,uint32_t a,int8_t v,int*t){dx_original_memory.store8(c,a,v,t);if(dx_active&&dx_touches(a,1))dx_store_check(c,a,1);}
-static void dx_store16(struct ARMCore*c,uint32_t a,int16_t v,int*t){dx_original_memory.store16(c,a,v,t);if(dx_active&&dx_touches(a&~1u,2))dx_store_check(c,a&~1u,2);}
-static void dx_store32(struct ARMCore*c,uint32_t a,int32_t v,int*t){dx_original_memory.store32(c,a,v,t);if(dx_active&&dx_touches(a&~3u,4))dx_store_check(c,a&~3u,4);}
+static void dx_store8(struct ARMCore*c,uint32_t a,int8_t v,int*t){if(dx_active&&dx_touches(a,1))dx_check(dx_core);dx_original_memory.store8(c,a,v,t);if(dx_active&&dx_touches(a,1))dx_store_check(c,a,1);}
+static void dx_store16(struct ARMCore*c,uint32_t a,int16_t v,int*t){if(dx_active&&dx_touches(a&~1u,2))dx_check(dx_core);dx_original_memory.store16(c,a,v,t);if(dx_active&&dx_touches(a&~1u,2))dx_store_check(c,a&~1u,2);}
+static void dx_store32(struct ARMCore*c,uint32_t a,int32_t v,int*t){if(dx_active&&dx_touches(a&~3u,4))dx_check(dx_core);dx_original_memory.store32(c,a,v,t);if(dx_active&&dx_touches(a&~3u,4))dx_store_check(c,a&~3u,4);}
 static uint32_t dx_store_multiple(struct ARMCore*c,uint32_t a,int mask,enum LSMDirection d,int*t){
  unsigned count=0;for(unsigned i=0;i<16;++i)count+=((unsigned)mask>>i)&1u;
  uint32_t start=a;if(d&LSM_D)start-=(count<<2)-4;if(d&LSM_B)start+=(d&LSM_D)?-4:4;
+ if(dx_active)for(unsigned i=0;i<count;++i)if(dx_touches((start+4*i)&~3u,4)){dx_check(dx_core);break;}
  uint32_t result=dx_original_memory.storeMultiple(c,a,mask,d,t);
  if(dx_active)for(unsigned i=0;i<count;++i)if(dx_touches((start+4*i)&~3u,4)){dx_store_check(c,(start+4*i)&~3u,4);break;}
  return result;
@@ -94,11 +95,12 @@ int main(int argc,char**argv){
  dx_keys(c,0,600);bool ready=false;for(unsigned i=0;i<100;++i){dx_press(c,i==0?8:(i>12?2:1),120);if(dx_field(c)){dx_keys(c,0,180);if(dx_field(c)){ready=true;break;}}}dx_need(ready&&read32(c,0x030053E0)==101,"Continue Save101");dx_screen(c,"loaded-field");
  uint8_t legacy[208],value;for(unsigned i=0;i<sizeof(legacy);++i)legacy[i]=(uint8_t)(0xA5u^i*37u);dx_need(VegaDexInitLegacy(dx_expected,sizeof(dx_expected),legacy,sizeof(legacy))==VEGA_DEX_OK,"valid fixture legacy");
  for(unsigned o=1;o<=1206;++o)dx_need(VegaDexAccess(dx_expected,sizeof(dx_expected),(uint16_t)o,(o%3)?VEGA_DEX_SET_SEEN:VEGA_DEX_SET_CAUGHT,&value)==VEGA_DEX_OK,"fixture flags");
- dx_restore(c,&api);for(unsigned i=0;i<sizeof(dx_expected);++i)write8(c,VEGA_DEX_OWNER_RAM+i,dx_expected[i]);dx_guard(c);dx_active=true;dx_watch(c);dx_check(c);dx_digest(dx_expected,sizeof(dx_expected),sha);printf("{\"fixture\":\"VALID_MDX_UNSAVED_RAM_ONLY\",\"address\":%u,\"size\":522,\"sha256\":\"%s\",\"case\":\"%s\"}\n",VEGA_DEX_OWNER_RAM,sha,mode);
+ unsigned storage=read32(c,0x03005050);dx_need(storage>=0x02000000&&storage+sizeof(dx_pc_before)<=0x02040000,"PC storage owner pointer");for(unsigned i=0;i<sizeof(dx_pc_before);++i)dx_pc_before[i]=read8(c,storage+i);for(unsigned i=0;i<600;++i)dx_party_before[i]=read8(c,QOL_PLAYER_PARTY+i);for(unsigned i=0;i<2;++i)dx_tail[i]=read8(c,VEGA_DEX_OWNER_RAM+522+i);
+ dx_restore(c,&api);for(unsigned i=0;i<sizeof(dx_expected);++i)write8(c,VEGA_DEX_OWNER_RAM+i,dx_expected[i]);dx_guard(c);dx_active=true;dx_watch(c);dx_check(c);dx_digest(dx_expected,sizeof(dx_expected),sha);printf("{\"fixture\":\"VALID_MDX_UNSAVED_RAM_ONLY\",\"address\":%u,\"size\":522,\"sha256\":\"%s\",\"case\":\"%s\",\"frame\":%u}\n",VEGA_DEX_OWNER_RAM,sha,mode,dx_frames);
  if(!strcmp(mode,"bag")){dx_menu(c,2);dx_screen(c,"bag");}
  else if(!strcmp(mode,"pokedex")){dx_menu(c,0);dx_screen(c,"pokedex");}
  else if(!strcmp(mode,"summary")){dx_menu(c,1);dx_press(c,1,240);dx_press(c,64,12);dx_press(c,1,300);unsigned p=read32(c,QOL_SUMMARY_DATA_SLOT);dx_need(p>=0x02000000&&p+0x3240<0x02040000&&read8(c,p+QOL_SUMMARY_INPUT_STATE)==2,"summary ready");dx_screen(c,"summary");dx_press(c,16,120);dx_screen(c,"summary-page2");}
- else {dx_pc_entry(c,&api);if(!strcmp(mode,"box-name")){dx_press(c,64,60);dx_press(c,1,120);dx_screen(c,"box-menu");dx_press(c,128,30);dx_press(c,1,600);dx_need(read32(c,0x020398D8)>=0x02000000&&read32(c,0x020398D8)<0x02040000,"naming pointer");dx_screen(c,"box-name");dx_press(c,8,60);dx_press(c,1,600);dx_screen(c,"name-return-pc");}dx_press(c,2,120);dx_screen(c,"pc-exit-prompt");dx_press(c,1,600);}
- dx_return(c);dx_screen(c,"returned-field");dx_check(c);dx_need(read32(c,0x030053E0)==101&&!log_problem_count,"no save or emulator warning");
+ else {dx_pc_entry(c,&api);if(!strcmp(mode,"box-name")){dx_press(c,64,60);dx_press(c,1,120);dx_screen(c,"box-menu");dx_press(c,128,30);dx_press(c,128,30);dx_press(c,1,600);dx_need(read32(c,0x020398D8)>=0x02000000&&read32(c,0x020398D8)<0x02040000,"naming pointer");dx_screen(c,"box-name");dx_press(c,8,60);dx_press(c,1,600);dx_screen(c,"name-return-pc");}dx_press(c,2,120);dx_screen(c,"pc-exit-prompt");}
+ dx_return(c);dx_screen(c,"returned-field");dx_check(c);storage=read32(c,0x03005050);dx_need(storage>=0x02000000&&storage+sizeof(dx_pc_before)<=0x02040000,"final PC owner pointer");for(unsigned i=0;i<sizeof(dx_pc_before);++i)dx_need(dx_pc_before[i]==read8(c,storage+i),"all PC storage bytes including box names unchanged");for(unsigned i=0;i<600;++i)dx_need(dx_party_before[i]==read8(c,QOL_PLAYER_PARTY+i),"all party bytes unchanged");dx_need(read32(c,0x030053E0)==101&&!log_problem_count,"no save or emulator warning");
  printf("{\"status\":\"PASS_UNSAVED_MDX_UI_LIFETIME_ONLY\",\"case\":\"%s\",\"frames\":%u,\"inputs\":%u,\"checks\":%u,\"whole_owner_bytes\":522,\"native_processes\":1,\"fixture_bytes\":522,\"fixture_calls\":%u,\"host_write_barriers\":7,\"observed_owner_store_calls\":%u,\"ordinary_saves\":0,\"runtime_wired\":false,\"rom_changed\":false,\"story_progress_accepted\":false}\n",mode,dx_frames,dx_inputs,dx_checked,dx_fixture_calls,dx_owner_store_calls);fflush(stdout);qol_close(c);return 0;
 }

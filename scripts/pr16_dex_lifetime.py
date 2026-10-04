@@ -27,15 +27,42 @@ def guard():
     state=json.loads((ROOT/'content/modernization/pr16_native_supply_resume_20260913.json').read_bytes());need(state['pending_runs']==[],'no prior pending run')
     for path,binding in state['source_bindings'].items():need(identity((ROOT/path).read_bytes())==binding,'accepted source unchanged '+path)
 
+def fixture_identity():
+    import struct,zlib
+    b=bytearray(522);b[:4]=b'MDX1';b[8:12]=bytes([1,0,1,0])
+    for owner in range(1,1207):
+        index=(owner-1)//8;bit=1<<((owner-1)%8);b[12+index]|=bit
+        if owner%3==0:b[163+index]|=bit
+    b[314:]=bytes((0xA5^(i*37))&255 for i in range(208));struct.pack_into('<I',b,4,zlib.crc32(b))
+    return identity(bytes(b))
+
 def validate(stdout,case):
-    need(len(stdout)<100000,'bounded metadata output');rows=[json.loads(x)for x in stdout.decode().splitlines()]
+    need(type(stdout)is bytes and 0<len(stdout)<100000 and case in CASES,'bounded metadata output')
+    rows=[json.loads(x)for x in stdout.decode().splitlines()]
+    need(all(type(x)is dict for x in rows),'object records')
+    need(not any('clobber'in x or 'unowned_store'in x for x in rows),'no native clobber record')
     fixtures=[x for x in rows if 'fixture'in x];results=[x for x in rows if 'status'in x]
-    need(len(fixtures)==len(results)==1 and fixtures[0]['case']==case,'one fixture and one terminal')
-    r=results[0];need(r['status']=='PASS_UNSAVED_MDX_UI_LIFETIME_ONLY'and r['case']==case and r['whole_owner_bytes']==522
-        and r['fixture_bytes']==522 and r['host_write_barriers']==7 and r['ordinary_saves']==0
-        and r['runtime_wired']is False and r['rom_changed']is False and r['story_progress_accepted']is False,'exact limited lifetime result')
-    need(r['fixture_calls']==int(case in ('pc','box-name')),'only declared PC entry fixture')
-    screens=[x for x in rows if 'screen'in x];need(screens[0]['stage']=='loaded-field'and screens[-1]['stage']=='returned-field'and screens[-1]['lock']==0,'visible endpoints')
+    need(len(fixtures)==len(results)==1 and rows[-1]is results[0],'one fixture and final terminal')
+    frame=0;inputs=0;screens=[];seen_fixture=False
+    for x in rows[:-1]:
+        if 'input'in x:
+            need(set(x)=={'input','frame','key','frames'}and all(type(v)is int for v in x.values()),'input shape/types')
+            need(x['input']==inputs and x['frame']==frame and x['key']in(0,1,2,8,16,32,64,128)and 0<x['frames']<=1800,'ordered bounded input')
+            inputs+=1;frame+=x['frames'];need(frame<=30000,'overall frame bound')
+        elif 'fixture'in x:
+            need(not seen_fixture and x==dict(fixture='VALID_MDX_UNSAVED_RAM_ONLY',address=0x0203DB40,case=case,frame=frame,**fixture_identity()),'fixed valid unsaved fixture')
+            seen_fixture=True
+        elif 'screen'in x:
+            need(set(x)=={'screen','stage','sha256','frame','callback','lock','pss','cursor_area','cursor_position'},'screen schema')
+            need(x['screen']==f'screen-{len(screens):02d}.ppm'and type(x['frame'])is int and x['frame']==frame,'same-frame safe sequential screen path')
+            screens.append(x)
+        else:raise ValueError('unknown output record')
+    r=results[0]
+    numeric=dict(frames=frame,inputs=inputs,whole_owner_bytes=522,native_processes=1,fixture_bytes=522,fixture_calls=int(case in ('pc','box-name')),host_write_barriers=7,ordinary_saves=0)
+    need(all(type(r.get(k))is int and r[k]==v for k,v in numeric.items()),'exact numeric result fields')
+    need(type(r.get('checks'))is int and r['checks']>=frame-fixtures[0]['frame']+1 and type(r.get('observed_owner_store_calls'))is int and r['observed_owner_store_calls']==0,'all frames checked')
+    need(r['status']=='PASS_UNSAVED_MDX_UI_LIFETIME_ONLY'and r['case']==case and all(r.get(k)is False for k in('runtime_wired','rom_changed','story_progress_accepted')),'limited lifetime scope')
+    need(len(screens)>=3 and screens[0]['stage']=='loaded-field'and screens[-1]['stage']=='returned-field'and screens[-1]['callback']==0x08055E75 and screens[-1]['lock']==0,'visible unlocked field endpoints')
     required={'bag':'bag','summary':'summary-page2','pokedex':'pokedex','pc':'pc-storage','box-name':'box-name'}[case]
     need(any(x['stage']==required for x in screens),'UI target reached')
     for x in screens:
