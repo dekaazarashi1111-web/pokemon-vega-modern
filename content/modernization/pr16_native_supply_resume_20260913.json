@@ -4356,21 +4356,12 @@
   "observed_date_jst": "2026-10-04",
   "observed_head": "d1230b07103cd1790849ba6fb390ede089052a1f",
   "observed_head_checks": {
+    "all12_steps_success": true,
+    "codec_record_run": 37214351222,
     "general_ci_known_source_mismatch_not_resolved": true,
-    "reason_ja": "trainer専用2runは各8step成功。接近/会話/通常entryだけ限定受入。高national図鑑setterの別field書込を静的検出し戦闘入力0で停止。48host、記録native0/compile0。シオウ回復未達。一般CI既知QOL source不一致は未解決。",
-    "scope_head": "4ddcdc44aabb704f542f4e37bf2f58cbfaca7573",
-    "trainer_runs": [
-      {
-        "milestone_reached": false,
-        "reason": "unowned_trainer_field_save1",
-        "run": 37210189574
-      },
-      {
-        "milestone_reached": false,
-        "reason": "trainer131_entry_observed_no_battle_input",
-        "run": 37210491215
-      }
-    ]
+    "reason_ja": "図鑑owner専用run37214351222/job111471729086は全12step成功。1206-owner namespace/522byte codecの40host試験と記録を受入。独立レビュー4件を修復し、receipt全byte一致。ARM0/native0/ROM変更0/Save変更0。PC未保存RAM保持・全consumer/save接続・シオウ回復は未完。Stage79はcache再利用で新nativeではない。一般CI既知QOL source不一致は未解決。",
+    "runtime_wired": false,
+    "scope_head": "d1230b07103cd1790849ba6fb390ede089052a1f"
   },
   "observed_head_history": [
     {
@@ -12381,13 +12372,7 @@
     "status": "NATIVE_PARTY_RETENTION_ACCEPTED_BP_PENDING",
     "tested_head": "10e535a046441dd3b797918106259b5c57b69716"
   },
-  "pending_runs": [
-    {
-      "run_id": 37214351222,
-      "status": "in_progress",
-      "tested_head": "d1230b07103cd1790849ba6fb390ede089052a1f"
-    }
-  ],
+  "pending_runs": [],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
   "pr_draft": true,
   "pr_merged": false,
@@ -14161,6 +14146,10 @@
     ".github/workflows/pr16-counter-source-context.yml": {
       "sha256": "00260954c833f5ae6a496fd686302e1484863190441ca946f5dc7a2e9f307b94",
       "size": 2500
+    },
+    ".github/workflows/pr16-dex-owner-closeout.yml": {
+      "sha256": "fe049fe2b3fe0b3da87f25ba5c1fcfde3cad9f951f283d4b8f116a1db1561330",
+      "size": 2303
     },
     ".github/workflows/pr16-dex-owner-foundation.yml": {
       "sha256": "283074a142bbc3435538f554a01e69feebec9b1e754565b225260579eb838468",
@@ -31962,6 +31951,10 @@
       "sha256": "dcb1882a1be0be0053422117af66d06051c65e7ca026875bee1046f58f78e6a6",
       "size": 7804
     },
+    "scripts/pr16_dex_owner_closeout.py": {
+      "sha256": "3832d5c33746f7a4259e0b43786b60d59431e5d8c91821abd6206c52fa1c7091",
+      "size": 6189
+    },
     "scripts/pr16_dex_owner_record.py": {
       "sha256": "53fd66aac8419e0f6b86fc6d24676fccdd383a3a077d57128c77d2d0d2135b23",
       "size": 9477
@@ -37604,6 +37597,24 @@
     "guide": "docs/PR16_DEX_OWNER_IMPLEMENTATION_JA.md",
     "host_tests": 40,
     "record_run": 37214351222,
+    "recording": {
+      "all12_steps_success": true,
+      "archive_sha256": "fc5b897a73a5a05f47ea24a789eca555cd1975b4acf64d5ad8f8bd707615257f",
+      "archive_size": 1749,
+      "arm_compiles": 0,
+      "artifact": 11308175133,
+      "closeout_run": 37214640280,
+      "closeout_source": "10fe0dd510887cfc4d2948e27ffd695000cbf0fb",
+      "completion": "9d2214ab63650ecaee83c29e3551976d4e0d2159",
+      "host_tests_rerun": 0,
+      "job": 111471729086,
+      "native_processes": 0,
+      "receipt_whole_bytes_verified": true,
+      "rom_changed": false,
+      "run": 37214351222,
+      "save_changed": false,
+      "source": "d1230b07103cd1790849ba6fb390ede089052a1f"
+    },
     "repair_native_accepted": false,
     "runtime_wired": false,
     "source_head": "d1230b07103cd1790849ba6fb390ede089052a1f",

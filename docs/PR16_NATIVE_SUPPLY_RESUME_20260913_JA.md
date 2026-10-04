@@ -460,6 +460,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-trainer専用2runは各8step成功。接近/会話/通常entryだけ限定受入。高national図鑑setterの別field書込を静的検出し戦闘入力0で停止。48host、記録native0/compile0。シオウ回復未達。一般CI既知QOL source不一致は未解決。
+図鑑owner専用run37214351222/job111471729086は全12step成功。1206-owner namespace/522byte codecの40host試験と記録を受入。独立レビュー4件を修復し、receipt全byte一致。ARM0/native0/ROM変更0/Save変更0。PC未保存RAM保持・全consumer/save接続・シオウ回復は未完。Stage79はcache再利用で新nativeではない。一般CI既知QOL source不一致は未解決。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
