@@ -1,0 +1,232 @@
+{
+  "status": "STATIC_SAVE85_SEVENTH_DIGLETT_ONLY",
+  "preparation": {
+    "size": 25063,
+    "sha256": "bd96b0a84eb2b86d915e5a9da9b7abf08e59307186d32e341ca6ca574ada495f"
+  },
+  "route": [
+    [
+      11,
+      3
+    ],
+    [
+      11,
+      4
+    ],
+    [
+      11,
+      5
+    ],
+    [
+      11,
+      6
+    ],
+    [
+      11,
+      7
+    ],
+    [
+      10,
+      7
+    ],
+    [
+      9,
+      7
+    ],
+    [
+      8,
+      7
+    ],
+    [
+      7,
+      7
+    ],
+    [
+      6,
+      7
+    ]
+  ],
+  "terrain": [
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        11,
+        3
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        11,
+        4
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        11,
+        5
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        11,
+        6
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        11,
+        7
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        10,
+        7
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        9,
+        7
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        8,
+        7
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        7,
+        7
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        6,
+        7
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    }
+  ],
+  "interaction": {
+    "local_id": 10,
+    "target": [
+      6,
+      8
+    ],
+    "script": 136400224,
+    "visibility_flag": 4376,
+    "button": "A",
+    "from_xy": [
+      6,
+      7
+    ],
+    "facing": 1,
+    "object_address": 155169804,
+    "object_hex": "0a810000060008000308110000000000604d210818110000"
+  },
+  "initial_flags": {
+    "4372": 0,
+    "4373": 0,
+    "4374": 1,
+    "4375": 0,
+    "4376": 0,
+    "4377": 0,
+    "4378": 1
+  },
+  "expected_flag_changes": [
+    [
+      4372,
+      0,
+      1
+    ],
+    [
+      4374,
+      1,
+      0
+    ]
+  ],
+  "expected_object_changes": [
+    {
+      "local_id": 5,
+      "operation": "removeobject"
+    },
+    {
+      "local_id": 8,
+      "operation": "addobject"
+    }
+  ],
+  "instruction_count": 39,
+  "text_count": 2,
+  "native_route_accepted": false
+}

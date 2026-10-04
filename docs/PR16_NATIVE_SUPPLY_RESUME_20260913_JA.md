@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-第6local11配置変更、Save84/11,3西。4374set/4376clear。PP4,10,12,2/HP287/紙保持。次は南4/西5で第7local10の4374truebranch。
+第7local10の4374true branch、Save85/6,7南。4372set/4374clear。HP287/PP4,10,12,2/紙保持、party2byte/RAM差分owner未解明。次は同位置の第8local10/4372true branch。
 
-**次: Save84 artifact11294830074のstory-fast.srm（131088bytes/SHA256 882a52243dfb4d0faf4fa7d1e828197cf198b135c07c7698b3cfaaede360b8ac）だけから再開。ミルジム10/16・11,3西。第6local11の通常Aで4374set/remove8・4376clear/add10、local11保持。次は南4/西5の9歩6,7へ、南のlocal10/6,8へ通常A。4374trueの新branchで4372set/remove5・4374clear/add8。旧Save81の4375true branchとは別の第7相互作用。最初の新event後通常保存、予期しないNPC/境界は縮小停止。第7保存後の第8local10候補は4372trueから4373/4377set/remove6/11・4372clear/add5でleader前経路を開く静的予測、今回未入力。旧switch/勝利trainer132/160再走0。HP287/294・PP4,10,12,2、Bag20664円・紙274一個/PC保持、S61Eは4374/4376だけ。60+cold13入力34画面49member/native2、新controller31/新受入59。26最終hashでも保存中/counter83→27counter84/成功→31field。全SaveRTC/field全pixel/今回RAM全保持。aux4021:115→119/4022:0→4と過去RAM差分runtime owner未解明。紙consumer博物館2階local2はbadge0x823必須、現badge1で引渡し未解禁。ジム突破→紙引渡し→505道路レンジャー、全story/全国図鑑/自然成長進化/LuckyEgg/研究施設自然到達は未完。Flash未使用/がくしゅうそうち未装備、host補充/ROM変更/入力ROMruntime再配布/故意全滅/merge/release/baseline変更なし。一般CI既知qol_production.c不一致/action_requiredを全成功にしない。**
+**次: Save85 artifact11294671228のstory-fast.srm（131088bytes/SHA256 0001f6a52812526ea52a9f2bcca8055e934379830214a8507867b10e3c2e00e0）だけから再開。ミルジム10/16・6,7南。第7local10の4374true branchで4372set/remove5・4374clear/add8、local10保持。次は移動せず南のlocal10/6,8へ通常A。4372trueの未入力第8branchで4373/4377set/remove6/11・4372clear/add5を予測。最初の新event後通常保存し、別stateとして独立Continue。第8後の東5/北4/西4の13歩leader前7,3は静的候補のみ、今回未入力。旧第5/第7branch、勝利trainer132/160再走0。HP287/294・PP4,10,12,2/Bag20664円・紙274一個/PC保持。party598/600byte保持、raw241:108→109と341:61→62が進行観測11で変化、RAM台帳も11で変化。これら/aux4021:119→0・4022:4→3と過去差分runtime ownerは未解明。72+cold13入力40画面55member/native2、新controller31/新受入63。33counter85でも保存中/部分hash→34最終hash/成功→37field。全SaveRTC/field全pixel/coldRAM保持。紙consumer博物館2階local2はbadge0x823必須、現badge1で引渡し未解禁。ジム突破→紙引渡し→505道路レンジャー、全story/全国図鑑/自然成長進化/LuckyEgg/研究施設自然到達は未完。Flash未使用/がくしゅうそうち未装備、host補充/ROM変更/入力ROMruntime再配布/故意全滅/merge/release/baseline変更なし。一般CI既知qol_production.c不一致/action_requiredを全成功にしない。**
 
-Save84/11,3西から南4/西5で6,7。南のlocal10へ通常A、4374trueの新branchだけ。最初の新event後通常保存、予期しないNPC/境界は縮小停止。旧4375truebranch/勝利trainer132/160再走0。
+Save85/6,7南から移動せずlocal10へ通常A、4372trueの第8新branchだけ。最初の新event後通常保存。旧第5/第7branch/勝利trainer132/160再走0。leader経路は第8保存後に再評価。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `ca2b55818b9ebd8b936b912b30c6ae1d2c4cd6b4`。
-新北4歩/第6local11配置変更、Save84/11,3西。全SaveRTC/field全pixel/party/RAM保持。S61E4374set/4376clear、aux4021/4022と過去差分owner未解明。
+証拠のsource HEAD: `82233207e0a0d5c3ac4939bd0167f3ca2af20417`。
+新南4/西5歩/第7local10配置変更、Save85/6,7南。4372set/4374clear、全SaveRTC/field全pixel/coldRAM保持。party2byte/RAM観測11変化とaux4021/4022、過去差分owner未解明。
 
 ## 最短の再開手順
 
@@ -25,15 +25,15 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_STORY_SAVE84_JA.md`
-- `content/modernization/pr16_story_save84_checkpoint.json`
-- `content/modernization/pr16_story_save84_visual_review.json`
-- `scripts/pr16_story_save84_accept.py`
-- `scripts/pr16_story_save84_measure.py`
-- `content/modernization/pr16_story_save84_evidence/inspection.json`
-- `content/modernization/pr16_story_save84_evidence/next-route.json`
-- `content/modernization/pr16_story_save84_preparation.json`
-- `content/modernization/pr16_story_save84_next_route.json`
+- `docs/PR16_STORY_SAVE85_JA.md`
+- `content/modernization/pr16_story_save85_checkpoint.json`
+- `content/modernization/pr16_story_save85_visual_review.json`
+- `scripts/pr16_story_save85_accept.py`
+- `scripts/pr16_story_save85_measure.py`
+- `content/modernization/pr16_story_save85_evidence/inspection.json`
+- `content/modernization/pr16_story_save85_evidence/next-route.json`
+- `content/modernization/pr16_story_save85_preparation.json`
+- `content/modernization/pr16_story_save85_next_route.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -414,6 +414,7 @@ P08ゲート:
 - Save82の118/cold13入力63画面78member/36controller/66受入を無影響再走しない。trainer132新1勝864円/1412set。55counter82でも保存中→56最終hash/成功→60field。全SaveRTC/全pixel/紙/S61E保持、PP2byteのみ。今回/過去RAM差分owner未解明。次は新東5/北4歩と第6local11。旧gym graph再採取0。
 - Save83の132/cold13入力70画面85member/31controller/67受入を無影響再走しない。trainer160新1勝384円/1440set。62counter83でも保存中→63最終hash/成功→67field。全SaveRTC/全pixel/紙/S61E保持、PP2byteとHP1byteだけ。今回/過去RAM差分owner未解明。次は新北4歩と第6local11。旧gym graph再採取0。
 - Save84の60/cold13入力34画面49member/31controller/59受入を無影響再走しない。第6local11で4374set/4376clear、26最終hashでも保存中→27counter84/成功→31field。全SaveRTC/全pixel/party/今回RAM保持、aux4021/4022と過去差分owner未解明。次は第7local10の4374truebranch。旧第5の4375truebranch再走0。
+- Save85の72/cold13入力40画面55member/31controller/63受入を無影響再走しない。第7local10で4372set/4374clear。33counter85でも保存中→34最終hash/成功→37field。全SaveRTC/全pixel/coldRAM保持。party598byte保持/2byteと観測11RAM、aux4021/4022、過去差分owner未解明。次は同位置第8local10の4372truebranch。
 
 ## 次セッションへ残す更新手順
 
