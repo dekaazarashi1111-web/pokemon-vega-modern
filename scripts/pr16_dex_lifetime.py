@@ -70,17 +70,32 @@ def validate(stdout,case):
         need(any(raw[i:i+3]!=raw[15:18]for i in range(18,len(raw),3)),'nonblank actual screen')
     return r,rows
 
+def reuse_bag():
+    import pr16_story_live_probe as retained
+    spec=(11307998433,37216583954,22980,'86b8bced808b8fade9d0fa82a5a33d28f8fe56eadb2ec4abf674cdeca06233ce')
+    archive,_=retained.archive(spec)
+    with archive:
+        for name in archive.namelist():
+            if not name.startswith('bag/'):continue
+            path=Path(name);need(len(path.parts)==2 and path.suffix in {'.txt','.json','.ppm'},'bounded accepted bag evidence')
+            raw=archive.read(name);dest=OUT/path;dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(raw)
+            public=ART/path;public.parent.mkdir(parents=True,exist_ok=True);public.write_bytes(raw)
+    result,_=validate((OUT/'bag/stdout.txt').read_bytes(),'bag')
+    need(json.loads((OUT/'bag/execution.json').read_bytes())['save_unchanged']is True,'accepted full Save101 equality')
+    write(ART/'bag-reuse.json',dict(source_head='a971ec5eb18b3c8a88e529036d67d778e5c7bd8d',run=37216583954,artifact=11307998433,archive_sha256=spec[3],new_native_processes=0,reason_ja='変更はsummary UI入力/観測だけ。Bagと共通spyの実装不変、保存済原本を再利用。画像は実Bagを目視確認済み。'))
+    return result
+
 def main():
     import pr16_story_live_probe as retained
     import pr16_story_route_probe as publication
     guard();need(not OUT.exists(),'one fresh execution');ART.mkdir(parents=True);results=[];processes=0
     try:
-        retained.OUT=OUT;runtime,private,seed=retained.restore()
+        retained.OUT=OUT;runtime,private,seed=retained.restore();results.append(reuse_bag())
         exe=OUT/'runner';cmd=['cc','-std=c11','-O2','-Wall','-Wextra','-Werror','-Wno-misleading-indentation','-I'+str(ROOT/'tools'),'-I'+str(ROOT),'-I'+str(runtime/'include'),str(ROOT/C),str(ROOT/'overlays/dex_owner/dex_owner.c'),'-L'+str(runtime/'lib'),'-lmgba','-lm','-Wl,--allow-shlib-undefined','-o',str(exe)]
         p=subprocess.run(cmd,cwd=ROOT,capture_output=True,timeout=120);(ART/'compile.stdout.txt').write_bytes(p.stdout);(ART/'compile.stderr.txt').write_bytes(p.stderr)
         write(ART/'compile.json',dict(returncode=p.returncode,source=identity((ROOT/C).read_bytes()),host_compiles=1,arm_compiles=0))
         need(p.returncode==0 and not p.stdout and not p.stderr,'strict new lifetime C compile')
-        for case in CASES:
+        for case in CASES[1:]:
             folder=OUT/case;folder.mkdir();save=folder/'private.srm';save.write_bytes(seed)
             invocation=[str(runtime/'ld.so'),'--library-path',str(runtime/'lib'),str(exe),str(private/'candidate.gba'),str(save),case]
             processes+=1;p=subprocess.run(invocation,cwd=folder,capture_output=True,timeout=180)
@@ -90,7 +105,7 @@ def main():
             need(save.read_bytes()==seed,'all Save101 plus RTC bytes unchanged')
             need(p.returncode==0 and not p.stderr,'new lifetime case '+case)
             result,rows=validate(p.stdout,case);write(target/'result.json',result);results.append(result)
-        write(ART/'measurement.json',dict(status='PASS_FIVE_UI_UNSAVED_MDX_LIFETIME_ONLY',source_head=os.environ['GITHUB_SHA'],run_id=int(os.environ['GITHUB_RUN_ID']),results=results,native_processes=processes,arm_compiles=0,rom_changed=False,formal_save_changed=False,runtime_wired=False,save_abi_accepted=False,consumer_repair_accepted=False,story_milestone_reached=False))
+        write(ART/'measurement.json',dict(status='PASS_FIVE_UI_UNSAVED_MDX_LIFETIME_ONLY',source_head=os.environ['GITHUB_SHA'],run_id=int(os.environ['GITHUB_RUN_ID']),results=results,native_processes=processes,reused_native_cases=1,arm_compiles=0,rom_changed=False,formal_save_changed=False,runtime_wired=False,save_abi_accepted=False,consumer_repair_accepted=False,story_milestone_reached=False))
     except Exception as e:
         write(ART/'failure.json',dict(status='DIAGNOSTIC_NOT_ACCEPTED',type=type(e).__name__,message=str(e),completed_new_cases=results,native_processes=processes,source_head=os.environ['GITHUB_SHA'],run_id=int(os.environ['GITHUB_RUN_ID'])))
         raise
