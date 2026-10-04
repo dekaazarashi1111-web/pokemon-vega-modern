@@ -1,8 +1,6 @@
 name: pr16-dex-start-fault-ui
 on:
-  push:
-    branches: [codex/modernization-followup-20260908]
-    paths: [.github/workflows/pr16-dex-start-fault-ui.yml]
+  workflow_dispatch:
 permissions:
   contents: read
   actions: read
