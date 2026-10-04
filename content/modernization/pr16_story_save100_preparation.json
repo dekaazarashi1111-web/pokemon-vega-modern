@@ -1,0 +1,2849 @@
+{
+  "status": "STATIC_DYNAMIC_RANGER_AND_TOWN_EVENT_SAVE100",
+  "candidate": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  },
+  "input_save": {
+    "size": 131088,
+    "sha256": "18de364bd911a9470965cf571e10aab899e8f4236bcaef327586e965b3a02b6b"
+  },
+  "map": [
+    3,
+    23
+  ],
+  "start": [
+    18,
+    28
+  ],
+  "facing": 3,
+  "route": null,
+  "interaction": null,
+  "ranger": {
+    "local_id": 9,
+    "xy": [
+      18,
+      27
+    ],
+    "script": 149013360,
+    "flag": 0,
+    "movement_type": 2,
+    "movement_ranges": [
+      2,
+      2
+    ],
+    "trainer_type": 0,
+    "trainer_range_or_berry_id": 0,
+    "raw": "0929000012001b00030222000000000070c3e10800000000"
+  },
+  "ranger_static_owner": {
+    "graph": {
+      "root_count": 1,
+      "unique_root_address_count": 1,
+      "visited_script_count": 4,
+      "nodes": [
+        {
+          "address": 143297480,
+          "end_reason": "end",
+          "instruction_count": 9,
+          "edges": [],
+          "roots": [
+            "Route505_local9"
+          ]
+        },
+        {
+          "address": 149013360,
+          "end_reason": "goto",
+          "instruction_count": 7,
+          "edges": [
+            143297480,
+            149013380,
+            149013392
+          ],
+          "roots": [
+            "Route505_local9"
+          ]
+        },
+        {
+          "address": 149013380,
+          "end_reason": "goto",
+          "instruction_count": 1,
+          "edges": [
+            143297480
+          ],
+          "roots": [
+            "Route505_local9"
+          ]
+        },
+        {
+          "address": 149013392,
+          "end_reason": "end",
+          "instruction_count": 9,
+          "edges": [],
+          "roots": [
+            "Route505_local9"
+          ]
+        }
+      ],
+      "references": [
+        {
+          "category": "flag",
+          "value": 4352,
+          "access": "clear",
+          "instruction_address": 149013407,
+          "opcode": 42,
+          "command": "clearflag",
+          "script_address": 149013392,
+          "roots": [
+            "Route505_local9"
+          ]
+        },
+        {
+          "category": "flag",
+          "value": 4380,
+          "access": "read",
+          "instruction_address": 149013362,
+          "opcode": 43,
+          "command": "checkflag",
+          "script_address": 149013360,
+          "roots": [
+            "Route505_local9"
+          ]
+        },
+        {
+          "category": "flag",
+          "value": 4382,
+          "access": "read",
+          "instruction_address": 149013371,
+          "opcode": 43,
+          "command": "checkflag",
+          "script_address": 149013360,
+          "roots": [
+            "Route505_local9"
+          ]
+        },
+        {
+          "category": "map",
+          "value": [
+            3,
+            2
+          ],
+          "access": "warp",
+          "instruction_address": 149013410,
+          "opcode": 58,
+          "command": "warpsilent",
+          "map_id_class": "PHYSICAL",
+          "script_address": 149013392,
+          "roots": [
+            "Route505_local9"
+          ]
+        },
+        {
+          "category": "special",
+          "value": 0,
+          "access": "call",
+          "instruction_address": 143297488,
+          "opcode": 37,
+          "command": "special",
+          "script_address": 143297480,
+          "roots": [
+            "Route505_local9"
+          ]
+        },
+        {
+          "category": "var",
+          "value": 16498,
+          "access": "write",
+          "instruction_address": 149013402,
+          "opcode": 22,
+          "command": "setvar",
+          "operand": 2,
+          "script_address": 149013392,
+          "roots": [
+            "Route505_local9"
+          ]
+        }
+      ],
+      "diagnostics": []
+    },
+    "instructions": [
+      {
+        "address": 143297480,
+        "opcode": 15,
+        "size": 6,
+        "hex": "0f0055bbe108",
+        "node": 143297480
+      },
+      {
+        "address": 143297486,
+        "opcode": 9,
+        "size": 2,
+        "hex": "0904",
+        "node": 143297480
+      },
+      {
+        "address": 143297488,
+        "opcode": 37,
+        "size": 3,
+        "hex": "250000",
+        "node": 143297480
+      },
+      {
+        "address": 143297491,
+        "opcode": 47,
+        "size": 3,
+        "hex": "2f5f00",
+        "node": 143297480
+      },
+      {
+        "address": 143297494,
+        "opcode": 48,
+        "size": 1,
+        "hex": "30",
+        "node": 143297480
+      },
+      {
+        "address": 143297495,
+        "opcode": 15,
+        "size": 6,
+        "hex": "0f00908b8a08",
+        "node": 143297480
+      },
+      {
+        "address": 143297501,
+        "opcode": 9,
+        "size": 2,
+        "hex": "0906",
+        "node": 143297480
+      },
+      {
+        "address": 143297503,
+        "opcode": 108,
+        "size": 1,
+        "hex": "6c",
+        "node": 143297480
+      },
+      {
+        "address": 143297504,
+        "opcode": 2,
+        "size": 1,
+        "hex": "02",
+        "node": 143297480
+      },
+      {
+        "address": 149013360,
+        "opcode": 106,
+        "size": 1,
+        "hex": "6a",
+        "node": 149013360
+      },
+      {
+        "address": 149013361,
+        "opcode": 90,
+        "size": 1,
+        "hex": "5a",
+        "node": 149013360
+      },
+      {
+        "address": 149013362,
+        "opcode": 43,
+        "size": 3,
+        "hex": "2b1c11",
+        "node": 149013360
+      },
+      {
+        "address": 149013365,
+        "opcode": 6,
+        "size": 6,
+        "hex": "060184c3e108",
+        "node": 149013360
+      },
+      {
+        "address": 149013371,
+        "opcode": 43,
+        "size": 3,
+        "hex": "2b1e11",
+        "node": 149013360
+      },
+      {
+        "address": 149013374,
+        "opcode": 6,
+        "size": 6,
+        "hex": "060190c3e108",
+        "node": 149013360
+      },
+      {
+        "address": 149013380,
+        "opcode": 5,
+        "size": 5,
+        "hex": "05c88b8a08",
+        "node": 149013360
+      },
+      {
+        "address": 149013380,
+        "opcode": 5,
+        "size": 5,
+        "hex": "05c88b8a08",
+        "node": 149013380
+      },
+      {
+        "address": 149013392,
+        "opcode": 15,
+        "size": 6,
+        "hex": "0f007fbbe108",
+        "node": 149013392
+      },
+      {
+        "address": 149013398,
+        "opcode": 9,
+        "size": 2,
+        "hex": "0902",
+        "node": 149013392
+      },
+      {
+        "address": 149013400,
+        "opcode": 151,
+        "size": 2,
+        "hex": "9701",
+        "node": 149013392
+      },
+      {
+        "address": 149013402,
+        "opcode": 22,
+        "size": 5,
+        "hex": "1672400200",
+        "node": 149013392
+      },
+      {
+        "address": 149013407,
+        "opcode": 42,
+        "size": 3,
+        "hex": "2a0011",
+        "node": 149013392
+      },
+      {
+        "address": 149013410,
+        "opcode": 58,
+        "size": 8,
+        "hex": "3a03029905001000",
+        "node": 149013392
+      },
+      {
+        "address": 149013418,
+        "opcode": 39,
+        "size": 1,
+        "hex": "27",
+        "node": 149013392
+      },
+      {
+        "address": 149013419,
+        "opcode": 108,
+        "size": 1,
+        "hex": "6c",
+        "node": 149013392
+      },
+      {
+        "address": 149013420,
+        "opcode": 2,
+        "size": 1,
+        "hex": "02",
+        "node": 149013392
+      }
+    ],
+    "texts": {
+      "149011285": {
+        "hex": "4a081a009f59737e7a7e8d84ae41fe0a1901102819009f59737e19fa1136030b2d000c1302292e41ff",
+        "decoded": "ぼくは ポケモンレンジャーだ\\nこのあたりの ポケモンの\\lちょうさを しているんだ"
+      },
+      "143297424": {
+        "hex": "1a02abfe072019009f59737efa15371047440012062a13fa02292603004150100627fa06021c08000b0e130005021026abff",
+        "decoded": "はい！\\nきみの ポケモン\\lながたびで つかれて\\lいるよう だったから\\lかいふく させて おいたよ！"
+      },
+      "149011327": {
+        "hex": "7079001a084812062e190025033d2e0627fe5d605277ae160072ae793700071026fb91896478552d0057849d61840c13fe20112d000109130023270446fa02022e412618acfb3d3401004a0816001202130713abff",
+        "decoded": "ミル はくぶつかんの ゆうじんから\\nスタイラーに メールが きたよ\\pダグトリオを キャプチャして\\nみちを あけて もらえば\\lいいんだよね？\\pじゃあ ぼくに ついてきて！"
+      }
+    }
+  },
+  "visual_observations": [
+    {
+      "lane": "progress",
+      "observation": 101,
+      "xy": [
+        20,
+        28
+      ]
+    },
+    {
+      "lane": "continue",
+      "observation": 0,
+      "xy": [
+        20,
+        28
+      ]
+    },
+    {
+      "lane": "continue",
+      "observation": 1,
+      "xy": [
+        20,
+        29
+      ]
+    }
+  ],
+  "runtime_object_array_observed": false,
+  "museum_admission_var4061": 1,
+  "paper_quantity": 0,
+  "paper_delivered_flag4382": true,
+  "paper_obtain_flag4383": true,
+  "completion_flag4380": false,
+  "money": 23114,
+  "walk_maintenance": {
+    "owner": "content/modernization/pr16_story_save98_walk_owner.json",
+    "happiness_counter": 91,
+    "poison_counter": 1,
+    "next_happiness_wrap_after_steps": 37,
+    "max_approach_steps": 30,
+    "guard_reason_ja": "4021=91から30歩以内、friendship128周期前。status0/草地回避。script自動旋回/移動は別計数。"
+  },
+  "script_effects_static_only": {
+    "var4072_after": 2,
+    "clear_expanded_flag4352": true,
+    "warp_map": [
+      3,
+      2
+    ],
+    "warp_xy": [
+      5,
+      16
+    ],
+    "healing_branch_taken": false,
+    "town_autostart_var4072_equals": 2,
+    "var4072_after_town": 3,
+    "town_set_flags": [
+      4352,
+      4380
+    ],
+    "removed_local_ids": [
+      5,
+      6,
+      7,
+      9
+    ]
+  },
+  "native_event_accepted": false,
+  "transition_preflight_rule_ja": "warp-tableの座標だけで発火可能と判断しない。毎回固定ROMのtile behaviorと必要方向を確認し、通常着地/矢印/方向階段/境界connectionを区別する。実画面の出口は裏付け。無入力自動歩行は実測まで未確認。",
+  "next_action_ja": "Save99だけから動的Rangerを画面mask/正面隣接で確認し通常A。町へwarp後4072=2で始まるダグトリオ解放の連続scriptを通常入力で完了し、最初の操作可能fieldでSave100/独立Continue。新移動30歩未満/戦闘0/回復を仮定しない。",
+  "parent_route_binding": {
+    "size": 10385,
+    "sha256": "0f480baa7dc1c8786c8e166d44b61853e89543d54e3567ee24c2d50e74e13143"
+  },
+  "north": {
+    "map": [
+      3,
+      23
+    ],
+    "header": 137447756,
+    "layout": 137024268,
+    "scripts": 135748400,
+    "width": 48,
+    "height": 40,
+    "connections": [
+      {
+        "direction": 2,
+        "offset": 16,
+        "target_map": [
+          3,
+          44
+        ]
+      },
+      {
+        "direction": 1,
+        "offset": 0,
+        "target_map": [
+          3,
+          2
+        ]
+      }
+    ],
+    "warps": [
+      {
+        "id": 0,
+        "xy": [
+          8,
+          2
+        ],
+        "elevation": 0,
+        "target_warp": 1,
+        "target_map": [
+          1,
+          30
+        ]
+      },
+      {
+        "id": 1,
+        "xy": [
+          5,
+          2
+        ],
+        "elevation": 0,
+        "target_warp": 1,
+        "target_map": [
+          17,
+          0
+        ]
+      },
+      {
+        "id": 2,
+        "xy": [
+          6,
+          2
+        ],
+        "elevation": 3,
+        "target_warp": 1,
+        "target_map": [
+          17,
+          1
+        ]
+      },
+      {
+        "id": 3,
+        "xy": [
+          7,
+          2
+        ],
+        "elevation": 3,
+        "target_warp": 1,
+        "target_map": [
+          17,
+          1
+        ]
+      }
+    ],
+    "objects": [
+      {
+        "local_id": 1,
+        "xy": [
+          15,
+          12
+        ],
+        "script": 154622691,
+        "flag": 0
+      },
+      {
+        "local_id": 2,
+        "xy": [
+          30,
+          24
+        ],
+        "script": 154583947,
+        "flag": 0
+      },
+      {
+        "local_id": 3,
+        "xy": [
+          28,
+          27
+        ],
+        "script": 154590315,
+        "flag": 0
+      },
+      {
+        "local_id": 4,
+        "xy": [
+          22,
+          17
+        ],
+        "script": 154583815,
+        "flag": 0
+      },
+      {
+        "local_id": 5,
+        "xy": [
+          23,
+          17
+        ],
+        "script": 154583815,
+        "flag": 0
+      },
+      {
+        "local_id": 6,
+        "xy": [
+          13,
+          32
+        ],
+        "script": 148898851,
+        "flag": 345
+      },
+      {
+        "local_id": 7,
+        "xy": [
+          37,
+          18
+        ],
+        "script": 148898864,
+        "flag": 346
+      },
+      {
+        "local_id": 8,
+        "xy": [
+          29,
+          27
+        ],
+        "script": 154590315,
+        "flag": 0
+      },
+      {
+        "local_id": 9,
+        "xy": [
+          18,
+          27
+        ],
+        "script": 149013360,
+        "flag": 0
+      }
+    ],
+    "collision_grid": [
+      "##########################........##############",
+      "##########################........##############",
+      "#####WWWW#################........##############",
+      "##########################........##############",
+      "###..#####################........##############",
+      "##########################........##############",
+      "#####..###################........##############",
+      "#####..###################........##############",
+      "#################.....###.........##############",
+      "#################.................##############",
+      "#######..####......#..............#########..###",
+      "#######..####.............#........#########.###",
+      "#######........O........#..........#########.###",
+      "#######.................#..........#########.###",
+      "#######.................#....###..##########.###",
+      "#######..............#.......#....##############",
+      "#######..............#....####....##############",
+      "##########..........#.OO..#............#########",
+      "##########..........#....##..........O.#########",
+      "##########..........#....#...#.........#########",
+      "############........##..##.............#########",
+      "#############............#####.........#########",
+      "###############..........#####........##########",
+      "###############..........#####........##########",
+      "###############........#######O......###########",
+      "###############........#######.......###########",
+      "############...........#######.....#############",
+      "############.....#O...######OO.....#############",
+      "#########.............######.......#############",
+      "########..............######.......#############",
+      "########............#######........#############",
+      "########............#######........#############",
+      "##########...O......#######........#############",
+      "###########.........######.........#############",
+      "################....######........##############",
+      "################....######.#......##############",
+      "################....#######.......##############",
+      "############################......##############",
+      "############################......##############",
+      "############################......##############"
+    ],
+    "scope": "STATIC_COLLISION_ONLY_NOT_REACHABILITY_ACCEPTANCE"
+  },
+  "bindings": [
+    {
+      "address": 137447756,
+      "size": 28,
+      "hex": "0cd32a0814833f09305b1708246b310825015d006900040301060000"
+    },
+    {
+      "address": 137024268,
+      "size": 24,
+      "hex": "300000002800000004c42a080cc42a08448b2908a48b2908"
+    },
+    {
+      "address": 155157268,
+      "size": 20,
+      "hex": "0904020318823f09885d7008a85d7008f0823f09"
+    },
+    {
+      "address": 155157016,
+      "size": 216,
+      "hex": "011900000f000c00030a300001000400e35a370900000000022a00001e001800030a1100010003008bc3360900000000031600001c001b0003081100010001006bdc3609000000000416000016001100040811000100010007c33609000000000516000017001100040811000100010007c3360900000000065c00000d00200003081100000000002304e00859010000075c00002500120003081100000000003004e0085a010000081600001d001b0003081100010001006bdc3609000000000929000012001b00030222000000000070c3e10800000000"
+    },
+    {
+      "address": 137022860,
+      "size": 2,
+      "hex": "0930"
+    },
+    {
+      "address": 136732572,
+      "size": 4,
+      "hex": "21000000"
+    },
+    {
+      "address": 137022862,
+      "size": 2,
+      "hex": "1130"
+    },
+    {
+      "address": 136732604,
+      "size": 4,
+      "hex": "21000000"
+    },
+    {
+      "address": 137022864,
+      "size": 2,
+      "hex": "0930"
+    },
+    {
+      "address": 137022866,
+      "size": 2,
+      "hex": "e030"
+    },
+    {
+      "address": 136733432,
+      "size": 4,
+      "hex": "00000000"
+    },
+    {
+      "address": 137022868,
+      "size": 2,
+      "hex": "0631"
+    },
+    {
+      "address": 136733584,
+      "size": 4,
+      "hex": "00000000"
+    },
+    {
+      "address": 137022870,
+      "size": 2,
+      "hex": "0d30"
+    },
+    {
+      "address": 136732588,
+      "size": 4,
+      "hex": "02020001"
+    },
+    {
+      "address": 137022956,
+      "size": 2,
+      "hex": "0930"
+    },
+    {
+      "address": 137022958,
+      "size": 2,
+      "hex": "1130"
+    },
+    {
+      "address": 137022960,
+      "size": 2,
+      "hex": "0930"
+    },
+    {
+      "address": 137022962,
+      "size": 2,
+      "hex": "0830"
+    },
+    {
+      "address": 136732568,
+      "size": 4,
+      "hex": "21000000"
+    },
+    {
+      "address": 137022964,
+      "size": 2,
+      "hex": "e030"
+    },
+    {
+      "address": 137022966,
+      "size": 2,
+      "hex": "0631"
+    },
+    {
+      "address": 137023052,
+      "size": 2,
+      "hex": "0930"
+    },
+    {
+      "address": 137023054,
+      "size": 2,
+      "hex": "0304"
+    },
+    {
+      "address": 136732548,
+      "size": 4,
+      "hex": "84000020"
+    },
+    {
+      "address": 137023056,
+      "size": 2,
+      "hex": "0930"
+    },
+    {
+      "address": 137023058,
+      "size": 2,
+      "hex": "1130"
+    },
+    {
+      "address": 137023060,
+      "size": 2,
+      "hex": "1130"
+    },
+    {
+      "address": 137023062,
+      "size": 2,
+      "hex": "d830"
+    },
+    {
+      "address": 136733400,
+      "size": 4,
+      "hex": "00000000"
+    },
+    {
+      "address": 137023148,
+      "size": 2,
+      "hex": "1130"
+    },
+    {
+      "address": 137023150,
+      "size": 2,
+      "hex": "0930"
+    },
+    {
+      "address": 137023152,
+      "size": 2,
+      "hex": "1130"
+    },
+    {
+      "address": 137023154,
+      "size": 2,
+      "hex": "1130"
+    },
+    {
+      "address": 137023156,
+      "size": 2,
+      "hex": "0930"
+    },
+    {
+      "address": 137023158,
+      "size": 2,
+      "hex": "e030"
+    },
+    {
+      "address": 137023244,
+      "size": 2,
+      "hex": "1130"
+    },
+    {
+      "address": 137023246,
+      "size": 2,
+      "hex": "0930"
+    },
+    {
+      "address": 137023248,
+      "size": 2,
+      "hex": "0930"
+    },
+    {
+      "address": 137023250,
+      "size": 2,
+      "hex": "1130"
+    },
+    {
+      "address": 137023252,
+      "size": 2,
+      "hex": "1130"
+    },
+    {
+      "address": 137023254,
+      "size": 2,
+      "hex": "0930"
+    },
+    {
+      "address": 143297480,
+      "size": 6,
+      "hex": "0f0055bbe108"
+    },
+    {
+      "address": 143297486,
+      "size": 2,
+      "hex": "0904"
+    },
+    {
+      "address": 143297488,
+      "size": 3,
+      "hex": "250000"
+    },
+    {
+      "address": 143297491,
+      "size": 3,
+      "hex": "2f5f00"
+    },
+    {
+      "address": 143297494,
+      "size": 1,
+      "hex": "30"
+    },
+    {
+      "address": 143297495,
+      "size": 6,
+      "hex": "0f00908b8a08"
+    },
+    {
+      "address": 143297501,
+      "size": 2,
+      "hex": "0906"
+    },
+    {
+      "address": 143297503,
+      "size": 1,
+      "hex": "6c"
+    },
+    {
+      "address": 143297504,
+      "size": 1,
+      "hex": "02"
+    },
+    {
+      "address": 149013360,
+      "size": 1,
+      "hex": "6a"
+    },
+    {
+      "address": 149013361,
+      "size": 1,
+      "hex": "5a"
+    },
+    {
+      "address": 149013362,
+      "size": 3,
+      "hex": "2b1c11"
+    },
+    {
+      "address": 149013365,
+      "size": 6,
+      "hex": "060184c3e108"
+    },
+    {
+      "address": 149013371,
+      "size": 3,
+      "hex": "2b1e11"
+    },
+    {
+      "address": 149013374,
+      "size": 6,
+      "hex": "060190c3e108"
+    },
+    {
+      "address": 149013380,
+      "size": 5,
+      "hex": "05c88b8a08"
+    },
+    {
+      "address": 149013392,
+      "size": 6,
+      "hex": "0f007fbbe108"
+    },
+    {
+      "address": 149013398,
+      "size": 2,
+      "hex": "0902"
+    },
+    {
+      "address": 149013400,
+      "size": 2,
+      "hex": "9701"
+    },
+    {
+      "address": 149013402,
+      "size": 5,
+      "hex": "1672400200"
+    },
+    {
+      "address": 149013407,
+      "size": 3,
+      "hex": "2a0011"
+    },
+    {
+      "address": 149013410,
+      "size": 8,
+      "hex": "3a03029905001000"
+    },
+    {
+      "address": 149013418,
+      "size": 1,
+      "hex": "27"
+    },
+    {
+      "address": 149013419,
+      "size": 1,
+      "hex": "6c"
+    },
+    {
+      "address": 149013420,
+      "size": 1,
+      "hex": "02"
+    },
+    {
+      "address": 149011285,
+      "size": 41,
+      "hex": "4a081a009f59737e7a7e8d84ae41fe0a1901102819009f59737e19fa1136030b2d000c1302292e41ff"
+    },
+    {
+      "address": 143297424,
+      "size": 50,
+      "hex": "1a02abfe072019009f59737efa15371047440012062a13fa02292603004150100627fa06021c08000b0e130005021026abff"
+    },
+    {
+      "address": 149011327,
+      "size": 85,
+      "hex": "7079001a084812062e190025033d2e0627fe5d605277ae160072ae793700071026fb91896478552d0057849d61840c13fe20112d000109130023270446fa02022e412618acfb3d3401004a0816001202130713abff"
+    },
+    {
+      "address": 136400616,
+      "size": 3,
+      "hex": "2a1411"
+    },
+    {
+      "address": 136400619,
+      "size": 3,
+      "hex": "2a1511"
+    },
+    {
+      "address": 136400622,
+      "size": 3,
+      "hex": "2a1611"
+    },
+    {
+      "address": 136400625,
+      "size": 3,
+      "hex": "2a1711"
+    },
+    {
+      "address": 136400628,
+      "size": 3,
+      "hex": "2a1811"
+    },
+    {
+      "address": 136400631,
+      "size": 3,
+      "hex": "2a1911"
+    },
+    {
+      "address": 136400634,
+      "size": 3,
+      "hex": "2a1a11"
+    },
+    {
+      "address": 136400637,
+      "size": 3,
+      "hex": "d09208"
+    },
+    {
+      "address": 136400640,
+      "size": 1,
+      "hex": "02"
+    },
+    {
+      "address": 149013424,
+      "size": 7,
+      "hex": "4fff00fa5b2108"
+    },
+    {
+      "address": 149013431,
+      "size": 3,
+      "hex": "510000"
+    },
+    {
+      "address": 149013434,
+      "size": 6,
+      "hex": "0f00d5bbe108"
+    },
+    {
+      "address": 149013440,
+      "size": 2,
+      "hex": "0902"
+    },
+    {
+      "address": 149013442,
+      "size": 3,
+      "hex": "2f6a00"
+    },
+    {
+      "address": 149013445,
+      "size": 2,
+      "hex": "9702"
+    },
+    {
+      "address": 149013447,
+      "size": 6,
+      "hex": "0f000cbce108"
+    },
+    {
+      "address": 149013453,
+      "size": 2,
+      "hex": "0902"
+    },
+    {
+      "address": 149013455,
+      "size": 3,
+      "hex": "2f6a00"
+    },
+    {
+      "address": 149013458,
+      "size": 2,
+      "hex": "9702"
+    },
+    {
+      "address": 149013460,
+      "size": 1,
+      "hex": "30"
+    },
+    {
+      "address": 149013461,
+      "size": 5,
+      "hex": "a111000000"
+    },
+    {
+      "address": 149013466,
+      "size": 7,
+      "hex": "4f0500f05b2108"
+    },
+    {
+      "address": 149013473,
+      "size": 7,
+      "hex": "4f0600f05b2108"
+    },
+    {
+      "address": 149013480,
+      "size": 7,
+      "hex": "4f0700f05b2108"
+    },
+    {
+      "address": 149013487,
+      "size": 3,
+      "hex": "510000"
+    },
+    {
+      "address": 149013490,
+      "size": 2,
+      "hex": "9701"
+    },
+    {
+      "address": 149013492,
+      "size": 3,
+      "hex": "530500"
+    },
+    {
+      "address": 149013495,
+      "size": 3,
+      "hex": "530600"
+    },
+    {
+      "address": 149013498,
+      "size": 3,
+      "hex": "530700"
+    },
+    {
+      "address": 149013501,
+      "size": 3,
+      "hex": "291c11"
+    },
+    {
+      "address": 149013504,
+      "size": 2,
+      "hex": "9700"
+    },
+    {
+      "address": 149013506,
+      "size": 7,
+      "hex": "4f0900bec81708"
+    },
+    {
+      "address": 149013513,
+      "size": 7,
+      "hex": "4fff00c0c81708"
+    },
+    {
+      "address": 149013520,
+      "size": 3,
+      "hex": "510000"
+    },
+    {
+      "address": 149013523,
+      "size": 6,
+      "hex": "0f005bbce108"
+    },
+    {
+      "address": 149013529,
+      "size": 2,
+      "hex": "0902"
+    },
+    {
+      "address": 149013531,
+      "size": 2,
+      "hex": "9701"
+    },
+    {
+      "address": 149013533,
+      "size": 3,
+      "hex": "530900"
+    },
+    {
+      "address": 149013536,
+      "size": 3,
+      "hex": "290011"
+    },
+    {
+      "address": 149013539,
+      "size": 5,
+      "hex": "1672400300"
+    },
+    {
+      "address": 149013544,
+      "size": 2,
+      "hex": "9700"
+    },
+    {
+      "address": 149013546,
+      "size": 1,
+      "hex": "02"
+    },
+    {
+      "address": 149011413,
+      "size": 54,
+      "hex": "9189647855abfe072037000f0a1600022914fa0a1f29001b14370002292e41abfa2c06501300082a292618fb57849d6184af557eabff"
+    },
+    {
+      "address": 149011468,
+      "size": 78,
+      "hex": "0a0a2b370006260200015010b0fe2c06501300082a13000128371403fa57849d6184000e020a0341abfb2303001b14160022022c082dfe0609292e3d3400150240002c06501018fb7878ae5dabff"
+    },
+    {
+      "address": 149011547,
+      "size": 45,
+      "hex": "01190091896478551a002303fe20112d001c0b390a141a001502412b03fb0f2a3d3401004a081a000a2a44abff"
+    },
+    {
+      "address": 135726132,
+      "size": 11,
+      "hex": "03e84e210802e0a0400800"
+    },
+    {
+      "address": 138453216,
+      "size": 10,
+      "hex": "72400200b0c3e1080000"
+    },
+    {
+      "address": 136403962,
+      "size": 2,
+      "hex": "1012"
+    },
+    {
+      "address": 136403952,
+      "size": 16,
+      "hex": "121212121212121212fe1012feffffff"
+    },
+    {
+      "address": 135776446,
+      "size": 2,
+      "hex": "04fe"
+    },
+    {
+      "address": 135776448,
+      "size": 2,
+      "hex": "05fe"
+    }
+  ],
+  "terrain": [
+    {
+      "xy": [
+        16,
+        25
+      ],
+      "collision": 0,
+      "elevation": 3,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        17,
+        25
+      ],
+      "collision": 0,
+      "elevation": 3,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        18,
+        25
+      ],
+      "collision": 0,
+      "elevation": 3,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        19,
+        25
+      ],
+      "collision": 0,
+      "elevation": 3,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        20,
+        25
+      ],
+      "collision": 0,
+      "elevation": 3,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        16,
+        26
+      ],
+      "collision": 0,
+      "elevation": 3,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        17,
+        26
+      ],
+      "collision": 0,
+      "elevation": 3,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        18,
+        26
+      ],
+      "collision": 0,
+      "elevation": 3,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        19,
+        26
+      ],
+      "collision": 0,
+      "elevation": 3,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        20,
+        26
+      ],
+      "collision": 0,
+      "elevation": 3,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        21,
+        26
+      ],
+      "collision": 0,
+      "elevation": 3,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        16,
+        27
+      ],
+      "collision": 0,
+      "elevation": 3,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        18,
+        27
+      ],
+      "collision": 0,
+      "elevation": 3,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        19,
+        27
+      ],
+      "collision": 0,
+      "elevation": 3,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        20,
+        27
+      ],
+      "collision": 0,
+      "elevation": 3,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        21,
+        27
+      ],
+      "collision": 0,
+      "elevation": 3,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        16,
+        28
+      ],
+      "collision": 0,
+      "elevation": 3,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        17,
+        28
+      ],
+      "collision": 0,
+      "elevation": 3,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        18,
+        28
+      ],
+      "collision": 0,
+      "elevation": 3,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        19,
+        28
+      ],
+      "collision": 0,
+      "elevation": 3,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        20,
+        28
+      ],
+      "collision": 0,
+      "elevation": 3,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        21,
+        28
+      ],
+      "collision": 0,
+      "elevation": 3,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        16,
+        29
+      ],
+      "collision": 0,
+      "elevation": 3,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        17,
+        29
+      ],
+      "collision": 0,
+      "elevation": 3,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        18,
+        29
+      ],
+      "collision": 0,
+      "elevation": 3,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        19,
+        29
+      ],
+      "collision": 0,
+      "elevation": 3,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        20,
+        29
+      ],
+      "collision": 0,
+      "elevation": 3,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        21,
+        29
+      ],
+      "collision": 0,
+      "elevation": 3,
+      "behavior": 33
+    }
+  ],
+  "coord_events": [
+    {
+      "map": [
+        3,
+        23
+      ],
+      "xy": [
+        3,
+        1
+      ],
+      "variable": 0,
+      "value": 0,
+      "script": 0
+    },
+    {
+      "map": [
+        3,
+        23
+      ],
+      "xy": [
+        4,
+        1
+      ],
+      "variable": 0,
+      "value": 0,
+      "script": 0
+    }
+  ],
+  "town_event_owner": {
+    "graph": {
+      "root_count": 2,
+      "unique_root_address_count": 2,
+      "visited_script_count": 2,
+      "nodes": [
+        {
+          "address": 136400616,
+          "end_reason": "end",
+          "instruction_count": 9,
+          "edges": [],
+          "roots": [
+            "town:map_script:3:0"
+          ]
+        },
+        {
+          "address": 149013424,
+          "end_reason": "end",
+          "instruction_count": 33,
+          "edges": [],
+          "roots": [
+            "town:map_script:2:0"
+          ]
+        }
+      ],
+      "references": [
+        {
+          "category": "flag",
+          "value": 4352,
+          "access": "set",
+          "instruction_address": 149013536,
+          "opcode": 41,
+          "command": "setflag",
+          "script_address": 149013424,
+          "roots": [
+            "town:map_script:2:0"
+          ]
+        },
+        {
+          "category": "flag",
+          "value": 4372,
+          "access": "clear",
+          "instruction_address": 136400616,
+          "opcode": 42,
+          "command": "clearflag",
+          "script_address": 136400616,
+          "roots": [
+            "town:map_script:3:0"
+          ]
+        },
+        {
+          "category": "flag",
+          "value": 4373,
+          "access": "clear",
+          "instruction_address": 136400619,
+          "opcode": 42,
+          "command": "clearflag",
+          "script_address": 136400616,
+          "roots": [
+            "town:map_script:3:0"
+          ]
+        },
+        {
+          "category": "flag",
+          "value": 4374,
+          "access": "clear",
+          "instruction_address": 136400622,
+          "opcode": 42,
+          "command": "clearflag",
+          "script_address": 136400616,
+          "roots": [
+            "town:map_script:3:0"
+          ]
+        },
+        {
+          "category": "flag",
+          "value": 4375,
+          "access": "clear",
+          "instruction_address": 136400625,
+          "opcode": 42,
+          "command": "clearflag",
+          "script_address": 136400616,
+          "roots": [
+            "town:map_script:3:0"
+          ]
+        },
+        {
+          "category": "flag",
+          "value": 4376,
+          "access": "clear",
+          "instruction_address": 136400628,
+          "opcode": 42,
+          "command": "clearflag",
+          "script_address": 136400616,
+          "roots": [
+            "town:map_script:3:0"
+          ]
+        },
+        {
+          "category": "flag",
+          "value": 4377,
+          "access": "clear",
+          "instruction_address": 136400631,
+          "opcode": 42,
+          "command": "clearflag",
+          "script_address": 136400616,
+          "roots": [
+            "town:map_script:3:0"
+          ]
+        },
+        {
+          "category": "flag",
+          "value": 4378,
+          "access": "clear",
+          "instruction_address": 136400634,
+          "opcode": 42,
+          "command": "clearflag",
+          "script_address": 136400616,
+          "roots": [
+            "town:map_script:3:0"
+          ]
+        },
+        {
+          "category": "flag",
+          "value": 4380,
+          "access": "set",
+          "instruction_address": 149013501,
+          "opcode": 41,
+          "command": "setflag",
+          "script_address": 149013424,
+          "roots": [
+            "town:map_script:2:0"
+          ]
+        },
+        {
+          "category": "fly_flag",
+          "value": 2194,
+          "access": "set_world_map",
+          "instruction_address": 136400637,
+          "opcode": 208,
+          "command": "setworldmapflag",
+          "script_address": 136400616,
+          "roots": [
+            "town:map_script:3:0"
+          ]
+        },
+        {
+          "category": "species",
+          "value": 17,
+          "access": "cry",
+          "instruction_address": 149013461,
+          "opcode": 161,
+          "command": "playmoncry",
+          "script_address": 149013424,
+          "roots": [
+            "town:map_script:2:0"
+          ]
+        },
+        {
+          "category": "var",
+          "value": 16498,
+          "access": "write",
+          "instruction_address": 149013539,
+          "opcode": 22,
+          "command": "setvar",
+          "operand": 3,
+          "script_address": 149013424,
+          "roots": [
+            "town:map_script:2:0"
+          ]
+        }
+      ],
+      "diagnostics": []
+    },
+    "instructions": [
+      {
+        "address": 136400616,
+        "opcode": 42,
+        "size": 3,
+        "hex": "2a1411",
+        "node": 136400616
+      },
+      {
+        "address": 136400619,
+        "opcode": 42,
+        "size": 3,
+        "hex": "2a1511",
+        "node": 136400616
+      },
+      {
+        "address": 136400622,
+        "opcode": 42,
+        "size": 3,
+        "hex": "2a1611",
+        "node": 136400616
+      },
+      {
+        "address": 136400625,
+        "opcode": 42,
+        "size": 3,
+        "hex": "2a1711",
+        "node": 136400616
+      },
+      {
+        "address": 136400628,
+        "opcode": 42,
+        "size": 3,
+        "hex": "2a1811",
+        "node": 136400616
+      },
+      {
+        "address": 136400631,
+        "opcode": 42,
+        "size": 3,
+        "hex": "2a1911",
+        "node": 136400616
+      },
+      {
+        "address": 136400634,
+        "opcode": 42,
+        "size": 3,
+        "hex": "2a1a11",
+        "node": 136400616
+      },
+      {
+        "address": 136400637,
+        "opcode": 208,
+        "size": 3,
+        "hex": "d09208",
+        "node": 136400616
+      },
+      {
+        "address": 136400640,
+        "opcode": 2,
+        "size": 1,
+        "hex": "02",
+        "node": 136400616
+      },
+      {
+        "address": 149013424,
+        "opcode": 79,
+        "size": 7,
+        "hex": "4fff00fa5b2108",
+        "node": 149013424
+      },
+      {
+        "address": 149013431,
+        "opcode": 81,
+        "size": 3,
+        "hex": "510000",
+        "node": 149013424
+      },
+      {
+        "address": 149013434,
+        "opcode": 15,
+        "size": 6,
+        "hex": "0f00d5bbe108",
+        "node": 149013424
+      },
+      {
+        "address": 149013440,
+        "opcode": 9,
+        "size": 2,
+        "hex": "0902",
+        "node": 149013424
+      },
+      {
+        "address": 149013442,
+        "opcode": 47,
+        "size": 3,
+        "hex": "2f6a00",
+        "node": 149013424
+      },
+      {
+        "address": 149013445,
+        "opcode": 151,
+        "size": 2,
+        "hex": "9702",
+        "node": 149013424
+      },
+      {
+        "address": 149013447,
+        "opcode": 15,
+        "size": 6,
+        "hex": "0f000cbce108",
+        "node": 149013424
+      },
+      {
+        "address": 149013453,
+        "opcode": 9,
+        "size": 2,
+        "hex": "0902",
+        "node": 149013424
+      },
+      {
+        "address": 149013455,
+        "opcode": 47,
+        "size": 3,
+        "hex": "2f6a00",
+        "node": 149013424
+      },
+      {
+        "address": 149013458,
+        "opcode": 151,
+        "size": 2,
+        "hex": "9702",
+        "node": 149013424
+      },
+      {
+        "address": 149013460,
+        "opcode": 48,
+        "size": 1,
+        "hex": "30",
+        "node": 149013424
+      },
+      {
+        "address": 149013461,
+        "opcode": 161,
+        "size": 5,
+        "hex": "a111000000",
+        "node": 149013424
+      },
+      {
+        "address": 149013466,
+        "opcode": 79,
+        "size": 7,
+        "hex": "4f0500f05b2108",
+        "node": 149013424
+      },
+      {
+        "address": 149013473,
+        "opcode": 79,
+        "size": 7,
+        "hex": "4f0600f05b2108",
+        "node": 149013424
+      },
+      {
+        "address": 149013480,
+        "opcode": 79,
+        "size": 7,
+        "hex": "4f0700f05b2108",
+        "node": 149013424
+      },
+      {
+        "address": 149013487,
+        "opcode": 81,
+        "size": 3,
+        "hex": "510000",
+        "node": 149013424
+      },
+      {
+        "address": 149013490,
+        "opcode": 151,
+        "size": 2,
+        "hex": "9701",
+        "node": 149013424
+      },
+      {
+        "address": 149013492,
+        "opcode": 83,
+        "size": 3,
+        "hex": "530500",
+        "node": 149013424
+      },
+      {
+        "address": 149013495,
+        "opcode": 83,
+        "size": 3,
+        "hex": "530600",
+        "node": 149013424
+      },
+      {
+        "address": 149013498,
+        "opcode": 83,
+        "size": 3,
+        "hex": "530700",
+        "node": 149013424
+      },
+      {
+        "address": 149013501,
+        "opcode": 41,
+        "size": 3,
+        "hex": "291c11",
+        "node": 149013424
+      },
+      {
+        "address": 149013504,
+        "opcode": 151,
+        "size": 2,
+        "hex": "9700",
+        "node": 149013424
+      },
+      {
+        "address": 149013506,
+        "opcode": 79,
+        "size": 7,
+        "hex": "4f0900bec81708",
+        "node": 149013424
+      },
+      {
+        "address": 149013513,
+        "opcode": 79,
+        "size": 7,
+        "hex": "4fff00c0c81708",
+        "node": 149013424
+      },
+      {
+        "address": 149013520,
+        "opcode": 81,
+        "size": 3,
+        "hex": "510000",
+        "node": 149013424
+      },
+      {
+        "address": 149013523,
+        "opcode": 15,
+        "size": 6,
+        "hex": "0f005bbce108",
+        "node": 149013424
+      },
+      {
+        "address": 149013529,
+        "opcode": 9,
+        "size": 2,
+        "hex": "0902",
+        "node": 149013424
+      },
+      {
+        "address": 149013531,
+        "opcode": 151,
+        "size": 2,
+        "hex": "9701",
+        "node": 149013424
+      },
+      {
+        "address": 149013533,
+        "opcode": 83,
+        "size": 3,
+        "hex": "530900",
+        "node": 149013424
+      },
+      {
+        "address": 149013536,
+        "opcode": 41,
+        "size": 3,
+        "hex": "290011",
+        "node": 149013424
+      },
+      {
+        "address": 149013539,
+        "opcode": 22,
+        "size": 5,
+        "hex": "1672400300",
+        "node": 149013424
+      },
+      {
+        "address": 149013544,
+        "opcode": 151,
+        "size": 2,
+        "hex": "9700",
+        "node": 149013424
+      },
+      {
+        "address": 149013546,
+        "opcode": 2,
+        "size": 1,
+        "hex": "02",
+        "node": 149013424
+      }
+    ],
+    "texts": {
+      "149011413": {
+        "hex": "9189647855abfe072037000f0a1600022914fa0a1f29001b14370002292e41abfa2c06501300082a292618fb57849d6184af557eabff",
+        "decoded": "ダグトリオ！\\nきみが そこに いると\\lこまる ひとが いるんだ！\\lわかって くれるよね\\pキャプチャ・オン！"
+      },
+      "149011468": {
+        "hex": "0a0a2b370006260200015010b0fe2c06501300082a13000128371403fa57849d6184000e020a0341abfb2303001b14160022022c082dfe0609292e3d3400150240002c06501018fb7878ae5dabff",
+        "decoded": "こころが かよい あった…\\nわかって くれて ありがとう\\lキャプチャ せいこうだ！\\pもう ひとに めいわくを\\nかけるんじゃ ないぞ わかったね\\pリリース！"
+      },
+      "149011547": {
+        "hex": "01190091896478551a002303fe20112d001c0b390a141a001502412b03fb0f2a3d3401004a081a000a2a44abff",
+        "decoded": "あの ダグトリオは もう\\nみちを ふさぐことは ないだろう\\pそれじゃあ ぼくは これで！"
+      }
+    },
+    "map_script_refs": [
+      {
+        "category": "var",
+        "value": 16498,
+        "access": "map_script_condition",
+        "instruction_address": 138453216,
+        "opcode": -1,
+        "command": "map_script_condition",
+        "script_address": 149013424,
+        "roots": [
+          "town"
+        ],
+        "operand": 2
+      }
+    ],
+    "map_script_rows": [
+      {
+        "type": 3,
+        "pointer": 136400616,
+        "table_address": 135726132
+      },
+      {
+        "type": 2,
+        "pointer": 138453216,
+        "table_address": 135726137,
+        "conditions": [
+          {
+            "index": 0,
+            "lhs_var": 16498,
+            "rhs_var_or_value": 2,
+            "script_address": 149013424
+          }
+        ]
+      }
+    ]
+  },
+  "visual_locator": {
+    "colors": [
+      [
+        107,
+        82,
+        189
+      ],
+      [
+        165,
+        140,
+        239
+      ]
+    ],
+    "templates": [
+      {
+        "parent_artifact": 11301562515,
+        "member": "progress/screen-0101.ppm",
+        "identity": {
+          "size": 115215,
+          "sha256": "ebb2c209dec3118f8863d7089f51852650b14af604fbe86d54f900e5edac289c"
+        },
+        "bbox": [
+          146,
+          68,
+          157,
+          76
+        ],
+        "mask": [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            2,
+            7
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            3,
+            7
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            4,
+            7
+          ],
+          [
+            4,
+            8
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            5,
+            3
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            5,
+            8
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            6,
+            3
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            6,
+            5
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            6,
+            8
+          ],
+          [
+            7,
+            0
+          ],
+          [
+            7,
+            1
+          ],
+          [
+            7,
+            2
+          ],
+          [
+            7,
+            3
+          ],
+          [
+            7,
+            4
+          ],
+          [
+            7,
+            5
+          ],
+          [
+            7,
+            6
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            8,
+            2
+          ],
+          [
+            8,
+            3
+          ],
+          [
+            8,
+            4
+          ],
+          [
+            8,
+            5
+          ],
+          [
+            8,
+            6
+          ],
+          [
+            8,
+            7
+          ],
+          [
+            9,
+            1
+          ],
+          [
+            9,
+            2
+          ],
+          [
+            9,
+            3
+          ],
+          [
+            9,
+            4
+          ],
+          [
+            9,
+            5
+          ],
+          [
+            9,
+            6
+          ],
+          [
+            9,
+            7
+          ],
+          [
+            10,
+            2
+          ],
+          [
+            10,
+            3
+          ],
+          [
+            10,
+            4
+          ],
+          [
+            10,
+            5
+          ],
+          [
+            10,
+            6
+          ],
+          [
+            11,
+            4
+          ],
+          [
+            11,
+            5
+          ]
+        ]
+      },
+      {
+        "parent_artifact": 11301562515,
+        "member": "continue/screen-0000.ppm",
+        "identity": {
+          "size": 115215,
+          "sha256": "72a0d4f86c241ece0fb6991916931486dc3453b38015cce5664757a8c2ab1292"
+        },
+        "bbox": [
+          146,
+          68,
+          157,
+          74
+        ],
+        "mask": [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            5,
+            3
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            6,
+            0
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            6,
+            2
+          ],
+          [
+            6,
+            3
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            6,
+            5
+          ],
+          [
+            7,
+            0
+          ],
+          [
+            7,
+            1
+          ],
+          [
+            7,
+            2
+          ],
+          [
+            7,
+            3
+          ],
+          [
+            7,
+            4
+          ],
+          [
+            7,
+            5
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            8,
+            2
+          ],
+          [
+            8,
+            3
+          ],
+          [
+            8,
+            4
+          ],
+          [
+            8,
+            5
+          ],
+          [
+            8,
+            6
+          ],
+          [
+            9,
+            1
+          ],
+          [
+            9,
+            2
+          ],
+          [
+            9,
+            3
+          ],
+          [
+            9,
+            4
+          ],
+          [
+            10,
+            2
+          ],
+          [
+            10,
+            3
+          ],
+          [
+            10,
+            5
+          ],
+          [
+            11,
+            4
+          ],
+          [
+            11,
+            5
+          ]
+        ]
+      },
+      {
+        "parent_artifact": 11301562515,
+        "member": "continue/screen-0001.ppm",
+        "identity": {
+          "size": 115215,
+          "sha256": "ddd92e75460749ba9f206127a25ab5246a416607a2ffc6d82a144bf04abac684"
+        },
+        "bbox": [
+          146,
+          84,
+          157,
+          89
+        ],
+        "mask": [
+          [
+            0,
+            4
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            5,
+            3
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            6,
+            3
+          ],
+          [
+            6,
+            5
+          ],
+          [
+            7,
+            0
+          ],
+          [
+            7,
+            1
+          ],
+          [
+            7,
+            2
+          ],
+          [
+            7,
+            3
+          ],
+          [
+            7,
+            4
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            8,
+            2
+          ],
+          [
+            8,
+            3
+          ],
+          [
+            8,
+            4
+          ],
+          [
+            8,
+            5
+          ],
+          [
+            9,
+            1
+          ],
+          [
+            9,
+            2
+          ],
+          [
+            9,
+            3
+          ],
+          [
+            9,
+            4
+          ],
+          [
+            10,
+            2
+          ],
+          [
+            10,
+            3
+          ],
+          [
+            10,
+            4
+          ],
+          [
+            10,
+            5
+          ],
+          [
+            11,
+            4
+          ]
+        ]
+      }
+    ],
+    "origin_hat_bbox_min": [
+      114,
+      68
+    ],
+    "tile_pixels": 16,
+    "max_inputs": 160,
+    "max_walk_steps": 30,
+    "require_exact_mask": true,
+    "require_grid_alignment": true,
+    "require_repeat_one_frame": true
+  }
+}
