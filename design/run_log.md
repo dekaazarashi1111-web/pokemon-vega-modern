@@ -12604,3 +12604,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 署名付きowner移譲と実配置relink、Stage61既存owner内置換と全save/consumer接続、保存ABI限定native後にシオウ回復へ。未割当FF借用や正式ROM基準切替をしない。
 - Commit: closeout source=89ca1ca6fdb8d0c38949d9bea74227c3bc09082c; 同branch非force push。
 - Network: 同repoActions終端と検査済text receiptのみ。既知一般CI QOL source不一致、Stage79 cache、旧9月18日queueは別扱い。
+
+## 2026-10-04T17:38:23.568327+00:00
+- Timestamp: 2026-10-04T17:38:23.568327+00:00
+- Task: USER-20261004-DEX-CAPACITY / closeout receipt公開pathの訂正
+- Version: dex-capacity-v1-receipt-path
+- Status: DONE（記録receiptのみ。実ROM接続は未完）
+- Summary: 先行closeoutの全12step・固定MD/JSONは成功していたがupload pathがexport先と不一致でartifact0件だった。pathを訂正し、同じ既存receiptを検査済directoryから公開する。
+- Files changed: closeout script/workflow、固定MD/JSONのsource binding、両ログ。
+- Verify: 先行終端/既存receipt/訂正前sourceを照合。新host0/ARM0/native0/ROM・Save変更0。pendingは空のまま。
+- Commit: recovery source=b0babefdb74b103e0a48ec76658514ee57c18e74; 同branch非force push。
+- Network: 同repoActions/公開receiptのみ。

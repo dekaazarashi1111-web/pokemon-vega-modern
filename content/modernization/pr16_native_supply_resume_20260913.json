@@ -14158,8 +14158,8 @@
       "size": 2500
     },
     ".github/workflows/pr16-dex-capacity-closeout.yml": {
-      "sha256": "64408837a8316314258d12b21587d741c6216e23108aeb90bf64e5255e88e385",
-      "size": 2399
+      "sha256": "dccf34247c4737c73f78e1becbed3e2811daac3daeffaadc4ee79babc84498c9",
+      "size": 2413
     },
     ".github/workflows/pr16-dex-capacity-record.yml": {
       "sha256": "9fbdb6b7d22033e8a9ee3fb710a715350a3f996a1addaa921f639abba0013fba",
@@ -32086,8 +32086,8 @@
       "size": 6379
     },
     "scripts/pr16_dex_capacity_closeout.py": {
-      "sha256": "8ac908e328bd327387faa760bb2f436950590cb6c69a3134bbfd5a845825ff73",
-      "size": 6344
+      "sha256": "0deb87e4a1f0ac522c502ded82050c78ad363bdb5f68b51d44510c738d3eb380",
+      "size": 5752
     },
     "scripts/pr16_dex_capacity_record.py": {
       "sha256": "ee6045e8e391501ea8ff98f1c9555e04c93775e7ff05c57433be157016c41f88",
@@ -37820,6 +37820,16 @@
         "lease_tests": 25,
         "measurement_run": 37219630045,
         "measurement_source": "8822a20ba6233bce79d23c54c499461ec0e8fd44",
+        "receipt_path_recovery": {
+          "arm_compiles": 0,
+          "host_tests": 0,
+          "native_processes": 0,
+          "previous_closeout_job": 111490799117,
+          "previous_closeout_run": 37220882395,
+          "reason_ja": "export先とupload pathの不一致を修正。初回訂正は変更のない生成MDまでindex集合へ要求して停止しcommit0。実際に変化した許可済み記録だけをstageし同receiptを再公開。旧試験/nativeは再実行しない。",
+          "recovery_run": 37221251655,
+          "recovery_source": "b0babefdb74b103e0a48ec76658514ee57c18e74"
+        },
         "record_run": 37220657694,
         "recording": {
           "all12_steps_success": true,
