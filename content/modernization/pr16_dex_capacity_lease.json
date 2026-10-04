@@ -1,0 +1,1675 @@
+{
+  "schema_version": 1,
+  "status": "HASH_BOUND_STATIC_RETIREMENT_CONTRACT_PLACEMENT_PENDING",
+  "candidate": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  },
+  "source_commit": "8822a20ba6233bce79d23c54c499461ec0e8fd44",
+  "donor": {
+    "alignment": 4,
+    "content_sha256": "a3559c327f61a0f9ced3f676b6f646cc2250e37577c62334fd8dc1bdacf1a70f",
+    "end_exclusive": 33301228,
+    "gba_end_exclusive": 167518956,
+    "gba_start": 167512472,
+    "name": "species_surface_level_up_pointers",
+    "owner": "T09",
+    "placement": "EXPLICIT",
+    "purpose": "T09 level_up_pointers",
+    "region": "future_tail",
+    "sequence": 19,
+    "size": 6484,
+    "start": 33294744
+  },
+  "retirement_stage": 39,
+  "exact_old_base_pointer_sites": [],
+  "known_root_consumers": [
+    {
+      "site": 275564,
+      "current_value": 157114352,
+      "binding": {
+        "offset": 275564,
+        "size": 4,
+        "sha256": "bd5240bba81d7812546626b6cb65e4831fc83d315553f8f1eb60b7312e6f0fe7"
+      },
+      "literal_loads": {
+        "thumb": [
+          275498
+        ],
+        "arm": []
+      }
+    },
+    {
+      "site": 20522168,
+      "current_value": 156809564,
+      "binding": {
+        "offset": 20522168,
+        "size": 4,
+        "sha256": "0760b0d60e5bedd139f1c4e99c17ad6ab732855510eb002a401f05958363525b"
+      },
+      "literal_loads": {
+        "thumb": [],
+        "arm": []
+      }
+    },
+    {
+      "site": 20522712,
+      "current_value": 156809564,
+      "binding": {
+        "offset": 20522712,
+        "size": 4,
+        "sha256": "0760b0d60e5bedd139f1c4e99c17ad6ab732855510eb002a401f05958363525b"
+      },
+      "literal_loads": {
+        "thumb": [
+          20522620
+        ],
+        "arm": []
+      }
+    },
+    {
+      "site": 20522896,
+      "current_value": 156809564,
+      "binding": {
+        "offset": 20522896,
+        "size": 4,
+        "sha256": "0760b0d60e5bedd139f1c4e99c17ad6ab732855510eb002a401f05958363525b"
+      },
+      "literal_loads": {
+        "thumb": [],
+        "arm": []
+      }
+    },
+    {
+      "site": 33399288,
+      "current_value": 157114352,
+      "binding": {
+        "offset": 33399288,
+        "size": 4,
+        "sha256": "bd5240bba81d7812546626b6cb65e4831fc83d315553f8f1eb60b7312e6f0fe7"
+      },
+      "literal_loads": {
+        "thumb": [
+          33399204
+        ],
+        "arm": []
+      }
+    }
+  ],
+  "indirect_storage_sites": [
+    17907968,
+    17908168,
+    17908380,
+    17908432,
+    17908488,
+    17909392,
+    19726944,
+    22235704
+  ],
+  "range_candidate_count": 35,
+  "candidate_types": {
+    "GBA_LZ77_STREAM": 1,
+    "JP_TEXT_GLYPHS_PAUSE_EOS": 21,
+    "M4A_DELTA_COMPRESSED_SAMPLE": 2,
+    "M4A_PCM_SAMPLE": 3,
+    "THUMB_BL_OVERLAP": 8
+  },
+  "range_candidates": [
+    {
+      "offset": 16987,
+      "size": 4,
+      "sha256": "9ff0c3f8743f1ff9c66c081eec6de6ddc1e21d9c692111a904c889cc1e34263e",
+      "value": 167512560,
+      "alignment": 3,
+      "literal_load_candidates": {
+        "thumb": [],
+        "arm": []
+      },
+      "type": "THUMB_BL_OVERLAP",
+      "instruction_binding": {
+        "offset": 16986,
+        "size": 6,
+        "sha256": "577e6ddbdba804e8467bc763b9f30ccf0bb1c654db785297b5fc6bf5de155948"
+      },
+      "branch_target": 134236784
+    },
+    {
+      "offset": 345701,
+      "size": 4,
+      "sha256": "e605592120ec0a2aca18c5347a93774f711c5efdd522589e977563e0c3803cd2",
+      "value": 167516912,
+      "alignment": 1,
+      "literal_load_candidates": {
+        "thumb": [],
+        "arm": []
+      },
+      "type": "THUMB_BL_OVERLAP",
+      "instruction_binding": {
+        "offset": 345700,
+        "size": 6,
+        "sha256": "0c3463e89b34af393919534fb8826a957b6ad0967861904acfc84a496ff25a1e"
+      },
+      "branch_target": 134667932
+    },
+    {
+      "offset": 345707,
+      "size": 4,
+      "sha256": "feac50c9b18da1c02de2e9cfbd5f03fa8761bd8d30320c9e12d535be19ee8266",
+      "value": 167516144,
+      "alignment": 3,
+      "literal_load_candidates": {
+        "thumb": [],
+        "arm": []
+      },
+      "type": "THUMB_BL_OVERLAP",
+      "instruction_binding": {
+        "offset": 345706,
+        "size": 6,
+        "sha256": "d9f6851f5ff6673f4393a49cf6b12d4451b492209222c10e39d63ebaac41ee3a"
+      },
+      "branch_target": 134667932
+    },
+    {
+      "offset": 752071,
+      "size": 4,
+      "sha256": "070e38634e1a6a0fbae44a81b2869a220790c914363997e297cc4741e3c4bb57",
+      "value": 167518711,
+      "alignment": 3,
+      "literal_load_candidates": {
+        "thumb": [],
+        "arm": []
+      },
+      "type": "THUMB_BL_OVERLAP",
+      "instruction_binding": {
+        "offset": 752070,
+        "size": 6,
+        "sha256": "5ce7fb916626443dedb31e121b460fa400947a296ce92c0dd43f79297834b777"
+      },
+      "branch_target": 134693388
+    },
+    {
+      "offset": 811425,
+      "size": 4,
+      "sha256": "19d917b1d2fad6346fe55bdf2242a3b5fe8d049826689ea7813abf7f0519db7a",
+      "value": 167513335,
+      "alignment": 1,
+      "literal_load_candidates": {
+        "thumb": [],
+        "arm": []
+      },
+      "type": "THUMB_BL_OVERLAP",
+      "instruction_binding": {
+        "offset": 811424,
+        "size": 6,
+        "sha256": "9147e7e4716afacc105a5dd62c92188faea7114ebeb5907c3dab879ec65d075c"
+      },
+      "branch_target": 134224316
+    },
+    {
+      "offset": 1385709,
+      "size": 4,
+      "sha256": "2f73cc4326fc3cc52dc6737f148ccf09f31fae106953ffbaed748935f2b671c4",
+      "value": 167517943,
+      "alignment": 1,
+      "literal_load_candidates": {
+        "thumb": [],
+        "arm": []
+      },
+      "type": "THUMB_BL_OVERLAP",
+      "instruction_binding": {
+        "offset": 1385708,
+        "size": 6,
+        "sha256": "3768a2ae8ed4f074dd010451959da35213c49d5c1f497e780901fb3be18ab850"
+      },
+      "branch_target": 134675756
+    },
+    {
+      "offset": 1433547,
+      "size": 4,
+      "sha256": "e06e3fec947c1a28aa1abb4ff43e308c7cc57191e29a6ba6da2165c1831bdacc",
+      "value": 167516151,
+      "alignment": 3,
+      "literal_load_candidates": {
+        "thumb": [],
+        "arm": []
+      },
+      "type": "THUMB_BL_OVERLAP",
+      "instruction_binding": {
+        "offset": 1433546,
+        "size": 6,
+        "sha256": "d4ccdd201f05090725d7b19e53e890eb2d513f410a2e697693ce7394606b9e80"
+      },
+      "branch_target": 135231484
+    },
+    {
+      "offset": 1733369,
+      "size": 4,
+      "sha256": "ddf9a45e9952dddb1462500fd3b8e25c0131a3db4ebccf0b650c1c5a7d981d20",
+      "value": 167517698,
+      "alignment": 1,
+      "literal_load_candidates": {
+        "thumb": [],
+        "arm": []
+      },
+      "type": "JP_TEXT_GLYPHS_PAUSE_EOS",
+      "string_start": 1733338,
+      "string_end": 1733374,
+      "string_binding": {
+        "offset": 1733338,
+        "size": 36,
+        "sha256": "fea358e6eddcae31dbb28bdd5c57485c3af4be40348c43593cc7d19c7caabcf6"
+      },
+      "string_pointer_sites": [
+        1102244
+      ],
+      "typed_encoding": "two character bytes; EXT_CTRL_CODE_BEGIN=FC; PAUSE_UNTIL_PRESS=09; EOS=FF",
+      "root_ownership": "direct root pointer confirmed"
+    },
+    {
+      "offset": 1733409,
+      "size": 4,
+      "sha256": "e5e476e487317ba1f652b624a87c8e64de8a8da5946f6263ed354aa1c84d543b",
+      "value": 167514146,
+      "alignment": 1,
+      "literal_load_candidates": {
+        "thumb": [],
+        "arm": []
+      },
+      "type": "JP_TEXT_GLYPHS_PAUSE_EOS",
+      "string_start": 1733374,
+      "string_end": 1733414,
+      "string_binding": {
+        "offset": 1733374,
+        "size": 40,
+        "sha256": "ecaa51a83d0c38ae6fc62be67d291ecc175041d28a965f717874535853c3eb9d"
+      },
+      "string_pointer_sites": [
+        1102272
+      ],
+      "typed_encoding": "two character bytes; EXT_CTRL_CODE_BEGIN=FC; PAUSE_UNTIL_PRESS=09; EOS=FF",
+      "root_ownership": "direct root pointer confirmed"
+    },
+    {
+      "offset": 4053929,
+      "size": 4,
+      "sha256": "525ddb402a2a1bf203e83ecdfa997b0088cae3d6b21292d2301b36f53f2ab8a2",
+      "value": 167514124,
+      "alignment": 1,
+      "literal_load_candidates": {
+        "thumb": [],
+        "arm": []
+      },
+      "type": "JP_TEXT_GLYPHS_PAUSE_EOS",
+      "string_start": 4053908,
+      "string_end": 4053934,
+      "string_binding": {
+        "offset": 4053908,
+        "size": 26,
+        "sha256": "f2ab50d9b37898c2913d75e40683ce589363b8ede375d7c21a92f4bdb1762427"
+      },
+      "string_pointer_sites": [
+        665984,
+        666012
+      ],
+      "typed_encoding": "two character bytes; EXT_CTRL_CODE_BEGIN=FC; PAUSE_UNTIL_PRESS=09; EOS=FF",
+      "root_ownership": "direct root pointer confirmed"
+    },
+    {
+      "offset": 4054277,
+      "size": 4,
+      "sha256": "9966da02e65ce94998df5200efac60da4951fd0091c514442d21d4da6ca0f87c",
+      "value": 167513412,
+      "alignment": 1,
+      "literal_load_candidates": {
+        "thumb": [],
+        "arm": []
+      },
+      "type": "JP_TEXT_GLYPHS_PAUSE_EOS",
+      "string_start": 4054260,
+      "string_end": 4054282,
+      "string_binding": {
+        "offset": 4054260,
+        "size": 22,
+        "sha256": "64024bef5d9d96c9d5829b17c29959381c4ee83b0dca3b2686a172c799ad625b"
+      },
+      "string_pointer_sites": [],
+      "typed_encoding": "two character bytes; EXT_CTRL_CODE_BEGIN=FC; PAUSE_UNTIL_PRESS=09; EOS=FF",
+      "root_ownership": "exact pinned public const u8[] source and pinned character-map encoding match; incoming root need not be reachable for data type",
+      "typed_source_proof": {
+        "status": "EXACT_PINNED_U8_STRING_ENCODING_MATCH",
+        "symbol": "gText_SpaceForVar1Full",
+        "source": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/strings.c#L229",
+        "source_line": 229,
+        "source_sha256": "08e3799f20dd90ae937808be25721d28c3465b4f2ebaba2e71321e52f72465c1",
+        "encoding_source": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/charmap.txt",
+        "encoding_sha256": "4da662317b3b5109a52064f9012d85b644d1dbf0f3f24243374aeef4cf25f061",
+        "offset": 4054260,
+        "size": 22,
+        "sha256": "64024bef5d9d96c9d5829b17c29959381c4ee83b0dca3b2686a172c799ad625b",
+        "candidate_offset": 4054277,
+        "preceding_eos_binding": {
+          "offset": 4054259,
+          "size": 1,
+          "sha256": "a8100ae6aa1940d0b663bb31cd466142ebbdbd5187131b92d93818987832eb89"
+        },
+        "direct_root_unresolved": true,
+        "unresolved_pointer_semantics": false,
+        "meaning": "No raw ROM text or encoded bytes published. Exact public source const u8[] re-encoded with pinned charmap equals 22-byte ROM sequence including placeholder, newline, glyphs, PAUSE_UNTIL_PRESS, EOS."
+      }
+    },
+    {
+      "offset": 4054610,
+      "size": 4,
+      "sha256": "ea16415fa9b6af439e5c3d589506f8c1bb3a9f3f86333f8322bef0d040d958a3",
+      "value": 167513375,
+      "alignment": 2,
+      "literal_load_candidates": {
+        "thumb": [],
+        "arm": []
+      },
+      "type": "JP_TEXT_GLYPHS_PAUSE_EOS",
+      "string_start": 4054593,
+      "string_end": 4054615,
+      "string_binding": {
+        "offset": 4054593,
+        "size": 22,
+        "sha256": "fe19438f0a3eef44c9cc27f2ff16ac4cd3b554d430a92790298b129093358ad2"
+      },
+      "string_pointer_sites": [
+        1213848
+      ],
+      "typed_encoding": "two character bytes; EXT_CTRL_CODE_BEGIN=FC; PAUSE_UNTIL_PRESS=09; EOS=FF",
+      "root_ownership": "direct root pointer confirmed"
+    },
+    {
+      "offset": 4054632,
+      "size": 4,
+      "sha256": "ea16415fa9b6af439e5c3d589506f8c1bb3a9f3f86333f8322bef0d040d958a3",
+      "value": 167513375,
+      "alignment": 0,
+      "literal_load_candidates": {
+        "thumb": [],
+        "arm": []
+      },
+      "type": "JP_TEXT_GLYPHS_PAUSE_EOS",
+      "string_start": 4054615,
+      "string_end": 4054637,
+      "string_binding": {
+        "offset": 4054615,
+        "size": 22,
+        "sha256": "e46d7481c4d77175e702e9396d53f5a77199b82c12d3f0fe5d406f40717fd512"
+      },
+      "string_pointer_sites": [
+        1213708
+      ],
+      "typed_encoding": "two character bytes; EXT_CTRL_CODE_BEGIN=FC; PAUSE_UNTIL_PRESS=09; EOS=FF",
+      "root_ownership": "direct root pointer confirmed"
+    },
+    {
+      "offset": 4054852,
+      "size": 4,
+      "sha256": "525ddb402a2a1bf203e83ecdfa997b0088cae3d6b21292d2301b36f53f2ab8a2",
+      "value": 167514124,
+      "alignment": 0,
+      "literal_load_candidates": {
+        "thumb": [],
+        "arm": []
+      },
+      "type": "JP_TEXT_GLYPHS_PAUSE_EOS",
+      "string_start": 4054835,
+      "string_end": 4054857,
+      "string_binding": {
+        "offset": 4054835,
+        "size": 22,
+        "sha256": "d1bbf883fa8097f830017cc69af8dec371a3ef1d244cffd03e1cfdc04723b0e9"
+      },
+      "string_pointer_sites": [
+        1197768
+      ],
+      "typed_encoding": "two character bytes; EXT_CTRL_CODE_BEGIN=FC; PAUSE_UNTIL_PRESS=09; EOS=FF",
+      "root_ownership": "direct root pointer confirmed"
+    },
+    {
+      "offset": 4055140,
+      "size": 4,
+      "sha256": "525ddb402a2a1bf203e83ecdfa997b0088cae3d6b21292d2301b36f53f2ab8a2",
+      "value": 167514124,
+      "alignment": 0,
+      "literal_load_candidates": {
+        "thumb": [],
+        "arm": []
+      },
+      "type": "JP_TEXT_GLYPHS_PAUSE_EOS",
+      "string_start": 4055124,
+      "string_end": 4055145,
+      "string_binding": {
+        "offset": 4055124,
+        "size": 21,
+        "sha256": "22b31ec08eaf20b7f65a10ca2b0c9408f657c5ed10840d79876e46e7e32b463b"
+      },
+      "string_pointer_sites": [
+        1211860
+      ],
+      "typed_encoding": "two character bytes; EXT_CTRL_CODE_BEGIN=FC; PAUSE_UNTIL_PRESS=09; EOS=FF",
+      "root_ownership": "direct root pointer confirmed"
+    },
+    {
+      "offset": 4055467,
+      "size": 4,
+      "sha256": "ea16415fa9b6af439e5c3d589506f8c1bb3a9f3f86333f8322bef0d040d958a3",
+      "value": 167513375,
+      "alignment": 3,
+      "literal_load_candidates": {
+        "thumb": [],
+        "arm": []
+      },
+      "type": "JP_TEXT_GLYPHS_PAUSE_EOS",
+      "string_start": 4055450,
+      "string_end": 4055472,
+      "string_binding": {
+        "offset": 4055450,
+        "size": 22,
+        "sha256": "be6e78ec05a422aa3bc096d451aecc1edc2a835c3074b4982a33c5a28c25db03"
+      },
+      "string_pointer_sites": [
+        1205588,
+        1210296,
+        17397268
+      ],
+      "typed_encoding": "two character bytes; EXT_CTRL_CODE_BEGIN=FC; PAUSE_UNTIL_PRESS=09; EOS=FF",
+      "root_ownership": "direct root pointer confirmed"
+    },
+    {
+      "offset": 4055490,
+      "size": 4,
+      "sha256": "525ddb402a2a1bf203e83ecdfa997b0088cae3d6b21292d2301b36f53f2ab8a2",
+      "value": 167514124,
+      "alignment": 2,
+      "literal_load_candidates": {
+        "thumb": [],
+        "arm": []
+      },
+      "type": "JP_TEXT_GLYPHS_PAUSE_EOS",
+      "string_start": 4055472,
+      "string_end": 4055495,
+      "string_binding": {
+        "offset": 4055472,
+        "size": 23,
+        "sha256": "df97efcf5befd0af5c06454a8cb39a1c85be0c20def55e5e7af8645c76bcd8a0"
+      },
+      "string_pointer_sites": [
+        944192,
+        1203988,
+        1209488
+      ],
+      "typed_encoding": "two character bytes; EXT_CTRL_CODE_BEGIN=FC; PAUSE_UNTIL_PRESS=09; EOS=FF",
+      "root_ownership": "direct root pointer confirmed"
+    },
+    {
+      "offset": 4055536,
+      "size": 4,
+      "sha256": "78a7b0241c2a6257a839223e93a9e527539f4c3f92679bc5343d5e81eb71b117",
+      "value": 167514154,
+      "alignment": 0,
+      "literal_load_candidates": {
+        "thumb": [],
+        "arm": []
+      },
+      "type": "JP_TEXT_GLYPHS_PAUSE_EOS",
+      "string_start": 4055521,
+      "string_end": 4055541,
+      "string_binding": {
+        "offset": 4055521,
+        "size": 20,
+        "sha256": "8a1824d63371174b166d5af731ce7ef542ad48424124353a6d38246b5be5706b"
+      },
+      "string_pointer_sites": [
+        1202828
+      ],
+      "typed_encoding": "two character bytes; EXT_CTRL_CODE_BEGIN=FC; PAUSE_UNTIL_PRESS=09; EOS=FF",
+      "root_ownership": "direct root pointer confirmed"
+    },
+    {
+      "offset": 4055550,
+      "size": 4,
+      "sha256": "525ddb402a2a1bf203e83ecdfa997b0088cae3d6b21292d2301b36f53f2ab8a2",
+      "value": 167514124,
+      "alignment": 2,
+      "literal_load_candidates": {
+        "thumb": [],
+        "arm": []
+      },
+      "type": "JP_TEXT_GLYPHS_PAUSE_EOS",
+      "string_start": 4055541,
+      "string_end": 4055555,
+      "string_binding": {
+        "offset": 4055541,
+        "size": 14,
+        "sha256": "96ae46cb07bea63df43b17c77c172057d3d9b882a6b8f2066e3b89c8ed9d28df"
+      },
+      "string_pointer_sites": [
+        1202768
+      ],
+      "typed_encoding": "two character bytes; EXT_CTRL_CODE_BEGIN=FC; PAUSE_UNTIL_PRESS=09; EOS=FF",
+      "root_ownership": "direct root pointer confirmed"
+    },
+    {
+      "offset": 4055566,
+      "size": 4,
+      "sha256": "81aca5db000a59aa22477d398d2d3df66cfad79f50e37aa490bb0daf10d456e3",
+      "value": 167514192,
+      "alignment": 2,
+      "literal_load_candidates": {
+        "thumb": [],
+        "arm": []
+      },
+      "type": "JP_TEXT_GLYPHS_PAUSE_EOS",
+      "string_start": 4055555,
+      "string_end": 4055571,
+      "string_binding": {
+        "offset": 4055555,
+        "size": 16,
+        "sha256": "e7c4ff53120f2b436675633468024cd9765509f554723632588e3a26c70ccd39"
+      },
+      "string_pointer_sites": [
+        1202788
+      ],
+      "typed_encoding": "two character bytes; EXT_CTRL_CODE_BEGIN=FC; PAUSE_UNTIL_PRESS=09; EOS=FF",
+      "root_ownership": "direct root pointer confirmed"
+    },
+    {
+      "offset": 4055586,
+      "size": 4,
+      "sha256": "b003d4e075d0556768cb776f2049ecab023220f2f50e056426e5a5edd46163ff",
+      "value": 167514121,
+      "alignment": 2,
+      "literal_load_candidates": {
+        "thumb": [],
+        "arm": []
+      },
+      "type": "JP_TEXT_GLYPHS_PAUSE_EOS",
+      "string_start": 4055571,
+      "string_end": 4055591,
+      "string_binding": {
+        "offset": 4055571,
+        "size": 20,
+        "sha256": "45381a0efbfca1e6e81138a59262dcb26b105d4e7a99c72dd6179de3e888f571"
+      },
+      "string_pointer_sites": [
+        1202808
+      ],
+      "typed_encoding": "two character bytes; EXT_CTRL_CODE_BEGIN=FC; PAUSE_UNTIL_PRESS=09; EOS=FF",
+      "root_ownership": "direct root pointer confirmed"
+    },
+    {
+      "offset": 4055708,
+      "size": 4,
+      "sha256": "b003d4e075d0556768cb776f2049ecab023220f2f50e056426e5a5edd46163ff",
+      "value": 167514121,
+      "alignment": 0,
+      "literal_load_candidates": {
+        "thumb": [],
+        "arm": []
+      },
+      "type": "JP_TEXT_GLYPHS_PAUSE_EOS",
+      "string_start": 4055697,
+      "string_end": 4055713,
+      "string_binding": {
+        "offset": 4055697,
+        "size": 16,
+        "sha256": "a651e01d9437fdb2c4f72e10ed07414c96d276597cabee79ed19eb24342c1425"
+      },
+      "string_pointer_sites": [
+        1202848
+      ],
+      "typed_encoding": "two character bytes; EXT_CTRL_CODE_BEGIN=FC; PAUSE_UNTIL_PRESS=09; EOS=FF",
+      "root_ownership": "direct root pointer confirmed"
+    },
+    {
+      "offset": 4055724,
+      "size": 4,
+      "sha256": "b003d4e075d0556768cb776f2049ecab023220f2f50e056426e5a5edd46163ff",
+      "value": 167514121,
+      "alignment": 0,
+      "literal_load_candidates": {
+        "thumb": [],
+        "arm": []
+      },
+      "type": "JP_TEXT_GLYPHS_PAUSE_EOS",
+      "string_start": 4055713,
+      "string_end": 4055729,
+      "string_binding": {
+        "offset": 4055713,
+        "size": 16,
+        "sha256": "f7a761084f9c54b70fede3809d3b125d715d068e81fbe04aedadd2d732e1fe83"
+      },
+      "string_pointer_sites": [
+        1202868
+      ],
+      "typed_encoding": "two character bytes; EXT_CTRL_CODE_BEGIN=FC; PAUSE_UNTIL_PRESS=09; EOS=FF",
+      "root_ownership": "direct root pointer confirmed"
+    },
+    {
+      "offset": 4057113,
+      "size": 4,
+      "sha256": "525ddb402a2a1bf203e83ecdfa997b0088cae3d6b21292d2301b36f53f2ab8a2",
+      "value": 167514124,
+      "alignment": 1,
+      "literal_load_candidates": {
+        "thumb": [],
+        "arm": []
+      },
+      "type": "JP_TEXT_GLYPHS_PAUSE_EOS",
+      "string_start": 4057090,
+      "string_end": 4057118,
+      "string_binding": {
+        "offset": 4057090,
+        "size": 28,
+        "sha256": "7bf18cea584937a53020a8a80735c93a69c628657e06a8c72e2c152503032d14"
+      },
+      "string_pointer_sites": [
+        971584
+      ],
+      "typed_encoding": "two character bytes; EXT_CTRL_CODE_BEGIN=FC; PAUSE_UNTIL_PRESS=09; EOS=FF",
+      "root_ownership": "direct root pointer confirmed"
+    },
+    {
+      "offset": 4674717,
+      "size": 4,
+      "sha256": "166499fada017459ebe1204ae8f040342f3d133af138eb96fead27fdbfece8a2",
+      "value": 167512594,
+      "alignment": 1,
+      "literal_load_candidates": {
+        "thumb": [],
+        "arm": []
+      },
+      "type": "M4A_PCM_SAMPLE",
+      "wave_header_offset": 4674164,
+      "wave_type": 0,
+      "samples": 1222,
+      "encoded_range_binding": {
+        "offset": 4674164,
+        "size": 1238,
+        "sha256": "1ae82176c2a0c4fd9e8a62b7a0504a74866971ab308060196df95e50ed29f3f3"
+      },
+      "wave_pointer_sites": [
+        4517188
+      ],
+      "formula": "size samples as signed bytes"
+    },
+    {
+      "offset": 6698237,
+      "size": 4,
+      "sha256": "2d098fbefa97fe52cf24f3320a6c3527eb1eb6c8857f64523088bb570ed85d1f",
+      "value": 167517195,
+      "alignment": 1,
+      "literal_load_candidates": {
+        "thumb": [],
+        "arm": []
+      },
+      "type": "M4A_PCM_SAMPLE",
+      "wave_header_offset": 6695712,
+      "wave_type": 0,
+      "samples": 8015,
+      "encoded_range_binding": {
+        "offset": 6695712,
+        "size": 8031,
+        "sha256": "f4fa354c6053bc40bb6ec9a804e0d0153b761827e2acff1c0afabfe7e39a5cd3"
+      },
+      "wave_pointer_sites": [
+        4536856
+      ],
+      "formula": "size samples as signed bytes"
+    },
+    {
+      "offset": 6702869,
+      "size": 4,
+      "sha256": "d5ccf1aa20a09155d06b63bc34dd157ded6f3391dbe7f6594f1773ffa03af75d",
+      "value": 167516938,
+      "alignment": 1,
+      "literal_load_candidates": {
+        "thumb": [],
+        "arm": []
+      },
+      "type": "M4A_PCM_SAMPLE",
+      "wave_header_offset": 6695712,
+      "wave_type": 0,
+      "samples": 8015,
+      "encoded_range_binding": {
+        "offset": 6695712,
+        "size": 8031,
+        "sha256": "f4fa354c6053bc40bb6ec9a804e0d0153b761827e2acff1c0afabfe7e39a5cd3"
+      },
+      "wave_pointer_sites": [
+        4536856
+      ],
+      "formula": "size samples as signed bytes"
+    },
+    {
+      "offset": 17969503,
+      "size": 4,
+      "sha256": "42b61ab41899636948e73cf3c6a3bd19c3c109a1af56f51ac7aa28a436a45b2e",
+      "value": 167516400,
+      "alignment": 3,
+      "literal_load_candidates": {
+        "thumb": [],
+        "arm": []
+      },
+      "type": "THUMB_BL_OVERLAP",
+      "instruction_binding": {
+        "offset": 17969502,
+        "size": 6,
+        "sha256": "d5c282c5a961e3ff22919eaafde2c2d1a783138dd2813500428034c549e6d9aa"
+      },
+      "branch_target": 152189330
+    },
+    {
+      "offset": 18125393,
+      "size": 4,
+      "sha256": "ea16415fa9b6af439e5c3d589506f8c1bb3a9f3f86333f8322bef0d040d958a3",
+      "value": 167513375,
+      "alignment": 1,
+      "literal_load_candidates": {
+        "thumb": [],
+        "arm": []
+      },
+      "type": "JP_TEXT_GLYPHS_PAUSE_EOS",
+      "string_start": 18125376,
+      "string_end": 18125398,
+      "string_binding": {
+        "offset": 18125376,
+        "size": 22,
+        "sha256": "678f13a92bdae819297568189ed877a8c690928c996c768c95f51afb0975aad1"
+      },
+      "string_pointer_sites": [
+        17894080
+      ],
+      "typed_encoding": "two character bytes; EXT_CTRL_CODE_BEGIN=FC; PAUSE_UNTIL_PRESS=09; EOS=FF",
+      "root_ownership": "direct root pointer confirmed"
+    },
+    {
+      "offset": 18126199,
+      "size": 4,
+      "sha256": "525ddb402a2a1bf203e83ecdfa997b0088cae3d6b21292d2301b36f53f2ab8a2",
+      "value": 167514124,
+      "alignment": 3,
+      "literal_load_candidates": {
+        "thumb": [],
+        "arm": []
+      },
+      "type": "JP_TEXT_GLYPHS_PAUSE_EOS",
+      "string_start": 18126183,
+      "string_end": 18126204,
+      "string_binding": {
+        "offset": 18126183,
+        "size": 21,
+        "sha256": "9e1c2dda7476037675e9a8def75b2ec4454eb898bc65eb135c7d1ed64d42689f"
+      },
+      "string_pointer_sites": [
+        17968896
+      ],
+      "typed_encoding": "two character bytes; EXT_CTRL_CODE_BEGIN=FC; PAUSE_UNTIL_PRESS=09; EOS=FF",
+      "root_ownership": "direct root pointer confirmed"
+    },
+    {
+      "offset": 18126240,
+      "size": 4,
+      "sha256": "ea16415fa9b6af439e5c3d589506f8c1bb3a9f3f86333f8322bef0d040d958a3",
+      "value": 167513375,
+      "alignment": 0,
+      "literal_load_candidates": {
+        "thumb": [],
+        "arm": []
+      },
+      "type": "JP_TEXT_GLYPHS_PAUSE_EOS",
+      "string_start": 18126220,
+      "string_end": 18126245,
+      "string_binding": {
+        "offset": 18126220,
+        "size": 25,
+        "sha256": "f0ee5a64d04822bcddd77022e30b76451c65997dd6fe42907304149e3108564b"
+      },
+      "string_pointer_sites": [
+        17969900
+      ],
+      "typed_encoding": "two character bytes; EXT_CTRL_CODE_BEGIN=FC; PAUSE_UNTIL_PRESS=09; EOS=FF",
+      "root_ownership": "direct root pointer confirmed"
+    },
+    {
+      "offset": 18126440,
+      "size": 4,
+      "sha256": "81aca5db000a59aa22477d398d2d3df66cfad79f50e37aa490bb0daf10d456e3",
+      "value": 167514192,
+      "alignment": 0,
+      "literal_load_candidates": {
+        "thumb": [],
+        "arm": []
+      },
+      "type": "JP_TEXT_GLYPHS_PAUSE_EOS",
+      "string_start": 18126422,
+      "string_end": 18126445,
+      "string_binding": {
+        "offset": 18126422,
+        "size": 23,
+        "sha256": "0957fc3eefbebb94b2d7254ede89936641c0e477776e6ffa09bf9d8eab1a33e6"
+      },
+      "string_pointer_sites": [
+        17960020
+      ],
+      "typed_encoding": "two character bytes; EXT_CTRL_CODE_BEGIN=FC; PAUSE_UNTIL_PRESS=09; EOS=FF",
+      "root_ownership": "direct root pointer confirmed"
+    },
+    {
+      "offset": 18404535,
+      "size": 4,
+      "sha256": "28237ab60e0c4db3dc0976c82304f8643e541b9b25b81549593c8fc0c8c3e1ba",
+      "value": 167516953,
+      "alignment": 3,
+      "literal_load_candidates": {
+        "thumb": [],
+        "arm": []
+      },
+      "type": "GBA_LZ77_STREAM",
+      "header_offset": 18403700,
+      "compressed_end": 18406723,
+      "decoded_size": 9632,
+      "decoded_sha256": "c96e11253779e7ed8946b35523088dbe7c9d4c19962ea8c6f8523949b6320510",
+      "header_pointer_sites": [
+        16818792
+      ],
+      "stream_binding": {
+        "offset": 18403700,
+        "size": 3023,
+        "sha256": "8e4107039f982ed56362da9267fb90b87574070098ce823ec7ab8dfaef588740"
+      }
+    },
+    {
+      "offset": 28733908,
+      "size": 4,
+      "sha256": "1a0b9e9126ef055487706206e03c371db3e8bf7818f13fb2d20eb5bada4788fd",
+      "value": 167518759,
+      "alignment": 0,
+      "literal_load_candidates": {
+        "thumb": [],
+        "arm": []
+      },
+      "type": "M4A_DELTA_COMPRESSED_SAMPLE",
+      "wave_header_offset": 28728292,
+      "wave_type": 1,
+      "samples": 16738,
+      "encoded_range_binding": {
+        "offset": 28728292,
+        "size": 8662,
+        "sha256": "9f08a52758c3f79dd7ec356f46d7c52c15e4933ed7e89f086beaadeffb91a1c6"
+      },
+      "wave_pointer_sites": [
+        21760744,
+        21761836,
+        21780784,
+        21781876,
+        22425136,
+        22426228,
+        22445188,
+        22446280,
+        27272568,
+        27273660,
+        27289848,
+        27290940,
+        32926692,
+        32927784,
+        32946144,
+        32947236
+      ],
+      "formula": "ceil(size/64)*33 byte blocks; SoundMainRAM_Unk2 decodes each 33-byte block into 64 samples"
+    },
+    {
+      "offset": 31940382,
+      "size": 4,
+      "sha256": "41c885dbc1e13ca704cd67283f6bf8ab3192abf001b2e31a61eaf562b863a915",
+      "value": 167517558,
+      "alignment": 2,
+      "literal_load_candidates": {
+        "thumb": [],
+        "arm": []
+      },
+      "type": "M4A_DELTA_COMPRESSED_SAMPLE",
+      "wave_header_offset": 31936936,
+      "wave_type": 1,
+      "samples": 21520,
+      "encoded_range_binding": {
+        "offset": 31936936,
+        "size": 11137,
+        "sha256": "1554bbe5a6db951239472febc30640a6903d668fbd2f18adc8d443ee147be636"
+      },
+      "wave_pointer_sites": [
+        21758068,
+        21778108,
+        22422460,
+        22442512,
+        27269616,
+        27286896,
+        32924016,
+        32943468
+      ],
+      "formula": "ceil(size/64)*33 byte blocks; SoundMainRAM_Unk2 decodes each 33-byte block into 64 samples"
+    }
+  ],
+  "old_data_guard": {
+    "offset": 33212856,
+    "size": 81885,
+    "sha256": "4544753386775f0330073d879222e4bf9527a49183c3a06d83559a32d73440c3"
+  },
+  "empty_row_guard": {
+    "offset": 33294340,
+    "size": 3,
+    "sha256": "f4e129297cb4ee2410b380b645a54edf715fba5bc0f5dfd87c297127a894ca2c"
+  },
+  "empty_row_pointer_sites": [
+    21293908,
+    21945876,
+    21960260,
+    22610380,
+    22624764,
+    23028824
+  ],
+  "bounded_old_data_row_scan": [
+    {
+      "table": 33294744,
+      "rows": 1621,
+      "old_data_rows": 1621,
+      "unterminated_rows": [],
+      "maximum_read_end": 33294741
+    },
+    {
+      "table": 22591836,
+      "rows": 1670,
+      "old_data_rows": 0,
+      "unterminated_rows": [],
+      "maximum_read_end": 0
+    },
+    {
+      "table": 22896624,
+      "rows": 1671,
+      "old_data_rows": 0,
+      "unterminated_rows": [],
+      "maximum_read_end": 0
+    }
+  ],
+  "shifted_base_scan": [
+    {
+      "shift": 1,
+      "sites": []
+    },
+    {
+      "shift": 2,
+      "sites": [
+        {
+          "offset": 24647256,
+          "literal_loads": {
+            "thumb": [],
+            "arm": []
+          }
+        }
+      ]
+    },
+    {
+      "shift": 3,
+      "sites": []
+    },
+    {
+      "shift": 4,
+      "sites": []
+    }
+  ],
+  "source_files": [
+    {
+      "path": "pokefirered__src__strings.c",
+      "size": 96631,
+      "sha256": "08e3799f20dd90ae937808be25721d28c3465b4f2ebaba2e71321e52f72465c1"
+    },
+    {
+      "path": "src__modernization__pr16_learnset_supply_game.c",
+      "size": 1884,
+      "sha256": "c64e50f2809180b7e0ee5a6f0ef72d71c0350a29f122d819162109af1736c081"
+    },
+    {
+      "path": "src__modernization__pr16_learnset_compact.c",
+      "size": 2812,
+      "sha256": "f7d2a9bd81bed08cd46ddbd932f834ac7548ee2ad5fa0ec938cb3081f6c97b56"
+    },
+    {
+      "path": "src__modernization__pr16_learnset_conditional_game.c",
+      "size": 4214,
+      "sha256": "3754b1c20cec705ab9fb63a0e5de7df339d4573a93fab2e07dfdd368164f604f"
+    },
+    {
+      "path": "src__modernization__pr16_learnset_progress_game.c",
+      "size": 1939,
+      "sha256": "6fbe2b663ca4959ac6f046aad29b5edb645599eb8240679ea6aad5dd52d00c4c"
+    },
+    {
+      "path": "config__move_distribution_v4.json",
+      "size": 4181,
+      "sha256": "170b313c414163d7fc1edab363866c164e547c1a8627005ca136c93e10561787"
+    },
+    {
+      "path": "pokefirered__include__characters.h",
+      "size": 12798,
+      "sha256": "6787db76f83c4f8426c5adbfa7aa061c46585db9522f1fef00ad888616199b98"
+    },
+    {
+      "path": "pokefirered__src__m4a_1.s",
+      "size": 39597,
+      "sha256": "348ed832bb30b24fa3ad9cf90242cc708ad972c19dff43b4dd550de4e5716dbf"
+    },
+    {
+      "path": "pokefirered__include__gba__m4a_internal.h",
+      "size": 14382,
+      "sha256": "9e841d8fe72d6af9f2d5a8135f686618e20975132a6d2fc95e6c7604213505e6"
+    },
+    {
+      "path": "CFRU-JP__include__constants__pokemon.h",
+      "size": 2940,
+      "sha256": "e22c8b86b94ee2c8c3272f7a395dc12761e052b83d142e00669c3649fd032417"
+    },
+    {
+      "path": "CFRU-JP__src__learn_move.c",
+      "size": 14361,
+      "sha256": "eb5fd374acedd481924e34e0ddfd0af901d8df2ce7faf36840a5fd1455daaec2"
+    },
+    {
+      "path": "state__source-lock.json",
+      "size": 3166,
+      "sha256": "0e230bf9fad2766d05ccb2410b22274c32085fed7544a78e37e0b5f451bda3c4"
+    },
+    {
+      "path": "overlays__move_distribution_v4__move_distribution_v4.c",
+      "size": 5272,
+      "sha256": "2eb484e280530af0ab6408b87ef7304d69680fa095ba7f18bd724e78d1a7cc93"
+    },
+    {
+      "path": "scripts__build_move_distribution_v4.py",
+      "size": 59171,
+      "sha256": "b2487d1a50c200467a2e892ebfcdbd58b4c5695f4f95ce56b55a37c86599a1c4"
+    },
+    {
+      "path": "src__modernization__pr16_learnset_conditional.c",
+      "size": 6387,
+      "sha256": "b6dc8fcd317204b8583bbcde577448e80c11acd5d473df5b46d44e5df9117ba9"
+    },
+    {
+      "path": "src__modernization__pr16_learnset_progress.c",
+      "size": 1877,
+      "sha256": "de92fbd4612a855c72be290939feb1d9270d46fea4aec8c3550cb830f51bbea3"
+    },
+    {
+      "path": "src__modernization__pr16_learnset_runtime.c",
+      "size": 3921,
+      "sha256": "10f7acc6f12e5f15ca7ca2d59381f8ffd52d7fbb5ded834fe975560138d8c0ac"
+    },
+    {
+      "path": "src__modernization__pr16_learnset_game.c",
+      "size": 862,
+      "sha256": "2fb30c12e6e73931c9990f0a254a493a05c92696202a2799be33cfdd9bb554e1"
+    },
+    {
+      "path": "tools__modernization_rockruff_own_tempo_stage75.py",
+      "size": 54667,
+      "sha256": "af8cd647d791c92cc63b1c71852a5de1cf02995e8365ce0dc79544adc5120136"
+    },
+    {
+      "path": "tools__modernization_p04_species_runtime.py",
+      "size": 60607,
+      "sha256": "4fe0336d22384456f68fd6f00cc7a81732b60690daa10797004393bc016fa734"
+    }
+  ],
+  "limits": [
+    "No arbitrary program-wide reachability proof. Excludes pointers synthesized in unknown code, emulator-host access and future builds.",
+    "No native execution, ROM edit, allocator change, signature, repository write, commit, push or Actions dispatch.",
+    "Canonical-window all-byte span scan is complete. All three Game Pak windows have zero exact donor-base literals; noncanonical mirrored interior-address ranges were not exhaustively typed. Known source consumers only use the canonical table/global ABI. This is no proof against arbitrary address synthesis."
+  ],
+  "lease_requirements": [
+    "Exact candidate and donor hash binding; transfer only [0x01FC0998,0x01FC22EC).",
+    "Keep complete legacy level_up_data allocation, 3-byte sentinel and six pointer sites byte-identical.",
+    "Keep five root-site bindings and eight indirect-storage-site values unchanged.",
+    "Allocator must explicitly retire owner T09 species_surface_level_up_pointers and assign new owner; no ordinary overlap exemption.",
+    "Preimage/postimage exact diff audit and independent learnset regression remain required before acceptance."
+  ],
+  "audited_original_source_snapshot": "1c71d539e245d6a9fe83650b8a19ff3282e66c94",
+  "source_bindings": [
+    {
+      "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+      "commit": "8822a20ba6233bce79d23c54c499461ec0e8fd44",
+      "path": "tools/modernization_p04_species_runtime.py",
+      "git_blob_sha": "3bfe8d18fa09a38e9aaf992830e79ad11e64e765",
+      "sha256": "4fe0336d22384456f68fd6f00cc7a81732b60690daa10797004393bc016fa734",
+      "size": 60607,
+      "same_as_audited_source": true,
+      "url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/blob/8822a20ba6233bce79d23c54c499461ec0e8fd44/tools/modernization_p04_species_runtime.py"
+    },
+    {
+      "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+      "commit": "8822a20ba6233bce79d23c54c499461ec0e8fd44",
+      "path": "tools/modernization_rockruff_own_tempo_stage75.py",
+      "git_blob_sha": "42572388e42476ce46c0a0376859d3efde403621",
+      "sha256": "af8cd647d791c92cc63b1c71852a5de1cf02995e8365ce0dc79544adc5120136",
+      "size": 54667,
+      "same_as_audited_source": true,
+      "url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/blob/8822a20ba6233bce79d23c54c499461ec0e8fd44/tools/modernization_rockruff_own_tempo_stage75.py"
+    },
+    {
+      "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+      "commit": "8822a20ba6233bce79d23c54c499461ec0e8fd44",
+      "path": "scripts/build_move_distribution_v4.py",
+      "git_blob_sha": "34c63db8909b1c3d7e302ba2ea50a8c53fca0f12",
+      "sha256": "b2487d1a50c200467a2e892ebfcdbd58b4c5695f4f95ce56b55a37c86599a1c4",
+      "size": 59171,
+      "same_as_audited_source": true,
+      "url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/blob/8822a20ba6233bce79d23c54c499461ec0e8fd44/scripts/build_move_distribution_v4.py"
+    },
+    {
+      "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+      "commit": "8822a20ba6233bce79d23c54c499461ec0e8fd44",
+      "path": "config/move_distribution_v4.json",
+      "git_blob_sha": "21c9e42f655ff1c910778211f5e8a347ae0ed52d",
+      "sha256": "170b313c414163d7fc1edab363866c164e547c1a8627005ca136c93e10561787",
+      "size": 4181,
+      "same_as_audited_source": true,
+      "url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/blob/8822a20ba6233bce79d23c54c499461ec0e8fd44/config/move_distribution_v4.json"
+    },
+    {
+      "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+      "commit": "8822a20ba6233bce79d23c54c499461ec0e8fd44",
+      "path": "overlays/move_distribution_v4/move_distribution_v4.c",
+      "git_blob_sha": "10ba2ee9cfd32089ee4afa2fdc9bb9e0445475e1",
+      "sha256": "2eb484e280530af0ab6408b87ef7304d69680fa095ba7f18bd724e78d1a7cc93",
+      "size": 5272,
+      "same_as_audited_source": true,
+      "url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/blob/8822a20ba6233bce79d23c54c499461ec0e8fd44/overlays/move_distribution_v4/move_distribution_v4.c"
+    },
+    {
+      "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+      "commit": "8822a20ba6233bce79d23c54c499461ec0e8fd44",
+      "path": "src/modernization/pr16_learnset_game.c",
+      "git_blob_sha": "6daaa39c314fc70f67114b94dcab13766776f92f",
+      "sha256": "2fb30c12e6e73931c9990f0a254a493a05c92696202a2799be33cfdd9bb554e1",
+      "size": 862,
+      "same_as_audited_source": true,
+      "url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/blob/8822a20ba6233bce79d23c54c499461ec0e8fd44/src/modernization/pr16_learnset_game.c"
+    },
+    {
+      "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+      "commit": "8822a20ba6233bce79d23c54c499461ec0e8fd44",
+      "path": "src/modernization/pr16_learnset_runtime.c",
+      "git_blob_sha": "e3ebed848aece40771571f26f0d973a5a6fde2ed",
+      "sha256": "10f7acc6f12e5f15ca7ca2d59381f8ffd52d7fbb5ded834fe975560138d8c0ac",
+      "size": 3921,
+      "same_as_audited_source": true,
+      "url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/blob/8822a20ba6233bce79d23c54c499461ec0e8fd44/src/modernization/pr16_learnset_runtime.c"
+    },
+    {
+      "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+      "commit": "8822a20ba6233bce79d23c54c499461ec0e8fd44",
+      "path": "src/modernization/pr16_learnset_progress.c",
+      "git_blob_sha": "981f8a0684d742fac9f0b3f29c523f2c6492439c",
+      "sha256": "de92fbd4612a855c72be290939feb1d9270d46fea4aec8c3550cb830f51bbea3",
+      "size": 1877,
+      "same_as_audited_source": true,
+      "url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/blob/8822a20ba6233bce79d23c54c499461ec0e8fd44/src/modernization/pr16_learnset_progress.c"
+    },
+    {
+      "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+      "commit": "8822a20ba6233bce79d23c54c499461ec0e8fd44",
+      "path": "src/modernization/pr16_learnset_conditional.c",
+      "git_blob_sha": "a4692bd30a28763b1c5a4f9d7858054a894a68ce",
+      "sha256": "b6dc8fcd317204b8583bbcde577448e80c11acd5d473df5b46d44e5df9117ba9",
+      "size": 6387,
+      "same_as_audited_source": true,
+      "url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/blob/8822a20ba6233bce79d23c54c499461ec0e8fd44/src/modernization/pr16_learnset_conditional.c"
+    },
+    {
+      "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+      "commit": "8822a20ba6233bce79d23c54c499461ec0e8fd44",
+      "path": "src/modernization/pr16_learnset_progress_game.c",
+      "git_blob_sha": "42748c682310ff59989d016f5b0a5df6fa7b5ab6",
+      "sha256": "6fbe2b663ca4959ac6f046aad29b5edb645599eb8240679ea6aad5dd52d00c4c",
+      "size": 1939,
+      "same_as_audited_source": true,
+      "url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/blob/8822a20ba6233bce79d23c54c499461ec0e8fd44/src/modernization/pr16_learnset_progress_game.c"
+    },
+    {
+      "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+      "commit": "8822a20ba6233bce79d23c54c499461ec0e8fd44",
+      "path": "src/modernization/pr16_learnset_conditional_game.c",
+      "git_blob_sha": "58f219536af9242e0fb9b956e29ef36fb09cda18",
+      "sha256": "3754b1c20cec705ab9fb63a0e5de7df339d4573a93fab2e07dfdd368164f604f",
+      "size": 4214,
+      "same_as_audited_source": true,
+      "url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/blob/8822a20ba6233bce79d23c54c499461ec0e8fd44/src/modernization/pr16_learnset_conditional_game.c"
+    },
+    {
+      "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+      "commit": "8822a20ba6233bce79d23c54c499461ec0e8fd44",
+      "path": "src/modernization/pr16_learnset_compact.c",
+      "git_blob_sha": "a96f852aec3e9492337d90b9d481c5ddd3012be8",
+      "sha256": "f7d2a9bd81bed08cd46ddbd932f834ac7548ee2ad5fa0ec938cb3081f6c97b56",
+      "size": 2812,
+      "same_as_audited_source": true,
+      "url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/blob/8822a20ba6233bce79d23c54c499461ec0e8fd44/src/modernization/pr16_learnset_compact.c"
+    },
+    {
+      "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+      "commit": "8822a20ba6233bce79d23c54c499461ec0e8fd44",
+      "path": "src/modernization/pr16_learnset_supply_game.c",
+      "git_blob_sha": "88dd6e064a0025a44b54b2c3dae1bd7c18be1ded",
+      "sha256": "c64e50f2809180b7e0ee5a6f0ef72d71c0350a29f122d819162109af1736c081",
+      "size": 1884,
+      "same_as_audited_source": true,
+      "url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/blob/8822a20ba6233bce79d23c54c499461ec0e8fd44/src/modernization/pr16_learnset_supply_game.c"
+    },
+    {
+      "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+      "commit": "8822a20ba6233bce79d23c54c499461ec0e8fd44",
+      "path": "state/source-lock.json",
+      "git_blob_sha": "e55a4b006cfff95995aaa703e37c401d15b86864",
+      "sha256": "0e230bf9fad2766d05ccb2410b22274c32085fed7544a78e37e0b5f451bda3c4",
+      "size": 3166,
+      "same_as_audited_source": true,
+      "url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/blob/8822a20ba6233bce79d23c54c499461ec0e8fd44/state/source-lock.json"
+    },
+    {
+      "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+      "commit": "8822a20ba6233bce79d23c54c499461ec0e8fd44",
+      "path": "scripts/build_species_surface.py",
+      "git_blob_sha": "6bf37ee88f559ba76997dabb8a0c35127c088342",
+      "sha256": "d032f6cbf3e38914e332899deed99168873d85746f3c340cdafc5bc5db791bad",
+      "size": 88276,
+      "same_as_audited_source": true,
+      "url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/blob/8822a20ba6233bce79d23c54c499461ec0e8fd44/scripts/build_species_surface.py"
+    },
+    {
+      "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+      "commit": "8822a20ba6233bce79d23c54c499461ec0e8fd44",
+      "path": "overlays/species_surface/species_runtime.c",
+      "git_blob_sha": "9dea3285b66b807775d188b84eb8b7a5a42130cd",
+      "sha256": "5d72c5117f99bce5d6dfca93708ac4afc3286cd96e2ea42119d01caf32ecacb0",
+      "size": 11097,
+      "same_as_audited_source": true,
+      "url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/blob/8822a20ba6233bce79d23c54c499461ec0e8fd44/overlays/species_surface/species_runtime.c"
+    },
+    {
+      "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+      "commit": "8822a20ba6233bce79d23c54c499461ec0e8fd44",
+      "path": "config/species_surface.json",
+      "git_blob_sha": "fe52aa5d43f860a80f3b7b24681bf874ba9a8e28",
+      "sha256": "b490fcea065d0b1c176784139355312618061258d715e5785132b72908eee160",
+      "size": 3565,
+      "same_as_audited_source": true,
+      "url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/blob/8822a20ba6233bce79d23c54c499461ec0e8fd44/config/species_surface.json"
+    },
+    {
+      "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+      "commit": "8822a20ba6233bce79d23c54c499461ec0e8fd44",
+      "path": "config/modernization_p04_species_runtime.json",
+      "git_blob_sha": "c7deddd041dd5a2b821b4386f9dce43988e11f3d",
+      "sha256": "260537ad559a5891bf238058159623e506d6901bb46839aa40e831ef6ede7e11",
+      "size": 11675,
+      "same_as_audited_source": true,
+      "url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/blob/8822a20ba6233bce79d23c54c499461ec0e8fd44/config/modernization_p04_species_runtime.json"
+    },
+    {
+      "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+      "commit": "8822a20ba6233bce79d23c54c499461ec0e8fd44",
+      "path": "config/modernization_rockruff_own_tempo_stage75.json",
+      "git_blob_sha": "3201e559c77eb352c90ad31d2bfd7ea9018a0ae7",
+      "sha256": "2accef3c5cb3e45e3b032035acfbc727b2785deafd652a45f56ca0db3ebbf121",
+      "size": 8066,
+      "same_as_audited_source": true,
+      "url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/blob/8822a20ba6233bce79d23c54c499461ec0e8fd44/config/modernization_rockruff_own_tempo_stage75.json"
+    },
+    {
+      "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+      "commit": "8822a20ba6233bce79d23c54c499461ec0e8fd44",
+      "path": "content/modernization/p04_capacity_allocation_manifest.json",
+      "git_blob_sha": "1c765294889d44df4d9f9375c88b814e31a653db",
+      "sha256": "8377afbe70ff3a1da1c805f51f5e83d49fd0a5befd271e6c549cf0f76bf082fe",
+      "size": 437769,
+      "same_as_audited_source": true,
+      "url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/blob/8822a20ba6233bce79d23c54c499461ec0e8fd44/content/modernization/p04_capacity_allocation_manifest.json"
+    }
+  ],
+  "rom_window_exact_base_checks": [
+    {
+      "rom_window_base": 134217728,
+      "target": 167512472,
+      "sites": []
+    },
+    {
+      "rom_window_base": 167772160,
+      "target": 201066904,
+      "sites": []
+    },
+    {
+      "rom_window_base": 201326592,
+      "target": 234621336,
+      "sites": []
+    }
+  ],
+  "unresolved_pointer_candidates": [],
+  "typing_blockers": [],
+  "requested_acceptance_boundary": "4638-byte new codec/compact adapter/lookup/bridge can fit donor of 6484 bytes with 1846-byte slack. Does not establish relocation of the whole 12568-byte Stage61 owner. Any candidate, source or consumer-root change invalidates the lease.",
+  "approved_scope_ja": "この固定candidateだけで旧T09 pointer owner6484byteの置換前条件を定義する。実allocator移譲・ROM配置・native受入は別。Stage61全体cloneの容量証明ではない。",
+  "rom_fragments_or_raw_hex_included": false,
+  "text_grammar_proof": [
+    {
+      "candidate_offset": 1733369,
+      "string_offset": 1733338,
+      "size": 36,
+      "validated_tokens": {
+        "glyph": 29,
+        "text_control": 2,
+        "placeholder": 1,
+        "PAUSE_UNTIL_PRESS": 1,
+        "EOS": 1
+      },
+      "source": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/charmap.txt"
+    },
+    {
+      "candidate_offset": 1733409,
+      "string_offset": 1733374,
+      "size": 40,
+      "validated_tokens": {
+        "glyph": 35,
+        "text_control": 2,
+        "PAUSE_UNTIL_PRESS": 1,
+        "EOS": 1
+      },
+      "source": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/charmap.txt"
+    },
+    {
+      "candidate_offset": 4053929,
+      "string_offset": 4053908,
+      "size": 26,
+      "validated_tokens": {
+        "glyph": 22,
+        "text_control": 1,
+        "PAUSE_UNTIL_PRESS": 1,
+        "EOS": 1
+      },
+      "source": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/charmap.txt"
+    },
+    {
+      "candidate_offset": 4054277,
+      "string_offset": 4054260,
+      "size": 22,
+      "validated_tokens": {
+        "placeholder": 1,
+        "glyph": 16,
+        "text_control": 1,
+        "PAUSE_UNTIL_PRESS": 1,
+        "EOS": 1
+      },
+      "source": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/charmap.txt"
+    },
+    {
+      "candidate_offset": 4054610,
+      "string_offset": 4054593,
+      "size": 22,
+      "validated_tokens": {
+        "placeholder": 1,
+        "glyph": 16,
+        "text_control": 1,
+        "PAUSE_UNTIL_PRESS": 1,
+        "EOS": 1
+      },
+      "source": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/charmap.txt"
+    },
+    {
+      "candidate_offset": 4054632,
+      "string_offset": 4054615,
+      "size": 22,
+      "validated_tokens": {
+        "placeholder": 1,
+        "glyph": 16,
+        "text_control": 1,
+        "PAUSE_UNTIL_PRESS": 1,
+        "EOS": 1
+      },
+      "source": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/charmap.txt"
+    },
+    {
+      "candidate_offset": 4054852,
+      "string_offset": 4054835,
+      "size": 22,
+      "validated_tokens": {
+        "glyph": 18,
+        "text_control": 1,
+        "PAUSE_UNTIL_PRESS": 1,
+        "EOS": 1
+      },
+      "source": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/charmap.txt"
+    },
+    {
+      "candidate_offset": 4055140,
+      "string_offset": 4055124,
+      "size": 21,
+      "validated_tokens": {
+        "glyph": 18,
+        "PAUSE_UNTIL_PRESS": 1,
+        "EOS": 1
+      },
+      "source": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/charmap.txt"
+    },
+    {
+      "candidate_offset": 4055467,
+      "string_offset": 4055450,
+      "size": 22,
+      "validated_tokens": {
+        "placeholder": 2,
+        "glyph": 14,
+        "text_control": 1,
+        "PAUSE_UNTIL_PRESS": 1,
+        "EOS": 1
+      },
+      "source": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/charmap.txt"
+    },
+    {
+      "candidate_offset": 4055490,
+      "string_offset": 4055472,
+      "size": 23,
+      "validated_tokens": {
+        "placeholder": 2,
+        "glyph": 15,
+        "text_control": 1,
+        "PAUSE_UNTIL_PRESS": 1,
+        "EOS": 1
+      },
+      "source": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/charmap.txt"
+    },
+    {
+      "candidate_offset": 4055536,
+      "string_offset": 4055521,
+      "size": 20,
+      "validated_tokens": {
+        "placeholder": 1,
+        "glyph": 14,
+        "text_control": 1,
+        "PAUSE_UNTIL_PRESS": 1,
+        "EOS": 1
+      },
+      "source": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/charmap.txt"
+    },
+    {
+      "candidate_offset": 4055550,
+      "string_offset": 4055541,
+      "size": 14,
+      "validated_tokens": {
+        "placeholder": 1,
+        "glyph": 8,
+        "text_control": 1,
+        "PAUSE_UNTIL_PRESS": 1,
+        "EOS": 1
+      },
+      "source": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/charmap.txt"
+    },
+    {
+      "candidate_offset": 4055566,
+      "string_offset": 4055555,
+      "size": 16,
+      "validated_tokens": {
+        "placeholder": 1,
+        "glyph": 10,
+        "text_control": 1,
+        "PAUSE_UNTIL_PRESS": 1,
+        "EOS": 1
+      },
+      "source": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/charmap.txt"
+    },
+    {
+      "candidate_offset": 4055586,
+      "string_offset": 4055571,
+      "size": 20,
+      "validated_tokens": {
+        "placeholder": 1,
+        "glyph": 14,
+        "text_control": 1,
+        "PAUSE_UNTIL_PRESS": 1,
+        "EOS": 1
+      },
+      "source": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/charmap.txt"
+    },
+    {
+      "candidate_offset": 4055708,
+      "string_offset": 4055697,
+      "size": 16,
+      "validated_tokens": {
+        "placeholder": 1,
+        "glyph": 10,
+        "text_control": 1,
+        "PAUSE_UNTIL_PRESS": 1,
+        "EOS": 1
+      },
+      "source": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/charmap.txt"
+    },
+    {
+      "candidate_offset": 4055724,
+      "string_offset": 4055713,
+      "size": 16,
+      "validated_tokens": {
+        "placeholder": 1,
+        "glyph": 10,
+        "text_control": 1,
+        "PAUSE_UNTIL_PRESS": 1,
+        "EOS": 1
+      },
+      "source": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/charmap.txt"
+    },
+    {
+      "candidate_offset": 4057113,
+      "string_offset": 4057090,
+      "size": 28,
+      "validated_tokens": {
+        "glyph": 24,
+        "text_control": 1,
+        "PAUSE_UNTIL_PRESS": 1,
+        "EOS": 1
+      },
+      "source": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/charmap.txt"
+    },
+    {
+      "candidate_offset": 18125393,
+      "string_offset": 18125376,
+      "size": 22,
+      "validated_tokens": {
+        "glyph": 18,
+        "text_control": 1,
+        "PAUSE_UNTIL_PRESS": 1,
+        "EOS": 1
+      },
+      "source": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/charmap.txt"
+    },
+    {
+      "candidate_offset": 18126199,
+      "string_offset": 18126183,
+      "size": 21,
+      "validated_tokens": {
+        "placeholder": 1,
+        "glyph": 15,
+        "text_control": 1,
+        "PAUSE_UNTIL_PRESS": 1,
+        "EOS": 1
+      },
+      "source": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/charmap.txt"
+    },
+    {
+      "candidate_offset": 18126240,
+      "string_offset": 18126220,
+      "size": 25,
+      "validated_tokens": {
+        "placeholder": 2,
+        "glyph": 17,
+        "text_control": 1,
+        "PAUSE_UNTIL_PRESS": 1,
+        "EOS": 1
+      },
+      "source": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/charmap.txt"
+    },
+    {
+      "candidate_offset": 18126440,
+      "string_offset": 18126422,
+      "size": 23,
+      "validated_tokens": {
+        "placeholder": 1,
+        "glyph": 17,
+        "text_control": 1,
+        "PAUSE_UNTIL_PRESS": 1,
+        "EOS": 1
+      },
+      "source": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/charmap.txt"
+    }
+  ],
+  "upstream_type_sources": [
+    {
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "path": "include/gba/m4a_internal.h",
+      "sha256": "9e841d8fe72d6af9f2d5a8135f686618e20975132a6d2fc95e6c7604213505e6",
+      "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/include/gba/m4a_internal.h"
+    },
+    {
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "path": "src/m4a_1.s",
+      "sha256": "348ed832bb30b24fa3ad9cf90242cc708ad972c19dff43b4dd550de4e5716dbf",
+      "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/m4a_1.s"
+    },
+    {
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "path": "src/strings.c",
+      "sha256": "08e3799f20dd90ae937808be25721d28c3465b4f2ebaba2e71321e52f72465c1",
+      "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/strings.c"
+    },
+    {
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "path": "charmap.txt",
+      "sha256": "4da662317b3b5109a52064f9012d85b644d1dbf0f3f24243374aeef4cf25f061",
+      "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/charmap.txt"
+    },
+    {
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "path": "include/characters.h",
+      "sha256": "6787db76f83c4f8426c5adbfa7aa061c46585db9522f1fef00ad888616199b98",
+      "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/include/characters.h"
+    },
+    {
+      "repository": "kapibarasan000/CFRU-JP",
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "path": "src/learn_move.c",
+      "sha256": "eb5fd374acedd481924e34e0ddfd0af901d8df2ce7faf36840a5fd1455daaec2",
+      "url": "https://github.com/kapibarasan000/CFRU-JP/blob/e24a16fe39e27ae162faf5b78596d1f3df18489d/src/learn_move.c"
+    }
+  ]
+}
