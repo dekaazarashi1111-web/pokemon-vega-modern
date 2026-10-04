@@ -1,0 +1,105 @@
+{
+  "candidate": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  },
+  "bindings": [
+    {
+      "address": 154584391,
+      "size": 14,
+      "hex": "5c008300000039fce10858fce108",
+      "meaning": "trainer131 physical script mode0 id131 local0 intro/lose ptrs"
+    },
+    {
+      "address": 135867894,
+      "size": 13,
+      "hex": "6a2538002537002705092f1908",
+      "meaning": "approach lock special music/endapproach waitstate goto intro"
+    },
+    {
+      "address": 135868169,
+      "size": 84,
+      "hex": "253400666d258701210d80020006015c2f19085d260d803300210d8000000601592f1908210d80020006015b2f1908210d80010006015b2f1908210d80060006015b2f1908210d80080006015b2f19086b025f25",
+      "meaning": "intro waitmessage waitbutton battle end mode switch release"
+    },
+    {
+      "address": 135671388,
+      "size": 4,
+      "hex": "39b10608",
+      "meaning": "ScrCmd waitmessage pointer"
+    },
+    {
+      "address": 135671416,
+      "size": 4,
+      "hex": "fdb20608",
+      "meaning": "ScrCmd waitbutton pointer"
+    },
+    {
+      "address": 134656312,
+      "size": 20,
+      "hex": "00b50349fdf7baff012002bc08470000dd8d0608",
+      "meaning": "waitmessage owner"
+    },
+    {
+      "address": 134647260,
+      "size": 28,
+      "hex": "00b503480078002804d0002003e00000d06f0302012002bc08470000",
+      "meaning": "IsFieldMessageBoxHidden"
+    },
+    {
+      "address": 134656764,
+      "size": 68,
+      "hex": "10b5041c0b480460a8f076fa0006000e012803d008480078022802d10749002008700749201cfdf7c7fe012010bc02bc08470000b050000372ad0302e06f030259b10608",
+      "meaning": "waitbutton owner"
+    },
+    {
+      "address": 134656344,
+      "size": 164,
+      "hex": "10b51548c18d0120084000283dd102200840002839d1114c206800f043f80006000e012823d1206800f054f80006040e201cfef765f8002c19d009480078022815d0fef78df8201c09380006000e012808d9fef73bf818e030310003b050000372ad0302fef752f8fef736f80de0a8f015fb0006000e012803d00548007802280cd104490878782806d1012007e0000072ad0302e06f030201300870002010bc02bc0847",
+      "meaning": "WaitForAorBPress"
+    },
+    {
+      "address": 135672120,
+      "size": 20,
+      "hex": "f9fc070839fd070805fb07080d21080849fd0708",
+      "meaning": "special intro/fought/endapproach/music"
+    },
+    {
+      "address": 134741240,
+      "size": 16,
+      "hex": "00b500f07df8e8f7fdff01bc00470000",
+      "meaning": "ShowTrainerIntroSpeech"
+    },
+    {
+      "address": 134741496,
+      "size": 20,
+      "hex": "00b503480068fff7f3ff02bc08470000e8850302",
+      "meaning": "GetIntroSpeech"
+    },
+    {
+      "address": 134750476,
+      "size": 36,
+      "hex": "00b50248fff7bafc01bc00471d21080800b50006000ef4f7bdfde7f765f901bc00470000",
+      "meaning": "EndTrainerApproach"
+    },
+    {
+      "address": 151254508,
+      "size": 4,
+      "hex": "b5560208",
+      "meaning": "active battle opcode yesnobox"
+    },
+    {
+      "address": 134370996,
+      "size": 220,
+      "hex": "30b581b0034d2c78002c05d0012c17d05de00000e23d02020094172008211d220d2307f04ffe05480e21b4f095f82878013028706c7007f0e3fe48e020473c081748c18d4020084000280bd06878002808d005204cf0b2f907f0f2fe0020687007f0cefe0e48c18d8020084000280cd00c4c6078002808d105204cf09ff907f0dffe0120607007f0bbfe0548c18d02200840002808d003480124447009e0000030310003e23d02020124201c084000280dd005204cf082f90094172008211d220d2307f0fffd044908680130086001b030bc01bc00470000d43c0202",
+      "meaning": "Cmd_yesnobox B maps to No"
+    },
+    {
+      "address": 134737808,
+      "size": 32,
+      "hex": "00b500f087fb0006000e0021fff70cff0720d5f7d5fb0920d5f7d2fb01bc0047",
+      "meaning": "trainer entry stat7 stat9"
+    }
+  ],
+  "scope": "trainer131 sight, dialogue and battle script PC; no trainer win accepted"
+}

@@ -1,22 +1,31 @@
 {
-  "tests": 19,
-  "passed": 19,
+  "tests": 22,
+  "passed": 22,
   "stdout": "",
-  "stderr": "test_approach_no_dialogue_button (test_pr16_story_trainer_adapter.TrainerTests.test_approach_no_dialogue_button) ... ok\ntest_reject_already_unlocked (test_pr16_story_trainer_adapter.TrainerTests.test_reject_already_unlocked) ... ok\ntest_reject_bag (test_pr16_story_trainer_adapter.TrainerTests.test_reject_bag) ... ok\ntest_reject_callback (test_pr16_story_trainer_adapter.TrainerTests.test_reject_callback) ... ok\ntest_reject_daycare (test_pr16_story_trainer_adapter.TrainerTests.test_reject_daycare) ... ok\ntest_reject_identity (test_pr16_story_trainer_adapter.TrainerTests.test_reject_identity) ... ok\ntest_reject_ledger (test_pr16_story_trainer_adapter.TrainerTests.test_reject_ledger) ... ok\ntest_reject_outcome (test_pr16_story_trainer_adapter.TrainerTests.test_reject_outcome) ... ok\ntest_reject_pp (test_pr16_story_trainer_adapter.TrainerTests.test_reject_pp) ... ok\ntest_reject_save (test_pr16_story_trainer_adapter.TrainerTests.test_reject_save) ... ok\ntest_reject_stale_new_win (test_pr16_story_trainer_adapter.TrainerTests.test_reject_stale_new_win) ... ok\ntest_reject_step_counter (test_pr16_story_trainer_adapter.TrainerTests.test_reject_step_counter) ... ok\ntest_reject_trainer (test_pr16_story_trainer_adapter.TrainerTests.test_reject_trainer) ... ok\ntest_reject_trainer_flag (test_pr16_story_trainer_adapter.TrainerTests.test_reject_trainer_flag) ... ok\ntest_reject_unknown_script (test_pr16_story_trainer_adapter.TrainerTests.test_reject_unknown_script) ... ok\ntest_reject_unknown_var (test_pr16_story_trainer_adapter.TrainerTests.test_reject_unknown_var) ... ok\ntest_reject_wrong_origin (test_pr16_story_trainer_adapter.TrainerTests.test_reject_wrong_origin) ... ok\ntest_reject_wrong_target (test_pr16_story_trainer_adapter.TrainerTests.test_reject_wrong_target) ... ok\ntest_sight_has_no_step_maintenance (test_pr16_story_trainer_adapter.TrainerTests.test_sight_has_no_step_maintenance) ... ok\n\n----------------------------------------------------------------------\nRan 19 tests in 0.012s\n\nOK\n",
+  "stderr": "test_approach_no_dialogue_button (test_pr16_story_trainer_adapter.TrainerTests.test_approach_no_dialogue_button) ... ok\ntest_approach_template_only (test_pr16_story_trainer_adapter.TrainerTests.test_approach_template_only) ... ok\ntest_reject_already_unlocked (test_pr16_story_trainer_adapter.TrainerTests.test_reject_already_unlocked) ... ok\ntest_reject_bag (test_pr16_story_trainer_adapter.TrainerTests.test_reject_bag) ... ok\ntest_reject_callback (test_pr16_story_trainer_adapter.TrainerTests.test_reject_callback) ... ok\ntest_reject_daycare (test_pr16_story_trainer_adapter.TrainerTests.test_reject_daycare) ... ok\ntest_reject_identity (test_pr16_story_trainer_adapter.TrainerTests.test_reject_identity) ... ok\ntest_reject_ledger (test_pr16_story_trainer_adapter.TrainerTests.test_reject_ledger) ... ok\ntest_reject_outcome (test_pr16_story_trainer_adapter.TrainerTests.test_reject_outcome) ... ok\ntest_reject_pp (test_pr16_story_trainer_adapter.TrainerTests.test_reject_pp) ... ok\ntest_reject_save (test_pr16_story_trainer_adapter.TrainerTests.test_reject_save) ... ok\ntest_reject_stale_new_win (test_pr16_story_trainer_adapter.TrainerTests.test_reject_stale_new_win) ... ok\ntest_reject_step_counter (test_pr16_story_trainer_adapter.TrainerTests.test_reject_step_counter) ... ok\ntest_reject_trainer (test_pr16_story_trainer_adapter.TrainerTests.test_reject_trainer) ... ok\ntest_reject_trainer_flag (test_pr16_story_trainer_adapter.TrainerTests.test_reject_trainer_flag) ... ok\ntest_reject_unknown_script (test_pr16_story_trainer_adapter.TrainerTests.test_reject_unknown_script) ... ok\ntest_reject_unknown_var (test_pr16_story_trainer_adapter.TrainerTests.test_reject_unknown_var) ... ok\ntest_reject_wrong_origin (test_pr16_story_trainer_adapter.TrainerTests.test_reject_wrong_origin) ... ok\ntest_reject_wrong_target (test_pr16_story_trainer_adapter.TrainerTests.test_reject_wrong_target) ... ok\ntest_same_frame_script_pc (test_pr16_story_trainer_adapter.TrainerTests.test_same_frame_script_pc) ... ok\ntest_sight_has_no_step_maintenance (test_pr16_story_trainer_adapter.TrainerTests.test_sight_has_no_step_maintenance) ... ok\ntest_source_pc_read_only (test_pr16_story_trainer_adapter.TrainerTests.test_source_pc_read_only) ... ok\n\n----------------------------------------------------------------------\nRan 22 tests in 0.014s\n\nOK\n",
   "source_bindings": {
     "scripts/pr16_story_trainer_adapter.py": {
-      "size": 3573,
-      "sha256": "c6a3653b6732e74c602d4ba2b2e8918ba3a5e3cb9f2aad16076de8ef2bbc1819"
+      "size": 4047,
+      "sha256": "f734e0fa8a38bbb66cb86aad7225727145fe5d79dbcfc2362d9fe5590c42a092"
     },
     "scripts/pr16_story_trainer_probe.py": {
-      "size": 4118,
-      "sha256": "f21a67c10e428855bd22933f35d59803552f68d189faa6a737df913de71b8842"
+      "size": 4836,
+      "sha256": "3ede1a6a89f4a99ea24d60a5738b95498b640b8928fe09398f63395cc669756c"
+    },
+    "scripts/pr16_story_trainer_session.py": {
+      "size": 2386,
+      "sha256": "54d381829fe8c9c83716c1aea2748cfc674e665f66e6ce05b64a305e01879086"
     },
     "tests/test_pr16_story_trainer_adapter.py": {
-      "size": 2718,
-      "sha256": "5da73da7e49c8f63f03b9d978747ad47aec82c72910f87ce8cc6951aad052aea"
+      "size": 4141,
+      "sha256": "e1d93694a0fe40a8405cdf86233c6900f663d23c727ddb9bd16fe6a24effad13"
+    },
+    "content/modernization/pr16_story_trainer_owners.json": {
+      "size": 3738,
+      "sha256": "1cfa82e62507853a6f7df3f8d46fca4c9c997b017e699d484570b5e411c66403"
     }
   },
-  "original83frames_revalidated_without_native": true,
-  "native_processes": 0
+  "original84frames_revalidated_without_native": true,
+  "native_processes": 0,
+  "previous19_test_original_preserved_in_commit": "6cca4bf338d73dad815f4f911d7de19f66d607d7"
 }

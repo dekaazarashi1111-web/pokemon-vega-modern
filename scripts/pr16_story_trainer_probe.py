@@ -5,10 +5,11 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'scripts'))
 import pr16_story_route_probe as retained
 import pr16_story_trainer_adapter as trainer
+import pr16_story_trainer_session as trainer_reader
 from pr16_story_after_maori import need,identity,write
 from pr16_story_milestones import DiagnosticStop
 BASE='06726eca808ac62ac26a18e9abb0cec154520268'
-CODE={'scripts/pr16_story_trainer_adapter.py','scripts/pr16_story_trainer_probe.py','tests/test_pr16_story_trainer_adapter.py','content/modernization/pr16_story_trainer_unit.json','.github/workflows/pr16-story-trainer-adapter.yml'}
+CODE={'scripts/pr16_story_trainer_session.py','content/modernization/pr16_story_trainer_owners.json','scripts/pr16_story_trainer_adapter.py','scripts/pr16_story_trainer_probe.py','tests/test_pr16_story_trainer_adapter.py','content/modernization/pr16_story_trainer_unit.json','.github/workflows/pr16-story-trainer-adapter.yml'}
 
 def guard():
     need(os.environ['GITHUB_REPOSITORY']=='dekaazarashi1111-web/pokemon-vega-modern' and os.environ['GITHUB_REF_NAME']=='codex/modernization-followup-20260908' and os.environ['GITHUB_RUN_ATTEMPT']=='1','authorized single-attempt trainer continuation')
@@ -42,6 +43,17 @@ def walk(session,route):
         else:raise DiagnosticStop('unpassed_route_tile',dict(index=index,target=target))
     raise DiagnosticStop('facility_adapter_pending')
 
+def inspect(rom):
+    original=original_inspect(rom)
+    data=json.loads((ROOT/'content/modernization/pr16_story_trainer_owners.json').read_bytes())
+    need(identity(rom)==data['candidate'],'trainer fixed ROM identity')
+    for row in data['bindings']:
+        need(rom[row['address']-0x8000000:row['address']-0x8000000+row['size']].hex()==row['hex'],'exact trainer owner '+row['meaning'])
+    write(retained.ART/'trainer-owners.json',data)
+    return original
+original_inspect=retained.owners.inspect
+
 def main():
+    retained.reader=trainer_reader;retained.owners.inspect=inspect
     retained.OUT=ROOT/'.local/pr16-story-trainer-adapter';retained.ART=retained.OUT/'artifact';retained.guard=guard;retained.walk=walk;retained.main()
 if __name__=='__main__':main()

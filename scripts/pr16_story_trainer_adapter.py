@@ -29,7 +29,14 @@ def sight(before,after):
 
 def field_preserved(before,after):
     t=identity(before,after)
-    if before['save1']!=after['save1']:raise DiagnosticStop('unowned_trainer_field_save1',dict(deltas=byte_deltas(before['save1'],after['save1'])[:80]))
+    expected=bytearray(before['save1'])
+    require(expected[0x910]==3 and u16(expected,0x914)==34 and u16(expected,0x916)==6 and expected[0x919]==10,'trainer131_original_template')
+    c=context(after)
+    if c['mode']==2 and c['pc']in(0x08192F0D,0x08192F0E):
+        obj=after['objects'][5*36:6*36]
+        require(obj[8:11]==bytes([3,24,3]) and u16(obj,16)==44 and u16(obj,18)==13 and obj[24]&15==4,'trainer131_adjacent_object')
+        struct.pack_into('<H',expected,0x914,37)
+    if bytes(expected)!=after['save1']:raise DiagnosticStop('unowned_trainer_field_save1',dict(deltas=byte_deltas(expected,after['save1'])[:80]))
     return t
 
 def observe_approach(session):

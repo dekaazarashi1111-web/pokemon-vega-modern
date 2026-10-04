@@ -1,8 +1,10 @@
 """trainer視線ownerの新規検査。受入済み80試験は再実行しない。"""
 from copy import deepcopy
+from unittest.mock import patch
 import struct,unittest
 from test_pr16_story_clock import sample,bytechange
 import pr16_story_trainer_adapter as t
+import pr16_story_trainer_session as reader
 from pr16_story_milestones import DiagnosticStop
 
 def sight():
@@ -13,6 +15,24 @@ def sight():
     s=bytearray(240);s[1]=1;struct.pack_into('<II',s,4,0x08068F09,0x08192DFE);z['route']=dict(trainer_id=131,script_contexts=bytes(s));z['flags']=z['save1'][0xEE0:0x1000]
     return a,z
 class TrainerTests(unittest.TestCase):
+    def test_same_frame_script_pc(self):
+        row=dict(trainer_live=4,frame=100,schema=1,battle_script=0x09009243)
+        self.assertEqual(reader.parse(row,dict(observe=4,frame=100)),row)
+        with self.assertRaises(ValueError):reader.parse(row,dict(observe=4,frame=101))
+    def test_source_pc_read_only(self):
+        with patch.object(reader.route,'generate',return_value=b'static struct mCore *st_open(\nrv_emit(c,n,st_frames);st_screen(n);fflush(stdout);'):
+            s=reader.generate()
+        self.assertIn(b'read32(c, 0x02023CD4U)',s)
+        self.assertEqual(s.count(b'tv_emit(c,n,st_frames);'),1)
+    def test_approach_template_only(self):
+        _,a=sight();p=bytearray(a['save1']);p[0x910]=3;struct.pack_into('<HH',p,0x914,34,6);p[0x919]=10;a['save1']=bytes(p)
+        z=deepcopy(a);z['observation'].update(observe=2,frame=1506);p=bytearray(z['save1']);struct.pack_into('<H',p,0x914,37);z['save1']=bytes(p)
+        c=bytearray(z['route']['script_contexts']);c[1]=2;struct.pack_into('<II',c,4,0x0806B159,0x08192F0E);z['route']['script_contexts']=bytes(c)
+        obj=bytearray(576);obj[188:191]=bytes([3,24,3]);struct.pack_into('<HH',obj,196,44,13);obj[204]=4;z['objects']=bytes(obj)
+        t.field_preserved(a,z)
+        bytechange(z,'save1',0x914,36)
+        with self.assertRaises(DiagnosticStop):t.field_preserved(a,z)
+
     def test_sight_has_no_step_maintenance(self):
         a,z=sight();r=t.sight(a,z);self.assertEqual(r['position_step'],1);self.assertEqual(r['walking_counter_steps'],0);self.assertFalse(r['save_requested'])
     def test_approach_no_dialogue_button(self):
