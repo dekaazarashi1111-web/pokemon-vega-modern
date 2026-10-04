@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-第8local10の4372true branch、Save86/6,7南。4373/4377set/4372clear、local11除去。全party/RAM保持。次は新13歩でleader前7,3西、通常A。leader到達/勝利は未入力。
+ナギナタ6体に1勝、Save87/7,3西。バッジ2/TM37/23164円、HP277/PP3,9,8,2。次は退出用local10の未入力4373true分岐。残存3体preparationはactive6体へ訂正。退出/紙引渡し未完。
 
-**次: Save86 artifact11294997639のstory-fast.srm（131088bytes/SHA256 d1ea60da2a4b4ea00fa6a6d70fde1c9be74b5c92fd90fc780b47737761041715）だけから再開。ミルジム10/16・6,7南。第8local10の4372true branchで4373/4377set/remove6/11・4372clear/add5、local10保持。次は東5/北4/西4の新13歩で7,3西へ、西のleader local7/6,3へ通常A。static trainer417/type1、badge0x823 setのsourceを118命令17nodeで固定。leaderの原本party/技/physical remapとPP方針は先に確認し、最初の新event/戦闘後通常保存。予期しないNPC/境界は縮小停止。leader経路/到達/勝利は未入力、ジム攻略未受入。旧switch/勝利trainer132/160再走0。HP287/294・PP4,10,12,2、控えMewtwo354/354・PP10,20,15,10、Bag20664円・紙274一個/PC保持。今回party600byte/全SaveRTC/field全pixel/progressとcoldRAM/全legacyvars保持。旧Save85 raw241/341各+1・観測11RAM、aux4021:119→0・4022:4→3と過去差分runtime ownerは未解明。48+cold13入力28画面43member/native2、新controller31/新受入59。20最終hashでもcounter85/保存中→21counter86/text空白→22成功文言→25field。紙consumer博物館2階local2はbadge0x823必須、現badge1で引渡し未解禁。ジム突破→紙引渡し→505道路レンジャー、全story/全国図鑑/自然成長進化/LuckyEgg/研究施設自然到達は未完。Flash未使用/がくしゅうそうち未装備、host補充/ROM変更/入力ROMruntime再配布/故意全滅/merge/release/baseline変更なし。一般CI既知qol_production.c不一致/action_requiredを全成功にしない。**
+**次: Save87 artifact11294659819のstory-fast.srm（131088bytes/SHA256 9c49fdef23b321415e82bffe0b239b5acff9cb4356e7cc3aea1a9aa25027028c）だけから再開。ミルジム10/16・7,3西、leader417新1勝・バッジ2個/0x823・TM37item325一個を通常取得。HP277/294、PP3,9,8,2、所持金23164円、紙274一個保持。次は東4/南4/西5の13歩で6,7、南旋回してlocal10/6,8へ通常A。未入力4373true分岐で4373/4377clear・4376set、local6/11復帰/local10除去の退出用第9switch。最初の新event後保存。旧3branch/switch/勝利trainerの再走0、未知NPC/境界は縮小停止。退出は静的にはlocal8まで13歩と2相互作用、出口へ10歩が続くが未測定。第9switch→退出→博物館2階local2へ封書引渡し→505レンジャー。leader実6体/実技6使用を全112画面とactive table0x09329070・24consumerで照合。測定前の残存原本3体誤認はactive_trainer.jsonで訂正、原本を改作せず再走0。216+cold13入力/127member/native2、新controller37/新受入65。105counter87/最終hashでもtext空白、106成功文言、109field/cold全pixel/全SaveRTC一致。party8byte差分のうちPP3/HP1以外のraw41/141/241/341、RAM22/43/63/85と補助vars6件・旧Save85/過去差分runtime owner未解明。紙引渡し/退出/全国図鑑/自然成長進化/LuckyEgg/研究施設自然到達/全story未受入。がくしゅうそうち未装備、Flash未使用、host補充/ROM変更/入力ROMruntime再配布/故意全滅/merge/release/baseline変更0。一般CI既知qol_production.c不一致/action_requiredを全成功にしない。**
 
-Save86/6,7南から東5/北4/西4で7,3西、leader local7/6,3へ通常A。trainer417の原本party/技/physical remap/PP方針を先に確認。最初の新event/戦闘後通常保存。未知NPC/境界は縮小停止。旧switch/勝利trainer132/160再走0。
+Save87/7,3西から東4/南4/西5で6,7、南旋回してlocal10/6,8へ通常A。退出用の未入力4373true分岐だけ、最初の新event後保存。旧switchの3branch/旧勝利再走0。未知NPC/境界は縮小停止。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `948cdf5ba094404c8c27e0464a7089aa280730ee`。
-第8local10を移動/旋回0で通常A、Save86/6,7南。4373/4377set/4372clear、local11除去。今回全party/SaveRTC/field全pixel/RAM保持。leader13歩は静的候補、旧Save85/過去差分owner未解明。
+証拠のsource HEAD: `9f3f1af9d38af8d98864985b98053077503dfb31`。
+新13歩からナギナタ6体へ1勝。Save87/7,3西、バッジ2/TM37/賞金2500円。active table/24consumer/画面を照合。退出と紙引渡しは次。raw41系列とRAM/補助vars・過去差分owner未解明。
 
 ## 最短の再開手順
 
@@ -25,15 +25,16 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_STORY_SAVE86_JA.md`
-- `content/modernization/pr16_story_save86_checkpoint.json`
-- `content/modernization/pr16_story_save86_visual_review.json`
-- `scripts/pr16_story_save86_accept.py`
-- `scripts/pr16_story_save86_measure.py`
-- `content/modernization/pr16_story_save86_evidence/inspection.json`
-- `content/modernization/pr16_story_save86_evidence/next-route.json`
-- `content/modernization/pr16_story_save86_preparation.json`
-- `content/modernization/pr16_story_save86_next_route.json`
+- `docs/PR16_STORY_SAVE87_JA.md`
+- `content/modernization/pr16_story_save87_checkpoint.json`
+- `content/modernization/pr16_story_save87_visual_review.json`
+- `content/modernization/pr16_story_save87_active_trainer.json`
+- `scripts/pr16_story_save87_accept.py`
+- `scripts/pr16_story_save87_measure.py`
+- `content/modernization/pr16_story_save87_evidence/inspection.json`
+- `content/modernization/pr16_story_save87_evidence/next-route.json`
+- `content/modernization/pr16_story_save87_preparation.json`
+- `content/modernization/pr16_story_save87_next_route.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -416,6 +417,7 @@ P08ゲート:
 - Save84の60/cold13入力34画面49member/31controller/59受入を無影響再走しない。第6local11で4374set/4376clear、26最終hashでも保存中→27counter84/成功→31field。全SaveRTC/全pixel/party/今回RAM保持、aux4021/4022と過去差分owner未解明。次は第7local10の4374truebranch。旧第5の4375truebranch再走0。
 - Save85の72/cold13入力40画面55member/31controller/63受入を無影響再走しない。第7local10で4372set/4374clear。33counter85でも保存中→34最終hash/成功→37field。全SaveRTC/全pixel/coldRAM保持。party598byte保持/2byteと観測11RAM、aux4021/4022、過去差分owner未解明。次は同位置第8local10の4372truebranch。
 - Save86の48/cold13入力28画面43member/31controller/59受入を無影響再走しない。第8local10で4373/4377set/4372clear、local11除去。20最終hash/21counterとtext空白/22成功/25field。全SaveRTC/全pixel/今回party600byteとRAM保持。旧Save85と過去差分owner未解明。次はleader前13歩/新A、trainer417/type1は静的確認のみ。
+- Save87の216/cold13入力112画面127member/37controller/65受入を無影響再走しない。leader417の実6体に1勝/バッジ2083/TM37/賞金2500円。原本残存3体preparationはactive_trainer.jsonの24consumer/後継6体で訂正し、旧原本は保持。105counterと最終hash/text空白→106成功→109field、全SaveRTC/全pixel保持。raw41系列/RAM/auxvarsと旧差分owner未解明。次は退出用local10の未入力4373true分岐。
 
 ## 次セッションへ残す更新手順
 
