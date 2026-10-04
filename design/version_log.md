@@ -9884,3 +9884,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 正式ROM/Save101は不変。PR16_DEX_PLACEMENT_JA.mdとpr16_dex_placement_checkpoint.jsonから再開。退役T09 owner6484byteを実allocator移譲し0x09FC0998へ全API＋24veneer5022byteを配置、残1462byteを予約。run37223181964全10stepで26host/24API実ARM・各262144byte EWRAM対照を受入。ゲームhook/保存consumerは未接続。pr16_dex_stage61_relink_inputs.jsonに元assetから24macro/99sized symbol/4unsized aliasを回収し元code12568byteを全照合。次はStage61 existing-owner内の保存拡張。全44export位置・元data・次hotfix ownerを保ち、保存8入口だけを根拠に全codeを置換しない。validate_slot/inject_tail/expected_prepared_byte/tail_matches/load/clone/record-onlyを同世代MDXへ接続。署名前LinkFullを正規signature検査へ流さず、invalid liveはflash前拒否、復旧Save前にmain-bank MDX確定。全SID喪失前consumer/Bag count/reward clear/Factory-Codex rollback、候補限定Save/coldContinue・partial-write受入後だけ正式進行へ戻る。最終はシオウPokecenter通常回復/Save/coldContinue。雑魚戦ごとのSaveは作らない。
 - Commit: record source=8db8f096d4bdbec6c4f2388e78121e45a390ab56; 同branch非force push。
 - Network: 同repoActionsと既存private-environment-v1 archive。mGBA0.10.2 core.cのdeinitがcoreをfreeする契約を一次sourceで確認。公開はsource/address/size/SHAと検査済textのみ。一般CI既知QOL source不一致、Stage79 cacheは新native扱いしない。
+
+## 2026-10-04T18:22:59.384519+00:00
+- Timestamp: 2026-10-04T18:22:59.384519+00:00
+- Task: USER-20261004-DEX-PLACEMENT / 実配置記録の終端とreceipt公開
+- Version: dex-placement-v1-closeout
+- Status: DONE（実配置ABIの記録終端。保存scheduler/全consumer接続は未完）
+- Summary: record run37223939077/job111499616811全12step、固定MDJSON/両ログ・原本evidenceを全byte/hash照合。upload pathがexport先と不一致でartifact0件だったため訂正し、完了済記録の自動再実行を止めて、既存commit checkpointを再公開。pending解除。
+- Files changed: closeout source/workflow、record upload pathと完了済記録のmanual-only化、固定MDJSON、両ログ。
+- Verify: terminal/source bindings/resume/task graph/index guard PASS。host再試験0/ARM0/native0/正式ROM・Save変更0。初回nativeのsignal位置は未採取、次回は全24完了後のcore二重freeと確定して修正、失敗原本を成功へ改作しない。
+- Commit: closeout source=caa6679890832ec5554be2584fd23f20c93fc026; 同branch非force push。
+- Network: 同repoActionsとcommitのみ。cleanup一次source https://raw.githubusercontent.com/mgba-emu/mgba/0.10.2/src/gba/core.c 。旧9月18日queueは非操作、一般CIのQOL source不一致は残件。

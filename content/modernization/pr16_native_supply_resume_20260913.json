@@ -4359,19 +4359,13 @@
   "observed_date_jst": "2026-10-04",
   "observed_head": "8db8f096d4bdbec6c4f2388e78121e45a390ab56",
   "observed_head_checks": {
-    "all12_steps_success": true,
-    "c_mapping_comparisons": 262144,
-    "capacity_measurement_run": 37219630045,
-    "capacity_record_run": 37220657694,
-    "compact_tests": 51,
+    "all12_record_steps_success": true,
+    "game_hooks_installed": false,
     "general_ci_known_source_mismatch_not_resolved": true,
-    "lease_tests": 25,
-    "measurement_arm_translation_units": 4,
-    "reason_ja": "図鑑compact ARM4638byteとStage39退役owner6484byteのhash-bound契約を専用記録run全12step成功で固定。receipt全byte一致。allocator実移管/実配置/Stage61保存と全consumer/native保存は未完。正式Save101保持。Stage79 cacheを新nativeに数えず、一般CI QOL source不一致も未解決。",
-    "record_arm_compiles": 0,
-    "record_native_processes": 0,
-    "runtime_wired": false,
-    "scope_head": "3073f0e038c2659491889ac41521fbaf10205adb"
+    "placement_run": 37223181964,
+    "reason_ja": "図鑑実配置run37223181964は全10step成功。24entry・24API ARM/EWRAM対照を受入、正式ROM/Save101は不変。記録run37223939077全12stepと固定MDJSON/両ログを読戻し、元24macro/99sized symbol/4aliasの12testsを照合。record upload path不一致でartifact0だったため、既存commitのcheckpointをcloseoutで再公開。旧host/ARM/native再実行0。一般CI既知QOL source不一致とStage79 cacheは別扱い。",
+    "record_run": 37223939077,
+    "scope_head": "8db8f096d4bdbec6c4f2388e78121e45a390ab56"
   },
   "observed_head_history": [
     {
@@ -12382,13 +12376,7 @@
     "status": "NATIVE_PARTY_RETENTION_ACCEPTED_BP_PENDING",
     "tested_head": "10e535a046441dd3b797918106259b5c57b69716"
   },
-  "pending_runs": [
-    {
-      "run_id": 37223939077,
-      "status": "in_progress",
-      "tested_head": "8db8f096d4bdbec6c4f2388e78121e45a390ab56"
-    }
-  ],
+  "pending_runs": [],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
   "pr_draft": true,
   "pr_merged": false,
@@ -14187,9 +14175,13 @@
       "sha256": "283074a142bbc3435538f554a01e69feebec9b1e754565b225260579eb838468",
       "size": 2295
     },
+    ".github/workflows/pr16-dex-placement-closeout.yml": {
+      "sha256": "0bcd5a4c14e211515b15660e1f38565c04d185df07c2e970696cfc00d0ff7f1b",
+      "size": 2408
+    },
     ".github/workflows/pr16-dex-placement-record.yml": {
-      "sha256": "dcb8210df8a0c142499fb55f4454f331e56c364258064afd83f1788fe4cb125b",
-      "size": 2405
+      "sha256": "1874ebfedac5e34344560cb54038ad56fd6d987af0320b010a3a8b521e8a2961",
+      "size": 2304
     },
     ".github/workflows/pr16-dex-placement.yml": {
       "sha256": "d2122cdc8e000e1b048ad3846bfffc3dbf74ba03f9bd137d33fa44df5703cfd6",
@@ -32171,6 +32163,10 @@
       "sha256": "50fec11a2a7c9578b5180f1f8b42df4882b04bf77bb1504f1d838c28ddd2d66f",
       "size": 7766
     },
+    "scripts/pr16_dex_placement_closeout.py": {
+      "sha256": "7710af82a4e58031964c60c7d91fcf5f1042f48a9feca1874bd257115c925bfc",
+      "size": 7715
+    },
     "scripts/pr16_dex_placement_record.py": {
       "sha256": "fa86fe76eda6c5a65510d115cafdf525fd319248e9ec1ebb4f00b839280b0762",
       "size": 14310
@@ -37940,6 +37936,27 @@
         "guide": "docs/PR16_DEX_PLACEMENT_JA.md",
         "isolated_native_accepted": true,
         "record_run": 37223939077,
+        "recording": {
+          "all12_steps_success": true,
+          "arm_compiles": 0,
+          "checkpoint": "content/modernization/pr16_dex_placement_checkpoint.json",
+          "checkpoint_identity": {
+            "sha256": "6b569928697e0938aae38dbee216c62c937aeb081f40b802b0f5866a08bc6db2",
+            "size": 5616
+          },
+          "closeout_run": 37224200177,
+          "closeout_source": "caa6679890832ec5554be2584fd23f20c93fc026",
+          "completion": "f6e00fa3d556fd5930ecc517a55174da5be44b33",
+          "formal_rom_changed": false,
+          "formal_save_changed": false,
+          "host_tests_rerun": 0,
+          "job": 111499616811,
+          "native_processes": 0,
+          "receipt_recovered_by_closeout": true,
+          "record_artifact_missing_reason": "export/upload path mismatch; committed checkpoint/evidence retained",
+          "run": 37223939077,
+          "source": "8db8f096d4bdbec6c4f2388e78121e45a390ab56"
+        },
         "reserved_suffix_bytes": 1462,
         "run": 37223181964,
         "save_scheduler_wired": false,

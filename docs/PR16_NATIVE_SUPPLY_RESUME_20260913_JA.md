@@ -463,6 +463,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-図鑑compact ARM4638byteとStage39退役owner6484byteのhash-bound契約を専用記録run全12step成功で固定。receipt全byte一致。allocator実移管/実配置/Stage61保存と全consumer/native保存は未完。正式Save101保持。Stage79 cacheを新nativeに数えず、一般CI QOL source不一致も未解決。
+図鑑実配置run37223181964は全10step成功。24entry・24API ARM/EWRAM対照を受入、正式ROM/Save101は不変。記録run37223939077全12stepと固定MDJSON/両ログを読戻し、元24macro/99sized symbol/4aliasの12testsを照合。record upload path不一致でartifact0だったため、既存commitのcheckpointをcloseoutで再公開。旧host/ARM/native再実行0。一般CI既知QOL source不一致とStage79 cacheは別扱い。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
