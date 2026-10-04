@@ -1,0 +1,27 @@
+# PR16 外側QOLの保存失敗伝播
+
+正式ROM/Save101は保持する。候補START main保存故障の受入を継承し、別の穴である外側sector31保存の誤成功だけを閉じる。
+
+QOL adapterはmain保存成功後にsector31を保存する。共有helperはbool0/1を返すが、STARTは返値を見ずgSaveAttemptStatusを参照するため、従来はsector31が失敗してもmain成功時のattempt1が残った。ensure_save失敗の早期0も同じ共通出口を通る。
+
+## 最小修正
+
+現adapter 0x09377660の共通epilogue0x09377682にある4byteを、新tailへのBLへ置換する。新tailは成功1をそのまま保ち、non1を返値255と16bit attempt0x03005470=255にそろえる。新たなhelper/保存/wipe/retryは呼ばない。
+
+これは通常C関数ではない。元adapterが作った[保存r4, callerLR]の8byte frameを一度だけpopして、元callerへ直接復帰する特殊tailである。BLにより変わったLRへ戻らない。元r4–r11/元SP/成功時attempt/attempt隣接byteを保持する。監査済み末尾80byte以内へ新immutable ownerを置き、QOL旧owner内4byteと新payload以外は全ROM不変・逆変換一致を要求する。
+
+共有supply_persist_sector()とtransaction用OriginalTrySavingData bypass、補償保存は全byte保持する。helperのbool0を255に直接変えると、transactionの条件判定が失敗を真として扱い得るため変更しない。
+
+## 新しい検証だけ
+
+- 隔離adapter試験: 全u8 mode256値、ensure失敗/main0/main255/outer0/outer1、stale attempt0/1/255、SP剰余0/4の7680case。exact original call回数、mode、register/SP/非ownerRAM/attempt隣接byteを確認する。全保存modeの副作用受入ではない。
+- 実START: Save101を通常Continueし、main102確定後、sector31の最後のphysical byte131071だけをmGBA Flash PROGRAM時にXOR1。RAM/register fixture0、barrier7。通常エラー2頁→別Aでfield→faultのみ解除→通常キー再Save103。
+- この故障位置はsector31 payload4080byteを全て書いた後の末尾byteに限定する。early位置故障・単bank sector31の原子性を受け入れない。
+- source bank1、既commit bank0、sector28..30、RTC、拡張RAM20248byte、MDX522byte、party、正規化Bag、QOL ledger2048byteを明示比較する。失敗counterを101へ巻き戻さず102を保持する。
+- 失敗cold102と再保存cold103を別processで確認する。QOL loadは破損/空ledgerを別扱いし得るため、MDX/partyだけでなくledger全2048byteの物理/生RAM一致も必須にする。
+
+## 残件
+
+非STARTのHOF/Mystery Gift等にはreturn/attemptを見ないcallerがある。この修正だけで失敗通知の完了としない。旧専用SaveFailedはtiles16KiB/video-state/gDecompressionBufferを破壊し得る。HOF payloadと回数増分、mode4/5のsector28..31 erase、stale selector時authority wipe、LinkFull/全mode固有副作用の受入は別工程である。
+
+全typed consumerと必要modeのnativeが閉じるまで正式ROM切替・trainer131後半へ進まない。最後のmilestoneはシオウPokecenter通常回復/Save/独立coldContinueであり、通常雑魚ごとのcheckpointは作らない。
