@@ -27,7 +27,7 @@ def sample():
     o=dict(observe=0,frame=1390,map=[3,24],xy=[53,13],callback2=l.FIELD,lock=0,party_count=4,save_counter=101,rp=0,party_sha256=l.sha(areas['party']),ledger_sha256=l.sha(areas['ledger']),flash_sha256='a'*64)
     return l.parse(row,o)
 def walking():
-    a=sample();b=deepcopy(a);b['observation'].update(observe=1,frame=1446,xy=[52,13]);p=bytearray(b['save1']);struct.pack_into('<HH',p,0,52,13);struct.pack_into('<HH',p,0x1042,99,4);struct.pack_into('<I',p,0x1214,1);b['save1']=bytes(p);b['variables'][33:35]=[99,4];b['save2']=clock(c.clock_value(a['save2'])+56);return a,b
+    a=sample();b=deepcopy(a);b['observation'].update(observe=1,frame=1446,xy=[52,13]);p=bytearray(b['save1']);struct.pack_into('<HH',p,0,52,13);struct.pack_into('<HH',p,0x1042,99,4);struct.pack_into('<I',p,0x1214,1);p[0x309A]=1;b['save1']=bytes(p);b['variables'][33:35]=[99,4];b['save2']=clock(c.clock_value(a['save2'])+56);return a,b
 class ClockTests(unittest.TestCase):
     def test_normal_120_ticks(self):self.assertEqual(c.clock_delta(clock(1000),clock(1120),120)['ticks'],120)
     def test_rollover_second(self):self.assertEqual(c.clock_value(clock(3599)),3599)
@@ -52,6 +52,9 @@ class ClockTests(unittest.TestCase):
             p=bytearray(live['save1']);struct.pack_into('<H',p,0x1042,value);live['save1']=bytes(p);live['variables'][33]=value
         p=bytearray(b['party']);p[41]+=1;p[241]+=1;b['party']=bytes(p);b['party_mons']=[l.mon(bytes(p[i*100:(i+1)*100]))for i in range(4)]
         self.assertEqual(c.walking_evidence(a,b,[52,13])['friendship'],[[0,49,50],[2,49,50]])
+    def test_empty_daycare_counter_wrap(self):
+        a,b=walking();bytechange(a,'save1',0x309A,255);bytechange(b,'save1',0x309A,0)
+        self.assertEqual(c.walking_evidence(a,b,[52,13])['walking_steps'],1)
     def test_route_reader_readonly(self):r.source_check((r.ROOT/'tools/mgba_pr16_story_route_observer.h').read_text())
     def test_route_reader_reject_write(self):
         with self.assertRaises(ValueError):r.source_check((r.ROOT/'tools/mgba_pr16_story_route_observer.h').read_text()+'write32(c,0,0);')
@@ -77,6 +80,8 @@ def badwalk(name,edit):
     setattr(ClockTests,'test_reject_walk_'+name,test)
 def bytechange(x,k,at,v):p=bytearray(x[k]);p[at]=v;x[k]=bytes(p)
 for name,edit in {
+ 'occupied_daycare':lambda a,b:bytechange(a,'save1',0x2F80,1),
+ 'party_egg':lambda a,b:bytechange(a,'party',75,64),
  'money':lambda a,b:bytechange(b,'save1',0x290,1),
  'flag':lambda a,b:bytechange(b,'save1',0xEE0,1),
  'storyvar':lambda a,b:bytechange(b,'save1',0x10E4,10),

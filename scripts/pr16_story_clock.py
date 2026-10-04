@@ -77,6 +77,9 @@ def walking_evidence(before,after,target):
         value=(before['variables'][var]+count)%mod
         require(after['variables'][var]==value,'step_counter')
         struct.pack_into('<H',expected,0x1000+var*2,value)
+    require(before['save1'][0x2F80:0x309A]==bytes(0x11A) and before['save1'][0x309B]==0 and before['save1'][0x3C98:0x3D24]==bytes(0x8C),'occupied_daycare_needs_owner')
+    require(all(not (u32(before['party'],i*100+72)&0x40000000) for i in range(4)),'egg_walking_needs_owner')
+    expected[0x309A]=(expected[0x309A]+count)&255
     key=u32(before['save2'],0xF20)
     steps=u32(before['save1'],0x1214)^key
     struct.pack_into('<I',expected,0x1214,min(0xFFFFFF,steps+count)^key)

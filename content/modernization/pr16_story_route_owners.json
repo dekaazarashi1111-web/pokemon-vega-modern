@@ -852,6 +852,36 @@
       "meaning": "SaveFinalize entry"
     },
     {
+      "address": 134663928,
+      "size": 8,
+      "hex": "004b1847678a3709",
+      "meaning": "egg-step hook"
+    },
+    {
+      "address": 154634854,
+      "size": 12,
+      "hex": "fff7a7f9000600283b4b1847",
+      "meaning": "egg-step hook adapter"
+    },
+    {
+      "address": 154631608,
+      "size": 240,
+      "hex": "f7b500f079ff334b0400334800f070f8002848d100252f002e00304b00f068f80190002f02d01934ff342680002d36d02948284b00f05cf8002830d01220fff71bf800282bd0264a138801331b041b0c13801388ff2b22d90023138000f0caff00281cd080231f4a9b00d35c042b16d800f042ff041e12d01b4b00f039f800280dd0fff789ff194b050000f031f8642343431b0c9d4202d9200002f067fb0198febc02bc08471220fef7e6ff0028b1d0002c0bd02200012300271932ff3216881d00be42a9d11f001380a6e7012527002600a2e7c5de0608ff1200004d590408e4b6030200d0030225b80e098d440408",
+      "meaning": "QOL daycare wrapper"
+    },
+    {
+      "address": 134502732,
+      "size": 68,
+      "hex": "10b50d4c20680d4940180521f9f7aafd002805d021680a4809180868013008602068be2189014018fff770ff0006000e10bc02bc0847000048500003983c0000203d0000",
+      "meaning": "original ShouldEggHatch"
+    },
+    {
+      "address": 134502488,
+      "size": 148,
+      "hex": "f0b581b0061c002700258c202c1c444330190521f9f720fe002806d0311c8831091908680130086001370135012decd98c21490070180088002819d1022f17d1043970180078ff2812d1301c00f01cf9004b1847838a3709c0460004000c64214843094982f136fe844201d9fff7a2fb8d20400031180878013008700006000eff282fd1002529e0ffff00006420291c41430c48",
+      "meaning": "empty daycare counter increment"
+    },
+    {
       "address": 134660908,
       "size": 34,
       "hex": "0520e8f70ffadaf0affff4f01dfc61f0a7fb5ff06fff61f0dffe6846211c321c00f0",
@@ -2370,6 +2400,7 @@
       "src/main.c",
       "include/global.h",
       "src/field_control_avatar.c",
+      "src/daycare.c",
       "src/battle_script_commands.c"
     ]
   },

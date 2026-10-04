@@ -17,3 +17,9 @@ trainer131/128/1065は現在24consumerのtable0x09329070から各4体、物理fl
 全215歩のterrain、両mapのland tableも固定ROMから照合。native戦闘UI、postbattle dex/統計owner、map transition、nurse会話は引続き解決対象。本stageは新route readerと厳格guardを実装し、最初の未対応eventを同一frameで診断する。未知eventへのA fallbackはない。診断を施設到達・戦闘勝利・保存達成と呼ばない。
 
 既存49試験/native probeは再利用。新41host試験と保存済みprobe2観測に対する時計adapter照合は別記録。旧observer/runner/受入証拠を書き換えない。ROM/入力Save/runtime/新runnerは再配布しない。
+
+## 最初の未保存診断と閉じた補正
+
+run37205259977/source933249c02e55bc7f71c1d3e0586e2605f0a631f8は全8step成功だが、通常歩行の受入は失敗。最初の1歩でSaveBlock1+0x309Aが226→227になり停止。14入力/2画面・Save101全byte保持。artifact11304301923/28032bytes/SHA256 c71ba57f19d9600a01c10b4f9c4ceb5bfa52c6868b054ffa4339dc1f547043bfを失敗原本として保持。
+
+固定ROMのstep hook→QOL wrapper→ShouldEggHatch0x0804594C→0x080458C8を照合し、空のdaycareでも毎歩進むu8 stepCounterと確認。daycare/Route5 daycare全空・party非タマゴの場合だけ+1 modulo256を許可し、隣接byteや預けポケモン/タマゴは別owner要求。新3拒否/rollover試験を追加、変更影響を含む44host検査と保存済み最初の1歩を照合してから未完区間だけ再開する。

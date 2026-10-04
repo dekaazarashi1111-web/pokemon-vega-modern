@@ -25,7 +25,7 @@ def guard():
     for p,b in state['source_bindings'].items():need(identity((ROOT/p).read_bytes())==b,'frozen accepted source '+p)
     unit=json.loads((ROOT/'content/modernization/pr16_story_clock_unit.json').read_bytes())
     for p,b in unit['source_bindings'].items():need(identity((ROOT/p).read_bytes())==b,'new unit exact bytes '+p)
-    need(unit['tests']==41 and unit['passed']==41 and unit['stderr'].count(' ... ok\n')==41 and '\nOK\n'in unit['stderr'],'new41 host test original no rerun')
+    need(unit['tests']==44 and unit['passed']==44 and unit['stderr'].count(' ... ok\n')==44 and '\nOK\n'in unit['stderr'],'new44 host test original no rerun')
 
 def direction(a,b):
     need(a[:2]==b[:2],'connection needs separate live owner')
@@ -61,7 +61,7 @@ def main():
         route=json.loads((ROOT/'content/modernization/pr16_story_shiou_route_candidate.json').read_bytes())['route']
         walk(session,route)
     except DiagnosticStop as e:
-        report=e.report;report.update(source_head=os.environ['GITHUB_SHA'],run_id=int(os.environ['GITHUB_RUN_ID']),native_processes=int(session is not None),host_tests_reused=41,new_compiles=int(session is not None),accepted_case_reruns=0,ordinary_saves=0,native_multi_battle_accepted=False)
+        report=e.report;report.update(source_head=os.environ['GITHUB_SHA'],run_id=int(os.environ['GITHUB_RUN_ID']),native_processes=int(session is not None),host_tests_reused=44,new_compiles=int(session is not None),accepted_case_reruns=0,ordinary_saves=0,native_multi_battle_accepted=False)
         write(ART/'diagnostic.json',report);print(json.dumps(report,ensure_ascii=False,indent=2))
     except Exception as e:
         write(ART/'failure.json',dict(status='NOT_ACCEPTED_FAILURE',type=type(e).__name__,message=str(e),source_head=os.environ['GITHUB_SHA'],run_id=int(os.environ['GITHUB_RUN_ID']),native_processes=int(session is not None),milestone_reached=False));raise
