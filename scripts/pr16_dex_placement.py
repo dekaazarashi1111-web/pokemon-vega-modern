@@ -26,7 +26,7 @@ SOURCES = ['overlays/dex_owner/'+p for p in (
     'dex_owner.c', 'dex_compact_adapter.c', 'dex_compact_map.c', 'dex_save_bridge.c')]
 FLAGS = ['-mthumb','-mcpu=arm7tdmi','-mthumb-interwork','-Os','-std=c11',
     '-Wall','-Wextra','-Werror','-ffreestanding','-fno-builtin','-fno-unwind-tables',
-    '-fno-asynchronous-unwind-tables','-fdata-sections','-ffunction-sections','-fno-common']
+    '-fno-asynchronous-unwind-tables','-fdata-sections','-ffunction-sections','-fno-common','-Wa,--noexecstack']
 need, identity = lease.need, lease.identity
 
 def allocation_source():
