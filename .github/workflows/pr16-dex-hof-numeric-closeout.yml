@@ -1,12 +1,14 @@
-name: pr16-dex-hof-numeric
+name: pr16-dex-hof-numeric-closeout
 on:
-  workflow_dispatch:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-dex-hof-numeric-closeout.yml]
 permissions:
   contents: write
   actions: read
   pull-requests: read
 concurrency:
-  group: pr16-dex-hof-numeric
+  group: pr16-dex-hof-numeric-closeout
   cancel-in-progress: false
 defaults:
   run:
@@ -15,7 +17,7 @@ jobs:
   contract:
     if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.run_attempt == 1
     runs-on: ubuntu-24.04
-    timeout-minutes: 30
+    timeout-minutes: 15
     env:
       GH_TOKEN: ${{ github.token }}
       GITHUB_TOKEN: ${{ github.token }}
@@ -24,14 +26,12 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 24
-      - name: Exact saved PLR1 and inherited donor sources
-        run: python3 -B scripts/pr16_dex_hof_numeric_actions.py source_guard
-      - name: PLR1 numeric consumer classification
-        run: python3 -B scripts/pr16_dex_hof_numeric_actions.py run
-      - name: Record exact numeric consumer evidence
-        run: python3 -B scripts/pr16_dex_hof_numeric_actions.py record
+      - name: Exact new host source and immutable prior evidence
+        run: python3 -B scripts/pr16_dex_hof_numeric_closeout.py source_guard
+      - name: Verify terminal host record without rerunning tests
+        run: python3 -B scripts/pr16_dex_hof_numeric_closeout.py close
       - name: Scoped final index and fixed resume
-        run: python3 -B scripts/pr16_dex_hof_numeric_actions.py guard
+        run: python3 -B scripts/pr16_dex_hof_numeric_closeout.py guard
       - name: Lightweight task graph
         run: python3 -B scripts/validate_task_graph.py --check
       - name: Commit and nonforce push same branch
@@ -40,19 +40,19 @@ jobs:
           test "$(git ls-remote origin refs/heads/codex/modernization-followup-20260908 | cut -f1)" = "$GITHUB_SHA"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'USER-20261005-DEX-HOF-NUMERIC: record exact PLR1 consumer classification'
+          git commit -m 'USER-20261005-DEX-HOF-NUMERIC: close exact numeric consumer records'
           git push origin HEAD:codex/modernization-followup-20260908
           test "$(git ls-remote origin refs/heads/codex/modernization-followup-20260908 | cut -f1)" = "$(git rev-parse HEAD)"
       - name: Exact committed text readback
-        run: python3 -B scripts/pr16_dex_hof_numeric_actions.py snapshot
-      - name: Closed text publication guard
+        run: python3 -B scripts/pr16_dex_hof_numeric_closeout.py snapshot
+      - name: Closed host text publication guard
         id: publication_guard
         if: always()
-        run: python3 -B scripts/pr16_dex_hof_numeric_actions.py export
+        run: python3 -B scripts/pr16_dex_hof_numeric_closeout.py export
       - uses: actions/upload-artifact@v4
         if: ${{ always() && steps.publication_guard.outcome == 'success' }}
         with:
-          name: pr16-dex-hof-numeric-text-only
-          path: public-dex-hof-numeric
+          name: pr16-dex-hof-numeric-closeout-text-only
+          path: public-dex-hof-numeric-closeout
           retention-days: 90
           if-no-files-found: error
