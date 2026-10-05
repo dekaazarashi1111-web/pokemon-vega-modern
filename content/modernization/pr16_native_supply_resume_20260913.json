@@ -4376,6 +4376,7 @@
   "observed_date_jst": "2026-10-04",
   "observed_head": "be9e90f8625a73cd00fe76ccf784890a76f1bf79",
   "observed_head_checks": {
+    "all13_steps_success": true,
     "arm_compiles": 0,
     "classified": 455,
     "current_candidate": {
@@ -4388,9 +4389,12 @@
     "native_processes": 0,
     "numeric_unit_tests": 37,
     "reason_ja": "現候補0641af70の旧egg全874見かけ参照を継承し、PLR1の12件を固定compose/receipt/linked C consumerと全1483ownerの数値spanへ結合。455件分類・419件未知。12件すべての行境界跨ぎも両側の型で証明。既存bundle再利用、ROM再構成/ARM/native0、donor0、正式ROM/Save101不変。",
+    "record_job": 111698424964,
+    "record_run": 37290157793,
     "scope_head": "be9e90f8625a73cd00fe76ccf784890a76f1bf79",
     "stage79_cached_not_new_native": true,
-    "unclassified": 419
+    "unclassified": 419,
+    "whole_receipt_equals_checkpoint": true
   },
   "observed_head_history": [
     {
@@ -12401,13 +12405,7 @@
     "status": "NATIVE_PARTY_RETENTION_ACCEPTED_BP_PENDING",
     "tested_head": "10e535a046441dd3b797918106259b5c57b69716"
   },
-  "pending_runs": [
-    {
-      "run_id": 37290157793,
-      "status": "in_progress",
-      "tested_head": "be9e90f8625a73cd00fe76ccf784890a76f1bf79"
-    }
-  ],
+  "pending_runs": [],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
   "pr_draft": true,
   "pr_merged": false,
@@ -14274,9 +14272,13 @@
       "sha256": "ec5979222ce79fd5dd1bc0d627a99d9def265c05a4868824f384d84d318d2222",
       "size": 1601
     },
+    ".github/workflows/pr16-dex-hof-numeric-closeout.yml": {
+      "sha256": "60e5f2059d50ea7161ecb6db12c5d9845786c0bd436529b27b2435a40b87511c",
+      "size": 2451
+    },
     ".github/workflows/pr16-dex-hof-numeric.yml": {
-      "sha256": "fbc88223ec4ac99d894e8e983fb8b06de57d097ab0f9910ced5877e83f6631f2",
-      "size": 2502
+      "sha256": "bec2bab9ae9a5ff604f1045ad945bbc991874f0f3212bce462b521ebe87c7972",
+      "size": 2405
     },
     ".github/workflows/pr16-dex-hof-record.yml": {
       "sha256": "2e758ecc27a1abfff2ed1ff47211feb6aaa8fd03b807f4c509a0c695c56d772a",
@@ -34318,6 +34320,10 @@
       "sha256": "b214546142a3f0aacab2f5be0159ff2780afc4cb0c9c574729cb0bccd1ee4429",
       "size": 12139
     },
+    "scripts/pr16_dex_hof_numeric_closeout.py": {
+      "sha256": "f3160d69ef63e288e0356b14402aa8bf41237018a5a9000348a120954387a7ea",
+      "size": 8493
+    },
     "scripts/pr16_dex_hof_record.py": {
       "sha256": "1eacc8e9de9332f0b15b3a6d8ffcaed496bb3a8b695627d44728688820cbfcdb",
       "size": 17466
@@ -40881,6 +40887,39 @@
         "donor_leased": false,
         "guide": "docs/PR16_DEX_HOF_NUMERIC_JA.md",
         "newly_classified": 12,
+        "recording": {
+          "all13_steps_success": true,
+          "all5_snapshots_full_bytes_and_lf_verified": true,
+          "archive": [
+            11336112410,
+            37290157793,
+            1415505,
+            "8ec18cca59f76d374d5968a88ff5dbf25b271917ac4d956295f1f2f8bd4a5659"
+          ],
+          "arm_compiles": 0,
+          "candidate_changed": false,
+          "checkpoint": "content/modernization/pr16_dex_hof_numeric_checkpoint.json",
+          "checkpoint_identity": {
+            "sha256": "68a9b8b9e541c1e260c6f8842cb9e7cae05016c142e4c776ef1fa9d6c9646579",
+            "size": 5095
+          },
+          "classified": 455,
+          "closeout_run": 37290824496,
+          "closeout_source": "514eb5d175e570eadc57fb62764ea624a9e4f9e5",
+          "donor_leased": false,
+          "formal_save_changed": false,
+          "job": 111698424964,
+          "native_processes": 0,
+          "newly_classified": 12,
+          "record_head": "b56149dfd3e66e829e3814e621f6f973942de4a2",
+          "run": 37290157793,
+          "runtime_lease_enabled": false,
+          "source_head": "be9e90f8625a73cd00fe76ccf784890a76f1bf79",
+          "status": "PASS_TERMINAL_EXACT_PLR1_NUMERIC_RECORD",
+          "tests_rerun": 0,
+          "unclassified": 419,
+          "unit_tests": 37
+        },
         "run": 37290157793,
         "source": "be9e90f8625a73cd00fe76ccf784890a76f1bf79",
         "status": "PASS_PLR1_EXACT_NUMERIC_CONSUMER_CLASSIFICATION",
