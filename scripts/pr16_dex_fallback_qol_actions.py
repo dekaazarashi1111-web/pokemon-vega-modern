@@ -8,7 +8,7 @@ import pr16_dex_fallback_qol as f
 need,identity=f.need,f.identity
 BASE='f7a70dfa1f037f1824aeb4fc18a62f10fe11f0db'
 WF='.github/workflows/pr16-dex-fallback-qol.yml';GUIDE='docs/PR16_DEX_FALLBACK_QOL_JA.md'
-CODE={f.SOURCE,'scripts/pr16_dex_fallback_qol.py','scripts/pr16_dex_fallback_qol_actions.py','tools/mgba_pr16_dex_fallback_qol.h','tests/test_pr16_dex_fallback_qol.py',WF,GUIDE}
+CODE={f.SOURCE,f.HOST_REFERENCE,'scripts/pr16_dex_fallback_qol.py','scripts/pr16_dex_fallback_qol_actions.py','tools/mgba_pr16_dex_fallback_qol.h','tests/test_pr16_dex_fallback_qol.py',WF,GUIDE}
 OUT=ROOT/'.local/pr16-dex-fallback-qol';PUBLIC=ROOT/'public-dex-fallback-qol';ARTIFACT='pr16-dex-fallback-qol-text-only'
 def write(p,x):p.parent.mkdir(parents=True,exist_ok=True);p.write_text(json.dumps(x,ensure_ascii=False,indent=2)+'\n')
 def guard():
