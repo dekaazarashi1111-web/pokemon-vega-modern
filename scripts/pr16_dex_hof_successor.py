@@ -36,9 +36,9 @@ def link(folder):
  # 元linkerの符号付きsource/非mutable/data/far veneer検査をそのまま使い、
  # 借用範囲だけ現所有窓へ固定する。旧1704byte最大値へ拡張させない。
  old=(scheduler.generated_source,scheduler.windows,scheduler.EXTRA_MAX)
- allowed=windows()
+ allowed=windows();source=generated_source()
  try:
-  scheduler.generated_source=generated_source
+  scheduler.generated_source=lambda:source
   scheduler.windows=lambda unused=0:allowed
   scheduler.EXTRA_MAX=0
   patches,linked=scheduler.link(folder)
