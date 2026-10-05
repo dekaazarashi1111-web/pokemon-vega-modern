@@ -4372,6 +4372,7 @@
   "observed_head": "3227331bb38b807822ed9f7da8ea197b09269418",
   "observed_head_checks": {
     "accepted_raw_native_processes": 11,
+    "all12_record_steps_success": true,
     "all_cold_owners_preserved": false,
     "both_all10_steps_success": true,
     "diagnostic_native_processes": 0,
@@ -4380,11 +4381,14 @@
     "isolated_job": 111621821031,
     "isolated_run": 37265656275,
     "reason_ja": "初回HOF mode3の主保存を既存copy-on-writeへ接続し、主保存故障時の旧authority全14sectorを保護。HOF28失敗は29/mainを書かず、29失敗もmainを書かない。stat10は生RAMで一度だけ、coldは選択mainの0/1に一致。5条件の既存HOFエラー/正常表示と各cold、全QOL2048byteを限定受入。候補88be8811、既存scheduler内5窓180byte、115owner中114全byte不変。HOFとmainの世代結合・跨領域原子性は未完。",
+    "record_job": 111625848719,
+    "record_run": 37267010828,
     "scope_head": "5092c4848f445c6ef13a8768cce8e22bc19fb999",
     "screens": 25,
     "stage79_cached_not_new_native": true,
     "ui_job": 111623997889,
-    "ui_run": 37266381005
+    "ui_run": 37266381005,
+    "whole_receipt_equals_checkpoint": true
   },
   "observed_head_history": [
     {
@@ -12395,13 +12399,7 @@
     "status": "NATIVE_PARTY_RETENTION_ACCEPTED_BP_PENDING",
     "tested_head": "10e535a046441dd3b797918106259b5c57b69716"
   },
-  "pending_runs": [
-    {
-      "run_id": 37267010828,
-      "status": "in_progress",
-      "tested_head": "3227331bb38b807822ed9f7da8ea197b09269418"
-    }
-  ],
+  "pending_runs": [],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
   "pr_draft": true,
   "pr_merged": false,
@@ -14224,13 +14222,17 @@
       "sha256": "2c062e8f47ffe0fb2486785c7dc787c844fbdbeb31e26fbbeccca4a724ec11fd",
       "size": 1744
     },
+    ".github/workflows/pr16-dex-hof-main-closeout.yml": {
+      "sha256": "2bdb44945f84c8512328f137849ebc3d61880b3eb790245c01b452532cba58ed",
+      "size": 2417
+    },
     ".github/workflows/pr16-dex-hof-main-cow.yml": {
       "sha256": "8056d572fa9b97a046fd3487c9ce274d352f5888ed618f1ad22e19abda1ca0ac",
       "size": 1628
     },
     ".github/workflows/pr16-dex-hof-main-record.yml": {
-      "sha256": "d1bd1e0920abcf3938784a9b50ef42f4c071fe74b6b9b1524a208229072db0a5",
-      "size": 2465
+      "sha256": "65838804bd905e070b586eac49aaa766b7052be6e22e6d8ce31698f12ec952ed",
+      "size": 2364
     },
     ".github/workflows/pr16-dex-hof-main-ui.yml": {
       "sha256": "ec5979222ce79fd5dd1bc0d627a99d9def265c05a4868824f384d84d318d2222",
@@ -33948,6 +33950,10 @@
       "sha256": "1da2e18c1b0c0ed6c5c378bb6ace61a046d603e1223ab4bffc466fd0d1b3133b",
       "size": 6497
     },
+    "scripts/pr16_dex_hof_main_closeout.py": {
+      "sha256": "8ae3717965300013032da2102a1491d0b822ac11189397e59a52abcbf7563857",
+      "size": 9699
+    },
     "scripts/pr16_dex_hof_main_cow.py": {
       "sha256": "f77ab22c0af18c93e83d577b188521a0e3f8acdf267fd88d11e1b6f6fbd12a50",
       "size": 7051
@@ -40225,6 +40231,33 @@
           "size": 33554432
         },
         "record_run": 37267010828,
+        "recording": {
+          "all12_record_steps_success": true,
+          "arm_compiles": 0,
+          "checkpoint": "content/modernization/pr16_dex_hof_main_checkpoint.json",
+          "checkpoint_identity": {
+            "sha256": "2d9fdb898411a961985bef441c5793b372b1d9233f87fcbdd9eb4937c231fecd",
+            "size": 305499
+          },
+          "closeout_run": 37267268429,
+          "closeout_source": "712f0fd4070a22ea553cf18ef8f0cd16f437f9af",
+          "formal_rom_changed": false,
+          "formal_save_changed": false,
+          "host_tests_rerun": 0,
+          "native_processes": 0,
+          "record_archive": [
+            11327160720,
+            37267010828,
+            58657,
+            "3746c89741f98483a7e9270cd8c2b1cb766f2df5825856745dd6c56c4dfc0a76"
+          ],
+          "record_completion": "c5282ebe037f11b5773cca458741dcc9533e6f53",
+          "record_job": 111625848719,
+          "record_receipt_equals_checkpoint": true,
+          "record_run": 37267010828,
+          "record_source": "3227331bb38b807822ed9f7da8ea197b09269418",
+          "status": "PASS_TERMINAL_HOF_MAIN_COW_RECORD"
+        },
         "status": "PASS_SCOPED_MODE3_MAIN_COW_AND_HOF_FAILURE_SHORT_CIRCUIT",
         "ui_run": 37266381005,
         "unchanged_previous_owners": 114

@@ -10149,3 +10149,17 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 正式ROM/Save101を保持。最新88be8811/115owner/current_scheduler_subownersを基準に、HOF28/29とmain保存世代の結合・跨領域原子性を次に閉じる。mode3 mainの旧authority保護とHOF失敗短絡は受入済みだが、main失敗時にHOFが先行更新される境界は未完。全mode4/5/default/LinkFull、未対応caller共通SaveFailed・stale authority wipe、早期sector31故障/単bank原子性、残typedconsumer、全cold ownerも未完。正式切替とtrainer131後半は必要検証不足で保留（承認不足ではない）。最終はシオウ通常回復/Save/独立cold Continue、雑魚毎Saveなし。
 - Commit: record source=3227331bb38b807822ed9f7da8ea197b09269418; 同branch非force push。
 - Network: 同repo Actions原本/既存入力のみ。公開source/最小address-size-SHA/text/screens、ROM断片/rawhex/ROM/runtime/入力save/runner/credential追加公開0。
+
+## 2026-10-05T05:19:55.310180+00:00
+- Timestamp: 2026-10-05T05:19:55.310180+00:00
+- Task: USER-20261005-DEX-HOF-MAIN-COW / mode3記録の終端
+- Version: dex-hof-main-cow-closeout
+- Status: STOPPED（mode3 main保護とHOF失敗短絡の限定受入点。世代結合/全mode/共通残caller未完）
+- Summary: record run37267010828/job111625848719全12stepとartifact11327160720のcheckpoint全byte一致を確認しpending解除。新native/record workflowはmanual-onlyへ。
+- Files changed: closeout source/workflow、record起動条件、固定MDJSONと両ログ。
+- Verify: 全source/evidence/fixed resume/index/task graph PASS。追加host0/ARM0/native0。原本はARM554/host7suite＋影響1suite、UI4suite、5UI/各cold10process/25画像。受入native計11、診断0。
+- Lineage: d773a123から88be8811へ。既存115owner中114全byte不変、Stage61内の実空き5窓180byteとstock mode3 row4byteだけ。115/overlap0/全ROM逆変換。元scheduler再link0・新tail0、現subownerを除いた残186byte。旧366byteは履歴。
+- Boundary: HOF28故障は29/mainを呼ばず、29故障はmainを呼ばない。主故障も旧14sector/cold101を保護し、正常/outer末尾はcold102。5coldでQOL2048byteは物理一致。HOF/main世代bindingと全体原子性、全mode/共通残caller/early31/全cold owner/typedconsumerは未完。正式ROM/Save101不変、trainer131後半0。一般CI既知QOL不一致/Stage79cache/旧9月18日queueは別扱い。
+- Next: HOF28/29とmainの世代結合・原子性へ。最新115ownerとcurrent_scheduler_subownersを優先。最終はシオウ通常回復/保存/cold Continue、雑魚毎Saveなし。
+- Commit: closeout source=712f0fd4070a22ea553cf18ef8f0cd16f437f9af; 同branch非force push。
+- Network: 同repo Actions/既存text receiptだけ。ROM/入力save/runtime/runner/credential追加公開0。
