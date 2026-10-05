@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "required_candidate": {
+    "size": 33554432,
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+  },
+  "sources": [
+    {
+      "local": "cfru-anim-defines.s",
+      "repository": "kapibarasan000/CFRU-JP",
+      "source": "anim_defines.s",
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "size": 33164,
+      "sha256": "166cbae334e3c45cb0d694fb483b8ac13b9cc84dc4bd64eb8d04ee696c1e84e4",
+      "git_blob_sha": "fc4168cbc9f43ef084afb04ff4ec8c81f9390592"
+    },
+    {
+      "local": "cfru-particle-table.s",
+      "repository": "kapibarasan000/CFRU-JP",
+      "source": "assembly/data/anim_particle_table.s",
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "size": 39352,
+      "sha256": "ee2d106484b531e17c52d9edb2d966ed1a214685c19fbf6d186328e67372d9fa",
+      "git_blob_sha": "814f613a56d1314a462d5a4aebcca8bb3cdf9010"
+    },
+    {
+      "local": "cfru-moves.h",
+      "repository": "kapibarasan000/CFRU-JP",
+      "source": "include/constants/moves.h",
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "size": 30601,
+      "sha256": "bc2ae17e444625fa2e1727d42c50a24f6758da26e44229a6f12a3afa3a275d79",
+      "git_blob_sha": "444712bfec68c13fabffd3e167d380b6c23770ba"
+    },
+    {
+      "local": "cfru-battle-anims.c",
+      "repository": "kapibarasan000/CFRU-JP",
+      "source": "src/battle_anims.c",
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "size": 192535,
+      "sha256": "4893fda793e75356672e8b1be3bca4bd54fe562774fd8b07ed9f8f9ba501aff3",
+      "git_blob_sha": "096a8763a4260052566ed029f841bc68e561d269"
+    },
+    {
+      "local": "cfru-BPRJ.ld",
+      "repository": "kapibarasan000/CFRU-JP",
+      "source": "BPRJ.ld",
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "size": 68505,
+      "sha256": "e371c23b9c9ea914c9ca3f644983e0b4e05be07bf11054492fa37afcfd58892a",
+      "git_blob_sha": "cf5363abd8439d63c7bd12cbe83ade861b0ebb51"
+    },
+    {
+      "local": "pret-decompress.c",
+      "repository": "pret/pokefirered",
+      "source": "src/decompress.c",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "size": 11157,
+      "sha256": "f190145b3948c1c22213e1a540f261aba89592ed9f30b6d13fa25b78ac417c7f",
+      "git_blob_sha": "f4740f917ed9ae7e0fd967107e1e63733bb8c66a"
+    },
+    {
+      "local": "pret-sprite.h",
+      "repository": "pret/pokefirered",
+      "source": "include/sprite.h",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "size": 9368,
+      "sha256": "a77aa1c837dfb58cf60b3eac299c7cc29a23ce27735ba710b9e8eeed102bf773",
+      "git_blob_sha": "6a1b272119ce6e3a8dcf45adf2eef8923a6d5175"
+    },
+    {
+      "local": "pret-battle-anim-script.inc",
+      "repository": "pret/pokefirered",
+      "source": "asm/macros/battle_anim_script.inc",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "size": 4279,
+      "sha256": "cb193c567289983c26ed8acaa8dd64501c64c7e088e28995c49439333b52b27c",
+      "git_blob_sha": "15c48c39f5860efe132e782c22a6cedb0f8d5ac3"
+    },
+    {
+      "local": "pret-battle-anim.c",
+      "repository": "pret/pokefirered",
+      "source": "src/battle_anim.c",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "size": 46944,
+      "sha256": "5883d9ee0483120ef67461952f5880499f322fb1c706cc213ca13c0c2b0e88c5",
+      "git_blob_sha": "30f9a7ad2482d1767f5c70ee30a3c85528605bb3"
+    },
+    {
+      "local": "cfru-include_battle_anim.h",
+      "repository": "kapibarasan000/CFRU-JP",
+      "source": "include/battle_anim.h",
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "size": 28504,
+      "sha256": "fd80eac8342c2452e9cb62f7b86b6db651d8136c25c9a6eb1369c1a92e4afb98",
+      "git_blob_sha": "68822edced83efcff0dc1893ec5052ba59875750"
+    }
+  ],
+  "accepted_root_review": {
+    "path": "content/modernization/pr16_dex_hof_reference_song_review.json",
+    "size": 25500,
+    "sha256": "754bb9e4f4af3d33e9ff9724bf394f34ee12ff02a1e95f0052082350ef658b2c",
+    "git_blob_sha": "d119a7e06a5d0b45c4c41f9ff4aafe847a68ef50"
+  },
+  "accepted_window_names": [
+    "DoMoveAnim_hook",
+    "CFRU_DoMoveAnim",
+    "LaunchBattleAnimation_with_installed_illusion_hook",
+    "RunAnimScriptCommand",
+    "dispatch_r0_trampoline",
+    "loadspritegfx_hook"
+  ],
+  "accepted_root_names": [
+    "DoMoveAnim_hook_target",
+    "DoMoveAnim_gMoveAnimations",
+    "DoMoveAnim_LaunchBattleAnimation",
+    "legacy_gMoveAnimations_repoint",
+    "LaunchBattleAnimation_RunAnimScriptCommand",
+    "RunAnimScriptCommand_table",
+    "dispatch_slot0_loadspritegfx",
+    "loadspritegfx_hook_target"
+  ],
+  "selection": {
+    "move_id": 133,
+    "move_symbol": "MOVE_AMNESIA",
+    "command_opcode": 0,
+    "tag": 10093,
+    "tag_symbol": "ANIM_TAG_AMNESIA",
+    "table_index": 93
+  },
+  "move_slot": {
+    "address": 151300328,
+    "size": 4,
+    "sha256": "b61b3202ae8f489d1e4bf02f79a9031ff2f08268d1088802dc3fe9d434286858",
+    "value": 135982001
+  },
+  "command": {
+    "address": 135982001,
+    "size": 3,
+    "sha256": "6673f4c17bb349e9522eae37afc026385eb3aef74b090941e614a6270a6816dc"
+  },
+  "consumer_windows": [
+    {
+      "label": "loadspritegfx_first_sheet",
+      "address": 151805192,
+      "size": 36,
+      "sha256": "e6b5a4e0863cf97647a732778b4a0cf83c3a716765b21623ab7e4542be9ed452"
+    },
+    {
+      "label": "interwork_r3",
+      "address": 151808464,
+      "size": 2,
+      "sha256": "477db9ac7ca5efc12e37f882656b8fe5a363ffeb99b2e565a953d10c3c91ab21"
+    },
+    {
+      "label": "sheet_decompress_to_bios",
+      "address": 134277608,
+      "size": 30,
+      "sha256": "3fd352eb1176c73f6dc8e7604571435f7d37a56124d8cc27df9b167e102c8cef"
+    },
+    {
+      "label": "bios_lz77_wram",
+      "address": 136084112,
+      "size": 4,
+      "sha256": "ec6d14bbc6d782be7f74aa1a98008404ecc1d3324187a7989458b17708869e80"
+    }
+  ],
+  "consumer_literals": [
+    {
+      "label": "script_pointer",
+      "address": 151805268,
+      "size": 4,
+      "sha256": "4b1d5702b44c2e900c6dabd4d0411ff12bfa3710a48b50c3294c1af108accb8d",
+      "value": 33783304
+    },
+    {
+      "label": "negative_tag_base",
+      "address": 151805272,
+      "size": 4,
+      "sha256": "17d084e9b356a3ff35d464ccab95727ff7a2bf4853c920b7c03a184d0bfa54bf",
+      "value": 4294957296
+    },
+    {
+      "label": "pic_table",
+      "address": 151805276,
+      "size": 4,
+      "sha256": "365347e778a4818895bbed8e9f1b8e6fd63bdb4a6cf81f7c46348f0b745e0921",
+      "value": 151036676
+    },
+    {
+      "label": "sheet_loader",
+      "address": 151805280,
+      "size": 4,
+      "sha256": "5a4639adf264611518320ca0bb2fb7b2143ea941a9a2bf5d772e29e8b6cf964c",
+      "value": 134277609
+    }
+  ],
+  "table_row": {
+    "address": 151037420,
+    "size": 8,
+    "sha256": "1dc2de6ed29d3c5bd1b91e906e55aebb5b60b9666d15ac16eeeaafbdf1df68e3"
+  },
+  "asset": {
+    "address": 146857364,
+    "size": 1725,
+    "sha256": "7290f1e8474951c3022f75e2e7cd8aae442dd61b4dfac5b9d44fe7cace76bff2"
+  },
+  "decoded": {
+    "size": 4096,
+    "sha256": "d99c7d9e90665de0bb3b7330068768f1510ed5899b45dd1a208b1873f4eab844"
+  },
+  "hit": {
+    "address": 146857777,
+    "target": 167697920,
+    "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+    "size": 4,
+    "sha256": "25786b9ec7b89108831b8473a9168346f04d211b87e22272eec5e6d8284e045b",
+    "classification": "UNCLASSIFIED",
+    "accepted": false,
+    "reason": "no_complete_typed_asset_consumer_witness",
+    "owner_candidates": []
+  },
+  "claims": {
+    "finite_static_consumer_root": true,
+    "allocation_success_path_only": true,
+    "actual_screen_rendered": false,
+    "natural_battle_reachability": false,
+    "whole_animation_table_extent": false,
+    "indirect_reference_completeness_claimed": false,
+    "donor_leased": false
+  },
+  "lz_header": {
+    "address": 146857364,
+    "size": 4,
+    "sha256": "1d43ee26e5c4e09d9e05d2be2de7bde7804b3121ede735a7f6630071eabdb2b9"
+  }
+}
