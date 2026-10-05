@@ -127,18 +127,20 @@ def apply(before,patches,linked):
  import pr16_dex_placement as placement
  cp=checkpoint();need(identity(before)==cp['candidate'],'exact current88be fullROM parent');allocation=copy.deepcopy(cp['isolated']['placement']['allocation']);need(len(allocation['allocations'])==115,'current115owners')
  allowed=windows();exports=json.loads((ROOT/'content/modernization/pr16_dex_scheduler_checkpoint.json').read_bytes())['link']['exports'];allowed.extend((a,a+16)for a in exports.values())
+ actual_owners={r['name']:r for r in cp['isolated']['placement']['owner_byte_audit']};need(len(actual_owners)==115 and set(actual_owners)=={r['name']for r in allocation['allocations']},'complete latest measured115owner audit')
  after=bytearray(before);touched=[]
  for address,data in patches:
   need(data and any(a<=address and address+len(data)<=z for a,z in allowed),'one current save-only subowner perpatch')
   a=address-0x08000000;z=a+len(data);need(all(z<=x or y<=a for x,y in touched),'nonoverlapping successor patches');after[a:z]=data;touched.append((a,z))
  cursor=0
  for a,z in sorted(touched):need(after[cursor:a]==before[cursor:a],'every undeclaredROM byte unchanged');cursor=z
- need(after[cursor:]==before[cursor:],'whole trailingROM retained');audit=[];modified=[]
+ need(after[cursor:]==before[cursor:],'whole trailingROM retained');audit=[];modified=[];inherited_hash_differences=[]
  expected={'display_npc_event_audit_stage61_payload','pr16_dex_runtime_reserved','pr16_dex_scheduler_bridge'}
  for r in allocation['allocations']:
-  a,z=r['start'],r['end_exclusive'];pre=identity(before[a:z]);post=identity(after[a:z]);need(pre['sha256']==r['content_sha256'],'all115 actual current owner hashes')
+  a,z=r['start'],r['end_exclusive'];pre=identity(before[a:z]);post=identity(after[a:z]);need(pre['sha256']==actual_owners[r['name']]['after_sha256'],'all115 latest measured current owner hashes')
+  if pre['sha256']!=r['content_sha256']:inherited_hash_differences.append(r['name'])
   if pre!=post:
-   need(r['name']in expected,'only declared existing save owner successors');r['content_sha256']=post['sha256'];modified.append(r['name'])
+   need(r['name']in expected and r['content_sha256']==pre['sha256'],'only exact current save owner successors');r['content_sha256']=post['sha256'];modified.append(r['name'])
   audit.append(dict(name=r['name'],address=a+0x08000000,size=z-a,before_sha256=pre['sha256'],after_sha256=post['sha256'],unchanged=pre==post))
  for row in preserved_hof():
   a=row['address']-0x08000000;need(before[a:a+row['size']]==after[a:a+row['size']],'all5 existing HOF sections retained')
@@ -146,4 +148,4 @@ def apply(before,patches,linked):
  reverse=bytearray(after)
  for a,z in touched:reverse[a:z]=before[a:z]
  need(bytes(reverse)==before,'wholeROM rollback exact')
- return bytes(after),dict(allocation=updated,owner_byte_audit=audit,modified_owners=modified,unchanged_owners=115-len(modified),preserved_hof_sections=preserved_hof(),whole_rom_rollback_exact=True,patches=[dict(address=a+0x08000000,**identity(after[a:z]))for a,z in sorted(touched)],formal_rom_changed=False,formal_save_changed=False,controller_runtime_wired=False)
+ return bytes(after),dict(allocation=updated,owner_byte_audit=audit,inherited_allocator_hash_differences=inherited_hash_differences,modified_owners=modified,unchanged_owners=115-len(modified),preserved_hof_sections=preserved_hof(),whole_rom_rollback_exact=True,patches=[dict(address=a+0x08000000,**identity(after[a:z]))for a,z in sorted(touched)],formal_rom_changed=False,formal_save_changed=False,controller_runtime_wired=False)
