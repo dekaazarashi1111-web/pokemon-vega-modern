@@ -10533,3 +10533,18 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 残146件の実root/consumerを閉じる。部分leaseはtarget点だけでなく最大アクセス範囲・間接参照・対象範囲退役完全性・owner移管を証明した場合だけ採用。単一6528byte controllerの実配置容量を確保後、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL、全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/0804B85C退避前Freeを閉じる。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。 次の具体root候補は0x08162BFDのタイトル外側callback登録/scene3 state producer、0x08124573のparty menu selectorと同一allocation/exit、0x08126B0Bのconstructor stack引数。いずれも旧診断の未受入候補で未知維持。
 - Commit: closeout source=c3f3ddff240856ab567283d570708d1348713376; 同branch非force。
 - Network: 同repoActions/text原本のみ。ROM断片/rawhex/ROM/save/runtime/runner/credentials追加公開0。
+
+## 2026-10-05T18:03:03.487116+00:00
+- Timestamp: 2026-10-05T18:03:03.487116+00:00
+- Task: USER-20261005-DEX-HOF-CALLBACK-REFERENCES / callback実root・lifetimeと容量保持
+- Version: hof-callback-references-v1
+- Status: STOPPED（新分類と容量拒否を検証、donor/実controller未完）
+- Summary: 現0641の旧egg874参照へ新1件を追加し、729分類/145未知（owner内0）。新218試験と全115actual ownerを照合。部分leaseは未知pointer最大アクセス範囲未証明のため15118byte全域保護/安全容量0。既知global511＋save804の容量上限1315byteもcontroller6528byte未満。donor/正式ROM/Save101不変。ReadMail/MoveTutorの2局所callbackはroot/全setup/lifetime未閉鎖として0件の診断を記録し未知維持。
+- Files changed: 新callback verifier/chain/capacity/拒否unit/Actions/guide/checkpoint/最小証拠、固定MDJSON、両ログ。
+- Verify: 新unit218、現candidate全SHA・115actual owner・874hit、全6親delta/全109changes/全99witness/旧728と残unknown全field保持、133全song model/50assetと新typed窓の役割交差。旧全ROMscan/native/heap/歴史再生成0。
+- Capacity: 未知参照はアクセス幅未証明なら全donor保護。点target楽観空隙を安全容量へ昇格しない。global余白511とsave内部804は既存owner/subownerを保持した上限で、新leaseなし。Ccontroller既測定単一text6528/align4と比較。間接参照/対象退役完全性も別必須gate。
+- Publication: 619原本と全親chainは参照保持、複製なし。独立measurementと全text size/SHA/LF、closed success artifact、hidden/symlink/未知file拒否。旧独立最終song/battle/Surfレビュー未実施を継承し、拒否操作の別経路再実行なし。
+- Boundary: 現0641/115owner/52saveowner/残804、正式ROM/Save101不変。heap13352を保存退避53300入口へ跨いで保持しない。
+- Next: 残145件の実root/consumerを閉じる。ReadMail/MoveTutorは局所実producerからsetup全state・allocation lifetimeまでを閉じる。部分leaseはtarget点だけでなく最大アクセス範囲・間接参照・対象範囲退役完全性・owner移管を証明した場合だけ採用。単一6528byte controllerの実配置容量を確保後、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL、全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/0804B85C退避前Freeを閉じる。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。
+- Commit: source=4aa76183e28d63ed462ddfc3bd41bc6f5aba9542; 同branch非force。
+- Network: 同repoActions/既存入力/固定source。公開source・最小address-size-SHA・textのみ、ROM断片/rawhex/ROM/inputsave/runtime/runner/credentials追加公開0。

@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-現0641の旧egg874参照へ新2件を追加し、728分類/146未知（owner内0）。新201試験と全115actual ownerを照合。部分leaseは未知pointer最大アクセス範囲未証明のため15118byte全域保護/安全容量0。既知global511＋save804の容量上限1315byteもcontroller6528byte未満。donor/正式ROM/Save101不変。
+現0641の旧egg874参照へ新1件を追加し、729分類/145未知（owner内0）。新218試験と全115actual ownerを照合。部分leaseは未知pointer最大アクセス範囲未証明のため15118byte全域保護/安全容量0。既知global511＋save804の容量上限1315byteもcontroller6528byte未満。donor/正式ROM/Save101不変。ReadMail/MoveTutorの2局所callbackはroot/全setup/lifetime未閉鎖として0件の診断を記録し未知維持。
 
-**次: 残146件の実root/consumerを閉じる。部分leaseはtarget点だけでなく最大アクセス範囲・間接参照・対象範囲退役完全性・owner移管を証明した場合だけ採用。単一6528byte controllerの実配置容量を確保後、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL、全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/0804B85C退避前Freeを閉じる。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。 次の具体root候補は0x08162BFDのタイトル外側callback登録/scene3 state producer、0x08124573のparty menu selectorと同一allocation/exit、0x08126B0Bのconstructor stack引数。いずれも旧診断の未受入候補で未知維持。**
+**次: 残145件の実root/consumerを閉じる。ReadMail/MoveTutorは局所実producerからsetup全state・allocation lifetimeまでを閉じる。部分leaseはtarget点だけでなく最大アクセス範囲・間接参照・対象範囲退役完全性・owner移管を証明した場合だけ採用。単一6528byte controllerの実配置容量を確保後、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL、全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/0804B85C退避前Freeを閉じる。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。**
 
 通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `d6a5a8bab92e7fcf53fc280e6857b14c72f4f60c`。
-全726親証拠保持、新有限root分類と部分lease容量拒否のsource。donor/本番配線未受入。
+証拠のsource HEAD: `4aa76183e28d63ed462ddfc3bd41bc6f5aba9542`。
+全728親証拠保持、新有限root分類と部分lease容量拒否のsource。donor/本番配線未受入。
 
 ## 最短の再開手順
 
@@ -25,8 +25,8 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_DEX_HOF_CONTROLLER_SPACE_JA.md`
-- `content/modernization/pr16_dex_hof_controller_space_checkpoint.json`
+- `docs/PR16_DEX_HOF_CALLBACK_REFERENCES_JA.md`
+- `content/modernization/pr16_dex_hof_callback_references_checkpoint.json`
 - `content/modernization/pr16_dex_hof_typed_recovery_evidence/egg-typed-audit.json`
 - `content/modernization/pr16_dex_hof_reference_evidence/reference-delta.json`
 - `content/modernization/pr16_dex_hof_reference_gaps_evidence/reference-chain.json`
@@ -36,9 +36,13 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 - `content/modernization/pr16_dex_hof_script_references_checkpoint.json`
 - `content/modernization/pr16_dex_hof_consumer_references_evidence/reference-chain.json`
 - `content/modernization/pr16_dex_hof_consumer_references_checkpoint.json`
+- `content/modernization/pr16_dex_hof_controller_space_evidence/reference-chain.json`
+- `content/modernization/pr16_dex_hof_controller_space_checkpoint.json`
+- `scripts/pr16_dex_hof_callback_capacity.py`
 - `scripts/pr16_dex_hof_partial_space.py`
 - `content/modernization/pr16_dex_hof_generation_writer_checkpoint.json`
-- `content/modernization/pr16_dex_hof_space_roots_review.json`
+- `content/modernization/pr16_dex_hof_callback_title_review.json`
+- `content/modernization/pr16_dex_hof_callback_party_review.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -469,6 +473,7 @@ P08ゲート:
 - 現0641の旧egg874参照へ実root/consumerから新29件を分類し、723分類/151未知（owner内1/外150）。新277試験、全115actual owner/874hit、旧694全行・644delta25行22witness・661chain17行16witness・694chain33行33witnessを保持。donor/正式ROM/Save101不変。原本4.1MB/旧delta/旧chainを複製・改変しない。全親をidentity照合してmaterializeし、旧75追加を落とさない。影響なしheap/native再走禁止。
 - 現0641の旧egg874参照へ実root/consumerから新3件を分類し、726分類/148未知（owner内0/外148）。新193試験、全115actual owner/874hit、旧723全行・旧25/17/33/29 changesと22/16/33/23 witnessesを保持。donor/正式ROM/Save101不変。原本4.1MB/旧delta/旧chainを複製・改変しない。全親をidentity照合してmaterializeし、旧104追加を落とさない。影響なしheap/native再走禁止。
 - 現0641の旧egg874参照へ新2件を追加し、728分類/146未知（owner内0）。新201試験と全115actual ownerを照合。部分leaseは未知pointer最大アクセス範囲未証明のため15118byte全域保護/安全容量0。既知global511＋save804の容量上限1315byteもcontroller6528byte未満。donor/正式ROM/Save101不変。全親changes25/17/33/29/3、witness22/16/33/23/3、133曲/50assetを保持。未知word size4を参照先のread幅へ誤用しない。無影響heap/native再走禁止。
+- 現0641の旧egg874参照へ新1件を追加し、729分類/145未知（owner内0）。新218試験と全115actual ownerを照合。部分leaseは未知pointer最大アクセス範囲未証明のため15118byte全域保護/安全容量0。既知global511＋save804の容量上限1315byteもcontroller6528byte未満。donor/正式ROM/Save101不変。ReadMail/MoveTutorの2局所callbackはroot/全setup/lifetime未閉鎖として0件の診断を記録し未知維持。タイトル560命令/60unitの有限root。party局所2consumerの不足は残す。全親changes25/17/33/29/3/2、witness22/16/33/23/3/2、133曲/50assetを保持。未知word size4を参照先のread幅へ誤用しない。無影響heap/native再走禁止。
 
 ## 次セッションへ残す更新手順
 
@@ -498,6 +503,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-現0641の旧egg874参照へ新2件を追加し、728分類/146未知（owner内0）。新201試験と全115actual ownerを照合。部分leaseは未知pointer最大アクセス範囲未証明のため15118byte全域保護/安全容量0。既知global511＋save804の容量上限1315byteもcontroller6528byte未満。donor/正式ROM/Save101不変。
+現0641の旧egg874参照へ新1件を追加し、729分類/145未知（owner内0）。新218試験と全115actual ownerを照合。部分leaseは未知pointer最大アクセス範囲未証明のため15118byte全域保護/安全容量0。既知global511＋save804の容量上限1315byteもcontroller6528byte未満。donor/正式ROM/Save101不変。ReadMail/MoveTutorの2局所callbackはroot/全setup/lifetime未閉鎖として0件の診断を記録し未知維持。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
