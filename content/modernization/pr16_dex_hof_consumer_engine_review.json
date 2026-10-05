@@ -1,0 +1,1408 @@
+{
+  "schema_version": 1,
+  "status": "NEW_STORAGE_TASK_ROOTED_CODE_REVIEW_REQUIRES_CURRENT_ROM_REVALIDATION",
+  "required_candidate": {
+    "size": 33554432,
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+  },
+  "diagnostic_input": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  },
+  "source_bindings": {
+    "vendor/upstream/CFRU-JP/BPRJ.ld": {
+      "size": 68505,
+      "sha256": "e371c23b9c9ea914c9ca3f644983e0b4e05be07bf11054492fa37afcfd58892a",
+      "git_blob_sha": "cf5363abd8439d63c7bd12cbe83ade861b0ebb51",
+      "local": "BPRJ.ld"
+    },
+    "vendor/upstream/pokefirered/src/scrcmd.c": {
+      "size": 56954,
+      "sha256": "898dad5a07ce0a125731b998654d86808885a8d48163d607478a5e70c1cac553",
+      "git_blob_sha": "97b695ee2f6fca80a3b78f52f6a444f696fe5814",
+      "local": "gaps-pret-scrcmd.c"
+    },
+    "vendor/upstream/pokefirered/src/task.c": {
+      "size": 5029,
+      "sha256": "8bdd5205ec396be7b66d6e384a82309b3cab59783d46fb8c4c991b2172d4868b",
+      "git_blob_sha": "01503dc7ae78cf2348524bfb5bbb89183640f944",
+      "local": "pret-task.c"
+    },
+    "vendor/upstream/pokefirered/src/main.c": {
+      "local": "pret-main.c",
+      "source": "src/main.c",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "repository": "pret/pokefirered",
+      "git_blob_sha": "542b0f5d16dd93107523d11163bfcb70a42b707a",
+      "size": 11699,
+      "sha256": "0bfa6c662b1cbd49bd31020b6c2509208004611e6701ad64badce22eca371139",
+      "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/main.c"
+    },
+    "vendor/upstream/pokefirered/src/crt0.s": {
+      "local": "pret-crt0.s",
+      "source": "src/crt0.s",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "repository": "pret/pokefirered",
+      "git_blob_sha": "a0d8a4b55237b38afc5b69d4e9aad0c2df232e14",
+      "size": 2573,
+      "sha256": "a13a09dab32f5f073387183ca5072e009e997223c7eba16d65dd6ecf2d575d73",
+      "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/crt0.s"
+    },
+    "vendor/upstream/pokefirered/src/hall_of_fame.c": {
+      "local": "pret-hall_of_fame.c",
+      "source": "src/hall_of_fame.c",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "repository": "pret/pokefirered",
+      "git_blob_sha": "05c7d75384c2ad8481b6819f71faaf089f683bbf",
+      "size": 36837,
+      "sha256": "00dd00b63f3edf8e0ee617a09936d1a51306cc9dc33e6021da8f1042af5dd4ab",
+      "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/hall_of_fame.c"
+    },
+    "vendor/upstream/pokefirered/src/pokemon_storage_system_tasks.c": {
+      "local": "pret-pokemon_storage_system_tasks.c",
+      "source": "src/pokemon_storage_system_tasks.c",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "repository": "pret/pokefirered",
+      "git_blob_sha": "fdc5250c347a304547f613b5ed8685157341345a",
+      "size": 77841,
+      "sha256": "ac9e5037b244339c48a930cecbeb07a4cea20086c9347bdf9536164be8d74188",
+      "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/pokemon_storage_system_tasks.c"
+    }
+  },
+  "consumer_windows": [
+    {
+      "label": "setup_dispatch_argument_loads",
+      "address": 134648756,
+      "size": 12,
+      "sha256": "788b86c4e1aaa3d233e4db7939a2a588372025bb8fe5a9fa3fe83a3794612e38"
+    },
+    {
+      "label": "InitScriptContext_dispatch_stores",
+      "address": 134647916,
+      "size": 18,
+      "sha256": "019053902e4a03a6e70e21baa5e701db1099faac63e9ae320ee6b02606c4b178"
+    },
+    {
+      "label": "RunScriptCommand_opcode_dispatch",
+      "address": 134648088,
+      "size": 26,
+      "sha256": "c23e12489eeb9a5ddc85d4216365fb60541ae3b9d43eb3181fe4fa0b7ca84ace"
+    },
+    {
+      "label": "interwork_r1",
+      "address": 136084172,
+      "size": 2,
+      "sha256": "bac8ca6ee9f77b46c7ab5824c7c59d99fd0ca53ae998ea2872b78bb6a5189cc5"
+    },
+    {
+      "label": "special_readhalfword_bound_and_call",
+      "address": 134649788,
+      "size": 28,
+      "sha256": "d3b7fa72d540b8086d3bf3542a08354f0249c788ac9d8f96b936802f0b0d1e6d"
+    },
+    {
+      "label": "ScriptReadHalfword",
+      "address": 134648248,
+      "size": 24,
+      "sha256": "531aab4c2389f4a0b267b57b8149600694a637ef2d2ac58d4c8160af8f74d2b8"
+    },
+    {
+      "label": "interwork_r0",
+      "address": 136084168,
+      "size": 2,
+      "sha256": "81904e68a8b9a2427e9e87e2c61b1098057608d18357d70d9281e8513941cf53"
+    },
+    {
+      "label": "CreateTask_store_argument",
+      "address": 134704052,
+      "size": 30,
+      "sha256": "1183822342f8019f94edf78cc0bf0ccc3be517588d878480b60e25475208805a"
+    },
+    {
+      "label": "CreateTask_make_active",
+      "address": 134704102,
+      "size": 8,
+      "sha256": "8f03f615507fbcb15fc5c85fbef3ef24a62efd4552f287c392f72fbc72ddfc21"
+    },
+    {
+      "label": "RunTasks_actual_consumer",
+      "address": 134704400,
+      "size": 42,
+      "sha256": "dc1a90615dae67b96669e1bea0f8914a05d040247682b3af9f3a8e52b1437be6"
+    },
+    {
+      "label": "reset_vector",
+      "address": 134217728,
+      "size": 4,
+      "sha256": "1e69530c7fbbf50dee8541042a8016af295c4d84435e2764c295a0ce5d18307d"
+    },
+    {
+      "label": "reset_startup_arm",
+      "address": 134218244,
+      "size": 48,
+      "sha256": "d351dac18b97db56c30ec6b71463a08edde9480d27fb2c48bdda135efec937e6"
+    },
+    {
+      "label": "set_main_callback2",
+      "address": 134219076,
+      "size": 16,
+      "sha256": "ec1b3773f6d0521e06945a26db83b027eace56daaea78238830954d96f966c2e"
+    },
+    {
+      "label": "main_call_callbacks",
+      "address": 134219024,
+      "size": 48,
+      "sha256": "234f875549e5851fa44668d223d92d011ca69e696c3061148ad40489cd137c55"
+    },
+    {
+      "label": "CreateTask_post_store_setup",
+      "address": 134704082,
+      "size": 20,
+      "sha256": "5c792ad76244167a15b825553d5d0ebcafc2209d779b9e49a3a02e9c248fc3f5"
+    },
+    {
+      "label": "CreateTask_bounded_loop_return",
+      "address": 134704116,
+      "size": 18,
+      "sha256": "be49dfc15c05cf8c50f00d90d57c2e237fbac90c2a90e4395eb2e209887f03ec"
+    },
+    {
+      "label": "FindFirstActiveTask_bounded_index",
+      "address": 134704448,
+      "size": 56,
+      "sha256": "b928f137260122f147a64852a970ed33bc8ab5f8eafb677e0ba82596e84298af"
+    },
+    {
+      "label": "storage_constructor_prefix",
+      "address": 134793248,
+      "size": 28,
+      "sha256": "ff2d247c4ba259ae85de49f24aeee4ddd33a0d58b34a884240ae1e6c21d3efd8"
+    },
+    {
+      "label": "storage_constructor_body",
+      "address": 134793300,
+      "size": 56,
+      "sha256": "626e0f2249dbf19f0e1e65eb9723aeaa794518dd00933866d6e6376b2ce66073"
+    },
+    {
+      "label": "storage_task_setter",
+      "address": 134793780,
+      "size": 30,
+      "sha256": "16978fbc1653a1e596fe1c29587dd8601a06fbb4c688223258ca2b78c99894ad"
+    },
+    {
+      "label": "storage_scheduler_callback",
+      "address": 134793216,
+      "size": 30,
+      "sha256": "9cf3ca6c55b020a6c8aec2e394c88f1515552942d58718570f886c213f50f8f5"
+    }
+  ],
+  "consumer_literals": [
+    {
+      "label": "script_dispatch_base",
+      "address": 134648796,
+      "size": 4,
+      "sha256": "f3a2e42ea6586eb0b767196f074500301ee4eaa08f268b68504e42be63060092",
+      "value": 135670980
+    },
+    {
+      "label": "script_dispatch_end",
+      "address": 134648800,
+      "size": 4,
+      "sha256": "d94a894e0f8ae6331a663d7b6340ec1fc75739a6a6209829a957fe7b2d637e50",
+      "value": 135671824
+    },
+    {
+      "label": "special_handler_slot",
+      "address": 135671128,
+      "size": 4,
+      "sha256": "f21c1ed85cfab4586ca40e80555fcd716c66fbb3cbbcaa5c7b44a3b89b1d2c54",
+      "value": 134649789
+    },
+    {
+      "label": "special_table_base",
+      "address": 134649816,
+      "size": 4,
+      "sha256": "1d5c6b44e66fec560c5f16b32cba69e4ff46b050e8e8629504c5bd110729a8ca",
+      "value": 135671912
+    },
+    {
+      "label": "special_table_end",
+      "address": 134649820,
+      "size": 4,
+      "sha256": "8390ce335f9607847bd5dade6e3714ad75f68f131cfc169e6e310b9d2428b72a",
+      "value": 135673688
+    },
+    {
+      "label": "CreateTask_gTasks",
+      "address": 134704112,
+      "size": 4,
+      "sha256": "77c7fedbad4a80e92e4b312f068441cd67d9fd0579b8517e57326acc5fd540d4",
+      "value": 50352336
+    },
+    {
+      "label": "RunTasks_gTasks",
+      "address": 134704444,
+      "size": 4,
+      "sha256": "77c7fedbad4a80e92e4b312f068441cd67d9fd0579b8517e57326acc5fd540d4",
+      "value": 50352336
+    },
+    {
+      "label": "startup_main_entry",
+      "address": 134218308,
+      "size": 4,
+      "sha256": "9b586d63f1542a55b4d7744d30bcc5adfc99ffd5285ac47b08794aaa264586a0",
+      "value": 134218661
+    },
+    {
+      "label": "main_setter_gMain",
+      "address": 134219092,
+      "size": 4,
+      "sha256": "efa90a159cf215fa62b9e47396466ba5d31f83afb6df4ba10ef72d33af17f1c8",
+      "value": 50344240
+    },
+    {
+      "label": "main_dispatch_gMain",
+      "address": 134219072,
+      "size": 4,
+      "sha256": "efa90a159cf215fa62b9e47396466ba5d31f83afb6df4ba10ef72d33af17f1c8",
+      "value": 50344240
+    },
+    {
+      "label": "FindFirstActiveTask_gTasks",
+      "address": 134704504,
+      "size": 4,
+      "sha256": "77c7fedbad4a80e92e4b312f068441cd67d9fd0579b8517e57326acc5fd540d4",
+      "value": 50352336
+    },
+    {
+      "label": "setup_script_context_instance",
+      "address": 134648792,
+      "size": 4,
+      "sha256": "1f3d3756e27e613e2f240ca13c0ddc338ac3ef55b73343ade3633b1ae38581d8",
+      "value": 50335408
+    },
+    {
+      "label": "storage_constructor_gStorage",
+      "address": 134793288,
+      "size": 4,
+      "sha256": "181eb36c4132e43dd7dad716f3a0896934d93dd5fceb7dfef8b47007799dca38",
+      "value": 33789692
+    },
+    {
+      "label": "storage_constructor_task_target",
+      "address": 134793360,
+      "size": 4,
+      "sha256": "946bda5e0450d1afe97d564fc7f5dcce55b181ebc11525a50e33ac080f7556a2",
+      "value": 134793821
+    },
+    {
+      "label": "storage_constructor_main_target",
+      "address": 134793368,
+      "size": 4,
+      "sha256": "46847d146e04f255f01ea69a15af05186d32288ecd5c3d0e3eb2b502bee3df00",
+      "value": 134793217
+    },
+    {
+      "label": "storage_setter_gTasks",
+      "address": 134793812,
+      "size": 4,
+      "sha256": "77c7fedbad4a80e92e4b312f068441cd67d9fd0579b8517e57326acc5fd540d4",
+      "value": 50352336
+    },
+    {
+      "label": "storage_setter_gStorage",
+      "address": 134793816,
+      "size": 4,
+      "sha256": "181eb36c4132e43dd7dad716f3a0896934d93dd5fceb7dfef8b47007799dca38",
+      "value": 33789692
+    }
+  ],
+  "rows": [
+    {
+      "hit": {
+        "address": 134797311,
+        "target": 167702512,
+        "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+        "size": 4,
+        "sha256": "2443ced86d5d184ad56731c1f87e3bbdd1b3bbc9b94a20ab91ca79653a8c39c6",
+        "classification": "UNCLASSIFIED",
+        "accepted": false,
+        "reason": "no_complete_typed_asset_consumer_witness",
+        "owner_candidates": []
+      },
+      "root": {
+        "kind": "special_function",
+        "entry": 134791396,
+        "opcode": 37,
+        "special_id": 60,
+        "slot": {
+          "address": 135672152,
+          "size": 4,
+          "sha256": "888b0d4dbb253148e6ccd703eaeca2f21f5eeeac0fdcb2f71811f40652faa885",
+          "value": 134791397
+        }
+      },
+      "instruction_path": [
+        {
+          "address": 134791396,
+          "size": 2,
+          "sha256": "3f17bd4e2dadf8c68fa29afddb05faad4e66f536c028c272db9a93f315d2dbd2"
+        },
+        {
+          "address": 134791398,
+          "size": 2,
+          "sha256": "7c99df4e193820de2ce69a4e149dad10e8cef390a53d743d3fa1c5c2d8ce0c33",
+          "literal_address": 134791436
+        },
+        {
+          "address": 134791400,
+          "size": 2,
+          "sha256": "9895d1536dabe320c6566354738da4c4bf9eaf1fd0a2f521ddf4894523618b5e"
+        },
+        {
+          "address": 134791402,
+          "size": 4,
+          "sha256": "baed2918987c7cf5ab90749c6d040507b3d15d567d1660e0f744a7b302dd60c6",
+          "target": 134704052
+        },
+        {
+          "address": 134790616,
+          "size": 2,
+          "sha256": "a78826e774b92f92c0c6f1d5ec14fc739b3a9f06cb22a74549700afa5fc597e4"
+        },
+        {
+          "address": 134790618,
+          "size": 2,
+          "sha256": "303d2479eaff0a021d78b20a59b5fb4e2cd0adad2a2d423504525e60f6892d1b"
+        },
+        {
+          "address": 134790620,
+          "size": 2,
+          "sha256": "40d88127d4d31a3891f41598eeed41174e5bc89b1eb9bbd66a8cbfc09956a3fd"
+        },
+        {
+          "address": 134790622,
+          "size": 2,
+          "sha256": "5a76dbaebb3881519a07ef72d6e3f5ef626cc54eb913322e716ec4f94cc3cbe3"
+        },
+        {
+          "address": 134790624,
+          "size": 2,
+          "sha256": "20b64b56f584ec6c5184846cbeb974347b5e4c25cb49628ce1426fd0d2128ae7"
+        },
+        {
+          "address": 134790626,
+          "size": 2,
+          "sha256": "b35d9708f364a8e3b09f1ef3af3f2c36be29f3007e28cca15ab51a5161d276a0"
+        },
+        {
+          "address": 134790628,
+          "size": 2,
+          "sha256": "e9aff84fdb699ca706c0a1fed47bb095cb25e3c95aa5d1c5d216ff2cfbcd4998"
+        },
+        {
+          "address": 134790630,
+          "size": 2,
+          "sha256": "0b378bd44515053a53e465d8020ee03e58b14e54d0394dc09cd57f7bb682bd6f",
+          "literal_address": 134790656
+        },
+        {
+          "address": 134790632,
+          "size": 2,
+          "sha256": "f703d1d15315ec57a95055a8440bddc63b65418702e8130ef46b46b6a4d3b51d"
+        },
+        {
+          "address": 134790634,
+          "size": 2,
+          "sha256": "9aab0acc8d7659f047ee82d19647a487e47b8e3b35594633439b1e1eac374110"
+        },
+        {
+          "address": 134790636,
+          "size": 2,
+          "sha256": "57d7c53a64968ef63b6c807e71d6f99b31652e932395a45b03d8b89ad6ce03ba"
+        },
+        {
+          "address": 134790638,
+          "size": 2,
+          "sha256": "10832139541e883e0ad964650e66b19513add71af34e0864d78ed9a4368da61e"
+        },
+        {
+          "address": 134790640,
+          "size": 2,
+          "sha256": "cae1ee347b61bbbf3fb9150be2d64d9b5453333932b5865886c14d6e0428eb05"
+        },
+        {
+          "address": 134790644,
+          "size": 2,
+          "sha256": "8509b81230019d2ad970d970f791dfbdc8caf54f5c594fcd327cef9feed206c1"
+        },
+        {
+          "address": 134790646,
+          "size": 2,
+          "sha256": "4a58005dfc4d62e6d2bc2ddd2f5adf9ed674cb355716944569ed0a76fc6dbcc0",
+          "literal_address": 134790660
+        },
+        {
+          "address": 134790648,
+          "size": 2,
+          "sha256": "d608331e137f89da2be163041680a59e98802987df817318f503266760202fe8"
+        },
+        {
+          "address": 134790650,
+          "size": 2,
+          "sha256": "e593490a360ac8104e842141c4059603e0d90b79de99e5b6b6f05afe14945659"
+        },
+        {
+          "address": 134790652,
+          "size": 2,
+          "sha256": "3520945f7f6751b5d548f15a98a3652e9a6c0caebddcfbb48af291a847927115"
+        },
+        {
+          "address": 134791356,
+          "size": 2,
+          "sha256": "154ee9936fddd5e2eac0f274df1af98a3da7ea95f6f1c0dc316dcdd3c8261b16",
+          "literal_address": 134791392
+        },
+        {
+          "address": 134791358,
+          "size": 2,
+          "sha256": "407dcc8d37d74ee97efd1081f454d6303c20bcc6dd8594505266f8397f2baafa"
+        },
+        {
+          "address": 134791360,
+          "size": 2,
+          "sha256": "86181bc0971b0e5defb5c89cbe832d0a100b44d10ae5b76d4dad94752ad83e02"
+        },
+        {
+          "address": 134791362,
+          "size": 2,
+          "sha256": "bc13258ddf5cbee91238322390955c54d519a8e3d5736f720b812b216c13a446"
+        },
+        {
+          "address": 134791364,
+          "size": 2,
+          "sha256": "2ee788372518190a6ab539cbb20331df1040f21846e3ba836c269aee907c894c"
+        },
+        {
+          "address": 134791366,
+          "size": 2,
+          "sha256": "971545243d8861faa3c0bedb65e5f2d87892bb3821b046b3c4f0b624b1f950c1"
+        },
+        {
+          "address": 134791368,
+          "size": 4,
+          "sha256": "8f88e2d7e9acb4e2f09aada103c7dbb379e6081b4444850110be7f460ab8b6a9",
+          "target": 134569136
+        },
+        {
+          "address": 134791372,
+          "size": 2,
+          "sha256": "2ccf157df06c4fe0474dbe256603751e6a6270c39161c74d28b1c30bb03337cc"
+        },
+        {
+          "address": 134791374,
+          "size": 4,
+          "sha256": "1938313833ad79fa7f784cc0c34f0595f86d209f28ee12380b07c2316aa5f20e",
+          "target": 134793248
+        },
+        {
+          "address": 134793248,
+          "size": 2,
+          "sha256": "0179fa50db01a670ea0d378b606928ed6b7a1f590c3fe52fcfe05a1936a84414"
+        },
+        {
+          "address": 134793250,
+          "size": 2,
+          "sha256": "40d88127d4d31a3891f41598eeed41174e5bc89b1eb9bbd66a8cbfc09956a3fd"
+        },
+        {
+          "address": 134793252,
+          "size": 2,
+          "sha256": "0150db2f57f465a132223652a458d2f5e80f2a50fae3bf2bf7774299577ca5f0"
+        },
+        {
+          "address": 134793254,
+          "size": 4,
+          "sha256": "9967864a719be80a8b8fc325e799fc57397e45cbe2c31923de883a759b205b63",
+          "target": 134703956
+        },
+        {
+          "address": 134793258,
+          "size": 2,
+          "sha256": "5d04f1d497a09418ee1996c2d8ed36a0f6eda0869151d0d60c8ae534d7fd3707",
+          "literal_address": 134793284
+        },
+        {
+          "address": 134793260,
+          "size": 2,
+          "sha256": "96ea0c03843ea4ec994eb82287fd084abee1121e3f81e1e5020d305e856d1b48"
+        },
+        {
+          "address": 134793262,
+          "size": 2,
+          "sha256": "4012ab3d5abd2560dbcef6230809757195b0c0b394bede6a2d9c9a087e9481ff",
+          "literal_address": 134793288
+        },
+        {
+          "address": 134793264,
+          "size": 2,
+          "sha256": "5d04f1d497a09418ee1996c2d8ed36a0f6eda0869151d0d60c8ae534d7fd3707",
+          "literal_address": 134793292
+        },
+        {
+          "address": 134793266,
+          "size": 4,
+          "sha256": "75801bd868cc39739ad77a66fd5063baa2abdde731778733317fe345e442a5a6",
+          "target": 134228892
+        },
+        {
+          "address": 134793270,
+          "size": 2,
+          "sha256": "ca233959bcddd2b99ba13972061ab3cd9e64b395b231989835b1ff52dac734fe"
+        },
+        {
+          "address": 134793272,
+          "size": 2,
+          "sha256": "2ee788372518190a6ab539cbb20331df1040f21846e3ba836c269aee907c894c"
+        },
+        {
+          "address": 134793274,
+          "size": 2,
+          "sha256": "637a008832f2c232ef5db62ec819c4928d4bfbaceecab8879ed1b5fae17700fc"
+        },
+        {
+          "address": 134793300,
+          "size": 2,
+          "sha256": "13b703597a7d1d3d1b3f85c7b69f03ca47bd97c47fa86613e1f654729d838305"
+        },
+        {
+          "address": 134793302,
+          "size": 2,
+          "sha256": "d30e6d8dc8413f1d07c553a459979272c355aececdf8144f054f7e448d2f0ff6"
+        },
+        {
+          "address": 134793304,
+          "size": 2,
+          "sha256": "2155eeffb3394bd617f2fef030a86ca47a9ee32ca5ac0753739a66cb56819757"
+        },
+        {
+          "address": 134793306,
+          "size": 2,
+          "sha256": "adabddb97fde108a7427b802cc5d46f1248629e6530e3d02bd1c17da35ec2110"
+        },
+        {
+          "address": 134793308,
+          "size": 2,
+          "sha256": "0d915a3817397d574d32fdf36d15d0172f9273a2e9f7b59be1fedfc2fd1c77eb",
+          "literal_address": 134793356
+        },
+        {
+          "address": 134793310,
+          "size": 2,
+          "sha256": "1321e1ca91757e8c23c934ff4047d69657e9caeed9ce5a29e5fcf94e7e648ca6"
+        },
+        {
+          "address": 134793312,
+          "size": 2,
+          "sha256": "61d7e4731e7a6546d92e99105ffce332c9ab905311cba8dbad8ac4f3bbc49447"
+        },
+        {
+          "address": 134793314,
+          "size": 2,
+          "sha256": "2155eeffb3394bd617f2fef030a86ca47a9ee32ca5ac0753739a66cb56819757"
+        },
+        {
+          "address": 134793316,
+          "size": 2,
+          "sha256": "b6ff45f1f8669ba78bed63598c2dcf33c276bcdb6df869e354faf5af2375f500"
+        },
+        {
+          "address": 134793318,
+          "size": 2,
+          "sha256": "9159c3afb2d38467f9a18b993d79ba49e3fd3ac0e9f0bca618ba899aad1c157a",
+          "literal_address": 134793360
+        },
+        {
+          "address": 134793320,
+          "size": 2,
+          "sha256": "f2cc275cbf45d05c1882d9d54ccdd65bd6fca718cf2542c7077bd2d3d82f4067"
+        },
+        {
+          "address": 134793322,
+          "size": 4,
+          "sha256": "cbaa68e0e24c74593bb20fc9cfe75baac5c3406b25914563b1ad25a6d75473c3",
+          "target": 134704052
+        },
+        {
+          "address": 134793820,
+          "size": 2,
+          "sha256": "3f17bd4e2dadf8c68fa29afddb05faad4e66f536c028c272db9a93f315d2dbd2"
+        },
+        {
+          "address": 134793822,
+          "size": 2,
+          "sha256": "d2c89077212601c6302252524a933fc6c0fa6b9f7c9a2ef8de797e4837d8d67f"
+        },
+        {
+          "address": 134793824,
+          "size": 2,
+          "sha256": "1b0275bf871d17b2604643228b0b4d1f2373911157464a690d37470ba82ff61f",
+          "literal_address": 134793848
+        },
+        {
+          "address": 134793826,
+          "size": 2,
+          "sha256": "e593490a360ac8104e842141c4059603e0d90b79de99e5b6b6f05afe14945659"
+        },
+        {
+          "address": 134793828,
+          "size": 2,
+          "sha256": "3c7e9bc930dc93f01fa69985ef242d9f9e861f3c5355aa24ce5ef4b4b8a70ccb"
+        },
+        {
+          "address": 134793830,
+          "size": 2,
+          "sha256": "a80190875742dde022b60d2314d51bb17d5c9d010f207ada388541f1ee7b1979"
+        },
+        {
+          "address": 134793832,
+          "size": 2,
+          "sha256": "cae1ee347b61bbbf3fb9150be2d64d9b5453333932b5865886c14d6e0428eb05"
+        },
+        {
+          "address": 134793836,
+          "size": 2,
+          "sha256": "8509b81230019d2ad970d970f791dfbdc8caf54f5c594fcd327cef9feed206c1"
+        },
+        {
+          "address": 134793838,
+          "size": 2,
+          "sha256": "4a58005dfc4d62e6d2bc2ddd2f5adf9ed674cb355716944569ed0a76fc6dbcc0",
+          "literal_address": 134793852
+        },
+        {
+          "address": 134793840,
+          "size": 2,
+          "sha256": "d608331e137f89da2be163041680a59e98802987df817318f503266760202fe8"
+        },
+        {
+          "address": 134793842,
+          "size": 2,
+          "sha256": "e593490a360ac8104e842141c4059603e0d90b79de99e5b6b6f05afe14945659"
+        },
+        {
+          "address": 134793844,
+          "size": 2,
+          "sha256": "3520945f7f6751b5d548f15a98a3652e9a6c0caebddcfbb48af291a847927115"
+        },
+        {
+          "address": 134794234,
+          "size": 4,
+          "sha256": "c59e1b58aee01e4c441e213124bf99f5abadede8d49bb3fccf4af293957785b0",
+          "target": 134793728
+        },
+        {
+          "address": 134794238,
+          "size": 2,
+          "sha256": "61698f2f3a79782027200ff3b1df361aa231fc4b15e8389fcd87cc40e4e5d4bf",
+          "literal_address": 134794268
+        },
+        {
+          "address": 134794240,
+          "size": 2,
+          "sha256": "e593490a360ac8104e842141c4059603e0d90b79de99e5b6b6f05afe14945659"
+        },
+        {
+          "address": 134794242,
+          "size": 2,
+          "sha256": "cbda4b406920569650c6427b90cacdaa9fb79392c971441104c1b4b646028283"
+        },
+        {
+          "address": 134794244,
+          "size": 2,
+          "sha256": "2ee788372518190a6ab539cbb20331df1040f21846e3ba836c269aee907c894c"
+        },
+        {
+          "address": 134794246,
+          "size": 2,
+          "sha256": "b565eb4dafb52af6de9b360cad93a1210aefd7a12f307f08867a8c384383181c"
+        },
+        {
+          "address": 134794248,
+          "size": 2,
+          "sha256": "3145e7a95720a1db303f2198e796ea848f52b6079b5bf4f47d32fad69c2bce77"
+        },
+        {
+          "address": 134794250,
+          "size": 2,
+          "sha256": "19d70ae8c5a153fd605421d430f0acf4c5b479265f27b746c5bd0907f8e286e1"
+        },
+        {
+          "address": 134794252,
+          "size": 2,
+          "sha256": "ba45ab77f353aaf84faca956d410e320cf1f0afdee9568bb7a4cbe2a4d956547"
+        },
+        {
+          "address": 134794254,
+          "size": 2,
+          "sha256": "13b703597a7d1d3d1b3f85c7b69f03ca47bd97c47fa86613e1f654729d838305"
+        },
+        {
+          "address": 134794256,
+          "size": 4,
+          "sha256": "62ec5bb1ecee9ced5a753cb664b7938ea1d99a19c035a1503b9c8ef98b780ba1",
+          "target": 134679672
+        },
+        {
+          "address": 134794260,
+          "size": 2,
+          "sha256": "3d88a921f3763ca3f5b36a3eb658a80857a75a7e27a3c9379c43a57f5a388710",
+          "literal_address": 134794272
+        },
+        {
+          "address": 134794262,
+          "size": 4,
+          "sha256": "d4aa359ddaa8af91c500e633fe12634be759f714e9bfce88b2b914c6e49c5def",
+          "target": 134793780
+        },
+        {
+          "address": 134794332,
+          "size": 2,
+          "sha256": "45032905ccc19f93939ffc8a27669cc54ac144bd58ce513681f9320712ed9b2c"
+        },
+        {
+          "address": 134794334,
+          "size": 2,
+          "sha256": "892fc36052eb3e1c0f966e8ff1108f1e6d04a1952ab9264a6b237ac889621fc1",
+          "literal_address": 134794352
+        },
+        {
+          "address": 134794336,
+          "size": 2,
+          "sha256": "2155eeffb3394bd617f2fef030a86ca47a9ee32ca5ac0753739a66cb56819757"
+        },
+        {
+          "address": 134794338,
+          "size": 2,
+          "sha256": "3c7e9bc930dc93f01fa69985ef242d9f9e861f3c5355aa24ce5ef4b4b8a70ccb"
+        },
+        {
+          "address": 134794340,
+          "size": 2,
+          "sha256": "2ee788372518190a6ab539cbb20331df1040f21846e3ba836c269aee907c894c"
+        },
+        {
+          "address": 134794342,
+          "size": 2,
+          "sha256": "592ab56c873d61a1c18a3ddf7aaad566732fd92190f641e4accc79830d4af112"
+        },
+        {
+          "address": 134794344,
+          "size": 2,
+          "sha256": "1c972398125398a3665f212930758ae9518a8c948adbccca6753f11525730591"
+        },
+        {
+          "address": 134794346,
+          "size": 2,
+          "sha256": "1da08317da1ae95e272d4fdb751f28adba4510b34995b672f98d984f587edba4"
+        },
+        {
+          "address": 134794382,
+          "size": 4,
+          "sha256": "17c7b61694f2346bf0aef59c1962fbefd6409b5058cf9028fd20fb363c84fbf8",
+          "target": 134880620
+        },
+        {
+          "address": 134794386,
+          "size": 2,
+          "sha256": "40d88127d4d31a3891f41598eeed41174e5bc89b1eb9bbd66a8cbfc09956a3fd"
+        },
+        {
+          "address": 134794388,
+          "size": 2,
+          "sha256": "2ee788372518190a6ab539cbb20331df1040f21846e3ba836c269aee907c894c"
+        },
+        {
+          "address": 134794390,
+          "size": 2,
+          "sha256": "260fec2056d7e4bb1b8ca16084b7c0c53b0ef5519d515e02bbcb613273f1e4aa"
+        },
+        {
+          "address": 134794392,
+          "size": 2,
+          "sha256": "3d88a921f3763ca3f5b36a3eb658a80857a75a7e27a3c9379c43a57f5a388710",
+          "literal_address": 134794404
+        },
+        {
+          "address": 134794394,
+          "size": 4,
+          "sha256": "e7980d19053ff30c6f3f4baf11ef972d17f93e747566696642e560c98a668b9d",
+          "target": 134793780
+        },
+        {
+          "address": 134794488,
+          "size": 2,
+          "sha256": "0179fa50db01a670ea0d378b606928ed6b7a1f590c3fe52fcfe05a1936a84414"
+        },
+        {
+          "address": 134794490,
+          "size": 2,
+          "sha256": "1b0275bf871d17b2604643228b0b4d1f2373911157464a690d37470ba82ff61f",
+          "literal_address": 134794512
+        },
+        {
+          "address": 134794492,
+          "size": 2,
+          "sha256": "e593490a360ac8104e842141c4059603e0d90b79de99e5b6b6f05afe14945659"
+        },
+        {
+          "address": 134794494,
+          "size": 2,
+          "sha256": "3c7e9bc930dc93f01fa69985ef242d9f9e861f3c5355aa24ce5ef4b4b8a70ccb"
+        },
+        {
+          "address": 134794496,
+          "size": 2,
+          "sha256": "b89f6c155ea697da28d2033ff939c76048c6d8d281b32b9e077a252c3a0251e3"
+        },
+        {
+          "address": 134794498,
+          "size": 2,
+          "sha256": "cae1ee347b61bbbf3fb9150be2d64d9b5453333932b5865886c14d6e0428eb05"
+        },
+        {
+          "address": 134794502,
+          "size": 2,
+          "sha256": "8509b81230019d2ad970d970f791dfbdc8caf54f5c594fcd327cef9feed206c1"
+        },
+        {
+          "address": 134794504,
+          "size": 2,
+          "sha256": "973f548d52a4ac0fd213356a224c045718aafe934f0dc1ec269732a28f48f405",
+          "literal_address": 134794516
+        },
+        {
+          "address": 134794506,
+          "size": 2,
+          "sha256": "d608331e137f89da2be163041680a59e98802987df817318f503266760202fe8"
+        },
+        {
+          "address": 134794508,
+          "size": 2,
+          "sha256": "e593490a360ac8104e842141c4059603e0d90b79de99e5b6b6f05afe14945659"
+        },
+        {
+          "address": 134794510,
+          "size": 2,
+          "sha256": "3520945f7f6751b5d548f15a98a3652e9a6c0caebddcfbb48af291a847927115"
+        },
+        {
+          "address": 134794568,
+          "size": 2,
+          "sha256": "e916f3568f5f422b77334ed032cb53b37f6286b6ddfdf824bfc304c7d14aaa68",
+          "literal_address": 134794572
+        },
+        {
+          "address": 134794570,
+          "size": 2,
+          "sha256": "477db9ac7ca5efc12e37f882656b8fe5a363ffeb99b2e565a953d10c3c91ab21"
+        },
+        {
+          "address": 154634842,
+          "size": 4,
+          "sha256": "63c704168a0d700f888da47e8bf7db69141ce7c393ae4aa54b3264abb35f7c71",
+          "target": 154631928
+        },
+        {
+          "address": 154634846,
+          "size": 2,
+          "sha256": "40d88127d4d31a3891f41598eeed41174e5bc89b1eb9bbd66a8cbfc09956a3fd"
+        },
+        {
+          "address": 154634848,
+          "size": 2,
+          "sha256": "9f4917386c45e2c0da0d9b475f1a19cf2db1e929195c6a9f4966ca0d2105b196"
+        },
+        {
+          "address": 154634850,
+          "size": 2,
+          "sha256": "fbcec0e3fbcdd39616d13cd8aa1a4d6ae16246a27ed0300d0f2923e867846bf8",
+          "literal_address": 154635096
+        },
+        {
+          "address": 154634852,
+          "size": 2,
+          "sha256": "477db9ac7ca5efc12e37f882656b8fe5a363ffeb99b2e565a953d10c3c91ab21"
+        },
+        {
+          "address": 134794576,
+          "size": 2,
+          "sha256": "a20914fcced4a1d105d05cc58c579c0d03806a15bde7eaa33bd3817f80a86895"
+        },
+        {
+          "address": 134794578,
+          "size": 2,
+          "sha256": "70f7b4b842a576e748dd738d5bcc7d8bd1d42c9ab1ee62c360fa5fd5378eb92c"
+        },
+        {
+          "address": 134794580,
+          "size": 2,
+          "sha256": "cae1ee347b61bbbf3fb9150be2d64d9b5453333932b5865886c14d6e0428eb05"
+        },
+        {
+          "address": 134794584,
+          "size": 2,
+          "sha256": "8509b81230019d2ad970d970f791dfbdc8caf54f5c594fcd327cef9feed206c1"
+        },
+        {
+          "address": 134794586,
+          "size": 2,
+          "sha256": "973f548d52a4ac0fd213356a224c045718aafe934f0dc1ec269732a28f48f405",
+          "literal_address": 134794596
+        },
+        {
+          "address": 134794588,
+          "size": 2,
+          "sha256": "d608331e137f89da2be163041680a59e98802987df817318f503266760202fe8"
+        },
+        {
+          "address": 134794590,
+          "size": 2,
+          "sha256": "e593490a360ac8104e842141c4059603e0d90b79de99e5b6b6f05afe14945659"
+        },
+        {
+          "address": 134794592,
+          "size": 2,
+          "sha256": "3520945f7f6751b5d548f15a98a3652e9a6c0caebddcfbb48af291a847927115"
+        },
+        {
+          "address": 134795028,
+          "size": 4,
+          "sha256": "03b99888eade06a158c7e79f90b6b651fd5f93484af99332bb34eda1e1cf9d73",
+          "target": 134820660
+        },
+        {
+          "address": 134795032,
+          "size": 2,
+          "sha256": "40d88127d4d31a3891f41598eeed41174e5bc89b1eb9bbd66a8cbfc09956a3fd"
+        },
+        {
+          "address": 134795034,
+          "size": 2,
+          "sha256": "2ee788372518190a6ab539cbb20331df1040f21846e3ba836c269aee907c894c"
+        },
+        {
+          "address": 134795036,
+          "size": 2,
+          "sha256": "d5fb5bc17fbda49a48306a06f93d2d59ad65c9b3559eb3bf4fe8af17cffa33cf"
+        },
+        {
+          "address": 134795038,
+          "size": 2,
+          "sha256": "fccfc0b1b7c8cbbedb50e4b454cd5197f8e6edc1042f0c6f76c3a406a4a90e15",
+          "literal_address": 134795068
+        },
+        {
+          "address": 134795040,
+          "size": 2,
+          "sha256": "2155eeffb3394bd617f2fef030a86ca47a9ee32ca5ac0753739a66cb56819757"
+        },
+        {
+          "address": 134795042,
+          "size": 2,
+          "sha256": "ef2c54842d8931cd371b77e6a7dca176ae29237662a14fb977bb1f4c8504eb4c",
+          "literal_address": 134795072
+        },
+        {
+          "address": 134795044,
+          "size": 2,
+          "sha256": "d608331e137f89da2be163041680a59e98802987df817318f503266760202fe8"
+        },
+        {
+          "address": 134795046,
+          "size": 2,
+          "sha256": "61db0e75c411f6f9a471b1f97f729edd79e3586813d5302cee896b095689086a"
+        },
+        {
+          "address": 134795048,
+          "size": 4,
+          "sha256": "7bcaed3715af51d43628a06c2d1ce626b1231c4581d3b53820167c81511e28ac",
+          "target": 134839016
+        },
+        {
+          "address": 134795052,
+          "size": 2,
+          "sha256": "40d88127d4d31a3891f41598eeed41174e5bc89b1eb9bbd66a8cbfc09956a3fd"
+        },
+        {
+          "address": 134795054,
+          "size": 2,
+          "sha256": "2ee788372518190a6ab539cbb20331df1040f21846e3ba836c269aee907c894c"
+        },
+        {
+          "address": 134795056,
+          "size": 2,
+          "sha256": "f518fabe2a217cf67d8d74d3f59b7d244680d858606983cfbd3e0018b536c31b"
+        },
+        {
+          "address": 134795076,
+          "size": 2,
+          "sha256": "f71065f7a827657ed178db89bcc73a6d2dd455711cc726eab113a0b8fa5ea38d"
+        },
+        {
+          "address": 134795078,
+          "size": 4,
+          "sha256": "8d7218db1719fc996a09f872cf67145dcb32c43013fd6ad4bbf2019ae38e1da7",
+          "target": 134683248
+        },
+        {
+          "address": 134795082,
+          "size": 2,
+          "sha256": "3d88a921f3763ca3f5b36a3eb658a80857a75a7e27a3c9379c43a57f5a388710",
+          "literal_address": 134795092
+        },
+        {
+          "address": 134795084,
+          "size": 4,
+          "sha256": "078d6916f813fcb6f0e5ad14dd45c735093e8f42fdaa66634df58c0bd30fa99a",
+          "target": 134793780
+        },
+        {
+          "address": 134797252,
+          "size": 2,
+          "sha256": "45032905ccc19f93939ffc8a27669cc54ac144bd58ce513681f9320712ed9b2c"
+        },
+        {
+          "address": 134797254,
+          "size": 2,
+          "sha256": "d2c89077212601c6302252524a933fc6c0fa6b9f7c9a2ef8de797e4837d8d67f"
+        },
+        {
+          "address": 134797256,
+          "size": 2,
+          "sha256": "1b0275bf871d17b2604643228b0b4d1f2373911157464a690d37470ba82ff61f",
+          "literal_address": 134797280
+        },
+        {
+          "address": 134797258,
+          "size": 2,
+          "sha256": "e593490a360ac8104e842141c4059603e0d90b79de99e5b6b6f05afe14945659"
+        },
+        {
+          "address": 134797260,
+          "size": 2,
+          "sha256": "3c7e9bc930dc93f01fa69985ef242d9f9e861f3c5355aa24ce5ef4b4b8a70ccb"
+        },
+        {
+          "address": 134797262,
+          "size": 2,
+          "sha256": "10832139541e883e0ad964650e66b19513add71af34e0864d78ed9a4368da61e"
+        },
+        {
+          "address": 134797264,
+          "size": 2,
+          "sha256": "cae1ee347b61bbbf3fb9150be2d64d9b5453333932b5865886c14d6e0428eb05"
+        },
+        {
+          "address": 134797268,
+          "size": 2,
+          "sha256": "8509b81230019d2ad970d970f791dfbdc8caf54f5c594fcd327cef9feed206c1"
+        },
+        {
+          "address": 134797270,
+          "size": 2,
+          "sha256": "4a58005dfc4d62e6d2bc2ddd2f5adf9ed674cb355716944569ed0a76fc6dbcc0",
+          "literal_address": 134797284
+        },
+        {
+          "address": 134797272,
+          "size": 2,
+          "sha256": "d608331e137f89da2be163041680a59e98802987df817318f503266760202fe8"
+        },
+        {
+          "address": 134797274,
+          "size": 2,
+          "sha256": "e593490a360ac8104e842141c4059603e0d90b79de99e5b6b6f05afe14945659"
+        },
+        {
+          "address": 134797276,
+          "size": 2,
+          "sha256": "3520945f7f6751b5d548f15a98a3652e9a6c0caebddcfbb48af291a847927115"
+        },
+        {
+          "address": 134797308,
+          "size": 2,
+          "sha256": "686a4fc67533f40dc0dc1bf7d192a33ba808647f201630828d43a436c0e70db6"
+        },
+        {
+          "address": 134797310,
+          "size": 4,
+          "sha256": "5693cae1624097ff8e410a0d0ec043a9faac0ade37cd3c64874e5b4bf9ea733c",
+          "target": 134804960
+        },
+        {
+          "address": 134797314,
+          "size": 2,
+          "sha256": "29bde21c03c4355cf08152007f8cb7df97d778c61874027d3daa47a7afc8011c",
+          "literal_address": 134797352
+        }
+      ],
+      "typed_indirect_edges": [
+        {
+          "call": 134791402,
+          "callee": 134704052,
+          "load": 134791398,
+          "literal": 134791436,
+          "target": 134790617,
+          "kind": "callback_edge",
+          "from": 134791402,
+          "to": 134790616,
+          "literal_witness": {
+            "address": 134791436,
+            "size": 4,
+            "sha256": "2e68a84c25b8b1daa905973673cb4f02eb94ccb3a332b82314562195cab9feac",
+            "value": 134790617
+          }
+        },
+        {
+          "dispatch": 134790652,
+          "compare": 134790638,
+          "conditional": 134790640,
+          "index": 4,
+          "count": 5,
+          "table_literal": 134790660,
+          "table": 134790664,
+          "slot": 134790680,
+          "target": 134791356,
+          "kind": "switch_edge",
+          "from": 134790652,
+          "to": 134791356,
+          "table_literal_witness": {
+            "address": 134790660,
+            "size": 4,
+            "sha256": "fad31adca76c4fecae71a2134dddda8a245dd61e0c7e88475732c36fccf99aaf",
+            "value": 134790664
+          },
+          "slot_witness": {
+            "address": 134790680,
+            "size": 4,
+            "sha256": "f9ec862cc9754377dcae820413f23fb07ec3b36e7b17efb13e0b5b741d0c6585",
+            "value": 134791356
+          }
+        },
+        {
+          "call": 134793322,
+          "callee": 134704052,
+          "load": 134793318,
+          "literal": 134793360,
+          "target": 134793821,
+          "kind": "callback_edge",
+          "from": 134793322,
+          "to": 134793820,
+          "literal_witness": {
+            "address": 134793360,
+            "size": 4,
+            "sha256": "946bda5e0450d1afe97d564fc7f5dcce55b181ebc11525a50e33ac080f7556a2",
+            "value": 134793821
+          }
+        },
+        {
+          "dispatch": 134793844,
+          "compare": 134793830,
+          "conditional": 134793832,
+          "index": 10,
+          "count": 11,
+          "table_literal": 134793852,
+          "table": 134793856,
+          "slot": 134793896,
+          "target": 134794234,
+          "kind": "switch_edge",
+          "from": 134793844,
+          "to": 134794234,
+          "table_literal_witness": {
+            "address": 134793852,
+            "size": 4,
+            "sha256": "8b3fbc5751fb2646e2c8fd72f9645096f75f71ad2e1fcbb9169190fcf2bd9252",
+            "value": 134793856
+          },
+          "slot_witness": {
+            "address": 134793896,
+            "size": 4,
+            "sha256": "41808cc88fc6ef77ca5c13c34ecc8572818bf0bcce17f4407c3ee48583c01aba",
+            "value": 134794234
+          }
+        },
+        {
+          "call": 134794262,
+          "callee": 134793780,
+          "load": 134794260,
+          "literal": 134794272,
+          "target": 134794333,
+          "kind": "callback_edge",
+          "from": 134794262,
+          "to": 134794332,
+          "literal_witness": {
+            "address": 134794272,
+            "size": 4,
+            "sha256": "df568c9c7f099ca540250d748f4fdabab4fd815bdbdd00426f745e5bda770fc8",
+            "value": 134794333
+          }
+        },
+        {
+          "call": 134794394,
+          "callee": 134793780,
+          "load": 134794392,
+          "literal": 134794404,
+          "target": 134794489,
+          "kind": "callback_edge",
+          "from": 134794394,
+          "to": 134794488,
+          "literal_witness": {
+            "address": 134794404,
+            "size": 4,
+            "sha256": "7452b9b22f7e0d8a30fc7070ae23e6a9d8fa63ee381920adbe64a8ce2f0da95c",
+            "value": 134794489
+          }
+        },
+        {
+          "dispatch": 134794510,
+          "compare": 134794496,
+          "conditional": 134794498,
+          "index": 0,
+          "count": 12,
+          "table_literal": 134794516,
+          "table": 134794520,
+          "slot": 134794520,
+          "target": 134794568,
+          "kind": "switch_edge",
+          "from": 134794510,
+          "to": 134794568,
+          "table_literal_witness": {
+            "address": 134794516,
+            "size": 4,
+            "sha256": "bd48f4fea3ad0f2a2da07af03419ed388ee71b97243400f245576df48025bc98",
+            "value": 134794520
+          },
+          "slot_witness": {
+            "address": 134794520,
+            "size": 4,
+            "sha256": "64ac768ed0b62292ca38a6cc73cd819dfec51066a106492631b139831161dcb1",
+            "value": 134794568
+          }
+        },
+        {
+          "branch": 134794570,
+          "load": 134794568,
+          "literal": 134794572,
+          "target": 154634843,
+          "kind": "hook_edge",
+          "from": 134794570,
+          "to": 154634842,
+          "literal_witness": {
+            "address": 134794572,
+            "size": 4,
+            "sha256": "f194364d1fe08a6c4c5f69d43ea3e260e2f4557d8e18f17cb06d8ac5a8cd9264",
+            "value": 154634843
+          },
+          "register": 3
+        },
+        {
+          "branch": 154634852,
+          "load": 154634850,
+          "literal": 154635096,
+          "target": 134794577,
+          "kind": "hook_edge",
+          "from": 154634852,
+          "to": 134794576,
+          "literal_witness": {
+            "address": 154635096,
+            "size": 4,
+            "sha256": "4c58d216a2e662c6b0dd28bf4d90e85e08799426c9d2734a05932e124ecd3b21",
+            "value": 134794577
+          },
+          "register": 3
+        },
+        {
+          "dispatch": 134794592,
+          "compare": 134794578,
+          "conditional": 134794580,
+          "index": 10,
+          "count": 26,
+          "table_literal": 134794596,
+          "table": 134794600,
+          "slot": 134794640,
+          "target": 134795028,
+          "kind": "switch_edge",
+          "from": 134794592,
+          "to": 134795028,
+          "table_literal_witness": {
+            "address": 134794596,
+            "size": 4,
+            "sha256": "fb11bbd3d24e8261953c4e86216b9b143670460e2880bba773f6d6b68b675797",
+            "value": 134794600
+          },
+          "slot_witness": {
+            "address": 134794640,
+            "size": 4,
+            "sha256": "38a834412b147997a6d72375c30425bcf8a20d2745686c96273ca28f1f70fe22",
+            "value": 134795028
+          }
+        },
+        {
+          "call": 134795084,
+          "callee": 134793780,
+          "load": 134795082,
+          "literal": 134795092,
+          "target": 134797253,
+          "kind": "callback_edge",
+          "from": 134795084,
+          "to": 134797252,
+          "literal_witness": {
+            "address": 134795092,
+            "size": 4,
+            "sha256": "ef6323420f782150e02ff1ee34a4f1bfaf6e3cee89223b44fd5677fda1e35905",
+            "value": 134797253
+          }
+        },
+        {
+          "dispatch": 134797276,
+          "compare": 134797262,
+          "conditional": 134797264,
+          "index": 0,
+          "count": 5,
+          "table_literal": 134797284,
+          "table": 134797288,
+          "slot": 134797288,
+          "target": 134797308,
+          "kind": "switch_edge",
+          "from": 134797276,
+          "to": 134797308,
+          "table_literal_witness": {
+            "address": 134797284,
+            "size": 4,
+            "sha256": "8094be91211196128dfdb1aed7447978d27628e630345c6e2596de8279882253",
+            "value": 134797288
+          },
+          "slot_witness": {
+            "address": 134797288,
+            "size": 4,
+            "sha256": "91c0049fcd3fc77e5f37ed04becd30b00c2debf721c6da2f5f3f80db45470960",
+            "value": 134797308
+          }
+        }
+      ],
+      "instruction_window": {
+        "address": 134797310,
+        "size": 6,
+        "sha256": "a08c220ce4e51d3af5b612cb9ed5d0894e8e342199a5140b1a5a5ef7967ae01a"
+      },
+      "literal_pool_included": false,
+      "whole_function_range_classified": false
+    }
+  ],
+  "unknown_count": 1,
+  "full_story_reachability_claimed": false,
+  "current_candidate_acceptance_claimed": false,
+  "donor_leased": false
+}

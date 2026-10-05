@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "status": "PASS_HISTORICAL_T09_NUMERIC_CONSUMER_ONLY",
+  "historical_candidate": {
+    "size": 33554432,
+    "sha256": "17240646e2aa58be929bbb73c8176673f2c31d841733d7712ae2fab912f87e39"
+  },
+  "sources": {
+    "config/github_private_environment.json": {
+      "size": 5007,
+      "sha256": "33ff93eb2a1183ccdc3fea5c08b986271d75e9a8e349627072b36dd4c6abb56a",
+      "git_blob_sha": "32913e02fdb71f007d3c65801a9bb5d3f5a6c210"
+    },
+    "config/move_distribution_v4.json": {
+      "size": 4181,
+      "sha256": "170b313c414163d7fc1edab363866c164e547c1a8627005ca136c93e10561787",
+      "git_blob_sha": "21c9e42f655ff1c910778211f5e8a347ae0ed52d"
+    },
+    "config/species_surface.json": {
+      "size": 3565,
+      "sha256": "b490fcea065d0b1c176784139355312618061258d715e5785132b72908eee160",
+      "git_blob_sha": "fe52aa5d43f860a80f3b7b24681bf874ba9a8e28"
+    },
+    "scripts/build_species_surface.py": {
+      "size": 88276,
+      "sha256": "d032f6cbf3e38914e332899deed99168873d85746f3c340cdafc5bc5db791bad",
+      "git_blob_sha": "6bf37ee88f559ba76997dabb8a0c35127c088342"
+    },
+    "config/cfru_vega_minimal.h": {
+      "size": 3078,
+      "sha256": "cbf61ee395af2f61103c29c0bea4b6cddc15499a1e4c1706f2b1f72afeafe4f2",
+      "git_blob_sha": "dacccff5804eafd687773c77b880a9108ae45f3f"
+    },
+    "vendor/upstream/CFRU-JP/src/item.c": {
+      "size": 55431,
+      "sha256": "885c2ae9fa78d145eec1eca4333104b6fdd90a1d5afbbe191e0bc3398e740922",
+      "git_blob_sha": "ea5302c0dc2bb9fc92e665aab6015a27ff4275d7"
+    },
+    "vendor/upstream/CFRU-JP/include/pokemon.h": {
+      "size": 29476,
+      "sha256": "d75972c66e85835a3fc9c859cb695c033995ba6627ba1d44f577b35136356c78",
+      "git_blob_sha": "b18f2ee2a1517efa8aeb742daedac9e778d73d7a"
+    }
+  },
+  "historical_owner": {
+    "address": 167559648,
+    "size": 25936,
+    "sha256": "a44431aea3f197a030bd496482aa91b747f260d19822d8ab4eedc0a8363b441f"
+  },
+  "hit": {
+    "address": 167565224,
+    "size": 4,
+    "sha256": "aee5e311f93b083c1cbcb45af72d17f997942cde34f2d5fbf4268d446d10a19f"
+  },
+  "row": {
+    "address": 167565208,
+    "size": 20,
+    "sha256": "38b2c4cacd1358dc8f30068f80c17b819902a41e82b0f71c5bc58786c87fae11"
+  },
+  "root_roles": [
+    {
+      "address": 135402528,
+      "size": 4,
+      "sha256": "7c0cc09bc8cdb31ab4ae169080c2dab2a6578ed0684de52bb78e82c327f03cfb",
+      "role": "HISTORICAL_TUTOR_TABLE_ROOT",
+      "target": 167559648
+    },
+    {
+      "address": 152109956,
+      "size": 4,
+      "sha256": "f3bad4fc1771b4f8e4a7a9ea3ba1bc6ae16b6190a29777a885246649c7918ea9",
+      "role": "CONSUMER_ROOT_LITERAL",
+      "target": 135402528
+    }
+  ],
+  "consumer_roles": [
+    {
+      "address": 152109608,
+      "size": 104,
+      "sha256": "31b26047f1464073a48e85e19d2841593b4152ba5d7281ad0428cf2dadd18e7c",
+      "role": "NUMERIC_GATE_STRIDE_WORD0_WORD3_RETURN"
+    },
+    {
+      "address": 152109740,
+      "size": 44,
+      "sha256": "24ce4349632671fc2a19da6fa7a7f8496144b032d1f356417f3ad0f5599ec058",
+      "role": "NUMERIC_WORD1_WORD2_WORD4_RETURN"
+    },
+    {
+      "address": 152109952,
+      "size": 4,
+      "sha256": "4ffd826d832d6b947a91652f00684ec23bac47f75f06f509bf557de19312950b",
+      "role": "SPECIES_READER_LITERAL"
+    },
+    {
+      "address": 152116346,
+      "size": 2,
+      "sha256": "55112ca377cb9d32aedcf68674a5cd6e8512783956b7198b276fc762a02ad442",
+      "role": "SPECIES_READER_REGISTER_VENEER"
+    }
+  ],
+  "semantics": {
+    "entry": 152109608,
+    "regular_id_count": 152,
+    "regular_id_min": 0,
+    "regular_id_max": 151,
+    "excluded_special_id_min": 152,
+    "excluded_special_id_max": 255,
+    "species_result_mask_bits": 16,
+    "species_index": 278,
+    "stride_bytes": 20,
+    "word_count": 5,
+    "entry_extent_bytes": 20,
+    "word_offsets": [
+      0,
+      4,
+      8,
+      12,
+      16
+    ],
+    "target_word_index": 4,
+    "target_tutor_id_min": 128,
+    "target_tutor_id_max": 151,
+    "read_role": "LE_U32_NUMERIC_COMPATIBILITY_MASK",
+    "result_role": "MASK_AND_BIT_TO_BOOL",
+    "code_pointer_from_table": false,
+    "branch_pointer_from_table": false,
+    "stores_from_table": false,
+    "current_runtime_reachability_claimed": false,
+    "full_1621_species_historical_reader_safety_claimed": false,
+    "indirect_reference_completeness_claimed": false
+  },
+  "historical_typing_only": true,
+  "current_candidate_accepted": false,
+  "donor_eligible": false,
+  "rom_reconstructions": 0,
+  "rom_writes": 0,
+  "native_processes": 0
+}
