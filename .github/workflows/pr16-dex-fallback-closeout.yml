@@ -1,12 +1,14 @@
-name: pr16-dex-fallback-record
+name: pr16-dex-fallback-closeout
 on:
-  workflow_dispatch:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-dex-fallback-closeout.yml]
 permissions:
   contents: write
   actions: read
   pull-requests: read
 concurrency:
-  group: pr16-dex-fallback-record
+  group: pr16-dex-fallback-closeout
   cancel-in-progress: false
 defaults:
   run:
@@ -25,11 +27,11 @@ jobs:
         with:
           fetch-depth: 24
       - name: Exact new source guard
-        run: python3 -B scripts/pr16_dex_fallback_record.py source_guard
-      - name: Record fallback QOL source and bounded UI originals
-        run: python3 -B scripts/pr16_dex_fallback_record.py record
+        run: python3 -B scripts/pr16_dex_fallback_closeout.py source_guard
+      - name: Close terminal record and verify complete committed source snapshots
+        run: python3 -B scripts/pr16_dex_fallback_closeout.py close
       - name: Scoped final index and fixed resume
-        run: python3 -B scripts/pr16_dex_fallback_record.py guard
+        run: python3 -B scripts/pr16_dex_fallback_closeout.py guard
       - name: Lightweight task graph
         run: python3 -B scripts/validate_task_graph.py --check
       - name: Commit and nonforce push same branch
@@ -38,20 +40,19 @@ jobs:
           test "$(git ls-remote origin refs/heads/codex/modernization-followup-20260908 | cut -f1)" = "$GITHUB_SHA"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'USER-20261005-DEX-FALLBACK-QOL: record bounded fallback QOL failure and cold'
+          git commit -m 'USER-20261005-DEX-FALLBACK-QOL: close fallback QOL notification records'
           git push origin HEAD:codex/modernization-followup-20260908
           test "$(git ls-remote origin refs/heads/codex/modernization-followup-20260908 | cut -f1)" = "$(git rev-parse HEAD)"
       - name: Exact committed text readback
-        run: python3 -B scripts/pr16_dex_fallback_record.py snapshot
+        run: python3 -B scripts/pr16_dex_fallback_closeout.py snapshot
       - name: Publish only validated text receipt
         id: publication_guard
         if: always()
-        run: python3 -B scripts/pr16_dex_fallback_record.py export
+        run: python3 -B scripts/pr16_dex_fallback_closeout.py export
       - uses: actions/upload-artifact@v4
         if: ${{ always() && steps.publication_guard.outcome == 'success' }}
         with:
-          name: pr16-dex-fallback-record-receipts
-          path: public-dex-fallback-record
+          name: pr16-dex-fallback-closeout-receipts
+          path: public-dex-fallback-closeout
           retention-days: 90
           if-no-files-found: error
-# Keep screenshots in verified Actions originals; Git evidence is text only.
