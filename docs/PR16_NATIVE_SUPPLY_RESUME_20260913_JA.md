@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-HOF実callerの誤成功音を抑止し、既存窓のエラー→新規A→元演出を候補限定受入。旧SaveFailed/wipe/自動再保存0。同sessionのstat10は0→1を一度だけ保持（主故障coldは0、外側故障/正常coldは1）。payload8192byteは演出遷移まで、初回Flash program時点以降の拡張20248byteは全保持。9byte UI-only入口/主保存故障・sector31末尾故障・正常/各cold。初回mode3原子性と全caller共通SaveFailed、全mode/残consumerは未完。主故障cold101のQOL ledger差は前Union/Mysteryと同一の既存fallback差で、全cold owner復元を受入しない。
+選択済み片bank fallback255でQOL台帳が全zeroとなる不具合を、v2/idle durable2048byteの非破壊復元で修正。正常cold1と故障コピーcold255が物理1a34…の全byteへ一致し、同地点・party・Bag、追加Save0。破損台帳はglobal2/MDX無効でfield遮断し、エラーUI到達後も選択counter101を保持（intro/title中間のcounter0と区別）。候補d773a123、296byte、新115owner、旧114中113全byte保持＋Mirage参照4byteのみ。全cold owner・世代結合/sector31原子性は未完。
 
-**次: 正式ROM/Save101を保持。HOFの局所通知/旧SaveFailed回避を9byte UI-onlyと各coldで限定受入。次は初回mode3 stock委譲の保存世代/28・29とmainの整合、mode4/5 erase・default/LinkFull等全mode、未対応caller共通SaveFailedとstale selector authority wipeを安全契約へ分離。主保存故障cold時のQOL ledger差も既存fallback契約として解明。早期sector31故障/単bank原子性、残typedconsumerも未完。必要証拠が揃うまで正式切替とtrainer131後半を保留し、owner承認不足と誤認しない。最終はシオウPokecenter通常回復/Save/独立coldContinue、雑魚毎Saveなし。**
+**次: 正式ROM/Save101を保持。最新d773a123/115ownerを基準に、初回mode3のHOF sector28/29とmain保存世代の整合を次に実装・検証する。全mode4/5/default/LinkFull、未対応caller共通SaveFailedとstale authority wipe、早期sector31故障/単bank原子性、残typedconsumerは未完。fallback255はQOL v2 idle台帳のみ限定復元で、Collection/Codex/Circus等の全cold owner復元と世代結合を受入していない。正式切替とtrainer131後半は検証未完で保留（承認不足ではない）。最終はシオウ通常回復/Save/独立cold Continue、雑魚ごとのSaveなし。**
 
 通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `8cf485c88fcd7fe961852f449c1cd51ffa56d6ed`。
-HOF局所通知/9byte入口とcoldの候補受入記録source。正式ROM/Save101不変。
+証拠のsource HEAD: `4ca18a66618571137d120091a45607937fcb6e67`。
+idle fallback QOLのみの限定受入記録source。正式ROM/Save101は不変。
 
 ## 最短の再開手順
 
@@ -25,9 +25,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `docs/PR16_DEX_FALLBACK_QOL_JA.md`
+- `content/modernization/pr16_dex_fallback_checkpoint.json`
 - `docs/PR16_DEX_HOF_FAILURE_JA.md`
-- `content/modernization/pr16_dex_hof_checkpoint.json`
-- `docs/PR16_DEX_UNION_FAILURE_JA.md`
 - `docs/PR16_DEX_OUTER_QOL_JA.md`
 - `docs/PR16_DEX_CONSUMERS_JA.md`
 
@@ -443,6 +443,7 @@ P08ゲート:
 - Mystery Gift隔離run37243703968 menu96/gate720、UI run37244619223 main故障/outer末尾故障/正常と各coldの6process15画像を無変更再走しない。11byte UI fixtureであり通信/受信/削除/自然入場やHOF/全非STARTへ昇格しない。旧37244205003のnative1/setup後template誤oracle停止はfailure保持。
 - 旧Mystery3bb4c51b配置受入はscheduler衝突で撤回。旧余り1462/1332を空き扱いせずcurrent subowner計算を使用。後継0180c180は前段1851条件の原本/未変更1755条件再利用、formatter168条件のstep成功/raw欠落、UI21/11byte由来12process30画面の変更影響のみ受入。formatter168条件はstep成功/raw欠落を区別し重複native再走0。全mode/自然通信へ昇格しない。
 - HOF40ad8237候補の局所通知は隔離2880条件＋UI-only9byte/3条件/各cold6process15画像。旧SaveFailed回避と初回stat10一度・payload保全まで。初回mode3原子性/全mode/自然殿堂入りへ広げず、同じnativeを影響なしに再走しない。
+- d773a123のfallback QOLはhost327907/ARM508と正常・片bank故障・破損cold計3成功caseで限定受入。初回coldの成功2原本を再利用し観測器だけの陰性1を修正。変更影響なしに再走せず、全cold owner/初回HOF原子性へ拡大しない。
 
 ## 次セッションへ残す更新手順
 
@@ -472,6 +473,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-HOF実callerの誤成功音を抑止し、既存窓のエラー→新規A→元演出を候補限定受入。旧SaveFailed/wipe/自動再保存0。同sessionのstat10は0→1を一度だけ保持（主故障coldは0、外側故障/正常coldは1）。payload8192byteは演出遷移まで、初回Flash program時点以降の拡張20248byteは全保持。9byte UI-only入口/主保存故障・sector31末尾故障・正常/各cold。初回mode3原子性と全caller共通SaveFailed、全mode/残consumerは未完。主故障cold101のQOL ledger差は前Union/Mysteryと同一の既存fallback差で、全cold owner復元を受入しない。
+選択済み片bank fallback255でQOL台帳が全zeroとなる不具合を、v2/idle durable2048byteの非破壊復元で修正。正常cold1と故障コピーcold255が物理1a34…の全byteへ一致し、同地点・party・Bag、追加Save0。破損台帳はglobal2/MDX無効でfield遮断し、エラーUI到達後も選択counter101を保持（intro/title中間のcounter0と区別）。候補d773a123、296byte、新115owner、旧114中113全byte保持＋Mirage参照4byteのみ。全cold owner・世代結合/sector31原子性は未完。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

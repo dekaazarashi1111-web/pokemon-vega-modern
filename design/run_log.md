@@ -12848,3 +12848,18 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Boundary: HOF入口9byteは自然リーグ到達や正規transitionではない。初回mode3原子性/共通残caller・SaveFailed scratch/authority wipe、全mode/残typed consumer未完。主故障cold101のQOL ledger差は前Union/Mystery同caseと同一で、全coldowner保持を受入しない。早期sector31故障/原子性未受入。trainer131後半0。一般CI既知QOL不一致/Stage79cache/旧9月18日queueを別扱い。
 - Commit: closeout source=1248217fab8b6387fcf9cd171cba0862f112f919; 同branch非force push。
 - Network: 同repoActionsと既存text receiptのみ。ROM/入力save/runtime/runner/credentials追加公開0。
+
+## 2026-10-05T03:56:23.563650+00:00
+- Timestamp: 2026-10-05T03:56:23.563650+00:00
+- Task: USER-20261005-DEX-FALLBACK-QOL / 選択済みfallbackのidle台帳復元
+- Version: dex-fallback-qol-v1
+- Status: DONE（idle QOL台帳の候補限定受入）
+- Summary: 選択済み片bank fallback255でQOL台帳が全zeroとなる不具合を、v2/idle durable2048byteの非破壊復元で修正。正常cold1と故障コピーcold255が物理1a34…の全byteへ一致し、同地点・party・Bag、追加Save0。破損台帳はglobal2/MDX無効でfield遮断し、エラーUI到達後も選択counter101を保持（intro/title中間のcounter0と区別）。候補d773a123、296byte、新115owner、旧114中113全byte保持＋Mirage参照4byteのみ。全cold owner・世代結合/sector31原子性は未完。
+- Files changed: fallback C契約/ARM/generator/typed lease/isolated/cold/tests/workflows、専用CP/evidence、固定MDJSONと両ログ。
+- Verify: host327907条件、実ARM508条件/1process/run37258786462、正常/片bank故障/破損cold3caseの原本全文と3pixel全SHA。新296byte、旧114ownerを全部継承して113全byte不変/1owner参照4byteのみ、新115owner/overlap0/全ROM逆変換。30literal＋2BL/26root/未分類0。
+- Native: 受入raw4（隔離1＋cold3）、診断2（field用Bag観測の不適合、collectorの旧counter0期待）＋intro/title中の内部拒否のみの中間2、総8。初回C容量guardは配置前/native0、300byteはcompile-only。再記録ARM0/native0。正常2coldは原本再利用し再走0。
+- Fixture: 正式Save101の作業コピーだけに旧bank署名1byte、不正台帳試験はさらにCRC1byte。作業コピーの選択bank101全byte（party/保存MDXを含む）は不変。RAMfixture0/register0/7barrier、FlashRTC/ROM不変、追加Save0。正式原本4copy不変。
+- Boundary: 255は1へ変えない。列挙済みの未完journalは入口で拒否。v1/empty/CRC不正はInitNewせずglobal2/MDX無効化。破損終端も選択counter101だがエラーUI/global2/field不可。intro/title中間counter0と混同しない。QOL世代はmain世代と非結合、全cold owner/early31/HOF原子性/全mode未完。
+- Next: 正式ROM/Save101を保持。最新d773a123/115ownerを基準に、初回mode3のHOF sector28/29とmain保存世代の整合を次に実装・検証する。全mode4/5/default/LinkFull、未対応caller共通SaveFailedとstale authority wipe、早期sector31故障/単bank原子性、残typedconsumerは未完。fallback255はQOL v2 idle台帳のみ限定復元で、Collection/Codex/Circus等の全cold owner復元と世代結合を受入していない。正式切替とtrainer131後半は検証未完で保留（承認不足ではない）。最終はシオウ通常回復/Save/独立cold Continue、雑魚ごとのSaveなし。
+- Commit: record source=4ca18a66618571137d120091a45607937fcb6e67; 同branch非force push。
+- Network: 同repo Actions/既存入力だけ。公開source/address-size-SHA/text/screens、ROM断片/rawhex/ROM/runtime/入力save/runner/credentials追加公開0。

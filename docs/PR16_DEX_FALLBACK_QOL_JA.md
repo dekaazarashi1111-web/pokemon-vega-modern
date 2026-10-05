@@ -10,10 +10,16 @@
 
 ## 受入境界
 
-現時点は新host契約とARM容量のcompile-only段階。配置、native、cold復元は未受入。既存114ownerと実codec/scheduler sectionを保持し、新spanの全見かけ参照を型付きrootまで分類してから配置する。
+当初は新host契約とARM容量のcompile-only段階で、配置、native、cold復元は未受入だった。現在の限定受入は末尾を参照。既存114ownerと実codec/scheduler sectionを保持し、新spanの全見かけ参照を型付きrootまで分類してから配置する。
 
 QOL ledgerの独自generationはmain SaveCounterと同じでない。sector31にはmain世代bindingがないため、今回を全owner復元、cross-store原子性、初回HOF mode3整合、全mode/共通SaveFailed、正式baseline切替に広げない。正式ROM/Save101と受入済み原本は不変。
 
 ## 新規隔離工程
 
 初回Cは容量guardで配置前に停止しnative0。手書きARM300byte版はcompile-only全10step成功（run37258072804）、同義DUE bit判定の4byte短縮で296byteへ限定した。新host327907条件と30literal/2BL/26rootの型付きleaseを接続し、隔離508条件へ進む。生native/画面未確認を受入へ昇格しない。
+
+## 候補限定受入
+
+選択済み片bank fallback255でQOL台帳が全zeroとなる不具合を、v2/idle durable2048byteの非破壊復元で修正。正常cold1と故障コピーcold255が物理1a34…の全byteへ一致し、同地点・party・Bag、追加Save0。破損台帳はglobal2/MDX無効でfield遮断し、エラーUI到達後も選択counter101を保持（intro/title中間のcounter0と区別）。候補d773a123、296byte、新115owner、旧114中113全byte保持＋Mirage参照4byteのみ。全cold owner・世代結合/sector31原子性は未完。
+
+隔離run37258786462は508条件/1process、host327907条件。cold初回run37259333246の成功2processは全trace/pixel原本を保持し、破損エラー画面にfield inventory observerを適用した1processだけ診断。中間run37259756434/37260278584はintro/title中の内部拒否だけを確認し、後継run37261066891はStart後の画面まで1processだけを追加。自然HOF/実Flash故障生成の再走はしていない。
