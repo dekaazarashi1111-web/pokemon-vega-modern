@@ -10593,3 +10593,18 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 残145件の実root/consumerを閉じる。partyはallocator返却域と同一epoch、残graphics/setup helper、ResetTasks→state20のtask容量、selector入力producer、IRQ非干渉を証明する。Leerは実move入口と残prefix opcode0/10/40/25およびbattle/tile/palette初期化を閉じる。新全setup/局所callee/129有限spriteモデルは保存原本を再利用。部分leaseは最大アクセス幅・間接参照・対象退役・owner移管が揃う場合だけ採用。単一controller6528byteの容量確保後、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL、全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/0804B85C退避前Freeを接続。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。
 - Commit: closeout source=02452a9bfc0819b4102ba712a416f614bc73a3ce; 同branch非force。
 - Network: 同repoActions/text原本のみ。ROM断片/rawhex/ROM/save/runtime/runner/credentials追加公開0。
+
+## 2026-10-05T21:56:21.064530+00:00
+- Timestamp: 2026-10-05T21:56:21.064530+00:00
+- Task: USER-20261005-DEX-HOF-RUNTIME-CLOSURE / 実consumer型と最小寿命境界・容量保持
+- Version: hof-runtime-closure-v1
+- Status: STOPPED（実consumer型3件を追加、残root/donor/実controller未完）
+- Summary: 現0641の旧egg874参照へReadMail・Leer・QuestLogの実consumer型3件を追加し、732分類/未知142。新237試験と全115actual ownerを照合。ReadMailの必要寿命はcallbackのmainコピーまで、Leerは実前置commandから同slotへ、QuestLogは実event40の同期table dispatchへ束縛。自然到達・全epoch/IRQ保証と型分類を分離。全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。
+- Files changed: 新callback verifier/chain/capacity/拒否unit/Actions/guide/checkpoint/最小証拠、固定MDJSON、両ログ。
+- Verify: 新unit237、現candidate全SHA・115actual owner・874hit、全8親delta/全110changes/全100witness/旧729と残unknown全field保持、133全song model/50assetと新typed窓の役割交差。旧全ROMscan/native/heap/歴史再生成0。
+- Capacity: 未知参照はアクセス幅未証明なら全donor保護。点target楽観空隙を安全容量へ昇格しない。global余白511とsave内部804は既存owner/subownerを保持した上限で、新leaseなし。Ccontroller既測定単一text6528/align4と比較。間接参照/対象退役完全性も別必須gate。
+- Publication: 619原本と全親chainは参照保持、複製なし。独立measurementと全text size/SHA/LF、closed success artifact、hidden/symlink/未知file拒否。旧独立最終song/battle/Surfレビュー未実施を継承し、拒否操作の別経路再実行なし。
+- Boundary: 現0641/115owner/52saveowner/残804、正式ROM/Save101不変。heap13352を保存退避53300入口へ跨いで保持しない。
+- Next: 残142件は実consumer型を閉じる最小rootを優先する。MoveTutorは登録task/入力条件とcallee境界を、残QuestLog近傍は別15state heap/window taskとして調べる。ReadMail copy前までの同epoch・opaque helper/非同期非干渉は型分類とは別のruntime保証として未完を保持。Leerの明示environment契約は普遍battle/IRQ保証へ昇格しない。保存済新allocator/17task/連続prefix/同期event型証拠を再利用する。部分leaseは最大access・間接参照・対象退役・owner移管が揃う場合だけ採用。単一controller6528byteの容量確保後、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL、全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/0804B85C退避前Freeを接続。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。
+- Commit: source=a060cd5539cf633c3abe99761b6844c3c45ccdf7; 同branch非force。
+- Network: 同repoActions/既存入力/固定source。公開source・最小address-size-SHA・textのみ、ROM断片/rawhex/ROM/inputsave/runtime/runner/credentials追加公開0。

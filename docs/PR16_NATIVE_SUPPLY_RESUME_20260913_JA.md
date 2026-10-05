@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-現0641でReadMail/MoveTutorのconstructor・全23setup状態・実menu/Tutor hookと条件付きcallee非干渉を新224試験で検証。分類は729/未知145を維持。sprite全64slotの同期callbackとcommand経路も有限入力条件だけで確認し、完全根未閉鎖の分類を増やさない。全115ownerを照合。allocation同一寿命・残setup helper・task/IRQ非干渉は未閉鎖で、全egg15118byte保護/安全容量0。正式ROM/Save101/donor不変。
+現0641の旧egg874参照へReadMail・Leer・QuestLogの実consumer型3件を追加し、732分類/未知142。新237試験と全115actual ownerを照合。ReadMailの必要寿命はcallbackのmainコピーまで、Leerは実前置commandから同slotへ、QuestLogは実event40の同期table dispatchへ束縛。自然到達・全epoch/IRQ保証と型分類を分離。全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。
 
-**次: 残145件の実root/consumerを閉じる。partyはallocator返却域と同一epoch、残graphics/setup helper、ResetTasks→state20のtask容量、selector入力producer、IRQ非干渉を証明する。Leerは実move入口と残prefix opcode0/10/40/25およびbattle/tile/palette初期化を閉じる。新全setup/局所callee/129有限spriteモデルは保存原本を再利用。部分leaseは最大アクセス幅・間接参照・対象退役・owner移管が揃う場合だけ採用。単一controller6528byteの容量確保後、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL、全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/0804B85C退避前Freeを接続。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。**
+**次: 残142件は実consumer型を閉じる最小rootを優先する。MoveTutorは登録task/入力条件とcallee境界を、残QuestLog近傍は別15state heap/window taskとして調べる。ReadMail copy前までの同epoch・opaque helper/非同期非干渉は型分類とは別のruntime保証として未完を保持。Leerの明示environment契約は普遍battle/IRQ保証へ昇格しない。保存済新allocator/17task/連続prefix/同期event型証拠を再利用する。部分leaseは最大access・間接参照・対象退役・owner移管が揃う場合だけ採用。単一controller6528byteの容量確保後、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL、全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/0804B85C退避前Freeを接続。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。**
 
 通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `7dc8201fe5ab718e5a9290a4e53ab7a59096b94c`。
-全729親証拠保持、新setup/条件付きcallee/sprite局所寿命の測定source。全root/donor/本番配線未受入。
+証拠のsource HEAD: `a060cd5539cf633c3abe99761b6844c3c45ccdf7`。
+全729親証拠保持、新実dispatch/条件付き型consumerの測定source。残root/donor/本番配線未受入。
 
 ## 最短の再開手順
 
@@ -25,8 +25,8 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_DEX_HOF_CALLBACK_LIFETIMES_JA.md`
-- `content/modernization/pr16_dex_hof_callback_lifetimes_checkpoint.json`
+- `docs/PR16_DEX_HOF_RUNTIME_CLOSURE_JA.md`
+- `content/modernization/pr16_dex_hof_runtime_closure_checkpoint.json`
 - `content/modernization/pr16_dex_hof_typed_recovery_evidence/egg-typed-audit.json`
 - `content/modernization/pr16_dex_hof_reference_evidence/reference-delta.json`
 - `content/modernization/pr16_dex_hof_reference_gaps_evidence/reference-chain.json`
@@ -40,12 +40,14 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 - `content/modernization/pr16_dex_hof_controller_space_checkpoint.json`
 - `content/modernization/pr16_dex_hof_callback_references_evidence/reference-chain.json`
 - `content/modernization/pr16_dex_hof_callback_references_checkpoint.json`
+- `content/modernization/pr16_dex_hof_callback_lifetimes_evidence/reference-chain.json`
+- `content/modernization/pr16_dex_hof_callback_lifetimes_checkpoint.json`
 - `scripts/pr16_dex_hof_callback_capacity.py`
 - `scripts/pr16_dex_hof_partial_space.py`
 - `content/modernization/pr16_dex_hof_generation_writer_checkpoint.json`
-- `content/modernization/pr16_dex_hof_lifetime_setup_review.json`
-- `content/modernization/pr16_dex_hof_lifetime_menu_review.json`
-- `content/modernization/pr16_dex_hof_lifetime_root_review.json`
+- `content/modernization/pr16_dex_hof_runtime_party_review.json`
+- `content/modernization/pr16_dex_hof_runtime_sprite_review.json`
+- `content/modernization/pr16_dex_hof_runtime_direct_review.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -478,6 +480,7 @@ P08ゲート:
 - 現0641の旧egg874参照へ新2件を追加し、728分類/146未知（owner内0）。新201試験と全115actual ownerを照合。部分leaseは未知pointer最大アクセス範囲未証明のため15118byte全域保護/安全容量0。既知global511＋save804の容量上限1315byteもcontroller6528byte未満。donor/正式ROM/Save101不変。全親changes25/17/33/29/3、witness22/16/33/23/3、133曲/50assetを保持。未知word size4を参照先のread幅へ誤用しない。無影響heap/native再走禁止。
 - 現0641の旧egg874参照へ新1件を追加し、729分類/145未知（owner内0）。新218試験と全115actual ownerを照合。部分leaseは未知pointer最大アクセス範囲未証明のため15118byte全域保護/安全容量0。既知global511＋save804の容量上限1315byteもcontroller6528byte未満。donor/正式ROM/Save101不変。ReadMail/MoveTutorの2局所callbackはroot/全setup/lifetime未閉鎖として0件の診断を記録し未知維持。タイトル560命令/60unitの有限root。party局所2consumerの不足は残す。全親changes25/17/33/29/3/2、witness22/16/33/23/3/2、133曲/50assetを保持。未知word size4を参照先のread幅へ誤用しない。無影響heap/native再走禁止。
 - 現0641でReadMail/MoveTutorのconstructor・全23setup状態・実menu/Tutor hookと条件付きcallee非干渉を新224試験で検証。分類は729/未知145を維持。sprite全64slotの同期callbackとcommand経路も有限入力条件だけで確認し、完全根未閉鎖の分類を増やさない。全115ownerを照合。allocation同一寿命・残setup helper・task/IRQ非干渉は未閉鎖で、全egg15118byte保護/安全容量0。正式ROM/Save101/donor不変。新scopeの実根/全setup診断を以前の局所証拠と分離。未閉鎖lifetimeを採用せずunknownを保持。全親changes25/17/33/29/3/2/1、witness22/16/33/23/3/2/1、133曲/50assetを保持。未知word size4を参照先のread幅へ誤用しない。無影響heap/native再走禁止。
+- 現0641の旧egg874参照へReadMail・Leer・QuestLogの実consumer型3件を追加し、732分類/未知142。新237試験と全115actual ownerを照合。ReadMailの必要寿命はcallbackのmainコピーまで、Leerは実前置commandから同slotへ、QuestLogは実event40の同期table dispatchへ束縛。自然到達・全epoch/IRQ保証と型分類を分離。全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。新scopeの条件付き実consumer型を以前の未採用診断と分離。普遍runtime寿命保証や自然到達を未完のまま保持。全親changes25/17/33/29/3/2/1/0、witness22/16/33/23/3/2/1/0、133曲/50assetを保持。未知word size4を参照先のread幅へ誤用しない。無影響heap/native再走禁止。
 
 ## 次セッションへ残す更新手順
 
@@ -507,6 +510,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-現0641でReadMail/MoveTutorのconstructor・全23setup状態・実menu/Tutor hookと条件付きcallee非干渉を新224試験で検証。分類は729/未知145を維持。sprite全64slotの同期callbackとcommand経路も有限入力条件だけで確認し、完全根未閉鎖の分類を増やさない。全115ownerを照合。allocation同一寿命・残setup helper・task/IRQ非干渉は未閉鎖で、全egg15118byte保護/安全容量0。正式ROM/Save101/donor不変。
+現0641の旧egg874参照へReadMail・Leer・QuestLogの実consumer型3件を追加し、732分類/未知142。新237試験と全115actual ownerを照合。ReadMailの必要寿命はcallbackのmainコピーまで、Leerは実前置commandから同slotへ、QuestLogは実event40の同期table dispatchへ束縛。自然到達・全epoch/IRQ保証と型分類を分離。全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
