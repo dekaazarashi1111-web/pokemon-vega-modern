@@ -10474,3 +10474,18 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 残151件の実root/consumerを閉じる。全unknown0だけではdonor不可。間接参照・旧egg退役完全性を証明して明示移管し、Ccontroller実配置、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL、全mode/早期31/species9bit、heap-ready/同期非再入/全出口Freeを閉じる。その後正式候補切替→trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。
 - Commit: closeout source=3e186b350bdd3d45ee24e5066d8a0239163bbade; 同branch非force。
 - Network: 同repoActions/text原本のみ。ROM断片/rawhex/ROM/save/runtime/runner/credentials追加公開0。
+
+## 2026-10-05T16:35:00.910388+00:00
+- Timestamp: 2026-10-05T16:35:00.910388+00:00
+- Task: USER-20261005-DEX-HOF-CONSUMER-REFERENCES / 723親保持とT09実歴史根
+- Version: hof-consumer-reference-chain-v1
+- Status: STOPPED（新3分類・owner内未知0、donor/本番controller未完）
+- Summary: 現0641の旧egg874参照へ実root/consumerから新3件を分類し、726分類/148未知（owner内0/外148）。新193試験、全115actual owner/874hit、旧723全行・旧25/17/33/29 changesと22/16/33/23 witnessesを保持。donor/正式ROM/Save101不変。
+- Files changed: 新classifier/拒否tests/source review/Actions/guide/CP/minimal chain、独立歴史入力証拠、固定MDJSON、両append-onlyログ。
+- Verify: 新unit=193（別run歴史16を再利用）、全candidate/115actual owner/874hit全SHA、固定source全blob。旧723と残unknown全field、旧25+17+33+29変化と22+16+33+23witness全byteを保持。音声133曲のroleと50過去sample witnessを新typed窓に照合。旧全ROMscan/native/heap0。旧最終song/battle/Surfの独立再レビューは未実施を継承、通常unitと現候補の機械検査に受入範囲を限定。
+- Earlier failure: run37341260412は変更集合宣言へ未変更history4sourceを含めてguardで停止、ARM/ROM再構成/native0。保全検査を維持して変更集合を修正し、失敗は成功へ改作しない。
+- Boundary: 旧formalは事前reviewのみ。現0641で全owner/窓再束縛。有限型分類をstory到達/実音声再生/退役不在へ昇格しない。
+- Publication: 619原本4.1MB/644delta149772byte/661chain95619byte/694chain71138byte/723chain134951byteは不変参照。新chain 28406byteを独立measurement全SHAとclosed schemaで検査。producer/guard/upload/record path一致・非空・完全10text/receipt必須、hidden/symlink/未知file拒否。
+- Next: 残148件の実root/consumerを閉じる。owner内未知0でもdonor不可。全unknown0だけではdonor不可。間接参照・旧egg退役完全性を証明して明示移管し、Ccontroller実配置、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL、全mode/早期31/species9bit、heap-ready/同期非再入/全出口Freeを閉じる。その後正式候補切替→trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。
+- Commit: source=c9d442c21aa85a4ae170fd05a478d742247cf8fc; 同branch非force。
+- Network: 同repoActions/既存private inputs/固定公開source。歴史run37338921508全8step/16testsを参照継承し、旧Stage38再取得・再生成0。source・最小address-size-SHA・textのみ。ROM断片/rawhex/ROM/inputsave/runtime/runner/credentials追加公開0。正式ROM/Save101/owner115/saveowner52/残804byte不変、heap13352の保存退避53300跨ぎ禁止。
