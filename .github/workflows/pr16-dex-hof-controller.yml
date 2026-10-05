@@ -1,8 +1,6 @@
 name: pr16-dex-hof-controller
 on:
-  push:
-    branches: [codex/modernization-followup-20260908]
-    paths: [.github/workflows/pr16-dex-hof-controller.yml]
+  workflow_dispatch:
 permissions:
   contents: read
   actions: read
