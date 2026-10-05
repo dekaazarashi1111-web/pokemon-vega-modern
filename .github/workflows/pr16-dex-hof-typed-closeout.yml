@@ -1,12 +1,14 @@
-name: pr16-dex-hof-typed-recovery
+name: pr16-dex-hof-typed-closeout
 on:
-  workflow_dispatch:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-dex-hof-typed-closeout.yml]
 permissions:
   contents: write
   actions: read
   pull-requests: read
 concurrency:
-  group: pr16-dex-hof-typed-recovery
+  group: pr16-dex-hof-typed-closeout
   cancel-in-progress: false
 defaults:
   run:
@@ -15,7 +17,7 @@ jobs:
   contract:
     if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.run_attempt == 1
     runs-on: ubuntu-24.04
-    timeout-minutes: 30
+    timeout-minutes: 15
     env:
       GH_TOKEN: ${{ github.token }}
       GITHUB_TOKEN: ${{ github.token }}
@@ -24,14 +26,12 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 24
-      - name: Exact pinned typed source and inherited donor inventory
-        run: python3 -B scripts/pr16_dex_hof_typed_recovery.py source_guard
-      - name: Recover committed typed evidence without ROM reconstruction
-        run: python3 -B scripts/pr16_dex_hof_typed_recovery.py run
-      - name: Record compact typed representation
-        run: python3 -B scripts/pr16_dex_hof_typed_recovery.py record
+      - name: Exact new host source and immutable prior evidence
+        run: python3 -B scripts/pr16_dex_hof_typed_closeout.py source_guard
+      - name: Verify terminal host record without rerunning tests
+        run: python3 -B scripts/pr16_dex_hof_typed_closeout.py close
       - name: Scoped final index and fixed resume
-        run: python3 -B scripts/pr16_dex_hof_typed_recovery.py guard
+        run: python3 -B scripts/pr16_dex_hof_typed_closeout.py guard
       - name: Lightweight task graph
         run: python3 -B scripts/validate_task_graph.py --check
       - name: Commit and nonforce push same branch
@@ -40,19 +40,19 @@ jobs:
           test "$(git ls-remote origin refs/heads/codex/modernization-followup-20260908 | cut -f1)" = "$GITHUB_SHA"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'USER-20261005-DEX-HOF-TYPED-RECOVERY: record rooted JP typed consumer classification'
+          git commit -m 'USER-20261005-DEX-HOF-TYPED: close exact rooted typed consumer records'
           git push origin HEAD:codex/modernization-followup-20260908
           test "$(git ls-remote origin refs/heads/codex/modernization-followup-20260908 | cut -f1)" = "$(git rev-parse HEAD)"
       - name: Exact committed text readback
-        run: python3 -B scripts/pr16_dex_hof_typed_recovery.py snapshot
-      - name: Closed text publication guard
+        run: python3 -B scripts/pr16_dex_hof_typed_closeout.py snapshot
+      - name: Closed host text publication guard
         id: publication_guard
         if: always()
-        run: python3 -B scripts/pr16_dex_hof_typed_recovery.py export
+        run: python3 -B scripts/pr16_dex_hof_typed_closeout.py export
       - uses: actions/upload-artifact@v4
         if: ${{ always() && steps.publication_guard.outcome == 'success' }}
         with:
-          name: pr16-dex-hof-typed-recovery-text-only
-          path: public-dex-hof-typed-recovery
+          name: pr16-dex-hof-typed-closeout-text-only
+          path: public-dex-hof-typed-closeout
           retention-days: 90
           if-no-files-found: error
