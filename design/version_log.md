@@ -10053,3 +10053,17 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Boundary: UI入口11byte fixtureを自然通信/受信/削除/正規transitionやHOFへ昇格しない。次はUnionRoomChat成功文/SE_SAVE、HOF副作用/SaveFailed scratch/authority wipe、全mode/残typed consumer。早期sector31故障/原子性未受入。trainer131後半0。一般CI既知QOL不一致/Stage79cache/旧9月18日queueを別扱い。
 - Commit: closeout source=db3e64140fb77b74cdd53d0c410dcd9638c52893; 同branch非force push。
 - Network: 同repoActionsと既存text receiptのみ。ROM/入力save/runtime/runner/credentials追加公開0。
+
+## 2026-10-05T01:41:09.897429+00:00
+- Timestamp: 2026-10-05T01:41:09.897429+00:00
+- Task: USER-20261005-DEX-UNION-FAILURE / Union通知とMystery配置衝突の復旧
+- Version: dex-union-v1
+- Status: DONE（局所候補受入。HOF/全mode/残consumer未完）
+- Summary: 旧Mystery候補3bb4c51bは、旧codec余り表示をcurrent sectionと誤認してscheduler clone_complete_generationの先頭128byteを上書きした。以前のisolated/UI成功原本は限定経路の診断として保持するが、配置全体・保存健全性の受入は撤回。健全なouter40a7f38aから再構築し、現在のscheduler3section/codec/112ownerを全byte保持、Mystery/Unionを別のtailownerへ移設した。旧applyはactual subowner重複を拒否する。
+- Files changed: Union ASM/generator/typed lease/subowner guard/native/host/workflow、専用CP/evidence、既存Mystery guide訂正、固定MDJSON、両ログ。
+- Verify: ancestor isolated37247511968全10step/1016+816+19case/3process、formatter37249401463の168条件step成功/raw artifact欠落（再走0）。UI37251844445全10step/12process30画像。main故障101/outer末尾故障102/正常102、各cold。候補0180c180/408byte、新113owner/overlap0/112owner全byte/literal16＋DPCM内BL1型分類/全逆変換。記録ARM0/native0。
+- Fixture: Union21=callback-state13+同一field dynamicWarp8、全他RAM byte不変。Mystery11。cold入力はfixture由来で自然通信やfixtureなし到達ではない。正式ROM/Save101不変。
+- Diagnostics: 最初2runは誤suffix仮定でnative0拒否、次isolated1はdisplay fixtureがSB1模様RAMへ重なり保存前停止、UI初回は符号警告でnative0、次はStringCopyのEOS後未使用paddingをコピー済と誤比較してsetup後native1/保存0停止。後継は各文字列EOSまでと元210byte保存領域全体を別々に厳格確認。その後の実UIでFactory32byteの元placeholder破壊を検出しcaller限定stack退避を追加。formatter168条件の測定step成功後にupload先誤記でraw原本を失ったためassertion-onlyへ限定。次の実UIで候補build/全owner保持原本を回収。HelpSystemの元0→1→0とfield再初期化0→0を別検証し、snapshot誤判定を訂正。全失敗は診断原本を保持し受入しない。
+- Next: 正式ROM/Save101保持。Unionの誤成功文/SE_SAVEを局所修復し、Mysteryのscheduler衝突を復旧・移設。21byte/11byte UI-onlyと各cold、scheduler19/Union1016/Mystery816を限定受入。次はHOF/共通SaveFailedのtiles16KiB/video/decompression scratch衝突、stat10重複増分とmode4/5 erase再実行、stale selector authority wipeを安全契約へ分離する。早期sector31故障/原子性、全mode、残typed consumerも未完。正式切替・trainer131後半へまだ進まず、最終はシオウPokecenter通常回復/Save/独立coldContinue、雑魚毎Saveなし。
+- Commit: record source=eecd1da4c9890304eb19222cc205e1ac2fa86b38; 同branch非force push。
+- Network: 同repoActions/既存入力/固定CFRU WAV witness。公開source/address-size-SHA/text/screensのみ。ROM/rawhex/runtime/入力save/runner/credentials追加公開0。

@@ -27,3 +27,9 @@ UnionRoomChatは保存返値を無視して完了文とSE_SAVEへ進む。HOFは
 隔離run37243703968は元menu/QOL/inner連鎖96条件＋限定gate720条件、1296実ARM callを受入。UI run37244619223はmain故障・outer末尾故障・正常保存の各既存window表示→通常A待ち→menu帰還、各独立coldを計6process/15画像で確認。候補3bb4c51b、128byte、他111owner/codec5022byte/既存gate保持。main故障ではcounter101維持、outer故障はmain102確定を隠さず失敗表示、正常は102成功表示。
 
 UI entryはcallback/state9byteと、constructor直後のMG task parent17/text0の2byteだけを明示fixture。全EWRAMと他IWRAM byte不変をCPU/frame停止中に照合し、以後はゲーム内処理と通常キーだけ。通常通信/受信/削除/自然入場/field復帰を受け入れない。field windowの一時heap漏れの可能性をこの隔離processに閉じ、正規transitionの検証へ昇格しない。MG setupが自動割当するwindow baseBlock2byteは固定template値と区別し、先頭6byte/template、bitmap所有、範囲/非重複と実heap extentを確認。旧run37244205003は誤った8byte template比較でsetup後/native1・保存0停止、failure原本として保持。menu待機state1への未実行oracle訂正も記録。
+
+## 後継訂正: scheduler配置衝突
+
+旧Mystery候補3bb4c51bは、旧codec余り表示をcurrent sectionと誤認してscheduler clone_complete_generationの先頭128byteを上書きした。以前のisolated/UI成功原本は限定経路の診断として保持するが、配置全体・保存健全性の受入は撤回。健全なouter40a7f38aから再構築し、現在のscheduler3section/codec/112ownerを全byte保持、Mystery/Unionを別のtailownerへ移設した。旧applyはactual subowner重複を拒否する。
+
+後継正本は `docs/PR16_DEX_UNION_FAILURE_JA.md` と `content/modernization/pr16_dex_union_checkpoint.json`。旧1462/1332byteは現在の空き証明ではなく、実空きは2byte gapと28byte suffixだけ。旧候補を正式基準へ採用しない。

@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-正式ROM/Save101保持。Mystery Giftの非START誤成功通知だけ候補修復、既存windowエラー/正常/A待ち/menu帰還/各coldをUI限定受入。HOF/UnionRoomChat/全mode/残consumerは未完。
+正式ROM/Save101保持。Union失敗文/保存音/入力待ち/帰還を候補限定受入。Mysteryのscheduler重複配置を撤回・復元・別owner移設し影響回帰済み。UI入口はUnion21byte/Mystery11byte fixture。HOF/全mode/残consumer未完。
 
-**次: 正式ROM/Save101保持。Mystery Giftだけはreturn無視callerの誤成功を修復。state2のattempt1専用success/非1既存2行error、署名済stack連鎖だけ非破壊failureを受入。isolated816とUI-only main故障/outer末尾故障/正常→入力待ち→menu帰還/各coldを保持。次はUnionRoomChatの無条件完了文/SE_SAVEと、HOF/共通SaveFailedのtiles16KiB/video/decompression scratch衝突、回数増分とmode4/5 eraseの重複retry、stale selector authority wipeを安全契約に分離修復する。sector31早期故障/原子性、全mode、残typed consumerも未完。全必要影響native前に正式ROM切替・trainer131後半へ進まない。最終はシオウPokecenter通常回復/Save/独立coldContinue、雑魚毎Saveなし。**
+**次: 正式ROM/Save101保持。Unionの誤成功文/SE_SAVEを局所修復し、Mysteryのscheduler衝突を復旧・移設。21byte/11byte UI-onlyと各cold、scheduler19/Union1016/Mystery816を限定受入。次はHOF/共通SaveFailedのtiles16KiB/video/decompression scratch衝突、stat10重複増分とmode4/5 erase再実行、stale selector authority wipeを安全契約へ分離する。早期sector31故障/原子性、全mode、残typed consumerも未完。正式切替・trainer131後半へまだ進まず、最終はシオウPokecenter通常回復/Save/独立coldContinue、雑魚毎Saveなし。**
 
 通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `ef4ebc421d1981ef5f6e853b1bc9c61a4b29f91e`。
-Mystery Gift通知限定候補記録source。正式ROM/Save101不変。
+証拠のsource HEAD: `eecd1da4c9890304eb19222cc205e1ac2fa86b38`。
+Union限定UI受入とMystery配置撤回/復旧の記録source。正式ROM/Save101不変。
 
 ## 最短の再開手順
 
@@ -25,8 +25,8 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_DEX_MYSTERY_FAILURE_JA.md`
-- `content/modernization/pr16_dex_mystery_checkpoint.json`
+- `docs/PR16_DEX_UNION_FAILURE_JA.md`
+- `content/modernization/pr16_dex_union_checkpoint.json`
 - `docs/PR16_DEX_OUTER_QOL_JA.md`
 - `docs/PR16_DEX_SAVE_FAILURE_JA.md`
 - `docs/PR16_DEX_CONSUMERS_JA.md`
@@ -441,6 +441,7 @@ P08ゲート:
 - START valid失敗: gate run37238699272は1120case必須assert成功だがupload path誤記によりraw measurementなし。原本欠落を隠さず再走0。run37239138134の192byte gate全再構成/同candidate、1Flash故障/818入力/5画面とcold101の16入力/cold102の12入力、計3process7画面を無変更再走しない。全mode/outerQOL/非STARTへ受入拡張しない。
 - outerQOL run37241791183隔離outer7680＋retry288＋移設wipe16case、START末尾physical131071故障の5画面＋cold102/103の2画面、全4process原本は無変更再走しない。旧run37241038917はhistorical allocation hash誤仮定/native0でfailure保持。全mode sweepはABIだけ、末尾故障をearly位置/sector31原子性/非START通知へ昇格しない。
 - Mystery Gift隔離run37243703968 menu96/gate720、UI run37244619223 main故障/outer末尾故障/正常と各coldの6process15画像を無変更再走しない。11byte UI fixtureであり通信/受信/削除/自然入場やHOF/全非STARTへ昇格しない。旧37244205003のnative1/setup後template誤oracle停止はfailure保持。
+- 旧Mystery3bb4c51b配置受入はscheduler衝突で撤回。旧余り1462/1332を空き扱いせずcurrent subowner計算を使用。後継0180c180は前段1851条件の原本/未変更1755条件再利用、formatter168条件のstep成功/raw欠落、UI21/11byte由来12process30画面の変更影響のみ受入。formatter168条件はstep成功/raw欠落を区別し重複native再走0。全mode/自然通信へ昇格しない。
 
 ## 次セッションへ残す更新手順
 
@@ -470,6 +471,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-正式ROM/Save101保持。Mystery Giftの非START誤成功通知だけ候補修復、既存windowエラー/正常/A待ち/menu帰還/各coldをUI限定受入。HOF/UnionRoomChat/全mode/残consumerは未完。
+正式ROM/Save101保持。Union失敗文/保存音/入力待ち/帰還を候補限定受入。Mysteryのscheduler重複配置を撤回・復元・別owner移設し影響回帰済み。UI入口はUnion21byte/Mystery11byte fixture。HOF/全mode/残consumer未完。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

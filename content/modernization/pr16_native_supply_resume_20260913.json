@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "正式ROM/Save101保持。Mystery Giftの非START誤成功通知だけ候補修復、既存windowエラー/正常/A待ち/menu帰還/各coldをUI限定受入。HOF/UnionRoomChat/全mode/残consumerは未完。",
+    "current_stop": "正式ROM/Save101保持。Union失敗文/保存音/入力待ち/帰還を候補限定受入。Mysteryのscheduler重複配置を撤回・復元・別owner移設し影響回帰済み。UI入口はUnion21byte/Mystery11byte fixture。HOF/全mode/残consumer未完。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "正式ROM/Save101保持。Mystery Giftだけはreturn無視callerの誤成功を修復。state2のattempt1専用success/非1既存2行error、署名済stack連鎖だけ非破壊failureを受入。isolated816とUI-only main故障/outer末尾故障/正常→入力待ち→menu帰還/各coldを保持。次はUnionRoomChatの無条件完了文/SE_SAVEと、HOF/共通SaveFailedのtiles16KiB/video/decompression scratch衝突、回数増分とmode4/5 eraseの重複retry、stale selector authority wipeを安全契約に分離修復する。sector31早期故障/原子性、全mode、残typed consumerも未完。全必要影響native前に正式ROM切替・trainer131後半へ進まない。最終はシオウPokecenter通常回復/Save/独立coldContinue、雑魚毎Saveなし。",
+    "next_step": "正式ROM/Save101保持。Unionの誤成功文/SE_SAVEを局所修復し、Mysteryのscheduler衝突を復旧・移設。21byte/11byte UI-onlyと各cold、scheduler19/Union1016/Mystery816を限定受入。次はHOF/共通SaveFailedのtiles16KiB/video/decompression scratch衝突、stat10重複増分とmode4/5 erase再実行、stale selector authority wipeを安全契約へ分離する。早期sector31故障/原子性、全mode、残typed consumerも未完。正式切替・trainer131後半へまだ進まず、最終はシオウPokecenter通常回復/Save/独立coldContinue、雑魚毎Saveなし。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -1170,7 +1170,8 @@
     "保存失敗: old152case run37234821383、新gate48＋追加oracle60 run37235903199、実通常エラーUI run37236898977の原本を使用。候補/源不変でnative再走しない。DMA破壊とUI driver診断failureを保持。valid-live専用SaveFailedのowner衝突/全mode/全consumerへ受入拡張禁止。",
     "START valid失敗: gate run37238699272は1120case必須assert成功だがupload path誤記によりraw measurementなし。原本欠落を隠さず再走0。run37239138134の192byte gate全再構成/同candidate、1Flash故障/818入力/5画面とcold101の16入力/cold102の12入力、計3process7画面を無変更再走しない。全mode/outerQOL/非STARTへ受入拡張しない。",
     "outerQOL run37241791183隔離outer7680＋retry288＋移設wipe16case、START末尾physical131071故障の5画面＋cold102/103の2画面、全4process原本は無変更再走しない。旧run37241038917はhistorical allocation hash誤仮定/native0でfailure保持。全mode sweepはABIだけ、末尾故障をearly位置/sector31原子性/非START通知へ昇格しない。",
-    "Mystery Gift隔離run37243703968 menu96/gate720、UI run37244619223 main故障/outer末尾故障/正常と各coldの6process15画像を無変更再走しない。11byte UI fixtureであり通信/受信/削除/自然入場やHOF/全非STARTへ昇格しない。旧37244205003のnative1/setup後template誤oracle停止はfailure保持。"
+    "Mystery Gift隔離run37243703968 menu96/gate720、UI run37244619223 main故障/outer末尾故障/正常と各coldの6process15画像を無変更再走しない。11byte UI fixtureであり通信/受信/削除/自然入場やHOF/全非STARTへ昇格しない。旧37244205003のnative1/setup後template誤oracle停止はfailure保持。",
+    "旧Mystery3bb4c51b配置受入はscheduler衝突で撤回。旧余り1462/1332を空き扱いせずcurrent subowner計算を使用。後継0180c180は前段1851条件の原本/未変更1755条件再利用、formatter168条件のstep成功/raw欠落、UI21/11byte由来12process30画面の変更影響のみ受入。formatter168条件はstep成功/raw欠落を区別し重複native再走0。全mode/自然通信へ昇格しない。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -4351,12 +4352,12 @@
     "status": "PASS_NATIONAL_DEX_GRANT_OWNER_SCOPED"
   },
   "next_action": {
-    "goal_ja": "正式ROM/Save101保持。Mystery Giftだけはreturn無視callerの誤成功を修復。state2のattempt1専用success/非1既存2行error、署名済stack連鎖だけ非破壊failureを受入。isolated816とUI-only main故障/outer末尾故障/正常→入力待ち→menu帰還/各coldを保持。次はUnionRoomChatの無条件完了文/SE_SAVEと、HOF/共通SaveFailedのtiles16KiB/video/decompression scratch衝突、回数増分とmode4/5 eraseの重複retry、stale selector authority wipeを安全契約に分離修復する。sector31早期故障/原子性、全mode、残typed consumerも未完。全必要影響native前に正式ROM切替・trainer131後半へ進まない。最終はシオウPokecenter通常回復/Save/独立coldContinue、雑魚毎Saveなし。",
+    "goal_ja": "正式ROM/Save101保持。Unionの誤成功文/SE_SAVEを局所修復し、Mysteryのscheduler衝突を復旧・移設。21byte/11byte UI-onlyと各cold、scheduler19/Union1016/Mystery816を限定受入。次はHOF/共通SaveFailedのtiles16KiB/video/decompression scratch衝突、stat10重複増分とmode4/5 erase再実行、stale selector authority wipeを安全契約へ分離する。早期sector31故障/原子性、全mode、残typed consumerも未完。正式切替・trainer131後半へまだ進まず、最終はシオウPokecenter通常回復/Save/独立coldContinue、雑魚毎Saveなし。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。Save14は作業コピーだけを使用する。自己OT party、manifest解決済み通常支援用品、EXP境界、safe opponentはpre-battle fixtureとして全byteを台帳化してよい。badge/key item/story flag/money/RPをfixture付与せず、戦闘開始後は通常入力とゲーム内処理だけを使う。",
-    "id": "CLOSE_REMAINING_NONSTART_FAILURE_AND_SAVE_MODE_CONTRACTS",
+    "id": "CLOSE_HOF_COMMON_FAILURE_AND_REMAINING_SAVE_CONTRACTS",
     "read_paths": [
-      "docs/PR16_DEX_MYSTERY_FAILURE_JA.md",
-      "content/modernization/pr16_dex_mystery_checkpoint.json",
+      "docs/PR16_DEX_UNION_FAILURE_JA.md",
+      "content/modernization/pr16_dex_union_checkpoint.json",
       "docs/PR16_DEX_OUTER_QOL_JA.md",
       "docs/PR16_DEX_SAVE_FAILURE_JA.md",
       "docs/PR16_DEX_CONSUMERS_JA.md"
@@ -4364,25 +4365,32 @@
     "stop_rule_ja": "通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。"
   },
   "observed_date_jst": "2026-10-04",
-  "observed_head": "ef4ebc421d1981ef5f6e853b1bc9c61a4b29f91e",
+  "observed_head": "eecd1da4c9890304eb19222cc205e1ac2fa86b38",
   "observed_head_checks": {
-    "all12_record_steps_success": true,
-    "all_nonstart_notifications_accepted": false,
+    "accepted_raw_native_processes": 15,
+    "all_attempt_native_processes": 23,
     "all_save_modes_accepted": false,
+    "ancestor_raw_cases": 1851,
     "both_all10_steps_success": true,
+    "cold_input_fixture_derived": true,
+    "diagnostic_native_processes": 7,
+    "existing_owners_retained": 112,
+    "formatter_asserted_cases": 168,
+    "formatter_assertion_native_processes": 1,
+    "formatter_assertion_run": 37249401463,
+    "formatter_raw_artifact_available": false,
     "general_ci_known_source_mismatch_not_resolved": true,
-    "isolated_cases": 816,
-    "isolated_run": 37243703968,
-    "new_accepted_native_processes": 7,
-    "reason_ja": "正式ROM/Save101保持。Mystery Giftの非START誤成功通知だけ候補修復、既存windowエラー/正常/A待ち/menu帰還/各coldをUI限定受入。HOF/UnionRoomChat/全mode/残consumerは未完。",
-    "record_job": 111560603883,
-    "record_run": 37244853233,
-    "scope_head": "fd268ac336d3886ba1efb1768d5979e2e18bfdc1",
+    "isolated_run": 37247511968,
+    "mystery_fixture_bytes": 11,
+    "new_owner_count": 113,
+    "old_mystery_allocation_acceptance_revoked": true,
+    "reason_ja": "正式ROM/Save101保持。Union失敗文/保存音/入力待ち/帰還を候補限定受入。Mysteryのscheduler重複配置を撤回・復元・別owner移設し影響回帰済み。UI入口はUnion21byte/Mystery11byte fixture。HOF/全mode/残consumer未完。",
+    "reused_unchanged_cases": 1755,
+    "scope_head": "f0b6d885ddee4a18cd9a599281989009b4d74bfa",
     "stage79_cached_not_new_native": true,
-    "ui_fixture_bytes_per_process": 11,
-    "ui_job": 111559928588,
-    "ui_run": 37244619223,
-    "whole_receipt_equals_checkpoint": true
+    "ui_job": 111580919887,
+    "ui_run": 37251844445,
+    "union_fixture_bytes": 21
   },
   "observed_head_history": [
     {
@@ -12271,7 +12279,7 @@
       "semantics": "Save100/ミルシティ4,17北。動的Ranger20,29へ実正面A→町の解放scene→4072=3/4380set。全party600byte/HP277/PP3,9,8,2/23114円保持。95+cold13入力/54画面。通常2歩+自動2歩、歩数93/3。cold RAM差owner未解明。"
     }
   ],
-  "observed_head_semantics": "Mystery Gift通知限定候補記録source。正式ROM/Save101不変。",
+  "observed_head_semantics": "Union限定UI受入とMystery配置撤回/復旧の記録source。正式ROM/Save101不変。",
   "p08_candidate_impact": {
     "candidate": {
       "crc32": "CC068B4A",
@@ -12393,7 +12401,13 @@
     "status": "NATIVE_PARTY_RETENTION_ACCEPTED_BP_PENDING",
     "tested_head": "10e535a046441dd3b797918106259b5c57b69716"
   },
-  "pending_runs": [],
+  "pending_runs": [
+    {
+      "run_id": 37252355438,
+      "status": "in_progress",
+      "tested_head": "eecd1da4c9890304eb19222cc205e1ac2fa86b38"
+    }
+  ],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
   "pr_draft": true,
   "pr_merged": false,
@@ -14311,6 +14325,22 @@
     ".github/workflows/pr16-dex-start-fault-ui.yml": {
       "sha256": "3b1ff1c11b78a7481802e7b7b765d4f9e53e272779104270dd979f4903d509fc",
       "size": 1666
+    },
+    ".github/workflows/pr16-dex-union-failure.yml": {
+      "sha256": "9e347351297a7d35fe0ab8f8476873470007bd621811d941a86117ee6cd4d25d",
+      "size": 1880
+    },
+    ".github/workflows/pr16-dex-union-formatter.yml": {
+      "sha256": "710e3d0a2210da051c9d4e4f51dced0a3a75a2f498d38e6aa7e6ab2a664656b5",
+      "size": 1893
+    },
+    ".github/workflows/pr16-dex-union-record.yml": {
+      "sha256": "1d89b1b4636b7d5fdae4a73e73d40ecd1fb14428ae5e16401c8ca5ac5a7bdb23",
+      "size": 2345
+    },
+    ".github/workflows/pr16-dex-union-ui.yml": {
+      "sha256": "bfcc43a58cd18cddbcf6de16536ace53735ff1b83e61e0bd85af6e55434f4a27",
+      "size": 2083
     },
     ".github/workflows/pr16-dex-visual-probe.yml": {
       "sha256": "a4d9be79fa5d49d803e4cc5dee8b09a3fc29c21b1b3a5244635ebb4b66392d53",
@@ -17307,6 +17337,358 @@
     "content/modernization/pr16_dex_storage_audit.json": {
       "sha256": "a21526808be34928098119fd3bec57185e1ce1edc1663a21608ee37eec3568f7",
       "size": 1492
+    },
+    "content/modernization/pr16_dex_union_checkpoint.json": {
+      "sha256": "890aea32ebd733bde99e7f43d161ed0f4db1cb57f937842ffcbaf804a482d8df",
+      "size": 486529
+    },
+    "content/modernization/pr16_dex_union_evidence/diagnostic-37245820015/failure.json": {
+      "sha256": "acd1dd98ef95fdbb0715bd9f96518f75a7c91c82df0ab0673228d5a8ca09d624",
+      "size": 208
+    },
+    "content/modernization/pr16_dex_union_evidence/diagnostic-37245820015/host-tests.txt": {
+      "sha256": "6239bbbca239339c5ed9bdd23445bf8d814d72c9bf370784e4483b77803116aa",
+      "size": 672
+    },
+    "content/modernization/pr16_dex_union_evidence/diagnostic-37246060372/failure.json": {
+      "sha256": "15ffbf5a538b6c10358801c365eea7e6c988d9fc7d227f1890cbf6e57d18fadd",
+      "size": 228
+    },
+    "content/modernization/pr16_dex_union_evidence/diagnostic-37246060372/host-tests.txt": {
+      "sha256": "6239bbbca239339c5ed9bdd23445bf8d814d72c9bf370784e4483b77803116aa",
+      "size": 672
+    },
+    "content/modernization/pr16_dex_union_evidence/diagnostic-37247271940/attempts.json": {
+      "sha256": "8a42e821d5158f2b07d25af79ed1a531d8715e85aa869f664833f324a32296f3",
+      "size": 61
+    },
+    "content/modernization/pr16_dex_union_evidence/diagnostic-37247271940/build.json": {
+      "sha256": "00b275d2771fae91eb9daec3193890b0f048746d42379ee6c2bdf06e9a667235",
+      "size": 123277
+    },
+    "content/modernization/pr16_dex_union_evidence/diagnostic-37247271940/failure.json": {
+      "sha256": "1fc122c158bef001942f23f665b006fa101c2302d9b8c92346ba454e2544fbb2",
+      "size": 229
+    },
+    "content/modernization/pr16_dex_union_evidence/diagnostic-37247271940/host-tests.txt": {
+      "sha256": "3a9108ac48e9d7697e16fc0885db795f005da749b018f84a41defb9d534eaeaa",
+      "size": 1028
+    },
+    "content/modernization/pr16_dex_union_evidence/diagnostic-37247271940/isolated-stderr.txt": {
+      "sha256": "9f9433f9b18d1fd87cab7ac0b8273d53001555ccfbdf9dd68ab273da802a8dac",
+      "size": 70
+    },
+    "content/modernization/pr16_dex_union_evidence/diagnostic-37247271940/isolated-stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_dex_union_evidence/diagnostic-37247754809/failure.json": {
+      "sha256": "5872fce54bb0843531f54b388ad9e116b2504368705a9b726be4a5f24ac21c88",
+      "size": 842
+    },
+    "content/modernization/pr16_dex_union_evidence/diagnostic-37247754809/host-tests.txt": {
+      "sha256": "a18549571d982e307e53f682da373251fd63de972b63976d763b587ba1580ad6",
+      "size": 408
+    },
+    "content/modernization/pr16_dex_union_evidence/diagnostic-37247902730/attempts.json": {
+      "sha256": "b80c9b39d0348f07822dd4f9fa60aace4386c4461289c9001a454219ec2c911f",
+      "size": 63
+    },
+    "content/modernization/pr16_dex_union_evidence/diagnostic-37247902730/failure.json": {
+      "sha256": "cb0438b6ab2e08c6b7da69dc1e4e0f99918dc511376bdc13625325d112bc187c",
+      "size": 240
+    },
+    "content/modernization/pr16_dex_union_evidence/diagnostic-37247902730/host-tests.txt": {
+      "sha256": "a18549571d982e307e53f682da373251fd63de972b63976d763b587ba1580ad6",
+      "size": 408
+    },
+    "content/modernization/pr16_dex_union_evidence/diagnostic-37247902730/main-fault/stderr.txt": {
+      "sha256": "4b44e09e238f0e775c85a4fd44f26b1613805517c73a2a969066f7d73140da99",
+      "size": 77
+    },
+    "content/modernization/pr16_dex_union_evidence/diagnostic-37247902730/main-fault/stdout.txt": {
+      "sha256": "d352a4932510b5d8ca4b833520746b925be1eb719d4454da77e85feefa6d2425",
+      "size": 3226
+    },
+    "content/modernization/pr16_dex_union_evidence/diagnostic-37248137574/attempts.json": {
+      "sha256": "b80c9b39d0348f07822dd4f9fa60aace4386c4461289c9001a454219ec2c911f",
+      "size": 63
+    },
+    "content/modernization/pr16_dex_union_evidence/diagnostic-37248137574/failure.json": {
+      "sha256": "08c4e70880600a1465be3fa745cb9baf71909f2b4938d5aa21911dfcd0a987e1",
+      "size": 231
+    },
+    "content/modernization/pr16_dex_union_evidence/diagnostic-37248137574/host-tests.txt": {
+      "sha256": "a18549571d982e307e53f682da373251fd63de972b63976d763b587ba1580ad6",
+      "size": 408
+    },
+    "content/modernization/pr16_dex_union_evidence/diagnostic-37248137574/main-fault/stderr.txt": {
+      "sha256": "0103e094eddda173ab5a9ec601227eaaeccc90d774239e9bcdae4a496230d2d1",
+      "size": 68
+    },
+    "content/modernization/pr16_dex_union_evidence/diagnostic-37248137574/main-fault/stdout.txt": {
+      "sha256": "399c06cb6a3edac24d2ac2197ca8ed234ab448300351efd63d750c75f08e95e8",
+      "size": 5980
+    },
+    "content/modernization/pr16_dex_union_evidence/diagnostic-37248337419/attempts.json": {
+      "sha256": "b80c9b39d0348f07822dd4f9fa60aace4386c4461289c9001a454219ec2c911f",
+      "size": 63
+    },
+    "content/modernization/pr16_dex_union_evidence/diagnostic-37248337419/failure.json": {
+      "sha256": "08c4e70880600a1465be3fa745cb9baf71909f2b4938d5aa21911dfcd0a987e1",
+      "size": 231
+    },
+    "content/modernization/pr16_dex_union_evidence/diagnostic-37248337419/host-tests.txt": {
+      "sha256": "a18549571d982e307e53f682da373251fd63de972b63976d763b587ba1580ad6",
+      "size": 408
+    },
+    "content/modernization/pr16_dex_union_evidence/diagnostic-37248337419/main-fault/stderr.txt": {
+      "sha256": "0103e094eddda173ab5a9ec601227eaaeccc90d774239e9bcdae4a496230d2d1",
+      "size": 68
+    },
+    "content/modernization/pr16_dex_union_evidence/diagnostic-37248337419/main-fault/stdout.txt": {
+      "sha256": "6d3ac9310278fa53019d417746d34e18448b6abf9927a86a3ae114a459d205a8",
+      "size": 6905
+    },
+    "content/modernization/pr16_dex_union_evidence/diagnostic-37250328812/attempts.json": {
+      "sha256": "b80c9b39d0348f07822dd4f9fa60aace4386c4461289c9001a454219ec2c911f",
+      "size": 63
+    },
+    "content/modernization/pr16_dex_union_evidence/diagnostic-37250328812/build.json": {
+      "sha256": "f7680d73ca63da5abc302794c137818aa9bbd0e40a40c8d319e4d99950a06b50",
+      "size": 124329
+    },
+    "content/modernization/pr16_dex_union_evidence/diagnostic-37250328812/failure.json": {
+      "sha256": "08c4e70880600a1465be3fa745cb9baf71909f2b4938d5aa21911dfcd0a987e1",
+      "size": 231
+    },
+    "content/modernization/pr16_dex_union_evidence/diagnostic-37250328812/host-tests.txt": {
+      "sha256": "33edc807f54a6d47ed865578685875759e1dc72db78acf5e531f2beff8377336",
+      "size": 624
+    },
+    "content/modernization/pr16_dex_union_evidence/diagnostic-37250328812/main-fault/stderr.txt": {
+      "sha256": "0103e094eddda173ab5a9ec601227eaaeccc90d774239e9bcdae4a496230d2d1",
+      "size": 68
+    },
+    "content/modernization/pr16_dex_union_evidence/diagnostic-37250328812/main-fault/stdout.txt": {
+      "sha256": "b78e2b03b498556b59dbc600e0a028bf16656ac4f2329903d71e890b4728a178",
+      "size": 15666
+    },
+    "content/modernization/pr16_dex_union_evidence/diagnostic-37250937071/attempts.json": {
+      "sha256": "b80c9b39d0348f07822dd4f9fa60aace4386c4461289c9001a454219ec2c911f",
+      "size": 63
+    },
+    "content/modernization/pr16_dex_union_evidence/diagnostic-37250937071/build.json": {
+      "sha256": "f7680d73ca63da5abc302794c137818aa9bbd0e40a40c8d319e4d99950a06b50",
+      "size": 124329
+    },
+    "content/modernization/pr16_dex_union_evidence/diagnostic-37250937071/failure.json": {
+      "sha256": "56424b727374eeeea9f1c51956dbaf4d3d1653d7e152dac3bc20add5229786cc",
+      "size": 240
+    },
+    "content/modernization/pr16_dex_union_evidence/diagnostic-37250937071/host-tests.txt": {
+      "sha256": "315a6bb7e2c99975503db24de7b0aa9d35b8f2e6f7aecec493a5438f2ef20b1d",
+      "size": 624
+    },
+    "content/modernization/pr16_dex_union_evidence/diagnostic-37250937071/main-fault/stderr.txt": {
+      "sha256": "f9960c91fef73108da177b12f431fd81b580c05eb8273ea7916cea9fecb18dd6",
+      "size": 77
+    },
+    "content/modernization/pr16_dex_union_evidence/diagnostic-37250937071/main-fault/stdout.txt": {
+      "sha256": "0b9c8ec857d5f475452934162b017e319d52a7c7823e2a9f1a793d7efe2f85f8",
+      "size": 10657
+    },
+    "content/modernization/pr16_dex_union_evidence/diagnostic-37251553224/attempts.json": {
+      "sha256": "b80c9b39d0348f07822dd4f9fa60aace4386c4461289c9001a454219ec2c911f",
+      "size": 63
+    },
+    "content/modernization/pr16_dex_union_evidence/diagnostic-37251553224/build.json": {
+      "sha256": "f7680d73ca63da5abc302794c137818aa9bbd0e40a40c8d319e4d99950a06b50",
+      "size": 124329
+    },
+    "content/modernization/pr16_dex_union_evidence/diagnostic-37251553224/failure.json": {
+      "sha256": "56424b727374eeeea9f1c51956dbaf4d3d1653d7e152dac3bc20add5229786cc",
+      "size": 240
+    },
+    "content/modernization/pr16_dex_union_evidence/diagnostic-37251553224/host-tests.txt": {
+      "sha256": "21406bcac9311c8eeb4207454259880fbbcada89d71c52a73fd5684aa21f215e",
+      "size": 624
+    },
+    "content/modernization/pr16_dex_union_evidence/diagnostic-37251553224/main-fault/stderr.txt": {
+      "sha256": "f9960c91fef73108da177b12f431fd81b580c05eb8273ea7916cea9fecb18dd6",
+      "size": 77
+    },
+    "content/modernization/pr16_dex_union_evidence/diagnostic-37251553224/main-fault/stdout.txt": {
+      "sha256": "948f10c56e68fb04335a2b054fa7d04802bf61b80056a35664ced1d97e8d62a0",
+      "size": 11044
+    },
+    "content/modernization/pr16_dex_union_evidence/isolated/attempts.json": {
+      "sha256": "811b3649fe16e4997bd3a5f4bcef101b0f89483b3268e7db6a94a1484ab6d933",
+      "size": 112
+    },
+    "content/modernization/pr16_dex_union_evidence/isolated/build.json": {
+      "sha256": "00b275d2771fae91eb9daec3193890b0f048746d42379ee6c2bdf06e9a667235",
+      "size": 123277
+    },
+    "content/modernization/pr16_dex_union_evidence/isolated/host-tests.txt": {
+      "sha256": "c856c8ce22f22b4e5499a095ff41172bb627bf0833a9c4e41701eb5e1e9717fc",
+      "size": 1028
+    },
+    "content/modernization/pr16_dex_union_evidence/isolated/isolated-stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_dex_union_evidence/isolated/isolated-stdout.txt": {
+      "sha256": "16727ddfe916d24d196dcf28d1fdf2f52729ca4174bde3ff696b0c174e4c0a5f",
+      "size": 269
+    },
+    "content/modernization/pr16_dex_union_evidence/isolated/measurement.json": {
+      "sha256": "73d1e2c2e31c04c39beecaaef94bc40259f483ad65171c61e2b0d5e22b6ebbbf",
+      "size": 126761
+    },
+    "content/modernization/pr16_dex_union_evidence/isolated/relocated-mystery-stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_dex_union_evidence/isolated/relocated-mystery-stdout.txt": {
+      "sha256": "504b302bd79e67c76fc70ce5421c0c4bf04bb80fc6eab1a65849d2a50ebaf50d",
+      "size": 266
+    },
+    "content/modernization/pr16_dex_union_evidence/isolated/restored-scheduler-stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_dex_union_evidence/isolated/restored-scheduler-stdout.txt": {
+      "sha256": "3efb2522d27ced37ed523bc53391f2d848efbf296f94549ce45c2feded829555",
+      "size": 437
+    },
+    "content/modernization/pr16_dex_union_evidence/ui/attempts.json": {
+      "sha256": "013bc02d24597f4c06daa89b6cff53621a1fb94076e290b85cf878efe4c96f15",
+      "size": 332
+    },
+    "content/modernization/pr16_dex_union_evidence/ui/build.json": {
+      "sha256": "f7680d73ca63da5abc302794c137818aa9bbd0e40a40c8d319e4d99950a06b50",
+      "size": 124329
+    },
+    "content/modernization/pr16_dex_union_evidence/ui/healthy-cold/cold-102/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_dex_union_evidence/ui/healthy-cold/cold-102/stdout.txt": {
+      "sha256": "e98bc16ac23c9fe1193d7124f70a24dd26b6952d0da0f2b3ca4a9831cb58496c",
+      "size": 2059
+    },
+    "content/modernization/pr16_dex_union_evidence/ui/healthy/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_dex_union_evidence/ui/healthy/stdout.txt": {
+      "sha256": "bbfb98a6563ff5d232f3a0a1d903616d899a3cd670ffe0754bfb275d67b818d1",
+      "size": 44591
+    },
+    "content/modernization/pr16_dex_union_evidence/ui/host-tests.txt": {
+      "sha256": "cb9c1ea9b4bf545f72c0bf1c8903c989eb715f981597a2bf42d96034ce12a4fb",
+      "size": 624
+    },
+    "content/modernization/pr16_dex_union_evidence/ui/main-fault-cold/cold-101/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_dex_union_evidence/ui/main-fault-cold/cold-101/stdout.txt": {
+      "sha256": "f73c3f28f20e0edbc25eb8cb770f80ef0555293b99d2e1282c0e3bb30c256a62",
+      "size": 2245
+    },
+    "content/modernization/pr16_dex_union_evidence/ui/main-fault/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_dex_union_evidence/ui/main-fault/stdout.txt": {
+      "sha256": "01a7f4591575227f9693323c88bafeb508e3e4b17506651089753a6201a0e7d0",
+      "size": 15984
+    },
+    "content/modernization/pr16_dex_union_evidence/ui/measurement.json": {
+      "sha256": "09c9b2f5678df6688c839e1457c0ced9eceb737d0015fe3594b28b72e3f89c7b",
+      "size": 180302
+    },
+    "content/modernization/pr16_dex_union_evidence/ui/mystery-healthy-cold/cold-102/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_dex_union_evidence/ui/mystery-healthy-cold/cold-102/stdout.txt": {
+      "sha256": "251d4bda184b198ead5b55b699410d24db04bc60d491d382d6e923d2019d50dd",
+      "size": 2059
+    },
+    "content/modernization/pr16_dex_union_evidence/ui/mystery-healthy/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_dex_union_evidence/ui/mystery-healthy/stdout.txt": {
+      "sha256": "13c0b1909412fee2f0fe081ee0e2f4386fe8ead5c4a0cfc2bc8c3052cffd3f81",
+      "size": 29253
+    },
+    "content/modernization/pr16_dex_union_evidence/ui/mystery-main-fault-cold/cold-101/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_dex_union_evidence/ui/mystery-main-fault-cold/cold-101/stdout.txt": {
+      "sha256": "f73c3f28f20e0edbc25eb8cb770f80ef0555293b99d2e1282c0e3bb30c256a62",
+      "size": 2245
+    },
+    "content/modernization/pr16_dex_union_evidence/ui/mystery-main-fault/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_dex_union_evidence/ui/mystery-main-fault/stdout.txt": {
+      "sha256": "bc1749f26cc0c4cbe54d87d98b81db6973a301d71213dc448dc32ce1fd7f927f",
+      "size": 9158
+    },
+    "content/modernization/pr16_dex_union_evidence/ui/mystery-outer-fault-cold/cold-102/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_dex_union_evidence/ui/mystery-outer-fault-cold/cold-102/stdout.txt": {
+      "sha256": "94fdb036926761853a61904960e372e201f97b199d4d96916b8972f454007557",
+      "size": 2059
+    },
+    "content/modernization/pr16_dex_union_evidence/ui/mystery-outer-fault/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_dex_union_evidence/ui/mystery-outer-fault/stdout.txt": {
+      "sha256": "c1a48a29dee3a8b0314ef841bbbfa843b2e5b8f7e0120d484c943fe5763013ea",
+      "size": 30933
+    },
+    "content/modernization/pr16_dex_union_evidence/ui/outer-fault-cold/cold-102/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_dex_union_evidence/ui/outer-fault-cold/cold-102/stdout.txt": {
+      "sha256": "ee104bd566d6acc3bea7bbd7b839a17e673cfb58a736b59154423c3c9cbe2979",
+      "size": 2059
+    },
+    "content/modernization/pr16_dex_union_evidence/ui/outer-fault/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_dex_union_evidence/ui/outer-fault/stdout.txt": {
+      "sha256": "4a5e18234c2b5c1bee6e91faba6ba653dd312f0c65f07fea27c273094f35cc8b",
+      "size": 43969
+    },
+    "content/modernization/pr16_dex_union_failure_bindings.json": {
+      "sha256": "cf3e2b56fbb5810d1f0efd77c92586eda3ecba5a49c9d31338903e5c7695dcac",
+      "size": 4110
+    },
+    "content/modernization/pr16_dex_union_tail_lease.json": {
+      "sha256": "42992e362bca9f807cbe55697955dcaf40ea214bf0a486ea217ab179d9380f80",
+      "size": 8064
+    },
+    "content/modernization/pr16_dex_union_ui_bindings.json": {
+      "sha256": "bfe9b6ce3e4a8a1023a315087115705e1b3ba466fcf27fe6d4932e5b3a354fe8",
+      "size": 3239
+    },
+    "content/modernization/pr16_dex_union_ui_visual_review.json": {
+      "sha256": "6a9c60da2b7242920b7161aa254a2992106072263558ad46e8d6ca1ee555b2cd",
+      "size": 6196
     },
     "content/modernization/pr16_exp_evolution_share_checkpoint.json": {
       "sha256": "2ddb6d6e310ae494f340469bcfb9e639e878e199206c8a62a07c74ba2170f176",
@@ -28025,8 +28407,8 @@
       "size": 5703
     },
     "docs/PR16_DEX_MYSTERY_FAILURE_JA.md": {
-      "sha256": "172c29cc486366f16b570c350ff235412b9c3b58ff3fee8902aa462cd203141b",
-      "size": 4084
+      "sha256": "3d82412eb706e8014246c3f75b6b42616bec33e0bcb013ed0a1a3e83b2c58de5",
+      "size": 4878
     },
     "docs/PR16_DEX_OUTER_QOL_JA.md": {
       "sha256": "c2e41e3746f4154c0905fbbdef064d4d7a68033f1858fef9454fd6f7fb4f4cd3",
@@ -28059,6 +28441,10 @@
     "docs/PR16_DEX_START_FAILURE_JA.md": {
       "sha256": "0ed806b25208cbb8057b11dab3d6657db14ba5a74f8c0b76bc9bd07c1623902f",
       "size": 6260
+    },
+    "docs/PR16_DEX_UNION_FAILURE_JA.md": {
+      "sha256": "b609850398605207b72fff02f58521f05e9580ca43ab6f122c058f834fe1df45",
+      "size": 5324
     },
     "docs/PR16_EXP_EVOLUTION_SHARE_JA.md": {
       "sha256": "91bf0315d0ac20772a0caa27b4528df27916d52f1c3750f3b2acc331b41628a7",
@@ -32308,6 +32694,10 @@
       "sha256": "20f686dd0a6686baa0e9b90b1f51ed376e5a2f78264ebbf204fbf4596bdeff1e",
       "size": 2019
     },
+    "overlays/dex_owner/dex_union_save_failure.S": {
+      "sha256": "0afbe6f3c2b01c9bcade67504a172d23f8d9af341d3597b8c9b36663200d9e04",
+      "size": 3456
+    },
     "overlays/event_design/event_design.c": {
       "sha256": "0a63e6ed04c9cb9973f6bfd5ecc659d8ff53be7bcd09badd45031da9ff1c81e7",
       "size": 9378
@@ -32969,8 +33359,8 @@
       "size": 8788
     },
     "scripts/pr16_dex_mystery_failure.py": {
-      "sha256": "2f136b5a48bdb9263ed0aa6c6e56d13ecc981b28c2fb39fa47a088f249b92266",
-      "size": 5439
+      "sha256": "8757f657dd2183126bae6bb548069da4bcc1b180ea005f00374c8db9ab4230d5",
+      "size": 5525
     },
     "scripts/pr16_dex_mystery_failure_actions.py": {
       "sha256": "c210c84517a7dcdbf6eea7087ac21c027dd5d58fb93788581864a411315efe23",
@@ -33027,6 +33417,10 @@
     "scripts/pr16_dex_placement_record.py": {
       "sha256": "fa86fe76eda6c5a65510d115cafdf525fd319248e9ec1ebb4f00b839280b0762",
       "size": 14310
+    },
+    "scripts/pr16_dex_publication.py": {
+      "sha256": "c8cb5004d90cb5f1ac890c67c751053b41d2b0cbf1389c4da1a0489c89f42e7b",
+      "size": 1986
     },
     "scripts/pr16_dex_runtime_closeout.py": {
       "sha256": "4916ee4230497e1d9f2a13018069dd441a3bed69aca2be710e94ff34e05f974b",
@@ -33099,6 +33493,34 @@
     "scripts/pr16_dex_start_fault_ui.py": {
       "sha256": "2e33a2e774521db00b088e10b84fe012bb0ce0bf5d756696de59df4e525cf2b4",
       "size": 13041
+    },
+    "scripts/pr16_dex_subowners.py": {
+      "sha256": "358f1eae1b335ca1cac5c595ee72a422f4499b85133b3c87ff0aa9f7721c4142",
+      "size": 1607
+    },
+    "scripts/pr16_dex_tail_lease.py": {
+      "sha256": "f0b8d18b4ff533372a10841ff08b71506c4a305e5d9126704ec919d985572ee6",
+      "size": 5067
+    },
+    "scripts/pr16_dex_union_failure.py": {
+      "sha256": "52c3b53ba26766d6515dfe214cedaca74c6ca76b5c8e3efebbc54d38634498cf",
+      "size": 8299
+    },
+    "scripts/pr16_dex_union_failure_actions.py": {
+      "sha256": "1e6e46cd474565b482ac9ab7cf2c05b62bbf54a856c39952a52224436c26aacf",
+      "size": 8508
+    },
+    "scripts/pr16_dex_union_formatter_actions.py": {
+      "sha256": "6e421aae3f60c7bb048ff0a1a5009486fbb75aa75eff232679711cac34a380b7",
+      "size": 6958
+    },
+    "scripts/pr16_dex_union_record.py": {
+      "sha256": "494911f2da2b5f1fba7021b6ba5b7b9be61d535de5c0a36a17220bd47abfd0f6",
+      "size": 24319
+    },
+    "scripts/pr16_dex_union_ui.py": {
+      "sha256": "9ea9dd393eef4a79ef91e2a85e1f7008d68192ad37ce6a803c71e6ddec966812",
+      "size": 19398
     },
     "scripts/pr16_dex_valid_failure.py": {
       "sha256": "b4a3517b1cbb0ca6e82a8fa00b28ea2b3bcb75ed648567cf3487c23d8ff830ab",
@@ -36168,6 +36590,14 @@
       "sha256": "3f69a1cfa47987c9f81b8152814719d21eeaf29f7eeeac365110a429b6da3e18",
       "size": 791
     },
+    "tests/test_pr16_dex_union_failure.py": {
+      "sha256": "5072c29e3a377c50bb5358a3a906c4129575689c689f66228cfbf8ec2b63482b",
+      "size": 2091
+    },
+    "tests/test_pr16_dex_union_ui.py": {
+      "sha256": "61322028b2c8dc9db7b134192f5be7727579d00ab1e3e784c9f5f25aa30ea68a",
+      "size": 1328
+    },
     "tests/test_pr16_exp_evolution_observation.py": {
       "sha256": "7c4d350e7187df24b64d0cc5097186b827076af9559d6804c4fdd247dbef1b4f",
       "size": 4221
@@ -38268,6 +38698,18 @@
       "sha256": "3a1758e6fad2558b806b7541bb67cc3e8901bfe6b2749a12bf4287fc90ba3bc9",
       "size": 6889
     },
+    "tools/mgba_pr16_dex_union_failure.h": {
+      "sha256": "b25c5a16c76ea8d097cac2f3d4a5d5f2d52a6c160dcef4e7047fcf46e0cdfbff",
+      "size": 7777
+    },
+    "tools/mgba_pr16_dex_union_formatter.h": {
+      "sha256": "9918e12837df35fc39f6ef482ccacfec1f04fbafac58fc78d289e7cca6b1a005",
+      "size": 6355
+    },
+    "tools/mgba_pr16_dex_union_ui.h": {
+      "sha256": "15506bca84635adb95606c501b8698195d1f10fce9ae1de1beb27de99b737c4e",
+      "size": 20433
+    },
     "tools/mgba_pr16_exp_evolution_share.c": {
       "sha256": "006956a135451fb50d3a5a8ffcb4e40787d5a00d2aa831bb1144bfb0c3129b5c",
       "size": 13541
@@ -39019,16 +39461,19 @@
       },
       "mystery_failure": {
         "all_nonstart_notifications_accepted": false,
+        "allocation_accepted": false,
         "candidate": {
           "sha256": "3bb4c51bd8d0155b83ec46b46ea9e5f7440e71860c2f0bb740e7b33ec8fb6d56",
           "size": 33554432
         },
         "checkpoint": "content/modernization/pr16_dex_mystery_checkpoint.json",
+        "correction_ja": "旧Mystery候補3bb4c51bは、旧codec余り表示をcurrent sectionと誤認してscheduler clone_complete_generationの先頭128byteを上書きした。以前のisolated/UI成功原本は限定経路の診断として保持するが、配置全体・保存健全性の受入は撤回。健全なouter40a7f38aから再構築し、現在のscheduler3section/codec/112ownerを全byte保持、Mystery/Unionを別のtailownerへ移設した。旧applyはactual subowner重複を拒否する。",
         "formal_rom_changed": false,
         "formal_save_changed": false,
         "guide": "docs/PR16_DEX_MYSTERY_FAILURE_JA.md",
         "isolated_run": 37243703968,
-        "mystery_failure_notification_accepted": true,
+        "limited_ui_diagnostic_retained": true,
+        "mystery_failure_notification_accepted": false,
         "mystery_ui_fixture_only": true,
         "record_run": 37244853233,
         "recording": {
@@ -39055,7 +39500,8 @@
           "record_source": "ef4ebc421d1981ef5f6e853b1bc9c61a4b29f91e",
           "status": "PASS_TERMINAL_MYSTERY_FAILURE_RECORD"
         },
-        "status": "PASS_CANDIDATE_MYSTERY_FAILURE_NOTIFICATION_UI_ONLY",
+        "status": "RETAINED_DIAGNOSTIC_UI_ONLY_ALLOCATION_REVOKED",
+        "superseded_by": "content/modernization/pr16_dex_union_checkpoint.json",
         "ui_run": 37244619223
       },
       "native_lifetime_run": 37217077790,
@@ -39106,6 +39552,20 @@
         "allocator_transferred": true,
         "checkpoint": "content/modernization/pr16_dex_placement_checkpoint.json",
         "consumer_wired": false,
+        "current_subowner_accounting": {
+          "actual_codec_free_subspans": [
+            {
+              "address": 167517494,
+              "size": 2
+            },
+            {
+              "address": 167518928,
+              "size": 28
+            }
+          ],
+          "checkpoint": "content/modernization/pr16_dex_union_checkpoint.json",
+          "old_suffix_label_is_historical": true
+        },
         "guide": "docs/PR16_DEX_PLACEMENT_JA.md",
         "isolated_native_accepted": true,
         "record_run": 37223939077,
@@ -39277,7 +39737,29 @@
         "ui_job": 111544115505,
         "ui_run": 37239138134
       },
-      "status": "PASS_FIVE_UI_LIFETIME_AND_HOST_ADAPTER_RUNTIME_UNWIRED"
+      "status": "PASS_FIVE_UI_LIFETIME_AND_HOST_ADAPTER_RUNTIME_UNWIRED",
+      "union_failure": {
+        "candidate": {
+          "sha256": "0180c1804cc368b30bc0ee63ec4f5743d46c707a9f88f45650c47edb375e5315",
+          "size": 33554432
+        },
+        "checkpoint": "content/modernization/pr16_dex_union_checkpoint.json",
+        "cold_input_fixture_derived": true,
+        "formal_rom_changed": false,
+        "formal_save_changed": false,
+        "formatter_assertion_run": 37249401463,
+        "formatter_raw_artifact_available": false,
+        "guide": "docs/PR16_DEX_UNION_FAILURE_JA.md",
+        "isolated_run": 37247511968,
+        "mystery_fixture_bytes": 11,
+        "normal_field_sprite_camera_accepted": false,
+        "record_run": 37252355438,
+        "scheduler_subowners_restored": true,
+        "status": "PASS_CANDIDATE_UNION_NOTIFICATION_AND_RELOCATED_MYSTERY_UI_ONLY",
+        "ui_run": 37251844445,
+        "union102_cold_facing_difference_observed": true,
+        "union_fixture_bytes": 21
+      }
     },
     "runtime_wired": false,
     "source_head": "d1230b07103cd1790849ba6fb390ede089052a1f",
