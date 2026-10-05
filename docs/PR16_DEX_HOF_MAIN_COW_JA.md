@@ -11,3 +11,9 @@
 新規隔離試験はmode3/SP0/4/stat10境界/HOF28・29故障/mainの早期故障・署名故障・lying write・readback不一致と旧authority全14sectorを測る。非mode3は旧dispatchが変わらないことを確認する。旧受入のmain0/nativeを理由なく再走せず、新mode3の入力前提として必要なfixtureを区別する。
 
 この工程の受入範囲はmode3 mainの旧authority保護である。HOF28/29はmainより先に書かれ、main故障時に新HOFと旧mainが残り得る。HOF/main世代結合、跨領域原子性、自然殿堂入り、全HOF species ABI、全mode/共通失敗caller/sector31早期故障/全cold owner/残typed consumerは未完。正式ROM/Save101は不変、trainer131後半・正式切替は継続保留とする。
+
+## 候補限定受入
+
+初回HOF mode3の主保存を既存copy-on-writeへ接続し、主保存故障時の旧authority全14sectorを保護。HOF28失敗は29/mainを書かず、29失敗もmainを書かない。stat10は生RAMで一度だけ、coldは選択mainの0/1に一致。5条件の既存HOFエラー/正常表示と各cold、全QOL2048byteを限定受入。候補88be8811、既存scheduler内5窓180byte、115owner中114全byte不変。HOFとmainの世代結合・跨領域原子性は未完。
+
+隔離run37265656275は554条件（mode3変更42＋全u8 dispatch512）。新host7suiteを原本再利用しobserver影響1suiteだけ追試、UI専用4suite。UI run37266381005はHOF28/29/主保存/outer末尾/正常の5条件と各cold、計10process/25画面。9byte入口fixtureであり自然殿堂入りではない。次の配置はこのcheckpointのcurrent_scheduler_subownersを優先し、旧scheduler残366byteではなく実残186byteを使う。新ROM末尾の消費0。

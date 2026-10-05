@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-選択済み片bank fallback255でQOL台帳が全zeroとなる不具合を、v2/idle durable2048byteの非破壊復元で修正。正常cold1と故障コピーcold255が物理1a34…の全byteへ一致し、同地点・party・Bag、追加Save0。破損台帳はglobal2/MDX無効でfield遮断し、エラーUI到達後も選択counter101を保持（intro/title中間のcounter0と区別）。候補d773a123、296byte、新115owner、旧114中113全byte保持＋Mirage参照4byteのみ。全cold owner・世代結合/sector31原子性は未完。
+初回HOF mode3の主保存を既存copy-on-writeへ接続し、主保存故障時の旧authority全14sectorを保護。HOF28失敗は29/mainを書かず、29失敗もmainを書かない。stat10は生RAMで一度だけ、coldは選択mainの0/1に一致。5条件の既存HOFエラー/正常表示と各cold、全QOL2048byteを限定受入。候補88be8811、既存scheduler内5窓180byte、115owner中114全byte不変。HOFとmainの世代結合・跨領域原子性は未完。
 
-**次: 正式ROM/Save101を保持。最新d773a123/115ownerを基準に、初回mode3のHOF sector28/29とmain保存世代の整合を次に実装・検証する。全mode4/5/default/LinkFull、未対応caller共通SaveFailedとstale authority wipe、早期sector31故障/単bank原子性、残typedconsumerは未完。fallback255はQOL v2 idle台帳のみ限定復元で、Collection/Codex/Circus等の全cold owner復元と世代結合を受入していない。正式切替とtrainer131後半は検証未完で保留（承認不足ではない）。最終はシオウ通常回復/Save/独立cold Continue、雑魚ごとのSaveなし。**
+**次: 正式ROM/Save101を保持。最新88be8811/115owner/current_scheduler_subownersを基準に、HOF28/29とmain保存世代の結合・跨領域原子性を次に閉じる。mode3 mainの旧authority保護とHOF失敗短絡は受入済みだが、main失敗時にHOFが先行更新される境界は未完。全mode4/5/default/LinkFull、未対応caller共通SaveFailed・stale authority wipe、早期sector31故障/単bank原子性、残typedconsumer、全cold ownerも未完。正式切替とtrainer131後半は必要検証不足で保留（承認不足ではない）。最終はシオウ通常回復/Save/独立cold Continue、雑魚毎Saveなし。**
 
 通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `4ca18a66618571137d120091a45607937fcb6e67`。
-idle fallback QOLのみの限定受入記録source。正式ROM/Save101は不変。
+証拠のsource HEAD: `3227331bb38b807822ed9f7da8ea197b09269418`。
+mode3主保存authority保護とHOF失敗短絡だけの限定受入記録source。HOF/main原子性・正式切替は未完。
 
 ## 最短の再開手順
 
@@ -25,8 +25,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `docs/PR16_DEX_HOF_MAIN_COW_JA.md`
+- `content/modernization/pr16_dex_hof_main_checkpoint.json`
 - `docs/PR16_DEX_FALLBACK_QOL_JA.md`
-- `content/modernization/pr16_dex_fallback_checkpoint.json`
 - `docs/PR16_DEX_HOF_FAILURE_JA.md`
 - `docs/PR16_DEX_OUTER_QOL_JA.md`
 - `docs/PR16_DEX_CONSUMERS_JA.md`
@@ -444,6 +445,7 @@ P08ゲート:
 - 旧Mystery3bb4c51b配置受入はscheduler衝突で撤回。旧余り1462/1332を空き扱いせずcurrent subowner計算を使用。後継0180c180は前段1851条件の原本/未変更1755条件再利用、formatter168条件のstep成功/raw欠落、UI21/11byte由来12process30画面の変更影響のみ受入。formatter168条件はstep成功/raw欠落を区別し重複native再走0。全mode/自然通信へ昇格しない。
 - HOF40ad8237候補の局所通知は隔離2880条件＋UI-only9byte/3条件/各cold6process15画像。旧SaveFailed回避と初回stat10一度・payload保全まで。初回mode3原子性/全mode/自然殿堂入りへ広げず、同じnativeを影響なしに再走しない。
 - d773a123のfallback QOLはhost327907/ARM508と正常・片bank故障・破損cold計3成功caseで限定受入。初回coldの成功2原本を再利用し観測器だけの陰性1を修正。変更影響なしに再走せず、全cold owner/初回HOF原子性へ拡大しない。
+- 88be8811のmode3 main COWは隔離554条件とUI5条件＋各cold10process/25画像を原本再利用。main0の3callはsynthetic入力bank生成で通常Save再受入ではない。既存115owner中114保持、新180byteはStage61内5窓。次は実subownerを差引いた186byteを優先し、旧366byteや古いsuffixを空き扱いしない。HOF/main世代結合は未完。
 
 ## 次セッションへ残す更新手順
 
@@ -473,6 +475,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-選択済み片bank fallback255でQOL台帳が全zeroとなる不具合を、v2/idle durable2048byteの非破壊復元で修正。正常cold1と故障コピーcold255が物理1a34…の全byteへ一致し、同地点・party・Bag、追加Save0。破損台帳はglobal2/MDX無効でfield遮断し、エラーUI到達後も選択counter101を保持（intro/title中間のcounter0と区別）。候補d773a123、296byte、新115owner、旧114中113全byte保持＋Mirage参照4byteのみ。全cold owner・世代結合/sector31原子性は未完。
+初回HOF mode3の主保存を既存copy-on-writeへ接続し、主保存故障時の旧authority全14sectorを保護。HOF28失敗は29/mainを書かず、29失敗もmainを書かない。stat10は生RAMで一度だけ、coldは選択mainの0/1に一致。5条件の既存HOFエラー/正常表示と各cold、全QOL2048byteを限定受入。候補88be8811、既存scheduler内5窓180byte、115owner中114全byte不変。HOFとmainの世代結合・跨領域原子性は未完。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

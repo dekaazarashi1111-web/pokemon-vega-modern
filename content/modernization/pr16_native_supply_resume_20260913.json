@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "選択済み片bank fallback255でQOL台帳が全zeroとなる不具合を、v2/idle durable2048byteの非破壊復元で修正。正常cold1と故障コピーcold255が物理1a34…の全byteへ一致し、同地点・party・Bag、追加Save0。破損台帳はglobal2/MDX無効でfield遮断し、エラーUI到達後も選択counter101を保持（intro/title中間のcounter0と区別）。候補d773a123、296byte、新115owner、旧114中113全byte保持＋Mirage参照4byteのみ。全cold owner・世代結合/sector31原子性は未完。",
+    "current_stop": "初回HOF mode3の主保存を既存copy-on-writeへ接続し、主保存故障時の旧authority全14sectorを保護。HOF28失敗は29/mainを書かず、29失敗もmainを書かない。stat10は生RAMで一度だけ、coldは選択mainの0/1に一致。5条件の既存HOFエラー/正常表示と各cold、全QOL2048byteを限定受入。候補88be8811、既存scheduler内5窓180byte、115owner中114全byte不変。HOFとmainの世代結合・跨領域原子性は未完。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "正式ROM/Save101を保持。最新d773a123/115ownerを基準に、初回mode3のHOF sector28/29とmain保存世代の整合を次に実装・検証する。全mode4/5/default/LinkFull、未対応caller共通SaveFailedとstale authority wipe、早期sector31故障/単bank原子性、残typedconsumerは未完。fallback255はQOL v2 idle台帳のみ限定復元で、Collection/Codex/Circus等の全cold owner復元と世代結合を受入していない。正式切替とtrainer131後半は検証未完で保留（承認不足ではない）。最終はシオウ通常回復/Save/独立cold Continue、雑魚ごとのSaveなし。",
+    "next_step": "正式ROM/Save101を保持。最新88be8811/115owner/current_scheduler_subownersを基準に、HOF28/29とmain保存世代の結合・跨領域原子性を次に閉じる。mode3 mainの旧authority保護とHOF失敗短絡は受入済みだが、main失敗時にHOFが先行更新される境界は未完。全mode4/5/default/LinkFull、未対応caller共通SaveFailed・stale authority wipe、早期sector31故障/単bank原子性、残typedconsumer、全cold ownerも未完。正式切替とtrainer131後半は必要検証不足で保留（承認不足ではない）。最終はシオウ通常回復/Save/独立cold Continue、雑魚毎Saveなし。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -1173,7 +1173,8 @@
     "Mystery Gift隔離run37243703968 menu96/gate720、UI run37244619223 main故障/outer末尾故障/正常と各coldの6process15画像を無変更再走しない。11byte UI fixtureであり通信/受信/削除/自然入場やHOF/全非STARTへ昇格しない。旧37244205003のnative1/setup後template誤oracle停止はfailure保持。",
     "旧Mystery3bb4c51b配置受入はscheduler衝突で撤回。旧余り1462/1332を空き扱いせずcurrent subowner計算を使用。後継0180c180は前段1851条件の原本/未変更1755条件再利用、formatter168条件のstep成功/raw欠落、UI21/11byte由来12process30画面の変更影響のみ受入。formatter168条件はstep成功/raw欠落を区別し重複native再走0。全mode/自然通信へ昇格しない。",
     "HOF40ad8237候補の局所通知は隔離2880条件＋UI-only9byte/3条件/各cold6process15画像。旧SaveFailed回避と初回stat10一度・payload保全まで。初回mode3原子性/全mode/自然殿堂入りへ広げず、同じnativeを影響なしに再走しない。",
-    "d773a123のfallback QOLはhost327907/ARM508と正常・片bank故障・破損cold計3成功caseで限定受入。初回coldの成功2原本を再利用し観測器だけの陰性1を修正。変更影響なしに再走せず、全cold owner/初回HOF原子性へ拡大しない。"
+    "d773a123のfallback QOLはhost327907/ARM508と正常・片bank故障・破損cold計3成功caseで限定受入。初回coldの成功2原本を再利用し観測器だけの陰性1を修正。変更影響なしに再走せず、全cold owner/初回HOF原子性へ拡大しない。",
+    "88be8811のmode3 main COWは隔離554条件とUI5条件＋各cold10process/25画像を原本再利用。main0の3callはsynthetic入力bank生成で通常Save再受入ではない。既存115owner中114保持、新180byteはStage61内5窓。次は実subownerを差引いた186byteを優先し、旧366byteや古いsuffixを空き扱いしない。HOF/main世代結合は未完。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -4354,12 +4355,13 @@
     "status": "PASS_NATIONAL_DEX_GRANT_OWNER_SCOPED"
   },
   "next_action": {
-    "goal_ja": "正式ROM/Save101を保持。最新d773a123/115ownerを基準に、初回mode3のHOF sector28/29とmain保存世代の整合を次に実装・検証する。全mode4/5/default/LinkFull、未対応caller共通SaveFailedとstale authority wipe、早期sector31故障/単bank原子性、残typedconsumerは未完。fallback255はQOL v2 idle台帳のみ限定復元で、Collection/Codex/Circus等の全cold owner復元と世代結合を受入していない。正式切替とtrainer131後半は検証未完で保留（承認不足ではない）。最終はシオウ通常回復/Save/独立cold Continue、雑魚ごとのSaveなし。",
+    "goal_ja": "正式ROM/Save101を保持。最新88be8811/115owner/current_scheduler_subownersを基準に、HOF28/29とmain保存世代の結合・跨領域原子性を次に閉じる。mode3 mainの旧authority保護とHOF失敗短絡は受入済みだが、main失敗時にHOFが先行更新される境界は未完。全mode4/5/default/LinkFull、未対応caller共通SaveFailed・stale authority wipe、早期sector31故障/単bank原子性、残typedconsumer、全cold ownerも未完。正式切替とtrainer131後半は必要検証不足で保留（承認不足ではない）。最終はシオウ通常回復/Save/独立cold Continue、雑魚毎Saveなし。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。Save14は作業コピーだけを使用する。自己OT party、manifest解決済み通常支援用品、EXP境界、safe opponentはpre-battle fixtureとして全byteを台帳化してよい。badge/key item/story flag/money/RPをfixture付与せず、戦闘開始後は通常入力とゲーム内処理だけを使う。",
-    "id": "CLOSE_INITIAL_HOF_AND_REMAINING_SAVE_CONTRACTS",
+    "id": "CLOSE_HOF_GENERATION_AND_REMAINING_SAVE_CONTRACTS",
     "read_paths": [
+      "docs/PR16_DEX_HOF_MAIN_COW_JA.md",
+      "content/modernization/pr16_dex_hof_main_checkpoint.json",
       "docs/PR16_DEX_FALLBACK_QOL_JA.md",
-      "content/modernization/pr16_dex_fallback_checkpoint.json",
       "docs/PR16_DEX_HOF_FAILURE_JA.md",
       "docs/PR16_DEX_OUTER_QOL_JA.md",
       "docs/PR16_DEX_CONSUMERS_JA.md"
@@ -4367,32 +4369,22 @@
     "stop_rule_ja": "通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。"
   },
   "observed_date_jst": "2026-10-04",
-  "observed_head": "4ca18a66618571137d120091a45607937fcb6e67",
+  "observed_head": "3227331bb38b807822ed9f7da8ea197b09269418",
   "observed_head_checks": {
-    "accepted_raw_native_processes": 4,
-    "all12_record_steps_success": true,
+    "accepted_raw_native_processes": 11,
     "all_cold_owners_preserved": false,
     "both_all10_steps_success": true,
-    "cold_job": 111608210701,
-    "cold_run": 37261066891,
-    "diagnostic_native_processes": 2,
-    "fixture_physical_copy_bytes": [
-      0,
-      1,
-      2
-    ],
+    "diagnostic_native_processes": 0,
     "general_ci_known_source_mismatch_not_resolved": true,
-    "intermediate_boot_title_native_processes": 2,
-    "isolated_job": 111601363009,
-    "isolated_run": 37258786462,
-    "reason_ja": "選択済み片bank fallback255でQOL台帳が全zeroとなる不具合を、v2/idle durable2048byteの非破壊復元で修正。正常cold1と故障コピーcold255が物理1a34…の全byteへ一致し、同地点・party・Bag、追加Save0。破損台帳はglobal2/MDX無効でfield遮断し、エラーUI到達後も選択counter101を保持（intro/title中間のcounter0と区別）。候補d773a123、296byte、新115owner、旧114中113全byte保持＋Mirage参照4byteのみ。全cold owner・世代結合/sector31原子性は未完。",
-    "record_job": 111609123964,
-    "record_run": 37261371891,
-    "scope_head": "8b11cbc5575954c445d8599d60a857bb797f815c",
-    "screens": 3,
+    "initial_hof_atomicity": false,
+    "isolated_job": 111621821031,
+    "isolated_run": 37265656275,
+    "reason_ja": "初回HOF mode3の主保存を既存copy-on-writeへ接続し、主保存故障時の旧authority全14sectorを保護。HOF28失敗は29/mainを書かず、29失敗もmainを書かない。stat10は生RAMで一度だけ、coldは選択mainの0/1に一致。5条件の既存HOFエラー/正常表示と各cold、全QOL2048byteを限定受入。候補88be8811、既存scheduler内5窓180byte、115owner中114全byte不変。HOFとmainの世代結合・跨領域原子性は未完。",
+    "scope_head": "5092c4848f445c6ef13a8768cce8e22bc19fb999",
+    "screens": 25,
     "stage79_cached_not_new_native": true,
-    "total_native_processes": 8,
-    "whole_receipt_equals_checkpoint": true
+    "ui_job": 111623997889,
+    "ui_run": 37266381005
   },
   "observed_head_history": [
     {
@@ -12281,7 +12273,7 @@
       "semantics": "Save100/ミルシティ4,17北。動的Ranger20,29へ実正面A→町の解放scene→4072=3/4380set。全party600byte/HP277/PP3,9,8,2/23114円保持。95+cold13入力/54画面。通常2歩+自動2歩、歩数93/3。cold RAM差owner未解明。"
     }
   ],
-  "observed_head_semantics": "idle fallback QOLのみの限定受入記録source。正式ROM/Save101は不変。",
+  "observed_head_semantics": "mode3主保存authority保護とHOF失敗短絡だけの限定受入記録source。HOF/main原子性・正式切替は未完。",
   "p08_candidate_impact": {
     "candidate": {
       "crc32": "CC068B4A",
@@ -12403,7 +12395,13 @@
     "status": "NATIVE_PARTY_RETENTION_ACCEPTED_BP_PENDING",
     "tested_head": "10e535a046441dd3b797918106259b5c57b69716"
   },
-  "pending_runs": [],
+  "pending_runs": [
+    {
+      "run_id": 37267010828,
+      "status": "in_progress",
+      "tested_head": "3227331bb38b807822ed9f7da8ea197b09269418"
+    }
+  ],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
   "pr_draft": true,
   "pr_merged": false,
@@ -14225,6 +14223,18 @@
     ".github/workflows/pr16-dex-hof-failure.yml": {
       "sha256": "2c062e8f47ffe0fb2486785c7dc787c844fbdbeb31e26fbbeccca4a724ec11fd",
       "size": 1744
+    },
+    ".github/workflows/pr16-dex-hof-main-cow.yml": {
+      "sha256": "8056d572fa9b97a046fd3487c9ce274d352f5888ed618f1ad22e19abda1ca0ac",
+      "size": 1628
+    },
+    ".github/workflows/pr16-dex-hof-main-record.yml": {
+      "sha256": "d1bd1e0920abcf3938784a9b50ef42f4c071fe74b6b9b1524a208229072db0a5",
+      "size": 2465
+    },
+    ".github/workflows/pr16-dex-hof-main-ui.yml": {
+      "sha256": "ec5979222ce79fd5dd1bc0d627a99d9def265c05a4868824f384d84d318d2222",
+      "size": 1601
     },
     ".github/workflows/pr16-dex-hof-record.yml": {
       "sha256": "2e758ecc27a1abfff2ed1ff47211feb6aaa8fd03b807f4c509a0c695c56d772a",
@@ -17117,6 +17127,138 @@
     "content/modernization/pr16_dex_hof_failure_bindings.json": {
       "sha256": "b3339e41f3a1090e275d842ff7b37291d196c798bc929b6dfc7002090b813d49",
       "size": 2349
+    },
+    "content/modernization/pr16_dex_hof_main_checkpoint.json": {
+      "sha256": "2d9fdb898411a961985bef441c5793b372b1d9233f87fcbdd9eb4937c231fecd",
+      "size": 305499
+    },
+    "content/modernization/pr16_dex_hof_main_cow_bindings.json": {
+      "sha256": "1ebe302c6f7aa5933af2a717b609b9b3c49f20dc05a549dfef71e84ce096df86",
+      "size": 4115
+    },
+    "content/modernization/pr16_dex_hof_main_cow_host.json": {
+      "sha256": "ce6b12045f92cd85951bc37e68e1c1c73672e095d665f72a171c9baf3fb591bf",
+      "size": 4014
+    },
+    "content/modernization/pr16_dex_hof_main_evidence/isolated/attempts.json": {
+      "sha256": "ec8a8a0b20266e3145f8e09d6d22de3ddf7e6461ede190003724229f7573d390",
+      "size": 67
+    },
+    "content/modernization/pr16_dex_hof_main_evidence/isolated/build.json": {
+      "sha256": "a7428d4c2cb75307f30ea7a3135b6fa6d98f68955f887ed55d5804f93efbc87f",
+      "size": 113632
+    },
+    "content/modernization/pr16_dex_hof_main_evidence/isolated/host-tests.json": {
+      "sha256": "ce6b12045f92cd85951bc37e68e1c1c73672e095d665f72a171c9baf3fb591bf",
+      "size": 4014
+    },
+    "content/modernization/pr16_dex_hof_main_evidence/isolated/isolated-stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_dex_hof_main_evidence/isolated/isolated-stdout.txt": {
+      "sha256": "72e6ab3d9de5c9d7a51ccc64e49c25704c20452ef34d9599bd64849eab7abcb5",
+      "size": 272
+    },
+    "content/modernization/pr16_dex_hof_main_evidence/isolated/measurement.json": {
+      "sha256": "704015ee2d53affca8fabc2088c67ac06a1ff5aee235d4cea3da6b6307054e4b",
+      "size": 115842
+    },
+    "content/modernization/pr16_dex_hof_main_evidence/ui/attempts.json": {
+      "sha256": "c59588ec5c4a146107b1ec7ef25e0becc769dc9683254daddd0f0bacbcf9a72f",
+      "size": 251
+    },
+    "content/modernization/pr16_dex_hof_main_evidence/ui/healthy-cold/cold-102/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_dex_hof_main_evidence/ui/healthy-cold/cold-102/stdout.txt": {
+      "sha256": "b32cfadd8a6dee9665507d0282d17982c463e5e92fba403114d219854fc82d9e",
+      "size": 2193
+    },
+    "content/modernization/pr16_dex_hof_main_evidence/ui/healthy/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_dex_hof_main_evidence/ui/healthy/stdout.txt": {
+      "sha256": "32adb81641cbc058890b35411a3beec0c0feb8422fc09bb636a5585cc3bd7d46",
+      "size": 31493
+    },
+    "content/modernization/pr16_dex_hof_main_evidence/ui/hof28-fault-cold/cold-101/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_dex_hof_main_evidence/ui/hof28-fault-cold/cold-101/stdout.txt": {
+      "sha256": "46586d148646b54061918bc6fd52948ee3056b86c7f5f82b07bf3e0e62bc8c2c",
+      "size": 2193
+    },
+    "content/modernization/pr16_dex_hof_main_evidence/ui/hof28-fault/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_dex_hof_main_evidence/ui/hof28-fault/stdout.txt": {
+      "sha256": "a1f60172eeee5eb67955a5178c812becb6f4a08f9f3bf143323cf7f20b00d703",
+      "size": 9947
+    },
+    "content/modernization/pr16_dex_hof_main_evidence/ui/hof29-fault-cold/cold-101/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_dex_hof_main_evidence/ui/hof29-fault-cold/cold-101/stdout.txt": {
+      "sha256": "7776990be168473b997cb5fb9bc3d06586928c2caa95e23570ce3e8c8886ee7c",
+      "size": 2193
+    },
+    "content/modernization/pr16_dex_hof_main_evidence/ui/hof29-fault/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_dex_hof_main_evidence/ui/hof29-fault/stdout.txt": {
+      "sha256": "60517c0de31f1b83cae908aa66c21c8f4b498d3adc5cc6eb008bb37302af28a8",
+      "size": 10729
+    },
+    "content/modernization/pr16_dex_hof_main_evidence/ui/host-tests.txt": {
+      "sha256": "ef984f78f9e22158697c49f70e2e93e2422db4e0b9d1db947682785c675e6efa",
+      "size": 540
+    },
+    "content/modernization/pr16_dex_hof_main_evidence/ui/main-fault-cold/cold-101/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_dex_hof_main_evidence/ui/main-fault-cold/cold-101/stdout.txt": {
+      "sha256": "aa06ea58fe5bf82d235896d1b9ea877744962479a1025ad2106bd336bbccbe91",
+      "size": 2379
+    },
+    "content/modernization/pr16_dex_hof_main_evidence/ui/main-fault/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_dex_hof_main_evidence/ui/main-fault/stdout.txt": {
+      "sha256": "aad961ecd88be0233e2e7a11450d576371603244e0ae341ada7e04bb0bfd0957",
+      "size": 12547
+    },
+    "content/modernization/pr16_dex_hof_main_evidence/ui/measurement.json": {
+      "sha256": "e969ed90ffcdf664b2476ab27a484ac1c8d26fd0a61d12914493e13c7cfd770e",
+      "size": 39893
+    },
+    "content/modernization/pr16_dex_hof_main_evidence/ui/outer-fault-cold/cold-102/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_dex_hof_main_evidence/ui/outer-fault-cold/cold-102/stdout.txt": {
+      "sha256": "98281f247d472e1a2038d0820cc1eb00790466eeb426348fbae82977febe8586",
+      "size": 2193
+    },
+    "content/modernization/pr16_dex_hof_main_evidence/ui/outer-fault/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_dex_hof_main_evidence/ui/outer-fault/stdout.txt": {
+      "sha256": "49004807db8d57e51f49952ceb3b7b69f3e6bbf4b117a94d950c2fd142016a36",
+      "size": 34744
+    },
+    "content/modernization/pr16_dex_hof_main_visual_review.json": {
+      "sha256": "58fa42c28eabecdb319a32a38bb42b8081f8227082df59b4f19f67a4f61db956",
+      "size": 5223
     },
     "content/modernization/pr16_dex_hof_tail_lease.json": {
       "sha256": "5af6a4932ccf87c0183a1ece1423416d79a5f989cdcb348db78534396c6879be",
@@ -28822,6 +28964,10 @@
       "sha256": "0ea655487eca36ab56f17105667538155e599c4a4f02a1cb96d7ac51f7336d37",
       "size": 3629
     },
+    "docs/PR16_DEX_HOF_MAIN_COW_JA.md": {
+      "sha256": "c5800162b827daedd8129493b5a44c53084c0c03c0ef63df0fb79d1ac02fe2fa",
+      "size": 3264
+    },
     "docs/PR16_DEX_LIFECYCLE_JA.md": {
       "sha256": "8af61361a3197aeb01974de7f2065e30aaa49151ecf834e84df1920d1de2badc",
       "size": 5703
@@ -33074,6 +33220,10 @@
       "sha256": "58ef2dd850e712123478dae6b9604d6c5b772bbc0b7a7eabe00fb7cafe4156a1",
       "size": 2925
     },
+    "overlays/dex_owner/dex_hof_main_cow.S": {
+      "sha256": "816604eeff1f28914c7646d5776910d1c9c5f66d84d44bcbd0201f8aef5701e8",
+      "size": 2551
+    },
     "overlays/dex_owner/dex_hof_save_failure.S": {
       "sha256": "26f68bd05e44d353b2b578e83f47bad749df58fcadcec115e30b702828064e21",
       "size": 2704
@@ -33797,6 +33947,22 @@
     "scripts/pr16_dex_hof_failure_actions.py": {
       "sha256": "1da2e18c1b0c0ed6c5c378bb6ace61a046d603e1223ab4bffc466fd0d1b3133b",
       "size": 6497
+    },
+    "scripts/pr16_dex_hof_main_cow.py": {
+      "sha256": "f77ab22c0af18c93e83d577b188521a0e3f8acdf267fd88d11e1b6f6fbd12a50",
+      "size": 7051
+    },
+    "scripts/pr16_dex_hof_main_cow_actions.py": {
+      "sha256": "00c609bfe5203dc7debf183f5b573db5ee528932906a87c73d096947ec840cad",
+      "size": 6969
+    },
+    "scripts/pr16_dex_hof_main_record.py": {
+      "sha256": "ba6ddfd13c46e1126ab7608973219da46d29555ce6da6f027100d87b4f9baced",
+      "size": 15889
+    },
+    "scripts/pr16_dex_hof_main_ui.py": {
+      "sha256": "95b111012b3f249362cdc4ac0cf3d7c3fdf74a5510d138efec0811c85dafbfcf",
+      "size": 13335
     },
     "scripts/pr16_dex_hof_record.py": {
       "sha256": "1eacc8e9de9332f0b15b3a6d8ffcaed496bb3a8b695627d44728688820cbfcdb",
@@ -37022,6 +37188,14 @@
       "sha256": "15a3de5ab3b2917006c1d8754cb606483a20427272a6aecdf1a2f80086ae8f80",
       "size": 2238
     },
+    "tests/test_pr16_dex_hof_main_cow.py": {
+      "sha256": "3574840b3c8ff4b765102239dadc6a9f85b3f72909c6a51e4b3901d57501cddf",
+      "size": 2441
+    },
+    "tests/test_pr16_dex_hof_main_ui.py": {
+      "sha256": "946098c49929aacb4436e63981628406e43821b9bbdae3f0d4a7e086b7f6479c",
+      "size": 1530
+    },
     "tests/test_pr16_dex_hof_ui.py": {
       "sha256": "d8d55471ef14ce1b2bfd5fa4a5470b26e099a60a901b817ece9c9089a477a620",
       "size": 1085
@@ -39158,6 +39332,14 @@
       "sha256": "1d41af97fcc4813e09f62aa79d1c214ec4c9e7c9b07b08c2b51eeae364b0c560",
       "size": 6792
     },
+    "tools/mgba_pr16_dex_hof_main_cow.h": {
+      "sha256": "57536d26aed521d1cd1dd9ad5d9a4f58a3a3b7d111b2ed0b4df176594cfe01a9",
+      "size": 8731
+    },
+    "tools/mgba_pr16_dex_hof_main_ui.h": {
+      "sha256": "5c50c964d40068fd186be68faf00ddbbf80aab4d104fdbeab044e460640d7889",
+      "size": 12691
+    },
     "tools/mgba_pr16_dex_hof_ui.h": {
       "sha256": "c6c55635f84ee4038b38b0967a40c01f44401fadba108469344859198e65bb9e",
       "size": 11414
@@ -40023,6 +40205,29 @@
         },
         "status": "PASS_HOF_NOTIFICATION_UI_ONLY_NO_RETRY",
         "ui_run": 37255103782
+      },
+      "hof_main_cow": {
+        "candidate": {
+          "sha256": "88be88116bd452bd70cffaf2a820d5c6c6b6b7410fa603a9a0228b694725d5de",
+          "size": 33554432
+        },
+        "checkpoint": "content/modernization/pr16_dex_hof_main_checkpoint.json",
+        "current_scheduler_free_bytes": 186,
+        "formal_rom_changed": false,
+        "formal_save_changed": false,
+        "guide": "docs/PR16_DEX_HOF_MAIN_COW_JA.md",
+        "initial_hof_atomicity": false,
+        "isolated_run": 37265656275,
+        "new_subowner_bytes": 180,
+        "owners": 115,
+        "parent_candidate": {
+          "sha256": "d773a1232c31fcb5629785278c2ad6e6d46208dbc62a55d66167fba7a2a38670",
+          "size": 33554432
+        },
+        "record_run": 37267010828,
+        "status": "PASS_SCOPED_MODE3_MAIN_COW_AND_HOF_FAILURE_SHORT_CIRCUIT",
+        "ui_run": 37266381005,
+        "unchanged_previous_owners": 114
       },
       "host_tests": 102,
       "load_newgame": {

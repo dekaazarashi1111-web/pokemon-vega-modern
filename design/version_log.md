@@ -10134,3 +10134,18 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 初回mode3 HOF28/29とmainの保存契約へ。最新115ownerと実sectionを先に再照合。最終はシオウ通常回復/保存/cold Continue、雑魚毎Saveなし。
 - Commit: closeout source=a2a70395f63e435593db3d12fbd34583dc0d1ab0; 同branch非force push。
 - Network: 同repo Actions/既存text receiptだけ。ROM/入力save/runtime/runner/credentials追加公開0。
+
+## 2026-10-05T05:16:32.262553+00:00
+- Timestamp: 2026-10-05T05:16:32.262553+00:00
+- Task: USER-20261005-DEX-HOF-MAIN-COW / 初回mode3主保存authority保護
+- Version: dex-hof-main-cow-v1
+- Status: DONE（候補mode3 main保護とHOF失敗短絡の限定受入）
+- Summary: 初回HOF mode3の主保存を既存copy-on-writeへ接続し、主保存故障時の旧authority全14sectorを保護。HOF28失敗は29/mainを書かず、29失敗もmainを書かない。stat10は生RAMで一度だけ、coldは選択mainの0/1に一致。5条件の既存HOFエラー/正常表示と各cold、全QOL2048byteを限定受入。候補88be8811、既存scheduler内5窓180byte、115owner中114全byte不変。HOFとmainの世代結合・跨領域原子性は未完。
+- Files changed: mode3 ARM/generator/bindings/isolated/UI/tests/workflows、専用CP/全text evidence、固定MDJSONと両ログ。
+- Verify: 隔離run37265656275/job111621821031全10step、実ARM554条件（42変更故障・境界＋512dispatch）。host7suite＋影響1suite、UI4suite。UI run37266381005/job111623997889全10step、5UI＋各cold10process25画像を全原本/全SHA/pixelで検査。
+- Allocation: 新180byteを旧schedulerの実空き5窓へ。全115owner中114全byte保持、Stage61のみ更新、row3だけ4byte変更、overlap0、全ROM逆変換。元scheduler再link0、新ROM末尾0、実残186byte、旧366byteは履歴。
+- Native: 受入raw11（隔離1＋UI/cold10）、診断0。隔離入力bankのmode0生成3callはfixtureであり旧通常Save再受入ではない。記録host0/ARM0/native0。正式ROM06c5e85c/Save101全4copy814a8e31不変。
+- Boundary: stat10は生RAM0→1を一度、HOF失敗でrollback0/main0。主保存故障も旧14sector・cold101を保持。正常/outer末尾はcold102。QOL2048byteは5coldで物理全byte一致。HOF28/29はmainより先行するため全体原子性・世代bindingはfalse。
+- Next: 正式ROM/Save101を保持。最新88be8811/115owner/current_scheduler_subownersを基準に、HOF28/29とmain保存世代の結合・跨領域原子性を次に閉じる。mode3 mainの旧authority保護とHOF失敗短絡は受入済みだが、main失敗時にHOFが先行更新される境界は未完。全mode4/5/default/LinkFull、未対応caller共通SaveFailed・stale authority wipe、早期sector31故障/単bank原子性、残typedconsumer、全cold ownerも未完。正式切替とtrainer131後半は必要検証不足で保留（承認不足ではない）。最終はシオウ通常回復/Save/独立cold Continue、雑魚毎Saveなし。
+- Commit: record source=3227331bb38b807822ed9f7da8ea197b09269418; 同branch非force push。
+- Network: 同repo Actions原本/既存入力のみ。公開source/最小address-size-SHA/text/screens、ROM断片/rawhex/ROM/runtime/入力save/runner/credential追加公開0。
