@@ -3,9 +3,15 @@
 static struct ARMMemory uu_memory;
 static struct mCore *uu_core;
 static void (*uu_write8)(struct mCore*,uint32_t,uint8_t);
-static unsigned uu_mode,uu_target=0xFFFFFFFFu,uu_faults,uu_snapshot,uu_task,uu_screens,uu_fixtures,uu_fixture_bytes,uu_display,uu_prints,uu_sounds,uu_clears,uu_sprite,uu_freed[3];
+static unsigned uu_mode,uu_target=0xFFFFFFFFu,uu_faults,uu_snapshot,uu_task,uu_screens,uu_fixtures,uu_fixture_bytes,uu_display,uu_prints,uu_sounds,uu_clears,uu_sprite,uu_freed[3],uu_owner_events;
 static uint8_t uu_ewram[262144],uu_iwram[32768],uu_owners[0x4F18],uu_mdx[522],uu_party[600],uu_flash[131072],uu_rtc[16],uu_registered[210];
 static unsigned uu_inventory[2048];
+static void uu_owner_event(struct ARMCore*cpu,uint32_t a,unsigned size)
+{
+ if(uu_snapshot&&a<0x02040000u&&a+size>0x0203B0E8u&&uu_owner_events<64){printf("{\"protected_cpu_write\":true,\"frame\":%u,\"address\":%u,\"size\":%u,\"pc\":%u}\n",st_frames,a,size,(uint32_t)cpu->gprs[15]);fflush(stdout);uu_owner_events++;}
+}
+static void uu_store16(struct ARMCore*cpu,uint32_t a,int16_t v,int*t){uu_owner_event(cpu,a,2);uu_memory.store16(cpu,a,v,t);}
+static void uu_store32(struct ARMCore*cpu,uint32_t a,int32_t v,int*t){uu_owner_event(cpu,a,4);uu_memory.store32(cpu,a,v,t);}
 static void uu_store8(struct ARMCore*cpu,uint32_t a,int8_t v,int*t)
 {
  struct GBASavedata*s=&((struct GBA*)uu_core->board)->memory.savedata;
@@ -18,13 +24,13 @@ static void uu_store8(struct ARMCore*cpu,uint32_t a,int8_t v,int*t)
    v=(int8_t)((uint8_t)v^1u);uu_faults++;si_need(uu_faults<=16,"bounded physical fault attempts");
   }
  }
- uu_memory.store8(cpu,a,v,t);
+ uu_owner_event(cpu,a,1);uu_memory.store8(cpu,a,v,t);
 }
 static void uu_check(struct mCore*c)
 {
  uint8_t d[522];for(unsigned i=0;i<522;i++)d[i]=read8(c,VEGA_DEX_OWNER_RAM+i);si_need(!memcmp(d,uu_mdx,522)&&VegaDexValidate(d,522)==0,"complete MDX retained");
  si_need(!read32(c,0x03005480)&&read8(c,0x0203AAC8)==0,"no old SaveFailed entry");
- if(uu_snapshot)for(unsigned i=0;i<sizeof(uu_owners);i++)si_need(read8(c,0x0203B0E8+i)==uu_owners[i],"all20248 extension bytes retained after fault");
+ if(uu_snapshot)for(unsigned i=0;i<sizeof(uu_owners);i++)if(read8(c,0x0203B0E8+i)!=uu_owners[i]){printf("{\"protected_owner_mismatch\":true,\"frame\":%u,\"address\":%u,\"size\":1}\n",st_frames,0x0203B0E8+i);fflush(stdout);si_need(false,"all20248 extension bytes retained after fault");}
 }
 static void uu_tick(struct mCore*c,unsigned key){st_keys(c,key,1);uu_check(c);}
 static void uu_fixture(struct mCore*c,unsigned phase)
@@ -90,7 +96,7 @@ int main(int argc,char**argv)
  si_need(ready&&read32(c,SI_COUNTER)==101&&read8(c,QOL_PLAYER_PARTY_COUNT)==4&&!read8(c,0x03003FA4)&&!read32(c,0x03003140),"stable field and no remote/hblank");
  for(unsigned i=0;i<522;i++)uu_mdx[i]=read8(c,VEGA_DEX_OWNER_RAM+i);si_need(VegaDexValidate(uu_mdx,522)==0,"valid MDX");for(unsigned i=0;i<600;i++)uu_party[i]=read8(c,QOL_PLAYER_PARTY+i);si_inventory(c,uu_inventory);for(unsigned i=0;i<210;i++)uu_registered[i]=read8(c,read32(c,QOL_SAVE_BLOCK1_SLOT)+0x3AD4+i);ng_flash(c,uu_flash);uu_view(c,"before_ui_fixture");
  uu_fixture(c,0);ready=false;for(unsigned i=0;i<600;i++){uu_tick(c,0);if(read32(c,BATTLE_CORE_MAIN_CALLBACK2)==0x08128F05){ready=true;break;}}si_need(ready,"bounded real Union constructor");uu_ready(c);uu_view(c,"native_chat_initialized");uu_fixture(c,1);
- struct ARMCore*cpu=c->cpu;uu_memory=cpu->memory;cpu->memory.store8=uu_store8;void(*normal_frame)(struct mCore*)=c->runFrame;c->runFrame=uu_frame;
+ struct ARMCore*cpu=c->cpu;uu_memory=cpu->memory;cpu->memory.store8=uu_store8;cpu->memory.store16=uu_store16;cpu->memory.store32=uu_store32;void(*normal_frame)(struct mCore*)=c->runFrame;c->runFrame=uu_frame;
  ready=false;for(unsigned i=0;i<3000;i++){uu_tick(c,0);if(uu_prints&&read16(c,uu_task+6)==9&&!read8(c,uu_display+4)){ready=true;break;}}si_need(ready&&uu_prints==1,"one complete actual result renderer");si_need(read16(c,0x03005470)==(uu_mode?255:1)&&read32(c,SI_COUNTER)==(uu_mode==1?101:102),"truthful attempt and committed counter");
  if(uu_mode){for(unsigned i=0;i<60;i++)uu_tick(c,0);si_need(read16(c,uu_task+6)==9&&!uu_sounds&&!uu_clears,"error stable and silent until new input");uu_view(c,"failure_waiting");uu_tick(c,uu_mode==1?1:2);uu_tick(c,0);}
  else{for(unsigned i=0;i<20;i++)uu_tick(c,0);si_need(read16(c,uu_task+6)==11&&uu_sounds==1&&uu_clears==1,"normal success sound and original timed message hold");uu_view(c,"success_rendered");}
