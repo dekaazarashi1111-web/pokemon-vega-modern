@@ -12810,3 +12810,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 正式ROM/Save101保持。Unionの誤成功文/SE_SAVEを局所修復し、Mysteryのscheduler衝突を復旧・移設。21byte/11byte UI-onlyと各cold、scheduler19/Union1016/Mystery816を限定受入。次はHOF/共通SaveFailedのtiles16KiB/video/decompression scratch衝突、stat10重複増分とmode4/5 erase再実行、stale selector authority wipeを安全契約へ分離する。早期sector31故障/原子性、全mode、残typed consumerも未完。正式切替・trainer131後半へまだ進まず、最終はシオウPokecenter通常回復/Save/独立coldContinue、雑魚毎Saveなし。
 - Commit: record source=eecd1da4c9890304eb19222cc205e1ac2fa86b38; 同branch非force push。
 - Network: 同repoActions/既存入力/固定CFRU WAV witness。公開source/address-size-SHA/text/screensのみ。ROM/rawhex/runtime/入力save/runner/credentials追加公開0。
+
+## 2026-10-05T01:44:34.733952+00:00
+- Timestamp: 2026-10-05T01:44:34.733952+00:00
+- Task: USER-20261005-DEX-UNION-FAILURE / Union Chat通知記録の終端
+- Version: dex-union-closeout
+- Status: STOPPED（安全な限定候補受入点。HOF/全非START/全mode/残consumer未完）
+- Summary: record run37252355438/job111582411166全12step成功とartifact11321735909のcheckpoint全文一致を確認しpending解除。成功済native/recordはmanual-onlyへ。
+- Files changed: closeout source/workflow、record起動条件、固定MDJSONと両ログ。
+- Verify: 全source/evidence/fixed resume/index/task graph PASS、host再試験0/ARM0/native0。前段原本はUnion1016/Mystery816/scheduler19、formatter168step成功はraw欠落/再走0、UI-only両caller各3条件/各cold12process30画像。候補0180c180、復元112owner/新113owner、正式ROM/Save101不変。
+- Boundary: Union21byte/Mystery11byte入口fixtureを自然通信/受信/削除/正規transitionやHOFへ昇格しない。cold入力もfixture由来。旧Mystery配置全体受入は撤回。次はHOF副作用/SaveFailed scratch/authority wipe、全mode/残typed consumer。早期sector31故障/原子性未受入。trainer131後半0。一般CI既知QOL不一致/Stage79cache/旧9月18日queueを別扱い。
+- Commit: closeout source=468b45016c9608a00e2a0c902ff572f3d10178bf; 同branch非force push。
+- Network: 同repoActionsと既存text receiptのみ。ROM/入力save/runtime/runner/credentials追加公開0。

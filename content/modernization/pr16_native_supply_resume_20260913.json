@@ -4368,6 +4368,7 @@
   "observed_head": "eecd1da4c9890304eb19222cc205e1ac2fa86b38",
   "observed_head_checks": {
     "accepted_raw_native_processes": 15,
+    "all12_record_steps_success": true,
     "all_attempt_native_processes": 23,
     "all_save_modes_accepted": false,
     "ancestor_raw_cases": 1851,
@@ -4385,12 +4386,15 @@
     "new_owner_count": 113,
     "old_mystery_allocation_acceptance_revoked": true,
     "reason_ja": "正式ROM/Save101保持。Union失敗文/保存音/入力待ち/帰還を候補限定受入。Mysteryのscheduler重複配置を撤回・復元・別owner移設し影響回帰済み。UI入口はUnion21byte/Mystery11byte fixture。HOF/全mode/残consumer未完。",
+    "record_job": 111582411166,
+    "record_run": 37252355438,
     "reused_unchanged_cases": 1755,
     "scope_head": "f0b6d885ddee4a18cd9a599281989009b4d74bfa",
     "stage79_cached_not_new_native": true,
     "ui_job": 111580919887,
     "ui_run": 37251844445,
-    "union_fixture_bytes": 21
+    "union_fixture_bytes": 21,
+    "whole_receipt_equals_checkpoint": true
   },
   "observed_head_history": [
     {
@@ -12401,13 +12405,7 @@
     "status": "NATIVE_PARTY_RETENTION_ACCEPTED_BP_PENDING",
     "tested_head": "10e535a046441dd3b797918106259b5c57b69716"
   },
-  "pending_runs": [
-    {
-      "run_id": 37252355438,
-      "status": "in_progress",
-      "tested_head": "eecd1da4c9890304eb19222cc205e1ac2fa86b38"
-    }
-  ],
+  "pending_runs": [],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
   "pr_draft": true,
   "pr_merged": false,
@@ -14326,6 +14324,10 @@
       "sha256": "3b1ff1c11b78a7481802e7b7b765d4f9e53e272779104270dd979f4903d509fc",
       "size": 1666
     },
+    ".github/workflows/pr16-dex-union-closeout.yml": {
+      "sha256": "d3ad7788d0289baadad8a8823beacd25e7cadf4554017b516af68a5250f55da3",
+      "size": 2398
+    },
     ".github/workflows/pr16-dex-union-failure.yml": {
       "sha256": "9e347351297a7d35fe0ab8f8476873470007bd621811d941a86117ee6cd4d25d",
       "size": 1880
@@ -14335,8 +14337,8 @@
       "size": 1893
     },
     ".github/workflows/pr16-dex-union-record.yml": {
-      "sha256": "1d89b1b4636b7d5fdae4a73e73d40ecd1fb14428ae5e16401c8ca5ac5a7bdb23",
-      "size": 2345
+      "sha256": "83d107e6fe39867da9fd2c7a6b07392a3ba0b0e71fb0885b628667d5878f5a04",
+      "size": 2247
     },
     ".github/workflows/pr16-dex-union-ui.yml": {
       "sha256": "bfcc43a58cd18cddbcf6de16536ace53735ff1b83e61e0bd85af6e55434f4a27",
@@ -33502,6 +33504,10 @@
       "sha256": "f0b8d18b4ff533372a10841ff08b71506c4a305e5d9126704ec919d985572ee6",
       "size": 5067
     },
+    "scripts/pr16_dex_union_closeout.py": {
+      "sha256": "3a0d4b30635ba4b97756795e9aebe17b7ab68a1b3acba7b8a1d05cb3a654d524",
+      "size": 9649
+    },
     "scripts/pr16_dex_union_failure.py": {
       "sha256": "52c3b53ba26766d6515dfe214cedaca74c6ca76b5c8e3efebbc54d38634498cf",
       "size": 8299
@@ -39754,6 +39760,30 @@
         "mystery_fixture_bytes": 11,
         "normal_field_sprite_camera_accepted": false,
         "record_run": 37252355438,
+        "recording": {
+          "all12_record_steps_success": true,
+          "arm_compiles": 0,
+          "checkpoint": "content/modernization/pr16_dex_union_checkpoint.json",
+          "checkpoint_identity": {
+            "sha256": "890aea32ebd733bde99e7f43d161ed0f4db1cb57f937842ffcbaf804a482d8df",
+            "size": 486529
+          },
+          "closeout_run": 37252588731,
+          "closeout_source": "468b45016c9608a00e2a0c902ff572f3d10178bf",
+          "formal_rom_changed": false,
+          "formal_save_changed": false,
+          "host_tests_rerun": 0,
+          "native_processes": 0,
+          "record_archive_sha256": "b443a9b9e7bfb6779e2e2c7fed1a3c26df622df1deaf2cb3eda4934507c9216e",
+          "record_archive_size": 91587,
+          "record_artifact": 11321735909,
+          "record_completion": "4248b965930010167bdedb5b07986f90d01e3917",
+          "record_job": 111582411166,
+          "record_receipt_equals_checkpoint": true,
+          "record_run": 37252355438,
+          "record_source": "eecd1da4c9890304eb19222cc205e1ac2fa86b38",
+          "status": "PASS_TERMINAL_UNION_FAILURE_RECORD"
+        },
         "scheduler_subowners_restored": true,
         "status": "PASS_CANDIDATE_UNION_NOTIFICATION_AND_RELOCATED_MYSTERY_UI_ONLY",
         "ui_run": 37251844445,
