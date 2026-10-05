@@ -44,9 +44,9 @@ def trace(raw,folder,candidate,source,blocked):
   elif'screen'in row:need(phase==3 and row['frame']==frame,'same-frame screen');screens.append(row);phase=4
   else:raise ValueError('unknown cold trace row')
  need(phase==4 and len(meta)==len(obs)==len(mdx)==len(screens)==1,'one complete final observation');need(end==dict(end='PASS_FALLBACK_QOL_COLD',frames=frame,inputs=inputs,blocked=blocked,host_write_barriers=7,ram_fixture_writes=0,register_writes=0,native_processes=1),'complete cold end')
- m,o,d=meta[0],obs[0],mdx[0];need(m['save_calls']==0 and m['flash_all_bytes_unchanged']and m['counter']==(0 if blocked else 101) and m['ledger_sha256']==o['ledger_sha256']and m['status']==d['save_file_status'],'full coherent cold metadata');need(m['blocked']==blocked and o['field']==(not blocked),'field only valid idle ledger')
+ m,o,d=meta[0],obs[0],mdx[0];need(m['save_calls']==0 and m['flash_all_bytes_unchanged']and m['counter']==101 and m['ledger_sha256']==o['ledger_sha256']and m['status']==d['save_file_status'],'full coherent cold metadata');need(m['blocked']==blocked and o['field']==(not blocked),'field only valid idle ledger')
  if not blocked:need(m['ledger_physical_exact']and m['ledger_sha256']==identity(source[0x1F064:0x1F864])['sha256']and d['valid']and o['map']==[3,24]and o['xy']==[53,13]and o['party_count']==4 and o['lock']==0,'full durable ledger and selected formal location')
- else:need(m['status']==2 and not d['valid']and m['ledger_sha256']==identity(bytes(2048))['sha256'],'invalid durable blocks Continue without initialization')
+ else:need(m['status']==2 and not d['valid']and m['ledger_sha256']==identity(bytes(2048))['sha256']and o['counter']==101 and o['callback2']==134266037 and frame==2584 and inputs==7,'actual save rejection menu after two Start presses, never intro/title or initialized ledger')
  need(images.screens(rows,folder)==screens,'complete original screen bytes');return dict(metadata=m,observation=o,mdx=d,screens=screens,end=end)
 def fixture(seed,kind):
  need(len(seed)==131088,'whole FlashRTC');out=bytearray(seed);offsets=[]
