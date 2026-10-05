@@ -1,0 +1,13 @@
+# HOF donor: PLR1の厳密数値consumer分類
+
+現候補0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583の全byte開始・全ROM mirror・Thumb形874件の既受入inventoryを再利用する。旧443件は改作せず、PLR1の未知12件だけを独立の数値型証拠で分類する。既存bundle108,904byte、image108,008byte、parent level pool69,165byteは別identityとして検査する。現115ownerのafter_sha256と旧署名済bundleを結合し、nominal allocator hashやowner名だけでは分類しない。
+
+固定checkpointに署名されたcompose、linker、C reader、owner gate、game wrapperのsourceとreceipt/linkを照合する。header/policy/indexの全byte、1,483ownerの3byte U16 move/U8 level、終端、範囲、source arena、slot、parent/Floette分離を検査する。parent全1,482spanは隙間・重複がなく、コピー元の全byteに一致する。未知12件はすべてspecies行境界を跨ぐので、両側の型付き行を証拠へ残す。数値pool間、alignment、machine、codeやheaderを数値範囲へ広げない。
+
+新ROM再構成・ARM compile・native・原本習得データの再生成は不要。保存bundle内だけ全byte/mirror/Thumbを再走査し、既受入inventoryの同領域全件との完全一致を要求する。外側と境界を跨ぐoriginは全件そのまま保持する。455件分類・419件未知はdonor移管許可ではない。間接参照と退役consumer完全性は別ゲートのまま。
+
+次はsong root081C10D8から実engine、song/header/track VOICE、12byte ToneData、WaveDataのconsumer連鎖を固定sourceと現byteへ結ぶ。VOICEはu8であり128声部等を推定しない。key-split/rhythmは実ply_noteの1段lookupに従う。MEMACC/XCMD等を未実装のままskipしない。未知参照を残したままdonorを有効化しない。
+
+Ccontroller配置と全writer/loader/Link/INITIAL配線、同期heap所有、全mode、早期31、species9bitと残typedconsumerは未完。正式ROM/Save101、50HOF履歴、opaque suffix1,936byteを保持し、最終目標はシオウ通常回復・保存・独立cold Continue。雑魚毎checkpointは追加しない。
+
+公開はsourceと最小address-size-SHA/textのみ。ROM断片/rawhex/ROM/save/runtime/runner/credentialを新規公開しない。専用producer/guard/upload/recordは同じ非空directory/nameを検査し、hidden/symlink/未知拡張子を拒否する。
