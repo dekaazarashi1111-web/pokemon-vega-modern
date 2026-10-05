@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-現候補0641の残参照59件（level39/palette6/song14）を追加し619分類/255未知、168tests PASS。全874行と旧560受入保持。原runは記録push成功後に冗長18.9MB証拠が公開上限で拒否されfailure。保存済みGit原本を保持し、hit非参照の重複regionだけ除いた後継証拠へ回復。分類/ROM/native再実行0、donor/正式ROM/Save101不変。
+現0641の旧egg874参照にtrainer15/archive2/命令跨ぎ1/有限JP音声7の25件を追加し、644分類/230未知。新122試験と新旧130曲の役割競合を検証。T09上位wordは別PLC2consumerとの混同を拒否し未知保持。原本4.1MBは再複製せず共有delta 149772byteへ。全旧619受入不変、donor/正式ROM/Save101不変。
 
-**次: 残255件を根付きconsumerへ結び、間接参照・旧egg退役完全性を証明する。未知0と退役ゲート後だけ必要分を明示donor移管し、Ccontroller実owner配置・全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL・同期heap lifetime・全mode/早期31/species9bitを閉じる。その後正式候補切替、trainer131後半から最終シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。**
+**次: 残230の未分類（T09上位word、残code/data/audio根）を閉じ、間接参照・旧egg退役完全性を証明する。未知0と退役ゲート後だけ必要容量を明示donor移管し、Ccontroller実owner配置、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL、全mode/早期31/species9bit、保存入口heap-ready/同期非再入/全出口Freeを閉じる。その後正式候補切替、trainer131後半から最終シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。**
 
 通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `07550eb00df33e64c48a04d629ddc1e7fe5c6e6f`。
-測定済み型分類の公開表現だけを回復したsource。元Actions failureをsuccessへ改称せず原本保持。
+証拠のsource HEAD: `8f3c3c3bfd878b65fc76461da25126ee14c9d027`。
+不変原本＋共有deltaによる根付き参照分類source。旧sampleと新songの役割競合を含むread-only scope。donor/本番配線未受入。
 
 ## 最短の再開手順
 
@@ -25,12 +25,13 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_DEX_HOF_TYPED_RECOVERY_JA.md`
-- `content/modernization/pr16_dex_hof_typed_recovery_checkpoint.json`
-- `docs/PR16_DEX_HOF_TYPED_JA.md`
-- `content/modernization/pr16_dex_hof_typed_checkpoint.json`
-- `scripts/pr16_dex_hof_typed_numeric.py`
-- `scripts/pr16_dex_hof_song_extended.py`
+- `docs/PR16_DEX_HOF_REFERENCES_JA.md`
+- `content/modernization/pr16_dex_hof_reference_checkpoint.json`
+- `content/modernization/pr16_dex_hof_typed_recovery_evidence/egg-typed-audit.json`
+- `scripts/pr16_dex_hof_reference_delta.py`
+- `content/modernization/pr16_dex_hof_reference_data_review.json`
+- `content/modernization/pr16_dex_hof_reference_code_review.json`
+- `content/modernization/pr16_dex_hof_reference_song_review.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -455,6 +456,7 @@ P08ゲート:
 - 現候補0641af70の旧egg874参照に根付きJP song interpreterを実装。114個の明示ID、89曲の完全モデル、39sample witnessから105件を追加し、560分類/314未知。footstep MIDIと現Song250/251の不一致も保持。新63tests、現候補の新read用再構成1回、旧inventory/native0。donor/正式ROM/Save101不変。候補/source不変なら旧全ROM走査/heap/native/習得原本生成を再走しない。
 - 現候補0641af70の旧egg874参照に根付きnumericと拡張JP song consumer分類を追加。新numeric39/palette6/song14、619分類/255未知。旧560受入と全874inventoryを保持。新168tests、現候補の新read用再構成1回、旧inventory/native0。donor/正式ROM/Save101不変。候補/source不変で旧全ROM走査/heap/native/習得原本生成を再走しない。
 - 現候補0641の残参照59件（level39/palette6/song14）を追加し619分類/255未知、168tests PASS。全874行と旧560受入保持。原runは記録push成功後に冗長18.9MB証拠が公開上限で拒否されfailure。保存済みGit原本を保持し、hit非参照の重複regionだけ除いた後継証拠へ回復。分類/ROM/native再実行0、donor/正式ROM/Save101不変。
+- 現0641の旧egg874参照にtrainer15/archive2/命令跨ぎ1/有限JP音声7の25件を追加し、644分類/230未知。新122試験と新旧130曲の役割競合を検証。T09上位wordは別PLC2consumerとの混同を拒否し未知保持。原本4.1MBは再複製せず共有delta 149772byteへ。全旧619受入不変、donor/正式ROM/Save101不変。旧型分類/heap/nativeは変更影響なしに再実行しない。次回はbaseline＋deltaをmaterializeして継承する。
 
 ## 次セッションへ残す更新手順
 
@@ -484,6 +486,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-現候補0641の残参照59件（level39/palette6/song14）を追加し619分類/255未知、168tests PASS。全874行と旧560受入保持。原runは記録push成功後に冗長18.9MB証拠が公開上限で拒否されfailure。保存済みGit原本を保持し、hit非参照の重複regionだけ除いた後継証拠へ回復。分類/ROM/native再実行0、donor/正式ROM/Save101不変。
+現0641の旧egg874参照にtrainer15/archive2/命令跨ぎ1/有限JP音声7の25件を追加し、644分類/230未知。新122試験と新旧130曲の役割競合を検証。T09上位wordは別PLC2consumerとの混同を拒否し未知保持。原本4.1MBは再複製せず共有delta 149772byteへ。全旧619受入不変、donor/正式ROM/Save101不変。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

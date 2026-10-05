@@ -13105,3 +13105,17 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 残255件を根付きconsumerへ結び、間接参照・旧egg退役完全性を証明する。未知0と退役ゲート後だけ必要分を明示donor移管し、Ccontroller実owner配置・全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL・同期heap lifetime・全mode/早期31/species9bitを閉じる。その後正式候補切替、trainer131後半から最終シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。
 - Commit: closeout source=b860df4d916a4c3603174aac4e86f08dba512d89; 同branch非force push。
 - Network: 同repoActions/text原本のみ。ROM断片/rawhex/ROM/save/runtime/runner/credential追加公開0。
+
+## 2026-10-05T12:16:11.764500+00:00
+- Timestamp: 2026-10-05T12:16:11.764500+00:00
+- Task: USER-20261005-DEX-HOF-REFERENCES / 有限型根と共有参照delta
+- Version: hof-reference-delta-v1
+- Status: STOPPED（新25分類・記録済、donor/本番controllerは未完）
+- Summary: 現0641の旧egg874参照にtrainer15/archive2/命令跨ぎ1/有限JP音声7の25件を追加し、644分類/230未知。新122試験と新旧130曲の役割競合を検証。T09上位wordは別PLC2consumerとの混同を拒否し未知保持。原本4.1MBは再複製せず共有delta 149772byteへ。全旧619受入不変、donor/正式ROM/Save101不変。
+- Files changed: 新classifier/拒否tests/source review/Actions/guide/CP/minimal text evidence、固定MDJSON、両append-onlyログ。
+- Verify: unit=122; 全candidate/115 actual owner/全874hit SHA、tracker source全blob、JP trainer C ABI/serializer/全TOC22stream、rooted Thumb12byteとliteral分離。音声は有限root4曲追加に伴う新旧130曲の全role競合確認。旧619と残unknown全field不変、旧全ROMscan/native/heap0。
+- Boundary: 旧formalは事前意味reviewのみ、現0641で再束縛。T09上位wordは現wrapperが別PLC2を読むため未知保持。codeのELF節名/owner名だけの分類なし。donor0、正式ROM/Save101不変、heap13352の保存退避53300跨ぎ禁止、HOF32sector実controller未配線。
+- Publication: 原本4.1MBは参照継承。新delta 149772byte、独立measurement全SHAとclosed schemas/typed geometry/2MB上限を検査。producer/guard/uploadと全snapshot総量をpush前に機械検査。
+- Next: 残230の未分類（T09上位word、残code/data/audio根）を閉じ、間接参照・旧egg退役完全性を証明する。未知0と退役ゲート後だけ必要容量を明示donor移管し、Ccontroller実owner配置、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL、全mode/早期31/species9bit、保存入口heap-ready/同期非再入/全出口Freeを閉じる。その後正式候補切替、trainer131後半から最終シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。
+- Commit: source=8f3c3c3bfd878b65fc76461da25126ee14c9d027; 同branch非force。
+- Network: 同repoActions/既存private inputs/固定公開source。公開はsource/最小address-size-SHA/textのみ。ROM断片/rawhex/ROM/inputsave/runtime/runner/credentials追加公開0。
