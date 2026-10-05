@@ -1,6 +1,8 @@
 name: pr16-dex-union-ui
 on:
-  workflow_dispatch:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-dex-union-ui.yml]
 permissions:
   contents: read
   actions: read

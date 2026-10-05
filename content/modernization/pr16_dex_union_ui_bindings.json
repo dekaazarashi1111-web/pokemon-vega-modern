@@ -41,5 +41,16 @@
       13
     ],
     "all_other_ram_bytes_preserved": true
-  }
+  },
+  "formatter_guard": {
+    "placeholder_owner_address": 33813184,
+    "size": 32,
+    "stack_frame": 48,
+    "transient_lease_only": true,
+    "restore_before_handler_return": true,
+    "deny_irq_fiq_dma_accesses": true,
+    "exact_multiple_transfer_spans": true,
+    "pending_events_before_pc_observations": true
+  },
+  "publication_contract_ja": "producer出力dir・guard対象・upload path・consumer名を機械照合し、成功/診断JSONと非空filesがなければuploadを停止。formatter原本欠落を捏造せず168条件step成功と区別する。"
 }

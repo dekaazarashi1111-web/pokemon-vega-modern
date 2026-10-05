@@ -6,10 +6,10 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1];sys.path[:0]=[str(ROOT/'scripts'),str(ROOT)]
 import pr16_dex_union_failure as f
 need,identity=f.need,f.identity
-BASE='168d827d6004fa5df75883273427cfc43c62275b';RUN=37247511968;JOB=111568210062;ARCHIVE=(11319413359,RUN,54317,'f6ec079006433fc2ffccd0b3b36c7287ff493a847600dbd5785d5a2a65ff7fd7')
+BASE='d25c8d561763f025e649863ecf599f8e3fa8b6bc';RUN=37249401463;JOB=111573737308;ORIGINAL_RUN=37247511968;ORIGINAL_HEAD='168d827d6004fa5df75883273427cfc43c62275b';ORIGINAL_JOB=111568210062;ARCHIVE=(11319413359,ORIGINAL_RUN,54317,'f6ec079006433fc2ffccd0b3b36c7287ff493a847600dbd5785d5a2a65ff7fd7')
 HEADER='tools/mgba_pr16_dex_union_ui.h';BINDINGS='content/modernization/pr16_dex_union_ui_bindings.json'
-OLDWF='.github/workflows/pr16-dex-union-failure.yml';WF='.github/workflows/pr16-dex-union-ui.yml'
-CODE={HEADER,BINDINGS,'scripts/pr16_dex_union_ui.py','tests/test_pr16_dex_union_ui.py',OLDWF,WF}
+OLDWF='.github/workflows/pr16-dex-union-formatter.yml';WF='.github/workflows/pr16-dex-union-ui.yml'
+CODE={HEADER,BINDINGS,'scripts/pr16_dex_union_ui.py','tests/test_pr16_dex_union_ui.py','scripts/pr16_dex_publication.py','scripts/pr16_dex_union_formatter_actions.py',OLDWF,WF}
 OUT=ROOT/'.local/pr16-dex-union-ui';PUBLIC=ROOT/'public-dex-union-ui'
 def write(p,x):p.parent.mkdir(parents=True,exist_ok=True);p.write_text(json.dumps(x,ensure_ascii=False,indent=2)+'\n')
 def validate_header(source):
@@ -21,24 +21,31 @@ def validate_header(source):
  need(s.count('cpu->memory.store8=uu_store8;')==1 and 'uu_target=131071'in s and 'FLASH_COMMAND_PROGRAM'in s and 'at==uu_target'in s and 'v^1u'in s,'one data-only Flash fault')
  need('c->frameCounter(c)==frame'in s and 'c->step(c);'in s and 'cpu->gprs['in s and not re.search(r'cpu->gprs\[[^\]]+\]\s*=(?!=)',s),'CPU register read only observation')
  main=s.split('int main(int argc,char**argv)',1)[1];need(main.index('si_guard(c);')<main.index('st_keys(c,'),'barriers before first game frame');return identity(s.encode())
-def generate(candidate):
+def generate(candidate,linked):
  import pr16_dex_gameplay as game
- s=(ROOT/HEADER).read_text();validate_header(s);old=game.CANDIDATE
+ s=(ROOT/HEADER).read_text();validate_header(s);s='#define UU_FORMATTER_ENTRY '+hex(linked['exports']['VegaDexUnionResultDisplayGuard']&~1)+'u\n#define UU_FORMATTER_RESTORED '+hex(linked['exports']['VegaDexUnionResultDisplayRestored']&~1)+'u\n'+s;old=game.CANDIDATE
  try:game.CANDIDATE=candidate;source=game.generate().decode()
  finally:game.CANDIDATE=old
  need(source.count('int main(int argc,char**argv){')==1,'one key-only parent main');return(source.replace('int main(int argc,char**argv){','int accepted_story_main_not_called(int argc,char**argv){')+'\n'+s).encode()
 def guard():
  import pr16_story_live_probe as t
- import pr16_dex_union_failure_actions as prior
+ import pr16_dex_union_formatter_actions as prior
+ import pr16_dex_publication as publication
+ publication.contract(ROOT,WF,PUBLIC,'pr16-dex-union-ui-text-only','scripts/pr16_dex_union_ui.py')
  need(os.environ['GITHUB_REPOSITORY']=='dekaazarashi1111-web/pokemon-vega-modern'and os.environ['GITHUB_REF_NAME']=='codex/modernization-followup-20260908'and os.environ['GITHUB_RUN_ATTEMPT']=='1','authorized first UI run');p=t.api('pulls/16');need(p['state']=='open'and p['draft']and not p['merged']and p['head']['sha']==os.environ['GITHUB_SHA'],'sole draft HEAD')
- changed=set(subprocess.check_output(['git','diff','--name-only',BASE,'HEAD'],cwd=ROOT,text=True).splitlines());need(changed==CODE,'only new UI source and completed prior trigger')
- r=t.api('actions/runs/'+str(RUN));j=t.api('actions/jobs/'+str(JOB));need(r['head_sha']==BASE and r['status']=='completed'and r['conclusion']=='success'and j['run_id']==RUN and len(j['steps'])==10 and all(s['conclusion']=='success'for s in j['steps']),'isolated all10 terminal')
- for path in prior.CODE-{OLDWF}:need((ROOT/path).read_bytes()==subprocess.check_output(['git','show',BASE+':'+path],cwd=ROOT),'accepted isolation retained '+path)
- old=subprocess.check_output(['git','show',BASE+':'+OLDWF],cwd=ROOT);trigger=('  push:\n    branches: [codex/modernization-followup-20260908]\n    paths: ['+OLDWF+']\n').encode();need(old.count(trigger)==1 and(ROOT/OLDWF).read_bytes()==old.replace(trigger,b'  workflow_dispatch:\n'),'completed isolated manual only')
+ need(set(subprocess.check_output(['git','diff','--name-only',BASE,'HEAD'],cwd=ROOT,text=True).splitlines())==CODE,'only UI/read-monitor/publication contract correction paths')
+ r=t.api('actions/runs/'+str(RUN));j=t.api('actions/jobs/'+str(JOB));need(r['head_sha']==BASE and r['status']=='completed'and r['conclusion']=='failure'and j['run_id']==RUN and len(j['steps'])==10 and all(x['conclusion']==('failure'if x['number']==8 else 'success')for x in j['steps']),'formatter checked168conditions; upload alone failed, raw receipt unavailable')
+ need(t.api('actions/runs/'+str(RUN)+'/artifacts')['artifacts']==[],'missing formatter artifact not invented')
+ q=t.api('actions/jobs/'+str(ORIGINAL_JOB));need(q['run_id']==ORIGINAL_RUN and len(q['steps'])==10 and all(x['conclusion']=='success'for x in q['steps']),'original1851conditions all10 terminal')
+ repair='scripts/pr16_dex_union_formatter_actions.py'
+ for path in prior.CODE-{OLDWF,WF,repair}:need((ROOT/path).read_bytes()==subprocess.check_output(['git','show',BASE+':'+path],cwd=ROOT),'unchanged formatter source '+path)
+ old=subprocess.check_output(['git','show',BASE+':'+repair],cwd=ROOT).decode();want=old.replace('def guard():\n','def guard():\n import pr16_dex_publication as publication\n publication.contract(ROOT,WF,PUBLIC,"pr16-dex-union-formatter-text-only","scripts/pr16_dex_union_formatter_actions.py")\n').replace('def export():\n','def export():\n import pr16_dex_publication as publication\n publication.output(PUBLIC)\n');need((ROOT/repair).read_text()==want,'only publication guards added to prior producer')
+ old=subprocess.check_output(['git','show',BASE+':'+OLDWF],cwd=ROOT);trigger=('  push:\n    branches: [codex/modernization-followup-20260908]\n    paths: ['+OLDWF+']\n').encode();need(old.count(trigger)==1 and(ROOT/OLDWF).read_bytes()==old.replace(trigger,b'  workflow_dispatch:\n').replace(b'path: public-dex-union-failure',b'path: public-dex-union-formatter'),'formatter upload path fixed and native not repeated')
 def validate_trace(raw,folder,candidate,mode):
  import pr16_dex_start_fault_ui as ui
  rows=[json.loads(x)for x in raw.splitlines()];need(rows[0]==dict(begin='UNION_CHAT_UI_ONLY_FIXTURE',candidate_sha256=candidate['sha256'],mode=mode,host_write_barriers=7,register_writes=0,allowed_fixture_bytes=21),'closed fixture begin')
  end=rows[-1];need(end['end']=='PASS_UNION_CHAT_UI_FAILURE_SUCCESS_AND_FIELD_RETURN'and end['mode']==mode and end['fixture_phases']==2 and end['fixture_bytes_written']==21 and end['register_writes']==0 and end['host_write_barriers']==7 and end['counter']==(101 if mode==1 else 102)and end['attempt']==(255 if mode else 1),'complete actual UI result')
+ need(end['formatter_leases']>0 and end['formatter_reads']>=2*end['formatter_leases']and end['formatter_owner_bytes_restored']==32 and end['irq_owner_reads']==end['irq_owner_writes']==end['dma_owner_accesses']==0,'all synchronous leases restored; no IRQ/FIQ owner reads')
  need(end['result_printers']==1 and end['save_sounds']==int(mode==0)and end['clear_calls']==1,'one truthful result and appropriate audio/clear')
  need(not any(end[k]for k in('old_save_failed_entered','natural_chat_entry_accepted','link_transaction_accepted','formal_save_changed')),'no scope promotion')
  if mode:need(0<end['fault_writes']<=16 and end['extension_bytes_preserved_after_fault']==20248 and(end['fault_physical_address']<14*4096 if mode==1 else end['fault_physical_address']==131071),'real physical failure')
@@ -62,17 +69,20 @@ def validate_trace(raw,folder,candidate,mode):
  return dict(end=end,stages=stages,fixtures=fixtures,setups=setups,printers=printers,return_metadata=returns,screens=ui.screens(rows,folder))
 def run():
  import pr16_story_live_probe as t
- import pr16_dex_union_failure_actions as prior
+ import pr16_dex_union_formatter_actions as prior
  import pr16_dex_start_fault_ui as cold
  import pr16_dex_gameplay as game
  import pr16_dex_mystery_ui as mg
  need(not OUT.exists()and not PUBLIC.exists(),'fresh UI run');OUT.mkdir(parents=True);PUBLIC.mkdir();attempts=[]
  try:
-  r=subprocess.run([sys.executable,'-B','-m','unittest','discover','-s','tests','-p','test_pr16_dex_union_ui.py','-v'],cwd=ROOT,capture_output=True);need(r.returncode==0 and not r.stdout and r.stderr.count(b' ... ok\n')==3,'three new UI confinement tests');(PUBLIC/'host-tests.txt').write_bytes(r.stderr)
+  r=subprocess.run([sys.executable,'-B','-m','unittest','discover','-s','tests','-p','test_pr16_dex_union_ui.py','-v'],cwd=ROOT,capture_output=True);need(r.returncode==0 and not r.stdout and r.stderr.count(b' ... ok\n')==5,'five UI and publication contract tests');(PUBLIC/'host-tests.txt').write_bytes(r.stderr)
+  import pr16_dex_publication as publication
+  publication.consumer(t.api('actions/artifacts/'+str(ARCHIVE[0])),'pr16-dex-union-failure-text-only',ORIGINAL_RUN)
   z,_=t.archive(ARCHIVE)
   with z:isolated=json.loads(z.read('measurement.json'))
   prior.OUT=OUT/'build';prior.OUT.mkdir();candidate,before,after,linked,placed=prior.reconstruct();ci=identity(after)
-  need({k:isolated[k]for k in('candidate','parent_candidate','link','placement')}==dict(candidate=ci,parent_candidate=identity(before),link=linked,placement=placed),'exact unchanged isolated candidate reconstructed')
+  need(linked['payload']['size']==408,'same168case formatter implementation');reverted=bytearray(after);lo=f.BASE-0x08000000;reverted[lo+360:lo+408]=before[lo+360:lo+408];reverted[0x41A774:0x41A778]=before[0x41A774:0x41A778];need(identity(reverted)==isolated['candidate'],'exact whole rollback to retained1851case ancestor')
+  reconstructed=dict(candidate=ci,parent_candidate=identity(before),link=linked,placement=placed,ancestor_candidate=isolated['candidate'],ancestor_run=ORIGINAL_RUN,delta_rollback_exact=True,formatter_assertion_only=dict(run=RUN,job=JOB,source=BASE,cases=168,measurement_step_success=True,raw_artifact_available=False,upload_path_failure=True,native_reruns=0));write(PUBLIC/'build.json',reconstructed)
   for w in json.loads((ROOT/BINDINGS).read_bytes())['windows']:
    at=w['address']-0x08000000;need(identity(after[at:at+w['size']])==dict(size=w['size'],sha256=w['sha256']),'signed UI entry '+w['id'])
   need(subprocess.check_output(['dpkg-query','-W','-f=${Version}','libmgba-dev'],text=True).strip()=='0.10.2+dfsg-1.1build3'and identity(Path('/usr/lib/x86_64-linux-gnu/libmgba.so').read_bytes())==dict(size=1968536,sha256='0c87a12341640e6a2d325e59e76eb4b002947771ad4d8814b216e3b99817d68d'),'fixed runtime')
@@ -80,7 +90,7 @@ def run():
   try:game.CANDIDATE=ci;coldsource=game.generate()
   finally:game.CANDIDATE=old
   exes={}
-  for name,source in [('ui',generate(ci)),('mystery',mg.generate(ci)),('cold',coldsource)]:
+  for name,source in [('ui',generate(ci,linked)),('mystery',mg.generate(ci)),('cold',coldsource)]:
    src=OUT/(name+'.c');src.write_bytes(source);exe=OUT/name;r=subprocess.run(['cc','-std=c11','-O2','-Wall','-Wextra','-Werror','-Wno-misleading-indentation','-I'+str(ROOT/'tools'),'-I'+str(ROOT),str(src),str(ROOT/'overlays/dex_owner/dex_owner.c'),'-lmgba','-lm','-o',str(exe)],capture_output=True,text=True);need(r.returncode==0 and not r.stdout and not r.stderr,'strict '+name+' compile '+r.stderr[-1800:]);exes[name]=exe
   z,_=t.archive(t.SAVE101)
   with z:seed=z.read('story-fast.srm')
@@ -101,10 +111,12 @@ def run():
    cf=OUT/(name+'-cold');cf.mkdir();cp=PUBLIC/(name+'-cold');cp.mkdir();cold.OUT=cf;cold.PUBLIC=cp;attempts.append(name+'-cold');write(PUBLIC/'attempts.json',dict(native_processes=len(attempts),cases=attempts));continued=cold.cold(exes['cold'],candidate,data,counter,expected,0 if mode==1 else 1)
    regression_cases.append(dict(name=name,mode=mode,trace=trace,save=identity(data),cold=continued))
   need(candidate.read_bytes()==after,'candidate unchanged')
-  write(PUBLIC/'measurement.json',dict(status='PASS_UNION_CHAT_UI_ONLY_FAILURE_SUCCESS_AND_COLD',source_head=os.environ['GITHUB_SHA'],run_id=int(os.environ['GITHUB_RUN_ID']),candidate=ci,isolated_run=RUN,isolated_candidate=isolated['candidate'],cases=cases,relocated_mystery_cases=regression_cases,native_processes=len(attempts),host_tests=3,ram_fixture_bytes_per_ui_process=21,register_writes=0,mystery_fixture_bytes_per_process=11,natural_entry_accepted=False,all_nonstart_notifications_accepted=False,link_transaction_accepted=False,formal_rom_changed=False,formal_save_changed=False,source_bindings={p:identity((ROOT/p).read_bytes())for p in sorted(CODE)}))
+  write(PUBLIC/'measurement.json',dict(status='PASS_UNION_CHAT_UI_ONLY_FAILURE_SUCCESS_AND_COLD',source_head=os.environ['GITHUB_SHA'],run_id=int(os.environ['GITHUB_RUN_ID']),candidate=ci,ancestor_isolated_run=ORIGINAL_RUN,ancestor_isolated_candidate=isolated['candidate'],formatter_run=RUN,formatter_raw_artifact_available=False,formatter_reconstruction=reconstructed,cases=cases,relocated_mystery_cases=regression_cases,native_processes=len(attempts),host_tests=5,ram_fixture_bytes_per_ui_process=21,register_writes=0,mystery_fixture_bytes_per_process=11,natural_entry_accepted=False,all_nonstart_notifications_accepted=False,link_transaction_accepted=False,formal_rom_changed=False,formal_save_changed=False,source_bindings={p:identity((ROOT/p).read_bytes())for p in sorted(CODE)}))
  except Exception as e:write(PUBLIC/'failure.json',dict(status='DIAGNOSTIC_NOT_ACCEPTED',type=type(e).__name__,message=str(e).replace(str(ROOT),'.'),native_processes=len(attempts),attempts=attempts));raise
 
 def export():
+ import pr16_dex_publication as publication
+ publication.output(PUBLIC)
  if not PUBLIC.exists():return
  need(PUBLIC.is_dir()and not PUBLIC.is_symlink(),'dedicated publication')
  dirs={'main-fault','outer-fault','healthy','main-fault-cold','outer-fault-cold','healthy-cold','main-fault-cold/cold-101','outer-fault-cold/cold-102','healthy-cold/cold-102'}
@@ -113,7 +125,7 @@ def export():
   rel=p.relative_to(PUBLIC);need(not p.is_symlink()and not any(x.startswith('.')for x in rel.parts),'no hidden/symlink')
   if p.is_dir():need(str(rel)in dirs,'known directory');continue
   need(p.is_file(),'regular only')
-  if len(rel.parts)==1:need(p.name in{'host-tests.txt','measurement.json','failure.json','attempts.json'},'closed root text')
+  if len(rel.parts)==1:need(p.name in{'host-tests.txt','build.json','measurement.json','failure.json','attempts.json'},'closed root text')
   else:need(str(rel.parent)in dirs and(p.name in{'stdout.txt','stderr.txt'}or re.fullmatch(r'screen-000[0-3]\.ppm',p.name)),'closed text/screens')
   b=p.read_bytes()
   if p.suffix=='.ppm':need(len(b)==115215 and b.startswith(b'P6\n240 160\n255\n'),'complete screenshot');continue

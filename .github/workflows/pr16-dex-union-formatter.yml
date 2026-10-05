@@ -1,8 +1,6 @@
 name: pr16-dex-union-formatter
 on:
-  push:
-    branches: [codex/modernization-followup-20260908]
-    paths: [.github/workflows/pr16-dex-union-formatter.yml]
+  workflow_dispatch:
 permissions:
   contents: read
   actions: read
@@ -44,7 +42,7 @@ jobs:
         if: ${{ always() && steps.publication_guard.outcome == 'success' }}
         with:
           name: pr16-dex-union-formatter-text-only
-          path: public-dex-union-failure
+          path: public-dex-union-formatter
           retention-days: 90
           if-no-files-found: error
 # retired T09 suffix is signed data, not FF padding

@@ -3,15 +3,36 @@
 static struct ARMMemory uu_memory;
 static struct mCore *uu_core;
 static void (*uu_write8)(struct mCore*,uint32_t,uint8_t);
-static unsigned uu_mode,uu_target=0xFFFFFFFFu,uu_faults,uu_snapshot,uu_task,uu_screens,uu_fixtures,uu_fixture_bytes,uu_display,uu_prints,uu_sounds,uu_clears,uu_sprite,uu_freed[3],uu_owner_events;
-static uint8_t uu_ewram[262144],uu_iwram[32768],uu_owners[0x4F18],uu_mdx[522],uu_party[600],uu_flash[131072],uu_rtc[16],uu_registered[210];
-static unsigned uu_inventory[2048];
+static unsigned uu_mode,uu_target=0xFFFFFFFFu,uu_faults,uu_snapshot,uu_task,uu_screens,uu_fixtures,uu_fixture_bytes,uu_display,uu_prints,uu_sounds,uu_clears,uu_sprite,uu_freed[3],uu_owner_events,uu_lease_active,uu_lease_entered,uu_lease_completed,uu_lease_reads;
+static uint8_t uu_ewram[262144],uu_iwram[32768],uu_owners[0x4F18],uu_mdx[522],uu_party[600],uu_flash[131072],uu_rtc[16],uu_registered[210],uu_placeholder[32];
+static unsigned uu_inventory[2048],uu_event_rows[64][4];
+static void uu_placeholder_access(struct ARMCore*cpu,uint32_t a,unsigned size,bool write)
+{
+ if((a>>24)!=2)return;a=0x02000000u+(a&0x3FFFFu);
+ if(a>=0x0203F2E0u||a+size<=0x0203F2C0u)return;
+ if(!uu_lease_active){if(write&&read32(uu_core,0x03003134)==0x08128F05)si_need(false,"no unleased placeholder writes during Union UI");return;}
+ unsigned pc=((uint32_t)cpu->gprs[15]&~1u)-(cpu->cpsr.t?4u:8u);
+ si_need(cpu->privilegeMode!=0x12&&cpu->privilegeMode!=0x11&&!((struct GBA*)uu_core->board)->performingDMA,"no IRQ/FIQ/DMA accesses to leased Factory bytes");
+ si_need((pc>=UU_FORMATTER_ENTRY&&pc<=UU_FORMATTER_RESTORED)||(pc>=0x0813D3D4&&pc<(write?0x0813D40C:0x0813D458)),"only synchronous placeholder/stack lease accesses");
+ if(!write)uu_lease_reads++;
+}
+static void uu_multiple_access(struct ARMCore*cpu,uint32_t a,int mask,enum LSMDirection direction,bool write)
+{
+ unsigned count=(unsigned)__builtin_popcount((unsigned)mask&65535u);if(!count){unsigned start=(a+((direction==LSM_IB||direction==LSM_DA)?4u:0u))&~3u;uu_placeholder_access(cpu,start,4,write);return;}unsigned start=a&~3u;
+ if(direction==LSM_IB)start+=4;else if(direction==LSM_DA)start-=4*(count-1);else if(direction==LSM_DB)start-=4*count;else si_need(direction==LSM_IA,"known actual multiple-transfer direction");
+ uu_placeholder_access(cpu,start,4*count,write);
+}
+static uint32_t uu_load8(struct ARMCore*cpu,uint32_t a,int*t){uu_placeholder_access(cpu,a,1,false);return uu_memory.load8(cpu,a,t);}
+static uint32_t uu_load16(struct ARMCore*cpu,uint32_t a,int*t){uu_placeholder_access(cpu,a,2,false);return uu_memory.load16(cpu,a,t);}
+static uint32_t uu_load32(struct ARMCore*cpu,uint32_t a,int*t){uu_placeholder_access(cpu,a,4,false);return uu_memory.load32(cpu,a,t);}
+static uint32_t uu_load_multiple(struct ARMCore*cpu,uint32_t a,int mask,enum LSMDirection direction,int*t){uu_multiple_access(cpu,a,mask,direction,false);return uu_memory.loadMultiple(cpu,a,mask,direction,t);}
+static uint32_t uu_store_multiple(struct ARMCore*cpu,uint32_t a,int mask,enum LSMDirection direction,int*t){uu_multiple_access(cpu,a,mask,direction,true);return uu_memory.storeMultiple(cpu,a,mask,direction,t);}
 static void uu_owner_event(struct ARMCore*cpu,uint32_t a,unsigned size)
 {
- if(uu_snapshot&&a<0x02040000u&&a+size>0x0203B0E8u&&uu_owner_events<64){printf("{\"protected_cpu_write\":true,\"frame\":%u,\"address\":%u,\"size\":%u,\"pc\":%u}\n",st_frames,a,size,(uint32_t)cpu->gprs[15]);fflush(stdout);uu_owner_events++;}
+ if(uu_snapshot&&a<0x02040000u&&a+size>0x0203B0E8u&&uu_owner_events<64){uu_event_rows[uu_owner_events][0]=st_frames;uu_event_rows[uu_owner_events][1]=a;uu_event_rows[uu_owner_events][2]=size;uu_event_rows[uu_owner_events][3]=(uint32_t)cpu->gprs[15];uu_owner_events++;}
 }
-static void uu_store16(struct ARMCore*cpu,uint32_t a,int16_t v,int*t){uu_owner_event(cpu,a,2);uu_memory.store16(cpu,a,v,t);}
-static void uu_store32(struct ARMCore*cpu,uint32_t a,int32_t v,int*t){uu_owner_event(cpu,a,4);uu_memory.store32(cpu,a,v,t);}
+static void uu_store16(struct ARMCore*cpu,uint32_t a,int16_t v,int*t){uu_placeholder_access(cpu,a,2,true);uu_owner_event(cpu,a,2);uu_memory.store16(cpu,a,v,t);}
+static void uu_store32(struct ARMCore*cpu,uint32_t a,int32_t v,int*t){uu_placeholder_access(cpu,a,4,true);uu_owner_event(cpu,a,4);uu_memory.store32(cpu,a,v,t);}
 static void uu_store8(struct ARMCore*cpu,uint32_t a,int8_t v,int*t)
 {
  struct GBASavedata*s=&((struct GBA*)uu_core->board)->memory.savedata;
@@ -24,13 +45,13 @@ static void uu_store8(struct ARMCore*cpu,uint32_t a,int8_t v,int*t)
    v=(int8_t)((uint8_t)v^1u);uu_faults++;si_need(uu_faults<=16,"bounded physical fault attempts");
   }
  }
- uu_owner_event(cpu,a,1);uu_memory.store8(cpu,a,v,t);
+ uu_placeholder_access(cpu,a,1,true);uu_owner_event(cpu,a,1);uu_memory.store8(cpu,a,v,t);
 }
 static void uu_check(struct mCore*c)
 {
  uint8_t d[522];for(unsigned i=0;i<522;i++)d[i]=read8(c,VEGA_DEX_OWNER_RAM+i);si_need(!memcmp(d,uu_mdx,522)&&VegaDexValidate(d,522)==0,"complete MDX retained");
  si_need(!read32(c,0x03005480)&&read8(c,0x0203AAC8)==0,"no old SaveFailed entry");
- if(uu_snapshot)for(unsigned i=0;i<sizeof(uu_owners);i++)if(read8(c,0x0203B0E8+i)!=uu_owners[i]){printf("{\"protected_owner_mismatch\":true,\"frame\":%u,\"address\":%u,\"size\":1}\n",st_frames,0x0203B0E8+i);fflush(stdout);si_need(false,"all20248 extension bytes retained after fault");}
+ if(uu_snapshot)for(unsigned i=0;i<sizeof(uu_owners);i++)if(read8(c,0x0203B0E8+i)!=uu_owners[i]&&!(uu_lease_active&&0x0203B0E8+i>=0x0203F2C0&&0x0203B0E8+i<0x0203F2E0)){for(unsigned j=0;j<uu_owner_events;j++)printf("{\"protected_cpu_write\":true,\"frame\":%u,\"address\":%u,\"size\":%u,\"pc\":%u}\n",uu_event_rows[j][0],uu_event_rows[j][1],uu_event_rows[j][2],uu_event_rows[j][3]);printf("{\"protected_owner_mismatch\":true,\"frame\":%u,\"address\":%u,\"size\":1}\n",st_frames,0x0203B0E8+i);fflush(stdout);si_need(false,"all20248 extension bytes retained after fault");}
 }
 static void uu_tick(struct mCore*c,unsigned key){st_keys(c,key,1);uu_check(c);}
 static void uu_fixture(struct mCore*c,unsigned phase)
@@ -71,7 +92,9 @@ static void uu_frame(struct mCore*c)
 {
  unsigned frame=c->frameCounter(c);struct ARMCore*cpu=c->cpu;
  for(unsigned i=0;c->frameCounter(c)==frame;i++){
-  si_need(i<2000000,"bounded instruction-observed ordinary frame");unsigned pc=(cpu->gprs[15]&~1u)-2;
+  si_need(i<2000000,"bounded instruction-observed ordinary frame");for(unsigned pending=0;cpu->cycles>=cpu->nextEvent;pending++){si_need(pending<1024,"bounded pending hardware event processing before PC observation");cpu->irqh.processEvents(cpu);}unsigned pc=((uint32_t)cpu->gprs[15]&~1u)-(cpu->cpsr.t?2u:4u);
+  if(pc==UU_FORMATTER_ENTRY){si_need(!uu_lease_active&&(uint32_t)cpu->gprs[0]==uu_display+5,"one non-reentrant original display callback");for(unsigned j=0;j<32;j++)uu_placeholder[j]=read8(c,0x0203F2C0+j);uu_lease_active=1;uu_lease_entered++;}
+  if(pc==UU_FORMATTER_RESTORED){si_need(uu_lease_active,"exact matching lease end");for(unsigned j=0;j<32;j++)si_need(read8(c,0x0203F2C0+j)==uu_placeholder[j],"all32 Factory bytes restored before callback return");uu_lease_active=0;uu_lease_completed++;}
   if((pc==0x0812EE34||pc==0x08071A70||pc==0x0804B994)&&read32(c,0x03003134)==0x08128F05&&read16(c,uu_task+4)==9&&read16(c,uu_task+6)==9){
    if(pc==0x0812EE34){unsigned source=cpu->gprs[2];si_need(source==(uu_mode?0x083E045Bu:uu_display+0x22),"actual result printer input pointer");uint8_t text[128];unsigned n=0;for(;n<128;n++){text[n]=read8(c,source+n);if(text[n]==255){n++;break;}}si_need(n&&n<=128&&text[n-1]==255,"bounded whole rendered text");char sha[65];si_digest(text,n,sha);printf("{\"result_printer\":true,\"frame\":%u,\"address\":%u,\"size\":%u,\"sha256\":\"%s\",\"window\":%u}\n",st_frames,source,n,sha,cpu->gprs[0]);fflush(stdout);uu_prints++;}
    if(pc==0x08071A70&&cpu->gprs[0]==48)uu_sounds++;
@@ -96,13 +119,13 @@ int main(int argc,char**argv)
  si_need(ready&&read32(c,SI_COUNTER)==101&&read8(c,QOL_PLAYER_PARTY_COUNT)==4&&!read8(c,0x03003FA4)&&!read32(c,0x03003140),"stable field and no remote/hblank");
  for(unsigned i=0;i<522;i++)uu_mdx[i]=read8(c,VEGA_DEX_OWNER_RAM+i);si_need(VegaDexValidate(uu_mdx,522)==0,"valid MDX");for(unsigned i=0;i<600;i++)uu_party[i]=read8(c,QOL_PLAYER_PARTY+i);si_inventory(c,uu_inventory);for(unsigned i=0;i<210;i++)uu_registered[i]=read8(c,read32(c,QOL_SAVE_BLOCK1_SLOT)+0x3AD4+i);ng_flash(c,uu_flash);uu_view(c,"before_ui_fixture");
  uu_fixture(c,0);ready=false;for(unsigned i=0;i<600;i++){uu_tick(c,0);if(read32(c,BATTLE_CORE_MAIN_CALLBACK2)==0x08128F05){ready=true;break;}}si_need(ready,"bounded real Union constructor");uu_ready(c);uu_view(c,"native_chat_initialized");uu_fixture(c,1);
- struct ARMCore*cpu=c->cpu;uu_memory=cpu->memory;cpu->memory.store8=uu_store8;cpu->memory.store16=uu_store16;cpu->memory.store32=uu_store32;void(*normal_frame)(struct mCore*)=c->runFrame;c->runFrame=uu_frame;
+ struct ARMCore*cpu=c->cpu;uu_memory=cpu->memory;cpu->memory.store8=uu_store8;cpu->memory.store16=uu_store16;cpu->memory.store32=uu_store32;cpu->memory.load8=uu_load8;cpu->memory.load16=uu_load16;cpu->memory.load32=uu_load32;cpu->memory.loadMultiple=uu_load_multiple;cpu->memory.storeMultiple=uu_store_multiple;void(*normal_frame)(struct mCore*)=c->runFrame;c->runFrame=uu_frame;
  ready=false;for(unsigned i=0;i<3000;i++){uu_tick(c,0);if(uu_prints&&read16(c,uu_task+6)==9&&!read8(c,uu_display+4)){ready=true;break;}}si_need(ready&&uu_prints==1,"one complete actual result renderer");si_need(read16(c,0x03005470)==(uu_mode?255:1)&&read32(c,SI_COUNTER)==(uu_mode==1?101:102),"truthful attempt and committed counter");
  if(uu_mode){for(unsigned i=0;i<60;i++)uu_tick(c,0);si_need(read16(c,uu_task+6)==9&&!uu_sounds&&!uu_clears,"error stable and silent until new input");uu_view(c,"failure_waiting");uu_tick(c,uu_mode==1?1:2);uu_tick(c,0);}
  else{for(unsigned i=0;i<20;i++)uu_tick(c,0);si_need(read16(c,uu_task+6)==11&&uu_sounds==1&&uu_clears==1,"normal success sound and original timed message hold");uu_view(c,"success_rendered");}
  ready=false;for(unsigned i=0;i<1200;i++){uu_tick(c,0);if(si_field(c)){ready=true;break;}}si_need(ready&&uu_prints==1&&uu_sounds==(uu_mode?0:1)&&uu_clears==1,"original field return with truthful sound and one clear");c->runFrame=normal_frame;
  for(unsigned i=0;i<60;i++)uu_tick(c,0);si_need(si_field(c)&&read32(c,0x0203B058)==0&&uu_freed[0]==1&&uu_freed[1]==1&&uu_freed[2]==1,"native Union cleanup and stable field");uu_task=0;uu_view(c,"returned_to_field");
  uint8_t flash[131072];ng_flash(c,flash);si_need(!memcmp(flash+14*4096,uu_flash+14*4096,(uu_mode==1?18:17)*4096),"authority and auxiliary sectors retained");if(uu_mode)si_need(uu_snapshot&&uu_faults&&uu_faults<=16,"real physical fault");else si_need(!uu_snapshot&&!uu_faults,"healthy no fault");
- for(unsigned i=0;i<600;i++)si_need(read8(c,QOL_PLAYER_PARTY+i)==uu_party[i],"whole party unchanged");for(unsigned i=0;i<210;i++)si_need(read8(c,read32(c,QOL_SAVE_BLOCK1_SLOT)+0x3AD4+i)==uu_registered[i],"all210 original registered-text bytes retained after native copyback/save/return");unsigned inv[2048];si_inventory(c,inv);si_need(!memcmp(inv,uu_inventory,sizeof(inv)),"normalized Bag unchanged");FILE*out=fopen(argv[3],"wb");si_need(out&&fwrite(flash,1,131072,out)==131072&&fwrite(uu_rtc,1,16,out)==16&&!fclose(out),"private captured FlashRTC");si_need(uu_fixtures==2&&uu_fixture_bytes==21&&!log_problem_count,"21bytes only and no runtime warning");
- printf("{\"end\":\"PASS_UNION_CHAT_UI_FAILURE_SUCCESS_AND_FIELD_RETURN\",\"mode\":%u,\"frames\":%u,\"inputs\":%u,\"screens\":%u,\"fixture_phases\":2,\"fixture_bytes_written\":21,\"register_writes\":0,\"host_write_barriers\":7,\"fault_writes\":%u,\"fault_physical_address\":%u,\"counter\":%u,\"attempt\":%u,\"result_printers\":%u,\"save_sounds\":%u,\"clear_calls\":%u,\"old_save_failed_entered\":false,\"extension_bytes_preserved_after_fault\":%u,\"natural_chat_entry_accepted\":false,\"link_transaction_accepted\":false,\"formal_save_changed\":false}\n",uu_mode,st_frames,st_inputs,uu_screens,uu_faults,uu_target,read32(c,SI_COUNTER),read16(c,0x03005470),uu_prints,uu_sounds,uu_clears,uu_snapshot?(unsigned)sizeof(uu_owners):0);fflush(stdout);qol_close(c);return 0;
+ for(unsigned i=0;i<600;i++)si_need(read8(c,QOL_PLAYER_PARTY+i)==uu_party[i],"whole party unchanged");for(unsigned i=0;i<210;i++)si_need(read8(c,read32(c,QOL_SAVE_BLOCK1_SLOT)+0x3AD4+i)==uu_registered[i],"all210 original registered-text bytes retained after native copyback/save/return");unsigned inv[2048];si_inventory(c,inv);si_need(!memcmp(inv,uu_inventory,sizeof(inv)),"normalized Bag unchanged");FILE*out=fopen(argv[3],"wb");si_need(out&&fwrite(flash,1,131072,out)==131072&&fwrite(uu_rtc,1,16,out)==16&&!fclose(out),"private captured FlashRTC");si_need(uu_fixtures==2&&uu_fixture_bytes==21&&!log_problem_count&&!uu_lease_active&&uu_lease_entered==uu_lease_completed&&uu_lease_entered>0&&uu_lease_reads>=2*uu_lease_entered,"21bytes only and no runtime warning");
+ printf("{\"end\":\"PASS_UNION_CHAT_UI_FAILURE_SUCCESS_AND_FIELD_RETURN\",\"mode\":%u,\"frames\":%u,\"inputs\":%u,\"screens\":%u,\"fixture_phases\":2,\"fixture_bytes_written\":21,\"register_writes\":0,\"host_write_barriers\":7,\"fault_writes\":%u,\"fault_physical_address\":%u,\"counter\":%u,\"attempt\":%u,\"result_printers\":%u,\"save_sounds\":%u,\"clear_calls\":%u,\"formatter_leases\":%u,\"formatter_reads\":%u,\"formatter_owner_bytes_restored\":32,\"irq_owner_reads\":0,\"irq_owner_writes\":0,\"dma_owner_accesses\":0,\"old_save_failed_entered\":false,\"extension_bytes_preserved_after_fault\":%u,\"natural_chat_entry_accepted\":false,\"link_transaction_accepted\":false,\"formal_save_changed\":false}\n",uu_mode,st_frames,st_inputs,uu_screens,uu_faults,uu_target,read32(c,SI_COUNTER),read16(c,0x03005470),uu_prints,uu_sounds,uu_clears,uu_lease_completed,uu_lease_reads,uu_snapshot?(unsigned)sizeof(uu_owners):0);fflush(stdout);qol_close(c);return 0;
 }

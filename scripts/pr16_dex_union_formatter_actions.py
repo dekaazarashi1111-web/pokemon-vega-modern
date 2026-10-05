@@ -12,6 +12,8 @@ HEADER='tools/mgba_pr16_dex_union_formatter.h';WF='.github/workflows/pr16-dex-un
 CODE={f.SOURCE,f.BINDINGS,'scripts/pr16_dex_union_failure.py','scripts/pr16_dex_tail_lease.py','content/modernization/pr16_dex_union_tail_lease.json','tests/test_pr16_dex_union_failure.py','scripts/pr16_dex_union_formatter_actions.py',HEADER,WF,OLDWF,parent.GUIDE}
 OUT=ROOT/'.local/pr16-dex-union-formatter';PUBLIC=ROOT/'public-dex-union-formatter'
 def guard():
+ import pr16_dex_publication as publication
+ publication.contract(ROOT,WF,PUBLIC,"pr16-dex-union-formatter-text-only","scripts/pr16_dex_union_formatter_actions.py")
  import pr16_story_live_probe as t
  need(os.environ['GITHUB_REPOSITORY']=='dekaazarashi1111-web/pokemon-vega-modern'and os.environ['GITHUB_REF_NAME']=='codex/modernization-followup-20260908'and os.environ['GITHUB_RUN_ATTEMPT']=='1','authorized current formatter run');p=t.api('pulls/16');need(p['state']=='open'and p['draft']and not p['merged']and p['head']['sha']==os.environ['GITHUB_SHA'],'sole current draft')
  need(set(subprocess.check_output(['git','diff','--name-only',BASE,'HEAD'],cwd=ROOT,text=True).splitlines())==CODE,'only declared formatter correction sources')
@@ -35,6 +37,8 @@ def run():
  except Exception as e:write(PUBLIC/'failure.json',dict(status='DIAGNOSTIC_NOT_ACCEPTED',type=type(e).__name__,message=str(e).replace(str(ROOT),'.'),native_processes=len(attempts),attempts=attempts));raise
 
 def export():
+ import pr16_dex_publication as publication
+ publication.output(PUBLIC)
  if not PUBLIC.exists():return
  need(PUBLIC.is_dir()and not PUBLIC.is_symlink(),'dedicated formatter publication')
  for p in PUBLIC.iterdir():
