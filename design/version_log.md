@@ -10623,3 +10623,18 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 残142件は実consumer型を閉じる最小rootを優先。次候補0x08142F5DはMystery Giftのmask literal/code境界、実CreateTask→38state表slot11/23の根を結ぶ。異種2要素の完全partitionと専用boundary witnessを設け、同kind streamへ無理に包含しない。次点0x080A006FはGPUscalar/VBlankcallback境界で外側root未特定。MoveTutor・普遍epoch/IRQ/opaque非干渉は別義務として保持。保存済237試験・ReadMailコピー後Free・Leer連続6194命令・QuestLog同期型を無影響再走しない。部分leaseは最大access/間接参照/対象退役/owner移管が揃う場合だけ採用。単一controller6528byteの容量確保後、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL、全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/0804B85C退避前Freeを接続。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。
 - Commit: closeout source=471732f8a07f4d2a0d61aba8ddf524890c2392bf; 同branch非force。
 - Network: 同repoActions/text原本のみ。ROM断片/rawhex/ROM/save/runtime/runner/credentials追加公開0。
+
+## 2026-10-05T22:32:50.200868+00:00
+- Timestamp: 2026-10-05T22:32:50.200868+00:00
+- Task: USER-20261005-DEX-HOF-BOUNDARY-REFERENCES / 異種literal-code境界と最小型根・容量保持
+- Version: hof-boundary-references-v1
+- Status: STOPPED（異種boundary1件を追加、残root/donor/実controller未完）
+- Summary: 現0641の旧egg874参照にMystery Giftのmask literal/Thumb命令境界1件を追加し、733分類/未知141。新198試験、全115actual ownerと全9親deltaを照合。実CB2登録→CreateTask/RunTasks→38state表slot11/23→helperの相互排他的2経路を専用boundary witnessへ結合し、左literal4byteと右命令2byteを完全partition。自然play到達・普遍IRQ寿命・退役安全は別義務。全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。
+- Files changed: 新boundary verifier/chain/capacity/拒否unit/Actions/guide/checkpoint/最小証拠、固定MDJSON、両ログ。
+- Verify: 新unit198、現candidate全SHA・115actual owner・874hit、全9親delta/全113changes/全103witness/旧732と残unknown全field保持、133全song model/50assetと新typed窓の役割交差。旧全ROMscan/native/heap/歴史再生成0。
+- Capacity: 未知参照はアクセス幅未証明なら全donor保護。点target楽観空隙を安全容量へ昇格しない。global余白511とsave内部804は既存owner/subownerを保持した上限で、新leaseなし。Ccontroller既測定単一text6528/align4と比較。間接参照/対象退役完全性も別必須gate。
+- Publication: 619原本と全親chainは参照保持、複製なし。独立measurementと全text size/SHA/LF、closed success artifact、hidden/symlink/未知file拒否。旧独立最終song/battle/Surfレビュー未実施を継承し、拒否操作の別経路再実行なし。
+- Boundary: 現0641/115owner/52saveowner/残804、正式ROM/Save101不変。heap13352を保存退避53300入口へ跨いで保持しない。
+- Next: 残141件は実consumer型を閉じる最小rootを優先。次候補0x080A006FのGPUscalar/VBlankcallback境界は外側rootを有限窓で確認できる場合だけ進める。MoveTutor/残QuestLog等の実登録と局所条件を優先し、自然到達/普遍epoch/IRQは型分類へ混同しない。保存済Mystery Giftの異種boundary、ReadMail/Leer/QuestLog237試験は無影響再走しない。部分leaseは最大access/間接参照/対象退役/owner移管が揃う場合だけ採用。単一controller6528byteの容量確保後、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL、全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/0804B85C退避前Freeを接続。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。
+- Commit: source=4aa3f68969c872be8ccf3c3e261065d2e63b0164; 同branch非force。
+- Network: 同repoActions/既存入力/固定source。公開source・最小address-size-SHA・textのみ、ROM断片/rawhex/ROM/inputsave/runtime/runner/credentials追加公開0。

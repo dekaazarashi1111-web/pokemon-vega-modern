@@ -1,0 +1,304 @@
+{
+  "status": "PASS_CURRENT_732_PARENT_BOUNDARY_REFERENCES_AND_PARTIAL_SPACE_REFUSAL",
+  "source_head": "4aa3f68969c872be8ccf3c3e261065d2e63b0164",
+  "run_id": 37382884285,
+  "candidate": {
+    "size": 33554432,
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+  },
+  "candidate_changed": false,
+  "unit_tests": 198,
+  "classified": 733,
+  "unclassified": 141,
+  "newly_classified": 1,
+  "new_data": 0,
+  "new_code": 0,
+  "new_boundary": 1,
+  "new_song": 0,
+  "old_inventory_candidates": 874,
+  "previous_classified": 732,
+  "previous_unknown": 142,
+  "owner_unknown": 0,
+  "unowned_unknown": 141,
+  "all_prior_accepted_retained": true,
+  "remaining_unknown_rows_retained": true,
+  "old_full_rom_inventory_reused": true,
+  "delta_identity": {
+    "size": 13165,
+    "sha256": "5b9ff2600caec75c226e720010e772725c76ec52da2391024176d01f19892eb7"
+  },
+  "baseline_identity": {
+    "size": 4063919,
+    "sha256": "814082398937869b6cc17faa09cbf1833f0c7f4aa300ddbd83d0de833d44b74c"
+  },
+  "parent_identity": {
+    "size": 68925,
+    "sha256": "7fdc8ed846f529fd7dfd5b35b322ddf8bd1eb46e18f5fd45239e21e998adae8e"
+  },
+  "earlier_identity": {
+    "size": 149772,
+    "sha256": "762320ba350f528777b90be404b5fec1d88caeb6dbf6594590d4f45b852c1c87"
+  },
+  "unknown_identity": {
+    "size": 61763,
+    "sha256": "ef91033ce77034dffa6b1155011bbe7df86f26df79c5ea8f630288cae8462a1f"
+  },
+  "capacity_identity": {
+    "size": 12750,
+    "sha256": "7fae732c4033656d0eeeb9da6ee23288e42350ca4fef22acbf7a544a632a963b"
+  },
+  "source_bindings": {
+    ".github/workflows/pr16-dex-hof-boundary-references.yml": {
+      "size": 3036,
+      "sha256": "98fdd53b7a08278d1f256e01d54012dd545eb96d1938ab7730144094b53e6617"
+    },
+    "content/modernization/pr16_dex_hof_boundary_development_validation.json": {
+      "size": 5407,
+      "sha256": "d80aaef3b1dfde29f5e37e1e31d7e3086badb789b828ad635849a373ec29a866"
+    },
+    "content/modernization/pr16_dex_hof_boundary_mystery_review.json": {
+      "size": 16781,
+      "sha256": "513341f3e7dbe763717251567459b0d431640a69d996ce9a3da3e31f0bacf3f7"
+    },
+    "content/modernization/pr16_dex_hof_boundary_sources.json": {
+      "size": 1428,
+      "sha256": "10b6bcf235099ed96522226ef87e9ae32b17080ed121980e688e5c1d0bfa5ae2"
+    },
+    "docs/PR16_DEX_HOF_BOUNDARY_REFERENCES_JA.md": {
+      "size": 4937,
+      "sha256": "7d42d321a03b40c5e3a5c2da4b88fc9d4cc5898435d7fba795da4d1e2b69f3d5"
+    },
+    "scripts/pr16_dex_hof_boundary_capacity.py": {
+      "size": 5003,
+      "sha256": "4a1a7351fe7ab2c450645cae4a577dba360ebd9be63360a850d20fa922b8182b"
+    },
+    "scripts/pr16_dex_hof_boundary_chain.py": {
+      "size": 11951,
+      "sha256": "af107bf416e87df128ed16d987d4f4f27ef361d3de7f6d44df6da594745af6f0"
+    },
+    "scripts/pr16_dex_hof_boundary_mystery.py": {
+      "size": 23013,
+      "sha256": "f2d93f99a51f736cdb661da221531be76db66eb1baa1081ac56d7d95ab21810b"
+    },
+    "scripts/pr16_dex_hof_boundary_references.py": {
+      "size": 2927,
+      "sha256": "04d5c56780ff7d28313f44c3fcff1e641c0e0d5f759f5beec62d4692323c61f8"
+    },
+    "scripts/pr16_dex_hof_boundary_references_actions.py": {
+      "size": 26422,
+      "sha256": "ff9182b7542915842753b5e2d29cd90c2cc5c41302444b3ca0da4c4bcf960d36"
+    },
+    "tests/test_pr16_dex_hof_boundary_capacity.py": {
+      "size": 9817,
+      "sha256": "44aa291497daab9f552f40ff83481645232d35d521ba013f2295c3470311e01d"
+    },
+    "tests/test_pr16_dex_hof_boundary_chain.py": {
+      "size": 13882,
+      "sha256": "142734c1a244be357495c1ea66fb37156318b4220c0cbba1efcbb92e1915bde7"
+    },
+    "tests/test_pr16_dex_hof_boundary_mystery.py": {
+      "size": 12055,
+      "sha256": "aa105640dfcc4ba2da7d07e5a8271f12e2cdbf9781adfc89a278551f614e885b"
+    },
+    "tests/test_pr16_dex_hof_boundary_references.py": {
+      "size": 3238,
+      "sha256": "2cb301468f3488d1aba06d2017c29ed26cfbaa954d84993ab297878665db8e96"
+    },
+    "tests/test_pr16_dex_hof_boundary_references_actions.py": {
+      "size": 11558,
+      "sha256": "93a5709b79d626210c49ac200ac64380e182dd45f10170b96ea87a1c711bbcaf"
+    }
+  },
+  "inherited_bindings": {
+    "content/modernization/pr16_dex_hof_callback_lifetimes_checkpoint.json": {
+      "size": 52637,
+      "sha256": "974f9bc2cb87f30112a40e6c5df29ad4734336216a2e64f3568aeddb5150705a"
+    },
+    "content/modernization/pr16_dex_hof_callback_lifetimes_evidence/reference-chain.json": {
+      "size": 60153,
+      "sha256": "06595ebf5830e45334dbb83ec1fb96658d40879f6f4a0126e3718a8d5ae6100a"
+    },
+    "content/modernization/pr16_dex_hof_callback_lifetimes_evidence/unknown-frontier.json": {
+      "size": 63507,
+      "sha256": "c27a2ff878aa2ce0fafe40c7c9407cfad7164a7e472e29e4d0391db59e260676"
+    },
+    "content/modernization/pr16_dex_hof_callback_references_checkpoint.json": {
+      "size": 10439,
+      "sha256": "f6530690ae80c432d94aef8288273eb8f5a1bbf7b4c80115146a9cac9329e464"
+    },
+    "content/modernization/pr16_dex_hof_callback_references_evidence/reference-chain.json": {
+      "size": 22816,
+      "sha256": "c49c05072bb5dcf19de4620440bfde82ad66e3c1269566a9b6184ebc9870bbc6"
+    },
+    "content/modernization/pr16_dex_hof_callback_references_evidence/unknown-frontier.json": {
+      "size": 63507,
+      "sha256": "c27a2ff878aa2ce0fafe40c7c9407cfad7164a7e472e29e4d0391db59e260676"
+    },
+    "content/modernization/pr16_dex_hof_consumer_references_checkpoint.json": {
+      "size": 11195,
+      "sha256": "660b6dc8b99c0005e8804998ad962772358233338eb2876d12853d75507342b9"
+    },
+    "content/modernization/pr16_dex_hof_consumer_references_evidence/reference-chain.json": {
+      "size": 28406,
+      "sha256": "20a394e6ce825113bbfd833989c18528a44f665f79eaf1c91f1ab6899a796dc7"
+    },
+    "content/modernization/pr16_dex_hof_consumer_references_evidence/unknown-frontier.json": {
+      "size": 64815,
+      "sha256": "435ae082b4cba009029f452e0bffcc365a73c66a439241842dd12107f54bab06"
+    },
+    "content/modernization/pr16_dex_hof_controller_evidence/controller-footprint.json": {
+      "size": 9353,
+      "sha256": "5ec5d9b72d25dcd249c3d6cf8af75544749748a8bdcee6da2092c3e583223d6c"
+    },
+    "content/modernization/pr16_dex_hof_controller_space_checkpoint.json": {
+      "size": 9621,
+      "sha256": "a81a17085d98690f9e397c02f6334680e8064f76e0e7e24cc9f9fabb520ef631"
+    },
+    "content/modernization/pr16_dex_hof_controller_space_evidence/reference-chain.json": {
+      "size": 23481,
+      "sha256": "1ede9031a30c4c5f52ec2b6cbf47ad177c4117931fb72796ce597c2786c01476"
+    },
+    "content/modernization/pr16_dex_hof_controller_space_evidence/unknown-frontier.json": {
+      "size": 63943,
+      "sha256": "9a58057a3d7d8c18661270902c00c478da298ba65f0b637cc99a1d09a32df85f"
+    },
+    "content/modernization/pr16_dex_hof_generation_writer_checkpoint.json": {
+      "size": 388088,
+      "sha256": "2aa483a860c7f5bc4919f6a3f11c74e3d209399059e8febbd63f3baaa16a8d49"
+    },
+    "content/modernization/pr16_dex_hof_reference_evidence/reference-delta.json": {
+      "size": 149772,
+      "sha256": "762320ba350f528777b90be404b5fec1d88caeb6dbf6594590d4f45b852c1c87"
+    },
+    "content/modernization/pr16_dex_hof_reference_gaps_evidence/reference-chain.json": {
+      "size": 95619,
+      "sha256": "c38d8e67a6718cacc17a3999922dca9edd9977734711b3cf5a74f85c1b76bb32"
+    },
+    "content/modernization/pr16_dex_hof_remaining_references_checkpoint.json": {
+      "size": 8001,
+      "sha256": "62411cded366aa43cb449af76b13166e2df6476532b3997664c22baa00e1d226"
+    },
+    "content/modernization/pr16_dex_hof_remaining_references_evidence/reference-chain.json": {
+      "size": 71138,
+      "sha256": "185e66b6e93eb94a6d1850b7f29b4ccfd00dfd3b3a5668a6021dbf5059fd3bd2"
+    },
+    "content/modernization/pr16_dex_hof_runtime_closure_checkpoint.json": {
+      "size": 55238,
+      "sha256": "b9252156201ab5c7506396270d9757522240767a3a781a7330237b1c9ba50927"
+    },
+    "content/modernization/pr16_dex_hof_runtime_closure_evidence/reference-chain.json": {
+      "size": 68925,
+      "sha256": "7fdc8ed846f529fd7dfd5b35b322ddf8bd1eb46e18f5fd45239e21e998adae8e"
+    },
+    "content/modernization/pr16_dex_hof_runtime_closure_evidence/unknown-frontier.json": {
+      "size": 62199,
+      "sha256": "53ea3d2a47a3066f72278de164c8cbc19ba5a6ebf3ec815cde921db50a65aa6d"
+    },
+    "content/modernization/pr16_dex_hof_script_references_checkpoint.json": {
+      "size": 8864,
+      "sha256": "026944a1ae8d2bfeca0eb3105868d9ebe3fc1b8f0d7669fc18b7fb69fddc58ff"
+    },
+    "content/modernization/pr16_dex_hof_script_references_evidence/reference-chain.json": {
+      "size": 134951,
+      "sha256": "da105fd05e4ddb51bd7648af890db509c9b8f1e7e79112dbc1b295ce15b51279"
+    },
+    "content/modernization/pr16_dex_hof_typed_recovery_evidence/egg-typed-audit.json": {
+      "size": 4063919,
+      "sha256": "814082398937869b6cc17faa09cbf1833f0c7f4aa300ddbd83d0de833d44b74c"
+    },
+    "content/modernization/pr16_story_route_adapter_checkpoint.json": {
+      "size": 45222,
+      "sha256": "ff7094f278de5502b40bca5ceaccb1a29ba6776b9b5eedc5ccdcb5ea03be19c7"
+    },
+    "state/source-lock.json": {
+      "size": 3166,
+      "sha256": "0e230bf9fad2766d05ccb2410b22274c32085fed7544a78e37e0b5f451bda3c4"
+    }
+  },
+  "current_owner_count": 115,
+  "current_rom_reconstructions": 1,
+  "historical_rom_reconstructions": 0,
+  "old_full_rom_scan_runs": 0,
+  "native_processes": 0,
+  "accepted_heap_reruns": 0,
+  "independent_final_source_review_completed": false,
+  "new_boundary_source_review_completed": true,
+  "development_validation": {
+    "size": 5407,
+    "sha256": "d80aaef3b1dfde29f5e37e1e31d7e3086badb789b828ad635849a373ec29a866"
+  },
+  "validation_scope": "新scope専用unit、現候補全SHA/115actual owner/874hit/異種mask-code完全境界と保存容量原本の機械検証。旧最終song/battle/Surf独立再レビュー未実施を保持。",
+  "combined_song_models": 133,
+  "retained_sample_witnesses": 50,
+  "old_models_reused_for_new_cross_song_role_safety": true,
+  "donor_leased": false,
+  "donor_eligible": false,
+  "indirect_reference_completeness_claimed": false,
+  "controller_runtime_wired": false,
+  "formal_rom_changed": false,
+  "formal_save_changed": false,
+  "boundary_type_diagnostics": {
+    "status": "PASS_MINIMUM_ROOTED_HETEROGENEOUS_BOUNDARY_TYPE",
+    "mystery": {
+      "status": "PASS_ONE_CONDITIONAL_MYSTERY_GIFT_BOUNDARY",
+      "count": 1,
+      "hit": 135540573,
+      "protected_windows": 62,
+      "protected_bytes": 940,
+      "source_bindings": {
+        "pret-mystery_gift_menu.c": {
+          "local": "pret-mystery_gift_menu.c",
+          "repository": "pret/pokefirered",
+          "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+          "path": "src/mystery_gift_menu.c",
+          "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/mystery_gift_menu.c",
+          "size": 47233,
+          "sha256": "0bb89d37bbd201f4b5ec59f5cf66582bc467b01df419ddb3593b254a70a5f215",
+          "git_blob_sha": "77c032c1b1d3360ff5fb87070815c4a98019df8c"
+        },
+        "pret-task.c": {
+          "local": "pret-task.c",
+          "repository": "pret/pokefirered",
+          "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+          "path": "src/task.c",
+          "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/task.c",
+          "size": 5029,
+          "sha256": "8bdd5205ec396be7b66d6e384a82309b3cab59783d46fb8c4c991b2172d4868b",
+          "git_blob_sha": "01503dc7ae78cf2348524bfb5bbb89183640f944"
+        },
+        "pret-main.c": {
+          "local": "pret-main.c",
+          "repository": "pret/pokefirered",
+          "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+          "path": "src/main.c",
+          "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/main.c",
+          "size": 11699,
+          "sha256": "0bfa6c662b1cbd49bd31020b6c2509208004611e6701ad64badce22eca371139",
+          "git_blob_sha": "542b0f5d16dd93107523d11163bfcb70a42b707a"
+        }
+      },
+      "proof_scope": "conditional_finite_registered_task_mask_and_instruction_roles",
+      "full_story_reachability_claimed": false,
+      "runtime_execution_observed": false,
+      "universal_callback_epoch_claimed": false,
+      "all_task_states_proven": false,
+      "irq_noninterference_proven": false,
+      "client_heap_lifetime_required": false,
+      "all_opaque_callees_return_proven": false,
+      "both_paths_same_execution_claimed": false,
+      "literal_interpreted_as_pointer": false,
+      "whole_function_range_classified": false,
+      "indirect_reference_completeness_claimed": false,
+      "donor_eligible": false,
+      "donor_leased": false
+    },
+    "new_data": 0,
+    "new_code": 0,
+    "new_boundary": 1,
+    "natural_gameplay_reachability_claimed": false,
+    "universal_heap_or_irq_lifetime_claimed": false,
+    "independent_old_final_source_review_completed": false,
+    "donor_leased": false,
+    "indirect_reference_completeness_claimed": false
+  }
+}
