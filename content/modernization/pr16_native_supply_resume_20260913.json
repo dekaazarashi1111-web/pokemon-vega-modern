@@ -4382,6 +4382,7 @@
   "observed_date_jst": "2026-10-04",
   "observed_head": "8f3c3c3bfd878b65fc76461da25126ee14c9d027",
   "observed_head_checks": {
+    "all14_steps_success": true,
     "classified": 644,
     "current_candidate": {
       "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583",
@@ -4392,10 +4393,13 @@
     "general_ci_known_source_mismatch_not_resolved": true,
     "native_processes": 0,
     "reason_ja": "現0641の旧egg874参照にtrainer15/archive2/命令跨ぎ1/有限JP音声7の25件を追加し、644分類/230未知。新122試験と新旧130曲の役割競合を検証。T09上位wordは別PLC2consumerとの混同を拒否し未知保持。原本4.1MBは再複製せず共有delta 149772byteへ。全旧619受入不変、donor/正式ROM/Save101不変。",
+    "record_job": 111756740350,
+    "record_run": 37308151987,
     "reference_unit_tests": 122,
     "scope_head": "8f3c3c3bfd878b65fc76461da25126ee14c9d027",
     "stage79_cached_not_new_native": true,
-    "unclassified": 230
+    "unclassified": 230,
+    "whole_receipt_equals_checkpoint": true
   },
   "observed_head_history": [
     {
@@ -12406,13 +12410,7 @@
     "status": "NATIVE_PARTY_RETENTION_ACCEPTED_BP_PENDING",
     "tested_head": "10e535a046441dd3b797918106259b5c57b69716"
   },
-  "pending_runs": [
-    {
-      "run_id": 37308151987,
-      "status": "in_progress",
-      "tested_head": "8f3c3c3bfd878b65fc76461da25126ee14c9d027"
-    }
-  ],
+  "pending_runs": [],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
   "pr_draft": true,
   "pr_merged": false,
@@ -14291,9 +14289,13 @@
       "sha256": "2e758ecc27a1abfff2ed1ff47211feb6aaa8fd03b807f4c509a0c695c56d772a",
       "size": 2292
     },
+    ".github/workflows/pr16-dex-hof-reference-closeout.yml": {
+      "sha256": "62732c8bf6949b464dc020c3236490e112e57558d6655736b3a06b5c8b732d50",
+      "size": 2715
+    },
     ".github/workflows/pr16-dex-hof-references.yml": {
-      "sha256": "59131c290222fa8774f26eaef15dc659df49811895223337dc08365f72439405",
-      "size": 2806
+      "sha256": "0016d4d018c51e0c563f5dea7ebb4561e4b6035ad28f8dc5ef36bcd67a38b915",
+      "size": 2706
     },
     ".github/workflows/pr16-dex-hof-runtime-record.yml": {
       "sha256": "3fa3c2c3f4f01cdf2a38c13f355691b27b174df647d1a3f6205821d92d4638bd",
@@ -34491,6 +34493,10 @@
       "sha256": "5a4ea9e6403bca64a3fdc0b781090648a5fa3a8a69294a5a0505ab47bab107ef",
       "size": 18743
     },
+    "scripts/pr16_dex_hof_reference_closeout.py": {
+      "sha256": "f30b19fe1aef374ef75fb921f1c600222de5b55471f36ffc4536f25149dcbf24",
+      "size": 11485
+    },
     "scripts/pr16_dex_hof_reference_code.py": {
       "sha256": "bfac6384418fb43d5fcb0e83a2b0772138bee297acf737114c00efd07804d8a9",
       "size": 7469
@@ -37818,6 +37824,10 @@
     "tests/test_pr16_dex_hof_reference_actions.py": {
       "sha256": "38bb6d93477c6902170a5f17a4b47a751e5850eee4b47f0ae845efc72a0e573d",
       "size": 3063
+    },
+    "tests/test_pr16_dex_hof_reference_closeout.py": {
+      "sha256": "d4bd2c3d7db60a2b70c41516424e67385bd9fd2de4fb4084d024e907e3a7aefa",
+      "size": 2041
     },
     "tests/test_pr16_dex_hof_reference_code.py": {
       "sha256": "107e8e8be7b4e39776c191461145175c6ec1c90c7ca8a77588835c27c0bd6412",
@@ -41198,6 +41208,57 @@
         },
         "donor_leased": false,
         "guide": "docs/PR16_DEX_HOF_REFERENCES_JA.md",
+        "recording": {
+          "all14_steps_success": true,
+          "all5_snapshots_full_bytes_and_lf_verified": true,
+          "archive": [
+            11344726537,
+            37308151987,
+            1351307,
+            "6aca12835df13553d1b602fb538fcd7b5a620fd1e93eed6140ed9e79c0cdc542"
+          ],
+          "arm_compiles": 0,
+          "baseline_identity": {
+            "sha256": "814082398937869b6cc17faa09cbf1833f0c7f4aa300ddbd83d0de833d44b74c",
+            "size": 4063919
+          },
+          "candidate_changed": false,
+          "checkpoint": "content/modernization/pr16_dex_hof_reference_checkpoint.json",
+          "checkpoint_identity": {
+            "sha256": "682396b303807263598c30d14f65716e3b53f2f859ae69942be6833bb48417ab",
+            "size": 6090
+          },
+          "classified": 644,
+          "closeout_run": 37309444395,
+          "closeout_source": "4319d15ce3975e2381c2b62d1db1917c7ede10b5",
+          "combined_song_models": 130,
+          "current_rom_reconstructions": 0,
+          "delta_identity": {
+            "sha256": "762320ba350f528777b90be404b5fec1d88caeb6dbf6594590d4f45b852c1c87",
+            "size": 149772
+          },
+          "donor_leased": false,
+          "export_guard_test_log": {
+            "sha256": "510d4db0d82cd0554eed8f091e0a7c49974bbd6998b685e94dbddbf03f1364a1",
+            "size": 996
+          },
+          "formal_save_changed": false,
+          "job": 111756740350,
+          "native_processes": 0,
+          "new_code": 1,
+          "new_data": 17,
+          "new_export_guard_tests": 9,
+          "new_song": 7,
+          "newly_classified": 25,
+          "old619_accepted_and_all874_identities_retained": true,
+          "record_head": "e348cbee4e8f77133ac1b14eabdc8842aac866dd",
+          "run": 37308151987,
+          "source_head": "8f3c3c3bfd878b65fc76461da25126ee14c9d027",
+          "status": "PASS_TERMINAL_EXACT_REFERENCE_DELTA_RECORD",
+          "tests_rerun": 0,
+          "unclassified": 230,
+          "unit_tests": 122
+        },
         "run": 37308151987,
         "source": "8f3c3c3bfd878b65fc76461da25126ee14c9d027",
         "status": "PASS_CURRENT_FINITE_REFERENCE_DELTA",
