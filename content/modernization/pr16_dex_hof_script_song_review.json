@@ -1,0 +1,680 @@
+{
+  "schema_version": 1,
+  "status": "OLD_FORMAL_DIAGNOSTIC_REVIEW_REQUIRES_CURRENT0641_REBIND",
+  "required_candidate": {
+    "size": 33554432,
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+  },
+  "diagnostic_candidate": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  },
+  "sources": [
+    {
+      "local": "factory-config",
+      "size": 5741,
+      "sha256": "58cb98afb685d7f0d9c41071872ed3c59d7771f8437d793b5b4eebd1f977863f",
+      "git_blob_sha": "d6e63565273ed898af08cf8e12c2bd551e6800ab",
+      "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+      "commit": "5bbb4448249a940610e6af25059c0e6fb916fd75",
+      "source": "config/factory_high_modes_v2.json",
+      "url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/blob/5bbb4448249a940610e6af25059c0e6fb916fd75/config/factory_high_modes_v2.json"
+    },
+    {
+      "local": "BPRJ.ld",
+      "size": 68505,
+      "sha256": "e371c23b9c9ea914c9ca3f644983e0b4e05be07bf11054492fa37afcfd58892a",
+      "git_blob_sha": "cf5363abd8439d63c7bd12cbe83ade861b0ebb51",
+      "repository": "kapibarasan000/CFRU-JP",
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "source": "BPRJ.ld",
+      "url": "https://github.com/kapibarasan000/CFRU-JP/blob/e24a16fe39e27ae162faf5b78596d1f3df18489d/BPRJ.ld"
+    },
+    {
+      "local": "pret-overworld.c",
+      "size": 103643,
+      "sha256": "df352e738b56856765aec65adc6fdea0a4b25fe567bc760d4ce2d34afc6ff7e2",
+      "git_blob_sha": "339014da46ae8543143edc99ab72bf7496203a0d",
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "source": "src/overworld.c",
+      "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/overworld.c"
+    },
+    {
+      "local": "gaps-pret-fieldmap.c",
+      "size": 28166,
+      "sha256": "bbe15c7af1059a9f796dddaca28bdaaf206b715895029e189fa6ae012272ce68",
+      "git_blob_sha": "41567772299000ba5855419e5c39ad9373a34c20",
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "source": "src/fieldmap.c",
+      "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/fieldmap.c"
+    },
+    {
+      "local": "gaps-pret-global.fieldmap.h",
+      "size": 12127,
+      "sha256": "34a8c91e10803ba48b97a2df8a721ca37fad7572b2ff951a4ab7ec15a5f050eb",
+      "git_blob_sha": "e2828ec0cb1439718e830fbef4366770b3b77b1c",
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "source": "include/global.fieldmap.h",
+      "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/include/global.fieldmap.h"
+    },
+    {
+      "local": "pret-field_control_avatar.c",
+      "size": 40928,
+      "sha256": "305daa295f88ce682b2b1868700d2f76012c659cb0df2905e6177a51ee4e9b8d",
+      "git_blob_sha": "b1b6465941133b927505be92d189a7c283e4722f",
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "source": "src/field_control_avatar.c",
+      "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/field_control_avatar.c"
+    }
+  ],
+  "windows": [
+    {
+      "address": 134569732,
+      "size": 96,
+      "sha256": "04958594ddd3c296fed17db870fbef86dd2ebb02b1a5243256639829a76050ee",
+      "name": "CB2_NewGame"
+    },
+    {
+      "address": 134571804,
+      "size": 24,
+      "sha256": "6bbcfae6e9f57b0d1e301cba72ab9153624a6ec571cbc2811157a6488987873b",
+      "name": "DoMapLoadLoop"
+    },
+    {
+      "address": 134571064,
+      "size": 352,
+      "sha256": "1002af5a75e1e81dc6701dbe65235bb1801a6afc54b7ee1bfa52540f1c547936",
+      "name": "DoMapLoadMap"
+    },
+    {
+      "address": 134566368,
+      "size": 140,
+      "sha256": "86b540c2d993ef279e94f2df912e6370fe29d631379a85b387e4be473de9d817",
+      "name": "LoadMapFromWarp"
+    },
+    {
+      "address": 134578836,
+      "size": 20,
+      "sha256": "812f85dbfb8b6d6b84f4a2d8bacaddeb80e84e23e32ec3f835b29346e578b3f2",
+      "name": "InitMap"
+    },
+    {
+      "address": 134578880,
+      "size": 112,
+      "sha256": "0ab7222ed3ba89f3fd8a99621ada7c8d64694aa5a479547a94fca8ee6f36b194",
+      "name": "InitMapLayoutData"
+    },
+    {
+      "address": 134579080,
+      "size": 136,
+      "sha256": "14901fe12b1816b7fc9050cd656e479e6a82a62c036834cc35da690564b15bb2",
+      "name": "InitBackupMapLayoutConnections"
+    },
+    {
+      "address": 134578820,
+      "size": 16,
+      "sha256": "9284e0d26476afcd44a11b57f4b5dd8c3c3e67b626226872d7e1004049220e88",
+      "name": "GetMapHeaderFromConnection"
+    },
+    {
+      "address": 134564600,
+      "size": 24,
+      "sha256": "733689d01c5b4c7e6dcdfc924ca20020f90b63849bbdf45dd068da697055c1f9",
+      "name": "Overworld_GetMapHeaderByGroupAndId"
+    },
+    {
+      "address": 134665288,
+      "size": 124,
+      "sha256": "be1c7fd0f28573889831e393acfdf49ba01635ba7f8422257679cdcedfd1ad55",
+      "name": "SetupWarp"
+    },
+    {
+      "address": 134665252,
+      "size": 36,
+      "sha256": "9c09dc9ef3c66531fa39cea64243380079cac21a41d3027399792bd38c1f9131",
+      "name": "GetWarpEventAtMapPosition"
+    },
+    {
+      "address": 134665516,
+      "size": 72,
+      "sha256": "bf9f0bc5ba13085af1ecd3266214a699fb10dd6b45663999571c63326114ab53",
+      "name": "GetWarpEventAtPosition"
+    },
+    {
+      "address": 134567468,
+      "size": 32,
+      "sha256": "894438257aab852c7ec6034bd8ccc631860abdad70d95d860b9c5acd509f03e0",
+      "name": "GetLocationMusic"
+    },
+    {
+      "address": 134564660,
+      "size": 72,
+      "sha256": "003dc474d0b8c98f396f34ddaead8108b59f441398e68771882804337c3e766c",
+      "name": "LoadCurrentMapData"
+    },
+    {
+      "address": 134565000,
+      "size": 32,
+      "sha256": "63b0e9b84c2c507a78b1ed27b901f837d3e53ddf54441ace51fdc75bacd06985",
+      "name": "SetWarpDestinationToMapWarp"
+    },
+    {
+      "address": 134564940,
+      "size": 60,
+      "sha256": "5eea27228a2d0a4d96cd361782ef369d368096ea56728e9568b639c57ae71bc3",
+      "name": "SetWarpDestination"
+    },
+    {
+      "address": 134564508,
+      "size": 30,
+      "sha256": "9f1d9680e11cc3dc302086e202e0b9935ece2a8a6700055da88a42fe651e1a3c",
+      "name": "SetWarpData"
+    },
+    {
+      "address": 134567524,
+      "size": 20,
+      "sha256": "0b67ef48155cba50f0f623a322d16bf785e549566fa567653a69fa30fcb4804d",
+      "name": "GetWarpDestinationMusic"
+    },
+    {
+      "address": 134579420,
+      "size": 96,
+      "sha256": "86507fd5350d23f7749dcd89b06f61af9c41960e7a55839aba0385fdaca0fb5d",
+      "name": "FillNorthConnection"
+    },
+    {
+      "address": 134579516,
+      "size": 96,
+      "sha256": "5bf7ac963205359e9768c067f2dc1f688969adca155cedfc3464795dfb7f6ea4",
+      "name": "FillWestConnection"
+    },
+    {
+      "address": 134579216,
+      "size": 100,
+      "sha256": "dfe56235183bf196803b63609949c6ae28c465fa9cbd8e2192492176501f8658",
+      "name": "LoadMapConnection"
+    },
+    {
+      "address": 137457564,
+      "size": 4,
+      "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+      "name": "dummy_connection_flag_value"
+    }
+  ],
+  "edges": [
+    {
+      "address": 134569780,
+      "size": 4,
+      "sha256": "3d7e16906ea2e8a8ff4ba8209e45219a3cbe094bfcccff066834b3836a9f3e4c",
+      "target": 134571804
+    },
+    {
+      "address": 134571812,
+      "size": 4,
+      "sha256": "7583504c073612242dd28f25fa13cfe6b19d0d92615a797ff607b4d375f6eff5",
+      "target": 134571064
+    },
+    {
+      "address": 134571162,
+      "size": 4,
+      "sha256": "906df1cdd2a16555b49546fba8a92c0d70e8b99eeeabbd7b3de80920a8e495b2",
+      "target": 134566368
+    },
+    {
+      "address": 134566480,
+      "size": 4,
+      "sha256": "7f01cfe9be549ddf9f11e0d5b1ec42b95166932d42f5af0ba9878ad7a50aa05f",
+      "target": 134578836
+    },
+    {
+      "address": 134578840,
+      "size": 4,
+      "sha256": "0881d7be3d8f0cf73b7750ad7dfde4b2b0205e8d56d50afabeee8576ddd033a0",
+      "target": 134578880
+    },
+    {
+      "address": 134578954,
+      "size": 4,
+      "sha256": "eb39842fb46aa4bfde13a2c9f012da5c72b36b8db09d53d8d737d271d78e005b",
+      "target": 134579080
+    },
+    {
+      "address": 134579108,
+      "size": 4,
+      "sha256": "f809d2c0086f911fb0eb0a85e9c4a14726ff230123128d08af08f0a2ae89a85b",
+      "target": 134578820
+    },
+    {
+      "address": 134578828,
+      "size": 4,
+      "sha256": "1e00315e5e91592dc68c40347207c028702fc2d28a498d418e05f1d5cc9d552d",
+      "target": 134564600
+    },
+    {
+      "address": 134665274,
+      "size": 4,
+      "sha256": "3fb1b4c1f3beb2bfabe0e4a51308e1ee1de29c7ad35bf6a44d3a02ceaae32402",
+      "target": 134665516
+    },
+    {
+      "address": 134665356,
+      "size": 4,
+      "sha256": "eb3841c786e5190bdaed77c50b41fafb3ab6f1b5d8636f8d8e447bbf1514e0ed",
+      "target": 134564600
+    }
+  ],
+  "roots": [
+    {
+      "address": 134564620,
+      "size": 4,
+      "sha256": "d672c5b39141ec15b78c62a82995e610593e06bd92fe2cb5aa5434696139c61e",
+      "name": "map_groups",
+      "value": 153899412
+    },
+    {
+      "address": 134571088,
+      "size": 4,
+      "sha256": "76d1c21d4eddb6e076fcc51ab70d8031029fa00687beaa2e484093b627c6a928",
+      "name": "map_load_switch",
+      "value": 134571092
+    },
+    {
+      "address": 134571092,
+      "size": 4,
+      "sha256": "8ee3379f1267fb75aafb84fad5f3b5bd80d826deedba29955d8742a71930c687",
+      "name": "map_load_case0",
+      "value": 134571152
+    },
+    {
+      "address": 134578852,
+      "size": 4,
+      "sha256": "102a1f1fc3503d4a9d0b7076c4d81aa07035acf76946707847504faa144ce813",
+      "name": "InitMap_gMapHeader",
+      "value": 33778992
+    },
+    {
+      "address": 134665320,
+      "size": 4,
+      "sha256": "102a1f1fc3503d4a9d0b7076c4d81aa07035acf76946707847504faa144ce813",
+      "name": "SetupWarp_gMapHeader",
+      "value": 33778992
+    },
+    {
+      "address": 134564724,
+      "size": 4,
+      "sha256": "102a1f1fc3503d4a9d0b7076c4d81aa07035acf76946707847504faa144ce813",
+      "name": "loaded_header_destination",
+      "value": 33778992
+    },
+    {
+      "address": 134564728,
+      "size": 4,
+      "sha256": "789f854e51f6834d7d2cf52f271d22064ba2c413904c37fa4d24d4f063f614c2",
+      "name": "loaded_header_saveblock1",
+      "value": 50352200
+    },
+    {
+      "address": 134564996,
+      "size": 4,
+      "sha256": "7b3bddc8faba438210d7cf472ea7cfc1480332a688a14c16cad028838ead155c",
+      "name": "warp_destination_writer",
+      "value": 33758448
+    },
+    {
+      "address": 134567540,
+      "size": 4,
+      "sha256": "7b3bddc8faba438210d7cf472ea7cfc1480332a688a14c16cad028838ead155c",
+      "name": "warp_destination_reader",
+      "value": 33758448
+    },
+    {
+      "address": 134579132,
+      "size": 4,
+      "sha256": "43474cd8b48bec28018a9761f8b3cdf8eec8a4414e3b6288485fb8067ec238d4",
+      "name": "map_connection_flags",
+      "value": 33779032
+    },
+    {
+      "address": 134579136,
+      "size": 4,
+      "sha256": "b930608d01f0b025bc9935b8bf57eb5aac0b90bed185b5d8bab9ac98193cc84f",
+      "name": "dummy_connection_flags",
+      "value": 137457564
+    }
+  ],
+  "selection": {
+    "source": "factory-config",
+    "json_path": [
+      "physical_binding"
+    ],
+    "map": [
+      96,
+      5
+    ],
+    "map_header": 153877972
+  },
+  "maps": [
+    {
+      "map": [
+        96,
+        5
+      ],
+      "group_row": {
+        "address": 153899796,
+        "size": 4,
+        "sha256": "6fb6d12298087c29f267928b0ef08fcaf3909fe1b1d0d902df7c70c9c2103f8c",
+        "name": "group",
+        "value": 153898384
+      },
+      "header_row": {
+        "address": 153898404,
+        "size": 4,
+        "sha256": "0a92847d0c456d5f747f1c6b333b6228460aa4179caae954d3100566f9501906",
+        "name": "header",
+        "value": 153877972
+      },
+      "header": {
+        "address": 153877972,
+        "size": 28,
+        "sha256": "3b9f4d989ef5e3a0d7e633bbd437f969e5e50247291d86fe3c06d3544b46abbf"
+      }
+    },
+    {
+      "map": [
+        96,
+        22
+      ],
+      "group_row": {
+        "address": 153899796,
+        "size": 4,
+        "sha256": "6fb6d12298087c29f267928b0ef08fcaf3909fe1b1d0d902df7c70c9c2103f8c",
+        "name": "group",
+        "value": 153898384
+      },
+      "header_row": {
+        "address": 153898472,
+        "size": 4,
+        "sha256": "e8679e6f689684b908bd05c3d7d2ee5e76dd1cb6243fbf31f9783620c32a2f90",
+        "name": "header",
+        "value": 153879996
+      },
+      "header": {
+        "address": 153879996,
+        "size": 28,
+        "sha256": "64dcf5ade4eca278f652cac4b65e687d56065f0730b86b3323b834ef7d11eb4d"
+      }
+    },
+    {
+      "map": [
+        96,
+        23
+      ],
+      "group_row": {
+        "address": 153899796,
+        "size": 4,
+        "sha256": "6fb6d12298087c29f267928b0ef08fcaf3909fe1b1d0d902df7c70c9c2103f8c",
+        "name": "group",
+        "value": 153898384
+      },
+      "header_row": {
+        "address": 153898476,
+        "size": 4,
+        "sha256": "04d6bdfd1896b0f60824caf20dabfc2887f790063def51486935904aa9cd9790",
+        "name": "header",
+        "value": 153880120
+      },
+      "header": {
+        "address": 153880120,
+        "size": 28,
+        "sha256": "23d2a7ea4e220de9765866e5c90a183d76b97ec3c15d64b34ed5ec8459cb9e35"
+      }
+    },
+    {
+      "map": [
+        96,
+        4
+      ],
+      "group_row": {
+        "address": 153899796,
+        "size": 4,
+        "sha256": "6fb6d12298087c29f267928b0ef08fcaf3909fe1b1d0d902df7c70c9c2103f8c",
+        "name": "group",
+        "value": 153898384
+      },
+      "header_row": {
+        "address": 153898400,
+        "size": 4,
+        "sha256": "185b747fda38478f62d3be340934e16986ed69225f5476471fbf88cd70e0eecf",
+        "name": "header",
+        "value": 153877788
+      },
+      "header": {
+        "address": 153877788,
+        "size": 28,
+        "sha256": "f4c6fcf48cd11df5d36275769b595d4217435d1a99177b7294d1b51a44c509cd"
+      }
+    },
+    {
+      "map": [
+        97,
+        88
+      ],
+      "group_row": {
+        "address": 153899800,
+        "size": 4,
+        "sha256": "a94cae289d0339ef42fc50c583f3fa4e0c760430d801371a9eed9af6b5b5014a",
+        "name": "group",
+        "value": 153898536
+      },
+      "header_row": {
+        "address": 153898888,
+        "size": 4,
+        "sha256": "109b2818b96493dafc6c2fb684c87aff357a9cd343adc2a451c3f5bc8a910740",
+        "name": "header",
+        "value": 153888756
+      },
+      "header": {
+        "address": 153888756,
+        "size": 28,
+        "sha256": "8de16e73f1d5801cff1b74cf1e683042a6d0c363d03d06be34c1ea59520375a8"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "kind": "connection",
+      "source_map": [
+        96,
+        5
+      ],
+      "target_map": [
+        96,
+        22
+      ],
+      "header_field": {
+        "address": 153877984,
+        "size": 4,
+        "sha256": "cb897ad6fa5735b27b70b4f4b06313c57a0200eeb1a0cb9f000e1cfe5a56ad18",
+        "name": "connections",
+        "value": 153877964
+      },
+      "array_header": {
+        "address": 153877964,
+        "size": 8,
+        "sha256": "e58e17eccbc3ae3148be7ad3e02450cecae33501d43795499c5b7c9c20ce99bb"
+      },
+      "count": 2,
+      "array": {
+        "address": 153877940,
+        "size": 24,
+        "sha256": "928fc2c6fc264d65ee4bcd481a822b0451efc1d3c86c0e94d1261f0ed6ec5894"
+      },
+      "index": 1,
+      "row": {
+        "address": 153877952,
+        "size": 12,
+        "sha256": "18742e2ccfe8fc9f9149695b98f6f2b40e4943a94797d6c07d63d665f940c69a"
+      },
+      "direction": 4,
+      "offset": 10
+    },
+    {
+      "kind": "connection",
+      "source_map": [
+        96,
+        22
+      ],
+      "target_map": [
+        96,
+        23
+      ],
+      "header_field": {
+        "address": 153880008,
+        "size": 4,
+        "sha256": "94cc27039f29613c485979c449d05e1287ae8f9b917884bdedcce343dc376b64",
+        "name": "connections",
+        "value": 153879988
+      },
+      "array_header": {
+        "address": 153879988,
+        "size": 8,
+        "sha256": "84db8c7aca3921b82ce9419c7ba081b22a8fad64ef15293b6491f4eddeccb231"
+      },
+      "count": 2,
+      "array": {
+        "address": 153879964,
+        "size": 24,
+        "sha256": "00b03014ce4167a2df7c7b7b7bc184b528c5480c4f6667f5821f98da2579f1c1"
+      },
+      "index": 1,
+      "row": {
+        "address": 153879976,
+        "size": 12,
+        "sha256": "df3e00fba7bdd2c5d23c4d9eada0e737e3de4eb3b533ee258302287d0451afd5"
+      },
+      "direction": 4,
+      "offset": -60
+    },
+    {
+      "kind": "connection",
+      "source_map": [
+        96,
+        23
+      ],
+      "target_map": [
+        96,
+        4
+      ],
+      "header_field": {
+        "address": 153880132,
+        "size": 4,
+        "sha256": "79ed07a82e5ab891dea7842b6f0f1736b62ed599851f47299412fad898dc7def",
+        "name": "connections",
+        "value": 153880112
+      },
+      "array_header": {
+        "address": 153880112,
+        "size": 8,
+        "sha256": "70e8ea7f5c4beaca6c1bbf817b36cc11d6f1bb4c26324baa664ef78b5b14d893"
+      },
+      "count": 3,
+      "array": {
+        "address": 153880076,
+        "size": 36,
+        "sha256": "d6295970e962874f0c7de5f5fb1c32bfbc5d3412abb36a24cf00b7b2a741ff3f"
+      },
+      "index": 0,
+      "row": {
+        "address": 153880076,
+        "size": 12,
+        "sha256": "195de6f8775d83c035098ee59ad8d7c8a80750af1be1dbb8b5994c857fe7eebb"
+      },
+      "direction": 2,
+      "offset": 0
+    },
+    {
+      "kind": "warp",
+      "source_map": [
+        96,
+        4
+      ],
+      "target_map": [
+        97,
+        88
+      ],
+      "header_field": {
+        "address": 153877792,
+        "size": 4,
+        "sha256": "1c081bcc13509e6264af914a228c424b0a6e1c4ad9e7f713ef4cd15b4359e849",
+        "name": "events",
+        "value": 155174664
+      },
+      "array_header": {
+        "address": 155174664,
+        "size": 20,
+        "sha256": "65ae3f8d4d29a0ad078d53f23b34eed7b9de029894c3be7509b0b2684a5c938b"
+      },
+      "count": 6,
+      "array": {
+        "address": 153877676,
+        "size": 48,
+        "sha256": "caba33245c609e1f3b2e0ccc25db5a969a1cc1e189b49f048e3af4c7bda55036"
+      },
+      "index": 0,
+      "row": {
+        "address": 153877676,
+        "size": 8,
+        "sha256": "f1eec0db38ef72e48be65a5e0b4e2d49cee9cf027be50606c00054354aeb00c1"
+      },
+      "position": [
+        18,
+        6,
+        0
+      ],
+      "destination_warp": 1
+    }
+  ],
+  "destination_events": {
+    "address": 155194188,
+    "size": 20,
+    "sha256": "b5bcb805317d563e6f3bb0caf9036dd4ced675110336a6df728030ec90028010"
+  },
+  "destination_warp_row": {
+    "address": 153888712,
+    "size": 8,
+    "sha256": "7ab1e303f80b9549a0b3a2db38203e58fd9c33d8e1576a1cacb90f645f0b9823"
+  },
+  "music_field": {
+    "address": 153888772,
+    "size": 2,
+    "sha256": "82c0a2fa4d221bad0f25eadc6be88ee56f449e7350ce686cb6a03ac4fd59b348"
+  },
+  "song_id": 306,
+  "expected_hit_addresses": [
+    138991268,
+    138991362,
+    138991678,
+    138991688,
+    138991899,
+    138992234,
+    138992780
+  ],
+  "claims": {
+    "finite_static_consumer_root": true,
+    "actual_playback": false,
+    "natural_story_path": false,
+    "global_map_extent": false,
+    "indirect_completeness": false,
+    "donor_leased": false
+  },
+  "notes_ja": [
+    "明示project physical map96/5から実2段map表を解決。US map ID/JP表extent推測なし。",
+    "3connectionとwarp0だけ。各count/stride/targetはJP実consumerとsource ABIへ束縛。JP connection初期化はUS版のnull guard追加前の形式なので、選択した全connections!=NULLを要求。",
+    "入口は型consumerの有限選択。全field callbackの実行や歩行可能性、音再生は主張しない。map12/7の誤読経路は採用しない。",
+    "getter/musicは旧既受入reviewを全identity固定して再利用し、現reviewを書き換えてrehashしても拒否。新value/control slicesは間ADD/MOV/分岐/return/28byte header copy/通常warp destination writerとreaderを連続検査。"
+  ]
+}
