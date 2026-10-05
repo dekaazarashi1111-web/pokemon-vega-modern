@@ -1,0 +1,15 @@
+# 選択済みfallback255のQOL台帳復元
+
+## 根因と今回の契約
+
+前HOF/Union/Mysteryの主保存故障cold101のledger SHA e5a00aa9991ac8a5ee3109844d84a55583bd20572ad3ffcd42792f3c36b183ad は全zero2048byteと一致する。QOL SaveLoadAdapterが戻り1だけで台帳を復元し、片bank正常fallback255では復元をskipしていた。
+
+今回の候補は以前のpost-QOL wrapperを一度だけ呼び、type!=3・return/global255・そのloadで復元したMDX validに限定する。既存buffer先頭へsector31+0x64から残り3996byteを読み、v2・現validator・全既知idle pending境界を確認する。特定pointerへの副作用を避けるため0x02039A14やlive ledgerをvalidatorへ渡さない。検証した2048byteだけをliveへcopyし、255を保持する。InitNew/Finalize/Save/世代再選択は行わない。
+
+不正、空、v1、未完transactionはledgerをpublishせず、MDX無効化/global2でContinueを遮断する。成功1と殿堂だけload3は従来経路のまま。RAMが既にvalidでもdurableを優先する。
+
+## 受入境界
+
+現時点は新host契約とARM容量のcompile-only段階。配置、native、cold復元は未受入。既存114ownerと実codec/scheduler sectionを保持し、新spanの全見かけ参照を型付きrootまで分類してから配置する。
+
+QOL ledgerの独自generationはmain SaveCounterと同じでない。sector31にはmain世代bindingがないため、今回を全owner復元、cross-store原子性、初回HOF mode3整合、全mode/共通SaveFailed、正式baseline切替に広げない。正式ROM/Save101と受入済み原本は不変。
