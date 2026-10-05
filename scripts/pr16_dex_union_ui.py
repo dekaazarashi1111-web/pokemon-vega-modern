@@ -45,10 +45,11 @@ def validate_trace(raw,folder,candidate,mode):
  import pr16_dex_start_fault_ui as ui
  rows=[json.loads(x)for x in raw.splitlines()];need(rows[0]==dict(begin='UNION_CHAT_UI_ONLY_FIXTURE',candidate_sha256=candidate['sha256'],mode=mode,host_write_barriers=7,register_writes=0,allowed_fixture_bytes=21),'closed fixture begin')
  end=rows[-1];need(end['end']=='PASS_UNION_CHAT_UI_FAILURE_SUCCESS_AND_FIELD_RETURN'and end['mode']==mode and end['fixture_phases']==2 and end['fixture_bytes_written']==21 and end['register_writes']==0 and end['host_write_barriers']==7 and end['counter']==(101 if mode==1 else 102)and end['attempt']==(255 if mode else 1),'complete actual UI result')
+ need(end['original_help_byte_restored']is True,'original HelpSystem R-toggle restores pre-UI0 after native constructor1')
  need(end['formatter_leases']>0 and end['formatter_reads']>=2*end['formatter_leases']and end['formatter_owner_bytes_restored']==32 and end['irq_owner_reads']==end['irq_owner_writes']==end['dma_owner_accesses']==0,'all synchronous leases restored; no IRQ/FIQ owner reads')
  need(end['result_printers']==1 and end['save_sounds']==int(mode==0)and end['clear_calls']==1,'one truthful result and appropriate audio/clear')
  need(not any(end[k]for k in('old_save_failed_entered','natural_chat_entry_accepted','link_transaction_accepted','formal_save_changed')),'no scope promotion')
- if mode:need(0<end['fault_writes']<=16 and end['extension_bytes_preserved_after_fault']==20248 and(end['fault_physical_address']<14*4096 if mode==1 else end['fault_physical_address']==131071),'real physical failure')
+ if mode:need(0<end['fault_writes']<=16 and end['extension_bytes_preserved_after_fault']==20247 and(end['fault_physical_address']<14*4096 if mode==1 else end['fault_physical_address']==131071),'real physical failure')
  else:need(end['fault_writes']==end['extension_bytes_preserved_after_fault']==0,'healthy counterpart')
  frame=inputs=screen=0;pending=False;stages=[];fixtures=[];setups=[];printers=[];returns=[];last_input=None
  for r in rows[1:-1]:

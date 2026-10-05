@@ -25,6 +25,12 @@
       "address": 135444152,
       "size": 24,
       "sha256": "54ae52a582a43f7093765aef2612fdd7daeaaeaa219e99f85b897cd7c9719d9b"
+    },
+    {
+      "id": "original_help_toggle_lifetime",
+      "address": 135445680,
+      "size": 24,
+      "sha256": "6209f6fed5d58e61601e1e14d522cd5cb0f0b5bffa4b6b4333e253b78fcdba26"
     }
   ],
   "fixture_contract": {
@@ -52,5 +58,14 @@
     "exact_multiple_transfer_spans": true,
     "pending_events_before_pc_observations": true
   },
-  "publication_contract_ja": "producer出力dir・guard対象・upload path・consumer名を機械照合し、成功/診断JSONと非空filesがなければuploadを停止。formatter原本欠落を捏造せず168条件step成功と区別する。"
+  "publication_contract_ja": "producer出力dir・guard対象・upload path・consumer名を機械照合し、成功/診断JSONと非空filesがなければuploadを停止。formatter原本欠落を捏造せず168条件step成功と区別する。",
+  "help_toggle_contract": {
+    "address": 33812713,
+    "pre_ui": 0,
+    "constructor_value": 1,
+    "cleanup_value": 0,
+    "cleanup_instruction": 135445696,
+    "source": "pret/pokefirered@c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/union_room_chat.c: HelpSystem_DisableToggleWithRButton / EnableToggleWithRButton",
+    "guard_ja": "失敗後の固定snapshotとの差分免除ではなく、元UI constructor→cleanupの厳密0→1→0 lifetimeを検証。他20247byteは完全保持。"
+  }
 }
