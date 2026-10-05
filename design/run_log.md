@@ -13396,3 +13396,18 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 残141件の次優先は0x08120CBD。実party action3 Item→action type8の[Give4/Take5/Cancel9] producer→index1/row5 Take→成功枝0x08124464→0x08120C9Cを結び、0x08120CBCの完全BLと0x08120CC0の静的LDR successorの6byte型を最小条件で検証する。既受入ReadMailの登録/setup/allocator/selectorを再利用し、全自然到達や普遍allocation/IRQへ膨張させない。次点MoveTutor0x08126B0Bはspecial397とaction12根を使いcallee/復帰条件を限定。0x080A006Fは外側登録root未特定、確認済title6144byte窓を反復しない。保存済MysteryGift198試験/733親と旧237試験を無影響再走しない。最大access/間接参照/対象退役/owner移管未証明では旧egg15118全域保護/安全容量0。単一controller6528byteの容量確保後、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL、全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/0804B85C退避前Freeを接続。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。
 - Commit: closeout source=c5527adabf286a615383d41384dbd93c191503bb; 同branch非force。
 - Network: 同repoActions/text原本のみ。ROM断片/rawhex/ROM/save/runtime/runner/credentials追加公開0。
+
+## 2026-10-05T23:31:14.110767+00:00
+- Timestamp: 2026-10-05T23:31:14.110767+00:00
+- Task: USER-20261005-DEX-HOF-PARTY-REFERENCES / TakeItem/MoveTutor最小型batch・容量保持
+- Version: hof-party-references-v1
+- Status: STOPPED（party型2件を追加、残root/donor/実controller未完）
+- Summary: 現0641の旧egg874参照にTakeItem/MoveTutorの必要最小Thumb型2件をまとめて追加し、735分類/未知139。新276試験、全115actual ownerと全10親deltaを照合。実party根から同task・action producer/selector・成功return/質問入力の有限条件を結合し各完全BL＋静的LDR successorの6byteだけ型付け。自然play全到達・普遍IRQ/heap寿命・間接参照/退役安全は別義務。全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。
+- Files changed: 新party verifier/chain/capacity/拒否unit/Actions/guide/checkpoint/最小証拠、固定MDJSON、両ログ。
+- Verify: 新unit276、現candidate全SHA・115actual owner・874hit、全10親delta/全114changes/全104witness/旧733と残unknown全field保持、133全song model/50assetと新typed窓の役割交差。旧全ROMscan/native/heap/歴史再生成0。
+- Capacity: 未知参照はアクセス幅未証明なら全donor保護。点target楽観空隙を安全容量へ昇格しない。global余白511とsave内部804は既存owner/subownerを保持した上限で、新leaseなし。Ccontroller既測定単一text6528/align4と比較。間接参照/対象退役完全性も別必須gate。
+- Publication: 619原本と全親chainは参照保持、複製なし。独立measurementと全text size/SHA/LF、closed success artifact、hidden/symlink/未知file拒否。旧独立最終song/battle/Surfレビュー未実施を継承し、拒否操作の別経路再実行なし。
+- Boundary: 現0641/115owner/52saveowner/残804、正式ROM/Save101不変。heap13352を保存退避53300入口へ跨いで保持しない。
+- Next: 残139件の次batchはSummary 0x081357A7と関連asset候補を実rootから調べる。party action0→Summary constructor根はあるが、finish0813752Cのtask literal08137570→installed09378491の先が未調査。旧08135028への接続を仮定しない。新Summary allocation/setup/page flipを必要最小条件として閉じる。GPU080A006Fの外側root、08118D03の外側caller/data+0x13 writerは未特定で採用しない。既測定party/Mystery/旧suite/nativeは無影響再走しない。未知最大access/間接参照/退役/owner移管未証明なら旧egg15118全域保護/安全0。単一controller6528byte容量確保後、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL/全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/0804B85C退避前Freeへ接続。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。
+- Commit: source=21fc8f158835b0bdfcdfc33c01e15c38cbf16513; 同branch非force。
+- Network: 同repoActions/既存入力/固定source。公開source・最小address-size-SHA・textのみ、ROM断片/rawhex/ROM/inputsave/runtime/runner/credentials追加公開0。
