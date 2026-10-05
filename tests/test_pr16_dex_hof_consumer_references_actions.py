@@ -103,6 +103,10 @@ class MeasuredBoundaryTests(unittest.TestCase):
   self.m[key]=value
   with self.assertRaises(ValueError):self.check()
  def test_exact_new_scope(self):self.check()
+ def test_exact_changed_source_set_excludes_only_unchanged_history(self):self.assertEqual(len(m.CODE-m.HISTORY_FIXED),26);self.assertEqual(len(m.HISTORY_FIXED),4)
+ def test_history_source_still_in_measurement_bindings(self):self.assertTrue(m.HISTORY_FIXED<m.CODE);self.assertNotIn(m.HISTORY_WF,m.HISTORY_FIXED)
+ def test_earlier_failure_never_claims_execution(self):
+  f=m.FAILED_PREPARE[0];self.assertEqual(f['status'],'failure');self.assertEqual(f['current_rom_reconstructions'],0);self.assertEqual(f['native_processes'],0);self.assertEqual(f['published_artifacts'],0)
  def test_previous49_samples_rejected(self):self.reject('retained_sample_witnesses',49)
  def test_previous132_models_rejected(self):self.reject('combined_song_models',132)
  def test_historical_input_cannot_rebuild(self):self.reject('historical_rom_reconstructions',1)
