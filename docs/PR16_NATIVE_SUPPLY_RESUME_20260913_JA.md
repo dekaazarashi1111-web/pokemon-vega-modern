@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-初回HOF mode3の主保存を既存copy-on-writeへ接続し、主保存故障時の旧authority全14sectorを保護。HOF28失敗は29/mainを書かず、29失敗もmainを書かない。stat10は生RAMで一度だけ、coldは選択mainの0/1に一致。5条件の既存HOFエラー/正常表示と各cold、全QOL2048byteを限定受入。候補88be8811、既存scheduler内5窓180byte、115owner中114全byte不変。HOFとmainの世代結合・跨領域原子性は未完。
+HOF/mainの正確epoch＋全payload SHA256結合、normal Save継承、二重shadowからmain COWへ確定するhost参照実装と容量validatorを追加。21host契約・blank/再利用bank/normal wrapの全durable byte境界・故障/電源断を検証。現32sectorは独立shadow追加に8192byte不足としてwrite前拒否。候補88be8811と全115owner/43subowner/実残186byteは不変。実ROM世代結合・跨領域原子性は未受入。
 
-**次: 正式ROM/Save101を保持。最新88be8811/115owner/current_scheduler_subownersを基準に、HOF28/29とmain保存世代の結合・跨領域原子性を次に閉じる。mode3 mainの旧authority保護とHOF失敗短絡は受入済みだが、main失敗時にHOFが先行更新される境界は未完。全mode4/5/default/LinkFull、未対応caller共通SaveFailed・stale authority wipe、早期sector31故障/単bank原子性、残typedconsumer、全cold ownerも未完。正式切替とtrainer131後半は必要検証不足で保留（承認不足ではない）。最終はシオウ通常回復/Save/独立cold Continue、雑魚毎Saveなし。**
+**次: 正式ROM/Save101と候補88be8811を保持し、永続HOF表現の容量/ownerを先に閉じる。host参照coreは34sector合成形式で現ROMへ未接続。現main片bank1740byteはzero/readback管理下、sector31残578byteもQOL管理下で無断借用不可。HOF不変base＋bounded team log等の実schema/容量満了処理を検討し、現ROM ABI・全mode/normal/link clone/HOF-only load/migration/coldを接続する。その後共通SaveFailed/早期31/全cold owner/typedconsumer、正式切替とtrainer131後半、最終シオウ通常回復・保存・独立cold Continueへ。雑魚毎Saveなし。**
 
 通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `3227331bb38b807822ed9f7da8ea197b09269418`。
-mode3主保存authority保護とHOF失敗短絡だけの限定受入記録source。HOF/main原子性・正式切替は未完。
+証拠のsource HEAD: `f09436a74b710ad15c1f90e6eedbaabe91ffddb1`。
+host参照transactionと容量拒否の実装検証source。実ROM/native/正式候補の原子性受入ではない。
 
 ## 最短の再開手順
 
@@ -25,12 +25,11 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `docs/PR16_DEX_HOF_GENERATION_CONTRACT_JA.md`
+- `content/modernization/pr16_dex_hof_generation_checkpoint.json`
 - `docs/PR16_DEX_HOF_MAIN_COW_JA.md`
 - `content/modernization/pr16_dex_hof_main_checkpoint.json`
 - `docs/PR16_DEX_FALLBACK_QOL_JA.md`
-- `docs/PR16_DEX_HOF_FAILURE_JA.md`
-- `docs/PR16_DEX_OUTER_QOL_JA.md`
-- `docs/PR16_DEX_CONSUMERS_JA.md`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -446,6 +445,7 @@ P08ゲート:
 - HOF40ad8237候補の局所通知は隔離2880条件＋UI-only9byte/3条件/各cold6process15画像。旧SaveFailed回避と初回stat10一度・payload保全まで。初回mode3原子性/全mode/自然殿堂入りへ広げず、同じnativeを影響なしに再走しない。
 - d773a123のfallback QOLはhost327907/ARM508と正常・片bank故障・破損cold計3成功caseで限定受入。初回coldの成功2原本を再利用し観測器だけの陰性1を修正。変更影響なしに再走せず、全cold owner/初回HOF原子性へ拡大しない。
 - 88be8811のmode3 main COWは隔離554条件とUI5条件＋各cold10process/25画像を原本再利用。main0の3callはsynthetic入力bank生成で通常Save再受入ではない。既存115owner中114保持、新180byteはStage61内5窓。次は実subownerを差引いた186byteを優先し、旧366byteや古いsuffixを空き扱いしない。HOF/main世代結合は未完。
+- HOF世代contractのhost参照実装21suiteは専用checkpointを再利用。34sector合成形式を32sector実Saveへ適用しない。現候補88be8811、全115owner/43subowner/186byte、正式ROM/Save101は不変。旧HOF/main/nativeを変更影響なしに再走せず、次は実永続表現の容量・ABI・ownerと全consumerへの接続。
 
 ## 次セッションへ残す更新手順
 
@@ -475,6 +475,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-初回HOF mode3の主保存を既存copy-on-writeへ接続し、主保存故障時の旧authority全14sectorを保護。HOF28失敗は29/mainを書かず、29失敗もmainを書かない。stat10は生RAMで一度だけ、coldは選択mainの0/1に一致。5条件の既存HOFエラー/正常表示と各cold、全QOL2048byteを限定受入。候補88be8811、既存scheduler内5窓180byte、115owner中114全byte不変。HOFとmainの世代結合・跨領域原子性は未完。
+HOF/mainの正確epoch＋全payload SHA256結合、normal Save継承、二重shadowからmain COWへ確定するhost参照実装と容量validatorを追加。21host契約・blank/再利用bank/normal wrapの全durable byte境界・故障/電源断を検証。現32sectorは独立shadow追加に8192byte不足としてwrite前拒否。候補88be8811と全115owner/43subowner/実残186byteは不変。実ROM世代結合・跨領域原子性は未受入。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

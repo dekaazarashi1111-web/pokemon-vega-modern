@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "初回HOF mode3の主保存を既存copy-on-writeへ接続し、主保存故障時の旧authority全14sectorを保護。HOF28失敗は29/mainを書かず、29失敗もmainを書かない。stat10は生RAMで一度だけ、coldは選択mainの0/1に一致。5条件の既存HOFエラー/正常表示と各cold、全QOL2048byteを限定受入。候補88be8811、既存scheduler内5窓180byte、115owner中114全byte不変。HOFとmainの世代結合・跨領域原子性は未完。",
+    "current_stop": "HOF/mainの正確epoch＋全payload SHA256結合、normal Save継承、二重shadowからmain COWへ確定するhost参照実装と容量validatorを追加。21host契約・blank/再利用bank/normal wrapの全durable byte境界・故障/電源断を検証。現32sectorは独立shadow追加に8192byte不足としてwrite前拒否。候補88be8811と全115owner/43subowner/実残186byteは不変。実ROM世代結合・跨領域原子性は未受入。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "正式ROM/Save101を保持。最新88be8811/115owner/current_scheduler_subownersを基準に、HOF28/29とmain保存世代の結合・跨領域原子性を次に閉じる。mode3 mainの旧authority保護とHOF失敗短絡は受入済みだが、main失敗時にHOFが先行更新される境界は未完。全mode4/5/default/LinkFull、未対応caller共通SaveFailed・stale authority wipe、早期sector31故障/単bank原子性、残typedconsumer、全cold ownerも未完。正式切替とtrainer131後半は必要検証不足で保留（承認不足ではない）。最終はシオウ通常回復/Save/独立cold Continue、雑魚毎Saveなし。",
+    "next_step": "正式ROM/Save101と候補88be8811を保持し、永続HOF表現の容量/ownerを先に閉じる。host参照coreは34sector合成形式で現ROMへ未接続。現main片bank1740byteはzero/readback管理下、sector31残578byteもQOL管理下で無断借用不可。HOF不変base＋bounded team log等の実schema/容量満了処理を検討し、現ROM ABI・全mode/normal/link clone/HOF-only load/migration/coldを接続する。その後共通SaveFailed/早期31/全cold owner/typedconsumer、正式切替とtrainer131後半、最終シオウ通常回復・保存・独立cold Continueへ。雑魚毎Saveなし。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -1174,7 +1174,8 @@
     "旧Mystery3bb4c51b配置受入はscheduler衝突で撤回。旧余り1462/1332を空き扱いせずcurrent subowner計算を使用。後継0180c180は前段1851条件の原本/未変更1755条件再利用、formatter168条件のstep成功/raw欠落、UI21/11byte由来12process30画面の変更影響のみ受入。formatter168条件はstep成功/raw欠落を区別し重複native再走0。全mode/自然通信へ昇格しない。",
     "HOF40ad8237候補の局所通知は隔離2880条件＋UI-only9byte/3条件/各cold6process15画像。旧SaveFailed回避と初回stat10一度・payload保全まで。初回mode3原子性/全mode/自然殿堂入りへ広げず、同じnativeを影響なしに再走しない。",
     "d773a123のfallback QOLはhost327907/ARM508と正常・片bank故障・破損cold計3成功caseで限定受入。初回coldの成功2原本を再利用し観測器だけの陰性1を修正。変更影響なしに再走せず、全cold owner/初回HOF原子性へ拡大しない。",
-    "88be8811のmode3 main COWは隔離554条件とUI5条件＋各cold10process/25画像を原本再利用。main0の3callはsynthetic入力bank生成で通常Save再受入ではない。既存115owner中114保持、新180byteはStage61内5窓。次は実subownerを差引いた186byteを優先し、旧366byteや古いsuffixを空き扱いしない。HOF/main世代結合は未完。"
+    "88be8811のmode3 main COWは隔離554条件とUI5条件＋各cold10process/25画像を原本再利用。main0の3callはsynthetic入力bank生成で通常Save再受入ではない。既存115owner中114保持、新180byteはStage61内5窓。次は実subownerを差引いた186byteを優先し、旧366byteや古いsuffixを空き扱いしない。HOF/main世代結合は未完。",
+    "HOF世代contractのhost参照実装21suiteは専用checkpointを再利用。34sector合成形式を32sector実Saveへ適用しない。現候補88be8811、全115owner/43subowner/186byte、正式ROM/Save101は不変。旧HOF/main/nativeを変更影響なしに再走せず、次は実永続表現の容量・ABI・ownerと全consumerへの接続。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -4355,40 +4356,31 @@
     "status": "PASS_NATIONAL_DEX_GRANT_OWNER_SCOPED"
   },
   "next_action": {
-    "goal_ja": "正式ROM/Save101を保持。最新88be8811/115owner/current_scheduler_subownersを基準に、HOF28/29とmain保存世代の結合・跨領域原子性を次に閉じる。mode3 mainの旧authority保護とHOF失敗短絡は受入済みだが、main失敗時にHOFが先行更新される境界は未完。全mode4/5/default/LinkFull、未対応caller共通SaveFailed・stale authority wipe、早期sector31故障/単bank原子性、残typedconsumer、全cold ownerも未完。正式切替とtrainer131後半は必要検証不足で保留（承認不足ではない）。最終はシオウ通常回復/Save/独立cold Continue、雑魚毎Saveなし。",
+    "goal_ja": "正式ROM/Save101と候補88be8811を保持し、永続HOF表現の容量/ownerを先に閉じる。host参照coreは34sector合成形式で現ROMへ未接続。現main片bank1740byteはzero/readback管理下、sector31残578byteもQOL管理下で無断借用不可。HOF不変base＋bounded team log等の実schema/容量満了処理を検討し、現ROM ABI・全mode/normal/link clone/HOF-only load/migration/coldを接続する。その後共通SaveFailed/早期31/全cold owner/typedconsumer、正式切替とtrainer131後半、最終シオウ通常回復・保存・独立cold Continueへ。雑魚毎Saveなし。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。Save14は作業コピーだけを使用する。自己OT party、manifest解決済み通常支援用品、EXP境界、safe opponentはpre-battle fixtureとして全byteを台帳化してよい。badge/key item/story flag/money/RPをfixture付与せず、戦闘開始後は通常入力とゲーム内処理だけを使う。",
-    "id": "CLOSE_HOF_GENERATION_AND_REMAINING_SAVE_CONTRACTS",
+    "id": "PROVE_DURABLE_HOF_LAYOUT_BEFORE_ROM_INTEGRATION",
     "read_paths": [
+      "docs/PR16_DEX_HOF_GENERATION_CONTRACT_JA.md",
+      "content/modernization/pr16_dex_hof_generation_checkpoint.json",
       "docs/PR16_DEX_HOF_MAIN_COW_JA.md",
       "content/modernization/pr16_dex_hof_main_checkpoint.json",
-      "docs/PR16_DEX_FALLBACK_QOL_JA.md",
-      "docs/PR16_DEX_HOF_FAILURE_JA.md",
-      "docs/PR16_DEX_OUTER_QOL_JA.md",
-      "docs/PR16_DEX_CONSUMERS_JA.md"
+      "docs/PR16_DEX_FALLBACK_QOL_JA.md"
     ],
     "stop_rule_ja": "通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。"
   },
   "observed_date_jst": "2026-10-04",
-  "observed_head": "3227331bb38b807822ed9f7da8ea197b09269418",
+  "observed_head": "f09436a74b710ad15c1f90e6eedbaabe91ffddb1",
   "observed_head_checks": {
-    "accepted_raw_native_processes": 11,
-    "all12_record_steps_success": true,
-    "all_cold_owners_preserved": false,
-    "both_all10_steps_success": true,
-    "diagnostic_native_processes": 0,
+    "arm_compiles": 0,
+    "candidate_changed": false,
     "general_ci_known_source_mismatch_not_resolved": true,
-    "initial_hof_atomicity": false,
-    "isolated_job": 111621821031,
-    "isolated_run": 37265656275,
-    "reason_ja": "初回HOF mode3の主保存を既存copy-on-writeへ接続し、主保存故障時の旧authority全14sectorを保護。HOF28失敗は29/mainを書かず、29失敗もmainを書かない。stat10は生RAMで一度だけ、coldは選択mainの0/1に一致。5条件の既存HOFエラー/正常表示と各cold、全QOL2048byteを限定受入。候補88be8811、既存scheduler内5窓180byte、115owner中114全byte不変。HOFとmainの世代結合・跨領域原子性は未完。",
-    "record_job": 111625848719,
-    "record_run": 37267010828,
-    "scope_head": "5092c4848f445c6ef13a8768cce8e22bc19fb999",
-    "screens": 25,
-    "stage79_cached_not_new_native": true,
-    "ui_job": 111623997889,
-    "ui_run": 37266381005,
-    "whole_receipt_equals_checkpoint": true
+    "host_tests": 21,
+    "native_processes": 0,
+    "reason_ja": "HOF/mainの正確epoch＋全payload SHA256結合、normal Save継承、二重shadowからmain COWへ確定するhost参照実装と容量validatorを追加。21host契約・blank/再利用bank/normal wrapの全durable byte境界・故障/電源断を検証。現32sectorは独立shadow追加に8192byte不足としてwrite前拒否。候補88be8811と全115owner/43subowner/実残186byteは不変。実ROM世代結合・跨領域原子性は未受入。",
+    "runtime_cross_store_atomicity": false,
+    "runtime_generation_binding": false,
+    "scope_head": "f09436a74b710ad15c1f90e6eedbaabe91ffddb1",
+    "stage79_cached_not_new_native": true
   },
   "observed_head_history": [
     {
@@ -12277,7 +12269,7 @@
       "semantics": "Save100/ミルシティ4,17北。動的Ranger20,29へ実正面A→町の解放scene→4072=3/4380set。全party600byte/HP277/PP3,9,8,2/23114円保持。95+cold13入力/54画面。通常2歩+自動2歩、歩数93/3。cold RAM差owner未解明。"
     }
   ],
-  "observed_head_semantics": "mode3主保存authority保護とHOF失敗短絡だけの限定受入記録source。HOF/main原子性・正式切替は未完。",
+  "observed_head_semantics": "host参照transactionと容量拒否の実装検証source。実ROM/native/正式候補の原子性受入ではない。",
   "p08_candidate_impact": {
     "candidate": {
       "crc32": "CC068B4A",
@@ -12399,7 +12391,13 @@
     "status": "NATIVE_PARTY_RETENTION_ACCEPTED_BP_PENDING",
     "tested_head": "10e535a046441dd3b797918106259b5c57b69716"
   },
-  "pending_runs": [],
+  "pending_runs": [
+    {
+      "run_id": 37269357252,
+      "status": "in_progress",
+      "tested_head": "f09436a74b710ad15c1f90e6eedbaabe91ffddb1"
+    }
+  ],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
   "pr_draft": true,
   "pr_merged": false,
@@ -14221,6 +14219,10 @@
     ".github/workflows/pr16-dex-hof-failure.yml": {
       "sha256": "2c062e8f47ffe0fb2486785c7dc787c844fbdbeb31e26fbbeccca4a724ec11fd",
       "size": 1744
+    },
+    ".github/workflows/pr16-dex-hof-generation.yml": {
+      "sha256": "f6e4af194b2dcced93586c549f828de3b3156d3afecb27acd500390b225ecbd7",
+      "size": 2594
     },
     ".github/workflows/pr16-dex-hof-main-closeout.yml": {
       "sha256": "2bdb44945f84c8512328f137849ebc3d61880b3eb790245c01b452532cba58ed",
@@ -17129,6 +17131,22 @@
     "content/modernization/pr16_dex_hof_failure_bindings.json": {
       "sha256": "b3339e41f3a1090e275d842ff7b37291d196c798bc929b6dfc7002090b813d49",
       "size": 2349
+    },
+    "content/modernization/pr16_dex_hof_generation_checkpoint.json": {
+      "sha256": "50bc4a64e3307e7f1f80dc79352300478947b52f033c59297340e980cbdd7d94",
+      "size": 5466
+    },
+    "content/modernization/pr16_dex_hof_generation_evidence/capacity.json": {
+      "sha256": "ab160acee4c0928c9b34bb17b56098f9268792444880be57fdf40855c926db76",
+      "size": 2127
+    },
+    "content/modernization/pr16_dex_hof_generation_evidence/host-tests.txt": {
+      "sha256": "56547d26f2c95194dadea85309b7621acf9938cbbedb365308d73e38aa7aa889",
+      "size": 3417
+    },
+    "content/modernization/pr16_dex_hof_generation_evidence/measurement.json": {
+      "sha256": "2434fc21707ff86b9c58e4d735430469f9af85d3209f8078f159e0594803d229",
+      "size": 4563
     },
     "content/modernization/pr16_dex_hof_main_checkpoint.json": {
       "sha256": "2d9fdb898411a961985bef441c5793b372b1d9233f87fcbdd9eb4937c231fecd",
@@ -28966,6 +28984,10 @@
       "sha256": "0ea655487eca36ab56f17105667538155e599c4a4f02a1cb96d7ac51f7336d37",
       "size": 3629
     },
+    "docs/PR16_DEX_HOF_GENERATION_CONTRACT_JA.md": {
+      "sha256": "10efe033b7d478fdf1db3828a0a86d764f393d60983a8069e8a9a9d6a9f36b9f",
+      "size": 5533
+    },
     "docs/PR16_DEX_HOF_MAIN_COW_JA.md": {
       "sha256": "c5800162b827daedd8129493b5a44c53084c0c03c0ef63df0fb79d1ac02fe2fa",
       "size": 3264
@@ -33938,6 +33960,10 @@
       "sha256": "13c338b405b5803260e660fded2ba5a6749931bf28c794bbdcf103350a15c28e",
       "size": 14844
     },
+    "scripts/pr16_dex_hof_capacity.py": {
+      "sha256": "f4b49441ca336dede4252536449af957e9a7e27d8b928232b8024dec1b3bc91c",
+      "size": 3583
+    },
     "scripts/pr16_dex_hof_closeout.py": {
       "sha256": "7ebd24519f2d107eb2acef3715dbe8870e8c04f671f92d69aa8f1d496d2bfc11",
       "size": 9862
@@ -33949,6 +33975,10 @@
     "scripts/pr16_dex_hof_failure_actions.py": {
       "sha256": "1da2e18c1b0c0ed6c5c378bb6ace61a046d603e1223ab4bffc466fd0d1b3133b",
       "size": 6497
+    },
+    "scripts/pr16_dex_hof_generation_actions.py": {
+      "sha256": "3a11b72ba57d843982094a8e457e3ab5ed5f7446b2113b259a270b04f035f285",
+      "size": 11998
     },
     "scripts/pr16_dex_hof_main_closeout.py": {
       "sha256": "8ae3717965300013032da2102a1491d0b822ac11189397e59a52abcbf7563857",
@@ -33977,6 +34007,10 @@
     "scripts/pr16_dex_hof_tail_lease.py": {
       "sha256": "fdd11b32566de7cc0f1cf8f499645beca7d92fa4c10ae1aab4e90bdda6f12db4",
       "size": 5156
+    },
+    "scripts/pr16_dex_hof_transaction.py": {
+      "sha256": "48906f37c7ef28f8ff0b377c845ca3e23a90b191b3d8bd9401a2d0d0c3319988",
+      "size": 10689
     },
     "scripts/pr16_dex_hof_ui.py": {
       "sha256": "53aea516eda23b9483733e1234866381e60b146115b82cd587fb79b72f9244e0",
@@ -37202,6 +37236,10 @@
       "sha256": "946098c49929aacb4436e63981628406e43821b9bbdae3f0d4a7e086b7f6479c",
       "size": 1530
     },
+    "tests/test_pr16_dex_hof_transaction.py": {
+      "sha256": "620648ac51623eeb9d51811acaf3ee667b5e0b1e34e5403f867d3a315f09d691",
+      "size": 14230
+    },
     "tests/test_pr16_dex_hof_ui.py": {
       "sha256": "d8d55471ef14ce1b2bfd5fa4a5470b26e099a60a901b817ece9c9089a477a620",
       "size": 1085
@@ -40211,6 +40249,20 @@
         },
         "status": "PASS_HOF_NOTIFICATION_UI_ONLY_NO_RETRY",
         "ui_run": 37255103782
+      },
+      "hof_generation_contract": {
+        "candidate": {
+          "sha256": "88be88116bd452bd70cffaf2a820d5c6c6b6b7410fa603a9a0228b694725d5de",
+          "size": 33554432
+        },
+        "checkpoint": "content/modernization/pr16_dex_hof_generation_checkpoint.json",
+        "guide": "docs/PR16_DEX_HOF_GENERATION_CONTRACT_JA.md",
+        "host_tests": 21,
+        "record_run": 37269357252,
+        "runtime_cross_store_atomicity": false,
+        "runtime_generation_binding": false,
+        "status": "PASS_HOST_REFERENCE_HOF_TRANSACTION_AND_CAPACITY_REFUSAL",
+        "synthetic_only": true
       },
       "hof_main_cow": {
         "candidate": {

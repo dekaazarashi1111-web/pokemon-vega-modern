@@ -10163,3 +10163,17 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: HOF28/29とmainの世代結合・原子性へ。最新115ownerとcurrent_scheduler_subownersを優先。最終はシオウ通常回復/保存/cold Continue、雑魚毎Saveなし。
 - Commit: closeout source=712f0fd4070a22ea553cf18ef8f0cd16f437f9af; 同branch非force push。
 - Network: 同repo Actions/既存text receiptだけ。ROM/入力save/runtime/runner/credential追加公開0。
+
+## 2026-10-05T05:48:13.984182+00:00
+- Timestamp: 2026-10-05T05:48:13.984182+00:00
+- Task: USER-20261005-DEX-HOF-GENERATION / HOF世代transaction参照実装と容量拒否
+- Version: dex-hof-generation-contract-v1
+- Status: DONE（host参照実装・容量validatorのみ。実ROM接続は未完）
+- Summary: HOF/mainの正確epoch＋全payload SHA256結合、normal Save継承、二重shadowからmain COWへ確定するhost参照実装と容量validatorを追加。21host契約・blank/再利用bank/normal wrapの全durable byte境界・故障/電源断を検証。現32sectorは独立shadow追加に8192byte不足としてwrite前拒否。候補88be8811と全115owner/43subowner/実残186byteは不変。実ROM世代結合・跨領域原子性は未受入。
+- Files changed: transaction/capacity/source tests/Actions、専用guide/CP/text evidence、固定MDJSON、両ログ。
+- Verify: host21suite PASS。観測値={"blank_shadow_durable_boundaries": {"after_erase": 16, "before_erase": 16, "new": 1, "old": 65376, "program": 65345, "total": 65377}, "erase_fault_cases": 8, "normal_save_wrap_durable_boundaries": {"new": 1, "old": 57371, "total": 57372}, "power_loss_restart_cases": 8, "program_fault_cases": 28, "reused_partial_erase_and_restart_cases": 96, "reused_valid_bank_durable_boundaries": {"after_erase": 16, "before_erase": 16, "new": 1, "old": 65370, "program": 65339, "total": 65371}}。現32sector配置は書込前に拒否。
+- Boundary: 単一writer・同期readback・NOR model・CRC/SHA非衝突前提。実Flash/ARM/実Save parser/通常UI/cold受入0。合成34sector fixtureのみ、ROM/save読取0・ARM0/native0。実HOF/main原子性false。
+- Capacity: main片bank1740byteは現zero/readback管理下、logical13空き0、sector31候補残578byteもQOL管理下。sector30未使用認定禁止。現在115owner/43subowner/186byte、候補88be8811、正式ROM/Save101は不変。
+- Next: 正式ROM/Save101と候補88be8811を保持し、永続HOF表現の容量/ownerを先に閉じる。host参照coreは34sector合成形式で現ROMへ未接続。現main片bank1740byteはzero/readback管理下、sector31残578byteもQOL管理下で無断借用不可。HOF不変base＋bounded team log等の実schema/容量満了処理を検討し、現ROM ABI・全mode/normal/link clone/HOF-only load/migration/coldを接続する。その後共通SaveFailed/早期31/全cold owner/typedconsumer、正式切替とtrainer131後半、最終シオウ通常回復・保存・独立cold Continueへ。雑魚毎Saveなし。
+- Commit: source=f09436a74b710ad15c1f90e6eedbaabe91ffddb1; 同branch非force push。
+- Network: 同repo Actions/正本text、source-lock固定CFRU save.c/pret hall_of_fame.c読取。公開はsource・最小address-size-SHA/textのみ。ROM断片/rawhex/ROM/入力save/runtime/runner/credential追加公開0。
