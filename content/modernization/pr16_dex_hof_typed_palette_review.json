@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "status": "OLD_FORMAL_STATIC_PALETTE_REVIEW_CURRENT_REBIND_REQUIRED",
+  "old_formal": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  },
+  "required_current_sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583",
+  "source_bindings": {
+    "scripts/build_species_surface.py": {
+      "size": 88276,
+      "sha256": "d032f6cbf3e38914e332899deed99168873d85746f3c340cdafc5bc5db791bad"
+    },
+    "config/species_surface.json": {
+      "size": 3565,
+      "sha256": "b490fcea065d0b1c176784139355312618061258d715e5785132b72908eee160"
+    },
+    "tools/modernization_p04_species_runtime.py": {
+      "size": 60607,
+      "sha256": "4fe0336d22384456f68fd6f00cc7a81732b60690daa10797004393bc016fa734",
+      "git_blob_sha": "3bfe8d18fa09a38e9aaf992830e79ad11e64e765"
+    },
+    "tools/modernization_rockruff_own_tempo_stage75.py": {
+      "size": 54667,
+      "sha256": "af8cd647d791c92cc63b1c71852a5de1cf02995e8365ce0dc79544adc5120136",
+      "git_blob_sha": "42572388e42476ce46c0a0376859d3efde403621"
+    },
+    "content/modernization/p04_species_runtime_contract.json": {
+      "size": 413133,
+      "sha256": "80ded428ec1df683b758555c8e4357123baee2ce8b5201dea960fa89618818a4"
+    },
+    "content/modernization/rockruff_own_tempo_stage75_contract.json": {
+      "size": 5799,
+      "sha256": "f57efb88124fdf18681a012d520d4382b715763c917fd40eb56a30ba6dce5684"
+    }
+  },
+  "public_sources": [
+    {
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "path": "include/sprite.h",
+      "git_blob_sha": "6a1b272119ce6e3a8dcf45adf2eef8923a6d5175",
+      "lines": "42-46"
+    },
+    {
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "path": "src/pokemon.c",
+      "git_blob_sha": "66a5c3d233e8b1b85fe5045aeb6667332cd61d4c",
+      "lines": "5904-5936"
+    },
+    {
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "path": "src/decompress.c",
+      "git_blob_sha": "f4740f917ed9ae7e0fd967107e1e63733bb8c66a",
+      "lines": "43-60"
+    },
+    {
+      "repository": "kapibarasan000/CFRU-JP",
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "source": "BPRJ.ld",
+      "git_blob_sha": "cf5363abd8439d63c7bd12cbe83ade861b0ebb51",
+      "size": 68505,
+      "sha256": "e371c23b9c9ea914c9ca3f644983e0b4e05be07bf11054492fa37afcfd58892a"
+    }
+  ],
+  "owners": [
+    {
+      "name": "species_surface_shiny_palette",
+      "address": 167090168,
+      "size": 12968,
+      "before_sha256": "e8c9320e74dc87ee0bed31bb00966a81fd80a99f63696090625f9df2ee75dea0",
+      "after_sha256": "e8c9320e74dc87ee0bed31bb00966a81fd80a99f63696090625f9df2ee75dea0",
+      "unchanged": true
+    },
+    {
+      "name": "modernization_p04_species_runtime_stage70_payload",
+      "address": 155595120,
+      "size": 850544,
+      "before_sha256": "642fa4f37ace84c2f735a6449b9cb33b90f7401db6a0c5165973d59e508ab695",
+      "after_sha256": "642fa4f37ace84c2f735a6449b9cb33b90f7401db6a0c5165973d59e508ab695",
+      "unchanged": true
+    },
+    {
+      "name": "modernization_rockruff_own_tempo_stage75_payload",
+      "address": 156545072,
+      "size": 565280,
+      "before_sha256": "cc40c531609c1443502f722d239e14f20c3fd9ae26cba0db1acf505553f7009e",
+      "after_sha256": "cc40c531609c1443502f722d239e14f20c3fd9ae26cba0db1acf505553f7009e",
+      "unchanged": true
+    }
+  ],
+  "tables": [
+    {
+      "owner": "species_surface_shiny_palette",
+      "count": 1621,
+      "address": 167090168,
+      "size": 12968,
+      "sha256": "e8c9320e74dc87ee0bed31bb00966a81fd80a99f63696090625f9df2ee75dea0",
+      "rows": [
+        {
+          "row_index": 938,
+          "address": 167097672,
+          "size": 8,
+          "sha256": "b035994609b1f8a1b6ea55c64d5ce40ee256b47c1004c5a4c0614f2097862fc5"
+        },
+        {
+          "row_index": 1450,
+          "address": 167101768,
+          "size": 8,
+          "sha256": "a48d5897ff1f047494d0d8ab38a63f50327f95381621a553806f846f72a92627"
+        }
+      ]
+    },
+    {
+      "owner": "modernization_p04_species_runtime_stage70_payload",
+      "count": 1670,
+      "address": 155922948,
+      "size": 13360,
+      "sha256": "7fc24d925d00a7d2a8fbee923a954e63be10738f58868e7098225a3a9ee05264",
+      "rows": [
+        {
+          "row_index": 938,
+          "address": 155930452,
+          "size": 8,
+          "sha256": "b035994609b1f8a1b6ea55c64d5ce40ee256b47c1004c5a4c0614f2097862fc5"
+        },
+        {
+          "row_index": 1450,
+          "address": 155934548,
+          "size": 8,
+          "sha256": "a48d5897ff1f047494d0d8ab38a63f50327f95381621a553806f846f72a92627"
+        }
+      ]
+    },
+    {
+      "owner": "modernization_rockruff_own_tempo_stage75_payload",
+      "count": 1671,
+      "address": 156587316,
+      "size": 13368,
+      "sha256": "7fdcac92be877028bc92394ebe06a824a6d8d7a56f4a5ceb9597179da2acc5b7",
+      "rows": [
+        {
+          "row_index": 938,
+          "address": 156594820,
+          "size": 8,
+          "sha256": "b035994609b1f8a1b6ea55c64d5ce40ee256b47c1004c5a4c0614f2097862fc5"
+        },
+        {
+          "row_index": 1450,
+          "address": 156598916,
+          "size": 8,
+          "sha256": "a48d5897ff1f047494d0d8ab38a63f50327f95381621a553806f846f72a92627"
+        }
+      ]
+    }
+  ],
+  "consumer_windows": [
+    {
+      "name": "GetMonSpritePalFromSpeciesAndPersonality",
+      "address": 134494012,
+      "size": 84,
+      "sha256": "0c36b9d0707dcd7e1234f5e91f10beec3fbad7f1fcb560568ef3c90965036af7",
+      "semantic_ja": "source種族indexを8倍。0x0804378C literalのshiny tableを選び、row+0をu32 pointerとして読む。row+2のu32 loadはない。species boundsの移植callを完全受入する主張はしない。"
+    },
+    {
+      "name": "GetMonSpritePalStructFromOtIdPersonality",
+      "address": 134494152,
+      "size": 56,
+      "sha256": "ba83bb5696a27bb7da8a02a13489aa3db9a23f499ac7f055c27676fb3dbbc9af",
+      "semantic_ja": "source種族indexを8倍。0x080437FC literalのshiny tableを選び、8byte rowの先頭addressを返す。"
+    },
+    {
+      "name": "LoadCompressedSpritePalette",
+      "address": 134276572,
+      "size": 52,
+      "sha256": "84ea7b5a635535c57769f3405fec011ea48f25773496b62dfbf1102beef08d5a",
+      "semantic_ja": "引数row+0をu32 source pointerとしてLZ77UnCompWramへ渡し、row+4をu16 tagとして読む。row+2のu32 loadはない。"
+    },
+    {
+      "name": "LoadSpritePalette",
+      "address": 134251684,
+      "size": 76,
+      "sha256": "44da73401d3530e203dbb8284758f1221ef58afb523e4029c32fd7536115dcdc",
+      "semantic_ja": "Palette+4をu16 tag、Palette+0をu32 dataとして読む。tagをpointerへ変換せずIndexOfSpritePaletteTagに渡す。"
+    }
+  ],
+  "roots": [
+    {
+      "address": 134218036,
+      "size": 4,
+      "sha256": "66ccf2e042478e91bf9b624aef5b93e09b4138c2298d0acbd3626c5ec163d0b2"
+    },
+    {
+      "address": 134494092,
+      "size": 4,
+      "sha256": "66ccf2e042478e91bf9b624aef5b93e09b4138c2298d0acbd3626c5ec163d0b2"
+    },
+    {
+      "address": 134494204,
+      "size": 4,
+      "sha256": "66ccf2e042478e91bf9b624aef5b93e09b4138c2298d0acbd3626c5ec163d0b2"
+    }
+  ],
+  "row_indices": [
+    938,
+    1450
+  ],
+  "layout": {
+    "stride": 8,
+    "data_offset": 0,
+    "data_bytes": 4,
+    "tag_offset": 4,
+    "tag_bytes": 2,
+    "padding_offset": 6,
+    "padding_bytes": 2,
+    "tag_base": 1621,
+    "classified_origin_offset": 2,
+    "classified_origin_size": 4
+  },
+  "native_processes": 0,
+  "rom_writes": 0,
+  "raw_rom_or_disassembly_included": false,
+  "indirect_reference_completeness_claimed": false,
+  "donor_eligible": false,
+  "donor_leased": false,
+  "limitations_ja": [
+    "旧formalは現候補の代用にしない。APIは現0641全SHA、最新owner afterSHA、根、全窓を照合して初めて型分類する。",
+    "source-defined structのfield境界を跨ぐ各4byteだけを対象にする。aligned data pointerやpalette全体を数値へ昇格しない。",
+    "retired表は現在表との全prefix同一と固定生成sourceで型を保持する。任意の間接alias read不存在や全consumer完全性は主張しない。"
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "status": "PASS_SCOPED_OLD_FORMAL_OWNER_IDENTITY_AND_39_NUMERIC_HITS_CURRENT_CANDIDATE_PENDING",
+  "scope_ja": "旧egg参照形の数値型分類だけ。donor使用、現consumer到達性、間接参照完全性は承認しない。",
+  "source_ref": "79c55005f37a752fe1aedae7606e2beee380705f",
+  "current_candidate": {
+    "size": 33554432,
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+  },
+  "level_owner_candidate_hits": {
+    "species_surface_level_up_data": 15,
+    "modernization_p03_stage66_bulk_level_up": 4,
+    "modernization_p03_stage67_evolution_level_rows": 4,
+    "modernization-p07-preserved-level": 4,
+    "move_distribution_v4_stage39_payload": 12
+  },
+  "candidate_counts_are_not_acceptance": true,
+  "binding_contract_ja": [
+    "固定serializer、CのU16 move/U8 level ABI、receipt、最新actual owner after_sha256を全て検証する。",
+    "Stage66/67の種族間FF整列byteと横断hitは型領域に入れない。",
+    "P07先頭6684byteのpointer表を数値型にしない。内部pointerは列先頭へ完全一致し、全数値列を隙間なく被覆する。",
+    "連続した数値列を跨ぐhitは両側の署名済みrow_spansを持つ専用witnessで扱う。別ownerを跨がない。"
+  ],
+  "stage39": {
+    "owner": "move_distribution_v4_stage39_payload",
+    "address": 154739872,
+    "size": 177104,
+    "historical_nominal_sha256": "d2b11236d8c586986c44329c6772337e1cc0e32ed782a615f61a52b208a21227",
+    "latest_actual_after_sha256": "da99b4b2a074038aefb57bdd18b82e29b839383f7e73278fe95e5843c52598b2",
+    "historical_nominal_hash_is_current_authority": false,
+    "serializer": "scripts/build_move_distribution_v4.py#_table_blobs",
+    "consumer": "overlays/move_distribution_v4/move_distribution_v4.c#MoveDistributionV4_GiveInitialMoves",
+    "header_abi": "VEGAMD39 + 16 little-endian U32 fields; header size 256",
+    "optional_original_metadata": {
+      "path": "build/stages/39_move_distribution_v4.json",
+      "size": 11583,
+      "sha256": "c39a7903d1801c791fae6f983f766a8a4a009e6d3c360bfa3ca533290b9527b3",
+      "identity_source": "content/modernization/p04_capacity_allocation_manifest.json#inputs.stage39_move_distribution_metadata"
+    },
+    "boundary_ja": "現header内のlevel/tutor/wild rootも下流でrepoint済み。固定P04容量manifestの旧pointer表境界を独立根拠に使う。固定serializerのcode/header長から数値pool先頭を導出し、全列を解読する。FF末尾2byteだけを除外し、現pointer表や現header rootを旧poolへ読み替えない。metadata原本がある場合は数値poolの独立SHAも照合する。",
+    "source_sequences_assigned_to_species": false,
+    "current_reachability_claimed": false
+  },
+  "tutor": {
+    "owner": "species_surface_tutor",
+    "candidate_hits": 1,
+    "status": "UNCLASSIFIED_FULL_CURRENT_ROUTINE_PROOF_PENDING",
+    "writer_stride_bytes": 16,
+    "upstream_default_tutors": 152,
+    "upstream_default_stride_bytes": 20,
+    "stage39_stride_patch_declared": true,
+    "patch_source": "config/move_distribution_v4.json#runtime_patches.tutor_stride_16",
+    "interpretation_ja": "Stage39の16byte stride patchと旧table pathのtutor<64 gateを旧formalで確認。入口は現供給wrapperへredirect済み。hitは物理row上位64bit側の第3u32で、現table consumerの直接到達witnessが無いため未知を保持する。機能不具合や全範囲安全を主張しない。",
+    "hit_species_row": 348,
+    "hit_row_byte_offset": 8,
+    "hit_kind": "THUMB_BL_SHAPE",
+    "physical_u32_word": 2,
+    "legacy_table_path_reachable_slots": 64,
+    "direct_current_consumer_witness_for_hit_word": false,
+    "bounded_old_formal_routine": {
+      "address": 152109608,
+      "size": 384,
+      "sha256": "1e95d74a43585c511c6fccde1b63a6a519df85f9a1e6e97bf60b5e5c69302389"
+    },
+    "routine_proof_is_not_current_candidate_acceptance": true
+  },
+  "code_mapping_research_ja": [
+    "Stage39/Stage35/Stage31 builderはTemporaryDirectory内のELFをbinaryと通常nm辞書へ変換して返す。保存済みELFの全mapping symbol境界は確認できない。",
+    "Stage39/Stage35は.textへ.rodata等を混載する。owner名、section名、関数名だけでは命令型として受入しない。",
+    "circus streak初回disassemblyは既原本に存在するがpayloadは6396byte/06660c71で、最新6640byte/a501c3c1と異なる。未照合の旧境界を現ownerへ適用しない。"
+  ],
+  "native_processes": 0,
+  "arm_compiles": 0,
+  "current_rom_reconstructions": 0,
+  "donor_leased": false,
+  "donor_eligible": false,
+  "indirect_reference_completeness_claimed": false,
+  "bounded_old_formal_observation": {
+    "identity": {
+      "size": 33554432,
+      "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+    },
+    "scope_ja": "対象5ownerの全SHAが最新actual ownerと一致する場合だけ、数値型分類器を直接実行。現候補全体の受入には使わない。",
+    "matching_owner_count": 5,
+    "candidate_hits": 39,
+    "classified_hits": 39,
+    "stage39_pool": {
+      "address": 154740640,
+      "size": 75018,
+      "sha256": "7c3ffe43caa4cc1f29aa2dedc7f4549b67e655b6bba3d31be016079ec35ecf4d"
+    },
+    "stage39_source_sequences": 1330,
+    "stage39_numeric_rows": 23676,
+    "stage39_tail_padding_bytes": 2,
+    "exact_zero_move_zero_level_rows": {
+      "species_surface_level_up_data": 14,
+      "move_distribution_v4_stage39_payload": 15
+    },
+    "current_candidate_whole_identity_proven": false
+  }
+}
