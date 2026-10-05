@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "現0641の旧egg874参照にtrainer15/archive2/命令跨ぎ1/有限JP音声7の25件を追加し、644分類/230未知。新122試験と新旧130曲の役割競合を検証。T09上位wordは別PLC2consumerとの混同を拒否し未知保持。原本4.1MBは再複製せず共有delta 149772byteへ。全旧619受入不変、donor/正式ROM/Save101不変。",
+    "current_stop": "現0641の旧egg874参照について、regression trainer2/tilesetLZ3、Stage61 TEXT3/sprite1、flagmap1/SharedIndex1、命令3、有限JP音声3の新17件を分類し、661分類/213未知（owner内5/外208）。新146試験と新旧132曲/旧47sample保持を検証。644親delta全25行/22witnessを固定chainで継承し、原本4.1MBと旧149772byteを複製しない。donor/正式ROM/Save101不変。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "残230の未分類（T09上位word、残code/data/audio根）を閉じ、間接参照・旧egg退役完全性を証明する。未知0と退役ゲート後だけ必要容量を明示donor移管し、Ccontroller実owner配置、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL、全mode/早期31/species9bit、保存入口heap-ready/同期非再入/全出口Freeを閉じる。その後正式候補切替、trainer131後半から最終シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。",
+    "next_step": "残213（owner内5/外208）のrooted参照を閉じる。T09上位wordのPLC2混同を避け、Stage36/38/55/70と未根付きJP音声306等を最新actual ownerへ束縛する。全unknown0だけではdonor不可で、間接参照・旧egg退役完全性を証明して明示移管する。その後Ccontroller実配置、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL、全mode/早期31/species9bit、heap-ready/同期非再入/全出口Freeを閉じ、正式候補切替→trainer131後半→最終シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -1184,7 +1184,8 @@
     "現候補0641af70の旧egg874参照に根付きJP song interpreterを実装。114個の明示ID、89曲の完全モデル、39sample witnessから105件を追加し、560分類/314未知。footstep MIDIと現Song250/251の不一致も保持。新63tests、現候補の新read用再構成1回、旧inventory/native0。donor/正式ROM/Save101不変。候補/source不変なら旧全ROM走査/heap/native/習得原本生成を再走しない。",
     "現候補0641af70の旧egg874参照に根付きnumericと拡張JP song consumer分類を追加。新numeric39/palette6/song14、619分類/255未知。旧560受入と全874inventoryを保持。新168tests、現候補の新read用再構成1回、旧inventory/native0。donor/正式ROM/Save101不変。候補/source不変で旧全ROM走査/heap/native/習得原本生成を再走しない。",
     "現候補0641の残参照59件（level39/palette6/song14）を追加し619分類/255未知、168tests PASS。全874行と旧560受入保持。原runは記録push成功後に冗長18.9MB証拠が公開上限で拒否されfailure。保存済みGit原本を保持し、hit非参照の重複regionだけ除いた後継証拠へ回復。分類/ROM/native再実行0、donor/正式ROM/Save101不変。",
-    "現0641の旧egg874参照にtrainer15/archive2/命令跨ぎ1/有限JP音声7の25件を追加し、644分類/230未知。新122試験と新旧130曲の役割競合を検証。T09上位wordは別PLC2consumerとの混同を拒否し未知保持。原本4.1MBは再複製せず共有delta 149772byteへ。全旧619受入不変、donor/正式ROM/Save101不変。旧型分類/heap/nativeは変更影響なしに再実行しない。次回はbaseline＋deltaをmaterializeして継承する。"
+    "現0641の旧egg874参照にtrainer15/archive2/命令跨ぎ1/有限JP音声7の25件を追加し、644分類/230未知。新122試験と新旧130曲の役割競合を検証。T09上位wordは別PLC2consumerとの混同を拒否し未知保持。原本4.1MBは再複製せず共有delta 149772byteへ。全旧619受入不変、donor/正式ROM/Save101不変。旧型分類/heap/nativeは変更影響なしに再実行しない。次回はbaseline＋deltaをmaterializeして継承する。",
+    "現0641の旧egg874参照について、regression trainer2/tilesetLZ3、Stage61 TEXT3/sprite1、flagmap1/SharedIndex1、命令3、有限JP音声3の新17件を分類し、661分類/213未知（owner内5/外208）。新146試験と新旧132曲/旧47sample保持を検証。644親delta全25行/22witnessを固定chainで継承し、原本4.1MBと旧149772byteを複製しない。donor/正式ROM/Save101不変。旧型分類/heap/nativeは変更影響なしに再実行しない。次回は619baseline＋644parent delta＋本chainを各全identityでmaterializeし、旧25行を落とさない。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -4365,25 +4366,24 @@
     "status": "PASS_NATIONAL_DEX_GRANT_OWNER_SCOPED"
   },
   "next_action": {
-    "goal_ja": "残230の未分類（T09上位word、残code/data/audio根）を閉じ、間接参照・旧egg退役完全性を証明する。未知0と退役ゲート後だけ必要容量を明示donor移管し、Ccontroller実owner配置、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL、全mode/早期31/species9bit、保存入口heap-ready/同期非再入/全出口Freeを閉じる。その後正式候補切替、trainer131後半から最終シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。",
+    "goal_ja": "残213（owner内5/外208）のrooted参照を閉じる。T09上位wordのPLC2混同を避け、Stage36/38/55/70と未根付きJP音声306等を最新actual ownerへ束縛する。全unknown0だけではdonor不可で、間接参照・旧egg退役完全性を証明して明示移管する。その後Ccontroller実配置、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL、全mode/早期31/species9bit、heap-ready/同期非再入/全出口Freeを閉じ、正式候補切替→trainer131後半→最終シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。Save14は作業コピーだけを使用する。自己OT party、manifest解決済み通常支援用品、EXP境界、safe opponentはpre-battle fixtureとして全byteを台帳化してよい。badge/key item/story flag/money/RPをfixture付与せず、戦闘開始後は通常入力とゲーム内処理だけを使う。",
     "id": "FINISH_REMAINING_ROOTED_REFERENCE_CONSUMERS",
     "read_paths": [
-      "docs/PR16_DEX_HOF_REFERENCES_JA.md",
-      "content/modernization/pr16_dex_hof_reference_checkpoint.json",
+      "docs/PR16_DEX_HOF_REFERENCE_GAPS_JA.md",
+      "content/modernization/pr16_dex_hof_reference_gaps_checkpoint.json",
       "content/modernization/pr16_dex_hof_typed_recovery_evidence/egg-typed-audit.json",
-      "scripts/pr16_dex_hof_reference_delta.py",
-      "content/modernization/pr16_dex_hof_reference_data_review.json",
-      "content/modernization/pr16_dex_hof_reference_code_review.json",
-      "content/modernization/pr16_dex_hof_reference_song_review.json"
+      "content/modernization/pr16_dex_hof_reference_evidence/reference-delta.json",
+      "scripts/pr16_dex_hof_reference_chain.py",
+      "content/modernization/pr16_dex_hof_reference_gaps_review.json",
+      "content/modernization/pr16_dex_hof_reference_gaps_song_review.json"
     ],
     "stop_rule_ja": "通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。"
   },
   "observed_date_jst": "2026-10-04",
-  "observed_head": "8f3c3c3bfd878b65fc76461da25126ee14c9d027",
+  "observed_head": "8f396fd19ba77df2a5ff6edc279e1b2a83946fac",
   "observed_head_checks": {
-    "all14_steps_success": true,
-    "classified": 644,
+    "classified": 661,
     "current_candidate": {
       "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583",
       "size": 33554432
@@ -4392,14 +4392,11 @@
     "donor_leased": false,
     "general_ci_known_source_mismatch_not_resolved": true,
     "native_processes": 0,
-    "reason_ja": "現0641の旧egg874参照にtrainer15/archive2/命令跨ぎ1/有限JP音声7の25件を追加し、644分類/230未知。新122試験と新旧130曲の役割競合を検証。T09上位wordは別PLC2consumerとの混同を拒否し未知保持。原本4.1MBは再複製せず共有delta 149772byteへ。全旧619受入不変、donor/正式ROM/Save101不変。",
-    "record_job": 111756740350,
-    "record_run": 37308151987,
-    "reference_unit_tests": 122,
-    "scope_head": "8f3c3c3bfd878b65fc76461da25126ee14c9d027",
+    "reason_ja": "現0641の旧egg874参照について、regression trainer2/tilesetLZ3、Stage61 TEXT3/sprite1、flagmap1/SharedIndex1、命令3、有限JP音声3の新17件を分類し、661分類/213未知（owner内5/外208）。新146試験と新旧132曲/旧47sample保持を検証。644親delta全25行/22witnessを固定chainで継承し、原本4.1MBと旧149772byteを複製しない。donor/正式ROM/Save101不変。",
+    "reference_unit_tests": 146,
+    "scope_head": "8f396fd19ba77df2a5ff6edc279e1b2a83946fac",
     "stage79_cached_not_new_native": true,
-    "unclassified": 230,
-    "whole_receipt_equals_checkpoint": true
+    "unclassified": 213
   },
   "observed_head_history": [
     {
@@ -12288,7 +12285,7 @@
       "semantics": "Save100/ミルシティ4,17北。動的Ranger20,29へ実正面A→町の解放scene→4072=3/4380set。全party600byte/HP277/PP3,9,8,2/23114円保持。95+cold13入力/54画面。通常2歩+自動2歩、歩数93/3。cold RAM差owner未解明。"
     }
   ],
-  "observed_head_semantics": "不変原本＋共有deltaによる根付き参照分類source。旧sampleと新songの役割競合を含むread-only scope。donor/本番配線未受入。",
+  "observed_head_semantics": "不変619原本＋644親deltaを継承する追加17根分類source。新旧132曲/47sampleとfinite-rootのrole競合を検査。donor/本番配線未受入。",
   "p08_candidate_impact": {
     "candidate": {
       "crc32": "CC068B4A",
@@ -12410,7 +12407,13 @@
     "status": "NATIVE_PARTY_RETENTION_ACCEPTED_BP_PENDING",
     "tested_head": "10e535a046441dd3b797918106259b5c57b69716"
   },
-  "pending_runs": [],
+  "pending_runs": [
+    {
+      "run_id": 37315690673,
+      "status": "in_progress",
+      "tested_head": "8f396fd19ba77df2a5ff6edc279e1b2a83946fac"
+    }
+  ],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
   "pr_draft": true,
   "pr_merged": false,
@@ -14292,6 +14295,10 @@
     ".github/workflows/pr16-dex-hof-reference-closeout.yml": {
       "sha256": "62732c8bf6949b464dc020c3236490e112e57558d6655736b3a06b5c8b732d50",
       "size": 2715
+    },
+    ".github/workflows/pr16-dex-hof-reference-gaps.yml": {
+      "sha256": "b15b6da35c019280833095f9069084088e00b6a9ee8eb61b153b27284ffccd96",
+      "size": 2860
     },
     ".github/workflows/pr16-dex-hof-references.yml": {
       "sha256": "0016d4d018c51e0c563f5dea7ebb4561e4b6035ad28f8dc5ef36bcd67a38b915",
@@ -17532,6 +17539,38 @@
     "content/modernization/pr16_dex_hof_reference_evidence/reference-tests.txt": {
       "sha256": "3e6eb77956f52a99ee04369f0b768adfb48fcea80927f7168d0c279aad7a523a",
       "size": 12329
+    },
+    "content/modernization/pr16_dex_hof_reference_gaps_checkpoint.json": {
+      "sha256": "cec8a19d5bda650e1c1b8a2c694bb793bc11f7e26ed56d52d5c1726758e572d6",
+      "size": 6451
+    },
+    "content/modernization/pr16_dex_hof_reference_gaps_evidence/measurement.json": {
+      "sha256": "38185e6a6ede949c23ab7a6df8a3aae0b2d4ddfec04098823f10437c36351744",
+      "size": 5056
+    },
+    "content/modernization/pr16_dex_hof_reference_gaps_evidence/reference-chain.json": {
+      "sha256": "c38d8e67a6718cacc17a3999922dca9edd9977734711b3cf5a74f85c1b76bb32",
+      "size": 95619
+    },
+    "content/modernization/pr16_dex_hof_reference_gaps_evidence/reference-gaps-tests.txt": {
+      "sha256": "d9d1a41e1081823b3e329b145a6e3ed7502c4b795b38c4d4c0a460aabe1370b3",
+      "size": 14885
+    },
+    "content/modernization/pr16_dex_hof_reference_gaps_evidence/unknown-frontier.json": {
+      "sha256": "59b214a03bfad7532fbf17bc945ca839d251eae983e32e71d2525509df8032bc",
+      "size": 93681
+    },
+    "content/modernization/pr16_dex_hof_reference_gaps_review.json": {
+      "sha256": "61eee6953d3c0daebfa332de2497d3b10058798edcd9ed223e21ce943c8c4ea4",
+      "size": 194252
+    },
+    "content/modernization/pr16_dex_hof_reference_gaps_song_review.json": {
+      "sha256": "7c80352ffaf283e7c0dbc2b77f929791749ab0104a00dd8e528b94a8f528614d",
+      "size": 33068
+    },
+    "content/modernization/pr16_dex_hof_reference_gaps_song_sources.json": {
+      "sha256": "ca27ecf5ec3c6b565eebe59889794e849bb4da9d09316c6347ca8570b31b8ce7",
+      "size": 18426
     },
     "content/modernization/pr16_dex_hof_reference_song_review.json": {
       "sha256": "754bb9e4f4af3d33e9ff9724bf394f34ee12ff02a1e95f0052082350ef658b2c",
@@ -29393,6 +29432,10 @@
       "sha256": "b57e4b81bb50ae2521089901e303103edfe0d6aafc5d4b74d622789b0b16f2c5",
       "size": 5043
     },
+    "docs/PR16_DEX_HOF_REFERENCE_GAPS_JA.md": {
+      "sha256": "1fbde77b1153152f02cedc72a9627c8156d4312ceebe9362db7216065a869f81",
+      "size": 4436
+    },
     "docs/PR16_DEX_HOF_SONG_JA.md": {
       "sha256": "9af1f415937a4036f39be4f7a60fb50627d4e356a8f1b709124d83342100340e",
       "size": 5211
@@ -34493,6 +34536,10 @@
       "sha256": "5a4ea9e6403bca64a3fdc0b781090648a5fa3a8a69294a5a0505ab47bab107ef",
       "size": 18743
     },
+    "scripts/pr16_dex_hof_reference_chain.py": {
+      "sha256": "5932316cc2b7de37cdd22861a699064b83e5aef550e981a1b0662af348065767",
+      "size": 12491
+    },
     "scripts/pr16_dex_hof_reference_closeout.py": {
       "sha256": "f30b19fe1aef374ef75fb921f1c600222de5b55471f36ffc4536f25149dcbf24",
       "size": 11485
@@ -34508,6 +34555,18 @@
     "scripts/pr16_dex_hof_reference_delta.py": {
       "sha256": "14bb93599fa78116281b88a549be1ebfc26d3252825e43bc16174c01a16bf0ef",
       "size": 9644
+    },
+    "scripts/pr16_dex_hof_reference_gaps.py": {
+      "sha256": "2ab5e4107a0570504547c5e492616d8d7201be9f74fa53797d837f6d605a1910",
+      "size": 30125
+    },
+    "scripts/pr16_dex_hof_reference_gaps_actions.py": {
+      "sha256": "e8fd2f8aa2266ce3bbdb4356f46e378c3b2f806aeb4f5b93f87e56d1ba886c95",
+      "size": 21835
+    },
+    "scripts/pr16_dex_hof_reference_gaps_song.py": {
+      "sha256": "e06023d84dd722be8e39875d4cfad8c57a6b2374f318981042c46abb58a59dde",
+      "size": 11890
     },
     "scripts/pr16_dex_hof_reference_song.py": {
       "sha256": "74c4aeba471d36bc29f781edb42bf52e1cf3d84b65194ce13c691a31b7cea2fc",
@@ -37825,6 +37884,10 @@
       "sha256": "38bb6d93477c6902170a5f17a4b47a751e5850eee4b47f0ae845efc72a0e573d",
       "size": 3063
     },
+    "tests/test_pr16_dex_hof_reference_chain.py": {
+      "sha256": "895838644b07b9628ffc24a323be6892fc96133ed84240099c54a690a7ae4fa2",
+      "size": 8827
+    },
     "tests/test_pr16_dex_hof_reference_closeout.py": {
       "sha256": "d4bd2c3d7db60a2b70c41516424e67385bd9fd2de4fb4084d024e907e3a7aefa",
       "size": 2041
@@ -37840,6 +37903,18 @@
     "tests/test_pr16_dex_hof_reference_delta.py": {
       "sha256": "601a1d4d8227a4b75641ca3c8ca296ab1b8c8955089256267d738f4d2e44951c",
       "size": 5950
+    },
+    "tests/test_pr16_dex_hof_reference_gaps.py": {
+      "sha256": "7ed4b8b8332fe494b3b2fca06e5706341017572b3cf0b979a8fc92c75c2fe9bd",
+      "size": 5918
+    },
+    "tests/test_pr16_dex_hof_reference_gaps_actions.py": {
+      "sha256": "ed87ed2ae37c3519d4baf4b84d4c1f3d52455f6f9903b2f607c92a2a1da3743a",
+      "size": 6568
+    },
+    "tests/test_pr16_dex_hof_reference_gaps_song.py": {
+      "sha256": "bb6f930ceb0ea76a789fd8f8b0d86328cb4da27a9a08a4e5447cf4a2708baed9",
+      "size": 9119
     },
     "tests/test_pr16_dex_hof_reference_song.py": {
       "sha256": "d84c66de77f4c4b8f9451771c9b924330ec90d85cededf105e7d44a04bf3bd5f",
@@ -41193,6 +41268,32 @@
         "source": "be9e90f8625a73cd00fe76ccf784890a76f1bf79",
         "status": "PASS_PLR1_EXACT_NUMERIC_CONSUMER_CLASSIFICATION",
         "unclassified": 419
+      },
+      "hof_reference_gaps": {
+        "candidate": {
+          "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583",
+          "size": 33554432
+        },
+        "checkpoint": "content/modernization/pr16_dex_hof_reference_gaps_checkpoint.json",
+        "classified": 661,
+        "controller_runtime_wired": false,
+        "delta_identity": {
+          "sha256": "c38d8e67a6718cacc17a3999922dca9edd9977734711b3cf5a74f85c1b76bb32",
+          "size": 95619
+        },
+        "donor_leased": false,
+        "guide": "docs/PR16_DEX_HOF_REFERENCE_GAPS_JA.md",
+        "owner_unknown": 5,
+        "parent_identity": {
+          "sha256": "762320ba350f528777b90be404b5fec1d88caeb6dbf6594590d4f45b852c1c87",
+          "size": 149772
+        },
+        "run": 37315690673,
+        "source": "8f396fd19ba77df2a5ff6edc279e1b2a83946fac",
+        "status": "PASS_CURRENT_PARENT_BOUND_REFERENCE_GAPS",
+        "tutor_upper_word_remains_unknown": true,
+        "unclassified": 213,
+        "unowned_unknown": 208
       },
       "hof_references": {
         "candidate": {

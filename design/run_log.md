@@ -13133,3 +13133,17 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 残230の未分類（T09上位word、残code/data/audio根）を閉じ、間接参照・旧egg退役完全性を証明する。未知0と退役ゲート後だけ必要容量を明示donor移管し、Ccontroller実owner配置、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL、全mode/早期31/species9bit、保存入口heap-ready/同期非再入/全出口Freeを閉じる。その後正式候補切替、trainer131後半から最終シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。
 - Commit: closeout source=4319d15ce3975e2381c2b62d1db1917c7ede10b5; 同branch非force。
 - Network: 同repoActions/text原本のみ。ROM断片/rawhex/ROM/save/runtime/runner/credentials追加公開0。
+
+## 2026-10-05T13:19:39.006683+00:00
+- Timestamp: 2026-10-05T13:19:39.006683+00:00
+- Task: USER-20261005-DEX-HOF-REFERENCE-GAPS / 644親保持と追加17参照根
+- Version: hof-reference-chain-v1
+- Status: STOPPED（新17分類・記録済、donor/本番controller未完）
+- Summary: 現0641の旧egg874参照について、regression trainer2/tilesetLZ3、Stage61 TEXT3/sprite1、flagmap1/SharedIndex1、命令3、有限JP音声3の新17件を分類し、661分類/213未知（owner内5/外208）。新146試験と新旧132曲/旧47sample保持を検証。644親delta全25行/22witnessを固定chainで継承し、原本4.1MBと旧149772byteを複製しない。donor/正式ROM/Save101不変。
+- Files changed: 新classifier/拒否tests/source review/Actions/guide/CP/minimal chain、固定MDJSON、両append-onlyログ。
+- Verify: 新unit=146、全candidate/115 actual owner/874hit全SHA、固定source全blob。regression5/Stage614は命令でなくtrainer/LZ/text/sprite型。旧644と残unknown全field、旧25witness全byte保持。新旧132曲のrole＋finite-root conflict、旧47sample identityを確認。旧全ROMscan/native/heap0。
+- Boundary: 旧formalは事前reviewだけ。現0641で全owner/窓再束縛。SharedIndexはhistorical typingのみ、live到達や退役不在の受入なし。Shinyは明示r3 literal delegateだけ解決。song86はtask初回zero/data9更新とsprite全64slot使用時callback無し分岐の有限静的根、実到達/再生非主張。T09 PLC2混同拒否を保持。
+- Publication: 619原本4.1MBと644親delta149772byteは不変参照。追加chain 95619byteを独立measurement全SHAとclosed schemaで検査。producer/guard/upload/record path一致・非空・complete10text/receipt必須、hidden/symlink/未知fileを拒否。
+- Next: 残213（owner内5/外208）のrooted参照を閉じる。T09上位wordのPLC2混同を避け、Stage36/38/55/70と未根付きJP音声306等を最新actual ownerへ束縛する。全unknown0だけではdonor不可で、間接参照・旧egg退役完全性を証明して明示移管する。その後Ccontroller実配置、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL、全mode/早期31/species9bit、heap-ready/同期非再入/全出口Freeを閉じ、正式候補切替→trainer131後半→最終シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。
+- Commit: source=8f396fd19ba77df2a5ff6edc279e1b2a83946fac; 同branch非force。
+- Network: 同repoActions/既存private inputs/固定公開source。公開はsource・最小address-size-SHA・textのみ。ROM断片/rawhex/ROM/inputsave/runtime/runner/credentials追加公開0。正式ROM/Save101/owner115/saveowner52/残804byte不変、heap13352の保存退避53300跨ぎ禁止。
