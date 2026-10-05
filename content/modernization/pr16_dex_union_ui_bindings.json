@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "scope_ja": "21byte UI-only入口（callback/state13＋現在Route506に一致するdynamicWarp8）。元dynamicWarp未設定を自然通信開始と混同せず、作業コピーだけに同一field帰還metadataを用意する。cold process自体は追加fixture0だが入力は当該fixture由来。",
+  "windows": [
+    {
+      "id": "constructor_callbacks",
+      "address": 135433560,
+      "size": 456,
+      "sha256": "87221e9807c5fff6dd8ad161b4a097c3ca78d2f533af58aa6b76a3f900b3be55"
+    },
+    {
+      "id": "display_setup",
+      "address": 135439416,
+      "size": 284,
+      "sha256": "84e0efbbbfb400efad5609ab9001847ef8d3e412cb94814316b8d78190606546"
+    },
+    {
+      "id": "window_templates",
+      "address": 138520240,
+      "size": 40,
+      "sha256": "4dd38c5d7ee2026fcabb141ad61db72bed389db495130a3a1b8bf59a448d6075"
+    },
+    {
+      "id": "sprite_cleanup",
+      "address": 135444152,
+      "size": 24,
+      "sha256": "54ae52a582a43f7093765aef2612fdd7daeaaeaa219e99f85b897cd7c9719d9b"
+    }
+  ],
+  "fixture_contract": {
+    "iwram_callback_bytes": 9,
+    "heap_state_bytes": 4,
+    "saveblock1_dynamic_warp_bytes": 8,
+    "total_bytes": 21,
+    "current_map": [
+      3,
+      24
+    ],
+    "current_xy": [
+      53,
+      13
+    ],
+    "all_other_ram_bytes_preserved": true
+  }
+}
