@@ -73,7 +73,7 @@ def record():
  m=json.loads((PUBLIC/'measurement.json').read_bytes());need(m['source_bindings']==prior.bindings(CODE),'exact measured new source');paths=set()
  for name in sorted(PROOF):
   raw=(PUBLIC/name).read_bytes();dest=ROOT/EVIDENCE/name;need(not dest.exists(),'new immutable text evidence');dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(raw);paths.add(dest.relative_to(ROOT).as_posix())
- write(ROOT/CP,dict(schema_version=1,**m,guide=GUIDE,evidence_bindings=prior.bindings(paths),record_run=int(os.environ['GITHUB_RUN_ID']),record_source=os.environ['GITHUB_SHA']))
+ write(ROOT/CP,dict(schema_version=1,**m,guide=GUIDE,evidence_bindings=prior.bindings(paths),prior_failed_runs=[dict(run=37286343360,source='a436189f7ef07e80833b8ac85c50be79bd8d8fb6',artifact=11334279128,native_processes=0,reason='mGBA PATH_MAX requires POSIX feature definition under strict C11')],record_run=int(os.environ['GITHUB_RUN_ID']),record_source=os.environ['GITHUB_SHA']))
  typed=m['typed_audit'];remaining=typed['unclassified'];classified=typed['classified'];candidate=m['candidate']['sha256']
  summary=f'現候補{candidate}の旧egg見かけ参照をtyped asset/consumerへ機械分類し、{classified}件分類・{remaining}件未知を保持。実heap全chain事前admissionをC実装し、新isolated ARMでfirst-fit/split/整列/解放とOOM前拒否を検証。保存退避入口の実3コピーがarena13352byteをMallocInit前に破壊することも確認。donor/本番arenaは未使用、正式ROM/Save101不変。'
  goal='残る旧egg参照をtyped code/audio/graphics/numeric consumerで分類し、間接参照不在と明示donor移管を証明する。Ccontroller必要容量を確保し、全保存入口のheap-ready・同期非再入・admission→Alloc→全出口Freeを0804B85C入口前に閉じる。controllerと実S61E/MDXを全writer/loader/Link exact-source/no-main/INITIALへ接続。全mode/早期31/species9bit/残typedを受入後に正式候補切替、trainer131後半から最終シオウ通常回復/保存/coldContinue。雑魚毎Saveなし。'

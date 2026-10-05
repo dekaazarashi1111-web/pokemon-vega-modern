@@ -62,3 +62,5 @@ jobs:
           path: public-dex-hof-capacity
           retention-days: 90
           if-no-files-found: error
+
+# mGBA system headers require POSIX feature definitions under strict C11.

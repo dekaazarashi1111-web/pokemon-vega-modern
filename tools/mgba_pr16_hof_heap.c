@@ -1,3 +1,4 @@
+#define _POSIX_C_SOURCE 200809L
 /* 現ROM allocatorの隔離試験。game boot、入力save、本番arena所有を主張しない。 */
 #include <stdint.h>
 #include <stdio.h>
