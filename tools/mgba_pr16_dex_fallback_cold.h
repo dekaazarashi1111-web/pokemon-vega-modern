@@ -19,7 +19,7 @@ int main(int argc,char**argv)
  printf("{\"begin\":\"FALLBACK_QOL_COLD_KEYS_ONLY\",\"candidate_sha256\":\"%s\",\"input_sha256\":\"%s\",\"blocked\":%u,\"host_write_barriers\":7,\"ram_fixture_writes\":0,\"register_writes\":0}\n",NG_ROM,input,blocked);fflush(stdout);
  st_keys(c,0,600);unsigned ready=0;
  for(unsigned i=0;i<100;i++){
-  if(blocked&&fb_entries&&read16(c,0x030053F0)==2){st_keys(c,0,180);ready=1;break;}
+  if(blocked&&fb_entries&&read16(c,0x030053F0)==2){st_keys(c,0,180);st_press(c,8,600);st_keys(c,0,600);ready=1;break;}
   st_press(c,i==0?8:(i>12?2:1),120);
   if(!blocked&&si_field(c)){st_keys(c,0,180);if(si_field(c)){ready=1;break;}}
  }
