@@ -4383,6 +4383,7 @@
   "observed_date_jst": "2026-10-04",
   "observed_head": "8f396fd19ba77df2a5ff6edc279e1b2a83946fac",
   "observed_head_checks": {
+    "all14_steps_success": true,
     "classified": 661,
     "current_candidate": {
       "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583",
@@ -4393,10 +4394,13 @@
     "general_ci_known_source_mismatch_not_resolved": true,
     "native_processes": 0,
     "reason_ja": "現0641の旧egg874参照について、regression trainer2/tilesetLZ3、Stage61 TEXT3/sprite1、flagmap1/SharedIndex1、命令3、有限JP音声3の新17件を分類し、661分類/213未知（owner内5/外208）。新146試験と新旧132曲/旧47sample保持を検証。644親delta全25行/22witnessを固定chainで継承し、原本4.1MBと旧149772byteを複製しない。donor/正式ROM/Save101不変。",
+    "record_job": 111781734252,
+    "record_run": 37315690673,
     "reference_unit_tests": 146,
     "scope_head": "8f396fd19ba77df2a5ff6edc279e1b2a83946fac",
     "stage79_cached_not_new_native": true,
-    "unclassified": 213
+    "unclassified": 213,
+    "whole_receipt_equals_checkpoint": true
   },
   "observed_head_history": [
     {
@@ -12407,13 +12411,7 @@
     "status": "NATIVE_PARTY_RETENTION_ACCEPTED_BP_PENDING",
     "tested_head": "10e535a046441dd3b797918106259b5c57b69716"
   },
-  "pending_runs": [
-    {
-      "run_id": 37315690673,
-      "status": "in_progress",
-      "tested_head": "8f396fd19ba77df2a5ff6edc279e1b2a83946fac"
-    }
-  ],
+  "pending_runs": [],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
   "pr_draft": true,
   "pr_merged": false,
@@ -14296,9 +14294,13 @@
       "sha256": "62732c8bf6949b464dc020c3236490e112e57558d6655736b3a06b5c8b732d50",
       "size": 2715
     },
+    ".github/workflows/pr16-dex-hof-reference-gaps-closeout.yml": {
+      "sha256": "45c8aad0f7746a114e99fd9b48f089658298138384bc62ae7dbd947d9cac9c13",
+      "size": 2779
+    },
     ".github/workflows/pr16-dex-hof-reference-gaps.yml": {
-      "sha256": "b15b6da35c019280833095f9069084088e00b6a9ee8eb61b153b27284ffccd96",
-      "size": 2860
+      "sha256": "2429a38efcbd556841f4e07f3a556992e52993e9f0e61126fa43568af50337dd",
+      "size": 2756
     },
     ".github/workflows/pr16-dex-hof-references.yml": {
       "sha256": "0016d4d018c51e0c563f5dea7ebb4561e4b6035ad28f8dc5ef36bcd67a38b915",
@@ -34564,6 +34566,10 @@
       "sha256": "e8fd2f8aa2266ce3bbdb4356f46e378c3b2f806aeb4f5b93f87e56d1ba886c95",
       "size": 21835
     },
+    "scripts/pr16_dex_hof_reference_gaps_closeout.py": {
+      "sha256": "933b2043280a44bbeb0af4fcca11046b9dde2518bd6033a9a6ea7f964429069e",
+      "size": 11919
+    },
     "scripts/pr16_dex_hof_reference_gaps_song.py": {
       "sha256": "e06023d84dd722be8e39875d4cfad8c57a6b2374f318981042c46abb58a59dde",
       "size": 11890
@@ -37911,6 +37917,10 @@
     "tests/test_pr16_dex_hof_reference_gaps_actions.py": {
       "sha256": "ed87ed2ae37c3519d4baf4b84d4c1f3d52455f6f9903b2f607c92a2a1da3743a",
       "size": 6568
+    },
+    "tests/test_pr16_dex_hof_reference_gaps_closeout.py": {
+      "sha256": "c941d03d55eef2486b37707514aab072ba7c778a60a3a3ff5d1d39952c02a655",
+      "size": 2046
     },
     "tests/test_pr16_dex_hof_reference_gaps_song.py": {
       "sha256": "bb6f930ceb0ea76a789fd8f8b0d86328cb4da27a9a08a4e5447cf4a2708baed9",
@@ -41287,6 +41297,63 @@
         "parent_identity": {
           "sha256": "762320ba350f528777b90be404b5fec1d88caeb6dbf6594590d4f45b852c1c87",
           "size": 149772
+        },
+        "recording": {
+          "all14_steps_success": true,
+          "all5_snapshots_full_bytes_and_lf_verified": true,
+          "archive": [
+            11347538478,
+            37315690673,
+            1367129,
+            "ef551564e3eae6466a91161f7ab643ea6a1372a3509c7e5c218cd5b0b25c4d46"
+          ],
+          "arm_compiles": 0,
+          "baseline_identity": {
+            "sha256": "814082398937869b6cc17faa09cbf1833f0c7f4aa300ddbd83d0de833d44b74c",
+            "size": 4063919
+          },
+          "candidate_changed": false,
+          "checkpoint": "content/modernization/pr16_dex_hof_reference_gaps_checkpoint.json",
+          "checkpoint_identity": {
+            "sha256": "cec8a19d5bda650e1c1b8a2c694bb793bc11f7e26ed56d52d5c1726758e572d6",
+            "size": 6451
+          },
+          "classified": 661,
+          "closeout_run": 37316975540,
+          "closeout_source": "f4cc321d5633cce6c61ab5c7dfd73fba8eeb8c1e",
+          "combined_song_models": 132,
+          "current_rom_reconstructions": 0,
+          "delta_identity": {
+            "sha256": "c38d8e67a6718cacc17a3999922dca9edd9977734711b3cf5a74f85c1b76bb32",
+            "size": 95619
+          },
+          "donor_leased": false,
+          "export_guard_test_log": {
+            "sha256": "9fb2274868685e24194853e199aefe66ae93c248f39646d114ba996531f26de1",
+            "size": 1041
+          },
+          "formal_save_changed": false,
+          "job": 111781734252,
+          "native_processes": 0,
+          "new_code": 3,
+          "new_data": 11,
+          "new_export_guard_tests": 9,
+          "new_song": 3,
+          "newly_classified": 17,
+          "old644_accepted_and_all874_identities_retained": true,
+          "owner_unknown": 5,
+          "parent_identity": {
+            "sha256": "762320ba350f528777b90be404b5fec1d88caeb6dbf6594590d4f45b852c1c87",
+            "size": 149772
+          },
+          "record_head": "ae463f205364aa79982db289e1a9523c247b8a81",
+          "run": 37315690673,
+          "source_head": "8f396fd19ba77df2a5ff6edc279e1b2a83946fac",
+          "status": "PASS_TERMINAL_EXACT_REFERENCE_CHAIN_RECORD",
+          "tests_rerun": 0,
+          "unclassified": 213,
+          "unit_tests": 146,
+          "unowned_unknown": 208
         },
         "run": 37315690673,
         "source": "8f396fd19ba77df2a5ff6edc279e1b2a83946fac",
