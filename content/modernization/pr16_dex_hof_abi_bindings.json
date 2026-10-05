@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "status": "STATIC_ROM_ABI_BOUND_NATIVE_PROBE_NOT_RUN",
+  "formal_candidate": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  },
+  "target_candidate": {
+    "size": 33554432,
+    "sha256": "88be88116bd452bd70cffaf2a820d5c6c6b6b7410fa603a9a0228b694725d5de"
+  },
+  "target_requires_same_window_hashes": true,
+  "windows": [
+    {
+      "id": "init_mon",
+      "address": 135212756,
+      "size": 416,
+      "sha256": "072c237aec68c34bdcd83890177eda2f63193e89e3f94db3c7c1b9889e7ba9ba",
+      "meaning_ja": "20byte mon packing、species low9、level7、nickname10。GetMonDataは試験時stub。"
+    },
+    {
+      "id": "init_team",
+      "address": 135213172,
+      "size": 268,
+      "sha256": "f45091f0923852f2743952f82744977374f9d21cec8e07057240cb2962407289",
+      "meaning_ja": "HOF load後に最初のspecies0 teamへ120byte追加。50件時49件左shift。1936byte suffixを触らない。"
+    },
+    {
+      "id": "hof_write_sector",
+      "address": 135113032,
+      "size": 120,
+      "sha256": "2d7dfbfa7e0393902355431d3ed6b492bb7e432d5fcfcf38ca06a8b9f96d66fc",
+      "meaning_ja": "全4096byte zero後、payload3968byte、署名FF8、payload checksumをFF4へ保存。"
+    },
+    {
+      "id": "hof_load_sector",
+      "address": 135115016,
+      "size": 112,
+      "sha256": "06fea339c0e5b811e51e80d88b26b2342a7236f24f80bf57d5eb3bb1556ece59",
+      "meaning_ja": "署名FF8とpayload checksumFF4のみを検査し指定sizeをcopy。"
+    },
+    {
+      "id": "save_checksum",
+      "address": 135115152,
+      "size": 44,
+      "sha256": "96873a7437320533b402fb6eb7f44df0a095a19fa8abe4b41dd03a04be2ee832",
+      "meaning_ja": "LEu32和を32bit wrapし、上位16と下位16を加算してlow16を返す。"
+    }
+  ],
+  "contract": {
+    "mon_bytes": 20,
+    "team_mons": 6,
+    "team_bytes": 120,
+    "max_teams": 50,
+    "team_array_bytes": 6000,
+    "payload_bytes": 7936,
+    "saved_opaque_suffix_bytes": 1936,
+    "live_buffer_bytes": 8192,
+    "unsaved_live_suffix_bytes": 256,
+    "species_bits": 9,
+    "level_bits": 7,
+    "species_none_mask": 511,
+    "species_none_mon_offset": 8,
+    "payload_address": 33669120,
+    "team_pointer_address": 33794736,
+    "has_records_address": 33794748,
+    "sector_ids": [
+      28,
+      29
+    ],
+    "sector_payload_bytes": 3968,
+    "signature_offset": 4088,
+    "signature": 134291493,
+    "payload_checksum_offset": 4084,
+    "main_checksum_field_offset": 4086,
+    "counter_offset": 4092,
+    "main_checksum_and_counter_written_zero": true,
+    "success": 1,
+    "empty": 0,
+    "checksum_invalid": 2
+  },
+  "probe": {
+    "header": "tools/mgba_pr16_dex_hof_abi.h",
+    "parent_source": "tools/mgba_pr16_dex_scheduler.c",
+    "parent_main_rename": "accepted_scheduler_main_not_called",
+    "cases": 228,
+    "pack_cases": 16,
+    "append_cases": 204,
+    "clear_cases": 8,
+    "species_inputs": [
+      0,
+      1,
+      511,
+      512,
+      513,
+      1205,
+      1520,
+      65535
+    ],
+    "append_indexes": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50
+    ],
+    "stack_mod8": [
+      0,
+      4
+    ],
+    "task_ids": [
+      0,
+      15
+    ],
+    "byte_patterns": 2,
+    "load_failure_statuses": [
+      0,
+      2,
+      255
+    ],
+    "explicit_stubs": [
+      {
+        "address": 134476628,
+        "meaning_ja": "GetMonData。6slot、許可fieldのみ。"
+      },
+      {
+        "address": 135344024,
+        "meaning_ja": "SaveQuestLogData。副作用なしの隔離stub。"
+      },
+      {
+        "address": 135116004,
+        "meaning_ja": "LoadGameSave。mode3のみ7936byteのsynthetic payloadを供給。"
+      },
+      {
+        "address": 136093176,
+        "meaning_ja": "memset。payload先頭8192byteのzeroのみ。"
+      },
+      {
+        "address": 136093080,
+        "meaning_ja": "memcpy。120byte teamのappend/左shiftのみ。"
+      },
+      {
+        "address": 135233348,
+        "meaning_ja": "既存dialogue frame。描画しない。"
+      },
+      {
+        "address": 135232808,
+        "meaning_ja": "既存保存文字printer。引数だけ検査。"
+      },
+      {
+        "address": 134233836,
+        "meaning_ja": "既存window copy。引数だけ検査。"
+      }
+    ],
+    "source_bindings": {
+      "tools/mgba_pr16_dex_hof_abi.h": {
+        "size": 10556,
+        "sha256": "6c3b139317d09214b6e6738e295443fad2bf3631fb95c8a250e3d307afd25078"
+      },
+      "tools/mgba_pr16_dex_scheduler.c": {
+        "size": 9213,
+        "sha256": "74469ff8dfc63f4a1a45eab0f39cdd25a2c346c3350a4b4fe5ba5f1ed6e09cb1"
+      }
+    },
+    "native_processes_run": 0,
+    "arm_compiles_run": 0
+  },
+  "boundary_ja": "現ROMのpack/append ABIのみ。通常殿堂入り、実HOF保存、loader全連鎖、全species対応、世代結合、跨領域原子性は未受入。上位species bit切捨ては既知未修復。公開はaddress/size/SHAと意味のみで原ROMbyteなし。"
+}
