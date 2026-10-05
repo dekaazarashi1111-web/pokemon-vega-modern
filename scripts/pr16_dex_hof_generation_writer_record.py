@@ -11,7 +11,7 @@ need,identity,write,git=prior.need,prior.identity,prior.write,prior.git
 BASE='c1aa1dbece3dd3cf5221321ad77c1d1fae29d75c';SOURCE=BASE;RUN=37282589643;JOB=111673873801;ARCHIVE=(11333175429,37282589643,97528,'7f8087216e07429a85b29628d601a4c1028460ce4fa6da14968c3a35319ffabd')
 SELF='scripts/pr16_dex_hof_generation_writer_record.py';WF='.github/workflows/pr16-dex-hof-generation-writer-record.yml'
 CP='content/modernization/pr16_dex_hof_generation_writer_checkpoint.json';EVIDENCE='content/modernization/pr16_dex_hof_generation_writer_evidence'
-STATE=prior.STATE;DOC=prior.DOC;LOGS=prior.LOGS
+STATE=prior.STATE;DOC=prior.DOC;LOGS=('design/run_log.md','design/version_log.md')
 OUT=ROOT/'.local/pr16-dex-hof-generation-writer-record';PUBLIC=ROOT/'public-dex-hof-generation-writer-record';ARTIFACT='pr16-dex-hof-generation-writer-record-text-only'
 CODE={SELF,WF,w.WF}
 SNAPSHOTS=[('fixed-state.json',STATE),('fixed-resume.md',DOC),('fixed-checkpoint.json',CP),('fixed-run-log.md',LOGS[0]),('fixed-version-log.md',LOGS[1])]
