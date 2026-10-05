@@ -6,7 +6,7 @@ class UnionFailure(unittest.TestCase):
  def test_bound_stack(self):
   p=f.proof();self.assertEqual(p['stack_contract'],dict(mode=0,inner_return_offset=8,inner_return=0x0937767B,outer_return_offset=16,outer_return=0x08129A93));self.assertEqual(p['text_contract']['return_offset'],52)
  def test_reserved_after_current_payload(self):
-  self.assertEqual((f.BASE,f.END),(0x09FC1DB8,0x09FC22EC));self.assertIn('every prospective suffix byte actually blank',(ROOT/'scripts/pr16_dex_union_failure.py').read_text())
+  self.assertEqual((f.BASE,f.END),(0x09FC1DB8,0x09FC22EC));self.assertIn('every prospective suffix byte equals the signed retired T09 rows',(ROOT/'scripts/pr16_dex_union_failure.py').read_text())
  def test_only_existing_state_write(self):
   s=(ROOT/f.SOURCE).read_text();self.assertNotIn('.bss',s);self.assertNotIn('.data',s);self.assertEqual(s.count('strh '),1);self.assertNotIn('strb ',s);self.assertIn('.word 0x09FC1D39',s)
  def test_scoped_string_and_original_scroll(self):

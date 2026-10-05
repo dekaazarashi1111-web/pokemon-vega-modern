@@ -88,5 +88,10 @@
     "state_offset": 6,
     "error_exit_state": 12
   },
-  "scope_ja": "Union Chatの保存callerだけ。失敗は既存wide windowに2行error、新規A/B後に元退出処理。成功だけSE_SAVEと元120frame待機。全mode/自然通信の受入ではない。"
+  "scope_ja": "Union Chatの保存callerだけ。失敗は既存wide windowに2行error、新規A/B後に元退出処理。成功だけSE_SAVEと元120frame待機。全mode/自然通信の受入ではない。",
+  "retired_suffix_preimage": {
+    "size": 1332,
+    "sha256": "1d2cedb0630691109f5f2327c8656b12ab0f289814d4970a1ba2740f06ada605"
+  },
+  "retired_suffix_provenance_ja": "正式ROMの退役T09 pointer table残部。FF空白ではなく元の333pointer。既存Stage39退役lease・現在親全ROM SHA・現在reservation全SHA・全実owner比較・既存typed root保持を同時に検証する。"
 }

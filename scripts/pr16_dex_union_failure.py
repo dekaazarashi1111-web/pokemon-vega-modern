@@ -49,7 +49,9 @@ def apply(before,payload,linked):
  lo=BASE-0x08000000;hi=lo+len(payload);a,z=owner['start'],owner['end_exclusive']
  need(lo==old['base']-0x08000000+old['payload']['size'] and hi<=z==END-0x08000000,'strictly after the current Mystery payload')
  need(identity(before[a:z])['sha256']==owner['content_sha256'],'whole current reservation signed')
- need(before[lo:z]==b'\xff'*(z-lo),'every prospective suffix byte actually blank; no historical reservation assumption')
+ need(identity(before[lo:z])==proof()['retired_suffix_preimage'],'every prospective suffix byte equals the signed retired T09 rows; no historical reservation assumption')
+ lease=b.p.lease;retired=lease.proof()
+ for root in retired['known_root_consumers']:need(lease.u32(before,root['site'])==root['current_value'],'each current typed root remains retired from this reservation')
  after=bytearray(before);after[lo:hi]=payload;windows=[(lo,hi)]
  for address,name,size in [(0x080DB360,EXPORTS[0],8),(0x0812AF64,EXPORTS[1],12),(0x08129AC4,EXPORTS[2],12)]:
   at=address-0x08000000;after[at:at+size]=b.tail_patch(address,linked['exports'][name])+struct.pack('<H',0x46C0)*((size-8)//2);windows.append((at,at+size))

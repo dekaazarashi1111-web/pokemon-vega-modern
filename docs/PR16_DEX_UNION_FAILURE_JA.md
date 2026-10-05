@@ -12,8 +12,10 @@ SaveAndExit state9の0x08129AC4から12byteを局所tailへ接続する。描画
 
 ## 配置と検証境界
 
-現行112ownerと全実byteを比較し、既存codec reservationの現行5152byteを保持。0x09FC1DB8以降1332byte全体が実際にblankであることを確認してから使う。旧余り記述を根拠に上書きしない。新mutable ownerなし、他111owner・全未宣言ROM byte不変、全ROM逆変換を確認する。
+現行112ownerと全実byteを比較し、既存codec reservationの現行5152byteを保持。0x09FC1DB8以降1332byteはblankではなく、正式ROMから残る退役T09の333pointer。既存Stage39退役leaseと現在typed root、現在親全ROM/owner SHA、残部全byte署名の同時一致を確認してから使う。旧余り記述を根拠に上書きしない。新mutable ownerなし、他111owner・全未宣言ROM byte不変、全ROM逆変換を確認する。
 
 隔離実ARMは8保存結果×3stale attempt×2SP×2入力の96caller条件、720caller gate条件、200文字列条件を対象とする。物理Flash/描画はstubであり、実UI・通常通信・自然退出・field帰還の受入は別工程。
 
 HOF/共通SaveFailed scratch衝突、mode4/5再erase、stale selector authority、sector31早期故障/原子性、残typed consumerは未完。正式ROM切替・trainer131後半へ進まず、最終目標はシオウPokecenter通常回復・保存・独立cold Continueを維持する。
+
+初回run37245820015は未使用suffixをFFと誤仮定したguardで停止、native0。失敗を保持し、退役元の全1332byte SHAによる狭い署名へ修正する。
