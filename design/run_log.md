@@ -13291,3 +13291,18 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 残145件の実root/consumerを閉じる。ReadMail/MoveTutorは局所実producerからsetup全state・allocation lifetimeまでを閉じる。部分leaseはtarget点だけでなく最大アクセス範囲・間接参照・対象範囲退役完全性・owner移管を証明した場合だけ採用。単一6528byte controllerの実配置容量を確保後、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL、全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/0804B85C退避前Freeを閉じる。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。
 - Commit: source=4aa76183e28d63ed462ddfc3bd41bc6f5aba9542; 同branch非force。
 - Network: 同repoActions/既存入力/固定source。公開source・最小address-size-SHA・textのみ、ROM断片/rawhex/ROM/inputsave/runtime/runner/credentials追加公開0。
+
+## 2026-10-05T18:11:22.664820+00:00
+- Timestamp: 2026-10-05T18:11:22.664820+00:00
+- Task: USER-20261005-DEX-HOF-CALLBACK-REFERENCES / callback rootとlifetimeの終端
+- Version: hof-callback-references-closeout
+- Status: STOPPED（新分類・容量拒否を受入、donor/本番controller未完）
+- Summary: run37352799719/job111907564920全14step成功。artifact11363407374全11text原本と固定MDJSON/CP/両ログ全byte/LF/Git blobを照合しpending解除。完了measurement起動条件のみmanual-onlyへ。
+- Files changed: closeout source/workflow/tests、measurement起動条件、固定MDJSON、両append-onlyログ。
+- Verify: 原本218tests、新分類1、729分類/145未知（owner内0）を再利用。全728親行・全六段109changes/99witnessと残unknown全field、133曲/50assetを保持。新公開guard9tests PASS。旧分類/host/ARM/ROM/native再走0。旧独立最終sourceレビュー未実施を保持。
+- Capacity: 未知の最大アクセス範囲が未証明なら全15118byte保護。間接参照/退役/owner移管も未完でsafe0byte。global511＋save804の上限1315は単一controller6528に不足5213。点targetの仮想空隙は安全容量ではなく、今後の追加分類で変わり得る。実配線時の追加容量も未確定。
+- Publication: 全親は参照保持、新delta22816byteとpartial-space独立envelope。閉じた非空success set・whole size/SHA/LF・hidden/symlink/未知file拒否。
+- Boundary: 現0641/115owner/52saveowner/804byte/正式ROM/Save101不変。heap13352の保存退避53300跨ぎ禁止。一般CI既知QOL不一致/action_required job0/Stage79cacheは別扱い。
+- Next: 残145件の実root/consumerを閉じる。ReadMail/MoveTutorは局所実producerからsetup全state・allocation lifetimeまでを閉じる。部分leaseはtarget点だけでなく最大アクセス範囲・間接参照・対象範囲退役完全性・owner移管を証明した場合だけ採用。単一6528byte controllerの実配置容量を確保後、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL、全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/0804B85C退避前Freeを閉じる。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。
+- Commit: closeout source=09758d7fa34ab81cabe0c893a07f32ce48f48399; 同branch非force。
+- Network: 同repoActions/text原本のみ。ROM断片/rawhex/ROM/save/runtime/runner/credentials追加公開0。

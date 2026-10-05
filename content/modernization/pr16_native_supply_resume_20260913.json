@@ -4399,6 +4399,7 @@
   "observed_date_jst": "2026-10-04",
   "observed_head": "4aa76183e28d63ed462ddfc3bd41bc6f5aba9542",
   "observed_head_checks": {
+    "all14_steps_success": true,
     "classified": 729,
     "current_candidate": {
       "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583",
@@ -4409,10 +4410,13 @@
     "general_ci_known_source_mismatch_not_resolved": true,
     "native_processes": 0,
     "reason_ja": "現0641の旧egg874参照へ新1件を追加し、729分類/145未知（owner内0）。新218試験と全115actual ownerを照合。部分leaseは未知pointer最大アクセス範囲未証明のため15118byte全域保護/安全容量0。既知global511＋save804の容量上限1315byteもcontroller6528byte未満。donor/正式ROM/Save101不変。ReadMail/MoveTutorの2局所callbackはroot/全setup/lifetime未閉鎖として0件の診断を記録し未知維持。",
+    "record_job": 111907564920,
+    "record_run": 37352799719,
     "reference_unit_tests": 218,
     "scope_head": "4aa76183e28d63ed462ddfc3bd41bc6f5aba9542",
     "stage79_cached_not_new_native": true,
-    "unclassified": 145
+    "unclassified": 145,
+    "whole_receipt_equals_checkpoint": true
   },
   "observed_head_history": [
     {
@@ -12423,13 +12427,7 @@
     "status": "NATIVE_PARTY_RETENTION_ACCEPTED_BP_PENDING",
     "tested_head": "10e535a046441dd3b797918106259b5c57b69716"
   },
-  "pending_runs": [
-    {
-      "run_id": 37352799719,
-      "status": "in_progress",
-      "tested_head": "4aa76183e28d63ed462ddfc3bd41bc6f5aba9542"
-    }
-  ],
+  "pending_runs": [],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
   "pr_draft": true,
   "pr_merged": false,
@@ -14244,9 +14242,13 @@
       "sha256": "3a046bfda0815f2aa8e8d738171ce03c5e952f3afa4349611990c7ede6403666",
       "size": 1986
     },
+    ".github/workflows/pr16-dex-hof-callback-references-closeout.yml": {
+      "sha256": "de358cb7d100fcc93a72b7de5a4c1ba2e14fef2b9c150c413f9c5be1b470742e",
+      "size": 2912
+    },
     ".github/workflows/pr16-dex-hof-callback-references.yml": {
-      "sha256": "1a6ab053e59e51f153006f2c3fa913a89e90c8e91f85da69aa751ab23fb13ee0",
-      "size": 3005
+      "sha256": "5e32583687d33dd6b333421391e54c74e4e84ca9c817dd3bdc02b6a6d728642f",
+      "size": 2896
     },
     ".github/workflows/pr16-dex-hof-capacity-closeout.yml": {
       "sha256": "985dfb19ba5d1ca4a0b5c13e5e09374ca72343c631d0982ad405983d2c1c84db",
@@ -34744,6 +34746,10 @@
       "sha256": "a9045b04fe92cb1285617289ec2f6f3505d89fc9a1e0de2800fee964eb797797",
       "size": 25463
     },
+    "scripts/pr16_dex_hof_callback_references_closeout.py": {
+      "sha256": "a7302d2709ab7758b107ff3f82f656ad1da065943c2906bf9e75fc4a92160eb2",
+      "size": 12725
+    },
     "scripts/pr16_dex_hof_callback_title.py": {
       "sha256": "b1a85818c4c554c353ff09c630998ef55b09242485a5b62cc8df92b6eb84580e",
       "size": 21821
@@ -38336,6 +38342,10 @@
       "sha256": "755a20f7e5a477faa5775391cc162ce4de804f8b23e5b1bbe4d2f50c69ea93dd",
       "size": 9729
     },
+    "tests/test_pr16_dex_hof_callback_references_closeout.py": {
+      "sha256": "52bd7cd613865602506a4f0dbcc3c75049837f307427e3ea89b9caee0ef0cb35",
+      "size": 2055
+    },
     "tests/test_pr16_dex_hof_callback_title.py": {
       "sha256": "ca30533b301eb1fb881fc9d5f38f11b62848176439d2e31ac94155e07a22478a",
       "size": 8803
@@ -41594,6 +41604,74 @@
           "newly_classified": 0,
           "read_mail_mislabel_corrected": true,
           "root_or_lifetime_unproven": true
+        },
+        "recording": {
+          "all14_steps_success": true,
+          "all5_snapshots_full_bytes_and_lf_verified": true,
+          "all_six_old_delta_families_preserved": true,
+          "archive": [
+            11363407374,
+            37352799719,
+            1378948,
+            "af4e1cefc5581c496a2b0cf8c2f8d08740d377746b6559e78b716b1c2de1fdba"
+          ],
+          "arm_compiles": 0,
+          "baseline_identity": {
+            "sha256": "814082398937869b6cc17faa09cbf1833f0c7f4aa300ddbd83d0de833d44b74c",
+            "size": 4063919
+          },
+          "candidate_changed": false,
+          "capacity_identity": {
+            "sha256": "20eeb8068070ba0e536ce73022c323df0ea792798968f2006959887c4afbb193",
+            "size": 9099
+          },
+          "checkpoint": "content/modernization/pr16_dex_hof_callback_references_checkpoint.json",
+          "checkpoint_identity": {
+            "sha256": "f6530690ae80c432d94aef8288273eb8f5a1bbf7b4c80115146a9cac9329e464",
+            "size": 10439
+          },
+          "classified": 729,
+          "closeout_run": 37353927905,
+          "closeout_source": "09758d7fa34ab81cabe0c893a07f32ce48f48399",
+          "combined_song_models": 133,
+          "current_rom_reconstructions": 0,
+          "delta_identity": {
+            "sha256": "c49c05072bb5dcf19de4620440bfde82ad66e3c1269566a9b6184ebc9870bbc6",
+            "size": 22816
+          },
+          "donor_leased": false,
+          "earlier_identity": {
+            "sha256": "762320ba350f528777b90be404b5fec1d88caeb6dbf6594590d4f45b852c1c87",
+            "size": 149772
+          },
+          "export_guard_test_log": {
+            "sha256": "7ad1416111fbc5eda3fc9952eda6e4a7946937009d3ea112c2a1b3bc0c94a516",
+            "size": 1086
+          },
+          "formal_save_changed": false,
+          "independent_final_source_review_completed": false,
+          "job": 111907564920,
+          "native_processes": 0,
+          "new_code": 1,
+          "new_data": 0,
+          "new_export_guard_tests": 9,
+          "new_song": 0,
+          "newly_classified": 1,
+          "old728_accepted_and_all874_identities_retained": true,
+          "owner_unknown": 0,
+          "parent_identity": {
+            "sha256": "1ede9031a30c4c5f52ec2b6cbf47ad177c4117931fb72796ce597c2786c01476",
+            "size": 23481
+          },
+          "record_head": "a3c7d3d8ee3b4f9824f3f1927e5109fb3f0d7a83",
+          "retained_sample_witnesses": 50,
+          "run": 37352799719,
+          "source_head": "4aa76183e28d63ed462ddfc3bd41bc6f5aba9542",
+          "status": "PASS_TERMINAL_EXACT_CALLBACK_REFERENCES_RECORD",
+          "tests_rerun": 0,
+          "unclassified": 145,
+          "unit_tests": 218,
+          "unowned_unknown": 145
         },
         "run": 37352799719,
         "source": "4aa76183e28d63ed462ddfc3bd41bc6f5aba9542",
