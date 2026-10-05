@@ -4371,16 +4371,20 @@
   "observed_date_jst": "2026-10-04",
   "observed_head": "f09436a74b710ad15c1f90e6eedbaabe91ffddb1",
   "observed_head_checks": {
+    "all13_record_steps_success": true,
     "arm_compiles": 0,
     "candidate_changed": false,
     "general_ci_known_source_mismatch_not_resolved": true,
     "host_tests": 21,
     "native_processes": 0,
     "reason_ja": "HOF/mainの正確epoch＋全payload SHA256結合、normal Save継承、二重shadowからmain COWへ確定するhost参照実装と容量validatorを追加。21host契約・blank/再利用bank/normal wrapの全durable byte境界・故障/電源断を検証。現32sectorは独立shadow追加に8192byte不足としてwrite前拒否。候補88be8811と全115owner/43subowner/実残186byteは不変。実ROM世代結合・跨領域原子性は未受入。",
+    "record_job": 111632851368,
+    "record_run": 37269357252,
     "runtime_cross_store_atomicity": false,
     "runtime_generation_binding": false,
     "scope_head": "f09436a74b710ad15c1f90e6eedbaabe91ffddb1",
-    "stage79_cached_not_new_native": true
+    "stage79_cached_not_new_native": true,
+    "whole_receipt_equals_checkpoint": true
   },
   "observed_head_history": [
     {
@@ -12391,13 +12395,7 @@
     "status": "NATIVE_PARTY_RETENTION_ACCEPTED_BP_PENDING",
     "tested_head": "10e535a046441dd3b797918106259b5c57b69716"
   },
-  "pending_runs": [
-    {
-      "run_id": 37269357252,
-      "status": "in_progress",
-      "tested_head": "f09436a74b710ad15c1f90e6eedbaabe91ffddb1"
-    }
-  ],
+  "pending_runs": [],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
   "pr_draft": true,
   "pr_merged": false,
@@ -14220,9 +14218,13 @@
       "sha256": "2c062e8f47ffe0fb2486785c7dc787c844fbdbeb31e26fbbeccca4a724ec11fd",
       "size": 1744
     },
+    ".github/workflows/pr16-dex-hof-generation-closeout.yml": {
+      "sha256": "a4eb5fb924617a9ccaa4c7648b6fe2d32d61ed68abc8e0c27986660214257e6b",
+      "size": 2489
+    },
     ".github/workflows/pr16-dex-hof-generation.yml": {
-      "sha256": "f6e4af194b2dcced93586c549f828de3b3156d3afecb27acd500390b225ecbd7",
-      "size": 2594
+      "sha256": "1ac583d605696d60058c63fa7e8fdd3e5e7f17b0df47d53f8ab1b0125e9e604c",
+      "size": 2494
     },
     ".github/workflows/pr16-dex-hof-main-closeout.yml": {
       "sha256": "2bdb44945f84c8512328f137849ebc3d61880b3eb790245c01b452532cba58ed",
@@ -33980,6 +33982,10 @@
       "sha256": "3a11b72ba57d843982094a8e457e3ab5ed5f7446b2113b259a270b04f035f285",
       "size": 11998
     },
+    "scripts/pr16_dex_hof_generation_closeout.py": {
+      "sha256": "8416aecb4827ae34a787b8abae561dd943c95993fede12c896cb373e65dde271",
+      "size": 8924
+    },
     "scripts/pr16_dex_hof_main_closeout.py": {
       "sha256": "8ae3717965300013032da2102a1491d0b822ac11189397e59a52abcbf7563857",
       "size": 9699
@@ -40259,6 +40265,36 @@
         "guide": "docs/PR16_DEX_HOF_GENERATION_CONTRACT_JA.md",
         "host_tests": 21,
         "record_run": 37269357252,
+        "recording": {
+          "all13_record_steps_success": true,
+          "all6_original_snapshots_byte_equal": true,
+          "arm_compiles": 0,
+          "candidate_changed": false,
+          "checkpoint": "content/modernization/pr16_dex_hof_generation_checkpoint.json",
+          "checkpoint_identity": {
+            "sha256": "50bc4a64e3307e7f1f80dc79352300478947b52f033c59297340e980cbdd7d94",
+            "size": 5466
+          },
+          "closeout_run": 37269774172,
+          "closeout_source": "ff6a47f433a05a5d02bfa43122b3d573d1728930",
+          "formal_rom_changed": false,
+          "formal_save_changed": false,
+          "host_tests_rerun": 0,
+          "native_processes": 0,
+          "record_archive": [
+            11327472204,
+            37269357252,
+            1304773,
+            "f0b22641b7d865a700d9e2dc2378d967856053e97d4c0791a2649c64cc17a733"
+          ],
+          "record_completion": "39b52618f5263aab91dcdc55d2ab05285145ef12",
+          "record_job": 111632851368,
+          "record_run": 37269357252,
+          "record_source": "f09436a74b710ad15c1f90e6eedbaabe91ffddb1",
+          "runtime_cross_store_atomicity": false,
+          "runtime_generation_binding": false,
+          "status": "PASS_TERMINAL_HOST_HOF_CONTRACT_RECORD"
+        },
         "runtime_cross_store_atomicity": false,
         "runtime_generation_binding": false,
         "status": "PASS_HOST_REFERENCE_HOF_TRANSACTION_AND_CAPACITY_REFUSAL",
