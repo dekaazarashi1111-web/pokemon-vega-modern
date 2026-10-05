@@ -8,7 +8,7 @@
 
 現0641の旧egg874参照へ新2件を追加し、728分類/146未知（owner内0）。新201試験と全115actual ownerを照合。部分leaseは未知pointer最大アクセス範囲未証明のため15118byte全域保護/安全容量0。既知global511＋save804の容量上限1315byteもcontroller6528byte未満。donor/正式ROM/Save101不変。
 
-**次: 残146件の実root/consumerを閉じる。部分leaseはtarget点だけでなく最大アクセス範囲・間接参照・対象範囲退役完全性・owner移管を証明した場合だけ採用。単一6528byte controllerの実配置容量を確保後、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL、全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/0804B85C退避前Freeを閉じる。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。**
+**次: 残146件の実root/consumerを閉じる。部分leaseはtarget点だけでなく最大アクセス範囲・間接参照・対象範囲退役完全性・owner移管を証明した場合だけ採用。単一6528byte controllerの実配置容量を確保後、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL、全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/0804B85C退避前Freeを閉じる。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。 次の具体root候補は0x08162BFDのタイトル外側callback登録/scene3 state producer、0x08124573のparty menu selectorと同一allocation/exit、0x08126B0Bのconstructor stack引数。いずれも旧診断の未受入候補で未知維持。**
 
 通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。
 
