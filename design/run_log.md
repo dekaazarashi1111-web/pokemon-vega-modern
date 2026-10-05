@@ -13040,3 +13040,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 残419件をtyped song/track VOICE/ToneData/WaveData、他numeric、code consumerへ結合し、間接参照・退役consumer完全性を証明して必要分だけ明示donor移管する。その後Ccontrollerと実S61E/MDXの全writer/loader/Link/INITIAL配線、同期heap所有、全mode/早期31/species9bit/残typedを受入し、正式候補切替からtrainer131後半・最終シオウ通常回復/保存/独立coldContinueへ。雑魚毎Saveなし。
 - Commit: closeout source=514eb5d175e570eadc57fb62764ea624a9e4f9e5; 同branch非force push。
 - Network: 同repoActions/text原本のみ。ROM断片/rawhex/ROM/save/runtime/runner/credential追加公開0。
+
+## 2026-10-05T10:05:43.649912+00:00
+- Timestamp: 2026-10-05T10:05:43.649912+00:00
+- Task: USER-20261005-DEX-HOF-SONG / 根付きJP song consumer分類
+- Version: hof-song-v1
+- Status: STOPPED（新song分類を実装検証。donor/本番保存配線は未完）
+- Summary: 現候補0641af70の旧egg874参照に根付きJP song interpreterを実装。114個の明示ID、89曲の完全モデル、39sample witnessから105件を追加し、560分類/314未知。footstep MIDIと現Song250/251の不一致も保持。新63tests、現候補の新read用再構成1回、旧inventory/native0。donor/正式ROM/Save101不変。
+- Files changed: classifier/negative suites/source pins/engine semantic review/Actions/guide/CP/text evidence、固定MDJSON、両ログ。
+- Verify: unit=63; 現candidate全SHA/115owner afterSHA、JP全engine窓/effective36slot/4player容量/114source IDs、全命令/VOICE/1段split/rhythm/Wave chain。全旧455accepted不変、全874hit bytes再照合、旧全ROMscan/native0。
+- Boundary: 全song横断の構造/command/sample競合拒否、失敗track/VOICE-only読取も保護。MEMACC/XCMD/PORT/tempo0/non-yield/budgetは拒否。source MIDIと現Songの不一致を成功へ読み替えない。最小DPCM prefixと全実read footprintを分離。donor0、正式ROM/Save101/50HOF/opaque1936/baseline/release不変。
+- Next: 残314件の未対応song/audio/numeric/codeを根付きconsumerへ結び、間接参照・退役完全性を証明する。今回のsample prefix分類をDPCM全read footprintや実演奏受入と混同しない。未知0と退役ゲート後のみ必要分を明示donor移管し、Ccontroller実owner配置・全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL・同期heap lifetime・全mode/早期31/species9bitを閉じる。その後正式候補切替、trainer131後半から最終シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。
+- Commit: source=483f973928fc63866634dd30035f78c1d26a5895; 同branch非force。
+- Network: 同repoActions/既存private inputs、固定CFRU/pret19source blob。公開source/minimal address-size-SHA/textのみ、ROM断片/rawhex/ROM/save/MIDI/WAV/runtime/runner/credential追加公開0。

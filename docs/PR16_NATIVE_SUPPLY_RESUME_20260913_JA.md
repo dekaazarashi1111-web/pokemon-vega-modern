@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-現候補0641af70の旧egg全874見かけ参照を継承し、PLR1の12件を固定compose/receipt/linked C consumerと全1483ownerの数値spanへ結合。455件分類・419件未知。12件すべての行境界跨ぎも両側の型で証明。既存bundle再利用、ROM再構成/ARM/native0、donor0、正式ROM/Save101不変。
+現候補0641af70の旧egg874参照に根付きJP song interpreterを実装。114個の明示ID、89曲の完全モデル、39sample witnessから105件を追加し、560分類/314未知。footstep MIDIと現Song250/251の不一致も保持。新63tests、現候補の新read用再構成1回、旧inventory/native0。donor/正式ROM/Save101不変。
 
-**次: 残419件をtyped song/track VOICE/ToneData/WaveData、他numeric、code consumerへ結合し、間接参照・退役consumer完全性を証明して必要分だけ明示donor移管する。その後Ccontrollerと実S61E/MDXの全writer/loader/Link/INITIAL配線、同期heap所有、全mode/早期31/species9bit/残typedを受入し、正式候補切替からtrainer131後半・最終シオウ通常回復/保存/独立coldContinueへ。雑魚毎Saveなし。**
+**次: 残314件の未対応song/audio/numeric/codeを根付きconsumerへ結び、間接参照・退役完全性を証明する。今回のsample prefix分類をDPCM全read footprintや実演奏受入と混同しない。未知0と退役ゲート後のみ必要分を明示donor移管し、Ccontroller実owner配置・全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL・同期heap lifetime・全mode/早期31/species9bitを閉じる。その後正式候補切替、trainer131後半から最終シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。**
 
 通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `be9e90f8625a73cd00fe76ccf784890a76f1bf79`。
-PLR1の固定数値generator/consumer分類source。容量移管・本番controller接続の受入ではない。
+証拠のsource HEAD: `483f973928fc63866634dd30035f78c1d26a5895`。
+JP engine窓に再束縛したsong型consumer分類source。実演奏・donor移管・本番controller配線は未受入。
 
 ## 最短の再開手順
 
@@ -25,11 +25,11 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `docs/PR16_DEX_HOF_SONG_JA.md`
+- `content/modernization/pr16_dex_hof_song_checkpoint.json`
+- `scripts/pr16_dex_hof_song.py`
 - `docs/PR16_DEX_HOF_NUMERIC_JA.md`
 - `content/modernization/pr16_dex_hof_numeric_checkpoint.json`
-- `scripts/pr16_dex_hof_numeric.py`
-- `docs/PR16_DEX_HOF_CAPACITY_JA.md`
-- `content/modernization/pr16_dex_hof_capacity_checkpoint.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -451,6 +451,7 @@ P08ゲート:
 - 下位generation writer run37282589643の183host全媒体差分・全8入口22ARMcase・移設HJ257caseを候補/source不変なら再走しない。旧egg参照形は未分類/lease0、heap10窓はbindingのみ/実arena0。正式ROM/Save101・HOF世代結合未完。
 - HOF容量/heap専用checkpointの型分類と新isolated allocator試験をsource/候補不変なら再走しない。donor0/本番lease0。heap退避は0804B85C入口から既に危険で、MallocInit直前解放では遅い。全入口heap-ready/非再入/全出口Free未完。
 - PLR1数値分類12件は原本bundle・image・poolを独立署名し、全1483ownerと行境界を検査。現source/candidate不変なら旧874全ROM走査・heap/native・習得原本生成を再走しない。455分類/419未知、donor0。
+- 現候補0641af70の旧egg874参照に根付きJP song interpreterを実装。114個の明示ID、89曲の完全モデル、39sample witnessから105件を追加し、560分類/314未知。footstep MIDIと現Song250/251の不一致も保持。新63tests、現候補の新read用再構成1回、旧inventory/native0。donor/正式ROM/Save101不変。候補/source不変なら旧全ROM走査/heap/native/習得原本生成を再走しない。
 
 ## 次セッションへ残す更新手順
 
@@ -480,6 +481,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-現候補0641af70の旧egg全874見かけ参照を継承し、PLR1の12件を固定compose/receipt/linked C consumerと全1483ownerの数値spanへ結合。455件分類・419件未知。12件すべての行境界跨ぎも両側の型で証明。既存bundle再利用、ROM再構成/ARM/native0、donor0、正式ROM/Save101不変。
+現候補0641af70の旧egg874参照に根付きJP song interpreterを実装。114個の明示ID、89曲の完全モデル、39sample witnessから105件を追加し、560分類/314未知。footstep MIDIと現Song250/251の不一致も保持。新63tests、現候補の新read用再構成1回、旧inventory/native0。donor/正式ROM/Save101不変。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
