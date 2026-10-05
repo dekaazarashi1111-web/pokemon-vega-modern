@@ -10245,3 +10245,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 現lower writer候補を基準に、旧Stage67 egg表の全byte開始位置/mirror/Thumb参照形をtyped asset/consumerで分類し、必要量だけ明示donor移管する。controllerと実S61E/MDX callbackをLink exact-source/no-main/INITIAL/全writer/loadへ接続。heap事前chain admission、raw13359/round13360/align8、allocator scratch02020004/08/0C、0804B85C退避前解放、全入口heap-readyと非再入を実証する。全mode/早期31/species9bit/残typed・正式切替後trainer131後半、最終シオウ通常回復/保存/coldContinue。雑魚毎Saveなし。
 - Commit: tested source=c1aa1dbece3dd3cf5221321ad77c1d1fae29d75c; record source=768fa8ac786c0dd6dc7e5401bb8db939e380d6ed; 同branch非force。
 - Network: 同repoActions/既存private入力。公開はsource/minimal address-size-SHA/textのみ、ROM断片/rawhex/ROM/save/runtime/runner/credential追加公開0。
+
+## 2026-10-05T08:59:19.513677+00:00
+- Timestamp: 2026-10-05T08:59:19.513677+00:00
+- Task: USER-20261005-DEX-HOF-CAPACITY / typed donor監査と実heap事前admission
+- Version: hof-capacity-v1
+- Status: STOPPED（限定実装・検証完了。donor/保存runtime配線は未完）
+- Summary: 現候補0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583の旧egg見かけ参照をtyped asset/consumerへ機械分類し、443件分類・431件未知を保持。実heap全chain事前admissionをC実装し、新isolated ARMでfirst-fit/split/整列/解放とOOM前拒否を検証。保存退避入口の実3コピーがarena13352byteをMallocInit前に破壊することも確認。donor/本番arenaは未使用、正式ROM/Save101不変。
+- Files changed: 新classifier/C admission/host/native/Actions/guide/CP/text evidence、固定MDJSON、両ログ。
+- Verify: donor unit32; heap host={"checks": 4660, "native_calls": 0, "runtime_integrated": false, "status": "PASS_SYNTHETIC_HEAP_ADMISSION"}; native={"all_save_entries_heap_ready": false, "allocator_calls": 17, "arena_overwritten_before_heap_reset": 13352, "arm_admission_calls": 28, "calls": 74, "cases": 15, "formal_save_changed": false, "game_boots": 0, "native_processes": 1, "preflight_rejections_without_alloc": 3, "real_saves": 0, "relocation_copy_calls": 3, "relocation_overwrite_bytes": 53300, "runtime_lease_enabled": false, "status": "PASS_ACTUAL_ROM_HEAP_ADMISSION_AND_RELOCATION_HAZARD", "steps": 47250}; ARM={"bss": 0, "data": 0, "image": {"sha256": "92e40c6f42c8a82bed292291f4941f5afb15eb1b3a69f0580f643e77d49febfd", "size": 772}, "isolated_ram_entry": 33751773, "rom_placed": false, "stack": [{"bytes": 8, "function": "rd32", "kind": "static"}, {"bytes": 112, "function": "walk", "kind": "static"}, {"bytes": 16, "function": "HH_Admit", "kind": "static"}, {"bytes": 16, "function": "HH_CheckOwned", "kind": "static"}], "text": 772}。旧native再走0、現ROM全SHA/115owner配置再構成一致。
+- Boundary: 874見かけ参照を親12abでなく現候補へ再束縛。未分類のdata仮定除外なし。Alloc OOM assert前に全chain拒否。root.prev=self、raw13359/round13360/align8、Freeはraw。保存前53300byte退避の開始からarena禁止。全入口heap-ready・同期排他・lifetime・本番controllerは未完。正式ROM/Save101/50HOF履歴/1936suffix/baseline/release不変。
+- Next: 残る旧egg参照をtyped code/audio/graphics/numeric consumerで分類し、間接参照不在と明示donor移管を証明する。Ccontroller必要容量を確保し、全保存入口のheap-ready・同期非再入・admission→Alloc→全出口Freeを0804B85C入口前に閉じる。controllerと実S61E/MDXを全writer/loader/Link exact-source/no-main/INITIALへ接続。全mode/早期31/species9bit/残typedを受入後に正式候補切替、trainer131後半から最終シオウ通常回復/保存/coldContinue。雑魚毎Saveなし。
+- Commit: source=eacc7b112021727e32162905432b24e7e3e49560; samebranch非force。
+- Network: 同repoActions/既存private inputs。公開はsource/minimal address-size-SHA/text、ROM断片/rawhex/ROM/save/runtime/runner/credentials追加公開0。

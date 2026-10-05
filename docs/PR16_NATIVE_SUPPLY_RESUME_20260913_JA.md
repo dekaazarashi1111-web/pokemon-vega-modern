@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-exact-source cloneとLink source-recordを下位writerへ統合し実ROM全8入口22case＋移設HJ validator257caseを変更影響検証。候補0641af70、115owner／save subowner52／残804byte。旧egg表は現P07 root移行を確認したが参照形874件未分類でleaseなし。heap既存10窓688byteは現ROMに一致、実arena所有は未証明。HOF全世代配線・正式ROM/Save101切替は未完。
+現候補0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583の旧egg見かけ参照をtyped asset/consumerへ機械分類し、443件分類・431件未知を保持。実heap全chain事前admissionをC実装し、新isolated ARMでfirst-fit/split/整列/解放とOOM前拒否を検証。保存退避入口の実3コピーがarena13352byteをMallocInit前に破壊することも確認。donor/本番arenaは未使用、正式ROM/Save101不変。
 
-**次: 現lower writer候補を基準に、旧Stage67 egg表の全byte開始位置/mirror/Thumb参照形をtyped asset/consumerで分類し、必要量だけ明示donor移管する。controllerと実S61E/MDX callbackをLink exact-source/no-main/INITIAL/全writer/loadへ接続。heap事前chain admission、raw13359/round13360/align8、allocator scratch02020004/08/0C、0804B85C退避前解放、全入口heap-readyと非再入を実証する。全mode/早期31/species9bit/残typed・正式切替後trainer131後半、最終シオウ通常回復/保存/coldContinue。雑魚毎Saveなし。**
+**次: 残る旧egg参照をtyped code/audio/graphics/numeric consumerで分類し、間接参照不在と明示donor移管を証明する。Ccontroller必要容量を確保し、全保存入口のheap-ready・同期非再入・admission→Alloc→全出口Freeを0804B85C入口前に閉じる。controllerと実S61E/MDXを全writer/loader/Link exact-source/no-main/INITIALへ接続。全mode/早期31/species9bit/残typedを受入後に正式候補切替、trainer131後半から最終シオウ通常回復/保存/coldContinue。雑魚毎Saveなし。**
 
 通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `c1aa1dbece3dd3cf5221321ad77c1d1fae29d75c`。
-変更下位writerの実保存入口と現ROM donor/heap前提監査。HOF Ccontrollerは未接続。
+証拠のsource HEAD: `eacc7b112021727e32162905432b24e7e3e49560`。
+現ROM donor型分類と実allocator隔離検証。全保存入口のheap所有/配線受入ではない。
 
 ## 最短の再開手順
 
@@ -25,10 +25,10 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `docs/PR16_DEX_HOF_CAPACITY_JA.md`
+- `content/modernization/pr16_dex_hof_capacity_checkpoint.json`
 - `docs/PR16_DEX_HOF_GENERATION_WRITER_JA.md`
 - `content/modernization/pr16_dex_hof_generation_writer_checkpoint.json`
-- `docs/PR16_DEX_HOF_CONTROLLER_JA.md`
-- `content/modernization/pr16_dex_hof_controller_checkpoint.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -448,6 +448,7 @@ P08ゲート:
 - HOF32sector storageの16host/新228ABIを専用checkpointから再利用。候補88be8811不変。50履歴/1936byte suffixを削減せず非選択mainの一時scratchを使う。Ccodecとhost schedulerを実ROM接続済みにしない。species9bitとINITIAL移行は未修復。次は現ownerへの配置・全writer/load接続。
 - HOF controller12host/6528ARM/新10RAM隔離caseとsave後継183hostdiff・実保存8入口22case/ROMjournal257caseは新専用checkpointから再利用。候補12ab27e4・115owner/53save subowner/残292byteが次の基準。CcontrollerはROM未配置、workspace/全writer/load/INITIAL/Link統合未完。失敗runは失敗として保持し、旧gameplayを再走しない。
 - 下位generation writer run37282589643の183host全媒体差分・全8入口22ARMcase・移設HJ257caseを候補/source不変なら再走しない。旧egg参照形は未分類/lease0、heap10窓はbindingのみ/実arena0。正式ROM/Save101・HOF世代結合未完。
+- HOF容量/heap専用checkpointの型分類と新isolated allocator試験をsource/候補不変なら再走しない。donor0/本番lease0。heap退避は0804B85C入口から既に危険で、MallocInit直前解放では遅い。全入口heap-ready/非再入/全出口Free未完。
 
 ## 次セッションへ残す更新手順
 
@@ -477,6 +478,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-exact-source cloneとLink source-recordを下位writerへ統合し実ROM全8入口22case＋移設HJ validator257caseを変更影響検証。候補0641af70、115owner／save subowner52／残804byte。旧egg表は現P07 root移行を確認したが参照形874件未分類でleaseなし。heap既存10窓688byteは現ROMに一致、実arena所有は未証明。HOF全世代配線・正式ROM/Save101切替は未完。
+現候補0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583の旧egg見かけ参照をtyped asset/consumerへ機械分類し、443件分類・431件未知を保持。実heap全chain事前admissionをC実装し、新isolated ARMでfirst-fit/split/整列/解放とOOM前拒否を検証。保存退避入口の実3コピーがarena13352byteをMallocInit前に破壊することも確認。donor/本番arenaは未使用、正式ROM/Save101不変。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
