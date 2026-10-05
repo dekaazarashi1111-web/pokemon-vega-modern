@@ -10608,3 +10608,18 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 残142件は実consumer型を閉じる最小rootを優先する。MoveTutorは登録task/入力条件とcallee境界を、残QuestLog近傍は別15state heap/window taskとして調べる。ReadMail copy前までの同epoch・opaque helper/非同期非干渉は型分類とは別のruntime保証として未完を保持。Leerの明示environment契約は普遍battle/IRQ保証へ昇格しない。保存済新allocator/17task/連続prefix/同期event型証拠を再利用する。部分leaseは最大access・間接参照・対象退役・owner移管が揃う場合だけ採用。単一controller6528byteの容量確保後、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL、全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/0804B85C退避前Freeを接続。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。
 - Commit: source=a060cd5539cf633c3abe99761b6844c3c45ccdf7; 同branch非force。
 - Network: 同repoActions/既存入力/固定source。公開source・最小address-size-SHA・textのみ、ROM断片/rawhex/ROM/inputsave/runtime/runner/credentials追加公開0。
+
+## 2026-10-05T22:03:54.384285+00:00
+- Timestamp: 2026-10-05T22:03:54.384285+00:00
+- Task: USER-20261005-DEX-HOF-RUNTIME-CLOSURE / 実consumer型と最小寿命境界の終端
+- Version: hof-runtime-closure-closeout
+- Status: STOPPED（条件付き実consumer型3件を受入、残root/donor/本番controller未完）
+- Summary: run37378915043/job111995392180全14step成功。artifact11372937159全11text原本と固定MDJSON/CP/両ログ全byte/LF/Git blobを照合しpending解除。完了measurement起動条件のみmanual-onlyへ。旧run37365137571はstep0/artifact0のcancelled jobで未受入のまま保持し、公式21:32UTC緩和後に同契約を新attempt1で検証。
+- Files changed: closeout source/workflow/tests、measurement起動条件、固定MDJSON、両append-onlyログ。
+- Verify: 原本237tests、新分類3、732分類/142未知（owner内0）を再利用。全729親行・全八段110changes/100witnessと残unknown全field、133曲/50assetを保持。新公開/未開始履歴guard15tests PASS。新direct/sprite/ReadMail source-only独立確認を実施。r12/MUL-C仮定、current用wrapper負例、静的BL successor表記を修正。初回sprite2失敗は原因と全文log上書きの制限をdevelopment記録へ保存。旧分類/host/ARM/ROM/native再走0。旧独立最終sourceレビュー未実施を保持。
+- Capacity: 未知の最大アクセス範囲が未証明なら全15118byte保護。間接参照/退役/owner移管も未完でsafe0byte。global511＋save804の上限1315は単一controller6528に不足5213。点targetの仮想空隙は安全容量ではなく、今後の追加分類で変わり得る。実配線時の追加容量も未確定。
+- Publication: 全親は参照保持、新delta68925byteとpartial-space独立envelope。閉じた非空success set・whole size/SHA/LF・hidden/symlink/未知file拒否。
+- Boundary: 現0641/115owner/52saveowner/804byte/正式ROM/Save101不変。heap13352の保存退避53300跨ぎ禁止。一般CI既知QOL不一致/action_required job0/runner割当中のcancelled job/Stage79cacheは別扱い。
+- Next: 残142件は実consumer型を閉じる最小rootを優先。次候補0x08142F5DはMystery Giftのmask literal/code境界、実CreateTask→38state表slot11/23の根を結ぶ。異種2要素の完全partitionと専用boundary witnessを設け、同kind streamへ無理に包含しない。次点0x080A006FはGPUscalar/VBlankcallback境界で外側root未特定。MoveTutor・普遍epoch/IRQ/opaque非干渉は別義務として保持。保存済237試験・ReadMailコピー後Free・Leer連続6194命令・QuestLog同期型を無影響再走しない。部分leaseは最大access/間接参照/対象退役/owner移管が揃う場合だけ採用。単一controller6528byteの容量確保後、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL、全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/0804B85C退避前Freeを接続。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。
+- Commit: closeout source=471732f8a07f4d2a0d61aba8ddf524890c2392bf; 同branch非force。
+- Network: 同repoActions/text原本のみ。ROM断片/rawhex/ROM/save/runtime/runner/credentials追加公開0。

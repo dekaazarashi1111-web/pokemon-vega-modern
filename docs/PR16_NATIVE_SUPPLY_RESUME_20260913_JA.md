@@ -8,7 +8,7 @@
 
 現0641の旧egg874参照へReadMail・Leer・QuestLogの実consumer型3件を追加し、732分類/未知142。新237試験と全115actual ownerを照合。ReadMailの必要寿命はcallbackのmainコピーまで、Leerは実前置commandから同slotへ、QuestLogは実event40の同期table dispatchへ束縛。自然到達・全epoch/IRQ保証と型分類を分離。全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。
 
-**次: 残142件は実consumer型を閉じる最小rootを優先する。MoveTutorは登録task/入力条件とcallee境界を、残QuestLog近傍は別15state heap/window taskとして調べる。ReadMail copy前までの同epoch・opaque helper/非同期非干渉は型分類とは別のruntime保証として未完を保持。Leerの明示environment契約は普遍battle/IRQ保証へ昇格しない。保存済新allocator/17task/連続prefix/同期event型証拠を再利用する。部分leaseは最大access・間接参照・対象退役・owner移管が揃う場合だけ採用。単一controller6528byteの容量確保後、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL、全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/0804B85C退避前Freeを接続。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。**
+**次: 残142件は実consumer型を閉じる最小rootを優先。次候補0x08142F5DはMystery Giftのmask literal/code境界、実CreateTask→38state表slot11/23の根を結ぶ。異種2要素の完全partitionと専用boundary witnessを設け、同kind streamへ無理に包含しない。次点0x080A006FはGPUscalar/VBlankcallback境界で外側root未特定。MoveTutor・普遍epoch/IRQ/opaque非干渉は別義務として保持。保存済237試験・ReadMailコピー後Free・Leer連続6194命令・QuestLog同期型を無影響再走しない。部分leaseは最大access/間接参照/対象退役/owner移管が揃う場合だけ採用。単一controller6528byteの容量確保後、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL、全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/0804B85C退避前Freeを接続。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。**
 
 通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。
 
