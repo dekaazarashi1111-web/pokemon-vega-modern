@@ -10217,3 +10217,17 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 現ownerから新codec/scheduler配置と全writer/normal/clone/readback/selector/HOF-only load接続。共通SaveFailed/早期31/cold owner/typedconsumerを閉じてから正式候補切替、trainer131後半、最終シオウ通常回復・保存・独立cold Continue。雑魚毎Saveなし。
 - Commit: closeout source=3a2f97c82472ddb98831d88d127f21df5c982c73; 同branch非force push。
 - Network: 同repoActions/既存text原本のみ。ROM断片/rawhex/ROM/入力save/runtime/runner/credential追加公開0。
+
+## 2026-10-05T07:32:10.938674+00:00
+- Timestamp: 2026-10-05T07:32:10.938674+00:00
+- Task: USER-20261005-DEX-HOF-CONTROLLER / C transactionと既存save owner後継
+- Version: dex-hof-controller-owner-v1
+- Status: STOPPED（C/ARM・save共通化/codec配置の縦切り完了、全runtime世代結合未完）
+- Summary: 32sector HOF制御をC/ARM化。12host・新ARM10caseで復旧/中断/INITIALを合成検証。既存save sourceを共通化し、現115owner内でHJ codec3関数を配置。全8保存入口22caseとROM journal validator257caseを変更影響検証。後継候補12ab27e4、save subowner53／残292byte。HOF世代結合controllerの稼働ROM配線・正式ROM/Save101切替は未完。
+- Files changed: C controller/header、新host/ARM probe、save successor generator/linker、typed reference proof、Actions/guide/CP/text evidence、固定MDJSON、両ログ。
+- Verify: run37277602492/job111658005810全step成功・artifact11331330296全text/SHA照合。C12host=51wholebyteshape/224cut-normal/76partialerase/256journal/32recovery/55updates/42rotation/14token/2pre-signaturebarrier。ARM6528byte/mutable0、save host183diff、native22+257+10。115owner境界/非save全byte/HOF5section/逆変換/6typed見かけ参照を保持。
+- Failures retained: 37274005427 ARM memcpy link失敗→field-copy修正。37275659829 generator差替え再帰→source事前凍結。37276165080 外部参照未分類3件→typed wholeasset/root再検証。37277097069 4件のhistorical allocator hashを現物SHAと誤同一視→最新115owner byte auditへ結合し直し。いずれも当該native開始前停止、成功へ読み替えなし。
+- Boundary: controllerは明示RAM隔離testのみ、callbackは合成model。codecはROM配置してvalidator257case、全HOF writer/loader配線は未完。50履歴/1936suffix/32sector/sector30・31保持。正式ROM/Save101・baseline/release不変。一般CI QOL不一致/action_requiredjob0/Stage79cachedを別扱い。
+- Next: 現save後継ownerを基準に、controller6528byteを下位の共通generation writerへ統合し容量を再確保する。Linkのc/source・c+1backup・rotation据置、初回no-main、全mode/LinkFull署名barrierを保持。workspace1320+4096+7936byteのsave中RAM/heap所有、INITIAL has-records/loader、全writer/clone/selector/HOF-only gateを証明して配線。species9bit・共通SaveFailed・早期31・全cold owner・残typedを閉じ、正式候補切替後trainer131後半、最終シオウ通常回復/保存/独立cold Continue。雑魚毎checkpointなし。
+- Commit: tested source=e49dbc69f4ba91186edf828070537a7653fde7c7; record source=0e040facb459bceff6b64c1a8f5767e239b2c5ca; 同branch非force。
+- Network: 同repoActions/既存private inputsによる再構築のみ。source/minimal address-size-SHA/textだけ公開。ROM断片/rawhex/ROM/inputsave/runtime/runner/credential追加公開0。
