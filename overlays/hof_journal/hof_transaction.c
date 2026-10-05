@@ -270,6 +270,9 @@ static int build_hof(const HT_Ops *o,HT_Workspace *w,const void *context)
 }
 static int build_copy(const HT_Ops *o,HT_Workspace *w,const void *context)
 { return read_sector(o,w,*(const unsigned *)context); }
+/* ARMのaggregate assignmentがmemcpy libcall化するため、各fieldだけを写す。 */
+static void copy_main(HT_Main *out,const HT_Main *in)
+{ out->counter=in->counter;out->base=in->base;out->first=in->first; }
 static void target_main(const HT_Main *source,HT_Main *target)
 { target->counter=source->counter+1u;target->base=(uint8_t)(14u*(target->counter&1u));target->first=(uint8_t)mod14(source->first+1u); }
 static int preflight(const HT_Ops *o,HT_Workspace *w,MainBuild *c)
@@ -290,7 +293,7 @@ int HT_Recover(const HT_Ops *o,HT_Workspace *w)
 {
  HT_Main source;HofBuild c;uint8_t source_sha[32];unsigned i,ids[2],retire,had_hof,route;int rc=args(o,w,1,0);if(rc)return rc;
  rc=HT_Resolve(o,w);if(rc||!w->result.pending)return rc;
- source=w->result.main;cp(source_sha,w->result.source_sha,32);cp(w->old_sha,w->result.hof_sha,32);
+ copy_main(&source,&w->result.main);cp(source_sha,w->result.source_sha,32);cp(w->old_sha,w->result.hof_sha,32);
  had_hof=w->result.has_hof;route=w->result.route;
  ids[0]=14u-source.base+mod14(w->result.pending_first+8u);ids[1]=14u-source.base+mod14(w->result.pending_first+9u);
  retire=14u-source.base+mod14(w->result.pending_first+4u);
@@ -320,7 +323,7 @@ int HT_Commit(const HT_Ops *o,HT_Workspace *w,const uint8_t next[HJ_PAYLOAD],
  if(!w->result.has_hof){
   if(verified_absence!=1||kind!=HJ_INITIAL||w->result.has_journal)return HT_ERR_ABSENCE;
  }else if(kind==HJ_INITIAL)return HT_ERR_ABSENCE;
- source=w->result.main;target_main(&source,&target);epoch=w->result.epoch;
+ copy_main(&source,&w->result.main);target_main(&source,&target);epoch=w->result.epoch;
  cp(source_sha,w->result.source_sha,32);cp(w->old_sha,w->result.hof_sha,32);digest(w,next,HJ_PAYLOAD,w->new_sha);
  if(!HJ_Build(w->journal,w->hof,next,source.counter,epoch,w->old_sha,w->new_sha,source_sha,kind,slot))return HT_ERR_TRANSITION;
  c.source=&source;c.target=&target;c.journal=w->journal;
@@ -349,7 +352,7 @@ int HT_Normal(const HT_Ops *o,HT_Workspace *w)
  HT_Main source,target;MainBuild c;uint8_t source_sha[32];uint64_t epoch;unsigned i,had_hof,had_journal;int rc=args(o,w,1,1);if(rc)return rc;
  /* prepareを含む通常writerはrecoveryの後。未完journal上へ先に書かせない。 */
  rc=HT_Recover(o,w);if(rc)return rc;
- source=w->result.main;target_main(&source,&target);epoch=w->result.epoch;
+ copy_main(&source,&w->result.main);target_main(&source,&target);epoch=w->result.epoch;
  had_hof=w->result.has_hof;had_journal=w->result.has_journal;
  cp(source_sha,w->result.source_sha,32);cp(w->old_sha,w->result.hof_sha,32);cp(w->journal,w->selected_journal,HJ_SIZE);
  c.source=&source;c.target=&target;c.journal=had_journal?w->journal:0;
