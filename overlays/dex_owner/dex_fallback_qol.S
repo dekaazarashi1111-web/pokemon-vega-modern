@@ -57,10 +57,8 @@ VegaDexFallbackQolLoad:
     beq invalid
     subs r1,#16
     ldr r0,[r5,r1]
-    movs r2,#1
-    lsls r2,r2,#18
-    tst r0,r2
-    bne invalid
+    lsls r0,r0,#13
+    bmi invalid
     adr r1,L_empty
 range:
     ldrh r0,[r1]

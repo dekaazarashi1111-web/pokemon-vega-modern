@@ -13,3 +13,7 @@
 現時点は新host契約とARM容量のcompile-only段階。配置、native、cold復元は未受入。既存114ownerと実codec/scheduler sectionを保持し、新spanの全見かけ参照を型付きrootまで分類してから配置する。
 
 QOL ledgerの独自generationはmain SaveCounterと同じでない。sector31にはmain世代bindingがないため、今回を全owner復元、cross-store原子性、初回HOF mode3整合、全mode/共通SaveFailed、正式baseline切替に広げない。正式ROM/Save101と受入済み原本は不変。
+
+## 新規隔離工程
+
+初回Cは容量guardで配置前に停止しnative0。手書きARM300byte版はcompile-only全10step成功（run37258072804）、同義DUE bit判定の4byte短縮で296byteへ限定した。新host327907条件と30literal/2BL/26rootの型付きleaseを接続し、隔離508条件へ進む。生native/画面未確認を受入へ昇格しない。

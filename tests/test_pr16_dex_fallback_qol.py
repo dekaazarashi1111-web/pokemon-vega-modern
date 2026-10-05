@@ -46,11 +46,16 @@ int main(void){unsigned cases=0;VegaModernSaveData before;uint8_t b[4096],f[4096
   if(VegaDexFallbackQolLoad(0)!=255||status!=2||invalidations!=1||reads!=(kind!=12)||memcmp(&ledger,&before,2048)||memcmp(f,flash,4096))return 4;
   for(unsigned j=0;j<522;j++)if(live[j])return 5;cases++;
  }
+
+ const unsigned ranges[][2]={{0x1B,1},{0x120,20},{0x163,32},{0x400,4},{0x664,8},{0x694,46},{0x76B,16},{0x814,2},{0x828,8},{0x914,2},{0x952,1},{0xB18,8},{0xB24,1}};
+ for(unsigned k=0;k<13;k++)for(unsigned j=0;j<ranges[k][1];j++){init();uint8_t*p=flash+0x64;p[ranges[k][0]+j]=1;if(fallback_idle((VegaModernSaveData*)p))return 6;cases++;}
+ for(unsigned bit=0;bit<32;bit++){init();VegaModernSaveData*q=(VegaModernSaveData*)(flash+0x64);q->factory.reward_claim_bits=1u<<bit;if(fallback_idle(q)!=(bit!=18))return 7;cases++;}
+ for(unsigned bit=0;bit<=32;bit++){init();uint32_t magic=0x54534846u^(bit==32?0:1u<<bit);memcpy(flash+0x64+0x404,&magic,4);if(fallback_idle((VegaModernSaveData*)(flash+0x64))!=(bit!=32))return 8;cases++;}
  printf("{\"status\":\"PASS_HOST_FALLBACK_CONTRACT\",\"cases\":%u}\n",cases);return 0;}
 '''
   with tempfile.TemporaryDirectory() as d:
    c=Path(d)/'test.c';c.write_text(source);exe=Path(d)/'test'
    r=subprocess.run(['cc','-std=c11','-O2','-Wall','-Wextra','-Werror','-Wno-misleading-indentation','-I'+str(ROOT),str(c),str(ROOT/'overlays/dex_owner/dex_owner.c'),str(ROOT/'overlays/dex_owner/dex_save_bridge.c'),str(ROOT/'overlays/save_migration/save_migration.c'),'-o',str(exe)],capture_output=True,text=True)
    self.assertEqual(r.returncode,0,r.stderr);self.assertEqual(r.stderr,'')
-   r=subprocess.run([str(exe)],capture_output=True,text=True);self.assertEqual(r.returncode,0,r.stderr);self.assertEqual(json.loads(r.stdout)['cases'],327693)
+   r=subprocess.run([str(exe)],capture_output=True,text=True);self.assertEqual(r.returncode,0,r.stderr);self.assertEqual(json.loads(r.stdout)['cases'],327907)
 if __name__=='__main__':unittest.main()
