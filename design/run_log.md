@@ -13411,3 +13411,18 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 残139件の次batchはSummary 0x081357A7と関連asset候補を実rootから調べる。party action0→Summary constructor根はあるが、finish0813752Cのtask literal08137570→installed09378491の先が未調査。旧08135028への接続を仮定しない。新Summary allocation/setup/page flipを必要最小条件として閉じる。GPU080A006Fの外側root、08118D03の外側caller/data+0x13 writerは未特定で採用しない。既測定party/Mystery/旧suite/nativeは無影響再走しない。未知最大access/間接参照/退役/owner移管未証明なら旧egg15118全域保護/安全0。単一controller6528byte容量確保後、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL/全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/0804B85C退避前Freeへ接続。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。
 - Commit: source=21fc8f158835b0bdfcdfc33c01e15c38cbf16513; 同branch非force。
 - Network: 同repoActions/既存入力/固定source。公開source・最小address-size-SHA・textのみ、ROM断片/rawhex/ROM/inputsave/runtime/runner/credentials追加公開0。
+
+## 2026-10-05T23:36:13.623973+00:00
+- Timestamp: 2026-10-05T23:36:13.623973+00:00
+- Task: USER-20261005-DEX-HOF-PARTY-REFERENCES / TakeItem/MoveTutor最小型batchの終端
+- Version: hof-party-references-closeout
+- Status: STOPPED（party型2件を受入、残root/donor/本番controller未完）
+- Summary: run37388739395/job112028474288全14step成功。artifact11379904002全11text原本と固定MDJSON/CP/両ログ全byte/LF/Git blobを照合しpending解除。完了measurement起動条件のみmanual-onlyへ。
+- Files changed: closeout source/workflow/tests、measurement起動条件、固定MDJSON、両append-onlyログ。
+- Verify: 原本276tests、新分類2、735分類/139未知（owner内0）を再利用。全733親行・全十段114changes/104witnessと残unknown全field、133曲/50assetを保持。新公開guard9tests PASS。新TakeItem/MoveTutorの実party根・必要最小条件付き6byte型をsource-only確認。自然play到達/普遍IRQ/全allocation lifetimeは受入に含めない。旧分類/host/ARM/ROM/native再走0。旧独立最終sourceレビュー未実施を保持。
+- Capacity: 未知の最大アクセス範囲が未証明なら全15118byte保護。間接参照/退役/owner移管も未完でsafe0byte。global511＋save804の上限1315は単一controller6528に不足5213。点targetの仮想空隙は安全容量ではなく、今後の追加分類で変わり得る。実配線時の追加容量も未確定。
+- Publication: 全親は参照保持、新delta375903byteとpartial-space独立envelope。閉じた非空success set・whole size/SHA/LF・hidden/symlink/未知file拒否。
+- Boundary: 現0641/115owner/52saveowner/804byte/正式ROM/Save101不変。heap13352の保存退避53300跨ぎ禁止。一般CI既知QOL不一致/action_required job0/runner割当中のcancelled job/Stage79cacheは別扱い。
+- Next: 残139件の次batchはSummary 0x081357A7と関連asset候補を実rootから調べる。party action0→Summary constructor根はあるが、finish0813752Cのtask literal08137570→installed09378491の先が未調査。旧08135028への接続を仮定しない。新Summary allocation/setup/page flipを必要最小条件として閉じる。GPU080A006Fの外側root、08118D03の外側caller/data+0x13 writerは未特定で採用しない。既測定party/Mystery/旧suite/nativeは無影響再走しない。未知最大access/間接参照/退役/owner移管未証明なら旧egg15118全域保護/安全0。単一controller6528byte容量確保後、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL/全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/0804B85C退避前Freeへ接続。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。
+- Commit: closeout source=1e38bf562da0058131065107debcf4a55d925c82; 同branch非force。
+- Network: 同repoActions/text原本のみ。ROM断片/rawhex/ROM/save/runtime/runner/credentials追加公開0。
