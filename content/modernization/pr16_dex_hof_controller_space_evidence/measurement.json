@@ -1,0 +1,198 @@
+{
+  "status": "PASS_CURRENT_726_PARENT_ROOTS_AND_PARTIAL_SPACE_REFUSAL",
+  "source_head": "d6a5a8bab92e7fcf53fc280e6857b14c72f4f60c",
+  "run_id": 37347429731,
+  "candidate": {
+    "size": 33554432,
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+  },
+  "candidate_changed": false,
+  "unit_tests": 201,
+  "classified": 728,
+  "unclassified": 146,
+  "newly_classified": 2,
+  "new_data": 1,
+  "new_code": 1,
+  "new_song": 0,
+  "old_inventory_candidates": 874,
+  "previous_classified": 726,
+  "previous_unknown": 148,
+  "owner_unknown": 0,
+  "unowned_unknown": 146,
+  "all_prior_accepted_retained": true,
+  "remaining_unknown_rows_retained": true,
+  "old_full_rom_inventory_reused": true,
+  "delta_identity": {
+    "size": 23481,
+    "sha256": "1ede9031a30c4c5f52ec2b6cbf47ad177c4117931fb72796ce597c2786c01476"
+  },
+  "baseline_identity": {
+    "size": 4063919,
+    "sha256": "814082398937869b6cc17faa09cbf1833f0c7f4aa300ddbd83d0de833d44b74c"
+  },
+  "parent_identity": {
+    "size": 28406,
+    "sha256": "20a394e6ce825113bbfd833989c18528a44f665f79eaf1c91f1ab6899a796dc7"
+  },
+  "earlier_identity": {
+    "size": 149772,
+    "sha256": "762320ba350f528777b90be404b5fec1d88caeb6dbf6594590d4f45b852c1c87"
+  },
+  "unknown_identity": {
+    "size": 63943,
+    "sha256": "9a58057a3d7d8c18661270902c00c478da298ba65f0b637cc99a1d09a32df85f"
+  },
+  "capacity_identity": {
+    "size": 7352,
+    "sha256": "a622dec8e17f6f108b1b2fcdcd6344a74af005a6ddafd2285a30cd3bf5aa7ff9"
+  },
+  "source_bindings": {
+    ".github/workflows/pr16-dex-hof-controller-space.yml": {
+      "size": 2963,
+      "sha256": "c86a963ad326bc5a3742ef4eb151f5ca3594f7a02393ae3b8616089b01194f78"
+    },
+    "content/modernization/pr16_dex_hof_controller_space_sources.json": {
+      "size": 5760,
+      "sha256": "3fc295a46a1bcbb7f912623c4799107e9687436686a97b65e0f33c29c4b1e93a"
+    },
+    "content/modernization/pr16_dex_hof_space_assets_review.json": {
+      "size": 7915,
+      "sha256": "f813c1d4fbf86467cdff96fad3c2e9c1dc04c1dce345518f769aacd199f1a6a1"
+    },
+    "content/modernization/pr16_dex_hof_space_roots_review.json": {
+      "size": 46969,
+      "sha256": "8336c121466767f391961fba33f3b107228e4639eb360091d16b47c04b8954d6"
+    },
+    "docs/PR16_DEX_HOF_CONTROLLER_SPACE_JA.md": {
+      "size": 5848,
+      "sha256": "fcaa7e262483a9ba6fcfcdc3b00351be879d8f76f1b151fd6178b8de5758d630"
+    },
+    "scripts/pr16_dex_hof_controller_space.py": {
+      "size": 2930,
+      "sha256": "cae7340b1e6d2a0c3cf5676ec00480e40800909d9f113e9fbe451181946d9f64"
+    },
+    "scripts/pr16_dex_hof_controller_space_actions.py": {
+      "size": 24569,
+      "sha256": "a91f099f6473bed290772f5b9dc73ef2cfd2c25efe289b89485040facde8c139"
+    },
+    "scripts/pr16_dex_hof_partial_space.py": {
+      "size": 10596,
+      "sha256": "adc3e39094a1d3d38e330c2f919f13d33b71f8fd4239995207749b38d835ff65"
+    },
+    "scripts/pr16_dex_hof_space_assets.py": {
+      "size": 17920,
+      "sha256": "b972e8cb6b79692e5bcbef6d90caf56424123d59c6fbdacbcec2e12410d68fbb"
+    },
+    "scripts/pr16_dex_hof_space_chain.py": {
+      "size": 10578,
+      "sha256": "65002e5a3aadbe35d4ad7ebc041852d49a8ddf2675bfd3347f66b568074872df"
+    },
+    "scripts/pr16_dex_hof_space_intervals.py": {
+      "size": 8533,
+      "sha256": "2f7edf8471b3c4650cc150c1cca3f987b486168c1ac53a7343f1e8569eac3435"
+    },
+    "scripts/pr16_dex_hof_space_roots.py": {
+      "size": 9302,
+      "sha256": "39edbf825f9932e63750701f804d9506dbe6f2c5963cf87d70829e5b9b302d6c"
+    },
+    "tests/test_pr16_dex_hof_controller_space.py": {
+      "size": 2997,
+      "sha256": "69f1878db21dbef449f541ee8448d91b596ddf8c0f754be68ff72dbfdd0d46d1"
+    },
+    "tests/test_pr16_dex_hof_controller_space_actions.py": {
+      "size": 8787,
+      "sha256": "5161065a9b48804a56b1ff9896670e44af1832d398a6de7263466818b5dc03e1"
+    },
+    "tests/test_pr16_dex_hof_partial_space.py": {
+      "size": 15033,
+      "sha256": "5caf6c0021d028f7c37905fae814cda79dc2bb20e260e5f67089234498ba033b"
+    },
+    "tests/test_pr16_dex_hof_space_assets.py": {
+      "size": 7013,
+      "sha256": "88356291c3d1092d55186d11b90510e2e19efceb05dcca49834ce07566cc0753"
+    },
+    "tests/test_pr16_dex_hof_space_chain.py": {
+      "size": 5587,
+      "sha256": "adcc35b3de7f18b0d26a96236395325a9fc2e56461da52de40ab2b2d23ae651a"
+    },
+    "tests/test_pr16_dex_hof_space_roots.py": {
+      "size": 6603,
+      "sha256": "fd54fd57a9577c6b61eb39eec492c076d973d89e18d1e9c13f9a8eaf854176bd"
+    }
+  },
+  "inherited_bindings": {
+    "content/modernization/pr16_dex_hof_consumer_references_checkpoint.json": {
+      "size": 11195,
+      "sha256": "660b6dc8b99c0005e8804998ad962772358233338eb2876d12853d75507342b9"
+    },
+    "content/modernization/pr16_dex_hof_consumer_references_evidence/reference-chain.json": {
+      "size": 28406,
+      "sha256": "20a394e6ce825113bbfd833989c18528a44f665f79eaf1c91f1ab6899a796dc7"
+    },
+    "content/modernization/pr16_dex_hof_consumer_references_evidence/unknown-frontier.json": {
+      "size": 64815,
+      "sha256": "435ae082b4cba009029f452e0bffcc365a73c66a439241842dd12107f54bab06"
+    },
+    "content/modernization/pr16_dex_hof_controller_evidence/controller-footprint.json": {
+      "size": 9353,
+      "sha256": "5ec5d9b72d25dcd249c3d6cf8af75544749748a8bdcee6da2092c3e583223d6c"
+    },
+    "content/modernization/pr16_dex_hof_generation_writer_checkpoint.json": {
+      "size": 388088,
+      "sha256": "2aa483a860c7f5bc4919f6a3f11c74e3d209399059e8febbd63f3baaa16a8d49"
+    },
+    "content/modernization/pr16_dex_hof_reference_evidence/reference-delta.json": {
+      "size": 149772,
+      "sha256": "762320ba350f528777b90be404b5fec1d88caeb6dbf6594590d4f45b852c1c87"
+    },
+    "content/modernization/pr16_dex_hof_reference_gaps_evidence/reference-chain.json": {
+      "size": 95619,
+      "sha256": "c38d8e67a6718cacc17a3999922dca9edd9977734711b3cf5a74f85c1b76bb32"
+    },
+    "content/modernization/pr16_dex_hof_remaining_references_checkpoint.json": {
+      "size": 8001,
+      "sha256": "62411cded366aa43cb449af76b13166e2df6476532b3997664c22baa00e1d226"
+    },
+    "content/modernization/pr16_dex_hof_remaining_references_evidence/reference-chain.json": {
+      "size": 71138,
+      "sha256": "185e66b6e93eb94a6d1850b7f29b4ccfd00dfd3b3a5668a6021dbf5059fd3bd2"
+    },
+    "content/modernization/pr16_dex_hof_script_references_checkpoint.json": {
+      "size": 8864,
+      "sha256": "026944a1ae8d2bfeca0eb3105868d9ebe3fc1b8f0d7669fc18b7fb69fddc58ff"
+    },
+    "content/modernization/pr16_dex_hof_script_references_evidence/reference-chain.json": {
+      "size": 134951,
+      "sha256": "da105fd05e4ddb51bd7648af890db509c9b8f1e7e79112dbc1b295ce15b51279"
+    },
+    "content/modernization/pr16_dex_hof_typed_recovery_evidence/egg-typed-audit.json": {
+      "size": 4063919,
+      "sha256": "814082398937869b6cc17faa09cbf1833f0c7f4aa300ddbd83d0de833d44b74c"
+    },
+    "content/modernization/pr16_story_route_adapter_checkpoint.json": {
+      "size": 45222,
+      "sha256": "ff7094f278de5502b40bca5ceaccb1a29ba6776b9b5eedc5ccdcb5ea03be19c7"
+    },
+    "state/source-lock.json": {
+      "size": 3166,
+      "sha256": "0e230bf9fad2766d05ccb2410b22274c32085fed7544a78e37e0b5f451bda3c4"
+    }
+  },
+  "current_owner_count": 115,
+  "current_rom_reconstructions": 1,
+  "historical_rom_reconstructions": 0,
+  "old_full_rom_scan_runs": 0,
+  "native_processes": 0,
+  "accepted_heap_reruns": 0,
+  "independent_final_source_review_completed": false,
+  "validation_scope": "新scope専用unit、現候補全SHA/115actual owner/874hit/新有限consumerと保存容量原本の機械検証。旧最終song/battle/Surf独立再レビュー未実施を保持。",
+  "combined_song_models": 133,
+  "retained_sample_witnesses": 50,
+  "old_models_reused_for_new_cross_song_role_safety": true,
+  "donor_leased": false,
+  "donor_eligible": false,
+  "indirect_reference_completeness_claimed": false,
+  "controller_runtime_wired": false,
+  "formal_rom_changed": false,
+  "formal_save_changed": false
+}
