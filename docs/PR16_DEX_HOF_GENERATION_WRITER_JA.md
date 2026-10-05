@@ -1,6 +1,6 @@
 # HOF接続に向けた下位generation writer
 
-normal live、exact-old clone、Link source-recordのsector生成・書込・検証を一つの下位writerへ統合する。source／target／counterは上位が確定した明示値だけを使い、下位で最新世代を選び直さない。Linkの旧PC保持、source cとbackup c+1、rotation据置、初回no-main、LinkFull遅延署名を保持する。
+exact-old cloneとLink source-recordのsector生成・書込・検証を一つの下位writerへ統合する。normal liveとLinkFullは固有barrierを保持する。source／target／counterは上位が確定した明示値だけを使い、下位で最新世代を選び直さない。Linkの旧PC保持、source cとbackup c+1、rotation据置、初回no-main、LinkFull遅延署名を保持する。
 
 既存whole-flash／MDX／counter／rotation／damaged／callback数の183差分と20既存host caseを検証した。実ROM配置容量と再配置影響は専用Actionsで確定する。Ccontroller6528byteはまだ未接続である。既配置HJ codecを除いても約5660byteの追加容量が必要であり、旧残292byteだけで十分とは主張しない。
 
@@ -9,3 +9,5 @@ normal live、exact-old clone、Link source-recordのsector生成・書込・検
 13,352byte workspaceは本番所有未証明。固定scratchの流用をせず、実heapの同期call-local arena、最大整列、不足前flight、全出口の解放を証明する。初期loader、LinkFullの分離入口、mode3入れ子呼出し、全writerとloaderのpending/token gateは未完。
 
 正式ROM／Save101、merge／release／baselineは変更しない。公開物はsourceと最小address-size-SHA/textだけ。50履歴と1936byte suffixを維持し、species9bitを修復済みにしない。最終目標はシオウ通常回復・保存・独立cold Continueであり、雑魚ごとの保存checkpointは再導入しない。
+
+初期の三mode一体化はfar-call成長後9254byteとなり9252byte枠を超えたためnative前に停止した。旧egg rootをStage73とする仮定も、P07への再移行を実ROMで検出して撤回した。両診断を成功へ読み替えず、旧表はleaseしていない。

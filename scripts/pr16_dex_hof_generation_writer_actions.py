@@ -32,22 +32,26 @@ def audit_retired_egg(current,cp):
  # root移行済みの旧Stage67表を容量候補として監査する。lease/書換はしない。
  rows={r['name']:r for r in cp['placement']['owner_byte_audit']}
  old=rows['modernization_p03_stage67_normal_egg_rows'];new=rows['modernization_p03_stage73_exact_egg_rows']
- for r in(old,new):
+ live=rows['modernization-p07-preserved-egg']
+ for r in(old,new,live):
   at=r['address']-0x08000000;need(identity(current[at:at+r['size']])==dict(size=r['size'],sha256=r['after_sha256']),'actual latest egg owner identity')
  need(old['address']==0x09FED0C4 and old['size']==15118 and new['address']==0x09FF0BD4 and new['size']==15018,'exact Stage67/73 egg owner extents')
  roots=[]
  for offset in(0x45214,0x4528C):
   raw=current[offset:offset+4];target=struct.unpack('<I',raw)[0]
-  roots.append(dict(address=offset+0x08000000,**identity(raw),points_to=target,stage73_root_matches=target==new['address']))
+  need(target==live['address']==0x095D9EFC,'actual P07 egg root')
+  roots.append(dict(address=offset+0x08000000,**identity(raw),points_to=target))
+ need(live['size']==15396 and struct.unpack_from('<I',current,0x45288)[0]==7696,'P07 fulltable scanlimit')
+ words=struct.unpack_from('<7698H',current,live['address']-0x08000000);need(words[-1]==0xffff and words[0]>=20000 and all(x<22000 for x in words[:-1]),'P07 value-encoded egg table no row pointers')
  lo,hi=old['address'],old['address']+old['size'];hits=[]
  def canonical(value):
   return 0x08000000+((value&~1)-0x08000000)%0x02000000 if 0x08000000<=(value&~1)<0x0E000000 else -1
  def record(at,target,kind):
   if lo<=at<hi:return
   offset=at-0x08000000;hits.append(dict(address=at,target=target,kind=kind,**identity(current[offset:offset+4]),classification='UNCLASSIFIED'))
- for offset in range(0,len(current)-3,4):
+ for offset in range(0,len(current)-3):
   target=canonical(struct.unpack_from('<I',current,offset)[0])
-  if lo<=target<hi:record(0x08000000+offset,target,'ALIGNED_U32_ALL_ROM_MIRRORS')
+  if lo<=target<hi:record(0x08000000+offset,target,'ALL_BYTE_START_U32_ALL_ROM_MIRRORS')
  for offset in range(0,len(current)-3,2):
   a,b=struct.unpack_from('<HH',current,offset)
   if a&0xF800==0xF000 and b&0xF800==0xF800:
@@ -55,7 +59,18 @@ def audit_retired_egg(current,cp):
    if disp&(1<<22):disp-=1<<23
    target=0x08000000+offset+4+disp
    if lo<=target<hi:record(0x08000000+offset,target,'THUMB_BL_SHAPE')
- return dict(status='AUDIT_ONLY_NO_DONOR_LEASE',candidate=identity(current),retired_candidate=old,replacement=new,active_roots=roots,scan_scope='all32MiB aligned U32 ROM mirrors and Thumb BL shape, whole15118byte candidate',hits=hits,unclassified=len(hits),raw_rom_included=False,donor_leased=False,indirect_reference_completeness_claimed=False)
+ return dict(status='AUDIT_ONLY_NO_DONOR_LEASE',candidate=identity(current),retired_candidate=old,replacement=new,current_replacement=live,active_roots=roots,current_scan_limit=7696,scan_scope='all32MiB every byte-start U32 ROM mirrors and Thumb BL shape, whole15118byte candidate',hits=hits,unclassified=len(hits),raw_rom_included=False,donor_leased=False,indirect_reference_completeness_claimed=False)
+
+def audit_heap_bindings(current):
+ rows=[]
+ sources={'pr16_ring_ui_runtime_bytes.json':(2,3,4),'pr16_ring_ui_leaf_bytes.json':(0,1),'pr16_ring_story_resources_frontier.json':(25,26,30,31),'pr16_ring_story_resource_suppliers.json':(3,)}
+ for filename,indices in sources.items():
+  path='content/modernization/'+filename;data=json.loads((ROOT/path).read_bytes())
+  for i in indices:
+   r=data['analysis']['new_windows'][i];at=r['start']-0x08000000;need(identity(current[at:at+r['identity']['size']])==r['identity'],'retained actual allocator/reset window')
+   rows.append(dict(source_path=path,selector='analysis.new_windows['+str(i)+']',address=r['start'],**r['identity']))
+ need(len(rows)==10 and sum(r['size']for r in rows)==688,'ten exact historical heap windows')
+ return dict(status='CURRENT_ROM_HEAP_WINDOWS_BOUND_NOT_RUNTIME_LEASE',candidate=identity(current),windows=rows,workspace_bytes=13352,raw_request_bytes=13359,rounded_request_bytes=13360,alignment=8,allocator_internal_entry=0x0800295D,free_internal_entry=0x08002A09,heap_root_pointer=0x03000A38,heap_size_pointer=0x03000A3C,allocator_scratch=[0x02020004,0x02020008,0x0202000C],lease_forbidden_entry=0x0804B85C,heap_ready_all_entries_proven=False,max_contiguous_free_proven=False,runtime_lease_enabled=False,raw_rom_included=False)
 
 def run():
  import pr16_dex_hof_main_cow_actions as main
@@ -69,6 +84,7 @@ def run():
   current,old_place=successor.apply(before,previous_patches,previous_link)
   cp=json.loads((ROOT/CP).read_bytes());need(identity(current)==cp['candidate']and previous_link==cp['link'],'exact latest candidate/complete link reconstruction')
   write(PUBLIC/'egg-capacity-audit.json',audit_retired_egg(current,cp))
+  write(PUBLIC/'heap-binding.json',audit_heap_bindings(current))
   patches,linked=link(OUT/'new-link');write(PUBLIC/'link.json',linked)
   # 選択窓/保存入口以外を最新12abから全byte保持する。
   old_checkpoint=successor.checkpoint;latest=dict(candidate=cp['candidate'],isolated=dict(placement=cp['placement'],link=dict(sections=cp['placement']['preserved_hof_sections'])))
@@ -92,7 +108,7 @@ def run():
 
 def export():
  publication.output(PUBLIC)
- allowed={'measurement.json','failure.json','host.json','link.json','build.json','attempts.json','native.txt','native-stderr.txt','link-diagnostic.json','egg-capacity-audit.json'}
+ allowed={'measurement.json','failure.json','host.json','link.json','build.json','attempts.json','native.txt','native-stderr.txt','link-diagnostic.json','egg-capacity-audit.json','heap-binding.json'}
  for p in PUBLIC.iterdir():
   need(p.is_file()and not p.is_symlink()and p.name in allowed and not p.name.startswith('.'),'closed flat nonhidden nonsymlink text')
   raw=p.read_bytes();need(0<len(raw)<1000000 and raw.endswith(b'\n')and b'\0'not in raw,'bounded complete nonempty text');raw.decode('utf8')
