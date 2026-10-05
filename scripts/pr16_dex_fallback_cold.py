@@ -9,6 +9,7 @@ need,identity,write=prior.need,prior.identity,prior.write
 BASE='06ff1e48ae0dd1dcaa5e49e803bd2df7c777dd3e';RUN=37258786462;JOB=111601363009;ARCHIVE=(11324225759,RUN,49949,'ef08914791b96041206d9904a0daa831a84a0109f45e907d626e4e31164206a7')
 HEADER='tools/mgba_pr16_dex_fallback_cold.h';OLDWF=prior.WF;WF='.github/workflows/pr16-dex-fallback-cold.yml';ARTIFACT='pr16-dex-fallback-cold-text-only'
 CODE={HEADER,'scripts/pr16_dex_fallback_cold.py','tests/test_pr16_dex_fallback_cold.py',OLDWF,WF}
+RECOVER_RUN=37259333246;RECOVER_JOB=111603028555;RECOVER_SOURCE='0a7ab83f83e9aad9fb01aaec0337346227ecdcd4';RECOVER_ARCHIVE=(11323448524,RECOVER_RUN,14254,'2bf44c77c4c0a14d885ef2f931d9aa4787d3a1780270289d4641346ce229a42a')
 OUT=ROOT/'.local/pr16-dex-fallback-cold';PUBLIC=ROOT/'public-dex-fallback-cold'
 def validate_header(s):
  s=re.sub(r'/\*.*?\*/|//[^\n]*','',s,flags=re.S)
@@ -36,14 +37,16 @@ def trace(raw,folder,candidate,source,blocked):
  for row in rows[1:-1]:
   if'input'in row:need(phase==0 and row['input']==inputs and row['frame']==frame and row['key']in(0,1,2,8,16,32,64,128)and 0<row['frames']<=600,'ordered bounded keys');inputs+=1;frame+=row['frames']
   elif'fallback_cold'in row:need(phase==0 and row['frame']==frame,'single final metadata');meta.append(row);phase=1
+  elif'blocked_observe'in row:
+   need(blocked and phase==1 and row['frame']==frame and row['mdx_all_zero']and row['mdx_sha256']==identity(bytes(522))['sha256'],'blocked-state observer never reads field inventory');obs.append(row);mdx.append(dict(valid=False,save_file_status=row['save_file_status'],live_sha256=row['mdx_sha256']));phase=3
   elif'observe'in row:need(phase==1 and row['frame']==frame,'same-frame observation');obs.append(row);phase=2
   elif'mdx'in row:need(phase==2 and row['frame']==frame,'same-frame MDX');mdx.append(row);phase=3
   elif'screen'in row:need(phase==3 and row['frame']==frame,'same-frame screen');screens.append(row);phase=4
   else:raise ValueError('unknown cold trace row')
  need(phase==4 and len(meta)==len(obs)==len(mdx)==len(screens)==1,'one complete final observation');need(end==dict(end='PASS_FALLBACK_QOL_COLD',frames=frame,inputs=inputs,blocked=blocked,host_write_barriers=7,ram_fixture_writes=0,register_writes=0,native_processes=1),'complete cold end')
- m,o,d=meta[0],obs[0],mdx[0];need(m['save_calls']==0 and m['flash_all_bytes_unchanged']and m['counter']==101 and m['ledger_sha256']==o['ledger_sha256']and m['status']==d['save_file_status'],'full coherent cold metadata');need(m['blocked']==blocked and o['field']==(not blocked),'field only valid idle ledger')
+ m,o,d=meta[0],obs[0],mdx[0];need(m['save_calls']==0 and m['flash_all_bytes_unchanged']and m['counter']==(0 if blocked else 101) and m['ledger_sha256']==o['ledger_sha256']and m['status']==d['save_file_status'],'full coherent cold metadata');need(m['blocked']==blocked and o['field']==(not blocked),'field only valid idle ledger')
  if not blocked:need(m['ledger_physical_exact']and m['ledger_sha256']==identity(source[0x1F064:0x1F864])['sha256']and d['valid']and o['map']==[3,24]and o['xy']==[53,13]and o['party_count']==4 and o['lock']==0,'full durable ledger and selected formal location')
- else:need(m['status']==2 and not d['valid'],'invalid durable blocks Continue without initialization')
+ else:need(m['status']==2 and not d['valid']and m['ledger_sha256']==identity(bytes(2048))['sha256'],'invalid durable blocks Continue without initialization')
  need(images.screens(rows,folder)==screens,'complete original screen bytes');return dict(metadata=m,observation=o,mdx=d,screens=screens,end=end)
 def fixture(seed,kind):
  need(len(seed)==131088,'whole FlashRTC');out=bytearray(seed);offsets=[]
@@ -59,17 +62,26 @@ def run():
   with z:isolated=json.loads(z.read('measurement.json'))
   prior.OUT=OUT/'build';prior.OUT.mkdir();candidate,before,after,linked,placed=prior.reconstruct();ci=identity(after);need({k:isolated[k]for k in('candidate','parent_candidate','link','placement')}==dict(candidate=ci,parent_candidate=identity(before),link=linked,placement=placed),'exact previously isolated build')
   src=OUT/'cold.c';src.write_bytes(generate(ci,linked['entry']));exe=OUT/'cold-native';r=subprocess.run(['cc','-std=c11','-O2','-Wall','-Wextra','-Werror','-Wno-misleading-indentation','-I'+str(ROOT/'tools'),'-I'+str(ROOT),str(src),str(ROOT/'overlays/dex_owner/dex_owner.c'),'-lmgba','-lm','-o',str(exe)],capture_output=True,text=True);need(r.returncode==0 and not r.stdout and not r.stderr,'strict key-only compile '+r.stderr[-1800:])
+  r=t.api('actions/runs/'+str(RECOVER_RUN));j=t.api('actions/jobs/'+str(RECOVER_JOB));need(r['head_sha']==RECOVER_SOURCE and r['status']=='completed'and r['conclusion']=='failure'and j['run_id']==RECOVER_RUN and next(x for x in j['steps']if x['number']==5)['conclusion']=='failure','earlier failure remains diagnostic')
+  publication.consumer(t.api('actions/artifacts/'+str(RECOVER_ARCHIVE[0])),ARTIFACT,RECOVER_RUN);z,_=t.archive(RECOVER_ARCHIVE)
+  with z:earlier={n:z.read(n)for n in z.namelist()}
+  failed=json.loads(earlier['failure.json']);need(failed['native_processes']==3 and failed['attempts']==['healthy','fallback','corrupt-ledger']and failed['message']=='corrupt-ledger rc=1 research-save-impact: inventory capacity\n','only blocked observer failed after two completed positive cases')
   z,_=t.archive(t.SAVE101)
   with z:seed=z.read('story-fast.srm')
   need(identity(seed)==t.SEED,'formal Save101 original exact');selected=game.physical(seed,101);expected=game.record(selected['legacy']);cases=[]
   for name in('healthy','fallback','corrupt-ledger'):
-   data,declared=fixture(seed,name);need(game.physical(data,101)==selected,'every selected101 byte identical to formal');private=OUT/name;private.mkdir();public=PUBLIC/name;public.mkdir();save=private/'copy.srm';save.write_bytes(data);blocked=int(name=='corrupt-ledger');attempts.append(name);write(PUBLIC/'attempts.json',dict(native_processes=len(attempts),cases=attempts))
+   data,declared=fixture(seed,name);need(game.physical(data,101)==selected,'every selected101 byte identical to formal');private=OUT/name;private.mkdir();public=PUBLIC/name;public.mkdir();save=private/'copy.srm';save.write_bytes(data);blocked=int(name=='corrupt-ledger')
+   if not blocked:
+    for filename in('stdout.txt','stderr.txt','screen-0000.ppm'):(public/filename).write_bytes(earlier[name+'/'+filename])
+    need(not(public/'stderr.txt').read_bytes(),'completed positive original stderr');parsed=trace((public/'stdout.txt').read_text(),public,ci,data,0);need(parsed['mdx']['live_sha256']==identity(expected)['sha256']and parsed['metadata']['status']==(1 if name=='healthy'else 255),'recovered positive complete trace')
+    cases.append(dict(name=name,fixture=declared,trace=parsed,save=identity(data),output=identity(data),source_run=RECOVER_RUN,reused_raw=True));continue
+   attempts.append(name);write(PUBLIC/'attempts.json',dict(native_processes=len(attempts),cases=attempts,reused_native_processes=2))
    r=subprocess.run([str(exe),str(candidate),str(save),'blocked'if blocked else'valid',identity(data)['sha256']],cwd=public,capture_output=True,text=True,timeout=300);(public/'stdout.txt').write_text(r.stdout);(public/'stderr.txt').write_text(r.stderr);need(r.returncode==0 and not r.stderr,name+' rc='+str(r.returncode)+' '+r.stderr[-1500:]);parsed=trace(r.stdout,public,ci,data,blocked);need(save.read_bytes()==data,'all FlashRTC file bytes unchanged by cold');need(parsed['metadata']['status']==(1 if name=='healthy' else 255 if name=='fallback' else 2),'exact healthy/fallback/rejected status')
    if not blocked:need(parsed['mdx']['live_sha256']==identity(expected)['sha256'],'whole selected101 migrated MDX')
-   cases.append(dict(name=name,fixture=declared,trace=parsed,save=identity(data),output=identity(save.read_bytes())))
+   cases.append(dict(name=name,fixture=declared,trace=parsed,save=identity(data),output=identity(save.read_bytes()),source_run=int(os.environ['GITHUB_RUN_ID']),reused_raw=False))
   for key in('party_sha256','map','xy','party_count'):need(cases[0]['trace']['observation'][key]==cases[1]['trace']['observation'][key],'fallback preserves '+key)
   need(cases[0]['trace']['mdx']['bag_sha256']==cases[1]['trace']['mdx']['bag_sha256'],'normalized Bag unchanged');need(candidate.read_bytes()==after,'private ROM unchanged')
-  write(PUBLIC/'measurement.json',dict(status='PASS_FALLBACK_IDLE_LEDGER_COLD_AND_INVALID_BLOCK',source_head=os.environ['GITHUB_SHA'],run_id=int(os.environ['GITHUB_RUN_ID']),candidate=ci,isolated_run=RUN,isolated_candidate=isolated['candidate'],formal_seed=identity(seed),physical_ledger=identity(seed[0x1F064:0x1F864]),cases=cases,native_processes=len(attempts),host_tests=3,old_native_reruns=0,ram_fixture_writes=0,register_writes=0,physical_copy_fixture=True,all_cold_owners_preserved=False,sector31_atomicity=False,hof_initial_atomicity=False,formal_rom_changed=False,formal_save_changed=False,source_bindings={p:identity((ROOT/p).read_bytes())for p in sorted(CODE)}))
+  write(PUBLIC/'measurement.json',dict(status='PASS_FALLBACK_IDLE_LEDGER_COLD_AND_INVALID_BLOCK',source_head=os.environ['GITHUB_SHA'],run_id=int(os.environ['GITHUB_RUN_ID']),candidate=ci,isolated_run=RUN,isolated_candidate=isolated['candidate'],formal_seed=identity(seed),physical_ledger=identity(seed[0x1F064:0x1F864]),cases=cases,native_processes=len(attempts),reused_native_processes=2,reused_run=RECOVER_RUN,reused_archive=RECOVER_ARCHIVE,prior_diagnostic_native_processes=1,host_tests=3,old_native_reruns=0,ram_fixture_writes=0,register_writes=0,physical_copy_fixture=True,all_cold_owners_preserved=False,sector31_atomicity=False,hof_initial_atomicity=False,formal_rom_changed=False,formal_save_changed=False,source_bindings={p:identity((ROOT/p).read_bytes())for p in sorted(CODE)}))
  except Exception as e:write(PUBLIC/'failure.json',dict(status='DIAGNOSTIC_NOT_ACCEPTED',type=type(e).__name__,message=str(e).replace(str(ROOT),'.'),native_processes=len(attempts),attempts=attempts));raise
 def export():
  import pr16_dex_publication as publication
