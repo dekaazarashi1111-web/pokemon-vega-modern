@@ -40,6 +40,8 @@ def link(folder,before):
  return payload,dict(base=BASE,payload=identity(payload),symbols=symbols,exports=exports,compile_units=1,arm_links=1,new_mutable_owners=0,error_text=proof()['error_text'])
 
 def apply(before,payload,linked):
+ import pr16_dex_subowners as current
+ current.require_codec_lease(BASE,len(payload))
  import pr16_dex_battle_consumers as b
  signed(before);need(before[0xDB360:0xDB368]==b.tail_patch(0x080DB360,0x095FFEF1),'exact existing precursor target');cp=checkpoint();allocation=copy.deepcopy(cp['measurement']['placement']['allocation'])
  owner=[x for x in allocation['allocations']if x['name']=='pr16_dex_runtime_reserved'];need(len(owner)==1,'one reserved codec owner');owner=owner[0]

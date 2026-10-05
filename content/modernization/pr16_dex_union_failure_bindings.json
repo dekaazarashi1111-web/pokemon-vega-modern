@@ -89,9 +89,14 @@
     "error_exit_state": 12
   },
   "scope_ja": "Union Chatの保存callerだけ。失敗は既存wide windowに2行error、新規A/B後に元退出処理。成功だけSE_SAVEと元120frame待機。全mode/自然通信の受入ではない。",
-  "retired_suffix_preimage": {
+  "retired_suffix_claim_invalidated": {
     "size": 1332,
     "sha256": "1d2cedb0630691109f5f2327c8656b12ab0f289814d4970a1ba2740f06ada605"
   },
-  "retired_suffix_provenance_ja": "正式ROMの退役T09 pointer table残部。FF空白ではなく元の333pointer。既存Stage39退役lease・現在親全ROM SHA・現在reservation全SHA・全実owner比較・既存typed root保持を同時に検証する。"
+  "new_tail_preimage": {
+    "size": 1240,
+    "sha256": "2915450322392a5d74efd01e7cb9b7885c81fa35ceb7ef37d81ec974925806f2"
+  },
+  "new_tail_allocation_max": 384,
+  "overlap_correction_ja": "旧Mystery128byteはscheduler clone_complete_generationの先頭に衝突。3bb4c51bを配置全体受入から撤回し、40a7f38aからschedulerを全byte復元したうえで専用tailownerへ移設する。"
 }

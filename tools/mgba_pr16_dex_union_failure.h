@@ -36,8 +36,8 @@ static void uf_call(unsigned sp)
 static void uf_gate(unsigned sp,unsigned mode,unsigned inner,unsigned outer,unsigned status,unsigned mask)
 {
  w32(sp+8,inner);w32(sp+16,outer);w32(DAMAGED,mask);uf_snap();uf_regs(sp,0x080DB360);set("r0",status);set("r5",mode);unsigned target=0;
- for(unsigned i=0;;i++){need(i<200,"bounded new Union gate");unsigned pc=(reg("pc")&~1u)-2;if(pc==0x09FC1D38||pc==0x080DB36E||pc==0x080DB384){target=pc;break;}c->step(c);steps++;}
- unsigned expected=0x09FC1D38;if(mode==0&&inner==0x0937767B&&outer==0x08129A93){if(status==255)expected=0x080DB36E;else if(mask)expected=status==0&&mask==0x80000000u?0x080DB384:0x080DB36E;}
+ for(unsigned i=0;;i++){need(i<200,"bounded new Union gate");unsigned pc=(reg("pc")&~1u)-2;if(pc==0x09FFFB28||pc==0x080DB36E||pc==0x080DB384){target=pc;break;}c->step(c);steps++;}
+ unsigned expected=0x09FFFB28;if(mode==0&&inner==0x0937767B&&outer==0x08129A93){if(status==255)expected=0x080DB36E;else if(mask)expected=status==0&&mask==0x80000000u?0x080DB384:0x080DB36E;}
  need(target==expected&&reg("sp")==sp&&r32(DAMAGED)==mask,"strict caller-only gate and mask preserved");for(unsigned i=4;i<12;i++){char n[8];snprintf(n,sizeof(n),"r%u",i);need(reg(n)==(i==5?mode:0x77000000u+i),"scope callee preserved");}uf_memory(sp,0);checks++;
 }
 static void uf_text(unsigned sp,unsigned message,unsigned ret,unsigned attempt,unsigned scroll)

@@ -42,7 +42,7 @@ VegaDexUnionSaveResultGate:
 7: .word 0x030053DC
 8: .word 0x080DB385
 9: .word 0x080DB36F
-10:.word 0x09FC1D39
+10:.word 0x09FFFB29
 .size VegaDexUnionSaveResultGate,.-VegaDexUnionSaveResultGate
 
 .balign 4

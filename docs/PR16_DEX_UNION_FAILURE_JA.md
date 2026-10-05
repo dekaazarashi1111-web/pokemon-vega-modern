@@ -1,6 +1,6 @@
 # PR16 Union Room Chat保存の失敗通知
 
-正式ROM/Save101を保持し、Mystery Gift候補3bb4c51bを継承する。Union Room Chatの返値無視による完了文・SE_SAVEを局所修復する候補であり、全非START/全modeの受入ではない。
+正式ROM/Save101を保持し、健全なouterQOL候補40a7f38aからMystery/Unionを別のownerへ配置し直す。Union Room Chatの返値無視による完了文・SE_SAVEを局所修復する候補であり、全非START/全modeの受入ではない。
 
 ## 局所契約
 
@@ -10,12 +10,12 @@ PlaceStdMessageWindowの0x0812AF64から12byteをimmutable tailへ接続する�
 
 SaveAndExit state9の0x08129AC4から12byteを局所tailへ接続する。描画busy待ちは元のまま。成功は元SE_SAVE/ClearContinueGameWarpStatus2/state10/121frame閾値を保持。失敗は新規A/Bを待ってから一度だけclear、state12の元fade/cleanup/field帰還へ進む。自動retryやmutable latchを追加しない。
 
-## 配置と検証境界
+## 配置の訂正と再発防止
 
-現行112ownerと全実byteを比較し、既存codec reservationの現行5152byteを保持。0x09FC1DB8以降1332byteはblankではなく、正式ROMから残る退役T09の333pointer。既存Stage39退役leaseと現在typed root、現在親全ROM/owner SHA、残部全byte署名の同時一致を確認してから使う。旧余り記述を根拠に上書きしない。新mutable ownerなし、他111owner・全未宣言ROM byte不変、全ROM逆変換を確認する。
+旧Mystery候補3bb4c51bのUI成功は通知の限定証拠として残すが、配置全体の受入を撤回する。codecの旧余り1462byteはschedulerが1432byteを使用済みであり、Mystery128byteがclone_complete_generationの先頭と衝突した。後続Union初2runはguardでnative0停止し、正式ROM/Save101に影響しない。
 
-隔離実ARMは8保存結果×3stale attempt×2SP×2入力の96caller条件、720caller gate条件、200文字列条件を対象とする。物理Flash/描画はstubであり、実UI・通常通信・自然退出・field帰還の受入は別工程。
+親候補40a7f38aをそのまま再構築し、実scheduler3sectionとcodecを全byte保持。Mystery/Unionをallocatorの別tail0x09FFFB28以降へ移す。現行112owner全実byte保持、新113owner/overlap0、全未宣言ROM保持/逆変換を検証する。旧Mystery generatorのapplyに実subowner重複guardを追加し、空き表示だけでは再使用できない。codec実空きは2byte gapと末尾28byteだけ。
+
+新Union1016条件、配置変更影響のあるMystery816条件とscheduler19条件（通常保存・clone・CommitSignatureByte・HandleWriteSector・失敗保持）を検証する。無関係な履歴nativeは再走しない。実UI/field帰還/coldは別工程であり、全非START/全modeの受入へ昇格しない。
 
 HOF/共通SaveFailed scratch衝突、mode4/5再erase、stale selector authority、sector31早期故障/原子性、残typed consumerは未完。正式ROM切替・trainer131後半へ進まず、最終目標はシオウPokecenter通常回復・保存・独立cold Continueを維持する。
-
-初回run37245820015は未使用suffixをFFと誤仮定したguardで停止、native0。失敗を保持し、退役元の全1332byte SHAによる狭い署名へ修正する。
