@@ -10563,3 +10563,18 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 残145件の実root/consumerを閉じる。ReadMail/MoveTutorは局所実producerからsetup全state・allocation lifetimeまでを閉じる。部分leaseはtarget点だけでなく最大アクセス範囲・間接参照・対象範囲退役完全性・owner移管を証明した場合だけ採用。単一6528byte controllerの実配置容量を確保後、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL、全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/0804B85C退避前Freeを閉じる。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。
 - Commit: closeout source=09758d7fa34ab81cabe0c893a07f32ce48f48399; 同branch非force。
 - Network: 同repoActions/text原本のみ。ROM断片/rawhex/ROM/save/runtime/runner/credentials追加公開0。
+
+## 2026-10-05T18:54:50.454628+00:00
+- Timestamp: 2026-10-05T18:54:50.454628+00:00
+- Task: USER-20261005-DEX-HOF-CALLBACK-LIFETIMES / callback実root・lifetimeと容量保持
+- Version: hof-callback-lifetimes-v1
+- Status: STOPPED（新局所効果を測定、全root/donor/実controller未完）
+- Summary: 現0641でReadMail/MoveTutorのconstructor・全23setup状態・実menu/Tutor hookと条件付きcallee非干渉を新224試験で検証。分類は729/未知145を維持。sprite全64slotの同期callbackとcommand経路も有限入力条件だけで確認し、完全根未閉鎖の分類を増やさない。全115ownerを照合。allocation同一寿命・残setup helper・task/IRQ非干渉は未閉鎖で、全egg15118byte保護/安全容量0。正式ROM/Save101/donor不変。
+- Files changed: 新callback verifier/chain/capacity/拒否unit/Actions/guide/checkpoint/最小証拠、固定MDJSON、両ログ。
+- Verify: 新unit224、現candidate全SHA・115actual owner・874hit、全7親delta/全110changes/全100witness/旧729と残unknown全field保持、133全song model/50assetと新typed窓の役割交差。旧全ROMscan/native/heap/歴史再生成0。
+- Capacity: 未知参照はアクセス幅未証明なら全donor保護。点target楽観空隙を安全容量へ昇格しない。global余白511とsave内部804は既存owner/subownerを保持した上限で、新leaseなし。Ccontroller既測定単一text6528/align4と比較。間接参照/対象退役完全性も別必須gate。
+- Publication: 619原本と全親chainは参照保持、複製なし。独立measurementと全text size/SHA/LF、closed success artifact、hidden/symlink/未知file拒否。旧独立最終song/battle/Surfレビュー未実施を継承し、拒否操作の別経路再実行なし。
+- Boundary: 現0641/115owner/52saveowner/残804、正式ROM/Save101不変。heap13352を保存退避53300入口へ跨いで保持しない。
+- Next: 残145件の実root/consumerを閉じる。partyはallocator返却域と同一epoch、残graphics/setup helper、ResetTasks→state20のtask容量、selector入力producer、IRQ非干渉を証明する。Leerは実move入口と残prefix opcode0/10/40/25およびbattle/tile/palette初期化を閉じる。新全setup/局所callee/129有限spriteモデルは保存原本を再利用。部分leaseは最大アクセス幅・間接参照・対象退役・owner移管が揃う場合だけ採用。単一controller6528byteの容量確保後、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL、全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/0804B85C退避前Freeを接続。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。
+- Commit: source=7dc8201fe5ab718e5a9290a4e53ab7a59096b94c; 同branch非force。
+- Network: 同repoActions/既存入力/固定source。公開source・最小address-size-SHA・textのみ、ROM断片/rawhex/ROM/inputsave/runtime/runner/credentials追加公開0。
