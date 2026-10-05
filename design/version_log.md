@@ -10336,3 +10336,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 残255件を根付きconsumerへ結び、間接参照・旧egg退役完全性を証明する。未知0と退役ゲート後だけ必要分を明示donor移管し、Ccontroller実owner配置・全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL・同期heap lifetime・全mode/早期31/species9bitを閉じる。その後正式候補切替、trainer131後半から最終シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。
 - Commit: source=920cbc492bb8c65ee0364f9420d3a152f1f72e5f; 同branch非force。
 - Network: 同repoActions/既存private inputs、固定公開source blob。公開source/最小address-size-SHA/textのみ、ROM断片/rawhex/ROM/inputsave/runtime/runner/credentials追加公開0。
+
+## 2026-10-05T11:17:50.663107+00:00
+- Timestamp: 2026-10-05T11:17:50.663107+00:00
+- Task: USER-20261005-DEX-HOF-TYPED / 保存済み証拠の公開表現回復
+- Version: hof-typed-recovery
+- Status: STOPPED（分類受入619/255、公開表現を回復。donor/本番配線は未完）
+- Summary: 現候補0641の残参照59件（level39/palette6/song14）を追加し619分類/255未知、168tests PASS。全874行と旧560受入保持。原runは記録push成功後に冗長18.9MB証拠が公開上限で拒否されfailure。保存済みGit原本を保持し、hit非参照の重複regionだけ除いた後継証拠へ回復。分類/ROM/native再実行0、donor/正式ROM/Save101不変。
+- Files changed: compact recovery source/新境界tests/workflow/guide/後継CP/text証拠、固定MDJSON、両append-onlyログ。元18.9MB原本と失敗runは不変。
+- Verify: 元168tests/115owner/candidate全SHA/全874byteを原本再利用。新表現tests=11。圧縮={"all_hit_evidence_retained": true, "all_pool_partition_and_source_proof_retained": true, "hit_rows_changed": 0, "original_region_count": 8701, "removed_unreferenced_region_count": 8656, "retained_region_count": 45}。旧分類/168tests/ARM/ROM再構築/native再走0。
+- Boundary: 全hit/evidence/全pool partition/source proof不変、参照されないregion列挙だけ削減。元run37300879978/job111733040155は前10step成功・guard failure・upload skippedのまま。未知255/tutor1/間接参照/実controller/heap lifetimeは未完。
+- Next: 残255件を根付きconsumerへ結び、間接参照・旧egg退役完全性を証明する。未知0と退役ゲート後だけ必要分を明示donor移管し、Ccontroller実owner配置・全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL・同期heap lifetime・全mode/早期31/species9bitを閉じる。その後正式候補切替、trainer131後半から最終シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。
+- Commit: recovery source=07550eb00df33e64c48a04d629ddc1e7fe5c6e6f; 同branch非force。
+- Network: 同repoの保存済みtextのみ。ROM断片/rawhex/ROM/inputsave/runtime/runner/credentials追加公開0。
