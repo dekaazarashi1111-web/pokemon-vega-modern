@@ -8,7 +8,7 @@
 
 現0641の旧egg874参照にMystery Giftのmask literal/Thumb命令境界1件を追加し、733分類/未知141。新198試験、全115actual ownerと全9親deltaを照合。実CB2登録→CreateTask/RunTasks→38state表slot11/23→helperの相互排他的2経路を専用boundary witnessへ結合し、左literal4byteと右命令2byteを完全partition。自然play到達・普遍IRQ寿命・退役安全は別義務。全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。
 
-**次: 残141件は実consumer型を閉じる最小rootを優先。次候補0x080A006FのGPUscalar/VBlankcallback境界は外側rootを有限窓で確認できる場合だけ進める。MoveTutor/残QuestLog等の実登録と局所条件を優先し、自然到達/普遍epoch/IRQは型分類へ混同しない。保存済Mystery Giftの異種boundary、ReadMail/Leer/QuestLog237試験は無影響再走しない。部分leaseは最大access/間接参照/対象退役/owner移管が揃う場合だけ採用。単一controller6528byteの容量確保後、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL、全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/0804B85C退避前Freeを接続。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。**
+**次: 残141件の次優先は0x08120CBD。実party action3 Item→action type8の[Give4/Take5/Cancel9] producer→index1/row5 Take→成功枝0x08124464→0x08120C9Cを結び、0x08120CBCの完全BLと0x08120CC0の静的LDR successorの6byte型を最小条件で検証する。既受入ReadMailの登録/setup/allocator/selectorを再利用し、全自然到達や普遍allocation/IRQへ膨張させない。次点MoveTutor0x08126B0Bはspecial397とaction12根を使いcallee/復帰条件を限定。0x080A006Fは外側登録root未特定、確認済title6144byte窓を反復しない。保存済MysteryGift198試験/733親と旧237試験を無影響再走しない。最大access/間接参照/対象退役/owner移管未証明では旧egg15118全域保護/安全容量0。単一controller6528byteの容量確保後、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL、全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/0804B85C退避前Freeを接続。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。**
 
 通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。
 
@@ -48,6 +48,11 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 - `scripts/pr16_dex_hof_partial_space.py`
 - `content/modernization/pr16_dex_hof_generation_writer_checkpoint.json`
 - `content/modernization/pr16_dex_hof_boundary_mystery_review.json`
+- `scripts/pr16_dex_hof_runtime_party.py`
+- `scripts/pr16_dex_hof_callback_party.py`
+- `scripts/pr16_dex_hof_callback_party_task.py`
+- `content/modernization/pr16_dex_hof_runtime_party_review.json`
+- `content/modernization/pr16_dex_hof_callback_party_review.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 

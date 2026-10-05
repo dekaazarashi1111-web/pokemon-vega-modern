@@ -10638,3 +10638,18 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 残141件は実consumer型を閉じる最小rootを優先。次候補0x080A006FのGPUscalar/VBlankcallback境界は外側rootを有限窓で確認できる場合だけ進める。MoveTutor/残QuestLog等の実登録と局所条件を優先し、自然到達/普遍epoch/IRQは型分類へ混同しない。保存済Mystery Giftの異種boundary、ReadMail/Leer/QuestLog237試験は無影響再走しない。部分leaseは最大access/間接参照/対象退役/owner移管が揃う場合だけ採用。単一controller6528byteの容量確保後、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL、全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/0804B85C退避前Freeを接続。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。
 - Commit: source=4aa3f68969c872be8ccf3c3e261065d2e63b0164; 同branch非force。
 - Network: 同repoActions/既存入力/固定source。公開source・最小address-size-SHA・textのみ、ROM断片/rawhex/ROM/inputsave/runtime/runner/credentials追加公開0。
+
+## 2026-10-05T22:38:28.844883+00:00
+- Timestamp: 2026-10-05T22:38:28.844883+00:00
+- Task: USER-20261005-DEX-HOF-BOUNDARY-REFERENCES / 異種literal/code境界と最小型根の終端
+- Version: hof-boundary-references-closeout
+- Status: STOPPED（異種boundary1件を受入、残root/donor/本番controller未完）
+- Summary: run37382884285/job112008987647全14step成功。artifact11375892514全11text原本と固定MDJSON/CP/両ログ全byte/LF/Git blobを照合しpending解除。完了measurement起動条件のみmanual-onlyへ。
+- Files changed: closeout source/workflow/tests、measurement起動条件、固定MDJSON、両append-onlyログ。
+- Verify: 原本198tests、新分類1、733分類/141未知（owner内0）を再利用。全732親行・全九段113changes/103witnessと残unknown全field、133曲/50assetを保持。新公開guard9tests PASS。新Mystery GiftのCB2/task/helper根・mask/code完全partition・排他経路だけをsource-only確認。自然play到達/普遍IRQ/全allocation lifetimeは受入に含めない。旧分類/host/ARM/ROM/native再走0。旧独立最終sourceレビュー未実施を保持。
+- Capacity: 未知の最大アクセス範囲が未証明なら全15118byte保護。間接参照/退役/owner移管も未完でsafe0byte。global511＋save804の上限1315は単一controller6528に不足5213。点targetの仮想空隙は安全容量ではなく、今後の追加分類で変わり得る。実配線時の追加容量も未確定。
+- Publication: 全親は参照保持、新delta13165byteとpartial-space独立envelope。閉じた非空success set・whole size/SHA/LF・hidden/symlink/未知file拒否。
+- Boundary: 現0641/115owner/52saveowner/804byte/正式ROM/Save101不変。heap13352の保存退避53300跨ぎ禁止。一般CI既知QOL不一致/action_required job0/runner割当中のcancelled job/Stage79cacheは別扱い。
+- Next: 残141件の次優先は0x08120CBD。実party action3 Item→action type8の[Give4/Take5/Cancel9] producer→index1/row5 Take→成功枝0x08124464→0x08120C9Cを結び、0x08120CBCの完全BLと0x08120CC0の静的LDR successorの6byte型を最小条件で検証する。既受入ReadMailの登録/setup/allocator/selectorを再利用し、全自然到達や普遍allocation/IRQへ膨張させない。次点MoveTutor0x08126B0Bはspecial397とaction12根を使いcallee/復帰条件を限定。0x080A006Fは外側登録root未特定、確認済title6144byte窓を反復しない。保存済MysteryGift198試験/733親と旧237試験を無影響再走しない。最大access/間接参照/対象退役/owner移管未証明では旧egg15118全域保護/安全容量0。単一controller6528byteの容量確保後、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL、全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/0804B85C退避前Freeを接続。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。
+- Commit: closeout source=c5527adabf286a615383d41384dbd93c191503bb; 同branch非force。
+- Network: 同repoActions/text原本のみ。ROM断片/rawhex/ROM/save/runtime/runner/credentials追加公開0。
