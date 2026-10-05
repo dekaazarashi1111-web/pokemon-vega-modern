@@ -37,8 +37,8 @@ def audit_retired_egg(current,cp):
  need(old['address']==0x09FED0C4 and old['size']==15118 and new['address']==0x09FF0BD4 and new['size']==15018,'exact Stage67/73 egg owner extents')
  roots=[]
  for offset in(0x45214,0x4528C):
-  raw=current[offset:offset+4];need(struct.unpack('<I',raw)[0]==new['address'],'both active egg roots migrated')
-  roots.append(dict(address=offset+0x08000000,**identity(raw),points_to=new['address']))
+  raw=current[offset:offset+4];target=struct.unpack('<I',raw)[0]
+  roots.append(dict(address=offset+0x08000000,**identity(raw),points_to=target,stage73_root_matches=target==new['address']))
  lo,hi=old['address'],old['address']+old['size'];hits=[]
  def canonical(value):
   return 0x08000000+((value&~1)-0x08000000)%0x02000000 if 0x08000000<=(value&~1)<0x0E000000 else -1

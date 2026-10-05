@@ -23,7 +23,7 @@ static __attribute__((noinline)) u8 stage61_generation_write_sector(
     ProgramFlashByteFn program_byte = G_PROGRAM_FLASH_BYTE;
     u16 size = chunks[id].size;
     u32 expected_crc, record_crc;
-    u8 live;
+    u8 live, matches;
 
     if (mode == 1u) {
         record_crc = stage61_state_crc();
@@ -64,15 +64,15 @@ static __attribute__((noinline)) u8 stage61_generation_write_sector(
         return STAGE61_SAVE_STATUS_ERROR;
     }
     if (mode == 1u) {
-        live = stage61_save_readback_matches_prepared(section, id, size,
+        matches = stage61_save_readback_matches_prepared(section, id, size,
             chunks[id].data, target_counter, record_crc, (u8)STAGE61_SAVE_SIGNATURE);
     } else {
-        live = (u8)(stage61_save_section_crc32(section) == expected_crc
+        matches = (u8)(stage61_save_section_crc32(section) == expected_crc
             && stage61_successor_footer_matches(section, id, size, target_counter)
             && (live == 0u || stage61_state_tail_matches_live_crc(
                 section, id, size, record_crc) != 0u));
     }
-    if (live == 0u) {
+    if (matches == 0u) {
         /* source-record失敗時は旧backupを保護。元の失敗mask契約を維持。 */
         if (mode != 2u)
             (void)stage61_save_reject_written_target_sector(
@@ -81,10 +81,7 @@ static __attribute__((noinline)) u8 stage61_generation_write_sector(
     }
     if (crc_out != (void *)0) {
         *crc_out = expected_crc;
-        /* cloneの元のexpected-liveはprogram前の画像で判定済み。成功readbackは
-         * 同一全像なので再計算しても意味は同じでflash callbackは増えない。 */
-        *live_out = (u8)(id == 13u && stage61_state_tail_matches_live_crc(
-            section, id, size, record_crc) != 0u);
+        *live_out = live;
     }
     stage61_save_clear_damaged(target_sector);
     return STAGE61_SAVE_STATUS_OK;
