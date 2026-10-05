@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "status": "PASS_NEW_SOURCE_ONLY_CONDITIONAL_CONSUMER_REVIEW",
+  "reviewed_at_utc": "2026-10-05T19:35:00Z",
+  "source_bindings": {
+    "scripts/pr16_dex_hof_runtime_direct.py": {
+      "size": 11620,
+      "sha256": "3fbfd5275e3f1c0a4e5e714ba925f8ea48ba5f264fb6223e8412274dd52ad5e7"
+    },
+    "scripts/pr16_dex_hof_runtime_sprite.py": {
+      "size": 31951,
+      "sha256": "e2409be802248a15b143e7590a44aa54f4d1d13a2d14ffb5faeb0a26177dde30"
+    },
+    "scripts/pr16_dex_hof_runtime_party.py": {
+      "size": 47501,
+      "sha256": "89b97cb896ff2d2cdf4a4a04276006afb00d1c2b2c74d20689a0a63e24a25be1"
+    },
+    "tests/test_pr16_dex_hof_runtime_direct.py": {
+      "size": 9345,
+      "sha256": "bbc0860c7f8dcb0c725faba4d7e317b1852053093e412ad95744861c06d3a7a3"
+    },
+    "tests/test_pr16_dex_hof_runtime_sprite.py": {
+      "size": 10344,
+      "sha256": "0562d983b7467090fbdaca0665e3e1813afffdb7f1e274be51e60be0a80e5202"
+    },
+    "tests/test_pr16_dex_hof_runtime_party.py": {
+      "size": 11282,
+      "sha256": "2f0b291535b33f81072d323ba1e5dfac60150b2a5a64864d20d86e439848ba5e"
+    },
+    "content/modernization/pr16_dex_hof_runtime_direct_review.json": {
+      "size": 5443,
+      "sha256": "a6770319210a728688de8e5e99978da0765cddcb3fcb347876eb35f75ea17803"
+    },
+    "content/modernization/pr16_dex_hof_runtime_sprite_review.json": {
+      "size": 348267,
+      "sha256": "7a07aff800f8b4ae1ffac328476fc7bd99de2ef7acdfeea96038a2f8f1212b77"
+    },
+    "content/modernization/pr16_dex_hof_runtime_party_review.json": {
+      "size": 7144,
+      "sha256": "d879a4f2bba39ef84bbd7eb2e26071f7d78a50a41508a83ca6610879c86ced5a"
+    },
+    "scripts/pr16_dex_hof_runtime_chain.py": {
+      "size": 10601,
+      "sha256": "b07256a9484d6657c8698adf3cdf3354e013f371372fc9f32842d488d6ca308b"
+    },
+    "scripts/pr16_dex_hof_runtime_capacity.py": {
+      "size": 3335,
+      "sha256": "c8c7439342f4e633a57d93815d31d6de6d4dae804e5fc62cb77cbec8f0e08eca"
+    },
+    "docs/PR16_DEX_HOF_RUNTIME_CLOSURE_JA.md": {
+      "size": 5319,
+      "sha256": "d1ab93aaa550f143e013e08204129906d0d8627f11483abc176a0bcd448b2aa2"
+    },
+    "scripts/pr16_dex_hof_lifetime_root.py": {
+      "size": 19545,
+      "sha256": "7d1827e12c7261371778d0fb08b0bbc5dcdd8efd2344017310c617a2ebbd650a"
+    },
+    "scripts/pr16_dex_hof_script_engine.py": {
+      "size": 18593,
+      "sha256": "de309ea83fce769b1a66b3cecde4a29a7b2ed8f83c01cd4054b6147f22f83f54"
+    },
+    "scripts/pr16_dex_hof_donor.py": {
+      "size": 23915,
+      "sha256": "077352b7cd7662f6da0f023573ed4b5e02962d3c1855a9edbd455c19c2afc920"
+    }
+  },
+  "scope_ja": "新consumer型sourceと直接依存だけの独立確認。旧song/battle/Surf最終レビュー未実施は継承。新実ROM/current再測定とは区別。",
+  "resolved_findings_ja": [
+    "外部境界後caller-saved r12をunknown化し利用拒否",
+    "ARMv4T MUL後carryをunknown化し依存分岐拒否",
+    "current/旧診断どちらでもwhole候補拒否を検査する変異fixtureへ",
+    "ReadMailの静的BL return successorと実復帰観測を分離"
+  ],
+  "source_only_checks": {
+    "status": "PASS_NEW_SOURCE_ONLY_STRUCTURAL_CONTRACTS",
+    "direct": {
+      "protected_bytes_semantically_accounted": 133,
+      "finite_valid_contracts": 16,
+      "invalid_contracts_rejected": 6
+    },
+    "sprite": {
+      "review_identity": {
+        "size": 264694,
+        "sha256": "e87845750f0af232e235b89447190a349c351af9c744cab6b3fb95d84c93d864"
+      },
+      "protected_windows": 2348,
+      "declared_instruction_count": 6194,
+      "execution_reproduced": false
+    },
+    "rom_reads": 0,
+    "save_reads": 0,
+    "old_suite_runs": 0,
+    "native_runs": 0,
+    "synthetic_vm": {
+      "independent_shift_result_and_nzcv_cases": 144,
+      "undefined_carry_branch_cases_rejected": 4,
+      "undefined_r12_rejected": true,
+      "real_rom_input": false
+    }
+  },
+  "initial_sprite_test_failure": {
+    "status": "INITIAL_NEW_SCOPE_TEST_FAILURES",
+    "tests_run": 38,
+    "failed": 2,
+    "final_pass_claimed": false,
+    "log_capture": "観測済みtool出力に基づく要約。初回tests.txt全文は最終再実行時に上書きされたため全文ログではない。",
+    "failures": [
+      {
+        "test": "test_hidden_external_seed_write_rejected",
+        "observed": "AssertionError: ValueError not raised",
+        "cause": "既に0だったcursorへ0をseedしており状態変更がなかった。",
+        "fix": "1をseedする実際の変更へ負試験を修正。隠れた変更はwrite journalとの差で拒否。"
+      },
+      {
+        "test": "test_task_exhaustion_rejected",
+        "observed": "AssertionError: ValueError not raised",
+        "cause": "負試験はinterpretだけを呼び、元のpublic_review内のtask func/active検査を通っていなかった。満杯状態をResetTasks等が解除したわけではない。",
+        "fix": "実CreateTask callback writer到達とtask0のfunc/active検査をinterpret内へ移動。満杯の戻り0を成功としない。"
+      }
+    ],
+    "final_retry": "tests.txt（42tests PASS）"
+  },
+  "full_diagnostic_preflight": {
+    "status": "OLD_DIAGNOSTIC_ONLY_CURRENT_ACTIONS_REQUIRED",
+    "unit_tests": 237,
+    "classifications": [
+      732,
+      142
+    ],
+    "newly_classified": 3,
+    "diagnostic_candidate": {
+      "size": 33554432,
+      "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+    },
+    "delta_identity": {
+      "size": 40294,
+      "sha256": "667ee05ccb954a0ce066fb2b5b78605cd5ae141c8c272b69eeb5f6a941ead583"
+    },
+    "current_rom_reconstructions": 0,
+    "native_processes": 0,
+    "donor_leased": false
+  },
+  "independent_old_final_source_review_completed": false,
+  "old_denied_action_retried": false,
+  "old_suite_runs": 0,
+  "native_processes": 0,
+  "current_rom_acceptance_claimed": false,
+  "reference_document": {
+    "title": "ARM DDI0084D section4.7.2",
+    "url": "https://iitd-plos.github.io/col718/ref/arm-instructionset.pdf#page=23",
+    "used_for": "MUL carry is not a guaranteed input for a later conditional branch"
+  }
+}
