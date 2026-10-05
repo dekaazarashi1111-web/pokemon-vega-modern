@@ -71,7 +71,7 @@ static void uu_frame(struct mCore*c)
    if(pc==0x08071A70&&cpu->gprs[0]==48)uu_sounds++;
    if(pc==0x0804B994)uu_clears++;
   }
-  if(pc==0x08002BC4&&read32(c,0x03003134)==0x08128F05){const unsigned roots[]={uu_task,uu_display,uu_sprite};for(unsigned j=0;j<3;j++)if(cpu->gprs[0]==roots[j]){uu_freed[j]++;si_need(uu_freed[j]==1,"each Union allocation freed once");}}
+  if(pc==0x08002BC4&&read32(c,0x03003134)==0x08128F05){const unsigned roots[]={uu_task,uu_display,uu_sprite};for(unsigned j=0;j<3;j++)if((uint32_t)cpu->gprs[0]==roots[j]){uu_freed[j]++;si_need(uu_freed[j]==1,"each Union allocation freed once");}}
   c->step(c);
  }
 }
