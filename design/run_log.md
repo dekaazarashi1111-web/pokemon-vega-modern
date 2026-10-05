@@ -12933,3 +12933,17 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 永続HOF表現の容量とownerを証明し、全mode/clone/reader/migration/coldへ接続。bounded log満了処理と現ROM ABIも未完。最終シオウ通常回復・保存・独立cold Continue、雑魚毎Saveなし。
 - Commit: closeout source=ff6a47f433a05a5d02bfa43122b3d573d1728930; 同branch非force push。
 - Network: 同repoActions/既存text原本のみ。ROM/入力save/runtime/runner/credential追加公開0。
+
+## 2026-10-05T06:20:01.315499+00:00
+- Timestamp: 2026-10-05T06:20:01.315499+00:00
+- Task: USER-20261005-DEX-HOF-STORAGE / 実32sector scratchとHOF逆差分journal
+- Version: dex-hof-storage-v1
+- Status: DONE（容量方式/Ccodec/host scheduler/実ROM ABIの限定検証。保存runtime接続は未完）
+- Summary: 現32sector内のHOF保存設計を実装。非選択main2sectorを一時scratch、logical4に256byte逆差分journal、最後logical13commit。50履歴・opaque1936byte・sector30/31保持、追加容量/圧縮/有限log不要。16hostと新228隔離ARMで実HOF ABIを検証。C codecはARM object compile済みだがROM配置/全writer・load接続は未完。候補88be8811と正式ROM/Save101不変。
+- Files changed: 新storage source/tests/Ccodec/ABI binding/Actions/guide/CP/text evidence、固定MDJSON、両ログ。
+- Verify: host16suite PASS; metrics={"c_python_codec_shapes": 52, "durable_boundary_samples": 308, "fault_then_normal": 94, "initial_omitted_erase_rejections": 3, "inverse_shapes": 51, "journal_corruptions": 256, "recovery_boundary_samples": 58, "restart_then_normal": 37, "rotation_parity_wrap": 42, "selected_journal_damage_rejections": 256, "successive_full_history_transactions": 55}; new ABI228case/native1; codec ARM={"arm_compiles": 1, "bss": 0, "data": 0, "new_runtime_owner": false, "rom_placed": false, "text": 864}。旧native再走0、候補再構築はprivateのみ。
+- Boundary: 128KiB/NOR model、完全source mainSHA、exact HOF token、rollback再起動・通常Save。現species9bit切捨ては観測のみ。main parserは既存全validatorの代用でなく、INITIAL flag/loader実接続・全writer/clone/load/cold/ROM配置は未完。
+- Owners: logical4 EC0へ256byte/残48zeroの新schema案、非選択logical8/9一時scratch、logical13最後。selectedmain全14sector、HOF opaque1936、sector30/31保持。現115owner/43subowner/186byteと正式ROM/Save101不変。
+- Next: 現115owner/43subowner/186byteを保持して、新journal codec/schedulerのROM配置と既存save ownerへの接続を進める。全mode/normal/Link clone/readback/selector/HOF-only loadに未完journal解決を統合し、INITIALはhas-recordsとloaderの組合せを検証する。9bit HOF speciesの後継typed owner、共通SaveFailed/早期31/全cold owner/残typedconsumerも未完。検証後に正式候補切替とtrainer131後半、最終シオウ通常回復・保存・独立cold Continue。雑魚毎Saveなし。
+- Commit: source=42d8d57a914bc3febede56ec21dec7e8be150e05; 同branch非force push。
+- Network: 同repoActions/既存artifactによるprivate再構築のみ。公開はsource・address-size-SHA/text、ROM断片/rawhex/ROM/save/runtime/runner/credential追加公開0。

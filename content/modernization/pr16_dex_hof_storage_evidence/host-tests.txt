@@ -1,0 +1,21 @@
+test_c_invalid_delta_keeps_output (test_pr16_dex_hof_storage.CodecTests.test_c_invalid_delta_keeps_output) ... ok
+test_c_python_fullbyte_crosscheck (test_pr16_dex_hof_storage.CodecTests.test_c_python_fullbyte_crosscheck) ... ok
+test_c_rejects_all_journal_corruption (test_pr16_dex_hof_storage.CodecTests.test_c_rejects_all_journal_corruption) ... ok
+test_all_append_and_shift_inverse (test_pr16_dex_hof_storage.StorageTests.test_all_append_and_shift_inverse) ... ok
+test_all_journal_single_byte_corruption (test_pr16_dex_hof_storage.StorageTests.test_all_journal_single_byte_corruption) ... ok
+test_every_destructive_boundary_restarts_and_normal_save (test_pr16_dex_hof_storage.StorageTests.test_every_destructive_boundary_restarts_and_normal_save) ... ok
+test_geometry_and_source_preservation (test_pr16_dex_hof_storage.StorageTests.test_geometry_and_source_preservation) ... ok
+test_initial_absence_requires_external_owner_permission (test_pr16_dex_hof_storage.StorageTests.test_initial_absence_requires_external_owner_permission) ... ok
+test_initial_recovery_omitted_erases_never_retire_journal (test_pr16_dex_hof_storage.StorageTests.test_initial_recovery_omitted_erases_never_retire_journal) ... ok
+test_many_transactions_keep_full50_history_and_normal_tokens (test_pr16_dex_hof_storage.StorageTests.test_many_transactions_keep_full50_history_and_normal_tokens) ... ok
+test_newest_main_journal_damage_is_fail_closed_not_fallback (test_pr16_dex_hof_storage.StorageTests.test_newest_main_journal_damage_is_fail_closed_not_fallback) ... ok
+test_partial_erase_and_program_failure (test_pr16_dex_hof_storage.StorageTests.test_partial_erase_and_program_failure) ... ok
+test_preflight_unsupported_delta_and_epoch (test_pr16_dex_hof_storage.StorageTests.test_preflight_unsupported_delta_and_epoch) ... ok
+test_recovery_is_restartable (test_pr16_dex_hof_storage.StorageTests.test_recovery_is_restartable) ... ok
+test_selected_authority_never_falls_back_to_wrong_hof (test_pr16_dex_hof_storage.StorageTests.test_selected_authority_never_falls_back_to_wrong_hof) ... ok
+test_source_binding_rejects_same_counter_other_main (test_pr16_dex_hof_storage.StorageTests.test_source_binding_rejects_same_counter_other_main) ... ok
+
+----------------------------------------------------------------------
+Ran 16 tests in 8.789s
+
+OK

@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-HOF/mainの正確epoch＋全payload SHA256結合、normal Save継承、二重shadowからmain COWへ確定するhost参照実装と容量validatorを追加。21host契約・blank/再利用bank/normal wrapの全durable byte境界・故障/電源断を検証。現32sectorは独立shadow追加に8192byte不足としてwrite前拒否。候補88be8811と全115owner/43subowner/実残186byteは不変。実ROM世代結合・跨領域原子性は未受入。
+現32sector内のHOF保存設計を実装。非選択main2sectorを一時scratch、logical4に256byte逆差分journal、最後logical13commit。50履歴・opaque1936byte・sector30/31保持、追加容量/圧縮/有限log不要。16hostと新228隔離ARMで実HOF ABIを検証。C codecはARM object compile済みだがROM配置/全writer・load接続は未完。候補88be8811と正式ROM/Save101不変。
 
-**次: 正式ROM/Save101と候補88be8811を保持し、永続HOF表現の容量/ownerを先に閉じる。host参照coreは34sector合成形式で現ROMへ未接続。現main片bank1740byteはzero/readback管理下、sector31残578byteもQOL管理下で無断借用不可。HOF不変base＋bounded team log等の実schema/容量満了処理を検討し、現ROM ABI・全mode/normal/link clone/HOF-only load/migration/coldを接続する。その後共通SaveFailed/早期31/全cold owner/typedconsumer、正式切替とtrainer131後半、最終シオウ通常回復・保存・独立cold Continueへ。雑魚毎Saveなし。**
+**次: 現115owner/43subowner/186byteを保持して、新journal codec/schedulerのROM配置と既存save ownerへの接続を進める。全mode/normal/Link clone/readback/selector/HOF-only loadに未完journal解決を統合し、INITIALはhas-recordsとloaderの組合せを検証する。9bit HOF speciesの後継typed owner、共通SaveFailed/早期31/全cold owner/残typedconsumerも未完。検証後に正式候補切替とtrainer131後半、最終シオウ通常回復・保存・独立cold Continue。雑魚毎Saveなし。**
 
 通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `f09436a74b710ad15c1f90e6eedbaabe91ffddb1`。
-host参照transactionと容量拒否の実装検証source。実ROM/native/正式候補の原子性受入ではない。
+証拠のsource HEAD: `42d8d57a914bc3febede56ec21dec7e8be150e05`。
+実32sector geometryのscheduler/Ccodecと固定ROMの新ABI隔離試験source。稼働ROM保存世代結合の受入ではない。
 
 ## 最短の再開手順
 
@@ -25,11 +25,11 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_DEX_HOF_GENERATION_CONTRACT_JA.md`
-- `content/modernization/pr16_dex_hof_generation_checkpoint.json`
+- `docs/PR16_DEX_HOF_STORAGE_JA.md`
+- `content/modernization/pr16_dex_hof_storage_checkpoint.json`
+- `content/modernization/pr16_dex_hof_abi_bindings.json`
 - `docs/PR16_DEX_HOF_MAIN_COW_JA.md`
-- `content/modernization/pr16_dex_hof_main_checkpoint.json`
-- `docs/PR16_DEX_FALLBACK_QOL_JA.md`
+- `docs/PR16_DEX_HOF_GENERATION_CONTRACT_JA.md`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -446,6 +446,7 @@ P08ゲート:
 - d773a123のfallback QOLはhost327907/ARM508と正常・片bank故障・破損cold計3成功caseで限定受入。初回coldの成功2原本を再利用し観測器だけの陰性1を修正。変更影響なしに再走せず、全cold owner/初回HOF原子性へ拡大しない。
 - 88be8811のmode3 main COWは隔離554条件とUI5条件＋各cold10process/25画像を原本再利用。main0の3callはsynthetic入力bank生成で通常Save再受入ではない。既存115owner中114保持、新180byteはStage61内5窓。次は実subownerを差引いた186byteを優先し、旧366byteや古いsuffixを空き扱いしない。HOF/main世代結合は未完。
 - HOF世代contractのhost参照実装21suiteは専用checkpointを再利用。34sector合成形式を32sector実Saveへ適用しない。現候補88be8811、全115owner/43subowner/186byte、正式ROM/Save101は不変。旧HOF/main/nativeを変更影響なしに再走せず、次は実永続表現の容量・ABI・ownerと全consumerへの接続。
+- HOF32sector storageの16host/新228ABIを専用checkpointから再利用。候補88be8811不変。50履歴/1936byte suffixを削減せず非選択mainの一時scratchを使う。Ccodecとhost schedulerを実ROM接続済みにしない。species9bitとINITIAL移行は未修復。次は現ownerへの配置・全writer/load接続。
 
 ## 次セッションへ残す更新手順
 
@@ -475,6 +476,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-HOF/mainの正確epoch＋全payload SHA256結合、normal Save継承、二重shadowからmain COWへ確定するhost参照実装と容量validatorを追加。21host契約・blank/再利用bank/normal wrapの全durable byte境界・故障/電源断を検証。現32sectorは独立shadow追加に8192byte不足としてwrite前拒否。候補88be8811と全115owner/43subowner/実残186byteは不変。実ROM世代結合・跨領域原子性は未受入。
+現32sector内のHOF保存設計を実装。非選択main2sectorを一時scratch、logical4に256byte逆差分journal、最後logical13commit。50履歴・opaque1936byte・sector30/31保持、追加容量/圧縮/有限log不要。16hostと新228隔離ARMで実HOF ABIを検証。C codecはARM object compile済みだがROM配置/全writer・load接続は未完。候補88be8811と正式ROM/Save101不変。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "HOF/mainの正確epoch＋全payload SHA256結合、normal Save継承、二重shadowからmain COWへ確定するhost参照実装と容量validatorを追加。21host契約・blank/再利用bank/normal wrapの全durable byte境界・故障/電源断を検証。現32sectorは独立shadow追加に8192byte不足としてwrite前拒否。候補88be8811と全115owner/43subowner/実残186byteは不変。実ROM世代結合・跨領域原子性は未受入。",
+    "current_stop": "現32sector内のHOF保存設計を実装。非選択main2sectorを一時scratch、logical4に256byte逆差分journal、最後logical13commit。50履歴・opaque1936byte・sector30/31保持、追加容量/圧縮/有限log不要。16hostと新228隔離ARMで実HOF ABIを検証。C codecはARM object compile済みだがROM配置/全writer・load接続は未完。候補88be8811と正式ROM/Save101不変。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "正式ROM/Save101と候補88be8811を保持し、永続HOF表現の容量/ownerを先に閉じる。host参照coreは34sector合成形式で現ROMへ未接続。現main片bank1740byteはzero/readback管理下、sector31残578byteもQOL管理下で無断借用不可。HOF不変base＋bounded team log等の実schema/容量満了処理を検討し、現ROM ABI・全mode/normal/link clone/HOF-only load/migration/coldを接続する。その後共通SaveFailed/早期31/全cold owner/typedconsumer、正式切替とtrainer131後半、最終シオウ通常回復・保存・独立cold Continueへ。雑魚毎Saveなし。",
+    "next_step": "現115owner/43subowner/186byteを保持して、新journal codec/schedulerのROM配置と既存save ownerへの接続を進める。全mode/normal/Link clone/readback/selector/HOF-only loadに未完journal解決を統合し、INITIALはhas-recordsとloaderの組合せを検証する。9bit HOF speciesの後継typed owner、共通SaveFailed/早期31/全cold owner/残typedconsumerも未完。検証後に正式候補切替とtrainer131後半、最終シオウ通常回復・保存・独立cold Continue。雑魚毎Saveなし。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -1175,7 +1175,8 @@
     "HOF40ad8237候補の局所通知は隔離2880条件＋UI-only9byte/3条件/各cold6process15画像。旧SaveFailed回避と初回stat10一度・payload保全まで。初回mode3原子性/全mode/自然殿堂入りへ広げず、同じnativeを影響なしに再走しない。",
     "d773a123のfallback QOLはhost327907/ARM508と正常・片bank故障・破損cold計3成功caseで限定受入。初回coldの成功2原本を再利用し観測器だけの陰性1を修正。変更影響なしに再走せず、全cold owner/初回HOF原子性へ拡大しない。",
     "88be8811のmode3 main COWは隔離554条件とUI5条件＋各cold10process/25画像を原本再利用。main0の3callはsynthetic入力bank生成で通常Save再受入ではない。既存115owner中114保持、新180byteはStage61内5窓。次は実subownerを差引いた186byteを優先し、旧366byteや古いsuffixを空き扱いしない。HOF/main世代結合は未完。",
-    "HOF世代contractのhost参照実装21suiteは専用checkpointを再利用。34sector合成形式を32sector実Saveへ適用しない。現候補88be8811、全115owner/43subowner/186byte、正式ROM/Save101は不変。旧HOF/main/nativeを変更影響なしに再走せず、次は実永続表現の容量・ABI・ownerと全consumerへの接続。"
+    "HOF世代contractのhost参照実装21suiteは専用checkpointを再利用。34sector合成形式を32sector実Saveへ適用しない。現候補88be8811、全115owner/43subowner/186byte、正式ROM/Save101は不変。旧HOF/main/nativeを変更影響なしに再走せず、次は実永続表現の容量・ABI・ownerと全consumerへの接続。",
+    "HOF32sector storageの16host/新228ABIを専用checkpointから再利用。候補88be8811不変。50履歴/1936byte suffixを削減せず非選択mainの一時scratchを使う。Ccodecとhost schedulerを実ROM接続済みにしない。species9bitとINITIAL移行は未修復。次は現ownerへの配置・全writer/load接続。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -4356,35 +4357,32 @@
     "status": "PASS_NATIONAL_DEX_GRANT_OWNER_SCOPED"
   },
   "next_action": {
-    "goal_ja": "正式ROM/Save101と候補88be8811を保持し、永続HOF表現の容量/ownerを先に閉じる。host参照coreは34sector合成形式で現ROMへ未接続。現main片bank1740byteはzero/readback管理下、sector31残578byteもQOL管理下で無断借用不可。HOF不変base＋bounded team log等の実schema/容量満了処理を検討し、現ROM ABI・全mode/normal/link clone/HOF-only load/migration/coldを接続する。その後共通SaveFailed/早期31/全cold owner/typedconsumer、正式切替とtrainer131後半、最終シオウ通常回復・保存・独立cold Continueへ。雑魚毎Saveなし。",
+    "goal_ja": "現115owner/43subowner/186byteを保持して、新journal codec/schedulerのROM配置と既存save ownerへの接続を進める。全mode/normal/Link clone/readback/selector/HOF-only loadに未完journal解決を統合し、INITIALはhas-recordsとloaderの組合せを検証する。9bit HOF speciesの後継typed owner、共通SaveFailed/早期31/全cold owner/残typedconsumerも未完。検証後に正式候補切替とtrainer131後半、最終シオウ通常回復・保存・独立cold Continue。雑魚毎Saveなし。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。Save14は作業コピーだけを使用する。自己OT party、manifest解決済み通常支援用品、EXP境界、safe opponentはpre-battle fixtureとして全byteを台帳化してよい。badge/key item/story flag/money/RPをfixture付与せず、戦闘開始後は通常入力とゲーム内処理だけを使う。",
-    "id": "PROVE_DURABLE_HOF_LAYOUT_BEFORE_ROM_INTEGRATION",
+    "id": "INTEGRATE_32SECTOR_HOF_JOURNAL_WITH_SAVE_OWNERS",
     "read_paths": [
-      "docs/PR16_DEX_HOF_GENERATION_CONTRACT_JA.md",
-      "content/modernization/pr16_dex_hof_generation_checkpoint.json",
+      "docs/PR16_DEX_HOF_STORAGE_JA.md",
+      "content/modernization/pr16_dex_hof_storage_checkpoint.json",
+      "content/modernization/pr16_dex_hof_abi_bindings.json",
       "docs/PR16_DEX_HOF_MAIN_COW_JA.md",
-      "content/modernization/pr16_dex_hof_main_checkpoint.json",
-      "docs/PR16_DEX_FALLBACK_QOL_JA.md"
+      "docs/PR16_DEX_HOF_GENERATION_CONTRACT_JA.md"
     ],
     "stop_rule_ja": "通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。"
   },
   "observed_date_jst": "2026-10-04",
-  "observed_head": "f09436a74b710ad15c1f90e6eedbaabe91ffddb1",
+  "observed_head": "42d8d57a914bc3febede56ec21dec7e8be150e05",
   "observed_head_checks": {
-    "all13_record_steps_success": true,
-    "arm_compiles": 0,
     "candidate_changed": false,
     "general_ci_known_source_mismatch_not_resolved": true,
-    "host_tests": 21,
-    "native_processes": 0,
-    "reason_ja": "HOF/mainの正確epoch＋全payload SHA256結合、normal Save継承、二重shadowからmain COWへ確定するhost参照実装と容量validatorを追加。21host契約・blank/再利用bank/normal wrapの全durable byte境界・故障/電源断を検証。現32sectorは独立shadow追加に8192byte不足としてwrite前拒否。候補88be8811と全115owner/43subowner/実残186byteは不変。実ROM世代結合・跨領域原子性は未受入。",
-    "record_job": 111632851368,
-    "record_run": 37269357252,
+    "host_tests": 16,
+    "native_processes": 1,
+    "new_codec_arm_compiles": 1,
+    "new_native_cases": 228,
+    "reason_ja": "現32sector内のHOF保存設計を実装。非選択main2sectorを一時scratch、logical4に256byte逆差分journal、最後logical13commit。50履歴・opaque1936byte・sector30/31保持、追加容量/圧縮/有限log不要。16hostと新228隔離ARMで実HOF ABIを検証。C codecはARM object compile済みだがROM配置/全writer・load接続は未完。候補88be8811と正式ROM/Save101不変。",
     "runtime_cross_store_atomicity": false,
     "runtime_generation_binding": false,
-    "scope_head": "f09436a74b710ad15c1f90e6eedbaabe91ffddb1",
-    "stage79_cached_not_new_native": true,
-    "whole_receipt_equals_checkpoint": true
+    "scope_head": "42d8d57a914bc3febede56ec21dec7e8be150e05",
+    "stage79_cached_not_new_native": true
   },
   "observed_head_history": [
     {
@@ -12273,7 +12271,7 @@
       "semantics": "Save100/ミルシティ4,17北。動的Ranger20,29へ実正面A→町の解放scene→4072=3/4380set。全party600byte/HP277/PP3,9,8,2/23114円保持。95+cold13入力/54画面。通常2歩+自動2歩、歩数93/3。cold RAM差owner未解明。"
     }
   ],
-  "observed_head_semantics": "host参照transactionと容量拒否の実装検証source。実ROM/native/正式候補の原子性受入ではない。",
+  "observed_head_semantics": "実32sector geometryのscheduler/Ccodecと固定ROMの新ABI隔離試験source。稼働ROM保存世代結合の受入ではない。",
   "p08_candidate_impact": {
     "candidate": {
       "crc32": "CC068B4A",
@@ -12395,7 +12393,13 @@
     "status": "NATIVE_PARTY_RETENTION_ACCEPTED_BP_PENDING",
     "tested_head": "10e535a046441dd3b797918106259b5c57b69716"
   },
-  "pending_runs": [],
+  "pending_runs": [
+    {
+      "run_id": 37271761754,
+      "status": "in_progress",
+      "tested_head": "42d8d57a914bc3febede56ec21dec7e8be150e05"
+    }
+  ],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
   "pr_draft": true,
   "pr_merged": false,
@@ -14245,6 +14249,10 @@
     ".github/workflows/pr16-dex-hof-record.yml": {
       "sha256": "2e758ecc27a1abfff2ed1ff47211feb6aaa8fd03b807f4c509a0c695c56d772a",
       "size": 2292
+    },
+    ".github/workflows/pr16-dex-hof-storage.yml": {
+      "sha256": "83f35505ce5123ba77bdc3a98278293c0b23c8517eb61e59a446b203f3389aac",
+      "size": 2751
     },
     ".github/workflows/pr16-dex-hof-ui.yml": {
       "sha256": "bb2ce1b3ce67dda3d12562247ed05ef7b17b67f1710a6c786ffa985fc3ee10a6",
@@ -17002,6 +17010,10 @@
       "sha256": "92e1edde14eba57fa73180d99502beb5562d087be6372c86e98266d2386fc065",
       "size": 2268
     },
+    "content/modernization/pr16_dex_hof_abi_bindings.json": {
+      "sha256": "83208a8de0b3367368e851e3577af4cbc90157a01d64d8f58874c4942262855e",
+      "size": 5435
+    },
     "content/modernization/pr16_dex_hof_checkpoint.json": {
       "sha256": "f72c70937702aa71ecf3799f5c0fa409b6c3e0a2e94722dff2b33c1b1d6e571d",
       "size": 150077
@@ -17281,6 +17293,38 @@
     "content/modernization/pr16_dex_hof_main_visual_review.json": {
       "sha256": "58fa42c28eabecdb319a32a38bb42b8081f8227082df59b4f19f67a4f61db956",
       "size": 5223
+    },
+    "content/modernization/pr16_dex_hof_storage_checkpoint.json": {
+      "sha256": "4291b2058eed517a36ac173a18caf03c060b27e909b4d5c3d392089e8e7be9ed",
+      "size": 4955
+    },
+    "content/modernization/pr16_dex_hof_storage_evidence/abi-stdout.txt": {
+      "sha256": "3c857b0ef6f799588dd60abc94b2fbf26861a2859a7a0c457be26582e439f775",
+      "size": 377
+    },
+    "content/modernization/pr16_dex_hof_storage_evidence/abi-windows.json": {
+      "sha256": "cf21d8401623e3a2dfc1a85c472729e24627d2c313f234b69c84ac5d79241ca0",
+      "size": 1698
+    },
+    "content/modernization/pr16_dex_hof_storage_evidence/attempts.json": {
+      "sha256": "f3837affbf3fce3632b0cc1a4a98d734b99ee6582777715d2cc022978f41b5c2",
+      "size": 73
+    },
+    "content/modernization/pr16_dex_hof_storage_evidence/codec-arm.json": {
+      "sha256": "cdebf315fb7753feb455a3d3ac3730d75f2ddf9aae31d90545f090cf571eba4a",
+      "size": 117
+    },
+    "content/modernization/pr16_dex_hof_storage_evidence/host-metrics.json": {
+      "sha256": "75ef45eee9c1750db13ef4605ce85f46951e4ce0a7eba1b482b934b2e2371314",
+      "size": 376
+    },
+    "content/modernization/pr16_dex_hof_storage_evidence/host-tests.txt": {
+      "sha256": "76f672dfa1a54471541440406b4378f88a41df7bb529afcb3bd9344a60e33be3",
+      "size": 2315
+    },
+    "content/modernization/pr16_dex_hof_storage_evidence/measurement.json": {
+      "sha256": "768423fe5232b882178d0930f0de898cb253b4e888a0a539d372283578f598ec",
+      "size": 3421
     },
     "content/modernization/pr16_dex_hof_tail_lease.json": {
       "sha256": "5af6a4932ccf87c0183a1ece1423416d79a5f989cdcb348db78534396c6879be",
@@ -28994,6 +29038,10 @@
       "sha256": "c5800162b827daedd8129493b5a44c53084c0c03c0ef63df0fb79d1ac02fe2fa",
       "size": 3264
     },
+    "docs/PR16_DEX_HOF_STORAGE_JA.md": {
+      "sha256": "45dcf1e0f2c702b32a5f47a0999992ec1d99c485fb0a034579bdc35b09b245cb",
+      "size": 5679
+    },
     "docs/PR16_DEX_LIFECYCLE_JA.md": {
       "sha256": "8af61361a3197aeb01974de7f2065e30aaa49151ecf834e84df1920d1de2badc",
       "size": 5703
@@ -33338,6 +33386,14 @@
       "sha256": "5b93ef199e97827876b876537945dfc5c8f143bc92150a5b4f8f4b653d87c1d7",
       "size": 7235
     },
+    "overlays/hof_journal/hof_journal.c": {
+      "sha256": "03dc74df666cec3935235e5a779e324689f2fd1b71b655c59d48f88e764a9cc2",
+      "size": 2889
+    },
+    "overlays/hof_journal/hof_journal.h": {
+      "sha256": "472b36ae14202c561d451c1e2b364906e8d42b8309d77ec2fd1f8cea25ebfb9f",
+      "size": 957
+    },
     "overlays/mirage_production/mirage_production.c": {
       "sha256": "bb8a59b76603e1acf4c1655d03c333f3ea067c47fdec9e6e03dbff4935381243",
       "size": 42973
@@ -34009,6 +34065,14 @@
     "scripts/pr16_dex_hof_record.py": {
       "sha256": "1eacc8e9de9332f0b15b3a6d8ffcaed496bb3a8b695627d44728688820cbfcdb",
       "size": 17466
+    },
+    "scripts/pr16_dex_hof_storage.py": {
+      "sha256": "f424a291c72715c695c1da927782ab9413a02283478906ac9281a3f3c6829e4e",
+      "size": 13156
+    },
+    "scripts/pr16_dex_hof_storage_actions.py": {
+      "sha256": "80f04f8b7c018c99952477584417d731b8e28326c04f150c24d93e022de45335",
+      "size": 14153
     },
     "scripts/pr16_dex_hof_tail_lease.py": {
       "sha256": "fdd11b32566de7cc0f1cf8f499645beca7d92fa4c10ae1aab4e90bdda6f12db4",
@@ -37242,6 +37306,10 @@
       "sha256": "946098c49929aacb4436e63981628406e43821b9bbdae3f0d4a7e086b7f6479c",
       "size": 1530
     },
+    "tests/test_pr16_dex_hof_storage.py": {
+      "sha256": "87678ebb28ca950ed5b5ced55afc373460c9fddee4851f9b7bcb0f3b5d8aedf5",
+      "size": 11051
+    },
     "tests/test_pr16_dex_hof_transaction.py": {
       "sha256": "620648ac51623eeb9d51811acaf3ee667b5e0b1e34e5403f867d3a315f09d691",
       "size": 14230
@@ -39378,6 +39446,10 @@
       "sha256": "25a9a683930c233586db11c3d622543c7899a124f3140ece231dbf95f11e0209",
       "size": 2692
     },
+    "tools/mgba_pr16_dex_hof_abi.h": {
+      "sha256": "6c3b139317d09214b6e6738e295443fad2bf3631fb95c8a250e3d307afd25078",
+      "size": 10556
+    },
     "tools/mgba_pr16_dex_hof_failure.h": {
       "sha256": "1d41af97fcc4813e09f62aa79d1c214ec4c9e7c9b07b08c2b51eeae364b0c560",
       "size": 6792
@@ -40349,6 +40421,23 @@
         "status": "PASS_SCOPED_MODE3_MAIN_COW_AND_HOF_FAILURE_SHORT_CIRCUIT",
         "ui_run": 37266381005,
         "unchanged_previous_owners": 114
+      },
+      "hof_storage": {
+        "candidate": {
+          "sha256": "88be88116bd452bd70cffaf2a820d5c6c6b6b7410fa603a9a0228b694725d5de",
+          "size": 33554432
+        },
+        "checkpoint": "content/modernization/pr16_dex_hof_storage_checkpoint.json",
+        "flash_sectors": 32,
+        "guide": "docs/PR16_DEX_HOF_STORAGE_JA.md",
+        "history_teams": 50,
+        "host_tests": 16,
+        "journal_bytes": 256,
+        "native_abi_cases": 228,
+        "record_run": 37271761754,
+        "runtime_cross_store_atomicity": false,
+        "runtime_generation_binding": false,
+        "status": "PASS_32SECTOR_HOF_STORAGE_DESIGN_AND_NATIVE_ABI"
       },
       "host_tests": 102,
       "load_newgame": {
