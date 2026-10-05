@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-現0641の旧egg874参照へ実root/consumerから新33件を分類し、694分類/180未知（owner内1/外179）。新161試験、全115actual owner/874hit、旧661全行・644delta25行22witness・661chain17行16witnessを保持。donor/正式ROM/Save101不変。
+現0641の旧egg874参照へ実root/consumerから新29件を分類し、723分類/151未知（owner内1/外150）。新277試験、全115actual owner/874hit、旧694全行・644delta25行22witness・661chain17行16witness・694chain33行33witnessを保持。donor/正式ROM/Save101不変。
 
-**次: 残180件の実root/consumerを閉じる。全unknown0だけではdonor不可。間接参照・旧egg退役完全性を証明して明示移管し、Ccontroller実配置、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL、全mode/早期31/species9bit、heap-ready/同期非再入/全出口Freeを閉じる。その後正式候補切替→trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。**
+**次: 残151件の実root/consumerを閉じる。全unknown0だけではdonor不可。間接参照・旧egg退役完全性を証明して明示移管し、Ccontroller実配置、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL、全mode/早期31/species9bit、heap-ready/同期非再入/全出口Freeを閉じる。その後正式候補切替→trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。**
 
 通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `3bf77f041db9f4a840c22451ca1dd33342682d99`。
-619原本・644delta・661chainを保持する追加root/consumer分類source。実root/consumerから有限窓のみ型付けし、donor/本番配線は未受入。
+証拠のsource HEAD: `69245bd92238bc73a86768a89a4c3edb9608da21`。
+619原本・644delta・661chain・694chainを保持する追加root/consumer分類source。実root/consumerから有限窓のみ型付けし、donor/本番配線は未受入。
 
 ## 最短の再開手順
 
@@ -25,13 +25,15 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_DEX_HOF_REMAINING_REFERENCES_JA.md`
-- `content/modernization/pr16_dex_hof_remaining_references_checkpoint.json`
+- `docs/PR16_DEX_HOF_SCRIPT_REFERENCES_JA.md`
+- `content/modernization/pr16_dex_hof_script_references_checkpoint.json`
 - `content/modernization/pr16_dex_hof_typed_recovery_evidence/egg-typed-audit.json`
 - `content/modernization/pr16_dex_hof_reference_evidence/reference-delta.json`
 - `content/modernization/pr16_dex_hof_reference_gaps_evidence/reference-chain.json`
-- `scripts/pr16_dex_hof_remaining_chain.py`
-- `content/modernization/pr16_dex_hof_remaining_references_review.json`
+- `content/modernization/pr16_dex_hof_remaining_references_evidence/reference-chain.json`
+- `content/modernization/pr16_dex_hof_remaining_references_checkpoint.json`
+- `scripts/pr16_dex_hof_script_chain.py`
+- `content/modernization/pr16_dex_hof_script_references_review.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -459,6 +461,7 @@ P08ゲート:
 - 現0641の旧egg874参照にtrainer15/archive2/命令跨ぎ1/有限JP音声7の25件を追加し、644分類/230未知。新122試験と新旧130曲の役割競合を検証。T09上位wordは別PLC2consumerとの混同を拒否し未知保持。原本4.1MBは再複製せず共有delta 149772byteへ。全旧619受入不変、donor/正式ROM/Save101不変。旧型分類/heap/nativeは変更影響なしに再実行しない。次回はbaseline＋deltaをmaterializeして継承する。
 - 現0641の旧egg874参照について、regression trainer2/tilesetLZ3、Stage61 TEXT3/sprite1、flagmap1/SharedIndex1、命令3、有限JP音声3の新17件を分類し、661分類/213未知（owner内5/外208）。新146試験と新旧132曲/旧47sample保持を検証。644親delta全25行/22witnessを固定chainで継承し、原本4.1MBと旧149772byteを複製しない。donor/正式ROM/Save101不変。旧型分類/heap/nativeは変更影響なしに再実行しない。次回は619baseline＋644parent delta＋本chainを各全identityでmaterializeし、旧25行を落とさない。
 - 現0641の旧egg874参照へ実root/consumerから新33件を分類し、694分類/180未知（owner内1/外179）。新161試験、全115actual owner/874hit、旧661全行・644delta25行22witness・661chain17行16witnessを保持。donor/正式ROM/Save101不変。原本4.1MB/旧delta/旧chainを複製・改変しない。全親をidentity照合してmaterializeし、旧42追加を落とさない。影響なしheap/native再走禁止。
+- 現0641の旧egg874参照へ実root/consumerから新29件を分類し、723分類/151未知（owner内1/外150）。新277試験、全115actual owner/874hit、旧694全行・644delta25行22witness・661chain17行16witness・694chain33行33witnessを保持。donor/正式ROM/Save101不変。原本4.1MB/旧delta/旧chainを複製・改変しない。全親をidentity照合してmaterializeし、旧75追加を落とさない。影響なしheap/native再走禁止。
 
 ## 次セッションへ残す更新手順
 
@@ -488,6 +491,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-現0641の旧egg874参照へ実root/consumerから新33件を分類し、694分類/180未知（owner内1/外179）。新161試験、全115actual owner/874hit、旧661全行・644delta25行22witness・661chain17行16witnessを保持。donor/正式ROM/Save101不変。
+現0641の旧egg874参照へ実root/consumerから新29件を分類し、723分類/151未知（owner内1/外150）。新277試験、全115actual owner/874hit、旧694全行・644delta25行22witness・661chain17行16witness・694chain33行33witnessを保持。donor/正式ROM/Save101不変。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
