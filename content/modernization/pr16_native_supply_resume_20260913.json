@@ -4372,6 +4372,7 @@
   "observed_date_jst": "2026-10-04",
   "observed_head": "42d8d57a914bc3febede56ec21dec7e8be150e05",
   "observed_head_checks": {
+    "all14_record_steps_success": true,
     "candidate_changed": false,
     "general_ci_known_source_mismatch_not_resolved": true,
     "host_tests": 16,
@@ -4379,10 +4380,13 @@
     "new_codec_arm_compiles": 1,
     "new_native_cases": 228,
     "reason_ja": "現32sector内のHOF保存設計を実装。非選択main2sectorを一時scratch、logical4に256byte逆差分journal、最後logical13commit。50履歴・opaque1936byte・sector30/31保持、追加容量/圧縮/有限log不要。16hostと新228隔離ARMで実HOF ABIを検証。C codecはARM object compile済みだがROM配置/全writer・load接続は未完。候補88be8811と正式ROM/Save101不変。",
+    "record_job": 111640066211,
+    "record_run": 37271761754,
     "runtime_cross_store_atomicity": false,
     "runtime_generation_binding": false,
     "scope_head": "42d8d57a914bc3febede56ec21dec7e8be150e05",
-    "stage79_cached_not_new_native": true
+    "stage79_cached_not_new_native": true,
+    "whole_receipt_equals_checkpoint": true
   },
   "observed_head_history": [
     {
@@ -12393,13 +12397,7 @@
     "status": "NATIVE_PARTY_RETENTION_ACCEPTED_BP_PENDING",
     "tested_head": "10e535a046441dd3b797918106259b5c57b69716"
   },
-  "pending_runs": [
-    {
-      "run_id": 37271761754,
-      "status": "in_progress",
-      "tested_head": "42d8d57a914bc3febede56ec21dec7e8be150e05"
-    }
-  ],
+  "pending_runs": [],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
   "pr_draft": true,
   "pr_merged": false,
@@ -14250,9 +14248,13 @@
       "sha256": "2e758ecc27a1abfff2ed1ff47211feb6aaa8fd03b807f4c509a0c695c56d772a",
       "size": 2292
     },
+    ".github/workflows/pr16-dex-hof-storage-closeout.yml": {
+      "sha256": "383ceba6983e78bd226b276a9785b6c3ea62bd0f9b5926ea07fc61b0c2f70b50",
+      "size": 2456
+    },
     ".github/workflows/pr16-dex-hof-storage.yml": {
-      "sha256": "83f35505ce5123ba77bdc3a98278293c0b23c8517eb61e59a446b203f3389aac",
-      "size": 2751
+      "sha256": "35cb1814eea60515ef968f73e4ceae08373ad47dce033e9b0e053237f516cb69",
+      "size": 2654
     },
     ".github/workflows/pr16-dex-hof-ui.yml": {
       "sha256": "bb2ce1b3ce67dda3d12562247ed05ef7b17b67f1710a6c786ffa985fc3ee10a6",
@@ -34074,6 +34076,10 @@
       "sha256": "80f04f8b7c018c99952477584417d731b8e28326c04f150c24d93e022de45335",
       "size": 14153
     },
+    "scripts/pr16_dex_hof_storage_closeout.py": {
+      "sha256": "35e5968630951e86f4c903bed5d003a14f2a40cadc813c0fb01a3eced1992c73",
+      "size": 8949
+    },
     "scripts/pr16_dex_hof_tail_lease.py": {
       "sha256": "fdd11b32566de7cc0f1cf8f499645beca7d92fa4c10ae1aab4e90bdda6f12db4",
       "size": 5156
@@ -40435,6 +40441,36 @@
         "journal_bytes": 256,
         "native_abi_cases": 228,
         "record_run": 37271761754,
+        "recording": {
+          "all14_record_steps_success": true,
+          "all6_original_snapshots_byte_equal": true,
+          "arm_compiles": 0,
+          "candidate_changed": false,
+          "checkpoint": "content/modernization/pr16_dex_hof_storage_checkpoint.json",
+          "checkpoint_identity": {
+            "sha256": "4291b2058eed517a36ac173a18caf03c060b27e909b4d5c3d392089e8e7be9ed",
+            "size": 4955
+          },
+          "closeout_run": 37272279687,
+          "closeout_source": "3a2f97c82472ddb98831d88d127f21df5c982c73",
+          "formal_rom_changed": false,
+          "formal_save_changed": false,
+          "host_tests_rerun": 0,
+          "native_processes": 0,
+          "record_archive": [
+            11328289516,
+            37271761754,
+            1309503,
+            "ac960bb3ea49d34be621cbf5442aa2fb37a6cf42af7b6107611401128f824e09"
+          ],
+          "record_completion": "b2cec1850846b0246f3eb962b835fce2a2679d30",
+          "record_job": 111640066211,
+          "record_run": 37271761754,
+          "record_source": "42d8d57a914bc3febede56ec21dec7e8be150e05",
+          "runtime_cross_store_atomicity": false,
+          "runtime_generation_binding": false,
+          "status": "PASS_TERMINAL_32SECTOR_HOF_STORAGE_RECORD"
+        },
         "runtime_cross_store_atomicity": false,
         "runtime_generation_binding": false,
         "status": "PASS_32SECTOR_HOF_STORAGE_DESIGN_AND_NATIVE_ABI"

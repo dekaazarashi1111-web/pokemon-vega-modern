@@ -10204,3 +10204,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 現115owner/43subowner/186byteを保持して、新journal codec/schedulerのROM配置と既存save ownerへの接続を進める。全mode/normal/Link clone/readback/selector/HOF-only loadに未完journal解決を統合し、INITIALはhas-recordsとloaderの組合せを検証する。9bit HOF speciesの後継typed owner、共通SaveFailed/早期31/全cold owner/残typedconsumerも未完。検証後に正式候補切替とtrainer131後半、最終シオウ通常回復・保存・独立cold Continue。雑魚毎Saveなし。
 - Commit: source=42d8d57a914bc3febede56ec21dec7e8be150e05; 同branch非force push。
 - Network: 同repoActions/既存artifactによるprivate再構築のみ。公開はsource・address-size-SHA/text、ROM断片/rawhex/ROM/save/runtime/runner/credential追加公開0。
+
+## 2026-10-05T06:25:10.374739+00:00
+- Timestamp: 2026-10-05T06:25:10.374739+00:00
+- Task: USER-20261005-DEX-HOF-STORAGE / 32sector HOF journal記録の終端
+- Version: dex-hof-storage-closeout
+- Status: STOPPED（容量方式/codec/実HOF ABI完了、稼働ROM配線は未完）
+- Summary: run37271761754/job111640066211全14stepとartifact11328289516原本14text、正本6fileの全byte/改行/Git blobを照合しpending解除。成功workflowはmanual-onlyへ。
+- Files changed: closeout source/workflow、前workflow起動条件、固定MDJSONと両ログ。
+- Verify: 16host、新228ABI、Ccodec ARM objectの原本再利用。追加host/ARM/native0。erase未確認退役の欠陥を修正済み。一般CIの既知QOL source不一致・action_required/job0・Stage79cacheは別扱い。
+- Boundary: 32sector/128KiB、50履歴・1936suffix・sector30/31保持。logical4の256byte journal、非選択logical8/9一時scratch、最後logical13。現ROM保存writer/loadへ未接続。species9bit・初回absence移行・code配置未完。正式ROM/Save101・現88be8811・115owner/43subowner/186byte不変。
+- Next: 現ownerから新codec/scheduler配置と全writer/normal/clone/readback/selector/HOF-only load接続。共通SaveFailed/早期31/cold owner/typedconsumerを閉じてから正式候補切替、trainer131後半、最終シオウ通常回復・保存・独立cold Continue。雑魚毎Saveなし。
+- Commit: closeout source=3a2f97c82472ddb98831d88d127f21df5c982c73; 同branch非force push。
+- Network: 同repoActions/既存text原本のみ。ROM断片/rawhex/ROM/入力save/runtime/runner/credential追加公開0。
