@@ -9,11 +9,11 @@ static unsigned hf_kind,hf_task,hf_save,hf_outer,hf_ensure,hf_finalize,hf_sound,
 static void hf_snap(void){memcpy(ram_before,((struct GBA*)c->board)->memory.wram,262144);memcpy(hf_iwram,((struct GBA*)c->board)->memory.iwram,32768);}
 static void hf_memory(unsigned sp,unsigned mutable)
 {
- for(unsigned i=0;i<262144;i++)need(((struct GBA*)c->board)->memory.wram[i]==ram_before[i],"all EWRAM including HOF payload and extension owners retained");
+ for(unsigned i=0;i<262144;i++)need(((uint8_t*)((struct GBA*)c->board)->memory.wram)[i]==ram_before[i],"all EWRAM including HOF payload and extension owners retained");
  unsigned task=HF_TASKS+40*hf_task;
  for(unsigned i=0;i<32768;i++){unsigned a=0x03000000u+i;if(a>=sp-160&&a<sp)continue;
   if(mutable&&((a>=HF_ATTEMPT&&a<HF_ATTEMPT+2)||(a>=DAMAGED&&a<DAMAGED+4)||(a>=HF_CONTINUE&&a<HF_CONTINUE+4)||(a>=task&&a<task+4)||(a>=task+14&&a<task+16)))continue;
-  need(((struct GBA*)c->board)->memory.iwram[i]==hf_iwram[i],"only declared task/continue/attempt/mask bytes changed");
+  need(((uint8_t*)((struct GBA*)c->board)->memory.iwram)[i]==hf_iwram[i],"only declared task/continue/attempt/mask bytes changed");
  }
 }
 static void hf_regs(unsigned sp,unsigned pc,unsigned arg)
