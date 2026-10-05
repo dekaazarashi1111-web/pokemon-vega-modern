@@ -70,7 +70,7 @@ def parent(*args):
 
 
 def build(audit, regions, proof):
-    """一意の型に完全包含される旧unknownだけを変更。未参照witnessは出力しない。"""
+    """一意の型に完全包含される旧unknownだけを変更。分類0の診断も親行を不変で保存。"""
     hits = []
     witness_rows, witness_ids = [], {}
     for old in audit['hits']:
@@ -118,9 +118,9 @@ def validate(audit, delta):
     originals = {h['address']: h for h in audit['hits']}
     need(len(originals) == len(audit['hits']), 'unique original hit identity')
     changes, witnesses = delta['changes'], delta['witnesses']
-    need(changes and len({h['address'] for h in changes}) == len(changes) and
+    need(len({h['address'] for h in changes}) == len(changes) and
          [h['address'] for h in changes] == [h['address'] for h in audit['hits'] if h['address'] in
-            {c['address'] for c in changes}], 'nonempty unique changes preserve original ordering')
+            {c['address'] for c in changes}], 'zero-or-more unique changes preserve original ordering')
     need(all(set(r) == {'id', 'address', 'size', 'kind', 'evidence', 'evidence_identity'} and
              type(r['id']) is int for r in witnesses) and
          [r['id'] for r in witnesses] == list(range(len(witnesses))), 'closed canonical witness rows')

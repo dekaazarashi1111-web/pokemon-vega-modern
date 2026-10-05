@@ -61,4 +61,15 @@ class ChainTests(unittest.TestCase):
  def test_shared_witness(self):self.assertEqual(len(self.delta['witnesses']),1)
  def test_unknown_extra(self):self.reject(lambda d:d.update(inherited_audit=self.audit))
  def test_invalid_child_status(self):self.reject(lambda d:d.update(status='PASS_PARENT_BOUND_REFERENCE_CHAIN'))
+ def test_zero_classification_diagnostic_retains_every_old_row(self):
+  evidence=m.build(self.audit,[],{'diagnostic_only':True,'full_lifetime_proven':False})
+  self.assertEqual(evidence['newly_classified'],0);self.assertEqual(evidence['witnesses'],[])
+  full=m.materialize(self.audit,evidence);self.assertEqual(full['hits'],self.audit['hits'])
+  for name in m.INHERITED_NAMES:self.assertEqual(full[name],self.audit[name])
+ def test_empty_changes_cannot_claim_new_classification(self):
+  evidence=m.build(self.audit,[],{});evidence['newly_classified']=1
+  with self.assertRaises(ValueError):m.validate(self.audit,evidence)
+ def test_empty_changes_cannot_keep_unreferenced_witness(self):
+  evidence=m.build(self.audit,[],{});evidence['witnesses']=self.delta['witnesses']
+  with self.assertRaises(ValueError):m.validate(self.audit,evidence)
 if __name__=='__main__':unittest.main()
