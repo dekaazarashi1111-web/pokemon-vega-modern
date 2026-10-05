@@ -1,12 +1,14 @@
-name: pr16-dex-hof-storage
+name: pr16-dex-hof-storage-closeout
 on:
-  workflow_dispatch:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-dex-hof-storage-closeout.yml]
 permissions:
   contents: write
   actions: read
   pull-requests: read
 concurrency:
-  group: pr16-dex-hof-storage
+  group: pr16-dex-hof-storage-closeout
   cancel-in-progress: false
 defaults:
   run:
@@ -15,7 +17,7 @@ jobs:
   contract:
     if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.run_attempt == 1
     runs-on: ubuntu-24.04
-    timeout-minutes: 25
+    timeout-minutes: 15
     env:
       GH_TOKEN: ${{ github.token }}
       GITHUB_TOKEN: ${{ github.token }}
@@ -24,18 +26,12 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 24
-      - name: Exact new storage sources and prior evidence
-        run: python3 -B scripts/pr16_dex_hof_storage_actions.py source_guard
-      - name: Official Ubuntu ARM compiler and fixed mGBA headers
-        run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y --no-install-recommends gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-dev libmgba-dev
-      - name: New32sector storage and fixed ROM ABI
-        run: python3 -B scripts/pr16_dex_hof_storage_actions.py run
-      - name: Record storage design without runtime promotion
-        run: python3 -B scripts/pr16_dex_hof_storage_actions.py record
+      - name: Exact new host source and immutable prior evidence
+        run: python3 -B scripts/pr16_dex_hof_storage_closeout.py source_guard
+      - name: Verify terminal host record without rerunning tests
+        run: python3 -B scripts/pr16_dex_hof_storage_closeout.py close
       - name: Scoped final index and fixed resume
-        run: python3 -B scripts/pr16_dex_hof_storage_actions.py guard
+        run: python3 -B scripts/pr16_dex_hof_storage_closeout.py guard
       - name: Lightweight task graph
         run: python3 -B scripts/validate_task_graph.py --check
       - name: Commit and nonforce push same branch
@@ -44,19 +40,19 @@ jobs:
           test "$(git ls-remote origin refs/heads/codex/modernization-followup-20260908 | cut -f1)" = "$GITHUB_SHA"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'USER-20261005-DEX-HOF-STORAGE: record32sector journal and fixed ROM ABI'
+          git commit -m 'USER-20261005-DEX-HOF-STORAGE: close bounded transaction contract records'
           git push origin HEAD:codex/modernization-followup-20260908
           test "$(git ls-remote origin refs/heads/codex/modernization-followup-20260908 | cut -f1)" = "$(git rev-parse HEAD)"
       - name: Exact committed text readback
-        run: python3 -B scripts/pr16_dex_hof_storage_actions.py snapshot
-      - name: Closed text publication guard
+        run: python3 -B scripts/pr16_dex_hof_storage_closeout.py snapshot
+      - name: Closed host text publication guard
         id: publication_guard
         if: always()
-        run: python3 -B scripts/pr16_dex_hof_storage_actions.py export
+        run: python3 -B scripts/pr16_dex_hof_storage_closeout.py export
       - uses: actions/upload-artifact@v4
         if: ${{ always() && steps.publication_guard.outcome == 'success' }}
         with:
-          name: pr16-dex-hof-storage-text-only
-          path: public-dex-hof-storage
+          name: pr16-dex-hof-storage-closeout-receipts
+          path: public-dex-hof-storage-closeout
           retention-days: 90
           if-no-files-found: error
