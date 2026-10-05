@@ -1,12 +1,14 @@
-name: pr16-dex-hof-generation
+name: pr16-dex-hof-generation-closeout
 on:
-  workflow_dispatch:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-dex-hof-generation-closeout.yml]
 permissions:
   contents: write
   actions: read
   pull-requests: read
 concurrency:
-  group: pr16-dex-hof-generation
+  group: pr16-dex-hof-generation-closeout
   cancel-in-progress: false
 defaults:
   run:
@@ -25,13 +27,11 @@ jobs:
         with:
           fetch-depth: 24
       - name: Exact new host source and immutable prior evidence
-        run: python3 -B scripts/pr16_dex_hof_generation_actions.py source_guard
-      - name: New host transaction and source bound capacity contracts
-        run: python3 -B scripts/pr16_dex_hof_generation_actions.py run
-      - name: Record bounded host result without runtime promotion
-        run: python3 -B scripts/pr16_dex_hof_generation_actions.py record
+        run: python3 -B scripts/pr16_dex_hof_generation_closeout.py source_guard
+      - name: Verify terminal host record without rerunning tests
+        run: python3 -B scripts/pr16_dex_hof_generation_closeout.py close
       - name: Scoped final index and fixed resume
-        run: python3 -B scripts/pr16_dex_hof_generation_actions.py guard
+        run: python3 -B scripts/pr16_dex_hof_generation_closeout.py guard
       - name: Lightweight task graph
         run: python3 -B scripts/validate_task_graph.py --check
       - name: Commit and nonforce push same branch
@@ -40,19 +40,19 @@ jobs:
           test "$(git ls-remote origin refs/heads/codex/modernization-followup-20260908 | cut -f1)" = "$GITHUB_SHA"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'USER-20261005-DEX-HOF-GENERATION: record bounded transaction core and capacity refusal'
+          git commit -m 'USER-20261005-DEX-HOF-GENERATION: close bounded transaction contract records'
           git push origin HEAD:codex/modernization-followup-20260908
           test "$(git ls-remote origin refs/heads/codex/modernization-followup-20260908 | cut -f1)" = "$(git rev-parse HEAD)"
       - name: Exact committed text readback
-        run: python3 -B scripts/pr16_dex_hof_generation_actions.py snapshot
+        run: python3 -B scripts/pr16_dex_hof_generation_closeout.py snapshot
       - name: Closed host text publication guard
         id: publication_guard
         if: always()
-        run: python3 -B scripts/pr16_dex_hof_generation_actions.py export
+        run: python3 -B scripts/pr16_dex_hof_generation_closeout.py export
       - uses: actions/upload-artifact@v4
         if: ${{ always() && steps.publication_guard.outcome == 'success' }}
         with:
-          name: pr16-dex-hof-generation-text-only
-          path: public-dex-hof-generation
+          name: pr16-dex-hof-generation-closeout-receipts
+          path: public-dex-hof-generation-closeout
           retention-days: 90
           if-no-files-found: error
