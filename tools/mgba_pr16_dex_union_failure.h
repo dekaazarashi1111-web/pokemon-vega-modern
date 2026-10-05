@@ -1,7 +1,7 @@
 /* Union保存の新規caller chain、文字列選択、音/入力待ちのみの隔離実ARM。 */
 #include <mgba/internal/gba/gba.h>
 #define UF_WORK 0x02002000u
-#define UF_DISPLAY 0x02004000u
+#define UF_DISPLAY 0x02003000u
 #define UF_ATTEMPT 0x03005470u
 #define UF_KEYS 0x0300315Eu
 static uint8_t uf_iwram[32768];
@@ -57,7 +57,7 @@ int main(int argc,char**argv)
  const unsigned stale[]={0,1,255};
  for(unsigned kind=0;kind<8;kind++)for(unsigned a=0;a<2;a++)for(unsigned s=0;s<3;s++)for(unsigned button=1;button<=2;button++){
   reset();uf_kind=kind;uf_save=uf_outer=uf_ensure=uf_finalize=uf_sounds=uf_clear=uf_prepare=0;unsigned sp=STACK+4*a;w32(0x0203B054,UF_WORK);w32(0x0203B058,UF_DISPLAY);c->busWrite16(c,UF_WORK+6,7);c->busWrite16(c,UF_ATTEMPT,stale[s]);w32(0x03005044,kind==1?0:1);w32(DAMAGED,kind==3?1:kind==4||kind==7?0x80000000u:0);
-  uf_call(sp);unsigned expected=kind>=6?1:255;need(r16(UF_WORK+6)==8&&r16(UF_ATTEMPT)==expected&&uf_prepare==1,"state7 actual QOL/inner save and final result");
+  need(!c->busRead8(c,UF_DISPLAY+4),"isolated display starts outside patterned save fixture");uf_call(sp);unsigned expected=kind>=6?1:255;need(r16(UF_WORK+6)==8&&r16(UF_ATTEMPT)==expected&&uf_prepare==1,"state7 actual QOL/inner save and final result");
   uf_call(sp);need(r16(UF_WORK+6)==9&&r32(UF_DISPLAY)==0x0812AC99&&c->busRead8(c,UF_DISPLAY+4)==1&&c->busRead8(c,UF_DISPLAY+5)==0,"original message17 asynchronous dispatch");
   uf_call(sp);need(r16(UF_WORK+6)==9&&!uf_clear&&!uf_sounds,"drawing busy neither sound nor exit");c->busWrite8(c,UF_DISPLAY+4,0);
   uf_call(sp);
