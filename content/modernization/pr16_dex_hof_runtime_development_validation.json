@@ -149,5 +149,33 @@
     "title": "ARM DDI0084D section4.7.2",
     "url": "https://iitd-plos.github.io/col718/ref/arm-instructionset.pdf#page=23",
     "used_for": "MUL carry is not a guaranteed input for a later conditional branch"
+  },
+  "current_measurement_admission_failures": [
+    {
+      "run_id": 37365137571,
+      "job_id": 111948357013,
+      "source_head": "bd44806f310f15115af50dec604ad1ff228b68ef",
+      "run_status": "completed",
+      "run_conclusion": "failure",
+      "job_status": "completed",
+      "job_conclusion": "cancelled",
+      "job_steps": [],
+      "artifacts": [],
+      "last_run_update_utc": "2026-10-05T19:57:35Z",
+      "branch_head_after": "bd44806f310f15115af50dec604ad1ff228b68ef",
+      "current_rom_reconstructions": 0,
+      "native_processes": 0,
+      "record_commits": 0,
+      "actual_executor_steps_observed": 0,
+      "official_incident": "https://www.githubstatus.com/incidents/3q1yb5m7ltvb",
+      "individual_cancellation_cause_proven": false
+    }
+  ],
+  "retry_policy_ja": "前runはstep0/artifact0のcancelled終端。公式runner割当障害の復旧を確認してから同branch/同Ubuntu/同契約の新attempt1へ。run_attempt guardを緩和せず、既受入native再走や別runnerへの迂回は行わない。",
+  "retry_after_official_mitigation": {
+    "source": "https://www.githubstatus.com/incidents/3q1yb5m7ltvb",
+    "announced_utc": "2026-10-05T21:32:00Z",
+    "observed_utc": "2026-10-05T21:51:55Z",
+    "scope_ja": "Actions緩和、新job遅延なしと公式表明。他サービスの完全復旧とは区別。"
   }
 }
