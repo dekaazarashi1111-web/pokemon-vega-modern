@@ -1,12 +1,14 @@
-name: pr16-dex-hof-failure
+name: pr16-dex-hof-ui
 on:
-  workflow_dispatch:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-dex-hof-ui.yml]
 permissions:
   contents: read
   actions: read
   pull-requests: read
 concurrency:
-  group: pr16-dex-hof-failure
+  group: pr16-dex-hof-ui
   cancel-in-progress: false
 defaults:
   run:
@@ -24,26 +26,24 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 24
-      - name: Exact HOF sources and prior terminal state
-        run: python3 -B scripts/pr16_dex_hof_failure_actions.py guard
+      - name: Exact HOF UI sources and terminal isolation
+        run: python3 -B scripts/pr16_dex_hof_ui.py guard
       - name: Official Ubuntu ARM compiler
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-dev libmgba-dev
-      - name: New HOF caller isolated contract and full owner preservation
-        run: python3 -B scripts/pr16_dex_hof_failure_actions.py run
+      - name: Actual HOF failure success display and independent cold
+        run: python3 -B scripts/pr16_dex_hof_ui.py run
       - name: Lightweight task graph
         run: python3 -B scripts/validate_task_graph.py --check
       - name: Closed HOF text publication guard
         id: publication_guard
         if: always()
-        run: python3 -B scripts/pr16_dex_hof_failure_actions.py export
+        run: python3 -B scripts/pr16_dex_hof_ui.py export
       - uses: actions/upload-artifact@v4
         if: ${{ always() && steps.publication_guard.outcome == 'success' }}
         with:
-          name: pr16-dex-hof-failure-text-only
-          path: public-dex-hof-failure
+          name: pr16-dex-hof-ui-text-only
+          path: public-dex-hof-ui
           retention-days: 90
           if-no-files-found: error
-# Host executable is distinct from the ARM link directory.
-# Compare byte views of mGBA word-addressed RAM arrays.
