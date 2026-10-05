@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "status": "PASS_PLR1_EXACT_NUMERIC_CONSUMER_CLASSIFICATION",
+  "source_head": "be9e90f8625a73cd00fe76ccf784890a76f1bf79",
+  "run_id": 37290157793,
+  "candidate": {
+    "size": 33554432,
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+  },
+  "candidate_changed": false,
+  "unit_tests": 37,
+  "classified": 455,
+  "unclassified": 419,
+  "newly_classified": 12,
+  "old_inventory_candidates": 874,
+  "all_prior_accepted_retained": true,
+  "old_full_rom_inventory_reused": true,
+  "original_artifact": [
+    10683907559,
+    35704908254,
+    120487,
+    "d7f66cae03f6d228e49dd6dbb3caea8760063e9a771ace0d13e009cfef402c9e"
+  ],
+  "plr1_bundle": {
+    "sha256": "a61d933f52a785088b5dc8dac81d0bc96f3eb9850d07929e9e4fc460a747992c",
+    "size": 108904
+  },
+  "plr1_image": {
+    "sha256": "5ebbc35c546370bc1c87d48d5d147dc93a6aba2739d9ab9d0825bbf8f307450c",
+    "size": 108008
+  },
+  "typed_audit_identity": {
+    "size": 843430,
+    "sha256": "f33e2e1e752f535b94ccb59a14321698e683a40dc3af877c435433e1200a3a66"
+  },
+  "source_bindings": {
+    ".github/workflows/pr16-dex-hof-numeric.yml": {
+      "size": 2502,
+      "sha256": "fbc88223ec4ac99d894e8e983fb8b06de57d097ab0f9910ced5877e83f6631f2"
+    },
+    "docs/PR16_DEX_HOF_NUMERIC_JA.md": {
+      "size": 2458,
+      "sha256": "c70e95f31e40aed0dcb3768882fa693e55eb83e838da1f07ff381ff1e2a0c75c"
+    },
+    "scripts/pr16_dex_hof_numeric.py": {
+      "size": 13473,
+      "sha256": "ad9dd35c3b9a1de717cb53abd51f27de368a90ae4c2e8e612aead9a77b1436e6"
+    },
+    "scripts/pr16_dex_hof_numeric_actions.py": {
+      "size": 12139,
+      "sha256": "b214546142a3f0aacab2f5be0159ff2780afc4cb0c9c574729cb0bccd1ee4429"
+    },
+    "tests/test_pr16_dex_hof_numeric.py": {
+      "size": 12980,
+      "sha256": "c4d714785e1568467daab42748c66ebd25c235feb4b267aa6d7588d8cf68088f"
+    }
+  },
+  "inherited_bindings": {
+    "content/modernization/pr16_dex_hof_capacity_checkpoint.json": {
+      "size": 860558,
+      "sha256": "616d587c9d4ca8699efcf7adfe69be659371b3c60b4348266fbdaee0ff366d45"
+    },
+    "content/modernization/pr16_dex_hof_generation_writer_checkpoint.json": {
+      "size": 388088,
+      "sha256": "2aa483a860c7f5bc4919f6a3f11c74e3d209399059e8febbd63f3baaa16a8d49"
+    },
+    "content/modernization/pr16_learnset_runtime_checkpoint.json": {
+      "size": 19999,
+      "sha256": "6f84300daaf97649e29438bf38e3f17d990ba1e98266a33abc0939227baac6ff"
+    },
+    "content/modernization/pr16_learnset_runtime_evidence/link.json": {
+      "size": 45856,
+      "sha256": "d85fecf5e3b91e52cae447d0dd908a3b313eb03e3f21e03fd4de3f65d68b5606"
+    },
+    "content/modernization/pr16_learnset_runtime_evidence/receipt.json": {
+      "size": 1743,
+      "sha256": "26a9c1b704635cddb38302a3e625b029720e978b06dccdbcd46de4a511d8c2ee"
+    },
+    "scripts/pr16_learnset_runtime_link.py": {
+      "size": 7819,
+      "sha256": "14582a3bae0f5d11ddf4b94f8cf3f040d82040f2bebe97def60270606dbe5aa2"
+    },
+    "src/modernization/pr16_learnset_game.c": {
+      "size": 862,
+      "sha256": "2fb30c12e6e73931c9990f0a254a493a05c92696202a2799be33cfdd9bb554e1"
+    },
+    "src/modernization/pr16_learnset_owner.c": {
+      "size": 1140,
+      "sha256": "af89f80026c6de83b7430fbcb352a8a3d2faec97454747eb29bdf67535e81965"
+    },
+    "src/modernization/pr16_learnset_owner.h": {
+      "size": 1603,
+      "sha256": "41c3ab7d590aa7e377b56e321dd2a599d5e26f37480ef1962032cd3905545808"
+    },
+    "src/modernization/pr16_learnset_runtime.c": {
+      "size": 3921,
+      "sha256": "10f7acc6f12e5f15ca7ca2d59381f8ffd52d7fbb5ded834fe975560138d8c0ac"
+    },
+    "src/modernization/pr16_learnset_runtime.h": {
+      "size": 1047,
+      "sha256": "f0aceda5fa6584e0fd681b2fd6e6437ecfb3beffde9db3af7a319db4a1b0844c"
+    },
+    "tools/pr16_learnset_runtime.py": {
+      "size": 8815,
+      "sha256": "b0bf21abacea862be45b0a523f5d6a648d03b12af31ee531d6223e5e66f7243b"
+    }
+  },
+  "native_processes": 0,
+  "arm_compiles": 0,
+  "current_rom_reconstructions": 0,
+  "accepted_source_regenerations": 0,
+  "donor_leased": false,
+  "controller_runtime_wired": false,
+  "formal_rom_changed": false,
+  "formal_save_changed": false,
+  "guide": "docs/PR16_DEX_HOF_NUMERIC_JA.md",
+  "evidence_bindings": {
+    "content/modernization/pr16_dex_hof_numeric_evidence/egg-typed-audit.json": {
+      "size": 843430,
+      "sha256": "f33e2e1e752f535b94ccb59a14321698e683a40dc3af877c435433e1200a3a66"
+    },
+    "content/modernization/pr16_dex_hof_numeric_evidence/measurement.json": {
+      "size": 4147,
+      "sha256": "ed83496b6bf012181168fa6a4f076e77cea4411bd1590cd3d4826145e6be8038"
+    },
+    "content/modernization/pr16_dex_hof_numeric_evidence/numeric-tests.txt": {
+      "size": 4157,
+      "sha256": "c40b5e1dedd69349253bdc80cf366565a9789566cca7d426de5e65941501c276"
+    }
+  },
+  "prior_checkpoint": "content/modernization/pr16_dex_hof_capacity_checkpoint.json",
+  "current_owner_checkpoint": "content/modernization/pr16_dex_hof_generation_writer_checkpoint.json",
+  "record_source": "be9e90f8625a73cd00fe76ccf784890a76f1bf79",
+  "record_run": 37290157793
+}
