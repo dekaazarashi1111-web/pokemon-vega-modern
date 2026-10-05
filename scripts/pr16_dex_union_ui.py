@@ -58,6 +58,7 @@ def validate_trace(raw,folder,candidate,mode):
   elif 'screen'in r:need(pending and r['frame']==frame and r['screen']==screen,'exact stage screen');pending=False;screen+=1
   elif 'dynamic_return_fixture'in r:need(not pending and r['frame']==frame and r['size']==8 and r['current_map']==[3,24]and r['current_xy']==[53,13]and r['source_unset']and not r['natural_link_entry_accepted']and 0x02000014<=r['address']<0x02040000-8,'only rooted same-position dynamic return metadata');returns.append(r)
   elif 'ui_fixture'in r:need(not pending and r['ui_fixture']==len(fixtures)and r['frame']==frame and r['all_other_ewram_unchanged']and r['all_other_iwram_unchanged'],'full nonfixture RAM unchanged');fixtures.append(r)
+  elif 'help_restore_observation'in r:need(r['pc']==0x0812BCC0 and r['value']==r['before']==r['restored']==r['lease']==r['dma']==0 and r['thumb']==r['clears']==1 and r['privilege']not in(0x11,0x12)and r['callback']==0x08128F05 and r['routine']==9 and r['state']==13,'exact observed native Help restore')
   elif 'native_ui_setup'in r:need(not pending and r['frame']==frame and(r['chat_size'],r['display_size'],r['sprite_size'],r['windows'])==(440,8552,24,4)and r['all_heap_extents_valid']and not r['natural_link_transition_accepted'],'real native owner setup');setups.append(r)
   elif 'result_printer'in r:
    need(not pending and last_input and last_input['frames']==1 and r['frame']==last_input['frame']==frame-1 and 0<r['size']<=128 and 0<=r['window']<32,'instruction observation inside exact ordinary frame')
