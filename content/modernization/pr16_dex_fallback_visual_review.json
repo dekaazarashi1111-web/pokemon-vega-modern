@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "run": 37261066891,
+  "source_head": "8b11cbc5575954c445d8599d60a857bb797f815c",
+  "archive": [
+    11324487407,
+    37261066891,
+    17437,
+    "9d51cfca557286da23687b37764285591fecc453c69db9fbb6ba6d2f3af9e110"
+  ],
+  "actual_pixels_reviewed": true,
+  "screens": 3,
+  "images": {
+    "fallback/screen-0000.ppm": {
+      "size": 115215,
+      "sha256": "431a9d362e801d3480e2ad9f40c00889fbcc404acb9723f8a6fe0383475bf423"
+    },
+    "corrupt-ledger/screen-0000.ppm": {
+      "size": 115215,
+      "sha256": "43336136c12166bda19b8dd9cb67398baca6b31578f675ff89496b3f67138464"
+    },
+    "healthy/screen-0000.ppm": {
+      "size": 115215,
+      "sha256": "431a9d362e801d3480e2ad9f40c00889fbcc404acb9723f8a6fe0383475bf423"
+    }
+  },
+  "healthy_ja": "雪の道路上の同じplayer位置。fieldへ復帰。",
+  "fallback_ja": "正常と全pixelが一致する同地点のfield。",
+  "negative_ja": "レポートの ないようが きえてしまった！ の拒否メッセージ。intro/titleだけではない。新規ゲーム選択は行わず、Continueの選択肢一覧の受入ではない。",
+  "negative_ui": {
+    "kind": "SAVE_DATA_MISSING_MESSAGE",
+    "callback2": 134266037,
+    "frame": 2584,
+    "start_presses": 2,
+    "A_presses": 0,
+    "counter": 101,
+    "status": 2,
+    "field": false
+  }
+}

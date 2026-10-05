@@ -1,8 +1,6 @@
 name: pr16-dex-fallback-cold
 on:
-  push:
-    branches: [codex/modernization-followup-20260908]
-    paths: [.github/workflows/pr16-dex-fallback-cold.yml]
+  workflow_dispatch:
 permissions:
   contents: read
   actions: read
