@@ -31,6 +31,18 @@
       "address": 135445680,
       "size": 24,
       "sha256": "6209f6fed5d58e61601e1e14d522cd5cb0f0b5bffa4b6b4333e253b78fcdba26"
+    },
+    {
+      "id": "map_help_context_enable_call",
+      "address": 135445344,
+      "size": 12,
+      "sha256": "49769dabfd943ab8df15169ce060feeead487560eb64b12395139071e72f8dfc"
+    },
+    {
+      "id": "help_system_enable_caller",
+      "address": 135445648,
+      "size": 20,
+      "sha256": "e8c4500b65e20c35d919c0802bab07f39f837caff9ced1d83c02ed88f7003796"
     }
   ],
   "fixture_contract": {
@@ -66,6 +78,11 @@
     "cleanup_value": 0,
     "cleanup_instruction": 135445696,
     "source": "pret/pokefirered@c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/union_room_chat.c: HelpSystem_DisableToggleWithRButton / EnableToggleWithRButton",
-    "guard_ja": "失敗後の固定snapshotとの差分免除ではなく、元UI constructor→cleanupの厳密0→1→0 lifetimeを検証。他20247byteは完全保持。"
+    "guard_ja": "失敗後の固定snapshotとの差分免除ではなく、元UI constructor→cleanupの厳密0→1→0 lifetimeを検証。他20247byteは完全保持。 field再初期化の元HelpSystem2callerによる0→0の冪等書込みは、元PC/typed LR/書込前後0/非IRQ-FIQ-DMAで別検証。解放済みUnion workは読まない。",
+    "first_cleanup_lr": 135437105,
+    "idempotent_map_lrs": [
+      135445351,
+      135445667
+    ]
   }
 }

@@ -51,24 +51,28 @@ def validate_trace(raw,folder,candidate,mode):
  need(not any(end[k]for k in('old_save_failed_entered','natural_chat_entry_accepted','link_transaction_accepted','formal_save_changed')),'no scope promotion')
  if mode:need(0<end['fault_writes']<=16 and end['extension_bytes_preserved_after_fault']==20247 and(end['fault_physical_address']<14*4096 if mode==1 else end['fault_physical_address']==131071),'real physical failure')
  else:need(end['fault_writes']==end['extension_bytes_preserved_after_fault']==0,'healthy counterpart')
- frame=inputs=screen=0;pending=False;stages=[];fixtures=[];setups=[];printers=[];returns=[];last_input=None
+ frame=inputs=screen=0;pending=False;stages=[];fixtures=[];setups=[];printers=[];returns=[];helps=[];last_input=None
  for r in rows[1:-1]:
   if 'input'in r:need(not pending and r['input']==inputs and r['frame']==frame and r['key']in(0,1,2,8,16,32,64,128)and 0<r['frames']<=600,'ordered inputs');last_input=r;frame+=r['frames'];inputs+=1
   elif 'union_stage'in r:need(not pending and r['frame']==frame,'same-frame stage');stages.append(r);pending=True
   elif 'screen'in r:need(pending and r['frame']==frame and r['screen']==screen,'exact stage screen');pending=False;screen+=1
   elif 'dynamic_return_fixture'in r:need(not pending and r['frame']==frame and r['size']==8 and r['current_map']==[3,24]and r['current_xy']==[53,13]and r['source_unset']and not r['natural_link_entry_accepted']and 0x02000014<=r['address']<0x02040000-8,'only rooted same-position dynamic return metadata');returns.append(r)
   elif 'ui_fixture'in r:need(not pending and r['ui_fixture']==len(fixtures)and r['frame']==frame and r['all_other_ewram_unchanged']and r['all_other_iwram_unchanged'],'full nonfixture RAM unchanged');fixtures.append(r)
-  elif 'help_restore_observation'in r:need(r['pc']==0x0812BCC0 and r['value']==r['before']==r['restored']==r['lease']==r['dma']==0 and r['thumb']==r['clears']==1 and r['privilege']not in(0x11,0x12)and r['callback']==0x08128F05 and r['routine']==9 and r['state']==13,'exact observed native Help restore')
+  elif 'help_restore_observation'in r:
+   need(not pending and last_input and last_input['frames']==1 and r['frame']==last_input['frame']==frame-1 and type(r['first_restore'])is bool and r['first_restore']==(not helps),'ordered Help event inside exact ordinary frame');helps.append(r)
+   need(r['pc']==0x0812BCC0 and r['value']==0 and r['old']==int(r['first_restore']),'native Help exact values')
+   need((r['lr']==0x08129B31 and r['callback']==0x08128F05)if r['first_restore']else r['lr']in(0x0812BB67,0x0812BCA3),'exact first restore or typed idempotent map reassertion')
   elif 'native_ui_setup'in r:need(not pending and r['frame']==frame and(r['chat_size'],r['display_size'],r['sprite_size'],r['windows'])==(440,8552,24,4)and r['all_heap_extents_valid']and not r['natural_link_transition_accepted'],'real native owner setup');setups.append(r)
   elif 'result_printer'in r:
    need(not pending and last_input and last_input['frames']==1 and r['frame']==last_input['frame']==frame-1 and 0<r['size']<=128 and 0<=r['window']<32,'instruction observation inside exact ordinary frame')
    if mode:need({k:r[k]for k in('address','size','sha256')}=={k:f.proof()['error_text'][k]for k in('address','size','sha256')},'whole actual error printer argument')
    printers.append(r)
   else:raise ValueError('unknown UI trace row')
+ need(sum(r.get('help_restore_observation',False)and r['first_restore']for r in rows)==1 and sum(r.get('help_restore_observation',False)and not r['first_restore']for r in rows)==end['original_help_idempotent_reassertions'],'one initial Help restore and all later no-op writes observed')
  need(not pending and screen==end['screens']==4 and frame==end['frames']and inputs==end['inputs']and len(setups)==len(printers)==len(returns)==1 and[f['bytes_written']for f in fixtures]==[17,4],'whole trace complete')
  need([r['union_stage']for r in stages]==['before_ui_fixture','native_chat_initialized','failure_waiting'if mode else'success_rendered','returned_to_field'],'all observed screen stages')
  need(stages[2]['callback']==0x08128F05 and stages[2]['routine']==9 and stages[2]['state']==(9 if mode else 11) and stages[-1]['callback']==0x08055E75 and stages[-1]['routine']==0 and stages[-1]['state']==0,'actual result and stable original field')
- return dict(end=end,stages=stages,fixtures=fixtures,setups=setups,printers=printers,return_metadata=returns,screens=ui.screens(rows,folder))
+ return dict(end=end,stages=stages,fixtures=fixtures,setups=setups,printers=printers,return_metadata=returns,help_restores=helps,screens=ui.screens(rows,folder))
 def run():
  import pr16_story_live_probe as t
  import pr16_dex_union_formatter_actions as prior
