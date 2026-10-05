@@ -10120,3 +10120,17 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 正式ROM/Save101を保持。最新d773a123/115ownerを基準に、初回mode3のHOF sector28/29とmain保存世代の整合を次に実装・検証する。全mode4/5/default/LinkFull、未対応caller共通SaveFailedとstale authority wipe、早期sector31故障/単bank原子性、残typedconsumerは未完。fallback255はQOL v2 idle台帳のみ限定復元で、Collection/Codex/Circus等の全cold owner復元と世代結合を受入していない。正式切替とtrainer131後半は検証未完で保留（承認不足ではない）。最終はシオウ通常回復/Save/独立cold Continue、雑魚ごとのSaveなし。
 - Commit: record source=4ca18a66618571137d120091a45607937fcb6e67; 同branch非force push。
 - Network: 同repo Actions/既存入力だけ。公開source/address-size-SHA/text/screens、ROM断片/rawhex/ROM/runtime/入力save/runner/credentials追加公開0。
+
+## 2026-10-05T04:00:12.061819+00:00
+- Timestamp: 2026-10-05T04:00:12.061819+00:00
+- Task: USER-20261005-DEX-FALLBACK-QOL / fallback台帳記録の終端
+- Version: dex-fallback-qol-closeout
+- Status: STOPPED（安全なidle台帳限定受入点。初回mode3/全mode/共通残caller/全cold owner未完）
+- Summary: record run37261371891/job111609123964全12stepとartifact11325430266のcheckpoint全byte一致を確認しpending解除。新native/recordはmanual-onlyへ。
+- Files changed: closeout source/workflow、record起動条件、固定MDJSONと両ログ。
+- Verify: 全source/evidence/fixed resume/index/task graph PASS。追加host0/ARM0/native0。原本はARM508/host327907、正常/片bank故障/破損cold3case、3画像。acceptedraw4＋diagnostic2＋intro/title中間2＝native総8。
+- Lineage: HOF40ad8237からd773a123へ。既存114owner全部継承、113全byte不変、Mirage参照4byteのみ変更、新296byte追加で115/overlap0。残tailは0x09FFFEEC以降276byte。古い572byte空き表示を使わない。
+- Boundary: fallback255の有効v2/idle durable QOL2048byteのみ。全cold owner・main世代binding/sector31原子性/初回HOF保存/全mode/共通残caller/typedconsumerは未完。正式ROM/Save101不変、trainer131後半0。一般CI既知QOL source不一致/Stage79cache/旧9月18日queueは別扱い。
+- Next: 初回mode3 HOF28/29とmainの保存契約へ。最新115ownerと実sectionを先に再照合。最終はシオウ通常回復/保存/cold Continue、雑魚毎Saveなし。
+- Commit: closeout source=a2a70395f63e435593db3d12fbd34583dc0d1ab0; 同branch非force push。
+- Network: 同repo Actions/既存text receiptだけ。ROM/入力save/runtime/runner/credentials追加公開0。

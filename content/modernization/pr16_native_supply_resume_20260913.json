@@ -4370,6 +4370,7 @@
   "observed_head": "4ca18a66618571137d120091a45607937fcb6e67",
   "observed_head_checks": {
     "accepted_raw_native_processes": 4,
+    "all12_record_steps_success": true,
     "all_cold_owners_preserved": false,
     "both_all10_steps_success": true,
     "cold_job": 111608210701,
@@ -4385,10 +4386,13 @@
     "isolated_job": 111601363009,
     "isolated_run": 37258786462,
     "reason_ja": "選択済み片bank fallback255でQOL台帳が全zeroとなる不具合を、v2/idle durable2048byteの非破壊復元で修正。正常cold1と故障コピーcold255が物理1a34…の全byteへ一致し、同地点・party・Bag、追加Save0。破損台帳はglobal2/MDX無効でfield遮断し、エラーUI到達後も選択counter101を保持（intro/title中間のcounter0と区別）。候補d773a123、296byte、新115owner、旧114中113全byte保持＋Mirage参照4byteのみ。全cold owner・世代結合/sector31原子性は未完。",
+    "record_job": 111609123964,
+    "record_run": 37261371891,
     "scope_head": "8b11cbc5575954c445d8599d60a857bb797f815c",
     "screens": 3,
     "stage79_cached_not_new_native": true,
-    "total_native_processes": 8
+    "total_native_processes": 8,
+    "whole_receipt_equals_checkpoint": true
   },
   "observed_head_history": [
     {
@@ -12399,13 +12403,7 @@
     "status": "NATIVE_PARTY_RETENTION_ACCEPTED_BP_PENDING",
     "tested_head": "10e535a046441dd3b797918106259b5c57b69716"
   },
-  "pending_runs": [
-    {
-      "run_id": 37261371891,
-      "status": "in_progress",
-      "tested_head": "4ca18a66618571137d120091a45607937fcb6e67"
-    }
-  ],
+  "pending_runs": [],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
   "pr_draft": true,
   "pr_merged": false,
@@ -14200,6 +14198,10 @@
       "sha256": "44a82327fff7de6fca8ad25cc510274313055110739e1636c992379a95499fa7",
       "size": 1590
     },
+    ".github/workflows/pr16-dex-fallback-closeout.yml": {
+      "sha256": "25f0c2caa4e4151386294fe9226d5402ff5002490669f059f2adc58450a67e03",
+      "size": 2411
+    },
     ".github/workflows/pr16-dex-fallback-cold.yml": {
       "sha256": "420a84e59f9339410f4fbe331a88f57558e73c5ec16b4e8883d9b7e4e4374df4",
       "size": 1628
@@ -14209,8 +14211,8 @@
       "size": 1637
     },
     ".github/workflows/pr16-dex-fallback-record.yml": {
-      "sha256": "1d2e06e439ca3066bc78164f01bbb3f190f267d4af94aa6657a7c20c0c585dfe",
-      "size": 2457
+      "sha256": "4f184172ae69ea6b9ac050450775157a6a4baffcab56291a8e2e12ea849e2efd",
+      "size": 2356
     },
     ".github/workflows/pr16-dex-gameplay.yml": {
       "sha256": "3a046bfda0815f2aa8e8d738171ce03c5e952f3afa4349611990c7ede6403666",
@@ -33752,6 +33754,10 @@
       "sha256": "0d3120196dc04daa18002b5a761eb7c4766912f31cf24f5b8cd47406d7c566f9",
       "size": 6551
     },
+    "scripts/pr16_dex_fallback_closeout.py": {
+      "sha256": "5e792c959e2147024469c8148a8eb081b7986fe0788ac7e75c6efd94b6022a7f",
+      "size": 9543
+    },
     "scripts/pr16_dex_fallback_cold.py": {
       "sha256": "32c41426e3553f2d614c6d0025b2af43c9fa2b7583fe1aaa09e90f561d8b33a6",
       "size": 13961
@@ -39944,6 +39950,33 @@
         },
         "previous_owners": 114,
         "record_run": 37261371891,
+        "recording": {
+          "all12_record_steps_success": true,
+          "arm_compiles": 0,
+          "checkpoint": "content/modernization/pr16_dex_fallback_checkpoint.json",
+          "checkpoint_identity": {
+            "sha256": "ac9c715f1114981b926d8f8f59d3a4657e8b4ed85038bb0110c80b1fae61e339",
+            "size": 270449
+          },
+          "closeout_run": 37261623547,
+          "closeout_source": "a2a70395f63e435593db3d12fbd34583dc0d1ab0",
+          "formal_rom_changed": false,
+          "formal_save_changed": false,
+          "host_tests_rerun": 0,
+          "native_processes": 0,
+          "record_archive": [
+            11325430266,
+            37261371891,
+            56682,
+            "6a883ef7029f9ea7d723a72c0f1b7eb4eb3e46a88675b20d5c70d64e2887d9a0"
+          ],
+          "record_completion": "953d6c3e967554f37f5e34c849faa4228ed73015",
+          "record_job": 111609123964,
+          "record_receipt_equals_checkpoint": true,
+          "record_run": 37261371891,
+          "record_source": "4ca18a66618571137d120091a45607937fcb6e67",
+          "status": "PASS_TERMINAL_FALLBACK_QOL_RECORD"
+        },
         "status": "PASS_SCOPED_IDLE_FALLBACK_QOL_COLD",
         "unchanged_previous_owners": 113
       },
