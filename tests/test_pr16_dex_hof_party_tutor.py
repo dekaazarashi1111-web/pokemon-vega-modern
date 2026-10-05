@@ -140,3 +140,33 @@ class PartyTutorTests(unittest.TestCase):
   with self.assertRaises(ValueError):v.projection_preserved(v.runtime.ROOT+v.runtime.HEADER,'setup',[(v.TASKS,4)],task_live=True)
  def test_38_fade_guard_live_between_calls(self):
   with self.assertRaises(ValueError):v.projection_preserved(v.runtime.ROOT+v.runtime.HEADER,'choose',[(0x020379F3,1)])
+
+ def test_39_callback1_projection_rejects_all_phase_callee_writes(self):
+  p=v.runtime.ROOT+v.runtime.HEADER
+  for phase in ('constructor','setup','choose','replace_text','replace_input','stop_text','stop_input'):
+   for a,n in ((0x03003130,4),(0x03003131,1)):
+    with self.subTest(phase=phase,address=a),self.assertRaises(ValueError):v.projection_preserved(p,phase,[(a,n)])
+ def test_40_every_callee_boundary_preserves_zero_callback1(self):
+  for row in v.finite_case(self.raw)['conditional_calls']:
+   with self.subTest(phase=row['phase'],callsite=row['callsite']):
+    self.assertTrue(any(x['address']==0x03003130 and x['size']==4 and 'zero' in x['role'] for x in row['protected_fields']))
+ def test_41_actual_main_callee_mutation_diverts_first_dispatch(self):
+  # 同じ実main consumerへ入り、最初の外部gate内でcallback1だけを書換える反証。
+  # 正常ABI復帰だけでは足りず、追加したcell保存が必要なことを示す。
+  def first_dispatch(corrupt):
+   mem={};v.runtime.setmem(mem,0x03003130,4,0);v.runtime.setmem(mem,0x03003134,4,0x0811F3A9)
+   m=v.TutorMachine(self.raw,0x08000510,memory=mem,instructions=v.INS)
+   mutation=[]
+   while m.pc!=0x081C7AC8:
+    if m.pc in (0x080F6168,0x0813C034):
+     if corrupt and m.pc==0x080F6168:
+      mutation.append((0x03003130,4));m.write(0x03003130,4,0x08128155)
+     m.reg[0]=0;m.reg[1:4]=[v.runtime.U]*3;m.pc=m.reg[14]&~1
+    else:m.step()
+   return m.reg[0],m.calls[-1][0],mutation
+  normal,normal_site,_=first_dispatch(False);changed,changed_site,writes=first_dispatch(True)
+  self.assertEqual(normal,0x0811F3A9);self.assertEqual(changed,0x08128155)
+  self.assertNotEqual(normal_site,changed_site)
+  with self.assertRaises(ValueError):v.projection_preserved(v.runtime.ROOT+v.runtime.HEADER,'choose',writes)
+ def test_42_callback1_condition_cannot_be_dropped(self):
+  self.reject_review(lambda r:r['input_contract'].pop('main_callback1'))

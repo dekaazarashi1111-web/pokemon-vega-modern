@@ -1,0 +1,196 @@
+{
+  "schema_version": 1,
+  "status": "PASS_NEW_SOURCE_ONLY_PARTY_REVIEW",
+  "review_scope": "new_party_sources_only",
+  "old_independent_final_review_retried": false,
+  "initial_head": "f90898dd122784f555d0a120f788b06ca8152c4a",
+  "source_bindings": {
+    ".github/workflows/pr16-dex-hof-party-references.yml": {
+      "size": 3001,
+      "sha256": "63c3696c23a4bb4ed01546490af2a1c57603c55d3e8f4e93092ff79c56254a70"
+    },
+    "content/modernization/pr16_dex_hof_party_sources.json": {
+      "size": 1943,
+      "sha256": "74f99569e6c01090fe40a2986512764d136eecbe22aefff3aa2509afdc369c1c"
+    },
+    "content/modernization/pr16_dex_hof_party_takeitem_review.json": {
+      "size": 44286,
+      "sha256": "8b447bf029342589593928adb1888411802340df55184fe22de9ed77f4556238"
+    },
+    "content/modernization/pr16_dex_hof_party_tutor_review.json": {
+      "size": 47043,
+      "sha256": "4238f7229cf087be061ddf93bafe3b40be82ff26c2d67b03e19933c2706607ec"
+    },
+    "docs/PR16_DEX_HOF_PARTY_REFERENCES_JA.md": {
+      "size": 3866,
+      "sha256": "8416c334fa9e6d223209faf8b6a3c729426c9867d4b6c18103e5fcb0925484d9"
+    },
+    "scripts/pr16_dex_hof_party_capacity.py": {
+      "size": 5055,
+      "sha256": "7264d264c23005398453daebcc0f3face00173aaa8e81453cf456ba65d82f0f4"
+    },
+    "scripts/pr16_dex_hof_party_chain.py": {
+      "size": 11683,
+      "sha256": "a6e5ed520f72038e66eece579164e9cc0e051063589a13e83e3a5e5ccd24367a"
+    },
+    "scripts/pr16_dex_hof_party_references.py": {
+      "size": 6423,
+      "sha256": "84e09c2a941707ad32713ac8c83de0712ca7ecd820198d8c313af7cff1031e08"
+    },
+    "scripts/pr16_dex_hof_party_references_actions.py": {
+      "size": 26526,
+      "sha256": "0d979db0b730b160829dddd9f90ad957b330838028d2ea31a1bad56a573fbe5a"
+    },
+    "scripts/pr16_dex_hof_party_takeitem.py": {
+      "size": 35963,
+      "sha256": "b059b1907cea67c0c6f73a6d0da2916f723a78feb9e88c83e13ce6b840043cb4"
+    },
+    "scripts/pr16_dex_hof_party_tutor.py": {
+      "size": 25461,
+      "sha256": "93a7addd262a1ed56f854263fb4c99137730d21d8bf32374dbe01ed787e9ae90"
+    },
+    "tests/test_pr16_dex_hof_party_capacity.py": {
+      "size": 9831,
+      "sha256": "7136ff555326631f888cd5c462c03b6678ffcfc6ad54561bdb5e1e0c77b6d8e9"
+    },
+    "tests/test_pr16_dex_hof_party_chain.py": {
+      "size": 14067,
+      "sha256": "c85d97ba7ff4460d40aa532fcbc88928c02a91fd311cf0eb1c52806e09f42bf7"
+    },
+    "tests/test_pr16_dex_hof_party_references.py": {
+      "size": 7054,
+      "sha256": "57446454aa5002949f210568a3dfcd1f5dca5b354d00379fa4d7c2262ebef72d"
+    },
+    "tests/test_pr16_dex_hof_party_references_actions.py": {
+      "size": 11528,
+      "sha256": "12ec49cbe349f517e6a0d8ecb6d181f2dafbf67e76db6c71bad6ea348547fdb1"
+    },
+    "tests/test_pr16_dex_hof_party_takeitem.py": {
+      "size": 16515,
+      "sha256": "d740bdcff3e92535b4cb48d8761d10a5be19032d5f2b5034ab20c0811958299f"
+    },
+    "tests/test_pr16_dex_hof_party_tutor.py": {
+      "size": 12517,
+      "sha256": "cc30c0167b10ddf3fc38d0ea589857d6f6d0e775bff954f5be21f7595a42b8e9"
+    }
+  },
+  "diagnostic": {
+    "status": "OLD_DIAGNOSTIC_ONLY_CURRENT_ACTIONS_REQUIRED",
+    "unit_tests": 276,
+    "classifications": [
+      735,
+      139
+    ],
+    "newly_classified": 2,
+    "diagnostic_candidate": {
+      "size": 33554432,
+      "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+    },
+    "delta_identity": {
+      "size": 178738,
+      "sha256": "f748a33fa0eb42fa7ca6dc413942f9ce25e8be3b59646395ff01846d0d4791f3"
+    },
+    "current_rom_reconstructions": 0,
+    "native_processes": 0,
+    "donor_leased": false
+  },
+  "diagnostic_test_log": {
+    "size": 35214,
+    "sha256": "1bf367c5d9490be0c0f64a17b3fd4909286f0a99d490de8fc02daf284b3e4177"
+  },
+  "source_only_review": {
+    "status": "PASS",
+    "files": 17,
+    "open_findings": 0,
+    "current_rom_measured": false,
+    "old_independent_final_review_retried": false,
+    "scope": "new_party_sources_only",
+    "method_ja": "実登録根・最小6byte型・有限callee条件・同task/必須cell保存、親保持・容量・公開guardを新sourceのみ静的確認。current全ROMは別Actions測定。"
+  },
+  "development_history": [
+    {
+      "stage": "catalog_missing_consumer_negative",
+      "status": "RESOLVED",
+      "tests": 276,
+      "passed": 275,
+      "error": 1,
+      "detail_ja": "missing consumerの空診断がKeyErrorとなることを負例が検出。pack入口に完全な非空case listを明示needしValueErrorで拒否。全新suiteを再検証。"
+    },
+    {
+      "stage": "lossless_diagnostic_catalog",
+      "status": "RESOLVED_BEFORE_CURRENT_RECONSTRUCTION",
+      "detail_ja": "262test成功後にTutor15caseの重複call列によるdelta/state上限超過を事前発見。exact shared catalogと順序付き参照へlossless正規化し全original復元一致・14負例を追加。型根・有限実行は不変。新全suiteと保守的public byte予算をcurrent前に確認。"
+    },
+    {
+      "stage": "new_suite_fixture_efficiency",
+      "status": "INTERRUPTED_THEN_RESCOPED_NO_ACCEPTANCE",
+      "exit_code": 130,
+      "detail_ja": "unit mutationへ全旧proofを渡した初回統合は各mutationのdeepcopy/resealが不要な全親反復となるため中断。正本733親からcandidateと対象hit全fieldだけを非aliasで取り出すunit fixtureへ限定。実分類・全親保持・容量・曲交差は全親で検査し、効率化後全新suiteで再検証。"
+    },
+    {
+      "stage": "workspace_reset",
+      "timestamp": "2026-10-05T22:54:42Z",
+      "status": "UNPUSHED_DIAGNOSTIC_LOGS_LOST_NO_ACCEPTANCE",
+      "detail_ja": "正本と私有入力は同じremote/既存artifactから全文hashで復旧。未push sourceは作成内容から再作成し新試験を実施。失われた成功logを保存済みとして扱わない。旧suite/native再実行0。"
+    },
+    {
+      "stage": "new_source_review",
+      "status": "RESOLVED",
+      "detail_ja": "両proofにmain callback1 zero保存を追加し実dispatch diversion反例で拒否。TakeItemのSelectionWindow5fieldを具体的条件へ固定しcursor1→index2反例を追加。"
+    },
+    {
+      "stage": "new_capacity_test_scaffold",
+      "status": "RESOLVED",
+      "detail_ja": "新testの機械置換でhit address誤記を検出。実hit08120CBDへ修正。正式分類発行なし。"
+    },
+    {
+      "stage": "local_action_fixture_recovery",
+      "status": "RESOLVED",
+      "detail_ja": "新private-failure反証のimportに必要な既存relink入力欠落を検出し正本から復旧。最終新suiteで再検証。"
+    }
+  ],
+  "publication_budget": {
+    "status": "PRECURRENT_CONSERVATIVE_SIZE_CHECK_NOT_ACCEPTANCE",
+    "files": {
+      "reference-chain.json": 373830,
+      "measurement.json": 434994,
+      "fixed-checkpoint.json": 474994,
+      "fixed-state.json": 3776732,
+      "fixed-resume.md": 164873,
+      "fixed-run-log.md": 2043264,
+      "fixed-version-log.md": 1654662,
+      "party-references-tests.txt": 35214,
+      "unknown-frontier.json": 100000,
+      "partial-space.json": 50000,
+      "record.json": 30000
+    },
+    "total": 9138563,
+    "max_file": 4000000,
+    "max_total": 12000000,
+    "lossless_tutor_catalog": true
+  },
+  "unchanged_parent": {
+    "classified": 733,
+    "unclassified": 141,
+    "parent_inputs": 19,
+    "retained_proof_families": 10,
+    "changes": 114,
+    "witnesses": 104,
+    "owner_count": 115,
+    "hit_count": 874,
+    "song_models": 133,
+    "assets": 50
+  },
+  "acceptance_boundary": {
+    "current_candidate_verified": false,
+    "current_actions_required": true,
+    "natural_play_reachability_proven": false,
+    "universal_epoch_irq_proven": false,
+    "old_independent_final_source_review_completed": false,
+    "donor_leased": false,
+    "donor_safe_bytes": 0,
+    "controller_runtime_wired": false,
+    "formal_rom_changed": false,
+    "formal_save_changed": false
+  }
+}

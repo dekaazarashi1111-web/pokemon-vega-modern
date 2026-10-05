@@ -132,6 +132,7 @@
     "inputs": "fade inactive, link wait returns0, text printer returns0, replacement questionNo=1 then stop-learningYes=0",
     "callee_frame": "each explicitly recorded external call returns normally with ABI, valid nonalias stack/resources and readable/writable arguments; may change dead/disjoint memory while preserving phase-specific live projection",
     "phase_fields": "before state20: allocation epoch/pointer/object+0..11, gPartyMenu+0..11, gMain callback/state; after state20 including remaining setup: selected task func/active/list, gPartyMenu slot/action/move/method, special tutor id, main callback; rendering/text resources valid when used",
+    "main_callback1": "gMain.callback1 at0x03003130 is zero initially and remains zero across every recorded external call and finite phase; actual main consumer re-reads it before callback2",
     "interruptions": "only preservation of currently live projection is required; whole-heap freeze, all IRQ exclusion and all other task immutability are not asserted",
     "stop": "stop before StringCopy at0x08126B0A; 0x08126B0E is its static return successor only"
   },

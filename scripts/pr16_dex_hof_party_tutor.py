@@ -132,6 +132,7 @@ CONTRACT={
  'inputs':'fade inactive, link wait returns0, text printer returns0, replacement questionNo=1 then stop-learningYes=0',
  'callee_frame':'each explicitly recorded external call returns normally with ABI, valid nonalias stack/resources and readable/writable arguments; may change dead/disjoint memory while preserving phase-specific live projection',
  'phase_fields':'before state20: allocation epoch/pointer/object+0..11, gPartyMenu+0..11, gMain callback/state; after state20 including remaining setup: selected task func/active/list, gPartyMenu slot/action/move/method, special tutor id, main callback; rendering/text resources valid when used',
+ 'main_callback1':'gMain.callback1 at0x03003130 is zero initially and remains zero across every recorded external call and finite phase; actual main consumer re-reads it before callback2',
  'interruptions':'only preservation of currently live projection is required; whole-heap freeze, all IRQ exclusion and all other task immutability are not asserted',
  'stop':'stop before StringCopy at0x08126B0A; 0x08126B0E is its static return successor only',
 }
@@ -178,7 +179,7 @@ def projection(pointer,phase,task_id=0,task_live=None):
  need(phase in ('constructor','setup','choose','replace_text','replace_input','stop_text','stop_input'),'named Tutor phase')
  if task_live is None:task_live=phase not in ('constructor','setup')
  need(type(task_live)is bool,'explicit admission phase flag')
- rows=[(PARTY,12,'party controls'),(0x02036FF6,2,'normal tutor id')]
+ rows=[(PARTY,12,'party controls'),(0x02036FF6,2,'normal tutor id'),(0x03003130,4,'main callback1 remains zero')]
  if task_live:rows.append((TASKS+40*task_id,8,'same task callback active list priority'))
  if phase in ('constructor','setup'):
   rows += [(HEAP_CELL,4,'object pointer'),(pointer-runtime.HEADER,8,'allocation epoch header'),(pointer,12,'live object control fields'),(0x03003134,4,'callback2'),(setup.STATE,1,'setup state')]
@@ -231,6 +232,7 @@ def finite_case(raw,tutor_id=0,inputs=(1,0),fade=0,compatible=1,known=0,full=0xf
  def run(entry,memory,stop=0xFFFFFFF0):
   nonlocal task_id,question
   m=TutorMachine(raw,entry,memory=memory,instructions=INS)
+  need(m.read(0x03003130,4)==0,'main callback1 zero at every finite phase entry')
   while m.pc!=stop:
    target=m.pc
    if target==0x08076BB4:
@@ -275,6 +277,7 @@ def finite_case(raw,tutor_id=0,inputs=(1,0),fade=0,compatible=1,known=0,full=0xf
     try:m.step()
     except (ValueError,KeyError) as exc:raise ValueError(phase+' '+hex(m.pc)+': '+str(exc)) from exc
    need(m.steps<30000 and len(assumptions)<300,'finite selected continuation')
+  need(m.read(0x03003130,4)==0,'main callback1 zero across selected external boundaries')
   if stop==0xFFFFFFF0:need(m.reg[13]==0x03007000,'balanced phase stack')
   return m
  root=run(0x080697BC,mem)

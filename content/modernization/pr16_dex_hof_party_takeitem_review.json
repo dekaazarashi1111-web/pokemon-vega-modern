@@ -1,0 +1,1375 @@
+{
+  "schema_version": 1,
+  "required_candidate": {
+    "size": 33554432,
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+  },
+  "diagnostic_input": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  },
+  "source_bindings": {
+    "pret-party_menu.c": {
+      "local": "pret-party_menu.c",
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "path": "src/party_menu.c",
+      "size": 211085,
+      "sha256": "8290dfd5b6444e743029ab76543ed5e4b5b32c1c2f475c686946545f934d5f9b",
+      "git_blob_sha": "7f3a881e6c56773aee03da475c9a1adc50530223",
+      "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/party_menu.c"
+    },
+    "runtime_review": {
+      "local": "runtime_review",
+      "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+      "commit": "f90898dd122784f555d0a120f788b06ca8152c4a",
+      "path": "content/modernization/pr16_dex_hof_runtime_party_review.json",
+      "size": 7144,
+      "sha256": "d879a4f2bba39ef84bbd7eb2e26071f7d78a50a41508a83ca6610879c86ced5a",
+      "git_blob_sha": "6e1f102112e3fc38d7cbe88bd42547e778fea870"
+    },
+    "party_review": {
+      "local": "party_review",
+      "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+      "commit": "f90898dd122784f555d0a120f788b06ca8152c4a",
+      "path": "content/modernization/pr16_dex_hof_callback_party_review.json",
+      "size": 30492,
+      "sha256": "9aab39682b78ac5199357955cd634ef2ce14d0c4f0b60643dba944f5b7a31691",
+      "git_blob_sha": "b310e8ba4cc8292087728fa451a237df1641586c"
+    },
+    "setup_review": {
+      "local": "setup_review",
+      "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+      "commit": "f90898dd122784f555d0a120f788b06ca8152c4a",
+      "path": "content/modernization/pr16_dex_hof_lifetime_setup_review.json",
+      "size": 33229,
+      "sha256": "2a39c2c125df3a0b23d3bb6048deee5fb4a1911028e6153ac513bd45a6a9eba5",
+      "git_blob_sha": "c37a93a509418999f1034ffc84ba130604a19978"
+    },
+    "menu_review": {
+      "local": "menu_review",
+      "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+      "commit": "f90898dd122784f555d0a120f788b06ca8152c4a",
+      "path": "content/modernization/pr16_dex_hof_lifetime_menu_review.json",
+      "size": 21519,
+      "sha256": "47d5a00dce7d7ee200bd4a4fe3cf6b90a280a5514efcbfbc3c5b47bbcc2fa973",
+      "git_blob_sha": "ddbbad16fcb55988cef6389e9fa1bf07ba25e627"
+    }
+  },
+  "hit": {
+    "address": 135400637,
+    "target": 167708918,
+    "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+    "size": 4,
+    "sha256": "6de4ba07aeec7c0a9bd2ddba2eb0a59111979bd89014d6d1df469274ba4d7dee",
+    "classification": "UNCLASSIFIED",
+    "accepted": false,
+    "reason": "no_complete_typed_asset_consumer_witness",
+    "owner_candidates": []
+  },
+  "root": {
+    "kind": "existing_start_menu_party_root_to_actual_item_take_callbacks",
+    "start_menu_slot": 137802624,
+    "entry": 134671420,
+    "field_callback": 135428072,
+    "constructor": 135393868,
+    "allocation_size": 568,
+    "setup_state20_call": 135394756,
+    "first_task_function": 135398169,
+    "party_scheduler": 135394216,
+    "runtasks": 134704400,
+    "runtasks_indirect_call": 134704426,
+    "actual_action_hook": 151616128,
+    "outer_menu_task_store": 135410728,
+    "selector": 135410744,
+    "outer_nonmail_branch": 135410350,
+    "item_action_append": 135410388,
+    "item_action": 3,
+    "item_callback_slot": 138517956,
+    "item_callback": 135413372,
+    "item_submenu_action_type": 8,
+    "item_submenu_producer_call": 135413412,
+    "item_submenu_count": 3,
+    "item_submenu_actions": [
+      4,
+      5,
+      9
+    ],
+    "take_input": 1,
+    "take_action": 5,
+    "take_callback_slot": 138517972,
+    "take_callback": 135414804,
+    "try_take_call": 135414862,
+    "try_take": 135400960,
+    "try_take_success_store": 135401016,
+    "try_take_success": 2,
+    "display_helper_call": 135414884,
+    "display_helper": 135400604,
+    "questlog_call": 135400628,
+    "nickname_call": 135400636,
+    "nickname_callee": 135400144,
+    "static_successor": 135400640
+  },
+  "windows": [
+    {
+      "label": "outer_field_prefix",
+      "address": 135410136,
+      "size": 68,
+      "sha256": "77b664d6af53672a950ed631c0337382da8f3c9daa8bad72c252de0e4a81ba42"
+    },
+    {
+      "label": "outer_field_move_compare",
+      "address": 135410204,
+      "size": 30,
+      "sha256": "dfb55595dea0c032faa15c5458f5e4f664985ab6f4d4d0f7e78d64d28cbf7421"
+    },
+    {
+      "label": "outer_field_move_next",
+      "address": 135410268,
+      "size": 16,
+      "sha256": "7f4c267bb2e9d6d4cd99a0666493d562de4fadbcc077711df3cefde9d5ded229"
+    },
+    {
+      "label": "outer_field_loop_and_second_species",
+      "address": 135410284,
+      "size": 22,
+      "sha256": "25bb446b5648821907fd04ddc09135b59d66ccc8825b8c84e2c353692838b7aa"
+    },
+    {
+      "label": "outer_nonmail_item_action_append",
+      "address": 135410376,
+      "size": 16,
+      "sha256": "3525392429a0a14654eed6397f71ee62bf9624b38f69cfe717a365abb339fa7b"
+    },
+    {
+      "label": "outer_cancel_append_return",
+      "address": 135410392,
+      "size": 32,
+      "sha256": "575268ee07fb32bb9d31caf395a43c944e85e860fbad605651bb17fdce087e59"
+    },
+    {
+      "label": "choose_mon_return",
+      "address": 135398280,
+      "size": 6,
+      "sha256": "514f6aa802bdc4d077005cde997c6ee1f921c1ce496ca6cc35e22b9a405f8a71"
+    },
+    {
+      "label": "item_submenu_producer",
+      "address": 135413372,
+      "size": 80,
+      "sha256": "2a7f0c7e74c5b133c4ea531a969fb40eeca4d282ddb15a06199ba49a23cd77a9"
+    },
+    {
+      "label": "take_callback_to_success",
+      "address": 135414804,
+      "size": 86,
+      "sha256": "53dcd3678a75cbc02f4dc6e84ee3b39bb8dace4979cd3dc61d6f51b60a73f557"
+    },
+    {
+      "label": "take_result_producer",
+      "address": 135400960,
+      "size": 70,
+      "sha256": "be8227970a052ca25b0f689b571590d8e9abdf0b6fa77a48355a55ce1a71989e"
+    },
+    {
+      "label": "took_item_helper_to_hit",
+      "address": 135400604,
+      "size": 38,
+      "sha256": "3ac0d42e94d7a31cde004fec535af7021b5d713e0e937addc4b0d9da6bcec241"
+    },
+    {
+      "label": "party_actions_producer",
+      "address": 135410040,
+      "size": 82,
+      "sha256": "454bb3a8192009c5ade25710eba29740093e909084422f22357a032829a36dd3"
+    },
+    {
+      "label": "party_selection_input_prefix",
+      "address": 135410744,
+      "size": 56,
+      "sha256": "bb8a5539e199200edc1d80cca0e65f2631fa317d89648538fdb3cfc29e2eb126"
+    },
+    {
+      "label": "party_selection_input_and_cancel_filter",
+      "address": 135410816,
+      "size": 70,
+      "sha256": "3d084a6845c681856986ec478521eab83cb69400fa4a48373daa609da69fdd49"
+    },
+    {
+      "label": "party_selection_confirm_consumer",
+      "address": 135410936,
+      "size": 40,
+      "sha256": "16ec1265b1bcd8ca96175140a504406fdb0576db38186ed9cd0cd80c8c15114c"
+    },
+    {
+      "label": "party_main_callback_setter",
+      "address": 134219076,
+      "size": 16,
+      "sha256": "ec1b3773f6d0521e06945a26db83b027eace56daaea78238830954d96f966c2e"
+    },
+    {
+      "label": "party_interwork_r1",
+      "address": 136084172,
+      "size": 2,
+      "sha256": "bac8ca6ee9f77b46c7ab5824c7c59d99fd0ca53ae998ea2872b78bb6a5189cc5"
+    },
+    {
+      "label": "task_run_tasks_field0_dispatch",
+      "address": 134704400,
+      "size": 42,
+      "sha256": "dc1a90615dae67b96669e1bea0f8914a05d040247682b3af9f3a8e52b1437be6"
+    },
+    {
+      "label": "task_choose_mon_input",
+      "address": 135398168,
+      "size": 60,
+      "sha256": "994a85fc38a98229d6c341377fb602754902883492c1d6ca71bf235b06f77d10"
+    },
+    {
+      "label": "task_choose_mon_confirm",
+      "address": 135398238,
+      "size": 10,
+      "sha256": "3651a568d8bff21b6e94b24f2d367607ee13627935a3447868834655703e9858"
+    },
+    {
+      "label": "task_cursor_pointer_choice",
+      "address": 135398292,
+      "size": 18,
+      "sha256": "68ab320a92208805efd49876816db637650505fe2be2c6f58a4ca12af2961e9a"
+    },
+    {
+      "label": "task_cursor_party_slot",
+      "address": 135398316,
+      "size": 6,
+      "sha256": "c272c8df96990827b24a3640f960f36dd5c69c5b4101360f59ad3195d4af0d8f"
+    },
+    {
+      "label": "task_selection_hook_entry",
+      "address": 135398324,
+      "size": 16,
+      "sha256": "3728b88af9f6d85f5a2be2473269bddfe1ef9a9b48c1c26df7a876f7895c4f5a"
+    },
+    {
+      "label": "task_selection_hook_trampoline",
+      "address": 135398356,
+      "size": 4,
+      "sha256": "6b6b0f7315d31682c7f8059490eb3df143139881118c2c78a5b82ce1834d895d"
+    },
+    {
+      "label": "task_actual_action_selector_hook",
+      "address": 151616128,
+      "size": 18,
+      "sha256": "193285e767e44bf39bd14a252e646dfeebc94d47f77116146128c0a691da1676"
+    },
+    {
+      "label": "menu_outer_pokemon_callback_fade_gate",
+      "address": 134671420,
+      "size": 18,
+      "sha256": "19d98488d51bef28ecf963232f002c74a38f2f4d68241033929c0e512841f05e"
+    },
+    {
+      "label": "menu_outer_pokemon_callback_install",
+      "address": 134671444,
+      "size": 24,
+      "sha256": "21453061a02a48e254834ac10d09091b1c24aca71c79bbd798bc38e8a5d70046"
+    },
+    {
+      "label": "menu_field_party_constructor_call",
+      "address": 135428072,
+      "size": 34,
+      "sha256": "79285baad4ffcb77919a334f21a0538647320afa567ad18c1da8e584c1d26d4d"
+    },
+    {
+      "label": "menu_field_action_default_to_menu",
+      "address": 135398714,
+      "size": 18,
+      "sha256": "b8639d82532f71b0bdac79e6a04c40e6e77bffedd36dc1b5b41620f0f872cf4f"
+    },
+    {
+      "label": "menu_outer_menu_selector_install",
+      "address": 135410700,
+      "size": 36,
+      "sha256": "0492fbaaf213081d449ff139a0cfd0041b3f2a3b7119629144e3e45748608450"
+    },
+    {
+      "label": "menu_outer_action_menu_builder",
+      "address": 135410608,
+      "size": 76,
+      "sha256": "d47b92da31dd35ca85f92f1da73f0f60d9a63411665df37d6368da315edfd451"
+    },
+    {
+      "label": "menu_outer_type_switch",
+      "address": 135410428,
+      "size": 28,
+      "sha256": "7440a2301865c35e0089b99e7c147e7f6300803af679fdf0175dc47795b4ff24"
+    },
+    {
+      "label": "menu_outer_field_non_egg_type",
+      "address": 135410508,
+      "size": 16,
+      "sha256": "c38dbf7cb8428fd7e5d8eaf3340f9a9969e9d93177c8d077974f0028fe6a7c3a"
+    },
+    {
+      "label": "menu_outer_type_return",
+      "address": 135410600,
+      "size": 6,
+      "sha256": "f418620447f8b24dd6f6926313eda5f582de80bf4e9a4f2a1712e1da8c9f5ff7"
+    },
+    {
+      "label": "menu_mail_held_item_check_and_action_append",
+      "address": 135410322,
+      "size": 48,
+      "sha256": "c2714a19b1dd5cb19d23bd77e57cb7b1ea3ebd49073ef0faa285ff22017d2d3d"
+    },
+    {
+      "label": "menu_action_append",
+      "address": 134674028,
+      "size": 14,
+      "sha256": "fc2b8443b76b8136201061cfa48e5fc68ada76cb2ccdc4110d95d3e7e8462731"
+    },
+    {
+      "label": "menu_menu_no_wrap_input_prefix",
+      "address": 135333412,
+      "size": 38,
+      "sha256": "e423de91ba6a26a3932f7c716ba9a892d8013e2362a15c654d1697f3db0a95da"
+    },
+    {
+      "label": "menu_menu_no_wrap_input_tail",
+      "address": 135333460,
+      "size": 76,
+      "sha256": "c127d53c379c1e3f1e9fe0c8f2f5a7483cea1591235a300034e4b4f995d60a05"
+    },
+    {
+      "label": "menu_cursor_read",
+      "address": 135333056,
+      "size": 6,
+      "sha256": "3c0a2c335e8fcf80c4100a66f61a44a70183c0c30be0a8749f802571f9a6902e"
+    },
+    {
+      "label": "menu_cursor_clamp_prefix",
+      "address": 135332988,
+      "size": 30,
+      "sha256": "3449afa8a29fe09c97c40fadabb4ae942b82ab7f02ddfa980903a9f60aaf392d"
+    },
+    {
+      "label": "menu_cursor_clamp_tail",
+      "address": 135333024,
+      "size": 32,
+      "sha256": "678432d59b77b66dd35bc6c020826afb5c53ddea67969f3c2018fb13b454381f"
+    },
+    {
+      "label": "setup_constructor_1",
+      "address": 135393868,
+      "size": 72,
+      "sha256": "ad7198a7d2e757960b1ec689b068a566feb33852a2e811da97d37bad1c5dec67"
+    },
+    {
+      "label": "setup_constructor_2",
+      "address": 135393944,
+      "size": 78,
+      "sha256": "f317daf054d446edf0c0a6fadb6dca59943f415a52602f8ef9b7116dcb68ddac"
+    },
+    {
+      "label": "setup_constructor_3",
+      "address": 135394028,
+      "size": 172,
+      "sha256": "f243dcd0f9a65f49c3b88fb83103ddab4b63109513e29eb5d574c472047e4f86"
+    },
+    {
+      "label": "setup_reset_pointers",
+      "address": 135394992,
+      "size": 20,
+      "sha256": "7439af2f3ce5f3fd8147a21b1b3c08655bc1a715943aba4c3865157b4d088da6"
+    },
+    {
+      "label": "setup_set_main_callback",
+      "address": 134219076,
+      "size": 16,
+      "sha256": "ec1b3773f6d0521e06945a26db83b027eace56daaea78238830954d96f966c2e"
+    },
+    {
+      "label": "setup_setup_selector",
+      "address": 135394308,
+      "size": 30,
+      "sha256": "a8d3140cedfc8c46eb517fd93c16505ed3437798271ea765181c0117a1119e3b"
+    },
+    {
+      "label": "setup_setup_0_2",
+      "address": 135394440,
+      "size": 34,
+      "sha256": "934d0c5a097ca94253593abf669b1ff95f167ea034e4fee7b5ac6957361db683"
+    },
+    {
+      "label": "setup_setup_3_7",
+      "address": 135394480,
+      "size": 70,
+      "sha256": "cfd68d9555ae0ebdfe756ea62ebafb03efcef11bf68ed304527643c1ea899cd8"
+    },
+    {
+      "label": "setup_setup_8_9",
+      "address": 135394556,
+      "size": 28,
+      "sha256": "cc0f7c9047c5c8d0d1d1216497848796ad6de93771e6202abe8f41cc5c2a90e3"
+    },
+    {
+      "label": "setup_setup_10",
+      "address": 135394588,
+      "size": 28,
+      "sha256": "f51f9325fe6629738190d68dc3b6f3243b79bf9f56f04b8e0c6c513adf964b7f"
+    },
+    {
+      "label": "setup_setup_11_15",
+      "address": 135394624,
+      "size": 50,
+      "sha256": "435ddaed3ceeb318a8ae6d4938580bff0e76a87d56ca479e86fee77fa7aa986e"
+    },
+    {
+      "label": "setup_setup_16",
+      "address": 135394680,
+      "size": 26,
+      "sha256": "3abeb12eea332a4206d1ab936cd1711efdf88cb558660122c7b92f6bb6c05c67"
+    },
+    {
+      "label": "setup_setup_17_18",
+      "address": 135394712,
+      "size": 22,
+      "sha256": "05be1e362df858944f25df3299042a3155fbf041466a7161a8e06e42e5d706fe"
+    },
+    {
+      "label": "setup_setup_19_20",
+      "address": 135394740,
+      "size": 32,
+      "sha256": "9c013a5b7664ddff47af42aad58f50ef3883060fd7aaefa5f050a732f095d64f"
+    },
+    {
+      "label": "setup_setup_21_22_increment",
+      "address": 135394776,
+      "size": 60,
+      "sha256": "e8a3c9d8c713830c9b0ded530973b375e898a0ca210dadfc2611a769f4f6ea65"
+    },
+    {
+      "label": "setup_setup_default",
+      "address": 135394844,
+      "size": 16,
+      "sha256": "bc7156bd5e7000dc3c501ff6525a6a88a0defe83364956605155a357adf4748d"
+    },
+    {
+      "label": "setup_setup_return",
+      "address": 135394868,
+      "size": 10,
+      "sha256": "cdb637790ffcc77669a0427cb994474cf62510f3d584a60ad71ac7018b33a9bf"
+    },
+    {
+      "label": "setup_init_callback",
+      "address": 135394264,
+      "size": 42,
+      "sha256": "690470a5b8d576f36abd7afbc8c88fcc15c29cbd85a8b961923fb211c4f29304"
+    },
+    {
+      "label": "setup_scheduler",
+      "address": 135394216,
+      "size": 26,
+      "sha256": "52320b2e33683b6e97b14fd725420b9b0acabeca87bb92601d13db4a598cde5e"
+    },
+    {
+      "label": "setup_set_vblank",
+      "address": 134219508,
+      "size": 6,
+      "sha256": "e441c29ec1659efc7db5fd5503e17f388fef72de460ac17bbf733a5de3cbeeea"
+    },
+    {
+      "label": "setup_reset_tasks",
+      "address": 134703956,
+      "size": 82,
+      "sha256": "6a03a121b66be4cca69a8d15cb9f34b358710b55dd01a2ba72bf9c9082f13ae5"
+    },
+    {
+      "label": "setup_memset",
+      "address": 136093176,
+      "size": 82,
+      "sha256": "0ccd21cac6507fbe65a9fac16340d8d1ab01a78985ad0bef230bde0c93dba88c"
+    },
+    {
+      "label": "setup_create_task_1",
+      "address": 134704052,
+      "size": 58,
+      "sha256": "57dd0dd02f18dfa2596c6b8be992554dcb9cd1918d375551a103e857b1f3376f"
+    },
+    {
+      "label": "setup_create_task_2",
+      "address": 134704116,
+      "size": 18,
+      "sha256": "be49dfc15c05cf8c50f00d90d57c2e237fbac90c2a90e4395eb2e209887f03ec"
+    },
+    {
+      "label": "setup_insert_task_1",
+      "address": 134704136,
+      "size": 42,
+      "sha256": "4022125b648f807970fcf148a08b00ac94fdc743b095c5c75a4624e995feba1e"
+    },
+    {
+      "label": "setup_insert_task_2",
+      "address": 134704184,
+      "size": 60,
+      "sha256": "fbc80a57543f9aba6adc77bde440abab003b85d9e5ae32627f18842a4595c6c1"
+    },
+    {
+      "label": "setup_insert_task_3",
+      "address": 134704248,
+      "size": 38,
+      "sha256": "d4a046d0a0696e13d301053144196bb72d10a370109e9c377a9a2e3a54dacad4"
+    },
+    {
+      "label": "setup_find_first_task",
+      "address": 134704448,
+      "size": 56,
+      "sha256": "b928f137260122f147a64852a970ed33bc8ab5f8eafb677e0ba82596e84298af"
+    },
+    {
+      "label": "runtime_main_callback_consumer",
+      "address": 134219024,
+      "size": 48,
+      "sha256": "234f875549e5851fa44668d223d92d011ca69e696c3061148ad40489cd137c55"
+    },
+    {
+      "label": "runtime_main_interwork",
+      "address": 136084168,
+      "size": 2,
+      "sha256": "81904e68a8b9a2427e9e87e2c61b1098057608d18357d70d9281e8513941cf53"
+    },
+    {
+      "label": "literal_08000540",
+      "address": 134219072,
+      "size": 4,
+      "sha256": "efa90a159cf215fa62b9e47396466ba5d31f83afb6df4ba10ef72d33af17f1c8"
+    },
+    {
+      "label": "literal_08000554",
+      "address": 134219092,
+      "size": 4,
+      "sha256": "efa90a159cf215fa62b9e47396466ba5d31f83afb6df4ba10ef72d33af17f1c8"
+    },
+    {
+      "label": "literal_080006fc",
+      "address": 134219516,
+      "size": 4,
+      "sha256": "efa90a159cf215fa62b9e47396466ba5d31f83afb6df4ba10ef72d33af17f1c8"
+    },
+    {
+      "label": "literal_0806ec50",
+      "address": 134671440,
+      "size": 4,
+      "sha256": "29eadcb3e113d486ad4ffcad5d6892cf60a86228604504a63fb375ac0c2d0784"
+    },
+    {
+      "label": "literal_0806ec6c",
+      "address": 134671468,
+      "size": 4,
+      "sha256": "218646ff4991e8bc70cf27c0ddbfff434714c71de42155450728e09493ddb89d"
+    },
+    {
+      "label": "literal_08076ba8",
+      "address": 134704040,
+      "size": 4,
+      "sha256": "77c7fedbad4a80e92e4b312f068441cd67d9fd0579b8517e57326acc5fd540d4"
+    },
+    {
+      "label": "literal_08076bac",
+      "address": 134704044,
+      "size": 4,
+      "sha256": "6430f1a5f7f04c5ee53eb32a9660eb6eb91e198b9de879d78d8ae2fc78f1ea15"
+    },
+    {
+      "label": "literal_08076bb0",
+      "address": 134704048,
+      "size": 4,
+      "sha256": "704898d13ad883d326fd673aedfd340c8577dc1f22b4bfa194bc60a475d502aa"
+    },
+    {
+      "label": "literal_08076bf0",
+      "address": 134704112,
+      "size": 4,
+      "sha256": "77c7fedbad4a80e92e4b312f068441cd67d9fd0579b8517e57326acc5fd540d4"
+    },
+    {
+      "label": "literal_08076c34",
+      "address": 134704180,
+      "size": 4,
+      "sha256": "77c7fedbad4a80e92e4b312f068441cd67d9fd0579b8517e57326acc5fd540d4"
+    },
+    {
+      "label": "literal_08076c74",
+      "address": 134704244,
+      "size": 4,
+      "sha256": "77c7fedbad4a80e92e4b312f068441cd67d9fd0579b8517e57326acc5fd540d4"
+    },
+    {
+      "label": "literal_08076d3c",
+      "address": 134704444,
+      "size": 4,
+      "sha256": "77c7fedbad4a80e92e4b312f068441cd67d9fd0579b8517e57326acc5fd540d4"
+    },
+    {
+      "label": "literal_08076d78",
+      "address": 134704504,
+      "size": 4,
+      "sha256": "77c7fedbad4a80e92e4b312f068441cd67d9fd0579b8517e57326acc5fd540d4"
+    },
+    {
+      "label": "literal_0811049c",
+      "address": 135333020,
+      "size": 4,
+      "sha256": "16116b62292017d6ce5f5655c4997394068c423ce1437f2ec78c0137bbc76c1e"
+    },
+    {
+      "label": "literal_081104c8",
+      "address": 135333064,
+      "size": 4,
+      "sha256": "16116b62292017d6ce5f5655c4997394068c423ce1437f2ec78c0137bbc76c1e"
+    },
+    {
+      "label": "literal_0811064c",
+      "address": 135333452,
+      "size": 4,
+      "sha256": "16116b62292017d6ce5f5655c4997394068c423ce1437f2ec78c0137bbc76c1e"
+    },
+    {
+      "label": "literal_08110650",
+      "address": 135333456,
+      "size": 4,
+      "sha256": "efa90a159cf215fa62b9e47396466ba5d31f83afb6df4ba10ef72d33af17f1c8"
+    },
+    {
+      "label": "literal_0811f294",
+      "address": 135393940,
+      "size": 4,
+      "sha256": "401369c6ac2880741f3c7481c9fed2000999a4cee6807273aa6881c52da63346"
+    },
+    {
+      "label": "literal_0811f2e8",
+      "address": 135394024,
+      "size": 4,
+      "sha256": "04b2ea8055b0639e354b56e5fcd2cc6f6105ea531d9a3406b66415b3771ddb24"
+    },
+    {
+      "label": "literal_0811f398",
+      "address": 135394200,
+      "size": 4,
+      "sha256": "401369c6ac2880741f3c7481c9fed2000999a4cee6807273aa6881c52da63346"
+    },
+    {
+      "label": "literal_0811f39c",
+      "address": 135394204,
+      "size": 4,
+      "sha256": "d9903b18594ad0946e1799203bf46b5409b0a5cb1a57935e31ac090da3dfc6cc"
+    },
+    {
+      "label": "literal_0811f3a0",
+      "address": 135394208,
+      "size": 4,
+      "sha256": "e3ef7b7758ea07582a0df77a4bd61331810980b04b7d203437781c74ebc15c22"
+    },
+    {
+      "label": "literal_0811f3a4",
+      "address": 135394212,
+      "size": 4,
+      "sha256": "2977723291c5c4da635876d726555d227fdc84103c940b74e3de63d05541437d"
+    },
+    {
+      "label": "literal_0811f424",
+      "address": 135394340,
+      "size": 4,
+      "sha256": "efa90a159cf215fa62b9e47396466ba5d31f83afb6df4ba10ef72d33af17f1c8"
+    },
+    {
+      "label": "literal_0811f428",
+      "address": 135394344,
+      "size": 4,
+      "sha256": "e12674e3187efcb36e82cae4908bc86f9d1932ea4856771e0ab6ec70121ae59e"
+    },
+    {
+      "label": "literal_0811f42c",
+      "address": 135394348,
+      "size": 4,
+      "sha256": "1be82e1bf6d13681359b23a9f2e55a4ca710c8135f3f6e68313858c5b0816aaa"
+    },
+    {
+      "label": "literal_0811f430",
+      "address": 135394352,
+      "size": 4,
+      "sha256": "3d1c6da37a7e684ee989bd4ea0a3a4612609c060c8bc9dbfd910c8de2372646a"
+    },
+    {
+      "label": "literal_0811f434",
+      "address": 135394356,
+      "size": 4,
+      "sha256": "7390f8f8244ad853ca9724bfa51bb405ef19023ac44749ceadbb9532bac11c8b"
+    },
+    {
+      "label": "literal_0811f438",
+      "address": 135394360,
+      "size": 4,
+      "sha256": "b445fd6470eb87c49d449673786eca39b790b35a1ee3e9168090b3881892837e"
+    },
+    {
+      "label": "literal_0811f43c",
+      "address": 135394364,
+      "size": 4,
+      "sha256": "04930a30d0a4701d160ae0491a5985434b90465cee68350ca0c77b98f0b96bf0"
+    },
+    {
+      "label": "literal_0811f440",
+      "address": 135394368,
+      "size": 4,
+      "sha256": "9126e03f998de53e48d9a6a72a34b0d0f83dd5056003b7d51d73fa0371808fc7"
+    },
+    {
+      "label": "literal_0811f444",
+      "address": 135394372,
+      "size": 4,
+      "sha256": "00be49cb68c5f054a5682809a4284012abe2de1fccece05403eca92cc8f78b14"
+    },
+    {
+      "label": "literal_0811f448",
+      "address": 135394376,
+      "size": 4,
+      "sha256": "5670ce7f41bd1e58e75effea7059491e2cafa566eaa0e1d016f22a60b3104e43"
+    },
+    {
+      "label": "literal_0811f44c",
+      "address": 135394380,
+      "size": 4,
+      "sha256": "bcae8cf2967d992b7d7534c8e59e92bc57fa2ec709d248a421082627ec5561dc"
+    },
+    {
+      "label": "literal_0811f450",
+      "address": 135394384,
+      "size": 4,
+      "sha256": "c6391d5015a226ef67f1fd82c9513a46efaeb3829ebc01dc1eee7d90f0c41d74"
+    },
+    {
+      "label": "literal_0811f454",
+      "address": 135394388,
+      "size": 4,
+      "sha256": "c404d7c47765baa86148b46548b70b6e4fd65fe97c797c25c4a9a274e93caedf"
+    },
+    {
+      "label": "literal_0811f458",
+      "address": 135394392,
+      "size": 4,
+      "sha256": "672430506ac13a7698088a5329f62d82f913bb7b66f1472de3d063ebc203649e"
+    },
+    {
+      "label": "literal_0811f45c",
+      "address": 135394396,
+      "size": 4,
+      "sha256": "f2365e38490adf17ea49097dd3893e4c739c10bf2ce84f6d08984b63e6921c60"
+    },
+    {
+      "label": "literal_0811f460",
+      "address": 135394400,
+      "size": 4,
+      "sha256": "6bed51d2aeba3b12bc398d78355b641383b67393c6ea2ba5abcc4505766c7ead"
+    },
+    {
+      "label": "literal_0811f464",
+      "address": 135394404,
+      "size": 4,
+      "sha256": "c9d2ee50bc9b3a60dd9dc8f49a46c99f93ca7d260b32ca7eea4127b40fb5aaa2"
+    },
+    {
+      "label": "literal_0811f468",
+      "address": 135394408,
+      "size": 4,
+      "sha256": "90e5fe7c766307b0b30b4545f7783f917f0693b9bf96f159049913b6433e3c8d"
+    },
+    {
+      "label": "literal_0811f46c",
+      "address": 135394412,
+      "size": 4,
+      "sha256": "389f22e7b2e322d6ec1a7f0b97b3b0395b3ba64c48ffe1860ee87e8e317984c3"
+    },
+    {
+      "label": "literal_0811f470",
+      "address": 135394416,
+      "size": 4,
+      "sha256": "03d9600ce94e4121e9e662f132b54a61073c793653e3b94a4b57f8eaf5266b4e"
+    },
+    {
+      "label": "literal_0811f474",
+      "address": 135394420,
+      "size": 4,
+      "sha256": "71bb0c80ba3b718f7827493f6cb8d77303f4663acda48a98e174bcdf8582b632"
+    },
+    {
+      "label": "literal_0811f478",
+      "address": 135394424,
+      "size": 4,
+      "sha256": "0c3657167e39adb335c758c4b3b74166795884526b8ac2a1ee9e486bd8fedc6c"
+    },
+    {
+      "label": "literal_0811f47c",
+      "address": 135394428,
+      "size": 4,
+      "sha256": "6c2d74c3e9d0ec2847ca9cae7616f4272c6c6741cfcff09f60153e83bf61854a"
+    },
+    {
+      "label": "literal_0811f480",
+      "address": 135394432,
+      "size": 4,
+      "sha256": "5bcd164564bf6e94a2702257ae39bffbecea96568429c5e542a8af3fcd8a4399"
+    },
+    {
+      "label": "literal_0811f484",
+      "address": 135394436,
+      "size": 4,
+      "sha256": "73e7eee227a2b4ca99bf68059a8ca4581d0e81e702325bc9563440f498df9eb1"
+    },
+    {
+      "label": "literal_0811f4ac",
+      "address": 135394476,
+      "size": 4,
+      "sha256": "29eadcb3e113d486ad4ffcad5d6892cf60a86228604504a63fb375ac0c2d0784"
+    },
+    {
+      "label": "literal_0811f4f8",
+      "address": 135394552,
+      "size": 4,
+      "sha256": "401369c6ac2880741f3c7481c9fed2000999a4cee6807273aa6881c52da63346"
+    },
+    {
+      "label": "literal_0811f518",
+      "address": 135394584,
+      "size": 4,
+      "sha256": "04b2ea8055b0639e354b56e5fcd2cc6f6105ea531d9a3406b66415b3771ddb24"
+    },
+    {
+      "label": "literal_0811f538",
+      "address": 135394616,
+      "size": 4,
+      "sha256": "04b2ea8055b0639e354b56e5fcd2cc6f6105ea531d9a3406b66415b3771ddb24"
+    },
+    {
+      "label": "literal_0811f53c",
+      "address": 135394620,
+      "size": 4,
+      "sha256": "401369c6ac2880741f3c7481c9fed2000999a4cee6807273aa6881c52da63346"
+    },
+    {
+      "label": "literal_0811f574",
+      "address": 135394676,
+      "size": 4,
+      "sha256": "401369c6ac2880741f3c7481c9fed2000999a4cee6807273aa6881c52da63346"
+    },
+    {
+      "label": "literal_0811f594",
+      "address": 135394708,
+      "size": 4,
+      "sha256": "401369c6ac2880741f3c7481c9fed2000999a4cee6807273aa6881c52da63346"
+    },
+    {
+      "label": "literal_0811f5b0",
+      "address": 135394736,
+      "size": 4,
+      "sha256": "401369c6ac2880741f3c7481c9fed2000999a4cee6807273aa6881c52da63346"
+    },
+    {
+      "label": "literal_0811f5d4",
+      "address": 135394772,
+      "size": 4,
+      "sha256": "401369c6ac2880741f3c7481c9fed2000999a4cee6807273aa6881c52da63346"
+    },
+    {
+      "label": "literal_0811f614",
+      "address": 135394836,
+      "size": 4,
+      "sha256": "29eadcb3e113d486ad4ffcad5d6892cf60a86228604504a63fb375ac0c2d0784"
+    },
+    {
+      "label": "literal_0811f618",
+      "address": 135394840,
+      "size": 4,
+      "sha256": "efa90a159cf215fa62b9e47396466ba5d31f83afb6df4ba10ef72d33af17f1c8"
+    },
+    {
+      "label": "literal_0811f62c",
+      "address": 135394860,
+      "size": 4,
+      "sha256": "541e6037effc71ec368843324a29ad7e82b68ed2e096cfb0786b142bc09221d2"
+    },
+    {
+      "label": "literal_0811f630",
+      "address": 135394864,
+      "size": 4,
+      "sha256": "07f87fcbebf868048943f777aee4bbf682ac28f48396970e8a36c657bcfcba6a"
+    },
+    {
+      "label": "literal_0811f6c4",
+      "address": 135395012,
+      "size": 4,
+      "sha256": "401369c6ac2880741f3c7481c9fed2000999a4cee6807273aa6881c52da63346"
+    },
+    {
+      "label": "literal_0811f6c8",
+      "address": 135395016,
+      "size": 4,
+      "sha256": "6b393c11c336b29f305d3155bbd3d3d97d00ae04a1c278de876975b6356e301e"
+    },
+    {
+      "label": "literal_0811f6cc",
+      "address": 135395020,
+      "size": 4,
+      "sha256": "c5321d293658a8e58f4ab6c829a7a7781d32b20fe4a5a92d70fc378ccec8467f"
+    },
+    {
+      "label": "literal_0811f6d0",
+      "address": 135395024,
+      "size": 4,
+      "sha256": "4abc74870b7c217eb7b4fa100f62e45341ab26e9f4467080eb1e7d26dea99a6a"
+    },
+    {
+      "label": "literal_08120354",
+      "address": 135398228,
+      "size": 4,
+      "sha256": "29eadcb3e113d486ad4ffcad5d6892cf60a86228604504a63fb375ac0c2d0784"
+    },
+    {
+      "label": "literal_081203a8",
+      "address": 135398312,
+      "size": 4,
+      "sha256": "04b2ea8055b0639e354b56e5fcd2cc6f6105ea531d9a3406b66415b3771ddb24"
+    },
+    {
+      "label": "literal_081203d8",
+      "address": 135398360,
+      "size": 4,
+      "sha256": "1eebc285e44b9a3c204b3bc357eb52291f46176351e082faa2216845bcc6f622"
+    },
+    {
+      "label": "literal_08120ce8",
+      "address": 135400680,
+      "size": 4,
+      "sha256": "08efea1c0957a5a1fe019e6edb21fdc9fbe5de2213487eab7a05e06eca1c9784"
+    },
+    {
+      "label": "literal_08120cec",
+      "address": 135400684,
+      "size": 4,
+      "sha256": "18224f55df3fe81ef446d741ac32988744c471d155d6fccf9c04b37ac3f333b0"
+    },
+    {
+      "label": "literal_08120cf0",
+      "address": 135400688,
+      "size": 4,
+      "sha256": "a7d838de04093cc2922b45e5355c1ad44dc67c319495b52060dc3fcabe376b21"
+    },
+    {
+      "label": "literal_081231cc",
+      "address": 135410124,
+      "size": 4,
+      "sha256": "401369c6ac2880741f3c7481c9fed2000999a4cee6807273aa6881c52da63346"
+    },
+    {
+      "label": "literal_081231d0",
+      "address": 135410128,
+      "size": 4,
+      "sha256": "2a91b9f246b00deee9e3cd8a01c8163e383698d5ff71587551a5f88121358b55"
+    },
+    {
+      "label": "literal_081231d4",
+      "address": 135410132,
+      "size": 4,
+      "sha256": "d08003c39eabed28b8692b9e2dfdf86c2814582c715d997dd20a301a67f89c81"
+    },
+    {
+      "label": "literal_08123254",
+      "address": 135410260,
+      "size": 4,
+      "sha256": "401369c6ac2880741f3c7481c9fed2000999a4cee6807273aa6881c52da63346"
+    },
+    {
+      "label": "literal_08123258",
+      "address": 135410264,
+      "size": 4,
+      "sha256": "ab3a8cacb511655c768f21d7f17772833fde7eea18a054936ddbea5520aa3178"
+    },
+    {
+      "label": "literal_081232c4",
+      "address": 135410372,
+      "size": 4,
+      "sha256": "401369c6ac2880741f3c7481c9fed2000999a4cee6807273aa6881c52da63346"
+    },
+    {
+      "label": "literal_081232f8",
+      "address": 135410424,
+      "size": 4,
+      "sha256": "401369c6ac2880741f3c7481c9fed2000999a4cee6807273aa6881c52da63346"
+    },
+    {
+      "label": "literal_08123318",
+      "address": 135410456,
+      "size": 4,
+      "sha256": "04b2ea8055b0639e354b56e5fcd2cc6f6105ea531d9a3406b66415b3771ddb24"
+    },
+    {
+      "label": "literal_0812331c",
+      "address": 135410460,
+      "size": 4,
+      "sha256": "9ed9f7d2d103ceb14cb418df00c5e2d400f35feabf1b5d40a67262a50510a4b5"
+    },
+    {
+      "label": "literal_08123320",
+      "address": 135410464,
+      "size": 4,
+      "sha256": "02f0e5cdb77b4e20c240944d07b7319fca824aae1d920cf2ceff16ec2ed8c845"
+    },
+    {
+      "label": "literal_081233fc",
+      "address": 135410684,
+      "size": 4,
+      "sha256": "04b2ea8055b0639e354b56e5fcd2cc6f6105ea531d9a3406b66415b3771ddb24"
+    },
+    {
+      "label": "literal_08123400",
+      "address": 135410688,
+      "size": 4,
+      "sha256": "d9903b18594ad0946e1799203bf46b5409b0a5cb1a57935e31ac090da3dfc6cc"
+    },
+    {
+      "label": "literal_08123404",
+      "address": 135410692,
+      "size": 4,
+      "sha256": "18224f55df3fe81ef446d741ac32988744c471d155d6fccf9c04b37ac3f333b0"
+    },
+    {
+      "label": "literal_08123408",
+      "address": 135410696,
+      "size": 4,
+      "sha256": "401369c6ac2880741f3c7481c9fed2000999a4cee6807273aa6881c52da63346"
+    },
+    {
+      "label": "literal_08123430",
+      "address": 135410736,
+      "size": 4,
+      "sha256": "77c7fedbad4a80e92e4b312f068441cd67d9fd0579b8517e57326acc5fd540d4"
+    },
+    {
+      "label": "literal_08123434",
+      "address": 135410740,
+      "size": 4,
+      "sha256": "6535c8e8adb56c21ab4774f061f35b06b31231b51179d004f6028c278b99e023"
+    },
+    {
+      "label": "literal_08123470",
+      "address": 135410800,
+      "size": 4,
+      "sha256": "29eadcb3e113d486ad4ffcad5d6892cf60a86228604504a63fb375ac0c2d0784"
+    },
+    {
+      "label": "literal_08123474",
+      "address": 135410804,
+      "size": 4,
+      "sha256": "0d9a13aefbed9c2c262ff4b06a23f7c1dcf5b94f2e562e36ee05a3546e3e1cc8"
+    },
+    {
+      "label": "literal_08123478",
+      "address": 135410808,
+      "size": 4,
+      "sha256": "401369c6ac2880741f3c7481c9fed2000999a4cee6807273aa6881c52da63346"
+    },
+    {
+      "label": "literal_081234f0",
+      "address": 135410928,
+      "size": 4,
+      "sha256": "401369c6ac2880741f3c7481c9fed2000999a4cee6807273aa6881c52da63346"
+    },
+    {
+      "label": "literal_08123520",
+      "address": 135410976,
+      "size": 4,
+      "sha256": "401369c6ac2880741f3c7481c9fed2000999a4cee6807273aa6881c52da63346"
+    },
+    {
+      "label": "literal_08123524",
+      "address": 135410980,
+      "size": 4,
+      "sha256": "8f8d49aa02620ee41ac2201e5c0b2c902b674a5fd8d035f69b82927ef22cf219"
+    },
+    {
+      "label": "literal_08123ecc",
+      "address": 135413452,
+      "size": 4,
+      "sha256": "401369c6ac2880741f3c7481c9fed2000999a4cee6807273aa6881c52da63346"
+    },
+    {
+      "label": "literal_08123ed0",
+      "address": 135413456,
+      "size": 4,
+      "sha256": "d9903b18594ad0946e1799203bf46b5409b0a5cb1a57935e31ac090da3dfc6cc"
+    },
+    {
+      "label": "literal_08123ed4",
+      "address": 135413460,
+      "size": 4,
+      "sha256": "04b2ea8055b0639e354b56e5fcd2cc6f6105ea531d9a3406b66415b3771ddb24"
+    },
+    {
+      "label": "literal_08123ed8",
+      "address": 135413464,
+      "size": 4,
+      "sha256": "77c7fedbad4a80e92e4b312f068441cd67d9fd0579b8517e57326acc5fd540d4"
+    },
+    {
+      "label": "literal_08123edc",
+      "address": 135413468,
+      "size": 4,
+      "sha256": "6535c8e8adb56c21ab4774f061f35b06b31231b51179d004f6028c278b99e023"
+    },
+    {
+      "label": "literal_0812446c",
+      "address": 135414892,
+      "size": 4,
+      "sha256": "04b2ea8055b0639e354b56e5fcd2cc6f6105ea531d9a3406b66415b3771ddb24"
+    },
+    {
+      "label": "literal_08124470",
+      "address": 135414896,
+      "size": 4,
+      "sha256": "d9903b18594ad0946e1799203bf46b5409b0a5cb1a57935e31ac090da3dfc6cc"
+    },
+    {
+      "label": "literal_08124474",
+      "address": 135414900,
+      "size": 4,
+      "sha256": "401369c6ac2880741f3c7481c9fed2000999a4cee6807273aa6881c52da63346"
+    },
+    {
+      "label": "literal_0812780c",
+      "address": 135428108,
+      "size": 4,
+      "sha256": "a9f005984cdfbd81ffef1e5dc4aa34f75574d816e6d074ebb3281fc865b62d44"
+    },
+    {
+      "label": "literal_08127810",
+      "address": 135428112,
+      "size": 4,
+      "sha256": "36fb4ba26c701489c52969dd1d7de6e540b8a57f5bbd93946444ce66581ef9f2"
+    },
+    {
+      "label": "literal_0836b380",
+      "address": 137802624,
+      "size": 4,
+      "sha256": "7aafbff9341eb309be0148b112c4211f2dffc5c1a317a4864bde5868f54f07d9"
+    },
+    {
+      "label": "literal_08419dc4",
+      "address": 138517956,
+      "size": 4,
+      "sha256": "8b7a9427deec5be572005f92f080af66c115da1c94644ec1eb73c275f714b389"
+    },
+    {
+      "label": "literal_08419dd4",
+      "address": 138517972,
+      "size": 4,
+      "sha256": "cd1a410d2f17e31ad79ac9fdd644f325c0afd7c1e8a96e373fde83ea5bbbb043"
+    },
+    {
+      "label": "literal_08419edc",
+      "address": 138518236,
+      "size": 4,
+      "sha256": "5124af36a29d0feb2ba2acb3ccd5ad1d8d842db72f6b66968e29f424a866c7d4"
+    },
+    {
+      "label": "literal_09097aa4",
+      "address": 151616164,
+      "size": 4,
+      "sha256": "04b2ea8055b0639e354b56e5fcd2cc6f6105ea531d9a3406b66415b3771ddb24"
+    },
+    {
+      "label": "literal_09097aa8",
+      "address": 151616168,
+      "size": 4,
+      "sha256": "50cc1ce9ed10b0916329ccb198eb2860ffa4d93ab9fc732318324703ed143526"
+    },
+    {
+      "label": "item_count",
+      "address": 138518264,
+      "size": 1,
+      "sha256": "084fed08b978af4d7d196a7446a86b58009e636b611db16211b65a9aadff29c5"
+    },
+    {
+      "label": "item_give",
+      "address": 138518188,
+      "size": 1,
+      "sha256": "e52d9c508c502347344d8c07ad91cbd6068afc75ff6292f062a09ca381c89e71"
+    },
+    {
+      "label": "item_take",
+      "address": 138518189,
+      "size": 1,
+      "sha256": "e77b9a9ae9e30b0dbdb6f510a264ef9de781501d7b6b92ae89eb059c5ab743db"
+    },
+    {
+      "label": "item_cancel",
+      "address": 138518190,
+      "size": 1,
+      "sha256": "2b4c342f5433ebe591a1da77e013d1b72475562d48578dca8b84bac6651c3cb9"
+    },
+    {
+      "label": "field_move_id_0",
+      "address": 138518270,
+      "size": 2,
+      "sha256": "1462f2e42ee74d8471f4fce6fe45b1c889c9611f8c5c6ccb77f16fa3e42e666d"
+    },
+    {
+      "label": "field_move_id_1",
+      "address": 138518272,
+      "size": 2,
+      "sha256": "46e04d129d7b45d054469ce34e24069a1426b3e34f1b68a3d1bff1e070aee192"
+    },
+    {
+      "label": "field_move_id_2",
+      "address": 138518274,
+      "size": 2,
+      "sha256": "38ac7bda3d1c2bebaee514c7bf472ec10c12ee6bd464d5e75ea8b09ff9425fcb"
+    },
+    {
+      "label": "field_move_id_3",
+      "address": 138518276,
+      "size": 2,
+      "sha256": "b88d3bf2366367bc11900a0183ff040bb3a26d46e5bd80b336b92d6c033e9eec"
+    },
+    {
+      "label": "field_move_id_4",
+      "address": 138518278,
+      "size": 2,
+      "sha256": "b58d15e89a953322b7ac8fc0d6e37710c1eacd25d8304efd002904cb18ef62c6"
+    },
+    {
+      "label": "field_move_id_5",
+      "address": 138518280,
+      "size": 2,
+      "sha256": "29fb468aa10598ab84c07ba09235b22ba69986fb964ac16f536a100ce00c54ea"
+    },
+    {
+      "label": "field_move_id_6",
+      "address": 138518282,
+      "size": 2,
+      "sha256": "9f3a060c00e96dbd2bf5cb77506048f22667fb11cd4d5e3c20993685fc805646"
+    },
+    {
+      "label": "field_move_id_7",
+      "address": 138518284,
+      "size": 2,
+      "sha256": "4658d6abbbaf7748c172ed5a3e003cdb8997648f88724834e41f75e54520e142"
+    },
+    {
+      "label": "field_move_id_8",
+      "address": 138518286,
+      "size": 2,
+      "sha256": "d851a0155b6a2716e0da40a1336c5ff311fcf12ce16e53cf06b5a6cbd9cd32df"
+    },
+    {
+      "label": "field_move_id_9",
+      "address": 138518288,
+      "size": 2,
+      "sha256": "683914de4c707d217d22e1fda1593473b74f71e71c4c2c67bf0dfdbfe0cb4fd3"
+    },
+    {
+      "label": "field_move_id_10",
+      "address": 138518290,
+      "size": 2,
+      "sha256": "9da96c853994cb7845e72cc51491829f125d8bf40f549915cb979756cf970d56"
+    },
+    {
+      "label": "field_move_id_11",
+      "address": 138518292,
+      "size": 2,
+      "sha256": "1b3c183773cca621dc439dab9c8060e618a983503f13899267553681e868db3d"
+    },
+    {
+      "label": "field_move_id_12",
+      "address": 138518294,
+      "size": 2,
+      "sha256": "bf60e4349cace6bce0d552e8d783428db66d0d649bd9e430a3627e2ee14ac839"
+    },
+    {
+      "label": "minimal_boundary",
+      "address": 135400636,
+      "size": 6,
+      "sha256": "cf02eb2914f9d3fcb81c5188b9da23aaa74b4b95f415c3152067a731e8f0a2bd"
+    }
+  ],
+  "claims": {
+    "proof_scope": "conditional_finite_same_selected_task_instruction_type",
+    "full_story_reachability_claimed": false,
+    "runtime_execution_observed": false,
+    "universal_allocation_epoch_proven": false,
+    "all_opaque_effects_proven": false,
+    "field12_getter_effects_proven": false,
+    "field11_45_proof_reused_for_field12": false,
+    "irq_noninterference_proven": false,
+    "bl_return_observed": false,
+    "whole_function_range_classified": false,
+    "maximum_target_access_width_proven": false,
+    "indirect_reference_completeness_claimed": false,
+    "donor_eligible": false,
+    "donor_leased": false
+  },
+  "input_contract": {
+    "root": "existing registered StartMenuPokemon callback; selected successful finite continuation only",
+    "allocation": "same well-formed aligned 568-byte object and live allocation epoch from constructor through last heap read at 0x08124444; fixed source allocator theorem reused, not a new observed allocation",
+    "setup": "existing full constructor/23-state setup CFG reused; callsite-specific success returns and live object/global fields preserved; one finite success on each wait stage",
+    "admission": "valid linked task list and one free row at actual state20 CreateTask; selected example uses empty list, not a general requirement",
+    "example": "one sufficient profile: slot0, field menuType0/action0, non-egg, nonmail nonzero held item, four move slots without a listed field move (fixture returns0), second-party-species0; extra example choices are not universal necessities",
+    "task": "same actual CreateTask result i; active=1, current function and RunTasks membership at each selected dispatch; no whole-task-array freeze",
+    "input": "actual no-wrap count3; each conditional DisplaySelectionWindow return initializes cursor0/minimum0/maximum2/soundmode1/object.window12=valid ID0 exactly; finite Down then A yields index1; outer [Summary0,Item3,Cancel2], item [Give4,Take5,Cancel9]",
+    "selection_window_outputs": [
+      {
+        "base": "cursor",
+        "offset": 2,
+        "size": 1,
+        "value": 0,
+        "role": "initial cursor"
+      },
+      {
+        "base": "cursor",
+        "offset": 3,
+        "size": 1,
+        "value": 0,
+        "role": "minimum"
+      },
+      {
+        "base": "cursor",
+        "offset": 4,
+        "size": 1,
+        "value": 2,
+        "role": "maximum"
+      },
+      {
+        "base": "cursor",
+        "offset": 11,
+        "size": 1,
+        "value": 1,
+        "role": "selection sound mode"
+      },
+      {
+        "base": "object",
+        "offset": 12,
+        "size": 1,
+        "value": 0,
+        "role": "valid selection window ID in sufficient profile"
+      }
+    ],
+    "main_callback1": "0x03003130 remains word0 throughout root_setup/outer_builder/item_submenu until each main-dispatch read at 0x08000526; otherwise callback1 executes before callback2 and escapes this selected composition",
+    "dispatch_gates": "at each selected task dispatch, fade active bit7 at 0x020379F3 is zero and the called link-wait helper returns0; these are finite input conditions, not an eventual fade/link completion proof",
+    "abi": "external returns preserve r4-r11, SP, caller saved-stack contents and valid Thumb return; r0-r3/r12/flags are not assumed preserved",
+    "fields_before_take": "preserve heap pointer/epoch, object action bytes15..17 and count23, window bytes12..14 when next read, selected task func/active/list, party menuType/action/slot, input cursor/count/key fields at respective dispatch",
+    "field12": "GetMonData at 0x0812329E,0x0812442C,0x08120E08 returns the same selected mon held-item uint16; explicitly conditional external boundary, not field11/45 proof",
+    "bag": "AddBagItem at 0x08120E1E consumes held item and quantity1 and returns low-byte nonzero; selected mon/retained item/stack preserved until SetMonData",
+    "setter": "SetMonData at 0x08120E34 receives selected mon, field12 and pointer to local halfword0; normal ABI return, selected live registers and saved stack preserved; no transitive getter/setter effect claim",
+    "windows": "RemoveWindow calls may update only their selected window byte and window resources within this contract; other future-live party/action/task fields preserved",
+    "questlog": "0x08120CB4 receives event8, selected mon, retained original item,65535; normal ABI return preserving r6(mon),r4(item),r5(keepOpen),SP/saved caller stack and readable mon through callsite",
+    "hit": "stop before executing GetMonNickname BL; entire BL and adjacent complete LDR are statically encoded; no GetMonNickname return or successor execution is observed"
+  }
+}
