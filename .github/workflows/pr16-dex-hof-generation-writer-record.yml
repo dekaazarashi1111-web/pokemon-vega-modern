@@ -55,6 +55,6 @@ jobs:
         if: ${{ always() && steps.publication_guard.outcome == 'success' }}
         with:
           name: pr16-dex-hof-generation-writer-record-text-only
-          path: public-dex-hof-runtime-record
+          path: public-dex-hof-generation-writer-record
           retention-days: 90
           if-no-files-found: error
