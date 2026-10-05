@@ -10093,3 +10093,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 正式ROM/Save101を保持。HOFの局所通知/旧SaveFailed回避を9byte UI-onlyと各coldで限定受入。次は初回mode3 stock委譲の保存世代/28・29とmainの整合、mode4/5 erase・default/LinkFull等全mode、未対応caller共通SaveFailedとstale selector authority wipeを安全契約へ分離。主保存故障cold時のQOL ledger差も既存fallback契約として解明。早期sector31故障/単bank原子性、残typedconsumerも未完。必要証拠が揃うまで正式切替とtrainer131後半を保留し、owner承認不足と誤認しない。最終はシオウPokecenter通常回復/Save/独立coldContinue、雑魚毎Saveなし。
 - Commit: record source=8cf485c88fcd7fe961852f449c1cd51ffa56d6ed; 同branch非force push。
 - Network: 同repoActions/既存入力。公開source/address-size-SHA/text/screensだけ。ROM断片/rawhex/runtime/入力save/runner/credentials追加公開0。
+
+## 2026-10-05T02:36:13.998313+00:00
+- Timestamp: 2026-10-05T02:36:13.998313+00:00
+- Task: USER-20261005-DEX-HOF-FAILURE / HOF通知記録の終端
+- Version: dex-hof-closeout
+- Status: STOPPED（安全な限定候補受入点。初回mode3/全mode/共通残caller/typedconsumer未完）
+- Summary: record run37255837504/job111592593684全12step成功とartifact11322388029のcheckpoint全文一致を確認しpending解除。成功済native/recordはmanual-onlyへ。
+- Files changed: closeout source/workflow、record起動条件、固定MDJSONと両ログ。
+- Verify: 全source/evidence/fixed resume/index/task graph PASS、host再試験0/ARM0/native0。原本はHOF隔離2880条件/1process、9byte UI-only3条件/各cold6process15画像。候補40ad8237、既存113owner全byte保持/新114owner。正式ROM/Save101不変。
+- Boundary: HOF入口9byteは自然リーグ到達や正規transitionではない。初回mode3原子性/共通残caller・SaveFailed scratch/authority wipe、全mode/残typed consumer未完。主故障cold101のQOL ledger差は前Union/Mystery同caseと同一で、全coldowner保持を受入しない。早期sector31故障/原子性未受入。trainer131後半0。一般CI既知QOL不一致/Stage79cache/旧9月18日queueを別扱い。
+- Commit: closeout source=1248217fab8b6387fcf9cd171cba0862f112f919; 同branch非force push。
+- Network: 同repoActionsと既存text receiptのみ。ROM/入力save/runtime/runner/credentials追加公開0。

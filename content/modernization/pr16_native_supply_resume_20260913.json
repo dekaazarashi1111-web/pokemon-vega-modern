@@ -4369,6 +4369,7 @@
   "observed_head": "8cf485c88fcd7fe961852f449c1cd51ffa56d6ed",
   "observed_head_checks": {
     "accepted_raw_native_processes": 7,
+    "all12_record_steps_success": true,
     "all_save_modes_accepted": false,
     "both_all10_steps_success": true,
     "diagnostic_native_processes": 1,
@@ -4377,11 +4378,14 @@
     "isolated_job": 111589743264,
     "isolated_run": 37254891427,
     "reason_ja": "HOF実callerの誤成功音を抑止し、既存窓のエラー→新規A→元演出を候補限定受入。旧SaveFailed/wipe/自動再保存0。同sessionのstat10は0→1を一度だけ保持（主故障coldは0、外側故障/正常coldは1）。payload8192byteは演出遷移まで、初回Flash program時点以降の拡張20248byteは全保持。9byte UI-only入口/主保存故障・sector31末尾故障・正常/各cold。初回mode3原子性と全caller共通SaveFailed、全mode/残consumerは未完。主故障cold101のQOL ledger差は前Union/Mysteryと同一の既存fallback差で、全cold owner復元を受入しない。",
+    "record_job": 111592593684,
+    "record_run": 37255837504,
     "scope_head": "6d75cf77c77f89a6d2541114f796e67ff06efd85",
     "screens": 15,
     "stage79_cached_not_new_native": true,
     "ui_job": 111590380492,
-    "ui_run": 37255103782
+    "ui_run": 37255103782,
+    "whole_receipt_equals_checkpoint": true
   },
   "observed_head_history": [
     {
@@ -12392,13 +12396,7 @@
     "status": "NATIVE_PARTY_RETENTION_ACCEPTED_BP_PENDING",
     "tested_head": "10e535a046441dd3b797918106259b5c57b69716"
   },
-  "pending_runs": [
-    {
-      "run_id": 37255837504,
-      "status": "in_progress",
-      "tested_head": "8cf485c88fcd7fe961852f449c1cd51ffa56d6ed"
-    }
-  ],
+  "pending_runs": [],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
   "pr_draft": true,
   "pr_merged": false,
@@ -14197,13 +14195,17 @@
       "sha256": "3a046bfda0815f2aa8e8d738171ce03c5e952f3afa4349611990c7ede6403666",
       "size": 1986
     },
+    ".github/workflows/pr16-dex-hof-closeout.yml": {
+      "sha256": "4850d7f7e3650c245f94dbaa71f15688b41f06d73f5b1c36b91d98df1e78daee",
+      "size": 2351
+    },
     ".github/workflows/pr16-dex-hof-failure.yml": {
       "sha256": "2c062e8f47ffe0fb2486785c7dc787c844fbdbeb31e26fbbeccca4a724ec11fd",
       "size": 1744
     },
     ".github/workflows/pr16-dex-hof-record.yml": {
-      "sha256": "a4607d3fd613a85ff6b832206722c4d0867f53917949b6732a9a69ef9cfa45a7",
-      "size": 2388
+      "sha256": "2e758ecc27a1abfff2ed1ff47211feb6aaa8fd03b807f4c509a0c695c56d772a",
+      "size": 2292
     },
     ".github/workflows/pr16-dex-hof-ui.yml": {
       "sha256": "bb2ce1b3ce67dda3d12562247ed05ef7b17b67f1710a6c786ffa985fc3ee10a6",
@@ -33489,6 +33491,10 @@
       "sha256": "13c338b405b5803260e660fded2ba5a6749931bf28c794bbdcf103350a15c28e",
       "size": 14844
     },
+    "scripts/pr16_dex_hof_closeout.py": {
+      "sha256": "7ebd24519f2d107eb2acef3715dbe8870e8c04f671f92d69aa8f1d496d2bfc11",
+      "size": 9862
+    },
     "scripts/pr16_dex_hof_failure.py": {
       "sha256": "b15e706167429a63e3a856b7ad1fcca6e7c006bfbfb44d633c66616e297771c9",
       "size": 5438
@@ -39631,6 +39637,30 @@
         "hof_initial_save_atomicity_accepted": false,
         "isolated_run": 37254891427,
         "record_run": 37255837504,
+        "recording": {
+          "all12_record_steps_success": true,
+          "arm_compiles": 0,
+          "checkpoint": "content/modernization/pr16_dex_hof_checkpoint.json",
+          "checkpoint_identity": {
+            "sha256": "f72c70937702aa71ecf3799f5c0fa409b6c3e0a2e94722dff2b33c1b1d6e571d",
+            "size": 150077
+          },
+          "closeout_run": 37256027584,
+          "closeout_source": "1248217fab8b6387fcf9cd171cba0862f112f919",
+          "formal_rom_changed": false,
+          "formal_save_changed": false,
+          "host_tests_rerun": 0,
+          "native_processes": 0,
+          "record_archive_sha256": "8696eb745737d4ab62b2a462ec6189bcc16a49a84c82b0c54ed51e5c811a075a",
+          "record_archive_size": 31710,
+          "record_artifact": 11322388029,
+          "record_completion": "59b912e7d5b28bc75d5198c097d95b651d73fa47",
+          "record_job": 111592593684,
+          "record_receipt_equals_checkpoint": true,
+          "record_run": 37255837504,
+          "record_source": "8cf485c88fcd7fe961852f449c1cd51ffa56d6ed",
+          "status": "PASS_TERMINAL_HOF_FAILURE_RECORD"
+        },
         "status": "PASS_HOF_NOTIFICATION_UI_ONLY_NO_RETRY",
         "ui_run": 37255103782
       },
