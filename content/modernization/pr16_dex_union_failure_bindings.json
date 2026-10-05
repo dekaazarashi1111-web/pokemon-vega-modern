@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "status": "SIGNED_UNION_CHAT_FAILURE_BOUNDARY_NOT_ACCEPTED",
+  "source_ref": "2fb796501cc834552f1e2beee0f588d96eac378d",
+  "formal_candidate": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  },
+  "windows": [
+    {
+      "id": "union_save_exit",
+      "address": 135436528,
+      "size": 608,
+      "sha256": "5a8474acf7747daf87e1e6bf9acbf4d8b64e4400eed10c8d0c7beb0346e3f80d"
+    },
+    {
+      "id": "union_success_handler",
+      "address": 135441560,
+      "size": 88,
+      "sha256": "1efad241aaf44e5176c4945c11f7f597f04764a334478ed6471a9793b8191d7f"
+    },
+    {
+      "id": "union_message_printer",
+      "address": 135442072,
+      "size": 632,
+      "sha256": "ee24c40717323c0e30c2cd416f98b8beff0fb686b850ca39ba0fc9bc42fa7e0c"
+    },
+    {
+      "id": "union_text_tail",
+      "address": 135442276,
+      "size": 12,
+      "sha256": "94d09366db9196c633c6d3fb2de8145b865b03e18556902bb03ee57e8ed00501"
+    },
+    {
+      "id": "union_wait_tail",
+      "address": 135436996,
+      "size": 12,
+      "sha256": "664ea3bd52b12c199a771d241d87693c88c18172695eed1835bd83eaa5e51eaa"
+    },
+    {
+      "id": "union_message_table",
+      "address": 138520448,
+      "size": 120,
+      "sha256": "6314283e2c263b5ded4a4c63d048e45711a0933c4fd68e0a186580db3e74bae2"
+    },
+    {
+      "id": "union_constructor",
+      "address": 135433560,
+      "size": 288,
+      "sha256": "e3e01a4980c3afe763cee35640011f83de3aaa8ffa9324b9f4b0f3297a4299d7"
+    },
+    {
+      "id": "union_dispatch",
+      "address": 135439700,
+      "size": 108,
+      "sha256": "64417a614767f54d4395a839649bab50f0919af285151accfdda4424d7331003"
+    }
+  ],
+  "retained_codec": {
+    "size": 5022,
+    "sha256": "0541f69c476c5d4faf8fb62fcfa923395d7ba70925844d928a9594869feaeda9"
+  },
+  "error_text": {
+    "address": 138282075,
+    "size": 23,
+    "sha256": "e026676824d6095409bc28fb3fff98beb9dd31e7df44367b90660e1a64f8139c",
+    "meaning_ja": "レポートの かきこみに／しっぱい しました‥",
+    "lines": 2,
+    "source": "pret/pokefirered@c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/strings.c"
+  },
+  "stack_contract": {
+    "mode": 0,
+    "inner_return_offset": 8,
+    "inner_return": 154629755,
+    "outer_return_offset": 16,
+    "outer_return": 135436947
+  },
+  "text_contract": {
+    "message_id": 9,
+    "return_offset": 52,
+    "return_address": 135441599,
+    "error_text": 138282075
+  },
+  "wait_contract": {
+    "attempt": 50353264,
+    "new_keys": 50344286,
+    "work_pointer": 33796180,
+    "state_offset": 6,
+    "error_exit_state": 12
+  },
+  "scope_ja": "Union Chatの保存callerだけ。失敗は既存wide windowに2行error、新規A/B後に元退出処理。成功だけSE_SAVEと元120frame待機。全mode/自然通信の受入ではない。"
+}
