@@ -54,6 +54,18 @@
       "address": 135439700,
       "size": 108,
       "sha256": "64417a614767f54d4395a839649bab50f0919af285151accfdda4424d7331003"
+    },
+    {
+      "id": "union_formatter_dispatch_pointer",
+      "address": 138520436,
+      "size": 4,
+      "sha256": "5a395094646263e8c44dd5ee7976736e213bce4434f56842a7d87767e97fefc9"
+    },
+    {
+      "id": "dynamic_placeholder_synchronous",
+      "address": 135517140,
+      "size": 132,
+      "sha256": "fccbc2f9d8f5cf03c39055debd8396e1d8468d55896f2b139c0ed784c774c09a"
     }
   ],
   "retained_codec": {
@@ -97,6 +109,16 @@
     "size": 1240,
     "sha256": "2915450322392a5d74efd01e7cb9b7885c81fa35ceb7ef37d81ec974925806f2"
   },
-  "new_tail_allocation_max": 384,
-  "overlap_correction_ja": "旧Mystery128byteはscheduler clone_complete_generationの先頭に衝突。3bb4c51bを配置全体受入から撤回し、40a7f38aからschedulerを全byte復元したうえで専用tailownerへ移設する。"
+  "new_tail_allocation_max": 416,
+  "overlap_correction_ja": "旧Mystery128byteはscheduler clone_complete_generationの先頭に衝突。3bb4c51bを配置全体受入から撤回し、40a7f38aからschedulerを全byte復元したうえで専用tailownerへ移設する。",
+  "formatter_lease": {
+    "caller": 135441560,
+    "table_pointer": 138520436,
+    "shared_address": 33813184,
+    "size": 32,
+    "stack_frame_bytes": 48,
+    "shadow_owner": "T25_FACTORY_HIGH_MODES_V2",
+    "synchronous_expansion_to": "Union displayWork+0x22",
+    "asynchronous_dma_source": "window pixels; no retained placeholder pointers"
+  }
 }

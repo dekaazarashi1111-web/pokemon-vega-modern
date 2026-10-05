@@ -123,4 +123,38 @@ VegaDexUnionSaveWaitTail:
 10:.word 0x0300315E
 11:.word 0x08129B3F
 .size VegaDexUnionSaveWaitTail,.-VegaDexUnionSaveWaitTail
+/* 元handler17だけ。同期的placeholder展開中の32byteをstackへ退避し、
+ * 完了済みwindow bufferだけを残して、Factoryの全byteを復元する。 */
+.balign 4
+.global VegaDexUnionResultDisplayGuard
+.type VegaDexUnionResultDisplayGuard,%function
+.thumb_func
+VegaDexUnionResultDisplayGuard:
+    push {r4,r5,r6,lr}
+    ldr r4,2f
+    ldmia r4!,{r1,r2,r3,r5}
+    push {r1,r2,r3,r5}
+    ldmia r4!,{r1,r2,r3,r5}
+    push {r1,r2,r3,r5}
+    ldr r3,3f
+    bl 1f
+    subs r4,#16
+    pop {r1,r2,r3,r5}
+    stmia r4!,{r1,r2,r3,r5}
+    subs r4,#32
+    pop {r1,r2,r3,r5}
+    stmia r4!,{r1,r2,r3,r5}
+    .global VegaDexUnionResultDisplayRestored
+    .type VegaDexUnionResultDisplayRestored,%function
+    .thumb_func
+VegaDexUnionResultDisplayRestored:
+    pop {r4,r5,r6}
+    pop {r1}
+    bx r1
+    .size VegaDexUnionResultDisplayRestored,6
+1:  bx r3
+.balign 4
+2: .word 0x0203F2C0
+3: .word 0x0812AC99
+.size VegaDexUnionResultDisplayGuard,.-VegaDexUnionResultDisplayGuard
 .section .note.GNU-stack,"",%progbits

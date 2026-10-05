@@ -1,12 +1,14 @@
-name: pr16-dex-union-ui
+name: pr16-dex-union-formatter
 on:
-  workflow_dispatch:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-dex-union-formatter.yml]
 permissions:
   contents: read
   actions: read
   pull-requests: read
 concurrency:
-  group: pr16-dex-union-ui
+  group: pr16-dex-union-formatter
   cancel-in-progress: false
 defaults:
   run:
@@ -24,27 +26,27 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 24
-      - name: Exact new Union Chat source and terminal prior state
-        run: python3 -B scripts/pr16_dex_union_ui.py guard
+      - name: Exact new Union Room Chat source and terminal prior state
+        run: python3 -B scripts/pr16_dex_union_formatter_actions.py guard
       - name: Official Ubuntu ARM compiler
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-dev libmgba-dev
-      - name: Actual Union Chat dynamic-window result rendering and independent cold Continue
-        run: python3 -B scripts/pr16_dex_union_ui.py run
+      - name: New formatter32byte stack preservation and changed Union dispatcher only
+        run: python3 -B scripts/pr16_dex_union_formatter_actions.py run
       - name: Lightweight task graph
         run: python3 -B scripts/validate_task_graph.py --check
       - name: Closed text publication guard
         id: publication_guard
         if: always()
-        run: python3 -B scripts/pr16_dex_union_ui.py export
+        run: python3 -B scripts/pr16_dex_union_formatter_actions.py export
       - uses: actions/upload-artifact@v4
         if: ${{ always() && steps.publication_guard.outcome == 'success' }}
         with:
-          name: pr16-dex-union-ui-text-only
-          path: public-dex-union-ui
+          name: pr16-dex-union-formatter-text-only
+          path: public-dex-union-failure
           retention-days: 90
           if-no-files-found: error
-# Register observations compare explicit unsigned GBA addresses
-# StringCopy verifies active bytes through EOS; original backing all210bytes stays exact
-# Report protected-owner write addresses and PCs before fail-closed stop
+# retired T09 suffix is signed data, not FF padding
+# Restore actual scheduler subowners and move both notifications into a new owner
+# Isolated display fixture has its own zeroed RAM range, outside SB1 pattern

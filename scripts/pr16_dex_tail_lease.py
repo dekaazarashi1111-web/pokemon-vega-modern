@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""新tail先頭384byteの見かけ参照を、型付きsource境界に束縛する。"""
+"""新tail先頭416byteの見かけ参照を、型付きsource境界に束縛する。"""
 import hashlib,json,struct
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 PROOF='content/modernization/pr16_dex_union_tail_lease.json'
-LO=0x09FFFB28;HI=LO+384
+LO=0x09FFFB28;HI=LO+416
 
 def need(x,m):
  if not x:raise ValueError(m)
@@ -52,10 +52,10 @@ def dpcm(raw,size):
   if count and not(count&1):at+=1
  need(at==len(raw),'exact minimal compressed sample prefix');return bytes(out)
 def validate(raw):
- p=json.loads((ROOT/PROOF).read_bytes());need(p['scope']==dict(base=LO,size=384,literal_candidates=16,thumb_bl_candidates=0),'exact bounded tail scope')
+ p=json.loads((ROOT/PROOF).read_bytes());need(p['scope']==dict(base=LO,size=416,literal_candidates=16,thumb_bl_candidates=1),'exact bounded tail scope')
  expected=sorted(({k:x[k]for k in('address','target')}for x in p['candidates']),key=lambda r:r['address'])
- need(literals(raw)==expected and branches(raw)==[],'entire ROM allbyte all3mirror literals and ThumbBL inventory')
- roots={r['address']:r for r in p['roots']};need(len(roots)==12 and len(expected)==16,'all12 typed roots and16 candidates');types={}
+ need(literals(raw)==expected and branches(raw)==[{k:x[k]for k in('address','target')}for x in p['branch_candidates']],'entire ROM allbyte all3mirror literals and ThumbBL inventory')
+ roots={r['address']:r for r in p['roots']};need(len(roots)==13 and len(expected)==16,'all13 typed roots and16 candidates');types={}
  for row in p['roots']:
   at=row['address']-0x08000000;b=raw[at:at+row['size']];need(digest(b)=={k:row[k]for k in('size','sha256')},'whole typed root binding')
   for site in row['refs']:need(struct.unpack_from('<I',raw,site-0x08000000)[0]==row['address'],'typed current root reference')
@@ -71,4 +71,6 @@ def validate(raw):
   root=roots[row['root']];kind=root['kind'];types[kind]=types.get(kind,0)+1
   if kind=='text_eos_crossing':need(row['address']<=root['eos_address']<row['address']+4,'apparent pointer crosses typed EOS')
   else:need(root['address']+(4 if kind=='lz77'else 16)<=row['address']and row['address']+4<=root['address']+root['size'],'apparent pointer lies wholly in typed encoded payload')
- return dict(status='PASS_TYPED_TAIL_REFERENCE_CLASSIFICATION',address=LO,size=384,literal_candidates=16,thumb_bl_candidates=0,root_count=12,candidate_types=types,unclassified_candidates=0)
+ for row in p['branch_candidates']:
+  root=roots[row['root']];need(root['kind']=='dpcm4'and root['address']+16<=row['address']and row['address']+4<=root['address']+root['size'],'apparent Thumb BL lies wholly in decoded typed DPCM')
+ return dict(status='PASS_TYPED_TAIL_REFERENCE_CLASSIFICATION',address=LO,size=416,literal_candidates=16,thumb_bl_candidates=1,root_count=13,candidate_types=types,branch_candidate_types=dict(dpcm4=1),unclassified_candidates=0)

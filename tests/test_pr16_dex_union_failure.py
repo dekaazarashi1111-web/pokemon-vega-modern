@@ -22,5 +22,5 @@ class UnionFailure(unittest.TestCase):
   self.assertEqual(t.dpcm(bytes([100,0xA1,0x23]),4),bytes([100,101,105,114]))
  def test_typed_tail_scope(self):
   import pr16_dex_tail_lease as t,json
-  p=json.loads((ROOT/t.PROOF).read_bytes());self.assertEqual(p['scope']['size'],384);self.assertEqual(len(p['candidates']),16);self.assertEqual(len(p['roots']),12)
+  p=json.loads((ROOT/t.PROOF).read_bytes());self.assertEqual(p['scope']['size'],416);self.assertEqual(len(p['candidates']),16);self.assertEqual(len(p['roots']),13)
 if __name__=='__main__':unittest.main()

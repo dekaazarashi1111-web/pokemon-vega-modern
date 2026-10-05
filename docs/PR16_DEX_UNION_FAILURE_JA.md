@@ -19,3 +19,9 @@ SaveAndExit state9の0x08129AC4から12byteを局所tailへ接続する。描画
 新Union1016条件、配置変更影響のあるMystery816条件とscheduler19条件（通常保存・clone・CommitSignatureByte・HandleWriteSector・失敗保持）を検証する。無関係な履歴nativeは再走しない。実UI/field帰還/coldは別工程であり、全非START/全modeの受入へ昇格しない。
 
 HOF/共通SaveFailed scratch衝突、mode4/5再erase、stale selector authority、sector31早期故障/原子性、残typed consumerは未完。正式ROM切替・trainer131後半へ進まず、最終目標はシオウPokecenter通常回復・保存・独立cold Continueを維持する。
+
+## Union formatterの既存owner衝突
+
+元handler17のDynamicPlaceholder reset/setがFactory high modes volatile内0x0203F2C0の32byteへ書くことを実UIで検出した。callerのtable entryだけを48byte wrapperへ変更し、元handler前後で32byteをstack退避/復元する。展開は同期的にdisplayWork+0x22へコピーし、後続DMAはwindow pixelsを用いる。元返値/r4-r11/SP、非対象RAMを保持し、IRQ/非同期読出しも実UIで観測する。完了文/音の成功だけではowner破壊を受入しない。
+
+先行1ec42a50の1851隔離条件は原本を保持。新48byteとtable pointer4byteだけの逆変換で先行候補全SHAと一致させ、変化しないUnion gate720/text200、Mystery816、scheduler19を再走しない。dispatcher96条件と新stack preservation72条件だけを追加実行する。新tail検査上限416byte、literal16候補とThumbBL1候補はいずれも型付きasset/textとして完全照合する。
