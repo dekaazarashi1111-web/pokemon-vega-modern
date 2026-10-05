@@ -1,0 +1,511 @@
+{
+  "artifacts": {
+    "abi": {
+      "abi_candidate": {
+        "sha256": "284b88223be484a1f0a674d242bc7f4447258bf79cdd5a04b54dadb928d85c85",
+        "size": 33554432
+      },
+      "abi_json": {
+        "sha256": "6b21981843e953d25183b90296c6ae174f37dce0d22840705faaa6cd981393a5",
+        "size": 20079
+      },
+      "artifact_id": 10695132022,
+      "raw_window_bytes_not_copied_into_report": true,
+      "run_id": 35730505925,
+      "sha256": "c823b11ff7ee9a1b4558598ade9cfe9604cbc2d8d8a674d18cc69bf239b573b7",
+      "size": 24909,
+      "source_archive": {
+        "sha256": "b61febfeff9b349918cdfb7c9438ac33f813956d27d8d5af3f9f653a73c7c818",
+        "size": 22911
+      },
+      "source_head": "c5d60474c51d3b7d635468af72c568b5f19edce8"
+    },
+    "aligned_supply": {
+      "artifact_id": 10704282359,
+      "members": {
+        "link.json": {
+          "sha256": "0d5484a56c09e37963bac074ec2a05fac9e7414f04e92197fda88b4e9702929c",
+          "size": 69023
+        },
+        "original_tutor.S": {
+          "sha256": "4bdae55d3e979cc50ea7c57bd6ad0e01a4536866da2261482feefcdba2af01a2",
+          "size": 840
+        },
+        "pr16_learnset_supply_bindings.h": {
+          "sha256": "530c2c3b7bcf2779e2efe147ba7d4cfd768da29ae5ddf091123e46ff1178ab46",
+          "size": 1048
+        },
+        "supply.bin": {
+          "sha256": "14b2e916522ce3cda1e624676edf5f73e95e1da045bcaa14ed1a24be78ba95aa",
+          "size": 2788
+        },
+        "supply.elf": {
+          "sha256": "b065145771f9b2bb06de68955dc8c3290df25491368da35e2a1379e8112edb7d",
+          "size": 10580
+        }
+      },
+      "run_id": 35748601580,
+      "sha256": "a1130da2f577f4cd7f6a00e60ba67ae7658a8b6265bc3401a979c8758562ffc6",
+      "size": 50476,
+      "source_head": "740ecf0a94de514fa735e4697f5d6129d45520e4"
+    }
+  },
+  "current_checkpoint_owner_bindings": [
+    {
+      "address": 167559648,
+      "current_checkpoint_after_sha256": "a44431aea3f197a030bd496482aa91b747f260d19822d8ab4eedc0a8363b441f",
+      "name": "species_surface_tutor",
+      "old_formal_matches_current_checkpoint_owner": true,
+      "sha256": "a44431aea3f197a030bd496482aa91b747f260d19822d8ab4eedc0a8363b441f",
+      "size": 25936
+    },
+    {
+      "address": 156474496,
+      "current_checkpoint_after_sha256": "714a4fdb3b2cb1781b516d072773f38c865e706bc6c49b7c09215860dadcb0dc",
+      "name": "modernization_p03_stage74_supply_runtime_payload",
+      "old_formal_matches_current_checkpoint_owner": true,
+      "sha256": "714a4fdb3b2cb1781b516d072773f38c865e706bc6c49b7c09215860dadcb0dc",
+      "size": 70572
+    },
+    {
+      "address": 167737116,
+      "current_checkpoint_after_sha256": "3fb75ac95022f2cfa9ea1a0bda13dd57f8ed883564b95271e97ba45489b7aa90",
+      "name": "pr16_conditional_plc2",
+      "old_formal_matches_current_checkpoint_owner": true,
+      "sha256": "3fb75ac95022f2cfa9ea1a0bda13dd57f8ed883564b95271e97ba45489b7aa90",
+      "size": 31014
+    },
+    {
+      "address": 157260424,
+      "current_checkpoint_after_sha256": "34d0d3a42dc7ebab3ec6f396bc9c4aba3457fec204262b8c4264d228436f6bda",
+      "name": "pr16_conditional_plc2_code",
+      "old_formal_matches_current_checkpoint_owner": true,
+      "sha256": "34d0d3a42dc7ebab3ec6f396bc9c4aba3457fec204262b8c4264d228436f6bda",
+      "size": 2672
+    },
+    {
+      "address": 167768132,
+      "current_checkpoint_after_sha256": "14b2e916522ce3cda1e624676edf5f73e95e1da045bcaa14ed1a24be78ba95aa",
+      "name": "pr16_supply_arm",
+      "old_formal_matches_current_checkpoint_owner": true,
+      "sha256": "14b2e916522ce3cda1e624676edf5f73e95e1da045bcaa14ed1a24be78ba95aa",
+      "size": 2788
+    }
+  ],
+  "finding_ja": "Pr16SupplyTutorBitは上位8byteをzero検査するが、そのviewは固定PLC2 imageの内部offsetから得る。T09旧表の上位wordを読む証拠ではない。固定serializerの16byteコピーとowner名だけでは当該4byteのbitmask型を証明できない。",
+  "minimal_old_formal_region_witnesses": [
+    {
+      "address": 167565216,
+      "label": "tutor_species348_full_row",
+      "sha256": "b84d0e2c944f79ce2b919c0197a8b31d8414090cf27cc7e6ffdb7ea6f4184b88",
+      "size": 16
+    },
+    {
+      "address": 167565224,
+      "label": "tutor_hit",
+      "sha256": "aee5e311f93b083c1cbcb45af72d17f997942cde34f2d5fbf4268d446d10a19f",
+      "size": 4
+    },
+    {
+      "address": 152109608,
+      "label": "current_style_entry_hook",
+      "sha256": "9f9e4b2599083b5e022a84920da47495357428294c87aedad6ff7ffe0e35da6e",
+      "size": 8
+    },
+    {
+      "address": 152109616,
+      "label": "original_gate_and_numeric_branches",
+      "sha256": "a2a4c69f39d801c75e19d8a9ad8cfdb461596e71ba68ebc6365ce3ccc31398f6",
+      "size": 96
+    },
+    {
+      "address": 152109624,
+      "label": "original_gate",
+      "sha256": "84be36b8fbef59ce98d80a34ccd076deda1c8c5b74955e4b7650dfaa31a82604",
+      "size": 4
+    },
+    {
+      "address": 152109956,
+      "label": "original_root_literal",
+      "sha256": "f3bad4fc1771b4f8e4a7a9ea3ba1bc6ae16b6190a29777a885246649c7918ea9",
+      "size": 4
+    },
+    {
+      "address": 135402528,
+      "label": "legacy_root_site",
+      "sha256": "1b23d8f4f50db8749ad809781b87bfa91b7f8646033bf36ae3ebc7cd40b0fdc3",
+      "size": 4
+    },
+    {
+      "address": 152109616,
+      "label": "original_special_and_move_catalog_body",
+      "sha256": "2de9b88421f18b9435e1309a10ea813fda09bb9b438a516a427a63065e00967e",
+      "size": 424
+    },
+    {
+      "address": 167769808,
+      "label": "wrapper",
+      "sha256": "5acf855d636987cee102451b4361465384b89e3875a4f38cb5b6dddff340e115",
+      "size": 312
+    },
+    {
+      "address": 167769360,
+      "label": "supply_owned",
+      "sha256": "cd319b28f07ddb77524d8f425e1b2bcd3ee3a3c648a67521c32fd8c65d6709c9",
+      "size": 100
+    },
+    {
+      "address": 167769460,
+      "label": "tutor_slot",
+      "sha256": "2e94a0420ad8b79335b4d481c521ccb33fd5412961fcc882a6547a568faa73fc",
+      "size": 42
+    },
+    {
+      "address": 167768964,
+      "label": "tutor_bit",
+      "sha256": "29b6e5d28b57356c1b8c1ce8ead0b872d12c4293989552600a1925fba0ea924a",
+      "size": 88
+    },
+    {
+      "address": 167770096,
+      "label": "wrapper_plc2_image_and_reader_literals",
+      "sha256": "4df773580c00a169db490604e211bd0a45c72f096c90a4a2417e2a376dbcfd22",
+      "size": 8
+    },
+    {
+      "address": 167770236,
+      "label": "special_trampoline",
+      "sha256": "07d90e888a0ec4949ef4f77f3cc41645e994e4235abe2345110612fd7b68926d",
+      "size": 20
+    },
+    {
+      "address": 156475900,
+      "label": "stage74_commit_function_geometry",
+      "sha256": "c9832474d42bf0c00693826744adbae492e0b3300bfaab310b72fa5806d11c8c",
+      "size": 64
+    },
+    {
+      "address": 156475907,
+      "label": "stage74_commit_hit",
+      "sha256": "82b2c061406885fd85078d5b92acf725c33717a210844b23eda7e8fa7d822dac",
+      "size": 4
+    },
+    {
+      "address": 156475902,
+      "label": "stage74_first_BL",
+      "sha256": "05419f8e1bb248b19c5e8bbae395bcfd17962af73fe9528ce9d7222217aed42a",
+      "size": 4
+    },
+    {
+      "address": 156475906,
+      "label": "stage74_second_BL",
+      "sha256": "795ecad0d0cca986f000e156c62a6756a57343cb7ceb610968eafac9a3429597",
+      "size": 4
+    }
+  ],
+  "root_chain": [
+    {
+      "from": 152109608,
+      "kind": "EXACT_8_BYTE_THUMB_TRAMPOLINE",
+      "to": 167769809
+    },
+    {
+      "from": 167769808,
+      "ordinary_tutor_ids": [
+        0,
+        63
+      ],
+      "rejected_ranges": [
+        [
+          64,
+          151
+        ],
+        [
+          161,
+          255
+        ]
+      ],
+      "special_tutor_ids": [
+        152,
+        160
+      ],
+      "to": 167769460
+    },
+    {
+      "consumer": "PR16_CONSUMER_TUTOR",
+      "from": 167769460,
+      "image": 167737116,
+      "image_size": 31014,
+      "reader": 157261791,
+      "through": 167769360
+    },
+    {
+      "output": "image + validated_u16_offset + 2",
+      "reader_source": "src/modernization/pr16_learnset_compact.c#Pr16ReadCompactConditional",
+      "tutor_count": 64,
+      "tutor_length": 16,
+      "zero_checked_byte_offsets": [
+        8,
+        15
+      ]
+    },
+    {
+      "from": 167769808,
+      "original_table_path_max_tutor_id": 63,
+      "return_old_body": 152109617,
+      "special_gate_only_to": 167770236
+    },
+    {
+      "does_not_equal_t09_root": 167559648,
+      "observed_target": 156842984,
+      "old_formal_legacy_root_site": 135402528
+    }
+  ],
+  "schema_version": 1,
+  "source_review_status": "OLD_FORMAL_REVIEW_REQUIRES_CURRENT_WHOLE_CANDIDATE_BINDING",
+  "sources": {
+    "overlays/modernization_p03_stage74_supply_runtime/modernization_p03_stage74_supply_runtime.c": {
+      "git_blob_sha": "ffa047557177f02bb127c1bedab15c2aee27fda4",
+      "ref": "f81f21024a1f2a78466e65fc2aac3bf54e6bb1b9",
+      "saved_source_archive_matches_current_git_blob": true,
+      "sha256": "71c1760f6b65e81cfb79813a34515e343637546099e04b3d2766856a14f298a1",
+      "size": 18095
+    },
+    "overlays/modernization_p03_stage74_supply_runtime/modernization_p03_stage74_supply_runtime_scripts.S": {
+      "git_blob_sha": "57aaff34c2bd904bf988c42eece9cf0a6add359b",
+      "ref": "f81f21024a1f2a78466e65fc2aac3bf54e6bb1b9",
+      "saved_source_archive_matches_current_git_blob": true,
+      "sha256": "ad92ad58924f3f1de210e8dad4eea7561b9efe73f8400c6739d57b2ddf2d6805",
+      "size": 8408
+    },
+    "scripts/pr16_learnset_supply_abi.py": {
+      "git_blob_sha": "676519a4e32aad9156a4c2f39548d7b6a2c0faa4",
+      "ref": "f81f21024a1f2a78466e65fc2aac3bf54e6bb1b9",
+      "sha256": "4cf5d5c661dd7c7ebe536391445db4e8faa6fcf121c4d6b27a3e7a43878e5a70",
+      "size": 6842
+    },
+    "scripts/pr16_learnset_supply_link.py": {
+      "git_blob_sha": "67a83321352047ce8734317307058e20b181a72f",
+      "ref": "f81f21024a1f2a78466e65fc2aac3bf54e6bb1b9",
+      "sha256": "6d61bb42fefccdd03a7b83d243ed953714b7473179f02d6550e8f05b8def3424",
+      "size": 15515
+    },
+    "src/modernization/pr16_learnset_compact.c": {
+      "git_blob_sha": "a96f852aec3e9492337d90b9d481c5ddd3012be8",
+      "ref": "f81f21024a1f2a78466e65fc2aac3bf54e6bb1b9",
+      "sha256": "f7d2a9bd81bed08cd46ddbd932f834ac7548ee2ad5fa0ec938cb3081f6c97b56",
+      "size": 2812
+    },
+    "src/modernization/pr16_learnset_supply.c": {
+      "git_blob_sha": "77f3a301f2939e0af0fa23b48d186dce4377c4c3",
+      "ref": "f81f21024a1f2a78466e65fc2aac3bf54e6bb1b9",
+      "sha256": "6824cd34dee8e10bc017fde5d6b4d7eece0661de6b9fcf5a4e187a9fcf90a17b",
+      "size": 4203
+    },
+    "src/modernization/pr16_learnset_supply_game.c": {
+      "git_blob_sha": "88dd6e064a0025a44b54b2c3dae1bd7c18be1ded",
+      "ref": "f81f21024a1f2a78466e65fc2aac3bf54e6bb1b9",
+      "sha256": "c64e50f2809180b7e0ee5a6f0ef72d71c0350a29f122d819162109af1736c081",
+      "size": 1884
+    },
+    "src/modernization/pr16_learnset_supply_native.c": {
+      "git_blob_sha": "20ae6007bd47309cd3b2275360a0d7004143c7a0",
+      "ref": "f81f21024a1f2a78466e65fc2aac3bf54e6bb1b9",
+      "sha256": "84382b1baedae0198623afe4f411ac1e32c74b40fd0960e7c8dd8bc972dd1a52",
+      "size": 2182
+    }
+  },
+  "stage74_separate_candidate": {
+    "abi_entry_provenance": {
+      "artifact_id": 10695132022,
+      "candidate": {
+        "sha256": "284b88223be484a1f0a674d242bc7f4447258bf79cdd5a04b54dadb928d85c85",
+        "size": 33554432
+      },
+      "differences_outside_function_prefix": {
+        "reason_ja": "後続別関数Stage74_SelectedMachinePageHasMovesへの許可済み供給hook。512byte丸ごとの現在一致を主張しない。",
+        "size": 8,
+        "start_offset": 64
+      },
+      "entry_key": "entries/Stage74_CommitMachinePage",
+      "exact_function_prefix_match": {
+        "address": 156475900,
+        "sha256": "c9832474d42bf0c00693826744adbae492e0b3300bfaab310b72fa5806d11c8c",
+        "size": 64
+      },
+      "historical_window": {
+        "address": 156475900,
+        "sha256": "6447d98437fb0cea74443f9d660686d5d11a248a9d5d9f3092bf44253b233f39",
+        "size": 512
+      },
+      "member": "abi.json",
+      "old_formal_window": {
+        "address": 156475900,
+        "sha256": "610f95e218468523bb5a79d5b18411785149a02f09c0967971e0d0fcfef4451f",
+        "size": 512
+      },
+      "run_id": 35730505925,
+      "source_head": "c5d60474c51d3b7d635468af72c568b5f19edce8",
+      "symbols_binding_verified_against_abi_source_files": true
+    },
+    "classification_scope_ja": "現0641 whole SHA/actual owner/entry/instruction各windowを親検証後、根付き入口から直列Thumb命令として解読される0x0953A202..0x0953A207だけを参照し、0x0953A203開始4byteの命令跨ぎをfalse-positiveとする候補。literal field自体は本証明の分類対象外。",
+    "current_owner": {
+      "address": 156474496,
+      "current_checkpoint_after_sha256": "714a4fdb3b2cb1781b516d072773f38c865e706bc6c49b7c09215860dadcb0dc",
+      "name": "modernization_p03_stage74_supply_runtime_payload",
+      "old_formal_matches_current_checkpoint_owner": true,
+      "sha256": "714a4fdb3b2cb1781b516d072773f38c865e706bc6c49b7c09215860dadcb0dc",
+      "size": 70572
+    },
+    "entry_contiguous_window": {
+      "address": 156475900,
+      "sha256": "00aad11f7f92eccdf5964f9ee5e1f8a6530684c0b5348e505ed6da3c6232f28b",
+      "size": 12
+    },
+    "entry_instruction_windows": [
+      {
+        "address": 156475900,
+        "kind": "PUSH_FRAME",
+        "sha256": "45032905ccc19f93939ffc8a27669cc54ac144bd58ce513681f9320712ed9b2c",
+        "size": 2
+      },
+      {
+        "address": 156475902,
+        "callee": "Stage74_SelectedMachineRowCount",
+        "kind": "THUMB_BL",
+        "sha256": "05419f8e1bb248b19c5e8bbae395bcfd17962af73fe9528ce9d7222217aed42a",
+        "size": 4,
+        "target": 156474744
+      },
+      {
+        "address": 156475906,
+        "callee": "Stage74_PageCountForRowCount",
+        "kind": "THUMB_BL",
+        "sha256": "795ecad0d0cca986f000e156c62a6756a57343cb7ceb610968eafac9a3429597",
+        "size": 4,
+        "target": 156475336
+      },
+      {
+        "address": 156475910,
+        "kind": "THUMB_LDR_LITERAL",
+        "literal_address": 156475956,
+        "loaded_value": 33779716,
+        "loaded_value_kind": "EWRAM_SPECIAL_RESULT_ADDRESS_NOT_ROM_DONOR_TARGET",
+        "sha256": "86477f44d6827d3639c3b5c72e98fb2793d15153ac1fa7519669cc9486559a85",
+        "size": 2
+      }
+    ],
+    "hit": {
+      "accepted": false,
+      "address": 156475907,
+      "classification": "UNCLASSIFIED",
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "owner_candidates": [
+        "modernization_p03_stage74_supply_runtime_payload"
+      ],
+      "reason": "no_complete_typed_asset_consumer_witness",
+      "sha256": "82b2c061406885fd85078d5b92acf725c33717a210844b23eda7e8fa7d822dac",
+      "size": 4,
+      "target": 167698934
+    },
+    "hit_spans": "second byte of BL at 0x0953A202 through first byte of LDR at 0x0953A206",
+    "literal_witness": {
+      "address": 156475956,
+      "included_in_proposed_instruction_classification": false,
+      "is_rom_donor_pointer": false,
+      "semantic_source": "STAGE74_SPECIAL_RESULT",
+      "sha256": "6e46872ac0b61b48cbb2e17aa96b7a6504d510389df766f6e7343ae9084d8d00",
+      "size": 4,
+      "standalone_literal_safety_classification_claimed": false,
+      "value": 33779716
+    },
+    "next_step_ja": "現0641actual Stage74 ownerとこの入口連続実行範囲を照合し、根付きinstruction-span証明が分類規約に十分か親側で判定する。ELF mapping方式ならStage74自身の固定toolchain再生成または保存ELFが必要。0x09FFFxxxの後発supply ELFをStage74へ流用しない。",
+    "next_symbol_address": 156475964,
+    "nominal_64_byte_extent_is_not_itself_code_data_partition": true,
+    "observed_old_formal_entry_sequence": [
+      {
+        "address": 156475900,
+        "instruction_class": "PUSH_FRAME",
+        "size": 2
+      },
+      {
+        "address": 156475902,
+        "callee": "Stage74_SelectedMachineRowCount",
+        "instruction_class": "THUMB_BL",
+        "size": 4,
+        "target": 156474744
+      },
+      {
+        "address": 156475906,
+        "callee": "Stage74_PageCountForRowCount",
+        "instruction_class": "THUMB_BL",
+        "size": 4,
+        "target": 156475336
+      },
+      {
+        "address": 156475910,
+        "instruction_class": "THUMB_LDR_LITERAL",
+        "literal_slot": 156475956,
+        "size": 2
+      }
+    ],
+    "source": "overlays/modernization_p03_stage74_supply_runtime/modernization_p03_stage74_supply_runtime.c#Stage74_CommitMachinePage",
+    "source_script_root": {
+      "callnative": {
+        "address": 156477249,
+        "opcode_matches_public_source_callnative_macro": true,
+        "sha256": "ffab36462a250f4adcd24f18def62c75a572dbb711520053606bf4cf718dc814",
+        "size": 5,
+        "target": 156475901,
+        "target_pointer_address": 156477250
+      },
+      "full_story_script_reachability_claimed": false,
+      "script_window": {
+        "address": 156477232,
+        "sha256": "15b27b7cb659005d6533e27a181d93cab0730a03826c086768249b0a143bc7a5",
+        "size": 56
+      },
+      "source": "overlays/modernization_p03_stage74_supply_runtime/modernization_p03_stage74_supply_runtime_scripts.S",
+      "source_callnative_line": 143,
+      "source_generated_symbols_identity": {
+        "sha256": "49a9e87097acc46270e80f4f3bccb69f670b7c9353d3ac4b7a86d270b1542da3",
+        "size": 4333
+      },
+      "source_macro_lines": [
+        5,
+        8
+      ],
+      "symbol": "Stage74_MachineChoosePageScript"
+    },
+    "symbol_address": 156475900,
+    "symbols_identity": {
+      "sha256": "49a9e87097acc46270e80f4f3bccb69f670b7c9353d3ac4b7a86d270b1542da3",
+      "size": 4333
+    },
+    "symbols_source": "generated/runtime/modernization_p03_stage74_supply_runtime_symbols.json"
+  },
+  "target_current_candidate": {
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583",
+    "size": 33554432
+  },
+  "tutor_hit": {
+    "accepted": false,
+    "address": 167565224,
+    "classification": "UNCLASSIFIED",
+    "kind": "THUMB_BL_SHAPE",
+    "owner_candidates": [
+      "species_surface_tutor"
+    ],
+    "reason": "no_complete_typed_asset_consumer_witness",
+    "sha256": "aee5e311f93b083c1cbcb45af72d17f997942cde34f2d5fbf4268d446d10a19f",
+    "size": 4,
+    "target": 167695790
+  },
+  "tutor_row": {
+    "physical_row_start": 167565216,
+    "physical_u32_word_zero_based": 2,
+    "row_byte_offset": 8,
+    "species_id": 348,
+    "stride": 16
+  }
+}
