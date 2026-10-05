@@ -19,3 +19,9 @@
 UI検証を行う場合はSave101私有copyの有限入口fixtureを全byte記録し、故障解除以外は通常入力を使う。元HOF payload、拡張20248byte、保存回数、attempt、音、旧SaveFailed/wipe/retry非到達、別process coldを確認する。自然リーグ到達、全HOF種族の9bit ABI、初回mode3の原子性へ広げない。
 
 残件はmode4/5/default/全caller、共通SaveFailedの安全契約、stale selector authority wipe、早期sector31故障/単bank原子性、残typed consumer。正式切替はowner計画に照らした必要証拠が揃うまで保留し、承認不足と読み替えない。最終milestoneはシオウPokecenter通常回復/Save/独立coldContinue。雑魚ごとのSaveを復活させない。
+
+## 候補限定受入
+
+HOF実callerの誤成功音を抑止し、既存窓のエラー→新規A→元演出を候補限定受入。旧SaveFailed/wipe/自動再保存0。同sessionのstat10は0→1を一度だけ保持（主故障coldは0、外側故障/正常coldは1）。payload8192byteは演出遷移まで、初回Flash program時点以降の拡張20248byteは全保持。9byte UI-only入口/主保存故障・sector31末尾故障・正常/各cold。初回mode3原子性と全caller共通SaveFailed、全mode/残consumerは未完。主故障cold101のQOL ledger差は前Union/Mysteryと同一の既存fallback差で、全cold owner復元を受入しない。
+
+隔離run37254891427は2880条件/1process。UI run37255103782は6process/15画像を原本SHAと実pixelで確認。新114owner/overlap0/既存113owner全byte保持・全ROM逆変換。2つの初期診断は実行ファイル名とbyte比較observerの不具合であり、受入へ改称しない。

@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "正式ROM/Save101保持。Union失敗文/保存音/入力待ち/帰還を候補限定受入。Mysteryのscheduler重複配置を撤回・復元・別owner移設し影響回帰済み。UI入口はUnion21byte/Mystery11byte fixture。HOF/全mode/残consumer未完。",
+    "current_stop": "HOF実callerの誤成功音を抑止し、既存窓のエラー→新規A→元演出を候補限定受入。旧SaveFailed/wipe/自動再保存0。同sessionのstat10は0→1を一度だけ保持（主故障coldは0、外側故障/正常coldは1）。payload8192byteは演出遷移まで、初回Flash program時点以降の拡張20248byteは全保持。9byte UI-only入口/主保存故障・sector31末尾故障・正常/各cold。初回mode3原子性と全caller共通SaveFailed、全mode/残consumerは未完。主故障cold101のQOL ledger差は前Union/Mysteryと同一の既存fallback差で、全cold owner復元を受入しない。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "正式ROM/Save101保持。Unionの誤成功文/SE_SAVEを局所修復し、Mysteryのscheduler衝突を復旧・移設。21byte/11byte UI-onlyと各cold、scheduler19/Union1016/Mystery816を限定受入。次はHOF/共通SaveFailedのtiles16KiB/video/decompression scratch衝突、stat10重複増分とmode4/5 erase再実行、stale selector authority wipeを安全契約へ分離する。早期sector31故障/原子性、全mode、残typed consumerも未完。正式切替・trainer131後半へまだ進まず、最終はシオウPokecenter通常回復/Save/独立coldContinue、雑魚毎Saveなし。",
+    "next_step": "正式ROM/Save101を保持。HOFの局所通知/旧SaveFailed回避を9byte UI-onlyと各coldで限定受入。次は初回mode3 stock委譲の保存世代/28・29とmainの整合、mode4/5 erase・default/LinkFull等全mode、未対応caller共通SaveFailedとstale selector authority wipeを安全契約へ分離。主保存故障cold時のQOL ledger差も既存fallback契約として解明。早期sector31故障/単bank原子性、残typedconsumerも未完。必要証拠が揃うまで正式切替とtrainer131後半を保留し、owner承認不足と誤認しない。最終はシオウPokecenter通常回復/Save/独立coldContinue、雑魚毎Saveなし。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -1171,7 +1171,8 @@
     "START valid失敗: gate run37238699272は1120case必須assert成功だがupload path誤記によりraw measurementなし。原本欠落を隠さず再走0。run37239138134の192byte gate全再構成/同candidate、1Flash故障/818入力/5画面とcold101の16入力/cold102の12入力、計3process7画面を無変更再走しない。全mode/outerQOL/非STARTへ受入拡張しない。",
     "outerQOL run37241791183隔離outer7680＋retry288＋移設wipe16case、START末尾physical131071故障の5画面＋cold102/103の2画面、全4process原本は無変更再走しない。旧run37241038917はhistorical allocation hash誤仮定/native0でfailure保持。全mode sweepはABIだけ、末尾故障をearly位置/sector31原子性/非START通知へ昇格しない。",
     "Mystery Gift隔離run37243703968 menu96/gate720、UI run37244619223 main故障/outer末尾故障/正常と各coldの6process15画像を無変更再走しない。11byte UI fixtureであり通信/受信/削除/自然入場やHOF/全非STARTへ昇格しない。旧37244205003のnative1/setup後template誤oracle停止はfailure保持。",
-    "旧Mystery3bb4c51b配置受入はscheduler衝突で撤回。旧余り1462/1332を空き扱いせずcurrent subowner計算を使用。後継0180c180は前段1851条件の原本/未変更1755条件再利用、formatter168条件のstep成功/raw欠落、UI21/11byte由来12process30画面の変更影響のみ受入。formatter168条件はstep成功/raw欠落を区別し重複native再走0。全mode/自然通信へ昇格しない。"
+    "旧Mystery3bb4c51b配置受入はscheduler衝突で撤回。旧余り1462/1332を空き扱いせずcurrent subowner計算を使用。後継0180c180は前段1851条件の原本/未変更1755条件再利用、formatter168条件のstep成功/raw欠落、UI21/11byte由来12process30画面の変更影響のみ受入。formatter168条件はstep成功/raw欠落を区別し重複native再走0。全mode/自然通信へ昇格しない。",
+    "HOF40ad8237候補の局所通知は隔離2880条件＋UI-only9byte/3条件/各cold6process15画像。旧SaveFailed回避と初回stat10一度・payload保全まで。初回mode3原子性/全mode/自然殿堂入りへ広げず、同じnativeを影響なしに再走しない。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -4352,49 +4353,35 @@
     "status": "PASS_NATIONAL_DEX_GRANT_OWNER_SCOPED"
   },
   "next_action": {
-    "goal_ja": "正式ROM/Save101保持。Unionの誤成功文/SE_SAVEを局所修復し、Mysteryのscheduler衝突を復旧・移設。21byte/11byte UI-onlyと各cold、scheduler19/Union1016/Mystery816を限定受入。次はHOF/共通SaveFailedのtiles16KiB/video/decompression scratch衝突、stat10重複増分とmode4/5 erase再実行、stale selector authority wipeを安全契約へ分離する。早期sector31故障/原子性、全mode、残typed consumerも未完。正式切替・trainer131後半へまだ進まず、最終はシオウPokecenter通常回復/Save/独立coldContinue、雑魚毎Saveなし。",
+    "goal_ja": "正式ROM/Save101を保持。HOFの局所通知/旧SaveFailed回避を9byte UI-onlyと各coldで限定受入。次は初回mode3 stock委譲の保存世代/28・29とmainの整合、mode4/5 erase・default/LinkFull等全mode、未対応caller共通SaveFailedとstale selector authority wipeを安全契約へ分離。主保存故障cold時のQOL ledger差も既存fallback契約として解明。早期sector31故障/単bank原子性、残typedconsumerも未完。必要証拠が揃うまで正式切替とtrainer131後半を保留し、owner承認不足と誤認しない。最終はシオウPokecenter通常回復/Save/独立coldContinue、雑魚毎Saveなし。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。Save14は作業コピーだけを使用する。自己OT party、manifest解決済み通常支援用品、EXP境界、safe opponentはpre-battle fixtureとして全byteを台帳化してよい。badge/key item/story flag/money/RPをfixture付与せず、戦闘開始後は通常入力とゲーム内処理だけを使う。",
-    "id": "CLOSE_HOF_COMMON_FAILURE_AND_REMAINING_SAVE_CONTRACTS",
+    "id": "CLOSE_INITIAL_HOF_AND_REMAINING_SAVE_CONTRACTS",
     "read_paths": [
+      "docs/PR16_DEX_HOF_FAILURE_JA.md",
+      "content/modernization/pr16_dex_hof_checkpoint.json",
       "docs/PR16_DEX_UNION_FAILURE_JA.md",
-      "content/modernization/pr16_dex_union_checkpoint.json",
       "docs/PR16_DEX_OUTER_QOL_JA.md",
-      "docs/PR16_DEX_SAVE_FAILURE_JA.md",
       "docs/PR16_DEX_CONSUMERS_JA.md"
     ],
     "stop_rule_ja": "通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。"
   },
   "observed_date_jst": "2026-10-04",
-  "observed_head": "eecd1da4c9890304eb19222cc205e1ac2fa86b38",
+  "observed_head": "8cf485c88fcd7fe961852f449c1cd51ffa56d6ed",
   "observed_head_checks": {
-    "accepted_raw_native_processes": 15,
-    "all12_record_steps_success": true,
-    "all_attempt_native_processes": 23,
+    "accepted_raw_native_processes": 7,
     "all_save_modes_accepted": false,
-    "ancestor_raw_cases": 1851,
     "both_all10_steps_success": true,
-    "cold_input_fixture_derived": true,
-    "diagnostic_native_processes": 7,
-    "existing_owners_retained": 112,
-    "formatter_asserted_cases": 168,
-    "formatter_assertion_native_processes": 1,
-    "formatter_assertion_run": 37249401463,
-    "formatter_raw_artifact_available": false,
+    "diagnostic_native_processes": 1,
+    "fixture_bytes": 9,
     "general_ci_known_source_mismatch_not_resolved": true,
-    "isolated_run": 37247511968,
-    "mystery_fixture_bytes": 11,
-    "new_owner_count": 113,
-    "old_mystery_allocation_acceptance_revoked": true,
-    "reason_ja": "正式ROM/Save101保持。Union失敗文/保存音/入力待ち/帰還を候補限定受入。Mysteryのscheduler重複配置を撤回・復元・別owner移設し影響回帰済み。UI入口はUnion21byte/Mystery11byte fixture。HOF/全mode/残consumer未完。",
-    "record_job": 111582411166,
-    "record_run": 37252355438,
-    "reused_unchanged_cases": 1755,
-    "scope_head": "f0b6d885ddee4a18cd9a599281989009b4d74bfa",
+    "isolated_job": 111589743264,
+    "isolated_run": 37254891427,
+    "reason_ja": "HOF実callerの誤成功音を抑止し、既存窓のエラー→新規A→元演出を候補限定受入。旧SaveFailed/wipe/自動再保存0。同sessionのstat10は0→1を一度だけ保持（主故障coldは0、外側故障/正常coldは1）。payload8192byteは演出遷移まで、初回Flash program時点以降の拡張20248byteは全保持。9byte UI-only入口/主保存故障・sector31末尾故障・正常/各cold。初回mode3原子性と全caller共通SaveFailed、全mode/残consumerは未完。主故障cold101のQOL ledger差は前Union/Mysteryと同一の既存fallback差で、全cold owner復元を受入しない。",
+    "scope_head": "6d75cf77c77f89a6d2541114f796e67ff06efd85",
+    "screens": 15,
     "stage79_cached_not_new_native": true,
-    "ui_job": 111580919887,
-    "ui_run": 37251844445,
-    "union_fixture_bytes": 21,
-    "whole_receipt_equals_checkpoint": true
+    "ui_job": 111590380492,
+    "ui_run": 37255103782
   },
   "observed_head_history": [
     {
@@ -12283,7 +12270,7 @@
       "semantics": "Save100/ミルシティ4,17北。動的Ranger20,29へ実正面A→町の解放scene→4072=3/4380set。全party600byte/HP277/PP3,9,8,2/23114円保持。95+cold13入力/54画面。通常2歩+自動2歩、歩数93/3。cold RAM差owner未解明。"
     }
   ],
-  "observed_head_semantics": "Union限定UI受入とMystery配置撤回/復旧の記録source。正式ROM/Save101不変。",
+  "observed_head_semantics": "HOF局所通知/9byte入口とcoldの候補受入記録source。正式ROM/Save101不変。",
   "p08_candidate_impact": {
     "candidate": {
       "crc32": "CC068B4A",
@@ -12405,7 +12392,13 @@
     "status": "NATIVE_PARTY_RETENTION_ACCEPTED_BP_PENDING",
     "tested_head": "10e535a046441dd3b797918106259b5c57b69716"
   },
-  "pending_runs": [],
+  "pending_runs": [
+    {
+      "run_id": 37255837504,
+      "status": "in_progress",
+      "tested_head": "8cf485c88fcd7fe961852f449c1cd51ffa56d6ed"
+    }
+  ],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
   "pr_draft": true,
   "pr_merged": false,
@@ -14203,6 +14196,18 @@
     ".github/workflows/pr16-dex-gameplay.yml": {
       "sha256": "3a046bfda0815f2aa8e8d738171ce03c5e952f3afa4349611990c7ede6403666",
       "size": 1986
+    },
+    ".github/workflows/pr16-dex-hof-failure.yml": {
+      "sha256": "2c062e8f47ffe0fb2486785c7dc787c844fbdbeb31e26fbbeccca4a724ec11fd",
+      "size": 1744
+    },
+    ".github/workflows/pr16-dex-hof-record.yml": {
+      "sha256": "a4607d3fd613a85ff6b832206722c4d0867f53917949b6732a9a69ef9cfa45a7",
+      "size": 2388
+    },
+    ".github/workflows/pr16-dex-hof-ui.yml": {
+      "sha256": "bb2ce1b3ce67dda3d12562247ed05ef7b17b67f1710a6c786ffa985fc3ee10a6",
+      "size": 1566
     },
     ".github/workflows/pr16-dex-lifecycle-closeout.yml": {
       "sha256": "410d423551a822b34d96f8671cc98acce0ba0c66d6ca5aabf2d2fc23a9e38183",
@@ -16719,6 +16724,150 @@
     "content/modernization/pr16_dex_first_menu_audit.json": {
       "sha256": "92e1edde14eba57fa73180d99502beb5562d087be6372c86e98266d2386fc065",
       "size": 2268
+    },
+    "content/modernization/pr16_dex_hof_checkpoint.json": {
+      "sha256": "f72c70937702aa71ecf3799f5c0fa409b6c3e0a2e94722dff2b33c1b1d6e571d",
+      "size": 150077
+    },
+    "content/modernization/pr16_dex_hof_evidence/diagnostic-37254213792/build.json": {
+      "sha256": "99c1465e7b82c50e002cb4c3c658be83b4964727a2309e0ce23e1249a9ab47cf",
+      "size": 100187
+    },
+    "content/modernization/pr16_dex_hof_evidence/diagnostic-37254213792/failure.json": {
+      "sha256": "6629ac8590da9c6c9d6b9c62388997442ff446c28029cd33efb09dd634ef722f",
+      "size": 277
+    },
+    "content/modernization/pr16_dex_hof_evidence/diagnostic-37254213792/host-tests.txt": {
+      "sha256": "a0dc11b73e30a2ad5d376b12ccf16b98c0e7949832eb4996695717739f9486bf",
+      "size": 916
+    },
+    "content/modernization/pr16_dex_hof_evidence/diagnostic-37254589135/attempts.json": {
+      "sha256": "d33648bf59bc145147b943ac96ccac837207e978d5cb69f0acefbdc4c9845c30",
+      "size": 65
+    },
+    "content/modernization/pr16_dex_hof_evidence/diagnostic-37254589135/build.json": {
+      "sha256": "99c1465e7b82c50e002cb4c3c658be83b4964727a2309e0ce23e1249a9ab47cf",
+      "size": 100187
+    },
+    "content/modernization/pr16_dex_hof_evidence/diagnostic-37254589135/failure.json": {
+      "sha256": "e6652d5839aee2a08d209880e22d78a03d08551a5039ba90468e8fce4ac7a3bd",
+      "size": 249
+    },
+    "content/modernization/pr16_dex_hof_evidence/diagnostic-37254589135/host-tests.txt": {
+      "sha256": "a0dc11b73e30a2ad5d376b12ccf16b98c0e7949832eb4996695717739f9486bf",
+      "size": 916
+    },
+    "content/modernization/pr16_dex_hof_evidence/diagnostic-37254589135/isolated-stderr.txt": {
+      "sha256": "f70fd9e12d888d9c28aa7b6c01fd4121d16fbb1bf126a4c10ad648e8e91da6b1",
+      "size": 86
+    },
+    "content/modernization/pr16_dex_hof_evidence/diagnostic-37254589135/isolated-stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_dex_hof_evidence/isolated/attempts.json": {
+      "sha256": "d33648bf59bc145147b943ac96ccac837207e978d5cb69f0acefbdc4c9845c30",
+      "size": 65
+    },
+    "content/modernization/pr16_dex_hof_evidence/isolated/build.json": {
+      "sha256": "99c1465e7b82c50e002cb4c3c658be83b4964727a2309e0ce23e1249a9ab47cf",
+      "size": 100187
+    },
+    "content/modernization/pr16_dex_hof_evidence/isolated/host-tests.txt": {
+      "sha256": "f4d706094b7325e40929cc85c6dfadb257dd985322c11af10496458723851784",
+      "size": 916
+    },
+    "content/modernization/pr16_dex_hof_evidence/isolated/isolated-stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_dex_hof_evidence/isolated/isolated-stdout.txt": {
+      "sha256": "8fe5b29d6bd198834bf2b23a31ce544d47eb85d28ea0d3d3f29bcbb0285623ee",
+      "size": 230
+    },
+    "content/modernization/pr16_dex_hof_evidence/isolated/measurement.json": {
+      "sha256": "7cd6527a9202212fe381932d912ed7ba4bd63ee3be1f6b2ed7865d2a34fa7b36",
+      "size": 102511
+    },
+    "content/modernization/pr16_dex_hof_evidence/record-index-diagnostic.json": {
+      "sha256": "a0313d9d55a2a6570919a7487a35e5c2e713b6e88631b9c72a0309d237f82adc",
+      "size": 623
+    },
+    "content/modernization/pr16_dex_hof_evidence/ui/attempts.json": {
+      "sha256": "f60ba39e253f42fdbfab9f6d5474f2338a84d32027861a943b0bd86251a13b5f",
+      "size": 164
+    },
+    "content/modernization/pr16_dex_hof_evidence/ui/healthy-cold/cold-102/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_dex_hof_evidence/ui/healthy-cold/cold-102/stdout.txt": {
+      "sha256": "38fd2d48c760acc31ff39d0e0fd3f4a3c81e8704cbbeea3e3431db1306407aa5",
+      "size": 2193
+    },
+    "content/modernization/pr16_dex_hof_evidence/ui/healthy/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_dex_hof_evidence/ui/healthy/stdout.txt": {
+      "sha256": "3b686a77dec390a21b6f0d67057e2f64f064bc91087da74d38b2c544f8b6b8f8",
+      "size": 23082
+    },
+    "content/modernization/pr16_dex_hof_evidence/ui/host-tests.txt": {
+      "sha256": "779bf061bb5e7e1fe89ca3eaf2edd3bf198cc95e027d2c013d389f70c43e405a",
+      "size": 476
+    },
+    "content/modernization/pr16_dex_hof_evidence/ui/main-fault-cold/cold-101/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_dex_hof_evidence/ui/main-fault-cold/cold-101/stdout.txt": {
+      "sha256": "8246c64d100daaca081cf2adb08589314759eb1f7fd7a10743f42634ae8716f4",
+      "size": 2379
+    },
+    "content/modernization/pr16_dex_hof_evidence/ui/main-fault/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_dex_hof_evidence/ui/main-fault/stdout.txt": {
+      "sha256": "2977d896c30ca236237f45c9d2254a49469fb5c1241c82d142fee2936a7ccce3",
+      "size": 23042
+    },
+    "content/modernization/pr16_dex_hof_evidence/ui/measurement.json": {
+      "sha256": "ea05492f6b9a19aacadc1ebe0bd72f60813898139ea99001293383feae49e27c",
+      "size": 24311
+    },
+    "content/modernization/pr16_dex_hof_evidence/ui/outer-fault-cold/cold-102/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_dex_hof_evidence/ui/outer-fault-cold/cold-102/stdout.txt": {
+      "sha256": "5b9f66a3484770de6f5277efe4169e021fa91d41fe8df82bbcdb2adb08b7017e",
+      "size": 2193
+    },
+    "content/modernization/pr16_dex_hof_evidence/ui/outer-fault/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_dex_hof_evidence/ui/outer-fault/stdout.txt": {
+      "sha256": "edb2ea8174367ce65e2bab42970f9e5725748da761521d17f240d37770ecf7b1",
+      "size": 26195
+    },
+    "content/modernization/pr16_dex_hof_failure_bindings.json": {
+      "sha256": "b3339e41f3a1090e275d842ff7b37291d196c798bc929b6dfc7002090b813d49",
+      "size": 2349
+    },
+    "content/modernization/pr16_dex_hof_tail_lease.json": {
+      "sha256": "5af6a4932ccf87c0183a1ece1423416d79a5f989cdcb348db78534396c6879be",
+      "size": 62750
+    },
+    "content/modernization/pr16_dex_hof_ui_bindings.json": {
+      "sha256": "9cbea382b7913fee6dd981b9e5a15c6788e37101acc78692221342963ec8fe36",
+      "size": 1542
+    },
+    "content/modernization/pr16_dex_hof_ui_visual_review.json": {
+      "sha256": "41d01e9b3e48f466e1f9405be29f383c4298152035fe362b77fc2fc8420466bb",
+      "size": 3309
     },
     "content/modernization/pr16_dex_lifecycle_checkpoint.json": {
       "sha256": "e8d31e99f75b36d0789a8c3123afc0bbdaeb35093b312afc6306d8cbbec9ec8d",
@@ -28404,6 +28553,10 @@
       "sha256": "cf60a3a0506690156a88877e53df2f14a742d51138ff86a9db4cbbab3e0f4286",
       "size": 12934
     },
+    "docs/PR16_DEX_HOF_FAILURE_JA.md": {
+      "sha256": "0ea655487eca36ab56f17105667538155e599c4a4f02a1cb96d7ac51f7336d37",
+      "size": 3629
+    },
     "docs/PR16_DEX_LIFECYCLE_JA.md": {
       "sha256": "8af61361a3197aeb01974de7f2065e30aaa49151ecf834e84df1920d1de2badc",
       "size": 5703
@@ -32648,6 +32801,10 @@
       "sha256": "3127563d5d5786ff88dfee26d376f37624d29a3936076345ba6cd14de782f901",
       "size": 8232
     },
+    "overlays/dex_owner/dex_hof_save_failure.S": {
+      "sha256": "26f68bd05e44d353b2b578e83f47bad749df58fcadcec115e30b702828064e21",
+      "size": 2704
+    },
     "overlays/dex_owner/dex_lifecycle.c": {
       "sha256": "161e0537c4ff48c95790784e89474ca72f43b67cea394924a4bba01bf7f7b877",
       "size": 1693
@@ -33331,6 +33488,26 @@
     "scripts/pr16_dex_gameplay_actions.py": {
       "sha256": "13c338b405b5803260e660fded2ba5a6749931bf28c794bbdcf103350a15c28e",
       "size": 14844
+    },
+    "scripts/pr16_dex_hof_failure.py": {
+      "sha256": "b15e706167429a63e3a856b7ad1fcca6e7c006bfbfb44d633c66616e297771c9",
+      "size": 5438
+    },
+    "scripts/pr16_dex_hof_failure_actions.py": {
+      "sha256": "1da2e18c1b0c0ed6c5c378bb6ace61a046d603e1223ab4bffc466fd0d1b3133b",
+      "size": 6497
+    },
+    "scripts/pr16_dex_hof_record.py": {
+      "sha256": "1eacc8e9de9332f0b15b3a6d8ffcaed496bb3a8b695627d44728688820cbfcdb",
+      "size": 17466
+    },
+    "scripts/pr16_dex_hof_tail_lease.py": {
+      "sha256": "fdd11b32566de7cc0f1cf8f499645beca7d92fa4c10ae1aab4e90bdda6f12db4",
+      "size": 5156
+    },
+    "scripts/pr16_dex_hof_ui.py": {
+      "sha256": "53aea516eda23b9483733e1234866381e60b146115b82cd587fb79b72f9244e0",
+      "size": 13456
     },
     "scripts/pr16_dex_lease.py": {
       "sha256": "d80db50543bbaadeba2dce3fab34ce3dc2c219ca4bb4aac2f55d0271b372b4f6",
@@ -36532,6 +36709,14 @@
       "sha256": "c8b8dbcaad5c774e467d69ec0feceae7bf1b128316d3c9e2cca1b31464a0c15c",
       "size": 1248
     },
+    "tests/test_pr16_dex_hof_failure.py": {
+      "sha256": "15a3de5ab3b2917006c1d8754cb606483a20427272a6aecdf1a2f80086ae8f80",
+      "size": 2238
+    },
+    "tests/test_pr16_dex_hof_ui.py": {
+      "sha256": "d8d55471ef14ce1b2bfd5fa4a5470b26e099a60a901b817ece9c9089a477a620",
+      "size": 1085
+    },
     "tests/test_pr16_dex_lease.py": {
       "sha256": "919fd6220bda91ed2dcfd9cafba210fa544cc3aaf5705a8fffeeea53f4d7b1ee",
       "size": 4921
@@ -38652,6 +38837,14 @@
       "sha256": "25a9a683930c233586db11c3d622543c7899a124f3140ece231dbf95f11e0209",
       "size": 2692
     },
+    "tools/mgba_pr16_dex_hof_failure.h": {
+      "sha256": "1d41af97fcc4813e09f62aa79d1c214ec4c9e7c9b07b08c2b51eeae364b0c560",
+      "size": 6792
+    },
+    "tools/mgba_pr16_dex_hof_ui.h": {
+      "sha256": "c6c55635f84ee4038b38b0967a40c01f44401fadba108469344859198e65bb9e",
+      "size": 11414
+    },
     "tools/mgba_pr16_dex_lifecycle.c": {
       "sha256": "98d5c6b75925ad6368255865acd642a2ef613f83fead7b5de5d06e6dc1e7cd68",
       "size": 5882
@@ -39423,6 +39616,24 @@
       "checkpoint": "content/modernization/pr16_dex_runtime_checkpoint.json",
       "formal_story_save": 101,
       "guide": "docs/PR16_DEX_RUNTIME_INTEGRATION_JA.md",
+      "hof_failure": {
+        "candidate": {
+          "sha256": "40ad82373b1e0f49283f59dce1e68a009b3e548d8f3ff080b72a134a228b0ac2",
+          "size": 33554432
+        },
+        "checkpoint": "content/modernization/pr16_dex_hof_checkpoint.json",
+        "cold_input_fixture_derived": true,
+        "common_failure_all_callers_accepted": false,
+        "fixture_bytes": 9,
+        "formal_rom_changed": false,
+        "formal_save_changed": false,
+        "guide": "docs/PR16_DEX_HOF_FAILURE_JA.md",
+        "hof_initial_save_atomicity_accepted": false,
+        "isolated_run": 37254891427,
+        "record_run": 37255837504,
+        "status": "PASS_HOF_NOTIFICATION_UI_ONLY_NO_RETRY",
+        "ui_run": 37255103782
+      },
       "host_tests": 102,
       "load_newgame": {
         "all_consumers_wired": false,

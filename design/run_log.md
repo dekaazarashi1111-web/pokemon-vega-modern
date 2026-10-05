@@ -12822,3 +12822,17 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Boundary: Union21byte/Mystery11byte入口fixtureを自然通信/受信/削除/正規transitionやHOFへ昇格しない。cold入力もfixture由来。旧Mystery配置全体受入は撤回。次はHOF副作用/SaveFailed scratch/authority wipe、全mode/残typed consumer。早期sector31故障/原子性未受入。trainer131後半0。一般CI既知QOL不一致/Stage79cache/旧9月18日queueを別扱い。
 - Commit: closeout source=468b45016c9608a00e2a0c902ff572f3d10178bf; 同branch非force push。
 - Network: 同repoActionsと既存text receiptのみ。ROM/入力save/runtime/runner/credentials追加公開0。
+
+## 2026-10-05T02:33:22.853352+00:00
+- Timestamp: 2026-10-05T02:33:22.853352+00:00
+- Task: USER-20261005-DEX-HOF-FAILURE / HOF保存失敗の局所通知と非破壊待機
+- Version: dex-hof-v1
+- Status: DONE（候補限定受入。全mode/共通残callerは未完）
+- Summary: HOF実callerの誤成功音を抑止し、既存窓のエラー→新規A→元演出を候補限定受入。旧SaveFailed/wipe/自動再保存0。同sessionのstat10は0→1を一度だけ保持（主故障coldは0、外側故障/正常coldは1）。payload8192byteは演出遷移まで、初回Flash program時点以降の拡張20248byteは全保持。9byte UI-only入口/主保存故障・sector31末尾故障・正常/各cold。初回mode3原子性と全caller共通SaveFailed、全mode/残consumerは未完。主故障cold101のQOL ledger差は前Union/Mysteryと同一の既存fallback差で、全cold owner復元を受入しない。
+- Files changed: HOF ASM/generator/typed lease/isolated/UI/host/workflows、専用CP/evidence、固定MDJSONと両ログ。
+- Verify: isolated run37254891427/2880case/1process、UI run37255103782/6process15画像、原本全文・全SHA・実pixel確認。260byte/候補40ad8237、新114owner/overlap0/旧113全byte保持、22literal＋3BL/17root/未分類0、全ROM逆変換。記録ARM0/native0。
+- Diagnostics: 初回はhost executableとARM link dir衝突/native0、次はmGBA word配列をbyteとして比較し隔離case0停止/native1。どちらも保存/画面受入へ改称せず原本保持。record初回はPPMのGit取込をtext-only guardが拒否しcommit前停止。画像は既存Actions原本に保持しSHAで束縛、trackedはtextだけに限定してguard無変更。
+- Fixture: UI入口callback/state9byte以外の全RAM不変を無frameで検査。自然殿堂入り、story gate、初回mode3原子性、HOF全種族ABIの受入ではない。正式原本4copy不変。
+- Next: 正式ROM/Save101を保持。HOFの局所通知/旧SaveFailed回避を9byte UI-onlyと各coldで限定受入。次は初回mode3 stock委譲の保存世代/28・29とmainの整合、mode4/5 erase・default/LinkFull等全mode、未対応caller共通SaveFailedとstale selector authority wipeを安全契約へ分離。主保存故障cold時のQOL ledger差も既存fallback契約として解明。早期sector31故障/単bank原子性、残typedconsumerも未完。必要証拠が揃うまで正式切替とtrainer131後半を保留し、owner承認不足と誤認しない。最終はシオウPokecenter通常回復/Save/独立coldContinue、雑魚毎Saveなし。
+- Commit: record source=8cf485c88fcd7fe961852f449c1cd51ffa56d6ed; 同branch非force push。
+- Network: 同repoActions/既存入力。公開source/address-size-SHA/text/screensだけ。ROM断片/rawhex/runtime/入力save/runner/credentials追加公開0。
