@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "32sector HOF制御をC/ARM化。12host・新ARM10caseで復旧/中断/INITIALを合成検証。既存save sourceを共通化し、現115owner内でHJ codec3関数を配置。全8保存入口22caseとROM journal validator257caseを変更影響検証。後継候補12ab27e4、save subowner53／残292byte。HOF世代結合controllerの稼働ROM配線・正式ROM/Save101切替は未完。",
+    "current_stop": "exact-source cloneとLink source-recordを下位writerへ統合し実ROM全8入口22case＋移設HJ validator257caseを変更影響検証。候補0641af70、115owner／save subowner52／残804byte。旧egg表は現P07 root移行を確認したが参照形874件未分類でleaseなし。heap既存10窓688byteは現ROMに一致、実arena所有は未証明。HOF全世代配線・正式ROM/Save101切替は未完。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "現save後継ownerを基準に、controller6528byteを下位の共通generation writerへ統合し容量を再確保する。Linkのc/source・c+1backup・rotation据置、初回no-main、全mode/LinkFull署名barrierを保持。workspace1320+4096+7936byteのsave中RAM/heap所有、INITIAL has-records/loader、全writer/clone/selector/HOF-only gateを証明して配線。species9bit・共通SaveFailed・早期31・全cold owner・残typedを閉じ、正式候補切替後trainer131後半、最終シオウ通常回復/保存/独立cold Continue。雑魚毎checkpointなし。",
+    "next_step": "現lower writer候補を基準に、旧Stage67 egg表の全byte開始位置/mirror/Thumb参照形をtyped asset/consumerで分類し、必要量だけ明示donor移管する。controllerと実S61E/MDX callbackをLink exact-source/no-main/INITIAL/全writer/loadへ接続。heap事前chain admission、raw13359/round13360/align8、allocator scratch02020004/08/0C、0804B85C退避前解放、全入口heap-readyと非再入を実証する。全mode/早期31/species9bit/残typed・正式切替後trainer131後半、最終シオウ通常回復/保存/coldContinue。雑魚毎Saveなし。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -1177,7 +1177,8 @@
     "88be8811のmode3 main COWは隔離554条件とUI5条件＋各cold10process/25画像を原本再利用。main0の3callはsynthetic入力bank生成で通常Save再受入ではない。既存115owner中114保持、新180byteはStage61内5窓。次は実subownerを差引いた186byteを優先し、旧366byteや古いsuffixを空き扱いしない。HOF/main世代結合は未完。",
     "HOF世代contractのhost参照実装21suiteは専用checkpointを再利用。34sector合成形式を32sector実Saveへ適用しない。現候補88be8811、全115owner/43subowner/186byte、正式ROM/Save101は不変。旧HOF/main/nativeを変更影響なしに再走せず、次は実永続表現の容量・ABI・ownerと全consumerへの接続。",
     "HOF32sector storageの16host/新228ABIを専用checkpointから再利用。候補88be8811不変。50履歴/1936byte suffixを削減せず非選択mainの一時scratchを使う。Ccodecとhost schedulerを実ROM接続済みにしない。species9bitとINITIAL移行は未修復。次は現ownerへの配置・全writer/load接続。",
-    "HOF controller12host/6528ARM/新10RAM隔離caseとsave後継183hostdiff・実保存8入口22case/ROMjournal257caseは新専用checkpointから再利用。候補12ab27e4・115owner/53save subowner/残292byteが次の基準。CcontrollerはROM未配置、workspace/全writer/load/INITIAL/Link統合未完。失敗runは失敗として保持し、旧gameplayを再走しない。"
+    "HOF controller12host/6528ARM/新10RAM隔離caseとsave後継183hostdiff・実保存8入口22case/ROMjournal257caseは新専用checkpointから再利用。候補12ab27e4・115owner/53save subowner/残292byteが次の基準。CcontrollerはROM未配置、workspace/全writer/load/INITIAL/Link統合未完。失敗runは失敗として保持し、旧gameplayを再走しない。",
+    "下位generation writer run37282589643の183host全媒体差分・全8入口22ARMcase・移設HJ257caseを候補/source不変なら再走しない。旧egg参照形は未分類/lease0、heap10窓はbindingのみ/実arena0。正式ROM/Save101・HOF世代結合未完。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -4358,39 +4359,37 @@
     "status": "PASS_NATIONAL_DEX_GRANT_OWNER_SCOPED"
   },
   "next_action": {
-    "goal_ja": "現save後継ownerを基準に、controller6528byteを下位の共通generation writerへ統合し容量を再確保する。Linkのc/source・c+1backup・rotation据置、初回no-main、全mode/LinkFull署名barrierを保持。workspace1320+4096+7936byteのsave中RAM/heap所有、INITIAL has-records/loader、全writer/clone/selector/HOF-only gateを証明して配線。species9bit・共通SaveFailed・早期31・全cold owner・残typedを閉じ、正式候補切替後trainer131後半、最終シオウ通常回復/保存/独立cold Continue。雑魚毎checkpointなし。",
+    "goal_ja": "現lower writer候補を基準に、旧Stage67 egg表の全byte開始位置/mirror/Thumb参照形をtyped asset/consumerで分類し、必要量だけ明示donor移管する。controllerと実S61E/MDX callbackをLink exact-source/no-main/INITIAL/全writer/loadへ接続。heap事前chain admission、raw13359/round13360/align8、allocator scratch02020004/08/0C、0804B85C退避前解放、全入口heap-readyと非再入を実証する。全mode/早期31/species9bit/残typed・正式切替後trainer131後半、最終シオウ通常回復/保存/coldContinue。雑魚毎Saveなし。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。Save14は作業コピーだけを使用する。自己OT party、manifest解決済み通常支援用品、EXP境界、safe opponentはpre-battle fixtureとして全byteを台帳化してよい。badge/key item/story flag/money/RPをfixture付与せず、戦闘開始後は通常入力とゲーム内処理だけを使う。",
-    "id": "INTEGRATE_HOF_CONTROLLER_WITH_CURRENT_SAVE_SUCCESSOR",
+    "id": "CLASSIFY_HOF_DONOR_AND_WIRE_EXPLICIT_GENERATIONS",
     "read_paths": [
+      "docs/PR16_DEX_HOF_GENERATION_WRITER_JA.md",
+      "content/modernization/pr16_dex_hof_generation_writer_checkpoint.json",
       "docs/PR16_DEX_HOF_CONTROLLER_JA.md",
-      "content/modernization/pr16_dex_hof_controller_checkpoint.json",
-      "docs/PR16_DEX_HOF_STORAGE_JA.md",
-      "content/modernization/pr16_dex_hof_successor_host.json",
-      "content/modernization/pr16_dex_hof_successor_references.json"
+      "content/modernization/pr16_dex_hof_controller_checkpoint.json"
     ],
     "stop_rule_ja": "通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。"
   },
   "observed_date_jst": "2026-10-04",
-  "observed_head": "e49dbc69f4ba91186edf828070537a7653fde7c7",
+  "observed_head": "c1aa1dbece3dd3cf5221321ad77c1d1fae29d75c",
   "observed_head_checks": {
-    "controller_host_tests": 12,
-    "controller_rom_placed": false,
+    "controller_runtime_wired": false,
     "current_candidate": {
-      "sha256": "12ab27e4b83c86ce09f88fe887716e5c3a9eba1320bce927dc7b85b28fee9a03",
+      "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583",
       "size": 33554432
     },
+    "egg_donor_leased": false,
+    "existing_host_cases": 20,
+    "free_bytes": 804,
     "general_ci_known_source_mismatch_not_resolved": true,
-    "isolated_controller_cases": 10,
+    "heap_runtime_lease_enabled": false,
+    "host_differential_cases": 183,
     "journal_cases": 257,
-    "journal_codec_rom_placed": true,
-    "new_native_processes": 2,
-    "reason_ja": "32sector HOF制御をC/ARM化。12host・新ARM10caseで復旧/中断/INITIALを合成検証。既存save sourceを共通化し、現115owner内でHJ codec3関数を配置。全8保存入口22caseとROM journal validator257caseを変更影響検証。後継候補12ab27e4、save subowner53／残292byte。HOF世代結合controllerの稼働ROM配線・正式ROM/Save101切替は未完。",
-    "runtime_cross_store_atomicity": false,
-    "runtime_generation_binding": false,
+    "new_native_processes": 1,
+    "reason_ja": "exact-source cloneとLink source-recordを下位writerへ統合し実ROM全8入口22case＋移設HJ validator257caseを変更影響検証。候補0641af70、115owner／save subowner52／残804byte。旧egg表は現P07 root移行を確認したが参照形874件未分類でleaseなし。heap既存10窓688byteは現ROMに一致、実arena所有は未証明。HOF全世代配線・正式ROM/Save101切替は未完。",
     "save_entry_cases": 22,
-    "scope_head": "e49dbc69f4ba91186edf828070537a7653fde7c7",
-    "stage79_cached_not_new_native": true,
-    "successor_host_differential_cases": 183
+    "scope_head": "c1aa1dbece3dd3cf5221321ad77c1d1fae29d75c",
+    "stage79_cached_not_new_native": true
   },
   "observed_head_history": [
     {
@@ -12279,7 +12278,7 @@
       "semantics": "Save100/ミルシティ4,17北。動的Ranger20,29へ実正面A→町の解放scene→4072=3/4380set。全party600byte/HP277/PP3,9,8,2/23114円保持。95+cold13入力/54画面。通常2歩+自動2歩、歩数93/3。cold RAM差owner未解明。"
     }
   ],
-  "observed_head_semantics": "save後継/ROM codec変更影響とRAM隔離C controllerの新ARM source。ゲーム/HOF世代結合の受入ではない。",
+  "observed_head_semantics": "変更下位writerの実保存入口と現ROM donor/heap前提監査。HOF Ccontrollerは未接続。",
   "p08_candidate_impact": {
     "candidate": {
       "crc32": "CC068B4A",
@@ -14231,6 +14230,14 @@
     ".github/workflows/pr16-dex-hof-generation-closeout.yml": {
       "sha256": "a4eb5fb924617a9ccaa4c7648b6fe2d32d61ed68abc8e0c27986660214257e6b",
       "size": 2489
+    },
+    ".github/workflows/pr16-dex-hof-generation-writer-record.yml": {
+      "sha256": "8b184b2b8bbf75b6b69813d90b19d016e0e174c01c4b0c5bee7436c52af049cc",
+      "size": 2730
+    },
+    ".github/workflows/pr16-dex-hof-generation-writer.yml": {
+      "sha256": "f4616250c5afb498a5142a5fd80b4f3a33fe858fc498b2e1e16b9bdba9ecc4da",
+      "size": 1742
     },
     ".github/workflows/pr16-dex-hof-generation.yml": {
       "sha256": "1ac583d605696d60058c63fa7e8fdd3e5e7f17b0df47d53f8ab1b0125e9e604c",
@@ -17227,6 +17234,42 @@
     "content/modernization/pr16_dex_hof_generation_evidence/measurement.json": {
       "sha256": "2434fc21707ff86b9c58e4d735430469f9af85d3209f8078f159e0594803d229",
       "size": 4563
+    },
+    "content/modernization/pr16_dex_hof_generation_writer_checkpoint.json": {
+      "sha256": "2aa483a860c7f5bc4919f6a3f11c74e3d209399059e8febbd63f3baaa16a8d49",
+      "size": 388088
+    },
+    "content/modernization/pr16_dex_hof_generation_writer_evidence/attempts.json": {
+      "sha256": "1b61a5f3266cf9d982e68b19a8da2d941b863cff6a15a4d398759dd906f7bbb3",
+      "size": 96
+    },
+    "content/modernization/pr16_dex_hof_generation_writer_evidence/build.json": {
+      "sha256": "71ebf89f50b27e342650df76d5f4908bb703a76aa9f38fe890b4afa30acf7b0b",
+      "size": 137050
+    },
+    "content/modernization/pr16_dex_hof_generation_writer_evidence/egg-capacity-audit.json": {
+      "sha256": "67148089dee689f2887d6dd29a1c59cbd1b21c4e154ea01606c1821d56d8f557",
+      "size": 228914
+    },
+    "content/modernization/pr16_dex_hof_generation_writer_evidence/heap-binding.json": {
+      "sha256": "1664a1e1ac2fef1d45be40576c4f2270ae343bcd7a33a91a06c2186cec6246db",
+      "size": 3406
+    },
+    "content/modernization/pr16_dex_hof_generation_writer_evidence/host.json": {
+      "sha256": "a646ca1ca386719cb8ee0b1016736902261bd1d9101963de9bbcc3454d4ede76",
+      "size": 395
+    },
+    "content/modernization/pr16_dex_hof_generation_writer_evidence/link.json": {
+      "sha256": "5a01e7239c477bf8df944672329f777215a205cac34fb657213056eacc58380f",
+      "size": 15648
+    },
+    "content/modernization/pr16_dex_hof_generation_writer_evidence/measurement.json": {
+      "sha256": "66c0910e7fb06e4f2fc1f0ac90d4ef45ffa20f54106ecec1e807dbd04ee53d70",
+      "size": 138954
+    },
+    "content/modernization/pr16_dex_hof_generation_writer_evidence/native.txt": {
+      "sha256": "78033e669a01af41e2681b5e8277d28f84a7e3d3693e4a7d484172fb0b8ab7d7",
+      "size": 729
     },
     "content/modernization/pr16_dex_hof_main_checkpoint.json": {
       "sha256": "2d9fdb898411a961985bef441c5793b372b1d9233f87fcbdd9eb4937c231fecd",
@@ -29112,6 +29155,10 @@
       "sha256": "10efe033b7d478fdf1db3828a0a86d764f393d60983a8069e8a9a9d6a9f36b9f",
       "size": 5533
     },
+    "docs/PR16_DEX_HOF_GENERATION_WRITER_JA.md": {
+      "sha256": "1c7a64bb881f4f20ea18bd35b3e0188688bff8abe4ce379d44952f13fc269f4f",
+      "size": 2083
+    },
     "docs/PR16_DEX_HOF_MAIN_COW_JA.md": {
       "sha256": "c5800162b827daedd8129493b5a44c53084c0c03c0ef63df0fb79d1ac02fe2fa",
       "size": 3264
@@ -34131,6 +34178,18 @@
     "scripts/pr16_dex_hof_generation_closeout.py": {
       "sha256": "8416aecb4827ae34a787b8abae561dd943c95993fede12c896cb373e65dde271",
       "size": 8924
+    },
+    "scripts/pr16_dex_hof_generation_source.py": {
+      "sha256": "7859f36ac19ea13cb0d800a47fba54f87a1e62b43b5c9d8da3c819b28858b4ed",
+      "size": 4322
+    },
+    "scripts/pr16_dex_hof_generation_writer_actions.py": {
+      "sha256": "45dfa6f3b9666f8d2ec806f0cc56fc5dc95d2a440225fae5e1b33c780a465079",
+      "size": 11421
+    },
+    "scripts/pr16_dex_hof_generation_writer_record.py": {
+      "sha256": "89f0161acf3ddcaec9260c16cd8676e3befcb9a0475bdfb8d29a7a66f674277a",
+      "size": 11722
     },
     "scripts/pr16_dex_hof_main_closeout.py": {
       "sha256": "8ae3717965300013032da2102a1491d0b822ac11189397e59a52abcbf7563857",
@@ -40528,6 +40587,31 @@
         "runtime_generation_binding": false,
         "status": "PASS_HOST_REFERENCE_HOF_TRANSACTION_AND_CAPACITY_REFUSAL",
         "synthetic_only": true
+      },
+      "hof_generation_writer": {
+        "candidate": {
+          "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583",
+          "size": 33554432
+        },
+        "capacity_reclaimed_bytes": 512,
+        "checkpoint": "content/modernization/pr16_dex_hof_generation_writer_checkpoint.json",
+        "controller_runtime_wired": false,
+        "current_save_owner_free_bytes": 804,
+        "current_save_subowners": 52,
+        "egg_donor_leased": false,
+        "egg_unclassified": 874,
+        "guide": "docs/PR16_DEX_HOF_GENERATION_WRITER_JA.md",
+        "heap_runtime_lease_enabled": false,
+        "heap_windows_bound": 10,
+        "job": 111673873801,
+        "parent_candidate": {
+          "sha256": "12ab27e4b83c86ce09f88fe887716e5c3a9eba1320bce927dc7b85b28fee9a03",
+          "size": 33554432
+        },
+        "record_run": 37283546611,
+        "run": 37282589643,
+        "source": "c1aa1dbece3dd3cf5221321ad77c1d1fae29d75c",
+        "status": "PASS_ROM_LOWER_GENERATION_WRITER_CAPACITY"
       },
       "hof_main_cow": {
         "candidate": {

@@ -12974,3 +12974,17 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 現save後継ownerを基準に、controller6528byteを下位の共通generation writerへ統合し容量を再確保する。Linkのc/source・c+1backup・rotation据置、初回no-main、全mode/LinkFull署名barrierを保持。workspace1320+4096+7936byteのsave中RAM/heap所有、INITIAL has-records/loader、全writer/clone/selector/HOF-only gateを証明して配線。species9bit・共通SaveFailed・早期31・全cold owner・残typedを閉じ、正式候補切替後trainer131後半、最終シオウ通常回復/保存/独立cold Continue。雑魚毎checkpointなし。
 - Commit: tested source=e49dbc69f4ba91186edf828070537a7653fde7c7; record source=0e040facb459bceff6b64c1a8f5767e239b2c5ca; 同branch非force。
 - Network: 同repoActions/既存private inputsによる再構築のみ。source/minimal address-size-SHA/textだけ公開。ROM断片/rawhex/ROM/inputsave/runtime/runner/credential追加公開0。
+
+## 2026-10-05T08:25:55.471246+00:00
+- Timestamp: 2026-10-05T08:25:55.471246+00:00
+- Task: USER-20261005-DEX-HOF-GENERATION / exact-source下位writerとROM/RAM前提
+- Version: hof-generation-writer-v1
+- Status: STOPPED（安全な実配置縦切り完了、HOF全配線は未完）
+- Summary: exact-source cloneとLink source-recordを下位writerへ統合し実ROM全8入口22case＋移設HJ validator257caseを変更影響検証。候補0641af70、115owner／save subowner52／残804byte。旧egg表は現P07 root移行を確認したが参照形874件未分類でleaseなし。heap既存10窓688byteは現ROMに一致、実arena所有は未証明。HOF全世代配線・正式ROM/Save101切替は未完。
+- Files changed: 新source generator/Actions/guide/CP/evidence、固定MDJSON、両ログ。
+- Verify: run37282589643/job111673873801全step成功、artifact11333175429全text/SHA照合。183host全媒体/MDX/selector/callback数一致、20既存hostcase、native22+257、115owner/非save全byte/既HOF5section保持、capacity回収512byte。
+- Failures retained: run37281161559 historical Stage73 root仮定→P07移行を確認。run37281735894 三mode統合9254>9252byte/farcall/packing上限→source clone/rewriteのみ共通化。両方native0、失敗を成功へ読替えなし。
+- Boundary: Ccontroller/全writer/load/INITIAL/LinkFull未接続。旧egg donorは未分類874件で未使用。heap10窓688byteのcurrent bindingのみ、malloc/OOM/同期lifetimeは未受入。一般CI QOL不一致/Stage79cachedは別記。50HOF履歴/1936suffix/正式ROM/Save101/baseline/release不変。
+- Next: 現lower writer候補を基準に、旧Stage67 egg表の全byte開始位置/mirror/Thumb参照形をtyped asset/consumerで分類し、必要量だけ明示donor移管する。controllerと実S61E/MDX callbackをLink exact-source/no-main/INITIAL/全writer/loadへ接続。heap事前chain admission、raw13359/round13360/align8、allocator scratch02020004/08/0C、0804B85C退避前解放、全入口heap-readyと非再入を実証する。全mode/早期31/species9bit/残typed・正式切替後trainer131後半、最終シオウ通常回復/保存/coldContinue。雑魚毎Saveなし。
+- Commit: tested source=c1aa1dbece3dd3cf5221321ad77c1d1fae29d75c; record source=768fa8ac786c0dd6dc7e5401bb8db939e380d6ed; 同branch非force。
+- Network: 同repoActions/既存private入力。公開はsource/minimal address-size-SHA/textのみ、ROM断片/rawhex/ROM/save/runtime/runner/credential追加公開0。

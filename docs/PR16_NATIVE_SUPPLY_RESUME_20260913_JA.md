@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-32sector HOF制御をC/ARM化。12host・新ARM10caseで復旧/中断/INITIALを合成検証。既存save sourceを共通化し、現115owner内でHJ codec3関数を配置。全8保存入口22caseとROM journal validator257caseを変更影響検証。後継候補12ab27e4、save subowner53／残292byte。HOF世代結合controllerの稼働ROM配線・正式ROM/Save101切替は未完。
+exact-source cloneとLink source-recordを下位writerへ統合し実ROM全8入口22case＋移設HJ validator257caseを変更影響検証。候補0641af70、115owner／save subowner52／残804byte。旧egg表は現P07 root移行を確認したが参照形874件未分類でleaseなし。heap既存10窓688byteは現ROMに一致、実arena所有は未証明。HOF全世代配線・正式ROM/Save101切替は未完。
 
-**次: 現save後継ownerを基準に、controller6528byteを下位の共通generation writerへ統合し容量を再確保する。Linkのc/source・c+1backup・rotation据置、初回no-main、全mode/LinkFull署名barrierを保持。workspace1320+4096+7936byteのsave中RAM/heap所有、INITIAL has-records/loader、全writer/clone/selector/HOF-only gateを証明して配線。species9bit・共通SaveFailed・早期31・全cold owner・残typedを閉じ、正式候補切替後trainer131後半、最終シオウ通常回復/保存/独立cold Continue。雑魚毎checkpointなし。**
+**次: 現lower writer候補を基準に、旧Stage67 egg表の全byte開始位置/mirror/Thumb参照形をtyped asset/consumerで分類し、必要量だけ明示donor移管する。controllerと実S61E/MDX callbackをLink exact-source/no-main/INITIAL/全writer/loadへ接続。heap事前chain admission、raw13359/round13360/align8、allocator scratch02020004/08/0C、0804B85C退避前解放、全入口heap-readyと非再入を実証する。全mode/早期31/species9bit/残typed・正式切替後trainer131後半、最終シオウ通常回復/保存/coldContinue。雑魚毎Saveなし。**
 
 通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `e49dbc69f4ba91186edf828070537a7653fde7c7`。
-save後継/ROM codec変更影響とRAM隔離C controllerの新ARM source。ゲーム/HOF世代結合の受入ではない。
+証拠のsource HEAD: `c1aa1dbece3dd3cf5221321ad77c1d1fae29d75c`。
+変更下位writerの実保存入口と現ROM donor/heap前提監査。HOF Ccontrollerは未接続。
 
 ## 最短の再開手順
 
@@ -25,11 +25,10 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `docs/PR16_DEX_HOF_GENERATION_WRITER_JA.md`
+- `content/modernization/pr16_dex_hof_generation_writer_checkpoint.json`
 - `docs/PR16_DEX_HOF_CONTROLLER_JA.md`
 - `content/modernization/pr16_dex_hof_controller_checkpoint.json`
-- `docs/PR16_DEX_HOF_STORAGE_JA.md`
-- `content/modernization/pr16_dex_hof_successor_host.json`
-- `content/modernization/pr16_dex_hof_successor_references.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -448,6 +447,7 @@ P08ゲート:
 - HOF世代contractのhost参照実装21suiteは専用checkpointを再利用。34sector合成形式を32sector実Saveへ適用しない。現候補88be8811、全115owner/43subowner/186byte、正式ROM/Save101は不変。旧HOF/main/nativeを変更影響なしに再走せず、次は実永続表現の容量・ABI・ownerと全consumerへの接続。
 - HOF32sector storageの16host/新228ABIを専用checkpointから再利用。候補88be8811不変。50履歴/1936byte suffixを削減せず非選択mainの一時scratchを使う。Ccodecとhost schedulerを実ROM接続済みにしない。species9bitとINITIAL移行は未修復。次は現ownerへの配置・全writer/load接続。
 - HOF controller12host/6528ARM/新10RAM隔離caseとsave後継183hostdiff・実保存8入口22case/ROMjournal257caseは新専用checkpointから再利用。候補12ab27e4・115owner/53save subowner/残292byteが次の基準。CcontrollerはROM未配置、workspace/全writer/load/INITIAL/Link統合未完。失敗runは失敗として保持し、旧gameplayを再走しない。
+- 下位generation writer run37282589643の183host全媒体差分・全8入口22ARMcase・移設HJ257caseを候補/source不変なら再走しない。旧egg参照形は未分類/lease0、heap10窓はbindingのみ/実arena0。正式ROM/Save101・HOF世代結合未完。
 
 ## 次セッションへ残す更新手順
 
@@ -477,6 +477,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-32sector HOF制御をC/ARM化。12host・新ARM10caseで復旧/中断/INITIALを合成検証。既存save sourceを共通化し、現115owner内でHJ codec3関数を配置。全8保存入口22caseとROM journal validator257caseを変更影響検証。後継候補12ab27e4、save subowner53／残292byte。HOF世代結合controllerの稼働ROM配線・正式ROM/Save101切替は未完。
+exact-source cloneとLink source-recordを下位writerへ統合し実ROM全8入口22case＋移設HJ validator257caseを変更影響検証。候補0641af70、115owner／save subowner52／残804byte。旧egg表は現P07 root移行を確認したが参照形874件未分類でleaseなし。heap既存10窓688byteは現ROMに一致、実arena所有は未証明。HOF全世代配線・正式ROM/Save101切替は未完。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
