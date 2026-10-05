@@ -18,7 +18,7 @@ Linkは旧cを同じrotationのc+1へ先に退避し、RAMはcのままstockが0
 
 ## 検証の区別
 
-- save後継nativeは再配置された8入口の変更影響19caseと、候補ROM上HJ validatorの新257caseを対象とする。旧ストーリー成功区間を再走しない。
+- save後継nativeは再配置された8入口の変更影響22case（既存19＋WriteSector直接3）と、候補ROM上HJ validatorの新257caseを対象とする。旧ストーリー成功区間を再走しない。
 - controller nativeは私有候補上の明示RAMへ新ARM codeを置く隔離probe。全flash／HOF／整数結果をhost oracleと比較し、非owner RAM、callee-saved register、stack、元ROM不変を検査する。これをROM保存経路への接続、ゲーム起動、実Save、cold Continueと呼ばない。
 - selector／prepare callbackは合成モデルであり、本物のS61E／MDX ownerの代用品ではない。
 - workspace本体＋4096＋7936byteの本番RAM／heap生存区間、INITIAL absence、全writer／clone／loader gateは別途必要。未証明の固定RAMやAlloc呼出しを有効化しない。

@@ -47,17 +47,71 @@ def link(folder):
  for n in('HJ_Build','HJ_Validate','HJ_Rollback'):need(n in linked['symbols'],'explicit successor codec ABI '+n)
  return patches,linked
 
+def typed_reference_bindings(before,allow_formal=False):
+ def number(v):return int(v,16)if isinstance(v,str)else v
+ def bound(row):
+  address=number(row['address'])if 'address'in row else number(row['offset'])+0x08000000
+  raw=before[address-0x08000000:address-0x08000000+row['size']]
+  need(identity(raw)==dict(size=row['size'],sha256=row['sha256']),'whole typed external reference window')
+  return raw
+ def u32(a):return struct.unpack_from('<I',before,number(a)-0x08000000)[0]
+ def roots(items):
+  for row in items:
+   bound(row['row'])
+   for a in row.get('root_sites',[]):need(u32(a)==number(row['root']),'unchanged active typed table root')
+   need(u32(row['asset_pointer_site'])==number(row['asset_pointer']),'unchanged typed asset pointer')
+ prior=json.loads((ROOT/'content/modernization/pr16_dex_save_body_references.json').read_bytes());known={}
+ for row in prior['references']:
+  bound(row['scan_window'])
+  if 'typed_roots'in row:roots(row['typed_roots'])
+  if 'audio'in row:bound(row['audio']['header']);bound(row['audio']['decoder_read_extent'])
+  if 'compression'in row:bound(row['compression']['compressed_stream'])
+  if 'tileset'in row:
+   tiles=row['tileset'];bound(tiles['header'])
+   for layout in tiles['layout_roots']:
+    bound(layout['header']);need(u32(layout['secondary_tileset_pointer_site'])==number(tiles['header']['address']),'rooted tileset header')
+  known[number(row['scan_window']['address'])]=dict(target=number(row['apparent_target']['address']),binding=row['scan_window'],classification=row['finding'])
+ # 現bridgeは既にcodeなので、過去の空きpreimageを再要求せず、typed assetのみ再検証。
+ extra=json.loads((ROOT/'content/modernization/pr16_dex_scheduler_extra_lease.json').read_bytes())['reference_audit'];raw=bound(extra['asset']);decoded=bytearray();cursor=4
+ need(raw[0]==0x10 and int.from_bytes(raw[1:4],'little')==32,'typed palette LZ10 exact32byte')
+ for unused in range(4):
+  need(raw[cursor]==0,'palette consists only of literal groups');cursor+=1;decoded.extend(raw[cursor:cursor+8]);cursor+=8
+ need(cursor==len(raw)==40 and identity(decoded)==dict(size=32,sha256=extra['asset']['decoded_sha256']),'whole palette decoded identity')
+ for row in extra['table_rows']:bound(row);need(u32(row['address'])==extra['asset']['address'],'all typed palette rows')
+ for a in extra['root_sites']:need(u32(a)==extra['current_palette_root'],'live palette consumer roots')
+ ap=extra['apparent_reference'];bound(ap);known[ap['address']]=dict(target=ap['target'],binding=ap,classification='FALSE_POSITIVE_LZ10_PALETTE_LITERAL')
+ # codec donorの既知aligned候補。音声全体と全固定pointer siteを保持する。
+ lease=json.loads((ROOT/'content/modernization/pr16_dex_capacity_lease.json').read_bytes());row=lease['range_candidates'][33]
+ need(row['type']=='M4A_DELTA_COMPRESSED_SAMPLE'and row['alignment']==0,'one exact typed codec range hit');bound(row);bound(row['encoded_range_binding'])
+ for offset in row['wave_pointer_sites']:need(u32(offset+0x08000000)==row['wave_header_offset']+0x08000000,'all old codec typed wave pointers')
+ known[row['offset']+0x08000000]=dict(target=row['value']&~1,binding=row,classification='FALSE_POSITIVE_DPCM_CRY_SAMPLE_CODEC')
+ # 新規Thumb BL形のtyped音声証明は別の固定text bindingから読み込む。
+ new=json.loads((ROOT/'content/modernization/pr16_dex_hof_successor_references.json').read_bytes())
+ need(identity(before)==new['formal_candidate'if allow_formal else 'target_candidate'],'new typed proof exact declared candidate')
+ for path,binding in new['source_bindings'].items():need(identity((ROOT/path).read_bytes())==binding,'unchanged typed proof source '+path)
+ for root in new['roots']:
+  bound(root);bound(root['header']);need(root['kind']=='dpcm4'and root['address']+root['size']==root['decoder_read_end_exclusive'],'exact signed DPCM extent')
+  for table in root['typed_tables']:
+   for site in table['table_root_sites']:bound(site);need(u32(site['address'])==table['table_address'],'active DPCM table root')
+   for item in table['rows']:bound(item['row']);need(u32(item['wave_pointer_site'])==root['address'],'active DPCM table row')
+  for site in root['reference_windows']:bound(site);need(u32(site['address'])==root['address'],'all signed DPCM references')
+ for row in new['candidates']:
+  bound(row);root=next(x for x in new['roots']if x['address']==row['root'])
+  need(root['address']+16<=row['address']and row['address']+4<=root['decoder_read_end_exclusive'],'hit wholly within encoded DPCM data')
+  known[row['address']]=dict(target=row['target'],binding=row,classification=row['classification'])
+ return known
+
 def reference_audit(before):
  # 現save-only bodyへ入る外部aligned word/Thumb BL形を全ROMで再列挙。
  # 退役body内の旧callは除外し、既署名のtyped data3件だけ再利用する。
  spans=windows();exports=json.loads((ROOT/'content/modernization/pr16_dex_scheduler_checkpoint.json').read_bytes())['link']['exports'];origins=spans+[(a,a+16)for a in exports.values()]
  def inside(n,rows):return any(a<=n<z for a,z in rows)
- prior=json.loads((ROOT/'content/modernization/pr16_dex_save_body_references.json').read_bytes());known={int(r['scan_window']['address'],16):r for r in prior['references']};hits=[]
+ known=typed_reference_bindings(before);hits=[]
  def accept(address,target,kind):
   if inside(address,origins):return
   row=known.get(address);at=address-0x08000000;b=before[at:at+4]
-  accepted=bool(row and int(row['apparent_target']['address'],16)==target and identity(b)==dict(size=4,sha256=row['scan_window']['sha256']))
-  hits.append(dict(address=address,target=target,scan_kind=kind,**identity(b),classification=row['finding']if accepted else 'UNCLASSIFIED',accepted=accepted))
+  accepted=bool(row and row['target']==target and identity(b)==dict(size=4,sha256=row['binding']['sha256']))
+  hits.append(dict(address=address,target=target,scan_kind=kind,**identity(b),classification=row['classification']if accepted else 'UNCLASSIFIED',accepted=accepted))
  for i,(value,)in enumerate(struct.iter_unpack('<I',before)):
   if 0x09448000<=(value&~1)<0x09FC22EC and inside(value&~1,spans):accept(0x08000000+4*i,value&~1,'ALIGNED_U32')
  for i in range(0,len(before)-3,2):
