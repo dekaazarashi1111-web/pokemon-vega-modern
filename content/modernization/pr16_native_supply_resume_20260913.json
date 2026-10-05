@@ -4374,6 +4374,7 @@
   "observed_date_jst": "2026-10-04",
   "observed_head": "eacc7b112021727e32162905432b24e7e3e49560",
   "observed_head_checks": {
+    "all14_steps_success": true,
     "current_candidate": {
       "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583",
       "size": 33554432
@@ -4408,8 +4409,11 @@
     },
     "new_native_processes": 1,
     "reason_ja": "現候補0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583の旧egg見かけ参照をtyped asset/consumerへ機械分類し、443件分類・431件未知を保持。実heap全chain事前admissionをC実装し、新isolated ARMでfirst-fit/split/整列/解放とOOM前拒否を検証。保存退避入口の実3コピーがarena13352byteをMallocInit前に破壊することも確認。donor/本番arenaは未使用、正式ROM/Save101不変。",
+    "record_job": 111688004863,
+    "record_run": 37286954036,
     "scope_head": "eacc7b112021727e32162905432b24e7e3e49560",
-    "stage79_cached_not_new_native": true
+    "stage79_cached_not_new_native": true,
+    "whole_receipt_equals_checkpoint": true
   },
   "observed_head_history": [
     {
@@ -12420,13 +12424,7 @@
     "status": "NATIVE_PARTY_RETENTION_ACCEPTED_BP_PENDING",
     "tested_head": "10e535a046441dd3b797918106259b5c57b69716"
   },
-  "pending_runs": [
-    {
-      "run_id": 37286954036,
-      "status": "in_progress",
-      "tested_head": "eacc7b112021727e32162905432b24e7e3e49560"
-    }
-  ],
+  "pending_runs": [],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
   "pr_draft": true,
   "pr_merged": false,
@@ -14241,9 +14239,13 @@
       "sha256": "3a046bfda0815f2aa8e8d738171ce03c5e952f3afa4349611990c7ede6403666",
       "size": 1986
     },
+    ".github/workflows/pr16-dex-hof-capacity-closeout.yml": {
+      "sha256": "985dfb19ba5d1ca4a0b5c13e5e09374ca72343c631d0982ad405983d2c1c84db",
+      "size": 2466
+    },
     ".github/workflows/pr16-dex-hof-capacity.yml": {
-      "sha256": "350a7b41026bf490c26fe436c1f85048a8053e74e20f996fde728c51897964da",
-      "size": 2843
+      "sha256": "8494b0e1e8133cf0ef73db00f8020a36434af503f39b3153382f29adf3d5533b",
+      "size": 2745
     },
     ".github/workflows/pr16-dex-hof-closeout.yml": {
       "sha256": "4850d7f7e3650c245f94dbaa71f15688b41f06d73f5b1c36b91d98df1e78daee",
@@ -34237,6 +34239,10 @@
       "sha256": "3b3802b7326e68c65267d46bd16c8bb65b8ef80420c9352f1b9932a105c94cef",
       "size": 16248
     },
+    "scripts/pr16_dex_hof_capacity_closeout.py": {
+      "sha256": "77a091d0191458bde98be39561be7c6e476e38d1f7ca5fc165b55ca1f0ed3cec",
+      "size": 8554
+    },
     "scripts/pr16_dex_hof_closeout.py": {
       "sha256": "7ebd24519f2d107eb2acef3715dbe8870e8c04f671f92d69aa8f1d496d2bfc11",
       "size": 9862
@@ -40602,6 +40608,55 @@
           "runtime_lease_enabled": false,
           "status": "PASS_ACTUAL_ROM_HEAP_ADMISSION_AND_RELOCATION_HAZARD",
           "steps": 47250
+        },
+        "recording": {
+          "all14_steps_success": true,
+          "all5_snapshots_full_bytes_and_lf_verified": true,
+          "archive": [
+            11334209307,
+            37286954036,
+            1596688,
+            "5e726edb68c0a38f82629850e7ee4d24b08676e5fde6da6b69fa0c56cbacba94"
+          ],
+          "arm_compiles": 0,
+          "candidate_changed": false,
+          "checkpoint": "content/modernization/pr16_dex_hof_capacity_checkpoint.json",
+          "checkpoint_identity": {
+            "sha256": "616d587c9d4ca8699efcf7adfe69be659371b3c60b4348266fbdaee0ff366d45",
+            "size": 860558
+          },
+          "classified": 443,
+          "closeout_run": 37287610440,
+          "closeout_source": "a221b070b57263969e7a7c9c51277405c4da200f",
+          "donor_leased": false,
+          "formal_save_changed": false,
+          "job": 111688004863,
+          "native": {
+            "all_save_entries_heap_ready": false,
+            "allocator_calls": 17,
+            "arena_overwritten_before_heap_reset": 13352,
+            "arm_admission_calls": 28,
+            "calls": 74,
+            "cases": 15,
+            "formal_save_changed": false,
+            "game_boots": 0,
+            "native_processes": 1,
+            "preflight_rejections_without_alloc": 3,
+            "real_saves": 0,
+            "relocation_copy_calls": 3,
+            "relocation_overwrite_bytes": 53300,
+            "runtime_lease_enabled": false,
+            "status": "PASS_ACTUAL_ROM_HEAP_ADMISSION_AND_RELOCATION_HAZARD",
+            "steps": 47250
+          },
+          "native_processes": 0,
+          "record_head": "f7b5fb6ac5f4128508f5b6a8f6d2d5587e804c95",
+          "run": 37286954036,
+          "runtime_lease_enabled": false,
+          "source_head": "eacc7b112021727e32162905432b24e7e3e49560",
+          "status": "PASS_TERMINAL_TYPED_DONOR_AND_HEAP_RECORD",
+          "tests_rerun": 0,
+          "unclassified": 431
         },
         "run": 37286954036,
         "source": "eacc7b112021727e32162905432b24e7e3e49560",
