@@ -13161,3 +13161,17 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 残213（owner内5/外208）のrooted参照を閉じる。T09上位wordのPLC2混同を避け、Stage36/38/55/70と未根付きJP音声306等を最新actual ownerへ束縛する。全unknown0だけではdonor不可で、間接参照・旧egg退役完全性を証明して明示移管する。その後Ccontroller実配置、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL、全mode/早期31/species9bit、heap-ready/同期非再入/全出口Freeを閉じ、正式候補切替→trainer131後半→最終シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。
 - Commit: closeout source=f4cc321d5633cce6c61ab5c7dfd73fba8eeb8c1e; 同branch非force。
 - Network: 同repoActions/text原本のみ。ROM断片/rawhex/ROM/save/runtime/runner/credentials追加公開0。
+
+## 2026-10-05T14:20:17.254532+00:00
+- Timestamp: 2026-10-05T14:20:17.254532+00:00
+- Task: USER-20261005-DEX-HOF-REMAINING-REFERENCES / 661親保持と残参照根
+- Version: hof-remaining-reference-chain-v1
+- Status: STOPPED（新分類・記録済、donor/本番controller未完）
+- Summary: 現0641の旧egg874参照へ実root/consumerから新33件を分類し、694分類/180未知（owner内1/外179）。新161試験、全115actual owner/874hit、旧661全行・644delta25行22witness・661chain17行16witnessを保持。donor/正式ROM/Save101不変。
+- Files changed: 新classifier/拒否tests/source review/Actions/guide/CP/minimal chain、固定MDJSON、両append-onlyログ。
+- Verify: 新unit=161、全candidate/115actual owner/874hit全SHA、固定source全blob。旧661と残unknown全field、旧25+17変化と22+16witness全byteを保持。音声132曲のroleと49過去sample witnessを新typed窓に照合。旧全ROMscan/native/heap0。
+- Boundary: 旧formalは事前reviewのみ。現0641で全owner/窓再束縛。有限型分類をstory到達/実音声再生/退役不在へ昇格しない。
+- Publication: 619原本4.1MB/644delta149772byte/661chain95619byteは不変参照。新chain 71138byteを独立measurement全SHAとclosed schemaで検査。producer/guard/upload/record path一致・非空・完全10text/receipt必須、hidden/symlink/未知file拒否。
+- Next: 残180件の実root/consumerを閉じる。全unknown0だけではdonor不可。間接参照・旧egg退役完全性を証明して明示移管し、Ccontroller実配置、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL、全mode/早期31/species9bit、heap-ready/同期非再入/全出口Freeを閉じる。その後正式候補切替→trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。
+- Commit: source=3bf77f041db9f4a840c22451ca1dd33342682d99; 同branch非force。
+- Network: 同repoActions/既存private inputs/固定公開source。source・最小address-size-SHA・textのみ。ROM断片/rawhex/ROM/inputsave/runtime/runner/credentials追加公開0。正式ROM/Save101/owner115/saveowner52/残804byte不変、heap13352の保存退避53300跨ぎ禁止。
