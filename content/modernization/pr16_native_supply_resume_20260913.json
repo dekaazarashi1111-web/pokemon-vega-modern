@@ -4380,6 +4380,7 @@
   "observed_date_jst": "2026-10-04",
   "observed_head": "07550eb00df33e64c48a04d629ddc1e7fe5c6e6f",
   "observed_head_checks": {
+    "all13_steps_success": true,
     "classified": 619,
     "current_candidate": {
       "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583",
@@ -4390,6 +4391,8 @@
     "general_ci_known_source_mismatch_not_resolved": true,
     "native_processes": 0,
     "reason_ja": "現候補0641の残参照59件（level39/palette6/song14）を追加し619分類/255未知、168tests PASS。全874行と旧560受入保持。原runは記録push成功後に冗長18.9MB証拠が公開上限で拒否されfailure。保存済みGit原本を保持し、hit非参照の重複regionだけ除いた後継証拠へ回復。分類/ROM/native再実行0、donor/正式ROM/Save101不変。",
+    "record_job": 111736597948,
+    "record_run": 37301980128,
     "representation_recovery": {
       "arm_compiles": 0,
       "candidate_changed": false,
@@ -4516,7 +4519,8 @@
     "scope_head": "920cbc492bb8c65ee0364f9420d3a152f1f72e5f",
     "stage79_cached_not_new_native": true,
     "typed_unit_tests": 168,
-    "unclassified": 255
+    "unclassified": 255,
+    "whole_receipt_equals_checkpoint": true
   },
   "observed_head_history": [
     {
@@ -12527,13 +12531,7 @@
     "status": "NATIVE_PARTY_RETENTION_ACCEPTED_BP_PENDING",
     "tested_head": "10e535a046441dd3b797918106259b5c57b69716"
   },
-  "pending_runs": [
-    {
-      "run_id": 37301980128,
-      "status": "in_progress",
-      "tested_head": "07550eb00df33e64c48a04d629ddc1e7fe5c6e6f"
-    }
-  ],
+  "pending_runs": [],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
   "pr_draft": true,
   "pr_merged": false,
@@ -14436,9 +14434,13 @@
       "sha256": "35cb1814eea60515ef968f73e4ceae08373ad47dce033e9b0e053237f516cb69",
       "size": 2654
     },
+    ".github/workflows/pr16-dex-hof-typed-closeout.yml": {
+      "sha256": "f182d87cf659dd568a51e33f11aa4dbcdce05d928c32dcd7d5b69f1fe1c12e75",
+      "size": 2434
+    },
     ".github/workflows/pr16-dex-hof-typed-recovery.yml": {
-      "sha256": "045ded30737d93886cf2091af22d1269b3f1c3e61c54edc987dafedac1bc0f11",
-      "size": 2574
+      "sha256": "838818ec4d97f60a7de2e7a12111e0f07e520ade1eacc08693e6e78ab2b34740",
+      "size": 2470
     },
     ".github/workflows/pr16-dex-hof-typed.yml": {
       "sha256": "6d2515e411c3548a482744f7446ad7311ffc914c26d4bdb28bca80605ac324ff",
@@ -34620,6 +34622,10 @@
       "sha256": "5e2ea0a721270ff4ef5dcbf8a166d0d37e413b86892947f8dfa088ae71e8a634",
       "size": 20730
     },
+    "scripts/pr16_dex_hof_typed_closeout.py": {
+      "sha256": "a07335edb4be56e21a48c81a8c786508acd55ddb6fb147d02ba97566f120c498",
+      "size": 9285
+    },
     "scripts/pr16_dex_hof_typed_numeric.py": {
       "sha256": "682f95824dc1396fe865f05c264b69a9a7afbf4df56c8ba7fa9badff98c8eb43",
       "size": 23708
@@ -41324,6 +41330,45 @@
         "donor_leased": false,
         "guide": "docs/PR16_DEX_HOF_TYPED_RECOVERY_JA.md",
         "newly_classified": 59,
+        "recording": {
+          "all13_steps_success": true,
+          "all5_snapshots_full_bytes_and_lf_verified": true,
+          "archive": [
+            11342003833,
+            37301980128,
+            1660969,
+            "6610b2e8567893bebc4c8e7533f6e4fb79c4d33adaac2753434943c59e810b47"
+          ],
+          "arm_compiles": 0,
+          "candidate_changed": false,
+          "checkpoint": "content/modernization/pr16_dex_hof_typed_recovery_checkpoint.json",
+          "checkpoint_identity": {
+            "sha256": "91fc7e91244e0f77ea86ff8d101847db8b68264cd222c11f1551cb4ca4f679fb",
+            "size": 23579
+          },
+          "classified": 619,
+          "closeout_run": 37302791735,
+          "closeout_source": "b860df4d916a4c3603174aac4e86f08dba512d89",
+          "donor_leased": false,
+          "formal_save_changed": false,
+          "job": 111736597948,
+          "native_processes": 0,
+          "new_numeric": 39,
+          "new_palette": 6,
+          "new_song": 14,
+          "newly_classified": 59,
+          "original_measurement_conclusion": "failure",
+          "original_measurement_run": 37300879978,
+          "record_head": "abad5dbc4519c5a0ac49374bb639692263d60a80",
+          "recovery_unit_tests": 11,
+          "run": 37301980128,
+          "runtime_lease_enabled": false,
+          "source_head": "07550eb00df33e64c48a04d629ddc1e7fe5c6e6f",
+          "status": "PASS_TERMINAL_EXACT_RECOVERED_TYPED_RECORD",
+          "tests_rerun": 0,
+          "unclassified": 255,
+          "unit_tests": 168
+        },
         "representation_recovery": {
           "arm_compiles": 0,
           "candidate_changed": false,
