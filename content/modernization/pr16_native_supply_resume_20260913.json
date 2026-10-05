@@ -4377,6 +4377,7 @@
   "observed_date_jst": "2026-10-04",
   "observed_head": "483f973928fc63866634dd30035f78c1d26a5895",
   "observed_head_checks": {
+    "all14_steps_success": true,
     "classified": 560,
     "current_candidate": {
       "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583",
@@ -4387,10 +4388,13 @@
     "general_ci_known_source_mismatch_not_resolved": true,
     "native_processes": 0,
     "reason_ja": "現候補0641af70の旧egg874参照に根付きJP song interpreterを実装。114個の明示ID、89曲の完全モデル、39sample witnessから105件を追加し、560分類/314未知。footstep MIDIと現Song250/251の不一致も保持。新63tests、現候補の新read用再構成1回、旧inventory/native0。donor/正式ROM/Save101不変。",
+    "record_job": 111711359819,
+    "record_run": 37294165661,
     "scope_head": "483f973928fc63866634dd30035f78c1d26a5895",
     "song_unit_tests": 63,
     "stage79_cached_not_new_native": true,
-    "unclassified": 314
+    "unclassified": 314,
+    "whole_receipt_equals_checkpoint": true
   },
   "observed_head_history": [
     {
@@ -12401,13 +12405,7 @@
     "status": "NATIVE_PARTY_RETENTION_ACCEPTED_BP_PENDING",
     "tested_head": "10e535a046441dd3b797918106259b5c57b69716"
   },
-  "pending_runs": [
-    {
-      "run_id": 37294165661,
-      "status": "in_progress",
-      "tested_head": "483f973928fc63866634dd30035f78c1d26a5895"
-    }
-  ],
+  "pending_runs": [],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
   "pr_draft": true,
   "pr_merged": false,
@@ -14294,9 +14292,13 @@
       "sha256": "faabecb8d524efea69390827b822ac2748be311256a72ff1b5629c78e19ccb7b",
       "size": 1747
     },
+    ".github/workflows/pr16-dex-hof-song-closeout.yml": {
+      "sha256": "0aafc3a79e87984fb159e97af16e8d654be773f895eaf2867ff26a68527235be",
+      "size": 2422
+    },
     ".github/workflows/pr16-dex-hof-song.yml": {
-      "sha256": "d666abb5925a8c9aa2f8bbf38d8a1307e568775c5e81d746479f1253022b6c11",
-      "size": 2741
+      "sha256": "7936b1b784d538a24f31e51332b45fc8f1783d3a99c79c4e6d6fc7a9c0db7176",
+      "size": 2647
     },
     ".github/workflows/pr16-dex-hof-storage-closeout.yml": {
       "sha256": "383ceba6983e78bd226b276a9785b6c3ea62bd0f9b5926ea07fc61b0c2f70b50",
@@ -34378,6 +34380,10 @@
       "sha256": "266f6e3bd844c5ab096dab0fc4b5be7efd2e96f678251c0a9612b7703803b84b",
       "size": 13695
     },
+    "scripts/pr16_dex_hof_song_closeout.py": {
+      "sha256": "08ab0aa6b55ce6a44a5ea5bc47f8a353a0d2817cf94599f3e3ebeb9dc0652b31",
+      "size": 8557
+    },
     "scripts/pr16_dex_hof_storage.py": {
       "sha256": "f424a291c72715c695c1da927782ab9413a02283478906ac9281a3f3c6829e4e",
       "size": 13156
@@ -40982,6 +40988,39 @@
         "donor_leased": false,
         "guide": "docs/PR16_DEX_HOF_SONG_JA.md",
         "newly_classified": 105,
+        "recording": {
+          "all14_steps_success": true,
+          "all5_snapshots_full_bytes_and_lf_verified": true,
+          "archive": [
+            11337936148,
+            37294165661,
+            1540889,
+            "f15f5b5c300b07716be261d13f63810ef83583f4c4df35a216368126396560da"
+          ],
+          "arm_compiles": 0,
+          "candidate_changed": false,
+          "checkpoint": "content/modernization/pr16_dex_hof_song_checkpoint.json",
+          "checkpoint_identity": {
+            "sha256": "1e2ef5442a38cfbe0c18386a539ba443a0771401d568051f13de479d8bfee608",
+            "size": 12294
+          },
+          "classified": 560,
+          "closeout_run": 37295255536,
+          "closeout_source": "2b498beb91e9e0d5a09d5e530bf62d288fc0de98",
+          "donor_leased": false,
+          "formal_save_changed": false,
+          "job": 111711359819,
+          "native_processes": 0,
+          "newly_classified": 105,
+          "record_head": "ba7fa61313e1d3d43a4aa372dde02b6686bb024b",
+          "run": 37294165661,
+          "runtime_lease_enabled": false,
+          "source_head": "483f973928fc63866634dd30035f78c1d26a5895",
+          "status": "PASS_TERMINAL_EXACT_ROOTED_SONG_RECORD",
+          "tests_rerun": 0,
+          "unclassified": 314,
+          "unit_tests": 63
+        },
         "run": 37294165661,
         "source": "483f973928fc63866634dd30035f78c1d26a5895",
         "status": "PASS_CURRENT_ROOTED_SONG_TYPED_CLASSIFICATION",
