@@ -11073,3 +11073,18 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 残100件を別の実consumer根から限定調査する。090B69A9吸収特性、090DFBB5 moveend、090FA7BD Toxic Orbを最小各6byteだけ受入。自然play全到達・全callee効果・普遍future-live/epoch/IRQ寿命は別義務。残090E20AB Dancerは実wrapper/producerが既知でもDancer状態・生存・ABILITY_ON_FIELD・partner targetの全条件未結合のため未知維持。ABILITYは直接field macroでありGetBankAbility抑制APIと混同しない。09099D3D stat文字列表は公開sourceと実最小文字が一致してもhook08106EFE未結合で未知維持。asset08C0ED31/命名083DF94F、event/Bag/fishing/field/Credits/GPU/wirelessは新しい独立実根時のみ再開。旧consumer/guard/suite/nativeは無影響再走しない。未知最大access/間接参照/退役/owner移管未証明なら旧egg15118全域保護/安全0。単一controller6528容量確保後、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL/全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/0804B85C退避前Freeへ接続。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。
 - Commit: closeout source=c26a80fe743cf70a5acc887957e8ec1e4a04dba9; 同branch非force。
 - Network: 同repoActions/text原本のみ。ROM断片/rawhex/ROM/save/runtime/runner/credentials追加公開0。
+
+## 2026-10-06T11:17:46.051398+00:00
+- Timestamp: 2026-10-06T11:17:46.051398+00:00
+- Task: USER-20261006-DEX-HOF-REGISTERED-STATE-BATCH / 登録state consumer最小型・容量保持
+- Version: hof-registered-state-batch-v1
+- Status: STOPPED（新登録state consumer必要最小型、既event1hitと旧field4hit未知保持、残root/donor/実controller未完）
+- Summary: 実special072/登録opcode49からDancerの既存state有限contextと実partner/Target HP二枝、登録opcode5D完全caller/hookからMultiMoneyCalcの最小Thumbを結合。自然初期state producer・全play/全callee効果は別義務。 新2件・最小計12byte。776分類/未知98。全774親・47入力・24namespace155changes145witnessと133曲50assetを保持。新scopeの最小型と自然全play/IRQ/heap/間接完全性/退役/owner移管を分離し、egg15118保護・安全0・正式ROM/Save101不変。
+- Files changed: 新consumer verifier/chain/capacity/拒否unit/Actions/guide/checkpoint/最小証拠、固定MDJSON、両ログ。
+- Verify: 新unit164、現candidate全SHA・115actual owner・874hit、全24親delta/全155changes/全145witness/旧774と残unknown全field保持、133全song model/50assetと新typed窓の役割交差。旧全ROMscan/native/heap/歴史再生成0。
+- Capacity: 未知参照はアクセス幅未証明なら全donor保護。点target楽観空隙を安全容量へ昇格しない。global余白511とsave内部804は既存owner/subownerを保持した上限で、新leaseなし。Ccontroller既測定単一text6528/align4と比較。間接参照/対象退役完全性も別必須gate。
+- Publication: 保存済み全原本と全親chainは参照保持、複製なし。独立measurementと全text size/SHA/LF、closed success artifact、hidden/symlink/未知file拒否。旧独立最終song/battle/Surfレビュー未実施を継承し、拒否操作の別経路再実行なし。
+- Boundary: 現0641/115owner/52saveowner/残804、正式ROM/Save101不変。heap13352を保存退避53300入口へ跨いで保持しない。
+- Next: 残98件を別の独立した実consumer根から限定調査する。DexNav090ED992/09140BFCは実menu登録根が未結合のため未知保持。最小型を自然全play/全callee効果/普遍IRQ・heap寿命へ昇格せず、間接参照完全性/退役/owner移管が閉じるまで旧egg15118全域保護・安全0。heap13352はstock保存退避53300を跨がない。単一controller6528と全保存入口heap-ready/同期非再入/0804B85C退避前Freeを別gateで閉じてから全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL/全mode/早期31/species9bitへ接続する。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。
+- Commit: source=c9c961bfeee686066c625b5d20b928cfb0df5749; 同branch非force。
+- Network: 同repoActions/既存入力/固定source。公開source・最小address-size-SHA・textのみ、ROM断片/rawhex/ROM/inputsave/runtime/runner/credentials追加公開0。
