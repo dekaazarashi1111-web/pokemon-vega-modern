@@ -8,7 +8,7 @@
 
 現0641の条件付き登録text APIから実table pointer/完全serializer境界とconsumerを結合し、各4byteの計5件を新分類。761分類/未知113。新241試験、全115actual ownerと全19親deltaを照合。既event placeholderとfield4hitの未結合guard結果は再測定せず未知保持。最小型と自然play全到達・普遍IRQ/heap寿命・間接参照/退役/owner移管を分離し、全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。
 
-**次: 公開general-script全source配置予測はeffect184/231で保存実rootと8byteずれるため、現ROM配置へ代用しない。残113件を実consumer根から調べる。0x0818DD5Dは現object10/2:0と21/0:0の追加grammarを閉じた有限graphでも対象LOADWORDへの正のpathと置換元producerは未結合のため未知維持。別の登録root/目的LOADWORD path/placeholder byte consumerが結合した時だけ再開し、全root不達と主張しない。Bag数量順ID14/15は実生成配列から除外、Fishingは実state6→9でstate7 timeout producerへ進まず、追加Defog/Dive説明は実stock consumerが旧表のまま。各4hitは未知維持し、別の実caller/非zero writerまたはconsumer結合の独立証拠が出た時だけ再開。Credits4paddingの日本語layout、GPU外側root、wireless非zero writerも未証明。次は残未調査の実UI/script/asset登録根を限定調査する。既測定Bag/ShockWave/Seagallop/Help/RFU/Fame/Credits/Summary/party/Mystery/本placeholder event/HealPulse/Electrify境界/AuroraVeil・LifeDew・JungleHealing最小型/今回登録text5hit/field guard/旧suite/nativeは無影響再走しない。未知最大access/間接参照/退役/owner移管未証明なら旧egg15118全域保護/安全0。単一controller6528byte容量確保後、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL/全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/0804B85C退避前Freeへ接続。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。**
+**次: 次の具体候補はstock参加制限境界0x083DDEFC。既観測のtable0x0916901Cはindex1 cell0x09169020→0x083DDEFF、index2 cell0x09169024→0x083DDEE4で両側へ結合する。同じ実consumerをmax2/3へ拡張できるが、stock日本語2textの完全extent/EOS/control-fieldと独立serializer根は未測定。外側mode producerの再調査ではなく、両登録textの最小consumer型を閉じる。source名や近傍だけで採用しない。公開general-script全source配置予測はeffect184/231で保存実rootと8byteずれるため、現ROM配置へ代用しない。残113件を実consumer根から調べる。0x0818DD5Dは現object10/2:0と21/0:0の追加grammarを閉じた有限graphでも対象LOADWORDへの正のpathと置換元producerは未結合のため未知維持。別の登録root/目的LOADWORD path/placeholder byte consumerが結合した時だけ再開し、全root不達と主張しない。Bag数量順ID14/15は実生成配列から除外、Fishingは実state6→9でstate7 timeout producerへ進まず、追加Defog/Dive説明は実stock consumerが旧表のまま。各4hitは未知維持し、別の実caller/非zero writerまたはconsumer結合の独立証拠が出た時だけ再開。Credits4paddingの日本語layout、GPU外側root、wireless非zero writerも未証明。次は残未調査の実UI/script/asset登録根を限定調査する。既測定Bag/ShockWave/Seagallop/Help/RFU/Fame/Credits/Summary/party/Mystery/本placeholder event/HealPulse/Electrify境界/AuroraVeil・LifeDew・JungleHealing最小型/今回登録text5hit/field guard/旧suite/nativeは無影響再走しない。未知最大access/間接参照/退役/owner移管未証明なら旧egg15118全域保護/安全0。単一controller6528byte容量確保後、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL/全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/0804B85C退避前Freeへ接続。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。**
 
 通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。
 
@@ -69,6 +69,11 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 - `content/modernization/pr16_dex_hof_generation_writer_checkpoint.json`
 - `content/modernization/pr16_dex_hof_minigame_text_roots_review.json`
 - `content/modernization/pr16_dex_hof_choose_limit_roots_review.json`
+- `scripts/pr16_dex_hof_runtime_party.py`
+- `scripts/pr16_dex_hof_callback_party.py`
+- `scripts/pr16_dex_hof_callback_party_task.py`
+- `content/modernization/pr16_dex_hof_runtime_party_review.json`
+- `content/modernization/pr16_dex_hof_callback_party_review.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
