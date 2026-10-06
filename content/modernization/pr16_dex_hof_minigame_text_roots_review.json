@@ -1,0 +1,490 @@
+{
+  "schema_version": 1,
+  "required_candidate": {
+    "size": 33554432,
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+  },
+  "diagnostic_input": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  },
+  "source_bindings": {
+    "BPRJ.ld": {
+      "local": "BPRJ.ld",
+      "repository": "kapibarasan000/CFRU-JP",
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "path": "BPRJ.ld",
+      "size": 68505,
+      "sha256": "e371c23b9c9ea914c9ca3f644983e0b4e05be07bf11054492fa37afcfd58892a",
+      "git_blob_sha": "cf5363abd8439d63c7bd12cbe83ade861b0ebb51"
+    },
+    "pret-text.c": {
+      "local": "pret-text.c",
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "path": "src/text.c",
+      "size": 63210,
+      "sha256": "5696f49443eeaaac74b530421ac7f0cbfc71996c557399583788111c322dd80c",
+      "git_blob_sha": "f3eef07ce6dea8269980a5ecfdd6902c1c9c13d2"
+    },
+    "pret-pokemon_jump.c": {
+      "local": "pret-pokemon_jump.c",
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "path": "src/pokemon_jump.c",
+      "size": 130049,
+      "sha256": "85ced20e5419c249414656c936187d060360199dc04c6b46f4cb06288ba05b87",
+      "git_blob_sha": "fd695bef0ab41b004561bb29bc60d496efbc354e"
+    },
+    "pret-dodrio_berry_picking.c": {
+      "local": "pret-dodrio_berry_picking.c",
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "path": "src/dodrio_berry_picking.c",
+      "size": 146745,
+      "sha256": "4e64fb046229d5066d5535ae71374e4bbf79724046a9ccd809ba1476de30b187",
+      "git_blob_sha": "a337147602b79877d6070ef9c655ca981d465bd1"
+    },
+    "pret-specials.inc": {
+      "local": "pret-specials.inc",
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "path": "data/specials.inc",
+      "size": 15782,
+      "sha256": "2dcf5aae5ded1a99026a9b944e31679c2eda389fbca36089c0f8c5d2f4015788",
+      "git_blob_sha": "d880bf6b9dc9fd765f0b85e6d698411e3da81d5d"
+    },
+    "pret-task.c": {
+      "local": "pret-task.c",
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "path": "src/task.c",
+      "size": 5029,
+      "sha256": "8bdd5205ec396be7b66d6e384a82309b3cab59783d46fb8c4c991b2172d4868b",
+      "git_blob_sha": "01503dc7ae78cf2348524bfb5bbb89183640f944"
+    }
+  },
+  "hits": [
+    {
+      "address": 138288920,
+      "target": 167708714,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "18a01509cd4b41c9b5273bc706aa8bc00e936ebeca54e76f8780a0862ccc34ef",
+      "classification": "UNCLASSIFIED",
+      "accepted": false,
+      "reason": "no_complete_typed_asset_consumer_witness",
+      "owner_candidates": []
+    },
+    {
+      "address": 138288934,
+      "target": 167707404,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "fa270d66d49cd3702d101360624776f6de8dcda1f3fc70ffb1f46145f68bf70f",
+      "classification": "UNCLASSIFIED",
+      "accepted": false,
+      "reason": "no_complete_typed_asset_consumer_witness",
+      "owner_candidates": []
+    },
+    {
+      "address": 138289172,
+      "target": 167707404,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "fa270d66d49cd3702d101360624776f6de8dcda1f3fc70ffb1f46145f68bf70f",
+      "classification": "UNCLASSIFIED",
+      "accepted": false,
+      "reason": "no_complete_typed_asset_consumer_witness",
+      "owner_candidates": []
+    }
+  ],
+  "root": {
+    "special_dispatch": 134649788,
+    "special_table": 135671912,
+    "byte_read": 134240270,
+    "printer_hook": 154634800,
+    "jump": {
+      "special": 405,
+      "slot": 135673532,
+      "entry": 135576248,
+      "task": 135576280,
+      "task_literal": 135576276,
+      "printer": 135576440,
+      "title_literal": 135576704,
+      "title": 138288906,
+      "table": 138640216,
+      "selected_indices": [
+        0,
+        1
+      ],
+      "pointer_read": 135576568,
+      "printer_calls": [
+        135576534,
+        135576594
+      ]
+    },
+    "dodrio": {
+      "special": 422,
+      "slot": 135673600,
+      "entry": 135621004,
+      "task": 135621036,
+      "task_literal": 135621032,
+      "printer": 135621196,
+      "table": 138687008,
+      "selected_indices": [
+        1,
+        2
+      ],
+      "pointer_read": 135621356,
+      "printer_call": 135621382
+    },
+    "create_task": 134704052,
+    "task_zero": 136093176
+  },
+  "windows": [
+    {
+      "address": 134229060,
+      "size": 192,
+      "sha256": "01f9818b61db421542247d3abb5de341316c9d0bc4f2b3460157f40e3ddf57a0"
+    },
+    {
+      "address": 134229256,
+      "size": 74,
+      "sha256": "8bc916cac96061da345e4c6b4c8e5cb51387468d041c12fe7ce578498617cd5e"
+    },
+    {
+      "address": 134229372,
+      "size": 46,
+      "sha256": "b5984ab54bd10131c01548b6e0f4ec660b5550c211610c727e516bae2b0f73fd"
+    },
+    {
+      "address": 134229426,
+      "size": 30,
+      "sha256": "b61581f3a57b3ccbd28987dc0bb11f5c68ac2b0ae3aadffdce0f5ad2263179b5"
+    },
+    {
+      "address": 134229580,
+      "size": 44,
+      "sha256": "cf02ddee6871230ad3f76bf612881266a7a511375804d8bc37056f47e137fc44"
+    },
+    {
+      "address": 134239156,
+      "size": 56,
+      "sha256": "d4604fd7a4e7add30234388f239d40e88a4d95b495f20ecd2aa1a4bf2bd1f3d0"
+    },
+    {
+      "address": 134240092,
+      "size": 36,
+      "sha256": "0971088c051fbefbf7b2843ff8a0025c5fe43db6b64e72128bc9953a28aeeb66"
+    },
+    {
+      "address": 134240152,
+      "size": 14,
+      "sha256": "7ecd88313eb39e24ad3b7657aff43543a4b31383824a173ed7c2f8a9bfd5fee7"
+    },
+    {
+      "address": 134240178,
+      "size": 8,
+      "sha256": "cd8148723f683f891e6672bf604ccdc0733e8cdacf4ab3cd2bdd956273425efa"
+    },
+    {
+      "address": 134240236,
+      "size": 4,
+      "sha256": "efa90a159cf215fa62b9e47396466ba5d31f83afb6df4ba10ef72d33af17f1c8"
+    },
+    {
+      "address": 134240244,
+      "size": 14,
+      "sha256": "7f299c7204d45b3350107be0178f6e775c2da92201977013adf6d0a435300794"
+    },
+    {
+      "address": 134240260,
+      "size": 40,
+      "sha256": "1667772b869abdf85de1adef731cafed2d79c3a6b5c90d1c165b63b8dcbc0439"
+    },
+    {
+      "address": 134240328,
+      "size": 4,
+      "sha256": "d0d28f31b989316e0a006f6ab6c85b3f179ea0a2b83cc0c29714a3b8a88ca547"
+    },
+    {
+      "address": 134240972,
+      "size": 24,
+      "sha256": "877f966f7281fe79c548c283c9b10f7e5446d501d3b4199feeb3c1d81decae97"
+    },
+    {
+      "address": 134241004,
+      "size": 4,
+      "sha256": "d387ed93f4fa352db41b298720f8dddb4c8e46df55cd7b7c63b154194e3c3ea2"
+    },
+    {
+      "address": 134241036,
+      "size": 10,
+      "sha256": "a0f219d1f2cdddba0df69ac8921decf85eeea6ae60d13f8987e5862b375a6026"
+    },
+    {
+      "address": 134241066,
+      "size": 30,
+      "sha256": "8600c3894bc1bc1af2dc50c574eab5313bf6e50de9bbb9d34808140288e20a5e"
+    },
+    {
+      "address": 134241364,
+      "size": 10,
+      "sha256": "5b2c5a47aed4930fe3424ea37affeead12679180ce253f659472e013e3e18ffa"
+    },
+    {
+      "address": 134649788,
+      "size": 36,
+      "sha256": "e9b3d12899fc857fff7931051a423a7e316af8ac6be5c5b4dd9c17ca9c9be086"
+    },
+    {
+      "address": 134649836,
+      "size": 8,
+      "sha256": "af00e7038d27a42715a87e8fb88f98b2e27e9c5b75c7bb815f6a41408cd77cad"
+    },
+    {
+      "address": 134704052,
+      "size": 64,
+      "sha256": "88c0942bc97223cd18c7ec01c3f2d7062ab71c6d6fda2b400e0ac0e049be3477"
+    },
+    {
+      "address": 134704128,
+      "size": 56,
+      "sha256": "f696e7ff0842af397fb907067165ce2febf9848ddd43a74002a7a736897712d4"
+    },
+    {
+      "address": 134704276,
+      "size": 12,
+      "sha256": "601b8f07bbf3b632549bf653f7bcc6a662d5a0b03ef69e489b453c0fbdc8f05f"
+    },
+    {
+      "address": 134704448,
+      "size": 16,
+      "sha256": "54846ededec4a90449ffee2c090801603d63e6fb9b15bc9724d1dd9e82412d14"
+    },
+    {
+      "address": 134704468,
+      "size": 26,
+      "sha256": "99811bd110f2b6fb1b53cf258231143c430252fa910991b127252ca5e2987cdf"
+    },
+    {
+      "address": 134704498,
+      "size": 10,
+      "sha256": "ef4d148a3067438a57f6e2d3f0a63d8d21cd4ec47486230775e665b607187498"
+    },
+    {
+      "address": 135458356,
+      "size": 176,
+      "sha256": "1003de7ff95bc3883abf40f535db903dd8bb0770a68f6aba2e44851706155b70"
+    },
+    {
+      "address": 135576248,
+      "size": 66,
+      "sha256": "bcccee8ff3ccfe29f35b0bf334b9d44efbd92131150ae9a2e1c89fc15242f19d"
+    },
+    {
+      "address": 135576316,
+      "size": 4,
+      "sha256": "0d9a13aefbed9c2c262ff4b06a23f7c1dcf5b94f2e562e36ee05a3546e3e1cc8"
+    },
+    {
+      "address": 135576330,
+      "size": 26,
+      "sha256": "1abe805e15371789682706ccba2bbf5a0256180451ad3d6ac4f3b567667e6011"
+    },
+    {
+      "address": 135576390,
+      "size": 14,
+      "sha256": "9ec895ba2ebd81f6bf30df127cc9e7268ca4687b4db0068bb562576f768a77a8"
+    },
+    {
+      "address": 135576434,
+      "size": 278,
+      "sha256": "20476b559bf0f54c81f0e28c54999310f6939e97098516fbf0f64a4cbf115190"
+    },
+    {
+      "address": 135621004,
+      "size": 66,
+      "sha256": "030fb655c5ef767bbbb9cf86b4d8de1ea087247a18de6ea354a2410a718525ea"
+    },
+    {
+      "address": 135621072,
+      "size": 4,
+      "sha256": "0d9a13aefbed9c2c262ff4b06a23f7c1dcf5b94f2e562e36ee05a3546e3e1cc8"
+    },
+    {
+      "address": 135621086,
+      "size": 26,
+      "sha256": "a93d8e514a89ef4102e3d2b89b716d4248abb3bde0f0cae38af24be7c9e1b3ca"
+    },
+    {
+      "address": 135621146,
+      "size": 14,
+      "sha256": "4ddab45cd737918152359c2e5cce79a4228713185ebd35bd621d8fd6ba7c0e01"
+    },
+    {
+      "address": 135621190,
+      "size": 290,
+      "sha256": "7d7ede7dffac0165cce243b6e8bb3d56b0dc881fed945987b02acd89617b2184"
+    },
+    {
+      "address": 135673532,
+      "size": 4,
+      "sha256": "4b0cbf7116891a944fead8c9e0a74cf3893eaf5dc2278ab5954afe387c10ca81"
+    },
+    {
+      "address": 135673600,
+      "size": 4,
+      "sha256": "2d29cbc963e046671bcbfaf9f60ad2daa3f15821ad31609351f57d3c114d01f4"
+    },
+    {
+      "address": 136084168,
+      "size": 8,
+      "sha256": "dc199130dd8b3910504c239d35dc1e7218b8587263b2c1e4af74751c7eaef8ba"
+    },
+    {
+      "address": 136084184,
+      "size": 4,
+      "sha256": "8b3dc9b167633731ff159f97db499a53741812de435527313c7feaa61a2d4e95"
+    },
+    {
+      "address": 136093176,
+      "size": 56,
+      "sha256": "2f229772bc655546f8a1b4603a2029e60a094f47b28e888815c5ce4a737ffe8c"
+    },
+    {
+      "address": 136093234,
+      "size": 10,
+      "sha256": "646eef0befcbd5d9d14cafd530196479ed80fdf2db7fbc425aeed65dd0f9022b"
+    },
+    {
+      "address": 136093246,
+      "size": 14,
+      "sha256": "b4fdb079603d2f58226517a232aafbfc9bc1df9df0def1e9b3a82b586b6558e2"
+    },
+    {
+      "address": 138288906,
+      "size": 41,
+      "sha256": "10c8863681e9ce8c12c100d5d5151b2f71235b9ff2f8065a1c659e679983473c"
+    },
+    {
+      "address": 138289162,
+      "size": 23,
+      "sha256": "1f3516b2a48d45bd33b3a919e9517aa1e1ec981f98a2f8e6af8106f2cc003dab"
+    },
+    {
+      "address": 138293504,
+      "size": 4,
+      "sha256": "ce3843fe1d26749f6299ebe4a11c8caeb4f8d9d2415205a25dc6cf8913b94f3b"
+    },
+    {
+      "address": 138293510,
+      "size": 4,
+      "sha256": "13eabc8763847a427a7f223ec495ddab7ff3054634a294fcb724750b58cedd42"
+    },
+    {
+      "address": 138640216,
+      "size": 12,
+      "sha256": "ff05c775f36c49ec9e64eb22b74fb1c44894b6a1a09b3dd64de079bd9a098869"
+    },
+    {
+      "address": 138687008,
+      "size": 19,
+      "sha256": "51be4f5ec0e0c867899562f20d3d9bc617cb1bcfbe442c62b40d337b752009a9"
+    },
+    {
+      "address": 138687028,
+      "size": 1,
+      "sha256": "452ba1ddef80246c48be7690193c76c1d61185906be9401014fe14f1be64b74f"
+    },
+    {
+      "address": 138687030,
+      "size": 1,
+      "sha256": "32ebb1abcc1c601ceb9c4e3c4faba0caa5b85bb98c4f1e6612c40faa528a91c9"
+    },
+    {
+      "address": 138687032,
+      "size": 1,
+      "sha256": "2c624232cdd221771294dfbb310aca000a0df6ac8b66b696d90ef06fdefb64a3"
+    },
+    {
+      "address": 138687034,
+      "size": 1,
+      "sha256": "452ba1ddef80246c48be7690193c76c1d61185906be9401014fe14f1be64b74f"
+    },
+    {
+      "address": 138687036,
+      "size": 1,
+      "sha256": "32ebb1abcc1c601ceb9c4e3c4faba0caa5b85bb98c4f1e6612c40faa528a91c9"
+    },
+    {
+      "address": 138687038,
+      "size": 1,
+      "sha256": "f67ab10ad4e4c53121b6a5fe4da9c10ddee905b978d3788d2723d7bfacbe28a9"
+    },
+    {
+      "address": 154634800,
+      "size": 20,
+      "sha256": "cb65eb2b0ecfed79e16e2ade80f3739253222971976f4d012c51807e9b28c3f9"
+    },
+    {
+      "address": 154635080,
+      "size": 8,
+      "sha256": "ef0857a3b649682a0c1539bf4a365fa0545e573101a284fd3aff0131bdc24af7"
+    }
+  ],
+  "claims": {
+    "proof_scope": "conditional_registered_special_tasks_minimum_text_consumption",
+    "root_verified": true,
+    "full_story_reachability_claimed": false,
+    "actual_runtime_execution_observed": false,
+    "universal_heap_or_irq_lifetime_proven": false,
+    "opaque_callee_effects_proven": false,
+    "source_pointer_interpretation": false,
+    "whole_string_table_classified": false,
+    "padding_classified": false,
+    "indirect_reference_completeness_claimed": false,
+    "donor_eligible": false,
+    "donor_leased": false
+  },
+  "input_contract": {
+    "font": "entry font resource03003DD0 already contains083E30E8 and remains a valid default-font table at selected uses; actual selected row reads and dispatch are bound. Prior global font installation and initialization success are not proved.",
+    "text_state": "entry main key halfwords0300315C and0300315E are0, and gTextFlags byte03003E90 is0. These finite no-key/text-control inputs are environmental assumptions, not effects attributed to the special constructor.",
+    "entry": "special dispatcher receives a valid context whose ScriptReadHalfword returns405 or422. Actual dispatch table, complete constructor, CreateTask, InsertTask, FindFirstActiveTask, data-zero memset and constructor direct task call execute. No natural event selection or communication success claim.",
+    "tasks": "valid empty16-slot task registry. All inactive callback/data bytes begin165; actual CreateTask and memset produce selected callback and zero state. Same registry epoch until the immediate callback and constructor return. Task scheduler frames are unnecessary.",
+    "window": "AddWindow returns valid window0 and makes that resource live. Frame setup, pixel fill and selected static texts use that window. Opaque graphics operations return normally; their full effects and native screen are not proved.",
+    "text": "actual fixed title literal and text-table pointer loads feed actual wrapper5 or wrapper1, current printer hook, template copy, speed255 loop, font dispatch and RenderText LDRB. Five full literal strings including EOS consume64bytes. Nonselected text and number-print calls remain explicit normal-return boundaries.",
+    "records": "ordinary numeric record fields are conditional zero inputs in disjoint modeled memory, not read from a save file. Jump getter returns the bounded records pointer; Dodrio reads the modeled save pointer and finite record fields. Score formatting and width results do not select a ROM text pointer.",
+    "glyphs": "glyph generation width is unspecified u8 and GetFontAttribute opaque outputs remain unspecified; text continuation is independent. GetStringWidth for numeric display yields0 as one finite sufficient scalar case. No native glyph success is claimed.",
+    "lifetime": "each opaque boundary preserves only future read-before-write RAM; outputs are distinguished from pre-call live fields. Replay erases all other RAM. Required task/window epochs stay live at uses; no whole heap/task/IRQ preservation theorem.",
+    "minimum": "three4byte hits only. Root/function/table/text extents are protective evidence; no adjacent padding, extra hit, whole text, donor space, retirement or indirect-reference completeness claim."
+  },
+  "texts": [
+    {
+      "address": 138288906,
+      "size": 17,
+      "sha256": "273ad94b4487b73b4b2fac8968df0e94a143d0408082c09711f61186d8c87ab7"
+    },
+    {
+      "address": 138288923,
+      "size": 14,
+      "sha256": "c5bb6d8ed3fddbd65068d794c9a48edb10e75dddfb488791662da418d2bccaa2"
+    },
+    {
+      "address": 138288937,
+      "size": 10,
+      "sha256": "b646b6948293a5582e9cd3cb2965b8dd3cabfb65bc7c30a55daaa12bcf3d97f4"
+    },
+    {
+      "address": 138289162,
+      "size": 13,
+      "sha256": "48abe361283aab6a331beb776d18fbd84767f401e58441f66ee8a23982000f78"
+    },
+    {
+      "address": 138289175,
+      "size": 10,
+      "sha256": "b646b6948293a5582e9cd3cb2965b8dd3cabfb65bc7c30a55daaa12bcf3d97f4"
+    }
+  ]
+}
