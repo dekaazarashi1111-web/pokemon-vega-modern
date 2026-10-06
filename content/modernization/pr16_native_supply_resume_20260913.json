@@ -4417,13 +4417,19 @@
       "content/modernization/pr16_dex_hof_generation_writer_checkpoint.json",
       "content/modernization/pr16_dex_hof_field_text_roots_review.json",
       "content/modernization/pr16_dex_hof_extra_roots_review.json",
-      "content/modernization/pr16_dex_hof_engine_roots_review.json"
+      "content/modernization/pr16_dex_hof_engine_roots_review.json",
+      "scripts/pr16_dex_hof_runtime_party.py",
+      "scripts/pr16_dex_hof_callback_party.py",
+      "scripts/pr16_dex_hof_callback_party_task.py",
+      "content/modernization/pr16_dex_hof_runtime_party_review.json",
+      "content/modernization/pr16_dex_hof_callback_party_review.json"
     ],
     "stop_rule_ja": "通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。"
   },
   "observed_date_jst": "2026-10-04",
   "observed_head": "7f85f5c38c0e5c6e7785b5a490c79f40043d8eb9",
   "observed_head_checks": {
+    "all14_steps_success": true,
     "classified": 746,
     "current_candidate": {
       "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583",
@@ -4434,10 +4440,13 @@
     "general_ci_known_source_mismatch_not_resolved": true,
     "native_processes": 0,
     "reason_ja": "現0641の旧egg874参照に新実consumerの必要最小型3件をまとめて追加し、746分類/未知128。新376試験、全115actual ownerと全14親deltaを照合。Bag実登録とSeagallop API・登録ShockWave command処理contextを根に、有限producer/consumer最小型だけを受入れ、自然play全到達・普遍IRQ/heap寿命・間接参照/退役安全は別義務。全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。",
+    "record_job": 112077972103,
+    "record_run": 37404197715,
     "reference_unit_tests": 376,
     "scope_head": "7f85f5c38c0e5c6e7785b5a490c79f40043d8eb9",
     "stage79_cached_not_new_native": true,
-    "unclassified": 128
+    "unclassified": 128,
+    "whole_receipt_equals_checkpoint": true
   },
   "observed_head_history": [
     {
@@ -12448,13 +12457,7 @@
     "status": "NATIVE_PARTY_RETENTION_ACCEPTED_BP_PENDING",
     "tested_head": "10e535a046441dd3b797918106259b5c57b69716"
   },
-  "pending_runs": [
-    {
-      "run_id": 37404197715,
-      "status": "in_progress",
-      "tested_head": "7f85f5c38c0e5c6e7785b5a490c79f40043d8eb9"
-    }
-  ],
+  "pending_runs": [],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
   "pr_draft": true,
   "pr_merged": false,
@@ -14421,9 +14424,13 @@
       "sha256": "5cf83a3947dfd273d6f4026f0641a3b43d3c5cd9f67b2f890cddabdcf7788a35",
       "size": 2890
     },
+    ".github/workflows/pr16-dex-hof-root-batch-closeout.yml": {
+      "sha256": "487e67b766ca34ce8b4c0b0dc816617934919222cf9506b4b430616a284dc941",
+      "size": 2802
+    },
     ".github/workflows/pr16-dex-hof-root-batch.yml": {
-      "sha256": "4427f0bc2c87cdf3b7f95866314d439f970365cb66043f8768c29f01ba79bcc9",
-      "size": 2932
+      "sha256": "d7ada0df3a4843d6f274f60106f2cacfb747d1844e4698e66195e8d42bdb466a",
+      "size": 2832
     },
     ".github/workflows/pr16-dex-hof-runtime-closure-closeout.yml": {
       "sha256": "1b5260afaccccd879eef0e3228020529f711d8ce29bcd74b8ead66f528a70bdb",
@@ -35585,6 +35592,10 @@
       "sha256": "c2573e6c6fd60e7a4b16fbc2348e590df4f0b34dc19f7da52de09a44489693b3",
       "size": 18992
     },
+    "scripts/pr16_dex_hof_root_batch_closeout.py": {
+      "sha256": "adaac8055432663364a2c5b649c1f0772438782df4be54e50ea65518372311f0",
+      "size": 13891
+    },
     "scripts/pr16_dex_hof_runtime_actions.py": {
       "sha256": "414f44c009806bad5dc1fd5ea7c3eea6015c88c4d4a022c3ad8e4e23edf8ef5f",
       "size": 13719
@@ -39348,6 +39359,10 @@
     "tests/test_pr16_dex_hof_root_batch_chain.py": {
       "sha256": "98b7fceca0c15cefda2c3888dd7ee6acb508b6828e59a00455766e4ad4f11794",
       "size": 23794
+    },
+    "tests/test_pr16_dex_hof_root_batch_closeout.py": {
+      "sha256": "dabcd16174ea83cc41cc8062a1fba767bd4f485b3998b39062aaeb44ffa07c8f",
+      "size": 3774
     },
     "tests/test_pr16_dex_hof_runtime_capacity.py": {
       "sha256": "c83dcb53559eb5a079ef6eef77169d99ad0d103ade51b3551d2b26471898bd67",
@@ -56140,6 +56155,75 @@
         "donor_safe_bytes": 0,
         "guide": "docs/PR16_DEX_HOF_ROOT_BATCH_JA.md",
         "known_capacity_upper_bound": 1315,
+        "recording": {
+          "all14_steps_success": true,
+          "all5_snapshots_full_bytes_and_lf_verified": true,
+          "all_fourteen_old_delta_families_preserved": true,
+          "archive": [
+            11386328922,
+            37404197715,
+            1482330,
+            "426674cf71da33847ae9dde6a3dbddbd09a859aa8b8a0570d053d5f448200b11"
+          ],
+          "arm_compiles": 0,
+          "baseline_identity": {
+            "sha256": "814082398937869b6cc17faa09cbf1833f0c7f4aa300ddbd83d0de833d44b74c",
+            "size": 4063919
+          },
+          "candidate_changed": false,
+          "capacity_identity": {
+            "sha256": "895250c668b17b8063c23fd87871c4e6a464f0885fe559eb37d9cf581e4184df",
+            "size": 22817
+          },
+          "checkpoint": "content/modernization/pr16_dex_hof_root_batch_checkpoint.json",
+          "checkpoint_identity": {
+            "sha256": "5fadebac1cd15e645ce5cb047148e1e59fa193af735518138fc8373beb565d55",
+            "size": 444776
+          },
+          "classified": 746,
+          "closeout_run": 37405065599,
+          "closeout_source": "53f4e4db5223febbf28cec3218c85d10c3777659",
+          "combined_song_models": 133,
+          "current_rom_reconstructions": 0,
+          "delta_identity": {
+            "sha256": "2089134cff6c3f920bea3476e8c0b9e883901eff42eb7f933fd86c91e71f485e",
+            "size": 478118
+          },
+          "donor_leased": false,
+          "earlier_identity": {
+            "sha256": "762320ba350f528777b90be404b5fec1d88caeb6dbf6594590d4f45b852c1c87",
+            "size": 149772
+          },
+          "export_guard_test_log": {
+            "sha256": "394d9d279bada2a816879c5acb66900e285bf3dcabd08be7d10d7a99d0688962",
+            "size": 1312
+          },
+          "formal_save_changed": false,
+          "independent_final_source_review_completed": false,
+          "job": 112077972103,
+          "native_processes": 0,
+          "new_boundary": 0,
+          "new_code": 2,
+          "new_data": 1,
+          "new_export_guard_tests": 11,
+          "new_song": 0,
+          "newly_classified": 3,
+          "old743_accepted_and_all874_identities_retained": true,
+          "owner_unknown": 0,
+          "parent_identity": {
+            "sha256": "53f4789fb532d93791fa7e0962b7feea9f74003d342f5175d00e1b07de7aa5d0",
+            "size": 352753
+          },
+          "record_head": "cb726498d02e84d421fa8e53ec8b4e0bc4a9cd15",
+          "retained_sample_witnesses": 50,
+          "run": 37404197715,
+          "source_head": "7f85f5c38c0e5c6e7785b5a490c79f40043d8eb9",
+          "status": "PASS_TERMINAL_EXACT_ROOT_BATCH_RECORD",
+          "tests_rerun": 0,
+          "unclassified": 128,
+          "unit_tests": 376,
+          "unowned_unknown": 128
+        },
         "run": 37404197715,
         "source": "7f85f5c38c0e5c6e7785b5a490c79f40043d8eb9",
         "status": "PASS_CURRENT_743_PARENT_ROOT_BATCH_AND_PARTIAL_SPACE_REFUSAL",
