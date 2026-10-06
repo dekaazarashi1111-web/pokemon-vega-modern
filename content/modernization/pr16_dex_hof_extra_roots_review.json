@@ -1,0 +1,513 @@
+{
+  "schema_version": 1,
+  "required_candidate": {
+    "size": 33554432,
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+  },
+  "diagnostic_input": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  },
+  "source_bindings": {
+    "pret-battle_anim.c": {
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob_sha": "30f9a7ad2482d1767f5c70ee30a3c85528605bb3",
+      "local": "pret-battle_anim.c",
+      "path": "src/battle_anim.c",
+      "repository": "pret/pokefirered",
+      "sha256": "5883d9ee0483120ef67461952f5880499f322fb1c706cc213ca13c0c2b0e88c5",
+      "size": 46944
+    },
+    "pret-battle_anim_script.inc": {
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob_sha": "15c48c39f5860efe132e782c22a6cedb0f8d5ac3",
+      "local": "pret-battle_anim_script.inc",
+      "path": "asm/macros/battle_anim_script.inc",
+      "repository": "pret/pokefirered",
+      "sha256": "cb193c567289983c26ed8acaa8dd64501c64c7e088e28995c49439333b52b27c",
+      "size": 4279
+    },
+    "pret-battle_anim_scripts.s": {
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob_sha": "9ae0ed9d1b163ebc6321d85323e957352f9de068",
+      "local": "pret-battle_anim_scripts.s",
+      "path": "data/battle_anim_scripts.s",
+      "repository": "pret/pokefirered",
+      "sha256": "f1566a2d43fad88619f4e3799f995bfd1c53b65fe8de4c4a91d66a440284ea9e",
+      "size": 406484
+    },
+    "pret-electric.c": {
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob_sha": "e0ed2d1f378435781d719325db0a72910cdb197d",
+      "local": "pret-electric.c",
+      "path": "src/battle_anim_electric.c",
+      "repository": "pret/pokefirered",
+      "sha256": "5f8e4320ce8f0143e09563a32759501c288bfb1630f91a250e4539a621a1117f",
+      "size": 38191
+    },
+    "pret-main.c": {
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob_sha": "542b0f5d16dd93107523d11163bfcb70a42b707a",
+      "local": "pret-main.c",
+      "path": "src/main.c",
+      "repository": "pret/pokefirered",
+      "sha256": "0bfa6c662b1cbd49bd31020b6c2509208004611e6701ad64badce22eca371139",
+      "size": 11699
+    },
+    "pret-seagallop.c": {
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob_sha": "8d00eadaf1689c676bea9e83696b5353e218e6fe",
+      "local": "pret-seagallop.c",
+      "path": "src/seagallop.c",
+      "repository": "pret/pokefirered",
+      "sha256": "1924ebb2bfe2e7ef535bb3ae1f785c85e368c711d1d5341be04f210181289d71",
+      "size": 14108
+    },
+    "pret-sprite.h": {
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob_sha": "6a1b272119ce6e3a8dcf45adf2eef8923a6d5175",
+      "local": "pret-sprite.h",
+      "path": "include/sprite.h",
+      "repository": "pret/pokefirered",
+      "sha256": "a77aa1c837dfb58cf60b3eac299c7cc29a23ce27735ba710b9e8eeed102bf773",
+      "size": 9368
+    },
+    "pret-task.c": {
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob_sha": "01503dc7ae78cf2348524bfb5bbb89183640f944",
+      "local": "pret-task.c",
+      "path": "src/task.c",
+      "repository": "pret/pokefirered",
+      "sha256": "8bdd5205ec396be7b66d6e384a82309b3cab59783d46fb8c4c991b2172d4868b",
+      "size": 5029
+    }
+  },
+  "hits": [
+    {
+      "address": 134938899,
+      "target": 167704566,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "431c093c1d2a589a22829ebc967deda4925286ff9072f45082c4892eb0eab829",
+      "classification": "UNCLASSIFIED",
+      "accepted": false,
+      "reason": "no_complete_typed_asset_consumer_witness",
+      "owner_candidates": []
+    },
+    {
+      "address": 135559035,
+      "target": 167699446,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "994d4f00f1d8768b18bf068370fd1f422c95ef8cb71c54eebcdf20828185d575",
+      "classification": "UNCLASSIFIED",
+      "accepted": false,
+      "reason": "no_complete_typed_asset_consumer_witness",
+      "owner_candidates": []
+    }
+  ],
+  "roots": {
+    "134938899": {
+      "kind": "registered_animation_command_then_created_task",
+      "script_table_literal": 134684020,
+      "move_id": 351,
+      "move_table_cell": 151301200,
+      "script_entry": 135991237,
+      "command_offset": 65,
+      "command_address": 135991302,
+      "script_registration_writer": 134684210,
+      "script_callback_writer": 134684224,
+      "opcode": 3,
+      "opcode_dispatch": 134684620,
+      "command_handler": 134685108,
+      "create_task_call": 134685192,
+      "initial_task_interwork": 134685200,
+      "registered_task": 134938529,
+      "task_dispatch": 134704400,
+      "real_state_domain": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "completed_segments": 5,
+      "stop": 134938898,
+      "geometry": [
+        134938898,
+        6
+      ]
+    },
+    "135559035": {
+      "kind": "seagallop_constructor_main_and_task_registration",
+      "constructor": 135558248,
+      "main_dispatch": 134219024,
+      "setup_registration": 135558262,
+      "setup_callback": 135558277,
+      "setup_states": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "task_create_call": 135558678,
+      "registered_task": 135558773,
+      "timer_writer": 135558868,
+      "timer_value": 140,
+      "task2_writer": 135558888,
+      "warp_call": 135558936,
+      "stop": 135559034,
+      "geometry": [
+        135559034,
+        8
+      ]
+    }
+  },
+  "windows": [
+    {
+      "address": 134219024,
+      "size": 28,
+      "sha256": "a76656e7991cc132fe8256a383caefe0e9489ed1b1b66227f88b51f077f81b88"
+    },
+    {
+      "address": 134219056,
+      "size": 40,
+      "sha256": "a5df551b8bc4ad293f9210eccc63029782312e37a74ac202be43f20ce270fab0"
+    },
+    {
+      "address": 134683992,
+      "size": 8,
+      "sha256": "26b2a2aecf69cc8f47c96ec95c7780d14e40af17b46429530ef8853f81f77712"
+    },
+    {
+      "address": 134684020,
+      "size": 4,
+      "sha256": "e4f60993ecb18f7008ffec660be5e9e5a8a8351852d24d1ecfb53887359e7798"
+    },
+    {
+      "address": 134684036,
+      "size": 8,
+      "sha256": "a6123c4371a5ddfd84e189591df71e41e7a52268f5468327e1f43fd9295b5b47"
+    },
+    {
+      "address": 134684160,
+      "size": 6,
+      "sha256": "30cfa40d506d910feb48d5a3672e28f52341d953be8814a7b4d49a752e3c2cd1"
+    },
+    {
+      "address": 134684172,
+      "size": 8,
+      "sha256": "3af90210d5eb0c42c67188c4d319a28cf0b2c52a9b635680d440d8529a035f21"
+    },
+    {
+      "address": 134684204,
+      "size": 22,
+      "sha256": "ff188576cb83096f8824f89e933e3bdc739e2e92b679dd175b51dcba420c76c2"
+    },
+    {
+      "address": 134684268,
+      "size": 4,
+      "sha256": "4b1d5702b44c2e900c6dabd4d0411ff12bfa3710a48b50c3294c1af108accb8d"
+    },
+    {
+      "address": 134684280,
+      "size": 12,
+      "sha256": "305310c912233c2e678aca0bbb75291db6ad10853223e3cb724b85718c5e1d23"
+    },
+    {
+      "address": 134684620,
+      "size": 46,
+      "sha256": "799f5fdacc7d0f8aa4c399279250382be2f7dfb73368efe1de06351333e47b23"
+    },
+    {
+      "address": 134684668,
+      "size": 16,
+      "sha256": "f5302385d19212d4662d83ad34574fd58b0d323e069e65bcfb58edb284746b54"
+    },
+    {
+      "address": 134685108,
+      "size": 50,
+      "sha256": "51121914ac74ab4abd88e198d03f6b92f6cba19d43e2e268b0f9c3731a2636c8"
+    },
+    {
+      "address": 134685188,
+      "size": 30,
+      "sha256": "d9a42a50f0293ecc36ca0d97c9fdd7e91ea0a0186583859045fe6ab254add8d6"
+    },
+    {
+      "address": 134685220,
+      "size": 4,
+      "sha256": "4b1d5702b44c2e900c6dabd4d0411ff12bfa3710a48b50c3294c1af108accb8d"
+    },
+    {
+      "address": 134685228,
+      "size": 26,
+      "sha256": "b6f15f49939552ac585e29e25c5393372b25ce62d85c712ae1832e7bfb89288c"
+    },
+    {
+      "address": 134685262,
+      "size": 16,
+      "sha256": "a2deec9ea365566f7a3c97c5a72ae87298f8ea0d0b6350f98eaa201c0173a370"
+    },
+    {
+      "address": 134685280,
+      "size": 16,
+      "sha256": "7289c499992c93983d75abb84bd724145907e667e6b4c4464e07fc0b293c6e02"
+    },
+    {
+      "address": 134703956,
+      "size": 82,
+      "sha256": "6a03a121b66be4cca69a8d15cb9f34b358710b55dd01a2ba72bf9c9082f13ae5"
+    },
+    {
+      "address": 134704040,
+      "size": 70,
+      "sha256": "0a865ac0829db1e8f42206150f68c90d7b03d1589cd935e2efa7fa1c650c2564"
+    },
+    {
+      "address": 134704112,
+      "size": 4,
+      "sha256": "77c7fedbad4a80e92e4b312f068441cd67d9fd0579b8517e57326acc5fd540d4"
+    },
+    {
+      "address": 134704128,
+      "size": 6,
+      "sha256": "c42b496278191110e2cf7e7edde6877677f9c84802b895e70ab84e194a86e7f0"
+    },
+    {
+      "address": 134704136,
+      "size": 42,
+      "sha256": "4022125b648f807970fcf148a08b00ac94fdc743b095c5c75a4624e995feba1e"
+    },
+    {
+      "address": 134704180,
+      "size": 4,
+      "sha256": "77c7fedbad4a80e92e4b312f068441cd67d9fd0579b8517e57326acc5fd540d4"
+    },
+    {
+      "address": 134704276,
+      "size": 10,
+      "sha256": "a9d2b3876577ccd2bdf166081cfe0cc83c24bccaaf5eb50cf6d7049e7746a779"
+    },
+    {
+      "address": 134704400,
+      "size": 42,
+      "sha256": "dc1a90615dae67b96669e1bea0f8914a05d040247682b3af9f3a8e52b1437be6"
+    },
+    {
+      "address": 134704444,
+      "size": 48,
+      "sha256": "1fc081067c9e2df481c25e2cbcc4e38a233fc8bf2ae07adc5b34d12cd1b2039c"
+    },
+    {
+      "address": 134704498,
+      "size": 10,
+      "sha256": "ef4d148a3067438a57f6e2d3f0a63d8d21cd4ec47486230775e665b607187498"
+    },
+    {
+      "address": 134938528,
+      "size": 24,
+      "sha256": "f26f9cd7f9fc8031f54dff6cd7e2054b8ee9750b45dd09f208beb8969909d5f1"
+    },
+    {
+      "address": 134938554,
+      "size": 34,
+      "sha256": "67fb95fb042d930949e7d63bd5fe8c70736d9c7f7183023964d94f7e02278d2f"
+    },
+    {
+      "address": 134938592,
+      "size": 286,
+      "sha256": "00cb0d103cc984cfc1f7dcb4cfbbfd1943eefa7bbb58c9b0a9a48fb1ac993d12"
+    },
+    {
+      "address": 134938884,
+      "size": 20,
+      "sha256": "5366df5a4230cbea72c0dade4dca2dfe86a85f04fe0a584e11ec777047639155"
+    },
+    {
+      "address": 134938914,
+      "size": 16,
+      "sha256": "bbfd7e2e58e823fe4f1d57cab327c4e0d2604d7b8dbc648557f3661f9017bba5"
+    },
+    {
+      "address": 134938932,
+      "size": 32,
+      "sha256": "062b901431a7279990b1ab3823c30c81ffcd800a4678ba9c466039e575a6e54b"
+    },
+    {
+      "address": 134939040,
+      "size": 90,
+      "sha256": "fcc565c00443e7f0974a9a01383d012f7a49fbb669b00bcdc134ceb5697c60f4"
+    },
+    {
+      "address": 134939132,
+      "size": 4,
+      "sha256": "0ec83bbf46f043d38900d7c104ff8d38f53a9be75f694f0dbca1533092171180"
+    },
+    {
+      "address": 134939148,
+      "size": 18,
+      "sha256": "674bb50a3049fb8f3edf403913c1da6ec6b7c656dc987e15dac5f830b4ee1abd"
+    },
+    {
+      "address": 135558248,
+      "size": 22,
+      "sha256": "bdb14c7ac2c1eac6ae817dc16b02aa45b87a00c9e27274b160c2520550cc8a5d"
+    },
+    {
+      "address": 135558272,
+      "size": 22,
+      "sha256": "10d2e26f890239062d93ba884d423c69237d1b2f3a60591b55c35195d1ebec57"
+    },
+    {
+      "address": 135558296,
+      "size": 10,
+      "sha256": "d1fa04d60d3d4b5fde8d34d33b1ff4a48d9cfaa7d9218daaea27d02d3f23fd03"
+    },
+    {
+      "address": 135558308,
+      "size": 154,
+      "sha256": "b8ca2f7c08eec7bed23f1d8e6021c87d5fb1c28d0d51b61646fc8bb41ff0d43b"
+    },
+    {
+      "address": 135558464,
+      "size": 8,
+      "sha256": "11a2da047f96933ff4a71207d64ea42766f6d27129dc8fc4afd8364a3bb91134"
+    },
+    {
+      "address": 135558490,
+      "size": 26,
+      "sha256": "0aeac3b89514dadc8c4cf27bceec3c336a36448cc18b6d2c46ddd267cb74075f"
+    },
+    {
+      "address": 135558520,
+      "size": 86,
+      "sha256": "63d7bc0d54a854f2fee6cab2f72cde660f681621f684d50d504f9a191586f950"
+    },
+    {
+      "address": 135558608,
+      "size": 120,
+      "sha256": "6eb40d42da63187c46695c9e90617a1586b317c9a55d87a7def331699646df4f"
+    },
+    {
+      "address": 135558748,
+      "size": 22,
+      "sha256": "ba88eee1a8359aa1bd746391b76c0ce7ac785f30b1ffda938b4f0cc97dcc751a"
+    },
+    {
+      "address": 135558772,
+      "size": 56,
+      "sha256": "044a9e13a7d0846af540cb1c7add85301a656b62cfac244b9c91b8ac0e06d587"
+    },
+    {
+      "address": 135558840,
+      "size": 100,
+      "sha256": "77e305a547bd1e944f464427f5aaf035b782797f3bf9bfa62fd5e9ca516f6bc8"
+    },
+    {
+      "address": 135558950,
+      "size": 92,
+      "sha256": "0ed2586375ebe801f13d153684fb72644b4a233958b68f019878bdafbbdf7466"
+    },
+    {
+      "address": 135559068,
+      "size": 20,
+      "sha256": "058ad12180ba9ba1edfc09c3c2b861de7dd9b8629ac4a41ddc1d69ed6c8f768b"
+    },
+    {
+      "address": 135559404,
+      "size": 30,
+      "sha256": "0b4d0abb36b4b207cc3e8d90a7dd1a65c32d99ec5e248938b6628194b04ce6d4"
+    },
+    {
+      "address": 135559868,
+      "size": 10,
+      "sha256": "ac4a9f10a9f3b6eb3a6fa2019878df705ea595b54980f5e83f5183ff655d7ad5"
+    },
+    {
+      "address": 135559900,
+      "size": 4,
+      "sha256": "146a9b26f7005b5fc76b40e13ee9d42593cd6b048779a842a9133cf3c126a408"
+    },
+    {
+      "address": 135559912,
+      "size": 6,
+      "sha256": "b5f01294a1cce645cfbf897163fdad83a4732fb61a420e279866d64c0f931225"
+    },
+    {
+      "address": 135991237,
+      "size": 74,
+      "sha256": "9215ef97b286b4548b8d6a13724517f39411ba4bbe9a1fa3d82a800b21f5a71f"
+    },
+    {
+      "address": 136084168,
+      "size": 2,
+      "sha256": "81904e68a8b9a2427e9e87e2c61b1098057608d18357d70d9281e8513941cf53"
+    },
+    {
+      "address": 136084172,
+      "size": 2,
+      "sha256": "bac8ca6ee9f77b46c7ab5824c7c59d99fd0ca53ae998ea2872b78bb6a5189cc5"
+    },
+    {
+      "address": 136084192,
+      "size": 2,
+      "sha256": "8726ef5c42206476b80835e7e75d7377ac67a1d964a577f875d20c9dcc98dd97"
+    },
+    {
+      "address": 136093176,
+      "size": 54,
+      "sha256": "1ea312a5670eacb716bd26fc014e458c9277e8b4dcc65bbac4a8cb615d6c662d"
+    },
+    {
+      "address": 136093234,
+      "size": 8,
+      "sha256": "77e7314e07f83483d772a4929eee27a4ba83e7fc3bb524dd586c784a0646b946"
+    },
+    {
+      "address": 136093246,
+      "size": 12,
+      "sha256": "272ba8a66b0fc47cc95c1668b05a8fec845b908b76fa5e595bab51bda93a9845"
+    },
+    {
+      "address": 137830296,
+      "size": 8,
+      "sha256": "7a2479d725838773a1b652b4dd11b66c627dfebf46d958e6ac73a7947a3bc916"
+    },
+    {
+      "address": 138626948,
+      "size": 4,
+      "sha256": "e16769da15f59dfe31c07ae808b1ee3f163d7f374f39ff1e31999c8adae98c2d"
+    },
+    {
+      "address": 151301200,
+      "size": 4,
+      "sha256": "4449f960cccdd0d5b5b9324b0bb894b5acbe756a63f71a54118afb7956f3e70c"
+    }
+  ],
+  "claims": {
+    "proof_scope": "conditional_source_registered_roots_and_finite_actual_producers",
+    "root_context_is_precondition": true,
+    "full_story_reachability_claimed": false,
+    "full_animation_prefix_executed": false,
+    "actual_runtime_execution_observed": false,
+    "universal_heap_or_irq_lifetime_proven": false,
+    "opaque_callee_effects_proven": false,
+    "hit_callee_executed": false,
+    "whole_function_range_classified": false,
+    "indirect_reference_completeness_claimed": false,
+    "donor_eligible": false,
+    "donor_leased": false
+  },
+  "input_contract": {
+    "seagallop": "DoSeagallopFerryScene API invocation; callback1 NULL, source/destination inputs 11; successful 2048-byte tilemap allocation and valid graphics resources. Real setter initializes state0, all eight setup states execute, real ResetTasks/CreateTask/RunTasks produce callback and timer140. Every external fade starts active and becomes inactive only after 17 conditional UpdatePaletteFade calls.",
+    "shockwave": "At processing of the structurally parsed command+65 of actual registered move351 script. LaunchBattleAnimation whole execution and earlier graphics commands are not claimed. Script context is taken from real table/prefix/command; no task selector, task state or internal timer is injected. A valid empty task list, attacker0/target1, visual count0, frames-to-wait0 and script-active1 are finite context conditions. Real opcode dispatch reads real function/priority/no-argument fields; real CreateTask zeroes data and registers callback. Actual next delay12 command executes and the dispatcher returns with balanced stack before the scheduler is called.",
+    "sprite_failure": "All 43 CreateSprite calls return MAX_SPRITES=64 under an explicit allocation-failure condition. Real compare skips every sprite/data3 increment, real coordinate and segment writers reach segment5/state3, then real zero data3 branch reaches BL. Natural battle, successful sprite lifecycle and resource exhaustion reachability are not claimed.",
+    "abi": "All opaque boundaries return normally preserving ABI callee-saved registers and only concrete future-read-before-write memory fields. All other RAM is actually erased during replay. Outputs and preservation are separate; the same task/main/tilemap epochs at their live uses are conditions, not universal effects.",
+    "minimum": "Only complete Thumb instructions covering the two inventory windows: ShockWave BL+static B = 6 bytes; Seagallop two adjacent complete BLs = 8 bytes. Execution stops before the first hit call. No literal/data/padding/whole function classification."
+  }
+}
