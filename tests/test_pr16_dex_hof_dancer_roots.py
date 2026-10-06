@@ -217,7 +217,19 @@ class DancerTests(unittest.TestCase):
  def test_54_current_move_argument_mismatch_rejected(self):self.initial_change_reject(v.CURRENT_MOVE,2,2)
  def test_55_wrong_opcode_state_rejected(self):self.initial_change_reject(v.SCRIPTING+20,1,12)
  def test_56_source_only_unbound_rom_fails_closed(self):
-  with self.assertRaises(ValueError):v.chunk(self.raw,0x08000000,2)
+  # 注入fixtureは現候補全文でもよい。疎fixture固有の制約は独立生成して検査する。
+  class SourceSparse:
+   def __init__(self):
+    self.cells={a+j:value for a,b in v.fixed_parts().items()for j,value in enumerate(b)}
+   def __len__(self):return v.CANDIDATE['size']
+   def __getitem__(self,s):
+    if not isinstance(s,slice)or s.step is not None:raise ValueError('slice only')
+    addresses=range(0x08000000+s.start,0x08000000+s.stop)
+    if any(a not in self.cells for a in addresses):raise ValueError('unbound sparse read')
+    return bytes(self.cells[a]for a in addresses)
+  sparse=SourceSparse()
+  self.assertEqual(v.chunk(sparse,v.MINIMUM,6),v.encoded(v.INS[v.MINIMUM])+v.encoded(v.INS[v.MINIMUM+4]))
+  with self.assertRaises(ValueError):v.chunk(sparse,0x08000000,2)
  def test_57_current_rom_measurement_not_claimed(self):
   proof=self.check()[1];self.assertTrue(proof['current_candidate_measurement_required'])
   self.assertFalse(proof['natural_battle_entry_proven']);self.assertFalse(proof['universal_heap_or_irq_lifetime_proven'])

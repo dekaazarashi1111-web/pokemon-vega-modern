@@ -7,8 +7,8 @@
   "initial_head": "b9be8c6c231df0aac1c5eb163b154a4ec8ff5787",
   "source_bindings": {
     ".github/workflows/pr16-dex-hof-registered-state-batch.yml": {
-      "size": 3069,
-      "sha256": "d6816d8fdc336a1b889e14e9c3c4493c0c9bbb6595373990c4e4c8efc4264912"
+      "size": 3121,
+      "sha256": "e4b476d427d961fdb841a607b39260b5cdf7583cd9d9e6b71979a0f96a50d80b"
     },
     "content/modernization/pr16_dex_hof_dancer_roots_review.json": {
       "size": 23620,
@@ -55,8 +55,8 @@
       "sha256": "99d2fc0ad332860453c0975bfd32b81a32816844554c6103517c0fe2409ce5e0"
     },
     "tests/test_pr16_dex_hof_dancer_roots.py": {
-      "size": 17070,
-      "sha256": "adf0c86de3034d789357a5b046ec77196ea4ce4c526eaef0ba75357ddd9406d8"
+      "size": 17802,
+      "sha256": "6bce378d9f654d9768c8834e55ab0f4d532747836a13c33ce9b9962cf1759192"
     },
     "tests/test_pr16_dex_hof_money_reward_roots.py": {
       "size": 12310,
@@ -97,6 +97,24 @@
       },
       "reviewed_source_count": 12,
       "open_findings": 0
+    },
+    {
+      "scope": "PASS_TARGETED_FIXTURE_CORRECTION_SOURCE_REVIEW",
+      "report_identity": {
+        "size": 5281,
+        "sha256": "2af3147ee996d1859aa77f347b94f0c44d53d669ce26e535367c834cb7405af1"
+      },
+      "reviewed_source_count": 1,
+      "open_findings": 0
+    },
+    {
+      "scope": "PASS_NARROW_STATE_FIXTURE_CORRECTION_PIPELINE_REVIEW",
+      "report_identity": {
+        "size": 8786,
+        "sha256": "8690c6d3093ef42c64a9ee1b08c3d0a266ba0d4f33aac98cf8343f3aad26ad15"
+      },
+      "reviewed_source_count": 12,
+      "open_findings": 0
     }
   ],
   "validation": {
@@ -115,5 +133,19 @@
     "自然全play/全callee効果/普遍IRQ・heap寿命/間接完全性/退役/owner移管は未証明。",
     "旧最終source reviewの拒否操作は再試行していない。",
     "egg15118全域保護・donor安全0・正式ROM/Save101不変。"
-  ]
+  ],
+  "fixture_correction": {
+    "initial_source": "dcc368dffa3ddb83220ef7967b85e6a2e69f12d5",
+    "failed_run": 37453822147,
+    "failed_job": 112236454951,
+    "failed_test": "test_pr16_dex_hof_dancer_roots.DancerTests.test_56_source_only_unbound_rom_fails_closed",
+    "failed_attempt_accepted": false,
+    "failed_attempt_artifacts": 0,
+    "current_reconstructions_in_failed_attempt": 1,
+    "native_processes": 0,
+    "corrected_test_only": true,
+    "new_local_targeted_checks": 2,
+    "new_current_actions_required": true,
+    "reason_ja": "疎fixture固有の拒否条件を注入current全文から分離し、独立source生成疎fixtureで検査する。consumer本体と旧受入は不変。"
+  }
 }
