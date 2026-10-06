@@ -4422,13 +4422,19 @@
       "content/modernization/pr16_dex_hof_battle_script_roots_review.json",
       "content/modernization/pr16_dex_hof_bag_sort_roots_review.json",
       "content/modernization/pr16_dex_hof_fishing_roots_review.json",
-      "content/modernization/pr16_dex_hof_field_move_roots_review.json"
+      "content/modernization/pr16_dex_hof_field_move_roots_review.json",
+      "scripts/pr16_dex_hof_runtime_party.py",
+      "scripts/pr16_dex_hof_callback_party.py",
+      "scripts/pr16_dex_hof_callback_party_task.py",
+      "content/modernization/pr16_dex_hof_runtime_party_review.json",
+      "content/modernization/pr16_dex_hof_callback_party_review.json"
     ],
     "stop_rule_ja": "通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。"
   },
   "observed_date_jst": "2026-10-04",
   "observed_head": "7a8a9484b6d6aeea1111df5699a19c4d7b0f9aae",
   "observed_head_checks": {
+    "all14_steps_success": true,
     "classified": 749,
     "current_candidate": {
       "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583",
@@ -4439,10 +4445,13 @@
     "general_ci_known_source_mismatch_not_resolved": true,
     "native_processes": 0,
     "reason_ja": "現0641のBag数量順2件・Fishing timeout・追加field-move説明の計4hitに新producer guardを実装。同4hitは実producerから未到達またはconsumer未接続のため未知維持。別の現map登録event text1件とeffect231登録battle script2件の最小4byteを各分類し、新分類3、749分類/未知125を保持。新351試験、全115actual ownerと全15親deltaを照合。有限producerだけの否定証拠であり全caller/全writerの不在や普遍未到達は主張しない。全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。",
+    "record_job": 112090656525,
+    "record_run": 37408275245,
     "reference_unit_tests": 351,
     "scope_head": "7a8a9484b6d6aeea1111df5699a19c4d7b0f9aae",
     "stage79_cached_not_new_native": true,
-    "unclassified": 125
+    "unclassified": 125,
+    "whole_receipt_equals_checkpoint": true
   },
   "observed_head_history": [
     {
@@ -12453,13 +12462,7 @@
     "status": "NATIVE_PARTY_RETENTION_ACCEPTED_BP_PENDING",
     "tested_head": "10e535a046441dd3b797918106259b5c57b69716"
   },
-  "pending_runs": [
-    {
-      "run_id": 37408275245,
-      "status": "in_progress",
-      "tested_head": "7a8a9484b6d6aeea1111df5699a19c4d7b0f9aae"
-    }
-  ],
+  "pending_runs": [],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
   "pr_draft": true,
   "pr_merged": false,
@@ -14334,9 +14337,13 @@
       "sha256": "2c062e8f47ffe0fb2486785c7dc787c844fbdbeb31e26fbbeccca4a724ec11fd",
       "size": 1744
     },
+    ".github/workflows/pr16-dex-hof-field-consumer-batch-closeout.yml": {
+      "sha256": "ef43d26f3e127bebbc53cc02d239d050bae65e7f276efc357fd299a74c1a155b",
+      "size": 2945
+    },
     ".github/workflows/pr16-dex-hof-field-consumer-batch.yml": {
-      "sha256": "b715dea8f34f06162584cda3c7fa5bf058e52729038d44631d601105f70b90e3",
-      "size": 3057
+      "sha256": "b4f04da23d25ade5b33e32ab0fe33334d3d49c3a4fe9bdc2e216cb777795d751",
+      "size": 2947
     },
     ".github/workflows/pr16-dex-hof-generation-closeout.yml": {
       "sha256": "a4eb5fb924617a9ccaa4c7648b6fe2d32d61ed68abc8e0c27986660214257e6b",
@@ -35418,6 +35425,10 @@
       "sha256": "9bbb09487b7d88b0e675d04e971bbe65d8561e5325a5f46792fb142e963554d1",
       "size": 24954
     },
+    "scripts/pr16_dex_hof_field_consumer_batch_closeout.py": {
+      "sha256": "4364d81f883e2da225d017689d97a12980d9501b97879c3882f1bf489f2c81c4",
+      "size": 13967
+    },
     "scripts/pr16_dex_hof_field_move_roots.py": {
       "sha256": "24b4f876dedd42a4709b1c8706d58f24ec1e7bd91a6705e4fbc01cf3ef4ea71d",
       "size": 19374
@@ -39265,6 +39276,10 @@
     "tests/test_pr16_dex_hof_field_consumer_batch_chain.py": {
       "sha256": "fcfaa49b4c76953cbb423e4276575f24ed40cb410e11f6ddb2f5b4e650b60d19",
       "size": 16497
+    },
+    "tests/test_pr16_dex_hof_field_consumer_batch_closeout.py": {
+      "sha256": "3e9d7cb5160063efe3eb06afc61e9a1e502202b009efcba43e0bc2464698f769",
+      "size": 3794
     },
     "tests/test_pr16_dex_hof_field_move_roots.py": {
       "sha256": "68d04331316b93f32d79fca0887778865989de4aed60a7349085669a0b1c0eaf",
@@ -44767,6 +44782,75 @@
         "donor_safe_bytes": 0,
         "guide": "docs/PR16_DEX_HOF_FIELD_CONSUMER_BATCH_JA.md",
         "known_capacity_upper_bound": 1315,
+        "recording": {
+          "all14_steps_success": true,
+          "all5_snapshots_full_bytes_and_lf_verified": true,
+          "all_fifteen_old_delta_families_preserved": true,
+          "archive": [
+            11388935413,
+            37408275245,
+            1466926,
+            "03796471b832dcd26f272240a73b92d9d7d2e4c71ed3e8d7419d76b8b8e066a0"
+          ],
+          "arm_compiles": 0,
+          "baseline_identity": {
+            "sha256": "814082398937869b6cc17faa09cbf1833f0c7f4aa300ddbd83d0de833d44b74c",
+            "size": 4063919
+          },
+          "candidate_changed": false,
+          "capacity_identity": {
+            "sha256": "dd198330e486045d12e8d554e787c0614d795f72b2b0fc443f0c4962d4a39164",
+            "size": 25234
+          },
+          "checkpoint": "content/modernization/pr16_dex_hof_field_consumer_batch_checkpoint.json",
+          "checkpoint_identity": {
+            "sha256": "608c5faa5f2f2b8ff988ef25dbbf77ad5fffbcafc4da4aee8809a521251f098f",
+            "size": 75332
+          },
+          "classified": 749,
+          "closeout_run": 37413819362,
+          "closeout_source": "f0425a8ea22959cac5e3d19c54ebe04a18124088",
+          "combined_song_models": 133,
+          "current_rom_reconstructions": 0,
+          "delta_identity": {
+            "sha256": "f2b07ad37d428bb4d1be56da6fb65b3a9086a6957c60056697c32ecfc38d8fb3",
+            "size": 75712
+          },
+          "donor_leased": false,
+          "earlier_identity": {
+            "sha256": "762320ba350f528777b90be404b5fec1d88caeb6dbf6594590d4f45b852c1c87",
+            "size": 149772
+          },
+          "export_guard_test_log": {
+            "sha256": "20a7132819c5347414473c92a2dce78ed91a35aee03c5d0c409d454e91ceb395",
+            "size": 1422
+          },
+          "formal_save_changed": false,
+          "independent_final_source_review_completed": false,
+          "job": 112090656525,
+          "native_processes": 0,
+          "new_boundary": 0,
+          "new_code": 0,
+          "new_data": 3,
+          "new_export_guard_tests": 11,
+          "new_song": 0,
+          "newly_classified": 3,
+          "old746_accepted_and_all874_identities_retained": true,
+          "owner_unknown": 0,
+          "parent_identity": {
+            "sha256": "2089134cff6c3f920bea3476e8c0b9e883901eff42eb7f933fd86c91e71f485e",
+            "size": 478118
+          },
+          "record_head": "76f87517685dc8bb0cd97dc971e8881e452909f2",
+          "retained_sample_witnesses": 50,
+          "run": 37408275245,
+          "source_head": "7a8a9484b6d6aeea1111df5699a19c4d7b0f9aae",
+          "status": "PASS_TERMINAL_EXACT_FIELD_CONSUMER_BATCH_RECORD",
+          "tests_rerun": 0,
+          "unclassified": 125,
+          "unit_tests": 351,
+          "unowned_unknown": 125
+        },
         "run": 37408275245,
         "source": "7a8a9484b6d6aeea1111df5699a19c4d7b0f9aae",
         "status": "PASS_CURRENT_746_PARENT_FIELD_CONSUMER_BATCH_AND_PARTIAL_SPACE_REFUSAL",
