@@ -1,13 +1,14 @@
-name: pr16-dex-hof-registered-state-batch
-run-name: registered-state-current-fixture-isolated
+name: pr16-dex-hof-registered-state-batch-closeout
 on:
-  workflow_dispatch:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-dex-hof-registered-state-batch-closeout.yml]
 permissions:
   contents: write
   actions: read
   pull-requests: read
 concurrency:
-  group: pr16-dex-hof-registered-state-batch
+  group: pr16-dex-hof-registered-state-batch-closeout
   cancel-in-progress: false
 defaults:
   run:
@@ -16,7 +17,7 @@ jobs:
   contract:
     if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908' && github.run_attempt == 1
     runs-on: ubuntu-24.04
-    timeout-minutes: 30
+    timeout-minutes: 15
     env:
       GH_TOKEN: ${{ github.token }}
       GITHUB_TOKEN: ${{ github.token }}
@@ -25,18 +26,16 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 24
-      - name: Exact new source set and retained parent evidence
-        run: python3 -B scripts/pr16_dex_hof_registered_state_batch_actions.py source_guard
-      - name: Official Ubuntu ARM toolchain for exact prior link reconstruction
+      - name: Exact new host source and immutable prior evidence
+        run: python3 -B scripts/pr16_dex_hof_registered_state_batch_closeout.py source_guard
+      - name: New publication, provenance and source-review guards
         run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y --no-install-recommends gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-dev
-      - name: Current JP registered state consumers and fail-closed partial lease capacity
-        run: python3 -B scripts/pr16_dex_hof_registered_state_batch_actions.py run
-      - name: Record minimal consumer evidence and partial space refusal
-        run: python3 -B scripts/pr16_dex_hof_registered_state_batch_actions.py record
+          mkdir -p .local
+          python3 -B -m unittest discover -s tests -p 'test_pr16_dex_hof_registered_state_batch_closeout.py' -v > .local/pr16-registered-state-batch-closeout-tests.txt 2>&1
+      - name: Verify terminal host record without rerunning tests
+        run: python3 -B scripts/pr16_dex_hof_registered_state_batch_closeout.py close
       - name: Scoped final index and fixed resume
-        run: python3 -B scripts/pr16_dex_hof_registered_state_batch_actions.py guard
+        run: python3 -B scripts/pr16_dex_hof_registered_state_batch_closeout.py guard
       - name: Lightweight task graph
         run: python3 -B scripts/validate_task_graph.py --check
       - name: Commit and nonforce push same branch
@@ -45,19 +44,19 @@ jobs:
           test "$(git ls-remote origin refs/heads/codex/modernization-followup-20260908 | cut -f1)" = "$GITHUB_SHA"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'USER-20261006-DEX-HOF-REGISTERED-STATE-BATCH: 登録state consumer最小型・安全容量の記録'
+          git commit -m 'USER-20261006-DEX-HOF-REGISTERED-STATE-BATCH: 登録state consumerと共有deltaの終端照合'
           git push origin HEAD:codex/modernization-followup-20260908
           test "$(git ls-remote origin refs/heads/codex/modernization-followup-20260908 | cut -f1)" = "$(git rev-parse HEAD)"
       - name: Exact committed text readback
-        run: python3 -B scripts/pr16_dex_hof_registered_state_batch_actions.py snapshot
-      - name: Closed text publication guard
+        run: python3 -B scripts/pr16_dex_hof_registered_state_batch_closeout.py snapshot
+      - name: Closed host text publication guard
         id: publication_guard
         if: always()
-        run: python3 -B scripts/pr16_dex_hof_registered_state_batch_actions.py export
+        run: python3 -B scripts/pr16_dex_hof_registered_state_batch_closeout.py export
       - uses: actions/upload-artifact@v4
         if: ${{ always() && steps.publication_guard.outcome == 'success' }}
         with:
-          name: pr16-dex-hof-registered-state-batch-text-only
-          path: public-dex-hof-registered-state-batch
+          name: pr16-dex-hof-registered-state-batch-closeout-text-only
+          path: public-dex-hof-registered-state-batch-closeout
           retention-days: 90
           if-no-files-found: error
