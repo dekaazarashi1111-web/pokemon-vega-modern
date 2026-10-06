@@ -1,0 +1,5762 @@
+{
+  "schema_version": 1,
+  "status": "PASS_751_PARENT_BOUND_SCRIPT_PRODUCER_BATCH_REFERENCE_CHAIN",
+  "baseline": {
+    "path": "content/modernization/pr16_dex_hof_typed_recovery_evidence/egg-typed-audit.json",
+    "size": 4063919,
+    "sha256": "814082398937869b6cc17faa09cbf1833f0c7f4aa300ddbd83d0de833d44b74c"
+  },
+  "parent": {
+    "path": "content/modernization/pr16_dex_hof_event_boundary_batch_evidence/reference-chain.json",
+    "size": 26093,
+    "sha256": "b93206ff3a84d498746a571e9e874441ee2e0397d030baa7f46c9b283b0ac0fb"
+  },
+  "candidate": {
+    "size": 33554432,
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+  },
+  "inherited_candidates": 874,
+  "inherited_classified": 751,
+  "inherited_unclassified": 123,
+  "changes": [
+    {
+      "address": 151024541,
+      "target": 167707430,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "f4d00655f79311577608c4de2a00f46414264c4ff8ddf9c92fbfeb714710c591",
+      "classification": "FALSE_POSITIVE_TYPED_REFERENCE_FINITE_REGISTERED_BATTLE_OPCODE_AND_TAIL",
+      "accepted": true,
+      "witness_ids": [
+        0
+      ]
+    },
+    {
+      "address": 151024690,
+      "target": 167708698,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "18ef76b290714a374b93d046cd3c65db21739f4c57ba34221bc20e7b9daf7787",
+      "classification": "FALSE_POSITIVE_TYPED_REFERENCE_FINITE_REGISTERED_BATTLE_OPCODE_AND_TAIL",
+      "accepted": true,
+      "witness_ids": [
+        1
+      ]
+    }
+  ],
+  "witnesses": [
+    {
+      "id": 0,
+      "address": 151024541,
+      "size": 4,
+      "kind": "finite_registered_battle_opcode_and_tail",
+      "evidence": {
+        "hit": 151024541,
+        "kind": "finite_registered_battle_opcode_and_tail",
+        "claims": {
+          "donor_leased": false,
+          "donor_eligible": false,
+          "full_story_reachability_claimed": false,
+          "natural_battle_entry_reachability_claimed": false,
+          "whole_script_range_classified": false,
+          "attackcanceler_success_proven": false,
+          "indirect_reference_completeness_claimed": false,
+          "callasm_success_proven": false,
+          "goto_fallthrough_claimed": false,
+          "all_prefix_execution_claimed": false,
+          "owner_transfer_proven": false,
+          "opcode_handler_success_proven": false,
+          "whole_dispatcher_classified": false,
+          "current_rom_identity_checked_by_local_diagnostic": false
+        },
+        "effect": 233,
+        "root": 151024517,
+        "commands": [
+          {
+            "address": 151024540,
+            "size": 2,
+            "opcode": 65318
+          },
+          {
+            "address": 151024542,
+            "size": 1,
+            "opcode": 3
+          },
+          {
+            "address": 151024543,
+            "size": 10,
+            "opcode": 65289
+          }
+        ],
+        "byte_roles": [
+          "attackstringnoprotean_secondary_opcode",
+          "ppreduce_primary_opcode",
+          "jumpifcounter_primary_opcode",
+          "jumpifcounter_secondary_opcode"
+        ],
+        "whole_pointers": [
+          {
+            "address": 151024549,
+            "size": 4,
+            "value": 151024593
+          }
+        ],
+        "consumer": "conditional_actual_primary_secondary_dispatch"
+      },
+      "evidence_identity": {
+        "size": 1050,
+        "sha256": "b1928a339ef9650c73cf5f1e969e4735a391a84ed660459e1ed2919b67e755c3"
+      }
+    },
+    {
+      "id": 1,
+      "address": 151024690,
+      "size": 4,
+      "kind": "finite_registered_battle_opcode_and_tail",
+      "evidence": {
+        "hit": 151024690,
+        "kind": "finite_registered_battle_opcode_and_tail",
+        "claims": {
+          "donor_leased": false,
+          "donor_eligible": false,
+          "full_story_reachability_claimed": false,
+          "natural_battle_entry_reachability_claimed": false,
+          "whole_script_range_classified": false,
+          "attackcanceler_success_proven": false,
+          "indirect_reference_completeness_claimed": false,
+          "callasm_success_proven": false,
+          "goto_fallthrough_claimed": false,
+          "all_prefix_execution_claimed": false,
+          "owner_transfer_proven": false,
+          "opcode_handler_success_proven": false,
+          "whole_dispatcher_classified": false,
+          "current_rom_identity_checked_by_local_diagnostic": false
+        },
+        "effect": 234,
+        "root": 151024633,
+        "commands": [
+          {
+            "address": 151024687,
+            "size": 5,
+            "opcode": 40
+          },
+          {
+            "address": 151024692,
+            "size": 10,
+            "opcode": 65289
+          }
+        ],
+        "byte_roles": [
+          "left_script_pointer_byte2",
+          "left_script_pointer_byte3",
+          "right_primary_opcode",
+          "right_secondary_opcode"
+        ],
+        "whole_pointers": [
+          {
+            "address": 151024688,
+            "size": 4,
+            "value": 136030474
+          },
+          {
+            "address": 151024698,
+            "size": 4,
+            "value": 151031315
+          }
+        ],
+        "consumer": "complete_goto_pointer_and_conditional_counter_pointer_read"
+      },
+      "evidence_identity": {
+        "size": 1040,
+        "sha256": "b3339096f9c42a7a15be9250f433d08effc27366f0255ee56f9de2755bbd4e27"
+      }
+    }
+  ],
+  "classified": 753,
+  "unclassified": 121,
+  "newly_classified": 2,
+  "proof": {
+    "data": {
+      "status": "PASS_NEW_FINITE_SCRIPT_FIELDS_AND_HELD_EVENT_PRODUCER_ROOTS",
+      "consumers": {
+        "finite_registered_battle_opcode_and_tail": {
+          "status": "PASS_TWO_FINITE_REGISTERED_BATTLE_TYPES",
+          "count": 2,
+          "hits": [
+            151024541,
+            151024690
+          ],
+          "typed_bytes": 8,
+          "heal_pulse_prefix_bytes": 36,
+          "topsy_turvy_prefix_bytes": 59,
+          "source_serialized_root": true,
+          "native_selector_models": [
+            {
+              "command": 151024518,
+              "opcode": 42,
+              "edge": "taken",
+              "entry": 134356752,
+              "next_cursor": 151024622
+            },
+            {
+              "command": 151024518,
+              "opcode": 42,
+              "edge": "next",
+              "entry": 134356752,
+              "next_cursor": 151024530
+            },
+            {
+              "command": 151024653,
+              "opcode": 42,
+              "edge": "taken",
+              "entry": 134356752,
+              "next_cursor": 151024692
+            },
+            {
+              "command": 151024653,
+              "opcode": 42,
+              "edge": "next",
+              "entry": 134356752,
+              "next_cursor": 151024665
+            },
+            {
+              "command": 151024687,
+              "opcode": 40,
+              "edge": "taken",
+              "entry": 134356560,
+              "next_cursor": 136030474
+            }
+          ],
+          "native_dispatch_models": [
+            {
+              "command": 151024540,
+              "opcode": 65318,
+              "opcode_byte_reads": [
+                151024540,
+                151024541
+              ],
+              "handler": 152159564,
+              "dispatch_slots": [
+                151255116,
+                151255272
+              ],
+              "cursor_at_handler": 151024541,
+              "steps": 20,
+              "command_entry_condition": true,
+              "handler_executed": false
+            },
+            {
+              "command": 151024542,
+              "opcode": 3,
+              "opcode_byte_reads": [
+                151024542
+              ],
+              "handler": 152062804,
+              "dispatch_slots": [
+                151254108
+              ],
+              "cursor_at_handler": 151024542,
+              "steps": 9,
+              "command_entry_condition": true,
+              "handler_executed": false
+            },
+            {
+              "command": 151024543,
+              "opcode": 65289,
+              "opcode_byte_reads": [
+                151024543,
+                151024544
+              ],
+              "handler": 152153960,
+              "dispatch_slots": [
+                151255116,
+                151255156
+              ],
+              "cursor_at_handler": 151024544,
+              "steps": 20,
+              "command_entry_condition": true,
+              "handler_executed": false
+            }
+          ],
+          "native_pointer_read_proofs": [
+            {
+              "command": 151024543,
+              "handler": 152153960,
+              "stop": 152154004,
+              "pointer": 151024593,
+              "pointer_bytes": 4,
+              "bank_operand": 0,
+              "resolver_slot": 152441872,
+              "bank_read_address": 33701068,
+              "distinct_bank_value_cases": 4
+            },
+            {
+              "command": 151024692,
+              "handler": 152153960,
+              "stop": 152154004,
+              "pointer": 151031315,
+              "pointer_bytes": 4,
+              "bank_operand": 0,
+              "resolver_slot": 152441872,
+              "bank_read_address": 33701068,
+              "distinct_bank_value_cases": 4
+            }
+          ],
+          "protected_windows": 234,
+          "protected_bytes": 647,
+          "donor_leased": false,
+          "donor_eligible": false,
+          "full_story_reachability_claimed": false,
+          "natural_battle_entry_reachability_claimed": false,
+          "whole_script_range_classified": false,
+          "attackcanceler_success_proven": false,
+          "indirect_reference_completeness_claimed": false,
+          "callasm_success_proven": false,
+          "goto_fallthrough_claimed": false,
+          "all_prefix_execution_claimed": false,
+          "owner_transfer_proven": false,
+          "opcode_handler_success_proven": false,
+          "whole_dispatcher_classified": false,
+          "current_rom_identity_checked_by_local_diagnostic": false
+        }
+      },
+      "held_roots": {
+        "held_event_producer_registered_roots": {
+          "status": "PASS_EVENT_PRODUCER_ROOTS_ONE_HIT_REMAINS_UNKNOWN",
+          "count": 0,
+          "hits": [],
+          "held_hits": [
+            135847261
+          ],
+          "new_classified_bytes": 0,
+          "source_bindings": {
+            "pret-std_msgbox.inc": {
+              "local": "pret-std_msgbox.inc",
+              "repository": "pret/pokefirered",
+              "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+              "path": "data/scripts/std_msgbox.inc",
+              "size": 1040,
+              "sha256": "090541cfc3a47272ea8203f0f6c18f19f8062d407388a23fcf103e93b196b431",
+              "git_blob_sha": "18ad553c85b66975e0c05763c6145082c8c13dde"
+            },
+            "pret-script.c": {
+              "local": "pret-script.c",
+              "repository": "pret/pokefirered",
+              "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+              "path": "src/script.c",
+              "size": 13713,
+              "sha256": "1cc4aade1f821e5f218ba7c191b1217e5a3cf942d0bfd0f32f775ce1f808437c",
+              "git_blob_sha": "d0433bdda062b138e53d1a1d3184b4566ad7d9dc"
+            },
+            "pret-event_scripts.s": {
+              "local": "pret-event_scripts.s",
+              "repository": "pret/pokefirered",
+              "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+              "path": "data/event_scripts.s",
+              "size": 55643,
+              "sha256": "3b1bd10d26c0a74fb3452ab42fc9d14dfca785f8b71389db06c71f5dfdd50a27",
+              "git_blob_sha": "88d75946a7300ccf952f4a36c283966c6aebf5c0"
+            },
+            "pret-string_util.c": {
+              "local": "pret-string_util.c",
+              "repository": "pret/pokefirered",
+              "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+              "path": "src/string_util.c",
+              "size": 14320,
+              "sha256": "ed9519d4eaf51ed660a522915366dc0ebf2916d592a91a1d7fc2a012e4f3f17e",
+              "git_blob_sha": "5c26d151a61274caac3a16c3b9c4eb73bf9a9e26"
+            },
+            "pret-characters.h": {
+              "local": "pret-characters.h",
+              "repository": "pret/pokefirered",
+              "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+              "path": "include/characters.h",
+              "size": 12798,
+              "sha256": "6787db76f83c4f8426c5adbfa7aa061c46585db9522f1fef00ad888616199b98",
+              "git_blob_sha": "d00ecf0a3afcd9fc1fa9534c00f4b74793d5f06f"
+            },
+            "pret-scrcmd.c": {
+              "local": "pret-scrcmd.c",
+              "repository": "pret/pokefirered",
+              "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+              "path": "src/scrcmd.c",
+              "size": 56954,
+              "sha256": "898dad5a07ce0a125731b998654d86808885a8d48163d607478a5e70c1cac553",
+              "git_blob_sha": "97b695ee2f6fca80a3b78f52f6a444f696fe5814"
+            },
+            "BPRJ.ld": {
+              "local": "BPRJ.ld",
+              "repository": "kapibarasan000/CFRU-JP",
+              "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+              "path": "BPRJ.ld",
+              "size": 68505,
+              "sha256": "e371c23b9c9ea914c9ca3f644983e0b4e05be07bf11054492fa37afcfd58892a",
+              "git_blob_sha": "cf5363abd8439d63c7bd12cbe83ade861b0ebb51"
+            },
+            "pret-script_cmd_table.inc": {
+              "local": "pret-script_cmd_table.inc",
+              "repository": "pret/pokefirered",
+              "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+              "path": "data/script_cmd_table.inc",
+              "size": 11359,
+              "sha256": "6b59babf9b8a33bdc37a322a1a4b6e2261426126097330f305823e53415b1389",
+              "git_blob_sha": "c5d112d9ea66d258d5a372dda89b9ad96ed2b1e1"
+            }
+          },
+          "registration_paths": [
+            {
+              "owner_id": "OBJECT:10/2:0",
+              "script": 135845106,
+              "registration_bound": true
+            },
+            {
+              "owner_id": "OBJECT:21/0:0",
+              "script": 135844163,
+              "registration_bound": true
+            }
+          ],
+          "graphs": [
+            {
+              "owner_id": "OBJECT:10/2:0",
+              "root": 135845106,
+              "standard_edges_expanded": true,
+              "state_count": 77,
+              "nodes": [
+                {
+                  "address": 135845106,
+                  "size": 1,
+                  "sha256": "189f40034be7a199f1fa9891668ee3ab6049f82d38c68be70f596eab2e1857b7",
+                  "opcode": 106,
+                  "command": "lock",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135845107,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135845107,
+                  "size": 1,
+                  "sha256": "bbeebd879e1dff6918546dc0c179fdde505f2a21591c9a9c96e36b054ec5af83",
+                  "opcode": 90,
+                  "command": "faceplayer",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135845108,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135845108,
+                  "size": 5,
+                  "sha256": "c8b2eea0f677aa9880efa2b4614a9328c58f5665bf64da51739a7ca55669ddc7",
+                  "opcode": 22,
+                  "command": "setvar",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135845113,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135845113,
+                  "size": 5,
+                  "sha256": "7761a0f0e830c7bcaec3daa33d9b8cf0122603ef782aeb4fcbf463af7812febd",
+                  "opcode": 4,
+                  "command": "call",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135881303,
+                      "stack": [
+                        135845118
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135881303,
+                  "size": 5,
+                  "sha256": "7d3cd82823f44247f1e3d349656752b44d48f995525cf8d16d8c4bb4ddafd0c5",
+                  "opcode": 25,
+                  "command": "copyvar",
+                  "stack": [
+                    135845118
+                  ],
+                  "successors": [
+                    {
+                      "address": 135881308,
+                      "stack": [
+                        135845118
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135881308,
+                  "size": 5,
+                  "sha256": "5880081ef5f63527c37db08fe12be3be5f61062aa430f4c3abc6a9c2d3c63233",
+                  "opcode": 38,
+                  "command": "specialvar",
+                  "stack": [
+                    135845118
+                  ],
+                  "successors": [
+                    {
+                      "address": 135881313,
+                      "stack": [
+                        135845118
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135881313,
+                  "size": 5,
+                  "sha256": "a353e965aa979d0f334ceb6ac1cf3e933dd6d28f74a1eaecb0294995eaaad122",
+                  "opcode": 25,
+                  "command": "copyvar",
+                  "stack": [
+                    135845118
+                  ],
+                  "successors": [
+                    {
+                      "address": 135881318,
+                      "stack": [
+                        135845118
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135881318,
+                  "size": 1,
+                  "sha256": "084fed08b978af4d7d196a7446a86b58009e636b611db16211b65a9aadff29c5",
+                  "opcode": 3,
+                  "command": "return",
+                  "stack": [
+                    135845118
+                  ],
+                  "successors": [
+                    {
+                      "address": 135845118,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135845118,
+                  "size": 3,
+                  "sha256": "93b53748c49d7c2851885e32b8dc0cbc12bb9a5673158967b0ecdf571e6ae5e6",
+                  "opcode": 43,
+                  "command": "checkflag",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135845121,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135845121,
+                  "size": 6,
+                  "sha256": "1c8a3271b7079c33817105341c869c30a7ef50bc37cc7eefe1b96c46522a692a",
+                  "opcode": 6,
+                  "command": "goto_if",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135845127,
+                      "stack": []
+                    },
+                    {
+                      "address": 135845220,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135845127,
+                  "size": 6,
+                  "sha256": "a981cb5dd2eba840d22e7fa0d3587089f361282e623337b5a29d86d7c02d2dd1",
+                  "opcode": 15,
+                  "command": "loadword",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135845133,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135845220,
+                  "size": 6,
+                  "sha256": "49b9677f6d246fcd500241e1041a5f722881f57fd84d621f6031e739356f33bc",
+                  "opcode": 15,
+                  "command": "loadword",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135845226,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135845133,
+                  "size": 2,
+                  "sha256": "d41ab920863795a707bd179708c6f65e6755e9f7b82da508e241098684798d8a",
+                  "opcode": 9,
+                  "command": "callstd",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135867821,
+                      "stack": [
+                        135845135
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135845226,
+                  "size": 2,
+                  "sha256": "f0f639189843668f480629df87f02cbef73dfc70d2e4e33b280ca7142827b314",
+                  "opcode": 9,
+                  "command": "callstd",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135867813,
+                      "stack": [
+                        135845228
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135867821,
+                  "size": 5,
+                  "sha256": "9e787f456e50e0ca96fb0481f365686e996b9e8c3d592f475eda66d2568cb911",
+                  "opcode": 103,
+                  "command": "message",
+                  "stack": [
+                    135845135
+                  ],
+                  "successors": [
+                    {
+                      "address": 135867826,
+                      "stack": [
+                        135845135
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135867813,
+                  "size": 5,
+                  "sha256": "9e787f456e50e0ca96fb0481f365686e996b9e8c3d592f475eda66d2568cb911",
+                  "opcode": 103,
+                  "command": "message",
+                  "stack": [
+                    135845228
+                  ],
+                  "successors": [
+                    {
+                      "address": 135867818,
+                      "stack": [
+                        135845228
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135867826,
+                  "size": 1,
+                  "sha256": "252f10c83610ebca1a059c0bae8255eba2f95be4d1d7bcfa89d7248a82d9f111",
+                  "opcode": 102,
+                  "command": "waitmessage",
+                  "stack": [
+                    135845135
+                  ],
+                  "successors": [
+                    {
+                      "address": 135867827,
+                      "stack": [
+                        135845135
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135867818,
+                  "size": 1,
+                  "sha256": "252f10c83610ebca1a059c0bae8255eba2f95be4d1d7bcfa89d7248a82d9f111",
+                  "opcode": 102,
+                  "command": "waitmessage",
+                  "stack": [
+                    135845228
+                  ],
+                  "successors": [
+                    {
+                      "address": 135867819,
+                      "stack": [
+                        135845228
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135867827,
+                  "size": 3,
+                  "sha256": "38f05f4970425c7fb7d1ef52da882a53d178006d97ea514e21772de122d581c8",
+                  "opcode": 110,
+                  "command": "yesnobox",
+                  "stack": [
+                    135845135
+                  ],
+                  "successors": [
+                    {
+                      "address": 135867830,
+                      "stack": [
+                        135845135
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135867819,
+                  "size": 1,
+                  "sha256": "62c66a7a5dd70c3146618063c344e531e6d4b59e379808443ce962b3abd63c5a",
+                  "opcode": 109,
+                  "command": "waitbuttonpress",
+                  "stack": [
+                    135845228
+                  ],
+                  "successors": [
+                    {
+                      "address": 135867820,
+                      "stack": [
+                        135845228
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135867830,
+                  "size": 1,
+                  "sha256": "084fed08b978af4d7d196a7446a86b58009e636b611db16211b65a9aadff29c5",
+                  "opcode": 3,
+                  "command": "return",
+                  "stack": [
+                    135845135
+                  ],
+                  "successors": [
+                    {
+                      "address": 135845135,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135867820,
+                  "size": 1,
+                  "sha256": "084fed08b978af4d7d196a7446a86b58009e636b611db16211b65a9aadff29c5",
+                  "opcode": 3,
+                  "command": "return",
+                  "stack": [
+                    135845228
+                  ],
+                  "successors": [
+                    {
+                      "address": 135845228,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135845135,
+                  "size": 5,
+                  "sha256": "7d157e606e02436bfd2dd57131cf34676fc674313855158a75de9d095e180410",
+                  "opcode": 33,
+                  "command": "compare_var_to_value",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135845140,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135845228,
+                  "size": 1,
+                  "sha256": "acac86c0e609ca906f632b0e2dacccb2b77d22b0621f20ebece1a4835b93f6f0",
+                  "opcode": 108,
+                  "command": "release",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135845229,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135845140,
+                  "size": 6,
+                  "sha256": "269e323a9becd43275563add69db02302085e3181f285dbf3704f6745e3bd914",
+                  "opcode": 6,
+                  "command": "goto_if",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135845146,
+                      "stack": []
+                    },
+                    {
+                      "address": 135845196,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135845229,
+                  "size": 1,
+                  "sha256": "dbc1b4c900ffe48d575b5da5c638040125f65db0fe3e24494b76ea986457d986",
+                  "opcode": 2,
+                  "command": "end",
+                  "stack": [],
+                  "successors": []
+                },
+                {
+                  "address": 135845146,
+                  "size": 5,
+                  "sha256": "3d37f32fb617a6621de770f10809c1e308522eb2a9a0466603822d1de130f7d1",
+                  "opcode": 4,
+                  "command": "call",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135881319,
+                      "stack": [
+                        135845151
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135845196,
+                  "size": 6,
+                  "sha256": "52ab89c988281852e82352dab22804582fca3a68ce8761799fb64d8672a30bb1",
+                  "opcode": 15,
+                  "command": "loadword",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135845202,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135881319,
+                  "size": 3,
+                  "sha256": "15c3309f298cfed9aed415fe4824bef8d9144255751e33f836116040717efdfa",
+                  "opcode": 37,
+                  "command": "special",
+                  "stack": [
+                    135845151
+                  ],
+                  "successors": [
+                    {
+                      "address": 135881322,
+                      "stack": [
+                        135845151
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135845202,
+                  "size": 2,
+                  "sha256": "f0f639189843668f480629df87f02cbef73dfc70d2e4e33b280ca7142827b314",
+                  "opcode": 9,
+                  "command": "callstd",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135867813,
+                      "stack": [
+                        135845204
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135881322,
+                  "size": 1,
+                  "sha256": "265fda17a34611b1533d8a281ff680dc5791b0ce0a11c25b35e11c8e75685509",
+                  "opcode": 39,
+                  "command": "waitstate",
+                  "stack": [
+                    135845151
+                  ],
+                  "successors": [
+                    {
+                      "address": 135881323,
+                      "stack": [
+                        135845151
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135867813,
+                  "size": 5,
+                  "sha256": "9e787f456e50e0ca96fb0481f365686e996b9e8c3d592f475eda66d2568cb911",
+                  "opcode": 103,
+                  "command": "message",
+                  "stack": [
+                    135845204
+                  ],
+                  "successors": [
+                    {
+                      "address": 135867818,
+                      "stack": [
+                        135845204
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135881323,
+                  "size": 1,
+                  "sha256": "189f40034be7a199f1fa9891668ee3ab6049f82d38c68be70f596eab2e1857b7",
+                  "opcode": 106,
+                  "command": "lock",
+                  "stack": [
+                    135845151
+                  ],
+                  "successors": [
+                    {
+                      "address": 135881324,
+                      "stack": [
+                        135845151
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135867818,
+                  "size": 1,
+                  "sha256": "252f10c83610ebca1a059c0bae8255eba2f95be4d1d7bcfa89d7248a82d9f111",
+                  "opcode": 102,
+                  "command": "waitmessage",
+                  "stack": [
+                    135845204
+                  ],
+                  "successors": [
+                    {
+                      "address": 135867819,
+                      "stack": [
+                        135845204
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135881324,
+                  "size": 1,
+                  "sha256": "bbeebd879e1dff6918546dc0c179fdde505f2a21591c9a9c96e36b054ec5af83",
+                  "opcode": 90,
+                  "command": "faceplayer",
+                  "stack": [
+                    135845151
+                  ],
+                  "successors": [
+                    {
+                      "address": 135881325,
+                      "stack": [
+                        135845151
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135867819,
+                  "size": 1,
+                  "sha256": "62c66a7a5dd70c3146618063c344e531e6d4b59e379808443ce962b3abd63c5a",
+                  "opcode": 109,
+                  "command": "waitbuttonpress",
+                  "stack": [
+                    135845204
+                  ],
+                  "successors": [
+                    {
+                      "address": 135867820,
+                      "stack": [
+                        135845204
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135881325,
+                  "size": 5,
+                  "sha256": "aa253c94e0720257bb4e65a9fa3e0c34668c86ee13740a8286a4318cac01e330",
+                  "opcode": 25,
+                  "command": "copyvar",
+                  "stack": [
+                    135845151
+                  ],
+                  "successors": [
+                    {
+                      "address": 135881330,
+                      "stack": [
+                        135845151
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135867820,
+                  "size": 1,
+                  "sha256": "084fed08b978af4d7d196a7446a86b58009e636b611db16211b65a9aadff29c5",
+                  "opcode": 3,
+                  "command": "return",
+                  "stack": [
+                    135845204
+                  ],
+                  "successors": [
+                    {
+                      "address": 135845204,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135881330,
+                  "size": 1,
+                  "sha256": "084fed08b978af4d7d196a7446a86b58009e636b611db16211b65a9aadff29c5",
+                  "opcode": 3,
+                  "command": "return",
+                  "stack": [
+                    135845151
+                  ],
+                  "successors": [
+                    {
+                      "address": 135845151,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135845204,
+                  "size": 1,
+                  "sha256": "acac86c0e609ca906f632b0e2dacccb2b77d22b0621f20ebece1a4835b93f6f0",
+                  "opcode": 108,
+                  "command": "release",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135845205,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135845151,
+                  "size": 5,
+                  "sha256": "93704b05b392b5ad47e6d68889b8800eccaae3908ffb9089cbcafb5433dc21f7",
+                  "opcode": 33,
+                  "command": "compare_var_to_value",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135845156,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135845205,
+                  "size": 1,
+                  "sha256": "dbc1b4c900ffe48d575b5da5c638040125f65db0fe3e24494b76ea986457d986",
+                  "opcode": 2,
+                  "command": "end",
+                  "stack": [],
+                  "successors": []
+                },
+                {
+                  "address": 135845156,
+                  "size": 6,
+                  "sha256": "eb5ec85a7b7f99856f4cb138641a966c65c72e534397701f0170dee3cfbaf6bf",
+                  "opcode": 6,
+                  "command": "goto_if",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135845162,
+                      "stack": []
+                    },
+                    {
+                      "address": 135845196,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135845162,
+                  "size": 5,
+                  "sha256": "24a63cd6c88c0e79d061aac10deea31be3fac4693b0b04bb43a696e35a004fa2",
+                  "opcode": 4,
+                  "command": "call",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135881331,
+                      "stack": [
+                        135845167
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135881331,
+                  "size": 5,
+                  "sha256": "568e376ca75021b610ae5cb59a024fdbbd768b6a25f93896e41894638e14b11f",
+                  "opcode": 25,
+                  "command": "copyvar",
+                  "stack": [
+                    135845167
+                  ],
+                  "successors": [
+                    {
+                      "address": 135881336,
+                      "stack": [
+                        135845167
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135881336,
+                  "size": 5,
+                  "sha256": "c27dc726cac2e6f81f9690c3ca58c79b47ab0afcd542627f2daafe7b344c37d7",
+                  "opcode": 38,
+                  "command": "specialvar",
+                  "stack": [
+                    135845167
+                  ],
+                  "successors": [
+                    {
+                      "address": 135881341,
+                      "stack": [
+                        135845167
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135881341,
+                  "size": 5,
+                  "sha256": "122dbacbe80c55b0f41b8a057cfa240f99587fa5ca80418ce76a52b00f1f954c",
+                  "opcode": 25,
+                  "command": "copyvar",
+                  "stack": [
+                    135845167
+                  ],
+                  "successors": [
+                    {
+                      "address": 135881346,
+                      "stack": [
+                        135845167
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135881346,
+                  "size": 1,
+                  "sha256": "084fed08b978af4d7d196a7446a86b58009e636b611db16211b65a9aadff29c5",
+                  "opcode": 3,
+                  "command": "return",
+                  "stack": [
+                    135845167
+                  ],
+                  "successors": [
+                    {
+                      "address": 135845167,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135845167,
+                  "size": 5,
+                  "sha256": "8237120a9eae3130278be0175c7d75c3fae36f8ac7d8f1a493b4a4604d8b94c0",
+                  "opcode": 34,
+                  "command": "compare_var_to_var",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135845172,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135845172,
+                  "size": 6,
+                  "sha256": "ca88dedb0757bb3001a683a5b35ff765694f7066547e0cbc54b910a71d6190c8",
+                  "opcode": 6,
+                  "command": "goto_if",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135845178,
+                      "stack": []
+                    },
+                    {
+                      "address": 135845206,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135845178,
+                  "size": 5,
+                  "sha256": "aa81861ec5d841fc9cf15cd85b3632aaaa18935dcc72e9bc0d4a666c60e74d49",
+                  "opcode": 4,
+                  "command": "call",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135881347,
+                      "stack": [
+                        135845183
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135845206,
+                  "size": 4,
+                  "sha256": "18e04a04329de2dbad6f87468aee79c8290740279441c788629520e8fa5ac89b",
+                  "opcode": 125,
+                  "command": "bufferspeciesname",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135845210,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135881347,
+                  "size": 5,
+                  "sha256": "7d3cd82823f44247f1e3d349656752b44d48f995525cf8d16d8c4bb4ddafd0c5",
+                  "opcode": 25,
+                  "command": "copyvar",
+                  "stack": [
+                    135845183
+                  ],
+                  "successors": [
+                    {
+                      "address": 135881352,
+                      "stack": [
+                        135845183
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135845210,
+                  "size": 6,
+                  "sha256": "def558bcfd3c0695a05ad903d10a1be8f84c5bc84bd0a1a5d380ba99154e4e2c",
+                  "opcode": 15,
+                  "command": "loadword",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135845216,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135881352,
+                  "size": 5,
+                  "sha256": "568e376ca75021b610ae5cb59a024fdbbd768b6a25f93896e41894638e14b11f",
+                  "opcode": 25,
+                  "command": "copyvar",
+                  "stack": [
+                    135845183
+                  ],
+                  "successors": [
+                    {
+                      "address": 135881357,
+                      "stack": [
+                        135845183
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135845216,
+                  "size": 2,
+                  "sha256": "f0f639189843668f480629df87f02cbef73dfc70d2e4e33b280ca7142827b314",
+                  "opcode": 9,
+                  "command": "callstd",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135867813,
+                      "stack": [
+                        135845218
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135881357,
+                  "size": 3,
+                  "sha256": "dd751577d0769a077e5d6326507282533f123f61bb4e5712afcb7e06c04faca6",
+                  "opcode": 37,
+                  "command": "special",
+                  "stack": [
+                    135845183
+                  ],
+                  "successors": [
+                    {
+                      "address": 135881360,
+                      "stack": [
+                        135845183
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135867813,
+                  "size": 5,
+                  "sha256": "9e787f456e50e0ca96fb0481f365686e996b9e8c3d592f475eda66d2568cb911",
+                  "opcode": 103,
+                  "command": "message",
+                  "stack": [
+                    135845218
+                  ],
+                  "successors": [
+                    {
+                      "address": 135867818,
+                      "stack": [
+                        135845218
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135881360,
+                  "size": 3,
+                  "sha256": "fe408dbfd2ea4846d9f3c1095c974801768630a5aa02df78a7276e971cca2ae3",
+                  "opcode": 37,
+                  "command": "special",
+                  "stack": [
+                    135845183
+                  ],
+                  "successors": [
+                    {
+                      "address": 135881363,
+                      "stack": [
+                        135845183
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135867818,
+                  "size": 1,
+                  "sha256": "252f10c83610ebca1a059c0bae8255eba2f95be4d1d7bcfa89d7248a82d9f111",
+                  "opcode": 102,
+                  "command": "waitmessage",
+                  "stack": [
+                    135845218
+                  ],
+                  "successors": [
+                    {
+                      "address": 135867819,
+                      "stack": [
+                        135845218
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135881363,
+                  "size": 1,
+                  "sha256": "265fda17a34611b1533d8a281ff680dc5791b0ce0a11c25b35e11c8e75685509",
+                  "opcode": 39,
+                  "command": "waitstate",
+                  "stack": [
+                    135845183
+                  ],
+                  "successors": [
+                    {
+                      "address": 135881364,
+                      "stack": [
+                        135845183
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135867819,
+                  "size": 1,
+                  "sha256": "62c66a7a5dd70c3146618063c344e531e6d4b59e379808443ce962b3abd63c5a",
+                  "opcode": 109,
+                  "command": "waitbuttonpress",
+                  "stack": [
+                    135845218
+                  ],
+                  "successors": [
+                    {
+                      "address": 135867820,
+                      "stack": [
+                        135845218
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135881364,
+                  "size": 1,
+                  "sha256": "189f40034be7a199f1fa9891668ee3ab6049f82d38c68be70f596eab2e1857b7",
+                  "opcode": 106,
+                  "command": "lock",
+                  "stack": [
+                    135845183
+                  ],
+                  "successors": [
+                    {
+                      "address": 135881365,
+                      "stack": [
+                        135845183
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135867820,
+                  "size": 1,
+                  "sha256": "084fed08b978af4d7d196a7446a86b58009e636b611db16211b65a9aadff29c5",
+                  "opcode": 3,
+                  "command": "return",
+                  "stack": [
+                    135845218
+                  ],
+                  "successors": [
+                    {
+                      "address": 135845218,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135881365,
+                  "size": 1,
+                  "sha256": "bbeebd879e1dff6918546dc0c179fdde505f2a21591c9a9c96e36b054ec5af83",
+                  "opcode": 90,
+                  "command": "faceplayer",
+                  "stack": [
+                    135845183
+                  ],
+                  "successors": [
+                    {
+                      "address": 135881366,
+                      "stack": [
+                        135845183
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135845218,
+                  "size": 1,
+                  "sha256": "acac86c0e609ca906f632b0e2dacccb2b77d22b0621f20ebece1a4835b93f6f0",
+                  "opcode": 108,
+                  "command": "release",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135845219,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135881366,
+                  "size": 1,
+                  "sha256": "084fed08b978af4d7d196a7446a86b58009e636b611db16211b65a9aadff29c5",
+                  "opcode": 3,
+                  "command": "return",
+                  "stack": [
+                    135845183
+                  ],
+                  "successors": [
+                    {
+                      "address": 135845183,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135845219,
+                  "size": 1,
+                  "sha256": "dbc1b4c900ffe48d575b5da5c638040125f65db0fe3e24494b76ea986457d986",
+                  "opcode": 2,
+                  "command": "end",
+                  "stack": [],
+                  "successors": []
+                },
+                {
+                  "address": 135845183,
+                  "size": 6,
+                  "sha256": "e60c37df3e750c666e009f42698a4495367cf4814a107c85c1da7484818639be",
+                  "opcode": 15,
+                  "command": "loadword",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135845189,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135845189,
+                  "size": 2,
+                  "sha256": "f0f639189843668f480629df87f02cbef73dfc70d2e4e33b280ca7142827b314",
+                  "opcode": 9,
+                  "command": "callstd",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135867813,
+                      "stack": [
+                        135845191
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135867813,
+                  "size": 5,
+                  "sha256": "9e787f456e50e0ca96fb0481f365686e996b9e8c3d592f475eda66d2568cb911",
+                  "opcode": 103,
+                  "command": "message",
+                  "stack": [
+                    135845191
+                  ],
+                  "successors": [
+                    {
+                      "address": 135867818,
+                      "stack": [
+                        135845191
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135867818,
+                  "size": 1,
+                  "sha256": "252f10c83610ebca1a059c0bae8255eba2f95be4d1d7bcfa89d7248a82d9f111",
+                  "opcode": 102,
+                  "command": "waitmessage",
+                  "stack": [
+                    135845191
+                  ],
+                  "successors": [
+                    {
+                      "address": 135867819,
+                      "stack": [
+                        135845191
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135867819,
+                  "size": 1,
+                  "sha256": "62c66a7a5dd70c3146618063c344e531e6d4b59e379808443ce962b3abd63c5a",
+                  "opcode": 109,
+                  "command": "waitbuttonpress",
+                  "stack": [
+                    135845191
+                  ],
+                  "successors": [
+                    {
+                      "address": 135867820,
+                      "stack": [
+                        135845191
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135867820,
+                  "size": 1,
+                  "sha256": "084fed08b978af4d7d196a7446a86b58009e636b611db16211b65a9aadff29c5",
+                  "opcode": 3,
+                  "command": "return",
+                  "stack": [
+                    135845191
+                  ],
+                  "successors": [
+                    {
+                      "address": 135845191,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135845191,
+                  "size": 3,
+                  "sha256": "07a85b8315f50b2e3e74bc390fa25f9401e2b6031b21478070749ae6375a9afd",
+                  "opcode": 41,
+                  "command": "setflag",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135845194,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135845194,
+                  "size": 1,
+                  "sha256": "acac86c0e609ca906f632b0e2dacccb2b77d22b0621f20ebece1a4835b93f6f0",
+                  "opcode": 108,
+                  "command": "release",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135845195,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135845195,
+                  "size": 1,
+                  "sha256": "dbc1b4c900ffe48d575b5da5c638040125f65db0fe3e24494b76ea986457d986",
+                  "opcode": 2,
+                  "command": "end",
+                  "stack": [],
+                  "successors": []
+                }
+              ],
+              "target_loadwords_found": [],
+              "unhandled_opcodes": [],
+              "bounded_graph_complete": true,
+              "runtime_effects_proven": false,
+              "all_roots_unreachable_claimed": false
+            },
+            {
+              "owner_id": "OBJECT:21/0:0",
+              "root": 135844163,
+              "standard_edges_expanded": true,
+              "state_count": 83,
+              "nodes": [
+                {
+                  "address": 135844163,
+                  "size": 1,
+                  "sha256": "189f40034be7a199f1fa9891668ee3ab6049f82d38c68be70f596eab2e1857b7",
+                  "opcode": 106,
+                  "command": "lock",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135844164,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135844164,
+                  "size": 1,
+                  "sha256": "bbeebd879e1dff6918546dc0c179fdde505f2a21591c9a9c96e36b054ec5af83",
+                  "opcode": 90,
+                  "command": "faceplayer",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135844165,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135844165,
+                  "size": 5,
+                  "sha256": "7e1c2c14d7a73a7bb01b5ed2224b35cbeb62d15290e67373d8fd170be2e06ac2",
+                  "opcode": 4,
+                  "command": "call",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135872070,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872070,
+                  "size": 3,
+                  "sha256": "68b3e6cd2c3481a88a813292376bc771f8c7760f6c89dc29e6e7556807649c70",
+                  "opcode": 37,
+                  "command": "special",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872073,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872073,
+                  "size": 5,
+                  "sha256": "59a34122eaa208b816bd9b7e08834c628346ecaba0130bced78001f974cc3b69",
+                  "opcode": 33,
+                  "command": "compare_var_to_value",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872078,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872078,
+                  "size": 6,
+                  "sha256": "ac02559b2629740ba68047dde8c615864b1875d79c036cbde6b91a7360c8e563",
+                  "opcode": 6,
+                  "command": "goto_if",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872084,
+                      "stack": [
+                        135844170
+                      ]
+                    },
+                    {
+                      "address": 135876746,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872084,
+                  "size": 5,
+                  "sha256": "b3bee917785376974d566bd441aef30b7d56750b23f8f7ba8604ae56b2516630",
+                  "opcode": 103,
+                  "command": "message",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872089,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135876746,
+                  "size": 1,
+                  "sha256": "acac86c0e609ca906f632b0e2dacccb2b77d22b0621f20ebece1a4835b93f6f0",
+                  "opcode": 108,
+                  "command": "release",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135876747,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872089,
+                  "size": 1,
+                  "sha256": "252f10c83610ebca1a059c0bae8255eba2f95be4d1d7bcfa89d7248a82d9f111",
+                  "opcode": 102,
+                  "command": "waitmessage",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872090,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135876747,
+                  "size": 1,
+                  "sha256": "dbc1b4c900ffe48d575b5da5c638040125f65db0fe3e24494b76ea986457d986",
+                  "opcode": 2,
+                  "command": "end",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": []
+                },
+                {
+                  "address": 135872090,
+                  "size": 5,
+                  "sha256": "39afc31c4b97e4982a719a162471147157fd332a0e42b215c5e3425ebd9e6555",
+                  "opcode": 111,
+                  "command": "multichoice",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872095,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872095,
+                  "size": 5,
+                  "sha256": "c771907ee3b56d884ce9c1351c0ff345a26a7ea4dc0270339065b00c61004209",
+                  "opcode": 25,
+                  "command": "copyvar",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872100,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872100,
+                  "size": 5,
+                  "sha256": "4fb15658f90bee04d12b1e4f79c5c52a6f398511af4c7494db997e6dfabcde0b",
+                  "opcode": 33,
+                  "command": "compare_var_to_value",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872105,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872105,
+                  "size": 6,
+                  "sha256": "41516af427e2ebfd0d48c1ac2fce68232b0a3ca7d325aea877fb7d28691d5dcd",
+                  "opcode": 6,
+                  "command": "goto_if",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872111,
+                      "stack": [
+                        135844170
+                      ]
+                    },
+                    {
+                      "address": 135872134,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872111,
+                  "size": 5,
+                  "sha256": "2cacec105048e37b1948945ff8d911dcabf1134f58354329d8b40e76dd8243bc",
+                  "opcode": 33,
+                  "command": "compare_var_to_value",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872116,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872134,
+                  "size": 2,
+                  "sha256": "357012093c36ac0cfa280ce9840123f612f556f4ab3f92dca45850d5304439dc",
+                  "opcode": 195,
+                  "command": "incrementgamestat",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872136,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872116,
+                  "size": 6,
+                  "sha256": "8f88c487cbc4ec7047653b45860730dd7b310491b54c1fe488be8b347aae2c5f",
+                  "opcode": 6,
+                  "command": "goto_if",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872122,
+                      "stack": [
+                        135844170
+                      ]
+                    },
+                    {
+                      "address": 135872305,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872136,
+                  "size": 5,
+                  "sha256": "45b77007afd226b4d5dbd1132cd5dfa9094509fd040fa2c77fce48d0ffd62cb1",
+                  "opcode": 103,
+                  "command": "message",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872141,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872122,
+                  "size": 5,
+                  "sha256": "f9d558f777155d6e392a11d3204e18d096d4b371421f4e1c3258bb6779221510",
+                  "opcode": 33,
+                  "command": "compare_var_to_value",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872127,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872305,
+                  "size": 6,
+                  "sha256": "a74bb76701328effe6359b034b54e91112f4824d5b85176b6e3121cc85f909eb",
+                  "opcode": 15,
+                  "command": "loadword",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872311,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872141,
+                  "size": 1,
+                  "sha256": "252f10c83610ebca1a059c0bae8255eba2f95be4d1d7bcfa89d7248a82d9f111",
+                  "opcode": 102,
+                  "command": "waitmessage",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872142,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872127,
+                  "size": 6,
+                  "sha256": "8f88c487cbc4ec7047653b45860730dd7b310491b54c1fe488be8b347aae2c5f",
+                  "opcode": 6,
+                  "command": "goto_if",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872133,
+                      "stack": [
+                        135844170
+                      ]
+                    },
+                    {
+                      "address": 135872305,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872311,
+                  "size": 2,
+                  "sha256": "f0f639189843668f480629df87f02cbef73dfc70d2e4e33b280ca7142827b314",
+                  "opcode": 9,
+                  "command": "callstd",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135867813,
+                      "stack": [
+                        135844170,
+                        135872313
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872142,
+                  "size": 5,
+                  "sha256": "4f96a6925a7a4a5dff452bb88a319a4c71d42cc7c4a2574d6fa476a2aa200146",
+                  "opcode": 4,
+                  "command": "call",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872156,
+                      "stack": [
+                        135844170,
+                        135872147
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872133,
+                  "size": 1,
+                  "sha256": "dbc1b4c900ffe48d575b5da5c638040125f65db0fe3e24494b76ea986457d986",
+                  "opcode": 2,
+                  "command": "end",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": []
+                },
+                {
+                  "address": 135867813,
+                  "size": 5,
+                  "sha256": "9e787f456e50e0ca96fb0481f365686e996b9e8c3d592f475eda66d2568cb911",
+                  "opcode": 103,
+                  "command": "message",
+                  "stack": [
+                    135844170,
+                    135872313
+                  ],
+                  "successors": [
+                    {
+                      "address": 135867818,
+                      "stack": [
+                        135844170,
+                        135872313
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872156,
+                  "size": 7,
+                  "sha256": "e812ea52a9565674759a76f835e3a14a1dfc30398cf7cf5563217a80c706a3e5",
+                  "opcode": 79,
+                  "command": "applymovement",
+                  "stack": [
+                    135844170,
+                    135872147
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872163,
+                      "stack": [
+                        135844170,
+                        135872147
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135867818,
+                  "size": 1,
+                  "sha256": "252f10c83610ebca1a059c0bae8255eba2f95be4d1d7bcfa89d7248a82d9f111",
+                  "opcode": 102,
+                  "command": "waitmessage",
+                  "stack": [
+                    135844170,
+                    135872313
+                  ],
+                  "successors": [
+                    {
+                      "address": 135867819,
+                      "stack": [
+                        135844170,
+                        135872313
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872163,
+                  "size": 3,
+                  "sha256": "cd661815953c156bbc5a7a9e93935b01a82dba75c83581301ee7d246ad119c05",
+                  "opcode": 81,
+                  "command": "waitmovement",
+                  "stack": [
+                    135844170,
+                    135872147
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872166,
+                      "stack": [
+                        135844170,
+                        135872147
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135867819,
+                  "size": 1,
+                  "sha256": "62c66a7a5dd70c3146618063c344e531e6d4b59e379808443ce962b3abd63c5a",
+                  "opcode": 109,
+                  "command": "waitbuttonpress",
+                  "stack": [
+                    135844170,
+                    135872313
+                  ],
+                  "successors": [
+                    {
+                      "address": 135867820,
+                      "stack": [
+                        135844170,
+                        135872313
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872166,
+                  "size": 3,
+                  "sha256": "5f584aa0f95b57844ead0e42dde89c306612f48cc908608457db8435fbb5973e",
+                  "opcode": 156,
+                  "command": "dofieldeffect",
+                  "stack": [
+                    135844170,
+                    135872147
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872169,
+                      "stack": [
+                        135844170,
+                        135872147
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135867820,
+                  "size": 1,
+                  "sha256": "084fed08b978af4d7d196a7446a86b58009e636b611db16211b65a9aadff29c5",
+                  "opcode": 3,
+                  "command": "return",
+                  "stack": [
+                    135844170,
+                    135872313
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872313,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872169,
+                  "size": 3,
+                  "sha256": "5ff73d509175c619b6179f7e8c6a1f0f055e48c7a66e9cdcbdb3e73b75b2e047",
+                  "opcode": 158,
+                  "command": "waitfieldeffect",
+                  "stack": [
+                    135844170,
+                    135872147
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872172,
+                      "stack": [
+                        135844170,
+                        135872147
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872313,
+                  "size": 1,
+                  "sha256": "084fed08b978af4d7d196a7446a86b58009e636b611db16211b65a9aadff29c5",
+                  "opcode": 3,
+                  "command": "return",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135844170,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135872172,
+                  "size": 7,
+                  "sha256": "c1b26d682324f06dc0ac3b22a8f9d8582cc87f92dbdfb48bf270bdfacc7a5f87",
+                  "opcode": 79,
+                  "command": "applymovement",
+                  "stack": [
+                    135844170,
+                    135872147
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872179,
+                      "stack": [
+                        135844170,
+                        135872147
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135844170,
+                  "size": 1,
+                  "sha256": "acac86c0e609ca906f632b0e2dacccb2b77d22b0621f20ebece1a4835b93f6f0",
+                  "opcode": 108,
+                  "command": "release",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135844171,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135872179,
+                  "size": 3,
+                  "sha256": "cd661815953c156bbc5a7a9e93935b01a82dba75c83581301ee7d246ad119c05",
+                  "opcode": 81,
+                  "command": "waitmovement",
+                  "stack": [
+                    135844170,
+                    135872147
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872182,
+                      "stack": [
+                        135844170,
+                        135872147
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135844171,
+                  "size": 1,
+                  "sha256": "dbc1b4c900ffe48d575b5da5c638040125f65db0fe3e24494b76ea986457d986",
+                  "opcode": 2,
+                  "command": "end",
+                  "stack": [],
+                  "successors": []
+                },
+                {
+                  "address": 135872182,
+                  "size": 3,
+                  "sha256": "adc47de1701f2e9c9d6026d6c38d5b9d2c1c689d09d697d8223bca1551c7275c",
+                  "opcode": 37,
+                  "command": "special",
+                  "stack": [
+                    135844170,
+                    135872147
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872185,
+                      "stack": [
+                        135844170,
+                        135872147
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872185,
+                  "size": 1,
+                  "sha256": "084fed08b978af4d7d196a7446a86b58009e636b611db16211b65a9aadff29c5",
+                  "opcode": 3,
+                  "command": "return",
+                  "stack": [
+                    135844170,
+                    135872147
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872147,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872147,
+                  "size": 3,
+                  "sha256": "ad5936450c2353dade8d7cc24581c4c1c4d90b5e4e8c907f4ef5a17bc16e371b",
+                  "opcode": 37,
+                  "command": "special",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872150,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872150,
+                  "size": 5,
+                  "sha256": "7c0d9ff871d76b1fac081f8812bca52351906aeefce9921f0a9b9b7a89bb8b9a",
+                  "opcode": 5,
+                  "command": "goto",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872186,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872186,
+                  "size": 5,
+                  "sha256": "34d11536c3c365c287f177bf0bfd9c1b8ecc0ff8cc0636fa01f47bc286ea19cc",
+                  "opcode": 38,
+                  "command": "specialvar",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872191,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872191,
+                  "size": 5,
+                  "sha256": "7d157e606e02436bfd2dd57131cf34676fc674313855158a75de9d095e180410",
+                  "opcode": 33,
+                  "command": "compare_var_to_value",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872196,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872196,
+                  "size": 6,
+                  "sha256": "e6f9e1ee64929a7e31218e04e175c123171580d9f60ab9737e0af27c55a8d7aa",
+                  "opcode": 6,
+                  "command": "goto_if",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872202,
+                      "stack": [
+                        135844170
+                      ]
+                    },
+                    {
+                      "address": 135872235,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872202,
+                  "size": 5,
+                  "sha256": "6363427ec14dcb7cc388dc2b4dbf89557b154299c39498f287b20cfece602fca",
+                  "opcode": 38,
+                  "command": "specialvar",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872207,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872235,
+                  "size": 5,
+                  "sha256": "9a664f3322acc0d0897bab7f78d42ae10226519e1fc57b7d3fc12c0b800d0e38",
+                  "opcode": 103,
+                  "command": "message",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872240,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872207,
+                  "size": 5,
+                  "sha256": "88bc6a1ca71dd37d78056f3567cde910c67cb573591a021a20ef0b8650f8551f",
+                  "opcode": 25,
+                  "command": "copyvar",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872212,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872240,
+                  "size": 1,
+                  "sha256": "252f10c83610ebca1a059c0bae8255eba2f95be4d1d7bcfa89d7248a82d9f111",
+                  "opcode": 102,
+                  "command": "waitmessage",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872241,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872212,
+                  "size": 5,
+                  "sha256": "dfadc35f156010fafd684df1cd35bde4435b2dffa9afed59346caa3c45240433",
+                  "opcode": 33,
+                  "command": "compare_var_to_value",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872217,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872241,
+                  "size": 7,
+                  "sha256": "df8f8c944fee480e69d8da3cd89daa9a501973df3a62d995d7d2dac84ad21008",
+                  "opcode": 79,
+                  "command": "applymovement",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872248,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872217,
+                  "size": 6,
+                  "sha256": "e6f9e1ee64929a7e31218e04e175c123171580d9f60ab9737e0af27c55a8d7aa",
+                  "opcode": 6,
+                  "command": "goto_if",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872223,
+                      "stack": [
+                        135844170
+                      ]
+                    },
+                    {
+                      "address": 135872235,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872248,
+                  "size": 3,
+                  "sha256": "cd661815953c156bbc5a7a9e93935b01a82dba75c83581301ee7d246ad119c05",
+                  "opcode": 81,
+                  "command": "waitmovement",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872251,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872223,
+                  "size": 5,
+                  "sha256": "70d526c622d11d96afd643b1c8d04860f4e26abda25cfc2a64258100f8599a4a",
+                  "opcode": 33,
+                  "command": "compare_var_to_value",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872228,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872251,
+                  "size": 6,
+                  "sha256": "a74bb76701328effe6359b034b54e91112f4824d5b85176b6e3121cc85f909eb",
+                  "opcode": 15,
+                  "command": "loadword",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872257,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872228,
+                  "size": 6,
+                  "sha256": "dfd076311df5a9566f789638ff3efcbcb34bb05c306f7fdeef756c514e127337",
+                  "opcode": 6,
+                  "command": "goto_if",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872234,
+                      "stack": [
+                        135844170
+                      ]
+                    },
+                    {
+                      "address": 135872260,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872257,
+                  "size": 2,
+                  "sha256": "f0f639189843668f480629df87f02cbef73dfc70d2e4e33b280ca7142827b314",
+                  "opcode": 9,
+                  "command": "callstd",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135867813,
+                      "stack": [
+                        135844170,
+                        135872259
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872234,
+                  "size": 1,
+                  "sha256": "dbc1b4c900ffe48d575b5da5c638040125f65db0fe3e24494b76ea986457d986",
+                  "opcode": 2,
+                  "command": "end",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": []
+                },
+                {
+                  "address": 135872260,
+                  "size": 3,
+                  "sha256": "ae541f87a13fb2f3215e09957b3e8eb4ab19a9d35ab50744835a24a72e1684a0",
+                  "opcode": 43,
+                  "command": "checkflag",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872263,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135867813,
+                  "size": 5,
+                  "sha256": "9e787f456e50e0ca96fb0481f365686e996b9e8c3d592f475eda66d2568cb911",
+                  "opcode": 103,
+                  "command": "message",
+                  "stack": [
+                    135844170,
+                    135872259
+                  ],
+                  "successors": [
+                    {
+                      "address": 135867818,
+                      "stack": [
+                        135844170,
+                        135872259
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872263,
+                  "size": 6,
+                  "sha256": "e6f9e1ee64929a7e31218e04e175c123171580d9f60ab9737e0af27c55a8d7aa",
+                  "opcode": 6,
+                  "command": "goto_if",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872269,
+                      "stack": [
+                        135844170
+                      ]
+                    },
+                    {
+                      "address": 135872235,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135867818,
+                  "size": 1,
+                  "sha256": "252f10c83610ebca1a059c0bae8255eba2f95be4d1d7bcfa89d7248a82d9f111",
+                  "opcode": 102,
+                  "command": "waitmessage",
+                  "stack": [
+                    135844170,
+                    135872259
+                  ],
+                  "successors": [
+                    {
+                      "address": 135867819,
+                      "stack": [
+                        135844170,
+                        135872259
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872269,
+                  "size": 6,
+                  "sha256": "a76ab61054c14a102cf8967ee56bbc442dbd0b1ec466a67bfb736f89652cdb45",
+                  "opcode": 15,
+                  "command": "loadword",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872275,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135867819,
+                  "size": 1,
+                  "sha256": "62c66a7a5dd70c3146618063c344e531e6d4b59e379808443ce962b3abd63c5a",
+                  "opcode": 109,
+                  "command": "waitbuttonpress",
+                  "stack": [
+                    135844170,
+                    135872259
+                  ],
+                  "successors": [
+                    {
+                      "address": 135867820,
+                      "stack": [
+                        135844170,
+                        135872259
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872275,
+                  "size": 2,
+                  "sha256": "f0f639189843668f480629df87f02cbef73dfc70d2e4e33b280ca7142827b314",
+                  "opcode": 9,
+                  "command": "callstd",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135867813,
+                      "stack": [
+                        135844170,
+                        135872277
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135867820,
+                  "size": 1,
+                  "sha256": "084fed08b978af4d7d196a7446a86b58009e636b611db16211b65a9aadff29c5",
+                  "opcode": 3,
+                  "command": "return",
+                  "stack": [
+                    135844170,
+                    135872259
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872259,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135867813,
+                  "size": 5,
+                  "sha256": "9e787f456e50e0ca96fb0481f365686e996b9e8c3d592f475eda66d2568cb911",
+                  "opcode": 103,
+                  "command": "message",
+                  "stack": [
+                    135844170,
+                    135872277
+                  ],
+                  "successors": [
+                    {
+                      "address": 135867818,
+                      "stack": [
+                        135844170,
+                        135872277
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872259,
+                  "size": 1,
+                  "sha256": "084fed08b978af4d7d196a7446a86b58009e636b611db16211b65a9aadff29c5",
+                  "opcode": 3,
+                  "command": "return",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135844170,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135867818,
+                  "size": 1,
+                  "sha256": "252f10c83610ebca1a059c0bae8255eba2f95be4d1d7bcfa89d7248a82d9f111",
+                  "opcode": 102,
+                  "command": "waitmessage",
+                  "stack": [
+                    135844170,
+                    135872277
+                  ],
+                  "successors": [
+                    {
+                      "address": 135867819,
+                      "stack": [
+                        135844170,
+                        135872277
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135867819,
+                  "size": 1,
+                  "sha256": "62c66a7a5dd70c3146618063c344e531e6d4b59e379808443ce962b3abd63c5a",
+                  "opcode": 109,
+                  "command": "waitbuttonpress",
+                  "stack": [
+                    135844170,
+                    135872277
+                  ],
+                  "successors": [
+                    {
+                      "address": 135867820,
+                      "stack": [
+                        135844170,
+                        135872277
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135867820,
+                  "size": 1,
+                  "sha256": "084fed08b978af4d7d196a7446a86b58009e636b611db16211b65a9aadff29c5",
+                  "opcode": 3,
+                  "command": "return",
+                  "stack": [
+                    135844170,
+                    135872277
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872277,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872277,
+                  "size": 3,
+                  "sha256": "e736de6aa2ab2b4480141c67b52847229cc3611b44efee035815f88c7af797b0",
+                  "opcode": 41,
+                  "command": "setflag",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872280,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872280,
+                  "size": 5,
+                  "sha256": "aeaa3e8a659b0004ad3c10f94608eb88b16d21fc5fc5ecf0a4c673b00d14e413",
+                  "opcode": 103,
+                  "command": "message",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872285,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872285,
+                  "size": 1,
+                  "sha256": "252f10c83610ebca1a059c0bae8255eba2f95be4d1d7bcfa89d7248a82d9f111",
+                  "opcode": 102,
+                  "command": "waitmessage",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872286,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872286,
+                  "size": 7,
+                  "sha256": "df8f8c944fee480e69d8da3cd89daa9a501973df3a62d995d7d2dac84ad21008",
+                  "opcode": 79,
+                  "command": "applymovement",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872293,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872293,
+                  "size": 3,
+                  "sha256": "cd661815953c156bbc5a7a9e93935b01a82dba75c83581301ee7d246ad119c05",
+                  "opcode": 81,
+                  "command": "waitmovement",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872296,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872296,
+                  "size": 6,
+                  "sha256": "a74bb76701328effe6359b034b54e91112f4824d5b85176b6e3121cc85f909eb",
+                  "opcode": 15,
+                  "command": "loadword",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872302,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872302,
+                  "size": 2,
+                  "sha256": "f0f639189843668f480629df87f02cbef73dfc70d2e4e33b280ca7142827b314",
+                  "opcode": 9,
+                  "command": "callstd",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135867813,
+                      "stack": [
+                        135844170,
+                        135872304
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135867813,
+                  "size": 5,
+                  "sha256": "9e787f456e50e0ca96fb0481f365686e996b9e8c3d592f475eda66d2568cb911",
+                  "opcode": 103,
+                  "command": "message",
+                  "stack": [
+                    135844170,
+                    135872304
+                  ],
+                  "successors": [
+                    {
+                      "address": 135867818,
+                      "stack": [
+                        135844170,
+                        135872304
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135867818,
+                  "size": 1,
+                  "sha256": "252f10c83610ebca1a059c0bae8255eba2f95be4d1d7bcfa89d7248a82d9f111",
+                  "opcode": 102,
+                  "command": "waitmessage",
+                  "stack": [
+                    135844170,
+                    135872304
+                  ],
+                  "successors": [
+                    {
+                      "address": 135867819,
+                      "stack": [
+                        135844170,
+                        135872304
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135867819,
+                  "size": 1,
+                  "sha256": "62c66a7a5dd70c3146618063c344e531e6d4b59e379808443ce962b3abd63c5a",
+                  "opcode": 109,
+                  "command": "waitbuttonpress",
+                  "stack": [
+                    135844170,
+                    135872304
+                  ],
+                  "successors": [
+                    {
+                      "address": 135867820,
+                      "stack": [
+                        135844170,
+                        135872304
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135867820,
+                  "size": 1,
+                  "sha256": "084fed08b978af4d7d196a7446a86b58009e636b611db16211b65a9aadff29c5",
+                  "opcode": 3,
+                  "command": "return",
+                  "stack": [
+                    135844170,
+                    135872304
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872304,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872304,
+                  "size": 1,
+                  "sha256": "084fed08b978af4d7d196a7446a86b58009e636b611db16211b65a9aadff29c5",
+                  "opcode": 3,
+                  "command": "return",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135844170,
+                      "stack": []
+                    }
+                  ]
+                }
+              ],
+              "target_loadwords_found": [],
+              "unhandled_opcodes": [],
+              "bounded_graph_complete": true,
+              "runtime_effects_proven": false,
+              "all_roots_unreachable_claimed": false
+            }
+          ],
+          "direct_graphs": [
+            {
+              "owner_id": "OBJECT:10/2:0",
+              "root": 135845106,
+              "standard_edges_expanded": false,
+              "state_count": 57,
+              "nodes": [
+                {
+                  "address": 135845106,
+                  "size": 1,
+                  "sha256": "189f40034be7a199f1fa9891668ee3ab6049f82d38c68be70f596eab2e1857b7",
+                  "opcode": 106,
+                  "command": "lock",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135845107,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135845107,
+                  "size": 1,
+                  "sha256": "bbeebd879e1dff6918546dc0c179fdde505f2a21591c9a9c96e36b054ec5af83",
+                  "opcode": 90,
+                  "command": "faceplayer",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135845108,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135845108,
+                  "size": 5,
+                  "sha256": "c8b2eea0f677aa9880efa2b4614a9328c58f5665bf64da51739a7ca55669ddc7",
+                  "opcode": 22,
+                  "command": "setvar",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135845113,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135845113,
+                  "size": 5,
+                  "sha256": "7761a0f0e830c7bcaec3daa33d9b8cf0122603ef782aeb4fcbf463af7812febd",
+                  "opcode": 4,
+                  "command": "call",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135881303,
+                      "stack": [
+                        135845118
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135881303,
+                  "size": 5,
+                  "sha256": "7d3cd82823f44247f1e3d349656752b44d48f995525cf8d16d8c4bb4ddafd0c5",
+                  "opcode": 25,
+                  "command": "copyvar",
+                  "stack": [
+                    135845118
+                  ],
+                  "successors": [
+                    {
+                      "address": 135881308,
+                      "stack": [
+                        135845118
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135881308,
+                  "size": 5,
+                  "sha256": "5880081ef5f63527c37db08fe12be3be5f61062aa430f4c3abc6a9c2d3c63233",
+                  "opcode": 38,
+                  "command": "specialvar",
+                  "stack": [
+                    135845118
+                  ],
+                  "successors": [
+                    {
+                      "address": 135881313,
+                      "stack": [
+                        135845118
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135881313,
+                  "size": 5,
+                  "sha256": "a353e965aa979d0f334ceb6ac1cf3e933dd6d28f74a1eaecb0294995eaaad122",
+                  "opcode": 25,
+                  "command": "copyvar",
+                  "stack": [
+                    135845118
+                  ],
+                  "successors": [
+                    {
+                      "address": 135881318,
+                      "stack": [
+                        135845118
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135881318,
+                  "size": 1,
+                  "sha256": "084fed08b978af4d7d196a7446a86b58009e636b611db16211b65a9aadff29c5",
+                  "opcode": 3,
+                  "command": "return",
+                  "stack": [
+                    135845118
+                  ],
+                  "successors": [
+                    {
+                      "address": 135845118,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135845118,
+                  "size": 3,
+                  "sha256": "93b53748c49d7c2851885e32b8dc0cbc12bb9a5673158967b0ecdf571e6ae5e6",
+                  "opcode": 43,
+                  "command": "checkflag",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135845121,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135845121,
+                  "size": 6,
+                  "sha256": "1c8a3271b7079c33817105341c869c30a7ef50bc37cc7eefe1b96c46522a692a",
+                  "opcode": 6,
+                  "command": "goto_if",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135845127,
+                      "stack": []
+                    },
+                    {
+                      "address": 135845220,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135845127,
+                  "size": 6,
+                  "sha256": "a981cb5dd2eba840d22e7fa0d3587089f361282e623337b5a29d86d7c02d2dd1",
+                  "opcode": 15,
+                  "command": "loadword",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135845133,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135845220,
+                  "size": 6,
+                  "sha256": "49b9677f6d246fcd500241e1041a5f722881f57fd84d621f6031e739356f33bc",
+                  "opcode": 15,
+                  "command": "loadword",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135845226,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135845133,
+                  "size": 2,
+                  "sha256": "d41ab920863795a707bd179708c6f65e6755e9f7b82da508e241098684798d8a",
+                  "opcode": 9,
+                  "command": "callstd",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135845135,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135845226,
+                  "size": 2,
+                  "sha256": "f0f639189843668f480629df87f02cbef73dfc70d2e4e33b280ca7142827b314",
+                  "opcode": 9,
+                  "command": "callstd",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135845228,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135845135,
+                  "size": 5,
+                  "sha256": "7d157e606e02436bfd2dd57131cf34676fc674313855158a75de9d095e180410",
+                  "opcode": 33,
+                  "command": "compare_var_to_value",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135845140,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135845228,
+                  "size": 1,
+                  "sha256": "acac86c0e609ca906f632b0e2dacccb2b77d22b0621f20ebece1a4835b93f6f0",
+                  "opcode": 108,
+                  "command": "release",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135845229,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135845140,
+                  "size": 6,
+                  "sha256": "269e323a9becd43275563add69db02302085e3181f285dbf3704f6745e3bd914",
+                  "opcode": 6,
+                  "command": "goto_if",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135845146,
+                      "stack": []
+                    },
+                    {
+                      "address": 135845196,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135845229,
+                  "size": 1,
+                  "sha256": "dbc1b4c900ffe48d575b5da5c638040125f65db0fe3e24494b76ea986457d986",
+                  "opcode": 2,
+                  "command": "end",
+                  "stack": [],
+                  "successors": []
+                },
+                {
+                  "address": 135845146,
+                  "size": 5,
+                  "sha256": "3d37f32fb617a6621de770f10809c1e308522eb2a9a0466603822d1de130f7d1",
+                  "opcode": 4,
+                  "command": "call",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135881319,
+                      "stack": [
+                        135845151
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135845196,
+                  "size": 6,
+                  "sha256": "52ab89c988281852e82352dab22804582fca3a68ce8761799fb64d8672a30bb1",
+                  "opcode": 15,
+                  "command": "loadword",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135845202,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135881319,
+                  "size": 3,
+                  "sha256": "15c3309f298cfed9aed415fe4824bef8d9144255751e33f836116040717efdfa",
+                  "opcode": 37,
+                  "command": "special",
+                  "stack": [
+                    135845151
+                  ],
+                  "successors": [
+                    {
+                      "address": 135881322,
+                      "stack": [
+                        135845151
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135845202,
+                  "size": 2,
+                  "sha256": "f0f639189843668f480629df87f02cbef73dfc70d2e4e33b280ca7142827b314",
+                  "opcode": 9,
+                  "command": "callstd",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135845204,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135881322,
+                  "size": 1,
+                  "sha256": "265fda17a34611b1533d8a281ff680dc5791b0ce0a11c25b35e11c8e75685509",
+                  "opcode": 39,
+                  "command": "waitstate",
+                  "stack": [
+                    135845151
+                  ],
+                  "successors": [
+                    {
+                      "address": 135881323,
+                      "stack": [
+                        135845151
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135845204,
+                  "size": 1,
+                  "sha256": "acac86c0e609ca906f632b0e2dacccb2b77d22b0621f20ebece1a4835b93f6f0",
+                  "opcode": 108,
+                  "command": "release",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135845205,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135881323,
+                  "size": 1,
+                  "sha256": "189f40034be7a199f1fa9891668ee3ab6049f82d38c68be70f596eab2e1857b7",
+                  "opcode": 106,
+                  "command": "lock",
+                  "stack": [
+                    135845151
+                  ],
+                  "successors": [
+                    {
+                      "address": 135881324,
+                      "stack": [
+                        135845151
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135845205,
+                  "size": 1,
+                  "sha256": "dbc1b4c900ffe48d575b5da5c638040125f65db0fe3e24494b76ea986457d986",
+                  "opcode": 2,
+                  "command": "end",
+                  "stack": [],
+                  "successors": []
+                },
+                {
+                  "address": 135881324,
+                  "size": 1,
+                  "sha256": "bbeebd879e1dff6918546dc0c179fdde505f2a21591c9a9c96e36b054ec5af83",
+                  "opcode": 90,
+                  "command": "faceplayer",
+                  "stack": [
+                    135845151
+                  ],
+                  "successors": [
+                    {
+                      "address": 135881325,
+                      "stack": [
+                        135845151
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135881325,
+                  "size": 5,
+                  "sha256": "aa253c94e0720257bb4e65a9fa3e0c34668c86ee13740a8286a4318cac01e330",
+                  "opcode": 25,
+                  "command": "copyvar",
+                  "stack": [
+                    135845151
+                  ],
+                  "successors": [
+                    {
+                      "address": 135881330,
+                      "stack": [
+                        135845151
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135881330,
+                  "size": 1,
+                  "sha256": "084fed08b978af4d7d196a7446a86b58009e636b611db16211b65a9aadff29c5",
+                  "opcode": 3,
+                  "command": "return",
+                  "stack": [
+                    135845151
+                  ],
+                  "successors": [
+                    {
+                      "address": 135845151,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135845151,
+                  "size": 5,
+                  "sha256": "93704b05b392b5ad47e6d68889b8800eccaae3908ffb9089cbcafb5433dc21f7",
+                  "opcode": 33,
+                  "command": "compare_var_to_value",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135845156,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135845156,
+                  "size": 6,
+                  "sha256": "eb5ec85a7b7f99856f4cb138641a966c65c72e534397701f0170dee3cfbaf6bf",
+                  "opcode": 6,
+                  "command": "goto_if",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135845162,
+                      "stack": []
+                    },
+                    {
+                      "address": 135845196,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135845162,
+                  "size": 5,
+                  "sha256": "24a63cd6c88c0e79d061aac10deea31be3fac4693b0b04bb43a696e35a004fa2",
+                  "opcode": 4,
+                  "command": "call",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135881331,
+                      "stack": [
+                        135845167
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135881331,
+                  "size": 5,
+                  "sha256": "568e376ca75021b610ae5cb59a024fdbbd768b6a25f93896e41894638e14b11f",
+                  "opcode": 25,
+                  "command": "copyvar",
+                  "stack": [
+                    135845167
+                  ],
+                  "successors": [
+                    {
+                      "address": 135881336,
+                      "stack": [
+                        135845167
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135881336,
+                  "size": 5,
+                  "sha256": "c27dc726cac2e6f81f9690c3ca58c79b47ab0afcd542627f2daafe7b344c37d7",
+                  "opcode": 38,
+                  "command": "specialvar",
+                  "stack": [
+                    135845167
+                  ],
+                  "successors": [
+                    {
+                      "address": 135881341,
+                      "stack": [
+                        135845167
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135881341,
+                  "size": 5,
+                  "sha256": "122dbacbe80c55b0f41b8a057cfa240f99587fa5ca80418ce76a52b00f1f954c",
+                  "opcode": 25,
+                  "command": "copyvar",
+                  "stack": [
+                    135845167
+                  ],
+                  "successors": [
+                    {
+                      "address": 135881346,
+                      "stack": [
+                        135845167
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135881346,
+                  "size": 1,
+                  "sha256": "084fed08b978af4d7d196a7446a86b58009e636b611db16211b65a9aadff29c5",
+                  "opcode": 3,
+                  "command": "return",
+                  "stack": [
+                    135845167
+                  ],
+                  "successors": [
+                    {
+                      "address": 135845167,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135845167,
+                  "size": 5,
+                  "sha256": "8237120a9eae3130278be0175c7d75c3fae36f8ac7d8f1a493b4a4604d8b94c0",
+                  "opcode": 34,
+                  "command": "compare_var_to_var",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135845172,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135845172,
+                  "size": 6,
+                  "sha256": "ca88dedb0757bb3001a683a5b35ff765694f7066547e0cbc54b910a71d6190c8",
+                  "opcode": 6,
+                  "command": "goto_if",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135845178,
+                      "stack": []
+                    },
+                    {
+                      "address": 135845206,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135845178,
+                  "size": 5,
+                  "sha256": "aa81861ec5d841fc9cf15cd85b3632aaaa18935dcc72e9bc0d4a666c60e74d49",
+                  "opcode": 4,
+                  "command": "call",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135881347,
+                      "stack": [
+                        135845183
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135845206,
+                  "size": 4,
+                  "sha256": "18e04a04329de2dbad6f87468aee79c8290740279441c788629520e8fa5ac89b",
+                  "opcode": 125,
+                  "command": "bufferspeciesname",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135845210,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135881347,
+                  "size": 5,
+                  "sha256": "7d3cd82823f44247f1e3d349656752b44d48f995525cf8d16d8c4bb4ddafd0c5",
+                  "opcode": 25,
+                  "command": "copyvar",
+                  "stack": [
+                    135845183
+                  ],
+                  "successors": [
+                    {
+                      "address": 135881352,
+                      "stack": [
+                        135845183
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135845210,
+                  "size": 6,
+                  "sha256": "def558bcfd3c0695a05ad903d10a1be8f84c5bc84bd0a1a5d380ba99154e4e2c",
+                  "opcode": 15,
+                  "command": "loadword",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135845216,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135881352,
+                  "size": 5,
+                  "sha256": "568e376ca75021b610ae5cb59a024fdbbd768b6a25f93896e41894638e14b11f",
+                  "opcode": 25,
+                  "command": "copyvar",
+                  "stack": [
+                    135845183
+                  ],
+                  "successors": [
+                    {
+                      "address": 135881357,
+                      "stack": [
+                        135845183
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135845216,
+                  "size": 2,
+                  "sha256": "f0f639189843668f480629df87f02cbef73dfc70d2e4e33b280ca7142827b314",
+                  "opcode": 9,
+                  "command": "callstd",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135845218,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135881357,
+                  "size": 3,
+                  "sha256": "dd751577d0769a077e5d6326507282533f123f61bb4e5712afcb7e06c04faca6",
+                  "opcode": 37,
+                  "command": "special",
+                  "stack": [
+                    135845183
+                  ],
+                  "successors": [
+                    {
+                      "address": 135881360,
+                      "stack": [
+                        135845183
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135845218,
+                  "size": 1,
+                  "sha256": "acac86c0e609ca906f632b0e2dacccb2b77d22b0621f20ebece1a4835b93f6f0",
+                  "opcode": 108,
+                  "command": "release",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135845219,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135881360,
+                  "size": 3,
+                  "sha256": "fe408dbfd2ea4846d9f3c1095c974801768630a5aa02df78a7276e971cca2ae3",
+                  "opcode": 37,
+                  "command": "special",
+                  "stack": [
+                    135845183
+                  ],
+                  "successors": [
+                    {
+                      "address": 135881363,
+                      "stack": [
+                        135845183
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135845219,
+                  "size": 1,
+                  "sha256": "dbc1b4c900ffe48d575b5da5c638040125f65db0fe3e24494b76ea986457d986",
+                  "opcode": 2,
+                  "command": "end",
+                  "stack": [],
+                  "successors": []
+                },
+                {
+                  "address": 135881363,
+                  "size": 1,
+                  "sha256": "265fda17a34611b1533d8a281ff680dc5791b0ce0a11c25b35e11c8e75685509",
+                  "opcode": 39,
+                  "command": "waitstate",
+                  "stack": [
+                    135845183
+                  ],
+                  "successors": [
+                    {
+                      "address": 135881364,
+                      "stack": [
+                        135845183
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135881364,
+                  "size": 1,
+                  "sha256": "189f40034be7a199f1fa9891668ee3ab6049f82d38c68be70f596eab2e1857b7",
+                  "opcode": 106,
+                  "command": "lock",
+                  "stack": [
+                    135845183
+                  ],
+                  "successors": [
+                    {
+                      "address": 135881365,
+                      "stack": [
+                        135845183
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135881365,
+                  "size": 1,
+                  "sha256": "bbeebd879e1dff6918546dc0c179fdde505f2a21591c9a9c96e36b054ec5af83",
+                  "opcode": 90,
+                  "command": "faceplayer",
+                  "stack": [
+                    135845183
+                  ],
+                  "successors": [
+                    {
+                      "address": 135881366,
+                      "stack": [
+                        135845183
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135881366,
+                  "size": 1,
+                  "sha256": "084fed08b978af4d7d196a7446a86b58009e636b611db16211b65a9aadff29c5",
+                  "opcode": 3,
+                  "command": "return",
+                  "stack": [
+                    135845183
+                  ],
+                  "successors": [
+                    {
+                      "address": 135845183,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135845183,
+                  "size": 6,
+                  "sha256": "e60c37df3e750c666e009f42698a4495367cf4814a107c85c1da7484818639be",
+                  "opcode": 15,
+                  "command": "loadword",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135845189,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135845189,
+                  "size": 2,
+                  "sha256": "f0f639189843668f480629df87f02cbef73dfc70d2e4e33b280ca7142827b314",
+                  "opcode": 9,
+                  "command": "callstd",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135845191,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135845191,
+                  "size": 3,
+                  "sha256": "07a85b8315f50b2e3e74bc390fa25f9401e2b6031b21478070749ae6375a9afd",
+                  "opcode": 41,
+                  "command": "setflag",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135845194,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135845194,
+                  "size": 1,
+                  "sha256": "acac86c0e609ca906f632b0e2dacccb2b77d22b0621f20ebece1a4835b93f6f0",
+                  "opcode": 108,
+                  "command": "release",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135845195,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135845195,
+                  "size": 1,
+                  "sha256": "dbc1b4c900ffe48d575b5da5c638040125f65db0fe3e24494b76ea986457d986",
+                  "opcode": 2,
+                  "command": "end",
+                  "stack": [],
+                  "successors": []
+                }
+              ],
+              "target_loadwords_found": [],
+              "unhandled_opcodes": [],
+              "bounded_graph_complete": true,
+              "runtime_effects_proven": false,
+              "all_roots_unreachable_claimed": false
+            },
+            {
+              "owner_id": "OBJECT:21/0:0",
+              "root": 135844163,
+              "standard_edges_expanded": false,
+              "state_count": 67,
+              "nodes": [
+                {
+                  "address": 135844163,
+                  "size": 1,
+                  "sha256": "189f40034be7a199f1fa9891668ee3ab6049f82d38c68be70f596eab2e1857b7",
+                  "opcode": 106,
+                  "command": "lock",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135844164,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135844164,
+                  "size": 1,
+                  "sha256": "bbeebd879e1dff6918546dc0c179fdde505f2a21591c9a9c96e36b054ec5af83",
+                  "opcode": 90,
+                  "command": "faceplayer",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135844165,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135844165,
+                  "size": 5,
+                  "sha256": "7e1c2c14d7a73a7bb01b5ed2224b35cbeb62d15290e67373d8fd170be2e06ac2",
+                  "opcode": 4,
+                  "command": "call",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135872070,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872070,
+                  "size": 3,
+                  "sha256": "68b3e6cd2c3481a88a813292376bc771f8c7760f6c89dc29e6e7556807649c70",
+                  "opcode": 37,
+                  "command": "special",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872073,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872073,
+                  "size": 5,
+                  "sha256": "59a34122eaa208b816bd9b7e08834c628346ecaba0130bced78001f974cc3b69",
+                  "opcode": 33,
+                  "command": "compare_var_to_value",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872078,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872078,
+                  "size": 6,
+                  "sha256": "ac02559b2629740ba68047dde8c615864b1875d79c036cbde6b91a7360c8e563",
+                  "opcode": 6,
+                  "command": "goto_if",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872084,
+                      "stack": [
+                        135844170
+                      ]
+                    },
+                    {
+                      "address": 135876746,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872084,
+                  "size": 5,
+                  "sha256": "b3bee917785376974d566bd441aef30b7d56750b23f8f7ba8604ae56b2516630",
+                  "opcode": 103,
+                  "command": "message",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872089,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135876746,
+                  "size": 1,
+                  "sha256": "acac86c0e609ca906f632b0e2dacccb2b77d22b0621f20ebece1a4835b93f6f0",
+                  "opcode": 108,
+                  "command": "release",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135876747,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872089,
+                  "size": 1,
+                  "sha256": "252f10c83610ebca1a059c0bae8255eba2f95be4d1d7bcfa89d7248a82d9f111",
+                  "opcode": 102,
+                  "command": "waitmessage",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872090,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135876747,
+                  "size": 1,
+                  "sha256": "dbc1b4c900ffe48d575b5da5c638040125f65db0fe3e24494b76ea986457d986",
+                  "opcode": 2,
+                  "command": "end",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": []
+                },
+                {
+                  "address": 135872090,
+                  "size": 5,
+                  "sha256": "39afc31c4b97e4982a719a162471147157fd332a0e42b215c5e3425ebd9e6555",
+                  "opcode": 111,
+                  "command": "multichoice",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872095,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872095,
+                  "size": 5,
+                  "sha256": "c771907ee3b56d884ce9c1351c0ff345a26a7ea4dc0270339065b00c61004209",
+                  "opcode": 25,
+                  "command": "copyvar",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872100,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872100,
+                  "size": 5,
+                  "sha256": "4fb15658f90bee04d12b1e4f79c5c52a6f398511af4c7494db997e6dfabcde0b",
+                  "opcode": 33,
+                  "command": "compare_var_to_value",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872105,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872105,
+                  "size": 6,
+                  "sha256": "41516af427e2ebfd0d48c1ac2fce68232b0a3ca7d325aea877fb7d28691d5dcd",
+                  "opcode": 6,
+                  "command": "goto_if",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872111,
+                      "stack": [
+                        135844170
+                      ]
+                    },
+                    {
+                      "address": 135872134,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872111,
+                  "size": 5,
+                  "sha256": "2cacec105048e37b1948945ff8d911dcabf1134f58354329d8b40e76dd8243bc",
+                  "opcode": 33,
+                  "command": "compare_var_to_value",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872116,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872134,
+                  "size": 2,
+                  "sha256": "357012093c36ac0cfa280ce9840123f612f556f4ab3f92dca45850d5304439dc",
+                  "opcode": 195,
+                  "command": "incrementgamestat",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872136,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872116,
+                  "size": 6,
+                  "sha256": "8f88c487cbc4ec7047653b45860730dd7b310491b54c1fe488be8b347aae2c5f",
+                  "opcode": 6,
+                  "command": "goto_if",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872122,
+                      "stack": [
+                        135844170
+                      ]
+                    },
+                    {
+                      "address": 135872305,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872136,
+                  "size": 5,
+                  "sha256": "45b77007afd226b4d5dbd1132cd5dfa9094509fd040fa2c77fce48d0ffd62cb1",
+                  "opcode": 103,
+                  "command": "message",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872141,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872122,
+                  "size": 5,
+                  "sha256": "f9d558f777155d6e392a11d3204e18d096d4b371421f4e1c3258bb6779221510",
+                  "opcode": 33,
+                  "command": "compare_var_to_value",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872127,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872305,
+                  "size": 6,
+                  "sha256": "a74bb76701328effe6359b034b54e91112f4824d5b85176b6e3121cc85f909eb",
+                  "opcode": 15,
+                  "command": "loadword",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872311,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872141,
+                  "size": 1,
+                  "sha256": "252f10c83610ebca1a059c0bae8255eba2f95be4d1d7bcfa89d7248a82d9f111",
+                  "opcode": 102,
+                  "command": "waitmessage",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872142,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872127,
+                  "size": 6,
+                  "sha256": "8f88c487cbc4ec7047653b45860730dd7b310491b54c1fe488be8b347aae2c5f",
+                  "opcode": 6,
+                  "command": "goto_if",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872133,
+                      "stack": [
+                        135844170
+                      ]
+                    },
+                    {
+                      "address": 135872305,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872311,
+                  "size": 2,
+                  "sha256": "f0f639189843668f480629df87f02cbef73dfc70d2e4e33b280ca7142827b314",
+                  "opcode": 9,
+                  "command": "callstd",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872313,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872142,
+                  "size": 5,
+                  "sha256": "4f96a6925a7a4a5dff452bb88a319a4c71d42cc7c4a2574d6fa476a2aa200146",
+                  "opcode": 4,
+                  "command": "call",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872156,
+                      "stack": [
+                        135844170,
+                        135872147
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872133,
+                  "size": 1,
+                  "sha256": "dbc1b4c900ffe48d575b5da5c638040125f65db0fe3e24494b76ea986457d986",
+                  "opcode": 2,
+                  "command": "end",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": []
+                },
+                {
+                  "address": 135872313,
+                  "size": 1,
+                  "sha256": "084fed08b978af4d7d196a7446a86b58009e636b611db16211b65a9aadff29c5",
+                  "opcode": 3,
+                  "command": "return",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135844170,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135872156,
+                  "size": 7,
+                  "sha256": "e812ea52a9565674759a76f835e3a14a1dfc30398cf7cf5563217a80c706a3e5",
+                  "opcode": 79,
+                  "command": "applymovement",
+                  "stack": [
+                    135844170,
+                    135872147
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872163,
+                      "stack": [
+                        135844170,
+                        135872147
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135844170,
+                  "size": 1,
+                  "sha256": "acac86c0e609ca906f632b0e2dacccb2b77d22b0621f20ebece1a4835b93f6f0",
+                  "opcode": 108,
+                  "command": "release",
+                  "stack": [],
+                  "successors": [
+                    {
+                      "address": 135844171,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135872163,
+                  "size": 3,
+                  "sha256": "cd661815953c156bbc5a7a9e93935b01a82dba75c83581301ee7d246ad119c05",
+                  "opcode": 81,
+                  "command": "waitmovement",
+                  "stack": [
+                    135844170,
+                    135872147
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872166,
+                      "stack": [
+                        135844170,
+                        135872147
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135844171,
+                  "size": 1,
+                  "sha256": "dbc1b4c900ffe48d575b5da5c638040125f65db0fe3e24494b76ea986457d986",
+                  "opcode": 2,
+                  "command": "end",
+                  "stack": [],
+                  "successors": []
+                },
+                {
+                  "address": 135872166,
+                  "size": 3,
+                  "sha256": "5f584aa0f95b57844ead0e42dde89c306612f48cc908608457db8435fbb5973e",
+                  "opcode": 156,
+                  "command": "dofieldeffect",
+                  "stack": [
+                    135844170,
+                    135872147
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872169,
+                      "stack": [
+                        135844170,
+                        135872147
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872169,
+                  "size": 3,
+                  "sha256": "5ff73d509175c619b6179f7e8c6a1f0f055e48c7a66e9cdcbdb3e73b75b2e047",
+                  "opcode": 158,
+                  "command": "waitfieldeffect",
+                  "stack": [
+                    135844170,
+                    135872147
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872172,
+                      "stack": [
+                        135844170,
+                        135872147
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872172,
+                  "size": 7,
+                  "sha256": "c1b26d682324f06dc0ac3b22a8f9d8582cc87f92dbdfb48bf270bdfacc7a5f87",
+                  "opcode": 79,
+                  "command": "applymovement",
+                  "stack": [
+                    135844170,
+                    135872147
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872179,
+                      "stack": [
+                        135844170,
+                        135872147
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872179,
+                  "size": 3,
+                  "sha256": "cd661815953c156bbc5a7a9e93935b01a82dba75c83581301ee7d246ad119c05",
+                  "opcode": 81,
+                  "command": "waitmovement",
+                  "stack": [
+                    135844170,
+                    135872147
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872182,
+                      "stack": [
+                        135844170,
+                        135872147
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872182,
+                  "size": 3,
+                  "sha256": "adc47de1701f2e9c9d6026d6c38d5b9d2c1c689d09d697d8223bca1551c7275c",
+                  "opcode": 37,
+                  "command": "special",
+                  "stack": [
+                    135844170,
+                    135872147
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872185,
+                      "stack": [
+                        135844170,
+                        135872147
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872185,
+                  "size": 1,
+                  "sha256": "084fed08b978af4d7d196a7446a86b58009e636b611db16211b65a9aadff29c5",
+                  "opcode": 3,
+                  "command": "return",
+                  "stack": [
+                    135844170,
+                    135872147
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872147,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872147,
+                  "size": 3,
+                  "sha256": "ad5936450c2353dade8d7cc24581c4c1c4d90b5e4e8c907f4ef5a17bc16e371b",
+                  "opcode": 37,
+                  "command": "special",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872150,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872150,
+                  "size": 5,
+                  "sha256": "7c0d9ff871d76b1fac081f8812bca52351906aeefce9921f0a9b9b7a89bb8b9a",
+                  "opcode": 5,
+                  "command": "goto",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872186,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872186,
+                  "size": 5,
+                  "sha256": "34d11536c3c365c287f177bf0bfd9c1b8ecc0ff8cc0636fa01f47bc286ea19cc",
+                  "opcode": 38,
+                  "command": "specialvar",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872191,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872191,
+                  "size": 5,
+                  "sha256": "7d157e606e02436bfd2dd57131cf34676fc674313855158a75de9d095e180410",
+                  "opcode": 33,
+                  "command": "compare_var_to_value",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872196,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872196,
+                  "size": 6,
+                  "sha256": "e6f9e1ee64929a7e31218e04e175c123171580d9f60ab9737e0af27c55a8d7aa",
+                  "opcode": 6,
+                  "command": "goto_if",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872202,
+                      "stack": [
+                        135844170
+                      ]
+                    },
+                    {
+                      "address": 135872235,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872202,
+                  "size": 5,
+                  "sha256": "6363427ec14dcb7cc388dc2b4dbf89557b154299c39498f287b20cfece602fca",
+                  "opcode": 38,
+                  "command": "specialvar",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872207,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872235,
+                  "size": 5,
+                  "sha256": "9a664f3322acc0d0897bab7f78d42ae10226519e1fc57b7d3fc12c0b800d0e38",
+                  "opcode": 103,
+                  "command": "message",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872240,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872207,
+                  "size": 5,
+                  "sha256": "88bc6a1ca71dd37d78056f3567cde910c67cb573591a021a20ef0b8650f8551f",
+                  "opcode": 25,
+                  "command": "copyvar",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872212,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872240,
+                  "size": 1,
+                  "sha256": "252f10c83610ebca1a059c0bae8255eba2f95be4d1d7bcfa89d7248a82d9f111",
+                  "opcode": 102,
+                  "command": "waitmessage",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872241,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872212,
+                  "size": 5,
+                  "sha256": "dfadc35f156010fafd684df1cd35bde4435b2dffa9afed59346caa3c45240433",
+                  "opcode": 33,
+                  "command": "compare_var_to_value",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872217,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872241,
+                  "size": 7,
+                  "sha256": "df8f8c944fee480e69d8da3cd89daa9a501973df3a62d995d7d2dac84ad21008",
+                  "opcode": 79,
+                  "command": "applymovement",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872248,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872217,
+                  "size": 6,
+                  "sha256": "e6f9e1ee64929a7e31218e04e175c123171580d9f60ab9737e0af27c55a8d7aa",
+                  "opcode": 6,
+                  "command": "goto_if",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872223,
+                      "stack": [
+                        135844170
+                      ]
+                    },
+                    {
+                      "address": 135872235,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872248,
+                  "size": 3,
+                  "sha256": "cd661815953c156bbc5a7a9e93935b01a82dba75c83581301ee7d246ad119c05",
+                  "opcode": 81,
+                  "command": "waitmovement",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872251,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872223,
+                  "size": 5,
+                  "sha256": "70d526c622d11d96afd643b1c8d04860f4e26abda25cfc2a64258100f8599a4a",
+                  "opcode": 33,
+                  "command": "compare_var_to_value",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872228,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872251,
+                  "size": 6,
+                  "sha256": "a74bb76701328effe6359b034b54e91112f4824d5b85176b6e3121cc85f909eb",
+                  "opcode": 15,
+                  "command": "loadword",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872257,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872228,
+                  "size": 6,
+                  "sha256": "dfd076311df5a9566f789638ff3efcbcb34bb05c306f7fdeef756c514e127337",
+                  "opcode": 6,
+                  "command": "goto_if",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872234,
+                      "stack": [
+                        135844170
+                      ]
+                    },
+                    {
+                      "address": 135872260,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872257,
+                  "size": 2,
+                  "sha256": "f0f639189843668f480629df87f02cbef73dfc70d2e4e33b280ca7142827b314",
+                  "opcode": 9,
+                  "command": "callstd",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872259,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872234,
+                  "size": 1,
+                  "sha256": "dbc1b4c900ffe48d575b5da5c638040125f65db0fe3e24494b76ea986457d986",
+                  "opcode": 2,
+                  "command": "end",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": []
+                },
+                {
+                  "address": 135872260,
+                  "size": 3,
+                  "sha256": "ae541f87a13fb2f3215e09957b3e8eb4ab19a9d35ab50744835a24a72e1684a0",
+                  "opcode": 43,
+                  "command": "checkflag",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872263,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872259,
+                  "size": 1,
+                  "sha256": "084fed08b978af4d7d196a7446a86b58009e636b611db16211b65a9aadff29c5",
+                  "opcode": 3,
+                  "command": "return",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135844170,
+                      "stack": []
+                    }
+                  ]
+                },
+                {
+                  "address": 135872263,
+                  "size": 6,
+                  "sha256": "e6f9e1ee64929a7e31218e04e175c123171580d9f60ab9737e0af27c55a8d7aa",
+                  "opcode": 6,
+                  "command": "goto_if",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872269,
+                      "stack": [
+                        135844170
+                      ]
+                    },
+                    {
+                      "address": 135872235,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872269,
+                  "size": 6,
+                  "sha256": "a76ab61054c14a102cf8967ee56bbc442dbd0b1ec466a67bfb736f89652cdb45",
+                  "opcode": 15,
+                  "command": "loadword",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872275,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872275,
+                  "size": 2,
+                  "sha256": "f0f639189843668f480629df87f02cbef73dfc70d2e4e33b280ca7142827b314",
+                  "opcode": 9,
+                  "command": "callstd",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872277,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872277,
+                  "size": 3,
+                  "sha256": "e736de6aa2ab2b4480141c67b52847229cc3611b44efee035815f88c7af797b0",
+                  "opcode": 41,
+                  "command": "setflag",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872280,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872280,
+                  "size": 5,
+                  "sha256": "aeaa3e8a659b0004ad3c10f94608eb88b16d21fc5fc5ecf0a4c673b00d14e413",
+                  "opcode": 103,
+                  "command": "message",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872285,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872285,
+                  "size": 1,
+                  "sha256": "252f10c83610ebca1a059c0bae8255eba2f95be4d1d7bcfa89d7248a82d9f111",
+                  "opcode": 102,
+                  "command": "waitmessage",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872286,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872286,
+                  "size": 7,
+                  "sha256": "df8f8c944fee480e69d8da3cd89daa9a501973df3a62d995d7d2dac84ad21008",
+                  "opcode": 79,
+                  "command": "applymovement",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872293,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872293,
+                  "size": 3,
+                  "sha256": "cd661815953c156bbc5a7a9e93935b01a82dba75c83581301ee7d246ad119c05",
+                  "opcode": 81,
+                  "command": "waitmovement",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872296,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872296,
+                  "size": 6,
+                  "sha256": "a74bb76701328effe6359b034b54e91112f4824d5b85176b6e3121cc85f909eb",
+                  "opcode": 15,
+                  "command": "loadword",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872302,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872302,
+                  "size": 2,
+                  "sha256": "f0f639189843668f480629df87f02cbef73dfc70d2e4e33b280ca7142827b314",
+                  "opcode": 9,
+                  "command": "callstd",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135872304,
+                      "stack": [
+                        135844170
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "address": 135872304,
+                  "size": 1,
+                  "sha256": "084fed08b978af4d7d196a7446a86b58009e636b611db16211b65a9aadff29c5",
+                  "opcode": 3,
+                  "command": "return",
+                  "stack": [
+                    135844170
+                  ],
+                  "successors": [
+                    {
+                      "address": 135844170,
+                      "stack": []
+                    }
+                  ]
+                }
+              ],
+              "target_loadwords_found": [],
+              "unhandled_opcodes": [],
+              "bounded_graph_complete": true,
+              "runtime_effects_proven": false,
+              "all_roots_unreachable_claimed": false
+            }
+          ],
+          "placeholder": {
+            "id": 3,
+            "entry": 134253916,
+            "table_slot": 136254320,
+            "callee": 134253744,
+            "returned_address": 33692768,
+            "machine_instructions": 14,
+            "source_bytes_read": 0,
+            "text_bytes_read": 0,
+            "actual_branch_bound": true,
+            "direct_id_argument_is_entry_condition": true,
+            "natural_text_consumer_call_proven": false,
+            "producer_bound": false,
+            "replacement_extent_bound": false,
+            "replacement_eos_bound": false,
+            "replacement_source_byte_consumer_executed": false
+          },
+          "new_handlers": [
+            {
+              "opcode": 34,
+              "command": "compare_var_to_var",
+              "address": 134651408,
+              "size": 52,
+              "sha256": "953d08d3136e5c0ded76105a0bb6249e57c0be8649cd9317dae2a773dba6f5f5",
+              "operand_bytes": 4,
+              "external_effects_proven": false,
+              "operand_widths": "HH",
+              "unexecuted_callees": [
+                {
+                  "callsite": 134651420,
+                  "target": 134667336
+                },
+                {
+                  "callsite": 134651436,
+                  "target": 134667336
+                },
+                {
+                  "callsite": 134651446,
+                  "target": 134651084
+                }
+              ],
+              "current_get_var_pointer_redirect": {
+                "entry": 134667336,
+                "literal": 134667340,
+                "target": 151613660,
+                "thumb": true,
+                "redirected_body_effects_proven": false
+              }
+            },
+            {
+              "opcode": 195,
+              "command": "incrementgamestat",
+              "address": 134652208,
+              "size": 22,
+              "sha256": "8c701f327fb732bbfeb21f086943d8069d2712abdca62c4953a740a6c2b694c9",
+              "operand_bytes": 1,
+              "external_effects_proven": false,
+              "operand_widths": "B",
+              "unexecuted_callees": [
+                {
+                  "callsite": 134652220,
+                  "target": 134563664
+                }
+              ]
+            },
+            {
+              "opcode": 125,
+              "command": "bufferspeciesname",
+              "address": 134657308,
+              "size": 58,
+              "sha256": "ccbbce99817fdcce4ac5af2835563a757598fc958af9ab9906a5c5d25effd9cd",
+              "operand_bytes": 3,
+              "external_effects_proven": false,
+              "operand_widths": "BH",
+              "unexecuted_callees": [
+                {
+                  "callsite": 134657326,
+                  "target": 134667612
+                },
+                {
+                  "callsite": 134657354,
+                  "target": 134252800
+                }
+              ]
+            },
+            {
+              "opcode": 41,
+              "command": "setflag",
+              "address": 134652140,
+              "size": 20,
+              "sha256": "2cedeab58eda0091e6ac2f36311678b32ef054248a2eae4c82a48f02962c54ed",
+              "operand_bytes": 2,
+              "external_effects_proven": false,
+              "operand_widths": "H",
+              "unexecuted_callees": [
+                {
+                  "callsite": 134652150,
+                  "target": 134667892
+                }
+              ]
+            },
+            {
+              "opcode": 79,
+              "command": "applymovement",
+              "address": 134654656,
+              "size": 58,
+              "sha256": "d71fb66212013a9a37b246e00386d72d281ab2c3f939b41cac498472b72d841e",
+              "operand_bytes": 6,
+              "external_effects_proven": false,
+              "operand_widths": "HW",
+              "unexecuted_callees": [
+                {
+                  "callsite": 134654668,
+                  "target": 134667612
+                },
+                {
+                  "callsite": 134654698,
+                  "target": 134835808
+                }
+              ]
+            },
+            {
+              "opcode": 81,
+              "command": "waitmovement",
+              "address": 134654832,
+              "size": 64,
+              "sha256": "9657366e7e94057d179557ac220f2d294104ebaa7993e1d85fc7265e453581f7",
+              "operand_bytes": 2,
+              "external_effects_proven": false,
+              "operand_widths": "H",
+              "unexecuted_callees": [
+                {
+                  "callsite": 134654844,
+                  "target": 134667612
+                },
+                {
+                  "callsite": 134654884,
+                  "target": 134647988
+                }
+              ]
+            },
+            {
+              "opcode": 156,
+              "command": "dofieldeffect",
+              "address": 134659108,
+              "size": 36,
+              "sha256": "d24e395a9baed02eec971d2c152edecc1746d79e4169f96fd77dac96a585ef04",
+              "operand_bytes": 2,
+              "external_effects_proven": false,
+              "operand_widths": "H",
+              "unexecuted_callees": [
+                {
+                  "callsite": 134659118,
+                  "target": 134667612
+                },
+                {
+                  "callsite": 134659134,
+                  "target": 134754352
+                }
+              ]
+            },
+            {
+              "opcode": 158,
+              "command": "waitfieldeffect",
+              "address": 134659228,
+              "size": 36,
+              "sha256": "4e163b866634175ad46a323b6f22d7c2f47ddbfc7aba5e742f4350613ac190a4",
+              "operand_bytes": 2,
+              "external_effects_proven": false,
+              "operand_widths": "H",
+              "unexecuted_callees": [
+                {
+                  "callsite": 134659240,
+                  "target": 134667612
+                },
+                {
+                  "callsite": 134659252,
+                  "target": 134647988
+                }
+              ]
+            }
+          ],
+          "required_obligations": [
+            "0x0818DB31と0x0818DB50へ実登録rootから接続する正の有限path。今回の2根で見つからないことを全root不達へ昇格しない。",
+            "FD03が返すgStringVar2の実producerと対象command context、有限置換元extent/EOS、左右textと置換元を最後まで読むconsumer。",
+            "現GetVarPointer hook、special、movement、field effect、standard message/inputの副作用とwait完了は構造graphの外。",
+            "自然到達・全間接参照完全性・退役・owner移管・普遍lifetime・donor leaseは別の義務。"
+          ],
+          "protected_windows": 47,
+          "protected_bytes": 1162,
+          "all_inherited_fields_unchanged": true,
+          "current_candidate_measured": false,
+          "registration_bound": true,
+          "selected_new_handler_instruction_semantics_bound": true,
+          "source_grammar_direct_graph_complete": true,
+          "conditional_standard_script_edges_expanded": true,
+          "registered_root_runtime_execution_proven": false,
+          "handler_effects_executed": false,
+          "standard_handler_runtime_effects_proven": false,
+          "selected_target_root_paths_bound": false,
+          "selected_target_consumer_executed": false,
+          "placeholder_id3_branch_machine_executed": true,
+          "placeholder_producer_bound": false,
+          "replacement_extent_bound": false,
+          "replacement_eos_bound": false,
+          "replacement_source_byte_consumer_executed": false,
+          "all_roots_unreachable_claimed": false,
+          "whole_script_unreachable_claimed": false,
+          "full_story_reachability_claimed": false,
+          "actual_runtime_execution_observed": false,
+          "opaque_callee_effects_proven": false,
+          "universal_heap_or_irq_lifetime_proven": false,
+          "indirect_reference_completeness_claimed": false,
+          "retired": false,
+          "owner_transferred": false,
+          "donor_eligible": false,
+          "donor_leased": false
+        }
+      },
+      "new_data": 2,
+      "new_code": 0,
+      "new_boundary": 0,
+      "natural_gameplay_reachability_claimed": false,
+      "universal_heap_or_irq_lifetime_claimed": false,
+      "independent_old_final_source_review_completed": false,
+      "donor_leased": false,
+      "indirect_reference_completeness_claimed": false
+    },
+    "song": {
+      "status": "PASS_RETAINED_133_MODELS_50_ASSETS_NEW_CONSUMER_INTERSECTION",
+      "combined_song_models": 133,
+      "retained_sample_witnesses": 50,
+      "model_identity": {
+        "size": 213296,
+        "sha256": "71f01cee0a344409445e17fdea268371269a3e622c6b93563d04b35677e0b975"
+      },
+      "sample_identity": {
+        "size": 1121492,
+        "sha256": "9f765e8eee8ad78eaac8902ccafbf9e14c7c694f842e9ae6b2002583181b70ee"
+      },
+      "old_protected_read_windows": 198334,
+      "old_protected_read_identity": {
+        "size": 26409459,
+        "sha256": "26ae440b2d8456747f59e7fd73679a17b6289ef1a733bdd51c1f9ff668fc8914"
+      },
+      "all133_models_exact": true,
+      "all50_sample_identities_exact": true,
+      "old_and_new_root_windows": 7723,
+      "old_and_new_root_identity": {
+        "size": 827179,
+        "sha256": "25f0b0307185f70881ed6c71b94204efde64ed58d733375b84cd401e054eb4b4"
+      },
+      "new_song_discovery_runs": 0,
+      "new_songs": [],
+      "new_audio_classified": 0,
+      "native_processes": 0,
+      "donor_leased": false
+    },
+    "public_source_bindings": {
+      "battle-BPRJ.ld": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "BPRJ.ld",
+        "size": 68505,
+        "sha256": "e371c23b9c9ea914c9ca3f644983e0b4e05be07bf11054492fa37afcfd58892a",
+        "git_blob_sha": "cf5363abd8439d63c7bd12cbe83ade861b0ebb51"
+      },
+      "battle-asm_defines.s": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "asm_defines.s",
+        "size": 131732,
+        "sha256": "1beb8b1cce26e302eb17b6907951fc4ae0a1a0ae94cffb168a12c648ca45c8a7",
+        "git_blob_sha": "67f802d777e348e74c0f2d6c7ae2227fdf849f6f"
+      },
+      "battle-assembly--battle_scripts--general_attack_battle_scripts.s": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "assembly/battle_scripts/general_attack_battle_scripts.s",
+        "size": 178625,
+        "sha256": "8ce944c4bc85f2827eb806a3ba1f046e332429ceadd2b55bbc79f900a6a7bd11",
+        "git_blob_sha": "f0a04c0f348555a82aa861ccb62b9cc046699a48"
+      },
+      "battle-assembly--data--battle_script_commands_table.s": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "assembly/data/battle_script_commands_table.s",
+        "size": 11083,
+        "sha256": "ef6615d20d0768e23828b941fcd2a4f04ba06507a7ed498ab51b8db10e71f5f6",
+        "git_blob_sha": "10e8cf9821e5be79798b3ab1d02ea3e44ce44f05"
+      },
+      "battle-assembly--data--move_effect_table.s": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "assembly/data/move_effect_table.s",
+        "size": 8052,
+        "sha256": "6200094d2df850f70121a981c89e776a8419cc71423b44ea4773f609ca39a7ee",
+        "git_blob_sha": "8a80d63f814e97b353416a73e2be7c82c453b244"
+      },
+      "battle-battle_script_macros.s": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "battle_script_macros.s",
+        "size": 28316,
+        "sha256": "203f55037871e670401692a2a08ba282745a442fc84fca0615fbe1b136f8f317",
+        "git_blob_sha": "bc62b1a589d0569980bd723d8da6272f40f12817"
+      },
+      "battle-src--general_bs_commands.c": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "src/general_bs_commands.c",
+        "size": 170849,
+        "sha256": "ee23f75ab32b0f453128a9e5f9c7e77aba4a0de646e762a5fe821b61c1b20643",
+        "git_blob_sha": "476cbdd3ee2cfe3ce2ccca51b609560b1f1a4282"
+      },
+      "battle-src--new_bs_commands.c": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "src/new_bs_commands.c",
+        "size": 63964,
+        "sha256": "203c32caf217965e468bc2efee45809b05289c51201412250b2352e17643688b",
+        "git_blob_sha": "78614276ea045eaa06781210d588dd6ea6995bf3"
+      },
+      "pret-std_msgbox.inc": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "data/scripts/std_msgbox.inc",
+        "size": 1040,
+        "sha256": "090541cfc3a47272ea8203f0f6c18f19f8062d407388a23fcf103e93b196b431",
+        "git_blob_sha": "18ad553c85b66975e0c05763c6145082c8c13dde"
+      },
+      "pret-script.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/script.c",
+        "size": 13713,
+        "sha256": "1cc4aade1f821e5f218ba7c191b1217e5a3cf942d0bfd0f32f775ce1f808437c",
+        "git_blob_sha": "d0433bdda062b138e53d1a1d3184b4566ad7d9dc"
+      },
+      "pret-event_scripts.s": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "data/event_scripts.s",
+        "size": 55643,
+        "sha256": "3b1bd10d26c0a74fb3452ab42fc9d14dfca785f8b71389db06c71f5dfdd50a27",
+        "git_blob_sha": "88d75946a7300ccf952f4a36c283966c6aebf5c0"
+      },
+      "pret-string_util.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/string_util.c",
+        "size": 14320,
+        "sha256": "ed9519d4eaf51ed660a522915366dc0ebf2916d592a91a1d7fc2a012e4f3f17e",
+        "git_blob_sha": "5c26d151a61274caac3a16c3b9c4eb73bf9a9e26"
+      },
+      "pret-characters.h": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "include/characters.h",
+        "size": 12798,
+        "sha256": "6787db76f83c4f8426c5adbfa7aa061c46585db9522f1fef00ad888616199b98",
+        "git_blob_sha": "d00ecf0a3afcd9fc1fa9534c00f4b74793d5f06f"
+      },
+      "pret-scrcmd.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/scrcmd.c",
+        "size": 56954,
+        "sha256": "898dad5a07ce0a125731b998654d86808885a8d48163d607478a5e70c1cac553",
+        "git_blob_sha": "97b695ee2f6fca80a3b78f52f6a444f696fe5814"
+      },
+      "BPRJ.ld": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "BPRJ.ld",
+        "size": 68505,
+        "sha256": "e371c23b9c9ea914c9ca3f644983e0b4e05be07bf11054492fa37afcfd58892a",
+        "git_blob_sha": "cf5363abd8439d63c7bd12cbe83ade861b0ebb51"
+      },
+      "pret-script_cmd_table.inc": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "data/script_cmd_table.inc",
+        "size": 11359,
+        "sha256": "6b59babf9b8a33bdc37a322a1a4b6e2261426126097330f305823e53415b1389",
+        "git_blob_sha": "c5d112d9ea66d258d5a372dda89b9ad96ed2b1e1"
+      }
+    }
+  },
+  "proof_identity": {
+    "size": 78485,
+    "sha256": "d8c76f297b4c227f8d94cb00ddbdf9ee2df65e39722ff949456f34cbb5c5a258"
+  },
+  "donor_leased": false,
+  "donor_eligible": false,
+  "indirect_reference_completeness_claimed": false,
+  "old_full_rom_scan_runs": 0,
+  "native_processes": 0,
+  "donor_safe_bytes": 0,
+  "controller_runtime_wired": false,
+  "universal_irq_or_heap_lifetime_claimed": false,
+  "natural_play_universal_reachability_claimed": false,
+  "formal_rom_changed": false,
+  "formal_save_changed": false
+}
