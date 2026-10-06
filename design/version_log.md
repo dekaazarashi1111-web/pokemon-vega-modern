@@ -10698,3 +10698,18 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 残137件を実consumer根から調べ、閉じられる根を次batchへまとめる。GPU080A006Fの外側root、08118D03の外側caller/data+0x13 writerは未特定で採用しない。既測定Summary/party/Mystery/旧suite/nativeは無影響再走しない。未知最大access/間接参照/退役/owner移管未証明なら旧egg15118全域保護/安全0。単一controller6528byte容量確保後、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL/全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/0804B85C退避前Freeへ接続。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。
 - Commit: source=4c9850b713d0bcf3ea39c9ff6997bb11eebecb50; 同branch非force。
 - Network: 同repoActions/既存入力/固定source。公開source・最小address-size-SHA・textのみ、ROM断片/rawhex/ROM/inputsave/runtime/runner/credentials追加公開0。
+
+## 2026-10-06T00:12:33.462049+00:00
+- Timestamp: 2026-10-06T00:12:33.462049+00:00
+- Task: USER-20261005-DEX-HOF-SUMMARY-REFERENCES / Summary最小型batchの終端
+- Version: hof-summary-references-closeout
+- Status: STOPPED（Summary型2件を受入、残root/donor/本番controller未完）
+- Summary: run37391965012/job112038897276全14step成功。artifact11381053260全11text原本と固定MDJSON/CP/両ログ全byte/LF/Git blobを照合しpending解除。完了measurement起動条件のみmanual-onlyへ。
+- Files changed: closeout source/workflow/tests、measurement起動条件、固定MDJSON、両append-onlyログ。
+- Verify: 原本250tests、新分類2、737分類/137未知（owner内0）を再利用。全735親行・全十一段116changes/106witnessと残unknown全field、133曲/50assetを保持。新公開guard9tests PASS。新Summaryの実登録hook・必要最小条件付き6byte型とNature文字列境界をsource-only確認。自然play到達/普遍IRQ/全allocation lifetimeは受入に含めない。旧分類/host/ARM/ROM/native再走0。旧独立最終sourceレビュー未実施を保持。
+- Capacity: 未知の最大アクセス範囲が未証明なら全15118byte保護。間接参照/退役/owner移管も未完でsafe0byte。global511＋save804の上限1315は単一controller6528に不足5213。点targetの仮想空隙は安全容量ではなく、今後の追加分類で変わり得る。実配線時の追加容量も未確定。
+- Publication: 全親は参照保持、新delta681669byteとpartial-space独立envelope。閉じた非空success set・whole size/SHA/LF・hidden/symlink/未知file拒否。
+- Boundary: 現0641/115owner/52saveowner/804byte/正式ROM/Save101不変。heap13352の保存退避53300跨ぎ禁止。一般CI既知QOL不一致/action_required job0/runner割当中のcancelled job/Stage79cacheは別扱い。
+- Next: 残137件を実consumer根から調べ、閉じられる根を次batchへまとめる。GPU080A006Fの外側root、08118D03の外側caller/data+0x13 writerは未特定で採用しない。既測定Summary/party/Mystery/旧suite/nativeは無影響再走しない。未知最大access/間接参照/退役/owner移管未証明なら旧egg15118全域保護/安全0。単一controller6528byte容量確保後、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL/全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/0804B85C退避前Freeへ接続。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。
+- Commit: closeout source=e9550cd74cd1a2ec6f0ae8bea304f31fc158bbd7; 同branch非force。
+- Network: 同repoActions/text原本のみ。ROM断片/rawhex/ROM/save/runtime/runner/credentials追加公開0。

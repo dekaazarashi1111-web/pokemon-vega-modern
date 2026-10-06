@@ -4407,13 +4407,19 @@
       "scripts/pr16_dex_hof_partial_space.py",
       "content/modernization/pr16_dex_hof_generation_writer_checkpoint.json",
       "content/modernization/pr16_dex_hof_summary_type_review.json",
-      "content/modernization/pr16_dex_hof_summary_nature_review.json"
+      "content/modernization/pr16_dex_hof_summary_nature_review.json",
+      "scripts/pr16_dex_hof_runtime_party.py",
+      "scripts/pr16_dex_hof_callback_party.py",
+      "scripts/pr16_dex_hof_callback_party_task.py",
+      "content/modernization/pr16_dex_hof_runtime_party_review.json",
+      "content/modernization/pr16_dex_hof_callback_party_review.json"
     ],
     "stop_rule_ja": "通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。"
   },
   "observed_date_jst": "2026-10-04",
   "observed_head": "4c9850b713d0bcf3ea39c9ff6997bb11eebecb50",
   "observed_head_checks": {
+    "all14_steps_success": true,
     "classified": 737,
     "current_candidate": {
       "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583",
@@ -4424,10 +4430,13 @@
     "general_ci_known_source_mismatch_not_resolved": true,
     "native_processes": 0,
     "reason_ja": "現0641の旧egg874参照にSummary実taskとNature文字列の必要最小型2件をまとめて追加し、737分類/未知137。新250試験、全115actual ownerと全11親deltaを照合。実registered hook・有限条件と最小consumed型だけを受入れ、自然play全到達・普遍IRQ/heap寿命・間接参照/退役安全は別義務。全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。",
+    "record_job": 112038897276,
+    "record_run": 37391965012,
     "reference_unit_tests": 250,
     "scope_head": "4c9850b713d0bcf3ea39c9ff6997bb11eebecb50",
     "stage79_cached_not_new_native": true,
-    "unclassified": 137
+    "unclassified": 137,
+    "whole_receipt_equals_checkpoint": true
   },
   "observed_head_history": [
     {
@@ -12438,13 +12447,7 @@
     "status": "NATIVE_PARTY_RETENTION_ACCEPTED_BP_PENDING",
     "tested_head": "10e535a046441dd3b797918106259b5c57b69716"
   },
-  "pending_runs": [
-    {
-      "run_id": 37391965012,
-      "status": "in_progress",
-      "tested_head": "4c9850b713d0bcf3ea39c9ff6997bb11eebecb50"
-    }
-  ],
+  "pending_runs": [],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
   "pr_draft": true,
   "pr_merged": false,
@@ -14435,9 +14438,13 @@
       "sha256": "35cb1814eea60515ef968f73e4ceae08373ad47dce033e9b0e053237f516cb69",
       "size": 2654
     },
+    ".github/workflows/pr16-dex-hof-summary-references-closeout.yml": {
+      "sha256": "c2c806831659c2eb91e444348ad7c77724f986c496f0b50462101ab940dc8951",
+      "size": 2904
+    },
     ".github/workflows/pr16-dex-hof-summary-references.yml": {
-      "sha256": "4e56f90483abc79fb6bec2262019ede740c946959a183cc1c089fca45ef0eb49",
-      "size": 3032
+      "sha256": "b98b8002adcc1dd8d7242a610bf7c68ba4dd44bf55678b00909cf7b78374ce13",
+      "size": 2924
     },
     ".github/workflows/pr16-dex-hof-tutor-history.yml": {
       "sha256": "20693664a0037570f9855dd153d8c1951efb8cbeb3bd52214529d8f9b8554f05",
@@ -35479,6 +35486,10 @@
       "sha256": "f30c4be2bd54148f3dbcc93b25c38074ae50b77795405700b15f0f4566d81cb8",
       "size": 26752
     },
+    "scripts/pr16_dex_hof_summary_references_closeout.py": {
+      "sha256": "37656ad0f3bdd8894e19e7d4fa28f7099d2c97847dbe7f4e65db97942ab357fb",
+      "size": 13427
+    },
     "scripts/pr16_dex_hof_summary_type.py": {
       "sha256": "82f3dc6af635fd80fac5800c83ca861822af05c2d24d2c52045bc11ccbf323e6",
       "size": 67283
@@ -39114,6 +39125,10 @@
     "tests/test_pr16_dex_hof_summary_references_actions.py": {
       "sha256": "6c0b59ce8bb1db9e8118129946af130844a2390be803bd1ff20a40f73ef87721",
       "size": 12253
+    },
+    "tests/test_pr16_dex_hof_summary_references_closeout.py": {
+      "sha256": "8a98b250a435a3a1cc732a867218635c58ce4fb7c9e3695b283eb7a93540637d",
+      "size": 2013
     },
     "tests/test_pr16_dex_hof_summary_type.py": {
       "sha256": "ad4316c6e65e718dde1faf951941829b060b09ec77be5366b0bdd45374016c6b",
@@ -56782,6 +56797,75 @@
         "donor_safe_bytes": 0,
         "guide": "docs/PR16_DEX_HOF_SUMMARY_REFERENCES_JA.md",
         "known_capacity_upper_bound": 1315,
+        "recording": {
+          "all14_steps_success": true,
+          "all5_snapshots_full_bytes_and_lf_verified": true,
+          "all_eleven_old_delta_families_preserved": true,
+          "archive": [
+            11381053260,
+            37391965012,
+            1479906,
+            "089a5d0ae83e0876100bb41fb38cc8bdb590212226e716e276c876d04158cb05"
+          ],
+          "arm_compiles": 0,
+          "baseline_identity": {
+            "sha256": "814082398937869b6cc17faa09cbf1833f0c7f4aa300ddbd83d0de833d44b74c",
+            "size": 4063919
+          },
+          "candidate_changed": false,
+          "capacity_identity": {
+            "sha256": "0c02f86656a4bfc4f16a73e09c9eff9ae0f382989b89deeed99bfcc81f6c2da7",
+            "size": 15194
+          },
+          "checkpoint": "content/modernization/pr16_dex_hof_summary_references_checkpoint.json",
+          "checkpoint_identity": {
+            "sha256": "e63d3dfda20758d9a2f120a06bfc870183adf1cd997d887462babdae9af6529a",
+            "size": 627652
+          },
+          "classified": 737,
+          "closeout_run": 37392719044,
+          "closeout_source": "e9550cd74cd1a2ec6f0ae8bea304f31fc158bbd7",
+          "combined_song_models": 133,
+          "current_rom_reconstructions": 0,
+          "delta_identity": {
+            "sha256": "c11d71495d60fda8fed98464eb6962f7b57be75dc39e8b479be3d57903d68586",
+            "size": 681669
+          },
+          "donor_leased": false,
+          "earlier_identity": {
+            "sha256": "762320ba350f528777b90be404b5fec1d88caeb6dbf6594590d4f45b852c1c87",
+            "size": 149772
+          },
+          "export_guard_test_log": {
+            "sha256": "7a43ab38eca5cd7a43c54504795d965af2ca4d8420ad9569ea040c37cdb008c7",
+            "size": 1077
+          },
+          "formal_save_changed": false,
+          "independent_final_source_review_completed": false,
+          "job": 112038897276,
+          "native_processes": 0,
+          "new_boundary": 0,
+          "new_code": 1,
+          "new_data": 1,
+          "new_export_guard_tests": 9,
+          "new_song": 0,
+          "newly_classified": 2,
+          "old735_accepted_and_all874_identities_retained": true,
+          "owner_unknown": 0,
+          "parent_identity": {
+            "sha256": "55bc39b3b22ad61654fa24dbf37e5c44b33aae16357acf70e823af5baf4a748c",
+            "size": 375903
+          },
+          "record_head": "02757f66fa02ee7bba0f880b12a58cadaf2b74b9",
+          "retained_sample_witnesses": 50,
+          "run": 37391965012,
+          "source_head": "4c9850b713d0bcf3ea39c9ff6997bb11eebecb50",
+          "status": "PASS_TERMINAL_EXACT_SUMMARY_REFERENCES_RECORD",
+          "tests_rerun": 0,
+          "unclassified": 137,
+          "unit_tests": 250,
+          "unowned_unknown": 137
+        },
         "run": 37391965012,
         "source": "4c9850b713d0bcf3ea39c9ff6997bb11eebecb50",
         "status": "PASS_CURRENT_735_PARENT_SUMMARY_REFERENCES_AND_PARTIAL_SPACE_REFUSAL",
