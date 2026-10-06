@@ -13636,3 +13636,18 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 残121件を実consumer根から調べる。0x0818DD5Dは現object10/2:0と21/0:0の追加grammarを閉じた有限graphでも対象LOADWORDへの正のpathと置換元producerは未結合のため未知維持。別の登録root/目的LOADWORD path/placeholder byte consumerが結合した時だけ再開し、全root不達と主張しない。Bag数量順ID14/15は実生成配列から除外、Fishingは実state6→9でstate7 timeout producerへ進まず、追加Defog/Dive説明は実stock consumerが旧表のまま。各4hitは未知維持し、別の実caller/非zero writerまたはconsumer結合の独立証拠が出た時だけ再開。Credits4paddingの日本語layout、GPU外側root、wireless非zero writerも未証明。次は残未調査の実UI/script/asset登録根を限定調査する。既測定Bag/ShockWave/Seagallop/Help/RFU/Fame/Credits/Summary/party/Mystery/本placeholder event/HealPulse/Electrify境界/field guard/旧suite/nativeは無影響再走しない。未知最大access/間接参照/退役/owner移管未証明なら旧egg15118全域保護/安全0。単一controller6528byte容量確保後、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL/全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/0804B85C退避前Freeへ接続。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。
 - Commit: closeout source=4c18dadba4a83e0f74d57de8f7939556fc1f4395; 同branch非force。
 - Network: 同repoActions/text原本のみ。ROM断片/rawhex/ROM/save/runtime/runner/credentials追加公開0。
+
+## 2026-10-06T06:04:46.679796+00:00
+- Timestamp: 2026-10-06T06:04:46.679796+00:00
+- Task: USER-20261006-DEX-HOF-HEALING-VEIL-BATCH / 登録healing/veil serializer最小型・容量保持
+- Version: hof-healing-veil-batch-v1
+- Status: STOPPED（新healing/veil3件最小型、既event1hitと旧field4hit未知保持、残root/donor/実controller未完）
+- Summary: 現0641のeffect65/AuroraVeilとeffect32/LifeDew・JungleHealingの各4byte、計3件を登録slot/Moveと有限serializer・E3/goto/FF09 consumerから新分類。756分類/未知118。新207試験、全115actual ownerと全18親deltaを照合。既event placeholderとfield4hitの未結合guard結果は再測定せず未知保持。最小型と自然play全到達・普遍IRQ/heap寿命・間接参照/退役/owner移管を分離し、全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。
+- Files changed: 新consumer verifier/chain/capacity/拒否unit/Actions/guide/checkpoint/最小証拠、固定MDJSON、両ログ。
+- Verify: 新unit207、現candidate全SHA・115actual owner・874hit、全18親delta/全134changes/全124witness/旧753と残unknown全field保持、133全song model/50assetと新typed窓の役割交差。旧全ROMscan/native/heap/歴史再生成0。
+- Capacity: 未知参照はアクセス幅未証明なら全donor保護。点target楽観空隙を安全容量へ昇格しない。global余白511とsave内部804は既存owner/subownerを保持した上限で、新leaseなし。Ccontroller既測定単一text6528/align4と比較。間接参照/対象退役完全性も別必須gate。
+- Publication: 619原本と全親chainは参照保持、複製なし。独立measurementと全text size/SHA/LF、closed success artifact、hidden/symlink/未知file拒否。旧独立最終song/battle/Surfレビュー未実施を継承し、拒否操作の別経路再実行なし。
+- Boundary: 現0641/115owner/52saveowner/残804、正式ROM/Save101不変。heap13352を保存退避53300入口へ跨いで保持しない。
+- Next: 残118件を実consumer根から調べる。0x0818DD5Dは現object10/2:0と21/0:0の追加grammarを閉じた有限graphでも対象LOADWORDへの正のpathと置換元producerは未結合のため未知維持。別の登録root/目的LOADWORD path/placeholder byte consumerが結合した時だけ再開し、全root不達と主張しない。Bag数量順ID14/15は実生成配列から除外、Fishingは実state6→9でstate7 timeout producerへ進まず、追加Defog/Dive説明は実stock consumerが旧表のまま。各4hitは未知維持し、別の実caller/非zero writerまたはconsumer結合の独立証拠が出た時だけ再開。Credits4paddingの日本語layout、GPU外側root、wireless非zero writerも未証明。次は残未調査の実UI/script/asset登録根を限定調査する。既測定Bag/ShockWave/Seagallop/Help/RFU/Fame/Credits/Summary/party/Mystery/本placeholder event/HealPulse/Electrify境界/AuroraVeil・LifeDew・JungleHealing最小型/field guard/旧suite/nativeは無影響再走しない。未知最大access/間接参照/退役/owner移管未証明なら旧egg15118全域保護/安全0。単一controller6528byte容量確保後、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL/全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/0804B85C退避前Freeへ接続。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。
+- Commit: source=718d9795bee3bf43129e1d3d39d922cb45e54a37; 同branch非force。
+- Network: 同repoActions/既存入力/固定source。公開source・最小address-size-SHA・textのみ、ROM断片/rawhex/ROM/inputsave/runtime/runner/credentials追加公開0。
