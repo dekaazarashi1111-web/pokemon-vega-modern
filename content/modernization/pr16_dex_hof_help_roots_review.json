@@ -1,0 +1,711 @@
+{
+  "schema_version": 1,
+  "required_candidate": {
+    "size": 33554432,
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+  },
+  "diagnostic_input": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  },
+  "source_bindings": {
+    "pret-main.c": {
+      "local": "pret-main.c",
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "path": "src/main.c",
+      "size": 11699,
+      "sha256": "0bfa6c662b1cbd49bd31020b6c2509208004611e6701ad64badce22eca371139",
+      "git_blob_sha": "542b0f5d16dd93107523d11163bfcb70a42b707a",
+      "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/main.c"
+    },
+    "pret-help_system.c": {
+      "local": "pret-help_system.c",
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "path": "src/help_system.c",
+      "size": 88697,
+      "sha256": "b5a16f20a8593296a8a850159802cab7c8669d2ffad3605cdb42d1a527ff8350",
+      "git_blob_sha": "00756538ea1a24fa8fe655cc8c039322e3585861",
+      "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/help_system.c"
+    },
+    "pret-help_system_util.c": {
+      "local": "pret-help_system_util.c",
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "path": "src/help_system_util.c",
+      "size": 24475,
+      "sha256": "3617f7ee96e1fab31e406dc52e7dbfaa805a7ec9f93149c1d812d00f76f1c69c",
+      "git_blob_sha": "d07881e00ab9fcd3285c572d8cd63e2dac677b75",
+      "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/help_system_util.c"
+    }
+  },
+  "hits": [
+    {
+      "address": 138523674,
+      "target": 167707394,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "decfdc5f0dda8db78718a3909efe06cf28e2f025ca388bfeb45f3da6485bb5ef",
+      "classification": "UNCLASSIFIED",
+      "accepted": false,
+      "reason": "no_complete_typed_asset_consumer_witness",
+      "owner_candidates": []
+    },
+    {
+      "address": 138523724,
+      "target": 167709438,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "daab222b9afb68c4c456ed058518198198ebe7e29143484658fba1d51a71a7a7",
+      "classification": "UNCLASSIFIED",
+      "accepted": false,
+      "reason": "no_complete_typed_asset_consumer_witness",
+      "owner_candidates": []
+    }
+  ],
+  "root": {
+    "kind": "context_api_then_actual_main_help_hook_and_generated_topic_selection",
+    "context_api": 135444964,
+    "context_store": 135444970,
+    "main_dispatch": 134219024,
+    "help_call": 134219034,
+    "help_callback": 135512116,
+    "installed_hook": 135512236,
+    "hook_target": 153943752,
+    "context_cell": 33796192,
+    "topic_cell": 50355949,
+    "help_states": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "main_topic_producer": 135445796,
+    "topic_index_store": 135445864,
+    "controller_initializer": 135515536,
+    "down_cursor_writer": 135516262,
+    "selected_index_read": 135515656,
+    "topic_store": 135447836,
+    "submenu_dispatch": 135447572,
+    "submenu_consumer": 135446040,
+    "submenu_pointer_read": 135446074,
+    "byte_reads": [
+      135446078,
+      135446086,
+      135446222
+    ],
+    "stop_before": 135446228
+  },
+  "windows": [
+    {
+      "address": 134219024,
+      "size": 20,
+      "sha256": "2b3115dd36020fc9d2af2393952407a366e909675495fe72cc9e11660203f630"
+    },
+    {
+      "address": 134219066,
+      "size": 6,
+      "sha256": "f23ec6dc1953697e0780ddeb0ae6bc10f99f39a5abea91e44c64381eb75c50fe"
+    },
+    {
+      "address": 135444964,
+      "size": 10,
+      "sha256": "01b09bc961e150415cdd1c5f5c9bcf2e79f5e31f68657f97771fb3a33d09fc0f"
+    },
+    {
+      "address": 135444976,
+      "size": 4,
+      "sha256": "99d27fd2254a6da1dc57a382504de8043f839beafe85d7bd6a25af5a3982ffd5"
+    },
+    {
+      "address": 135445520,
+      "size": 10,
+      "sha256": "7ecd83851236d3de528db5f3efb20e12b54254e791093ea4a3eeee2384940f6e"
+    },
+    {
+      "address": 135445554,
+      "size": 4,
+      "sha256": "fdf6a5b2a826c9573176672e7b3a0af8aff6cfcbff4266a33a277cc419034957"
+    },
+    {
+      "address": 135445560,
+      "size": 4,
+      "sha256": "1aaab5e701559da7f1501e823270ec189a90c863a39bb5937839731bcf168e9c"
+    },
+    {
+      "address": 135445586,
+      "size": 4,
+      "sha256": "b12afda4706c7738a894db2c0847e464d662c484c5c6c16536615bb05deeba77"
+    },
+    {
+      "address": 135445600,
+      "size": 14,
+      "sha256": "207c50eac56e40d3b32b10ecb23fde6c95c1cc76197166db3a6e6a1826990ca1"
+    },
+    {
+      "address": 135445616,
+      "size": 4,
+      "sha256": "c38bbabc56369606a4da5cb5857c0daf0ac0b47b2cf6c7af4c0ae61afe10137b"
+    },
+    {
+      "address": 135445622,
+      "size": 4,
+      "sha256": "b12afda4706c7738a894db2c0847e464d662c484c5c6c16536615bb05deeba77"
+    },
+    {
+      "address": 135445704,
+      "size": 18,
+      "sha256": "6b641a7ff28e24ebe570241a5aa04d87aeaf29b8f09ac304c35eaa9a30dcaa24"
+    },
+    {
+      "address": 135445724,
+      "size": 62,
+      "sha256": "8019b28665c46cb00ba6a0103bd542b4f117728b6d8eef23694135d19d09483f"
+    },
+    {
+      "address": 135445788,
+      "size": 126,
+      "sha256": "101116d1ab605a470c15378017beca187fa561a07aaff4d313189bf07ba55983"
+    },
+    {
+      "address": 135445916,
+      "size": 56,
+      "sha256": "3efa0fd9ba501970107f463c30397c24bfabc1e440d2880b5b0c295022fecbea"
+    },
+    {
+      "address": 135446040,
+      "size": 72,
+      "sha256": "dcb3ba135ccd92ed7f8b9cd7fbca52f04e8c7f1e6b67c0e073cb565d64636107"
+    },
+    {
+      "address": 135446120,
+      "size": 12,
+      "sha256": "380c9b895e0e7d75a92b674ebe8587968f956015fe4103f24882085a0b7673d9"
+    },
+    {
+      "address": 135446136,
+      "size": 32,
+      "sha256": "c379b5835f37aec0591868ff1c3a5ed119e9f514b11dc8e53882cc1fb617da9b"
+    },
+    {
+      "address": 135446190,
+      "size": 38,
+      "sha256": "5b559a6d90433c109d3f1e592b35b2acecaf2b1219fc965f746c4d94a8d0000d"
+    },
+    {
+      "address": 135446360,
+      "size": 18,
+      "sha256": "558972f747c21cb183f6e9d166baad7335a022833ede74665b0d255a0bbf5de1"
+    },
+    {
+      "address": 135446396,
+      "size": 6,
+      "sha256": "835daae6111b0b09128b388822893a38d4c0ad5d283cf682b9b28b5b54f1baeb"
+    },
+    {
+      "address": 135446404,
+      "size": 20,
+      "sha256": "6ba24c9dfd5556c53e2acc9b67cd19053a34b4567d5e77f6cd412d03dbdb71e3"
+    },
+    {
+      "address": 135446444,
+      "size": 4,
+      "sha256": "6a95e76500afb16448189ffa3b8fb09e0d4492343788a2096b3b949f289aa895"
+    },
+    {
+      "address": 135446704,
+      "size": 12,
+      "sha256": "b642c91744c285c6e236ca7474fd3dff21699efab25f1a9182980aef15c4479b"
+    },
+    {
+      "address": 135446718,
+      "size": 14,
+      "sha256": "1c7ea35b46265a709f4a5d42a0e49a3717873a29d946f7a49655b1f722070afa"
+    },
+    {
+      "address": 135446736,
+      "size": 8,
+      "sha256": "1b01a203b29413333f8f693e88b9c5a36b283df20d4d63c38b9fbb6c86dbc413"
+    },
+    {
+      "address": 135446768,
+      "size": 8,
+      "sha256": "79796847305ab37a20c2294a5455b8c3b2214f0c4316fcfa21fc992a9cce2937"
+    },
+    {
+      "address": 135446948,
+      "size": 8,
+      "sha256": "56db1ef14cf948709f3ef8ba6d2dbd0f775fb5ae43823514628f7e638ab11930"
+    },
+    {
+      "address": 135447004,
+      "size": 4,
+      "sha256": "31d665512bff7fde2376e4c7363e732a7b014e3d7fc2b3c2c5ef75ad8cc94e84"
+    },
+    {
+      "address": 135447010,
+      "size": 12,
+      "sha256": "7c3ee0742ac7df593cb0f8f86e2d58530fd5a395a32bc79d6b76a8a285f5a17a"
+    },
+    {
+      "address": 135447058,
+      "size": 6,
+      "sha256": "0c542ac677b981f244471f286369bb709dc451d0f01ca36b495652df42d68961"
+    },
+    {
+      "address": 135447066,
+      "size": 10,
+      "sha256": "9cfade071c13a677af346372ad06f39d3ca8a348dea9f45caff81d4b6c8d9fc1"
+    },
+    {
+      "address": 135447080,
+      "size": 4,
+      "sha256": "1bd2147171dc599c57d3eb06c206d1f10eff416573dc336abb5cd3ae352e8a73"
+    },
+    {
+      "address": 135447116,
+      "size": 16,
+      "sha256": "cb9aa97d21d0b108947e738b671592ba6088d21c811b19bce1c9a6450db5d005"
+    },
+    {
+      "address": 135447136,
+      "size": 4,
+      "sha256": "12258c37b0fe2c2dc6142e3771596faa2c2d9b671c0b1326e80076da75fc90fe"
+    },
+    {
+      "address": 135447144,
+      "size": 8,
+      "sha256": "57ebd9482f5f3ba1ed50900460176f20af32a737a27c254682f6394c760b4af8"
+    },
+    {
+      "address": 135447180,
+      "size": 12,
+      "sha256": "a6b0f9d89bf764f42907d3911d6064b227fb61cecc2a04c89d3050b14f18401c"
+    },
+    {
+      "address": 135447240,
+      "size": 8,
+      "sha256": "64c513d068355151bf18fb9704a8299de8f55f7ddc3a514caa4451562ec3fb27"
+    },
+    {
+      "address": 135447286,
+      "size": 10,
+      "sha256": "8f970a5b997b636b881e80a9f02ded5e971c5671a6aff311ff34701eaf69953c"
+    },
+    {
+      "address": 135447308,
+      "size": 8,
+      "sha256": "d8da78280539ff8e30d38e367bac5e430d02bdbde8064c4e01da7511743860a1"
+    },
+    {
+      "address": 135447456,
+      "size": 22,
+      "sha256": "60afdadc50f7e0dcc10acf429eab4d9f43c8401daab59b63ec9a4535456326e5"
+    },
+    {
+      "address": 135447480,
+      "size": 12,
+      "sha256": "72fa92f63a5035f5eaba9947d609d8955226b8a104d007479fa67d04a98fff01"
+    },
+    {
+      "address": 135447558,
+      "size": 18,
+      "sha256": "764e22d53d39aa4eda8b99c44330cc1f8e349ee47c96635a33cb0e7fd37010d7"
+    },
+    {
+      "address": 135447626,
+      "size": 6,
+      "sha256": "7b088f04e966c656186cadddc045152b91505a8fdb0f733ad6dde706045c2cc3"
+    },
+    {
+      "address": 135447634,
+      "size": 4,
+      "sha256": "b12afda4706c7738a894db2c0847e464d662c484c5c6c16536615bb05deeba77"
+    },
+    {
+      "address": 135447724,
+      "size": 72,
+      "sha256": "b9da8cd58bb97d9f922b68f8db1e0f849dc3cb8b3204ab9dcb364bc073d91bd2"
+    },
+    {
+      "address": 135447800,
+      "size": 4,
+      "sha256": "7db8d59552b968d0f1f90854ba616e1dfe0384da8b0ac1fffcbcd8f29b3d633c"
+    },
+    {
+      "address": 135447824,
+      "size": 26,
+      "sha256": "6416591c9325e8c0eb2f3f8111558f4f127e1378bddd1bb5b42028227743f0b0"
+    },
+    {
+      "address": 135447852,
+      "size": 34,
+      "sha256": "f1dc348642d0e4eeebb9098a4a8611ddd46edfd60af9f8e2692cf6141c132ebd"
+    },
+    {
+      "address": 135447908,
+      "size": 4,
+      "sha256": "6a95e76500afb16448189ffa3b8fb09e0d4492343788a2096b3b949f289aa895"
+    },
+    {
+      "address": 135448452,
+      "size": 8,
+      "sha256": "e763139497f0ed95a1eda56de26942032a5d19d9925f648f12930ab2f1df31b0"
+    },
+    {
+      "address": 135512116,
+      "size": 10,
+      "sha256": "57311a1f17eabe5d3670ad7451905636e18a5669c5f1ae6307e4ed2ce5b0d7bb"
+    },
+    {
+      "address": 135512128,
+      "size": 10,
+      "sha256": "d1fa04d60d3d4b5fde8d34d33b1ff4a48d9cfaa7d9218daaea27d02d3f23fd03"
+    },
+    {
+      "address": 135512140,
+      "size": 32,
+      "sha256": "2252124fdcc765d7e270b715e0e998117cae7d9edd7fc5020827bfa9de1285a3"
+    },
+    {
+      "address": 135512184,
+      "size": 30,
+      "sha256": "59899e59cf283da4e013eab312e2404ca5c89776a8a69c3dcb1f4cc0ab4d0295"
+    },
+    {
+      "address": 135512222,
+      "size": 12,
+      "sha256": "6a56580cb5c2b5b4eb763df49e19da4be10dc18596a62dddd6d0cc965f4f16db"
+    },
+    {
+      "address": 135512236,
+      "size": 18,
+      "sha256": "a85f6c73e731773a789a1d4a2f7411508e10fda05bb714dfcf82a38b39d1534e"
+    },
+    {
+      "address": 135512264,
+      "size": 12,
+      "sha256": "94c6fe748cc3bedae08b0c762d8ef2c8dbac5eeed6df4cc5d4d6d1d490c5418f"
+    },
+    {
+      "address": 135512280,
+      "size": 18,
+      "sha256": "445af2947c157c942134448222eaf902c9caf8699404795102528ed52adcd20b"
+    },
+    {
+      "address": 135512308,
+      "size": 20,
+      "sha256": "88e6fa43f1c56f607de377bd6c581e3d6373f4a015fd24e8a7c470bdbb383c9e"
+    },
+    {
+      "address": 135512336,
+      "size": 156,
+      "sha256": "1912454d739678c2cdf006048f15d985f5c776ef0647d571fabd14fdc155ff34"
+    },
+    {
+      "address": 135512504,
+      "size": 4,
+      "sha256": "d607750e0e655d3dfc3e475ffe3e12b99e10f2f87d3a118d019f7d61a5f4f06d"
+    },
+    {
+      "address": 135512516,
+      "size": 30,
+      "sha256": "67ac4944102f2dba8cbb5f25c4aec13b67e69d34243288a6cd4663f8b9bd17fb"
+    },
+    {
+      "address": 135512548,
+      "size": 82,
+      "sha256": "11b4db9973d1019351c2ea2d7b50ebb463424fe19eb22e1f1fd6055350540b90"
+    },
+    {
+      "address": 135512644,
+      "size": 8,
+      "sha256": "19a19eaf32e0d9d98117cdc63db47970e115fd31ec2547b7083afda0fef0ce3f"
+    },
+    {
+      "address": 135512786,
+      "size": 12,
+      "sha256": "b1aef10d5f54e81baee3a81819444ab8172c4b6ee4ef5f03f9174a50047c4f00"
+    },
+    {
+      "address": 135512804,
+      "size": 4,
+      "sha256": "d1ddcf7320bbcd843524e875ba0f3d0d95bf7196eb02436557ba710bb40d4445"
+    },
+    {
+      "address": 135515536,
+      "size": 26,
+      "sha256": "d293ad9d131a4f2c5b7a29ec177cca4384a65fc4184814011534e746fddf158e"
+    },
+    {
+      "address": 135515564,
+      "size": 28,
+      "sha256": "35bd8d8c9f5ecfcd0e05ca3a9bd602eaf7d2b94bbf7ae98b5427bb2ff87b1f3c"
+    },
+    {
+      "address": 135515604,
+      "size": 10,
+      "sha256": "835e46f4023cfc227b74eba1f2d6e48b72b076c0c6a7b80a219985da5f949baf"
+    },
+    {
+      "address": 135515620,
+      "size": 56,
+      "sha256": "8d38b79517ee0b63cba45c9f9b4ba6f8642995cf499a949cd22ff041df398ab5"
+    },
+    {
+      "address": 135515688,
+      "size": 10,
+      "sha256": "17c5f00f15cbc038020ddfa007a18d74fb4feaf5c3fedbfae4c1c04ae04f7acb"
+    },
+    {
+      "address": 135515704,
+      "size": 10,
+      "sha256": "c02e69dcdb29f4a0a424e8f98792a18bbe7caf84436219c741a77c61f6cbc79d"
+    },
+    {
+      "address": 135515718,
+      "size": 12,
+      "sha256": "a21460ca459804eb32e8dd0091a5673a53095f5a413723f6de23a27af29690b8"
+    },
+    {
+      "address": 135515774,
+      "size": 24,
+      "sha256": "21a759b64a31bd8fe3f95e4e4a1dce89d08cf9e96a3b3837b91993d30779a34b"
+    },
+    {
+      "address": 135515802,
+      "size": 4,
+      "sha256": "b12afda4706c7738a894db2c0847e464d662c484c5c6c16536615bb05deeba77"
+    },
+    {
+      "address": 135516128,
+      "size": 8,
+      "sha256": "a94b613b6c70cba2c0b0f336267411d7da54f385520f1229af2b382716fa5007"
+    },
+    {
+      "address": 135516208,
+      "size": 10,
+      "sha256": "b35b068dd0e22b9fed5139acf3e30c4fc4df35b48338d2516d5f8e704cf9fdca"
+    },
+    {
+      "address": 135516224,
+      "size": 42,
+      "sha256": "c16828bfd34915950783c333c4b835f51828e7a8705440de9588e70c1feaa0ad"
+    },
+    {
+      "address": 135516288,
+      "size": 52,
+      "sha256": "ab39e98f583dc52a3b3f0a03b754cea9a0d48bece6b1f6571fbf571b8a8cac7d"
+    },
+    {
+      "address": 135516352,
+      "size": 20,
+      "sha256": "a6a8ea699a1175cf5e059c102d84ed63df028ffe39e328d3c31ee9dea44ea171"
+    },
+    {
+      "address": 135516440,
+      "size": 8,
+      "sha256": "30d6ab1f342ed862518c5d1b81a8ad6ff12eb86e4593d8f9b9271706fca92032"
+    },
+    {
+      "address": 138522148,
+      "size": 8,
+      "sha256": "d339ee9511914f4082de4b14dc8d7d3864131d2b6be863007f26158e209782f5"
+    },
+    {
+      "address": 138522164,
+      "size": 4,
+      "sha256": "a1a2e3cf71527cc453d878a434ee33fb2462211d436fbeb409dd55b35c10c2ad"
+    },
+    {
+      "address": 138522592,
+      "size": 8,
+      "sha256": "10cb26c480898fd4cf51db2a5d63857aec58c0b74577c83abf2713ed2f00607b"
+    },
+    {
+      "address": 138523000,
+      "size": 4,
+      "sha256": "85fa4de34729de51da5a2716d475ea6e3dae7879525683fffe2664c72c918d7c"
+    },
+    {
+      "address": 138523012,
+      "size": 4,
+      "sha256": "7f56b064c924da54a463ab8680721f282aca620ff355fa809aca41825f6c1bf5"
+    },
+    {
+      "address": 138523044,
+      "size": 12,
+      "sha256": "6e683a4cd2a077d23a6bc0859b169bb4f21a0bbd8141cc95000070ecf1fb9211"
+    },
+    {
+      "address": 138523674,
+      "size": 10,
+      "sha256": "c913890ee104241dc911b7c024fde9e8cac5362791513f389375078fe68492a5"
+    },
+    {
+      "address": 138523719,
+      "size": 10,
+      "sha256": "0ccb1e1bcf4028bff01f0a58b6322a78dc4e5542235813d5df52808898b208a2"
+    },
+    {
+      "address": 138524668,
+      "size": 8,
+      "sha256": "efd35433323759df154b02b3b1bd8b86690e8f6258073edc4bf0793688060e5f"
+    },
+    {
+      "address": 138524752,
+      "size": 4,
+      "sha256": "b92a82d0dcc0df0b3b89cc7006bf37ad830150d6a85521000da291c27deb874e"
+    },
+    {
+      "address": 138524768,
+      "size": 4,
+      "sha256": "61e658789991d78ea07f6512db193fe87c556456cadac3a8ffbbaa8202edd38f"
+    },
+    {
+      "address": 138524788,
+      "size": 4,
+      "sha256": "befee6b6465c11fda39e0742ab7c4057dd6f3e9fbeaab129f950798c5ce82108"
+    },
+    {
+      "address": 138527312,
+      "size": 6,
+      "sha256": "fafff630ed11ebb3a8fa351871038fc40f6545bc30189af37776417b7555a7ec"
+    },
+    {
+      "address": 138527354,
+      "size": 6,
+      "sha256": "073785f527f6e7d4a39b1ef1ee3e110e8855d3cbb2f8fc9ce78a73e50b83f300"
+    },
+    {
+      "address": 138527378,
+      "size": 18,
+      "sha256": "c3a1b42b4d77405ed7e23eec49a0a95fb05b56a09c4d94760a86f3042421f5e1"
+    },
+    {
+      "address": 138597586,
+      "size": 2,
+      "sha256": "26eab90d2b0be7cd188983eae071bbcce8dfe9c2f48b20a7489b42080b47360b"
+    },
+    {
+      "address": 153943752,
+      "size": 18,
+      "sha256": "c23fd766f5fe6c1d2b36242227bf8337069752b703dde3ac5fdd770a5f2c3662"
+    },
+    {
+      "address": 153943772,
+      "size": 8,
+      "sha256": "ab77e6f161cdc489cb5a06282ef38c15e5fc8c16fd49eeaf5ec90913df1f2111"
+    },
+    {
+      "address": 153943788,
+      "size": 12,
+      "sha256": "a8ae5c08e6692bfa3326636517477616a3ad5bd0e59805226c49a4d5105e60d4"
+    }
+  ],
+  "claims": {
+    "proof_scope": "conditional_context_api_and_main_help_finite_minimum_id_consumption",
+    "external_context_api_invocation_is_precondition": true,
+    "natural_screen_context_invocation_proven": false,
+    "full_story_reachability_claimed": false,
+    "actual_runtime_execution_observed": false,
+    "universal_heap_or_irq_lifetime_proven": false,
+    "opaque_callee_effects_proven": false,
+    "whole_id_tables_classified": false,
+    "padding_classified": false,
+    "source_pointer_interpretation": false,
+    "maximum_target_access_width_proven": false,
+    "indirect_reference_completeness_claimed": false,
+    "donor_eligible": false,
+    "donor_leased": false
+  },
+  "input_contract": {
+    "entry": "SetHelpContextDontCheckBattle API is conditionally invoked with6,10,11,12; actual byte argument truncation and halfword store execute. Natural Summary, TrainerCard and Save callers are separate unresolved obligations.",
+    "activation": "Help video state starts0; SaveBlock2 optionsButtonMode0, enabled1, single-player link flag0, quest-log block bit1 clear, intro already seen1 and volume-reduce disabled1. Actual main invokes Help, L input activates the installed hook, and actual stores produce states1..5.",
+    "input": "Only gMain newKeys/repeatedKeys are environmental outputs. For topic1 press A; for topic2 press DOWN then A. Real six-topic order/flags generate list rows, real controller stores cursor0, real MoveCursor increments it, A reads that generated row, and real MenuInputHandlerMain writes topic. No host write injects context/topic/list/cursor fields.",
+    "flags": "Actual selected IsHelpSystemSubmenuEnabled and ShouldShowBasicTerms execute. Exact FlagGet calls for selected flags return0; unconditional true cases remain true. Global natural game consistency of this sufficient API input profile is not claimed.",
+    "environment": "Every enumerated sound, graphics, video-backup, text and DMA call returns normally with valid disjoint resources and ABI callee-saved registers/stack. Their rendering and transitive effects are conditional, never proven harmless.",
+    "lifetime": "Each opaque call and between-frame environment boundary preserves exactly subsequent read-before-write RAM, less declared newly produced button fields; all other RAM is erased in replay. Static Help globals, input SaveBlock2 and external video resources retain their required identities at each use. No universal IRQ/heap/whole-object preservation is claimed.",
+    "minimum": "Five cases consume complete source-bound EOS-terminated ID lists. Their byte-read union covers exactly both4-byte hits, including adjacent lists. Stop before optional basic-term extension; no remaining list, padding, rendering output or pointer target is classified."
+  },
+  "id_lists": [
+    {
+      "context": 6,
+      "topic": 1,
+      "source_array": "sHowTo_PokemonInfo",
+      "symbols": [
+        "HELP_USING_POKEMON",
+        "HELP_USING_SUMMARY",
+        "HELP_END"
+      ],
+      "address": 138523674,
+      "size": 3,
+      "sha256": "b3cb7a57d512366f1cc0b325cd3cc1662264f98fa29d2fd3673a2a104d54998f",
+      "table_cell": 138524668
+    },
+    {
+      "context": 6,
+      "topic": 2,
+      "source_array": "sTerms_PokemonInfo",
+      "symbols": [
+        "HELP_TERM_LEVEL",
+        "HELP_TERM_TYPE",
+        "HELP_TERM_OT",
+        "HELP_TERM_ID_NO",
+        "HELP_TERM_ITEM",
+        "HELP_TERM_NATURE",
+        "HELP_END"
+      ],
+      "address": 138523677,
+      "size": 7,
+      "sha256": "51be600c1fd746d8d5f823a6b258823050beac206edc164bc0f9f2be78deabef",
+      "table_cell": 138524672
+    },
+    {
+      "context": 10,
+      "topic": 2,
+      "source_array": "sTerms_TrainerCardFront",
+      "symbols": [
+        "HELP_TERM_ID_NO",
+        "HELP_TERM_MONEY",
+        "HELP_TERM_POKEDEX",
+        "HELP_TERM_PLAY_TIME",
+        "HELP_TERM_BADGES",
+        "HELP_END"
+      ],
+      "address": 138523719,
+      "size": 6,
+      "sha256": "5a20e364798fe5edc01b6d197968e60a3f3edc20aee9484d0918317f9c13a8d2",
+      "table_cell": 138524752
+    },
+    {
+      "context": 11,
+      "topic": 1,
+      "source_array": "sHowTo_TrainerCardBack",
+      "symbols": [
+        "HELP_USING_PLAYER",
+        "HELP_END"
+      ],
+      "address": 138523725,
+      "size": 2,
+      "sha256": "428f6d7e89a1b345221f88db8af74389653730f048724e0dabece69990d6b7be",
+      "table_cell": 138524768
+    },
+    {
+      "context": 12,
+      "topic": 1,
+      "source_array": "sHowTo_Save",
+      "symbols": [
+        "HELP_USING_SAVE",
+        "HELP_END"
+      ],
+      "address": 138523727,
+      "size": 2,
+      "sha256": "af2b07b1b168c37ee2c44101f232ae23e1d7d8b62e84e8798610ddedbcf63ef8",
+      "table_cell": 138524788
+    }
+  ]
+}
