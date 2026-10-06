@@ -4411,13 +4411,19 @@
       "content/modernization/pr16_dex_hof_generation_writer_checkpoint.json",
       "content/modernization/pr16_dex_hof_new_code_review.json",
       "content/modernization/pr16_dex_hof_ui_data_review.json",
-      "content/modernization/pr16_dex_hof_menu_text_review.json"
+      "content/modernization/pr16_dex_hof_menu_text_review.json",
+      "scripts/pr16_dex_hof_runtime_party.py",
+      "scripts/pr16_dex_hof_callback_party.py",
+      "scripts/pr16_dex_hof_callback_party_task.py",
+      "content/modernization/pr16_dex_hof_runtime_party_review.json",
+      "content/modernization/pr16_dex_hof_callback_party_review.json"
     ],
     "stop_rule_ja": "通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。"
   },
   "observed_date_jst": "2026-10-04",
   "observed_head": "199bf568e977bb6aa52d851d9b9b43af17ddc53d",
   "observed_head_checks": {
+    "all14_steps_success": true,
     "classified": 741,
     "current_candidate": {
       "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583",
@@ -4428,10 +4434,13 @@
     "general_ci_known_source_mismatch_not_resolved": true,
     "native_processes": 0,
     "reason_ja": "現0641の旧egg874参照に実登録consumerの必要最小型4件をまとめて追加し、741分類/未知133。新348試験、全115actual ownerと全12親deltaを照合。実registered callback・有限条件と最小consumed型だけを受入れ、自然play全到達・普遍IRQ/heap寿命・間接参照/退役安全は別義務。全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。",
+    "record_job": 112052458571,
+    "record_run": 37396146518,
     "reference_unit_tests": 348,
     "scope_head": "199bf568e977bb6aa52d851d9b9b43af17ddc53d",
     "stage79_cached_not_new_native": true,
-    "unclassified": 133
+    "unclassified": 133,
+    "whole_receipt_equals_checkpoint": true
   },
   "observed_head_history": [
     {
@@ -12442,13 +12451,7 @@
     "status": "NATIVE_PARTY_RETENTION_ACCEPTED_BP_PENDING",
     "tested_head": "10e535a046441dd3b797918106259b5c57b69716"
   },
-  "pending_runs": [
-    {
-      "run_id": 37396146518,
-      "status": "in_progress",
-      "tested_head": "199bf568e977bb6aa52d851d9b9b43af17ddc53d"
-    }
-  ],
+  "pending_runs": [],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
   "pr_draft": true,
   "pr_merged": false,
@@ -14391,9 +14394,13 @@
       "sha256": "0016d4d018c51e0c563f5dea7ebb4561e4b6035ad28f8dc5ef36bcd67a38b915",
       "size": 2706
     },
+    ".github/workflows/pr16-dex-hof-remaining-consumers-closeout.yml": {
+      "sha256": "4206002b5d397007f5835c11f3773d82ad23f9020b45528017899c5438a308f9",
+      "size": 2923
+    },
     ".github/workflows/pr16-dex-hof-remaining-consumers.yml": {
-      "sha256": "3dba77a7c3cdbda0375b6498a0a99d6f7f75eceabf379b99405d5a7a193b814a",
-      "size": 3044
+      "sha256": "116c25c97c02efe2fbeba434545bf27dedefd8b343c31090fe13fbb8dd32fde6",
+      "size": 2935
     },
     ".github/workflows/pr16-dex-hof-remaining-references-closeout.yml": {
       "sha256": "2e8561364ab0852d457c3314afb4f996f868104ed10bc26afc84846dc959358f",
@@ -35379,6 +35386,10 @@
       "sha256": "fcc21331740736f3196e066005d1b07c236992b504db143bc1ea120494e62232",
       "size": 13167
     },
+    "scripts/pr16_dex_hof_remaining_consumers_closeout.py": {
+      "sha256": "6c9df986a41afaf117f74c3a460a8ab608e4058716846306dac949905da7ae13",
+      "size": 13988
+    },
     "scripts/pr16_dex_hof_remaining_engine.py": {
       "sha256": "d88ace154be758ca5b8788e9fbfa26c643874a60347f49da16d00a3b99cacf1f",
       "size": 9566
@@ -39082,6 +39093,10 @@
     "tests/test_pr16_dex_hof_remaining_consumers_chain.py": {
       "sha256": "b41ae059f1c70a5c09beacbb834603944d768c5cce3a17ba8a208758c76b69af",
       "size": 22795
+    },
+    "tests/test_pr16_dex_hof_remaining_consumers_closeout.py": {
+      "sha256": "ee7032acd0143d44e2a2b1616b694a2a5891bb82faf6ff0786c9df0b69d51b8b",
+      "size": 3792
     },
     "tests/test_pr16_dex_hof_remaining_engine.py": {
       "sha256": "1e4d2fc70d99f3c86af7e9ccc00ee5247dd655f51055007f7d44a74bbf37687f",
@@ -55607,6 +55622,75 @@
         "donor_safe_bytes": 0,
         "guide": "docs/PR16_DEX_HOF_REMAINING_CONSUMERS_JA.md",
         "known_capacity_upper_bound": 1315,
+        "recording": {
+          "all14_steps_success": true,
+          "all5_snapshots_full_bytes_and_lf_verified": true,
+          "all_twelve_old_delta_families_preserved": true,
+          "archive": [
+            11383249029,
+            37396146518,
+            1486789,
+            "6e40c5f8919704ba035c873379b74a997d7fb0376dc57db96843f3f2f8a4c950"
+          ],
+          "arm_compiles": 0,
+          "baseline_identity": {
+            "sha256": "814082398937869b6cc17faa09cbf1833f0c7f4aa300ddbd83d0de833d44b74c",
+            "size": 4063919
+          },
+          "candidate_changed": false,
+          "capacity_identity": {
+            "sha256": "dea8c62dfb5e9b608ead9ade52bf1a907e29920d946990146f15ba4e58094115",
+            "size": 17993
+          },
+          "checkpoint": "content/modernization/pr16_dex_hof_remaining_consumers_checkpoint.json",
+          "checkpoint_identity": {
+            "sha256": "55cfbf03e124c26f78ed00b52b9d2da7604642c892dc8c85f0754b3e1a82aca3",
+            "size": 809502
+          },
+          "classified": 741,
+          "closeout_run": 37397204927,
+          "closeout_source": "575f1e160b126eb992fff9a3314b72eb61dea164",
+          "combined_song_models": 133,
+          "current_rom_reconstructions": 0,
+          "delta_identity": {
+            "sha256": "1fb58b88ac19198de7ef29fc0728908c1fb720915bfa53d265b78994252a6917",
+            "size": 875373
+          },
+          "donor_leased": false,
+          "earlier_identity": {
+            "sha256": "762320ba350f528777b90be404b5fec1d88caeb6dbf6594590d4f45b852c1c87",
+            "size": 149772
+          },
+          "export_guard_test_log": {
+            "sha256": "1b05fa9a39485d06941967a13042cfb126abc73e12fa281120f643747a51cbac",
+            "size": 1411
+          },
+          "formal_save_changed": false,
+          "independent_final_source_review_completed": false,
+          "job": 112052458571,
+          "native_processes": 0,
+          "new_boundary": 0,
+          "new_code": 2,
+          "new_data": 2,
+          "new_export_guard_tests": 11,
+          "new_song": 0,
+          "newly_classified": 4,
+          "old737_accepted_and_all874_identities_retained": true,
+          "owner_unknown": 0,
+          "parent_identity": {
+            "sha256": "c11d71495d60fda8fed98464eb6962f7b57be75dc39e8b479be3d57903d68586",
+            "size": 681669
+          },
+          "record_head": "f8f33bb1c0a2ad9659cf689b693683b9170cea6d",
+          "retained_sample_witnesses": 50,
+          "run": 37396146518,
+          "source_head": "199bf568e977bb6aa52d851d9b9b43af17ddc53d",
+          "status": "PASS_TERMINAL_EXACT_REMAINING_CONSUMERS_RECORD",
+          "tests_rerun": 0,
+          "unclassified": 133,
+          "unit_tests": 348,
+          "unowned_unknown": 133
+        },
         "run": 37396146518,
         "source": "199bf568e977bb6aa52d851d9b9b43af17ddc53d",
         "status": "PASS_CURRENT_737_PARENT_REMAINING_CONSUMERS_AND_PARTIAL_SPACE_REFUSAL",
