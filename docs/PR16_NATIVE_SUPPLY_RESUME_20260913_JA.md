@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-現0641のeffect65/AuroraVeilとeffect32/LifeDew・JungleHealingの各4byte、計3件を登録slot/Moveと有限serializer・E3/goto/FF09 consumerから新分類。756分類/未知118。新207試験、全115actual ownerと全18親deltaを照合。既event placeholderとfield4hitの未結合guard結果は再測定せず未知保持。最小型と自然play全到達・普遍IRQ/heap寿命・間接参照/退役/owner移管を分離し、全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。
+現0641の条件付き登録text APIから実table pointer/完全serializer境界とconsumerを結合し、各4byteの計5件を新分類。761分類/未知113。新241試験、全115actual ownerと全19親deltaを照合。既event placeholderとfield4hitの未結合guard結果は再測定せず未知保持。最小型と自然play全到達・普遍IRQ/heap寿命・間接参照/退役/owner移管を分離し、全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。
 
-**次: 公開256effect登録/216種macroの有限照合では今回3件以外の新しいexact登録root結合は0。単一anchorによるgeneral-script全source配置予測はeffect184/231で保存実rootと8byteずれるため、現ROM全域の配置一致・全root不達の証拠へ代用しない。残件は実UI/script/asset登録cellと完全pointer/extentの独立根から再開する。残118件を実consumer根から調べる。0x0818DD5Dは現object10/2:0と21/0:0の追加grammarを閉じた有限graphでも対象LOADWORDへの正のpathと置換元producerは未結合のため未知維持。別の登録root/目的LOADWORD path/placeholder byte consumerが結合した時だけ再開し、全root不達と主張しない。Bag数量順ID14/15は実生成配列から除外、Fishingは実state6→9でstate7 timeout producerへ進まず、追加Defog/Dive説明は実stock consumerが旧表のまま。各4hitは未知維持し、別の実caller/非zero writerまたはconsumer結合の独立証拠が出た時だけ再開。Credits4paddingの日本語layout、GPU外側root、wireless非zero writerも未証明。次は残未調査の実UI/script/asset登録根を限定調査する。既測定Bag/ShockWave/Seagallop/Help/RFU/Fame/Credits/Summary/party/Mystery/本placeholder event/HealPulse/Electrify境界/AuroraVeil・LifeDew・JungleHealing最小型/field guard/旧suite/nativeは無影響再走しない。未知最大access/間接参照/退役/owner移管未証明なら旧egg15118全域保護/安全0。単一controller6528byte容量確保後、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL/全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/0804B85C退避前Freeへ接続。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。**
+**次: 公開general-script全source配置予測はeffect184/231で保存実rootと8byteずれるため、現ROM配置へ代用しない。残113件を実consumer根から調べる。0x0818DD5Dは現object10/2:0と21/0:0の追加grammarを閉じた有限graphでも対象LOADWORDへの正のpathと置換元producerは未結合のため未知維持。別の登録root/目的LOADWORD path/placeholder byte consumerが結合した時だけ再開し、全root不達と主張しない。Bag数量順ID14/15は実生成配列から除外、Fishingは実state6→9でstate7 timeout producerへ進まず、追加Defog/Dive説明は実stock consumerが旧表のまま。各4hitは未知維持し、別の実caller/非zero writerまたはconsumer結合の独立証拠が出た時だけ再開。Credits4paddingの日本語layout、GPU外側root、wireless非zero writerも未証明。次は残未調査の実UI/script/asset登録根を限定調査する。既測定Bag/ShockWave/Seagallop/Help/RFU/Fame/Credits/Summary/party/Mystery/本placeholder event/HealPulse/Electrify境界/AuroraVeil・LifeDew・JungleHealing最小型/今回登録text5hit/field guard/旧suite/nativeは無影響再走しない。未知最大access/間接参照/退役/owner移管未証明なら旧egg15118全域保護/安全0。単一controller6528byte容量確保後、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL/全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/0804B85C退避前Freeへ接続。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。**
 
 通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `718d9795bee3bf43129e1d3d39d922cb45e54a37`。
-全753親証拠保持、新healing/veil登録serializer最小型測定source。残root/donor/本番配線未受入。
+証拠のsource HEAD: `df9b5c9dbf489fd4630ce2ab3662d6e146cb49d4`。
+全756親証拠保持、新登録text登録serializer最小型測定source。残root/donor/本番配線未受入。
 
 ## 最短の再開手順
 
@@ -25,8 +25,8 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_DEX_HOF_HEALING_VEIL_BATCH_JA.md`
-- `content/modernization/pr16_dex_hof_healing_veil_batch_checkpoint.json`
+- `docs/PR16_DEX_HOF_REGISTERED_TEXT_BATCH_JA.md`
+- `content/modernization/pr16_dex_hof_registered_text_batch_checkpoint.json`
 - `content/modernization/pr16_dex_hof_typed_recovery_evidence/egg-typed-audit.json`
 - `content/modernization/pr16_dex_hof_reference_evidence/reference-delta.json`
 - `content/modernization/pr16_dex_hof_reference_gaps_evidence/reference-chain.json`
@@ -62,15 +62,13 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 - `content/modernization/pr16_dex_hof_event_boundary_batch_checkpoint.json`
 - `content/modernization/pr16_dex_hof_script_producer_batch_evidence/reference-chain.json`
 - `content/modernization/pr16_dex_hof_script_producer_batch_checkpoint.json`
+- `content/modernization/pr16_dex_hof_healing_veil_batch_evidence/reference-chain.json`
+- `content/modernization/pr16_dex_hof_healing_veil_batch_checkpoint.json`
 - `scripts/pr16_dex_hof_callback_capacity.py`
 - `scripts/pr16_dex_hof_partial_space.py`
 - `content/modernization/pr16_dex_hof_generation_writer_checkpoint.json`
-- `content/modernization/pr16_dex_hof_healing_veil_roots_review.json`
-- `scripts/pr16_dex_hof_runtime_party.py`
-- `scripts/pr16_dex_hof_callback_party.py`
-- `scripts/pr16_dex_hof_callback_party_task.py`
-- `content/modernization/pr16_dex_hof_runtime_party_review.json`
-- `content/modernization/pr16_dex_hof_callback_party_review.json`
+- `content/modernization/pr16_dex_hof_minigame_text_roots_review.json`
+- `content/modernization/pr16_dex_hof_choose_limit_roots_review.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -514,6 +512,7 @@ P08ゲート:
 - 現0641のeffect231/184登録battle script境界2件の各4byteを新分類し、event placeholder境界1件は実候補根から未接続のため未知維持。751分類/未知123。新282試験、全115actual ownerと全16親deltaを照合。既field4hitの未結合guard結果は再測定せず未知保持。最小型と自然play全到達・普遍IRQ/heap寿命・間接参照/退役/owner移管を分離し、全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。新scopeの必要最小型と自然play全到達を分離。既guardの単一producer不達を全caller/全writer不達へ一般化しない。普遍runtime寿命保証や自然到達を未完のまま保持。全親changes25/17/33/29/3/2/1/0/3/1/2/2/4/2/3/3、witness22/16/33/23/3/2/1/0/3/1/2/2/4/2/3/3、133曲/50assetを保持。未知word size4を参照先のread幅へ誤用しない。無影響heap/native再走禁止。
 - 現0641のeffect233のopcode field群とeffect234末尾境界の各4byteを新分類し、event placeholder境界1件は実候補根から未接続のため未知維持。753分類/未知121。新284試験、全115actual ownerと全17親deltaを照合。既field4hitの未結合guard結果は再測定せず未知保持。最小型と自然play全到達・普遍IRQ/heap寿命・間接参照/退役/owner移管を分離し、全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。新scopeの必要最小型と自然play全到達を分離。既guardの単一producer不達を全caller/全writer不達へ一般化しない。普遍runtime寿命保証や自然到達を未完のまま保持。全親changes25/17/33/29/3/2/1/0/3/1/2/2/4/2/3/3/2、witness22/16/33/23/3/2/1/0/3/1/2/2/4/2/3/3/2、133曲/50assetを保持。未知word size4を参照先のread幅へ誤用しない。無影響heap/native再走禁止。
 - 現0641のeffect65/AuroraVeilとeffect32/LifeDew・JungleHealingの各4byte、計3件を登録slot/Moveと有限serializer・E3/goto/FF09 consumerから新分類。756分類/未知118。新207試験、全115actual ownerと全18親deltaを照合。既event placeholderとfield4hitの未結合guard結果は再測定せず未知保持。最小型と自然play全到達・普遍IRQ/heap寿命・間接参照/退役/owner移管を分離し、全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。新scopeの必要最小型と自然play全到達を分離。既guardの単一producer不達を全caller/全writer不達へ一般化しない。普遍runtime寿命保証や自然到達を未完のまま保持。全親changes25/17/33/29/3/2/1/0/3/1/2/2/4/2/3/3/2/2、witness22/16/33/23/3/2/1/0/3/1/2/2/4/2/3/3/2/2、133曲/50assetを保持。未知word size4を参照先のread幅へ誤用しない。無影響heap/native再走禁止。
+- 現0641の条件付き登録text APIから実table pointer/完全serializer境界とconsumerを結合し、各4byteの計5件を新分類。761分類/未知113。新241試験、全115actual ownerと全19親deltaを照合。既event placeholderとfield4hitの未結合guard結果は再測定せず未知保持。最小型と自然play全到達・普遍IRQ/heap寿命・間接参照/退役/owner移管を分離し、全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。新scopeの必要最小型と自然play全到達を分離。既guardの単一producer不達を全caller/全writer不達へ一般化しない。普遍runtime寿命保証や自然到達を未完のまま保持。全親changes25/17/33/29/3/2/1/0/3/1/2/2/4/2/3/3/2/2/3、witness22/16/33/23/3/2/1/0/3/1/2/2/4/2/3/3/2/2/3、133曲/50assetを保持。未知word size4を参照先のread幅へ誤用しない。無影響heap/native再走禁止。
 
 ## 次セッションへ残す更新手順
 
@@ -543,6 +542,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-現0641のeffect65/AuroraVeilとeffect32/LifeDew・JungleHealingの各4byte、計3件を登録slot/Moveと有限serializer・E3/goto/FF09 consumerから新分類。756分類/未知118。新207試験、全115actual ownerと全18親deltaを照合。既event placeholderとfield4hitの未結合guard結果は再測定せず未知保持。最小型と自然play全到達・普遍IRQ/heap寿命・間接参照/退役/owner移管を分離し、全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。
+現0641の条件付き登録text APIから実table pointer/完全serializer境界とconsumerを結合し、各4byteの計5件を新分類。761分類/未知113。新241試験、全115actual ownerと全19親deltaを照合。既event placeholderとfield4hitの未結合guard結果は再測定せず未知保持。最小型と自然play全到達・普遍IRQ/heap寿命・間接参照/退役/owner移管を分離し、全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
