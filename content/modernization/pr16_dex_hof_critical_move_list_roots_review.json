@@ -1,0 +1,272 @@
+{
+  "schema_version": 1,
+  "required_candidate": {
+    "size": 33554432,
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+  },
+  "diagnostic_input": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  },
+  "source_bindings": {
+    "cfru-asm_defines.s": {
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "git_blob_sha": "67f802d777e348e74c0f2d6c7ae2227fdf849f6f",
+      "local": "cfru-asm_defines.s",
+      "repository": "kapibarasan000/CFRU-JP",
+      "sha256": "1beb8b1cce26e302eb17b6907951fc4ae0a1a0ae94cffb168a12c648ca45c8a7",
+      "size": 131732,
+      "source": "asm_defines.s",
+      "url": "https://github.com/kapibarasan000/CFRU-JP/blob/e24a16fe39e27ae162faf5b78596d1f3df18489d/asm_defines.s"
+    },
+    "cfru-move_tables.s": {
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "git_blob_sha": "efadafd029731238469d204dbb0705a53a46efcd",
+      "local": "cfru-move_tables.s",
+      "repository": "kapibarasan000/CFRU-JP",
+      "sha256": "1506b69f4a524d21432d670e0c4f21e2a45d102edf06970ec994c11fb03fba8c",
+      "size": 32614,
+      "source": "assembly/data/move_tables.s",
+      "url": "https://github.com/kapibarasan000/CFRU-JP/blob/e24a16fe39e27ae162faf5b78596d1f3df18489d/assembly/data/move_tables.s"
+    },
+    "cfru-moves.h": {
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "git_blob_sha": "444712bfec68c13fabffd3e167d380b6c23770ba",
+      "local": "cfru-moves.h",
+      "repository": "kapibarasan000/CFRU-JP",
+      "sha256": "bc2ae17e444625fa2e1727d42c50a24f6758da26e44229a6f12a3afa3a275d79",
+      "size": 30601,
+      "source": "include/constants/moves.h",
+      "url": "https://github.com/kapibarasan000/CFRU-JP/blob/e24a16fe39e27ae162faf5b78596d1f3df18489d/include/constants/moves.h"
+    },
+    "config--battle_core.json": {
+      "commit": "e565b80c492521d3bd8199c115dc7895018eff36",
+      "git_blob_sha": "718793e57d82052916715ddc1c0a2a392ff36ec3",
+      "local": "config--battle_core.json",
+      "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+      "sha256": "94926e8ab022176a1bd8d410e082a804dec54037ad9f5a9fb7da469175d4f363",
+      "size": 5827,
+      "source": "config/battle_core.json",
+      "url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/blob/e565b80c492521d3bd8199c115dc7895018eff36/config/battle_core.json"
+    },
+    "config--move_port.json": {
+      "commit": "e565b80c492521d3bd8199c115dc7895018eff36",
+      "git_blob_sha": "e66a55f15feaebbd6ecc501cb42060f83e861c54",
+      "local": "config--move_port.json",
+      "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+      "sha256": "ded26093f0e5b67443e11ec20691f9a8887e50bd3f693439e311f9a7aac32d72",
+      "size": 3752,
+      "source": "config/move_port.json",
+      "url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/blob/e565b80c492521d3bd8199c115dc7895018eff36/config/move_port.json"
+    },
+    "manifests--move_ids.csv": {
+      "commit": "e565b80c492521d3bd8199c115dc7895018eff36",
+      "git_blob_sha": "48e248aed492791bd1c90d7327764b62293683ec",
+      "local": "manifests--move_ids.csv",
+      "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+      "sha256": "dba3c65af59ee2dcfa9eecdeeeb1cc189a990b52e27b1878bad6eaec8e104f20",
+      "size": 128694,
+      "source": "manifests/move_ids.csv",
+      "url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/blob/e565b80c492521d3bd8199c115dc7895018eff36/manifests/move_ids.csv"
+    },
+    "scripts--build_battle_core.py": {
+      "commit": "e565b80c492521d3bd8199c115dc7895018eff36",
+      "git_blob_sha": "09bde3df2e2d33701141da7cec6eb53a6562f91c",
+      "local": "scripts--build_battle_core.py",
+      "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+      "sha256": "e83f659b912e4f61f790ef648f30dd7e669f737da84f326c234dc491a6d135c0",
+      "size": 239192,
+      "source": "scripts/build_battle_core.py",
+      "url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/blob/e565b80c492521d3bd8199c115dc7895018eff36/scripts/build_battle_core.py"
+    },
+    "scripts--build_move_port.py": {
+      "commit": "e565b80c492521d3bd8199c115dc7895018eff36",
+      "git_blob_sha": "f43632b46bcd48049047736702d8ded4c1597fd6",
+      "local": "scripts--build_move_port.py",
+      "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+      "sha256": "3880b373b32bbcd2340243f6aebc1927d1a42b84ca264a45468acdcc8993c0cd",
+      "size": 55655,
+      "source": "scripts/build_move_port.py",
+      "url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/blob/e565b80c492521d3bd8199c115dc7895018eff36/scripts/build_move_port.py"
+    },
+    "tools--engine--cfru_canonical_ids.py": {
+      "commit": "e565b80c492521d3bd8199c115dc7895018eff36",
+      "git_blob_sha": "ba6dd920e701e9928d23ee2701769fc3d14049ee",
+      "local": "tools--engine--cfru_canonical_ids.py",
+      "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+      "sha256": "f9b4236b6652f66214b85370fa709b7fb2bdacff84a503b0979d9465941a1b6f",
+      "size": 17159,
+      "source": "tools/engine/cfru_canonical_ids.py",
+      "url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/blob/e565b80c492521d3bd8199c115dc7895018eff36/tools/engine/cfru_canonical_ids.py"
+    },
+    "BPRJ.ld": {
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "git_blob_sha": "cf5363abd8439d63c7bd12cbe83ade861b0ebb51",
+      "local": "BPRJ.ld",
+      "repository": "kapibarasan000/CFRU-JP",
+      "sha256": "e371c23b9c9ea914c9ca3f644983e0b4e05be07bf11054492fa37afcfd58892a",
+      "size": 68505,
+      "source": "BPRJ.ld",
+      "url": "https://github.com/kapibarasan000/CFRU-JP/blob/e24a16fe39e27ae162faf5b78596d1f3df18489d/BPRJ.ld"
+    },
+    "cfru-battle_script_commands_table.s": {
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "git_blob_sha": "10e8cf9821e5be79798b3ab1d02ea3e44ce44f05",
+      "local": "cfru-battle_script_commands_table.s",
+      "repository": "kapibarasan000/CFRU-JP",
+      "sha256": "ef6615d20d0768e23828b941fcd2a4f04ba06507a7ed498ab51b8db10e71f5f6",
+      "size": 11083,
+      "source": "assembly/data/battle_script_commands_table.s",
+      "url": "https://github.com/kapibarasan000/CFRU-JP/blob/e24a16fe39e27ae162faf5b78596d1f3df18489d/assembly/data/battle_script_commands_table.s"
+    },
+    "cfru-damage_calc.c": {
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "git_blob_sha": "b51484b5b6d0071a39fded2dbcedbcd5850f7389",
+      "local": "cfru-damage_calc.c",
+      "repository": "kapibarasan000/CFRU-JP",
+      "sha256": "21aff6f8dd64161786b5b6d8b1f31d094e86643fd2bbc3752d447f9e6019cf04",
+      "size": 143093,
+      "source": "src/damage_calc.c",
+      "url": "https://github.com/kapibarasan000/CFRU-JP/blob/e24a16fe39e27ae162faf5b78596d1f3df18489d/src/damage_calc.c"
+    },
+    "cfru-util.c": {
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "git_blob_sha": "75c2e599e700ebf19ebfeb820c02c1363862110a",
+      "local": "cfru-util.c",
+      "repository": "kapibarasan000/CFRU-JP",
+      "sha256": "bc47039408357c384d88dbbce4a9b3420f231c618c6e3a90395c9d7a5800d6cc",
+      "size": 12448,
+      "source": "src/util.c",
+      "url": "https://github.com/kapibarasan000/CFRU-JP/blob/e24a16fe39e27ae162faf5b78596d1f3df18489d/src/util.c"
+    }
+  },
+  "hits": [
+    {
+      "address": 151258537,
+      "target": 167706116,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "2ceb85104eacfeecfddf213304ff0bda629f3c7ee73a15440c36b5ca9844305c",
+      "classification": "UNCLASSIFIED",
+      "accepted": false,
+      "reason": "no_complete_typed_asset_consumer_witness",
+      "owner_candidates": []
+    }
+  ],
+  "root": {
+    "kind": "primary_battle_command_registered_api_entry",
+    "opcode": 4,
+    "dispatch_slot": 151254112,
+    "registered_handler": 151929881,
+    "entry": 151929880,
+    "calls": [
+      151930280,
+      151930328
+    ],
+    "reader": 152244024,
+    "stop": 151930332
+  },
+  "windows": [
+    {
+      "address": 151254112,
+      "size": 4,
+      "sha256": "4e0a9c0aa35a0d574a0cc94f65f6b41a3d2892fa104e3be5ea0f5fbc4ecaa238"
+    },
+    {
+      "address": 151258488,
+      "size": 52,
+      "sha256": "082c43d940efef0ca2fc346f1eafd6f038e1f0e34057ced738aead600b89211a"
+    },
+    {
+      "address": 151258540,
+      "size": 12,
+      "sha256": "cd67506878b499dd68829033f4870bc18e4520c0767f93a86fbaab7d4266b137"
+    },
+    {
+      "address": 151929880,
+      "size": 64,
+      "sha256": "a7b0f57c3f905c2a2d0b8cdaaf1acbe02adf05bd23e0e315ec11fae386d9a2f0"
+    },
+    {
+      "address": 151929956,
+      "size": 80,
+      "sha256": "464ebab8df3b7ed61fc5fae209f7568b460143951d0bad28687213c82548b6ab"
+    },
+    {
+      "address": 151930216,
+      "size": 28,
+      "sha256": "dea7eb3a9e67ed07578eb037646fe6346b22c26abfe4eab10e03db036bf0f36b"
+    },
+    {
+      "address": 151930252,
+      "size": 12,
+      "sha256": "5c3aabef0286e8edc3e64c4a1e1248173dbdc11d425e26f3224ce48dc8af61a5"
+    },
+    {
+      "address": 151930268,
+      "size": 64,
+      "sha256": "7ff03a82d04b067747128dde0b49f00bbb910f07ba25ee4855fd0b8c974be5b9"
+    },
+    {
+      "address": 151930576,
+      "size": 40,
+      "sha256": "ae010fcf924cf1940f32d93e7b68cae1b7f401c50845743086d4767e253f952b"
+    },
+    {
+      "address": 151930620,
+      "size": 12,
+      "sha256": "f23f448eedc68fa61b1d4fa5fb970cd06566b6999e225d633b11a4bc57c39ec6"
+    },
+    {
+      "address": 152244024,
+      "size": 34,
+      "sha256": "61b7bc75c342f4b08322ae445e6f2978061043732d7892b66d4cd2f241471c98"
+    },
+    {
+      "address": 152244060,
+      "size": 4,
+      "sha256": "8e7244f37c8aadd922a824232c80cb6e3c04010752dc37508594d19cd447eb76"
+    }
+  ],
+  "claims": {
+    "proof_scope": "conditional_registered_critical_move_lists",
+    "conditional_registered_api_entry": true,
+    "actual_opcode_dispatch_executed": false,
+    "whole_candidate_identity_checked_by_parent_required": true,
+    "actual_runtime_execution_observed": false,
+    "full_story_reachability_claimed": false,
+    "full_battle_script_prefix_executed": false,
+    "opaque_callee_effects_proven": false,
+    "universal_heap_or_irq_lifetime_proven": false,
+    "whole_table_classified": false,
+    "pointer_interpretation_claimed": false,
+    "retirement_proven": false,
+    "indirect_reference_completeness_claimed": false,
+    "donor_eligible": false,
+    "donor_leased": false
+  },
+  "input_contract": {
+    "entry_ja": "primary opcode4の実登録cellを検証したhandler API入口。自然battle/effect0 prefix/dispatcher全体の到達は未証明。",
+    "profile_ja": "single battle、attacker0/target1/count2、move1、ability0、LuckyChant0、status2とchiStrike0の十分条件。内部reader引数をhost追加せずhandler実LDRHとstack保存から生成する。",
+    "calls_ja": "6個の外部callは明示戻り値と通常ABI復帰のみ条件。callee本体の成功や副作用を証明しない。SIDEは実r3=GetBattlerSide|1を受けたveneerの結果1。",
+    "memory_ja": "全opaque境界で実future read-before-write RAMのみ維持し、非live RAMをUnknownへ消去。gNewBSの同battle context epochとlive stack epochを条件にする。全RAM保持は要求しない。",
+    "extent_ja": "固定公開table sourceの全.hword順序と独立current Move ID resolverから52/12byteをserialize。末尾だけFEFE。move1非memberにより両表を最後まで読む。",
+    "minimum_ja": "分類は090405A9から4byteだけ。high最終member上位byte、FEFE全2byte、always先頭member下位byte。半word全3fieldと全表は根拠であり追加分類しない。"
+  },
+  "finite_profile": {
+    "battle_flags": 0,
+    "attacker": 0,
+    "target": 1,
+    "battlers_count": 2,
+    "current_move": 1,
+    "attacker_ability": 0,
+    "target_ability": 0,
+    "lucky_chant": 0,
+    "attacker_status2": 0,
+    "chi_strike_boost": 0,
+    "newbs_context": 33619968,
+    "normal_abi_returns": true,
+    "same_battle_context_epoch": true,
+    "same_stack_epoch": true
+  }
+}
