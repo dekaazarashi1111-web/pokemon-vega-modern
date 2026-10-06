@@ -4413,13 +4413,19 @@
       "scripts/pr16_dex_hof_partial_space.py",
       "content/modernization/pr16_dex_hof_generation_writer_checkpoint.json",
       "content/modernization/pr16_dex_hof_help_roots_review.json",
-      "content/modernization/pr16_dex_hof_padding_roots_review.json"
+      "content/modernization/pr16_dex_hof_padding_roots_review.json",
+      "scripts/pr16_dex_hof_runtime_party.py",
+      "scripts/pr16_dex_hof_callback_party.py",
+      "scripts/pr16_dex_hof_callback_party_task.py",
+      "content/modernization/pr16_dex_hof_runtime_party_review.json",
+      "content/modernization/pr16_dex_hof_callback_party_review.json"
     ],
     "stop_rule_ja": "通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。"
   },
   "observed_date_jst": "2026-10-04",
   "observed_head": "2a975f0f3501034695671d96f0ced81078167ab1",
   "observed_head_checks": {
+    "all14_steps_success": true,
     "classified": 743,
     "current_candidate": {
       "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583",
@@ -4430,10 +4436,13 @@
     "general_ci_known_source_mismatch_not_resolved": true,
     "native_processes": 0,
     "reason_ja": "現0641の旧egg874参照に実Help consumerの必要最小型2件をまとめて追加し、743分類/未知131。新306試験、全115actual ownerと全13親deltaを照合。実Help context/topic producer・有限条件と最小consumed型だけを受入れ、自然play全到達・普遍IRQ/heap寿命・間接参照/退役安全は別義務。全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。",
+    "record_job": 112063326076,
+    "record_run": 37399518923,
     "reference_unit_tests": 306,
     "scope_head": "2a975f0f3501034695671d96f0ced81078167ab1",
     "stage79_cached_not_new_native": true,
-    "unclassified": 131
+    "unclassified": 131,
+    "whole_receipt_equals_checkpoint": true
   },
   "observed_head_history": [
     {
@@ -12444,13 +12453,7 @@
     "status": "NATIVE_PARTY_RETENTION_ACCEPTED_BP_PENDING",
     "tested_head": "10e535a046441dd3b797918106259b5c57b69716"
   },
-  "pending_runs": [
-    {
-      "run_id": 37399518923,
-      "status": "in_progress",
-      "tested_head": "2a975f0f3501034695671d96f0ced81078167ab1"
-    }
-  ],
+  "pending_runs": [],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
   "pr_draft": true,
   "pr_merged": false,
@@ -14341,9 +14344,13 @@
       "sha256": "1ac583d605696d60058c63fa7e8fdd3e5e7f17b0df47d53f8ab1b0125e9e604c",
       "size": 2494
     },
+    ".github/workflows/pr16-dex-hof-help-batch-closeout.yml": {
+      "sha256": "30e7c4097609ddb61d6631e1892bdaa8fe6b21dbfa9630abc873e50f2e4943f4",
+      "size": 2921
+    },
     ".github/workflows/pr16-dex-hof-help-batch.yml": {
-      "sha256": "1819a0e95e6c5cbb8b43aadf92a2e3696cdab7d89e86d5cc20decfadbc6ecfa2",
-      "size": 2950
+      "sha256": "1e0b3ded2ad8aa4a61f713f826005b42d08a6eb19bbbebe1c3d6a1b4ede70c56",
+      "size": 2850
     },
     ".github/workflows/pr16-dex-hof-main-closeout.yml": {
       "sha256": "2bdb44945f84c8512328f137849ebc3d61880b3eb790245c01b452532cba58ed",
@@ -35289,6 +35296,10 @@
       "sha256": "2ef7cabcd0e8af8f2e73d87722f90c7d8d66b28e2231773bb99466a2f7f6d975",
       "size": 18267
     },
+    "scripts/pr16_dex_hof_help_batch_closeout.py": {
+      "sha256": "46795af2eb903aba901439f9d83d9549e2303c474d5e4c52e0870f9d70d5ff4d",
+      "size": 15669
+    },
     "scripts/pr16_dex_hof_help_roots.py": {
       "sha256": "cb2a5fe4e46cca6c40c1b0d4c6f8cb54b42f67089e13512889a94ced423ed10a",
       "size": 58745
@@ -39044,6 +39055,10 @@
     "tests/test_pr16_dex_hof_help_batch_chain.py": {
       "sha256": "fb3a6c2b318e99ab0da5a6c54ffcb6ab2685c2dec7c0f7786a7b20697432c566",
       "size": 20822
+    },
+    "tests/test_pr16_dex_hof_help_batch_closeout.py": {
+      "sha256": "924fbecff3403006fe97c16a9b48e19d9dd6e7c733562523c79c306d78bfea15",
+      "size": 5462
     },
     "tests/test_pr16_dex_hof_help_roots.py": {
       "sha256": "a9c797a11df767bb2029e370854086b014de6b23e961b84c6445937043c19444",
@@ -44563,6 +44578,90 @@
         "donor_safe_bytes": 0,
         "guide": "docs/PR16_DEX_HOF_HELP_BATCH_JA.md",
         "known_capacity_upper_bound": 1315,
+        "recording": {
+          "accepted_measurement_tests_rerun": 0,
+          "actions_closeout_guard_tests_executed_total": 30,
+          "all14_steps_success": true,
+          "all5_snapshots_full_bytes_and_lf_verified": true,
+          "all_thirteen_old_delta_families_preserved": true,
+          "archive": [
+            11384711052,
+            37399518923,
+            1469249,
+            "6883ee3e18068bbaff5f07e44eb4fb76bed00192961c61dc854c7e15e335ceb7"
+          ],
+          "arm_compiles": 0,
+          "baseline_identity": {
+            "sha256": "814082398937869b6cc17faa09cbf1833f0c7f4aa300ddbd83d0de833d44b74c",
+            "size": 4063919
+          },
+          "candidate_changed": false,
+          "capacity_identity": {
+            "sha256": "52a352d391906df2fbbc8eec3abce5be00087a9947b55216e7234fdcc69c24f1",
+            "size": 19893
+          },
+          "checkpoint": "content/modernization/pr16_dex_hof_help_batch_checkpoint.json",
+          "checkpoint_identity": {
+            "sha256": "dff4dcab9cd7fadce44cbc6456d00ade32b724f9553455e3d66acfe9850e547f",
+            "size": 335169
+          },
+          "classified": 743,
+          "closeout_run": 37400963560,
+          "closeout_source": "06bc62000bc77ef78d03b832f352d73f2bd2a26f",
+          "combined_song_models": 133,
+          "current_rom_reconstructions": 0,
+          "delta_identity": {
+            "sha256": "53f4789fb532d93791fa7e0962b7feea9f74003d342f5175d00e1b07de7aa5d0",
+            "size": 352753
+          },
+          "donor_leased": false,
+          "earlier_identity": {
+            "sha256": "762320ba350f528777b90be404b5fec1d88caeb6dbf6594590d4f45b852c1c87",
+            "size": 149772
+          },
+          "export_guard_test_log": {
+            "sha256": "cad9ecb3aa6be24309d968526b612f2b6a6a4769e42f0ebc9358e156088e1567",
+            "size": 2318
+          },
+          "formal_save_changed": false,
+          "independent_final_source_review_completed": false,
+          "job": 112063326076,
+          "native_processes": 0,
+          "new_boundary": 0,
+          "new_code": 0,
+          "new_data": 2,
+          "new_export_guard_tests": 19,
+          "new_recovery_guard_tests": 8,
+          "new_song": 0,
+          "newly_classified": 2,
+          "old741_accepted_and_all874_identities_retained": true,
+          "owner_unknown": 0,
+          "parent_identity": {
+            "sha256": "1fb58b88ac19198de7ef29fc0728908c1fb720915bfa53d265b78994252a6917",
+            "size": 875373
+          },
+          "record_head": "54c30903297d5dc89a4d6d4cadb3d16c04e4960b",
+          "recovered_closeout": {
+            "accepted_measurement_tests_rerun": 0,
+            "artifact_count": 0,
+            "guard_tests_succeeded": 11,
+            "job": 112065410913,
+            "native_processes": 0,
+            "reason": "runner_shutdown_exit143_before_record_commit",
+            "record_commit_skipped": true,
+            "run": 37400191134,
+            "source": "b3c2e8beba208e34f15249a07220d9da0f9678c3"
+          },
+          "repeated_closeout_guard_tests": 11,
+          "retained_sample_witnesses": 50,
+          "run": 37399518923,
+          "source_head": "2a975f0f3501034695671d96f0ced81078167ab1",
+          "status": "PASS_TERMINAL_EXACT_HELP_BATCH_RECORD",
+          "tests_rerun": 0,
+          "unclassified": 131,
+          "unit_tests": 306,
+          "unowned_unknown": 131
+        },
         "run": 37399518923,
         "source": "2a975f0f3501034695671d96f0ced81078167ab1",
         "status": "PASS_CURRENT_741_PARENT_HELP_BATCH_AND_PARTIAL_SPACE_REFUSAL",
