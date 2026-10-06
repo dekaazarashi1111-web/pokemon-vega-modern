@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "status": "PASS_NEW_SOURCE_ONLY_SCRIPT_PRODUCER_BATCH_REVIEW",
+  "review_scope": "new_script_producer_batch_sources_only",
+  "old_independent_final_review_retried": false,
+  "open_findings": [],
+  "initial_head": "c5bf8d160bf65c54650346d57e9157bf1fbe365e",
+  "source_bindings": {
+    ".github/workflows/pr16-dex-hof-script-producer-batch.yml": {
+      "size": 3083,
+      "sha256": "9cc883b4b47ba6285acfac5aa2f9380f23f7a406dfaf80ea993acfa65e636134"
+    },
+    "content/modernization/pr16_dex_hof_event_producer_roots_review.json": {
+      "size": 148676,
+      "sha256": "a129e7cdba77bb1d7b4c9a8bfc427dd44084c52309901afd35813a4c46b7164f"
+    },
+    "content/modernization/pr16_dex_hof_finite_producer_roots_review.json": {
+      "size": 46379,
+      "sha256": "ac0d0b92f824f17fd3862422d186ea7e870157992461c24b90a9b2ea1df81d15"
+    },
+    "content/modernization/pr16_dex_hof_script_producer_batch_sources.json": {
+      "size": 5698,
+      "sha256": "0a7d7795e14356fe534e6ee3635b6664eceb23be2cd5705084c981b1f3670dae"
+    },
+    "docs/PR16_DEX_HOF_SCRIPT_PRODUCER_BATCH_JA.md": {
+      "size": 6523,
+      "sha256": "7cb23580598db1d801f690cfe9c5264cc1c57ba290cb595e13f1ad91706cbec3"
+    },
+    "scripts/pr16_dex_hof_event_producer_roots.py": {
+      "size": 135780,
+      "sha256": "83b81426c9861273d57c713728c04a09652763f3787fc8c238f84af9480f7a84"
+    },
+    "scripts/pr16_dex_hof_finite_producer_roots.py": {
+      "size": 16247,
+      "sha256": "4ebff9ab9594234386e0801cc92d8f5d7ba330340defe321a5d8519979fb56e1"
+    },
+    "scripts/pr16_dex_hof_script_producer_batch.py": {
+      "size": 6577,
+      "sha256": "ab262bb401ecdb91c6579c6cabf4ddff21658bd4389970fcf130ae607339f08b"
+    },
+    "scripts/pr16_dex_hof_script_producer_batch_actions.py": {
+      "size": 28754,
+      "sha256": "26070953683c70d90cfc19be59fe96ea4c2fefe225281dfeb8213471e86652d9"
+    },
+    "scripts/pr16_dex_hof_script_producer_batch_capacity.py": {
+      "size": 10754,
+      "sha256": "cb1052f517a75bc6ebc00d0b663b0142771196a885aa3fb6f068b235eaba9ffb"
+    },
+    "scripts/pr16_dex_hof_script_producer_batch_chain.py": {
+      "size": 25622,
+      "sha256": "9c31b22c4078b2be27309f27e0e5048e3740af3282ebec705321066240d266a6"
+    },
+    "tests/test_pr16_dex_hof_event_producer_roots.py": {
+      "size": 16536,
+      "sha256": "60bdd2765f2e72728d8c091c997e6af3439679496021a8aadeaf5142fcb1c429"
+    },
+    "tests/test_pr16_dex_hof_finite_producer_roots.py": {
+      "size": 12246,
+      "sha256": "da68354c77e12494ae6a7d3ed5a42b44e1c4af6cbe6294941ab0d61d8691a0c3"
+    },
+    "tests/test_pr16_dex_hof_script_producer_batch.py": {
+      "size": 8556,
+      "sha256": "218a48b2f59f5a2b75ce9e9458b8c06c3684c5d9d726214ea67e8bde94af3ae8"
+    },
+    "tests/test_pr16_dex_hof_script_producer_batch_actions.py": {
+      "size": 17388,
+      "sha256": "b245c93baeb487e333949f7dbf7e18c1a32c01fcbf1cd798ed7bf17bd2c4dcfb"
+    },
+    "tests/test_pr16_dex_hof_script_producer_batch_capacity.py": {
+      "size": 12667,
+      "sha256": "295cae03104442efc6c6b732a257aed43a2dcb9211a2f5b9d68045b08b003dec"
+    },
+    "tests/test_pr16_dex_hof_script_producer_batch_chain.py": {
+      "size": 16435,
+      "sha256": "2a6c8b78b58c4b833df9654fd6b039ad26528560a60fe7325e65409e109f1b01"
+    }
+  },
+  "diagnostic": {
+    "status": "OLD_DIAGNOSTIC_ONLY_CURRENT_ACTIONS_REQUIRED",
+    "unit_tests": 284,
+    "new_integration_tests": 101,
+    "reused_new_scope_test_logs": [
+      {
+        "path": "finite-producer-roots-work/new-tests.txt",
+        "tests": 50,
+        "identity": {
+          "size": 8944,
+          "sha256": "8f24f8bf2910cbf12b0158ceea6051803da20e6706f9ce02b68f33c64dfc7174"
+        },
+        "reused": true
+      },
+      {
+        "path": "event-producer-roots-work/tests.txt",
+        "tests": 98,
+        "identity": {
+          "size": 13478,
+          "sha256": "f1c909aeabf1fb77b368b441157544106d8b30f056499513de616c99724dbbb8"
+        },
+        "reused": true
+      },
+      {
+        "path": "script-producer-batch-work/chain-tests-final.txt",
+        "tests": 21,
+        "identity": {
+          "size": 121,
+          "sha256": "3c48e9fff5b2dc872b7a0056bd2867709de555e69e943e37681ac6079262ebb8"
+        },
+        "reused": true
+      },
+      {
+        "path": "script-producer-batch-work/capacity-tests-final.txt",
+        "tests": 14,
+        "identity": {
+          "size": 114,
+          "sha256": "86811f17db0380a8bbfbf3cc1d4f6ab213ead614c590d926d7a83825ba144cfb"
+        },
+        "reused": true
+      }
+    ],
+    "classifications": [
+      753,
+      121
+    ],
+    "newly_classified": 2,
+    "diagnostic_candidate": {
+      "size": 33554432,
+      "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5",
+      "identity_source": "previous_verified_recovery_not_current_measurement"
+    },
+    "delta_identity": {
+      "size": 77973,
+      "sha256": "bcdb7dc8f34356bbfd8a1ef1e1820b00251e89720a8f2ed5c9121813b20f1e1c"
+    },
+    "current_rom_reconstructions": 0,
+    "native_processes": 0,
+    "donor_leased": false
+  },
+  "diagnostic_test_log": {
+    "size": 36682,
+    "sha256": "dd01e55429ef4a209e5e097f6858aea379951576363161d0c682a5c776819b2a"
+  },
+  "source_only_review": {
+    "status": "PASS",
+    "files": 17,
+    "open_findings": 0,
+    "current_rom_measured": false,
+    "old_independent_final_review_retried": false,
+    "scope": "new_script_producer_batch_sources_only",
+    "method_ja": "新effect233の4opcode byte実dispatchとeffect234の完全goto/FF09境界、event別登録2根の有限grammarと現placeholder分岐、全17親保持・最新owner容量・公開guardを新sourceだけ独立確認。正のpath/置換元producer未結合と自然到達を別義務に保持。現0641全ROMは別Actions測定。"
+  },
+  "development_history": [
+    {
+      "stage": "new_source_review",
+      "finding": "草稿kind registryと親記録ラベルの不一致、確定2根と探索8根の混同を検出",
+      "resolution": "独立module KINDへ統一、全132changesとfixed751_event_boundary_batch履歴keyへ訂正。guideで2根確定guardと8根探索を分離。",
+      "old_suites_run": 0
+    },
+    {
+      "stage": "preflight_collection",
+      "finding": "並列新unit log終端前の収集で集計停止。event reviewの未凍結旧版と凍結新版も区別。",
+      "resolution": "失敗記録と旧source bindingを保持し、全新log終端とworker凍結を確認。変更影響ある新統合101試験を最終bindingで再検証し、他の新scope結果を全文identityで再利用。",
+      "old_suites_run": 0
+    }
+  ],
+  "publication_budget": {
+    "status": "PRECURRENT_CONSERVATIVE_SIZE_CHECK_NOT_ACCEPTANCE",
+    "files": {
+      "reference-chain.json": 188261,
+      "measurement.json": 279478,
+      "fixed-checkpoint.json": 319478,
+      "fixed-state.json": 3619388,
+      "fixed-resume.md": 172013,
+      "fixed-run-log.md": 2086452,
+      "fixed-version-log.md": 1697850,
+      "script-producer-batch-tests.txt": 36682,
+      "unknown-frontier.json": 100000,
+      "partial-space.json": 60000,
+      "record.json": 30000
+    },
+    "total": 8589602,
+    "max_file": 4000000,
+    "max_total": 12000000,
+    "state_uses_complete_proof_reference": true
+  },
+  "unchanged_parent": {
+    "classified": 751,
+    "unclassified": 123,
+    "parent_inputs": 33,
+    "retained_proof_families": 17,
+    "changes": 132,
+    "witnesses": 122,
+    "owner_count": 115,
+    "hit_count": 874,
+    "song_models": 133,
+    "assets": 50
+  },
+  "acceptance_boundary": {
+    "current_candidate_verified": false,
+    "current_actions_required": true,
+    "natural_play_reachability_proven": false,
+    "universal_epoch_irq_proven": false,
+    "old_independent_final_source_review_completed": false,
+    "donor_leased": false,
+    "donor_safe_bytes": 0,
+    "controller_runtime_wired": false,
+    "formal_rom_changed": false,
+    "formal_save_changed": false
+  }
+}
