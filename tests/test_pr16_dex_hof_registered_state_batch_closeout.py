@@ -1,7 +1,9 @@
 """新state終端receipt全本文・実committed recordingへの結合だけを検査。"""
-import copy,inspect,json,tempfile,unittest
+import copy,inspect,json,sys,tempfile,unittest
 from pathlib import Path
 from unittest.mock import patch
+ROOT=Path(__file__).resolve().parents[1]
+sys.path.insert(0,str(ROOT/'scripts'))
 import guard_private_files
 import pr16_dex_hof_registered_state_batch_closeout as m
 from test_pr16_dex_hof_registered_state_batch_actions import raw,git_blob,measurement_fixture,committed_git
@@ -155,12 +157,18 @@ class StateCloseoutMeasuredContractTests(unittest.TestCase):
    with self.subTest(path=path):self.assertEqual(guard_private_files.document_user_path_lines((m.ROOT/path).read_bytes()),[])
  def test_failed_closeout_source_guard_has_zero_work(self):
   value=self.payload();failed=value['failed_closeout_attempts']
-  self.assertEqual(failed,[m.FAILED_CLOSEOUT]);self.assertEqual(value['failed_closeout_runs'],1)
+  self.assertEqual(failed,[m.FAILED_CLOSEOUT,m.FAILED_CLOSEOUT_BOOTSTRAP]);self.assertEqual(value['failed_closeout_runs'],2)
   row=failed[0];self.assertEqual((row['source_head'],row['run'],row['job']),('e1071ce7bab8a8f111999121f4a396b08b153679',37457248101,112247753034))
   self.assertIs(row['source_guard_failed'],True);self.assertIs(row['classification_accepted'],False);self.assertIs(row['recorded'],False)
   for key in('current_rom_reconstructions','arm_compiles','native_processes','new_closeout_suite_tests_executed','pushes','artifacts'):self.assertEqual(row[key],0)
   self.assertEqual(value['total_current_rom_reconstructions'],2)
   self.assertEqual(value['failed_closeout_current_rom_reconstructions'],0)
+  row=failed[1];self.assertEqual((row['source_head'],row['run'],row['job']),('431a16d2cd01938839e5d15b7c08f08159237a8e',37458617710,112252265422))
+  self.assertIs(row['source_guard_passed'],True);self.assertIs(row['private_guard_passed'],True);self.assertIs(row['module_load_failed'],True)
+  self.assertIs(row['classification_accepted'],False);self.assertIs(row['recorded'],False)
+  self.assertEqual(row['new_closeout_suite_tests_planned'],31)
+  self.assertEqual(row['module_load_cause_source'],'same_source_workflow_command_local_reproduction_not_API_error_text');self.assertIs(row['api_error_text_retrieved'],False)
+  for key in('current_rom_reconstructions','arm_compiles','native_processes','new_closeout_suite_tests_executed','pushes','artifacts'):self.assertEqual(row[key],0)
  def test_export_rejects_hidden_symlink_directory_and_unknown_file(self):
   fixture=StateCloseoutTests();fixture.setUp()
   for kind in('hidden','symlink','directory','extension'):
