@@ -2,6 +2,7 @@
 import copy,inspect,json,tempfile,unittest
 from pathlib import Path
 from unittest.mock import patch
+import guard_private_files
 import pr16_dex_hof_registered_state_batch_closeout as m
 from test_pr16_dex_hof_registered_state_batch_actions import raw,git_blob,measurement_fixture,committed_git
 class StateCloseoutTests(unittest.TestCase):
@@ -145,9 +146,21 @@ class StateCloseoutMeasuredContractTests(unittest.TestCase):
   self.assertIn("goal=next_goal(state['next_action']['goal_ja'])",source)
   for forbidden in('reconstruct(','subprocess','loadTestsFromModule','m.w.run(','t.restore('):self.assertNotIn(forbidden,source)
  def test_public_payload_excludes_log_body_and_private_paths(self):
-  value=raw(self.payload()).decode()
-  for forbidden in('runner_name','runner_group','private-failure','job-log','archive_member','userfile/','rawhex','GH_TOKEN','GITHUB_TOKEN','/home/runner/'):
+  payload=raw(self.payload());self.assertEqual(guard_private_files.document_user_path_lines(payload),[])
+  value=payload.decode()
+  for forbidden in('runner_name','runner_group','private-failure','job-log','archive_member','userfile/','rawhex','GH_TOKEN','GITHUB_TOKEN'):
    self.assertNotIn(forbidden,value)
+ def test_all_new_code_raw_passes_unchanged_private_path_checker(self):
+  for path in sorted(m.CODE):
+   with self.subTest(path=path):self.assertEqual(guard_private_files.document_user_path_lines((m.ROOT/path).read_bytes()),[])
+ def test_failed_closeout_source_guard_has_zero_work(self):
+  value=self.payload();failed=value['failed_closeout_attempts']
+  self.assertEqual(failed,[m.FAILED_CLOSEOUT]);self.assertEqual(value['failed_closeout_runs'],1)
+  row=failed[0];self.assertEqual((row['source_head'],row['run'],row['job']),('e1071ce7bab8a8f111999121f4a396b08b153679',37457248101,112247753034))
+  self.assertIs(row['source_guard_failed'],True);self.assertIs(row['classification_accepted'],False);self.assertIs(row['recorded'],False)
+  for key in('current_rom_reconstructions','arm_compiles','native_processes','new_closeout_suite_tests_executed','pushes','artifacts'):self.assertEqual(row[key],0)
+  self.assertEqual(value['total_current_rom_reconstructions'],2)
+  self.assertEqual(value['failed_closeout_current_rom_reconstructions'],0)
  def test_export_rejects_hidden_symlink_directory_and_unknown_file(self):
   fixture=StateCloseoutTests();fixture.setUp()
   for kind in('hidden','symlink','directory','extension'):
