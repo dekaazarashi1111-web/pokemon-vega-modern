@@ -1,0 +1,200 @@
+{
+  "schema_version": 1,
+  "status": "PASS_NEW_SOURCE_ONLY_REMAINING_CONSUMERS_REVIEW",
+  "review_scope": "new_remaining_consumers_sources_only",
+  "old_independent_final_review_retried": false,
+  "open_findings": [],
+  "initial_head": "ee8b56ded2d1ce0e3868377fd025cbe354444b65",
+  "source_bindings": {
+    ".github/workflows/pr16-dex-hof-remaining-consumers.yml": {
+      "size": 3044,
+      "sha256": "3dba77a7c3cdbda0375b6498a0a99d6f7f75eceabf379b99405d5a7a193b814a"
+    },
+    "content/modernization/pr16_dex_hof_menu_text_review.json": {
+      "size": 19297,
+      "sha256": "44357c20780d24642089d5d2587d67ec1c7fa5da3d37005b652929a0c58f125d"
+    },
+    "content/modernization/pr16_dex_hof_new_code_review.json": {
+      "size": 11157,
+      "sha256": "547da03ff9c0ef444aae9047dc178ffded65c2c5d4a6eb641457d3437d853900"
+    },
+    "content/modernization/pr16_dex_hof_remaining_consumers_sources.json": {
+      "size": 2675,
+      "sha256": "6711a4304c1766f1b8bc6f53b5ee6d59ff6b6ab45210bfd0ea8a32358feaa669"
+    },
+    "content/modernization/pr16_dex_hof_ui_data_review.json": {
+      "size": 20865,
+      "sha256": "30ff5e198605593c1a76aefe727325eea9c65cb6a42addc8938dc1930594dd3b"
+    },
+    "docs/PR16_DEX_HOF_REMAINING_CONSUMERS_JA.md": {
+      "size": 3994,
+      "sha256": "f0f5ea61a64683a2b58297c9a57ecd8cd9aa0524b4c78139d8eae82b8a1c3102"
+    },
+    "scripts/pr16_dex_hof_menu_text.py": {
+      "size": 67458,
+      "sha256": "1bd3e5d5a9d80c5a80badadaa47628e6a718b6465726ce6d61f2ce3ad481f745"
+    },
+    "scripts/pr16_dex_hof_new_code.py": {
+      "size": 25606,
+      "sha256": "7e29c17cef9d7861b25241b3646cc42efdb73139259e2f76fa43fa5e4800d069"
+    },
+    "scripts/pr16_dex_hof_remaining_consumers.py": {
+      "size": 5830,
+      "sha256": "8d3c2ee5f7e86093d6e86488f996be661e516625e374af86661b50c7d713a2dc"
+    },
+    "scripts/pr16_dex_hof_remaining_consumers_actions.py": {
+      "size": 27338,
+      "sha256": "16517c221d55ad6272bf1546f1cbfc29fd1be687645b4b31b0ed9b6cd1210e4d"
+    },
+    "scripts/pr16_dex_hof_remaining_consumers_capacity.py": {
+      "size": 6866,
+      "sha256": "938612c75a7c453014f3e4e147828a9a077eaa8d192a66300ef0889ecf56afce"
+    },
+    "scripts/pr16_dex_hof_remaining_consumers_chain.py": {
+      "size": 13167,
+      "sha256": "fcc21331740736f3196e066005d1b07c236992b504db143bc1ea120494e62232"
+    },
+    "scripts/pr16_dex_hof_ui_data.py": {
+      "size": 34565,
+      "sha256": "150ca00fd11435806cefe21f022dd6c951699ec0592a3c796fc648c6daaffa8f"
+    },
+    "tests/test_pr16_dex_hof_menu_text.py": {
+      "size": 12917,
+      "sha256": "479bd2b37207dcc896c279b7047ca29c030afe1a61d2180c997a9da638ece21d"
+    },
+    "tests/test_pr16_dex_hof_new_code.py": {
+      "size": 11567,
+      "sha256": "56a4ae86b3c83f7b588f114832f77fc946bf32dc9f9926c50a49720ae4750ecf"
+    },
+    "tests/test_pr16_dex_hof_remaining_consumers.py": {
+      "size": 6492,
+      "sha256": "0e10c816c75e4c319a52b9755af41e6a1d3ceae4ea32b7dca00d2f71bc81a970"
+    },
+    "tests/test_pr16_dex_hof_remaining_consumers_actions.py": {
+      "size": 15481,
+      "sha256": "fa8bcbc3ffcec5a7adaeaa93346d1bd38f5893f8f06bf4990296039fba481cec"
+    },
+    "tests/test_pr16_dex_hof_remaining_consumers_capacity.py": {
+      "size": 13369,
+      "sha256": "3ac93ab502a4b6aa362a4ddeb888fd706fac6abb5a9eee89fa3fdc14a548db89"
+    },
+    "tests/test_pr16_dex_hof_remaining_consumers_chain.py": {
+      "size": 22795,
+      "sha256": "b41ae059f1c70a5c09beacbb834603944d768c5cce3a17ba8a208758c76b69af"
+    },
+    "tests/test_pr16_dex_hof_ui_data.py": {
+      "size": 10587,
+      "sha256": "b7bc1a9cee11fe7ba5afe7a25f43489fa154f5c2cc1e975fb0a2225e2256de28"
+    }
+  },
+  "diagnostic": {
+    "status": "OLD_DIAGNOSTIC_ONLY_CURRENT_ACTIONS_REQUIRED",
+    "unit_tests": 348,
+    "classifications": [
+      741,
+      133
+    ],
+    "newly_classified": 4,
+    "diagnostic_candidate": {
+      "size": 33554432,
+      "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5",
+      "identity_source": "previous_verified_recovery_not_current_measurement"
+    },
+    "delta_identity": {
+      "size": 272546,
+      "sha256": "cbb0eeb484eb6c8df1be0bfb4fdb5d842413cee95c0294383192f09511c353b0"
+    },
+    "current_rom_reconstructions": 0,
+    "native_processes": 0,
+    "donor_leased": false
+  },
+  "diagnostic_test_log": {
+    "size": 46056,
+    "sha256": "515b53f7845e0db36867352bdec7aa8eef07837f7342d83067a28dfb271ad1dd"
+  },
+  "source_only_review": {
+    "status": "PASS",
+    "files": 20,
+    "open_findings": 0,
+    "current_rom_measured": false,
+    "old_independent_final_review_retried": false,
+    "scope": "new_remaining_consumers_sources_only",
+    "method_ja": "新consumer登録・最小型・有限callee条件・live fieldとepoch、全親保持・容量・公開guardを新sourceのみ静的確認。現0641全ROMは別Actions測定。"
+  },
+  "development_history": [
+    {
+      "stage": "closed_new_source_review_findings",
+      "status": "RESOLVED_BEFORE_CURRENT_RECONSTRUCTION",
+      "detail_ja": "新source-onlyレビューでPASS名のままopen findingを持つvalidation envelopeの受入余地を発見。open_findingsの厳密list/空をsource gateで要求し、未解決・欠落・偽empty型の反証を追加。"
+    },
+    {
+      "stage": "scoped_chain_test_selection",
+      "status": "RESOLVED_BEFORE_CURRENT_RECONSTRUCTION",
+      "detail_ja": "初期広域globが未完成Actions moduleのimport errorを検出。新chain/capacity2moduleへ検査選択を限定し、最終100試験を完了。旧suite/nativeは未実行。"
+    },
+    {
+      "stage": "closed_lf_only_publication",
+      "status": "RESOLVED_BEFORE_CURRENT_RECONSTRUCTION",
+      "detail_ja": "新公開guardレビューで末尾LFだけでは途中CR/CRLFを拒否しない点を検出。既親snapshotsはCR0と照合した上で、新bounded_filesにCR全面拒否を追加。receiptを再sealしてもCRLF/途中CRが拒否される負例を追加。"
+    },
+    {
+      "stage": "independent_commit_binding_at_upload",
+      "status": "RESOLVED_BEFORE_CURRENT_RECONSTRUCTION",
+      "detail_ja": "新source reviewでsnapshot後にreceipt全hashを再sealした差替えが自己整合だけで通る余地を検出。upload直前に全snapshotと全proofを実finalHEADのgit showへ、snapshot Git blobを実rev-parseへ再束縛。snapshot/proof各差替え拒否を追加。"
+    },
+    {
+      "stage": "credits_output_preservation_projection",
+      "status": "RESOLVED_BEFORE_CURRENT_RECONSTRUCTION",
+      "detail_ja": "新Credits source-only reviewでopaque生成出力と事前保存live fieldの混在を検出。required_fields=live-output、produced_memory_ranges=live∩outputへ機械的に分離し、3反証を追加。61専用試験PASS、reviewer確認済み。"
+    },
+    {
+      "stage": "precise_retained_field_scope",
+      "status": "RESOLVED_BEFORE_CURRENT_RECONSTRUCTION",
+      "detail_ja": "guideの全field保持という広すぎる文言を、全874hit identityと旧737 accepted/残unknown全field保持へ限定。新4分類field更新と区別。"
+    }
+  ],
+  "publication_budget": {
+    "status": "PRECURRENT_CONSERVATIVE_SIZE_CHECK_NOT_ACCEPTANCE",
+    "files": {
+      "reference-chain.json": 872511,
+      "measurement.json": 854217,
+      "fixed-checkpoint.json": 894217,
+      "fixed-state.json": 3566255,
+      "fixed-resume.md": 166268,
+      "fixed-run-log.md": 2054982,
+      "fixed-version-log.md": 1666380,
+      "remaining-consumers-tests.txt": 46056,
+      "unknown-frontier.json": 100000,
+      "partial-space.json": 50000,
+      "record.json": 30000
+    },
+    "total": 10300886,
+    "max_file": 4000000,
+    "max_total": 12000000,
+    "state_uses_complete_proof_reference": true
+  },
+  "unchanged_parent": {
+    "classified": 737,
+    "unclassified": 137,
+    "parent_inputs": 23,
+    "retained_proof_families": 12,
+    "changes": 118,
+    "witnesses": 108,
+    "owner_count": 115,
+    "hit_count": 874,
+    "song_models": 133,
+    "assets": 50
+  },
+  "acceptance_boundary": {
+    "current_candidate_verified": false,
+    "current_actions_required": true,
+    "natural_play_reachability_proven": false,
+    "universal_epoch_irq_proven": false,
+    "old_independent_final_source_review_completed": false,
+    "donor_leased": false,
+    "donor_safe_bytes": 0,
+    "controller_runtime_wired": false,
+    "formal_rom_changed": false,
+    "formal_save_changed": false
+  }
+}

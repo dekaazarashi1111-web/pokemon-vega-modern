@@ -1,0 +1,600 @@
+{
+  "schema_version": 1,
+  "required_candidate": {
+    "size": 33554432,
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+  },
+  "diagnostic_input": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  },
+  "source_bindings": {
+    "BPRJ.ld": {
+      "local": "BPRJ.ld",
+      "repository": "kapibarasan000/CFRU-JP",
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "path": "BPRJ.ld",
+      "size": 68505,
+      "sha256": "e371c23b9c9ea914c9ca3f644983e0b4e05be07bf11054492fa37afcfd58892a",
+      "git_blob_sha": "cf5363abd8439d63c7bd12cbe83ade861b0ebb51"
+    },
+    "pret-credits.c": {
+      "local": "pret-credits.c",
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "path": "src/credits.c",
+      "size": 50032,
+      "sha256": "96690b500af63cc588b2ca8060f4af5b1a69a99797870099831d77a32027af25",
+      "git_blob_sha": "8f89652a0f864ae4fcacd67cccff3a4d3441f350"
+    },
+    "pret-text.c": {
+      "local": "pret-text.c",
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "path": "src/text.c",
+      "size": 63210,
+      "sha256": "5696f49443eeaaac74b530421ac7f0cbfc71996c557399583788111c322dd80c",
+      "git_blob_sha": "f3eef07ce6dea8269980a5ecfdd6902c1c9c13d2"
+    }
+  },
+  "hits": [
+    {
+      "address": 138290750,
+      "target": 167706622,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "464dfc092612adb09cd35bf335c589bffb92ed57a70897a42da16a089e11a16c",
+      "classification": "UNCLASSIFIED",
+      "accepted": false,
+      "reason": "no_complete_typed_asset_consumer_witness",
+      "owner_candidates": []
+    },
+    {
+      "address": 138291047,
+      "target": 167706118,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "b1231aaea89ab883d7cbc4b186c3725565d052db4656cb43562f1b26b36fac45",
+      "classification": "UNCLASSIFIED",
+      "accepted": false,
+      "reason": "no_complete_typed_asset_consumer_witness",
+      "owner_candidates": []
+    }
+  ],
+  "root": {
+    "kind": "registered_special421_to_actual_credits_callback",
+    "special_id": 421,
+    "special_dispatch": 134649788,
+    "special_slot": 135673596,
+    "constructor": 135219660,
+    "allocation_size": 32,
+    "manager_cell": 33794744,
+    "callback": 135219712,
+    "callback_store_call": 135219694,
+    "main_dispatch": 134219024,
+    "roll_credits": 135220200,
+    "script_table": 138249596,
+    "script_stride": 4,
+    "text_table": 138264072,
+    "text_stride": 12,
+    "selected_script_indices": [
+      25,
+      33
+    ],
+    "selected_header_indices": [
+      15,
+      20
+    ],
+    "title_pointer_read": 135221086,
+    "names_pointer_read": 135221204,
+    "printer_argument_call": 135458220,
+    "actual_printer_hook": 154634800,
+    "byte_read": 134240270
+  },
+  "windows": [
+    {
+      "address": 134219024,
+      "size": 30,
+      "sha256": "40065ed29301c7156dfc8c08a977ec2c8ca5f069e9e38f36600a9625a9a0ac02"
+    },
+    {
+      "address": 134219056,
+      "size": 40,
+      "sha256": "a5df551b8bc4ad293f9210eccc63029782312e37a74ac202be43f20ce270fab0"
+    },
+    {
+      "address": 134229232,
+      "size": 20,
+      "sha256": "d7bef4adf7fc6f1eb62c6cceaa42a09b9d1caca263f80b9cb72e9062daf1d06c"
+    },
+    {
+      "address": 134229256,
+      "size": 74,
+      "sha256": "8bc916cac96061da345e4c6b4c8e5cb51387468d041c12fe7ce578498617cd5e"
+    },
+    {
+      "address": 134229372,
+      "size": 46,
+      "sha256": "b5984ab54bd10131c01548b6e0f4ec660b5550c211610c727e516bae2b0f73fd"
+    },
+    {
+      "address": 134229426,
+      "size": 30,
+      "sha256": "b61581f3a57b3ccbd28987dc0bb11f5c68ac2b0ae3aadffdce0f5ad2263179b5"
+    },
+    {
+      "address": 134229580,
+      "size": 44,
+      "sha256": "cf02ddee6871230ad3f76bf612881266a7a511375804d8bc37056f47e137fc44"
+    },
+    {
+      "address": 134239100,
+      "size": 112,
+      "sha256": "771a90f2f8f17b47e4b4eea941f4beaa1b94a5ac6a6c482bc576c5faa28eeedf"
+    },
+    {
+      "address": 134240092,
+      "size": 36,
+      "sha256": "0971088c051fbefbf7b2843ff8a0025c5fe43db6b64e72128bc9953a28aeeb66"
+    },
+    {
+      "address": 134240152,
+      "size": 14,
+      "sha256": "7ecd88313eb39e24ad3b7657aff43543a4b31383824a173ed7c2f8a9bfd5fee7"
+    },
+    {
+      "address": 134240178,
+      "size": 8,
+      "sha256": "cd8148723f683f891e6672bf604ccdc0733e8cdacf4ab3cd2bdd956273425efa"
+    },
+    {
+      "address": 134240236,
+      "size": 4,
+      "sha256": "efa90a159cf215fa62b9e47396466ba5d31f83afb6df4ba10ef72d33af17f1c8"
+    },
+    {
+      "address": 134240244,
+      "size": 14,
+      "sha256": "7f299c7204d45b3350107be0178f6e775c2da92201977013adf6d0a435300794"
+    },
+    {
+      "address": 134240260,
+      "size": 40,
+      "sha256": "1667772b869abdf85de1adef731cafed2d79c3a6b5c90d1c165b63b8dcbc0439"
+    },
+    {
+      "address": 134240324,
+      "size": 48,
+      "sha256": "42399022f97c7013f0c31c0a87ec38699694a2282e8d08e0dc17f7d50f80aabc"
+    },
+    {
+      "address": 134240972,
+      "size": 24,
+      "sha256": "877f966f7281fe79c548c283c9b10f7e5446d501d3b4199feeb3c1d81decae97"
+    },
+    {
+      "address": 134241000,
+      "size": 8,
+      "sha256": "a9fedaea751963353e1066b0440ed757608ef06942f6dc2c43955eb57fc4351f"
+    },
+    {
+      "address": 134241028,
+      "size": 18,
+      "sha256": "f381d44a030204abe624f6570ba5e63a2574a19d1722b83a4fe7165015291fef"
+    },
+    {
+      "address": 134241066,
+      "size": 30,
+      "sha256": "8600c3894bc1bc1af2dc50c574eab5313bf6e50de9bbb9d34808140288e20a5e"
+    },
+    {
+      "address": 134241364,
+      "size": 10,
+      "sha256": "5b2c5a47aed4930fe3424ea37affeead12679180ce253f659472e013e3e18ffa"
+    },
+    {
+      "address": 134649788,
+      "size": 36,
+      "sha256": "e9b3d12899fc857fff7931051a423a7e316af8ac6be5c5b4dd9c17ca9c9be086"
+    },
+    {
+      "address": 134649836,
+      "size": 8,
+      "sha256": "af00e7038d27a42715a87e8fb88f98b2e27e9c5b75c7bb815f6a41408cd77cad"
+    },
+    {
+      "address": 135219660,
+      "size": 74,
+      "sha256": "c71a7b4d073f5321a4760cc87757f53c580fd1243fd70786330a93a506f78157"
+    },
+    {
+      "address": 135219740,
+      "size": 72,
+      "sha256": "f04979e0aff8ed74c56883d4d8b8bf0e14fb03e27e6dbc4a5ac7cd864cd152d8"
+    },
+    {
+      "address": 135219840,
+      "size": 6,
+      "sha256": "77f3b5a9faa1480f8c8c7819165599dd239d56aa722313d6e69c7b6ce5b0ac15"
+    },
+    {
+      "address": 135219932,
+      "size": 118,
+      "sha256": "7728f1ca48f1ec41d839573470b705e9b7e722cdda0f91f9ded9710ae1db470a"
+    },
+    {
+      "address": 135220056,
+      "size": 240,
+      "sha256": "13c49251c6eb8c553bbb82a693e4fb56f1411a68f248142e38c2d6b6708e771d"
+    },
+    {
+      "address": 135220312,
+      "size": 326,
+      "sha256": "196525108f5710d04b49b9073bf1c0cf3acc29acc911624af016742a78f13738"
+    },
+    {
+      "address": 135220660,
+      "size": 4,
+      "sha256": "efa90a159cf215fa62b9e47396466ba5d31f83afb6df4ba10ef72d33af17f1c8"
+    },
+    {
+      "address": 135220674,
+      "size": 50,
+      "sha256": "02a3acdd6973e2095bf26d4eec5bc988560c77daffba3d88662c905e13e3848d"
+    },
+    {
+      "address": 135220732,
+      "size": 164,
+      "sha256": "fb591146b20a975e336fcfd7ff60af036dd2536907865197e33bad2bc190fcc1"
+    },
+    {
+      "address": 135220956,
+      "size": 464,
+      "sha256": "80c6ed64fd4742eaa37b171e30699642c3b0b18bf71b5b917690ec43ee9ea7f4"
+    },
+    {
+      "address": 135221422,
+      "size": 28,
+      "sha256": "5e47b8fbebeaff2a8abd4d2dd4cee2eb4b21fe39b05a11bd5691eff762716f88"
+    },
+    {
+      "address": 135221452,
+      "size": 104,
+      "sha256": "b756abba44e6ca6cec7d0cd39841bed0882290084917cfa69bd73abf67fe3425"
+    },
+    {
+      "address": 135221664,
+      "size": 6,
+      "sha256": "086a6ec57cec12cce338c06a76ce5fff53e02d2d8eb5358f82c938768614f3c1"
+    },
+    {
+      "address": 135221734,
+      "size": 10,
+      "sha256": "b7c5592fbe374004fc7aab88b17d3ed63e1644945855865494150c1d4d7d379c"
+    },
+    {
+      "address": 135458220,
+      "size": 138,
+      "sha256": "f68a71f9374683bf9ce2e1e0c6211c51ddc16d52ff798aff7f753d4ba35e1a75"
+    },
+    {
+      "address": 135673596,
+      "size": 4,
+      "sha256": "66c2e4a3db2a2f369ca828308cf6a32a889d99737618c30bc19065d43812e026"
+    },
+    {
+      "address": 136084168,
+      "size": 8,
+      "sha256": "dc199130dd8b3910504c239d35dc1e7218b8587263b2c1e4af74751c7eaef8ba"
+    },
+    {
+      "address": 138249596,
+      "size": 6,
+      "sha256": "e90357a19beb965e02b9a4fa2020acbdbf7264746536efc158ef328d661a5eca"
+    },
+    {
+      "address": 138249604,
+      "size": 2,
+      "sha256": "b413f47d13ee2fe6c845b2ee141af81de858df4ec549a58b7970bb96645bc8d2"
+    },
+    {
+      "address": 138249608,
+      "size": 2,
+      "sha256": "fcf0a6c700dd13e274b6fba8deea8dd9b26e4eedde3495717cac8408c9c5177f"
+    },
+    {
+      "address": 138249612,
+      "size": 6,
+      "sha256": "944e78d897e3f733ceb84231bab7e8591110ce43ad01946c7d46c7d7a8656759"
+    },
+    {
+      "address": 138249620,
+      "size": 2,
+      "sha256": "4f35212d12f9ad2036492c95f1fe79baf4ec7bd9bef3dffa7579f2293ff546a4"
+    },
+    {
+      "address": 138249624,
+      "size": 6,
+      "sha256": "c9865738d77ee3f07a85f05a76d4701b635bc64559e0c0a49413b2a04badef13"
+    },
+    {
+      "address": 138249632,
+      "size": 2,
+      "sha256": "40d88127d4d31a3891f41598eeed41174e5bc89b1eb9bbd66a8cbfc09956a3fd"
+    },
+    {
+      "address": 138249636,
+      "size": 10,
+      "sha256": "f75cf75e7c669a24537ae3048661877a86ab53cc4eb481497797d257b3a02fe8"
+    },
+    {
+      "address": 138249648,
+      "size": 2,
+      "sha256": "b4c43b50bf245bd727623e3c775a8fcfb8d823d00b57dd65f7f79dd33f126315"
+    },
+    {
+      "address": 138249652,
+      "size": 6,
+      "sha256": "0d0cda75852869a1ba2106e17dd792aacf958de17f19b48f1025f7b84601c37b"
+    },
+    {
+      "address": 138249660,
+      "size": 2,
+      "sha256": "67ebbd370daa02ba9aadd05d8e091e862d0d8bcadafdf2a22360240a42fe922e"
+    },
+    {
+      "address": 138249664,
+      "size": 6,
+      "sha256": "7f26a8d7f09d05abb08c3ec284a8dd89c21abaa72d69d63a1932f897c9583ce4"
+    },
+    {
+      "address": 138249672,
+      "size": 2,
+      "sha256": "fe251e4dd034dcf589c84794120c85d6015d65ca7d9a2c2ec73c9ecb5e33d83b"
+    },
+    {
+      "address": 138249676,
+      "size": 10,
+      "sha256": "6872379ad207d013c5393980f9bd6aa6dc5d9fd034d5bab30e75b4b90eda1b09"
+    },
+    {
+      "address": 138249688,
+      "size": 2,
+      "sha256": "9f4917386c45e2c0da0d9b475f1a19cf2db1e929195c6a9f4966ca0d2105b196"
+    },
+    {
+      "address": 138249692,
+      "size": 6,
+      "sha256": "f7b9628e8d790194b84bec857a4b3895b0ed1d924f1a3aef62a6183ae5a00dd1"
+    },
+    {
+      "address": 138249700,
+      "size": 2,
+      "sha256": "0298d122906dcfc10892cb53a73992fc5b9f493ea4c9badb27b791b4127a7fe7"
+    },
+    {
+      "address": 138249704,
+      "size": 2,
+      "sha256": "2ed348343ad2d93bbbfc7316cde45c693a36a3d4fde8b39b1449067b1603b90d"
+    },
+    {
+      "address": 138249708,
+      "size": 6,
+      "sha256": "20a58d5109dd112d5f2e58bcddae8f62724825b830796c27b003f44f8b480e1b"
+    },
+    {
+      "address": 138249716,
+      "size": 2,
+      "sha256": "d877a5674d893efd846208dbd80db16fca065c907405986f233d76c3fdb936a2"
+    },
+    {
+      "address": 138249720,
+      "size": 10,
+      "sha256": "9e5991a95fa4c88e800bd8add5f0e05217cad808d936e781640e50072e12699b"
+    },
+    {
+      "address": 138249804,
+      "size": 3,
+      "sha256": "af62f0d8245cf11628b51a2d9e200a0213b9ce998116a1efa110449fcd106dbf"
+    },
+    {
+      "address": 138249808,
+      "size": 3,
+      "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc"
+    },
+    {
+      "address": 138264020,
+      "size": 40,
+      "sha256": "79cbd90358dbf1327aab3f3ccd527227d61463e75a67a1e77c5aa1bd3565390f"
+    },
+    {
+      "address": 138264072,
+      "size": 9,
+      "sha256": "e24bc0dd3ba1162f14057fbb424b0700bb4b4d737d789b3c8bc1a2928a0ee76d"
+    },
+    {
+      "address": 138264084,
+      "size": 9,
+      "sha256": "5c839bdb43f0a87272e5498692a8ea23c460ec6e3f37ee53485c5b8babcb091b"
+    },
+    {
+      "address": 138264096,
+      "size": 9,
+      "sha256": "fbcbc7f68b4df9eded380eaf739468cee9a391917816e917048693077788c441"
+    },
+    {
+      "address": 138264108,
+      "size": 9,
+      "sha256": "13046d37920e86fe3f5107ebd3918bc381ef50350541d2647cf3f41f9764fa2f"
+    },
+    {
+      "address": 138264120,
+      "size": 9,
+      "sha256": "1f552a41f984a94bc3b4a7e8275b3d1a3f370470bac45e2504cf56b5c507e5f1"
+    },
+    {
+      "address": 138264132,
+      "size": 9,
+      "sha256": "7b29c30cdcc04e913a82d4b0225d7b1513fef8fc0677887872d197c4c672433a"
+    },
+    {
+      "address": 138264144,
+      "size": 9,
+      "sha256": "77ce48f7d454f7b49dd5035a428a68b4edc43d2a212f544c852b8cd99cf62249"
+    },
+    {
+      "address": 138264156,
+      "size": 9,
+      "sha256": "d7295f1a706acacb51ed8c75fc7100b7a6b4208cc0bc517370dc69256cf40cc7"
+    },
+    {
+      "address": 138264168,
+      "size": 9,
+      "sha256": "4ad1353da12cb8ac152086076ab800ac97cd5c0027871b894760433f37ea8bd8"
+    },
+    {
+      "address": 138264180,
+      "size": 9,
+      "sha256": "c057a63cef4c14ba70445956816a2b7a4f055900ea6bf534d1f9f7ba401dd972"
+    },
+    {
+      "address": 138264192,
+      "size": 9,
+      "sha256": "0aeaee42ce5bd68a9d38934810f17f6a235874dbcca38ca39500694296c7679b"
+    },
+    {
+      "address": 138264204,
+      "size": 9,
+      "sha256": "b10f4cb4090feeadb616a911f97953df0723167d64923aa8df105cf686e53f64"
+    },
+    {
+      "address": 138264216,
+      "size": 9,
+      "sha256": "328844fe9cda5cec3f69697a028622b562250923b1bb31d40d0cb3767ff86374"
+    },
+    {
+      "address": 138264228,
+      "size": 9,
+      "sha256": "b82bbfe4acad7c9c160c09d2fe9d824cadb5d5added3233dbc95d491d28c4610"
+    },
+    {
+      "address": 138264240,
+      "size": 9,
+      "sha256": "f2ab6e2f9beef74ecfadc7ace2a180f90cd9cc8f5665c057e2228e6722d9f9cb"
+    },
+    {
+      "address": 138264252,
+      "size": 9,
+      "sha256": "b00df9ff8265bd11b57b4a7edb86b2de8014159dcff2d7673c405f712b268be4"
+    },
+    {
+      "address": 138264264,
+      "size": 9,
+      "sha256": "cadd2b3375007018810afd2db979bfd2476d26663fddf589f79f57aa7767ceeb"
+    },
+    {
+      "address": 138264276,
+      "size": 9,
+      "sha256": "6efa24a861a3fd3000fa5903c9d67c58f156624c78ed2a8d396e6b8bef5eabda"
+    },
+    {
+      "address": 138264288,
+      "size": 9,
+      "sha256": "4cb9df0121864fb2e5c1eb255a966335f0d7668db94b9bd15a57095d1eb8fc29"
+    },
+    {
+      "address": 138264300,
+      "size": 9,
+      "sha256": "bc9225633ce6682145cf06643e1452a559233f909ed368791ed4dccae879e2cb"
+    },
+    {
+      "address": 138264312,
+      "size": 9,
+      "sha256": "e8c3d51ce5706cd1d198dc189bf25b169416f9171eb7db95e4dd6f9828862909"
+    },
+    {
+      "address": 138290736,
+      "size": 55,
+      "sha256": "e01f223bc8a91fee888e774e333623808bbc31952bd8bb826e55056e7215b821"
+    },
+    {
+      "address": 138291020,
+      "size": 39,
+      "sha256": "acdc26d4d3728156b4a5191798f5c8cf1d318a3a43533d22b460e3fad36dbacd"
+    },
+    {
+      "address": 138293492,
+      "size": 4,
+      "sha256": "1b14bb8b173da766a16a5e92044a5a3f4a9946b7477d1df3dddc1f54e4f67e31"
+    },
+    {
+      "address": 138293497,
+      "size": 1,
+      "sha256": "ef6cbd2161eaea7943ce8693b9824d23d1793ffb1c0fca05b600d3899b44c977"
+    },
+    {
+      "address": 138293504,
+      "size": 4,
+      "sha256": "ce3843fe1d26749f6299ebe4a11c8caeb4f8d9d2415205a25dc6cf8913b94f3b"
+    },
+    {
+      "address": 138293509,
+      "size": 1,
+      "sha256": "ef6cbd2161eaea7943ce8693b9824d23d1793ffb1c0fca05b600d3899b44c977"
+    },
+    {
+      "address": 154634800,
+      "size": 20,
+      "sha256": "cb65eb2b0ecfed79e16e2ade80f3739253222971976f4d012c51807e9b28c3f9"
+    },
+    {
+      "address": 154635080,
+      "size": 8,
+      "sha256": "ef0857a3b649682a0c1539bf4a365fa0545e573101a284fd3aff0131bdc24af7"
+    }
+  ],
+  "claims": {
+    "proof_scope": "conditional_registered_credits_finite_minimum_text_consumption",
+    "full_story_reachability_claimed": false,
+    "actual_runtime_execution_observed": false,
+    "universal_heap_or_irq_lifetime_proven": false,
+    "opaque_callee_effects_proven": false,
+    "source_pointer_interpretation": false,
+    "whole_string_table_classified": false,
+    "padding_classified": false,
+    "indirect_reference_completeness_claimed": false,
+    "donor_eligible": false,
+    "donor_leased": false
+  },
+  "input_contract": {
+    "entry": "actual bounded special dispatcher receives ScriptReadHalfword result421; actual slot, Thumb interwork, constructor, allocation store and Main callback setter execute",
+    "allocation": "successful disjoint32-byte AllocZeroed result inside accepted heap range; one epoch stays live; actual allocation algorithm and OOM are outside this conditional proof",
+    "font": "entry font resource at03003DD0 is existing default table083E30E8; exact selected font rows and RenderFont dispatch are bound; prior game-wide font initialization is not claimed",
+    "environment": "normal synchronous ABI returns at exact declared sites; main suppression predicates return0, selected map renderer and mon-scene helper return1; valid disjoint window/graphics resources",
+    "gpu": "SetGpuReg offset68 writes the supplied halfword to the modeled register; GetGpuReg reads that same value; opening geometry is computed by real instructions",
+    "fade": "BeginNormalPaletteFade marks active, then17 callback-pump returns finish it; this finite sufficient environmental contract is not implementation proof of every fade timing",
+    "windows": "real CreateCreditsWindow and DestroyCreditsWindow instructions produce windowId and active fields; leaf AddWindow success returns valid0; RemoveWindow ends the corresponding resource epoch",
+    "sequence": "actual zeroing and state5 write index0; all34 script rows and real increment stores run; no host-write injects selected indices25/33",
+    "printer": "only three selected text calls enter actual AddTextPrinterParameterized4, installed hook, temporary printer copy, speed255 instant loop, font dispatch and LDRB; unrelated earlier rendering is opaque normal return",
+    "glyphs": "glyph decoder and copy-to-window normally return; glyph pixels and width are unspecified, and unknown width/position arithmetic must not block or redirect the actual text-byte continuation",
+    "lifetime": "each opaque boundary preserves only actual subsequent read-before-write RAM fields, same allocation/window epochs, ABI callee-saved registers and valid stack; replay erases all other RAM",
+    "minimum": "classify only hit4-byte windows; header/names pointer cells and complete text extents are evidence, not extra classified bytes; four padding-crossing credits hits stay unknown"
+  },
+  "texts": [
+    {
+      "address": 138290736,
+      "size": 16,
+      "sha256": "4c7d5fa0e69cdfa2eea710a593e0a98d545e682ffa0d4058edda7a28ee15ac15"
+    },
+    {
+      "address": 138290752,
+      "size": 39,
+      "sha256": "b15c74b107be1b55695e9faa6e044d5228e2caf0991869f5cb21df65a5aa1d76"
+    },
+    {
+      "address": 138291020,
+      "size": 39,
+      "sha256": "acdc26d4d3728156b4a5191798f5c8cf1d318a3a43533d22b460e3fad36dbacd"
+    }
+  ]
+}
