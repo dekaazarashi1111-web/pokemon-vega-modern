@@ -10908,3 +10908,18 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 残118件を実consumer根から調べる。0x0818DD5Dは現object10/2:0と21/0:0の追加grammarを閉じた有限graphでも対象LOADWORDへの正のpathと置換元producerは未結合のため未知維持。別の登録root/目的LOADWORD path/placeholder byte consumerが結合した時だけ再開し、全root不達と主張しない。Bag数量順ID14/15は実生成配列から除外、Fishingは実state6→9でstate7 timeout producerへ進まず、追加Defog/Dive説明は実stock consumerが旧表のまま。各4hitは未知維持し、別の実caller/非zero writerまたはconsumer結合の独立証拠が出た時だけ再開。Credits4paddingの日本語layout、GPU外側root、wireless非zero writerも未証明。次は残未調査の実UI/script/asset登録根を限定調査する。既測定Bag/ShockWave/Seagallop/Help/RFU/Fame/Credits/Summary/party/Mystery/本placeholder event/HealPulse/Electrify境界/AuroraVeil・LifeDew・JungleHealing最小型/field guard/旧suite/nativeは無影響再走しない。未知最大access/間接参照/退役/owner移管未証明なら旧egg15118全域保護/安全0。単一controller6528byte容量確保後、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL/全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/0804B85C退避前Freeへ接続。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。
 - Commit: source=718d9795bee3bf43129e1d3d39d922cb45e54a37; 同branch非force。
 - Network: 同repoActions/既存入力/固定source。公開source・最小address-size-SHA・textのみ、ROM断片/rawhex/ROM/inputsave/runtime/runner/credentials追加公開0。
+
+## 2026-10-06T06:14:05.567618+00:00
+- Timestamp: 2026-10-06T06:14:05.567618+00:00
+- Task: USER-20261006-DEX-HOF-HEALING-VEIL-BATCH / 登録healing/veil最小型batchの終端
+- Version: hof-healing-veil-batch-closeout
+- Status: STOPPED（effect65/32登録最小型3件を受入、既event/fieldguard未知保持、残root/donor/本番controller未完）
+- Summary: run37421487687/job112131603914全14step成功。artifact11393372078全11text原本と固定MDJSON/CP/両ログ全byte/LF/Git blobを照合しpending解除。完了measurement起動条件のみmanual-onlyへ。
+- Files changed: closeout source/workflow/tests、measurement起動条件、固定MDJSON、両append-onlyログ。
+- Verify: 原本207tests、新分類3、756分類/118未知（owner内0）を再利用。全753親行・全十八段134changes/124witnessと残unknown全field、133曲/50assetを保持。新公開guard22tests PASS。新healing/veilの登録serializerとE3/goto/FF09の必要最小型、既event/field guardは原本保持をsource-only確認。自然play到達/普遍IRQ/全allocation lifetimeは受入に含めない。旧分類/host/ARM/ROM/native再走0。旧独立最終sourceレビュー未実施を保持。
+- Capacity: 未知の最大アクセス範囲が未証明なら全15118byte保護。間接参照/退役/owner移管も未完でsafe0byte。global511＋save804の上限1315は単一controller6528に不足5213。点targetの仮想空隙は安全容量ではなく、今後の追加分類で変わり得る。実配線時の追加容量も未確定。
+- Publication: 全親は参照保持、新delta67352byteとpartial-space独立envelope。閉じた非空success set・whole size/SHA/LF・hidden/symlink/未知file拒否。
+- Boundary: 現0641/115owner/52saveowner/804byte/正式ROM/Save101不変。heap13352の保存退避53300跨ぎ禁止。一般CI既知QOL不一致/action_required job0/Stage79cacheは別扱い。
+- Next: 公開256effect登録/216種macroの有限照合では今回3件以外の新しいexact登録root結合は0。単一anchorによるgeneral-script全source配置予測はeffect184/231で保存実rootと8byteずれるため、現ROM全域の配置一致・全root不達の証拠へ代用しない。残件は実UI/script/asset登録cellと完全pointer/extentの独立根から再開する。残118件を実consumer根から調べる。0x0818DD5Dは現object10/2:0と21/0:0の追加grammarを閉じた有限graphでも対象LOADWORDへの正のpathと置換元producerは未結合のため未知維持。別の登録root/目的LOADWORD path/placeholder byte consumerが結合した時だけ再開し、全root不達と主張しない。Bag数量順ID14/15は実生成配列から除外、Fishingは実state6→9でstate7 timeout producerへ進まず、追加Defog/Dive説明は実stock consumerが旧表のまま。各4hitは未知維持し、別の実caller/非zero writerまたはconsumer結合の独立証拠が出た時だけ再開。Credits4paddingの日本語layout、GPU外側root、wireless非zero writerも未証明。次は残未調査の実UI/script/asset登録根を限定調査する。既測定Bag/ShockWave/Seagallop/Help/RFU/Fame/Credits/Summary/party/Mystery/本placeholder event/HealPulse/Electrify境界/AuroraVeil・LifeDew・JungleHealing最小型/field guard/旧suite/nativeは無影響再走しない。未知最大access/間接参照/退役/owner移管未証明なら旧egg15118全域保護/安全0。単一controller6528byte容量確保後、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL/全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/0804B85C退避前Freeへ接続。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。
+- Commit: closeout source=328b0ef7b0d27c2dc56678b35da8e53da58573a1; 同branch非force。
+- Network: 同repoActions/text原本のみ。ROM断片/rawhex/ROM/save/runtime/runner/credentials追加公開0。
