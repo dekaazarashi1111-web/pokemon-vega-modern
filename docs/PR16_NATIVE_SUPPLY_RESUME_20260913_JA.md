@@ -8,7 +8,7 @@
 
 現0641の実critical command表とanimation背景の登録serializerを条件付きconsumerへ結合し、各4byteの計5件を新分類。771分類/未知103。新275試験、全115actual ownerと全22親deltaを照合。既event placeholderとfield4hitの未結合guard結果は再測定せず未知保持。最小型と自然play全到達・普遍IRQ/heap寿命・間接参照/退役/owner移管を分離し、全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。
 
-**次: 残103件を別の実consumer根から限定調査する。critical表境界090405A9は公開固定manifestとheader生成aliasから30member IDを独立解決し18差を保存、実opcode4 callerの有限条件と完全halfword readerへ結合。背景4件は実登録animation→BG ID producer→descriptor/loader/LZ consumerと公開PNG serializerを結合した各4byteの最小型だけ受入。自然play全到達・全callee効果・全asset効果は別義務。asset08C0ED31は正のcommand根未結合、命名083DF94FはEOS後で未知維持。event0818DD5D、Bag数量ID14/15、Fishing timeout、Defog/Dive、Credits padding、GPU外側root、wirelessは別の実caller/非zero writer/consumer独立証拠が出た時だけ再開。旧consumer/guard/suite/nativeは無影響再走しない。未知最大access/間接参照/退役/owner移管未証明なら旧egg15118全域保護/安全0。単一controller6528容量確保後、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL/全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/0804B85C退避前Freeへ接続。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。**
+**次: 次の具体根は090FA7BDのToxic Orb/end-turn必要最小Thumb6byte候補。旧06c5の限定調査で公開TurnBasedEffects hook08017A68→実090F7F10、state69 cell09166584→090F80D8、gNewBS substate2→090F945E、ITEM_EFFECT75/CanBePoisoned非zero→090FA774、hit BL090FA7BC→090FB594/BX r3→MarkBufferBankForExecution08016A58を結合。正式分類は未追加で未知保持。次はAPI入口からleafの完全prologue/source struct offset327・stride88/HP40/item46/status76、ItemEffect/CanBePoisoned/RecordItemEffectBattleの独立symbol・条件、future-live/epoch/opaque ABI、現0641測定と全byte/resealを閉じる。第二候補090DFBB5/090E20ABのopcode49実slot0903F574はpatched veneer090DF7A0→095D5A9C→095343A4→090DF7A8であり、wrapper独立source/0203DFBC実producer/state条件未結合のため未知維持。手書き14block164命令の部分一致を完全finite traceや自然到達へ昇格しない。critical境界090405A9と背景4hitは必要最小各4byteだけ受入済み。残103を別の実consumer根から限定調査し、object0..239/frame0..8とtrainer-front0..147の有限負結果を全root不在に一般化しない。asset08C0ED31は正のcommand根未結合、命名083DF94FはEOS後。event0818DD5D、Bag数量ID14/15、Fishing timeout、Defog/Dive、Credits padding、GPU外側root、wirelessは別の実caller/非zero writer/consumer独立証拠時だけ再開。旧consumer/guard/suite/nativeは無影響再走しない。未知最大access/間接参照/退役/owner移管未証明なら旧egg15118全域保護/安全0。単一controller6528容量確保後、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL/全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/0804B85C退避前Freeへ接続。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。**
 
 通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。
 
@@ -75,6 +75,11 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 - `content/modernization/pr16_dex_hof_generation_writer_checkpoint.json`
 - `content/modernization/pr16_dex_hof_critical_move_list_roots_review.json`
 - `content/modernization/pr16_dex_hof_animation_background_roots_review.json`
+- `scripts/pr16_dex_hof_runtime_party.py`
+- `scripts/pr16_dex_hof_callback_party.py`
+- `scripts/pr16_dex_hof_callback_party_task.py`
+- `content/modernization/pr16_dex_hof_runtime_party_review.json`
+- `content/modernization/pr16_dex_hof_callback_party_review.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
