@@ -12,19 +12,31 @@ BASE='54c30903297d5dc89a4d6d4cadb3d16c04e4960b';SOURCE='2a975f0f3501034695671d96
 ARCHIVE=(11384711052, 37399518923, 1469249, '6883ee3e18068bbaff5f07e44eb4fb76bed00192961c61dc854c7e15e335ceb7')
 EXPECTED=dict(unit_tests=306,**w.EXPECTED,retained_sample_witnesses=50)
 WF='.github/workflows/pr16-dex-hof-help-batch-closeout.yml';SELF='scripts/pr16_dex_hof_help_batch_closeout.py'
-CLOSEOUT_TESTS=11
+CLOSEOUT_TESTS=19
+RECOVERY=dict(run=37400191134,job=112065410913,source='b3c2e8beba208e34f15249a07220d9da0f9678c3',reason='runner_shutdown_exit143_before_record_commit',guard_tests_succeeded=11,record_commit_skipped=True,artifact_count=0,accepted_measurement_tests_rerun=0,native_processes=0)
 CODE={w.WF,WF,SELF,'tests/test_pr16_dex_hof_help_batch_closeout.py'};OUT=ROOT/'.local/pr16-dex-hof-help-batch-closeout';PUBLIC=ROOT/'public-dex-hof-help-batch-closeout';ARTIFACT='pr16-dex-hof-help-batch-closeout-text-only'
 
 
 def source_guard():
  import pr16_learnset_runtime_record as g
- current();publication.contract(ROOT,WF,PUBLIC,ARTIFACT,SELF);g.START=BASE;g.CODE=CODE;g.OWNED=set();g.guard()
+ current();verify_interrupted_closeout();publication.contract(ROOT,WF,PUBLIC,ARTIFACT,SELF);g.START=BASE;g.CODE=CODE;g.OWNED=set();g.guard()
+
+
+def verify_interrupted_closeout():
+ # shutdownで成功logの完全artifactが残らなかったため、同じ終端guardだけを新runnerで再取得。
+ failed=t.api('actions/runs/'+str(RECOVERY['run']));stopped=t.api('actions/jobs/'+str(RECOVERY['job']))
+ need(failed['head_sha']==RECOVERY['source']and failed['run_attempt']==1 and failed['status']=='completed'and failed['conclusion']=='failure'and stopped['run_id']==RECOVERY['run'],'exact previously interrupted closeout')
+ steps={row['number']:row for row in stopped['steps']}
+ need(steps[4]['conclusion']=='success'and steps[5]['conclusion']=='failure'and all(steps[n]['conclusion']=='skipped'for n in range(6,12)),'guard success followed by interruption before any record commit or upload')
+ need(t.api('actions/runs/'+str(RECOVERY['run'])+'/artifacts')['total_count']==0,'interrupted closeout has no complete success artifact')
 
 
 def close():
  from pr16_learnset_compact_record import publish_resume
  import pr16_resume
- current();need(not OUT.exists()and not PUBLIC.exists(),'one terminal reference closeout');OUT.mkdir(parents=True);PUBLIC.mkdir();state=json.loads((ROOT/w.STATE).read_bytes());protected=dict(state['source_bindings'])
+ current()
+ verify_interrupted_closeout()
+ need(not OUT.exists()and not PUBLIC.exists(),'one terminal reference closeout');OUT.mkdir(parents=True);PUBLIC.mkdir();state=json.loads((ROOT/w.STATE).read_bytes());protected=dict(state['source_bindings'])
  for path,binding in protected.items():
   if path!=w.WF:need(identity((ROOT/path).read_bytes())==binding,'every earlier bound original '+path)
  old=git('show',BASE+':'+w.WF);trigger=('  push:\n    branches: [codex/modernization-followup-20260908]\n    paths: ['+w.WF+']\n').encode()
@@ -55,14 +67,14 @@ def close():
  need(identity(capacity_raw)==cp['capacity_identity']==measure['capacity_identity'] and json.loads(capacity_raw)==w.capacity_report(full,inherited),'whole new bounded-space report preserved')
  need(state['pending_runs']==[dict(run_id=RUN,tested_head=SOURCE,status='in_progress')],'only exact original measurement pending');state['pending_runs']=[]
  tests=(ROOT/'.local/pr16-help-batch-closeout-tests.txt').read_bytes();need(tests.count(b' ... ok\n')==CLOSEOUT_TESTS and b'\nOK\n'in tests,'new complete-publication guards')
- result=dict(status='PASS_TERMINAL_EXACT_HELP_BATCH_RECORD',source_head=SOURCE,record_head=BASE,run=RUN,job=JOB,all14_steps_success=True,archive=ARCHIVE,all5_snapshots_full_bytes_and_lf_verified=True,checkpoint=w.CP,checkpoint_identity=identity((ROOT/w.CP).read_bytes()),**EXPECTED,delta_identity=cp['delta_identity'],baseline_identity=w.delta.BASELINE_ID,parent_identity=w.delta.PARENT_ID,earlier_identity=w.delta.EARLIER_ID,capacity_identity=cp['capacity_identity'],old741_accepted_and_all874_identities_retained=True,all_thirteen_old_delta_families_preserved=True,independent_final_source_review_completed=False,closeout_source=os.environ['GITHUB_SHA'],closeout_run=int(os.environ['GITHUB_RUN_ID']),tests_rerun=0,new_export_guard_tests=CLOSEOUT_TESTS,export_guard_test_log=identity(tests),arm_compiles=0,native_processes=0,current_rom_reconstructions=0,candidate_changed=False,donor_leased=False,formal_save_changed=False)
+ result=dict(status='PASS_TERMINAL_EXACT_HELP_BATCH_RECORD',source_head=SOURCE,record_head=BASE,run=RUN,job=JOB,all14_steps_success=True,archive=ARCHIVE,all5_snapshots_full_bytes_and_lf_verified=True,checkpoint=w.CP,checkpoint_identity=identity((ROOT/w.CP).read_bytes()),**EXPECTED,delta_identity=cp['delta_identity'],baseline_identity=w.delta.BASELINE_ID,parent_identity=w.delta.PARENT_ID,earlier_identity=w.delta.EARLIER_ID,capacity_identity=cp['capacity_identity'],old741_accepted_and_all874_identities_retained=True,all_thirteen_old_delta_families_preserved=True,independent_final_source_review_completed=False,closeout_source=os.environ['GITHUB_SHA'],closeout_run=int(os.environ['GITHUB_RUN_ID']),tests_rerun=0,new_export_guard_tests=CLOSEOUT_TESTS,recovered_closeout=RECOVERY,actions_closeout_guard_tests_executed_total=RECOVERY['guard_tests_succeeded']+CLOSEOUT_TESTS,repeated_closeout_guard_tests=11,new_recovery_guard_tests=8,accepted_measurement_tests_rerun=0,export_guard_test_log=identity(tests),arm_compiles=0,native_processes=0,current_rom_reconstructions=0,candidate_changed=False,donor_leased=False,formal_save_changed=False)
  next_goal=state['next_action']['goal_ja']
  state['bp']['next_step']=next_goal;state['next_action']['goal_ja']=next_goal
  for path in ('scripts/pr16_dex_hof_runtime_party.py','scripts/pr16_dex_hof_callback_party.py','scripts/pr16_dex_hof_callback_party_task.py','content/modernization/pr16_dex_hof_runtime_party_review.json','content/modernization/pr16_dex_hof_callback_party_review.json'):
   if path not in state['next_action']['read_paths']:state['next_action']['read_paths'].append(path)
  state['story_dex_owner']['runtime_integration']['hof_help_batch']['recording']=result;state['observed_head_checks'].update(record_run=RUN,record_job=JOB,all14_steps_success=True,whole_receipt_equals_checkpoint=True)
  state['source_bindings'].update(bindings(CODE));publish_resume(state);pr16_resume.validate(ROOT);stamp=datetime.datetime.now(datetime.timezone.utc).isoformat()
- entry=f'\n## {stamp}\n- Timestamp: {stamp}\n- Task: USER-20261006-DEX-HOF-HELP-BATCH / Help最小ID型・padding未知維持の終端\n- Version: hof-help-batch-closeout\n- Status: STOPPED（Help最小ID型を受入、4padding未知維持、残root/donor/本番controller未完）\n- Summary: run{RUN}/job{JOB}全14step成功。artifact{ARCHIVE[0]}全11text原本と固定MDJSON/CP/両ログ全byte/LF/Git blobを照合しpending解除。完了measurement起動条件のみmanual-onlyへ。\n- Files changed: closeout source/workflow/tests、measurement起動条件、固定MDJSON、両append-onlyログ。\n- Verify: 原本{EXPECTED["unit_tests"]}tests、新分類{EXPECTED["newly_classified"]}、{EXPECTED["classified"]}分類/{EXPECTED["unclassified"]}未知（owner内0）を再利用。全741親行・全十三段122changes/112witnessと残unknown全field、133曲/50assetを保持。新公開guard{CLOSEOUT_TESTS}tests PASS。新Help実context/topic producer・必要最小条件付きID型、Credits gap未知維持をsource-only確認。自然play到達/普遍IRQ/全allocation lifetimeは受入に含めない。旧分類/host/ARM/ROM/native再走0。旧独立最終sourceレビュー未実施を保持。\n- Capacity: 未知の最大アクセス範囲が未証明なら全15118byte保護。間接参照/退役/owner移管も未完でsafe0byte。global511＋save804の上限1315は単一controller6528に不足5213。点targetの仮想空隙は安全容量ではなく、今後の追加分類で変わり得る。実配線時の追加容量も未確定。\n- Publication: 全親は参照保持、新delta{cp["delta_identity"]["size"]}byteとpartial-space独立envelope。閉じた非空success set・whole size/SHA/LF・hidden/symlink/未知file拒否。\n- Boundary: 現0641/115owner/52saveowner/804byte/正式ROM/Save101不変。heap13352の保存退避53300跨ぎ禁止。一般CI既知QOL不一致/action_required job0/Stage79cacheは別扱い。\n- Next: {state["next_action"]["goal_ja"]}\n- Commit: closeout source={os.environ["GITHUB_SHA"]}; 同branch非force。\n- Network: 同repoActions/text原本のみ。ROM断片/rawhex/ROM/save/runtime/runner/credentials追加公開0。\n'
+ entry=f'\n## {stamp}\n- Timestamp: {stamp}\n- Task: USER-20261006-DEX-HOF-HELP-BATCH / Help最小ID型・padding未知維持の終端\n- Version: hof-help-batch-closeout\n- Status: STOPPED（Help最小ID型を受入、4padding未知維持、残root/donor/本番controller未完）\n- Summary: 前終端run{RECOVERY['run']}は新11guard成功後のrunner shutdown/exit143で停止しcommit/upload/成果artifactなし。成功measurement306試験・ROMは再走せず、終端19guardの完全公開証跡を新runnerで取得（元11の再取得＋中断固定の新8反証、Actions延べ30実行・固有19試験）。run{RUN}/job{JOB}全14step成功。artifact{ARCHIVE[0]}全11text原本と固定MDJSON/CP/両ログ全byte/LF/Git blobを照合しpending解除。完了measurement起動条件のみmanual-onlyへ。\n- Files changed: closeout source/workflow/tests、measurement起動条件、固定MDJSON、両append-onlyログ。\n- Verify: 原本{EXPECTED["unit_tests"]}tests、新分類{EXPECTED["newly_classified"]}、{EXPECTED["classified"]}分類/{EXPECTED["unclassified"]}未知（owner内0）を再利用。全741親行・全十三段122changes/112witnessと残unknown全field、133曲/50assetを保持。新公開guard{CLOSEOUT_TESTS}tests PASS。新Help実context/topic producer・必要最小条件付きID型、Credits gap未知維持をsource-only確認。自然play到達/普遍IRQ/全allocation lifetimeは受入に含めない。旧分類/host/ARM/ROM/native再走0。旧独立最終sourceレビュー未実施を保持。\n- Capacity: 未知の最大アクセス範囲が未証明なら全15118byte保護。間接参照/退役/owner移管も未完でsafe0byte。global511＋save804の上限1315は単一controller6528に不足5213。点targetの仮想空隙は安全容量ではなく、今後の追加分類で変わり得る。実配線時の追加容量も未確定。\n- Publication: 全親は参照保持、新delta{cp["delta_identity"]["size"]}byteとpartial-space独立envelope。閉じた非空success set・whole size/SHA/LF・hidden/symlink/未知file拒否。\n- Boundary: 現0641/115owner/52saveowner/804byte/正式ROM/Save101不変。heap13352の保存退避53300跨ぎ禁止。一般CI既知QOL不一致/action_required job0/Stage79cacheは別扱い。\n- Next: {state["next_action"]["goal_ja"]}\n- Commit: closeout source={os.environ["GITHUB_SHA"]}; 同branch非force。\n- Network: 同repoActions/text原本のみ。ROM断片/rawhex/ROM/save/runtime/runner/credentials追加公開0。\n'
 
 
  for path in w.LOGS:

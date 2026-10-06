@@ -55,3 +55,40 @@ class ExportTests(unittest.TestCase):
   self.receipt['final_blobs'][m.w.STATE]=dict(**m.identity(raw),git_blob_sha=hashlib.sha1(b'blob '+str(len(raw)).encode()+b'\0'+raw).hexdigest(),trailing_newline=True)
   self.files['closeout.json']=(json.dumps(self.receipt)+'\n').encode()
   with self.assertRaises(ValueError):m.validate_export(self.files,self.head)
+
+class InterruptedCloseoutTests(unittest.TestCase):
+ def setUp(self):
+  self.run=dict(head_sha=m.RECOVERY['source'],run_attempt=1,status='completed',conclusion='failure')
+  self.job=dict(run_id=m.RECOVERY['run'],steps=[dict(number=n,conclusion='success'if n==4 else'failure'if n==5 else'skipped')for n in range(4,12)])
+  self.artifacts=dict(total_count=0)
+ def api(self,path):
+  if path.endswith('/artifacts'):return self.artifacts
+  if path.startswith('actions/jobs/'):return self.job
+  return self.run
+ def check(self):
+  with patch.object(m.t,'api',side_effect=self.api,create=True):m.verify_interrupted_closeout()
+ def test_exact_interrupted_run(self):self.check()
+ def test_wrong_source(self):
+  self.run['head_sha']='wrong'
+  with self.assertRaises(ValueError):self.check()
+ def test_wrong_job_run(self):
+  self.job['run_id']+=1
+  with self.assertRaises(ValueError):self.check()
+ def test_successful_old_guard_required(self):
+  self.job['steps'][0]['conclusion']='failure'
+  with self.assertRaises(ValueError):self.check()
+ def test_record_not_skipped_rejected(self):
+  self.job['steps'][4]['conclusion']='success'
+  with self.assertRaises(ValueError):self.check()
+ def test_complete_artifact_prevents_reexecution(self):
+  import inspect
+  source=inspect.getsource(m.source_guard)
+  self.assertLess(source.index('verify_interrupted_closeout()'),source.index('g.guard()'))
+  self.artifacts['total_count']=1
+  with self.assertRaises(ValueError):self.check()
+ def test_wrong_attempt(self):
+  self.run['run_attempt']=2
+  with self.assertRaises(ValueError):self.check()
+ def test_incomplete_run(self):
+  self.run['status']='in_progress'
+  with self.assertRaises(ValueError):self.check()
