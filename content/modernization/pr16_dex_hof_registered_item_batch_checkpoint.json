@@ -1,0 +1,3634 @@
+{
+  "schema_version": 1,
+  "status": "PASS_CURRENT_771_PARENT_REGISTERED_ITEM_BATCH_AND_PARTIAL_SPACE_REFUSAL",
+  "source_head": "5f9a8d5e15089099b7ec0b3530b416cd41365447",
+  "run_id": 37447505079,
+  "candidate": {
+    "size": 33554432,
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+  },
+  "candidate_changed": false,
+  "unit_tests": 308,
+  "classified": 774,
+  "unclassified": 100,
+  "newly_classified": 3,
+  "new_data": 0,
+  "new_code": 3,
+  "new_boundary": 0,
+  "new_song": 0,
+  "old_inventory_candidates": 874,
+  "previous_classified": 771,
+  "previous_unknown": 103,
+  "owner_unknown": 0,
+  "unowned_unknown": 100,
+  "all_prior_accepted_retained": true,
+  "remaining_unknown_rows_retained": true,
+  "old_full_rom_inventory_reused": true,
+  "delta_identity": {
+    "size": 133182,
+    "sha256": "8e186d84fa5e8c531e12e65e3da4d3c7a2f91088b6582c17832b44be9807a45a"
+  },
+  "baseline_identity": {
+    "size": 4063919,
+    "sha256": "814082398937869b6cc17faa09cbf1833f0c7f4aa300ddbd83d0de833d44b74c"
+  },
+  "parent_identity": {
+    "size": 140344,
+    "sha256": "7328376dd49647f52a4c01a6167343bd6570a4b05b93323bbedb1bc6f309fef8"
+  },
+  "earlier_identity": {
+    "size": 149772,
+    "sha256": "762320ba350f528777b90be404b5fec1d88caeb6dbf6594590d4f45b852c1c87"
+  },
+  "unknown_identity": {
+    "size": 43887,
+    "sha256": "d132cbc0324d81d3ce021b5992998e5507e2db8f7f362da34d04f70f0b7fdd38"
+  },
+  "capacity_identity": {
+    "size": 44815,
+    "sha256": "0222ab7bb31623b5bcb1fce4c4110a085ef877c45466580d9b6f33d02cac1acd"
+  },
+  "source_bindings": {
+    ".github/workflows/pr16-dex-hof-registered-item-batch.yml": {
+      "size": 3075,
+      "sha256": "34ef559cd11ac42b2be87367d4349416cba1bd16f38ef8412399639d05de78d3"
+    },
+    "content/modernization/pr16_dex_hof_absorbing_ability_roots_review.json": {
+      "size": 18560,
+      "sha256": "000e4a8f6f3e073f44d264d7d4619acc7f3d8364741f91ff49f09e3efc693313"
+    },
+    "content/modernization/pr16_dex_hof_moveend_wrapper_roots_review.json": {
+      "size": 19861,
+      "sha256": "dcea7e74578b0dc95a687023334d40ebf0087587a521edcd7dcec6ce22151d7c"
+    },
+    "content/modernization/pr16_dex_hof_registered_item_batch_development_validation.json": {
+      "size": 5883,
+      "sha256": "d0c323aae0c509c2a76f5af1052c91ce6e109ca808c6f0cab32ebfd6e2fd6f5f"
+    },
+    "content/modernization/pr16_dex_hof_registered_item_batch_sources.json": {
+      "size": 19547,
+      "sha256": "f323b323a192ea2164f333ee4fffd35d73816523982b0e4c3845922c42d5a2d1"
+    },
+    "content/modernization/pr16_dex_hof_toxic_orb_roots_review.json": {
+      "size": 18435,
+      "sha256": "b7168fee50574b907fed5ec366acc9b2e72b909dc626b2322b4c64c2a0ff7531"
+    },
+    "docs/PR16_DEX_HOF_REGISTERED_ITEM_BATCH_JA.md": {
+      "size": 5443,
+      "sha256": "bfe35336a65d726e3fc0b0d699be68b389a01022cf85d66c6acfad4cc90cf61e"
+    },
+    "scripts/pr16_dex_hof_absorbing_ability_roots.py": {
+      "size": 40352,
+      "sha256": "a811a265b19e712bfce4f46a30c78803f5a5a6af1aff5d3c180128ba56af89d1"
+    },
+    "scripts/pr16_dex_hof_moveend_wrapper_roots.py": {
+      "size": 42804,
+      "sha256": "aa5b44ac4e1fc5f2ee8d34024e3f86c63a7227e6f60902c0c64639356d98d3e0"
+    },
+    "scripts/pr16_dex_hof_registered_item_batch.py": {
+      "size": 7104,
+      "sha256": "57649be67e3a68d5d0dcc2f4ac08352e800c542bf6e6fbe2b61b64d71d190b99"
+    },
+    "scripts/pr16_dex_hof_registered_item_batch_actions.py": {
+      "size": 32065,
+      "sha256": "105799456d885194c289a1f131d81faacefdc39a367b8ebba2c0ccb39b1927ee"
+    },
+    "scripts/pr16_dex_hof_registered_item_batch_capacity.py": {
+      "size": 11477,
+      "sha256": "1237017c27f7ff371c012a5bc06b780912fddcf75707b2dcf493df7dba40f19a"
+    },
+    "scripts/pr16_dex_hof_registered_item_batch_chain.py": {
+      "size": 20534,
+      "sha256": "40b45cf0f265d7ca81e326be58a05a57ad51d5fbd7cf63b28f7bc5b52482af90"
+    },
+    "scripts/pr16_dex_hof_toxic_orb_roots.py": {
+      "size": 47232,
+      "sha256": "ee710b9f509731d1df3e236fbaedee8cf05f845a84ad40d054e19db82bbf00a9"
+    },
+    "tests/test_pr16_dex_hof_absorbing_ability_roots.py": {
+      "size": 10475,
+      "sha256": "2edde55922afe3ea6cb8cdc96dd0744e12534baae7cc4be0a286f311d8496f5b"
+    },
+    "tests/test_pr16_dex_hof_moveend_wrapper_roots.py": {
+      "size": 14354,
+      "sha256": "12e5ce33e294e0ad87a0485249a2d66d1f4931d16b21d66fc5031e810f0e56d9"
+    },
+    "tests/test_pr16_dex_hof_registered_item_batch.py": {
+      "size": 7740,
+      "sha256": "b015fdd5920bf6e64b394b64e8cf50bf68c01ed8f04db638feb733aedf95e531"
+    },
+    "tests/test_pr16_dex_hof_registered_item_batch_actions.py": {
+      "size": 28792,
+      "sha256": "e35459b4592802d5c77b4b9f9719508e81fe859eac935bf77fae0ca99d2320ba"
+    },
+    "tests/test_pr16_dex_hof_registered_item_batch_capacity.py": {
+      "size": 16185,
+      "sha256": "bc58c6177d589e105c8e232b236190cd765a8fdd6376214091d4491691d827f3"
+    },
+    "tests/test_pr16_dex_hof_registered_item_batch_chain.py": {
+      "size": 22411,
+      "sha256": "2c4f7e072b96d04f484e98702a69d83007eefa87ab6b9c7389d6b351d356b717"
+    },
+    "tests/test_pr16_dex_hof_toxic_orb_roots.py": {
+      "size": 14442,
+      "sha256": "82b18cfda5d96fa7ea8b6b3a5454dd05383dd0e457a5e6b49bde51d77def7902"
+    }
+  },
+  "inherited_bindings": {
+    "content/modernization/pr16_dex_hof_boundary_references_checkpoint.json": {
+      "size": 14687,
+      "sha256": "d97afe368fecf0b369e3630180dc1f579501ac6a2d276cfcbe5647a973703f7a"
+    },
+    "content/modernization/pr16_dex_hof_boundary_references_evidence/reference-chain.json": {
+      "size": 13165,
+      "sha256": "5b9ff2600caec75c226e720010e772725c76ec52da2391024176d01f19892eb7"
+    },
+    "content/modernization/pr16_dex_hof_boundary_references_evidence/unknown-frontier.json": {
+      "size": 61763,
+      "sha256": "ef91033ce77034dffa6b1155011bbe7df86f26df79c5ea8f630288cae8462a1f"
+    },
+    "content/modernization/pr16_dex_hof_callback_lifetimes_checkpoint.json": {
+      "size": 52637,
+      "sha256": "974f9bc2cb87f30112a40e6c5df29ad4734336216a2e64f3568aeddb5150705a"
+    },
+    "content/modernization/pr16_dex_hof_callback_lifetimes_evidence/reference-chain.json": {
+      "size": 60153,
+      "sha256": "06595ebf5830e45334dbb83ec1fb96658d40879f6f4a0126e3718a8d5ae6100a"
+    },
+    "content/modernization/pr16_dex_hof_callback_lifetimes_evidence/unknown-frontier.json": {
+      "size": 63507,
+      "sha256": "c27a2ff878aa2ce0fafe40c7c9407cfad7164a7e472e29e4d0391db59e260676"
+    },
+    "content/modernization/pr16_dex_hof_callback_references_checkpoint.json": {
+      "size": 10439,
+      "sha256": "f6530690ae80c432d94aef8288273eb8f5a1bbf7b4c80115146a9cac9329e464"
+    },
+    "content/modernization/pr16_dex_hof_callback_references_evidence/reference-chain.json": {
+      "size": 22816,
+      "sha256": "c49c05072bb5dcf19de4620440bfde82ad66e3c1269566a9b6184ebc9870bbc6"
+    },
+    "content/modernization/pr16_dex_hof_callback_references_evidence/unknown-frontier.json": {
+      "size": 63507,
+      "sha256": "c27a2ff878aa2ce0fafe40c7c9407cfad7164a7e472e29e4d0391db59e260676"
+    },
+    "content/modernization/pr16_dex_hof_consumer_references_checkpoint.json": {
+      "size": 11195,
+      "sha256": "660b6dc8b99c0005e8804998ad962772358233338eb2876d12853d75507342b9"
+    },
+    "content/modernization/pr16_dex_hof_consumer_references_evidence/reference-chain.json": {
+      "size": 28406,
+      "sha256": "20a394e6ce825113bbfd833989c18528a44f665f79eaf1c91f1ab6899a796dc7"
+    },
+    "content/modernization/pr16_dex_hof_consumer_references_evidence/unknown-frontier.json": {
+      "size": 64815,
+      "sha256": "435ae082b4cba009029f452e0bffcc365a73c66a439241842dd12107f54bab06"
+    },
+    "content/modernization/pr16_dex_hof_controller_evidence/controller-footprint.json": {
+      "size": 9353,
+      "sha256": "5ec5d9b72d25dcd249c3d6cf8af75544749748a8bdcee6da2092c3e583223d6c"
+    },
+    "content/modernization/pr16_dex_hof_controller_space_checkpoint.json": {
+      "size": 9621,
+      "sha256": "a81a17085d98690f9e397c02f6334680e8064f76e0e7e24cc9f9fabb520ef631"
+    },
+    "content/modernization/pr16_dex_hof_controller_space_evidence/reference-chain.json": {
+      "size": 23481,
+      "sha256": "1ede9031a30c4c5f52ec2b6cbf47ad177c4117931fb72796ce597c2786c01476"
+    },
+    "content/modernization/pr16_dex_hof_controller_space_evidence/unknown-frontier.json": {
+      "size": 63943,
+      "sha256": "9a58057a3d7d8c18661270902c00c478da298ba65f0b637cc99a1d09a32df85f"
+    },
+    "content/modernization/pr16_dex_hof_event_boundary_batch_checkpoint.json": {
+      "size": 30849,
+      "sha256": "8ca9d8a8a014761a478b10da7e5818058106d0247585b9ff446457135fd78c05"
+    },
+    "content/modernization/pr16_dex_hof_event_boundary_batch_evidence/partial-space.json": {
+      "size": 27710,
+      "sha256": "927af5f2ccd60e78b3a953e2e47ad84a63537079796e528427aa9f9955efc3ea"
+    },
+    "content/modernization/pr16_dex_hof_event_boundary_batch_evidence/reference-chain.json": {
+      "size": 26093,
+      "sha256": "b93206ff3a84d498746a571e9e874441ee2e0397d030baa7f46c9b283b0ac0fb"
+    },
+    "content/modernization/pr16_dex_hof_event_boundary_batch_evidence/unknown-frontier.json": {
+      "size": 53915,
+      "sha256": "65c28b232f6c658dec0fc653e97ebfacd07e3dcd378c513f920aae1cc1c55b94"
+    },
+    "content/modernization/pr16_dex_hof_field_consumer_batch_checkpoint.json": {
+      "size": 75332,
+      "sha256": "608c5faa5f2f2b8ff988ef25dbbf77ad5fffbcafc4da4aee8809a521251f098f"
+    },
+    "content/modernization/pr16_dex_hof_field_consumer_batch_evidence/partial-space.json": {
+      "size": 25234,
+      "sha256": "dd198330e486045d12e8d554e787c0614d795f72b2b0fc443f0c4962d4a39164"
+    },
+    "content/modernization/pr16_dex_hof_field_consumer_batch_evidence/reference-chain.json": {
+      "size": 75712,
+      "sha256": "f2b07ad37d428bb4d1be56da6fb65b3a9086a6957c60056697c32ecfc38d8fb3"
+    },
+    "content/modernization/pr16_dex_hof_field_consumer_batch_evidence/unknown-frontier.json": {
+      "size": 54787,
+      "sha256": "036a9bd87ea101d84fada4d1fbd65f29bec00cf6ab1a6c00f6d16226d27e931d"
+    },
+    "content/modernization/pr16_dex_hof_generation_writer_checkpoint.json": {
+      "size": 388088,
+      "sha256": "2aa483a860c7f5bc4919f6a3f11c74e3d209399059e8febbd63f3baaa16a8d49"
+    },
+    "content/modernization/pr16_dex_hof_healing_veil_batch_checkpoint.json": {
+      "size": 69329,
+      "sha256": "610234656db9b5ea8304bd7f56219fe697d47254252bd99f243bf548b8fee069"
+    },
+    "content/modernization/pr16_dex_hof_healing_veil_batch_evidence/partial-space.json": {
+      "size": 32590,
+      "sha256": "1c42ce891cecb5d280c41dcc06fa13181510ca84438df59b87acf73592d00655"
+    },
+    "content/modernization/pr16_dex_hof_healing_veil_batch_evidence/reference-chain.json": {
+      "size": 67352,
+      "sha256": "0833d5c4f8fc3f7aad4c7bac812ee1dc2c811f1b753deb8505f1d999b9f26869"
+    },
+    "content/modernization/pr16_dex_hof_healing_veil_batch_evidence/unknown-frontier.json": {
+      "size": 51735,
+      "sha256": "e5a2559bdfa94c4be9b8ec07fd8d9d178083ac2035858298dcf3ec648b641f28"
+    },
+    "content/modernization/pr16_dex_hof_help_batch_checkpoint.json": {
+      "size": 335169,
+      "sha256": "dff4dcab9cd7fadce44cbc6456d00ade32b724f9553455e3d66acfe9850e547f"
+    },
+    "content/modernization/pr16_dex_hof_help_batch_evidence/partial-space.json": {
+      "size": 19893,
+      "sha256": "52a352d391906df2fbbc8eec3abce5be00087a9947b55216e7234fdcc69c24f1"
+    },
+    "content/modernization/pr16_dex_hof_help_batch_evidence/reference-chain.json": {
+      "size": 352753,
+      "sha256": "53f4789fb532d93791fa7e0962b7feea9f74003d342f5175d00e1b07de7aa5d0"
+    },
+    "content/modernization/pr16_dex_hof_help_batch_evidence/unknown-frontier.json": {
+      "size": 57403,
+      "sha256": "50358bbd4cc7b0a5bdd7d4e85bb0f57a79b038d35f5394734e85a4d9c9271e8e"
+    },
+    "content/modernization/pr16_dex_hof_party_references_checkpoint.json": {
+      "size": 349521,
+      "sha256": "5236fec1ccd849b4110093ba2587885913a3f0eb767759d21a6932ef21ba8cda"
+    },
+    "content/modernization/pr16_dex_hof_party_references_evidence/reference-chain.json": {
+      "size": 375903,
+      "sha256": "55bc39b3b22ad61654fa24dbf37e5c44b33aae16357acf70e823af5baf4a748c"
+    },
+    "content/modernization/pr16_dex_hof_party_references_evidence/unknown-frontier.json": {
+      "size": 60891,
+      "sha256": "acb5cbea26a6eaba403dd3fc3e3215f54a9ad7dde440b8dfd3636dd697241621"
+    },
+    "content/modernization/pr16_dex_hof_reference_evidence/reference-delta.json": {
+      "size": 149772,
+      "sha256": "762320ba350f528777b90be404b5fec1d88caeb6dbf6594590d4f45b852c1c87"
+    },
+    "content/modernization/pr16_dex_hof_reference_gaps_evidence/reference-chain.json": {
+      "size": 95619,
+      "sha256": "c38d8e67a6718cacc17a3999922dca9edd9977734711b3cf5a74f85c1b76bb32"
+    },
+    "content/modernization/pr16_dex_hof_registered_boundary_batch_checkpoint.json": {
+      "size": 101375,
+      "sha256": "4d0c4108edcc85e109e44ea1f198dd8a717b7e3b902d603c3269b41d7fa1c0bf"
+    },
+    "content/modernization/pr16_dex_hof_registered_boundary_batch_evidence/partial-space.json": {
+      "size": 37468,
+      "sha256": "9b34728e2610f2168107f39fece5f00d9499ce40f6b7c72052c1d09296af650b"
+    },
+    "content/modernization/pr16_dex_hof_registered_boundary_batch_evidence/reference-chain.json": {
+      "size": 97362,
+      "sha256": "1918d7b42f9fe0a44bf11ecec37ebaffc9234a3369c7e801efe606a7939a344b"
+    },
+    "content/modernization/pr16_dex_hof_registered_boundary_batch_evidence/unknown-frontier.json": {
+      "size": 48683,
+      "sha256": "cf8047c1fb6e93e5f04eebd759c661b83ceb071c7fa6f7b0848a376094111224"
+    },
+    "content/modernization/pr16_dex_hof_registered_callback_batch_checkpoint.json": {
+      "size": 217004,
+      "sha256": "6709faeae5a78913b943ae199aecc8b878acffe6c5422e72aa7b48a94811998d"
+    },
+    "content/modernization/pr16_dex_hof_registered_callback_batch_evidence/partial-space.json": {
+      "size": 39936,
+      "sha256": "b0fcd8c21852cc3b796f001f12b74c90295b42543089be1c305a6ef9400959b1"
+    },
+    "content/modernization/pr16_dex_hof_registered_callback_batch_evidence/reference-chain.json": {
+      "size": 229898,
+      "sha256": "87d249a19a81c83560d660c623a6fdc3866c219d2143450809c12395353cfd70"
+    },
+    "content/modernization/pr16_dex_hof_registered_callback_batch_evidence/unknown-frontier.json": {
+      "size": 47375,
+      "sha256": "84bfbd7856596ae7028bdfad6259e1e300d36b41268c61212f5fc1e3e7209b73"
+    },
+    "content/modernization/pr16_dex_hof_registered_table_batch_checkpoint.json": {
+      "size": 124539,
+      "sha256": "7531a6eb008b76da8638026308da048f45fc268453f83ab471094a0c0e9badf6"
+    },
+    "content/modernization/pr16_dex_hof_registered_table_batch_evidence/partial-space.json": {
+      "size": 42385,
+      "sha256": "85e1c215defd1fe4015da522ae1ec415a9b5371382e6f4d0f7d5fe2cbffcf033"
+    },
+    "content/modernization/pr16_dex_hof_registered_table_batch_evidence/reference-chain.json": {
+      "size": 140344,
+      "sha256": "7328376dd49647f52a4c01a6167343bd6570a4b05b93323bbedb1bc6f309fef8"
+    },
+    "content/modernization/pr16_dex_hof_registered_table_batch_evidence/unknown-frontier.json": {
+      "size": 45195,
+      "sha256": "ae614c3bc9897c84efee3837b361f0f8e2fce252762b9a1d732f7b3d09646d13"
+    },
+    "content/modernization/pr16_dex_hof_registered_text_batch_checkpoint.json": {
+      "size": 236992,
+      "sha256": "601684b4c0589220b6198b8b2cd128abaa14dce699537e5bdd3fb88b8f237af6"
+    },
+    "content/modernization/pr16_dex_hof_registered_text_batch_evidence/partial-space.json": {
+      "size": 35011,
+      "sha256": "7005742a1da72107a75ccee29740a2939187883ab65f4deb33e98d8d2f022da9"
+    },
+    "content/modernization/pr16_dex_hof_registered_text_batch_evidence/reference-chain.json": {
+      "size": 254445,
+      "sha256": "fa5937c532017d8da6be60c4cc4c4602dc6bbd6bda3c4189484fcefe04badacc"
+    },
+    "content/modernization/pr16_dex_hof_registered_text_batch_evidence/unknown-frontier.json": {
+      "size": 49555,
+      "sha256": "0c0e84a7e4cc3474394efdcf8eff6434c9a784ffdf041d7657d16f03043d6a89"
+    },
+    "content/modernization/pr16_dex_hof_remaining_consumers_checkpoint.json": {
+      "size": 809502,
+      "sha256": "55cfbf03e124c26f78ed00b52b9d2da7604642c892dc8c85f0754b3e1a82aca3"
+    },
+    "content/modernization/pr16_dex_hof_remaining_consumers_evidence/partial-space.json": {
+      "size": 17993,
+      "sha256": "dea8c62dfb5e9b608ead9ade52bf1a907e29920d946990146f15ba4e58094115"
+    },
+    "content/modernization/pr16_dex_hof_remaining_consumers_evidence/reference-chain.json": {
+      "size": 875373,
+      "sha256": "1fb58b88ac19198de7ef29fc0728908c1fb720915bfa53d265b78994252a6917"
+    },
+    "content/modernization/pr16_dex_hof_remaining_consumers_evidence/unknown-frontier.json": {
+      "size": 58275,
+      "sha256": "55bee1d2fbe5f830cd23acb58ec0f09d56ac0e4d2fe7af9ea798894a14c13adf"
+    },
+    "content/modernization/pr16_dex_hof_remaining_references_checkpoint.json": {
+      "size": 8001,
+      "sha256": "62411cded366aa43cb449af76b13166e2df6476532b3997664c22baa00e1d226"
+    },
+    "content/modernization/pr16_dex_hof_remaining_references_evidence/reference-chain.json": {
+      "size": 71138,
+      "sha256": "185e66b6e93eb94a6d1850b7f29b4ccfd00dfd3b3a5668a6021dbf5059fd3bd2"
+    },
+    "content/modernization/pr16_dex_hof_root_batch_checkpoint.json": {
+      "size": 444776,
+      "sha256": "5fadebac1cd15e645ce5cb047148e1e59fa193af735518138fc8373beb565d55"
+    },
+    "content/modernization/pr16_dex_hof_root_batch_evidence/partial-space.json": {
+      "size": 22817,
+      "sha256": "895250c668b17b8063c23fd87871c4e6a464f0885fe559eb37d9cf581e4184df"
+    },
+    "content/modernization/pr16_dex_hof_root_batch_evidence/reference-chain.json": {
+      "size": 478118,
+      "sha256": "2089134cff6c3f920bea3476e8c0b9e883901eff42eb7f933fd86c91e71f485e"
+    },
+    "content/modernization/pr16_dex_hof_root_batch_evidence/unknown-frontier.json": {
+      "size": 56095,
+      "sha256": "8e463394c3ff6160d15f4d89d8b97153766e7c1b5af13d51d323abdb1ad5e2c0"
+    },
+    "content/modernization/pr16_dex_hof_runtime_closure_checkpoint.json": {
+      "size": 55238,
+      "sha256": "b9252156201ab5c7506396270d9757522240767a3a781a7330237b1c9ba50927"
+    },
+    "content/modernization/pr16_dex_hof_runtime_closure_evidence/reference-chain.json": {
+      "size": 68925,
+      "sha256": "7fdc8ed846f529fd7dfd5b35b322ddf8bd1eb46e18f5fd45239e21e998adae8e"
+    },
+    "content/modernization/pr16_dex_hof_runtime_closure_evidence/unknown-frontier.json": {
+      "size": 62199,
+      "sha256": "53ea3d2a47a3066f72278de164c8cbc19ba5a6ebf3ec815cde921db50a65aa6d"
+    },
+    "content/modernization/pr16_dex_hof_script_producer_batch_checkpoint.json": {
+      "size": 188864,
+      "sha256": "9c103fcdd3158dd7e91cee7a3c84fdc395cb5142d6ac0aa41d9e35b368d8c46d"
+    },
+    "content/modernization/pr16_dex_hof_script_producer_batch_evidence/partial-space.json": {
+      "size": 30148,
+      "sha256": "3f040cd811b9ef39ae507799c1a2c2b8f480dc94c1e0a9b2aaaf562abe0fd228"
+    },
+    "content/modernization/pr16_dex_hof_script_producer_batch_evidence/reference-chain.json": {
+      "size": 194298,
+      "sha256": "a5447e696153e276597a94f090fdb602d13762a486719c53c4b56b0186bbfbd9"
+    },
+    "content/modernization/pr16_dex_hof_script_producer_batch_evidence/unknown-frontier.json": {
+      "size": 53043,
+      "sha256": "ec81c12a713e407c669f2fe39ba1f34f86b9da2b78029db55aca49ce24e503fc"
+    },
+    "content/modernization/pr16_dex_hof_script_references_checkpoint.json": {
+      "size": 8864,
+      "sha256": "026944a1ae8d2bfeca0eb3105868d9ebe3fc1b8f0d7669fc18b7fb69fddc58ff"
+    },
+    "content/modernization/pr16_dex_hof_script_references_evidence/reference-chain.json": {
+      "size": 134951,
+      "sha256": "da105fd05e4ddb51bd7648af890db509c9b8f1e7e79112dbc1b295ce15b51279"
+    },
+    "content/modernization/pr16_dex_hof_summary_references_checkpoint.json": {
+      "size": 627652,
+      "sha256": "e63d3dfda20758d9a2f120a06bfc870183adf1cd997d887462babdae9af6529a"
+    },
+    "content/modernization/pr16_dex_hof_summary_references_evidence/partial-space.json": {
+      "size": 15194,
+      "sha256": "0c02f86656a4bfc4f16a73e09c9eff9ae0f382989b89deeed99bfcc81f6c2da7"
+    },
+    "content/modernization/pr16_dex_hof_summary_references_evidence/reference-chain.json": {
+      "size": 681669,
+      "sha256": "c11d71495d60fda8fed98464eb6962f7b57be75dc39e8b479be3d57903d68586"
+    },
+    "content/modernization/pr16_dex_hof_summary_references_evidence/unknown-frontier.json": {
+      "size": 60019,
+      "sha256": "8e9a910b72b855ae7115a28b279abeddf82612f8f975e6085b6bb17fafd1093d"
+    },
+    "content/modernization/pr16_dex_hof_typed_recovery_evidence/egg-typed-audit.json": {
+      "size": 4063919,
+      "sha256": "814082398937869b6cc17faa09cbf1833f0c7f4aa300ddbd83d0de833d44b74c"
+    },
+    "content/modernization/pr16_story_route_adapter_checkpoint.json": {
+      "size": 45222,
+      "sha256": "ff7094f278de5502b40bca5ceaccb1a29ba6776b9b5eedc5ccdcb5ea03be19c7"
+    },
+    "state/source-lock.json": {
+      "size": 3166,
+      "sha256": "0e230bf9fad2766d05ccb2410b22274c32085fed7544a78e37e0b5f451bda3c4"
+    }
+  },
+  "current_owner_count": 115,
+  "current_rom_reconstructions": 1,
+  "historical_rom_reconstructions": 0,
+  "old_full_rom_scan_runs": 0,
+  "native_processes": 0,
+  "accepted_heap_reruns": 0,
+  "independent_final_source_review_completed": false,
+  "new_registered_item_batch_source_review_completed": true,
+  "development_validation": {
+    "size": 5883,
+    "sha256": "d0c323aae0c509c2a76f5af1052c91ce6e109ca808c6f0cab32ebfd6e2fd6f5f"
+  },
+  "validation_scope": "新scope専用unit、現候補全SHA/115actual owner/874hit/新3系統の独立source symbol/struct・実登録caller/state dispatch・完全prologue・2path実fetch和とopaque ABI/future-live/epoch条件の最小Thumb型・保存容量原本の機械検証。旧最終song/battle/Surf独立再レビュー未実施を保持。",
+  "combined_song_models": 133,
+  "retained_sample_witnesses": 50,
+  "old_models_reused_for_new_cross_song_role_safety": true,
+  "donor_leased": false,
+  "donor_eligible": false,
+  "indirect_reference_completeness_claimed": false,
+  "controller_runtime_wired": false,
+  "formal_rom_changed": false,
+  "formal_save_changed": false,
+  "registered_item_batch_diagnostics": {
+    "status": "PASS_NEW_REGISTERED_ITEM_MINIMUM_FIELDS",
+    "consumers": {
+      "registered_absorbing_ability_minimum_thumb": {
+        "status": "PASS_REGISTERED_ABSORBING_ABILITY",
+        "count": 1,
+        "hits": [
+          151742889
+        ],
+        "source_layout": {
+          "battle_pokemon": {
+            "size": 88,
+            "alignment": 4,
+            "fields": {
+              "species": {
+                "offset": 0,
+                "size": 2
+              },
+              "ability": {
+                "offset": 56,
+                "size": 2
+              },
+              "personality": {
+                "offset": 72,
+                "size": 4
+              }
+            }
+          },
+          "new_battle_struct": {
+            "size": 1368,
+            "alignment": 4,
+            "skip": {
+              "offset": 356,
+              "bit": 0,
+              "width_bits": 1,
+              "type_size": 1
+            }
+          },
+          "battle_struct": {
+            "offset": 19,
+            "size": 1
+          },
+          "battle_scripting": {
+            "offset": 23,
+            "size": 1
+          },
+          "constants": {
+            "MAX_BATTLERS_COUNT": 4,
+            "NUM_BATTLE_SIDES": 2,
+            "POKEMON_NAME_LENGTH": 10,
+            "PARTY_SIZE": 6,
+            "BATTLE_STATS_NO": 8,
+            "MAX_SPRITES": 64,
+            "MAX_NUM_RAID_SHIELDS": 5,
+            "MAX_MON_MOVES": 4
+          },
+          "source_comments_used": false
+        },
+        "semantics": {
+          "instruction_count": 200,
+          "instruction_bytes": 416,
+          "data_fields": 27,
+          "observed_decoder_input_used": false
+        },
+        "composition": {
+          "status": "PASS_CONDITIONAL_REGISTERED_ABSORBING_ABILITY",
+          "cases": [
+            {
+              "ability": 32,
+              "instruction_steps": 195,
+              "endpoint": 151758668,
+              "future_live_checkpoints": [
+                {
+                  "pc": 152160254,
+                  "required_fields": [
+                    {
+                      "address": 33620324,
+                      "size": 1
+                    },
+                    {
+                      "address": 33628179,
+                      "size": 1
+                    },
+                    {
+                      "address": 33632259,
+                      "size": 4
+                    },
+                    {
+                      "address": 33696428,
+                      "size": 4
+                    },
+                    {
+                      "address": 33700652,
+                      "size": 1
+                    },
+                    {
+                      "address": 33700676,
+                      "size": 2
+                    },
+                    {
+                      "address": 33700732,
+                      "size": 2
+                    },
+                    {
+                      "address": 33700748,
+                      "size": 4
+                    },
+                    {
+                      "address": 33700764,
+                      "size": 2
+                    },
+                    {
+                      "address": 33700836,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701034,
+                      "size": 2
+                    },
+                    {
+                      "address": 33701067,
+                      "size": 2
+                    },
+                    {
+                      "address": 33701076,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701212,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701704,
+                      "size": 4
+                    },
+                    {
+                      "address": 33808304,
+                      "size": 4
+                    }
+                  ],
+                  "transparent_internal_checkpoint": true,
+                  "opaque_callee": false,
+                  "same_context_epoch_required": true
+                },
+                {
+                  "pc": 156449492,
+                  "required_fields": [
+                    {
+                      "address": 33620324,
+                      "size": 1
+                    },
+                    {
+                      "address": 33628179,
+                      "size": 1
+                    },
+                    {
+                      "address": 33696428,
+                      "size": 4
+                    },
+                    {
+                      "address": 33700652,
+                      "size": 1
+                    },
+                    {
+                      "address": 33700676,
+                      "size": 2
+                    },
+                    {
+                      "address": 33700732,
+                      "size": 2
+                    },
+                    {
+                      "address": 33700748,
+                      "size": 4
+                    },
+                    {
+                      "address": 33700764,
+                      "size": 2
+                    },
+                    {
+                      "address": 33700836,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701067,
+                      "size": 2
+                    },
+                    {
+                      "address": 33701704,
+                      "size": 4
+                    },
+                    {
+                      "address": 33808304,
+                      "size": 4
+                    },
+                    {
+                      "address": 50360280,
+                      "size": 2
+                    }
+                  ],
+                  "transparent_internal_checkpoint": true,
+                  "opaque_callee": false,
+                  "same_context_epoch_required": true
+                },
+                {
+                  "pc": 151742088,
+                  "required_fields": [
+                    {
+                      "address": 33620324,
+                      "size": 1
+                    },
+                    {
+                      "address": 33628179,
+                      "size": 1
+                    },
+                    {
+                      "address": 33696428,
+                      "size": 4
+                    },
+                    {
+                      "address": 33700652,
+                      "size": 1
+                    },
+                    {
+                      "address": 33700676,
+                      "size": 2
+                    },
+                    {
+                      "address": 33700732,
+                      "size": 2
+                    },
+                    {
+                      "address": 33700748,
+                      "size": 4
+                    },
+                    {
+                      "address": 33700764,
+                      "size": 2
+                    },
+                    {
+                      "address": 33700836,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701067,
+                      "size": 2
+                    },
+                    {
+                      "address": 33701704,
+                      "size": 4
+                    },
+                    {
+                      "address": 33808304,
+                      "size": 4
+                    },
+                    {
+                      "address": 50360232,
+                      "size": 2
+                    }
+                  ],
+                  "transparent_internal_checkpoint": true,
+                  "opaque_callee": false,
+                  "same_context_epoch_required": true
+                }
+              ],
+              "executed_hit_call": true,
+              "executed_successor_cmp": false,
+              "trace_identity": {
+                "size": 1951,
+                "sha256": "204b3c861beba126ace581607f41a25b4b71a735d6e1ba18a1d327430950f388"
+              }
+            },
+            {
+              "ability": 10,
+              "instruction_steps": 195,
+              "endpoint": 151742894,
+              "future_live_checkpoints": [
+                {
+                  "pc": 152160254,
+                  "required_fields": [
+                    {
+                      "address": 33620324,
+                      "size": 1
+                    },
+                    {
+                      "address": 33628179,
+                      "size": 1
+                    },
+                    {
+                      "address": 33632259,
+                      "size": 4
+                    },
+                    {
+                      "address": 33696428,
+                      "size": 4
+                    },
+                    {
+                      "address": 33700652,
+                      "size": 1
+                    },
+                    {
+                      "address": 33700676,
+                      "size": 2
+                    },
+                    {
+                      "address": 33700732,
+                      "size": 2
+                    },
+                    {
+                      "address": 33700748,
+                      "size": 4
+                    },
+                    {
+                      "address": 33700764,
+                      "size": 2
+                    },
+                    {
+                      "address": 33700836,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701034,
+                      "size": 2
+                    },
+                    {
+                      "address": 33701067,
+                      "size": 2
+                    },
+                    {
+                      "address": 33701076,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701212,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701704,
+                      "size": 4
+                    },
+                    {
+                      "address": 33808304,
+                      "size": 4
+                    }
+                  ],
+                  "transparent_internal_checkpoint": true,
+                  "opaque_callee": false,
+                  "same_context_epoch_required": true
+                },
+                {
+                  "pc": 156449492,
+                  "required_fields": [
+                    {
+                      "address": 33620324,
+                      "size": 1
+                    },
+                    {
+                      "address": 33628179,
+                      "size": 1
+                    },
+                    {
+                      "address": 33696428,
+                      "size": 4
+                    },
+                    {
+                      "address": 33700652,
+                      "size": 1
+                    },
+                    {
+                      "address": 33700676,
+                      "size": 2
+                    },
+                    {
+                      "address": 33700732,
+                      "size": 2
+                    },
+                    {
+                      "address": 33700748,
+                      "size": 4
+                    },
+                    {
+                      "address": 33700764,
+                      "size": 2
+                    },
+                    {
+                      "address": 33700836,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701067,
+                      "size": 2
+                    },
+                    {
+                      "address": 33701704,
+                      "size": 4
+                    },
+                    {
+                      "address": 33808304,
+                      "size": 4
+                    },
+                    {
+                      "address": 50360280,
+                      "size": 2
+                    }
+                  ],
+                  "transparent_internal_checkpoint": true,
+                  "opaque_callee": false,
+                  "same_context_epoch_required": true
+                },
+                {
+                  "pc": 151742088,
+                  "required_fields": [
+                    {
+                      "address": 33620324,
+                      "size": 1
+                    },
+                    {
+                      "address": 33628179,
+                      "size": 1
+                    },
+                    {
+                      "address": 33696428,
+                      "size": 4
+                    },
+                    {
+                      "address": 33700652,
+                      "size": 1
+                    },
+                    {
+                      "address": 33700676,
+                      "size": 2
+                    },
+                    {
+                      "address": 33700732,
+                      "size": 2
+                    },
+                    {
+                      "address": 33700748,
+                      "size": 4
+                    },
+                    {
+                      "address": 33700764,
+                      "size": 2
+                    },
+                    {
+                      "address": 33700836,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701067,
+                      "size": 2
+                    },
+                    {
+                      "address": 33701704,
+                      "size": 4
+                    },
+                    {
+                      "address": 33808304,
+                      "size": 4
+                    },
+                    {
+                      "address": 50360232,
+                      "size": 2
+                    }
+                  ],
+                  "transparent_internal_checkpoint": true,
+                  "opaque_callee": false,
+                  "same_context_epoch_required": true
+                }
+              ],
+              "executed_hit_call": false,
+              "executed_successor_cmp": true,
+              "trace_identity": {
+                "size": 1951,
+                "sha256": "a1c1d4feabe6841811588fe18f265c005f3d1d6a33c61fad4e9748b18439ce68"
+              }
+            }
+          ],
+          "opaque_calls": 0,
+          "nonlive_ram_erased_at_each_checkpoint": true,
+          "internal_call_arguments_host_seeded": false,
+          "circus_flags_read": false,
+          "circus_flags_producer_required": false,
+          "minimum_executed_bytes": 6,
+          "actual_runtime_execution_observed": false
+        },
+        "protected_windows": 32,
+        "protected_bytes": 524,
+        "proof_scope": "conditional_registered_absorbing_ability_minimum_thumb",
+        "conditional_registered_api_entry": true,
+        "actual_secondary_dispatch_executed": true,
+        "whole_candidate_identity_checked_by_parent_required": true,
+        "actual_runtime_execution_observed": false,
+        "full_story_reachability_claimed": false,
+        "natural_battle_entry_reachability_claimed": false,
+        "full_script_prefix_executed": false,
+        "opaque_callee_effects_proven": false,
+        "universal_heap_or_irq_lifetime_proven": false,
+        "whole_function_range_classified": false,
+        "pointer_interpretation_claimed": false,
+        "retirement_proven": false,
+        "indirect_reference_completeness_claimed": false,
+        "donor_eligible": false,
+        "donor_leased": false
+      },
+      "registered_moveend_circus_minimum_thumb": {
+        "status": "PASS_REGISTERED_MOVEEND_WRAPPER",
+        "count": 1,
+        "hits": [
+          151911349
+        ],
+        "serialization": {
+          "instructions": 252,
+          "instruction_bytes": 522,
+          "source_layout": {
+            "move_bounce_field": {
+              "offset": 352,
+              "bit": 0,
+              "width_bits": 2,
+              "type_size": 1
+            },
+            "dynamic_move_type": {
+              "offset": 19,
+              "size": 1
+            },
+            "state_field": {
+              "offset": 20,
+              "size": 1
+            },
+            "attacker_invisible_state": 12,
+            "masks": {
+              "STATUS3_SEMI_INVULNERABLE": 319062208,
+              "STATUS3_IN_AIR": 64,
+              "HITMARKER_NO_ANIMATIONS": 128,
+              "BATTLE_TYPE_BATTLE_CIRCUS": 67108864,
+              "BATTLE_CIRCUS_ABILITY_SUPPRESSION": 2147483648
+            },
+            "bit_table_fields": 32,
+            "description_index": 31,
+            "description_symbol": "gText_BattleCircusDescriptionAbilitySuppression",
+            "source_comments_used": false
+          },
+          "bit_table_serialized": true,
+          "rom_observed_values_as_source": false
+        },
+        "composition": {
+          "schema_version": 1,
+          "status": "DRAFT_CONDITIONAL_MINIMUM_THUMB_NOT_CURRENT_ACCEPTANCE",
+          "claims": {
+            "conditional_registered_api_entry": true,
+            "positive_flag_generated_by_actual_producer": true,
+            "same_epoch_required": true,
+            "current_candidate_measurement_required": true,
+            "natural_battle_entry_proven": false,
+            "natural_moveend_reachability_proven": false,
+            "all_state_producers_proven": false,
+            "all_opaque_callee_effects_proven": false,
+            "universal_heap_or_irq_lifetime_proven": false,
+            "indirect_reference_completeness_proven": false,
+            "retirement_proven": false,
+            "donor_eligible": false,
+            "donor_leased": false,
+            "dancer_classified": false
+          },
+          "minimum": {
+            "address": 151911348,
+            "size": 6,
+            "sha256": "1ad77f6612d60c0877487178742237ea99edeae15915b8ae3221bf6349e211c3"
+          },
+          "windows": [
+            {
+              "address": 135672368,
+              "size": 4,
+              "sha256": "1b5e25678db8e1aa6c52011224669d842a50fd92a995d426f0f843ac5604ac7d"
+            },
+            {
+              "address": 136425064,
+              "size": 128,
+              "sha256": "0acec52616c2657143f3da95ca6e4996d4dfd173058b42beadcf92128a93ad09"
+            },
+            {
+              "address": 151254388,
+              "size": 4,
+              "sha256": "769f208016b182c689780fcadfe1655d415308657a15800ffe71db9e36683e48"
+            },
+            {
+              "address": 151625220,
+              "size": 14,
+              "sha256": "977383a5ac7e225071545010308a27d3bf0de21000770a0ef62b5f0fdbea5530"
+            },
+            {
+              "address": 151625308,
+              "size": 4,
+              "sha256": "1f73cdedf6e1b8759299d2351cd563d95a873c799fcdaff7883a8002947d168a"
+            },
+            {
+              "address": 151910304,
+              "size": 86,
+              "sha256": "719e4e1bf1f1c8a2d6f0a977898a56c63a1adee625c7a255362552f6d138d513"
+            },
+            {
+              "address": 151910406,
+              "size": 14,
+              "sha256": "f27c1d42956b5420644423448cc667821090b17f5d52f9f294e3a88ad5f73037"
+            },
+            {
+              "address": 151910456,
+              "size": 6,
+              "sha256": "f18a7767e7809fb13d4a60d306b86b4a87503c462a4c9e467df8f77b0eb9937b"
+            },
+            {
+              "address": 151910466,
+              "size": 10,
+              "sha256": "6de2224ef16f171c71a0708fffab6a2ac54e05360fd643301941430b42601465"
+            },
+            {
+              "address": 151910490,
+              "size": 8,
+              "sha256": "d73b50ca61916a40148d1ae3dbad6aa5724d1bb92871187cdc7c5da34abf95a6"
+            },
+            {
+              "address": 151910502,
+              "size": 28,
+              "sha256": "c583004fb8dcde496ac8796411a2056f5e9e21094e44692c9d6bad7ecbc91090"
+            },
+            {
+              "address": 151911192,
+              "size": 32,
+              "sha256": "ff594b3710cf0fb7db6d15538f79286f19f8c89247ab682b49dba47a7985063d"
+            },
+            {
+              "address": 151911228,
+              "size": 8,
+              "sha256": "24cd9cb95ad652436521732e7189c47031e53067a3e776f33839944c685f0472"
+            },
+            {
+              "address": 151911324,
+              "size": 30,
+              "sha256": "a12bd9ccee6895740161f5e668e8ff9538d9b57b0a974e831c9f4fea50f25fdf"
+            },
+            {
+              "address": 151911988,
+              "size": 8,
+              "sha256": "3583ea6813cc73dd7f9e1c65f4cf26f2a7646fd8bfdd9bd71bfa1e992a5bf0bf"
+            },
+            {
+              "address": 152056636,
+              "size": 76,
+              "sha256": "7b5a25c1894a97b70e23ec8db82c49864e9bec6eeeede2b7ee282f5bff876937"
+            },
+            {
+              "address": 152056738,
+              "size": 60,
+              "sha256": "0f09e89ea33e5261da276b89633448c48e0dd3b19a57de19aeb18c6fa9de7a5d"
+            },
+            {
+              "address": 152056814,
+              "size": 98,
+              "sha256": "109f308daafc4841449c3d0e4606bc0229a6f51c7f843b07230dd357f29eba24"
+            },
+            {
+              "address": 152056928,
+              "size": 24,
+              "sha256": "624548373d89119f0e29a309d9dae03d4e336be28bc6d6e2cd439770b9dc3df3"
+            },
+            {
+              "address": 152056992,
+              "size": 26,
+              "sha256": "9e0b868c8472cdcbc72d15e8ad2d3bab63ad7a1fa46219f5bb0005cb78bb1da2"
+            },
+            {
+              "address": 152057032,
+              "size": 16,
+              "sha256": "79d3e375ec0b54fb1c69d5f558757deb2a29c78907b8d9b0fa891fedd6089f8b"
+            },
+            {
+              "address": 152057056,
+              "size": 4,
+              "sha256": "7b02dc759c343a84d4682b21c730f118773da858019f5b5a45281052c597c54a"
+            },
+            {
+              "address": 152057064,
+              "size": 12,
+              "sha256": "7931f25eedd76af132d4e1b4f7ea6ab27ddcaa7be9bc69f3f23a5eb314215594"
+            },
+            {
+              "address": 152057356,
+              "size": 4,
+              "sha256": "568df47056cce8be6a0c3b0146666ac9d86af01d3ad28b0c26cfceb7357da6fd"
+            },
+            {
+              "address": 152452180,
+              "size": 4,
+              "sha256": "837a5eb927334215546cd15c44d1bd459b96c08b98d3ec02d9660156529600e3"
+            },
+            {
+              "address": 152466496,
+              "size": 4,
+              "sha256": "7a08a1f9bce98463180ada2a88e4cdf8a498149dd3d887d31c58f9b02206b102"
+            },
+            {
+              "address": 156451748,
+              "size": 18,
+              "sha256": "4845e1ed3b1d33a69831c8eddc8849351dce026cf365649d5e4d9aa805fbaed5"
+            },
+            {
+              "address": 156451768,
+              "size": 4,
+              "sha256": "eff0be10f029d46abe6d5262ee0853f710dd1813febc8fc29304f694d9ce409b"
+            },
+            {
+              "address": 157112988,
+              "size": 40,
+              "sha256": "23bd0c81ac52f33d7296f50609a5d7eda48ce238b2e340da0409a51cb5e3a273"
+            }
+          ],
+          "cases": [
+            {
+              "status": "PASS_CONDITIONAL_REGISTERED_MOVEEND_PROFILE",
+              "input_status": 64,
+              "instruction_steps": 454,
+              "endpoint": 151923082,
+              "visited": [
+                152056636,
+                152056638,
+                152056640,
+                152056642,
+                152056644,
+                152056646,
+                152056648,
+                152056650,
+                152056652,
+                152056654,
+                152056656,
+                152056658,
+                152056660,
+                152056662,
+                152056664,
+                152056666,
+                152056668,
+                152056670,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056692,
+                152056694,
+                152056696,
+                152056698,
+                152056700,
+                152056702,
+                152056704,
+                152056708,
+                152056710,
+                152056752,
+                152056754,
+                152056756,
+                152056758,
+                152056760,
+                152056762,
+                152056764,
+                152056766,
+                152056768,
+                152056770,
+                152056772,
+                152056774,
+                152056776,
+                152056778,
+                152056780,
+                152056782,
+                152056784,
+                152056788,
+                152056790,
+                152056792,
+                152056794,
+                152056796,
+                152056814,
+                152056816,
+                152056820,
+                152056822,
+                152056824,
+                152056826,
+                152056828,
+                152057358,
+                152056832,
+                152056834,
+                152056836,
+                152056838,
+                151625220,
+                151625222,
+                151625230,
+                151625232,
+                151625226,
+                151625228,
+                152056842,
+                152056844,
+                152056846,
+                152056848,
+                152056850,
+                152056852,
+                152056854,
+                152056856,
+                152056858,
+                152056860,
+                152056862,
+                152056864,
+                152056866,
+                152056876,
+                152056878,
+                152056880,
+                152056886,
+                152056888,
+                152056890,
+                152056892,
+                152056894,
+                152056896,
+                152056898,
+                152056900,
+                152056906,
+                152056908,
+                152056910,
+                152056928,
+                152056930,
+                152056932,
+                152056934,
+                152056936,
+                152056938,
+                152056940,
+                152056942,
+                152056944,
+                152056946,
+                152056948,
+                152056950,
+                152056992,
+                152056994,
+                152056996,
+                152056998,
+                152057000,
+                152057002,
+                152057004,
+                152057006,
+                152057356,
+                152057010,
+                152057012,
+                152057014,
+                152057016,
+                152056738,
+                152056740,
+                152056742,
+                152056744,
+                152056746,
+                152056748,
+                152056750,
+                151910304,
+                151910306,
+                157112988,
+                157112990,
+                157112992,
+                157112994,
+                157112996,
+                157112998,
+                157113000,
+                157113002,
+                157113004,
+                157113006,
+                156451748,
+                156451750,
+                156451752,
+                156451754,
+                156451756,
+                156451758,
+                156451760,
+                156451762,
+                156451764,
+                151910312,
+                151910314,
+                151910316,
+                151910318,
+                151910320,
+                151910322,
+                151910324,
+                151910326,
+                151910328,
+                151910330,
+                151910332,
+                151910334,
+                151910336,
+                151910338,
+                151910340,
+                151910342,
+                151910344,
+                151910346,
+                151910348,
+                151910350,
+                151910352,
+                151910354,
+                151910356,
+                151910358,
+                151910360,
+                151910362,
+                151910364,
+                151910366,
+                151910368,
+                151910372,
+                151910374,
+                151910376,
+                151910378,
+                151910380,
+                151910382,
+                151910384,
+                151910386,
+                151910388,
+                151910510,
+                151910512,
+                151910514,
+                151910516,
+                151910518,
+                151910520,
+                151910522,
+                151910524,
+                151910526,
+                151910528,
+                151910406,
+                151910408,
+                151910410,
+                151910412,
+                151910414,
+                151910416,
+                151910418,
+                151910456,
+                151910458,
+                151910460,
+                151910466,
+                151910468,
+                151910470,
+                151910472,
+                151910474,
+                151910490,
+                151910492,
+                151910494,
+                151910496,
+                151910502,
+                151910504,
+                151910506,
+                151910508,
+                151911324,
+                151911326,
+                151911328,
+                151911330,
+                151911332,
+                151911334,
+                151911336,
+                151911338,
+                151911340,
+                151911342,
+                151911344,
+                151911346,
+                151911348
+              ],
+              "conditional_call_groups": [
+                {
+                  "site": 152056704,
+                  "target": 153946824,
+                  "role": "current_streak_wrapper_inclusive_opaque_5arg_api",
+                  "required_fields": [
+                    {
+                      "address": 33620320,
+                      "size": 1
+                    },
+                    {
+                      "address": 33628179,
+                      "size": 1
+                    },
+                    {
+                      "address": 33636353,
+                      "size": 2
+                    },
+                    {
+                      "address": 33696428,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701036,
+                      "size": 2
+                    },
+                    {
+                      "address": 33701067,
+                      "size": 2
+                    },
+                    {
+                      "address": 33701076,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701168,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701212,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701688,
+                      "size": 1
+                    },
+                    {
+                      "address": 33701704,
+                      "size": 4
+                    },
+                    {
+                      "address": 33808304,
+                      "size": 4
+                    },
+                    {
+                      "address": 33808316,
+                      "size": 4
+                    },
+                    {
+                      "address": 50360284,
+                      "size": 36
+                    }
+                  ],
+                  "normal_abi_return_required": true,
+                  "same_circus_flags_epoch_required": true,
+                  "same_battle_context_epoch_required": true,
+                  "same_stack_epoch_required": true,
+                  "callee_effects_proven": false
+                },
+                {
+                  "site": 152056784,
+                  "target": 152201656,
+                  "role": "VegaFacilityStateGet_tier",
+                  "required_fields": [
+                    {
+                      "address": 33620320,
+                      "size": 1
+                    },
+                    {
+                      "address": 33628179,
+                      "size": 1
+                    },
+                    {
+                      "address": 33636353,
+                      "size": 2
+                    },
+                    {
+                      "address": 33696428,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701036,
+                      "size": 2
+                    },
+                    {
+                      "address": 33701067,
+                      "size": 2
+                    },
+                    {
+                      "address": 33701076,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701168,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701212,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701688,
+                      "size": 1
+                    },
+                    {
+                      "address": 33701704,
+                      "size": 4
+                    },
+                    {
+                      "address": 33808304,
+                      "size": 4
+                    },
+                    {
+                      "address": 33808316,
+                      "size": 4
+                    },
+                    {
+                      "address": 50360272,
+                      "size": 8
+                    },
+                    {
+                      "address": 50360284,
+                      "size": 36
+                    }
+                  ],
+                  "normal_abi_return_required": true,
+                  "same_circus_flags_epoch_required": true,
+                  "same_battle_context_epoch_required": true,
+                  "same_stack_epoch_required": true,
+                  "callee_effects_proven": false
+                },
+                {
+                  "site": 152056816,
+                  "target": 152201656,
+                  "role": "VegaFacilityStateGet_battle_type",
+                  "required_fields": [
+                    {
+                      "address": 33620320,
+                      "size": 1
+                    },
+                    {
+                      "address": 33628179,
+                      "size": 1
+                    },
+                    {
+                      "address": 33636353,
+                      "size": 2
+                    },
+                    {
+                      "address": 33696428,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701036,
+                      "size": 2
+                    },
+                    {
+                      "address": 33701067,
+                      "size": 2
+                    },
+                    {
+                      "address": 33701076,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701168,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701212,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701688,
+                      "size": 1
+                    },
+                    {
+                      "address": 33701704,
+                      "size": 4
+                    },
+                    {
+                      "address": 33808304,
+                      "size": 4
+                    },
+                    {
+                      "address": 33808316,
+                      "size": 4
+                    },
+                    {
+                      "address": 50360272,
+                      "size": 8
+                    },
+                    {
+                      "address": 50360284,
+                      "size": 36
+                    }
+                  ],
+                  "normal_abi_return_required": true,
+                  "same_circus_flags_epoch_required": true,
+                  "same_battle_context_epoch_required": true,
+                  "same_stack_epoch_required": true,
+                  "callee_effects_proven": false
+                },
+                {
+                  "site": 152056828,
+                  "target": 134497420,
+                  "role": "Random",
+                  "required_fields": [
+                    {
+                      "address": 33620320,
+                      "size": 1
+                    },
+                    {
+                      "address": 33628179,
+                      "size": 1
+                    },
+                    {
+                      "address": 33636353,
+                      "size": 2
+                    },
+                    {
+                      "address": 33696428,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701036,
+                      "size": 2
+                    },
+                    {
+                      "address": 33701067,
+                      "size": 2
+                    },
+                    {
+                      "address": 33701076,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701168,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701212,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701688,
+                      "size": 1
+                    },
+                    {
+                      "address": 33701704,
+                      "size": 4
+                    },
+                    {
+                      "address": 33808304,
+                      "size": 4
+                    },
+                    {
+                      "address": 33808316,
+                      "size": 4
+                    },
+                    {
+                      "address": 50360268,
+                      "size": 12
+                    },
+                    {
+                      "address": 50360284,
+                      "size": 36
+                    }
+                  ],
+                  "normal_abi_return_required": true,
+                  "same_circus_flags_epoch_required": true,
+                  "same_battle_context_epoch_required": true,
+                  "same_stack_epoch_required": true,
+                  "callee_effects_proven": false
+                },
+                {
+                  "site": 151625222,
+                  "target": 136086948,
+                  "role": "__umodsi3",
+                  "required_fields": [
+                    {
+                      "address": 33620320,
+                      "size": 1
+                    },
+                    {
+                      "address": 33628179,
+                      "size": 1
+                    },
+                    {
+                      "address": 33636353,
+                      "size": 2
+                    },
+                    {
+                      "address": 33696428,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701036,
+                      "size": 2
+                    },
+                    {
+                      "address": 33701067,
+                      "size": 2
+                    },
+                    {
+                      "address": 33701076,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701168,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701212,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701688,
+                      "size": 1
+                    },
+                    {
+                      "address": 33701704,
+                      "size": 4
+                    },
+                    {
+                      "address": 33808304,
+                      "size": 4
+                    },
+                    {
+                      "address": 50360252,
+                      "size": 4
+                    },
+                    {
+                      "address": 50360268,
+                      "size": 12
+                    },
+                    {
+                      "address": 50360284,
+                      "size": 36
+                    }
+                  ],
+                  "normal_abi_return_required": true,
+                  "same_circus_flags_epoch_required": true,
+                  "same_battle_context_epoch_required": true,
+                  "same_stack_epoch_required": true,
+                  "callee_effects_proven": false
+                },
+                {
+                  "site": 152057006,
+                  "target": 134252800,
+                  "role": "StringCopy",
+                  "required_fields": [
+                    {
+                      "address": 33620320,
+                      "size": 1
+                    },
+                    {
+                      "address": 33628179,
+                      "size": 1
+                    },
+                    {
+                      "address": 33636353,
+                      "size": 2
+                    },
+                    {
+                      "address": 33696428,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701036,
+                      "size": 2
+                    },
+                    {
+                      "address": 33701067,
+                      "size": 2
+                    },
+                    {
+                      "address": 33701076,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701168,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701212,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701688,
+                      "size": 1
+                    },
+                    {
+                      "address": 33701704,
+                      "size": 4
+                    },
+                    {
+                      "address": 33808304,
+                      "size": 4
+                    },
+                    {
+                      "address": 33808316,
+                      "size": 4
+                    },
+                    {
+                      "address": 50360284,
+                      "size": 36
+                    }
+                  ],
+                  "normal_abi_return_required": true,
+                  "same_circus_flags_epoch_required": true,
+                  "same_battle_context_epoch_required": true,
+                  "same_stack_epoch_required": true,
+                  "callee_effects_proven": false
+                },
+                {
+                  "site": 4294967280,
+                  "target": 151910304,
+                  "role": "same_epoch_registered_opcode49_API_admission",
+                  "required_fields": [
+                    {
+                      "address": 33620320,
+                      "size": 1
+                    },
+                    {
+                      "address": 33628179,
+                      "size": 1
+                    },
+                    {
+                      "address": 33636353,
+                      "size": 2
+                    },
+                    {
+                      "address": 33696428,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701036,
+                      "size": 2
+                    },
+                    {
+                      "address": 33701067,
+                      "size": 2
+                    },
+                    {
+                      "address": 33701076,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701168,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701212,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701688,
+                      "size": 1
+                    },
+                    {
+                      "address": 33701704,
+                      "size": 4
+                    },
+                    {
+                      "address": 33808304,
+                      "size": 4
+                    },
+                    {
+                      "address": 33808316,
+                      "size": 4
+                    }
+                  ],
+                  "normal_abi_return_required": true,
+                  "same_circus_flags_epoch_required": true,
+                  "same_battle_context_epoch_required": true,
+                  "same_stack_epoch_required": true,
+                  "callee_effects_proven": false
+                },
+                {
+                  "site": 151910368,
+                  "target": 151863276,
+                  "role": "GetBankItemEffect",
+                  "required_fields": [
+                    {
+                      "address": 33620320,
+                      "size": 1
+                    },
+                    {
+                      "address": 33628179,
+                      "size": 1
+                    },
+                    {
+                      "address": 33701067,
+                      "size": 1
+                    },
+                    {
+                      "address": 33701168,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701212,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701688,
+                      "size": 1
+                    },
+                    {
+                      "address": 33701704,
+                      "size": 4
+                    },
+                    {
+                      "address": 33808304,
+                      "size": 4
+                    },
+                    {
+                      "address": 50360196,
+                      "size": 4
+                    }
+                  ],
+                  "normal_abi_return_required": true,
+                  "same_circus_flags_epoch_required": true,
+                  "same_battle_context_epoch_required": true,
+                  "same_stack_epoch_required": true,
+                  "callee_effects_proven": false
+                }
+              ],
+              "producer_writes": [
+                [
+                  152056996,
+                  33808316,
+                  4,
+                  2147483648
+                ]
+              ],
+              "positive_circus_flag_host_seeded": false,
+              "nonlive_ram_erased_at_every_boundary": true,
+              "actual_runtime_execution_observed": false
+            },
+            {
+              "status": "PASS_CONDITIONAL_REGISTERED_MOVEEND_PROFILE",
+              "input_status": 0,
+              "instruction_steps": 450,
+              "endpoint": 151911354,
+              "visited": [
+                152056636,
+                152056638,
+                152056640,
+                152056642,
+                152056644,
+                152056646,
+                152056648,
+                152056650,
+                152056652,
+                152056654,
+                152056656,
+                152056658,
+                152056660,
+                152056662,
+                152056664,
+                152056666,
+                152056668,
+                152056670,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056672,
+                152056674,
+                152056676,
+                152056678,
+                152056686,
+                152056688,
+                152056690,
+                152056692,
+                152056694,
+                152056696,
+                152056698,
+                152056700,
+                152056702,
+                152056704,
+                152056708,
+                152056710,
+                152056752,
+                152056754,
+                152056756,
+                152056758,
+                152056760,
+                152056762,
+                152056764,
+                152056766,
+                152056768,
+                152056770,
+                152056772,
+                152056774,
+                152056776,
+                152056778,
+                152056780,
+                152056782,
+                152056784,
+                152056788,
+                152056790,
+                152056792,
+                152056794,
+                152056796,
+                152056814,
+                152056816,
+                152056820,
+                152056822,
+                152056824,
+                152056826,
+                152056828,
+                152057358,
+                152056832,
+                152056834,
+                152056836,
+                152056838,
+                151625220,
+                151625222,
+                151625230,
+                151625232,
+                151625226,
+                151625228,
+                152056842,
+                152056844,
+                152056846,
+                152056848,
+                152056850,
+                152056852,
+                152056854,
+                152056856,
+                152056858,
+                152056860,
+                152056862,
+                152056864,
+                152056866,
+                152056876,
+                152056878,
+                152056880,
+                152056886,
+                152056888,
+                152056890,
+                152056892,
+                152056894,
+                152056896,
+                152056898,
+                152056900,
+                152056906,
+                152056908,
+                152056910,
+                152056928,
+                152056930,
+                152056932,
+                152056934,
+                152056936,
+                152056938,
+                152056940,
+                152056942,
+                152056944,
+                152056946,
+                152056948,
+                152056950,
+                152056992,
+                152056994,
+                152056996,
+                152056998,
+                152057000,
+                152057002,
+                152057004,
+                152057006,
+                152057356,
+                152057010,
+                152057012,
+                152057014,
+                152057016,
+                152056738,
+                152056740,
+                152056742,
+                152056744,
+                152056746,
+                152056748,
+                152056750,
+                151910304,
+                151910306,
+                157112988,
+                157112990,
+                157112992,
+                157112994,
+                157112996,
+                157112998,
+                157113000,
+                157113002,
+                157113004,
+                157113006,
+                156451748,
+                156451750,
+                156451752,
+                156451754,
+                156451756,
+                156451758,
+                156451760,
+                156451762,
+                156451764,
+                151910312,
+                151910314,
+                151910316,
+                151910318,
+                151910320,
+                151910322,
+                151910324,
+                151910326,
+                151910328,
+                151910330,
+                151910332,
+                151910334,
+                151910336,
+                151910338,
+                151910340,
+                151910342,
+                151910344,
+                151910346,
+                151910348,
+                151910350,
+                151910352,
+                151910354,
+                151910356,
+                151910358,
+                151910360,
+                151910362,
+                151910364,
+                151910366,
+                151910368,
+                151910372,
+                151910374,
+                151910376,
+                151910378,
+                151910380,
+                151910382,
+                151910384,
+                151910386,
+                151910388,
+                151910510,
+                151910512,
+                151910514,
+                151910516,
+                151910518,
+                151910520,
+                151910522,
+                151910524,
+                151910526,
+                151910528,
+                151910406,
+                151910408,
+                151910410,
+                151910412,
+                151910414,
+                151910416,
+                151910418,
+                151910456,
+                151910458,
+                151910460,
+                151910466,
+                151910468,
+                151910470,
+                151910472,
+                151910474,
+                151910490,
+                151910492,
+                151910494,
+                151910496,
+                151910502,
+                151910504,
+                151910506,
+                151910508,
+                151911324,
+                151911326,
+                151911328,
+                151911330,
+                151911332,
+                151911334,
+                151911336,
+                151911338,
+                151911352
+              ],
+              "conditional_call_groups": [
+                {
+                  "site": 152056704,
+                  "target": 153946824,
+                  "role": "current_streak_wrapper_inclusive_opaque_5arg_api",
+                  "required_fields": [
+                    {
+                      "address": 33620320,
+                      "size": 1
+                    },
+                    {
+                      "address": 33628179,
+                      "size": 1
+                    },
+                    {
+                      "address": 33636353,
+                      "size": 2
+                    },
+                    {
+                      "address": 33696428,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701036,
+                      "size": 2
+                    },
+                    {
+                      "address": 33701067,
+                      "size": 2
+                    },
+                    {
+                      "address": 33701076,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701168,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701212,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701688,
+                      "size": 1
+                    },
+                    {
+                      "address": 33701704,
+                      "size": 4
+                    },
+                    {
+                      "address": 33808304,
+                      "size": 4
+                    },
+                    {
+                      "address": 33808316,
+                      "size": 4
+                    },
+                    {
+                      "address": 50360284,
+                      "size": 36
+                    }
+                  ],
+                  "normal_abi_return_required": true,
+                  "same_circus_flags_epoch_required": true,
+                  "same_battle_context_epoch_required": true,
+                  "same_stack_epoch_required": true,
+                  "callee_effects_proven": false
+                },
+                {
+                  "site": 152056784,
+                  "target": 152201656,
+                  "role": "VegaFacilityStateGet_tier",
+                  "required_fields": [
+                    {
+                      "address": 33620320,
+                      "size": 1
+                    },
+                    {
+                      "address": 33628179,
+                      "size": 1
+                    },
+                    {
+                      "address": 33636353,
+                      "size": 2
+                    },
+                    {
+                      "address": 33696428,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701036,
+                      "size": 2
+                    },
+                    {
+                      "address": 33701067,
+                      "size": 2
+                    },
+                    {
+                      "address": 33701076,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701168,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701212,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701688,
+                      "size": 1
+                    },
+                    {
+                      "address": 33701704,
+                      "size": 4
+                    },
+                    {
+                      "address": 33808304,
+                      "size": 4
+                    },
+                    {
+                      "address": 33808316,
+                      "size": 4
+                    },
+                    {
+                      "address": 50360272,
+                      "size": 8
+                    },
+                    {
+                      "address": 50360284,
+                      "size": 36
+                    }
+                  ],
+                  "normal_abi_return_required": true,
+                  "same_circus_flags_epoch_required": true,
+                  "same_battle_context_epoch_required": true,
+                  "same_stack_epoch_required": true,
+                  "callee_effects_proven": false
+                },
+                {
+                  "site": 152056816,
+                  "target": 152201656,
+                  "role": "VegaFacilityStateGet_battle_type",
+                  "required_fields": [
+                    {
+                      "address": 33620320,
+                      "size": 1
+                    },
+                    {
+                      "address": 33628179,
+                      "size": 1
+                    },
+                    {
+                      "address": 33636353,
+                      "size": 2
+                    },
+                    {
+                      "address": 33696428,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701036,
+                      "size": 2
+                    },
+                    {
+                      "address": 33701067,
+                      "size": 2
+                    },
+                    {
+                      "address": 33701076,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701168,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701212,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701688,
+                      "size": 1
+                    },
+                    {
+                      "address": 33701704,
+                      "size": 4
+                    },
+                    {
+                      "address": 33808304,
+                      "size": 4
+                    },
+                    {
+                      "address": 33808316,
+                      "size": 4
+                    },
+                    {
+                      "address": 50360272,
+                      "size": 8
+                    },
+                    {
+                      "address": 50360284,
+                      "size": 36
+                    }
+                  ],
+                  "normal_abi_return_required": true,
+                  "same_circus_flags_epoch_required": true,
+                  "same_battle_context_epoch_required": true,
+                  "same_stack_epoch_required": true,
+                  "callee_effects_proven": false
+                },
+                {
+                  "site": 152056828,
+                  "target": 134497420,
+                  "role": "Random",
+                  "required_fields": [
+                    {
+                      "address": 33620320,
+                      "size": 1
+                    },
+                    {
+                      "address": 33628179,
+                      "size": 1
+                    },
+                    {
+                      "address": 33636353,
+                      "size": 2
+                    },
+                    {
+                      "address": 33696428,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701036,
+                      "size": 2
+                    },
+                    {
+                      "address": 33701067,
+                      "size": 2
+                    },
+                    {
+                      "address": 33701076,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701168,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701212,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701688,
+                      "size": 1
+                    },
+                    {
+                      "address": 33701704,
+                      "size": 4
+                    },
+                    {
+                      "address": 33808304,
+                      "size": 4
+                    },
+                    {
+                      "address": 33808316,
+                      "size": 4
+                    },
+                    {
+                      "address": 50360268,
+                      "size": 12
+                    },
+                    {
+                      "address": 50360284,
+                      "size": 36
+                    }
+                  ],
+                  "normal_abi_return_required": true,
+                  "same_circus_flags_epoch_required": true,
+                  "same_battle_context_epoch_required": true,
+                  "same_stack_epoch_required": true,
+                  "callee_effects_proven": false
+                },
+                {
+                  "site": 151625222,
+                  "target": 136086948,
+                  "role": "__umodsi3",
+                  "required_fields": [
+                    {
+                      "address": 33620320,
+                      "size": 1
+                    },
+                    {
+                      "address": 33628179,
+                      "size": 1
+                    },
+                    {
+                      "address": 33636353,
+                      "size": 2
+                    },
+                    {
+                      "address": 33696428,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701036,
+                      "size": 2
+                    },
+                    {
+                      "address": 33701067,
+                      "size": 2
+                    },
+                    {
+                      "address": 33701076,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701168,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701212,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701688,
+                      "size": 1
+                    },
+                    {
+                      "address": 33701704,
+                      "size": 4
+                    },
+                    {
+                      "address": 33808304,
+                      "size": 4
+                    },
+                    {
+                      "address": 50360252,
+                      "size": 4
+                    },
+                    {
+                      "address": 50360268,
+                      "size": 12
+                    },
+                    {
+                      "address": 50360284,
+                      "size": 36
+                    }
+                  ],
+                  "normal_abi_return_required": true,
+                  "same_circus_flags_epoch_required": true,
+                  "same_battle_context_epoch_required": true,
+                  "same_stack_epoch_required": true,
+                  "callee_effects_proven": false
+                },
+                {
+                  "site": 152057006,
+                  "target": 134252800,
+                  "role": "StringCopy",
+                  "required_fields": [
+                    {
+                      "address": 33620320,
+                      "size": 1
+                    },
+                    {
+                      "address": 33628179,
+                      "size": 1
+                    },
+                    {
+                      "address": 33636353,
+                      "size": 2
+                    },
+                    {
+                      "address": 33696428,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701036,
+                      "size": 2
+                    },
+                    {
+                      "address": 33701067,
+                      "size": 2
+                    },
+                    {
+                      "address": 33701076,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701168,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701212,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701688,
+                      "size": 1
+                    },
+                    {
+                      "address": 33701704,
+                      "size": 4
+                    },
+                    {
+                      "address": 33808304,
+                      "size": 4
+                    },
+                    {
+                      "address": 33808316,
+                      "size": 4
+                    },
+                    {
+                      "address": 50360284,
+                      "size": 36
+                    }
+                  ],
+                  "normal_abi_return_required": true,
+                  "same_circus_flags_epoch_required": true,
+                  "same_battle_context_epoch_required": true,
+                  "same_stack_epoch_required": true,
+                  "callee_effects_proven": false
+                },
+                {
+                  "site": 4294967280,
+                  "target": 151910304,
+                  "role": "same_epoch_registered_opcode49_API_admission",
+                  "required_fields": [
+                    {
+                      "address": 33620320,
+                      "size": 1
+                    },
+                    {
+                      "address": 33628179,
+                      "size": 1
+                    },
+                    {
+                      "address": 33636353,
+                      "size": 2
+                    },
+                    {
+                      "address": 33696428,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701036,
+                      "size": 2
+                    },
+                    {
+                      "address": 33701067,
+                      "size": 2
+                    },
+                    {
+                      "address": 33701076,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701168,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701212,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701688,
+                      "size": 1
+                    },
+                    {
+                      "address": 33701704,
+                      "size": 4
+                    },
+                    {
+                      "address": 33808304,
+                      "size": 4
+                    },
+                    {
+                      "address": 33808316,
+                      "size": 4
+                    }
+                  ],
+                  "normal_abi_return_required": true,
+                  "same_circus_flags_epoch_required": true,
+                  "same_battle_context_epoch_required": true,
+                  "same_stack_epoch_required": true,
+                  "callee_effects_proven": false
+                },
+                {
+                  "site": 151910368,
+                  "target": 151863276,
+                  "role": "GetBankItemEffect",
+                  "required_fields": [
+                    {
+                      "address": 33620320,
+                      "size": 1
+                    },
+                    {
+                      "address": 33628179,
+                      "size": 1
+                    },
+                    {
+                      "address": 33701067,
+                      "size": 1
+                    },
+                    {
+                      "address": 33701168,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701212,
+                      "size": 4
+                    },
+                    {
+                      "address": 33701688,
+                      "size": 1
+                    },
+                    {
+                      "address": 33701704,
+                      "size": 4
+                    },
+                    {
+                      "address": 33808304,
+                      "size": 4
+                    },
+                    {
+                      "address": 50360196,
+                      "size": 4
+                    }
+                  ],
+                  "normal_abi_return_required": true,
+                  "same_circus_flags_epoch_required": true,
+                  "same_battle_context_epoch_required": true,
+                  "same_stack_epoch_required": true,
+                  "callee_effects_proven": false
+                }
+              ],
+              "producer_writes": [
+                [
+                  152056996,
+                  33808316,
+                  4,
+                  2147483648
+                ]
+              ],
+              "positive_circus_flag_host_seeded": false,
+              "nonlive_ram_erased_at_every_boundary": true,
+              "actual_runtime_execution_observed": false
+            }
+          ],
+          "hit_byte_coverage": 4,
+          "minimum_byte_coverage": 6,
+          "retained_unknown": [
+            151920811
+          ],
+          "positive_flag_host_seeded": false
+        },
+        "protected_windows": 29,
+        "protected_bytes": 774,
+        "conditional_registered_api_entry": true,
+        "positive_flag_generated_by_actual_producer": true,
+        "same_epoch_required": true,
+        "current_candidate_measurement_required": true,
+        "natural_battle_entry_proven": false,
+        "natural_moveend_reachability_proven": false,
+        "all_state_producers_proven": false,
+        "all_opaque_callee_effects_proven": false,
+        "universal_heap_or_irq_lifetime_proven": false,
+        "indirect_reference_completeness_proven": false,
+        "retirement_proven": false,
+        "donor_eligible": false,
+        "donor_leased": false,
+        "dancer_classified": false
+      },
+      "registered_toxic_orb_minimum_thumb": {
+        "status": "PASS_REGISTERED_TOXIC_ORB_MINIMUM_THUMB",
+        "count": 1,
+        "hits": [
+          152020925
+        ],
+        "source": {
+          "layout": {
+            "structs": {
+              "battle_pokemon": {
+                "size": 88,
+                "alignment": 4,
+                "fields": {
+                  "species": {
+                    "offset": 0,
+                    "size": 2
+                  },
+                  "hp": {
+                    "offset": 40,
+                    "size": 2
+                  },
+                  "item": {
+                    "offset": 46,
+                    "size": 2
+                  },
+                  "ability": {
+                    "offset": 56,
+                    "size": 2
+                  },
+                  "personality": {
+                    "offset": 72,
+                    "size": 4
+                  },
+                  "status1": {
+                    "offset": 76,
+                    "size": 4
+                  }
+                }
+              },
+              "battle_struct": {
+                "turnEffectsTracker": {
+                  "offset": 0,
+                  "size": 1
+                },
+                "turnEffectsBank": {
+                  "offset": 1,
+                  "size": 1
+                }
+              },
+              "new_battle_struct": {
+                "size": 1368,
+                "alignment": 4,
+                "fields": {
+                  "MagicRoomTimer": {
+                    "offset": 4,
+                    "size": 1
+                  },
+                  "EmbargoTimers": {
+                    "offset": 52,
+                    "size": 4
+                  },
+                  "endTurnBlockState": {
+                    "offset": 327,
+                    "size": 1
+                  },
+                  "ai.itemEffects": {
+                    "offset": 665,
+                    "size": 4
+                  }
+                }
+              }
+            },
+            "enum_values": {
+              "state": 69,
+              "substate": 2,
+              "request": 40
+            },
+            "constants": {
+              "MAX_BATTLERS_COUNT": 4,
+              "NUM_BATTLE_SIDES": 2,
+              "POKEMON_NAME_LENGTH": 10,
+              "PARTY_SIZE": 6,
+              "BATTLE_STATS_NO": 8,
+              "MAX_SPRITES": 64,
+              "MAX_NUM_RAID_SHIELDS": 5,
+              "MAX_MON_MOVES": 4
+            },
+            "source_comments_used": false,
+            "abi": "ARM32 scalar widths, natural alignment, allocation-unit bounded bitfields, 32-bit pointers"
+          },
+          "item": {
+            "canonical_id": 894,
+            "upstream_id": 680,
+            "symbol": "ITEM_TOXIC_ORB",
+            "hold_effect_symbol": "ITEM_EFFECT_TOXIC_ORB",
+            "hold_effect": 75,
+            "table_address": 155531232,
+            "item_stride": 40,
+            "field_offset": 14,
+            "field_address": 155567006,
+            "observed_value_input": false
+          }
+        },
+        "encoding": {
+          "status": "PASS_SOURCE_REGISTERED_TOXIC_ORB_ENCODING",
+          "executed_model_instruction_count": 179,
+          "opaque_signature_instruction_count": 20,
+          "instruction_bytes": 428,
+          "source_item": {
+            "canonical_id": 894,
+            "upstream_id": 680,
+            "symbol": "ITEM_TOXIC_ORB",
+            "hold_effect_symbol": "ITEM_EFFECT_TOXIC_ORB",
+            "hold_effect": 75,
+            "table_address": 155531232,
+            "item_stride": 40,
+            "field_offset": 14,
+            "field_address": 155567006,
+            "observed_value_input": false
+          },
+          "complete_item_table_or_sanitizer_extent_source_proven": false,
+          "actual_hook_and_state_registration": true
+        },
+        "composition": {
+          "status": "PASS_CONDITIONAL_TOXIC_ORB_ROOT",
+          "instruction_steps": 169,
+          "endpoint": 134310488,
+          "endpoint_arguments": [
+            2
+          ],
+          "conditional_call_groups": [
+            {
+              "site": 152016022,
+              "target": 151876448,
+              "source_role": "CanBePoisoned",
+              "return_value": 1,
+              "required_fields": [
+                {
+                  "address": 33700644,
+                  "size": 1
+                },
+                {
+                  "address": 33700898,
+                  "size": 2
+                },
+                {
+                  "address": 33700928,
+                  "size": 4
+                },
+                {
+                  "address": 33808304,
+                  "size": 4
+                },
+                {
+                  "address": 50360260,
+                  "size": 4
+                }
+              ],
+              "normal_abi_return_required": true,
+              "same_battle_context_epoch_required": true,
+              "same_newbs_epoch_required": true,
+              "same_stack_epoch_required": true,
+              "effects_discharged": false
+            },
+            {
+              "site": 152020916,
+              "target": 134273508,
+              "source_role": "EmitSetMonData",
+              "return_value": null,
+              "required_fields": [
+                {
+                  "address": 33700644,
+                  "size": 1
+                }
+              ],
+              "normal_abi_return_required": true,
+              "same_battle_context_epoch_required": true,
+              "same_newbs_epoch_required": true,
+              "same_stack_epoch_required": true,
+              "effects_discharged": false
+            }
+          ],
+          "actual_call_arguments": [
+            {
+              "site": 152016022,
+              "target": 151876448,
+              "source_role": "CanBePoisoned",
+              "arguments": [
+                2,
+                2,
+                0
+              ],
+              "stack_data_pointer": null
+            },
+            {
+              "site": 152020916,
+              "target": 134273508,
+              "source_role": "EmitSetMonData",
+              "arguments": [
+                0,
+                40,
+                0,
+                4
+              ],
+              "stack_data_pointer": 33700928
+            }
+          ],
+          "actual_role_reads": [
+            [
+              152010572,
+              33700671,
+              1,
+              2
+            ],
+            [
+              152010612,
+              152462724,
+              4,
+              152010968
+            ],
+            [
+              152010980,
+              33628487,
+              1,
+              2
+            ],
+            [
+              152015980,
+              33700892,
+              2,
+              1
+            ],
+            [
+              151863284,
+              33700908,
+              2,
+              0
+            ],
+            [
+              151863302,
+              33628214,
+              1,
+              0
+            ],
+            [
+              151863312,
+              33628164,
+              1,
+              0
+            ],
+            [
+              151863332,
+              33700898,
+              2,
+              894
+            ],
+            [
+              152108512,
+              155567006,
+              1,
+              75
+            ],
+            [
+              152020870,
+              33700898,
+              2,
+              894
+            ]
+          ],
+          "actual_role_writes": [
+            [
+              152010546,
+              33701168,
+              4,
+              16777248
+            ],
+            [
+              152010576,
+              33701068,
+              1,
+              2
+            ],
+            [
+              152010580,
+              33701067,
+              1,
+              2
+            ],
+            [
+              152010590,
+              33700644,
+              1,
+              2
+            ],
+            [
+              152010592,
+              33701040,
+              4,
+              0
+            ],
+            [
+              152020874,
+              33701064,
+              2,
+              894
+            ],
+            [
+              151863584,
+              33628827,
+              1,
+              75
+            ],
+            [
+              152020902,
+              33700928,
+              4,
+              128
+            ]
+          ],
+          "visited_identity": {
+            "size": 1691,
+            "sha256": "9df7f7d9c58ad71c1fbd40c4b0e11e46e7bb2f03f19c0f82188de974275a4e96"
+          },
+          "nonlive_ram_erased_at_each_boundary": true,
+          "internal_active_bank_host_seeded": false,
+          "internal_status_pointer_host_seeded": false,
+          "actual_runtime_execution_observed": false
+        },
+        "protected_windows": 18,
+        "protected_bytes": 537,
+        "proof_scope": "conditional_registered_toxic_orb_minimum_thumb",
+        "conditional_registered_api_entry": true,
+        "actual_jp_hook_executed": true,
+        "complete_selected_entry_path": true,
+        "actual_runtime_execution_observed": false,
+        "whole_candidate_identity_checked_by_parent_required": true,
+        "full_story_reachability_claimed": false,
+        "all_end_turn_state_producers_proven": false,
+        "opaque_callee_effects_proven": false,
+        "held_item_effect_producer_proven": true,
+        "record_item_effect_writer_proven": true,
+        "hit_callee_entered": true,
+        "hit_callee_effects_proven": false,
+        "hit_callee_return_required": false,
+        "static_successor_executed": false,
+        "universal_heap_or_irq_lifetime_proven": false,
+        "whole_function_range_classified": false,
+        "padding_classified": false,
+        "indirect_reference_completeness_claimed": false,
+        "retirement_proven": false,
+        "donor_eligible": false,
+        "donor_leased": false
+      }
+    },
+    "held_roots": {},
+    "new_data": 0,
+    "new_code": 3,
+    "new_boundary": 0,
+    "natural_gameplay_reachability_claimed": false,
+    "universal_heap_or_irq_lifetime_claimed": false,
+    "independent_old_final_source_review_completed": false,
+    "donor_leased": false,
+    "indirect_reference_completeness_claimed": false
+  },
+  "guide": "docs/PR16_DEX_HOF_REGISTERED_ITEM_BATCH_JA.md",
+  "evidence_bindings": {
+    "content/modernization/pr16_dex_hof_registered_item_batch_evidence/measurement.json": {
+      "size": 117343,
+      "sha256": "e455aa32d09c08a8a57b062620ab071169135463bb02dd6bb92c059a273de3db"
+    },
+    "content/modernization/pr16_dex_hof_registered_item_batch_evidence/partial-space.json": {
+      "size": 44815,
+      "sha256": "0222ab7bb31623b5bcb1fce4c4110a085ef877c45466580d9b6f33d02cac1acd"
+    },
+    "content/modernization/pr16_dex_hof_registered_item_batch_evidence/reference-chain.json": {
+      "size": 133182,
+      "sha256": "8e186d84fa5e8c531e12e65e3da4d3c7a2f91088b6582c17832b44be9807a45a"
+    },
+    "content/modernization/pr16_dex_hof_registered_item_batch_evidence/registered-item-batch-tests.txt": {
+      "size": 46606,
+      "sha256": "d0e2d342bb513b8cdc34b23ffadd124fd88e7fc5d68bfea3bca2c57690d04dd4"
+    },
+    "content/modernization/pr16_dex_hof_registered_item_batch_evidence/unknown-frontier.json": {
+      "size": 43887,
+      "sha256": "d132cbc0324d81d3ce021b5992998e5507e2db8f7f362da34d04f70f0b7fdd38"
+    }
+  },
+  "previous_checkpoint": "content/modernization/pr16_dex_hof_registered_table_batch_checkpoint.json",
+  "current_owner_checkpoint": "content/modernization/pr16_dex_hof_generation_writer_checkpoint.json",
+  "record_source": "5f9a8d5e15089099b7ec0b3530b416cd41365447",
+  "record_run": 37447505079,
+  "reference_baseline": "content/modernization/pr16_dex_hof_typed_recovery_evidence/egg-typed-audit.json",
+  "reference_parent": "content/modernization/pr16_dex_hof_registered_table_batch_evidence/reference-chain.json"
+}

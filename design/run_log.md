@@ -13786,3 +13786,18 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 次の具体根は090FA7BDのToxic Orb/end-turn必要最小Thumb6byte候補。旧06c5の限定調査で公開TurnBasedEffects hook08017A68→実090F7F10、state69 cell09166584→090F80D8、gNewBS substate2→090F945E、ITEM_EFFECT75/CanBePoisoned非zero→090FA774、hit BL090FA7BC→090FB594/BX r3→MarkBufferBankForExecution08016A58を結合。正式分類は未追加で未知保持。次はAPI入口からleafの完全prologue/source struct offset327・stride88/HP40/item46/status76、ItemEffect/CanBePoisoned/RecordItemEffectBattleの独立symbol・条件、future-live/epoch/opaque ABI、現0641測定と全byte/resealを閉じる。第二候補090DFBB5/090E20ABのopcode49実slot0903F574はpatched veneer090DF7A0→095D5A9C→095343A4→090DF7A8であり、wrapper独立source/0203DFBC実producer/state条件未結合のため未知維持。手書き14block164命令の部分一致を完全finite traceや自然到達へ昇格しない。critical境界090405A9と背景4hitは必要最小各4byteだけ受入済み。残103を別の実consumer根から限定調査し、object0..239/frame0..8とtrainer-front0..147の有限負結果を全root不在に一般化しない。asset08C0ED31は正のcommand根未結合、命名083DF94FはEOS後。event0818DD5D、Bag数量ID14/15、Fishing timeout、Defog/Dive、Credits padding、GPU外側root、wirelessは別の実caller/非zero writer/consumer独立証拠時だけ再開。旧consumer/guard/suite/nativeは無影響再走しない。未知最大access/間接参照/退役/owner移管未証明なら旧egg15118全域保護/安全0。単一controller6528容量確保後、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL/全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/0804B85C退避前Freeへ接続。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。
 - Commit: closeout source=a8bf32e2ead4f8240b15518ab3bc4f6c20a0c1c3; 同branch非force。
 - Network: 同repoActions/text原本のみ。ROM断片/rawhex/ROM/save/runtime/runner/credentials追加公開0。
+
+## 2026-10-06T10:11:20.806443+00:00
+- Timestamp: 2026-10-06T10:11:20.806443+00:00
+- Task: USER-20261006-DEX-HOF-REGISTERED-ITEM-BATCH / 登録battle callback3系統最小型・容量保持
+- Version: hof-registered-item-batch-v1
+- Status: STOPPED（新登録item callback必要最小型、既event1hitと旧field4hit未知保持、残root/donor/実controller未完）
+- Summary: 現0641の実登録callerから吸収特性・moveend抑制wrapper・Toxic Orbを有限consumerへ結合し、最小各6byte、計18byteの3件を新分類。774分類/未知100。新308試験、全115actual ownerと全23親deltaを照合。既event placeholderとfield4hitの未結合guard結果は再測定せず未知保持。最小型と自然play全到達・普遍IRQ/heap寿命・間接参照/退役/owner移管を分離し、全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。
+- Files changed: 新consumer verifier/chain/capacity/拒否unit/Actions/guide/checkpoint/最小証拠、固定MDJSON、両ログ。
+- Verify: 新unit308、現candidate全SHA・115actual owner・874hit、全23親delta/全152changes/全142witness/旧771と残unknown全field保持、133全song model/50assetと新typed窓の役割交差。旧全ROMscan/native/heap/歴史再生成0。
+- Capacity: 未知参照はアクセス幅未証明なら全donor保護。点target楽観空隙を安全容量へ昇格しない。global余白511とsave内部804は既存owner/subownerを保持した上限で、新leaseなし。Ccontroller既測定単一text6528/align4と比較。間接参照/対象退役完全性も別必須gate。
+- Publication: 619原本と全親chainは参照保持、複製なし。独立measurementと全text size/SHA/LF、closed success artifact、hidden/symlink/未知file拒否。旧独立最終song/battle/Surfレビュー未実施を継承し、拒否操作の別経路再実行なし。
+- Boundary: 現0641/115owner/52saveowner/残804、正式ROM/Save101不変。heap13352を保存退避53300入口へ跨いで保持しない。
+- Next: 残100件を別の実consumer根から限定調査する。090B69A9吸収特性、090DFBB5 moveend、090FA7BD Toxic Orbを最小各6byteだけ受入。自然play全到達・全callee効果・普遍future-live/epoch/IRQ寿命は別義務。残090E20AB Dancerは実wrapper/producerが既知でもDancer状態・生存・ABILITY_ON_FIELD・partner targetの全条件未結合のため未知維持。ABILITYは直接field macroでありGetBankAbility抑制APIと混同しない。09099D3D stat文字列表は公開sourceと実最小文字が一致してもhook08106EFE未結合で未知維持。asset08C0ED31/命名083DF94F、event/Bag/fishing/field/Credits/GPU/wirelessは新しい独立実根時のみ再開。旧consumer/guard/suite/nativeは無影響再走しない。未知最大access/間接参照/退役/owner移管未証明なら旧egg15118全域保護/安全0。単一controller6528容量確保後、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL/全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/0804B85C退避前Freeへ接続。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。
+- Commit: source=5f9a8d5e15089099b7ec0b3530b416cd41365447; 同branch非force。
+- Network: 同repoActions/既存入力/固定source。公開source・最小address-size-SHA・textのみ、ROM断片/rawhex/ROM/inputsave/runtime/runner/credentials追加公開0。
