@@ -8,7 +8,7 @@
 
 実special072/登録opcode49からDancerの既存state有限contextと実partner/Target HP二枝、登録opcode5D完全caller/hookからMultiMoneyCalcの最小Thumbを結合。自然初期state producer・全play/全callee効果は別義務。 新2件・最小計12byte。776分類/未知98。全774親・47入力・24namespace155changes145witnessと133曲50assetを保持。新scopeの最小型と自然全play/IRQ/heap/間接完全性/退役/owner移管を分離し、egg15118保護・安全0・正式ROM/Save101不変。
 
-**次: 残98件を別の独立した実consumer根から限定調査する。DexNav090ED992/09140BFCは実menu登録根が未結合のため未知保持。最小型を自然全play/全callee効果/普遍IRQ・heap寿命へ昇格せず、間接参照完全性/退役/owner移管が閉じるまで旧egg15118全域保護・安全0。heap13352はstock保存退避53300を跨がない。単一controller6528と全保存入口heap-ready/同期非再入/0804B85C退避前Freeを別gateで閉じてから全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL/全mode/早期31/species9bitへ接続する。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。**
+**次: 残98の次scope候補は0914100Dのspecial057→Frontier task/main callback→CurrentStreak/MaxStreak、および09143266/09143415のChooseMove公開wrapper→effect dispatch→文字境界。公開固定sourceと旧06c5の有限静的観測だけで、現0641の正式分類追加0。実consumer全読取・future-live/非live消去・同epochの合成と変異/reseal反証は未完。受入済みDancer/Money2件とは別scopeで新根から限定証明し、保存境界を含む本番接続条件を省略しない。残98件を別の独立した実consumer根から限定調査する。DexNav090ED992/09140BFCは実menu登録根が未結合のため未知保持。最小型を自然全play/全callee効果/普遍IRQ・heap寿命へ昇格せず、間接参照完全性/退役/owner移管が閉じるまで旧egg15118全域保護・安全0。heap13352はstock保存退避53300を跨がない。単一controller6528と全保存入口heap-ready/同期非再入/0804B85C退避前Freeを別gateで閉じてから全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL/全mode/早期31/species9bitへ接続する。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。**
 
 通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。
 
@@ -79,6 +79,11 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 - `content/modernization/pr16_dex_hof_generation_writer_checkpoint.json`
 - `content/modernization/pr16_dex_hof_dancer_roots_review.json`
 - `content/modernization/pr16_dex_hof_money_reward_roots_review.json`
+- `scripts/pr16_dex_hof_runtime_party.py`
+- `scripts/pr16_dex_hof_callback_party.py`
+- `scripts/pr16_dex_hof_callback_party_task.py`
+- `content/modernization/pr16_dex_hof_runtime_party_review.json`
+- `content/modernization/pr16_dex_hof_callback_party_review.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
