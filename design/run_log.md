@@ -13861,3 +13861,18 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 残95件は別の独立した実consumer根から限定調査する。DexNav090ED992/09140BFCは実menu登録根が未結合のため未知保持。最小型を自然全play/全callee効果/普遍IRQ・heap寿命へ昇格せず、間接参照完全性/退役/owner移管が閉じるまで旧egg15118全域保護・安全0。heap13352はstock保存退避53300を跨がない。単一controller6528と全保存入口heap-ready/同期非再入/0804B85C退避前Freeを別gateで閉じてから全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL/全mode/早期31/species9bitへ接続する。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。
 - Commit: source=b56b00d604b010c1730cf146a830cdbc3930af65; 同branch非force。
 - Network: 同repoActions/既存入力/固定source。公開source・最小address-size-SHA・textのみ、ROM断片/rawhex/ROM/inputsave/runtime/runner/credentials追加公開0。
+
+## 2026-10-06T13:27:28.908930+00:00
+- Timestamp: 2026-10-06T13:27:28.908930+00:00
+- Task: USER-20261006-DEX-HOF-REGISTERED-UI-BATCH / 登録UI consumer最小型batchの終端
+- Version: hof-registered-ui-batch-closeout
+- Status: STOPPED（新登録UI consumer必要最小型、残root/donor/本番controller未完）
+- Summary: run37467101922/job112280782858全14step成功。artifact11415933223全11text原本と固定MDJSON/CP/両ログ全byte/LF/Git blobを照合しpending解除。完了measurement起動条件をmanual-onlyへ戻しrun-nameをregistered-ui-minimum-text-consumersへ訂正。他の全byteは不変。新scopeの失敗measurement0件・失敗closeout0件は独立履歴に全保持。旧state失敗履歴は親原本に保存し新UI実績へ流用しない。
+- Files changed: closeout source/workflow/tests、measurement起動条件/run-nameの2箇所のみ、固定MDJSON、両append-onlyログ。
+- Verify: 原本171tests、新分類3、779分類/95未知。全776親行・25namespace157changes147witnessと残unknown全field、133曲/50assetを保持。新scope後は26namespace/160changes/150witness。新公開guard38tests。最小型を自然play/普遍IRQ/全allocation lifetimeへ昇格しない。新scope累計ROM再構成1、closeout追加ROM/ARM/native/旧suite0。旧独立最終source再レビュー拒否・未実施を保持。
+- Capacity: 全15118byte保護・安全0。間接参照/退役/owner移管未完。global511とsave804の上限1315は単一controller6528に不足。点target仮想空隙を安全容量へ昇格しない。
+- Publication: 全親原本参照保持、新delta339411byte。閉じた非空success set・whole size/SHA/LF・hidden/symlink/未知file拒否。
+- Boundary: 現0641/115owner/52saveowner/804byte/正式ROM/Save101不変。heap13352の保存退避53300跨ぎ禁止。全保存入口heap-ready/同期非再入/0804B85C退避前Free未接続。
+- Next: 次の独立登録根は0件。083DDEE1/083DE02B/083DE6ABは受入候補へ数えず未知保持。固定JP symbol出力または生成crosswalkから、うち1件の両側text symbol/EOS込みextent・現配置の実literal/table cell・APIを独立に結合できるまで、新ROM windowも正式分類も追加しない。残95件は別の独立した実consumer根から限定調査する。DexNav090ED992/09140BFCは実menu登録根が未結合のため未知保持。最小型を自然全play/全callee効果/普遍IRQ・heap寿命へ昇格せず、間接参照完全性/退役/owner移管が閉じるまで旧egg15118全域保護・安全0。heap13352はstock保存退避53300を跨がない。単一controller6528と全保存入口heap-ready/同期非再入/0804B85C退避前Freeを別gateで閉じてから全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL/全mode/早期31/species9bitへ接続する。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。
+- Commit: closeout source=6a39288e9e59851d831e6a9813da4347ba7fa61f; 同branch非force。
+- Network: 同repoActions/text原本のみ。ROM断片/rawhex/ROM/save/runtime/runner/credentials追加公開0。
