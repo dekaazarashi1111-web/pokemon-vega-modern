@@ -10683,3 +10683,18 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 残139件の次batchはSummary 0x081357A7と関連asset候補を実rootから調べる。party action0→Summary constructor根はあるが、finish0813752Cのtask literal08137570→installed09378491の先が未調査。旧08135028への接続を仮定しない。新Summary allocation/setup/page flipを必要最小条件として閉じる。GPU080A006Fの外側root、08118D03の外側caller/data+0x13 writerは未特定で採用しない。既測定party/Mystery/旧suite/nativeは無影響再走しない。未知最大access/間接参照/退役/owner移管未証明なら旧egg15118全域保護/安全0。単一controller6528byte容量確保後、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL/全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/0804B85C退避前Freeへ接続。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。
 - Commit: closeout source=1e38bf562da0058131065107debcf4a55d925c82; 同branch非force。
 - Network: 同repoActions/text原本のみ。ROM断片/rawhex/ROM/save/runtime/runner/credentials追加公開0。
+
+## 2026-10-06T00:05:32.374461+00:00
+- Timestamp: 2026-10-06T00:05:32.374461+00:00
+- Task: USER-20261005-DEX-HOF-SUMMARY-REFERENCES / Summary最小型batch・容量保持
+- Version: hof-summary-references-v1
+- Status: STOPPED（Summary型2件を追加、残root/donor/実controller未完）
+- Summary: 現0641の旧egg874参照にSummary実taskとNature文字列の必要最小型2件をまとめて追加し、737分類/未知137。新250試験、全115actual ownerと全11親deltaを照合。実registered hook・有限条件と最小consumed型だけを受入れ、自然play全到達・普遍IRQ/heap寿命・間接参照/退役安全は別義務。全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。
+- Files changed: 新Summary verifier/chain/capacity/拒否unit/Actions/guide/checkpoint/最小証拠、固定MDJSON、両ログ。
+- Verify: 新unit250、現candidate全SHA・115actual owner・874hit、全11親delta/全116changes/全106witness/旧735と残unknown全field保持、133全song model/50assetと新typed窓の役割交差。旧全ROMscan/native/heap/歴史再生成0。
+- Capacity: 未知参照はアクセス幅未証明なら全donor保護。点target楽観空隙を安全容量へ昇格しない。global余白511とsave内部804は既存owner/subownerを保持した上限で、新leaseなし。Ccontroller既測定単一text6528/align4と比較。間接参照/対象退役完全性も別必須gate。
+- Publication: 619原本と全親chainは参照保持、複製なし。独立measurementと全text size/SHA/LF、closed success artifact、hidden/symlink/未知file拒否。旧独立最終song/battle/Surfレビュー未実施を継承し、拒否操作の別経路再実行なし。
+- Boundary: 現0641/115owner/52saveowner/残804、正式ROM/Save101不変。heap13352を保存退避53300入口へ跨いで保持しない。
+- Next: 残137件を実consumer根から調べ、閉じられる根を次batchへまとめる。GPU080A006Fの外側root、08118D03の外側caller/data+0x13 writerは未特定で採用しない。既測定Summary/party/Mystery/旧suite/nativeは無影響再走しない。未知最大access/間接参照/退役/owner移管未証明なら旧egg15118全域保護/安全0。単一controller6528byte容量確保後、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL/全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/0804B85C退避前Freeへ接続。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。
+- Commit: source=4c9850b713d0bcf3ea39c9ff6997bb11eebecb50; 同branch非force。
+- Network: 同repoActions/既存入力/固定source。公開source・最小address-size-SHA・textのみ、ROM断片/rawhex/ROM/inputsave/runtime/runner/credentials追加公開0。
