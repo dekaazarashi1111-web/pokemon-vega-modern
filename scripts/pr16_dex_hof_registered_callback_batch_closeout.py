@@ -1,0 +1,134 @@
+#!/usr/bin/env python3
+"""有限参照deltaの終端確認。分類・ROM・host・nativeを再実行しない。"""
+import datetime,json,os,sys
+from pathlib import Path
+ROOT=Path(__file__).resolve().parents[1];sys.path[:0]=[str(ROOT/'scripts'),str(ROOT)]
+import pr16_dex_hof_registered_callback_batch_actions as w
+import pr16_story_live_probe as t
+import pr16_dex_publication as publication
+need,identity,write,git=w.need,w.identity,w.write,w.git
+current,bindings=w.prior.current,w.prior.bindings
+BASE='fdca10e4de8fbccac4d079483945fe3f52491185';SOURCE='a3ca8e0cfd361f35b8533dfb53af6761e02e5ede';RUN=37435282906;JOB=112175465998
+ARCHIVE=(11398483863, 37435282906, 1509518, '4bd1c1181cb794814934c3d0eb9d701be86f1805fd08f4fc01844c3979304bf4')
+EXPECTED=dict(unit_tests=240,**w.EXPECTED,retained_sample_witnesses=50)
+WF='.github/workflows/pr16-dex-hof-registered-callback-batch-closeout.yml';SELF='scripts/pr16_dex_hof_registered_callback_batch_closeout.py'
+CLOSEOUT_TESTS=22
+DEVELOPMENT='content/modernization/pr16_dex_hof_registered_callback_batch_closeout_validation.json'
+CODE={w.WF,WF,SELF,'tests/test_pr16_dex_hof_registered_callback_batch_closeout.py',DEVELOPMENT};OUT=ROOT/'.local/pr16-dex-hof-registered-callback-batch-closeout';PUBLIC=ROOT/'public-dex-hof-registered-callback-batch-closeout';ARTIFACT='pr16-dex-hof-registered-callback-batch-closeout-text-only'
+
+
+def validate_development(value):
+ need(type(value)is dict and value.get('status')=='PASS_NEW_REGISTERED_CALLBACK_CLOSEOUT_SOURCE_REVIEW' and
+      value.get('review_scope')=='new_registered_callback_closeout_sources_only' and
+      value.get('old_independent_final_review_retried')is False and
+      type(value.get('open_findings'))is list and value['open_findings']==[],
+      'new terminal source review must have exactly zero unresolved findings')
+ source=value.get('source_bindings')
+ need(type(source)is dict and set(source)==CODE-{DEVELOPMENT} and bool(source),
+      'complete terminal reviewed source set without self-attestation')
+ need(bindings(source)==source,'entire independently reviewed terminal source bytes unchanged')
+ return True
+
+
+def source_guard():
+ import pr16_learnset_runtime_record as g
+ current();publication.contract(ROOT,WF,PUBLIC,ARTIFACT,SELF);g.START=BASE;g.CODE=CODE;g.OWNED=set();g.guard();validate_development(json.loads((ROOT/DEVELOPMENT).read_bytes()))
+
+
+def close():
+ from pr16_learnset_compact_record import publish_resume
+ import pr16_resume
+ current();need(not OUT.exists()and not PUBLIC.exists(),'one terminal reference closeout');OUT.mkdir(parents=True);PUBLIC.mkdir();state=json.loads((ROOT/w.STATE).read_bytes());protected=dict(state['source_bindings'])
+ for path,binding in protected.items():
+  if path!=w.WF:need(identity((ROOT/path).read_bytes())==binding,'every earlier bound original '+path)
+ old=git('show',BASE+':'+w.WF);trigger=('  push:\n    branches: [codex/modernization-followup-20260908]\n    paths: ['+w.WF+']\n').encode()
+ need(identity(old)==protected[w.WF]and old.count(trigger)==1 and(ROOT/w.WF).read_bytes()==old.replace(trigger,b'  workflow_dispatch:\n'),'only completed measurement trigger retired')
+ run=t.api('actions/runs/'+str(RUN));job=t.api('actions/jobs/'+str(JOB))
+ need(run['head_sha']==SOURCE and run['status']=='completed'and run['conclusion']=='success'and run['run_attempt']==1 and job['run_id']==RUN and len(job['steps'])==14 and all(s['conclusion']=='success'for s in job['steps']),'all fourteen new root/capacity measurement steps successful')
+ publication.consumer(t.api('actions/artifacts/'+str(ARCHIVE[0])),w.ARTIFACT,RUN);archive,_=t.archive(ARCHIVE)
+ with archive:
+  names=set(w.PROOF)|{'record.json',*(name for name,_ in w.SNAPSHOTS)}
+  need(set(archive.namelist())==names and len(archive.infolist())==len(names)and all(not i.is_dir()and i.external_attr>>28!=10 for i in archive.infolist()),'complete closed nonsymlink measured text archive')
+  receipt=json.loads(archive.read('record.json'));measure=json.loads(archive.read('measurement.json'))
+  need(receipt['final_head']==BASE and receipt['source_head']==SOURCE and receipt['record_run']==RUN and measure['source_head']==SOURCE and measure['run_id']==RUN,'exact measured source/record lineage')
+  for name,path in w.SNAPSHOTS:
+   raw=archive.read(name);need(raw==(ROOT/path).read_bytes()==git('show',BASE+':'+path)and raw.endswith(b'\n'),'all committed original snapshot bytes and LF')
+   binding=receipt['final_blobs'][path];need(identity(raw)=={k:binding[k]for k in('size','sha256')}and git('rev-parse',BASE+':'+path).decode().strip()==binding['git_blob_sha'],'whole exact original Git blob')
+  for name in w.PROOF:need(archive.read(name)==(ROOT/w.EVIDENCE/name).read_bytes(),'all original reference measurements retained')
+ cp=json.loads((ROOT/w.CP).read_bytes())
+ need(cp['independent_final_source_review_completed']is False and measure['independent_final_source_review_completed']is False,'explicit independently unreviewed final scope remains disclosed')
+ need(cp['new_registered_callback_batch_source_review_completed']is True and measure['new_registered_callback_batch_source_review_completed']is True,'new scoped source review remains explicitly accepted')
+ need(all(cp[k]==v and measure[k]==v for k,v in EXPECTED.items())and cp['candidate']==measure['candidate']==w.data.CANDIDATE,'exact source and candidate counters')
+ need(cp['source_bindings']==measure['source_bindings']and cp['inherited_bindings']==measure['inherited_bindings'],'exact measured source identities')
+ need(cp['delta_identity']==measure['delta_identity']and cp['reference_baseline']==w.delta.BASELINE,'one immutable baseline/delta identity')
+ inherited=w.delta.parent(*[(ROOT/path).read_bytes()for path in w.delta.PARENT_INPUTS]);delta=w.delta.read_measured((ROOT/w.EVIDENCE/'reference-chain.json').read_bytes(),cp['delta_identity'],inherited);full=w.delta.materialize(inherited,delta)
+ need(len(full['hits'])==874 and all(old==new for old,new in zip(inherited['hits'],full['hits'])if old['accepted']or not new['accepted']),'all prior763 and remainingunknowns exactly retained')
+ need(all(full[k]==inherited[k]for k in w.delta.INHERITED_NAMES),'all twenty-one full original delta families and witnesses retained')
+ need(type(cp['current_owner_count'])is int and cp['current_owner_count']==115 and type(cp['current_rom_reconstructions'])is int and cp['current_rom_reconstructions']==1,'exact current owner and reconstruction counters');w.validate_closed_boundaries(cp);w.validate_closed_boundaries(measure)
+ capacity_raw=(ROOT/w.EVIDENCE/'partial-space.json').read_bytes()
+ need(identity(capacity_raw)==cp['capacity_identity']==measure['capacity_identity'] and json.loads(capacity_raw)==w.capacity_report(full,inherited),'whole new bounded-space report preserved')
+ need(state['pending_runs']==[dict(run_id=RUN,tested_head=SOURCE,status='in_progress')],'only exact original measurement pending');state['pending_runs']=[]
+ tests=(ROOT/'.local/pr16-registered-callback-batch-closeout-tests.txt').read_bytes();need(tests.count(b' ... ok\n')==CLOSEOUT_TESTS and b'\nOK\n'in tests,'new complete-publication guards')
+ result=dict(status='PASS_TERMINAL_EXACT_REGISTERED_CALLBACK_BATCH_RECORD',source_head=SOURCE,record_head=BASE,run=RUN,job=JOB,all14_steps_success=True,archive=ARCHIVE,all5_snapshots_full_bytes_and_lf_verified=True,checkpoint=w.CP,checkpoint_identity=identity((ROOT/w.CP).read_bytes()),**EXPECTED,delta_identity=cp['delta_identity'],baseline_identity=w.delta.BASELINE_ID,parent_identity=w.delta.PARENT_ID,earlier_identity=w.delta.EARLIER_ID,capacity_identity=cp['capacity_identity'],old763_accepted_and_all874_identities_retained=True,all_twenty_one_old_delta_families_preserved=True,independent_final_source_review_completed=False,closeout_source=os.environ['GITHUB_SHA'],closeout_run=int(os.environ['GITHUB_RUN_ID']),tests_rerun=0,new_export_guard_tests=CLOSEOUT_TESTS,export_guard_test_log=identity(tests),arm_compiles=0,native_processes=0,current_rom_reconstructions=0,candidate_changed=False,donor_leased=False,formal_save_changed=False)
+ next_goal='次の具体根はcritical判定move-list境界090405A9。旧06c5限定調査で実opcode4 slot0903F460→handler090E4419、literal090E4704→high表09040578/52byte、literal090E4700→always表090405AC/12byte、実caller090E45D8/090E45A8→CheckTableForMove09130F38を結合した。両表は末尾のみFEFE、reader17命令34byteはLDRH/+2/終端/早期returnを独立encoder照合済み。ただし公開IDと現表の18field差（IVYCUDGEL977/1048、STORMTHROW421/521等）は未解決であり、一律offset・公開layoutを現配置やIDの根へ代用しない。次はsource独立ID/完全extent・実caller条件付き合成・現0641測定・reseal反証を閉じる。まだ正式分類0、未知維持。残108を実consumer根から限定調査し、object0..239 image0..8とtrainer-front0..147のmetadata窓では対象包含0だった有限結果を全root不存在へ一般化しない。animation2件とchat1件の必要最小型は受入済みで、自然play全到達や全callee効果成功は未主張。asset08C0ED31はtable101/LZ10 extentまでで正のcommand根未結合、命名083DF94FはEOS後で未知保持。公開general-script配置はeffect184/231で保存実rootと8byteずれるため代用しない。event0818DD5D、Bag数量ID14/15、Fishing timeout、Defog/Dive、Credits padding、GPU外側root、wirelessは別の実caller/非zero writer/consumer結合の独立証拠が出た時だけ再開。旧consumer/guard/suite/nativeは無影響再走しない。未知最大access/間接参照/退役/owner移管未証明なら旧egg15118全域保護/安全0。単一controller6528容量確保後、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL/全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/0804B85C退避前Freeへ接続。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。'
+ # 次の具体根は旧診断の有限調査だけ。現候補受入やsource ID差の解決へ昇格しない。
+ state['bp']['next_step']=next_goal;state['next_action']['goal_ja']=next_goal
+ for path in ('scripts/pr16_dex_hof_runtime_party.py','scripts/pr16_dex_hof_callback_party.py','scripts/pr16_dex_hof_callback_party_task.py','content/modernization/pr16_dex_hof_runtime_party_review.json','content/modernization/pr16_dex_hof_callback_party_review.json'):
+  if path not in state['next_action']['read_paths']:state['next_action']['read_paths'].append(path)
+ state['story_dex_owner']['runtime_integration']['hof_registered_callback_batch']['recording']=result;state['observed_head_checks'].update(record_run=RUN,record_job=JOB,all14_steps_success=True,measurement_checkpoint_fields_verified=True)
+ state['source_bindings'].update(bindings(CODE));publish_resume(state);pr16_resume.validate(ROOT);stamp=datetime.datetime.now(datetime.timezone.utc).isoformat()
+ entry=f'\n## {stamp}\n- Timestamp: {stamp}\n- Task: USER-20261006-DEX-HOF-REGISTERED-CALLBACK-BATCH / animation/chat登録consumer最小型batchの終端\n- Version: hof-registered-callback-batch-closeout\n- Status: STOPPED（新animation2とchat1の登録consumer最小型を受入、既event/fieldguard未知保持、残root/donor/本番controller未完）\n- Summary: run{RUN}/job{JOB}全14step成功。artifact{ARCHIVE[0]}全11text原本と固定MDJSON/CP/両ログ全byte/LF/Git blobを照合しpending解除。完了measurement起動条件のみmanual-onlyへ。\n- Files changed: closeout source/workflow/tests、measurement起動条件、固定MDJSON、両append-onlyログ。\n- Verify: 原本{EXPECTED["unit_tests"]}tests、新分類{EXPECTED["newly_classified"]}、{EXPECTED["classified"]}分類/{EXPECTED["unclassified"]}未知（owner内0）を再利用。全763親行・全二十一段144changes/134witnessと残unknown全field、133曲/50assetを保持。新公開guard{CLOSEOUT_TESTS}tests PASS。新animation/chatの実登録field・同slot callback/BX・独立serializerと完全LDRB消費の必要最小型、既event/field guardは原本保持をsource-only確認。自然play到達/普遍IRQ/全allocation lifetimeは受入に含めない。旧分類/host/ARM/ROM/native再走0。旧独立最終sourceレビュー未実施を保持。\n- Capacity: 未知の最大アクセス範囲が未証明なら全15118byte保護。間接参照/退役/owner移管も未完でsafe0byte。global511＋save804の上限1315は単一controller6528に不足5213。点targetの仮想空隙は安全容量ではなく、今後の追加分類で変わり得る。実配線時の追加容量も未確定。\n- Publication: 全親は参照保持、新delta{cp["delta_identity"]["size"]}byteとpartial-space独立envelope。閉じた非空success set・whole size/SHA/LF・hidden/symlink/未知file拒否。\n- Boundary: 現0641/115owner/52saveowner/804byte/正式ROM/Save101不変。heap13352の保存退避53300跨ぎ禁止。一般CI既知QOL不一致/action_required job0/Stage79cacheは別扱い。\n- Next: {state["next_action"]["goal_ja"]}\n- Commit: closeout source={os.environ["GITHUB_SHA"]}; 同branch非force。\n- Network: 同repoActions/text原本のみ。ROM断片/rawhex/ROM/save/runtime/runner/credentials追加公開0。\n'
+
+
+ for path in w.LOGS:
+  with(ROOT/path).open('a')as out:out.write(entry)
+ write(PUBLIC/'closeout.json',result)
+ for name,path in w.SNAPSHOTS:(PUBLIC/name).write_bytes((ROOT/path).read_bytes())
+ # 最終snapshot receiptを含む保守的な上限をpush前に検査。
+ projected=dict(result,final_head='0'*40,final_blobs={path:dict(**identity((PUBLIC/name).read_bytes()),git_blob_sha='0'*40,trailing_newline=True)for name,path in w.SNAPSHOTS})
+ planned={name:(PUBLIC/name).read_bytes()for name,_ in w.SNAPSHOTS};planned['closeout.json']=(json.dumps(projected,ensure_ascii=False,indent=2)+'\n').encode();w.bounded_files(planned)
+ owned={w.STATE,*w.LOGS}
+ if(ROOT/w.DOC).read_bytes()!=git('show','HEAD:'+w.DOC):owned.add(w.DOC)
+ write(OUT/'owned.json',sorted(owned));git('add','--',*sorted(owned))
+
+
+def guard():
+ import pr16_resume,pr16_learnset_runtime_record as g
+ current();pr16_resume.validate(ROOT);g.START=os.environ['GITHUB_SHA'];g.CODE=set();g.OWNED=set(json.loads((OUT/'owned.json').read_bytes()));g.guard();git('diff','--cached','--check')
+def snapshot():
+ receipt=json.loads((PUBLIC/'closeout.json').read_bytes());receipt['final_head']=git('rev-parse','HEAD').decode().strip();receipt['final_blobs']={}
+ for path in json.loads((OUT/'owned.json').read_bytes()):need(git('show','HEAD:'+path)==(ROOT/path).read_bytes(),'all committed closeout bytes')
+ for name,path in w.SNAPSHOTS:
+  raw=git('show','HEAD:'+path);need(raw==(PUBLIC/name).read_bytes()and raw.endswith(b'\n'),'whole committed snapshot LF');receipt['final_blobs'][path]=dict(**identity(raw),git_blob_sha=git('rev-parse','HEAD:'+path).decode().strip(),trailing_newline=True)
+ for path in w.LOGS:need(git('show','HEAD:'+path).startswith(git('show',BASE+':'+path)),'old logs are exact prefixes')
+ write(PUBLIC/'closeout.json',receipt);print('RESULT=STOPPED TASK=USER-20261006-DEX-HOF-REGISTERED-CALLBACK-BATCH VERIFY=PASS COMMIT='+receipt['final_head'])
+def validate_export(files,head):
+ expected={'closeout.json',*(name for name,_ in w.SNAPSHOTS)}
+ need(set(files)==expected,'complete six-file terminal artifact, never a partial success')
+ w.bounded_files(files);receipt=json.loads(files['closeout.json'])
+ need(receipt.get('final_head')==head and len(head)==40 and receipt.get('status')=='PASS_TERMINAL_EXACT_REGISTERED_CALLBACK_BATCH_RECORD','completed snapshot receipt and current commit')
+ proofs=receipt.get('final_blobs',{});need(set(proofs)=={path for _,path in w.SNAPSHOTS},'all final snapshot receipts')
+ for name,path in w.SNAPSHOTS:
+  raw=files[name];binding=proofs[path]
+  need(binding.get('trailing_newline')is True and raw.endswith(b'\n')and identity(raw)=={k:binding[k]for k in('size','sha256')},'complete committed final snapshot identity')
+  import hashlib
+  need(hashlib.sha1(b'blob '+str(len(raw)).encode()+b'\0'+raw).hexdigest()==binding['git_blob_sha'],'exact final Git blob content')
+ state=json.loads(files['fixed-state.json'])
+ need(type(state)is dict and type(state.get('pending_runs'))is list and state['pending_runs']==[],'terminal fixed state has exact empty pending list')
+ recording=state
+ for key in ('story_dex_owner','runtime_integration','hof_registered_callback_batch','recording'):
+  need(type(recording)is dict and key in recording,'complete committed terminal provenance path');recording=recording[key]
+ payload={key:value for key,value in receipt.items()if key not in('final_head','final_blobs')}
+ need(type(recording)is dict and w.data.canonical(recording)==w.data.canonical(payload),'entire terminal receipt equals independently committed state recording')
+ return True
+
+def export():
+ publication.output(PUBLIC,success='closeout.json',failure=None);files={}
+ for path in PUBLIC.iterdir():
+  need(path.is_file()and not path.is_symlink()and not path.name.startswith('.')and path.name in{'closeout.json',*(n for n,_ in w.SNAPSHOTS)},'closed terminal flat text set');files[path.name]=path.read_bytes()
+ head=git('rev-parse','HEAD').decode().strip();validate_export(files,head)
+ receipt=json.loads(files['closeout.json'])
+ for name,path in w.SNAPSHOTS:
+  need(git('show',head+':'+path)==files[name],'terminal upload snapshot independent committed bytes')
+  need(git('rev-parse',head+':'+path).decode().strip()==receipt['final_blobs'][path]['git_blob_sha'],'terminal upload snapshot independent Git blob')
+if __name__=='__main__':need(len(sys.argv)==2 and sys.argv[1]in('source_guard','close','guard','snapshot','export'),'closed terminal reference modes');globals()[sys.argv[1]]()
