@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-現0641の旧egg874参照に新実consumerの必要最小型3件をまとめて追加し、746分類/未知128。新376試験、全115actual ownerと全14親deltaを照合。Bag実登録とSeagallop API・登録ShockWave command処理contextを根に、有限producer/consumer最小型だけを受入れ、自然play全到達・普遍IRQ/heap寿命・間接参照/退役安全は別義務。全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。
+現0641のBag数量順2件・Fishing timeout・追加field-move説明の計4hitに新producer guardを実装。同4hitは実producerから未到達またはconsumer未接続のため未知維持。別の現map登録event text1件とeffect231登録battle script2件の最小4byteを各分類し、新分類3、749分類/未知125を保持。新351試験、全115actual ownerと全15親deltaを照合。有限producerだけの否定証拠であり全caller/全writerの不在や普遍未到達は主張しない。全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。
 
-**次: 残128件を実consumer根から調べ、閉じられる根を次batchへまとめる。Credits4paddingは日本語serializer/layout未束縛のため未知維持。GPU080A006Fは外側root未束縛、wireless08118D03はconstructor由来zero/選択3frameで迂回し非zero writer未特定なので未知維持。Bag並替え09149270/286やFishing0805D12F等は未結合の実producer根を次に調べる。既測定Bag/ShockWave/Seagallop/Help/RFU/Fame/Credits/Summary/party/Mystery/旧suite/nativeは無影響再走しない。未知最大access/間接参照/退役/owner移管未証明なら旧egg15118全域保護/安全0。単一controller6528byte容量確保後、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL/全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/0804B85C退避前Freeへ接続。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。**
+**次: 残125件を実consumer根から調べる。Bag数量順ID14/15は実生成配列から除外、Fishingは実state6→9でstate7 timeout producerへ進まず、追加Defog/Dive説明は実stock consumerが旧表のまま。各4hitは未知維持し、別の実caller/非zero writerまたはconsumer結合の独立証拠が出た時だけ再開。Credits4paddingの日本語layout、GPU外側root、wireless非zero writerも未証明。次は残未調査の実UI/script/asset登録根を限定調査する。既測定Bag/ShockWave/Seagallop/Help/RFU/Fame/Credits/Summary/party/Mystery/本event/battle最小型/field guard/旧suite/nativeは無影響再走しない。未知最大access/間接参照/退役/owner移管未証明なら旧egg15118全域保護/安全0。単一controller6528byte容量確保後、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL/全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/0804B85C退避前Freeへ接続。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。**
 
 通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `7f85f5c38c0e5c6e7785b5a490c79f40043d8eb9`。
-全743親証拠保持、新root群の最小型測定source。残root/donor/本番配線未受入。
+証拠のsource HEAD: `7a8a9484b6d6aeea1111df5699a19c4d7b0f9aae`。
+全746親証拠保持、新登録event/battle最小型とfield未結合guard測定source。残root/donor/本番配線未受入。
 
 ## 最短の再開手順
 
@@ -25,8 +25,8 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_DEX_HOF_ROOT_BATCH_JA.md`
-- `content/modernization/pr16_dex_hof_root_batch_checkpoint.json`
+- `docs/PR16_DEX_HOF_FIELD_CONSUMER_BATCH_JA.md`
+- `content/modernization/pr16_dex_hof_field_consumer_batch_checkpoint.json`
 - `content/modernization/pr16_dex_hof_typed_recovery_evidence/egg-typed-audit.json`
 - `content/modernization/pr16_dex_hof_reference_evidence/reference-delta.json`
 - `content/modernization/pr16_dex_hof_reference_gaps_evidence/reference-chain.json`
@@ -54,17 +54,16 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 - `content/modernization/pr16_dex_hof_remaining_consumers_checkpoint.json`
 - `content/modernization/pr16_dex_hof_help_batch_evidence/reference-chain.json`
 - `content/modernization/pr16_dex_hof_help_batch_checkpoint.json`
+- `content/modernization/pr16_dex_hof_root_batch_evidence/reference-chain.json`
+- `content/modernization/pr16_dex_hof_root_batch_checkpoint.json`
 - `scripts/pr16_dex_hof_callback_capacity.py`
 - `scripts/pr16_dex_hof_partial_space.py`
 - `content/modernization/pr16_dex_hof_generation_writer_checkpoint.json`
-- `content/modernization/pr16_dex_hof_field_text_roots_review.json`
-- `content/modernization/pr16_dex_hof_extra_roots_review.json`
-- `content/modernization/pr16_dex_hof_engine_roots_review.json`
-- `scripts/pr16_dex_hof_runtime_party.py`
-- `scripts/pr16_dex_hof_callback_party.py`
-- `scripts/pr16_dex_hof_callback_party_task.py`
-- `content/modernization/pr16_dex_hof_runtime_party_review.json`
-- `content/modernization/pr16_dex_hof_callback_party_review.json`
+- `content/modernization/pr16_dex_hof_event_text_roots_review.json`
+- `content/modernization/pr16_dex_hof_battle_script_roots_review.json`
+- `content/modernization/pr16_dex_hof_bag_sort_roots_review.json`
+- `content/modernization/pr16_dex_hof_fishing_roots_review.json`
+- `content/modernization/pr16_dex_hof_field_move_roots_review.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -504,6 +503,7 @@ P08ゲート:
 - 現0641の旧egg874参照に実登録consumerの必要最小型4件をまとめて追加し、741分類/未知133。新348試験、全115actual ownerと全12親deltaを照合。実registered callback・有限条件と最小consumed型だけを受入れ、自然play全到達・普遍IRQ/heap寿命・間接参照/退役安全は別義務。全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。新scopeの必要最小型を自然全到達と分離。普遍runtime寿命保証や自然到達を未完のまま保持。全親changes25/17/33/29/3/2/1/0/3/1/2/2、witness22/16/33/23/3/2/1/0/3/1/2/2、133曲/50assetを保持。未知word size4を参照先のread幅へ誤用しない。無影響heap/native再走禁止。
 - 現0641の旧egg874参照に実Help consumerの必要最小型2件をまとめて追加し、743分類/未知131。新306試験、全115actual ownerと全13親deltaを照合。実Help context/topic producer・有限条件と最小consumed型だけを受入れ、自然play全到達・普遍IRQ/heap寿命・間接参照/退役安全は別義務。全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。新scopeの必要最小型を自然全到達と分離。普遍runtime寿命保証や自然到達を未完のまま保持。全親changes25/17/33/29/3/2/1/0/3/1/2/2/4、witness22/16/33/23/3/2/1/0/3/1/2/2/4、133曲/50assetを保持。未知word size4を参照先のread幅へ誤用しない。無影響heap/native再走禁止。
 - 現0641の旧egg874参照に新実consumerの必要最小型3件をまとめて追加し、746分類/未知128。新376試験、全115actual ownerと全14親deltaを照合。Bag実登録とSeagallop API・登録ShockWave command処理contextを根に、有限producer/consumer最小型だけを受入れ、自然play全到達・普遍IRQ/heap寿命・間接参照/退役安全は別義務。全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。新scopeの必要最小型を自然全到達と分離。普遍runtime寿命保証や自然到達を未完のまま保持。全親changes25/17/33/29/3/2/1/0/3/1/2/2/4/2、witness22/16/33/23/3/2/1/0/3/1/2/2/4/2、133曲/50assetを保持。未知word size4を参照先のread幅へ誤用しない。無影響heap/native再走禁止。
+- 現0641のBag数量順2件・Fishing timeout・追加field-move説明の計4hitに新producer guardを実装。同4hitは実producerから未到達またはconsumer未接続のため未知維持。別の現map登録event text1件とeffect231登録battle script2件の最小4byteを各分類し、新分類3、749分類/未知125を保持。新351試験、全115actual ownerと全15親deltaを照合。有限producerだけの否定証拠であり全caller/全writerの不在や普遍未到達は主張しない。全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。新scopeの有限producer guardを全caller/全writer未到達と分離。普遍runtime寿命保証や自然到達を未完のまま保持。全親changes25/17/33/29/3/2/1/0/3/1/2/2/4/2/3、witness22/16/33/23/3/2/1/0/3/1/2/2/4/2/3、133曲/50assetを保持。未知word size4を参照先のread幅へ誤用しない。無影響heap/native再走禁止。
 
 ## 次セッションへ残す更新手順
 
@@ -533,6 +533,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-現0641の旧egg874参照に新実consumerの必要最小型3件をまとめて追加し、746分類/未知128。新376試験、全115actual ownerと全14親deltaを照合。Bag実登録とSeagallop API・登録ShockWave command処理contextを根に、有限producer/consumer最小型だけを受入れ、自然play全到達・普遍IRQ/heap寿命・間接参照/退役安全は別義務。全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。
+現0641のBag数量順2件・Fishing timeout・追加field-move説明の計4hitに新producer guardを実装。同4hitは実producerから未到達またはconsumer未接続のため未知維持。別の現map登録event text1件とeffect231登録battle script2件の最小4byteを各分類し、新分類3、749分類/未知125を保持。新351試験、全115actual ownerと全15親deltaを照合。有限producerだけの否定証拠であり全caller/全writerの不在や普遍未到達は主張しない。全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

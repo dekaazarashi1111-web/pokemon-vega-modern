@@ -13546,3 +13546,18 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 残128件を実consumer根から調べ、閉じられる根を次batchへまとめる。Credits4paddingは日本語serializer/layout未束縛のため未知維持。GPU080A006Fは外側root未束縛、wireless08118D03はconstructor由来zero/選択3frameで迂回し非zero writer未特定なので未知維持。Bag並替え09149270/286やFishing0805D12F等は未結合の実producer根を次に調べる。既測定Bag/ShockWave/Seagallop/Help/RFU/Fame/Credits/Summary/party/Mystery/旧suite/nativeは無影響再走しない。未知最大access/間接参照/退役/owner移管未証明なら旧egg15118全域保護/安全0。単一controller6528byte容量確保後、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL/全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/0804B85C退避前Freeへ接続。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。
 - Commit: closeout source=53f4e4db5223febbf28cec3218c85d10c3777659; 同branch非force。
 - Network: 同repoActions/text原本のみ。ROM断片/rawhex/ROM/save/runtime/runner/credentials追加公開0。
+
+## 2026-10-06T03:19:59.576173+00:00
+- Timestamp: 2026-10-06T03:19:59.576173+00:00
+- Task: USER-20261006-DEX-HOF-FIELD-CONSUMER-BATCH / 登録field consumer最小型・未結合guard・容量保持
+- Version: hof-field-consumer-batch-v1
+- Status: STOPPED（新3type/4hit誤採用防止guard、残root/donor/実controller未完）
+- Summary: 現0641のBag数量順2件・Fishing timeout・追加field-move説明の計4hitに新producer guardを実装。同4hitは実producerから未到達またはconsumer未接続のため未知維持。別の現map登録event text1件とeffect231登録battle script2件の最小4byteを各分類し、新分類3、749分類/未知125を保持。新351試験、全115actual ownerと全15親deltaを照合。有限producerだけの否定証拠であり全caller/全writerの不在や普遍未到達は主張しない。全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。
+- Files changed: 新consumer verifier/chain/capacity/拒否unit/Actions/guide/checkpoint/最小証拠、固定MDJSON、両ログ。
+- Verify: 新unit351、現candidate全SHA・115actual owner・874hit、全15親delta/全127changes/全117witness/旧746と残unknown全field保持、133全song model/50assetと新typed窓の役割交差。旧全ROMscan/native/heap/歴史再生成0。
+- Capacity: 未知参照はアクセス幅未証明なら全donor保護。点target楽観空隙を安全容量へ昇格しない。global余白511とsave内部804は既存owner/subownerを保持した上限で、新leaseなし。Ccontroller既測定単一text6528/align4と比較。間接参照/対象退役完全性も別必須gate。
+- Publication: 619原本と全親chainは参照保持、複製なし。独立measurementと全text size/SHA/LF、closed success artifact、hidden/symlink/未知file拒否。旧独立最終song/battle/Surfレビュー未実施を継承し、拒否操作の別経路再実行なし。
+- Boundary: 現0641/115owner/52saveowner/残804、正式ROM/Save101不変。heap13352を保存退避53300入口へ跨いで保持しない。
+- Next: 残125件を実consumer根から調べる。Bag数量順ID14/15は実生成配列から除外、Fishingは実state6→9でstate7 timeout producerへ進まず、追加Defog/Dive説明は実stock consumerが旧表のまま。各4hitは未知維持し、別の実caller/非zero writerまたはconsumer結合の独立証拠が出た時だけ再開。Credits4paddingの日本語layout、GPU外側root、wireless非zero writerも未証明。次は残未調査の実UI/script/asset登録根を限定調査する。既測定Bag/ShockWave/Seagallop/Help/RFU/Fame/Credits/Summary/party/Mystery/本event/battle最小型/field guard/旧suite/nativeは無影響再走しない。未知最大access/間接参照/退役/owner移管未証明なら旧egg15118全域保護/安全0。単一controller6528byte容量確保後、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL/全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/0804B85C退避前Freeへ接続。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。
+- Commit: source=7a8a9484b6d6aeea1111df5699a19c4d7b0f9aae; 同branch非force。
+- Network: 同repoActions/既存入力/固定source。公開source・最小address-size-SHA・textのみ、ROM断片/rawhex/ROM/inputsave/runtime/runner/credentials追加公開0。
