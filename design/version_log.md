@@ -11013,3 +11013,18 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 次の具体根はcritical判定move-list境界090405A9。旧06c5限定調査で実opcode4 slot0903F460→handler090E4419、literal090E4704→high表09040578/52byte、literal090E4700→always表090405AC/12byte、実caller090E45D8/090E45A8→CheckTableForMove09130F38を結合した。両表は末尾のみFEFE、reader17命令34byteはLDRH/+2/終端/早期returnを独立encoder照合済み。ただし公開IDと現表の18field差（IVYCUDGEL977/1048、STORMTHROW421/521等）は未解決であり、一律offset・公開layoutを現配置やIDの根へ代用しない。次はsource独立ID/完全extent・実caller条件付き合成・現0641測定・reseal反証を閉じる。まだ正式分類0、未知維持。残108を実consumer根から限定調査し、object0..239 image0..8とtrainer-front0..147のmetadata窓では対象包含0だった有限結果を全root不存在へ一般化しない。animation2件とchat1件の必要最小型は受入済みで、自然play全到達や全callee効果成功は未主張。asset08C0ED31はtable101/LZ10 extentまでで正のcommand根未結合、命名083DF94FはEOS後で未知保持。公開general-script配置はeffect184/231で保存実rootと8byteずれるため代用しない。event0818DD5D、Bag数量ID14/15、Fishing timeout、Defog/Dive、Credits padding、GPU外側root、wirelessは別の実caller/非zero writer/consumer結合の独立証拠が出た時だけ再開。旧consumer/guard/suite/nativeは無影響再走しない。未知最大access/間接参照/退役/owner移管未証明なら旧egg15118全域保護/安全0。単一controller6528容量確保後、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL/全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/0804B85C退避前Freeへ接続。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。
 - Commit: closeout source=5bac33b26102897af5c5230143882a2e85c9b8cc; 同branch非force。
 - Network: 同repoActions/text原本のみ。ROM断片/rawhex/ROM/save/runtime/runner/credentials追加公開0。
+
+## 2026-10-06T09:14:15.030461+00:00
+- Timestamp: 2026-10-06T09:14:15.030461+00:00
+- Task: USER-20261006-DEX-HOF-REGISTERED-TABLE-BATCH / critical表と背景serializer最小型・容量保持
+- Version: hof-registered-table-batch-v1
+- Status: STOPPED（新critical表1と背景4の登録consumer最小型、既event1hitと旧field4hit未知保持、残root/donor/実controller未完）
+- Summary: 現0641の実critical command表とanimation背景の登録serializerを条件付きconsumerへ結合し、各4byteの計5件を新分類。771分類/未知103。新275試験、全115actual ownerと全22親deltaを照合。既event placeholderとfield4hitの未結合guard結果は再測定せず未知保持。最小型と自然play全到達・普遍IRQ/heap寿命・間接参照/退役/owner移管を分離し、全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。
+- Files changed: 新consumer verifier/chain/capacity/拒否unit/Actions/guide/checkpoint/最小証拠、固定MDJSON、両ログ。
+- Verify: 新unit275、現candidate全SHA・115actual owner・874hit、全22親delta/全147changes/全137witness/旧766と残unknown全field保持、133全song model/50assetと新typed窓の役割交差。旧全ROMscan/native/heap/歴史再生成0。
+- Capacity: 未知参照はアクセス幅未証明なら全donor保護。点target楽観空隙を安全容量へ昇格しない。global余白511とsave内部804は既存owner/subownerを保持した上限で、新leaseなし。Ccontroller既測定単一text6528/align4と比較。間接参照/対象退役完全性も別必須gate。
+- Publication: 619原本と全親chainは参照保持、複製なし。独立measurementと全text size/SHA/LF、closed success artifact、hidden/symlink/未知file拒否。旧独立最終song/battle/Surfレビュー未実施を継承し、拒否操作の別経路再実行なし。
+- Boundary: 現0641/115owner/52saveowner/残804、正式ROM/Save101不変。heap13352を保存退避53300入口へ跨いで保持しない。
+- Next: 残103件を別の実consumer根から限定調査する。critical表境界090405A9は公開固定manifestとheader生成aliasから30member IDを独立解決し18差を保存、実opcode4 callerの有限条件と完全halfword readerへ結合。背景4件は実登録animation→BG ID producer→descriptor/loader/LZ consumerと公開PNG serializerを結合した各4byteの最小型だけ受入。自然play全到達・全callee効果・全asset効果は別義務。asset08C0ED31は正のcommand根未結合、命名083DF94FはEOS後で未知維持。event0818DD5D、Bag数量ID14/15、Fishing timeout、Defog/Dive、Credits padding、GPU外側root、wirelessは別の実caller/非zero writer/consumer独立証拠が出た時だけ再開。旧consumer/guard/suite/nativeは無影響再走しない。未知最大access/間接参照/退役/owner移管未証明なら旧egg15118全域保護/安全0。単一controller6528容量確保後、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL/全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/0804B85C退避前Freeへ接続。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。
+- Commit: source=772d7b045736aded02a2a6c11617b2f09f207bf5; 同branch非force。
+- Network: 同repoActions/既存入力/固定source。公開source・最小address-size-SHA・textのみ、ROM断片/rawhex/ROM/inputsave/runtime/runner/credentials追加公開0。

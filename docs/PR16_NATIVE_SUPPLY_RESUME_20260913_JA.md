@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-現0641の実animation登録command/callbackとchat keyboard constructor/stateを条件付きconsumerへ結合し、Thumb各6byteとtext4byteの計3件を新分類。766分類/未知108。新240試験、全115actual ownerと全21親deltaを照合。既event placeholderとfield4hitの未結合guard結果は再測定せず未知保持。最小型と自然play全到達・普遍IRQ/heap寿命・間接参照/退役/owner移管を分離し、全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。
+現0641の実critical command表とanimation背景の登録serializerを条件付きconsumerへ結合し、各4byteの計5件を新分類。771分類/未知103。新275試験、全115actual ownerと全22親deltaを照合。既event placeholderとfield4hitの未結合guard結果は再測定せず未知保持。最小型と自然play全到達・普遍IRQ/heap寿命・間接参照/退役/owner移管を分離し、全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。
 
-**次: 次の具体根はcritical判定move-list境界090405A9。旧06c5限定調査で実opcode4 slot0903F460→handler090E4419、literal090E4704→high表09040578/52byte、literal090E4700→always表090405AC/12byte、実caller090E45D8/090E45A8→CheckTableForMove09130F38を結合した。両表は末尾のみFEFE、reader17命令34byteはLDRH/+2/終端/早期returnを独立encoder照合済み。ただし公開IDと現表の18field差（IVYCUDGEL977/1048、STORMTHROW421/521等）は未解決であり、一律offset・公開layoutを現配置やIDの根へ代用しない。次はsource独立ID/完全extent・実caller条件付き合成・現0641測定・reseal反証を閉じる。まだ正式分類0、未知維持。残108を実consumer根から限定調査し、object0..239 image0..8とtrainer-front0..147のmetadata窓では対象包含0だった有限結果を全root不存在へ一般化しない。animation2件とchat1件の必要最小型は受入済みで、自然play全到達や全callee効果成功は未主張。asset08C0ED31はtable101/LZ10 extentまでで正のcommand根未結合、命名083DF94FはEOS後で未知保持。公開general-script配置はeffect184/231で保存実rootと8byteずれるため代用しない。event0818DD5D、Bag数量ID14/15、Fishing timeout、Defog/Dive、Credits padding、GPU外側root、wirelessは別の実caller/非zero writer/consumer結合の独立証拠が出た時だけ再開。旧consumer/guard/suite/nativeは無影響再走しない。未知最大access/間接参照/退役/owner移管未証明なら旧egg15118全域保護/安全0。単一controller6528容量確保後、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL/全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/0804B85C退避前Freeへ接続。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。**
+**次: 残103件を別の実consumer根から限定調査する。critical表境界090405A9は公開固定manifestとheader生成aliasから30member IDを独立解決し18差を保存、実opcode4 callerの有限条件と完全halfword readerへ結合。背景4件は実登録animation→BG ID producer→descriptor/loader/LZ consumerと公開PNG serializerを結合した各4byteの最小型だけ受入。自然play全到達・全callee効果・全asset効果は別義務。asset08C0ED31は正のcommand根未結合、命名083DF94FはEOS後で未知維持。event0818DD5D、Bag数量ID14/15、Fishing timeout、Defog/Dive、Credits padding、GPU外側root、wirelessは別の実caller/非zero writer/consumer独立証拠が出た時だけ再開。旧consumer/guard/suite/nativeは無影響再走しない。未知最大access/間接参照/退役/owner移管未証明なら旧egg15118全域保護/安全0。単一controller6528容量確保後、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL/全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/0804B85C退避前Freeへ接続。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。**
 
 通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `a3ca8e0cfd361f35b8533dfb53af6761e02e5ede`。
-全763親証拠保持、新animation/chat登録consumer最小型測定source。残root/donor/本番配線未受入。
+証拠のsource HEAD: `772d7b045736aded02a2a6c11617b2f09f207bf5`。
+全766親証拠保持、新critical表/背景登録consumer最小型測定source。残root/donor/本番配線未受入。
 
 ## 最短の再開手順
 
@@ -25,8 +25,8 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_DEX_HOF_REGISTERED_CALLBACK_BATCH_JA.md`
-- `content/modernization/pr16_dex_hof_registered_callback_batch_checkpoint.json`
+- `docs/PR16_DEX_HOF_REGISTERED_TABLE_BATCH_JA.md`
+- `content/modernization/pr16_dex_hof_registered_table_batch_checkpoint.json`
 - `content/modernization/pr16_dex_hof_typed_recovery_evidence/egg-typed-audit.json`
 - `content/modernization/pr16_dex_hof_reference_evidence/reference-delta.json`
 - `content/modernization/pr16_dex_hof_reference_gaps_evidence/reference-chain.json`
@@ -68,16 +68,13 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 - `content/modernization/pr16_dex_hof_registered_text_batch_checkpoint.json`
 - `content/modernization/pr16_dex_hof_registered_boundary_batch_evidence/reference-chain.json`
 - `content/modernization/pr16_dex_hof_registered_boundary_batch_checkpoint.json`
+- `content/modernization/pr16_dex_hof_registered_callback_batch_evidence/reference-chain.json`
+- `content/modernization/pr16_dex_hof_registered_callback_batch_checkpoint.json`
 - `scripts/pr16_dex_hof_callback_capacity.py`
 - `scripts/pr16_dex_hof_partial_space.py`
 - `content/modernization/pr16_dex_hof_generation_writer_checkpoint.json`
-- `content/modernization/pr16_dex_hof_animation_registered_roots_review.json`
-- `content/modernization/pr16_dex_hof_chat_keyboard_roots_review.json`
-- `scripts/pr16_dex_hof_runtime_party.py`
-- `scripts/pr16_dex_hof_callback_party.py`
-- `scripts/pr16_dex_hof_callback_party_task.py`
-- `content/modernization/pr16_dex_hof_runtime_party_review.json`
-- `content/modernization/pr16_dex_hof_callback_party_review.json`
+- `content/modernization/pr16_dex_hof_critical_move_list_roots_review.json`
+- `content/modernization/pr16_dex_hof_animation_background_roots_review.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -524,6 +521,7 @@ P08ゲート:
 - 現0641の条件付き登録text APIから実table pointer/完全serializer境界とconsumerを結合し、各4byteの計5件を新分類。761分類/未知113。新241試験、全115actual ownerと全19親deltaを照合。既event placeholderとfield4hitの未結合guard結果は再測定せず未知保持。最小型と自然play全到達・普遍IRQ/heap寿命・間接参照/退役/owner移管を分離し、全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。新scopeの必要最小型と自然play全到達を分離。既guardの単一producer不達を全caller/全writer不達へ一般化しない。普遍runtime寿命保証や自然到達を未完のまま保持。全親changes25/17/33/29/3/2/1/0/3/1/2/2/4/2/3/3/2/2/3、witness22/16/33/23/3/2/1/0/3/1/2/2/4/2/3/3/2/2/3、133曲/50assetを保持。未知word size4を参照先のread幅へ誤用しない。無影響heap/native再走禁止。
 - 現0641の条件付きstock text APIから実table/literal pointerと完全serializer境界とconsumerを結合し、各4byteの計2件を新分類。763分類/未知111。新203試験、全115actual ownerと全20親deltaを照合。既event placeholderとfield4hitの未結合guard結果は再測定せず未知保持。最小型と自然play全到達・普遍IRQ/heap寿命・間接参照/退役/owner移管を分離し、全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。新scopeの必要最小型と自然play全到達を分離。既guardの単一producer不達を全caller/全writer不達へ一般化しない。普遍runtime寿命保証や自然到達を未完のまま保持。全親changes25/17/33/29/3/2/1/0/3/1/2/2/4/2/3/3/2/2/3/5、witness22/16/33/23/3/2/1/0/3/1/2/2/4/2/3/3/2/2/3/5、133曲/50assetを保持。未知word size4を参照先のread幅へ誤用しない。無影響heap/native再走禁止。
 - 現0641の実animation登録command/callbackとchat keyboard constructor/stateを条件付きconsumerへ結合し、Thumb各6byteとtext4byteの計3件を新分類。766分類/未知108。新240試験、全115actual ownerと全21親deltaを照合。既event placeholderとfield4hitの未結合guard結果は再測定せず未知保持。最小型と自然play全到達・普遍IRQ/heap寿命・間接参照/退役/owner移管を分離し、全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。新scopeの必要最小型と自然play全到達を分離。既guardの単一producer不達を全caller/全writer不達へ一般化しない。普遍runtime寿命保証や自然到達を未完のまま保持。全親changes25/17/33/29/3/2/1/0/3/1/2/2/4/2/3/3/2/2/3/5/2、witness22/16/33/23/3/2/1/0/3/1/2/2/4/2/3/3/2/2/3/5/2、133曲/50assetを保持。未知word size4を参照先のread幅へ誤用しない。無影響heap/native再走禁止。
+- 現0641の実critical command表とanimation背景の登録serializerを条件付きconsumerへ結合し、各4byteの計5件を新分類。771分類/未知103。新275試験、全115actual ownerと全22親deltaを照合。既event placeholderとfield4hitの未結合guard結果は再測定せず未知保持。最小型と自然play全到達・普遍IRQ/heap寿命・間接参照/退役/owner移管を分離し、全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。新scopeの必要最小型と自然play全到達を分離。既guardの単一producer不達を全caller/全writer不達へ一般化しない。普遍runtime寿命保証や自然到達を未完のまま保持。全親changes25/17/33/29/3/2/1/0/3/1/2/2/4/2/3/3/2/2/3/5/2/3、witness22/16/33/23/3/2/1/0/3/1/2/2/4/2/3/3/2/2/3/5/2/3、133曲/50assetを保持。未知word size4を参照先のread幅へ誤用しない。無影響heap/native再走禁止。
 
 ## 次セッションへ残す更新手順
 
@@ -553,6 +551,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-現0641の実animation登録command/callbackとchat keyboard constructor/stateを条件付きconsumerへ結合し、Thumb各6byteとtext4byteの計3件を新分類。766分類/未知108。新240試験、全115actual ownerと全21親deltaを照合。既event placeholderとfield4hitの未結合guard結果は再測定せず未知保持。最小型と自然play全到達・普遍IRQ/heap寿命・間接参照/退役/owner移管を分離し、全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。
+現0641の実critical command表とanimation背景の登録serializerを条件付きconsumerへ結合し、各4byteの計5件を新分類。771分類/未知103。新275試験、全115actual ownerと全22親deltaを照合。既event placeholderとfield4hitの未結合guard結果は再測定せず未知保持。最小型と自然play全到達・普遍IRQ/heap寿命・間接参照/退役/owner移管を分離し、全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
