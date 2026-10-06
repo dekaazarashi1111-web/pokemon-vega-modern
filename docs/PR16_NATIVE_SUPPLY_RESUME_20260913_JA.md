@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-実special072/登録opcode49からDancerの既存state有限contextと実partner/Target HP二枝、登録opcode5D完全caller/hookからMultiMoneyCalcの最小Thumbを結合。自然初期state producer・全play/全callee効果は別義務。 新2件・最小計12byte。776分類/未知98。全774親・47入力・24namespace155changes145witnessと133曲50assetを保持。新scopeの最小型と自然全play/IRQ/heap/間接完全性/退役/owner移管を分離し、egg15118保護・安全0・正式ROM/Save101不変。
+実special057のtask/main登録・state0→7からCurrent/Max15byte、実ChooseMove公開hookとQoL/BattleUI wrapperからL/Z/Max選択枝の57byte/EOSを読み、3つの文字境界を最小各4byteへ結合。必要future read/write資源epochと非live消去を限定合成し、自然全play・全callee効果とは分離。 新3件・最小計12byte。779分類/未知95。全776親・49入力・25namespace157changes147witnessと133曲50assetを保持。新scopeの最小型と自然全play/IRQ/heap/間接完全性/退役/owner移管を分離し、egg15118保護・安全0・正式ROM/Save101不変。
 
-**次: 残98の次scope候補は0914100Dのspecial057→Frontier task/main callback→CurrentStreak/MaxStreak、および09143266/09143415のChooseMove公開wrapper→effect dispatch→文字境界。公開固定sourceと旧06c5の有限静的観測だけで、現0641の正式分類追加0。実consumer全読取・future-live/非live消去・同epochの合成と変異/reseal反証は未完。受入済みDancer/Money2件とは別scopeで新根から限定証明し、保存境界を含む本番接続条件を省略しない。残98件を別の独立した実consumer根から限定調査する。DexNav090ED992/09140BFCは実menu登録根が未結合のため未知保持。最小型を自然全play/全callee効果/普遍IRQ・heap寿命へ昇格せず、間接参照完全性/退役/owner移管が閉じるまで旧egg15118全域保護・安全0。heap13352はstock保存退避53300を跨がない。単一controller6528と全保存入口heap-ready/同期非再入/0804B85C退避前Freeを別gateで閉じてから全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL/全mode/早期31/species9bitへ接続する。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。**
+**次: 残95件は別の独立した実consumer根から限定調査する。DexNav090ED992/09140BFCは実menu登録根が未結合のため未知保持。最小型を自然全play/全callee効果/普遍IRQ・heap寿命へ昇格せず、間接参照完全性/退役/owner移管が閉じるまで旧egg15118全域保護・安全0。heap13352はstock保存退避53300を跨がない。単一controller6528と全保存入口heap-ready/同期非再入/0804B85C退避前Freeを別gateで閉じてから全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL/全mode/早期31/species9bitへ接続する。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。**
 
 通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `c9c961bfeee686066c625b5d20b928cfb0df5749`。
-全774親証拠保持、新登録state consumer最小型測定source。残root/donor/本番配線未受入。
+証拠のsource HEAD: `b56b00d604b010c1730cf146a830cdbc3930af65`。
+全776親証拠保持、新登録UI consumer最小型測定source。残root/donor/本番配線未受入。
 
 ## 最短の再開手順
 
@@ -25,8 +25,8 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_DEX_HOF_REGISTERED_STATE_BATCH_JA.md`
-- `content/modernization/pr16_dex_hof_registered_state_batch_checkpoint.json`
+- `docs/PR16_DEX_HOF_REGISTERED_UI_BATCH_JA.md`
+- `content/modernization/pr16_dex_hof_registered_ui_batch_checkpoint.json`
 - `content/modernization/pr16_dex_hof_typed_recovery_evidence/egg-typed-audit.json`
 - `content/modernization/pr16_dex_hof_reference_evidence/reference-delta.json`
 - `content/modernization/pr16_dex_hof_reference_gaps_evidence/reference-chain.json`
@@ -74,16 +74,13 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 - `content/modernization/pr16_dex_hof_registered_table_batch_checkpoint.json`
 - `content/modernization/pr16_dex_hof_registered_item_batch_evidence/reference-chain.json`
 - `content/modernization/pr16_dex_hof_registered_item_batch_checkpoint.json`
+- `content/modernization/pr16_dex_hof_registered_state_batch_evidence/reference-chain.json`
+- `content/modernization/pr16_dex_hof_registered_state_batch_checkpoint.json`
 - `scripts/pr16_dex_hof_callback_capacity.py`
 - `scripts/pr16_dex_hof_partial_space.py`
 - `content/modernization/pr16_dex_hof_generation_writer_checkpoint.json`
-- `content/modernization/pr16_dex_hof_dancer_roots_review.json`
-- `content/modernization/pr16_dex_hof_money_reward_roots_review.json`
-- `scripts/pr16_dex_hof_runtime_party.py`
-- `scripts/pr16_dex_hof_callback_party.py`
-- `scripts/pr16_dex_hof_callback_party_task.py`
-- `content/modernization/pr16_dex_hof_runtime_party_review.json`
-- `content/modernization/pr16_dex_hof_callback_party_review.json`
+- `content/modernization/pr16_dex_hof_frontier_records_roots_review.json`
+- `content/modernization/pr16_dex_hof_choosemove_text_roots_review.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -533,6 +530,7 @@ P08ゲート:
 - 現0641の実critical command表とanimation背景の登録serializerを条件付きconsumerへ結合し、各4byteの計5件を新分類。771分類/未知103。新275試験、全115actual ownerと全22親deltaを照合。既event placeholderとfield4hitの未結合guard結果は再測定せず未知保持。最小型と自然play全到達・普遍IRQ/heap寿命・間接参照/退役/owner移管を分離し、全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。新scopeの必要最小型と自然play全到達を分離。既guardの単一producer不達を全caller/全writer不達へ一般化しない。普遍runtime寿命保証や自然到達を未完のまま保持。全親changes25/17/33/29/3/2/1/0/3/1/2/2/4/2/3/3/2/2/3/5/2/3、witness22/16/33/23/3/2/1/0/3/1/2/2/4/2/3/3/2/2/3/5/2/3、133曲/50assetを保持。未知word size4を参照先のread幅へ誤用しない。無影響heap/native再走禁止。
 - 現0641の実登録callerから吸収特性・moveend抑制wrapper・Toxic Orbを有限consumerへ結合し、最小各6byte、計18byteの3件を新分類。774分類/未知100。新308試験、全115actual ownerと全23親deltaを照合。既event placeholderとfield4hitの未結合guard結果は再測定せず未知保持。最小型と自然play全到達・普遍IRQ/heap寿命・間接参照/退役/owner移管を分離し、全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。新scopeの必要最小型と自然play全到達を分離。既guardの単一producer不達を全caller/全writer不達へ一般化しない。普遍runtime寿命保証や自然到達を未完のまま保持。全親changes25/17/33/29/3/2/1/0/3/1/2/2/4/2/3/3/2/2/3/5/2/3/5、witness22/16/33/23/3/2/1/0/3/1/2/2/4/2/3/3/2/2/3/5/2/3/5、133曲/50assetを保持。未知word size4を参照先のread幅へ誤用しない。無影響heap/native再走禁止。
 - 実special072/登録opcode49からDancerの既存state有限contextと実partner/Target HP二枝、登録opcode5D完全caller/hookからMultiMoneyCalcの最小Thumbを結合。自然初期state producer・全play/全callee効果は別義務。 新2件・最小計12byte。776分類/未知98。全774親・47入力・24namespace155changes145witnessと133曲50assetを保持。新scopeの最小型と自然全play/IRQ/heap/間接完全性/退役/owner移管を分離し、egg15118保護・安全0・正式ROM/Save101不変。新scopeの必要最小型と自然play全到達を分離。既guardの単一producer不達を全caller/全writer不達へ一般化しない。普遍runtime寿命保証や自然到達を未完のまま保持。全親changes25/17/33/29/3/2/1/0/3/1/2/2/4/2/3/3/2/2/3/5/2/3/5/3、witness22/16/33/23/3/2/1/0/3/1/2/2/4/2/3/3/2/2/3/5/2/3/5/3、133曲/50assetを保持。未知word size4を参照先のread幅へ誤用しない。無影響heap/native再走禁止。
+- 実special057のtask/main登録・state0→7からCurrent/Max15byte、実ChooseMove公開hookとQoL/BattleUI wrapperからL/Z/Max選択枝の57byte/EOSを読み、3つの文字境界を最小各4byteへ結合。必要future read/write資源epochと非live消去を限定合成し、自然全play・全callee効果とは分離。 新3件・最小計12byte。779分類/未知95。全776親・49入力・25namespace157changes147witnessと133曲50assetを保持。新scopeの最小型と自然全play/IRQ/heap/間接完全性/退役/owner移管を分離し、egg15118保護・安全0・正式ROM/Save101不変。新scopeの必要最小型と自然play全到達を分離。既guardの単一producer不達を全caller/全writer不達へ一般化しない。普遍runtime寿命保証や自然到達を未完のまま保持。全親changes25/17/33/29/3/2/1/0/3/1/2/2/4/2/3/3/2/2/3/5/2/3/5/3/2、witness22/16/33/23/3/2/1/0/3/1/2/2/4/2/3/3/2/2/3/5/2/3/5/3/2、133曲/50assetを保持。未知word size4を参照先のread幅へ誤用しない。無影響heap/native再走禁止。
 
 ## 次セッションへ残す更新手順
 
@@ -562,6 +560,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-実special072/登録opcode49からDancerの既存state有限contextと実partner/Target HP二枝、登録opcode5D完全caller/hookからMultiMoneyCalcの最小Thumbを結合。自然初期state producer・全play/全callee効果は別義務。 新2件・最小計12byte。776分類/未知98。全774親・47入力・24namespace155changes145witnessと133曲50assetを保持。新scopeの最小型と自然全play/IRQ/heap/間接完全性/退役/owner移管を分離し、egg15118保護・安全0・正式ROM/Save101不変。
+実special057のtask/main登録・state0→7からCurrent/Max15byte、実ChooseMove公開hookとQoL/BattleUI wrapperからL/Z/Max選択枝の57byte/EOSを読み、3つの文字境界を最小各4byteへ結合。必要future read/write資源epochと非live消去を限定合成し、自然全play・全callee効果とは分離。 新3件・最小計12byte。779分類/未知95。全776親・49入力・25namespace157changes147witnessと133曲50assetを保持。新scopeの最小型と自然全play/IRQ/heap/間接完全性/退役/owner移管を分離し、egg15118保護・安全0・正式ROM/Save101不変。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
