@@ -1,0 +1,27 @@
+# Flashのbadge拒否文：現候補1件受入
+
+source608c7e2486870cb92523abeeba65646c6d29c4ad、run37697774244／job113053633223の初回全10step成功を確認した。新117試験PASS、同0641候補を1回再構成し、全115owner／保存874hitを照合。旧case、native、全ROM探索の再実行は0。
+
+正式最小型は779→780分類、95→94未知。新しい範囲は083DDEE1の4byteだけで、左badge拒否文のFC09／EOS3byteと右既受入max3文の先頭glyph1byteである。現ゲームの自然到達、実画面、普遍的heap／IRQ寿命、安全donor容量を受入れたものではない。
+
+## 実際に結んだ経路
+
+StartMenu登録slot→constructor→state20 CreateTask→RunTasks→現action hook→先頭Flashのproducerが[0,18,3,2]を生成→count4のwrap入力081105B8→Down1＋A→実cell08419E3C→CursorCB_FieldMove08124F08→登録fieldMoveFunc非NULL／link非active／UnionRoom外／badge0x820未取得→実text literal083DDEC6＋keepOpen1→window6の現printer／font2→全30byteのglyph・改行・FC09待機operand・EOS。
+
+新callback／printerの有限合成は3485命令、62opaque境界。各境界でcaller-clobbered r0-r3／r12／LRをUnknownとし、callback以降は非live RAMを消して同じ全30byte読取を確認した。必要future-live RAM、同object epoch、window6/font資源、同期通常ABI復帰は明示条件であり、calleeの効果全体の証明ではない。
+
+右083DDEE4の全27byteは既存stock max3成功原本を参照。旧ENTER／旧max3を再実行していない。終点はPartyMenuPrintTextからDisplayPartyMenuMessage内08120AF2への復帰で、API後半やfield callback全体の復帰へ主張を広げない。
+
+## 保存証拠と再開
+
+- checkpoint: content/modernization/pr16_dex_hof_jp_field_checkpoint.json
+- 原本: content/modernization/pr16_dex_hof_jp_field_evidence 内のmeasurement.json、reference-chain.json、tests.json
+- 全94unknown: 同ディレクトリのunknown-frontier.json
+- 受入validator: scripts/pr16_dex_hof_flash_receipt.py
+- 780親の再構成: jp_field_chain.parentの51入力で779親を読む→保存reference-chainをread_measured→materialize。旧26段160変更150witnessと他873行は全field保持。
+
+artifact11515739265は59319bytes、ZIP SHA-256 c6eaf390867cce15ff2bef979b4e297a58c7514bff9d03b8711ef5a98f036d08。原本は改作せず保存した。receipt20拒否試験は原本を検査するだけで、117試験や現候補測定を再実行しない。
+
+次は083DE02B。交換はYes／AddBagItem成功／新item非mail、mailboxはGIVE_MAILBOX_MAIL／非egg／held item非0に限定して別rootを閉じる。StringExpandPlaceholdersのFD再帰とFC09 copy、原文読取、展開後gStringVar4のprinter読取を分離する。既存event_text_rootsは通常byte／EOSの再利用候補だが、FC／FD除外の契約をそのまま拡張受入にしない。
+
+旧egg15118全域保護、donor安全0、正式ROM／Save101不変。保存退避53300開始前にheap13352をFreeすること、全保存入口ready、同期非再入、controller6528の本番配線は引き続き別gate。正式切替後のtrainer131後半→シオウ通常回復／保存／coldContinueも未完である。
