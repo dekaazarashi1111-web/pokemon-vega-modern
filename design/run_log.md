@@ -13969,3 +13969,17 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 保存済み780親から083DE02Bの交換原文FD再帰／FC09 copyとmailbox拒否の正rootを別々に閉じる。Flash成功scopeや旧caseは再走しない。全保存入口ready／退避53300開始前Free／同期非再入／controller6528は別gate。 旧779親はjp_field_chain.parentの51保存原本、現780親は保存reference-chainをread_measured→materializeして再開する。Flashの新117試験／現ROM再構成／成功producer・readerを無変更再走しない。正式切替後trainer131後半→シオウ通常回復／保存／独立coldContinue。
 - Commit: parent=608c7e2486870cb92523abeeba65646c6d29c4ad; 新receipt pathは測定workflowのglob外、成功scopeを再実行せず同branch非force保存。
 - Network: 同repoActions/job/artifactを取得し外側ZIPと内側3textを全検証。signed download URLは一時利用のみでtrackedへ保存しない。
+
+## 2026-10-07T23:10:56.705969+00:00
+- Timestamp: 2026-10-07T23:10:56.705969+00:00
+- Task: USER-20261007-JP-ITEM-TEXT / 交換原文とmailbox拒否の全文consumer最小型
+- Version: jp-item-text-v1
+- Status: STOPPED（新165試験PASS、現0641専用Actionsへ継続）
+- Summary: 交換Yesとmailbox action7の2独立実rootから083DE02Bの最小型を実装。交換原文24byteのFD03/FD02再帰／FC09 copy／展開後34byteとmailbox全文38byteを別readerで照合。新165試験・11固定source・独立review修正PASS。現0641専用Actions前の開発checkpointなので正式780/94、安全0、ROM/Save101不変。
+- Files changed: 新roots/expand/text/chain/actions、5専用試験、read-only workflow、source/development JSON、guide、固定MDJSON、両ログ。
+- Verify: 新31roots＋38expand＋32text＋44chain＋20actions＝165試験PASS。固定11source全文size/SHA/Gitblobと語義照合。独立reviewの展開trace継承/命令数二重計上/型別名/write幅を修正。53保存原本から780親と27段161変更151witness保持。他873行全field不変。交換root83命令7境界・callback/展開/printer4341命令67境界、mailbox root3561命令128境界・callback/printer4347命令73境界。
+- Boundary: 原文24byte、FD03/FD02再帰、FC09 copy、展開後34byteとmailbox38byteのEOSまで。API後半/全callback復帰/自然play/全callee/普遍heap/IRQ未証明。正式780/94維持。native/旧全ROMscan/旧heap/Flash再走0。donor安全0、ROM/Save101不変。
+- Actions: fb398064固定再開37699023185全5step成功。一般CI37699023015/37699031086 failure、既知source不一致を成功扱いしない。Stage79 dd6937688855021 in_progress、608c37697774075 cancelled、fb39806437699023205 pending。
+- Next: 新read-only pr16-dex-hof-jp-item-text Actionsの初回runを照合する。同0641全SHA／115owner／874保存hitと2正root／原文再帰／全文readerの成功原本を回収後だけ083DE02Bの4byte1件を781/93へ記録する。Flash受入／旧case／旧heap／native／全ROMscanは再走しない。汎用Stage79未終端と専用scopeは分離する。全保存入口ready／退避53300開始前Free／同期非再入／controller6528配線は別gate、正式切替後trainer131後半→シオウ通常回復／保存／独立coldContinueは未完。
+- Commit: parent=fb3980645fb2331bc483a7f7f4166482e8084f70; GitHub全文blob/tree/remote検証後に同branch非force保存。
+- Network: GitHub同repo最新HEAD/PR/Actionsを読取。固定公開sourceは保存済み全文を再利用。ROM/rawhex/save/runtime/credential追加公開0。

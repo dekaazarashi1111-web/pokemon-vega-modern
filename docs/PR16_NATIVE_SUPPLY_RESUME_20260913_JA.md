@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-Flash新scope run37697774244/job113053633223の初回全10step成功。現0641を1回再構成し全115owner／874保存hitを照合、新117試験PASS。StartMenu→同taskの4項目wrap→実field-move cell→badge拒否→全文30byte/FC09/EOSを条件付き最小型へ結び、右27byte旧原本を再利用。083DDEE1の1件だけ正式779→780分類／95→94未知。記録20拒否試験PASS、native再走0、donor安全0、正式ROM/Save101不変。
+交換Yesとmailbox action7の2独立実rootから083DE02Bの最小型を実装。交換原文24byteのFD03/FD02再帰／FC09 copy／展開後34byteとmailbox全文38byteを別readerで照合。新165試験・11固定source・独立review修正PASS。現0641専用Actions前の開発checkpointなので正式780/94、安全0、ROM/Save101不変。
 
-**次: 保存済み780親から083DE02Bの交換原文FD再帰／FC09 copyとmailbox拒否の正rootを別々に閉じる。Flash成功scopeや旧caseは再走しない。全保存入口ready／退避53300開始前Free／同期非再入／controller6528は別gate。 旧779親はjp_field_chain.parentの51保存原本、現780親は保存reference-chainをread_measured→materializeして再開する。Flashの新117試験／現ROM再構成／成功producer・readerを無変更再走しない。正式切替後trainer131後半→シオウ通常回復／保存／独立coldContinue。**
+**次: 新read-only pr16-dex-hof-jp-item-text Actionsの初回runを照合する。同0641全SHA／115owner／874保存hitと2正root／原文再帰／全文readerの成功原本を回収後だけ083DE02Bの4byte1件を781/93へ記録する。Flash受入／旧case／旧heap／native／全ROMscanは再走しない。汎用Stage79未終端と専用scopeは分離する。全保存入口ready／退避53300開始前Free／同期非再入／controller6528配線は別gate、正式切替後trainer131後半→シオウ通常回復／保存／独立coldContinueは未完。**
 
 通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `608c7e2486870cb92523abeeba65646c6d29c4ad`。
-Flash現候補専用runの初回成功source。条件付き最小型1件の現在ROM byte束縛／全30byte reader。自然playや全callback正常復帰の受入ではない。
+証拠のsource HEAD: `fb3980645fb2331bc483a7f7f4166482e8084f70`。
+交換/mailbox新scope開発の開始親HEAD。165疎fixture試験であり、現候補Actions実測HEADや正式受入ではない。
 
 ## 最短の再開手順
 
@@ -25,13 +25,13 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_DEX_HOF_FLASH_ACCEPTED_JA.md`
-- `content/modernization/pr16_dex_hof_jp_field_checkpoint.json`
-- `scripts/pr16_dex_hof_flash_receipt.py`
-- `scripts/pr16_dex_hof_jp_field_chain.py`
-- `docs/PR16_DEX_HOF_JP_CONSUMER_MEASURED_JA.md`
-- `scripts/pr16_dex_hof_event_text_roots.py`
-- `scripts/pr16_dex_hof_jp_field_text.py`
+- `docs/PR16_DEX_HOF_JP_ITEM_TEXT_JA.md`
+- `content/modernization/pr16_dex_hof_jp_item_development.json`
+- `scripts/pr16_dex_hof_jp_item_actions.py`
+- `scripts/pr16_dex_hof_jp_item_text.py`
+- `scripts/pr16_dex_hof_jp_item_roots.py`
+- `scripts/pr16_dex_hof_jp_item_expand.py`
+- `scripts/pr16_dex_hof_jp_item_chain.py`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -65,6 +65,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- 交換/mailbox新165試験は疎fixture開発確認。現0641専用Actionsの初回成功原本を回収してから1件781/93へ。Flashの117試験/producer/全文readerと旧acceptedを再走しない。
 - Flash現candidate初回run37697774244は全10step成功、117試験・30byte全文・右27byte原本再利用で083DDEE1の1件だけ780/94へ受入済み。scope/source/候補不変の再実行をせず保存原本から次の083DE02Bへ。receipt20試験と型受入をnative/全callee/普遍heap lifetimeへ昇格しない。
 - JP field新117試験は独立疎fixtureで開発確認済み。正式現候補を代用せず専用Actionsで一度だけ照合し、成功なら原本回収から次へ。旧TakeItem count3/no-wrapや旧max3 consumerを受入代用・再走しない。
 - 所有者決定後はSave14原本から自然育成を漫然と継続しない。story-fastは自己OT Lv100作業コピー、成長受入は別progression fixtureの通常戦闘EXPで行い、両レーンの主張を混同しない。
@@ -517,6 +518,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-Flash新scope run37697774244/job113053633223の初回全10step成功。現0641を1回再構成し全115owner／874保存hitを照合、新117試験PASS。StartMenu→同taskの4項目wrap→実field-move cell→badge拒否→全文30byte/FC09/EOSを条件付き最小型へ結び、右27byte旧原本を再利用。083DDEE1の1件だけ正式779→780分類／95→94未知。記録20拒否試験PASS、native再走0、donor安全0、正式ROM/Save101不変。
+交換Yesとmailbox action7の2独立実rootから083DE02Bの最小型を実装。交換原文24byteのFD03/FD02再帰／FC09 copy／展開後34byteとmailbox全文38byteを別readerで照合。新165試験・11固定source・独立review修正PASS。現0641専用Actions前の開発checkpointなので正式780/94、安全0、ROM/Save101不変。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

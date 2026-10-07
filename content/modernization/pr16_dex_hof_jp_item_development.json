@@ -1,0 +1,35 @@
+{
+  "status": "PASS_NEW_SYNTHETIC_ITEM_DEVELOPMENT",
+  "candidate": {
+    "size": 33554432,
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+  },
+  "scope_proof_identity": {
+    "size": 346822,
+    "sha256": "c177bbf108f93787eeffc795a726b8688dd759498423736aefb720cfac386b4a"
+  },
+  "unit_tests": 165,
+  "source_files": 11,
+  "current_rom_measured": false,
+  "native_processes": 0,
+  "newly_classified": 0,
+  "formal_classified": 780,
+  "formal_unclassified": 94,
+  "proposed_classified": 781,
+  "proposed_unclassified": 93,
+  "donor_safe_bytes": 0,
+  "cases": [
+    {
+      "lane": "exchange",
+      "callback_printer_steps": 4341,
+      "boundary_count": 67,
+      "text_read_bytes": 34
+    },
+    {
+      "lane": "mailbox",
+      "callback_printer_steps": 4347,
+      "boundary_count": 73,
+      "text_read_bytes": 38
+    }
+  ]
+}
