@@ -13917,3 +13917,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Summary: 11source/30row・2候補・競合を独立review。CLIの全文sealに加え、validator単体でも候補status/実cell/実登録の非受入を明示検査し、caller/API/予測slot/Thumb callback/競合originをparsed mappingへ結合した。
 - Verify: 修正後23 tests PASS。英語長をJP extentへ昇格せず、現ROM読取・実cell/EOS受入0。旧独立最終source reviewは対象外。
 - Commit: 同branch非forceの候補checkpointに統合。
+
+## 2026-10-07T21:04:34.324296+00:00
+- Timestamp: 2026-10-07T21:04:34.324296+00:00
+- Task: USER-20261007-JP-CONSUMER-PROBE / 現JP consumer有限計測の実装
+- Version: jp-consumer-probe-source-v1
+- Status: STOPPED（再開可能なsource checkpoint。現ROM計測へ続行）
+- Summary: JP独立crosswalk2組の現ROM限定計測器を実装。15固定公開sourceを全文size/SHA/Gitblobへ結合し、59合成拒否試験を通過。現候補全SHA/115owner再構成→14有限CFG/2実cell/4文字句EOSをread-only Actionsで測る準備まで。実ROM計測は未実行、779分類/95未知・正式ROM/Save101・安全容量0不変。前run37677371365は全7domain cache成功で新native0。
+- Files changed: 専用probe/Actions/59試験/固定source表/guide、固定再開MDJSON、両ログ。
+- Verify: 新59合成試験PASS、11+4固定source preflight PASS。新scope独立reviewの公開出口指摘4点を修正確認済み、scope private guard PASS。汎用resume guardは許可path外で拒否したため新scope専用exact10path guardへ適正化。実ROM/新native/旧受入再走0。次のActions結果はまだ未観測。
+- Commit: source-parent=26ff355b5fe27a3f3f963aae0b6a0de13c903eed; 許可同branchへ非force保存予定。
+- Network: 同repo最新HEAD、既存固定ComplexRobot/pret public source。pret追加4sourceはc75f352304d529f6ba92d4f74b9cf8b5c3810788のcharmap.txt/include/characters.h/src/string_util.c/src/text.c。英語reference長をJP extentへ使用せず、ROM/rawhex/任意literal/入力save/runtime/credential公開0。
+- Next: 新JP consumer probeのread-only Actions終端と成功専用textを回収し、現0641のhook差・実登録cell・名前付きliteral・字句EOSを確認する。その原本から前2組083DDEE1/083DE02Bの最小root/serializer/全token読取/API引数へ結び、根拠未成立は未知保持。既存083DDEE4のCFRU27byte証拠は同identityで参照し再実行しない。FC09の待機をprinter完了と混同せず、左交換原文StringExpandPlaceholdersと展開後printerを分離。第三組競合棄却、旧egg15918保護・安全0、正式ROM/Save101不変。
