@@ -1,0 +1,109 @@
+{
+  "base_head": "8a7c82babf017ae1518b4a81c96d101e5c7faffd",
+  "classified": 779,
+  "donor_leased": false,
+  "donor_safe_bytes": 0,
+  "english_symbol_count": 50097,
+  "formal_rom_changed": false,
+  "formal_save_changed": false,
+  "japanese_address_labels": 143,
+  "japanese_address_only_extents_rejected": 112,
+  "language_patch_labels": 181,
+  "missing_evidence": [
+    "fixed_japanese_text_symbols",
+    "eos_inclusive_japanese_serializer_extents",
+    "current_literal_or_table_cells",
+    "registered_consumer_api_binding"
+  ],
+  "native_processes": 0,
+  "natural_gameplay_reachability_claimed": false,
+  "newly_classified": 0,
+  "parent_identity": {
+    "sha256": "bd22a7361baba6957c95bb2757376c9f1c6be4e0fb482e408b5242cece5dcaca",
+    "size": 41705
+  },
+  "requested_rom_windows": [],
+  "rom_reconstructions": 0,
+  "schema_version": 1,
+  "source_bindings": {
+    "game.py": {
+      "commit": "3bd0b70c82a723161fa2e311c20029cf7d6ead33",
+      "git_blob_sha": "94661cf7d729e32171f5e19f819196c07954af97",
+      "repository": "40Cakes/pokebot-gen3",
+      "sha256": "e24f69bc6141cae2f2df77556199173ee33c9d8c421e116bd475ef6406672d77",
+      "size": 17348,
+      "source": "modules/game.py"
+    },
+    "pokefirered.patch.sym": {
+      "commit": "3bd0b70c82a723161fa2e311c20029cf7d6ead33",
+      "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "repository": "40Cakes/pokebot-gen3",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0,
+      "source": "modules/data/symbols/patches/pokefirered.sym"
+    },
+    "pokefirered.sym": {
+      "commit": "3bd0b70c82a723161fa2e311c20029cf7d6ead33",
+      "git_blob_sha": "5377ee48ca773d012000302545b477c936f40d46",
+      "repository": "40Cakes/pokebot-gen3",
+      "sha256": "a74bab80a6a146e65b18d5db5f1807e8189b176539145107e4d0d3bee0f7826e",
+      "size": 2384045,
+      "source": "modules/data/symbols/pokefirered.sym"
+    },
+    "pokefirered.yml": {
+      "commit": "3bd0b70c82a723161fa2e311c20029cf7d6ead33",
+      "git_blob_sha": "c4bf0c91546f7a4dd7b786cde70b3bbe3bcec5fa",
+      "repository": "40Cakes/pokebot-gen3",
+      "sha256": "66c8a918d52706ccb93787ffb114ccd948a70dbbf6d35ad6c79927c052979dca",
+      "size": 15202,
+      "source": "modules/data/symbols/patches/language/pokefirered.yml"
+    }
+  },
+  "status": "PASS_SOURCE_ONLY_JP_SYMBOL_GATE",
+  "targets": [
+    {
+      "hit": {
+        "accepted": false,
+        "address": 138272481,
+        "classification": "UNCLASSIFIED",
+        "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+        "owner_candidates": [],
+        "reason": "no_complete_typed_asset_consumer_witness",
+        "sha256": "f267137302c6bee4b5bebbf3b7f09b9f879c7c5e7d34ce2100e78def5bf442a1",
+        "size": 4,
+        "target": 167709180
+      },
+      "status": "UNRESOLVED_NO_JP_SERIALIZER_AND_CELL_API_BINDING"
+    },
+    {
+      "hit": {
+        "accepted": false,
+        "address": 138272811,
+        "classification": "UNCLASSIFIED",
+        "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+        "owner_candidates": [],
+        "reason": "no_complete_typed_asset_consumer_witness",
+        "sha256": "1b3ec2bd404d75bf176b0825e09bc38b0c9bfa96d18a7e5a27b78c6736a84ee7",
+        "size": 4,
+        "target": 167709180
+      },
+      "status": "UNRESOLVED_NO_JP_SERIALIZER_AND_CELL_API_BINDING"
+    },
+    {
+      "hit": {
+        "accepted": false,
+        "address": 138274475,
+        "classification": "UNCLASSIFIED",
+        "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+        "owner_candidates": [],
+        "reason": "no_complete_typed_asset_consumer_witness",
+        "sha256": "f267137302c6bee4b5bebbf3b7f09b9f879c7c5e7d34ce2100e78def5bf442a1",
+        "size": 4,
+        "target": 167709180
+      },
+      "status": "UNRESOLVED_NO_JP_SERIALIZER_AND_CELL_API_BINDING"
+    }
+  ],
+  "typed_regions": [],
+  "unclassified": 95
+}

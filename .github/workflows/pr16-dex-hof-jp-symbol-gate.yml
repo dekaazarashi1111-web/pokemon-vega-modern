@@ -1,0 +1,40 @@
+name: pr16-dex-hof-jp-symbol-gate
+run-name: source-only-japanese-symbol-provenance
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-dex-hof-jp-symbol-gate.yml
+      - scripts/pr16_dex_hof_jp_symbol_gate.py
+      - tests/test_pr16_dex_hof_jp_symbol_gate.py
+      - content/modernization/pr16_dex_hof_jp_symbol_gate_checkpoint.json
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: pr16-dex-hof-jp-symbol-gate
+  cancel-in-progress: false
+defaults:
+  run:
+    shell: bash
+jobs:
+  source-only:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908' && github.run_attempt == 1
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Fixed public source and complete deterministic report
+        run: python3 -B scripts/pr16_dex_hof_jp_symbol_gate.py --sources .local/jp-symbol-sources --download --check-report content/modernization/pr16_dex_hof_jp_symbol_gate_checkpoint.json
+      - name: Japanese address and inherited English extent rejection
+        run: python3 -B -m unittest discover -s tests -p test_pr16_dex_hof_jp_symbol_gate.py -v
+      - name: Full checkout resume bindings
+        run: python3 -B scripts/pr16_resume.py check
+      - name: Lightweight task graph and read-only checks
+        run: |
+          python3 -B scripts/validate_task_graph.py --check
+          git diff --exit-code

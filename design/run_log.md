@@ -13876,3 +13876,23 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 次の独立登録根は0件。083DDEE1/083DE02B/083DE6ABは受入候補へ数えず未知保持。固定JP symbol出力または生成crosswalkから、うち1件の両側text symbol/EOS込みextent・現配置の実literal/table cell・APIを独立に結合できるまで、新ROM windowも正式分類も追加しない。残95件は別の独立した実consumer根から限定調査する。DexNav090ED992/09140BFCは実menu登録根が未結合のため未知保持。最小型を自然全play/全callee効果/普遍IRQ・heap寿命へ昇格せず、間接参照完全性/退役/owner移管が閉じるまで旧egg15118全域保護・安全0。heap13352はstock保存退避53300を跨がない。単一controller6528と全保存入口heap-ready/同期非再入/0804B85C退避前Freeを別gateで閉じてから全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL/全mode/早期31/species9bitへ接続する。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。
 - Commit: closeout source=6a39288e9e59851d831e6a9813da4347ba7fa61f; 同branch非force。
 - Network: 同repoActions/text原本のみ。ROM断片/rawhex/ROM/save/runtime/runner/credentials追加公開0。
+
+## 2026-10-07T19:09:00Z
+- Timestamp: 2026-10-07T19:09:00Z
+- Task: USER-20261007-DEX-HOF-JP-SYMBOL-GATE / 日本語住所と継承英語長の分離
+- Version: jp-symbol-source-only-v1
+- Status: DONE（source-only gate。日本語EOS/実cell/API結合と全体完成は未完）
+- Summary: 未commit作業を固定remote HEAD8a7c82bから再構成。固定公開loader・英語symbol・空patch・日本語住所YAMLをsize/SHA/Gitblob照合し、英語由来長を日本語extentとして拒否する実装を追加。過去30試験の報告や未commit8blobを今回の証拠にしない。
+- Files changed: 新JPgate source/test/checkpoint/guide/専用source-only workflow、固定再開MD/JSON、両append-onlyログ。
+- Verify: 新31 focused tests PASS。入力4source、英語symbol50097、日本語住所143label、継承nonzero英語長112label。full checkoutで変更前7348source-bindingを含むresume check PASS。最終差分のresume/taskgraph/scoped indexをcommit前に照合し、専用Actionsはpush後に確認する。
+- Boundary: 779分類/95未知、対象3件は未知維持。new ROM window0、new type region0、ROM再構成/native/旧受入suite再走0。正式ROM/Save101、全親証拠、133曲/50asset、115owner/52保存ownerは不変。egg15118保護・安全容量0、controller6528本番配線未完。
+- Commit: 本記録を含む同branchの非force commit。自己SHAはGit履歴で照合。
+- Network: 同repo固定HEADの全文checkout、公開pokebot-gen3固定4sourceのみ。private input取得やROM/rawhex/save/credentialの追加公開なし。
+
+### 2026-10-07T19:12:00Z — JP symbol gate最終差分照合
+- Task: USER-20261007-DEX-HOF-JP-SYMBOL-GATE
+- Status: DONE（source-only、正式分類追加0）
+- Summary: 新scopeだけの独立reviewで空YAML label・複数document・source cache親symlinkを拒否する3改善を適用。旧拒否済み最終source reviewは再実施していない。
+- Verify: 修正後focused34 tests PASS、実4sourceのcheckpoint全byte一致。固定再開28 tests PASS、task graph PASS。最後に全source-bindingとfinal indexの追加private違反0を照合して同branchへ保存する。Actions run_attempt>1のskipを成功証拠にしない。
+- Commit: この追記を含むcheckpoint。merge/release/force pushなし。
+- Network: 新private取得・ROM/native再走・artifact公開0。
