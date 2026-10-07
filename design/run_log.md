@@ -13896,3 +13896,24 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 修正後focused34 tests PASS、実4sourceのcheckpoint全byte一致。固定再開28 tests PASS、task graph PASS。最後に全source-bindingとfinal indexの追加private違反0を照合して同branchへ保存する。Actions run_attempt>1のskipを成功証拠にしない。
 - Commit: この追記を含むcheckpoint。merge/release/force pushなし。
 - Network: 新private取得・ROM/native再走・artifact公開0。
+
+## 2026-10-07T19:39:00Z
+- Timestamp: 2026-10-07T19:39:00Z
+- Task: USER-20261007-DEX-HOF-JP-CROSSWALK / 日本語gate終端と次の2組独立候補
+- Version: jp-crosswalk-candidates-v1
+- Status: DONE（source-only候補保存。EOS/現実cell/型分類は未完）
+- Summary: f9780b53の専用run37674533900/job112974501079初回8step成功・34testsと全文resume bindingを記録。独立frlg-sym固定cleanJP crosswalkとpret sourceから前2組の名前付きcaller/API/slot候補を得た。11source/30symbolをsize/SHA/Gitblobに固定し、3rdの6B0/6AE競合を棄却。
+- Files changed: 新候補JSON/検証source/test/guide、JPgate終端receipt、固定再開MDJSON、両append-onlyログ。
+- Verify: 新14拒否試験PASS、全11sourceと30audit/sym対応照合PASS。日本語EOS/現ROM literal/table cellの検証0。固定再開check/taskgraph/final indexはcommit前に照合。元gate34testsとresume28testsは既存成功を保持し無影響native再走なし。
+- CI: 固定再開run37674533860 SUCCESS。一般CI37674533828/37674546588は既知QOL source-binding不一致でFAIL。Stage79 run37674534016は全7domain旧cache再利用、新domain native0。
+- Boundary: 新分類0、779/95保持。旧delta全親・133曲/50asset・115owner/52保存owner、正式ROM/Save101不変。egg15118保護・安全0。controller6528未配線、heap13352のstock53300退避跨ぎ禁止。
+- Next: 前2組の実登録根・literal/cell・serializer/EOS全文読取を必要最小範囲で閉じる。英語reference長・次symbol差・生成器のscoreを実測の代わりにしない。全自然play/全callee/普遍IRQ/heap保証に拡張しない。
+- Commit: f9780b53を親とする同branch非force checkpoint。本記録のSHAはGit履歴で確認。
+- Network: 同repoActions/run/job/log読取、固定公開source11件。新ROM断片/rawhex/ROM/save/runtime/credential公開なし。
+
+### 2026-10-07T19:44:00Z — 新crosswalk scopeのreview反映
+- Task: USER-20261007-DEX-HOF-JP-CROSSWALK
+- Status: DONE（source候補限定、分類追加0）
+- Summary: 11source/30row・2候補・競合を独立review。CLIの全文sealに加え、validator単体でも候補status/実cell/実登録の非受入を明示検査し、caller/API/予測slot/Thumb callback/競合originをparsed mappingへ結合した。
+- Verify: 修正後23 tests PASS。英語長をJP extentへ昇格せず、現ROM読取・実cell/EOS受入0。旧独立最終source reviewは対象外。
+- Commit: 同branch非forceの候補checkpointに統合。

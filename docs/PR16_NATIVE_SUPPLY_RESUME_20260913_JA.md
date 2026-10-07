@@ -6,18 +6,16 @@
 
 ## いまの停止点と次の1手
 
-実special057のtask/main登録・state0→7からCurrent/Max15byte、実ChooseMove公開hookとQoL/BattleUI wrapperからL/Z/Max選択枝の57byte/EOSを読み、3つの文字境界を最小各4byteへ結合。必要future read/write資源epochと非live消去を限定合成し、自然全play・全callee効果とは分離。 新3件・最小計12byte。779分類/未知95。全776親・49入力・25namespace157changes147witnessと133曲50assetを保持。新scopeの最小型と自然全play/IRQ/heap/間接完全性/退役/owner移管を分離し、egg15118保護・安全0・正式ROM/Save101不変。
+JP symbol gateをremote f9780b53へ保存し、専用run37674533900/job112974501079の初回全8step・34試験・全文resume binding成功を確認。独立cleanJP crosswalkから2組のtext/caller/API/address候補を得て11source/30symbolへ固定、新23拒否試験を通過。EOS/現実cellは未測定、3rd右境界の競合は棄却。779分類/95未知、ROM/native0、正式ROM/Save101・安全容量0を維持。
 
-固定公開symbolの住所と言語由来の長さを分離するsource-only gateを再構成し、新34試験を通過。英語symbol50097件とJP住所143labelを全文照合し、英語長を継承する112labelをJP extentとして拒否。対象083DDEE1/083DE02B/083DE6ABは全て未知保持、新window/分類追加0。
-
-**次: 次の独立登録根は0件。083DDEE1/083DE02B/083DE6ABは受入候補へ数えず未知保持。固定JP symbol出力または生成crosswalkから、うち1件の両側text symbol/EOS込みextent・現配置の実literal/table cell・APIを独立に結合できるまで、新ROM windowも正式分類も追加しない。残95件は別の独立した実consumer根から限定調査する。DexNav090ED992/09140BFCは実menu登録根が未結合のため未知保持。最小型を自然全play/全callee効果/普遍IRQ・heap寿命へ昇格せず、間接参照完全性/退役/owner移管が閉じるまで旧egg15118全域保護・安全0。heap13352はstock保存退避53300を跨がない。単一controller6528と全保存入口heap-ready/同期非再入/0804B85C退避前Freeを別gateで閉じてから全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL/全mode/早期31/species9bitへ接続する。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。**
+**次: 固定JP crosswalkの前2組083DDEE1/083DE02Bを、名前付き登録caller・現literal/table cell・API引数・制御文字列EOS全文読取へ限定して結合する。11source/30symbolと2候補は保存済みで取り直さない。住所だけでは分類せず、英語reference sizeや隣接差30/24byteをJP extentに使わない。083DE6ABの右6B0/6AE競合は棄却・未知保持。残95件は別の独立した実consumer根から限定調査する。DexNav090ED992/09140BFCは実menu登録根が未結合のため未知保持。最小型を自然全play/全callee効果/普遍IRQ・heap寿命へ昇格せず、間接参照完全性/退役/owner移管が閉じるまで旧egg15118全域保護・安全0。heap13352はstock保存退避53300を跨がない。単一controller6528と全保存入口heap-ready/同期非再入/0804B85C退避前Freeを別gateで閉じてから全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL/全mode/早期31/species9bitへ接続する。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。**
 
 通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `b56b00d604b010c1730cf146a830cdbc3930af65`。
-全776親証拠保持、新登録UI consumer最小型測定source。残root/donor/本番配線未受入。
+証拠のsource HEAD: `f9780b534f2562518c64d6a14d9950ef4e8402c5`。
+JP source-only gateをGitHub側で検証したsource。2組crosswalkのlocal23試験は別source identity、現ROM型/EOSの受入ではない。
 
 ## 最短の再開手順
 
@@ -27,6 +25,10 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `docs/PR16_DEX_HOF_JP_CROSSWALK_CANDIDATES_JA.md`
+- `content/modernization/pr16_dex_hof_jp_crosswalk_candidates.json`
+- `content/modernization/pr16_dex_hof_jp_symbol_gate_terminal.json`
+- `scripts/pr16_dex_hof_jp_crosswalk_candidates.py`
 - `docs/PR16_DEX_HOF_JP_SYMBOL_GATE_JA.md`
 - `content/modernization/pr16_dex_hof_jp_symbol_gate_checkpoint.json`
 - `scripts/pr16_dex_hof_jp_symbol_gate.py`
@@ -542,6 +544,7 @@ P08ゲート:
 - 実special072/登録opcode49からDancerの既存state有限contextと実partner/Target HP二枝、登録opcode5D完全caller/hookからMultiMoneyCalcの最小Thumbを結合。自然初期state producer・全play/全callee効果は別義務。 新2件・最小計12byte。776分類/未知98。全774親・47入力・24namespace155changes145witnessと133曲50assetを保持。新scopeの最小型と自然全play/IRQ/heap/間接完全性/退役/owner移管を分離し、egg15118保護・安全0・正式ROM/Save101不変。新scopeの必要最小型と自然play全到達を分離。既guardの単一producer不達を全caller/全writer不達へ一般化しない。普遍runtime寿命保証や自然到達を未完のまま保持。全親changes25/17/33/29/3/2/1/0/3/1/2/2/4/2/3/3/2/2/3/5/2/3/5/3、witness22/16/33/23/3/2/1/0/3/1/2/2/4/2/3/3/2/2/3/5/2/3/5/3、133曲/50assetを保持。未知word size4を参照先のread幅へ誤用しない。無影響heap/native再走禁止。
 - 実special057のtask/main登録・state0→7からCurrent/Max15byte、実ChooseMove公開hookとQoL/BattleUI wrapperからL/Z/Max選択枝の57byte/EOSを読み、3つの文字境界を最小各4byteへ結合。必要future read/write資源epochと非live消去を限定合成し、自然全play・全callee効果とは分離。 新3件・最小計12byte。779分類/未知95。全776親・49入力・25namespace157changes147witnessと133曲50assetを保持。新scopeの最小型と自然全play/IRQ/heap/間接完全性/退役/owner移管を分離し、egg15118保護・安全0・正式ROM/Save101不変。新scopeの必要最小型と自然play全到達を分離。既guardの単一producer不達を全caller/全writer不達へ一般化しない。普遍runtime寿命保証や自然到達を未完のまま保持。全親changes25/17/33/29/3/2/1/0/3/1/2/2/4/2/3/3/2/2/3/5/2/3/5/3/2、witness22/16/33/23/3/2/1/0/3/1/2/2/4/2/3/3/2/2/3/5/2/3/5/3/2、133曲/50assetを保持。未知word size4を参照先のread幅へ誤用しない。無影響heap/native再走禁止。
 - 旧未commit JPgateの30試験・8blobは保存済み証拠へ流用しない。2026-10-07 source-only gateの31試験は新実行。住所のみの言語overrideの英語長や隣接差を日本語EOS extentへ昇格しない。779分類・95未知、ROM/native再走0を保持。
+- JPgate run37674533900の34試験・全文binding受入と、11source/30symbolのcrosswalk候補23試験を区別。新独立候補は2組だけでEOS/現実cell未測定。英語長・隣接差は拒否し、3rdの6B0と強い6AE競合を解消済みにしない。一般CI既知QOL不一致とStage79 cache成功を新受入へ流用しない。
 
 ## 次セッションへ残す更新手順
 
@@ -571,6 +574,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-実special057のtask/main登録・state0→7からCurrent/Max15byte、実ChooseMove公開hookとQoL/BattleUI wrapperからL/Z/Max選択枝の57byte/EOSを読み、3つの文字境界を最小各4byteへ結合。必要future read/write資源epochと非live消去を限定合成し、自然全play・全callee効果とは分離。 新3件・最小計12byte。779分類/未知95。全776親・49入力・25namespace157changes147witnessと133曲50assetを保持。新scopeの最小型と自然全play/IRQ/heap/間接完全性/退役/owner移管を分離し、egg15118保護・安全0・正式ROM/Save101不変。
+JP symbol gateをremote f9780b53へ保存し、専用run37674533900/job112974501079の初回全8step・34試験・全文resume binding成功を確認。独立cleanJP crosswalkから2組のtext/caller/API/address候補を得て11source/30symbolへ固定、新23拒否試験を通過。EOS/現実cellは未測定、3rd右境界の競合は棄却。779分類/95未知、ROM/native0、正式ROM/Save101・安全容量0を維持。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
