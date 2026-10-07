@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "交換Yesとmailbox action7の2独立実rootから083DE02Bの最小型を実装。交換原文24byteのFD03/FD02再帰／FC09 copy／展開後34byteとmailbox全文38byteを別readerで照合。新165試験・11固定source・独立review修正PASS。現0641専用Actions前の開発checkpointなので正式780/94、安全0、ROM/Save101不変。",
+    "current_stop": "元ea976a49/run37701354400は現0641の計測stepと165試験成功、続く公開guard失敗でartifact0。元出力hashは未記録。独立再構成参考JSON770711bytesは旧上限750000超過だが原本として受入しない。新24出力回復試験/独立reviewを通し、旧165試験を継承、現候補2readerだけ必要最小再計測する回復workflowを実装。正式780/94・安全0・ROM/Save101不変。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "新read-only pr16-dex-hof-jp-item-text Actionsの初回runを照合する。同0641全SHA／115owner／874保存hitと2正root／原文再帰／全文readerの成功原本を回収後だけ083DE02Bの4byte1件を781/93へ記録する。Flash受入／旧case／旧heap／native／全ROMscanは再走しない。汎用Stage79未終端と専用scopeは分離する。全保存入口ready／退避53300開始前Free／同期非再入／controller6528配線は別gate、正式切替後trainer131後半→シオウ通常回復／保存／独立coldContinueは未完。",
+    "next_step": "新pr16-dex-hof-item-recovery初回runを確認する。元run全体failure/原本欠落/元出力hash無しを保持し、旧165試験source不変を継承。回復runで現0641を1回再構成して2readerのみ再計測し、全4textのsize/SHAを公開前ログへ記録してartifact回収する。累積scope ROM再構成は元1＋回復1の2回。成功全step/新原本/外側ZIPの検証後だけ781/93へ。Flash/旧受入/旧heap/native/全ROMscanは再走しない。その後083DE6ABのminigame拒否/取消の別rootを有限化する。全保存入口ready/退避53300前Free/同期非再入/controller6528配線と正式切替後trainer131後半→シオウ通常回復/保存/coldContinueは別未完。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -793,6 +793,7 @@
   },
   "current_resume_doc": "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
   "do_not_repeat": [
+    "元run37701354400の165試験/現計測step成功を消さず、artifact未生成を再構成原本で代用しない。回復は旧165試験継承＋新出力検証＋現0641の必要最小2reader再計測のみ。Flash/旧受入は再走しない。回復workflowはbranch横断run初回gateで累積2の偽装を拒否。",
     "交換/mailbox新165試験は疎fixture開発確認。現0641専用Actionsの初回成功原本を回収してから1件781/93へ。Flashの117試験/producer/全文readerと旧acceptedを再走しない。",
     "Flash現candidate初回run37697774244は全10step成功、117試験・30byte全文・右27byte原本再利用で083DDEE1の1件だけ780/94へ受入済み。scope/source/候補不変の再実行をせず保存原本から次の083DE02Bへ。receipt20試験と型受入をnative/全callee/普遍heap lifetimeへ昇格しない。",
     "JP field新117試験は独立疎fixtureで開発確認済み。正式現候補を代用せず専用Actionsで一度だけ照合し、成功なら原本回収から次へ。旧TakeItem count3/no-wrapや旧max3 consumerを受入代用・再走しない。",
@@ -4397,48 +4398,47 @@
     "status": "PASS_NATIONAL_DEX_GRANT_OWNER_SCOPED"
   },
   "next_action": {
-    "goal_ja": "新read-only pr16-dex-hof-jp-item-text Actionsの初回runを照合する。同0641全SHA／115owner／874保存hitと2正root／原文再帰／全文readerの成功原本を回収後だけ083DE02Bの4byte1件を781/93へ記録する。Flash受入／旧case／旧heap／native／全ROMscanは再走しない。汎用Stage79未終端と専用scopeは分離する。全保存入口ready／退避53300開始前Free／同期非再入／controller6528配線は別gate、正式切替後trainer131後半→シオウ通常回復／保存／独立coldContinueは未完。",
+    "goal_ja": "新pr16-dex-hof-item-recovery初回runを確認する。元run全体failure/原本欠落/元出力hash無しを保持し、旧165試験source不変を継承。回復runで現0641を1回再構成して2readerのみ再計測し、全4textのsize/SHAを公開前ログへ記録してartifact回収する。累積scope ROM再構成は元1＋回復1の2回。成功全step/新原本/外側ZIPの検証後だけ781/93へ。Flash/旧受入/旧heap/native/全ROMscanは再走しない。その後083DE6ABのminigame拒否/取消の別rootを有限化する。全保存入口ready/退避53300前Free/同期非再入/controller6528配線と正式切替後trainer131後半→シオウ通常回復/保存/coldContinueは別未完。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。Save14は作業コピーだけを使用する。自己OT party、manifest解決済み通常支援用品、EXP境界、safe opponentはpre-battle fixtureとして全byteを台帳化してよい。badge/key item/story flag/money/RPをfixture付与せず、戦闘開始後は通常入力とゲーム内処理だけを使う。",
-    "id": "MEASURE_CURRENT_JP_ITEM_CONSUMERS",
+    "id": "RECOVER_JP_ITEM_OUTPUT_WITH_MINIMUM_REMEASUREMENT",
     "read_paths": [
-      "docs/PR16_DEX_HOF_JP_ITEM_TEXT_JA.md",
+      "docs/PR16_DEX_HOF_ITEM_RECOVERY_JA.md",
+      "scripts/pr16_dex_hof_item_recovery_actions.py",
+      "scripts/pr16_dex_hof_item_recovery_validation.py",
       "content/modernization/pr16_dex_hof_jp_item_development.json",
-      "scripts/pr16_dex_hof_jp_item_actions.py",
-      "scripts/pr16_dex_hof_jp_item_text.py",
-      "scripts/pr16_dex_hof_jp_item_roots.py",
-      "scripts/pr16_dex_hof_jp_item_expand.py",
       "scripts/pr16_dex_hof_jp_item_chain.py"
     ],
     "stop_rule_ja": "通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。"
   },
   "observed_date_jst": "2026-10-04",
-  "observed_head": "fb3980645fb2331bc483a7f7f4166482e8084f70",
+  "observed_head": "ea976a497522bbf966d1e0e6ef9f2875d1950d37",
   "observed_head_checks": {
+    "artifact_count": 0,
     "classified": 780,
-    "current_rom_reconstructions": 0,
+    "donor_safe_bytes": 0,
     "fixed_resume_all5_steps_success": true,
-    "fixed_resume_run": 37699023185,
-    "fixed_source_files": 11,
-    "general_ci_known_source_mismatch_not_resolved": true,
+    "fixed_resume_run": 37701354399,
+    "general_ci_job113065286584_exact_qol_mismatches": 2,
     "general_ci_runs": [
-      37699023015,
-      37699031086
+      37701354357,
+      37701363705
     ],
-    "independent_review_closed": true,
+    "general_ci_secondary_missing_upload_after_upstream_failure": true,
+    "job_id": 113065287651,
+    "measurement_step_success": true,
     "native_processes": 0,
-    "new_source_tests": 165,
+    "new_recovery_tests": 24,
+    "new_scope_tests": 165,
     "newly_classified": 0,
-    "prior_flash_all10_steps_success": true,
-    "prior_flash_run": 37697774244,
-    "reason_ja": "交換Yesとmailbox action7の2独立実rootから083DE02Bの最小型を実装。交換原文24byteのFD03/FD02再帰／FC09 copy／展開後34byteとmailbox全文38byteを別readerで照合。新165試験・11固定source・独立review修正PASS。現0641専用Actions前の開発checkpointなので正式780/94、安全0、ROM/Save101不変。",
-    "scope_head": "fb3980645fb2331bc483a7f7f4166482e8084f70",
-    "source_preflight_passed": true,
+    "original_output_hashes_available": false,
+    "publication_guard_failed": true,
+    "reason_ja": "元ea976a49/run37701354400は現0641の計測stepと165試験成功、続く公開guard失敗でartifact0。元出力hashは未記録。独立再構成参考JSON770711bytesは旧上限750000超過だが原本として受入しない。新24出力回復試験/独立reviewを通し、旧165試験を継承、現候補2readerだけ必要最小再計測する回復workflowを実装。正式780/94・安全0・ROM/Save101不変。",
+    "recovery_current_rom_reconstructions": 0,
+    "run_conclusion": "failure",
+    "run_id": 37701354400,
+    "scope_head": "ea976a497522bbf966d1e0e6ef9f2875d1950d37",
     "stage79_in_progress": 37688855021,
-    "stage79_pending": 37699023205,
-    "stage79_prior_cancelled": [
-      37690093079,
-      37697774075
-    ],
+    "stage79_pending": 37701354224,
     "unclassified": 94
   },
   "observed_head_history": [
@@ -12521,9 +12521,42 @@
       "head": "608c7e2486870cb92523abeeba65646c6d29c4ad",
       "reason_ja": "083DE02Bの交換原文/展開後とmailbox別rootの有限型開発checkpoint。Flash成功scopeは保持。",
       "semantics": "Flash現候補専用runの初回成功source。条件付き最小型1件の現在ROM byte束縛／全30byte reader。自然playや全callback正常復帰の受入ではない。"
+    },
+    {
+      "checks": {
+        "classified": 780,
+        "current_rom_reconstructions": 0,
+        "fixed_resume_all5_steps_success": true,
+        "fixed_resume_run": 37699023185,
+        "fixed_source_files": 11,
+        "general_ci_known_source_mismatch_not_resolved": true,
+        "general_ci_runs": [
+          37699023015,
+          37699031086
+        ],
+        "independent_review_closed": true,
+        "native_processes": 0,
+        "new_source_tests": 165,
+        "newly_classified": 0,
+        "prior_flash_all10_steps_success": true,
+        "prior_flash_run": 37697774244,
+        "reason_ja": "交換Yesとmailbox action7の2独立実rootから083DE02Bの最小型を実装。交換原文24byteのFD03/FD02再帰／FC09 copy／展開後34byteとmailbox全文38byteを別readerで照合。新165試験・11固定source・独立review修正PASS。現0641専用Actions前の開発checkpointなので正式780/94、安全0、ROM/Save101不変。",
+        "scope_head": "fb3980645fb2331bc483a7f7f4166482e8084f70",
+        "source_preflight_passed": true,
+        "stage79_in_progress": 37688855021,
+        "stage79_pending": 37699023205,
+        "stage79_prior_cancelled": [
+          37690093079,
+          37697774075
+        ],
+        "unclassified": 94
+      },
+      "head": "fb3980645fb2331bc483a7f7f4166482e8084f70",
+      "reason_ja": "交換/mailboxの計測成功と公開失敗を分離し、失われた原本を独立再構成で代用しない最小回復。",
+      "semantics": "交換/mailbox新scope開発の開始親HEAD。165疎fixture試験であり、現候補Actions実測HEADや正式受入ではない。"
     }
   ],
-  "observed_head_semantics": "交換/mailbox新scope開発の開始親HEAD。165疎fixture試験であり、現候補Actions実測HEADや正式受入ではない。",
+  "observed_head_semantics": "交換/mailbox元計測step成功・公開guard失敗のsource。元run全体failure/artifact0で正式受入ではない。",
   "p08_candidate_impact": {
     "candidate": {
       "crc32": "CC068B4A",
@@ -12648,16 +12681,16 @@
   "pending_runs": [
     {
       "run_id": 37688855021,
-      "scope": "汎用Stage79 plan依存install継続。新native/cache終端は未確定。",
+      "scope": "汎用Stage79の依存install終端未確認。専用回復とは独立。",
       "status": "in_progress",
       "tested_head": "dd69e1253b7705ad2fc5ebe9c69723b3308e114a"
     },
     {
       "github_status": "pending",
-      "run_id": 37699023205,
-      "scope": "汎用Stage79同concurrency待ち。交換/mailbox専用scopeと独立。",
+      "run_id": 37701354224,
+      "scope": "汎用Stage79同concurrency待ち。今回の限定回復とは独立。",
       "status": "queued",
-      "tested_head": "fb3980645fb2331bc483a7f7f4166482e8084f70"
+      "tested_head": "ea976a497522bbf966d1e0e6ef9f2875d1950d37"
     }
   ],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
@@ -14573,6 +14606,10 @@
     ".github/workflows/pr16-dex-hof-help-batch.yml": {
       "sha256": "1e0b3ded2ad8aa4a61f713f826005b42d08a6eb19bbbebe1c3d6a1b4ede70c56",
       "size": 2850
+    },
+    ".github/workflows/pr16-dex-hof-item-recovery.yml": {
+      "sha256": "78c046c638c0c1d24af8db0ac16d257719ca69707d146ad8f5b4b970c403a7c6",
+      "size": 2283
     },
     ".github/workflows/pr16-dex-hof-jp-consumer-probe.yml": {
       "sha256": "c6d389dc605a4a7cf1979fd54bb4161b10204e50e211bac5ebc63093982be5f1",
@@ -18209,6 +18246,10 @@
     "content/modernization/pr16_dex_hof_help_roots_review.json": {
       "sha256": "6d05f5d04162b6ad702edd6be4be7c327b79bec41c9356da174121a3029f9e57",
       "size": 22500
+    },
+    "content/modernization/pr16_dex_hof_item_recovery_development_proof.json": {
+      "sha256": "c177bbf108f93787eeffc795a726b8688dd759498423736aefb720cfac386b4a",
+      "size": 346822
     },
     "content/modernization/pr16_dex_hof_jp_consumer_probe_evidence/measurement.json": {
       "sha256": "c800071446877641d8745054163d5f67040dbfec5c442feb588c858cfc954436",
@@ -30990,6 +31031,10 @@
       "sha256": "760cc2c47357bc97605599f5da6f67d7f13354677923661ec9320caab04cc0e4",
       "size": 3458
     },
+    "docs/PR16_DEX_HOF_ITEM_RECOVERY_JA.md": {
+      "sha256": "e6b83a1b3d8b276bb692d5e24b1e9406ebb428c4c86fd2180d555211d922631a",
+      "size": 2986
+    },
     "docs/PR16_DEX_HOF_JP_CONSUMER_MEASURED_JA.md": {
       "sha256": "300bb90e410ebcf56ad83ae841f5e4d37dde10ce18ac68820691330a8d0b28f4",
       "size": 4147
@@ -36450,6 +36495,14 @@
       "sha256": "cb2a5fe4e46cca6c40c1b0d4c6f8cb54b42f67089e13512889a94ced423ed10a",
       "size": 58745
     },
+    "scripts/pr16_dex_hof_item_recovery_actions.py": {
+      "sha256": "6d4023222b30efffa555e17e1bd937056fcf7f6ec10aa53530350d053584ec4c",
+      "size": 8653
+    },
+    "scripts/pr16_dex_hof_item_recovery_validation.py": {
+      "sha256": "3e6f711c3e0f4cacdc07ae6927aa7541099fe7cb9b0ba8ce99b2215660909dc8",
+      "size": 12451
+    },
     "scripts/pr16_dex_hof_jp_consumer_probe.py": {
       "sha256": "b8a3aa56f5e69cc7a1c6643a827f329ca7a5d78d59e0b9bea385a880c48cb8f9",
       "size": 19065
@@ -40625,6 +40678,10 @@
     "tests/test_pr16_dex_hof_help_roots.py": {
       "sha256": "a9c797a11df767bb2029e370854086b014de6b23e961b84c6445937043c19444",
       "size": 14724
+    },
+    "tests/test_pr16_dex_hof_item_recovery_validation.py": {
+      "sha256": "07d80d44e590ce6dbaed5879c23e8001e31ea64f389e9b7b8fe8e009b4503fc4",
+      "size": 16580
     },
     "tests/test_pr16_dex_hof_jp_consumer_probe.py": {
       "sha256": "5cb786df8d417a7d1aea5bdc45a45e16b6c258a633d3be517fcd0eed2ba70369",
@@ -46862,7 +46919,8 @@
           "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583",
           "size": 33554432
         },
-        "current_rom_measured": false,
+        "current_rom_measured": true,
+        "current_rom_reconstructions": 1,
         "development": "content/modernization/pr16_dex_hof_jp_item_development.json",
         "donor_safe_bytes": 0,
         "formal_classified": 780,
@@ -46871,10 +46929,21 @@
         "formal_unclassified": 94,
         "guide": "docs/PR16_DEX_HOF_JP_ITEM_TEXT_JA.md",
         "independent_review_issues_remaining": 0,
+        "job_id": 113065287651,
+        "measurement_step_success": true,
         "new_native_processes": 0,
         "new_scope_tests": 165,
+        "original_artifact_missing": true,
+        "original_output_hashes_available": false,
         "proposed_new_types": 1,
-        "status": "PREPARED_CURRENT_ITEM_TEXT_MEASUREMENT"
+        "reconstructed_output_accepted": false,
+        "recovery_guide": "docs/PR16_DEX_HOF_ITEM_RECOVERY_JA.md",
+        "recovery_source": "scripts/pr16_dex_hof_item_recovery_actions.py",
+        "recovery_tests": 24,
+        "run_id": 37701354400,
+        "source_head": "ea976a497522bbf966d1e0e6ef9f2875d1950d37",
+        "status": "MEASUREMENT_PASSED_PUBLICATION_FAILED_RECOVERY_PREPARED",
+        "workflow_conclusion": "failure"
       },
       "hof_jp_symbol_gate": {
         "all8_steps_success": true,

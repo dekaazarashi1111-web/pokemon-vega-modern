@@ -11240,3 +11240,18 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 新read-only pr16-dex-hof-jp-item-text Actionsの初回runを照合する。同0641全SHA／115owner／874保存hitと2正root／原文再帰／全文readerの成功原本を回収後だけ083DE02Bの4byte1件を781/93へ記録する。Flash受入／旧case／旧heap／native／全ROMscanは再走しない。汎用Stage79未終端と専用scopeは分離する。全保存入口ready／退避53300開始前Free／同期非再入／controller6528配線は別gate、正式切替後trainer131後半→シオウ通常回復／保存／独立coldContinueは未完。
 - Commit: parent=fb3980645fb2331bc483a7f7f4166482e8084f70; GitHub全文blob/tree/remote検証後に同branch非force保存。
 - Network: GitHub同repo最新HEAD/PR/Actionsを読取。固定公開sourceは保存済み全文を再利用。ROM/rawhex/save/runtime/credential追加公開0。
+
+## 2026-10-07T23:32:14.329285+00:00
+- Timestamp: 2026-10-07T23:32:14.329285+00:00
+- Task: USER-20261007-JP-ITEM-OUTPUT-RECOVERY / 消失公開原本の最小再計測準備
+- Version: jp-item-recovery-v1
+- Status: STOPPED（新24出力試験PASS、回復Actionsの現候補原本待ち）
+- Summary: 元ea976a49/run37701354400は現0641の計測stepと165試験成功、続く公開guard失敗でartifact0。元出力hashは未記録。独立再構成参考JSON770711bytesは旧上限750000超過だが原本として受入しない。新24出力回復試験/独立reviewを通し、旧165試験を継承、現候補2readerだけ必要最小再計測する回復workflowを実装。正式780/94・安全0・ROM/Save101不変。
+- Files changed: 新回復actions/validator/24試験/workflow/guide/開発専用proof、固定MDJSON、両ログ。元14source凍結。
+- Verify: 新24出力境界/閉schema/型別名/全4filehash/1500000byte上限試験PASS。独立開発fixtureからoutput容器の統合検査PASS。元165試験は再走0、開発fixtureをcurrent原本へ昇格0。独立read-only reviewでrun横断初回gateとsize出典分離を補強、TEST_COUNT24固定。固定source整合とtask graph、最終index private guard差分、GitHub全文blob/tree/remoteを完了ゲートとする。
+- Failure retained: sourceea976a49/run37701354400/job113065287651、計測step5 success・公開step6 failure・upload7 skipped・artifact0。元logに3出力hashなし。参考再構成770711bytes>旧cap750000からサイズ超過を推定するが、元fileサイズの直接観測と混同しない。
+- Boundary: 正式780/94据置き。新回復で必要な現ROM再構成1/2consumer再計測を予定、元1回を足し累積2とする。旧165試験継承、Flash/旧native/全scan/旧heap再走なし、安全0、正式ROM/Save101不変。
+- Actions: ea976a49固定再開37701354399全5step成功。一般CI37701354357/job113065286584ログで既知qol_production.c不一致2件を再確認、下流upload未生成を保持。Stage79 dd6937688855021 in_progress、ea976a4937701354224 pending。
+- Next: 新pr16-dex-hof-item-recovery初回runを確認する。元run全体failure/原本欠落/元出力hash無しを保持し、旧165試験source不変を継承。回復runで現0641を1回再構成して2readerのみ再計測し、全4textのsize/SHAを公開前ログへ記録してartifact回収する。累積scope ROM再構成は元1＋回復1の2回。成功全step/新原本/外側ZIPの検証後だけ781/93へ。Flash/旧受入/旧heap/native/全ROMscanは再走しない。その後083DE6ABのminigame拒否/取消の別rootを有限化する。全保存入口ready/退避53300前Free/同期非再入/controller6528配線と正式切替後trainer131後半→シオウ通常回復/保存/coldContinueは別未完。
+- Commit: parent=ea976a497522bbf966d1e0e6ef9f2875d1950d37; 新workflowだけ起動し元成功測定workflowを再dispatchしない。同branch非force保存。
+- Network: 同repoActions/job/logsを読取。今回runnerは既存安全transportで元success/failureをlive検証し、私有失敗details/rawROM/runtime/saveを公開しない。

@@ -1,0 +1,22 @@
+# 交換/mailbox出力欠落の最小回復
+
+元source ea976a497522bbf966d1e0e6ef9f2875d1950d37、run37701354400/job113065287651は、新165試験・現0641の2root/全文consumerを含む計測stepが成功した。しかし公開guardのbyte/LF検査で停止し、run全体はfailure、artifactは0件となった。独立開発proofから再構成した参考measurement.jsonは770711bytesで、上限750000bytesを超える。これが公開失敗原因と推定できるが、元ログに当該fileサイズ/hashは記録されていない。正式台帳は780分類/94未知のままである。
+
+元runログには3出力のhashがない。成功stepと集計行から分かる範囲を、ダウンロードできない測定原本と同一視しない。開発fixtureから作れるtextが同じDEV固定proof SHAに一致しても、それを取得原本として正式受入しない。
+
+## 回復で再実行するもの
+
+- 新たな出力境界/閉schema/provenanceの専用検証だけを行う。
+- 元runの全step、165試験成功の集計、公開失敗、artifact0件、旧14sourceおよび共有依存の不変をlive GitHub API/ログ/commit差分で照合する。旧165試験は再走せず継承する。同branchの回復workflowが初回runだけであることもlive確認し、別runを累積2へ隠さない。
+- 失われたrunner原本を回収できないため、現0641を1回だけ再構成し、全SHA/115owner/874保存hitと083DE02Bの2consumerを必要最小で再計測する。元runの1回を消さず、このscopeの累積ROM再構成は2回と記録する。
+- 今回の実計測から新しいmeasurement/reference-chain/tests/provenance原本4個を作り、公開前に全fileのsize/SHAをActionsログへ出す。各file上限1500000bytes、閉file集合・LF・UTF-8・source/proof/delta/schemaを検査してからuploadする。
+
+成功済みFlash/旧accepted/旧heap/native/全ROMscanは再実行しない。出力回復で必要になった現候補2readerの限定再計測と、旧試験継承を分ける。
+
+## 2種類の由来
+
+content/modernization/pr16_dex_hof_item_recovery_development_proof.jsonは開発専用の独立疎fixtureで、元DEV固定proof SHAに一致する。これを失われたrunnerの測定出力や現在ROMの原本とは呼ばない。回復validatorの負例と出力容器検証にだけ使用する。
+
+回復runの公開4textは、その回復runで現0641を実際に再構成して照合した新原本である。元run failure、元出力hash欠落、元artifact欠落、165試験継承、今回新試験数、2consumer再計測、累積再構成2をprovenanceへ明示する。
+
+正式781/93への更新は回復run全stepの成功、新4原本とartifact外側identityの回収検証後だけ行う。回復中は780/94を保持する。正式ROM/Save101不変、旧egg15118全域保護、donor安全0、普遍heap/IRQ/全callback/native/自然到達は引き続き未受入である。
