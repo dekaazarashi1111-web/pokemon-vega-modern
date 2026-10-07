@@ -4,7 +4,7 @@
 
 元runログには3出力のhashがない。成功stepと集計行から分かる範囲を、ダウンロードできない測定原本と同一視しない。開発fixtureから作れるtextが同じDEV固定proof SHAに一致しても、それを取得原本として正式受入しない。
 
-## 回復で再実行するもの
+## 第1回復の計画（実行結果と次回修正は末尾）
 
 - 新たな出力境界/閉schema/provenanceの専用検証だけを行う。
 - 元runの全step、165試験成功の集計、公開失敗、artifact0件、旧14sourceおよび共有依存の不変をlive GitHub API/ログ/commit差分で照合する。旧165試験は再走せず継承する。同branchの回復workflowが初回runだけであることもlive確認し、別runを累積2へ隠さない。
@@ -17,6 +17,16 @@
 
 content/modernization/pr16_dex_hof_item_recovery_development_proof.jsonは開発専用の独立疎fixtureで、元DEV固定proof SHAに一致する。これを失われたrunnerの測定出力や現在ROMの原本とは呼ばない。回復validatorの負例と出力容器検証にだけ使用する。
 
-回復runの公開4textは、その回復runで現0641を実際に再構成して照合した新原本である。元run failure、元出力hash欠落、元artifact欠落、165試験継承、今回新試験数、2consumer再計測、累積再構成2をprovenanceへ明示する。
+回復runの公開4textは、その回復runで現0641を実際に再構成して照合した新原本である。元run failure、元出力hash欠落、元artifact欠落、165試験継承、今回新試験数、2consumer再計測、現在は累積再構成3をprovenanceへ明示する。
 
-正式781/93への更新は回復run全stepの成功、新4原本とartifact外側identityの回収検証後だけ行う。回復中は780/94を保持する。正式ROM/Save101不変、旧egg15118全域保護、donor安全0、普遍heap/IRQ/全callback/native/自然到達は引き続き未受入である。
+正式781/93への更新は成功した回復run全stepの成功、新4原本とartifact外側identityの回収検証後だけ行う。回復中は780/94を保持する。正式ROM/Save101不変、旧egg15118全域保護、donor安全0、普遍heap/IRQ/全callback/native/自然到達は引き続き未受入である。
+
+## 第1回復の型境界停止と修正
+
+source7b24518c175583cfb1decc33fc5ab1c12b906762、run37703162164/job113071177158もfailure。元165試験の継承guard、新24出力試験、現0641再構成と2consumerの後、公開前report型検査で停止した。error source_framesはrun79→validate_report180→need47である。artifact0、出力hashも未記録のため、これも成功原本へ昇格しない。
+
+原因は原文読取24行とplaceholder読取16行の内部Python tupleだった。開発fixtureをJSONから読むとlistになるため、従来の出力容器試験ではこの差を検出できなかった。生のproducer proofはcanonical SHAが固定DEVと一致するが、公開schema用の型厳密比較では自己比較もfalseになることを再現確認した。
+
+report生成の境界でscope_proofだけをcanonical JSONへ明示変換する。公開validatorの型厳密性は緩めず、公開reportへtupleを戻す入力を拒否する。実producer疎fixture→report生成→validator→4file書込/読戻しを新試験へ追加し、元165試験全体は再走しない。
+
+次回の現候補再構成は1回、scope累積は元測定1＋第1回復1＋今回1の3回である。元2本のfailureを別々に保持する。回復workflowのrun横断gateは、既知の第1回復failureと今回だけを許可し、未知の再dispatchを拒否する。次回はreport包装より前に、現ROM/owner・実producerのcanonical proof・deltaのhashをログへ出し、生成した全4fileのhashもvalidatorより前に記録する。公開自体は全schema検証後だけ行う。

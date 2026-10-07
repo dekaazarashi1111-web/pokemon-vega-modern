@@ -1,4 +1,4 @@
-"""独立開発fixtureだけで回復の公開境界を検証。旧165試験・consumer/ROM生成は再走しない。"""
+"""回復の公開境界と実producer型変換を検証。旧165試験・現ROM再構成は行わない。"""
 import copy
 import io
 import json
@@ -27,14 +27,13 @@ class RecoveryValidationTests(unittest.TestCase):
             region = v.chain.d.TypedRegion(v.field.HIT, v.field.HIT + 4, v.field.KIND,
                                             v.field.evidence_template())
             cls.delta = v.chain.canonical(v.chain.build(cls.parent, [region], cls.proof))
-        cls.count = 24
-        cls.bindings = {path: v.identity(('independent export fixture: ' + path).encode())
+        cls.count = 27
+        cls.bindings = {path: v.identity((ROOT / path).read_bytes())
                         for path in sorted(v.SOURCE_CODE)}
-        cls.bindings[v.DEV] = copy.deepcopy(v.DEV_IDENTITY)
-        cls.bindings[v.DEVELOPMENT_PROOF] = copy.deepcopy(v.SCOPE_PROOF_IDENTITY)
         cls.context = dict(source_head='1' * 40, run_id=123456789,
                            expected_bindings=cls.bindings, recovery_test_count=cls.count)
         cls.log_identity = v.identity(b'independent synthetic source job log fixture\n')
+        cls.prior_log_identity = v.identity(b'independent synthetic failed recovery log fixture\n')
         cls.report = v.measured_report(cls.proof, cls.delta, **cls.context)
 
     def setUp(self):
@@ -45,7 +44,8 @@ class RecoveryValidationTests(unittest.TestCase):
         self.write('measurement.json', self.report)
         (self.directory / 'reference-chain.json').write_bytes(self.delta)
         self.write('tests.json', v.test_summary(self.count))
-        self.write('provenance.json', v.provenance(self.report, inherited_log_identity=self.log_identity))
+        self.write('provenance.json', v.provenance(self.report, inherited_log_identity=self.log_identity,
+                                                   prior_recovery_log_identity=self.prior_log_identity))
 
     def write(self, name, value):
         (self.directory / name).write_bytes(v.chain.canonical(value))
@@ -53,6 +53,7 @@ class RecoveryValidationTests(unittest.TestCase):
     def validate(self, **kwargs):
         return v.validate_output(self.directory, self.parent, **self.context,
                                  inherited_log_identity=self.log_identity,
+                                 prior_recovery_log_identity=self.prior_log_identity,
                                  log=kwargs.pop('log', io.StringIO()), **kwargs)
 
     def reject(self):
@@ -68,7 +69,8 @@ class RecoveryValidationTests(unittest.TestCase):
     def test_development_fixture_identity_is_not_lost_original(self):
         self.assertEqual(v.identity(self.proof_raw), v.SCOPE_PROOF_IDENTITY)
         self.assertEqual(v._development()['scope_proof_identity'], v.identity(self.proof_raw))
-        p = v.provenance(self.report, inherited_log_identity=self.log_identity)
+        p = v.provenance(self.report, inherited_log_identity=self.log_identity,
+                                                   prior_recovery_log_identity=self.prior_log_identity)
         self.assertIs(p['independent_development_fixture']['is_current_rom_measurement'], False)
         self.assertIs(p['independent_development_fixture']['is_lost_output_original'], False)
         self.assertIs(p['original_failed_run']['original_output_hashes_available'], False)
@@ -229,6 +231,7 @@ class RecoveryValidationTests(unittest.TestCase):
             with self.subTest(key=key), self.assertRaises(ValueError):
                 v.validate_report(dict(self.report, **{key: value}), self.delta, self.parent, **self.context)
         for key, value in [('source_head', v.INHERITED_SOURCE_HEAD), ('run_id', v.INHERITED_MEASUREMENT_RUN),
+                           ('source_head', v.PRIOR_RECOVERY_HEAD), ('run_id', v.PRIOR_RECOVERY_RUN),
                            ('source_head', 'not-a-head'), ('run_id', True), ('recovery_test_count', 0)]:
             context = dict(self.context, **{key: value})
             with self.subTest(context=key), self.assertRaises(ValueError):
@@ -262,7 +265,8 @@ class RecoveryValidationTests(unittest.TestCase):
                 self.reject()
 
     def test_provenance_closed_and_original_failure_not_rewritten(self):
-        original = v.provenance(self.report, inherited_log_identity=self.log_identity)
+        original = v.provenance(self.report, inherited_log_identity=self.log_identity,
+                                                   prior_recovery_log_identity=self.prior_log_identity)
         mutations = [(['original_failed_run', 'run_conclusion'], 'success'),
                      (['original_failed_run', 'artifact_count'], False),
                      (['original_failed_run', 'original_output_hashes_available'], True),
@@ -301,7 +305,7 @@ class RecoveryValidationTests(unittest.TestCase):
     def test_cumulative_work_and_formal_frontier_are_kept_separate(self):
         self.assertEqual((self.report['current_rom_reconstructions'],
                           self.report['cumulative_scope_rom_reconstructions'],
-                          self.report['consumer_remeasurements']), (1, 2, 2))
+                          self.report['consumer_remeasurements']), (1, 3, 2))
         self.assertEqual((self.report['classified'], self.report['unclassified'],
                           self.report['newly_classified']), (781, 93, 1))
         self.assertEqual((self.report['formal_classified_before_recovery'],
@@ -311,6 +315,69 @@ class RecoveryValidationTests(unittest.TestCase):
         self.assertEqual(self.report['old_scope_test_reruns'], 0)
         self.assertEqual(self.report['native_processes'], 0)
         self.assertEqual(self.report['donor_safe_bytes'], 0)
+
+
+    def test_actual_producer_tuple_trace_to_report_and_public_roundtrip(self):
+        from test_pr16_dex_hof_jp_item_text import fixture
+        # 新しい型変換境界の回帰試験だけ。旧165-suiteをロード/実行しない。
+        with mock.patch('subprocess.Popen', side_effect=AssertionError('外部processは禁止')), \
+             mock.patch.object(v.chain.d, 'inventory', side_effect=AssertionError('全ROM scanは禁止')):
+            regions, proof = v.field._regions(fixture(), self.parent)
+        expansion = proof['cases'][0]['expansion']
+        self.assertEqual(len(expansion['source_read_trace']), 24)
+        self.assertTrue(all(type(row) is tuple for row in expansion['source_read_trace']))
+        placeholder_rows = [row for item in expansion['placeholder_reads'] for row in item['read_trace']]
+        self.assertEqual(len(placeholder_rows), 16)
+        self.assertTrue(all(type(row) is tuple for row in placeholder_rows))
+        self.assertFalse(v.exact(proof, proof))
+        self.assertEqual(v.identity(v.chain.canonical(proof)), v.SCOPE_PROOF_IDENTITY)
+        delta = v.chain.canonical(v.chain.build(self.parent, regions, proof))
+        report = v.measured_report(proof, delta, **self.context)
+        self.assertTrue(v.exact(report['scope_proof'], self.proof))
+        self.assertEqual(v.identity(v.chain.canonical(report['scope_proof'])), v.SCOPE_PROOF_IDENTITY)
+        normalized = report['scope_proof']['cases'][0]['expansion']
+        self.assertTrue(all(type(row) is list for row in normalized['source_read_trace']))
+        self.assertTrue(all(type(row) is list for item in normalized['placeholder_reads']
+                            for row in item['read_trace']))
+        self.assertTrue(all(type(row) is tuple for row in expansion['source_read_trace']))
+        self.assertTrue(v.validate_report(report, delta, self.parent, **self.context))
+        (self.directory / 'reference-chain.json').write_bytes(delta)
+        self.write('measurement.json', report)
+        self.write('provenance.json', v.provenance(report, inherited_log_identity=self.log_identity,
+                                                  prior_recovery_log_identity=self.prior_log_identity))
+        reread = v.read_text((self.directory / 'measurement.json').read_bytes())
+        self.assertTrue(v.exact(report, reread))
+        self.assertEqual(set(self.validate()), v.FILES)
+
+    def test_public_report_tuple_alias_remains_rejected(self):
+        bad = copy.deepcopy(self.report)
+        rows = bad['scope_proof']['cases'][0]['expansion']['source_read_trace']
+        rows[0] = tuple(rows[0])
+        self.assertEqual(v.identity(v.chain.canonical(bad['scope_proof'])), v.SCOPE_PROOF_IDENTITY)
+        with self.assertRaises(ValueError):
+            v.validate_report(bad, self.delta, self.parent, **self.context)
+        self.assertFalse(v.exact(rows[0], list(rows[0])))
+
+    def test_prior_failed_recovery_is_closed_and_evidence_limited(self):
+        original = v.provenance(self.report, inherited_log_identity=self.log_identity,
+                                prior_recovery_log_identity=self.prior_log_identity)
+        prior = original['prior_failed_recovery']
+        self.assertEqual(prior['source_head'], '7b24518c175583cfb1decc33fc5ab1c12b906762')
+        self.assertEqual((prior['run_id'], prior['job_id']), (37703162164, 113071177158))
+        self.assertEqual(prior['measurement_step'], 'failure')
+        self.assertEqual(prior['error_stage'], 'prepublication_report_type_validation')
+        self.assertIs(prior['successful_measurement_claimed'], False)
+        self.assertIs(prior['scope_proof_original_available'], False)
+        self.assertEqual(original['current_remeasurement']['cumulative_scope_rom_reconstructions'], 3)
+        for key, value in [('measurement_step', 'success'), ('current_rom_reconstructions', False),
+                           ('run_id', 1), ('successful_measurement_claimed', True),
+                           ('scope_proof_original_available', True), ('unapproved', 'private'),
+                           ('job_log_identity', v.identity(b'changed log'))]:
+            bad = copy.deepcopy(original)
+            bad['prior_failed_recovery'][key] = value
+            with self.subTest(key=key):
+                self.write('provenance.json', bad)
+                self.reject()
 
 
 if __name__ == '__main__':

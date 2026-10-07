@@ -11255,3 +11255,17 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 新pr16-dex-hof-item-recovery初回runを確認する。元run全体failure/原本欠落/元出力hash無しを保持し、旧165試験source不変を継承。回復runで現0641を1回再構成して2readerのみ再計測し、全4textのsize/SHAを公開前ログへ記録してartifact回収する。累積scope ROM再構成は元1＋回復1の2回。成功全step/新原本/外側ZIPの検証後だけ781/93へ。Flash/旧受入/旧heap/native/全ROMscanは再走しない。その後083DE6ABのminigame拒否/取消の別rootを有限化する。全保存入口ready/退避53300前Free/同期非再入/controller6528配線と正式切替後trainer131後半→シオウ通常回復/保存/coldContinueは別未完。
 - Commit: parent=ea976a497522bbf966d1e0e6ef9f2875d1950d37; 新workflowだけ起動し元成功測定workflowを再dispatchしない。同branch非force保存。
 - Network: 同repoActions/job/logsを読取。今回runnerは既存安全transportで元success/failureをlive検証し、私有失敗details/rawROM/runtime/saveを公開しない。
+
+## 2026-10-07T23:46:24.132544+00:00
+- Timestamp: 2026-10-07T23:46:24.132544+00:00
+- Task: USER-20261007-JP-ITEM-JSON-BOUNDARY / 生producerと公開JSONの型境界を修正
+- Version: jp-item-recovery-v2
+- Status: STOPPED（新27試験PASS、次回現候補原本回収へ継続）
+- Summary: 第1回復7b24518c/run37703162164は24新試験・現0641再構成・2consumer後、raw読取trace40行のtupleと公開JSON listの境界でreport型検査がfailure。失敗2本/原本欠落を保持し、report生成だけJSON正規化。公開validator厳格性を維持し、実producer→serializer→4file読戻しを含む27試験PASS。正式780/94、ROM/Save101、安全0は不変。
+- Files changed: 回復actions/validator/tests/guide、固定MDJSON、両ログ。元計測14source凍結。
+- Verify: 全27回復試験PASS。新実producer疎fixtureが返す原文24/placeholder16行tupleのままreport生成→型厳密validator→4file書込/読戻しを通過。公開reportへtupleを戻す負例は拒否。既存2失敗runの実取得job/log内容を用いたmock API guard試験PASS、ROM再構成0。loaderの不存在試験名1件は失敗として残し、正しい影響試験と最終全27でPASS。
+- Failure retained: 7b24518c/run37703162164/job113071177158、元165継承guard成功、24新試験/現ROM再構成/consumer.regions後、validate_report180でfailure、artifact0。元ea976/run37701354400の公開failureも保持。両出力hash未記録を参考再構成で代用しない。
+- Boundary: 現proof canonical SHA c177bbf108f93787eeffc795a726b8688dd759498423736aefb720cfac386b4aは独立疎fixtureで一致確認。これを失われた現ROM原本の代用にはしない。次runの現ROM/proof/deltaと生成4filehashを検証段階より前に記録し、公開は最終検証後のみ。既知再構成2/次成功時累積3、安全0/正式780/94維持。
+- Next: 同pr16-dex-hof-item-recoveryの次runを確認する。既知第1回復failureと今回の2runだけを許すgate、元165試験継承、27新影響試験、現0641必要最小2reader再計測。現ROM/proof/deltaのhashを包装前に、生成4filehashをvalidator前にログ保存。公開は全検証後だけ。元測定1＋第1回復1＋今回1＝累積3を明示し、今回の全step/実原本/外側artifactを検証後だけ781/93へ。次候補083DE6ABのminigame拒否/取消は未受入、保存runtime/controller/正式切替後trainer131後半→シオウ回復/保存/coldContinueは別未完。
+- Commit: parent=7b24518c175583cfb1decc33fc5ab1c12b906762; 同branch非force。private guard既存違反の新規差分0、blob全文LF/tree/remote読戻しを確認。
+- Network: GitHub限定run/job/log read。元ログsize24250/SHA6b0e5f7bb670ece6c2753bd2e26ce3b1c069f3b5b6187c3737135e3be050f70c、第1回復logsize25706/SHA0cec21b4731020920bfc12fd96a9043a837d754a5b8e575ed590d2257f8fea0c。rawROM/save/runtime/credential追加公開0。

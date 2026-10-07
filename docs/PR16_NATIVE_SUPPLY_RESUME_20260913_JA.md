@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-元ea976a49/run37701354400は現0641の計測stepと165試験成功、続く公開guard失敗でartifact0。元出力hashは未記録。独立再構成参考JSON770711bytesは旧上限750000超過だが原本として受入しない。新24出力回復試験/独立reviewを通し、旧165試験を継承、現候補2readerだけ必要最小再計測する回復workflowを実装。正式780/94・安全0・ROM/Save101不変。
+第1回復7b24518c/run37703162164は24新試験・現0641再構成・2consumer後、raw読取trace40行のtupleと公開JSON listの境界でreport型検査がfailure。失敗2本/原本欠落を保持し、report生成だけJSON正規化。公開validator厳格性を維持し、実producer→serializer→4file読戻しを含む27試験PASS。正式780/94、ROM/Save101、安全0は不変。
 
-**次: 新pr16-dex-hof-item-recovery初回runを確認する。元run全体failure/原本欠落/元出力hash無しを保持し、旧165試験source不変を継承。回復runで現0641を1回再構成して2readerのみ再計測し、全4textのsize/SHAを公開前ログへ記録してartifact回収する。累積scope ROM再構成は元1＋回復1の2回。成功全step/新原本/外側ZIPの検証後だけ781/93へ。Flash/旧受入/旧heap/native/全ROMscanは再走しない。その後083DE6ABのminigame拒否/取消の別rootを有限化する。全保存入口ready/退避53300前Free/同期非再入/controller6528配線と正式切替後trainer131後半→シオウ通常回復/保存/coldContinueは別未完。**
+**次: 同pr16-dex-hof-item-recoveryの次runを確認する。既知第1回復failureと今回の2runだけを許すgate、元165試験継承、27新影響試験、現0641必要最小2reader再計測。現ROM/proof/deltaのhashを包装前に、生成4filehashをvalidator前にログ保存。公開は全検証後だけ。元測定1＋第1回復1＋今回1＝累積3を明示し、今回の全step/実原本/外側artifactを検証後だけ781/93へ。次候補083DE6ABのminigame拒否/取消は未受入、保存runtime/controller/正式切替後trainer131後半→シオウ回復/保存/coldContinueは別未完。**
 
 通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `ea976a497522bbf966d1e0e6ef9f2875d1950d37`。
-交換/mailbox元計測step成功・公開guard失敗のsource。元run全体failure/artifact0で正式受入ではない。
+証拠のsource HEAD: `7b24518c175583cfb1decc33fc5ab1c12b906762`。
+第1回復run failureのsource。現候補/2consumer後の包装型境界で停止、artifact0、正式受入ではない。
 
 ## 最短の再開手順
 
@@ -63,6 +63,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- 第1回復37703162164もfailureで保持。rawproducer tuple→公開JSON正規化の変更影響だけを新27試験で検証。元165suite/Flash/旧受入は再走しない。次回は既知失敗回復＋今回の2run gate、必要最小現ROM測定の累積3を明示し出力hashを包装前から記録する。
 - 元run37701354400の165試験/現計測step成功を消さず、artifact未生成を再構成原本で代用しない。回復は旧165試験継承＋新出力検証＋現0641の必要最小2reader再計測のみ。Flash/旧受入は再走しない。回復workflowはbranch横断run初回gateで累積2の偽装を拒否。
 - 交換/mailbox新165試験は疎fixture開発確認。現0641専用Actionsの初回成功原本を回収してから1件781/93へ。Flashの117試験/producer/全文readerと旧acceptedを再走しない。
 - Flash現candidate初回run37697774244は全10step成功、117試験・30byte全文・右27byte原本再利用で083DDEE1の1件だけ780/94へ受入済み。scope/source/候補不変の再実行をせず保存原本から次の083DE02Bへ。receipt20試験と型受入をnative/全callee/普遍heap lifetimeへ昇格しない。
@@ -517,6 +518,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-元ea976a49/run37701354400は現0641の計測stepと165試験成功、続く公開guard失敗でartifact0。元出力hashは未記録。独立再構成参考JSON770711bytesは旧上限750000超過だが原本として受入しない。新24出力回復試験/独立reviewを通し、旧165試験を継承、現候補2readerだけ必要最小再計測する回復workflowを実装。正式780/94・安全0・ROM/Save101不変。
+第1回復7b24518c/run37703162164は24新試験・現0641再構成・2consumer後、raw読取trace40行のtupleと公開JSON listの境界でreport型検査がfailure。失敗2本/原本欠落を保持し、report生成だけJSON正規化。公開validator厳格性を維持し、実producer→serializer→4file読戻しを含む27試験PASS。正式780/94、ROM/Save101、安全0は不変。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

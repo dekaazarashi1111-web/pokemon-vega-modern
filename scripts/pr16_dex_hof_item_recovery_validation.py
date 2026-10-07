@@ -21,6 +21,9 @@ INHERITED_SOURCE_HEAD = 'ea976a497522bbf966d1e0e6ef9f2875d1950d37'
 INHERITED_MEASUREMENT_RUN = 37701354400
 INHERITED_JOB = 113065287651
 INHERITED_TESTS = 165
+PRIOR_RECOVERY_HEAD = '7b24518c175583cfb1decc33fc5ab1c12b906762'
+PRIOR_RECOVERY_RUN = 37703162164
+PRIOR_RECOVERY_JOB = 113071177158
 MAX_FILE_BYTES = 1_500_000
 FILES = frozenset({'measurement.json', 'reference-chain.json', 'tests.json', 'provenance.json'})
 INHERITED_CODE = frozenset({
@@ -95,8 +98,8 @@ def _development():
 
 def _context(source_head, run_id, expected_bindings, recovery_test_count):
     need(type(source_head) is str and re.fullmatch(r'[0-9a-f]{40}', source_head) is not None and
-         source_head != INHERITED_SOURCE_HEAD, '回復実行の新source HEAD')
-    need(type(run_id) is int and run_id > 0 and run_id != INHERITED_MEASUREMENT_RUN,
+         source_head not in (INHERITED_SOURCE_HEAD, PRIOR_RECOVERY_HEAD), '回復実行の新source HEAD')
+    need(type(run_id) is int and run_id > 0 and run_id not in (INHERITED_MEASUREMENT_RUN, PRIOR_RECOVERY_RUN),
          '元failureとは別の新回復run')
     need(type(recovery_test_count) is int and recovery_test_count > 0,
          '新回復suiteの実試験数だけ')
@@ -117,7 +120,7 @@ def measured_report(proof, delta_raw, *, source_head, run_id, expected_bindings,
         candidate=copy.deepcopy(field.CANDIDATE), source_head=source_head, run_id=run_id,
         recovery_test_count=recovery_test_count, inherited_scope_tests=INHERITED_TESTS,
         inherited_measurement_run=INHERITED_MEASUREMENT_RUN, inherited_source_head=INHERITED_SOURCE_HEAD,
-        current_rom_reconstructions=1, cumulative_scope_rom_reconstructions=2,
+        current_rom_reconstructions=1, cumulative_scope_rom_reconstructions=3,
         consumer_remeasurements=2, current_owner_count=115,
         classified=781, unclassified=93, newly_classified=1,
         inherited_classified=780, inherited_unclassified=94,
@@ -127,7 +130,9 @@ def measured_report(proof, delta_raw, *, source_head, run_id, expected_bindings,
         donor_safe_bytes=0, formal_rom_changed=False, formal_save_changed=False,
         donor_eligible=False, donor_leased=False, original_failed_run_rewritten=False,
         reconstructed_text_promoted_as_original=False,
-        scope_proof=copy.deepcopy(proof), delta_identity=identity(delta_raw),
+        # 内部producerのtrace tupleを公開JSON型へ一度だけ正規化する。
+        # validatorのexactはtupleを許容しない。
+        scope_proof=read_text(chain.canonical(proof)), delta_identity=identity(delta_raw),
         development_identity=copy.deepcopy(DEV_IDENTITY),
         source_bindings=copy.deepcopy(expected_bindings), public_source_bindings=field.source_manifest())
 
@@ -139,9 +144,10 @@ def test_summary(recovery_test_count):
                 failures=0, errors=0, skipped=0)
 
 
-def provenance(report, *, inherited_log_identity):
+def provenance(report, *, inherited_log_identity, prior_recovery_log_identity):
     """元failure/継承試験/新原本の由来を分離し、失われたhashを創作しない。"""
     need(_valid_identity(inherited_log_identity), '元job全logの実取得identity')
+    need(_valid_identity(prior_recovery_log_identity), '失敗回復job全logの実取得identity')
     return dict(
         schema_version=1, status='PASS_CURRENT_JP_ITEM_RECOVERY_PROVENANCE',
         original_failed_run=dict(
@@ -150,12 +156,20 @@ def provenance(report, *, inherited_log_identity):
             export_step_outcome='failure', artifact_count=0, scope_tests=INHERITED_TESTS,
             old_export_max_bytes=750000, original_output_size_logged=False,
             original_output_hashes_available=False, job_log_identity=copy.deepcopy(inherited_log_identity)),
+        prior_failed_recovery=dict(
+            source_head=PRIOR_RECOVERY_HEAD, run_id=PRIOR_RECOVERY_RUN, job_id=PRIOR_RECOVERY_JOB,
+            run_conclusion='failure', measurement_step='failure', original_artifact_missing=True,
+            error_stage='prepublication_report_type_validation', current_rom_reconstructions=1,
+            old_scope_test_reruns=0, job_log_identity=copy.deepcopy(prior_recovery_log_identity),
+            stage_evidence='public_exception_source_frames_and_fixed_runner_control_flow',
+            successful_measurement_claimed=False, scope_proof_original_available=False),
         inherited_scope=dict(tests=INHERITED_TESTS, reruns=0, source_head=INHERITED_SOURCE_HEAD,
                              run_id=INHERITED_MEASUREMENT_RUN, source_files_unchanged=14,
                              basis='unchanged_sources_and_original_success_step_and_job_log'),
         current_remeasurement=dict(
             source_head=report['source_head'], run_id=report['run_id'],
             candidate=copy.deepcopy(report['candidate']), current_rom_reconstructions=1,
+            cumulative_scope_rom_reconstructions=3,
             consumer_remeasurements=2, measurement_canonical_identity=identity(chain.canonical(report)),
             delta_identity=copy.deepcopy(report['delta_identity']),
             origin='new_current_rom_measurement_not_recovered_original_output'),
@@ -189,7 +203,7 @@ def validate_report(report, delta_raw, parent, *, source_head, run_id,
 
 
 def validate_output(directory, parent, *, source_head, run_id, expected_bindings,
-                    recovery_test_count, inherited_log_identity, log=None):
+                    recovery_test_count, inherited_log_identity, prior_recovery_log_identity, log=None):
     """4textだけを全て検証してから、公開前に全fileのbyte identityをlogへ出す。"""
     directory = Path(directory)
     need(not any(path.is_symlink() for path in (directory, *directory.parents)) and directory.is_dir(),
@@ -207,7 +221,8 @@ def validate_output(directory, parent, *, source_head, run_id, expected_bindings
                     run_id=run_id, expected_bindings=expected_bindings,
                     recovery_test_count=recovery_test_count)
     need(exact(values['tests.json'], test_summary(recovery_test_count)), '閉じた新suite試験summary')
-    need(exact(values['provenance.json'], provenance(report, inherited_log_identity=inherited_log_identity)),
+    need(exact(values['provenance.json'], provenance(report, inherited_log_identity=inherited_log_identity,
+                                                        prior_recovery_log_identity=prior_recovery_log_identity)),
          '元failure/165継承/今回新原本を厳密に分離した由来')
     identities = {name: identity(raw_files[name]) for name in sorted(FILES)}
     for name, value in identities.items():
