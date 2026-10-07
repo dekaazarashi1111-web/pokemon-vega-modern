@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-JP独立crosswalk2組の現ROM限定計測器を実装。15固定公開sourceを全文size/SHA/Gitblobへ結合し、59合成拒否試験を通過。現候補全SHA/115owner再構成→14有限CFG/2実cell/4文字句EOSをread-only Actionsで測る準備まで。実ROM計測は未実行、779分類/95未知・正式ROM/Save101・安全容量0不変。前run37677371365は全7domain cache成功で新native0。
+現JP限定run37688855091/job113023572648の初回全10step成功。0641全SHA/115ownerを1回再構成し、実2cellと4文EOS込み30/27/24/38byte、14entry/653命令/28窓を観測。両held4byteは左FC09/EOSと右glyphの境界。ENTER/choose-mon現hookとplaceholder間接dispatchを区別、全API引数/serializer実読取は未証明。59計測試験＋保存原本17拒否試験PASS。正式779/95、ROM/Save101、安全0不変。
 
-**次: 新JP consumer probeのread-only Actions終端と成功専用textを回収し、現0641のhook差・実登録cell・名前付きliteral・字句EOSを確認する。その原本から前2組083DDEE1/083DE02Bの最小root/serializer/全token読取/API引数へ結び、根拠未成立は未知保持。既存083DDEE4のCFRU27byte証拠は同identityで参照し再実行しない。FC09の待機をprinter完了と混同せず、左交換原文StringExpandPlaceholdersと展開後printerを分離。第三組競合棄却、旧egg15118保護・安全0、正式ROM/Save101不変。**
+**次: 保存済みJP計測原本から083DDEE1の最小consumerを先に閉じる。party_takeitemの同0641 StartMenu/constructor/state20/RunTasks/selector共通証拠を参照し、field move1個の正producer/実cell/FieldMove badge不足枝のAPI引数/独立日本語全文serializer/FC09待機からEOSまでのwindow6 readerへ接続。右083DDEE4は既存CFRU rootの27byte証拠を再利用し、ENTER現hook09121C91をstock本体と同一視しない。その後083DE02Bの交換原文FD再帰とmailbox拒否rootを別々に閉じる。原本59試験/4文測定/旧受入を無変更再走せず、未成立は95未知保持。旧egg15118全域保護・安全0、heap13352のstock退避53300前Free/全保存入口ready/同期非再入/controller6528本番配線は別gate。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。**
 
 通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `26ff355b5fe27a3f3f963aae0b6a0de13c903eed`。
-現JP計測sourceの準備checkpoint。実cell/EOS/API型は未受入。
+証拠のsource HEAD: `dd69e1253b7705ad2fc5ebe9c69723b3308e114a`。
+初回成功Actionsのcurrent限定観測source。字句EOS/cell/直接CFGのみ、正式型未受入。
 
 ## 最短の再開手順
 
@@ -25,10 +25,14 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_DEX_HOF_JP_CONSUMER_PROBE_JA.md`
-- `scripts/pr16_dex_hof_jp_consumer_probe.py`
-- `scripts/pr16_dex_hof_jp_consumer_probe_actions.py`
-- `docs/PR16_DEX_HOF_JP_CROSSWALK_CANDIDATES_JA.md`
+- `docs/PR16_DEX_HOF_JP_CONSUMER_MEASURED_JA.md`
+- `content/modernization/pr16_dex_hof_jp_consumer_probe_terminal.json`
+- `scripts/pr16_dex_hof_jp_consumer_receipt.py`
+- `scripts/pr16_dex_hof_party_takeitem.py`
+- `scripts/pr16_dex_hof_field_move_roots.py`
+- `scripts/pr16_dex_hof_stock_limit_roots.py`
+- `scripts/pr16_dex_hof_choose_limit_roots.py`
+- `scripts/pr16_dex_hof_event_text_roots.py`
 - `content/modernization/pr16_dex_hof_jp_crosswalk_candidates.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
@@ -483,6 +487,7 @@ P08ゲート:
 - 旧未commit JPgateの30試験・8blobは保存済み証拠へ流用しない。2026-10-07 source-only gateの31試験は新実行。住所のみの言語overrideの英語長や隣接差を日本語EOS extentへ昇格しない。779分類・95未知、ROM/native再走0を保持。
 - JPgate run37674533900の34試験・全文binding受入と、11source/30symbolのcrosswalk候補23試験を区別。新独立候補は2組だけでEOS/現実cell未測定。英語長・隣接差は拒否し、3rdの6B0と強い6AE競合を解消済みにしない。一般CI既知QOL不一致とStage79 cache成功を新受入へ流用しない。
 - JP candidate前2組のsource15件/59合成試験は保存checkpointから再利用。現ROMの字句EOSやCFG観測を実reader/API引数/型受入へ昇格しない。既存083DDEE4のCFRU登録27byte証拠をstock CursorCB_Enterへ置換しない。
+- JP current観測run37688855091の0641再構成1/115owner/14entry/653命令/28窓/2cell/4文EOSと新59試験は保存済み原本を再利用。receipt17拒否試験は記録整合だけ。両境界FC09/EOS/glyph観測をroot/API引数/全文serializer読取/型2件受入へ昇格しない。
 
 ## 次セッションへ残す更新手順
 
@@ -512,6 +517,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-JP symbol gateをremote f9780b53へ保存し、専用run37674533900/job112974501079の初回全8step・34試験・全文resume binding成功を確認。独立cleanJP crosswalkから2組のtext/caller/API/address候補を得て11source/30symbolへ固定、新23拒否試験を通過。EOS/現実cellは未測定、3rd右境界の競合は棄却。779分類/95未知、ROM/native0、正式ROM/Save101・安全容量0を維持。
+現JP限定run37688855091/job113023572648の初回全10step成功。0641全SHA/115ownerを1回再構成し、実2cellと4文EOS込み30/27/24/38byte、14entry/653命令/28窓を観測。両held4byteは左FC09/EOSと右glyphの境界。ENTER/choose-mon現hookとplaceholder間接dispatchを区別、全API引数/serializer実読取は未証明。59計測試験＋保存原本17拒否試験PASS。正式779/95、ROM/Save101、安全0不変。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

@@ -13929,3 +13929,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: source-parent=26ff355b5fe27a3f3f963aae0b6a0de13c903eed; 許可同branchへ非force保存予定。
 - Network: 同repo最新HEAD、既存固定ComplexRobot/pret public source。pret追加4sourceはc75f352304d529f6ba92d4f74b9cf8b5c3810788のcharmap.txt/include/characters.h/src/string_util.c/src/text.c。英語reference長をJP extentへ使用せず、ROM/rawhex/任意literal/入力save/runtime/credential公開0。
 - Next: 新JP consumer probeのread-only Actions終端と成功専用textを回収し、現0641のhook差・実登録cell・名前付きliteral・字句EOSを確認する。その原本から前2組083DDEE1/083DE02Bの最小root/serializer/全token読取/API引数へ結び、根拠未成立は未知保持。既存083DDEE4のCFRU27byte証拠は同identityで参照し再実行しない。FC09の待機をprinter完了と混同せず、左交換原文StringExpandPlaceholdersと展開後printerを分離。第三組競合棄却、旧egg15918保護・安全0、正式ROM/Save101不変。
+
+## 2026-10-07T21:29:54.425161+00:00
+- Timestamp: 2026-10-07T21:29:54.425161+00:00
+- Task: USER-20261007-JP-CONSUMER-RECEIPT / 現JP2候補の限定実測原本保存
+- Version: jp-consumer-measured-v1
+- Status: STOPPED（限定観測checkpoint。最小consumer意味結合を継続）
+- Summary: 現JP限定run37688855091/job113023572648の初回全10step成功。0641全SHA/115ownerを1回再構成し、実2cellと4文EOS込み30/27/24/38byte、14entry/653命令/28窓を観測。両held4byteは左FC09/EOSと右glyphの境界。ENTER/choose-mon現hookとplaceholder間接dispatchを区別、全API引数/serializer実読取は未証明。59計測試験＋保存原本17拒否試験PASS。正式779/95、ROM/Save101、安全0不変。
+- Files changed: immutable measurement/probe-tests JSON、terminal receipt、再照合validator/17拒否試験、新guide、固定再開MDJSON、両ログ。
+- Verify: source run37688855091初回全10step成功/59試験、artifact11512656180 ZIP7863byte・SHA30abe9cf一致、全原本schema/source一致、17新拒否試験PASS。計測成功後のROM/native/旧59試験再走0。一般CI37688855108の既知qol_production.c source不一致をログ確認し未解決保持。固定再開37688855036は成功。Stage79 37688855021は依存install中でnative/cache結果は未確定。
+- Commit: measured-source=dd69e1253b7705ad2fc5ebe9c69723b3308e114a; 同branch非force保存。
+- Network: 同repoActions metadata/logs/artifact読取のみ。公開ROM/rawhex/入力save/runtime/credential0。
+- Next: 保存済みJP計測原本から083DDEE1の最小consumerを先に閉じる。party_takeitemの同0641 StartMenu/constructor/state20/RunTasks/selector共通証拠を参照し、field move1個の正producer/実cell/FieldMove badge不足枝のAPI引数/独立日本語全文serializer/FC09待機からEOSまでのwindow6 readerへ接続。右083DDEE4は既存CFRU rootの27byte証拠を再利用し、ENTER現hook09121C91をstock本体と同一視しない。その後083DE02Bの交換原文FD再帰とmailbox拒否rootを別々に閉じる。原本59試験/4文測定/旧受入を無変更再走せず、未成立は95未知保持。旧egg15118全域保護・安全0、heap13352のstock退避53300前Free/全保存入口ready/同期非再入/controller6528本番配線は別gate。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。
