@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-現JP限定run37688855091/job113023572648の初回全10step成功。0641全SHA/115ownerを1回再構成し、実2cellと4文EOS込み30/27/24/38byte、14entry/653命令/28窓を観測。両held4byteは左FC09/EOSと右glyphの境界。ENTER/choose-mon現hookとplaceholder間接dispatchを区別、全API引数/serializer実読取は未証明。59計測試験＋保存原本17拒否試験PASS。正式779/95、ROM/Save101、安全0不変。
+Flash1個の新実producerから同task／実cell／badge不足枝を経て30byte全文FC09/EOSまで結ぶ有限型を実装。count4はwrap入力081105B8となり旧count3結果を流用しない。新117試験／固定10source／独立review反証修正PASS。右27byteは既存成功原本を再利用。現0641の専用Actions実測前なので正式779/95、ROM/Save101、安全0を維持。
 
-**次: 保存済みJP計測原本から083DDEE1の最小consumerを先に閉じる。party_takeitemの同0641 StartMenu/constructor/state20/RunTasks/selector共通証拠を参照し、field move1個の正producer/実cell/FieldMove badge不足枝のAPI引数/独立日本語全文serializer/FC09待機からEOSまでのwindow6 readerへ接続。右083DDEE4は既存CFRU rootの27byte証拠を再利用し、ENTER現hook09121C91をstock本体と同一視しない。その後083DE02Bの交換原文FD再帰とmailbox拒否rootを別々に閉じる。原本59試験/4文測定/旧受入を無変更再走せず、未成立は95未知保持。旧egg15118全域保護・安全0、heap13352のstock退避53300前Free/全保存入口ready/同期非再入/controller6528本番配線は別gate。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。**
+**次: 新read-only pr16-dex-hof-jp-field-text Actionsの初回runを確認し、同0641全SHA／115owner／874保存hitと新1件のproducer→badge全文consumerを照合する。成功原本と終端を回収後だけ780/94へ記録し、既存受入を再走せず083DE02Bの交換FD再帰／mailbox拒否rootへ進む。汎用Stage79の未終端を成功扱いせず独立保留。旧egg15118全域保護・donor安全0、全保存入口ready／退避53300開始前Free／同期非再入／controller6528配線は別未完。**
 
 通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `dd69e1253b7705ad2fc5ebe9c69723b3308e114a`。
-初回成功Actionsのcurrent限定観測source。字句EOS/cell/直接CFGのみ、正式型未受入。
+証拠のsource HEAD: `077a1d027eb6c3f2ff0eb4b760d6278ce58f98ee`。
+新Flash有限scopeの開発開始親HEAD。疎fixture117試験の開発記録であり、現候補のActions実測HEADや正式受入ではない。
 
 ## 最短の再開手順
 
@@ -25,15 +25,11 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_DEX_HOF_JP_CONSUMER_MEASURED_JA.md`
-- `content/modernization/pr16_dex_hof_jp_consumer_probe_terminal.json`
-- `scripts/pr16_dex_hof_jp_consumer_receipt.py`
-- `scripts/pr16_dex_hof_party_takeitem.py`
-- `scripts/pr16_dex_hof_field_move_roots.py`
-- `scripts/pr16_dex_hof_stock_limit_roots.py`
-- `scripts/pr16_dex_hof_choose_limit_roots.py`
-- `scripts/pr16_dex_hof_event_text_roots.py`
-- `content/modernization/pr16_dex_hof_jp_crosswalk_candidates.json`
+- `docs/PR16_DEX_HOF_JP_FIELD_TEXT_JA.md`
+- `content/modernization/pr16_dex_hof_jp_field_development.json`
+- `scripts/pr16_dex_hof_jp_field_actions.py`
+- `scripts/pr16_dex_hof_jp_field_text.py`
+- `scripts/pr16_dex_hof_jp_field_chain.py`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -67,6 +63,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- JP field新117試験は独立疎fixtureで開発確認済み。正式現候補を代用せず専用Actionsで一度だけ照合し、成功なら原本回収から次へ。旧TakeItem count3/no-wrapや旧max3 consumerを受入代用・再走しない。
 - 所有者決定後はSave14原本から自然育成を漫然と継続しない。story-fastは自己OT Lv100作業コピー、成長受入は別progression fixtureの通常戦闘EXPで行い、両レーンの主張を混同しない。
 - Save14の303/cold40入力・97画面・110試験は保存原本から照合するだけ。ひんしツツケラのEXP80は不変、リープンEXP516、両個体回復済み。勝利残留を再計上せず、coldのRAM時刻差と全Save/RTC不変を分離。次はSave14から先だけ。
 - Save13の255/cold40入力と76画面・95検査は保存原本から照合するだけ。ツツケラ先頭Lv4/EXP80とリープンEXP479、全回復済み。勝利残留flags4/outcome1・wire field:falseを追加勝利や未復帰にしない。次はSave13から先だけ。
@@ -517,6 +514,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-現JP限定run37688855091/job113023572648の初回全10step成功。0641全SHA/115ownerを1回再構成し、実2cellと4文EOS込み30/27/24/38byte、14entry/653命令/28窓を観測。両held4byteは左FC09/EOSと右glyphの境界。ENTER/choose-mon現hookとplaceholder間接dispatchを区別、全API引数/serializer実読取は未証明。59計測試験＋保存原本17拒否試験PASS。正式779/95、ROM/Save101、安全0不変。
+Flash1個の新実producerから同task／実cell／badge不足枝を経て30byte全文FC09/EOSまで結ぶ有限型を実装。count4はwrap入力081105B8となり旧count3結果を流用しない。新117試験／固定10source／独立review反証修正PASS。右27byteは既存成功原本を再利用。現0641の専用Actions実測前なので正式779/95、ROM/Save101、安全0を維持。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
