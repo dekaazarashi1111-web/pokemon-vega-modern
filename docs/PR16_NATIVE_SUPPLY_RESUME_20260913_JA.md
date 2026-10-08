@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-Diploma初回run37718308112/job113119846893は全9step成功。公開PNG由来のLZ3366/解凍8192と現0641実149命令consumerを4成功原本で照合し、生成/検証/公開前12hashと実取得byteが完全一致。新168試験継承/receipt40試験PASS。083DCAEDの4byte1件だけ正式782→783分類、92→91未知。今回ROM再構成1、native0、安全0、ROM/Save101不変。
+Blastoise第一画像083D655Cの独立公開PNGはLZ1794/decoded3200。別ROM6ffでは実consumerの圧縮消費が1287で083D6A63終端、083D6B61の4byteは254byte後に残る反証。58命令/63窓、第一readerまで52命令、window1条件付き3200byteのモデルと184新試験を検証。現0641初回Actions前なので正式783/91維持、0件deltaのみ、donor0、ROM/Save101不変。
 
-**次: 保存783親から083D6B61を次の有限scopeとする。固定JP auditのsBlastoise1_Tiles起点083D655Cについて、独立公開画像source・登録table/実literal・decoder・consumerを1件限定で調べる。reference size/近傍距離だけでextentや型を作らない。Diploma成功source14/168試験/4原本と旧credits反証を無変更再走しない。全保存入口ready/退避53300前Free/同期非再入/controller6528本番配線、正式切替後trainer131後半→シオウ回復/保存/coldContinueは別gate。 782親はdiploma_chain.parentの57保存入力、783親は保存deltaをread_measured→materializeで復元。成功測定source14とworkflowを凍結し、記録commitで再測定しない。**
+**次: 新pr16-dex-hof-blastoise-asset Actionsを初回だけ計測し、現0641全SHA/115owner/874保存hit・圧縮終端・独立公開PNG全hashとの一致/不一致を4成功JSONの実取得と12hashで照合する。取得前に手元6ffの終端反証を正式0641結果にしない。陽性でも今scopeは0件delta、未消費tailや近傍reference sizeを型へしない。旧Diploma168/receipt40/他受入suite/consumer/native/全ROMscan再走なし。保存入口ready/退避53300前Free/同期非再入/controller6528本番配線と正式切替後trainer131後半→シオウ回復保存coldContinueは別gate。**
 
 通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `60f32297e1a20266f8e5638df66dea28901cf84d`。
-Diploma画像assetの初回実測source。独立疎fixtureと区別した取得4原本から4byte最小型1件だけ正式受入。
+証拠のsource HEAD: `f6b2c40bac541c8ff0ac1856860ea6e1b0936660`。
+Blastoise診断scope開発開始HEAD。184新試験、独立PNG陽性と別ROM6ff陰性を分離した開発で、現0641測定ではない。
 
 ## 最短の再開手順
 
@@ -25,12 +25,13 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_DEX_HOF_DIPLOMA_ACCEPTED_JA.md`
-- `content/modernization/pr16_dex_hof_diploma_checkpoint.json`
-- `scripts/pr16_dex_hof_asset_receipt.py`
-- `scripts/pr16_dex_hof_diploma_chain.py`
-- `content/modernization/pr16_dex_hof_diploma_evidence/unknown-frontier.json`
-- `scripts/pr16_dex_hof_diploma_sources.py`
+- `docs/PR16_DEX_HOF_BLASTOISE_ASSET_JA.md`
+- `content/modernization/pr16_dex_hof_blastoise_development.json`
+- `scripts/pr16_dex_hof_blastoise_actions.py`
+- `scripts/pr16_dex_hof_blastoise_asset.py`
+- `scripts/pr16_dex_hof_blastoise_sources.py`
+- `scripts/pr16_dex_hof_blastoise_chain.py`
+- `scripts/pr16_dex_hof_blastoise_validation.py`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -64,6 +65,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- Blastoise新184試験は独立PNG1794/3200陽性と別ROM6ffの消費1287陰性を分離した開発。現0641の初回4JSON取得前に正式反証や型受入にせず783/91を保持。今scopeは0件deltaのみ、旧Diploma/credits/minigame/受入consumer/native/全ROMscanを再走しない。
 - Diploma初回37718308112は全9step/168試験/取得4原本の12hash一致から083DCAEDだけ783/91へ正式受入。成功source14/168試験/consumerは変更影響なしに再走しない。終端padding2は型やdonorへ含めず、次083D6B61は独立source/登録/実readerが得られるまでunknown維持。
 - Diploma新168試験は独立公開PNG→LZ→疎fixture開発確認。現0641初回Actionsの4成功JSON取得/hash照合前に正式783/91へ昇格しない。3366byteのconsumed streamと3368byteの末尾padding2byteを分離。旧credits37/minigame152/受入consumer/native/全ROMscanは再走しない。
 - 083E239Bのcredits正table/caller候補は得たが、左最初EOS083E239A後1byteが未被覆。右全文だけ・ALIGNED(4)・英語長・隣接距離で型へ昇格しない。旧手元6窓のhash固定は現0641測定ではない。正式782/92とminigame成功原本は保持し、次は別DiplomaGfx候補を有限調査。
@@ -525,6 +527,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-Diploma初回run37718308112/job113119846893は全9step成功。公開PNG由来のLZ3366/解凍8192と現0641実149命令consumerを4成功原本で照合し、生成/検証/公開前12hashと実取得byteが完全一致。新168試験継承/receipt40試験PASS。083DCAEDの4byte1件だけ正式782→783分類、92→91未知。今回ROM再構成1、native0、安全0、ROM/Save101不変。
+Blastoise第一画像083D655Cの独立公開PNGはLZ1794/decoded3200。別ROM6ffでは実consumerの圧縮消費が1287で083D6A63終端、083D6B61の4byteは254byte後に残る反証。58命令/63窓、第一readerまで52命令、window1条件付き3200byteのモデルと184新試験を検証。現0641初回Actions前なので正式783/91維持、0件deltaのみ、donor0、ROM/Save101不変。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

@@ -14101,3 +14101,18 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 保存783親から083D6B61を次の有限scopeとする。固定JP auditのsBlastoise1_Tiles起点083D655Cについて、独立公開画像source・登録table/実literal・decoder・consumerを1件限定で調べる。reference size/近傍距離だけでextentや型を作らない。Diploma成功source14/168試験/4原本と旧credits反証を無変更再走しない。全保存入口ready/退避53300前Free/同期非再入/controller6528本番配線、正式切替後trainer131後半→シオウ回復/保存/coldContinueは別gate。 782親はdiploma_chain.parentの57保存入力、783親は保存deltaをread_measured→materializeで復元。成功測定source14とworkflowを凍結し、記録commitで再測定しない。
 - Commit: parent=60f32297e1a20266f8e5638df66dea28901cf84d; 成功測定source14を凍結し、workflow glob外のasset_receipt pathで記録。同branch非force、全LF/blob/tree/単親/remote照合。
 - Network: GitHub Actions/job/log/artifact APIと公式file ID取得。署名URLは一時利用のみでGit保持なし。ROM/rawhex/runtime/入力save/credential追加公開0。全体private guard既存違反不変・新規0を確認。
+
+## 2026-10-08T02:59:00Z
+- Timestamp: 2026-10-08T02:59:00Z
+- Task: USER-20261008-BLASTOISE-ENDPOINT / Blastoise画像の独立sourceと実reader終端を診断
+- Version: blastoise-endpoint-v1
+- Status: STOPPED（新184試験PASS、現0641専用初回Actionsへ継続）
+- Summary: Blastoise第一画像083D655Cの独立公開PNGはLZ1794/decoded3200。別ROM6ffでは実consumerの圧縮消費が1287で083D6A63終端、083D6B61の4byteは254byte後に残る反証。58命令/63窓、第一readerまで52命令、window1条件付き3200byteのモデルと184新試験を検証。現0641初回Actions前なので正式783/91維持、0件deltaのみ、donor0、ROM/Save101不変。
+- Files changed: 新sources/asset/chain/validation/actionsと5試験、専用read-only workflow、DEV/proof JSON、guide、固定MDJSON、両ログ。旧成功source不変。
+- Verify: sources41＋asset36（初回35成功/死んだcaller引数slotをlive扱いした試験1件訂正後成功）＋chain52（51+実diagnostic gate1）＋publication37＋actions18＝184新試験。独立source14件全size/SHA/Git blob、62親全入力/30段164変更154witness保持。task graph PASS。
+- Boundary: 独立PNG decoded3200/SHA53555d2564544f36b20a1100c372fd16e6a4eab1e62f58a2a87b02dae97ab068、consumed1794/SHA795833f5dc50f7eeb6bc69b851d2ea3cdebe18ee6c8ec35e3b708ca1113dea01。別ROM6ffは消費1287/SHAcdf23c05be2f344e136245089ffc3b3ea153f03b1835648def7ceb38fcec7b75・decoded3200/SHA6a8f2647e7797596a4b820332cb0f48d693d4731098f7512bd175e0b311ff7c8。終端後254byteのtargetを型にしない。初回画像decoderは既存indexed8限定によりindexed4入力を正しく拒否、新専用decoderを実装。条件付きpostcondition8byte書込は実model APIの1/2/4byte制限へ合わせ2x4に修正。
+- Model: LoadCreditsMonPic entry080F5208/whichMon2、template083D27C8、literal080F52E4、BL080F52CE/window1,size0,offset0→CopyToWindowPixelBuffer080043D0→BL08004418/SWI11。58命令/63窓、実経路52命令。InitWindows/2window0 calleeは同期ABI/同window1資源保存条件、caller-saved/flags/nonlive消去。第一reader帰還080F52D2で終了し、BIOSCPU/第二画像/VRAM/DMA/画面/自然到達/全callee/普遍heapIRQは未証明。
+- Actions: f6b2c40b固定再開37719339334/job113123137961全5step、forgetting37719339416/37719348032/runtime audit37719339234成功。一般CI37719339297失敗、Stage79 37719339242 pending、全CI成功とはしない。旧Diploma専用再走0。
+- Next: 新pr16-dex-hof-blastoise-asset Actionsを初回だけ計測し、現0641全SHA/115owner/874保存hit・圧縮終端・独立公開PNG全hashとの一致/不一致を4成功JSONの実取得と12hashで照合する。取得前に手元6ffの終端反証を正式0641結果にしない。陽性でも今scopeは0件delta、未消費tailや近傍reference sizeを型へしない。旧Diploma168/receipt40/他受入suite/consumer/native/全ROMscan再走なし。保存入口ready/退避53300前Free/同期非再入/controller6528本番配線と正式切替後trainer131後半→シオウ回復保存coldContinueは別gate。
+- Commit: parent=f6b2c40bac541c8ff0ac1856860ea6e1b0936660; 同branch非force。全text/LF/blob読戻し/tree/単親/remote照合と最終indexの既存guard差分0を確認する。
+- Network: 固定pret c75f3523のcredits/PNG/window/gbagfx、固定JP c04a3154 audit/metadata、同repo最新HEAD/Actions。公開はsource/model/identity/textのみ、ROM/rawhex/runtime/入力save/secret追加0。
