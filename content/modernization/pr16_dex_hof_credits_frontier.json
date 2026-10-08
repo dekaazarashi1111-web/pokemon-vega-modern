@@ -1,0 +1,211 @@
+{
+  "schema_version": 1,
+  "status": "DIAGNOSTIC_CREDITS_POST_EOS_BYTE_UNCLASSIFIED",
+  "source_head": "4e8929c5ada5deaadabc696c3afec75a09b6dff3",
+  "hit": {
+    "accepted": false,
+    "address": 138290075,
+    "classification": "UNCLASSIFIED",
+    "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+    "owner_candidates": [],
+    "reason": "no_complete_typed_asset_consumer_witness",
+    "sha256": "f2e445f2786ebdc255f66acdec7db6f31fb21ad17af9863e6edaa228ba0508f3",
+    "size": 4,
+    "target": 167706112
+  },
+  "parent_identity": {
+    "size": 5374525,
+    "sha256": "3a311d6757418050acbbb2dc71ad93d9dfcc8fd63d7a52ba8782ad44d59ec3b7"
+  },
+  "frontier_identity": {
+    "size": 29034,
+    "sha256": "550552dc67577b0e3e8d5831eaf87e1fa207e9f4885acd1cb06b9764aa81d436"
+  },
+  "source_manifest": {
+    "frlg-sym/diagnostics/pokefirered_jp.sym.audit.tsv": {
+      "git_blob": "53316c0d61da2c6cc22acf3d79f68c61c64c65be",
+      "path": "diagnostics/pokefirered_jp.sym.audit.tsv",
+      "ref": "c04a31542086b20d8c6ee641eaa70b8db6713fd3",
+      "repository": "ComplexRobot/frlg-sym",
+      "sha256": "fc1e4b579b21a592b8e09fa3c36f242833837190401128cd6866c945eff2f44e",
+      "size": 4147002,
+      "url": "https://github.com/ComplexRobot/frlg-sym/blob/c04a31542086b20d8c6ee641eaa70b8db6713fd3/diagnostics/pokefirered_jp.sym.audit.tsv"
+    },
+    "frlg-sym/diagnostics/pokefirered_jp.sym.metadata.tsv": {
+      "git_blob": "2550c490a130f22dfd59725a200152a607c969fd",
+      "path": "diagnostics/pokefirered_jp.sym.metadata.tsv",
+      "ref": "c04a31542086b20d8c6ee641eaa70b8db6713fd3",
+      "repository": "ComplexRobot/frlg-sym",
+      "sha256": "aa387f052a694890c3de8104f93b885cd0091d401a59cddf8ab067a6869bb774",
+      "size": 464,
+      "url": "https://github.com/ComplexRobot/frlg-sym/blob/c04a31542086b20d8c6ee641eaa70b8db6713fd3/diagnostics/pokefirered_jp.sym.metadata.tsv"
+    },
+    "frlg-sym/diagnostics/pokefirered_jp.sym.unresolved.tsv": {
+      "git_blob": "790f5b437097213028e53e7b1d4dd37a3565ee15",
+      "path": "diagnostics/pokefirered_jp.sym.unresolved.tsv",
+      "ref": "c04a31542086b20d8c6ee641eaa70b8db6713fd3",
+      "repository": "ComplexRobot/frlg-sym",
+      "sha256": "5f37ea414f9e326379d5dbc2d0aab0a28aa4bd254f896cd191f18ec4f20530b7",
+      "size": 162464,
+      "url": "https://github.com/ComplexRobot/frlg-sym/blob/c04a31542086b20d8c6ee641eaa70b8db6713fd3/diagnostics/pokefirered_jp.sym.unresolved.tsv"
+    },
+    "frlg-sym/sym/pokefirered_jp.sym": {
+      "git_blob": "1d0809feff3b2536bd91082cbb482253525c196b",
+      "path": "sym/pokefirered_jp.sym",
+      "ref": "c04a31542086b20d8c6ee641eaa70b8db6713fd3",
+      "repository": "ComplexRobot/frlg-sym",
+      "sha256": "223428cb80e8d3a0fb1387d4c70a09f0636c9f32ab65b1e99d8bb199b5939ac5",
+      "size": 2229426,
+      "url": "https://github.com/ComplexRobot/frlg-sym/blob/c04a31542086b20d8c6ee641eaa70b8db6713fd3/sym/pokefirered_jp.sym"
+    },
+    "pret-pokefirered/src/credits.c": {
+      "git_blob": "8f89652a0f864ae4fcacd67cccff3a4d3441f350",
+      "path": "src/credits.c",
+      "ref": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "repository": "pret/pokefirered",
+      "sha256": "96690b500af63cc588b2ca8060f4af5b1a69a99797870099831d77a32027af25",
+      "size": 50032,
+      "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/credits.c"
+    },
+    "pret-pokefirered/src/strings.c": {
+      "git_blob": "c09955503495e79c237d7f6d5164c666c7502600",
+      "path": "src/strings.c",
+      "ref": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "repository": "pret/pokefirered",
+      "sha256": "08e3799f20dd90ae937808be25721d28c3465b4f2ebaba2e71321e52f72465c1",
+      "size": 96631,
+      "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/strings.c"
+    }
+  },
+  "source_findings": {
+    "credits_string_count": 86,
+    "unresolved_credits_string_count": 86,
+    "unresolved_tables": [
+      "sCreditsScript",
+      "sCreditsTexts"
+    ],
+    "nearby_labels_are_text_extent": false,
+    "reference_sizes_are_localized_extents": false,
+    "english_table_count_or_order_applied_to_jp": false,
+    "source_caller_structure_available": true,
+    "independent_jp_text_available": false
+  },
+  "static_diagnostic": {
+    "function": 135220200,
+    "next_independent_function": 135221748,
+    "api": 135458220,
+    "table": 138264072,
+    "stride": 12,
+    "selected_index": 1,
+    "script": 138249596,
+    "script_stride": 4,
+    "selected_script_index": 2,
+    "script_cell": 138249604,
+    "command": 0,
+    "duration": 200,
+    "title_cell": 138264084,
+    "names_cell": 138264088,
+    "title_table_literal": 135221108,
+    "names_table_literal": 135221224,
+    "title_pointer_load": 135221086,
+    "names_pointer_load": 135221204,
+    "title_api_call": 135221094,
+    "names_api_call": 135221212,
+    "title_font": 1,
+    "names_font": 2,
+    "title_speed": 255,
+    "names_speed": 255
+  },
+  "texts": [
+    {
+      "role": "title",
+      "address": 138290048,
+      "size": 27,
+      "first_eos": 138290074,
+      "sha256": "055e7dadc1face2ad56cd48b49c314dccd6317284edba9ae25c939ea352a181e"
+    },
+    {
+      "role": "names",
+      "address": 138290076,
+      "size": 22,
+      "first_eos": 138290097,
+      "sha256": "01c87c4f075b3bb23e5920a09f4cb64789a05dd70f7cc41aa70c4c4be2fa9a7c"
+    }
+  ],
+  "uncovered_addresses": [
+    138290075
+  ],
+  "coverage_reason": "LEFT_FIRST_EOS_PRECEDES_HIT_RIGHT_COVERS_ONLY_THREE_BYTES",
+  "flags": {
+    "diagnostic_only": true,
+    "source_crosswalk_complete": false,
+    "current_candidate_measured": false,
+    "local_whole_rom_identity_verified": false,
+    "independent_jp_text_serializer_available": false,
+    "actual_reader_executed": false,
+    "actual_runtime_execution_observed": false,
+    "positive_type_accepted": false,
+    "padding_type_accepted": false,
+    "donor_eligible": false,
+    "donor_leased": false,
+    "formal_rom_changed": false,
+    "formal_save_changed": false,
+    "release_ready": false,
+    "indirect_reference_completeness_claimed": false
+  },
+  "counters": {
+    "classified": 782,
+    "unclassified": 92,
+    "newly_classified": 0,
+    "saved_hit_count": 874,
+    "inherited_namespaces": 29,
+    "inherited_changes": 163,
+    "inherited_witnesses": 153,
+    "current_rom_reconstructions": 0,
+    "old_scope_test_reruns": 0,
+    "old_full_rom_scan_runs": 0,
+    "native_processes": 0,
+    "rom_writes": 0,
+    "save_writes": 0,
+    "donor_safe_bytes": 0
+  },
+  "next_ja": "保存782親を保持し、083DCAEDのDiplomaGfxについて独立source、実literal、decoder、consumerを1件限定で調べる。083E239Bは左最初EOS後1byteを含み通常全文readerで覆えないため保留。別の正consumerまたは独立asset型根拠が得られるまでpaddingや近傍長で昇格しない。",
+  "legacy_windows": [
+    {
+      "role": "title_callback_and_literals",
+      "address": 135220988,
+      "size": 132,
+      "sha256": "81b5a3d9bb745434c888f53c16703bca0a47e832f6e5c60f15bbaa355dbe3e91"
+    },
+    {
+      "role": "names_callback_and_literals",
+      "address": 135221120,
+      "size": 116,
+      "sha256": "24139637d320e8e375e5cb61fd66f34094be3aa0eec7a67836967ed8e2191de9"
+    },
+    {
+      "role": "selected_credits_record",
+      "address": 138264084,
+      "size": 12,
+      "sha256": "73a5c519e42c083ab1b6535f9b8c20f1cdf2d1578ff68e9580cdefc48ddff174"
+    },
+    {
+      "role": "selected_credits_command",
+      "address": 138249604,
+      "size": 4,
+      "sha256": "11d12ef02a2f9ed5d1993c966db7c96c2869868b566331c01999ee62bf5bbf16"
+    },
+    {
+      "role": "title_to_first_eos",
+      "address": 138290048,
+      "size": 27,
+      "sha256": "055e7dadc1face2ad56cd48b49c314dccd6317284edba9ae25c939ea352a181e"
+    },
+    {
+      "role": "names_to_first_eos",
+      "address": 138290076,
+      "size": 22,
+      "sha256": "01c87c4f075b3bb23e5920a09f4cb64789a05dd70f7cc41aa70c4c4be2fa9a7c"
+    }
+  ]
+}

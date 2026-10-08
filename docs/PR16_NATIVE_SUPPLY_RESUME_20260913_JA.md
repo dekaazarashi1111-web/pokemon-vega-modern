@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-minigame初回run37713083180/job113103259904は全10step成功。現0641のstate6実bitflag producer/拒否/別取消hook/左21byte・右12byte全文を4原本で照合し、生成/検証/公開前12hashと実取得byte完全一致。新152試験継承/receipt28試験PASS。083DE6ABの4byte1件だけ正式781→782分類、93→92未知。今回ROM再構成1、native0、安全0、ROM/Save101不変。
+083E239Bを独立credits sourceと正caller/tableから限定診断。左083E2380の最初EOS083E239Aでhit先頭1byteが未被覆、右083E239Cは後半3byteだけ。型化せず正式782/92を保持。57保存入力/29段163変更153witnessの復元と誤昇格拒否を実装し37新試験PASS。公開6source全hash照合、旧手元6窓313bytesのhash記録。現ROM再構成/旧scope再走/native0、donor安全0、ROM/Save101不変。
 
-**次: 保存済み782親から083E239BのJP固有文字列source/crosswalkを1件限定で調べ、独立起点/caller/literalを得た後だけ新producer/cell/API/全文readerを実装する。近傍labelからextentを推定せず、source未確定ならunknownを維持する。083DE68Eは左Unusedで通常SPDEF実cellが別文、083DF94Fは左登録起点の最初EOS後3byteを含むため両者保留。画像型の別候補083DCAED/DiplomaGfxは未調査。minigame成功scope/152試験は無変更再走しない。全保存入口ready/退避53300前Free/同期非再入/controller6528本番配線、正式切替後trainer131後半→シオウ回復/保存/coldContinueは別gate。 旧781親はjp_minigame_chain.parentの55保存入力、現782親は保存reference-chainをread_measured→materializeして復元する。成功測定source14とworkflowを凍結し、記録commitで無変更再測定しない。**
+**次: 保存782親を保持し、083DCAEDのDiplomaGfxについて独立source、実literal、decoder、consumerを1件限定で調べる。083E239Bは左最初EOS後1byteを含み通常全文readerで覆えないため保留。別の正consumerまたは独立asset型根拠が得られるまでpaddingや近傍長で昇格しない。 旧781親を使わずscripts/pr16_dex_hof_credits_frontier.pyのrestore_parentで57保存入力から782親を復元する。minigame成功152試験/4原本、今回のcredits反証は無変更再走しない。全保存入口ready/退避53300前Free/同期非再入/controller6528本番配線、正式切替後trainer131後半→シオウ回復/保存/coldContinueは別gate。**
 
 通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `cde7da732b17ba3dbc4806ea87680b2ca012b9c6`。
-minigame拒否/取消の初回実測source。独立疎fixtureと区別した取得4原本から4byte最小型1件だけ正式受入。
+証拠のsource HEAD: `4e8929c5ada5deaadabc696c3afec75a09b6dff3`。
+credits有限調査の開始HEAD。保存済みminigameの782/92を不変継承。旧手元限定観測は現0641実測/全文reader実行/型受入ではない。
 
 ## 最短の再開手順
 
@@ -25,10 +25,11 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `docs/PR16_DEX_HOF_CREDITS_FRONTIER_JA.md`
+- `content/modernization/pr16_dex_hof_credits_frontier.json`
+- `scripts/pr16_dex_hof_credits_frontier.py`
 - `docs/PR16_DEX_HOF_MINIGAME_ACCEPTED_JA.md`
 - `content/modernization/pr16_dex_hof_jp_minigame_checkpoint.json`
-- `scripts/pr16_dex_hof_minigame_receipt.py`
-- `scripts/pr16_dex_hof_jp_minigame_chain.py`
 - `content/modernization/pr16_dex_hof_jp_minigame_evidence/unknown-frontier.json`
 - `content/modernization/pr16_dex_hof_jp_crosswalk_candidates.json`
 
@@ -64,6 +65,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- 083E239Bのcredits正table/caller候補は得たが、左最初EOS083E239A後1byteが未被覆。右全文だけ・ALIGNED(4)・英語長・隣接距離で型へ昇格しない。旧手元6窓のhash固定は現0641測定ではない。正式782/92とminigame成功原本は保持し、次は別DiplomaGfx候補を有限調査。
 - minigame初回37713083180は全10step/152試験/取得4原本の12hash一致から083DE6ABだけ782/92へ正式受入。source14/成功scope/152試験は変更影響なしに再走しない。近隣083DE68EのUnused左文と083DF94Fの最初EOS後3byteを、右隣の正consumerだけで分類しない。
 - minigame新152試験は独立疎fixture開発確認。現0641初回Actionsの4成功原本を実取得/hash照合してから083DE6ABだけ782/92へ。交換/mailboxの成功回復・旧165/27/22・consumer・nativeは変更影響なしに再走しない。
 - 成功回復37704409163は全10step/27新試験/165継承/取得4原本から083DE02Bだけ781/93へ正式受入。元37701354400と37703162164のfailure/原本欠落を保持し、scope累積再構成3を消さない。成功scopeと165/27試験は無変更再走せず次の083DE6ABへ。
@@ -522,6 +524,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-minigame初回run37713083180/job113103259904は全10step成功。現0641のstate6実bitflag producer/拒否/別取消hook/左21byte・右12byte全文を4原本で照合し、生成/検証/公開前12hashと実取得byte完全一致。新152試験継承/receipt28試験PASS。083DE6ABの4byte1件だけ正式781→782分類、93→92未知。今回ROM再構成1、native0、安全0、ROM/Save101不変。
+083E239Bを独立credits sourceと正caller/tableから限定診断。左083E2380の最初EOS083E239Aでhit先頭1byteが未被覆、右083E239Cは後半3byteだけ。型化せず正式782/92を保持。57保存入力/29段163変更153witnessの復元と誤昇格拒否を実装し37新試験PASS。公開6source全hash照合、旧手元6窓313bytesのhash記録。現ROM再構成/旧scope再走/native0、donor安全0、ROM/Save101不変。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

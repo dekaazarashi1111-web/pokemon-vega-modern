@@ -1,0 +1,42 @@
+# credits候補083E239B：EOS後の1byteを未分類で保持
+
+2026-10-08。開始HEADは4e8929c5ada5deaadabc696c3afec75a09b6dff3。正式782分類/92未知を保存原本から復元し、全874行・29段163変更153witnessを保持した。追加分類0、安全donor容量0、正式ROM/Save101変更0。
+
+新しいsource-only validatorは57保存入力を全byte/hash/LF/順序で認証し、minigameの保存deltaをmaterializeして現在782親を作る。旧781配列を新しい親として使わない。旧consumer・旧suite・全ROMscan・native・ROM再構成は呼ばない。
+
+## 独立sourceで分かったこと
+
+[固定pret strings.c](https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/strings.c#L1063-L1148)では、gText_Rooftop2とeReader文の間はcredits/titleの86文字列である。[固定JP unresolved](https://github.com/ComplexRobot/frlg-sym/blob/c04a31542086b20d8c6ee641eaa70b8db6713fd3/diagnostics/pokefirered_jp.sym.unresolved.tsv#L1569-L1654)に全86行が残り、sCreditsScriptとsCreditsTextsも未解決。近傍labelから本文やextentを推測できない。
+
+[固定credits.c](https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/credits.c#L921-L939)は、script.paramでtitle/names表を選びAddTextPrinterParameterized4へ渡す構造を示す。JP関数候補はRollCredits080F4BE8、CB2_Credits080F4A00、AddTextPrinterParameterized4 0812EDAC。reference sizeはJP extentではない。次の独立関数VBlankCB080F51F4までを調査上限にした。
+
+固定公開source6本の全size/SHA-256/Git blobを照合済み。新取得credits.cは50032bytes、SHA-256 96690b500af63cc588b2ca8060f4af5b1a69a99797870099831d77a32027af25、Git blob8f89652a0f864ae4fcacd67cccff3a4d3441f350。metadataはcontent/modernization/pr16_dex_hof_credits_frontier.jsonに保存した。
+
+日本語版を示すrepository名だけでは本文sourceにならない。限定探索したmuchi88/pokefirered-jpのstrings.cは固定英語版と同じGit blobだった。Webの日本語credits転記も版・制御文字・改行を確定できずserializer根拠にしない。独立JP本文serializerは今回得られていない。
+
+## 旧手元の限定静的診断
+
+以下は旧手元ROMのseek/readだけによる静的診断。全ROMのidentityは今回再計算しておらず、現0641候補での測定・受入・実reader実行の証拠ではない。callback/literal2窓、選択record/command各1窓、本文2窓の計6窓/313bytesについてsize/SHA-256を記録した。これらは旧手元観測値の固定で、現ROM検証の代用ではない。ROM byte/rawhex/本文の逆生成物を公開成果へ含めない。
+
+1. RollCredits内の正API呼出しから、title側LDR080F4F10のcell080F4F74とnames側LDR080F4F82のcell080F4FE8が共にsCreditsTexts083DBE08を指すことを確認した。script rootは別literalから083D857C。
+2. script2の実cell083D8584はcommand0/index1/duration200。固定英語sourceの同位置duration300をJPへコピーしない。表のstride12は実命令のindex×3×4から確認する。JPの全表個数・全順序は未確定。
+3. row1のtitle cell083DBE14は083E2380、names cell083DBE18は083E239C。LDR080F4F5E/080F4FD4がそれぞれのpointerをstack+16へ渡し、BL080F4F66/080F4FDCでAPI0812EDACを呼ぶ。実引数font1/2、speed255。title fontを英語sourceのfont3へ読み替えない。
+4. 各独立登録起点から最大128byteで最初EOSまでだけを静的readした。左は27bytes、最初EOS083E239A、SHA-256 055e7dadc1face2ad56cd48b49c314dccd6317284edba9ae25c939ea352a181e。右は22bytes、最初EOS083E23B1、SHA-256 01c87c4f075b3bb23e5920a09f4cb64789a05dd70f7cc41aa70c4c4be2fa9a7c。
+
+対象hitは083E239Bから4byte。左全文の直後にhit先頭があり、右全文は083E239Cからなので、通常の左右全文readerが覆うのは後半3byteだけ。先頭083E239Bの値はこの診断で読んでいない。EOSを無視して次pointerまで左長を28に広げたり、ALIGNED(4)だけで未読1byteをpadding型として受け入れない。
+
+実table/caller候補は得られたが、rootからの自然到達・全producer・全文reader・ABI/資源寿命・現候補identityは未証明。したがって最小4byte型も成立していない。
+
+## 実装した拒否条件
+
+scripts/pr16_dex_hof_credits_frontier.pyと専用試験は、782親の全field、正式92未知の全行と順序、上の正cell、最初EOS、未被覆住所1個を固定する。左長を隣接pointer距離へ拡張、別EOSの創作、未被覆ゼロ、分類783への変更、現ROM/実reader/安全claim、bool/int/floatの型別名を拒否する。検証は既存型の再計測ではなく、保存原本と新しい診断契約だけを対象とする。
+
+専用Actionsは保存metadata/反証の回帰確認だけで、公開source6本の再取得・再認証は実行しない。公開sourceの全byte照合は手元の--sources検査で実施した。専用Actionsはsource-only。ROM・save・private Releaseを取得せず、旧受入scopeのworkflowは変更していない。元minigame152試験/成功4原本はそのまま保持する。
+
+## 次の有限scope
+
+保存782親から083DCAEDのDiplomaGfxについて独立source、実literal、decoder、consumerを1件限定で調べる。これは新しいasset型候補であり、圧縮dataの近傍住所やsourceの英語長だけで型化しない。source/起点が未確定なら同様にunknownを維持する。
+
+083E239Bは別の正consumer、または当該1byteを含む独立asset型根拠が得られるまで保留する。083DE68EのUnused左文、083DF94Fの左最初EOS後3byteも未分類のまま。どの限定反証も全ROMの無参照や安全donor容量を意味しない。
+
+全保存入口ready・退避53300開始前heap13352 Free・同期非再入・controller6528本番配線は別gate。正式切替後trainer131後半からシオウ通常回復/保存/独立coldContinueも未完。旧egg15118全域保護を維持する。

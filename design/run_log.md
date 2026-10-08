@@ -14056,3 +14056,18 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 保存済み782親から083E239BのJP固有文字列source/crosswalkを1件限定で調べ、独立起点/caller/literalを得た後だけ新producer/cell/API/全文readerを実装する。近傍labelからextentを推定せず、source未確定ならunknownを維持する。083DE68Eは左Unusedで通常SPDEF実cellが別文、083DF94Fは左登録起点の最初EOS後3byteを含むため両者保留。画像型の別候補083DCAED/DiplomaGfxは未調査。minigame成功scope/152試験は無変更再走しない。全保存入口ready/退避53300前Free/同期非再入/controller6528本番配線、正式切替後trainer131後半→シオウ回復/保存/coldContinueは別gate。 旧781親はjp_minigame_chain.parentの55保存入力、現782親は保存reference-chainをread_measured→materializeして復元する。成功測定source14とworkflowを凍結し、記録commitで無変更再測定しない。
 - Commit: parent=cde7da732b17ba3dbc4806ea87680b2ca012b9c6; 成功測定sourceを変えずworkflow glob外のreceipt pathで記録。同branch非force、全文LF/blob/tree/remote照合。
 - Network: GitHub Actions/job/log/artifact APIと公式file IDダウンロード。署名URLは一時利用のみ、Gitへ保持なし。ROM/rawhex/runtime/入力save/credential追加公開0。全体private guard既存違反は不変、新規0を確認。
+
+## 2026-10-08T01:54:00Z
+- Timestamp: 2026-10-08T01:54:00Z
+- Task: USER-20261008-JP-CREDITS-FRONTIER / creditsのEOS後1byteを未分類で保持する有限反証
+- Version: jp-credits-frontier-v1
+- Status: DONE（source-only反証と再開実装。型分類追加0/製品完成ではない）
+- Summary: 083E239Bを独立credits sourceと正caller/tableから限定診断。左083E2380の最初EOS083E239Aでhit先頭1byteが未被覆、右083E239Cは後半3byteだけ。型化せず正式782/92を保持。57保存入力/29段163変更153witnessの復元と誤昇格拒否を実装し37新試験PASS。公開6source全hash照合、旧手元6窓313bytesのhash記録。現ROM再構成/旧scope再走/native0、donor安全0、ROM/Save101不変。
+- Files changed: credits反証validator/37試験/専用source-only workflow/診断JSON/guide/固定MDJSON/両ログ。旧成功source/原本不変。
+- Verify: 新37試験PASS、credits_frontier --sourcesで公開6source全size/SHA/Git blobと86unresolved/2table未解決を照合。保存57入力から782親を復元。左27byte最初EOS239A、右22byte起点239Cなのでhit239B..239Eの先頭1byteは通常全文reader外。
+- Boundary: 旧手元静的6窓313bytesのhash固定のみ。旧手元全ROMidentity未再計算、現0641測定0、全文reader/producer実行0。ALIGNED(4)や次pointer距離をpadding型/全文長にしない。自然到達/普遍heap/IRQ/安全donor未証明。新規分類0/正式782分類92未知/旧egg15118全域保護。
+- Review: 独立reviewで現ROM誤claim・型alias・mutable parent抜けなし。Actionsは保存metadata/反証のみで公開6source再認証なしと明記し、旧手元由来6窓hashを追記。最終37試験を変更影響回帰。
+- Actions: 開始HEAD4e8929c5固定再開37714174806/job113106736307全5step成功、forgetting37714174584/37714180897とruntime audit37714174734成功。一般source-validation37714174597/37714180989 failure、Stage79 37714174618 pendingを独立保持。新専用source-only CIはpush後確認。
+- Next: 保存782親を保持し、083DCAEDのDiplomaGfxについて独立source、実literal、decoder、consumerを1件限定で調べる。083E239Bは左最初EOS後1byteを含み通常全文readerで覆えないため保留。別の正consumerまたは独立asset型根拠が得られるまでpaddingや近傍長で昇格しない。 旧781親を使わずscripts/pr16_dex_hof_credits_frontier.pyのrestore_parentで57保存入力から782親を復元する。minigame成功152試験/4原本、今回のcredits反証は無変更再走しない。全保存入口ready/退避53300前Free/同期非再入/controller6528本番配線、正式切替後trainer131後半→シオウ回復/保存/coldContinueは別gate。
+- Commit: parent=4e8929c5ada5deaadabc696c3afec75a09b6dff3; 同branch非force。全文LF/blob/tree/remote照合と最終indexの既存guard差分を確認。
+- Network: 固定pret credits.c c75f3523、固定JP symbol/audit/unresolved c04a3154、GitHub repository/file検索。JP名repoのEN同blobは採用せず、制御文字/版不明のcredits転記も不採用。ROM/rawhex/runtime/入力save/credential公開0。

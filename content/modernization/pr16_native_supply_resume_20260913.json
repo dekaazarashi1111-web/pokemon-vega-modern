@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "minigame初回run37713083180/job113103259904は全10step成功。現0641のstate6実bitflag producer/拒否/別取消hook/左21byte・右12byte全文を4原本で照合し、生成/検証/公開前12hashと実取得byte完全一致。新152試験継承/receipt28試験PASS。083DE6ABの4byte1件だけ正式781→782分類、93→92未知。今回ROM再構成1、native0、安全0、ROM/Save101不変。",
+    "current_stop": "083E239Bを独立credits sourceと正caller/tableから限定診断。左083E2380の最初EOS083E239Aでhit先頭1byteが未被覆、右083E239Cは後半3byteだけ。型化せず正式782/92を保持。57保存入力/29段163変更153witnessの復元と誤昇格拒否を実装し37新試験PASS。公開6source全hash照合、旧手元6窓313bytesのhash記録。現ROM再構成/旧scope再走/native0、donor安全0、ROM/Save101不変。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "保存済み782親から083E239BのJP固有文字列source/crosswalkを1件限定で調べ、独立起点/caller/literalを得た後だけ新producer/cell/API/全文readerを実装する。近傍labelからextentを推定せず、source未確定ならunknownを維持する。083DE68Eは左Unusedで通常SPDEF実cellが別文、083DF94Fは左登録起点の最初EOS後3byteを含むため両者保留。画像型の別候補083DCAED/DiplomaGfxは未調査。minigame成功scope/152試験は無変更再走しない。全保存入口ready/退避53300前Free/同期非再入/controller6528本番配線、正式切替後trainer131後半→シオウ回復/保存/coldContinueは別gate。 旧781親はjp_minigame_chain.parentの55保存入力、現782親は保存reference-chainをread_measured→materializeして復元する。成功測定source14とworkflowを凍結し、記録commitで無変更再測定しない。",
+    "next_step": "保存782親を保持し、083DCAEDのDiplomaGfxについて独立source、実literal、decoder、consumerを1件限定で調べる。083E239Bは左最初EOS後1byteを含み通常全文readerで覆えないため保留。別の正consumerまたは独立asset型根拠が得られるまでpaddingや近傍長で昇格しない。 旧781親を使わずscripts/pr16_dex_hof_credits_frontier.pyのrestore_parentで57保存入力から782親を復元する。minigame成功152試験/4原本、今回のcredits反証は無変更再走しない。全保存入口ready/退避53300前Free/同期非再入/controller6528本番配線、正式切替後trainer131後半→シオウ回復/保存/coldContinueは別gate。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -793,6 +793,7 @@
   },
   "current_resume_doc": "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
   "do_not_repeat": [
+    "083E239Bのcredits正table/caller候補は得たが、左最初EOS083E239A後1byteが未被覆。右全文だけ・ALIGNED(4)・英語長・隣接距離で型へ昇格しない。旧手元6窓のhash固定は現0641測定ではない。正式782/92とminigame成功原本は保持し、次は別DiplomaGfx候補を有限調査。",
     "minigame初回37713083180は全10step/152試験/取得4原本の12hash一致から083DE6ABだけ782/92へ正式受入。source14/成功scope/152試験は変更影響なしに再走しない。近隣083DE68EのUnused左文と083DF94Fの最初EOS後3byteを、右隣の正consumerだけで分類しない。",
     "minigame新152試験は独立疎fixture開発確認。現0641初回Actionsの4成功原本を実取得/hash照合してから083DE6ABだけ782/92へ。交換/mailboxの成功回復・旧165/27/22・consumer・nativeは変更影響なしに再走しない。",
     "成功回復37704409163は全10step/27新試験/165継承/取得4原本から083DE02Bだけ781/93へ正式受入。元37701354400と37703162164のfailure/原本欠落を保持し、scope累積再構成3を消さない。成功scopeと165/27試験は無変更再走せず次の083DE6ABへ。",
@@ -4402,53 +4403,51 @@
     "status": "PASS_NATIONAL_DEX_GRANT_OWNER_SCOPED"
   },
   "next_action": {
-    "goal_ja": "保存済み782親から083E239BのJP固有文字列source/crosswalkを1件限定で調べ、独立起点/caller/literalを得た後だけ新producer/cell/API/全文readerを実装する。近傍labelからextentを推定せず、source未確定ならunknownを維持する。083DE68Eは左Unusedで通常SPDEF実cellが別文、083DF94Fは左登録起点の最初EOS後3byteを含むため両者保留。画像型の別候補083DCAED/DiplomaGfxは未調査。minigame成功scope/152試験は無変更再走しない。全保存入口ready/退避53300前Free/同期非再入/controller6528本番配線、正式切替後trainer131後半→シオウ回復/保存/coldContinueは別gate。 旧781親はjp_minigame_chain.parentの55保存入力、現782親は保存reference-chainをread_measured→materializeして復元する。成功測定source14とworkflowを凍結し、記録commitで無変更再測定しない。",
+    "goal_ja": "保存782親を保持し、083DCAEDのDiplomaGfxについて独立source、実literal、decoder、consumerを1件限定で調べる。083E239Bは左最初EOS後1byteを含み通常全文readerで覆えないため保留。別の正consumerまたは独立asset型根拠が得られるまでpaddingや近傍長で昇格しない。 旧781親を使わずscripts/pr16_dex_hof_credits_frontier.pyのrestore_parentで57保存入力から782親を復元する。minigame成功152試験/4原本、今回のcredits反証は無変更再走しない。全保存入口ready/退避53300前Free/同期非再入/controller6528本番配線、正式切替後trainer131後半→シオウ回復/保存/coldContinueは別gate。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。Save14は作業コピーだけを使用する。自己OT party、manifest解決済み通常支援用品、EXP境界、safe opponentはpre-battle fixtureとして全byteを台帳化してよい。badge/key item/story flag/money/RPをfixture付与せず、戦闘開始後は通常入力とゲーム内処理だけを使う。",
-    "id": "BIND_NEXT_POSITIVE_JP_TEXT_FRONTIER",
+    "id": "BIND_JP_DIPLOMA_GFX_FRONTIER",
     "read_paths": [
+      "docs/PR16_DEX_HOF_CREDITS_FRONTIER_JA.md",
+      "content/modernization/pr16_dex_hof_credits_frontier.json",
+      "scripts/pr16_dex_hof_credits_frontier.py",
       "docs/PR16_DEX_HOF_MINIGAME_ACCEPTED_JA.md",
       "content/modernization/pr16_dex_hof_jp_minigame_checkpoint.json",
-      "scripts/pr16_dex_hof_minigame_receipt.py",
-      "scripts/pr16_dex_hof_jp_minigame_chain.py",
       "content/modernization/pr16_dex_hof_jp_minigame_evidence/unknown-frontier.json",
       "content/modernization/pr16_dex_hof_jp_crosswalk_candidates.json"
     ],
     "stop_rule_ja": "通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。"
   },
   "observed_date_jst": "2026-10-04",
-  "observed_head": "cde7da732b17ba3dbc4806ea87680b2ca012b9c6",
+  "observed_head": "4e8929c5ada5deaadabc696c3afec75a09b6dff3",
   "observed_head_checks": {
-    "all10_steps_success": true,
-    "all12_logged_file_identities_match_download": true,
-    "artifact_id": 11522331925,
+    "all_general_ci_success": false,
     "classified": 782,
-    "current_owner_count": 115,
-    "current_rom_reconstructions": 1,
+    "current_rom_reconstructions": 0,
     "donor_safe_bytes": 0,
-    "downloaded_file_count": 4,
     "fixed_resume_all5_steps_success": true,
-    "fixed_resume_job": 113103259433,
-    "fixed_resume_run": 37713083163,
+    "fixed_resume_job": 113106736307,
+    "fixed_resume_run": 37714174806,
+    "forgetting_success_runs": [
+      37714174584,
+      37714180897
+    ],
     "formal_rom_changed": false,
     "formal_save_changed": false,
-    "general_ci_job113103259705_exact_qol_mismatches": 2,
-    "general_ci_runs": [
-      37713083233,
-      37713089584
+    "general_ci_failure_runs": [
+      37714174597,
+      37714180989
     ],
-    "general_ci_secondary_missing_upload_after_upstream_failure": true,
-    "job_id": 113103259904,
     "native_processes": 0,
-    "newly_classified": 1,
+    "newly_classified": 0,
     "old_scope_test_reruns": 0,
-    "prior_stage79_cancelled": 37705446681,
-    "reason_ja": "minigame初回run37713083180/job113103259904は全10step成功。現0641のstate6実bitflag producer/拒否/別取消hook/左21byte・右12byte全文を4原本で照合し、生成/検証/公開前12hashと実取得byte完全一致。新152試験継承/receipt28試験PASS。083DE6ABの4byte1件だけ正式781→782分類、93→92未知。今回ROM再構成1、native0、安全0、ROM/Save101不変。",
-    "receipt_tests": 28,
-    "run_id": 37713083180,
-    "scope_head": "cde7da732b17ba3dbc4806ea87680b2ca012b9c6",
-    "scope_tests": 152,
-    "stage79_in_progress": 37688855021,
-    "stage79_pending": 37713083051,
+    "parent_inputs": 57,
+    "public_source_files": 6,
+    "reason_ja": "083E239Bを独立credits sourceと正caller/tableから限定診断。左083E2380の最初EOS083E239Aでhit先頭1byteが未被覆、右083E239Cは後半3byteだけ。型化せず正式782/92を保持。57保存入力/29段163変更153witnessの復元と誤昇格拒否を実装し37新試験PASS。公開6source全hash照合、旧手元6窓313bytesのhash記録。現ROM再構成/旧scope再走/native0、donor安全0、ROM/Save101不変。",
+    "runtime_audit_success_run": 37714174734,
+    "scope": "credits有限source-only診断。現ROM測定なし",
+    "scope_head": "4e8929c5ada5deaadabc696c3afec75a09b6dff3",
+    "scope_tests": 37,
+    "stage79_pending": 37714174618,
     "unclassified": 92
   },
   "observed_head_history": [
@@ -12718,9 +12717,48 @@
       "head": "6304f08614dbd338dbf6716db75625357fb33ed2",
       "reason_ja": "minigame初回全10stepと実取得4原本を照合し、083DE6ABだけ782/92へ追加。旧交換/mailbox2failure履歴も保持。",
       "semantics": "minigame拒否/取消新scope開発の開始親HEAD。152疎fixture試験であり現候補Actions実測HEADや正式受入ではない。"
+    },
+    {
+      "checks": {
+        "all10_steps_success": true,
+        "all12_logged_file_identities_match_download": true,
+        "artifact_id": 11522331925,
+        "classified": 782,
+        "current_owner_count": 115,
+        "current_rom_reconstructions": 1,
+        "donor_safe_bytes": 0,
+        "downloaded_file_count": 4,
+        "fixed_resume_all5_steps_success": true,
+        "fixed_resume_job": 113103259433,
+        "fixed_resume_run": 37713083163,
+        "formal_rom_changed": false,
+        "formal_save_changed": false,
+        "general_ci_job113103259705_exact_qol_mismatches": 2,
+        "general_ci_runs": [
+          37713083233,
+          37713089584
+        ],
+        "general_ci_secondary_missing_upload_after_upstream_failure": true,
+        "job_id": 113103259904,
+        "native_processes": 0,
+        "newly_classified": 1,
+        "old_scope_test_reruns": 0,
+        "prior_stage79_cancelled": 37705446681,
+        "reason_ja": "minigame初回run37713083180/job113103259904は全10step成功。現0641のstate6実bitflag producer/拒否/別取消hook/左21byte・右12byte全文を4原本で照合し、生成/検証/公開前12hashと実取得byte完全一致。新152試験継承/receipt28試験PASS。083DE6ABの4byte1件だけ正式781→782分類、93→92未知。今回ROM再構成1、native0、安全0、ROM/Save101不変。",
+        "receipt_tests": 28,
+        "run_id": 37713083180,
+        "scope_head": "cde7da732b17ba3dbc4806ea87680b2ca012b9c6",
+        "scope_tests": 152,
+        "stage79_in_progress": 37688855021,
+        "stage79_pending": 37713083051,
+        "unclassified": 92
+      },
+      "head": "cde7da732b17ba3dbc4806ea87680b2ca012b9c6",
+      "reason_ja": "minigame受入を保持し、次credits候補の最初EOS後1byteを正式分類へ昇格しないsource-only反証を記録。",
+      "semantics": "minigame拒否/取消の初回実測source。独立疎fixtureと区別した取得4原本から4byte最小型1件だけ正式受入。"
     }
   ],
-  "observed_head_semantics": "minigame拒否/取消の初回実測source。独立疎fixtureと区別した取得4原本から4byte最小型1件だけ正式受入。",
+  "observed_head_semantics": "credits有限調査の開始HEAD。保存済みminigameの782/92を不変継承。旧手元限定観測は現0641実測/全文reader実行/型受入ではない。",
   "p08_candidate_impact": {
     "candidate": {
       "crc32": "CC068B4A",
@@ -12855,6 +12893,13 @@
       "scope": "汎用Stage79同concurrency待ち。minigame専用成功とは独立。",
       "status": "queued",
       "tested_head": "cde7da732b17ba3dbc4806ea87680b2ca012b9c6"
+    },
+    {
+      "github_status": "pending",
+      "run_id": 37714174618,
+      "scope": "汎用Stage79同concurrency待ち。01:43UTC API確認。credits source-only診断と独立。",
+      "status": "queued",
+      "tested_head": "4e8929c5ada5deaadabc696c3afec75a09b6dff3"
     }
   ],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
@@ -14622,6 +14667,10 @@
     ".github/workflows/pr16-counter-source-context.yml": {
       "sha256": "00260954c833f5ae6a496fd686302e1484863190441ca946f5dc7a2e9f307b94",
       "size": 2500
+    },
+    ".github/workflows/pr16-credits-frontier.yml": {
+      "sha256": "d43b9dacea85858f947d6672fc3271ca4e23d74b29b43566269249a82a2bba1f",
+      "size": 1155
     },
     ".github/workflows/pr16-dex-battle-consumers.yml": {
       "sha256": "6763fcf35e4a8665712ab4e26690b3a0d900126d4cf1013ad55e703cd932f315",
@@ -18046,6 +18095,10 @@
     "content/modernization/pr16_dex_hof_controller_space_sources.json": {
       "sha256": "3fc295a46a1bcbb7f912623c4799107e9687436686a97b65e0f33c29c4b1e93a",
       "size": 5760
+    },
+    "content/modernization/pr16_dex_hof_credits_frontier.json": {
+      "sha256": "1ec7d2bf53f7d397b3e3751b693f52dc5f31eb5cce5c5ae9b8b2bc84f5c89bc1",
+      "size": 7961
     },
     "content/modernization/pr16_dex_hof_critical_move_list_roots_review.json": {
       "sha256": "37cf0c104a0fda69bd0ad5ebd90a8ceb6dea4584f921463669dfe037834f2c1a",
@@ -31227,6 +31280,10 @@
       "sha256": "fcaa7e262483a9ba6fcfcdc3b00351be879d8f76f1b151fd6178b8de5758d630",
       "size": 5848
     },
+    "docs/PR16_DEX_HOF_CREDITS_FRONTIER_JA.md": {
+      "sha256": "d12880724c0ac1d3021e82160da524625638aa1aff99d49209fc0fa085e8c75f",
+      "size": 6109
+    },
     "docs/PR16_DEX_HOF_EVENT_BOUNDARY_BATCH_JA.md": {
       "sha256": "48c604a3a7c504e44bc8b38a70b0f75d95720d4bf057a6bd4bcf2da7f7c99c65",
       "size": 5861
@@ -36559,6 +36616,10 @@
       "sha256": "f4f2c34e6c48d1c4a2347e820b19356d5ad80c6a64296b45f7afdd4247f88136",
       "size": 13577
     },
+    "scripts/pr16_dex_hof_credits_frontier.py": {
+      "sha256": "38fa6914a94b717c4ae80ca0a6b220e38af2918a0a1952392a63951eac6dc25f",
+      "size": 17551
+    },
     "scripts/pr16_dex_hof_critical_move_ids.py": {
       "sha256": "32fc9f9fe11b076851f84d504b50aff115a8d386e8af58c261e3aa15f0e6e33f",
       "size": 12338
@@ -40794,6 +40855,10 @@
     "tests/test_pr16_dex_hof_controller_space_closeout.py": {
       "sha256": "0c7a436bb20f19fa85fb3a8837499380e6a616dd60ae367ef4725d9360f694a9",
       "size": 2049
+    },
+    "tests/test_pr16_dex_hof_credits_frontier.py": {
+      "sha256": "31e42aff7af958fe87461d65a42aa3e7c2235b76956eacbe3c100411fc14b29e",
+      "size": 10657
     },
     "tests/test_pr16_dex_hof_critical_move_ids.py": {
       "sha256": "1fc7821ccb5f9453e5c06518e97ef73b97ce679855c9e252e6f8cee510833354",
@@ -46612,6 +46677,36 @@
         "status": "PASS_CURRENT_726_PARENT_ROOTS_AND_PARTIAL_SPACE_REFUSAL",
         "unclassified": 146,
         "unit_tests": 201
+      },
+      "hof_credits_frontier": {
+        "checkpoint": "content/modernization/pr16_dex_hof_credits_frontier.json",
+        "classified": 782,
+        "current_candidate_measured": false,
+        "current_rom_reconstructions": 0,
+        "donor_safe_bytes": 0,
+        "fixed_public_sources": 6,
+        "formal_rom_changed": false,
+        "formal_save_changed": false,
+        "guide": "docs/PR16_DEX_HOF_CREDITS_FRONTIER_JA.md",
+        "independent_jp_text_available": false,
+        "legacy_window_bytes": 313,
+        "legacy_windows": 6,
+        "native_processes": 0,
+        "newly_classified": 0,
+        "old_scope_test_reruns": 0,
+        "parent_identity": {
+          "sha256": "3a311d6757418050acbbb2dc71ad93d9dfcc8fd63d7a52ba8782ad44d59ec3b7",
+          "size": 5374525
+        },
+        "parent_inputs": 57,
+        "positive_type_accepted": false,
+        "scope_tests": 37,
+        "starting_head": "4e8929c5ada5deaadabc696c3afec75a09b6dff3",
+        "status": "DIAGNOSTIC_CREDITS_POST_EOS_BYTE_UNCLASSIFIED",
+        "unclassified": 92,
+        "uncovered_addresses": [
+          138290075
+        ]
       },
       "hof_event_boundary_batch": {
         "candidate": {
