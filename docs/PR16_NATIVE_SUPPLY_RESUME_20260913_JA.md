@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-minigame menuType11/action13の実constructor/state6が非Dodrio条件からbitflag0を生成し、拒否/取消の別hookと21/12byte全文readerまで接続。新152試験・固定10source・独立review修正PASS。現0641専用Actions前の開発checkpointなので正式781/93、安全0、ROM/Save101不変。
+minigame初回run37713083180/job113103259904は全10step成功。現0641のstate6実bitflag producer/拒否/別取消hook/左21byte・右12byte全文を4原本で照合し、生成/検証/公開前12hashと実取得byte完全一致。新152試験継承/receipt28試験PASS。083DE6ABの4byte1件だけ正式781→782分類、93→92未知。今回ROM再構成1、native0、安全0、ROM/Save101不変。
 
-**次: 新read-only pr16-dex-hof-jp-minigame-text Actionsの初回runを照合する。現0641全SHA/115owner/874保存hitとstate6実bitflag producer/左右全文readerの4成功原本を実取得し、生成時/公開前hashが一致した後だけ083DE6ABの4byte1件を782/92へ記録する。交換/mailbox成功scope・旧165/27/22・native・旧heap・全ROMscanは再走しない。全保存入口ready/退避53300開始前Free/同期非再入/controller6528配線は別gate、正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinueは未完。**
+**次: 保存済み782親から083E239BのJP固有文字列source/crosswalkを1件限定で調べ、独立起点/caller/literalを得た後だけ新producer/cell/API/全文readerを実装する。近傍labelからextentを推定せず、source未確定ならunknownを維持する。083DE68Eは左Unusedで通常SPDEF実cellが別文、083DF94Fは左登録起点の最初EOS後3byteを含むため両者保留。画像型の別候補083DCAED/DiplomaGfxは未調査。minigame成功scope/152試験は無変更再走しない。全保存入口ready/退避53300前Free/同期非再入/controller6528本番配線、正式切替後trainer131後半→シオウ回復/保存/coldContinueは別gate。 旧781親はjp_minigame_chain.parentの55保存入力、現782親は保存reference-chainをread_measured→materializeして復元する。成功測定source14とworkflowを凍結し、記録commitで無変更再測定しない。**
 
 通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `6304f08614dbd338dbf6716db75625357fb33ed2`。
-minigame拒否/取消新scope開発の開始親HEAD。152疎fixture試験であり現候補Actions実測HEADや正式受入ではない。
+証拠のsource HEAD: `cde7da732b17ba3dbc4806ea87680b2ca012b9c6`。
+minigame拒否/取消の初回実測source。独立疎fixtureと区別した取得4原本から4byte最小型1件だけ正式受入。
 
 ## 最短の再開手順
 
@@ -25,13 +25,12 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_DEX_HOF_JP_MINIGAME_TEXT_JA.md`
-- `content/modernization/pr16_dex_hof_jp_minigame_development.json`
-- `scripts/pr16_dex_hof_jp_minigame_actions.py`
-- `scripts/pr16_dex_hof_jp_minigame_text.py`
-- `scripts/pr16_dex_hof_jp_minigame_roots.py`
+- `docs/PR16_DEX_HOF_MINIGAME_ACCEPTED_JA.md`
+- `content/modernization/pr16_dex_hof_jp_minigame_checkpoint.json`
+- `scripts/pr16_dex_hof_minigame_receipt.py`
 - `scripts/pr16_dex_hof_jp_minigame_chain.py`
-- `scripts/pr16_dex_hof_jp_minigame_validation.py`
+- `content/modernization/pr16_dex_hof_jp_minigame_evidence/unknown-frontier.json`
+- `content/modernization/pr16_dex_hof_jp_crosswalk_candidates.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -65,6 +64,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- minigame初回37713083180は全10step/152試験/取得4原本の12hash一致から083DE6ABだけ782/92へ正式受入。source14/成功scope/152試験は変更影響なしに再走しない。近隣083DE68EのUnused左文と083DF94Fの最初EOS後3byteを、右隣の正consumerだけで分類しない。
 - minigame新152試験は独立疎fixture開発確認。現0641初回Actionsの4成功原本を実取得/hash照合してから083DE6ABだけ782/92へ。交換/mailboxの成功回復・旧165/27/22・consumer・nativeは変更影響なしに再走しない。
 - 成功回復37704409163は全10step/27新試験/165継承/取得4原本から083DE02Bだけ781/93へ正式受入。元37701354400と37703162164のfailure/原本欠落を保持し、scope累積再構成3を消さない。成功scopeと165/27試験は無変更再走せず次の083DE6ABへ。
 - 第1回復37703162164もfailureで保持。rawproducer tuple→公開JSON正規化の変更影響だけを新27試験で検証。元165suite/Flash/旧受入は再走しない。次回は既知失敗回復＋今回の2run gate、必要最小現ROM測定の累積3を明示し出力hashを包装前から記録する。
@@ -522,6 +522,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-minigame menuType11/action13の実constructor/state6が非Dodrio条件からbitflag0を生成し、拒否/取消の別hookと21/12byte全文readerまで接続。新152試験・固定10source・独立review修正PASS。現0641専用Actions前の開発checkpointなので正式781/93、安全0、ROM/Save101不変。
+minigame初回run37713083180/job113103259904は全10step成功。現0641のstate6実bitflag producer/拒否/別取消hook/左21byte・右12byte全文を4原本で照合し、生成/検証/公開前12hashと実取得byte完全一致。新152試験継承/receipt28試験PASS。083DE6ABの4byte1件だけ正式781→782分類、93→92未知。今回ROM再構成1、native0、安全0、ROM/Save101不変。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

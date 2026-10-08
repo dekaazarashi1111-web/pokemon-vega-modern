@@ -11298,3 +11298,18 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 新read-only pr16-dex-hof-jp-minigame-text Actionsの初回runを照合する。現0641全SHA/115owner/874保存hitとstate6実bitflag producer/左右全文readerの4成功原本を実取得し、生成時/公開前hashが一致した後だけ083DE6ABの4byte1件を782/92へ記録する。交換/mailbox成功scope・旧165/27/22・native・旧heap・全ROMscanは再走しない。全保存入口ready/退避53300開始前Free/同期非再入/controller6528配線は別gate、正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinueは未完。
 - Commit: parent=6304f08614dbd338dbf6716db75625357fb33ed2; 全文blob/LF/tree/remote照合後に同branch非force保存。
 - Network: GitHub同repo最新HEAD/PR/Actionsと固定CFRU-JP source2本を読取。ROM/rawhex/runtime/入力save/credentialの追加公開0。
+
+## 2026-10-08T01:38:00Z
+- Timestamp: 2026-10-08T01:38:00Z
+- Task: USER-20261008-JP-MINIGAME-ACCEPTANCE / 参加拒否と取消の全文consumerを1件受入
+- Version: jp-minigame-accepted-v1
+- Status: DONE（083DE6ABの条件付き4byte1件。全体製品/残92件は継続）
+- Summary: minigame初回run37713083180/job113103259904は全10step成功。現0641のstate6実bitflag producer/拒否/別取消hook/左21byte・右12byte全文を4原本で照合し、生成/検証/公開前12hashと実取得byte完全一致。新152試験継承/receipt28試験PASS。083DE6ABの4byte1件だけ正式781→782分類、93→92未知。今回ROM再構成1、native0、安全0、ROM/Save101不変。
+- Files changed: 実取得4原本/残92frontier/checkpoint/receipt validatorと28試験/受入guide/固定MDJSON/両ログ。成功測定source14不変。
+- Verify: cde7da73/run37713083180/job113103259904全10step SUCCESS。artifact11522331925 ZIP119856bytes/SHA1c4f5d8191bf6a704b4aba0e8cc488dba9d5ac6e8daa300e7383318afcdb744b。生成/検証/公開前全12hashと取得4fileの全byte一致。現0641全SHA/115owner/874hit、55親入力/28段162変更152witness/他873行全field保持。新152試験は成功原本継承し記録時再走0、receipt28試験/main PASS。
+- Scope: state6二STRH→同flag LDRSH/bit0、entry root3617命令128境界/全文2491命令41境界、cancel root3593命令128境界/全文1519命令25境界。左21byte keepOpen0/右12byte keepOpen1の全EOSまで。終点08120AF2であり全callback/native/自然play/普遍heap/IRQ未受入。正式ROM/Save101不変、安全0/旧egg15118全域保護。
+- History: 旧交換/mailbox元2failure・成功回復累積3は原本に保持。今回minigameは初回再構成1、旧consumer/旧suite/旧heap/全ROMscan/native再走0。開発source不足によるsetUp0実施は前ログに記録済み。
+- Actions: 固定再開37713083163/job113103259433全5step成功、forgetting両側/runtime audit成功。一般CI37713083233/job113103259705はqol_production.c既知不一致2件と下流未生成upload、PR側37713089584もfailure。Stage79 dd69/run37688855021 in_progress、6304/run37705446681 cancelled、cde/run37713083051 pendingを独立保持。
+- Next: 保存済み782親から083E239BのJP固有文字列source/crosswalkを1件限定で調べ、独立起点/caller/literalを得た後だけ新producer/cell/API/全文readerを実装する。近傍labelからextentを推定せず、source未確定ならunknownを維持する。083DE68Eは左Unusedで通常SPDEF実cellが別文、083DF94Fは左登録起点の最初EOS後3byteを含むため両者保留。画像型の別候補083DCAED/DiplomaGfxは未調査。minigame成功scope/152試験は無変更再走しない。全保存入口ready/退避53300前Free/同期非再入/controller6528本番配線、正式切替後trainer131後半→シオウ回復/保存/coldContinueは別gate。 旧781親はjp_minigame_chain.parentの55保存入力、現782親は保存reference-chainをread_measured→materializeして復元する。成功測定source14とworkflowを凍結し、記録commitで無変更再測定しない。
+- Commit: parent=cde7da732b17ba3dbc4806ea87680b2ca012b9c6; 成功測定sourceを変えずworkflow glob外のreceipt pathで記録。同branch非force、全文LF/blob/tree/remote照合。
+- Network: GitHub Actions/job/log/artifact APIと公式file IDダウンロード。署名URLは一時利用のみ、Gitへ保持なし。ROM/rawhex/runtime/入力save/credential追加公開0。全体private guard既存違反は不変、新規0を確認。

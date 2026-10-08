@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "classified": 782,
+  "unclassified": 92,
+  "newly_classified": 1,
+  "inherited_classified": 781,
+  "inherited_unclassified": 93,
+  "unit_tests": 152,
+  "old_scope_test_reruns": 0,
+  "current_rom_reconstructions": 1,
+  "current_owner_count": 115,
+  "saved_hit_count": 874,
+  "inherited_parent_inputs": 55,
+  "inherited_namespaces": 28,
+  "inherited_changes": 162,
+  "inherited_witnesses": 152,
+  "source_file_count": 14,
+  "native_processes": 0,
+  "donor_safe_bytes": 0,
+  "old_full_rom_scan_runs": 0,
+  "old_native_cases_replayed": 0,
+  "formal_rom_changed": false,
+  "formal_save_changed": false,
+  "donor_eligible": false,
+  "donor_leased": false,
+  "release_ready": false,
+  "actual_runtime_execution_observed": false,
+  "reconstructed_text_promoted_as_original": false,
+  "all_prior_accepted_retained": true,
+  "remaining_unknown_rows_retained": true,
+  "status": "ACCEPTED_ONE_JP_MINIGAME_MINIMUM_TYPE",
+  "source_head": "cde7da732b17ba3dbc4806ea87680b2ca012b9c6",
+  "run_id": 37713083180,
+  "run_attempt": 1,
+  "conclusion": "success",
+  "job": {
+    "id": 113103259904,
+    "name": "minigame-text",
+    "status": "completed",
+    "conclusion": "success",
+    "run_id": 37713083180,
+    "logs_url": null,
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2
+      },
+      {
+        "name": "First scope across all branches and closed source boundary",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3
+      },
+      {
+        "name": "Official Ubuntu compiler for current candidate",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4
+      },
+      {
+        "name": "New minigame rejection and cancellation roots with complete text only",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5
+      },
+      {
+        "name": "Closed successful text publication guard",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6
+      },
+      {
+        "name": "Run actions/upload-artifact@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 7
+      },
+      {
+        "name": "Read-only checkout and task graph",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 8
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 16
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 17
+      }
+    ]
+  },
+  "artifact": {
+    "id": 11522331925,
+    "name": "pr16-jp-minigame-text-only",
+    "size_in_bytes": 119856,
+    "url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/artifacts/11522331925",
+    "archive_download_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/artifacts/11522331925/zip",
+    "expired": false,
+    "created_at": "2026-10-08T01:31:04Z",
+    "expires_at": "2027-01-06T01:28:15Z",
+    "updated_at": "2026-10-08T01:31:04Z",
+    "digest": "sha256:1c4f5d8191bf6a704b4aba0e8cc488dba9d5ac6e8daa300e7383318afcdb744b",
+    "workflow_run": {
+      "id": 37713083180,
+      "repository_id": 1358127462,
+      "head_repository_id": 1358127462,
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "cde7da732b17ba3dbc4806ea87680b2ca012b9c6"
+    }
+  },
+  "candidate": {
+    "size": 33554432,
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+  },
+  "evidence_bindings": {
+    "content/modernization/pr16_dex_hof_jp_minigame_evidence/measurement.json": {
+      "size": 1033412,
+      "sha256": "40e6ce79fc92557dc8c35ee1ae0d5b01c68cc36f599c668e63a159904585077f"
+    },
+    "content/modernization/pr16_dex_hof_jp_minigame_evidence/provenance.json": {
+      "size": 1712,
+      "sha256": "835a1131ec10bae3387893b42e6f047319b292141a42476b95a09a6ba8dd5581"
+    },
+    "content/modernization/pr16_dex_hof_jp_minigame_evidence/reference-chain.json": {
+      "size": 428715,
+      "sha256": "b2a22b8fa00ef667fb04c889a7661cf34fe20d2ab9e4b9c6906a43a2c97f1263"
+    },
+    "content/modernization/pr16_dex_hof_jp_minigame_evidence/tests.json": {
+      "size": 142,
+      "sha256": "78981cfde9a792d7ac554a5f7cdac728187c48ba6ff50d950ed4fb30eeecf77e"
+    }
+  },
+  "delta_identity": {
+    "size": 428715,
+    "sha256": "b2a22b8fa00ef667fb04c889a7661cf34fe20d2ab9e4b9c6906a43a2c97f1263"
+  },
+  "measurement_identity": {
+    "size": 1033412,
+    "sha256": "40e6ce79fc92557dc8c35ee1ae0d5b01c68cc36f599c668e63a159904585077f"
+  },
+  "tests_identity": {
+    "size": 142,
+    "sha256": "78981cfde9a792d7ac554a5f7cdac728187c48ba6ff50d950ed4fb30eeecf77e"
+  },
+  "provenance_identity": {
+    "size": 1712,
+    "sha256": "835a1131ec10bae3387893b42e6f047319b292141a42476b95a09a6ba8dd5581"
+  },
+  "unknown_identity": {
+    "size": 29034,
+    "sha256": "550552dc67577b0e3e8d5831eaf87e1fa207e9f4885acd1cb06b9764aa81d436"
+  },
+  "guide": "docs/PR16_DEX_HOF_MINIGAME_ACCEPTED_JA.md",
+  "previous_checkpoint": "content/modernization/pr16_dex_hof_jp_item_checkpoint.json",
+  "next_ja": "保存済み782親から083E239BのJP固有文字列source/crosswalkを1件限定で調べ、独立起点/caller/literalを得た後だけ新producer/cell/API/全文readerを実装する。近傍labelからextentを推定せず、source未確定ならunknownを維持する。083DE68Eは左Unusedで通常SPDEF実cellが別文、083DF94Fは左登録起点の最初EOS後3byteを含むため両者保留。画像型の別候補083DCAED/DiplomaGfxは未調査。minigame成功scope/152試験は無変更再走しない。全保存入口ready/退避53300前Free/同期非再入/controller6528本番配線、正式切替後trainer131後半→シオウ回復/保存/coldContinueは別gate。",
+  "job_log_identity": {
+    "size": 28539,
+    "sha256": "4d23fad38b7ed4c19b131f8e95680c2c4aa69db2f6bab491563576f480273a74"
+  },
+  "generated_file_identities": {
+    "measurement.json": {
+      "size": 1033412,
+      "sha256": "40e6ce79fc92557dc8c35ee1ae0d5b01c68cc36f599c668e63a159904585077f"
+    },
+    "provenance.json": {
+      "size": 1712,
+      "sha256": "835a1131ec10bae3387893b42e6f047319b292141a42476b95a09a6ba8dd5581"
+    },
+    "reference-chain.json": {
+      "size": 428715,
+      "sha256": "b2a22b8fa00ef667fb04c889a7661cf34fe20d2ab9e4b9c6906a43a2c97f1263"
+    },
+    "tests.json": {
+      "size": 142,
+      "sha256": "78981cfde9a792d7ac554a5f7cdac728187c48ba6ff50d950ed4fb30eeecf77e"
+    }
+  },
+  "validated_file_identities": {
+    "measurement.json": {
+      "size": 1033412,
+      "sha256": "40e6ce79fc92557dc8c35ee1ae0d5b01c68cc36f599c668e63a159904585077f"
+    },
+    "provenance.json": {
+      "size": 1712,
+      "sha256": "835a1131ec10bae3387893b42e6f047319b292141a42476b95a09a6ba8dd5581"
+    },
+    "reference-chain.json": {
+      "size": 428715,
+      "sha256": "b2a22b8fa00ef667fb04c889a7661cf34fe20d2ab9e4b9c6906a43a2c97f1263"
+    },
+    "tests.json": {
+      "size": 142,
+      "sha256": "78981cfde9a792d7ac554a5f7cdac728187c48ba6ff50d950ed4fb30eeecf77e"
+    }
+  },
+  "published_file_identities": {
+    "measurement.json": {
+      "size": 1033412,
+      "sha256": "40e6ce79fc92557dc8c35ee1ae0d5b01c68cc36f599c668e63a159904585077f"
+    },
+    "provenance.json": {
+      "size": 1712,
+      "sha256": "835a1131ec10bae3387893b42e6f047319b292141a42476b95a09a6ba8dd5581"
+    },
+    "reference-chain.json": {
+      "size": 428715,
+      "sha256": "b2a22b8fa00ef667fb04c889a7661cf34fe20d2ab9e4b9c6906a43a2c97f1263"
+    },
+    "tests.json": {
+      "size": 142,
+      "sha256": "78981cfde9a792d7ac554a5f7cdac728187c48ba6ff50d950ed4fb30eeecf77e"
+    }
+  }
+}
