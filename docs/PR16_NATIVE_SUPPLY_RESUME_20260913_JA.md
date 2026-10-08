@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-083E239Bを独立credits sourceと正caller/tableから限定診断。左083E2380の最初EOS083E239Aでhit先頭1byteが未被覆、右083E239Cは後半3byteだけ。型化せず正式782/92を保持。57保存入力/29段163変更153witnessの復元と誤昇格拒否を実装し37新試験PASS。公開6source全hash照合、旧手元6窓313bytesのhash記録。現ROM再構成/旧scope再走/native0、donor安全0、ROM/Save101不変。
+DiplomaGfx083DBF7Cを固定公開PNGとgbagfx算法から独立再生成し、LZ消費3366/解凍8192の全identity一致。149実命令のstate0→1/同object producer、実literal、header reader、条件付きAlloc、SWI11仕様decoder、同bufferのBG consumerを168新試験で検証。終端padding2byteを除外し083DCAED4byteだけを候補化。現0641初回Actions前なので正式782/92、donor0、ROM/Save101不変。
 
-**次: 保存782親を保持し、083DCAEDのDiplomaGfxについて独立source、実literal、decoder、consumerを1件限定で調べる。083E239Bは左最初EOS後1byteを含み通常全文readerで覆えないため保留。別の正consumerまたは独立asset型根拠が得られるまでpaddingや近傍長で昇格しない。 旧781親を使わずscripts/pr16_dex_hof_credits_frontier.pyのrestore_parentで57保存入力から782親を復元する。minigame成功152試験/4原本、今回のcredits反証は無変更再走しない。全保存入口ready/退避53300前Free/同期非再入/controller6528本番配線、正式切替後trainer131後半→シオウ回復/保存/coldContinueは別gate。**
+**次: 新pr16-dex-hof-diploma-asset Actionsの初回runを監視し、現0641全SHA/115owner/874保存hitと新Diploma consumerの4成功JSONを実取得/hash照合する。その後だけ083DCAEDの4byte1件を783/91へ記録する。57保存原本/29段163変更153witnessを保持。旧credits37/minigame152/旧consumer/native/全ROMscanは再走しない。全保存入口ready/退避53300前heap13352 Free/同期非再入/controller6528本番配線、正式切替後trainer131後半→シオウ回復/保存/coldContinueは別gate。**
 
 通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `4e8929c5ada5deaadabc696c3afec75a09b6dff3`。
-credits有限調査の開始HEAD。保存済みminigameの782/92を不変継承。旧手元限定観測は現0641実測/全文reader実行/型受入ではない。
+証拠のsource HEAD: `768918cd96c33db16b11df32ac19d663d4a2bf2c`。
+Diploma新scope開発の開始HEAD。168新試験と公開PNG独立fixtureであり、現0641実測HEAD/正式783受入ではない。
 
 ## 最短の再開手順
 
@@ -25,13 +25,13 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_DEX_HOF_CREDITS_FRONTIER_JA.md`
-- `content/modernization/pr16_dex_hof_credits_frontier.json`
-- `scripts/pr16_dex_hof_credits_frontier.py`
-- `docs/PR16_DEX_HOF_MINIGAME_ACCEPTED_JA.md`
-- `content/modernization/pr16_dex_hof_jp_minigame_checkpoint.json`
-- `content/modernization/pr16_dex_hof_jp_minigame_evidence/unknown-frontier.json`
-- `content/modernization/pr16_dex_hof_jp_crosswalk_candidates.json`
+- `docs/PR16_DEX_HOF_DIPLOMA_ASSET_JA.md`
+- `content/modernization/pr16_dex_hof_diploma_development.json`
+- `scripts/pr16_dex_hof_diploma_actions.py`
+- `scripts/pr16_dex_hof_diploma_asset.py`
+- `scripts/pr16_dex_hof_diploma_sources.py`
+- `scripts/pr16_dex_hof_diploma_chain.py`
+- `scripts/pr16_dex_hof_diploma_validation.py`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -65,6 +65,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- Diploma新168試験は独立公開PNG→LZ→疎fixture開発確認。現0641初回Actionsの4成功JSON取得/hash照合前に正式783/91へ昇格しない。3366byteのconsumed streamと3368byteの末尾padding2byteを分離。旧credits37/minigame152/受入consumer/native/全ROMscanは再走しない。
 - 083E239Bのcredits正table/caller候補は得たが、左最初EOS083E239A後1byteが未被覆。右全文だけ・ALIGNED(4)・英語長・隣接距離で型へ昇格しない。旧手元6窓のhash固定は現0641測定ではない。正式782/92とminigame成功原本は保持し、次は別DiplomaGfx候補を有限調査。
 - minigame初回37713083180は全10step/152試験/取得4原本の12hash一致から083DE6ABだけ782/92へ正式受入。source14/成功scope/152試験は変更影響なしに再走しない。近隣083DE68EのUnused左文と083DF94Fの最初EOS後3byteを、右隣の正consumerだけで分類しない。
 - minigame新152試験は独立疎fixture開発確認。現0641初回Actionsの4成功原本を実取得/hash照合してから083DE6ABだけ782/92へ。交換/mailboxの成功回復・旧165/27/22・consumer・nativeは変更影響なしに再走しない。
@@ -524,6 +525,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-083E239Bを独立credits sourceと正caller/tableから限定診断。左083E2380の最初EOS083E239Aでhit先頭1byteが未被覆、右083E239Cは後半3byteだけ。型化せず正式782/92を保持。57保存入力/29段163変更153witnessの復元と誤昇格拒否を実装し37新試験PASS。公開6source全hash照合、旧手元6窓313bytesのhash記録。現ROM再構成/旧scope再走/native0、donor安全0、ROM/Save101不変。
+DiplomaGfx083DBF7Cを固定公開PNGとgbagfx算法から独立再生成し、LZ消費3366/解凍8192の全identity一致。149実命令のstate0→1/同object producer、実literal、header reader、条件付きAlloc、SWI11仕様decoder、同bufferのBG consumerを168新試験で検証。終端padding2byteを除外し083DCAED4byteだけを候補化。現0641初回Actions前なので正式782/92、donor0、ROM/Save101不変。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

@@ -11328,3 +11328,18 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 保存782親を保持し、083DCAEDのDiplomaGfxについて独立source、実literal、decoder、consumerを1件限定で調べる。083E239Bは左最初EOS後1byteを含み通常全文readerで覆えないため保留。別の正consumerまたは独立asset型根拠が得られるまでpaddingや近傍長で昇格しない。 旧781親を使わずscripts/pr16_dex_hof_credits_frontier.pyのrestore_parentで57保存入力から782親を復元する。minigame成功152試験/4原本、今回のcredits反証は無変更再走しない。全保存入口ready/退避53300前Free/同期非再入/controller6528本番配線、正式切替後trainer131後半→シオウ回復/保存/coldContinueは別gate。
 - Commit: parent=4e8929c5ada5deaadabc696c3afec75a09b6dff3; 同branch非force。全文LF/blob/tree/remote照合と最終indexの既存guard差分を確認。
 - Network: 固定pret credits.c c75f3523、固定JP symbol/audit/unresolved c04a3154、GitHub repository/file検索。JP名repoのEN同blobは採用せず、制御文字/版不明のcredits転記も不採用。ROM/rawhex/runtime/入力save/credential公開0。
+
+## 2026-10-08T02:20:00Z
+- Timestamp: 2026-10-08T02:20:00Z
+- Task: USER-20261008-DIPLOMA-ASSET / 独立PNGからDiploma最小LZ型を実consumerへ結合
+- Version: diploma-asset-v1
+- Status: STOPPED（新168試験PASS、現0641専用Actionsへ継続）
+- Summary: DiplomaGfx083DBF7Cを固定公開PNGとgbagfx算法から独立再生成し、LZ消費3366/解凍8192の全identity一致。149実命令のstate0→1/同object producer、実literal、header reader、条件付きAlloc、SWI11仕様decoder、同bufferのBG consumerを168新試験で検証。終端padding2byteを除外し083DCAED4byteだけを候補化。現0641初回Actions前なので正式782/92、donor0、ROM/Save101不変。
+- Files changed: 新sources/asset/chain/validation/actionsと5試験、専用read-only workflow、DEV/proof JSON、guide、固定MDJSON、両ログ。旧成功scope不変。
+- Verify: sources32＋asset35＋chain46＋publication37＋actions18＝168新試験を各変更影響でPASS。独立public source13件全size/SHA/Git blob。PNG indexed8→index%16→8x8 tile/left-low nibble→固定greedy LZの3366/8192完全identity。source fixture proof22184bytes/SHA59f3b165c8e04c306d974eab0188033fecbd6cf2bc325b713a03bc18435aa65b。57保存入力/29段163変更153witnessと他873行全fieldを保持。
+- Boundary: 149命令/157窓、state0 160命令/state1 120命令。実Resetで32slot/count0、実gfxState++、LDR080F602C/cell080F6040、header読取→Alloc8192→BL080F7B1C/SWI11→BG1同buffer8192/offset0。opaque2境界でcaller-saved/flags/nonlive消去。BIOS本体CPU実行/自然到達/DMA画面/allocator実装/普遍heap/IRQ/全calleeは未証明。対象4byteのみ、padding2除外、安全donor0/旧egg15118全域保護。
+- Review: 独立レビューでtask graphをupload後からpublication_guard内へ移し、gate failureで公開しない新1試験を追加。修正を確認して保存。閉4JSON/型alias/上限1500000/余剰/欠落/symlink/DEV昇格/57原本provenanceの反証を事前PASS。
+- Actions: 開始HEAD768918cdのcredits37715779657/job113111778390と固定再開37715779424/job113111777697は全5step成功。forgetting37715779378/37715787164、runtime audit37715779552成功。一般source-validation37715779346/37715787084は既知capacity source contract failure、Stage79 37715779401 pending。全CI成功とはしない。
+- Next: 新pr16-dex-hof-diploma-asset Actionsの初回runを監視し、現0641全SHA/115owner/874保存hitと新Diploma consumerの4成功JSONを実取得/hash照合する。その後だけ083DCAEDの4byte1件を783/91へ記録する。57保存原本/29段163変更153witnessを保持。旧credits37/minigame152/旧consumer/native/全ROMscanは再走しない。全保存入口ready/退避53300前heap13352 Free/同期非再入/controller6528本番配線、正式切替後trainer131後半→シオウ回復/保存/coldContinueは別gate。
+- Commit: parent=768918cd96c33db16b11df32ac19d663d4a2bf2c; 同branch非force。全text/LF/blob読戻し/tree/単親/remote照合と最終indexの既存guard差分0を確認。
+- Network: 固定pret c75f3523 Diploma/PNG/gbagfx/new_menu_helpers/bg/BIOS source、固定JP c04a3154 audit/metadata、GitHub同repo最新HEAD/Actions。ROM/rawhex/runtime/入力save/credential公開0。

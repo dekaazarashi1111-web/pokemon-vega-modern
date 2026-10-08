@@ -1,0 +1,42 @@
+# DiplomaGfx：独立公開画像と実decoderを束縛する最小4byte型
+
+2026-10-08。開始HEADは768918cd96c33db16b11df32ac19d663d4a2bf2c。
+正式782分類/92未知を57保存原本から全byte/hash/LF/順序で復元する。旧29段163変更153witnessと他873hitを保持し、対象083DCAEDの4byteだけを新規候補にする。現0641専用Actionsの4成功JSONを取得・照合するまでは正式783/91へ更新しない。Save101・正式ROM・安全donor容量0は不変。
+
+## 独立画像sourceと消費終端
+
+固定[pret diploma.c](https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/diploma.c)は、sDiplomaGfxをgraphics/diploma/diploma.4bpp.lzへ登録し、DiplomaLoadGfxのgfxState1からDecompressAndCopyTileDataToVram(1,sDiplomaGfx,0,0,0)へ渡す。
+
+[固定公開PNG](https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/graphics/diploma/diploma.png)は128×128のindexed8。固定gbagfxのindex%16、8×8 tile順、左pixel low nibbleをstdlibだけで再現し、8192byteの4bppを独立生成する。固定LZCompressのminDistance2、greedy最長・同長先勝ち・長さ18上限を適用する。
+
+- 解凍8192byte SHA-256: 1e3d4069b5ab9ebd09f28341597009aba99696b57290b89d3a6620b6914c7dfd
+- LZ10最小消費3366byte SHA-256: cef35413656191513ea96f09a2f088f33fac4b579317567e7b4cf8875388490f
+- padding付3368byteの末尾2byteは消費stream・分類へ含めない。symbol reference sizeや隣のasset距離を長さ根拠にしない
+
+PNGと圧縮sourceは公開一次sourceから取得し、ROM逆生成物ではない。公開sourceは全size/SHA-256/Git blob/refを固定し、JP symbol対応のreference sizeがlocalized extentを保証しないことも検査する。PNG本体・圧縮byte・解凍byteはGitやArtifactsへ追加しない。
+
+## 実producer・decoder・consumer
+
+独立JP symbolのDiplomaLoadGfx080F6000へ有効sDiploma object/gfxState0で入る条件を明記する。自然story/task到達は主張しない。
+
+1. state0がResetTempTileDataBuffers080F7860を実行し、32 pointerとcountを0へ生成する。実STRBでgfxState1へ進む。state1を途中host注入しない。
+2. 同objectの2回目呼出しでLDR080F602C/cell080F6040から083DBF7Cを読み、BL080F6038でDecompressAndCopyTileDataToVram080F78D0へ渡す。bg1/size0/offset0/mode0は実命令から生成する。
+3. MallocAndDecompress080F7AF8はheader[1..3]を実LDRBして8192を生成し、BL080F7B0EでAllocへ渡す。disjoint8192byte成功bufferと正常同期ABI復帰を条件とする。
+4. BL080F7B1CでLZ77UnCompWram081C7A90の実SWI11/BX LR stubへ到達する。LZ10仕様モデルが全3366byteを終端まで消費して8192byteへ展開する。BIOS本体をCPU実行した証拠とはしない。
+5. CopyDecompressedTileDataToVramのmode0実分岐がBL080F7B48からLoadBgTiles(1,同buffer,8192,0)を呼ぶ。正常同期帰還を条件として実temp tableへ同bufferを登録しgfxState2へ。DMA完了・画面描画・資源解放は未受入。
+
+149命令と157code/literal窓を全byteで束縛する。有限実行はstate0が160命令、state1が120命令。AllocとLoadBgTilesの境界でcaller-saved/flagsをUnknownへ破棄し、future-live RAMだけを残して再実行する。保存stack、同object、count、必要bufferの破壊とresource epoch失効を拒否する。allocator実装、全callee、IRQ、普遍heap lifetimeの証明ではない。
+
+型はrooted_diploma_lz10_minimum_asset、geometryは083DCAED..083DCAF1の4byteのみ。圧縮全体をleaseする権限やdonor安全byteを生成しない。
+
+## 検証と公開境界
+
+新scopeだけのsources/asset/chain/validation/actions試験を実行する。旧credits37、minigame152、旧consumer、旧native、全ROMinventory scanは再走しない。
+
+専用pr16-dex-hof-diploma-asset Actionsは全branch初回runだけを許可し、現0641を1回再構成、完全SHA・115owner・874保存hitを再束縛する。旧型consumerを再実行しない。新assetだけのmodelと独立PNG fixture proofの全identityを照合する。
+
+task graphとread-only checkoutをpublication_guard内で検査し、すべて成功時だけmeasurement.json/reference-chain.json/tests.json/provenance.jsonの閉4JSONを公開する。生成時と公開直前に全size/SHAを記録し、余剰file・symlink・rawbyte・未知field・型aliasを拒否する。取得した成功Artifacts原本を保存してから正式型数を更新する。失敗runは成功へ読み替えず、同scopeの無条件再走はしない。
+
+## 保持する別gate
+
+通常本文で覆えない083E239BのEOS後1byte、083DF94FのEOS後3byte、083DE68Eの未使用左文を今回の画像型へ混ぜない。旧egg15118全域保護、全保存入口ready、退避53300前heap13352 Free、同期非再入、controller6528本番配線は別gate。正式切替後trainer131後半→シオウ回復/保存/coldContinueも未完。
